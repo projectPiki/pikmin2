@@ -112,85 +112,84 @@ EnemyInfo gEnemyInfo[100] = {
 int gEnemyInfoNum = sizeof(gEnemyInfo) / sizeof(gEnemyInfo[0]);
 
 namespace EnemyInfoFunc {
-	/**
-	 * Common loop used by at least getEnemyName.
-	 */
-	inline EnemyInfo* getInfo(int enemyID, int enemyFlags)
-	{
-		EnemyInfo* result = nullptr;
-		for (int enemy_num = gEnemyInfoNum, slot = 0; enemy_num > 0;
-		     --enemy_num) {
-			if ((enemyID == gEnemyInfo[slot].m_id)
-			    && ((enemyFlags & (u32)gEnemyInfo[slot].m_flags) != 0)) {
-				result = &gEnemyInfo[slot];
-				break;
-			}
-			++slot;
-		}
-		return result;
-	}
-
-	EnemyInfo* getEnemyInfo(int enemyID, int enemyFlags)
-	{
-		EnemyInfo* result = nullptr;
-		int slot          = 0;
-		int enemy_num     = gEnemyInfoNum;
-
-		while (enemy_num > 0) {
-			if ((enemyID == gEnemyInfo[slot].m_id)
-			    && ((enemyFlags & (u32)gEnemyInfo[slot].m_flags) != 0)) {
-				result = gEnemyInfo + slot;
-				break;
-			}
-			--enemy_num;
-			++slot;
-		}
-		return result;
-	}
-
-	char* getEnemyName(int enemyID, int enemyFlags)
-	{
-		EnemyInfo* result = getInfo(enemyID, enemyFlags);
-		return result ? result->m_name : nullptr;
-	}
-
-	char* getEnemyResName(int enemyID, int enemyFlags)
-	{
-		switch (enemyID) {
-		case EnemyTypeID::EnemyID_FireOtakara:
-		case EnemyTypeID::EnemyID_WaterOtakara:
-		case EnemyTypeID::EnemyID_GasOtakara:
-		case EnemyTypeID::EnemyID_ElecOtakara:
-			return "Otakara";
+/**
+ * Common loop used by at least getEnemyName.
+ */
+inline EnemyInfo* getInfo(int enemyID, int enemyFlags)
+{
+	EnemyInfo* result = nullptr;
+	for (int enemy_num = gEnemyInfoNum, slot = 0; enemy_num > 0; --enemy_num) {
+		if ((enemyID == gEnemyInfo[slot].m_id)
+		    && ((enemyFlags & (u32)gEnemyInfo[slot].m_flags) != 0)) {
+			result = &gEnemyInfo[slot];
 			break;
 		}
+		++slot;
+	}
+	return result;
+}
 
-		if (enemyID == EnemyTypeID::EnemyID_INVALID
-		    || enemyID == EnemyTypeID::EnemyID_INVALID2) {
-			enemyID = EnemyTypeID::EnemyID_PanHouse;
+EnemyInfo* getEnemyInfo(int enemyID, int enemyFlags)
+{
+	EnemyInfo* result = nullptr;
+	int slot          = 0;
+	int enemy_num     = gEnemyInfoNum;
+
+	while (enemy_num > 0) {
+		if ((enemyID == gEnemyInfo[slot].m_id)
+		    && ((enemyFlags & (u32)gEnemyInfo[slot].m_flags) != 0)) {
+			result = gEnemyInfo + slot;
+			break;
 		}
+		--enemy_num;
+		++slot;
+	}
+	return result;
+}
 
-		EnemyInfo* result = getInfo(enemyID, enemyFlags);
-		return result->m_animName == "" ? result->m_name : result->m_animName;
+char* getEnemyName(int enemyID, int enemyFlags)
+{
+	EnemyInfo* result = getInfo(enemyID, enemyFlags);
+	return result ? result->m_name : nullptr;
+}
+
+char* getEnemyResName(int enemyID, int enemyFlags)
+{
+	switch (enemyID) {
+	case EnemyTypeID::EnemyID_FireOtakara:
+	case EnemyTypeID::EnemyID_WaterOtakara:
+	case EnemyTypeID::EnemyID_GasOtakara:
+	case EnemyTypeID::EnemyID_ElecOtakara:
+		return "Otakara";
+		break;
 	}
 
-	char getEnemyMember(int enemyID, int enemyFlags)
-	{
-		EnemyInfo* result = getInfo(enemyID, enemyFlags);
-		return result ? result->m_members : '\0';
+	if (enemyID == EnemyTypeID::EnemyID_INVALID
+	    || enemyID == EnemyTypeID::EnemyID_INVALID2) {
+		enemyID = EnemyTypeID::EnemyID_PanHouse;
 	}
 
-	int getEnemyID(char* name, int enemyFlags)
-	{
-		EnemyInfo* result = nullptr;
-		for (int slot = 0; slot < gEnemyInfoNum; ++slot) {
-			if ((stricmp(gEnemyInfo[slot].m_name, name) == 0)
-			    && ((enemyFlags & (u32)gEnemyInfo[slot].m_flags) != 0)) {
-				result = &gEnemyInfo[slot];
-				break;
-			}
+	EnemyInfo* result = getInfo(enemyID, enemyFlags);
+	return result->m_animName == "" ? result->m_name : result->m_animName;
+}
+
+char getEnemyMember(int enemyID, int enemyFlags)
+{
+	EnemyInfo* result = getInfo(enemyID, enemyFlags);
+	return result ? result->m_members : '\0';
+}
+
+int getEnemyID(char* name, int enemyFlags)
+{
+	EnemyInfo* result = nullptr;
+	for (int slot = 0; slot < gEnemyInfoNum; ++slot) {
+		if ((stricmp(gEnemyInfo[slot].m_name, name) == 0)
+		    && ((enemyFlags & (u32)gEnemyInfo[slot].m_flags) != 0)) {
+			result = &gEnemyInfo[slot];
+			break;
 		}
-		return result->m_id;
 	}
+	return result->m_id;
+}
 } // namespace EnemyInfoFunc
 } // namespace Game

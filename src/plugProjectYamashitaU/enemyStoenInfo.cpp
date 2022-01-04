@@ -5,44 +5,44 @@
 
 namespace Game {
 namespace EnemyStone {
-	/*
-	 * --INFO--
-	 * Address:	80128108
-	 * Size:	000164
-	 */
-	void Info::setup(Stream& stream)
-	{
-		m_infoCnt = stream.readByte();
-		m_infoArr = new ObjInfo[m_infoCnt];
+/*
+ * --INFO--
+ * Address:	80128108
+ * Size:	000164
+ */
+void Info::setup(Stream& stream)
+{
+	m_infoCnt = stream.readByte();
+	m_infoArr = new ObjInfo[m_infoCnt];
 
-		for (u8 i = 0; i < m_infoCnt; i++) {
-			m_infoArr[i].m_name = stream.readString(nullptr, 0);
-			m_infoArr[i]._04    = stream.readInt();
+	for (u8 i = 0; i < m_infoCnt; i++) {
+		m_infoArr[i].m_name = stream.readString(nullptr, 0);
+		m_infoArr[i]._04    = stream.readInt();
 
-			Vector3f position;
-			position.read(stream);
+		Vector3f position;
+		position.read(stream);
 
-			Vector3f rotation;
-			rotation.read(stream);
-			rotation.x = PI * ((1.0f / 180) * rotation.x);
-			rotation.y = PI * ((1.0f / 180) * rotation.y);
-			rotation.z = PI * ((1.0f / 180) * rotation.z);
+		Vector3f rotation;
+		rotation.read(stream);
+		rotation.x = PI * ((1.0f / 180) * rotation.x);
+		rotation.y = PI * ((1.0f / 180) * rotation.y);
+		rotation.z = PI * ((1.0f / 180) * rotation.z);
 
-			Vector3f scale;
-			scale.read(stream);
-			m_infoArr[i].m_modelMatrix.makeSRT(scale, rotation, position);
-		}
+		Vector3f scale;
+		scale.read(stream);
+		m_infoArr[i].m_modelMatrix.makeSRT(scale, rotation, position);
 	}
+}
 
-	/*
-	 * --INFO--
-	 * Address:	8012826C
-	 * Size:	000014
-	 */
-	ObjInfo::ObjInfo()
-	    : m_name(nullptr)
-	    , _04(-1)
-	{
-	}
+/*
+ * --INFO--
+ * Address:	8012826C
+ * Size:	000014
+ */
+ObjInfo::ObjInfo()
+    : m_name(nullptr)
+    , _04(-1)
+{
+}
 } // namespace EnemyStone
 } // namespace Game

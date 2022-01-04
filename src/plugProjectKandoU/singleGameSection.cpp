@@ -5881,162 +5881,162 @@ namespace og {
 
 namespace Screen {
 
+/*
+ * --INFO--
+ * Address:	8015603C
+ * Size:	000008
+ */
+u32 DispMemberCave::getSize(void) { return 0x64; }
+
+/*
+ * --INFO--
+ * Address:	80156044
+ * Size:	00000C
+ */
+void DispMemberCave::getOwnerID(void)
+{
 	/*
-	 * --INFO--
-	 * Address:	8015603C
-	 * Size:	000008
-	 */
-	u32 DispMemberCave::getSize(void) { return 0x64; }
+lis      r3, 0x004F4741@ha
+addi     r3, r3, 0x004F4741@l
+blr
+	*/
+}
 
+/*
+ * --INFO--
+ * Address:	80156050
+ * Size:	000010
+ */
+void DispMemberCave::getMemberID(void)
+{
 	/*
-	 * --INFO--
-	 * Address:	80156044
-	 * Size:	00000C
-	 */
-	void DispMemberCave::getOwnerID(void)
-	{
-		/*
-	lis      r3, 0x004F4741@ha
-	addi     r3, r3, 0x004F4741@l
-	blr
-		*/
-	}
+lis      r4, 0x43415645@ha
+li       r3, 0
+addi     r4, r4, 0x43415645@l
+blr
+	*/
+}
 
+/*
+ * --INFO--
+ * Address:	80156060
+ * Size:	000004
+ */
+void DispMemberBase::doSetSubMemberAll(void) { }
+
+/*
+ * --INFO--
+ * Address:	80156064
+ * Size:	000008
+ */
+u32 DispMemberHurryUp::getSize(void) { return 0x10; }
+
+/*
+ * --INFO--
+ * Address:	8015606C
+ * Size:	00000C
+ */
+void DispMemberHurryUp::getOwnerID(void)
+{
 	/*
-	 * --INFO--
-	 * Address:	80156050
-	 * Size:	000010
-	 */
-	void DispMemberCave::getMemberID(void)
-	{
-		/*
-	lis      r4, 0x43415645@ha
-	li       r3, 0
-	addi     r4, r4, 0x43415645@l
-	blr
-		*/
-	}
+lis      r3, 0x4D524D52@ha
+addi     r3, r3, 0x4D524D52@l
+blr
+	*/
+}
 
+/*
+ * --INFO--
+ * Address:	80156078
+ * Size:	000014
+ */
+void DispMemberHurryUp::getMemberID(void)
+{
 	/*
-	 * --INFO--
-	 * Address:	80156060
-	 * Size:	000004
-	 */
-	void DispMemberBase::doSetSubMemberAll(void) { }
+lis      r4, 0x52595550@ha
+lis      r3, 0x00485552@ha
+addi     r4, r4, 0x52595550@l
+addi     r3, r3, 0x00485552@l
+blr
+	*/
+}
 
+/*
+ * --INFO--
+ * Address:	8015608C
+ * Size:	000008
+ */
+u32 DispMemberDayEndCount::getSize(void) { return 0x10; }
+
+/*
+ * --INFO--
+ * Address:	80156094
+ * Size:	00000C
+ */
+void DispMemberDayEndCount::getOwnerID(void)
+{
 	/*
-	 * --INFO--
-	 * Address:	80156064
-	 * Size:	000008
-	 */
-	u32 DispMemberHurryUp::getSize(void) { return 0x10; }
+lis      r3, 0x4D524D52@ha
+addi     r3, r3, 0x4D524D52@l
+blr
+	*/
+}
 
+/*
+ * --INFO--
+ * Address:	801560A0
+ * Size:	000014
+ */
+void DispMemberDayEndCount::getMemberID(void)
+{
 	/*
-	 * --INFO--
-	 * Address:	8015606C
-	 * Size:	00000C
-	 */
-	void DispMemberHurryUp::getOwnerID(void)
-	{
-		/*
-	lis      r3, 0x4D524D52@ha
-	addi     r3, r3, 0x4D524D52@l
-	blr
-		*/
-	}
+lis      r4, 0x4E444344@ha
+lis      r3, 0x44415945@ha
+addi     r4, r4, 0x4E444344@l
+addi     r3, r3, 0x44415945@l
+blr
+	*/
+}
 
+/*
+ * --INFO--
+ * Address:	801560B4
+ * Size:	000008
+ */
+u32 DispMemberGround::getSize(void) { return 0x88; }
+
+/*
+ * --INFO--
+ * Address:	801560BC
+ * Size:	00000C
+ */
+void DispMemberGround::getOwnerID(void)
+{
 	/*
-	 * --INFO--
-	 * Address:	80156078
-	 * Size:	000014
-	 */
-	void DispMemberHurryUp::getMemberID(void)
-	{
-		/*
-	lis      r4, 0x52595550@ha
-	lis      r3, 0x00485552@ha
-	addi     r4, r4, 0x52595550@l
-	addi     r3, r3, 0x00485552@l
-	blr
-		*/
-	}
+lis      r3, 0x004F4741@ha
+addi     r3, r3, 0x004F4741@l
+blr
+	*/
+}
 
+/*
+ * --INFO--
+ * Address:	801560C8
+ * Size:	000010
+ */
+void DispMemberGround::getMemberID(void)
+{
 	/*
-	 * --INFO--
-	 * Address:	8015608C
-	 * Size:	000008
-	 */
-	u32 DispMemberDayEndCount::getSize(void) { return 0x10; }
+lis      r4, 0x4F554E44@ha
+li       r3, 0x4752
+addi     r4, r4, 0x4F554E44@l
+blr
+	*/
+}
 
-	/*
-	 * --INFO--
-	 * Address:	80156094
-	 * Size:	00000C
-	 */
-	void DispMemberDayEndCount::getOwnerID(void)
-	{
-		/*
-	lis      r3, 0x4D524D52@ha
-	addi     r3, r3, 0x4D524D52@l
-	blr
-		*/
-	}
+namespace Game {
 
-	/*
-	 * --INFO--
-	 * Address:	801560A0
-	 * Size:	000014
-	 */
-	void DispMemberDayEndCount::getMemberID(void)
-	{
-		/*
-	lis      r4, 0x4E444344@ha
-	lis      r3, 0x44415945@ha
-	addi     r4, r4, 0x4E444344@l
-	addi     r3, r3, 0x44415945@l
-	blr
-		*/
-	}
-
-	/*
-	 * --INFO--
-	 * Address:	801560B4
-	 * Size:	000008
-	 */
-	u32 DispMemberGround::getSize(void) { return 0x88; }
-
-	/*
-	 * --INFO--
-	 * Address:	801560BC
-	 * Size:	00000C
-	 */
-	void DispMemberGround::getOwnerID(void)
-	{
-		/*
-	lis      r3, 0x004F4741@ha
-	addi     r3, r3, 0x004F4741@l
-	blr
-		*/
-	}
-
-	/*
-	 * --INFO--
-	 * Address:	801560C8
-	 * Size:	000010
-	 */
-	void DispMemberGround::getMemberID(void)
-	{
-		/*
-	lis      r4, 0x4F554E44@ha
-	li       r3, 0x4752
-	addi     r4, r4, 0x4F554E44@l
-	blr
-		*/
-	}
-
-	namespace Game {
-
-	} // namespace Game
+} // namespace Game
 
 } // namespace Screen
 
@@ -6060,120 +6060,120 @@ namespace og {
 
 namespace Screen {
 
+/*
+ * --INFO--
+ * Address:	801560E4
+ * Size:	000008
+ */
+u32 DispMemberKanketuMenu::getSize(void) { return 0x28; }
+
+/*
+ * --INFO--
+ * Address:	801560EC
+ * Size:	00000C
+ */
+void DispMemberKanketuMenu::getOwnerID(void)
+{
 	/*
-	 * --INFO--
-	 * Address:	801560E4
-	 * Size:	000008
-	 */
-	u32 DispMemberKanketuMenu::getSize(void) { return 0x28; }
+lis      r3, 0x004F4741@ha
+addi     r3, r3, 0x004F4741@l
+blr
+	*/
+}
 
+/*
+ * --INFO--
+ * Address:	801560F8
+ * Size:	000014
+ */
+void DispMemberKanketuMenu::getMemberID(void)
+{
 	/*
-	 * --INFO--
-	 * Address:	801560EC
-	 * Size:	00000C
-	 */
-	void DispMemberKanketuMenu::getOwnerID(void)
-	{
-		/*
-	lis      r3, 0x004F4741@ha
-	addi     r3, r3, 0x004F4741@l
-	blr
-		*/
-	}
+lis      r4, 0x4B455455@ha
+lis      r3, 0x004B414E@ha
+addi     r4, r4, 0x4B455455@l
+addi     r3, r3, 0x004B414E@l
+blr
+	*/
+}
 
+/*
+ * --INFO--
+ * Address:	8015610C
+ * Size:	000008
+ */
+u32 DispMemberCaveMore::getSize(void) { return 0x28; }
+
+/*
+ * --INFO--
+ * Address:	80156114
+ * Size:	00000C
+ */
+void DispMemberCaveMore::getOwnerID(void)
+{
 	/*
-	 * --INFO--
-	 * Address:	801560F8
-	 * Size:	000014
-	 */
-	void DispMemberKanketuMenu::getMemberID(void)
-	{
-		/*
-	lis      r4, 0x4B455455@ha
-	lis      r3, 0x004B414E@ha
-	addi     r4, r4, 0x4B455455@l
-	addi     r3, r3, 0x004B414E@l
-	blr
-		*/
-	}
+lis      r3, 0x004F4741@ha
+addi     r3, r3, 0x004F4741@l
+blr
+	*/
+}
 
+/*
+ * --INFO--
+ * Address:	80156120
+ * Size:	000014
+ */
+void DispMemberCaveMore::getMemberID(void)
+{
 	/*
-	 * --INFO--
-	 * Address:	8015610C
-	 * Size:	000008
-	 */
-	u32 DispMemberCaveMore::getSize(void) { return 0x28; }
+lis      r4, 0x4D4F5245@ha
+lis      r3, 0x43415645@ha
+addi     r4, r4, 0x4D4F5245@l
+addi     r3, r3, 0x43415645@l
+blr
+	*/
+}
 
+/*
+ * --INFO--
+ * Address:	80156134
+ * Size:	000008
+ */
+u32 DispMemberAnaDemo::getSize(void) { return 0x24; }
+
+/*
+ * --INFO--
+ * Address:	8015613C
+ * Size:	00000C
+ */
+void DispMemberAnaDemo::getOwnerID(void)
+{
 	/*
-	 * --INFO--
-	 * Address:	80156114
-	 * Size:	00000C
-	 */
-	void DispMemberCaveMore::getOwnerID(void)
-	{
-		/*
-	lis      r3, 0x004F4741@ha
-	addi     r3, r3, 0x004F4741@l
-	blr
-		*/
-	}
+lis      r3, 0x004F4741@ha
+addi     r3, r3, 0x004F4741@l
+blr
+	*/
+}
 
+/*
+ * --INFO--
+ * Address:	80156148
+ * Size:	000014
+ */
+void DispMemberAnaDemo::getMemberID(void)
+{
 	/*
-	 * --INFO--
-	 * Address:	80156120
-	 * Size:	000014
-	 */
-	void DispMemberCaveMore::getMemberID(void)
-	{
-		/*
-	lis      r4, 0x4D4F5245@ha
-	lis      r3, 0x43415645@ha
-	addi     r4, r4, 0x4D4F5245@l
-	addi     r3, r3, 0x43415645@l
-	blr
-		*/
-	}
+lis      r4, 0x44454D4F@ha
+lis      r3, 0x414E415F@ha
+addi     r4, r4, 0x44454D4F@l
+addi     r3, r3, 0x414E415F@l
+blr
+	*/
+}
 
-	/*
-	 * --INFO--
-	 * Address:	80156134
-	 * Size:	000008
-	 */
-	u32 DispMemberAnaDemo::getSize(void) { return 0x24; }
+namespace Game {
 
-	/*
-	 * --INFO--
-	 * Address:	8015613C
-	 * Size:	00000C
-	 */
-	void DispMemberAnaDemo::getOwnerID(void)
-	{
-		/*
-	lis      r3, 0x004F4741@ha
-	addi     r3, r3, 0x004F4741@l
-	blr
-		*/
-	}
-
-	/*
-	 * --INFO--
-	 * Address:	80156148
-	 * Size:	000014
-	 */
-	void DispMemberAnaDemo::getMemberID(void)
-	{
-		/*
-	lis      r4, 0x44454D4F@ha
-	lis      r3, 0x414E415F@ha
-	addi     r4, r4, 0x44454D4F@l
-	addi     r3, r3, 0x414E415F@l
-	blr
-		*/
-	}
-
-	namespace Game {
-
-	} // namespace Game
+} // namespace Game
 
 } // namespace Screen
 
@@ -6193,167 +6193,167 @@ void PikiKillArg::getName(void)
 
 namespace efx {
 
+/*
+ * --INFO--
+ * Address:	80156168
+ * Size:	00009C
+ */
+TLastMomiji::~TLastMomiji(void)
+{
 	/*
-	 * --INFO--
-	 * Address:	80156168
-	 * Size:	00009C
-	 */
-	TLastMomiji::~TLastMomiji(void)
-	{
-		/*
-	stwu     r1, -0x10(r1)
-	mflr     r0
-	stw      r0, 0x14(r1)
-	stw      r31, 0xc(r1)
-	mr       r31, r4
-	stw      r30, 8(r1)
-	or.      r30, r3, r3
-	beq      lbl_801561E8
-	lis      r3, __vt__Q23efx11TLastMomiji@ha
-	addi     r3, r3, __vt__Q23efx11TLastMomiji@l
-	stw      r3, 0(r30)
-	addi     r0, r3, 0x14
-	stw      r0, 4(r30)
-	beq      lbl_801561D8
-	lis      r3, __vt__Q23efx9TChasePos@ha
-	addi     r3, r3, __vt__Q23efx9TChasePos@l
-	stw      r3, 0(r30)
-	addi     r0, r3, 0x14
-	stw      r0, 4(r30)
-	beq      lbl_801561D8
-	lis      r4, __vt__Q23efx5TSync@ha
-	addi     r3, r30, 4
-	addi     r5, r4, __vt__Q23efx5TSync@l
-	li       r4, 0
-	stw      r5, 0(r30)
-	addi     r0, r5, 0x14
-	stw      r0, 4(r30)
-	bl       __dt__18JPAEmitterCallBackFv
+stwu     r1, -0x10(r1)
+mflr     r0
+stw      r0, 0x14(r1)
+stw      r31, 0xc(r1)
+mr       r31, r4
+stw      r30, 8(r1)
+or.      r30, r3, r3
+beq      lbl_801561E8
+lis      r3, __vt__Q23efx11TLastMomiji@ha
+addi     r3, r3, __vt__Q23efx11TLastMomiji@l
+stw      r3, 0(r30)
+addi     r0, r3, 0x14
+stw      r0, 4(r30)
+beq      lbl_801561D8
+lis      r3, __vt__Q23efx9TChasePos@ha
+addi     r3, r3, __vt__Q23efx9TChasePos@l
+stw      r3, 0(r30)
+addi     r0, r3, 0x14
+stw      r0, 4(r30)
+beq      lbl_801561D8
+lis      r4, __vt__Q23efx5TSync@ha
+addi     r3, r30, 4
+addi     r5, r4, __vt__Q23efx5TSync@l
+li       r4, 0
+stw      r5, 0(r30)
+addi     r0, r5, 0x14
+stw      r0, 4(r30)
+bl       __dt__18JPAEmitterCallBackFv
 
 lbl_801561D8:
-	extsh.   r0, r31
-	ble      lbl_801561E8
-	mr       r3, r30
-	bl       __dl__FPv
+extsh.   r0, r31
+ble      lbl_801561E8
+mr       r3, r30
+bl       __dl__FPv
 
 lbl_801561E8:
-	lwz      r0, 0x14(r1)
-	mr       r3, r30
-	lwz      r31, 0xc(r1)
-	lwz      r30, 8(r1)
-	mtlr     r0
-	addi     r1, r1, 0x10
-	blr
-		*/
-	}
+lwz      r0, 0x14(r1)
+mr       r3, r30
+lwz      r31, 0xc(r1)
+lwz      r30, 8(r1)
+mtlr     r0
+addi     r1, r1, 0x10
+blr
+	*/
+}
 
+/*
+ * --INFO--
+ * Address:	80156204
+ * Size:	00009C
+ */
+TForestSakura::~TForestSakura(void)
+{
 	/*
-	 * --INFO--
-	 * Address:	80156204
-	 * Size:	00009C
-	 */
-	TForestSakura::~TForestSakura(void)
-	{
-		/*
-	stwu     r1, -0x10(r1)
-	mflr     r0
-	stw      r0, 0x14(r1)
-	stw      r31, 0xc(r1)
-	mr       r31, r4
-	stw      r30, 8(r1)
-	or.      r30, r3, r3
-	beq      lbl_80156284
-	lis      r3, __vt__Q23efx13TForestSakura@ha
-	addi     r3, r3, __vt__Q23efx13TForestSakura@l
-	stw      r3, 0(r30)
-	addi     r0, r3, 0x14
-	stw      r0, 4(r30)
-	beq      lbl_80156274
-	lis      r3, __vt__Q23efx9TChasePos@ha
-	addi     r3, r3, __vt__Q23efx9TChasePos@l
-	stw      r3, 0(r30)
-	addi     r0, r3, 0x14
-	stw      r0, 4(r30)
-	beq      lbl_80156274
-	lis      r4, __vt__Q23efx5TSync@ha
-	addi     r3, r30, 4
-	addi     r5, r4, __vt__Q23efx5TSync@l
-	li       r4, 0
-	stw      r5, 0(r30)
-	addi     r0, r5, 0x14
-	stw      r0, 4(r30)
-	bl       __dt__18JPAEmitterCallBackFv
+stwu     r1, -0x10(r1)
+mflr     r0
+stw      r0, 0x14(r1)
+stw      r31, 0xc(r1)
+mr       r31, r4
+stw      r30, 8(r1)
+or.      r30, r3, r3
+beq      lbl_80156284
+lis      r3, __vt__Q23efx13TForestSakura@ha
+addi     r3, r3, __vt__Q23efx13TForestSakura@l
+stw      r3, 0(r30)
+addi     r0, r3, 0x14
+stw      r0, 4(r30)
+beq      lbl_80156274
+lis      r3, __vt__Q23efx9TChasePos@ha
+addi     r3, r3, __vt__Q23efx9TChasePos@l
+stw      r3, 0(r30)
+addi     r0, r3, 0x14
+stw      r0, 4(r30)
+beq      lbl_80156274
+lis      r4, __vt__Q23efx5TSync@ha
+addi     r3, r30, 4
+addi     r5, r4, __vt__Q23efx5TSync@l
+li       r4, 0
+stw      r5, 0(r30)
+addi     r0, r5, 0x14
+stw      r0, 4(r30)
+bl       __dt__18JPAEmitterCallBackFv
 
 lbl_80156274:
-	extsh.   r0, r31
-	ble      lbl_80156284
-	mr       r3, r30
-	bl       __dl__FPv
+extsh.   r0, r31
+ble      lbl_80156284
+mr       r3, r30
+bl       __dl__FPv
 
 lbl_80156284:
-	lwz      r0, 0x14(r1)
-	mr       r3, r30
-	lwz      r31, 0xc(r1)
-	lwz      r30, 8(r1)
-	mtlr     r0
-	addi     r1, r1, 0x10
-	blr
-		*/
-	}
+lwz      r0, 0x14(r1)
+mr       r3, r30
+lwz      r31, 0xc(r1)
+lwz      r30, 8(r1)
+mtlr     r0
+addi     r1, r1, 0x10
+blr
+	*/
+}
 
+/*
+ * --INFO--
+ * Address:	801562A0
+ * Size:	00009C
+ */
+TTutorialSnow::~TTutorialSnow(void)
+{
 	/*
-	 * --INFO--
-	 * Address:	801562A0
-	 * Size:	00009C
-	 */
-	TTutorialSnow::~TTutorialSnow(void)
-	{
-		/*
-	stwu     r1, -0x10(r1)
-	mflr     r0
-	stw      r0, 0x14(r1)
-	stw      r31, 0xc(r1)
-	mr       r31, r4
-	stw      r30, 8(r1)
-	or.      r30, r3, r3
-	beq      lbl_80156320
-	lis      r3, __vt__Q23efx13TTutorialSnow@ha
-	addi     r3, r3, __vt__Q23efx13TTutorialSnow@l
-	stw      r3, 0(r30)
-	addi     r0, r3, 0x14
-	stw      r0, 4(r30)
-	beq      lbl_80156310
-	lis      r3, __vt__Q23efx9TChasePos@ha
-	addi     r3, r3, __vt__Q23efx9TChasePos@l
-	stw      r3, 0(r30)
-	addi     r0, r3, 0x14
-	stw      r0, 4(r30)
-	beq      lbl_80156310
-	lis      r4, __vt__Q23efx5TSync@ha
-	addi     r3, r30, 4
-	addi     r5, r4, __vt__Q23efx5TSync@l
-	li       r4, 0
-	stw      r5, 0(r30)
-	addi     r0, r5, 0x14
-	stw      r0, 4(r30)
-	bl       __dt__18JPAEmitterCallBackFv
+stwu     r1, -0x10(r1)
+mflr     r0
+stw      r0, 0x14(r1)
+stw      r31, 0xc(r1)
+mr       r31, r4
+stw      r30, 8(r1)
+or.      r30, r3, r3
+beq      lbl_80156320
+lis      r3, __vt__Q23efx13TTutorialSnow@ha
+addi     r3, r3, __vt__Q23efx13TTutorialSnow@l
+stw      r3, 0(r30)
+addi     r0, r3, 0x14
+stw      r0, 4(r30)
+beq      lbl_80156310
+lis      r3, __vt__Q23efx9TChasePos@ha
+addi     r3, r3, __vt__Q23efx9TChasePos@l
+stw      r3, 0(r30)
+addi     r0, r3, 0x14
+stw      r0, 4(r30)
+beq      lbl_80156310
+lis      r4, __vt__Q23efx5TSync@ha
+addi     r3, r30, 4
+addi     r5, r4, __vt__Q23efx5TSync@l
+li       r4, 0
+stw      r5, 0(r30)
+addi     r0, r5, 0x14
+stw      r0, 4(r30)
+bl       __dt__18JPAEmitterCallBackFv
 
 lbl_80156310:
-	extsh.   r0, r31
-	ble      lbl_80156320
-	mr       r3, r30
-	bl       __dl__FPv
+extsh.   r0, r31
+ble      lbl_80156320
+mr       r3, r30
+bl       __dl__FPv
 
 lbl_80156320:
-	lwz      r0, 0x14(r1)
-	mr       r3, r30
-	lwz      r31, 0xc(r1)
-	lwz      r30, 8(r1)
-	mtlr     r0
-	addi     r1, r1, 0x10
-	blr
-		*/
-	}
+lwz      r0, 0x14(r1)
+mr       r3, r30
+lwz      r31, 0xc(r1)
+lwz      r30, 8(r1)
+mtlr     r0
+addi     r1, r1, 0x10
+blr
+	*/
+}
 
 } // namespace efx
 

@@ -81,201 +81,201 @@
 namespace og {
 namespace newScreen {
 
-	/*
-	 * --INFO--
-	 * Address:	80317F28
-	 * Size:	000024
-	 */
-	bool checkMovieActive()
-	{
-		return ((Game::moviePlayer != nullptr)
-		        && (Game::moviePlayer->m_flags & Game::MoviePlayer::IS_ACTIVE));
-	}
+/*
+ * --INFO--
+ * Address:	80317F28
+ * Size:	000024
+ */
+bool checkMovieActive()
+{
+	return ((Game::moviePlayer != nullptr)
+	        && (Game::moviePlayer->m_flags & Game::MoviePlayer::IS_ACTIVE));
+}
 
-	/*
-	 * --INFO--
-	 * Address:	........
-	 * Size:	000004
-	 */
-	void drawObjName(Graphics&, char*)
-	{
-		// UNUSED FUNCTION
-	}
+/*
+ * --INFO--
+ * Address:	........
+ * Size:	000004
+ */
+void drawObjName(Graphics&, char*)
+{
+	// UNUSED FUNCTION
+}
 
-	/*
-	 * TODO: This is currently slightly too small.
-	 *
-	 * --INFO--
-	 * Address:	........
-	 * Size:	000084
-	 */
-	inline void getLanguageDir(char*& path)
-	{
-		// UNUSED FUNCTION
-		if (LOCALIZED) {
-			switch (sys->m_region) {
-			case System::LANG_ENGLISH:
-				path = "eng/";
-				break;
-			case System::LANG_FRENCH:
-				path = "fra/";
-				break;
-			case System::LANG_GERMAN:
-				path = "ger/";
-				break;
-			case System::LANG_ITALIAN:
-				path = "ita/";
-				break;
-			case System::LANG_JAPANESE:
-				path = "jpn/";
-				break;
-			case System::LANG_SPANISH:
-				path = "spa/";
-				break;
-			case System::LANG_HOL_UNUSED:
-			default:
-				path = "";
-				break;
-			}
-		} else {
+/*
+ * TODO: This is currently slightly too small.
+ *
+ * --INFO--
+ * Address:	........
+ * Size:	000084
+ */
+inline void getLanguageDir(char*& path)
+{
+	// UNUSED FUNCTION
+	if (LOCALIZED) {
+		switch (sys->m_region) {
+		case System::LANG_ENGLISH:
+			path = "eng/";
+			break;
+		case System::LANG_FRENCH:
+			path = "fra/";
+			break;
+		case System::LANG_GERMAN:
+			path = "ger/";
+			break;
+		case System::LANG_ITALIAN:
+			path = "ita/";
+			break;
+		case System::LANG_JAPANESE:
+			path = "jpn/";
+			break;
+		case System::LANG_SPANISH:
+			path = "spa/";
+			break;
+		case System::LANG_HOL_UNUSED:
+		default:
 			path = "";
+			break;
 		}
+	} else {
+		path = "";
+	}
+}
+
+/*
+ * --INFO--
+ * Address:	80317F4C
+ * Size:	0000DC
+ */
+void makeLanguageResName(char* languageResName, char const* path)
+{
+	char* langDir = nullptr;
+	char langDirBuffer[16];
+
+	if (*path != '/') {
+		// TODO: Perhaps this is inlined from some path normalization func?
+		// It's currently putting %s before the subdirs in rodata, when it
+		// should be afterwards.
+		sprintf(languageResName, "%s", path);
+		return;
 	}
 
+	getLanguageDir(langDir);
+	// if (LOCALIZED) {
+	// 	switch (sys->m_region) {
+	// 		case System::LANG_ENGLISH:
+	// 			langDir = "eng/";
+	// 			break;;
+	// 		case System::LANG_FRENCH:
+	// 			langDir = "fra/";
+	// 			break;
+	// 		case System::LANG_GERMAN:
+	// 			langDir = "ger/";
+	// 			break;
+	// 		case System::LANG_ITALIAN:
+	// 			langDir = "ita/";
+	// 			break;
+	// 		case System::LANG_JAPANESE:
+	// 			langDir = "jpn/";
+	// 			break;
+	// 		case System::LANG_SPANISH:
+	// 			langDir = "spa/";
+	// 			break;
+	// 		case System::LANG_HOL_UNUSED:
+	// 		default:
+	// 			langDir = "";
+	// 			break;
+	// 	}
+	// } else {
+	// 	langDir = "";
+	// }
+	sprintf(langDirBuffer, "%s", langDir);
+	sprintf(languageResName, "/new_screen/%s%s", langDirBuffer, path);
 	/*
-	 * --INFO--
-	 * Address:	80317F4C
-	 * Size:	0000DC
-	 */
-	void makeLanguageResName(char* languageResName, char const* path)
-	{
-		char* langDir = nullptr;
-		char langDirBuffer[16];
+	stwu     r1, -0x20(r1)
+	mflr     r0
+	stw      r0, 0x24(r1)
+	lbz      r0, 0(r4)
+	stw      r31, 0x1c(r1)
+	mr       r31, r4
+	cmpwi    r0, 0x2f
+	stw      r30, 0x18(r1)
+	mr       r30, r3
+	bne      lbl_80317F88
+	mr       r5, r31
+	addi     r4, r2, lbl_8051D92C@sda21
+	crclr    6
+	bl       sprintf
+	b        lbl_80318010
 
-		if (*path != '/') {
-			// TODO: Perhaps this is inlined from some path normalization func?
-			// It's currently putting %s before the subdirs in rodata, when it
-			// should be afterwards.
-			sprintf(languageResName, "%s", path);
-			return;
-		}
+lbl_80317F88:
+	lwz      r3, sys@sda21(r13)
+	lwz      r0, 0xd4(r3)
+	cmplwi   r0, 6
+	bgt      lbl_80317FE0
+	lis      r3, lbl_804D8B0C@ha
+	slwi     r0, r0, 2
+	addi     r3, r3, lbl_804D8B0C@l
+	lwzx     r0, r3, r0
+	mtctr    r0
+	bctr
+	.global  lbl_80317FB0
 
-		getLanguageDir(langDir);
-		// if (LOCALIZED) {
-		// 	switch (sys->m_region) {
-		// 		case System::LANG_ENGLISH:
-		// 			langDir = "eng/";
-		// 			break;;
-		// 		case System::LANG_FRENCH:
-		// 			langDir = "fra/";
-		// 			break;
-		// 		case System::LANG_GERMAN:
-		// 			langDir = "ger/";
-		// 			break;
-		// 		case System::LANG_ITALIAN:
-		// 			langDir = "ita/";
-		// 			break;
-		// 		case System::LANG_JAPANESE:
-		// 			langDir = "jpn/";
-		// 			break;
-		// 		case System::LANG_SPANISH:
-		// 			langDir = "spa/";
-		// 			break;
-		// 		case System::LANG_HOL_UNUSED:
-		// 		default:
-		// 			langDir = "";
-		// 			break;
-		// 	}
-		// } else {
-		// 	langDir = "";
-		// }
-		sprintf(langDirBuffer, "%s", langDir);
-		sprintf(languageResName, "/new_screen/%s%s", langDirBuffer, path);
-		/*
-		stwu     r1, -0x20(r1)
-		mflr     r0
-		stw      r0, 0x24(r1)
-		lbz      r0, 0(r4)
-		stw      r31, 0x1c(r1)
-		mr       r31, r4
-		cmpwi    r0, 0x2f
-		stw      r30, 0x18(r1)
-		mr       r30, r3
-		bne      lbl_80317F88
-		mr       r5, r31
-		addi     r4, r2, lbl_8051D92C@sda21
-		crclr    6
-		bl       sprintf
-		b        lbl_80318010
+lbl_80317FB0:
+	addi     r5, r2, lbl_8051D8F8@sda21
+	b        lbl_80317FE4
+	.global  lbl_80317FB8
 
-	lbl_80317F88:
-		lwz      r3, sys@sda21(r13)
-		lwz      r0, 0xd4(r3)
-		cmplwi   r0, 6
-		bgt      lbl_80317FE0
-		lis      r3, lbl_804D8B0C@ha
-		slwi     r0, r0, 2
-		addi     r3, r3, lbl_804D8B0C@l
-		lwzx     r0, r3, r0
-		mtctr    r0
-		bctr
-		.global  lbl_80317FB0
+lbl_80317FB8:
+	addi     r5, r2, lbl_8051D900@sda21
+	b        lbl_80317FE4
+	.global  lbl_80317FC0
 
-	lbl_80317FB0:
-		addi     r5, r2, lbl_8051D8F8@sda21
-		b        lbl_80317FE4
-		.global  lbl_80317FB8
+lbl_80317FC0:
+	addi     r5, r2, lbl_8051D908@sda21
+	b        lbl_80317FE4
+	.global  lbl_80317FC8
 
-	lbl_80317FB8:
-		addi     r5, r2, lbl_8051D900@sda21
-		b        lbl_80317FE4
-		.global  lbl_80317FC0
+lbl_80317FC8:
+	addi     r5, r2, lbl_8051D910@sda21
+	b        lbl_80317FE4
+	.global  lbl_80317FD0
 
-	lbl_80317FC0:
-		addi     r5, r2, lbl_8051D908@sda21
-		b        lbl_80317FE4
-		.global  lbl_80317FC8
+lbl_80317FD0:
+	addi     r5, r2, lbl_8051D918@sda21
+	b        lbl_80317FE4
+	.global  lbl_80317FD8
 
-	lbl_80317FC8:
-		addi     r5, r2, lbl_8051D910@sda21
-		b        lbl_80317FE4
-		.global  lbl_80317FD0
+lbl_80317FD8:
+	addi     r5, r2, lbl_8051D920@sda21
+	b        lbl_80317FE4
+	.global  lbl_80317FE0
 
-	lbl_80317FD0:
-		addi     r5, r2, lbl_8051D918@sda21
-		b        lbl_80317FE4
-		.global  lbl_80317FD8
+lbl_80317FE0:
+	addi     r5, r2, lbl_8051D928@sda21
 
-	lbl_80317FD8:
-		addi     r5, r2, lbl_8051D920@sda21
-		b        lbl_80317FE4
-		.global  lbl_80317FE0
+lbl_80317FE4:
+	addi     r3, r1, 8
+	addi     r4, r2, lbl_8051D92C@sda21
+	crclr    6
+	bl       sprintf
+	lis      r4, lbl_8048E778@ha
+	mr       r3, r30
+	addi     r4, r4, lbl_8048E778@l
+	mr       r6, r31
+	addi     r5, r1, 8
+	crclr    6
+	bl       sprintf
 
-	lbl_80317FE0:
-		addi     r5, r2, lbl_8051D928@sda21
-
-	lbl_80317FE4:
-		addi     r3, r1, 8
-		addi     r4, r2, lbl_8051D92C@sda21
-		crclr    6
-		bl       sprintf
-		lis      r4, lbl_8048E778@ha
-		mr       r3, r30
-		addi     r4, r4, lbl_8048E778@l
-		mr       r6, r31
-		addi     r5, r1, 8
-		crclr    6
-		bl       sprintf
-
-	lbl_80318010:
-		lwz      r0, 0x24(r1)
-		lwz      r31, 0x1c(r1)
-		lwz      r30, 0x18(r1)
-		mtlr     r0
-		addi     r1, r1, 0x20
-		blr
-		*/
-	}
+lbl_80318010:
+	lwz      r0, 0x24(r1)
+	lwz      r31, 0x1c(r1)
+	lwz      r30, 0x18(r1)
+	mtlr     r0
+	addi     r1, r1, 0x20
+	blr
+	*/
+}
 } // namespace newScreen
 } // namespace og
 

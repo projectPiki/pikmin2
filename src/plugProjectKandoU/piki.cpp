@@ -508,423 +508,423 @@ lbl_80147854:
 
 namespace efx {
 
+/*
+ * --INFO--
+ * Address:	80147880
+ * Size:	0002BC
+ */
+TPkEffect::TPkEffect(void)
+{
 	/*
-	 * --INFO--
-	 * Address:	80147880
-	 * Size:	0002BC
-	 */
-	TPkEffect::TPkEffect(void)
-	{
-		/*
-	stwu     r1, -0x40(r1)
-	mflr     r0
-	li       r9, -1
-	lis      r7, __vt__Q23efx5TBase@ha
-	stw      r0, 0x44(r1)
-	li       r0, 0
-	lis      r6, __vt__18JPAEmitterCallBack@ha
-	lis      r4, __vt__Q23efx9TChaseMtx@ha
-	stmw     r18, 8(r1)
-	addi     r23, r4, __vt__Q23efx9TChaseMtx@l
-	addi     r20, r7, __vt__Q23efx5TBase@l
-	addi     r21, r6, __vt__18JPAEmitterCallBack@l
-	lis      r4, __vt__Q23efx7TPkMoeA@ha
-	mr       r31, r3
-	addi     r30, r4, __vt__Q23efx7TPkMoeA@l
-	li       r22, 0x2b2
-	lis      r4, __ct__Q23efx15ContextChasePosFv@ha
-	addi     r24, r23, 0x14
-	li       r25, 0x174
-	li       r29, 0x16f
-	addi     r12, r30, 0x14
-	li       r11, 0x14a
-	addi     r4, r4, __ct__Q23efx15ContextChasePosFv@l
-	li       r6, 0x1c
-	li       r7, 1
-	stb      r0, 0(r3)
-	lis      r3, __vt__Q23efx5TSync@ha
-	addi     r8, r3, __vt__Q23efx5TSync@l
-	stb      r0, 1(r31)
-	lis      r3, __vt__Q23efx11TPkNageBlur@ha
-	addi     r26, r3, __vt__Q23efx11TPkNageBlur@l
-	addi     r19, r8, 0x14
-	stb      r0, 2(r31)
-	lis      r3, __vt__Q23efx9TChasePos@ha
-	addi     r28, r3, __vt__Q23efx9TChasePos@l
-	addi     r27, r26, 0x14
-	stb      r0, 3(r31)
-	lis      r3, __vt__Q23efx12TPkBlackDown@ha
-	addi     r10, r3, __vt__Q23efx12TPkBlackDown@l
-	addi     r18, r28, 0x14
-	stb      r0, 4(r31)
-	lis      r3, __dt__Q23efx15ContextChasePosFv@ha
-	addi     r5, r3, __dt__Q23efx15ContextChasePosFv@l
-	stb      r0, 5(r31)
-	addi     r3, r31, 0x70
-	stb      r0, 6(r31)
-	stb      r0, 7(r31)
-	stw      r9, 8(r31)
-	addi     r9, r10, 0x14
-	stw      r0, 0xc(r31)
-	stw      r0, 0x10(r31)
-	stw      r0, 0x14(r31)
-	stw      r0, 0x18(r31)
-	stw      r0, 0x1c(r31)
-	stw      r0, 0x20(r31)
-	stw      r0, 0x24(r31)
-	stw      r20, 0x34(r31)
-	stw      r21, 0x38(r31)
-	stw      r8, 0x34(r31)
-	stw      r19, 0x38(r31)
-	stw      r0, 0x3c(r31)
-	sth      r22, 0x40(r31)
-	stb      r0, 0x42(r31)
-	stw      r23, 0x34(r31)
-	stw      r24, 0x38(r31)
-	stw      r0, 0x44(r31)
-	sth      r25, 0x40(r31)
-	stw      r26, 0x34(r31)
-	stw      r27, 0x38(r31)
-	stw      r20, 0x48(r31)
-	stw      r21, 0x4c(r31)
-	stw      r8, 0x48(r31)
-	stw      r19, 0x4c(r31)
-	stw      r0, 0x50(r31)
-	sth      r22, 0x54(r31)
-	stb      r0, 0x56(r31)
-	stw      r28, 0x48(r31)
-	stw      r18, 0x4c(r31)
-	stw      r0, 0x58(r31)
-	sth      r29, 0x54(r31)
-	stw      r30, 0x48(r31)
-	stw      r12, 0x4c(r31)
-	stw      r20, 0x5c(r31)
-	stw      r21, 0x60(r31)
-	stw      r8, 0x5c(r31)
-	stw      r19, 0x60(r31)
-	stw      r0, 0x64(r31)
-	sth      r22, 0x68(r31)
-	stb      r0, 0x6a(r31)
-	stw      r28, 0x5c(r31)
-	stw      r18, 0x60(r31)
-	stw      r0, 0x6c(r31)
-	sth      r11, 0x68(r31)
-	stw      r10, 0x5c(r31)
-	stw      r9, 0x60(r31)
-	bl       __construct_array
-	lis      r3, __ct__Q23efx15ContextChasePosFv@ha
-	lis      r5, __dt__Q23efx15ContextChasePosFv@ha
-	addi     r4, r3, __ct__Q23efx15ContextChasePosFv@l
-	li       r6, 0x1c
-	addi     r3, r31, 0x90
-	addi     r5, r5, __dt__Q23efx15ContextChasePosFv@l
-	li       r7, 1
-	bl       __construct_array
-	lis      r3, __ct__Q23efx15ContextChasePosFv@ha
-	lis      r5, __dt__Q23efx15ContextChasePosFv@ha
-	addi     r4, r3, __ct__Q23efx15ContextChasePosFv@l
-	li       r6, 0x1c
-	addi     r3, r31, 0xac
-	addi     r5, r5, __dt__Q23efx15ContextChasePosFv@l
-	li       r7, 1
-	bl       __construct_array
-	lis      r3, __ct__Q23efx15ContextChasePosFv@ha
-	lis      r5, __dt__Q23efx15ContextChasePosFv@ha
-	addi     r4, r3, __ct__Q23efx15ContextChasePosFv@l
-	li       r6, 0x1c
-	addi     r3, r31, 0xc8
-	addi     r5, r5, __dt__Q23efx15ContextChasePosFv@l
-	li       r7, 2
-	bl       __construct_array
-	lis      r3, __ct__Q23efx15ContextChasePosFv@ha
-	lis      r5, __dt__Q23efx15ContextChasePosFv@ha
-	addi     r4, r3, __ct__Q23efx15ContextChasePosFv@l
-	li       r6, 0x1c
-	addi     r3, r31, 0x100
-	addi     r5, r5, __dt__Q23efx15ContextChasePosFv@l
-	li       r7, 1
-	bl       __construct_array
-	lis      r3, __ct__Q23efx15ContextChasePosFv@ha
-	lis      r5, __dt__Q23efx15ContextChasePosFv@ha
-	addi     r4, r3, __ct__Q23efx15ContextChasePosFv@l
-	li       r6, 0x1c
-	addi     r3, r31, 0x11c
-	addi     r5, r5, __dt__Q23efx15ContextChasePosFv@l
-	li       r7, 2
-	bl       __construct_array
-	lis      r3, __ct__Q23efx15ContextChasePosFv@ha
-	lis      r5, __dt__Q23efx15ContextChasePosFv@ha
-	addi     r4, r3, __ct__Q23efx15ContextChasePosFv@l
-	li       r6, 0x1c
-	addi     r3, r31, 0x154
-	addi     r5, r5, __dt__Q23efx15ContextChasePosFv@l
-	li       r7, 1
-	bl       __construct_array
-	lis      r3, __ct__Q23efx15ContextChasePosFv@ha
-	lis      r5, __dt__Q23efx15ContextChasePosFv@ha
-	addi     r4, r3, __ct__Q23efx15ContextChasePosFv@l
-	li       r6, 0x1c
-	addi     r3, r31, 0x170
-	addi     r5, r5, __dt__Q23efx15ContextChasePosFv@l
-	li       r7, 1
-	bl       __construct_array
-	lis      r3, __ct__Q23efx15ContextChasePosFv@ha
-	lis      r5, __dt__Q23efx15ContextChasePosFv@ha
-	addi     r4, r3, __ct__Q23efx15ContextChasePosFv@l
-	li       r6, 0x1c
-	addi     r3, r31, 0x18c
-	addi     r5, r5, __dt__Q23efx15ContextChasePosFv@l
-	li       r7, 1
-	bl       __construct_array
-	li       r0, 0
-	mr       r3, r31
-	stb      r0, 0(r31)
-	stb      r0, 1(r31)
-	stb      r0, 2(r31)
-	stb      r0, 3(r31)
-	stb      r0, 4(r31)
-	stb      r0, 5(r31)
-	stb      r0, 6(r31)
-	stb      r0, 7(r31)
-	lmw      r18, 8(r1)
-	lwz      r0, 0x44(r1)
-	mtlr     r0
-	addi     r1, r1, 0x40
-	blr
-		*/
-	}
+stwu     r1, -0x40(r1)
+mflr     r0
+li       r9, -1
+lis      r7, __vt__Q23efx5TBase@ha
+stw      r0, 0x44(r1)
+li       r0, 0
+lis      r6, __vt__18JPAEmitterCallBack@ha
+lis      r4, __vt__Q23efx9TChaseMtx@ha
+stmw     r18, 8(r1)
+addi     r23, r4, __vt__Q23efx9TChaseMtx@l
+addi     r20, r7, __vt__Q23efx5TBase@l
+addi     r21, r6, __vt__18JPAEmitterCallBack@l
+lis      r4, __vt__Q23efx7TPkMoeA@ha
+mr       r31, r3
+addi     r30, r4, __vt__Q23efx7TPkMoeA@l
+li       r22, 0x2b2
+lis      r4, __ct__Q23efx15ContextChasePosFv@ha
+addi     r24, r23, 0x14
+li       r25, 0x174
+li       r29, 0x16f
+addi     r12, r30, 0x14
+li       r11, 0x14a
+addi     r4, r4, __ct__Q23efx15ContextChasePosFv@l
+li       r6, 0x1c
+li       r7, 1
+stb      r0, 0(r3)
+lis      r3, __vt__Q23efx5TSync@ha
+addi     r8, r3, __vt__Q23efx5TSync@l
+stb      r0, 1(r31)
+lis      r3, __vt__Q23efx11TPkNageBlur@ha
+addi     r26, r3, __vt__Q23efx11TPkNageBlur@l
+addi     r19, r8, 0x14
+stb      r0, 2(r31)
+lis      r3, __vt__Q23efx9TChasePos@ha
+addi     r28, r3, __vt__Q23efx9TChasePos@l
+addi     r27, r26, 0x14
+stb      r0, 3(r31)
+lis      r3, __vt__Q23efx12TPkBlackDown@ha
+addi     r10, r3, __vt__Q23efx12TPkBlackDown@l
+addi     r18, r28, 0x14
+stb      r0, 4(r31)
+lis      r3, __dt__Q23efx15ContextChasePosFv@ha
+addi     r5, r3, __dt__Q23efx15ContextChasePosFv@l
+stb      r0, 5(r31)
+addi     r3, r31, 0x70
+stb      r0, 6(r31)
+stb      r0, 7(r31)
+stw      r9, 8(r31)
+addi     r9, r10, 0x14
+stw      r0, 0xc(r31)
+stw      r0, 0x10(r31)
+stw      r0, 0x14(r31)
+stw      r0, 0x18(r31)
+stw      r0, 0x1c(r31)
+stw      r0, 0x20(r31)
+stw      r0, 0x24(r31)
+stw      r20, 0x34(r31)
+stw      r21, 0x38(r31)
+stw      r8, 0x34(r31)
+stw      r19, 0x38(r31)
+stw      r0, 0x3c(r31)
+sth      r22, 0x40(r31)
+stb      r0, 0x42(r31)
+stw      r23, 0x34(r31)
+stw      r24, 0x38(r31)
+stw      r0, 0x44(r31)
+sth      r25, 0x40(r31)
+stw      r26, 0x34(r31)
+stw      r27, 0x38(r31)
+stw      r20, 0x48(r31)
+stw      r21, 0x4c(r31)
+stw      r8, 0x48(r31)
+stw      r19, 0x4c(r31)
+stw      r0, 0x50(r31)
+sth      r22, 0x54(r31)
+stb      r0, 0x56(r31)
+stw      r28, 0x48(r31)
+stw      r18, 0x4c(r31)
+stw      r0, 0x58(r31)
+sth      r29, 0x54(r31)
+stw      r30, 0x48(r31)
+stw      r12, 0x4c(r31)
+stw      r20, 0x5c(r31)
+stw      r21, 0x60(r31)
+stw      r8, 0x5c(r31)
+stw      r19, 0x60(r31)
+stw      r0, 0x64(r31)
+sth      r22, 0x68(r31)
+stb      r0, 0x6a(r31)
+stw      r28, 0x5c(r31)
+stw      r18, 0x60(r31)
+stw      r0, 0x6c(r31)
+sth      r11, 0x68(r31)
+stw      r10, 0x5c(r31)
+stw      r9, 0x60(r31)
+bl       __construct_array
+lis      r3, __ct__Q23efx15ContextChasePosFv@ha
+lis      r5, __dt__Q23efx15ContextChasePosFv@ha
+addi     r4, r3, __ct__Q23efx15ContextChasePosFv@l
+li       r6, 0x1c
+addi     r3, r31, 0x90
+addi     r5, r5, __dt__Q23efx15ContextChasePosFv@l
+li       r7, 1
+bl       __construct_array
+lis      r3, __ct__Q23efx15ContextChasePosFv@ha
+lis      r5, __dt__Q23efx15ContextChasePosFv@ha
+addi     r4, r3, __ct__Q23efx15ContextChasePosFv@l
+li       r6, 0x1c
+addi     r3, r31, 0xac
+addi     r5, r5, __dt__Q23efx15ContextChasePosFv@l
+li       r7, 1
+bl       __construct_array
+lis      r3, __ct__Q23efx15ContextChasePosFv@ha
+lis      r5, __dt__Q23efx15ContextChasePosFv@ha
+addi     r4, r3, __ct__Q23efx15ContextChasePosFv@l
+li       r6, 0x1c
+addi     r3, r31, 0xc8
+addi     r5, r5, __dt__Q23efx15ContextChasePosFv@l
+li       r7, 2
+bl       __construct_array
+lis      r3, __ct__Q23efx15ContextChasePosFv@ha
+lis      r5, __dt__Q23efx15ContextChasePosFv@ha
+addi     r4, r3, __ct__Q23efx15ContextChasePosFv@l
+li       r6, 0x1c
+addi     r3, r31, 0x100
+addi     r5, r5, __dt__Q23efx15ContextChasePosFv@l
+li       r7, 1
+bl       __construct_array
+lis      r3, __ct__Q23efx15ContextChasePosFv@ha
+lis      r5, __dt__Q23efx15ContextChasePosFv@ha
+addi     r4, r3, __ct__Q23efx15ContextChasePosFv@l
+li       r6, 0x1c
+addi     r3, r31, 0x11c
+addi     r5, r5, __dt__Q23efx15ContextChasePosFv@l
+li       r7, 2
+bl       __construct_array
+lis      r3, __ct__Q23efx15ContextChasePosFv@ha
+lis      r5, __dt__Q23efx15ContextChasePosFv@ha
+addi     r4, r3, __ct__Q23efx15ContextChasePosFv@l
+li       r6, 0x1c
+addi     r3, r31, 0x154
+addi     r5, r5, __dt__Q23efx15ContextChasePosFv@l
+li       r7, 1
+bl       __construct_array
+lis      r3, __ct__Q23efx15ContextChasePosFv@ha
+lis      r5, __dt__Q23efx15ContextChasePosFv@ha
+addi     r4, r3, __ct__Q23efx15ContextChasePosFv@l
+li       r6, 0x1c
+addi     r3, r31, 0x170
+addi     r5, r5, __dt__Q23efx15ContextChasePosFv@l
+li       r7, 1
+bl       __construct_array
+lis      r3, __ct__Q23efx15ContextChasePosFv@ha
+lis      r5, __dt__Q23efx15ContextChasePosFv@ha
+addi     r4, r3, __ct__Q23efx15ContextChasePosFv@l
+li       r6, 0x1c
+addi     r3, r31, 0x18c
+addi     r5, r5, __dt__Q23efx15ContextChasePosFv@l
+li       r7, 1
+bl       __construct_array
+li       r0, 0
+mr       r3, r31
+stb      r0, 0(r31)
+stb      r0, 1(r31)
+stb      r0, 2(r31)
+stb      r0, 3(r31)
+stb      r0, 4(r31)
+stb      r0, 5(r31)
+stb      r0, 6(r31)
+stb      r0, 7(r31)
+lmw      r18, 8(r1)
+lwz      r0, 0x44(r1)
+mtlr     r0
+addi     r1, r1, 0x40
+blr
+	*/
+}
 
-	/*
-	 * --INFO--
-	 * Address:	........
-	 * Size:	000060
-	 */
-	ToeMoeSmoke::~ToeMoeSmoke(void)
-	{
-		// UNUSED FUNCTION
-	}
+/*
+ * --INFO--
+ * Address:	........
+ * Size:	000060
+ */
+ToeMoeSmoke::~ToeMoeSmoke(void)
+{
+	// UNUSED FUNCTION
+}
 
-	/*
-	 * --INFO--
-	 * Address:	........
-	 * Size:	000060
-	 */
-	ToeWater::~ToeWater(void)
-	{
-		// UNUSED FUNCTION
-	}
+/*
+ * --INFO--
+ * Address:	........
+ * Size:	000060
+ */
+ToeWater::~ToeWater(void)
+{
+	// UNUSED FUNCTION
+}
 
-	/*
-	 * --INFO--
-	 * Address:	........
-	 * Size:	000060
-	 */
-	ToeChudoku::~ToeChudoku(void)
-	{
-		// UNUSED FUNCTION
-	}
+/*
+ * --INFO--
+ * Address:	........
+ * Size:	000060
+ */
+ToeChudoku::~ToeChudoku(void)
+{
+	// UNUSED FUNCTION
+}
 
-	/*
-	 * --INFO--
-	 * Address:	........
-	 * Size:	000060
-	 */
-	ToeMoeBC::~ToeMoeBC(void)
-	{
-		// UNUSED FUNCTION
-	}
+/*
+ * --INFO--
+ * Address:	........
+ * Size:	000060
+ */
+ToeMoeBC::~ToeMoeBC(void)
+{
+	// UNUSED FUNCTION
+}
 
-	/*
-	 * --INFO--
-	 * Address:	........
-	 * Size:	000060
-	 */
-	ToeNagekira::~ToeNagekira(void)
-	{
-		// UNUSED FUNCTION
-	}
+/*
+ * --INFO--
+ * Address:	........
+ * Size:	000060
+ */
+ToeNagekira::~ToeNagekira(void)
+{
+	// UNUSED FUNCTION
+}
 
-	/*
-	 * --INFO--
-	 * Address:	........
-	 * Size:	000060
-	 */
-	ToeDoping::~ToeDoping(void)
-	{
-		// UNUSED FUNCTION
-	}
+/*
+ * --INFO--
+ * Address:	........
+ * Size:	000060
+ */
+ToeDoping::~ToeDoping(void)
+{
+	// UNUSED FUNCTION
+}
 
-	/*
-	 * --INFO--
-	 * Address:	........
-	 * Size:	000060
-	 */
-	ToeKourin::~ToeKourin(void)
-	{
-		// UNUSED FUNCTION
-	}
+/*
+ * --INFO--
+ * Address:	........
+ * Size:	000060
+ */
+ToeKourin::~ToeKourin(void)
+{
+	// UNUSED FUNCTION
+}
 
+/*
+ * --INFO--
+ * Address:	80147B3C
+ * Size:	00009C
+ */
+TPkBlackDown::~TPkBlackDown(void)
+{
 	/*
-	 * --INFO--
-	 * Address:	80147B3C
-	 * Size:	00009C
-	 */
-	TPkBlackDown::~TPkBlackDown(void)
-	{
-		/*
-	stwu     r1, -0x10(r1)
-	mflr     r0
-	stw      r0, 0x14(r1)
-	stw      r31, 0xc(r1)
-	mr       r31, r4
-	stw      r30, 8(r1)
-	or.      r30, r3, r3
-	beq      lbl_80147BBC
-	lis      r3, __vt__Q23efx12TPkBlackDown@ha
-	addi     r3, r3, __vt__Q23efx12TPkBlackDown@l
-	stw      r3, 0(r30)
-	addi     r0, r3, 0x14
-	stw      r0, 4(r30)
-	beq      lbl_80147BAC
-	lis      r3, __vt__Q23efx9TChasePos@ha
-	addi     r3, r3, __vt__Q23efx9TChasePos@l
-	stw      r3, 0(r30)
-	addi     r0, r3, 0x14
-	stw      r0, 4(r30)
-	beq      lbl_80147BAC
-	lis      r4, __vt__Q23efx5TSync@ha
-	addi     r3, r30, 4
-	addi     r5, r4, __vt__Q23efx5TSync@l
-	li       r4, 0
-	stw      r5, 0(r30)
-	addi     r0, r5, 0x14
-	stw      r0, 4(r30)
-	bl       __dt__18JPAEmitterCallBackFv
+stwu     r1, -0x10(r1)
+mflr     r0
+stw      r0, 0x14(r1)
+stw      r31, 0xc(r1)
+mr       r31, r4
+stw      r30, 8(r1)
+or.      r30, r3, r3
+beq      lbl_80147BBC
+lis      r3, __vt__Q23efx12TPkBlackDown@ha
+addi     r3, r3, __vt__Q23efx12TPkBlackDown@l
+stw      r3, 0(r30)
+addi     r0, r3, 0x14
+stw      r0, 4(r30)
+beq      lbl_80147BAC
+lis      r3, __vt__Q23efx9TChasePos@ha
+addi     r3, r3, __vt__Q23efx9TChasePos@l
+stw      r3, 0(r30)
+addi     r0, r3, 0x14
+stw      r0, 4(r30)
+beq      lbl_80147BAC
+lis      r4, __vt__Q23efx5TSync@ha
+addi     r3, r30, 4
+addi     r5, r4, __vt__Q23efx5TSync@l
+li       r4, 0
+stw      r5, 0(r30)
+addi     r0, r5, 0x14
+stw      r0, 4(r30)
+bl       __dt__18JPAEmitterCallBackFv
 
 lbl_80147BAC:
-	extsh.   r0, r31
-	ble      lbl_80147BBC
-	mr       r3, r30
-	bl       __dl__FPv
+extsh.   r0, r31
+ble      lbl_80147BBC
+mr       r3, r30
+bl       __dl__FPv
 
 lbl_80147BBC:
-	lwz      r0, 0x14(r1)
-	mr       r3, r30
-	lwz      r31, 0xc(r1)
-	lwz      r30, 8(r1)
-	mtlr     r0
-	addi     r1, r1, 0x10
-	blr
-		*/
-	}
+lwz      r0, 0x14(r1)
+mr       r3, r30
+lwz      r31, 0xc(r1)
+lwz      r30, 8(r1)
+mtlr     r0
+addi     r1, r1, 0x10
+blr
+	*/
+}
 
+/*
+ * --INFO--
+ * Address:	80147BD8
+ * Size:	00009C
+ */
+TPkMoeA::~TPkMoeA(void)
+{
 	/*
-	 * --INFO--
-	 * Address:	80147BD8
-	 * Size:	00009C
-	 */
-	TPkMoeA::~TPkMoeA(void)
-	{
-		/*
-	stwu     r1, -0x10(r1)
-	mflr     r0
-	stw      r0, 0x14(r1)
-	stw      r31, 0xc(r1)
-	mr       r31, r4
-	stw      r30, 8(r1)
-	or.      r30, r3, r3
-	beq      lbl_80147C58
-	lis      r3, __vt__Q23efx7TPkMoeA@ha
-	addi     r3, r3, __vt__Q23efx7TPkMoeA@l
-	stw      r3, 0(r30)
-	addi     r0, r3, 0x14
-	stw      r0, 4(r30)
-	beq      lbl_80147C48
-	lis      r3, __vt__Q23efx9TChasePos@ha
-	addi     r3, r3, __vt__Q23efx9TChasePos@l
-	stw      r3, 0(r30)
-	addi     r0, r3, 0x14
-	stw      r0, 4(r30)
-	beq      lbl_80147C48
-	lis      r4, __vt__Q23efx5TSync@ha
-	addi     r3, r30, 4
-	addi     r5, r4, __vt__Q23efx5TSync@l
-	li       r4, 0
-	stw      r5, 0(r30)
-	addi     r0, r5, 0x14
-	stw      r0, 4(r30)
-	bl       __dt__18JPAEmitterCallBackFv
+stwu     r1, -0x10(r1)
+mflr     r0
+stw      r0, 0x14(r1)
+stw      r31, 0xc(r1)
+mr       r31, r4
+stw      r30, 8(r1)
+or.      r30, r3, r3
+beq      lbl_80147C58
+lis      r3, __vt__Q23efx7TPkMoeA@ha
+addi     r3, r3, __vt__Q23efx7TPkMoeA@l
+stw      r3, 0(r30)
+addi     r0, r3, 0x14
+stw      r0, 4(r30)
+beq      lbl_80147C48
+lis      r3, __vt__Q23efx9TChasePos@ha
+addi     r3, r3, __vt__Q23efx9TChasePos@l
+stw      r3, 0(r30)
+addi     r0, r3, 0x14
+stw      r0, 4(r30)
+beq      lbl_80147C48
+lis      r4, __vt__Q23efx5TSync@ha
+addi     r3, r30, 4
+addi     r5, r4, __vt__Q23efx5TSync@l
+li       r4, 0
+stw      r5, 0(r30)
+addi     r0, r5, 0x14
+stw      r0, 4(r30)
+bl       __dt__18JPAEmitterCallBackFv
 
 lbl_80147C48:
-	extsh.   r0, r31
-	ble      lbl_80147C58
-	mr       r3, r30
-	bl       __dl__FPv
+extsh.   r0, r31
+ble      lbl_80147C58
+mr       r3, r30
+bl       __dl__FPv
 
 lbl_80147C58:
-	lwz      r0, 0x14(r1)
-	mr       r3, r30
-	lwz      r31, 0xc(r1)
-	lwz      r30, 8(r1)
-	mtlr     r0
-	addi     r1, r1, 0x10
-	blr
-		*/
-	}
+lwz      r0, 0x14(r1)
+mr       r3, r30
+lwz      r31, 0xc(r1)
+lwz      r30, 8(r1)
+mtlr     r0
+addi     r1, r1, 0x10
+blr
+	*/
+}
 
+/*
+ * --INFO--
+ * Address:	80147C74
+ * Size:	00009C
+ */
+TPkNageBlur::~TPkNageBlur(void)
+{
 	/*
-	 * --INFO--
-	 * Address:	80147C74
-	 * Size:	00009C
-	 */
-	TPkNageBlur::~TPkNageBlur(void)
-	{
-		/*
-	stwu     r1, -0x10(r1)
-	mflr     r0
-	stw      r0, 0x14(r1)
-	stw      r31, 0xc(r1)
-	mr       r31, r4
-	stw      r30, 8(r1)
-	or.      r30, r3, r3
-	beq      lbl_80147CF4
-	lis      r3, __vt__Q23efx11TPkNageBlur@ha
-	addi     r3, r3, __vt__Q23efx11TPkNageBlur@l
-	stw      r3, 0(r30)
-	addi     r0, r3, 0x14
-	stw      r0, 4(r30)
-	beq      lbl_80147CE4
-	lis      r3, __vt__Q23efx9TChaseMtx@ha
-	addi     r3, r3, __vt__Q23efx9TChaseMtx@l
-	stw      r3, 0(r30)
-	addi     r0, r3, 0x14
-	stw      r0, 4(r30)
-	beq      lbl_80147CE4
-	lis      r4, __vt__Q23efx5TSync@ha
-	addi     r3, r30, 4
-	addi     r5, r4, __vt__Q23efx5TSync@l
-	li       r4, 0
-	stw      r5, 0(r30)
-	addi     r0, r5, 0x14
-	stw      r0, 4(r30)
-	bl       __dt__18JPAEmitterCallBackFv
+stwu     r1, -0x10(r1)
+mflr     r0
+stw      r0, 0x14(r1)
+stw      r31, 0xc(r1)
+mr       r31, r4
+stw      r30, 8(r1)
+or.      r30, r3, r3
+beq      lbl_80147CF4
+lis      r3, __vt__Q23efx11TPkNageBlur@ha
+addi     r3, r3, __vt__Q23efx11TPkNageBlur@l
+stw      r3, 0(r30)
+addi     r0, r3, 0x14
+stw      r0, 4(r30)
+beq      lbl_80147CE4
+lis      r3, __vt__Q23efx9TChaseMtx@ha
+addi     r3, r3, __vt__Q23efx9TChaseMtx@l
+stw      r3, 0(r30)
+addi     r0, r3, 0x14
+stw      r0, 4(r30)
+beq      lbl_80147CE4
+lis      r4, __vt__Q23efx5TSync@ha
+addi     r3, r30, 4
+addi     r5, r4, __vt__Q23efx5TSync@l
+li       r4, 0
+stw      r5, 0(r30)
+addi     r0, r5, 0x14
+stw      r0, 4(r30)
+bl       __dt__18JPAEmitterCallBackFv
 
 lbl_80147CE4:
-	extsh.   r0, r31
-	ble      lbl_80147CF4
-	mr       r3, r30
-	bl       __dl__FPv
+extsh.   r0, r31
+ble      lbl_80147CF4
+mr       r3, r30
+bl       __dl__FPv
 
 lbl_80147CF4:
-	lwz      r0, 0x14(r1)
-	mr       r3, r30
-	lwz      r31, 0xc(r1)
-	lwz      r30, 8(r1)
-	mtlr     r0
-	addi     r1, r1, 0x10
-	blr
-		*/
-	}
+lwz      r0, 0x14(r1)
+mr       r3, r30
+lwz      r31, 0xc(r1)
+lwz      r30, 8(r1)
+mtlr     r0
+addi     r1, r1, 0x10
+blr
+	*/
+}
 
 } // namespace efx
 

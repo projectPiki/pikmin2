@@ -2564,56 +2564,56 @@ lbl_80470ED4:
 
 namespace PSM {
 
+/*
+ * --INFO--
+ * Address:	80470EEC
+ * Size:	000008
+ */
+DirectorMgr_Scene::@12 @~DirectorMgr_Scene()
+{
 	/*
-	 * --INFO--
-	 * Address:	80470EEC
-	 * Size:	000008
-	 */
-	DirectorMgr_Scene::@12 @~DirectorMgr_Scene()
-	{
-		/*
-	addi     r3, r3, -12
-	b        __dt__Q23PSM17DirectorMgr_SceneFv
-		*/
-	}
+addi     r3, r3, -12
+b        __dt__Q23PSM17DirectorMgr_SceneFv
+	*/
+}
 
+/*
+ * --INFO--
+ * Address:	80470EF4
+ * Size:	000008
+ */
+DirectorMgr_Scene_AutoBgm::@12 @~DirectorMgr_Scene_AutoBgm()
+{
 	/*
-	 * --INFO--
-	 * Address:	80470EF4
-	 * Size:	000008
-	 */
-	DirectorMgr_Scene_AutoBgm::@12 @~DirectorMgr_Scene_AutoBgm()
-	{
-		/*
-	addi     r3, r3, -12
-	b        __dt__Q23PSM25DirectorMgr_Scene_AutoBgmFv
-		*/
-	}
+addi     r3, r3, -12
+b        __dt__Q23PSM25DirectorMgr_Scene_AutoBgmFv
+	*/
+}
 
+/*
+ * --INFO--
+ * Address:	80470EFC
+ * Size:	000008
+ */
+DirectorMgr_Battle::@12 @~DirectorMgr_Battle()
+{
 	/*
-	 * --INFO--
-	 * Address:	80470EFC
-	 * Size:	000008
-	 */
-	DirectorMgr_Battle::@12 @~DirectorMgr_Battle()
-	{
-		/*
-	addi     r3, r3, -12
-	b        __dt__Q23PSM18DirectorMgr_BattleFv
-		*/
-	}
+addi     r3, r3, -12
+b        __dt__Q23PSM18DirectorMgr_BattleFv
+	*/
+}
 
+/*
+ * --INFO--
+ * Address:	80470F04
+ * Size:	000008
+ */
+DirectorMgr_2PBattle::@12 @~DirectorMgr_2PBattle()
+{
 	/*
-	 * --INFO--
-	 * Address:	80470F04
-	 * Size:	000008
-	 */
-	DirectorMgr_2PBattle::@12 @~DirectorMgr_2PBattle()
-	{
-		/*
-	addi     r3, r3, -12
-	b        __dt__Q23PSM20DirectorMgr_2PBattleFv
-		*/
-	}
+addi     r3, r3, -12
+b        __dt__Q23PSM20DirectorMgr_2PBattleFv
+	*/
+}
 } // namespace PSM
 } // namespace PSM

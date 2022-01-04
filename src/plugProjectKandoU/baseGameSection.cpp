@@ -853,15 +853,15 @@ namespace og {
 
 namespace Screen {
 
-	/*
-	 * --INFO--
-	 * Address:	........
-	 * Size:	0000CC
-	 */
-	void setBlendPane(J2DBlendInfo, J2DScreen*, unsigned long long*)
-	{
-		// UNUSED FUNCTION
-	}
+/*
+ * --INFO--
+ * Address:	........
+ * Size:	0000CC
+ */
+void setBlendPane(J2DBlendInfo, J2DScreen*, unsigned long long*)
+{
+	// UNUSED FUNCTION
+}
 } // namespace Screen
 } // namespace og
 

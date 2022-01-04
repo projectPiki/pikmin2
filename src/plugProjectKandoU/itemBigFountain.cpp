@@ -2009,15 +2009,15 @@ FPQ34Game15ItemBigFountain4ItemiPQ24Game8StateArg(void)
 
 namespace efx {
 
-	/*
-	 * --INFO--
-	 * Address:	........
-	 * Size:	000080
-	 */
-	TForever3::~TForever3(void)
-	{
-		// UNUSED FUNCTION
-	}
+/*
+ * --INFO--
+ * Address:	........
+ * Size:	000080
+ */
+TForever3::~TForever3(void)
+{
+	// UNUSED FUNCTION
+}
 
 } // namespace efx
 

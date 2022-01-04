@@ -2509,31 +2509,31 @@ void EnemyBase::@744 @12 @viewGetShape()
 
 namespace efx {
 
+/*
+ * --INFO--
+ * Address:	80264710
+ * Size:	000008
+ */
+TRockRun::@4 @~TRockRun()
+{
 	/*
-	 * --INFO--
-	 * Address:	80264710
-	 * Size:	000008
-	 */
-	TRockRun::@4 @~TRockRun()
-	{
-		/*
-	addi     r3, r3, -4
-	b        __dt__Q23efx8TRockRunFv
-		*/
-	}
+addi     r3, r3, -4
+b        __dt__Q23efx8TRockRunFv
+	*/
+}
 
+/*
+ * --INFO--
+ * Address:	80264718
+ * Size:	000008
+ */
+TRockGrRun::@4 @~TRockGrRun()
+{
 	/*
-	 * --INFO--
-	 * Address:	80264718
-	 * Size:	000008
-	 */
-	TRockGrRun::@4 @~TRockGrRun()
-	{
-		/*
-	addi     r3, r3, -4
-	b        __dt__Q23efx10TRockGrRunFv
-		*/
-	}
+addi     r3, r3, -4
+b        __dt__Q23efx10TRockGrRunFv
+	*/
+}
 } // namespace efx
 
 } // namespace efx

@@ -1424,78 +1424,78 @@ namespace og {
 
 namespace Screen {
 
-	/*
-	 * --INFO--
-	 * Address:	8023C53C
-	 * Size:	000008
-	 */
-	u32 DispMemberSpecialItem::getSize(void) { return 0x10; }
+/*
+ * --INFO--
+ * Address:	8023C53C
+ * Size:	000008
+ */
+u32 DispMemberSpecialItem::getSize(void) { return 0x10; }
 
+/*
+ * --INFO--
+ * Address:	8023C544
+ * Size:	00000C
+ */
+void DispMemberSpecialItem::getOwnerID(void)
+{
 	/*
-	 * --INFO--
-	 * Address:	8023C544
-	 * Size:	00000C
-	 */
-	void DispMemberSpecialItem::getOwnerID(void)
-	{
-		/*
-	lis      r3, 0x004F4741@ha
-	addi     r3, r3, 0x004F4741@l
-	blr
-		*/
-	}
+lis      r3, 0x004F4741@ha
+addi     r3, r3, 0x004F4741@l
+blr
+	*/
+}
 
+/*
+ * --INFO--
+ * Address:	8023C550
+ * Size:	000014
+ */
+void DispMemberSpecialItem::getMemberID(void)
+{
 	/*
-	 * --INFO--
-	 * Address:	8023C550
-	 * Size:	000014
-	 */
-	void DispMemberSpecialItem::getMemberID(void)
-	{
-		/*
-	lis      r4, 0x4954454D@ha
-	lis      r3, 0x0053505F@ha
-	addi     r4, r4, 0x4954454D@l
-	addi     r3, r3, 0x0053505F@l
-	blr
-		*/
-	}
+lis      r4, 0x4954454D@ha
+lis      r3, 0x0053505F@ha
+addi     r4, r4, 0x4954454D@l
+addi     r3, r3, 0x0053505F@l
+blr
+	*/
+}
 
-	/*
-	 * --INFO--
-	 * Address:	8023C564
-	 * Size:	000008
-	 */
-	u32 DispMemberKantei::getSize(void) { return 0x40; }
+/*
+ * --INFO--
+ * Address:	8023C564
+ * Size:	000008
+ */
+u32 DispMemberKantei::getSize(void) { return 0x40; }
 
+/*
+ * --INFO--
+ * Address:	8023C56C
+ * Size:	00000C
+ */
+void DispMemberKantei::getOwnerID(void)
+{
 	/*
-	 * --INFO--
-	 * Address:	8023C56C
-	 * Size:	00000C
-	 */
-	void DispMemberKantei::getOwnerID(void)
-	{
-		/*
-	lis      r3, 0x004F4741@ha
-	addi     r3, r3, 0x004F4741@l
-	blr
-		*/
-	}
+lis      r3, 0x004F4741@ha
+addi     r3, r3, 0x004F4741@l
+blr
+	*/
+}
 
+/*
+ * --INFO--
+ * Address:	8023C578
+ * Size:	000010
+ */
+void DispMemberKantei::getMemberID(void)
+{
 	/*
-	 * --INFO--
-	 * Address:	8023C578
-	 * Size:	000010
-	 */
-	void DispMemberKantei::getMemberID(void)
-	{
-		/*
-	lis      r4, 0x4E544549@ha
-	li       r3, 0x4b41
-	addi     r4, r4, 0x4E544549@l
-	blr
-		*/
-	}
+lis      r4, 0x4E544549@ha
+li       r3, 0x4b41
+addi     r4, r4, 0x4E544549@l
+blr
+	*/
+}
 
 } // namespace Screen
 

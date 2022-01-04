@@ -35,22 +35,22 @@ ObjTypeInfo infos[] = {
 
 namespace Game {
 namespace ObjType {
-	/*
-	 * --INFO--
-	 * Address:	8017D3F8
-	 * Size:	000054
-	 */
-	char* getName(u16 type)
-	{
-		for (s32 i = 0;; i++) {
-			if (infos[i].m_type == 0xFFFF) {
-				return nullptr;
-			}
+/*
+ * --INFO--
+ * Address:	8017D3F8
+ * Size:	000054
+ */
+char* getName(u16 type)
+{
+	for (s32 i = 0;; i++) {
+		if (infos[i].m_type == 0xFFFF) {
+			return nullptr;
+		}
 
-			if (type == infos[i].m_type) {
-				return infos[i].m_name;
-			}
+		if (type == infos[i].m_type) {
+			return infos[i].m_name;
 		}
 	}
+}
 } // namespace ObjType
 } // namespace Game

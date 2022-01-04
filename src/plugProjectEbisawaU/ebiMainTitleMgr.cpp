@@ -365,15 +365,15 @@ TMainTitleMgr::TMainTitleMgr(void)
 
 namespace Screen {
 
-	/*
-	 * --INFO--
-	 * Address:	........
-	 * Size:	0000A0
-	 */
-	TPressStart::~TPressStart(void)
-	{
-		// UNUSED FUNCTION
-	}
+/*
+ * --INFO--
+ * Address:	........
+ * Size:	0000A0
+ */
+TPressStart::~TPressStart(void)
+{
+	// UNUSED FUNCTION
+}
 
 } // namespace Screen
 
@@ -1401,49 +1401,49 @@ E2DCallBack_CalcAnimation::E2DCallBack_CalcAnimation(void)
 
 namespace Screen {
 
-	/*
-	 * --INFO--
-	 * Address:	........
-	 * Size:	00020C
-	 */
-	TTitleMenu::~TTitleMenu(void)
-	{
-		// UNUSED FUNCTION
-	}
+/*
+ * --INFO--
+ * Address:	........
+ * Size:	00020C
+ */
+TTitleMenu::~TTitleMenu(void)
+{
+	// UNUSED FUNCTION
+}
 
-	/*
-	 * --INFO--
-	 * Address:	803EB164
-	 * Size:	000004
-	 */
-	TTitleMenu_Object_Icon::TTitleMenu_Object_Icon(void) { }
+/*
+ * --INFO--
+ * Address:	803EB164
+ * Size:	000004
+ */
+TTitleMenu_Object_Icon::TTitleMenu_Object_Icon(void) { }
 
+/*
+ * --INFO--
+ * Address:	803EB168
+ * Size:	00000C
+ */
+void ArgClose::getName(void)
+{
 	/*
-	 * --INFO--
-	 * Address:	803EB168
-	 * Size:	00000C
-	 */
-	void ArgClose::getName(void)
-	{
-		/*
-	lis      r3, lbl_80497900@ha
-	addi     r3, r3, lbl_80497900@l
-	blr
-		*/
-	}
+lis      r3, lbl_80497900@ha
+addi     r3, r3, lbl_80497900@l
+blr
+	*/
+}
 
+/*
+ * --INFO--
+ * Address:	803EB174
+ * Size:	000008
+ */
+void ArgOpen::getName(void)
+{
 	/*
-	 * --INFO--
-	 * Address:	803EB174
-	 * Size:	000008
-	 */
-	void ArgOpen::getName(void)
-	{
-		/*
-	addi     r3, r2, lbl_8051FE28@sda21
-	blr
-		*/
-	}
+addi     r3, r2, lbl_8051FE28@sda21
+blr
+	*/
+}
 
 } // namespace Screen
 

@@ -4479,31 +4479,31 @@ void EnemyBase::@808 @12 @viewGetShape()
 
 namespace efx {
 
+/*
+ * --INFO--
+ * Address:	80295E18
+ * Size:	000008
+ */
+THebiRot::@4 @~THebiRot()
+{
 	/*
-	 * --INFO--
-	 * Address:	80295E18
-	 * Size:	000008
-	 */
-	THebiRot::@4 @~THebiRot()
-	{
-		/*
-	addi     r3, r3, -4
-	b        __dt__Q23efx8THebiRotFv
-		*/
-	}
+addi     r3, r3, -4
+b        __dt__Q23efx8THebiRotFv
+	*/
+}
 
+/*
+ * --INFO--
+ * Address:	80295E20
+ * Size:	000008
+ */
+THebiWait::@4 @~THebiWait()
+{
 	/*
-	 * --INFO--
-	 * Address:	80295E20
-	 * Size:	000008
-	 */
-	THebiWait::@4 @~THebiWait()
-	{
-		/*
-	addi     r3, r3, -4
-	b        __dt__Q23efx9THebiWaitFv
-		*/
-	}
+addi     r3, r3, -4
+b        __dt__Q23efx9THebiWaitFv
+	*/
+}
 } // namespace efx
 
 } // namespace Game

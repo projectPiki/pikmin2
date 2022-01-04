@@ -1095,64 +1095,64 @@ lbl_80400990:
 
 namespace Screen {
 
+/*
+ * --INFO--
+ * Address:	804009E8
+ * Size:	0000B0
+ */
+Mgr::~Mgr()
+{
 	/*
-	 * --INFO--
-	 * Address:	804009E8
-	 * Size:	0000B0
-	 */
-	Mgr::~Mgr()
-	{
-		/*
-		stwu     r1, -0x10(r1)
-		mflr     r0
-		stw      r0, 0x14(r1)
-		stw      r31, 0xc(r1)
-		mr       r31, r4
-		stw      r30, 8(r1)
-		or.      r30, r3, r3
-		beq      lbl_80400A7C
-		lis      r3, __vt__Q26Screen3Mgr@ha
-		li       r0, 0
-		addi     r4, r3, __vt__Q26Screen3Mgr@l
-		addi     r3, r30, 0x78
-		stw      r4, 0(r30)
-		li       r4, -1
-		stw      r0, sScreenMgr__Q26Screen3Mgr@sda21(r13)
-		bl       __dt__5CNodeFv
-		addi     r3, r30, 0x60
-		li       r4, -1
-		bl       __dt__5CNodeFv
-		addi     r3, r30, 0x44
-		li       r4, -1
-		bl       __dt__5CNodeFv
-		addi     r3, r30, 0x2c
-		li       r4, -1
-		bl       __dt__5CNodeFv
-		cmplwi   r30, 0
-		beq      lbl_80400A6C
-		lis      r4, __vt__Q26Screen7MgrBase@ha
-		mr       r3, r30
-		addi     r0, r4, __vt__Q26Screen7MgrBase@l
-		li       r4, 0
-		stw      r0, 0(r30)
-		bl       __dt__11JKRDisposerFv
+	stwu     r1, -0x10(r1)
+	mflr     r0
+	stw      r0, 0x14(r1)
+	stw      r31, 0xc(r1)
+	mr       r31, r4
+	stw      r30, 8(r1)
+	or.      r30, r3, r3
+	beq      lbl_80400A7C
+	lis      r3, __vt__Q26Screen3Mgr@ha
+	li       r0, 0
+	addi     r4, r3, __vt__Q26Screen3Mgr@l
+	addi     r3, r30, 0x78
+	stw      r4, 0(r30)
+	li       r4, -1
+	stw      r0, sScreenMgr__Q26Screen3Mgr@sda21(r13)
+	bl       __dt__5CNodeFv
+	addi     r3, r30, 0x60
+	li       r4, -1
+	bl       __dt__5CNodeFv
+	addi     r3, r30, 0x44
+	li       r4, -1
+	bl       __dt__5CNodeFv
+	addi     r3, r30, 0x2c
+	li       r4, -1
+	bl       __dt__5CNodeFv
+	cmplwi   r30, 0
+	beq      lbl_80400A6C
+	lis      r4, __vt__Q26Screen7MgrBase@ha
+	mr       r3, r30
+	addi     r0, r4, __vt__Q26Screen7MgrBase@l
+	li       r4, 0
+	stw      r0, 0(r30)
+	bl       __dt__11JKRDisposerFv
 
-	lbl_80400A6C:
-		extsh.   r0, r31
-		ble      lbl_80400A7C
-		mr       r3, r30
-		bl       __dl__FPv
+lbl_80400A6C:
+	extsh.   r0, r31
+	ble      lbl_80400A7C
+	mr       r3, r30
+	bl       __dl__FPv
 
-	lbl_80400A7C:
-		lwz      r0, 0x14(r1)
-		mr       r3, r30
-		lwz      r31, 0xc(r1)
-		lwz      r30, 8(r1)
-		mtlr     r0
-		addi     r1, r1, 0x10
-		blr
-		*/
-	}
+lbl_80400A7C:
+	lwz      r0, 0x14(r1)
+	mr       r3, r30
+	lwz      r31, 0xc(r1)
+	lwz      r30, 8(r1)
+	mtlr     r0
+	addi     r1, r1, 0x10
+	blr
+	*/
+}
 
 } // namespace Screen
 

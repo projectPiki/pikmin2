@@ -4288,183 +4288,183 @@ namespace og {
 
 namespace Screen {
 
+/*
+ * --INFO--
+ * Address:	8022C710
+ * Size:	000008
+ */
+u32 DispMemberVs::getSize(void) { return 0x74; }
+
+/*
+ * --INFO--
+ * Address:	8022C718
+ * Size:	00000C
+ */
+void DispMemberVs::getOwnerID(void)
+{
 	/*
-	 * --INFO--
-	 * Address:	8022C710
-	 * Size:	000008
-	 */
-	u32 DispMemberVs::getSize(void) { return 0x74; }
+lis      r3, 0x004F4741@ha
+addi     r3, r3, 0x004F4741@l
+blr
+	*/
+}
 
+/*
+ * --INFO--
+ * Address:	8022C724
+ * Size:	00000C
+ */
+void DispMemberVs::getMemberID(void)
+{
 	/*
-	 * --INFO--
-	 * Address:	8022C718
-	 * Size:	00000C
-	 */
-	void DispMemberVs::getOwnerID(void)
-	{
-		/*
-	lis      r3, 0x004F4741@ha
-	addi     r3, r3, 0x004F4741@l
-	blr
-		*/
-	}
+li       r4, 0x5653
+li       r3, 0
+blr
+	*/
+}
 
+/*
+ * --INFO--
+ * Address:	8022C730
+ * Size:	000008
+ */
+u32 DispMemberChallenge1P::getSize(void) { return 0x78; }
+
+/*
+ * --INFO--
+ * Address:	8022C738
+ * Size:	00000C
+ */
+void DispMemberChallenge1P::getOwnerID(void)
+{
 	/*
-	 * --INFO--
-	 * Address:	8022C724
-	 * Size:	00000C
-	 */
-	void DispMemberVs::getMemberID(void)
-	{
-		/*
-	li       r4, 0x5653
-	li       r3, 0
-	blr
-		*/
-	}
+lis      r3, 0x004F4741@ha
+addi     r3, r3, 0x004F4741@l
+blr
+	*/
+}
 
+/*
+ * --INFO--
+ * Address:	8022C744
+ * Size:	000010
+ */
+void DispMemberChallenge1P::getMemberID(void)
+{
 	/*
-	 * --INFO--
-	 * Address:	8022C730
-	 * Size:	000008
-	 */
-	u32 DispMemberChallenge1P::getSize(void) { return 0x78; }
+lis      r4, 0x414C3150@ha
+li       r3, 0x4348
+addi     r4, r4, 0x414C3150@l
+blr
+	*/
+}
 
+namespace kh {
+
+} // namespace kh
+
+/*
+ * --INFO--
+ * Address:	8022C754
+ * Size:	000008
+ */
+u32 DispWinLoseReason::getSize(void) { return 0x10; }
+
+/*
+ * --INFO--
+ * Address:	8022C75C
+ * Size:	000008
+ */
+u32 DispWinLoseReason::getOwnerID(void) { return 0x4B48; }
+
+/*
+ * --INFO--
+ * Address:	8022C764
+ * Size:	000010
+ */
+void DispWinLoseReason::getMemberID(void)
+{
 	/*
-	 * --INFO--
-	 * Address:	8022C738
-	 * Size:	00000C
-	 */
-	void DispMemberChallenge1P::getOwnerID(void)
-	{
-		/*
-	lis      r3, 0x004F4741@ha
-	addi     r3, r3, 0x004F4741@l
-	blr
-		*/
-	}
+lis      r4, 0x5F52534E@ha
+li       r3, 0x574c
+addi     r4, r4, 0x5F52534E@l
+blr
+	*/
+}
 
+/*
+ * --INFO--
+ * Address:	8022C774
+ * Size:	000008
+ */
+u32 DispWinLose::getSize(void) { return 0x10; }
+
+/*
+ * --INFO--
+ * Address:	8022C77C
+ * Size:	000008
+ */
+u32 DispWinLose::getOwnerID(void) { return 0x4B48; }
+
+/*
+ * --INFO--
+ * Address:	8022C784
+ * Size:	000014
+ */
+void DispWinLose::getMemberID(void)
+{
 	/*
-	 * --INFO--
-	 * Address:	8022C744
-	 * Size:	000010
-	 */
-	void DispMemberChallenge1P::getMemberID(void)
-	{
-		/*
-	lis      r4, 0x414C3150@ha
-	li       r3, 0x4348
-	addi     r4, r4, 0x414C3150@l
-	blr
-		*/
-	}
-
-	namespace kh {
-
-	} // namespace kh
-
-	/*
-	 * --INFO--
-	 * Address:	8022C754
-	 * Size:	000008
-	 */
-	u32 DispWinLoseReason::getSize(void) { return 0x10; }
-
-	/*
-	 * --INFO--
-	 * Address:	8022C75C
-	 * Size:	000008
-	 */
-	u32 DispWinLoseReason::getOwnerID(void) { return 0x4B48; }
-
-	/*
-	 * --INFO--
-	 * Address:	8022C764
-	 * Size:	000010
-	 */
-	void DispWinLoseReason::getMemberID(void)
-	{
-		/*
-	lis      r4, 0x5F52534E@ha
-	li       r3, 0x574c
-	addi     r4, r4, 0x5F52534E@l
-	blr
-		*/
-	}
-
-	/*
-	 * --INFO--
-	 * Address:	8022C774
-	 * Size:	000008
-	 */
-	u32 DispWinLose::getSize(void) { return 0x10; }
-
-	/*
-	 * --INFO--
-	 * Address:	8022C77C
-	 * Size:	000008
-	 */
-	u32 DispWinLose::getOwnerID(void) { return 0x4B48; }
-
-	/*
-	 * --INFO--
-	 * Address:	8022C784
-	 * Size:	000014
-	 */
-	void DispWinLose::getMemberID(void)
-	{
-		/*
-	lis      r4, 0x4C4F5345@ha
-	lis      r3, 0x57494E5F@ha
-	addi     r4, r4, 0x4C4F5345@l
-	addi     r3, r3, 0x57494E5F@l
-	blr
-		*/
-	}
+lis      r4, 0x4C4F5345@ha
+lis      r3, 0x57494E5F@ha
+addi     r4, r4, 0x4C4F5345@l
+addi     r3, r3, 0x57494E5F@l
+blr
+	*/
+}
 
 } // namespace Screen
 
 namespace og {
 
+/*
+ * --INFO--
+ * Address:	8022C798
+ * Size:	000008
+ */
+u32 DispMemberChallenge2P::getSize(void) { return 0x78; }
+
+/*
+ * --INFO--
+ * Address:	8022C7A0
+ * Size:	00000C
+ */
+void DispMemberChallenge2P::getOwnerID(void)
+{
 	/*
-	 * --INFO--
-	 * Address:	8022C798
-	 * Size:	000008
-	 */
-	u32 DispMemberChallenge2P::getSize(void) { return 0x78; }
+lis      r3, 0x004F4741@ha
+addi     r3, r3, 0x004F4741@l
+blr
+	*/
+}
 
+/*
+ * --INFO--
+ * Address:	8022C7AC
+ * Size:	000010
+ */
+void DispMemberChallenge2P::getMemberID(void)
+{
 	/*
-	 * --INFO--
-	 * Address:	8022C7A0
-	 * Size:	00000C
-	 */
-	void DispMemberChallenge2P::getOwnerID(void)
-	{
-		/*
-	lis      r3, 0x004F4741@ha
-	addi     r3, r3, 0x004F4741@l
-	blr
-		*/
-	}
+lis      r4, 0x414C3250@ha
+li       r3, 0x4348
+addi     r4, r4, 0x414C3250@l
+blr
+	*/
+}
 
-	/*
-	 * --INFO--
-	 * Address:	8022C7AC
-	 * Size:	000010
-	 */
-	void DispMemberChallenge2P::getMemberID(void)
-	{
-		/*
-	lis      r4, 0x414C3250@ha
-	li       r3, 0x4348
-	addi     r4, r4, 0x414C3250@l
-	blr
-		*/
-	}
+namespace Game {
 
-	namespace Game {
-
-	} // namespace Game
+} // namespace Game
 
 } // namespace og
 

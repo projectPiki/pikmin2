@@ -392,41 +392,41 @@ namespace og {
 
 namespace Screen {
 
-	/*
-	 * --INFO--
-	 * Address:	8023A204
-	 * Size:	000008
-	 */
-	u32 DispMemberCourseName::getSize(void) { return 0x10; }
+/*
+ * --INFO--
+ * Address:	8023A204
+ * Size:	000008
+ */
+u32 DispMemberCourseName::getSize(void) { return 0x10; }
 
+/*
+ * --INFO--
+ * Address:	8023A20C
+ * Size:	00000C
+ */
+void DispMemberCourseName::getOwnerID(void)
+{
 	/*
-	 * --INFO--
-	 * Address:	8023A20C
-	 * Size:	00000C
-	 */
-	void DispMemberCourseName::getOwnerID(void)
-	{
-		/*
-	lis      r3, 0x004F4741@ha
-	addi     r3, r3, 0x004F4741@l
-	blr
-		*/
-	}
+lis      r3, 0x004F4741@ha
+addi     r3, r3, 0x004F4741@l
+blr
+	*/
+}
 
+/*
+ * --INFO--
+ * Address:	8023A218
+ * Size:	000010
+ */
+void DispMemberCourseName::getMemberID(void)
+{
 	/*
-	 * --INFO--
-	 * Address:	8023A218
-	 * Size:	000010
-	 */
-	void DispMemberCourseName::getMemberID(void)
-	{
-		/*
-	lis      r4, 0x55525345@ha
-	li       r3, 0x434f
-	addi     r4, r4, 0x55525345@l
-	blr
-		*/
-	}
+lis      r4, 0x55525345@ha
+li       r3, 0x434f
+addi     r4, r4, 0x55525345@l
+blr
+	*/
+}
 
 } // namespace Screen
 

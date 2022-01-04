@@ -864,288 +864,284 @@
 
 namespace Game {
 namespace EnemyBaseFSM {
-	/*
-	 * --INFO--
-	 * Address:	800FF26C
-	 * Size:	0000F8
-	 */
-	void State::animation(Game::EnemyBase* obj)
-	{
-		if (obj->m_flags.intView & 0x10000000) {
-			GeneralEnemyMgr::mTotalCount++;
+/*
+ * --INFO--
+ * Address:	800FF26C
+ * Size:	0000F8
+ */
+void State::animation(Game::EnemyBase* obj)
+{
+	if (obj->m_flags.intView & 0x10000000) {
+		GeneralEnemyMgr::mTotalCount++;
 
-			bool fxExists = obj->isCullingOff();
+		bool fxExists = obj->isCullingOff();
 
-			obj->updateCell();
-			obj->updateLOD(obj->m_lodParm);
+		obj->updateCell();
+		obj->updateLOD(obj->m_lodParm);
 
-			if (obj->isCullingOff()) {
-				if (obj->m_flags.intView & 0x8000) {
-					obj->doAnimationCullingOff();
-				} else {
-					obj->doAnimationCullingOn();
-				}
-
-				if (!fxExists) {
-					obj->createEffects();
-				}
-
-				return;
+		if (obj->isCullingOff()) {
+			if (obj->m_flags.intView & 0x8000) {
+				obj->doAnimationCullingOff();
+			} else {
+				obj->doAnimationCullingOn();
 			}
 
-			GeneralEnemyMgr::mCullCount++;
-			obj->doAnimationCullingOn();
-			// if (fxExists) affects code generation
-			if (fxExists == true) {
-				obj->fadeEffects();
+			if (!fxExists) {
+				obj->createEffects();
+			}
+
+			return;
+		}
+
+		GeneralEnemyMgr::mCullCount++;
+		obj->doAnimationCullingOn();
+		// if (fxExists) affects code generation
+		if (fxExists == true) {
+			obj->fadeEffects();
+		}
+	}
+	/*
+	.loc_0x0:
+	  stwu      r1, -0x10(r1)
+	  mflr      r0
+	  stw       r0, 0x14(r1)
+	  stw       r31, 0xC(r1)
+	  stw       r30, 0x8(r1)
+	  mr        r30, r4
+	  lwz       r0, 0x1E0(r4)
+	  rlwinm.   r0,r0,0,3,3
+	  beq-      .loc_0xE0
+	  lwz       r4, -0x6E18(r13)
+	  mr        r3, r30
+	  addi      r0, r4, 0x1
+	  stw       r0, -0x6E18(r13)
+	  bl        0x4408
+	  mr        r31, r3
+	  mr        r3, r30
+	  bl        0x3CABC
+	  mr        r3, r30
+	  addi      r4, r30, 0x264
+	  bl        0xD8584
+	  mr        r3, r30
+	  bl        0x43E8
+	  rlwinm.   r0,r3,0,24,31
+	  beq-      .loc_0xAC
+	  lwz       r0, 0x1E0(r30)
+	  rlwinm.   r0,r0,0,16,16
+	  beq-      .loc_0x84
+	  mr        r3, r30
+	  lwz       r12, 0x0(r30)
+	  lwz       r12, 0x1DC(r12)
+	  mtctr     r12
+	  bctrl
+	  b         .loc_0x98
+
+	.loc_0x84:
+	  mr        r3, r30
+	  lwz       r12, 0x0(r30)
+	  lwz       r12, 0x1E0(r12)
+	  mtctr     r12
+	  bctrl
+
+	.loc_0x98:
+	  rlwinm.   r0,r31,0,24,31
+	  bne-      .loc_0xE0
+	  mr        r3, r30
+	  bl        0x24BC
+	  b         .loc_0xE0
+
+	.loc_0xAC:
+	  lwz       r4, -0x6E1C(r13)
+	  mr        r3, r30
+	  addi      r0, r4, 0x1
+	  stw       r0, -0x6E1C(r13)
+	  lwz       r12, 0x0(r30)
+	  lwz       r12, 0x1E0(r12)
+	  mtctr     r12
+	  bctrl
+	  rlwinm    r0,r31,0,24,31
+	  cmplwi    r0, 0x1
+	  bne-      .loc_0xE0
+	  mr        r3, r30
+	  bl        0x24E0
+
+	.loc_0xE0:
+	  lwz       r0, 0x14(r1)
+	  lwz       r31, 0xC(r1)
+	  lwz       r30, 0x8(r1)
+	  mtlr      r0
+	  addi      r1, r1, 0x10
+	  blr
+	*/
+}
+
+/*
+ * --INFO--
+ * Address:	800FF364
+ * Size:	0001E0
+ */
+bool BirthTypeDropState::isFinishableWaitingBirthTypeDrop(EnemyBase* enemy)
+{
+	Sys::Sphere sphere;
+	sphere.m_position.x = (enemy->m_position).x;
+	bool result         = false;
+	sphere.m_radius     = static_cast<EnemyParmsBase*>(enemy->m_parms)
+	                      ->m_general.m_privateRadius.m_value;
+	sphere.m_position.y = (enemy->m_position).y;
+	sphere.m_position.z = (enemy->m_position).z;
+	CellIteratorArg cellIteratorArg(sphere);
+	CellIterator cellIterator(cellIteratorArg);
+	cellIterator.first();
+	while (cellIterator.isDone() == false) {
+		Creature* cell = (Creature*)*cellIterator;
+		if (cell->isAlive()) {
+			if (cell->isNavi()
+			    || (cell->isPiki() && static_cast<Piki*>(cell)->isPikmin())) {
+				float privateRadius
+				    = static_cast<EnemyParmsBase*>(enemy->m_parms)
+				          ->m_general.m_privateRadius.m_value;
+				float deltaX = enemy->getPosition().x - cell->getPosition().x;
+				float deltaZ = enemy->getPosition().z - cell->getPosition().z;
+				if ((SQUARE(deltaX) + SQUARE(deltaZ)) < SQUARE(privateRadius)) {
+					result = true;
+				}
 			}
 		}
-		/*
-		.loc_0x0:
-		  stwu      r1, -0x10(r1)
-		  mflr      r0
-		  stw       r0, 0x14(r1)
-		  stw       r31, 0xC(r1)
-		  stw       r30, 0x8(r1)
-		  mr        r30, r4
-		  lwz       r0, 0x1E0(r4)
-		  rlwinm.   r0,r0,0,3,3
-		  beq-      .loc_0xE0
-		  lwz       r4, -0x6E18(r13)
-		  mr        r3, r30
-		  addi      r0, r4, 0x1
-		  stw       r0, -0x6E18(r13)
-		  bl        0x4408
-		  mr        r31, r3
-		  mr        r3, r30
-		  bl        0x3CABC
-		  mr        r3, r30
-		  addi      r4, r30, 0x264
-		  bl        0xD8584
-		  mr        r3, r30
-		  bl        0x43E8
-		  rlwinm.   r0,r3,0,24,31
-		  beq-      .loc_0xAC
-		  lwz       r0, 0x1E0(r30)
-		  rlwinm.   r0,r0,0,16,16
-		  beq-      .loc_0x84
-		  mr        r3, r30
-		  lwz       r12, 0x0(r30)
-		  lwz       r12, 0x1DC(r12)
-		  mtctr     r12
-		  bctrl
-		  b         .loc_0x98
-
-		.loc_0x84:
-		  mr        r3, r30
-		  lwz       r12, 0x0(r30)
-		  lwz       r12, 0x1E0(r12)
-		  mtctr     r12
-		  bctrl
-
-		.loc_0x98:
-		  rlwinm.   r0,r31,0,24,31
-		  bne-      .loc_0xE0
-		  mr        r3, r30
-		  bl        0x24BC
-		  b         .loc_0xE0
-
-		.loc_0xAC:
-		  lwz       r4, -0x6E1C(r13)
-		  mr        r3, r30
-		  addi      r0, r4, 0x1
-		  stw       r0, -0x6E1C(r13)
-		  lwz       r12, 0x0(r30)
-		  lwz       r12, 0x1E0(r12)
-		  mtctr     r12
-		  bctrl
-		  rlwinm    r0,r31,0,24,31
-		  cmplwi    r0, 0x1
-		  bne-      .loc_0xE0
-		  mr        r3, r30
-		  bl        0x24E0
-
-		.loc_0xE0:
-		  lwz       r0, 0x14(r1)
-		  lwz       r31, 0xC(r1)
-		  lwz       r30, 0x8(r1)
-		  mtlr      r0
-		  addi      r1, r1, 0x10
-		  blr
-		*/
+		cellIterator.next();
 	}
-
+	return result;
 	/*
-	 * --INFO--
-	 * Address:	800FF364
-	 * Size:	0001E0
-	 */
-	bool BirthTypeDropState::isFinishableWaitingBirthTypeDrop(EnemyBase* enemy)
-	{
-		Sys::Sphere sphere;
-		sphere.m_position.x = (enemy->m_position).x;
-		bool result         = false;
-		sphere.m_radius     = static_cast<EnemyParmsBase*>(enemy->m_parms)
-		                      ->m_general.m_privateRadius.m_value;
-		sphere.m_position.y = (enemy->m_position).y;
-		sphere.m_position.z = (enemy->m_position).z;
-		CellIteratorArg cellIteratorArg(sphere);
-		CellIterator cellIterator(cellIteratorArg);
-		cellIterator.first();
-		while (cellIterator.isDone() == false) {
-			Creature* cell = (Creature*)*cellIterator;
-			if (cell->isAlive()) {
-				if (cell->isNavi()
-				    || (cell->isPiki()
-				        && static_cast<Piki*>(cell)->isPikmin())) {
-					float privateRadius
-					    = static_cast<EnemyParmsBase*>(enemy->m_parms)
-					          ->m_general.m_privateRadius.m_value;
-					float deltaX
-					    = enemy->getPosition().x - cell->getPosition().x;
-					float deltaZ
-					    = enemy->getPosition().z - cell->getPosition().z;
-					if ((SQUARE(deltaX) + SQUARE(deltaZ))
-					    < SQUARE(privateRadius)) {
-						result = true;
-					}
-				}
-			}
-			cellIterator.next();
-		}
-		return result;
-		/*
-		.loc_0x0:
-		  stwu      r1, -0xF0(r1)
-		  mflr      r0
-		  stw       r0, 0xF4(r1)
-		  stfd      f31, 0xE0(r1)
-		  psq_st    f31,0xE8(r1),0,0
-		  stfd      f30, 0xD0(r1)
-		  psq_st    f30,0xD8(r1),0,0
-		  stfd      f29, 0xC0(r1)
-		  psq_st    f29,0xC8(r1),0,0
-		  stw       r31, 0xBC(r1)
-		  stw       r30, 0xB8(r1)
-		  stw       r29, 0xB4(r1)
-		  mr        r29, r4
-		  addi      r3, r1, 0x48
-		  lwz       r5, 0xC0(r4)
-		  addi      r4, r1, 0x38
-		  lfs       f0, 0x18C(r29)
-		  li        r31, 0
-		  lfs       f1, 0x3AC(r5)
-		  stfs      f0, 0x38(r1)
-		  lfs       f0, 0x190(r29)
-		  stfs      f0, 0x3C(r1)
-		  lfs       f0, 0x194(r29)
-		  stfs      f0, 0x40(r1)
-		  stfs      f1, 0x44(r1)
-		  bl        0x12EFD8
-		  addi      r3, r1, 0x68
-		  addi      r4, r1, 0x48
-		  bl        0x12F00C
-		  addi      r3, r1, 0x68
-		  bl        0x12F080
-		  b         .loc_0x198
+	.loc_0x0:
+	  stwu      r1, -0xF0(r1)
+	  mflr      r0
+	  stw       r0, 0xF4(r1)
+	  stfd      f31, 0xE0(r1)
+	  psq_st    f31,0xE8(r1),0,0
+	  stfd      f30, 0xD0(r1)
+	  psq_st    f30,0xD8(r1),0,0
+	  stfd      f29, 0xC0(r1)
+	  psq_st    f29,0xC8(r1),0,0
+	  stw       r31, 0xBC(r1)
+	  stw       r30, 0xB8(r1)
+	  stw       r29, 0xB4(r1)
+	  mr        r29, r4
+	  addi      r3, r1, 0x48
+	  lwz       r5, 0xC0(r4)
+	  addi      r4, r1, 0x38
+	  lfs       f0, 0x18C(r29)
+	  li        r31, 0
+	  lfs       f1, 0x3AC(r5)
+	  stfs      f0, 0x38(r1)
+	  lfs       f0, 0x190(r29)
+	  stfs      f0, 0x3C(r1)
+	  lfs       f0, 0x194(r29)
+	  stfs      f0, 0x40(r1)
+	  stfs      f1, 0x44(r1)
+	  bl        0x12EFD8
+	  addi      r3, r1, 0x68
+	  addi      r4, r1, 0x48
+	  bl        0x12F00C
+	  addi      r3, r1, 0x68
+	  bl        0x12F080
+	  b         .loc_0x198
 
-		.loc_0x80:
-		  addi      r3, r1, 0x68
-		  bl        0x12F15C
-		  lwz       r12, 0x0(r3)
-		  mr        r30, r3
-		  lwz       r12, 0xA8(r12)
-		  mtctr     r12
-		  bctrl
-		  rlwinm.   r0,r3,0,24,31
-		  beq-      .loc_0x190
-		  mr        r3, r30
-		  lwz       r12, 0x0(r30)
-		  lwz       r12, 0x1C(r12)
-		  mtctr     r12
-		  bctrl
-		  rlwinm.   r0,r3,0,24,31
-		  bne-      .loc_0xF8
-		  mr        r3, r30
-		  lwz       r12, 0x0(r30)
-		  lwz       r12, 0x18(r12)
-		  mtctr     r12
-		  bctrl
-		  rlwinm.   r0,r3,0,24,31
-		  beq-      .loc_0x190
-		  mr        r3, r30
-		  lwz       r12, 0x0(r30)
-		  lwz       r12, 0x1C0(r12)
-		  mtctr     r12
-		  bctrl
-		  rlwinm.   r0,r3,0,24,31
-		  beq-      .loc_0x190
+	.loc_0x80:
+	  addi      r3, r1, 0x68
+	  bl        0x12F15C
+	  lwz       r12, 0x0(r3)
+	  mr        r30, r3
+	  lwz       r12, 0xA8(r12)
+	  mtctr     r12
+	  bctrl
+	  rlwinm.   r0,r3,0,24,31
+	  beq-      .loc_0x190
+	  mr        r3, r30
+	  lwz       r12, 0x0(r30)
+	  lwz       r12, 0x1C(r12)
+	  mtctr     r12
+	  bctrl
+	  rlwinm.   r0,r3,0,24,31
+	  bne-      .loc_0xF8
+	  mr        r3, r30
+	  lwz       r12, 0x0(r30)
+	  lwz       r12, 0x18(r12)
+	  mtctr     r12
+	  bctrl
+	  rlwinm.   r0,r3,0,24,31
+	  beq-      .loc_0x190
+	  mr        r3, r30
+	  lwz       r12, 0x0(r30)
+	  lwz       r12, 0x1C0(r12)
+	  mtctr     r12
+	  bctrl
+	  rlwinm.   r0,r3,0,24,31
+	  beq-      .loc_0x190
 
-		.loc_0xF8:
-		  mr        r4, r30
-		  lwz       r5, 0xC0(r29)
-		  lwz       r12, 0x0(r30)
-		  addi      r3, r1, 0x14
-		  lfs       f29, 0x3AC(r5)
-		  lwz       r12, 0x8(r12)
-		  mtctr     r12
-		  bctrl
-		  mr        r4, r29
-		  addi      r3, r1, 0x8
-		  lwz       r12, 0x0(r29)
-		  lfs       f31, 0x14(r1)
-		  lwz       r12, 0x8(r12)
-		  mtctr     r12
-		  bctrl
-		  mr        r4, r30
-		  lfs       f0, 0x8(r1)
-		  lwz       r12, 0x0(r30)
-		  addi      r3, r1, 0x2C
-		  fsubs     f30, f0, f31
-		  lwz       r12, 0x8(r12)
-		  mtctr     r12
-		  bctrl
-		  mr        r4, r29
-		  addi      r3, r1, 0x20
-		  lwz       r12, 0x0(r29)
-		  lfs       f31, 0x34(r1)
-		  lwz       r12, 0x8(r12)
-		  mtctr     r12
-		  bctrl
-		  lfs       f1, 0x28(r1)
-		  fmuls     f0, f29, f29
-		  fsubs     f1, f1, f31
-		  fmuls     f1, f1, f1
-		  fmadds    f1, f30, f30, f1
-		  fcmpo     cr0, f1, f0
-		  bge-      .loc_0x190
-		  li        r31, 0x1
+	.loc_0xF8:
+	  mr        r4, r30
+	  lwz       r5, 0xC0(r29)
+	  lwz       r12, 0x0(r30)
+	  addi      r3, r1, 0x14
+	  lfs       f29, 0x3AC(r5)
+	  lwz       r12, 0x8(r12)
+	  mtctr     r12
+	  bctrl
+	  mr        r4, r29
+	  addi      r3, r1, 0x8
+	  lwz       r12, 0x0(r29)
+	  lfs       f31, 0x14(r1)
+	  lwz       r12, 0x8(r12)
+	  mtctr     r12
+	  bctrl
+	  mr        r4, r30
+	  lfs       f0, 0x8(r1)
+	  lwz       r12, 0x0(r30)
+	  addi      r3, r1, 0x2C
+	  fsubs     f30, f0, f31
+	  lwz       r12, 0x8(r12)
+	  mtctr     r12
+	  bctrl
+	  mr        r4, r29
+	  addi      r3, r1, 0x20
+	  lwz       r12, 0x0(r29)
+	  lfs       f31, 0x34(r1)
+	  lwz       r12, 0x8(r12)
+	  mtctr     r12
+	  bctrl
+	  lfs       f1, 0x28(r1)
+	  fmuls     f0, f29, f29
+	  fsubs     f1, f1, f31
+	  fmuls     f1, f1, f1
+	  fmadds    f1, f30, f30, f1
+	  fcmpo     cr0, f1, f0
+	  bge-      .loc_0x190
+	  li        r31, 0x1
 
-		.loc_0x190:
-		  addi      r3, r1, 0x68
-		  bl        0x12F008
+	.loc_0x190:
+	  addi      r3, r1, 0x68
+	  bl        0x12F008
 
-		.loc_0x198:
-		  addi      r3, r1, 0x68
-		  bl        0x12F034
-		  rlwinm.   r0,r3,0,24,31
-		  beq+      .loc_0x80
-		  mr        r3, r31
-		  psq_l     f31,0xE8(r1),0,0
-		  lfd       f31, 0xE0(r1)
-		  psq_l     f30,0xD8(r1),0,0
-		  lfd       f30, 0xD0(r1)
-		  psq_l     f29,0xC8(r1),0,0
-		  lfd       f29, 0xC0(r1)
-		  lwz       r31, 0xBC(r1)
-		  lwz       r30, 0xB8(r1)
-		  lwz       r0, 0xF4(r1)
-		  lwz       r29, 0xB4(r1)
-		  mtlr      r0
-		  addi      r1, r1, 0xF0
-		  blr
-		*/
-	}
+	.loc_0x198:
+	  addi      r3, r1, 0x68
+	  bl        0x12F034
+	  rlwinm.   r0,r3,0,24,31
+	  beq+      .loc_0x80
+	  mr        r3, r31
+	  psq_l     f31,0xE8(r1),0,0
+	  lfd       f31, 0xE0(r1)
+	  psq_l     f30,0xD8(r1),0,0
+	  lfd       f30, 0xD0(r1)
+	  psq_l     f29,0xC8(r1),0,0
+	  lfd       f29, 0xC0(r1)
+	  lwz       r31, 0xBC(r1)
+	  lwz       r30, 0xB8(r1)
+	  lwz       r0, 0xF4(r1)
+	  lwz       r29, 0xB4(r1)
+	  mtlr      r0
+	  addi      r1, r1, 0xF0
+	  blr
+	*/
+}
 } // namespace EnemyBaseFSM
 
 /*

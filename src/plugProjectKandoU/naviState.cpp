@@ -16554,149 +16554,149 @@ namespace og {
 
 namespace Screen {
 
+/*
+ * --INFO--
+ * Address:	80189080
+ * Size:	000008
+ */
+u32 DispMemberContena::getSize(void) { return 0x38; }
+
+/*
+ * --INFO--
+ * Address:	80189088
+ * Size:	00000C
+ */
+void DispMemberContena::getOwnerID(void)
+{
 	/*
-	 * --INFO--
-	 * Address:	80189080
-	 * Size:	000008
-	 */
-	u32 DispMemberContena::getSize(void) { return 0x38; }
+lis      r3, 0x004F4741@ha
+addi     r3, r3, 0x004F4741@l
+blr
+	*/
+}
 
+/*
+ * --INFO--
+ * Address:	80189094
+ * Size:	000014
+ */
+void DispMemberContena::getMemberID(void)
+{
 	/*
-	 * --INFO--
-	 * Address:	80189088
-	 * Size:	00000C
-	 */
-	void DispMemberContena::getOwnerID(void)
-	{
-		/*
-	lis      r3, 0x004F4741@ha
-	addi     r3, r3, 0x004F4741@l
-	blr
-		*/
-	}
+lis      r4, 0x54454E41@ha
+lis      r3, 0x00434F4E@ha
+addi     r4, r4, 0x54454E41@l
+addi     r3, r3, 0x00434F4E@l
+blr
+	*/
+}
 
+/*
+ * --INFO--
+ * Address:	801890A8
+ * Size:	000008
+ */
+u32 DispMemberUfoMenu::getSize(void) { return 0x10; }
+
+/*
+ * --INFO--
+ * Address:	801890B0
+ * Size:	00000C
+ */
+void DispMemberUfoMenu::getOwnerID(void)
+{
 	/*
-	 * --INFO--
-	 * Address:	80189094
-	 * Size:	000014
-	 */
-	void DispMemberContena::getMemberID(void)
-	{
-		/*
-	lis      r4, 0x54454E41@ha
-	lis      r3, 0x00434F4E@ha
-	addi     r4, r4, 0x54454E41@l
-	addi     r3, r3, 0x00434F4E@l
-	blr
-		*/
-	}
+lis      r3, 0x004F4741@ha
+addi     r3, r3, 0x004F4741@l
+blr
+	*/
+}
 
+/*
+ * --INFO--
+ * Address:	801890BC
+ * Size:	000014
+ */
+void DispMemberUfoMenu::getMemberID(void)
+{
 	/*
-	 * --INFO--
-	 * Address:	801890A8
-	 * Size:	000008
-	 */
-	u32 DispMemberUfoMenu::getSize(void) { return 0x10; }
+lis      r4, 0x4D454E55@ha
+lis      r3, 0x0055464F@ha
+addi     r4, r4, 0x4D454E55@l
+addi     r3, r3, 0x0055464F@l
+blr
+	*/
+}
 
+/*
+ * --INFO--
+ * Address:	801890D0
+ * Size:	000008
+ */
+u32 DispMemberUfoGroup::getSize(void) { return 0x8C; }
+
+/*
+ * --INFO--
+ * Address:	801890D8
+ * Size:	00000C
+ */
+void DispMemberUfoGroup::getOwnerID(void)
+{
 	/*
-	 * --INFO--
-	 * Address:	801890B0
-	 * Size:	00000C
-	 */
-	void DispMemberUfoMenu::getOwnerID(void)
-	{
-		/*
-	lis      r3, 0x004F4741@ha
-	addi     r3, r3, 0x004F4741@l
-	blr
-		*/
-	}
+lis      r3, 0x004F4741@ha
+addi     r3, r3, 0x004F4741@l
+blr
+	*/
+}
 
+/*
+ * --INFO--
+ * Address:	801890E4
+ * Size:	000014
+ */
+void DispMemberUfoGroup::getMemberID(void)
+{
 	/*
-	 * --INFO--
-	 * Address:	801890BC
-	 * Size:	000014
-	 */
-	void DispMemberUfoMenu::getMemberID(void)
-	{
-		/*
-	lis      r4, 0x4D454E55@ha
-	lis      r3, 0x0055464F@ha
-	addi     r4, r4, 0x4D454E55@l
-	addi     r3, r3, 0x0055464F@l
-	blr
-		*/
-	}
+lis      r4, 0x5F475250@ha
+lis      r3, 0x0055464F@ha
+addi     r4, r4, 0x5F475250@l
+addi     r3, r3, 0x0055464F@l
+blr
+	*/
+}
 
+/*
+ * --INFO--
+ * Address:	801890F8
+ * Size:	000048
+ */
+void DispMemberUfoGroup::doSetSubMemberAll(void)
+{
 	/*
-	 * --INFO--
-	 * Address:	801890D0
-	 * Size:	000008
-	 */
-	u32 DispMemberUfoGroup::getSize(void) { return 0x8C; }
+stwu     r1, -0x10(r1)
+mflr     r0
+stw      r0, 0x14(r1)
+stw      r31, 0xc(r1)
+mr       r31, r3
+addi     r4, r31, 8
+bl setSubMember__Q32og6Screen14DispMemberBaseFPQ32og6Screen14DispMemberBase
+mr       r3, r31
+addi     r4, r31, 0x18
+bl setSubMember__Q32og6Screen14DispMemberBaseFPQ32og6Screen14DispMemberBase
+mr       r3, r31
+addi     r4, r31, 0x50
+bl setSubMember__Q32og6Screen14DispMemberBaseFPQ32og6Screen14DispMemberBase
+lwz      r0, 0x14(r1)
+lwz      r31, 0xc(r1)
+mtlr     r0
+addi     r1, r1, 0x10
+blr
+	*/
+}
 
-	/*
-	 * --INFO--
-	 * Address:	801890D8
-	 * Size:	00000C
-	 */
-	void DispMemberUfoGroup::getOwnerID(void)
-	{
-		/*
-	lis      r3, 0x004F4741@ha
-	addi     r3, r3, 0x004F4741@l
-	blr
-		*/
-	}
+namespace Game {
 
-	/*
-	 * --INFO--
-	 * Address:	801890E4
-	 * Size:	000014
-	 */
-	void DispMemberUfoGroup::getMemberID(void)
-	{
-		/*
-	lis      r4, 0x5F475250@ha
-	lis      r3, 0x0055464F@ha
-	addi     r4, r4, 0x5F475250@l
-	addi     r3, r3, 0x0055464F@l
-	blr
-		*/
-	}
-
-	/*
-	 * --INFO--
-	 * Address:	801890F8
-	 * Size:	000048
-	 */
-	void DispMemberUfoGroup::doSetSubMemberAll(void)
-	{
-		/*
-	stwu     r1, -0x10(r1)
-	mflr     r0
-	stw      r0, 0x14(r1)
-	stw      r31, 0xc(r1)
-	mr       r31, r3
-	addi     r4, r31, 8
-	bl setSubMember__Q32og6Screen14DispMemberBaseFPQ32og6Screen14DispMemberBase
-	mr       r3, r31
-	addi     r4, r31, 0x18
-	bl setSubMember__Q32og6Screen14DispMemberBaseFPQ32og6Screen14DispMemberBase
-	mr       r3, r31
-	addi     r4, r31, 0x50
-	bl setSubMember__Q32og6Screen14DispMemberBaseFPQ32og6Screen14DispMemberBase
-	lwz      r0, 0x14(r1)
-	lwz      r31, 0xc(r1)
-	mtlr     r0
-	addi     r1, r1, 0x10
-	blr
-		*/
-	}
-
-	namespace Game {
-
-	} // namespace Game
+} // namespace Game
 
 } // namespace Screen
 

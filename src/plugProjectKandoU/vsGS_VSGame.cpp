@@ -68,38 +68,38 @@ static u32 lbl_80515C94;
 
 namespace Game {
 namespace VsGame {
-	static f32 _data[3] = { 0.0f };
+static f32 _data[3] = { 0.0f };
 
-	/*6
-	 * --INFO--
-	 * Address:	8022EA94
-	 * Size:	000044
-	 */
-	VSState::VSState()
-	    : GameState()
-	{
-		m_id = 3;
-	}
+/*6
+ * --INFO--
+ * Address:	8022EA94
+ * Size:	000044
+ */
+VSState::VSState()
+    : GameState()
+{
+	m_id = 3;
+}
 
-	/*
-	 * --INFO--
-	 * Address:	8022EAD8
-	 * Size:	0000CC
-	 */
-	void VSState::do_init(VsGameSection* gameSection)
-	{
-		gameSystem->m_mode = GSM_VERSUS_MODE;
+/*
+ * --INFO--
+ * Address:	8022EAD8
+ * Size:	0000CC
+ */
+void VSState::do_init(VsGameSection* gameSection)
+{
+	gameSystem->m_mode = GSM_VERSUS_MODE;
 
-		gameSection->setPlayerMode(2);
-		gameSection->setCamController();
+	gameSection->setPlayerMode(2);
+	gameSection->setCamController();
 
-		PSSystem::SceneMgr* mgr = PSSystem::getSceneMgr();
-		PSSystem::checkSceneMgr4();
+	PSSystem::SceneMgr* mgr = PSSystem::getSceneMgr();
+	PSSystem::checkSceneMgr4();
 
-		mgr->_04->_04->_1C();
+	mgr->_04->_04->_1C();
 
-		gameSection->createFallPikmins(gameSection->m_container, 0);
-	}
+	gameSection->createFallPikmins(gameSection->m_container, 0);
+}
 } // namespace VsGame
 } // namespace Game
 

@@ -79,211 +79,211 @@ namespace og {
 
 namespace newScreen {
 
+/*
+ * --INFO--
+ * Address:	80313F4C
+ * Size:	000050
+ */
+SMenuItem::SMenuItem(void)
+{
 	/*
-	 * --INFO--
-	 * Address:	80313F4C
-	 * Size:	000050
-	 */
-	SMenuItem::SMenuItem(void)
-	{
-		/*
-		stwu     r1, -0x10(r1)
-		mflr     r0
-		stw      r0, 0x14(r1)
-		stw      r31, 0xc(r1)
-		mr       r31, r3
-		bl       __ct__Q26Screen9SceneBaseFv
-		lis      r4, __vt__Q32og9newScreen14SceneSMenuBase@ha
-		lis      r3, __vt__Q32og9newScreen9SMenuItem@ha
-		addi     r0, r4, __vt__Q32og9newScreen14SceneSMenuBase@l
-		li       r4, 1
-		stw      r0, 0(r31)
-		addi     r0, r3, __vt__Q32og9newScreen9SMenuItem@l
-		mr       r3, r31
-		stw      r4, 0x220(r31)
-		stw      r0, 0(r31)
-		lwz      r31, 0xc(r1)
-		lwz      r0, 0x14(r1)
-		mtlr     r0
-		addi     r1, r1, 0x10
-		blr
-		*/
-	}
+	stwu     r1, -0x10(r1)
+	mflr     r0
+	stw      r0, 0x14(r1)
+	stw      r31, 0xc(r1)
+	mr       r31, r3
+	bl       __ct__Q26Screen9SceneBaseFv
+	lis      r4, __vt__Q32og9newScreen14SceneSMenuBase@ha
+	lis      r3, __vt__Q32og9newScreen9SMenuItem@ha
+	addi     r0, r4, __vt__Q32og9newScreen14SceneSMenuBase@l
+	li       r4, 1
+	stw      r0, 0(r31)
+	addi     r0, r3, __vt__Q32og9newScreen9SMenuItem@l
+	mr       r3, r31
+	stw      r4, 0x220(r31)
+	stw      r0, 0(r31)
+	lwz      r31, 0xc(r1)
+	lwz      r0, 0x14(r1)
+	mtlr     r0
+	addi     r1, r1, 0x10
+	blr
+	*/
+}
 
+/*
+ * --INFO--
+ * Address:	........
+ * Size:	000084
+ */
+SMenuItem::~SMenuItem(void)
+{
+	// UNUSED FUNCTION
+}
+
+/*
+ * --INFO--
+ * Address:	80313F9C
+ * Size:	000068
+ */
+void SMenuItem::doConfirmSetScene(Screen::SetSceneArg&)
+{
 	/*
-	 * --INFO--
-	 * Address:	........
-	 * Size:	000084
-	 */
-	SMenuItem::~SMenuItem(void)
-	{
-		// UNUSED FUNCTION
-	}
+	stwu     r1, -0x10(r1)
+	mflr     r0
+	mr       r3, r4
+	stw      r0, 0x14(r1)
+	stw      r31, 0xc(r1)
+	li       r31, 0
+	lwz      r12, 0(r4)
+	lwz      r12, 8(r12)
+	mtctr    r12
+	bctrl
+	addi     r0, r3, -10000
+	cmplwi   r0, 0x1b
+	bgt      lbl_80313FEC
+	lis      r3, lbl_804D8778@ha
+	slwi     r0, r0, 2
+	addi     r3, r3, lbl_804D8778@l
+	lwzx     r0, r3, r0
+	mtctr    r0
+	bctr
+	.global  lbl_80313FE8
 
+lbl_80313FE8:
+	li       r31, 1
+	.global  lbl_80313FEC
+
+lbl_80313FEC:
+	lwz      r0, 0x14(r1)
+	mr       r3, r31
+	lwz      r31, 0xc(r1)
+	mtlr     r0
+	addi     r1, r1, 0x10
+	blr
+	*/
+}
+
+/*
+ * --INFO--
+ * Address:	80314004
+ * Size:	00000C
+ */
+void SMenuItem::doSetBackupScene(Screen::SetSceneArg&)
+{
 	/*
-	 * --INFO--
-	 * Address:	80313F9C
-	 * Size:	000068
-	 */
-	void SMenuItem::doConfirmSetScene(Screen::SetSceneArg&)
-	{
-		/*
-		stwu     r1, -0x10(r1)
-		mflr     r0
-		mr       r3, r4
-		stw      r0, 0x14(r1)
-		stw      r31, 0xc(r1)
-		li       r31, 0
-		lwz      r12, 0(r4)
-		lwz      r12, 8(r12)
-		mtctr    r12
-		bctrl
-		addi     r0, r3, -10000
-		cmplwi   r0, 0x1b
-		bgt      lbl_80313FEC
-		lis      r3, lbl_804D8778@ha
-		slwi     r0, r0, 2
-		addi     r3, r3, lbl_804D8778@l
-		lwzx     r0, r3, r0
-		mtctr    r0
-		bctr
-		.global  lbl_80313FE8
+	li       r0, 0
+	stb      r0, 9(r4)
+	blr
+	*/
+}
 
-	lbl_80313FE8:
-		li       r31, 1
-		.global  lbl_80313FEC
+/*
+ * --INFO--
+ * Address:	80314010
+ * Size:	000004
+ */
+void SMenuItem::doUserCallBackFunc(Resource::MgrCommand*) { }
 
-	lbl_80313FEC:
-		lwz      r0, 0x14(r1)
-		mr       r3, r31
-		lwz      r31, 0xc(r1)
-		mtlr     r0
-		addi     r1, r1, 0x10
-		blr
-		*/
-	}
-
+/*
+ * --INFO--
+ * Address:	80314014
+ * Size:	000060
+ */
+void SMenuItem::doCreateObj(JKRArchive*)
+{
 	/*
-	 * --INFO--
-	 * Address:	80314004
-	 * Size:	00000C
-	 */
-	void SMenuItem::doSetBackupScene(Screen::SetSceneArg&)
-	{
-		/*
-		li       r0, 0
-		stb      r0, 9(r4)
-		blr
-		*/
-	}
+	stwu     r1, -0x10(r1)
+	mflr     r0
+	stw      r0, 0x14(r1)
+	stw      r31, 0xc(r1)
+	mr       r31, r4
+	stw      r30, 8(r1)
+	mr       r30, r3
+	li       r3, 0xd4
+	bl       __nw__FUl
+	or.      r4, r3, r3
+	beq      lbl_80314050
+	lis      r4, lbl_8048E550@ha
+	addi     r4, r4, lbl_8048E550@l
+	bl       __ct__Q32og9newScreen12ObjSMenuItemFPCc
+	mr       r4, r3
 
+lbl_80314050:
+	mr       r3, r30
+	mr       r5, r31
+	bl       registObj__Q26Screen9SceneBaseFPQ26Screen7ObjBaseP10JKRArchive
+	lwz      r0, 0x14(r1)
+	lwz      r31, 0xc(r1)
+	lwz      r30, 8(r1)
+	mtlr     r0
+	addi     r1, r1, 0x10
+	blr
+	*/
+}
+
+/*
+ * --INFO--
+ * Address:	80314074
+ * Size:	000004
+ */
+void SMenuItem::doUpdateActive(void) { }
+
+/*
+ * --INFO--
+ * Address:	80314078
+ * Size:	00000C
+ */
+void SMenuItem::getResName() const
+{
 	/*
-	 * --INFO--
-	 * Address:	80314010
-	 * Size:	000004
-	 */
-	void SMenuItem::doUserCallBackFunc(Resource::MgrCommand*) { }
+	lis      r3, lbl_8048E564@ha
+	addi     r3, r3, lbl_8048E564@l
+	blr
+	*/
+}
 
+/*
+ * --INFO--
+ * Address:	80314084
+ * Size:	000008
+ */
+u32 SMenuItem::getSceneType(void) { return 0x271C; }
+
+/*
+ * --INFO--
+ * Address:	8031408C
+ * Size:	00000C
+ */
+void SMenuItem::getOwnerID(void)
+{
 	/*
-	 * --INFO--
-	 * Address:	80314014
-	 * Size:	000060
-	 */
-	void SMenuItem::doCreateObj(JKRArchive*)
-	{
-		/*
-		stwu     r1, -0x10(r1)
-		mflr     r0
-		stw      r0, 0x14(r1)
-		stw      r31, 0xc(r1)
-		mr       r31, r4
-		stw      r30, 8(r1)
-		mr       r30, r3
-		li       r3, 0xd4
-		bl       __nw__FUl
-		or.      r4, r3, r3
-		beq      lbl_80314050
-		lis      r4, lbl_8048E550@ha
-		addi     r4, r4, lbl_8048E550@l
-		bl       __ct__Q32og9newScreen12ObjSMenuItemFPCc
-		mr       r4, r3
+	lis      r3, 0x004F4741@ha
+	addi     r3, r3, 0x004F4741@l
+	blr
+	*/
+}
 
-	lbl_80314050:
-		mr       r3, r30
-		mr       r5, r31
-		bl       registObj__Q26Screen9SceneBaseFPQ26Screen7ObjBaseP10JKRArchive
-		lwz      r0, 0x14(r1)
-		lwz      r31, 0xc(r1)
-		lwz      r30, 8(r1)
-		mtlr     r0
-		addi     r1, r1, 0x10
-		blr
-		*/
-	}
-
+/*
+ * --INFO--
+ * Address:	80314098
+ * Size:	000014
+ */
+void SMenuItem::getMemberID(void)
+{
 	/*
-	 * --INFO--
-	 * Address:	80314074
-	 * Size:	000004
-	 */
-	void SMenuItem::doUpdateActive(void) { }
+	lis      r4, 0x4954454D@ha
+	lis      r3, 0x00534D5F@ha
+	addi     r4, r4, 0x4954454D@l
+	addi     r3, r3, 0x00534D5F@l
+	blr
+	*/
+}
 
-	/*
-	 * --INFO--
-	 * Address:	80314078
-	 * Size:	00000C
-	 */
-	void SMenuItem::getResName() const
-	{
-		/*
-		lis      r3, lbl_8048E564@ha
-		addi     r3, r3, lbl_8048E564@l
-		blr
-		*/
-	}
-
-	/*
-	 * --INFO--
-	 * Address:	80314084
-	 * Size:	000008
-	 */
-	u32 SMenuItem::getSceneType(void) { return 0x271C; }
-
-	/*
-	 * --INFO--
-	 * Address:	8031408C
-	 * Size:	00000C
-	 */
-	void SMenuItem::getOwnerID(void)
-	{
-		/*
-		lis      r3, 0x004F4741@ha
-		addi     r3, r3, 0x004F4741@l
-		blr
-		*/
-	}
-
-	/*
-	 * --INFO--
-	 * Address:	80314098
-	 * Size:	000014
-	 */
-	void SMenuItem::getMemberID(void)
-	{
-		/*
-		lis      r4, 0x4954454D@ha
-		lis      r3, 0x00534D5F@ha
-		addi     r4, r4, 0x4954454D@l
-		addi     r3, r3, 0x00534D5F@l
-		blr
-		*/
-	}
-
-	/*
-	 * --INFO--
-	 * Address:	803140AC
-	 * Size:	000008
-	 */
-	u32 SMenuItem::isUseBackupSceneInfo(void) { return 0x1; }
+/*
+ * --INFO--
+ * Address:	803140AC
+ * Size:	000008
+ */
+u32 SMenuItem::isUseBackupSceneInfo(void) { return 0x1; }
 } // namespace newScreen
 } // namespace og

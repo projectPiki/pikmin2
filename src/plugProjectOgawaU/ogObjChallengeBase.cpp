@@ -77,350 +77,350 @@ namespace og {
 
 namespace newScreen {
 
+/*
+ * --INFO--
+ * Address:	8032C8A0
+ * Size:	000098
+ */
+ObjChallengeBase::ObjChallengeBase(void)
+{
 	/*
-	 * --INFO--
-	 * Address:	8032C8A0
-	 * Size:	000098
-	 */
-	ObjChallengeBase::ObjChallengeBase(void)
-	{
-		/*
-		stwu     r1, -0x10(r1)
-		mflr     r0
-		stw      r0, 0x14(r1)
-		stw      r31, 0xc(r1)
-		mr       r31, r3
-		bl       __ct__Q26Screen7ObjBaseFv
-		lis      r3, __vt__Q32og9newScreen16ObjChallengeBase@ha
-		lfs      f0, lbl_8051DF40@sda21(r2)
-		addi     r3, r3, __vt__Q32og9newScreen16ObjChallengeBase@l
-		li       r5, -1
-		stw      r3, 0(r31)
-		addi     r3, r3, 0x10
-		li       r4, 0
-		li       r0, 0xff
-		stw      r3, 0x18(r31)
-		mr       r3, r31
-		stfs     f0, 0x38(r31)
-		stfs     f0, 0x3c(r31)
-		stw      r5, 0x54(r31)
-		stw      r5, 0x58(r31)
-		stb      r4, 0x48(r31)
-		stb      r4, 0x49(r31)
-		stw      r4, 0x4c(r31)
-		stfs     f0, 0x50(r31)
-		stfs     f0, 0x44(r31)
-		stb      r0, 0x54(r31)
-		stb      r0, 0x55(r31)
-		stb      r0, 0x56(r31)
-		stb      r0, 0x57(r31)
-		stb      r4, 0x58(r31)
-		stb      r4, 0x59(r31)
-		stb      r4, 0x5a(r31)
-		stb      r4, 0x5b(r31)
-		lwz      r31, 0xc(r1)
-		lwz      r0, 0x14(r1)
-		mtlr     r0
-		addi     r1, r1, 0x10
-		blr
-		*/
-	}
+	stwu     r1, -0x10(r1)
+	mflr     r0
+	stw      r0, 0x14(r1)
+	stw      r31, 0xc(r1)
+	mr       r31, r3
+	bl       __ct__Q26Screen7ObjBaseFv
+	lis      r3, __vt__Q32og9newScreen16ObjChallengeBase@ha
+	lfs      f0, lbl_8051DF40@sda21(r2)
+	addi     r3, r3, __vt__Q32og9newScreen16ObjChallengeBase@l
+	li       r5, -1
+	stw      r3, 0(r31)
+	addi     r3, r3, 0x10
+	li       r4, 0
+	li       r0, 0xff
+	stw      r3, 0x18(r31)
+	mr       r3, r31
+	stfs     f0, 0x38(r31)
+	stfs     f0, 0x3c(r31)
+	stw      r5, 0x54(r31)
+	stw      r5, 0x58(r31)
+	stb      r4, 0x48(r31)
+	stb      r4, 0x49(r31)
+	stw      r4, 0x4c(r31)
+	stfs     f0, 0x50(r31)
+	stfs     f0, 0x44(r31)
+	stb      r0, 0x54(r31)
+	stb      r0, 0x55(r31)
+	stb      r0, 0x56(r31)
+	stb      r0, 0x57(r31)
+	stb      r4, 0x58(r31)
+	stb      r4, 0x59(r31)
+	stb      r4, 0x5a(r31)
+	stb      r4, 0x5b(r31)
+	lwz      r31, 0xc(r1)
+	lwz      r0, 0x14(r1)
+	mtlr     r0
+	addi     r1, r1, 0x10
+	blr
+	*/
+}
 
+/*
+ * --INFO--
+ * Address:	8032C938
+ * Size:	0000AC
+ */
+ObjChallengeBase::~ObjChallengeBase(void)
+{
 	/*
-	 * --INFO--
-	 * Address:	8032C938
-	 * Size:	0000AC
-	 */
-	ObjChallengeBase::~ObjChallengeBase(void)
-	{
-		/*
-		stwu     r1, -0x10(r1)
-		mflr     r0
-		stw      r0, 0x14(r1)
-		stw      r31, 0xc(r1)
-		mr       r31, r4
-		stw      r30, 8(r1)
-		or.      r30, r3, r3
-		beq      lbl_8032C9C8
-		lis      r4, __vt__Q32og9newScreen16ObjChallengeBase@ha
-		addi     r4, r4, __vt__Q32og9newScreen16ObjChallengeBase@l
-		stw      r4, 0(r30)
-		addi     r0, r4, 0x10
-		stw      r0, 0x18(r30)
-		beq      lbl_8032C9B8
-		lis      r4, __vt__Q26Screen7ObjBase@ha
-		addi     r4, r4, __vt__Q26Screen7ObjBase@l
-		stw      r4, 0(r30)
-		addi     r0, r4, 0x10
-		stw      r0, 0x18(r30)
-		beq      lbl_8032C9B8
-		lis      r4, __vt__Q26Screen8IObjBase@ha
-		addi     r4, r4, __vt__Q26Screen8IObjBase@l
-		stw      r4, 0(r30)
-		addi     r0, r4, 0x10
-		stw      r0, 0x18(r30)
-		bl       del__5CNodeFv
-		addi     r3, r30, 0x18
-		li       r4, 0
-		bl       __dt__11JKRDisposerFv
-		mr       r3, r30
-		li       r4, 0
-		bl       __dt__5CNodeFv
+	stwu     r1, -0x10(r1)
+	mflr     r0
+	stw      r0, 0x14(r1)
+	stw      r31, 0xc(r1)
+	mr       r31, r4
+	stw      r30, 8(r1)
+	or.      r30, r3, r3
+	beq      lbl_8032C9C8
+	lis      r4, __vt__Q32og9newScreen16ObjChallengeBase@ha
+	addi     r4, r4, __vt__Q32og9newScreen16ObjChallengeBase@l
+	stw      r4, 0(r30)
+	addi     r0, r4, 0x10
+	stw      r0, 0x18(r30)
+	beq      lbl_8032C9B8
+	lis      r4, __vt__Q26Screen7ObjBase@ha
+	addi     r4, r4, __vt__Q26Screen7ObjBase@l
+	stw      r4, 0(r30)
+	addi     r0, r4, 0x10
+	stw      r0, 0x18(r30)
+	beq      lbl_8032C9B8
+	lis      r4, __vt__Q26Screen8IObjBase@ha
+	addi     r4, r4, __vt__Q26Screen8IObjBase@l
+	stw      r4, 0(r30)
+	addi     r0, r4, 0x10
+	stw      r0, 0x18(r30)
+	bl       del__5CNodeFv
+	addi     r3, r30, 0x18
+	li       r4, 0
+	bl       __dt__11JKRDisposerFv
+	mr       r3, r30
+	li       r4, 0
+	bl       __dt__5CNodeFv
 
-	lbl_8032C9B8:
-		extsh.   r0, r31
-		ble      lbl_8032C9C8
-		mr       r3, r30
-		bl       __dl__FPv
+lbl_8032C9B8:
+	extsh.   r0, r31
+	ble      lbl_8032C9C8
+	mr       r3, r30
+	bl       __dl__FPv
 
-	lbl_8032C9C8:
-		lwz      r0, 0x14(r1)
-		mr       r3, r30
-		lwz      r31, 0xc(r1)
-		lwz      r30, 8(r1)
-		mtlr     r0
-		addi     r1, r1, 0x10
-		blr
-		*/
-	}
+lbl_8032C9C8:
+	lwz      r0, 0x14(r1)
+	mr       r3, r30
+	lwz      r31, 0xc(r1)
+	lwz      r30, 8(r1)
+	mtlr     r0
+	addi     r1, r1, 0x10
+	blr
+	*/
+}
 
+/*
+ * --INFO--
+ * Address:	8032C9E4
+ * Size:	0000A0
+ */
+void ObjChallengeBase::doCreateAfter((JKRArchive*,
+                                      og::Screen::CallBack_CounterRV*))
+{
 	/*
-	 * --INFO--
-	 * Address:	8032C9E4
-	 * Size:	0000A0
-	 */
-	void ObjChallengeBase::doCreateAfter((JKRArchive*,
-	                                      og::Screen::CallBack_CounterRV*))
-	{
-		/*
-		.loc_0x0:
-		  stwu      r1, -0x20(r1)
-		  mflr      r0
-		  stw       r0, 0x24(r1)
-		  stw       r31, 0x1C(r1)
-		  mr        r31, r3
-		  addi      r3, r1, 0xC
-		  lwz       r0, 0x6C(r5)
-		  stw       r0, 0x4C(r31)
-		  lwz       r4, 0x4C(r31)
-		  lwz       r12, 0x0(r4)
-		  lwz       r12, 0x138(r12)
-		  mtctr     r12
-		  bctrl
-		  lbz       r0, 0xC(r1)
-		  addi      r3, r1, 0x8
-		  stb       r0, 0x54(r31)
-		  lbz       r0, 0xD(r1)
-		  stb       r0, 0x55(r31)
-		  lbz       r0, 0xE(r1)
-		  stb       r0, 0x56(r31)
-		  lbz       r0, 0xF(r1)
-		  stb       r0, 0x57(r31)
-		  lwz       r4, 0x4C(r31)
-		  lwz       r12, 0x0(r4)
-		  lwz       r12, 0x134(r12)
-		  mtctr     r12
-		  bctrl
-		  lbz       r0, 0x8(r1)
-		  stb       r0, 0x58(r31)
-		  lbz       r0, 0x9(r1)
-		  stb       r0, 0x59(r31)
-		  lbz       r0, 0xA(r1)
-		  stb       r0, 0x5A(r31)
-		  lbz       r0, 0xB(r1)
-		  stb       r0, 0x5B(r31)
-		  lwz       r31, 0x1C(r1)
-		  lwz       r0, 0x24(r1)
-		  mtlr      r0
-		  addi      r1, r1, 0x20
-		  blr
-		*/
-	}
+	.loc_0x0:
+	  stwu      r1, -0x20(r1)
+	  mflr      r0
+	  stw       r0, 0x24(r1)
+	  stw       r31, 0x1C(r1)
+	  mr        r31, r3
+	  addi      r3, r1, 0xC
+	  lwz       r0, 0x6C(r5)
+	  stw       r0, 0x4C(r31)
+	  lwz       r4, 0x4C(r31)
+	  lwz       r12, 0x0(r4)
+	  lwz       r12, 0x138(r12)
+	  mtctr     r12
+	  bctrl
+	  lbz       r0, 0xC(r1)
+	  addi      r3, r1, 0x8
+	  stb       r0, 0x54(r31)
+	  lbz       r0, 0xD(r1)
+	  stb       r0, 0x55(r31)
+	  lbz       r0, 0xE(r1)
+	  stb       r0, 0x56(r31)
+	  lbz       r0, 0xF(r1)
+	  stb       r0, 0x57(r31)
+	  lwz       r4, 0x4C(r31)
+	  lwz       r12, 0x0(r4)
+	  lwz       r12, 0x134(r12)
+	  mtctr     r12
+	  bctrl
+	  lbz       r0, 0x8(r1)
+	  stb       r0, 0x58(r31)
+	  lbz       r0, 0x9(r1)
+	  stb       r0, 0x59(r31)
+	  lbz       r0, 0xA(r1)
+	  stb       r0, 0x5A(r31)
+	  lbz       r0, 0xB(r1)
+	  stb       r0, 0x5B(r31)
+	  lwz       r31, 0x1C(r1)
+	  lwz       r0, 0x24(r1)
+	  mtlr      r0
+	  addi      r1, r1, 0x20
+	  blr
+	*/
+}
 
+/*
+ * --INFO--
+ * Address:	8032CA84
+ * Size:	000014
+ */
+void ObjChallengeBase::doStart(Screen::StartSceneArg const*)
+{
 	/*
-	 * --INFO--
-	 * Address:	8032CA84
-	 * Size:	000014
-	 */
-	void ObjChallengeBase::doStart(Screen::StartSceneArg const*)
-	{
-		/*
-		lfs      f0, lbl_8051DF40@sda21(r2)
-		stfs     f0, 0x38(r3)
-		stfs     f0, 0x3c(r3)
-		li       r3, 1
-		blr
-		*/
-	}
+	lfs      f0, lbl_8051DF40@sda21(r2)
+	stfs     f0, 0x38(r3)
+	stfs     f0, 0x3c(r3)
+	li       r3, 1
+	blr
+	*/
+}
 
+/*
+ * --INFO--
+ * Address:	8032CA98
+ * Size:	000010
+ */
+void ObjChallengeBase::doEnd(Screen::EndSceneArg const*)
+{
 	/*
-	 * --INFO--
-	 * Address:	8032CA98
-	 * Size:	000010
-	 */
-	void ObjChallengeBase::doEnd(Screen::EndSceneArg const*)
-	{
-		/*
-		lfs      f0, lbl_8051DF40@sda21(r2)
-		stfs     f0, 0x38(r3)
-		li       r3, 1
-		blr
-		*/
-	}
+	lfs      f0, lbl_8051DF40@sda21(r2)
+	stfs     f0, 0x38(r3)
+	li       r3, 1
+	blr
+	*/
+}
 
+/*
+ * --INFO--
+ * Address:	8032CAA8
+ * Size:	0001D0
+ */
+void ObjChallengeBase::updateTimer(float, float)
+{
 	/*
-	 * --INFO--
-	 * Address:	8032CAA8
-	 * Size:	0001D0
-	 */
-	void ObjChallengeBase::updateTimer(float, float)
-	{
-		/*
-		stwu     r1, -0x40(r1)
-		mflr     r0
-		stw      r0, 0x44(r1)
-		stfd     f31, 0x30(r1)
-		psq_st   f31, 56(r1), 0, qr0
-		stfd     f30, 0x20(r1)
-		psq_st   f30, 40(r1), 0, qr0
-		stw      r31, 0x1c(r1)
-		mr       r31, r3
-		fmr      f30, f1
-		lwz      r0, 0x5c(r3)
-		fmr      f31, f2
-		cmplwi   r0, 0
-		beq      lbl_8032CB3C
-		lfs      f2, 0x50(r31)
-		lfs      f1, lbl_8051DF40@sda21(r2)
-		fcmpo    cr0, f2, f1
-		ble      lbl_8032CB3C
-		lwz      r3, sys@sda21(r13)
-		fcmpo    cr0, f31, f1
-		lfs      f0, 0x54(r3)
-		fsubs    f0, f2, f0
-		stfs     f0, 0x50(r31)
-		ble      lbl_8032CB1C
-		lfs      f0, 0x50(r31)
-		fcmpo    cr0, f0, f1
-		bge      lbl_8032CB1C
-		lwz      r3, ogSound__2og@sda21(r13)
-		bl       setTimeCarry__Q22og5SoundFv
+	stwu     r1, -0x40(r1)
+	mflr     r0
+	stw      r0, 0x44(r1)
+	stfd     f31, 0x30(r1)
+	psq_st   f31, 56(r1), 0, qr0
+	stfd     f30, 0x20(r1)
+	psq_st   f30, 40(r1), 0, qr0
+	stw      r31, 0x1c(r1)
+	mr       r31, r3
+	fmr      f30, f1
+	lwz      r0, 0x5c(r3)
+	fmr      f31, f2
+	cmplwi   r0, 0
+	beq      lbl_8032CB3C
+	lfs      f2, 0x50(r31)
+	lfs      f1, lbl_8051DF40@sda21(r2)
+	fcmpo    cr0, f2, f1
+	ble      lbl_8032CB3C
+	lwz      r3, sys@sda21(r13)
+	fcmpo    cr0, f31, f1
+	lfs      f0, 0x54(r3)
+	fsubs    f0, f2, f0
+	stfs     f0, 0x50(r31)
+	ble      lbl_8032CB1C
+	lfs      f0, 0x50(r31)
+	fcmpo    cr0, f0, f1
+	bge      lbl_8032CB1C
+	lwz      r3, ogSound__2og@sda21(r13)
+	bl       setTimeCarry__Q22og5SoundFv
 
-	lbl_8032CB1C:
-		lfs      f0, lbl_8051DF40@sda21(r2)
-		fcmpo    cr0, f31, f0
-		ble      lbl_8032CB34
-		fsubs    f0, f30, f31
-		stfs     f0, 0x44(r31)
-		b        lbl_8032CB40
+lbl_8032CB1C:
+	lfs      f0, lbl_8051DF40@sda21(r2)
+	fcmpo    cr0, f31, f0
+	ble      lbl_8032CB34
+	fsubs    f0, f30, f31
+	stfs     f0, 0x44(r31)
+	b        lbl_8032CB40
 
-	lbl_8032CB34:
-		stfs     f30, 0x44(r31)
-		b        lbl_8032CB40
+lbl_8032CB34:
+	stfs     f30, 0x44(r31)
+	b        lbl_8032CB40
 
-	lbl_8032CB3C:
-		stfs     f30, 0x44(r31)
+lbl_8032CB3C:
+	stfs     f30, 0x44(r31)
 
-	lbl_8032CB40:
-		lfs      f1, 0x44(r31)
-		bl       __cvt_fp2unsigned
-		stw      r3, 0x40(r31)
-		lis      r3, msBaseVal__Q32og9newScreen16ObjChallengeBase@ha
-		addi     r3, r3, msBaseVal__Q32og9newScreen16ObjChallengeBase@l
-		lwz      r4, 0x40(r31)
-		lwz      r0, 0x10(r3)
-		cmplw    r4, r0
-		bgt      lbl_8032CBB0
-		lwz      r0, 8(r3)
-		addi     r4, r1, 0x14
-		stw      r0, 0x14(r1)
-		lwz      r3, 0x4c(r31)
-		lwz      r12, 0(r3)
-		lwz      r12, 0x12c(r12)
-		mtctr    r12
-		bctrl
-		lis      r3, msBaseVal__Q32og9newScreen16ObjChallengeBase@ha
-		addi     r4, r1, 0x10
-		addi     r3, r3, msBaseVal__Q32og9newScreen16ObjChallengeBase@l
-		lwz      r0, 0xc(r3)
-		stw      r0, 0x10(r1)
-		lwz      r3, 0x4c(r31)
-		lwz      r12, 0(r3)
-		lwz      r12, 0x128(r12)
-		mtctr    r12
-		bctrl
-		b        lbl_8032CBF0
+lbl_8032CB40:
+	lfs      f1, 0x44(r31)
+	bl       __cvt_fp2unsigned
+	stw      r3, 0x40(r31)
+	lis      r3, msBaseVal__Q32og9newScreen16ObjChallengeBase@ha
+	addi     r3, r3, msBaseVal__Q32og9newScreen16ObjChallengeBase@l
+	lwz      r4, 0x40(r31)
+	lwz      r0, 0x10(r3)
+	cmplw    r4, r0
+	bgt      lbl_8032CBB0
+	lwz      r0, 8(r3)
+	addi     r4, r1, 0x14
+	stw      r0, 0x14(r1)
+	lwz      r3, 0x4c(r31)
+	lwz      r12, 0(r3)
+	lwz      r12, 0x12c(r12)
+	mtctr    r12
+	bctrl
+	lis      r3, msBaseVal__Q32og9newScreen16ObjChallengeBase@ha
+	addi     r4, r1, 0x10
+	addi     r3, r3, msBaseVal__Q32og9newScreen16ObjChallengeBase@l
+	lwz      r0, 0xc(r3)
+	stw      r0, 0x10(r1)
+	lwz      r3, 0x4c(r31)
+	lwz      r12, 0(r3)
+	lwz      r12, 0x128(r12)
+	mtctr    r12
+	bctrl
+	b        lbl_8032CBF0
 
-	lbl_8032CBB0:
-		lwz      r0, 0x54(r31)
-		addi     r4, r1, 0xc
-		stw      r0, 0xc(r1)
-		lwz      r3, 0x4c(r31)
-		lwz      r12, 0(r3)
-		lwz      r12, 0x12c(r12)
-		mtctr    r12
-		bctrl
-		lwz      r0, 0x58(r31)
-		addi     r4, r1, 8
-		stw      r0, 8(r1)
-		lwz      r3, 0x4c(r31)
-		lwz      r12, 0(r3)
-		lwz      r12, 0x128(r12)
-		mtctr    r12
-		bctrl
+lbl_8032CBB0:
+	lwz      r0, 0x54(r31)
+	addi     r4, r1, 0xc
+	stw      r0, 0xc(r1)
+	lwz      r3, 0x4c(r31)
+	lwz      r12, 0(r3)
+	lwz      r12, 0x12c(r12)
+	mtctr    r12
+	bctrl
+	lwz      r0, 0x58(r31)
+	addi     r4, r1, 8
+	stw      r0, 8(r1)
+	lwz      r3, 0x4c(r31)
+	lwz      r12, 0(r3)
+	lwz      r12, 0x128(r12)
+	mtctr    r12
+	bctrl
 
-	lbl_8032CBF0:
-		lfs      f1, 0x50(r31)
-		lfs      f0, lbl_8051DF40@sda21(r2)
-		fcmpo    cr0, f1, f0
-		cror     2, 0, 2
-		bne      lbl_8032CC54
-		lwz      r0, 0x40(r31)
-		cmplwi   r0, 0x1e
-		bne      lbl_8032CC2C
-		lbz      r0, 0x48(r31)
-		cmplwi   r0, 0
-		bne      lbl_8032CC2C
-		li       r0, 1
-		stb      r0, 0x48(r31)
-		lwz      r3, ogSound__2og@sda21(r13)
-		bl       setChime__Q22og5SoundFv
+lbl_8032CBF0:
+	lfs      f1, 0x50(r31)
+	lfs      f0, lbl_8051DF40@sda21(r2)
+	fcmpo    cr0, f1, f0
+	cror     2, 0, 2
+	bne      lbl_8032CC54
+	lwz      r0, 0x40(r31)
+	cmplwi   r0, 0x1e
+	bne      lbl_8032CC2C
+	lbz      r0, 0x48(r31)
+	cmplwi   r0, 0
+	bne      lbl_8032CC2C
+	li       r0, 1
+	stb      r0, 0x48(r31)
+	lwz      r3, ogSound__2og@sda21(r13)
+	bl       setChime__Q22og5SoundFv
 
-	lbl_8032CC2C:
-		lwz      r0, 0x40(r31)
-		cmplwi   r0, 0xa
-		bne      lbl_8032CC54
-		lbz      r0, 0x49(r31)
-		cmplwi   r0, 0
-		bne      lbl_8032CC54
-		li       r0, 1
-		stb      r0, 0x49(r31)
-		lwz      r3, ogSound__2og@sda21(r13)
-		bl       setChime__Q22og5SoundFv
+lbl_8032CC2C:
+	lwz      r0, 0x40(r31)
+	cmplwi   r0, 0xa
+	bne      lbl_8032CC54
+	lbz      r0, 0x49(r31)
+	cmplwi   r0, 0
+	bne      lbl_8032CC54
+	li       r0, 1
+	stb      r0, 0x49(r31)
+	lwz      r3, ogSound__2og@sda21(r13)
+	bl       setChime__Q22og5SoundFv
 
-	lbl_8032CC54:
-		psq_l    f31, 56(r1), 0, qr0
-		lfd      f31, 0x30(r1)
-		psq_l    f30, 40(r1), 0, qr0
-		lfd      f30, 0x20(r1)
-		lwz      r0, 0x44(r1)
-		lwz      r31, 0x1c(r1)
-		mtlr     r0
-		addi     r1, r1, 0x40
-		blr
-		*/
-	}
+lbl_8032CC54:
+	psq_l    f31, 56(r1), 0, qr0
+	lfd      f31, 0x30(r1)
+	psq_l    f30, 40(r1), 0, qr0
+	lfd      f30, 0x20(r1)
+	lwz      r0, 0x44(r1)
+	lwz      r31, 0x1c(r1)
+	mtlr     r0
+	addi     r1, r1, 0x40
+	blr
+	*/
+}
 
-	/*
-	 * --INFO--
-	 * Address:	8032CC78
-	 * Size:	000008
-	 */
-	void ObjChallengeBase::setSubLevel(unsigned long a1)
-	{
-		// Generated from stw r4, 0x5C(r3)
-		_5C = a1;
-	}
+/*
+ * --INFO--
+ * Address:	8032CC78
+ * Size:	000008
+ */
+void ObjChallengeBase::setSubLevel(unsigned long a1)
+{
+	// Generated from stw r4, 0x5C(r3)
+	_5C = a1;
+}
 
 } // namespace newScreen
 

@@ -102,247 +102,247 @@ namespace og {
 
 namespace newScreen {
 
+/*
+ * --INFO--
+ * Address:	80323584
+ * Size:	000050
+ */
+SMenuPauseDoukutu::SMenuPauseDoukutu(void)
+{
 	/*
-	 * --INFO--
-	 * Address:	80323584
-	 * Size:	000050
-	 */
-	SMenuPauseDoukutu::SMenuPauseDoukutu(void)
-	{
-		/*
-		stwu     r1, -0x10(r1)
-		mflr     r0
-		stw      r0, 0x14(r1)
-		stw      r31, 0xc(r1)
-		mr       r31, r3
-		bl       __ct__Q26Screen9SceneBaseFv
-		lis      r4, __vt__Q32og9newScreen14SceneSMenuBase@ha
-		lis      r3, __vt__Q32og9newScreen17SMenuPauseDoukutu@ha
-		addi     r0, r4, __vt__Q32og9newScreen14SceneSMenuBase@l
-		li       r4, 1
-		stw      r0, 0(r31)
-		addi     r0, r3, __vt__Q32og9newScreen17SMenuPauseDoukutu@l
-		mr       r3, r31
-		stw      r4, 0x220(r31)
-		stw      r0, 0(r31)
-		lwz      r31, 0xc(r1)
-		lwz      r0, 0x14(r1)
-		mtlr     r0
-		addi     r1, r1, 0x10
-		blr
-		*/
-	}
+	stwu     r1, -0x10(r1)
+	mflr     r0
+	stw      r0, 0x14(r1)
+	stw      r31, 0xc(r1)
+	mr       r31, r3
+	bl       __ct__Q26Screen9SceneBaseFv
+	lis      r4, __vt__Q32og9newScreen14SceneSMenuBase@ha
+	lis      r3, __vt__Q32og9newScreen17SMenuPauseDoukutu@ha
+	addi     r0, r4, __vt__Q32og9newScreen14SceneSMenuBase@l
+	li       r4, 1
+	stw      r0, 0(r31)
+	addi     r0, r3, __vt__Q32og9newScreen17SMenuPauseDoukutu@l
+	mr       r3, r31
+	stw      r4, 0x220(r31)
+	stw      r0, 0(r31)
+	lwz      r31, 0xc(r1)
+	lwz      r0, 0x14(r1)
+	mtlr     r0
+	addi     r1, r1, 0x10
+	blr
+	*/
+}
 
+/*
+ * --INFO--
+ * Address:	........
+ * Size:	000084
+ */
+SMenuPauseDoukutu::~SMenuPauseDoukutu(void)
+{
+	// UNUSED FUNCTION
+}
+
+/*
+ * --INFO--
+ * Address:	803235D4
+ * Size:	000004
+ */
+void SMenuPauseDoukutu::doUserCallBackFunc(Resource::MgrCommand*) { }
+
+/*
+ * --INFO--
+ * Address:	803235D8
+ * Size:	000060
+ */
+void SMenuPauseDoukutu::doCreateObj(JKRArchive*)
+{
 	/*
-	 * --INFO--
-	 * Address:	........
-	 * Size:	000084
-	 */
-	SMenuPauseDoukutu::~SMenuPauseDoukutu(void)
-	{
-		// UNUSED FUNCTION
-	}
+	stwu     r1, -0x10(r1)
+	mflr     r0
+	stw      r0, 0x14(r1)
+	stw      r31, 0xc(r1)
+	mr       r31, r4
+	stw      r30, 8(r1)
+	mr       r30, r3
+	li       r3, 0xfc
+	bl       __nw__FUl
+	or.      r4, r3, r3
+	beq      lbl_80323614
+	lis      r4, lbl_8048F240@ha
+	addi     r4, r4, lbl_8048F240@l
+	bl       __ct__Q32og9newScreen20ObjSMenuPauseDoukutuFPCc
+	mr       r4, r3
 
+lbl_80323614:
+	mr       r3, r30
+	mr       r5, r31
+	bl       registObj__Q26Screen9SceneBaseFPQ26Screen7ObjBaseP10JKRArchive
+	lwz      r0, 0x14(r1)
+	lwz      r31, 0xc(r1)
+	lwz      r30, 8(r1)
+	mtlr     r0
+	addi     r1, r1, 0x10
+	blr
+	*/
+}
+
+/*
+ * --INFO--
+ * Address:	80323638
+ * Size:	000090
+ */
+void SMenuPauseDoukutu::doGetFinishState(void)
+{
 	/*
-	 * --INFO--
-	 * Address:	803235D4
-	 * Size:	000004
-	 */
-	void SMenuPauseDoukutu::doUserCallBackFunc(Resource::MgrCommand*) { }
+	stwu     r1, -0x10(r1)
+	mflr     r0
+	stw      r0, 0x14(r1)
+	stw      r31, 0xc(r1)
+	stw      r30, 8(r1)
+	lwz      r30, 0x220(r3)
+	cmpwi    r30, 1
+	bne      lbl_803236AC
+	lwz      r31, 0x21c(r3)
+	lis      r4, 0x004F4741@ha
+	lis      r6, 0x5F414C4C@ha
+	li       r5, 0x534d
+	mr       r3, r31
+	addi     r4, r4, 0x004F4741@l
+	addi     r6, r6, 0x5F414C4C@l
+	bl       isID__Q32og6Screen14DispMemberBaseFUlUx
+	clrlwi.  r0, r3, 0x18
+	beq      lbl_803236AC
+	lis      r4, 0x004F4741@ha
+	lis      r6, 0x53455F44@ha
+	lis      r5, 0x00504155@ha
+	mr       r3, r31
+	addi     r4, r4, 0x004F4741@l
+	addi     r6, r6, 0x53455F44@l
+	addi     r5, r5, 0x00504155@l
+	bl       getSubMember__Q32og6Screen14DispMemberBaseFUlUx
+	cmplwi   r3, 0
+	beq      lbl_803236AC
+	lwz      r30, 0x14(r3)
 
+lbl_803236AC:
+	lwz      r0, 0x14(r1)
+	mr       r3, r30
+	lwz      r31, 0xc(r1)
+	lwz      r30, 8(r1)
+	mtlr     r0
+	addi     r1, r1, 0x10
+	blr
+	*/
+}
+
+/*
+ * --INFO--
+ * Address:	803236C8
+ * Size:	000004
+ */
+void SMenuPauseDoukutu::doUpdateActive(void) { }
+
+/*
+ * --INFO--
+ * Address:	803236CC
+ * Size:	000068
+ */
+void SMenuPauseDoukutu::doConfirmSetScene(Screen::SetSceneArg&)
+{
 	/*
-	 * --INFO--
-	 * Address:	803235D8
-	 * Size:	000060
-	 */
-	void SMenuPauseDoukutu::doCreateObj(JKRArchive*)
-	{
-		/*
-		stwu     r1, -0x10(r1)
-		mflr     r0
-		stw      r0, 0x14(r1)
-		stw      r31, 0xc(r1)
-		mr       r31, r4
-		stw      r30, 8(r1)
-		mr       r30, r3
-		li       r3, 0xfc
-		bl       __nw__FUl
-		or.      r4, r3, r3
-		beq      lbl_80323614
-		lis      r4, lbl_8048F240@ha
-		addi     r4, r4, lbl_8048F240@l
-		bl       __ct__Q32og9newScreen20ObjSMenuPauseDoukutuFPCc
-		mr       r4, r3
+	stwu     r1, -0x10(r1)
+	mflr     r0
+	mr       r3, r4
+	stw      r0, 0x14(r1)
+	stw      r31, 0xc(r1)
+	li       r31, 0
+	lwz      r12, 0(r4)
+	lwz      r12, 8(r12)
+	mtctr    r12
+	bctrl
+	addi     r0, r3, -10000
+	cmplwi   r0, 0x1b
+	bgt      lbl_8032371C
+	lis      r3, lbl_804D9714@ha
+	slwi     r0, r0, 2
+	addi     r3, r3, lbl_804D9714@l
+	lwzx     r0, r3, r0
+	mtctr    r0
+	bctr
+	.global  lbl_80323718
 
-	lbl_80323614:
-		mr       r3, r30
-		mr       r5, r31
-		bl       registObj__Q26Screen9SceneBaseFPQ26Screen7ObjBaseP10JKRArchive
-		lwz      r0, 0x14(r1)
-		lwz      r31, 0xc(r1)
-		lwz      r30, 8(r1)
-		mtlr     r0
-		addi     r1, r1, 0x10
-		blr
-		*/
-	}
+lbl_80323718:
+	li       r31, 1
+	.global  lbl_8032371C
 
+lbl_8032371C:
+	lwz      r0, 0x14(r1)
+	mr       r3, r31
+	lwz      r31, 0xc(r1)
+	mtlr     r0
+	addi     r1, r1, 0x10
+	blr
+	*/
+}
+
+/*
+ * --INFO--
+ * Address:	80323734
+ * Size:	00000C
+ */
+void SMenuPauseDoukutu::getResName() const
+{
 	/*
-	 * --INFO--
-	 * Address:	80323638
-	 * Size:	000090
-	 */
-	void SMenuPauseDoukutu::doGetFinishState(void)
-	{
-		/*
-		stwu     r1, -0x10(r1)
-		mflr     r0
-		stw      r0, 0x14(r1)
-		stw      r31, 0xc(r1)
-		stw      r30, 8(r1)
-		lwz      r30, 0x220(r3)
-		cmpwi    r30, 1
-		bne      lbl_803236AC
-		lwz      r31, 0x21c(r3)
-		lis      r4, 0x004F4741@ha
-		lis      r6, 0x5F414C4C@ha
-		li       r5, 0x534d
-		mr       r3, r31
-		addi     r4, r4, 0x004F4741@l
-		addi     r6, r6, 0x5F414C4C@l
-		bl       isID__Q32og6Screen14DispMemberBaseFUlUx
-		clrlwi.  r0, r3, 0x18
-		beq      lbl_803236AC
-		lis      r4, 0x004F4741@ha
-		lis      r6, 0x53455F44@ha
-		lis      r5, 0x00504155@ha
-		mr       r3, r31
-		addi     r4, r4, 0x004F4741@l
-		addi     r6, r6, 0x53455F44@l
-		addi     r5, r5, 0x00504155@l
-		bl       getSubMember__Q32og6Screen14DispMemberBaseFUlUx
-		cmplwi   r3, 0
-		beq      lbl_803236AC
-		lwz      r30, 0x14(r3)
+	lis      r3, lbl_8048F25C@ha
+	addi     r3, r3, lbl_8048F25C@l
+	blr
+	*/
+}
 
-	lbl_803236AC:
-		lwz      r0, 0x14(r1)
-		mr       r3, r30
-		lwz      r31, 0xc(r1)
-		lwz      r30, 8(r1)
-		mtlr     r0
-		addi     r1, r1, 0x10
-		blr
-		*/
-	}
+/*
+ * --INFO--
+ * Address:	80323740
+ * Size:	000008
+ */
+u32 SMenuPauseDoukutu::getSceneType(void) { return 0x271B; }
 
+/*
+ * --INFO--
+ * Address:	80323748
+ * Size:	00000C
+ */
+void SMenuPauseDoukutu::getOwnerID(void)
+{
 	/*
-	 * --INFO--
-	 * Address:	803236C8
-	 * Size:	000004
-	 */
-	void SMenuPauseDoukutu::doUpdateActive(void) { }
+	lis      r3, 0x004F4741@ha
+	addi     r3, r3, 0x004F4741@l
+	blr
+	*/
+}
 
+/*
+ * --INFO--
+ * Address:	80323754
+ * Size:	000014
+ */
+void SMenuPauseDoukutu::getMemberID(void)
+{
 	/*
-	 * --INFO--
-	 * Address:	803236CC
-	 * Size:	000068
-	 */
-	void SMenuPauseDoukutu::doConfirmSetScene(Screen::SetSceneArg&)
-	{
-		/*
-		stwu     r1, -0x10(r1)
-		mflr     r0
-		mr       r3, r4
-		stw      r0, 0x14(r1)
-		stw      r31, 0xc(r1)
-		li       r31, 0
-		lwz      r12, 0(r4)
-		lwz      r12, 8(r12)
-		mtctr    r12
-		bctrl
-		addi     r0, r3, -10000
-		cmplwi   r0, 0x1b
-		bgt      lbl_8032371C
-		lis      r3, lbl_804D9714@ha
-		slwi     r0, r0, 2
-		addi     r3, r3, lbl_804D9714@l
-		lwzx     r0, r3, r0
-		mtctr    r0
-		bctr
-		.global  lbl_80323718
+	lis      r4, 0x53455F44@ha
+	lis      r3, 0x00504155@ha
+	addi     r4, r4, 0x53455F44@l
+	addi     r3, r3, 0x00504155@l
+	blr
+	*/
+}
 
-	lbl_80323718:
-		li       r31, 1
-		.global  lbl_8032371C
-
-	lbl_8032371C:
-		lwz      r0, 0x14(r1)
-		mr       r3, r31
-		lwz      r31, 0xc(r1)
-		mtlr     r0
-		addi     r1, r1, 0x10
-		blr
-		*/
-	}
-
-	/*
-	 * --INFO--
-	 * Address:	80323734
-	 * Size:	00000C
-	 */
-	void SMenuPauseDoukutu::getResName() const
-	{
-		/*
-		lis      r3, lbl_8048F25C@ha
-		addi     r3, r3, lbl_8048F25C@l
-		blr
-		*/
-	}
-
-	/*
-	 * --INFO--
-	 * Address:	80323740
-	 * Size:	000008
-	 */
-	u32 SMenuPauseDoukutu::getSceneType(void) { return 0x271B; }
-
-	/*
-	 * --INFO--
-	 * Address:	80323748
-	 * Size:	00000C
-	 */
-	void SMenuPauseDoukutu::getOwnerID(void)
-	{
-		/*
-		lis      r3, 0x004F4741@ha
-		addi     r3, r3, 0x004F4741@l
-		blr
-		*/
-	}
-
-	/*
-	 * --INFO--
-	 * Address:	80323754
-	 * Size:	000014
-	 */
-	void SMenuPauseDoukutu::getMemberID(void)
-	{
-		/*
-		lis      r4, 0x53455F44@ha
-		lis      r3, 0x00504155@ha
-		addi     r4, r4, 0x53455F44@l
-		addi     r3, r3, 0x00504155@l
-		blr
-		*/
-	}
-
-	/*
-	 * --INFO--
-	 * Address:	80323768
-	 * Size:	000008
-	 */
-	u32 SMenuPauseDoukutu::isUseBackupSceneInfo(void) { return 0x1; }
+/*
+ * --INFO--
+ * Address:	80323768
+ * Size:	000008
+ */
+u32 SMenuPauseDoukutu::isUseBackupSceneInfo(void) { return 0x1; }
 
 } // namespace newScreen
 

@@ -2281,121 +2281,121 @@ lbl_80175C24:
 
 namespace efx {
 
-	/*
-	 * --INFO--
-	 * Address:	........
-	 * Size:	000080
-	 */
-	TChasePosYRot2::~TChasePosYRot2(void)
-	{
-		// UNUSED FUNCTION
-	}
+/*
+ * --INFO--
+ * Address:	........
+ * Size:	000080
+ */
+TChasePosYRot2::~TChasePosYRot2(void)
+{
+	// UNUSED FUNCTION
+}
 
+/*
+ * --INFO--
+ * Address:	80175C44
+ * Size:	000084
+ */
+TChasePosYRot::~TChasePosYRot(void)
+{
 	/*
-	 * --INFO--
-	 * Address:	80175C44
-	 * Size:	000084
-	 */
-	TChasePosYRot::~TChasePosYRot(void)
-	{
-		/*
-	stwu     r1, -0x10(r1)
-	mflr     r0
-	stw      r0, 0x14(r1)
-	stw      r31, 0xc(r1)
-	mr       r31, r4
-	stw      r30, 8(r1)
-	or.      r30, r3, r3
-	beq      lbl_80175CAC
-	lis      r3, __vt__Q23efx13TChasePosYRot@ha
-	addi     r3, r3, __vt__Q23efx13TChasePosYRot@l
-	stw      r3, 0(r30)
-	addi     r0, r3, 0x14
-	stw      r0, 4(r30)
-	beq      lbl_80175C9C
-	lis      r4, __vt__Q23efx5TSync@ha
-	addi     r3, r30, 4
-	addi     r5, r4, __vt__Q23efx5TSync@l
-	li       r4, 0
-	stw      r5, 0(r30)
-	addi     r0, r5, 0x14
-	stw      r0, 4(r30)
-	bl       __dt__18JPAEmitterCallBackFv
+stwu     r1, -0x10(r1)
+mflr     r0
+stw      r0, 0x14(r1)
+stw      r31, 0xc(r1)
+mr       r31, r4
+stw      r30, 8(r1)
+or.      r30, r3, r3
+beq      lbl_80175CAC
+lis      r3, __vt__Q23efx13TChasePosYRot@ha
+addi     r3, r3, __vt__Q23efx13TChasePosYRot@l
+stw      r3, 0(r30)
+addi     r0, r3, 0x14
+stw      r0, 4(r30)
+beq      lbl_80175C9C
+lis      r4, __vt__Q23efx5TSync@ha
+addi     r3, r30, 4
+addi     r5, r4, __vt__Q23efx5TSync@l
+li       r4, 0
+stw      r5, 0(r30)
+addi     r0, r5, 0x14
+stw      r0, 4(r30)
+bl       __dt__18JPAEmitterCallBackFv
 
 lbl_80175C9C:
-	extsh.   r0, r31
-	ble      lbl_80175CAC
-	mr       r3, r30
-	bl       __dl__FPv
+extsh.   r0, r31
+ble      lbl_80175CAC
+mr       r3, r30
+bl       __dl__FPv
 
 lbl_80175CAC:
-	lwz      r0, 0x14(r1)
-	mr       r3, r30
-	lwz      r31, 0xc(r1)
-	lwz      r30, 8(r1)
-	mtlr     r0
-	addi     r1, r1, 0x10
-	blr
-		*/
-	}
+lwz      r0, 0x14(r1)
+mr       r3, r30
+lwz      r31, 0xc(r1)
+lwz      r30, 8(r1)
+mtlr     r0
+addi     r1, r1, 0x10
+blr
+	*/
+}
 
-	/*
-	 * --INFO--
-	 * Address:	........
-	 * Size:	000080
-	 */
-	TForever2::~TForever2(void)
-	{
-		// UNUSED FUNCTION
-	}
+/*
+ * --INFO--
+ * Address:	........
+ * Size:	000080
+ */
+TForever2::~TForever2(void)
+{
+	// UNUSED FUNCTION
+}
 
+/*
+ * --INFO--
+ * Address:	80175CC8
+ * Size:	000084
+ */
+TForever::~TForever(void)
+{
 	/*
-	 * --INFO--
-	 * Address:	80175CC8
-	 * Size:	000084
-	 */
-	TForever::~TForever(void)
-	{
-		/*
-	stwu     r1, -0x10(r1)
-	mflr     r0
-	stw      r0, 0x14(r1)
-	stw      r31, 0xc(r1)
-	mr       r31, r4
-	stw      r30, 8(r1)
-	or.      r30, r3, r3
-	beq      lbl_80175D30
-	lis      r3, __vt__Q23efx8TForever@ha
-	addi     r3, r3, __vt__Q23efx8TForever@l
-	stw      r3, 0(r30)
-	addi     r0, r3, 0x14
-	stw      r0, 4(r30)
-	beq      lbl_80175D20
-	lis      r4, __vt__Q23efx5TSync@ha
-	addi     r3, r30, 4
-	addi     r5, r4, __vt__Q23efx5TSync@l
-	li       r4, 0
-	stw      r5, 0(r30)
-	addi     r0, r5, 0x14
-	stw      r0, 4(r30)
-	bl       __dt__18JPAEmitterCallBackFv
+stwu     r1, -0x10(r1)
+mflr     r0
+stw      r0, 0x14(r1)
+stw      r31, 0xc(r1)
+mr       r31, r4
+stw      r30, 8(r1)
+or.      r30, r3, r3
+beq      lbl_80175D30
+lis      r3, __vt__Q23efx8TForever@ha
+addi     r3, r3, __vt__Q23efx8TForever@l
+stw      r3, 0(r30)
+addi     r0, r3, 0x14
+stw      r0, 4(r30)
+beq      lbl_80175D20
+lis      r4, __vt__Q23efx5TSync@ha
+addi     r3, r30, 4
+addi     r5, r4, __vt__Q23efx5TSync@l
+li       r4, 0
+stw      r5, 0(r30)
+addi     r0, r5, 0x14
+stw      r0, 4(r30)
+bl       __dt__18JPAEmitterCallBackFv
 
 lbl_80175D20:
-	extsh.   r0, r31
-	ble      lbl_80175D30
-	mr       r3, r30
-	bl       __dl__FPv
+extsh.   r0, r31
+ble      lbl_80175D30
+mr       r3, r30
+bl       __dl__FPv
 
 lbl_80175D30:
-	lwz      r0, 0x14(r1)
-	mr       r3, r30
-	lwz      r31, 0xc(r1)
-	lwz      r30, 8(r1)
-	mtlr     r0
-	addi     r1, r1, 0x10
-	blr
-		*/
-	}
+lwz      r0, 0x14(r1)
+mr       r3, r30
+lwz      r31, 0xc(r1)
+lwz      r30, 8(r1)
+mtlr     r0
+addi     r1, r1, 0x10
+blr
+	*/
+}
 
 } // namespace efx
 
@@ -7928,29 +7928,29 @@ void Onyon::init_pmotions(void)
 
 namespace SysShape {
 
+/*
+ * --INFO--
+ * Address:	8017A170
+ * Size:	000034
+ */
+Animator::Animator(void)
+{
 	/*
-	 * --INFO--
-	 * Address:	8017A170
-	 * Size:	000034
-	 */
-	Animator::Animator(void)
-	{
-		/*
-	lis      r5, __vt__Q28SysShape12BaseAnimator@ha
-	lis      r4, __vt__Q28SysShape8Animator@ha
-	addi     r5, r5, __vt__Q28SysShape12BaseAnimator@l
-	li       r0, 0
-	stw      r5, 0(r3)
-	addi     r4, r4, __vt__Q28SysShape8Animator@l
-	stw      r4, 0(r3)
-	stb      r0, 0x18(r3)
-	stw      r0, 0xc(r3)
-	stw      r0, 4(r3)
-	stb      r0, 0x18(r3)
-	stw      r0, 0x10(r3)
-	blr
-		*/
-	}
+lis      r5, __vt__Q28SysShape12BaseAnimator@ha
+lis      r4, __vt__Q28SysShape8Animator@ha
+addi     r5, r5, __vt__Q28SysShape12BaseAnimator@l
+li       r0, 0
+stw      r5, 0(r3)
+addi     r4, r4, __vt__Q28SysShape8Animator@l
+stw      r4, 0(r3)
+stb      r0, 0x18(r3)
+stw      r0, 0xc(r3)
+stw      r0, 4(r3)
+stb      r0, 0x18(r3)
+stw      r0, 0x10(r3)
+blr
+	*/
+}
 
 } // namespace SysShape
 

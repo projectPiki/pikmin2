@@ -1152,42 +1152,42 @@ namespace og {
 
 namespace Screen {
 
-	/*
-	 * --INFO--
-	 * Address:	80233404
-	 * Size:	000008
-	 */
-	u32 DispMemberFinalMessage::getSize(void) { return 0xC; }
+/*
+ * --INFO--
+ * Address:	80233404
+ * Size:	000008
+ */
+u32 DispMemberFinalMessage::getSize(void) { return 0xC; }
 
+/*
+ * --INFO--
+ * Address:	8023340C
+ * Size:	00000C
+ */
+void DispMemberFinalMessage::getOwnerID(void)
+{
 	/*
-	 * --INFO--
-	 * Address:	8023340C
-	 * Size:	00000C
-	 */
-	void DispMemberFinalMessage::getOwnerID(void)
-	{
-		/*
-	lis      r3, 0x004F4741@ha
-	addi     r3, r3, 0x004F4741@l
-	blr
-		*/
-	}
+lis      r3, 0x004F4741@ha
+addi     r3, r3, 0x004F4741@l
+blr
+	*/
+}
 
+/*
+ * --INFO--
+ * Address:	80233418
+ * Size:	000014
+ */
+void DispMemberFinalMessage::getMemberID(void)
+{
 	/*
-	 * --INFO--
-	 * Address:	80233418
-	 * Size:	000014
-	 */
-	void DispMemberFinalMessage::getMemberID(void)
-	{
-		/*
-	lis      r4, 0x4C4D5347@ha
-	lis      r3, 0x46494E41@ha
-	addi     r4, r4, 0x4C4D5347@l
-	addi     r3, r3, 0x46494E41@l
-	blr
-		*/
-	}
+lis      r4, 0x4C4D5347@ha
+lis      r3, 0x46494E41@ha
+addi     r4, r4, 0x4C4D5347@l
+addi     r3, r3, 0x46494E41@l
+blr
+	*/
+}
 
 } // namespace Screen
 

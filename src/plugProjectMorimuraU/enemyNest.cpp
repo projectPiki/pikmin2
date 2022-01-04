@@ -239,217 +239,217 @@ void _Print(char* name, ...)
 
 namespace Game {
 namespace Nest {
+/*
+ * --INFO--
+ * Address:	8036CA94
+ * Size:	000034
+ */
+// void birth__Q34Game4Nest3ObjFR10Vector3f f(void)
+void Obj::birth(Vector3f& position, float p2)
+{
+	EnemyBase::birth(position, p2);
+	m_houseType = 1;
+}
+
+/*
+ * --INFO--
+ * Address:	8036CAC8
+ * Size:	00011C
+ */
+void Obj::onInit(Game::CreatureInitArg* arg)
+{
+	EnemyBase::onInit(arg);
+	_2EE           = 0xFF;
+	_2F0           = 0;
+	m_homePosition = m_position;
+	_1E0[0].typeView &= ~0x0080;
+	_1E0[0].typeView &= ~0x0008;
+	_1E0[0].typeView &= ~0x0100;
+	_1E0[0].typeView &= ~0x1000;
+	_1E0[0].typeView |= 0x400000;
+
+	setEmotionNone();
+	if (shadowMgr) {
+		shadowMgr->killShadow(this);
+	}
+	_2BC                        = m_mainMatrix;
+	_2BC.m_matrix.structView.ty = m_position.y - 10.0f;
+}
+
+/*
+ * ct__
+ * --INFO--
+ * Address:	8036CBE4
+ * Size:	000098
+ */
+Obj::Obj()
+    : EnemyBase()
+    , m_houseType(1)
+{
 	/*
-	 * --INFO--
-	 * Address:	8036CA94
-	 * Size:	000034
-	 */
-	// void birth__Q34Game4Nest3ObjFR10Vector3f f(void)
-	void Obj::birth(Vector3f& position, float p2)
-	{
-		EnemyBase::birth(position, p2);
+	stwu     r1, -0x10(r1)
+	mflr     r0
+	stw      r0, 0x14(r1)
+	extsh.   r0, r4
+	stw      r31, 0xc(r1)
+	mr       r31, r3
+	beq      lbl_8036CC20
+	addi     r0, r31, 0x2f4
+	lis      r3, __vt__Q24Game10PelletView@ha
+	stw      r0, 0x17c(r31)
+	addi     r3, r3, __vt__Q24Game10PelletView@l
+	li       r0, 0
+	stw      r3, 0x2f4(r31)
+	stw      r0, 0x2f8(r31)
+	stw      r0, 0x2fc(r31)
+
+lbl_8036CC20:
+	mr       r3, r31
+	li       r4, 0
+	bl       __ct__Q24Game9EnemyBaseFv
+	lis      r3, __vt__Q34Game4Nest3Obj@ha
+	addi     r4, r31, 0x2f4
+	addi     r3, r3, __vt__Q34Game4Nest3Obj@l
+	li       r0, 1
+	stw      r3, 0(r31)
+	addi     r5, r3, 0x1b0
+	addi     r6, r3, 0x2f8
+	mr       r3, r31
+	stw      r5, 0x178(r31)
+	lwz      r5, 0x17c(r31)
+	stw      r6, 0(r5)
+	lwz      r5, 0x17c(r31)
+	subf     r4, r5, r4
+	stw      r4, 0xc(r5)
+	stb      r0, 0x2ec(r31)
+	lwz      r31, 0xc(r1)
+	lwz      r0, 0x14(r1)
+	mtlr     r0
+	addi     r1, r1, 0x10
+	blr
+	*/
+}
+
+/*
+ * --INFO--
+ * Address:	8036CC7C
+ * Size:	000020
+ */
+void Obj::setHouseType(int enemyID)
+{
+	if (enemyID == EnemyTypeID::EnemyID_Jigumo) {
+		m_houseType = 0;
+	} else {
 		m_houseType = 1;
 	}
+}
 
-	/*
-	 * --INFO--
-	 * Address:	8036CAC8
-	 * Size:	00011C
-	 */
-	void Obj::onInit(Game::CreatureInitArg* arg)
-	{
-		EnemyBase::onInit(arg);
-		_2EE           = 0xFF;
-		_2F0           = 0;
-		m_homePosition = m_position;
-		_1E0[0].typeView &= ~0x0080;
-		_1E0[0].typeView &= ~0x0008;
-		_1E0[0].typeView &= ~0x0100;
-		_1E0[0].typeView &= ~0x1000;
-		_1E0[0].typeView |= 0x400000;
+/*
+ * --INFO--
+ * Address:	8036CC9C
+ * Size:	000004
+ */
+void Obj::setInitialSetting(Game::EnemyInitialParamBase*) { }
 
-		setEmotionNone();
-		if (shadowMgr) {
-			shadowMgr->killShadow(this);
-		}
-		_2BC                        = m_mainMatrix;
-		_2BC.m_matrix.structView.ty = m_position.y - 10.0f;
-	}
+/*
+ * --INFO--
+ * Address:	8036CCA0
+ * Size:	000004
+ */
+void Obj::update() { }
 
-	/*
-	 * ct__
-	 * --INFO--
-	 * Address:	8036CBE4
-	 * Size:	000098
-	 */
-	Obj::Obj()
-	    : EnemyBase()
-	    , m_houseType(1)
-	{
-		/*
-		stwu     r1, -0x10(r1)
-		mflr     r0
-		stw      r0, 0x14(r1)
-		extsh.   r0, r4
-		stw      r31, 0xc(r1)
-		mr       r31, r3
-		beq      lbl_8036CC20
-		addi     r0, r31, 0x2f4
-		lis      r3, __vt__Q24Game10PelletView@ha
-		stw      r0, 0x17c(r31)
-		addi     r3, r3, __vt__Q24Game10PelletView@l
-		li       r0, 0
-		stw      r3, 0x2f4(r31)
-		stw      r0, 0x2f8(r31)
-		stw      r0, 0x2fc(r31)
+/*
+ * --INFO--
+ * Address:	8036CCA4
+ * Size:	000004
+ */
+void Obj::doUpdate() { }
 
-	lbl_8036CC20:
-		mr       r3, r31
-		li       r4, 0
-		bl       __ct__Q24Game9EnemyBaseFv
-		lis      r3, __vt__Q34Game4Nest3Obj@ha
-		addi     r4, r31, 0x2f4
-		addi     r3, r3, __vt__Q34Game4Nest3Obj@l
-		li       r0, 1
-		stw      r3, 0(r31)
-		addi     r5, r3, 0x1b0
-		addi     r6, r3, 0x2f8
-		mr       r3, r31
-		stw      r5, 0x178(r31)
-		lwz      r5, 0x17c(r31)
-		stw      r6, 0(r5)
-		lwz      r5, 0x17c(r31)
-		subf     r4, r5, r4
-		stw      r4, 0xc(r5)
-		stb      r0, 0x2ec(r31)
-		lwz      r31, 0xc(r1)
-		lwz      r0, 0x14(r1)
-		mtlr     r0
-		addi     r1, r1, 0x10
-		blr
-		*/
-	}
+/*
+ * --INFO--
+ * Address:	8036CCA8
+ * Size:	000004
+ */
+void Obj::doSimulation(float) { }
 
-	/*
-	 * --INFO--
-	 * Address:	8036CC7C
-	 * Size:	000020
-	 */
-	void Obj::setHouseType(int enemyID)
-	{
-		if (enemyID == EnemyTypeID::EnemyID_Jigumo) {
-			m_houseType = 0;
-		} else {
-			m_houseType = 1;
-		}
-	}
+/*
+ * --INFO--
+ * Address:	8036CCAC
+ * Size:	000004
+ */
+void Obj::doAnimationCullingOn() { }
 
-	/*
-	 * --INFO--
-	 * Address:	8036CC9C
-	 * Size:	000004
-	 */
-	void Obj::setInitialSetting(Game::EnemyInitialParamBase*) { }
+/*
+ * --INFO--
+ * Address:	8036CCB0
+ * Size:	000004
+ */
+void Obj::doAnimationCullingOff() { }
 
-	/*
-	 * --INFO--
-	 * Address:	8036CCA0
-	 * Size:	000004
-	 */
-	void Obj::update() { }
+/*
+ * --INFO--
+ * Address:	8036CCB4
+ * Size:	000004
+ */
+void Obj::doUpdateCommon() { }
 
-	/*
-	 * --INFO--
-	 * Address:	8036CCA4
-	 * Size:	000004
-	 */
-	void Obj::doUpdate() { }
+/*
+ * --INFO--
+ * Address:	8036CCB8
+ * Size:	000004
+ */
+void Obj::doEntry() { }
 
-	/*
-	 * --INFO--
-	 * Address:	8036CCA8
-	 * Size:	000004
-	 */
-	void Obj::doSimulation(float) { }
+/*
+ * --INFO--
+ * Address:	8036CCBC
+ * Size:	000004
+ */
+void Obj::doViewCalc() { }
 
-	/*
-	 * --INFO--
-	 * Address:	8036CCAC
-	 * Size:	000004
-	 */
-	void Obj::doAnimationCullingOn() { }
+/*
+ * --INFO--
+ * Address:	8036CCC0
+ * Size:	000008
+ */
+bool Obj::isLivingThing() { return false; }
 
-	/*
-	 * --INFO--
-	 * Address:	8036CCB0
-	 * Size:	000004
-	 */
-	void Obj::doAnimationCullingOff() { }
+/*
+ * --INFO--
+ * Address:	8036CCC8
+ * Size:	000008
+ */
+bool Obj::ignoreAtari(Game::Creature*) { return false; }
 
-	/*
-	 * --INFO--
-	 * Address:	8036CCB4
-	 * Size:	000004
-	 */
-	void Obj::doUpdateCommon() { }
+/*
+ * --INFO--
+ * Address:	8036CCD0
+ * Size:	000008
+ */
+bool Obj::needShadow() { return false; }
 
-	/*
-	 * --INFO--
-	 * Address:	8036CCB8
-	 * Size:	000004
-	 */
-	void Obj::doEntry() { }
+/*
+ * --INFO--
+ * Address:	8036CCD8
+ * Size:	000008
+ */
+EnemyTypeID::EEnemyTypeID Obj::getEnemyTypeID()
+{
+	return EnemyTypeID::EnemyID_PanHouse;
+}
 
-	/*
-	 * --INFO--
-	 * Address:	8036CCBC
-	 * Size:	000004
-	 */
-	void Obj::doViewCalc() { }
+/*
+ * --INFO--
+ * Address:	8036CCE0
+ * Size:	000008
+ */
+float Obj::getSound_CurrAnimFrame() { return 0.0f; }
 
-	/*
-	 * --INFO--
-	 * Address:	8036CCC0
-	 * Size:	000008
-	 */
-	bool Obj::isLivingThing() { return false; }
-
-	/*
-	 * --INFO--
-	 * Address:	8036CCC8
-	 * Size:	000008
-	 */
-	bool Obj::ignoreAtari(Game::Creature*) { return false; }
-
-	/*
-	 * --INFO--
-	 * Address:	8036CCD0
-	 * Size:	000008
-	 */
-	bool Obj::needShadow() { return false; }
-
-	/*
-	 * --INFO--
-	 * Address:	8036CCD8
-	 * Size:	000008
-	 */
-	EnemyTypeID::EEnemyTypeID Obj::getEnemyTypeID()
-	{
-		return EnemyTypeID::EnemyID_PanHouse;
-	}
-
-	/*
-	 * --INFO--
-	 * Address:	8036CCE0
-	 * Size:	000008
-	 */
-	float Obj::getSound_CurrAnimFrame() { return 0.0f; }
-
-	/*
-	 * --INFO--
-	 * Address:	8036CCE8
-	 * Size:	000008
-	 */
-	float Obj::getSound_CurrAnimSpeed() { return 1.0f; }
+/*
+ * --INFO--
+ * Address:	8036CCE8
+ * Size:	000008
+ */
+float Obj::getSound_CurrAnimSpeed() { return 1.0f; }
 } // namespace Nest
 } // namespace Game

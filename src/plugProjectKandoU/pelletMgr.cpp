@@ -2294,59 +2294,59 @@ lbl_80166880:
 
 namespace PSM {
 
+/*
+ * --INFO--
+ * Address:	8016689C
+ * Size:	00009C
+ */
+CreatureObj::~CreatureObj(void)
+{
 	/*
-	 * --INFO--
-	 * Address:	8016689C
-	 * Size:	00009C
-	 */
-	CreatureObj::~CreatureObj(void)
-	{
-		/*
-	stwu     r1, -0x10(r1)
-	mflr     r0
-	stw      r0, 0x14(r1)
-	stw      r31, 0xc(r1)
-	mr       r31, r4
-	stw      r30, 8(r1)
-	or.      r30, r3, r3
-	beq      lbl_8016691C
-	lis      r4, __vt__Q23PSM11CreatureObj@ha
-	addi     r3, r30, 0x30
-	addi     r6, r4, __vt__Q23PSM11CreatureObj@l
-	li       r4, 0
-	stw      r6, 0x28(r30)
-	addi     r5, r6, 8
-	addi     r0, r6, 0x40
-	stw      r5, 0x10(r30)
-	stw      r0, 0x30(r30)
-	bl       __dt__Q27JAInter6ObjectFv
-	cmplwi   r30, 0
-	beq      lbl_8016690C
-	lis      r4, __vt__Q23PSM8Creature@ha
-	mr       r3, r30
-	addi     r5, r4, __vt__Q23PSM8Creature@l
-	li       r4, 0
-	stw      r5, 0x28(r30)
-	addi     r0, r5, 8
-	stw      r0, 0x10(r30)
-	bl       __dt__Q23PSM7ObjBaseFv
+stwu     r1, -0x10(r1)
+mflr     r0
+stw      r0, 0x14(r1)
+stw      r31, 0xc(r1)
+mr       r31, r4
+stw      r30, 8(r1)
+or.      r30, r3, r3
+beq      lbl_8016691C
+lis      r4, __vt__Q23PSM11CreatureObj@ha
+addi     r3, r30, 0x30
+addi     r6, r4, __vt__Q23PSM11CreatureObj@l
+li       r4, 0
+stw      r6, 0x28(r30)
+addi     r5, r6, 8
+addi     r0, r6, 0x40
+stw      r5, 0x10(r30)
+stw      r0, 0x30(r30)
+bl       __dt__Q27JAInter6ObjectFv
+cmplwi   r30, 0
+beq      lbl_8016690C
+lis      r4, __vt__Q23PSM8Creature@ha
+mr       r3, r30
+addi     r5, r4, __vt__Q23PSM8Creature@l
+li       r4, 0
+stw      r5, 0x28(r30)
+addi     r0, r5, 8
+stw      r0, 0x10(r30)
+bl       __dt__Q23PSM7ObjBaseFv
 
 lbl_8016690C:
-	extsh.   r0, r31
-	ble      lbl_8016691C
-	mr       r3, r30
-	bl       __dl__FPv
+extsh.   r0, r31
+ble      lbl_8016691C
+mr       r3, r30
+bl       __dl__FPv
 
 lbl_8016691C:
-	lwz      r0, 0x14(r1)
-	mr       r3, r30
-	lwz      r31, 0xc(r1)
-	lwz      r30, 8(r1)
-	mtlr     r0
-	addi     r1, r1, 0x10
-	blr
-		*/
-	}
+lwz      r0, 0x14(r1)
+mr       r3, r30
+lwz      r31, 0xc(r1)
+lwz      r30, 8(r1)
+mtlr     r0
+addi     r1, r1, 0x10
+blr
+	*/
+}
 
 } // namespace PSM
 
@@ -15454,67 +15454,67 @@ void Pellet::sound_otakaraEventFinish(void) { }
 
 namespace PSM {
 
+/*
+ * --INFO--
+ * Address:	801700B8
+ * Size:	0000BC
+ */
+EventBase::~EventBase(void)
+{
 	/*
-	 * --INFO--
-	 * Address:	801700B8
-	 * Size:	0000BC
-	 */
-	EventBase::~EventBase(void)
-	{
-		/*
-	stwu     r1, -0x10(r1)
-	mflr     r0
-	stw      r0, 0x14(r1)
-	stw      r31, 0xc(r1)
-	mr       r31, r4
-	stw      r30, 8(r1)
-	or.      r30, r3, r3
-	beq      lbl_80170158
-	lis      r3, __vt__Q23PSM9EventBase@ha
-	addi     r4, r3, __vt__Q23PSM9EventBase@l
-	stw      r4, 0x28(r30)
-	addi     r3, r4, 8
-	addi     r0, r4, 0x40
-	stw      r3, 0x10(r30)
-	stw      r0, 0x30(r30)
-	beq      lbl_80170148
-	lis      r4, __vt__Q23PSM11CreatureObj@ha
-	addi     r3, r30, 0x30
-	addi     r6, r4, __vt__Q23PSM11CreatureObj@l
-	li       r4, 0
-	stw      r6, 0x28(r30)
-	addi     r5, r6, 8
-	addi     r0, r6, 0x40
-	stw      r5, 0x10(r30)
-	stw      r0, 0x30(r30)
-	bl       __dt__Q27JAInter6ObjectFv
-	cmplwi   r30, 0
-	beq      lbl_80170148
-	lis      r4, __vt__Q23PSM8Creature@ha
-	mr       r3, r30
-	addi     r5, r4, __vt__Q23PSM8Creature@l
-	li       r4, 0
-	stw      r5, 0x28(r30)
-	addi     r0, r5, 8
-	stw      r0, 0x10(r30)
-	bl       __dt__Q23PSM7ObjBaseFv
+stwu     r1, -0x10(r1)
+mflr     r0
+stw      r0, 0x14(r1)
+stw      r31, 0xc(r1)
+mr       r31, r4
+stw      r30, 8(r1)
+or.      r30, r3, r3
+beq      lbl_80170158
+lis      r3, __vt__Q23PSM9EventBase@ha
+addi     r4, r3, __vt__Q23PSM9EventBase@l
+stw      r4, 0x28(r30)
+addi     r3, r4, 8
+addi     r0, r4, 0x40
+stw      r3, 0x10(r30)
+stw      r0, 0x30(r30)
+beq      lbl_80170148
+lis      r4, __vt__Q23PSM11CreatureObj@ha
+addi     r3, r30, 0x30
+addi     r6, r4, __vt__Q23PSM11CreatureObj@l
+li       r4, 0
+stw      r6, 0x28(r30)
+addi     r5, r6, 8
+addi     r0, r6, 0x40
+stw      r5, 0x10(r30)
+stw      r0, 0x30(r30)
+bl       __dt__Q27JAInter6ObjectFv
+cmplwi   r30, 0
+beq      lbl_80170148
+lis      r4, __vt__Q23PSM8Creature@ha
+mr       r3, r30
+addi     r5, r4, __vt__Q23PSM8Creature@l
+li       r4, 0
+stw      r5, 0x28(r30)
+addi     r0, r5, 8
+stw      r0, 0x10(r30)
+bl       __dt__Q23PSM7ObjBaseFv
 
 lbl_80170148:
-	extsh.   r0, r31
-	ble      lbl_80170158
-	mr       r3, r30
-	bl       __dl__FPv
+extsh.   r0, r31
+ble      lbl_80170158
+mr       r3, r30
+bl       __dl__FPv
 
 lbl_80170158:
-	lwz      r0, 0x14(r1)
-	mr       r3, r30
-	lwz      r31, 0xc(r1)
-	lwz      r30, 8(r1)
-	mtlr     r0
-	addi     r1, r1, 0x10
-	blr
-		*/
-	}
+lwz      r0, 0x14(r1)
+mr       r3, r30
+lwz      r31, 0xc(r1)
+lwz      r30, 8(r1)
+mtlr     r0
+addi     r1, r1, 0x10
+blr
+	*/
+}
 
 } // namespace PSM
 

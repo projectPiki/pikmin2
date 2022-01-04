@@ -33,54 +33,54 @@
 
 namespace Game {
 namespace VsGame {
-	struct TekiNode : public CNode {
-		inline TekiNode() { }
-		virtual ~TekiNode();
+struct TekiNode : public CNode {
+	inline TekiNode() { }
+	virtual ~TekiNode();
 
-		// _14 CNODE
-		EnemyTypeID::EEnemyTypeID m_id; // _18
-		s32 _1C;                        // _1C
-		s32 m_index;                    // _20
-	};
+	// _14 CNODE
+	EnemyTypeID::EEnemyTypeID m_id; // _18
+	s32 _1C;                        // _1C
+	s32 m_index;                    // _20
+};
 
-	struct TekiMgr {
-		TekiMgr();
+struct TekiMgr {
+	TekiMgr();
 
-		void entry(EnemyTypeID::EEnemyTypeID, int);
+	void entry(EnemyTypeID::EEnemyTypeID, int);
 
-		TekiNode m_head; // _00
-		u32 m_tekiCount; // _24
-	};
+	TekiNode m_head; // _00
+	u32 m_tekiCount; // _24
+};
 
-	/*
-	 * --INFO--
-	 * Address:	802352F0
-	 * Size:	000044
-	 */
-	TekiMgr::TekiMgr() { m_tekiCount = 0; }
+/*
+ * --INFO--
+ * Address:	802352F0
+ * Size:	000044
+ */
+TekiMgr::TekiMgr() { m_tekiCount = 0; }
 
-	/*
-	 * --INFO--
-	 * Address:	80235334
-	 * Size:	000060
-	 */
-	TekiNode::~TekiNode() { }
+/*
+ * --INFO--
+ * Address:	80235334
+ * Size:	000060
+ */
+TekiNode::~TekiNode() { }
 
-	/*
-	 * --INFO--
-	 * Address:	80235394
-	 * Size:	0000A0
-	 */
-	void TekiMgr::entry(EnemyTypeID::EEnemyTypeID id, int a2)
-	{
-		TekiNode* newNode = new TekiNode();
-		newNode->m_id     = id;
-		newNode->_1C      = a2;
-		newNode->m_index  = m_tekiCount++;
-		m_head.add(newNode);
+/*
+ * --INFO--
+ * Address:	80235394
+ * Size:	0000A0
+ */
+void TekiMgr::entry(EnemyTypeID::EEnemyTypeID id, int a2)
+{
+	TekiNode* newNode = new TekiNode();
+	newNode->m_id     = id;
+	newNode->_1C      = a2;
+	newNode->m_index  = m_tekiCount++;
+	m_head.add(newNode);
 
-		generalEnemyMgr->addEnemyNum(id, a2, nullptr);
-	}
+	generalEnemyMgr->addEnemyNum(id, a2, nullptr);
+}
 } // namespace VsGame
 } // namespace Game
 

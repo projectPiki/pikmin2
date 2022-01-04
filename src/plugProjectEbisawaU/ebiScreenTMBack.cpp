@@ -121,486 +121,486 @@ namespace ebi {
 
 namespace Screen {
 
+/*
+ * --INFO--
+ * Address:	803E9C60
+ * Size:	0000B4
+ */
+void TTMBack::doSetArchive(JKRArchive*)
+{
 	/*
-	 * --INFO--
-	 * Address:	803E9C60
-	 * Size:	0000B4
-	 */
-	void TTMBack::doSetArchive(JKRArchive*)
-	{
-		/*
-	stwu     r1, -0x10(r1)
-	mflr     r0
-	lis      r5, lbl_804977F0@ha
-	stw      r0, 0x14(r1)
-	addi     r0, r5, lbl_804977F0@l
-	li       r5, 0
-	stw      r31, 0xc(r1)
-	mr       r31, r4
-	mr       r4, r0
-	stw      r30, 8(r1)
-	mr       r30, r3
-	lwz      r3, sys@sda21(r13)
-	bl       heapStatusStart__6SystemFPcP7JKRHeap
-	li       r3, 0x148
-	bl       __nw__FUl
-	or.      r0, r3, r3
-	beq      lbl_803E9CAC
-	bl       __ct__Q29P2DScreen10Mgr_tuningFv
-	mr       r0, r3
+stwu     r1, -0x10(r1)
+mflr     r0
+lis      r5, lbl_804977F0@ha
+stw      r0, 0x14(r1)
+addi     r0, r5, lbl_804977F0@l
+li       r5, 0
+stw      r31, 0xc(r1)
+mr       r31, r4
+mr       r4, r0
+stw      r30, 8(r1)
+mr       r30, r3
+lwz      r3, sys@sda21(r13)
+bl       heapStatusStart__6SystemFPcP7JKRHeap
+li       r3, 0x148
+bl       __nw__FUl
+or.      r0, r3, r3
+beq      lbl_803E9CAC
+bl       __ct__Q29P2DScreen10Mgr_tuningFv
+mr       r0, r3
 
 lbl_803E9CAC:
-	stw      r0, 0xc(r30)
-	lis      r3, lbl_8049780C@ha
-	addi     r4, r3, lbl_8049780C@l
-	mr       r6, r31
-	lwz      r3, 0xc(r30)
-	lis      r5, 0x110
-	bl       set__9J2DScreenFPCcUlP10JKRArchive
-	lwz      r3, 0xc(r30)
-	li       r4, 1
-	bl       E2DPane_setTreeInfluencedAlpha__3ebiFP7J2DPaneb
-	lwz      r3, 0xc(r30)
-	li       r4, 0
-	lwz      r12, 0(r3)
-	lwz      r12, 0x24(r12)
-	mtctr    r12
-	bctrl
-	lis      r4, lbl_804977F0@ha
-	lwz      r3, sys@sda21(r13)
-	addi     r4, r4, lbl_804977F0@l
-	bl       heapStatusEnd__6SystemFPc
-	lwz      r0, 0x14(r1)
-	lwz      r31, 0xc(r1)
-	lwz      r30, 8(r1)
-	mtlr     r0
-	addi     r1, r1, 0x10
-	blr
-		*/
-	}
+stw      r0, 0xc(r30)
+lis      r3, lbl_8049780C@ha
+addi     r4, r3, lbl_8049780C@l
+mr       r6, r31
+lwz      r3, 0xc(r30)
+lis      r5, 0x110
+bl       set__9J2DScreenFPCcUlP10JKRArchive
+lwz      r3, 0xc(r30)
+li       r4, 1
+bl       E2DPane_setTreeInfluencedAlpha__3ebiFP7J2DPaneb
+lwz      r3, 0xc(r30)
+li       r4, 0
+lwz      r12, 0(r3)
+lwz      r12, 0x24(r12)
+mtctr    r12
+bctrl
+lis      r4, lbl_804977F0@ha
+lwz      r3, sys@sda21(r13)
+addi     r4, r4, lbl_804977F0@l
+bl       heapStatusEnd__6SystemFPc
+lwz      r0, 0x14(r1)
+lwz      r31, 0xc(r1)
+lwz      r30, 8(r1)
+mtlr     r0
+addi     r1, r1, 0x10
+blr
+	*/
+}
 
+/*
+ * --INFO--
+ * Address:	803E9D14
+ * Size:	000070
+ */
+void TTMBack::doOpenScreen(ebi::Screen::ArgOpen*)
+{
 	/*
-	 * --INFO--
-	 * Address:	803E9D14
-	 * Size:	000070
-	 */
-	void TTMBack::doOpenScreen(ebi::Screen::ArgOpen*)
-	{
-		/*
-	stwu     r1, -0x10(r1)
-	mflr     r0
-	stw      r0, 0x14(r1)
-	stw      r31, 0xc(r1)
-	or.      r31, r4, r4
-	stw      r30, 8(r1)
-	mr       r30, r3
-	bne      lbl_803E9D50
-	lis      r3, lbl_80497818@ha
-	lis      r5, lbl_8049782C@ha
-	addi     r3, r3, lbl_80497818@l
-	li       r4, 0x21
-	addi     r5, r5, lbl_8049782C@l
-	crclr    6
-	bl       panic_f__12JUTExceptionFPCciPCce
+stwu     r1, -0x10(r1)
+mflr     r0
+stw      r0, 0x14(r1)
+stw      r31, 0xc(r1)
+or.      r31, r4, r4
+stw      r30, 8(r1)
+mr       r30, r3
+bne      lbl_803E9D50
+lis      r3, lbl_80497818@ha
+lis      r5, lbl_8049782C@ha
+addi     r3, r3, lbl_80497818@l
+li       r4, 0x21
+addi     r5, r5, lbl_8049782C@l
+crclr    6
+bl       panic_f__12JUTExceptionFPCciPCce
 
 lbl_803E9D50:
-	lwz      r3, sys@sda21(r13)
-	lfs      f1, 4(r31)
-	lfs      f0, 0x54(r3)
-	fdivs    f1, f1, f0
-	bl       __cvt_fp2unsigned
-	stw      r3, 0x10(r30)
-	stw      r3, 0x14(r30)
-	lwz      r0, 0x14(r1)
-	lwz      r31, 0xc(r1)
-	lwz      r30, 8(r1)
-	mtlr     r0
-	addi     r1, r1, 0x10
-	blr
-		*/
-	}
+lwz      r3, sys@sda21(r13)
+lfs      f1, 4(r31)
+lfs      f0, 0x54(r3)
+fdivs    f1, f1, f0
+bl       __cvt_fp2unsigned
+stw      r3, 0x10(r30)
+stw      r3, 0x14(r30)
+lwz      r0, 0x14(r1)
+lwz      r31, 0xc(r1)
+lwz      r30, 8(r1)
+mtlr     r0
+addi     r1, r1, 0x10
+blr
+	*/
+}
 
+/*
+ * --INFO--
+ * Address:	803E9D84
+ * Size:	000044
+ */
+void TTMBack::doCloseScreen(ebi::Screen::ArgClose*)
+{
 	/*
-	 * --INFO--
-	 * Address:	803E9D84
-	 * Size:	000044
-	 */
-	void TTMBack::doCloseScreen(ebi::Screen::ArgClose*)
-	{
-		/*
-	stwu     r1, -0x10(r1)
-	mflr     r0
-	lfs      f1, lbl_8051FDF8@sda21(r2)
-	stw      r0, 0x14(r1)
-	stw      r31, 0xc(r1)
-	mr       r31, r3
-	lwz      r4, sys@sda21(r13)
-	lfs      f0, 0x54(r4)
-	fdivs    f1, f1, f0
-	bl       __cvt_fp2unsigned
-	stw      r3, 0x10(r31)
-	stw      r3, 0x14(r31)
-	lwz      r0, 0x14(r1)
-	lwz      r31, 0xc(r1)
-	mtlr     r0
-	addi     r1, r1, 0x10
-	blr
-		*/
-	}
+stwu     r1, -0x10(r1)
+mflr     r0
+lfs      f1, lbl_8051FDF8@sda21(r2)
+stw      r0, 0x14(r1)
+stw      r31, 0xc(r1)
+mr       r31, r3
+lwz      r4, sys@sda21(r13)
+lfs      f0, 0x54(r4)
+fdivs    f1, f1, f0
+bl       __cvt_fp2unsigned
+stw      r3, 0x10(r31)
+stw      r3, 0x14(r31)
+lwz      r0, 0x14(r1)
+lwz      r31, 0xc(r1)
+mtlr     r0
+addi     r1, r1, 0x10
+blr
+	*/
+}
 
+/*
+ * --INFO--
+ * Address:	803E9DC8
+ * Size:	0000DC
+ */
+void TTMBack::doUpdateStateOpen(void)
+{
 	/*
-	 * --INFO--
-	 * Address:	803E9DC8
-	 * Size:	0000DC
-	 */
-	void TTMBack::doUpdateStateOpen(void)
-	{
-		/*
-	stwu     r1, -0x30(r1)
-	mflr     r0
-	stw      r0, 0x34(r1)
-	stw      r31, 0x2c(r1)
-	mr       r31, r3
-	lwz      r3, 0x10(r3)
-	cmplwi   r3, 0
-	beq      lbl_803E9DF0
-	addi     r0, r3, -1
-	stw      r0, 0x10(r31)
+stwu     r1, -0x30(r1)
+mflr     r0
+stw      r0, 0x34(r1)
+stw      r31, 0x2c(r1)
+mr       r31, r3
+lwz      r3, 0x10(r3)
+cmplwi   r3, 0
+beq      lbl_803E9DF0
+addi     r0, r3, -1
+stw      r0, 0x10(r31)
 
 lbl_803E9DF0:
-	lwz      r4, 0x14(r31)
-	cmplwi   r4, 0
-	beq      lbl_803E9E30
-	lwz      r3, 0x10(r31)
-	lis      r0, 0x4330
-	stw      r0, 8(r1)
-	lfd      f2, lbl_8051FE08@sda21(r2)
-	stw      r3, 0xc(r1)
-	lfd      f0, 8(r1)
-	stw      r4, 0x14(r1)
-	fsubs    f1, f0, f2
-	stw      r0, 0x10(r1)
-	lfd      f0, 0x10(r1)
-	fsubs    f0, f0, f2
-	fdivs    f1, f1, f0
-	b        lbl_803E9E34
+lwz      r4, 0x14(r31)
+cmplwi   r4, 0
+beq      lbl_803E9E30
+lwz      r3, 0x10(r31)
+lis      r0, 0x4330
+stw      r0, 8(r1)
+lfd      f2, lbl_8051FE08@sda21(r2)
+stw      r3, 0xc(r1)
+lfd      f0, 8(r1)
+stw      r4, 0x14(r1)
+fsubs    f1, f0, f2
+stw      r0, 0x10(r1)
+lfd      f0, 0x10(r1)
+fsubs    f0, f0, f2
+fdivs    f1, f1, f0
+b        lbl_803E9E34
 
 lbl_803E9E30:
-	lfs      f1, lbl_8051FDFC@sda21(r2)
+lfs      f1, lbl_8051FDFC@sda21(r2)
 
 lbl_803E9E34:
-	lfs      f0, lbl_8051FE04@sda21(r2)
-	lwz      r3, 0xc(r31)
-	fsubs    f0, f0, f1
-	lfs      f1, lbl_8051FE00@sda21(r2)
-	lwz      r12, 0(r3)
-	fmuls    f0, f1, f0
-	lwz      r12, 0x24(r12)
-	fctiwz   f0, f0
-	stfd     f0, 0x18(r1)
-	lwz      r4, 0x1c(r1)
-	mtctr    r12
-	bctrl
-	lwz      r3, 0xc(r31)
-	lwz      r12, 0(r3)
-	lwz      r12, 0x30(r12)
-	mtctr    r12
-	bctrl
-	lwz      r0, 0x10(r31)
-	cmplwi   r0, 0
-	bne      lbl_803E9E8C
-	li       r3, 1
-	b        lbl_803E9E90
+lfs      f0, lbl_8051FE04@sda21(r2)
+lwz      r3, 0xc(r31)
+fsubs    f0, f0, f1
+lfs      f1, lbl_8051FE00@sda21(r2)
+lwz      r12, 0(r3)
+fmuls    f0, f1, f0
+lwz      r12, 0x24(r12)
+fctiwz   f0, f0
+stfd     f0, 0x18(r1)
+lwz      r4, 0x1c(r1)
+mtctr    r12
+bctrl
+lwz      r3, 0xc(r31)
+lwz      r12, 0(r3)
+lwz      r12, 0x30(r12)
+mtctr    r12
+bctrl
+lwz      r0, 0x10(r31)
+cmplwi   r0, 0
+bne      lbl_803E9E8C
+li       r3, 1
+b        lbl_803E9E90
 
 lbl_803E9E8C:
-	li       r3, 0
+li       r3, 0
 
 lbl_803E9E90:
-	lwz      r0, 0x34(r1)
-	lwz      r31, 0x2c(r1)
-	mtlr     r0
-	addi     r1, r1, 0x30
-	blr
-		*/
-	}
+lwz      r0, 0x34(r1)
+lwz      r31, 0x2c(r1)
+mtlr     r0
+addi     r1, r1, 0x30
+blr
+	*/
+}
 
+/*
+ * --INFO--
+ * Address:	803E9EA4
+ * Size:	000034
+ */
+void TTMBack::doUpdateStateWait(void)
+{
 	/*
-	 * --INFO--
-	 * Address:	803E9EA4
-	 * Size:	000034
-	 */
-	void TTMBack::doUpdateStateWait(void)
-	{
-		/*
-	stwu     r1, -0x10(r1)
-	mflr     r0
-	stw      r0, 0x14(r1)
-	lwz      r3, 0xc(r3)
-	lwz      r12, 0(r3)
-	lwz      r12, 0x30(r12)
-	mtctr    r12
-	bctrl
-	lwz      r0, 0x14(r1)
-	li       r3, 0
-	mtlr     r0
-	addi     r1, r1, 0x10
-	blr
-		*/
-	}
+stwu     r1, -0x10(r1)
+mflr     r0
+stw      r0, 0x14(r1)
+lwz      r3, 0xc(r3)
+lwz      r12, 0(r3)
+lwz      r12, 0x30(r12)
+mtctr    r12
+bctrl
+lwz      r0, 0x14(r1)
+li       r3, 0
+mtlr     r0
+addi     r1, r1, 0x10
+blr
+	*/
+}
 
+/*
+ * --INFO--
+ * Address:	803E9ED8
+ * Size:	0000D4
+ */
+void TTMBack::doUpdateStateClose(void)
+{
 	/*
-	 * --INFO--
-	 * Address:	803E9ED8
-	 * Size:	0000D4
-	 */
-	void TTMBack::doUpdateStateClose(void)
-	{
-		/*
-	stwu     r1, -0x30(r1)
-	mflr     r0
-	stw      r0, 0x34(r1)
-	stw      r31, 0x2c(r1)
-	mr       r31, r3
-	lwz      r3, 0x10(r3)
-	cmplwi   r3, 0
-	beq      lbl_803E9F00
-	addi     r0, r3, -1
-	stw      r0, 0x10(r31)
+stwu     r1, -0x30(r1)
+mflr     r0
+stw      r0, 0x34(r1)
+stw      r31, 0x2c(r1)
+mr       r31, r3
+lwz      r3, 0x10(r3)
+cmplwi   r3, 0
+beq      lbl_803E9F00
+addi     r0, r3, -1
+stw      r0, 0x10(r31)
 
 lbl_803E9F00:
-	lwz      r4, 0x14(r31)
-	cmplwi   r4, 0
-	beq      lbl_803E9F40
-	lwz      r3, 0x10(r31)
-	lis      r0, 0x4330
-	stw      r0, 8(r1)
-	lfd      f2, lbl_8051FE08@sda21(r2)
-	stw      r3, 0xc(r1)
-	lfd      f0, 8(r1)
-	stw      r4, 0x14(r1)
-	fsubs    f1, f0, f2
-	stw      r0, 0x10(r1)
-	lfd      f0, 0x10(r1)
-	fsubs    f0, f0, f2
-	fdivs    f1, f1, f0
-	b        lbl_803E9F44
+lwz      r4, 0x14(r31)
+cmplwi   r4, 0
+beq      lbl_803E9F40
+lwz      r3, 0x10(r31)
+lis      r0, 0x4330
+stw      r0, 8(r1)
+lfd      f2, lbl_8051FE08@sda21(r2)
+stw      r3, 0xc(r1)
+lfd      f0, 8(r1)
+stw      r4, 0x14(r1)
+fsubs    f1, f0, f2
+stw      r0, 0x10(r1)
+lfd      f0, 0x10(r1)
+fsubs    f0, f0, f2
+fdivs    f1, f1, f0
+b        lbl_803E9F44
 
 lbl_803E9F40:
-	lfs      f1, lbl_8051FDFC@sda21(r2)
+lfs      f1, lbl_8051FDFC@sda21(r2)
 
 lbl_803E9F44:
-	lfs      f0, lbl_8051FE00@sda21(r2)
-	lwz      r3, 0xc(r31)
-	fmuls    f0, f0, f1
-	lwz      r12, 0(r3)
-	fctiwz   f0, f0
-	lwz      r12, 0x24(r12)
-	stfd     f0, 0x18(r1)
-	lwz      r4, 0x1c(r1)
-	mtctr    r12
-	bctrl
-	lwz      r3, 0xc(r31)
-	lwz      r12, 0(r3)
-	lwz      r12, 0x30(r12)
-	mtctr    r12
-	bctrl
-	lwz      r0, 0x10(r31)
-	cmplwi   r0, 0
-	bne      lbl_803E9F94
-	li       r3, 1
-	b        lbl_803E9F98
+lfs      f0, lbl_8051FE00@sda21(r2)
+lwz      r3, 0xc(r31)
+fmuls    f0, f0, f1
+lwz      r12, 0(r3)
+fctiwz   f0, f0
+lwz      r12, 0x24(r12)
+stfd     f0, 0x18(r1)
+lwz      r4, 0x1c(r1)
+mtctr    r12
+bctrl
+lwz      r3, 0xc(r31)
+lwz      r12, 0(r3)
+lwz      r12, 0x30(r12)
+mtctr    r12
+bctrl
+lwz      r0, 0x10(r31)
+cmplwi   r0, 0
+bne      lbl_803E9F94
+li       r3, 1
+b        lbl_803E9F98
 
 lbl_803E9F94:
-	li       r3, 0
+li       r3, 0
 
 lbl_803E9F98:
-	lwz      r0, 0x34(r1)
-	lwz      r31, 0x2c(r1)
-	mtlr     r0
-	addi     r1, r1, 0x30
-	blr
-		*/
-	}
+lwz      r0, 0x34(r1)
+lwz      r31, 0x2c(r1)
+mtlr     r0
+addi     r1, r1, 0x30
+blr
+	*/
+}
 
+/*
+ * --INFO--
+ * Address:	803E9FAC
+ * Size:	000074
+ */
+void TTMBack::doDraw(void)
+{
 	/*
-	 * --INFO--
-	 * Address:	803E9FAC
-	 * Size:	000074
-	 */
-	void TTMBack::doDraw(void)
-	{
-		/*
-	stwu     r1, -0x20(r1)
-	mflr     r0
-	stw      r0, 0x24(r1)
-	stw      r31, 0x1c(r1)
-	stw      r30, 0x18(r1)
-	stw      r29, 0x14(r1)
-	mr       r29, r3
-	lwz      r4, sys@sda21(r13)
-	lwz      r31, 0x24(r4)
-	addi     r30, r31, 0x190
-	lwz      r12, 0(r30)
-	mr       r3, r30
-	lwz      r12, 0x14(r12)
-	mtctr    r12
-	bctrl
-	lwz      r3, 0xc(r29)
-	mr       r4, r31
-	mr       r5, r30
-	lwz      r12, 0(r3)
-	lwz      r12, 0x9c(r12)
-	mtctr    r12
-	bctrl
-	lwz      r0, 0x24(r1)
-	lwz      r31, 0x1c(r1)
-	lwz      r30, 0x18(r1)
-	lwz      r29, 0x14(r1)
-	mtlr     r0
-	addi     r1, r1, 0x20
-	blr
-		*/
-	}
+stwu     r1, -0x20(r1)
+mflr     r0
+stw      r0, 0x24(r1)
+stw      r31, 0x1c(r1)
+stw      r30, 0x18(r1)
+stw      r29, 0x14(r1)
+mr       r29, r3
+lwz      r4, sys@sda21(r13)
+lwz      r31, 0x24(r4)
+addi     r30, r31, 0x190
+lwz      r12, 0(r30)
+mr       r3, r30
+lwz      r12, 0x14(r12)
+mtctr    r12
+bctrl
+lwz      r3, 0xc(r29)
+mr       r4, r31
+mr       r5, r30
+lwz      r12, 0(r3)
+lwz      r12, 0x9c(r12)
+mtctr    r12
+bctrl
+lwz      r0, 0x24(r1)
+lwz      r31, 0x1c(r1)
+lwz      r30, 0x18(r1)
+lwz      r29, 0x14(r1)
+mtlr     r0
+addi     r1, r1, 0x20
+blr
+	*/
+}
 
+/*
+ * --INFO--
+ * Address:	803EA020
+ * Size:	000090
+ */
+void TNintendoLogo::doSetArchive(JKRArchive*)
+{
 	/*
-	 * --INFO--
-	 * Address:	803EA020
-	 * Size:	000090
-	 */
-	void TNintendoLogo::doSetArchive(JKRArchive*)
-	{
-		/*
-	stwu     r1, -0x10(r1)
-	mflr     r0
-	lis      r5, lbl_80497838@ha
-	stw      r0, 0x14(r1)
-	addi     r0, r5, lbl_80497838@l
-	li       r5, 0
-	stw      r31, 0xc(r1)
-	mr       r31, r4
-	mr       r4, r0
-	stw      r30, 8(r1)
-	mr       r30, r3
-	lwz      r3, sys@sda21(r13)
-	bl       heapStatusStart__6SystemFPcP7JKRHeap
-	li       r3, 0x148
-	bl       __nw__FUl
-	or.      r0, r3, r3
-	beq      lbl_803EA06C
-	bl       __ct__Q29P2DScreen10Mgr_tuningFv
-	mr       r0, r3
+stwu     r1, -0x10(r1)
+mflr     r0
+lis      r5, lbl_80497838@ha
+stw      r0, 0x14(r1)
+addi     r0, r5, lbl_80497838@l
+li       r5, 0
+stw      r31, 0xc(r1)
+mr       r31, r4
+mr       r4, r0
+stw      r30, 8(r1)
+mr       r30, r3
+lwz      r3, sys@sda21(r13)
+bl       heapStatusStart__6SystemFPcP7JKRHeap
+li       r3, 0x148
+bl       __nw__FUl
+or.      r0, r3, r3
+beq      lbl_803EA06C
+bl       __ct__Q29P2DScreen10Mgr_tuningFv
+mr       r0, r3
 
 lbl_803EA06C:
-	stw      r0, 0xc(r30)
-	lis      r3, lbl_80497858@ha
-	addi     r4, r3, lbl_80497858@l
-	mr       r6, r31
-	lwz      r3, 0xc(r30)
-	lis      r5, 0x110
-	bl       set__9J2DScreenFPCcUlP10JKRArchive
-	lis      r4, lbl_80497838@ha
-	lwz      r3, sys@sda21(r13)
-	addi     r4, r4, lbl_80497838@l
-	bl       heapStatusEnd__6SystemFPc
-	lwz      r0, 0x14(r1)
-	lwz      r31, 0xc(r1)
-	lwz      r30, 8(r1)
-	mtlr     r0
-	addi     r1, r1, 0x10
-	blr
-		*/
-	}
+stw      r0, 0xc(r30)
+lis      r3, lbl_80497858@ha
+addi     r4, r3, lbl_80497858@l
+mr       r6, r31
+lwz      r3, 0xc(r30)
+lis      r5, 0x110
+bl       set__9J2DScreenFPCcUlP10JKRArchive
+lis      r4, lbl_80497838@ha
+lwz      r3, sys@sda21(r13)
+addi     r4, r4, lbl_80497838@l
+bl       heapStatusEnd__6SystemFPc
+lwz      r0, 0x14(r1)
+lwz      r31, 0xc(r1)
+lwz      r30, 8(r1)
+mtlr     r0
+addi     r1, r1, 0x10
+blr
+	*/
+}
 
+/*
+ * --INFO--
+ * Address:	803EA0B0
+ * Size:	000034
+ */
+void TNintendoLogo::doUpdateStateWait(void)
+{
 	/*
-	 * --INFO--
-	 * Address:	803EA0B0
-	 * Size:	000034
-	 */
-	void TNintendoLogo::doUpdateStateWait(void)
-	{
-		/*
-	stwu     r1, -0x10(r1)
-	mflr     r0
-	stw      r0, 0x14(r1)
-	lwz      r3, 0xc(r3)
-	lwz      r12, 0(r3)
-	lwz      r12, 0x30(r12)
-	mtctr    r12
-	bctrl
-	lwz      r0, 0x14(r1)
-	li       r3, 0
-	mtlr     r0
-	addi     r1, r1, 0x10
-	blr
-		*/
-	}
+stwu     r1, -0x10(r1)
+mflr     r0
+stw      r0, 0x14(r1)
+lwz      r3, 0xc(r3)
+lwz      r12, 0(r3)
+lwz      r12, 0x30(r12)
+mtctr    r12
+bctrl
+lwz      r0, 0x14(r1)
+li       r3, 0
+mtlr     r0
+addi     r1, r1, 0x10
+blr
+	*/
+}
 
+/*
+ * --INFO--
+ * Address:	803EA0E4
+ * Size:	000074
+ */
+void TNintendoLogo::doDraw(void)
+{
 	/*
-	 * --INFO--
-	 * Address:	803EA0E4
-	 * Size:	000074
-	 */
-	void TNintendoLogo::doDraw(void)
-	{
-		/*
-	stwu     r1, -0x20(r1)
-	mflr     r0
-	stw      r0, 0x24(r1)
-	stw      r31, 0x1c(r1)
-	stw      r30, 0x18(r1)
-	stw      r29, 0x14(r1)
-	mr       r29, r3
-	lwz      r4, sys@sda21(r13)
-	lwz      r31, 0x24(r4)
-	addi     r30, r31, 0x190
-	lwz      r12, 0(r30)
-	mr       r3, r30
-	lwz      r12, 0x14(r12)
-	mtctr    r12
-	bctrl
-	lwz      r3, 0xc(r29)
-	mr       r4, r31
-	mr       r5, r30
-	lwz      r12, 0(r3)
-	lwz      r12, 0x9c(r12)
-	mtctr    r12
-	bctrl
-	lwz      r0, 0x24(r1)
-	lwz      r31, 0x1c(r1)
-	lwz      r30, 0x18(r1)
-	lwz      r29, 0x14(r1)
-	mtlr     r0
-	addi     r1, r1, 0x20
-	blr
-		*/
-	}
+stwu     r1, -0x20(r1)
+mflr     r0
+stw      r0, 0x24(r1)
+stw      r31, 0x1c(r1)
+stw      r30, 0x18(r1)
+stw      r29, 0x14(r1)
+mr       r29, r3
+lwz      r4, sys@sda21(r13)
+lwz      r31, 0x24(r4)
+addi     r30, r31, 0x190
+lwz      r12, 0(r30)
+mr       r3, r30
+lwz      r12, 0x14(r12)
+mtctr    r12
+bctrl
+lwz      r3, 0xc(r29)
+mr       r4, r31
+mr       r5, r30
+lwz      r12, 0(r3)
+lwz      r12, 0x9c(r12)
+mtctr    r12
+bctrl
+lwz      r0, 0x24(r1)
+lwz      r31, 0x1c(r1)
+lwz      r30, 0x18(r1)
+lwz      r29, 0x14(r1)
+mtlr     r0
+addi     r1, r1, 0x20
+blr
+	*/
+}
 
+/*
+ * --INFO--
+ * Address:	803EA158
+ * Size:	00000C
+ */
+void TNintendoLogo::getName(void)
+{
 	/*
-	 * --INFO--
-	 * Address:	803EA158
-	 * Size:	00000C
-	 */
-	void TNintendoLogo::getName(void)
-	{
-		/*
-	lis      r3, lbl_8049786C@ha
-	addi     r3, r3, lbl_8049786C@l
-	blr
-		*/
-	}
+lis      r3, lbl_8049786C@ha
+addi     r3, r3, lbl_8049786C@l
+blr
+	*/
+}
 
+/*
+ * --INFO--
+ * Address:	803EA164
+ * Size:	00000C
+ */
+void TTMBack::getName(void)
+{
 	/*
-	 * --INFO--
-	 * Address:	803EA164
-	 * Size:	00000C
-	 */
-	void TTMBack::getName(void)
-	{
-		/*
-	lis      r3, lbl_8049786C@ha
-	addi     r3, r3, lbl_8049786C@l
-	blr
-		*/
-	}
+lis      r3, lbl_8049786C@ha
+addi     r3, r3, lbl_8049786C@l
+blr
+	*/
+}
 } // namespace Screen
 } // namespace ebi

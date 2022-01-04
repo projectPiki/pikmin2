@@ -720,7 +720,7 @@ extern void* PSChangeBgm_ChallengeGame();
 struct StreamBgm* newStreamBgm(unsigned long, JAInter::SoundInfo&);
 struct SceneBase* PSMGetGameSceneA();
 namespace PSSystem {
-	extern const struct SceneMgr* spSceneMgr;
+extern const struct SceneMgr* spSceneMgr;
 };
 BgmSeq* Demo::initiate(DemoArg* param_1, unsigned char* unk)
 {

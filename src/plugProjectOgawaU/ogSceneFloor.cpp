@@ -80,198 +80,198 @@ namespace og {
 
 namespace newScreen {
 
+/*
+ * --INFO--
+ * Address:	8031BE60
+ * Size:	00003C
+ */
+Floor::Floor(void)
+{
 	/*
-	 * --INFO--
-	 * Address:	8031BE60
-	 * Size:	00003C
-	 */
-	Floor::Floor(void)
-	{
-		/*
-		stwu     r1, -0x10(r1)
-		mflr     r0
-		stw      r0, 0x14(r1)
-		stw      r31, 0xc(r1)
-		mr       r31, r3
-		bl       __ct__Q26Screen9SceneBaseFv
-		lis      r4, __vt__Q32og9newScreen5Floor@ha
-		mr       r3, r31
-		addi     r0, r4, __vt__Q32og9newScreen5Floor@l
-		stw      r0, 0(r31)
-		lwz      r31, 0xc(r1)
-		lwz      r0, 0x14(r1)
-		mtlr     r0
-		addi     r1, r1, 0x10
-		blr
-		*/
-	}
+	stwu     r1, -0x10(r1)
+	mflr     r0
+	stw      r0, 0x14(r1)
+	stw      r31, 0xc(r1)
+	mr       r31, r3
+	bl       __ct__Q26Screen9SceneBaseFv
+	lis      r4, __vt__Q32og9newScreen5Floor@ha
+	mr       r3, r31
+	addi     r0, r4, __vt__Q32og9newScreen5Floor@l
+	stw      r0, 0(r31)
+	lwz      r31, 0xc(r1)
+	lwz      r0, 0x14(r1)
+	mtlr     r0
+	addi     r1, r1, 0x10
+	blr
+	*/
+}
 
+/*
+ * --INFO--
+ * Address:	........
+ * Size:	000074
+ */
+Floor::~Floor(void)
+{
+	// UNUSED FUNCTION
+}
+
+/*
+ * --INFO--
+ * Address:	8031BE9C
+ * Size:	00013C
+ */
+void Floor::doUserCallBackFunc(Resource::MgrCommand*)
+{
 	/*
-	 * --INFO--
-	 * Address:	........
-	 * Size:	000074
-	 */
-	Floor::~Floor(void)
-	{
-		// UNUSED FUNCTION
-	}
+	stwu     r1, -0x50(r1)
+	mflr     r0
+	lis      r4, 0x004F4741@ha
+	lis      r6, lbl_8048EC80@ha
+	stw      r0, 0x54(r1)
+	lis      r5, 0x4C4F4F52@ha
+	addi     r4, r4, 0x004F4741@l
+	stw      r31, 0x4c(r1)
+	addi     r31, r6, lbl_8048EC80@l
+	addi     r6, r5, 0x4C4F4F52@l
+	li       r5, 0x46
+	stw      r30, 0x48(r1)
+	stw      r29, 0x44(r1)
+	mr       r29, r3
+	lwz      r3, 0x21c(r3)
+	bl       isID__Q32og6Screen14DispMemberBaseFUlUx
+	clrlwi.  r0, r3, 0x18
+	beq      lbl_8031BFA8
+	lwz      r3, sys@sda21(r13)
+	addi     r4, r31, 0x2c
+	lwz      r0, 0xd4(r3)
+	cmpwi    r0, 5
+	bne      lbl_8031BEFC
+	addi     r4, r31, 0x14
 
+lbl_8031BEFC:
+	addi     r3, r29, 4
+	bl       makeLanguageResName__Q22og9newScreenFPcPCc
+	addi     r3, r1, 8
+	addi     r4, r29, 4
+	bl       __ct__Q212LoadResource3ArgFPCc
+	lwz      r3, gLoadResourceMgr@sda21(r13)
+	addi     r4, r1, 8
+	bl       mountArchive__Q212LoadResource3MgrFRQ212LoadResource3Arg
+	cmplwi   r3, 0
+	li       r30, 0
+	beq      lbl_8031BF50
+	lwz      r0, 0x34(r3)
+	cmplwi   r0, 0
+	mr       r30, r0
+	bne      lbl_8031BF64
+	addi     r3, r31, 0
+	addi     r5, r31, 0x48
+	li       r4, 0x5b
+	crclr    6
+	bl       panic_f__12JUTExceptionFPCciPCce
+	b        lbl_8031BF64
+
+lbl_8031BF50:
+	addi     r3, r31, 0
+	addi     r5, r31, 0x58
+	li       r4, 0x60
+	crclr    6
+	bl       panic_f__12JUTExceptionFPCciPCce
+
+lbl_8031BF64:
+	li       r3, 0xbc
+	bl       __nw__FUl
+	or.      r4, r3, r3
+	beq      lbl_8031BF80
+	addi     r4, r31, 0x68
+	bl       __ct__Q32og9newScreen8ObjFloorFPCc
+	mr       r4, r3
+
+lbl_8031BF80:
+	mr       r3, r29
+	mr       r5, r30
+	bl       registObj__Q26Screen9SceneBaseFPQ26Screen7ObjBaseP10JKRArchive
+	mr       r3, r29
+	li       r4, 0
+	li       r5, 0
+	li       r6, 0
+	li       r7, 0
+	bl       setColorBG__Q26Screen9SceneBaseFUcUcUcUc
+	b        lbl_8031BFBC
+
+lbl_8031BFA8:
+	addi     r3, r31, 0
+	addi     r5, r31, 0x78
+	li       r4, 0x6f
+	crclr    6
+	bl       panic_f__12JUTExceptionFPCciPCce
+
+lbl_8031BFBC:
+	lwz      r0, 0x54(r1)
+	lwz      r31, 0x4c(r1)
+	lwz      r30, 0x48(r1)
+	lwz      r29, 0x44(r1)
+	mtlr     r0
+	addi     r1, r1, 0x50
+	blr
+	*/
+}
+
+/*
+ * --INFO--
+ * Address:	8031BFD8
+ * Size:	000004
+ */
+void Floor::doCreateObj(JKRArchive*) { }
+
+/*
+ * --INFO--
+ * Address:	8031BFDC
+ * Size:	000008
+ */
+void Floor::getResName() const
+{
 	/*
-	 * --INFO--
-	 * Address:	8031BE9C
-	 * Size:	00013C
-	 */
-	void Floor::doUserCallBackFunc(Resource::MgrCommand*)
-	{
-		/*
-		stwu     r1, -0x50(r1)
-		mflr     r0
-		lis      r4, 0x004F4741@ha
-		lis      r6, lbl_8048EC80@ha
-		stw      r0, 0x54(r1)
-		lis      r5, 0x4C4F4F52@ha
-		addi     r4, r4, 0x004F4741@l
-		stw      r31, 0x4c(r1)
-		addi     r31, r6, lbl_8048EC80@l
-		addi     r6, r5, 0x4C4F4F52@l
-		li       r5, 0x46
-		stw      r30, 0x48(r1)
-		stw      r29, 0x44(r1)
-		mr       r29, r3
-		lwz      r3, 0x21c(r3)
-		bl       isID__Q32og6Screen14DispMemberBaseFUlUx
-		clrlwi.  r0, r3, 0x18
-		beq      lbl_8031BFA8
-		lwz      r3, sys@sda21(r13)
-		addi     r4, r31, 0x2c
-		lwz      r0, 0xd4(r3)
-		cmpwi    r0, 5
-		bne      lbl_8031BEFC
-		addi     r4, r31, 0x14
+	addi     r3, r2, lbl_8051DBB8@sda21
+	blr
+	*/
+}
 
-	lbl_8031BEFC:
-		addi     r3, r29, 4
-		bl       makeLanguageResName__Q22og9newScreenFPcPCc
-		addi     r3, r1, 8
-		addi     r4, r29, 4
-		bl       __ct__Q212LoadResource3ArgFPCc
-		lwz      r3, gLoadResourceMgr@sda21(r13)
-		addi     r4, r1, 8
-		bl       mountArchive__Q212LoadResource3MgrFRQ212LoadResource3Arg
-		cmplwi   r3, 0
-		li       r30, 0
-		beq      lbl_8031BF50
-		lwz      r0, 0x34(r3)
-		cmplwi   r0, 0
-		mr       r30, r0
-		bne      lbl_8031BF64
-		addi     r3, r31, 0
-		addi     r5, r31, 0x48
-		li       r4, 0x5b
-		crclr    6
-		bl       panic_f__12JUTExceptionFPCciPCce
-		b        lbl_8031BF64
+/*
+ * --INFO--
+ * Address:	8031BFE4
+ * Size:	000008
+ */
+u32 Floor::getSceneType(void) { return 0x2713; }
 
-	lbl_8031BF50:
-		addi     r3, r31, 0
-		addi     r5, r31, 0x58
-		li       r4, 0x60
-		crclr    6
-		bl       panic_f__12JUTExceptionFPCciPCce
-
-	lbl_8031BF64:
-		li       r3, 0xbc
-		bl       __nw__FUl
-		or.      r4, r3, r3
-		beq      lbl_8031BF80
-		addi     r4, r31, 0x68
-		bl       __ct__Q32og9newScreen8ObjFloorFPCc
-		mr       r4, r3
-
-	lbl_8031BF80:
-		mr       r3, r29
-		mr       r5, r30
-		bl       registObj__Q26Screen9SceneBaseFPQ26Screen7ObjBaseP10JKRArchive
-		mr       r3, r29
-		li       r4, 0
-		li       r5, 0
-		li       r6, 0
-		li       r7, 0
-		bl       setColorBG__Q26Screen9SceneBaseFUcUcUcUc
-		b        lbl_8031BFBC
-
-	lbl_8031BFA8:
-		addi     r3, r31, 0
-		addi     r5, r31, 0x78
-		li       r4, 0x6f
-		crclr    6
-		bl       panic_f__12JUTExceptionFPCciPCce
-
-	lbl_8031BFBC:
-		lwz      r0, 0x54(r1)
-		lwz      r31, 0x4c(r1)
-		lwz      r30, 0x48(r1)
-		lwz      r29, 0x44(r1)
-		mtlr     r0
-		addi     r1, r1, 0x50
-		blr
-		*/
-	}
-
+/*
+ * --INFO--
+ * Address:	8031BFEC
+ * Size:	00000C
+ */
+void Floor::getOwnerID(void)
+{
 	/*
-	 * --INFO--
-	 * Address:	8031BFD8
-	 * Size:	000004
-	 */
-	void Floor::doCreateObj(JKRArchive*) { }
+	lis      r3, 0x004F4741@ha
+	addi     r3, r3, 0x004F4741@l
+	blr
+	*/
+}
 
+/*
+ * --INFO--
+ * Address:	8031BFF8
+ * Size:	000010
+ */
+void Floor::getMemberID(void)
+{
 	/*
-	 * --INFO--
-	 * Address:	8031BFDC
-	 * Size:	000008
-	 */
-	void Floor::getResName() const
-	{
-		/*
-		addi     r3, r2, lbl_8051DBB8@sda21
-		blr
-		*/
-	}
-
-	/*
-	 * --INFO--
-	 * Address:	8031BFE4
-	 * Size:	000008
-	 */
-	u32 Floor::getSceneType(void) { return 0x2713; }
-
-	/*
-	 * --INFO--
-	 * Address:	8031BFEC
-	 * Size:	00000C
-	 */
-	void Floor::getOwnerID(void)
-	{
-		/*
-		lis      r3, 0x004F4741@ha
-		addi     r3, r3, 0x004F4741@l
-		blr
-		*/
-	}
-
-	/*
-	 * --INFO--
-	 * Address:	8031BFF8
-	 * Size:	000010
-	 */
-	void Floor::getMemberID(void)
-	{
-		/*
-		lis      r4, 0x4C4F4F52@ha
-		li       r3, 0x46
-		addi     r4, r4, 0x4C4F4F52@l
-		blr
-		*/
-	}
+	lis      r4, 0x4C4F4F52@ha
+	li       r3, 0x46
+	addi     r4, r4, 0x4C4F4F52@l
+	blr
+	*/
+}
 } // namespace newScreen
 } // namespace og

@@ -1102,97 +1102,97 @@ namespace kh {
 
 namespace Screen {
 
-	/*
-	 * --INFO--
-	 * Address:	8021AB2C
-	 * Size:	000008
-	 */
-	u32 DispDayEndResultTitl::getSize(void) { return 0x8; }
+/*
+ * --INFO--
+ * Address:	8021AB2C
+ * Size:	000008
+ */
+u32 DispDayEndResultTitl::getSize(void) { return 0x8; }
 
-	/*
-	 * --INFO--
-	 * Address:	8021AB34
-	 * Size:	000008
-	 */
-	u32 DispDayEndResultTitl::getOwnerID(void) { return 0x4B48; }
+/*
+ * --INFO--
+ * Address:	8021AB34
+ * Size:	000008
+ */
+u32 DispDayEndResultTitl::getOwnerID(void) { return 0x4B48; }
 
+/*
+ * --INFO--
+ * Address:	8021AB3C
+ * Size:	000014
+ */
+void DispDayEndResultTitl::getMemberID(void)
+{
 	/*
-	 * --INFO--
-	 * Address:	8021AB3C
-	 * Size:	000014
-	 */
-	void DispDayEndResultTitl::getMemberID(void)
-	{
-		/*
-	lis      r4, 0x5449544C@ha
-	lis      r3, 0x4445525F@ha
-	addi     r4, r4, 0x5449544C@l
-	addi     r3, r3, 0x4445525F@l
-	blr
-		*/
-	}
+lis      r4, 0x5449544C@ha
+lis      r3, 0x4445525F@ha
+addi     r4, r4, 0x5449544C@l
+addi     r3, r3, 0x4445525F@l
+blr
+	*/
+}
 
-	/*
-	 * --INFO--
-	 * Address:	8021AB50
-	 * Size:	000008
-	 */
-	u32 DispDayEndResult::getSize(void) { return 0x68; }
+/*
+ * --INFO--
+ * Address:	8021AB50
+ * Size:	000008
+ */
+u32 DispDayEndResult::getSize(void) { return 0x68; }
 
-	/*
-	 * --INFO--
-	 * Address:	8021AB58
-	 * Size:	000008
-	 */
-	u32 DispDayEndResult::getOwnerID(void) { return 0x4B48; }
+/*
+ * --INFO--
+ * Address:	8021AB58
+ * Size:	000008
+ */
+u32 DispDayEndResult::getOwnerID(void) { return 0x4B48; }
 
+/*
+ * --INFO--
+ * Address:	8021AB60
+ * Size:	000014
+ */
+void DispDayEndResult::getMemberID(void)
+{
 	/*
-	 * --INFO--
-	 * Address:	8021AB60
-	 * Size:	000014
-	 */
-	void DispDayEndResult::getMemberID(void)
-	{
-		/*
-	lis      r4, 0x52534C54@ha
-	lis      r3, 0x0044455F@ha
-	addi     r4, r4, 0x52534C54@l
-	addi     r3, r3, 0x0044455F@l
-	blr
-		*/
-	}
+lis      r4, 0x52534C54@ha
+lis      r3, 0x0044455F@ha
+addi     r4, r4, 0x52534C54@l
+addi     r3, r3, 0x0044455F@l
+blr
+	*/
+}
 
+/*
+ * --INFO--
+ * Address:	8021AB74
+ * Size:	000054
+ */
+void DispDayEndResult::doSetSubMemberAll(void)
+{
 	/*
-	 * --INFO--
-	 * Address:	8021AB74
-	 * Size:	000054
-	 */
-	void DispDayEndResult::doSetSubMemberAll(void)
-	{
-		/*
-	stwu     r1, -0x10(r1)
-	mflr     r0
-	stw      r0, 0x14(r1)
-	stw      r31, 0xc(r1)
-	mr       r31, r3
-	addi     r4, r31, 8
-	bl setSubMember__Q32og6Screen14DispMemberBaseFPQ32og6Screen14DispMemberBase
-	mr       r3, r31
-	addi     r4, r31, 0x10
-	bl setSubMember__Q32og6Screen14DispMemberBaseFPQ32og6Screen14DispMemberBase
-	mr       r3, r31
-	addi     r4, r31, 0x34
-	bl setSubMember__Q32og6Screen14DispMemberBaseFPQ32og6Screen14DispMemberBase
-	mr       r3, r31
-	addi     r4, r31, 0x44
-	bl setSubMember__Q32og6Screen14DispMemberBaseFPQ32og6Screen14DispMemberBase
-	lwz      r0, 0x14(r1)
-	lwz      r31, 0xc(r1)
-	mtlr     r0
-	addi     r1, r1, 0x10
-	blr
-		*/
-	}
+stwu     r1, -0x10(r1)
+mflr     r0
+stw      r0, 0x14(r1)
+stw      r31, 0xc(r1)
+mr       r31, r3
+addi     r4, r31, 8
+bl setSubMember__Q32og6Screen14DispMemberBaseFPQ32og6Screen14DispMemberBase
+mr       r3, r31
+addi     r4, r31, 0x10
+bl setSubMember__Q32og6Screen14DispMemberBaseFPQ32og6Screen14DispMemberBase
+mr       r3, r31
+addi     r4, r31, 0x34
+bl setSubMember__Q32og6Screen14DispMemberBaseFPQ32og6Screen14DispMemberBase
+mr       r3, r31
+addi     r4, r31, 0x44
+bl setSubMember__Q32og6Screen14DispMemberBaseFPQ32og6Screen14DispMemberBase
+lwz      r0, 0x14(r1)
+lwz      r31, 0xc(r1)
+mtlr     r0
+addi     r1, r1, 0x10
+blr
+	*/
+}
 
 } // namespace Screen
 

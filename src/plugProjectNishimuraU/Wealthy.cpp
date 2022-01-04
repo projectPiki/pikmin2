@@ -821,18 +821,18 @@ u32 Wealthy::Obj::getEnemyTypeID() { return 0xA; }
 
 namespace efx {
 
+/*
+ * --INFO--
+ * Address:	802850E8
+ * Size:	000008
+ */
+TOoganeKira::@4 @~TOoganeKira()
+{
 	/*
-	 * --INFO--
-	 * Address:	802850E8
-	 * Size:	000008
-	 */
-	TOoganeKira::@4 @~TOoganeKira()
-	{
-		/*
-	addi     r3, r3, -4
-	b        __dt__Q23efx11TOoganeKiraFv
-		*/
-	}
+addi     r3, r3, -4
+b        __dt__Q23efx11TOoganeKiraFv
+	*/
+}
 } // namespace efx
 
 } // namespace efx

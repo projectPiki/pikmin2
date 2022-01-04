@@ -45,146 +45,146 @@ namespace og {
 
 namespace newScreen {
 
+/*
+ * --INFO--
+ * Address:	80327C5C
+ * Size:	00003C
+ */
+Vs::Vs(void)
+{
 	/*
-	 * --INFO--
-	 * Address:	80327C5C
-	 * Size:	00003C
-	 */
-	Vs::Vs(void)
-	{
-		/*
-		stwu     r1, -0x10(r1)
-		mflr     r0
-		stw      r0, 0x14(r1)
-		stw      r31, 0xc(r1)
-		mr       r31, r3
-		bl       __ct__Q26Screen9SceneBaseFv
-		lis      r4, __vt__Q32og9newScreen2Vs@ha
-		mr       r3, r31
-		addi     r0, r4, __vt__Q32og9newScreen2Vs@l
-		stw      r0, 0(r31)
-		lwz      r31, 0xc(r1)
-		lwz      r0, 0x14(r1)
-		mtlr     r0
-		addi     r1, r1, 0x10
-		blr
-		*/
-	}
+	stwu     r1, -0x10(r1)
+	mflr     r0
+	stw      r0, 0x14(r1)
+	stw      r31, 0xc(r1)
+	mr       r31, r3
+	bl       __ct__Q26Screen9SceneBaseFv
+	lis      r4, __vt__Q32og9newScreen2Vs@ha
+	mr       r3, r31
+	addi     r0, r4, __vt__Q32og9newScreen2Vs@l
+	stw      r0, 0(r31)
+	lwz      r31, 0xc(r1)
+	lwz      r0, 0x14(r1)
+	mtlr     r0
+	addi     r1, r1, 0x10
+	blr
+	*/
+}
 
+/*
+ * --INFO--
+ * Address:	........
+ * Size:	000074
+ */
+Vs::~Vs(void)
+{
+	// UNUSED FUNCTION
+}
+
+/*
+ * --INFO--
+ * Address:	80327C98
+ * Size:	000004
+ */
+void Vs::doUserCallBackFunc(Resource::MgrCommand*) { }
+
+/*
+ * --INFO--
+ * Address:	80327C9C
+ * Size:	000078
+ */
+void Vs::doCreateObj(JKRArchive*)
+{
 	/*
-	 * --INFO--
-	 * Address:	........
-	 * Size:	000074
-	 */
-	Vs::~Vs(void)
-	{
-		// UNUSED FUNCTION
-	}
+	stwu     r1, -0x10(r1)
+	mflr     r0
+	stw      r0, 0x14(r1)
+	stw      r31, 0xc(r1)
+	mr       r31, r4
+	stw      r30, 8(r1)
+	mr       r30, r3
+	li       r3, 0x12c
+	bl       __nw__FUl
+	or.      r4, r3, r3
+	beq      lbl_80327CD8
+	lis      r4, lbl_8048F410@ha
+	addi     r4, r4, lbl_8048F410@l
+	bl       __ct__Q32og9newScreen5ObjVsFPCc
+	mr       r4, r3
 
+lbl_80327CD8:
+	mr       r3, r30
+	mr       r5, r31
+	bl       registObj__Q26Screen9SceneBaseFPQ26Screen7ObjBaseP10JKRArchive
+	mr       r3, r30
+	li       r4, 0
+	li       r5, 0
+	li       r6, 0
+	li       r7, 0
+	bl       setColorBG__Q26Screen9SceneBaseFUcUcUcUc
+	lwz      r0, 0x14(r1)
+	lwz      r31, 0xc(r1)
+	lwz      r30, 8(r1)
+	mtlr     r0
+	addi     r1, r1, 0x10
+	blr
+	*/
+}
+
+/*
+ * --INFO--
+ * Address:	80327D14
+ * Size:	00000C
+ */
+void Vs::getResName() const
+{
 	/*
-	 * --INFO--
-	 * Address:	80327C98
-	 * Size:	000004
-	 */
-	void Vs::doUserCallBackFunc(Resource::MgrCommand*) { }
+	lis      r3, lbl_8048F41C@ha
+	addi     r3, r3, lbl_8048F41C@l
+	blr
+	*/
+}
 
+/*
+ * --INFO--
+ * Address:	80327D20
+ * Size:	000008
+ */
+u32 Vs::getSceneType(void) { return 0x2712; }
+
+/*
+ * --INFO--
+ * Address:	80327D28
+ * Size:	00000C
+ */
+void Vs::getOwnerID(void)
+{
 	/*
-	 * --INFO--
-	 * Address:	80327C9C
-	 * Size:	000078
-	 */
-	void Vs::doCreateObj(JKRArchive*)
-	{
-		/*
-		stwu     r1, -0x10(r1)
-		mflr     r0
-		stw      r0, 0x14(r1)
-		stw      r31, 0xc(r1)
-		mr       r31, r4
-		stw      r30, 8(r1)
-		mr       r30, r3
-		li       r3, 0x12c
-		bl       __nw__FUl
-		or.      r4, r3, r3
-		beq      lbl_80327CD8
-		lis      r4, lbl_8048F410@ha
-		addi     r4, r4, lbl_8048F410@l
-		bl       __ct__Q32og9newScreen5ObjVsFPCc
-		mr       r4, r3
+	lis      r3, 0x004F4741@ha
+	addi     r3, r3, 0x004F4741@l
+	blr
+	*/
+}
 
-	lbl_80327CD8:
-		mr       r3, r30
-		mr       r5, r31
-		bl       registObj__Q26Screen9SceneBaseFPQ26Screen7ObjBaseP10JKRArchive
-		mr       r3, r30
-		li       r4, 0
-		li       r5, 0
-		li       r6, 0
-		li       r7, 0
-		bl       setColorBG__Q26Screen9SceneBaseFUcUcUcUc
-		lwz      r0, 0x14(r1)
-		lwz      r31, 0xc(r1)
-		lwz      r30, 8(r1)
-		mtlr     r0
-		addi     r1, r1, 0x10
-		blr
-		*/
-	}
-
+/*
+ * --INFO--
+ * Address:	80327D34
+ * Size:	00000C
+ */
+void Vs::getMemberID(void)
+{
 	/*
-	 * --INFO--
-	 * Address:	80327D14
-	 * Size:	00000C
-	 */
-	void Vs::getResName() const
-	{
-		/*
-		lis      r3, lbl_8048F41C@ha
-		addi     r3, r3, lbl_8048F41C@l
-		blr
-		*/
-	}
+	li       r4, 0x5653
+	li       r3, 0
+	blr
+	*/
+}
 
-	/*
-	 * --INFO--
-	 * Address:	80327D20
-	 * Size:	000008
-	 */
-	u32 Vs::getSceneType(void) { return 0x2712; }
-
-	/*
-	 * --INFO--
-	 * Address:	80327D28
-	 * Size:	00000C
-	 */
-	void Vs::getOwnerID(void)
-	{
-		/*
-		lis      r3, 0x004F4741@ha
-		addi     r3, r3, 0x004F4741@l
-		blr
-		*/
-	}
-
-	/*
-	 * --INFO--
-	 * Address:	80327D34
-	 * Size:	00000C
-	 */
-	void Vs::getMemberID(void)
-	{
-		/*
-		li       r4, 0x5653
-		li       r3, 0
-		blr
-		*/
-	}
-
-	/*
-	 * --INFO--
-	 * Address:	80327D40
-	 * Size:	000008
-	 */
-	u32 Vs::isDrawInDemo() const { return 0x0; }
+/*
+ * --INFO--
+ * Address:	80327D40
+ * Size:	000008
+ */
+u32 Vs::isDrawInDemo() const { return 0x0; }
 } // namespace newScreen
 } // namespace og

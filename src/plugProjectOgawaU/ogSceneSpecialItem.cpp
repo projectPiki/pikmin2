@@ -52,174 +52,174 @@ namespace og {
 
 namespace newScreen {
 
+/*
+ * --INFO--
+ * Address:	8031A2A0
+ * Size:	00003C
+ */
+SpecialItem::SpecialItem(void)
+{
 	/*
-	 * --INFO--
-	 * Address:	8031A2A0
-	 * Size:	00003C
-	 */
-	SpecialItem::SpecialItem(void)
-	{
-		/*
-		stwu     r1, -0x10(r1)
-		mflr     r0
-		stw      r0, 0x14(r1)
-		stw      r31, 0xc(r1)
-		mr       r31, r3
-		bl       __ct__Q26Screen9SceneBaseFv
-		lis      r4, __vt__Q32og9newScreen11SpecialItem@ha
-		mr       r3, r31
-		addi     r0, r4, __vt__Q32og9newScreen11SpecialItem@l
-		stw      r0, 0(r31)
-		lwz      r31, 0xc(r1)
-		lwz      r0, 0x14(r1)
-		mtlr     r0
-		addi     r1, r1, 0x10
-		blr
-		*/
-	}
+	stwu     r1, -0x10(r1)
+	mflr     r0
+	stw      r0, 0x14(r1)
+	stw      r31, 0xc(r1)
+	mr       r31, r3
+	bl       __ct__Q26Screen9SceneBaseFv
+	lis      r4, __vt__Q32og9newScreen11SpecialItem@ha
+	mr       r3, r31
+	addi     r0, r4, __vt__Q32og9newScreen11SpecialItem@l
+	stw      r0, 0(r31)
+	lwz      r31, 0xc(r1)
+	lwz      r0, 0x14(r1)
+	mtlr     r0
+	addi     r1, r1, 0x10
+	blr
+	*/
+}
 
+/*
+ * --INFO--
+ * Address:	........
+ * Size:	000074
+ */
+SpecialItem::~SpecialItem(void)
+{
+	// UNUSED FUNCTION
+}
+
+/*
+ * --INFO--
+ * Address:	8031A2DC
+ * Size:	000004
+ */
+void SpecialItem::doUserCallBackFunc(Resource::MgrCommand*) { }
+
+/*
+ * --INFO--
+ * Address:	8031A2E0
+ * Size:	000060
+ */
+void SpecialItem::doCreateObj(JKRArchive*)
+{
 	/*
-	 * --INFO--
-	 * Address:	........
-	 * Size:	000074
-	 */
-	SpecialItem::~SpecialItem(void)
-	{
-		// UNUSED FUNCTION
-	}
+	stwu     r1, -0x10(r1)
+	mflr     r0
+	stw      r0, 0x14(r1)
+	stw      r31, 0xc(r1)
+	mr       r31, r4
+	stw      r30, 8(r1)
+	mr       r30, r3
+	li       r3, 0x60
+	bl       __nw__FUl
+	or.      r4, r3, r3
+	beq      lbl_8031A31C
+	lis      r4, lbl_8048EB78@ha
+	addi     r4, r4, lbl_8048EB78@l
+	bl       __ct__Q32og9newScreen14ObjSpecialItemFPCc
+	mr       r4, r3
 
+lbl_8031A31C:
+	mr       r3, r30
+	mr       r5, r31
+	bl       registObj__Q26Screen9SceneBaseFPQ26Screen7ObjBaseP10JKRArchive
+	lwz      r0, 0x14(r1)
+	lwz      r31, 0xc(r1)
+	lwz      r30, 8(r1)
+	mtlr     r0
+	addi     r1, r1, 0x10
+	blr
+	*/
+}
+
+/*
+ * --INFO--
+ * Address:	8031A340
+ * Size:	00004C
+ */
+void SpecialItem::doConfirmSetScene(Screen::SetSceneArg&)
+{
 	/*
-	 * --INFO--
-	 * Address:	8031A2DC
-	 * Size:	000004
-	 */
-	void SpecialItem::doUserCallBackFunc(Resource::MgrCommand*) { }
+	stwu     r1, -0x10(r1)
+	mflr     r0
+	mr       r3, r4
+	stw      r0, 0x14(r1)
+	stw      r31, 0xc(r1)
+	li       r31, 0
+	lwz      r12, 0(r4)
+	lwz      r12, 8(r12)
+	mtctr    r12
+	bctrl
+	cmpwi    r3, 0x2723
+	beq      lbl_8031A374
+	li       r31, 1
 
+lbl_8031A374:
+	lwz      r0, 0x14(r1)
+	mr       r3, r31
+	lwz      r31, 0xc(r1)
+	mtlr     r0
+	addi     r1, r1, 0x10
+	blr
+	*/
+}
+
+/*
+ * --INFO--
+ * Address:	8031A38C
+ * Size:	00000C
+ */
+void SpecialItem::getResName() const
+{
 	/*
-	 * --INFO--
-	 * Address:	8031A2E0
-	 * Size:	000060
-	 */
-	void SpecialItem::doCreateObj(JKRArchive*)
-	{
-		/*
-		stwu     r1, -0x10(r1)
-		mflr     r0
-		stw      r0, 0x14(r1)
-		stw      r31, 0xc(r1)
-		mr       r31, r4
-		stw      r30, 8(r1)
-		mr       r30, r3
-		li       r3, 0x60
-		bl       __nw__FUl
-		or.      r4, r3, r3
-		beq      lbl_8031A31C
-		lis      r4, lbl_8048EB78@ha
-		addi     r4, r4, lbl_8048EB78@l
-		bl       __ct__Q32og9newScreen14ObjSpecialItemFPCc
-		mr       r4, r3
+	lis      r3, lbl_8048EB8C@ha
+	addi     r3, r3, lbl_8048EB8C@l
+	blr
+	*/
+}
 
-	lbl_8031A31C:
-		mr       r3, r30
-		mr       r5, r31
-		bl       registObj__Q26Screen9SceneBaseFPQ26Screen7ObjBaseP10JKRArchive
-		lwz      r0, 0x14(r1)
-		lwz      r31, 0xc(r1)
-		lwz      r30, 8(r1)
-		mtlr     r0
-		addi     r1, r1, 0x10
-		blr
-		*/
-	}
+/*
+ * --INFO--
+ * Address:	8031A398
+ * Size:	000008
+ */
+u32 SpecialItem::getSceneType(void) { return 0x2723; }
 
+/*
+ * --INFO--
+ * Address:	8031A3A0
+ * Size:	00000C
+ */
+void SpecialItem::getOwnerID(void)
+{
 	/*
-	 * --INFO--
-	 * Address:	8031A340
-	 * Size:	00004C
-	 */
-	void SpecialItem::doConfirmSetScene(Screen::SetSceneArg&)
-	{
-		/*
-		stwu     r1, -0x10(r1)
-		mflr     r0
-		mr       r3, r4
-		stw      r0, 0x14(r1)
-		stw      r31, 0xc(r1)
-		li       r31, 0
-		lwz      r12, 0(r4)
-		lwz      r12, 8(r12)
-		mtctr    r12
-		bctrl
-		cmpwi    r3, 0x2723
-		beq      lbl_8031A374
-		li       r31, 1
+	lis      r3, 0x004F4741@ha
+	addi     r3, r3, 0x004F4741@l
+	blr
+	*/
+}
 
-	lbl_8031A374:
-		lwz      r0, 0x14(r1)
-		mr       r3, r31
-		lwz      r31, 0xc(r1)
-		mtlr     r0
-		addi     r1, r1, 0x10
-		blr
-		*/
-	}
-
+/*
+ * --INFO--
+ * Address:	8031A3AC
+ * Size:	000014
+ */
+void SpecialItem::getMemberID(void)
+{
 	/*
-	 * --INFO--
-	 * Address:	8031A38C
-	 * Size:	00000C
-	 */
-	void SpecialItem::getResName() const
-	{
-		/*
-		lis      r3, lbl_8048EB8C@ha
-		addi     r3, r3, lbl_8048EB8C@l
-		blr
-		*/
-	}
+	lis      r4, 0x4954454D@ha
+	lis      r3, 0x0053505F@ha
+	addi     r4, r4, 0x4954454D@l
+	addi     r3, r3, 0x0053505F@l
+	blr
+	*/
+}
 
-	/*
-	 * --INFO--
-	 * Address:	8031A398
-	 * Size:	000008
-	 */
-	u32 SpecialItem::getSceneType(void) { return 0x2723; }
-
-	/*
-	 * --INFO--
-	 * Address:	8031A3A0
-	 * Size:	00000C
-	 */
-	void SpecialItem::getOwnerID(void)
-	{
-		/*
-		lis      r3, 0x004F4741@ha
-		addi     r3, r3, 0x004F4741@l
-		blr
-		*/
-	}
-
-	/*
-	 * --INFO--
-	 * Address:	8031A3AC
-	 * Size:	000014
-	 */
-	void SpecialItem::getMemberID(void)
-	{
-		/*
-		lis      r4, 0x4954454D@ha
-		lis      r3, 0x0053505F@ha
-		addi     r4, r4, 0x4954454D@l
-		addi     r3, r3, 0x0053505F@l
-		blr
-		*/
-	}
-
-	/*
-	 * --INFO--
-	 * Address:	8031A3C0
-	 * Size:	000008
-	 */
-	u32 SpecialItem::isUseBackupSceneInfo(void) { return 0x1; }
+/*
+ * --INFO--
+ * Address:	8031A3C0
+ * Size:	000008
+ */
+u32 SpecialItem::isUseBackupSceneInfo(void) { return 0x1; }
 } // namespace newScreen
 } // namespace og

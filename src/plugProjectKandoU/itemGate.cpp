@@ -7235,101 +7235,101 @@ void StateMachine<Game::ItemGate>::registerState(
 
 namespace Game {
 
+/*
+ * --INFO--
+ * Address:	801CBB84
+ * Size:	000044
+ */
+void FSMItem<Game::ItemGate, Game::GateFSM, GateState>::platCallback(
+    Game::PlatEvent&)
+{
 	/*
-	 * --INFO--
-	 * Address:	801CBB84
-	 * Size:	000044
-	 */
-	void FSMItem<Game::ItemGate, Game::GateFSM, GateState>::platCallback(
-	    Game::PlatEvent&)
-	{
-		/*
-		.loc_0x0:
-		  stwu      r1, -0x10(r1)
-		  mflr      r0
-		  mr        r6, r3
-		  mr        r5, r4
-		  stw       r0, 0x14(r1)
-		  lwz       r3, 0x1DC(r3)
-		  cmplwi    r3, 0
-		  beq-      .loc_0x34
-		  lwz       r12, 0x0(r3)
-		  mr        r4, r6
-		  lwz       r12, 0x2C(r12)
-		  mtctr     r12
-		  bctrl
+	.loc_0x0:
+	  stwu      r1, -0x10(r1)
+	  mflr      r0
+	  mr        r6, r3
+	  mr        r5, r4
+	  stw       r0, 0x14(r1)
+	  lwz       r3, 0x1DC(r3)
+	  cmplwi    r3, 0
+	  beq-      .loc_0x34
+	  lwz       r12, 0x0(r3)
+	  mr        r4, r6
+	  lwz       r12, 0x2C(r12)
+	  mtctr     r12
+	  bctrl
 
-		.loc_0x34:
-		  lwz       r0, 0x14(r1)
-		  mtlr      r0
-		  addi      r1, r1, 0x10
-		  blr
-		*/
-	}
+	.loc_0x34:
+	  lwz       r0, 0x14(r1)
+	  mtlr      r0
+	  addi      r1, r1, 0x10
+	  blr
+	*/
+}
 
+/*
+ * --INFO--
+ * Address:	801CBBC8
+ * Size:	000044
+ */
+void FSMItem<Game::ItemGate, Game::GateFSM, GateState>::collisionCallback(
+    Game::CollEvent&)
+{
 	/*
-	 * --INFO--
-	 * Address:	801CBBC8
-	 * Size:	000044
-	 */
-	void FSMItem<Game::ItemGate, Game::GateFSM, GateState>::collisionCallback(
-	    Game::CollEvent&)
-	{
-		/*
-		.loc_0x0:
-		  stwu      r1, -0x10(r1)
-		  mflr      r0
-		  mr        r6, r3
-		  mr        r5, r4
-		  stw       r0, 0x14(r1)
-		  lwz       r3, 0x1DC(r3)
-		  cmplwi    r3, 0
-		  beq-      .loc_0x34
-		  lwz       r12, 0x0(r3)
-		  mr        r4, r6
-		  lwz       r12, 0x30(r12)
-		  mtctr     r12
-		  bctrl
+	.loc_0x0:
+	  stwu      r1, -0x10(r1)
+	  mflr      r0
+	  mr        r6, r3
+	  mr        r5, r4
+	  stw       r0, 0x14(r1)
+	  lwz       r3, 0x1DC(r3)
+	  cmplwi    r3, 0
+	  beq-      .loc_0x34
+	  lwz       r12, 0x0(r3)
+	  mr        r4, r6
+	  lwz       r12, 0x30(r12)
+	  mtctr     r12
+	  bctrl
 
-		.loc_0x34:
-		  lwz       r0, 0x14(r1)
-		  mtlr      r0
-		  addi      r1, r1, 0x10
-		  blr
-		*/
-	}
+	.loc_0x34:
+	  lwz       r0, 0x14(r1)
+	  mtlr      r0
+	  addi      r1, r1, 0x10
+	  blr
+	*/
+}
 
+/*
+ * --INFO--
+ * Address:	801CBC0C
+ * Size:	000044
+ */
+void FSMItem<Game::ItemGate, Game::GateFSM, GateState>::bounceCallback(
+    Sys::Triangle*)
+{
 	/*
-	 * --INFO--
-	 * Address:	801CBC0C
-	 * Size:	000044
-	 */
-	void FSMItem<Game::ItemGate, Game::GateFSM, GateState>::bounceCallback(
-	    Sys::Triangle*)
-	{
-		/*
-		.loc_0x0:
-		  stwu      r1, -0x10(r1)
-		  mflr      r0
-		  mr        r6, r3
-		  mr        r5, r4
-		  stw       r0, 0x14(r1)
-		  lwz       r3, 0x1DC(r3)
-		  cmplwi    r3, 0
-		  beq-      .loc_0x34
-		  lwz       r12, 0x0(r3)
-		  mr        r4, r6
-		  lwz       r12, 0x28(r12)
-		  mtctr     r12
-		  bctrl
+	.loc_0x0:
+	  stwu      r1, -0x10(r1)
+	  mflr      r0
+	  mr        r6, r3
+	  mr        r5, r4
+	  stw       r0, 0x14(r1)
+	  lwz       r3, 0x1DC(r3)
+	  cmplwi    r3, 0
+	  beq-      .loc_0x34
+	  lwz       r12, 0x0(r3)
+	  mr        r4, r6
+	  lwz       r12, 0x28(r12)
+	  mtctr     r12
+	  bctrl
 
-		.loc_0x34:
-		  lwz       r0, 0x14(r1)
-		  mtlr      r0
-		  addi      r1, r1, 0x10
-		  blr
-		*/
-	}
+	.loc_0x34:
+	  lwz       r0, 0x14(r1)
+	  mtlr      r0
+	  addi      r1, r1, 0x10
+	  blr
+	*/
+}
 
 } // namespace Game
 
@@ -7653,18 +7653,18 @@ void ItemGate::@376 @onKeyEvent(const SysShape::KeyEvent&)
 
 namespace efx {
 
+/*
+ * --INFO--
+ * Address:	801CBF78
+ * Size:	000008
+ */
+TEgateA::@4 @~TEgateA()
+{
 	/*
-	 * --INFO--
-	 * Address:	801CBF78
-	 * Size:	000008
-	 */
-	TEgateA::@4 @~TEgateA()
-	{
-		/*
-	addi     r3, r3, -4
-	b        __dt__Q23efx7TEgateAFv
-		*/
-	}
+addi     r3, r3, -4
+b        __dt__Q23efx7TEgateAFv
+	*/
+}
 
 } // namespace efx
 

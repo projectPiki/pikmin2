@@ -2676,130 +2676,130 @@ FPQ33ebi4Save4TMgriPQ24Game8StateArg(void)
 
 namespace Screen {
 
-	/*
-	 * --INFO--
-	 * Address:	........
-	 * Size:	000128
-	 */
-	TSaveMenu::~TSaveMenu(void)
-	{
-		// UNUSED FUNCTION
-	}
+/*
+ * --INFO--
+ * Address:	........
+ * Size:	000128
+ */
+TSaveMenu::~TSaveMenu(void)
+{
+	// UNUSED FUNCTION
+}
 
+/*
+ * --INFO--
+ * Address:	803DCA5C
+ * Size:	0001A0
+ */
+TSaveMenu::TSaveMenu(void)
+{
 	/*
-	 * --INFO--
-	 * Address:	803DCA5C
-	 * Size:	0001A0
-	 */
-	TSaveMenu::TSaveMenu(void)
-	{
-		/*
-	stwu     r1, -0x20(r1)
-	lis      r4, __vt__Q33ebi6Screen20TScreenBaseInterface@ha
-	addi     r0, r4, __vt__Q33ebi6Screen20TScreenBaseInterface@l
-	lis      r10, __vt__Q25efx2d7TBaseIF@ha
-	stw      r31, 0x1c(r1)
-	lis      r9, __vt__Q25efx2d5TBase@ha
-	lis      r8, __vt__18JPAEmitterCallBack@ha
-	lis      r4, __vt__Q33ebi6Screen11TScreenBase@ha
-	stw      r30, 0x18(r1)
-	li       r12, 0
-	lis      r5, __vt__Q33ebi6Screen9TSaveMenu@ha
-	li       r11, 0xff
-	stw      r29, 0x14(r1)
-	addi     r10, r10, __vt__Q25efx2d7TBaseIF@l
-	addi     r9, r9, __vt__Q25efx2d5TBase@l
-	addi     r8, r8, __vt__18JPAEmitterCallBack@l
-	stw      r0, 0(r3)
-	addi     r0, r4, __vt__Q33ebi6Screen11TScreenBase@l
-	lis      r4, __vt__Q25efx2d8TForever@ha
-	lfs      f3, lbl_8051FBB0@sda21(r2)
-	stw      r0, 0(r3)
-	addi     r7, r4, __vt__Q25efx2d8TForever@l
-	lis      r4, __vt__Q25efx2d9TChasePos@ha
-	addi     r0, r5, __vt__Q33ebi6Screen9TSaveMenu@l
-	stw      r12, 4(r3)
-	addi     r6, r4, __vt__Q25efx2d9TChasePos@l
-	lis      r4, __vt__Q25efx2d9T2DCursor@ha
-	addi     r31, r7, 0x18
-	stw      r12, 8(r3)
-	addi     r5, r4, __vt__Q25efx2d9T2DCursor@l
-	addi     r30, r6, 0x18
-	addi     r4, r3, 0x88
-	stw      r0, 0(r3)
-	addi     r29, r5, 0x18
-	lfs      f2, lbl_8051FBC0@sda21(r2)
-	addi     r0, r3, 0xc0
-	stb      r12, 0x14(r3)
-	lfs      f1, lbl_8051FBC4@sda21(r2)
-	stb      r12, 0x15(r3)
-	stb      r12, 0x16(r3)
-	stb      r11, 0x17(r3)
-	stb      r11, 0x18(r3)
-	stw      r12, 0x1c(r3)
-	stw      r12, 0x20(r3)
-	stw      r12, 0x24(r3)
-	stw      r12, 0x28(r3)
-	stw      r12, 0x34(r3)
-	stw      r12, 0x38(r3)
-	stw      r10, 0x6c(r3)
-	stw      r9, 0x6c(r3)
-	stb      r12, 0x70(r3)
-	stb      r12, 0x71(r3)
-	stw      r8, 0x74(r3)
-	stw      r7, 0x6c(r3)
-	stw      r31, 0x74(r3)
-	sth      r12, 0x78(r3)
-	stw      r12, 0x7c(r3)
-	stw      r6, 0x6c(r3)
-	stw      r30, 0x74(r3)
-	stw      r4, 0x80(r3)
-	stw      r5, 0x6c(r3)
-	stw      r29, 0x74(r3)
-	stfs     f3, 0x84(r3)
-	lwz      r4, sys@sda21(r13)
-	lfs      f0, 0x54(r4)
-	fmuls    f0, f2, f0
-	stfs     f0, 0x90(r3)
-	stfs     f1, 0x94(r3)
-	stw      r12, 0x9c(r3)
-	stw      r12, 0xa0(r3)
-	stw      r10, 0xa4(r3)
-	stw      r9, 0xa4(r3)
-	stb      r12, 0xa8(r3)
-	stb      r12, 0xa9(r3)
-	stw      r8, 0xac(r3)
-	stw      r7, 0xa4(r3)
-	stw      r31, 0xac(r3)
-	sth      r12, 0xb0(r3)
-	stw      r12, 0xb4(r3)
-	stw      r6, 0xa4(r3)
-	stw      r30, 0xac(r3)
-	stw      r0, 0xb8(r3)
-	stw      r5, 0xa4(r3)
-	stw      r29, 0xac(r3)
-	stfs     f3, 0xbc(r3)
-	lwz      r4, sys@sda21(r13)
-	lfs      f0, 0x54(r4)
-	fmuls    f0, f2, f0
-	stfs     f0, 0xc8(r3)
-	stfs     f1, 0xcc(r3)
-	stw      r12, 0xd4(r3)
-	stw      r12, 0xd8(r3)
-	stw      r12, 0x44(r3)
-	stw      r12, 0x48(r3)
-	stw      r12, 0x4c(r3)
-	stw      r12, 0x50(r3)
-	stw      r12, 0x54(r3)
-	stw      r12, 0x58(r3)
-	stw      r12, 0x5c(r3)
-	lwz      r31, 0x1c(r1)
-	lwz      r30, 0x18(r1)
-	lwz      r29, 0x14(r1)
-	addi     r1, r1, 0x20
-	blr
-		*/
-	}
+stwu     r1, -0x20(r1)
+lis      r4, __vt__Q33ebi6Screen20TScreenBaseInterface@ha
+addi     r0, r4, __vt__Q33ebi6Screen20TScreenBaseInterface@l
+lis      r10, __vt__Q25efx2d7TBaseIF@ha
+stw      r31, 0x1c(r1)
+lis      r9, __vt__Q25efx2d5TBase@ha
+lis      r8, __vt__18JPAEmitterCallBack@ha
+lis      r4, __vt__Q33ebi6Screen11TScreenBase@ha
+stw      r30, 0x18(r1)
+li       r12, 0
+lis      r5, __vt__Q33ebi6Screen9TSaveMenu@ha
+li       r11, 0xff
+stw      r29, 0x14(r1)
+addi     r10, r10, __vt__Q25efx2d7TBaseIF@l
+addi     r9, r9, __vt__Q25efx2d5TBase@l
+addi     r8, r8, __vt__18JPAEmitterCallBack@l
+stw      r0, 0(r3)
+addi     r0, r4, __vt__Q33ebi6Screen11TScreenBase@l
+lis      r4, __vt__Q25efx2d8TForever@ha
+lfs      f3, lbl_8051FBB0@sda21(r2)
+stw      r0, 0(r3)
+addi     r7, r4, __vt__Q25efx2d8TForever@l
+lis      r4, __vt__Q25efx2d9TChasePos@ha
+addi     r0, r5, __vt__Q33ebi6Screen9TSaveMenu@l
+stw      r12, 4(r3)
+addi     r6, r4, __vt__Q25efx2d9TChasePos@l
+lis      r4, __vt__Q25efx2d9T2DCursor@ha
+addi     r31, r7, 0x18
+stw      r12, 8(r3)
+addi     r5, r4, __vt__Q25efx2d9T2DCursor@l
+addi     r30, r6, 0x18
+addi     r4, r3, 0x88
+stw      r0, 0(r3)
+addi     r29, r5, 0x18
+lfs      f2, lbl_8051FBC0@sda21(r2)
+addi     r0, r3, 0xc0
+stb      r12, 0x14(r3)
+lfs      f1, lbl_8051FBC4@sda21(r2)
+stb      r12, 0x15(r3)
+stb      r12, 0x16(r3)
+stb      r11, 0x17(r3)
+stb      r11, 0x18(r3)
+stw      r12, 0x1c(r3)
+stw      r12, 0x20(r3)
+stw      r12, 0x24(r3)
+stw      r12, 0x28(r3)
+stw      r12, 0x34(r3)
+stw      r12, 0x38(r3)
+stw      r10, 0x6c(r3)
+stw      r9, 0x6c(r3)
+stb      r12, 0x70(r3)
+stb      r12, 0x71(r3)
+stw      r8, 0x74(r3)
+stw      r7, 0x6c(r3)
+stw      r31, 0x74(r3)
+sth      r12, 0x78(r3)
+stw      r12, 0x7c(r3)
+stw      r6, 0x6c(r3)
+stw      r30, 0x74(r3)
+stw      r4, 0x80(r3)
+stw      r5, 0x6c(r3)
+stw      r29, 0x74(r3)
+stfs     f3, 0x84(r3)
+lwz      r4, sys@sda21(r13)
+lfs      f0, 0x54(r4)
+fmuls    f0, f2, f0
+stfs     f0, 0x90(r3)
+stfs     f1, 0x94(r3)
+stw      r12, 0x9c(r3)
+stw      r12, 0xa0(r3)
+stw      r10, 0xa4(r3)
+stw      r9, 0xa4(r3)
+stb      r12, 0xa8(r3)
+stb      r12, 0xa9(r3)
+stw      r8, 0xac(r3)
+stw      r7, 0xa4(r3)
+stw      r31, 0xac(r3)
+sth      r12, 0xb0(r3)
+stw      r12, 0xb4(r3)
+stw      r6, 0xa4(r3)
+stw      r30, 0xac(r3)
+stw      r0, 0xb8(r3)
+stw      r5, 0xa4(r3)
+stw      r29, 0xac(r3)
+stfs     f3, 0xbc(r3)
+lwz      r4, sys@sda21(r13)
+lfs      f0, 0x54(r4)
+fmuls    f0, f2, f0
+stfs     f0, 0xc8(r3)
+stfs     f1, 0xcc(r3)
+stw      r12, 0xd4(r3)
+stw      r12, 0xd8(r3)
+stw      r12, 0x44(r3)
+stw      r12, 0x48(r3)
+stw      r12, 0x4c(r3)
+stw      r12, 0x50(r3)
+stw      r12, 0x54(r3)
+stw      r12, 0x58(r3)
+stw      r12, 0x5c(r3)
+lwz      r31, 0x1c(r1)
+lwz      r30, 0x18(r1)
+lwz      r29, 0x14(r1)
+addi     r1, r1, 0x20
+blr
+	*/
+}
 
 } // namespace Screen
 

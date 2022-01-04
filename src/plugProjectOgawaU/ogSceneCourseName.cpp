@@ -189,234 +189,234 @@ namespace og {
 
 namespace newScreen {
 
+/*
+ * --INFO--
+ * Address:	80318050
+ * Size:	00003C
+ */
+CourseName::CourseName(void)
+{
 	/*
-	 * --INFO--
-	 * Address:	80318050
-	 * Size:	00003C
-	 */
-	CourseName::CourseName(void)
-	{
-		/*
-		stwu     r1, -0x10(r1)
-		mflr     r0
-		stw      r0, 0x14(r1)
-		stw      r31, 0xc(r1)
-		mr       r31, r3
-		bl       __ct__Q26Screen9SceneBaseFv
-		lis      r4, __vt__Q32og9newScreen10CourseName@ha
-		mr       r3, r31
-		addi     r0, r4, __vt__Q32og9newScreen10CourseName@l
-		stw      r0, 0(r31)
-		lwz      r31, 0xc(r1)
-		lwz      r0, 0x14(r1)
-		mtlr     r0
-		addi     r1, r1, 0x10
-		blr
-		*/
-	}
+	stwu     r1, -0x10(r1)
+	mflr     r0
+	stw      r0, 0x14(r1)
+	stw      r31, 0xc(r1)
+	mr       r31, r3
+	bl       __ct__Q26Screen9SceneBaseFv
+	lis      r4, __vt__Q32og9newScreen10CourseName@ha
+	mr       r3, r31
+	addi     r0, r4, __vt__Q32og9newScreen10CourseName@l
+	stw      r0, 0(r31)
+	lwz      r31, 0xc(r1)
+	lwz      r0, 0x14(r1)
+	mtlr     r0
+	addi     r1, r1, 0x10
+	blr
+	*/
+}
 
+/*
+ * --INFO--
+ * Address:	........
+ * Size:	000074
+ */
+CourseName::~CourseName(void)
+{
+	// UNUSED FUNCTION
+}
+
+/*
+ * --INFO--
+ * Address:	........
+ * Size:	000098
+ */
+void CourseName::getCourseNum(void)
+{
+	// UNUSED FUNCTION
+}
+
+/*
+ * --INFO--
+ * Address:	8031808C
+ * Size:	000128
+ */
+void CourseName::doUserCallBackFunc(Resource::MgrCommand*)
+{
 	/*
-	 * --INFO--
-	 * Address:	........
-	 * Size:	000074
-	 */
-	CourseName::~CourseName(void)
-	{
-		// UNUSED FUNCTION
-	}
+	stwu     r1, -0x50(r1)
+	mflr     r0
+	lis      r4, 0x004F4741@ha
+	lis      r5, 0x55525345@ha
+	stw      r0, 0x54(r1)
+	addi     r6, r5, 0x55525345@l
+	addi     r4, r4, 0x004F4741@l
+	li       r5, 0x434f
+	stw      r31, 0x4c(r1)
+	stw      r30, 0x48(r1)
+	stw      r29, 0x44(r1)
+	mr       r29, r3
+	lis      r3, lbl_8048E790@ha
+	lwz      r30, 0x21c(r29)
+	addi     r31, r3, lbl_8048E790@l
+	mr       r3, r30
+	bl       isID__Q32og6Screen14DispMemberBaseFUlUx
+	clrlwi.  r0, r3, 0x18
+	beq      lbl_803180E4
+	lwz      r0, 8(r30)
+	stw      r0, 0x220(r29)
+	b        lbl_803180FC
 
+lbl_803180E4:
+	addi     r3, r31, 0
+	addi     r5, r31, 0x18
+	li       r4, 0x3a
+	li       r6, 0
+	crclr    6
+	bl       panic_f__12JUTExceptionFPCciPCce
+
+lbl_803180FC:
+	lwz      r0, 0x220(r29)
+	cmpwi    r0, 4
+	blt      lbl_80318110
+	li       r0, 0
+	stw      r0, 0x220(r29)
+
+lbl_80318110:
+	lwz      r0, 0x220(r29)
+	lis      r3, CourseNumToSZS__Q22og9newScreen@ha
+	addi     r4, r3, CourseNumToSZS__Q22og9newScreen@l
+	addi     r3, r29, 4
+	slwi     r0, r0, 2
+	lwzx     r4, r4, r0
+	bl       makeLanguageResName__Q22og9newScreenFPcPCc
+	addi     r3, r1, 8
+	addi     r4, r29, 4
+	bl       __ct__Q212LoadResource3ArgFPCc
+	lwz      r3, gLoadResourceMgr@sda21(r13)
+	addi     r4, r1, 8
+	bl       mountArchive__Q212LoadResource3MgrFRQ212LoadResource3Arg
+	cmplwi   r3, 0
+	li       r30, 0
+	beq      lbl_80318178
+	lwz      r0, 0x34(r3)
+	cmplwi   r0, 0
+	mr       r30, r0
+	bne      lbl_8031818C
+	addi     r3, r31, 0
+	addi     r5, r31, 0x2c
+	li       r4, 0x62
+	crclr    6
+	bl       panic_f__12JUTExceptionFPCciPCce
+	b        lbl_8031818C
+
+lbl_80318178:
+	addi     r3, r31, 0
+	addi     r5, r31, 0x3c
+	li       r4, 0x67
+	crclr    6
+	bl       panic_f__12JUTExceptionFPCciPCce
+
+lbl_8031818C:
+	mr       r3, r29
+	mr       r4, r30
+	bl
+doCreateObjUserCallBackFunc__Q32og9newScreen10CourseNameFP10JKRArchive lwz
+r0, 0x54(r1) lwz      r31, 0x4c(r1) lwz      r30, 0x48(r1) lwz      r29,
+0x44(r1) mtlr     r0 addi     r1, r1, 0x50 blr
+	*/
+}
+
+/*
+ * --INFO--
+ * Address:	803181B4
+ * Size:	000004
+ */
+void CourseName::doCreateObj(JKRArchive*) { }
+
+/*
+ * --INFO--
+ * Address:	803181B8
+ * Size:	000060
+ */
+void CourseName::doCreateObjUserCallBackFunc(JKRArchive*)
+{
 	/*
-	 * --INFO--
-	 * Address:	........
-	 * Size:	000098
-	 */
-	void CourseName::getCourseNum(void)
-	{
-		// UNUSED FUNCTION
-	}
+	stwu     r1, -0x10(r1)
+	mflr     r0
+	stw      r0, 0x14(r1)
+	stw      r31, 0xc(r1)
+	mr       r31, r4
+	stw      r30, 8(r1)
+	mr       r30, r3
+	li       r3, 0x60
+	bl       __nw__FUl
+	or.      r4, r3, r3
+	beq      lbl_803181F4
+	lis      r4, lbl_8048E7DC@ha
+	addi     r4, r4, lbl_8048E7DC@l
+	bl       __ct__Q32og9newScreen13ObjCourseNameFPCc
+	mr       r4, r3
 
+lbl_803181F4:
+	mr       r3, r30
+	mr       r5, r31
+	bl       registObj__Q26Screen9SceneBaseFPQ26Screen7ObjBaseP10JKRArchive
+	lwz      r0, 0x14(r1)
+	lwz      r31, 0xc(r1)
+	lwz      r30, 8(r1)
+	mtlr     r0
+	addi     r1, r1, 0x10
+	blr
+	*/
+}
+
+/*
+ * --INFO--
+ * Address:	80318218
+ * Size:	000008
+ */
+void CourseName::getResName() const
+{
 	/*
-	 * --INFO--
-	 * Address:	8031808C
-	 * Size:	000128
-	 */
-	void CourseName::doUserCallBackFunc(Resource::MgrCommand*)
-	{
-		/*
-		stwu     r1, -0x50(r1)
-		mflr     r0
-		lis      r4, 0x004F4741@ha
-		lis      r5, 0x55525345@ha
-		stw      r0, 0x54(r1)
-		addi     r6, r5, 0x55525345@l
-		addi     r4, r4, 0x004F4741@l
-		li       r5, 0x434f
-		stw      r31, 0x4c(r1)
-		stw      r30, 0x48(r1)
-		stw      r29, 0x44(r1)
-		mr       r29, r3
-		lis      r3, lbl_8048E790@ha
-		lwz      r30, 0x21c(r29)
-		addi     r31, r3, lbl_8048E790@l
-		mr       r3, r30
-		bl       isID__Q32og6Screen14DispMemberBaseFUlUx
-		clrlwi.  r0, r3, 0x18
-		beq      lbl_803180E4
-		lwz      r0, 8(r30)
-		stw      r0, 0x220(r29)
-		b        lbl_803180FC
+	addi     r3, r2, lbl_8051D930@sda21
+	blr
+	*/
+}
 
-	lbl_803180E4:
-		addi     r3, r31, 0
-		addi     r5, r31, 0x18
-		li       r4, 0x3a
-		li       r6, 0
-		crclr    6
-		bl       panic_f__12JUTExceptionFPCciPCce
+/*
+ * --INFO--
+ * Address:	80318220
+ * Size:	000008
+ */
+u32 CourseName::getSceneType(void) { return 0x271E; }
 
-	lbl_803180FC:
-		lwz      r0, 0x220(r29)
-		cmpwi    r0, 4
-		blt      lbl_80318110
-		li       r0, 0
-		stw      r0, 0x220(r29)
-
-	lbl_80318110:
-		lwz      r0, 0x220(r29)
-		lis      r3, CourseNumToSZS__Q22og9newScreen@ha
-		addi     r4, r3, CourseNumToSZS__Q22og9newScreen@l
-		addi     r3, r29, 4
-		slwi     r0, r0, 2
-		lwzx     r4, r4, r0
-		bl       makeLanguageResName__Q22og9newScreenFPcPCc
-		addi     r3, r1, 8
-		addi     r4, r29, 4
-		bl       __ct__Q212LoadResource3ArgFPCc
-		lwz      r3, gLoadResourceMgr@sda21(r13)
-		addi     r4, r1, 8
-		bl       mountArchive__Q212LoadResource3MgrFRQ212LoadResource3Arg
-		cmplwi   r3, 0
-		li       r30, 0
-		beq      lbl_80318178
-		lwz      r0, 0x34(r3)
-		cmplwi   r0, 0
-		mr       r30, r0
-		bne      lbl_8031818C
-		addi     r3, r31, 0
-		addi     r5, r31, 0x2c
-		li       r4, 0x62
-		crclr    6
-		bl       panic_f__12JUTExceptionFPCciPCce
-		b        lbl_8031818C
-
-	lbl_80318178:
-		addi     r3, r31, 0
-		addi     r5, r31, 0x3c
-		li       r4, 0x67
-		crclr    6
-		bl       panic_f__12JUTExceptionFPCciPCce
-
-	lbl_8031818C:
-		mr       r3, r29
-		mr       r4, r30
-		bl
-	doCreateObjUserCallBackFunc__Q32og9newScreen10CourseNameFP10JKRArchive lwz
-	r0, 0x54(r1) lwz      r31, 0x4c(r1) lwz      r30, 0x48(r1) lwz      r29,
-	0x44(r1) mtlr     r0 addi     r1, r1, 0x50 blr
-		*/
-	}
-
+/*
+ * --INFO--
+ * Address:	80318228
+ * Size:	00000C
+ */
+void CourseName::getOwnerID(void)
+{
 	/*
-	 * --INFO--
-	 * Address:	803181B4
-	 * Size:	000004
-	 */
-	void CourseName::doCreateObj(JKRArchive*) { }
+	lis      r3, 0x004F4741@ha
+	addi     r3, r3, 0x004F4741@l
+	blr
+	*/
+}
 
+/*
+ * --INFO--
+ * Address:	80318234
+ * Size:	000010
+ */
+void CourseName::getMemberID(void)
+{
 	/*
-	 * --INFO--
-	 * Address:	803181B8
-	 * Size:	000060
-	 */
-	void CourseName::doCreateObjUserCallBackFunc(JKRArchive*)
-	{
-		/*
-		stwu     r1, -0x10(r1)
-		mflr     r0
-		stw      r0, 0x14(r1)
-		stw      r31, 0xc(r1)
-		mr       r31, r4
-		stw      r30, 8(r1)
-		mr       r30, r3
-		li       r3, 0x60
-		bl       __nw__FUl
-		or.      r4, r3, r3
-		beq      lbl_803181F4
-		lis      r4, lbl_8048E7DC@ha
-		addi     r4, r4, lbl_8048E7DC@l
-		bl       __ct__Q32og9newScreen13ObjCourseNameFPCc
-		mr       r4, r3
-
-	lbl_803181F4:
-		mr       r3, r30
-		mr       r5, r31
-		bl       registObj__Q26Screen9SceneBaseFPQ26Screen7ObjBaseP10JKRArchive
-		lwz      r0, 0x14(r1)
-		lwz      r31, 0xc(r1)
-		lwz      r30, 8(r1)
-		mtlr     r0
-		addi     r1, r1, 0x10
-		blr
-		*/
-	}
-
-	/*
-	 * --INFO--
-	 * Address:	80318218
-	 * Size:	000008
-	 */
-	void CourseName::getResName() const
-	{
-		/*
-		addi     r3, r2, lbl_8051D930@sda21
-		blr
-		*/
-	}
-
-	/*
-	 * --INFO--
-	 * Address:	80318220
-	 * Size:	000008
-	 */
-	u32 CourseName::getSceneType(void) { return 0x271E; }
-
-	/*
-	 * --INFO--
-	 * Address:	80318228
-	 * Size:	00000C
-	 */
-	void CourseName::getOwnerID(void)
-	{
-		/*
-		lis      r3, 0x004F4741@ha
-		addi     r3, r3, 0x004F4741@l
-		blr
-		*/
-	}
-
-	/*
-	 * --INFO--
-	 * Address:	80318234
-	 * Size:	000010
-	 */
-	void CourseName::getMemberID(void)
-	{
-		/*
-		lis      r4, 0x55525345@ha
-		li       r3, 0x434f
-		addi     r4, r4, 0x55525345@l
-		blr
-		*/
-	}
+	lis      r4, 0x55525345@ha
+	li       r3, 0x434f
+	addi     r4, r4, 0x55525345@l
+	blr
+	*/
+}
 } // namespace newScreen
 } // namespace og

@@ -614,15 +614,15 @@ namespace og {
 
 namespace Screen {
 
-	/*
-	 * --INFO--
-	 * Address:	........
-	 * Size:	000048
-	 */
-	AnimScreen::~AnimScreen(void)
-	{
-		// UNUSED FUNCTION
-	}
+/*
+ * --INFO--
+ * Address:	........
+ * Size:	000048
+ */
+AnimScreen::~AnimScreen(void)
+{
+	// UNUSED FUNCTION
+}
 
 } // namespace Screen
 

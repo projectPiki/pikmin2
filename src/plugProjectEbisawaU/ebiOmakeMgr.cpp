@@ -1376,567 +1376,567 @@ void Game::StateMachine<ebi::Omake::TMgr>::start(ebi::Omake::TMgr*, int,
 namespace ebi {
 namespace Screen {
 
+/*
+ * --INFO--
+ * Address:	803EF960
+ * Size:	000278
+ */
+TOmakeGame::~TOmakeGame(void)
+{
 	/*
-	 * --INFO--
-	 * Address:	803EF960
-	 * Size:	000278
-	 */
-	TOmakeGame::~TOmakeGame(void)
-	{
-		/*
-	stwu     r1, -0x10(r1)
-	mflr     r0
-	stw      r0, 0x14(r1)
-	stw      r31, 0xc(r1)
-	mr       r31, r4
-	stw      r30, 8(r1)
-	or.      r30, r3, r3
-	beq      lbl_803EFBBC
-	lis      r3, __vt__Q33ebi6Screen10TOmakeGame@ha
-	addic.   r0, r30, 0x244
-	addi     r0, r3, __vt__Q33ebi6Screen10TOmakeGame@l
-	stw      r0, 0(r30)
-	beq      lbl_803EF9E8
-	lis      r3, __vt__Q23ebi24E2DCallBack_WindowCursor@ha
-	addic.   r0, r30, 0x244
-	addi     r0, r3, __vt__Q23ebi24E2DCallBack_WindowCursor@l
-	stw      r0, 0x244(r30)
-	beq      lbl_803EF9E8
-	lis      r3, __vt__Q23ebi16E2DCallBack_Base@ha
-	addic.   r0, r30, 0x244
-	addi     r0, r3, __vt__Q23ebi16E2DCallBack_Base@l
-	stw      r0, 0x244(r30)
-	beq      lbl_803EF9E8
-	lis      r3, __vt__Q29P2DScreen12CallBackNode@ha
-	addic.   r0, r30, 0x244
-	addi     r0, r3, __vt__Q29P2DScreen12CallBackNode@l
-	stw      r0, 0x244(r30)
-	beq      lbl_803EF9E8
-	lis      r4, __vt__Q29P2DScreen4Node@ha
-	addi     r3, r30, 0x244
-	addi     r0, r4, __vt__Q29P2DScreen4Node@l
-	li       r4, 0
-	stw      r0, 0x244(r30)
-	bl       __dt__5CNodeFv
+stwu     r1, -0x10(r1)
+mflr     r0
+stw      r0, 0x14(r1)
+stw      r31, 0xc(r1)
+mr       r31, r4
+stw      r30, 8(r1)
+or.      r30, r3, r3
+beq      lbl_803EFBBC
+lis      r3, __vt__Q33ebi6Screen10TOmakeGame@ha
+addic.   r0, r30, 0x244
+addi     r0, r3, __vt__Q33ebi6Screen10TOmakeGame@l
+stw      r0, 0(r30)
+beq      lbl_803EF9E8
+lis      r3, __vt__Q23ebi24E2DCallBack_WindowCursor@ha
+addic.   r0, r30, 0x244
+addi     r0, r3, __vt__Q23ebi24E2DCallBack_WindowCursor@l
+stw      r0, 0x244(r30)
+beq      lbl_803EF9E8
+lis      r3, __vt__Q23ebi16E2DCallBack_Base@ha
+addic.   r0, r30, 0x244
+addi     r0, r3, __vt__Q23ebi16E2DCallBack_Base@l
+stw      r0, 0x244(r30)
+beq      lbl_803EF9E8
+lis      r3, __vt__Q29P2DScreen12CallBackNode@ha
+addic.   r0, r30, 0x244
+addi     r0, r3, __vt__Q29P2DScreen12CallBackNode@l
+stw      r0, 0x244(r30)
+beq      lbl_803EF9E8
+lis      r4, __vt__Q29P2DScreen4Node@ha
+addi     r3, r30, 0x244
+addi     r0, r4, __vt__Q29P2DScreen4Node@l
+li       r4, 0
+stw      r0, 0x244(r30)
+bl       __dt__5CNodeFv
 
 lbl_803EF9E8:
-	lis      r4, __dt__Q23ebi26E2DCallBack_BlinkFontColorFv@ha
-	addi     r3, r30, 0x160
-	addi     r4, r4, __dt__Q23ebi26E2DCallBack_BlinkFontColorFv@l
-	li       r5, 0x4c
-	li       r6, 3
-	bl       __destroy_arr
-	addic.   r0, r30, 0x140
-	beq      lbl_803EFA5C
-	lis      r3, __vt__Q23ebi25E2DCallBack_CalcAnimation@ha
-	addic.   r0, r30, 0x140
-	addi     r0, r3, __vt__Q23ebi25E2DCallBack_CalcAnimation@l
-	stw      r0, 0x140(r30)
-	beq      lbl_803EFA5C
-	lis      r3, __vt__Q23ebi16E2DCallBack_Base@ha
-	addic.   r0, r30, 0x140
-	addi     r0, r3, __vt__Q23ebi16E2DCallBack_Base@l
-	stw      r0, 0x140(r30)
-	beq      lbl_803EFA5C
-	lis      r3, __vt__Q29P2DScreen12CallBackNode@ha
-	addic.   r0, r30, 0x140
-	addi     r0, r3, __vt__Q29P2DScreen12CallBackNode@l
-	stw      r0, 0x140(r30)
-	beq      lbl_803EFA5C
-	lis      r4, __vt__Q29P2DScreen4Node@ha
-	addi     r3, r30, 0x140
-	addi     r0, r4, __vt__Q29P2DScreen4Node@l
-	li       r4, 0
-	stw      r0, 0x140(r30)
-	bl       __dt__5CNodeFv
+lis      r4, __dt__Q23ebi26E2DCallBack_BlinkFontColorFv@ha
+addi     r3, r30, 0x160
+addi     r4, r4, __dt__Q23ebi26E2DCallBack_BlinkFontColorFv@l
+li       r5, 0x4c
+li       r6, 3
+bl       __destroy_arr
+addic.   r0, r30, 0x140
+beq      lbl_803EFA5C
+lis      r3, __vt__Q23ebi25E2DCallBack_CalcAnimation@ha
+addic.   r0, r30, 0x140
+addi     r0, r3, __vt__Q23ebi25E2DCallBack_CalcAnimation@l
+stw      r0, 0x140(r30)
+beq      lbl_803EFA5C
+lis      r3, __vt__Q23ebi16E2DCallBack_Base@ha
+addic.   r0, r30, 0x140
+addi     r0, r3, __vt__Q23ebi16E2DCallBack_Base@l
+stw      r0, 0x140(r30)
+beq      lbl_803EFA5C
+lis      r3, __vt__Q29P2DScreen12CallBackNode@ha
+addic.   r0, r30, 0x140
+addi     r0, r3, __vt__Q29P2DScreen12CallBackNode@l
+stw      r0, 0x140(r30)
+beq      lbl_803EFA5C
+lis      r4, __vt__Q29P2DScreen4Node@ha
+addi     r3, r30, 0x140
+addi     r0, r4, __vt__Q29P2DScreen4Node@l
+li       r4, 0
+stw      r0, 0x140(r30)
+bl       __dt__5CNodeFv
 
 lbl_803EFA5C:
-	addic.   r0, r30, 0x104
-	beq      lbl_803EFACC
-	lis      r3, __vt__Q23ebi19E2DCallBack_AnmBase@ha
-	addic.   r0, r30, 0x124
-	addi     r0, r3, __vt__Q23ebi19E2DCallBack_AnmBase@l
-	stw      r0, 0x104(r30)
-	beq      lbl_803EFA84
-	lis      r3, __vt__12J3DFrameCtrl@ha
-	addi     r0, r3, __vt__12J3DFrameCtrl@l
-	stw      r0, 0x124(r30)
+addic.   r0, r30, 0x104
+beq      lbl_803EFACC
+lis      r3, __vt__Q23ebi19E2DCallBack_AnmBase@ha
+addic.   r0, r30, 0x124
+addi     r0, r3, __vt__Q23ebi19E2DCallBack_AnmBase@l
+stw      r0, 0x104(r30)
+beq      lbl_803EFA84
+lis      r3, __vt__12J3DFrameCtrl@ha
+addi     r0, r3, __vt__12J3DFrameCtrl@l
+stw      r0, 0x124(r30)
 
 lbl_803EFA84:
-	addic.   r0, r30, 0x104
-	beq      lbl_803EFACC
-	lis      r3, __vt__Q23ebi16E2DCallBack_Base@ha
-	addic.   r0, r30, 0x104
-	addi     r0, r3, __vt__Q23ebi16E2DCallBack_Base@l
-	stw      r0, 0x104(r30)
-	beq      lbl_803EFACC
-	lis      r3, __vt__Q29P2DScreen12CallBackNode@ha
-	addic.   r0, r30, 0x104
-	addi     r0, r3, __vt__Q29P2DScreen12CallBackNode@l
-	stw      r0, 0x104(r30)
-	beq      lbl_803EFACC
-	lis      r4, __vt__Q29P2DScreen4Node@ha
-	addi     r3, r30, 0x104
-	addi     r0, r4, __vt__Q29P2DScreen4Node@l
-	li       r4, 0
-	stw      r0, 0x104(r30)
-	bl       __dt__5CNodeFv
+addic.   r0, r30, 0x104
+beq      lbl_803EFACC
+lis      r3, __vt__Q23ebi16E2DCallBack_Base@ha
+addic.   r0, r30, 0x104
+addi     r0, r3, __vt__Q23ebi16E2DCallBack_Base@l
+stw      r0, 0x104(r30)
+beq      lbl_803EFACC
+lis      r3, __vt__Q29P2DScreen12CallBackNode@ha
+addic.   r0, r30, 0x104
+addi     r0, r3, __vt__Q29P2DScreen12CallBackNode@l
+stw      r0, 0x104(r30)
+beq      lbl_803EFACC
+lis      r4, __vt__Q29P2DScreen4Node@ha
+addi     r3, r30, 0x104
+addi     r0, r4, __vt__Q29P2DScreen4Node@l
+li       r4, 0
+stw      r0, 0x104(r30)
+bl       __dt__5CNodeFv
 
 lbl_803EFACC:
-	addic.   r0, r30, 0xc8
-	beq      lbl_803EFB3C
-	lis      r3, __vt__Q23ebi19E2DCallBack_AnmBase@ha
-	addic.   r0, r30, 0xe8
-	addi     r0, r3, __vt__Q23ebi19E2DCallBack_AnmBase@l
-	stw      r0, 0xc8(r30)
-	beq      lbl_803EFAF4
-	lis      r3, __vt__12J3DFrameCtrl@ha
-	addi     r0, r3, __vt__12J3DFrameCtrl@l
-	stw      r0, 0xe8(r30)
+addic.   r0, r30, 0xc8
+beq      lbl_803EFB3C
+lis      r3, __vt__Q23ebi19E2DCallBack_AnmBase@ha
+addic.   r0, r30, 0xe8
+addi     r0, r3, __vt__Q23ebi19E2DCallBack_AnmBase@l
+stw      r0, 0xc8(r30)
+beq      lbl_803EFAF4
+lis      r3, __vt__12J3DFrameCtrl@ha
+addi     r0, r3, __vt__12J3DFrameCtrl@l
+stw      r0, 0xe8(r30)
 
 lbl_803EFAF4:
-	addic.   r0, r30, 0xc8
-	beq      lbl_803EFB3C
-	lis      r3, __vt__Q23ebi16E2DCallBack_Base@ha
-	addic.   r0, r30, 0xc8
-	addi     r0, r3, __vt__Q23ebi16E2DCallBack_Base@l
-	stw      r0, 0xc8(r30)
-	beq      lbl_803EFB3C
-	lis      r3, __vt__Q29P2DScreen12CallBackNode@ha
-	addic.   r0, r30, 0xc8
-	addi     r0, r3, __vt__Q29P2DScreen12CallBackNode@l
-	stw      r0, 0xc8(r30)
-	beq      lbl_803EFB3C
-	lis      r4, __vt__Q29P2DScreen4Node@ha
-	addi     r3, r30, 0xc8
-	addi     r0, r4, __vt__Q29P2DScreen4Node@l
-	li       r4, 0
-	stw      r0, 0xc8(r30)
-	bl       __dt__5CNodeFv
+addic.   r0, r30, 0xc8
+beq      lbl_803EFB3C
+lis      r3, __vt__Q23ebi16E2DCallBack_Base@ha
+addic.   r0, r30, 0xc8
+addi     r0, r3, __vt__Q23ebi16E2DCallBack_Base@l
+stw      r0, 0xc8(r30)
+beq      lbl_803EFB3C
+lis      r3, __vt__Q29P2DScreen12CallBackNode@ha
+addic.   r0, r30, 0xc8
+addi     r0, r3, __vt__Q29P2DScreen12CallBackNode@l
+stw      r0, 0xc8(r30)
+beq      lbl_803EFB3C
+lis      r4, __vt__Q29P2DScreen4Node@ha
+addi     r3, r30, 0xc8
+addi     r0, r4, __vt__Q29P2DScreen4Node@l
+li       r4, 0
+stw      r0, 0xc8(r30)
+bl       __dt__5CNodeFv
 
 lbl_803EFB3C:
-	addic.   r0, r30, 0x8c
-	beq      lbl_803EFBAC
-	lis      r3, __vt__Q23ebi19E2DCallBack_AnmBase@ha
-	addic.   r0, r30, 0xac
-	addi     r0, r3, __vt__Q23ebi19E2DCallBack_AnmBase@l
-	stw      r0, 0x8c(r30)
-	beq      lbl_803EFB64
-	lis      r3, __vt__12J3DFrameCtrl@ha
-	addi     r0, r3, __vt__12J3DFrameCtrl@l
-	stw      r0, 0xac(r30)
+addic.   r0, r30, 0x8c
+beq      lbl_803EFBAC
+lis      r3, __vt__Q23ebi19E2DCallBack_AnmBase@ha
+addic.   r0, r30, 0xac
+addi     r0, r3, __vt__Q23ebi19E2DCallBack_AnmBase@l
+stw      r0, 0x8c(r30)
+beq      lbl_803EFB64
+lis      r3, __vt__12J3DFrameCtrl@ha
+addi     r0, r3, __vt__12J3DFrameCtrl@l
+stw      r0, 0xac(r30)
 
 lbl_803EFB64:
-	addic.   r0, r30, 0x8c
-	beq      lbl_803EFBAC
-	lis      r3, __vt__Q23ebi16E2DCallBack_Base@ha
-	addic.   r0, r30, 0x8c
-	addi     r0, r3, __vt__Q23ebi16E2DCallBack_Base@l
-	stw      r0, 0x8c(r30)
-	beq      lbl_803EFBAC
-	lis      r3, __vt__Q29P2DScreen12CallBackNode@ha
-	addic.   r0, r30, 0x8c
-	addi     r0, r3, __vt__Q29P2DScreen12CallBackNode@l
-	stw      r0, 0x8c(r30)
-	beq      lbl_803EFBAC
-	lis      r4, __vt__Q29P2DScreen4Node@ha
-	addi     r3, r30, 0x8c
-	addi     r0, r4, __vt__Q29P2DScreen4Node@l
-	li       r4, 0
-	stw      r0, 0x8c(r30)
-	bl       __dt__5CNodeFv
+addic.   r0, r30, 0x8c
+beq      lbl_803EFBAC
+lis      r3, __vt__Q23ebi16E2DCallBack_Base@ha
+addic.   r0, r30, 0x8c
+addi     r0, r3, __vt__Q23ebi16E2DCallBack_Base@l
+stw      r0, 0x8c(r30)
+beq      lbl_803EFBAC
+lis      r3, __vt__Q29P2DScreen12CallBackNode@ha
+addic.   r0, r30, 0x8c
+addi     r0, r3, __vt__Q29P2DScreen12CallBackNode@l
+stw      r0, 0x8c(r30)
+beq      lbl_803EFBAC
+lis      r4, __vt__Q29P2DScreen4Node@ha
+addi     r3, r30, 0x8c
+addi     r0, r4, __vt__Q29P2DScreen4Node@l
+li       r4, 0
+stw      r0, 0x8c(r30)
+bl       __dt__5CNodeFv
 
 lbl_803EFBAC:
-	extsh.   r0, r31
-	ble      lbl_803EFBBC
-	mr       r3, r30
-	bl       __dl__FPv
+extsh.   r0, r31
+ble      lbl_803EFBBC
+mr       r3, r30
+bl       __dl__FPv
 
 lbl_803EFBBC:
-	lwz      r0, 0x14(r1)
-	mr       r3, r30
-	lwz      r31, 0xc(r1)
-	lwz      r30, 8(r1)
-	mtlr     r0
-	addi     r1, r1, 0x10
-	blr
-		*/
-	}
+lwz      r0, 0x14(r1)
+mr       r3, r30
+lwz      r31, 0xc(r1)
+lwz      r30, 8(r1)
+mtlr     r0
+addi     r1, r1, 0x10
+blr
+	*/
+}
 
+/*
+ * --INFO--
+ * Address:	803EFBD8
+ * Size:	0002E4
+ */
+TOmakeCardE::~TOmakeCardE(void)
+{
 	/*
-	 * --INFO--
-	 * Address:	803EFBD8
-	 * Size:	0002E4
-	 */
-	TOmakeCardE::~TOmakeCardE(void)
-	{
-		/*
-	stwu     r1, -0x10(r1)
-	mflr     r0
-	stw      r0, 0x14(r1)
-	stw      r31, 0xc(r1)
-	mr       r31, r4
-	stw      r30, 8(r1)
-	or.      r30, r3, r3
-	beq      lbl_803EFEA0
-	lis      r3, __vt__Q33ebi6Screen11TOmakeCardE@ha
-	addic.   r0, r30, 0x14c
-	addi     r0, r3, __vt__Q33ebi6Screen11TOmakeCardE@l
-	stw      r0, 0(r30)
-	beq      lbl_803EFC60
-	lis      r3, __vt__Q23ebi25E2DCallBack_CalcAnimation@ha
-	addic.   r0, r30, 0x14c
-	addi     r0, r3, __vt__Q23ebi25E2DCallBack_CalcAnimation@l
-	stw      r0, 0x14c(r30)
-	beq      lbl_803EFC60
-	lis      r3, __vt__Q23ebi16E2DCallBack_Base@ha
-	addic.   r0, r30, 0x14c
-	addi     r0, r3, __vt__Q23ebi16E2DCallBack_Base@l
-	stw      r0, 0x14c(r30)
-	beq      lbl_803EFC60
-	lis      r3, __vt__Q29P2DScreen12CallBackNode@ha
-	addic.   r0, r30, 0x14c
-	addi     r0, r3, __vt__Q29P2DScreen12CallBackNode@l
-	stw      r0, 0x14c(r30)
-	beq      lbl_803EFC60
-	lis      r4, __vt__Q29P2DScreen4Node@ha
-	addi     r3, r30, 0x14c
-	addi     r0, r4, __vt__Q29P2DScreen4Node@l
-	li       r4, 0
-	stw      r0, 0x14c(r30)
-	bl       __dt__5CNodeFv
+stwu     r1, -0x10(r1)
+mflr     r0
+stw      r0, 0x14(r1)
+stw      r31, 0xc(r1)
+mr       r31, r4
+stw      r30, 8(r1)
+or.      r30, r3, r3
+beq      lbl_803EFEA0
+lis      r3, __vt__Q33ebi6Screen11TOmakeCardE@ha
+addic.   r0, r30, 0x14c
+addi     r0, r3, __vt__Q33ebi6Screen11TOmakeCardE@l
+stw      r0, 0(r30)
+beq      lbl_803EFC60
+lis      r3, __vt__Q23ebi25E2DCallBack_CalcAnimation@ha
+addic.   r0, r30, 0x14c
+addi     r0, r3, __vt__Q23ebi25E2DCallBack_CalcAnimation@l
+stw      r0, 0x14c(r30)
+beq      lbl_803EFC60
+lis      r3, __vt__Q23ebi16E2DCallBack_Base@ha
+addic.   r0, r30, 0x14c
+addi     r0, r3, __vt__Q23ebi16E2DCallBack_Base@l
+stw      r0, 0x14c(r30)
+beq      lbl_803EFC60
+lis      r3, __vt__Q29P2DScreen12CallBackNode@ha
+addic.   r0, r30, 0x14c
+addi     r0, r3, __vt__Q29P2DScreen12CallBackNode@l
+stw      r0, 0x14c(r30)
+beq      lbl_803EFC60
+lis      r4, __vt__Q29P2DScreen4Node@ha
+addi     r3, r30, 0x14c
+addi     r0, r4, __vt__Q29P2DScreen4Node@l
+li       r4, 0
+stw      r0, 0x14c(r30)
+bl       __dt__5CNodeFv
 
 lbl_803EFC60:
-	addic.   r0, r30, 0x110
-	beq      lbl_803EFCD0
-	lis      r3, __vt__Q23ebi19E2DCallBack_AnmBase@ha
-	addic.   r0, r30, 0x130
-	addi     r0, r3, __vt__Q23ebi19E2DCallBack_AnmBase@l
-	stw      r0, 0x110(r30)
-	beq      lbl_803EFC88
-	lis      r3, __vt__12J3DFrameCtrl@ha
-	addi     r0, r3, __vt__12J3DFrameCtrl@l
-	stw      r0, 0x130(r30)
+addic.   r0, r30, 0x110
+beq      lbl_803EFCD0
+lis      r3, __vt__Q23ebi19E2DCallBack_AnmBase@ha
+addic.   r0, r30, 0x130
+addi     r0, r3, __vt__Q23ebi19E2DCallBack_AnmBase@l
+stw      r0, 0x110(r30)
+beq      lbl_803EFC88
+lis      r3, __vt__12J3DFrameCtrl@ha
+addi     r0, r3, __vt__12J3DFrameCtrl@l
+stw      r0, 0x130(r30)
 
 lbl_803EFC88:
-	addic.   r0, r30, 0x110
-	beq      lbl_803EFCD0
-	lis      r3, __vt__Q23ebi16E2DCallBack_Base@ha
-	addic.   r0, r30, 0x110
-	addi     r0, r3, __vt__Q23ebi16E2DCallBack_Base@l
-	stw      r0, 0x110(r30)
-	beq      lbl_803EFCD0
-	lis      r3, __vt__Q29P2DScreen12CallBackNode@ha
-	addic.   r0, r30, 0x110
-	addi     r0, r3, __vt__Q29P2DScreen12CallBackNode@l
-	stw      r0, 0x110(r30)
-	beq      lbl_803EFCD0
-	lis      r4, __vt__Q29P2DScreen4Node@ha
-	addi     r3, r30, 0x110
-	addi     r0, r4, __vt__Q29P2DScreen4Node@l
-	li       r4, 0
-	stw      r0, 0x110(r30)
-	bl       __dt__5CNodeFv
+addic.   r0, r30, 0x110
+beq      lbl_803EFCD0
+lis      r3, __vt__Q23ebi16E2DCallBack_Base@ha
+addic.   r0, r30, 0x110
+addi     r0, r3, __vt__Q23ebi16E2DCallBack_Base@l
+stw      r0, 0x110(r30)
+beq      lbl_803EFCD0
+lis      r3, __vt__Q29P2DScreen12CallBackNode@ha
+addic.   r0, r30, 0x110
+addi     r0, r3, __vt__Q29P2DScreen12CallBackNode@l
+stw      r0, 0x110(r30)
+beq      lbl_803EFCD0
+lis      r4, __vt__Q29P2DScreen4Node@ha
+addi     r3, r30, 0x110
+addi     r0, r4, __vt__Q29P2DScreen4Node@l
+li       r4, 0
+stw      r0, 0x110(r30)
+bl       __dt__5CNodeFv
 
 lbl_803EFCD0:
-	addic.   r0, r30, 0xd4
-	beq      lbl_803EFD40
-	lis      r3, __vt__Q23ebi19E2DCallBack_AnmBase@ha
-	addic.   r0, r30, 0xf4
-	addi     r0, r3, __vt__Q23ebi19E2DCallBack_AnmBase@l
-	stw      r0, 0xd4(r30)
-	beq      lbl_803EFCF8
-	lis      r3, __vt__12J3DFrameCtrl@ha
-	addi     r0, r3, __vt__12J3DFrameCtrl@l
-	stw      r0, 0xf4(r30)
+addic.   r0, r30, 0xd4
+beq      lbl_803EFD40
+lis      r3, __vt__Q23ebi19E2DCallBack_AnmBase@ha
+addic.   r0, r30, 0xf4
+addi     r0, r3, __vt__Q23ebi19E2DCallBack_AnmBase@l
+stw      r0, 0xd4(r30)
+beq      lbl_803EFCF8
+lis      r3, __vt__12J3DFrameCtrl@ha
+addi     r0, r3, __vt__12J3DFrameCtrl@l
+stw      r0, 0xf4(r30)
 
 lbl_803EFCF8:
-	addic.   r0, r30, 0xd4
-	beq      lbl_803EFD40
-	lis      r3, __vt__Q23ebi16E2DCallBack_Base@ha
-	addic.   r0, r30, 0xd4
-	addi     r0, r3, __vt__Q23ebi16E2DCallBack_Base@l
-	stw      r0, 0xd4(r30)
-	beq      lbl_803EFD40
-	lis      r3, __vt__Q29P2DScreen12CallBackNode@ha
-	addic.   r0, r30, 0xd4
-	addi     r0, r3, __vt__Q29P2DScreen12CallBackNode@l
-	stw      r0, 0xd4(r30)
-	beq      lbl_803EFD40
-	lis      r4, __vt__Q29P2DScreen4Node@ha
-	addi     r3, r30, 0xd4
-	addi     r0, r4, __vt__Q29P2DScreen4Node@l
-	li       r4, 0
-	stw      r0, 0xd4(r30)
-	bl       __dt__5CNodeFv
+addic.   r0, r30, 0xd4
+beq      lbl_803EFD40
+lis      r3, __vt__Q23ebi16E2DCallBack_Base@ha
+addic.   r0, r30, 0xd4
+addi     r0, r3, __vt__Q23ebi16E2DCallBack_Base@l
+stw      r0, 0xd4(r30)
+beq      lbl_803EFD40
+lis      r3, __vt__Q29P2DScreen12CallBackNode@ha
+addic.   r0, r30, 0xd4
+addi     r0, r3, __vt__Q29P2DScreen12CallBackNode@l
+stw      r0, 0xd4(r30)
+beq      lbl_803EFD40
+lis      r4, __vt__Q29P2DScreen4Node@ha
+addi     r3, r30, 0xd4
+addi     r0, r4, __vt__Q29P2DScreen4Node@l
+li       r4, 0
+stw      r0, 0xd4(r30)
+bl       __dt__5CNodeFv
 
 lbl_803EFD40:
-	addic.   r0, r30, 0x98
-	beq      lbl_803EFDB0
-	lis      r3, __vt__Q23ebi19E2DCallBack_AnmBase@ha
-	addic.   r0, r30, 0xb8
-	addi     r0, r3, __vt__Q23ebi19E2DCallBack_AnmBase@l
-	stw      r0, 0x98(r30)
-	beq      lbl_803EFD68
-	lis      r3, __vt__12J3DFrameCtrl@ha
-	addi     r0, r3, __vt__12J3DFrameCtrl@l
-	stw      r0, 0xb8(r30)
+addic.   r0, r30, 0x98
+beq      lbl_803EFDB0
+lis      r3, __vt__Q23ebi19E2DCallBack_AnmBase@ha
+addic.   r0, r30, 0xb8
+addi     r0, r3, __vt__Q23ebi19E2DCallBack_AnmBase@l
+stw      r0, 0x98(r30)
+beq      lbl_803EFD68
+lis      r3, __vt__12J3DFrameCtrl@ha
+addi     r0, r3, __vt__12J3DFrameCtrl@l
+stw      r0, 0xb8(r30)
 
 lbl_803EFD68:
-	addic.   r0, r30, 0x98
-	beq      lbl_803EFDB0
-	lis      r3, __vt__Q23ebi16E2DCallBack_Base@ha
-	addic.   r0, r30, 0x98
-	addi     r0, r3, __vt__Q23ebi16E2DCallBack_Base@l
-	stw      r0, 0x98(r30)
-	beq      lbl_803EFDB0
-	lis      r3, __vt__Q29P2DScreen12CallBackNode@ha
-	addic.   r0, r30, 0x98
-	addi     r0, r3, __vt__Q29P2DScreen12CallBackNode@l
-	stw      r0, 0x98(r30)
-	beq      lbl_803EFDB0
-	lis      r4, __vt__Q29P2DScreen4Node@ha
-	addi     r3, r30, 0x98
-	addi     r0, r4, __vt__Q29P2DScreen4Node@l
-	li       r4, 0
-	stw      r0, 0x98(r30)
-	bl       __dt__5CNodeFv
+addic.   r0, r30, 0x98
+beq      lbl_803EFDB0
+lis      r3, __vt__Q23ebi16E2DCallBack_Base@ha
+addic.   r0, r30, 0x98
+addi     r0, r3, __vt__Q23ebi16E2DCallBack_Base@l
+stw      r0, 0x98(r30)
+beq      lbl_803EFDB0
+lis      r3, __vt__Q29P2DScreen12CallBackNode@ha
+addic.   r0, r30, 0x98
+addi     r0, r3, __vt__Q29P2DScreen12CallBackNode@l
+stw      r0, 0x98(r30)
+beq      lbl_803EFDB0
+lis      r4, __vt__Q29P2DScreen4Node@ha
+addi     r3, r30, 0x98
+addi     r0, r4, __vt__Q29P2DScreen4Node@l
+li       r4, 0
+stw      r0, 0x98(r30)
+bl       __dt__5CNodeFv
 
 lbl_803EFDB0:
-	addic.   r0, r30, 0x5c
-	beq      lbl_803EFE20
-	lis      r3, __vt__Q23ebi19E2DCallBack_AnmBase@ha
-	addic.   r0, r30, 0x7c
-	addi     r0, r3, __vt__Q23ebi19E2DCallBack_AnmBase@l
-	stw      r0, 0x5c(r30)
-	beq      lbl_803EFDD8
-	lis      r3, __vt__12J3DFrameCtrl@ha
-	addi     r0, r3, __vt__12J3DFrameCtrl@l
-	stw      r0, 0x7c(r30)
+addic.   r0, r30, 0x5c
+beq      lbl_803EFE20
+lis      r3, __vt__Q23ebi19E2DCallBack_AnmBase@ha
+addic.   r0, r30, 0x7c
+addi     r0, r3, __vt__Q23ebi19E2DCallBack_AnmBase@l
+stw      r0, 0x5c(r30)
+beq      lbl_803EFDD8
+lis      r3, __vt__12J3DFrameCtrl@ha
+addi     r0, r3, __vt__12J3DFrameCtrl@l
+stw      r0, 0x7c(r30)
 
 lbl_803EFDD8:
-	addic.   r0, r30, 0x5c
-	beq      lbl_803EFE20
-	lis      r3, __vt__Q23ebi16E2DCallBack_Base@ha
-	addic.   r0, r30, 0x5c
-	addi     r0, r3, __vt__Q23ebi16E2DCallBack_Base@l
-	stw      r0, 0x5c(r30)
-	beq      lbl_803EFE20
-	lis      r3, __vt__Q29P2DScreen12CallBackNode@ha
-	addic.   r0, r30, 0x5c
-	addi     r0, r3, __vt__Q29P2DScreen12CallBackNode@l
-	stw      r0, 0x5c(r30)
-	beq      lbl_803EFE20
-	lis      r4, __vt__Q29P2DScreen4Node@ha
-	addi     r3, r30, 0x5c
-	addi     r0, r4, __vt__Q29P2DScreen4Node@l
-	li       r4, 0
-	stw      r0, 0x5c(r30)
-	bl       __dt__5CNodeFv
+addic.   r0, r30, 0x5c
+beq      lbl_803EFE20
+lis      r3, __vt__Q23ebi16E2DCallBack_Base@ha
+addic.   r0, r30, 0x5c
+addi     r0, r3, __vt__Q23ebi16E2DCallBack_Base@l
+stw      r0, 0x5c(r30)
+beq      lbl_803EFE20
+lis      r3, __vt__Q29P2DScreen12CallBackNode@ha
+addic.   r0, r30, 0x5c
+addi     r0, r3, __vt__Q29P2DScreen12CallBackNode@l
+stw      r0, 0x5c(r30)
+beq      lbl_803EFE20
+lis      r4, __vt__Q29P2DScreen4Node@ha
+addi     r3, r30, 0x5c
+addi     r0, r4, __vt__Q29P2DScreen4Node@l
+li       r4, 0
+stw      r0, 0x5c(r30)
+bl       __dt__5CNodeFv
 
 lbl_803EFE20:
-	addic.   r0, r30, 0x20
-	beq      lbl_803EFE90
-	lis      r3, __vt__Q23ebi19E2DCallBack_AnmBase@ha
-	addic.   r0, r30, 0x40
-	addi     r0, r3, __vt__Q23ebi19E2DCallBack_AnmBase@l
-	stw      r0, 0x20(r30)
-	beq      lbl_803EFE48
-	lis      r3, __vt__12J3DFrameCtrl@ha
-	addi     r0, r3, __vt__12J3DFrameCtrl@l
-	stw      r0, 0x40(r30)
+addic.   r0, r30, 0x20
+beq      lbl_803EFE90
+lis      r3, __vt__Q23ebi19E2DCallBack_AnmBase@ha
+addic.   r0, r30, 0x40
+addi     r0, r3, __vt__Q23ebi19E2DCallBack_AnmBase@l
+stw      r0, 0x20(r30)
+beq      lbl_803EFE48
+lis      r3, __vt__12J3DFrameCtrl@ha
+addi     r0, r3, __vt__12J3DFrameCtrl@l
+stw      r0, 0x40(r30)
 
 lbl_803EFE48:
-	addic.   r0, r30, 0x20
-	beq      lbl_803EFE90
-	lis      r3, __vt__Q23ebi16E2DCallBack_Base@ha
-	addic.   r0, r30, 0x20
-	addi     r0, r3, __vt__Q23ebi16E2DCallBack_Base@l
-	stw      r0, 0x20(r30)
-	beq      lbl_803EFE90
-	lis      r3, __vt__Q29P2DScreen12CallBackNode@ha
-	addic.   r0, r30, 0x20
-	addi     r0, r3, __vt__Q29P2DScreen12CallBackNode@l
-	stw      r0, 0x20(r30)
-	beq      lbl_803EFE90
-	lis      r4, __vt__Q29P2DScreen4Node@ha
-	addi     r3, r30, 0x20
-	addi     r0, r4, __vt__Q29P2DScreen4Node@l
-	li       r4, 0
-	stw      r0, 0x20(r30)
-	bl       __dt__5CNodeFv
+addic.   r0, r30, 0x20
+beq      lbl_803EFE90
+lis      r3, __vt__Q23ebi16E2DCallBack_Base@ha
+addic.   r0, r30, 0x20
+addi     r0, r3, __vt__Q23ebi16E2DCallBack_Base@l
+stw      r0, 0x20(r30)
+beq      lbl_803EFE90
+lis      r3, __vt__Q29P2DScreen12CallBackNode@ha
+addic.   r0, r30, 0x20
+addi     r0, r3, __vt__Q29P2DScreen12CallBackNode@l
+stw      r0, 0x20(r30)
+beq      lbl_803EFE90
+lis      r4, __vt__Q29P2DScreen4Node@ha
+addi     r3, r30, 0x20
+addi     r0, r4, __vt__Q29P2DScreen4Node@l
+li       r4, 0
+stw      r0, 0x20(r30)
+bl       __dt__5CNodeFv
 
 lbl_803EFE90:
-	extsh.   r0, r31
-	ble      lbl_803EFEA0
-	mr       r3, r30
-	bl       __dl__FPv
+extsh.   r0, r31
+ble      lbl_803EFEA0
+mr       r3, r30
+bl       __dl__FPv
 
 lbl_803EFEA0:
-	lwz      r0, 0x14(r1)
-	mr       r3, r30
-	lwz      r31, 0xc(r1)
-	lwz      r30, 8(r1)
-	mtlr     r0
-	addi     r1, r1, 0x10
-	blr
-		*/
-	}
+lwz      r0, 0x14(r1)
+mr       r3, r30
+lwz      r31, 0xc(r1)
+lwz      r30, 8(r1)
+mtlr     r0
+addi     r1, r1, 0x10
+blr
+	*/
+}
 
+/*
+ * --INFO--
+ * Address:	803EFEBC
+ * Size:	000208
+ */
+TOmake::~TOmake(void)
+{
 	/*
-	 * --INFO--
-	 * Address:	803EFEBC
-	 * Size:	000208
-	 */
-	TOmake::~TOmake(void)
-	{
-		/*
-	stwu     r1, -0x10(r1)
-	mflr     r0
-	stw      r0, 0x14(r1)
-	stw      r31, 0xc(r1)
-	mr       r31, r4
-	stw      r30, 8(r1)
-	or.      r30, r3, r3
-	beq      lbl_803F00A8
-	lis      r3, __vt__Q33ebi6Screen6TOmake@ha
-	lis      r4, __dt__Q23ebi26E2DCallBack_BlinkFontColorFv@ha
-	addi     r0, r3, __vt__Q33ebi6Screen6TOmake@l
-	li       r5, 0x4c
-	stw      r0, 0(r30)
-	addi     r3, r30, 0x1e4
-	addi     r4, r4, __dt__Q23ebi26E2DCallBack_BlinkFontColorFv@l
-	li       r6, 7
-	bl       __destroy_arr
-	addic.   r0, r30, 0x178
-	beq      lbl_803EFF5C
-	lis      r3, __vt__Q23ebi24E2DCallBack_WindowCursor@ha
-	addic.   r0, r30, 0x178
-	addi     r0, r3, __vt__Q23ebi24E2DCallBack_WindowCursor@l
-	stw      r0, 0x178(r30)
-	beq      lbl_803EFF5C
-	lis      r3, __vt__Q23ebi16E2DCallBack_Base@ha
-	addic.   r0, r30, 0x178
-	addi     r0, r3, __vt__Q23ebi16E2DCallBack_Base@l
-	stw      r0, 0x178(r30)
-	beq      lbl_803EFF5C
-	lis      r3, __vt__Q29P2DScreen12CallBackNode@ha
-	addic.   r0, r30, 0x178
-	addi     r0, r3, __vt__Q29P2DScreen12CallBackNode@l
-	stw      r0, 0x178(r30)
-	beq      lbl_803EFF5C
-	lis      r4, __vt__Q29P2DScreen4Node@ha
-	addi     r3, r30, 0x178
-	addi     r0, r4, __vt__Q29P2DScreen4Node@l
-	li       r4, 0
-	stw      r0, 0x178(r30)
-	bl       __dt__5CNodeFv
+stwu     r1, -0x10(r1)
+mflr     r0
+stw      r0, 0x14(r1)
+stw      r31, 0xc(r1)
+mr       r31, r4
+stw      r30, 8(r1)
+or.      r30, r3, r3
+beq      lbl_803F00A8
+lis      r3, __vt__Q33ebi6Screen6TOmake@ha
+lis      r4, __dt__Q23ebi26E2DCallBack_BlinkFontColorFv@ha
+addi     r0, r3, __vt__Q33ebi6Screen6TOmake@l
+li       r5, 0x4c
+stw      r0, 0(r30)
+addi     r3, r30, 0x1e4
+addi     r4, r4, __dt__Q23ebi26E2DCallBack_BlinkFontColorFv@l
+li       r6, 7
+bl       __destroy_arr
+addic.   r0, r30, 0x178
+beq      lbl_803EFF5C
+lis      r3, __vt__Q23ebi24E2DCallBack_WindowCursor@ha
+addic.   r0, r30, 0x178
+addi     r0, r3, __vt__Q23ebi24E2DCallBack_WindowCursor@l
+stw      r0, 0x178(r30)
+beq      lbl_803EFF5C
+lis      r3, __vt__Q23ebi16E2DCallBack_Base@ha
+addic.   r0, r30, 0x178
+addi     r0, r3, __vt__Q23ebi16E2DCallBack_Base@l
+stw      r0, 0x178(r30)
+beq      lbl_803EFF5C
+lis      r3, __vt__Q29P2DScreen12CallBackNode@ha
+addic.   r0, r30, 0x178
+addi     r0, r3, __vt__Q29P2DScreen12CallBackNode@l
+stw      r0, 0x178(r30)
+beq      lbl_803EFF5C
+lis      r4, __vt__Q29P2DScreen4Node@ha
+addi     r3, r30, 0x178
+addi     r0, r4, __vt__Q29P2DScreen4Node@l
+li       r4, 0
+stw      r0, 0x178(r30)
+bl       __dt__5CNodeFv
 
 lbl_803EFF5C:
-	addic.   r0, r30, 0x158
-	beq      lbl_803EFFB8
-	lis      r3, __vt__Q23ebi25E2DCallBack_CalcAnimation@ha
-	addic.   r0, r30, 0x158
-	addi     r0, r3, __vt__Q23ebi25E2DCallBack_CalcAnimation@l
-	stw      r0, 0x158(r30)
-	beq      lbl_803EFFB8
-	lis      r3, __vt__Q23ebi16E2DCallBack_Base@ha
-	addic.   r0, r30, 0x158
-	addi     r0, r3, __vt__Q23ebi16E2DCallBack_Base@l
-	stw      r0, 0x158(r30)
-	beq      lbl_803EFFB8
-	lis      r3, __vt__Q29P2DScreen12CallBackNode@ha
-	addic.   r0, r30, 0x158
-	addi     r0, r3, __vt__Q29P2DScreen12CallBackNode@l
-	stw      r0, 0x158(r30)
-	beq      lbl_803EFFB8
-	lis      r4, __vt__Q29P2DScreen4Node@ha
-	addi     r3, r30, 0x158
-	addi     r0, r4, __vt__Q29P2DScreen4Node@l
-	li       r4, 0
-	stw      r0, 0x158(r30)
-	bl       __dt__5CNodeFv
+addic.   r0, r30, 0x158
+beq      lbl_803EFFB8
+lis      r3, __vt__Q23ebi25E2DCallBack_CalcAnimation@ha
+addic.   r0, r30, 0x158
+addi     r0, r3, __vt__Q23ebi25E2DCallBack_CalcAnimation@l
+stw      r0, 0x158(r30)
+beq      lbl_803EFFB8
+lis      r3, __vt__Q23ebi16E2DCallBack_Base@ha
+addic.   r0, r30, 0x158
+addi     r0, r3, __vt__Q23ebi16E2DCallBack_Base@l
+stw      r0, 0x158(r30)
+beq      lbl_803EFFB8
+lis      r3, __vt__Q29P2DScreen12CallBackNode@ha
+addic.   r0, r30, 0x158
+addi     r0, r3, __vt__Q29P2DScreen12CallBackNode@l
+stw      r0, 0x158(r30)
+beq      lbl_803EFFB8
+lis      r4, __vt__Q29P2DScreen4Node@ha
+addi     r3, r30, 0x158
+addi     r0, r4, __vt__Q29P2DScreen4Node@l
+li       r4, 0
+stw      r0, 0x158(r30)
+bl       __dt__5CNodeFv
 
 lbl_803EFFB8:
-	addic.   r0, r30, 0x11c
-	beq      lbl_803F0028
-	lis      r3, __vt__Q23ebi19E2DCallBack_AnmBase@ha
-	addic.   r0, r30, 0x13c
-	addi     r0, r3, __vt__Q23ebi19E2DCallBack_AnmBase@l
-	stw      r0, 0x11c(r30)
-	beq      lbl_803EFFE0
-	lis      r3, __vt__12J3DFrameCtrl@ha
-	addi     r0, r3, __vt__12J3DFrameCtrl@l
-	stw      r0, 0x13c(r30)
+addic.   r0, r30, 0x11c
+beq      lbl_803F0028
+lis      r3, __vt__Q23ebi19E2DCallBack_AnmBase@ha
+addic.   r0, r30, 0x13c
+addi     r0, r3, __vt__Q23ebi19E2DCallBack_AnmBase@l
+stw      r0, 0x11c(r30)
+beq      lbl_803EFFE0
+lis      r3, __vt__12J3DFrameCtrl@ha
+addi     r0, r3, __vt__12J3DFrameCtrl@l
+stw      r0, 0x13c(r30)
 
 lbl_803EFFE0:
-	addic.   r0, r30, 0x11c
-	beq      lbl_803F0028
-	lis      r3, __vt__Q23ebi16E2DCallBack_Base@ha
-	addic.   r0, r30, 0x11c
-	addi     r0, r3, __vt__Q23ebi16E2DCallBack_Base@l
-	stw      r0, 0x11c(r30)
-	beq      lbl_803F0028
-	lis      r3, __vt__Q29P2DScreen12CallBackNode@ha
-	addic.   r0, r30, 0x11c
-	addi     r0, r3, __vt__Q29P2DScreen12CallBackNode@l
-	stw      r0, 0x11c(r30)
-	beq      lbl_803F0028
-	lis      r4, __vt__Q29P2DScreen4Node@ha
-	addi     r3, r30, 0x11c
-	addi     r0, r4, __vt__Q29P2DScreen4Node@l
-	li       r4, 0
-	stw      r0, 0x11c(r30)
-	bl       __dt__5CNodeFv
+addic.   r0, r30, 0x11c
+beq      lbl_803F0028
+lis      r3, __vt__Q23ebi16E2DCallBack_Base@ha
+addic.   r0, r30, 0x11c
+addi     r0, r3, __vt__Q23ebi16E2DCallBack_Base@l
+stw      r0, 0x11c(r30)
+beq      lbl_803F0028
+lis      r3, __vt__Q29P2DScreen12CallBackNode@ha
+addic.   r0, r30, 0x11c
+addi     r0, r3, __vt__Q29P2DScreen12CallBackNode@l
+stw      r0, 0x11c(r30)
+beq      lbl_803F0028
+lis      r4, __vt__Q29P2DScreen4Node@ha
+addi     r3, r30, 0x11c
+addi     r0, r4, __vt__Q29P2DScreen4Node@l
+li       r4, 0
+stw      r0, 0x11c(r30)
+bl       __dt__5CNodeFv
 
 lbl_803F0028:
-	addic.   r0, r30, 0xe0
-	beq      lbl_803F0098
-	lis      r3, __vt__Q23ebi19E2DCallBack_AnmBase@ha
-	addic.   r0, r30, 0x100
-	addi     r0, r3, __vt__Q23ebi19E2DCallBack_AnmBase@l
-	stw      r0, 0xe0(r30)
-	beq      lbl_803F0050
-	lis      r3, __vt__12J3DFrameCtrl@ha
-	addi     r0, r3, __vt__12J3DFrameCtrl@l
-	stw      r0, 0x100(r30)
+addic.   r0, r30, 0xe0
+beq      lbl_803F0098
+lis      r3, __vt__Q23ebi19E2DCallBack_AnmBase@ha
+addic.   r0, r30, 0x100
+addi     r0, r3, __vt__Q23ebi19E2DCallBack_AnmBase@l
+stw      r0, 0xe0(r30)
+beq      lbl_803F0050
+lis      r3, __vt__12J3DFrameCtrl@ha
+addi     r0, r3, __vt__12J3DFrameCtrl@l
+stw      r0, 0x100(r30)
 
 lbl_803F0050:
-	addic.   r0, r30, 0xe0
-	beq      lbl_803F0098
-	lis      r3, __vt__Q23ebi16E2DCallBack_Base@ha
-	addic.   r0, r30, 0xe0
-	addi     r0, r3, __vt__Q23ebi16E2DCallBack_Base@l
-	stw      r0, 0xe0(r30)
-	beq      lbl_803F0098
-	lis      r3, __vt__Q29P2DScreen12CallBackNode@ha
-	addic.   r0, r30, 0xe0
-	addi     r0, r3, __vt__Q29P2DScreen12CallBackNode@l
-	stw      r0, 0xe0(r30)
-	beq      lbl_803F0098
-	lis      r4, __vt__Q29P2DScreen4Node@ha
-	addi     r3, r30, 0xe0
-	addi     r0, r4, __vt__Q29P2DScreen4Node@l
-	li       r4, 0
-	stw      r0, 0xe0(r30)
-	bl       __dt__5CNodeFv
+addic.   r0, r30, 0xe0
+beq      lbl_803F0098
+lis      r3, __vt__Q23ebi16E2DCallBack_Base@ha
+addic.   r0, r30, 0xe0
+addi     r0, r3, __vt__Q23ebi16E2DCallBack_Base@l
+stw      r0, 0xe0(r30)
+beq      lbl_803F0098
+lis      r3, __vt__Q29P2DScreen12CallBackNode@ha
+addic.   r0, r30, 0xe0
+addi     r0, r3, __vt__Q29P2DScreen12CallBackNode@l
+stw      r0, 0xe0(r30)
+beq      lbl_803F0098
+lis      r4, __vt__Q29P2DScreen4Node@ha
+addi     r3, r30, 0xe0
+addi     r0, r4, __vt__Q29P2DScreen4Node@l
+li       r4, 0
+stw      r0, 0xe0(r30)
+bl       __dt__5CNodeFv
 
 lbl_803F0098:
-	extsh.   r0, r31
-	ble      lbl_803F00A8
-	mr       r3, r30
-	bl       __dl__FPv
+extsh.   r0, r31
+ble      lbl_803F00A8
+mr       r3, r30
+bl       __dl__FPv
 
 lbl_803F00A8:
-	lwz      r0, 0x14(r1)
-	mr       r3, r30
-	lwz      r31, 0xc(r1)
-	lwz      r30, 8(r1)
-	mtlr     r0
-	addi     r1, r1, 0x10
-	blr
-		*/
-	}
+lwz      r0, 0x14(r1)
+mr       r3, r30
+lwz      r31, 0xc(r1)
+lwz      r30, 8(r1)
+mtlr     r0
+addi     r1, r1, 0x10
+blr
+	*/
+}
 } // namespace Screen
 } // namespace ebi
 
@@ -2185,18 +2185,18 @@ namespace ebi {
 
 namespace Screen {
 
+/*
+ * --INFO--
+ * Address:	803F0298
+ * Size:	00000C
+ */
+char* ArgOpenOmake::getName(void)
+{
 	/*
-	 * --INFO--
-	 * Address:	803F0298
-	 * Size:	00000C
-	 */
-	char* ArgOpenOmake::getName(void)
-	{
-		/*
-	lis      r3, lbl_80497B30@ha
-	addi     r3, r3, lbl_80497B30@l
-	blr
-		*/
-	}
+lis      r3, lbl_80497B30@ha
+addi     r3, r3, lbl_80497B30@l
+blr
+	*/
+}
 } // namespace Screen
 } // namespace ebi

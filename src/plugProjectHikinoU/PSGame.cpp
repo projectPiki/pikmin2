@@ -6045,25 +6045,25 @@ lbl_80338270:
 
 namespace PSGame {
 
+/*
+ * --INFO--
+ * Address:	80338288
+ * Size:	000064
+ */
+SoundTable::CategoryMgr::~CategoryMgr(void)
+{
 	/*
-	 * --INFO--
-	 * Address:	80338288
-	 * Size:	000064
-	 */
-	SoundTable::CategoryMgr::~CategoryMgr(void)
-	{
-		/*
-	stwu     r1, -0x10(r1)
-	mflr     r0
-	stw      r0, 0x14(r1)
-	stw      r31, 0xc(r1)
-	or.      r31, r3, r3
-	beq      lbl_803382D4
-	lis      r3, __vt__Q36PSGame10SoundTable11CategoryMgr@ha
-	addi     r0, r3, __vt__Q36PSGame10SoundTable11CategoryMgr@l
-	stw      r0, 0(r31)
-	beq      lbl_803382C4
-	lis      r3,
+stwu     r1, -0x10(r1)
+mflr     r0
+stw      r0, 0x14(r1)
+stw      r31, 0xc(r1)
+or.      r31, r3, r3
+beq      lbl_803382D4
+lis      r3, __vt__Q36PSGame10SoundTable11CategoryMgr@ha
+addi     r0, r3, __vt__Q36PSGame10SoundTable11CategoryMgr@l
+stw      r0, 0(r31)
+beq      lbl_803382C4
+lis      r3,
 "__vt__Q28PSSystem49SingletonBase<Q36PSGame10SoundTable11CategoryMgr>"@ha li r0,
 0 addi     r3, r3,
 "__vt__Q28PSSystem49SingletonBase<Q36PSGame10SoundTable11CategoryMgr>"@l stw r3,
@@ -6071,20 +6071,20 @@ namespace PSGame {
 "sInstance__Q28PSSystem49SingletonBase<Q36PSGame10SoundTable11CategoryMgr>"@sda21(r13)
 
 lbl_803382C4:
-	extsh.   r0, r4
-	ble      lbl_803382D4
-	mr       r3, r31
-	bl       __dl__FPv
+extsh.   r0, r4
+ble      lbl_803382D4
+mr       r3, r31
+bl       __dl__FPv
 
 lbl_803382D4:
-	lwz      r0, 0x14(r1)
-	mr       r3, r31
-	lwz      r31, 0xc(r1)
-	mtlr     r0
-	addi     r1, r1, 0x10
-	blr
-		*/
-	}
+lwz      r0, 0x14(r1)
+mr       r3, r31
+lwz      r31, 0xc(r1)
+mtlr     r0
+addi     r1, r1, 0x10
+blr
+	*/
+}
 
 } // namespace PSGame
 
