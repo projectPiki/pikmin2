@@ -1,6 +1,6 @@
 #include "types.h"
 
-#include "PrimTagParm.h"
+#include "TagParm.h"
 
 /*
  * --INFO--

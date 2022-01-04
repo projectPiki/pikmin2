@@ -1,6 +1,7 @@
+#include "Vector3.h"
 #include "types.h"
 
-#include "PrimTagParm.h"
+#include "TagParm.h"
 #include "Dolphin/string.h"
 
 /*
@@ -8,49 +9,61 @@
  * Address:	8041BD38
  * Size:	000034
  */
-void PrimTagParm<int>::doRead(Stream& stream) { m_data = stream.readInt(); }
+template <> void PrimTagParm<int>::doRead(Stream& stream)
+{
+	m_data = stream.readInt();
+}
 
 /*
  * --INFO--
  * Address:	8041BD6C
  * Size:	00002C
  */
-void PrimTagParm<int>::doWrite(Stream& stream) { stream.writeInt(m_data); }
+template <> void PrimTagParm<int>::doWrite(Stream& stream)
+{
+	stream.writeInt(m_data);
+}
 
 /*
  * --INFO--
  * Address:	8041BD98
  * Size:	000004
  */
-void PrimTagParm<int>::doDump() { }
+template <> void PrimTagParm<int>::doDump() { }
 
 /*
  * --INFO--
  * Address:	8041BD9C
  * Size:	000034
  */
-void PrimTagParm<u16>::doRead(Stream& stream) { m_data = stream.readShort(); }
+template <> void PrimTagParm<u16>::doRead(Stream& stream)
+{
+	m_data = stream.readShort();
+}
 
 /*
  * --INFO--
  * Address:	8041BDD0
  * Size:	00002C
  */
-void PrimTagParm<u16>::doWrite(Stream& stream) { stream.writeShort(m_data); }
+template <> void PrimTagParm<u16>::doWrite(Stream& stream)
+{
+	stream.writeShort(m_data);
+}
 
 /*
  * --INFO--
  * Address:	8041BDFC
  * Size:	000004
  */
-void PrimTagParm<u16>::doDump() { }
+template <> void PrimTagParm<u16>::doDump() { }
 
 /*
  * --INFO--
  * Address: 8041BE00
  * Size:    000078
  */
-void PrimTagParm<u64>::doRead(Stream& stream)
+template <> void PrimTagParm<u64>::doRead(Stream& stream)
 {
 	char* str = stream.readString(nullptr, 0);
 	for (int i = 0; i < 8; i++) {
@@ -63,7 +76,7 @@ void PrimTagParm<u64>::doRead(Stream& stream)
  * Address: 8041BE78
  * Size:    00006C
  */
-void PrimTagParm<u64>::doWrite(Stream& stream)
+template <> void PrimTagParm<u64>::doWrite(Stream& stream)
 {
 	char data[8];
 	for (int i = 0; i < 8; i++) {
@@ -77,49 +90,61 @@ void PrimTagParm<u64>::doWrite(Stream& stream)
  * Address:	8041BEE4
  * Size:	000004
  */
-void PrimTagParm<u64>::doDump() { }
+template <> void PrimTagParm<u64>::doDump() { }
 
 /*
  * --INFO--
  * Address:	8041BEE8
  * Size:	000034
  */
-void PrimTagParm<f32>::doRead(Stream& stream) { m_data = stream.readFloat(); }
+template <> void PrimTagParm<f32>::doRead(Stream& stream)
+{
+	m_data = stream.readFloat();
+}
 
 /*
  * --INFO--
  * Address:	8041BF1C
  * Size:	000028
  */
-void PrimTagParm<f32>::doWrite(Stream& stream) { stream.writeFloat(m_data); }
+template <> void PrimTagParm<f32>::doWrite(Stream& stream)
+{
+	stream.writeFloat(m_data);
+}
 
 /*
  * --INFO--
  * Address:	8041BF44
  * Size:	000004
  */
-void PrimTagParm<f32>::doDump() { }
+template <> void PrimTagParm<f32>::doDump() { }
 
 /*
  * --INFO--
  * Address:	8041BF48
  * Size:	000024
  */
-void PrimTagParm<Vector3f>::doRead(Stream& stream) { m_data.read(stream); }
+template <> void PrimTagParm<Vector3f>::doRead(Stream& stream)
+{
+	m_data.read(stream);
+}
 
 /*
  * --INFO--
  * Address:	8041BF6C
  * Size:	000024
  */
-void PrimTagParm<Vector3f>::doWrite(Stream& stream) { m_data.write(stream); }
+template <> void PrimTagParm<Vector3f>::doWrite(Stream& stream)
+{
+	m_data.write(stream);
+}
 
 /*
  * --INFO--
  * Address:	8041BF90
  * Size:	000004
  */
-void PrimTagParm<Vector3f>::doDump() { }
+template <> void PrimTagParm<Vector3f>::doDump() { }
 
 /*
  * --INFO--

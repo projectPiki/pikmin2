@@ -1,7 +1,7 @@
 #ifndef _GAME_AICONSTANTS_H
 #define _GAME_AICONSTANTS_H
 
-#include "PrimTagParm.h"
+#include "TagParm.h"
 
 namespace Game {
 struct AIConstants : public TagParameters {

@@ -5,8 +5,19 @@
 #include "stream.h"
 #include "types.h"
 
+struct TagParm;
+
+struct TagParameters : public CNode {
+	TagParameters(char*);
+	virtual ~TagParameters() { }
+
+	void read(Stream&);
+
+	TagParm* m_head; // _18
+};
+
 struct TagParm {
-	TagParm(struct TagParameters*, char*);
+	TagParm(TagParameters*, char*);
 
 	virtual void doWrite(Stream&); // virtual
 	virtual void doRead(Stream&);  // virtual
@@ -19,7 +30,7 @@ struct TagParm {
 };
 
 struct StringTagParm : public TagParm {
-	StringTagParm(struct TagParameters*, char*);
+	StringTagParm(TagParameters*, char*);
 
 	virtual void doWrite(Stream&); // virtual
 	virtual void doRead(Stream&);  // virtual
@@ -27,6 +38,19 @@ struct StringTagParm : public TagParm {
 	virtual void doDump();         // virtual
 
 	char* m_data; // _0C
+};
+
+template <typename T> struct PrimTagParm : public TagParm {
+	PrimTagParm(TagParameters* a, char* name)
+	    : TagParm(a, name)
+	{
+	}
+
+	virtual void doWrite(Stream&);
+	virtual void doRead(Stream&);
+	virtual void doDump();
+
+	T m_data; // _0C
 };
 
 #endif

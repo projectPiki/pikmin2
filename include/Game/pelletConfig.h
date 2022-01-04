@@ -2,7 +2,8 @@
 #define _GAME_PELLETCONFIG_H
 
 #include "CNode.h"
-#include "PrimTagParm.h"
+#include "Vector3.h"
+#include "TagParm.h"
 #include "types.h"
 
 #define PC_INDIRECTSTATE_NO  0x0
