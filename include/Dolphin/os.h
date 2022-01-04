@@ -161,7 +161,7 @@ enum OS_THREAD_STATE {
 };
 
 // Thread priorities
-#define OS_PRIORITY_MIN  0  // highest
+#define OS_PRIORITY_MIN  0 // highest
 #define OS_PRIORITY_MAX  31 // lowest
 #define OS_PRIORITY_IDLE OS_PRIORITY_MAX
 

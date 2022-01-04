@@ -144,7 +144,7 @@ BOOL usr_puts_serial(const char* msg)
 		SetTRKConnected(connect);
 		connect_ = FALSE;
 	}
-        return connect_;
+	return connect_;
 }
 
 /*

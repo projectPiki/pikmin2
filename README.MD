@@ -54,6 +54,7 @@ pikmin2.usa.dol: `sha1: 90d328bf8f190c90472e8c19e7e53c6ad0fe0d1a`
 	- <a href="https://github.com/projectPiki/pikmin2/tree/main/src/sysGCU/appThread.cpp">sysGCU/appThread.cpp</a>
 	- <a href="https://github.com/projectPiki/pikmin2/tree/main/src/sysGCU/controller.cpp">sysGCU/controller.cpp</a>
 	- <a href="https://github.com/projectPiki/pikmin2/tree/main/src/sysGCU/dvdErrorMessage.cpp">sysGCU/dvdErrorMessage.cpp</a>
+	- <a href="https://github.com/projectPiki/pikmin2/tree/main/src/sysGCU/modelMgr.cpp">sysGCU/modelMgr.cpp</a>
 	- <a href="https://github.com/projectPiki/pikmin2/tree/main/src/sysGCU/rootMenuSection.cpp">sysGCU/rootMenuSection.cpp</a>
 	- <a href="https://github.com/projectPiki/pikmin2/tree/main/src/sysGCU/simpleMessage.cpp">sysGCU/simpleMessage.cpp</a>
 - sysCommonU
@@ -164,6 +165,7 @@ pikmin2.usa.dol: `sha1: 90d328bf8f190c90472e8c19e7e53c6ad0fe0d1a`
 	- <a href="https://github.com/projectPiki/pikmin2/tree/main/src/JSystem/JKR/JKRDisposer.cpp">JSystem/JKR/JKRDisposer.cpp</a>
 	- <a href="https://github.com/projectPiki/pikmin2/tree/main/src/JSystem/JKR/JKRFile.cpp">JSystem/JKR/JKRFile.cpp</a>
 	- <a href="https://github.com/projectPiki/pikmin2/tree/main/src/JSystem/JMath/random.cpp">JSystem/JMath/random.cpp</a>
+	- <a href="https://github.com/projectPiki/pikmin2/tree/main/src/JSystem/JPA/JPAKeyBlock.cpp">JSystem/JPA/JPAKeyBlock.cpp</a>
 	- <a href="https://github.com/projectPiki/pikmin2/tree/main/src/JSystem/JPA/JPATexture.cpp">JSystem/JPA/JPATexture.cpp</a>
 	- <a href="https://github.com/projectPiki/pikmin2/tree/main/src/JSystem/jstudio/jstudio-data.cpp">JSystem/jstudio/jstudio-data.cpp</a>
 	- <a href="https://github.com/projectPiki/pikmin2/tree/main/src/JSystem/JSU/JSUList.cpp">JSystem/JSU/JSUList.cpp</a>

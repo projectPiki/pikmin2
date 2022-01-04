@@ -43,7 +43,7 @@ static int two_over_pi[] = {
 #ifdef __STDC__
 static const int npio2_hw[] = {
 #else
-static int npio2_hw[]    = {
+static int npio2_hw[] = {
 #endif
 	0x3FF921FB, 0x400921FB, 0x4012D97C, 0x401921FB, 0x401F6A7A, 0x4022D97C,
 	0x4025FDBB, 0x402921FB, 0x402C463A, 0x402F6A7A, 0x4031475C, 0x4032D97C,
