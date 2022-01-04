@@ -3,6 +3,9 @@
 
 #include "types.h"
 
+#define STREAM_MODE_BINARY 0
+#define STREAM_MODE_TEXT   1
+
 struct Stream {
 	Stream();
 	Stream(int);
@@ -25,7 +28,7 @@ struct Stream {
 
 	char* getNextToken();
 
-	void writeByte(uchar);
+	void writeByte(u8);
 	void writeShort(short);
 	void writeInt(int);
 	void writeFloat(float);
@@ -33,7 +36,7 @@ struct Stream {
 	void writeFixedString(char*);
 	void writePadding(ulong);
 
-	uchar readByte();
+	u8 readByte();
 	u16 readU16();
 	float readFloat();
 
@@ -50,14 +53,15 @@ struct Stream {
 
 	void _read(void*, int);
 	void _write(void*, int);
-	uchar _readByte();
-	void _writeByte(uchar);
+	u8 _readByte();
+	void _writeByte(u8);
 
 	inline void addTab() { textWriteTab(m_tabCount); }
 
-	u32 _04;           // _004
-	int m_position;    // _008
-	int m_isTextMode;  // _00C
+	u32 _04;        // _004
+	int m_position; // _008
+	// TODO: make enum
+	int m_mode;        // _00C
 	int _10;           // _010
 	u8 m_buffer[1024]; // _014
 	int m_tabCount;    // _414
@@ -65,15 +69,15 @@ struct Stream {
 
 struct RamStream : Stream {
 	RamStream(void*, int);
-	void set(uchar*, int);
+	void set(u8*, int);
 	virtual void read(void*, int);  // _00
 	virtual void write(void*, int); // _04
 	virtual bool eof();             // _0C
 
 	inline void resetPosition(bool a1, int a2)
 	{
-		m_isTextMode = a1;
-		if (m_isTextMode == a2) {
+		m_mode = a1;
+		if (m_mode == a2) {
 			m_tabCount = 0;
 		}
 	}

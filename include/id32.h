@@ -15,13 +15,15 @@ private:
 	void updateString();
 
 public:
-	bool isEof();
 	ID32();
 	ID32(u32);
-	bool match(u32, char);
+
 	void operator=(u32);
 	bool operator==(u32);
 	bool operator!=(u32);
+
+	bool match(u32, char);
+	bool isEof();
 	void setID(u32);
 	void updateID();
 	void read(Stream&);

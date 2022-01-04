@@ -1,5 +1,3 @@
-#include "types.h"
-
 #include "id32.h"
 
 /*
@@ -7,8 +5,8 @@
  * Address:	80413254
  * Size:	00001C
  */
-
 bool ID32::isEof() { return m_id.intView == '_eof'; }
+
 /*
  * --INFO--
  * Address:	80413270
@@ -49,6 +47,7 @@ bool ID32::match(u32 _id, char exception)
 			return false;
 		}
 	}
+
 	return true;
 }
 
@@ -59,10 +58,8 @@ bool ID32::match(u32 _id, char exception)
  */
 void ID32::updateID()
 {
-	char* c_id = reinterpret_cast<char*>(&m_id.intView);
-
 	for (int i = 0; i < 4; i++) {
-		c_id[i] = m_str[i];
+		m_id.strView[i] = m_str[i];
 	}
 }
 
@@ -89,12 +86,7 @@ void ID32::updateString()
 void ID32::operator=(u32 _id)
 {
 	m_id.intView = _id;
-
-	m_str[0] = m_id.strView[0];
-	m_str[1] = m_id.strView[1];
-	m_str[2] = m_id.strView[2];
-	m_str[3] = m_id.strView[3];
-	m_str[4] = '\0';
+	updateString();
 }
 /*
  * --INFO--
@@ -117,16 +109,17 @@ bool ID32::operator!=(u32 _id) { return m_id.intView != _id; }
  */
 void ID32::write(Stream& stream)
 {
-	if (stream.m_isTextMode == TRUE) {
+	if (stream.m_mode == STREAM_MODE_TEXT) {
 		char str[0x10];
 		sprint(str);
 		stream.printf("{%s} ", str);
-	} else {
-		stream.writeByte(m_id.strView[3]);
-		stream.writeByte(m_id.strView[2]);
-		stream.writeByte(m_id.strView[1]);
-		stream.writeByte(m_id.strView[0]);
+		return;
 	}
+
+	stream.writeByte(m_id.strView[3]);
+	stream.writeByte(m_id.strView[2]);
+	stream.writeByte(m_id.strView[1]);
+	stream.writeByte(m_id.strView[0]);
 }
 
 /*
@@ -136,30 +129,21 @@ void ID32::write(Stream& stream)
  */
 void ID32::read(Stream& stream)
 {
-	if (stream.m_isTextMode == TRUE) {
+	if (stream.m_mode == STREAM_MODE_TEXT) {
 		char* token     = stream.getNextToken();
 		m_id.strView[3] = token[3];
 		m_id.strView[2] = token[2];
 		m_id.strView[1] = token[1];
 		m_id.strView[0] = token[0];
-
-		m_str[0] = m_id.strView[0];
-		m_str[1] = m_id.strView[1];
-		m_str[2] = m_id.strView[2];
-		m_str[3] = m_id.strView[3];
-		m_str[4] = '\0';
-	} else {
-		m_id.strView[3] = stream.readByte();
-		m_id.strView[2] = stream.readByte();
-		m_id.strView[1] = stream.readByte();
-		m_id.strView[0] = stream.readByte();
-
-		m_str[0] = m_id.strView[0];
-		m_str[1] = m_id.strView[1];
-		m_str[2] = m_id.strView[2];
-		m_str[3] = m_id.strView[3];
-		m_str[4] = '\0';
+		updateString();
+		return;
 	}
+
+	m_id.strView[3] = stream.readByte();
+	m_id.strView[2] = stream.readByte();
+	m_id.strView[1] = stream.readByte();
+	m_id.strView[0] = stream.readByte();
+	updateString();
 }
 
 /*
