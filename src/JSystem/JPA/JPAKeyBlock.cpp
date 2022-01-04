@@ -1,4 +1,6 @@
 #include "types.h"
+#include "JSystem/JPA/JPABlock.h"
+#include "JSystem/JPA/JPAMath.h"
 
 /*
     Generated from dpostproc
@@ -15,17 +17,14 @@
  * Address:	80093A40
  * Size:	000010
  */
-JPAKeyBlock::JPAKeyBlock(const unsigned char*)
+JPAKeyBlock::JPAKeyBlock(const u8* data)
+    : m_dataStart(data)
+    , _04(reinterpret_cast<const float*>(&data[0xC]))
 {
-	/*
-	stw      r4, 0(r3)
-	addi     r0, r4, 0xc
-	stw      r0, 4(r3)
-	blr
-	*/
 }
 
 /*
+ * @notDone
  * --INFO--
  * Address:	........
  * Size:	0000C4
@@ -40,47 +39,13 @@ void JPAKeyBlock::init_jpa(const unsigned char*, JKRHeap*)
  * Address:	80093A50
  * Size:	000094
  */
-void JPAKeyBlock::calc(float)
+void JPAKeyBlock::calc(float p1)
 {
-	/*
-	stwu     r1, -0x20(r1)
-	mflr     r0
-	mr       r6, r3
-	stw      r0, 0x24(r1)
-	lwz      r5, 0(r3)
-	lbz      r0, 0xb(r5)
-	cmpwi    r0, 0
-	beq      lbl_80093AC8
-	lbz      r3, 9(r5)
-	fctiwz   f0, f1
-	lis      r0, 0x4330
-	lwz      r4, 4(r6)
-	addi     r3, r3, -1
-	stw      r0, 0x18(r1)
-	slwi     r0, r3, 4
-	lfsx     f2, r4, r0
-	stfd     f0, 0x10(r1)
-	fctiwz   f0, f2
-	lfd      f2, lbl_80516C10@sda21(r2)
-	lwz      r0, 0x14(r1)
-	stfd     f0, 8(r1)
-	lwz      r3, 0xc(r1)
-	addi     r3, r3, 1
-	divw     r0, r0, r3
-	mullw    r0, r0, r3
-	xoris    r0, r0, 0x8000
-	stw      r0, 0x1c(r1)
-	lfd      f0, 0x18(r1)
-	fsubs    f0, f0, f2
-	fsubs    f1, f1, f0
-
-lbl_80093AC8:
-	lbz      r3, 9(r5)
-	lwz      r4, 4(r6)
-	bl       JPACalcKeyAnmValue__FfUsPCf
-	lwz      r0, 0x24(r1)
-	mtlr     r0
-	addi     r1, r1, 0x20
-	blr
-	*/
+	if (m_dataStart[0xB] != '\0') {
+		int v1 = (int)_04[(m_dataStart[9] - 1) * 4] + 1;
+		// p1 -= (v1 * ((int)p1 / v1));
+		int v2 = ((int)p1 / v1);
+		p1     = p1 - (v2 * v1);
+	}
+	JPACalcKeyAnmValue(p1, m_dataStart[9], _04);
 }

@@ -159,7 +159,7 @@ JSYSTEM:=\
 	$(BUILD_DIR)/asm/JSystem/JPA/JPAExTexShape.o\
 	$(BUILD_DIR)/asm/JSystem/JPA/JPAExtraShape.o\
 	$(BUILD_DIR)/asm/JSystem/JPA/JPAFieldBlock.o\
-	$(BUILD_DIR)/asm/JSystem/JPA/JPAKeyBlock.o\
+	$(BUILD_DIR)/src/JSystem/JPA/JPAKeyBlock.o\
 	$(BUILD_DIR)/asm/JSystem/JPA/JPAMath.o\
 	$(BUILD_DIR)/asm/JSystem/JPA/JPAParticle.o\
 	$(BUILD_DIR)/asm/JSystem/JPA/JPAResource.o\
