@@ -17,4 +17,3 @@ Cpp11BracedListStyle: false
 Language: Cpp
 CompactNamespaces: false
 NamespaceIndentation: None
-SeparateDefinitionBlocks: Always
