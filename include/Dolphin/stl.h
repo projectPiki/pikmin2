@@ -27,6 +27,14 @@ void* __va_arg(va_list, int);
 #define va_arg(VA_LIST, ARG_TYPE) \
 	(*(ARG_TYPE*)) __va_arg(VA_LIST, _var_arg_typeof(ARG_TYPE))
 
+/*
+ * --INFO--
+ * Address:	........
+ * Size:	0000E0 or 0000E4, depending on param.
+ */
+#define DEFINE__PRINT(unit) \
+	inline void _Print(char*, ...) { printf(unit); }
+
 int printf(const char*, ...);
 int vprintf(const char*, va_list);
 int sprintf(char*, char*, ...);

@@ -1,4 +1,8 @@
+#include "Dolphin/stl.h"
+#include "Dolphin/string.h"
+#include "System.h"
 #include "types.h"
+#include "Game/GameConfig.h"
 
 /*
     Generated from dpostproc
@@ -198,6 +202,12 @@
         .4byte 0x73706100
 */
 
+Game::GameConfig Game::gGameConfig;
+
+// TODO: How is this string actually (not) used?
+// DEFINE__PRINT("gameConfig");
+void fakeMatch_printGameConfig() { printf("gameConfig"); }
+
 namespace Game {
 
 /*
@@ -205,96 +215,85 @@ namespace Game {
  * Address:	........
  * Size:	000078
  */
-void GameConfig::setConstSetting(void)
+void GameConfig::setConstSetting()
 {
 	// UNUSED FUNCTION
 }
 
 /*
+ * __ct__Q24Game10GameConfigFv
  * --INFO--
  * Address:	80432170
  * Size:	000130
  */
-GameConfig::GameConfig(void)
+GameConfig::GameConfig()
+    : m_parms()
 {
-	/*
-	stwu     r1, -0x10(r1)
-	mflr     r0
-	stw      r0, 0x14(r1)
-	stw      r31, 0xc(r1)
-	mr       r31, r3
-	bl       __ct__Q34Game10GameConfig5ParmsFv
-	li       r6, 0
-	li       r5, -1
-	stw      r6, 0x28(r31)
-	li       r4, 1
-	addi     r0, r2, lbl_80520710@sda21
-	mr       r3, r31
-	stw      r6, 0x38(r31)
-	stw      r6, 0x48(r31)
-	stw      r6, 0x58(r31)
-	stw      r6, 0x68(r31)
-	stw      r6, 0x78(r31)
-	stw      r6, 0x88(r31)
-	stw      r6, 0xa8(r31)
-	stw      r6, 0x98(r31)
-	stw      r6, 0xd8(r31)
-	stw      r5, 0xe8(r31)
-	stw      r5, 0xf8(r31)
-	stw      r5, 0x108(r31)
-	stw      r5, 0x118(r31)
-	stw      r6, 0x128(r31)
-	stw      r6, 0x168(r31)
-	stw      r6, 0x178(r31)
-	stw      r6, 0x1d8(r31)
-	stw      r6, 0x1e8(r31)
-	stw      r6, 0x1f8(r31)
-	stw      r4, 0x148(r31)
-	stw      r0, 0x138(r31)
-	stw      r4, 0x158(r31)
-	stw      r6, 0x188(r31)
-	stw      r6, 0x258(r31)
-	stw      r6, 0x28(r31)
-	stw      r6, 0x38(r31)
-	stw      r6, 0x48(r31)
-	stw      r6, 0x58(r31)
-	stw      r6, 0x68(r31)
-	stw      r6, 0x78(r31)
-	stw      r6, 0x88(r31)
-	stw      r6, 0xa8(r31)
-	stw      r6, 0x98(r31)
-	stw      r6, 0xd8(r31)
-	stw      r5, 0xe8(r31)
-	stw      r5, 0xf8(r31)
-	stw      r5, 0x108(r31)
-	stw      r5, 0x118(r31)
-	stw      r6, 0x128(r31)
-	stw      r6, 0x168(r31)
-	stw      r6, 0x1c8(r31)
-	stw      r6, 0x178(r31)
-	stw      r6, 0x1d8(r31)
-	stw      r6, 0x1e8(r31)
-	stw      r6, 0x1f8(r31)
-	stw      r4, 0x148(r31)
-	stw      r0, 0x138(r31)
-	stw      r0, 0x248(r31)
-	stw      r4, 0x158(r31)
-	stw      r6, 0x188(r31)
-	stw      r4, 0x208(r31)
-	stw      r6, 0x228(r31)
-	stw      r6, 0x238(r31)
-	stw      r4, 0x198(r31)
-	stw      r6, 0x1a8(r31)
-	stw      r6, 0x1b8(r31)
-	stw      r6, 0x218(r31)
-	stw      r6, 0x268(r31)
-	stw      r6, 0x278(r31)
-	lwz      r31, 0xc(r1)
-	lwz      r0, 0x14(r1)
-	mtlr     r0
-	addi     r1, r1, 0x10
-	blr
-	*/
+#if MATCHING
+	// I suspect the double-loading might be from an earlier revision of the
+	// parms....
+	m_parms.m_gamePrint.m_data        = 0;
+	m_parms.m_Print.m_data            = 0;
+	m_parms.m_ogawaPrint.m_data       = 0;
+	m_parms.m_shimizuPrint.m_data     = 0;
+	m_parms.m_yamashitaPrint.m_data   = 0;
+	m_parms.m_kandoPrint.m_data       = 0;
+	m_parms.m_nishimuraPrint.m_data   = 0;
+	m_parms.m_morimuraPrint.m_data    = 0;
+	m_parms.m_ebisawaPrint.m_data     = 0;
+	m_parms.m_psoundPrint.m_data      = 0;
+	m_parms.m_shortCutUp.m_data       = -1;
+	m_parms.m_shortCutDown.m_data     = -1;
+	m_parms.m_shortCutLeft.m_data     = -1;
+	m_parms.m_shortCutRight.m_data    = -1;
+	m_parms.m_allocAllEnemy.m_data    = 0;
+	m_parms.m_AI.m_data               = 0;
+	m_parms.m_timers.m_data           = 0;
+	m_parms.m_mukki_cherry.m_data     = 0;
+	m_parms.m_marioClubDevelop.m_data = 0;
+	m_parms.m_heapStatusPrint.m_data  = 0;
+	m_parms.m_publicity.m_data        = 1;
+	m_parms.m_mapparts_path.m_data    = "";
+	m_parms.m_pelletMultiLang.m_data  = 1;
+	m_parms.m_vsTest.m_data           = 0;
+	m_parms.m_autosaveOff.m_data      = 0;
+#endif
+
+	m_parms.m_gamePrint.m_data            = 0;
+	m_parms.m_Print.m_data                = 0;
+	m_parms.m_ogawaPrint.m_data           = 0;
+	m_parms.m_shimizuPrint.m_data         = 0;
+	m_parms.m_yamashitaPrint.m_data       = 0;
+	m_parms.m_kandoPrint.m_data           = 0;
+	m_parms.m_nishimuraPrint.m_data       = 0;
+	m_parms.m_morimuraPrint.m_data        = 0;
+	m_parms.m_ebisawaPrint.m_data         = 0;
+	m_parms.m_psoundPrint.m_data          = 0;
+	m_parms.m_shortCutUp.m_data           = -1;
+	m_parms.m_shortCutDown.m_data         = -1;
+	m_parms.m_shortCutLeft.m_data         = -1;
+	m_parms.m_shortCutRight.m_data        = -1;
+	m_parms.m_allocAllEnemy.m_data        = 0;
+	m_parms.m_AI.m_data                   = 0;
+	m_parms.m_E3version.m_data            = 0;
+	m_parms.m_timers.m_data               = 0;
+	m_parms.m_mukki_cherry.m_data         = 0;
+	m_parms.m_marioClubDevelop.m_data     = 0;
+	m_parms.m_heapStatusPrint.m_data      = 0;
+	m_parms.m_publicity.m_data            = 1;
+	m_parms.m_mapparts_path.m_data        = "";
+	m_parms.m_language.m_data             = "";
+	m_parms.m_pelletMultiLang.m_data      = 1;
+	m_parms.m_vsTest.m_data               = 0;
+	m_parms.m_heapFreeSize.m_data         = 1;
+	m_parms.m_KFesVersion.m_data          = 0;
+	m_parms.m_nintendoVersion.m_data      = 0;
+	m_parms.m_vsDeathType.m_data          = 1;
+	m_parms.m_vsHiba.m_data               = 0;
+	m_parms.m_vsY.m_data                  = 0;
+	m_parms.m_baseGameNewCheck.m_data     = 0;
+	m_parms.m_vsDebugSelectPattern.m_data = 0;
+	m_parms.m_vsFifo.m_data               = 0;
 }
 
 /*
@@ -302,333 +301,55 @@ GameConfig::GameConfig(void)
  * Address:	804322A0
  * Size:	000070
  */
-GameConfig::Parms::~Parms(void)
-{
-	/*
-	stwu     r1, -0x10(r1)
-	mflr     r0
-	stw      r0, 0x14(r1)
-	stw      r31, 0xc(r1)
-	mr       r31, r4
-	stw      r30, 8(r1)
-	or.      r30, r3, r3
-	beq      lbl_804322F4
-	lis      r4, __vt__Q34Game10GameConfig5Parms@ha
-	addi     r0, r4, __vt__Q34Game10GameConfig5Parms@l
-	stw      r0, 0(r30)
-	beq      lbl_804322E4
-	lis      r5, __vt__13TagParameters@ha
-	li       r4, 0
-	addi     r0, r5, __vt__13TagParameters@l
-	stw      r0, 0(r30)
-	bl       __dt__5CNodeFv
-
-lbl_804322E4:
-	extsh.   r0, r31
-	ble      lbl_804322F4
-	mr       r3, r30
-	bl       __dl__FPv
-
-lbl_804322F4:
-	lwz      r0, 0x14(r1)
-	mr       r3, r30
-	lwz      r31, 0xc(r1)
-	lwz      r30, 8(r1)
-	mtlr     r0
-	addi     r1, r1, 0x10
-	blr
-	*/
-}
+GameConfig::Parms::~Parms() { }
 
 /*
+ * __ct__Q34Game10GameConfig5ParmsFv
  * --INFO--
  * Address:	80432310
  * Size:	000460
  */
-GameConfig::Parms::Parms(void)
+GameConfig::Parms::Parms()
+    : TagParameters("GameConfig")
+    , m_gamePrint(this, "gamePrint")
+    , m_Print(this, "Print")
+    , m_ogawaPrint(this, "ogawaPrint")
+    , m_shimizuPrint(this, "shimizuPrint")
+    , m_yamashitaPrint(this, "yamashitaPrint")
+    , m_kandoPrint(this, "kandoPrint")
+    , m_nishimuraPrint(this, "nishimuraPrint")
+    , m_ebisawaPrint(this, "ebisawaPrint")
+    , m_morimuraPrint(this, "morimuraPrint")
+    , m_konoPrint(this, "konoPrint")
+    , m_fujinoPrint(this, "fujinoPrint")
+    , m_psoundPrint(this, "psoundPrint")
+    , m_shortCutUp(this, "shortCutUp")
+    , m_shortCutDown(this, "shortCutDown")
+    , m_shortCutLeft(this, "shortCutLeft")
+    , m_shortCutRight(this, "shortCutRight")
+    , m_allocAllEnemy(this, "allocAllEnemy")
+    , m_mapparts_path(this, "mapparts_path")
+    , m_publicity(this, "publicity")
+    , m_pelletMultiLang(this, "pelletMultiLang")
+    , m_AI(this, "AI")
+    , m_timers(this, "timers")
+    , m_vsTest(this, "vsTest")
+    , m_vsDeathType(this, "vsDeathType")
+    , m_vsHiba(this, "vsHiba")
+    , m_vsY(this, "vsY")
+    , m_E3version(this, "E3version")
+    , m_mukki_cherry(this, "mukki_cherry")
+    , m_marioClubDevelop(this, "marioClubDevelop")
+    , m_heapStatusPrint(this, "heapStatusPrint")
+    , m_heapFreeSize(this, "heapFreeSize")
+    , m_baseGameNewCheck(this, "baseGameNewCheck")
+    , m_KFesVersion(this, "KFesVersion")
+    , m_nintendoVersion(this, "nintendoVersion")
+    , m_language(this, "language")
+    , m_autosaveOff(this, "autosaveOff")
+    , m_vsDebugSelectPattern(this, "vsDebugSelectPattern")
+    , m_vsFifo(this, "vsFifo")
 {
-	/*
-	stwu     r1, -0x10(r1)
-	mflr     r0
-	lis      r4, lbl_8049A428@ha
-	stw      r0, 0x14(r1)
-	stw      r31, 0xc(r1)
-	addi     r31, r4, lbl_8049A428@l
-	addi     r4, r31, 0xc
-	stw      r30, 8(r1)
-	mr       r30, r3
-	bl       __ct__13TagParametersFPc
-	lis      r3, __vt__Q34Game10GameConfig5Parms@ha
-	mr       r4, r30
-	addi     r0, r3, __vt__Q34Game10GameConfig5Parms@l
-	addi     r3, r30, 0x1c
-	stw      r0, 0(r30)
-	addi     r5, r31, 0x18
-	bl       __ct__7TagParmFP13TagParametersPc
-	lis      r3, "__vt__14PrimTagParm<i>"@ha
-	mr       r4, r30
-	addi     r0, r3, "__vt__14PrimTagParm<i>"@l
-	addi     r3, r30, 0x2c
-	stw      r0, 0x1c(r30)
-	addi     r5, r2, lbl_80520714@sda21
-	bl       __ct__7TagParmFP13TagParametersPc
-	lis      r3, "__vt__14PrimTagParm<i>"@ha
-	mr       r4, r30
-	addi     r0, r3, "__vt__14PrimTagParm<i>"@l
-	addi     r3, r30, 0x3c
-	stw      r0, 0x2c(r30)
-	addi     r5, r31, 0x24
-	bl       __ct__7TagParmFP13TagParametersPc
-	lis      r3, "__vt__14PrimTagParm<i>"@ha
-	mr       r4, r30
-	addi     r0, r3, "__vt__14PrimTagParm<i>"@l
-	addi     r3, r30, 0x4c
-	stw      r0, 0x3c(r30)
-	addi     r5, r31, 0x30
-	bl       __ct__7TagParmFP13TagParametersPc
-	lis      r3, "__vt__14PrimTagParm<i>"@ha
-	mr       r4, r30
-	addi     r0, r3, "__vt__14PrimTagParm<i>"@l
-	addi     r3, r30, 0x5c
-	stw      r0, 0x4c(r30)
-	addi     r5, r31, 0x40
-	bl       __ct__7TagParmFP13TagParametersPc
-	lis      r3, "__vt__14PrimTagParm<i>"@ha
-	mr       r4, r30
-	addi     r0, r3, "__vt__14PrimTagParm<i>"@l
-	addi     r3, r30, 0x6c
-	stw      r0, 0x5c(r30)
-	addi     r5, r31, 0x50
-	bl       __ct__7TagParmFP13TagParametersPc
-	lis      r3, "__vt__14PrimTagParm<i>"@ha
-	mr       r4, r30
-	addi     r0, r3, "__vt__14PrimTagParm<i>"@l
-	addi     r3, r30, 0x7c
-	stw      r0, 0x6c(r30)
-	addi     r5, r31, 0x5c
-	bl       __ct__7TagParmFP13TagParametersPc
-	lis      r3, "__vt__14PrimTagParm<i>"@ha
-	mr       r4, r30
-	addi     r0, r3, "__vt__14PrimTagParm<i>"@l
-	addi     r3, r30, 0x8c
-	stw      r0, 0x7c(r30)
-	addi     r5, r31, 0x6c
-	bl       __ct__7TagParmFP13TagParametersPc
-	lis      r3, "__vt__14PrimTagParm<i>"@ha
-	mr       r4, r30
-	addi     r0, r3, "__vt__14PrimTagParm<i>"@l
-	addi     r3, r30, 0x9c
-	stw      r0, 0x8c(r30)
-	addi     r5, r31, 0x7c
-	bl       __ct__7TagParmFP13TagParametersPc
-	lis      r3, "__vt__14PrimTagParm<i>"@ha
-	mr       r4, r30
-	addi     r0, r3, "__vt__14PrimTagParm<i>"@l
-	addi     r3, r30, 0xac
-	stw      r0, 0x9c(r30)
-	addi     r5, r31, 0x8c
-	bl       __ct__7TagParmFP13TagParametersPc
-	lis      r3, "__vt__14PrimTagParm<i>"@ha
-	mr       r4, r30
-	addi     r0, r3, "__vt__14PrimTagParm<i>"@l
-	addi     r3, r30, 0xbc
-	stw      r0, 0xac(r30)
-	addi     r5, r31, 0x98
-	bl       __ct__7TagParmFP13TagParametersPc
-	lis      r3, "__vt__14PrimTagParm<i>"@ha
-	mr       r4, r30
-	addi     r0, r3, "__vt__14PrimTagParm<i>"@l
-	addi     r3, r30, 0xcc
-	stw      r0, 0xbc(r30)
-	addi     r5, r31, 0xa4
-	bl       __ct__7TagParmFP13TagParametersPc
-	lis      r3, "__vt__14PrimTagParm<i>"@ha
-	mr       r4, r30
-	addi     r0, r3, "__vt__14PrimTagParm<i>"@l
-	addi     r3, r30, 0xdc
-	stw      r0, 0xcc(r30)
-	addi     r5, r31, 0xb0
-	bl       __ct__7TagParmFP13TagParametersPc
-	lis      r3, "__vt__14PrimTagParm<i>"@ha
-	mr       r4, r30
-	addi     r0, r3, "__vt__14PrimTagParm<i>"@l
-	addi     r3, r30, 0xec
-	stw      r0, 0xdc(r30)
-	addi     r5, r31, 0xbc
-	bl       __ct__7TagParmFP13TagParametersPc
-	lis      r3, "__vt__14PrimTagParm<i>"@ha
-	mr       r4, r30
-	addi     r0, r3, "__vt__14PrimTagParm<i>"@l
-	addi     r3, r30, 0xfc
-	stw      r0, 0xec(r30)
-	addi     r5, r31, 0xcc
-	bl       __ct__7TagParmFP13TagParametersPc
-	lis      r3, "__vt__14PrimTagParm<i>"@ha
-	mr       r4, r30
-	addi     r0, r3, "__vt__14PrimTagParm<i>"@l
-	addi     r3, r30, 0x10c
-	stw      r0, 0xfc(r30)
-	addi     r5, r31, 0xdc
-	bl       __ct__7TagParmFP13TagParametersPc
-	lis      r3, "__vt__14PrimTagParm<i>"@ha
-	mr       r4, r30
-	addi     r0, r3, "__vt__14PrimTagParm<i>"@l
-	addi     r3, r30, 0x11c
-	stw      r0, 0x10c(r30)
-	addi     r5, r31, 0xec
-	bl       __ct__7TagParmFP13TagParametersPc
-	lis      r3, "__vt__14PrimTagParm<i>"@ha
-	mr       r4, r30
-	addi     r0, r3, "__vt__14PrimTagParm<i>"@l
-	addi     r3, r30, 0x12c
-	stw      r0, 0x11c(r30)
-	addi     r5, r31, 0xfc
-	bl       __ct__13StringTagParmFP13TagParametersPc
-	mr       r4, r30
-	addi     r3, r30, 0x13c
-	addi     r5, r31, 0x10c
-	bl       __ct__7TagParmFP13TagParametersPc
-	lis      r3, "__vt__14PrimTagParm<i>"@ha
-	mr       r4, r30
-	addi     r0, r3, "__vt__14PrimTagParm<i>"@l
-	addi     r3, r30, 0x14c
-	stw      r0, 0x13c(r30)
-	addi     r5, r31, 0x118
-	bl       __ct__7TagParmFP13TagParametersPc
-	lis      r3, "__vt__14PrimTagParm<i>"@ha
-	mr       r4, r30
-	addi     r0, r3, "__vt__14PrimTagParm<i>"@l
-	addi     r3, r30, 0x15c
-	stw      r0, 0x14c(r30)
-	addi     r5, r2, lbl_8052071C@sda21
-	bl       __ct__7TagParmFP13TagParametersPc
-	lis      r3, "__vt__14PrimTagParm<i>"@ha
-	mr       r4, r30
-	addi     r0, r3, "__vt__14PrimTagParm<i>"@l
-	addi     r3, r30, 0x16c
-	stw      r0, 0x15c(r30)
-	addi     r5, r2, lbl_80520720@sda21
-	bl       __ct__7TagParmFP13TagParametersPc
-	lis      r3, "__vt__14PrimTagParm<i>"@ha
-	mr       r4, r30
-	addi     r0, r3, "__vt__14PrimTagParm<i>"@l
-	addi     r3, r30, 0x17c
-	stw      r0, 0x16c(r30)
-	addi     r5, r2, lbl_80520728@sda21
-	bl       __ct__7TagParmFP13TagParametersPc
-	lis      r3, "__vt__14PrimTagParm<i>"@ha
-	mr       r4, r30
-	addi     r0, r3, "__vt__14PrimTagParm<i>"@l
-	addi     r3, r30, 0x18c
-	stw      r0, 0x17c(r30)
-	addi     r5, r31, 0x128
-	bl       __ct__7TagParmFP13TagParametersPc
-	lis      r3, "__vt__14PrimTagParm<i>"@ha
-	mr       r4, r30
-	addi     r0, r3, "__vt__14PrimTagParm<i>"@l
-	addi     r3, r30, 0x19c
-	stw      r0, 0x18c(r30)
-	addi     r5, r2, lbl_80520730@sda21
-	bl       __ct__7TagParmFP13TagParametersPc
-	lis      r3, "__vt__14PrimTagParm<i>"@ha
-	mr       r4, r30
-	addi     r0, r3, "__vt__14PrimTagParm<i>"@l
-	addi     r3, r30, 0x1ac
-	stw      r0, 0x19c(r30)
-	addi     r5, r2, lbl_80520738@sda21
-	bl       __ct__7TagParmFP13TagParametersPc
-	lis      r3, "__vt__14PrimTagParm<i>"@ha
-	mr       r4, r30
-	addi     r0, r3, "__vt__14PrimTagParm<i>"@l
-	addi     r3, r30, 0x1bc
-	stw      r0, 0x1ac(r30)
-	addi     r5, r31, 0x134
-	bl       __ct__7TagParmFP13TagParametersPc
-	lis      r3, "__vt__14PrimTagParm<i>"@ha
-	mr       r4, r30
-	addi     r0, r3, "__vt__14PrimTagParm<i>"@l
-	addi     r3, r30, 0x1cc
-	stw      r0, 0x1bc(r30)
-	addi     r5, r31, 0x140
-	bl       __ct__7TagParmFP13TagParametersPc
-	lis      r3, "__vt__14PrimTagParm<i>"@ha
-	mr       r4, r30
-	addi     r0, r3, "__vt__14PrimTagParm<i>"@l
-	addi     r3, r30, 0x1dc
-	stw      r0, 0x1cc(r30)
-	addi     r5, r31, 0x150
-	bl       __ct__7TagParmFP13TagParametersPc
-	lis      r3, "__vt__14PrimTagParm<i>"@ha
-	mr       r4, r30
-	addi     r0, r3, "__vt__14PrimTagParm<i>"@l
-	addi     r3, r30, 0x1ec
-	stw      r0, 0x1dc(r30)
-	addi     r5, r31, 0x164
-	bl       __ct__7TagParmFP13TagParametersPc
-	lis      r3, "__vt__14PrimTagParm<i>"@ha
-	mr       r4, r30
-	addi     r0, r3, "__vt__14PrimTagParm<i>"@l
-	addi     r3, r30, 0x1fc
-	stw      r0, 0x1ec(r30)
-	addi     r5, r31, 0x174
-	bl       __ct__7TagParmFP13TagParametersPc
-	lis      r3, "__vt__14PrimTagParm<i>"@ha
-	mr       r4, r30
-	addi     r0, r3, "__vt__14PrimTagParm<i>"@l
-	addi     r3, r30, 0x20c
-	stw      r0, 0x1fc(r30)
-	addi     r5, r31, 0x184
-	bl       __ct__7TagParmFP13TagParametersPc
-	lis      r3, "__vt__14PrimTagParm<i>"@ha
-	mr       r4, r30
-	addi     r0, r3, "__vt__14PrimTagParm<i>"@l
-	addi     r3, r30, 0x21c
-	stw      r0, 0x20c(r30)
-	addi     r5, r31, 0x198
-	bl       __ct__7TagParmFP13TagParametersPc
-	lis      r3, "__vt__14PrimTagParm<i>"@ha
-	mr       r4, r30
-	addi     r0, r3, "__vt__14PrimTagParm<i>"@l
-	addi     r3, r30, 0x22c
-	stw      r0, 0x21c(r30)
-	addi     r5, r31, 0x1a4
-	bl       __ct__7TagParmFP13TagParametersPc
-	lis      r3, "__vt__14PrimTagParm<i>"@ha
-	mr       r4, r30
-	addi     r0, r3, "__vt__14PrimTagParm<i>"@l
-	addi     r3, r30, 0x23c
-	stw      r0, 0x22c(r30)
-	addi     r5, r31, 0x1b4
-	bl       __ct__13StringTagParmFP13TagParametersPc
-	mr       r4, r30
-	addi     r3, r30, 0x24c
-	addi     r5, r31, 0x1c0
-	bl       __ct__7TagParmFP13TagParametersPc
-	lis      r3, "__vt__14PrimTagParm<i>"@ha
-	mr       r4, r30
-	addi     r0, r3, "__vt__14PrimTagParm<i>"@l
-	addi     r3, r30, 0x25c
-	stw      r0, 0x24c(r30)
-	addi     r5, r31, 0x1cc
-	bl       __ct__7TagParmFP13TagParametersPc
-	lis      r3, "__vt__14PrimTagParm<i>"@ha
-	mr       r4, r30
-	addi     r0, r3, "__vt__14PrimTagParm<i>"@l
-	addi     r3, r30, 0x26c
-	stw      r0, 0x25c(r30)
-	addi     r5, r2, lbl_8052073C@sda21
-	bl       __ct__7TagParmFP13TagParametersPc
-	lis      r4, "__vt__14PrimTagParm<i>"@ha
-	mr       r3, r30
-	addi     r0, r4, "__vt__14PrimTagParm<i>"@l
-	stw      r0, 0x26c(r30)
-	lwz      r31, 0xc(r1)
-	lwz      r30, 8(r1)
-	lwz      r0, 0x14(r1)
-	mtlr     r0
-	addi     r1, r1, 0x10
-	blr
-	*/
 }
 
 /*
@@ -636,171 +357,59 @@ GameConfig::Parms::Parms(void)
  * Address:	80432770
  * Size:	000128
  */
-void GameConfig::load(char*)
+bool GameConfig::load(char*)
 {
-	/*
-	stwu     r1, -0x10(r1)
-	mflr     r0
-	lis      r3, gGameConfig__4Game@ha
-	addi     r4, r2, lbl_80520744@sda21
-	stw      r0, 0x14(r1)
-	stw      r31, 0xc(r1)
-	addi     r31, r3, gGameConfig__4Game@l
-	lwz      r3, 0x248(r31)
-	bl       strcmp
-	cmpwi    r3, 0
-	bne      lbl_804327AC
-	lwz      r3, sys@sda21(r13)
-	li       r0, 0
-	stw      r0, 0xd4(r3)
-	b        lbl_80432880
-
-lbl_804327AC:
-	lwz      r3, 0x248(r31)
-	addi     r4, r2, lbl_80520748@sda21
-	bl       strcmp
-	cmpwi    r3, 0
-	bne      lbl_804327D0
-	lwz      r3, sys@sda21(r13)
-	li       r0, 1
-	stw      r0, 0xd4(r3)
-	b        lbl_80432880
-
-lbl_804327D0:
-	lwz      r3, 0x248(r31)
-	addi     r4, r2, lbl_8052074C@sda21
-	bl       strcmp
-	cmpwi    r3, 0
-	bne      lbl_804327F4
-	lwz      r3, sys@sda21(r13)
-	li       r0, 2
-	stw      r0, 0xd4(r3)
-	b        lbl_80432880
-
-lbl_804327F4:
-	lwz      r3, 0x248(r31)
-	addi     r4, r2, lbl_80520750@sda21
-	bl       strcmp
-	cmpwi    r3, 0
-	bne      lbl_80432818
-	lwz      r3, sys@sda21(r13)
-	li       r0, 0
-	stw      r0, 0xd4(r3)
-	b        lbl_80432880
-
-lbl_80432818:
-	lwz      r3, 0x248(r31)
-	addi     r4, r2, lbl_80520754@sda21
-	bl       strcmp
-	cmpwi    r3, 0
-	bne      lbl_8043283C
-	lwz      r3, sys@sda21(r13)
-	li       r0, 4
-	stw      r0, 0xd4(r3)
-	b        lbl_80432880
-
-lbl_8043283C:
-	lwz      r3, 0x248(r31)
-	addi     r4, r2, lbl_80520758@sda21
-	bl       strcmp
-	cmpwi    r3, 0
-	bne      lbl_80432860
-	lwz      r3, sys@sda21(r13)
-	li       r0, 5
-	stw      r0, 0xd4(r3)
-	b        lbl_80432880
-
-lbl_80432860:
-	lwz      r3, 0x248(r31)
-	addi     r4, r2, lbl_8052075C@sda21
-	bl       strcmp
-	cmpwi    r3, 0
-	bne      lbl_80432880
-	lwz      r3, sys@sda21(r13)
-	li       r0, 6
-	stw      r0, 0xd4(r3)
-
-lbl_80432880:
-	lwz      r0, 0x14(r1)
-	li       r3, 0
-	lwz      r31, 0xc(r1)
-	mtlr     r0
-	addi     r1, r1, 0x10
-	blr
-	*/
+	if (strcmp(gGameConfig.m_parms.m_language.m_data, "eng") == 0) {
+		sys->m_region = System::LANG_ENGLISH;
+	} else if (strcmp(gGameConfig.m_parms.m_language.m_data, "fra") == 0) {
+		sys->m_region = System::LANG_FRENCH;
+	} else if (strcmp(gGameConfig.m_parms.m_language.m_data, "ger") == 0) {
+		sys->m_region = System::LANG_GERMAN;
+	} else if (strcmp(gGameConfig.m_parms.m_language.m_data, "hol") == 0) {
+		sys->m_region = System::LANG_ENGLISH;
+	} else if (strcmp(gGameConfig.m_parms.m_language.m_data, "ita") == 0) {
+		sys->m_region = System::LANG_ITALIAN;
+	} else if (strcmp(gGameConfig.m_parms.m_language.m_data, "jpn") == 0) {
+		sys->m_region = System::LANG_JAPANESE;
+	} else if (strcmp(gGameConfig.m_parms.m_language.m_data, "spa") == 0) {
+		sys->m_region = System::LANG_SPANISH;
+	}
+	return false;
 }
 
-} // namespace Game
+// /*
+//  * sinit
+//  * --INFO--
+//  * Address:	80432898
+//  * Size:	00003C
+//  */
+// void __sinit_gameConfig_cpp(void)
+// {
+// 	/*
+// 	stwu     r1, -0x10(r1)
+// 	mflr     r0
+// 	lis      r3, gGameConfig__4Game@ha
+// 	stw      r0, 0x14(r1)
+// 	addi     r3, r3, gGameConfig__4Game@l
+// 	bl       __ct__Q24Game10GameConfigFv
+// 	lis      r4, __dt__Q24Game10GameConfigFv@ha
+// 	lis      r5, lbl_804F7C38@ha
+// 	addi     r4, r4, __dt__Q24Game10GameConfigFv@l
+// 	addi     r5, r5, lbl_804F7C38@l
+// 	bl       __register_global_object
+// 	lwz      r0, 0x14(r1)
+// 	mtlr     r0
+// 	addi     r1, r1, 0x10
+// 	blr
+// 	*/
+// }
 
 /*
- * --INFO--
- * Address:	80432898
- * Size:	00003C
- */
-void __sinit_gameConfig_cpp(void)
-{
-	/*
-	stwu     r1, -0x10(r1)
-	mflr     r0
-	lis      r3, gGameConfig__4Game@ha
-	stw      r0, 0x14(r1)
-	addi     r3, r3, gGameConfig__4Game@l
-	bl       __ct__Q24Game10GameConfigFv
-	lis      r4, __dt__Q24Game10GameConfigFv@ha
-	lis      r5, lbl_804F7C38@ha
-	addi     r4, r4, __dt__Q24Game10GameConfigFv@l
-	addi     r5, r5, lbl_804F7C38@l
-	bl       __register_global_object
-	lwz      r0, 0x14(r1)
-	mtlr     r0
-	addi     r1, r1, 0x10
-	blr
-	*/
-}
-
-namespace Game {
-
-/*
+ * __dt__Q24Game10GameConfigFv
  * --INFO--
  * Address:	804328D4
  * Size:	000074
  */
-GameConfig::~GameConfig(void)
-{
-	/*
-	stwu     r1, -0x10(r1)
-	mflr     r0
-	stw      r0, 0x14(r1)
-	stw      r31, 0xc(r1)
-	mr       r31, r4
-	stw      r30, 8(r1)
-	or.      r30, r3, r3
-	beq      lbl_8043292C
-	beq      lbl_8043291C
-	lis      r4, __vt__Q34Game10GameConfig5Parms@ha
-	addi     r0, r4, __vt__Q34Game10GameConfig5Parms@l
-	stw      r0, 0(r30)
-	beq      lbl_8043291C
-	lis      r5, __vt__13TagParameters@ha
-	li       r4, 0
-	addi     r0, r5, __vt__13TagParameters@l
-	stw      r0, 0(r30)
-	bl       __dt__5CNodeFv
+// GameConfig::~GameConfig(void) {}
 
-lbl_8043291C:
-	extsh.   r0, r31
-	ble      lbl_8043292C
-	mr       r3, r30
-	bl       __dl__FPv
-
-lbl_8043292C:
-	lwz      r0, 0x14(r1)
-	mr       r3, r30
-	lwz      r31, 0xc(r1)
-	lwz      r30, 8(r1)
-	mtlr     r0
-	addi     r1, r1, 0x10
-	blr
-	*/
-}
 } // namespace Game
