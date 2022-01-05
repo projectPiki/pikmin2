@@ -8,7 +8,8 @@
 extern "C" {
 #endif // ifdef __cplusplus
 
-typedef struct _DVDPlayer {
+#pragma cplusplus on
+struct DVDPlayer {
 	struct DVDPlayer* _00; // _00
 	struct DVDPlayer* _04; // _04
 	int _08;               // _08
@@ -24,9 +25,10 @@ typedef struct _DVDPlayer {
 	u32 _30;               // _30
 	int m_fileSize;        // _34
 	void* m_func;          // _38
-} DVDPlayer;
+};
+#pragma cplusplus reset
 
-typedef struct _DVDFileInfo {
+typedef struct {
 	u8 _00[0x3C]; // _00
 	void* _3C;    // _3C /* ptr to unknown */
 } DVDFileInfo;
@@ -34,14 +36,15 @@ typedef struct _DVDFileInfo {
 typedef BOOL DVDDoneReadCallback(long, DVDFileInfo*);
 
 // TODO: Incomplete set of functions.
-BOOL DVDOpen(const char*, DVDPlayer*);
-BOOL DVDFastOpen(long, DVDPlayer*);
-BOOL DVDClose(DVDPlayer*);
-int DVDCancel(DVDPlayer*); // Definitely int; returns -1 on failure.
+BOOL DVDOpen(const char*, struct DVDPlayer*);
+BOOL DVDFastOpen(long, struct DVDPlayer*);
+BOOL DVDClose(struct DVDPlayer*);
+int DVDCancel(struct DVDPlayer*); // Definitely int; returns -1 on failure.
 BOOL DVDResume();
-BOOL DVDReadAsyncPrio(DVDPlayer*, void*, long, long, DVDDoneReadCallback*, int);
-BOOL DVDReadAbsAsyncPrio(DVDPlayer*, void*, long, u8*, DVDDoneReadCallback*,
-                         int);
+BOOL DVDReadAsyncPrio(struct DVDPlayer*, void*, long, long,
+                      DVDDoneReadCallback*, int);
+BOOL DVDReadAbsAsyncPrio(struct DVDPlayer*, void*, long, u8*,
+                         DVDDoneReadCallback*, int);
 
 BOOL DVDConvertEntrynumToPath(int, char*);
 int DVDConvertPathToEntrynum(char*);
@@ -53,12 +56,10 @@ int DVDChangeDir(char*); // this might be a BOOL, but the problem there
                          // is it's treated as 4 bytes...
 
 int DVDGetDriveStatus();
-int DVDGetCommandBlockStatus(DVDPlayer*);
+int DVDGetCommandBlockStatus(struct DVDPlayer*);
 
 BOOL __DVDLowTestAlarm(struct OSAlarm*);
-BOOL __DVDPushWaitingQueue(int, DVDPlayer*);
-
-extern u32 ErrorTable[];
+BOOL __DVDPushWaitingQueue(int, struct DVDPlayer*);
 
 u8 ErrorCode2Num(u32);
 void __DVDStoreErrorCode(u32);
