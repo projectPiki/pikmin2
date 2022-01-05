@@ -1,16 +1,33 @@
 #include "types.h"
+#include "JSystem/JPA/JPAShape.h"
+#include "JSystem/JPA/JPAEmitter.h"
 
-/*
-    Generated from dpostproc
-*/
+// TODO: replace GX functions with proper enumerated values
+// also, actually work out the types of JPAEmitterWorkData
 
 /*
  * --INFO--
  * Address:	80090F2C
  * Size:	0000FC
  */
-void JPALoadExTex(JPAEmitterWorkData*)
+u32 JPALoadExTex(JPAEmitterWorkData* data)
 {
+	u32 result = 1;
+
+	u32 flags = data->_04->_28;
+	if (flags & 1) {
+		GXSetTexCoordGen2(1, 1, 4, 60, 0, 125);
+		data->_08->_08->_04[???]->load(2);
+		result = 2;
+	}
+
+	if (flags & 0x100) {
+		GXSetTexCoordGen2(result, 1, 4, 60, 0, 125);
+		// same shit as above, what is this?
+		data->_08->_08->_04[???]->load(3);
+	}
+
+	return result;
 	/*
 	stwu     r1, -0x10(r1)
 	mflr     r0
@@ -87,10 +104,9 @@ lbl_80091010:
  * Address:	80091028
  * Size:	000008
  */
-JPAExTexShape::JPAExTexShape(const unsigned char* a1)
+JPAExTexShape::JPAExTexShape(const u8* data)
+    : m_data(data)
 {
-	// Generated from stw r4, 0x0(r3)
-	_00 = a1;
 }
 
 /*
@@ -98,7 +114,7 @@ JPAExTexShape::JPAExTexShape(const unsigned char* a1)
  * Address:	........
  * Size:	0000D8
  */
-void JPAExTexShape::init_jpa(const unsigned char*, JKRHeap*)
+void JPAExTexShape::init_jpa(const u8*, JKRHeap*)
 {
 	// UNUSED FUNCTION
 }

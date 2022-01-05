@@ -259,7 +259,7 @@ DOLPHIN:=\
 	$(BUILD_DIR)/asm/Dolphin/mpc_7xx_603e.o\
 	$(BUILD_DIR)/asm/Dolphin/__exception.o\
 	$(BUILD_DIR)/asm/Dolphin/dolphin_trk.o\
-	$(BUILD_DIR)/asm/Dolphin/main_TRK.o\
+	$(BUILD_DIR)/src/Dolphin/main_TRK.o\
 	$(BUILD_DIR)/asm/Dolphin/dolphin_trk_glue.o\
 	$(BUILD_DIR)/src/Dolphin/targcont.o\
 	$(BUILD_DIR)/asm/Dolphin/target_options.o\
