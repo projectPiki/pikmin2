@@ -1,8 +1,34 @@
+#include "_Print.h"
 #include "Vector3.h"
 #include "types.h"
 
 #include "TagParm.h"
 #include "Dolphin/string.h"
+
+/*
+ * --INFO--
+ * Address:	........
+ * Size:	00002C
+ */
+void TagParm::read(Stream& input) { doRead(input); }
+
+/*
+ * --INFO--
+ * Address:	........
+ * Size:	000084
+ */
+void TagParm::write(Stream& output)
+{
+	// TODO: There was clearly more to this one, given the length.
+	doWrite(output);
+}
+
+/*
+ * --INFO--
+ * Address:	........
+ * Size:	00002C
+ */
+void TagParm::dump() { doDump(); }
 
 /*
  * --INFO--
@@ -200,6 +226,24 @@ TagParameters::TagParameters(char* name)
 }
 
 /*
+ * @matchedSize
+ * --INFO--
+ * Address:	........
+ * Size:	000048
+ */
+// bool TagParameters::isEndToken(char* token)
+
+/*
+ * --INFO--
+ * Address:	........
+ * Size:	000020
+ */
+void TagParameters::add(TagParm*)
+{
+	// UNUSED FUNCTION
+}
+
+/*
  * --INFO--
  * Address:	8041C09C
  * Size:	000038
@@ -218,6 +262,7 @@ TagParm::TagParm(TagParameters* container, char* name)
 }
 
 /*
+ * TODO: This probably uses isEndToken, but IDK how.
  * --INFO--
  * Address:	8041C0D4
  * Size:	0000D4
@@ -225,9 +270,13 @@ TagParm::TagParm(TagParameters* container, char* name)
 
 void TagParameters::read(Stream& stream)
 {
-	// More cleanup
+	// char* str;
+	// while (str = stream.readString(nullptr, 0), !isEndToken(str)) {
 	while (true) {
-		char* str   = stream.readString(nullptr, 0);
+		char* str = stream.readString(nullptr, 0);
+		// if (isEndToken(str)) {
+		// 	return;
+		// }
 		int strLen  = strlen("end");
 		bool is_end = ((strncmp("end", str, strLen)) == 0);
 		if (is_end)
@@ -246,4 +295,24 @@ void TagParameters::read(Stream& stream)
 			}
 		}
 	}
+}
+
+/*
+ * --INFO--
+ * Address:	........
+ * Size:	0000C8
+ */
+void TagParameters::write(Stream&)
+{
+	// Unused/inlined
+}
+
+/*
+ * --INFO--
+ * Address:	........
+ * Size:	00004C
+ */
+void TagParameters::dump()
+{
+	// Unused/inlined
 }
