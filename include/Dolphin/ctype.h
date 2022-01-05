@@ -6,18 +6,16 @@
 extern "C" {
 #endif // ifdef __cplusplus
 
-enum ctype {
-	CTYPE_CNTRL  = 0x1,
-	CTYPE_SPACE  = 0x2,
-	CTYPE_BLANK  = 0x4,
-	CTYPE_PUNCT  = 0x8,
-	CTYPE_DIGIT  = 0x10,
-	CTYPE_XDIGIT = 0x20,
-	CTYPE_LOWER  = 0x40,
-	CTYPE_UPPER  = 0x80
-};
+#define CTYPE_CNTRL  0x1
+#define CTYPE_SPACE  0x2
+#define CTYPE_BLANK  0x4
+#define CTYPE_PUNCT  0x8
+#define CTYPE_DIGIT  0x10
+#define CTYPE_XDIGIT 0x20
+#define CTYPE_LOWER  0x40
+#define CTYPE_UPPER  0x80
 
-extern enum ctype __ctype_map[256];
+extern unsigned char __ctype_map[256];
 
 inline BOOL isdigit(int c)
 {

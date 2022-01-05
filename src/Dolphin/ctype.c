@@ -1,7 +1,7 @@
 #include "Dolphin/ctype.h"
 #include "types.h"
 
-enum ctype __ctype_map[256] = { CTYPE_CNTRL,
+unsigned char __ctype_map[256] = { CTYPE_CNTRL,
 	                            CTYPE_CNTRL,
 	                            CTYPE_CNTRL,
 	                            CTYPE_CNTRL,
