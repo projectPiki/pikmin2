@@ -25,16 +25,25 @@ extern "C" {
 #define TRK_DISPATCH_CMD_STEP           25 /* Step through an instruction */
 #define TRK_DISPATCH_CMD_STOP           26 /* Stop the debugger */
 
+typedef struct _TRK_Msg {
+	u8 _00[8];       // _00
+	u32 m_msgLength; // _08
+	u32 _0C;         // _0C
+	u32 m_msg;       // _10
+} TRK_Msg;
+
+typedef int TRKResult;
+
 void InitMetroTRK(void);
 void InitMetroTRK_BBA(void);
 void EnableMetroTRKInterrupts(void);
 
-uint TRKTargetContinue(void);
+TRKResult TRKTargetContinue(void);
 void TRKTargetSetStopped(uint);
 
-void TRKMessageSend(void);
+TRKResult TRKMessageSend(TRK_Msg*);
 void TRKSwapAndGo(void);
-BOOL TRKWriteUARTN(const void* bytes, u32 length); /* 0 on success */
+TRKResult TRKWriteUARTN(const void* bytes, u32 length); /* 0 on success */
 
 /* EXI2 */
 #define EXI2_Init(inputFlagPtr, mtrCallback) \

@@ -50,6 +50,12 @@ typedef int BOOL;
 #define nullptr 0
 #endif // ifndef nullptr
 
+// For functions that return 0 on a success and -1 on failure
+#ifndef EXIT_SUCCESS
+#define EXIT_SUCCESS 0
+#define EXIT_FAILURE -1
+#endif // ifndef EXIT_SUCCESS
+
 // Rounds to nearest multiple of 20 upwards and downwards
 #define RoundUp20B(x)   (((u32)(x) + 0x1F) & ~(0x1F))
 #define RoundDown20B(x) (((u32)(x)) & ~(0x1F))
