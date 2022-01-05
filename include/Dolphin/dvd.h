@@ -31,7 +31,7 @@ typedef struct _DVDFileInfo {
 	void* _3C;    // _3C /* ptr to unknown */
 } DVDFileInfo;
 
-typedef BOOL DVDDoneReadCallback(long, struct DVDFileInfo*);
+typedef BOOL DVDDoneReadCallback(long, DVDFileInfo*);
 
 // TODO: Incomplete set of functions.
 BOOL DVDOpen(const char*, DVDPlayer*);

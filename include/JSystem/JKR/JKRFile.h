@@ -73,13 +73,13 @@ struct JKRDvdFile : public JKRFile {
 	JSUFileInputStream* m_inputStream; // _54
 	u32 _58;                           // _58
 	DVDPlayer m_dvdPlayer;             // _5C
-	void* _98;          // _98 /* Gets assigned `this` in initiate. */
-	OSMessageQueue _9C; // _9C
-	OSMessage _BC;      // _BC /* Single msg slot for _9C */
-	OSMessageQueue _C0; // _C0
-	OSMessage _E0;      // _E0 /* Single msg slot for _C0 */
-	JSUPtrLink _E4;     // _E4
-	OSThread* _F4;      // _F4
+	void* _98;                         // _98  Gets assigned `this` in initiate.
+	OSMessageQueue _9C;                // _9C
+	OSMessage _BC;                     // _BC  Single msg slot for _9C
+	OSMessageQueue _C0;                // _C0
+	OSMessage _E0;                     // _E0  Single msg slot for _C0
+	JSUPtrLink _E4;                    // _E4
+	OSThread* _F4;                     // _F4
 
 	static JSUList<JKRDvdFile> sDvdList;
 };
