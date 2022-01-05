@@ -63,7 +63,6 @@ pikmin2.usa.dol: `sha1: 90d328bf8f190c90472e8c19e7e53c6ad0fe0d1a`
 	- <a href="https://github.com/projectPiki/pikmin2/tree/main/src/sysCommonU/node.cpp">sysCommonU/node.cpp</a>
 	- <a href="https://github.com/projectPiki/pikmin2/tree/main/src/sysCommonU/parameters.cpp">sysCommonU/parameters.cpp</a>
 	- <a href="https://github.com/projectPiki/pikmin2/tree/main/src/sysCommonU/sysTemplates.cpp">sysCommonU/sysTemplates.cpp</a>
-	- <a href="https://github.com/projectPiki/pikmin2/tree/main/src/sysCommonU/tagparams_jank.cpp">sysCommonU/tagparams_jank.cpp</a>
 	- <a href="https://github.com/projectPiki/pikmin2/tree/main/src/sysCommonU/tagparams.cpp">sysCommonU/tagparams.cpp</a>
 - utilityU
 - plugProjectKonoU
