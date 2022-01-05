@@ -1,6 +1,5 @@
 #include "Dolphin/trk.h"
 #include "Dolphin/dispatch.h"
-#include "Dolphin/MWTrace.h"
 
 /*
  * --INFO--

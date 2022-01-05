@@ -1,4 +1,4 @@
-
+#include "Dolphin/trk.h"
 
 /*
  * --INFO--
@@ -27,24 +27,4 @@ void TRKMessageSend(void)
 	  addi      r1, r1, 0x10
 	  blr
 	*/
-}
-
-/*
- * --INFO--
- * Address:	........
- * Size:	000008
- */
-void TRKMessageGet(void)
-{
-	// UNUSED FUNCTION
-}
-
-/*
- * --INFO--
- * Address:	........
- * Size:	00002C
- */
-void TRKMessageAdd(void)
-{
-	// UNUSED FUNCTION
 }

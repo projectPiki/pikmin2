@@ -1,11 +1,10 @@
-#include "Dolphin/MWTrace.h"
+#include "Dolphin/trk.h"
 
 /*
  * --INFO--
  * Address:	800C1548
  * Size:	000050
  */
-
 // clang-format off
 asm void MWTRACE(u8, char*, ...)
 {
