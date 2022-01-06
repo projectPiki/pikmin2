@@ -373,7 +373,7 @@ DOLPHIN:=\
 	$(BUILD_DIR)/asm/Dolphin/fstload.o\
 	$(BUILD_DIR)/asm/Dolphin/EXIBios.o\
 	$(BUILD_DIR)/asm/Dolphin/EXIUart.o\
-	$(BUILD_DIR)/asm/Dolphin/GDBase.o\
+	$(BUILD_DIR)/src/Dolphin/GDBase.o\
 	$(BUILD_DIR)/asm/Dolphin/GDGeometry.o\
 	$(BUILD_DIR)/asm/Dolphin/GXInit.o\
 	$(BUILD_DIR)/asm/Dolphin/GXFifo.o\

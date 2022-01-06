@@ -98,6 +98,7 @@ $(BUILD_DIR)/src/Dolphin/__start.o: MWCC_VERSION := 1.0
 $(BUILD_DIR)/src/Dolphin/OSLink.o: MWCC_VERSION := 1.0
 $(BUILD_DIR)/src/Dolphin/PPCArch.o: MWCC_VERSION := 1.0
 $(BUILD_DIR)/src/Dolphin/vec.o: MWCC_VERSION := 1.0
+$(BUILD_DIR)/src/Dolphin/GDBase.o: MWCC_VERSION := 1.0
 
 # Dirty hack to overwrite sdata
 $(BUILD_DIR)/src/Dolphin/main_TRK.o: CFLAGS += -sdata 0
