@@ -68,10 +68,16 @@ enum ScreenOwnerID { OWNER_KH = 'KH', OWNER_OGA = 'OGA', OWNER_MRMR = 'MRMR' };
 enum ScreenMemberID {
 	// MEMBER_FLOOR = (u64)0xFFFFFFFFFFFFFFFE,
 	// MEMBER_DUMMY = 0xFFFFFFFFFFFFFFFF
-	MEMBER_FLOOR            = 'FLOOR',
-	MEMBER_CAVE             = 'CAVE',
-	MEMBER_DUMMY            = 'DUMMY',
-	_MEMBER_FORCE_ULONGLONG = 0xFFFFFFFFFFFFFFF
+	MEMBER_FLOOR                   = 'FLOOR',
+	MEMBER_CAVE                    = 'CAVE',
+	MEMBER_DUMMY                   = 'DUMMY',
+	MEMBER_VS_SELECT               = 'VSSELECT',
+	MEMBER_CHALLENGE_SELECT        = 'CHSELECT',
+	MEMBER_ZUKAN_ENEMY             = 'DENEMY',
+	MEMBER_ZUKAN_ITEM              = 'DITEM',
+	MEMBER_WORLD_MAP_INFO_WINDOW_0 = 'WMapWin0',
+	MEMBER_WORLD_MAP_INFO_WINDOW_1 = 'WMapWin1',
+	_MEMBER_FORCE_ULONGLONG        = 0xFFFFFFFFFFFFFFF
 };
 #pragma longlong_enums reset
 #pragma enumsalwaysint reset

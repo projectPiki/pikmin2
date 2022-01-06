@@ -121,8 +121,18 @@ struct J2DPane {
 	void rotate(float, float, J2DRotateAxis, float);
 	void rotate(float);
 	void updateTransform(const J2DAnmTransform*);
-	void show();
-	void hide();
+
+	/**
+	 * @reifiedAddress{803CA760}
+	 * @reifiedFile{plugProjectEbisawaU/ebi2DGraph.cpp}
+	 */
+	inline void show() { m_isVisible = true; }
+
+	/**
+	 * @reifiedAddress{803CA910}
+	 * @reifiedFile{plugProjectEbisawaU/ebi2DGraph.cpp}
+	 */
+	inline void hide() { m_isVisible = false; };
 
 	void setBasePosition(J2DBasePosition);
 	void setInfluencedAlpha(bool, bool);

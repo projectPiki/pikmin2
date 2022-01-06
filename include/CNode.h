@@ -37,11 +37,11 @@ struct CNode {
 	}
 
 	// _00 vtbl
-	CNode* m_next;   // _04
-	CNode* m_prev;   // _08
-	CNode* m_parent; // _0C
-	CNode* m_child;  // _10
-	char* m_name;    // _14
+	CNode* m_next;      // _04
+	CNode* m_prev;      // _08
+	CNode* m_parent;    // _0C
+	CNode* m_child;     // _10
+	const char* m_name; // _14
 };
 
 #endif

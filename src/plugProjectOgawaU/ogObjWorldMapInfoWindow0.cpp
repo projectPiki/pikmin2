@@ -1,3 +1,20 @@
+#include "Dolphin/os.h"
+#include "Dolphin/stl.h"
+#include "JSystem/J2D/J2DPane.h"
+#include "JSystem/JUT/JUTException.h"
+#include "Morimura/DispMemberChallengeSelect.h"
+#include "Morimura/DispMemberVsSelect.h"
+#include "Morimura/DispMemberZukanEnemy.h"
+#include "Morimura/DispMemberZukanItem.h"
+#include "Screen/Enums.h"
+#include "og/Screen/DispMemberWorldMapInfoWin0.h"
+#include "og/Screen/MenuMgr.h"
+#include "og/Screen/ogScreen.h"
+#include "og/Screen/callbackNodes.h"
+#include "og/Sound.h"
+#include "og/newScreen/ObjWorldMapInfoWindow0.h"
+#include "P2DScreen.h"
+#include "System.h"
 #include "types.h"
 
 /*
@@ -77,6 +94,14 @@
         .float 1.0
 */
 
+// TODO: __FILE__ must appear before "SMenuPauseVS screen" in rodata...? And
+// even more confusing, that string appears before "P2Assert"...
+
+// inline DEFINE__PRINT(__FILE__);
+// const char fakeMatchFile[] = __FILE__;
+// clang-format off
+// inline void fakeMatch_printWMapWin0(const char* text = __FILE__) { OSReport(text); }
+// clang-format on
 namespace og {
 
 namespace newScreen {
@@ -86,43 +111,17 @@ namespace newScreen {
  * Address:	8032B340
  * Size:	000084
  */
-ObjWorldMapInfoWindow0::ObjWorldMapInfoWindow0(char const*)
+ObjWorldMapInfoWindow0::ObjWorldMapInfoWindow0(char const* text)
+    : ObjSMenuPauseVS("SMenuPauseVS screen")
 {
-	/*
-	stwu     r1, -0x10(r1)
-	mflr     r0
-	lis      r5, lbl_8048F5C8@ha
-	stw      r0, 0x14(r1)
-	addi     r0, r5, lbl_8048F5C8@l
-	stw      r31, 0xc(r1)
-	mr       r31, r4
-	mr       r4, r0
-	stw      r30, 8(r1)
-	mr       r30, r3
-	bl       __ct__Q32og9newScreen15ObjSMenuPauseVSFPCc
-	lis      r3, __vt__Q32og9newScreen22ObjWorldMapInfoWindow0@ha
-	li       r0, 0
-	addi     r4, r3, __vt__Q32og9newScreen22ObjWorldMapInfoWindow0@l
-	mr       r3, r30
-	stw      r4, 0(r30)
-	addi     r4, r4, 0x10
-	stw      r4, 0x18(r30)
-	stw      r0, 0xcc(r30)
-	stw      r31, 0x14(r30)
-	stw      r0, 0xb0(r30)
-	stw      r0, 0xb4(r30)
-	stw      r0, 0xb8(r30)
-	stw      r0, 0xbc(r30)
-	stw      r0, 0xd0(r30)
-	lwz      r0, 0xd0(r30)
-	stw      r0, 0xac(r30)
-	lwz      r31, 0xc(r1)
-	lwz      r30, 8(r1)
-	lwz      r0, 0x14(r1)
-	mtlr     r0
-	addi     r1, r1, 0x10
-	blr
-	*/
+	_CC       = nullptr;
+	m_name    = text;
+	_B0       = nullptr;
+	m_menuMgr = nullptr;
+	_B8       = nullptr;
+	_BC       = nullptr;
+	_D0       = 0;
+	_AC       = _D0;
 }
 
 /*
@@ -130,8 +129,47 @@ ObjWorldMapInfoWindow0::ObjWorldMapInfoWindow0(char const*)
  * Address:	8032B3C4
  * Size:	0003C4
  */
-void ObjWorldMapInfoWindow0::doCreate(JKRArchive*)
+void ObjWorldMapInfoWindow0::doCreate(JKRArchive* archive)
 {
+	Screen::DispMemberBase* disp = getDispMember();
+	// clang-format off
+	if (disp->isID(OWNER_OGA, MEMBER_WORLD_MAP_INFO_WINDOW_0)) {
+		_CC = reinterpret_cast<Screen::DispMemberWorldMapInfoWin0*>(disp);
+	} else {
+		if (disp->isID(OWNER_MRMR, MEMBER_VS_SELECT)) {
+			_CC = reinterpret_cast<Morimura::DispMemberVsSelect*>(disp)->m_dispWorldMapInfoWin0;
+		} else {
+			if (disp->isID(OWNER_MRMR, MEMBER_CHALLENGE_SELECT)) {
+				_CC = reinterpret_cast<Morimura::DispMemberChallengeSelect*>(disp)->m_dispWorldMapInfoWin0;
+			} else {
+				if (disp->isID(OWNER_MRMR, MEMBER_ZUKAN_ENEMY)) {
+					_CC = reinterpret_cast<Morimura::DispMemberZukanEnemy*>(disp)->m_dispWorldMapInfoWin0;
+					P2ASSERTLINE(125, _CC != nullptr);
+				} else {
+					P2ASSERTLINE(129, (!disp->isID(OWNER_MRMR, MEMBER_ZUKAN_ITEM) || (_CC = reinterpret_cast<Morimura::DispMemberZukanItem*>(disp)->m_dispWorldMapInfoWin0, _CC != nullptr)));
+				}
+			}
+		}
+	}
+	// clang-format on
+	if (_CC == nullptr) {
+		_CC = new Screen::DispMemberWorldMapInfoWin0();
+	}
+	_B0 = new P2DScreen::Mgr_tuning();
+	_B0->set("info_window.blo", 0x1100000, archive);
+	Screen::TagSearch(_B0, 'Nmenu00')->hide();
+	Screen::TagSearch(_B0, 'Nmenu02')->hide();
+	Screen::setFurikoScreen(_B0);
+	m_menuMgr = new Screen::MenuMgr();
+	m_menuMgr->init2taku(_B0, 'Nm01y', 'Tm01y', 'Pm01y_il', 'Pm01y_ir', 'Nm01n',
+	                     'Tm01n', 'Pm01n_il', 'Pm01n_ir');
+	_B0->search('Tm01y')->m_messageID = _CC->_10;
+	_B0->search('Tm01n')->m_messageID = _CC->_18;
+	Screen::setCallBackMessage(_B0);
+	_B8 = Screen::setMenuScreen(archive, _B0, 'Tm01y');
+	_BC = Screen::setMenuScreen(archive, _B0, 'Tm01n');
+	_B8->open(0.5f);
+	_BC->open(0.6f);
 	/*
 	stwu     r1, -0x40(r1)
 	mflr     r0
@@ -400,45 +438,17 @@ lbl_8032B630:
  * Address:	8032B788
  * Size:	00008C
  */
-void ObjWorldMapInfoWindow0::doStart(Screen::StartSceneArg const*)
+bool ObjWorldMapInfoWindow0::doStart(::Screen::StartSceneArg const*)
 {
-	/*
-	stwu     r1, -0x10(r1)
-	mflr     r0
-	stw      r0, 0x14(r1)
-	stw      r31, 0xc(r1)
-	mr       r31, r3
-	lwz      r3, 0xcc(r3)
-	lbz      r0, 0x21(r3)
-	stw      r0, 0xd0(r31)
-	lwz      r0, 0xd0(r31)
-	lwz      r3, 0xb4(r31)
-	clrlwi   r4, r0, 0x10
-	bl       initSelNum__Q32og6Screen7MenuMgrFUs
-	lwz      r0, 0xd0(r31)
-	mr       r3, r31
-	stw      r0, 0xac(r31)
-	lwz      r4, 0xac(r31)
-	bl       blink_Menu__Q32og9newScreen15ObjSMenuPauseVSFi
-	lwz      r3, ogSound__2og@sda21(r13)
-	bl       setOpenWMapMenu__Q22og5SoundFv
-	lis      r5, 0x6B6F3030@ha
-	lis      r4, 0x66757269@ha
-	lwz      r3, 0xb0(r31)
-	addi     r6, r5, 0x6B6F3030@l
-	addi     r5, r4, 0x66757269@l
-	bl       getFurikoPtr__Q22og6ScreenFPQ29P2DScreen3MgrUx
-	bl       stop__Q32og6Screen15CallBack_FurikoFv
-	mr       r3, r31
-	li       r4, 0
-	bl start_LR__Q32og9newScreen12ObjSMenuBaseFPCQ26Screen13StartSceneArg
-	lwz      r0, 0x14(r1)
-	li       r3, 1
-	lwz      r31, 0xc(r1)
-	mtlr     r0
-	addi     r1, r1, 0x10
-	blr
-	*/
+	_D0 = _CC->_21;
+	m_menuMgr->initSelNum(_D0);
+	_AC = _D0;
+	blink_Menu(_AC);
+	ogSound.setOpenWMapMenu();
+
+	Screen::getFurikoPtr(_B0, 'furiko00')->stop();
+	start_LR(nullptr);
+	return true;
 }
 
 /*
@@ -446,48 +456,16 @@ void ObjWorldMapInfoWindow0::doStart(Screen::StartSceneArg const*)
  * Address:	8032B814
  * Size:	000090
  */
-void ObjWorldMapInfoWindow0::doUpdateFadein(void)
+bool ObjWorldMapInfoWindow0::doUpdateFadein()
 {
-	/*
-	stwu     r1, -0x10(r1)
-	mflr     r0
-	stw      r0, 0x14(r1)
-	stw      r31, 0xc(r1)
-	stw      r30, 8(r1)
-	mr       r30, r3
-	lwz      r12, 0(r3)
-	lwz      r12, 0xa4(r12)
-	mtctr    r12
-	bctrl
-	lwz      r4, sys@sda21(r13)
-	lis      r3, msBaseVal__Q32og9newScreen12ObjSMenuBase@ha
-	lfs      f1, 0x44(r30)
-	addi     r3, r3, msBaseVal__Q32og9newScreen12ObjSMenuBase@l
-	lfs      f0, 0x54(r4)
-	li       r31, 0
-	fadds    f0, f1, f0
-	stfs     f0, 0x44(r30)
-	lfs      f1, 0x44(r30)
-	lfs      f2, 8(r3)
-	fcmpo    cr0, f1, f2
-	ble      lbl_8032B870
-	li       r31, 1
-
-lbl_8032B870:
-	bl       calcSmooth0to1__Q22og6ScreenFff
-	lfs      f2, lbl_8051DF14@sda21(r2)
-	mr       r3, r31
-	lfs      f0, lbl_8051DF10@sda21(r2)
-	fsubs    f1, f2, f1
-	fmuls    f0, f0, f1
-	stfs     f0, 0x40(r30)
-	lwz      r31, 0xc(r1)
-	lwz      r30, 8(r1)
-	lwz      r0, 0x14(r1)
-	mtlr     r0
-	addi     r1, r1, 0x10
-	blr
-	*/
+	commonUpdate();
+	_44 += sys->m_secondsPerFrame;
+	bool result = false;
+	if (_44 > msBaseVal._08) {
+		result = true;
+	}
+	_40 = (1.0f - Screen::calcSmooth0to1(_44, msBaseVal._08)) * 800.0f;
+	return result;
 }
 
 /*
@@ -495,43 +473,17 @@ lbl_8032B870:
  * Address:	8032B8A4
  * Size:	000020
  */
-void ObjWorldMapInfoWindow0::commonUpdate(void)
-{
-	/*
-	stwu     r1, -0x10(r1)
-	mflr     r0
-	stw      r0, 0x14(r1)
-	bl       commonUpdate__Q32og9newScreen15ObjSMenuPauseVSFv
-	lwz      r0, 0x14(r1)
-	mtlr     r0
-	addi     r1, r1, 0x10
-	blr
-	*/
-}
+void ObjWorldMapInfoWindow0::commonUpdate() { ObjSMenuPauseVS::commonUpdate(); }
 
 /*
  * --INFO--
  * Address:	8032B8C4
  * Size:	000038
  */
-void ObjWorldMapInfoWindow0::out_cancel(void)
+void ObjWorldMapInfoWindow0::out_cancel()
 {
-	/*
-	stwu     r1, -0x10(r1)
-	mflr     r0
-	stw      r0, 0x14(r1)
-	li       r0, 0
-	lwz      r4, 0xcc(r3)
-	stw      r0, 8(r4)
-	lwz      r12, 0(r3)
-	lwz      r12, 0x84(r12)
-	mtctr    r12
-	bctrl
-	lwz      r0, 0x14(r1)
-	mtlr     r0
-	addi     r1, r1, 0x10
-	blr
-	*/
+	_CC->_08 = 0;
+	out_L();
 }
 
 /*
@@ -539,24 +491,10 @@ void ObjWorldMapInfoWindow0::out_cancel(void)
  * Address:	8032B8FC
  * Size:	000038
  */
-void ObjWorldMapInfoWindow0::out_menu_0(void)
+void ObjWorldMapInfoWindow0::out_menu_0()
 {
-	/*
-	stwu     r1, -0x10(r1)
-	mflr     r0
-	stw      r0, 0x14(r1)
-	li       r0, 0
-	lwz      r4, 0xcc(r3)
-	stw      r0, 8(r4)
-	lwz      r12, 0(r3)
-	lwz      r12, 0x84(r12)
-	mtctr    r12
-	bctrl
-	lwz      r0, 0x14(r1)
-	mtlr     r0
-	addi     r1, r1, 0x10
-	blr
-	*/
+	_CC->_08 = 0;
+	out_L();
 }
 
 /*
@@ -564,24 +502,10 @@ void ObjWorldMapInfoWindow0::out_menu_0(void)
  * Address:	8032B934
  * Size:	000038
  */
-void ObjWorldMapInfoWindow0::out_menu_1(void)
+void ObjWorldMapInfoWindow0::out_menu_1()
 {
-	/*
-	stwu     r1, -0x10(r1)
-	mflr     r0
-	stw      r0, 0x14(r1)
-	li       r0, 1
-	lwz      r4, 0xcc(r3)
-	stw      r0, 8(r4)
-	lwz      r12, 0(r3)
-	lwz      r12, 0x84(r12)
-	mtctr    r12
-	bctrl
-	lwz      r0, 0x14(r1)
-	mtlr     r0
-	addi     r1, r1, 0x10
-	blr
-	*/
+	_CC->_08 = 1;
+	out_L();
 }
 
 /*
@@ -589,7 +513,7 @@ void ObjWorldMapInfoWindow0::out_menu_1(void)
  * Address:	8032B96C
  * Size:	00000C
  */
-void ObjWorldMapInfoWindow0::out_L(void)
+void ObjWorldMapInfoWindow0::out_L()
 {
 	// Generated from stw r0, 0x38(r3)
 	_38 = 2;
@@ -600,46 +524,12 @@ void ObjWorldMapInfoWindow0::out_L(void)
  * Address:	8032B978
  * Size:	000088
  */
-void ObjWorldMapInfoWindow0::doUpdateFadeoutFinish(void)
+void ObjWorldMapInfoWindow0::doUpdateFadeoutFinish()
 {
-	/*
-	stwu     r1, -0x10(r1)
-	mflr     r0
-	stw      r0, 0x14(r1)
-	stw      r31, 0xc(r1)
-	mr       r31, r3
-	lwz      r12, 0(r3)
-	lwz      r12, 0xb4(r12)
-	mtctr    r12
-	bctrl
-	mr       r4, r3
-	mr       r3, r31
-	bl       setFinishState__Q32og9newScreen12ObjSMenuBaseFl
-	mr       r3, r31
-	lwz      r12, 0(r31)
-	lwz      r12, 0xb4(r12)
-	mtctr    r12
-	bctrl
-	cmpwi    r3, 0
-	bne      lbl_8032B9EC
-	mr       r3, r31
-	lwz      r12, 0(r31)
-	lwz      r12, 0x30(r12)
-	mtctr    r12
-	bctrl
-	li       r4, 0
-	li       r5, 0
-	li       r6, 0
-	li       r7, 0
-	bl       setColorBG__Q26Screen9SceneBaseFUcUcUcUc
-
-lbl_8032B9EC:
-	lwz      r0, 0x14(r1)
-	lwz      r31, 0xc(r1)
-	mtlr     r0
-	addi     r1, r1, 0x10
-	blr
-	*/
+	setFinishState(getResult());
+	if (!getResult()) {
+		getOwner()->setColorBG(0, 0, 0, 0);
+	}
 }
 
 /*
@@ -647,106 +537,69 @@ lbl_8032B9EC:
  * Address:	8032BA00
  * Size:	00000C
  */
-void ObjWorldMapInfoWindow0::getResult(void)
-{
-	/*
-	lwz      r3, 0xcc(r3)
-	lwz      r3, 8(r3)
-	blr
-	*/
-}
+int ObjWorldMapInfoWindow0::getResult() { return _CC->_08; }
 
-/*
- * --INFO--
- * Address:	8032BA0C
- * Size:	000068
- */
-ObjWorldMapInfoWindow0::~ObjWorldMapInfoWindow0(void)
-{
-	/*
-	stwu     r1, -0x10(r1)
-	mflr     r0
-	stw      r0, 0x14(r1)
-	stw      r31, 0xc(r1)
-	mr       r31, r4
-	stw      r30, 8(r1)
-	or.      r30, r3, r3
-	beq      lbl_8032BA58
-	lis      r5, __vt__Q32og9newScreen22ObjWorldMapInfoWindow0@ha
-	li       r4, 0
-	addi     r5, r5, __vt__Q32og9newScreen22ObjWorldMapInfoWindow0@l
-	stw      r5, 0(r30)
-	addi     r0, r5, 0x10
-	stw      r0, 0x18(r30)
-	bl       __dt__Q32og9newScreen15ObjSMenuPauseVSFv
-	extsh.   r0, r31
-	ble      lbl_8032BA58
-	mr       r3, r30
-	bl       __dl__FPv
-
-lbl_8032BA58:
-	lwz      r0, 0x14(r1)
-	mr       r3, r30
-	lwz      r31, 0xc(r1)
-	lwz      r30, 8(r1)
-	mtlr     r0
-	addi     r1, r1, 0x10
-	blr
-	*/
-}
-
-namespace Screen {
-
-} // namespace Screen
-
-/*
- * --INFO--
- * Address:	8032BA74
- * Size:	000008
- */
-u32 DispMemberWorldMapInfoWin0::getSize(void) { return 0x28; }
-
-/*
- * --INFO--
- * Address:	8032BA7C
- * Size:	00000C
- */
-void DispMemberWorldMapInfoWin0::getOwnerID(void)
-{
-	/*
-lis      r3, 0x004F4741@ha
-addi     r3, r3, 0x004F4741@l
-blr
-	*/
-}
-
-/*
- * --INFO--
- * Address:	8032BA88
- * Size:	000014
- */
-void DispMemberWorldMapInfoWin0::getMemberID(void)
-{
-	/*
-lis      r4, 0x57696E30@ha
-lis      r3, 0x574D6170@ha
-addi     r4, r4, 0x57696E30@l
-addi     r3, r3, 0x574D6170@l
-blr
-	*/
-}
-
-/*
- * --INFO--
- * Address:	8032BA9C
- * Size:	000008
- */
-@24 @og::newScreen::ObjWorldMapInfoWindow0::~ObjWorldMapInfoWindow0(void)
-{
-	/*
-addi     r3, r3, -24
-b        __dt__Q32og9newScreen22ObjWorldMapInfoWindow0Fv
-	*/
-}
+// /*
+//  * __dt
+//  * --INFO--
+//  * Address:	8032BA0C
+//  * Size:	000068
+//  */
+// ObjWorldMapInfoWindow0::~ObjWorldMapInfoWindow0()
+// {
+// }
 } // namespace newScreen
 } // namespace og
+
+// namespace Screen {
+
+// /*
+//  * --INFO--
+//  * Address:	8032BA74
+//  * Size:	000008
+//  */
+// u32 DispMemberWorldMapInfoWin0::getSize(void) { return 0x28; }
+
+// /*
+//  * --INFO--
+//  * Address:	8032BA7C
+//  * Size:	00000C
+//  */
+// void DispMemberWorldMapInfoWin0::getOwnerID(void)
+// {
+// 	/*
+// lis      r3, 0x004F4741@ha
+// addi     r3, r3, 0x004F4741@l
+// blr
+// 	*/
+// }
+
+// /*
+//  * --INFO--
+//  * Address:	8032BA88
+//  * Size:	000014
+//  */
+// void DispMemberWorldMapInfoWin0::getMemberID(void)
+// {
+// 	/*
+// lis      r4, 0x57696E30@ha
+// lis      r3, 0x574D6170@ha
+// addi     r4, r4, 0x57696E30@l
+// addi     r3, r3, 0x574D6170@l
+// blr
+// 	*/
+// }
+
+// /*
+//  * --INFO--
+//  * Address:	8032BA9C
+//  * Size:	000008
+//  */
+// @24 @og::newScreen::ObjWorldMapInfoWindow0::~ObjWorldMapInfoWindow0(void)
+// {
+// 	/*
+// addi     r3, r3, -24
+// b        __dt__Q32og9newScreen22ObjWorldMapInfoWindow0Fv
+// 	*/
+// }
+// } // namespace Screen

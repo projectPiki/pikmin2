@@ -21,6 +21,7 @@ struct Mgr;
 namespace og {
 namespace Screen {
 struct AnimGroup;
+struct AnimText_Screen;
 struct CallBack_CounterDay;
 struct CallBack_CounterRV;
 struct CallBack_CounterSlot;
@@ -82,7 +83,7 @@ CallBack_Picture* setCallBack_Picture(JKRArchive*, char*, u64, P2DScreen::Mgr*,
 void setCallBackMessage(P2DScreen::Mgr*);
 void setCallBackMessageSub(P2DScreen::Mgr*, J2DPane*);
 void setFurikoScreen(P2DScreen::Mgr*);
-void setMenuScreen(JKRArchive*, P2DScreen::Mgr*, u64);
+AnimText_Screen* setMenuScreen(JKRArchive*, P2DScreen::Mgr*, u64);
 void setMenuTitleScreen(JKRArchive*, P2DScreen::Mgr*, u64);
 void setP2DScreen(char*, u32, JKRArchive*);
 J2DPane* TagSearch(J2DScreen*, u64);
@@ -90,6 +91,10 @@ void TagToHex(u64, char*);
 void TagToName(u64, char*);
 
 struct DispMemberBase {
+	inline DispMemberBase()
+	    : m_subMember(nullptr)
+	{
+	}
 	virtual u32 getSize()     = 0;    // _00
 	virtual u32 getOwnerID()  = 0;    // _04
 	virtual u64 getMemberID() = 0;    // _08

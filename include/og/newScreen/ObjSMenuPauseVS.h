@@ -15,6 +15,8 @@ namespace newScreen {
  * @size{0xCC}
  */
 struct ObjSMenuPauseVS : public ObjSMenuBase {
+	ObjSMenuPauseVS(char const* text);
+
 	virtual ~ObjSMenuPauseVS();                           // _00
 	virtual bool doStart(const ::Screen::StartSceneArg*); // _3C
 	virtual bool doEnd(const ::Screen::EndSceneArg*);     // _40
@@ -38,13 +40,13 @@ struct ObjSMenuPauseVS : public ObjSMenuBase {
 	virtual void out_cancel();                            // _A0
 	virtual void out_menu_0();                            // _A4
 	virtual void out_menu_1();                            // _A8
-	virtual void getResult();                             // _AC
+	virtual int getResult();                              // _AC
 
 	void blink_Menu(int);
 
 	Screen::DispMemberSMenuPauseVS* m_disp; // _A8
 	int _AC;                                // _AC
-	J2DScreen* _B0;                         // _B0
+	P2DScreen::Mgr* _B0;                    // _B0
 	Screen::MenuMgr* m_menuMgr;             // _B4
 	Screen::AnimText_Screen* _B8;           // _B8
 	Screen::AnimText_Screen* _BC;           // _BC

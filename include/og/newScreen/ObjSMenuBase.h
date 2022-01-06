@@ -38,6 +38,9 @@ struct ObjSMenuBase : public ::Screen::ObjBase {
 	virtual void updateFadeOut();            // _98
 	virtual void commonUpdate() = 0;         // _9C
 
+	bool start_LR(::Screen::StartSceneArg const*);
+	void setFinishState(long);
+
 	int _38;                                    // _38
 	int _3C;                                    // _3C
 	float _40;                                  // _40
@@ -65,6 +68,20 @@ struct ObjSMenuBase : public ::Screen::ObjBase {
 	P2DScreen::Mgr* m_screenMgr;                // _9C
 	J2DPane* m_Nsize;                           // _A0
 	float _A4;                                  // _A4
+
+	static struct StaticValues {
+		u32 _00;   // _00
+		float _04; // _04
+		float _08; // _08
+		float _0C; // _0C
+		float _10; // _10
+		u8 _14;    // _14
+		u8 _15;    // _15
+		u8 _16;    // _16
+		u8 _17;    // _17
+		u8 _18;    // _18
+		u8 _19;    // _19
+	} msBaseVal;
 };
 } // namespace newScreen
 } // namespace og

@@ -12,7 +12,11 @@ namespace newScreen {
 struct ObjWorldMapInfoWindow0 : public ObjSMenuPauseVS {
 	ObjWorldMapInfoWindow0(const char*);
 
-	virtual ~ObjWorldMapInfoWindow0();                    // _00
+	/**
+	 * @reifiedAddress{8032BA0C}
+	 * @reifiedFile{plugProjectOgawaU/ogObjWorldMapInfoWindow0.cpp}
+	 */
+	virtual ~ObjWorldMapInfoWindow0() { }                 // _00
 	virtual bool doStart(const ::Screen::StartSceneArg*); // _3C
 	virtual void doCreate(JKRArchive*);                   // _44
 	virtual bool doUpdateFadein();                        // _48
@@ -22,7 +26,7 @@ struct ObjWorldMapInfoWindow0 : public ObjSMenuPauseVS {
 	virtual void out_cancel();                            // _A0
 	virtual void out_menu_0();                            // _A4
 	virtual void out_menu_1();                            // _A8
-	virtual void getResult();                             // _AC
+	virtual int getResult();                              // _AC
 
 	Screen::DispMemberWorldMapInfoWin0* _CC; // _CC
 	u32 _D0;                                 // _D0
