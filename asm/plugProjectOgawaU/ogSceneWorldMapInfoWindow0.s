@@ -54,8 +54,7 @@ lbl_8048F624:
 
 .section .data, "wa"  # 0x8049E220 - 0x804EFC20
 .balign 0x8
-.global lbl_804D9E20
-lbl_804D9E20:
+govNAN___Q24Game5P2JST:
 	.4byte 0x00000000
 	.4byte 0x00000000
 	.4byte 0x00000000
@@ -85,11 +84,9 @@ __vt__Q32og9newScreen19WorldMapInfoWindow0:
 
 .section .sbss # 0x80514D80 - 0x80516360
 .balign 0x8
-.global lbl_80515EA0
-lbl_80515EA0:
+gu32NAN___Q24Game5P2JST:
 	.skip 0x4
-.global lbl_80515EA4
-lbl_80515EA4:
+gfNAN___Q24Game5P2JST:
 	.skip 0x4
 
 .section .text, "ax"  # 0x800056C0 - 0x80472F00
@@ -220,10 +217,10 @@ __sinit_ogSceneWorldMapInfoWindow0_cpp:
 /* 8032BC20 00328B60  3C 80 80 51 */	lis r4, __float_nan@ha
 /* 8032BC24 00328B64  38 00 FF FF */	li r0, -1
 /* 8032BC28 00328B68  C0 04 48 B0 */	lfs f0, __float_nan@l(r4)
-/* 8032BC2C 00328B6C  3C 60 80 4E */	lis r3, lbl_804D9E20@ha
-/* 8032BC30 00328B70  90 0D 98 20 */	stw r0, lbl_80515EA0@sda21(r13)
-/* 8032BC34 00328B74  D4 03 9E 20 */	stfsu f0, lbl_804D9E20@l(r3)
-/* 8032BC38 00328B78  D0 0D 98 24 */	stfs f0, lbl_80515EA4@sda21(r13)
+/* 8032BC2C 00328B6C  3C 60 80 4E */	lis r3, govNAN___Q24Game5P2JST@ha
+/* 8032BC30 00328B70  90 0D 98 20 */	stw r0, gu32NAN___Q24Game5P2JST@sda21(r13)
+/* 8032BC34 00328B74  D4 03 9E 20 */	stfsu f0, govNAN___Q24Game5P2JST@l(r3)
+/* 8032BC38 00328B78  D0 0D 98 24 */	stfs f0, gfNAN___Q24Game5P2JST@sda21(r13)
 /* 8032BC3C 00328B7C  D0 03 00 04 */	stfs f0, 4(r3)
 /* 8032BC40 00328B80  D0 03 00 08 */	stfs f0, 8(r3)
 /* 8032BC44 00328B84  4E 80 00 20 */	blr 
