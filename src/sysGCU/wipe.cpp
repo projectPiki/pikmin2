@@ -1,4 +1,9 @@
+#include "Graphics.h"
+#include "JSystem/JGeometry.h"
+#include "JSystem/JUtility.h"
+#include "System.h"
 #include "types.h"
+#include "wipe.h"
 
 /*
     Generated from dpostproc
@@ -119,32 +124,12 @@
  * Size:	00005C
  */
 WipeBase::WipeBase()
+    : CNode()
 {
-	/*
-	stwu     r1, -0x10(r1)
-	mflr     r0
-	stw      r0, 0x14(r1)
-	stw      r31, 0xc(r1)
-	mr       r31, r3
-	bl       __ct__5CNodeFv
-	lis      r3, __vt__8WipeBase@ha
-	lfs      f1, lbl_805205E8@sda21(r2)
-	addi     r0, r3, __vt__8WipeBase@l
-	lfs      f0, lbl_805205EC@sda21(r2)
-	stw      r0, 0(r31)
-	li       r4, 0
-	li       r0, 1
-	mr       r3, r31
-	stfs     f1, 0x18(r31)
-	stfs     f0, 0x1c(r31)
-	stb      r4, 0x20(r31)
-	stb      r0, 0x21(r31)
-	lwz      r31, 0xc(r1)
-	lwz      r0, 0x14(r1)
-	mtlr     r0
-	addi     r1, r1, 0x10
-	blr
-	*/
+	_18 = 0.0f;
+	_1C = 1.0f;
+	_20 = false;
+	_21 = 1;
 }
 
 /*
@@ -152,34 +137,20 @@ WipeBase::WipeBase()
  * Address:	8042BD68
  * Size:	000040
  */
-void WipeBase::start(float)
+void WipeBase::start(float p1)
 {
-	/*
-	stwu     r1, -0x10(r1)
-	mflr     r0
-	lfs      f0, lbl_805205E8@sda21(r2)
-	stw      r0, 0x14(r1)
-	li       r0, 1
-	stfs     f0, 0x18(r3)
-	stfs     f1, 0x1c(r3)
-	stb      r0, 0x20(r3)
-	lwz      r12, 0(r3)
-	lwz      r12, 0x20(r12)
-	mtctr    r12
-	bctrl
-	lwz      r0, 0x14(r1)
-	mtlr     r0
-	addi     r1, r1, 0x10
-	blr
-	*/
+	_18 = 0.0f;
+	_1C = p1;
+	_20 = true;
+	on_start();
 }
 
-/*
- * --INFO--
- * Address:	8042BDA8
- * Size:	000004
- */
-void WipeBase::on_start() { }
+// /*
+//  * --INFO--
+//  * Address:	8042BDA8
+//  * Size:	000004
+//  */
+// void WipeBase::on_start() { }
 
 /*
  * --INFO--
@@ -188,40 +159,13 @@ void WipeBase::on_start() { }
  */
 void WipeBase::update()
 {
-	/*
-	stwu     r1, -0x10(r1)
-	mflr     r0
-	stw      r0, 0x14(r1)
-	stw      r31, 0xc(r1)
-	mr       r31, r3
-	lwz      r12, 0(r3)
-	lwz      r12, 0x14(r12)
-	mtctr    r12
-	bctrl
-	lbz      r0, 0x20(r31)
-	cmplwi   r0, 0
-	beq      lbl_8042BE10
-	lwz      r3, sys@sda21(r13)
-	lfs      f0, 0x1c(r31)
-	lfs      f1, 0x54(r3)
-	lfs      f2, 0x18(r31)
-	fdivs    f1, f1, f0
-	lfs      f0, lbl_805205EC@sda21(r2)
-	fadds    f1, f2, f1
-	stfs     f1, 0x18(r31)
-	lfs      f1, 0x18(r31)
-	fcmpo    cr0, f1, f0
-	cror     2, 1, 2
-	bne      lbl_8042BE10
-	stfs     f0, 0x18(r31)
-
-lbl_8042BE10:
-	lwz      r0, 0x14(r1)
-	lwz      r31, 0xc(r1)
-	mtlr     r0
-	addi     r1, r1, 0x10
-	blr
-	*/
+	draw();
+	if (_20) {
+		_18 += sys->m_secondsPerFrame / _1C;
+		if (_18 >= 1.0f) {
+			_18 = 1.0f;
+		}
+	}
 }
 
 /*
@@ -231,119 +175,52 @@ lbl_8042BE10:
  */
 void WipeBase::draw()
 {
-	/*
-	stwu     r1, -0x10(r1)
-	mflr     r0
-	stw      r0, 0x14(r1)
-	stw      r31, 0xc(r1)
-	mr       r31, r3
-	lbz      r0, 0x20(r3)
-	cmplwi   r0, 0
-	beq      lbl_8042BE70
-	lwz      r12, 0(r3)
-	lfs      f1, 0x18(r31)
-	lwz      r12, 0x24(r12)
-	mtctr    r12
-	bctrl
-	lfs      f1, lbl_805205EC@sda21(r2)
-	lfs      f0, 0x18(r31)
-	fcmpu    cr0, f1, f0
-	bne      lbl_8042BE70
-	li       r0, 0
-	stb      r0, 0x20(r31)
-
-lbl_8042BE70:
-	lwz      r0, 0x14(r1)
-	lwz      r31, 0xc(r1)
-	mtlr     r0
-	addi     r1, r1, 0x10
-	blr
-	*/
+	if (_20) {
+		do_draw(_18);
+		if (_18 == 1.0f) {
+			_20 = false;
+		}
+	}
 }
 
-/*
- * --INFO--
- * Address:	8042BE84
- * Size:	000004
- */
-void WipeBase::do_draw(float) { }
+// /*
+//  * --INFO--
+//  * Address:	8042BE84
+//  * Size:	000004
+//  */
+// void WipeBase::do_draw(float) { }
 
 /*
  * --INFO--
  * Address:	8042BE88
  * Size:	000018
  */
-void WipeInFader::isWhite()
-{
-	/*
-	lfs      f1, 0x18(r3)
-	lfs      f0, lbl_805205F0@sda21(r2)
-	fcmpo    cr0, f1, f0
-	mfcr     r0
-	rlwinm   r3, r0, 2, 0x1f, 0x1f
-	blr
-	*/
-}
+bool WipeInFader::isWhite() { return _18 > 0.5f; }
 
 /*
  * --INFO--
  * Address:	8042BEA0
  * Size:	000018
  */
-void WipeInFader::isBlack()
-{
-	/*
-	lfs      f1, 0x18(r3)
-	lfs      f0, lbl_805205F0@sda21(r2)
-	fcmpo    cr0, f1, f0
-	mfcr     r0
-	srwi     r3, r0, 0x1f
-	blr
-	*/
-}
+bool WipeInFader::isBlack() { return _18 < 0.5f; }
 
 /*
+ * __ct__11WipeInFaderFv
  * --INFO--
  * Address:	8042BEB8
  * Size:	000078
  */
 WipeInFader::WipeInFader()
+    : WipeBase()
 {
-	/*
-	stwu     r1, -0x10(r1)
-	mflr     r0
-	stw      r0, 0x14(r1)
-	stw      r31, 0xc(r1)
-	mr       r31, r3
-	bl       __ct__5CNodeFv
-	lis      r4, __vt__8WipeBase@ha
-	lis      r3, __vt__11WipeInFader@ha
-	addi     r0, r4, __vt__8WipeBase@l
-	lfs      f1, lbl_805205E8@sda21(r2)
-	stw      r0, 0(r31)
-	li       r5, 0
-	lfs      f0, lbl_805205EC@sda21(r2)
-	li       r4, 1
-	stfs     f1, 0x18(r31)
-	addi     r0, r3, __vt__11WipeInFader@l
-	mr       r3, r31
-	stfs     f0, 0x1c(r31)
-	stb      r5, 0x20(r31)
-	stb      r4, 0x21(r31)
-	stw      r0, 0(r31)
-	stb      r5, 0x24(r31)
-	stb      r5, 0x25(r31)
-	stb      r5, 0x26(r31)
-	stb      r5, 0x27(r31)
-	lwz      r31, 0xc(r1)
-	lwz      r0, 0x14(r1)
-	mtlr     r0
-	addi     r1, r1, 0x10
-	blr
-	*/
+	_24.channels.r = 0;
+	_24.channels.g = 0;
+	_24.channels.b = 0;
+	_24.channels.a = 0;
 }
 
 /*
+ * do_draw__11WipeInFaderFf
  * --INFO--
  * Address:	8042BF30
  * Size:	000144
@@ -441,44 +318,18 @@ setColor__14J2DGrafContextFQ28JUtility6TColorQ28JUtility6TColorQ28JUtility6TColo
 }
 
 /*
+ * __ct__12WipeOutFaderFv
  * --INFO--
  * Address:	8042C074
  * Size:	000078
  */
 WipeOutFader::WipeOutFader()
+    : WipeBase()
 {
-	/*
-	stwu     r1, -0x10(r1)
-	mflr     r0
-	stw      r0, 0x14(r1)
-	stw      r31, 0xc(r1)
-	mr       r31, r3
-	bl       __ct__5CNodeFv
-	lis      r4, __vt__8WipeBase@ha
-	lis      r3, __vt__12WipeOutFader@ha
-	addi     r0, r4, __vt__8WipeBase@l
-	lfs      f1, lbl_805205E8@sda21(r2)
-	stw      r0, 0(r31)
-	li       r5, 0
-	lfs      f0, lbl_805205EC@sda21(r2)
-	li       r4, 1
-	stfs     f1, 0x18(r31)
-	addi     r0, r3, __vt__12WipeOutFader@l
-	mr       r3, r31
-	stfs     f0, 0x1c(r31)
-	stb      r5, 0x20(r31)
-	stb      r4, 0x21(r31)
-	stw      r0, 0(r31)
-	stb      r5, 0x24(r31)
-	stb      r5, 0x25(r31)
-	stb      r5, 0x26(r31)
-	stb      r5, 0x27(r31)
-	lwz      r31, 0xc(r1)
-	lwz      r0, 0x14(r1)
-	mtlr     r0
-	addi     r1, r1, 0x10
-	blr
-	*/
+	_24.channels.r = 0;
+	_24.channels.g = 0;
+	_24.channels.b = 0;
+	_24.channels.a = 0;
 }
 
 /*
@@ -489,40 +340,23 @@ WipeOutFader::WipeOutFader()
 void WipeOutFader::on_start() { }
 
 /*
+ * isWhite__12WipeOutFaderFv
  * --INFO--
  * Address:	8042C0F0
  * Size:	000018
  */
-void WipeOutFader::isWhite()
-{
-	/*
-	lfs      f1, 0x18(r3)
-	lfs      f0, lbl_805205F0@sda21(r2)
-	fcmpo    cr0, f1, f0
-	mfcr     r0
-	srwi     r3, r0, 0x1f
-	blr
-	*/
-}
+bool WipeOutFader::isWhite() { return _18 < 0.5f; }
 
 /*
+ * isBlack__12WipeOutFaderFv
  * --INFO--
  * Address:	8042C108
  * Size:	000018
  */
-void WipeOutFader::isBlack()
-{
-	/*
-	lfs      f1, 0x18(r3)
-	lfs      f0, lbl_805205F0@sda21(r2)
-	fcmpo    cr0, f1, f0
-	mfcr     r0
-	rlwinm   r3, r0, 2, 0x1f, 0x1f
-	blr
-	*/
-}
+bool WipeOutFader::isBlack() { return _18 > 0.5f; }
 
 /*
+ * doDraw__12WipeOutFaderFf
  * --INFO--
  * Address:	8042C120
  * Size:	000138
@@ -617,225 +451,144 @@ setColor__14J2DGrafContextFQ28JUtility6TColorQ28JUtility6TColorQ28JUtility6TColo
 }
 
 /*
+ * on_start__14WipeOutInFaderFv
  * --INFO--
  * Address:	8042C258
  * Size:	000050
  */
 void WipeOutInFader::on_start()
 {
-	/*
-	stwu     r1, -0x10(r1)
-	mflr     r0
-	lfs      f1, lbl_805205E8@sda21(r2)
-	mr       r4, r3
-	stw      r0, 0x14(r1)
-	li       r0, 1
-	lfs      f0, lbl_8052060C@sda21(r2)
-	stb      r0, 0x74(r3)
-	addi     r3, r4, 0x24
-	stfs     f1, 0x3c(r4)
-	stfs     f0, 0x40(r4)
-	stb      r0, 0x44(r4)
-	lwz      r12, 0x24(r4)
-	lwz      r12, 0x20(r12)
-	mtctr    r12
-	bctrl
-	lwz      r0, 0x14(r1)
-	mtlr     r0
-	addi     r1, r1, 0x10
-	blr
-	*/
+	_74                = 1;
+	m_wipeOutFader._18 = 0.0f;
+	m_wipeOutFader._1C = 0.1f;
+	m_wipeOutFader._20 = true;
+	m_wipeOutFader.on_start();
 }
 
 /*
+ * isWhite__14WipeOutInFaderFv
  * --INFO--
  * Address:	8042C2A8
  * Size:	00003C
  */
-void WipeOutInFader::isWhite()
-{
-	/*
-	lbz      r0, 0x74(r3)
-	cmplwi   r0, 0
-	beq      lbl_8042C2CC
-	lfs      f1, 0x18(r3)
-	lfs      f0, lbl_805205F0@sda21(r2)
-	fcmpo    cr0, f1, f0
-	mfcr     r0
-	srwi     r3, r0, 0x1f
-	blr
+bool WipeOutInFader::isWhite() { return (_74 ? _18 < 0.5 : _18 > 0.5); }
 
-lbl_8042C2CC:
-	lfs      f1, 0x18(r3)
-	lfs      f0, lbl_805205F0@sda21(r2)
-	fcmpo    cr0, f1, f0
-	mfcr     r0
-	rlwinm   r3, r0, 2, 0x1f, 0x1f
-	blr
-	*/
-}
+bool WipeOutInFader::isBlack() { return !isWhite(); }
 
 /*
- * --INFO--
- * Address:	8042C2E4
- * Size:	000038
- */
-void WipeOutInFader::isBlack()
-{
-	/*
-	stwu     r1, -0x10(r1)
-	mflr     r0
-	stw      r0, 0x14(r1)
-	lwz      r12, 0(r3)
-	lwz      r12, 0x18(r12)
-	mtctr    r12
-	bctrl
-	clrlwi   r0, r3, 0x18
-	cntlzw   r0, r0
-	srwi     r3, r0, 5
-	lwz      r0, 0x14(r1)
-	mtlr     r0
-	addi     r1, r1, 0x10
-	blr
-	*/
-}
-
-/*
+ * do_draw__14WipeOutInFaderFf
  * --INFO--
  * Address:	8042C31C
  * Size:	0000A8
  */
 void WipeOutInFader::do_draw(float)
 {
-	/*
-	stwu     r1, -0x10(r1)
-	mflr     r0
-	stw      r0, 0x14(r1)
-	stw      r31, 0xc(r1)
-	mr       r31, r3
-	lbz      r0, 0x74(r3)
-	cmplwi   r0, 0
-	beq      lbl_8042C39C
-	lbz      r0, 0x44(r31)
-	cmplwi   r0, 0
-	bne      lbl_8042C384
-	li       r0, 0
-	lfs      f1, lbl_8052060C@sda21(r2)
-	stb      r0, 0x74(r31)
-	li       r0, 1
-	lfs      f0, lbl_805205E8@sda21(r2)
-	addi     r3, r31, 0x4c
-	lfs      f2, 0x1c(r31)
-	fsubs    f1, f2, f1
-	stfs     f0, 0x64(r31)
-	stfs     f1, 0x68(r31)
-	stb      r0, 0x6c(r31)
-	lwz      r12, 0x4c(r31)
-	lwz      r12, 0x20(r12)
-	mtctr    r12
-	bctrl
-
-lbl_8042C384:
-	addi     r3, r31, 0x24
-	lwz      r12, 0x24(r31)
-	lwz      r12, 0x10(r12)
-	mtctr    r12
-	bctrl
-	b        lbl_8042C3B0
-
-lbl_8042C39C:
-	addi     r3, r31, 0x4c
-	lwz      r12, 0x4c(r31)
-	lwz      r12, 0x10(r12)
-	mtctr    r12
-	bctrl
-
-lbl_8042C3B0:
-	lwz      r0, 0x14(r1)
-	lwz      r31, 0xc(r1)
-	mtlr     r0
-	addi     r1, r1, 0x10
-	blr
-	*/
+	if (_74) {
+		if (!m_wipeOutFader._20) {
+			_74               = 0;
+			float v1          = _1C - 0.1f;
+			m_wipeInFader._18 = 0.0f;
+			m_wipeInFader._1C = v1;
+			m_wipeInFader._20 = true;
+			m_wipeInFader.on_start();
+		}
+		m_wipeOutFader.on_start();
+	} else {
+		m_wipeInFader.update();
+	}
 }
 
 /*
+ * __ct__10BlackFaderFv
  * --INFO--
  * Address:	8042C3C4
  * Size:	00007C
  */
 BlackFader::BlackFader()
+    : WipeBase()
 {
-	/*
-	stwu     r1, -0x10(r1)
-	mflr     r0
-	stw      r0, 0x14(r1)
-	stw      r31, 0xc(r1)
-	mr       r31, r3
-	bl       __ct__5CNodeFv
-	lis      r4, __vt__8WipeBase@ha
-	lis      r3, __vt__10BlackFader@ha
-	addi     r0, r4, __vt__8WipeBase@l
-	lfs      f1, lbl_805205E8@sda21(r2)
-	stw      r0, 0(r31)
-	li       r5, 0
-	lfs      f0, lbl_805205EC@sda21(r2)
-	li       r4, 1
-	stfs     f1, 0x18(r31)
-	addi     r0, r3, __vt__10BlackFader@l
-	mr       r3, r31
-	stfs     f0, 0x1c(r31)
-	stb      r5, 0x20(r31)
-	stb      r4, 0x21(r31)
-	stw      r0, 0(r31)
-	stb      r5, 0x24(r31)
-	stb      r5, 0x25(r31)
-	stb      r5, 0x26(r31)
-	stb      r5, 0x27(r31)
-	stb      r4, 0x28(r31)
-	lwz      r31, 0xc(r1)
-	lwz      r0, 0x14(r1)
-	mtlr     r0
-	addi     r1, r1, 0x10
-	blr
-	*/
+	_24.channels.r = 0;
+	_24.channels.g = 0;
+	_24.channels.b = 0;
+	_24.channels.a = 0;
+	_28            = true;
 }
 
 /*
+ * isWhite__10BlackFaderFv
  * --INFO--
  * Address:	8042C440
  * Size:	000010
  */
-void BlackFader::isWhite()
-{
-	/*
-	lbz      r0, 0x28(r3)
-	cntlzw   r0, r0
-	srwi     r3, r0, 5
-	blr
-	*/
-}
+bool BlackFader::isWhite() { return !_28; }
 
 /*
+ * isBlack__10BlackFaderFv
  * --INFO--
  * Address:	8042C450
  * Size:	000008
  */
-void BlackFader::isBlack()
-{
-	/*
-	lbz      r3, 0x28(r3)
-	blr
-	*/
-}
+bool BlackFader::isBlack() { return _28; }
 
 /*
+ * do_draw__10BlackFaderFf
  * --INFO--
  * Address:	8042C458
  * Size:	000120
  */
 void BlackFader::do_draw(float)
 {
+	// JUtility::TColor c0;
+	// JUtility::TColor c1;
+	// JUtility::TColor c2;
+	// JUtility::TColor c3;
+	// JUtility::TColor c4;
+	Graphics* gfx = sys->m_gfx;
+	gfx->m_orthoGraph.setPort();
+	JUtility::TColor color(_24.channels.r, _24.channels.g, _24.channels.b,
+	                       0xFF);
+	J2DOrthoGraph* orthoGraph = &gfx->m_orthoGraph;
+	if (!_28) {
+		color.channels.r = _24.channels.r;
+		color.channels.g = _24.channels.g;
+		color.channels.b = _24.channels.b;
+		color.channels.a = 0x00;
+	}
+	// JUtility::TColor* c0 = &color;
+	// JUtility::TColor* c1 = &color;
+	// JUtility::TColor* c2 = &color;
+	// JUtility::TColor* c3 = &color;
+	// JUtility::TColor* c4 = &color;
+	// orthoGraph->setColor(*c4, *c4, *c4, *c4);
+	JUtility::TColor* c0[4];
+	c0[3] = &color;
+	c0[2] = &color;
+	c0[1] = &color;
+	c0[0] = &color;
+	orthoGraph->setColor(*c0[0], *c0[1], *c0[2], *c0[3]);
+	// orthoGraph->setColor(color, color, color, color);
+	// c0.asU32 = color.asU32;
+	// c1.asU32 = c0.asU32;
+	// c2.asU32 = c0.asU32;
+	// c3.asU32 = c0.asU32;
+	// c4.asU32 = c0.asU32;
+	// orthoGraph->setColor(c1, c2, c3, c4);
+	// orthoGraph->setColor(*(JUtility::TColor*)(void*)(&color),
+	// *(JUtility::TColor*)(void*)(&color), *(JUtility::TColor*)(void*)(&color),
+	// *(JUtility::TColor*)(void*)(&color));
+	u16 xfbHeight = System::getRenderModeObj()->xfbHeight;
+	u16 efbHeight = System::getRenderModeObj()->efbHeight;
+	float zero    = 0.0f;
+	// JGeometry::TVec2f min(0.0f, 0.0f);
+	// JGeometry::TVec2f max(min.x + xfbHeight, min.y + efbHeight);
+	// JGeometry::TBox2f box(min, max);
+	// JGeometry::TBox2f box(0.0f, 0.0f, 0.0f, 0.0f);
+	// box.maxX += xfbHeight;
+	// box.maxY += efbHeight;
+	float xfbF = zero + xfbHeight;
+	float efbF = zero + efbHeight;
+	JGeometry::TBox2f box(0.0f, 0.0f, xfbF, efbF);
+	orthoGraph->fillBox(box);
 	/*
 	stwu     r1, -0x50(r1)
 	mflr     r0
@@ -1045,137 +798,37 @@ BallFader::~BallFader()
 	// UNUSED FUNCTION
 }
 
-/*
- * --INFO--
- * Address:	8042C578
- * Size:	000008
- */
-u32 WipeBase::isWhite() { return 0x0; }
+// /*
+//  * --INFO--
+//  * Address:	8042C578
+//  * Size:	000008
+//  */
+// bool WipeBase::isWhite() { return false; }
 
-/*
- * --INFO--
- * Address:	8042C580
- * Size:	000008
- */
-u32 WipeBase::isBlack() { return 0x0; }
+// /*
+//  * --INFO--
+//  * Address:	8042C580
+//  * Size:	000008
+//  */
+// bool WipeBase::isBlack() { return false; }
 
-/*
- * --INFO--
- * Address:	8042C588
- * Size:	000070
- */
-BlackFader::~BlackFader()
-{
-	/*
-	stwu     r1, -0x10(r1)
-	mflr     r0
-	stw      r0, 0x14(r1)
-	stw      r31, 0xc(r1)
-	mr       r31, r4
-	stw      r30, 8(r1)
-	or.      r30, r3, r3
-	beq      lbl_8042C5DC
-	lis      r4, __vt__10BlackFader@ha
-	addi     r0, r4, __vt__10BlackFader@l
-	stw      r0, 0(r30)
-	beq      lbl_8042C5CC
-	lis      r5, __vt__8WipeBase@ha
-	li       r4, 0
-	addi     r0, r5, __vt__8WipeBase@l
-	stw      r0, 0(r30)
-	bl       __dt__5CNodeFv
+// /*
+//  * __dt__10BlackFaderFv
+//  * --INFO--
+//  * Address:	8042C588
+//  * Size:	000070
+//  */
+// BlackFader::~BlackFader() { }
 
-lbl_8042C5CC:
-	extsh.   r0, r31
-	ble      lbl_8042C5DC
-	mr       r3, r30
-	bl       __dl__FPv
-
-lbl_8042C5DC:
-	lwz      r0, 0x14(r1)
-	mr       r3, r30
-	lwz      r31, 0xc(r1)
-	lwz      r30, 8(r1)
-	mtlr     r0
-	addi     r1, r1, 0x10
-	blr
-	*/
-}
-
-/*
- * --INFO--
- * Address:	8042C5F8
- * Size:	0000E0
- */
-WipeOutInFader::~WipeOutInFader()
-{
-	/*
-	stwu     r1, -0x10(r1)
-	mflr     r0
-	stw      r0, 0x14(r1)
-	stw      r31, 0xc(r1)
-	or.      r31, r3, r3
-	stw      r30, 8(r1)
-	mr       r30, r4
-	beq      lbl_8042C6BC
-	lis      r3, __vt__14WipeOutInFader@ha
-	addic.   r0, r31, 0x4c
-	addi     r0, r3, __vt__14WipeOutInFader@l
-	stw      r0, 0(r31)
-	beq      lbl_8042C658
-	lis      r3, __vt__11WipeInFader@ha
-	addic.   r0, r31, 0x4c
-	addi     r0, r3, __vt__11WipeInFader@l
-	stw      r0, 0x4c(r31)
-	beq      lbl_8042C658
-	lis      r4, __vt__8WipeBase@ha
-	addi     r3, r31, 0x4c
-	addi     r0, r4, __vt__8WipeBase@l
-	li       r4, 0
-	stw      r0, 0x4c(r31)
-	bl       __dt__5CNodeFv
-
-lbl_8042C658:
-	addic.   r0, r31, 0x24
-	beq      lbl_8042C68C
-	lis      r3, __vt__12WipeOutFader@ha
-	addic.   r0, r31, 0x24
-	addi     r0, r3, __vt__12WipeOutFader@l
-	stw      r0, 0x24(r31)
-	beq      lbl_8042C68C
-	lis      r4, __vt__8WipeBase@ha
-	addi     r3, r31, 0x24
-	addi     r0, r4, __vt__8WipeBase@l
-	li       r4, 0
-	stw      r0, 0x24(r31)
-	bl       __dt__5CNodeFv
-
-lbl_8042C68C:
-	cmplwi   r31, 0
-	beq      lbl_8042C6AC
-	lis      r4, __vt__8WipeBase@ha
-	mr       r3, r31
-	addi     r0, r4, __vt__8WipeBase@l
-	li       r4, 0
-	stw      r0, 0(r31)
-	bl       __dt__5CNodeFv
-
-lbl_8042C6AC:
-	extsh.   r0, r30
-	ble      lbl_8042C6BC
-	mr       r3, r31
-	bl       __dl__FPv
-
-lbl_8042C6BC:
-	lwz      r0, 0x14(r1)
-	mr       r3, r31
-	lwz      r31, 0xc(r1)
-	lwz      r30, 8(r1)
-	mtlr     r0
-	addi     r1, r1, 0x10
-	blr
-	*/
-}
+// /*
+//  * __dt__14WipeOutInFaderFv
+//  * --INFO--
+//  * Address:	8042C5F8
+//  * Size:	0000E0
+//  */
+// WipeOutInFader::~WipeOutInFader()
+// {
+// }
 
 /*
  * --INFO--

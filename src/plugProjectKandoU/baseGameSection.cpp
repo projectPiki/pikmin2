@@ -7,6 +7,7 @@
 #include "og/Screen/ogScreen.h"
 #include "System.h"
 #include "types.h"
+#include "wipe.h"
 
 /*
     Generated from dpostproc
@@ -1054,128 +1055,128 @@ blr
 }
 } // namespace Game
 
-/*
- * --INFO--
- * Address:	8014AFBC
- * Size:	000070
- */
-WipeInFader::~WipeInFader()
-{
-	/*
-	stwu     r1, -0x10(r1)
-	mflr     r0
-	stw      r0, 0x14(r1)
-	stw      r31, 0xc(r1)
-	mr       r31, r4
-	stw      r30, 8(r1)
-	or.      r30, r3, r3
-	beq      lbl_8014B010
-	lis      r4, __vt__11WipeInFader@ha
-	addi     r0, r4, __vt__11WipeInFader@l
-	stw      r0, 0(r30)
-	beq      lbl_8014B000
-	lis      r5, __vt__8WipeBase@ha
-	li       r4, 0
-	addi     r0, r5, __vt__8WipeBase@l
-	stw      r0, 0(r30)
-	bl       __dt__5CNodeFv
+// /*
+//  * --INFO--
+//  * Address:	8014AFBC
+//  * Size:	000070
+//  */
+// WipeInFader::~WipeInFader()
+// {
+// 	/*
+// 	stwu     r1, -0x10(r1)
+// 	mflr     r0
+// 	stw      r0, 0x14(r1)
+// 	stw      r31, 0xc(r1)
+// 	mr       r31, r4
+// 	stw      r30, 8(r1)
+// 	or.      r30, r3, r3
+// 	beq      lbl_8014B010
+// 	lis      r4, __vt__11WipeInFader@ha
+// 	addi     r0, r4, __vt__11WipeInFader@l
+// 	stw      r0, 0(r30)
+// 	beq      lbl_8014B000
+// 	lis      r5, __vt__8WipeBase@ha
+// 	li       r4, 0
+// 	addi     r0, r5, __vt__8WipeBase@l
+// 	stw      r0, 0(r30)
+// 	bl       __dt__5CNodeFv
 
-lbl_8014B000:
-	extsh.   r0, r31
-	ble      lbl_8014B010
-	mr       r3, r30
-	bl       __dl__FPv
+// lbl_8014B000:
+// 	extsh.   r0, r31
+// 	ble      lbl_8014B010
+// 	mr       r3, r30
+// 	bl       __dl__FPv
 
-lbl_8014B010:
-	lwz      r0, 0x14(r1)
-	mr       r3, r30
-	lwz      r31, 0xc(r1)
-	lwz      r30, 8(r1)
-	mtlr     r0
-	addi     r1, r1, 0x10
-	blr
-	*/
-}
+// lbl_8014B010:
+// 	lwz      r0, 0x14(r1)
+// 	mr       r3, r30
+// 	lwz      r31, 0xc(r1)
+// 	lwz      r30, 8(r1)
+// 	mtlr     r0
+// 	addi     r1, r1, 0x10
+// 	blr
+// 	*/
+// }
 
-/*
- * --INFO--
- * Address:	8014B02C
- * Size:	000070
- */
-WipeOutFader::~WipeOutFader()
-{
-	/*
-	stwu     r1, -0x10(r1)
-	mflr     r0
-	stw      r0, 0x14(r1)
-	stw      r31, 0xc(r1)
-	mr       r31, r4
-	stw      r30, 8(r1)
-	or.      r30, r3, r3
-	beq      lbl_8014B080
-	lis      r4, __vt__12WipeOutFader@ha
-	addi     r0, r4, __vt__12WipeOutFader@l
-	stw      r0, 0(r30)
-	beq      lbl_8014B070
-	lis      r5, __vt__8WipeBase@ha
-	li       r4, 0
-	addi     r0, r5, __vt__8WipeBase@l
-	stw      r0, 0(r30)
-	bl       __dt__5CNodeFv
+// /*
+//  * --INFO--
+//  * Address:	8014B02C
+//  * Size:	000070
+//  */
+// WipeOutFader::~WipeOutFader()
+// {
+// 	/*
+// 	stwu     r1, -0x10(r1)
+// 	mflr     r0
+// 	stw      r0, 0x14(r1)
+// 	stw      r31, 0xc(r1)
+// 	mr       r31, r4
+// 	stw      r30, 8(r1)
+// 	or.      r30, r3, r3
+// 	beq      lbl_8014B080
+// 	lis      r4, __vt__12WipeOutFader@ha
+// 	addi     r0, r4, __vt__12WipeOutFader@l
+// 	stw      r0, 0(r30)
+// 	beq      lbl_8014B070
+// 	lis      r5, __vt__8WipeBase@ha
+// 	li       r4, 0
+// 	addi     r0, r5, __vt__8WipeBase@l
+// 	stw      r0, 0(r30)
+// 	bl       __dt__5CNodeFv
 
-lbl_8014B070:
-	extsh.   r0, r31
-	ble      lbl_8014B080
-	mr       r3, r30
-	bl       __dl__FPv
+// lbl_8014B070:
+// 	extsh.   r0, r31
+// 	ble      lbl_8014B080
+// 	mr       r3, r30
+// 	bl       __dl__FPv
 
-lbl_8014B080:
-	lwz      r0, 0x14(r1)
-	mr       r3, r30
-	lwz      r31, 0xc(r1)
-	lwz      r30, 8(r1)
-	mtlr     r0
-	addi     r1, r1, 0x10
-	blr
-	*/
-}
+// lbl_8014B080:
+// 	lwz      r0, 0x14(r1)
+// 	mr       r3, r30
+// 	lwz      r31, 0xc(r1)
+// 	lwz      r30, 8(r1)
+// 	mtlr     r0
+// 	addi     r1, r1, 0x10
+// 	blr
+// 	*/
+// }
 
-/*
- * --INFO--
- * Address:	8014B09C
- * Size:	000060
- */
-WipeBase::~WipeBase()
-{
-	/*
-	stwu     r1, -0x10(r1)
-	mflr     r0
-	stw      r0, 0x14(r1)
-	stw      r31, 0xc(r1)
-	mr       r31, r4
-	stw      r30, 8(r1)
-	or.      r30, r3, r3
-	beq      lbl_8014B0E0
-	lis      r5, __vt__8WipeBase@ha
-	li       r4, 0
-	addi     r0, r5, __vt__8WipeBase@l
-	stw      r0, 0(r30)
-	bl       __dt__5CNodeFv
-	extsh.   r0, r31
-	ble      lbl_8014B0E0
-	mr       r3, r30
-	bl       __dl__FPv
+// /*
+//  * --INFO--
+//  * Address:	8014B09C
+//  * Size:	000060
+//  */
+// WipeBase::~WipeBase()
+// {
+// 	/*
+// 	stwu     r1, -0x10(r1)
+// 	mflr     r0
+// 	stw      r0, 0x14(r1)
+// 	stw      r31, 0xc(r1)
+// 	mr       r31, r4
+// 	stw      r30, 8(r1)
+// 	or.      r30, r3, r3
+// 	beq      lbl_8014B0E0
+// 	lis      r5, __vt__8WipeBase@ha
+// 	li       r4, 0
+// 	addi     r0, r5, __vt__8WipeBase@l
+// 	stw      r0, 0(r30)
+// 	bl       __dt__5CNodeFv
+// 	extsh.   r0, r31
+// 	ble      lbl_8014B0E0
+// 	mr       r3, r30
+// 	bl       __dl__FPv
 
-lbl_8014B0E0:
-	lwz      r0, 0x14(r1)
-	mr       r3, r30
-	lwz      r31, 0xc(r1)
-	lwz      r30, 8(r1)
-	mtlr     r0
-	addi     r1, r1, 0x10
-	blr
-	*/
-}
+// lbl_8014B0E0:
+// 	lwz      r0, 0x14(r1)
+// 	mr       r3, r30
+// 	lwz      r31, 0xc(r1)
+// 	lwz      r30, 8(r1)
+// 	mtlr     r0
+// 	addi     r1, r1, 0x10
+// 	blr
+// 	*/
+// }
 
 /*
  * --INFO--

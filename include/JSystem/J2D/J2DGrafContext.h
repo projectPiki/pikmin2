@@ -2,15 +2,9 @@
 #define _JSYSTEM_J2D_J2DGRAFCONTEXT_H
 
 #include "types.h"
+#include "JSystem/JGeometry.h"
 #include "JSystem/JUtility.h"
 #include "Dolphin/mtx.h"
-
-namespace JGeometry {
-template <typename T> struct TBox2;
-typedef TBox2<float> TBox2f;
-template <typename T> struct TVec2;
-typedef TVec2<float> TVec2f;
-} // namespace JGeometry
 
 // TODO: These matrix members wouldn't actually be Matrixf, because this is in a
 // separate library.
