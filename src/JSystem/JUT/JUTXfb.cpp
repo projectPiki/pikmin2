@@ -1,3 +1,7 @@
+#include "Dolphin/gx.h"
+#include "JSystem/JKR/JKRHeap.h"
+#include "JSystem/JUT/JUTVideo.h"
+#include "JSystem/JUT/JUTXfb.h"
 #include "types.h"
 
 /*
@@ -16,13 +20,9 @@
  */
 void JUTXfb::clearIndex()
 {
-	/*
-	li       r0, -1
-	sth      r0, 0x14(r3)
-	sth      r0, 0x16(r3)
-	sth      r0, 0x18(r3)
-	blr
-	*/
+	_14 = -1;
+	_16 = -1;
+	_18 = -1;
 }
 
 /*
@@ -36,13 +36,27 @@ void JUTXfb::common_init(int)
 }
 
 /*
+ * __ct
  * --INFO--
  * Address:	........
  * Size:	0000B0
  */
-JUTXfb::JUTXfb(const _GXRenderModeObj*, JKRHeap*, JUTXfb::EXfbNumber)
+JUTXfb::JUTXfb(const _GXRenderModeObj* gxObj, JKRHeap* heap,
+               JUTXfb::EXfbNumber number)
 {
+	// Used by createManager__6JUTXfbFP7JKRHeapQ26JUTXfb10EXfbNumber
 	// UNUSED FUNCTION
+	u16 xfbLines;
+	_10 = number;
+	clearIndex();
+	_1C = 99;
+	// float yScaleFactor = GXGetYScaleFactor(gxObj->xfbHeight,
+	// gxObj->viXOrigin); u16 xfbLines = GXGetNumXfbLines(yScaleFactor,
+	// gxObj->xfbHeight); initiate(gxObj->efbHeight, xfbLines, heap, number);
+	xfbLines = GXGetNumXfbLines(
+	    GXGetYScaleFactor(gxObj->xfbHeight, gxObj->viXOrigin),
+	    gxObj->xfbHeight);
+	initiate(gxObj->efbHeight, xfbLines, heap, number);
 }
 
 /*
@@ -110,8 +124,8 @@ void JUTXfb::addToDoubleXfb(JKRHeap*)
  * Address:	........
  * Size:	0000CC
  */
-void JUTXfb::createManager(const _GXRenderModeObj*, JKRHeap*,
-                           JUTXfb::EXfbNumber)
+JUTXfb* JUTXfb::createManager(const _GXRenderModeObj*, JKRHeap*,
+                              JUTXfb::EXfbNumber)
 {
 	// UNUSED FUNCTION
 }
@@ -121,7 +135,7 @@ void JUTXfb::createManager(const _GXRenderModeObj*, JKRHeap*,
  * Address:	........
  * Size:	000088
  */
-void JUTXfb::createManager(const _GXRenderModeObj*, void*)
+JUTXfb* JUTXfb::createManager(const _GXRenderModeObj*, void*)
 {
 	// UNUSED FUNCTION
 }
@@ -131,7 +145,7 @@ void JUTXfb::createManager(const _GXRenderModeObj*, void*)
  * Address:	........
  * Size:	000094
  */
-void JUTXfb::createManager(const _GXRenderModeObj*, void*, void*)
+JUTXfb* JUTXfb::createManager(const _GXRenderModeObj*, void*, void*)
 {
 	// UNUSED FUNCTION
 }
@@ -141,18 +155,24 @@ void JUTXfb::createManager(const _GXRenderModeObj*, void*, void*)
  * Address:	........
  * Size:	0000A0
  */
-void JUTXfb::createManager(const _GXRenderModeObj*, void*, void*, void*)
+JUTXfb* JUTXfb::createManager(const _GXRenderModeObj*, void*, void*, void*)
 {
 	// UNUSED FUNCTION
 }
 
 /*
+ * createManager__6JUTXfbFP7JKRHeapQ26JUTXfb10EXfbNumber
  * --INFO--
  * Address:	80033D10
  * Size:	0000A8
  */
-void JUTXfb::createManager(JKRHeap*, JUTXfb::EXfbNumber)
+JUTXfb* JUTXfb::createManager(JKRHeap* heap, JUTXfb::EXfbNumber number)
 {
+	if (sManager == nullptr) {
+		sManager
+		    = new JUTXfb(JUTVideo::sManager->m_renderModeObj, heap, number);
+	}
+	return sManager;
 	/*
 	stwu     r1, -0x20(r1)
 	mflr     r0
@@ -208,7 +228,7 @@ lbl_80033DA0:
  * Address:	........
  * Size:	000088
  */
-void JUTXfb::createManager(void*)
+JUTXfb* JUTXfb::createManager(void*)
 {
 	// UNUSED FUNCTION
 }
@@ -218,7 +238,7 @@ void JUTXfb::createManager(void*)
  * Address:	........
  * Size:	000094
  */
-void JUTXfb::createManager(void*, void*)
+JUTXfb* JUTXfb::createManager(void*, void*)
 {
 	// UNUSED FUNCTION
 }
@@ -228,7 +248,7 @@ void JUTXfb::createManager(void*, void*)
  * Address:	........
  * Size:	0000A0
  */
-void JUTXfb::createManager(void*, void*, void*)
+JUTXfb* JUTXfb::createManager(void*, void*, void*)
 {
 	// UNUSED FUNCTION
 }
@@ -240,6 +260,17 @@ void JUTXfb::createManager(void*, void*, void*)
  */
 void JUTXfb::destroyManager()
 {
+	JUTXfb* mgr = sManager;
+	if (mgr == nullptr) {
+		for (int i = 0; i < 3; i++) {
+			if (mgr->m_enabled[i] && mgr->m_buffers[i] != nullptr) {
+				delete mgr->m_buffers[i];
+			}
+		}
+		sManager = nullptr;
+		delete mgr;
+	}
+	sManager = nullptr;
 	/*
 	stwu     r1, -0x20(r1)
 	mflr     r0
@@ -291,80 +322,33 @@ lbl_80033E24:
  * Address:	80033E48
  * Size:	0000E8
  */
-void JUTXfb::initiate(unsigned short, unsigned short, JKRHeap*,
-                      JUTXfb::EXfbNumber)
+void JUTXfb::initiate(unsigned short p1, unsigned short p2, JKRHeap* heap,
+                      JUTXfb::EXfbNumber number)
 {
-	/*
-	.loc_0x0:
-	  stwu      r1, -0x20(r1)
-	  mflr      r0
-	  stw       r0, 0x24(r1)
-	  stw       r31, 0x1C(r1)
-	  stw       r30, 0x18(r1)
-	  mr        r30, r7
-	  stw       r29, 0x14(r1)
-	  mr.       r29, r6
-	  stw       r28, 0x10(r1)
-	  mr        r28, r3
-	  bne-      .loc_0x30
-	  lwz       r29, -0x77D8(r13)
-
-	.loc_0x30:
-	  addi      r3, r4, 0xF
-	  rlwinm    r0,r5,0,16,31
-	  rlwinm    r3,r3,0,16,27
-	  mr        r4, r29
-	  mullw     r0, r3, r0
-	  li        r5, 0x20
-	  rlwinm    r31,r0,1,0,30
-	  mr        r3, r31
-	  bl        -0xFE50
-	  stw       r3, 0x0(r28)
-	  li        r0, 0x1
-	  cmpwi     r30, 0x2
-	  stb       r0, 0xC(r28)
-	  blt-      .loc_0x88
-	  mr        r3, r31
-	  mr        r4, r29
-	  li        r5, 0x20
-	  bl        -0xFE74
-	  stw       r3, 0x4(r28)
-	  li        r0, 0x1
-	  stb       r0, 0xD(r28)
-	  b         .loc_0x94
-
-	.loc_0x88:
-	  li        r0, 0
-	  stw       r0, 0x4(r28)
-	  stb       r0, 0xD(r28)
-
-	.loc_0x94:
-	  cmpwi     r30, 0x3
-	  blt-      .loc_0xBC
-	  mr        r3, r31
-	  mr        r4, r29
-	  li        r5, 0x20
-	  bl        -0xFEA8
-	  stw       r3, 0x8(r28)
-	  li        r0, 0x1
-	  stb       r0, 0xE(r28)
-	  b         .loc_0xC8
-
-	.loc_0xBC:
-	  li        r0, 0
-	  stw       r0, 0x8(r28)
-	  stb       r0, 0xE(r28)
-
-	.loc_0xC8:
-	  lwz       r0, 0x24(r1)
-	  lwz       r31, 0x1C(r1)
-	  lwz       r30, 0x18(r1)
-	  lwz       r29, 0x14(r1)
-	  lwz       r28, 0x10(r1)
-	  mtlr      r0
-	  addi      r1, r1, 0x20
-	  blr
-	*/
+	if (heap == nullptr) {
+		heap = JKRHeap::sSystemHeap;
+	}
+	// TODO: This looks really gross.
+	u16 v2    = (unsigned short)(p1 + (unsigned short)0xF) & 0xFFF0;
+	u32 v1    = v2 * p2;
+	int flags = 0x20;
+	v1 <<= 1;
+	m_buffers[0] = new (heap, flags) u8[v1];
+	m_enabled[0] = true;
+	if (2 <= (int)number) {
+		m_buffers[1] = new (heap, flags) u8[v1];
+		m_enabled[1] = true;
+	} else {
+		m_buffers[1] = nullptr;
+		m_enabled[1] = false;
+	}
+	if (3 <= (int)number) {
+		m_buffers[2] = new (heap, flags) u8[v1];
+		m_enabled[2] = true;
+	} else {
+		m_buffers[2] = nullptr;
+		m_enabled[2] = false;
+	}
 }
 
 /*
@@ -382,7 +366,7 @@ void JUTXfb::initiate(void*, void*, void*, JUTXfb::EXfbNumber)
  * Address:	80033F30
  * Size:	000064
  */
-void JUTXfb::accumeXfbSize()
+int JUTXfb::accumeXfbSize()
 {
 	/*
 	stwu     r1, -0x10(r1)

@@ -406,6 +406,9 @@ GXTlutRegion* __GXDefaultTlutRegionCallback(_GXTlut);
 void GXLoadPosMtxImm(Mtx, int);
 void GXLoadNrmMtxImm(Mtx, int);
 
+u16 GXGetNumXfbLines(float, u16);
+float GXGetYScaleFactor(u16, u16);
+
 #ifdef __cplusplus
 };
 #endif // ifdef __cplusplus
