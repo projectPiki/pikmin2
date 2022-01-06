@@ -255,7 +255,7 @@ DOLPHIN:=\
 	$(BUILD_DIR)/src/Dolphin/mem_TRK.o\
 	$(BUILD_DIR)/asm/Dolphin/mem_TRK.o\
 	$(BUILD_DIR)/asm/Dolphin/targimpl.o\
-	$(BUILD_DIR)/asm/Dolphin/targsupp.o\
+	$(BUILD_DIR)/src/Dolphin/targsupp.o\
 	$(BUILD_DIR)/asm/Dolphin/mpc_7xx_603e.o\
 	$(BUILD_DIR)/asm/Dolphin/__exception.o\
 	$(BUILD_DIR)/asm/Dolphin/dolphin_trk.o\

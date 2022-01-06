@@ -29,6 +29,7 @@ GROUP: {
 FORCEFILES {
     __init_cpp_exceptions.o
     ebiP2TitleCamera.o
+    targsupp.o
     ctors.o
     dtors.o
 }
