@@ -1,62 +1,6 @@
 .include "macros.inc"
 
 .section .text, "ax"  # 0x800056C0 - 0x80472F00
-.global memcmp
-memcmp:
-/* 800C6FE8 000C3F28  38 C3 FF FF */	addi r6, r3, -1
-/* 800C6FEC 000C3F2C  38 E4 FF FF */	addi r7, r4, -1
-/* 800C6FF0 000C3F30  38 85 00 01 */	addi r4, r5, 1
-/* 800C6FF4 000C3F34  48 00 00 30 */	b lbl_800C7024
-lbl_800C6FF8:
-/* 800C6FF8 000C3F38  8C 66 00 01 */	lbzu r3, 1(r6)
-/* 800C6FFC 000C3F3C  8C 07 00 01 */	lbzu r0, 1(r7)
-/* 800C7000 000C3F40  7C 03 00 40 */	cmplw r3, r0
-/* 800C7004 000C3F44  41 82 00 20 */	beq lbl_800C7024
-/* 800C7008 000C3F48  88 86 00 00 */	lbz r4, 0(r6)
-/* 800C700C 000C3F4C  38 60 00 01 */	li r3, 1
-/* 800C7010 000C3F50  88 07 00 00 */	lbz r0, 0(r7)
-/* 800C7014 000C3F54  7C 04 00 40 */	cmplw r4, r0
-/* 800C7018 000C3F58  4C 80 00 20 */	bgelr 
-/* 800C701C 000C3F5C  38 60 FF FF */	li r3, -1
-/* 800C7020 000C3F60  4E 80 00 20 */	blr 
-lbl_800C7024:
-/* 800C7024 000C3F64  34 84 FF FF */	addic. r4, r4, -1
-/* 800C7028 000C3F68  40 82 FF D0 */	bne lbl_800C6FF8
-/* 800C702C 000C3F6C  38 60 00 00 */	li r3, 0
-/* 800C7030 000C3F70  4E 80 00 20 */	blr 
-
-.global __memrchr
-__memrchr:
-/* 800C7034 000C3F74  54 84 06 3E */	clrlwi r4, r4, 0x18
-/* 800C7038 000C3F78  7C 63 2A 14 */	add r3, r3, r5
-/* 800C703C 000C3F7C  38 A5 00 01 */	addi r5, r5, 1
-/* 800C7040 000C3F80  48 00 00 10 */	b lbl_800C7050
-lbl_800C7044:
-/* 800C7044 000C3F84  8C 03 FF FF */	lbzu r0, -1(r3)
-/* 800C7048 000C3F88  7C 00 20 40 */	cmplw r0, r4
-/* 800C704C 000C3F8C  4D 82 00 20 */	beqlr 
-lbl_800C7050:
-/* 800C7050 000C3F90  34 A5 FF FF */	addic. r5, r5, -1
-/* 800C7054 000C3F94  40 82 FF F0 */	bne lbl_800C7044
-/* 800C7058 000C3F98  38 60 00 00 */	li r3, 0
-/* 800C705C 000C3F9C  4E 80 00 20 */	blr 
-
-.global memchr
-memchr:
-/* 800C7060 000C3FA0  54 84 06 3E */	clrlwi r4, r4, 0x18
-/* 800C7064 000C3FA4  38 63 FF FF */	addi r3, r3, -1
-/* 800C7068 000C3FA8  38 A5 00 01 */	addi r5, r5, 1
-/* 800C706C 000C3FAC  48 00 00 10 */	b lbl_800C707C
-lbl_800C7070:
-/* 800C7070 000C3FB0  8C 03 00 01 */	lbzu r0, 1(r3)
-/* 800C7074 000C3FB4  7C 00 20 40 */	cmplw r0, r4
-/* 800C7078 000C3FB8  4D 82 00 20 */	beqlr 
-lbl_800C707C:
-/* 800C707C 000C3FBC  34 A5 FF FF */	addic. r5, r5, -1
-/* 800C7080 000C3FC0  40 82 FF F0 */	bne lbl_800C7070
-/* 800C7084 000C3FC4  38 60 00 00 */	li r3, 0
-/* 800C7088 000C3FC8  4E 80 00 20 */	blr 
-
 .global memmove
 memmove:
 /* 800C708C 000C3FCC  94 21 FF F0 */	stwu r1, -0x10(r1)

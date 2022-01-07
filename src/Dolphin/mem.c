@@ -1,12 +1,10 @@
-
+#include "types.h"
 
 /*
  * --INFO--
  * Address:	800C6FE8
  * Size:	00004C
  */
-
-#include "types.h"
 
 int memcmp(const void* __s1, const void* __s2, size_t __n)
 {
@@ -29,58 +27,13 @@ int memcmp(const void* __s1, const void* __s2, size_t __n)
  * Size:	00002C
  */
 
-#ifdef NON_MATCHING
-// Reordering differences
-// https://decomp.me/scratch/dQBzD
-unsigned char* __memrchr(unsigned char* src_void, unsigned char c,
-                         size_t length)
-{
-	length++;
-	unsigned char* src = &src_void[length];
-	while (--length > 0) {
-		if (c == *src)
-			return src;
-		src--;
-	}
-	return 0;
-}
-#else
-asm unsigned char* __memrchr(unsigned char* src_void, unsigned char c,
-                             size_t length)
-{
-	// clang-format off
-nofralloc
-	clrlwi r4, r4, 0x18
-	add r3, r3, r5
-	addi r5, r5, 1
-	b lbl_800C7050
-lbl_800C7044:
-	lbzu r0, -1(r3)
-	cmplw r0, r4
-	beqlr 
-lbl_800C7050:
-	addic. r5, r5, -1
-	bne lbl_800C7044
-	li r3, 0
-	blr
-	// clang-format on
-}
-#endif
-
-/*
- * --INFO--
- * Address:	800C7060
- * Size:	00002C
- */
-#ifdef NON_MATCHING
 // https://decomp.me/scratch/hTmGp
-// Matches on decomp.me but not here for some reason
-unsigned char* __memchr(unsigned char* s, unsigned char c, unsigned int n)
+u8* __memrchr(u8* s, u8 c, size_t n)
 {
 	int n_count;
-	unsigned int char_check;
+	size_t char_check;
 
-	char_check = (unsigned char)c;
+	char_check = (u8)c;
 	s          = &s[n];
 	n_count    = n + 1;
 	while (--n_count) {
@@ -91,28 +44,30 @@ unsigned char* __memchr(unsigned char* s, unsigned char c, unsigned int n)
 
 	return 0;
 }
-#else
-asm char* memchr(char* src_void, char c, size_t length)
-{
-	// clang-format off
-nofralloc
-	clrlwi r4, r4, 0x18
-	addi r3, r3, -1
-	addi r5, r5, 1
-	b lbl_800C707C
-lbl_800C7070:
-	lbzu r0, 1(r3)
-	cmplw r0, r4
-	beqlr 
-lbl_800C707C:
-	addic. r5, r5, -1
-	bne lbl_800C7070
-	li r3, 0
-	blr
-	// clang-format on
-}
-#endif
 
+/*
+ * --INFO--
+ * Address:	800C7060
+ * Size:	00002C
+ */
+
+u8* memchr(u8* s, u8 c, size_t n)
+{
+	int n_count;
+	size_t char_check;
+
+	char_check = (u8)c;
+	s          = &s[-1];
+	n_count    = n + 1;
+	while (--n_count) {
+		if (*++s == char_check) {
+			return s;
+		}
+	}
+
+	return 0;
+}
+#ifdef TBD
 /*
  * --INFO--
  * Address:	800C708C
@@ -192,3 +147,5 @@ lbl_800C7144:
 /* 800C7150 000C4090  38 21 00 10 */	addi r1, r1, 0x10
 /* 800C7154 000C4094  4E 80 00 20 */	blr 
 }
+// clang-format on
+#endif
