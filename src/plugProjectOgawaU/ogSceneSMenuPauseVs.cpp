@@ -5,71 +5,6 @@
 #include "types.h"
 #include "nans.h"
 
-/*
-    Generated from dpostproc
-
-    .section .ctors, "wa"  # 0x80472F00 - 0x804732C0
-    .4byte __sinit_ogSceneSMenuPauseVs_cpp
-
-    .section .rodata  # 0x804732E0 - 0x8049E220
-    .global lbl_8048F520
-    lbl_8048F520:
-        .4byte 0x534D656E
-        .4byte 0x75506175
-        .4byte 0x73655653
-        .4byte 0x20736372
-        .4byte 0x65656E00
-    .global lbl_8048F534
-    lbl_8048F534:
-        .4byte 0x7265735F
-        .4byte 0x735F6D65
-        .4byte 0x6E755F70
-        .4byte 0x61757365
-        .4byte 0x5F56532E
-        .4byte 0x737A7300
-
-    .section .data, "wa"  # 0x8049E220 - 0x804EFC20
-    .global lbl_804D9CA0
-    lbl_804D9CA0:
-        .4byte 0x00000000
-        .4byte 0x00000000
-        .4byte 0x00000000
-    .global __vt__Q32og9newScreen12SMenuPauseVS
-    __vt__Q32og9newScreen12SMenuPauseVS:
-        .4byte 0
-        .4byte 0
-        .4byte getSceneType__Q32og9newScreen12SMenuPauseVSFv
-        .4byte getOwnerID__Q32og9newScreen12SMenuPauseVSFv
-        .4byte getMemberID__Q32og9newScreen12SMenuPauseVSFv
-        .4byte isUseBackupSceneInfo__Q32og9newScreen12SMenuPauseVSFv
-        .4byte isDrawInDemo__Q26Screen9SceneBaseCFv
-        .4byte getResName__Q32og9newScreen12SMenuPauseVSCFv
-        .4byte doCreateObj__Q32og9newScreen12SMenuPauseVSFP10JKRArchive
-        .4byte
-   doUserCallBackFunc__Q32og9newScreen12SMenuPauseVSFPQ28Resource10MgrCommand
-        .4byte setPort__Q26Screen9SceneBaseFR8Graphics
-        .4byte doUpdateActive__Q32og9newScreen12SMenuPauseVSFv
-        .4byte
-   doConfirmSetScene__Q32og9newScreen12SMenuPauseVSFRQ26Screen11SetSceneArg
-        .4byte
-   doConfirmStartScene__Q26Screen9SceneBaseFPQ26Screen13StartSceneArg .4byte
-   doConfirmEndScene__Q26Screen9SceneBaseFRPQ26Screen11EndSceneArg .4byte
-   doStart__Q26Screen9SceneBaseFPQ26Screen13StartSceneArg .4byte
-   doEnd__Q26Screen9SceneBaseFPQ26Screen11EndSceneArg .4byte
-   setDefaultDispMember__Q26Screen9SceneBaseFv .4byte
-   doSetBackupScene__Q32og9newScreen12SMenuPauseVSFRQ26Screen11SetSceneArg
-        .4byte doGetFinishState__Q32og9newScreen12SMenuPauseVSFv
-        .4byte 0
-
-    .section .sbss # 0x80514D80 - 0x80516360
-    .global lbl_80515E98
-    lbl_80515E98:
-        .skip 0x4
-    .global lbl_80515E9C
-    lbl_80515E9C:
-        .skip 0x4
-*/
-
 namespace og {
 
 namespace newScreen {
@@ -217,24 +152,3 @@ bool SMenuPauseVS::isUseBackupSceneInfo(void) { return true; }
 } // namespace newScreen
 
 } // namespace og
-
-/*
- * --INFO--
- * Address:	80329EF0
- * Size:	000028
- */
-void __sinit_ogSceneSMenuPauseVs_cpp(void)
-{
-	/*
-	lis      r4, __float_nan@ha
-	li       r0, -1
-	lfs      f0, __float_nan@l(r4)
-	lis      r3, lbl_804D9CA0@ha
-	stw      r0, lbl_80515E98@sda21(r13)
-	stfsu    f0, lbl_804D9CA0@l(r3)
-	stfs     f0, lbl_80515E9C@sda21(r13)
-	stfs     f0, 4(r3)
-	stfs     f0, 8(r3)
-	blr
-	*/
-}
