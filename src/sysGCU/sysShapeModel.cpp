@@ -757,7 +757,7 @@ void Model::jointVisible(bool newVisibility, int jointIndex)
 {
 	if (newVisibility != false) {
 		for (J3DMaterial* material
-		     = m_j3dModel->m_modelData->m_jointTree->m_joints[(u16)jointIndex]
+		     = m_j3dModel->m_modelData->m_jointTree.m_joints[(u16)jointIndex]
 		           ->m_material;
 		     material != nullptr; material = material->_04) {
 			material->m_shape->m_flags &= ~J3DShape::IsHidden;
@@ -765,7 +765,7 @@ void Model::jointVisible(bool newVisibility, int jointIndex)
 		return;
 	}
 	for (J3DMaterial* material
-	     = m_j3dModel->m_modelData->m_jointTree->m_joints[(u16)jointIndex]
+	     = m_j3dModel->m_modelData->m_jointTree.m_joints[(u16)jointIndex]
 	           ->m_material;
 	     material != nullptr; material = material->_04) {
 		material->m_shape->m_flags |= J3DShape::IsHidden;
@@ -825,7 +825,7 @@ void Model::hide(void)
 {
 	for (u16 i = 0; i < m_jointCount; i++) {
 		for (J3DMaterial* material
-		     = m_j3dModel->m_modelData->m_jointTree->m_joints[i]->m_material;
+		     = m_j3dModel->m_modelData->m_jointTree.m_joints[i]->m_material;
 		     material != nullptr; material = material->_04) {
 			material->m_shape->m_flags |= J3DShape::IsHidden;
 		}
@@ -873,7 +873,7 @@ void Model::show(void)
 {
 	for (u16 i = 0; i < m_jointCount; i++) {
 		for (J3DMaterial* material
-		     = m_j3dModel->m_modelData->m_jointTree->m_joints[i]->m_material;
+		     = m_j3dModel->m_modelData->m_jointTree.m_joints[i]->m_material;
 		     material != nullptr; material = material->_04) {
 			material->m_shape->m_flags &= ~J3DShape::IsHidden;
 		}
@@ -1347,7 +1347,7 @@ lbl_8043EF88:
  * Address:	8043EF9C
  * Size:	000008
  */
-void J3DJoint::getJntNo() const
+int J3DJoint::getJntNo() const
 {
 	/*
 	lhz      r3, 0x14(r3)
@@ -1360,7 +1360,7 @@ void J3DJoint::getJntNo() const
  * Address:	8043EFA4
  * Size:	000008
  */
-void J3DJoint::getYounger()
+J3DJoint* J3DJoint::getYounger()
 {
 	/*
 	lwz      r3, 0x10(r3)
@@ -1373,7 +1373,7 @@ void J3DJoint::getYounger()
  * Address:	8043EFAC
  * Size:	000008
  */
-void J3DJoint::getChild()
+J3DJoint* J3DJoint::getChild()
 {
 	/*
 	lwz      r3, 0xc(r3)

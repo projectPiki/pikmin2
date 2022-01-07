@@ -1182,8 +1182,8 @@ void EnemyBaseFSM::BirthTypeDropState::init(Game::EnemyBase* enemy,
 	default:
 		float theta = rand() * TAU;
 		float f     = (0.0f <= theta)
-		              ? JMath::sincosTable_.m_table[(short)theta].first
-		              : -JMath::sincosTable_.m_table[(short)(u16)-theta].first;
+		                  ? JMath::sincosTable_.m_table[(short)theta].first
+		                  : -JMath::sincosTable_.m_table[(short)(u16)-theta].first;
 		enemy->m_position.x += f * 50.0f;
 		if (theta < 0.0f) {
 			theta = -theta;
@@ -3925,10 +3925,10 @@ EnemyBase::EnemyBase()
 	if (lifeGaugeMgr != nullptr) {
 		lifeGaugeMgr->createLifeGauge(this);
 	}
-	m_effectNodeHamonRoot._10 = nullptr;
-	m_effectNodeHamonRoot._0C = nullptr;
-	m_effectNodeHamonRoot._08 = nullptr;
-	m_effectNodeHamonRoot._04 = nullptr;
+	m_effectNodeHamonRoot.m_child  = nullptr;
+	m_effectNodeHamonRoot.m_parent = nullptr;
+	m_effectNodeHamonRoot.m_prev   = nullptr;
+	m_effectNodeHamonRoot.m_next   = nullptr;
 	/*
 	.loc_0x0:
 	  stwu      r1, -0x10(r1)
@@ -13858,21 +13858,21 @@ bool Creature::isSlotFree(short) { return false; }
  * Address:	80108060
  * Size:	000008
  */
-s32 Creature::getFreeStickSlot() { return -0x1; }
+int Creature::getFreeStickSlot() { return -1; }
 
 /*
  * --INFO--
  * Address:	80108068
  * Size:	000008
  */
-s32 Creature::getNearFreeStickSlot(Vector3f&) { return -0x1; }
+int Creature::getNearFreeStickSlot(Vector3f&) { return -1; }
 
 /*
  * --INFO--
  * Address:	80108070
  * Size:	000008
  */
-s32 Creature::getRandomFreeStickSlot() { return -0x1; }
+int Creature::getRandomFreeStickSlot() { return -1; }
 
 /*
  * --INFO--

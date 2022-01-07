@@ -1,4 +1,7 @@
 #include "LoadResource.h"
+#include "JSystem/JKR/JKRArchive.h"
+#include "JSystem/JKR/JKRDvdRipper.h"
+#include "JSystem/JUT/JUTException.h"
 #include "types.h"
 
 /*
@@ -57,6 +60,9 @@
         .skip 0x8
 */
 
+// TODO: Similar issue to ogObjWorldMapInfoWindow0.cpp with rodata.
+// TODO: Register in init__Q212LoadResource3MgrFv
+
 /*
  * --INFO--
  * Address:	........
@@ -72,7 +78,7 @@ LoadResource::Node::Node(char const*)
  * Address:	8044C520
  * Size:	0000B8
  */
-LoadResource::Node::~Node(void)
+LoadResource::Node::~Node()
 {
 	/*
 	stwu     r1, -0x10(r1)
@@ -137,40 +143,36 @@ lbl_8044C5BC:
  * Address:	........
  * Size:	000004
  */
-void LoadResource::Node::dump(void)
+void LoadResource::Node::dump()
 {
 	// UNUSED FUNCTION
 }
 
 /*
+ * __ct__Q212LoadResource3ArgFPCc
  * --INFO--
  * Address:	8044C5D8
  * Size:	000044
  */
-LoadResource::Arg::Arg(char const*)
+LoadResource::Arg::Arg(char const* p1)
+    : _00(p1)
+    , _04(nullptr)
+    , _08(0)
+    , _0C(0)
+    , m_expandSwitch(Switch_1)
+    , _14(0)
+    , m_heap(nullptr)
+    , _1C(1)
+    , _20(-1)
+    , _24(nullptr)
+    , _28(nullptr)
+    , _2C(1)
+    , _2D(1)
 {
-	/*
-	stw      r4, 0(r3)
-	li       r5, 0
-	li       r4, 1
-	li       r0, -1
-	stw      r5, 4(r3)
-	stw      r5, 8(r3)
-	stw      r5, 0xc(r3)
-	stw      r4, 0x10(r3)
-	stw      r5, 0x14(r3)
-	stw      r5, 0x18(r3)
-	stw      r4, 0x1c(r3)
-	stw      r0, 0x20(r3)
-	stw      r5, 0x24(r3)
-	stw      r5, 0x28(r3)
-	stb      r4, 0x2c(r3)
-	stb      r4, 0x2d(r3)
-	blr
-	*/
 }
 
 /*
+ * __ct__Q212LoadResource11ArgAramOnlyFPCc
  * --INFO--
  * Address:	8044C61C
  * Size:	000048
@@ -178,36 +180,21 @@ LoadResource::Arg::Arg(char const*)
 LoadResource::ArgAramOnly::ArgAramOnly(char const* p1)
     : Arg(p1)
 {
-	/*
-	stw      r4, 0(r3)
-	li       r5, 0
-	li       r4, 1
-	li       r0, -1
-	stw      r5, 4(r3)
-	stw      r5, 8(r3)
-	stw      r5, 0xc(r3)
-	stw      r4, 0x10(r3)
-	stw      r5, 0x14(r3)
-	stw      r5, 0x18(r3)
-	stw      r4, 0x1c(r3)
-	stw      r0, 0x20(r3)
-	stw      r5, 0x24(r3)
-	stw      r5, 0x28(r3)
-	stb      r4, 0x2c(r3)
-	stb      r4, 0x2d(r3)
-	stb      r5, 0x2d(r3)
-	blr
-	*/
+	_2D = 0;
 }
 
 /*
+ * __ct__Q212LoadResource3MgrFv
  * --INFO--
  * Address:	........
  * Size:	00009C
  */
-LoadResource::Mgr::Mgr(void)
+LoadResource::Mgr::Mgr()
+    : m_aramRoot("AramRoot")
+    , m_dvdRoot("DvdRoot")
 {
 	// UNUSED FUNCTION
+	P2ASSERTLINE(118, gLoadResourceMgr == nullptr);
 }
 
 /*
@@ -215,8 +202,11 @@ LoadResource::Mgr::Mgr(void)
  * Address:	8044C664
  * Size:	0000B0
  */
-void LoadResource::Mgr::init(void)
+void LoadResource::Mgr::init()
 {
+	// Mgr* mgr = new Mgr();
+	// gLoadResourceMgr = mgr;
+	gLoadResourceMgr = new Mgr();
 	/*
 	stwu     r1, -0x10(r1)
 	mflr     r0
@@ -284,7 +274,7 @@ void LoadResource::Mgr::search(char const*)
  * Address:	........
  * Size:	00002C
  */
-void LoadResource::Mgr::dump(void)
+void LoadResource::Mgr::dump()
 {
 	// UNUSED FUNCTION
 }
@@ -296,47 +286,18 @@ void LoadResource::Mgr::dump(void)
  */
 LoadResource::Node* LoadResource::Mgr::mountArchive(LoadResource::Arg& arg)
 {
-	/*
-	stwu     r1, -0x10(r1)
-	mflr     r0
-	stw      r0, 0x14(r1)
-	stw      r31, 0xc(r1)
-	stw      r30, 8(r1)
-	mr       r30, r4
-	bl       load__Q212LoadResource3MgrFRQ212LoadResource3Arg
-	or.      r31, r3, r3
-	beq      lbl_8044C784
-	lwz      r0, 0x1c(r30)
-	li       r5, 2
-	lwz      r3, 0x30(r31)
-	cmpwi    r0, 1
-	lwz      r4, 0x18(r30)
-	bne      lbl_8044C754
-	li       r5, 1
-
-lbl_8044C754:
-	bl       mount__10JKRArchiveFPvP7JKRHeapQ210JKRArchive15EMountDirection
-	stw      r3, 0x34(r31)
-	lwz      r0, 0x34(r31)
-	cmplwi   r0, 0
-	bne      lbl_8044C784
-	lis      r3, lbl_8049B368@ha
-	lis      r5, lbl_8049B394@ha
-	addi     r3, r3, lbl_8049B368@l
-	li       r4, 0xdd
-	addi     r5, r5, lbl_8049B394@l
-	crclr    6
-	bl       panic_f__12JUTExceptionFPCciPCce
-
-lbl_8044C784:
-	lwz      r0, 0x14(r1)
-	mr       r3, r31
-	lwz      r31, 0xc(r1)
-	lwz      r30, 8(r1)
-	mtlr     r0
-	addi     r1, r1, 0x10
-	blr
-	*/
+	Node* node = load(arg);
+	if (node != nullptr) {
+		JKRArchive::EMountDirection mountDirection = JKRArchive::EMD_Unk2;
+		void* v1                                   = node->_30;
+		JKRHeap* heap                              = arg.m_heap;
+		if (arg._1C == 1) {
+			mountDirection = JKRArchive::EMD_Unk1;
+		}
+		node->m_archive = JKRArchive::mount(v1, heap, mountDirection);
+		JUT_ASSERTLINE(221, node->m_archive != nullptr, "mount arc failure");
+	}
+	return node;
 }
 
 /*
@@ -344,7 +305,7 @@ lbl_8044C784:
  * Address:	8044C7A0
  * Size:	000324
  */
-void LoadResource::Mgr::load(LoadResource::Arg&)
+LoadResource::Node* LoadResource::Mgr::load(LoadResource::Arg&)
 {
 	/*
 	stwu     r1, -0x40(r1)

@@ -3,6 +3,7 @@
 
 namespace PSSystem {
 struct FxMgr {
+	FxMgr();
 };
 } // namespace PSSystem
 

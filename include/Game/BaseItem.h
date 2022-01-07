@@ -56,7 +56,7 @@ struct BaseItem : public Creature, public SysShape::MotionListener {
 	virtual void getVelocityAt(Vector3f&, Vector3f&);          // _17C
 	virtual void stimulate(Interaction&);                      // _19C
 	virtual char* getCreatureName();                           // _1A0
-	virtual int getCreatureID();                               // _1A4
+	virtual s32 getCreatureID();                               // _1A4
 	// vtable 2 (MotionListener + self)
 	virtual void onKeyEvent(const SysShape::KeyEvent&) = 0; // _1B0
 	virtual void initDependency();                          // _1B4

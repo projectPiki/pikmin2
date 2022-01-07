@@ -1,6 +1,5 @@
 #include "ARAM.h"
 #include "JSystem/JKR/JKRDvdRipper.h"
-#include "JSystem/JKR/JKRExpandSwitch.h"
 #include "JSystem/JKR/JKRHeap.h"
 #include "JSystem/JUT/JUTException.h"
 #include "Resource.h"
@@ -420,7 +419,7 @@ void Resource::MgrCommand::aramLoadCallBackFunc(void)
 	_38->_30->changeGroupID(_38->m_groupIDMaybe);
 	void* resource = gAramMgr->aramToMainRam(
 	    _A8->m_name, nullptr, 0, 0, Switch_1, 0, _38->_30,
-	    JKRDvdRipper::AllocDirection_1, -1, nullptr);
+	    JKRDvdRipper::ALLOC_DIR_TOP, -1, nullptr);
 	if (resource != nullptr) {
 		_38->m_resource = resource;
 		userCallBackInvoke();
@@ -946,9 +945,9 @@ bool Resource::Mgr::destroy(Resource::MgrCommand* command)
 void Resource::Mgr::destroyAll(void)
 {
 	Node* parent;
-	Node* child = (Node*)_10._10;
+	Node* child = (Node*)_10.m_child;
 	while (parent = child, parent != nullptr) {
-		child = (Node*)parent->_04;
+		child = (Node*)parent->m_next;
 		Node::destroy(parent);
 	}
 	_04->freeAll();

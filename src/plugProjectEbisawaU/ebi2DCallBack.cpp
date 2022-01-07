@@ -1,4 +1,5 @@
 #include "JSystem/J2D/J2DAnm.h"
+#include "JSystem/JKR/JKRArchive.h"
 #include "JSystem/JUT/JUTException.h"
 #include "JSystem/JKR/JKRFileLoader.h"
 #include "ebi/E2DCallBack.h"
@@ -115,39 +116,13 @@ namespace ebi {
 void E2DCallBack_Purupuru::do_update(void)
 {
 	if (_18) {
-		_3C                = m_scaleMgr.calc();
-		_18->m_widthScale  = _3C;
-		_18->m_heightScale = _3C;
-		_18->calcMtx();
+		_3C                 = m_scaleMgr.calc();
+		J2DPane* pane       = _18;
+		float scale         = _3C;
+		pane->m_widthScale  = scale;
+		pane->m_heightScale = scale;
+		pane->calcMtx();
 	}
-	/*
-	stwu     r1, -0x10(r1)
-	mflr     r0
-	stw      r0, 0x14(r1)
-	stw      r31, 0xc(r1)
-	mr       r31, r3
-	lwz      r0, 0x18(r3)
-	cmplwi   r0, 0
-	beq      lbl_803D06D8
-	addi     r3, r31, 0x20
-	bl       calc__Q32og6Screen8ScaleMgrFv
-	stfs     f1, 0x3c(r31)
-	lwz      r3, 0x18(r31)
-	lfs      f0, 0x3c(r31)
-	stfs     f0, 0xcc(r3)
-	stfs     f0, 0xd0(r3)
-	lwz      r12, 0(r3)
-	lwz      r12, 0x2c(r12)
-	mtctr    r12
-	bctrl
-
-lbl_803D06D8:
-	lwz      r0, 0x14(r1)
-	lwz      r31, 0xc(r1)
-	mtlr     r0
-	addi     r1, r1, 0x10
-	blr
-	*/
 }
 
 /*
@@ -693,13 +668,6 @@ void E2DCallBack_AnmBase::stop(void)
 {
 	_1C        = 0;
 	m_isFinish = true;
-	/*
-	li       r4, 0
-	li       r0, 1
-	stb      r4, 0x1c(r3)
-	stb      r0, 0x38(r3)
-	blr
-	*/
 }
 
 /*
@@ -721,23 +689,6 @@ void E2DCallBack_AnmBase::setStartFrame(void)
 {
 	m_frameCtrl._10       = m_frameCtrl._06;
 	m_anm->m_currentFrame = m_frameCtrl._10;
-	/*
-	stwu     r1, -0x10(r1)
-	lis      r0, 0x4330
-	lfd      f1, lbl_8051FAA8@sda21(r2)
-	lha      r4, 0x26(r3)
-	stw      r0, 8(r1)
-	xoris    r0, r4, 0x8000
-	stw      r0, 0xc(r1)
-	lfd      f0, 8(r1)
-	fsubs    f0, f0, f1
-	stfs     f0, 0x30(r3)
-	lfs      f0, 0x30(r3)
-	lwz      r3, 0x34(r3)
-	stfs     f0, 8(r3)
-	addi     r1, r1, 0x10
-	blr
-	*/
 }
 
 /*
@@ -749,23 +700,6 @@ void E2DCallBack_AnmBase::setEndFrame(void)
 {
 	m_frameCtrl._10       = m_frameCtrl._08;
 	m_anm->m_currentFrame = m_frameCtrl._10;
-	/*
-	stwu     r1, -0x10(r1)
-	lis      r0, 0x4330
-	lfd      f1, lbl_8051FAA8@sda21(r2)
-	lha      r4, 0x28(r3)
-	stw      r0, 8(r1)
-	xoris    r0, r4, 0x8000
-	stw      r0, 0xc(r1)
-	lfd      f0, 8(r1)
-	fsubs    f0, f0, f1
-	stfs     f0, 0x30(r3)
-	lfs      f0, 0x30(r3)
-	lwz      r3, 0x34(r3)
-	stfs     f0, 8(r3)
-	addi     r1, r1, 0x10
-	blr
-	*/
 }
 
 /*

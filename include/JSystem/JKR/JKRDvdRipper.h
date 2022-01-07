@@ -4,7 +4,11 @@
 #include "types.h"
 #include "JSystem/JKR/JKRHeap.h"
 
-typedef enum { Switch_0 = 0, Switch_1 } JKRExpandSwitch;
+typedef enum {
+	Switch_0 = 0,
+	Switch_1,
+	Switch_FORCE_UINT = 0xFFFFFFFF
+} JKRExpandSwitch;
 
 struct JKRDvdRipper {
 #pragma enumsalwaysint on

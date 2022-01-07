@@ -44,7 +44,11 @@ template <typename T> struct TVec3 {
 
 // Size: 0x10
 template <typename T> struct TBox2 {
-	inline TBox2();
+	inline TBox2()
+	    : minX()
+	    , minY()
+	    , maxX()
+	    , maxY() {};
 	inline TBox2(T x1, T y1, T x2, T y2)
 	    : minX(x1)
 	    , minY(y1)

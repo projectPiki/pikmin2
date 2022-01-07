@@ -4,7 +4,7 @@
 #include "JSystem/JKR/JKRDisposer.h"
 #include "types.h"
 
-struct JKRMemArchive;
+struct JKRArchive;
 struct JUTTexture;
 struct ResTIMG;
 
@@ -23,7 +23,7 @@ struct Loader : public JKRDisposer {
 	ResTIMG* getResTIMG(char*);
 
 	LoadResource::Node* m_node; // _18
-	JKRMemArchive* m_archive;   // _1C
+	JKRArchive* m_archive;      // _1C
 };
 
 struct Mgr : public JKRDisposer {

@@ -1,4 +1,6 @@
 #include "Screen/Bases.h"
+#include "Screen/screenObj.h"
+#include "og/Screen/ogScreen.h"
 #include "types.h"
 
 /*
@@ -118,29 +120,14 @@ ObjBase::ObjBase(void)
  * Address:	80453B78
  * Size:	00002C
  */
-void ObjBase::create(JKRArchive*)
-{
-	/*
-	stwu     r1, -0x10(r1)
-	mflr     r0
-	stw      r0, 0x14(r1)
-	lwz      r12, 0(r3)
-	lwz      r12, 0x4c(r12)
-	mtctr    r12
-	bctrl
-	lwz      r0, 0x14(r1)
-	mtlr     r0
-	addi     r1, r1, 0x10
-	blr
-	*/
-}
+void ObjBase::create(JKRArchive* archive) { doCreate(archive); }
 
 /*
  * --INFO--
  * Address:	80453BA4
  * Size:	0000AC
  */
-void ObjBase::start(Screen::StartSceneArg const*)
+bool ObjBase::start(Screen::StartSceneArg const*)
 {
 	/*
 	stwu     r1, -0x10(r1)
@@ -204,7 +191,7 @@ lbl_80453C34:
  * Address:	80453C50
  * Size:	000138
  */
-void ObjBase::end(Screen::EndSceneArg const*)
+bool ObjBase::end(Screen::EndSceneArg const*)
 {
 	/*
 	stwu     r1, -0x20(r1)
@@ -311,7 +298,7 @@ lbl_80453D68:
  * Address:	80453D88
  * Size:	000110
  */
-void ObjBase::update(void)
+bool ObjBase::update(void)
 {
 	/*
 	stwu     r1, -0x10(r1)
@@ -494,7 +481,7 @@ void ObjBase::doDraw(Graphics&)
  * Address:	80453FA8
  * Size:	00000C
  */
-void ObjBase::getDispMember(void)
+og::Screen::DispMemberBase* ObjBase::getDispMember(void)
 {
 	/*
 	lwz      r3, 0x34(r3)
@@ -576,7 +563,7 @@ void ObjBase::confirmEndScene(Screen::EndSceneArg*)
  * Address:	80454040
  * Size:	000030
  */
-void ObjBase::getGamePad() const
+Controller* ObjBase::getGamePad() const
 {
 	/*
 	stwu     r1, -0x10(r1)
@@ -660,7 +647,7 @@ void ObjMgrBase::registObj(Screen::IObjBase*, Screen::SceneBase*)
  * Address:	8045410C
  * Size:	000068
  */
-void ObjMgrBase::update(void)
+bool ObjMgrBase::update(void)
 {
 	/*
 	stwu     r1, -0x10(r1)
@@ -741,7 +728,7 @@ lbl_804541B0:
  * Address:	804541D0
  * Size:	000098
  */
-void ObjMgrBase::search(Screen::SceneBase*, char*)
+IObjBase* ObjMgrBase::search(Screen::SceneBase*, char*)
 {
 	/*
 	stwu     r1, -0x20(r1)
@@ -798,7 +785,7 @@ lbl_80454248:
  * Address:	80454268
  * Size:	000078
  */
-void ObjMgrBase::start(Screen::StartSceneArg*)
+bool ObjMgrBase::start(Screen::StartSceneArg*)
 {
 	/*
 	stwu     r1, -0x20(r1)
@@ -845,7 +832,7 @@ lbl_804542B8:
  * Address:	804542E0
  * Size:	000078
  */
-void ObjMgrBase::end(Screen::EndSceneArg*)
+bool ObjMgrBase::end(Screen::EndSceneArg*)
 {
 	/*
 	stwu     r1, -0x20(r1)
@@ -892,7 +879,7 @@ lbl_80454330:
  * Address:	80454358
  * Size:	00007C
  */
-void ObjMgrBase::confirmSetScene(Screen::SetSceneArg&)
+bool ObjMgrBase::confirmSetScene(Screen::SetSceneArg&)
 {
 	/*
 	stwu     r1, -0x20(r1)
@@ -942,7 +929,7 @@ lbl_804543B4:
  * Address:	804543D4
  * Size:	00007C
  */
-void ObjMgrBase::confirmStartScene(Screen::StartSceneArg*)
+bool ObjMgrBase::confirmStartScene(Screen::StartSceneArg*)
 {
 	/*
 	stwu     r1, -0x20(r1)
@@ -992,7 +979,7 @@ lbl_80454430:
  * Address:	80454450
  * Size:	00007C
  */
-void ObjMgrBase::confirmEndScene(Screen::EndSceneArg*)
+bool ObjMgrBase::confirmEndScene(Screen::EndSceneArg*)
 {
 	/*
 	stwu     r1, -0x20(r1)
@@ -1037,16 +1024,16 @@ lbl_804544AC:
 	*/
 }
 
-/*
- * --INFO--
- * Address:	804544CC
- * Size:	000008
- */
-@24 @Screen::ObjBase::~ObjBase(void)
-{
-	/*
-	addi     r3, r3, -24
-	b        __dt__Q26Screen7ObjBaseFv
-	*/
-}
+// /*
+//  * --INFO--
+//  * Address:	804544CC
+//  * Size:	000008
+//  */
+// @24 @Screen::ObjBase::~ObjBase(void)
+// {
+// 	/*
+// 	addi     r3, r3, -24
+// 	b        __dt__Q26Screen7ObjBaseFv
+// 	*/
+// }
 } // namespace Screen

@@ -55,7 +55,7 @@ struct J3DMaterial {
 	void setCurrentMtx();
 
 	// VTBL _00
-	u32 _04;                       // _04
+	J3DMaterial* _04;              // _04
 	J3DShape* m_shape;             // _08
 	J3DJoint* m_joint;             // _0C
 	u32 _10;                       // _10

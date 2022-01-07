@@ -5,7 +5,7 @@
 #include "JSystem/JKR/JKRDisposer.h"
 #include "JSystem/JKR/JKRDvdRipper.h"
 
-struct JKRMemArchive;
+struct JKRArchive;
 
 namespace LoadResource {
 // Size: 0x38
@@ -18,14 +18,14 @@ struct Node : public CNode, JKRDisposer {
 
 	// _00 - _18: CNode
 	// _18 - _30: JKRDisposer
-	void* _30;                // _30
-	JKRMemArchive* m_archive; // _34
+	void* _30;             // _30
+	JKRArchive* m_archive; // _34
 };
 
 struct Arg {
 	Arg(char const*);
 
-	char* _00;                      // _00
+	const char* _00;                // _00
 	u8* _04;                        // _04
 	u32 _08;                        // _08
 	u32 _0C;                        // _0C
@@ -48,10 +48,13 @@ struct Mgr {
 	Mgr();
 
 	void dump();
-	void init();
-	void load(Arg&);
+	static void init();
+	Node* load(Arg&);
 	Node* mountArchive(Arg&);
 	void search(char const*);
+
+	CNode m_aramRoot;
+	CNode m_dvdRoot;
 };
 } // namespace LoadResource
 
