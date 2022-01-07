@@ -13,9 +13,7 @@ lbl_8048F624:
 .section .data, "wa"  # 0x8049E220 - 0x804EFC20
 .balign 8
 govNAN___Q24Game5P2JST:
-	.4byte 0x00000000
-	.4byte 0x00000000
-	.4byte 0x00000000
+	.skip 12
 .global __vt__Q32og9newScreen19WorldMapInfoWindow0
 __vt__Q32og9newScreen19WorldMapInfoWindow0:
 	.4byte 0
@@ -38,7 +36,6 @@ __vt__Q32og9newScreen19WorldMapInfoWindow0:
 	.4byte setDefaultDispMember__Q26Screen9SceneBaseFv
 	.4byte doSetBackupScene__Q32og9newScreen12SMenuPauseVSFRQ26Screen11SetSceneArg
 	.4byte doGetFinishState__Q32og9newScreen19WorldMapInfoWindow0Fv
-	.4byte 0
 
 .section .sbss # 0x80514D80 - 0x80516360
 .balign 8
