@@ -932,7 +932,7 @@ OGAWA:=\
 	$(BUILD_DIR)/asm/plugProjectOgawaU/ogFuriko.o\
 	$(BUILD_DIR)/asm/plugProjectOgawaU/ogCounterSlot.o\
 	$(BUILD_DIR)/asm/plugProjectOgawaU/ogObjWorldMapInfoWindow0.o\
-	$(BUILD_DIR)/asm/plugProjectOgawaU/ogSceneWorldMapInfoWindow0.o\
+	$(BUILD_DIR)/src/plugProjectOgawaU/ogSceneWorldMapInfoWindow0.o\
 	$(BUILD_DIR)/asm/plugProjectOgawaU/ogObjWorldMapInfoWindow1.o\
 	$(BUILD_DIR)/asm/plugProjectOgawaU/ogSceneWorldMapInfoWindow1.o\
 	$(BUILD_DIR)/asm/plugProjectOgawaU/ogTotalPokoScreen.o\
