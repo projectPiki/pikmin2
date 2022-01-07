@@ -294,7 +294,6 @@ DOLPHIN:=\
 	$(BUILD_DIR)/asm/Dolphin/locale.o\
 	$(BUILD_DIR)/asm/Dolphin/mbstring.o\
 	$(BUILD_DIR)/src/Dolphin/mem.o\
-	$(BUILD_DIR)/asm/Dolphin/mem.o\
 	$(BUILD_DIR)/asm/Dolphin/mem_funcs.o\
 	$(BUILD_DIR)/src/Dolphin/misc_io.o\
 	$(BUILD_DIR)/asm/Dolphin/printf.o\
