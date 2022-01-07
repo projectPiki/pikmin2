@@ -76,17 +76,13 @@ __vt__Q32og6Screen26DispMemberWorldMapInfoWin0:
 	.4byte doSetSubMemberAll__Q32og6Screen14DispMemberBaseFv
 
 .section .sdata2, "a"     # 0x80516360 - 0x80520E40
-.balign 0x8
-.global lbl_8051DF08
+.balign 8
 lbl_8051DF08:
 	.float 0.5
-.global lbl_8051DF0C
 lbl_8051DF0C:
-	.4byte 0x3F19999A
-.global lbl_8051DF10
+	.float 0.6
 lbl_8051DF10:
-	.4byte 0x44480000
-.global lbl_8051DF14
+	.float 800.0
 lbl_8051DF14:
 	.float 1.0
 
@@ -619,7 +615,6 @@ getMemberID__Q32og6Screen26DispMemberWorldMapInfoWin0Fv:
 /* 8032BA94 003289D4  38 63 61 70 */	addi r3, r3, 0x574D6170@l
 /* 8032BA98 003289D8  4E 80 00 20 */	blr 
 
-.global "@24@__dt__Q32og9newScreen22ObjWorldMapInfoWindow0Fv"
 "@24@__dt__Q32og9newScreen22ObjWorldMapInfoWindow0Fv":
 /* 8032BA9C 003289DC  38 63 FF E8 */	addi r3, r3, -24
 /* 8032BAA0 003289E0  4B FF FF 6C */	b __dt__Q32og9newScreen22ObjWorldMapInfoWindow0Fv
