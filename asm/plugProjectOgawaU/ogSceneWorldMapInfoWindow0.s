@@ -3,57 +3,34 @@
 .4byte __sinit_ogSceneWorldMapInfoWindow0_cpp
 
 .section .rodata  # 0x804732E0 - 0x8049E220
-.balign 0x8
+.balign 8
 .global lbl_8048F5A8
 lbl_8048F5A8:
-	.4byte 0x6F674F62
-	.4byte 0x6A576F72
-	.4byte 0x6C644D61
-	.4byte 0x70496E66
-	.4byte 0x6F57696E
-	.4byte 0x646F7730
-	.4byte 0x2E637070
-	.4byte 0x00000000
+	.asciz "ogObjWorldMapInfoWindow0.cpp"
+.balign 4
 .global lbl_8048F5C8
 lbl_8048F5C8:
-	.4byte 0x534D656E
-	.4byte 0x75506175
-	.4byte 0x73655653
-	.4byte 0x20736372
-	.4byte 0x65656E00
+	.asciz "SMenuPauseVS screen"
+.balign 4
+lbl_8048F5DC:
 	.asciz "P2Assert"
-	.skip 3
-	.4byte 0x696E666F
-	.4byte 0x5F77696E
-	.4byte 0x646F772E
-	.4byte 0x626C6F00
-	.4byte 0x73637265
-	.4byte 0x656E4F62
-	.4byte 0x6A2E6800
+.balign 4
+lbl_8048F5E8:
+	.asciz "info_window.blo"
+.balign 4
+lbl_8048F5F8:
+	.asciz "screenObj.h"
+.balign 4
 	.4byte 0x00000000
-.global lbl_8048F608
+.balign 4
 lbl_8048F608:
-	.4byte 0x576F726C
-	.4byte 0x644D6170
-	.4byte 0x496E666F
-	.4byte 0x57696E64
-	.4byte 0x6F773020
-	.4byte 0x73637265
-	.4byte 0x656E0000
-.global lbl_8048F624
+	.asciz "WorldMapInfoWindow0 screen"
+.balign 4
 lbl_8048F624:
-	.4byte 0x7265735F
-	.4byte 0x776F726C
-	.4byte 0x645F6D61
-	.4byte 0x705F696E
-	.4byte 0x666F5F77
-	.4byte 0x696E646F
-	.4byte 0x77302E73
-	.4byte 0x7A730000
-	.4byte 0x00000000
+	.asciz "res_world_map_info_window0.szs"
 
 .section .data, "wa"  # 0x8049E220 - 0x804EFC20
-.balign 0x8
+.balign 8
 govNAN___Q24Game5P2JST:
 	.4byte 0x00000000
 	.4byte 0x00000000
@@ -83,11 +60,11 @@ __vt__Q32og9newScreen19WorldMapInfoWindow0:
 	.4byte 0
 
 .section .sbss # 0x80514D80 - 0x80516360
-.balign 0x8
+.balign 8
 gu32NAN___Q24Game5P2JST:
-	.skip 0x4
+	.skip 4
 gfNAN___Q24Game5P2JST:
-	.skip 0x4
+	.skip 4
 
 .section .text, "ax"  # 0x800056C0 - 0x80472F00
 .global __ct__Q32og9newScreen19WorldMapInfoWindow0Fv
