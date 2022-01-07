@@ -355,7 +355,7 @@ lbl_80414004:
  */
 void Stream::textBeginGroup(char* groupName)
 {
-	if (m_isTextMode) {
+	if (m_mode) {
 		textWriteTab(m_tabCount);
 		textWriteText("# %s\r\n", groupName);
 		textWriteTab(m_tabCount);
@@ -371,7 +371,7 @@ void Stream::textBeginGroup(char* groupName)
  */
 void Stream::textEndGroup()
 {
-	if (m_isTextMode) {
+	if (m_mode) {
 		m_tabCount--;
 		textWriteTab(m_tabCount);
 		textWriteText("}\r\n");
@@ -532,15 +532,15 @@ lbl_804142A8:
 	*/
 }
 
-/*
- * --INFO--
- * Address:	........
- * Size:	000070
- */
-void Stream::writePadding(u32)
-{
-	// UNUSED FUNCTION
-}
+// /*
+//  * --INFO--
+//  * Address:	........
+//  * Size:	000070
+//  */
+// void Stream::writePadding(u32)
+// {
+// 	// UNUSED FUNCTION
+// }
 
 /*
  * --INFO--
@@ -559,7 +559,7 @@ void Stream::skipPadding(u32)
  */
 void Stream::skipReading(u32 byteCount)
 {
-	if (m_isTextMode == true) {
+	if (m_mode == 1) {
 		while (!eof()) {
 			u8 next = _readByte();
 			if (next == '\r' || next == '\n') {
@@ -726,7 +726,7 @@ void Stream::_write(void*, int)
  */
 void Stream::textWriteTab(int tabCount)
 {
-	if (m_isTextMode == 1) {
+	if (m_mode == 1) {
 		for (int i = 0; i < tabCount; i++) {
 			_writeByte('\t');
 		}
@@ -2181,7 +2181,7 @@ void Stream::writeString(char* string)
 		_writeByte(*string);
 		string++;
 	}
-	if (m_isTextMode == 1) {
+	if (m_mode == 1) {
 		printf(" ");
 	} else {
 		_writeByte('\0');
@@ -2257,7 +2257,7 @@ void Stream::writeFixedString(char*)
 void Stream::writeByte(u8 c)
 {
 	u8 buffer = c;
-	if (m_isTextMode == 1) {
+	if (m_mode == 1) {
 		printf("%d ", c);
 	} else {
 		write(&buffer, 1);

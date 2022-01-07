@@ -317,8 +317,8 @@ void P2DScreen::Mgr::addCallBackPane(J2DPane* pane, P2DScreen::Node* node)
  */
 void P2DScreen::Mgr::update(void)
 {
-	for (Node* node = (Node*)_118._10; node != nullptr;
-	     node       = (Node*)node->_04) {
+	for (Node* node = (Node*)_118.m_child; node != nullptr;
+	     node       = (Node*)node->m_next) {
 		node->update();
 	}
 }
@@ -331,8 +331,8 @@ void P2DScreen::Mgr::update(void)
 void P2DScreen::Mgr::draw(Graphics& gfx, J2DGrafContext& context)
 {
 	J2DScreen::draw(0.0f, 0.0f, &context);
-	for (Node* node = (Node*)_118._10; node != nullptr;
-	     node       = (Node*)node->_04) {
+	for (Node* node = (Node*)_118.m_child; node != nullptr;
+	     node       = (Node*)node->m_next) {
 		node->draw(gfx, context);
 	}
 }

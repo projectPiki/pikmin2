@@ -1,5 +1,3 @@
-#include "Dolphin/os.h"
-#include "Dolphin/stl.h"
 #include "JSystem/J2D/J2DPane.h"
 #include "JSystem/JUT/JUTException.h"
 #include "Morimura/DispMemberChallengeSelect.h"
@@ -102,6 +100,9 @@
 // clang-format off
 // inline void fakeMatch_printWMapWin0(const char* text = __FILE__) { OSReport(text); }
 // clang-format on
+// static void _Print(char*, ...) { OSReport(__FILE__); }
+
+const char* fakeMatchFileName = __FILE__;
 namespace og {
 
 namespace newScreen {
@@ -170,267 +171,6 @@ void ObjWorldMapInfoWindow0::doCreate(JKRArchive* archive)
 	_BC = Screen::setMenuScreen(archive, _B0, 'Tm01n');
 	_B8->open(0.5f);
 	_BC->open(0.6f);
-	/*
-	stwu     r1, -0x40(r1)
-	mflr     r0
-	lis      r5, lbl_8048F5A8@ha
-	stw      r0, 0x44(r1)
-	stw      r31, 0x3c(r1)
-	addi     r31, r5, lbl_8048F5A8@l
-	stw      r30, 0x38(r1)
-	stw      r29, 0x34(r1)
-	mr       r29, r4
-	stw      r28, 0x30(r1)
-	mr       r28, r3
-	bl       getDispMember__Q26Screen7ObjBaseFv
-	lis      r4, 0x004F4741@ha
-	lis      r6, 0x57696E30@ha
-	lis      r5, 0x574D6170@ha
-	mr       r30, r3
-	addi     r4, r4, 0x004F4741@l
-	addi     r6, r6, 0x57696E30@l
-	addi     r5, r5, 0x574D6170@l
-	bl       isID__Q32og6Screen14DispMemberBaseFUlUx
-	clrlwi.  r0, r3, 0x18
-	beq      lbl_8032B424
-	stw      r30, 0xcc(r28)
-	b        lbl_8032B528
-
-lbl_8032B424:
-	lis      r4, 0x4D524D52@ha
-	lis      r6, 0x4C454354@ha
-	lis      r5, 0x56535345@ha
-	mr       r3, r30
-	addi     r4, r4, 0x4D524D52@l
-	addi     r6, r6, 0x4C454354@l
-	addi     r5, r5, 0x56535345@l
-	bl       isID__Q32og6Screen14DispMemberBaseFUlUx
-	clrlwi.  r0, r3, 0x18
-	beq      lbl_8032B458
-	lwz      r0, 0x10(r30)
-	stw      r0, 0xcc(r28)
-	b        lbl_8032B528
-
-lbl_8032B458:
-	lis      r4, 0x4D524D52@ha
-	lis      r6, 0x4C454354@ha
-	lis      r5, 0x43485345@ha
-	mr       r3, r30
-	addi     r4, r4, 0x4D524D52@l
-	addi     r6, r6, 0x4C454354@l
-	addi     r5, r5, 0x43485345@l
-	bl       isID__Q32og6Screen14DispMemberBaseFUlUx
-	clrlwi.  r0, r3, 0x18
-	beq      lbl_8032B48C
-	lwz      r0, 0x20(r30)
-	stw      r0, 0xcc(r28)
-	b        lbl_8032B528
-
-lbl_8032B48C:
-	lis      r4, 0x4D524D52@ha
-	lis      r6, 0x4E454D59@ha
-	mr       r3, r30
-	li       r5, 0x4445
-	addi     r4, r4, 0x4D524D52@l
-	addi     r6, r6, 0x4E454D59@l
-	bl       isID__Q32og6Screen14DispMemberBaseFUlUx
-	clrlwi.  r0, r3, 0x18
-	beq      lbl_8032B4DC
-	lwz      r0, 0x18(r30)
-	stw      r0, 0xcc(r28)
-	lwz      r0, 0xcc(r28)
-	cmplwi   r0, 0
-	bne      lbl_8032B528
-	addi     r3, r31, 0
-	addi     r5, r31, 0x34
-	li       r4, 0x7d
-	crclr    6
-	bl       panic_f__12JUTExceptionFPCciPCce
-	b        lbl_8032B528
-
-lbl_8032B4DC:
-	lis      r4, 0x4D524D52@ha
-	lis      r6, 0x4954454D@ha
-	mr       r3, r30
-	li       r5, 0x44
-	addi     r4, r4, 0x4D524D52@l
-	addi     r6, r6, 0x4954454D@l
-	bl       isID__Q32og6Screen14DispMemberBaseFUlUx
-	clrlwi.  r0, r3, 0x18
-	beq      lbl_8032B528
-	lwz      r0, 0x18(r30)
-	stw      r0, 0xcc(r28)
-	lwz      r0, 0xcc(r28)
-	cmplwi   r0, 0
-	bne      lbl_8032B528
-	addi     r3, r31, 0
-	addi     r5, r31, 0x34
-	li       r4, 0x81
-	crclr    6
-	bl       panic_f__12JUTExceptionFPCciPCce
-
-lbl_8032B528:
-	lwz      r0, 0xcc(r28)
-	cmplwi   r0, 0
-	bne      lbl_8032B5A0
-	li       r3, 0x28
-	bl       __nw__FUl
-	cmplwi   r3, 0
-	beq      lbl_8032B59C
-	lis      r4, __vt__Q32og6Screen14DispMemberBase@ha
-	lis      r7, __vt__Q32og6Screen26DispMemberWorldMapInfoWin0@ha
-	addi     r0, r4, __vt__Q32og6Screen14DispMemberBase@l
-	lis      r6, 0x305F3030@ha
-	stw      r0, 0(r3)
-	li       r8, 0
-	lis      r5, 0x00343731@ha
-	lis      r4, 0x315F3030@ha
-	stw      r8, 4(r3)
-	addi     r0, r7, __vt__Q32og6Screen26DispMemberWorldMapInfoWin0@l
-	addi     r6, r6, 0x305F3030@l
-	addi     r5, r5, 0x00343731@l
-	stw      r0, 0(r3)
-	addi     r4, r4, 0x315F3030@l
-	li       r0, 0xb4
-	stw      r8, 8(r3)
-	stw      r6, 0x14(r3)
-	stw      r5, 0x10(r3)
-	stw      r4, 0x1c(r3)
-	stw      r5, 0x18(r3)
-	stb      r0, 0x20(r3)
-	stb      r8, 0x21(r3)
-
-lbl_8032B59C:
-	stw      r3, 0xcc(r28)
-
-lbl_8032B5A0:
-	li       r3, 0x148
-	bl       __nw__FUl
-	or.      r0, r3, r3
-	beq      lbl_8032B5B8
-	bl       __ct__Q29P2DScreen10Mgr_tuningFv
-	mr       r0, r3
-
-lbl_8032B5B8:
-	stw      r0, 0xb0(r28)
-	mr       r6, r29
-	addi     r4, r31, 0x40
-	lis      r5, 0x110
-	lwz      r3, 0xb0(r28)
-	bl       set__9J2DScreenFPCcUlP10JKRArchive
-	lis      r5, 0x6E753030@ha
-	lis      r4, 0x004E6D65@ha
-	lwz      r3, 0xb0(r28)
-	addi     r6, r5, 0x6E753030@l
-	addi     r5, r4, 0x004E6D65@l
-	bl       TagSearch__Q22og6ScreenFP9J2DScreenUx
-	li       r0, 0
-	lis      r5, 0x6E753032@ha
-	stb      r0, 0xb0(r3)
-	lis      r4, 0x004E6D65@ha
-	addi     r6, r5, 0x6E753032@l
-	lwz      r3, 0xb0(r28)
-	addi     r5, r4, 0x004E6D65@l
-	bl       TagSearch__Q22og6ScreenFP9J2DScreenUx
-	li       r0, 0
-	stb      r0, 0xb0(r3)
-	lwz      r3, 0xb0(r28)
-	bl       setFurikoScreen__Q22og6ScreenFPQ29P2DScreen3Mgr
-	li       r3, 0x78
-	bl       __nw__FUl
-	or.      r0, r3, r3
-	beq      lbl_8032B630
-	bl       __ct__Q32og6Screen7MenuMgrFv
-	mr       r0, r3
-
-lbl_8032B630:
-	lis      r10, 0x795F6972@ha
-	stw      r0, 0xb4(r28)
-	addi     r0, r10, 0x795F6972@l
-	lis      r4, 0x6D303179@ha
-	lis      r3, 0x506D3031@ha
-	stw      r0, 0xc(r1)
-	addi     r9, r3, 0x506D3031@l
-	addi     r6, r4, 0x6D303179@l
-	stw      r9, 8(r1)
-	addi     r7, r4, 0x316e
-	lis      r3, 0x6E5F696C@ha
-	li       r5, 0x4e
-	stw      r7, 0x14(r1)
-	li       r11, 0x54
-	addi     r4, r3, 0x6E5F696C@l
-	addi     r0, r3, 0x6972
-	stw      r5, 0x10(r1)
-	mr       r8, r6
-	addi     r10, r10, 0x696c
-	li       r5, 0x4e
-	stw      r7, 0x1c(r1)
-	li       r7, 0x54
-	stw      r11, 0x18(r1)
-	stw      r4, 0x24(r1)
-	stw      r9, 0x20(r1)
-	stw      r0, 0x2c(r1)
-	stw      r9, 0x28(r1)
-	lwz      r3, 0xb4(r28)
-	lwz      r4, 0xb0(r28)
-	bl       init2taku__Q32og6Screen7MenuMgrFP9J2DScreenUxUxUxUxUxUxUxUx
-	lwz      r3, 0xb0(r28)
-	lis      r4, 0x6D303179@ha
-	lwz      r7, 0xcc(r28)
-	addi     r6, r4, 0x6D303179@l
-	lwz      r12, 0(r3)
-	li       r5, 0x54
-	lwz      r30, 0x10(r7)
-	lwz      r12, 0x3c(r12)
-	lwz      r31, 0x14(r7)
-	mtctr    r12
-	bctrl
-	stw      r31, 0x1c(r3)
-	lis      r4, 0x6D30316E@ha
-	addi     r6, r4, 0x6D30316E@l
-	li       r5, 0x54
-	stw      r30, 0x18(r3)
-	lwz      r3, 0xb0(r28)
-	lwz      r4, 0xcc(r28)
-	lwz      r12, 0(r3)
-	lwz      r30, 0x18(r4)
-	lwz      r12, 0x3c(r12)
-	lwz      r31, 0x1c(r4)
-	mtctr    r12
-	bctrl
-	stw      r31, 0x1c(r3)
-	stw      r30, 0x18(r3)
-	lwz      r3, 0xb0(r28)
-	bl       setCallBackMessage__Q22og6ScreenFPQ29P2DScreen3Mgr
-	lis      r6, 0x6D303179@ha
-	lwz      r4, 0xb0(r28)
-	mr       r3, r29
-	li       r5, 0x54
-	addi     r6, r6, 0x6D303179@l
-	bl       setMenuScreen__Q22og6ScreenFP10JKRArchivePQ29P2DScreen3MgrUx
-	stw      r3, 0xb8(r28)
-	lis      r6, 0x6D30316E@ha
-	mr       r3, r29
-	li       r5, 0x54
-	lwz      r4, 0xb0(r28)
-	addi     r6, r6, 0x6D30316E@l
-	bl       setMenuScreen__Q22og6ScreenFP10JKRArchivePQ29P2DScreen3MgrUx
-	stw      r3, 0xbc(r28)
-	lfs      f1, lbl_8051DF08@sda21(r2)
-	lwz      r3, 0xb8(r28)
-	bl       open__Q32og6Screen15AnimText_ScreenFf
-	lwz      r3, 0xbc(r28)
-	lfs      f1, lbl_8051DF0C@sda21(r2)
-	bl       open__Q32og6Screen15AnimText_ScreenFf
-	lwz      r0, 0x44(r1)
-	lwz      r31, 0x3c(r1)
-	lwz      r30, 0x38(r1)
-	lwz      r29, 0x34(r1)
-	lwz      r28, 0x30(r1)
-	mtlr     r0
-	addi     r1, r1, 0x40
-	blr
-	*/
 }
 
 /*
@@ -603,3 +343,8 @@ int ObjWorldMapInfoWindow0::getResult() { return _CC->_08; }
 // 	*/
 // }
 // } // namespace Screen
+
+#pragma force_active on
+#include "Screen/screenObj.h"
+// const char* fakeMatch_screenObj_WMapWin0 = "screenObj.h";
+#pragma force_active reset

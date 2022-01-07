@@ -5,7 +5,7 @@
 
 namespace JUtility {
 struct TColor {
-	inline TColor();
+	inline TColor() { }
 	inline TColor(u8 red, u8 green, u8 blue, u8 alpha)
 	{
 		channels.r = red;

@@ -48,7 +48,7 @@ struct SetSceneArg : public SceneArg {
 
 	SceneType m_sceneType;                    // _04
 	u8 _08;                                   // _08
-	u8 _09;                                   // _09
+	bool _09;                                 // _09
 	og::Screen::DispMemberBase* m_dispMember; // _0C
 };
 
@@ -78,8 +78,8 @@ struct SceneBase {
 	virtual ScreenMemberID getMemberID() = 0;               // _08
 	virtual bool isUseBackupSceneInfo();                    // _0C
 	virtual bool isDrawInDemo() const;                      // _10
-	virtual char* getResName() const      = 0;              // _14
-	virtual void doCreateObj(JKRArchive*) = 0;              // _18
+	virtual const char* getResName() const = 0;             // _14
+	virtual void doCreateObj(JKRArchive*)  = 0;             // _18
 	virtual void doUserCallBackFunc(Resource::MgrCommand*); // _1C
 	virtual void setPort(Graphics&);                        // _20
 	virtual void doUpdateActive();                          // _24
@@ -173,6 +173,7 @@ struct ObjBase : public IObjBase {
 	virtual bool doConfirmEndScene(EndSceneArg*&);    // _5C
 
 	og::Screen::DispMemberBase* getDispMember();
+	Controller* getGamePad() const;
 
 	int _30;            // _30
 	SceneBase* m_owner; // _34

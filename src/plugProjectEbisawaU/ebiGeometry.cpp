@@ -1,3 +1,5 @@
+#include "Vector2.h"
+#include "ebi/Geometry.h"
 #include "types.h"
 
 /*
@@ -19,7 +21,7 @@ namespace ebi {
  * Address:	........
  * Size:	00002C
  */
-void EGEBox2f::isIn(Vector2<float>&)
+bool EGEBox2f::isIn(Vector2f&)
 {
 	// UNUSED FUNCTION
 }
@@ -29,48 +31,30 @@ void EGEBox2f::isIn(Vector2<float>&)
  * Address:	803C9FF4
  * Size:	000058
  */
-bool ebi::EGEBox2f::isOut(Vector2<float>&)
+bool EGEBox2f::isOut(Vector2f& point)
 {
-	/*
-	lfs      f1, 0(r4)
-	lfs      f0, 0(r3)
-	fcmpo    cr0, f1, f0
-	bge      lbl_803CA00C
-	li       r3, 1
-	blr
-
-lbl_803CA00C:
-	lfs      f0, 8(r3)
-	fcmpo    cr0, f0, f1
-	bge      lbl_803CA020
-	li       r3, 1
-	blr
-
-lbl_803CA020:
-	lfs      f1, 4(r4)
-	lfs      f0, 4(r3)
-	fcmpo    cr0, f1, f0
-	bge      lbl_803CA038
-	li       r3, 1
-	blr
-
-lbl_803CA038:
-	lfs      f0, 0xc(r3)
-	fcmpo    cr0, f0, f1
-	mfcr     r0
-	srwi     r3, r0, 0x1f
-	blr
-	*/
+	if (point.x < minX) {
+		return true;
+	}
+	if (maxX < point.x) {
+		return true;
+	}
+	if (point.y < minY) {
+		return true;
+	}
+	if (maxY < point.y) {
+		return true;
+	}
+	return false;
 }
-
-} // namespace ebi
 
 /*
  * --INFO--
  * Address:	........
  * Size:	000054
  */
-void in__Q23ebi8EGEBox2fFP10Vector2<float>(void)
+// void in__Q23ebi8EGEBox2fFP10Vector2<float>(void)
+void EGEBox2f::in(Vector2f*) const
 {
 	// UNUSED FUNCTION
 }
@@ -80,8 +64,19 @@ void in__Q23ebi8EGEBox2fFP10Vector2<float>(void)
  * Address:	803CA04C
  * Size:	000070
  */
-void isIn__Q23ebi8EGEBox2fFR10Vector2<float> f(void)
+// void isIn__Q23ebi8EGEBox2fFR10Vector2<float> f(void)
+bool EGEBox2f::isIn(Vector2f& point, float pointSize) const
 {
+	if (point.x - pointSize < minX) {
+		return false;
+	}
+	if (maxX < point.x + pointSize) {
+		return false;
+	}
+	if (point.y - pointSize < minY) {
+		return false;
+	}
+	return (maxY < point.y + pointSize) == false;
 	/*
 	lfs      f3, 0(r4)
 	lfs      f0, 0(r3)
@@ -125,8 +120,19 @@ lbl_803CA09C:
  * Address:	803CA0BC
  * Size:	000068
  */
-void isOut__Q23ebi8EGEBox2fFR10Vector2<float> f(void)
+// void isOut__Q23ebi8EGEBox2fFR10Vector2<float> f(void)
+bool EGEBox2f::isOut(Vector2f& point, float pointSize) const
 {
+	if (point.x + pointSize < minX) {
+		return true;
+	}
+	if (maxX < point.x - pointSize) {
+		return true;
+	}
+	if (point.y + pointSize < minY) {
+		return true;
+	}
+	return (maxY < point.y - pointSize);
 	/*
 	lfs      f3, 0(r4)
 	lfs      f0, 0(r3)
@@ -168,7 +174,8 @@ lbl_803CA10C:
  * Address:	803CA124
  * Size:	000064
  */
-void in__Q23ebi8EGEBox2fFP10Vector2<float> f(void)
+// void in__Q23ebi8EGEBox2fFP10Vector2<float> f(void)
+void EGEBox2f::in(Vector2f*, float) const
 {
 	/*
 	lfs      f0, 0(r3)
@@ -210,7 +217,8 @@ lbl_803CA170:
  * Address:	803CA188
  * Size:	00005C
  */
-void isOut__Q23ebi11EGECircle2fFR10Vector2<float>(void)
+// void isOut__Q23ebi11EGECircle2fFR10Vector2<float>(void)
+bool EGECircle2f::isOut(Vector2f&) const
 {
 	/*
 	lfs      f1, 4(r4)
@@ -250,7 +258,8 @@ lbl_803CA1DC:
  * Address:	803CA1E4
  * Size:	0000B8
  */
-void in__Q23ebi11EGECircle2fFP10Vector2<float>(void)
+// void in__Q23ebi11EGECircle2fFP10Vector2<float>(void)
+void EGECircle2f::in(Vector2f*) const
 {
 	/*
 	lfs      f7, 4(r3)
@@ -319,7 +328,8 @@ lbl_803CA294:
  * Address:	803CA29C
  * Size:	0000BC
  */
-void out__Q23ebi11EGECircle2fFP10Vector2<float>(void)
+// void out__Q23ebi11EGECircle2fFP10Vector2<float>(void)
+void EGECircle2f::out(Vector2f*) const
 {
 	/*
 	lfs      f7, 4(r3)
@@ -383,3 +393,4 @@ lbl_803CA338:
 	blr
 	*/
 }
+} // namespace ebi

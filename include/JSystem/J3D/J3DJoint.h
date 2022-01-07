@@ -5,8 +5,9 @@
 #include "Quat.h"
 #include "Vector3.h"
 
-struct J3DMtxCalcAnmBase;
 struct J3DMaterial;
+struct J3DMtxCalc;
+struct J3DMtxCalcAnmBase;
 
 struct J3DJoint {
 	J3DJoint();
@@ -32,6 +33,8 @@ struct J3DJoint {
 	u8 _4C[8];                    // _4C
 	J3DMtxCalcAnmBase* m_mtxCalc; // _54
 	J3DMaterial* m_material;      // _58
+
+	static J3DMtxCalc* sCurrentMtxCalc;
 };
 
 #endif

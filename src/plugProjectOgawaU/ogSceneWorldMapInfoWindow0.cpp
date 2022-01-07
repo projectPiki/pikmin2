@@ -1,4 +1,8 @@
+#include "og/Screen/DispMemberWorldMapInfoWin0.h"
+#include "og/newScreen/ObjWorldMapInfoWindow0.h"
+#include "og/newScreen/WorldMapInfoWindow0.h"
 #include "types.h"
+#include "nans.h"
 
 /*
     Generated from dpostproc
@@ -97,6 +101,12 @@
         .skip 0x4
 */
 
+// // // TODO: Ew.
+// #pragma force_active on
+// static const char* fakeMatchPrintArg = "ogSceneWorldMapInfoWindow0";
+// // static const char* fakeMatchPrintArg = "\0\0\0\0\0";
+// #pragma force_active reset
+
 namespace og {
 
 namespace newScreen {
@@ -106,7 +116,8 @@ namespace newScreen {
  * Address:	8032BAA4
  * Size:	00003C
  */
-WorldMapInfoWindow0::WorldMapInfoWindow0(void)
+WorldMapInfoWindow0::WorldMapInfoWindow0()
+    : SMenuPauseVS()
 {
 	/*
 	stwu     r1, -0x10(r1)
@@ -132,7 +143,7 @@ WorldMapInfoWindow0::WorldMapInfoWindow0(void)
  * Address:	........
  * Size:	000060
  */
-WorldMapInfoWindow0::~WorldMapInfoWindow0(void)
+WorldMapInfoWindow0::~WorldMapInfoWindow0()
 {
 	// UNUSED FUNCTION
 }
@@ -142,55 +153,17 @@ WorldMapInfoWindow0::~WorldMapInfoWindow0(void)
  * Address:	8032BAE0
  * Size:	0000A4
  */
-void WorldMapInfoWindow0::doCreateObj(JKRArchive*)
+void WorldMapInfoWindow0::doCreateObj(JKRArchive* archive)
 {
-	/*
-	stwu     r1, -0x10(r1)
-	mflr     r0
-	stw      r0, 0x14(r1)
-	stw      r31, 0xc(r1)
-	mr       r31, r4
-	stw      r30, 8(r1)
-	mr       r30, r3
-	li       r3, 0xd4
-	bl       __nw__FUl
-	or.      r4, r3, r3
-	beq      lbl_8032BB1C
-	lis      r4, lbl_8048F608@ha
-	addi     r4, r4, lbl_8048F608@l
-	bl       __ct__Q32og9newScreen22ObjWorldMapInfoWindow0FPCc
-	mr       r4, r3
-
-lbl_8032BB1C:
-	mr       r3, r30
-	mr       r5, r31
-	bl       registObj__Q26Screen9SceneBaseFPQ26Screen7ObjBaseP10JKRArchive
-	lwz      r31, 0x21c(r30)
-	lis      r4, 0x004F4741@ha
-	lis      r6, 0x57696E30@ha
-	lis      r5, 0x574D6170@ha
-	mr       r3, r31
-	addi     r4, r4, 0x004F4741@l
-	addi     r6, r6, 0x57696E30@l
-	addi     r5, r5, 0x574D6170@l
-	bl       isID__Q32og6Screen14DispMemberBaseFUlUx
-	clrlwi.  r0, r3, 0x18
-	beq      lbl_8032BB6C
-	lbz      r7, 0x20(r31)
-	mr       r3, r30
-	li       r4, 0
-	li       r5, 0
-	li       r6, 0
-	bl       setColorBG__Q26Screen9SceneBaseFUcUcUcUc
-
-lbl_8032BB6C:
-	lwz      r0, 0x14(r1)
-	lwz      r31, 0xc(r1)
-	lwz      r30, 8(r1)
-	mtlr     r0
-	addi     r1, r1, 0x10
-	blr
-	*/
+	ObjWorldMapInfoWindow0* obj
+	    = new ObjWorldMapInfoWindow0("WorldMapInfoWindow0 screen");
+	registObj(obj, archive);
+	Screen::DispMemberWorldMapInfoWin0* disp
+	    = reinterpret_cast<Screen::DispMemberWorldMapInfoWin0*>(
+	        m_dispMemberBuffer);
+	if (disp->isID(OWNER_OGA, MEMBER_WORLD_MAP_INFO_WINDOW_0)) {
+		setColorBG(0, 0, 0, disp->_20);
+	}
 }
 
 /*
@@ -198,9 +171,9 @@ lbl_8032BB6C:
  * Address:	8032BB84
  * Size:	000008
  */
-void WorldMapInfoWindow0::doConfirmSetScene(Screen::SetSceneArg&)
+bool WorldMapInfoWindow0::doConfirmSetScene(::Screen::SetSceneArg&)
 {
-	return 0x1;
+	return true;
 }
 
 /*
@@ -208,37 +181,16 @@ void WorldMapInfoWindow0::doConfirmSetScene(Screen::SetSceneArg&)
  * Address:	8032BB8C
  * Size:	000064
  */
-void WorldMapInfoWindow0::doGetFinishState(void)
+int WorldMapInfoWindow0::doGetFinishState()
 {
-	/*
-	stwu     r1, -0x10(r1)
-	mflr     r0
-	lis      r4, 0x004F4741@ha
-	lis      r6, 0x57696E30@ha
-	stw      r0, 0x14(r1)
-	lis      r5, 0x574D6170@ha
-	addi     r4, r4, 0x004F4741@l
-	addi     r6, r6, 0x57696E30@l
-	stw      r31, 0xc(r1)
-	addi     r5, r5, 0x574D6170@l
-	stw      r30, 8(r1)
-	li       r30, 0
-	lwz      r31, 0x21c(r3)
-	mr       r3, r31
-	bl       isID__Q32og6Screen14DispMemberBaseFUlUx
-	clrlwi.  r0, r3, 0x18
-	beq      lbl_8032BBD4
-	lwz      r30, 8(r31)
-
-lbl_8032BBD4:
-	lwz      r0, 0x14(r1)
-	mr       r3, r30
-	lwz      r31, 0xc(r1)
-	lwz      r30, 8(r1)
-	mtlr     r0
-	addi     r1, r1, 0x10
-	blr
-	*/
+	Screen::DispMemberWorldMapInfoWin0* disp
+	    = reinterpret_cast<Screen::DispMemberWorldMapInfoWin0*>(
+	        m_dispMemberBuffer);
+	int state = 0;
+	if (disp->isID(OWNER_OGA, MEMBER_WORLD_MAP_INFO_WINDOW_0)) {
+		state = disp->_08;
+	}
+	return state;
 }
 
 /*
@@ -246,13 +198,9 @@ lbl_8032BBD4:
  * Address:	8032BBF0
  * Size:	00000C
  */
-void WorldMapInfoWindow0::getResName() const
+const char* WorldMapInfoWindow0::getResName() const
 {
-	/*
-	lis      r3, lbl_8048F624@ha
-	addi     r3, r3, lbl_8048F624@l
-	blr
-	*/
+	return "res_world_map_info_window0.szs";
 }
 
 /*
@@ -260,22 +208,19 @@ void WorldMapInfoWindow0::getResName() const
  * Address:	8032BBFC
  * Size:	000008
  */
-u32 WorldMapInfoWindow0::getSceneType(void) { return 0x2729; }
+SceneType WorldMapInfoWindow0::getSceneType()
+{
+	return SCENE_WORLD_MAP_INFO_WINDOW_0;
+}
 
 /*
  * --INFO--
  * Address:	8032BC04
  * Size:	000014
  */
-void WorldMapInfoWindow0::getMemberID(void)
+ScreenMemberID WorldMapInfoWindow0::getMemberID(void)
 {
-	/*
-	lis      r4, 0x57696E30@ha
-	lis      r3, 0x574D6170@ha
-	addi     r4, r4, 0x57696E30@l
-	addi     r3, r3, 0x574D6170@l
-	blr
-	*/
+	return MEMBER_WORLD_MAP_INFO_WINDOW_0;
 }
 
 /*
@@ -283,29 +228,30 @@ void WorldMapInfoWindow0::getMemberID(void)
  * Address:	8032BC18
  * Size:	000008
  */
-u32 WorldMapInfoWindow0::isUseBackupSceneInfo(void) { return 0x0; }
+bool WorldMapInfoWindow0::isUseBackupSceneInfo(void) { return false; }
 
 } // namespace newScreen
 
 } // namespace og
 
-/*
- * --INFO--
- * Address:	8032BC20
- * Size:	000028
- */
-void __sinit_ogSceneWorldMapInfoWindow0_cpp(void)
-{
-	/*
-	lis      r4, __float_nan@ha
-	li       r0, -1
-	lfs      f0, __float_nan@l(r4)
-	lis      r3, lbl_804D9E20@ha
-	stw      r0, lbl_80515EA0@sda21(r13)
-	stfsu    f0, lbl_804D9E20@l(r3)
-	stfs     f0, lbl_80515EA4@sda21(r13)
-	stfs     f0, 4(r3)
-	stfs     f0, 8(r3)
-	blr
-	*/
-}
+// /*
+//  * sinit
+//  * --INFO--
+//  * Address:	8032BC20
+//  * Size:	000028
+//  */
+// void __sinit_ogSceneWorldMapInfoWindow0_cpp(void)
+// {
+// 	/*
+// 	lis      r4, __float_nan@ha
+// 	li       r0, -1
+// 	lfs      f0, __float_nan@l(r4)
+// 	lis      r3, lbl_804D9E20@ha
+// 	stw      r0, lbl_80515EA0@sda21(r13)
+// 	stfsu    f0, lbl_804D9E20@l(r3)
+// 	stfs     f0, lbl_80515EA4@sda21(r13)
+// 	stfs     f0, 4(r3)
+// 	stfs     f0, 8(r3)
+// 	blr
+// 	*/
+// }

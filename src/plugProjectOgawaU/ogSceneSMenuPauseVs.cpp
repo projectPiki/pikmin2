@@ -1,4 +1,9 @@
+#include "Screen/Enums.h"
+#include "og/Screen/DispMemberSMenuPauseVS.h"
+#include "og/newScreen/ObjSMenuPauseVS.h"
+#include "og/newScreen/SMenuPauseVS.h"
 #include "types.h"
+#include "nans.h"
 
 /*
     Generated from dpostproc
@@ -74,25 +79,9 @@ namespace newScreen {
  * Address:	80329CFC
  * Size:	00003C
  */
-SMenuPauseVS::SMenuPauseVS(void)
+SMenuPauseVS::SMenuPauseVS()
+    : SceneBase()
 {
-	/*
-	stwu     r1, -0x10(r1)
-	mflr     r0
-	stw      r0, 0x14(r1)
-	stw      r31, 0xc(r1)
-	mr       r31, r3
-	bl       __ct__Q26Screen9SceneBaseFv
-	lis      r4, __vt__Q32og9newScreen12SMenuPauseVS@ha
-	mr       r3, r31
-	addi     r0, r4, __vt__Q32og9newScreen12SMenuPauseVS@l
-	stw      r0, 0(r31)
-	lwz      r31, 0xc(r1)
-	lwz      r0, 0x14(r1)
-	mtlr     r0
-	addi     r1, r1, 0x10
-	blr
-	*/
 }
 
 /*
@@ -117,42 +106,11 @@ void SMenuPauseVS::doUserCallBackFunc(Resource::MgrCommand*) { }
  * Address:	80329D3C
  * Size:	000078
  */
-void SMenuPauseVS::doCreateObj(JKRArchive*)
+void SMenuPauseVS::doCreateObj(JKRArchive* archive)
 {
-	/*
-	stwu     r1, -0x10(r1)
-	mflr     r0
-	stw      r0, 0x14(r1)
-	stw      r31, 0xc(r1)
-	mr       r31, r4
-	stw      r30, 8(r1)
-	mr       r30, r3
-	li       r3, 0xcc
-	bl       __nw__FUl
-	or.      r4, r3, r3
-	beq      lbl_80329D78
-	lis      r4, lbl_8048F520@ha
-	addi     r4, r4, lbl_8048F520@l
-	bl       __ct__Q32og9newScreen15ObjSMenuPauseVSFPCc
-	mr       r4, r3
-
-lbl_80329D78:
-	mr       r3, r30
-	mr       r5, r31
-	bl       registObj__Q26Screen9SceneBaseFPQ26Screen7ObjBaseP10JKRArchive
-	mr       r3, r30
-	li       r4, 0
-	li       r5, 0
-	li       r6, 0
-	li       r7, 0xb4
-	bl       setColorBG__Q26Screen9SceneBaseFUcUcUcUc
-	lwz      r0, 0x14(r1)
-	lwz      r31, 0xc(r1)
-	lwz      r30, 8(r1)
-	mtlr     r0
-	addi     r1, r1, 0x10
-	blr
-	*/
+	ObjSMenuPauseVS* obj = new ObjSMenuPauseVS("SMenuPauseVS screen");
+	registObj(obj, archive);
+	setColorBG(0, 0, 0, 0xB4);
 }
 
 /*
@@ -160,46 +118,20 @@ lbl_80329D78:
  * Address:	80329DB4
  * Size:	000088
  */
-void SMenuPauseVS::doGetFinishState(void)
+int SMenuPauseVS::doGetFinishState()
 {
-	/*
-	stwu     r1, -0x10(r1)
-	mflr     r0
-	lis      r4, 0x004F4741@ha
-	lis      r5, 0x5F414C4C@ha
-	stw      r0, 0x14(r1)
-	addi     r6, r5, 0x5F414C4C@l
-	addi     r4, r4, 0x004F4741@l
-	li       r5, 0x534d
-	stw      r31, 0xc(r1)
-	stw      r30, 8(r1)
-	li       r30, 0
-	lwz      r31, 0x21c(r3)
-	mr       r3, r31
-	bl       isID__Q32og6Screen14DispMemberBaseFUlUx
-	clrlwi.  r0, r3, 0x18
-	beq      lbl_80329E20
-	lis      r4, 0x004F4741@ha
-	lis      r6, 0x535F5653@ha
-	lis      r5, 0x534D5F50@ha
-	mr       r3, r31
-	addi     r4, r4, 0x004F4741@l
-	addi     r6, r6, 0x535F5653@l
-	addi     r5, r5, 0x534D5F50@l
-	bl       getSubMember__Q32og6Screen14DispMemberBaseFUlUx
-	cmplwi   r3, 0
-	beq      lbl_80329E20
-	lwz      r30, 8(r3)
-
-lbl_80329E20:
-	lwz      r0, 0x14(r1)
-	mr       r3, r30
-	lwz      r31, 0xc(r1)
-	lwz      r30, 8(r1)
-	mtlr     r0
-	addi     r1, r1, 0x10
-	blr
-	*/
+	Screen::DispMemberBase* dispAll
+	    = reinterpret_cast<Screen::DispMemberBase*>(m_dispMemberBuffer);
+	int state = 0;
+	if (dispAll->isID(OWNER_OGA, MEMBER_START_MENU_ALL)) {
+		Screen::DispMemberSMenuPauseVS* dispVs
+		    = (Screen::DispMemberSMenuPauseVS*)dispAll->getSubMember(
+		        OWNER_OGA, MEMBER_START_MENU_PAUSE_VS);
+		if (dispVs != nullptr) {
+			state = dispVs->_08;
+		}
+	}
+	return state;
 }
 
 /*
@@ -214,42 +146,16 @@ void SMenuPauseVS::doUpdateActive(void) { }
  * Address:	80329E40
  * Size:	000068
  */
-void SMenuPauseVS::doConfirmSetScene(Screen::SetSceneArg&)
+bool SMenuPauseVS::doConfirmSetScene(::Screen::SetSceneArg& arg)
 {
-	/*
-	stwu     r1, -0x10(r1)
-	mflr     r0
-	mr       r3, r4
-	stw      r0, 0x14(r1)
-	stw      r31, 0xc(r1)
-	li       r31, 0
-	lwz      r12, 0(r4)
-	lwz      r12, 8(r12)
-	mtctr    r12
-	bctrl
-	cmpwi    r3, 0x2724
-	beq      lbl_80329E8C
-	bge      lbl_80329E80
-	cmpwi    r3, 0x2712
-	beq      lbl_80329E8C
-	b        lbl_80329E90
-
-lbl_80329E80:
-	cmpwi    r3, 0x2727
-	beq      lbl_80329E8C
-	b        lbl_80329E90
-
-lbl_80329E8C:
-	li       r31, 1
-
-lbl_80329E90:
-	lwz      r0, 0x14(r1)
-	mr       r3, r31
-	lwz      r31, 0xc(r1)
-	mtlr     r0
-	addi     r1, r1, 0x10
-	blr
-	*/
+	bool result = false;
+	switch (arg.getSceneType()) {
+	case SCENE_VS:
+	case SCENE_CHALLENGE_2P:
+	case SCENE_CHALLENGE_1P:
+		result = true;
+	}
+	return result;
 }
 
 /*
@@ -257,8 +163,9 @@ lbl_80329E90:
  * Address:	80329EA8
  * Size:	00000C
  */
-void SMenuPauseVS::doSetBackupScene(Screen::SetSceneArg&)
+void SMenuPauseVS::doSetBackupScene(::Screen::SetSceneArg& arg)
 {
+	arg._09 = false;
 	/*
 	li       r0, 0
 	stb      r0, 9(r4)
@@ -271,13 +178,9 @@ void SMenuPauseVS::doSetBackupScene(Screen::SetSceneArg&)
  * Address:	80329EB4
  * Size:	00000C
  */
-void SMenuPauseVS::getResName() const
+const char* SMenuPauseVS::getResName() const
 {
-	/*
-	lis      r3, lbl_8048F534@ha
-	addi     r3, r3, lbl_8048F534@l
-	blr
-	*/
+	return "res_s_menu_pause_VS.szs";
 }
 
 /*
@@ -285,36 +188,23 @@ void SMenuPauseVS::getResName() const
  * Address:	80329EC0
  * Size:	000008
  */
-u32 SMenuPauseVS::getSceneType(void) { return 0x2728; }
+SceneType SMenuPauseVS::getSceneType(void) { return SCENE_PAUSE_MENU_VS; }
 
 /*
  * --INFO--
  * Address:	80329EC8
  * Size:	00000C
  */
-void SMenuPauseVS::getOwnerID(void)
-{
-	/*
-	lis      r3, 0x004F4741@ha
-	addi     r3, r3, 0x004F4741@l
-	blr
-	*/
-}
+ScreenOwnerID SMenuPauseVS::getOwnerID(void) { return OWNER_OGA; }
 
 /*
  * --INFO--
  * Address:	80329ED4
  * Size:	000014
  */
-void SMenuPauseVS::getMemberID(void)
+ScreenMemberID SMenuPauseVS::getMemberID()
 {
-	/*
-	lis      r4, 0x535F5653@ha
-	lis      r3, 0x534D5F50@ha
-	addi     r4, r4, 0x535F5653@l
-	addi     r3, r3, 0x534D5F50@l
-	blr
-	*/
+	return MEMBER_START_MENU_PAUSE_VS;
 }
 
 /*
@@ -322,7 +212,7 @@ void SMenuPauseVS::getMemberID(void)
  * Address:	80329EE8
  * Size:	000008
  */
-u32 SMenuPauseVS::isUseBackupSceneInfo(void) { return 0x1; }
+bool SMenuPauseVS::isUseBackupSceneInfo(void) { return true; }
 
 } // namespace newScreen
 

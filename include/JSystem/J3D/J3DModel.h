@@ -74,6 +74,11 @@ struct J3DModel {
 	void* _D8;                       // _D8
 };
 
+struct J3DModelHierarchy {
+	short _00;
+	short _02;
+};
+
 struct J3DModelLoaderDataBase {
 	static J3DModelData* load(const void*, u32);
 	static J3DModelData* loadBinaryDisplayList(const void*, u32);

@@ -2,6 +2,8 @@
 #define _ARAM_H
 
 #include "JSystem/JKR/JKRDvdRipper.h"
+#include "JSystem/JKR/Aram.h"
+#include "CNode.h"
 #include "types.h"
 
 namespace ARAM {

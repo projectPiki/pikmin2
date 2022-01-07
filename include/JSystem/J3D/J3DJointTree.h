@@ -32,20 +32,20 @@ struct J3DJointTree {
 	s8* _08;                        // _08
 	u32 m_flags;                    // _0C
 	J3DJoint* _10;                  // _10
-	J3DMtxCalc** m_transformCalc;   // _14
+	J3DMtxCalc* m_transformCalc;    // _14
 
 	// PikDecomp calls this "J3DJointBlock* jointBlock"
 	J3DJoint** m_joints;      // _18
 	u16 m_jointCnt;           // _1C
 	u16 m_envelopeCnt;        // _1E
 	u32 _20;                  // _20
-	u16 m_maxBillBoardCnt;    // _24
+	u32 m_maxBillBoardCnt;    // _24
 	s8* _28;                  // _28
 	u16* _2C;                 // _2C
 	u32 _30;                  // _30
 	J3DDrawMtxData m_mtxData; // _34
 	u32 _40;                  // _40
-	JUTNameTab* nametab;      // _44
+	JUTNameTab* m_nametab;    // _44
 };
 
 #endif

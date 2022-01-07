@@ -1,4 +1,7 @@
+#include "JSystem/J3D/J3DJoint.h"
+#include "JSystem/J3D/J3DModel.h"
 #include "JSystem/J3D/J3DJointTree.h"
+#include "JSystem/J3D/J3DMtxCalc.h"
 #include "types.h"
 
 /*
@@ -47,42 +50,23 @@
  * Size:	000084
  */
 J3DJointTree::J3DJointTree()
+    : m_hierarchy(nullptr)
+    , _08(0)
+    , m_flags(0)
+    , _10(nullptr)
+    , m_transformCalc(nullptr)
+    , m_joints(nullptr)
+    , m_jointCnt(0)
+    , m_envelopeCnt(0)
+    , _20(nullptr)
+    , m_maxBillBoardCnt(0)
+    , _28(nullptr)
+    , _2C(nullptr)
+    , _30(nullptr)
+    , m_mtxData()
+    , _40(0)
+    , m_nametab(nullptr)
 {
-	/*
-	stwu     r1, -0x10(r1)
-	mflr     r0
-	lis      r4, __vt__12J3DJointTree@ha
-	stw      r0, 0x14(r1)
-	li       r0, 0
-	stw      r31, 0xc(r1)
-	mr       r31, r3
-	addi     r3, r4, __vt__12J3DJointTree@l
-	stw      r3, 0(r31)
-	addi     r3, r31, 0x34
-	stw      r0, 4(r31)
-	stw      r0, 8(r31)
-	stw      r0, 0xc(r31)
-	stw      r0, 0x10(r31)
-	stw      r0, 0x14(r31)
-	stw      r0, 0x18(r31)
-	sth      r0, 0x1c(r31)
-	sth      r0, 0x1e(r31)
-	stw      r0, 0x20(r31)
-	stw      r0, 0x24(r31)
-	stw      r0, 0x28(r31)
-	stw      r0, 0x2c(r31)
-	stw      r0, 0x30(r31)
-	bl       __ct__14J3DDrawMtxDataFv
-	li       r0, 0
-	mr       r3, r31
-	stw      r0, 0x40(r31)
-	stw      r0, 0x44(r31)
-	lwz      r31, 0xc(r1)
-	lwz      r0, 0x14(r1)
-	mtlr     r0
-	addi     r1, r1, 0x10
-	blr
-	*/
 }
 
 /*
@@ -90,9 +74,69 @@ J3DJointTree::J3DJointTree()
  * Address:	80088310
  * Size:	00015C
  */
-void J3DJointTree::makeHierarchy(J3DJoint*, const J3DModelHierarchy**,
-                                 J3DMaterialTable*, J3DShapeTable*)
+void J3DJointTree::makeHierarchy(J3DJoint* joint,
+                                 const J3DModelHierarchy** hierarchies,
+                                 J3DMaterialTable* matTable,
+                                 J3DShapeTable* shapeTable)
 {
+	J3DMaterial* selectedMaterial;
+	J3DShape* selectedShape;
+	J3DJoint* rootJointMaybe = joint;
+	while (true) {
+		while (true) {
+			const J3DModelHierarchy* currentHierarchy = *hierarchies;
+			J3DJoint* selectedJoint                   = nullptr;
+			selectedMaterial                          = nullptr;
+			selectedShape                             = nullptr;
+			if (true) {
+				switch (currentHierarchy->_00) {
+				case 0:
+					return;
+				case 1:
+					hierarchies++;
+					makeHierarchy(rootJointMaybe, hierarchies, matTable,
+					              shapeTable);
+					break;
+				case 2:
+					hierarchies++;
+					return;
+				case 0x10:
+					hierarchies++;
+					selectedJoint = m_joints[currentHierarchy->_02];
+					break;
+				case 0x11:
+					hierarchies++;
+					selectedMaterial
+					    = matTable->m_materials1[currentHierarchy->_02];
+					break;
+				case 0x12:
+					hierarchies++;
+					selectedShape = shapeTable->m_items[currentHierarchy->_02];
+				}
+			}
+			if (selectedJoint == nullptr) {
+				break;
+			}
+			rootJointMaybe = selectedJoint;
+			if (joint == nullptr) {
+				_10 = selectedJoint;
+			} else {
+				joint->appendChild(selectedJoint);
+			}
+		}
+		if (selectedMaterial) {
+			if (joint->m_material) {
+				selectedMaterial->_04 = joint->m_material;
+			}
+			joint->m_material         = selectedMaterial;
+			selectedMaterial->m_joint = joint;
+		} else {
+			if (selectedShape) {
+				joint->m_material->m_shape = selectedShape;
+				selectedShape->_04         = joint->m_material;
+			}
+		}
+	}
 	/*
 	.loc_0x0:
 	  stwu      r1, -0x30(r1)
@@ -206,6 +250,7 @@ void J3DJointTree::makeHierarchy(J3DJoint*, const J3DModelHierarchy**,
  */
 void J3DJointTree::findImportantMtxIndex()
 {
+
 	/*
 	stwu     r1, -0x30(r1)
 	li       r9, 0
@@ -328,8 +373,15 @@ lbl_800885CC:
  * Address:	800885E0
  * Size:	000070
  */
-void J3DJointTree::calc(J3DMtxBuffer*, const Vec&, const float (&)[3][4])
+void J3DJointTree::calc(J3DMtxBuffer* buffer, const Vec& vec,
+                        const float (&mtx)[3][4])
 {
+	m_transformCalc->init(vec, mtx);
+	J3DMtxCalc::setMtxBuffer(buffer);
+	if (_10) {
+		J3DJoint::sCurrentMtxCalc = m_transformCalc;
+		_10->recursiveCalc();
+	}
 	/*
 	stwu     r1, -0x10(r1)
 	mflr     r0
@@ -369,10 +421,10 @@ lbl_80088638:
  * Address:	80088650
  * Size:	000008
  */
-void J3DMtxCalc::setMtxBuffer(J3DMtxBuffer*)
-{
-	/*
-	stw      r3, mMtxBuffer__10J3DMtxCalc@sda21(r13)
-	blr
-	*/
-}
+// void J3DMtxCalc::setMtxBuffer(J3DMtxBuffer*)
+// {
+// 	/*
+// 	stw      r3, mMtxBuffer__10J3DMtxCalc@sda21(r13)
+// 	blr
+// 	*/
+// }

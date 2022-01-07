@@ -6,6 +6,8 @@
 struct J3DFrameCtrl {
 	virtual ~J3DFrameCtrl(); // _00
 
+	void update();
+
 	// _00 VTBL
 	u8 m_attr; // _04
 	// TODO: Rename to m_startFrame

@@ -262,7 +262,7 @@ lbl_80428DA8:
  * Address:	80428DB8
  * Size:	000008
  */
-u32 Animator::assertValid(SysShape::Model*) { return 0x1; }
+bool Animator::assertValid(SysShape::Model*) { return true; }
 
 /*
  * --INFO--
@@ -1112,7 +1112,7 @@ lbl_804297BC:
  * Address:	804297E4
  * Size:	000040
  */
-void BlendAnimator::getCalc(void)
+J3DMtxCalc* BlendAnimator::getCalc()
 {
 	/*
 	stwu     r1, -0x10(r1)

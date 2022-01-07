@@ -2,9 +2,13 @@
 #define _GAME_ENEMYMGRBASE_H
 
 #include "Container.h"
+#include "enemyInfo.h"
+#include "Game/EnemyPelletInfo.h"
 #include "Game/EnemyStone.h"
+#include "Game/PelletMgr.h"
 #include "Game/enemyInfo.h"
 #include "GenericObjectMgr.h"
+#include "Vector3.h"
 
 struct CollPartFactory;
 struct J3DModelData;
@@ -18,15 +22,25 @@ struct Model;
 namespace Game {
 struct CreatureKillArg;
 struct EnemyBase;
-struct EnemyBirthArg;
 struct EnemyGeneratorBase;
 struct EnemyParmsBase;
+
+struct EnemyBirthArg {
+	Vector3f m_position;                           // _00
+	float m_faceDir;                               // _0C
+	u8 m_tekiBirthType;                            // _10
+	EnemyGeneratorBase* m_generator;               // _14
+	PelletMgr::OtakaraItemCode* m_otakaraItemCode; // _18
+	EnemyPelletInfo m_pelletInfo;                  // _1C
+	EnemyTypeID::EEnemyTypeID m_typeID;            // _28
+	float _2C;                                     // _2C
+	u8 _30;                                        // _30
+};
 
 struct IEnemyMgrBase : public GenericObjectMgr, public GenericContainer {
 	// vtable 2 (GenericContainer + self)
 	virtual ~IEnemyMgrBase(); // 18
 };
-
 struct EnemyMgrBase : public IEnemyMgrBase {
 	EnemyMgrBase(int, u8);
 

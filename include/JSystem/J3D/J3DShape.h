@@ -5,6 +5,7 @@
 
 struct J3DDrawMtxData;
 struct J3DJos32Tree;
+struct J3DMaterial;
 struct J3DVertexData;
 struct Vec;
 
@@ -24,7 +25,7 @@ struct J3DShape {
 	void makeVtxArrayCmd();
 
 	// VTBL _00
-	s32* _04;              // _04
+	J3DMaterial* _04;      // _04
 	s16 m_id;              // _08
 	u16 _0A;               // _0A
 	Flags m_flags;         // _0C

@@ -6,7 +6,7 @@
 #include "System.h"
 #include "types.h"
 #include "Viewport.h"
-// #include "nans.h"
+#include "nans.h"
 
 /*
     Generated from dpostproc
@@ -61,7 +61,7 @@
  * Size:	000074
  */
 FogMgr::FogMgr()
-    : CNode("ƒtƒHƒOƒ}ƒl[ƒWƒƒ")
+    : CNode("ï¿½tï¿½Hï¿½Oï¿½}ï¿½lï¿½[ï¿½Wï¿½ï¿½")
     , m_type(GX_FOG_LINEAR)
     , m_nearZ(640.0f)
     , m_farZ(3024.0f)
