@@ -34,6 +34,9 @@ typedef volatile f64 vf64;
 
 typedef int BOOL;
 
+// This shoud go in a stddef type header file
+typedef u32 size_t;
+
 #ifndef TRUE
 #define TRUE 1
 #endif // ifndef TRUE
