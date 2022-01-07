@@ -1,6 +1,23 @@
 .include "macros.inc"
+.section .rodata  # 0x804732E0 - 0x8049E220
+.balign 8
+lbl_8048F5A8:
+	.asciz "ogObjWorldMapInfoWindow0.cpp"
+.balign 4
+lbl_8048F5C8:
+	.asciz "SMenuPauseVS screen"
+.balign 4
+lbl_8048F5DC:
+	.asciz "P2Assert"
+.balign 4
+lbl_8048F5E8:
+	.asciz "info_window.blo"
+.balign 4
+lbl_8048F5F8:
+	.asciz "screenObj.h"
+
 .section .data, "wa"  # 0x8049E220 - 0x804EFC20
-.balign 0x8
+.balign 8
 .global __vt__Q32og9newScreen22ObjWorldMapInfoWindow0
 __vt__Q32og9newScreen22ObjWorldMapInfoWindow0:
 	.4byte 0

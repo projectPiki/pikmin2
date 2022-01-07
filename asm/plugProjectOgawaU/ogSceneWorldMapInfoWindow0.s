@@ -4,25 +4,6 @@
 
 .section .rodata  # 0x804732E0 - 0x8049E220
 .balign 8
-.global lbl_8048F5A8
-lbl_8048F5A8:
-	.asciz "ogObjWorldMapInfoWindow0.cpp"
-.balign 4
-.global lbl_8048F5C8
-lbl_8048F5C8:
-	.asciz "SMenuPauseVS screen"
-.balign 4
-lbl_8048F5DC:
-	.asciz "P2Assert"
-.balign 4
-lbl_8048F5E8:
-	.asciz "info_window.blo"
-.balign 4
-lbl_8048F5F8:
-	.asciz "screenObj.h"
-.balign 4
-	.4byte 0x00000000
-.balign 4
 lbl_8048F608:
 	.asciz "WorldMapInfoWindow0 screen"
 .balign 4
