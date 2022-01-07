@@ -82,6 +82,6 @@
 
 // } // namespace Screen
 
-static const char* BLAH = __FILE__;
+static const char BLAH[] = __FILE__;
 
 #endif

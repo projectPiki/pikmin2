@@ -102,7 +102,7 @@
 // clang-format on
 // static void _Print(char*, ...) { OSReport(__FILE__); }
 
-const char* fakeMatchFileName = __FILE__;
+static const char[] fakeMatchFileName = __FILE__;
 namespace og {
 
 namespace newScreen {
