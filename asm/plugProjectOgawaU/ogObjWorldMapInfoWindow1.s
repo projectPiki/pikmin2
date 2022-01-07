@@ -1,6 +1,14 @@
 .include "macros.inc"
+.section .rodata  # 0x804732E0 - 0x8049E220
+.balign 8
+lbl_8048F648:
+	.asciz "SMenuPauseVS screen"
+.balign 4
+lbl_8048F65C:
+	.asciz "info_window.blo"
+
 .section .data, "wa"  # 0x8049E220 - 0x804EFC20
-.balign 0x8
+.balign 8
 .global __vt__Q32og9newScreen22ObjWorldMapInfoWindow1
 __vt__Q32og9newScreen22ObjWorldMapInfoWindow1:
 	.4byte 0
@@ -59,17 +67,13 @@ __vt__Q32og6Screen26DispMemberWorldMapInfoWin1:
 	.4byte doSetSubMemberAll__Q32og6Screen14DispMemberBaseFv
 
 .section .sdata2, "a"     # 0x80516360 - 0x80520E40
-.balign 0x8
-.global lbl_8051DF18
+.balign 8
 lbl_8051DF18:
 	.float 0.5
-.global lbl_8051DF1C
 lbl_8051DF1C:
-	.4byte 0x3F19999A
-.global lbl_8051DF20
+	.float 0.6
 lbl_8051DF20:
 	.float 0.7
-	.4byte 0x00000000
 
 .section .text, "ax"  # 0x800056C0 - 0x80472F00
 .global __ct__Q32og9newScreen22ObjWorldMapInfoWindow1FPCc
@@ -486,7 +490,6 @@ getMemberID__Q32og6Screen26DispMemberWorldMapInfoWin1Fv:
 /* 8032C1F8 00329138  38 63 61 70 */	addi r3, r3, 0x574D6170@l
 /* 8032C1FC 0032913C  4E 80 00 20 */	blr 
 
-.global "@24@__dt__Q32og9newScreen22ObjWorldMapInfoWindow1Fv"
 "@24@__dt__Q32og9newScreen22ObjWorldMapInfoWindow1Fv":
 /* 8032C200 00329140  38 63 FF E8 */	addi r3, r3, -24
 /* 8032C204 00329144  4B FF FF 6C */	b __dt__Q32og9newScreen22ObjWorldMapInfoWindow1Fv
