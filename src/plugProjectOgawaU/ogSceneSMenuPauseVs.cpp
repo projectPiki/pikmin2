@@ -45,7 +45,7 @@ void SMenuPauseVS::doCreateObj(JKRArchive* archive)
 {
 	ObjSMenuPauseVS* obj = new ObjSMenuPauseVS("SMenuPauseVS screen");
 	registObj(obj, archive);
-	setColorBG(0, 0, 0, 0xB4);
+	setColorBG(0, 0, 0, 180);
 }
 
 /*
@@ -101,11 +101,6 @@ bool SMenuPauseVS::doConfirmSetScene(::Screen::SetSceneArg& arg)
 void SMenuPauseVS::doSetBackupScene(::Screen::SetSceneArg& arg)
 {
 	arg._09 = false;
-	/*
-	li       r0, 0
-	stb      r0, 9(r4)
-	blr
-	*/
 }
 
 /*
