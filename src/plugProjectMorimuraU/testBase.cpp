@@ -17,8 +17,8 @@ TTestBase::TTestBase(char* name)
 
 	_45 = 0;
 
-	strcpy(&m_baseName, name);
-	m_name = &m_baseName;
+	strcpy(m_baseName, name);
+	m_name = m_baseName;
 }
 
 /*
