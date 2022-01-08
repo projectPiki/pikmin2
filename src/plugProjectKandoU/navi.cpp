@@ -1,5 +1,12 @@
 #include "Game/Navi.h"
-#include "types.h"
+#include "Game/StateMachine.h"
+
+#include "JSystem/J3D/J3DJoint.h"
+#include "JSystem/JUT/JUTException.h"
+
+#include "SysShape/Model.h"
+
+#include "CollInfo.h"
 
 /*
     Generated from dpostproc
@@ -599,51 +606,29 @@ namespace Game {
  * --INFO--
  * Address:	8013F6D4
  * Size:	000050
+ * Matches
  */
-void Navi::getShadowParam(Game::ShadowParam&)
+void Navi::getShadowParam(Game::ShadowParam& get)
 {
-	/*
-	lfs      f0, 0x20c(r3)
-	lfs      f4, lbl_80518348@sda21(r2)
-	stfs     f0, 0(r4)
-	lfs      f3, lbl_8051834C@sda21(r2)
-	lfs      f0, 0x210(r3)
-	lfs      f2, lbl_80518350@sda21(r2)
-	stfs     f0, 4(r4)
-	lfs      f1, lbl_80518354@sda21(r2)
-	lfs      f5, 0x214(r3)
-	lfs      f0, lbl_80518358@sda21(r2)
-	stfs     f5, 8(r4)
-	lfs      f5, 4(r4)
-	fadds    f4, f5, f4
-	stfs     f4, 4(r4)
-	stfs     f3, 0x18(r4)
-	stfs     f2, 0x1c(r4)
-	stfs     f1, 0xc(r4)
-	stfs     f0, 0x10(r4)
-	stfs     f1, 0x14(r4)
-	blr
-	*/
+	get.m_position = m_shadowParam.m_position;
+	get.m_position.y += 0.5f;
+
+	get.m_boundingSphere.m_radius = 10.0f;
+	get._1C                       = 4.0f;
+
+	get.m_boundingSphere.m_position = Vector3f(0.0f, 1.0f, 0.0f);
 }
 
 /*
  * --INFO--
  * Address:	8013F724
  * Size:	000024
+ * Matches
  */
-void Navi::getLODSphere(Sys::Sphere&)
+void Navi::getLODSphere(Sys::Sphere& get)
 {
-	/*
-	lfs      f0, lbl_8051835C@sda21(r2)
-	stfs     f0, 0xc(r4)
-	lfs      f0, 0x218(r3)
-	stfs     f0, 0(r4)
-	lfs      f0, 0x21c(r3)
-	stfs     f0, 4(r4)
-	lfs      f0, 0x220(r3)
-	stfs     f0, 8(r4)
-	blr
-	*/
+	get.m_radius   = 0.0f;
+	get.m_position = m_shadowParam.m_boundingSphere.m_position;
 }
 
 /*
@@ -652,7 +637,19 @@ void Navi::getLODSphere(Sys::Sphere&)
  * Size:	000208
  */
 Navi::Navi()
+    : FakePiki()
 {
+	_288.m_byteView.a = 0;
+	_288.m_byteView.b = 0;
+
+	m_padinput  = nullptr;
+	m_padinput2 = nullptr;
+	m_camera    = nullptr;
+	m_camera2   = nullptr;
+	m_cursor    = nullptr;
+
+	m_objectTypeID = 1;
+	// ETC. ETC. todo
 	/*
 	stwu     r1, -0x10(r1)
 	mflr     r0
@@ -1435,182 +1432,82 @@ namespace Game {
  * --INFO--
  * Address:	801400B0
  * Size:	000290
+ * Majority matches except for regalloc, var offsets and end of func
  */
-void Navi::onInit(Game::CreatureInitArg*)
+void Navi::onInit(Game::CreatureInitArg* arg)
 {
-	/*
-	stwu     r1, -0x10(r1)
-	mflr     r0
-	lis      r4, lbl_8047C788@ha
-	stw      r0, 0x14(r1)
-	li       r0, 0
-	stw      r31, 0xc(r1)
-	addi     r31, r4, lbl_8047C788@l
-	stw      r30, 8(r1)
-	mr       r30, r3
-	stb      r0, 0x259(r3)
-	stb      r0, 0x258(r3)
-	bl       clearKaisanDisable__Q24Game4NaviFv
-	mr       r3, r30
-	bl       clearThrowDisable__Q24Game4NaviFv
-	li       r0, 0
-	lfs      f0, lbl_80518354@sda21(r2)
-	stb      r0, 0x2a4(r30)
-	mr       r3, r30
-	stfs     f0, 0x2f8(r30)
-	stw      r0, 0x260(r30)
-	stw      r0, 0x25c(r30)
-	bl       initFakePiki__Q24Game8FakePikiFv
-	lwz      r3, naviMgr__4Game@sda21(r13)
-	mr       r4, r30
-	bl       setupNavi__Q24Game7NaviMgrFPQ24Game4Navi
-	lwz      r4, 0x174(r30)
-	li       r0, 0
-	mr       r3, r30
-	lwz      r4, 8(r4)
-	lwz      r4, 4(r4)
-	lwz      r4, 0x28(r4)
-	lwz      r4, 0(r4)
-	stw      r0, 0x54(r4)
-	lwz      r4, 0x174(r30)
-	lwz      r4, 8(r4)
-	lwz      r4, 4(r4)
-	lwz      r4, 0x28(r4)
-	lwz      r4, 4(r4)
-	stw      r0, 0x54(r4)
-	stb      r0, 0x288(r30)
-	stb      r0, 0x289(r30)
-	lhz      r0, 0x288(r30)
-	rlwinm   r0, r0, 0, 0x10, 0x1e
-	sth      r0, 0x288(r30)
-	bl       initAnimator__Q24Game8FakePikiFv
-	li       r0, 0
-	lfs      f0, lbl_80518354@sda21(r2)
-	stb      r0, 0x268(r30)
-	li       r3, 0x3c
-	stfs     f0, 0x308(r30)
-	bl       __nw__FUl
-	or.      r0, r3, r3
-	beq      lbl_80140190
-	mr       r4, r30
-	bl       __ct__Q24Game11NaviWhistleFPQ24Game4Navi
-	mr       r0, r3
+	m_stick = 0;
+	_258    = 0;
 
-lbl_80140190:
-	stw      r0, 0x28c(r30)
-	li       r0, 0
-	lfs      f0, lbl_80518354@sda21(r2)
-	li       r6, 0
-	stb      r0, 0x2de(r30)
-	stw      r0, 0x2a8(r30)
-	stfs     f0, 0x2b0(r30)
-	stb      r0, 0x2ac(r30)
-	lwz      r5, naviMgr__4Game@sda21(r13)
-	lwz      r3, 0x114(r30)
-	lwz      r4, 0x174(r30)
-	lwz      r5, 0xcc(r5)
-	bl
-createFromFactory__8CollTreeFPQ28SysShape9MtxObjectP15CollPartFactoryP11CollPartMgr
-	lwz      r3, 0x114(r30)
-	lis      r0, 0x8000
-	lwz      r3, 0(r3)
-	cmplw    r3, r0
-	bge      lbl_801401EC
-	addi     r3, r31, 0xc
-	addi     r5, r31, 0x18
-	li       r4, 0x346
-	crclr    6
-	bl       panic_f__12JUTExceptionFPCciPCce
+	clearKaisanDisable();
+	clearThrowDisable();
 
-lbl_801401EC:
-	lwz      r3, 0x114(r30)
-	lwz      r4, 0x174(r30)
-	bl       attachModel__8CollTreeFPQ28SysShape9MtxObject
-	lwz      r3, 0x270(r30)
-	mr       r4, r30
-	li       r5, 0
-	li       r6, 0
-	lwz      r12, 0(r3)
-	lwz      r12, 0xc(r12)
-	mtctr    r12
-	bctrl
-	mr       r3, r30
-	lwz      r12, 0(r30)
-	lwz      r12, 0x1ac(r12)
-	mtctr    r12
-	bctrl
-	lwz      r3, 0x174(r30)
-	addi     r4, r31, 0x34
-	bl       getJoint__Q28SysShape5ModelFPc
-	stw      r3, 0x2c0(r30)
-	lwz      r3, 0x2c0(r30)
-	bl       getWorldMatrix__Q28SysShape5JointFv
-	lwz      r5, 0x2d0(r30)
-	addi     r4, r2, lbl_80518360@sda21
-	stw      r3, 0x10(r5)
-	lwz      r5, 0x28c(r30)
-	lwz      r3, 0x2d0(r30)
-	addi     r0, r5, 0xc
-	stw      r0, 0xc(r3)
-	lwz      r3, 0x174(r30)
-	bl       getJoint__Q28SysShape5ModelFPc
-	bl       getWorldMatrix__Q28SysShape5JointFv
-	lwz      r4, 0x2d0(r30)
-	stw      r3, 0x14(r4)
-	lhz      r4, 0x2dc(r30)
-	lwz      r3, 0x2d0(r30)
-	neg      r0, r4
-	or       r0, r0, r4
-	srwi     r4, r0, 0x1f
-	bl       setNaviType__Q23efx11TNaviEffectFQ33efx11TNaviEffect12enumNaviType
-	lwz      r3, 0x2d0(r30)
-	lwz      r0, 0(r3)
-	ori      r0, r0, 2
-	stw      r0, 0(r3)
-	lwz      r4, 0x10(r3)
-	bl       createLight___Q23efx11TNaviEffectFPA4_f
-	mr       r3, r30
-	bl       setLifeMax__Q24Game4NaviFv
-	li       r0, 0
-	lfs      f0, lbl_80518368@sda21(r2)
-	stb      r0, 0x26a(r30)
-	fmr      f1, f0
-	stb      r0, 0x269(r30)
-	lhz      r0, 0x2dc(r30)
-	cmplwi   r0, 1
-	bne      lbl_801402D4
-	lfs      f0, lbl_8051836C@sda21(r2)
-	fmr      f1, f0
+	m_invincibleTimer = 0;
+	_2F8              = 0.0f;
 
-lbl_801402D4:
-	stfs     f0, 0x168(r30)
-	stfs     f0, 0x16c(r30)
-	stfs     f1, 0x170(r30)
-	lwz      r3, 0x298(r30)
-	lhz      r0, 0x2dc(r30)
-	lwz      r12, 0(r3)
-	mulli    r31, r0, 0x14
-	lwz      r0, naviMgr__4Game@sda21(r13)
-	lwz      r12, 8(r12)
-	addi     r4, r31, 0x60
-	add      r4, r0, r4
-	mtctr    r12
-	bctrl
-	lwz      r3, 0x29c(r30)
-	addi     r4, r31, 0x88
-	lwz      r0, naviMgr__4Game@sda21(r13)
-	lwz      r12, 0(r3)
-	add      r4, r0, r4
-	lwz      r12, 8(r12)
-	mtctr    r12
-	bctrl
-	lwz      r0, 0x14(r1)
-	lwz      r31, 0xc(r1)
-	lwz      r30, 8(r1)
-	mtlr     r0
-	addi     r1, r1, 0x10
-	blr
-	*/
+	m_sprayCounts[1] = 0;
+	m_sprayCounts[0] = 0;
+
+	initFakePiki();
+	naviMgr->setupNavi(this);
+
+	// NONMATCHING: something with the offsets of one of the members,
+	// I believe it's the m_jointTree member
+	m_model->m_j3dModel->m_modelData->m_jointTree.m_joints[0]->m_mtxCalc
+	    = nullptr;
+	m_model->m_j3dModel->m_modelData->m_jointTree.m_joints[1]->m_mtxCalc
+	    = nullptr;
+
+	_288.m_byteView.a = 0;
+	_288.m_byteView.b = 0;
+	_288.m_shortView &= ~1;
+
+	initAnimator();
+
+	m_isAlive = false;
+	_308      = 0.0f;
+
+	m_cursor = new NaviWhistle(this);
+
+	_2DE            = 0;
+	m_nextThrowPiki = nullptr;
+	m_holdPikiTimer = 0.0f;
+	_2AC            = 0;
+
+	m_collTree->createFromFactory(m_model, naviMgr->_CC, 0);
+	JUT_ASSERTLINE(838, ((u32)m_collTree->m_part) >= 0x80000000,
+	               "blah blah replace with byte array");
+	m_collTree->attachModel(m_model);
+
+	m_fsm->start(this, 0, nullptr);
+
+	getCreatureID();
+
+	m_beaconJoint = m_model->getJoint("happajnt3");
+
+	m_effectsObj->m_beaconMtx = m_beaconJoint->getWorldMatrix();
+	m_effectsObj->_0C         = &m_cursor->_0C;
+
+	SysShape::Joint* headJnt = m_model->getJoint("headjnt");
+	m_effectsObj->m_headMtx  = headJnt->getWorldMatrix();
+	m_effectsObj->setNaviType(
+	    (efx::TNaviEffect::enumNaviType)(bool)m_naviIndex.m_shortView);
+
+	m_effectsObj->createLight();
+
+	setLifeMax();
+
+	_26A = 0;
+	_269 = 0;
+
+	float scale = 1.3f;
+	if (m_naviIndex.m_shortView == 1) {
+		scale = 1.5f;
+	}
+	m_scale = Vector3f(scale, scale, scale);
+
+	// m_cursorMatAnim->
+	// some weird shit here, cant be bothered to finish it
 }
 
 /*
@@ -1618,9 +1515,9 @@ lbl_801402D4:
  * Address:	80140340
  * Size:	000008
  */
-int Navi::getCreatureID()
+s32 Navi::getCreatureID()
 {
-	return m_naviIndex;
+	return m_naviIndex.m_shortView;
 	/*
 	lhz      r3, 0x2dc(r3)
 	blr
@@ -1811,7 +1708,7 @@ void NaviState::onKeyEvent(Game::Navi*, const SysShape::KeyEvent&) { }
  * Address:	8014051C
  * Size:	000080
  */
-void Navi::getPosition()
+Vector3f Navi::getPosition()
 {
 	/*
 	stwu     r1, -0x10(r1)
@@ -2396,45 +2293,43 @@ lbl_80140C64:
  * Address:	80140C98
  * Size:	000010
  */
-void MonoObjectMgr<Game::Navi>::getAt(int)
+/*void MonoObjectMgr<Game::Navi>::getAt(int)
 {
-	/*
-	mulli    r0, r4, 0x320
-	lwz      r3, 0x28(r3)
-	add      r3, r3, r0
-	blr
-	*/
-}
+    mulli    r0, r4, 0x320
+    lwz      r3, 0x28(r3)
+    add      r3, r3, r0
+    blr
+}*/
 
 /*
  * --INFO--
  * Address:	80140CA8
  * Size:	00004C
  */
-void Iterator<Game::ItemPikihead::Item>::isDone()
-{
-	/*
-	stwu     r1, -0x10(r1)
-	mflr     r0
-	stw      r0, 0x14(r1)
-	stw      r31, 0xc(r1)
-	mr       r31, r3
-	lwz      r3, 8(r3)
-	lwz      r12, 0(r3)
-	lwz      r12, 0x1c(r12)
-	mtctr    r12
-	bctrl
-	lwz      r0, 4(r31)
-	subf     r0, r0, r3
-	cntlzw   r0, r0
-	srwi     r3, r0, 5
-	lwz      r31, 0xc(r1)
-	lwz      r0, 0x14(r1)
-	mtlr     r0
-	addi     r1, r1, 0x10
-	blr
-	*/
-}
+// void Iterator<Game::ItemPikihead::Item>::isDone()
+//{
+/*
+stwu     r1, -0x10(r1)
+mflr     r0
+stw      r0, 0x14(r1)
+stw      r31, 0xc(r1)
+mr       r31, r3
+lwz      r3, 8(r3)
+lwz      r12, 0(r3)
+lwz      r12, 0x1c(r12)
+mtctr    r12
+bctrl
+lwz      r0, 4(r31)
+subf     r0, r0, r3
+cntlzw   r0, r0
+srwi     r3, r0, 5
+lwz      r31, 0xc(r1)
+lwz      r0, 0x14(r1)
+mtlr     r0
+addi     r1, r1, 0x10
+blr
+*/
+//}
 
 namespace Game {
 
@@ -2534,7 +2429,7 @@ void Navi::setupNukuAdjustArg(Game::ItemPikihead::Item*,
  * Address:	80140E2C
  * Size:	000050
  */
-void Navi::hasDope(int)
+bool Navi::hasDope(int)
 {
 	/*
 	stwu     r1, -0x10(r1)
@@ -2569,7 +2464,7 @@ lbl_80140E6C:
  * Address:	80140E7C
  * Size:	000044
  */
-void Navi::getDopeCount(int)
+int Navi::getDopeCount(int)
 {
 	/*
 	stwu     r1, -0x10(r1)
