@@ -1476,7 +1476,7 @@ void Navi::onInit(Game::CreatureInitArg* arg)
 
 	m_collTree->createFromFactory(m_model, naviMgr->_CC, 0);
 	JUT_ASSERTLINE(838, ((u32)m_collTree->m_part) >= 0x80000000,
-	               "blah blah replace with byte array");
+	               "ザンーー（・д・）??ネン\n");
 	m_collTree->attachModel(m_model);
 
 	m_fsm->start(this, 0, nullptr);
