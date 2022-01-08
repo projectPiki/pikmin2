@@ -21,11 +21,36 @@ struct AnimGroup;
 struct AlphaMgr;
 struct CallBack_CounterRV;
 
-// Size: 0x14
+/**
+ * @size{0x14}
+ */
 struct DispMemberFloor : public DispMemberBase {
-	virtual u32 getSize();     // _00
-	virtual u32 getOwnerID();  // _04
-	virtual u64 getMemberID(); // _08
+	/**
+	 * @reifiedAddress{8022D610}
+	 * @reifiedFile{plugProjectKandoU/vsGS_Load.cpp}
+	 */
+	virtual u32 getSize() // _00
+	{
+		return sizeof(DispMemberFloor);
+	}
+
+	/**
+	 * @reifiedAddress{8022D618}
+	 * @reifiedFile{plugProjectKandoU/vsGS_Load.cpp}
+	 */
+	virtual u32 getOwnerID() // _04
+	{
+		return OWNER_OGA;
+	}
+
+	/**
+	 * @reifiedAddress{8022D624}
+	 * @reifiedFile{plugProjectKandoU/vsGS_Load.cpp}
+	 */
+	virtual u64 getMemberID() // _08
+	{
+		return MEMBER_FLOOR;
+	}
 
 	int _08;      // _08
 	int m_caveID; // _0C
@@ -41,12 +66,15 @@ struct TitleMsg;
 
 // Size: 0x220
 struct Floor : public ::Screen::SceneBase {
+	Floor();
+	~Floor(); // unused/inlined
+
 	virtual SceneType getSceneType();                           // _00
-	virtual u32 getOwnerID();                                   // _04
-	virtual u64 getMemberID();                                  // _08
+	virtual ScreenOwnerID getOwnerID();                         // _04
+	virtual ScreenMemberID getMemberID();                       // _08
 	virtual bool isUseBackupSceneInfo();                        // _0C
 	virtual bool isDrawInDemo() const;                          // _10
-	virtual void getResName() const;                            // _14
+	virtual const char* getResName() const;                     // _14
 	virtual void doCreateObj(JKRArchive*);                      // _18
 	virtual void doUserCallBackFunc(Resource::MgrCommand*);     // _1C
 	virtual void setPort(Graphics&);                            // _20

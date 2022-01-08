@@ -25,12 +25,12 @@ struct TTestBase : public Screen::ObjBase {
 
 	static u64 mIsSection;
 
-	float m_timer;        // _38
-	float m_timerLength;  // _3C
-	float m_fadeFraction; // _40
-	u8 m_fadeAlpha;       // _44
-	u8 _45;               // _45
-	char m_baseName;      // _46
+	float m_timer;         // _38
+	float m_timerLength;   // _3C
+	float m_fadeFraction;  // _40
+	u8 m_fadeAlpha;        // _44
+	u8 _45;                // _45
+	char m_baseName[0x32]; // _46
 };
 } // namespace Morimura
 

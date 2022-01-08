@@ -1,4 +1,5 @@
 #include "types.h"
+#include "PSSystem/Task.h"
 
 /*
     Generated from dpostproc
@@ -28,6 +29,10 @@ namespace PSSystem {
  * Size:	000054
  */
 TaskBase::TaskBase()
+    : _04(this)
+    , _14(0)
+    , _15(0)
+    , _18(0)
 {
 	/*
 	stwu     r1, -0x10(r1)
@@ -59,8 +64,9 @@ TaskBase::TaskBase()
  * Address:	8033E24C
  * Size:	000024
  */
-void TaskEntry::append(PSSystem::TaskBase*)
+void TaskEntry::append(PSSystem::TaskBase* task)
 {
+	append_Lock(&task->_04);
 	/*
 	stwu     r1, -0x10(r1)
 	mflr     r0
@@ -80,7 +86,7 @@ void TaskEntry::append(PSSystem::TaskBase*)
  * Address:	8033E270
  * Size:	000034
  */
-void TaskEntryMgr::isUnderTask_byDirector(PSSystem::DirectorBase*)
+bool TaskEntryMgr::isUnderTask_byDirector(PSSystem::DirectorBase*)
 {
 	/*
 	lwz      r5, 0(r3)
@@ -382,102 +388,11 @@ lbl_8033E588:
 	*/
 }
 
-/*
- * --INFO--
- * Address:	8033E5AC
- * Size:	000058
+/**
+ * @generated{remove_Lock__Q28PSSystem32MutexList<Q28PSSystem9TaskEntry>FP30JSULink<Q28PSSystem9TaskEntry>}
+ * @generatedAndInlined{remove_Lock__Q28PSSystem31MutexList<Q28PSSystem8TaskBase>FP29JSULink<Q28PSSystem8TaskBase>}
+ * @generated{append_Lock__Q28PSSystem31MutexList<Q28PSSystem8TaskBase>FP29JSULink<Q28PSSystem8TaskBase>}
+ * @generated{append_Lock__Q28PSSystem32MutexList<Q28PSSystem9TaskEntry>FP30JSULink<Q28PSSystem9TaskEntry>}
  */
-void MutexList<PSSystem::TaskEntry>::remove_Lock(JSULink<PSSystem::TaskEntry>*)
-{
-	/*
-	stwu     r1, -0x10(r1)
-	mflr     r0
-	stw      r0, 0x14(r1)
-	stw      r31, 0xc(r1)
-	mr       r31, r4
-	stw      r30, 8(r1)
-	mr       r30, r3
-	addi     r3, r30, 0xc
-	bl       OSLockMutex
-	mr       r3, r30
-	mr       r4, r31
-	bl       remove__10JSUPtrListFP10JSUPtrLink
-	mr       r31, r3
-	addi     r3, r30, 0xc
-	bl       OSUnlockMutex
-	lwz      r0, 0x14(r1)
-	mr       r3, r31
-	lwz      r31, 0xc(r1)
-	lwz      r30, 8(r1)
-	mtlr     r0
-	addi     r1, r1, 0x10
-	blr
-	*/
-}
 
-/*
- * --INFO--
- * Address:	8033E604
- * Size:	000058
- */
-void MutexList<PSSystem::TaskBase>::append_Lock(JSULink<PSSystem::TaskBase>*)
-{
-	/*
-	stwu     r1, -0x10(r1)
-	mflr     r0
-	stw      r0, 0x14(r1)
-	stw      r31, 0xc(r1)
-	mr       r31, r4
-	stw      r30, 8(r1)
-	mr       r30, r3
-	addi     r3, r30, 0xc
-	bl       OSLockMutex
-	mr       r3, r30
-	mr       r4, r31
-	bl       append__10JSUPtrListFP10JSUPtrLink
-	mr       r31, r3
-	addi     r3, r30, 0xc
-	bl       OSUnlockMutex
-	lwz      r0, 0x14(r1)
-	mr       r3, r31
-	lwz      r31, 0xc(r1)
-	lwz      r30, 8(r1)
-	mtlr     r0
-	addi     r1, r1, 0x10
-	blr
-	*/
-}
-
-/*
- * --INFO--
- * Address:	8033E65C
- * Size:	000058
- */
-void MutexList<PSSystem::TaskEntry>::append_Lock(JSULink<PSSystem::TaskEntry>*)
-{
-	/*
-	stwu     r1, -0x10(r1)
-	mflr     r0
-	stw      r0, 0x14(r1)
-	stw      r31, 0xc(r1)
-	mr       r31, r4
-	stw      r30, 8(r1)
-	mr       r30, r3
-	addi     r3, r30, 0xc
-	bl       OSLockMutex
-	mr       r3, r30
-	mr       r4, r31
-	bl       append__10JSUPtrListFP10JSUPtrLink
-	mr       r31, r3
-	addi     r3, r30, 0xc
-	bl       OSUnlockMutex
-	lwz      r0, 0x14(r1)
-	mr       r3, r31
-	lwz      r31, 0xc(r1)
-	lwz      r30, 8(r1)
-	mtlr     r0
-	addi     r1, r1, 0x10
-	blr
-	*/
-}
 } // namespace PSSystem

@@ -1,3 +1,4 @@
+#include "og/Floor.h"
 #include "types.h"
 
 /*
@@ -514,72 +515,12 @@ void VsGame::LoadState::cleanup(Game::VsGameSection*) { }
 
 } // namespace Game
 
-namespace og {
-
-namespace Screen {
-
-/*
- * --INFO--
- * Address:	8022D610
- * Size:	000008
+/**
+ * @reified{getSize__Q32og6Screen15DispMemberFloorFv}
+ * @reified{getOwnerID__Q32og6Screen15DispMemberFloorFv}
+ * @reified{getMemberID__Q32og6Screen15DispMemberFloorFv}
+ * @generated{invoke__34Delegate<Q34Game6VsGame9LoadState>Fv}
  */
-u32 DispMemberFloor::getSize(void) { return 0x14; }
-
-/*
- * --INFO--
- * Address:	8022D618
- * Size:	00000C
- */
-void DispMemberFloor::getOwnerID(void)
-{
-	/*
-lis      r3, 0x004F4741@ha
-addi     r3, r3, 0x004F4741@l
-blr
-	*/
-}
-
-/*
- * --INFO--
- * Address:	8022D624
- * Size:	000010
- */
-void DispMemberFloor::getMemberID(void)
-{
-	/*
-lis      r4, 0x4C4F4F52@ha
-li       r3, 0x46
-addi     r4, r4, 0x4C4F4F52@l
-blr
-	*/
-}
-
-} // namespace Screen
-
-} // namespace og
-
-/*
- * --INFO--
- * Address:	8022D634
- * Size:	000030
- */
-void Delegate<Game::VsGame::LoadState>::invoke()
-{
-	/*
-	stwu     r1, -0x10(r1)
-	mflr     r0
-	mr       r4, r3
-	stw      r0, 0x14(r1)
-	addi     r12, r4, 8
-	lwz      r3, 4(r3)
-	bl       __ptmf_scall
-	nop
-	lwz      r0, 0x14(r1)
-	mtlr     r0
-	addi     r1, r1, 0x10
-	blr
-	*/
-}
 
 /*
  * --INFO--

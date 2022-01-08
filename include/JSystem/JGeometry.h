@@ -65,9 +65,19 @@ template <typename T> struct TBox2 {
 	T maxY;
 };
 
+template <typename T> struct TBox3 {
+	T minX;
+	T minY;
+	T minZ;
+	T maxX;
+	T maxY;
+	T maxZ;
+};
+
 typedef TVec2<float> TVec2f;
 typedef TVec3<float> TVec3f;
 typedef TBox2<float> TBox2f;
+typedef TBox3<float> TBox3f;
 
 } // namespace JGeometry
 

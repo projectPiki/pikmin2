@@ -1,4 +1,13 @@
+#include "Dolphin/stl.h"
+#include "JSystem/JUT/JUTException.h"
+#include "LoadResource.h"
+#include "og/Floor.h"
+#include "og/newScreen/ogUtil.h"
+#include "og/Screen/ogScreen.h"
+#include "Screen/Enums.h"
+#include "System.h"
 #include "types.h"
+#include "nans.h"
 
 /*
     Generated from dpostproc
@@ -76,6 +85,22 @@
         .4byte 0x00000000
 */
 
+/*
+ * --INFO--
+ * Address:	........
+ * Size:	0000E4
+ */
+inline static void _Print(char* format, ...)
+{
+	char buffer[512];
+	va_list args;
+	va_start(args, format);
+	sprintf(buffer, "%s: %s", __FILE__, buffer);
+	vprintf(buffer, args);
+}
+
+const char fakeMatchFileName[] = __FILE__;
+
 namespace og {
 
 namespace newScreen {
@@ -85,7 +110,8 @@ namespace newScreen {
  * Address:	8031BE60
  * Size:	00003C
  */
-Floor::Floor(void)
+Floor::Floor()
+    : SceneBase()
 {
 	/*
 	stwu     r1, -0x10(r1)
@@ -111,10 +137,7 @@ Floor::Floor(void)
  * Address:	........
  * Size:	000074
  */
-Floor::~Floor(void)
-{
-	// UNUSED FUNCTION
-}
+Floor::~Floor() { }
 
 /*
  * --INFO--
@@ -123,6 +146,54 @@ Floor::~Floor(void)
  */
 void Floor::doUserCallBackFunc(Resource::MgrCommand*)
 {
+	if (((Screen::DispMemberBase*)m_dispMemberBuffer)
+	        ->isID(OWNER_OGA, MEMBER_FLOOR)) {
+		const char* path = (sys->m_region == System::LANG_JAPANESE)
+		                       ? "res_floor_name_jpn.szs"
+		                       : "res_floor_name_eng_pal.szs";
+		og::newScreen::makeLanguageResName(m_name, path);
+		LoadResource::Arg resArg(m_name);
+		LoadResource::Node* resNode = gLoadResourceMgr->mountArchive(resArg);
+		// JUT_ASSERTLINE(96, resNode != nullptr, "node is NULL!!\n");
+		// JKRArchive* archive = resNode->m_archive;
+		// // TODO: How could this possibly be an earlier line than both
+		// previous asserts?? JUT_ASSERTLINE(91, archive != nullptr, "arc is
+		// NULL!!\n"); ObjFloor* obj = new ObjFloor("floor screen");
+		// registObj(obj, archive);
+		// setColorBG(0, 0, 0, 0);
+		JKRArchive* archive = nullptr;
+		if (resNode != nullptr) {
+			// archive = resNode->m_archive;
+			if (resNode->m_archive == nullptr) {
+				JUTException::panic_f(fakeMatchFileName, 91, "arc is NULL!!\n");
+			} else {
+				archive = resNode->m_archive;
+			}
+			// archive = resNode->m_archive;
+			// if (archive == nullptr) {
+			// 	JUTException::panic_f(fakeMatchFileName, 91, "arc is NULL!!\n");
+			// }
+			// JUT_ASSERTLINE(91, archive != nullptr, "arc is NULL!!\n");
+		} else {
+			JUTException::panic_f(fakeMatchFileName, 96, "node is NULL!!\n");
+			// JUT_PANICLINE(96, "node is NULL!!\n");
+		}
+		ObjFloor* obj = new ObjFloor("floor screen");
+		registObj(obj, archive);
+		setColorBG(0, 0, 0, 0);
+		// JKRArchive* archive = resNode->m_archive;
+		// if (archive == nullptr) {
+		// 	JUT_PANICLINE(91, "arc is NULL!!\n");
+		// } else {
+		// 	ObjFloor* obj = new ObjFloor("floor screen");
+		// 	registObj(obj, archive);
+		// 	setColorBG(0, 0, 0, 0);
+		// }
+	} else {
+		JUTException::panic_f(fakeMatchFileName, 111,
+		                      "DispMember is not \'FLOOR\'!");
+		// JUT_PANICLINE(111, "DispMember is not \'FLOOR\'!");
+	}
 	/*
 	stwu     r1, -0x50(r1)
 	mflr     r0
@@ -230,28 +301,23 @@ void Floor::doCreateObj(JKRArchive*) { }
  * Address:	8031BFDC
  * Size:	000008
  */
-void Floor::getResName() const
-{
-	/*
-	addi     r3, r2, lbl_8051DBB8@sda21
-	blr
-	*/
-}
+const char* Floor::getResName() const { return ""; }
 
 /*
  * --INFO--
  * Address:	8031BFE4
  * Size:	000008
  */
-u32 Floor::getSceneType(void) { return 0x2713; }
+SceneType Floor::getSceneType() { return SCENE_FLOOR; }
 
 /*
  * --INFO--
  * Address:	8031BFEC
  * Size:	00000C
  */
-void Floor::getOwnerID(void)
+ScreenOwnerID Floor::getOwnerID()
 {
+	return OWNER_OGA;
 	/*
 	lis      r3, 0x004F4741@ha
 	addi     r3, r3, 0x004F4741@l
@@ -264,8 +330,9 @@ void Floor::getOwnerID(void)
  * Address:	8031BFF8
  * Size:	000010
  */
-void Floor::getMemberID(void)
+ScreenMemberID Floor::getMemberID()
 {
+	return MEMBER_FLOOR;
 	/*
 	lis      r4, 0x4C4F4F52@ha
 	li       r3, 0x46

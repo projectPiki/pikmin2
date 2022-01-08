@@ -1,3 +1,8 @@
+#include "Morimura/DayEndCount.h"
+#include "Morimura/HurryUp.h"
+#include "Screen/Bases.h"
+#include "Screen/Enums.h"
+#include "og/Ground.h"
 #include "types.h"
 
 /*
@@ -89,35 +94,19 @@ void initGround(void)
 }
 
 /*
+ * __ct
  * --INFO--
  * Address:	8030DA0C
  * Size:	000054
  */
 Ground::Ground(void)
+    : SceneBase()
 {
-	/*
-	stwu     r1, -0x10(r1)
-	mflr     r0
-	stw      r0, 0x14(r1)
-	stw      r31, 0xc(r1)
-	mr       r31, r3
-	bl       __ct__Q26Screen9SceneBaseFv
-	lis      r3, __vt__Q32og9newScreen6Ground@ha
-	li       r0, 0
-	addi     r4, r3, __vt__Q32og9newScreen6Ground@l
-	mr       r3, r31
-	stw      r4, 0(r31)
-	stb      r0, 0x220(r31)
-	stb      r0, 0x221(r31)
-	stb      r0, 0x222(r31)
-	stb      r0, 0x223(r31)
-	stb      r0, 0x224(r31)
-	lwz      r31, 0xc(r1)
-	lwz      r0, 0x14(r1)
-	mtlr     r0
-	addi     r1, r1, 0x10
-	blr
-	*/
+	_220 = 0;
+	_221 = 0;
+	_222 = 0;
+	_223 = 0;
+	_224 = 0;
 }
 
 /*
@@ -142,64 +131,15 @@ void Ground::doUserCallBackFunc(Resource::MgrCommand*) { }
  * Address:	8030DA64
  * Size:	0000C0
  */
-void Ground::doCreateObj(JKRArchive*)
+void Ground::doCreateObj(JKRArchive* archive)
 {
-	/*
-	stwu     r1, -0x10(r1)
-	mflr     r0
-	stw      r0, 0x14(r1)
-	stw      r31, 0xc(r1)
-	mr       r31, r4
-	stw      r30, 8(r1)
-	mr       r30, r3
-	li       r3, 0x70
-	bl       __nw__FUl
-	or.      r4, r3, r3
-	beq      lbl_8030DAA0
-	lis      r4, lbl_8048E090@ha
-	addi     r4, r4, lbl_8048E090@l
-	bl       __ct__Q32og9newScreen9ObjGroundFPCc
-	mr       r4, r3
-
-lbl_8030DAA0:
-	mr       r3, r30
-	mr       r5, r31
-	bl       registObj__Q26Screen9SceneBaseFPQ26Screen7ObjBaseP10JKRArchive
-	li       r3, 0x118
-	bl       __nw__FUl
-	or.      r4, r3, r3
-	beq      lbl_8030DAC4
-	bl       __ct__Q28Morimura10THurryUp2DFv
-	mr       r4, r3
-
-lbl_8030DAC4:
-	mr       r3, r30
-	mr       r5, r31
-	bl       registObj__Q26Screen9SceneBaseFPQ26Screen7ObjBaseP10JKRArchive
-	li       r3, 0xd4
-	bl       __nw__FUl
-	or.      r4, r3, r3
-	beq      lbl_8030DAE8
-	bl       __ct__Q28Morimura12TDayEndCountFv
-	mr       r4, r3
-
-lbl_8030DAE8:
-	mr       r3, r30
-	mr       r5, r31
-	bl       registObj__Q26Screen9SceneBaseFPQ26Screen7ObjBaseP10JKRArchive
-	mr       r3, r30
-	li       r4, 0
-	li       r5, 0
-	li       r6, 0
-	li       r7, 0
-	bl       setColorBG__Q26Screen9SceneBaseFUcUcUcUc
-	lwz      r0, 0x14(r1)
-	lwz      r31, 0xc(r1)
-	lwz      r30, 8(r1)
-	mtlr     r0
-	addi     r1, r1, 0x10
-	blr
-	*/
+	::Screen::ObjBase* obj = new ObjGround("ground screen");
+	registObj(obj, archive);
+	obj = new Morimura::THurryUp2D();
+	registObj(obj, archive);
+	obj = new Morimura::TDayEndCount();
+	registObj(obj, archive);
+	setColorBG(0, 0, 0, 0);
 }
 
 /*
@@ -207,29 +147,10 @@ lbl_8030DAE8:
  * Address:	8030DB24
  * Size:	00004C
  */
-void Ground::doStart(Screen::StartSceneArg*)
+bool Ground::doStart(::Screen::StartSceneArg* arg)
 {
-	/*
-	stwu     r1, -0x10(r1)
-	mflr     r0
-	lis      r5, lbl_8048E090@ha
-	stw      r0, 0x14(r1)
-	stw      r31, 0xc(r1)
-	mr       r31, r4
-	addi     r4, r5, lbl_8048E090@l
-	bl       searchObj__Q26Screen9SceneBaseFPc
-	lwz      r12, 0(r3)
-	mr       r4, r31
-	lwz      r12, 0x24(r12)
-	mtctr    r12
-	bctrl
-	lwz      r0, 0x14(r1)
-	li       r3, 1
-	lwz      r31, 0xc(r1)
-	mtlr     r0
-	addi     r1, r1, 0x10
-	blr
-	*/
+	searchObj("ground screen")->start(arg);
+	return true;
 }
 
 /*
@@ -466,56 +387,34 @@ lbl_8030DE4C:
  * Address:	8030DE80
  * Size:	00000C
  */
-void Ground::getResName() const
-{
-	/*
-	lis      r3, lbl_8048E100@ha
-	addi     r3, r3, lbl_8048E100@l
-	blr
-	*/
-}
+const char* Ground::getResName() const { return "res_ground.szs"; }
 
 /*
  * --INFO--
  * Address:	8030DE8C
  * Size:	000008
  */
-u32 Ground::getSceneType(void) { return 0x2710; }
+SceneType Ground::getSceneType() { return SCENE_GROUND; }
 
 /*
  * --INFO--
  * Address:	8030DE94
  * Size:	00000C
  */
-void Ground::getOwnerID(void)
-{
-	/*
-	lis      r3, 0x004F4741@ha
-	addi     r3, r3, 0x004F4741@l
-	blr
-	*/
-}
+ScreenOwnerID Ground::getOwnerID() { return OWNER_OGA; }
 
 /*
  * --INFO--
  * Address:	8030DEA0
  * Size:	000010
  */
-void Ground::getMemberID(void)
-{
-	/*
-	lis      r4, 0x4F554E44@ha
-	li       r3, 0x4752
-	addi     r4, r4, 0x4F554E44@l
-	blr
-	*/
-}
+ScreenMemberID Ground::getMemberID() { return MEMBER_GROUND; }
 
 /*
  * --INFO--
  * Address:	8030DEB0
  * Size:	000008
  */
-u32 Ground::isDrawInDemo() const { return 0x0; }
+bool Ground::isDrawInDemo() const { return false; }
 } // namespace newScreen
 } // namespace og

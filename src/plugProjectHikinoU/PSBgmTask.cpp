@@ -1,3 +1,4 @@
+#include "PSSystem/Task.h"
 #include "types.h"
 
 /*
@@ -121,7 +122,7 @@ namespace PSSystem {
  * Address:	8033E6B4
  * Size:	000124
  */
-void ModParamWithFade::task(JASTrack&)
+int ModParamWithFade::task(JASTrack&)
 {
 	/*
 	stwu     r1, -0x20(r1)
@@ -213,7 +214,7 @@ lbl_8033E7C0:
  * Address:	8033E7D8
  * Size:	0000F4
  */
-void ModParamWithTableTask::task(JASTrack&)
+int ModParamWithTableTask::task(JASTrack&)
 {
 	/*
 	stwu     r1, -0x20(r1)
@@ -287,7 +288,7 @@ lbl_8033E874:
  * Address:	8033E8CC
  * Size:	000030
  */
-void PitchModTask::tableTask(JASTrack&, float)
+int PitchModTask::tableTask(JASTrack&, float)
 {
 	/*
 	stwu     r1, -0x10(r1)
@@ -310,7 +311,7 @@ void PitchModTask::tableTask(JASTrack&, float)
  * Address:	8033E8FC
  * Size:	0000D4
  */
-void OuterParamTask::getPreParam(JASTrack&)
+float OuterParamTask::getPreParam(JASTrack&)
 {
 	/*
 	stwu     r1, -0x10(r1)
@@ -447,7 +448,7 @@ lbl_8033EA28:
  * Address:	8033EA68
  * Size:	000028
  */
-void SimpleWaitTask::task(JASTrack&)
+int SimpleWaitTask::task(JASTrack&)
 {
 	/*
 	lwz      r4, 0x1c(r3)

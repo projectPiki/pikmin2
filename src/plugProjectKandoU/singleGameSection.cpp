@@ -1,4 +1,5 @@
 #include "types.h"
+#include "Game/SingleGameSection.h"
 
 /*
     Generated from dpostproc
@@ -792,7 +793,7 @@ namespace PSM {
  * Address:	8015227C
  * Size:	000008
  */
-u32 SceneBase::isGameScene(void) { return 0x0; }
+bool SceneBase::isGameScene(void) { return false; }
 
 namespace Game {
 
@@ -5998,41 +5999,41 @@ blr
 	*/
 }
 
-/*
- * --INFO--
- * Address:	801560B4
- * Size:	000008
- */
-u32 DispMemberGround::getSize(void) { return 0x88; }
+// /*
+//  * --INFO--
+//  * Address:	801560B4
+//  * Size:	000008
+//  */
+// u32 DispMemberGround::getSize(void) { return 0x88; }
 
-/*
- * --INFO--
- * Address:	801560BC
- * Size:	00000C
- */
-void DispMemberGround::getOwnerID(void)
-{
-	/*
-lis      r3, 0x004F4741@ha
-addi     r3, r3, 0x004F4741@l
-blr
-	*/
-}
+// /*
+//  * --INFO--
+//  * Address:	801560BC
+//  * Size:	00000C
+//  */
+// void DispMemberGround::getOwnerID(void)
+// {
+// 	/*
+// lis      r3, 0x004F4741@ha
+// addi     r3, r3, 0x004F4741@l
+// blr
+// 	*/
+// }
 
-/*
- * --INFO--
- * Address:	801560C8
- * Size:	000010
- */
-void DispMemberGround::getMemberID(void)
-{
-	/*
-lis      r4, 0x4F554E44@ha
-li       r3, 0x4752
-addi     r4, r4, 0x4F554E44@l
-blr
-	*/
-}
+// /*
+//  * --INFO--
+//  * Address:	801560C8
+//  * Size:	000010
+//  */
+// void DispMemberGround::getMemberID(void)
+// {
+// 	/*
+// lis      r4, 0x4F554E44@ha
+// li       r3, 0x4752
+// addi     r4, r4, 0x4F554E44@l
+// blr
+// 	*/
+// }
 
 namespace Game {
 
@@ -6359,64 +6360,27 @@ blr
 
 } // namespace og
 
-namespace PSGame {
-
-/*
- * --INFO--
- * Address:	8015633C
- * Size:	000008
+/**
+ * @reified{isCaveFloor__Q26PSGame13CaveFloorInfoFv}
+ * @reified{isBossFloor__Q26PSGame13CaveFloorInfoFv}
+ * @reified{isRelaxFloor__Q26PSGame13CaveFloorInfoFv}
  */
-u32 CaveFloorInfo::isCaveFloor(void) { return 0x1; }
-
-/*
- * --INFO--
- * Address:	80156344
- * Size:	000014
- */
-void CaveFloorInfo::isBossFloor(void)
-{
-	/*
-	lwz      r0, 0x3c(r3)
-	subfic   r0, r0, 1
-	cntlzw   r0, r0
-	srwi     r3, r0, 5
-	blr
-	*/
-}
-
-/*
- * --INFO--
- * Address:	80156358
- * Size:	000014
- */
-void CaveFloorInfo::isRelaxFloor(void)
-{
-	/*
-	lwz      r0, 0x3c(r3)
-	subfic   r0, r0, 2
-	cntlzw   r0, r0
-	srwi     r3, r0, 5
-	blr
-	*/
-}
 
 namespace Game {
-
-} // namespace Game
 
 /*
  * --INFO--
  * Address:	8015636C
  * Size:	000008
  */
-u32 SingleGameSection::isDevelopSection(void) { return 0x0; }
+bool SingleGameSection::isDevelopSection() { return false; }
 
 /*
  * --INFO--
  * Address:	80156374
  * Size:	000008
  */
-void SingleGameSection::getTimerType(void)
+void SingleGameSection::getTimerType()
 {
 	/*
 	lwz      r3, 0x17c(r3)
@@ -6442,68 +6406,49 @@ void SingleGameSection::getCaveFilename(void)
  * Address:	80156384
  * Size:	000004
  */
-void init__Q24Game36FSMState<Game::SingleGameSection>
-FPQ24Game17SingleGameSectionPQ24Game8StateArg(void)
-{
-}
+void FSMState<SingleGameSection>::init(SingleGameSection*, StateArg*) { }
 
 /*
  * --INFO--
  * Address:	80156388
  * Size:	000004
  */
-void exec__Q24Game36FSMState<Game::SingleGameSection>
-FPQ24Game17SingleGameSection(void)
-{
-}
+void FSMState<SingleGameSection>::exec(SingleGameSection*) { }
 
 /*
  * --INFO--
  * Address:	8015638C
  * Size:	000004
  */
-void cleanup__Q24Game36FSMState<Game::SingleGameSection>
-FPQ24Game17SingleGameSection(void)
-{
-}
+void FSMState<SingleGameSection>::cleanup(SingleGameSection*) { }
 
 /*
  * --INFO--
  * Address:	80156390
  * Size:	000004
  */
-void resume__Q24Game36FSMState<Game::SingleGameSection>
-FPQ24Game17SingleGameSection(void)
-{
-}
+void FSMState<SingleGameSection>::resume(SingleGameSection*) { }
 
 /*
  * --INFO--
  * Address:	80156394
  * Size:	000004
  */
-void restart__Q24Game36FSMState<Game::SingleGameSection>
-FPQ24Game17SingleGameSection(void)
-{
-}
+void FSMState<SingleGameSection>::restart(SingleGameSection*) { }
 
 /*
  * --INFO--
  * Address:	80156398
  * Size:	000004
  */
-void init__Q24Game40StateMachine<Game::SingleGameSection>
-FPQ24Game17SingleGameSection(void)
-{
-}
+void StateMachine<SingleGameSection>::init(SingleGameSection*) { }
 
 /*
  * --INFO--
  * Address:	8015639C
  * Size:	000038
  */
-void exec__Q24Game40StateMachine<Game::SingleGameSection>
-FPQ24Game17SingleGameSection(void)
+void StateMachine<SingleGameSection>::exec(SingleGameSection*)
 {
 	/*
 	.loc_0x0:
@@ -6526,14 +6471,12 @@ FPQ24Game17SingleGameSection(void)
 	*/
 }
 
-} // namespace PSGame
-
 /*
  * --INFO--
  * Address:	801563D4
  * Size:	000064
  */
-void create__Q24Game40StateMachine<Game::SingleGameSection> Fi(void)
+void StateMachine<SingleGameSection>::create(int)
 {
 	/*
 	stwu     r1, -0x10(r1)
@@ -6564,36 +6507,17 @@ void create__Q24Game40StateMachine<Game::SingleGameSection> Fi(void)
 	*/
 }
 
-/*
- * --INFO--
- * Address:	80156438
- * Size:	000030
+/**
+ * @generated{invoke__36Delegate<Q24Game17SingleGameSection>Fv}
  */
-void Delegate<Game::SingleGameSection>::invoke()
-{
-	/*
-	stwu     r1, -0x10(r1)
-	mflr     r0
-	mr       r4, r3
-	stw      r0, 0x14(r1)
-	addi     r12, r4, 8
-	lwz      r3, 4(r3)
-	bl       __ptmf_scall
-	nop
-	lwz      r0, 0x14(r1)
-	mtlr     r0
-	addi     r1, r1, 0x10
-	blr
-	*/
-}
 
 /*
  * --INFO--
  * Address:	80156468
  * Size:	00009C
  */
-void transit__Q24Game40StateMachine<Game::SingleGameSection>
-FPQ24Game17SingleGameSectioniPQ24Game8StateArg(void)
+void StateMachine<SingleGameSection>::transit(SingleGameSection*, int,
+                                              StateArg*)
 {
 	/*
 	.loc_0x0:
@@ -6650,8 +6574,8 @@ FPQ24Game17SingleGameSectioniPQ24Game8StateArg(void)
  * Address:	80156504
  * Size:	000084
  */
-void registerState__Q24Game40StateMachine<Game::SingleGameSection>
-FPQ24Game36FSMState<Game::SingleGameSection>(void)
+void StateMachine<SingleGameSection>::registerState(
+    FSMState<SingleGameSection>*)
 {
 	/*
 	.loc_0x0:
@@ -6697,6 +6621,8 @@ FPQ24Game36FSMState<Game::SingleGameSection>(void)
 	*/
 }
 
+} // namespace Game
+
 /*
  * --INFO--
  * Address:	80156588
@@ -6718,41 +6644,8 @@ void __sinit_singleGameSection_cpp(void)
 	*/
 }
 
-/*
- * --INFO--
- * Address:	801565B0
- * Size:	000008
+/**
+ * @generated{@4@__dt__Q23efx13TTutorialSnowFv}
+ * @generated{@4@__dt__Q23efx13TForestSakuraFv}
+ * @generated{@4@__dt__Q23efx11TLastMomijiFv}
  */
-@4 @efx::TTutorialSnow::~TTutorialSnow(void)
-{
-	/*
-	addi     r3, r3, -4
-	b        __dt__Q23efx13TTutorialSnowFv
-	*/
-}
-
-/*
- * --INFO--
- * Address:	801565B8
- * Size:	000008
- */
-@4 @efx::TForestSakura::~TForestSakura(void)
-{
-	/*
-	addi     r3, r3, -4
-	b        __dt__Q23efx13TForestSakuraFv
-	*/
-}
-
-/*
- * --INFO--
- * Address:	801565C0
- * Size:	000008
- */
-@4 @efx::TLastMomiji::~TLastMomiji(void)
-{
-	/*
-	addi     r3, r3, -4
-	b        __dt__Q23efx11TLastMomijiFv
-	*/
-}

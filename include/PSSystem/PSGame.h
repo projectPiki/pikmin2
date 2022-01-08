@@ -27,8 +27,7 @@ extern SceneMgr* spSceneMgr;
 
 inline SceneMgr* getSceneMgr()
 {
-#line 467
-	P2ASSERT(spSceneMgr);
+	P2ASSERTLINE(467, spSceneMgr);
 	return spSceneMgr;
 }
 
