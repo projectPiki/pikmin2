@@ -1432,7 +1432,7 @@ namespace Game {
  * --INFO--
  * Address:	801400B0
  * Size:	000290
- * Majority matches except for regalloc, var offsets and end of func
+ * Majority matches except for var offsets and end of func
  */
 void Navi::onInit(Game::CreatureInitArg* arg)
 {
