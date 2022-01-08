@@ -3,9 +3,8 @@
 
 #include "types.h"
 #include "SysShape/MtxObject.h"
+#include "JSystem/J3D/J3DModel.h"
 
-struct J3DModel;
-struct J3DModelData;
 struct Matrixf;
 namespace Sys {
 struct Sphere;
@@ -31,7 +30,7 @@ struct Model : MtxObject {
 	void clearAnimatorAll();
 	void enableMaterialAnim(int);
 	void enableMaterialAnim(J3DModelData*, int);
-	void getJoint(char*);
+	SysShape::Joint* getJoint(char*);
 	void getJointIndex(char*);
 	void getMatrix(int);
 	void getRoughBoundingRadius();
