@@ -7,6 +7,7 @@
 #include "Parameters.h"
 #include "Rect.h"
 #include "Vector3.h"
+#include "Sys/Sphere.h"
 
 struct Camera;
 struct Color4;
@@ -18,13 +19,11 @@ struct Viewport;
 namespace Game {
 struct Creature;
 
+// Size: 0x20
 struct ShadowParam {
-	Vector3f m_position; // _00
-	float _0C;           // _0C
-	float _10;           // _10
-	float _14;           // _14
-	float m_height;      // _18
-	float m_radius;      // _1C
+	Vector3f m_position;          // _00
+	Sys::Sphere m_boundingSphere; // _0C
+	float _1C;                    // _1C
 };
 
 // Size: 0x60

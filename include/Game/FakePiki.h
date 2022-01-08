@@ -4,6 +4,7 @@
 #include "Game/AABBWaterBox.h"
 #include "Game/Creature.h"
 #include "SysShape/MotionListener.h"
+#include "Game/shadowMgr.h"
 #include "Vector3.h"
 
 struct J3DJoint;
@@ -183,14 +184,13 @@ struct FakePiki : public Creature, public SysShape::MotionListener {
 	Vector3f _1F0;                      // _1F0
 	float m_faceDir;                    // _1FC
 	Vector3f m_position2;               // _200
-	Vector3f m_position;                // _20C
-	Sys::Sphere m_boundingSphere;       // _218
-	int _228;                           // _228
-	u8 _22C[8];                         // _22C
-	float m_animSpeed;                  // _234
-	Vector3f _238;                      // _238
-	float m_faceDirOffset;              // _244
-	Sys::Triangle* _248;                // _248
+	u32 _20C;
+	Game::ShadowParam m_shadowParam; // _20C
+	u8 _22C[8];                      // _22C
+	float m_animSpeed;               // _234
+	Vector3f _238;                   // _238
+	float m_faceDirOffset;           // _244
+	Sys::Triangle* _248;             // _248
 };
 } // namespace Game
 
