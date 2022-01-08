@@ -9,6 +9,7 @@ extern "C" {
 
 #include "Dolphin/vec.h"
 
+// sizeof = 48 or 0x30
 typedef float Mtx[3][4];
 typedef float Mtx44[4][4];
 typedef float PSQuaternion[4];
