@@ -30,7 +30,8 @@ struct J3DJoint {
 	s16 m_eulerRot[3];            // _24
 	Quat m_zRotation;             // _2C
 	Quat m_yRotation;             // _3C
-	u8 _4C[8];                    // _4C
+	u32 _4C;                      // _4C
+	u32 _50;                      // _50
 	J3DMtxCalcAnmBase* m_mtxCalc; // _54
 	J3DMaterial* m_material;      // _58
 
