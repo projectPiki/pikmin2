@@ -12,7 +12,7 @@ lbl_8047C788:
 lbl_8047C794:
 	.asciz "navi.cpp"
 .balign 4
-lbl_8047C7A0:
+lbl_8047C7A0: # Shift-JIS
 	.4byte 0x83558393
 	.4byte 0x815B815B
 	.4byte 0x81698145
