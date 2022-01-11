@@ -569,7 +569,7 @@ lbl_8013CF18:
  * Returns whether the pikmin or captains current animation matches the given
  * animation ID
  */
-void FakePiki::assertMotion(int)
+bool FakePiki::assertMotion(int)
 {
 	/*
 	lwz      r3, 0x1b8(r3)
@@ -2039,7 +2039,7 @@ lbl_8013E080:
  * Address:	8013E09C
  * Size:	000014
  */
-void FakePiki::useMoveRotation()
+bool FakePiki::useMoveRotation()
 {
 	/*
 	lwz      r0, 0x17c(r3)

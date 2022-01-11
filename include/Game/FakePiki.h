@@ -113,7 +113,7 @@ struct FakePiki : public Creature, public SysShape::MotionListener {
 	virtual void doDebugDL();                   // _1C0
 	virtual void update();                      // _1C4
 	virtual void move(float);                   // _1C8
-	virtual void useMoveRotation();             // _1CC
+	virtual bool useMoveRotation();             // _1CC
 	virtual void setMoveRotation(bool);         // _1D0
 	virtual void useUpdateTrMatrix();           // _1D4
 	virtual void setUpdateTrMatrix(bool);       // _1D8
