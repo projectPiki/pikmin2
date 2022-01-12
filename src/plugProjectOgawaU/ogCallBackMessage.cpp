@@ -799,9 +799,7 @@ blr
  * Address:	........
  * Size:	0003DC
  */
-void setCallBackMessageAndShadowSub(P2DScreen::Mgr*, J2DPane*, float, float,
-                                    J2DPane*, unsigned long long,
-                                    unsigned long long)
+void setCallBackMessageAndShadowSub(P2DScreen::Mgr*, J2DPane*, float, float, J2DPane*, unsigned long long, unsigned long long)
 {
 	// UNUSED FUNCTION
 }
@@ -811,8 +809,7 @@ void setCallBackMessageAndShadowSub(P2DScreen::Mgr*, J2DPane*, float, float,
  * Address:	........
  * Size:	000038
  */
-void setCallBackMessageAndShadow(P2DScreen::Mgr*, float, float, J2DPane*,
-                                 unsigned long long, unsigned long long)
+void setCallBackMessageAndShadow(P2DScreen::Mgr*, float, float, J2DPane*, unsigned long long, unsigned long long)
 {
 	// UNUSED FUNCTION
 }

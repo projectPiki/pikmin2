@@ -57,10 +57,7 @@
  * Address:	802F27DC
  * Size:	0001DC
  */
-void
-    makeShadowSRT__Q24Game22UmimushiTubeShadowNodeFRQ24Game15JointShadowParmP7MatrixfR10Vector3<
-        float>
-    R10Vector3f(void)
+void makeShadowSRT__Q24Game22UmimushiTubeShadowNodeFRQ24Game15JointShadowParmP7MatrixfR10Vector3<float> R10Vector3f(void)
 {
 	/*
 	.loc_0x0:
@@ -197,10 +194,7 @@ void
  * Address:	802F29B8
  * Size:	0000CC
  */
-void
-    makeShadowSRT__Q24Game24UmimushiSphereShadowNodeFRQ24Game15JointShadowParmP7MatrixfR10Vector3<
-        float>
-    b(void)
+void makeShadowSRT__Q24Game24UmimushiSphereShadowNodeFRQ24Game15JointShadowParmP7MatrixfR10Vector3<float> b(void)
 {
 	/*
 	.loc_0x0:

@@ -77,8 +77,7 @@ inline int Node::dvdToAram(char const* name, bool useNull)
 		if (useNull) {
 			m_status = 0;
 		} else {
-			m_status
-			    = JKRDvdAramRipper::loadToAram(m_name, 0, Switch_0, 0, 0, 0);
+			m_status = JKRDvdAramRipper::loadToAram(m_name, 0, Switch_0, 0, 0, 0);
 		}
 	}
 
@@ -90,10 +89,8 @@ inline int Node::dvdToAram(char const* name, bool useNull)
  * Address:	........
  * Size:	000140
  */
-void* Node::aramToMainRam(unsigned char* a2, unsigned long a3, unsigned long a4,
-                          JKRExpandSwitch a5, unsigned long a6, JKRHeap* a7,
-                          JKRDvdRipper::EAllocDirection a8, int a9,
-                          unsigned long* byteCnt)
+void* Node::aramToMainRam(unsigned char* a2, unsigned long a3, unsigned long a4, JKRExpandSwitch a5, unsigned long a6, JKRHeap* a7,
+                          JKRDvdRipper::EAllocDirection a8, int a9, unsigned long* byteCnt)
 {
 	void* addr = nullptr;
 	u32 zero   = 0;
@@ -107,8 +104,7 @@ void* Node::aramToMainRam(unsigned char* a2, unsigned long a3, unsigned long a4,
 
 	JKRAramBlock* status = m_status;
 	if (status) {
-		addr = JKRAram::aramToMainRam(status, a2, a3, a4, a5, a6, a7, a9,
-		                              byteCnt);
+		addr = JKRAram::aramToMainRam(status, a2, a3, a4, a5, a6, a7, a9, byteCnt);
 		DCFlushRange(addr, *byteCnt);
 		if ((s32)a8 == JKRDvdRipper::ALLOC_DIR_BOTTOM) {
 			char* newAddr = new (a7, -0x20) char[*byteCnt];
@@ -201,10 +197,8 @@ Node::~Node() { }
  * Size:	000154
  * TODO: Match
  */
-void* Mgr::aramToMainRam(char const* name, unsigned char* a2, unsigned long a3,
-                         unsigned long a4, JKRExpandSwitch a5, unsigned long a6,
-                         JKRHeap* a7, JKRDvdRipper::EAllocDirection a8, int a9,
-                         unsigned long* byteCnt)
+void* Mgr::aramToMainRam(char const* name, unsigned char* a2, unsigned long a3, unsigned long a4, JKRExpandSwitch a5, unsigned long a6,
+                         JKRHeap* a7, JKRDvdRipper::EAllocDirection a8, int a9, unsigned long* byteCnt)
 {
 	void* mem   = nullptr;
 	Node* found = search(name);

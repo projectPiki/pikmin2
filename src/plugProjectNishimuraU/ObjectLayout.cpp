@@ -27,10 +27,7 @@ ObjectLayout::ObjectLayout(MapNode* node)
  * Address:	802508F0
  * Size:	000010
  */
-void ObjectLayout::setNode(int idx, ObjectLayoutNode* layoutNode)
-{
-	m_nodeList[idx] = layoutNode;
-}
+void ObjectLayout::setNode(int idx, ObjectLayoutNode* layoutNode) { m_nodeList[idx] = layoutNode; }
 
 /*
  * --INFO--

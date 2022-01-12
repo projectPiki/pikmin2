@@ -232,8 +232,7 @@ lbl_80456350:
  * Address:	80456370
  * Size:	0000C8
  */
-void Menu::addKeyEvent(Menu::KeyEvent::cTypeFlag, unsigned long,
-                       IDelegate1<Menu&>*)
+void Menu::addKeyEvent(Menu::KeyEvent::cTypeFlag, unsigned long, IDelegate1<Menu&>*)
 {
 	/*
 	.loc_0x0:
@@ -590,8 +589,7 @@ lbl_804567B8:
  * Address:	804567D8
  * Size:	000068
  */
-Menu::KeyEvent::KeyEvent(Menu::KeyEvent::cTypeFlag, unsigned long,
-                         IDelegate1<Menu&>*)
+Menu::KeyEvent::KeyEvent(Menu::KeyEvent::cTypeFlag, unsigned long, IDelegate1<Menu&>*)
 {
 	/*
 	.loc_0x0:

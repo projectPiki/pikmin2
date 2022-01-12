@@ -181,8 +181,7 @@ double __ieee754_pow(x, y) double x, y;
 		return one;
 
 	/* +-NaN return x+y */
-	if (ix > 0x7ff00000 || ((ix == 0x7ff00000) && (lx != 0)) || iy > 0x7ff00000
-	    || ((iy == 0x7ff00000) && (ly != 0)))
+	if (ix > 0x7ff00000 || ((ix == 0x7ff00000) && (lx != 0)) || iy > 0x7ff00000 || ((iy == 0x7ff00000) && (ly != 0)))
 		return x + y;
 
 	/* determine if y is an odd int when x < 0
@@ -320,8 +319,7 @@ double __ieee754_pow(x, y) double x, y;
 		s_l       = v * ((u - s_h * t_h) - s_h * t_l);
 		/* compute log(ax) */
 		s2 = s * s;
-		r  = s2 * s2
-		    * (L1 + s2 * (L2 + s2 * (L3 + s2 * (L4 + s2 * (L5 + s2 * L6)))));
+		r  = s2 * s2 * (L1 + s2 * (L2 + s2 * (L3 + s2 * (L4 + s2 * (L5 + s2 * L6)))));
 		r += s_l * (s_h + s);
 		s2        = s_h * s_h;
 		t_h       = 3.0 + s2 + r;

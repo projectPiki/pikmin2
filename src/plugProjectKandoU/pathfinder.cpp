@@ -773,8 +773,7 @@ void AStarPathfinder::search(short, short, short*, int)
  * Address:	........
  * Size:	00057C
  */
-void AStarPathfinder::search(Game::AStarContext*, short, short, short*, int,
-                             int, int&)
+void AStarPathfinder::search(Game::AStarContext*, short, short, short*, int, int, int&)
 {
 	// UNUSED FUNCTION
 }

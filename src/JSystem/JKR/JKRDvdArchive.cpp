@@ -538,8 +538,7 @@ lbl_8001EB0C:
  * Address:	8001EB2C
  * Size:	0000FC
  */
-void JKRDvdArchive::fetchResource(void*, unsigned long,
-                                  JKRArchive::SDIFileEntry*, unsigned long*)
+void JKRDvdArchive::fetchResource(void*, unsigned long, JKRArchive::SDIFileEntry*, unsigned long*)
 {
 	/*
 	.loc_0x0:
@@ -632,9 +631,7 @@ void JKRDvdArchive::fetchResource(void*, unsigned long,
  * Address:	8001EC28
  * Size:	000200
  */
-void JKRDvdArchive::fetchResource_subroutine(long, unsigned long, unsigned long,
-                                             unsigned char*, unsigned long, int,
-                                             int)
+void JKRDvdArchive::fetchResource_subroutine(long, unsigned long, unsigned long, unsigned char*, unsigned long, int, int)
 {
 	/*
 	.loc_0x0:
@@ -796,9 +793,7 @@ void JKRDvdArchive::fetchResource_subroutine(long, unsigned long, unsigned long,
  * Address:	8001EE28
  * Size:	00021C
  */
-void JKRDvdArchive::fetchResource_subroutine(long, unsigned long, unsigned long,
-                                             JKRHeap*, int, int,
-                                             unsigned char**)
+void JKRDvdArchive::fetchResource_subroutine(long, unsigned long, unsigned long, JKRHeap*, int, int, unsigned char**)
 {
 	/*
 	.loc_0x0:

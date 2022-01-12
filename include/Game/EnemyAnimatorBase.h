@@ -48,8 +48,7 @@ struct EnemyBlendAnimatorBase : public EnemyAnimatorBase {
 	virtual void resetAnimSpeed();                // _18
 	virtual void getTypeID();                     // _1C
 
-	void startBlend(int, int, SysShape::BlendFunction*, float,
-	                SysShape::MotionListener*);
+	void startBlend(int, int, SysShape::BlendFunction*, float, SysShape::MotionListener*);
 	void endBlend();
 	void animate(SysShape::BlendFunction*, float, float, float);
 

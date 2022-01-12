@@ -17,8 +17,7 @@ struct PlayerFileInfo {
 	{
 		bool valid = idx >= 0 && idx < 3;
 		if (!valid) {
-			JUTException::panic_f(gStrMemoryCardMgrCpp, 396,
-			                      gStrMemoryCardMgrP2Assert);
+			JUTException::panic_f(gStrMemoryCardMgrCpp, 396, gStrMemoryCardMgrP2Assert);
 		}
 	}
 

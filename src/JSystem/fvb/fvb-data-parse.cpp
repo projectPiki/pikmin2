@@ -12,9 +12,8 @@ namespace data {
  */
 void TParse_TParagraph::getData(TParse_TParagraph::TData* data) const
 {
-	u16* parse = JGadget::binary::parseVariableUInt_16_32_following(
-	    fvbData, (u32*)data, (u32*)&data->param, 0);
-	u32 t = (u32)data->type;
+	u16* parse = JGadget::binary::parseVariableUInt_16_32_following(fvbData, (u32*)data, (u32*)&data->param, 0);
+	u32 t      = (u32)data->type;
 	if (!t) {
 		data->content = nullptr;
 		data->next    = parse;

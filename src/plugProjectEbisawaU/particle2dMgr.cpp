@@ -349,8 +349,7 @@ lbl_803B9284:
  * Address:	803B92C0
  * Size:	000154
  */
-void TParticle2dMgr::createMgr(char*, unsigned long, unsigned long,
-                               unsigned long)
+void TParticle2dMgr::createMgr(char*, unsigned long, unsigned long, unsigned long)
 {
 	/*
 	.loc_0x0:
@@ -475,8 +474,7 @@ void TParticle2dMgr::destroyHeap()
  * Address:	803B9414
  * Size:	0000AC
  */
-void TParticle2dMgr::setSceneEmitterAndResourceManager(JPAEmitterManager*,
-                                                       JPAResourceManager*)
+void TParticle2dMgr::setSceneEmitterAndResourceManager(JPAEmitterManager*, JPAResourceManager*)
 {
 	/*
 	.loc_0x0:
@@ -755,8 +753,7 @@ void TParticle2dMgr::setXfb(const ResTIMG*)
  * Address:	803B971C
  * Size:	00004C
  */
-void TParticle2dMgr::create(unsigned short, Vector2<float>&, unsigned char,
-                            unsigned char)
+void TParticle2dMgr::create(unsigned short, Vector2<float>&, unsigned char, unsigned char)
 {
 	/*
 	.loc_0x0:

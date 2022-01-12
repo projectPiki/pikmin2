@@ -372,8 +372,7 @@ void J3DGetTranslateRotateMtx(const J3DTransformInfo&, float (*)[4])
  * Address:	8005F21C
  * Size:	0000B0
  */
-void J3DGetTranslateRotateMtx(short, short, short, float, float, float,
-                              float (*)[4])
+void J3DGetTranslateRotateMtx(short, short, short, float, float, float, float (*)[4])
 {
 	/*
 	.loc_0x0:
@@ -795,8 +794,7 @@ void J3DMtxProjConcat(float (*)[4], float (*)[4], float (*)[4])
  * Address:	8005F750
  * Size:	0000DC
  */
-void J3DPSMtxArrayConcat(float (*)[4], float (*)[4], float (*)[4],
-                         unsigned long)
+void J3DPSMtxArrayConcat(float (*)[4], float (*)[4], float (*)[4], unsigned long)
 {
 	/*
 	.loc_0x0:

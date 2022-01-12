@@ -1043,8 +1043,7 @@ void Game::RouteMgr::refreshWater(void)
 				searchSphere.m_position.z = wp->m_position.z;
 				searchSphere.m_position.x = wp->m_position.x;
 				if (wp->m_flags & WPF_Water) {
-					searchSphere.m_position.y
-					    = mapMgr->getMinY(searchSphere.m_position);
+					searchSphere.m_position.y = mapMgr->getMinY(searchSphere.m_position);
 				}
 				searchSphere.m_radius = 4.0f;
 				WaterBox* waterBox    = mapMgr->findWater(searchSphere);
@@ -2775,8 +2774,7 @@ void Game::RouteMgr::write(Stream&)
  * Address:	........
  * Size:	000004
  */
-void Game::RouteMgr::directDraw(Graphics&, Game::WayPoint*, Game::WayPoint*,
-                                int, short*)
+void Game::RouteMgr::directDraw(Graphics&, Game::WayPoint*, Game::WayPoint*, int, short*)
 {
 	// UNUSED FUNCTION
 }
@@ -3124,8 +3122,7 @@ Game::EditorRouteMgr::WPNode::~WPNode(void)
  */
 void Game::EditorRouteMgr::read(Stream& input)
 {
-	for (WPNode* node = (WPNode*)m_node._10; node != nullptr;
-	     node         = (WPNode*)node->_04) {
+	for (WPNode* node = (WPNode*)m_node._10; node != nullptr; node = (WPNode*)node->_04) {
 		delWayPoint(node->m_wayPoint);
 	}
 	u16 count = input.readShort();

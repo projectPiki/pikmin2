@@ -8317,9 +8317,7 @@ lbl_803762C0:
  * Address:	803762EC
  * Size:	000044
  */
-void Morimura::TScaleUpCounter::init(J2DScreen*, unsigned long long,
-                                     unsigned long long, unsigned long long,
-                                     unsigned long*, bool)
+void Morimura::TScaleUpCounter::init(J2DScreen*, unsigned long long, unsigned long long, unsigned long long, unsigned long*, bool)
 {
 	/*
 	.loc_0x0:

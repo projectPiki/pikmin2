@@ -10,12 +10,7 @@ struct MapUnitGenerator;
 struct RandMapChecker;
 struct UnitInfo;
 
-enum CardinalDirection {
-	CD_Unknown0 = 0,
-	CD_Unknown1,
-	CD_Unknown2,
-	CD_Unknown3
-};
+enum CardinalDirection { CD_Unknown0 = 0, CD_Unknown1, CD_Unknown2, CD_Unknown3 };
 
 /// @size{0x2C}
 struct RandMapUnit {

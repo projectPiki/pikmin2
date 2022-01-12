@@ -71,8 +71,7 @@ lbl_800A69E4:
  * Address:	800A6A10
  * Size:	000044
  */
-void JASDvd::checkPassDvdT(unsigned long, unsigned long*,
-                           void (*)(unsigned long))
+void JASDvd::checkPassDvdT(unsigned long, unsigned long*, void (*)(unsigned long))
 {
 	/*
 	.loc_0x0:

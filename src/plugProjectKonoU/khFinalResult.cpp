@@ -376,9 +376,7 @@ namespace Screen {
  * Address:	8040C1E8
  * Size:	000034
  */
-DispFinalResult::DispFinalResult(kh::Screen::TotalResultData*,
-                                 kh::Screen::DispFinalResult::ResultType,
-                                 JKRHeap*)
+DispFinalResult::DispFinalResult(kh::Screen::TotalResultData*, kh::Screen::DispFinalResult::ResultType, JKRHeap*)
 {
 	/*
 	.loc_0x0:
@@ -3312,8 +3310,7 @@ blr
  * Address:	8040EB08
  * Size:	000128
  */
-void ObjFinalResult::getClr(const JUtility::TColor&, const JUtility::TColor&,
-                            float)
+void ObjFinalResult::getClr(const JUtility::TColor&, const JUtility::TColor&, float)
 {
 	/*
 	.loc_0x0:
@@ -3472,8 +3469,7 @@ blr
  * Address:	8040ED08
  * Size:	0002E4
  */
-void SceneFinalResult::createDispMember(const int*, const int*,
-                                        Game::Highscore**)
+void SceneFinalResult::createDispMember(const int*, const int*, Game::Highscore**)
 {
 	/*
 	.loc_0x0:

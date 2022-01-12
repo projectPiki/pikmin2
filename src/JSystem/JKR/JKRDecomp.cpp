@@ -195,10 +195,7 @@ void JKRDecomp::run()
  * Address:	8001CB0C
  * Size:	000030
  */
-BOOL JKRDecomp::sendCommand(JKRDecompCommand* command)
-{
-	return OSSendMessage(&sMessageQueue, command, TRUE);
-}
+BOOL JKRDecomp::sendCommand(JKRDecompCommand* command) { return OSSendMessage(&sMessageQueue, command, TRUE); }
 
 /*
  * --INFO--
@@ -207,13 +204,12 @@ BOOL JKRDecomp::sendCommand(JKRDecompCommand* command)
  */
 bool JKRDecomp::orderSync(u8* p1, u8* p2, u32 p3, u32 p4)
 {
-	JKRDecompCommand* command
-	    = new (JKRHeap::sSystemHeap, -4) JKRDecompCommand();
-	command->_04        = p1;
-	command->_08        = p2;
-	command->_0C        = p3;
-	command->_10        = p4;
-	command->m_callback = nullptr;
+	JKRDecompCommand* command = new (JKRHeap::sSystemHeap, -4) JKRDecompCommand();
+	command->_04              = p1;
+	command->_08              = p2;
+	command->_0C              = p3;
+	command->_10              = p4;
+	command->m_callback       = nullptr;
 	OSSendMessage(&sMessageQueue, command, TRUE);
 	void* inputBuffer[1];
 	OSReceiveMessage(&command->_28, inputBuffer, TRUE);
@@ -287,9 +283,7 @@ void JKRDecomp::decode(u8* p1, u8* p2, u32 p3, u32 p4)
 #else
 /* Args are array variable, followed by indices of bytes from least- to
  * most-significant. */
-#define EXTRACT_TO_UINT(array, i1, i2, i3, i4)                      \
-	((uint)array[i1] | (uint)array[i2] << 8 | (uint)array[i3] << 16 \
-	 | (uint)array[i4] << 24)
+#define EXTRACT_TO_UINT(array, i1, i2, i3, i4) ((uint)array[i1] | (uint)array[i2] << 8 | (uint)array[i3] << 16 | (uint)array[i4] << 24)
 
 /*
  * --INFO--
@@ -335,8 +329,7 @@ void JKRDecomp::decodeSZP(u8* p1, u8* p2, u32 p3, u32 p4)
 			} else {
 				u16* v10 = reinterpret_cast<u16*>(p1 + v5);
 				v5 += 2;
-				int v8 = v4 - ((reinterpret_cast<u8*>(v10)[0] & 0xF) << 8)
-				         | (reinterpret_cast<u8*>(v10)[1]);
+				int v8 = v4 - ((reinterpret_cast<u8*>(v10)[0] & 0xF) << 8) | (reinterpret_cast<u8*>(v10)[1]);
 				u8 v1;
 				int v11;
 				if ((int)*v10 >> 0xC == 0) {
@@ -515,8 +508,7 @@ void JKRDecomp::decodeSZP(u8* p1, u8* p2, u32 p3, u32 p4)
  * Address:	8001CE0C
  * Size:	0000E4
  */
-void JKRDecomp::decodeSZS(unsigned char*, unsigned char*, unsigned long,
-                          unsigned long)
+void JKRDecomp::decodeSZS(unsigned char*, unsigned char*, unsigned long, unsigned long)
 {
 	/*
 	.loc_0x0:

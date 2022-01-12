@@ -365,8 +365,7 @@ void MenuMgr::initCommon(void)
  * Address:	........
  * Size:	0002F4
  */
-void MenuMgr::initSub(J2DScreen*, unsigned short, unsigned long long,
-                      unsigned long long, unsigned long long)
+void MenuMgr::initSub(J2DScreen*, unsigned short, unsigned long long, unsigned long long, unsigned long long)
 {
 	// UNUSED FUNCTION
 }
@@ -376,10 +375,8 @@ void MenuMgr::initSub(J2DScreen*, unsigned short, unsigned long long,
  * Address:	8030A204
  * Size:	00021C
  */
-void MenuMgr::init2taku(J2DScreen*, unsigned long long, unsigned long long,
-                        unsigned long long, unsigned long long,
-                        unsigned long long, unsigned long long,
-                        unsigned long long, unsigned long long)
+void MenuMgr::init2taku(J2DScreen*, unsigned long long, unsigned long long, unsigned long long, unsigned long long, unsigned long long,
+                        unsigned long long, unsigned long long, unsigned long long)
 {
 	/*
 	.loc_0x0:
@@ -526,10 +523,8 @@ void MenuMgr::init2taku(J2DScreen*, unsigned long long, unsigned long long,
  * Address:	8030A420
  * Size:	00021C
  */
-void MenuMgr::init2takuTitle(J2DScreen*, unsigned long long, unsigned long long,
-                             unsigned long long, unsigned long long,
-                             unsigned long long, unsigned long long,
-                             unsigned long long, unsigned long long)
+void MenuMgr::init2takuTitle(J2DScreen*, unsigned long long, unsigned long long, unsigned long long, unsigned long long, unsigned long long,
+                             unsigned long long, unsigned long long, unsigned long long)
 {
 	/*
 	.loc_0x0:
@@ -676,8 +671,7 @@ void MenuMgr::init2takuTitle(J2DScreen*, unsigned long long, unsigned long long,
  * Address:	........
  * Size:	0002F0
  */
-void MenuMgr::init(J2DScreen*, unsigned short, unsigned long long,
-                   unsigned long long, unsigned long long)
+void MenuMgr::init(J2DScreen*, unsigned short, unsigned long long, unsigned long long, unsigned long long)
 {
 	// UNUSED FUNCTION
 }
@@ -687,8 +681,7 @@ void MenuMgr::init(J2DScreen*, unsigned short, unsigned long long,
  * Address:	8030A63C
  * Size:	000494
  */
-void MenuMgr::init(J2DScreen*, unsigned short, unsigned long long,
-                   unsigned long long, unsigned long long, unsigned long long,
+void MenuMgr::init(J2DScreen*, unsigned short, unsigned long long, unsigned long long, unsigned long long, unsigned long long,
                    unsigned long long)
 {
 	/*

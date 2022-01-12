@@ -43,8 +43,7 @@ struct JUTException : public JKRThread {
 #ifndef MATCHING
 #define JUT_PANICLINE(line, ...) JUT_PANIC(__VA_ARGS__)
 #else
-#define JUT_PANICLINE(line, ...) \
-	JUTException::panic_f(__FILE__, line, __VA_ARGS__)
+#define JUT_PANICLINE(line, ...) JUTException::panic_f(__FILE__, line, __VA_ARGS__)
 #endif
 
 #define JUT_ASSERTLINE(line, cond, ...) \
@@ -53,12 +52,11 @@ struct JUTException : public JKRThread {
 
 #define P2ASSERTLINE(line, cond) JUT_ASSERTLINE(line, cond, "P2Assert")
 
-#define P2ASSERTBOUNDSLINE(line, lowerLimitInclusive, var,         \
-                           upperLimitExclusive)                    \
-	bool check##line = false;                                      \
-	if (lowerLimitInclusive <= var && var < upperLimitExclusive) { \
-		check##line = true;                                        \
-	}                                                              \
+#define P2ASSERTBOUNDSLINE(line, lowerLimitInclusive, var, upperLimitExclusive) \
+	bool check##line = false;                                                   \
+	if (lowerLimitInclusive <= var && var < upperLimitExclusive) {              \
+		check##line = true;                                                     \
+	}                                                                           \
 	P2ASSERTLINE(line, check##line)
 
 #endif

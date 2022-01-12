@@ -667,8 +667,7 @@ blr
  * Address:	803E8A2C
  * Size:	000054
  */
-void startZigzagWalk__Q43ebi5title6Chappy5TUnitFR10Vector2<float>
-R10Vector2<float>(void)
+void startZigzagWalk__Q43ebi5title6Chappy5TUnitFR10Vector2<float> R10Vector2<float>(void)
 {
 	/*
 	.loc_0x0:

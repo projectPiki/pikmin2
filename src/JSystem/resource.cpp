@@ -54,8 +54,7 @@
  * Address:	800063C4
  * Size:	0001E4
  */
-void JMessage::TResource::toMessageIndex_messageID(unsigned long, unsigned long,
-                                                   bool*) const
+void JMessage::TResource::toMessageIndex_messageID(unsigned long, unsigned long, bool*) const
 {
 	/*
 	.loc_0x0:
@@ -516,8 +515,7 @@ lbl_80006804:
  * Address:	80006820
  * Size:	00018C
  */
-void JMessage::TParse::parseHeader_next(const void**, unsigned long*,
-                                        unsigned long)
+void JMessage::TParse::parseHeader_next(const void**, unsigned long*, unsigned long)
 {
 	/*
 	.loc_0x0:
@@ -650,8 +648,7 @@ void JMessage::TParse::parseHeader_next(const void**, unsigned long*,
  * Address:	800069AC
  * Size:	00017C
  */
-void JMessage::TParse::parseBlock_next(const void**, unsigned long*,
-                                       unsigned long)
+void JMessage::TParse::parseBlock_next(const void**, unsigned long*, unsigned long)
 {
 	/*
 	.loc_0x0:
@@ -836,8 +833,7 @@ lbl_80006B8C:
  * Address:	80006BA8
  * Size:	0000BC
  */
-void JMessage::TParse_color::parseHeader_next(const void**, unsigned long*,
-                                              unsigned long)
+void JMessage::TParse_color::parseHeader_next(const void**, unsigned long*, unsigned long)
 {
 	/*
 	.loc_0x0:
@@ -904,8 +900,7 @@ void JMessage::TParse_color::parseHeader_next(const void**, unsigned long*,
  * Address:	80006C64
  * Size:	000054
  */
-void JMessage::TParse_color::parseBlock_next(const void**, unsigned long*,
-                                             unsigned long)
+void JMessage::TParse_color::parseBlock_next(const void**, unsigned long*, unsigned long)
 {
 	/*
 	.loc_0x0:
@@ -944,9 +939,7 @@ void JMessage::TParse_color::parseBlock_next(const void**, unsigned long*,
  * Address:	80006CB8
  * Size:	000054
  */
-void std::lower_bound<const unsigned long*, unsigned long>(const unsigned long*,
-                                                           const unsigned long*,
-                                                           const unsigned long&)
+void std::lower_bound<const unsigned long*, unsigned long>(const unsigned long*, const unsigned long*, const unsigned long&)
 {
 	/*
 	.loc_0x0:

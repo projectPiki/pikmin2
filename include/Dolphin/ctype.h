@@ -17,10 +17,7 @@ extern "C" {
 
 extern unsigned char __ctype_map[256];
 
-inline BOOL isdigit(int c)
-{
-	return (__ctype_map[c & 0xFF] & CTYPE_XDIGIT) != 0;
-}
+inline BOOL isdigit(int c) { return (__ctype_map[c & 0xFF] & CTYPE_XDIGIT) != 0; }
 
 #ifdef __cplusplus
 };

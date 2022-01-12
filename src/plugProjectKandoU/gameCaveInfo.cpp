@@ -642,10 +642,7 @@ blr
  * Address:	801D64E8
  * Size:	00001C
  */
-TekiInfo* CapInfo::getTekiInfo()
-{
-	return (!m_doesNotHaveTeki ? m_tekiInfo : nullptr);
-}
+TekiInfo* CapInfo::getTekiInfo() { return (!m_doesNotHaveTeki ? m_tekiInfo : nullptr); }
 
 /*
  * --INFO--

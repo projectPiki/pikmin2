@@ -46,9 +46,7 @@ namespace Game {
  * Address:	8024BAAC
  * Size:	000200
  */
-Cave::MapUnitGenerator::MapUnitGenerator(Game::MapUnitInterface*, int,
-                                         Game::Cave::FloorInfo*, bool,
-                                         Game::Cave::EditMapUnit*)
+Cave::MapUnitGenerator::MapUnitGenerator(Game::MapUnitInterface*, int, Game::Cave::FloorInfo*, bool, Game::Cave::EditMapUnit*)
 {
 	/*
 	.loc_0x0:

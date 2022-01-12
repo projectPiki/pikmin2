@@ -60,8 +60,7 @@ void SweepPrune::Node::insertSort(SweepPrune::Node& chain)
 {
 	if (m_next != nullptr) {
 		if (m_next->m_radius > m_radius) {
-			for (Node* iNode = m_next; iNode != nullptr;
-			     iNode       = iNode->m_next) {
+			for (Node* iNode = m_next; iNode != nullptr; iNode = iNode->m_next) {
 				if (iNode->m_radius <= m_radius) {
 					if (m_next != nullptr) {
 						m_next->m_prev = m_prev;
@@ -100,8 +99,7 @@ void SweepPrune::Node::insertSort(SweepPrune::Node& chain)
 			return;
 		}
 		if (m_prev->m_radius < m_radius) {
-			for (Node* iNode = m_prev; iNode != nullptr;
-			     iNode       = iNode->m_prev) {
+			for (Node* iNode = m_prev; iNode != nullptr; iNode = iNode->m_prev) {
 				if (iNode->m_radius >= m_radius) {
 					if (m_next != nullptr) {
 						m_next->m_prev = m_prev;
@@ -230,9 +228,7 @@ void SweepPrune::World::resolve(SweepPrune::World::ResolveArg& arg)
 				float max1 = o1->m_maxZ.m_radius;
 				float min2 = o2->m_minZ.m_radius;
 				float max2 = o2->m_maxZ.m_radius;
-				if (((((min1 <= min2) && (min2 <= max1))
-				      || ((min1 <= max2 && (max2 <= max1))))
-				     || ((min2 <= min1 && (min1 <= max2))))
+				if (((((min1 <= min2) && (min2 <= max1)) || ((min1 <= max2 && (max2 <= max1)))) || ((min2 <= min1 && (min1 <= max2))))
 				    || ((min2 <= max1 && (max1 <= max2)))) {
 					arg.m_callback->invoke(o1, o2);
 					arg._08++;

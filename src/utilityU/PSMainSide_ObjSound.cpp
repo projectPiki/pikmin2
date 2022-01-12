@@ -2153,8 +2153,7 @@ void CreatureObj::frameEnd_onPlaySe()
  * Address:	8045DB04
  * Size:	000148
  */
-void CreatureAnime::startAnimSound(unsigned long, JAISound**, JAInter::Actor*,
-                                   unsigned char)
+void CreatureAnime::startAnimSound(unsigned long, JAISound**, JAInter::Actor*, unsigned char)
 {
 	/*
 	.loc_0x0:
@@ -3117,8 +3116,7 @@ lbl_8045E684:
  * Address:	8045E6A0
  * Size:	000174
  */
-void EnemyBase::startAnimSound(unsigned long, JAISound**, JAInter::Actor*,
-                               unsigned char)
+void EnemyBase::startAnimSound(unsigned long, JAISound**, JAInter::Actor*, unsigned char)
 {
 	/*
 	.loc_0x0:
@@ -8558,8 +8556,7 @@ lbl_8046271C:
  * Address:	80462734
  * Size:	0000B4
  */
-void Piki::startPikiSetSound(JAInter::Object*, unsigned long,
-                             PSGame::SeMgr::SetSeId, unsigned long)
+void Piki::startPikiSetSound(JAInter::Object*, unsigned long, PSGame::SeMgr::SetSeId, unsigned long)
 {
 	/*
 	.loc_0x0:
@@ -8622,8 +8619,7 @@ void Piki::startPikiSetSound(JAInter::Object*, unsigned long,
  * Address:	804627E8
  * Size:	0001D4
  */
-void Piki::startFreePikiSetSound(unsigned long, PSGame::SeMgr::SetSeId,
-                                 unsigned long, unsigned long)
+void Piki::startFreePikiSetSound(unsigned long, PSGame::SeMgr::SetSeId, unsigned long, unsigned long)
 {
 	/*
 	.loc_0x0:
@@ -10811,8 +10807,7 @@ CreatureAnime::@48 @~CreatureAnime()
  * Address:	80463EC8
  * Size:	000008
  */
-void PSM::CreatureAnime::@48
-    @startAnimSound(unsigned long, JAISound**, JAInter::Actor*, unsigned char)
+void PSM::CreatureAnime::@48 @startAnimSound(unsigned long, JAISound**, JAInter::Actor*, unsigned char)
 {
 	/*
 	.loc_0x0:

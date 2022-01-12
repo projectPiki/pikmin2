@@ -780,8 +780,7 @@ lbl_8001C4A0:
  * Address:	8001C4C4
  * Size:	000194
  */
-void JKRCompArchive::fetchResource(void*, unsigned long,
-                                   JKRArchive::SDIFileEntry*, unsigned long*)
+void JKRCompArchive::fetchResource(void*, unsigned long, JKRArchive::SDIFileEntry*, unsigned long*)
 {
 	/*
 	.loc_0x0:

@@ -55,13 +55,11 @@ void SMenuPauseVS::doCreateObj(JKRArchive* archive)
  */
 int SMenuPauseVS::doGetFinishState()
 {
-	Screen::DispMemberBase* dispAll
-	    = reinterpret_cast<Screen::DispMemberBase*>(m_dispMemberBuffer);
-	int state = 0;
+	Screen::DispMemberBase* dispAll = reinterpret_cast<Screen::DispMemberBase*>(m_dispMemberBuffer);
+	int state                       = 0;
 	if (dispAll->isID(OWNER_OGA, MEMBER_START_MENU_ALL)) {
 		Screen::DispMemberSMenuPauseVS* dispVs
-		    = (Screen::DispMemberSMenuPauseVS*)dispAll->getSubMember(
-		        OWNER_OGA, MEMBER_START_MENU_PAUSE_VS);
+		    = (Screen::DispMemberSMenuPauseVS*)dispAll->getSubMember(OWNER_OGA, MEMBER_START_MENU_PAUSE_VS);
 		if (dispVs != nullptr) {
 			state = dispVs->_08;
 		}
@@ -98,20 +96,14 @@ bool SMenuPauseVS::doConfirmSetScene(::Screen::SetSceneArg& arg)
  * Address:	80329EA8
  * Size:	00000C
  */
-void SMenuPauseVS::doSetBackupScene(::Screen::SetSceneArg& arg)
-{
-	arg._09 = false;
-}
+void SMenuPauseVS::doSetBackupScene(::Screen::SetSceneArg& arg) { arg._09 = false; }
 
 /*
  * --INFO--
  * Address:	80329EB4
  * Size:	00000C
  */
-const char* SMenuPauseVS::getResName() const
-{
-	return "res_s_menu_pause_VS.szs";
-}
+const char* SMenuPauseVS::getResName() const { return "res_s_menu_pause_VS.szs"; }
 
 /*
  * --INFO--
@@ -132,10 +124,7 @@ ScreenOwnerID SMenuPauseVS::getOwnerID(void) { return OWNER_OGA; }
  * Address:	80329ED4
  * Size:	000014
  */
-ScreenMemberID SMenuPauseVS::getMemberID()
-{
-	return MEMBER_START_MENU_PAUSE_VS;
-}
+ScreenMemberID SMenuPauseVS::getMemberID() { return MEMBER_START_MENU_PAUSE_VS; }
 
 /*
  * --INFO--

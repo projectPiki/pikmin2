@@ -14,8 +14,7 @@ VSFifo::VSFifo(unsigned long size)
 	m_size = RoundUp20B(size);
 
 	if (JKRHeap::sCurrentHeap) {
-		m_fifo = (GXFifoObj*)JKRHeap::sCurrentHeap->alloc(
-		    m_size + GX_FIFO_OBJ_SIZE, 0x20);
+		m_fifo = (GXFifoObj*)JKRHeap::sCurrentHeap->alloc(m_size + GX_FIFO_OBJ_SIZE, 0x20);
 	}
 
 	m_base = &m_fifo->pad[GX_FIFO_OBJ_SIZE];
@@ -40,8 +39,7 @@ void VSFifo::becomeCurrent()
 	GXSaveCPUFifo(JUTGraphFifo::sCurrentFifo->m_fifo);
 
 	do {
-		GXGetGPStatus(&JUTGraphFifo::mGpStatus[0], &JUTGraphFifo::mGpStatus[1],
-		              &JUTGraphFifo::mGpStatus[2], &JUTGraphFifo::mGpStatus[3],
+		GXGetGPStatus(&JUTGraphFifo::mGpStatus[0], &JUTGraphFifo::mGpStatus[1], &JUTGraphFifo::mGpStatus[2], &JUTGraphFifo::mGpStatus[3],
 		              &JUTGraphFifo::mGpStatus[4]);
 	} while (!JUTGraphFifo::mGpStatus[2]);
 

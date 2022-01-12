@@ -91,8 +91,7 @@ namespace Screen {
  * Address:	........
  * Size:	000084
  */
-CallBack_CounterSlot::CallBack_CounterSlot(char** p1, u16 p2, u16 p3,
-                                           JKRArchive* archive)
+CallBack_CounterSlot::CallBack_CounterSlot(char** p1, u16 p2, u16 p3, JKRArchive* archive)
     : CallBack_CounterRV(p1, p2, p3, archive)
 {
 	// UNUSED FUNCTION
@@ -103,9 +102,7 @@ CallBack_CounterSlot::CallBack_CounterSlot(char** p1, u16 p2, u16 p3,
  * Address:	8032A754
  * Size:	000030
  */
-void CallBack_CounterSlot::init(J2DScreen*, unsigned long long,
-                                unsigned long long, unsigned long long,
-                                unsigned long*, bool)
+void CallBack_CounterSlot::init(J2DScreen*, unsigned long long, unsigned long long, unsigned long long, unsigned long*, bool)
 {
 	/*
 	.loc_0x0:
@@ -846,9 +843,7 @@ blr
  * Address:	8032B0AC
  * Size:	0001D0
  */
-void setCallBack_CounterSlot(P2DScreen::Mgr*, unsigned long long,
-                             unsigned long*, unsigned short, bool, bool,
-                             JKRArchive*)
+void setCallBack_CounterSlot(P2DScreen::Mgr*, unsigned long long, unsigned long*, unsigned short, bool, bool, JKRArchive*)
 {
 	/*
 	.loc_0x0:

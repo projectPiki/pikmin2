@@ -213,8 +213,7 @@ lbl_800AB28C:
  * Address:	........
  * Size:	00004C
  */
-void JAIAnimeSound::initActorAnimSound(JAIAnimeSoundData*, JAInter::Actor,
-                                       unsigned long, float, float)
+void JAIAnimeSound::initActorAnimSound(JAIAnimeSoundData*, JAInter::Actor, unsigned long, float, float)
 {
 	// UNUSED FUNCTION
 }
@@ -224,8 +223,7 @@ void JAIAnimeSound::initActorAnimSound(JAIAnimeSoundData*, JAInter::Actor,
  * Address:	800AB2B0
  * Size:	000194
  */
-void JAIAnimeSound::initActorAnimSound(JAIAnimeSoundData*, unsigned long, float,
-                                       float)
+void JAIAnimeSound::initActorAnimSound(JAIAnimeSoundData*, unsigned long, float, float)
 {
 	/*
 	.loc_0x0:
@@ -478,8 +476,7 @@ void JAIAnimeSound::setAnimObjectSound(float, float, unsigned char)
  * Address:	........
  * Size:	000074
  */
-void JAIAnimeSound::setAnimSoundVec(Vec*, float, float, unsigned long,
-                                    unsigned char)
+void JAIAnimeSound::setAnimSoundVec(Vec*, float, float, unsigned long, unsigned char)
 {
 	// UNUSED FUNCTION
 }
@@ -489,8 +486,7 @@ void JAIAnimeSound::setAnimSoundVec(Vec*, float, float, unsigned long,
  * Address:	........
  * Size:	000074
  */
-void JAIAnimeSound::setAnimSoundVec(JAIBasic*, Vec*, float, float,
-                                    unsigned long, unsigned char)
+void JAIAnimeSound::setAnimSoundVec(JAIBasic*, Vec*, float, float, unsigned long, unsigned char)
 {
 	// UNUSED FUNCTION
 }
@@ -500,8 +496,7 @@ void JAIAnimeSound::setAnimSoundVec(JAIBasic*, Vec*, float, float,
  * Address:	800AB4CC
  * Size:	000504
  */
-void JAIAnimeSound::setAnimSoundActor(JAInter::Actor*, float, float,
-                                      unsigned char)
+void JAIAnimeSound::setAnimSoundActor(JAInter::Actor*, float, float, unsigned char)
 {
 	/*
 	.loc_0x0:
@@ -1095,8 +1090,7 @@ lbl_800ABC34:
  * Address:	800ABC50
  * Size:	00004C
  */
-void JAIAnimeSound::startAnimSound(unsigned long, JAISound**, JAInter::Actor*,
-                                   unsigned char)
+void JAIAnimeSound::startAnimSound(unsigned long, JAISound**, JAInter::Actor*, unsigned char)
 {
 	/*
 	.loc_0x0:
@@ -1129,8 +1123,7 @@ void JAIAnimeSound::startAnimSound(unsigned long, JAISound**, JAInter::Actor*,
  * Address:	800ABC9C
  * Size:	00013C
  */
-void JAIAnimeSound::setSpeedModifySound(JAISound*, JAIAnimeFrameSoundData*,
-                                        float)
+void JAIAnimeSound::setSpeedModifySound(JAISound*, JAIAnimeFrameSoundData*, float)
 {
 	/*
 	.loc_0x0:

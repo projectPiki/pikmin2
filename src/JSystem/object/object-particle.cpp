@@ -122,8 +122,7 @@
  * Address:	800056C0
  * Size:	0000E8
  */
-JStudio_JParticle::TAdaptor_particle::TAdaptor_particle(JPAEmitterManager*,
-                                                        const JStage::TSystem*)
+JStudio_JParticle::TAdaptor_particle::TAdaptor_particle(JPAEmitterManager*, const JStage::TSystem*)
 {
 	/*
 	.loc_0x0:
@@ -304,8 +303,7 @@ lbl_8000589C:
  * Address:	800058B8
  * Size:	000144
  */
-void JStudio_JParticle::TAdaptor_particle::adaptor_do_prepare(
-    const JStudio::TObject*)
+void JStudio_JParticle::TAdaptor_particle::adaptor_do_prepare(const JStudio::TObject*)
 {
 	/*
 	.loc_0x0:
@@ -400,18 +398,14 @@ void JStudio_JParticle::TAdaptor_particle::adaptor_do_prepare(
  * Address:	800059FC
  * Size:	000004
  */
-void JStudio_JParticle::TAdaptor_particle::adaptor_do_end(
-    const JStudio::TObject*)
-{
-}
+void JStudio_JParticle::TAdaptor_particle::adaptor_do_end(const JStudio::TObject*) { }
 
 /*
  * --INFO--
  * Address:	80005A00
  * Size:	0000B0
  */
-void JStudio_JParticle::TAdaptor_particle::adaptor_do_update(
-    const JStudio::TObject*, unsigned long)
+void JStudio_JParticle::TAdaptor_particle::adaptor_do_update(const JStudio::TObject*, unsigned long)
 {
 	/*
 	.loc_0x0:
@@ -477,8 +471,7 @@ void JStudio_JParticle::TAdaptor_particle::adaptor_do_update(
  * Address:	80005AB0
  * Size:	000030
  */
-void JStudio_JParticle::TAdaptor_particle::adaptor_do_BEGIN(
-    JStudio::data::TEOperationData, const void*, unsigned long)
+void JStudio_JParticle::TAdaptor_particle::adaptor_do_BEGIN(JStudio::data::TEOperationData, const void*, unsigned long)
 {
 	/*
 	.loc_0x0:
@@ -506,8 +499,7 @@ void JStudio_JParticle::TAdaptor_particle::adaptor_do_BEGIN(
  * Address:	80005AE0
  * Size:	000048
  */
-void JStudio_JParticle::TAdaptor_particle::adaptor_do_BEGIN_FADE_IN(
-    JStudio::data::TEOperationData, const void*, unsigned long)
+void JStudio_JParticle::TAdaptor_particle::adaptor_do_BEGIN_FADE_IN(JStudio::data::TEOperationData, const void*, unsigned long)
 {
 	/*
 	.loc_0x0:
@@ -541,8 +533,7 @@ void JStudio_JParticle::TAdaptor_particle::adaptor_do_BEGIN_FADE_IN(
  * Address:	80005B28
  * Size:	00002C
  */
-void JStudio_JParticle::TAdaptor_particle::adaptor_do_END(
-    JStudio::data::TEOperationData, const void*, unsigned long)
+void JStudio_JParticle::TAdaptor_particle::adaptor_do_END(JStudio::data::TEOperationData, const void*, unsigned long)
 {
 	/*
 	.loc_0x0:
@@ -565,8 +556,7 @@ void JStudio_JParticle::TAdaptor_particle::adaptor_do_END(
  * Address:	80005B54
  * Size:	000048
  */
-void JStudio_JParticle::TAdaptor_particle::adaptor_do_END_FADE_OUT(
-    JStudio::data::TEOperationData, const void*, unsigned long)
+void JStudio_JParticle::TAdaptor_particle::adaptor_do_END_FADE_OUT(JStudio::data::TEOperationData, const void*, unsigned long)
 {
 	/*
 	.loc_0x0:
@@ -600,8 +590,7 @@ void JStudio_JParticle::TAdaptor_particle::adaptor_do_END_FADE_OUT(
  * Address:	80005B9C
  * Size:	000014
  */
-void JStudio_JParticle::TAdaptor_particle::adaptor_do_PARTICLE(
-    JStudio::data::TEOperationData, const void*, unsigned long)
+void JStudio_JParticle::TAdaptor_particle::adaptor_do_PARTICLE(JStudio::data::TEOperationData, const void*, unsigned long)
 {
 	/*
 	.loc_0x0:
@@ -618,8 +607,7 @@ void JStudio_JParticle::TAdaptor_particle::adaptor_do_PARTICLE(
  * Address:	80005BB0
  * Size:	000068
  */
-void JStudio_JParticle::TAdaptor_particle::adaptor_do_PARENT(
-    JStudio::data::TEOperationData, const void*, unsigned long)
+void JStudio_JParticle::TAdaptor_particle::adaptor_do_PARENT(JStudio::data::TEOperationData, const void*, unsigned long)
 {
 	/*
 	.loc_0x0:
@@ -661,8 +649,7 @@ void JStudio_JParticle::TAdaptor_particle::adaptor_do_PARENT(
  * Address:	80005C18
  * Size:	000080
  */
-void JStudio_JParticle::TAdaptor_particle::adaptor_do_PARENT_NODE(
-    JStudio::data::TEOperationData, const void*, unsigned long)
+void JStudio_JParticle::TAdaptor_particle::adaptor_do_PARENT_NODE(JStudio::data::TEOperationData, const void*, unsigned long)
 {
 	/*
 	.loc_0x0:
@@ -712,8 +699,7 @@ void JStudio_JParticle::TAdaptor_particle::adaptor_do_PARENT_NODE(
  * Address:	80005C98
  * Size:	000020
  */
-void JStudio_JParticle::TAdaptor_particle::adaptor_do_PARENT_ENABLE(
-    JStudio::data::TEOperationData, const void*, unsigned long)
+void JStudio_JParticle::TAdaptor_particle::adaptor_do_PARENT_ENABLE(JStudio::data::TEOperationData, const void*, unsigned long)
 {
 	/*
 	.loc_0x0:
@@ -733,8 +719,7 @@ void JStudio_JParticle::TAdaptor_particle::adaptor_do_PARENT_ENABLE(
  * Address:	80005CB8
  * Size:	00035C
  */
-void JStudio_JParticle::TAdaptor_particle::TJPACallback_::execute(
-    JPABaseEmitter*)
+void JStudio_JParticle::TAdaptor_particle::TJPACallback_::execute(JPABaseEmitter*)
 {
 	/*
 	.loc_0x0:

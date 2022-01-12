@@ -105,8 +105,7 @@ blr
  */
 void setTex(J2DScreen* screen, u64 tag, const ResTIMG* tex)
 {
-	reinterpret_cast<J2DPicture*>(screen->search(tag))
-	    ->changeTexture(tex, '\0');
+	reinterpret_cast<J2DPicture*>(screen->search(tag))->changeTexture(tex, '\0');
 }
 
 /*
@@ -116,8 +115,7 @@ void setTex(J2DScreen* screen, u64 tag, const ResTIMG* tex)
  */
 void setTex(J2DScreen* screen, u64 tag, const char* str)
 {
-	reinterpret_cast<J2DPicture*>(screen->search(tag))
-	    ->changeTexture(str, '\0');
+	reinterpret_cast<J2DPicture*>(screen->search(tag))->changeTexture(str, '\0');
 	/*
 stwu     r1, -0x10(r1)
 mflr     r0
@@ -508,9 +506,7 @@ lbl_8040B8F0:
  */
 float getPaneCenterX(J2DPane* pane)
 {
-	return (pane->getGlbVtx(POS_BOTTOM_RIGHT).x
-	        + pane->getGlbVtx(POS_BOTTOM_LEFT).x
-	        + pane->getGlbVtx(POS_TOP_LEFT).x
+	return (pane->getGlbVtx(POS_BOTTOM_RIGHT).x + pane->getGlbVtx(POS_BOTTOM_LEFT).x + pane->getGlbVtx(POS_TOP_LEFT).x
 	        + pane->getGlbVtx(POS_TOP_RIGHT).x)
 	       * 0.25f;
 	/*

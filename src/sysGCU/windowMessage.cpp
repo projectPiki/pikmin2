@@ -430,8 +430,7 @@ void Window::DrawInfoMgr::releaseDrawInfo(P2JME::Window::DrawInfo*)
  * Address:	8043F2C8
  * Size:	00003C
  */
-Window::TSequenceProcessor::TSequenceProcessor(JMessage::TReference*,
-                                               JMessage::TControl*)
+Window::TSequenceProcessor::TSequenceProcessor(JMessage::TReference*, JMessage::TControl*)
 {
 	/*
 	.loc_0x0:
@@ -949,8 +948,7 @@ void Window::TRenderingProcessor::doGetDrawInfo(P2JME::Window::DrawInfo*) { }
  * Address:	8043F8A4
  * Size:	000284
  */
-void makeMatrix__Q35P2JME6Window19TRenderingProcessorFP7MatrixfPQ35P2JME6Window8DrawInfof10Vector3<
-    float>(void)
+void makeMatrix__Q35P2JME6Window19TRenderingProcessorFP7MatrixfPQ35P2JME6Window8DrawInfof10Vector3<float>(void)
 {
 	/*
 	.loc_0x0:
@@ -1141,8 +1139,7 @@ void makeMatrix__Q35P2JME6Window19TRenderingProcessorFP7MatrixfPQ35P2JME6Window8
  * Address:	8043FB28
  * Size:	000188
  */
-void Window::TRenderingProcessor::doDrawLetter(float, float, float, float, int,
-                                               bool)
+void Window::TRenderingProcessor::doDrawLetter(float, float, float, float, int, bool)
 {
 	/*
 	.loc_0x0:
@@ -1256,8 +1253,7 @@ void Window::TRenderingProcessor::doDrawLetter(float, float, float, float, int,
  * Address:	8043FCB0
  * Size:	00017C
  */
-void Window::TRenderingProcessor::doDrawRuby(float, float, float, float, int,
-                                             bool)
+void Window::TRenderingProcessor::doDrawRuby(float, float, float, float, int, bool)
 {
 	/*
 	.loc_0x0:
@@ -1368,8 +1364,7 @@ void Window::TRenderingProcessor::doDrawRuby(float, float, float, float, int,
  * Address:	8043FE2C
  * Size:	0001DC
  */
-void Window::TRenderingProcessor::doDrawImage(JUTTexture*, float, float, float,
-                                              float)
+void Window::TRenderingProcessor::doDrawImage(JUTTexture*, float, float, float, float)
 {
 	/*
 	.loc_0x0:

@@ -64,20 +64,14 @@ EnemyBlendAnimatorBase::EnemyBlendAnimatorBase()
  * Address:	8012E12C
  * Size:	000024
  */
-void EnemyBlendAnimatorBase::setAnimMgr(SysShape::AnimMgr* mgr)
-{
-	m_animator.setAnimMgr(mgr);
-}
+void EnemyBlendAnimatorBase::setAnimMgr(SysShape::AnimMgr* mgr) { m_animator.setAnimMgr(mgr); }
 
 /*
  * --INFO--
  * Address:	8012E150
  * Size:	000008
  */
-SysShape::Animator& EnemyBlendAnimatorBase::getAnimator()
-{
-	return *m_animator.m_animators;
-}
+SysShape::Animator& EnemyBlendAnimatorBase::getAnimator() { return *m_animator.m_animators; }
 
 /*
  * getAnimator__Q24Game22EnemyBlendAnimatorBaseFi
@@ -85,20 +79,14 @@ SysShape::Animator& EnemyBlendAnimatorBase::getAnimator()
  * Address:	8012E158
  * Size:	000014
  */
-SysShape::Animator& EnemyBlendAnimatorBase::getAnimator(int index)
-{
-	return m_animator.m_animators[index];
-}
+SysShape::Animator& EnemyBlendAnimatorBase::getAnimator(int index) { return m_animator.m_animators[index]; }
 
 /*
  * --INFO--
  * Address:	8012E16C
  * Size:	00009C
  */
-void EnemyBlendAnimatorBase::startBlend(int p1, int p2,
-                                        SysShape::BlendFunction* function,
-                                        float p4,
-                                        SysShape::MotionListener* listener)
+void EnemyBlendAnimatorBase::startBlend(int p1, int p2, SysShape::BlendFunction* function, float p4, SysShape::MotionListener* listener)
 {
 	getAnimator(0).startAnim(p1, nullptr);
 	getAnimator(1).startAnim(p2, nullptr);
@@ -118,8 +106,7 @@ void EnemyBlendAnimatorBase::endBlend() { m_animator.endBlend(); }
  * Address:	8012E22C
  * Size:	000048
  */
-void EnemyBlendAnimatorBase::animate(SysShape::BlendFunction* function,
-                                     float p2, float p3, float p4)
+void EnemyBlendAnimatorBase::animate(SysShape::BlendFunction* function, float p2, float p3, float p4)
 {
 	if (!(m_flags.m_flags & 1)) {
 		m_animator.animate(function, p2, p3, p4);

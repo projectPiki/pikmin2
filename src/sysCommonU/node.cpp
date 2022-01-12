@@ -154,8 +154,7 @@ void CNode::add(CNode* newAdd)
 			addErrCount++;
 		}
 
-		JUT_ASSERTLINE(242, addErrCount <= 1, "CNode add err count %d\n",
-		               addErrCount);
+		JUT_ASSERTLINE(242, addErrCount <= 1, "CNode add err count %d\n", addErrCount);
 	}
 }
 
@@ -301,8 +300,7 @@ CNode* CNode::getChildAt(int idx)
 	CNode* child = m_child;
 
 	for (s32 i = 0; i < idx; child = child->m_next, i++) {
-		JUT_ASSERTLINE(351, child, "%d child (realchild = %d)!\n", idx,
-		               getChildCount());
+		JUT_ASSERTLINE(351, child, "%d child (realchild = %d)!\n", idx, getChildCount());
 	}
 
 	return child;

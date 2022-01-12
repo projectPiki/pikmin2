@@ -24,10 +24,7 @@ RootMenuSection::~RootMenuSection() { }
  * Address:	8044CB84
  * Size:	000024
  */
-void RootMenuSection::setChildSection(JKRHeap* heap)
-{
-	GameFlow::createSection(heap);
-}
+void RootMenuSection::setChildSection(JKRHeap* heap) { GameFlow::createSection(heap); }
 
 /*
  * --INFO--

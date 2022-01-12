@@ -29,8 +29,7 @@ struct GridDivider : public TriDivider {
 	}
 	~GridDivider();
 
-	void create(struct BoundBox&, int, int, Sys::VertexTable*,
-	            Sys::TriangleTable*);
+	void create(struct BoundBox&, int, int, Sys::VertexTable*, Sys::TriangleTable*);
 	void createTriangles(Sys::CreateTriangleArg&);
 	void do_clone(struct Matrixf&, Sys::VertexTable*, Sys::TriangleTable*);
 	// virtual TriIndexList* findTriLists(Sys::Sphere&);

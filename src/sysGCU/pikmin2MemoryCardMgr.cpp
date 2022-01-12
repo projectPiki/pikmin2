@@ -109,8 +109,7 @@
         .asciz "dameck\n"
 */
 
-extern const char
-    lbl_8049ADF4[49]; // "sizeof(PlayerInfo): %d BLOCKSIZE %d padding:%d \n"
+extern const char lbl_8049ADF4[49]; // "sizeof(PlayerInfo): %d BLOCKSIZE %d padding:%d \n"
 
 extern const char lbl_8049AE28[33]; // "/memoryCard/memoryCardHeader.szs"
 

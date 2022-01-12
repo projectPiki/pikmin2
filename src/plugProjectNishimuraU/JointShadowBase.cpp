@@ -23,10 +23,7 @@
  * Address:	802F2040
  * Size:	000278
  */
-void
-    makeShadowSRT__Q24Game19TubeShadowTransNodeFRQ24Game15JointShadowParmR10Vector3<
-        float>
-    R10Vector3f(void)
+void makeShadowSRT__Q24Game19TubeShadowTransNodeFRQ24Game15JointShadowParmR10Vector3<float> R10Vector3f(void)
 {
 	/*
 	.loc_0x0:
@@ -202,10 +199,7 @@ void
  * Address:	802F22B8
  * Size:	000278
  */
-void
-    makeShadowSRT__Q24Game17TubeShadowSetNodeFRQ24Game15JointShadowParmR10Vector3<
-        float>
-    R10Vector3f(void)
+void makeShadowSRT__Q24Game17TubeShadowSetNodeFRQ24Game15JointShadowParmR10Vector3<float> R10Vector3f(void)
 {
 	/*
 	.loc_0x0:
@@ -381,10 +375,7 @@ void
  * Address:	802F2530
  * Size:	0001AC
  */
-void
-    makeShadowSRT__Q24Game17TubeShadowPosNodeFRQ24Game15JointShadowParmR10Vector3<
-        float>
-    R10Vector3f(void)
+void makeShadowSRT__Q24Game17TubeShadowPosNodeFRQ24Game15JointShadowParmR10Vector3<float> R10Vector3f(void)
 {
 	/*
 	.loc_0x0:
@@ -509,8 +500,7 @@ void
  * Address:	802F26DC
  * Size:	000100
  */
-void makeShadowSRT__Q24Game16SphereShadowNodeFRQ24Game15JointShadowParmR10Vector3<
-    float>(void)
+void makeShadowSRT__Q24Game16SphereShadowNodeFRQ24Game15JointShadowParmR10Vector3<float>(void)
 {
 	/*
 	.loc_0x0:

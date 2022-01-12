@@ -945,8 +945,7 @@ lbl_80228C3C:
  * Address:	80228C5C
  * Size:	000030
  */
-void transit__Q24Game32FSMState<Game::VsGameSection>
-FPQ24Game13VsGameSectioniPQ24Game8StateArg(void)
+void transit__Q24Game32FSMState<Game::VsGameSection> FPQ24Game13VsGameSectioniPQ24Game8StateArg(void)
 {
 	/*
 	.loc_0x0:
@@ -1465,20 +1464,14 @@ void Morimura::DispMemberChallengeSelect::getMemberID(void)
  * Address:	80229244
  * Size:	000004
  */
-void resume__Q24Game32FSMState<Game::VsGameSection>
-FPQ24Game13VsGameSection(void)
-{
-}
+void resume__Q24Game32FSMState<Game::VsGameSection> FPQ24Game13VsGameSection(void) { }
 
 /*
  * --INFO--
  * Address:	80229248
  * Size:	000004
  */
-void restart__Q24Game32FSMState<Game::VsGameSection>
-FPQ24Game13VsGameSection(void)
-{
-}
+void restart__Q24Game32FSMState<Game::VsGameSection> FPQ24Game13VsGameSection(void) { }
 
 /*
  * --INFO--

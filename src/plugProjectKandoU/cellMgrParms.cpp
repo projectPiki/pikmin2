@@ -68,10 +68,8 @@ CellMgrParms* CellMgrParms::mInstance;
 void _Print(char* name, ...) { OSReport("CellMgrParms"); }
 
 inline _CellParms::_CellParms(Parameters* p)
-    : m_p000(p, 0x70303030, "?��o?��b?��t?��@?��?��?��g?��?��", false, false,
-             true)
-    , m_p001(p, 0x70303031, "?��}?��W?��b?��N?��i?��?��?��o?��[", true, false,
-             true)
+    : m_p000(p, 0x70303030, "?��o?��b?��t?��@?��?��?��g?��?��", false, false, true)
+    , m_p001(p, 0x70303031, "?��}?��W?��b?��N?��i?��?��?��o?��[", true, false, true)
     , m_p002(p, 0x70303032, "G-Half", false, false, true)
     , m_p003(p, 0x70303033, "UpdateMgr", false, false, true)
 {

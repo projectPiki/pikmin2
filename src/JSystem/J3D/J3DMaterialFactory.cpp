@@ -428,8 +428,7 @@ lbl_8006C6A8:
  * Address:	8006C6BC
  * Size:	00007C
  */
-void J3DMaterialFactory::create(J3DMaterial*, J3DMaterialFactory::MaterialType,
-                                int, unsigned long) const
+void J3DMaterialFactory::create(J3DMaterial*, J3DMaterialFactory::MaterialType, int, unsigned long) const
 {
 	/*
 	.loc_0x0:
@@ -484,8 +483,7 @@ void J3DMaterialFactory::create(J3DMaterial*, J3DMaterialFactory::MaterialType,
  * Address:	8006C738
  * Size:	000A0C
  */
-void J3DMaterialFactory::createNormalMaterial(J3DMaterial*, int,
-                                              unsigned long) const
+void J3DMaterialFactory::createNormalMaterial(J3DMaterial*, int, unsigned long) const
 {
 	/*
 	.loc_0x0:
@@ -1326,8 +1324,7 @@ void J3DTevBlock::setTevStageNum(unsigned char) { }
  * Address:	8006D170
  * Size:	000924
  */
-void J3DMaterialFactory::createPatchedMaterial(J3DMaterial*, int,
-                                               unsigned long) const
+void J3DMaterialFactory::createPatchedMaterial(J3DMaterial*, int, unsigned long) const
 {
 	/*
 	.loc_0x0:
@@ -2155,8 +2152,7 @@ lbl_8006DC04:
  * Address:	8006DC80
  * Size:	0002B8
  */
-void J3DMaterialFactory::createLockedMaterial(J3DMaterial*, int,
-                                              unsigned long) const
+void J3DMaterialFactory::createLockedMaterial(J3DMaterial*, int, unsigned long) const
 {
 	/*
 	.loc_0x0:
@@ -2378,9 +2374,7 @@ void J3DTevBlock::setTexNoOffset(unsigned long a1)
  * Address:	8006DF44
  * Size:	000080
  */
-void J3DMaterialFactory::calcSize(J3DMaterial*,
-                                  J3DMaterialFactory::MaterialType, int,
-                                  unsigned long) const
+void J3DMaterialFactory::calcSize(J3DMaterial*, J3DMaterialFactory::MaterialType, int, unsigned long) const
 {
 	/*
 	.loc_0x0:
@@ -2436,8 +2430,7 @@ void J3DMaterialFactory::calcSize(J3DMaterial*,
  * Address:	8006DFC4
  * Size:	000258
  */
-void J3DMaterialFactory::calcSizeNormalMaterial(J3DMaterial*, int,
-                                                unsigned long) const
+void J3DMaterialFactory::calcSizeNormalMaterial(J3DMaterial*, int, unsigned long) const
 {
 	/*
 	.loc_0x0:
@@ -2649,8 +2642,7 @@ void J3DMaterialFactory::calcSizeNormalMaterial(J3DMaterial*, int,
  * Address:	8006E21C
  * Size:	00013C
  */
-void J3DMaterialFactory::calcSizePatchedMaterial(J3DMaterial*, int,
-                                                 unsigned long) const
+void J3DMaterialFactory::calcSizePatchedMaterial(J3DMaterial*, int, unsigned long) const
 {
 	/*
 	.loc_0x0:
@@ -2759,8 +2751,7 @@ void J3DMaterialFactory::calcSizePatchedMaterial(J3DMaterial*, int,
  * Address:	8006E358
  * Size:	000018
  */
-void J3DMaterialFactory::calcSizeLockedMaterial(J3DMaterial*, int,
-                                                unsigned long) const
+void J3DMaterialFactory::calcSizeLockedMaterial(J3DMaterial*, int, unsigned long) const
 {
 	/*
 	.loc_0x0:
@@ -4522,18 +4513,14 @@ void J3DTevBlock::setTevSwapModeInfo(unsigned long, J3DTevSwapModeInfo) { }
  * Address:	8006F5A0
  * Size:	000004
  */
-void J3DTevBlock::setTevSwapModeInfo(unsigned long, const J3DTevSwapModeInfo*)
-{
-}
+void J3DTevBlock::setTevSwapModeInfo(unsigned long, const J3DTevSwapModeInfo*) { }
 
 /*
  * --INFO--
  * Address:	8006F5A4
  * Size:	000004
  */
-void J3DTevBlock::setTevSwapModeTable(unsigned long, const J3DTevSwapModeTable*)
-{
-}
+void J3DTevBlock::setTevSwapModeTable(unsigned long, const J3DTevSwapModeTable*) { }
 
 /*
  * --INFO--

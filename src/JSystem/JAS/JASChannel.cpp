@@ -115,9 +115,7 @@
  * Address:	800A3204
  * Size:	000160
  */
-JASChannel::JASChannel(void (*)(unsigned long, JASChannel*, JASDsp::TChannel*,
-                                void*),
-                       void*)
+JASChannel::JASChannel(void (*)(unsigned long, JASChannel*, JASDsp::TChannel*, void*), void*)
 {
 	/*
 	.loc_0x0:
@@ -242,9 +240,7 @@ JASOscillator::JASOscillator()
  * Address:	800A3394
  * Size:	0000A4
  */
-void
-    JASPoolAllocObject<JASChannel, JASCreationPolicy::NewFromRootHeap,
-                       JASThreadingModel::SingleThreaded>::~JASPoolAllocObject()
+void JASPoolAllocObject<JASChannel, JASCreationPolicy::NewFromRootHeap, JASThreadingModel::SingleThreaded>::~JASPoolAllocObject()
 {
 	/*
 	.loc_0x0:
@@ -771,8 +767,7 @@ lbl_800A3844:
  * Address:	800A3860
  * Size:	00025C
  */
-void JASChannel::updateEffectorParam(JASDsp::TChannel*, unsigned short*,
-                                     const JASChannel::EffectOscParam&)
+void JASChannel::updateEffectorParam(JASDsp::TChannel*, unsigned short*, const JASChannel::EffectOscParam&)
 {
 	/*
 	.loc_0x0:
@@ -1484,8 +1479,7 @@ lbl_800A409C:
  * Address:	800A40BC
  * Size:	0000C0
  */
-void JASChannel::calcEffect(const JASChannel::PanVector*,
-                            const JASChannel::PanVector*, unsigned char)
+void JASChannel::calcEffect(const JASChannel::PanVector*, const JASChannel::PanVector*, unsigned char)
 {
 	/*
 	.loc_0x0:
@@ -1565,8 +1559,7 @@ void JASChannel::calcEffect(const JASChannel::PanVector*,
  * Address:	800A417C
  * Size:	0000FC
  */
-void JASChannel::calcPan(const JASChannel::PanVector*,
-                         const JASChannel::PanVector*, unsigned char)
+void JASChannel::calcPan(const JASChannel::PanVector*, const JASChannel::PanVector*, unsigned char)
 {
 	/*
 	.loc_0x0:

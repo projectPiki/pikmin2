@@ -774,35 +774,23 @@ lbl_80250AE8:
  */
 VibrationParms::VibrationParms()
     : Parameters(nullptr, "VibrationParms")
-    , m_elevationLightVib(this, 'celv', "ELEVATION_LIGHT(vib)", 1.0f, 0.0f,
-                          10.0f)
-    , m_elevationMiddleVib(this, 'cemv', "ELEVATION_MIDDLE(vib)", 3.0f, 0.0f,
-                           10.0f)
+    , m_elevationLightVib(this, 'celv', "ELEVATION_LIGHT(vib)", 1.0f, 0.0f, 10.0f)
+    , m_elevationMiddleVib(this, 'cemv', "ELEVATION_MIDDLE(vib)", 3.0f, 0.0f, 10.0f)
     , m_elevationHardVib(this, 'cehv', "ELEVATION_HARD(vib)", 5.0f, 0.0f, 10.0f)
-    , m_elevationSlowSpeed(this, 'cess', "ELEVATION_SLOW(speed)", 15.0f, 0.0f,
-                           100.0f)
-    , m_elevationMiddleSpeed(this, 'cemv', "ELEVATION_MIDDLE(speed)", 25.0f,
-                             0.0f, 100.0f)
-    , m_elevationFastSpeed(this, 'cefs', "ELEVATION_FAST(speed)", 35.0f, 0.0f,
-                           100.0f)
-    , m_elevationShortTime(this, 'cets', "ELEVATION_SHORT(time)", 0.3f, 0.0f,
-                           5.0f)
-    , m_elevationMiddleTime(this, 'cetm', "ELEVATION_MIDDLE(time)", 0.75f, 0.0f,
-                            5.0f)
-    , m_elevationLongTime(this, 'cetl', "ELEVATION_LONG(time)", 1.5f, 0.0f,
-                          5.0f)
-    , m_elevationHardVib2(this, 'ceqv', "ELEVATION_HARD(Vib)", 20.0f, 0.0f,
-                          100.0f)
-    , m_elevationHardSpeed(this, 'ceqs', "ELEVATION_HARD(Speed)", 35.0f, 0.0f,
-                           100.0f)
-    , m_elevationHardTime(this, 'ceqt', "ELEVATION_HARD(Time)", 0.25f, 0.0f,
-                          5.0f)
+    , m_elevationSlowSpeed(this, 'cess', "ELEVATION_SLOW(speed)", 15.0f, 0.0f, 100.0f)
+    , m_elevationMiddleSpeed(this, 'cemv', "ELEVATION_MIDDLE(speed)", 25.0f, 0.0f, 100.0f)
+    , m_elevationFastSpeed(this, 'cefs', "ELEVATION_FAST(speed)", 35.0f, 0.0f, 100.0f)
+    , m_elevationShortTime(this, 'cets', "ELEVATION_SHORT(time)", 0.3f, 0.0f, 5.0f)
+    , m_elevationMiddleTime(this, 'cetm', "ELEVATION_MIDDLE(time)", 0.75f, 0.0f, 5.0f)
+    , m_elevationLongTime(this, 'cetl', "ELEVATION_LONG(time)", 1.5f, 0.0f, 5.0f)
+    , m_elevationHardVib2(this, 'ceqv', "ELEVATION_HARD(Vib)", 20.0f, 0.0f, 100.0f)
+    , m_elevationHardSpeed(this, 'ceqs', "ELEVATION_HARD(Speed)", 35.0f, 0.0f, 100.0f)
+    , m_elevationHardTime(this, 'ceqt', "ELEVATION_HARD(Time)", 0.25f, 0.0f, 5.0f)
     , m_zoomShortVib(this, 'czsv', "ZOOM_SHORT(Vib)", 25.0f, 0.0f, 100.0f)
     , m_zoomShortSpeed(this, 'czss', "ZOOM_SHORT(Speed)", 35.0f, 0.0f, 100.0f)
     , m_zoomShortTime(this, 'czst', "ZOOM_SHORT(Time)", 0.75f, 0.0f, 5.0f)
     , m_azimuthShortVib(this, 'casv', "AZIMUTH_SHORT(Vib)", 0.06f, 0.0f, 1.0f)
-    , m_azimuthShortSpeed(this, 'cass', "AZIMUTH_SHORT(Speed)", 40.0f, 0.0f,
-                          50.0f)
+    , m_azimuthShortSpeed(this, 'cass', "AZIMUTH_SHORT(Speed)", 40.0f, 0.0f, 50.0f)
     , m_azimuthShortTime(this, 'cast', "AZIMUTH_SHORT(Time)", 0.75f, 0.0f, 5.0f)
     , m_vibMaxDistance(this, 'cmdm', "Vib Max Distance", 750.0f, 0.0f, 1000.0f)
 {

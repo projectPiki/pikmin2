@@ -94,10 +94,7 @@ void JStage::TObject::JSGSetFlag(unsigned long) { }
  * Address:	80098934
  * Size:	000008
  */
-u32 JStage::TObject::JSGGetData(const(unsigned long, void*, unsigned long))
-{
-	return 0x0;
-}
+u32 JStage::TObject::JSGGetData(const(unsigned long, void*, unsigned long)) { return 0x0; }
 
 /*
  * --INFO--
@@ -139,8 +136,7 @@ s32 JStage::TObject::JSGFindNodeID(const(char const*)) { return -0x1; }
  * Address:	80098954
  * Size:	00003C
  */
-void JStage::TObject::JSGGetNodeTransformation(const(unsigned long,
-                                                     float (*)[4]))
+void JStage::TObject::JSGGetNodeTransformation(const(unsigned long, float (*)[4]))
 {
 	/*
 	.loc_0x0:

@@ -9,8 +9,7 @@
  * Address:	........
  * Size:	000050
  */
-JPAResourceLoader::JPAResourceLoader(const unsigned char*, JPAResourceManager*,
-                                     unsigned short)
+JPAResourceLoader::JPAResourceLoader(const unsigned char*, JPAResourceManager*, unsigned short)
 {
 	// UNUSED FUNCTION
 }
@@ -49,8 +48,7 @@ lbl_80098100:
  * Address:	........
  * Size:	000390
  */
-void JPAResourceLoader::load_jpa(const unsigned char*, JPAResourceManager*,
-                                 unsigned short)
+void JPAResourceLoader::load_jpa(const unsigned char*, JPAResourceManager*, unsigned short)
 {
 	// UNUSED FUNCTION
 }

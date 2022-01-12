@@ -98,9 +98,9 @@ struct LookAtCamera : public Camera {
 
 	virtual void startVibration(int); // _74
 
-	Matrixf _144;  // _144
-	Vector3f _174; // _174 /* Sodium called this `position`, PikDecomp called it
-	               // `angle`. :shrug: */
+	Matrixf _144;              // _144
+	Vector3f _174;             // _174 /* Sodium called this `position`, PikDecomp called it
+	                           // `angle`. :shrug: */
 	Vector3f m_lookAtPosition; // _180 /* PikDecomp called this `position`. */
 	Vector3f _18C;             // _18C
 };

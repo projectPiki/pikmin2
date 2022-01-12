@@ -147,11 +147,9 @@ namespace newScreen {
  * Address:	80314238
  * Size:	0001F4
  */
-void ObjSMenuPause::ObjHIOVal::getMenuColor(
-    (JUtility::TColor*, JUtility::TColor*, JUtility::TColor*, JUtility::TColor*,
-     JUtility::TColor*, JUtility::TColor*, JUtility::TColor*, JUtility::TColor*,
-     JUtility::TColor*, JUtility::TColor*, JUtility::TColor*, JUtility::TColor*,
-     JUtility::TColor*, JUtility::TColor*))
+void ObjSMenuPause::ObjHIOVal::getMenuColor((JUtility::TColor*, JUtility::TColor*, JUtility::TColor*, JUtility::TColor*, JUtility::TColor*,
+                                             JUtility::TColor*, JUtility::TColor*, JUtility::TColor*, JUtility::TColor*, JUtility::TColor*,
+                                             JUtility::TColor*, JUtility::TColor*, JUtility::TColor*, JUtility::TColor*))
 {
 	/*
 	.loc_0x0:

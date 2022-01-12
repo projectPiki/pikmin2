@@ -3132,8 +3132,7 @@ lbl_80223064:
  * Address:	80223084
  * Size:	00016C
  */
-void SingleGame::ZukanState::execModeChange(
-    (Game::SingleGameSection*, Game::SingleGame::ZukanState::CMode))
+void SingleGame::ZukanState::execModeChange((Game::SingleGameSection*, Game::SingleGame::ZukanState::CMode))
 {
 	/*
 	.loc_0x0:
@@ -4230,8 +4229,7 @@ lbl_80223D64:
  * Address:	80223E14
  * Size:	000578
  */
-void SingleGame::ZukanState::drawGradationEffect(Game::SingleGameSection*,
-                                                 Graphics&)
+void SingleGame::ZukanState::drawGradationEffect(Game::SingleGameSection*, Graphics&)
 {
 	/*
 	.loc_0x0:
@@ -4599,8 +4597,7 @@ void SingleGame::ZukanState::drawGradationEffect(Game::SingleGameSection*,
  * Address:	8022438C
  * Size:	0007C0
  */
-void SingleGame::ZukanState::drawLightEffect(Game::SingleGameSection*,
-                                             Graphics&)
+void SingleGame::ZukanState::drawLightEffect(Game::SingleGameSection*, Graphics&)
 {
 	/*
 	.loc_0x0:

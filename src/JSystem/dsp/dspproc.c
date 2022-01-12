@@ -155,8 +155,7 @@ void setup_callback(unsigned short)
  * Address:	800AA7E0
  * Size:	000064
  */
-void DsetupTable(unsigned long, unsigned long, unsigned long, unsigned long,
-                 unsigned long)
+void DsetupTable(unsigned long, unsigned long, unsigned long, unsigned long, unsigned long)
 {
 	/*
 	.loc_0x0:

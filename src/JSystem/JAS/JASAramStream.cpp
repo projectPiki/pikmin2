@@ -245,8 +245,7 @@ JASAramStream::JASAramStream()
  * Address:	800A918C
  * Size:	0000F8
  */
-void JASAramStream::init(unsigned long, unsigned long,
-                         void (*)(unsigned long, JASAramStream*, void*), void*)
+void JASAramStream::init(unsigned long, unsigned long, void (*)(unsigned long, JASAramStream*, void*), void*)
 {
 	/*
 	.loc_0x0:
@@ -1147,8 +1146,7 @@ lbl_800A9B00:
  * Address:	800A9B14
  * Size:	00003C
  */
-void JASAramStream::channelCallback(unsigned long, JASChannel*,
-                                    JASDsp::TChannel*, void*)
+void JASAramStream::channelCallback(unsigned long, JASChannel*, JASDsp::TChannel*, void*)
 {
 	/*
 	.loc_0x0:

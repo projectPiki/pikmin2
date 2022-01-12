@@ -1217,9 +1217,7 @@ u32 PelletFruit::Object::getKind(void) { return 0x2; }
  * Address:	801FE36C
  * Size:	00009C
  */
-void
-    resetMgrAndResources__Q24Game47FixedSizePelletMgr<Game::PelletFruit::Object>
-    Fv(void)
+void resetMgrAndResources__Q24Game47FixedSizePelletMgr<Game::PelletFruit::Object> Fv(void)
 {
 	/*
 	.loc_0x0:
@@ -1276,10 +1274,7 @@ void
  * Address:	801FE408
  * Size:	000004
  */
-void onCreateModel__Q24Game47FixedSizePelletMgr<Game::PelletFruit::Object>
-FPQ28SysShape5Model(void)
-{
-}
+void onCreateModel__Q24Game47FixedSizePelletMgr<Game::PelletFruit::Object> FPQ28SysShape5Model(void) { }
 
 } // namespace Game
 
@@ -1310,8 +1305,7 @@ void birth__Q24Game47FixedSizePelletMgr<Game::PelletFruit::Object> Fv(void)
  * Address:	801FE438
  * Size:	00002C
  */
-void doAnimation__Q24Game47FixedSizePelletMgr<Game::PelletFruit::Object>
-Fv(void)
+void doAnimation__Q24Game47FixedSizePelletMgr<Game::PelletFruit::Object> Fv(void)
 {
 	/*
 	.loc_0x0:
@@ -1400,8 +1394,7 @@ void doViewCalc__Q24Game47FixedSizePelletMgr<Game::PelletFruit::Object> Fv(void)
  * Address:	801FE4E8
  * Size:	00002C
  */
-void doSimulation__Q24Game47FixedSizePelletMgr<Game::PelletFruit::Object>
-Ff(void)
+void doSimulation__Q24Game47FixedSizePelletMgr<Game::PelletFruit::Object> Ff(void)
 {
 	/*
 	.loc_0x0:
@@ -1424,8 +1417,7 @@ Ff(void)
  * Address:	801FE514
  * Size:	00002C
  */
-void doDirectDraw__Q24Game47FixedSizePelletMgr<Game::PelletFruit::Object>
-FR8Graphics(void)
+void doDirectDraw__Q24Game47FixedSizePelletMgr<Game::PelletFruit::Object> FR8Graphics(void)
 {
 	/*
 	.loc_0x0:
@@ -1448,8 +1440,7 @@ FR8Graphics(void)
  * Address:	801FE540
  * Size:	000024
  */
-void kill__Q24Game47FixedSizePelletMgr<Game::PelletFruit::Object>
-FPQ24Game6Pellet(void)
+void kill__Q24Game47FixedSizePelletMgr<Game::PelletFruit::Object> FPQ24Game6Pellet(void)
 {
 	/*
 	.loc_0x0:
@@ -3089,8 +3080,7 @@ void MonoObjectMgr<Game::PelletFruit::Object>::MonoObjectMgr()
  * Address:	801FF75C
  * Size:	000020
  */
-void getFlag__Q24Game47FixedSizePelletMgr<Game::PelletFruit::Object>
-FPQ24Game6Pellet(void)
+void getFlag__Q24Game47FixedSizePelletMgr<Game::PelletFruit::Object> FPQ24Game6Pellet(void)
 {
 	/*
 	.loc_0x0:
@@ -3112,8 +3102,7 @@ FPQ24Game6Pellet(void)
  * Address:	801FF77C
  * Size:	00001C
  */
-void setFromTeki__Q24Game47FixedSizePelletMgr<Game::PelletFruit::Object>
-FPQ24Game6Pellet(void)
+void setFromTeki__Q24Game47FixedSizePelletMgr<Game::PelletFruit::Object> FPQ24Game6Pellet(void)
 {
 	/*
 	.loc_0x0:
@@ -3132,8 +3121,7 @@ FPQ24Game6Pellet(void)
  * Address:	801FF798
  * Size:	00001C
  */
-void setRevival__Q24Game47FixedSizePelletMgr<Game::PelletFruit::Object>
-FPQ24Game6Pellet(void)
+void setRevival__Q24Game47FixedSizePelletMgr<Game::PelletFruit::Object> FPQ24Game6Pellet(void)
 {
 	/*
 	.loc_0x0:
@@ -3152,8 +3140,7 @@ FPQ24Game6Pellet(void)
  * Address:	801FF7B4
  * Size:	00001C
  */
-void setComeAlive__Q24Game47FixedSizePelletMgr<Game::PelletFruit::Object>
-FPQ24Game6Pellet(void)
+void setComeAlive__Q24Game47FixedSizePelletMgr<Game::PelletFruit::Object> FPQ24Game6Pellet(void)
 {
 	/*
 	.loc_0x0:
@@ -3172,8 +3159,7 @@ FPQ24Game6Pellet(void)
  * Address:	801FF7D0
  * Size:	000010
  */
-void setComeAlive__Q24Game47FixedSizePelletMgr<Game::PelletFruit::Object>
-Fi(void)
+void setComeAlive__Q24Game47FixedSizePelletMgr<Game::PelletFruit::Object> Fi(void)
 {
 	/*
 	.loc_0x0:
@@ -3233,8 +3219,7 @@ void get__Q24Game47FixedSizePelletMgr<Game::PelletFruit::Object> FPv(void)
  * Address:	801FF838
  * Size:	00002C
  */
-void getObjectPtr__Q24Game47FixedSizePelletMgr<Game::PelletFruit::Object>
-FPv(void)
+void getObjectPtr__Q24Game47FixedSizePelletMgr<Game::PelletFruit::Object> FPv(void)
 {
 	/*
 	.loc_0x0:
@@ -3257,8 +3242,7 @@ FPv(void)
  * Address:	801FF864
  * Size:	000090
  */
-void birthFromTeki__Q24Game47FixedSizePelletMgr<Game::PelletFruit::Object>
-FPQ24Game12PelletConfig(void)
+void birthFromTeki__Q24Game47FixedSizePelletMgr<Game::PelletFruit::Object> FPQ24Game12PelletConfig(void)
 {
 	/*
 	.loc_0x0:
@@ -3933,8 +3917,7 @@ void ObjectMgr<Game::PelletFruit::Object>::@28 @doAnimation()
  * Address:	801FFE3C
  * Size:	000008
  */
-void @84 @getEnd__Q24Game47FixedSizePelletMgr<Game::PelletFruit::Object>
-Fv(void)
+void @84 @getEnd__Q24Game47FixedSizePelletMgr<Game::PelletFruit::Object> Fv(void)
 {
 	/*
 	.loc_0x0:
@@ -3948,8 +3931,7 @@ Fv(void)
  * Address:	801FFE44
  * Size:	000008
  */
-void @84 @getStart__Q24Game47FixedSizePelletMgr<Game::PelletFruit::Object>
-Fv(void)
+void @84 @getStart__Q24Game47FixedSizePelletMgr<Game::PelletFruit::Object> Fv(void)
 {
 	/*
 	.loc_0x0:
@@ -3963,8 +3945,7 @@ Fv(void)
  * Address:	801FFE4C
  * Size:	000008
  */
-void @84 @getNext__Q24Game47FixedSizePelletMgr<Game::PelletFruit::Object>
-FPv(void)
+void @84 @getNext__Q24Game47FixedSizePelletMgr<Game::PelletFruit::Object> FPv(void)
 {
 	/*
 	.loc_0x0:

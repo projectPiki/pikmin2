@@ -19,20 +19,14 @@ void MWTerminateCriticalSection(void)
  * Address:	800C1598
  * Size:	000024
  */
-void MWExitCriticalSection(unsigned int* section)
-{
-	OSRestoreInterrupts(*section);
-}
+void MWExitCriticalSection(unsigned int* section) { OSRestoreInterrupts(*section); }
 
 /*
  * --INFO--
  * Address:	800C15BC
  * Size:	000030
  */
-void MWEnterCriticalSection(unsigned int* section)
-{
-	*section = OSDisableInterrupts();
-}
+void MWEnterCriticalSection(unsigned int* section) { *section = OSDisableInterrupts(); }
 
 /*
  * --INFO--

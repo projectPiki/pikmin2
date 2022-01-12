@@ -675,9 +675,7 @@ void JAInter::SequenceMgr::getArchivePointer(void)
  * Address:	800B10A4
  * Size:	000008
  */
-void JAInter::SequenceMgr::setCustomHeapCallback(
-    (JAInter::SequenceMgr::CustomHeapInfo(*)(unsigned long, unsigned short,
-                                             JAISequence*)))
+void JAInter::SequenceMgr::setCustomHeapCallback((JAInter::SequenceMgr::CustomHeapInfo(*)(unsigned long, unsigned short, JAISequence*)))
 {
 	/*
 	.loc_0x0:
@@ -1566,9 +1564,8 @@ lbl_800B1AF4:
  * Address:	........
  * Size:	000138
  */
-void JAInter::SequenceMgr::checkPlayingSeqUpdateMultiplication(
-    (unsigned long, unsigned char, unsigned long, JAInter::MoveParaSet*,
-     unsigned long*, unsigned char, float*))
+void JAInter::SequenceMgr::checkPlayingSeqUpdateMultiplication((unsigned long, unsigned char, unsigned long, JAInter::MoveParaSet*,
+                                                                unsigned long*, unsigned char, float*))
 {
 	// UNUSED FUNCTION
 }
@@ -1578,9 +1575,8 @@ void JAInter::SequenceMgr::checkPlayingSeqUpdateMultiplication(
  * Address:	........
  * Size:	000178
  */
-void JAInter::SequenceMgr::checkPlayingSeqUpdateAddition(
-    (unsigned long, unsigned char, unsigned long, JAInter::MoveParaSet*,
-     unsigned long*, unsigned char, float*, float))
+void JAInter::SequenceMgr::checkPlayingSeqUpdateAddition((unsigned long, unsigned char, unsigned long, JAInter::MoveParaSet*,
+                                                          unsigned long*, unsigned char, float*, float))
 {
 	// UNUSED FUNCTION
 }
@@ -1590,9 +1586,8 @@ void JAInter::SequenceMgr::checkPlayingSeqUpdateAddition(
  * Address:	........
  * Size:	000118
  */
-void JAInter::SequenceMgr::checkPlayingSeqUpdateTrack(
-    (unsigned long, unsigned long, JAInter::MoveParaSet*, unsigned long*,
-     unsigned char, float*))
+void JAInter::SequenceMgr::checkPlayingSeqUpdateTrack((unsigned long, unsigned long, JAInter::MoveParaSet*, unsigned long*, unsigned char,
+                                                       float*))
 {
 	// UNUSED FUNCTION
 }
@@ -3154,8 +3149,7 @@ lbl_800B2E84:
  * Address:	........
  * Size:	00003C
  */
-void JAInter::SequenceMgr::checkCustomDvdPreloadArc(unsigned long,
-                                                    unsigned long)
+void JAInter::SequenceMgr::checkCustomDvdPreloadArc(unsigned long, unsigned long)
 {
 	// UNUSED FUNCTION
 }
@@ -3165,9 +3159,7 @@ void JAInter::SequenceMgr::checkCustomDvdPreloadArc(unsigned long,
  * Address:	800B2E98
  * Size:	000430
  */
-void JAInter::SequenceMgr::storeSeqBuffer(JAISequence**, JAInter::Actor*,
-                                          unsigned long, unsigned long,
-                                          unsigned char, JAInter::SoundInfo*)
+void JAInter::SequenceMgr::storeSeqBuffer(JAISequence**, JAInter::Actor*, unsigned long, unsigned long, unsigned char, JAInter::SoundInfo*)
 {
 	/*
 	.loc_0x0:

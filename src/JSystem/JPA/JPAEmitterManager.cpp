@@ -27,8 +27,7 @@
  * Address:	80090538
  * Size:	0001FC
  */
-JPAEmitterManager::JPAEmitterManager(unsigned long, unsigned long, JKRHeap*,
-                                     unsigned char, unsigned char)
+JPAEmitterManager::JPAEmitterManager(unsigned long, unsigned long, JKRHeap*, unsigned char, unsigned char)
 {
 	/*
 	.loc_0x0:
@@ -397,11 +396,8 @@ lbl_800908A0:
  * Address:	800908BC
  * Size:	0000DC
  */
-void JPAEmitterManager::createSimpleEmitterID(const JGeometry::TVec3<float>&,
-                                              unsigned short, unsigned char,
-                                              unsigned char,
-                                              JPAEmitterCallBack*,
-                                              JPAParticleCallBack*)
+void JPAEmitterManager::createSimpleEmitterID(const JGeometry::TVec3<float>&, unsigned short, unsigned char, unsigned char,
+                                              JPAEmitterCallBack*, JPAParticleCallBack*)
 {
 	/*
 	.loc_0x0:
@@ -472,9 +468,7 @@ void JPAEmitterManager::createSimpleEmitterID(const JGeometry::TVec3<float>&,
  * Address:	........
  * Size:	0000C8
  */
-void JPAEmitterManager::createSimpleEmitter(const JGeometry::TVec3<float>&,
-                                            unsigned short, JPAEmitterCallBack*,
-                                            JPAParticleCallBack*)
+void JPAEmitterManager::createSimpleEmitter(const JGeometry::TVec3<float>&, unsigned short, JPAEmitterCallBack*, JPAParticleCallBack*)
 {
 	// UNUSED FUNCTION
 }

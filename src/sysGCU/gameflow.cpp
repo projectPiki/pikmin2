@@ -242,23 +242,21 @@
 struct SectionInfo {
 	char* name;
 	u32 id;
-} sSectionInfo[] = {
-	{ "Root Menu", 0x00000000 },         { "Object Editor", 0x01010000 },
-	{ "Single Game", 0x02010000 },       { "Challenge Game", 0x03010000 },
-	{ "Test Challenge", 0x04010100 },    { "Teki Test", 0x05010000 },
-	{ "Anim Editor", 0x06010000 },       { "Map Parts Editor", 0x07010000 },
-	{ "Tex Viewer", 0x08010000 },        { "Ogawa", 0x09010000 },
-	{ "Ogawa Screen Test", 0x1C010000 }, { "Hikino", 0x0A010000 },
-	{ "Yamashita", 0x0B010000 },         { "Nishimura", 0x0C010000 },
-	{ "Nishimura2", 0x0D010000 },        { "Morimura", 0x0E010000 },
-	{ "2D Debug", 0x1A010100 },          { "Fujino", 0x1A010100 },
-	{ "Cave Editor", 6, 1, 0, 0 },       { "JStudio CameraEditor", 7, 1, 0, 0 },
-	{ "Movie Test", 6, 1, 0, 0 },        { "JStudio Kando Test", 7, 1, 0, 0 },
-	{ "Pellet Test", 6, 1, 0, 0 },       { "Main Title", 7, 1, 0, 0 },
-	{ "Message Previewer", 6, 1, 0, 0 }, { "Ebi Main Title", 7, 1, 0, 0 },
-	{ "E3 Thanks Section", 6, 1, 0, 0 }, { "Ebimun Effect", 7, 1, 0, 0 },
-	{ "2D Debug2", 7, 1, 0, 0 }
-};
+} sSectionInfo[] = { { "Root Menu", 0x00000000 },         { "Object Editor", 0x01010000 },
+	                 { "Single Game", 0x02010000 },       { "Challenge Game", 0x03010000 },
+	                 { "Test Challenge", 0x04010100 },    { "Teki Test", 0x05010000 },
+	                 { "Anim Editor", 0x06010000 },       { "Map Parts Editor", 0x07010000 },
+	                 { "Tex Viewer", 0x08010000 },        { "Ogawa", 0x09010000 },
+	                 { "Ogawa Screen Test", 0x1C010000 }, { "Hikino", 0x0A010000 },
+	                 { "Yamashita", 0x0B010000 },         { "Nishimura", 0x0C010000 },
+	                 { "Nishimura2", 0x0D010000 },        { "Morimura", 0x0E010000 },
+	                 { "2D Debug", 0x1A010100 },          { "Fujino", 0x1A010100 },
+	                 { "Cave Editor", 6, 1, 0, 0 },       { "JStudio CameraEditor", 7, 1, 0, 0 },
+	                 { "Movie Test", 6, 1, 0, 0 },        { "JStudio Kando Test", 7, 1, 0, 0 },
+	                 { "Pellet Test", 6, 1, 0, 0 },       { "Main Title", 7, 1, 0, 0 },
+	                 { "Message Previewer", 6, 1, 0, 0 }, { "Ebi Main Title", 7, 1, 0, 0 },
+	                 { "E3 Thanks Section", 6, 1, 0, 0 }, { "Ebimun Effect", 7, 1, 0, 0 },
+	                 { "2D Debug2", 7, 1, 0, 0 } };
 
 u32 GameFlow::mActiveSectionFlag;
 
@@ -293,8 +291,7 @@ void GameFlow::run()
 	do {
 		JKRHeap* parentHeap = JKRHeap::sCurrentHeap;
 		JKRHeap::TState state(nullptr, 0xffffffff, true);
-		JKRExpHeap* expHeap
-		    = JKRExpHeap::create(parentHeap->getFreeSize(), parentHeap, true);
+		JKRExpHeap* expHeap = JKRExpHeap::create(parentHeap->getFreeSize(), parentHeap, true);
 		setSection();
 		m_section->init();
 		m_section->run();
@@ -375,9 +372,7 @@ void GameFlow::setSection()
 		m_section          = new BootSection(JKRHeap::sCurrentHeap);
 		mActiveSectionFlag = 0;
 	} else {
-		JUT_ASSERTLINE(188,
-		               (0x14 >= mActiveSectionFlag || mActiveSectionFlag == 0),
-		               "Unknown SectionFlag. %d \n", mActiveSectionFlag);
+		JUT_ASSERTLINE(188, (0x14 >= mActiveSectionFlag || mActiveSectionFlag == 0), "Unknown SectionFlag. %d \n", mActiveSectionFlag);
 		m_section          = new RootMenuSection(JKRHeap::sCurrentHeap);
 		mActiveSectionFlag = 0x16;
 	}

@@ -678,9 +678,7 @@ lbl_800AC75C:
  * Address:	800AC77C
  * Size:	000064
  */
-void JAIBasic::startSoundBasic(unsigned long, JAISound**, JAInter::Actor*,
-                               unsigned long, unsigned char,
-                               JAInter::SoundInfo*)
+void JAIBasic::startSoundBasic(unsigned long, JAISound**, JAInter::Actor*, unsigned long, unsigned char, JAInter::SoundInfo*)
 {
 	/*
 	.loc_0x0:
@@ -729,9 +727,7 @@ void JAIBasic::startSoundBasic(unsigned long, JAISound**, JAInter::Actor*,
  * Address:	800AC7E0
  * Size:	000084
  */
-void JAIBasic::startSoundBasic(unsigned long, JAISequence**, JAInter::Actor*,
-                               unsigned long, unsigned char,
-                               JAInter::SoundInfo*)
+void JAIBasic::startSoundBasic(unsigned long, JAISequence**, JAInter::Actor*, unsigned long, unsigned char, JAInter::SoundInfo*)
 {
 	/*
 	.loc_0x0:
@@ -782,9 +778,7 @@ void JAIBasic::startSoundBasic(unsigned long, JAISequence**, JAInter::Actor*,
  * Address:	800AC864
  * Size:	000064
  */
-void JAIBasic::startSoundBasic(unsigned long, JAISe**, JAInter::Actor*,
-                               unsigned long, unsigned char,
-                               JAInter::SoundInfo*)
+void JAIBasic::startSoundBasic(unsigned long, JAISe**, JAInter::Actor*, unsigned long, unsigned char, JAInter::SoundInfo*)
 {
 	/*
 	.loc_0x0:
@@ -825,9 +819,7 @@ void JAIBasic::startSoundBasic(unsigned long, JAISe**, JAInter::Actor*,
  * Address:	800AC8C8
  * Size:	000058
  */
-void JAIBasic::startSoundBasic(unsigned long, JAIStream**, JAInter::Actor*,
-                               unsigned long, unsigned char,
-                               JAInter::SoundInfo*)
+void JAIBasic::startSoundBasic(unsigned long, JAIStream**, JAInter::Actor*, unsigned long, unsigned char, JAInter::SoundInfo*)
 {
 	/*
 	.loc_0x0:
@@ -1084,8 +1076,7 @@ void JAIBasic::stopIDSoundOneBuffer(unsigned long, JSULink<JAISound>*)
  * Address:	........
  * Size:	0000C8
  */
-void JAIBasic::stopIDActorSoundOneBuffer(unsigned long, void*,
-                                         JSULink<JAISound>*)
+void JAIBasic::stopIDActorSoundOneBuffer(unsigned long, void*, JSULink<JAISound>*)
 {
 	// UNUSED FUNCTION
 }

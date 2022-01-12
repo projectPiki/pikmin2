@@ -2645,8 +2645,7 @@ namespace efx {
  * Address:	803B01A8
  * Size:	000098
  */
-TForever4::TForever4(unsigned short, unsigned short, unsigned short,
-                     unsigned short)
+TForever4::TForever4(unsigned short, unsigned short, unsigned short, unsigned short)
 {
 	/*
 	.loc_0x0:
@@ -3085,8 +3084,7 @@ void TChaseMtx2::setMtxptr(float (*)[4])
  * Address:	803B05AC
  * Size:	0000A0
  */
-TChaseMtx3::TChaseMtx3(float (*)[4], unsigned short, unsigned short,
-                       unsigned short)
+TChaseMtx3::TChaseMtx3(float (*)[4], unsigned short, unsigned short, unsigned short)
 {
 	/*
 	.loc_0x0:
@@ -3167,8 +3165,7 @@ void TChaseMtx3::setMtxptr(float (*)[4])
  * Address:	803B065C
  * Size:	0000AC
  */
-TChaseMtx4::TChaseMtx4(float (*)[4], unsigned short, unsigned short,
-                       unsigned short, unsigned short)
+TChaseMtx4::TChaseMtx4(float (*)[4], unsigned short, unsigned short, unsigned short, unsigned short)
 {
 	/*
 	.loc_0x0:
@@ -3253,8 +3250,7 @@ void TChaseMtx4::setMtxptr(float (*)[4])
  * Address:	........
  * Size:	0000B8
  */
-TChaseMtx5::TChaseMtx5(float (*)[4], unsigned short, unsigned short,
-                       unsigned short, unsigned short, unsigned short)
+TChaseMtx5::TChaseMtx5(float (*)[4], unsigned short, unsigned short, unsigned short, unsigned short, unsigned short)
 {
 	// UNUSED FUNCTION
 }
@@ -3288,9 +3284,7 @@ void TChaseMtx5::setMtxptr(float (*)[4])
  * Address:	803B071C
  * Size:	0000C4
  */
-TChaseMtx6::TChaseMtx6(float (*)[4], unsigned short, unsigned short,
-                       unsigned short, unsigned short, unsigned short,
-                       unsigned short)
+TChaseMtx6::TChaseMtx6(float (*)[4], unsigned short, unsigned short, unsigned short, unsigned short, unsigned short, unsigned short)
 {
 	/*
 	.loc_0x0:
@@ -3498,8 +3492,7 @@ void TChaseMtxT2::setMtxptr(float (*)[4])
  * Address:	........
  * Size:	0000A0
  */
-TChaseMtxT3::TChaseMtxT3(float (*)[4], unsigned short, unsigned short,
-                         unsigned short)
+TChaseMtxT3::TChaseMtxT3(float (*)[4], unsigned short, unsigned short, unsigned short)
 {
 	// UNUSED FUNCTION
 }
@@ -3533,8 +3526,7 @@ void TChaseMtxT3::setMtxptr(float (*)[4])
  * Address:	803B090C
  * Size:	0000AC
  */
-TChaseMtxT4::TChaseMtxT4(float (*)[4], unsigned short, unsigned short,
-                         unsigned short, unsigned short)
+TChaseMtxT4::TChaseMtxT4(float (*)[4], unsigned short, unsigned short, unsigned short, unsigned short)
 {
 	/*
 	.loc_0x0:
@@ -3897,8 +3889,7 @@ void setPosptr__Q23efx24TChasePosPosLocalYScale2FP10Vector3f P10Vector3f(void)
  * Address:	803B0BCC
  * Size:	0000C8
  */
-void __ct__Q23efx24TChasePosPosLocalYScale3FP10Vector3f P10Vector3f
-fUsUsUs(void)
+void __ct__Q23efx24TChasePosPosLocalYScale3FP10Vector3f P10Vector3f fUsUsUs(void)
 {
 	/*
 	.loc_0x0:
@@ -4055,8 +4046,7 @@ void setPosptr__Q23efx24TChasePosPosLocalZScale2FP10Vector3f P10Vector3f(void)
  * Address:	803B0D08
  * Size:	0000C8
  */
-void __ct__Q23efx24TChasePosPosLocalZScale3FP10Vector3f P10Vector3f
-fUsUsUs(void)
+void __ct__Q23efx24TChasePosPosLocalZScale3FP10Vector3f P10Vector3f fUsUsUs(void)
 {
 	/*
 	.loc_0x0:
@@ -5265,8 +5255,7 @@ lbl_803B1820:
  * Address:	803B185C
  * Size:	00007C
  */
-void create__Q23efx44TSyncGroup3<efx::TChasePosPosLocalZScale>
-FPQ23efx3Arg(void)
+void create__Q23efx44TSyncGroup3<efx::TChasePosPosLocalZScale> FPQ23efx3Arg(void)
 {
 	/*
 	.loc_0x0:
@@ -5385,8 +5374,7 @@ lbl_803B194C:
  * Address:	803B1988
  * Size:	000058
  */
-void startDemoDrawOff__Q23efx44TSyncGroup3<efx::TChasePosPosLocalZScale>
-Fv(void)
+void startDemoDrawOff__Q23efx44TSyncGroup3<efx::TChasePosPosLocalZScale> Fv(void)
 {
 	/*
 	.loc_0x0:
@@ -5457,8 +5445,7 @@ lbl_803B19FC:
  * Address:	803B1A38
  * Size:	00007C
  */
-void create__Q23efx44TSyncGroup3<efx::TChasePosPosLocalYScale>
-FPQ23efx3Arg(void)
+void create__Q23efx44TSyncGroup3<efx::TChasePosPosLocalYScale> FPQ23efx3Arg(void)
 {
 	/*
 	.loc_0x0:
@@ -5577,8 +5564,7 @@ lbl_803B1B28:
  * Address:	803B1B64
  * Size:	000058
  */
-void startDemoDrawOff__Q23efx44TSyncGroup3<efx::TChasePosPosLocalYScale>
-Fv(void)
+void startDemoDrawOff__Q23efx44TSyncGroup3<efx::TChasePosPosLocalYScale> Fv(void)
 {
 	/*
 	.loc_0x0:
@@ -6451,8 +6437,7 @@ lbl_803B2348:
  * Address:	........
  * Size:	00007C
  */
-void create__Q23efx44TSyncGroup2<efx::TChasePosPosLocalZScale>
-FPQ23efx3Arg(void)
+void create__Q23efx44TSyncGroup2<efx::TChasePosPosLocalZScale> FPQ23efx3Arg(void)
 {
 	// UNUSED FUNCTION
 }
@@ -6482,8 +6467,7 @@ void forceKill__Q23efx44TSyncGroup2<efx::TChasePosPosLocalZScale> Fv(void)
  * Address:	........
  * Size:	000058
  */
-void startDemoDrawOff__Q23efx44TSyncGroup2<efx::TChasePosPosLocalZScale>
-Fv(void)
+void startDemoDrawOff__Q23efx44TSyncGroup2<efx::TChasePosPosLocalZScale> Fv(void)
 {
 	// UNUSED FUNCTION
 }
@@ -6503,8 +6487,7 @@ void endDemoDrawOn__Q23efx44TSyncGroup2<efx::TChasePosPosLocalZScale> Fv(void)
  * Address:	........
  * Size:	00007C
  */
-void create__Q23efx44TSyncGroup2<efx::TChasePosPosLocalYScale>
-FPQ23efx3Arg(void)
+void create__Q23efx44TSyncGroup2<efx::TChasePosPosLocalYScale> FPQ23efx3Arg(void)
 {
 	// UNUSED FUNCTION
 }
@@ -6534,8 +6517,7 @@ void forceKill__Q23efx44TSyncGroup2<efx::TChasePosPosLocalYScale> Fv(void)
  * Address:	........
  * Size:	000058
  */
-void startDemoDrawOff__Q23efx44TSyncGroup2<efx::TChasePosPosLocalYScale>
-Fv(void)
+void startDemoDrawOff__Q23efx44TSyncGroup2<efx::TChasePosPosLocalYScale> Fv(void)
 {
 	// UNUSED FUNCTION
 }

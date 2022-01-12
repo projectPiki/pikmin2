@@ -614,8 +614,7 @@ lbl_8031CF68:
  * Address:	........
  * Size:	0000B8
  */
-void ObjAnaDemo::setWindowMsg(unsigned long long, unsigned long long,
-                              unsigned long long)
+void ObjAnaDemo::setWindowMsg(unsigned long long, unsigned long long, unsigned long long)
 {
 	// UNUSED FUNCTION
 }

@@ -448,8 +448,7 @@ lbl_80008834:
  * Address:	80008854
  * Size:	0000E8
  */
-void JMessage::TControl::setMessageCode_inSequence_(
-    (JMessage::TProcessor const*, unsigned short, unsigned short))
+void JMessage::TControl::setMessageCode_inSequence_((JMessage::TProcessor const*, unsigned short, unsigned short))
 {
 	/*
 	.loc_0x0:

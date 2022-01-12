@@ -800,8 +800,7 @@ void TamagoMushi::Mgr::getFreeNum(void)
  * Address:	8036DE30
  * Size:	0000F8
  */
-void createGroup__Q34Game11TamagoMushi3MgrFRQ24Game13EnemyBirthArgiR10Vector3<
-    float>(void)
+void createGroup__Q34Game11TamagoMushi3MgrFRQ24Game13EnemyBirthArgiR10Vector3<float>(void)
 {
 	/*
 	.loc_0x0:
@@ -887,10 +886,7 @@ void createGroup__Q34Game11TamagoMushi3MgrFRQ24Game13EnemyBirthArgiR10Vector3<
  * Address:	8036DF28
  * Size:	0000B0
  */
-void
-    createGroupByBigFoot__Q34Game11TamagoMushi3MgrFRQ24Game13EnemyBirthArgiR10Vector3<
-        float>
-    f(void)
+void createGroupByBigFoot__Q34Game11TamagoMushi3MgrFRQ24Game13EnemyBirthArgiR10Vector3<float> f(void)
 {
 	/*
 	.loc_0x0:
@@ -1222,8 +1218,7 @@ lbl_8036E320:
  * Address:	8036E384
  * Size:	000484
  */
-void TamagoMushi::Mgr::createGroupByBigFoot(Game::TamagoMushi::Obj*, int, bool,
-                                            float)
+void TamagoMushi::Mgr::createGroupByBigFoot(Game::TamagoMushi::Obj*, int, bool, float)
 {
 	/*
 	.loc_0x0:

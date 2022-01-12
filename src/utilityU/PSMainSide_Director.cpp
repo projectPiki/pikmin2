@@ -726,8 +726,7 @@ lbl_80456E88:
  * Address:	80456E98
  * Size:	000078
  */
-PikminNumberDirector::PikminNumberDirector(int, unsigned char,
-                                           PSSystem::DirectedBgm&)
+PikminNumberDirector::PikminNumberDirector(int, unsigned char, PSSystem::DirectedBgm&)
 {
 	/*
 	.loc_0x0:
@@ -849,8 +848,7 @@ lbl_80456FB4:
  * Address:	80456FC4
  * Size:	000094
  */
-PikminNumberDirector_AutoBgm::PikminNumberDirector_AutoBgm(
-    int, unsigned char, PSSystem::DirectedBgm&)
+PikminNumberDirector_AutoBgm::PikminNumberDirector_AutoBgm(int, unsigned char, PSSystem::DirectedBgm&)
 {
 	/*
 	.loc_0x0:
@@ -1549,8 +1547,7 @@ lbl_80457748:
  * Address:	80457758
  * Size:	0000F4
  */
-ActorDirector_Scaled::ActorDirector_Scaled(const char*, int, float, float, long,
-                                           long, unsigned long)
+ActorDirector_Scaled::ActorDirector_Scaled(const char*, int, float, float, long, long, unsigned long)
 {
 	/*
 	.loc_0x0:
@@ -2128,8 +2125,7 @@ lbl_80457ED8:
  * Address:	80457F3C
  * Size:	0000E4
  */
-ActorDirector_Enemy::ActorDirector_Enemy(const char*, int, long, long,
-                                         unsigned long)
+ActorDirector_Enemy::ActorDirector_Enemy(const char*, int, long, long, unsigned long)
 {
 	/*
 	.loc_0x0:
@@ -2609,8 +2605,7 @@ ExiteDirector::ExiteDirector(int)
  * Address:	804584B0
  * Size:	000068
  */
-DirectorUpdator::DirectorUpdator(PSSystem::DirectorBase*, unsigned char,
-                                 PSM::DirectorUpdator::Type)
+DirectorUpdator::DirectorUpdator(PSSystem::DirectorBase*, unsigned char, PSM::DirectorUpdator::Type)
 {
 	/*
 	.loc_0x0:

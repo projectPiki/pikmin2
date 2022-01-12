@@ -117,9 +117,7 @@ Cave::RandMapMgr::RandMapMgr(bool)
  * Address:	802445B0
  * Size:	0001A4
  */
-void Cave::RandMapMgr::loadResource(Game::MapUnitInterface*, int,
-                                    Game::Cave::FloorInfo*, bool,
-                                    Game::Cave::EditMapUnit*)
+void Cave::RandMapMgr::loadResource(Game::MapUnitInterface*, int, Game::Cave::FloorInfo*, bool, Game::Cave::EditMapUnit*)
 {
 	/*
 	.loc_0x0:

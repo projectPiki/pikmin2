@@ -21,18 +21,7 @@ struct BaseGen : public CNode {
 	 * UNUSED_3 is player 1 spawn in vs mode? (see
 	 * Game::Cave::RandMapMgr::getStartPosition)
 	 */
-	enum Type {
-		TekiA__Easy = 0,
-		TekiB__Hard,
-		Treasure__Item,
-		Unused3,
-		HoleOrGeyser,
-		Seam__Door,
-		Plant,
-		Start,
-		TekiF__Special,
-		Alcove
-	};
+	enum Type { TekiA__Easy = 0, TekiB__Hard, Treasure__Item, Unused3, HoleOrGeyser, Seam__Door, Plant, Start, TekiF__Special, Alcove };
 #pragma enumsalwaysint reset
 	BaseGen();
 	virtual ~BaseGen();
@@ -48,14 +37,7 @@ struct BaseGen : public CNode {
 };
 
 struct TekiInfo : CNode {
-	enum DropMode {
-		NoDrop = 0,
-		DropOnPikminOrLeader,
-		DropOnPikmin,
-		DropOnLeader,
-		DropOnCarryingPikmin,
-		DropFromPurpleEarthquake
-	};
+	enum DropMode { NoDrop = 0, DropOnPikminOrLeader, DropOnPikmin, DropOnLeader, DropOnCarryingPikmin, DropFromPurpleEarthquake };
 	virtual ~TekiInfo();
 	virtual void read(Stream&);
 

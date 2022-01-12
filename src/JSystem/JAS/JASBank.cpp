@@ -8,7 +8,4 @@ void* JASBank::sCurrentHeap;
  * Address:	8009C2FC
  * Size:	000014
  */
-void* JASBank::getCurrentHeap()
-{
-	return sCurrentHeap ? sCurrentHeap : JASDram;
-}
+void* JASBank::getCurrentHeap() { return sCurrentHeap ? sCurrentHeap : JASDram; }

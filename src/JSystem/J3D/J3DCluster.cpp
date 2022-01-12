@@ -252,8 +252,7 @@ lbl_8006A7E8:
  * Address:	8006A7FC
  * Size:	00026C
  */
-void J3DDeformer::deform_VtxPosF32(J3DVertexBuffer*, J3DCluster*,
-                                   J3DClusterKey*, float*)
+void J3DDeformer::deform_VtxPosF32(J3DVertexBuffer*, J3DCluster*, J3DClusterKey*, float*)
 {
 	/*
 	.loc_0x0:
@@ -436,8 +435,7 @@ void J3DDeformer::deform_VtxPosF32(J3DVertexBuffer*, J3DCluster*,
  * Address:	8006AA68
  * Size:	000470
  */
-void J3DDeformer::deform_VtxNrmF32(J3DVertexBuffer*, J3DCluster*,
-                                   J3DClusterKey*, float*)
+void J3DDeformer::deform_VtxNrmF32(J3DVertexBuffer*, J3DCluster*, J3DClusterKey*, float*)
 {
 	/*
 	.loc_0x0:

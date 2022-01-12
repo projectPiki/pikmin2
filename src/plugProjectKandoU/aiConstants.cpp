@@ -77,9 +77,8 @@ AIConstants::AIConstants()
 	m_debt.m_data        = 10000;
 	m_cameraAngle.m_data = 180.0f;
 
-	void* handle = JKRDvdRipper::loadToMainRAM(
-	    "/user/Kando/aiConstants.txt", nullptr, Switch_0, 0, 0,
-	    JKRDvdRipper::AllocDirection_2, 0, nullptr, nullptr);
+	void* handle = JKRDvdRipper::loadToMainRAM("/user/Kando/aiConstants.txt", nullptr, Switch_0, 0, 0, JKRDvdRipper::AllocDirection_2, 0,
+	                                           nullptr, nullptr);
 
 	if (handle) {
 		RamStream stream(handle, -1);

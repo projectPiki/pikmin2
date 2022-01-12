@@ -23,8 +23,7 @@ struct J2DGrafContext {
 	void fillBox(const JGeometry::TBox2f&);
 	void lineTo(JGeometry::TVec2f&);
 	void scissor(const JGeometry::TBox2f&);
-	void setColor(JUtility::TColor, JUtility::TColor, JUtility::TColor,
-	              JUtility::TColor);
+	void setColor(JUtility::TColor, JUtility::TColor, JUtility::TColor, JUtility::TColor);
 	void setLineWidth(u8);
 
 	// VTBL _00
@@ -44,18 +43,18 @@ struct J2DGrafContext {
 	float _38;            // _38
 	float _3C;            // _3C
 	Mtx _40;              // _40 /* Might actually be larger than Matrixf. See
-	         // C_MTXPerspective, called by J2DPerspGraph::setPort */
-	u8 _70[0x10]; // _70
-	Mtx _80;      // _80
-	u8 _B0;       // _B0
-	u8 _B1;       // _B1
-	u8 _B2;       // _B2
-	u8 _B3;       // _B3
-	u8 _B4;       // _B4
-	u8 _B5;       // _B5
-	u8 _B6;       // _B6
-	u8 _B7;       // _B7
-	u8 _B8;       // _B8
+	                      // C_MTXPerspective, called by J2DPerspGraph::setPort */
+	u8 _70[0x10];         // _70
+	Mtx _80;              // _80
+	u8 _B0;               // _B0
+	u8 _B1;               // _B1
+	u8 _B2;               // _B2
+	u8 _B3;               // _B3
+	u8 _B4;               // _B4
+	u8 _B5;               // _B5
+	u8 _B6;               // _B6
+	u8 _B7;               // _B7
+	u8 _B8;               // _B8
 };
 
 struct J2DPerspGraph : public J2DGrafContext {

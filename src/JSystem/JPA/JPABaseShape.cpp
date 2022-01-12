@@ -2322,8 +2322,7 @@ lbl_8008C91C:
  * Address:	8008C934
  * Size:	00001C
  */
-void dirTypeVel(const JPAEmitterWorkData*, const JPABaseParticle*,
-                JGeometry::TVec3<float>*)
+void dirTypeVel(const JPAEmitterWorkData*, const JPABaseParticle*, JGeometry::TVec3<float>*)
 {
 	/*
 	.loc_0x0:
@@ -2342,8 +2341,7 @@ void dirTypeVel(const JPAEmitterWorkData*, const JPABaseParticle*,
  * Address:	8008C950
  * Size:	00001C
  */
-void dirTypePos(const JPAEmitterWorkData*, const JPABaseParticle*,
-                JGeometry::TVec3<float>*)
+void dirTypePos(const JPAEmitterWorkData*, const JPABaseParticle*, JGeometry::TVec3<float>*)
 {
 	/*
 	.loc_0x0:
@@ -2362,8 +2360,7 @@ void dirTypePos(const JPAEmitterWorkData*, const JPABaseParticle*,
  * Address:	8008C96C
  * Size:	000040
  */
-void dirTypePosInv(const JPAEmitterWorkData*, const JPABaseParticle*,
-                   JGeometry::TVec3<float>*)
+void dirTypePosInv(const JPAEmitterWorkData*, const JPABaseParticle*, JGeometry::TVec3<float>*)
 {
 	/*
 	.loc_0x0:
@@ -2391,8 +2388,7 @@ void dirTypePosInv(const JPAEmitterWorkData*, const JPABaseParticle*,
  * Address:	8008C9AC
  * Size:	00001C
  */
-void dirTypeEmtrDir(const JPAEmitterWorkData*, const JPABaseParticle*,
-                    JGeometry::TVec3<float>*)
+void dirTypeEmtrDir(const JPAEmitterWorkData*, const JPABaseParticle*, JGeometry::TVec3<float>*)
 {
 	/*
 	.loc_0x0:
@@ -2411,8 +2407,7 @@ void dirTypeEmtrDir(const JPAEmitterWorkData*, const JPABaseParticle*,
  * Address:	8008C9C8
  * Size:	0000C0
  */
-void dirTypePrevPtcl(const JPAEmitterWorkData*, const JPABaseParticle*,
-                     JGeometry::TVec3<float>*)
+void dirTypePrevPtcl(const JPAEmitterWorkData*, const JPABaseParticle*, JGeometry::TVec3<float>*)
 {
 	/*
 	.loc_0x0:
@@ -4822,8 +4817,7 @@ void JPAParticleCallBack::draw(JPABaseEmitter*, JPABaseParticle*) { }
  * Address:	8008E96C
  * Size:	000284
  */
-void makeColorTable(_GXColor**, const JPAClrAnmKeyData*, unsigned char, short,
-                    JKRHeap*)
+void makeColorTable(_GXColor**, const JPAClrAnmKeyData*, unsigned char, short, JKRHeap*)
 {
 	/*
 	.loc_0x0:

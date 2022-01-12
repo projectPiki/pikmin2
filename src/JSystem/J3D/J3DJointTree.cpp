@@ -74,9 +74,7 @@ J3DJointTree::J3DJointTree()
  * Address:	80088310
  * Size:	00015C
  */
-void J3DJointTree::makeHierarchy(J3DJoint* joint,
-                                 const J3DModelHierarchy** hierarchies,
-                                 J3DMaterialTable* matTable,
+void J3DJointTree::makeHierarchy(J3DJoint* joint, const J3DModelHierarchy** hierarchies, J3DMaterialTable* matTable,
                                  J3DShapeTable* shapeTable)
 {
 	J3DMaterial* selectedMaterial;
@@ -94,8 +92,7 @@ void J3DJointTree::makeHierarchy(J3DJoint* joint,
 					return;
 				case 1:
 					hierarchies++;
-					makeHierarchy(rootJointMaybe, hierarchies, matTable,
-					              shapeTable);
+					makeHierarchy(rootJointMaybe, hierarchies, matTable, shapeTable);
 					break;
 				case 2:
 					hierarchies++;
@@ -106,8 +103,7 @@ void J3DJointTree::makeHierarchy(J3DJoint* joint,
 					break;
 				case 0x11:
 					hierarchies++;
-					selectedMaterial
-					    = matTable->m_materials1[currentHierarchy->_02];
+					selectedMaterial = matTable->m_materials1[currentHierarchy->_02];
 					break;
 				case 0x12:
 					hierarchies++;
@@ -373,8 +369,7 @@ lbl_800885CC:
  * Address:	800885E0
  * Size:	000070
  */
-void J3DJointTree::calc(J3DMtxBuffer* buffer, const Vec& vec,
-                        const float (&mtx)[3][4])
+void J3DJointTree::calc(J3DMtxBuffer* buffer, const Vec& vec, const float (&mtx)[3][4])
 {
 	m_transformCalc->init(vec, mtx);
 	J3DMtxCalc::setMtxBuffer(buffer);

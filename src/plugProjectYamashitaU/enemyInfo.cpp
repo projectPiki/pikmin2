@@ -119,8 +119,7 @@ inline EnemyInfo* getInfo(int enemyID, int enemyFlags)
 {
 	EnemyInfo* result = nullptr;
 	for (int enemy_num = gEnemyInfoNum, slot = 0; enemy_num > 0; --enemy_num) {
-		if ((enemyID == gEnemyInfo[slot].m_id)
-		    && ((enemyFlags & (u32)gEnemyInfo[slot].m_flags) != 0)) {
+		if ((enemyID == gEnemyInfo[slot].m_id) && ((enemyFlags & (u32)gEnemyInfo[slot].m_flags) != 0)) {
 			result = &gEnemyInfo[slot];
 			break;
 		}
@@ -136,8 +135,7 @@ EnemyInfo* getEnemyInfo(int enemyID, int enemyFlags)
 	int enemy_num     = gEnemyInfoNum;
 
 	while (enemy_num > 0) {
-		if ((enemyID == gEnemyInfo[slot].m_id)
-		    && ((enemyFlags & (u32)gEnemyInfo[slot].m_flags) != 0)) {
+		if ((enemyID == gEnemyInfo[slot].m_id) && ((enemyFlags & (u32)gEnemyInfo[slot].m_flags) != 0)) {
 			result = gEnemyInfo + slot;
 			break;
 		}
@@ -164,8 +162,7 @@ char* getEnemyResName(int enemyID, int enemyFlags)
 		break;
 	}
 
-	if (enemyID == EnemyTypeID::EnemyID_INVALID
-	    || enemyID == EnemyTypeID::EnemyID_INVALID2) {
+	if (enemyID == EnemyTypeID::EnemyID_INVALID || enemyID == EnemyTypeID::EnemyID_INVALID2) {
 		enemyID = EnemyTypeID::EnemyID_PanHouse;
 	}
 
@@ -183,8 +180,7 @@ int getEnemyID(char* name, int enemyFlags)
 {
 	EnemyInfo* result = nullptr;
 	for (int slot = 0; slot < gEnemyInfoNum; ++slot) {
-		if ((stricmp(gEnemyInfo[slot].m_name, name) == 0)
-		    && ((enemyFlags & (u32)gEnemyInfo[slot].m_flags) != 0)) {
+		if ((stricmp(gEnemyInfo[slot].m_name, name) == 0) && ((enemyFlags & (u32)gEnemyInfo[slot].m_flags) != 0)) {
 			result = &gEnemyInfo[slot];
 			break;
 		}

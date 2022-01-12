@@ -751,8 +751,7 @@ lbl_801A4694:
  * Address:	801A46A4
  * Size:	000030
  */
-void transit__Q24Game24FSMState<Game::Pellet>
-FPQ24Game6PelletiPQ24Game8StateArg(void)
+void transit__Q24Game24FSMState<Game::Pellet> FPQ24Game6PelletiPQ24Game8StateArg(void)
 {
 	/*
 	.loc_0x0:
@@ -5063,8 +5062,7 @@ void create__Q24Game28StateMachine<Game::Pellet> Fi(void)
  * Address:	801A7E90
  * Size:	000084
  */
-void registerState__Q24Game28StateMachine<Game::Pellet>
-FPQ24Game24FSMState<Game::Pellet>(void)
+void registerState__Q24Game28StateMachine<Game::Pellet> FPQ24Game24FSMState<Game::Pellet>(void)
 {
 	/*
 	.loc_0x0:

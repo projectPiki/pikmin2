@@ -93,8 +93,7 @@ lbl_800A7728:
  * Address:	800A7740
  * Size:	0000D0
  */
-void JASResArcLoader::loadResource(JKRArchive*, unsigned short, unsigned char*,
-                                   unsigned long)
+void JASResArcLoader::loadResource(JKRArchive*, unsigned short, unsigned char*, unsigned long)
 {
 	/*
 	.loc_0x0:
@@ -162,9 +161,7 @@ void JASResArcLoader::loadResource(JKRArchive*, unsigned short, unsigned char*,
  * Address:	800A7810
  * Size:	00005C
  */
-void JASResArcLoader::loadResourceAsync(JKRArchive*, unsigned short,
-                                        unsigned char*, unsigned long,
-                                        void (*)(unsigned long, unsigned long),
+void JASResArcLoader::loadResourceAsync(JKRArchive*, unsigned short, unsigned char*, unsigned long, void (*)(unsigned long, unsigned long),
                                         unsigned long)
 {
 	/*

@@ -163,8 +163,7 @@ static double
     twon24 = 5.96046447753906250000e-08;           /* 0x3E700000, 0x00000000 */
 
 #ifdef __STDC__
-int __kernel_rem_pio2(double* x, double* y, int e0, int nx, int prec,
-                      const int* ipio2) /*- cc 020130 -*/
+int __kernel_rem_pio2(double* x, double* y, int e0, int nx, int prec, const int* ipio2) /*- cc 020130 -*/
 #else
 int __kernel_rem_pio2(x, y, e0, nx, prec, ipio2) /*- cc 020130 -*/
     double x[],
@@ -173,8 +172,7 @@ int e0, nx, prec;
 int ipio2[]; /*- cc 020130 -*/
 #endif
 {
-	int jz, jx, jv, jp, jk, carry, n, iq[20], i, j, k, m, q0,
-	    ih; /*- cc 020130 -*/
+	int jz, jx, jv, jp, jk, carry, n, iq[20], i, j, k, m, q0, ih; /*- cc 020130 -*/
 	double z, fw, f[20], fq[20], q[20];
 
 	/* initialize jk*/

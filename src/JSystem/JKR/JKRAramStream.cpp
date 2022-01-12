@@ -433,9 +433,7 @@ void JSURandomInputStream::getAvailable() const
  * Address:	8001A300
  * Size:	0000C8
  */
-void JKRAramStream::write_StreamToAram_Async(JSUFileInputStream*, unsigned long,
-                                             unsigned long, unsigned long,
-                                             unsigned long*)
+void JKRAramStream::write_StreamToAram_Async(JSUFileInputStream*, unsigned long, unsigned long, unsigned long, unsigned long*)
 {
 	/*
 	.loc_0x0:

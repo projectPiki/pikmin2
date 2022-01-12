@@ -842,8 +842,7 @@ void ConductorList::getAutoBgmInfo(unsigned char, unsigned char)
  * Address:	80334524
  * Size:	0003D4
  */
-void ConductorList::getSeqAndWaveFromConductor(char const*, unsigned char*,
-                                               char**)
+void ConductorList::getSeqAndWaveFromConductor(char const*, unsigned char*, char**)
 {
 	/*
 	.loc_0x0:
@@ -2183,8 +2182,7 @@ SceneInfo::SceneInfo(void)
  * Address:	803354E8
  * Size:	000078
  */
-void SceneInfo::setStageFlag(PSGame::SceneInfo::FlagDef,
-                             PSGame::SceneInfo::FlagBitShift)
+void SceneInfo::setStageFlag(PSGame::SceneInfo::FlagDef, PSGame::SceneInfo::FlagBitShift)
 {
 	/*
 	.loc_0x0:
@@ -4639,8 +4637,7 @@ lbl_803372C8:
  * Address:	........
  * Size:	0001A8
  */
-void ConductorSelector::getConductorFile(char const*, PSGame::CaveFloorInfo&,
-                                         unsigned char*, char*)
+void ConductorSelector::getConductorFile(char const*, PSGame::CaveFloorInfo&, unsigned char*, char*)
 {
 	// UNUSED FUNCTION
 }
@@ -5889,8 +5886,7 @@ lbl_80338134:
  * Address:	8033814C
  * Size:	000098
  */
-void newInstance__Q28PSSystem49SingletonBase<PSGame::SoundTable::CategoryMgr>
-Fv(void)
+void newInstance__Q28PSSystem49SingletonBase<PSGame::SoundTable::CategoryMgr> Fv(void)
 {
 	/*
 	.loc_0x0:

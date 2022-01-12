@@ -1323,9 +1323,7 @@ void Omake::FSMState::do_exec(ebi::Omake::TMgr*) { }
  */
 // void transit__Q24Game27FSMState<ebi::Omake::TMgr>
 // FPQ33ebi5Omake4TMgriPQ24Game8StateArg(void)
-template <>
-void Game::FSMState<ebi::Omake::TMgr>::transit(ebi::Omake::TMgr*, int,
-                                               Game::StateArg*)
+template <> void Game::FSMState<ebi::Omake::TMgr>::transit(ebi::Omake::TMgr*, int, Game::StateArg*)
 {
 	/*
 	.loc_0x0:
@@ -1351,9 +1349,7 @@ void Game::FSMState<ebi::Omake::TMgr>::transit(ebi::Omake::TMgr*, int,
  */
 // void start__Q24Game31StateMachine<ebi::Omake::TMgr>
 // FPQ33ebi5Omake4TMgriPQ24Game8StateArg(void)
-template <>
-void Game::StateMachine<ebi::Omake::TMgr>::start(ebi::Omake::TMgr*, int,
-                                                 StateArg*)
+template <> void Game::StateMachine<ebi::Omake::TMgr>::start(ebi::Omake::TMgr*, int, StateArg*)
 {
 	/*
 	.loc_0x0:
@@ -1947,10 +1943,7 @@ blr
  */
 // void init__Q24Game27FSMState<ebi::Omake::TMgr>
 // FPQ33ebi5Omake4TMgrPQ24Game8StateArg(void)
-template <>
-void Game::FSMState<ebi::Omake::TMgr>::init(ebi::Omake::TMgr*, StateArg*)
-{
-}
+template <> void Game::FSMState<ebi::Omake::TMgr>::init(ebi::Omake::TMgr*, StateArg*) { }
 
 /*
  * --INFO--
@@ -1967,8 +1960,7 @@ template <> void Game::FSMState<ebi::Omake::TMgr>::exec(ebi::Omake::TMgr*) { }
  */
 // void cleanup__Q24Game27FSMState<ebi::Omake::TMgr> FPQ33ebi5Omake4TMgr(void) {
 // }
-template <>
-void Game::FSMState<ebi::Omake::TMgr>::cleanup(ebi::Omake::TMgr*) { }
+template <> void Game::FSMState<ebi::Omake::TMgr>::cleanup(ebi::Omake::TMgr*) { }
 
 /*
  * --INFO--
@@ -1986,8 +1978,7 @@ template <> void Game::FSMState<ebi::Omake::TMgr>::resume(ebi::Omake::TMgr*) { }
  */
 // void restart__Q24Game27FSMState<ebi::Omake::TMgr> FPQ33ebi5Omake4TMgr(void) {
 // }
-template <>
-void Game::FSMState<ebi::Omake::TMgr>::restart(ebi::Omake::TMgr*) { }
+template <> void Game::FSMState<ebi::Omake::TMgr>::restart(ebi::Omake::TMgr*) { }
 
 /*
  * --INFO--
@@ -1996,9 +1987,7 @@ void Game::FSMState<ebi::Omake::TMgr>::restart(ebi::Omake::TMgr*) { }
  */
 // void init__Q24Game31StateMachine<ebi::Omake::TMgr> FPQ33ebi5Omake4TMgr(void)
 // { }
-template <> void Game::StateMachine<ebi::Omake::TMgr>::init(ebi::Omake::TMgr*)
-{
-}
+template <> void Game::StateMachine<ebi::Omake::TMgr>::init(ebi::Omake::TMgr*) { }
 
 /*
  * --INFO--
@@ -2072,9 +2061,7 @@ template <> void Game::StateMachine<ebi::Omake::TMgr>::create(int)
  */
 // void transit__Q24Game31StateMachine<ebi::Omake::TMgr>
 // FPQ33ebi5Omake4TMgriPQ24Game8StateArg(void)
-template <>
-void Game::StateMachine<ebi::Omake::TMgr>::transit(ebi::Omake::TMgr*, int,
-                                                   Game::StateArg*)
+template <> void Game::StateMachine<ebi::Omake::TMgr>::transit(ebi::Omake::TMgr*, int, Game::StateArg*)
 {
 	/*
 	.loc_0x0:
@@ -2133,9 +2120,7 @@ void Game::StateMachine<ebi::Omake::TMgr>::transit(ebi::Omake::TMgr*, int,
  */
 // void registerState__Q24Game31StateMachine<ebi::Omake::TMgr>
 // FPQ24Game27FSMState<ebi::Omake::TMgr>(void)
-template <>
-void Game::StateMachine<ebi::Omake::TMgr>::registerState(
-    Game::FSMState<ebi::Omake::TMgr>*)
+template <> void Game::StateMachine<ebi::Omake::TMgr>::registerState(Game::FSMState<ebi::Omake::TMgr>*)
 {
 	/*
 	.loc_0x0:

@@ -77,14 +77,11 @@ void TTitleFogMgr::setGX(Camera& camera)
 		v16Obj._02 = _108;
 		v16Obj._00 = _130;
 
-		GXSetFog(GX_FOG_LINEAR, (void*)&v16Obj, _68, _90, camera.getNear(),
-		         camera.getFar());
+		GXSetFog(GX_FOG_LINEAR, (void*)&v16Obj, _68, _90, camera.getNear(), camera.getFar());
 
 		GXFogAdjTable table;
-		GXInitFogAdjTable(&table, System::getRenderModeObj()->fbWidth,
-		                  camera._B4);
-		GXSetFogRangeAdj(TRUE, System::getRenderModeObj()->fbWidth >> 1,
-		                 &table);
+		GXInitFogAdjTable(&table, System::getRenderModeObj()->fbWidth, camera._B4);
+		GXSetFogRangeAdj(TRUE, System::getRenderModeObj()->fbWidth >> 1, &table);
 	} else {
 		GXSetFog(GX_FOG_NONE, _24, 0.0f, 0.0f, 0.0f, 0.0f);
 	}

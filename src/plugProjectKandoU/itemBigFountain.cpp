@@ -1088,8 +1088,7 @@ lbl_801EC2F8:
  * Address:	801EC314
  * Size:	000048
  */
-void ItemBigFountain::AppearState::init(Game::ItemBigFountain::Item*,
-                                        Game::StateArg*)
+void ItemBigFountain::AppearState::init(Game::ItemBigFountain::Item*, Game::StateArg*)
 {
 	/*
 	.loc_0x0:
@@ -1183,8 +1182,7 @@ lbl_801EC3FC:
  * Address:	801EC428
  * Size:	000030
  */
-void transit__Q24Game39FSMState<Game::ItemBigFountain::Item>
-FPQ34Game15ItemBigFountain4ItemiPQ24Game8StateArg(void)
+void transit__Q24Game39FSMState<Game::ItemBigFountain::Item> FPQ34Game15ItemBigFountain4ItemiPQ24Game8StateArg(void)
 {
 	/*
 	.loc_0x0:
@@ -1215,8 +1213,7 @@ void ItemBigFountain::AppearState::cleanup(Game::ItemBigFountain::Item*) { }
  * Address:	801EC45C
  * Size:	00003C
  */
-void ItemBigFountain::CloseState::init(Game::ItemBigFountain::Item*,
-                                       Game::StateArg*)
+void ItemBigFountain::CloseState::init(Game::ItemBigFountain::Item*, Game::StateArg*)
 {
 	/*
 	.loc_0x0:
@@ -1266,8 +1263,7 @@ void ItemBigFountain::CloseState::cleanup(Game::ItemBigFountain::Item*) { }
  * Address:	801EC4B0
  * Size:	000044
  */
-void ItemBigFountain::WaitState::init(Game::ItemBigFountain::Item*,
-                                      Game::StateArg*)
+void ItemBigFountain::WaitState::init(Game::ItemBigFountain::Item*, Game::StateArg*)
 {
 	/*
 	.loc_0x0:
@@ -1381,8 +1377,7 @@ lbl_801EC5AC:
  * Address:	801EC5C0
  * Size:	00000C
  */
-void ItemBigFountain::WaitState::onKeyEvent(Game::ItemBigFountain::Item*,
-                                            SysShape::KeyEvent const&)
+void ItemBigFountain::WaitState::onKeyEvent(Game::ItemBigFountain::Item*, SysShape::KeyEvent const&)
 {
 	/*
 	.loc_0x0:
@@ -1397,8 +1392,7 @@ void ItemBigFountain::WaitState::onKeyEvent(Game::ItemBigFountain::Item*,
  * Address:	801EC5CC
  * Size:	00011C
  */
-void ItemBigFountain::OutState::init(Game::ItemBigFountain::Item*,
-                                     Game::StateArg*)
+void ItemBigFountain::OutState::init(Game::ItemBigFountain::Item*, Game::StateArg*)
 {
 	/*
 	.loc_0x0:
@@ -1986,8 +1980,7 @@ lbl_801ECCAC:
  * Address:	801ECCF8
  * Size:	000034
  */
-void start__Q24Game43StateMachine<Game::ItemBigFountain::Item>
-FPQ34Game15ItemBigFountain4ItemiPQ24Game8StateArg(void)
+void start__Q24Game43StateMachine<Game::ItemBigFountain::Item> FPQ34Game15ItemBigFountain4ItemiPQ24Game8StateArg(void)
 {
 	/*
 	.loc_0x0:
@@ -2608,8 +2601,7 @@ void ItemBigFountain::State::onDamage(Game::ItemBigFountain::Item*, float) { }
  * Address:	801ED3C0
  * Size:	0000C8
  */
-void getVectorField__Q34Game15ItemBigFountain4ItemFRQ23Sys6SphereR10Vector3<
-    float>(void)
+void getVectorField__Q34Game15ItemBigFountain4ItemFRQ23Sys6SphereR10Vector3<float>(void)
 {
 	/*
 	.loc_0x0:
@@ -2750,10 +2742,7 @@ void ItemBigFountain::Item::onKeyEvent(SysShape::KeyEvent const&)
  * Address:	801ED524
  * Size:	000004
  */
-void onKeyEvent__Q24Game40ItemState<Game::ItemBigFountain::Item>
-FPQ34Game15ItemBigFountain4ItemRCQ28SysShape8KeyEvent(void)
-{
-}
+void onKeyEvent__Q24Game40ItemState<Game::ItemBigFountain::Item> FPQ34Game15ItemBigFountain4ItemRCQ28SysShape8KeyEvent(void) { }
 
 /*
  * --INFO--
@@ -3091,8 +3080,7 @@ void ItemBigFountain::Mgr::birth(void)
  * Address:	801ED954
  * Size:	000058
  */
-void generatorBirth__Q34Game15ItemBigFountain3MgrFR10Vector3f R10Vector3f
-PQ24Game11GenItemParm(void)
+void generatorBirth__Q34Game15ItemBigFountain3MgrFR10Vector3f R10Vector3f PQ24Game11GenItemParm(void)
 {
 	/*
 	.loc_0x0:
@@ -3331,10 +3319,7 @@ void ItemBigFountain::Item::getCreatureName(void)
  * Address:	801EDBE8
  * Size:	000034
  */
-void doAI__Q24Game98FSMItem<Game::ItemBigFountain::Item,
-                            Game::ItemBigFountain::FSM,
-                            Game::ItemBigFountain::State>
-Fv(void)
+void doAI__Q24Game98FSMItem<Game::ItemBigFountain::Item, Game::ItemBigFountain::FSM, Game::ItemBigFountain::State> Fv(void)
 {
 	/*
 	.loc_0x0:
@@ -3366,9 +3351,7 @@ u32 ItemBigFountain::OutState::canRide(void) { return 0x1; }
  * Address:	801EDC24
  * Size:	000044
  */
-void onKeyEvent__Q24Game98FSMItem<Game::ItemBigFountain::Item,
-                                  Game::ItemBigFountain::FSM,
-                                  Game::ItemBigFountain::State>
+void onKeyEvent__Q24Game98FSMItem<Game::ItemBigFountain::Item, Game::ItemBigFountain::FSM, Game::ItemBigFountain::State>
 FRCQ28SysShape8KeyEvent(void)
 {
 	/*
@@ -3400,108 +3383,77 @@ FRCQ28SysShape8KeyEvent(void)
  * Address:	801EDC68
  * Size:	000004
  */
-void onDamage__Q24Game40ItemState<Game::ItemBigFountain::Item>
-FPQ34Game15ItemBigFountain4Itemf(void)
-{
-}
+void onDamage__Q24Game40ItemState<Game::ItemBigFountain::Item> FPQ34Game15ItemBigFountain4Itemf(void) { }
 
 /*
  * --INFO--
  * Address:	801EDC6C
  * Size:	000004
  */
-void onBounce__Q24Game40ItemState<Game::ItemBigFountain::Item>
-FPQ34Game15ItemBigFountain4ItemPQ23Sys8Triangle(void)
-{
-}
+void onBounce__Q24Game40ItemState<Game::ItemBigFountain::Item> FPQ34Game15ItemBigFountain4ItemPQ23Sys8Triangle(void) { }
 
 /*
  * --INFO--
  * Address:	801EDC70
  * Size:	000004
  */
-void onPlatCollision__Q24Game40ItemState<Game::ItemBigFountain::Item>
-FPQ34Game15ItemBigFountain4ItemRQ24Game9PlatEvent(void)
-{
-}
+void onPlatCollision__Q24Game40ItemState<Game::ItemBigFountain::Item> FPQ34Game15ItemBigFountain4ItemRQ24Game9PlatEvent(void) { }
 
 /*
  * --INFO--
  * Address:	801EDC74
  * Size:	000004
  */
-void onCollision__Q24Game40ItemState<Game::ItemBigFountain::Item>
-FPQ34Game15ItemBigFountain4ItemRQ24Game9CollEvent(void)
-{
-}
+void onCollision__Q24Game40ItemState<Game::ItemBigFountain::Item> FPQ34Game15ItemBigFountain4ItemRQ24Game9CollEvent(void) { }
 
 /*
  * --INFO--
  * Address:	801EDC78
  * Size:	000004
  */
-void init__Q24Game39FSMState<Game::ItemBigFountain::Item>
-FPQ34Game15ItemBigFountain4ItemPQ24Game8StateArg(void)
-{
-}
+void init__Q24Game39FSMState<Game::ItemBigFountain::Item> FPQ34Game15ItemBigFountain4ItemPQ24Game8StateArg(void) { }
 
 /*
  * --INFO--
  * Address:	801EDC7C
  * Size:	000004
  */
-void exec__Q24Game39FSMState<Game::ItemBigFountain::Item>
-FPQ34Game15ItemBigFountain4Item(void)
-{
-}
+void exec__Q24Game39FSMState<Game::ItemBigFountain::Item> FPQ34Game15ItemBigFountain4Item(void) { }
 
 /*
  * --INFO--
  * Address:	801EDC80
  * Size:	000004
  */
-void cleanup__Q24Game39FSMState<Game::ItemBigFountain::Item>
-FPQ34Game15ItemBigFountain4Item(void)
-{
-}
+void cleanup__Q24Game39FSMState<Game::ItemBigFountain::Item> FPQ34Game15ItemBigFountain4Item(void) { }
 
 /*
  * --INFO--
  * Address:	801EDC84
  * Size:	000004
  */
-void resume__Q24Game39FSMState<Game::ItemBigFountain::Item>
-FPQ34Game15ItemBigFountain4Item(void)
-{
-}
+void resume__Q24Game39FSMState<Game::ItemBigFountain::Item> FPQ34Game15ItemBigFountain4Item(void) { }
 
 /*
  * --INFO--
  * Address:	801EDC88
  * Size:	000004
  */
-void restart__Q24Game39FSMState<Game::ItemBigFountain::Item>
-FPQ34Game15ItemBigFountain4Item(void)
-{
-}
+void restart__Q24Game39FSMState<Game::ItemBigFountain::Item> FPQ34Game15ItemBigFountain4Item(void) { }
 
 /*
  * --INFO--
  * Address:	801EDC8C
  * Size:	000004
  */
-void init__Q24Game43StateMachine<Game::ItemBigFountain::Item>
-FPQ34Game15ItemBigFountain4Item(void)
-{
-}
+void init__Q24Game43StateMachine<Game::ItemBigFountain::Item> FPQ34Game15ItemBigFountain4Item(void) { }
 
 /*
  * --INFO--
  * Address:	801EDC90
  * Size:	000038
  */
-void exec__Q24Game43StateMachine<Game::ItemBigFountain::Item>
-FPQ34Game15ItemBigFountain4Item(void)
+void exec__Q24Game43StateMachine<Game::ItemBigFountain::Item> FPQ34Game15ItemBigFountain4Item(void)
 {
 	/*
 	.loc_0x0:
@@ -3567,8 +3519,7 @@ void create__Q24Game43StateMachine<Game::ItemBigFountain::Item> Fi(void)
  * Address:	801EDD2C
  * Size:	00009C
  */
-void transit__Q24Game43StateMachine<Game::ItemBigFountain::Item>
-FPQ34Game15ItemBigFountain4ItemiPQ24Game8StateArg(void)
+void transit__Q24Game43StateMachine<Game::ItemBigFountain::Item> FPQ34Game15ItemBigFountain4ItemiPQ24Game8StateArg(void)
 {
 	/*
 	.loc_0x0:
@@ -3625,8 +3576,7 @@ FPQ34Game15ItemBigFountain4ItemiPQ24Game8StateArg(void)
  * Address:	801EDDC8
  * Size:	000084
  */
-void registerState__Q24Game43StateMachine<Game::ItemBigFountain::Item>
-FPQ24Game39FSMState<Game::ItemBigFountain::Item>(void)
+void registerState__Q24Game43StateMachine<Game::ItemBigFountain::Item> FPQ24Game39FSMState<Game::ItemBigFountain::Item>(void)
 {
 	/*
 	.loc_0x0:
@@ -3677,10 +3627,7 @@ FPQ24Game39FSMState<Game::ItemBigFountain::Item>(void)
  * Address:	801EDE4C
  * Size:	00001C
  */
-void getStateID__Q24Game98FSMItem<Game::ItemBigFountain::Item,
-                                  Game::ItemBigFountain::FSM,
-                                  Game::ItemBigFountain::State>
-Fv(void)
+void getStateID__Q24Game98FSMItem<Game::ItemBigFountain::Item, Game::ItemBigFountain::FSM, Game::ItemBigFountain::State> Fv(void)
 {
 	/*
 	.loc_0x0:
@@ -3701,9 +3648,7 @@ Fv(void)
  * Address:	801EDE68
  * Size:	000044
  */
-void platCallback__Q24Game98FSMItem<Game::ItemBigFountain::Item,
-                                    Game::ItemBigFountain::FSM,
-                                    Game::ItemBigFountain::State>
+void platCallback__Q24Game98FSMItem<Game::ItemBigFountain::Item, Game::ItemBigFountain::FSM, Game::ItemBigFountain::State>
 FRQ24Game9PlatEvent(void)
 {
 	/*
@@ -3735,9 +3680,7 @@ FRQ24Game9PlatEvent(void)
  * Address:	801EDEAC
  * Size:	000044
  */
-void collisionCallback__Q24Game98FSMItem<Game::ItemBigFountain::Item,
-                                         Game::ItemBigFountain::FSM,
-                                         Game::ItemBigFountain::State>
+void collisionCallback__Q24Game98FSMItem<Game::ItemBigFountain::Item, Game::ItemBigFountain::FSM, Game::ItemBigFountain::State>
 FRQ24Game9CollEvent(void)
 {
 	/*
@@ -3769,9 +3712,7 @@ FRQ24Game9CollEvent(void)
  * Address:	801EDEF0
  * Size:	000044
  */
-void bounceCallback__Q24Game98FSMItem<Game::ItemBigFountain::Item,
-                                      Game::ItemBigFountain::FSM,
-                                      Game::ItemBigFountain::State>
+void bounceCallback__Q24Game98FSMItem<Game::ItemBigFountain::Item, Game::ItemBigFountain::FSM, Game::ItemBigFountain::State>
 FPQ23Sys8Triangle(void)
 {
 	/*
@@ -3824,9 +3765,7 @@ void __sinit_itemBigFountain_cpp(void)
  * Address:	801EDF5C
  * Size:	000008
  */
-void @376 @onKeyEvent__Q24Game98FSMItem<Game::ItemBigFountain::Item,
-                                        Game::ItemBigFountain::FSM,
-                                        Game::ItemBigFountain::State>
+void @376 @onKeyEvent__Q24Game98FSMItem<Game::ItemBigFountain::Item, Game::ItemBigFountain::FSM, Game::ItemBigFountain::State>
 FRCQ28SysShape8KeyEvent(void)
 {
 	/*

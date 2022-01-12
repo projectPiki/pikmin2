@@ -630,8 +630,7 @@ lbl_80018FF0:
  * Address:	80019010
  * Size:	0000F8
  */
-void* JKRAramArchive::fetchResource(void*, unsigned long,
-                                    JKRArchive::SDIFileEntry*, unsigned long*)
+void* JKRAramArchive::fetchResource(void*, unsigned long, JKRArchive::SDIFileEntry*, unsigned long*)
 {
 	/*
 	.loc_0x0:

@@ -1096,8 +1096,7 @@ void J3DAnmFullLoader_v15::readAnmTransform(const J3DAnmTransformFullData*)
  * Address:	8007322C
  * Size:	000094
  */
-void J3DAnmFullLoader_v15::setAnmTransform(J3DAnmTransformFull*,
-                                           const J3DAnmTransformFullData*)
+void J3DAnmFullLoader_v15::setAnmTransform(J3DAnmTransformFull*, const J3DAnmTransformFullData*)
 {
 	/*
 	.loc_0x0:
@@ -1168,8 +1167,7 @@ void J3DAnmFullLoader_v15::readAnmColor(const J3DAnmColorFullData*)
  * Address:	800732E8
  * Size:	0000CC
  */
-void J3DAnmFullLoader_v15::setAnmColor(J3DAnmColorFull*,
-                                       const J3DAnmColorFullData*)
+void J3DAnmFullLoader_v15::setAnmColor(J3DAnmColorFull*, const J3DAnmColorFullData*)
 {
 	/*
 	.loc_0x0:
@@ -1254,8 +1252,7 @@ void J3DAnmFullLoader_v15::readAnmTexPattern(const J3DAnmTexPatternFullData*)
  * Address:	800733DC
  * Size:	0000A4
  */
-void J3DAnmFullLoader_v15::setAnmTexPattern(J3DAnmTexPattern*,
-                                            const J3DAnmTexPatternFullData*)
+void J3DAnmFullLoader_v15::setAnmTexPattern(J3DAnmTexPattern*, const J3DAnmTexPatternFullData*)
 {
 	/*
 	.loc_0x0:
@@ -1330,8 +1327,7 @@ void J3DAnmFullLoader_v15::readAnmVisibility(const J3DAnmVisibilityFullData*)
  * Address:	800734A8
  * Size:	00007C
  */
-void J3DAnmFullLoader_v15::setAnmVisibility(J3DAnmVisibilityFull*,
-                                            const J3DAnmVisibilityFullData*)
+void J3DAnmFullLoader_v15::setAnmVisibility(J3DAnmVisibilityFull*, const J3DAnmVisibilityFullData*)
 {
 	/*
 	.loc_0x0:
@@ -1396,8 +1392,7 @@ void J3DAnmFullLoader_v15::readAnmCluster(const J3DAnmClusterFullData*)
  * Address:	8007354C
  * Size:	00006C
  */
-void J3DAnmFullLoader_v15::setAnmCluster(J3DAnmClusterFull*,
-                                         const J3DAnmClusterFullData*)
+void J3DAnmFullLoader_v15::setAnmCluster(J3DAnmClusterFull*, const J3DAnmClusterFullData*)
 {
 	/*
 	.loc_0x0:
@@ -1458,8 +1453,7 @@ void J3DAnmFullLoader_v15::readAnmVtxColor(const J3DAnmVtxColorFullData*)
  * Address:	800735E0
  * Size:	000170
  */
-void J3DAnmFullLoader_v15::setAnmVtxColor(J3DAnmVtxColorFull*,
-                                          const J3DAnmVtxColorFullData*)
+void J3DAnmFullLoader_v15::setAnmVtxColor(J3DAnmVtxColorFull*, const J3DAnmVtxColorFullData*)
 {
 	/*
 	.loc_0x0:
@@ -1819,8 +1813,7 @@ void J3DAnmKeyLoader_v15::readAnmTransform(const J3DAnmTransformKeyData*)
  * Address:	800739E0
  * Size:	00009C
  */
-void J3DAnmKeyLoader_v15::setAnmTransform(J3DAnmTransformKey*,
-                                          const J3DAnmTransformKeyData*)
+void J3DAnmKeyLoader_v15::setAnmTransform(J3DAnmTransformKey*, const J3DAnmTransformKeyData*)
 {
 	/*
 	.loc_0x0:
@@ -1893,8 +1886,7 @@ void J3DAnmKeyLoader_v15::readAnmTextureSRT(const J3DAnmTextureSRTKeyData*)
  * Address:	80073AA4
  * Size:	0001D8
  */
-void J3DAnmKeyLoader_v15::setAnmTextureSRT(J3DAnmTextureSRTKey*,
-                                           const J3DAnmTextureSRTKeyData*)
+void J3DAnmKeyLoader_v15::setAnmTextureSRT(J3DAnmTextureSRTKey*, const J3DAnmTextureSRTKeyData*)
 {
 	/*
 	.loc_0x0:
@@ -2054,8 +2046,7 @@ void J3DAnmKeyLoader_v15::readAnmColor(const J3DAnmColorKeyData*)
  * Address:	80073CA4
  * Size:	0000EC
  */
-void J3DAnmKeyLoader_v15::setAnmColor(J3DAnmColorKey*,
-                                      const J3DAnmColorKeyData*)
+void J3DAnmKeyLoader_v15::setAnmColor(J3DAnmColorKey*, const J3DAnmColorKeyData*)
 {
 	/*
 	.loc_0x0:
@@ -2148,8 +2139,7 @@ void J3DAnmKeyLoader_v15::readAnmCluster(const J3DAnmClusterKeyData*)
  * Address:	80073DB8
  * Size:	00006C
  */
-void J3DAnmKeyLoader_v15::setAnmCluster(J3DAnmClusterKey*,
-                                        const J3DAnmClusterKeyData*)
+void J3DAnmKeyLoader_v15::setAnmCluster(J3DAnmClusterKey*, const J3DAnmClusterKeyData*)
 {
 	/*
 	.loc_0x0:
@@ -2210,8 +2200,7 @@ void J3DAnmKeyLoader_v15::readAnmTevReg(const J3DAnmTevRegKeyData*)
  * Address:	80073E4C
  * Size:	00018C
  */
-void J3DAnmKeyLoader_v15::setAnmTevReg(J3DAnmTevRegKey*,
-                                       const J3DAnmTevRegKeyData*)
+void J3DAnmKeyLoader_v15::setAnmTevReg(J3DAnmTevRegKey*, const J3DAnmTevRegKeyData*)
 {
 	/*
 	.loc_0x0:
@@ -2344,8 +2333,7 @@ void J3DAnmKeyLoader_v15::readAnmVtxColor(const J3DAnmVtxColorKeyData*)
  * Address:	80074000
  * Size:	000170
  */
-void J3DAnmKeyLoader_v15::setAnmVtxColor(J3DAnmVtxColorKey*,
-                                         const J3DAnmVtxColorKeyData*)
+void J3DAnmKeyLoader_v15::setAnmVtxColor(J3DAnmVtxColorKey*, const J3DAnmVtxColorKeyData*)
 {
 	/*
 	.loc_0x0:

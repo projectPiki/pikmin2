@@ -211,8 +211,7 @@ lbl_8024E4E8:
  * Address:	8024E4FC
  * Size:	000110
  */
-void Cave::RandItemUnit::isItemSetDone(Game::Cave::MapNode*,
-                                       Game::Cave::BaseGen*)
+void Cave::RandItemUnit::isItemSetDone(Game::Cave::MapNode*, Game::Cave::BaseGen*)
 {
 	/*
 	.loc_0x0:
@@ -478,8 +477,7 @@ lbl_8024E7AC:
  * Address:	8024E7C4
  * Size:	00000C
  */
-void Cave::RandItemUnit::setItemDropPositionList(Game::Cave::MapNode**,
-                                                 Game::Cave::BaseGen**)
+void Cave::RandItemUnit::setItemDropPositionList(Game::Cave::MapNode**, Game::Cave::BaseGen**)
 {
 	/*
 	.loc_0x0:
@@ -1453,8 +1451,7 @@ lbl_8024F2F8:
  * Address:	8024F300
  * Size:	000148
  */
-void Cave::RandItemUnit::getItemDropMapNode(Game::Cave::MapNode*,
-                                            Game::Cave::MapNode**, int, int&)
+void Cave::RandItemUnit::getItemDropMapNode(Game::Cave::MapNode*, Game::Cave::MapNode**, int, int&)
 {
 	/*
 	.loc_0x0:
@@ -1780,9 +1777,7 @@ lbl_8024F728:
  * Address:	8024F75C
  * Size:	00018C
  */
-void Cave::RandItemUnit::getItemDropList(Game::Cave::MapNode*,
-                                         Game::Cave::MapNode**,
-                                         Game::Cave::BaseGen**, int&)
+void Cave::RandItemUnit::getItemDropList(Game::Cave::MapNode*, Game::Cave::MapNode**, Game::Cave::BaseGen**, int&)
 {
 	/*
 	.loc_0x0:
@@ -1907,9 +1902,7 @@ void Cave::RandItemUnit::getItemDropList(Game::Cave::MapNode*,
  * Address:	8024F8E8
  * Size:	0002CC
  */
-void Cave::RandItemUnit::getItemBaseGenPosition(Game::Cave::MapNode**,
-                                                Game::Cave::BaseGen**, int, int,
-                                                int)
+void Cave::RandItemUnit::getItemBaseGenPosition(Game::Cave::MapNode**, Game::Cave::BaseGen**, int, int, int)
 {
 	/*
 	.loc_0x0:
@@ -2136,9 +2129,7 @@ void Cave::RandItemUnit::getItemBaseGenPosition(Game::Cave::MapNode**,
  * Address:	8024FBB4
  * Size:	000114
  */
-void Cave::RandItemUnit::getItemDropSortingList(Game::Cave::MapNode**,
-                                                Game::Cave::BaseGen**, int*,
-                                                int)
+void Cave::RandItemUnit::getItemDropSortingList(Game::Cave::MapNode**, Game::Cave::BaseGen**, int*, int)
 {
 	/*
 	.loc_0x0:

@@ -19,8 +19,7 @@
  * Size:	0000CC
  */
 void createObject_PARTICLE_JPA___Q217JStudio_JParticle21 @unnamed @control_cpp
-    @FRCQ47JStudio3stb4data20TParse_TBlock_objectP17JPAEmitterManagerPCQ26JStage7TSystem(
-        void)
+    @FRCQ47JStudio3stb4data20TParse_TBlock_objectP17JPAEmitterManagerPCQ26JStage7TSystem(void)
 {
 	/*
 	.loc_0x0:
@@ -132,8 +131,7 @@ lbl_80006330:
  * Address:	8000634C
  * Size:	000078
  */
-void JStudio_JParticle::TCreateObject::create(
-    (JStudio::TObject**, JStudio::stb::data::TParse_TBlock_object const&))
+void JStudio_JParticle::TCreateObject::create((JStudio::TObject**, JStudio::stb::data::TParse_TBlock_object const&))
 {
 	/*
 	.loc_0x0:

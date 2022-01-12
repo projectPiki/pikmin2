@@ -221,12 +221,11 @@ typedef enum _SDK_GXBlendFactor {
 	GX_BL_SRCCOL,
 	GX_BL_DSTCOL = GX_BL_SRCCOL, // Frame buffer color, Source color
 	GX_BL_INVSRCCOL,
-	GX_BL_INVDSTCOL
-	= GX_BL_INVSRCCOL, // 1.0 - (Frame buffer color), 1.0 - (Source color)
-	GX_BL_SRCALPHA,    // Source alpha
-	GX_BL_INVSRCALPHA, // 1.0 - (Source alpha)
-	GX_BL_DSTALPHA,    // Frame buffer alpha
-	GX_BL_INVDSTALPHA, // 1.0 - (Frame buffer alpha)
+	GX_BL_INVDSTCOL = GX_BL_INVSRCCOL, // 1.0 - (Frame buffer color), 1.0 - (Source color)
+	GX_BL_SRCALPHA,                    // Source alpha
+	GX_BL_INVSRCALPHA,                 // 1.0 - (Source alpha)
+	GX_BL_DSTALPHA,                    // Frame buffer alpha
+	GX_BL_INVDSTALPHA,                 // 1.0 - (Frame buffer alpha)
 } GXBlendFactor;
 
 // Logical operation types.
@@ -299,15 +298,13 @@ void GXBeginDisplayList(void*, u32 dlSize);
 u32 GXEndDisplayList(void);
 void GXCallDisplayList(void*, u32 byteCnt);
 
-void GXSetFog(GXFogType type, void* data, float, float, float nearz,
-              float farz);
+void GXSetFog(GXFogType type, void* data, float, float, float nearz, float farz);
 
 void GXInitFogAdjTable(GXFogAdjTable* table, u16 width, f32 projmtx[4][4]);
 
 void GXSetFogRangeAdj(GXBool enable, u16 center, GXFogAdjTable* table);
 
-void GXSetBlendMode(GXBlendMode type, GXBlendFactor src_factor,
-                    GXBlendFactor dst_factor, GXLogicOp op);
+void GXSetBlendMode(GXBlendMode type, GXBlendFactor src_factor, GXBlendFactor dst_factor, GXLogicOp op);
 
 void GXSetColorUpdate(GXBool update_enable);
 void GXSetAlphaUpdate(GXBool update_enable);
@@ -331,8 +328,7 @@ void GXInitFifoPtrs(GXFifoObj* fifo, void* readPtr, void* writePtr);
 void GXInitFifoLimits(GXFifoObj* fifo, u32 hiWaterMark, u32 loWaterMark);
 void GXSaveCPUFifo(GXFifoObj* fifo);
 
-void GXGetGPStatus(GXBool* overhi, GXBool* underlow, GXBool* readIdle,
-                   GXBool* cmdIdle, GXBool* brkpt);
+void GXGetGPStatus(GXBool* overhi, GXBool* underlow, GXBool* readIdle, GXBool* cmdIdle, GXBool* brkpt);
 
 void GXSetCPUFifo(GXFifoObj* fifo);
 void GXSetGPFifo(GXFifoObj* fifo);
@@ -377,8 +373,8 @@ typedef enum GXTlut {
 typedef enum GXTlutFmt {
 	GX_TL_IA8,    // 16-bit intensity + alpha (8I+8A).
 	GX_TL_RGB565, // 16-bit RGB (R5+G6+B5).
-	GX_TL_RGB5A3 // When MSB=1, RGB555 format (opaque), and when MSB=0, RGBA4443
-	             // format (transparent).
+	GX_TL_RGB5A3  // When MSB=1, RGB555 format (opaque), and when MSB=0, RGBA4443
+	              // format (transparent).
 } GXTlutFmt;
 
 typedef struct GXTlutObj {

@@ -189,8 +189,7 @@ lbl_8032C9C8:
  * Address:	8032C9E4
  * Size:	0000A0
  */
-void ObjChallengeBase::doCreateAfter((JKRArchive*,
-                                      og::Screen::CallBack_CounterRV*))
+void ObjChallengeBase::doCreateAfter((JKRArchive*, og::Screen::CallBack_CounterRV*))
 {
 	/*
 	.loc_0x0:

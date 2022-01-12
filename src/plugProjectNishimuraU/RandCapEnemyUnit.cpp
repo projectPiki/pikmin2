@@ -291,8 +291,7 @@ lbl_8030114C:
  * Address:	80301160
  * Size:	000098
  */
-void Cave::RandCapEnemyUnit::setCapEnemy(Game::Cave::MapNode*,
-                                         Game::Cave::EnemyUnit*, int, int)
+void Cave::RandCapEnemyUnit::setCapEnemy(Game::Cave::MapNode*, Game::Cave::EnemyUnit*, int, int)
 {
 	/*
 	.loc_0x0:

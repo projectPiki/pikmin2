@@ -81,8 +81,7 @@
  * Address:	8001D6F0
  * Size:	00009C
  */
-void JKRDvdAramRipper::loadToAram(const char*, unsigned long, JKRExpandSwitch,
-                                  unsigned long, unsigned long, unsigned long*)
+void JKRDvdAramRipper::loadToAram(const char*, unsigned long, JKRExpandSwitch, unsigned long, unsigned long, unsigned long*)
 {
 	/*
 	.loc_0x0:
@@ -137,8 +136,7 @@ void JKRDvdAramRipper::loadToAram(const char*, unsigned long, JKRExpandSwitch,
  * Address:	8001D78C
  * Size:	00009C
  */
-void JKRDvdAramRipper::loadToAram(long, unsigned long, JKRExpandSwitch,
-                                  unsigned long, unsigned long, unsigned long*)
+void JKRDvdAramRipper::loadToAram(long, unsigned long, JKRExpandSwitch, unsigned long, unsigned long, unsigned long*)
 {
 	/*
 	.loc_0x0:
@@ -195,8 +193,7 @@ void JKRDvdAramRipper::loadToAram(long, unsigned long, JKRExpandSwitch,
  * Address:	8001D828
  * Size:	0000A4
  */
-void JKRDvdAramRipper::loadToAram(JKRDvdFile*, unsigned long, JKRExpandSwitch,
-                                  unsigned long, unsigned long, unsigned long*)
+void JKRDvdAramRipper::loadToAram(JKRDvdFile*, unsigned long, JKRExpandSwitch, unsigned long, unsigned long, unsigned long*)
 {
 	/*
 	.loc_0x0:
@@ -257,10 +254,8 @@ void JKRDvdAramRipper::loadToAram(JKRDvdFile*, unsigned long, JKRExpandSwitch,
  * Address:	8001D8CC
  * Size:	0000AC
  */
-void JKRDvdAramRipper::loadToAram_Async(JKRDvdFile*, unsigned long,
-                                        JKRExpandSwitch,
-                                        void (*)(unsigned long), unsigned long,
-                                        unsigned long, unsigned long*)
+void JKRDvdAramRipper::loadToAram_Async(JKRDvdFile*, unsigned long, JKRExpandSwitch, void (*)(unsigned long), unsigned long, unsigned long,
+                                        unsigned long*)
 {
 	/*
 	.loc_0x0:
@@ -791,9 +786,7 @@ lbl_8001DEC8:
  * Address:	8001DEE4
  * Size:	000178
  */
-void JKRDecompressFromDVDToAram(JKRDvdFile*, unsigned long, unsigned long,
-                                unsigned long, unsigned long, unsigned long,
-                                unsigned long*)
+void JKRDecompressFromDVDToAram(JKRDvdFile*, unsigned long, unsigned long, unsigned long, unsigned long, unsigned long, unsigned long*)
 {
 	/*
 	.loc_0x0:

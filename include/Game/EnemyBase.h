@@ -51,9 +51,7 @@ struct EnemyKillArg : public CreatureKillArg {
 	}
 };
 
-struct EnemyBase : public Creature,
-                   public SysShape::MotionListener,
-                   virtual public Game::PelletView {
+struct EnemyBase : public Creature, public SysShape::MotionListener, virtual public Game::PelletView {
 	EnemyBase();
 
 	// vtable 1 (Creature)
@@ -310,8 +308,7 @@ struct EnemyBase : public Creature,
 	void setPSEnemyBaseAnime();
 	void setZukanVisible(bool);
 
-	void startBlend(int, int, SysShape::BlendFunction*, float,
-	                SysShape::MotionListener*);
+	void startBlend(int, int, SysShape::BlendFunction*, float, SysShape::MotionListener*);
 	void endBlend();
 
 	void show();

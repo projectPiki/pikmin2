@@ -9,8 +9,7 @@ struct OSContext;
 
 void Pikmin2DefaultMemoryErrorRoutine(void*, u32, s32);
 void kando_panic_f(bool, const char*, s32, const char*, ...);
-extern void preUserCallback(unsigned short, OSContext*, unsigned long,
-                            unsigned long);
+extern void preUserCallback(unsigned short, OSContext*, unsigned long, unsigned long);
 
 typedef s32 ERenderMode;
 
@@ -21,15 +20,7 @@ struct Mgr;
 } // namespace Game
 
 struct System {
-	enum LanguageID {
-		LANG_ENGLISH = 0,
-		LANG_FRENCH,
-		LANG_GERMAN,
-		LANG_HOL_UNUSED,
-		LANG_ITALIAN,
-		LANG_JAPANESE,
-		LANG_SPANISH
-	};
+	enum LanguageID { LANG_ENGLISH = 0, LANG_FRENCH, LANG_GERMAN, LANG_HOL_UNUSED, LANG_ITALIAN, LANG_JAPANESE, LANG_SPANISH };
 	struct FragmentationChecker {
 		FragmentationChecker(char*, bool);
 		~FragmentationChecker();

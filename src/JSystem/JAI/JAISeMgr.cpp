@@ -1876,9 +1876,8 @@ lbl_800AF5D4:
  * Address:	800AF5F4
  * Size:	00010C
  */
-void JAInter::SeMgr::checkPlayingSeUpdateMultiplication(
-    (JAISe*, JAInter::SeqUpdateData*, float*, JAInter::MoveParaSet*, float,
-     unsigned char, float*))
+void JAInter::SeMgr::checkPlayingSeUpdateMultiplication((JAISe*, JAInter::SeqUpdateData*, float*, JAInter::MoveParaSet*, float,
+                                                         unsigned char, float*))
 {
 	/*
 	.loc_0x0:
@@ -1965,9 +1964,8 @@ void JAInter::SeMgr::checkPlayingSeUpdateMultiplication(
  * Address:	800AF700
  * Size:	00014C
  */
-void JAInter::SeMgr::checkPlayingSeUpdateAddition(
-    (JAISe*, JAInter::SeqUpdateData*, float*, JAInter::MoveParaSet*,
-     unsigned char, float*, float))
+void JAInter::SeMgr::checkPlayingSeUpdateAddition((JAISe*, JAInter::SeqUpdateData*, float*, JAInter::MoveParaSet*, unsigned char, float*,
+                                                   float))
 {
 	/*
 	.loc_0x0:
@@ -2228,9 +2226,7 @@ lbl_800AF9D0:
  * Address:	800AFA24
  * Size:	0006EC
  */
-void JAInter::SeMgr::storeSeBuffer(JAISe**, JAInter::Actor*, unsigned long,
-                                   unsigned long, unsigned char,
-                                   JAInter::SoundInfo*)
+void JAInter::SeMgr::storeSeBuffer(JAISe**, JAInter::Actor*, unsigned long, unsigned long, unsigned char, JAInter::SoundInfo*)
 {
 	/*
 	.loc_0x0:

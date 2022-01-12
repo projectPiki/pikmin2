@@ -38,8 +38,7 @@ void __dt__Q27JGadget36TList<void*, JGadget::TAllocator<void*>> Fv(void)
  * Address:	........
  * Size:	0000BC
  */
-void __ct__Q27JGadget18TList_pointer_voidFUlRCPvRCQ27JGadget14TAllocator<void*>(
-    void)
+void __ct__Q27JGadget18TList_pointer_voidFUlRCPvRCQ27JGadget14TAllocator<void*>(void)
 {
 	// UNUSED FUNCTION
 }
@@ -116,8 +115,7 @@ lbl_80027540:
  * Address:	80027564
  * Size:	000098
  */
-void insert__Q27JGadget18TList_pointer_voidFQ37JGadget36TList<
-    void*, JGadget::TAllocator<void*>> 8iteratorRCPv(void)
+void insert__Q27JGadget18TList_pointer_voidFQ37JGadget36TList<void*, JGadget::TAllocator<void*>> 8iteratorRCPv(void)
 {
 	/*
 	.loc_0x0:
@@ -175,8 +173,7 @@ void insert__Q27JGadget18TList_pointer_voidFQ37JGadget36TList<
  * Address:	........
  * Size:	00009C
  */
-void insert__Q27JGadget18TList_pointer_voidFQ37JGadget36TList<
-    void*, JGadget::TAllocator<void*>> 8iteratorUlRCPv(void)
+void insert__Q27JGadget18TList_pointer_voidFQ37JGadget36TList<void*, JGadget::TAllocator<void*>> 8iteratorUlRCPv(void)
 {
 	// UNUSED FUNCTION
 }
@@ -186,8 +183,7 @@ void insert__Q27JGadget18TList_pointer_voidFQ37JGadget36TList<
  * Address:	800275FC
  * Size:	000070
  */
-void erase__Q27JGadget18TList_pointer_voidFQ37JGadget36TList<
-    void*, JGadget::TAllocator<void*>> 8iterator(void)
+void erase__Q27JGadget18TList_pointer_voidFQ37JGadget36TList<void*, JGadget::TAllocator<void*>> 8iterator(void)
 {
 	/*
 	.loc_0x0:
@@ -227,9 +223,7 @@ void erase__Q27JGadget18TList_pointer_voidFQ37JGadget36TList<
  * Address:	........
  * Size:	0000A0
  */
-void erase__Q27JGadget18TList_pointer_voidFQ37JGadget36TList<
-    void*, JGadget::TAllocator<void*>> 8iteratorQ37JGadget36TList
-    < void *,
+void erase__Q27JGadget18TList_pointer_voidFQ37JGadget36TList<void*, JGadget::TAllocator<void*>> 8iteratorQ37JGadget36TList < void *,
     JGadget::TAllocator<void*> > 8iterator(void)
 {
 	// UNUSED FUNCTION
@@ -300,8 +294,7 @@ void JGadget::TList_pointer_void::operator=(JGadget::TList_pointer_void const&)
  * Address:	........
  * Size:	000194
  */
-void __as__Q27JGadget36TList<void*, JGadget::TAllocator<void*>>
-FRCQ27JGadget36TList<void*, JGadget::TAllocator<void*>>(void)
+void __as__Q27JGadget36TList<void*, JGadget::TAllocator<void*>> FRCQ27JGadget36TList<void*, JGadget::TAllocator<void*>>(void)
 {
 	// UNUSED FUNCTION
 }

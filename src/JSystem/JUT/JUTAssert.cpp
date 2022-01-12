@@ -279,8 +279,7 @@ void JUTAssertion::getSDevice()
  * Address:	........
  * Size:	0000DC
  */
-void JUTAssertion::setConfirmMessage(unsigned long, char*, int, bool,
-                                     const char*)
+void JUTAssertion::setConfirmMessage(unsigned long, char*, int, bool, const char*)
 {
 	// UNUSED FUNCTION
 }
@@ -300,8 +299,7 @@ void showAssert_f_va(void)
  * Address:	........
  * Size:	000210
  */
-void JUTAssertion::showAssert_f(unsigned long, const char*, int, const char*,
-                                ...)
+void JUTAssertion::showAssert_f(unsigned long, const char*, int, const char*, ...)
 {
 	// UNUSED FUNCTION
 }
@@ -331,8 +329,7 @@ void setWarningMessage_f_va(void)
  * Address:	........
  * Size:	000158
  */
-void JUTAssertion::setWarningMessage_f(unsigned long, char*, int, const char*,
-                                       ...)
+void JUTAssertion::setWarningMessage_f(unsigned long, char*, int, const char*, ...)
 {
 	// UNUSED FUNCTION
 }

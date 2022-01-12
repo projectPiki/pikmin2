@@ -20,10 +20,7 @@ void GDInitGDLObj(struct GDCurrentDL* GDL_Obj, u8* begin_ptr, s32 new_length)
  * Address:	800E1B1C
  * Size:	00002C
  */
-void GDFlushCurrToMem(void)
-{
-	DCFlushRange(__GDCurrentDL->begin, __GDCurrentDL->length);
-}
+void GDFlushCurrToMem(void) { DCFlushRange(__GDCurrentDL->begin, __GDCurrentDL->length); }
 
 /*
  * --INFO--

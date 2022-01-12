@@ -161,9 +161,7 @@ lbl_800A4C64:
  * Address:	800A4CA0
  * Size:	0000DC
  */
-void JASDSPChannel::alloc(unsigned char,
-                          long (*)(unsigned long, JASDsp::TChannel*, void*),
-                          void*)
+void JASDSPChannel::alloc(unsigned char, long (*)(unsigned long, JASDsp::TChannel*, void*), void*)
 {
 	/*
 	.loc_0x0:
@@ -238,8 +236,7 @@ void JASDSPChannel::alloc(unsigned char,
  * Address:	800A4D7C
  * Size:	0000E4
  */
-void JASDSPChannel::allocForce(
-    unsigned char, long (*)(unsigned long, JASDsp::TChannel*, void*), void*)
+void JASDSPChannel::allocForce(unsigned char, long (*)(unsigned long, JASDsp::TChannel*, void*), void*)
 {
 	/*
 	.loc_0x0:

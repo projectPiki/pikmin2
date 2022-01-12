@@ -269,9 +269,7 @@ void JUTCacheFont::initialize_state()
  * Address:	80034178
  * Size:	000188
  */
-void JUTCacheFont::getMemorySize(const ResFONT*, unsigned short*,
-                                 unsigned long*, unsigned short*,
-                                 unsigned long*, unsigned short*,
+void JUTCacheFont::getMemorySize(const ResFONT*, unsigned short*, unsigned long*, unsigned short*, unsigned long*, unsigned short*,
                                  unsigned long*, unsigned long*)
 {
 	/*
@@ -480,8 +478,7 @@ lbl_800343A0:
  * Address:	800343B4
  * Size:	000184
  */
-void JUTCacheFont::internal_initiate(const ResFONT*, void*, unsigned long,
-                                     JKRHeap*)
+void JUTCacheFont::internal_initiate(const ResFONT*, void*, unsigned long, JKRHeap*)
 {
 	/*
 	.loc_0x0:
@@ -1008,8 +1005,7 @@ void JUTCacheFont::determineBlankPage()
  * Address:	........
  * Size:	000120
  */
-void JUTCacheFont::getGlyphFromAram(JUTCacheFont::TGlyphCacheInfo*,
-                                    JUTCacheFont::TCachePage*, int*, int*)
+void JUTCacheFont::getGlyphFromAram(JUTCacheFont::TGlyphCacheInfo*, JUTCacheFont::TCachePage*, int*, int*)
 {
 	// UNUSED FUNCTION
 }

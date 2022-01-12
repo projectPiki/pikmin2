@@ -135,14 +135,13 @@ namespace JStudio::fvb {
  * Address:	8000BB48
  * Size:	00021C
  */
-void TObject::prepare(const JStudio::fvb::data::TParse_TBlock& block,
-                      JStudio::fvb::TControl* control)
+void TObject::prepare(const JStudio::fvb::data::TParse_TBlock& block, JStudio::fvb::TControl* control)
 {
 	TFunctionValueAttribute_range* attr;
 	JStudio::TFunctionValueAttributeSet set = pfv->getAttributeSet();
 	const void* file                        = block.file;
 	int a                                   = *(int*)file;
-	int m = ((int)file + (*(u16*)((int)file + 6) + 3 & 0xfffffffc) + 8);
+	int m                                   = ((int)file + (*(u16*)((int)file + 6) + 3 & 0xfffffffc) + 8);
 	while (true) {
 		data::TParse_TParagraph paragraph = *(data::TParse_TParagraph*)m;
 		data::TParse_TParagraph::TData data;
@@ -477,9 +476,7 @@ blr
  * Size:	00006C
  */
 
-void TObject_composite::prepare_data_(
-    const JStudio::fvb::data::TParse_TParagraph::TData&,
-    JStudio::fvb::TControl*)
+void TObject_composite::prepare_data_(const JStudio::fvb::data::TParse_TParagraph::TData&, JStudio::fvb::TControl*)
 {
 	/*
 	.loc_0x0:
@@ -518,9 +515,7 @@ void TObject_composite::prepare_data_(
  * Address:	8000BE24
  * Size:	000010
  */
-void TObject_constant::prepare_data_(
-    const JStudio::fvb::data::TParse_TParagraph::TData&,
-    JStudio::fvb::TControl*)
+void TObject_constant::prepare_data_(const JStudio::fvb::data::TParse_TParagraph::TData&, JStudio::fvb::TControl*)
 {
 	/*
 	.loc_0x0:
@@ -536,9 +531,7 @@ void TObject_constant::prepare_data_(
  * Address:	8000BE34
  * Size:	000018
  */
-void TObject_transition::prepare_data_(
-    const JStudio::fvb::data::TParse_TParagraph::TData&,
-    JStudio::fvb::TControl*)
+void TObject_transition::prepare_data_(const JStudio::fvb::data::TParse_TParagraph::TData&, JStudio::fvb::TControl*)
 {
 	/*
 	.loc_0x0:
@@ -556,9 +549,7 @@ void TObject_transition::prepare_data_(
  * Address:	8000BE4C
  * Size:	000020
  */
-void TObject_list::prepare_data_(
-    const JStudio::fvb::data::TParse_TParagraph::TData&,
-    JStudio::fvb::TControl*)
+void TObject_list::prepare_data_(const JStudio::fvb::data::TParse_TParagraph::TData&, JStudio::fvb::TControl*)
 {
 	/*
 	.loc_0x0:
@@ -578,9 +569,7 @@ void TObject_list::prepare_data_(
  * Address:	8000BE6C
  * Size:	000030
  */
-void TObject_list_parameter::prepare_data_(
-    const JStudio::fvb::data::TParse_TParagraph::TData&,
-    JStudio::fvb::TControl*)
+void TObject_list_parameter::prepare_data_(const JStudio::fvb::data::TParse_TParagraph::TData&, JStudio::fvb::TControl*)
 {
 	/*
 	.loc_0x0:
@@ -604,9 +593,7 @@ void TObject_list_parameter::prepare_data_(
  * Address:	8000BE9C
  * Size:	000038
  */
-void TObject_hermite::prepare_data_(
-    const JStudio::fvb::data::TParse_TParagraph::TData&,
-    JStudio::fvb::TControl*)
+void TObject_hermite::prepare_data_(const JStudio::fvb::data::TParse_TParagraph::TData&, JStudio::fvb::TControl*)
 {
 	/*
 	.loc_0x0:
@@ -746,8 +733,7 @@ blr
  * Address:	8000C004
  * Size:	00009C
  */
-void find_if(JGadget::TNodeLinkList::iterator, JGadget::TNodeLinkList::iterator,
-             JStudio::object::TPRObject_ID_equal)
+void find_if(JGadget::TNodeLinkList::iterator, JGadget::TNodeLinkList::iterator, JStudio::object::TPRObject_ID_equal)
 {
 	/*
 	.loc_0x0:

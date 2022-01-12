@@ -677,8 +677,7 @@ lbl_80122B3C:
  * Address:	80122B5C
  * Size:	000158
  */
-void FieldVtxColorMgr::setupFieldVtxColorInfoFromStrip(void*, int, int, int,
-                                                       int)
+void FieldVtxColorMgr::setupFieldVtxColorInfoFromStrip(void*, int, int, int, int)
 {
 	/*
 	.loc_0x0:
@@ -1085,8 +1084,7 @@ lbl_80122FBC:
  * Address:	80122FEC
  * Size:	000204
  */
-void FieldVtxColorMgr::setupFieldVtxColorControl(Game::FieldVtxColorControl*,
-                                                 Vector3f&, float, float)
+void FieldVtxColorMgr::setupFieldVtxColorControl(Game::FieldVtxColorControl*, Vector3f&, float, float)
 {
 	/*
 	.loc_0x0:

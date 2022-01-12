@@ -190,9 +190,7 @@ void Creature::updateLOD(Game::AILODParm& parm)
 		pi++;
 	}
 	// TODO: This smells of inlining.
-	bool isMultiplayer
-	    = (Game::gameSystem->m_mode == GSM_VERSUS_MODE
-	       || Game::gameSystem->m_mode == GSM_TWO_PLAYER_CHALLENGE);
+	bool isMultiplayer = (Game::gameSystem->m_mode == GSM_VERSUS_MODE || Game::gameSystem->m_mode == GSM_TWO_PLAYER_CHALLENGE);
 	if (!(isMultiplayer && (2 <= viewportCount))) {
 		m_lod.m_sndVpId = 0;
 	} else {
@@ -606,8 +604,7 @@ void Creature::drawLODInfo(Graphics& gfx, Vector3f& position)
 		if (m_lod.m_flags & AILOD::VisibleOnViewport0) {
 			vp0VisibilityText = "v";
 		}
-		gfx.perspPrintf(info, position, "[%s%s %s %s]", vp0VisibilityText,
-		                vp1VisibilityText, flag4Text, nearnessLabels[nearness]);
+		gfx.perspPrintf(info, position, "[%s%s %s %s]", vp0VisibilityText, vp1VisibilityText, flag4Text, nearnessLabels[nearness]);
 		Camera* camera0 = sys->m_gfx->getViewport(0)->m_camera;
 		Vector3f sizeOnScreenTextPosition;
 		sizeOnScreenTextPosition.x = position.x;
@@ -615,8 +612,7 @@ void Creature::drawLODInfo(Graphics& gfx, Vector3f& position)
 		sizeOnScreenTextPosition.z = position.z;
 		Sys::Sphere lodSphere;
 		getLODSphere(lodSphere);
-		gfx.perspPrintf(info, sizeOnScreenTextPosition, "<%f>",
-		                camera0->calcScreenSize(lodSphere));
+		gfx.perspPrintf(info, sizeOnScreenTextPosition, "<%f>", camera0->calcScreenSize(lodSphere));
 	}
 	/*
 	stwu     r1, -0x60(r1)

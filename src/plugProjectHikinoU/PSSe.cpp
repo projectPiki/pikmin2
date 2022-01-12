@@ -1016,8 +1016,7 @@ RandId::RandId()
  * Address:	8033FAA0
  * Size:	0001E8
  */
-void RandId::startSound(JAInter::Object*, unsigned long, unsigned long,
-                        unsigned long)
+void RandId::startSound(JAInter::Object*, unsigned long, unsigned long, unsigned long)
 {
 	/*
 	.loc_0x0:
@@ -1173,8 +1172,7 @@ void RandId::startSound(JAInter::Object*, unsigned long, unsigned long,
  * Address:	8033FC88
  * Size:	0001B8
  */
-void RandId::playSystemSe(unsigned long, JAISound**, unsigned long,
-                          unsigned long)
+void RandId::playSystemSe(unsigned long, JAISound**, unsigned long, unsigned long)
 {
 	/*
 	.loc_0x0:

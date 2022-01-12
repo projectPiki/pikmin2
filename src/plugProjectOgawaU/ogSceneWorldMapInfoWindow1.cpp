@@ -185,10 +185,7 @@ lbl_8032C2D0:
  * Address:	8032C2E8
  * Size:	000008
  */
-void WorldMapInfoWindow1::doConfirmSetScene(Screen::SetSceneArg&)
-{
-	return 0x1;
-}
+void WorldMapInfoWindow1::doConfirmSetScene(Screen::SetSceneArg&) { return 0x1; }
 
 /*
  * --INFO--

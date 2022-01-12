@@ -1301,8 +1301,7 @@ lbl_80043560:
  * Address:	80043584
  * Size:	000484
  */
-void J2DWindow::draw_private(const JGeometry::TBox2<float>&,
-                             const JGeometry::TBox2<float>&)
+void J2DWindow::draw_private(const JGeometry::TBox2<float>&, const JGeometry::TBox2<float>&)
 {
 	/*
 	.loc_0x0:
@@ -1605,8 +1604,7 @@ void J2DWindow::draw_private(const JGeometry::TBox2<float>&,
  * Address:	80043A08
  * Size:	000138
  */
-void J2DWindow::draw(const JGeometry::TBox2<float>&,
-                     const JGeometry::TBox2<float>&)
+void J2DWindow::draw(const JGeometry::TBox2<float>&, const JGeometry::TBox2<float>&)
 {
 	/*
 	.loc_0x0:
@@ -1790,8 +1788,7 @@ lbl_80043C30:
  * Address:	80043C6C
  * Size:	0000AC
  */
-void J2DWindow::setContentsColor(JUtility::TColor, JUtility::TColor,
-                                 JUtility::TColor, JUtility::TColor)
+void J2DWindow::setContentsColor(JUtility::TColor, JUtility::TColor, JUtility::TColor, JUtility::TColor)
 {
 	/*
 	.loc_0x0:
@@ -2190,9 +2187,8 @@ lbl_80044198:
  * Address:	800441B4
  * Size:	000180
  */
-void J2DWindow::drawFrameTexture(JUTTexture*, float, float, float, float,
-                                 unsigned short, unsigned short, unsigned short,
-                                 unsigned short, bool)
+void J2DWindow::drawFrameTexture(JUTTexture*, float, float, float, float, unsigned short, unsigned short, unsigned short, unsigned short,
+                                 bool)
 {
 	/*
 	.loc_0x0:

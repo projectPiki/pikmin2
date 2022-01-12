@@ -555,8 +555,7 @@ lbl_8003F9D0:
  * Address:	8003F9E8
  * Size:	000560
  */
-void J2DScreen::makeHierarchyPanes(J2DPane*, JSURandomInputStream*,
-                                   unsigned long, JKRArchive*)
+void J2DScreen::makeHierarchyPanes(J2DPane*, JSURandomInputStream*, unsigned long, JKRArchive*)
 {
 	/*
 	.loc_0x0:
@@ -990,8 +989,7 @@ void J2DScreen::makeHierarchyPanes(J2DPane*, JSURandomInputStream*,
  * Address:	8003FF48
  * Size:	000030
  */
-void J2DScreen::createPane(const J2DScrnBlockHeader&, JSURandomInputStream*,
-                           J2DPane*, unsigned long)
+void J2DScreen::createPane(const J2DScrnBlockHeader&, JSURandomInputStream*, J2DPane*, unsigned long)
 {
 	/*
 	.loc_0x0:
@@ -1015,8 +1013,7 @@ void J2DScreen::createPane(const J2DScrnBlockHeader&, JSURandomInputStream*,
  * Address:	8003FF78
  * Size:	000334
  */
-void J2DScreen::createPane(const J2DScrnBlockHeader&, JSURandomInputStream*,
-                           J2DPane*, unsigned long, JKRArchive*)
+void J2DScreen::createPane(const J2DScrnBlockHeader&, JSURandomInputStream*, J2DPane*, unsigned long, JKRArchive*)
 {
 	/*
 	.loc_0x0:
@@ -1689,8 +1686,7 @@ lbl_8004075C:
  * Address:	80040774
  * Size:	0002F0
  */
-void J2DScreen::createMaterial(JSURandomInputStream*, unsigned long,
-                               JKRArchive*)
+void J2DScreen::createMaterial(JSURandomInputStream*, unsigned long, JKRArchive*)
 {
 	/*
 	.loc_0x0:

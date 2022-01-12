@@ -1,5 +1,5 @@
 ﻿BasedOnStyle: WebKit
-ColumnLimit: 80
+ColumnLimit: 140
 AlignTrailingComments: true
 AlignAfterOpenBracket: true
 AlignConsecutiveAssignments: true

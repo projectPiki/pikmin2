@@ -796,8 +796,7 @@ void BlendAnimator::setWeight(float)
  * Address:	804293F8
  * Size:	00015C
  */
-void BlendAnimator::startBlend(SysShape::BlendFunction*, float,
-                               SysShape::MotionListener*)
+void BlendAnimator::startBlend(SysShape::BlendFunction*, float, SysShape::MotionListener*)
 {
 	/*
 	.loc_0x0:

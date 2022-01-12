@@ -78,22 +78,14 @@ u32 JStage::TSystem::JSGFGetType() const { return 0x1; }
  * Address:	800987D4
  * Size:	000008
  */
-u32 JStage::TSystem::JSGFindObject(const(JStage::TObject**, char const*,
-                                         JStage::TEObject))
-{
-	return 0x1;
-}
+u32 JStage::TSystem::JSGFindObject(const(JStage::TObject**, char const*, JStage::TEObject)) { return 0x1; }
 
 /*
  * --INFO--
  * Address:	800987DC
  * Size:	000008
  */
-u32 JStage::TSystem::JSGCreateObject(char const*, JStage::TEObject,
-                                     unsigned long)
-{
-	return 0x0;
-}
+u32 JStage::TSystem::JSGCreateObject(char const*, JStage::TEObject, unsigned long) { return 0x0; }
 
 /*
  * --INFO--

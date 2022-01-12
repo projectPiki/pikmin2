@@ -16,8 +16,7 @@ BaseParm::BaseParm(Parameters* parameters, u32 rawID, char* name)
 {
 	BaseParm* parm1;
 	BaseParm* parm2 = nullptr;
-	for (parm1 = parameters->m_parmsHead; parm1 != NULL;
-	     parm1 = parm2->m_next) {
+	for (parm1 = parameters->m_parmsHead; parm1 != NULL; parm1 = parm2->m_next) {
 		parm2 = parm1;
 	}
 	if (parm2 != nullptr) {
@@ -118,68 +117,49 @@ template <> void Parm<int>::write(Stream& stream) { stream.writeInt(m_value); }
  * Address:	80413984
  * Size:	000034
  */
-template <> void Parm<unsigned char>::read(Stream& stream)
-{
-	m_value = stream.readByte();
-}
+template <> void Parm<unsigned char>::read(Stream& stream) { m_value = stream.readByte(); }
 
 /*
  * --INFO--
  * Address:	804139B8
  * Size:	00002C
  */
-template <> void Parm<unsigned char>::write(Stream& stream)
-{
-	stream.writeByte((u8)m_value);
-}
+template <> void Parm<unsigned char>::write(Stream& stream) { stream.writeByte((u8)m_value); }
 
 /*
  * --INFO--
  * Address:	804139E4
  * Size:	000044
  */
-template <> void Parm<bool>::read(Stream& stream)
-{
-	m_value = (bool)stream.readByte();
-}
+template <> void Parm<bool>::read(Stream& stream) { m_value = (bool)stream.readByte(); }
 
 /*
  * --INFO--
  * Address:	80413A28
  * Size:	000034
  */
-template <> void Parm<bool>::write(Stream& stream)
-{
-	stream.writeByte(m_value ? 1 : 0);
-}
+template <> void Parm<bool>::write(Stream& stream) { stream.writeByte(m_value ? 1 : 0); }
 
 /*
  * --INFO--
  * Address:	80413A5C
  * Size:	000034
  */
-template <> void Parm<float>::read(Stream& stream)
-{
-	m_value = stream.readFloat();
-}
+template <> void Parm<float>::read(Stream& stream) { m_value = stream.readFloat(); }
 
 /*
  * --INFO--
  * Address:	80413A90
  * Size:	000028
  */
-template <> void Parm<float>::write(Stream& stream)
-{
-	stream.writeFloat(m_value);
-}
+template <> void Parm<float>::write(Stream& stream) { stream.writeFloat(m_value); }
 
 /*
  * --INFO--
  * Address:	80413AB8
  * Size:	0001B0
  */
-ParmString::ParmString(Parameters* parameters, char* value, int length,
-                       u32 rawID, char* comment)
+ParmString::ParmString(Parameters* parameters, char* value, int length, u32 rawID, char* comment)
     : BaseParm(parameters, rawID, comment)
     , m_length(length)
 {
@@ -214,8 +194,7 @@ void ParmString::read(Stream& stream) { stream.readString(m_value, m_length); }
  * Address:	80413CC4
  * Size:	0000B8
  */
-ParmEnum::ParmEnum(Parameters* parameters, char** enumValues, u32 value,
-                   int length, long rawID, char* comment)
+ParmEnum::ParmEnum(Parameters* parameters, char** enumValues, u32 value, int length, long rawID, char* comment)
     : BaseParm(parameters, rawID, comment)
 {
 	m_value        = value;

@@ -638,8 +638,7 @@ void setPictureTreeColor(J2DPane*, JUtility::TColor&, JUtility::TColor&, float)
  * Address:	8030232C
  * Size:	000370
  */
-void blendPictureTreeColor(og::Screen::PictureTreeColorCaptureInfo*,
-                           JUtility::TColor&, JUtility::TColor&, float)
+void blendPictureTreeColor(og::Screen::PictureTreeColorCaptureInfo*, JUtility::TColor&, JUtility::TColor&, float)
 {
 	/*
 	.loc_0x0:

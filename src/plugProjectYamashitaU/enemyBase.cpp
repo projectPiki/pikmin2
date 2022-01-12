@@ -985,8 +985,7 @@ bool BirthTypeDropState::isFinishableWaitingBirthTypeDrop(EnemyBase* enemy)
 	Sys::Sphere sphere;
 	sphere.m_position.x = (enemy->m_position).x;
 	bool result         = false;
-	sphere.m_radius     = static_cast<EnemyParmsBase*>(enemy->m_parms)
-	                      ->m_general.m_privateRadius.m_value;
+	sphere.m_radius     = static_cast<EnemyParmsBase*>(enemy->m_parms)->m_general.m_privateRadius.m_value;
 	sphere.m_position.y = (enemy->m_position).y;
 	sphere.m_position.z = (enemy->m_position).z;
 	CellIteratorArg cellIteratorArg(sphere);
@@ -995,13 +994,10 @@ bool BirthTypeDropState::isFinishableWaitingBirthTypeDrop(EnemyBase* enemy)
 	while (cellIterator.isDone() == false) {
 		Creature* cell = (Creature*)*cellIterator;
 		if (cell->isAlive()) {
-			if (cell->isNavi()
-			    || (cell->isPiki() && static_cast<Piki*>(cell)->isPikmin())) {
-				float privateRadius
-				    = static_cast<EnemyParmsBase*>(enemy->m_parms)
-				          ->m_general.m_privateRadius.m_value;
-				float deltaX = enemy->getPosition().x - cell->getPosition().x;
-				float deltaZ = enemy->getPosition().z - cell->getPosition().z;
+			if (cell->isNavi() || (cell->isPiki() && static_cast<Piki*>(cell)->isPikmin())) {
+				float privateRadius = static_cast<EnemyParmsBase*>(enemy->m_parms)->m_general.m_privateRadius.m_value;
+				float deltaX        = enemy->getPosition().x - cell->getPosition().x;
+				float deltaZ        = enemy->getPosition().z - cell->getPosition().z;
 				if ((SQUARE(deltaX) + SQUARE(deltaZ)) < SQUARE(privateRadius)) {
 					result = true;
 				}
@@ -1165,8 +1161,7 @@ bool Creature::isAlive()
  * Address:	800FF550
  * Size:	0001A8
  */
-void EnemyBaseFSM::BirthTypeDropState::init(Game::EnemyBase* enemy,
-                                            Game::StateArg* arg)
+void EnemyBaseFSM::BirthTypeDropState::init(Game::EnemyBase* enemy, Game::StateArg* arg)
 {
 	if (Game::mapMgr != nullptr) {
 		enemy->m_position.y = mapMgr->getMinY(enemy->m_position) + 300.0f;
@@ -1181,15 +1176,13 @@ void EnemyBaseFSM::BirthTypeDropState::init(Game::EnemyBase* enemy,
 		break;
 	default:
 		float theta = rand() * TAU;
-		float f     = (0.0f <= theta)
-		              ? JMath::sincosTable_.m_table[(short)theta].first
-		              : -JMath::sincosTable_.m_table[(short)(u16)-theta].first;
+		float f
+		    = (0.0f <= theta) ? JMath::sincosTable_.m_table[(short)theta].first : -JMath::sincosTable_.m_table[(short)(u16)-theta].first;
 		enemy->m_position.x += f * 50.0f;
 		if (theta < 0.0f) {
 			theta = -theta;
 		}
-		enemy->m_position.z
-		    += JMath::sincosTable_.m_table[(short)theta].second * 50.0f;
+		enemy->m_position.z += JMath::sincosTable_.m_table[(short)theta].second * 50.0f;
 		break;
 	}
 	enemy->setPosition(enemy->m_position, false);
@@ -1388,8 +1381,7 @@ void EnemyBaseFSM::BirthTypeDropState::cleanup(Game::EnemyBase* enemy)
  * Address:	800FF794
  * Size:	0001C4
  */
-bool Game::EnemyBaseFSM::BirthTypeDropPikminState::
-    isFinishableWaitingBirthTypeDrop(Game::EnemyBase*)
+bool Game::EnemyBaseFSM::BirthTypeDropPikminState::isFinishableWaitingBirthTypeDrop(Game::EnemyBase*)
 {
 	/*
 	.loc_0x0:
@@ -1520,8 +1512,7 @@ bool Game::EnemyBaseFSM::BirthTypeDropPikminState::
  * Address:	800FF958
  * Size:	0001A8
  */
-bool Game::EnemyBaseFSM::BirthTypeDropOlimarState::
-    isFinishableWaitingBirthTypeDrop(Game::EnemyBase*)
+bool Game::EnemyBaseFSM::BirthTypeDropOlimarState::isFinishableWaitingBirthTypeDrop(Game::EnemyBase*)
 {
 	/*
 	.loc_0x0:
@@ -1645,8 +1636,7 @@ bool Game::EnemyBaseFSM::BirthTypeDropOlimarState::
  * Address:	800FFB00
  * Size:	00018C
  */
-bool Game::EnemyBaseFSM::BirthTypeDropTreasureState::
-    isFinishableWaitingBirthTypeDrop(Game::EnemyBase*)
+bool Game::EnemyBaseFSM::BirthTypeDropTreasureState::isFinishableWaitingBirthTypeDrop(Game::EnemyBase*)
 {
 	/*
 	.loc_0x0:
@@ -1783,11 +1773,7 @@ bool Game::EnemyBaseFSM::BirthTypeDropTreasureState::
  * Address:	800FFCA8
  * Size:	000008
  */
-bool Game::EnemyBaseFSM::BirthTypeDropEarthquakeState::
-    isFinishableWaitingBirthTypeDrop(Game::EnemyBase*)
-{
-	return false;
-}
+bool Game::EnemyBaseFSM::BirthTypeDropEarthquakeState::isFinishableWaitingBirthTypeDrop(Game::EnemyBase*) { return false; }
 
 /*
  * --INFO--
@@ -1816,8 +1802,7 @@ void EnemyBaseFSM::AppearState::entry(Game::EnemyBase* enemy)
  * Address:	800FFCD4
  * Size:	0000FC
  */
-void EnemyBaseFSM::AppearState::init(Game::EnemyBase* enemy,
-                                     Game::StateArg* arg)
+void EnemyBaseFSM::AppearState::init(Game::EnemyBase* enemy, Game::StateArg* arg)
 {
 	efx::TEnemyApsmoke effect;
 	Vector3f position = enemy->getPosition();
@@ -2444,8 +2429,7 @@ void EnemyBaseFSM::FitState::init(Game::EnemyBase* enemy, Game::StateArg* arg)
 	enemy->m_velocity.z  = 0.0f;
 	enemy->doStartEarthquakeFitState();
 	m_enemyPiyo.m_position = enemy->getFitEffectPos();
-	m_enemyPiyo.create(new efx::ArgEnemyType(
-	    enemy->m_position, enemy->getEnemyTypeID(), enemy->m_scaleModifier));
+	m_enemyPiyo.create(new efx::ArgEnemyType(enemy->m_position, enemy->getEnemyTypeID(), enemy->m_scaleModifier));
 	/*
 	.loc_0x0:
 	  stwu      r1, -0x50(r1)
@@ -6972,10 +6956,7 @@ void EnemyBase::doEntry()
  * Address:	80103680
  * Size:	000028
  */
-void EnemyBase::doSetView(int viewNo)
-{
-	m_model->setCurrentViewNo((u16)viewNo);
-}
+void EnemyBase::doSetView(int viewNo) { m_model->setCurrentViewNo((u16)viewNo); }
 
 /*
  * --INFO--
@@ -6987,9 +6968,7 @@ bool EnemyBase::isCullingOff()
 	if (m_pellet) {
 		return true;
 	}
-	return ((!(_1E0[0].typeView & 0x40))
-	        || (m_lod.m_flags & AILOD::FLAG_NEED_SHADOW)
-	        || (m_lod.m_flags & AILOD::FLAG_UNKNOWN4)
+	return ((!(_1E0[0].typeView & 0x40)) || (m_lod.m_flags & AILOD::FLAG_NEED_SHADOW) || (m_lod.m_flags & AILOD::FLAG_UNKNOWN4)
 	        || (_1E0[1].typeView & 0x10));
 }
 
@@ -7285,8 +7264,7 @@ void EnemyBase::createSplashDownEffect(const Vector3f& position, float scale)
 {
 	Vector3f effectPosition;
 	if (m_waterBox) {
-		effectPosition
-		    = Vector3f(position.x, *m_waterBox->getSeaHeightPtr(), position.z);
+		effectPosition = Vector3f(position.x, *m_waterBox->getSeaHeightPtr(), position.z);
 		// effectPosition.y = *m_waterBox->getSeaHeightPtr();
 		// effectPosition.x = position.x;
 		// effectPosition.z = position.z;
@@ -7992,8 +7970,7 @@ void EnemyBase::bounceProcedure(Sys::Triangle*)
  * Address:	80104308
  * Size:	000030
  */
-void EnemyBaseFSM::StateMachine::bounceProcedure(Game::EnemyBase*,
-                                                 Sys::Triangle*)
+void EnemyBaseFSM::StateMachine::bounceProcedure(Game::EnemyBase*, Sys::Triangle*)
 {
 	/*
 	.loc_0x0:
@@ -8896,8 +8873,7 @@ void EnemyBase::setPSEnemyBaseAnime()
  * Address:	80104DB8
  * Size:	0001F0
  */
-void EnemyBase::startBlend(int, int, SysShape::BlendFunction*, float,
-                           SysShape::MotionListener*)
+void EnemyBase::startBlend(int, int, SysShape::BlendFunction*, float, SysShape::MotionListener*)
 {
 	/*
 	.loc_0x0:
@@ -9441,9 +9417,7 @@ bool Interaction::actCommon(Game::Creature*) { return true; }
  */
 void EnemyBase::lifeRecover()
 {
-	m_health += m_maxHealth
-	            * static_cast<EnemyParmsBase*>(m_parms)
-	                  ->m_general.m_regenerationRate.m_value;
+	m_health += m_maxHealth * static_cast<EnemyParmsBase*>(m_parms)->m_general.m_regenerationRate.m_value;
 	if (m_health > m_maxHealth) {
 		m_health = m_maxHealth;
 	}
@@ -9750,8 +9724,7 @@ void EnemyBase::deathProcedure()
 		createDeadBombEffect();
 		PSStartEnemyFatalHitSE(this, 0.0f);
 	}
-	if (m_soundObj->getCastType() == PSM::CCT_EnemyMidBoss
-	    || m_soundObj->getCastType() == PSM::CCT_EnemyBigBoss) {
+	if (m_soundObj->getCastType() == PSM::CCT_EnemyMidBoss || m_soundObj->getCastType() == PSM::CCT_EnemyBigBoss) {
 		// TODO: I think this is either calling onDisappear or onDeathMotionTop
 		// m_soundObj->
 	}
@@ -10332,12 +10305,10 @@ void EnemyBase::doDebugDraw(Graphics&) { }
  */
 void EnemyBase::getLifeGaugeParam(Game::LifeGaugeParam& param)
 {
-	if ((Game::moviePlayer)
-	    && (moviePlayer->m_flags & MoviePlayer::IS_ACTIVE)) {
+	if ((Game::moviePlayer) && (moviePlayer->m_flags & MoviePlayer::IS_ACTIVE)) {
 		param._14 = false;
 	} else {
-		param._14 = ((_1E0[0].typeView & 0x800)
-		             && (m_lod.m_flags & AILOD::FLAG_NEED_SHADOW));
+		param._14 = ((_1E0[0].typeView & 0x800) && (m_lod.m_flags & AILOD::FLAG_NEED_SHADOW));
 	}
 	if (param._14) {
 		doGetLifeGaugeParam(param);
@@ -10351,15 +10322,14 @@ void EnemyBase::getLifeGaugeParam(Game::LifeGaugeParam& param)
  */
 void EnemyBase::doGetLifeGaugeParam(Game::LifeGaugeParam& param)
 {
-	float posY = m_position.y;
-	float offsetY
-	    = static_cast<EnemyParmsBase*>(m_parms)->m_general.m_lifeMeterHeight();
-	float posZ  = m_position.z;
-	param._00.x = m_position.x;
-	param._00.y = posY + offsetY;
-	param._00.z = posZ;
-	param._0C   = m_health / m_maxHealth;
-	param._10   = 10.0f;
+	float posY    = m_position.y;
+	float offsetY = static_cast<EnemyParmsBase*>(m_parms)->m_general.m_lifeMeterHeight();
+	float posZ    = m_position.z;
+	param._00.x   = m_position.x;
+	param._00.y   = posY + offsetY;
+	param._00.z   = posZ;
+	param._0C     = m_health / m_maxHealth;
+	param._10     = 10.0f;
 	/*
 	.loc_0x0:
 	  lwz       r5, 0xC0(r3)
@@ -10448,8 +10418,7 @@ void EnemyBase::addDamage(float p1, float p2)
  * Address:	8010606C
  * Size:	000048
  */
-bool EnemyBase::damageCallBack(Game::Creature* sourceCreature, float damage,
-                               CollPart* p3)
+bool EnemyBase::damageCallBack(Game::Creature* sourceCreature, float damage, CollPart* p3)
 {
 	if (!(_1E0[0].typeView & 1)) {
 		m_instantDamage += damage;
@@ -10466,33 +10435,23 @@ bool EnemyBase::damageCallBack(Game::Creature* sourceCreature, float damage,
  * Address:	801060B4
  * Size:	000008
  */
-bool EnemyBase::pressCallBack(Game::Creature*, float, CollPart*)
-{
-	return false;
-}
+bool EnemyBase::pressCallBack(Game::Creature*, float, CollPart*) { return false; }
 
 /*
  * --INFO--
  * Address:	801060BC
  * Size:	000008
  */
-bool EnemyBase::flyCollisionCallBack(Game::Creature*, float, CollPart*)
-{
-	return false;
-}
+bool EnemyBase::flyCollisionCallBack(Game::Creature*, float, CollPart*) { return false; }
 
 /*
  * --INFO--
  * Address:	801060C4
  * Size:	000248
  */
-bool EnemyBase::hipdropCallBack(Game::Creature* sourceCreature, float damage,
-                                CollPart* p3)
+bool EnemyBase::hipdropCallBack(Game::Creature* sourceCreature, float damage, CollPart* p3)
 {
-	damageCallBack(sourceCreature,
-	               static_cast<EnemyParmsBase*>(m_parms)
-	                   ->m_general.m_purplePikminHipDropDamage(),
-	               p3);
+	damageCallBack(sourceCreature, static_cast<EnemyParmsBase*>(m_parms)->m_general.m_purplePikminHipDropDamage(), p3);
 	_1E0[0].typeView |= 0x80000;
 	if (_0C8 != 0) {
 		if (m_waterBox) {
@@ -12861,8 +12820,7 @@ void EnemyBase::doFinishWaitingBirthTypeDrop()
  */
 bool EnemyBase::isBirthTypeDropGroup()
 {
-	return (m_dropGroup == 1 || m_dropGroup == 2 || m_dropGroup == 3
-	        || m_dropGroup == 4 || m_dropGroup == 5);
+	return (m_dropGroup == 1 || m_dropGroup == 2 || m_dropGroup == 3 || m_dropGroup == 4 || m_dropGroup == 5);
 	/*
 	.loc_0x0:
 	  lbz       r0, 0x2B0(r3)
@@ -13237,21 +13195,14 @@ void EnemyBase::doSimpleDraw(Viewport*) { }
  * Address:	80107D10
  * Size:	00000C
  */
-float EnemyBase::getCellRadius()
-{
-	return static_cast<EnemyParmsBase*>(m_parms)->m_general.m_cellRadius();
-}
+float EnemyBase::getCellRadius() { return static_cast<EnemyParmsBase*>(m_parms)->m_general.m_cellRadius(); }
 
 /*
  * --INFO--
  * Address:	80107D1C
  * Size:	00000C
  */
-float EnemyBase::getBodyRadius()
-{
-	return static_cast<EnemyParmsBase*>(m_parms)
-	    ->m_general.m_pikminDamageRadius();
-}
+float EnemyBase::getBodyRadius() { return static_cast<EnemyParmsBase*>(m_parms)->m_general.m_pikminDamageRadius(); }
 
 /*
  * --INFO--
@@ -13449,10 +13400,7 @@ float EnemyBase::getDamageCoeStoneState()
  * Address:	80107E3C
  * Size:	000034
  */
-float EnemyBase::getSound_CurrAnimFrame()
-{
-	return m_animator->getAnimator().m_timer;
-}
+float EnemyBase::getSound_CurrAnimFrame() { return m_animator->getAnimator().m_timer; }
 
 /*
  * --INFO--
@@ -13611,10 +13559,7 @@ void Creature::setAtari(bool atari)
  * Address:	80107F38
  * Size:	00000C
  */
-bool Creature::isCollisionFlick()
-{
-	return (m_flags.intView & CF_IS_COLLISION_FLICK);
-}
+bool Creature::isCollisionFlick() { return (m_flags.intView & CF_IS_COLLISION_FLICK); }
 
 /*
  * --INFO--
@@ -13642,10 +13587,7 @@ bool Creature::isMovieExtra() { return (m_flags.intView & CF_IS_MOVIE_EXTRA); }
  * Address:	80107F78
  * Size:	00000C
  */
-bool Creature::isMovieMotion()
-{
-	return (m_flags.intView & CF_IS_MOVIE_MOTION);
-}
+bool Creature::isMovieMotion() { return (m_flags.intView & CF_IS_MOVIE_MOTION); }
 
 /*
  * --INFO--
@@ -13687,10 +13629,7 @@ bool Creature::isLivingThing() { return true; }
  * Address:	80107FC4
  * Size:	00000C
  */
-bool Creature::isDebugCollision()
-{
-	return (m_flags.intView & CF_IS_DEBUG_COLLISION);
-}
+bool Creature::isDebugCollision() { return (m_flags.intView & CF_IS_DEBUG_COLLISION); }
 
 /*
  * --INFO--
@@ -14064,8 +14003,7 @@ EnemyFSMState* EnemyBaseFSM::StateMachine::getCurrState(Game::EnemyBase*)
  * Address:	801081D4
  * Size:	000008
  */
-void EnemyBaseFSM::StateMachine::setCurrState(Game::EnemyBase*,
-                                              Game::EnemyFSMState*)
+void EnemyBaseFSM::StateMachine::setCurrState(Game::EnemyBase*, Game::EnemyFSMState*)
 {
 	/*
 	.loc_0x0:

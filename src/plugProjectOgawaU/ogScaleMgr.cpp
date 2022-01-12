@@ -93,8 +93,7 @@ void ScaleMgr::down()
  * Address:	80328ED8
  * Size:	000064
  */
-void ScaleMgr::up(float p1, float periodModifier, float durationInSeconds,
-                  float p4)
+void ScaleMgr::up(float p1, float periodModifier, float durationInSeconds, float p4)
 {
 	setParam(p1, periodModifier, durationInSeconds);
 	_18 = p4;
@@ -159,8 +158,7 @@ float ScaleMgr::calc()
 			// 	fVar2 = -JSystem::sincosTable___5JMath[(int)(fVar2 *
 			// -325.9493) & 0x7ff].sine;
 			// }
-			m_scale
-			    = (m_durationInSeconds - fVar1) * (_0C * fVar2 + _0C) + 1.0f;
+			m_scale = (m_durationInSeconds - fVar1) * (_0C * fVar2 + _0C) + 1.0f;
 		} else {
 			m_state          = SCM_Unknown_0;
 			m_scale          = 1.0f;
@@ -181,8 +179,7 @@ float ScaleMgr::calc()
 			// 	fVar2 = -JMath::sincosTable___5JMath[(int)(fVar2 *
 			// -325.9493) & 0x7ff].sine;
 			// }
-			m_scale
-			    = -((m_durationInSeconds - fVar1) * (_0C * fVar2 + _0C) - 1.0f);
+			m_scale = -((m_durationInSeconds - fVar1) * (_0C * fVar2 + _0C) - 1.0f);
 		} else {
 			m_state          = SCM_Unknown_0;
 			m_scale          = 1.0f;

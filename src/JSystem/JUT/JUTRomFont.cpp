@@ -753,10 +753,7 @@ lbl_80032E8C:
  * Address:	80032EC0
  * Size:	000030
  */
-bool JUTRomFont::isLeadByte(int c) const
-{
-	return spAboutEncoding_->m_isLeadByteFunction(c);
-}
+bool JUTRomFont::isLeadByte(int c) const { return spAboutEncoding_->m_isLeadByteFunction(c); }
 
 /*
  * --INFO--

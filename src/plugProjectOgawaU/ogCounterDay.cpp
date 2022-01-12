@@ -62,9 +62,7 @@ CallBack_CounterDay::CallBack_CounterDay(char**, unsigned short, JKRArchive*)
  * Address:	8030D304
  * Size:	0000EC
  */
-void CallBack_CounterDay::init(J2DScreen*, unsigned long long,
-                               unsigned long long, unsigned long long,
-                               unsigned long*, bool)
+void CallBack_CounterDay::init(J2DScreen*, unsigned long long, unsigned long long, unsigned long long, unsigned long*, bool)
 {
 	/*
 	.loc_0x0:
@@ -344,9 +342,8 @@ blr
  * Address:	8030D624
  * Size:	0000DC
  */
-void setCallBack_CounterDay(P2DScreen::Mgr*, unsigned long long,
-                            unsigned long long, unsigned long long,
-                            unsigned long*, unsigned short, JKRArchive*)
+void setCallBack_CounterDay(P2DScreen::Mgr*, unsigned long long, unsigned long long, unsigned long long, unsigned long*, unsigned short,
+                            JKRArchive*)
 {
 	/*
 	.loc_0x0:
@@ -415,9 +412,8 @@ void setCallBack_CounterDay(P2DScreen::Mgr*, unsigned long long,
  * Address:	........
  * Size:	0000DC
  */
-void setCallBack_CounterDay(char**, P2DScreen::Mgr*, unsigned long long,
-                            unsigned long long, unsigned long long,
-                            unsigned long*, unsigned short, JKRArchive*)
+void setCallBack_CounterDay(char**, P2DScreen::Mgr*, unsigned long long, unsigned long long, unsigned long long, unsigned long*,
+                            unsigned short, JKRArchive*)
 {
 	// UNUSED FUNCTION
 }

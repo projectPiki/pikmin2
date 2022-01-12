@@ -416,9 +416,7 @@ void FileSelect::TScreenDataWindow_data::setArchive(JKRArchive*)
  * Address:	803D4244
  * Size:	000254
  */
-void FileSelect::TScreenDataWindow_data::setData((long, unsigned long,
-                                                  unsigned long, unsigned long,
-                                                  unsigned long, unsigned long,
+void FileSelect::TScreenDataWindow_data::setData((long, unsigned long, unsigned long, unsigned long, unsigned long, unsigned long,
                                                   unsigned long))
 {
 	/*
@@ -5496,8 +5494,7 @@ blr
  * Address:	803D8758
  * Size:	00004C
  */
-void FileSelect::TMainScreen::setMsgID_(unsigned long long, unsigned long long,
-                                        unsigned long long)
+void FileSelect::TMainScreen::setMsgID_(unsigned long long, unsigned long long, unsigned long long)
 {
 	/*
 	.loc_0x0:
@@ -6545,9 +6542,7 @@ r0, 0x24(r1) lwz      r31, 0x1c(r1) lwz      r30, 0x18(r1) lwz      r29,
  * Address:	803D94E4
  * Size:	0001C0
  */
-void FileSelect::TMainScreen::calcDataBallColor_((unsigned long, unsigned long,
-                                                  unsigned long, unsigned long,
-                                                  unsigned long))
+void FileSelect::TMainScreen::calcDataBallColor_((unsigned long, unsigned long, unsigned long, unsigned long, unsigned long))
 {
 	/*
 	.loc_0x0:
@@ -7089,8 +7084,7 @@ blr
  * Address:	803D9AF8
  * Size:	000104
  */
-void E2DCallBack_BlinkFontColor::set(ebi::E2DFullFontColor&,
-                                     ebi::E2DFullFontColor&)
+void E2DCallBack_BlinkFontColor::set(ebi::E2DFullFontColor&, ebi::E2DFullFontColor&)
 {
 	/*
 	.loc_0x0:

@@ -12,8 +12,7 @@ struct Node : CNode {
 	~Node();
 
 	inline int dvdToAram(char const*, bool);
-	void* aramToMainRam(unsigned char*, unsigned long, unsigned long,
-	                    JKRExpandSwitch, unsigned long, JKRHeap*,
+	void* aramToMainRam(unsigned char*, unsigned long, unsigned long, JKRExpandSwitch, unsigned long, JKRHeap*,
 	                    JKRDvdRipper::EAllocDirection, int, unsigned long*);
 	inline void dump();
 
@@ -25,8 +24,7 @@ struct Mgr {
 
 	static void init();
 
-	void* aramToMainRam(char const*, unsigned char*, unsigned long,
-	                    unsigned long, JKRExpandSwitch, unsigned long, JKRHeap*,
+	void* aramToMainRam(char const*, unsigned char*, unsigned long, unsigned long, JKRExpandSwitch, unsigned long, JKRHeap*,
 	                    JKRDvdRipper::EAllocDirection, int, unsigned long*);
 
 	u32 dvdToAram(char const*, bool);

@@ -63,8 +63,7 @@ namespace SysShape {
  * Address:	8042AB00
  * Size:	0001D8
  */
-ModelMgr::ModelMgr(int modelDataLimit, J3DModelData** modelData, int heapLimit,
-                   u32 p4, u32 p5, IDelegate1<Model*>* delegate)
+ModelMgr::ModelMgr(int modelDataLimit, J3DModelData** modelData, int heapLimit, u32 p4, u32 p5, IDelegate1<Model*>* delegate)
 {
 	m_modelDataLimit = modelDataLimit;
 	m_modelData      = new J3DModelData*[modelDataLimit];
@@ -78,10 +77,8 @@ ModelMgr::ModelMgr(int modelDataLimit, J3DModelData** modelData, int heapLimit,
 	m_heaps     = new JKRSolidHeap*[heapLimit];
 	int maxSize = calcMaximumModelSize();
 	for (int i = 0; i < heapLimit; i++) {
-		m_heaps[i] = JKRSolidHeap::create((maxSize + 0x1FU) & ~0x1F,
-		                                  JKRHeap::sCurrentHeap, true);
-		JUT_ASSERTLINE(82, m_heaps[i] != nullptr,
-		               "solid heap creation failed !\n");
+		m_heaps[i] = JKRSolidHeap::create((maxSize + 0x1FU) & ~0x1F, JKRHeap::sCurrentHeap, true);
+		JUT_ASSERTLINE(82, m_heaps[i] != nullptr, "solid heap creation failed !\n");
 	}
 }
 
@@ -141,14 +138,11 @@ Model* ModelMgr::createModel(int modelIndex, int heapIndex)
 		for (int i = 0; i < m_heapLimit; i++) { }
 		JUT_PANICLINE(173, "solidHeap null!\n");
 	}
-	SysShape::Model* model
-	    = new SysShape::Model(m_modelData[modelIndex], _10, _14);
+	SysShape::Model* model = new SysShape::Model(m_modelData[modelIndex], _10, _14);
 	if (m_delegate != nullptr) {
 		m_delegate->invoke(model);
 	}
-	JUT_ASSERTLINE(184, model != nullptr,
-	               "failed to new model ! id %d idx %d\n", modelIndex,
-	               heapIndex);
+	JUT_ASSERTLINE(184, model != nullptr, "failed to new model ! id %d idx %d\n", modelIndex, heapIndex);
 	sys->endChangeCurrentHeap();
 	return model;
 }

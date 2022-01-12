@@ -29,8 +29,7 @@ struct TParticle2dMgr : public CNode, JKRDisposer {
 	void kill(JPABaseEmitter*);
 	void killAll();
 	void killGroup(u8);
-	void setSceneEmitterAndResourceManager(JPAEmitterManager*,
-	                                       JPAResourceManager*);
+	void setSceneEmitterAndResourceManager(JPAEmitterManager*, JPAResourceManager*);
 	void setSceneResourceManager(JPAResourceManager*);
 	void update();
 

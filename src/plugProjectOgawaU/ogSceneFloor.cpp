@@ -146,11 +146,8 @@ Floor::~Floor() { }
  */
 void Floor::doUserCallBackFunc(Resource::MgrCommand*)
 {
-	if (((Screen::DispMemberBase*)m_dispMemberBuffer)
-	        ->isID(OWNER_OGA, MEMBER_FLOOR)) {
-		const char* path = (sys->m_region == System::LANG_JAPANESE)
-		                       ? "res_floor_name_jpn.szs"
-		                       : "res_floor_name_eng_pal.szs";
+	if (((Screen::DispMemberBase*)m_dispMemberBuffer)->isID(OWNER_OGA, MEMBER_FLOOR)) {
+		const char* path = (sys->m_region == System::LANG_JAPANESE) ? "res_floor_name_jpn.szs" : "res_floor_name_eng_pal.szs";
 		og::newScreen::makeLanguageResName(m_name, path);
 		LoadResource::Arg resArg(m_name);
 		LoadResource::Node* resNode = gLoadResourceMgr->mountArchive(resArg);
@@ -190,8 +187,7 @@ void Floor::doUserCallBackFunc(Resource::MgrCommand*)
 		// 	setColorBG(0, 0, 0, 0);
 		// }
 	} else {
-		JUTException::panic_f(fakeMatchFileName, 111,
-		                      "DispMember is not \'FLOOR\'!");
+		JUTException::panic_f(fakeMatchFileName, 111, "DispMember is not \'FLOOR\'!");
 		// JUT_PANICLINE(111, "DispMember is not \'FLOOR\'!");
 	}
 	/*

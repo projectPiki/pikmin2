@@ -449,8 +449,7 @@ J2DPictureEx* CopyPictureToPane(J2DPictureEx*, J2DPane*, float, float, u64)
  * Address:	........
  * Size:	00080C
  */
-void CopyTreeToPaneSub(J2DPane*, J2DPane*, bool, unsigned long long*,
-                       unsigned short*)
+void CopyTreeToPaneSub(J2DPane*, J2DPane*, bool, unsigned long long*, unsigned short*)
 {
 	// UNUSED FUNCTION
 }

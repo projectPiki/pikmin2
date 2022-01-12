@@ -100,8 +100,7 @@ typedef void Destructor(void*, short);
  * Address:	800232B4
  * Size:	000124
  */
-JKRHeap::JKRHeap(void* startPtr, u32 size, JKRHeap* parentHeap,
-                 bool shouldSetErrorHandlerMaybe)
+JKRHeap::JKRHeap(void* startPtr, u32 size, JKRHeap* parentHeap, bool shouldSetErrorHandlerMaybe)
     : _40()
     , _4C(this)
     , _5C()
@@ -331,8 +330,7 @@ lbl_800234D0:
  * Address:	800234EC
  * Size:	0000A8
  */
-bool JKRHeap::initArena(char** outUserRamStart, u32* outUserRamSize,
-                        int numHeaps)
+bool JKRHeap::initArena(char** outUserRamStart, u32* outUserRamSize, int numHeaps)
 {
 	void* arenaLo    = OSGetArenaLo();
 	void* arenaHi    = OSGetArenaHi();
@@ -850,8 +848,7 @@ u32 JKRHeap::getMaxAllocatableSize(int p1)
 {
 	// u8* maxFreeBlock = do_getMaxFreeBlock();
 	// u32 freeSize = do_getFreeSize();
-	return ~(p1 - 1)
-	       & do_getFreeSize() - (p1 - 1 & p1 - (u32)do_getMaxFreeBlock() & 0xf);
+	return ~(p1 - 1) & do_getFreeSize() - (p1 - 1 & p1 - (u32)do_getMaxFreeBlock() & 0xf);
 	/*
 	.loc_0x0:
 	  stwu      r1, -0x20(r1)
@@ -1198,8 +1195,7 @@ template <> JKRHeap* JSUTree<JKRHeap>::getNextChild() const
  * Address:	80023BB4
  * Size:	000018
  */
-template <>
-bool JSUTreeIterator<JKRHeap>::operator!=(const JSUTree<JKRHeap>*) const
+template <> bool JSUTreeIterator<JKRHeap>::operator!=(const JSUTree<JKRHeap>*) const
 {
 	/*
 	.loc_0x0:
@@ -1244,10 +1240,7 @@ lbl_80023BE8:
  * Address:	80023BF0
  * Size:	00000C
  */
-template <> JKRHeap* JSUTreeIterator<JKRHeap>::operator->() const
-{
-	return (JKRHeap*)m_tree->m_link.m_value;
-}
+template <> JKRHeap* JSUTreeIterator<JKRHeap>::operator->() const { return (JKRHeap*)m_tree->m_link.m_value; }
 
 /*
  * --INFO--
@@ -1265,10 +1258,7 @@ JSUTreeIterator<JKRHeap>::JSUTreeIterator(JSUTree<JKRHeap>* tree)
  * Address:	80023C04
  * Size:	000008
  */
-template <> int JSUTree<JKRHeap>::getNumChildren() const
-{
-	return m_list.m_linkCount;
-}
+template <> int JSUTree<JKRHeap>::getNumChildren() const { return m_list.m_linkCount; }
 
 /*
  * --INFO--
@@ -1585,9 +1575,7 @@ JKRHeapErrorHandler* JKRHeap::setErrorHandler(JKRHeapErrorHandler* newHandler)
  */
 void* operator new(u32 byteCount)
 {
-	return (JKRHeap::sCurrentHeap)
-	           ? JKRHeap::sCurrentHeap->do_alloc(byteCount, 4)
-	           : nullptr;
+	return (JKRHeap::sCurrentHeap) ? JKRHeap::sCurrentHeap->do_alloc(byteCount, 4) : nullptr;
 	// void* memory;
 	// if (JKRHeap::sCurrentHeap) {
 	// 	memory = JKRHeap::sCurrentHeap->do_alloc(byteCount, 4);
@@ -1630,9 +1618,7 @@ void* operator new(u32 byteCount)
  */
 void* operator new(u32 byteCount, int p2)
 {
-	return (JKRHeap::sCurrentHeap)
-	           ? JKRHeap::sCurrentHeap->do_alloc(byteCount, p2)
-	           : nullptr;
+	return (JKRHeap::sCurrentHeap) ? JKRHeap::sCurrentHeap->do_alloc(byteCount, p2) : nullptr;
 	/*
 	.loc_0x0:
 	  stwu      r1, -0x10(r1)
@@ -1672,9 +1658,7 @@ void* operator new(u32 byteCount, JKRHeap* heap, int p3)
 	if (heap) {
 		return heap->do_alloc(byteCount, p3);
 	} else {
-		return (JKRHeap::sCurrentHeap)
-		           ? JKRHeap::sCurrentHeap->do_alloc(byteCount, p3)
-		           : nullptr;
+		return (JKRHeap::sCurrentHeap) ? JKRHeap::sCurrentHeap->do_alloc(byteCount, p3) : nullptr;
 	}
 	/*
 	.loc_0x0:
@@ -1721,9 +1705,7 @@ void* operator new(u32 byteCount, JKRHeap* heap, int p3)
  */
 void* operator new[](u32 byteCount)
 {
-	return (JKRHeap::sCurrentHeap)
-	           ? JKRHeap::sCurrentHeap->do_alloc(byteCount, 4)
-	           : nullptr;
+	return (JKRHeap::sCurrentHeap) ? JKRHeap::sCurrentHeap->do_alloc(byteCount, 4) : nullptr;
 	/*
 	.loc_0x0:
 	  stwu      r1, -0x10(r1)
@@ -1759,9 +1741,7 @@ void* operator new[](u32 byteCount)
  */
 void* operator new[](u32 byteCount, int p2)
 {
-	return (JKRHeap::sCurrentHeap)
-	           ? JKRHeap::sCurrentHeap->do_alloc(byteCount, p2)
-	           : nullptr;
+	return (JKRHeap::sCurrentHeap) ? JKRHeap::sCurrentHeap->do_alloc(byteCount, p2) : nullptr;
 	/*
 	.loc_0x0:
 	  stwu      r1, -0x10(r1)
@@ -1801,9 +1781,7 @@ void* operator new[](u32 byteCount, JKRHeap* heap, int p3)
 	if (heap) {
 		return heap->do_alloc(byteCount, p3);
 	} else {
-		return (JKRHeap::sCurrentHeap)
-		           ? JKRHeap::sCurrentHeap->do_alloc(byteCount, p3)
-		           : nullptr;
+		return (JKRHeap::sCurrentHeap) ? JKRHeap::sCurrentHeap->do_alloc(byteCount, p3) : nullptr;
 	}
 	/*
 	.loc_0x0:
@@ -2305,10 +2283,7 @@ JKRHeap::TState::TState(const JKRHeap* heap, u32 id, bool isCompareOnDestructed)
  * Address:	800245CC
  * Size:	000008
  */
-bool JKRHeap::TState::isCompareOnDestructed() const
-{
-	return m_isCompareOnDestructed;
-}
+bool JKRHeap::TState::isCompareOnDestructed() const { return m_isCompareOnDestructed; }
 
 /*
  * --INFO--
@@ -2374,8 +2349,7 @@ void JKRHeap::state_register(JKRHeap::TState*, u32) const { }
  * Address:	8002461C
  * Size:	000018
  */
-bool JKRHeap::state_compare(const JKRHeap::TState& state1,
-                            const JKRHeap::TState& state2) const
+bool JKRHeap::state_compare(const JKRHeap::TState& state1, const JKRHeap::TState& state2) const
 {
 	if (state1._00 == state2._00) {
 		return (state1._04 == state2._04);
@@ -2397,10 +2371,7 @@ bool JKRHeap::state_compare(const JKRHeap::TState& state1,
  * Address:	80024634
  * Size:	000004
  */
-void JKRHeap::state_dumpDifference(const JKRHeap::TState&,
-                                   const JKRHeap::TState&)
-{
-}
+void JKRHeap::state_dumpDifference(const JKRHeap::TState&, const JKRHeap::TState&) { }
 
 /*
  * --INFO--

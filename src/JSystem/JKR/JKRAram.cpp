@@ -383,9 +383,7 @@ lbl_80017CB4:
  * Address:	80017CC0
  * Size:	00028C
  */
-JKRAramBlock* JKRAram::mainRamToAram(unsigned char*, unsigned long,
-                                     unsigned long, JKRExpandSwitch,
-                                     unsigned long, JKRHeap*, int,
+JKRAramBlock* JKRAram::mainRamToAram(unsigned char*, unsigned long, unsigned long, JKRExpandSwitch, unsigned long, JKRHeap*, int,
                                      unsigned long*)
 {
 	/*
@@ -609,8 +607,7 @@ JKRAramBlock* JKRAram::mainRamToAram(unsigned char*, unsigned long,
  * Address:	80017F4C
  * Size:	0002DC
  */
-u8* JKRAram::aramToMainRam(u32, u8*, u32, JKRExpandSwitch, u32, JKRHeap*, int,
-                           u32*)
+u8* JKRAram::aramToMainRam(u32, u8*, u32, JKRExpandSwitch, u32, JKRHeap*, int, u32*)
 {
 	/*
 	.loc_0x0:
@@ -845,9 +842,8 @@ u8* JKRAram::aramToMainRam(u32, u8*, u32, JKRExpandSwitch, u32, JKRHeap*, int,
  * Address:	80018228
  * Size:	00010C
  */
-void JKRAram::aramToMainRam(JKRAramBlock*, unsigned char*, unsigned long,
-                            unsigned long, JKRExpandSwitch, unsigned long,
-                            JKRHeap*, int, unsigned long*)
+void JKRAram::aramToMainRam(JKRAramBlock*, unsigned char*, unsigned long, unsigned long, JKRExpandSwitch, unsigned long, JKRHeap*, int,
+                            unsigned long*)
 {
 	/*
 	.loc_0x0:
@@ -940,9 +936,7 @@ void JKRAram::aramToMainRam(JKRAramBlock*, unsigned char*, unsigned long,
  * Address:	80018334
  * Size:	000168
  */
-void JKRDecompressFromAramToMainRam(unsigned long, void*, unsigned long,
-                                    unsigned long, unsigned long,
-                                    unsigned long*)
+void JKRDecompressFromAramToMainRam(unsigned long, void*, unsigned long, unsigned long, unsigned long, unsigned long*)
 {
 	/*
 	.loc_0x0:

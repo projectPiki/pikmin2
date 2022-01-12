@@ -1069,8 +1069,7 @@ lbl_801C13AC:
  * Address:	801C13E4
  * Size:	000034
  */
-void start__Q24Game36StateMachine<Game::VsGameSection>
-FPQ24Game13VsGameSectioniPQ24Game8StateArg(void)
+void start__Q24Game36StateMachine<Game::VsGameSection> FPQ24Game13VsGameSectioniPQ24Game8StateArg(void)
 {
 	/*
 	.loc_0x0:
@@ -2391,8 +2390,7 @@ void ItemBigFountain::Item::getFaceDir(void)
  * Address:	801C22F0
  * Size:	0000DC
  */
-void VsGameSection::onMovieStart(Game::MovieConfig*, unsigned long,
-                                 unsigned long)
+void VsGameSection::onMovieStart(Game::MovieConfig*, unsigned long, unsigned long)
 {
 	/*
 	.loc_0x0:
@@ -2469,18 +2467,14 @@ void VsGameSection::onMovieStart(Game::MovieConfig*, unsigned long,
  * Address:	801C23CC
  * Size:	000004
  */
-void VsGame::State::onMovieStart(Game::VsGameSection*, Game::MovieConfig*,
-                                 unsigned long, unsigned long)
-{
-}
+void VsGame::State::onMovieStart(Game::VsGameSection*, Game::MovieConfig*, unsigned long, unsigned long) { }
 
 /*
  * --INFO--
  * Address:	801C23D0
  * Size:	000054
  */
-void VsGameSection::onMovieDone(Game::MovieConfig*, unsigned long,
-                                unsigned long)
+void VsGameSection::onMovieDone(Game::MovieConfig*, unsigned long, unsigned long)
 {
 	/*
 	.loc_0x0:
@@ -2515,10 +2509,7 @@ void VsGameSection::onMovieDone(Game::MovieConfig*, unsigned long,
  * Address:	801C2424
  * Size:	000004
  */
-void VsGame::State::onMovieDone(Game::VsGameSection*, Game::MovieConfig*,
-                                unsigned long, unsigned long)
-{
-}
+void VsGame::State::onMovieDone(Game::VsGameSection*, Game::MovieConfig*, unsigned long, unsigned long) { }
 
 /*
  * --INFO--
@@ -3938,8 +3929,7 @@ void VsGameSection::createCardPellet(void)
  * Address:	801C351C
  * Size:	000010
  */
-void setComeAlive__Q24Game49FixedSizePelletMgr<Game::PelletOtakara::Object>
-Fi(void)
+void setComeAlive__Q24Game49FixedSizePelletMgr<Game::PelletOtakara::Object> Fi(void)
 {
 	/*
 	.loc_0x0:
@@ -5642,10 +5632,7 @@ void VsGameSection::getVsEditNumber(void)
  * Address:	801C49E0
  * Size:	000004
  */
-void init__Q24Game36StateMachine<Game::VsGameSection>
-FPQ24Game13VsGameSection(void)
-{
-}
+void init__Q24Game36StateMachine<Game::VsGameSection> FPQ24Game13VsGameSection(void) { }
 
 } // namespace Game
 
@@ -5690,8 +5677,7 @@ void create__Q24Game36StateMachine<Game::VsGameSection> Fi(void)
  * Address:	801C4A48
  * Size:	00009C
  */
-void transit__Q24Game36StateMachine<Game::VsGameSection>
-FPQ24Game13VsGameSectioniPQ24Game8StateArg(void)
+void transit__Q24Game36StateMachine<Game::VsGameSection> FPQ24Game13VsGameSectioniPQ24Game8StateArg(void)
 {
 	/*
 	.loc_0x0:
@@ -5748,28 +5734,21 @@ FPQ24Game13VsGameSectioniPQ24Game8StateArg(void)
  * Address:	801C4AE4
  * Size:	000004
  */
-void init__Q24Game32FSMState<Game::VsGameSection>
-FPQ24Game13VsGameSectionPQ24Game8StateArg(void)
-{
-}
+void init__Q24Game32FSMState<Game::VsGameSection> FPQ24Game13VsGameSectionPQ24Game8StateArg(void) { }
 
 /*
  * --INFO--
  * Address:	801C4AE8
  * Size:	000004
  */
-void cleanup__Q24Game32FSMState<Game::VsGameSection>
-FPQ24Game13VsGameSection(void)
-{
-}
+void cleanup__Q24Game32FSMState<Game::VsGameSection> FPQ24Game13VsGameSection(void) { }
 
 /*
  * --INFO--
  * Address:	801C4AEC
  * Size:	000084
  */
-void registerState__Q24Game36StateMachine<Game::VsGameSection>
-FPQ24Game32FSMState<Game::VsGameSection>(void)
+void registerState__Q24Game36StateMachine<Game::VsGameSection> FPQ24Game32FSMState<Game::VsGameSection>(void)
 {
 	/*
 	.loc_0x0:
@@ -5820,8 +5799,7 @@ FPQ24Game32FSMState<Game::VsGameSection>(void)
  * Address:	801C4B70
  * Size:	000038
  */
-void exec__Q24Game36StateMachine<Game::VsGameSection>
-FPQ24Game13VsGameSection(void)
+void exec__Q24Game36StateMachine<Game::VsGameSection> FPQ24Game13VsGameSection(void)
 {
 	/*
 	.loc_0x0:
@@ -5849,9 +5827,7 @@ FPQ24Game13VsGameSection(void)
  * Address:	801C4BA8
  * Size:	000004
  */
-void exec__Q24Game32FSMState<Game::VsGameSection> FPQ24Game13VsGameSection(void)
-{
-}
+void exec__Q24Game32FSMState<Game::VsGameSection> FPQ24Game13VsGameSection(void) { }
 
 /*
  * --INFO--

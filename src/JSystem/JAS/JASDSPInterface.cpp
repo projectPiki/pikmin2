@@ -970,8 +970,7 @@ void JASDsp::TChannel::getRemainSamples() const
  * Address:	800A5750
  * Size:	000150
  */
-void JASDsp::TChannel::setWaveInfo(JASWaveInfo const&, unsigned long,
-                                   unsigned long)
+void JASDsp::TChannel::setWaveInfo(JASWaveInfo const&, unsigned long, unsigned long)
 {
 	/*
 	.loc_0x0:
@@ -1122,8 +1121,7 @@ lbl_800A58D0:
  * Address:	800A58E4
  * Size:	00002C
  */
-void JASDsp::TChannel::setAutoMixer(unsigned short, unsigned char,
-                                    unsigned char, unsigned char, unsigned char)
+void JASDsp::TChannel::setAutoMixer(unsigned short, unsigned char, unsigned char, unsigned char, unsigned char)
 {
 	/*
 	.loc_0x0:

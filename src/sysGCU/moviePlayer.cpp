@@ -1210,8 +1210,7 @@ void MoviePlayer::getSuspendedContext(void)
  * Address:	8042D0A8
  * Size:	000088
  */
-void MoviePlayer::setContext(Game::MovieContext*, Game::MovieConfig*,
-                             Game::MoviePlayArg&)
+void MoviePlayer::setContext(Game::MovieContext*, Game::MovieConfig*, Game::MoviePlayArg&)
 {
 	/*
 	.loc_0x0:

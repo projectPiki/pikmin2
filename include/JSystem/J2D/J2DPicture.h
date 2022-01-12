@@ -71,13 +71,11 @@ struct J2DPicture : public J2DPane {
 	virtual void load(_GXTexMapID, unsigned char);        // _F4
 	virtual void load(unsigned char);                     // _F8
 	virtual void setBlendRatio(float, float, float, float, float, float, float,
-	                           float); // _FC
-	virtual void setBlendColorRatio(float, float, float, float, float, float,
-	                                float, float); // _100
-	virtual void setBlendAlphaRatio(float, float, float, float, float, float,
-	                                float, float);             // _104
-	virtual void changeTexture(const ResTIMG*, unsigned char); // _108
-	virtual void changeTexture(const char*, unsigned char);    // _10C
+	                           float);                                                       // _FC
+	virtual void setBlendColorRatio(float, float, float, float, float, float, float, float); // _100
+	virtual void setBlendAlphaRatio(float, float, float, float, float, float, float, float); // _104
+	virtual void changeTexture(const ResTIMG*, unsigned char);                               // _108
+	virtual void changeTexture(const char*, unsigned char);                                  // _10C
 	virtual void changeTexture(const ResTIMG*, unsigned char,
 	                           JUTPalette*);                             // _110
 	virtual void changeTexture(const char*, unsigned char, JUTPalette*); // _114
@@ -91,8 +89,7 @@ struct J2DPicture : public J2DPane {
 	virtual void getMaterial() const;                                    // _134
 	virtual void drawFullSet(float, float, float, float,
 	                         float (*)[3][4]); // _138
-	virtual void drawTexCoord(float, float, float, float, short, short, short,
-	                          short, short, short, short, short,
+	virtual void drawTexCoord(float, float, float, float, short, short, short, short, short, short, short, short,
 	                          float (*)[3][4]); // _13C
 	virtual void getUsableTlut(unsigned char);  // _140
 	virtual void _144() = 0;                    // _144

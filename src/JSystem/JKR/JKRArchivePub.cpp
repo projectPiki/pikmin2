@@ -34,8 +34,7 @@
  * Address:	8001B130
  * Size:	000064
  */
-JKRArchive* JKRArchive::mount(const char*, JKRArchive::EMountMode, JKRHeap*,
-                              JKRArchive::EMountDirection)
+JKRArchive* JKRArchive::mount(const char*, JKRArchive::EMountMode, JKRHeap*, JKRArchive::EMountDirection)
 {
 	/*
 	.loc_0x0:
@@ -159,8 +158,7 @@ lbl_8001B258:
  * Address:	8001B26C
  * Size:	0001D8
  */
-void JKRArchive::mount(long, JKRArchive::EMountMode, JKRHeap*,
-                       JKRArchive::EMountDirection)
+void JKRArchive::mount(long, JKRArchive::EMountMode, JKRHeap*, JKRArchive::EMountDirection)
 {
 	/*
 	.loc_0x0:

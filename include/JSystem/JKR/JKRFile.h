@@ -50,8 +50,7 @@ struct JKRDvdFile : public JKRFile {
 		} else {
 			_F4    = OSGetCurrentThread();
 			result = -1;
-			if (DVDReadAsyncPrio(&m_dvdPlayer, buffer, byteCount, startOffset,
-			                     (DVDDoneReadCallback*)doneProcess, 2)) {
+			if (DVDReadAsyncPrio(&m_dvdPlayer, buffer, byteCount, startOffset, (DVDDoneReadCallback*)doneProcess, 2)) {
 				// result = (long)this;
 				result = sync();
 			}

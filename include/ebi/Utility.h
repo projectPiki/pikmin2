@@ -35,8 +35,7 @@ struct EUTPadInterface_countNum {
 	enumMode m_mode;          // _28
 };
 
-void EUTColor_complement(JUtility::TColor&, JUtility::TColor&, float, float,
-                         JUtility::TColor*);
+void EUTColor_complement(JUtility::TColor&, JUtility::TColor&, float, float, JUtility::TColor*);
 void EUTDebug_Wait();
 void EUTDebug_Tag32ToName(u32, char*);
 void EUTDebug_Tag64ToName(u64, char*);

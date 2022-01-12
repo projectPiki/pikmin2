@@ -86,8 +86,7 @@ lbl_8002EF08:
  * Address:	8002EF5C
  * Size:	000040
  */
-void JUTPalette::storeTLUT(_GXTlut id, _GXTlutFmt format,
-                           JUTTransparency transparency, u16 p4, void* p5)
+void JUTPalette::storeTLUT(_GXTlut id, _GXTlutFmt format, JUTTransparency transparency, u16 p4, void* p5)
 {
 	m_tlutID       = id;
 	m_tlutFormat   = format;

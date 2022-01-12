@@ -55,8 +55,7 @@ lbl_80014778:
  * Address:	80014794
  * Size:	000194
  */
-void JStudio_JStage::TCreateObject::create(
-    (JStudio::TObject**, JStudio::stb::data::TParse_TBlock_object const&))
+void JStudio_JStage::TCreateObject::create((JStudio::TObject**, JStudio::stb::data::TParse_TBlock_object const&))
 {
 	/*
 	.loc_0x0:
@@ -195,10 +194,8 @@ void JStudio_JStage::TCreateObject::create(
  * Address:	80014928
  * Size:	0000CC
  */
-void createObject_JSG_<JStudio_JStage::TAdaptor_actor, JStage::TActor>
-    __Q214JStudio_JStage21 @unnamed @control_cpp
-    @FRCQ47JStudio3stb4data20TParse_TBlock_objectPQ26JStage7TObjectPCQ26JStage7TSystem(
-        void)
+void createObject_JSG_<JStudio_JStage::TAdaptor_actor, JStage::TActor> __Q214JStudio_JStage21 @unnamed @control_cpp
+    @FRCQ47JStudio3stb4data20TParse_TBlock_objectPQ26JStage7TObjectPCQ26JStage7TSystem(void)
 {
 	/*
 	.loc_0x0:
@@ -273,10 +270,8 @@ void createObject_JSG_<JStudio_JStage::TAdaptor_actor, JStage::TActor>
  * Address:	800149F4
  * Size:	0000CC
  */
-void createObject_JSG_<JStudio_JStage::TAdaptor_camera, JStage::TCamera>
-    __Q214JStudio_JStage21 @unnamed @control_cpp
-    @FRCQ47JStudio3stb4data20TParse_TBlock_objectPQ26JStage7TObjectPCQ26JStage7TSystem(
-        void)
+void createObject_JSG_<JStudio_JStage::TAdaptor_camera, JStage::TCamera> __Q214JStudio_JStage21 @unnamed @control_cpp
+    @FRCQ47JStudio3stb4data20TParse_TBlock_objectPQ26JStage7TObjectPCQ26JStage7TSystem(void)
 {
 	/*
 	.loc_0x0:
@@ -351,11 +346,8 @@ void createObject_JSG_<JStudio_JStage::TAdaptor_camera, JStage::TCamera>
  * Address:	80014AC0
  * Size:	0000CC
  */
-void createObject_JSG_<JStudio_JStage::TAdaptor_ambientLight,
-                       JStage::TAmbientLight>
-    __Q214JStudio_JStage21 @unnamed @control_cpp
-    @FRCQ47JStudio3stb4data20TParse_TBlock_objectPQ26JStage7TObjectPCQ26JStage7TSystem(
-        void)
+void createObject_JSG_<JStudio_JStage::TAdaptor_ambientLight, JStage::TAmbientLight> __Q214JStudio_JStage21 @unnamed @control_cpp
+    @FRCQ47JStudio3stb4data20TParse_TBlock_objectPQ26JStage7TObjectPCQ26JStage7TSystem(void)
 {
 	/*
 	.loc_0x0:
@@ -430,10 +422,8 @@ void createObject_JSG_<JStudio_JStage::TAdaptor_ambientLight,
  * Address:	80014B8C
  * Size:	0000CC
  */
-void createObject_JSG_<JStudio_JStage::TAdaptor_light, JStage::TLight>
-    __Q214JStudio_JStage21 @unnamed @control_cpp
-    @FRCQ47JStudio3stb4data20TParse_TBlock_objectPQ26JStage7TObjectPCQ26JStage7TSystem(
-        void)
+void createObject_JSG_<JStudio_JStage::TAdaptor_light, JStage::TLight> __Q214JStudio_JStage21 @unnamed @control_cpp
+    @FRCQ47JStudio3stb4data20TParse_TBlock_objectPQ26JStage7TObjectPCQ26JStage7TSystem(void)
 {
 	/*
 	.loc_0x0:
@@ -508,10 +498,8 @@ void createObject_JSG_<JStudio_JStage::TAdaptor_light, JStage::TLight>
  * Address:	80014C58
  * Size:	0000CC
  */
-void createObject_JSG_<JStudio_JStage::TAdaptor_fog, JStage::TFog>
-    __Q214JStudio_JStage21 @unnamed @control_cpp
-    @FRCQ47JStudio3stb4data20TParse_TBlock_objectPQ26JStage7TObjectPCQ26JStage7TSystem(
-        void)
+void createObject_JSG_<JStudio_JStage::TAdaptor_fog, JStage::TFog> __Q214JStudio_JStage21 @unnamed @control_cpp
+    @FRCQ47JStudio3stb4data20TParse_TBlock_objectPQ26JStage7TObjectPCQ26JStage7TSystem(void)
 {
 	/*
 	.loc_0x0:

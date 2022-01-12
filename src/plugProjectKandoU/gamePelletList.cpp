@@ -116,9 +116,7 @@ struct PelletList {
 	};
 };
 
-#define DICT_OTAKARA                          \
-	mInstance->m_configList[ITEM].m_configCnt \
-	    + mInstance->m_configList[OTAKARA].m_configCnt
+#define DICT_OTAKARA mInstance->m_configList[ITEM].m_configCnt + mInstance->m_configList[OTAKARA].m_configCnt
 
 PelletList::Mgr* PelletList::Mgr::mInstance;
 
@@ -158,8 +156,7 @@ s32 PelletList::Mgr::getCount(PelletList::cKind kind)
  * Address:	80227E40
  * Size:	0000C0
  */
-PelletConfig* PelletList::Mgr::getConfigAndKind(char* config,
-                                                PelletList::cKind& kind)
+PelletConfig* PelletList::Mgr::getConfigAndKind(char* config, PelletList::cKind& kind)
 {
 	// Need to pre-define these variables due to register ordering issues
 	bool isValid;
@@ -172,8 +169,7 @@ PelletConfig* PelletList::Mgr::getConfigAndKind(char* config,
 #line 16
 		P2ASSERT(isValid);
 
-		PelletConfig* list = PelletList::Mgr::mInstance->m_configList[kindCopy]
-		                         .getPelletConfig(config);
+		PelletConfig* list = PelletList::Mgr::mInstance->m_configList[kindCopy].getPelletConfig(config);
 		if (list) {
 			return list;
 		}
@@ -200,21 +196,18 @@ void PelletList::Mgr::loadResource(void)
 	JKRArchive* archive;
 	if (gLoadedPelletData) {
 		char path[0x200];
-		sprintf(path, "/user/Abe/Pellet/%s/pelletlist_%s.szs",
-		        sys._D4 == 4 ? "jpn" : "us",
+		sprintf(path, "/user/Abe/Pellet/%s/pelletlist_%s.szs", sys._D4 == 4 ? "jpn" : "us",
 		        sys._D4 == 4 ? "jpn" : "us"); // Language , *(sys + 0xD4)
 		archive = JKRArchive::mount(path, true, JKRHeap::sCurrentHeap, 2);
 	} else {
 		JUT_PANIC("don't use this !\n");
-		archive = JKRArchive::mount("/user/Kando/pelletlist.szs", true,
-		                            JKRHeap::sCurrentHeap, 2);
+		archive = JKRArchive::mount("/user/Kando/pelletlist.szs", true, JKRHeap::sCurrentHeap, 2);
 	}
 
 	JUT_ASSERT(archiveData, "no pelletlist.szs\n");
 
 	const char* configs[]
-	    = { "numberpellet_config.txt", "carcass_config.txt", "fruit_config.txt",
-		    "otakara_config.txt", "item_config.txt" };
+	    = { "numberpellet_config.txt", "carcass_config.txt", "fruit_config.txt", "otakara_config.txt", "item_config.txt" };
 	for (int i = 0; i < 5; i++) {
 		void* data = archive->getResource(configs[i]);
 		RamStream stream(data, -1);
@@ -395,12 +388,9 @@ PelletConfig* PelletList::Mgr::getConfigFromDictionaryNo(int dictNo)
 	bool isValid = dictNo >= 0 && dictNo < DICT_OTAKARA;
 #line 188
 	P2ASSERT(isValid);
-	PelletConfig* result
-	    = mInstance->m_configList[OTAKARA].getPelletConfig_ByDictionaryNo(
-	        dictNo);
+	PelletConfig* result = mInstance->m_configList[OTAKARA].getPelletConfig_ByDictionaryNo(dictNo);
 	if (!result) {
-		result = mInstance->m_configList[ITEM].getPelletConfig_ByDictionaryNo(
-		    dictNo);
+		result = mInstance->m_configList[ITEM].getPelletConfig_ByDictionaryNo(dictNo);
 	}
 	return result;
 }

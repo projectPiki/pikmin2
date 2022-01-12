@@ -2552,8 +2552,7 @@ u32 Container<Game::DynParticle>::getTo() { return 0x0; }
  * Address:	801A9604
  * Size:	000030
  */
-void Delegate2<Game::DynCreature, Vector3f&, Vector3f&>::invoke(Vector3f&,
-                                                                Vector3f&)
+void Delegate2<Game::DynCreature, Vector3f&, Vector3f&>::invoke(Vector3f&, Vector3f&)
 {
 	/*
 	.loc_0x0:

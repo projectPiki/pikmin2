@@ -433,10 +433,7 @@ bool Obj::needShadow() { return false; }
  * Address:	8036CCD8
  * Size:	000008
  */
-EnemyTypeID::EEnemyTypeID Obj::getEnemyTypeID()
-{
-	return EnemyTypeID::EnemyID_PanHouse;
-}
+EnemyTypeID::EEnemyTypeID Obj::getEnemyTypeID() { return EnemyTypeID::EnemyID_PanHouse; }
 
 /*
  * --INFO--

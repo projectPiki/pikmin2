@@ -1275,11 +1275,9 @@ void WorldMap::loadResource()
 	JKRHeap* savedHeap = JKRHeap::sCurrentHeap;
 	m_initArg.m_heap->becomeCurrentHeap();
 	char localizedArchiveFileName[64];
-	og::newScreen::makeLanguageResName(localizedArchiveFileName,
-	                                   "worldmap.szs");
+	og::newScreen::makeLanguageResName(localizedArchiveFileName, "worldmap.szs");
 	LoadResource::Arg loadResourceArg(localizedArchiveFileName);
-	LoadResource::Node* resNode
-	    = gLoadResourceMgr->mountArchive(loadResourceArg);
+	LoadResource::Node* resNode = gLoadResourceMgr->mountArchive(loadResourceArg);
 	JUT_ASSERTLINE(278, resNode != nullptr, "failed");
 	JKRArchive* archive = resNode->m_archive;
 	P2ASSERTLINE(279,
@@ -1287,26 +1285,20 @@ void WorldMap::loadResource()
 	m_screenKitagawa = new P2DScreen::Mgr_tuning();
 	m_screenKitagawa->set("world_map_kitagawa.blo", 0x1040000, archive);
 
-	const void* resData
-	    = JKRFileLoader::getGlbResource("world_map_kitagawa.bck", archive);
-	m_bckAnm1 = (J2DAnmTransform*)J2DAnmLoaderDataBase::load(resData);
-	m_bckAnm2 = (J2DAnmTransformKey*)J2DAnmLoaderDataBase::load(resData);
-	int i     = 0;
+	const void* resData = JKRFileLoader::getGlbResource("world_map_kitagawa.bck", archive);
+	m_bckAnm1           = (J2DAnmTransform*)J2DAnmLoaderDataBase::load(resData);
+	m_bckAnm2           = (J2DAnmTransformKey*)J2DAnmLoaderDataBase::load(resData);
+	int i               = 0;
 	do {
-		m_screenKitagawa->search(getSerialTagName('Pland0', i))
-		    ->setAnimation(m_bckAnm2);
-		m_screenKitagawa->search(getSerialTagName('Plight0', i))
-		    ->setAnimation(m_bckAnm2);
+		m_screenKitagawa->search(getSerialTagName('Pland0', i))->setAnimation(m_bckAnm2);
+		m_screenKitagawa->search(getSerialTagName('Plight0', i))->setAnimation(m_bckAnm2);
 	} while (++i < 4);
 
-	_3C = (J2DAnmColorKey*)J2DAnmLoaderDataBase::load(
-	    JKRFileLoader::getGlbResource("world_map_kitagawa.bpk", archive));
+	_3C = (J2DAnmColorKey*)J2DAnmLoaderDataBase::load(JKRFileLoader::getGlbResource("world_map_kitagawa.bpk", archive));
 	m_screenKitagawa->setAnimation(_3C);
-	_40 = (J2DAnmTextureSRTKey*)J2DAnmLoaderDataBase::load(
-	    JKRFileLoader::getGlbResource("world_map_kitagawa.btk", archive));
+	_40 = (J2DAnmTextureSRTKey*)J2DAnmLoaderDataBase::load(JKRFileLoader::getGlbResource("world_map_kitagawa.btk", archive));
 	m_screenKitagawa->setAnimation(_40);
-	_44 = (J2DAnmTextureSRTKey*)J2DAnmLoaderDataBase::load(
-	    JKRFileLoader::getGlbResource("world_map_kitagawa_02.btk", archive));
+	_44 = (J2DAnmTextureSRTKey*)J2DAnmLoaderDataBase::load(JKRFileLoader::getGlbResource("world_map_kitagawa_02.btk", archive));
 	m_screenKitagawa->setAnimation(_44);
 	const char* worldMapIconsFileNames[2][3];
 	const char** worldMapIconFileNames = worldMapIconsFileNames[0];
@@ -6442,13 +6434,10 @@ int WorldMap::getTarget()
 {
 	switch (m_currentMap) {
 	case 0:
-		return !(Controls->buttons & 0x2000002) && Controls->buttons & 0x8000008
-		           ? 2
-		           : 1;
+		return !(Controls->buttons & 0x2000002) && Controls->buttons & 0x8000008 ? 2 : 1;
 		break;
 	case 1:
-		if ((Controls->buttons & 0x1000001) == 0
-		    && Controls->buttons & 0x8000008) {
+		if ((Controls->buttons & 0x1000001) == 0 && Controls->buttons & 0x8000008) {
 			if (maxMap == 3) {
 				return 2;
 			} else if (maxMap > 3) {
@@ -6468,10 +6457,7 @@ int WorldMap::getTarget()
 		break;
 
 	case 3:
-		return (!(Controls->buttons & 0x1000001)
-		        && Controls->buttons & 0x4000004)
-		           ? 1
-		           : 2;
+		return (!(Controls->buttons & 0x1000001) && Controls->buttons & 0x4000004) ? 1 : 2;
 		break;
 
 	default:
@@ -7816,8 +7802,7 @@ blr
  * Address:	803F7B40
  * Size:	000458
  */
-void WorldMap::OnyonDynamics::move(kh::Screen::WorldMap*,
-                                   const JGeometry::TVec2<float>&)
+void WorldMap::OnyonDynamics::move(kh::Screen::WorldMap*, const JGeometry::TVec2<float>&)
 {
 	/*
 	.loc_0x0:

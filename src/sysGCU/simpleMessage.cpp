@@ -28,13 +28,11 @@ void SimpleMessage::init()
  * Address:	8043DC5C
  * Size:	000080
  */
-void SimpleMessage::drawMessageID(Graphics& gfx, unsigned long lowerHalf,
-                                  unsigned long upperHalf)
+void SimpleMessage::drawMessageID(Graphics& gfx, unsigned long lowerHalf, unsigned long upperHalf)
 {
 	m_processor->preProcID(lowerHalf, upperHalf);
 
-	JMessage::TRenderingProcessor* jmProc
-	    = static_cast<JMessage::TRenderingProcessor*>(m_processor);
+	JMessage::TRenderingProcessor* jmProc = static_cast<JMessage::TRenderingProcessor*>(m_processor);
 	jmProc->reset_(nullptr);
 	jmProc->setBegin_messageID(lowerHalf, upperHalf, nullptr);
 	jmProc->process(nullptr);

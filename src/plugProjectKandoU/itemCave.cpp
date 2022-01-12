@@ -1141,8 +1141,7 @@ void ItemCave::Item::onInit(Game::CreatureInitArg*)
  * Address:	801EA4B8
  * Size:	000034
  */
-void StateMachine<Game::ItemCave::Item>::start(Game::ItemCave::Item*, int,
-                                               Game::StateArg*)
+void StateMachine<Game::ItemCave::Item>::start(Game::ItemCave::Item*, int, Game::StateArg*)
 {
 	/*
 	.loc_0x0:
@@ -3182,8 +3181,7 @@ void ItemCave::Item::getFaceDir()
  * Address:	801EBDEC
  * Size:	000034
  */
-void Game::FSMItem<Game::ItemCave::Item, Game::ItemCave::FSM,
-                   ItemCave::State>::doAI()
+void Game::FSMItem<Game::ItemCave::Item, Game::ItemCave::FSM, ItemCave::State>::doAI()
 {
 	/*
 	.loc_0x0:
@@ -3215,50 +3213,35 @@ void ItemState<Game::ItemCave::Item>::onDamage(Game::ItemCave::Item*, float) { }
  * Address:	801EBE24
  * Size:	000004
  */
-void ItemState<Game::ItemCave::Item>::onKeyEvent(Game::ItemCave::Item*,
-                                                 const SysShape::KeyEvent&)
-{
-}
+void ItemState<Game::ItemCave::Item>::onKeyEvent(Game::ItemCave::Item*, const SysShape::KeyEvent&) { }
 
 /*
  * --INFO--
  * Address:	801EBE28
  * Size:	000004
  */
-void ItemState<Game::ItemCave::Item>::onBounce(Game::ItemCave::Item*,
-                                               Sys::Triangle*)
-{
-}
+void ItemState<Game::ItemCave::Item>::onBounce(Game::ItemCave::Item*, Sys::Triangle*) { }
 
 /*
  * --INFO--
  * Address:	801EBE2C
  * Size:	000004
  */
-void ItemState<Game::ItemCave::Item>::onPlatCollision(Game::ItemCave::Item*,
-                                                      Game::PlatEvent&)
-{
-}
+void ItemState<Game::ItemCave::Item>::onPlatCollision(Game::ItemCave::Item*, Game::PlatEvent&) { }
 
 /*
  * --INFO--
  * Address:	801EBE30
  * Size:	000004
  */
-void ItemState<Game::ItemCave::Item>::onCollision(Game::ItemCave::Item*,
-                                                  Game::CollEvent&)
-{
-}
+void ItemState<Game::ItemCave::Item>::onCollision(Game::ItemCave::Item*, Game::CollEvent&) { }
 
 /*
  * --INFO--
  * Address:	801EBE34
  * Size:	000004
  */
-void FSMState<Game::ItemCave::Item>::init(Game::ItemCave::Item*,
-                                          Game::StateArg*)
-{
-}
+void FSMState<Game::ItemCave::Item>::init(Game::ItemCave::Item*, Game::StateArg*) { }
 
 /*
  * --INFO--
@@ -3293,8 +3276,7 @@ void FSMState<Game::ItemCave::Item>::restart(Game::ItemCave::Item*) { }
  * Address:	801EBE48
  * Size:	000030
  */
-void FSMState<Game::ItemCave::Item>::transit(Game::ItemCave::Item*, int,
-                                             Game::StateArg*)
+void FSMState<Game::ItemCave::Item>::transit(Game::ItemCave::Item*, int, Game::StateArg*)
 {
 	/*
 	.loc_0x0:
@@ -3372,8 +3354,7 @@ namespace Game {
  * Address:	801EBEE8
  * Size:	00009C
  */
-void StateMachine<Game::ItemCave::Item>::transit(Game::ItemCave::Item*, int,
-                                                 Game::StateArg*)
+void StateMachine<Game::ItemCave::Item>::transit(Game::ItemCave::Item*, int, Game::StateArg*)
 {
 	/*
 	.loc_0x0:
@@ -3430,8 +3411,7 @@ void StateMachine<Game::ItemCave::Item>::transit(Game::ItemCave::Item*, int,
  * Address:	801EBF84
  * Size:	000084
  */
-void StateMachine<Game::ItemCave::Item>::registerState(
-    Game::FSMState<Game::ItemCave::Item>*)
+void StateMachine<Game::ItemCave::Item>::registerState(Game::FSMState<Game::ItemCave::Item>*)
 {
 	/*
 	.loc_0x0:
@@ -3509,8 +3489,7 @@ lbl_801EC030:
  * Address:	801EC040
  * Size:	000044
  */
-void Game::FSMItem<Game::ItemCave::Item, Game::ItemCave::FSM,
-                   ItemCave::State>::onKeyEvent(const SysShape::KeyEvent&)
+void Game::FSMItem<Game::ItemCave::Item, Game::ItemCave::FSM, ItemCave::State>::onKeyEvent(const SysShape::KeyEvent&)
 {
 	/*
 	.loc_0x0:
@@ -3541,8 +3520,7 @@ void Game::FSMItem<Game::ItemCave::Item, Game::ItemCave::FSM,
  * Address:	801EC084
  * Size:	000044
  */
-void Game::FSMItem<Game::ItemCave::Item, Game::ItemCave::FSM,
-                   ItemCave::State>::platCallback(Game::PlatEvent&)
+void Game::FSMItem<Game::ItemCave::Item, Game::ItemCave::FSM, ItemCave::State>::platCallback(Game::PlatEvent&)
 {
 	/*
 	.loc_0x0:
@@ -3573,8 +3551,7 @@ void Game::FSMItem<Game::ItemCave::Item, Game::ItemCave::FSM,
  * Address:	801EC0C8
  * Size:	000044
  */
-void Game::FSMItem<Game::ItemCave::Item, Game::ItemCave::FSM,
-                   ItemCave::State>::collisionCallback(Game::CollEvent&)
+void Game::FSMItem<Game::ItemCave::Item, Game::ItemCave::FSM, ItemCave::State>::collisionCallback(Game::CollEvent&)
 {
 	/*
 	.loc_0x0:
@@ -3605,8 +3582,7 @@ void Game::FSMItem<Game::ItemCave::Item, Game::ItemCave::FSM,
  * Address:	801EC10C
  * Size:	000044
  */
-void Game::FSMItem<Game::ItemCave::Item, Game::ItemCave::FSM,
-                   ItemCave::State>::bounceCallback(Sys::Triangle*)
+void Game::FSMItem<Game::ItemCave::Item, Game::ItemCave::FSM, ItemCave::State>::bounceCallback(Sys::Triangle*)
 {
 	/*
 	.loc_0x0:
@@ -3660,9 +3636,7 @@ void __sinit_itemCave_cpp(void)
  * Address:	801EC178
  * Size:	000008
  */
-void Game::FSMItem<Game::ItemCave::Item, Game::ItemCave::FSM,
-                   Game::ItemCave::State>::@376
-    @onKeyEvent(const SysShape::KeyEvent&)
+void Game::FSMItem<Game::ItemCave::Item, Game::ItemCave::FSM, Game::ItemCave::State>::@376 @onKeyEvent(const SysShape::KeyEvent&)
 {
 	/*
 	.loc_0x0:

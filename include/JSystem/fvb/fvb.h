@@ -31,9 +31,7 @@ struct TObject {
 
 	virtual ~TObject() = 0;
 
-	virtual void prepare_data_(const data::TParse_TParagraph::TData& data,
-	                           TControl* control)
-	    = 0;
+	virtual void prepare_data_(const data::TParse_TParagraph::TData& data, TControl* control) = 0;
 
 	void prepare(const data::TParse_TBlock& block, TControl* control);
 

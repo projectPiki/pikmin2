@@ -38,8 +38,7 @@ struct CollPart : public CNode {
 	void calcStickLocal(Vector3f&, Vector3f&);
 	void calcPoseMatrix(Vector3f&, Matrixf&);
 	void checkCollision(Sys::Sphere&, IDelegate1<CollPart*>*);
-	void checkCollisionMulti(CollPart*,
-	                         IDelegate3<CollPart*, CollPart*, Vector3f&>*);
+	void checkCollisionMulti(CollPart*, IDelegate3<CollPart*, CollPart*, Vector3f&>*);
 	void clone(SysShape::MtxObject*, CollPartMgr*);
 	void collide(CollPart*, Vector3f&);
 	void getAllCollPartToArray(CollPart**, int, int&);
@@ -60,10 +59,10 @@ struct CollPart : public CNode {
 	void setScale(float);
 	void update();
 
-	float _18;    // _18   /* PikDecomp calls this `radius1`. */
-	float _1C;    // _1C   /* PikDecomp calls this `radius`. */
-	Vector3f _20; // _20   /* PikDecomp calls this `Offset`. SodiumDecomp calls
-	              // this `size_0x20`. :shrug: */
+	float _18;                // _18   /* PikDecomp calls this `radius1`. */
+	float _1C;                // _1C   /* PikDecomp calls this `radius`. */
+	Vector3f _20;             // _20   /* PikDecomp calls this `Offset`. SodiumDecomp calls
+	                          // this `size_0x20`. :shrug: */
 	u32 m_jointIndex;         // _2C
 	ID32 _30;                 // _30
 	ID32 _3C;                 // _3C
@@ -129,16 +128,12 @@ struct CollPartFactory : CollPart {
 struct CollTree {
 	CollTree();
 	void attachModel(SysShape::MtxObject*);
-	void createFromFactory(SysShape::MtxObject*, CollPartFactory*,
-	                       CollPartMgr*);
-	void createSingleSphere(SysShape::MtxObject*, int, Sys::Sphere&,
-	                        CollPartMgr*);
+	void createFromFactory(SysShape::MtxObject*, CollPartFactory*, CollPartMgr*);
+	void createSingleSphere(SysShape::MtxObject*, int, Sys::Sphere&, CollPartMgr*);
 	void checkCollision(CollTree*, CollPart**, CollPart**, Vector3f&);
 	void checkCollision(Sys::Sphere&, IDelegate1<CollPart*>*);
-	void checkCollisionRec(CollPart*, CollPart*, CollPart**, CollPart**,
-	                       Vector3f&);
-	void checkCollisionMulti(CollTree*,
-	                         IDelegate3<CollPart*, CollPart*, Vector3f&>*);
+	void checkCollisionRec(CollPart*, CollPart*, CollPart**, CollPart**, Vector3f&);
+	void checkCollisionMulti(CollTree*, IDelegate3<CollPart*, CollPart*, Vector3f&>*);
 	void findCollPart(FindCollPartArg&);
 	void getBoundingSphere(Sys::Sphere&);
 	CollPart* getCollPart(u32);

@@ -5241,8 +5241,7 @@ lbl_800A2738:
  * Address:	800A274C
  * Size:	000008
  */
-void JASTrack::registerSeqCallback(unsigned short (*)(JASTrack*,
-                                                      unsigned short))
+void JASTrack::registerSeqCallback(unsigned short (*)(JASTrack*, unsigned short))
 {
 	/*
 	.loc_0x0:
@@ -5462,8 +5461,7 @@ lbl_800A2938:
  * Address:	800A2948
  * Size:	0000B0
  */
-void JASTrack::channelUpdateCallback(unsigned long, JASChannel*,
-                                     JASDsp::TChannel*, void*)
+void JASTrack::channelUpdateCallback(unsigned long, JASChannel*, JASDsp::TChannel*, void*)
 {
 	/*
 	.loc_0x0:

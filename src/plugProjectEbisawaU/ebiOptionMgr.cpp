@@ -301,10 +301,8 @@ void Option::FSMStateMachine::init(ebi::Option::TMgr*)
 	registerState(new FSMState_ScreenWait(ScreenWait, "ScreenWait"));
 	registerState(new FSMState_ScreenClose(ScreenClose, "ScreenClose"));
 	registerState(new FSMState_SaveMgr(SaveMgr, "SaveMgr"));
-	registerState(new FSMState_WaitCloseForNoCard(WaitCloseForNoCard,
-	                                              "WaitCloseForNoCard"));
-	registerState(new FSMState_WorldMapInfoWindow(WorldMapInfoWindow,
-	                                              "WorldMapInfoWindow"));
+	registerState(new FSMState_WaitCloseForNoCard(WaitCloseForNoCard, "WaitCloseForNoCard"));
+	registerState(new FSMState_WorldMapInfoWindow(WorldMapInfoWindow, "WorldMapInfoWindow"));
 	/*
 	stwu     r1, -0x10(r1)
 	mflr     r0
@@ -580,8 +578,7 @@ void Option::FSMState::do_exec(ebi::Option::TMgr*) { }
  * Address:	803CEC30
  * Size:	000050
  */
-void Option::FSMState_ScreenOpen::do_init(ebi::Option::TMgr* obj,
-                                          Game::StateArg* arg)
+void Option::FSMState_ScreenOpen::do_init(ebi::Option::TMgr* obj, Game::StateArg* arg)
 {
 	obj->m_optionScreen._0C8.loadRam();
 	obj->m_optionScreen._0DC.loadRam();
@@ -687,8 +684,7 @@ namespace ebi {
  * Address:	803CED14
  * Size:	00000C
  */
-void Option::FSMState_ScreenWait::do_init(ebi::Option::TMgr* obj,
-                                          Game::StateArg* arg)
+void Option::FSMState_ScreenWait::do_init(ebi::Option::TMgr* obj, Game::StateArg* arg)
 {
 	obj->m_optionScreen._010 = 1;
 	/*
@@ -813,8 +809,7 @@ lbl_803CEE48:
  * Address:	803CEE64
  * Size:	00003C
  */
-void Option::FSMState_ScreenClose::do_init(ebi::Option::TMgr* obj,
-                                           Game::StateArg* arg)
+void Option::FSMState_ScreenClose::do_init(ebi::Option::TMgr* obj, Game::StateArg* arg)
 {
 	obj->_F20 = 1;
 	obj->m_optionScreen.closeScreen(nullptr);
@@ -877,8 +872,7 @@ lbl_803CEED8:
  * Address:	803CEEEC
  * Size:	000044
  */
-void Option::FSMState_WaitCloseForNoCard::do_init(ebi::Option::TMgr* obj,
-                                                  Game::StateArg* arg)
+void Option::FSMState_WaitCloseForNoCard::do_init(ebi::Option::TMgr* obj, Game::StateArg* arg)
 {
 	u32 v1 = __cvt_fp2unsigned(1.0f / sys->m_secondsPerFrame);
 	_10    = v1;
@@ -965,8 +959,7 @@ lbl_803CEF9C:
  * Address:	803CEFB4
  * Size:	0000B8
  */
-void Option::FSMState_WorldMapInfoWindow::do_init(ebi::Option::TMgr* obj,
-                                                  Game::StateArg* arg)
+void Option::FSMState_WorldMapInfoWindow::do_init(ebi::Option::TMgr* obj, Game::StateArg* arg)
 {
 	::Screen::gGame2DMgr->m_screenMgr->reset();
 	og::Screen::DispMemberWorldMapInfoWin0 disp;
@@ -1096,8 +1089,7 @@ lbl_803CF0F4:
  * Address:	803CF10C
  * Size:	00000C
  */
-void Option::FSMState_LoadOption::do_init(ebi::Option::TMgr* obj,
-                                          Game::StateArg* arg)
+void Option::FSMState_LoadOption::do_init(ebi::Option::TMgr* obj, Game::StateArg* arg)
 {
 	// Generated from stw r0, 0x10(r3)
 	_10 = 0;
@@ -1243,8 +1235,7 @@ lbl_803CF29C:
  * Address:	803CF2B8
  * Size:	00002C
  */
-void Option::FSMState_SaveMgr::do_init(ebi::Option::TMgr* obj,
-                                       Game::StateArg* arg)
+void Option::FSMState_SaveMgr::do_init(ebi::Option::TMgr* obj, Game::StateArg* arg)
 {
 	obj->m_optionScreen._010 = 0;
 	obj->m_saveMgr->start();
@@ -1443,9 +1434,7 @@ Option::TMgr::TMgr(void)
  */
 // void start__Q24Game32StateMachine<ebi::Option::TMgr>
 // FPQ33ebi6Option4TMgriPQ24Game8StateArg(void)
-template <>
-void Game::StateMachine<ebi::Option::TMgr>::start(ebi::Option::TMgr* obj,
-                                                  int id, StateArg* arg)
+template <> void Game::StateMachine<ebi::Option::TMgr>::start(ebi::Option::TMgr* obj, int id, StateArg* arg)
 {
 	obj->_F28 = 0;
 	transit(obj, id, arg);
@@ -2892,10 +2881,7 @@ void E2DCallBack_Base::do_draw(Graphics&, J2DGrafContext&) { }
  */
 // void init__Q24Game28FSMState<ebi::Option::TMgr>
 // FPQ33ebi6Option4TMgrPQ24Game8StateArg(void)
-template <>
-void Game::FSMState<ebi::Option::TMgr>::init(ebi::Option::TMgr*, StateArg* arg)
-{
-}
+template <> void Game::FSMState<ebi::Option::TMgr>::init(ebi::Option::TMgr*, StateArg* arg) { }
 
 /*
  * --INFO--
@@ -2913,9 +2899,7 @@ template <> void Game::FSMState<ebi::Option::TMgr>::exec(ebi::Option::TMgr*) { }
  */
 // void cleanup__Q24Game28FSMState<ebi::Option::TMgr> FPQ33ebi6Option4TMgr(void)
 // {}
-template <> void Game::FSMState<ebi::Option::TMgr>::cleanup(ebi::Option::TMgr*)
-{
-}
+template <> void Game::FSMState<ebi::Option::TMgr>::cleanup(ebi::Option::TMgr*) { }
 
 /*
  * --INFO--
@@ -2924,9 +2908,7 @@ template <> void Game::FSMState<ebi::Option::TMgr>::cleanup(ebi::Option::TMgr*)
  */
 // void resume__Q24Game28FSMState<ebi::Option::TMgr> FPQ33ebi6Option4TMgr(void)
 // { }
-template <> void Game::FSMState<ebi::Option::TMgr>::resume(ebi::Option::TMgr*)
-{
-}
+template <> void Game::FSMState<ebi::Option::TMgr>::resume(ebi::Option::TMgr*) { }
 
 /*
  * --INFO--
@@ -2935,9 +2917,7 @@ template <> void Game::FSMState<ebi::Option::TMgr>::resume(ebi::Option::TMgr*)
  */
 // void restart__Q24Game28FSMState<ebi::Option::TMgr> FPQ33ebi6Option4TMgr(void)
 // {}
-template <> void Game::FSMState<ebi::Option::TMgr>::restart(ebi::Option::TMgr*)
-{
-}
+template <> void Game::FSMState<ebi::Option::TMgr>::restart(ebi::Option::TMgr*) { }
 
 /*
  * --INFO--
@@ -2946,9 +2926,7 @@ template <> void Game::FSMState<ebi::Option::TMgr>::restart(ebi::Option::TMgr*)
  */
 // void init__Q24Game32StateMachine<ebi::Option::TMgr>
 // FPQ33ebi6Option4TMgr(void)
-template <> void Game::StateMachine<ebi::Option::TMgr>::init(ebi::Option::TMgr*)
-{
-}
+template <> void Game::StateMachine<ebi::Option::TMgr>::init(ebi::Option::TMgr*) { }
 
 /*
  * --INFO--
@@ -2957,8 +2935,7 @@ template <> void Game::StateMachine<ebi::Option::TMgr>::init(ebi::Option::TMgr*)
  */
 // void exec__Q24Game32StateMachine<ebi::Option::TMgr>
 // FPQ33ebi6Option4TMgr(void)
-template <>
-void Game::StateMachine<ebi::Option::TMgr>::exec(ebi::Option::TMgr* obj)
+template <> void Game::StateMachine<ebi::Option::TMgr>::exec(ebi::Option::TMgr* obj)
 {
 	/*
 	stwu     r1, -0x10(r1)
@@ -3026,9 +3003,7 @@ blr
  */
 // void transit__Q24Game32StateMachine<ebi::Option::TMgr>
 // FPQ33ebi6Option4TMgriPQ24Game8StateArg(void)
-template <>
-void Game::StateMachine<ebi::Option::TMgr>::transit(ebi::Option::TMgr*, int,
-                                                    Game::StateArg* arg)
+template <> void Game::StateMachine<ebi::Option::TMgr>::transit(ebi::Option::TMgr*, int, Game::StateArg* arg)
 {
 	/*
 	.loc_0x0:

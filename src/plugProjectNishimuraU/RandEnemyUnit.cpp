@@ -1355,8 +1355,7 @@ lbl_802497C8:
  * Address:	802497E8
  * Size:	0000D8
  */
-void Cave::RandEnemyUnit::makeSetEnemyTypeC(Game::Cave::MapNode*, int,
-                                            Game::Cave::EnemyUnit*)
+void Cave::RandEnemyUnit::makeSetEnemyTypeC(Game::Cave::MapNode*, int, Game::Cave::EnemyUnit*)
 {
 	/*
 	.loc_0x0:
@@ -1949,9 +1948,7 @@ lbl_80249F9C:
  * Address:	80249FBC
  * Size:	000088
  */
-void Cave::RandEnemyUnit::makeSetEnemyTypeF(Game::Cave::MapNode*,
-                                            Game::Cave::BaseGen*,
-                                            Game::Cave::EnemyUnit*)
+void Cave::RandEnemyUnit::makeSetEnemyTypeF(Game::Cave::MapNode*, Game::Cave::BaseGen*, Game::Cave::EnemyUnit*)
 {
 	/*
 	.loc_0x0:
@@ -2524,9 +2521,7 @@ lbl_8024A720:
  * Address:	8024A740
  * Size:	000088
  */
-void Cave::RandEnemyUnit::makeSetEnemyTypeB(Game::Cave::MapNode*,
-                                            Game::Cave::BaseGen*,
-                                            Game::Cave::EnemyUnit*)
+void Cave::RandEnemyUnit::makeSetEnemyTypeB(Game::Cave::MapNode*, Game::Cave::BaseGen*, Game::Cave::EnemyUnit*)
 {
 	/*
 	.loc_0x0:
@@ -2784,8 +2779,7 @@ lbl_8024AA6C:
  * Address:	8024AA94
  * Size:	000144
  */
-void Cave::RandEnemyUnit::getVersusEasyEnemyBaseGen(Game::Cave::MapNode*,
-                                                    Game::Cave::BaseGen*)
+void Cave::RandEnemyUnit::getVersusEasyEnemyBaseGen(Game::Cave::MapNode*, Game::Cave::BaseGen*)
 {
 	/*
 	.loc_0x0:
@@ -3517,9 +3511,7 @@ lbl_8024B404:
  * Address:	8024B418
  * Size:	000420
  */
-void Cave::RandEnemyUnit::makeSetEnemyTypeA(Game::Cave::MapNode*,
-                                            Game::Cave::BaseGen*,
-                                            Game::Cave::EnemyUnit*, int)
+void Cave::RandEnemyUnit::makeSetEnemyTypeA(Game::Cave::MapNode*, Game::Cave::BaseGen*, Game::Cave::EnemyUnit*, int)
 {
 	/*
 	.loc_0x0:
@@ -3833,8 +3825,7 @@ void Cave::RandEnemyUnit::makeSetEnemyTypeA(Game::Cave::MapNode*,
  * Address:	8024B838
  * Size:	00003C
  */
-void Cave::RandEnemyUnit::isEnemySetGen(Game::Cave::MapNode*,
-                                        Game::Cave::BaseGen*)
+void Cave::RandEnemyUnit::isEnemySetGen(Game::Cave::MapNode*, Game::Cave::BaseGen*)
 {
 	/*
 	.loc_0x0:

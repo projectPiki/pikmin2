@@ -28,50 +28,44 @@ struct JAISound : public JSULink<JAISound> {
 	virtual void setTempoProportion(float, unsigned long);           // _3C
 	virtual float getTempoProportion();                              // _40
 	virtual void setVolumeU7(unsigned char, unsigned long,
-	                         unsigned char)
-	    = 0;                                     // _44
-	virtual void getVolumeU7(unsigned char) = 0; // _48
-	virtual void setPanU7(unsigned char, unsigned long, unsigned char)
-	    = 0;                                  // _4C
-	virtual void getPanU7(unsigned char) = 0; // _50
-	virtual void setFxmixU7(unsigned char, unsigned long, unsigned char)
-	    = 0;                                    // _54
-	virtual void getFxmixU7(unsigned char) = 0; // _58
-	virtual void setDolbyU7(unsigned char, unsigned long, unsigned char)
-	    = 0;                                                    // _5C
-	virtual void getDolbyU7(unsigned char) = 0;                 // _60
-	virtual void setDirectVolume(float, unsigned long);         // _64
-	virtual void setDirectPan(float, unsigned long);            // _68
-	virtual void setDirectPitch(float, unsigned long);          // _6C
-	virtual void setDirectFxmix(float, unsigned long);          // _70
-	virtual void setDirectDolby(float, unsigned long);          // _74
-	virtual void setDemoVolume(float, unsigned long);           // _78
-	virtual void setDemoPan(float, unsigned long);              // _7C
-	virtual void setDemoPitch(float, unsigned long);            // _80
-	virtual void setDemoFxmix(float, unsigned long);            // _84
-	virtual void setDemoDolby(float, unsigned long);            // _88
-	virtual void setDemoVolumeU7(unsigned char, unsigned long); // _8C
-	virtual void setDemoPanU7(unsigned char, unsigned long);    // _90
-	virtual void setDemoFxmixU7(unsigned char, unsigned long);  // _94
-	virtual void setDemoDolbyU7(unsigned char, unsigned long);  // _98
-	virtual void getFadeCounter() = 0;                          // _9C
-	virtual void setPrepareFlag(unsigned char);                 // _A0
-	virtual void checkReady();                                  // _A4
-	virtual void setDistanceParameterMoveTime(unsigned char);   // _A8
-	virtual void setAdjustPriority(short);                      // _AC
-	virtual void setPositionDopplarCommon(unsigned long);       // _B0
-	virtual void setDistanceVolumeCommon(float, unsigned char); // _B4
-	virtual void setDistancePanCommon();                        // _B8
-	virtual void setDistanceDolbyCommon();                      // _BC
-	virtual void initParameter(void*, JAInter::Actor*, unsigned long,
-	                           unsigned long, unsigned char,
+	                         unsigned char)                              = 0; // _44
+	virtual void getVolumeU7(unsigned char)                              = 0; // _48
+	virtual void setPanU7(unsigned char, unsigned long, unsigned char)   = 0; // _4C
+	virtual void getPanU7(unsigned char)                                 = 0; // _50
+	virtual void setFxmixU7(unsigned char, unsigned long, unsigned char) = 0; // _54
+	virtual void getFxmixU7(unsigned char)                               = 0; // _58
+	virtual void setDolbyU7(unsigned char, unsigned long, unsigned char) = 0; // _5C
+	virtual void getDolbyU7(unsigned char)                               = 0; // _60
+	virtual void setDirectVolume(float, unsigned long);                       // _64
+	virtual void setDirectPan(float, unsigned long);                          // _68
+	virtual void setDirectPitch(float, unsigned long);                        // _6C
+	virtual void setDirectFxmix(float, unsigned long);                        // _70
+	virtual void setDirectDolby(float, unsigned long);                        // _74
+	virtual void setDemoVolume(float, unsigned long);                         // _78
+	virtual void setDemoPan(float, unsigned long);                            // _7C
+	virtual void setDemoPitch(float, unsigned long);                          // _80
+	virtual void setDemoFxmix(float, unsigned long);                          // _84
+	virtual void setDemoDolby(float, unsigned long);                          // _88
+	virtual void setDemoVolumeU7(unsigned char, unsigned long);               // _8C
+	virtual void setDemoPanU7(unsigned char, unsigned long);                  // _90
+	virtual void setDemoFxmixU7(unsigned char, unsigned long);                // _94
+	virtual void setDemoDolbyU7(unsigned char, unsigned long);                // _98
+	virtual void getFadeCounter() = 0;                                        // _9C
+	virtual void setPrepareFlag(unsigned char);                               // _A0
+	virtual void checkReady();                                                // _A4
+	virtual void setDistanceParameterMoveTime(unsigned char);                 // _A8
+	virtual void setAdjustPriority(short);                                    // _AC
+	virtual void setPositionDopplarCommon(unsigned long);                     // _B0
+	virtual void setDistanceVolumeCommon(float, unsigned char);               // _B4
+	virtual void setDistancePanCommon();                                      // _B8
+	virtual void setDistanceDolbyCommon();                                    // _BC
+	virtual void initParameter(void*, JAInter::Actor*, unsigned long, unsigned long, unsigned char,
 	                           JAInter::SoundInfo*); // _C0
 	virtual void onGet();                            // _C4
 	virtual void onRelease();                        // _C8
 
 	~JAISound();
-	void initMultiMoveParameter(JAInter::MoveParaSet*, unsigned char,
-	                            unsigned long, float, float, unsigned long);
+	void initMultiMoveParameter(JAInter::MoveParaSet*, unsigned char, unsigned long, float, float, unsigned long);
 	void getSwBit();
 	void checkSwBit(unsigned long);
 	void getInfoPriority();

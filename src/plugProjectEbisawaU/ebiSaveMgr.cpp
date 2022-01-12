@@ -826,8 +826,7 @@ lbl_803DB6B4:
  * Address:	803DB6CC
  * Size:	000030
  */
-void transit__Q24Game26FSMState<ebi::Save::TMgr>
-FPQ33ebi4Save4TMgriPQ24Game8StateArg(void)
+void transit__Q24Game26FSMState<ebi::Save::TMgr> FPQ33ebi4Save4TMgriPQ24Game8StateArg(void)
 {
 	/*
 	.loc_0x0:
@@ -1452,8 +1451,7 @@ void Save::FSMState_CardRequest::do_transitCardSerialNoError(ebi::Save::TMgr*)
  * Address:	803DBD00
  * Size:	00002C
  */
-void Save::FSMState_CardRequest::do_transitCardPlayerDataBroken(
-    (ebi::Save::TMgr*))
+void Save::FSMState_CardRequest::do_transitCardPlayerDataBroken((ebi::Save::TMgr*))
 {
 	/*
 	.loc_0x0:
@@ -1627,8 +1625,7 @@ lbl_803DBE94:
  * Address:	803DBEAC
  * Size:	000038
  */
-void Save::FSMState_GetPlayerHeader::do_transitCardSerialNoError(
-    (ebi::Save::TMgr*))
+void Save::FSMState_GetPlayerHeader::do_transitCardSerialNoError((ebi::Save::TMgr*))
 {
 	/*
 	.loc_0x0:
@@ -2653,8 +2650,7 @@ Save::TMgr::TMgr(void)
  * Address:	803DCA28
  * Size:	000034
  */
-void start__Q24Game30StateMachine<ebi::Save::TMgr>
-FPQ33ebi4Save4TMgriPQ24Game8StateArg(void)
+void start__Q24Game30StateMachine<ebi::Save::TMgr> FPQ33ebi4Save4TMgriPQ24Game8StateArg(void)
 {
 	/*
 	.loc_0x0:
@@ -3091,10 +3087,7 @@ lbl_803DCEB8:
  * Address:	803DCED4
  * Size:	000004
  */
-void init__Q24Game26FSMState<ebi::Save::TMgr>
-FPQ33ebi4Save4TMgrPQ24Game8StateArg(void)
-{
-}
+void init__Q24Game26FSMState<ebi::Save::TMgr> FPQ33ebi4Save4TMgrPQ24Game8StateArg(void) { }
 
 } // namespace ebi
 
@@ -3201,8 +3194,7 @@ void create__Q24Game30StateMachine<ebi::Save::TMgr> Fi(void)
  * Address:	803DCF88
  * Size:	00009C
  */
-void transit__Q24Game30StateMachine<ebi::Save::TMgr>
-FPQ33ebi4Save4TMgriPQ24Game8StateArg(void)
+void transit__Q24Game30StateMachine<ebi::Save::TMgr> FPQ33ebi4Save4TMgriPQ24Game8StateArg(void)
 {
 	/*
 	.loc_0x0:
@@ -3259,8 +3251,7 @@ FPQ33ebi4Save4TMgriPQ24Game8StateArg(void)
  * Address:	803DD024
  * Size:	000084
  */
-void registerState__Q24Game30StateMachine<ebi::Save::TMgr>
-FPQ24Game26FSMState<ebi::Save::TMgr>(void)
+void registerState__Q24Game30StateMachine<ebi::Save::TMgr> FPQ24Game26FSMState<ebi::Save::TMgr>(void)
 {
 	/*
 	.loc_0x0:

@@ -743,8 +743,7 @@ lbl_80067E74:
  * Address:	80067E7C
  * Size:	000420
  */
-void J3DAnmTransformKey::calcTransform(float, unsigned short,
-                                       J3DTransformInfo*) const
+void J3DAnmTransformKey::calcTransform(float, unsigned short, J3DTransformInfo*) const
 {
 	/*
 	.loc_0x0:
@@ -1092,8 +1091,7 @@ void J3DAnmTransformKey::calcTransform(float, unsigned short,
  * Address:	8006829C
  * Size:	000268
  */
-void J3DAnmTextureSRTKey::calcTransform(float, unsigned short,
-                                        J3DTextureSRTInfo*) const
+void J3DAnmTextureSRTKey::calcTransform(float, unsigned short, J3DTextureSRTInfo*) const
 {
 	/*
 	.loc_0x0:
@@ -1405,8 +1403,7 @@ lbl_8006860C:
  * Address:	8006861C
  * Size:	000178
  */
-void J3DAnmVtxColorFull::getColor(unsigned char, unsigned short,
-                                  _GXColor*) const
+void J3DAnmVtxColorFull::getColor(unsigned char, unsigned short, _GXColor*) const
 {
 	/*
 	.loc_0x0:
@@ -3229,8 +3226,7 @@ u32 J3DAnmVtxColor::getKind() const { return 0x7; }
  * Address:	80069AA0
  * Size:	000004
  */
-void J3DAnmVtxColor::getColor(unsigned char, unsigned short, _GXColor*) const {
-}
+void J3DAnmVtxColor::getColor(unsigned char, unsigned short, _GXColor*) const { }
 
 /*
  * --INFO--

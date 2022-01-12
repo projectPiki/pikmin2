@@ -70,31 +70,31 @@ struct CallBack_CounterRV : public P2DScreen::CallBackNode {
 	void setZeroAlpha(u8);
 	void startPuyoUp(float);
 
-	char** m_characterTexturePaths; // _1C
-	u32* _20;                       // _20
-	u32 _24;                        // _24
-	u32 _28;                        // _28
-	u16 _2C;                        // _2C
-	u16 m_counterLimit;             // _2E /* allocated slot count of _7C */
-	u16 _30;                        // _30
-	float _34;                      // _34
-	float _38;                      // _38
-	float _3C;                      // _3C
-	float _40;                      // _40
-	float _44;                      // _44
-	float m_widthMaybe;             // _48
-	float m_heightMaybe;            // _4C
-	float _50;                      // _50
-	float _54;                      // _54
-	float _58;                      // _58
-	float _5C;                      // _5C
-	u32 m_basePosition;             // _60 /* Use J2DBasePosition constants. */
-	u8 _64;                         // _64
-	u8 _65[7];             // _65 /* Hopefully this doesn't mess with size. */
-	J2DPictureEx* _6C;     // _6C
-	J2DPane* _70;          // _70
-	J2DPane* _74;          // _74
-	J2DPane* m_motherPane; // _78
+	char** m_characterTexturePaths;    // _1C
+	u32* _20;                          // _20
+	u32 _24;                           // _24
+	u32 _28;                           // _28
+	u16 _2C;                           // _2C
+	u16 m_counterLimit;                // _2E /* allocated slot count of _7C */
+	u16 _30;                           // _30
+	float _34;                         // _34
+	float _38;                         // _38
+	float _3C;                         // _3C
+	float _40;                         // _40
+	float _44;                         // _44
+	float m_widthMaybe;                // _48
+	float m_heightMaybe;               // _4C
+	float _50;                         // _50
+	float _54;                         // _54
+	float _58;                         // _58
+	float _5C;                         // _5C
+	u32 m_basePosition;                // _60 /* Use J2DBasePosition constants. */
+	u8 _64;                            // _64
+	u8 _65[7];                         // _65 /* Hopefully this doesn't mess with size. */
+	J2DPictureEx* _6C;                 // _6C
+	J2DPane* _70;                      // _70
+	J2DPane* _74;                      // _74
+	J2DPane* m_motherPane;             // _78
 	CounterKeta** m_counters;          // _7C
 	ResTIMG** m_imgResources;          // _80
 	bool m_isPuyoAnim;                 // _84

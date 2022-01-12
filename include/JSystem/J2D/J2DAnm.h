@@ -78,13 +78,13 @@ struct J2DAnmColorKey : public J2DAnmColor {
 
 // Size: 0x74
 struct J2DAnmTevRegKey : public J2DAnmBase {
-	u16 _10;      // _10 /* element count of _24? see J2DScreen::setAnimation */
-	u16 _12;      // _12 /* element count of _38? see J2DScreen::setAnimation */
-	u8 _14[0x10]; // _14
-	u16* _24;     // _24 /* material index? see J2DScreen::setAnimation */
-	JUTNameTab _28; // _28
-	u16* _38;       // _38 /* material index? see J2DScreen::setAnimation */
-	JUTNameTab _3C; // _3C
+	u16 _10;                 // _10 /* element count of _24? see J2DScreen::setAnimation */
+	u16 _12;                 // _12 /* element count of _38? see J2DScreen::setAnimation */
+	u8 _14[0x10];            // _14
+	u16* _24;                // _24 /* material index? see J2DScreen::setAnimation */
+	JUTNameTab _28;          // _28
+	u16* _38;                // _38 /* material index? see J2DScreen::setAnimation */
+	JUTNameTab _3C;          // _3C
 	J3DAnmCRegKeyTable* _4C; // _4C
 	J3DAnmKRegKeyTable* _50; // _50
 	short* _54;              // _54

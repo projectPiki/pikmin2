@@ -1169,8 +1169,7 @@ lbl_803BB95C:
  * Address:	803BB97C
  * Size:	00005C
  */
-void ParticleMgr::createDemo(unsigned short, Vector3f&, unsigned char,
-                             unsigned char)
+void ParticleMgr::createDemo(unsigned short, Vector3f&, unsigned char, unsigned char)
 {
 	/*
 	.loc_0x0:

@@ -26,10 +26,7 @@ bool DispMemberBase::isID(u32 ownerID, u64 memberID)
  * Address:	8030F39C
  * Size:	000040
  */
-void DispMemberBase::getMemberName(char* outName)
-{
-	og::Screen::TagToName(getMemberID(), outName);
-}
+void DispMemberBase::getMemberName(char* outName) { og::Screen::TagToName(getMemberID(), outName); }
 
 /*
  * --INFO--
@@ -49,10 +46,8 @@ bool DispMemberBase::setSubMember(og::Screen::DispMemberBase* newSubMember)
 	for (int i = 10; i != 0; i--) {
 		if (potentialParent->m_subMember == nullptr) {
 			potentialParent->m_subMember = newSubMember;
-			og::Screen::TagToName(newSubMember->getOwnerID(),
-			                      subMemberOwnerName);
-			og::Screen::TagToName(newSubMember->getMemberID(),
-			                      subMemberMemberName);
+			og::Screen::TagToName(newSubMember->getOwnerID(), subMemberOwnerName);
+			og::Screen::TagToName(newSubMember->getMemberID(), subMemberMemberName);
 			return true;
 		}
 		potentialParent = potentialParent->m_subMember;

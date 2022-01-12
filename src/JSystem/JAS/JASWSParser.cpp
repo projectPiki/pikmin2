@@ -394,8 +394,7 @@ lbl_80098EB4:
  * Address:	80098EBC
  * Size:	000018
  */
-void JSUConvertOffsetToPtr<JASWSParser::TWaveArchive>(const void*,
-                                                      unsigned long)
+void JSUConvertOffsetToPtr<JASWSParser::TWaveArchive>(const void*, unsigned long)
 {
 	/*
 	.loc_0x0:
@@ -415,8 +414,7 @@ void JSUConvertOffsetToPtr<JASWSParser::TWaveArchive>(const void*,
  * Address:	80098ED4
  * Size:	000018
  */
-void JSUConvertOffsetToPtr<JASWSParser::TWaveArchiveBank>(const void*,
-                                                          unsigned long)
+void JSUConvertOffsetToPtr<JASWSParser::TWaveArchiveBank>(const void*, unsigned long)
 {
 	/*
 	.loc_0x0:

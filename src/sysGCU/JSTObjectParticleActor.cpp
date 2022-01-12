@@ -132,8 +132,7 @@ namespace Game {
  * Address:	804544D4
  * Size:	000168
  */
-P2JST::ObjectParticleActor::ObjectParticleActor(char const*, Game::MoviePlayer*,
-                                                Game::Creature*)
+P2JST::ObjectParticleActor::ObjectParticleActor(char const*, Game::MoviePlayer*, Game::Creature*)
 {
 	/*
 	.loc_0x0:
@@ -867,8 +866,7 @@ void __sinit_JSTObjectParticleActor_cpp(void)
  * Address:	80454D00
  * Size:	000008
  */
-void @4 @Game::P2JST::ObjectParticleActor::parseUserData_(unsigned long,
-                                                          void const*)
+void @4 @Game::P2JST::ObjectParticleActor::parseUserData_(unsigned long, void const*)
 {
 	/*
 	.loc_0x0:

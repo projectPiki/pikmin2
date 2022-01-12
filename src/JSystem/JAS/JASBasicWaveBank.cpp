@@ -737,8 +737,7 @@ lbl_8009A548:
  * Address:	8009A560
  * Size:	000090
  */
-void JASBasicWaveBank::TWaveGroup::setWaveInfo(int, unsigned long,
-                                               JASWaveInfo const&)
+void JASBasicWaveBank::TWaveGroup::setWaveInfo(int, unsigned long, JASWaveInfo const&)
 {
 	/*
 	.loc_0x0:

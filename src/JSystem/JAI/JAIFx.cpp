@@ -151,8 +151,7 @@ void JAInter::Fx::setSceneMax(unsigned char)
  * Address:	800AD834
  * Size:	000024
  */
-void JAInter::Fx::setBufferMax(unsigned long, unsigned long, unsigned long,
-                               unsigned long)
+void JAInter::Fx::setBufferMax(unsigned long, unsigned long, unsigned long, unsigned long)
 {
 	/*
 	.loc_0x0:

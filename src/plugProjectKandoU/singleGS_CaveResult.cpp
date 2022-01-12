@@ -207,8 +207,7 @@ lbl_8021ACF0:
  * Address:	8021AD18
  * Size:	000124
  */
-void SingleGame::CaveResultState::init(Game::SingleGameSection*,
-                                       Game::StateArg*)
+void SingleGame::CaveResultState::init(Game::SingleGameSection*, Game::StateArg*)
 {
 	/*
 	.loc_0x0:

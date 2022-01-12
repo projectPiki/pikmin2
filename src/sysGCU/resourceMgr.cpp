@@ -417,9 +417,7 @@ void Resource::MgrCommand::memoryCallBackFunc()
 void Resource::MgrCommand::aramLoadCallBackFunc(void)
 {
 	_38->_30->changeGroupID(_38->m_groupIDMaybe);
-	void* resource = gAramMgr->aramToMainRam(
-	    _A8->m_name, nullptr, 0, 0, Switch_1, 0, _38->_30,
-	    JKRDvdRipper::ALLOC_DIR_TOP, -1, nullptr);
+	void* resource = gAramMgr->aramToMainRam(_A8->m_name, nullptr, 0, 0, Switch_1, 0, _38->_30, JKRDvdRipper::ALLOC_DIR_TOP, -1, nullptr);
 	if (resource != nullptr) {
 		_38->m_resource = resource;
 		userCallBackInvoke();
@@ -932,10 +930,7 @@ lbl_80433B08:
  * Address:	80433B1C
  * Size:	000070
  */
-bool Resource::Mgr::destroy(Resource::MgrCommand* command)
-{
-	return command->destroy();
-}
+bool Resource::Mgr::destroy(Resource::MgrCommand* command) { return command->destroy(); }
 
 /*
  * --INFO--

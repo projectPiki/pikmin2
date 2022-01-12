@@ -86,8 +86,7 @@ namespace P2JME {
  * Address:	80437844
  * Size:	000084
  */
-TSequenceProcessor::TSequenceProcessor(JMessage::TReference const*,
-                                       JMessage::TControl*)
+TSequenceProcessor::TSequenceProcessor(JMessage::TReference const*, JMessage::TControl*)
 {
 	/*
 	.loc_0x0:
@@ -273,11 +272,7 @@ lbl_80437990:
  * Address:	804379A4
  * Size:	000008
  */
-void TSequenceProcessor::do_systemTagCode(unsigned short, void const*,
-                                          unsigned long)
-{
-	return 0x0;
-}
+void TSequenceProcessor::do_systemTagCode(unsigned short, void const*, unsigned long) { return 0x0; }
 
 /*
  * --INFO--

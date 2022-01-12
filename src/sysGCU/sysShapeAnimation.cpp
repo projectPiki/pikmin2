@@ -115,8 +115,7 @@ lbl_8043DD20:
  * Address:	8043DD5C
  * Size:	000120
  */
-AnimMgr* AnimMgr::load(JKRFileLoader*, char*, J3DModelData*, JKRFileLoader*,
-                       char*)
+AnimMgr* AnimMgr::load(JKRFileLoader*, char*, J3DModelData*, JKRFileLoader*, char*)
 {
 	/*
 	stwu     r1, -0x440(r1)

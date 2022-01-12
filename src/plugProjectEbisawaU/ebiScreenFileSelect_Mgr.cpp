@@ -2735,8 +2735,7 @@ lbl_803DFC2C:
  * Address:	803DFC40
  * Size:	0000B0
  */
-void FS::FSMState04_WhichDataDoYouCopyTo::do_init(ebi::FS::TMgr*,
-                                                  Game::StateArg*)
+void FS::FSMState04_WhichDataDoYouCopyTo::do_init(ebi::FS::TMgr*, Game::StateArg*)
 {
 	/*
 	.loc_0x0:
@@ -3524,8 +3523,7 @@ void FS::FSMState_CardTask::do_close(ebi::FS::TMgr*) { }
  * Address:	803E04B4
  * Size:	000030
  */
-void transit__Q24Game24FSMState<ebi::FS::TMgr>
-FPQ33ebi2FS4TMgriPQ24Game8StateArg(void)
+void transit__Q24Game24FSMState<ebi::FS::TMgr> FPQ33ebi2FS4TMgriPQ24Game8StateArg(void)
 {
 	/*
 	.loc_0x0:
@@ -3549,8 +3547,7 @@ FPQ33ebi2FS4TMgriPQ24Game8StateArg(void)
  * Address:	803E04E4
  * Size:	000034
  */
-void start__Q24Game28StateMachine<ebi::FS::TMgr>
-FPQ33ebi2FS4TMgriPQ24Game8StateArg(void)
+void start__Q24Game28StateMachine<ebi::FS::TMgr> FPQ33ebi2FS4TMgriPQ24Game8StateArg(void)
 {
 	/*
 	.loc_0x0:
@@ -4445,10 +4442,7 @@ blr
  * Address:	803E110C
  * Size:	000004
  */
-void init__Q24Game24FSMState<ebi::FS::TMgr>
-FPQ33ebi2FS4TMgrPQ24Game8StateArg(void)
-{
-}
+void init__Q24Game24FSMState<ebi::FS::TMgr> FPQ33ebi2FS4TMgrPQ24Game8StateArg(void) { }
 
 } // namespace Screen
 
@@ -4557,8 +4551,7 @@ void create__Q24Game28StateMachine<ebi::FS::TMgr> Fi(void)
  * Address:	803E11C0
  * Size:	00009C
  */
-void transit__Q24Game28StateMachine<ebi::FS::TMgr>
-FPQ33ebi2FS4TMgriPQ24Game8StateArg(void)
+void transit__Q24Game28StateMachine<ebi::FS::TMgr> FPQ33ebi2FS4TMgriPQ24Game8StateArg(void)
 {
 	/*
 	.loc_0x0:
@@ -4615,8 +4608,7 @@ FPQ33ebi2FS4TMgriPQ24Game8StateArg(void)
  * Address:	803E125C
  * Size:	000084
  */
-void registerState__Q24Game28StateMachine<ebi::FS::TMgr>
-FPQ24Game24FSMState<ebi::FS::TMgr>(void)
+void registerState__Q24Game28StateMachine<ebi::FS::TMgr> FPQ24Game24FSMState<ebi::FS::TMgr>(void)
 {
 	/*
 	.loc_0x0:

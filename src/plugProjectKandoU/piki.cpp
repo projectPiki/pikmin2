@@ -4613,8 +4613,7 @@ lbl_8014A3A4:
  * Address:	8014A3B8
  * Size:	0000F8
  */
-void Piki::startMotion(int, int, SysShape::MotionListener*,
-                       SysShape::MotionListener*)
+void Piki::startMotion(int, int, SysShape::MotionListener*, SysShape::MotionListener*)
 {
 	/*
 	.loc_0x0:
@@ -5281,8 +5280,7 @@ void init__Q24Game26StateMachine<Game::Piki> FPQ24Game4Piki(void) { }
  * Address:	8014AB38
  * Size:	00009C
  */
-void transit__Q24Game26StateMachine<Game::Piki>
-FPQ24Game4PikiiPQ24Game8StateArg(void)
+void transit__Q24Game26StateMachine<Game::Piki> FPQ24Game4PikiiPQ24Game8StateArg(void)
 {
 	/*
 	.loc_0x0:
@@ -5339,9 +5337,7 @@ FPQ24Game4PikiiPQ24Game8StateArg(void)
  * Address:	8014ABD4
  * Size:	000004
  */
-void init__Q24Game22FSMState<Game::Piki> FPQ24Game4PikiPQ24Game8StateArg(void)
-{
-}
+void init__Q24Game22FSMState<Game::Piki> FPQ24Game4PikiPQ24Game8StateArg(void) { }
 
 /*
  * --INFO--

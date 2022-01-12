@@ -216,8 +216,7 @@ lbl_80006E44:
  * Address:	80006E60
  * Size:	000044
  */
-void JMessage::TProcessor::setBegin_messageID(unsigned long, unsigned long,
-                                              bool*)
+void JMessage::TProcessor::setBegin_messageID(unsigned long, unsigned long, bool*)
 {
 	/*
 	.loc_0x0:
@@ -370,8 +369,7 @@ lbl_80006FD0:
  * Address:	80006FE4
  * Size:	000150
  */
-void JMessage::TProcessor::toMessageCode_messageID(unsigned long, unsigned long,
-                                                   bool*) const
+void JMessage::TProcessor::toMessageCode_messageID(unsigned long, unsigned long, bool*) const
 {
 	/*
 	.loc_0x0:
@@ -495,21 +493,14 @@ void JMessage::TProcessor::do_character(int) { }
  * Address:	8000713C
  * Size:	000008
  */
-u32 JMessage::TProcessor::do_tag(unsigned long, const void*, unsigned long)
-{
-	return 0x0;
-}
+u32 JMessage::TProcessor::do_tag(unsigned long, const void*, unsigned long) { return 0x0; }
 
 /*
  * --INFO--
  * Address:	80007144
  * Size:	000008
  */
-void JMessage::TProcessor::do_systemTagCode(unsigned short, const void*,
-                                            unsigned long)
-{
-	return 0x0;
-}
+void JMessage::TProcessor::do_systemTagCode(unsigned short, const void*, unsigned long) { return 0x0; }
 
 /*
  * --INFO--
@@ -806,8 +797,7 @@ lbl_80007464:
  * Address:	80007474
  * Size:	0000D0
  */
-void JMessage::TProcessor::do_systemTagCode_(unsigned short, const void*,
-                                             unsigned long)
+void JMessage::TProcessor::do_systemTagCode_(unsigned short, const void*, unsigned long)
 {
 	/*
 	.loc_0x0:
@@ -1145,8 +1135,7 @@ void JMessage::TProcessor::process_onSelect_(JMessage::TProcessor*)
  * Address:	800077E4
  * Size:	000044
  */
-JMessage::TSequenceProcessor::TSequenceProcessor(const JMessage::TReference*,
-                                                 JMessage::TControl*)
+JMessage::TSequenceProcessor::TSequenceProcessor(const JMessage::TReference*, JMessage::TControl*)
 {
 	/*
 	.loc_0x0:
@@ -1723,8 +1712,7 @@ void JMessage::TSequenceProcessor::do_end_()
  * Address:	80007D70
  * Size:	000140
  */
-void JMessage::TSequenceProcessor::do_tag_(unsigned long, const void*,
-                                           unsigned long)
+void JMessage::TSequenceProcessor::do_tag_(unsigned long, const void*, unsigned long)
 {
 	/*
 	.loc_0x0:
@@ -1834,8 +1822,7 @@ void JMessage::TSequenceProcessor::do_tag_(unsigned long, const void*,
  * Address:	80007EB0
  * Size:	000064
  */
-void JMessage::TSequenceProcessor::do_systemTagCode_(unsigned short,
-                                                     const void*, unsigned long)
+void JMessage::TSequenceProcessor::do_systemTagCode_(unsigned short, const void*, unsigned long)
 {
 	/*
 	.loc_0x0:
@@ -1878,8 +1865,7 @@ void JMessage::TSequenceProcessor::do_systemTagCode_(unsigned short,
  * Address:	80007F14
  * Size:	00006C
  */
-void JMessage::TSequenceProcessor::process_onJump_limited_(
-    const JMessage::TSequenceProcessor*)
+void JMessage::TSequenceProcessor::process_onJump_limited_(const JMessage::TSequenceProcessor*)
 {
 	/*
 	.loc_0x0:
@@ -1924,8 +1910,7 @@ void JMessage::TSequenceProcessor::process_onJump_limited_(
  * Address:	80007F80
  * Size:	000064
  */
-void JMessage::TSequenceProcessor::process_onJump_(
-    const JMessage::TSequenceProcessor*)
+void JMessage::TSequenceProcessor::process_onJump_(const JMessage::TSequenceProcessor*)
 {
 	/*
 	.loc_0x0:
@@ -1968,8 +1953,7 @@ void JMessage::TSequenceProcessor::process_onJump_(
  * Address:	80007FE4
  * Size:	000070
  */
-void JMessage::TSequenceProcessor::process_onBranch_limited_(
-    const JMessage::TSequenceProcessor*, unsigned long)
+void JMessage::TSequenceProcessor::process_onBranch_limited_(const JMessage::TSequenceProcessor*, unsigned long)
 {
 	/*
 	.loc_0x0:
@@ -2015,8 +1999,7 @@ void JMessage::TSequenceProcessor::process_onBranch_limited_(
  * Address:	80008054
  * Size:	00006C
  */
-void JMessage::TSequenceProcessor::process_onBranch_(
-    const JMessage::TSequenceProcessor*, unsigned long)
+void JMessage::TSequenceProcessor::process_onBranch_(const JMessage::TSequenceProcessor*, unsigned long)
 {
 	/*
 	.loc_0x0:
@@ -2314,8 +2297,7 @@ void JMessage::TRenderingProcessor::do_end_()
  * Address:	80008330
  * Size:	000034
  */
-void JMessage::TRenderingProcessor::do_tag_(unsigned long, const void*,
-                                            unsigned long)
+void JMessage::TRenderingProcessor::do_tag_(unsigned long, const void*, unsigned long)
 {
 	/*
 	.loc_0x0:
@@ -2344,9 +2326,7 @@ void JMessage::TRenderingProcessor::do_tag_(unsigned long, const void*,
  * Address:	80008364
  * Size:	000040
  */
-void JMessage::TRenderingProcessor::do_systemTagCode_(unsigned short,
-                                                      const void*,
-                                                      unsigned long)
+void JMessage::TRenderingProcessor::do_systemTagCode_(unsigned short, const void*, unsigned long)
 {
 	/*
 	.loc_0x0:

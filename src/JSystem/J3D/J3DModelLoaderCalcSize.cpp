@@ -436,8 +436,7 @@ lbl_80087DAC:
  * Address:	80087DCC
  * Size:	000090
  */
-void J3DModelLoader::calcSizeInformation(const J3DModelInfoBlock*,
-                                         unsigned long)
+void J3DModelLoader::calcSizeInformation(const J3DModelInfoBlock*, unsigned long)
 {
 	/*
 	.loc_0x0:
@@ -550,8 +549,7 @@ void J3DModelLoader::calcSizeDraw(const J3DDrawBlock*)
  * Address:	80087EAC
  * Size:	0000E4
  */
-void J3DModelLoader_v26::calcSizeMaterial(const J3DMaterialBlock*,
-                                          unsigned long)
+void J3DModelLoader_v26::calcSizeMaterial(const J3DMaterialBlock*, unsigned long)
 {
 	/*
 	.loc_0x0:
@@ -718,8 +716,7 @@ lbl_80088058:
  * Address:	80088060
  * Size:	0000A0
  */
-void J3DModelLoader_v26::calcSizeMaterialTable(const J3DMaterialBlock*,
-                                               unsigned long)
+void J3DModelLoader_v26::calcSizeMaterialTable(const J3DMaterialBlock*, unsigned long)
 {
 	/*
 	.loc_0x0:
@@ -797,8 +794,7 @@ lbl_80088114:
  * Address:	8008811C
  * Size:	0000A0
  */
-void J3DModelLoader::calcSizePatchedMaterial(const J3DMaterialBlock*,
-                                             unsigned long)
+void J3DModelLoader::calcSizePatchedMaterial(const J3DMaterialBlock*, unsigned long)
 {
 	/*
 	.loc_0x0:
@@ -856,8 +852,7 @@ void J3DModelLoader::calcSizePatchedMaterial(const J3DMaterialBlock*,
  * Address:	800881BC
  * Size:	0000D0
  */
-void J3DModelLoader::calcSizeMaterialDL(const J3DMaterialDLBlock*,
-                                        unsigned long)
+void J3DModelLoader::calcSizeMaterialDL(const J3DMaterialDLBlock*, unsigned long)
 {
 	/*
 	.loc_0x0:

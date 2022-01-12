@@ -684,8 +684,7 @@ lbl_8031F32C:
  * Address:	8031F378
  * Size:	0002BC
  */
-void ObjChallenge2P::ScreenSet::init((og::Screen::DataNavi*, JKRArchive*,
-                                      og::Screen::DispMemberChallenge2P*))
+void ObjChallenge2P::ScreenSet::init((og::Screen::DataNavi*, JKRArchive*, og::Screen::DispMemberChallenge2P*))
 {
 	/*
 	.loc_0x0:

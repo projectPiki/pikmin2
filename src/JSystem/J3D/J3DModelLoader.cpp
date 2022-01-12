@@ -353,8 +353,7 @@ lbl_8006FAD0:
  * Address:	8006FAE8
  * Size:	0000BC
  */
-J3DModelData* J3DModelLoaderDataBase::loadBinaryDisplayList(const void*,
-                                                            unsigned long)
+J3DModelData* J3DModelLoaderDataBase::loadBinaryDisplayList(const void*, unsigned long)
 {
 	/*
 	stwu     r1, -0x30(r1)
@@ -645,10 +644,7 @@ lbl_8006FE48:
  * Address:	8006FE60
  * Size:	000004
  */
-void J3DModelLoader::readMaterial_v21(const J3DMaterialBlock_v21*,
-                                      unsigned long)
-{
-}
+void J3DModelLoader::readMaterial_v21(const J3DMaterialBlock_v21*, unsigned long) { }
 
 /*
  * --INFO--
@@ -775,19 +771,14 @@ lbl_8006FF98:
  * Address:	8006FFB0
  * Size:	000004
  */
-void J3DModelLoader::readMaterialTable_v21(const J3DMaterialBlock_v21*,
-                                           unsigned long)
-{
-}
+void J3DModelLoader::readMaterialTable_v21(const J3DMaterialBlock_v21*, unsigned long) { }
 
 /*
  * --INFO--
  * Address:	8006FFB4
  * Size:	000004
  */
-void J3DModelLoader::readMaterialTable(const J3DMaterialBlock*, unsigned long)
-{
-}
+void J3DModelLoader::readMaterialTable(const J3DMaterialBlock*, unsigned long) { }
 
 /*
  * --INFO--
@@ -1899,8 +1890,7 @@ J3DMaterial::J3DMaterial()
  * Address:	80070CA8
  * Size:	00025C
  */
-void J3DModelLoader_v21::readMaterial_v21(const J3DMaterialBlock_v21*,
-                                          unsigned long)
+void J3DModelLoader_v21::readMaterial_v21(const J3DMaterialBlock_v21*, unsigned long)
 {
 	/*
 	.loc_0x0:
@@ -2257,8 +2247,7 @@ lbl_800710C8:
  * Address:	800710E4
  * Size:	00014C
  */
-void J3DModelLoader_v26::readMaterialTable(const J3DMaterialBlock*,
-                                           unsigned long)
+void J3DModelLoader_v26::readMaterialTable(const J3DMaterialBlock*, unsigned long)
 {
 	/*
 	.loc_0x0:
@@ -2367,8 +2356,7 @@ void J3DModelLoader_v26::readMaterialTable(const J3DMaterialBlock*,
  * Address:	80071230
  * Size:	00014C
  */
-void J3DModelLoader_v21::readMaterialTable_v21(const J3DMaterialBlock_v21*,
-                                               unsigned long)
+void J3DModelLoader_v21::readMaterialTable_v21(const J3DMaterialBlock_v21*, unsigned long)
 {
 	/*
 	.loc_0x0:
@@ -2845,21 +2833,14 @@ lbl_800717B0:
  * Address:	800717C8
  * Size:	000008
  */
-u32 J3DModelLoader::calcSizeMaterial(const J3DMaterialBlock*, unsigned long)
-{
-	return 0x0;
-}
+u32 J3DModelLoader::calcSizeMaterial(const J3DMaterialBlock*, unsigned long) { return 0x0; }
 
 /*
  * --INFO--
  * Address:	800717D0
  * Size:	000008
  */
-void J3DModelLoader::calcSizeMaterialTable(const J3DMaterialBlock*,
-                                           unsigned long)
-{
-	return 0x0;
-}
+void J3DModelLoader::calcSizeMaterialTable(const J3DMaterialBlock*, unsigned long) { return 0x0; }
 
 /*
  * --INFO--
@@ -2897,8 +2878,7 @@ lbl_80071808:
  * Address:	80071820
  * Size:	00006C
  */
-void J3DMtxCalcNoAnm<J3DMtxCalcCalcTransformMaya,
-                     J3DMtxCalcJ3DSysInitMaya>::~J3DMtxCalcNoAnm()
+void J3DMtxCalcNoAnm<J3DMtxCalcCalcTransformMaya, J3DMtxCalcJ3DSysInitMaya>::~J3DMtxCalcNoAnm()
 {
 	/*
 	.loc_0x0:
@@ -2941,9 +2921,7 @@ void J3DMtxCalcNoAnm<J3DMtxCalcCalcTransformMaya,
  * Address:	8007188C
  * Size:	000028
  */
-void J3DMtxCalcNoAnm<J3DMtxCalcCalcTransformMaya,
-                     J3DMtxCalcJ3DSysInitMaya>::init(const Vec&,
-                                                     const float (&)[3][4])
+void J3DMtxCalcNoAnm<J3DMtxCalcCalcTransformMaya, J3DMtxCalcJ3DSysInitMaya>::init(const Vec&, const float (&)[3][4])
 {
 	/*
 	.loc_0x0:
@@ -2965,8 +2943,7 @@ void J3DMtxCalcNoAnm<J3DMtxCalcCalcTransformMaya,
  * Address:	800718B4
  * Size:	000028
  */
-void J3DMtxCalcNoAnm<J3DMtxCalcCalcTransformMaya,
-                     J3DMtxCalcJ3DSysInitMaya>::calc()
+void J3DMtxCalcNoAnm<J3DMtxCalcCalcTransformMaya, J3DMtxCalcJ3DSysInitMaya>::calc()
 {
 	/*
 	.loc_0x0:
@@ -2988,8 +2965,7 @@ void J3DMtxCalcNoAnm<J3DMtxCalcCalcTransformMaya,
  * Address:	800718DC
  * Size:	00006C
  */
-void J3DMtxCalcNoAnm<J3DMtxCalcCalcTransformSoftimage,
-                     J3DMtxCalcJ3DSysInitSoftimage>::~J3DMtxCalcNoAnm()
+void J3DMtxCalcNoAnm<J3DMtxCalcCalcTransformSoftimage, J3DMtxCalcJ3DSysInitSoftimage>::~J3DMtxCalcNoAnm()
 {
 	/*
 	.loc_0x0:
@@ -3032,9 +3008,7 @@ void J3DMtxCalcNoAnm<J3DMtxCalcCalcTransformSoftimage,
  * Address:	80071948
  * Size:	00004C
  */
-void J3DMtxCalcNoAnm<J3DMtxCalcCalcTransformSoftimage,
-                     J3DMtxCalcJ3DSysInitSoftimage>::init(const Vec&,
-                                                          const float (&)[3][4])
+void J3DMtxCalcNoAnm<J3DMtxCalcCalcTransformSoftimage, J3DMtxCalcJ3DSysInitSoftimage>::init(const Vec&, const float (&)[3][4])
 {
 	/*
 	.loc_0x0:
@@ -3065,8 +3039,7 @@ void J3DMtxCalcNoAnm<J3DMtxCalcCalcTransformSoftimage,
  * Address:	80071994
  * Size:	000028
  */
-void J3DMtxCalcNoAnm<J3DMtxCalcCalcTransformSoftimage,
-                     J3DMtxCalcJ3DSysInitSoftimage>::calc()
+void J3DMtxCalcNoAnm<J3DMtxCalcCalcTransformSoftimage, J3DMtxCalcJ3DSysInitSoftimage>::calc()
 {
 	/*
 	.loc_0x0:
@@ -3088,8 +3061,7 @@ void J3DMtxCalcNoAnm<J3DMtxCalcCalcTransformSoftimage,
  * Address:	800719BC
  * Size:	00006C
  */
-void J3DMtxCalcNoAnm<J3DMtxCalcCalcTransformBasic,
-                     J3DMtxCalcJ3DSysInitBasic>::~J3DMtxCalcNoAnm()
+void J3DMtxCalcNoAnm<J3DMtxCalcCalcTransformBasic, J3DMtxCalcJ3DSysInitBasic>::~J3DMtxCalcNoAnm()
 {
 	/*
 	.loc_0x0:
@@ -3132,9 +3104,7 @@ void J3DMtxCalcNoAnm<J3DMtxCalcCalcTransformBasic,
  * Address:	80071A28
  * Size:	000028
  */
-void J3DMtxCalcNoAnm<J3DMtxCalcCalcTransformBasic,
-                     J3DMtxCalcJ3DSysInitBasic>::init(const Vec&,
-                                                      const float (&)[3][4])
+void J3DMtxCalcNoAnm<J3DMtxCalcCalcTransformBasic, J3DMtxCalcJ3DSysInitBasic>::init(const Vec&, const float (&)[3][4])
 {
 	/*
 	.loc_0x0:
@@ -3156,8 +3126,7 @@ void J3DMtxCalcNoAnm<J3DMtxCalcCalcTransformBasic,
  * Address:	80071A50
  * Size:	000028
  */
-void J3DMtxCalcNoAnm<J3DMtxCalcCalcTransformBasic,
-                     J3DMtxCalcJ3DSysInitBasic>::calc()
+void J3DMtxCalcNoAnm<J3DMtxCalcCalcTransformBasic, J3DMtxCalcJ3DSysInitBasic>::calc()
 {
 	/*
 	.loc_0x0:

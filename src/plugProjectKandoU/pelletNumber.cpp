@@ -1094,8 +1094,7 @@ lbl_801F9804:
  * Address:	801F9814
  * Size:	0000D8
  */
-void generatorBirth__Q34Game12PelletNumber3MgrFR10Vector3f R10Vector3f
-PQ24Game13GenPelletParm(void)
+void generatorBirth__Q34Game12PelletNumber3MgrFR10Vector3f R10Vector3f PQ24Game13GenPelletParm(void)
 {
 	/*
 	.loc_0x0:
@@ -1197,8 +1196,7 @@ void PelletNumber::Mgr::generatorWrite(Stream&, Game::GenPelletParm*)
  * Address:	801F9940
  * Size:	0000C4
  */
-void PelletNumber::Mgr::generatorRead(Stream&, Game::GenPelletParm*,
-                                      unsigned long)
+void PelletNumber::Mgr::generatorRead(Stream&, Game::GenPelletParm*, unsigned long)
 {
 	/*
 	.loc_0x0:
@@ -1500,9 +1498,7 @@ u32 PelletNumber::Object::getKind(void) { return 0x0; }
  * Address:	801F9C70
  * Size:	00009C
  */
-void resetMgrAndResources__Q24Game48FixedSizePelletMgr<
-    Game::PelletNumber::Object>
-Fv(void)
+void resetMgrAndResources__Q24Game48FixedSizePelletMgr<Game::PelletNumber::Object> Fv(void)
 {
 	/*
 	.loc_0x0:
@@ -1559,10 +1555,7 @@ Fv(void)
  * Address:	801F9D0C
  * Size:	000004
  */
-void onCreateModel__Q24Game48FixedSizePelletMgr<Game::PelletNumber::Object>
-FPQ28SysShape5Model(void)
-{
-}
+void onCreateModel__Q24Game48FixedSizePelletMgr<Game::PelletNumber::Object> FPQ28SysShape5Model(void) { }
 
 } // namespace efx
 
@@ -1593,8 +1586,7 @@ void birth__Q24Game48FixedSizePelletMgr<Game::PelletNumber::Object> Fv(void)
  * Address:	801F9D3C
  * Size:	00002C
  */
-void doAnimation__Q24Game48FixedSizePelletMgr<Game::PelletNumber::Object>
-Fv(void)
+void doAnimation__Q24Game48FixedSizePelletMgr<Game::PelletNumber::Object> Fv(void)
 {
 	/*
 	.loc_0x0:
@@ -1661,8 +1653,7 @@ void doSetView__Q24Game48FixedSizePelletMgr<Game::PelletNumber::Object> Fi(void)
  * Address:	801F9DC0
  * Size:	00002C
  */
-void doViewCalc__Q24Game48FixedSizePelletMgr<Game::PelletNumber::Object>
-Fv(void)
+void doViewCalc__Q24Game48FixedSizePelletMgr<Game::PelletNumber::Object> Fv(void)
 {
 	/*
 	.loc_0x0:
@@ -1685,8 +1676,7 @@ Fv(void)
  * Address:	801F9DEC
  * Size:	00002C
  */
-void doSimulation__Q24Game48FixedSizePelletMgr<Game::PelletNumber::Object>
-Ff(void)
+void doSimulation__Q24Game48FixedSizePelletMgr<Game::PelletNumber::Object> Ff(void)
 {
 	/*
 	.loc_0x0:
@@ -1709,8 +1699,7 @@ Ff(void)
  * Address:	801F9E18
  * Size:	00002C
  */
-void doDirectDraw__Q24Game48FixedSizePelletMgr<Game::PelletNumber::Object>
-FR8Graphics(void)
+void doDirectDraw__Q24Game48FixedSizePelletMgr<Game::PelletNumber::Object> FR8Graphics(void)
 {
 	/*
 	.loc_0x0:
@@ -1733,8 +1722,7 @@ FR8Graphics(void)
  * Address:	801F9E44
  * Size:	000024
  */
-void kill__Q24Game48FixedSizePelletMgr<Game::PelletNumber::Object>
-FPQ24Game6Pellet(void)
+void kill__Q24Game48FixedSizePelletMgr<Game::PelletNumber::Object> FPQ24Game6Pellet(void)
 {
 	/*
 	.loc_0x0:
@@ -1838,8 +1826,7 @@ lbl_801F9F0C:
  * Address:	801F9F20
  * Size:	000054
  */
-void MonoObjectMgr<Game::PelletNumber::Object>::kill(
-    Game::PelletNumber::Object*)
+void MonoObjectMgr<Game::PelletNumber::Object>::kill(Game::PelletNumber::Object*)
 {
 	/*
 	.loc_0x0:
@@ -3498,8 +3485,7 @@ void MonoObjectMgr<Game::PelletNumber::Object>::MonoObjectMgr()
  * Address:	801FB1EC
  * Size:	000020
  */
-void getFlag__Q24Game48FixedSizePelletMgr<Game::PelletNumber::Object>
-FPQ24Game6Pellet(void)
+void getFlag__Q24Game48FixedSizePelletMgr<Game::PelletNumber::Object> FPQ24Game6Pellet(void)
 {
 	/*
 	.loc_0x0:
@@ -3521,8 +3507,7 @@ FPQ24Game6Pellet(void)
  * Address:	801FB20C
  * Size:	00001C
  */
-void setFromTeki__Q24Game48FixedSizePelletMgr<Game::PelletNumber::Object>
-FPQ24Game6Pellet(void)
+void setFromTeki__Q24Game48FixedSizePelletMgr<Game::PelletNumber::Object> FPQ24Game6Pellet(void)
 {
 	/*
 	.loc_0x0:
@@ -3541,8 +3526,7 @@ FPQ24Game6Pellet(void)
  * Address:	801FB228
  * Size:	00001C
  */
-void setRevival__Q24Game48FixedSizePelletMgr<Game::PelletNumber::Object>
-FPQ24Game6Pellet(void)
+void setRevival__Q24Game48FixedSizePelletMgr<Game::PelletNumber::Object> FPQ24Game6Pellet(void)
 {
 	/*
 	.loc_0x0:
@@ -3561,8 +3545,7 @@ FPQ24Game6Pellet(void)
  * Address:	801FB244
  * Size:	00001C
  */
-void setComeAlive__Q24Game48FixedSizePelletMgr<Game::PelletNumber::Object>
-FPQ24Game6Pellet(void)
+void setComeAlive__Q24Game48FixedSizePelletMgr<Game::PelletNumber::Object> FPQ24Game6Pellet(void)
 {
 	/*
 	.loc_0x0:
@@ -3581,8 +3564,7 @@ FPQ24Game6Pellet(void)
  * Address:	801FB260
  * Size:	000010
  */
-void setComeAlive__Q24Game48FixedSizePelletMgr<Game::PelletNumber::Object>
-Fi(void)
+void setComeAlive__Q24Game48FixedSizePelletMgr<Game::PelletNumber::Object> Fi(void)
 {
 	/*
 	.loc_0x0:
@@ -3642,8 +3624,7 @@ void get__Q24Game48FixedSizePelletMgr<Game::PelletNumber::Object> FPv(void)
  * Address:	801FB2C8
  * Size:	00002C
  */
-void getObjectPtr__Q24Game48FixedSizePelletMgr<Game::PelletNumber::Object>
-FPv(void)
+void getObjectPtr__Q24Game48FixedSizePelletMgr<Game::PelletNumber::Object> FPv(void)
 {
 	/*
 	.loc_0x0:
@@ -3666,8 +3647,7 @@ FPv(void)
  * Address:	801FB2F4
  * Size:	000090
  */
-void birthFromTeki__Q24Game48FixedSizePelletMgr<Game::PelletNumber::Object>
-FPQ24Game12PelletConfig(void)
+void birthFromTeki__Q24Game48FixedSizePelletMgr<Game::PelletNumber::Object> FPQ24Game12PelletConfig(void)
 {
 	/*
 	.loc_0x0:
@@ -4321,8 +4301,7 @@ void ObjectMgr<Game::PelletNumber::Object>::@28 @doAnimation()
  * Address:	801FB8A4
  * Size:	000008
  */
-void @84 @getEnd__Q24Game48FixedSizePelletMgr<Game::PelletNumber::Object>
-Fv(void)
+void @84 @getEnd__Q24Game48FixedSizePelletMgr<Game::PelletNumber::Object> Fv(void)
 {
 	/*
 	.loc_0x0:
@@ -4336,8 +4315,7 @@ Fv(void)
  * Address:	801FB8AC
  * Size:	000008
  */
-void @84 @getStart__Q24Game48FixedSizePelletMgr<Game::PelletNumber::Object>
-Fv(void)
+void @84 @getStart__Q24Game48FixedSizePelletMgr<Game::PelletNumber::Object> Fv(void)
 {
 	/*
 	.loc_0x0:
@@ -4351,8 +4329,7 @@ Fv(void)
  * Address:	801FB8B4
  * Size:	000008
  */
-void @84 @getNext__Q24Game48FixedSizePelletMgr<Game::PelletNumber::Object>
-FPv(void)
+void @84 @getNext__Q24Game48FixedSizePelletMgr<Game::PelletNumber::Object> FPv(void)
 {
 	/*
 	.loc_0x0:

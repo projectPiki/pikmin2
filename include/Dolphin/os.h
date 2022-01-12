@@ -29,8 +29,7 @@ typedef void* OSMessage;
 
 #define MSG_QUEUE_SHOULD_BLOCK 1
 
-void OSInitMessageQueue(OSMessageQueue* queue, OSMessage* msgSlots,
-                        int slotCount);
+void OSInitMessageQueue(OSMessageQueue* queue, OSMessage* msgSlots, int slotCount);
 BOOL OSSendMessage(OSMessageQueue* queue, OSMessage message, int flags);
 BOOL OSReceiveMessage(OSMessageQueue* queue, OSMessage* msg, int flags);
 
@@ -153,12 +152,7 @@ struct OSThread {
 };
 
 // Thread states
-enum OS_THREAD_STATE {
-	OS_THREAD_STATE_READY    = 1,
-	OS_THREAD_STATE_RUNNING  = 2,
-	OS_THREAD_STATE_WAITING  = 4,
-	OS_THREAD_STATE_MORIBUND = 8
-};
+enum OS_THREAD_STATE { OS_THREAD_STATE_READY = 1, OS_THREAD_STATE_RUNNING = 2, OS_THREAD_STATE_WAITING = 4, OS_THREAD_STATE_MORIBUND = 8 };
 
 // Thread priorities
 #define OS_PRIORITY_MIN  0  // highest
@@ -178,8 +172,7 @@ BOOL OSIsThreadTerminated(OSThread* thread);
 s32 OSDisableScheduler(void);
 s32 OSEnableScheduler(void);
 void OSYieldThread(void);
-BOOL OSCreateThread(OSThread* thread, void* (*func)(void*), void* param,
-                    void* stack, u32 stackSize, OSPriority priority, u16 attr);
+BOOL OSCreateThread(OSThread* thread, void* (*func)(void*), void* param, void* stack, u32 stackSize, OSPriority priority, u16 attr);
 void OSExitThread(void* val);
 void OSCancelThread(OSThread* thread);
 BOOL OSJoinThread(OSThread* thread, void** val);

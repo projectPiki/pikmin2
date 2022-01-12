@@ -285,8 +285,7 @@ J3DTexMtxAnm::J3DTexMtxAnm()
  * Address:	80083F08
  * Size:	00032C
  */
-void J3DMaterialTable::allocTevRegAnimator(J3DAnmTevRegKey*, J3DTevColorAnm**,
-                                           J3DTevKColorAnm**)
+void J3DMaterialTable::allocTevRegAnimator(J3DAnmTevRegKey*, J3DTevColorAnm**, J3DTevKColorAnm**)
 {
 	/*
 	.loc_0x0:

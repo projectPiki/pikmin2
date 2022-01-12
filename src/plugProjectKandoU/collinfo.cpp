@@ -1260,8 +1260,7 @@ CollTree::CollTree()
  * Address:	8013406C
  * Size:	000044
  */
-void CollTree::createFromFactory(SysShape::MtxObject*, CollPartFactory*,
-                                 CollPartMgr*)
+void CollTree::createFromFactory(SysShape::MtxObject*, CollPartFactory*, CollPartMgr*)
 {
 	/*
 	.loc_0x0:
@@ -1292,8 +1291,7 @@ void CollTree::createFromFactory(SysShape::MtxObject*, CollPartFactory*,
  * Address:	801340B0
  * Size:	000104
  */
-void CollTree::createSingleSphere(SysShape::MtxObject*, int, Sys::Sphere&,
-                                  CollPartMgr*)
+void CollTree::createSingleSphere(SysShape::MtxObject*, int, Sys::Sphere&, CollPartMgr*)
 {
 	/*
 	.loc_0x0:
@@ -1712,8 +1710,7 @@ void CollTree::checkCollision(CollTree*, CollPart**, CollPart**, Vector3f&)
  * Address:	8013458C
  * Size:	000604
  */
-void CollTree::checkCollisionRec(CollPart*, CollPart*, CollPart**, CollPart**,
-                                 Vector3f&)
+void CollTree::checkCollisionRec(CollPart*, CollPart*, CollPart**, CollPart**, Vector3f&)
 {
 	/*
 	.loc_0x0:
@@ -3011,8 +3008,7 @@ bool CollPart::isTube()
  * Address:	80135564
  * Size:	000198
  */
-void CollTree::checkCollisionMulti(CollTree*,
-                                   IDelegate3<CollPart*, CollPart*, Vector3f&>*)
+void CollTree::checkCollisionMulti(CollTree*, IDelegate3<CollPart*, CollPart*, Vector3f&>*)
 {
 	/*
 	.loc_0x0:
@@ -3156,8 +3152,7 @@ void CollTree::checkCollisionMulti(CollTree*,
  * Address:	801356FC
  * Size:	0001F0
  */
-void CollPart::checkCollisionMulti(CollPart*,
-                                   IDelegate3<CollPart*, CollPart*, Vector3f&>*)
+void CollPart::checkCollisionMulti(CollPart*, IDelegate3<CollPart*, CollPart*, Vector3f&>*)
 {
 	/*
 	.loc_0x0:

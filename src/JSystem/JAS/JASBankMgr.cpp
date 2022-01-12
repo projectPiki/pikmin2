@@ -309,9 +309,7 @@ lbl_8009916C:
  * Size:	000360
  */
 void JASBankMgr::noteOn(int, int, unsigned char, unsigned char, unsigned short,
-                        void (*)(unsigned long, JASChannel*, JASDsp::TChannel*,
-                                 void*),
-                        void*)
+                        void (*)(unsigned long, JASChannel*, JASDsp::TChannel*, void*), void*)
 {
 	/*
 	.loc_0x0:
@@ -594,9 +592,7 @@ JASCriticalSection::~JASCriticalSection()
  * Size:	000174
  */
 void JASBankMgr::noteOnOsc(int, unsigned char, unsigned char, unsigned short,
-                           void (*)(unsigned long, JASChannel*,
-                                    JASDsp::TChannel*, void*),
-                           void*)
+                           void (*)(unsigned long, JASChannel*, JASDsp::TChannel*, void*), void*)
 {
 	/*
 	.loc_0x0:

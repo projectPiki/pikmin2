@@ -763,8 +763,7 @@ lbl_803934C0:
  * Address:	........
  * Size:	000050
  */
-Morimura::TChallengeResultDemoScreen::TChallengeResultDemoScreen(JKRArchive*,
-                                                                 int)
+Morimura::TChallengeResultDemoScreen::TChallengeResultDemoScreen(JKRArchive*, int)
 {
 	// UNUSED FUNCTION
 }
@@ -1715,10 +1714,8 @@ void Morimura::TMovePane::reset(void)
  * Address:	80393F2C
  * Size:	000100
  */
-void Morimura::setTCounterRV(P2DScreen::Mgr*, unsigned long long,
-                             unsigned long long, unsigned long long,
-                             unsigned long*, unsigned short, unsigned short,
-                             JKRArchive*)
+void Morimura::setTCounterRV(P2DScreen::Mgr*, unsigned long long, unsigned long long, unsigned long long, unsigned long*, unsigned short,
+                             unsigned short, JKRArchive*)
 {
 	/*
 	.loc_0x0:
@@ -1800,8 +1797,7 @@ void Morimura::setTCounterRV(P2DScreen::Mgr*, unsigned long long,
  * Address:	8039402C
  * Size:	000130
  */
-Morimura::TCounterRV::TCounterRV(char**, unsigned short, unsigned short,
-                                 JKRArchive*)
+Morimura::TCounterRV::TCounterRV(char**, unsigned short, unsigned short, JKRArchive*)
 {
 	/*
 	.loc_0x0:
@@ -2080,8 +2076,7 @@ void Morimura::TCounterRV::reset(void)
  * Address:	........
  * Size:	000060
  */
-Morimura::TChallengeResultCounter::TChallengeResultCounter(unsigned long*, int,
-                                                           int)
+Morimura::TChallengeResultCounter::TChallengeResultCounter(unsigned long*, int, int)
 {
 	// UNUSED FUNCTION
 }

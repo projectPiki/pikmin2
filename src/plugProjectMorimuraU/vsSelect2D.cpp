@@ -2178,8 +2178,7 @@ lbl_8039A698:
  * Address:	........
  * Size:	000064
  */
-Morimura::TVsSelectCBWinNum::TVsSelectCBWinNum(char**, unsigned short,
-                                               JKRArchive*)
+Morimura::TVsSelectCBWinNum::TVsSelectCBWinNum(char**, unsigned short, JKRArchive*)
 {
 	// UNUSED FUNCTION
 }

@@ -1482,8 +1482,7 @@ lbl_80389250:
  * Address:	80389270
  * Size:	000198
  */
-void ShijimiChou::Mgr::createGroupByEnemy(Game::EnemyBirthArg&,
-                                          Game::EnemyBase*, int, bool)
+void ShijimiChou::Mgr::createGroupByEnemy(Game::EnemyBirthArg&, Game::EnemyBase*, int, bool)
 {
 	/*
 	.loc_0x0:

@@ -186,8 +186,7 @@ ViewportBackup::~ViewportBackup()
  * Address:	........
  * Size:	000094
  */
-void J3DUShadowTextureSizeRatioCalcDefault::operator()(const Vec&,
-                                                       J3DUShadowInfo*)
+void J3DUShadowTextureSizeRatioCalcDefault::operator()(const Vec&, J3DUShadowInfo*)
 {
 	// UNUSED FUNCTION
 }
@@ -197,9 +196,7 @@ void J3DUShadowTextureSizeRatioCalcDefault::operator()(const Vec&,
  * Address:	........
  * Size:	000288
  */
-void J3DUShadowCameraPolicyUsingSphere::operator()(J3DModel*, const Vec&,
-                                                   _GXProjectionType,
-                                                   J3DUShadowInfo*)
+void J3DUShadowCameraPolicyUsingSphere::operator()(J3DModel*, const Vec&, _GXProjectionType, J3DUShadowInfo*)
 {
 	// UNUSED FUNCTION
 }
@@ -219,8 +216,7 @@ void J3DUShadowInfo::setViewportAndScissor(bool) const
  * Address:	........
  * Size:	00013C
  */
-void J3DUShadowInfo::gxConfig(const _GXColor&, _GXTevColorArg,
-                              _GXTevAlphaArg) const
+void J3DUShadowInfo::gxConfig(const _GXColor&, _GXTevColorArg, _GXTevAlphaArg) const
 {
 	// UNUSED FUNCTION
 }
@@ -260,9 +256,7 @@ void J3DUShadowInfo::getTexMtxForGX(float (*)[4]) const
  * Address:	........
  * Size:	000834
  */
-void J3DUIsShadowInViewFrustum(const J3DUShadowInfo&, float (*)[4],
-                               const J3DUClipper&, const Vec&,
-                               const JGeometry::TPartition3<float>&)
+void J3DUIsShadowInViewFrustum(const J3DUShadowInfo&, float (*)[4], const J3DUClipper&, const Vec&, const JGeometry::TPartition3<float>&)
 {
 	// UNUSED FUNCTION
 }

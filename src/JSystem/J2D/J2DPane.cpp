@@ -298,8 +298,7 @@ void J2DPane::initiate()
  * Address:	80036CB4
  * Size:	000088
  */
-J2DPane::J2DPane(J2DPane* parent, bool isVisible, u64 tag,
-                 const JGeometry::TBox2f& box)
+J2DPane::J2DPane(J2DPane* parent, bool isVisible, u64 tag, const JGeometry::TBox2f& box)
     : m_tree(this)
     , m_transform(nullptr)
 {
@@ -351,8 +350,7 @@ J2DPane::J2DPane(J2DPane* parent, bool isVisible, u64 tag,
  * Address:	80036D3C
  * Size:	000120
  */
-void J2DPane::initialize(J2DPane* parent, bool isVisible, u64 tag,
-                         const JGeometry::TBox2f& box)
+void J2DPane::initialize(J2DPane* parent, bool isVisible, u64 tag, const JGeometry::TBox2f& box)
 {
 	m_bloBlockType = 'PAN1';
 	m_isVisible    = isVisible;
@@ -1981,9 +1979,7 @@ lbl_8003813C:
  */
 void J2DPane::move(float x, float y)
 {
-	place(JGeometry::TBox2f(JGeometry::TVec2f(x + (_020.maxX - _020.minX),
-	                                          y + (_020.maxY - _020.minY)),
-	                        JGeometry::TVec2f(x, y)));
+	place(JGeometry::TBox2f(JGeometry::TVec2f(x + (_020.maxX - _020.minX), y + (_020.maxY - _020.minY)), JGeometry::TVec2f(x, y)));
 	/*
 	stwu     r1, -0x20(r1)
 	mflr     r0
@@ -2643,8 +2639,7 @@ template <> J2DPane* JSUTree<J2DPane>::getNextChild() const
  * Address:	800388D8
  * Size:	000018
  */
-template <>
-bool JSUTreeIterator<J2DPane>::operator!=(const JSUTree<J2DPane>*) const
+template <> bool JSUTreeIterator<J2DPane>::operator!=(const JSUTree<J2DPane>*) const
 {
 	/*
 	lwz      r0, 0(r3)
@@ -3939,10 +3934,7 @@ void J2DPane::setAnimation(J2DAnmColor*) { }
  * Address:	800395F4
  * Size:	000008
  */
-void J2DPane::setAnimation(J2DAnmTransform* animation)
-{
-	m_transform = animation;
-}
+void J2DPane::setAnimation(J2DAnmTransform* animation) { m_transform = animation; }
 
 /*
  * --INFO--
@@ -4131,10 +4123,7 @@ lbl_800397B8:
  * Address:	800397D8
  * Size:	00002C
  */
-void J2DPane::setAnimationVF(J2DAnmVisibilityFull* animationVF)
-{
-	setAnimation(animationVF);
-}
+void J2DPane::setAnimationVF(J2DAnmVisibilityFull* animationVF) { setAnimation(animationVF); }
 
 /*
  * --INFO--
@@ -4190,10 +4179,7 @@ lbl_8003986C:
  * Address:	8003988C
  * Size:	00002C
  */
-void J2DPane::setAnimationVC(J2DAnmVtxColor* animationVC)
-{
-	setAnimation(animationVC);
-}
+void J2DPane::setAnimationVC(J2DAnmVtxColor* animationVC) { setAnimation(animationVC); }
 
 /*
  * --INFO--

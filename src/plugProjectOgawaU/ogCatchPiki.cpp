@@ -116,8 +116,7 @@ blr
  * Address:	803078DC
  * Size:	0000C0
  */
-void CallBack_CatchPiki::init(J2DScreen*, unsigned long long, unsigned long*,
-                              JKRArchive*)
+void CallBack_CatchPiki::init(J2DScreen*, unsigned long long, unsigned long*, JKRArchive*)
 {
 	/*
 	.loc_0x0:

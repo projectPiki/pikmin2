@@ -2287,8 +2287,7 @@ void StateMachine<Game::CFSMItem>::create(int)
  * Address:	801D2C0C
  * Size:	0000AC
  */
-void StateMachine<Game::CFSMItem>::transit(Game::CFSMItem*, int,
-                                           Game::StateArg*)
+void StateMachine<Game::CFSMItem>::transit(Game::CFSMItem*, int, Game::StateArg*)
 {
 	/*
 	.loc_0x0:
@@ -2349,8 +2348,7 @@ void StateMachine<Game::CFSMItem>::transit(Game::CFSMItem*, int,
  * Address:	801D2CB8
  * Size:	000084
  */
-void StateMachine<Game::CFSMItem>::registerState(
-    Game::FSMState<Game::CFSMItem>*)
+void StateMachine<Game::CFSMItem>::registerState(Game::FSMState<Game::CFSMItem>*)
 {
 	/*
 	.loc_0x0:

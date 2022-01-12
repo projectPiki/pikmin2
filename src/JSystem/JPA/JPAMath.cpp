@@ -232,8 +232,7 @@ void JPASetRMtxfromMtx(const float (*)[4], float (*)[4])
  * Address:	80093D1C
  * Size:	000028
  */
-void JPASetRMtxTVecfromMtx(const float (*)[4], float (*)[4],
-                           JGeometry::TVec3<float>*)
+void JPASetRMtxTVecfromMtx(const float (*)[4], float (*)[4], JGeometry::TVec3<float>*)
 {
 	/*
 	.loc_0x0:
@@ -257,8 +256,7 @@ void JPASetRMtxTVecfromMtx(const float (*)[4], float (*)[4],
  * Address:	80093D44
  * Size:	00021C
  */
-void JPASetRMtxSTVecfromMtx(const float (*)[4], float (*)[4],
-                            JGeometry::TVec3<float>*, JGeometry::TVec3<float>*)
+void JPASetRMtxSTVecfromMtx(const float (*)[4], float (*)[4], JGeometry::TVec3<float>*, JGeometry::TVec3<float>*)
 {
 	/*
 	.loc_0x0:

@@ -396,8 +396,7 @@ void TOption::doSetArchive(JKRArchive* archive)
 	_1D4._04       = tb->_108;
 	_1D4.m_white   = tb->getWhite();
 	_1D4.m_black   = tb->getBlack();
-	_240.set((J2DTextBox*)E2DScreen_searchAssert(_10C, 'Tsin_y'),
-	         (J2DTextBox*)E2DScreen_searchAssert(_10C, 'Tscolor'));
+	_240.set((J2DTextBox*)E2DScreen_searchAssert(_10C, 'Tsin_y'), (J2DTextBox*)E2DScreen_searchAssert(_10C, 'Tscolor'));
 	_240._1C = 1;
 	_240._44 = sys->m_secondsPerFrame * 3.3333333f;
 	_240._40 = 0.0f;
@@ -1012,21 +1011,21 @@ void TOption::doOpenScreen(ebi::Screen::ArgOpen*)
 {
 	_1E4.play(60.0f * sys->m_secondsPerFrame, J3DAA_UNKNOWN_0, true);
 	setOptionParamToScreen_();
-	u32 uVar2 = __cvt_fp2unsigned(E2DFader::kFadeTime / sys->m_secondsPerFrame);
-	_0FC      = uVar2;
-	_100      = uVar2;
-	_0F8      = 1;
-	_104      = 1;
-	_108      = 1;
+	u32 uVar2                 = __cvt_fp2unsigned(E2DFader::kFadeTime / sys->m_secondsPerFrame);
+	_0FC                      = uVar2;
+	_100                      = uVar2;
+	_0F8                      = 1;
+	_104                      = 1;
+	_108                      = 1;
 	_180[0]->m_isVisible      = false;
 	JGeometry::TBox2f* bounds = _1A8[_104].getBounds();
-	uVar2     = __cvt_fp2unsigned(0.1f / sys->m_secondsPerFrame);
-	_EAC->_40 = uVar2;
-	_EAC->_44 = uVar2;
-	_EAC->_20 = *bounds;
-	_EAC->_30 = *bounds;
-	_EAC->_1C = 1;
-	_EAC->_68 = _180[_104];
+	uVar2                     = __cvt_fp2unsigned(0.1f / sys->m_secondsPerFrame);
+	_EAC->_40                 = uVar2;
+	_EAC->_44                 = uVar2;
+	_EAC->_20                 = *bounds;
+	_EAC->_30                 = *bounds;
+	_EAC->_1C                 = 1;
+	_EAC->_68                 = _180[_104];
 	initScreen_();
 	/*
 stwu     r1, -0x30(r1)
@@ -1116,8 +1115,7 @@ blr
  */
 void TOption::doCloseScreen(ebi::Screen::ArgClose*)
 {
-	u32 v1 = __cvt_fp2unsigned((float)E2DFader::kFadeTime
-	                           / sys->m_secondsPerFrame);
+	u32 v1 = __cvt_fp2unsigned((float)E2DFader::kFadeTime / sys->m_secondsPerFrame);
 	_0FC   = v1;
 	_100   = v1;
 	_0F8   = 2;
@@ -2196,8 +2194,7 @@ void TOption::loadResource(void)
 	char resName[256];
 	sys->heapStatusStart("TOption::loadResource", nullptr);
 	og::newScreen::makeLanguageResName(resName, "option_us.szs");
-	JKRArchive* archive = JKRArchive::mount(resName, JKRArchive::EMM_Unk1,
-	                                        nullptr, JKRArchive::EMD_Unk1);
+	JKRArchive* archive = JKRArchive::mount(resName, JKRArchive::EMM_Unk1, nullptr, JKRArchive::EMD_Unk1);
 	P2ASSERTLINE(757, (archive != nullptr));
 	sys->heapStatusEnd("TOption::loadResource");
 	setArchive(archive);
@@ -2211,18 +2208,10 @@ void TOption::loadResource(void)
 void TOption::setController(Controller* controller)
 {
 	m_controller = controller;
-	m_padInterfaces[0].init(controller, 0, 10, &_0C8.m_bgmVolume,
-	                        EUTPadInterface_countNum::MODE_UNKNOWN_1, 0.66f,
-	                        0.15f);
-	m_padInterfaces[1].init(controller, 0, 10, &_0C8.m_seVolume,
-	                        EUTPadInterface_countNum::MODE_UNKNOWN_1, 0.66f,
-	                        0.15f);
-	m_padInterfaces[2].init(controller, 0, 2, &_0C8.m_soundMode,
-	                        EUTPadInterface_countNum::MODE_UNKNOWN_1, 0.66f,
-	                        0.15f);
-	m_padInterfaces[3].init(controller, 0, 6, &_104,
-	                        EUTPadInterface_countNum::MODE_UNKNOWN_3, 0.66f,
-	                        0.15f);
+	m_padInterfaces[0].init(controller, 0, 10, &_0C8.m_bgmVolume, EUTPadInterface_countNum::MODE_UNKNOWN_1, 0.66f, 0.15f);
+	m_padInterfaces[1].init(controller, 0, 10, &_0C8.m_seVolume, EUTPadInterface_countNum::MODE_UNKNOWN_1, 0.66f, 0.15f);
+	m_padInterfaces[2].init(controller, 0, 2, &_0C8.m_soundMode, EUTPadInterface_countNum::MODE_UNKNOWN_1, 0.66f, 0.15f);
+	m_padInterfaces[3].init(controller, 0, 6, &_104, EUTPadInterface_countNum::MODE_UNKNOWN_3, 0.66f, 0.15f);
 	/*
 stwu     r1, -0x10(r1)
 mflr     r0

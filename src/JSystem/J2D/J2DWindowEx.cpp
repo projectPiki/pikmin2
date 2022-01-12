@@ -152,8 +152,7 @@
  * Address:	80044E34
  * Size:	0002E8
  */
-J2DWindowEx::J2DWindowEx(J2DPane*, JSURandomInputStream*, unsigned long,
-                         J2DMaterial*)
+J2DWindowEx::J2DWindowEx(J2DPane*, JSURandomInputStream*, unsigned long, J2DMaterial*)
 {
 	/*
 	.loc_0x0:
@@ -660,8 +659,7 @@ void J2DWindowEx::drawSelf(float, float, float (*)[3][4])
  * Address:	80045498
  * Size:	0006F0
  */
-void J2DWindowEx::draw_private(const JGeometry::TBox2<float>&,
-                               const JGeometry::TBox2<float>&)
+void J2DWindowEx::draw_private(const JGeometry::TBox2<float>&, const JGeometry::TBox2<float>&)
 {
 	/*
 	.loc_0x0:
@@ -1423,9 +1421,8 @@ lbl_80045F78:
  * Address:	80045FB4
  * Size:	000264
  */
-void J2DWindowEx::drawFrameTexture(float, float, float, float, unsigned short,
-                                   unsigned short, unsigned short,
-                                   unsigned short, J2DMaterial*, bool)
+void J2DWindowEx::drawFrameTexture(float, float, float, float, unsigned short, unsigned short, unsigned short, unsigned short, J2DMaterial*,
+                                   bool)
 {
 	/*
 	.loc_0x0:
@@ -1724,8 +1721,7 @@ lbl_80046398:
  * Address:	800463AC
  * Size:	000128
  */
-void J2DWindowEx::draw(const JGeometry::TBox2<float>&,
-                       const JGeometry::TBox2<float>&)
+void J2DWindowEx::draw(const JGeometry::TBox2<float>&, const JGeometry::TBox2<float>&)
 {
 	/*
 	.loc_0x0:
@@ -3537,8 +3533,7 @@ lbl_800477CC:
  * Address:	800477F8
  * Size:	000004
  */
-void J2DAnmVtxColor::getColor(unsigned char, unsigned short, _GXColor*) const {
-}
+void J2DAnmVtxColor::getColor(unsigned char, unsigned short, _GXColor*) const { }
 
 /*
  * --INFO--

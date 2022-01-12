@@ -484,8 +484,7 @@ void SeqTrackRoot::initSwingRatio()
  * Address:	803427A4
  * Size:	000088
  */
-void SeqTrackRoot::pitchModulation(float, float, unsigned long,
-                                   PSSystem::DirectorBase*)
+void SeqTrackRoot::pitchModulation(float, float, unsigned long, PSSystem::DirectorBase*)
 {
 	/*
 	.loc_0x0:
@@ -847,8 +846,7 @@ SeqTrackChild::SeqTrackChild(const PSSystem::SeqTrackRoot&)
  * Address:	80342C50
  * Size:	000084
  */
-void SeqTrackChild::muteOffAndFadeIn(float, unsigned long,
-                                     PSSystem::DirectorBase*)
+void SeqTrackChild::muteOffAndFadeIn(float, unsigned long, PSSystem::DirectorBase*)
 {
 	/*
 	.loc_0x0:

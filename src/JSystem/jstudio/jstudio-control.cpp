@@ -515,8 +515,7 @@ lbl_8000CF30:
  * Address:	8000CF4C
  * Size:	000078
  */
-void TParse::parseHeader(JStudio::stb::data::TParse_THeader const&,
-                         unsigned long)
+void TParse::parseHeader(JStudio::stb::data::TParse_THeader const&, unsigned long)
 {
 	/*
 	.loc_0x0:
@@ -564,8 +563,7 @@ void TParse::parseHeader(JStudio::stb::data::TParse_THeader const&,
  * Address:	8000CFC4
  * Size:	000044
  */
-void TParse::parseBlock_block(JStudio::stb::data::TParse_TBlock const&,
-                              unsigned long)
+void TParse::parseBlock_block(JStudio::stb::data::TParse_TBlock const&, unsigned long)
 {
 	/*
 	.loc_0x0:
@@ -602,8 +600,7 @@ void TParse::parseBlock_block(JStudio::stb::data::TParse_TBlock const&,
  * Address:	8000D008
  * Size:	000060
  */
-void TParse::parseBlock_block_fvb_(JStudio::stb::data::TParse_TBlock const&,
-                                   unsigned long)
+void TParse::parseBlock_block_fvb_(JStudio::stb::data::TParse_TBlock const&, unsigned long)
 {
 	/*
 	.loc_0x0:

@@ -849,8 +849,7 @@ void JKRSolidHeap::state_register(JKRHeap::TState*, unsigned long) const
  * Address:	800255CC
  * Size:	000030
  */
-void JKRSolidHeap::state_compare(const JKRHeap::TState&,
-                                 const JKRHeap::TState&) const
+void JKRSolidHeap::state_compare(const JKRHeap::TState&, const JKRHeap::TState&) const
 {
 	/*
 	.loc_0x0:

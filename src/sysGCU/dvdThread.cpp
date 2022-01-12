@@ -106,8 +106,7 @@ void DvdThreadCommand::loadUseCallBack(IDelegate*)
  * Address:	........
  * Size:	000038
  */
-void DvdThreadCommand::loadArchive(char*, JKRHeap*,
-                                   DvdThreadCommand::EHeapDirection)
+void DvdThreadCommand::loadArchive(char*, JKRHeap*, DvdThreadCommand::EHeapDirection)
 {
 	// UNUSED FUNCTION
 }
@@ -117,8 +116,7 @@ void DvdThreadCommand::loadArchive(char*, JKRHeap*,
  * Address:	........
  * Size:	000034
  */
-void DvdThreadCommand::loadFile(char*, JKRHeap*,
-                                DvdThreadCommand::EHeapDirection)
+void DvdThreadCommand::loadFile(char*, JKRHeap*, DvdThreadCommand::EHeapDirection)
 {
 	// UNUSED FUNCTION
 }

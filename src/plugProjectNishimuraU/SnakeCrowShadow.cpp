@@ -109,10 +109,7 @@
  * Address:	802F8090
  * Size:	00022C
  */
-void
-    makeShadowSRT__Q24Game23SnakeCrowTubeShadowNodeFRQ24Game15JointShadowParmR10Vector3<
-        float>
-    R10Vector3f(void)
+void makeShadowSRT__Q24Game23SnakeCrowTubeShadowNodeFRQ24Game15JointShadowParmR10Vector3<float> R10Vector3f(void)
 {
 	/*
 	.loc_0x0:
@@ -271,8 +268,7 @@ void
  * Address:	802F82BC
  * Size:	00012C
  */
-void makeShadowSRT__Q24Game25SnakeCrowSphereShadowNodeFRQ24Game15JointShadowParmR10Vector3<
-    float>(void)
+void makeShadowSRT__Q24Game25SnakeCrowSphereShadowNodeFRQ24Game15JointShadowParmR10Vector3<float>(void)
 {
 	/*
 	.loc_0x0:

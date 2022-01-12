@@ -23,10 +23,7 @@ void GDFlushCurrToMem(void);
 void GDPadCurr32(void);
 void GDOverflowed(void);
 
-static inline void __GDWrite(u8 data)
-{
-	*__GDCurrentDL->pDisplayListData++ = data;
-}
+static inline void __GDWrite(u8 data) { *__GDCurrentDL->pDisplayListData++ = data; }
 
 typedef void (*GDOverflowCallback)(void);
 static GDOverflowCallback overflowcb = NULL;

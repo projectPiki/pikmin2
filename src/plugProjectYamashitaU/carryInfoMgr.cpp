@@ -2261,8 +2261,7 @@ lbl_8011C850:
  * Address:	8011C868
  * Size:	00002C
  */
-void InfoMgr<CarryInfoOwner, CarryInfoList>::search(CarryInfoList*,
-                                                    CarryInfoOwner*)
+void InfoMgr<CarryInfoOwner, CarryInfoList>::search(CarryInfoList*, CarryInfoOwner*)
 {
 	/*
 	.loc_0x0:

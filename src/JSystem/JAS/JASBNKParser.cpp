@@ -558,8 +558,7 @@ lbl_8009AE98:
  * Address:	8009AEAC
  * Size:	000120
  */
-void JASBNKParser::findOscPtr(JASBasicBank*, JASBNKParser::THeader*,
-                              JASBNKParser::TOsc*)
+void JASBNKParser::findOscPtr(JASBasicBank*, JASBNKParser::THeader*, JASBNKParser::TOsc*)
 {
 	/*
 	.loc_0x0:

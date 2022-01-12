@@ -2304,8 +2304,7 @@ lbl_803B7DCC:
  * Address:	803B7DEC
  * Size:	000038
  */
-void init__Q23efx11TNaviEffectFP10Vector3f PA4_fP10Vector3f
-Q33efx11TNaviEffect12enumNaviType(void)
+void init__Q23efx11TNaviEffectFP10Vector3f PA4_fP10Vector3f Q33efx11TNaviEffect12enumNaviType(void)
 {
 	/*
 	.loc_0x0:

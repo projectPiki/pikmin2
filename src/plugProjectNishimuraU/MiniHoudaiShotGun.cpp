@@ -175,8 +175,7 @@ lbl_802EDCC8:
  * Address:	........
  * Size:	000054
  */
-MiniHoudai::MiniHoudaiShotGunNode::MiniHoudaiShotGunNode(
-    (Game::MiniHoudai::Obj*))
+MiniHoudai::MiniHoudaiShotGunNode::MiniHoudaiShotGunNode((Game::MiniHoudai::Obj*))
 {
 	// UNUSED FUNCTION
 }
@@ -1489,8 +1488,7 @@ void MiniHoudai::MiniHoudaiShotGunMgr::isFinishShotGun(void)
  * Address:	802EECA0
  * Size:	00001C
  */
-void setShotGunTarget__Q34Game10MiniHoudai20MiniHoudaiShotGunMgrFR10Vector3<
-    float>(void)
+void setShotGunTarget__Q34Game10MiniHoudai20MiniHoudaiShotGunMgrFR10Vector3<float>(void)
 {
 	/*
 	.loc_0x0:

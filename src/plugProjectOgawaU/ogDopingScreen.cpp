@@ -755,8 +755,7 @@ blr
  * Address:	80303E04
  * Size:	000044
  */
-void DopingCheck::init(J2DPane*, J2DPane*, og::Screen::ScaleMgr*,
-                       og::Screen::ScaleMgr*)
+void DopingCheck::init(J2DPane*, J2DPane*, og::Screen::ScaleMgr*, og::Screen::ScaleMgr*)
 {
 	/*
 	.loc_0x0:

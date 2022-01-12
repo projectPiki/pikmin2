@@ -7781,10 +7781,7 @@ lbl_803AB77C:
  * Address:	803AB78C
  * Size:	000008
  */
-void bombCallBack__Q34Game8BlackMan3ObjFPQ24Game8CreatureR10Vector3f f(void)
-{
-	return 0x0;
-}
+void bombCallBack__Q34Game8BlackMan3ObjFPQ24Game8CreatureR10Vector3f f(void) { return 0x0; }
 
 /*
  * --INFO--

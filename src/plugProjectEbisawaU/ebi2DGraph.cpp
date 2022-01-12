@@ -40,8 +40,7 @@ J2DPane* E2DScreen_searchAssert(J2DScreen* screen, u64 tag)
 {
 	char name[16];
 	J2DPane* result = screen->search(tag);
-	P2ASSERTLINE(20, (result != nullptr
-	                  || (EUTDebug_Tag64ToName(tag, name), result != nullptr)));
+	P2ASSERTLINE(20, (result != nullptr || (EUTDebug_Tag64ToName(tag, name), result != nullptr)));
 	return result;
 }
 

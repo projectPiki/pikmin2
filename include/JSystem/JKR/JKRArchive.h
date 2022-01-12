@@ -62,8 +62,7 @@ struct JKRArchive : public JKRFileLoader {
 	SDIFileEntry* findTypeResource(u32, const char*) const;
 	bool isSameName(CArcName&, u32, u16) const;
 
-	static JKRArchive* mount(char const*, EMountMode, JKRHeap*,
-	                         EMountDirection);
+	static JKRArchive* mount(char const*, EMountMode, JKRHeap*, EMountDirection);
 	static JKRArchive* mount(void*, JKRHeap*, EMountDirection);
 	static JKRArchive* mount(long, EMountMode, JKRHeap*, EMountDirection);
 };

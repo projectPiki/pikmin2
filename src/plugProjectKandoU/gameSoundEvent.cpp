@@ -55,9 +55,8 @@ u32 TSoundEvent::update()
 	// Checks if the event isn't finished, has gone over the duration of the
 	// event, is active and hasn't been applied yet, and then changes the state
 	// to transition to apply the event.
-	if (!(m_state & TSE_Finish)
-	    && Game::gameSystem->calcFrameDist(m_timer) > m_duration
-	    && m_state & TSE_Active && !(m_state & TSE_ApplyTransition)) {
+	if (!(m_state & TSE_Finish) && Game::gameSystem->calcFrameDist(m_timer) > m_duration && m_state & TSE_Active
+	    && !(m_state & TSE_ApplyTransition)) {
 		m_state |= TSE_ApplyTransition;
 		return TSE_ApplyTransition;
 	}

@@ -312,9 +312,7 @@ namespace Screen {
  * Address:	803F8694
  * Size:	00007C
  */
-DispCaveResult::DispCaveResult(Game::Result::TNode*, unsigned long,
-                               unsigned long, unsigned long, unsigned long,
-                               bool, JKRHeap*, bool)
+DispCaveResult::DispCaveResult(Game::Result::TNode*, unsigned long, unsigned long, unsigned long, unsigned long, bool, JKRHeap*, bool)
 {
 	/*
 	.loc_0x0:
@@ -3988,8 +3986,7 @@ blr
  * Address:	803FB734
  * Size:	000170
  */
-void LostItemMgr::draw(P2DScreen::Mgr_tuning*, unsigned long long,
-                       const ResTIMG*, Graphics&)
+void LostItemMgr::draw(P2DScreen::Mgr_tuning*, unsigned long long, const ResTIMG*, Graphics&)
 {
 	/*
 	.loc_0x0:

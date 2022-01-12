@@ -128,9 +128,7 @@ inline template <> float Vector3f::normalise()
 {
 	// float f2 = 0.0f;
 	// if ((x*x + y*y + z*z > 0.0f)) {
-	float f2 = ((x * x + y * y + z * z > 0.0f))
-	               ? pikmin2_sqrtf__(z * z + (x * x + y * y))
-	               : 0.0f;
+	float f2 = ((x * x + y * y + z * z > 0.0f)) ? pikmin2_sqrtf__(z * z + (x * x + y * y)) : 0.0f;
 	// if (f2 = x*x + y*y + z*z, f2 > 0.0f) {
 	// float x2 = x*x;
 	// float z2 = z*z;
@@ -1048,11 +1046,7 @@ bool Creature::isPellet() { return m_objectTypeID == OBJTYPE_Pellet; }
  * Address:	8013BA30
  * Size:	000020
  */
-bool Creature::sound_culling()
-{
-	return !((m_lod.m_flags & AILOD::FLAG_UNKNOWN4)
-	         || (m_lod.m_flags & AILOD::FLAG_NEED_SHADOW));
-}
+bool Creature::sound_culling() { return !((m_lod.m_flags & AILOD::FLAG_UNKNOWN4) || (m_lod.m_flags & AILOD::FLAG_NEED_SHADOW)); }
 
 /*
  * --INFO--
@@ -1311,12 +1305,9 @@ void Creature::updateCell()
 		float radius                       = getCellRadius();
 		collision.m_radius                 = radius;
 		m_sweepPruneObject.m_minX.m_radius = collision.m_position.x - radius;
-		m_sweepPruneObject.m_maxX.m_radius
-		    = collision.m_position.x + collision.m_radius;
-		m_sweepPruneObject.m_minZ.m_radius
-		    = collision.m_position.z - collision.m_radius;
-		m_sweepPruneObject.m_maxZ.m_radius
-		    = collision.m_position.z + collision.m_radius;
+		m_sweepPruneObject.m_maxX.m_radius = collision.m_position.x + collision.m_radius;
+		m_sweepPruneObject.m_minZ.m_radius = collision.m_position.z - collision.m_radius;
+		m_sweepPruneObject.m_maxZ.m_radius = collision.m_position.z + collision.m_radius;
 	}
 	// TODO: I think the rest is an inline function of something that takes a
 	// CellObject*? Didn't find any candidates in the symbol map though.
@@ -2365,9 +2356,7 @@ void Creature::collisionCallback(Game::CollEvent&) { }
  * Address:	8013CB90
  * Size:	000030
  */
-template <>
-void Delegate3<Game::Creature, CollPart*, CollPart*, Vector3f&>::invoke(
-    CollPart*, CollPart*, Vector3f&)
+template <> void Delegate3<Game::Creature, CollPart*, CollPart*, Vector3f&>::invoke(CollPart*, CollPart*, Vector3f&)
 {
 	/*
 	.loc_0x0:
@@ -2449,10 +2438,7 @@ float Creature::getSound_CurrAnimSpeed() { return 0.0f; }
  * Address:	8013CBF8
  * Size:	00002C
  */
-void Creature::getLODSphere(Sys::Sphere& sphere)
-{
-	return getBoundingSphere(sphere);
-}
+void Creature::getLODSphere(Sys::Sphere& sphere) { return getBoundingSphere(sphere); }
 
 /*
  * --INFO--

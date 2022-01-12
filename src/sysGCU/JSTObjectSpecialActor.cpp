@@ -499,8 +499,7 @@ void __sinit_JSTObjectSpecialActor_cpp(void)
  * Address:	80437824
  * Size:	000008
  */
-void @4
-    @Game::P2JST::ObjectSpecialActor::parseUserData_(unsigned long, void const*)
+void @4 @Game::P2JST::ObjectSpecialActor::parseUserData_(unsigned long, void const*)
 {
 	/*
 	.loc_0x0:

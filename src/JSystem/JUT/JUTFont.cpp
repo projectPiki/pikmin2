@@ -152,8 +152,7 @@ void JUTFont::setGradColor(JUtility::TColor, JUtility::TColor)
  * Address:	8002D274
  * Size:	000118
  */
-void JUTFont::drawString_size_scale(float, float, float, float, const char*,
-                                    u32, bool)
+void JUTFont::drawString_size_scale(float, float, float, float, const char*, u32, bool)
 {
 	/*
 	.loc_0x0:

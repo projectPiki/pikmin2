@@ -16,29 +16,27 @@ struct JUTFont {
 	JUTFont();
 
 	// TODO: Finish VTBL.
-	virtual ~JUTFont();                                     // _00
-	virtual void setGX() = 0;                               // _04
-	virtual void setGX(JUtility::TColor, JUtility::TColor); // _08
-	virtual float drawChar_scale(float, float, float, float, int, bool)
-	    = 0;                                                     // _0C
-	virtual u16 getLeading() const                          = 0; // _10
-	virtual u16 getAscent() const                           = 0; // _14
-	virtual u16 getDescent() const                          = 0; // _18
-	virtual u16 getHeight() const                           = 0; // _1C
-	virtual u16 getWidth() const                            = 0; // _20
-	virtual void getWidthEntry(int, JUTFont::TWidth*) const = 0; // _24
-	virtual u16 getCellWidth() const;                            // _28
-	virtual u16 getCellHeight() const;                           // _2C
-	virtual u32 getFontType() const     = 0;                     // _30
-	virtual ResFONT* getResFont() const = 0;                     // _34
-	virtual bool isLeadByte(int) const  = 0;                     // _38
+	virtual ~JUTFont();                                                      // _00
+	virtual void setGX() = 0;                                                // _04
+	virtual void setGX(JUtility::TColor, JUtility::TColor);                  // _08
+	virtual float drawChar_scale(float, float, float, float, int, bool) = 0; // _0C
+	virtual u16 getLeading() const                                      = 0; // _10
+	virtual u16 getAscent() const                                       = 0; // _14
+	virtual u16 getDescent() const                                      = 0; // _18
+	virtual u16 getHeight() const                                       = 0; // _1C
+	virtual u16 getWidth() const                                        = 0; // _20
+	virtual void getWidthEntry(int, JUTFont::TWidth*) const             = 0; // _24
+	virtual u16 getCellWidth() const;                                        // _28
+	virtual u16 getCellHeight() const;                                       // _2C
+	virtual u32 getFontType() const     = 0;                                 // _30
+	virtual ResFONT* getResFont() const = 0;                                 // _34
+	virtual bool isLeadByte(int) const  = 0;                                 // _38
 	// virtual void loadImage(int, _GXTexMapID) = 0;                // _3C
 
 	void initialize_state();
 	void setCharColor(JUtility::TColor);
 	void setGradColor(JUtility::TColor, JUtility::TColor);
-	void drawString_size_scale(float, float, float, float, const char*, u32,
-	                           bool);
+	void drawString_size_scale(float, float, float, float, const char*, u32, bool);
 
 	static bool isLeadByte_1Byte(int);
 	static bool isLeadByte_2Byte(int);
@@ -193,8 +191,7 @@ struct JUTCacheFont : public JUTResFont {
 	void allocArea(void*, u32, JKRHeap*);
 	void allocArray(JKRHeap*);
 	void deleteMemBlocks_CacheFont();
-	void getMemorySize(const ResFONT*, u16*, u32*, u16*, u32*, u16*, u32*,
-	                   u32*);
+	void getMemorySize(const ResFONT*, u16*, u32*, u16*, u32*, u16*, u32*, u32*);
 	void initialize_state();
 	void initiate(const ResFONT*, void*, u32, JKRHeap*);
 	void internal_initiate(const ResFONT*, void*, u32, JKRHeap*);

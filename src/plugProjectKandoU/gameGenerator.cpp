@@ -727,8 +727,7 @@ void Generator::generate(void)
 		}
 		m_creature = nullptr;
 		if (_18 != nullptr) {
-			if (ramMode != 0 && (_5C & 4) != 0
-			    && gameSystem->m_timeMgr->m_dayCount >= _78 + _70) {
+			if (ramMode != 0 && (_5C & 4) != 0 && gameSystem->m_timeMgr->m_dayCount >= _78 + _70) {
 				_78 = gameSystem->m_timeMgr->m_dayCount;
 				_74 = 0;
 			}
@@ -945,10 +944,8 @@ void Generator::read(Stream& input)
 	GenObject* makeResult = nullptr;
 	if (0 < count) {
 		do {
-			if (temp.m_id.raw
-			    == GenObjectFactory::factory->m_factories[i].m_typeID) {
-				makeResult = GenObjectFactory::factory->m_factories[i]
-				                 .m_makeFunction();
+			if (temp.m_id.raw == GenObjectFactory::factory->m_factories[i].m_typeID) {
+				makeResult = GenObjectFactory::factory->m_factories[i].m_makeFunction();
 				break;
 			}
 		} while (--count != 0);
@@ -1846,8 +1843,7 @@ lbl_801AB6E0:
  */
 void GeneratorMgr::setDayLimit(int dayLimit)
 {
-	for (Generator* generator = m_generator; generator != nullptr;
-	     generator            = generator->_64) {
+	for (Generator* generator = m_generator; generator != nullptr; generator = generator->_64) {
 		generator->m_dayLimitMaybe = dayLimit;
 	}
 }

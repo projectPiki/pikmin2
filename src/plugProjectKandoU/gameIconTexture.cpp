@@ -97,10 +97,7 @@ void IconTexture::Loader::loadResource(char* path)
  * Address:	802335DC
  * Size:	000030
  */
-ResTIMG* IconTexture::Loader::getResTIMG(char* path)
-{
-	return (ResTIMG*)m_archive->getResource(path);
-}
+ResTIMG* IconTexture::Loader::getResTIMG(char* path) { return (ResTIMG*)m_archive->getResource(path); }
 
 /*
  * --INFO--
@@ -147,8 +144,7 @@ void IconTexture::Mgr::create(int count)
  */
 void IconTexture::Mgr::setTexture(int index, ResTIMG* resource)
 {
-	JUT_ASSERTLINE(86, (0 <= index && index < m_count),
-	               "illegal index [%d] [0..%d)\n", index, m_count);
+	JUT_ASSERTLINE(86, (0 <= index && index < m_count), "illegal index [%d] [0..%d)\n", index, m_count);
 	m_textures[index].storeTIMG(resource, (u8)'\0');
 }
 

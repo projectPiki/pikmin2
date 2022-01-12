@@ -19,8 +19,7 @@ extern void TRK_board_display(char*);
 void TRKNubWelcome(void)
 {
 
-	TRK_board_display(
-	    "MetroTRK for GAMECUBE v2.6"); //"MetroTRK for GAMECUBE v2.6"
+	TRK_board_display("MetroTRK for GAMECUBE v2.6"); //"MetroTRK for GAMECUBE v2.6"
 	return;
 }
 

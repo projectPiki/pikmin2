@@ -41,10 +41,8 @@ BOOL DVDFastOpen(long, struct DVDPlayer*);
 BOOL DVDClose(struct DVDPlayer*);
 int DVDCancel(struct DVDPlayer*); // Definitely int; returns -1 on failure.
 BOOL DVDResume();
-BOOL DVDReadAsyncPrio(struct DVDPlayer*, void*, long, long,
-                      DVDDoneReadCallback*, int);
-BOOL DVDReadAbsAsyncPrio(struct DVDPlayer*, void*, long, u8*,
-                         DVDDoneReadCallback*, int);
+BOOL DVDReadAsyncPrio(struct DVDPlayer*, void*, long, long, DVDDoneReadCallback*, int);
+BOOL DVDReadAbsAsyncPrio(struct DVDPlayer*, void*, long, u8*, DVDDoneReadCallback*, int);
 
 BOOL DVDConvertEntrynumToPath(int, char*);
 int DVDConvertPathToEntrynum(char*);

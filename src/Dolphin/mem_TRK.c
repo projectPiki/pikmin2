@@ -1,7 +1,6 @@
 #include "types.h"
 
-__declspec(section ".init") void* TRK_memcpy(void* dst, const void* src,
-                                             size_t n);
+__declspec(section ".init") void* TRK_memcpy(void* dst, const void* src, size_t n);
 __declspec(section ".init") void* TRK_memset(void* dst, int val, size_t n);
 
 void TRK_fill_mem(void* dst, int val, size_t n);

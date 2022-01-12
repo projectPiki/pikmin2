@@ -134,8 +134,7 @@
  * Address:	80074440
  * Size:	000170
  */
-void J3DGDSetGenMode(unsigned char, unsigned char, unsigned char, unsigned char,
-                     _GXCullMode)
+void J3DGDSetGenMode(unsigned char, unsigned char, unsigned char, unsigned char, _GXCullMode)
 {
 	/*
 	.loc_0x0:
@@ -1509,9 +1508,7 @@ lbl_80075598:
  * Address:	80075624
  * Size:	0001FC
  */
-void J3DGDSetTexCoordScale2(_GXTexCoordID, unsigned short, unsigned char,
-                            unsigned char, unsigned short, unsigned char,
-                            unsigned char)
+void J3DGDSetTexCoordScale2(_GXTexCoordID, unsigned short, unsigned char, unsigned char, unsigned short, unsigned char, unsigned char)
 {
 	/*
 	.loc_0x0:
@@ -1652,9 +1649,8 @@ void J3DGDSetTexCoordScale2(_GXTexCoordID, unsigned short, unsigned char,
  * Address:	80075820
  * Size:	0001AC
  */
-void J3DGDSetTexLookupMode(_GXTexMapID, _GXTexWrapMode, _GXTexWrapMode,
-                           _GXTexFilter, _GXTexFilter, float, float, float,
-                           unsigned char, unsigned char, _GXAnisotropy)
+void J3DGDSetTexLookupMode(_GXTexMapID, _GXTexWrapMode, _GXTexWrapMode, _GXTexFilter, _GXTexFilter, float, float, float, unsigned char,
+                           unsigned char, _GXAnisotropy)
 {
 	/*
 	.loc_0x0:
@@ -2384,8 +2380,7 @@ lbl_80076048:
  * Address:	80076210
  * Size:	0000F0
  */
-void J3DGDSetIndTexCoordScale(_GXIndTexStageID, _GXIndTexScale, _GXIndTexScale,
-                              _GXIndTexScale, _GXIndTexScale)
+void J3DGDSetIndTexCoordScale(_GXIndTexStageID, _GXIndTexScale, _GXIndTexScale, _GXIndTexScale, _GXIndTexScale)
 {
 	/*
 	.loc_0x0:
@@ -2459,9 +2454,8 @@ void J3DGDSetIndTexCoordScale(_GXIndTexStageID, _GXIndTexScale, _GXIndTexScale,
  * Address:	80076300
  * Size:	0001F8
  */
-void J3DGDSetIndTexOrder(unsigned long, _GXTexCoordID, _GXTexMapID,
-                         _GXTexCoordID, _GXTexMapID, _GXTexCoordID, _GXTexMapID,
-                         _GXTexCoordID, _GXTexMapID)
+void J3DGDSetIndTexOrder(unsigned long, _GXTexCoordID, _GXTexMapID, _GXTexCoordID, _GXTexMapID, _GXTexCoordID, _GXTexMapID, _GXTexCoordID,
+                         _GXTexMapID)
 {
 	/*
 	.loc_0x0:
@@ -2617,8 +2611,7 @@ void J3DGDSetIndTexOrder(unsigned long, _GXTexCoordID, _GXTexMapID,
  * Address:	800764F8
  * Size:	000188
  */
-void J3DGDSetTevOrder(_GXTevStageID, _GXTexCoordID, _GXTexMapID, _GXChannelID,
-                      _GXTexCoordID, _GXTexMapID, _GXChannelID)
+void J3DGDSetTevOrder(_GXTevStageID, _GXTexCoordID, _GXTexMapID, _GXChannelID, _GXTexCoordID, _GXTexMapID, _GXChannelID)
 {
 	/*
 	.loc_0x0:
@@ -3549,8 +3542,7 @@ void J3DFifoLoadNrmMtxToTexMtx3x3(float (*)[3], unsigned long)
  * Address:	80077140
  * Size:	000080
  */
-void J3DFifoLoadTexCached(_GXTexMapID, unsigned long, _GXTexCacheSize,
-                          unsigned long, _GXTexCacheSize)
+void J3DFifoLoadTexCached(_GXTexMapID, unsigned long, _GXTexCacheSize, unsigned long, _GXTexCacheSize)
 {
 	/*
 	.loc_0x0:

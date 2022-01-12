@@ -163,8 +163,7 @@ struct GroundDirector_Cave : public ActorDirector_TrackOn {
  * @size{0x68}
  */
 struct ActorDirector_Scaled : public TrackOnDirector_Scaled {
-	ActorDirector_Scaled(const char*, int, float, float, long, long,
-	                     unsigned long);
+	ActorDirector_Scaled(const char*, int, float, float, long, long, unsigned long);
 
 	virtual ~ActorDirector_Scaled();               // _00
 	virtual void execInner();                      // _14

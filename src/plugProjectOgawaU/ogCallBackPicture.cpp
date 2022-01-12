@@ -315,8 +315,7 @@ blr
  * Address:	........
  * Size:	0000D4
  */
-void setCallBack_Picture(JKRArchive*, char*, unsigned long long,
-                         P2DScreen::Mgr*, unsigned long long)
+void setCallBack_Picture(JKRArchive*, char*, unsigned long long, P2DScreen::Mgr*, unsigned long long)
 {
 	// UNUSED FUNCTION
 }

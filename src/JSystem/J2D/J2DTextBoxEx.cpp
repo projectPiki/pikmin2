@@ -99,8 +99,7 @@
  * Address:	800596A8
  * Size:	000330
  */
-J2DTextBoxEx::J2DTextBoxEx(J2DPane*, JSURandomInputStream*, unsigned long,
-                           J2DMaterial*)
+J2DTextBoxEx::J2DTextBoxEx(J2DPane*, JSURandomInputStream*, unsigned long, J2DMaterial*)
 {
 	/*
 	.loc_0x0:

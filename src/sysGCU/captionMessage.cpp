@@ -185,8 +185,7 @@ void Caption::TRenderingProcessor::doGetDrawInfo(P2JME::Window::DrawInfo*)
  * Address:	80450FCC
  * Size:	0001EC
  */
-void Caption::TRenderingProcessor::doDrawCommon(float, float, Matrixf*,
-                                                Matrixf*)
+void Caption::TRenderingProcessor::doDrawCommon(float, float, Matrixf*, Matrixf*)
 {
 	/*
 	.loc_0x0:

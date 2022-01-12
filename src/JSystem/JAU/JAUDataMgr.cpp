@@ -245,8 +245,7 @@ void JADUtility::DataLoadMgrNode::setLoadPath(char const*)
  * Address:	........
  * Size:	000230
  */
-void JADUtility::DataLoadMgrNode::load(JADUtility::DataLoadMgrNode::ObjStatus,
-                                       bool)
+void JADUtility::DataLoadMgrNode::load(JADUtility::DataLoadMgrNode::ObjStatus, bool)
 {
 	// UNUSED FUNCTION
 }

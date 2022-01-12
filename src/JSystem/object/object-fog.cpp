@@ -68,8 +68,7 @@
  * Address:	80014134
  * Size:	0000A0
  */
-JStudio_JStage::TAdaptor_fog::TAdaptor_fog(const JStage::TSystem*,
-                                           JStage::TFog*)
+JStudio_JStage::TAdaptor_fog::TAdaptor_fog(const JStage::TSystem*, JStage::TFog*)
 {
 	/*
 	.loc_0x0:
@@ -310,8 +309,7 @@ void JStudio_JStage::TAdaptor_fog::adaptor_do_end(const JStudio::TObject*)
  * Address:	800143DC
  * Size:	00006C
  */
-void JStudio_JStage::TAdaptor_fog::adaptor_do_update(const JStudio::TObject*,
-                                                     unsigned long)
+void JStudio_JStage::TAdaptor_fog::adaptor_do_update(const JStudio::TObject*, unsigned long)
 {
 	/*
 	.loc_0x0:
@@ -350,9 +348,7 @@ void JStudio_JStage::TAdaptor_fog::adaptor_do_update(const JStudio::TObject*,
  * Address:	80014448
  * Size:	000034
  */
-void JStudio_JStage::TAdaptor_fog::adaptor_do_data(const JStudio::TObject*,
-                                                   const void*, unsigned long,
-                                                   const void*, unsigned long)
+void JStudio_JStage::TAdaptor_fog::adaptor_do_data(const JStudio::TObject*, const void*, unsigned long, const void*, unsigned long)
 {
 	/*
 	.loc_0x0:
@@ -544,8 +540,7 @@ void __sinit_object - fog_cpp(void)
  * Address:	800146A4
  * Size:	000060
  */
-void JStudio_JStage::TVariableValueOutput_object_<
-    JStudio_JStage::TAdaptor_fog, JStage::TFog>::~TVariableValueOutput_object_()
+void JStudio_JStage::TVariableValueOutput_object_<JStudio_JStage::TAdaptor_fog, JStage::TFog>::~TVariableValueOutput_object_()
 {
 	/*
 	.loc_0x0:
@@ -583,10 +578,7 @@ void JStudio_JStage::TVariableValueOutput_object_<
  * Address:	80014704
  * Size:	000030
  */
-void JStudio_JStage::TVariableValueOutput_object_<
-    JStudio_JStage::TAdaptor_fog, JStage::TFog>::operator()(float,
-                                                            JStudio::TAdaptor*)
-    const
+void JStudio_JStage::TVariableValueOutput_object_<JStudio_JStage::TAdaptor_fog, JStage::TFog>::operator()(float, JStudio::TAdaptor*) const
 {
 	/*
 	.loc_0x0:

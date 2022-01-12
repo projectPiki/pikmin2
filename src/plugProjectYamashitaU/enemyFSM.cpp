@@ -46,20 +46,14 @@ namespace Game {
  * Address:	8013070C
  * Size:	000030
  */
-void EnemyFSMState::transit(EnemyBase* obj, int id, StateArg* arg)
-{
-	m_stateMachine->transit(obj, id, arg);
-}
+void EnemyFSMState::transit(EnemyBase* obj, int id, StateArg* arg) { m_stateMachine->transit(obj, id, arg); }
 
 /*
  * --INFO--
  * Address:	8013073C
  * Size:	00005C
  */
-void EnemyStateMachine::doDirectDraw(EnemyBase* obj, Graphics& gfx)
-{
-	getCurrState(obj)->doDirectDraw(obj, gfx);
-}
+void EnemyStateMachine::doDirectDraw(EnemyBase* obj, Graphics& gfx) { getCurrState(obj)->doDirectDraw(obj, gfx); }
 
 /*
  * --INFO--
@@ -198,20 +192,14 @@ void EnemyStateMachine::transit(EnemyBase* obj, int id, StateArg* arg)
  * Address:	80130B88
  * Size:	000008
  */
-void EnemyStateMachine::setCurrState(EnemyBase* obj, EnemyFSMState* state)
-{
-	obj->m_currentLifecycleState = state;
-}
+void EnemyStateMachine::setCurrState(EnemyBase* obj, EnemyFSMState* state) { obj->m_currentLifecycleState = state; }
 
 /*
  * --INFO--
  * Address:	80130B90
  * Size:	000008
  */
-EnemyFSMState* EnemyStateMachine::getCurrState(EnemyBase* obj)
-{
-	return obj->m_currentLifecycleState;
-}
+EnemyFSMState* EnemyStateMachine::getCurrState(EnemyBase* obj) { return obj->m_currentLifecycleState; }
 
 /*
  * --INFO--

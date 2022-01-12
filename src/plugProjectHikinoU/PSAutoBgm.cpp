@@ -767,8 +767,7 @@ void PSAutoBgm::Conductor::removeCallback(unsigned char, void*)
  * Address:	803392E8
  * Size:	00011C
  */
-void PSAutoBgm::Conductor::seqCpuSync_AutoBgm(JASTrack*, unsigned short,
-                                              unsigned long, JASTrack*)
+void PSAutoBgm::Conductor::seqCpuSync_AutoBgm(JASTrack*, unsigned short, unsigned long, JASTrack*)
 {
 	/*
 	.loc_0x0:
@@ -1479,8 +1478,7 @@ void PSAutoBgm::Track::removeCallback(unsigned char, void*)
  * Address:	80339BF0
  * Size:	0001B8
  */
-void PSAutoBgm::Track::seqCpuSync_AutoBgm_Track(JASTrack*, unsigned short,
-                                                unsigned long, JASTrack*)
+void PSAutoBgm::Track::seqCpuSync_AutoBgm_Track(JASTrack*, unsigned short, unsigned long, JASTrack*)
 {
 	/*
 	.loc_0x0:
@@ -2625,8 +2623,7 @@ void PSAutoBgm::Module::removeCallback(unsigned char, void*)
  * Address:	8033AB20
  * Size:	000218
  */
-void PSAutoBgm::Module::seqCpuSync_AutoBgm_Module(JASTrack*, unsigned short,
-                                                  unsigned long, JASTrack*)
+void PSAutoBgm::Module::seqCpuSync_AutoBgm_Module(JASTrack*, unsigned short, unsigned long, JASTrack*)
 {
 	/*
 	.loc_0x0:
@@ -4001,8 +3998,7 @@ PSAutoBgm::OffCycle::OffCycle(PSAutoBgm::Module*)
  * Address:	8033BC04
  * Size:	00015C
  */
-PSAutoBgm::AutoBgm::AutoBgm(const char*, const char*, const JAInter::SoundInfo&,
-                            JADUtility::AccessMode, PSSystem::DirectorMgrBase*)
+PSAutoBgm::AutoBgm::AutoBgm(const char*, const char*, const JAInter::SoundInfo&, JADUtility::AccessMode, PSSystem::DirectorMgrBase*)
 {
 	/*
 	.loc_0x0:
@@ -4258,8 +4254,7 @@ lbl_8033BF10:
  * Address:	8033BF2C
  * Size:	00012C
  */
-void JADUtility::PrmDataMgrNode<PSAutoBgm::Conductor,
-                                PSAutoBgm::AutoBgm>::~PrmDataMgrNode()
+void JADUtility::PrmDataMgrNode<PSAutoBgm::Conductor, PSAutoBgm::AutoBgm>::~PrmDataMgrNode()
 {
 	/*
 	.loc_0x0:
@@ -6236,8 +6231,7 @@ void SeqTrackRoot::onBeatTop() { }
  * Address:	8033D470
  * Size:	0001A4
  */
-void JADUtility::PrmDataMgrNode<PSAutoBgm::Conductor,
-                                PSAutoBgm::AutoBgm>::initInstance()
+void JADUtility::PrmDataMgrNode<PSAutoBgm::Conductor, PSAutoBgm::AutoBgm>::initInstance()
 {
 	/*
 	.loc_0x0:
@@ -6360,8 +6354,7 @@ void JADUtility::PrmDataMgrNode<PSAutoBgm::Conductor,
  * Address:	8033D614
  * Size:	0000E8
  */
-void JADUtility::PrmDataMgrNode<PSAutoBgm::Conductor,
-                                PSAutoBgm::AutoBgm>::initInstance(void*, long)
+void JADUtility::PrmDataMgrNode<PSAutoBgm::Conductor, PSAutoBgm::AutoBgm>::initInstance(void*, long)
 {
 	/*
 	.loc_0x0:
@@ -6435,8 +6428,7 @@ void JADUtility::PrmDataMgrNode<PSAutoBgm::Conductor,
  * Address:	8033D6FC
  * Size:	000014
  */
-void JADUtility::PrmDataMgrNode<PSAutoBgm::Conductor, PSAutoBgm::AutoBgm>::@600
-    @28 @__dt()
+void JADUtility::PrmDataMgrNode<PSAutoBgm::Conductor, PSAutoBgm::AutoBgm>::@600 @28 @__dt()
 {
 	/*
 	.loc_0x0:

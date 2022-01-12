@@ -336,8 +336,7 @@ void GeneratorCache::clearGeneratorList()
 void GeneratorCache::addGenerator(Game::Generator* newGenerator)
 {
 	int count = 0;
-	for (Generator* gen = getFirstGenerator(); gen != nullptr;
-	     gen            = (Generator*)gen->m_next) {
+	for (Generator* gen = getFirstGenerator(); gen != nullptr; gen = (Generator*)gen->m_next) {
 		if (gen->_AC == 0) {
 			count++;
 		}
@@ -354,10 +353,7 @@ void GeneratorCache::addGenerator(Game::Generator* newGenerator)
  * Address:	801F1B18
  * Size:	000008
  */
-Generator* GeneratorCache::getFirstGenerator()
-{
-	return (Generator*)m_generator.m_child;
-}
+Generator* GeneratorCache::getFirstGenerator() { return (Generator*)m_generator.m_child; }
 
 /*
  * --INFO--
@@ -377,8 +373,7 @@ void GeneratorCache::findRamGenerator(int)
 int GeneratorCache::getTotalMePikmins()
 {
 	int count = 0;
-	for (CourseCache* cache = (CourseCache*)_00.m_child; cache != nullptr;
-	     cache              = (CourseCache*)cache->m_next) {
+	for (CourseCache* cache = (CourseCache*)_00.m_child; cache != nullptr; cache = (CourseCache*)cache->m_next) {
 		count += cache->m_pikiheadCount;
 	}
 	return count;
@@ -407,8 +402,7 @@ lbl_801F1B38:
 int GeneratorCache::getColorMePikmins(int pikminType)
 {
 	int count = 0;
-	for (CourseCache* cache = (CourseCache*)_00.m_child; cache != nullptr;
-	     cache              = (CourseCache*)cache->m_next) {
+	for (CourseCache* cache = (CourseCache*)_00.m_child; cache != nullptr; cache = (CourseCache*)cache->m_next) {
 		count += cache->getColorMePikmins(m_heapBuffer, pikminType);
 	}
 	return count;
@@ -424,8 +418,7 @@ int GeneratorCache::getColorMePikmins(int pikminType)
 int CourseCache::getColorMePikmins(unsigned char* buffer, int pikminType)
 {
 	int count = 0;
-	RamStream stream(buffer + m_generatorSize + m_offset + m_creatureSize,
-	                 m_pikiheadSize);
+	RamStream stream(buffer + m_generatorSize + m_offset + m_creatureSize, m_pikiheadSize);
 	for (int i = 0; i < m_pikiheadCount; i++) {
 		u8 pikiheadFlags = stream.readByte();
 		Vector3f position;
@@ -564,12 +557,10 @@ void GeneratorCache::destroyHeap(void)
  * Address:	801F1CF0
  * Size:	000038
  */
-CourseCache* GeneratorCache::findCache(Game::CourseCache& haystack,
-                                       int courseIndex)
+CourseCache* GeneratorCache::findCache(Game::CourseCache& haystack, int courseIndex)
 {
 	// TODO: Perhaps one check is checking the child before assigning?
-	for (CourseCache* cache = (CourseCache*)haystack.m_child; cache != nullptr;
-	     cache              = (CourseCache*)cache->m_next) {
+	for (CourseCache* cache = (CourseCache*)haystack.m_child; cache != nullptr; cache = (CourseCache*)cache->m_next) {
 		if (cache == nullptr) {
 			return nullptr;
 		}
@@ -1022,8 +1013,7 @@ lbl_801F218C:
  */
 void GeneratorCache::updateUseList()
 {
-	for (Generator* gen = getFirstGenerator(); gen != nullptr;
-	     gen            = (Generator*)gen->m_next) {
+	for (Generator* gen = getFirstGenerator(); gen != nullptr; gen = (Generator*)gen->m_next) {
 		if (gen->_AC == 0) {
 			gen->updateUseList();
 		}
@@ -1064,8 +1054,7 @@ lbl_801F220C:
  */
 void GeneratorCache::createNumberGenerators(void)
 {
-	for (Generator* gen = getFirstGenerator(); gen != nullptr;
-	     gen            = (Generator*)gen->m_next) {
+	for (Generator* gen = getFirstGenerator(); gen != nullptr; gen = (Generator*)gen->m_next) {
 		if (gen->_AC == 0 && (gen->_5C & 4U) != 0) {
 			Generator::ramMode = 1;
 			gen->generate();

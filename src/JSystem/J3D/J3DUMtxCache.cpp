@@ -98,9 +98,7 @@ J3DUMtxAnmCacheTable::J3DUMtxAnmCacheTable(J3DModel*, J3DAnmTransform*)
  * Address:	800178CC
  * Size:	000144
  */
-void @unnamed @J3DUMtxCache_cpp
-    @ ::init<J3DUMtxAnmCacheTable>(J3DModel*, J3DAnmTransform*,
-                                   J3DUMtxAnmCacheTable*)
+void @unnamed @J3DUMtxCache_cpp @ ::init<J3DUMtxAnmCacheTable>(J3DModel*, J3DAnmTransform*, J3DUMtxAnmCacheTable*)
 {
 	/*
 	.loc_0x0:

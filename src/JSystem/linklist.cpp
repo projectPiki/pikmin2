@@ -47,8 +47,7 @@ void JGadget::TNodeLinkList::erase(JGadget::TNodeLinkList::iterator)
  * Address:	........
  * Size:	000060
  */
-void JGadget::TNodeLinkList::erase(JGadget::TNodeLinkList::iterator,
-                                   JGadget::TNodeLinkList::iterator)
+void JGadget::TNodeLinkList::erase(JGadget::TNodeLinkList::iterator, JGadget::TNodeLinkList::iterator)
 {
 	// UNUSED FUNCTION
 }
@@ -68,8 +67,7 @@ void JGadget::TNodeLinkList::clear(void)
  * Address:	........
  * Size:	00004C
  */
-void JGadget::TNodeLinkList::splice(JGadget::TNodeLinkList::iterator,
-                                    JGadget::TNodeLinkList&)
+void JGadget::TNodeLinkList::splice(JGadget::TNodeLinkList::iterator, JGadget::TNodeLinkList&)
 {
 	// UNUSED FUNCTION
 }
@@ -79,9 +77,7 @@ void JGadget::TNodeLinkList::splice(JGadget::TNodeLinkList::iterator,
  * Address:	........
  * Size:	0000A8
  */
-void JGadget::TNodeLinkList::splice(JGadget::TNodeLinkList::iterator,
-                                    JGadget::TNodeLinkList&,
-                                    JGadget::TNodeLinkList::iterator)
+void JGadget::TNodeLinkList::splice(JGadget::TNodeLinkList::iterator, JGadget::TNodeLinkList&, JGadget::TNodeLinkList::iterator)
 {
 	// UNUSED FUNCTION
 }
@@ -91,9 +87,7 @@ void JGadget::TNodeLinkList::splice(JGadget::TNodeLinkList::iterator,
  * Address:	........
  * Size:	0000C4
  */
-void JGadget::TNodeLinkList::splice(JGadget::TNodeLinkList::iterator,
-                                    JGadget::TNodeLinkList&,
-                                    JGadget::TNodeLinkList::iterator,
+void JGadget::TNodeLinkList::splice(JGadget::TNodeLinkList::iterator, JGadget::TNodeLinkList&, JGadget::TNodeLinkList::iterator,
                                     JGadget::TNodeLinkList::iterator)
 {
 	// UNUSED FUNCTION
@@ -134,8 +128,7 @@ void JGadget::TNodeLinkList::Find(JGadget::TLinkListNode const*)
  * Address:	80027320
  * Size:	00002C
  */
-void JGadget::TNodeLinkList::Insert(JGadget::TNodeLinkList::iterator,
-                                    JGadget::TLinkListNode*)
+void JGadget::TNodeLinkList::Insert(JGadget::TNodeLinkList::iterator, JGadget::TLinkListNode*)
 {
 	/*
 	.loc_0x0:
@@ -201,10 +194,8 @@ void JGadget::TNodeLinkList::Remove(JGadget::TLinkListNode*)
  * Address:	8002739C
  * Size:	0000E8
  */
-void remove_if<JGadget::@unnamed @linklist_cpp
-               @ ::TPRIsEqual_pointer_<JGadget::TLinkListNode>>
-        __Q27JGadget13TNodeLinkListFQ37JGadget22 @unnamed @linklist_cpp
-    @46TPRIsEqual_pointer_
+void remove_if<JGadget::@unnamed @linklist_cpp @ ::TPRIsEqual_pointer_<JGadget::TLinkListNode>> __Q27JGadget13TNodeLinkListFQ37JGadget22
+    @unnamed @linklist_cpp @46TPRIsEqual_pointer_
     < JGadget::TLinkListNode > (void)
 {
 	/*

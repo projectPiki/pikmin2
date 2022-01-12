@@ -801,9 +801,7 @@ lbl_8023AAE8:
  * Address:	8023AAFC
  * Size:	0005B8
  */
-void SingleGame::DayEndState::onMovieStart(Game::SingleGameSection*,
-                                           Game::MovieConfig*, unsigned long,
-                                           unsigned long)
+void SingleGame::DayEndState::onMovieStart(Game::SingleGameSection*, Game::MovieConfig*, unsigned long, unsigned long)
 {
 	/*
 	.loc_0x0:
@@ -1229,9 +1227,7 @@ void SingleGame::DayEndState::onMovieStart(Game::SingleGameSection*,
  * Address:	8023B0B4
  * Size:	0000F4
  */
-void SingleGame::DayEndState::onMovieDone(Game::SingleGameSection*,
-                                          Game::MovieConfig*, unsigned long,
-                                          unsigned long)
+void SingleGame::DayEndState::onMovieDone(Game::SingleGameSection*, Game::MovieConfig*, unsigned long, unsigned long)
 {
 	/*
 	.loc_0x0:

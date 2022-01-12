@@ -1245,8 +1245,7 @@ void Morimura::TChallengePiki::isDemoEnd(void)
  * Address:	........
  * Size:	0000D0
  */
-Morimura::TChallengeDoping::TChallengeDoping(J2DPane*, J2DPane*, J2DPane*,
-                                             J2DPane*)
+Morimura::TChallengeDoping::TChallengeDoping(J2DPane*, J2DPane*, J2DPane*, J2DPane*)
 {
 	// UNUSED FUNCTION
 }
@@ -3749,8 +3748,7 @@ lbl_8038E95C:
  * Address:	........
  * Size:	000124
  */
-void Morimura::TChallengePlayModeScreen::setState(
-    (Morimura::TChallengePlayModeScreen::PlayModeScreenState))
+void Morimura::TChallengePlayModeScreen::setState((Morimura::TChallengePlayModeScreen::PlayModeScreenState))
 {
 	// UNUSED FUNCTION
 }
@@ -3790,8 +3788,7 @@ void Morimura::TChallengePlayModeScreen::createMetPicture(ResTIMG const*)
  * Address:	8038E978
  * Size:	00003C
  */
-void Morimura::TChallengeSelectExplanationWindow::create(char const*,
-                                                         unsigned long)
+void Morimura::TChallengeSelectExplanationWindow::create(char const*, unsigned long)
 {
 	/*
 	.loc_0x0:

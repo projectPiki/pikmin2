@@ -1453,8 +1453,7 @@ lbl_804413FC:
  * Address:	80441428
  * Size:	0001A0
  */
-void MemoryCardMgr::fileOpen(CARDFileInfo*, MemoryCardMgr::ECardSlot,
-                             const char*)
+void MemoryCardMgr::fileOpen(CARDFileInfo*, MemoryCardMgr::ECardSlot, const char*)
 {
 	/*
 	.loc_0x0:
@@ -2022,8 +2021,7 @@ lbl_80441A7C:
  * Address:	80441A9C
  * Size:	000204
  */
-void MemoryCardMgr::write(MemoryCardMgr::ECardSlot, const char*, unsigned char*,
-                          long, long)
+void MemoryCardMgr::write(MemoryCardMgr::ECardSlot, const char*, unsigned char*, long, long)
 {
 	/*
 	.loc_0x0:
@@ -2254,8 +2252,7 @@ lbl_80441D3C:
  * Address:	80441D64
  * Size:	000280
  */
-void MemoryCardMgr::read(MemoryCardMgr::ECardSlot, const char*, unsigned char*,
-                         long, long)
+void MemoryCardMgr::read(MemoryCardMgr::ECardSlot, const char*, unsigned char*, long, long)
 {
 	/*
 	.loc_0x0:
@@ -3114,8 +3111,7 @@ lbl_80442780:
  * Address:	80442788
  * Size:	0000B8
  */
-void MemoryCardMgr::readCardSerialNo(unsigned long long*,
-                                     MemoryCardMgr::ECardSlot)
+void MemoryCardMgr::readCardSerialNo(unsigned long long*, MemoryCardMgr::ECardSlot)
 {
 	/*
 	.loc_0x0:

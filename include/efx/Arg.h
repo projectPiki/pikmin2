@@ -25,8 +25,7 @@ struct Arg {
 };
 
 struct ArgEnemyType : public Arg {
-	ArgEnemyType(Vector3f& position, Game::EnemyTypeID::EEnemyTypeID typeID,
-	             float p3)
+	ArgEnemyType(Vector3f& position, Game::EnemyTypeID::EEnemyTypeID typeID, float p3)
 	    : Arg(position)
 	    , m_typeID(typeID)
 	{

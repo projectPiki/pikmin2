@@ -46,8 +46,7 @@ template <typename T, typename A> struct Delegate1 : public IDelegate1<A> {
 	void (T::*m_function)(A); // _08
 };
 
-template <typename T, typename A, typename B>
-struct Delegate2 : public IDelegate2<A, B> {
+template <typename T, typename A, typename B> struct Delegate2 : public IDelegate2<A, B> {
 	inline Delegate2(T* obj, void (T::*func)(A, B))
 	{
 		m_object   = obj;
@@ -61,8 +60,7 @@ struct Delegate2 : public IDelegate2<A, B> {
 	void (T::*m_function)(A, B); // _08
 };
 
-template <typename T, typename A, typename B, typename C>
-struct Delegate3 : public IDelegate3<A, B, C> {
+template <typename T, typename A, typename B, typename C> struct Delegate3 : public IDelegate3<A, B, C> {
 	inline Delegate3(T* obj, void (T::*func)(A, B, C))
 	{
 		m_object   = obj;

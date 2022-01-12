@@ -80,8 +80,7 @@ void calcLagrange__Q24Game9NsMathExpFPC10Vector3f fR10Vector3f(void)
  * Address:	8023D858
  * Size:	0001D8
  */
-void calcJointPos__Q24Game9NsMathExpFRC10Vector3f RC10Vector3f ffR10Vector3f
-R10Vector3f(void)
+void calcJointPos__Q24Game9NsMathExpFRC10Vector3f RC10Vector3f ffR10Vector3f R10Vector3f(void)
 {
 	/*
 	.loc_0x0:

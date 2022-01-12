@@ -176,8 +176,7 @@ __declspec(section ".init") extern __bss_init_info _bss_init_info[];
 
 // clang-format on
 
-inline static void __copy_rom_section(void* dst, const void* src,
-                                      unsigned long size)
+inline static void __copy_rom_section(void* dst, const void* src, unsigned long size)
 {
 	if (size && (dst != src)) {
 		memcpy(dst, src, size);

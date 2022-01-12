@@ -1374,10 +1374,8 @@ void Navi::onInit(Game::CreatureInitArg* arg)
 	initFakePiki();
 	naviMgr->setupNavi(this);
 
-	m_model->m_j3dModel->m_modelData->m_jointTree.m_joints[0]->m_mtxCalc
-	    = nullptr;
-	m_model->m_j3dModel->m_modelData->m_jointTree.m_joints[1]->m_mtxCalc
-	    = nullptr;
+	m_model->m_j3dModel->m_modelData->m_jointTree.m_joints[0]->m_mtxCalc = nullptr;
+	m_model->m_j3dModel->m_modelData->m_jointTree.m_joints[1]->m_mtxCalc = nullptr;
 
 	_288.m_byteView.a = 0;
 	_288.m_byteView.b = 0;
@@ -1396,8 +1394,7 @@ void Navi::onInit(Game::CreatureInitArg* arg)
 	_2AC            = 0;
 
 	m_collTree->createFromFactory(m_model, naviMgr->_CC, 0);
-	JUT_ASSERTLINE(838, ((s32)m_collTree->m_part) >= 0x80000000,
-	               "ザンーー（・д・）??ネン\n");
+	JUT_ASSERTLINE(838, ((s32)m_collTree->m_part) >= 0x80000000, "ザンーー（・д・）??ネン\n");
 	m_collTree->attachModel(m_model);
 
 	m_fsm->start(this, 0, nullptr);
@@ -1411,8 +1408,7 @@ void Navi::onInit(Game::CreatureInitArg* arg)
 
 	SysShape::Joint* headJnt = m_model->getJoint("headjnt");
 	m_effectsObj->m_headMtx  = headJnt->getWorldMatrix();
-	m_effectsObj->setNaviType(
-	    (efx::TNaviEffect::enumNaviType)(bool)m_naviIndex.m_shortView);
+	m_effectsObj->setNaviType((efx::TNaviEffect::enumNaviType)(bool)m_naviIndex.m_shortView);
 
 	m_effectsObj->createLight();
 
@@ -1430,10 +1426,8 @@ void Navi::onInit(Game::CreatureInitArg* arg)
 
 	m_scale = Vector3f(navi_scale, navi_scale, louie_scale);
 	uVar2   = m_naviIndex.m_shortView;
-	m_cursorMatAnim->start(
-	    (Sys::MatBaseAnimation*)(naviMgr->naviIndexArray + (u32)uVar2 * 5 + 3));
-	m_arrowMatAnim->start((Sys::MatBaseAnimation*)(naviMgr->naviIndexArray
-	                                               + (u32)uVar2 * 5 + 0xd));
+	m_cursorMatAnim->start((Sys::MatBaseAnimation*)(naviMgr->naviIndexArray + (u32)uVar2 * 5 + 3));
+	m_arrowMatAnim->start((Sys::MatBaseAnimation*)(naviMgr->naviIndexArray + (u32)uVar2 * 5 + 0xd));
 }
 
 /*
@@ -2264,8 +2258,7 @@ namespace Game {
  * Address:	80140CF4
  * Size:	000138
  */
-void Navi::setupNukuAdjustArg(Game::ItemPikihead::Item*,
-                              Game::NaviNukuAdjustStateArg&)
+void Navi::setupNukuAdjustArg(Game::ItemPikihead::Item*, Game::NaviNukuAdjustStateArg&)
 {
 	/*
 	.loc_0x0:

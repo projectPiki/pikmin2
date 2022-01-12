@@ -19,13 +19,10 @@ namespace Game {
  * Address:	8024C5E4
  * Size:	0000F0
  */
-void RoomMapMgr::nishimuraCreateRandomMap(MapUnitInterface* muiArray, int p2,
-                                          Cave::FloorInfo* floorInfo, bool p4,
-                                          Cave::EditMapUnit* unit)
+void RoomMapMgr::nishimuraCreateRandomMap(MapUnitInterface* muiArray, int p2, Cave::FloorInfo* floorInfo, bool p4, Cave::EditMapUnit* unit)
 {
 	bool isVersusHiba = false;
-	if (gameSystem != nullptr && gameSystem->m_mode == GSM_VERSUS_MODE
-	    && gGameConfig.m_parms.m_vsHiba.m_value != 0) {
+	if (gameSystem != nullptr && gameSystem->m_mode == GSM_VERSUS_MODE && gGameConfig.m_parms.m_vsHiba.m_value != 0) {
 		isVersusHiba = true;
 	}
 	RandMapMgr* mgr        = new RandMapMgr(isVersusHiba);

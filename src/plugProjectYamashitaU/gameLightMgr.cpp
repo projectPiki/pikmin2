@@ -3468,9 +3468,7 @@ lbl_8011F5C8:
  * Address:	8011F5E8
  * Size:	001AE8
  */
-void GameLightMgr::calcSetting(Game::GameLightTimeSetting*,
-                               Game::GameLightTimeSetting*,
-                               Game::GameLightTimeSetting*)
+void GameLightMgr::calcSetting(Game::GameLightTimeSetting*, Game::GameLightTimeSetting*, Game::GameLightTimeSetting*)
 {
 	/*
 	.loc_0x0:

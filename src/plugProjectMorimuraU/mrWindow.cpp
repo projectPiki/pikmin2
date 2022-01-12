@@ -286,8 +286,7 @@ void Morimura::TConfirmEndWindow::setRetireMsg(u64 msgID)
  * Address:	803A380C
  * Size:	000074
  */
-Morimura::TSelectExplanationWindow::TSelectExplanationWindow(
-    JKRArchive* archive, int p2)
+Morimura::TSelectExplanationWindow::TSelectExplanationWindow(JKRArchive* archive, int p2)
     : TScreenBase(archive, p2)
 {
 	unknown_0x18   = 0;
@@ -502,8 +501,7 @@ lbl_803A399C:
  * Address:	803A3A14
  * Size:	00002C
  */
-void Morimura::TSelectExplanationWindow::draw(Graphics& gfx,
-                                              J2DPerspGraph* perspGraph)
+void Morimura::TSelectExplanationWindow::draw(Graphics& gfx, J2DPerspGraph* perspGraph)
 {
 	if (unknown_0x18 != 0) {
 		TScreenBase::draw(gfx, perspGraph);

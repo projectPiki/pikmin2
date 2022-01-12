@@ -5,10 +5,7 @@
  * Address:	8041A030
  * Size:	000030
  */
-void MapCollision::getCurrTri(Game::CurrTriInfo& info)
-{
-	m_divider->getCurrTri(info);
-}
+void MapCollision::getCurrTri(Game::CurrTriInfo& info) { m_divider->getCurrTri(info); }
 
 /*
  * --INFO--

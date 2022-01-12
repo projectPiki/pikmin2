@@ -72,8 +72,7 @@ void JKRAramPiece::sendCommand(JKRAMCommand*)
  * Address:	80019AF8
  * Size:	0001AC
  */
-void JKRAramPiece::orderSync(int, unsigned long, unsigned long, unsigned long,
-                             JKRAramBlock*)
+void JKRAramPiece::orderSync(int, unsigned long, unsigned long, unsigned long, JKRAramBlock*)
 {
 	/*
 	.loc_0x0:

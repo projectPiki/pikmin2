@@ -629,8 +629,7 @@ void JUTDirectPrint::changeFrameBuffer(void*, unsigned short, unsigned short)
  * Address:	........
  * Size:	000228
  */
-void JUTDirectPrint::printSub(unsigned short, unsigned short, const char*,
-                              __va_list_struct*, bool)
+void JUTDirectPrint::printSub(unsigned short, unsigned short, const char*, __va_list_struct*, bool)
 {
 	// UNUSED FUNCTION
 }
@@ -672,8 +671,7 @@ void JUTDirectPrint::drawString(unsigned short, unsigned short, char*)
  * Address:	80029FEC
  * Size:	000174
  */
-void JUTDirectPrint::drawString_f(unsigned short, unsigned short, const char*,
-                                  ...)
+void JUTDirectPrint::drawString_f(unsigned short, unsigned short, const char*, ...)
 {
 	/*
 	.loc_0x0:

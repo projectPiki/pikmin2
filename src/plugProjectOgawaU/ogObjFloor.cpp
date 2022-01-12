@@ -426,8 +426,7 @@
         .4byte 0x41200000
 */
 
-const u64 og::newScreen::vsRuleMsgId[6]
-    = { '2021_00', '2022_00', '2023_00', '2024_00', '2025_00', '2026_00' };
+const u64 og::newScreen::vsRuleMsgId[6] = { '2021_00', '2022_00', '2023_00', '2024_00', '2025_00', '2026_00' };
 
 inline og::newScreen::ObjFloor::StaticValues::StaticValues()
     : _00(0.30f)
@@ -469,8 +468,7 @@ inline og::newScreen::ObjFloor::StaticValues::StaticValues()
 	_5C[2] = JUtility::TColor(0xFF, 0xFF, 0x9C, 0xFF);
 };
 
-og::newScreen::ObjFloor::StaticValues og::newScreen::ObjFloor::msVal
-    = og::newScreen::ObjFloor::StaticValues();
+og::newScreen::ObjFloor::StaticValues og::newScreen::ObjFloor::msVal = og::newScreen::ObjFloor::StaticValues();
 
 // float _00 =   0.3f;                    // _00
 // float _04 =   1.0f;                    // _04
@@ -623,8 +621,7 @@ bool newScreen::ObjFloor::isCHALLENGE(void)
 inline bool newScreen::ObjFloor::isVS(void)
 {
 	// UNUSED FUNCTION
-	return (((Screen::DispMemberFloor*)m_dispMember)->m_caveID < 'vs0:'
-	        && 'vs0/' < ((Screen::DispMemberFloor*)m_dispMember)->m_caveID);
+	return (((Screen::DispMemberFloor*)m_dispMember)->m_caveID < 'vs0:' && 'vs0/' < ((Screen::DispMemberFloor*)m_dispMember)->m_caveID);
 }
 
 /*
@@ -859,10 +856,8 @@ void ObjFloor::doCreate(JKRArchive* archive)
 		if (fc_c->getParentPane() != nullptr) {
 			fc_c->getParentPane()->removeChild(fc_c);
 		}
-		_54 = og::Screen::setCallBack_CounterRV(
-		    _48, 'fc_r', 'fc_l', 'fc_l',
-		    (u32*)&((Screen::DispMemberFloor*)m_dispMember)->_08, 3, 2, false,
-		    archive);
+		_54 = og::Screen::setCallBack_CounterRV(_48, 'fc_r', 'fc_l', 'fc_l', (u32*)&((Screen::DispMemberFloor*)m_dispMember)->_08, 3, 2,
+		                                        false, archive);
 	}
 	// TODO: Remove magic number
 	_54->setCenteringMode(Screen::CallBack_CounterRV::ECM_UNKNOWN_2);
@@ -875,10 +870,8 @@ void ObjFloor::doCreate(JKRArchive* archive)
 	}
 	if (_50 != nullptr) {
 		_88 = new Screen::AnimGroup(2);
-		registAnimGroupScreen(_88, archive, _50, "vs_title_rule_window.btk",
-		                      1.0f);
-		registAnimGroupScreen(_88, archive, _50, "vs_title_rule_window_02.btk",
-		                      1.0f);
+		registAnimGroupScreen(_88, archive, _50, "vs_title_rule_window.btk", 1.0f);
+		registAnimGroupScreen(_88, archive, _50, "vs_title_rule_window_02.btk", 1.0f);
 		_88->setFrame(0.0f);
 		_88->setRepeat(true);
 		_88->setSpeed(1.0f);

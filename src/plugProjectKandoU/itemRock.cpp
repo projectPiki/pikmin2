@@ -1079,8 +1079,7 @@ lbl_801E1074:
  * Address:	801E1084
  * Size:	000030
  */
-void FSMState<Game::ItemRock::Item>::transit(Game::ItemRock::Item*, int,
-                                             Game::StateArg*)
+void FSMState<Game::ItemRock::Item>::transit(Game::ItemRock::Item*, int, Game::StateArg*)
 {
 	/*
 	.loc_0x0:
@@ -1171,8 +1170,7 @@ lbl_801E1154:
  * Address:	801E1174
  * Size:	0000F8
  */
-void ItemRock::NormalState::onKeyEvent(Game::ItemRock::Item*,
-                                       const SysShape::KeyEvent&)
+void ItemRock::NormalState::onKeyEvent(Game::ItemRock::Item*, const SysShape::KeyEvent&)
 {
 	/*
 	.loc_0x0:
@@ -1312,8 +1310,7 @@ void ItemRock::DownState::onDamage(Game::ItemRock::Item*, float)
  * Address:	801E12CC
  * Size:	0000F0
  */
-void ItemRock::DownState::onKeyEvent(Game::ItemRock::Item*,
-                                     const SysShape::KeyEvent&)
+void ItemRock::DownState::onKeyEvent(Game::ItemRock::Item*, const SysShape::KeyEvent&)
 {
 	/*
 	.loc_0x0:
@@ -1449,8 +1446,7 @@ void ItemRock::UpState::onDamage(Game::ItemRock::Item*, float)
  * Address:	801E142C
  * Size:	0000CC
  */
-void ItemRock::UpState::onKeyEvent(Game::ItemRock::Item*,
-                                   const SysShape::KeyEvent&)
+void ItemRock::UpState::onKeyEvent(Game::ItemRock::Item*, const SysShape::KeyEvent&)
 {
 	/*
 	.loc_0x0:
@@ -1697,8 +1693,7 @@ createSingleSphere__8CollTreeFPQ28SysShape9MtxObjectiRQ23Sys6SphereP11CollPartMg
  * Address:	801E174C
  * Size:	000034
  */
-void StateMachine<Game::ItemRock::Item>::start(Game::ItemRock::Item*, int,
-                                               Game::StateArg*)
+void StateMachine<Game::ItemRock::Item>::start(Game::ItemRock::Item*, int, Game::StateArg*)
 {
 	/*
 	.loc_0x0:
@@ -1811,10 +1806,7 @@ lbl_801E1844:
  * Address:	801E1854
  * Size:	000004
  */
-void ItemState<Game::ItemRock::Item>::onKeyEvent(Game::ItemRock::Item*,
-                                                 const SysShape::KeyEvent&)
-{
-}
+void ItemState<Game::ItemRock::Item>::onKeyEvent(Game::ItemRock::Item*, const SysShape::KeyEvent&) { }
 
 /*
  * --INFO--
@@ -4076,8 +4068,7 @@ void ItemRock::Item::getCreatureName()
  * Address:	801E3360
  * Size:	000034
  */
-void Game::FSMItem<Game::ItemRock::Item, Game::ItemRock::FSM,
-                   ItemRock::State>::doAI()
+void Game::FSMItem<Game::ItemRock::Item, Game::ItemRock::FSM, ItemRock::State>::doAI()
 {
 	/*
 	.loc_0x0:
@@ -4102,8 +4093,7 @@ void Game::FSMItem<Game::ItemRock::Item, Game::ItemRock::FSM,
  * Address:	801E3394
  * Size:	000044
  */
-void Game::FSMItem<Game::ItemRock::Item, Game::ItemRock::FSM,
-                   ItemRock::State>::onKeyEvent(const SysShape::KeyEvent&)
+void Game::FSMItem<Game::ItemRock::Item, Game::ItemRock::FSM, ItemRock::State>::onKeyEvent(const SysShape::KeyEvent&)
 {
 	/*
 	.loc_0x0:
@@ -4141,40 +4131,28 @@ void ItemState<Game::ItemRock::Item>::onDamage(Game::ItemRock::Item*, float) { }
  * Address:	801E33DC
  * Size:	000004
  */
-void ItemState<Game::ItemRock::Item>::onBounce(Game::ItemRock::Item*,
-                                               Sys::Triangle*)
-{
-}
+void ItemState<Game::ItemRock::Item>::onBounce(Game::ItemRock::Item*, Sys::Triangle*) { }
 
 /*
  * --INFO--
  * Address:	801E33E0
  * Size:	000004
  */
-void ItemState<Game::ItemRock::Item>::onPlatCollision(Game::ItemRock::Item*,
-                                                      Game::PlatEvent&)
-{
-}
+void ItemState<Game::ItemRock::Item>::onPlatCollision(Game::ItemRock::Item*, Game::PlatEvent&) { }
 
 /*
  * --INFO--
  * Address:	801E33E4
  * Size:	000004
  */
-void ItemState<Game::ItemRock::Item>::onCollision(Game::ItemRock::Item*,
-                                                  Game::CollEvent&)
-{
-}
+void ItemState<Game::ItemRock::Item>::onCollision(Game::ItemRock::Item*, Game::CollEvent&) { }
 
 /*
  * --INFO--
  * Address:	801E33E8
  * Size:	000004
  */
-void FSMState<Game::ItemRock::Item>::init(Game::ItemRock::Item*,
-                                          Game::StateArg*)
-{
-}
+void FSMState<Game::ItemRock::Item>::init(Game::ItemRock::Item*, Game::StateArg*) { }
 
 /*
  * --INFO--
@@ -4279,8 +4257,7 @@ void StateMachine<Game::ItemRock::Item>::create(int)
  * Address:	801E349C
  * Size:	00009C
  */
-void StateMachine<Game::ItemRock::Item>::transit(Game::ItemRock::Item*, int,
-                                                 Game::StateArg*)
+void StateMachine<Game::ItemRock::Item>::transit(Game::ItemRock::Item*, int, Game::StateArg*)
 {
 	/*
 	.loc_0x0:
@@ -4337,8 +4314,7 @@ void StateMachine<Game::ItemRock::Item>::transit(Game::ItemRock::Item*, int,
  * Address:	801E3538
  * Size:	000084
  */
-void StateMachine<Game::ItemRock::Item>::registerState(
-    Game::FSMState<Game::ItemRock::Item>*)
+void StateMachine<Game::ItemRock::Item>::registerState(Game::FSMState<Game::ItemRock::Item>*)
 {
 	/*
 	.loc_0x0:
@@ -4389,8 +4365,7 @@ void StateMachine<Game::ItemRock::Item>::registerState(
  * Address:	801E35BC
  * Size:	000044
  */
-void Game::FSMItem<Game::ItemRock::Item, Game::ItemRock::FSM,
-                   ItemRock::State>::platCallback(Game::PlatEvent&)
+void Game::FSMItem<Game::ItemRock::Item, Game::ItemRock::FSM, ItemRock::State>::platCallback(Game::PlatEvent&)
 {
 	/*
 	.loc_0x0:
@@ -4421,8 +4396,7 @@ void Game::FSMItem<Game::ItemRock::Item, Game::ItemRock::FSM,
  * Address:	801E3600
  * Size:	000044
  */
-void Game::FSMItem<Game::ItemRock::Item, Game::ItemRock::FSM,
-                   ItemRock::State>::collisionCallback(Game::CollEvent&)
+void Game::FSMItem<Game::ItemRock::Item, Game::ItemRock::FSM, ItemRock::State>::collisionCallback(Game::CollEvent&)
 {
 	/*
 	.loc_0x0:
@@ -4453,8 +4427,7 @@ void Game::FSMItem<Game::ItemRock::Item, Game::ItemRock::FSM,
  * Address:	801E3644
  * Size:	000044
  */
-void Game::FSMItem<Game::ItemRock::Item, Game::ItemRock::FSM,
-                   ItemRock::State>::bounceCallback(Sys::Triangle*)
+void Game::FSMItem<Game::ItemRock::Item, Game::ItemRock::FSM, ItemRock::State>::bounceCallback(Sys::Triangle*)
 {
 	/*
 	.loc_0x0:
@@ -4485,9 +4458,7 @@ void Game::FSMItem<Game::ItemRock::Item, Game::ItemRock::FSM,
  * Address:	801E3688
  * Size:	000008
  */
-void Game::FSMItem<Game::ItemRock::Item, Game::ItemRock::FSM,
-                   Game::ItemRock::State>::@376
-    @onKeyEvent(const SysShape::KeyEvent&)
+void Game::FSMItem<Game::ItemRock::Item, Game::ItemRock::FSM, Game::ItemRock::State>::@376 @onKeyEvent(const SysShape::KeyEvent&)
 {
 	/*
 	.loc_0x0:

@@ -1745,10 +1745,7 @@ void ShijimiChou::Obj::doStartStoneState(void)
  * Address:	8038A730
  * Size:	000008
  */
-u32 ShijimiChou::Obj::damageCallBack(Game::Creature*, float, CollPart*)
-{
-	return 0x0;
-}
+u32 ShijimiChou::Obj::damageCallBack(Game::Creature*, float, CollPart*) { return 0x0; }
 
 /*
  * --INFO--
@@ -4098,20 +4095,14 @@ lbl_8038C3D8:
  * Address:	8038C3EC
  * Size:	000008
  */
-u32 ShijimiChou::Obj::pressCallBack(Game::Creature*, float, CollPart*)
-{
-	return 0x0;
-}
+u32 ShijimiChou::Obj::pressCallBack(Game::Creature*, float, CollPart*) { return 0x0; }
 
 /*
  * --INFO--
  * Address:	8038C3F4
  * Size:	000008
  */
-void ShijimiChou::Obj::hipdropCallBack(Game::Creature*, float, CollPart*)
-{
-	return 0x0;
-}
+void ShijimiChou::Obj::hipdropCallBack(Game::Creature*, float, CollPart*) { return 0x0; }
 
 /*
  * --INFO--

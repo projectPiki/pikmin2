@@ -3555,8 +3555,7 @@ void Graphics::setVtxDesc(_GXAttr, _GXAttrType)
  * Address:	80427738
  * Size:	000034
  */
-void Graphics::setVtxAttrFmt(_GXVtxFmt, _GXAttr, _GXCompCnt, _GXCompType,
-                             unsigned char)
+void Graphics::setVtxAttrFmt(_GXVtxFmt, _GXAttr, _GXCompCnt, _GXCompType, unsigned char)
 {
 	/*
 	.loc_0x0:

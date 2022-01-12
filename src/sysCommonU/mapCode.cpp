@@ -494,10 +494,7 @@ template <> void ArrayContainer<MapCode::Code>::write(Stream& stream)
  * Address:	8041C75C
  * Size:	000004
  */
-template <>
-void ArrayContainer<MapCode::Code>::writeObject(Stream&, MapCode::Code&)
-{
-}
+template <> void ArrayContainer<MapCode::Code>::writeObject(Stream&, MapCode::Code&) { }
 
 /*
  * --INFO--
@@ -743,8 +740,7 @@ template <> void ArrayContainer<MapCode::Code>::addOne(MapCode::Code& object)
  * Address:	8041C948
  * Size:	000010
  */
-template <>
-void ArrayContainer<MapCode::Code>::setArray(MapCode::Code* objects, int count)
+template <> void ArrayContainer<MapCode::Code>::setArray(MapCode::Code* objects, int count)
 {
 	m_objects  = objects;
 	m_count    = count;

@@ -42,27 +42,27 @@ struct Generator : public CNode {
 
 	void informDeath(Creature*);
 
-	GenObject* _18;       // _18
-	u32 _1C;              // _1C /* Initialized to '____' */
-	char _20[32];         // _20 /* shift-jis name given in generator files */
-	ID32 _40;             // _40
-	ID32 m_version;       // _4C
-	u8 _58[4];            // _58
-	u16 _5C;              // _5C
-	Generator* _60;       // _60 /* m_prev */
-	Generator* _64;       // _64 /* m_next */
-	GeneratorMgr* m_mgr;  // _68
-	Creature* m_creature; // _6C
-	int _70;              // _70
-	u32 _74;              // _74
-	u32 _78;              // _78
-	u32 _7C;              // _7C
-	u8 _80[4];            // _80
-	int m_dayLimitMaybe;  // _84
-	u8 _88[12];           // _88
-	Vector3f m_position;  // _94
-	Vector3f m_offset;    // _A0
-	u8 _AC;               // _AC
+	GenObject* _18;            // _18
+	u32 _1C;                   // _1C /* Initialized to '____' */
+	char _20[32];              // _20 /* shift-jis name given in generator files */
+	ID32 _40;                  // _40
+	ID32 m_version;            // _4C
+	u8 _58[4];                 // _58
+	u16 _5C;                   // _5C
+	Generator* _60;            // _60 /* m_prev */
+	Generator* _64;            // _64 /* m_next */
+	GeneratorMgr* m_mgr;       // _68
+	Creature* m_creature;      // _6C
+	int _70;                   // _70
+	u32 _74;                   // _74
+	u32 _78;                   // _78
+	u32 _7C;                   // _7C
+	u8 _80[4];                 // _80
+	int m_dayLimitMaybe;       // _84
+	u8 _88[12];                // _88
+	Vector3f m_position;       // _94
+	Vector3f m_offset;         // _A0
+	u8 _AC;                    // _AC
 	int m_generatorIndexMaybe; // _B0
 
 	//  0: format of the generator files on disc

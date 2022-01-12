@@ -36,9 +36,7 @@ struct PelletInitArg : CreatureInitArg {
 	int m_maxCarriers;      // _24
 };
 
-struct Pellet : public DynCreature,
-                public SysShape::MotionListener,
-                public CarryInfoOwner {
+struct Pellet : public DynCreature, public SysShape::MotionListener, public CarryInfoOwner {
 	virtual Vector3f getPosition()
 	{
 		// return _3AC;

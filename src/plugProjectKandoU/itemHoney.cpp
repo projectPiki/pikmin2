@@ -1013,8 +1013,7 @@ void ItemHoney::BounceState::cleanup(Game::CFSMItem*) { }
  * Address:	801D31B4
  * Size:	000034
  */
-void ItemHoney::BounceState::onKeyEvent(Game::CFSMItem*,
-                                        const SysShape::KeyEvent&)
+void ItemHoney::BounceState::onKeyEvent(Game::CFSMItem*, const SysShape::KeyEvent&)
 {
 	/*
 	.loc_0x0:
@@ -1166,8 +1165,7 @@ lbl_801D3328:
  * Address:	801D3344
  * Size:	000038
  */
-void ItemHoney::WaitState::interactAbsorb(Game::CFSMItem*,
-                                          Game::InteractAbsorb&)
+void ItemHoney::WaitState::interactAbsorb(Game::CFSMItem*, Game::InteractAbsorb&)
 {
 	/*
 	.loc_0x0:
@@ -1234,8 +1232,7 @@ void ItemHoney::ShrinkState::cleanup(Game::CFSMItem*) { }
  * Address:	801D33BC
  * Size:	000064
  */
-void ItemHoney::ShrinkState::onKeyEvent(Game::CFSMItem*,
-                                        const SysShape::KeyEvent&)
+void ItemHoney::ShrinkState::onKeyEvent(Game::CFSMItem*, const SysShape::KeyEvent&)
 {
 	/*
 	.loc_0x0:
@@ -1338,8 +1335,7 @@ void ItemHoney::TouchState::cleanup(Game::CFSMItem*) { }
  * Address:	801D3498
  * Size:	000038
  */
-void ItemHoney::TouchState::interactAbsorb(Game::CFSMItem*,
-                                           Game::InteractAbsorb&)
+void ItemHoney::TouchState::interactAbsorb(Game::CFSMItem*, Game::InteractAbsorb&)
 {
 	/*
 	.loc_0x0:
@@ -1365,8 +1361,7 @@ void ItemHoney::TouchState::interactAbsorb(Game::CFSMItem*,
  * Address:	801D34D0
  * Size:	000034
  */
-void ItemHoney::TouchState::onKeyEvent(Game::CFSMItem*,
-                                       const SysShape::KeyEvent&)
+void ItemHoney::TouchState::onKeyEvent(Game::CFSMItem*, const SysShape::KeyEvent&)
 {
 	/*
 	.loc_0x0:
@@ -1477,8 +1472,7 @@ void ItemHoney::DemoState::cleanup(Game::CFSMItem*) { }
  * Address:	801D35C4
  * Size:	000038
  */
-void ItemHoney::DemoState::onKeyEvent(Game::CFSMItem*,
-                                      const SysShape::KeyEvent&)
+void ItemHoney::DemoState::onKeyEvent(Game::CFSMItem*, const SysShape::KeyEvent&)
 {
 	/*
 	.loc_0x0:
@@ -2109,10 +2103,7 @@ lbl_801D3C28:
  * Address:	801D3C40
  * Size:	000008
  */
-void ItemHoney::State::interactAbsorb(Game::CFSMItem*, Game::InteractAbsorb&)
-{
-	return 0x0;
-}
+void ItemHoney::State::interactAbsorb(Game::CFSMItem*, Game::InteractAbsorb&) { return 0x0; }
 
 /*
  * --INFO--
@@ -2889,11 +2880,7 @@ u32 ItemHoney::TouchState::absorbable() { return 0x1; }
  * Address:	801D4458
  * Size:	000008
  */
-void ItemHoney::ShrinkState::interactAbsorb(Game::CFSMItem*,
-                                            Game::InteractAbsorb&)
-{
-	return 0x1;
-}
+void ItemHoney::ShrinkState::interactAbsorb(Game::CFSMItem*, Game::InteractAbsorb&) { return 0x1; }
 
 /*
  * --INFO--
@@ -2914,16 +2901,14 @@ u32 ItemHoney::WaitState::absorbable() { return 0x1; }
  * Address:	801D4470
  * Size:	000004
  */
-void ItemHoney::State::onKeyEvent(Game::CFSMItem*, const SysShape::KeyEvent&) {
-}
+void ItemHoney::State::onKeyEvent(Game::CFSMItem*, const SysShape::KeyEvent&) { }
 
 /*
  * --INFO--
  * Address:	801D4474
  * Size:	000004
  */
-void FixedSizeItemMgr<Game::ItemHoney::Item>::onCreateModel(SysShape::Model*) {
-}
+void FixedSizeItemMgr<Game::ItemHoney::Item>::onCreateModel(SysShape::Model*) { }
 
 /*
  * --INFO--
@@ -3106,8 +3091,7 @@ void FixedSizeItemMgr<Game::ItemHoney::Item>::getStart()
  * Address:	801D45D8
  * Size:	000030
  */
-void FixedSizeItemMgr<Game::ItemHoney::Item>::createModel(
-    Game::ItemHoney::Item*)
+void FixedSizeItemMgr<Game::ItemHoney::Item>::createModel(Game::ItemHoney::Item*)
 {
 	/*
 	.loc_0x0:
@@ -4988,8 +4972,7 @@ lbl_801D5AC0:
  * Address:	801D5AE0
  * Size:	00002C
  */
-void FixedSizeItemMgr<Game::ItemHoney::Item>::createModelCallback(
-    SysShape::Model*)
+void FixedSizeItemMgr<Game::ItemHoney::Item>::createModelCallback(SysShape::Model*)
 {
 	/*
 	.loc_0x0:
@@ -5431,8 +5414,7 @@ namespace SysShape {
  * Address:	801D5FD4
  * Size:	000030
  */
-void Delegate1<Game::FixedSizeItemMgr<Game::ItemHoney::Item>, Model*>::invoke(
-    SysShape::Model*)
+void Delegate1<Game::FixedSizeItemMgr<Game::ItemHoney::Item>, Model*>::invoke(SysShape::Model*)
 {
 	/*
 	.loc_0x0:

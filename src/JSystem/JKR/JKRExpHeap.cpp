@@ -1596,8 +1596,7 @@ lbl_80020E2C:
  * Address:	80020E4C
  * Size:	00004C
  */
-void JKRExpHeap::setFreeBlock(JKRExpHeap::CMemBlock*, JKRExpHeap::CMemBlock*,
-                              JKRExpHeap::CMemBlock*)
+void JKRExpHeap::setFreeBlock(JKRExpHeap::CMemBlock*, JKRExpHeap::CMemBlock*, JKRExpHeap::CMemBlock*)
 {
 	/*
 	.loc_0x0:
@@ -2374,9 +2373,7 @@ lbl_800216DC:
  * Address:	80021754
  * Size:	000020
  */
-void JKRExpHeap::CMemBlock::initiate(JKRExpHeap::CMemBlock*,
-                                     JKRExpHeap::CMemBlock*, unsigned long,
-                                     unsigned char, unsigned char)
+void JKRExpHeap::CMemBlock::initiate(JKRExpHeap::CMemBlock*, JKRExpHeap::CMemBlock*, unsigned long, unsigned char, unsigned char)
 {
 	/*
 	.loc_0x0:
@@ -2396,9 +2393,7 @@ void JKRExpHeap::CMemBlock::initiate(JKRExpHeap::CMemBlock*,
  * Address:	80021774
  * Size:	000044
  */
-void JKRExpHeap::CMemBlock::allocFore(unsigned long, unsigned char,
-                                      unsigned char, unsigned char,
-                                      unsigned char)
+void JKRExpHeap::CMemBlock::allocFore(unsigned long, unsigned char, unsigned char, unsigned char, unsigned char)
 {
 	/*
 	.loc_0x0:
@@ -2429,9 +2424,7 @@ void JKRExpHeap::CMemBlock::allocFore(unsigned long, unsigned char,
  * Address:	800217B8
  * Size:	000058
  */
-void JKRExpHeap::CMemBlock::allocBack(unsigned long, unsigned char,
-                                      unsigned char, unsigned char,
-                                      unsigned char)
+void JKRExpHeap::CMemBlock::allocBack(unsigned long, unsigned char, unsigned char, unsigned char, unsigned char)
 {
 	/*
 	.loc_0x0:
@@ -2622,8 +2615,7 @@ lbl_80021954:
  * Address:	80021980
  * Size:	000030
  */
-void JKRExpHeap::state_compare(const JKRHeap::TState&,
-                               const JKRHeap::TState&) const
+void JKRExpHeap::state_compare(const JKRHeap::TState&, const JKRHeap::TState&) const
 {
 	/*
 	.loc_0x0:

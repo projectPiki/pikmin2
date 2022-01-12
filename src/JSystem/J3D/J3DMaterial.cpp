@@ -3745,9 +3745,7 @@ void J3DIndBlock::setIndTexCoordScale(unsigned long, J3DIndTexCoordScale) { }
  * Address:	80063A78
  * Size:	000004
  */
-void J3DIndBlock::setIndTexCoordScale(unsigned long, const J3DIndTexCoordScale*)
-{
-}
+void J3DIndBlock::setIndTexCoordScale(unsigned long, const J3DIndTexCoordScale*) { }
 
 /*
  * --INFO--

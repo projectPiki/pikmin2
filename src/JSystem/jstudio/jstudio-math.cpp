@@ -53,8 +53,7 @@ void math::getRotation_xyz(float (*)[4], float, float, float)
  * Address:	80010FC4
  * Size:	0001B0
  */
-void math::getTransformation_SRxyzT(float (*)[4], Vec const&, Vec const&,
-                                    Vec const&)
+void math::getTransformation_SRxyzT(float (*)[4], Vec const&, Vec const&, Vec const&)
 {
 	/*
 	.loc_0x0:
@@ -174,8 +173,7 @@ void math::getTransformation_SRxyzT(float (*)[4], Vec const&, Vec const&,
  * Address:	........
  * Size:	0001B4
  */
-void math::transform_SRxyzT(float (*)[4], float const (*)[4], Vec const&,
-                            Vec const&, Vec const&)
+void math::transform_SRxyzT(float (*)[4], float const (*)[4], Vec const&, Vec const&, Vec const&)
 {
 	// UNUSED FUNCTION
 }

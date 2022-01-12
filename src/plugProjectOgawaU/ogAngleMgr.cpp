@@ -82,23 +82,19 @@ float AngleMgr::calc()
 			// TODO: figure out what f2 is!
 			f32 f2 = TAU - FABS(distance);
 			if (distance > 0.0f) {
-				if ((m_angleStep > 0.0f)
-				    && (f2 > FABS(m_angleStep * m_scale))) {
+				if ((m_angleStep > 0.0f) && (f2 > FABS(m_angleStep * m_scale))) {
 					m_angleStep = (-m_angleStep * m_interpRate);
 				}
-			} else if ((m_angleStep < 0.0f)
-			           && (f2 > FABS(m_angleStep * m_scale))) {
+			} else if ((m_angleStep < 0.0f) && (f2 > FABS(m_angleStep * m_scale))) {
 				m_angleStep = (-m_angleStep * m_interpRate);
 			}
 		} else {
 			f32 f2 = FABS(distance);
 			if (distance > 0.0f) {
-				if ((m_angleStep < 0.0f)
-				    && (f2 > FABS(m_angleStep * m_scale))) {
+				if ((m_angleStep < 0.0f) && (f2 > FABS(m_angleStep * m_scale))) {
 					m_angleStep = (-m_angleStep * m_interpRate);
 				}
-			} else if ((m_angleStep > 0.0f)
-			           && (f2 > FABS(m_angleStep * m_scale))) {
+			} else if ((m_angleStep > 0.0f) && (f2 > FABS(m_angleStep * m_scale))) {
 				m_angleStep = (-m_angleStep * m_interpRate);
 			}
 		}

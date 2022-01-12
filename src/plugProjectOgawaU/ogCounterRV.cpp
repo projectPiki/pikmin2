@@ -75,8 +75,7 @@ namespace Screen {
  * Address:	8030B524
  * Size:	0001E0
  */
-CallBack_CounterRV::CallBack_CounterRV(char**, unsigned short, unsigned short,
-                                       JKRArchive*)
+CallBack_CounterRV::CallBack_CounterRV(char**, unsigned short, unsigned short, JKRArchive*)
 {
 	/*
 	.loc_0x0:
@@ -477,9 +476,7 @@ void CallBack_CounterRV::setCenteringMode(EnumCenteringMode)
  * Address:	8030B8E4
  * Size:	0004D0
  */
-void CallBack_CounterRV::init(J2DScreen*, unsigned long long,
-                              unsigned long long, unsigned long long,
-                              unsigned long*, bool)
+void CallBack_CounterRV::init(J2DScreen*, unsigned long long, unsigned long long, unsigned long long, unsigned long*, bool)
 {
 	/*
 	.loc_0x0:
@@ -1426,10 +1423,8 @@ void CallBack_CounterRV::draw(Graphics&, J2DGrafContext&) { }
  * Address:	8030C530
  * Size:	0000D8
  */
-void setCallBack_CounterRV(P2DScreen::Mgr*, unsigned long long,
-                           unsigned long long, unsigned long long,
-                           unsigned long*, unsigned short, unsigned short, bool,
-                           JKRArchive*)
+void setCallBack_CounterRV(P2DScreen::Mgr*, unsigned long long, unsigned long long, unsigned long long, unsigned long*, unsigned short,
+                           unsigned short, bool, JKRArchive*)
 {
 	/*
 	.loc_0x0:
@@ -1497,8 +1492,7 @@ void setCallBack_CounterRV(P2DScreen::Mgr*, unsigned long long,
  * Address:	8030C608
  * Size:	00017C
  */
-void setCallBack_CounterRV(P2DScreen::Mgr*, unsigned long long, unsigned long*,
-                           unsigned short, bool, bool, JKRArchive*)
+void setCallBack_CounterRV(P2DScreen::Mgr*, unsigned long long, unsigned long*, unsigned short, bool, bool, JKRArchive*)
 {
 	/*
 	.loc_0x0:
@@ -1613,8 +1607,7 @@ void setCallBack_CounterRV(P2DScreen::Mgr*, unsigned long long, unsigned long*,
  * Address:	........
  * Size:	000170
  */
-void setCallBack_CounterRV2(P2DScreen::Mgr*, unsigned long long, unsigned long*,
-                            unsigned short, bool, bool, JKRArchive*)
+void setCallBack_CounterRV2(P2DScreen::Mgr*, unsigned long long, unsigned long*, unsigned short, bool, bool, JKRArchive*)
 {
 	// UNUSED FUNCTION
 }
@@ -1624,8 +1617,7 @@ void setCallBack_CounterRV2(P2DScreen::Mgr*, unsigned long long, unsigned long*,
  * Address:	8030C784
  * Size:	00018C
  */
-void setCallBack_CounterRV(P2DScreen::Mgr*, unsigned long long, unsigned long,
-                           unsigned short, bool, bool, JKRArchive*)
+void setCallBack_CounterRV(P2DScreen::Mgr*, unsigned long long, unsigned long, unsigned short, bool, bool, JKRArchive*)
 {
 	/*
 	.loc_0x0:

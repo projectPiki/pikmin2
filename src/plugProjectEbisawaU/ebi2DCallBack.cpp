@@ -421,8 +421,7 @@ lbl_803D0AC0:
  * Address:	803D0AD0
  * Size:	0000C8
  */
-void E2DCallBack_AnmBase::loadAnm(char* path, JKRArchive* archive, long p3,
-                                  long p4)
+void E2DCallBack_AnmBase::loadAnm(char* path, JKRArchive* archive, long p3, long p4)
 {
 	void* resource = JKRFileLoader::getGlbResource(path, archive);
 	P2ASSERTLINE(74, (resource != nullptr));

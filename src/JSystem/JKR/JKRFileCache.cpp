@@ -604,8 +604,7 @@ lbl_80022034:
  * Address:	80022064
  * Size:	000090
  */
-void JKRFileCache::readResource(void*, unsigned long, unsigned long,
-                                const char*)
+void JKRFileCache::readResource(void*, unsigned long, unsigned long, const char*)
 {
 	/*
 	.loc_0x0:
@@ -1462,8 +1461,7 @@ lbl_800229A0:
  * Address:	800229C0
  * Size:	00006C
  */
-JKRFileCache::CCacheBlock::CCacheBlock(unsigned long, unsigned long,
-                                       const void*)
+JKRFileCache::CCacheBlock::CCacheBlock(unsigned long, unsigned long, const void*)
 {
 	/*
 	.loc_0x0:
@@ -1568,8 +1566,7 @@ void JKRFileCache::readFsResource(void*, unsigned long, const char*)
  * Address:	80022AB0
  * Size:	00002C
  */
-void JKRFileCache::readNameResource(void*, unsigned long, unsigned long,
-                                    const char*)
+void JKRFileCache::readNameResource(void*, unsigned long, unsigned long, const char*)
 {
 	/*
 	.loc_0x0:

@@ -87,7 +87,7 @@ struct OlimarData {
 		ODII_GeographicProjection,
 		ODII_LAST_EXPLORATION_KIT_ITEM = ODII_GeographicProjection,
 		ODII_FIRST_NON_EXPLORATION_KIT_ITEM,
-		ODII_TheKey = ODII_FIRST_NON_EXPLORATION_KIT_ITEM,
+		ODII_TheKey                        = ODII_FIRST_NON_EXPLORATION_KIT_ITEM,
 		ODII_LAST_NON_EXPLORATION_KIT_ITEM = ODII_TheKey,
 		ODII_COUNT,
 		_ODII_FORCE_UINT = 0xFFFFFFFF
@@ -264,20 +264,20 @@ struct PlayData : public CNode {
 	bool isCaveFirstReturn(int, ID32&);
 	bool closeCourse(int);
 
-	bool _18;                    // _18
-	u8 _19;                      // _19
-	u32 _1C;                     // _1C
-	u8 _20;                      // _20
-	float m_naviLifeMax[2];      // _24
-	u8 m_hasContainerFlags;      // _2C
-	u8 m_hasBootContainerFlags;  // _2D
-	u8 m_meetPikminFlags;        // _2E
-	u8 _2F;                      // _2F
-	BitFlags m_demoFlags;        // _30
-	BitFlags m_findItemFlags;    // _38
-	TekiStat::Mgr m_tekiStatMgr; // _40
-	OlimarData m_olimarData[2];  // _48 // TODO: This really packs into 4 bytes?
-	CaveSaveData m_caveSaveData; // _4C
+	bool _18;                                // _18
+	u8 _19;                                  // _19
+	u32 _1C;                                 // _1C
+	u8 _20;                                  // _20
+	float m_naviLifeMax[2];                  // _24
+	u8 m_hasContainerFlags;                  // _2C
+	u8 m_hasBootContainerFlags;              // _2D
+	u8 m_meetPikminFlags;                    // _2E
+	u8 _2F;                                  // _2F
+	BitFlags m_demoFlags;                    // _30
+	BitFlags m_findItemFlags;                // _38
+	TekiStat::Mgr m_tekiStatMgr;             // _40
+	OlimarData m_olimarData[2];              // _48 // TODO: This really packs into 4 bytes?
+	CaveSaveData m_caveSaveData;             // _4C
 	kh::Screen::MailSaveData m_mailSaveData; // _84
 	PikiContainer m_pikiContainer;           // _A8
 	PelletFirstMemory* _B0;                  // _B0

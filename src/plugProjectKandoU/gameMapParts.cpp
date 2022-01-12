@@ -1330,10 +1330,7 @@ void MapUnitMgr::loadShape(char*)
  * Address:	801B69EC
  * Size:	000440
  */
-void MapUnitMgr::makeUnit(Game::MapUnit* unit, char* path)
-{
-	char path[512];
-} // Game
+void MapUnitMgr::makeUnit(Game::MapUnit* unit, char* path) { char path[512]; } // Game
 
 sprintf(path, "%s/arc.szs", path);
 JKRArchive* archive = JKRArchive::mount(path, 1, nullptr, 1);
@@ -5093,8 +5090,7 @@ lbl_801B970C:
  * Address:	801B9740
  * Size:	000050
  */
-void RoomMapMgr::makeRoom(char*, float, float, int, int, Game::RoomLink*,
-                          Game::ObjectLayoutInfo*)
+void RoomMapMgr::makeRoom(char*, float, float, int, int, Game::RoomLink*, Game::ObjectLayoutInfo*)
 {
 	/*
 	.loc_0x0:
@@ -8875,8 +8871,7 @@ lbl_801BC900:
  * Address:	801BC914
  * Size:	0016B8
  */
-void RoomMapMgr::makeOneRoom(float, float, float, char*, short, Game::RoomLink*,
-                             Game::ObjectLayoutInfo*)
+void RoomMapMgr::makeOneRoom(float, float, float, char*, short, Game::RoomLink*, Game::ObjectLayoutInfo*)
 {
 	/*
 	.loc_0x0:

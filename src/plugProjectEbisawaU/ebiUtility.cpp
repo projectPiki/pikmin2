@@ -24,9 +24,7 @@ namespace ebi {
  * Address:	803C1A3C
  * Size:	000060
  */
-void EUTPadInterface_countNum::init(Controller*, long, long, long*,
-                                    ebi::EUTPadInterface_countNum::enumMode,
-                                    float, float)
+void EUTPadInterface_countNum::init(Controller*, long, long, long*, ebi::EUTPadInterface_countNum::enumMode, float, float)
 {
 	/*
 	.loc_0x0:
@@ -334,8 +332,7 @@ lbl_803C1D8C:
  * Address:	803C1DA0
  * Size:	000114
  */
-void EUTColor_complement(JUtility::TColor&, JUtility::TColor&, float, float,
-                         JUtility::TColor*)
+void EUTColor_complement(JUtility::TColor&, JUtility::TColor&, float, float, JUtility::TColor*)
 {
 	/*
 	.loc_0x0:

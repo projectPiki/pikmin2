@@ -622,8 +622,7 @@ void ObjSMenuMap::calcMapScale(void)
  * Address:	........
  * Size:	0000AC
  */
-void calcMapPos__Q32og9newScreen11ObjSMenuMapF10Vector2<float>
-P10Vector2<float>(void)
+void calcMapPos__Q32og9newScreen11ObjSMenuMapF10Vector2<float> P10Vector2<float>(void)
 {
 	// UNUSED FUNCTION
 }
@@ -3891,8 +3890,7 @@ drawVecZ__Q32og9newScreen11ObjSMenuMapFR8GraphicsR3VecR3VecR3VecR3VecR6Color4f
  * Address:	80312518
  * Size:	0001E0
  */
-void drawRectZ__Q32og9newScreen11ObjSMenuMapFR8GraphicsR7Rect<float>
-R6Color4f(void)
+void drawRectZ__Q32og9newScreen11ObjSMenuMapFR8GraphicsR7Rect<float> R6Color4f(void)
 {
 	/*
 	.loc_0x0:

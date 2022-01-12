@@ -1483,8 +1483,7 @@ lbl_80205A58:
  * Address:	80205DFC
  * Size:	000138
  */
-void ItemUjamushi::BoidParms::blendTo(Game::ItemUjamushi::BoidParms&,
-                                      Game::ItemUjamushi::BoidParms&, float)
+void ItemUjamushi::BoidParms::blendTo(Game::ItemUjamushi::BoidParms&, Game::ItemUjamushi::BoidParms&, float)
 {
 	/*
 	.loc_0x0:
@@ -1670,8 +1669,7 @@ ItemUjamushi::BoidParameter::TNode::TNode(void)
  * Address:	80206028
  * Size:	0000C0
  */
-void ItemUjamushi::BoidParameter::getParms(int, int, float,
-                                           Game::ItemUjamushi::BoidParms&)
+void ItemUjamushi::BoidParameter::getParms(int, int, float, Game::ItemUjamushi::BoidParms&)
 {
 	/*
 	.loc_0x0:
@@ -1900,8 +1898,7 @@ ItemUjamushi::Uja::Uja(void)
  * Address:	........
  * Size:	000160
  */
-void init__Q34Game12ItemUjamushi3UjaFPQ34Game12ItemUjamushi6UjaMgrR10Vector3<
-    float>(void)
+void init__Q34Game12ItemUjamushi3UjaFPQ34Game12ItemUjamushi6UjaMgrR10Vector3<float>(void)
 {
 	// UNUSED FUNCTION
 }
@@ -5354,8 +5351,7 @@ lbl_80208DD8:
  * Address:	80208E44
  * Size:	000034
  */
-void start__Q24Game40StateMachine<Game::ItemUjamushi::Item>
-FPQ34Game12ItemUjamushi4ItemiPQ24Game8StateArg(void)
+void start__Q24Game40StateMachine<Game::ItemUjamushi::Item> FPQ34Game12ItemUjamushi4ItemiPQ24Game8StateArg(void)
 {
 	/*
 	.loc_0x0:
@@ -6757,8 +6753,7 @@ lbl_80209F34:
  * Address:	80209F44
  * Size:	000030
  */
-void transit__Q24Game36FSMState<Game::ItemUjamushi::Item>
-FPQ34Game12ItemUjamushi4ItemiPQ24Game8StateArg(void)
+void transit__Q24Game36FSMState<Game::ItemUjamushi::Item> FPQ34Game12ItemUjamushi4ItemiPQ24Game8StateArg(void)
 {
 	/*
 	.loc_0x0:
@@ -7044,8 +7039,7 @@ lbl_8020A1C0:
  * Address:	8020A208
  * Size:	000064
  */
-void ItemUjamushi::Mgr::generatorRead(Stream&, Game::GenItemParm*,
-                                      unsigned long)
+void ItemUjamushi::Mgr::generatorRead(Stream&, Game::GenItemParm*, unsigned long)
 {
 	/*
 	.loc_0x0:
@@ -7084,8 +7078,7 @@ void ItemUjamushi::Mgr::generatorRead(Stream&, Game::GenItemParm*,
  * Address:	8020A26C
  * Size:	0001CC
  */
-void generatorBirth__Q34Game12ItemUjamushi3MgrFR10Vector3f R10Vector3f
-PQ24Game11GenItemParm(void)
+void generatorBirth__Q34Game12ItemUjamushi3MgrFR10Vector3f R10Vector3f PQ24Game11GenItemParm(void)
 {
 	/*
 	.loc_0x0:
@@ -7786,9 +7779,7 @@ void ItemUjamushi::Item::DummyShape::getMatrix(int)
  * Address:	8020A9FC
  * Size:	000034
  */
-void doAI__Q24Game89FSMItem<Game::ItemUjamushi::Item, Game::ItemUjamushi::FSM,
-                            Game::ItemUjamushi::State>
-Fv(void)
+void doAI__Q24Game89FSMItem<Game::ItemUjamushi::Item, Game::ItemUjamushi::FSM, Game::ItemUjamushi::State> Fv(void)
 {
 	/*
 	.loc_0x0:
@@ -8216,8 +8207,7 @@ void getStart__Q24Game36TFlockMgr<Game::ItemUjamushi::Uja> Fv(void)
  * Address:	8020AE00
  * Size:	000024
  */
-void killFlock__Q24Game36TFlockMgr<Game::ItemUjamushi::Uja>
-FPQ24Game6TFlock(void)
+void killFlock__Q24Game36TFlockMgr<Game::ItemUjamushi::Uja> FPQ24Game6TFlock(void)
 {
 	/*
 	.loc_0x0:
@@ -8387,8 +8377,7 @@ lbl_8020AFDC:
  * Address:	8020B00C
  * Size:	000024
  */
-void kill__Q24Game39NodeItemMgr<Game::ItemUjamushi::Item>
-FPQ34Game12ItemUjamushi4Item(void)
+void kill__Q24Game39NodeItemMgr<Game::ItemUjamushi::Item> FPQ34Game12ItemUjamushi4Item(void)
 {
 	/*
 	.loc_0x0:
@@ -8519,8 +8508,7 @@ void doSimulation__Q24Game39NodeItemMgr<Game::ItemUjamushi::Item> Ff(void)
  * Address:	8020B10C
  * Size:	00002C
  */
-void doDirectDraw__Q24Game39NodeItemMgr<Game::ItemUjamushi::Item>
-FR8Graphics(void)
+void doDirectDraw__Q24Game39NodeItemMgr<Game::ItemUjamushi::Item> FR8Graphics(void)
 {
 	/*
 	.loc_0x0:
@@ -8543,110 +8531,77 @@ FR8Graphics(void)
  * Address:	8020B138
  * Size:	000004
  */
-void onDamage__Q24Game37ItemState<Game::ItemUjamushi::Item>
-FPQ34Game12ItemUjamushi4Itemf(void)
-{
-}
+void onDamage__Q24Game37ItemState<Game::ItemUjamushi::Item> FPQ34Game12ItemUjamushi4Itemf(void) { }
 
 /*
  * --INFO--
  * Address:	8020B13C
  * Size:	000004
  */
-void onKeyEvent__Q24Game37ItemState<Game::ItemUjamushi::Item>
-FPQ34Game12ItemUjamushi4ItemRCQ28SysShape8KeyEvent(void)
-{
-}
+void onKeyEvent__Q24Game37ItemState<Game::ItemUjamushi::Item> FPQ34Game12ItemUjamushi4ItemRCQ28SysShape8KeyEvent(void) { }
 
 /*
  * --INFO--
  * Address:	8020B140
  * Size:	000004
  */
-void onBounce__Q24Game37ItemState<Game::ItemUjamushi::Item>
-FPQ34Game12ItemUjamushi4ItemPQ23Sys8Triangle(void)
-{
-}
+void onBounce__Q24Game37ItemState<Game::ItemUjamushi::Item> FPQ34Game12ItemUjamushi4ItemPQ23Sys8Triangle(void) { }
 
 /*
  * --INFO--
  * Address:	8020B144
  * Size:	000004
  */
-void onPlatCollision__Q24Game37ItemState<Game::ItemUjamushi::Item>
-FPQ34Game12ItemUjamushi4ItemRQ24Game9PlatEvent(void)
-{
-}
+void onPlatCollision__Q24Game37ItemState<Game::ItemUjamushi::Item> FPQ34Game12ItemUjamushi4ItemRQ24Game9PlatEvent(void) { }
 
 /*
  * --INFO--
  * Address:	8020B148
  * Size:	000004
  */
-void onCollision__Q24Game37ItemState<Game::ItemUjamushi::Item>
-FPQ34Game12ItemUjamushi4ItemRQ24Game9CollEvent(void)
-{
-}
+void onCollision__Q24Game37ItemState<Game::ItemUjamushi::Item> FPQ34Game12ItemUjamushi4ItemRQ24Game9CollEvent(void) { }
 
 /*
  * --INFO--
  * Address:	8020B14C
  * Size:	000004
  */
-void init__Q24Game36FSMState<Game::ItemUjamushi::Item>
-FPQ34Game12ItemUjamushi4ItemPQ24Game8StateArg(void)
-{
-}
+void init__Q24Game36FSMState<Game::ItemUjamushi::Item> FPQ34Game12ItemUjamushi4ItemPQ24Game8StateArg(void) { }
 
 /*
  * --INFO--
  * Address:	8020B150
  * Size:	000004
  */
-void exec__Q24Game36FSMState<Game::ItemUjamushi::Item>
-FPQ34Game12ItemUjamushi4Item(void)
-{
-}
+void exec__Q24Game36FSMState<Game::ItemUjamushi::Item> FPQ34Game12ItemUjamushi4Item(void) { }
 
 /*
  * --INFO--
  * Address:	8020B154
  * Size:	000004
  */
-void cleanup__Q24Game36FSMState<Game::ItemUjamushi::Item>
-FPQ34Game12ItemUjamushi4Item(void)
-{
-}
+void cleanup__Q24Game36FSMState<Game::ItemUjamushi::Item> FPQ34Game12ItemUjamushi4Item(void) { }
 
 /*
  * --INFO--
  * Address:	8020B158
  * Size:	000004
  */
-void resume__Q24Game36FSMState<Game::ItemUjamushi::Item>
-FPQ34Game12ItemUjamushi4Item(void)
-{
-}
+void resume__Q24Game36FSMState<Game::ItemUjamushi::Item> FPQ34Game12ItemUjamushi4Item(void) { }
 
 /*
  * --INFO--
  * Address:	8020B15C
  * Size:	000004
  */
-void restart__Q24Game36FSMState<Game::ItemUjamushi::Item>
-FPQ34Game12ItemUjamushi4Item(void)
-{
-}
+void restart__Q24Game36FSMState<Game::ItemUjamushi::Item> FPQ34Game12ItemUjamushi4Item(void) { }
 
 /*
  * --INFO--
  * Address:	8020B160
  * Size:	000004
  */
-void init__Q24Game40StateMachine<Game::ItemUjamushi::Item>
-FPQ34Game12ItemUjamushi4Item(void)
-{
-}
+void init__Q24Game40StateMachine<Game::ItemUjamushi::Item> FPQ34Game12ItemUjamushi4Item(void) { }
 
 /*
  * --INFO--
@@ -11272,8 +11227,7 @@ void MonoObjectMgr<Game::ItemUjamushi::Uja>::MonoObjectMgr()
  * Address:	8020CF0C
  * Size:	00009C
  */
-void transit__Q24Game40StateMachine<Game::ItemUjamushi::Item>
-FPQ34Game12ItemUjamushi4ItemiPQ24Game8StateArg(void)
+void transit__Q24Game40StateMachine<Game::ItemUjamushi::Item> FPQ34Game12ItemUjamushi4ItemiPQ24Game8StateArg(void)
 {
 	/*
 	.loc_0x0:
@@ -11330,8 +11284,7 @@ FPQ34Game12ItemUjamushi4ItemiPQ24Game8StateArg(void)
  * Address:	8020CFA8
  * Size:	000084
  */
-void registerState__Q24Game40StateMachine<Game::ItemUjamushi::Item>
-FPQ24Game36FSMState<Game::ItemUjamushi::Item>(void)
+void registerState__Q24Game40StateMachine<Game::ItemUjamushi::Item> FPQ24Game36FSMState<Game::ItemUjamushi::Item>(void)
 {
 	/*
 	.loc_0x0:
@@ -11382,8 +11335,7 @@ FPQ24Game36FSMState<Game::ItemUjamushi::Item>(void)
  * Address:	8020D02C
  * Size:	000038
  */
-void exec__Q24Game40StateMachine<Game::ItemUjamushi::Item>
-FPQ34Game12ItemUjamushi4Item(void)
+void exec__Q24Game40StateMachine<Game::ItemUjamushi::Item> FPQ34Game12ItemUjamushi4Item(void)
 {
 	/*
 	.loc_0x0:
@@ -11411,9 +11363,7 @@ FPQ34Game12ItemUjamushi4Item(void)
  * Address:	8020D064
  * Size:	000044
  */
-void onKeyEvent__Q24Game89FSMItem<Game::ItemUjamushi::Item,
-                                  Game::ItemUjamushi::FSM,
-                                  Game::ItemUjamushi::State>
+void onKeyEvent__Q24Game89FSMItem<Game::ItemUjamushi::Item, Game::ItemUjamushi::FSM, Game::ItemUjamushi::State>
 FRCQ28SysShape8KeyEvent(void)
 {
 	/*
@@ -11445,10 +11395,7 @@ FRCQ28SysShape8KeyEvent(void)
  * Address:	8020D0A8
  * Size:	000044
  */
-void platCallback__Q24Game89FSMItem<Game::ItemUjamushi::Item,
-                                    Game::ItemUjamushi::FSM,
-                                    Game::ItemUjamushi::State>
-FRQ24Game9PlatEvent(void)
+void platCallback__Q24Game89FSMItem<Game::ItemUjamushi::Item, Game::ItemUjamushi::FSM, Game::ItemUjamushi::State> FRQ24Game9PlatEvent(void)
 {
 	/*
 	.loc_0x0:
@@ -11479,9 +11426,7 @@ FRQ24Game9PlatEvent(void)
  * Address:	8020D0EC
  * Size:	000044
  */
-void collisionCallback__Q24Game89FSMItem<Game::ItemUjamushi::Item,
-                                         Game::ItemUjamushi::FSM,
-                                         Game::ItemUjamushi::State>
+void collisionCallback__Q24Game89FSMItem<Game::ItemUjamushi::Item, Game::ItemUjamushi::FSM, Game::ItemUjamushi::State>
 FRQ24Game9CollEvent(void)
 {
 	/*
@@ -11513,10 +11458,7 @@ FRQ24Game9CollEvent(void)
  * Address:	8020D130
  * Size:	000044
  */
-void bounceCallback__Q24Game89FSMItem<Game::ItemUjamushi::Item,
-                                      Game::ItemUjamushi::FSM,
-                                      Game::ItemUjamushi::State>
-FPQ23Sys8Triangle(void)
+void bounceCallback__Q24Game89FSMItem<Game::ItemUjamushi::Item, Game::ItemUjamushi::FSM, Game::ItemUjamushi::State> FPQ23Sys8Triangle(void)
 {
 	/*
 	.loc_0x0:
@@ -11812,8 +11754,7 @@ lbl_8020D42C:
  * Address:	8020D464
  * Size:	000084
  */
-void entry__Q24Game39NodeItemMgr<Game::ItemUjamushi::Item>
-FPQ34Game12ItemUjamushi4Item(void)
+void entry__Q24Game39NodeItemMgr<Game::ItemUjamushi::Item> FPQ34Game12ItemUjamushi4Item(void)
 {
 	/*
 	.loc_0x0:
@@ -12254,9 +12195,7 @@ void @32 @get__Q24Game36TFlockMgr<Game::ItemUjamushi::Uja> FPv(void)
  * Address:	8020D714
  * Size:	000008
  */
-void @376 @onKeyEvent__Q24Game89FSMItem<Game::ItemUjamushi::Item,
-                                        Game::ItemUjamushi::FSM,
-                                        Game::ItemUjamushi::State>
+void @376 @onKeyEvent__Q24Game89FSMItem<Game::ItemUjamushi::Item, Game::ItemUjamushi::FSM, Game::ItemUjamushi::State>
 FRCQ28SysShape8KeyEvent(void)
 {
 	/*

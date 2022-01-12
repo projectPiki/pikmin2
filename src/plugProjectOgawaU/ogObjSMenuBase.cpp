@@ -989,8 +989,7 @@ lbl_80316AF4:
  * Address:	80316B10
  * Size:	000068
  */
-void ObjSMenuBase::setYajiName(unsigned long long, unsigned long long,
-                               unsigned long long)
+void ObjSMenuBase::setYajiName(unsigned long long, unsigned long long, unsigned long long)
 {
 	/*
 	.loc_0x0:
@@ -1781,12 +1780,7 @@ void StartSceneArgSMenu::getSceneType() const
  * Address:	803173B8
  * Size:	000008
  */
-u32 getClassSize__Q26Screen58StartSceneArgTemplate<
-    og::newScreen::StartSceneArgSMenu>
-Fv(void)
-{
-	return 0xC;
-}
+u32 getClassSize__Q26Screen58StartSceneArgTemplate<og::newScreen::StartSceneArgSMenu> Fv(void) { return 0xC; }
 
 } // namespace og
 

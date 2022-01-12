@@ -199,8 +199,7 @@ lbl_80091630:
  * Address:	80091648
  * Size:	0001BC
  */
-void JPAFieldGravity::calc(JPAEmitterWorkData*, JPAFieldBlock*,
-                           JPABaseParticle*)
+void JPAFieldGravity::calc(JPAEmitterWorkData*, JPAFieldBlock*, JPABaseParticle*)
 {
 	/*
 	.loc_0x0:
@@ -1671,8 +1670,7 @@ lbl_8009289C:
  * Address:	800928B8
  * Size:	00039C
  */
-void JPAFieldConvection::calc(JPAEmitterWorkData*, JPAFieldBlock*,
-                              JPABaseParticle*)
+void JPAFieldConvection::calc(JPAEmitterWorkData*, JPAFieldBlock*, JPABaseParticle*)
 {
 	/*
 	.loc_0x0:

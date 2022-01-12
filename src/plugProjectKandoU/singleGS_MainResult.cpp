@@ -260,8 +260,7 @@ lbl_8021A0DC:
  * Address:	8021A0F8
  * Size:	000104
  */
-void SingleGame::MainResultState::init(Game::SingleGameSection*,
-                                       Game::StateArg*)
+void SingleGame::MainResultState::init(Game::SingleGameSection*, Game::StateArg*)
 {
 	/*
 	.loc_0x0:
@@ -724,9 +723,7 @@ lbl_8021A67C:
  * Address:	8021A690
  * Size:	000030
  */
-void SingleGame::MainResultState::onMovieDone(Game::SingleGameSection*,
-                                              Game::MovieConfig*, unsigned long,
-                                              unsigned long)
+void SingleGame::MainResultState::onMovieDone(Game::SingleGameSection*, Game::MovieConfig*, unsigned long, unsigned long)
 {
 	/*
 	.loc_0x0:

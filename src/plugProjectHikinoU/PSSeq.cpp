@@ -2890,8 +2890,7 @@ lbl_80332894:
  * Address:	803328B0
  * Size:	000138
  */
-DirectedBgm::DirectedBgm(char const*, JAInter::SoundInfo const&,
-                         PSSystem::DirectorMgrBase*)
+DirectedBgm::DirectedBgm(char const*, JAInter::SoundInfo const&, PSSystem::DirectorMgrBase*)
 {
 	/*
 	.loc_0x0:
@@ -3762,8 +3761,7 @@ void JumpBgmPort::output(void)
  * Address:	80333230
  * Size:	000190
  */
-JumpBgmSeq::JumpBgmSeq(char const*, JAInter::SoundInfo const&,
-                       PSSystem::DirectorMgrBase*)
+JumpBgmSeq::JumpBgmSeq(char const*, JAInter::SoundInfo const&, PSSystem::DirectorMgrBase*)
 {
 	/*
 	.loc_0x0:

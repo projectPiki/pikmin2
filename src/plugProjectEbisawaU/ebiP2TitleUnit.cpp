@@ -119,8 +119,7 @@
  * Address:	........
  * Size:	0000A8
  */
-void E3DModel_set2DCoordToBaseTRMatrix__Q23ebi5titleFP8J3DModelR10Vector2<float>
-    R10Vector2<float> f(void)
+void E3DModel_set2DCoordToBaseTRMatrix__Q23ebi5titleFP8J3DModelR10Vector2<float> R10Vector2<float> f(void)
 {
 	// UNUSED FUNCTION
 }

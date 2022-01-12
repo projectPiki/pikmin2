@@ -65,8 +65,7 @@ size_t JSUFileInputStream::readData(void* buffer, long byteCount)
 			byteCount = ((JKRFile*)m_object)->getFileSize() - m_length;
 		}
 		if (byteCount > 0) {
-			readBytes
-			    = ((JKRFile*)m_object)->readData(buffer, byteCount, m_length);
+			readBytes = ((JKRFile*)m_object)->readData(buffer, byteCount, m_length);
 			if (readBytes < 0) {
 				return 0;
 			} else {
@@ -112,10 +111,7 @@ int JSUFileInputStream::seekPos(long offset, JSUStreamSeekFrom mode)
  * Address:	800270F0
  * Size:	000030
  */
-int JSUFileInputStream::getLength() const
-{
-	return ((JKRFile*)m_object)->getFileSize();
-}
+int JSUFileInputStream::getLength() const { return ((JKRFile*)m_object)->getFileSize(); }
 
 /*
  * --INFO--

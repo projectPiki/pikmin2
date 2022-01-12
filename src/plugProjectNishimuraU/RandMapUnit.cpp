@@ -2431,8 +2431,7 @@ lbl_8024780C:
  * Address:	80247834
  * Size:	0000EC
  */
-CardinalDirection RandMapUnit::getLinkDoorDirection(MapNode*, int, MapNode*,
-                                                    int)
+CardinalDirection RandMapUnit::getLinkDoorDirection(MapNode*, int, MapNode*, int)
 {
 	/*
 	.loc_0x0:

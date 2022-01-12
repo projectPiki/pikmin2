@@ -975,9 +975,7 @@ StreamSound::StreamSound()
  * Address:	80338CB4
  * Size:	000070
  */
-void JAIBasic::startSoundActorReturnHandleT<JAISe>(JAISe**, unsigned long,
-                                                   JAInter::Actor*,
-                                                   unsigned long, unsigned char)
+void JAIBasic::startSoundActorReturnHandleT<JAISe>(JAISe**, unsigned long, JAInter::Actor*, unsigned long, unsigned char)
 {
 	/*
 	.loc_0x0:
@@ -1023,8 +1021,7 @@ void JAIBasic::startSoundActorReturnHandleT<JAISe>(JAISe**, unsigned long,
  * Address:	80338D24
  * Size:	000068
  */
-void JAIBasic::startSoundActorT<JAISe>(unsigned long, JAISe**, JAInter::Actor*,
-                                       unsigned long, unsigned char)
+void JAIBasic::startSoundActorT<JAISe>(unsigned long, JAISe**, JAInter::Actor*, unsigned long, unsigned char)
 {
 	/*
 	.loc_0x0:

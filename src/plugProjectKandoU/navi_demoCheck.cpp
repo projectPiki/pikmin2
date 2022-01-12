@@ -1990,9 +1990,7 @@ void isDone__Q24Game30EnemyIterator<Game::Pom::Obj> Fv(void)
  * Address:	80220CE8
  * Size:	000040
  */
-void __ct__Q24Game12MoviePlayArgFPcPcP39IDelegate3<Game::MovieConfig*,
-                                                   unsigned long, unsigned long>
-Ul(void)
+void __ct__Q24Game12MoviePlayArgFPcPcP39IDelegate3<Game::MovieConfig*, unsigned long, unsigned long> Ul(void)
 {
 	/*
 	.loc_0x0:

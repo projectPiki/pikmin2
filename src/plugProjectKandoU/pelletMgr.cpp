@@ -2975,8 +2975,7 @@ lbl_80166F1C:
  * Address:	80166F34
  * Size:	000034
  */
-void start__Q24Game28StateMachine<Game::Pellet>
-FPQ24Game6PelletiPQ24Game8StateArg(void)
+void start__Q24Game28StateMachine<Game::Pellet> FPQ24Game6PelletiPQ24Game8StateArg(void)
 {
 	/*
 	.loc_0x0:
@@ -12190,8 +12189,7 @@ lbl_8016DB78:
  * Address:	8016DB90
  * Size:	0002EC
  */
-void PelletMgr::makePelletInitArg(Game::PelletInitArg&,
-                                  Game::PelletMgr::OtakaraItemCode&)
+void PelletMgr::makePelletInitArg(Game::PelletInitArg&, Game::PelletMgr::OtakaraItemCode&)
 {
 	/*
 	.loc_0x0:
@@ -14756,11 +14754,7 @@ lbl_8016F9A8:
  * Address:	8016F9BC
  * Size:	000008
  */
-void generatorBirth__Q24Game13BasePelletMgrFR10Vector3f R10Vector3f
-PQ24Game13GenPelletParm(void)
-{
-	return 0x0;
-}
+void generatorBirth__Q24Game13BasePelletMgrFR10Vector3f R10Vector3f PQ24Game13GenPelletParm(void) { return 0x0; }
 
 namespace Game {
 
@@ -14776,9 +14770,7 @@ void BasePelletMgr::generatorWrite(Stream&, Game::GenPelletParm*) { }
  * Address:	8016F9C8
  * Size:	000004
  */
-void BasePelletMgr::generatorRead(Stream&, Game::GenPelletParm*, unsigned long)
-{
-}
+void BasePelletMgr::generatorRead(Stream&, Game::GenPelletParm*, unsigned long) { }
 
 /*
  * --INFO--
@@ -18152,8 +18144,7 @@ void MonoObjectMgr<CollPart>::MonoObjectMgr()
  * Address:	80171EEC
  * Size:	00009C
  */
-void transit__Q24Game28StateMachine<Game::Pellet>
-FPQ24Game6PelletiPQ24Game8StateArg(void)
+void transit__Q24Game28StateMachine<Game::Pellet> FPQ24Game6PelletiPQ24Game8StateArg(void)
 {
 	/*
 	.loc_0x0:
@@ -18210,10 +18201,7 @@ FPQ24Game6PelletiPQ24Game8StateArg(void)
  * Address:	80171F88
  * Size:	000004
  */
-void init__Q24Game24FSMState<Game::Pellet>
-FPQ24Game6PelletPQ24Game8StateArg(void)
-{
-}
+void init__Q24Game24FSMState<Game::Pellet> FPQ24Game6PelletPQ24Game8StateArg(void) { }
 
 /*
  * --INFO--
@@ -18281,9 +18269,7 @@ void exec__Q24Game24FSMState<Game::Pellet> FPQ24Game6Pellet(void) { }
  * Address:	80171FE8
  * Size:	00009C
  */
-void resetMgrAndResources__Q24Game49FixedSizePelletMgr<
-    Game::PelletOtakara::Object>
-Fv(void)
+void resetMgrAndResources__Q24Game49FixedSizePelletMgr<Game::PelletOtakara::Object> Fv(void)
 {
 	/*
 	.loc_0x0:
@@ -18371,8 +18357,7 @@ void resetMgr__Q24Game49FixedSizePelletMgr<Game::PelletOtakara::Object> Fv(void)
  * Address:	801720D4
  * Size:	00009C
  */
-void resetMgrAndResources__Q24Game46FixedSizePelletMgr<Game::PelletItem::Object>
-Fv(void)
+void resetMgrAndResources__Q24Game46FixedSizePelletMgr<Game::PelletItem::Object> Fv(void)
 {
 	/*
 	.loc_0x0:
@@ -18703,8 +18688,7 @@ void __sinit_pelletMgr_cpp(void)
  * Address:	80172418
  * Size:	000008
  */
-void @48
-    @PSM::CreatureObj::startSound(unsigned char, unsigned long, unsigned long)
+void @48 @PSM::CreatureObj::startSound(unsigned char, unsigned long, unsigned long)
 {
 	/*
 	.loc_0x0:

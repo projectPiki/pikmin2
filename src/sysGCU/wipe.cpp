@@ -545,8 +545,7 @@ void BlackFader::do_draw(float)
 	// JUtility::TColor c4;
 	Graphics* gfx = sys->m_gfx;
 	gfx->m_orthoGraph.setPort();
-	JUtility::TColor color(_24.channels.r, _24.channels.g, _24.channels.b,
-	                       0xFF);
+	JUtility::TColor color(_24.channels.r, _24.channels.g, _24.channels.b, 0xFF);
 	J2DOrthoGraph* orthoGraph = &gfx->m_orthoGraph;
 	if (!_28) {
 		color.channels.r = _24.channels.r;

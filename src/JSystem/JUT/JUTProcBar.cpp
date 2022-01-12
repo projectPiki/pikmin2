@@ -305,8 +305,7 @@ void JUTProcBar::clear()
  * Address:	........
  * Size:	00018C
  */
-void JUTProcBar::bar_subroutine(int, int, int, int, int, int, int,
-                                JUtility::TColor, JUtility::TColor)
+void JUTProcBar::bar_subroutine(int, int, int, int, int, int, int, JUtility::TColor, JUtility::TColor)
 {
 	// UNUSED FUNCTION
 }

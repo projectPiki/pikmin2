@@ -86,11 +86,7 @@ namespace newScreen {
  * Address:	80317F28
  * Size:	000024
  */
-bool checkMovieActive()
-{
-	return ((Game::moviePlayer != nullptr)
-	        && (Game::moviePlayer->m_flags & Game::MoviePlayer::IS_ACTIVE));
-}
+bool checkMovieActive() { return ((Game::moviePlayer != nullptr) && (Game::moviePlayer->m_flags & Game::MoviePlayer::IS_ACTIVE)); }
 
 /*
  * --INFO--

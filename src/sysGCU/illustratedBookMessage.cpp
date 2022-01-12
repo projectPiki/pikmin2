@@ -181,8 +181,7 @@ namespace P2JME {
  * Address:	........
  * Size:	000048
  */
-IllustratedBook::TSequenceProcessor::TSequenceProcessor(JMessage::TReference*,
-                                                        JMessage::TControl*)
+IllustratedBook::TSequenceProcessor::TSequenceProcessor(JMessage::TReference*, JMessage::TControl*)
 {
 	// UNUSED FUNCTION
 }
@@ -235,8 +234,7 @@ lbl_80454FDC:
  * Address:	80454FF8
  * Size:	00004C
  */
-void makeMatrix__Q35P2JME15IllustratedBook19TRenderingProcessorFP7MatrixfPQ35P2JME6Window8DrawInfof10Vector3<
-    float>(void)
+void makeMatrix__Q35P2JME15IllustratedBook19TRenderingProcessorFP7MatrixfPQ35P2JME6Window8DrawInfof10Vector3<float>(void)
 {
 	/*
 	.loc_0x0:
@@ -846,10 +844,7 @@ lbl_80455654:
  * Address:	80455670
  * Size:	000008
  */
-u32 IllustratedBook::TRenderingProcessor::doTagControlAbtnWait(void)
-{
-	return 0x1;
-}
+u32 IllustratedBook::TRenderingProcessor::doTagControlAbtnWait(void) { return 0x1; }
 
 /*
  * --INFO--

@@ -246,8 +246,7 @@ void J2DOrthoGraph::setLookat()
  * Address:	80035784
  * Size:	00010C
  */
-void J2DOrthoGraph::scissorBounds(JGeometry::TBox2<float>*,
-                                  const JGeometry::TBox2<float>*)
+void J2DOrthoGraph::scissorBounds(JGeometry::TBox2<float>*, const JGeometry::TBox2<float>*)
 {
 	/*
 	.loc_0x0:
@@ -534,8 +533,7 @@ void J2DFillBox(const JGeometry::TBox2<float>&, JUtility::TColor)
  * Address:	80035B0C
  * Size:	00006C
  */
-void J2DFillBox(float, float, float, float, JUtility::TColor, JUtility::TColor,
-                JUtility::TColor, JUtility::TColor)
+void J2DFillBox(float, float, float, float, JUtility::TColor, JUtility::TColor, JUtility::TColor, JUtility::TColor)
 {
 	/*
 	.loc_0x0:
@@ -576,8 +574,7 @@ void J2DFillBox(float, float, float, float, JUtility::TColor, JUtility::TColor,
  * Address:	80035B78
  * Size:	0000D0
  */
-void J2DFillBox(const JGeometry::TBox2<float>&, JUtility::TColor,
-                JUtility::TColor, JUtility::TColor, JUtility::TColor)
+void J2DFillBox(const JGeometry::TBox2<float>&, JUtility::TColor, JUtility::TColor, JUtility::TColor, JUtility::TColor)
 {
 	/*
 	.loc_0x0:
@@ -671,8 +668,7 @@ void J2DDrawFrame(float, float, float, float, JUtility::TColor, unsigned char)
  * Address:	80035C94
  * Size:	0000E4
  */
-void J2DDrawFrame(const JGeometry::TBox2<float>&, JUtility::TColor,
-                  unsigned char)
+void J2DDrawFrame(const JGeometry::TBox2<float>&, JUtility::TColor, unsigned char)
 {
 	/*
 	.loc_0x0:

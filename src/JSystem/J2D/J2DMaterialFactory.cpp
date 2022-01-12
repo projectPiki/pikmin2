@@ -153,9 +153,7 @@ lbl_80053360:
  * Address:	800534AC
  * Size:	0009C8
  */
-void J2DMaterialFactory::create(J2DMaterial*, int, unsigned long,
-                                J2DResReference*, J2DResReference*,
-                                JKRArchive*) const
+void J2DMaterialFactory::create(J2DMaterial*, int, unsigned long, J2DResReference*, J2DResReference*, JKRArchive*) const
 {
 	/*
 	.loc_0x0:

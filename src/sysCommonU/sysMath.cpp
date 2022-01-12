@@ -127,11 +127,9 @@ extern const float lbl_805201B0;
 float pikmin2_sinf(float x)
 {
 	if (x < lbl_80520270) {
-		return -JMath::sincosTable_.m_table[((int)(x * lbl_80520268) & 0x7ffU)]
-		            .first;
+		return -JMath::sincosTable_.m_table[((int)(x * lbl_80520268) & 0x7ffU)].first;
 	}
-	return JMath::sincosTable_.m_table[((int)(x * lbl_8052026C) & 0x7ffU)]
-	    .first;
+	return JMath::sincosTable_.m_table[((int)(x * lbl_8052026C) & 0x7ffU)].first;
 }
 
 /*
@@ -144,8 +142,7 @@ float pikmin2_cosf(float x)
 	if (x < lbl_80520270) {
 		x = -x;
 	}
-	return JMath::sincosTable_.m_table[((int)(x * lbl_8052026C) & 0x7ffU)]
-	    .second;
+	return JMath::sincosTable_.m_table[((int)(x * lbl_8052026C) & 0x7ffU)].second;
 }
 
 /*
@@ -153,10 +150,7 @@ float pikmin2_cosf(float x)
  * Address:	804117DC
  * Size:	000028
  */
-float pikmin2_atan2f(float x, float y)
-{
-	return JMath::atanTable_.atan2_(x, y);
-}
+float pikmin2_atan2f(float x, float y) { return JMath::atanTable_.atan2_(x, y); }
 
 /*
  * --INFO--

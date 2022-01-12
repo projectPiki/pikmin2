@@ -2243,40 +2243,28 @@ u32 Analyzer::tagFont(void const*, unsigned long) { return 0x1; }
  * Address:	80330264
  * Size:	000008
  */
-u32 Analyzer::tagImage(unsigned short, void const*, unsigned long)
-{
-	return 0x1;
-}
+u32 Analyzer::tagImage(unsigned short, void const*, unsigned long) { return 0x1; }
 
 /*
  * --INFO--
  * Address:	8033026C
  * Size:	000008
  */
-u32 Analyzer::tagColorEX(unsigned short, void const*, unsigned long)
-{
-	return 0x1;
-}
+u32 Analyzer::tagColorEX(unsigned short, void const*, unsigned long) { return 0x1; }
 
 /*
  * --INFO--
  * Address:	80330274
  * Size:	000008
  */
-u32 Analyzer::tagControl(unsigned short, void const*, unsigned long)
-{
-	return 0x1;
-}
+u32 Analyzer::tagControl(unsigned short, void const*, unsigned long) { return 0x1; }
 
 /*
  * --INFO--
  * Address:	8033027C
  * Size:	000008
  */
-u32 Analyzer::tagPosition(unsigned short, void const*, unsigned long)
-{
-	return 0x1;
-}
+u32 Analyzer::tagPosition(unsigned short, void const*, unsigned long) { return 0x1; }
 
 /*
  * --INFO--

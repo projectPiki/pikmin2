@@ -182,8 +182,7 @@ J2DPrint::J2DPrint(JUTFont*, JUtility::TColor, JUtility::TColor)
  * Address:	8003D87C
  * Size:	000094
  */
-J2DPrint::J2DPrint(JUTFont*, float, float, JUtility::TColor, JUtility::TColor,
-                   JUtility::TColor, JUtility::TColor)
+J2DPrint::J2DPrint(JUTFont*, float, float, JUtility::TColor, JUtility::TColor, JUtility::TColor, JUtility::TColor)
 {
 	/*
 	.loc_0x0:
@@ -297,9 +296,7 @@ lbl_8003D99C:
  * Address:	8003D9AC
  * Size:	0001E8
  */
-void J2DPrint::private_initiate(JUTFont*, float, float, JUtility::TColor,
-                                JUtility::TColor, JUtility::TColor,
-                                JUtility::TColor, bool)
+void J2DPrint::private_initiate(JUTFont*, float, float, JUtility::TColor, JUtility::TColor, JUtility::TColor, JUtility::TColor, bool)
 {
 	/*
 	.loc_0x0:
@@ -843,8 +840,7 @@ lbl_8003DFD8:
  * Address:	8003E018
  * Size:	00031C
  */
-void J2DPrint::printReturn(const char*, float, float, J2DTextBoxHBinding,
-                           J2DTextBoxVBinding, float, float, unsigned char)
+void J2DPrint::printReturn(const char*, float, float, J2DTextBoxHBinding, J2DTextBoxVBinding, float, float, unsigned char)
 {
 	/*
 	.loc_0x0:
@@ -1079,8 +1075,7 @@ void J2DPrint::printReturn(const char*, float, float, J2DTextBoxHBinding,
  * Address:	8003E334
  * Size:	0007BC
  */
-void J2DPrint::parse(const unsigned char*, int, int, unsigned short*,
-                     J2DPrint::TSize&, unsigned char, bool)
+void J2DPrint::parse(const unsigned char*, int, int, unsigned short*, J2DPrint::TSize&, unsigned char, bool)
 {
 	/*
 	.loc_0x0:

@@ -162,8 +162,7 @@ void ObjWorldMapInfoWindow0::doCreate(JKRArchive* archive)
 	Screen::TagSearch(_B0, 'Nmenu02')->hide();
 	Screen::setFurikoScreen(_B0);
 	m_menuMgr = new Screen::MenuMgr();
-	m_menuMgr->init2taku(_B0, 'Nm01y', 'Tm01y', 'Pm01y_il', 'Pm01y_ir', 'Nm01n',
-	                     'Tm01n', 'Pm01n_il', 'Pm01n_ir');
+	m_menuMgr->init2taku(_B0, 'Nm01y', 'Tm01y', 'Pm01y_il', 'Pm01y_ir', 'Nm01n', 'Tm01n', 'Pm01n_il', 'Pm01n_ir');
 	_B0->search('Tm01y')->m_messageID = _CC->_10;
 	_B0->search('Tm01n')->m_messageID = _CC->_18;
 	Screen::setCallBackMessage(_B0);

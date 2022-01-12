@@ -30,12 +30,7 @@ struct JKRDecompCommand {
 
 // Size: 0x7C
 struct JKRDecomp : public JKRThread {
-	enum CompressionMode {
-		NOT_COMPRESSED = 0,
-		YAY0,
-		YAZ0,
-		_FORCE_UINT = 0xFFFFFFFF
-	};
+	enum CompressionMode { NOT_COMPRESSED = 0, YAY0, YAZ0, _FORCE_UINT = 0xFFFFFFFF };
 
 	JKRDecomp(long);
 

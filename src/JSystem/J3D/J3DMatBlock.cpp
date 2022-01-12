@@ -14669,8 +14669,7 @@ void J3DTevBlock16::setTevSwapModeTable(unsigned long, J3DTevSwapModeTable)
  * Address:	80081EA0
  * Size:	000010
  */
-void J3DTevBlock16::setTevSwapModeTable(unsigned long,
-                                        const J3DTevSwapModeTable*)
+void J3DTevBlock16::setTevSwapModeTable(unsigned long, const J3DTevSwapModeTable*)
 {
 	/*
 	.loc_0x0:
@@ -15379,8 +15378,7 @@ void J3DTevBlock4::setTevSwapModeTable(unsigned long, J3DTevSwapModeTable)
  * Address:	80082300
  * Size:	000010
  */
-void J3DTevBlock4::setTevSwapModeTable(unsigned long,
-                                       const J3DTevSwapModeTable*)
+void J3DTevBlock4::setTevSwapModeTable(unsigned long, const J3DTevSwapModeTable*)
 {
 	/*
 	.loc_0x0:
@@ -16089,8 +16087,7 @@ void J3DTevBlock2::setTevSwapModeTable(unsigned long, J3DTevSwapModeTable)
  * Address:	80082760
  * Size:	000010
  */
-void J3DTevBlock2::setTevSwapModeTable(unsigned long,
-                                       const J3DTevSwapModeTable*)
+void J3DTevBlock2::setTevSwapModeTable(unsigned long, const J3DTevSwapModeTable*)
 {
 	/*
 	.loc_0x0:
@@ -18605,8 +18602,7 @@ void J3DIndBlockFull::setIndTexCoordScale(unsigned long, J3DIndTexCoordScale)
  * Address:	80083698
  * Size:	00001C
  */
-void J3DIndBlockFull::setIndTexCoordScale(unsigned long,
-                                          const J3DIndTexCoordScale*)
+void J3DIndBlockFull::setIndTexCoordScale(unsigned long, const J3DIndTexCoordScale*)
 {
 	/*
 	.loc_0x0:

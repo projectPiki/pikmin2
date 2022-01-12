@@ -298,8 +298,7 @@ lbl_8033D9E8:
  * Address:	8033DA00
  * Size:	000078
  */
-void WaveScene::load(unsigned short, unsigned short,
-                     PSSystem::WaveScene::AreaArg, PSSystem::TaskChecker*)
+void WaveScene::load(unsigned short, unsigned short, PSSystem::WaveScene::AreaArg, PSSystem::TaskChecker*)
 {
 	/*
 	.loc_0x0:
@@ -364,8 +363,7 @@ WaveScene::WaveArea::WaveArea()
  * Address:	8033DAA0
  * Size:	000114
  */
-void WaveScene::WaveArea::loadWave(unsigned short, unsigned short,
-                                   PSSystem::TaskChecker*)
+void WaveScene::WaveArea::loadWave(unsigned short, unsigned short, PSSystem::TaskChecker*)
 {
 	/*
 	.loc_0x0:

@@ -1091,8 +1091,7 @@ lbl_80152580:
  * Address:	80152588
  * Size:	000200
  */
-void SingleGame::State::accountEarnings(Game::SingleGameSection*,
-                                        Game::PelletCropMemory*, bool)
+void SingleGame::State::accountEarnings(Game::SingleGameSection*, Game::PelletCropMemory*, bool)
 {
 	/*
 	.loc_0x0:
@@ -1252,8 +1251,7 @@ void SingleGame::State::accountEarnings(Game::SingleGameSection*,
  * Address:	80152788
  * Size:	000160
  */
-void SingleGame::CaveDayEndState::init(Game::SingleGameSection*,
-                                       Game::StateArg*)
+void SingleGame::CaveDayEndState::init(Game::SingleGameSection*, Game::StateArg*)
 {
 	/*
 	.loc_0x0:
@@ -1423,8 +1421,7 @@ lbl_80152984:
  * Address:	8015299C
  * Size:	000030
  */
-void transit__Q24Game36FSMState<Game::SingleGameSection>
-FPQ24Game17SingleGameSectioniPQ24Game8StateArg(void)
+void transit__Q24Game36FSMState<Game::SingleGameSection> FPQ24Game17SingleGameSectioniPQ24Game8StateArg(void)
 {
 	/*
 	.loc_0x0:
@@ -1724,8 +1721,7 @@ lbl_80152CB4:
  * Address:	80152CE8
  * Size:	000034
  */
-void start__Q24Game40StateMachine<Game::SingleGameSection>
-FPQ24Game17SingleGameSectioniPQ24Game8StateArg(void)
+void start__Q24Game40StateMachine<Game::SingleGameSection> FPQ24Game17SingleGameSectioniPQ24Game8StateArg(void)
 {
 	/*
 	.loc_0x0:
@@ -1824,9 +1820,7 @@ lbl_80152DF0:
  * Address:	80152E08
  * Size:	000004
  */
-void SingleGame::State::on_demo_timer(Game::SingleGameSection*, unsigned long)
-{
-}
+void SingleGame::State::on_demo_timer(Game::SingleGameSection*, unsigned long) { }
 
 /*
  * --INFO--
@@ -2459,8 +2453,7 @@ lbl_801534F4:
  * Address:	80153508
  * Size:	000054
  */
-void SingleGameSection::onMovieStart(Game::MovieConfig*, unsigned long,
-                                     unsigned long)
+void SingleGameSection::onMovieStart(Game::MovieConfig*, unsigned long, unsigned long)
 {
 	/*
 	.loc_0x0:
@@ -2495,19 +2488,14 @@ void SingleGameSection::onMovieStart(Game::MovieConfig*, unsigned long,
  * Address:	8015355C
  * Size:	000004
  */
-void SingleGame::State::onMovieStart(Game::SingleGameSection*,
-                                     Game::MovieConfig*, unsigned long,
-                                     unsigned long)
-{
-}
+void SingleGame::State::onMovieStart(Game::SingleGameSection*, Game::MovieConfig*, unsigned long, unsigned long) { }
 
 /*
  * --INFO--
  * Address:	80153560
  * Size:	000064
  */
-void SingleGameSection::onMovieDone(Game::MovieConfig*, unsigned long,
-                                    unsigned long)
+void SingleGameSection::onMovieDone(Game::MovieConfig*, unsigned long, unsigned long)
 {
 	/*
 	.loc_0x0:
@@ -2546,11 +2534,7 @@ void SingleGameSection::onMovieDone(Game::MovieConfig*, unsigned long,
  * Address:	801535C4
  * Size:	000004
  */
-void SingleGame::State::onMovieDone(Game::SingleGameSection*,
-                                    Game::MovieConfig*, unsigned long,
-                                    unsigned long)
-{
-}
+void SingleGame::State::onMovieDone(Game::SingleGameSection*, Game::MovieConfig*, unsigned long, unsigned long) { }
 
 /*
  * --INFO--
@@ -3782,8 +3766,7 @@ void SingleGameSection::saveCaveMore(void)
  * Address:	80154598
  * Size:	000184
  */
-void SingleGameSection::openKanketuMenu(Game::ItemBigFountain::Item*,
-                                        Controller*)
+void SingleGameSection::openKanketuMenu(Game::ItemBigFountain::Item*, Controller*)
 {
 	/*
 	.loc_0x0:
@@ -4158,10 +4141,7 @@ void SingleGameSection::goNextFloor(Game::ItemHole::Item*)
  * Address:	80154A5C
  * Size:	000004
  */
-void SingleGame::State::onNextFloor(Game::SingleGameSection*,
-                                    Game::ItemHole::Item*)
-{
-}
+void SingleGame::State::onNextFloor(Game::SingleGameSection*, Game::ItemHole::Item*) { }
 
 /*
  * --INFO--
@@ -4208,10 +4188,7 @@ void SingleGameSection::goCave(Game::ItemCave::Item*)
  * Address:	80154AD4
  * Size:	000004
  */
-void SingleGame::State::onHoleIn(Game::SingleGameSection*,
-                                 Game::ItemCave::Item*)
-{
-}
+void SingleGame::State::onHoleIn(Game::SingleGameSection*, Game::ItemCave::Item*) { }
 
 /*
  * --INFO--
@@ -4247,10 +4224,7 @@ void SingleGameSection::goMainMap(Game::ItemBigFountain::Item*)
  * Address:	80154B20
  * Size:	000004
  */
-void SingleGame::State::onFountainReturn(Game::SingleGameSection*,
-                                         Game::ItemBigFountain::Item*)
-{
-}
+void SingleGame::State::onFountainReturn(Game::SingleGameSection*, Game::ItemBigFountain::Item*) { }
 
 /*
  * --INFO--
@@ -6516,8 +6490,7 @@ void StateMachine<SingleGameSection>::create(int)
  * Address:	80156468
  * Size:	00009C
  */
-void StateMachine<SingleGameSection>::transit(SingleGameSection*, int,
-                                              StateArg*)
+void StateMachine<SingleGameSection>::transit(SingleGameSection*, int, StateArg*)
 {
 	/*
 	.loc_0x0:
@@ -6574,8 +6547,7 @@ void StateMachine<SingleGameSection>::transit(SingleGameSection*, int,
  * Address:	80156504
  * Size:	000084
  */
-void StateMachine<SingleGameSection>::registerState(
-    FSMState<SingleGameSection>*)
+void StateMachine<SingleGameSection>::registerState(FSMState<SingleGameSection>*)
 {
 	/*
 	.loc_0x0:

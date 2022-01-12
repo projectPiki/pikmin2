@@ -3317,8 +3317,7 @@ lbl_8018A8B8:
  * Address:	8018A8D0
  * Size:	000030
  */
-void transit__Q24Game22FSMState<Game::Piki>
-FPQ24Game4PikiiPQ24Game8StateArg(void)
+void transit__Q24Game22FSMState<Game::Piki> FPQ24Game4PikiiPQ24Game8StateArg(void)
 {
 	/*
 	.loc_0x0:
@@ -14317,10 +14316,7 @@ u32 PikiSwallowedState::dead(void) { return 0x1; }
  * Address:	80192AD4
  * Size:	000008
  */
-u32 PikiSwallowedState::ignoreAtari(Game::Piki*, Game::Creature*)
-{
-	return 0x1;
-}
+u32 PikiSwallowedState::ignoreAtari(Game::Piki*, Game::Creature*) { return 0x1; }
 
 /*
  * --INFO--
@@ -14435,8 +14431,7 @@ void create__Q24Game26StateMachine<Game::Piki> Fi(void)
  * Address:	80192B88
  * Size:	000084
  */
-void registerState__Q24Game26StateMachine<Game::Piki>
-FPQ24Game22FSMState<Game::Piki>(void)
+void registerState__Q24Game26StateMachine<Game::Piki> FPQ24Game22FSMState<Game::Piki>(void)
 {
 	/*
 	.loc_0x0:

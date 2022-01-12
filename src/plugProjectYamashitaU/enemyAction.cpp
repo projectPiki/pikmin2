@@ -110,8 +110,7 @@ namespace Game {
  * Address:	801126F4
  * Size:	000424
  */
-void EnemyFunc::getNearestNavi(Game::Creature*, float, float, float*,
-                               Condition<Game::Navi>*)
+void EnemyFunc::getNearestNavi(Game::Creature*, float, float, float*, Condition<Game::Navi>*)
 {
 	/*
 	.loc_0x0:
@@ -452,8 +451,7 @@ namespace Game {
  * Address:	80112B64
  * Size:	000484
  */
-void EnemyFunc::getNearestPikmin(Game::Creature*, float, float, float*,
-                                 Condition<Game::Piki>*)
+void EnemyFunc::getNearestPikmin(Game::Creature*, float, float, float*, Condition<Game::Piki>*)
 {
 	/*
 	.loc_0x0:
@@ -838,9 +836,7 @@ namespace Game {
  * Address:	80113050
  * Size:	0000C4
  */
-void EnemyFunc::getNearestPikminOrNavi(Game::Creature*, float, float, float*,
-                                       Condition<Game::Navi>*,
-                                       Condition<Game::Piki>*)
+void EnemyFunc::getNearestPikminOrNavi(Game::Creature*, float, float, float*, Condition<Game::Navi>*, Condition<Game::Piki>*)
 {
 	/*
 	.loc_0x0:
@@ -914,8 +910,7 @@ u32 Creature::stimulate(Game::Interaction&) { return 0x0; }
  * Address:	8011311C
  * Size:	00036C
  */
-void EnemyFunc::flickStickPikmin(Game::Creature*, float, float, float, float,
-                                 Condition<Game::Piki>*)
+void EnemyFunc::flickStickPikmin(Game::Creature*, float, float, float, float, Condition<Game::Piki>*)
 {
 	/*
 	.loc_0x0:
@@ -1200,8 +1195,7 @@ namespace Game {
  * Address:	801134D4
  * Size:	0002BC
  */
-void EnemyFunc::flickNearbyPikmin(Game::Creature*, float, float, float, float,
-                                  Condition<Game::Piki>*)
+void EnemyFunc::flickNearbyPikmin(Game::Creature*, float, float, float, float, Condition<Game::Piki>*)
 {
 	/*
 	.loc_0x0:
@@ -1406,8 +1400,7 @@ void EnemyFunc::flickNearbyPikmin(Game::Creature*, float, float, float, float,
  * Address:	80113790
  * Size:	0003A4
  */
-void EnemyFunc::flickNearbyNavi(Game::Creature*, float, float, float, float,
-                                Condition<Game::Navi>*)
+void EnemyFunc::flickNearbyNavi(Game::Creature*, float, float, float, float, Condition<Game::Navi>*)
 {
 	/*
 	.loc_0x0:
@@ -2203,8 +2196,7 @@ lbl_80114210:
  * Address:	80114260
  * Size:	0003F8
  */
-void EnemyFunc::attackNavi(Game::Creature*, float, float, float, CollPart*,
-                           Condition<Game::Navi>*)
+void EnemyFunc::attackNavi(Game::Creature*, float, float, float, CollPart*, Condition<Game::Navi>*)
 {
 	/*
 	.loc_0x0:
@@ -3069,8 +3061,7 @@ lbl_80114DA8:
  * Address:	80114DF0
  * Size:	0003C4
  */
-void EnemyFunc::getSurroundPikminNum(Game::Creature*, float,
-                                     Condition<Game::Piki>*)
+void EnemyFunc::getSurroundPikminNum(Game::Creature*, float, Condition<Game::Piki>*)
 {
 	/*
 	.loc_0x0:
@@ -3519,8 +3510,7 @@ lbl_801153B8:
  * Address:	80115400
  * Size:	0001DC
  */
-void EnemyFunc::walkToTarget(Game::EnemyBase*, Game::Creature*, float, float,
-                             float)
+void EnemyFunc::walkToTarget(Game::EnemyBase*, Game::Creature*, float, float, float)
 {
 	/*
 	.loc_0x0:

@@ -100,10 +100,8 @@
  * Address:	8001F188
  * Size:	0000B4
  */
-void JKRDvdRipper::loadToMainRAM(const char*, unsigned char*, JKRExpandSwitch,
-                                 unsigned long, JKRHeap*,
-                                 JKRDvdRipper::EAllocDirection, unsigned long,
-                                 int*, unsigned long*)
+void JKRDvdRipper::loadToMainRAM(const char*, unsigned char*, JKRExpandSwitch, unsigned long, JKRHeap*, JKRDvdRipper::EAllocDirection,
+                                 unsigned long, int*, unsigned long*)
 {
 	/*
 	.loc_0x0:
@@ -164,10 +162,8 @@ void JKRDvdRipper::loadToMainRAM(const char*, unsigned char*, JKRExpandSwitch,
  * Address:	8001F23C
  * Size:	0000B4
  */
-void JKRDvdRipper::loadToMainRAM(long, unsigned char*, JKRExpandSwitch,
-                                 unsigned long, JKRHeap*,
-                                 JKRDvdRipper::EAllocDirection, unsigned long,
-                                 int*, unsigned long*)
+void JKRDvdRipper::loadToMainRAM(long, unsigned char*, JKRExpandSwitch, unsigned long, JKRHeap*, JKRDvdRipper::EAllocDirection,
+                                 unsigned long, int*, unsigned long*)
 {
 	/*
 	.loc_0x0:
@@ -230,10 +226,8 @@ void JKRDvdRipper::loadToMainRAM(long, unsigned char*, JKRExpandSwitch,
  * Address:	8001F2F0
  * Size:	0004AC
  */
-void JKRDvdRipper::loadToMainRAM(JKRDvdFile*, unsigned char*, JKRExpandSwitch,
-                                 unsigned long, JKRHeap*,
-                                 JKRDvdRipper::EAllocDirection, unsigned long,
-                                 int*, unsigned long*)
+void JKRDvdRipper::loadToMainRAM(JKRDvdFile*, unsigned char*, JKRExpandSwitch, unsigned long, JKRHeap*, JKRDvdRipper::EAllocDirection,
+                                 unsigned long, int*, unsigned long*)
 {
 	/*
 	.loc_0x0:
@@ -636,8 +630,7 @@ void JKRDvdRipper::loadToMainRAM(JKRDvdFile*, unsigned char*, JKRExpandSwitch,
  * Address:	8001F79C
  * Size:	000174
  */
-void JKRDecompressFromDVD(JKRDvdFile*, void*, unsigned long, unsigned long,
-                          unsigned long, unsigned long, unsigned long*)
+void JKRDecompressFromDVD(JKRDvdFile*, void*, unsigned long, unsigned long, unsigned long, unsigned long, unsigned long*)
 {
 	/*
 	.loc_0x0:

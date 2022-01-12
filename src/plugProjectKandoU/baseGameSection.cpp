@@ -884,33 +884,31 @@ BaseGameSection::BaseGameSection(JKRHeap* heap)
 	m_playerMode         = 2;
 	m_draw2DCreature     = nullptr;
 	m_treasureZoomCamera = nullptr;
-	m_kanteiDelegate     = new Delegate1<BaseGameSection, Rectf&>(
-        this, &BaseGameSection::onKanteiDone);
-	cameraMgrCallback = new Delegate1<BaseGameSection, CameraArg*>(
-	    this, &BaseGameSection::onCameraBlendFinished);
-	m_blendCamera    = nullptr;
-	Game::cameraMgr  = nullptr;
-	Game::rumbleMgr  = nullptr;
-	Game::shadowMgr  = nullptr;
-	lifeGaugeMgr     = nullptr;
-	carryInfoMgr     = nullptr;
-	m_lightMgr       = nullptr;
-	m_splitter       = nullptr;
-	m_theExpHeap     = nullptr;
-	theExpHeap       = nullptr;
-	_100             = nullptr;
-	_168             = nullptr;
-	m_fbTexture      = nullptr;
-	m_xfbImage       = nullptr;
-	m_xfbTexture1    = 0;
-	m_xfbTexture2    = 0;
-	_170             = 0;
-	m_texData1       = 0;
-	_E0              = 0;
-	m_blackFader     = new BlackFader();
-	m_wipeInFader    = new WipeInFader();
-	m_wipeOutFader   = new WipeOutFader();
-	m_wipeOutInFader = new WipeOutInFader();
+	m_kanteiDelegate     = new Delegate1<BaseGameSection, Rectf&>(this, &BaseGameSection::onKanteiDone);
+	cameraMgrCallback    = new Delegate1<BaseGameSection, CameraArg*>(this, &BaseGameSection::onCameraBlendFinished);
+	m_blendCamera        = nullptr;
+	Game::cameraMgr      = nullptr;
+	Game::rumbleMgr      = nullptr;
+	Game::shadowMgr      = nullptr;
+	lifeGaugeMgr         = nullptr;
+	carryInfoMgr         = nullptr;
+	m_lightMgr           = nullptr;
+	m_splitter           = nullptr;
+	m_theExpHeap         = nullptr;
+	theExpHeap           = nullptr;
+	_100                 = nullptr;
+	_168                 = nullptr;
+	m_fbTexture          = nullptr;
+	m_xfbImage           = nullptr;
+	m_xfbTexture1        = 0;
+	m_xfbTexture2        = 0;
+	_170                 = 0;
+	m_texData1           = 0;
+	_E0                  = 0;
+	m_blackFader         = new BlackFader();
+	m_wipeInFader        = new WipeInFader();
+	m_wipeOutFader       = new WipeOutFader();
+	m_wipeOutInFader     = new WipeOutInFader();
 	/*
 stwu     r1, -0x30(r1)
 mflr     r0
@@ -1245,8 +1243,7 @@ lbl_8014B140:
  */
 void BaseGameSection::restoreFBTexture()
 {
-	JUT_ASSERTLINE(1533, m_fbTexture == nullptr,
-	               "useSpecificFBTexture してないｗ\n");
+	JUT_ASSERTLINE(1533, m_fbTexture == nullptr, "useSpecificFBTexture してないｗ\n");
 	m_xfbImage            = m_fbTexture;
 	m_fbTexture           = nullptr;
 	Game::gameSystem->_54 = m_xfbImage;
@@ -2230,8 +2227,7 @@ void BaseGameSection::pre2dDraw(Graphics&) { }
  * Address:	8014BD9C
  * Size:	000078
  */
-void BaseGameSection::movieDone(Game::MovieConfig*, unsigned long,
-                                unsigned long)
+void BaseGameSection::movieDone(Game::MovieConfig*, unsigned long, unsigned long)
 {
 	/*
 	.loc_0x0:
@@ -2275,10 +2271,7 @@ void BaseGameSection::movieDone(Game::MovieConfig*, unsigned long,
  * Address:	8014BE14
  * Size:	000004
  */
-void BaseGameSection::onMovieDone(Game::MovieConfig*, unsigned long,
-                                  unsigned long)
-{
-}
+void BaseGameSection::onMovieDone(Game::MovieConfig*, unsigned long, unsigned long) { }
 
 /*
  * --INFO--
@@ -9785,10 +9778,7 @@ void BaseGameSection::disableTimer(unsigned long) { }
  * Address:	8015192C
  * Size:	000004
  */
-void BaseGameSection::onMovieStart(Game::MovieConfig*, unsigned long,
-                                   unsigned long)
-{
-}
+void BaseGameSection::onMovieStart(Game::MovieConfig*, unsigned long, unsigned long) { }
 
 /*
  * --INFO--
@@ -10108,9 +10098,8 @@ u32 Container<Plane>::getTo() { return 0x0; }
  * Address:	80151B30
  * Size:	000030
  */
-void Delegate3<Game::BaseGameSection, Game::MovieConfig*, unsigned long,
-               unsigned long>::invoke(Game::MovieConfig*, unsigned long,
-                                      unsigned long)
+void Delegate3<Game::BaseGameSection, Game::MovieConfig*, unsigned long, unsigned long>::invoke(Game::MovieConfig*, unsigned long,
+                                                                                                unsigned long)
 {
 	/*
 	.loc_0x0:
@@ -10157,8 +10146,7 @@ void Delegate1<Game::BaseGameSection, Vector3f&>::invoke(Vector3f&)
  * Address:	80151B90
  * Size:	000030
  */
-void Delegate1<Game::BaseGameSection, Game::CameraArg*>::invoke(
-    Game::CameraArg*)
+void Delegate1<Game::BaseGameSection, Game::CameraArg*>::invoke(Game::CameraArg*)
 {
 	/*
 	.loc_0x0:

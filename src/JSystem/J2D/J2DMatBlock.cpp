@@ -12791,10 +12791,7 @@ u32 J2DTevBlock::insertTexture(unsigned long, JUTTexture*) { return 0x0; }
  * Address:	80051E60
  * Size:	000008
  */
-u32 J2DTevBlock::insertTexture(unsigned long, const ResTIMG*, JUTPalette*)
-{
-	return 0x0;
-}
+u32 J2DTevBlock::insertTexture(unsigned long, const ResTIMG*, JUTPalette*) { return 0x0; }
 
 /*
  * --INFO--

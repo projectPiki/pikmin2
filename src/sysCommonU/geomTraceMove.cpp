@@ -1183,8 +1183,8 @@ void traceMoveTriList_new_global__Q23Sys3OBBFRQ24Game8MoveInfoRQ23Sys11VertexTab
  * Address:	80420F38
  * Size:	0006F0
  */
-void traceMove_new_global__Q23Sys3OBBFRQ24Game8MoveInfoRQ23Sys11VertexTableRQ23Sys13TriangleTableRiPPQ23Sys8TrianglePfP10Vector3<
-    float>(void)
+void traceMove_new_global__Q23Sys3OBBFRQ24Game8MoveInfoRQ23Sys11VertexTableRQ23Sys13TriangleTableRiPPQ23Sys8TrianglePfP10Vector3<float>(
+    void)
 {
 	/*
 	.loc_0x0:

@@ -462,8 +462,7 @@ void TObject::do_wait(unsigned long) { }
  * Address:	80010578
  * Size:	000004
  */
-void TObject::do_data(void const*, unsigned long, void const*, unsigned long) {
-}
+void TObject::do_data(void const*, unsigned long, void const*, unsigned long) { }
 
 /*
  * --INFO--
@@ -480,8 +479,7 @@ void TObject::process_sequence_(void)
 	pSequence_next = (void*)data.next;
 	if (data.type == 3) {
 		if (data.param & 0x800000) {
-			data.param
-			    |= 0xff000000; // gu32Mask_TSequence_value_signExpansion__Q37JStudio3stb4data;
+			data.param |= 0xff000000; // gu32Mask_TSequence_value_signExpansion__Q37JStudio3stb4data;
 		}
 		pSequence_next = pSequence + data.param;
 	} else if (data.type == 1) {
@@ -500,8 +498,7 @@ void TObject::process_sequence_(void)
 			data::TParse_TParagraph::TData data2;
 			para.getData(&data2);
 			if (data2.type < 0x100) {
-				process_paragraph_reserved_(data2.type, data2.content,
-				                            data2.param);
+				process_paragraph_reserved_(data2.type, data2.content, data2.param);
 				data.content = data2.next;
 			} else {
 				do_paragraph(data2.type, data2.content, data2.param);
@@ -510,8 +507,7 @@ void TObject::process_sequence_(void)
 		}
 	} else if (data.type == 4) {
 		if (data.param & 0x800000) {
-			data.param
-			    |= 0xff000000; // gu32Mask_TSequence_value_signExpansion__Q37JStudio3stb4data
+			data.param |= 0xff000000; // gu32Mask_TSequence_value_signExpansion__Q37JStudio3stb4data
 		}
 		_20 += data.param;
 	}
@@ -667,8 +663,7 @@ lbl_80010708:
  * Address:	80010720
  * Size:	00013C
  */
-void TObject::process_paragraph_reserved_(unsigned long a1, void const* a2,
-                                          unsigned long a3)
+void TObject::process_paragraph_reserved_(unsigned long a1, void const* a2, unsigned long a3)
 {
 	if (a1 == 0x80) {
 		do_data(0, 0, a2, a3);
@@ -688,8 +683,7 @@ void TObject::process_paragraph_reserved_(unsigned long a1, void const* a2,
 		pSequence_next = pSequence + *(u32*)a2;
 	} else if (a1 == 0x81) {
 		int flag = (int)a2 + (*(u16*)((int)a2 + 2) + 3 & 0xfffffffc) + 4;
-		do_data(a2 + 4, (uint) * (u16*)((int)a2 + 2), &flag,
-		        a3 - (flag - (int)a2));
+		do_data(a2 + 4, (uint) * (u16*)((int)a2 + 2), &flag, a3 - (flag - (int)a2));
 	}
 	/*
 	.loc_0x0:
@@ -1080,8 +1074,7 @@ void stb::TControl::getObject(void const*, unsigned long)
  * Address:	80010A7C
  * Size:	00009C
  */
-void find_if(JGadget::TNodeLinkList::iterator, JGadget::TNodeLinkList::iterator,
-             JStudio::object::TPRObject_ID_equal)
+void find_if(JGadget::TNodeLinkList::iterator, JGadget::TNodeLinkList::iterator, JStudio::object::TPRObject_ID_equal)
 {
 	/*
 	.loc_0x0:
@@ -1268,10 +1261,7 @@ lbl_80010C38:
  * Address:	80010C50
  * Size:	000008
  */
-int stb::TFactory::create(JStudio::stb::data::TParse_TBlock_object const&)
-{
-	return 0;
-}
+int stb::TFactory::create(JStudio::stb::data::TParse_TBlock_object const&) { return 0; }
 
 /*
  * --INFO--
@@ -1465,19 +1455,14 @@ void stb::TParse::parseBlock_next(void const**, unsigned long*, unsigned long)
  * Address:	80010E30
  * Size:	000008
  */
-int stb::TParse::parseHeader(JStudio::stb::data::TParse_THeader const&,
-                             unsigned long)
-{
-	return 1;
-}
+int stb::TParse::parseHeader(JStudio::stb::data::TParse_THeader const&, unsigned long) { return 1; }
 
 /*
  * --INFO--
  * Address:	80010E38
  * Size:	000038
  */
-void stb::TParse::parseBlock_block(JStudio::stb::data::TParse_TBlock const&,
-                                   unsigned long)
+void stb::TParse::parseBlock_block(JStudio::stb::data::TParse_TBlock const&, unsigned long)
 {
 	/*
 	.loc_0x0:
@@ -1503,8 +1488,7 @@ void stb::TParse::parseBlock_block(JStudio::stb::data::TParse_TBlock const&,
  * Address:	80010E70
  * Size:	000154
  */
-void stb::TParse::parseBlock_object(data::TParse_TBlock_object const&,
-                                    unsigned long)
+void stb::TParse::parseBlock_object(data::TParse_TBlock_object const&, unsigned long)
 {
 	/*
 	.loc_0x0:

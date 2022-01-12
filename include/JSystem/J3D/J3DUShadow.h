@@ -29,8 +29,7 @@ struct J3DUShadowInfo {
 struct J3DUShadowTextureSizeRatioCalcBase {
 };
 
-struct J3DUShadowTextureSizeRatioCalcDefault
-    : J3DUShadowTextureSizeRatioCalcBase {
+struct J3DUShadowTextureSizeRatioCalcDefault : J3DUShadowTextureSizeRatioCalcBase {
 	void operator()(const Vec&, J3DUShadowInfo*);
 };
 
@@ -83,8 +82,6 @@ struct ViewportBackup {
 void calcSphereIncludingTwoSpheres(Vec*, float, Vec*, float, Vec*, float*);
 void calcSphereIncludingTwoSpheres(Vec*, float, Vec*, float*);
 void calcSphereIncludingModel(const J3DModel*, Vec*);
-void J3DUIsShadowInViewFrustum(const J3DUShadowInfo&, float (*)[4],
-                               const J3DUClipper&,
-                               const JGeometry::TPartition3<float>&);
+void J3DUIsShadowInViewFrustum(const J3DUShadowInfo&, float (*)[4], const J3DUClipper&, const JGeometry::TPartition3<float>&);
 
 #endif

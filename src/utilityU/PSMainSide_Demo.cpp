@@ -807,67 +807,59 @@ BgmSeq* Demo::initiate(DemoArg* param_1, unsigned char* unk)
 	if (!streq("s01_dayend", demo_name)) {
 
 		pellet_name = param_1->pelletname;
-		is_key   = (pellet_name != nullptr) && streq(pellet_name, "key"); // r29
-		bool r31 = !is_key;                                               // r31
+		is_key      = (pellet_name != nullptr) && streq(pellet_name, "key"); // r29
+		bool r31    = !is_key;                                               // r31
 		// OSReport("Appraising pellet: %s\n", pellet_name);
 		demo_arg = param_1->bgmID;
 
-		if (((r31) && (!isSongChosen))
-		    && (strcmp(demo_name, "s17_suck_equipment") == 0)) {
+		if (((r31) && (!isSongChosen)) && (strcmp(demo_name, "s17_suck_equipment") == 0)) {
 			*unk         = 0xff;
 			isSongChosen = true;
 			AST_ID       = demo_arg; // upgrade appraisal
-			// OSReport("demo_arg is value: %lu\n", demo_arg);
+			                         // OSReport("demo_arg is value: %lu\n", demo_arg);
 		}
-		if (((is_key) && (!isSongChosen))
-		    && (strcmp(demo_name, "s17_suck_equipment") == 0)) {
+		if (((is_key) && (!isSongChosen)) && (strcmp(demo_name, "s17_suck_equipment") == 0)) {
 			*unk         = 0xff;
 			isSongChosen = true;
 			AST_ID       = 0xc0011007; // key appraisal
-			// OSReport("AST_ID is value: %x\n", AST_ID);
+			                           // OSReport("AST_ID is value: %x\n", AST_ID);
 		}
 		demo_arg = param_1->bgmID;
-		if (((r31) && (!isSongChosen))
-		    && (strcmp(demo_name, "s22_cv_suck_equipment") == 0)) {
+		if (((r31) && (!isSongChosen)) && (strcmp(demo_name, "s22_cv_suck_equipment") == 0)) {
 			*unk         = 0xff;
 			isSongChosen = true;
 			AST_ID       = demo_arg; // upgrade appraisal
-			// OSReport("demo_arg is value: %lu\n", demo_arg);
+			                         // OSReport("demo_arg is value: %lu\n", demo_arg);
 		}
-		if (((is_key) && (!isSongChosen))
-		    && (strcmp(demo_name, "s22_cv_suck_equipment") == 0)) {
+		if (((is_key) && (!isSongChosen)) && (strcmp(demo_name, "s22_cv_suck_equipment") == 0)) {
 			*unk         = 0xff;
 			isSongChosen = true;
 			AST_ID       = 0xc0011007; // key appraisal
-			// OSReport("AST_ID is value: %x\n", AST_ID);
+			                           // OSReport("AST_ID is value: %x\n", AST_ID);
 		}
-		if (((r31) && (!isSongChosen))
-		    && (strcmp(demo_name, "s10_suck_treasure") == 0)) {
+		if (((r31) && (!isSongChosen)) && (strcmp(demo_name, "s10_suck_treasure") == 0)) {
 			*unk         = 0xff;
 			isSongChosen = true;
 			AST_ID       = 0xc0011001; // treasure appraisal
-			// OSReport("AST_ID is value: %x\n", AST_ID);
+			                           // OSReport("AST_ID is value: %x\n", AST_ID);
 		}
-		if (((is_key) && (!isSongChosen))
-		    && (strcmp(demo_name, "s10_suck_treasure") == 0)) {
+		if (((is_key) && (!isSongChosen)) && (strcmp(demo_name, "s10_suck_treasure") == 0)) {
 			*unk         = 0xff;
 			isSongChosen = true;
 			AST_ID       = 0xc0011007; // key appraisal
-			// OSReport("AST_ID is value: %x\n", AST_ID);
+			                           // OSReport("AST_ID is value: %x\n", AST_ID);
 		}
-		if (((is_key) && (!isSongChosen))
-		    && (strcmp(demo_name, "s22_cv_suck_treasure") == 0)) {
+		if (((is_key) && (!isSongChosen)) && (strcmp(demo_name, "s22_cv_suck_treasure") == 0)) {
 			*unk         = 0xff;
 			isSongChosen = true;
 			AST_ID       = 0xc0011007; // key appraisal
-			// OSReport("AST_ID is value: %x\n", AST_ID);
+			                           // OSReport("AST_ID is value: %x\n", AST_ID);
 		}
-		if (((r31) && (!isSongChosen))
-		    && (strcmp(demo_name, "s22_cv_suck_treasure") == 0)) {
+		if (((r31) && (!isSongChosen)) && (strcmp(demo_name, "s22_cv_suck_treasure") == 0)) {
 			*unk         = 0xff;
 			isSongChosen = true;
 			AST_ID       = 0xc0011001; // treasure appraisal
-			// OSReport("AST_ID is value: %x\n", AST_ID);
+			                           // OSReport("AST_ID is value: %x\n", AST_ID);
 		}
 	}
 	if ((!isSongChosen) && (strcmp(demo_name, "s04_dayend_orimadown") == 0)) {
@@ -950,8 +942,7 @@ BgmSeq* Demo::initiate(DemoArg* param_1, unsigned char* unk)
 	// is_cave = hole_in->SceneInfo->caveIndex1;
 	// OSReport("caveIndex1 is value: 0x%x\n", is_cave);
 	if (is_cave) {
-		if ((!isSongChosen)
-		    && (comp = strcmp(demo_name, "s09_holein"), comp == 0)) {
+		if ((!isSongChosen) && (comp = strcmp(demo_name, "s09_holein"), comp == 0)) {
 			*unk         = 0xff;
 			isSongChosen = true;
 			AST_ID       = 0xc0011026;
@@ -967,261 +958,218 @@ BgmSeq* Demo::initiate(DemoArg* param_1, unsigned char* unk)
 		is_cave = hole_in->SceneInfo->CaveID_lastDigit;
 		OSReport("CaveID_lastDigit is value: 0x%x\n", is_cave);
 		*/
-		if ((!isSongChosen)
-		    && (comp = strcmp(demo_name, "s09_holein"), comp == 0)) {
+		if ((!isSongChosen) && (comp = strcmp(demo_name, "s09_holein"), comp == 0)) {
 			*unk         = 0xff;
 			isSongChosen = true;
 			AST_ID       = 0xc0011046;
 		}
 	}
-	if ((!isSongChosen)
-	    && (comp = strcmp(demo_name, "s16_find_item_00"), comp == 0)) {
+	if ((!isSongChosen) && (comp = strcmp(demo_name, "s16_find_item_00"), comp == 0)) {
 		*unk         = 0xff;
 		isSongChosen = true;
 		AST_ID       = 0xc0011027;
 	}
-	if ((!isSongChosen)
-	    && (comp = strcmp(demo_name, "s16_find_item_01"), comp == 0)) {
+	if ((!isSongChosen) && (comp = strcmp(demo_name, "s16_find_item_01"), comp == 0)) {
 		*unk         = 0xff;
 		isSongChosen = true;
 		AST_ID       = 0xc0011027;
 	}
-	if ((!isSongChosen)
-	    && (comp = strcmp(demo_name, "s16_find_item_02"), comp == 0)) {
+	if ((!isSongChosen) && (comp = strcmp(demo_name, "s16_find_item_02"), comp == 0)) {
 		*unk         = 0xff;
 		isSongChosen = true;
 		AST_ID       = 0xc0011027;
 	}
-	if ((!isSongChosen)
-	    && (comp = strcmp(demo_name, "s16_find_item_03"), comp == 0)) {
+	if ((!isSongChosen) && (comp = strcmp(demo_name, "s16_find_item_03"), comp == 0)) {
 		*unk         = 0xff;
 		isSongChosen = true;
 		AST_ID       = 0xc0011027;
 	}
-	if ((!isSongChosen)
-	    && (comp = strcmp(demo_name, "s16_find_item_04"), comp == 0)) {
+	if ((!isSongChosen) && (comp = strcmp(demo_name, "s16_find_item_04"), comp == 0)) {
 		*unk         = 0xff;
 		isSongChosen = true;
 		AST_ID       = 0xc0011027;
 	}
-	if ((!isSongChosen)
-	    && (comp = strcmp(demo_name, "s16_find_item_05"), comp == 0)) {
+	if ((!isSongChosen) && (comp = strcmp(demo_name, "s16_find_item_05"), comp == 0)) {
 		*unk         = 0xff;
 		isSongChosen = true;
 		AST_ID       = 0xc0011027;
 	}
-	if ((!isSongChosen)
-	    && (comp = strcmp(demo_name, "s16_find_item_06"), comp == 0)) {
+	if ((!isSongChosen) && (comp = strcmp(demo_name, "s16_find_item_06"), comp == 0)) {
 		*unk         = 0xff;
 		isSongChosen = true;
 		AST_ID       = 0xc0011027;
 	}
-	if ((!isSongChosen)
-	    && (comp = strcmp(demo_name, "s16_find_item_07"), comp == 0)) {
+	if ((!isSongChosen) && (comp = strcmp(demo_name, "s16_find_item_07"), comp == 0)) {
 		*unk         = 0xff;
 		isSongChosen = true;
 		AST_ID       = 0xc0011027;
 	}
-	if ((!isSongChosen)
-	    && (comp = strcmp(demo_name, "s16_find_item_08"), comp == 0)) {
+	if ((!isSongChosen) && (comp = strcmp(demo_name, "s16_find_item_08"), comp == 0)) {
 		*unk         = 0xff;
 		isSongChosen = true;
 		AST_ID       = 0xc0011027;
 	}
-	if ((!isSongChosen)
-	    && (comp = strcmp(demo_name, "s16_find_item_09"), comp == 0)) {
+	if ((!isSongChosen) && (comp = strcmp(demo_name, "s16_find_item_09"), comp == 0)) {
 		*unk         = 0xff;
 		isSongChosen = true;
 		AST_ID       = 0xc0011027;
 	}
-	if ((!isSongChosen)
-	    && (comp = strcmp(demo_name, "s16_find_item_10"), comp == 0)) {
+	if ((!isSongChosen) && (comp = strcmp(demo_name, "s16_find_item_10"), comp == 0)) {
 		*unk         = 0xff;
 		isSongChosen = true;
 		AST_ID       = 0xc0011027;
 	}
-	if ((!isSongChosen)
-	    && (comp = strcmp(demo_name, "s16_find_item_11"), comp == 0)) {
+	if ((!isSongChosen) && (comp = strcmp(demo_name, "s16_find_item_11"), comp == 0)) {
 		*unk         = 0xff;
 		isSongChosen = true;
 		AST_ID       = 0xc0011027;
 	}
-	if ((!isSongChosen)
-	    && (comp = strcmp(demo_name, "s16_find_item_12"), comp == 0)) {
+	if ((!isSongChosen) && (comp = strcmp(demo_name, "s16_find_item_12"), comp == 0)) {
 		*unk         = 0xff;
 		isSongChosen = true;
 		AST_ID       = 0xc0011027;
 	}
-	if ((!isSongChosen)
-	    && (comp = strcmp(demo_name, "s0C_cv_escape"), comp == 0)) {
+	if ((!isSongChosen) && (comp = strcmp(demo_name, "s0C_cv_escape"), comp == 0)) {
 		*unk         = 0xff;
 		isSongChosen = true;
 		AST_ID       = 0xc0011028;
 	}
-	if ((!isSongChosen)
-	    && (comp = strcmp(demo_name, "g01_pick_me"), comp == 0)) {
+	if ((!isSongChosen) && (comp = strcmp(demo_name, "g01_pick_me"), comp == 0)) {
 		*unk         = 0xff;
 		isSongChosen = true;
 		AST_ID       = 0xc0011029;
 	}
-	if ((!isSongChosen)
-	    && (comp = strcmp(demo_name, "g04_find_treasure"), comp == 0)) {
+	if ((!isSongChosen) && (comp = strcmp(demo_name, "g04_find_treasure"), comp == 0)) {
 		*unk         = 0xff;
 		isSongChosen = true;
 		AST_ID       = 0xc0011027;
 	}
-	if ((!isSongChosen)
-	    && (comp = strcmp(demo_name, "g05_find_cave_f_01"), comp == 0)) {
+	if ((!isSongChosen) && (comp = strcmp(demo_name, "g05_find_cave_f_01"), comp == 0)) {
 		*unk         = 0xff;
 		isSongChosen = true;
 		AST_ID       = 0xc0011029;
 	}
-	if ((!isSongChosen)
-	    && (comp = strcmp(demo_name, "g05_find_cave_f_02"), comp == 0)) {
+	if ((!isSongChosen) && (comp = strcmp(demo_name, "g05_find_cave_f_02"), comp == 0)) {
 		*unk         = 0xff;
 		isSongChosen = true;
 		AST_ID       = 0xc0011029;
 	}
-	if ((!isSongChosen)
-	    && (comp = strcmp(demo_name, "g05_find_cave_f_03"), comp == 0)) {
+	if ((!isSongChosen) && (comp = strcmp(demo_name, "g05_find_cave_f_03"), comp == 0)) {
 		*unk         = 0xff;
 		isSongChosen = true;
 		AST_ID       = 0xc0011029;
 	}
-	if ((!isSongChosen)
-	    && (comp = strcmp(demo_name, "g05_find_cave_f_04"), comp == 0)) {
+	if ((!isSongChosen) && (comp = strcmp(demo_name, "g05_find_cave_f_04"), comp == 0)) {
 		*unk         = 0xff;
 		isSongChosen = true;
 		AST_ID       = 0xc0011029;
 	}
-	if ((!isSongChosen)
-	    && (comp = strcmp(demo_name, "g05_find_cave_l_01"), comp == 0)) {
+	if ((!isSongChosen) && (comp = strcmp(demo_name, "g05_find_cave_l_01"), comp == 0)) {
 		*unk         = 0xff;
 		isSongChosen = true;
 		AST_ID       = 0xc0011029;
 	}
-	if ((!isSongChosen)
-	    && (comp = strcmp(demo_name, "g05_find_cave_l_02"), comp == 0)) {
+	if ((!isSongChosen) && (comp = strcmp(demo_name, "g05_find_cave_l_02"), comp == 0)) {
 		*unk         = 0xff;
 		isSongChosen = true;
 		AST_ID       = 0xc0011029;
 	}
-	if ((!isSongChosen)
-	    && (comp = strcmp(demo_name, "g05_find_cave_l_03"), comp == 0)) {
+	if ((!isSongChosen) && (comp = strcmp(demo_name, "g05_find_cave_l_03"), comp == 0)) {
 		*unk         = 0xff;
 		isSongChosen = true;
 		AST_ID       = 0xc0011029;
 	}
-	if ((!isSongChosen)
-	    && (comp = strcmp(demo_name, "g05_find_cave_t_01"), comp == 0)) {
+	if ((!isSongChosen) && (comp = strcmp(demo_name, "g05_find_cave_t_01"), comp == 0)) {
 		*unk         = 0xff;
 		isSongChosen = true;
 		AST_ID       = 0xc0011029;
 	}
-	if ((!isSongChosen)
-	    && (comp = strcmp(demo_name, "g05_find_cave_t_02"), comp == 0)) {
+	if ((!isSongChosen) && (comp = strcmp(demo_name, "g05_find_cave_t_02"), comp == 0)) {
 		*unk         = 0xff;
 		isSongChosen = true;
 		AST_ID       = 0xc0011029;
 	}
-	if ((!isSongChosen)
-	    && (comp = strcmp(demo_name, "g05_find_cave_t_03"), comp == 0)) {
+	if ((!isSongChosen) && (comp = strcmp(demo_name, "g05_find_cave_t_03"), comp == 0)) {
 		*unk         = 0xff;
 		isSongChosen = true;
 		AST_ID       = 0xc0011029;
 	}
-	if ((!isSongChosen)
-	    && (comp = strcmp(demo_name, "g05_find_cave_y_01"), comp == 0)) {
+	if ((!isSongChosen) && (comp = strcmp(demo_name, "g05_find_cave_y_01"), comp == 0)) {
 		*unk         = 0xff;
 		isSongChosen = true;
 		AST_ID       = 0xc0011029;
 	}
-	if ((!isSongChosen)
-	    && (comp = strcmp(demo_name, "g05_find_cave_y_02"), comp == 0)) {
+	if ((!isSongChosen) && (comp = strcmp(demo_name, "g05_find_cave_y_02"), comp == 0)) {
 		*unk         = 0xff;
 		isSongChosen = true;
 		AST_ID       = 0xc0011029;
 	}
-	if ((!isSongChosen)
-	    && (comp = strcmp(demo_name, "g05_find_cave_y_03"), comp == 0)) {
+	if ((!isSongChosen) && (comp = strcmp(demo_name, "g05_find_cave_y_03"), comp == 0)) {
 		*unk         = 0xff;
 		isSongChosen = true;
 		AST_ID       = 0xc0011029;
 	}
-	if ((!isSongChosen)
-	    && (comp = strcmp(demo_name, "g05_find_cave_y_04"), comp == 0)) {
+	if ((!isSongChosen) && (comp = strcmp(demo_name, "g05_find_cave_y_04"), comp == 0)) {
 		*unk         = 0xff;
 		isSongChosen = true;
 		AST_ID       = 0xc0011029;
 	}
-	if ((!isSongChosen)
-	    && (comp = strcmp(demo_name, "g0A_cv_find_hole"), comp == 0)) {
+	if ((!isSongChosen) && (comp = strcmp(demo_name, "g0A_cv_find_hole"), comp == 0)) {
 		*unk         = 0xff;
 		isSongChosen = true;
 		AST_ID       = 0xc0011029;
 	}
-	if ((!isSongChosen)
-	    && (comp = strcmp(demo_name, "g0B_cv_find_fountain"), comp == 0)) {
+	if ((!isSongChosen) && (comp = strcmp(demo_name, "g0B_cv_find_fountain"), comp == 0)) {
 		*unk         = 0xff;
 		isSongChosen = true;
 		AST_ID       = 0xc0011029;
 	}
-	if ((!isSongChosen)
-	    && (comp = strcmp(demo_name, "g18_find_gate"), comp == 0)) {
+	if ((!isSongChosen) && (comp = strcmp(demo_name, "g18_find_gate"), comp == 0)) {
 		*unk         = 0xff;
 		isSongChosen = true;
 		AST_ID       = 0xc001102a;
 	}
-	if ((!isSongChosen)
-	    && (comp = strcmp(demo_name, "g19_find_rock"), comp == 0)) {
+	if ((!isSongChosen) && (comp = strcmp(demo_name, "g19_find_rock"), comp == 0)) {
 		*unk         = 0xff;
 		isSongChosen = true;
 		AST_ID       = 0xc0011029;
 	}
-	if ((!isSongChosen)
-	    && (comp = strcmp(demo_name, "g2D_red_extract"), comp == 0)) {
+	if ((!isSongChosen) && (comp = strcmp(demo_name, "g2D_red_extract"), comp == 0)) {
 		*unk         = 0xff;
 		isSongChosen = true;
 		AST_ID       = 0xc0011027;
 	}
-	if ((!isSongChosen)
-	    && (comp = strcmp(demo_name, "g2E_black_extract"), comp == 0)) {
+	if ((!isSongChosen) && (comp = strcmp(demo_name, "g2E_black_extract"), comp == 0)) {
 		*unk         = 0xff;
 		isSongChosen = true;
 		AST_ID       = 0xc0011027;
 	}
-	if ((!isSongChosen)
-	    && (comp = strcmp(demo_name, "g34_yellow_extract"), comp == 0)) {
+	if ((!isSongChosen) && (comp = strcmp(demo_name, "g34_yellow_extract"), comp == 0)) {
 		*unk         = 0xff;
 		isSongChosen = true;
 		AST_ID       = 0xc001102b;
 	}
-	if ((!isSongChosen)
-	    && (comp = strcmp(demo_name, "g37_get_louie"), comp == 0)) {
+	if ((!isSongChosen) && (comp = strcmp(demo_name, "g37_get_louie"), comp == 0)) {
 		*unk         = 0xff;
 		isSongChosen = true;
 		AST_ID       = 0xc0011027;
 	}
-	if ((!isSongChosen)
-	    && (comp = strcmp(demo_name, "g38_find_whitepom"), comp == 0)) {
+	if ((!isSongChosen) && (comp = strcmp(demo_name, "g38_find_whitepom"), comp == 0)) {
 		*unk         = 0xff;
 		isSongChosen = true;
 		AST_ID       = 0xc0011029;
 	}
-	if ((!isSongChosen)
-	    && (comp = strcmp(demo_name, "g39_find_blackpom"), comp == 0)) {
+	if ((!isSongChosen) && (comp = strcmp(demo_name, "g39_find_blackpom"), comp == 0)) {
 		*unk         = 0xff;
 		isSongChosen = true;
 		AST_ID       = 0xc0011029;
 	}
-	if ((!isSongChosen)
-	    && (comp = strcmp(demo_name, "x01_gamestart"), comp == 0)) {
+	if ((!isSongChosen) && (comp = strcmp(demo_name, "x01_gamestart"), comp == 0)) {
 		*unk         = 0xff;
 		isSongChosen = true;
 		AST_ID       = 0xc001102c;
 	}
-	if ((!isSongChosen)
-	    && (comp = strcmp(demo_name, "x02_watch_red_pikmin"), comp == 0)) {
+	if ((!isSongChosen) && (comp = strcmp(demo_name, "x02_watch_red_pikmin"), comp == 0)) {
 		*unk         = 0xff;
 		isSongChosen = true;
 		AST_ID       = 0xc001102d;
@@ -1231,20 +1179,17 @@ BgmSeq* Demo::initiate(DemoArg* param_1, unsigned char* unk)
 		isSongChosen = true;
 		AST_ID       = 0xc001102e;
 	}
-	if ((!isSongChosen)
-	    && (comp = strcmp(demo_name, "x12_drain_water"), comp == 0)) {
+	if ((!isSongChosen) && (comp = strcmp(demo_name, "x12_drain_water"), comp == 0)) {
 		*unk         = 0xff;
 		isSongChosen = true;
 		AST_ID       = 0xc001102a;
 	}
-	if ((!isSongChosen)
-	    && (comp = strcmp(demo_name, "x10_find_yellow_onyon"), comp == 0)) {
+	if ((!isSongChosen) && (comp = strcmp(demo_name, "x10_find_yellow_onyon"), comp == 0)) {
 		*unk         = 0xff;
 		isSongChosen = true;
 		AST_ID       = 0xc001102f;
 	}
-	if ((!isSongChosen)
-	    && (comp = strcmp(demo_name, "x11_find_blue_onyon"), comp == 0)) {
+	if ((!isSongChosen) && (comp = strcmp(demo_name, "x11_find_blue_onyon"), comp == 0)) {
 		*unk         = 0xff;
 		isSongChosen = true;
 		AST_ID       = 0xc0011030;
@@ -1254,116 +1199,97 @@ BgmSeq* Demo::initiate(DemoArg* param_1, unsigned char* unk)
 		isSongChosen = true;
 		AST_ID       = 0xc0011031;
 	}
-	if ((!isSongChosen)
-	    && (comp = strcmp(demo_name, "x13_exp_leafchappy"), comp == 0)) {
+	if ((!isSongChosen) && (comp = strcmp(demo_name, "x13_exp_leafchappy"), comp == 0)) {
 		*unk         = 0xff;
 		isSongChosen = true;
 		AST_ID       = 0xc001102a;
 	}
-	if ((!isSongChosen)
-	    && (comp = strcmp(demo_name, "x20_blackman"), comp == 0)) {
+	if ((!isSongChosen) && (comp = strcmp(demo_name, "x20_blackman"), comp == 0)) {
 		*unk         = 0xff;
 		isSongChosen = true;
 		AST_ID       = 0xc0011032;
 	}
-	if ((!isSongChosen)
-	    && (comp = strcmp(demo_name, "s13_pikmin_supply"), comp == 0)) {
+	if ((!isSongChosen) && (comp = strcmp(demo_name, "s13_pikmin_supply"), comp == 0)) {
 		*unk         = 0xff;
 		isSongChosen = true;
 		AST_ID       = 0xc0011033;
 	}
-	if ((!isSongChosen)
-	    && (comp = strcmp(demo_name, "s0B_cv_coursein"), comp == 0)) {
+	if ((!isSongChosen) && (comp = strcmp(demo_name, "s0B_cv_coursein"), comp == 0)) {
 		*unk         = 0xff;
 		isSongChosen = true;
 		AST_ID       = 0xc0011036;
 	}
-	if ((!isSongChosen)
-	    && (comp = strcmp(demo_name, "s0E_return_cave"), comp == 0)) {
+	if ((!isSongChosen) && (comp = strcmp(demo_name, "s0E_return_cave"), comp == 0)) {
 		*unk         = 0xff;
 		isSongChosen = true;
 		AST_ID       = 0xc0011037;
 	}
-	if ((!isSongChosen)
-	    && (comp = strcmp(demo_name, "e00_E3_cavestart"), comp == 0)) {
+	if ((!isSongChosen) && (comp = strcmp(demo_name, "e00_E3_cavestart"), comp == 0)) {
 		*unk         = 0xff;
 		isSongChosen = true;
 		AST_ID       = 0xc0011039;
 	}
-	if ((!isSongChosen)
-	    && (comp = strcmp(demo_name, "g07_cv_gamestart"), comp == 0)) {
+	if ((!isSongChosen) && (comp = strcmp(demo_name, "g07_cv_gamestart"), comp == 0)) {
 		*unk         = 0xff;
 		isSongChosen = true;
 		AST_ID       = 0xc001103a;
 	}
-	if ((!isSongChosen)
-	    && (comp = strcmp(demo_name, "g08_first_return"), comp == 0)) {
+	if ((!isSongChosen) && (comp = strcmp(demo_name, "g08_first_return"), comp == 0)) {
 		*unk         = 0xff;
 		isSongChosen = true;
 		AST_ID       = 0xc001103b;
 	}
-	if ((!isSongChosen)
-	    && (comp = strcmp(demo_name, "g09_first_sunset"), comp == 0)) {
+	if ((!isSongChosen) && (comp = strcmp(demo_name, "g09_first_sunset"), comp == 0)) {
 		*unk         = 0xff;
 		isSongChosen = true;
 		AST_ID       = 0xc0011033;
 	}
-	if ((!isSongChosen)
-	    && (comp = strcmp(demo_name, "g16_100_pikmin"), comp == 0)) {
+	if ((!isSongChosen) && (comp = strcmp(demo_name, "g16_100_pikmin"), comp == 0)) {
 		*unk         = 0xff;
 		isSongChosen = true;
 		AST_ID       = 0xc0011033;
 	}
-	if ((!isSongChosen)
-	    && (comp = strcmp(demo_name, "g16_95_pikmin"), comp == 0)) {
+	if ((!isSongChosen) && (comp = strcmp(demo_name, "g16_95_pikmin"), comp == 0)) {
 		*unk         = 0xff;
 		isSongChosen = true;
 		AST_ID       = 0xc0011033;
 	}
-	if ((!isSongChosen)
-	    && (comp = strcmp(demo_name, "g26_inout_black"), comp == 0)) {
+	if ((!isSongChosen) && (comp = strcmp(demo_name, "g26_inout_black"), comp == 0)) {
 		*unk         = 0xff;
 		isSongChosen = true;
 		AST_ID       = 0xc001104a;
 	}
-	if ((!isSongChosen)
-	    && (comp = strcmp(demo_name, "g29_inout_white"), comp == 0)) {
+	if ((!isSongChosen) && (comp = strcmp(demo_name, "g29_inout_white"), comp == 0)) {
 		*unk         = 0xff;
 		isSongChosen = true;
 		AST_ID       = 0xc0011048;
 	}
-	if ((!isSongChosen)
-	    && (comp = strcmp(demo_name, "g2B_white_poison"), comp == 0)) {
+	if ((!isSongChosen) && (comp = strcmp(demo_name, "g2B_white_poison"), comp == 0)) {
 		*unk         = 0xff;
 		isSongChosen = true;
 		AST_ID       = 0xc0011031;
 	}
-	if ((!isSongChosen)
-	    && (comp = strcmp(demo_name, "g2C_inout_red"), comp == 0)) {
+	if ((!isSongChosen) && (comp = strcmp(demo_name, "g2C_inout_red"), comp == 0)) {
 		*unk         = 0xff;
 		isSongChosen = true;
 		AST_ID       = 0xc0011033;
 	}
-	if ((!isSongChosen)
-	    && (comp = strcmp(demo_name, "g36_find_louie"), comp == 0)) {
+	if ((!isSongChosen) && (comp = strcmp(demo_name, "g36_find_louie"), comp == 0)) {
 		*unk         = 0xff;
 		isSongChosen = true;
 		AST_ID       = 0xc0011031;
 	}
-	if ((!isSongChosen)
-	    && (comp = strcmp(demo_name, "x01_coursein_forest"), comp == 0)) {
+	if ((!isSongChosen) && (comp = strcmp(demo_name, "x01_coursein_forest"), comp == 0)) {
 		*unk         = 0xff;
 		isSongChosen = true;
 		AST_ID       = 0xc0011034;
 	}
-	if ((!isSongChosen)
-	    && (comp = strcmp(demo_name, "x01_coursein_yakushima"), comp == 0)) {
+	if ((!isSongChosen) && (comp = strcmp(demo_name, "x01_coursein_yakushima"), comp == 0)) {
 		*unk         = 0xff;
 		isSongChosen = true;
 		AST_ID       = 0xc0011034;
 	}
-	if ((!isSongChosen)
-	    && (comp = strcmp(demo_name, "x01_coursein_last"), comp == 0)) {
+	if ((!isSongChosen) && (comp = strcmp(demo_name, "x01_coursein_last"), comp == 0)) {
 		*unk         = 0xff;
 		isSongChosen = true;
 		AST_ID       = 0xc0011034;
@@ -1373,44 +1299,37 @@ BgmSeq* Demo::initiate(DemoArg* param_1, unsigned char* unk)
 		isSongChosen = true;
 		AST_ID       = 0xc0011049;
 	}
-	if ((!isSongChosen)
-	    && (comp = strcmp(demo_name, "x05_louiestart"), comp == 0)) {
+	if ((!isSongChosen) && (comp = strcmp(demo_name, "x05_louiestart"), comp == 0)) {
 		*unk         = 0xff;
 		isSongChosen = true;
 		AST_ID       = 0xc0011035;
 	}
-	if ((!isSongChosen)
-	    && (comp = strcmp(demo_name, "x07_first_recovery"), comp == 0)) {
+	if ((!isSongChosen) && (comp = strcmp(demo_name, "x07_first_recovery"), comp == 0)) {
 		*unk         = 0xff;
 		isSongChosen = true;
 		AST_ID       = 0xc0011049;
 	}
-	if ((!isSongChosen)
-	    && (comp = strcmp(demo_name, "x08_cv_suck_carcass"), comp == 0)) {
+	if ((!isSongChosen) && (comp = strcmp(demo_name, "x08_cv_suck_carcass"), comp == 0)) {
 		*unk         = 0xff;
 		isSongChosen = true;
 		AST_ID       = 0xc0011033;
 	}
-	if ((!isSongChosen)
-	    && (comp = strcmp(demo_name, "x09_exp_detector"), comp == 0)) {
+	if ((!isSongChosen) && (comp = strcmp(demo_name, "x09_exp_detector"), comp == 0)) {
 		*unk         = 0xff;
 		isSongChosen = true;
 		AST_ID       = 0xc0011033;
 	}
-	if ((!isSongChosen)
-	    && (comp = strcmp(demo_name, "x14_white_dig"), comp == 0)) {
+	if ((!isSongChosen) && (comp = strcmp(demo_name, "x14_white_dig"), comp == 0)) {
 		*unk         = 0xff;
 		isSongChosen = true;
 		AST_ID       = 0xc0011033;
 	}
-	if ((!isSongChosen)
-	    && (comp = strcmp(demo_name, "g32_get_map"), comp == 0)) {
+	if ((!isSongChosen) && (comp = strcmp(demo_name, "g32_get_map"), comp == 0)) {
 		*unk         = 0xff;
 		isSongChosen = true;
 		AST_ID       = 0xc0011048;
 	}
-	if ((!isSongChosen)
-	    && (comp = strcmp(demo_name, "g35_president_gamestart"), comp == 0)) {
+	if ((!isSongChosen) && (comp = strcmp(demo_name, "g35_president_gamestart"), comp == 0)) {
 		*unk         = 0xff;
 		isSongChosen = true;
 		AST_ID       = 0xc0011033;
@@ -1420,20 +1339,17 @@ BgmSeq* Demo::initiate(DemoArg* param_1, unsigned char* unk)
 		isSongChosen = true;
 		AST_ID       = 0xc0011033;
 	}
-	if ((!isSongChosen)
-	    && (comp = strcmp(demo_name, "x17_join_guide"), comp == 0)) {
+	if ((!isSongChosen) && (comp = strcmp(demo_name, "x17_join_guide"), comp == 0)) {
 		*unk         = 0xff;
 		isSongChosen = true;
 		AST_ID       = 0xc0011033;
 	}
-	if ((!isSongChosen)
-	    && (comp = strcmp(demo_name, "x18_exp_pellet"), comp == 0)) {
+	if ((!isSongChosen) && (comp = strcmp(demo_name, "x18_exp_pellet"), comp == 0)) {
 		*unk         = 0xff;
 		isSongChosen = true;
 		AST_ID       = 0xc0011033;
 	}
-	if ((!isSongChosen)
-	    && (comp = strcmp(demo_name, "x03_find_red_onyon"), comp == 0)) {
+	if ((!isSongChosen) && (comp = strcmp(demo_name, "x03_find_red_onyon"), comp == 0)) {
 		*unk = 0xff;
 		// no isSongChosen????
 		AST_ID = 0xc001103c;
@@ -1466,15 +1382,9 @@ BgmSeq* Demo::initiate(DemoArg* param_1, unsigned char* unk)
 	}
 	*/
 	// asm{nop};
-	if (streq("s10_suck_treasure", demo_name)
-	    || streq("s11_dope_first_b", demo_name)
-	    || streq("s11_dope_first_r", demo_name)
-	    || streq("s11_dopebin_first_b", demo_name)
-	    || streq("s11_dopebin_first_r", demo_name)
-	    || streq("s17_suck_equipment", demo_name)
-	    || streq("s22_cv_suck_equipment", demo_name)
-	    || streq("s22_cv_suck_treasure", demo_name)
-	    || streq("x19_vs_bedama", demo_name)) {
+	if (streq("s10_suck_treasure", demo_name) || streq("s11_dope_first_b", demo_name) || streq("s11_dope_first_r", demo_name)
+	    || streq("s11_dopebin_first_b", demo_name) || streq("s11_dopebin_first_r", demo_name) || streq("s17_suck_equipment", demo_name)
+	    || streq("s22_cv_suck_equipment", demo_name) || streq("s22_cv_suck_treasure", demo_name) || streq("x19_vs_bedama", demo_name)) {
 		doStartWithAudio = false;
 		soundID          = PSSE_EV_HOME_PELLET_BACUUM;
 	} else if (streq("g2F_appear_hole", demo_name)) {
@@ -1483,8 +1393,7 @@ BgmSeq* Demo::initiate(DemoArg* param_1, unsigned char* unk)
 		funcptr = PSChangeBgm_ChallengeGame;
 	} else if (streq("g30_appear_fountain", demo_name))
 		funcptr = PSChangeBgm_ChallengeGame;
-	else if (streq("x20_blackman", demo_name)
-	         || streq("x03_find_red_onyon", demo_name)) {
+	else if (streq("x20_blackman", demo_name) || streq("x03_find_red_onyon", demo_name)) {
 		doStartWithAudio = 0;
 	} else if (streq("s01_dayend", demo_name)) {
 		switch ((u32)param_1->pelletname) {
@@ -1507,8 +1416,7 @@ BgmSeq* Demo::initiate(DemoArg* param_1, unsigned char* unk)
 #line 467 "PSGame.h"
 		P2ASSERT(PSSystem::spSceneMgr != nullptr);
 		// scene_mgr = SCENEMGR;
-		struct PSGame::PikSceneMgr* scene_mgr
-		    = (PSGame::PikSceneMgr*)PSSystem::spSceneMgr;
+		struct PSGame::PikSceneMgr* scene_mgr = (PSGame::PikSceneMgr*)PSSystem::spSceneMgr;
 #line 476 "PSGame.h"
 		P2ASSERT(scene_mgr != nullptr);
 		// seq = (struct BgmSeq*)newStreamBgm(AST_ID, audio_info);
@@ -1520,8 +1428,7 @@ BgmSeq* Demo::initiate(DemoArg* param_1, unsigned char* unk)
 #line 467 "PSGame.h"
 		P2ASSERT(PSSystem::spSceneMgr != nullptr);
 		// scene_mgr = SCENEMGR;
-		struct PSGame::PikSceneMgr* scene_mgr
-		    = (PSGame::PikSceneMgr*)PSSystem::spSceneMgr;
+		struct PSGame::PikSceneMgr* scene_mgr = (PSGame::PikSceneMgr*)PSSystem::spSceneMgr;
 #line 476 "PSGame.h"
 		P2ASSERT(scene_mgr != nullptr);
 

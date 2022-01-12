@@ -104,20 +104,11 @@ void Footmarks::add(Footmark& mark)
 	float v5;
 	float v6;
 	if (_08 < 2
-	            || (v2 = &m_marks[_04 + m_count - 1
-	                              - (_04 + m_count - 1) / m_count * m_count],
-	                v3 = (v2->position.x - mark.position.y),
+	            || (v2 = &m_marks[_04 + m_count - 1 - (_04 + m_count - 1) / m_count * m_count], v3 = (v2->position.x - mark.position.y),
 	                v4 = (v2->position.z - mark.position.z),
-	                v5 = (v4 * v4)
-	                     + ((v2->position.x - mark.position.x)
-	                            * (v2->position.x - mark.position.x)
-	                        + (v3 * v3)),
-	                v5 <= 0.0f)
+	                v5 = (v4 * v4) + ((v2->position.x - mark.position.x) * (v2->position.x - mark.position.x) + (v3 * v3)), v5 <= 0.0f)
 	        ? (v6 = 0.0f)
-	        : (v6 = (__frsqrte(v5) * (v4 * v4)
-	                 + ((v2->position.x - mark.position.x)
-	                        * (v2->position.x - mark.position.x)
-	                    + (v3 * v3))),
+	        : (v6 = (__frsqrte(v5) * (v4 * v4) + ((v2->position.x - mark.position.x) * (v2->position.x - mark.position.x) + (v3 * v3))),
 	           v6 >= 20.0f)) {
 		m_marks[_04].position = mark.position;
 		m_marks[_04].flag     = Game::gameSystem->m_frameTimer;

@@ -825,8 +825,7 @@ namespace Game {
  * Address:	802DBBB4
  * Size:	000024
  */
-void BigTreasure::BigTreasureGroundCallBack::invokeOnGround(int,
-                                                            Game::WaterBox*)
+void BigTreasure::BigTreasureGroundCallBack::invokeOnGround(int, Game::WaterBox*)
 {
 	/*
 	.loc_0x0:
@@ -847,8 +846,7 @@ void BigTreasure::BigTreasureGroundCallBack::invokeOnGround(int,
  * Address:	802DBBD8
  * Size:	000024
  */
-void BigTreasure::BigTreasureGroundCallBack::invokeOffGround(int,
-                                                             Game::WaterBox*)
+void BigTreasure::BigTreasureGroundCallBack::invokeOffGround(int, Game::WaterBox*)
 {
 	/*
 	.loc_0x0:

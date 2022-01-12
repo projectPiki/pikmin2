@@ -264,8 +264,7 @@ lbl_800B9808:
  * Address:	800B9818
  * Size:	000048
  */
-void JAInter::ObjectBase::startSound(unsigned char, unsigned long,
-                                     unsigned long)
+void JAInter::ObjectBase::startSound(unsigned char, unsigned long, unsigned long)
 {
 	/*
 	.loc_0x0:

@@ -16,8 +16,7 @@ struct GameState : public FSMState<GameState> {
 	virtual void draw(VsGameSection*, struct Graphics&); // _00
 	virtual void pre2dDraw(Graphics&, VsGameSection*);   // _04
 	virtual void onOrimaDown(VsGameSection*, int);       // _08
-	virtual void onMovieStart(VsGameSection*, struct MovieConfig*,
-	                          unsigned long,
+	virtual void onMovieStart(VsGameSection*, struct MovieConfig*, unsigned long,
 	                          unsigned long); // _0C
 	virtual void onMovieDone(VsGameSection*, MovieConfig*, unsigned long,
 	                         unsigned long);                      // _10

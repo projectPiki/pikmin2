@@ -574,9 +574,7 @@ JAIStream::JAIStream()
  * Address:	........
  * Size:	000114
  */
-void JAISound::initMultiMoveParameter(JAInter::MoveParaSet*, unsigned char,
-                                      unsigned long, float, float,
-                                      unsigned long)
+void JAISound::initMultiMoveParameter(JAInter::MoveParaSet*, unsigned char, unsigned long, float, float, unsigned long)
 {
 	// UNUSED FUNCTION
 }
@@ -1611,8 +1609,7 @@ void JAISequence::setTrackVolume(unsigned char, float, unsigned long)
  * Address:	........
  * Size:	000140
  */
-void JAISequence::setTrackVolumeMulti(unsigned char, unsigned long, float,
-                                      unsigned long)
+void JAISequence::setTrackVolumeMulti(unsigned char, unsigned long, float, unsigned long)
 {
 	// UNUSED FUNCTION
 }
@@ -1673,8 +1670,7 @@ void JAISequence::setTrackPan(unsigned char, float, unsigned long)
  * Address:	........
  * Size:	000140
  */
-void JAISequence::setTrackPanMulti(unsigned char, unsigned long, float,
-                                   unsigned long)
+void JAISequence::setTrackPanMulti(unsigned char, unsigned long, float, unsigned long)
 {
 	// UNUSED FUNCTION
 }
@@ -1694,8 +1690,7 @@ void JAISequence::setTrackPitch(unsigned char, float, unsigned long)
  * Address:	........
  * Size:	000140
  */
-void JAISequence::setTrackPitchMulti(unsigned char, unsigned long, float,
-                                     unsigned long)
+void JAISequence::setTrackPitchMulti(unsigned char, unsigned long, float, unsigned long)
 {
 	// UNUSED FUNCTION
 }
@@ -1766,8 +1761,7 @@ lbl_800B4574:
  * Address:	........
  * Size:	000140
  */
-void JAISequence::setTrackFxmixMulti(unsigned char, unsigned long, float,
-                                     unsigned long)
+void JAISequence::setTrackFxmixMulti(unsigned char, unsigned long, float, unsigned long)
 {
 	// UNUSED FUNCTION
 }
@@ -1787,8 +1781,7 @@ void JAISequence::setTrackDolby(unsigned char, float, unsigned long)
  * Address:	........
  * Size:	000154
  */
-void JAISequence::setTrackDolbyMulti(unsigned char, unsigned long, float,
-                                     unsigned long)
+void JAISequence::setTrackDolbyMulti(unsigned char, unsigned long, float, unsigned long)
 {
 	// UNUSED FUNCTION
 }
@@ -2103,8 +2096,7 @@ void JAISe::setSeInterFxmix(unsigned char, float, unsigned long, unsigned char)
  * Address:	........
  * Size:	000034
  */
-void JAISe::setSeInterFir(unsigned char, unsigned char, unsigned long,
-                          unsigned char)
+void JAISe::setSeInterFir(unsigned char, unsigned char, unsigned long, unsigned char)
 {
 	// UNUSED FUNCTION
 }
@@ -3648,8 +3640,7 @@ lbl_800B5608:
  * Address:	800B5614
  * Size:	0000E8
  */
-void JAISound::initParameter(void*, JAInter::Actor*, unsigned long,
-                             unsigned long, unsigned char, JAInter::SoundInfo*)
+void JAISound::initParameter(void*, JAInter::Actor*, unsigned long, unsigned long, unsigned char, JAInter::SoundInfo*)
 {
 	/*
 	.loc_0x0:

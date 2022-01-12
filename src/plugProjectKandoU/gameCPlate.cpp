@@ -459,8 +459,7 @@ CPlate::Slot::Slot(void)
  * Size:	000210
  */
 // void setPos__Q24Game6CPlateFR10Vector3f fR10Vector3f f(void)
-void CPlate::setPos(Vector3f& position, float directionMaybe,
-                    Vector3f& velocity, float p4)
+void CPlate::setPos(Vector3f& position, float directionMaybe, Vector3f& velocity, float p4)
 {
 
 	/*

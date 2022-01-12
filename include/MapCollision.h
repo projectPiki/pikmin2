@@ -11,10 +11,7 @@
 struct MapCollision : public CNode {
 	virtual ~MapCollision() { } // _08
 
-	virtual void getBoundBox(BoundBox& boundingBox)
-	{
-		m_divider->getBoundBox(boundingBox);
-	} // _0C
+	virtual void getBoundBox(BoundBox& boundingBox) { m_divider->getBoundBox(boundingBox); } // _0C
 
 	virtual void getCurrTri(Game::CurrTriInfo&);           // _10
 	virtual void createTriangles(Sys::CreateTriangleArg&); // _14

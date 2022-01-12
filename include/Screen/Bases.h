@@ -61,14 +61,7 @@ struct EndSceneArg : public SceneArg {
 
 struct SceneBase {
 #pragma enumalwaysint on
-	enum StateID {
-		Unknown0 = 0,
-		Unknown1,
-		Unknown2,
-		Unknown3,
-		Unknown4,
-		Invalid = 0xFFFFFFFF
-	};
+	enum StateID { Unknown0 = 0, Unknown1, Unknown2, Unknown3, Unknown4, Invalid = 0xFFFFFFFF };
 #pragma enumalwaysint reset
 
 	SceneBase();

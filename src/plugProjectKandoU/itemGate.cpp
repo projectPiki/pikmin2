@@ -4792,8 +4792,7 @@ lbl_801CA210:
  * Address:	801CA254
  * Size:	000060
  */
-void ItemDengekiGate::Mgr::generatorRead(Stream&, Game::GenItemParm*,
-                                         unsigned long)
+void ItemDengekiGate::Mgr::generatorRead(Stream&, Game::GenItemParm*, unsigned long)
 {
 	/*
 	.loc_0x0:
@@ -4831,8 +4830,7 @@ void ItemDengekiGate::Mgr::generatorRead(Stream&, Game::GenItemParm*,
  * Address:	801CA2B4
  * Size:	0000B8
  */
-void ItemDengekiGate::Mgr::generatorBirth(Vector3f&, Vector3f&,
-                                          Game::GenItemParm*)
+void ItemDengekiGate::Mgr::generatorBirth(Vector3f&, Vector3f&, Game::GenItemParm*)
 {
 	/*
 	.loc_0x0:
@@ -5909,8 +5907,7 @@ void NodeItemMgr<Game::ItemGate>::doDirectDraw(Graphics&)
  * Address:	801CAD18
  * Size:	000044
  */
-void FSMItem<Game::ItemGate, Game::GateFSM, Game::GateState>::onKeyEvent(
-    const SysShape::KeyEvent&)
+void FSMItem<Game::ItemGate, Game::GateFSM, Game::GateState>::onKeyEvent(const SysShape::KeyEvent&)
 {
 	/*
 	.loc_0x0:
@@ -5948,10 +5945,7 @@ void ItemState<Game::ItemGate>::onDamage(Game::ItemGate*, float) { }
  * Address:	801CAD60
  * Size:	000004
  */
-void ItemState<Game::ItemGate>::onKeyEvent(Game::ItemGate*,
-                                           const SysShape::KeyEvent&)
-{
-}
+void ItemState<Game::ItemGate>::onKeyEvent(Game::ItemGate*, const SysShape::KeyEvent&) { }
 
 /*
  * --INFO--
@@ -5965,19 +5959,14 @@ void ItemState<Game::ItemGate>::onBounce(Game::ItemGate*, Sys::Triangle*) { }
  * Address:	801CAD68
  * Size:	000004
  */
-void ItemState<Game::ItemGate>::onPlatCollision(Game::ItemGate*,
-                                                Game::PlatEvent&)
-{
-}
+void ItemState<Game::ItemGate>::onPlatCollision(Game::ItemGate*, Game::PlatEvent&) { }
 
 /*
  * --INFO--
  * Address:	801CAD6C
  * Size:	000004
  */
-void ItemState<Game::ItemGate>::onCollision(Game::ItemGate*, Game::CollEvent&)
-{
-}
+void ItemState<Game::ItemGate>::onCollision(Game::ItemGate*, Game::CollEvent&) { }
 
 /*
  * --INFO--
@@ -7128,8 +7117,7 @@ namespace Game {
  * Address:	801CBA64
  * Size:	00009C
  */
-void StateMachine<Game::ItemGate>::transit(Game::ItemGate*, int,
-                                           Game::StateArg*)
+void StateMachine<Game::ItemGate>::transit(Game::ItemGate*, int, Game::StateArg*)
 {
 	/*
 	.loc_0x0:
@@ -7186,8 +7174,7 @@ void StateMachine<Game::ItemGate>::transit(Game::ItemGate*, int,
  * Address:	801CBB00
  * Size:	000084
  */
-void StateMachine<Game::ItemGate>::registerState(
-    Game::FSMState<Game::ItemGate>*)
+void StateMachine<Game::ItemGate>::registerState(Game::FSMState<Game::ItemGate>*)
 {
 	/*
 	.loc_0x0:
@@ -7240,8 +7227,7 @@ namespace Game {
  * Address:	801CBB84
  * Size:	000044
  */
-void FSMItem<Game::ItemGate, Game::GateFSM, GateState>::platCallback(
-    Game::PlatEvent&)
+void FSMItem<Game::ItemGate, Game::GateFSM, GateState>::platCallback(Game::PlatEvent&)
 {
 	/*
 	.loc_0x0:
@@ -7272,8 +7258,7 @@ void FSMItem<Game::ItemGate, Game::GateFSM, GateState>::platCallback(
  * Address:	801CBBC8
  * Size:	000044
  */
-void FSMItem<Game::ItemGate, Game::GateFSM, GateState>::collisionCallback(
-    Game::CollEvent&)
+void FSMItem<Game::ItemGate, Game::GateFSM, GateState>::collisionCallback(Game::CollEvent&)
 {
 	/*
 	.loc_0x0:
@@ -7304,8 +7289,7 @@ void FSMItem<Game::ItemGate, Game::GateFSM, GateState>::collisionCallback(
  * Address:	801CBC0C
  * Size:	000044
  */
-void FSMItem<Game::ItemGate, Game::GateFSM, GateState>::bounceCallback(
-    Sys::Triangle*)
+void FSMItem<Game::ItemGate, Game::GateFSM, GateState>::bounceCallback(Sys::Triangle*)
 {
 	/*
 	.loc_0x0:
@@ -7626,8 +7610,7 @@ void __sinit_itemGate_cpp(void)
  * Address:	801CBF68
  * Size:	000008
  */
-void Game::FSMItem<Game::ItemGate, Game::GateFSM, Game::GateState>::@376
-    @onKeyEvent(const SysShape::KeyEvent&)
+void Game::FSMItem<Game::ItemGate, Game::GateFSM, Game::GateState>::@376 @onKeyEvent(const SysShape::KeyEvent&)
 {
 	/*
 	.loc_0x0:

@@ -10,8 +10,7 @@ void JPAGetYZRotateMtx(short, short, Mtx);
 void JPAGetXYZRotateMtx(short, short, short, Mtx);
 void JPASetRMtxfromMtx(const Mtx, Mtx);
 void JPASetRMtxTVecfromMtx(const Mtx, Mtx, JGeometry::TVec3f*);
-void JPASetRMtxSTVecfromMtx(const Mtx, Mtx, JGeometry::TVec3f*,
-                            JGeometry::TVec3f*);
+void JPASetRMtxSTVecfromMtx(const Mtx, Mtx, JGeometry::TVec3f*, JGeometry::TVec3f*);
 void JPACalcKeyAnmValue(float, unsigned short, const float*);
 
 #endif

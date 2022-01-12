@@ -3558,8 +3558,7 @@ void VsGame::CardMgr::norm(int)
  * Address:	80237CBC
  * Size:	000E4C
  */
-void drawSlot__Q34Game6VsGame7CardMgrFR8GraphicsR10Vector3f
-RQ44Game6VsGame7CardMgr11SlotMachine(void)
+void drawSlot__Q34Game6VsGame7CardMgrFR8GraphicsR10Vector3f RQ44Game6VsGame7CardMgr11SlotMachine(void)
 {
 	/*
 	.loc_0x0:

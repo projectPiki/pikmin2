@@ -423,8 +423,7 @@ lbl_80024AB0:
  * Address:	80024AB8
  * Size:	0000C8
  */
-void JKRMemArchive::fetchResource(void*, unsigned long,
-                                  JKRArchive::SDIFileEntry*, unsigned long*)
+void JKRMemArchive::fetchResource(void*, unsigned long, JKRArchive::SDIFileEntry*, unsigned long*)
 {
 	/*
 	.loc_0x0:
@@ -567,8 +566,7 @@ lbl_80024BFC:
  * Address:	80024C0C
  * Size:	0000D4
  */
-void JKRMemArchive::fetchResource_subroutine(unsigned char*, unsigned long,
-                                             unsigned char*, unsigned long, int)
+void JKRMemArchive::fetchResource_subroutine(unsigned char*, unsigned long, unsigned char*, unsigned long, int)
 {
 	/*
 	.loc_0x0:

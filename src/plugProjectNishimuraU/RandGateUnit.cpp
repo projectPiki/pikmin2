@@ -75,8 +75,7 @@ lbl_8024FEC8:
  * Address:	8024FEE4
  * Size:	00000C
  */
-void Cave::RandGateUnit::setManageClassPtr(Game::Cave::RandMapScore*,
-                                           Game::Cave::RandItemUnit*)
+void Cave::RandGateUnit::setManageClassPtr(Game::Cave::RandMapScore*, Game::Cave::RandItemUnit*)
 {
 	/*
 	.loc_0x0:

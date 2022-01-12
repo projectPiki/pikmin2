@@ -78,9 +78,7 @@ inline int __fpclassifyd(double x)
 	return 4;
 }
 
-#define fpclassify(x)                                         \
-	((sizeof(x) == sizeof(float)) ? __fpclassifyf((float)(x)) \
-	                              : __fpclassifyd((double)(x)))
+#define fpclassify(x) ((sizeof(x) == sizeof(float)) ? __fpclassifyf((float)(x)) : __fpclassifyd((double)(x)))
 
 #define isfinite(x) ((fpclassify(x) > 2))
 

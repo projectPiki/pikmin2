@@ -25,10 +25,10 @@ struct TScreenBase {
 
 	// _00 VTBL
 	og::Screen::AnimScreen** m_apAnimScreens; // _04
-	J2DScreen* m_pJ2DScreen_0x8; // _08 This might be P2DScreen/Mgr?
-	JKRArchive* m_pArchive_0xc;  // _0C
-	int m_0x10;                  // _10
-	int m_animCount;             // _14
+	J2DScreen* m_pJ2DScreen_0x8;              // _08 This might be P2DScreen/Mgr?
+	JKRArchive* m_pArchive_0xc;               // _0C
+	int m_0x10;                               // _10
+	int m_animCount;                          // _14
 };
 
 struct TSelectExplanationWindow : public TScreenBase {

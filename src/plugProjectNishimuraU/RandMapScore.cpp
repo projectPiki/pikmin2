@@ -266,8 +266,7 @@ lbl_8024CA08:
  * Address:	8024CA1C
  * Size:	00018C
  */
-void Cave::RandMapScore::makeObjectLayout(Game::Cave::MapNode*,
-                                          Game::Cave::ObjectLayout*)
+void Cave::RandMapScore::makeObjectLayout(Game::Cave::MapNode*, Game::Cave::ObjectLayout*)
 {
 	/*
 	.loc_0x0:
@@ -1034,8 +1033,7 @@ lbl_8024D25C:
  * Address:	8024D27C
  * Size:	0000FC
  */
-void Cave::RandMapScore::getMaxScoreRoomMapNode(Game::Cave::MapNode*,
-                                                Game::Cave::BaseGen**)
+void Cave::RandMapScore::getMaxScoreRoomMapNode(Game::Cave::MapNode*, Game::Cave::BaseGen**)
 {
 	/*
 	.loc_0x0:

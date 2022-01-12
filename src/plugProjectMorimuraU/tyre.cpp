@@ -3344,10 +3344,7 @@ void Tyre::Obj::isUnderground(void)
  * Address:	803AE800
  * Size:	000008
  */
-u32 bombCallBack__Q34Game4Tyre3ObjFPQ24Game8CreatureR10Vector3f f(void)
-{
-	return 0x0;
-}
+u32 bombCallBack__Q34Game4Tyre3ObjFPQ24Game8CreatureR10Vector3f f(void) { return 0x0; }
 
 /*
  * --INFO--

@@ -2226,8 +2226,7 @@ lbl_8022AB20:
  * Address:	8022AB3C
  * Size:	000474
  */
-void VsGame::GameState::onMovieStart(Game::VsGameSection*, Game::MovieConfig*,
-                                     unsigned long, unsigned long)
+void VsGame::GameState::onMovieStart(Game::VsGameSection*, Game::MovieConfig*, unsigned long, unsigned long)
 {
 	/*
 	.loc_0x0:
@@ -2572,8 +2571,7 @@ void VsGame::GameState::onMovieStart(Game::VsGameSection*, Game::MovieConfig*,
  * Address:	8022AFB0
  * Size:	0009D0
  */
-void VsGame::GameState::onMovieDone(Game::VsGameSection*, Game::MovieConfig*,
-                                    unsigned long, unsigned long)
+void VsGame::GameState::onMovieDone(Game::VsGameSection*, Game::MovieConfig*, unsigned long, unsigned long)
 {
 	/*
 	.loc_0x0:

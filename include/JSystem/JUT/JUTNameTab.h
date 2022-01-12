@@ -13,10 +13,7 @@ struct ResNTAB {
 		u16 mOffs;
 	} mEntries[1];
 
-	inline const char* getName(u32 index) const
-	{
-		return ((const char*)mEntries) + mEntries[index].mOffs - 4;
-	}
+	inline const char* getName(u32 index) const { return ((const char*)mEntries) + mEntries[index].mOffs - 4; }
 };
 
 class JUTNameTab {

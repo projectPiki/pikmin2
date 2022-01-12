@@ -539,8 +539,7 @@ void J2DGrafContext::place(const JGeometry::TBox2<float>&)
  * Address:	8003668C
  * Size:	00011C
  */
-void J2DGrafContext::setColor(JUtility::TColor, JUtility::TColor,
-                              JUtility::TColor, JUtility::TColor)
+void J2DGrafContext::setColor(JUtility::TColor, JUtility::TColor, JUtility::TColor, JUtility::TColor)
 {
 	/*
 	.loc_0x0:

@@ -38,8 +38,7 @@ namespace JALCalc {
  * Address:    800BA244
  * Size:    000064
  */
-float linearTransform(float x, float xStart, float xEnd, float yStart,
-                      float yEnd, bool unbounded)
+float linearTransform(float x, float xStart, float xEnd, float yStart, float yEnd, bool unbounded)
 {
 	float result = (x - xStart) * ((yEnd - yStart) / (xEnd - xStart)) + yStart;
 

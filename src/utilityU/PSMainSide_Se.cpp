@@ -2960,10 +2960,7 @@ void ClusterFactory::identifyPart(unsigned char)
  * Address:	8046F24C
  * Size:	000070
  */
-void JAIBasic::startSoundVecReturnHandleT<JAISound>(JAISound**, unsigned long,
-                                                    Vec*, unsigned long,
-                                                    unsigned long,
-                                                    unsigned char)
+void JAIBasic::startSoundVecReturnHandleT<JAISound>(JAISound**, unsigned long, Vec*, unsigned long, unsigned long, unsigned char)
 {
 	/*
 	.loc_0x0:

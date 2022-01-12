@@ -55,11 +55,7 @@ s32 JUTNameTab::getIndex(const char* pName) const
 	u16 keyCode                  = calcKeyCode(pName);
 
 	for (u16 i = 0; i < mNameNum; pEntry++, i++)
-		if (pEntry->mKeyCode == keyCode
-		    && strcmp((mpNameTable->mEntries[i].mOffs
-		               + ((const char*)mpNameTable)),
-		              pName)
-		           == 0)
+		if (pEntry->mKeyCode == keyCode && strcmp((mpNameTable->mEntries[i].mOffs + ((const char*)mpNameTable)), pName) == 0)
 			return i;
 
 	return -1;

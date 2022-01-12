@@ -255,8 +255,7 @@ PelletCropMemory::PelletCropMemory(int num1, int num2, int num3)
  */
 PelletCropMemory* PelletCropMemory::createClone()
 {
-	PelletCropMemory* clone
-	    = new PelletCropMemory(_04.m_numKinds, _0C.m_numKinds, _14.m_numKinds);
+	PelletCropMemory* clone = new PelletCropMemory(_04.m_numKinds, _0C.m_numKinds, _14.m_numKinds);
 	clone->_04.copyFrom(_04);
 	clone->_0C.copyFrom(_0C);
 	clone->_14.copyFrom(_14);
@@ -637,10 +636,7 @@ void PelletCropMemory::obtainPellet(Pellet*) { }
  * Address:	801E58B0
  * Size:	000048
  */
-int PelletCropMemory::calcEarnKinds()
-{
-	return _04.getEarnKinds() + _0C.getEarnKinds();
-}
+int PelletCropMemory::calcEarnKinds() { return _04.getEarnKinds() + _0C.getEarnKinds(); }
 
 /*
  * --INFO--
@@ -1240,8 +1236,7 @@ void OlimarData::clear()
 bool OlimarData::hasItem(ItemIndex index)
 {
 	bool isValidIndex = false;
-	if (ODII_FIRST_EXPLORATION_KIT_ITEM <= index
-	    && index < ODII_FIRST_NON_EXPLORATION_KIT_ITEM) {
+	if (ODII_FIRST_EXPLORATION_KIT_ITEM <= index && index < ODII_FIRST_NON_EXPLORATION_KIT_ITEM) {
 		isValidIndex = true;
 	}
 	P2ASSERTLINE(588, isValidIndex);
@@ -1300,8 +1295,7 @@ lbl_801E6024:
 void OlimarData::getItem(ItemIndex index)
 {
 	bool isValidIndex = false;
-	if (ODII_FIRST_EXPLORATION_KIT_ITEM <= index
-	    && index < ODII_FIRST_NON_EXPLORATION_KIT_ITEM) {
+	if (ODII_FIRST_EXPLORATION_KIT_ITEM <= index && index < ODII_FIRST_NON_EXPLORATION_KIT_ITEM) {
 		isValidIndex = true;
 	}
 	P2ASSERTLINE(601, isValidIndex);
@@ -2819,10 +2813,7 @@ void PlayData::setFindItemDemoFlag(int flag)
  * Address:	801E7444
  * Size:	000028
  */
-bool PlayData::isFindItemDemoFlag(int flag)
-{
-	return m_findItemFlags.isFlag(flag);
-}
+bool PlayData::isFindItemDemoFlag(int flag) { return m_findItemFlags.isFlag(flag); }
 
 /*
  * --INFO--
@@ -4314,8 +4305,7 @@ bool PlayData::isCaveFirstTime(int courseIndex, ID32& caveID)
 	}
 	ID32 caveIDCopy;
 	caveIDCopy.setID(caveID.m_id.raw);
-	JUT_PANICLINE(1645, "no cave info : course(%d):[%s]\n", courseIndex,
-	              caveID);
+	JUT_PANICLINE(1645, "no cave info : course(%d):[%s]\n", courseIndex, caveID);
 	/*
 	stwu     r1, -0x30(r1)
 	mflr     r0
@@ -4868,8 +4858,7 @@ void PlayData::CaveOtakara::read(Stream& input)
 {
 	u8 existingCaveCount = m_caveCount;
 	m_caveCount          = input.readByte();
-	JUT_ASSERTLINE(1797, existingCaveCount == m_caveCount,
-	               "セーブしたときと洞窟の数があいません\n");
+	JUT_ASSERTLINE(1797, existingCaveCount == m_caveCount, "セーブしたときと洞窟の数があいません\n");
 	for (int i = 0; i < m_caveCount; i++) {
 		m_otakaraCountsOld[i] = input.readByte();
 		_08[i]                = input.readByte();

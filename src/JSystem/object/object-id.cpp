@@ -11,8 +11,7 @@ namespace JStudio {
  * Address:	80010188
  * Size:	0000F0
  */
-void object::TIDData::isEqual(JStudio::object::TIDData const&,
-                              JStudio::object::TIDData const&)
+void object::TIDData::isEqual(JStudio::object::TIDData const&, JStudio::object::TIDData const&)
 {
 	/*
 	.loc_0x0:

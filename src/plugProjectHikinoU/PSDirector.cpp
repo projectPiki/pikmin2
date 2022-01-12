@@ -1430,8 +1430,7 @@ lbl_80343D60:
  * Address:	80343D84
  * Size:	000024
  */
-DirectorCopyActor::DirectorCopyActor(PSSystem::DirectorBase*,
-                                     PSSystem::DirectorBase*)
+DirectorCopyActor::DirectorCopyActor(PSSystem::DirectorBase*, PSSystem::DirectorBase*)
 {
 	/*
 	.loc_0x0:

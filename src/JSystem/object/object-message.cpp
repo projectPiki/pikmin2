@@ -86,8 +86,7 @@ lbl_80014DA0:
  * Address:	80014DBC
  * Size:	00003C
  */
-void JStudio_JMessage::TAdaptor_message::adaptor_do_MESSAGE(
-    JStudio::data::TEOperationData, const void*, unsigned long)
+void JStudio_JMessage::TAdaptor_message::adaptor_do_MESSAGE(JStudio::data::TEOperationData, const void*, unsigned long)
 {
 	/*
 	.loc_0x0:

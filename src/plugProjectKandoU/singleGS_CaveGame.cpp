@@ -1142,8 +1142,7 @@ lbl_80218380:
  * Address:	802183A4
  * Size:	000104
  */
-void SingleGame::CaveState::onFountainReturn(Game::SingleGameSection*,
-                                             Game::ItemBigFountain::Item*)
+void SingleGame::CaveState::onFountainReturn(Game::SingleGameSection*, Game::ItemBigFountain::Item*)
 {
 	/*
 	.loc_0x0:
@@ -1220,8 +1219,7 @@ void SingleGame::CaveState::onFountainReturn(Game::SingleGameSection*,
  * Address:	802184A8
  * Size:	000144
  */
-void SingleGame::CaveState::onNextFloor(Game::SingleGameSection*,
-                                        Game::ItemHole::Item*)
+void SingleGame::CaveState::onNextFloor(Game::SingleGameSection*, Game::ItemHole::Item*)
 {
 	/*
 	.loc_0x0:
@@ -1771,9 +1769,7 @@ lbl_80218BB0:
  * Address:	80218BDC
  * Size:	000490
  */
-void SingleGame::CaveState::onMovieStart(Game::SingleGameSection*,
-                                         Game::MovieConfig*, unsigned long,
-                                         unsigned long)
+void SingleGame::CaveState::onMovieStart(Game::SingleGameSection*, Game::MovieConfig*, unsigned long, unsigned long)
 {
 	/*
 	.loc_0x0:
@@ -2125,9 +2121,7 @@ void SingleGame::CaveState::onMovieStart(Game::SingleGameSection*,
  * Address:	8021906C
  * Size:	000EB4
  */
-void SingleGame::CaveState::onMovieDone(Game::SingleGameSection*,
-                                        Game::MovieConfig*, unsigned long,
-                                        unsigned long)
+void SingleGame::CaveState::onMovieDone(Game::SingleGameSection*, Game::MovieConfig*, unsigned long, unsigned long)
 {
 	/*
 	.loc_0x0:

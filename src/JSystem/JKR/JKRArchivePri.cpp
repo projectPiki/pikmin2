@@ -110,8 +110,7 @@ lbl_8001A5A8:
  * Address:	8001A5C4
  * Size:	00004C
  */
-bool JKRArchive::isSameName(JKRArchive::CArcName& archiveName,
-                            u32 nameTableOffset, u16 hash) const
+bool JKRArchive::isSameName(JKRArchive::CArcName& archiveName, u32 nameTableOffset, u16 hash) const
 {
 	/*
 	.loc_0x0:

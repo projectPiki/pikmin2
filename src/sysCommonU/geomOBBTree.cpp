@@ -246,8 +246,7 @@ void OBB::draw(Graphics&, Sys::VertexTable&, Sys::TriangleTable&)
  * Address:	8041D02C
  * Size:	000704
  */
-void create2__Q23Sys3OBBFRQ23Sys11VertexTableRQ23Sys13TriangleTableR8Matrix3fR8Matrix3fR10Vector3<
-    float>(void)
+void create2__Q23Sys3OBBFRQ23Sys11VertexTableRQ23Sys13TriangleTableR8Matrix3fR8Matrix3fR10Vector3<float>(void)
 {
 	/*
 	.loc_0x0:
@@ -946,8 +945,7 @@ namespace Sys {
  * Address:	........
  * Size:	000128
  */
-void OBB::countDivResult(Sys::VertexTable&, Sys::TriangleTable&, int, int&,
-                         int&)
+void OBB::countDivResult(Sys::VertexTable&, Sys::TriangleTable&, int, int&, int&)
 {
 	// UNUSED FUNCTION
 }
@@ -2480,8 +2478,7 @@ void testIntersection__Q23Sys7OBBTreeFRQ23Sys6SphereR10Vector3f(void)
  * Address:	........
  * Size:	000180
  */
-void testIntersectionTriList__Q23Sys3OBBFRQ23Sys6SphereR10Vector3f
-RQ23Sys11VertexTableRQ23Sys13TriangleTable(void)
+void testIntersectionTriList__Q23Sys3OBBFRQ23Sys6SphereR10Vector3f RQ23Sys11VertexTableRQ23Sys13TriangleTable(void)
 {
 	// UNUSED FUNCTION
 }
@@ -2491,8 +2488,7 @@ RQ23Sys11VertexTableRQ23Sys13TriangleTable(void)
  * Address:	........
  * Size:	00019C
  */
-void testIntersection__Q23Sys3OBBFRQ23Sys6SphereR10Vector3f
-RQ23Sys11VertexTableRQ23Sys13TriangleTable(void)
+void testIntersection__Q23Sys3OBBFRQ23Sys6SphereR10Vector3f RQ23Sys11VertexTableRQ23Sys13TriangleTable(void)
 {
 	// UNUSED FUNCTION
 }
@@ -4150,8 +4146,5 @@ void OBBTree::getBoundBox(BoundBox&) { }
  * Address:	8041FFA0
  * Size:	000008
  */
-void TriDivider::do_clone(Matrixf&, Sys::VertexTable*, Sys::TriangleTable*)
-{
-	return 0x0;
-}
+void TriDivider::do_clone(Matrixf&, Sys::VertexTable*, Sys::TriangleTable*) { return 0x0; }
 } // namespace Sys

@@ -587,9 +587,8 @@ lbl_8002D90C:
  * Address:	........
  * Size:	000088
  */
-void JUTGamePad::setStatus(unsigned long, char, char, char, char, unsigned char,
-                           unsigned char, unsigned char, unsigned char,
-                           unsigned long, PADStatus*)
+void JUTGamePad::setStatus(unsigned long, char, char, char, char, unsigned char, unsigned char, unsigned char, unsigned char, unsigned long,
+                           PADStatus*)
 {
 	// UNUSED FUNCTION
 }
@@ -599,8 +598,7 @@ void JUTGamePad::setStatus(unsigned long, char, char, char, char, unsigned char,
  * Address:	........
  * Size:	0000F0
  */
-void JUTGamePad::setStatus_PADStatus(const PADStatus*, unsigned long,
-                                     PADStatus*, unsigned long)
+void JUTGamePad::setStatus_PADStatus(const PADStatus*, unsigned long, PADStatus*, unsigned long)
 {
 	// UNUSED FUNCTION
 }
@@ -1207,9 +1205,7 @@ void JUTGamePad::CStick::clear(void)
  * Address:	8002DFFC
  * Size:	0002B8
  */
-void JUTGamePad::CStick::update(signed char, signed char,
-                                JUTGamePad::EStickMode, JUTGamePad::EWhichStick,
-                                unsigned long)
+void JUTGamePad::CStick::update(signed char, signed char, JUTGamePad::EStickMode, JUTGamePad::EWhichStick, unsigned long)
 {
 	/*
 	.loc_0x0:
@@ -1816,9 +1812,7 @@ void JUTGamePad::CRumble::setPatternedRumble(short, unsigned short, void*)
  * Address:	........
  * Size:	0000BC
  */
-void JUTGamePad::CRumble::startPatternedRumble(void*,
-                                               JUTGamePad::CRumble::ERumble,
-                                               unsigned long)
+void JUTGamePad::CRumble::startPatternedRumble(void*, JUTGamePad::CRumble::ERumble, unsigned long)
 {
 	// UNUSED FUNCTION
 }
@@ -2118,9 +2112,7 @@ void JSULink<JUTGamePadLongPress>::~JSULink()
  * Address:	........
  * Size:	0000CC
  */
-void JUTGamePadLongPress::add(unsigned long, unsigned long, unsigned long,
-                              void (*)(int, JUTGamePadLongPress*, void*), void*,
-                              JKRHeap*)
+void JUTGamePadLongPress::add(unsigned long, unsigned long, unsigned long, void (*)(int, JUTGamePadLongPress*, void*), void*, JKRHeap*)
 {
 	// UNUSED FUNCTION
 }

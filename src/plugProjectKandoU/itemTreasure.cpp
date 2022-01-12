@@ -1446,8 +1446,7 @@ void ItemTreasure::Item::onInit(Game::CreatureInitArg*)
  * Address:	801F392C
  * Size:	000034
  */
-void start__Q24Game40StateMachine<Game::ItemTreasure::Item>
-FPQ34Game12ItemTreasure4ItemiPQ24Game8StateArg(void)
+void start__Q24Game40StateMachine<Game::ItemTreasure::Item> FPQ34Game12ItemTreasure4ItemiPQ24Game8StateArg(void)
 {
 	/*
 	.loc_0x0:
@@ -2602,8 +2601,7 @@ lbl_801F4648:
  * Address:	801F4670
  * Size:	000060
  */
-void generatorBirth__Q34Game12ItemTreasure3MgrFR10Vector3f R10Vector3f
-PQ24Game11GenItemParm(void)
+void generatorBirth__Q34Game12ItemTreasure3MgrFR10Vector3f R10Vector3f PQ24Game11GenItemParm(void)
 {
 	/*
 	.loc_0x0:
@@ -2883,9 +2881,7 @@ u32 MtxObject::isModel(void) { return 0x0; }
  * Address:	801F4948
  * Size:	000034
  */
-void doAI__Q24Game89FSMItem<Game::ItemTreasure::Item, Game::ItemTreasure::FSM,
-                            Game::ItemTreasure::State>
-Fv(void)
+void doAI__Q24Game89FSMItem<Game::ItemTreasure::Item, Game::ItemTreasure::FSM, Game::ItemTreasure::State> Fv(void)
 {
 	/*
 	.loc_0x0:
@@ -2910,108 +2906,77 @@ Fv(void)
  * Address:	801F497C
  * Size:	000004
  */
-void onDamage__Q24Game37ItemState<Game::ItemTreasure::Item>
-FPQ34Game12ItemTreasure4Itemf(void)
-{
-}
+void onDamage__Q24Game37ItemState<Game::ItemTreasure::Item> FPQ34Game12ItemTreasure4Itemf(void) { }
 
 /*
  * --INFO--
  * Address:	801F4980
  * Size:	000004
  */
-void onKeyEvent__Q24Game37ItemState<Game::ItemTreasure::Item>
-FPQ34Game12ItemTreasure4ItemRCQ28SysShape8KeyEvent(void)
-{
-}
+void onKeyEvent__Q24Game37ItemState<Game::ItemTreasure::Item> FPQ34Game12ItemTreasure4ItemRCQ28SysShape8KeyEvent(void) { }
 
 /*
  * --INFO--
  * Address:	801F4984
  * Size:	000004
  */
-void onBounce__Q24Game37ItemState<Game::ItemTreasure::Item>
-FPQ34Game12ItemTreasure4ItemPQ23Sys8Triangle(void)
-{
-}
+void onBounce__Q24Game37ItemState<Game::ItemTreasure::Item> FPQ34Game12ItemTreasure4ItemPQ23Sys8Triangle(void) { }
 
 /*
  * --INFO--
  * Address:	801F4988
  * Size:	000004
  */
-void onPlatCollision__Q24Game37ItemState<Game::ItemTreasure::Item>
-FPQ34Game12ItemTreasure4ItemRQ24Game9PlatEvent(void)
-{
-}
+void onPlatCollision__Q24Game37ItemState<Game::ItemTreasure::Item> FPQ34Game12ItemTreasure4ItemRQ24Game9PlatEvent(void) { }
 
 /*
  * --INFO--
  * Address:	801F498C
  * Size:	000004
  */
-void onCollision__Q24Game37ItemState<Game::ItemTreasure::Item>
-FPQ34Game12ItemTreasure4ItemRQ24Game9CollEvent(void)
-{
-}
+void onCollision__Q24Game37ItemState<Game::ItemTreasure::Item> FPQ34Game12ItemTreasure4ItemRQ24Game9CollEvent(void) { }
 
 /*
  * --INFO--
  * Address:	801F4990
  * Size:	000004
  */
-void init__Q24Game36FSMState<Game::ItemTreasure::Item>
-FPQ34Game12ItemTreasure4ItemPQ24Game8StateArg(void)
-{
-}
+void init__Q24Game36FSMState<Game::ItemTreasure::Item> FPQ34Game12ItemTreasure4ItemPQ24Game8StateArg(void) { }
 
 /*
  * --INFO--
  * Address:	801F4994
  * Size:	000004
  */
-void exec__Q24Game36FSMState<Game::ItemTreasure::Item>
-FPQ34Game12ItemTreasure4Item(void)
-{
-}
+void exec__Q24Game36FSMState<Game::ItemTreasure::Item> FPQ34Game12ItemTreasure4Item(void) { }
 
 /*
  * --INFO--
  * Address:	801F4998
  * Size:	000004
  */
-void cleanup__Q24Game36FSMState<Game::ItemTreasure::Item>
-FPQ34Game12ItemTreasure4Item(void)
-{
-}
+void cleanup__Q24Game36FSMState<Game::ItemTreasure::Item> FPQ34Game12ItemTreasure4Item(void) { }
 
 /*
  * --INFO--
  * Address:	801F499C
  * Size:	000004
  */
-void resume__Q24Game36FSMState<Game::ItemTreasure::Item>
-FPQ34Game12ItemTreasure4Item(void)
-{
-}
+void resume__Q24Game36FSMState<Game::ItemTreasure::Item> FPQ34Game12ItemTreasure4Item(void) { }
 
 /*
  * --INFO--
  * Address:	801F49A0
  * Size:	000004
  */
-void restart__Q24Game36FSMState<Game::ItemTreasure::Item>
-FPQ34Game12ItemTreasure4Item(void)
-{
-}
+void restart__Q24Game36FSMState<Game::ItemTreasure::Item> FPQ34Game12ItemTreasure4Item(void) { }
 
 /*
  * --INFO--
  * Address:	801F49A4
  * Size:	000030
  */
-void transit__Q24Game36FSMState<Game::ItemTreasure::Item>
-FPQ34Game12ItemTreasure4ItemiPQ24Game8StateArg(void)
+void transit__Q24Game36FSMState<Game::ItemTreasure::Item> FPQ34Game12ItemTreasure4ItemiPQ24Game8StateArg(void)
 {
 	/*
 	.loc_0x0:
@@ -3035,18 +3000,14 @@ FPQ34Game12ItemTreasure4ItemiPQ24Game8StateArg(void)
  * Address:	801F49D4
  * Size:	000004
  */
-void init__Q24Game40StateMachine<Game::ItemTreasure::Item>
-FPQ34Game12ItemTreasure4Item(void)
-{
-}
+void init__Q24Game40StateMachine<Game::ItemTreasure::Item> FPQ34Game12ItemTreasure4Item(void) { }
 
 /*
  * --INFO--
  * Address:	801F49D8
  * Size:	000038
  */
-void exec__Q24Game40StateMachine<Game::ItemTreasure::Item>
-FPQ34Game12ItemTreasure4Item(void)
+void exec__Q24Game40StateMachine<Game::ItemTreasure::Item> FPQ34Game12ItemTreasure4Item(void)
 {
 	/*
 	.loc_0x0:
@@ -3112,8 +3073,7 @@ void create__Q24Game40StateMachine<Game::ItemTreasure::Item> Fi(void)
  * Address:	801F4A74
  * Size:	00009C
  */
-void transit__Q24Game40StateMachine<Game::ItemTreasure::Item>
-FPQ34Game12ItemTreasure4ItemiPQ24Game8StateArg(void)
+void transit__Q24Game40StateMachine<Game::ItemTreasure::Item> FPQ34Game12ItemTreasure4ItemiPQ24Game8StateArg(void)
 {
 	/*
 	.loc_0x0:
@@ -3170,8 +3130,7 @@ FPQ34Game12ItemTreasure4ItemiPQ24Game8StateArg(void)
  * Address:	801F4B10
  * Size:	000084
  */
-void registerState__Q24Game40StateMachine<Game::ItemTreasure::Item>
-FPQ24Game36FSMState<Game::ItemTreasure::Item>(void)
+void registerState__Q24Game40StateMachine<Game::ItemTreasure::Item> FPQ24Game36FSMState<Game::ItemTreasure::Item>(void)
 {
 	/*
 	.loc_0x0:
@@ -3222,9 +3181,7 @@ FPQ24Game36FSMState<Game::ItemTreasure::Item>(void)
  * Address:	801F4B94
  * Size:	000044
  */
-void onKeyEvent__Q24Game89FSMItem<Game::ItemTreasure::Item,
-                                  Game::ItemTreasure::FSM,
-                                  Game::ItemTreasure::State>
+void onKeyEvent__Q24Game89FSMItem<Game::ItemTreasure::Item, Game::ItemTreasure::FSM, Game::ItemTreasure::State>
 FRCQ28SysShape8KeyEvent(void)
 {
 	/*
@@ -3256,10 +3213,7 @@ FRCQ28SysShape8KeyEvent(void)
  * Address:	801F4BD8
  * Size:	000044
  */
-void platCallback__Q24Game89FSMItem<Game::ItemTreasure::Item,
-                                    Game::ItemTreasure::FSM,
-                                    Game::ItemTreasure::State>
-FRQ24Game9PlatEvent(void)
+void platCallback__Q24Game89FSMItem<Game::ItemTreasure::Item, Game::ItemTreasure::FSM, Game::ItemTreasure::State> FRQ24Game9PlatEvent(void)
 {
 	/*
 	.loc_0x0:
@@ -3290,9 +3244,7 @@ FRQ24Game9PlatEvent(void)
  * Address:	801F4C1C
  * Size:	000044
  */
-void collisionCallback__Q24Game89FSMItem<Game::ItemTreasure::Item,
-                                         Game::ItemTreasure::FSM,
-                                         Game::ItemTreasure::State>
+void collisionCallback__Q24Game89FSMItem<Game::ItemTreasure::Item, Game::ItemTreasure::FSM, Game::ItemTreasure::State>
 FRQ24Game9CollEvent(void)
 {
 	/*
@@ -3324,10 +3276,7 @@ FRQ24Game9CollEvent(void)
  * Address:	801F4C60
  * Size:	000044
  */
-void bounceCallback__Q24Game89FSMItem<Game::ItemTreasure::Item,
-                                      Game::ItemTreasure::FSM,
-                                      Game::ItemTreasure::State>
-FPQ23Sys8Triangle(void)
+void bounceCallback__Q24Game89FSMItem<Game::ItemTreasure::Item, Game::ItemTreasure::FSM, Game::ItemTreasure::State> FPQ23Sys8Triangle(void)
 {
 	/*
 	.loc_0x0:
@@ -3379,9 +3328,7 @@ void __sinit_itemTreasure_cpp(void)
  * Address:	801F4CCC
  * Size:	000008
  */
-void @376 @onKeyEvent__Q24Game89FSMItem<Game::ItemTreasure::Item,
-                                        Game::ItemTreasure::FSM,
-                                        Game::ItemTreasure::State>
+void @376 @onKeyEvent__Q24Game89FSMItem<Game::ItemTreasure::Item, Game::ItemTreasure::FSM, Game::ItemTreasure::State>
 FRCQ28SysShape8KeyEvent(void)
 {
 	/*

@@ -38,18 +38,13 @@ public:
 
 	static ExtrapolateParameter toFunction_outside(int);
 
-	static ExtrapolateParameter toFunction(TFunctionValue::TEOutside outside)
-	{
-		return toFunction_outside(outside);
-	}
+	static ExtrapolateParameter toFunction(TFunctionValue::TEOutside outside) { return toFunction_outside(outside); }
 };
 
 class TFunctionValueAttributeSet_const {
 public:
-	TFunctionValueAttributeSet_const(
-	    TFunctionValueAttribute_refer* refer,
-	    TFunctionValueAttribute_range* range,
-	    TFunctionValueAttribute_interpolate* interp)
+	TFunctionValueAttributeSet_const(TFunctionValueAttribute_refer* refer, TFunctionValueAttribute_range* range,
+	                                 TFunctionValueAttribute_interpolate* interp)
 	    : refer_(refer)
 	    , range_(range)
 	    , interp_(interp)
@@ -58,10 +53,7 @@ public:
 
 	TFunctionValueAttribute_refer* refer_get() const { return refer_; }
 	TFunctionValueAttribute_range* range_get() const { return range_; }
-	TFunctionValueAttribute_interpolate* interpolate_get() const
-	{
-		return interp_;
-	}
+	TFunctionValueAttribute_interpolate* interpolate_get() const { return interp_; }
 
 private:
 	/* 0x00 */ TFunctionValueAttribute_refer* refer_;
@@ -71,32 +63,21 @@ private:
 
 class TFunctionValueAttributeSet : public TFunctionValueAttributeSet_const {
 public:
-	TFunctionValueAttributeSet(TFunctionValueAttribute_refer* refer,
-	                           TFunctionValueAttribute_range* range,
+	TFunctionValueAttributeSet(TFunctionValueAttribute_refer* refer, TFunctionValueAttribute_range* range,
 	                           TFunctionValueAttribute_interpolate* interp)
 	    : TFunctionValueAttributeSet_const(refer, range, interp)
 	{
 	}
 
-	TFunctionValueAttribute_refer* refer_get() const
-	{
-		return static_cast<const TFunctionValueAttributeSet_const*>(this)
-		    ->refer_get();
-	}
-	TFunctionValueAttribute_range* range_get() const
-	{
-		return static_cast<const TFunctionValueAttributeSet_const*>(this)
-		    ->range_get();
-	}
+	TFunctionValueAttribute_refer* refer_get() const { return static_cast<const TFunctionValueAttributeSet_const*>(this)->refer_get(); }
+	TFunctionValueAttribute_range* range_get() const { return static_cast<const TFunctionValueAttributeSet_const*>(this)->range_get(); }
 	TFunctionValueAttribute_interpolate* interpolate_get() const
 	{
-		return static_cast<const TFunctionValueAttributeSet_const*>(this)
-		    ->interpolate_get();
+		return static_cast<const TFunctionValueAttributeSet_const*>(this)->interpolate_get();
 	}
 };
 
-class TFunctionValueAttribute_refer
-    : public JGadget::TVector_pointer<TFunctionValue*> {
+class TFunctionValueAttribute_refer : public JGadget::TVector_pointer<TFunctionValue*> {
 public:
 	// TFunctionValueAttribute_refer() :
 	// JGadget::TVector_pointer<TFunctionValue*>(JGadget::TAllocator<void*>())
@@ -105,18 +86,9 @@ public:
 
 	void refer_initialize();
 
-	const TFunctionValueAttribute_refer* refer_getContainer() const
-	{
-		return this;
-	}
-	JGadget::TVector_pointer<TFunctionValue*>& refer_referContainer()
-	{
-		return *this;
-	}
-	bool refer_isReferring(const TFunctionValue* p) const
-	{
-		return false;
-	} // todo
+	const TFunctionValueAttribute_refer* refer_getContainer() const { return this; }
+	JGadget::TVector_pointer<TFunctionValue*>& refer_referContainer() { return *this; }
+	bool refer_isReferring(const TFunctionValue* p) const { return false; } // todo
 };
 
 struct TFunctionValueAttribute_range {
@@ -127,33 +99,17 @@ struct TFunctionValueAttribute_range {
 	void range_set(f64, f64);
 	f64 range_getParameter(f64, f64, f64) const;
 
-	TFunctionValue::TEProgress range_getProgress() const
-	{
-		return (TFunctionValue::TEProgress)mProgress;
-	}
-	void range_setProgress(TFunctionValue::TEProgress progress)
-	{
-		mProgress = progress;
-	}
-	TFunctionValue::TEAdjust range_getAdjust() const
-	{
-		return (TFunctionValue::TEAdjust)mAdjust;
-	}
+	TFunctionValue::TEProgress range_getProgress() const { return (TFunctionValue::TEProgress)mProgress; }
+	void range_setProgress(TFunctionValue::TEProgress progress) { mProgress = progress; }
+	TFunctionValue::TEAdjust range_getAdjust() const { return (TFunctionValue::TEAdjust)mAdjust; }
 	void range_setAdjust(TFunctionValue::TEAdjust adjust) { mAdjust = adjust; }
-	void range_setOutside(TFunctionValue::TEOutside outside)
-	{
-		range_setOutside(outside, outside);
-	}
-	void range_setOutside(TFunctionValue::TEOutside begin,
-	                      TFunctionValue::TEOutside end)
+	void range_setOutside(TFunctionValue::TEOutside outside) { range_setOutside(outside, outside); }
+	void range_setOutside(TFunctionValue::TEOutside begin, TFunctionValue::TEOutside end)
 	{
 		range_setOutside_begin(begin);
 		range_setOutside_end(end);
 	}
-	void range_setOutside_begin(TFunctionValue::TEOutside begin)
-	{
-		mBegin = begin;
-	}
+	void range_setOutside_begin(TFunctionValue::TEOutside begin) { mBegin = begin; }
 	void range_setOutside_end(TFunctionValue::TEOutside end) { mEnd = end; }
 	f64 range_getParameter_outside(f64 arg1) const
 	{
@@ -166,10 +122,7 @@ struct TFunctionValueAttribute_range {
 		}
 		return result + fBegin_;
 	}
-	f64 range_getParameter_progress(f64 arg1) const
-	{
-		return _20 + _28 * (arg1 - _20);
-	}
+	f64 range_getParameter_progress(f64 arg1) const { return _20 + _28 * (arg1 - _20); }
 
 	/* 0x00 */ f64 fBegin_;
 	/* 0x08 */ f64 fEnd_;
@@ -194,10 +147,7 @@ public:
 	void interpolate_initialize() { interpolate_ = 0; }
 	void interpolate_prepare() { }
 	u32 interpolate_get() const { return interpolate_; }
-	void interpolate_set(TFunctionValue::TEInterpolate interpolate)
-	{
-		interpolate_ = interpolate;
-	}
+	void interpolate_set(TFunctionValue::TEInterpolate interpolate) { interpolate_ = interpolate; }
 
 private:
 	/* 0x0 */ u32 interpolate_;
@@ -248,11 +198,8 @@ public:
 			f64 f32data;
 		};
 	};
-	typedef f64 (*UnkFunc)(f64, const TFunctionValueAttribute_refer*,
-	                       const TFunctionValue_composite::TData*);
-	typedef f64 (*CompositeFunc)(
-	    const JGadget::TVector_pointer<TFunctionValue>&,
-	    const TFunctionValue_composite::TData&, f64);
+	typedef f64 (*UnkFunc)(f64, const TFunctionValueAttribute_refer*, const TFunctionValue_composite::TData*);
+	typedef f64 (*CompositeFunc)(const JGadget::TVector_pointer<TFunctionValue>&, const TFunctionValue_composite::TData&, f64);
 
 	TFunctionValue_composite();
 	virtual ~TFunctionValue_composite() { }
@@ -262,20 +209,13 @@ public:
 	virtual void initialize();
 	virtual void prepare();
 	virtual f64 getValue(f64);
-	void composite_raw(TVector_pointer<TFunctionValue*> const&, TData const&,
-	                   f64);
-	void composite_index(TVector_pointer<TFunctionValue*> const&, TData const&,
-	                     f64);
-	void composite_parameter(TVector_pointer<TFunctionValue*> const&,
-	                         TData const&, f64);
-	void composite_add(TVector_pointer<JStudio::TFunctionValue*> const&,
-	                   TData const&, f64);
-	void composite_subtract(TVector_pointer<TFunctionValue*> const&,
-	                        TData const&, f64);
-	void composite_multiply(TVector_pointer<TFunctionValue*> const&,
-	                        TData const&, f64);
-	void composite_divide(TVector_pointer<TFunctionValue*> const&, TData const&,
-	                      f64);
+	void composite_raw(TVector_pointer<TFunctionValue*> const&, TData const&, f64);
+	void composite_index(TVector_pointer<TFunctionValue*> const&, TData const&, f64);
+	void composite_parameter(TVector_pointer<TFunctionValue*> const&, TData const&, f64);
+	void composite_add(TVector_pointer<JStudio::TFunctionValue*> const&, TData const&, f64);
+	void composite_subtract(TVector_pointer<TFunctionValue*> const&, TData const&, f64);
+	void composite_multiply(TVector_pointer<TFunctionValue*> const&, TData const&, f64);
+	void composite_divide(TVector_pointer<TFunctionValue*> const&, TData const&, f64);
 
 	void data_set(CompositeFunc fn, const TData& dat)
 	{
@@ -290,9 +230,7 @@ private:
 	TData data;
 };
 
-class TFunctionValue_transition : TFunctionValue,
-                                  TFunctionValueAttribute_range,
-                                  TFunctionValueAttribute_interpolate {
+class TFunctionValue_transition : TFunctionValue, TFunctionValueAttribute_range, TFunctionValueAttribute_interpolate {
 public:
 	TFunctionValue_transition();
 	virtual ~TFunctionValue_transition() { }
@@ -314,17 +252,14 @@ private:
 	/* 0x50 */ f64 _50;
 };
 
-class TFunctionValue_list : TFunctionValue,
-                            TFunctionValueAttribute_range,
-                            TFunctionValueAttribute_interpolate {
+class TFunctionValue_list : TFunctionValue, TFunctionValueAttribute_range, TFunctionValueAttribute_interpolate {
 public:
 	struct TIndexData_ {
 		f64 _0;
 		f64 _8;
 		u32 _10;
 	};
-	typedef f64 (*update_INTERPOLATE)(const TFunctionValue_list&,
-	                                  const TIndexData_&);
+	typedef f64 (*update_INTERPOLATE)(const TFunctionValue_list&, const TIndexData_&);
 
 	/* 802826BC */ TFunctionValue_list();
 	virtual ~TFunctionValue_list() { }
@@ -348,18 +283,14 @@ public:
 		_50 = f;
 	}
 
-	/* 80282C10 */ static f64
-	update_INTERPOLATE_NONE_(JStudio::TFunctionValue_list const&,
-	                         JStudio::TFunctionValue_list::TIndexData_ const&);
-	/* 80282C24 */ static f64 update_INTERPOLATE_LINEAR_(
-	    JStudio::TFunctionValue_list const&,
-	    JStudio::TFunctionValue_list::TIndexData_ const&);
-	/* 80282C58 */ static f64 update_INTERPOLATE_PLATEAU_(
-	    JStudio::TFunctionValue_list const&,
-	    JStudio::TFunctionValue_list::TIndexData_ const&);
-	/* 80282CA8 */ static f64 update_INTERPOLATE_BSPLINE_dataMore3_(
-	    JStudio::TFunctionValue_list const&,
-	    JStudio::TFunctionValue_list::TIndexData_ const&);
+	/* 80282C10 */ static f64 update_INTERPOLATE_NONE_(JStudio::TFunctionValue_list const&,
+	                                                   JStudio::TFunctionValue_list::TIndexData_ const&);
+	/* 80282C24 */ static f64 update_INTERPOLATE_LINEAR_(JStudio::TFunctionValue_list const&,
+	                                                     JStudio::TFunctionValue_list::TIndexData_ const&);
+	/* 80282C58 */ static f64 update_INTERPOLATE_PLATEAU_(JStudio::TFunctionValue_list const&,
+	                                                      JStudio::TFunctionValue_list::TIndexData_ const&);
+	/* 80282CA8 */ static f64 update_INTERPOLATE_BSPLINE_dataMore3_(JStudio::TFunctionValue_list const&,
+	                                                                JStudio::TFunctionValue_list::TIndexData_ const&);
 
 private:
 	/* 0x44 */ const f32* _44;
@@ -368,9 +299,7 @@ private:
 	/* 0x58 */ update_INTERPOLATE _58;
 };
 
-class TFunctionValue_list_parameter : TFunctionValue,
-                                      TFunctionValueAttribute_range,
-                                      TFunctionValueAttribute_interpolate {
+class TFunctionValue_list_parameter : TFunctionValue, TFunctionValueAttribute_range, TFunctionValueAttribute_interpolate {
 public:
 	struct TIterator_data_ {
 		TIterator_data_(const f32* value)
@@ -389,8 +318,7 @@ public:
 
 		const f32* value_;
 	};
-	typedef f64 (*update_INTERPOLATE)(const TFunctionValue_list_parameter&,
-	                                  f64);
+	typedef f64 (*update_INTERPOLATE)(const TFunctionValue_list_parameter&, f64);
 
 	/* 80282D34 */ TFunctionValue_list_parameter();
 	/* 80283C24 */ virtual ~TFunctionValue_list_parameter() { }
@@ -402,17 +330,10 @@ public:
 	/* 80282E60 */ virtual void prepare();
 	/* 80282F10 */ virtual f64 getValue(f64);
 
-	/* 80282FE8 */ static f64
-	update_INTERPOLATE_NONE_(JStudio::TFunctionValue_list_parameter const&,
-	                         f64);
-	/* 80282FF4 */ static f64
-	update_INTERPOLATE_LINEAR_(JStudio::TFunctionValue_list_parameter const&,
-	                           f64);
-	/* 80283024 */ static f64
-	update_INTERPOLATE_PLATEAU_(JStudio::TFunctionValue_list_parameter const&,
-	                            f64);
-	/* 80283060 */ static f64 update_INTERPOLATE_BSPLINE_dataMore3_(
-	    JStudio::TFunctionValue_list_parameter const&, f64);
+	/* 80282FE8 */ static f64 update_INTERPOLATE_NONE_(JStudio::TFunctionValue_list_parameter const&, f64);
+	/* 80282FF4 */ static f64 update_INTERPOLATE_LINEAR_(JStudio::TFunctionValue_list_parameter const&, f64);
+	/* 80283024 */ static f64 update_INTERPOLATE_PLATEAU_(JStudio::TFunctionValue_list_parameter const&, f64);
+	/* 80283060 */ static f64 update_INTERPOLATE_BSPLINE_dataMore3_(JStudio::TFunctionValue_list_parameter const&, f64);
 
 private:
 	/* 0x44 */ const f32* _44;

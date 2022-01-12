@@ -23,8 +23,7 @@
  * Address:	800B0340
  * Size:	000254
  */
-void JAInter::HeapMgr::init(unsigned char, unsigned long, unsigned char,
-                            unsigned long)
+void JAInter::HeapMgr::init(unsigned char, unsigned long, unsigned char, unsigned long)
 {
 	/*
 	.loc_0x0:

@@ -3338,8 +3338,7 @@ namespace PSM {
  * Address:	8045C12C
  * Size:	000164
  */
-void SceneMgr::newAutoBgm(const char*, const char*, JAInter::SoundInfo&,
-                          JADUtility::AccessMode, PSGame::SceneInfo&,
+void SceneMgr::newAutoBgm(const char*, const char*, JAInter::SoundInfo&, JADUtility::AccessMode, PSGame::SceneInfo&,
                           PSSystem::DirectorMgrBase*)
 {
 	/*
@@ -3449,8 +3448,7 @@ void SceneMgr::newAutoBgm(const char*, const char*, JAInter::SoundInfo&,
  * Address:	8045C290
  * Size:	000060
  */
-MiddleBossSeq::MiddleBossSeq(const char*, const JAInter::SoundInfo&,
-                             PSSystem::DirectorMgrBase*)
+MiddleBossSeq::MiddleBossSeq(const char*, const JAInter::SoundInfo&, PSSystem::DirectorMgrBase*)
 {
 	/*
 	.loc_0x0:
@@ -3865,8 +3863,7 @@ lbl_8045C6D4:
  * Address:	8045C6EC
  * Size:	00006C
  */
-BigBossSeq::BigBossSeq(const char*, const JAInter::SoundInfo&,
-                       PSSystem::DirectorMgrBase*)
+BigBossSeq::BigBossSeq(const char*, const JAInter::SoundInfo&, PSSystem::DirectorMgrBase*)
 {
 	/*
 	.loc_0x0:

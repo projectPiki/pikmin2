@@ -1102,8 +1102,7 @@ updateAntennaShadow__Q34Game11BigTreasure20BigTreasureShadowMgrFRQ24Game15JointS
  * Address:	802DB1C4
  * Size:	0000F4
  */
-void BigTreasure::BigTreasureShadowMgr::updateTreasureShadow(
-    Game::JointShadowParm&)
+void BigTreasure::BigTreasureShadowMgr::updateTreasureShadow(Game::JointShadowParm&)
 {
 	/*
 	.loc_0x0:
@@ -1413,8 +1412,7 @@ lbl_802DB384:
  * Address:	802DB600
  * Size:	000544
  */
-void BigTreasure::BigTreasureShadowMgr::updateAntennaShadow(
-    Game::JointShadowParm&)
+void BigTreasure::BigTreasureShadowMgr::updateAntennaShadow(Game::JointShadowParm&)
 {
 	/*
 	.loc_0x0:

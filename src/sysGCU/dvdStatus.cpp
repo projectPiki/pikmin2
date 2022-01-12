@@ -158,8 +158,7 @@ void DvdStatus::update()
 			// This is line 204? Really???
 			JUT_ASSERTLINE(204, display != nullptr, "no display.\n");
 			// Line 197 now???
-			JUT_ASSERTLINE(197, display->m_fader != nullptr,
-			               "display changed !\n");
+			JUT_ASSERTLINE(197, display->m_fader != nullptr, "display changed !\n");
 			display->m_fader = m_fader;
 			m_fader          = nullptr;
 			sys->enableCPULockDetector(_08);

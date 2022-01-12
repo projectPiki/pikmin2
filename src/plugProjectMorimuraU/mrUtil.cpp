@@ -246,8 +246,7 @@ void Morimura::TCallbackScissor::draw(Graphics&, J2DGrafContext&)
  * Address:	803A10E4
  * Size:	0000C0
  */
-Morimura::TOffsetMsgSet::TOffsetMsgSet(unsigned long long*, unsigned long long,
-                                       int)
+Morimura::TOffsetMsgSet::TOffsetMsgSet(unsigned long long*, unsigned long long, int)
 {
 	/*
 	.loc_0x0:
@@ -311,8 +310,7 @@ Morimura::TOffsetMsgSet::TOffsetMsgSet(unsigned long long*, unsigned long long,
  * Address:	803A11A4
  * Size:	000068
  */
-Morimura::TOffsetMsgSet::TOffsetMsgSet(unsigned long long*, unsigned long long,
-                                       int, unsigned long long*, int*)
+Morimura::TOffsetMsgSet::TOffsetMsgSet(unsigned long long*, unsigned long long, int, unsigned long long*, int*)
 {
 	/*
 	.loc_0x0:
@@ -1241,8 +1239,7 @@ lbl_803A1C4C:
  * Address:	803A1C5C
  * Size:	0001A4
  */
-void Morimura::setScaleUpCounter(P2DScreen::Mgr*, unsigned long long,
-                                 unsigned long*, unsigned short, JKRArchive*)
+void Morimura::setScaleUpCounter(P2DScreen::Mgr*, unsigned long long, unsigned long*, unsigned short, JKRArchive*)
 {
 	/*
 	.loc_0x0:
@@ -1369,9 +1366,7 @@ void Morimura::setScaleUpCounter(P2DScreen::Mgr*, unsigned long long,
  * Address:	803A1E00
  * Size:	00012C
  */
-void Morimura::setScaleUpCounter2(P2DScreen::Mgr*, unsigned long long,
-                                  unsigned long long, unsigned long*,
-                                  unsigned short, JKRArchive*)
+void Morimura::setScaleUpCounter2(P2DScreen::Mgr*, unsigned long long, unsigned long long, unsigned long*, unsigned short, JKRArchive*)
 {
 	/*
 	.loc_0x0:

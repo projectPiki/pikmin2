@@ -743,8 +743,7 @@ void Result::TNode::setTNode(unsigned long long, JUTTexture*, int, int, int)
  * Address:	80227A80
  * Size:	000024
  */
-void Result::TNode::setTNode(unsigned long long, JUTTexture*, int, int, int,
-                             int)
+void Result::TNode::setTNode(unsigned long long, JUTTexture*, int, int, int, int)
 {
 	/*
 	.loc_0x0:

@@ -208,8 +208,7 @@ void UpdateMgr::removeClient(UpdateContext* context)
 {
 	int clientIDMaybe = context->_04;
 	if (clientIDMaybe != -1) {
-		JUT_ASSERTLINE(155, (clientIDMaybe >= 0 && clientIDMaybe < _00),
-		               "mail to [%d-%d] %d\n", 0, _00, clientIDMaybe);
+		JUT_ASSERTLINE(155, (clientIDMaybe >= 0 && clientIDMaybe < _00), "mail to [%d-%d] %d\n", 0, _00, clientIDMaybe);
 		_08[context->_04]--;
 		if (context->_08) {
 			_0C[context->_04]--;

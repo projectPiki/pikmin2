@@ -117,8 +117,7 @@ namespace Game {
  * Address:	802F89AC
  * Size:	00022C
  */
-void SnakeWholeTubeShadowNode::makeShadowSRT(Game::JointShadowParm&, Vector3f&,
-                                             Vector3f&)
+void SnakeWholeTubeShadowNode::makeShadowSRT(Game::JointShadowParm&, Vector3f&, Vector3f&)
 {
 	/*
 	.loc_0x0:
@@ -275,8 +274,7 @@ void SnakeWholeTubeShadowNode::makeShadowSRT(Game::JointShadowParm&, Vector3f&,
  * Address:	802F8BD8
  * Size:	00012C
  */
-void SnakeWholeSphereShadowNode::makeShadowSRT(Game::JointShadowParm&,
-                                               Vector3f&)
+void SnakeWholeSphereShadowNode::makeShadowSRT(Game::JointShadowParm&, Vector3f&)
 {
 	/*
 	.loc_0x0:

@@ -211,8 +211,7 @@ struct RoomMapMgr : public MapMgr {
 	float getMinY(Vector3f&);
 	// void getStartPosition__Q24Game10RoomMapMgrFR10Vector3f i(void)
 	void getStartPosition(Vector3f&, int);
-	void nishimuraCreateRandomMap(MapUnitInterface*, int, Cave::FloorInfo*,
-	                              bool, Cave::EditMapUnit*);
+	void nishimuraCreateRandomMap(MapUnitInterface*, int, Cave::FloorInfo*, bool, Cave::EditMapUnit*);
 	void nishimuraPlaceRooms();
 	void nishimuraSetTexture();
 };

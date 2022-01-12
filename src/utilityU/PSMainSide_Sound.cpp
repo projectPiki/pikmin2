@@ -405,8 +405,7 @@ lbl_80471014:
  * Address:	8047102C
  * Size:	000154
  */
-void SeSound::initParameter(void*, JAInter::Actor*, unsigned long,
-                            unsigned long, unsigned char, JAInter::SoundInfo*)
+void SeSound::initParameter(void*, JAInter::Actor*, unsigned long, unsigned long, unsigned char, JAInter::SoundInfo*)
 {
 	/*
 	.loc_0x0:

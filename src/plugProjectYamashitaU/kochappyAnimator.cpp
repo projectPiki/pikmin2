@@ -7,10 +7,7 @@ namespace KochappyBase {
  * Address:	8010F2A8
  * Size:	000008
  */
-void ProperAnimator::setAnimMgr(SysShape::AnimMgr* mgr)
-{
-	m_animator.m_animMgr = mgr;
-}
+void ProperAnimator::setAnimMgr(SysShape::AnimMgr* mgr) { m_animator.m_animMgr = mgr; }
 
 /*
  * --INFO--

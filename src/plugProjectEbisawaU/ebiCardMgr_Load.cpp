@@ -1323,8 +1323,7 @@ lbl_803E2B6C:
  * Address:	803E2B7C
  * Size:	000054
  */
-void CardError::FSMState_W09_FinishCreateNewFile::do_open(
-    (ebi::CardError::TMgr*))
+void CardError::FSMState_W09_FinishCreateNewFile::do_open((ebi::CardError::TMgr*))
 {
 	/*
 	.loc_0x0:
@@ -1361,8 +1360,7 @@ void CardError::FSMState_W09_FinishCreateNewFile::do_open(
  * Address:	803E2BD0
  * Size:	00004C
  */
-void CardError::FSMState_W09_FinishCreateNewFile::do_transit(
-    (ebi::CardError::TMgr*))
+void CardError::FSMState_W09_FinishCreateNewFile::do_transit((ebi::CardError::TMgr*))
 {
 	/*
 	.loc_0x0:
@@ -1475,8 +1473,7 @@ lbl_803E2CCC:
  * Address:	803E2CDC
  * Size:	000054
  */
-void CardError::FSMState_WF0_FailToFormat_NoCard::do_open(
-    (ebi::CardError::TMgr*))
+void CardError::FSMState_WF0_FailToFormat_NoCard::do_open((ebi::CardError::TMgr*))
 {
 	/*
 	.loc_0x0:
@@ -1513,8 +1510,7 @@ void CardError::FSMState_WF0_FailToFormat_NoCard::do_open(
  * Address:	803E2D30
  * Size:	00004C
  */
-void CardError::FSMState_WF0_FailToFormat_NoCard::do_transit(
-    (ebi::CardError::TMgr*))
+void CardError::FSMState_WF0_FailToFormat_NoCard::do_transit((ebi::CardError::TMgr*))
 {
 	/*
 	.loc_0x0:
@@ -1549,8 +1545,7 @@ void CardError::FSMState_WF0_FailToFormat_NoCard::do_transit(
  * Address:	803E2D7C
  * Size:	000054
  */
-void CardError::FSMState_WF1_FailToFormat_IOError::do_open(
-    (ebi::CardError::TMgr*))
+void CardError::FSMState_WF1_FailToFormat_IOError::do_open((ebi::CardError::TMgr*))
 {
 	/*
 	.loc_0x0:
@@ -1587,8 +1582,7 @@ void CardError::FSMState_WF1_FailToFormat_IOError::do_open(
  * Address:	803E2DD0
  * Size:	00004C
  */
-void CardError::FSMState_WF1_FailToFormat_IOError::do_transit(
-    (ebi::CardError::TMgr*))
+void CardError::FSMState_WF1_FailToFormat_IOError::do_transit((ebi::CardError::TMgr*))
 {
 	/*
 	.loc_0x0:
@@ -1623,8 +1617,7 @@ void CardError::FSMState_WF1_FailToFormat_IOError::do_transit(
  * Address:	803E2E1C
  * Size:	000054
  */
-void CardError::FSMState_WF2_FailToCreateNewFile_NoCard::do_open(
-    (ebi::CardError::TMgr*))
+void CardError::FSMState_WF2_FailToCreateNewFile_NoCard::do_open((ebi::CardError::TMgr*))
 {
 	/*
 	.loc_0x0:
@@ -1661,8 +1654,7 @@ void CardError::FSMState_WF2_FailToCreateNewFile_NoCard::do_open(
  * Address:	803E2E70
  * Size:	00004C
  */
-void CardError::FSMState_WF2_FailToCreateNewFile_NoCard::do_transit(
-    (ebi::CardError::TMgr*))
+void CardError::FSMState_WF2_FailToCreateNewFile_NoCard::do_transit((ebi::CardError::TMgr*))
 {
 	/*
 	.loc_0x0:
@@ -1697,8 +1689,7 @@ void CardError::FSMState_WF2_FailToCreateNewFile_NoCard::do_transit(
  * Address:	803E2EBC
  * Size:	000054
  */
-void CardError::FSMState_WF3_FailToCreateNewFile_IOError::do_open(
-    (ebi::CardError::TMgr*))
+void CardError::FSMState_WF3_FailToCreateNewFile_IOError::do_open((ebi::CardError::TMgr*))
 {
 	/*
 	.loc_0x0:
@@ -1735,8 +1726,7 @@ void CardError::FSMState_WF3_FailToCreateNewFile_IOError::do_open(
  * Address:	803E2F10
  * Size:	00004C
  */
-void CardError::FSMState_WF3_FailToCreateNewFile_IOError::do_transit(
-    (ebi::CardError::TMgr*))
+void CardError::FSMState_WF3_FailToCreateNewFile_IOError::do_transit((ebi::CardError::TMgr*))
 {
 	/*
 	.loc_0x0:
@@ -1811,8 +1801,7 @@ lbl_803E2FB0:
  * Address:	803E2FC0
  * Size:	00004C
  */
-void CardError::FSMState_WF4_FailToSave_NoCard::do_transit(
-    (ebi::CardError::TMgr*))
+void CardError::FSMState_WF4_FailToSave_NoCard::do_transit((ebi::CardError::TMgr*))
 {
 	/*
 	.loc_0x0:
@@ -1887,8 +1876,7 @@ lbl_803E3060:
  * Address:	803E3070
  * Size:	00004C
  */
-void CardError::FSMState_WF5_FailToSave_IOError::do_transit(
-    (ebi::CardError::TMgr*))
+void CardError::FSMState_WF5_FailToSave_IOError::do_transit((ebi::CardError::TMgr*))
 {
 	/*
 	.loc_0x0:
@@ -1923,8 +1911,7 @@ void CardError::FSMState_WF5_FailToSave_IOError::do_transit(
  * Address:	803E30BC
  * Size:	000054
  */
-void CardError::FSMState_Q00_DataBrokenAndDoYouFormat::do_open(
-    (ebi::CardError::TMgr*))
+void CardError::FSMState_Q00_DataBrokenAndDoYouFormat::do_open((ebi::CardError::TMgr*))
 {
 	/*
 	.loc_0x0:
@@ -1961,8 +1948,7 @@ void CardError::FSMState_Q00_DataBrokenAndDoYouFormat::do_open(
  * Address:	803E3110
  * Size:	000064
  */
-void CardError::FSMState_Q00_DataBrokenAndDoYouFormat::do_transitYes(
-    (ebi::CardError::TMgr*))
+void CardError::FSMState_Q00_DataBrokenAndDoYouFormat::do_transitYes((ebi::CardError::TMgr*))
 {
 	/*
 	.loc_0x0:
@@ -2003,8 +1989,7 @@ void CardError::FSMState_Q00_DataBrokenAndDoYouFormat::do_transitYes(
  * Address:	803E3174
  * Size:	000064
  */
-void CardError::FSMState_Q00_DataBrokenAndDoYouFormat::do_transitNo(
-    (ebi::CardError::TMgr*))
+void CardError::FSMState_Q00_DataBrokenAndDoYouFormat::do_transitNo((ebi::CardError::TMgr*))
 {
 	/*
 	.loc_0x0:
@@ -2307,8 +2292,7 @@ lbl_803E343C:
  * Address:	803E344C
  * Size:	000064
  */
-void CardError::FSMState_Q03_DoYouCreateNewFile::do_transitYes(
-    (ebi::CardError::TMgr*))
+void CardError::FSMState_Q03_DoYouCreateNewFile::do_transitYes((ebi::CardError::TMgr*))
 {
 	/*
 	.loc_0x0:
@@ -2349,8 +2333,7 @@ void CardError::FSMState_Q03_DoYouCreateNewFile::do_transitYes(
  * Address:	803E34B0
  * Size:	000064
  */
-void CardError::FSMState_Q03_DoYouCreateNewFile::do_transitNo(
-    (ebi::CardError::TMgr*))
+void CardError::FSMState_Q03_DoYouCreateNewFile::do_transitNo((ebi::CardError::TMgr*))
 {
 	/*
 	.loc_0x0:
@@ -2391,8 +2374,7 @@ void CardError::FSMState_Q03_DoYouCreateNewFile::do_transitNo(
  * Address:	803E3514
  * Size:	000064
  */
-void CardError::FSMState_Q04_DoYouStartGameWithoutSave::do_open(
-    (ebi::CardError::TMgr*))
+void CardError::FSMState_Q04_DoYouStartGameWithoutSave::do_open((ebi::CardError::TMgr*))
 {
 	/*
 	.loc_0x0:
@@ -2433,8 +2415,7 @@ void CardError::FSMState_Q04_DoYouStartGameWithoutSave::do_open(
  * Address:	803E3578
  * Size:	00005C
  */
-void CardError::FSMState_Q04_DoYouStartGameWithoutSave::do_transitYes(
-    (ebi::CardError::TMgr*))
+void CardError::FSMState_Q04_DoYouStartGameWithoutSave::do_transitYes((ebi::CardError::TMgr*))
 {
 	/*
 	.loc_0x0:
@@ -2473,8 +2454,7 @@ void CardError::FSMState_Q04_DoYouStartGameWithoutSave::do_transitYes(
  * Address:	803E35D4
  * Size:	00005C
  */
-void CardError::FSMState_Q04_DoYouStartGameWithoutSave::do_transitNo(
-    (ebi::CardError::TMgr*))
+void CardError::FSMState_Q04_DoYouStartGameWithoutSave::do_transitNo((ebi::CardError::TMgr*))
 {
 	/*
 	.loc_0x0:
@@ -2684,8 +2664,7 @@ lbl_803E37B0:
  * Address:	803E37C0
  * Size:	000034
  */
-void CardError::FSMState_WN0_NowFormat::do_transitCardReady(
-    (ebi::CardError::TMgr*))
+void CardError::FSMState_WN0_NowFormat::do_transitCardReady((ebi::CardError::TMgr*))
 {
 	/*
 	.loc_0x0:
@@ -2710,8 +2689,7 @@ void CardError::FSMState_WN0_NowFormat::do_transitCardReady(
  * Address:	803E37F4
  * Size:	000034
  */
-void CardError::FSMState_WN0_NowFormat::do_transitCardNoCard(
-    (ebi::CardError::TMgr*))
+void CardError::FSMState_WN0_NowFormat::do_transitCardNoCard((ebi::CardError::TMgr*))
 {
 	/*
 	.loc_0x0:
@@ -2736,8 +2714,7 @@ void CardError::FSMState_WN0_NowFormat::do_transitCardNoCard(
  * Address:	803E3828
  * Size:	000034
  */
-void CardError::FSMState_WN0_NowFormat::do_transitCardIOError(
-    (ebi::CardError::TMgr*))
+void CardError::FSMState_WN0_NowFormat::do_transitCardIOError((ebi::CardError::TMgr*))
 {
 	/*
 	.loc_0x0:
@@ -2817,8 +2794,7 @@ void CardError::FSMState_WN1_NowCreateNewFile::do_cardRequest(void)
  * Address:	803E38D0
  * Size:	000034
  */
-void CardError::FSMState_WN1_NowCreateNewFile::do_transitCardReady(
-    (ebi::CardError::TMgr*))
+void CardError::FSMState_WN1_NowCreateNewFile::do_transitCardReady((ebi::CardError::TMgr*))
 {
 	/*
 	.loc_0x0:
@@ -2843,8 +2819,7 @@ void CardError::FSMState_WN1_NowCreateNewFile::do_transitCardReady(
  * Address:	803E3904
  * Size:	000034
  */
-void CardError::FSMState_WN1_NowCreateNewFile::do_transitCardNoCard(
-    (ebi::CardError::TMgr*))
+void CardError::FSMState_WN1_NowCreateNewFile::do_transitCardNoCard((ebi::CardError::TMgr*))
 {
 	/*
 	.loc_0x0:
@@ -2869,8 +2844,7 @@ void CardError::FSMState_WN1_NowCreateNewFile::do_transitCardNoCard(
  * Address:	803E3938
  * Size:	000034
  */
-void CardError::FSMState_WN1_NowCreateNewFile::do_transitCardIOError(
-    (ebi::CardError::TMgr*))
+void CardError::FSMState_WN1_NowCreateNewFile::do_transitCardIOError((ebi::CardError::TMgr*))
 {
 	/*
 	.loc_0x0:

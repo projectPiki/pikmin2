@@ -453,8 +453,7 @@ lbl_8002A4FC:
  * Address:	8002A53C
  * Size:	000104
  */
-void JUTException::errorHandler(unsigned short, OSContext*, unsigned long,
-                                unsigned long)
+void JUTException::errorHandler(unsigned short, OSContext*, unsigned long, unsigned long)
 {
 	/*
 	.loc_0x0:
@@ -1372,9 +1371,7 @@ lbl_8002AF84:
  * Address:	........
  * Size:	0000C0
  */
-void JUTException::searchPartialModule(unsigned long, unsigned long*,
-                                       unsigned long*, unsigned long*,
-                                       unsigned long*)
+void JUTException::searchPartialModule(unsigned long, unsigned long*, unsigned long*, unsigned long*, unsigned long*)
 {
 	// UNUSED FUNCTION
 }
@@ -1476,8 +1473,7 @@ lbl_8002B074:
  * Address:	8002B094
  * Size:	000244
  */
-void JUTException::showMainInfo(unsigned short, OSContext*, unsigned long,
-                                unsigned long)
+void JUTException::showMainInfo(unsigned short, OSContext*, unsigned long, unsigned long)
 {
 	/*
 	.loc_0x0:
@@ -2157,8 +2153,7 @@ void JUTException::showSRR0Map(OSContext*)
  * Address:	8002B824
  * Size:	0003AC
  */
-void JUTException::printDebugInfo(JUTException::EInfoPage, unsigned short,
-                                  OSContext*, unsigned long, unsigned long)
+void JUTException::printDebugInfo(JUTException::EInfoPage, unsigned short, OSContext*, unsigned long, unsigned long)
 {
 	/*
 	.loc_0x0:
@@ -2922,8 +2917,7 @@ lbl_8002C128:
  * Address:	8002C140
  * Size:	0004E4
  */
-void JUTException::printContext(unsigned short, OSContext*, unsigned long,
-                                unsigned long)
+void JUTException::printContext(unsigned short, OSContext*, unsigned long, unsigned long)
 {
 	/*
 	.loc_0x0:
@@ -3465,8 +3459,7 @@ void JUTException::setFpscr(unsigned long)
  * Address:	8002C7A0
  * Size:	000010
  */
-void JUTException::setPreUserCallback(void (*)(unsigned short, OSContext*,
-                                               unsigned long, unsigned long))
+void JUTException::setPreUserCallback(void (*)(unsigned short, OSContext*, unsigned long, unsigned long))
 {
 	/*
 	.loc_0x0:
@@ -3482,8 +3475,7 @@ void JUTException::setPreUserCallback(void (*)(unsigned short, OSContext*,
  * Address:	........
  * Size:	000010
  */
-void JUTException::setPostUserCallback(void (*)(unsigned short, OSContext*,
-                                                unsigned long, unsigned long))
+void JUTException::setPostUserCallback(void (*)(unsigned short, OSContext*, unsigned long, unsigned long))
 {
 	// UNUSED FUNCTION
 }
@@ -3559,9 +3551,7 @@ void JSULink<JUTException::JUTExMapFile>::~JSULink()
  * Address:	8002C844
  * Size:	0000E0
  */
-void JUTException::queryMapAddress(char*, unsigned long, long, unsigned long*,
-                                   unsigned long*, char*, unsigned long, bool,
-                                   bool)
+void JUTException::queryMapAddress(char*, unsigned long, long, unsigned long*, unsigned long*, char*, unsigned long, bool, bool)
 {
 	/*
 	.loc_0x0:
@@ -3637,9 +3627,7 @@ void JUTException::queryMapAddress(char*, unsigned long, long, unsigned long*,
  * Address:	8002C924
  * Size:	00033C
  */
-void JUTException::queryMapAddress_single(char*, unsigned long, long,
-                                          unsigned long*, unsigned long*, char*,
-                                          unsigned long, bool, bool)
+void JUTException::queryMapAddress_single(char*, unsigned long, long, unsigned long*, unsigned long*, char*, unsigned long, bool, bool)
 {
 	/*
 	.loc_0x0:

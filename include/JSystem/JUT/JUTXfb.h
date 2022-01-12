@@ -10,13 +10,7 @@ struct JKRHeap;
  * @size{0x20}
  */
 struct JUTXfb {
-	enum EXfbNumber {
-		Unset        = 0,
-		SingleBuffer = 1,
-		DoubleBuffer = 2,
-		TripleBuffer = 3,
-		_FORCE_UINT  = 0xFFFFFFFF
-	};
+	enum EXfbNumber { Unset = 0, SingleBuffer = 1, DoubleBuffer = 2, TripleBuffer = 3, _FORCE_UINT = 0xFFFFFFFF };
 
 	void clearIndex();
 	static JUTXfb* createManager(JKRHeap*, EXfbNumber);

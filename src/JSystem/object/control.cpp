@@ -110,8 +110,7 @@ JStudio_JMessage::TCreateObject_base::~TCreateObject_base(void)
  * Address:	80014EB4
  * Size:	0000AC
  */
-void JStudio_JMessage::TCreateObject_base::create(
-    (JStudio::TObject**, JStudio::stb::data::TParse_TBlock_object const&))
+void JStudio_JMessage::TCreateObject_base::create((JStudio::TObject**, JStudio::stb::data::TParse_TBlock_object const&))
 {
 	/*
 	.loc_0x0:
@@ -219,8 +218,7 @@ lbl_80014FB4:
  * Address:	80014FD0
  * Size:	000008
  */
-void JStudio_JMessage::TCreateObject::find(
-    (JStudio::stb::data::TParse_TBlock_object const&))
+void JStudio_JMessage::TCreateObject::find((JStudio::stb::data::TParse_TBlock_object const&))
 {
 	/*
 	.loc_0x0:

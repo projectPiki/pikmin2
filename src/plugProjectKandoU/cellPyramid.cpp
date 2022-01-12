@@ -156,8 +156,7 @@ static CellPyramid* cellMgr;
  */
 // void mapSearch__Q24Game11CellPyramidFRQ23Sys6SphereP32IDelegate1<
 //     CellObject*>()
-void CellPyramid::mapSearch(Sys::Sphere& sphere,
-                            IDelegate1<CellObject*>* delegate)
+void CellPyramid::mapSearch(Sys::Sphere& sphere, IDelegate1<CellObject*>* delegate)
 {
 	Recti rect;
 	int layerIndex;
@@ -402,8 +401,7 @@ inline void Cell::resolveCollision()
 	if (CellMgrParms::mInstance->m_p000.m_value) {
 		resolveCollision_3();
 	} else {
-		(CellMgrParms::mInstance->m_p001.m_value) ? resolveCollision_1()
-		                                          : resolveCollision_2();
+		(CellMgrParms::mInstance->m_p001.m_value) ? resolveCollision_1() : resolveCollision_2();
 	}
 }
 
@@ -480,10 +478,9 @@ inline float CellObject::calcCollisionDistance(CellObject* them)
 	Sys::Sphere theirBounds;
 	getBoundingSphere(ourBounds);
 	them->getBoundingSphere(theirBounds);
-	float deltaSquares
-	    = SQUARE(ourBounds.m_position.z - theirBounds.m_position.z)
-	      + SQUARE(ourBounds.m_position.x - theirBounds.m_position.x)
-	      + SQUARE(ourBounds.m_position.y - theirBounds.m_position.y);
+	float deltaSquares = SQUARE(ourBounds.m_position.z - theirBounds.m_position.z)
+	                     + SQUARE(ourBounds.m_position.x - theirBounds.m_position.x)
+	                     + SQUARE(ourBounds.m_position.y - theirBounds.m_position.y);
 	// float distance = MAX(0.0f, deltaSquares);
 	// TODO: This is probably an inline function somewhere...
 	// if (0.0f < deltaSquares) {
@@ -493,8 +490,7 @@ inline float CellObject::calcCollisionDistance(CellObject* them)
 	// return ((0.0f < deltaSquares) ? __frsqrte(deltaSquares) * deltaSquares :
 	// 0.0f) - (ourBounds.m_radius + theirBounds.m_radius); return
 	// temp(deltaSquares) - (ourBounds.m_radius + theirBounds.m_radius);
-	return pikmin2_sqrtf(deltaSquares)
-	       - (ourBounds.m_radius + theirBounds.m_radius);
+	return pikmin2_sqrtf(deltaSquares) - (ourBounds.m_radius + theirBounds.m_radius);
 	// return ourBounds.m_position.distance(theirBounds.m_position) -
 	// (ourBounds.m_radius + theirBounds.m_radius);
 }
@@ -664,8 +660,7 @@ void CollisionBuffer::insert(CellObject* newObject, float distance)
 	CellObject* object = m_cellObject;
 	if (object != nullptr) {
 		if (object->deferPikiCollision()) {
-			(newObject->isPiki()) ? pikiInsertPiki(newObject, distance)
-			                      : pikiInsertOther(newObject, distance);
+			(newObject->isPiki()) ? pikiInsertPiki(newObject, distance) : pikiInsertOther(newObject, distance);
 		} else {
 			insertSort(newObject, distance);
 		}
@@ -686,13 +681,10 @@ void CollisionBuffer::pikiInsertPiki(CellObject* object, float distance)
 		int nodeIndex = m_usedNodeCount - 1;
 		// Find the index the object should be inserted at,
 		// and shift objects after that index along the way.
-		for (; (0 <= nodeIndex) && distance < m_collNodes[nodeIndex]._04
-		       && m_collNodes[nodeIndex].m_cellObject->isPiki();
-		     nodeIndex--) {
+		for (; (0 <= nodeIndex) && distance < m_collNodes[nodeIndex]._04 && m_collNodes[nodeIndex].m_cellObject->isPiki(); nodeIndex--) {
 			if (nodeIndex + 1 < m_nodeCount) {
-				m_collNodes[nodeIndex + 1].m_cellObject
-				    = m_collNodes[nodeIndex].m_cellObject;
-				m_collNodes[nodeIndex + 1]._04 = m_collNodes[nodeIndex]._04;
+				m_collNodes[nodeIndex + 1].m_cellObject = m_collNodes[nodeIndex].m_cellObject;
+				m_collNodes[nodeIndex + 1]._04          = m_collNodes[nodeIndex]._04;
 			}
 		}
 		// Insert the object.
@@ -1043,8 +1035,7 @@ void CellPyramid::resolveCollision()
 	case 2:
 		if (sSpeedUpResolveColl) {
 			for (int i = 0; i < m_layerCount; i++) {
-				for (Cell* cell = m_layers[i].m_cell._20; cell != nullptr;
-				     cell       = cell->_20) {
+				for (Cell* cell = m_layers[i].m_cell._20; cell != nullptr; cell = cell->_20) {
 					if (cell->_18 != 0) {
 						cell->resolveCollision_3();
 					}
@@ -1052,8 +1043,7 @@ void CellPyramid::resolveCollision()
 			}
 		} else {
 			for (int i = 0; i < m_layerCount; i++) {
-				for (Cell* cell = m_layers[i].m_cell._20; cell != nullptr;
-				     cell       = cell->_20) {
+				for (Cell* cell = m_layers[i].m_cell._20; cell != nullptr; cell = cell->_20) {
 					if (cell->_18 != 0) {
 						cell->resolveCollision_1();
 					}
@@ -2479,8 +2469,7 @@ void CellPyramid::entry(CellObject* object, Sys::Sphere& sphere)
  */
 // void entry__Q24Game11CellPyramidFPQ24Game10CellObjectRQ23Sys6SphereRiR7Rect<
 //     int>()
-void CellPyramid::entry(CellObject* param_1, Sys::Sphere& param_2, int& param_3,
-                        Recti& param_4)
+void CellPyramid::entry(CellObject* param_1, Sys::Sphere& param_2, int& param_3, Recti& param_4)
 {
 	Cell::sCurrCellMgr = this;
 	float dVar19       = log10(param_2.m_radius * 2.0f * _38);
@@ -2511,10 +2500,7 @@ void CellPyramid::entry(CellObject* param_1, Sys::Sphere& param_2, int& param_3,
 // #ifdef MATCHING
 #line 1206
 			// #endif
-			JUTException::panic_f(
-			    __FILE__, __LINE__,
-			    "illegal layerLevel %d : out of bounds 0〜%d\n", iVar9,
-			    m_layerCount);
+			JUTException::panic_f(__FILE__, __LINE__, "illegal layerLevel %d : out of bounds 0〜%d\n", iVar9, m_layerCount);
 		}
 	int iVar12       = 0;
 	bool bVar5       = false;
@@ -2586,14 +2572,12 @@ void CellPyramid::entry(CellObject* param_1, Sys::Sphere& param_2, int& param_3,
 // #ifdef MATCHING
 #line 1405
 		// #endif
-		JUTException::panic_f(__FILE__, __LINE__,
-		                      "Cell Inf-Loop かもしれない\n");
+		JUTException::panic_f(__FILE__, __LINE__, "Cell Inf-Loop かもしれない\n");
 	}
 	for (int cellX = param_4.p1.x; cellX <= param_4.p2.x; cellX++) {
 		for (int cellY = param_4.p1.y; cellY <= param_4.p2.y; cellY++) {
 			Cell* cell;
-			if ((cellX < 0) || (cellY < 0) || (layer->m_sizeX <= cellX)
-			    || (layer->m_sizeY <= cellY)) {
+			if ((cellX < 0) || (cellY < 0) || (layer->m_sizeX <= cellX) || (layer->m_sizeY <= cellY)) {
 				cell = nullptr;
 			} else {
 				cell = &layer->m_cells[cellX + (cellY * layer->m_sizeX)];
@@ -2601,10 +2585,8 @@ void CellPyramid::entry(CellObject* param_1, Sys::Sphere& param_2, int& param_3,
 			if (cell != nullptr) {
 				if (3 < iVar9)
 					goto LAB_801589e8;
-				cell->entry(param_1.m_cellLegs.arrayView,
-				            SUB41((uint)-iVar12 >> 0x1f, 0));
-				for (pCVar6 = cell->_1C; pCVar6 != (CellLeg*)0x0;
-				     pCVar6 = pCVar6->pNext) {
+				cell->entry(param_1.m_cellLegs.arrayView, SUB41((uint)-iVar12 >> 0x1f, 0));
+				for (pCVar6 = cell->_1C; pCVar6 != (CellLeg*)0x0; pCVar6 = pCVar6->pNext) {
 					if (pCVar6 == param_1->m_cellLegs) {
 						bVar5 = true;
 						goto LAB_80158994;
@@ -2614,8 +2596,7 @@ void CellPyramid::entry(CellObject* param_1, Sys::Sphere& param_2, int& param_3,
 			LAB_80158994:
 				if (!bVar5) {
 					/* WARNING: Subroutine does not return */
-					JUTException::panic_f("cellPyramid.cpp", 0x59f,
-					                      "leg entry failed !!!!!!!!!!\n");
+					JUTException::panic_f("cellPyramid.cpp", 0x59f, "leg entry failed !!!!!!!!!!\n");
 				}
 			}
 			param_1 = (CellObject*)&(param_1->sweepPruneObject).minX.flags;
@@ -3023,13 +3004,13 @@ void CellPyramid::create(BoundBox2d& box, float p2)
 	u32 uVar14 = MAX(uVar12, uVar13);
 	u32 dVar18 = (uint)ceil(log10((double)uVar14) / log10(2.0));
 	pow(2.0, (double)dVar18);
-	m_layerCount        = dVar18 + 1;
-	m_layers            = new CellLayer[m_layerCount];
-	m_layers[0].m_sizeX = uVar13;
-	m_layers[0].m_sizeY = uVar12;
-	m_layers[0]._04     = 0;
-	m_layers[0]._06     = 1;
-	m_layers[0].m_cells = new Cell[m_layers[0].m_sizeX * m_layers[0].m_sizeY];
+	m_layerCount           = dVar18 + 1;
+	m_layers               = new CellLayer[m_layerCount];
+	m_layers[0].m_sizeX    = uVar13;
+	m_layers[0].m_sizeY    = uVar12;
+	m_layers[0]._04        = 0;
+	m_layers[0]._06        = 1;
+	m_layers[0].m_cells    = new Cell[m_layers[0].m_sizeX * m_layers[0].m_sizeY];
 	m_layers[0].m_cell._20 = nullptr;
 	m_layers[0].m_cell._24 = nullptr;
 	for (int i = 0; i < m_layers[0].m_sizeX * m_layers[0].m_sizeY; i++) {
@@ -3039,8 +3020,7 @@ void CellPyramid::create(BoundBox2d& box, float p2)
 	for (int i = 1; i < m_layerCount; i++) {
 		m_layers[i].pileup(m_layers[i - 1]);
 	}
-	m_memoryUsageMaybe
-	    = m_memoryUsageMaybe - JKRHeap::sCurrentHeap->getFreeSize();
+	m_memoryUsageMaybe = m_memoryUsageMaybe - JKRHeap::sCurrentHeap->getFreeSize();
 	/*
 	.loc_0x0:
 	  stwu      r1, -0x70(r1)
@@ -3301,8 +3281,7 @@ int CellPyramid::getPikiCount(int layerLevel, Recti& extent) const
 		return 1;
 	}
 	if ((layerLevel < 0) || !(layerLevel < m_layerCount)) {
-		JUT_PANICLINE(1565, "illegal layerLevel %d : out of bounds 0〜%d\n",
-		              layerLevel, m_layerCount);
+		JUT_PANICLINE(1565, "illegal layerLevel %d : out of bounds 0〜%d\n", layerLevel, m_layerCount);
 		// 			JUTException::panic_f(
 		// 				__FILE__,
 		// // #ifdef MATCHING
@@ -3484,15 +3463,13 @@ inline void CellPyramid::dumpCount(int&, int&)
 void Cell::resolveCollision_2()
 {
 	for (CellLeg* legA = _1C; legA != nullptr; legA = legA->m_next) {
-		for (CellLeg* legB = legA->m_next; legB != nullptr;
-		     legB          = legB->m_next) {
+		for (CellLeg* legB = legA->m_next; legB != nullptr; legB = legB->m_next) {
 			if (legA->m_object->collisionUpdatable()) {
 				legA->m_object->checkCollision(legB->m_object);
 			}
 		}
 		for (Cell* cell = _10; cell != nullptr; cell = cell->_10) {
-			for (CellLeg* legB = cell->_1C; legB != nullptr;
-			     legB          = legB->m_next) {
+			for (CellLeg* legB = cell->_1C; legB != nullptr; legB = legB->m_next) {
 				if (legA->m_object->collisionUpdatable()) {
 					legA->m_object->checkCollision(legB->m_object);
 				}
@@ -3509,21 +3486,17 @@ void Cell::resolveCollision_2()
 void Cell::resolveCollision_1()
 {
 	for (CellLeg* legA = _1C; legA != nullptr; legA = legA->m_next) {
-		for (CellLeg* legB = legA->m_next; legB != nullptr;
-		     legB          = legB->m_next) {
+		for (CellLeg* legB = legA->m_next; legB != nullptr; legB = legB->m_next) {
 			// TODO: What is going on with m_passID?
-			if ((legA->m_object != legB->m_object)
-			    && (legB->m_object->m_passID != (u32)legA->m_object)) {
+			if ((legA->m_object != legB->m_object) && (legB->m_object->m_passID != (u32)legA->m_object)) {
 				legB->m_object->m_passID = (u32)legA->m_object;
 				legA->m_object->checkCollision(legB->m_object);
 			}
 		}
 		for (Cell* cell = _10; cell != nullptr; cell = cell->_10) {
-			for (CellLeg* legB = cell->_1C; legB != nullptr;
-			     legB          = legB->m_next) {
+			for (CellLeg* legB = cell->_1C; legB != nullptr; legB = legB->m_next) {
 				// TODO: What is going on with m_passID?
-				if ((legA->m_object != legB->m_object)
-				    && (legB->m_object->m_passID != (u32)legA->m_object)) {
+				if ((legA->m_object != legB->m_object) && (legB->m_object->m_passID != (u32)legA->m_object)) {
 					legB->m_object->m_passID = (u32)legA->m_object;
 					legA->m_object->checkCollision(legB->m_object);
 				}
@@ -3542,26 +3515,19 @@ void Cell::resolveCollision_3()
 	for (CellLeg* legA = _1C; legA != nullptr; legA = legA->m_next) {
 		if (legA->m_object->collisionUpdatable() == false) {
 			if (legA->m_object->m_passID != Game::cellMgr->m_passID) {
-				for (int i = 0;
-				     i < legA->m_object->m_collisionBuffer.m_usedNodeCount;
-				     i++) {
-					legA->m_object->checkCollision(
-					    legA->m_object->m_collisionBuffer.m_collNodes[i]
-					        .m_cellObject);
+				for (int i = 0; i < legA->m_object->m_collisionBuffer.m_usedNodeCount; i++) {
+					legA->m_object->checkCollision(legA->m_object->m_collisionBuffer.m_collNodes[i].m_cellObject);
 				}
 				legA->m_object->m_passID = Game::cellMgr->m_passID;
 			}
 		} else {
-			for (CellLeg* legB = legA->m_next; legB != nullptr;
-			     legB          = legB->m_next) {
+			for (CellLeg* legB = legA->m_next; legB != nullptr; legB = legB->m_next) {
 				if (legA->m_object != legB->m_object) {
 					if (CellMgrParms::mInstance->m_p001.m_value) {
-						if (legB->m_object
-						    != (CellObject*)legA->m_object->m_passID) {
+						if (legB->m_object != (CellObject*)legA->m_object->m_passID) {
 							legA->m_object->m_passID = (u32)legB->m_object;
 							legA->m_object->checkCollision(legB->m_object);
-							legA->m_object->updateCollisionBuffer(
-							    legB->m_object);
+							legA->m_object->updateCollisionBuffer(legB->m_object);
 						}
 					} else {
 						legA->m_object->checkCollision(legB->m_object);
@@ -3571,21 +3537,17 @@ void Cell::resolveCollision_3()
 				// legA->m_object->checkCollision(legB->m_object);
 			}
 			for (Cell* cell = _10; cell != nullptr; cell = cell->_10) {
-				for (CellLeg* legB = cell->_1C; legB != nullptr;
-				     legB          = legB->m_next) {
+				for (CellLeg* legB = cell->_1C; legB != nullptr; legB = legB->m_next) {
 					if (legA->m_object != legB->m_object) {
 						if (CellMgrParms::mInstance->m_p001.m_value) {
-							if (legB->m_object
-							    != (CellObject*)legA->m_object->m_passID) {
+							if (legB->m_object != (CellObject*)legA->m_object->m_passID) {
 								legA->m_object->m_passID = (u32)legB->m_object;
 								legA->m_object->checkCollision(legB->m_object);
-								legA->m_object->updateCollisionBuffer(
-								    legB->m_object);
+								legA->m_object->updateCollisionBuffer(legB->m_object);
 							}
 						} else {
 							legA->m_object->checkCollision(legB->m_object);
-							legA->m_object->updateCollisionBuffer(
-							    legB->m_object);
+							legA->m_object->updateCollisionBuffer(legB->m_object);
 						}
 					}
 				}

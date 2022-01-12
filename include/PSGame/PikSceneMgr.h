@@ -9,8 +9,7 @@ struct PikSceneMgr {
 		void* __RTTI__;
 		void* __unka__;
 		void (*exec)(struct SceneMgr*);
-		struct SeqBase* (*newAndSetCurrentScene)(struct PikSceneMgr*,
-		                                         struct SceneInfo* info);
+		struct SeqBase* (*newAndSetCurrentScene)(struct PikSceneMgr*, struct SceneInfo* info);
 		struct Scene_Global* (*newAndSetGlobalScene)(struct PikSceneMgr*);
 		void* __unkb__;
 		void* __unkc__;

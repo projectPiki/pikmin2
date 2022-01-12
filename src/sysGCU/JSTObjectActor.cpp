@@ -1092,8 +1092,7 @@ lbl_8042F4A8:
  * Address:	8042F4D0
  * Size:	00008C
  */
-void P2JST::ObjectActor::JSGGetNodeTransformation(const(unsigned long,
-                                                        float (*)[4]))
+void P2JST::ObjectActor::JSGGetNodeTransformation(const(unsigned long, float (*)[4]))
 {
 	/*
 	.loc_0x0:

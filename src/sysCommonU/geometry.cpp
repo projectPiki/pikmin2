@@ -4074,8 +4074,7 @@ lbl_80418BC8:
  * Address:	80418BE0
  * Size:	00045C
  */
-void GridDivider::create(BoundBox&, int, int, Sys::VertexTable*,
-                         Sys::TriangleTable*)
+void GridDivider::create(BoundBox&, int, int, Sys::VertexTable*, Sys::TriangleTable*)
 {
 	/*
 	.loc_0x0:
@@ -4908,8 +4907,7 @@ lbl_8041956C:
  * Address:	80419594
  * Size:	000150
  */
-void TriIndexList::getMinMax(Sys::VertexTable&, Sys::TriangleTable&, Vector3f&,
-                             Vector3f&, float&, float&)
+void TriIndexList::getMinMax(Sys::VertexTable&, Sys::TriangleTable&, Vector3f&, Vector3f&, float&, float&)
 {
 	/*
 	.loc_0x0:
@@ -5015,8 +5013,7 @@ void TriIndexList::getMinMax(Sys::VertexTable&, Sys::TriangleTable&, Vector3f&,
  * Address:	804196E4
  * Size:	000294
  */
-void TriIndexList::makeCovarianceMatrix(Sys::VertexTable&, Sys::TriangleTable&,
-                                        Matrix3f&, Vector3f&)
+void TriIndexList::makeCovarianceMatrix(Sys::VertexTable&, Sys::TriangleTable&, Matrix3f&, Vector3f&)
 {
 	/*
 	.loc_0x0:
@@ -5205,9 +5202,7 @@ void TriIndexList::makeCovarianceMatrix(Sys::VertexTable&, Sys::TriangleTable&,
  * Address:	80419978
  * Size:	000004
  */
-void TriIndexList::draw(Graphics&, Sys::VertexTable&, Sys::TriangleTable&, bool)
-{
-}
+void TriIndexList::draw(Graphics&, Sys::VertexTable&, Sys::TriangleTable&, bool) { }
 
 /*
  * --INFO--

@@ -165,8 +165,7 @@ namespace Game {
  * Address:	8042FDA8
  * Size:	000094
  */
-P2JST::ObjectGameActor::ObjectGameActor(char const*, Game::MoviePlayer*,
-                                        Game::Creature*)
+P2JST::ObjectGameActor::ObjectGameActor(char const*, Game::MoviePlayer*, Game::Creature*)
 {
 	/*
 	.loc_0x0:
@@ -915,8 +914,7 @@ lbl_8043066C:
  * Address:	80430694
  * Size:	0000D8
  */
-void P2JST::ObjectGameActor::JSGGetNodeTransformation(const(unsigned long,
-                                                            float (*)[4]))
+void P2JST::ObjectGameActor::JSGGetNodeTransformation(const(unsigned long, float (*)[4]))
 {
 	/*
 	.loc_0x0:
@@ -1152,8 +1150,7 @@ void __sinit_JSTObjectGameActor_cpp(void)
  * Address:	80430934
  * Size:	000008
  */
-void @4
-    @Game::P2JST::ObjectGameActor::parseUserData_(unsigned long, void const*)
+void @4 @Game::P2JST::ObjectGameActor::parseUserData_(unsigned long, void const*)
 {
 	/*
 	.loc_0x0:

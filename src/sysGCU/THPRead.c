@@ -10,8 +10,7 @@
  */
 BOOL CreateReadThread(int priority)
 {
-	BOOL created = OSCreateThread(&ReadThread, Reader, nullptr,
-	                              &VideoDecodeThread, 0x1000, priority, 1);
+	BOOL created = OSCreateThread(&ReadThread, Reader, nullptr, &VideoDecodeThread, 0x1000, priority, 1);
 	if (created) {
 		OSInitMessageQueue(&FreeReadBufferQueue, &FreeReadBufferMessage, 10);
 		OSInitMessageQueue(&ReadedBufferQueue, &ReadedBufferMessage, 10);

@@ -21,8 +21,7 @@ struct OBB {
 	~OBB();
 
 	void autoDivide(Sys::VertexTable&, Sys::TriangleTable&, int, int);
-	void create2(Sys::VertexTable&, Sys::TriangleTable&, struct Matrix3f&,
-	             Matrix3f&, Vector3f&);
+	void create2(Sys::VertexTable&, Sys::TriangleTable&, struct Matrix3f&, Matrix3f&, Vector3f&);
 	void determineDivPlane(Sys::VertexTable&, Sys::TriangleTable&);
 	void divide(Sys::VertexTable&, Sys::TriangleTable&);
 	void findRayIntersection(Sys::RayIntersectInfo&, struct Matrixf&, Matrixf&);
@@ -34,18 +33,12 @@ struct OBB {
 	void getMinYTriList(Vector3f&, Sys::TriangleTable&);
 	void isLeaf();
 	void read(Stream&);
-	void traceMove_new_global(Game::MoveInfo&, Sys::VertexTable&,
-	                          Sys::TriangleTable&, int&, Sys::Triangle**,
-	                          float*, Vector3f*);
-	void traceMove_new(Game::MoveInfo&, Sys::VertexTable&, Sys::TriangleTable&,
-	                   Matrixf&, Matrixf&, int&, Sys::Triangle**, float*,
+	void traceMove_new_global(Game::MoveInfo&, Sys::VertexTable&, Sys::TriangleTable&, int&, Sys::Triangle**, float*, Vector3f*);
+	void traceMove_new(Game::MoveInfo&, Sys::VertexTable&, Sys::TriangleTable&, Matrixf&, Matrixf&, int&, Sys::Triangle**, float*,
 	                   Vector3f*);
-	void traceMoveTriList_new_global(Game::MoveInfo&, Sys::VertexTable&,
-	                                 Sys::TriangleTable&, int&, Sys::Triangle**,
-	                                 float*, Vector3f*);
-	void traceMoveTriList_new(Game::MoveInfo&, Sys::VertexTable&,
-	                          Sys::TriangleTable&, Matrixf&, Matrixf&, int&,
-	                          Sys::Triangle**, float*, Vector3f*);
+	void traceMoveTriList_new_global(Game::MoveInfo&, Sys::VertexTable&, Sys::TriangleTable&, int&, Sys::Triangle**, float*, Vector3f*);
+	void traceMoveTriList_new(Game::MoveInfo&, Sys::VertexTable&, Sys::TriangleTable&, Matrixf&, Matrixf&, int&, Sys::Triangle**, float*,
+	                          Vector3f*);
 };
 } // namespace Sys
 

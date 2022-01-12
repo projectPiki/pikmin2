@@ -269,8 +269,7 @@ lbl_80089B0C:
  * Address:	80089B28
  * Size:	00011C
  */
-void JFWDisplay::createManager(const _GXRenderModeObj*, JKRHeap*,
-                               JUTXfb::EXfbNumber, bool)
+void JFWDisplay::createManager(const _GXRenderModeObj*, JKRHeap*, JUTXfb::EXfbNumber, bool)
 {
 	/*
 	.loc_0x0:
@@ -379,8 +378,7 @@ void JFWDisplay::createManager(const _GXRenderModeObj*, void*, void*, bool)
  * Address:	........
  * Size:	00010C
  */
-void JFWDisplay::createManager(const _GXRenderModeObj*, void*, void*, void*,
-                               bool)
+void JFWDisplay::createManager(const _GXRenderModeObj*, void*, void*, void*, bool)
 {
 	// UNUSED FUNCTION
 }

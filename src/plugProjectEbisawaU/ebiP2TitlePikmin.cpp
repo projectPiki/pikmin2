@@ -389,8 +389,7 @@ Pikmin::TBoidParamMgr::TBoidParamMgr(void)
  * Address:	........
  * Size:	00004C
  */
-void Pikmin::TBoidParamMgr::startState(
-    (ebi::title::Pikmin::TBoidParamMgr::enumState, float))
+void Pikmin::TBoidParamMgr::startState((ebi::title::Pikmin::TBoidParamMgr::enumState, float))
 {
 	// UNUSED FUNCTION
 }

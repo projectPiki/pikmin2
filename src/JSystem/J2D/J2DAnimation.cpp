@@ -518,8 +518,7 @@ lbl_8005B470:
  * Address:	8005B478
  * Size:	000420
  */
-void J2DAnmTransformKey::calcTransform(float, unsigned short,
-                                       J3DTransformInfo*) const
+void J2DAnmTransformKey::calcTransform(float, unsigned short, J3DTransformInfo*) const
 {
 	/*
 	.loc_0x0:
@@ -1774,8 +1773,7 @@ lbl_8005C358:
  * Address:	8005C37C
  * Size:	000268
  */
-void J2DAnmTextureSRTKey::calcTransform(float, unsigned short,
-                                        J3DTextureSRTInfo*) const
+void J2DAnmTextureSRTKey::calcTransform(float, unsigned short, J3DTextureSRTInfo*) const
 {
 	/*
 	.loc_0x0:
@@ -1981,8 +1979,7 @@ void J2DAnmTextureSRTKey::calcTransform(float, unsigned short,
  * Address:	........
  * Size:	000274
  */
-void J2DAnmTextureSRTKey::calcPostTransform(float, unsigned short,
-                                            J3DTextureSRTInfo*) const
+void J2DAnmTextureSRTKey::calcPostTransform(float, unsigned short, J3DTextureSRTInfo*) const
 {
 	// UNUSED FUNCTION
 }
@@ -2227,8 +2224,7 @@ J2DAnmTexPattern::J2DAnmTexPatternTIMGPointer::J2DAnmTexPatternTIMGPointer(void)
  * Address:	8005C894
  * Size:	000054
  */
-J2DAnmTexPattern::J2DAnmTexPatternTIMGPointer::~J2DAnmTexPatternTIMGPointer(
-    void)
+J2DAnmTexPattern::J2DAnmTexPatternTIMGPointer::~J2DAnmTexPatternTIMGPointer(void)
 {
 	/*
 	.loc_0x0:

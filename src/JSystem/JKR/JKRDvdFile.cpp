@@ -330,10 +330,7 @@ void JKRDvdFile::close()
  * Address:	8001D500
  * Size:	0000C4
  */
-int JKRDvdFile::readData(void* buffer, long byteCount, long startOffset)
-{
-	return readDataAsync(buffer, byteCount, startOffset);
-}
+int JKRDvdFile::readData(void* buffer, long byteCount, long startOffset) { return readDataAsync(buffer, byteCount, startOffset); }
 
 /*
  * --INFO--
@@ -423,10 +420,7 @@ int JKRDvdFile::readData(void* buffer, long byteCount, long startOffset)
  * Address:	8001D5C4
  * Size:	000008
  */
-int JKRDvdFile::writeData(const void* p1, long p2, long p3)
-{
-	return writeDataAsync(p1, p2, p3);
-}
+int JKRDvdFile::writeData(const void* p1, long p2, long p3) { return writeDataAsync(p1, p2, p3); }
 
 /*
  * --INFO--
@@ -450,8 +444,7 @@ long JKRDvdFile::sync()
  */
 BOOL JKRDvdFile::doneProcess(long p1, DVDFileInfo* info)
 {
-	return OSSendMessage(&(reinterpret_cast<JKRDvdFile*>(info->_3C))->_C0,
-	                     (OSMessage)p1, 0);
+	return OSSendMessage(&(reinterpret_cast<JKRDvdFile*>(info->_3C))->_C0, (OSMessage)p1, 0);
 }
 
 /*

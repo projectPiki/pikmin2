@@ -382,8 +382,7 @@ lbl_80054D04:
  * Address:	80054D90
  * Size:	00029C
  */
-J2DPictureEx::J2DPictureEx(J2DPane*, JSURandomInputStream*, unsigned long,
-                           J2DMaterial*)
+J2DPictureEx::J2DPictureEx(J2DPane*, JSURandomInputStream*, unsigned long, J2DMaterial*)
 {
 	/*
 	.loc_0x0:
@@ -960,9 +959,7 @@ void J2DPictureEx::drawFullSet(float, float, float, float, float (*)[3][4])
  * Address:	800554FC
  * Size:	0002B4
  */
-void J2DPictureEx::drawTexCoord(float, float, float, float, short, short, short,
-                                short, short, short, short, short,
-                                float (*)[3][4])
+void J2DPictureEx::drawTexCoord(float, float, float, float, short, short, short, short, short, short, short, short, float (*)[3][4])
 {
 	/*
 	.loc_0x0:
@@ -2605,8 +2602,7 @@ lbl_800569A0:
  * Address:	800569E4
  * Size:	0003E8
  */
-void J2DPictureEx::drawOut(const JGeometry::TBox2<float>&,
-                           const JGeometry::TBox2<float>&)
+void J2DPictureEx::drawOut(const JGeometry::TBox2<float>&, const JGeometry::TBox2<float>&)
 {
 	/*
 	.loc_0x0:
@@ -4069,8 +4065,7 @@ lbl_80057CD4:
  * Address:	80057CE8
  * Size:	000058
  */
-void J2DPictureEx::setBlendColorRatio(float, float, float, float, float, float,
-                                      float, float)
+void J2DPictureEx::setBlendColorRatio(float, float, float, float, float, float, float, float)
 {
 	/*
 	.loc_0x0:
@@ -4106,8 +4101,7 @@ void J2DPictureEx::setBlendColorRatio(float, float, float, float, float, float,
  * Address:	80057D40
  * Size:	000058
  */
-void J2DPictureEx::setBlendAlphaRatio(float, float, float, float, float, float,
-                                      float, float)
+void J2DPictureEx::setBlendAlphaRatio(float, float, float, float, float, float, float, float)
 {
 	/*
 	.loc_0x0:
@@ -5959,8 +5953,7 @@ void J2DPictureEx::draw(float, float, bool, bool, bool)
  * Address:	800590E8
  * Size:	000064
  */
-void J2DPictureEx::drawOut(float, float, float, float, float, float, float,
-                           float)
+void J2DPictureEx::drawOut(float, float, float, float, float, float, float, float)
 {
 	/*
 	.loc_0x0:

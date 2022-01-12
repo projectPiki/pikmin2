@@ -121,8 +121,7 @@ void AnimBaseBase::init(JKRArchive* archive, char* resourcePath)
 	// IDK. UNUSED FUNCTION
 	m_resourcePath = resourcePath;
 	void* resource = JKRFileLoader::getGlbResource(resourcePath, archive);
-	JUT_ASSERTLINE(87, (resource != nullptr), "no name resource (%s) \n",
-	               resourcePath);
+	JUT_ASSERTLINE(87, (resource != nullptr), "no name resource (%s) \n", resourcePath);
 	m_anm       = J2DAnmLoaderDataBase::load(resource);
 	m_lastFrame = m_anm->m_maxFrame;
 	_2C         = 0.0f;
@@ -285,8 +284,7 @@ blr
  * Address:	80304F24
  * Size:	000164
  */
-void AnimScreen::init(JKRArchive* archive, J2DScreen* screen,
-                      char* resourcePath)
+void AnimScreen::init(JKRArchive* archive, J2DScreen* screen, char* resourcePath)
 {
 	AnimBaseBase::init(archive, resourcePath);
 	m_screen = screen;
@@ -481,8 +479,7 @@ blr
  * Address:	80305218
  * Size:	000150
  */
-void AnimPane::init(JKRArchive* archive, J2DScreen* parentScreen, u64 tag,
-                    char* resourcePath)
+void AnimPane::init(JKRArchive* archive, J2DScreen* parentScreen, u64 tag, char* resourcePath)
 {
 	AnimBaseBase::init(archive, resourcePath);
 	m_pane = TagSearch(parentScreen, tag);
@@ -640,8 +637,7 @@ AnimGroup::AnimGroup(int limit)
 void AnimGroup::setAnim(og::Screen::AnimBaseBase* newAnim)
 {
 	// UNUSED FUNCTION
-	JUT_ASSERTLINE(323, (m_paneCount < m_paneLimit),
-	               "anim group is overflow!!\n");
+	JUT_ASSERTLINE(323, (m_paneCount < m_paneLimit), "anim group is overflow!!\n");
 	m_animPanes[m_paneCount] = newAnim;
 	m_paneCount++;
 }
@@ -1034,8 +1030,7 @@ float AnimGroup::getLastFrame()
  * Address:	80305998
  * Size:	000254
  */
-void registAnimGroupScreen(AnimGroup* group, JKRArchive* archive,
-                           J2DScreen* screen, char* resourcePath, float p5)
+void registAnimGroupScreen(AnimGroup* group, JKRArchive* archive, J2DScreen* screen, char* resourcePath, float p5)
 {
 	AnimScreen* newGroupPane = new AnimScreen();
 	newGroupPane->init(archive, screen, resourcePath);
@@ -1208,15 +1203,12 @@ void registAnimGroupScreen(AnimGroup* group, JKRArchive* archive,
  * Address:	80305BEC
  * Size:	00025C
  */
-void registAnimGroupPane(AnimGroup* group, JKRArchive* archive,
-                         J2DScreen* parentScreen, u64 tag, char* resourcePath,
-                         float p6)
+void registAnimGroupPane(AnimGroup* group, JKRArchive* archive, J2DScreen* parentScreen, u64 tag, char* resourcePath, float p6)
 {
 	AnimPane* newGroupPane = new AnimPane();
 	newGroupPane->init(archive, parentScreen, tag, resourcePath);
 	newGroupPane->_24 = p6;
-	JUT_ASSERTLINE(323, (group->m_paneCount < group->m_paneLimit),
-	               "anim group is overflow!!\n");
+	JUT_ASSERTLINE(323, (group->m_paneCount < group->m_paneLimit), "anim group is overflow!!\n");
 	group->m_animPanes[group->m_paneCount] = newGroupPane;
 	group->m_paneCount++;
 

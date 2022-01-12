@@ -495,9 +495,7 @@ void PlayData::write(Stream& output)
 			output.writeInt(m_pokoCountOld);
 			write_CaveOtakara_Old(output);
 			output.textEndGroup();
-			int dataSize
-			    = (output.m_position - startPosition)
-			      + (generatorCache->m_heapSize - generatorCache->m_freeSize);
+			int dataSize = (output.m_position - startPosition) + (generatorCache->m_heapSize - generatorCache->m_freeSize);
 			output.textBeginGroup("* DayEndResult用 *");
 			for (i32 i = 0; i < 6; i++) {
 				output.writeInt(m_pikminYesterday[i]);
@@ -1084,9 +1082,7 @@ void PlayData::read(Stream& input)
 	// JUT_ASSERTLINE(633, courseNum == cardNum, "SaveData ERROR : CourseNum=%d
 	// (card num=%d)\n", courseNum, cardNum); for (int i = 0; i < courseNum;
 	// i++) {
-	JUT_ASSERTLINE(633, input.readInt() == stageList->m_courseCount,
-	               "SaveData ERROR : CourseNum=%d (card num=%d)\n", courseNum,
-	               cardNum);
+	JUT_ASSERTLINE(633, input.readInt() == stageList->m_courseCount, "SaveData ERROR : CourseNum=%d (card num=%d)\n", courseNum, cardNum);
 	for (int i = 0; i < stageList->m_courseCount; i++) {
 		m_bitfieldPerCourse[i] = input.readByte();
 		if ('j005' <= (long)version.m_id.raw) {
@@ -1119,8 +1115,7 @@ void PlayData::read(Stream& input)
 		m_pikminYesterday[i] = input.readInt();
 		m_pikminToday[i]     = input.readInt();
 	}
-	int dataSize = (input.m_position - startPosition)
-	               + (generatorCache->m_heapSize - generatorCache->m_freeSize);
+	int dataSize = (input.m_position - startPosition) + (generatorCache->m_heapSize - generatorCache->m_freeSize);
 	generatorCache->read(input);
 	if (PlayData::sMaxPlayDataSize < dataSize) {
 		PlayData::sMaxPlayDataSize = dataSize;
@@ -1485,9 +1480,7 @@ void KindCounter::read(Stream& input)
 {
 	// UNUSED FUNCTION
 	u16 count = input.readShort();
-	JUT_ASSERTLINE(794, count == (int)m_numKinds,
-	               "read count %d : mNumKinds %d : mismatch !\n", count,
-	               m_numKinds);
+	JUT_ASSERTLINE(794, count == (int)m_numKinds, "read count %d : mNumKinds %d : mismatch !\n", count, m_numKinds);
 	for (int i = 0; i < m_numKinds; i++) {
 		m_kinds[i] = input.readByte();
 	}

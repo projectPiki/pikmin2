@@ -1308,8 +1308,7 @@ void ItemPlant::Item::bearFruits() { }
  * Address:	801DD118
  * Size:	000030
  */
-void FSMState<Game::ItemPlant::Item>::transit(Game::ItemPlant::Item*, int,
-                                              Game::StateArg*)
+void FSMState<Game::ItemPlant::Item>::transit(Game::ItemPlant::Item*, int, Game::StateArg*)
 {
 	/*
 	.loc_0x0:
@@ -1452,8 +1451,7 @@ void ItemPlant::DamagedState::eventKarero(Game::ItemPlant::Item*)
  * Address:	801DD238
  * Size:	00005C
  */
-void ItemPlant::DamagedState::onKeyEvent(Game::ItemPlant::Item*,
-                                         const SysShape::KeyEvent&)
+void ItemPlant::DamagedState::onKeyEvent(Game::ItemPlant::Item*, const SysShape::KeyEvent&)
 {
 	/*
 	.loc_0x0:
@@ -1577,8 +1575,7 @@ void ItemPlant::GrowUpState::eventKarero(Game::ItemPlant::Item*)
  * Address:	801DD340
  * Size:	000120
  */
-void ItemPlant::GrowUpState::onKeyEvent(Game::ItemPlant::Item*,
-                                        const SysShape::KeyEvent&)
+void ItemPlant::GrowUpState::onKeyEvent(Game::ItemPlant::Item*, const SysShape::KeyEvent&)
 {
 	/*
 	.loc_0x0:
@@ -1813,8 +1810,7 @@ void ItemPlant::KareruState::eventHaero(Game::ItemPlant::Item*)
  * Address:	801DD5AC
  * Size:	0000A4
  */
-void ItemPlant::KareruState::onKeyEvent(Game::ItemPlant::Item*,
-                                        const SysShape::KeyEvent&)
+void ItemPlant::KareruState::onKeyEvent(Game::ItemPlant::Item*, const SysShape::KeyEvent&)
 {
 	/*
 	.loc_0x0:
@@ -2168,9 +2164,7 @@ void ItemPlant::Item::interactAttack(Game::InteractAttack&)
  * Address:	801DD8F4
  * Size:	000004
  */
-void ItemState<Game::ItemPlant::Item>::onDamage(Game::ItemPlant::Item*, float)
-{
-}
+void ItemState<Game::ItemPlant::Item>::onDamage(Game::ItemPlant::Item*, float) { }
 
 /*
  * --INFO--
@@ -3878,8 +3872,7 @@ lbl_801DEE98:
  * Address:	801DEF0C
  * Size:	000034
  */
-void StateMachine<Game::ItemPlant::Item>::start(Game::ItemPlant::Item*, int,
-                                                Game::StateArg*)
+void StateMachine<Game::ItemPlant::Item>::start(Game::ItemPlant::Item*, int, Game::StateArg*)
 {
 	/*
 	.loc_0x0:
@@ -6303,8 +6296,7 @@ u32 ItemPlant::Item::getNearestFruit(Vector3f&) { return 0x0; }
  * Address:	801E0B30
  * Size:	000034
  */
-void Game::FSMItem<Game::ItemPlant::Item, Game::ItemPlant::FSM,
-                   ItemPlant::State>::doAI()
+void Game::FSMItem<Game::ItemPlant::Item, Game::ItemPlant::FSM, ItemPlant::State>::doAI()
 {
 	/*
 	.loc_0x0:
@@ -6329,50 +6321,35 @@ void Game::FSMItem<Game::ItemPlant::Item, Game::ItemPlant::FSM,
  * Address:	801E0B64
  * Size:	000004
  */
-void ItemState<Game::ItemPlant::Item>::onKeyEvent(Game::ItemPlant::Item*,
-                                                  const SysShape::KeyEvent&)
-{
-}
+void ItemState<Game::ItemPlant::Item>::onKeyEvent(Game::ItemPlant::Item*, const SysShape::KeyEvent&) { }
 
 /*
  * --INFO--
  * Address:	801E0B68
  * Size:	000004
  */
-void ItemState<Game::ItemPlant::Item>::onBounce(Game::ItemPlant::Item*,
-                                                Sys::Triangle*)
-{
-}
+void ItemState<Game::ItemPlant::Item>::onBounce(Game::ItemPlant::Item*, Sys::Triangle*) { }
 
 /*
  * --INFO--
  * Address:	801E0B6C
  * Size:	000004
  */
-void ItemState<Game::ItemPlant::Item>::onPlatCollision(Game::ItemPlant::Item*,
-                                                       Game::PlatEvent&)
-{
-}
+void ItemState<Game::ItemPlant::Item>::onPlatCollision(Game::ItemPlant::Item*, Game::PlatEvent&) { }
 
 /*
  * --INFO--
  * Address:	801E0B70
  * Size:	000004
  */
-void ItemState<Game::ItemPlant::Item>::onCollision(Game::ItemPlant::Item*,
-                                                   Game::CollEvent&)
-{
-}
+void ItemState<Game::ItemPlant::Item>::onCollision(Game::ItemPlant::Item*, Game::CollEvent&) { }
 
 /*
  * --INFO--
  * Address:	801E0B74
  * Size:	000004
  */
-void FSMState<Game::ItemPlant::Item>::init(Game::ItemPlant::Item*,
-                                           Game::StateArg*)
-{
-}
+void FSMState<Game::ItemPlant::Item>::init(Game::ItemPlant::Item*, Game::StateArg*) { }
 
 /*
  * --INFO--
@@ -6477,8 +6454,7 @@ void StateMachine<Game::ItemPlant::Item>::create(int)
  * Address:	801E0C28
  * Size:	00009C
  */
-void StateMachine<Game::ItemPlant::Item>::transit(Game::ItemPlant::Item*, int,
-                                                  Game::StateArg*)
+void StateMachine<Game::ItemPlant::Item>::transit(Game::ItemPlant::Item*, int, Game::StateArg*)
 {
 	/*
 	.loc_0x0:
@@ -6535,8 +6511,7 @@ void StateMachine<Game::ItemPlant::Item>::transit(Game::ItemPlant::Item*, int,
  * Address:	801E0CC4
  * Size:	000084
  */
-void StateMachine<Game::ItemPlant::Item>::registerState(
-    Game::FSMState<Game::ItemPlant::Item>*)
+void StateMachine<Game::ItemPlant::Item>::registerState(Game::FSMState<Game::ItemPlant::Item>*)
 {
 	/*
 	.loc_0x0:
@@ -6587,8 +6562,7 @@ void StateMachine<Game::ItemPlant::Item>::registerState(
  * Address:	801E0D48
  * Size:	000044
  */
-void Game::FSMItem<Game::ItemPlant::Item, Game::ItemPlant::FSM,
-                   ItemPlant::State>::onKeyEvent(const SysShape::KeyEvent&)
+void Game::FSMItem<Game::ItemPlant::Item, Game::ItemPlant::FSM, ItemPlant::State>::onKeyEvent(const SysShape::KeyEvent&)
 {
 	/*
 	.loc_0x0:
@@ -6619,8 +6593,7 @@ void Game::FSMItem<Game::ItemPlant::Item, Game::ItemPlant::FSM,
  * Address:	801E0D8C
  * Size:	00001C
  */
-void Game::FSMItem<Game::ItemPlant::Item, Game::ItemPlant::FSM,
-                   ItemPlant::State>::getStateID()
+void Game::FSMItem<Game::ItemPlant::Item, Game::ItemPlant::FSM, ItemPlant::State>::getStateID()
 {
 	/*
 	.loc_0x0:
@@ -6641,8 +6614,7 @@ void Game::FSMItem<Game::ItemPlant::Item, Game::ItemPlant::FSM,
  * Address:	801E0DA8
  * Size:	000044
  */
-void Game::FSMItem<Game::ItemPlant::Item, Game::ItemPlant::FSM,
-                   ItemPlant::State>::platCallback(Game::PlatEvent&)
+void Game::FSMItem<Game::ItemPlant::Item, Game::ItemPlant::FSM, ItemPlant::State>::platCallback(Game::PlatEvent&)
 {
 	/*
 	.loc_0x0:
@@ -6673,8 +6645,7 @@ void Game::FSMItem<Game::ItemPlant::Item, Game::ItemPlant::FSM,
  * Address:	801E0DEC
  * Size:	000044
  */
-void Game::FSMItem<Game::ItemPlant::Item, Game::ItemPlant::FSM,
-                   ItemPlant::State>::collisionCallback(Game::CollEvent&)
+void Game::FSMItem<Game::ItemPlant::Item, Game::ItemPlant::FSM, ItemPlant::State>::collisionCallback(Game::CollEvent&)
 {
 	/*
 	.loc_0x0:
@@ -6705,8 +6676,7 @@ void Game::FSMItem<Game::ItemPlant::Item, Game::ItemPlant::FSM,
  * Address:	801E0E30
  * Size:	000044
  */
-void Game::FSMItem<Game::ItemPlant::Item, Game::ItemPlant::FSM,
-                   ItemPlant::State>::bounceCallback(Sys::Triangle*)
+void Game::FSMItem<Game::ItemPlant::Item, Game::ItemPlant::FSM, ItemPlant::State>::bounceCallback(Sys::Triangle*)
 {
 	/*
 	.loc_0x0:
@@ -6737,9 +6707,7 @@ void Game::FSMItem<Game::ItemPlant::Item, Game::ItemPlant::FSM,
  * Address:	801E0E74
  * Size:	000008
  */
-void Game::FSMItem<Game::ItemPlant::Item, Game::ItemPlant::FSM,
-                   Game::ItemPlant::State>::@376
-    @onKeyEvent(const SysShape::KeyEvent&)
+void Game::FSMItem<Game::ItemPlant::Item, Game::ItemPlant::FSM, Game::ItemPlant::State>::@376 @onKeyEvent(const SysShape::KeyEvent&)
 {
 	/*
 	.loc_0x0:

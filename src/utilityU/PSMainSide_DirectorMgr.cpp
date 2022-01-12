@@ -1266,8 +1266,7 @@ r3, r22 lmw      r22, 8(r1) lwz      r0, 0x34(r1) mtlr     r0 addi     r1, r1,
  * Address:	80470024
  * Size:	0000A8
  */
-void DirectorMgr_Scene::adaptDirectorActor(PSSystem::DirectorBase*,
-                                           unsigned char)
+void DirectorMgr_Scene::adaptDirectorActor(PSSystem::DirectorBase*, unsigned char)
 {
 	/*
 	.loc_0x0:
@@ -1325,8 +1324,7 @@ void DirectorMgr_Scene::adaptDirectorActor(PSSystem::DirectorBase*,
  * Address:	804700CC
  * Size:	000094
  */
-void DirectorMgr_Scene::newPikminNumberDirector(int, unsigned char,
-                                                PSSystem::DirectedBgm&)
+void DirectorMgr_Scene::newPikminNumberDirector(int, unsigned char, PSSystem::DirectedBgm&)
 {
 	/*
 	.loc_0x0:
@@ -1379,8 +1377,7 @@ void DirectorMgr_Scene::newPikminNumberDirector(int, unsigned char,
  * Address:	80470160
  * Size:	000090
  */
-void DirectorMgr_Scene_AutoBgm::newPikminNumberDirector(int, unsigned char,
-                                                        PSSystem::DirectedBgm&)
+void DirectorMgr_Scene_AutoBgm::newPikminNumberDirector(int, unsigned char, PSSystem::DirectedBgm&)
 {
 	/*
 	.loc_0x0:

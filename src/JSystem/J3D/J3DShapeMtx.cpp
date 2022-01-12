@@ -1094,8 +1094,7 @@ lbl_80086AB0:
  * Address:	80086AC8
  * Size:	0000D4
  */
-void J3DShapeMtxConcatView::loadMtxConcatView_PNGP_LOD(int,
-                                                       unsigned short) const
+void J3DShapeMtxConcatView::loadMtxConcatView_PNGP_LOD(int, unsigned short) const
 {
 	/*
 	.loc_0x0:
@@ -1452,8 +1451,7 @@ lbl_80086ED8:
  * Address:	80086F00
  * Size:	0000B0
  */
-void J3DShapeMtxMulti::calcNBTScale(const Vec&, float (*)[3][3],
-                                    float (*)[3][3])
+void J3DShapeMtxMulti::calcNBTScale(const Vec&, float (*)[3][3], float (*)[3][3])
 {
 	/*
 	.loc_0x0:
@@ -1667,8 +1665,7 @@ lbl_80087188:
  * Address:	8008719C
  * Size:	000138
  */
-void J3DShapeMtxMultiConcatView::loadNrmMtx(int, unsigned short,
-                                            float (*)[4]) const
+void J3DShapeMtxMultiConcatView::loadNrmMtx(int, unsigned short, float (*)[4]) const
 {
 	/*
 	.loc_0x0:

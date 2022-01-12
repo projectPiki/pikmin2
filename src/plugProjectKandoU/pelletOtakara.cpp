@@ -1552,8 +1552,7 @@ void PelletOtakara::Mgr::generatorNewPelletParm(void)
  * Address:	80200B68
  * Size:	000148
  */
-void generatorBirth__Q34Game13PelletOtakara3MgrFR10Vector3f R10Vector3f
-PQ24Game13GenPelletParm(void)
+void generatorBirth__Q34Game13PelletOtakara3MgrFR10Vector3f R10Vector3f PQ24Game13GenPelletParm(void)
 {
 	/*
 	.loc_0x0:
@@ -1674,8 +1673,7 @@ void PelletOtakara::Mgr::generatorWrite(Stream&, Game::GenPelletParm*)
  * Address:	80200CE0
  * Size:	000038
  */
-void PelletOtakara::Mgr::generatorRead(Stream&, Game::GenPelletParm*,
-                                       unsigned long)
+void PelletOtakara::Mgr::generatorRead(Stream&, Game::GenPelletParm*, unsigned long)
 {
 	/*
 	.loc_0x0:
@@ -1934,10 +1932,7 @@ void PelletOtakara::Object::getBedamaColor(void)
  * Address:	80200F84
  * Size:	000004
  */
-void onCreateModel__Q24Game49FixedSizePelletMgr<Game::PelletOtakara::Object>
-FPQ28SysShape5Model(void)
-{
-}
+void onCreateModel__Q24Game49FixedSizePelletMgr<Game::PelletOtakara::Object> FPQ28SysShape5Model(void) { }
 
 } // namespace Game
 
@@ -1968,8 +1963,7 @@ void birth__Q24Game49FixedSizePelletMgr<Game::PelletOtakara::Object> Fv(void)
  * Address:	80200FB4
  * Size:	00002C
  */
-void doAnimation__Q24Game49FixedSizePelletMgr<Game::PelletOtakara::Object>
-Fv(void)
+void doAnimation__Q24Game49FixedSizePelletMgr<Game::PelletOtakara::Object> Fv(void)
 {
 	/*
 	.loc_0x0:
@@ -2014,8 +2008,7 @@ void doEntry__Q24Game49FixedSizePelletMgr<Game::PelletOtakara::Object> Fv(void)
  * Address:	8020100C
  * Size:	00002C
  */
-void doSetView__Q24Game49FixedSizePelletMgr<Game::PelletOtakara::Object>
-Fi(void)
+void doSetView__Q24Game49FixedSizePelletMgr<Game::PelletOtakara::Object> Fi(void)
 {
 	/*
 	.loc_0x0:
@@ -2038,8 +2031,7 @@ Fi(void)
  * Address:	80201038
  * Size:	00002C
  */
-void doViewCalc__Q24Game49FixedSizePelletMgr<Game::PelletOtakara::Object>
-Fv(void)
+void doViewCalc__Q24Game49FixedSizePelletMgr<Game::PelletOtakara::Object> Fv(void)
 {
 	/*
 	.loc_0x0:
@@ -2062,8 +2054,7 @@ Fv(void)
  * Address:	80201064
  * Size:	00002C
  */
-void doSimulation__Q24Game49FixedSizePelletMgr<Game::PelletOtakara::Object>
-Ff(void)
+void doSimulation__Q24Game49FixedSizePelletMgr<Game::PelletOtakara::Object> Ff(void)
 {
 	/*
 	.loc_0x0:
@@ -2086,8 +2077,7 @@ Ff(void)
  * Address:	80201090
  * Size:	00002C
  */
-void doDirectDraw__Q24Game49FixedSizePelletMgr<Game::PelletOtakara::Object>
-FR8Graphics(void)
+void doDirectDraw__Q24Game49FixedSizePelletMgr<Game::PelletOtakara::Object> FR8Graphics(void)
 {
 	/*
 	.loc_0x0:
@@ -2110,8 +2100,7 @@ FR8Graphics(void)
  * Address:	802010BC
  * Size:	000024
  */
-void kill__Q24Game49FixedSizePelletMgr<Game::PelletOtakara::Object>
-FPQ24Game6Pellet(void)
+void kill__Q24Game49FixedSizePelletMgr<Game::PelletOtakara::Object> FPQ24Game6Pellet(void)
 {
 	/*
 	.loc_0x0:
@@ -2215,8 +2204,7 @@ lbl_80201184:
  * Address:	80201198
  * Size:	000054
  */
-void MonoObjectMgr<Game::PelletOtakara::Object>::kill(
-    Game::PelletOtakara::Object*)
+void MonoObjectMgr<Game::PelletOtakara::Object>::kill(Game::PelletOtakara::Object*)
 {
 	/*
 	.loc_0x0:
@@ -3723,8 +3711,7 @@ void MonoObjectMgr<Game::PelletOtakara::Object>::MonoObjectMgr()
  * Address:	8020228C
  * Size:	000020
  */
-void getFlag__Q24Game49FixedSizePelletMgr<Game::PelletOtakara::Object>
-FPQ24Game6Pellet(void)
+void getFlag__Q24Game49FixedSizePelletMgr<Game::PelletOtakara::Object> FPQ24Game6Pellet(void)
 {
 	/*
 	.loc_0x0:
@@ -3746,8 +3733,7 @@ FPQ24Game6Pellet(void)
  * Address:	802022AC
  * Size:	00001C
  */
-void setFromTeki__Q24Game49FixedSizePelletMgr<Game::PelletOtakara::Object>
-FPQ24Game6Pellet(void)
+void setFromTeki__Q24Game49FixedSizePelletMgr<Game::PelletOtakara::Object> FPQ24Game6Pellet(void)
 {
 	/*
 	.loc_0x0:
@@ -3766,8 +3752,7 @@ FPQ24Game6Pellet(void)
  * Address:	802022C8
  * Size:	00001C
  */
-void setRevival__Q24Game49FixedSizePelletMgr<Game::PelletOtakara::Object>
-FPQ24Game6Pellet(void)
+void setRevival__Q24Game49FixedSizePelletMgr<Game::PelletOtakara::Object> FPQ24Game6Pellet(void)
 {
 	/*
 	.loc_0x0:
@@ -3786,8 +3771,7 @@ FPQ24Game6Pellet(void)
  * Address:	802022E4
  * Size:	00001C
  */
-void setComeAlive__Q24Game49FixedSizePelletMgr<Game::PelletOtakara::Object>
-FPQ24Game6Pellet(void)
+void setComeAlive__Q24Game49FixedSizePelletMgr<Game::PelletOtakara::Object> FPQ24Game6Pellet(void)
 {
 	/*
 	.loc_0x0:
@@ -3850,8 +3834,7 @@ void get__Q24Game49FixedSizePelletMgr<Game::PelletOtakara::Object> FPv(void)
  * Address:	80202358
  * Size:	00002C
  */
-void getObjectPtr__Q24Game49FixedSizePelletMgr<Game::PelletOtakara::Object>
-FPv(void)
+void getObjectPtr__Q24Game49FixedSizePelletMgr<Game::PelletOtakara::Object> FPv(void)
 {
 	/*
 	.loc_0x0:
@@ -3874,8 +3857,7 @@ FPv(void)
  * Address:	80202384
  * Size:	000090
  */
-void birthFromTeki__Q24Game49FixedSizePelletMgr<Game::PelletOtakara::Object>
-FPQ24Game12PelletConfig(void)
+void birthFromTeki__Q24Game49FixedSizePelletMgr<Game::PelletOtakara::Object> FPQ24Game12PelletConfig(void)
 {
 	/*
 	.loc_0x0:
@@ -4194,8 +4176,7 @@ void __sinit_pelletOtakara_cpp(void)
  * Address:	802026F4
  * Size:	000008
  */
-void @84 @__dt__Q24Game49FixedSizePelletMgr<Game::PelletOtakara::Object>
-Fv(void)
+void @84 @__dt__Q24Game49FixedSizePelletMgr<Game::PelletOtakara::Object> Fv(void)
 {
 	/*
 	.loc_0x0:
@@ -4378,8 +4359,7 @@ void ObjectMgr<Game::PelletOtakara::Object>::@28 @doAnimation()
  * Address:	80202764
  * Size:	000008
  */
-void @84 @getEnd__Q24Game49FixedSizePelletMgr<Game::PelletOtakara::Object>
-Fv(void)
+void @84 @getEnd__Q24Game49FixedSizePelletMgr<Game::PelletOtakara::Object> Fv(void)
 {
 	/*
 	.loc_0x0:
@@ -4393,8 +4373,7 @@ Fv(void)
  * Address:	8020276C
  * Size:	000008
  */
-void @84 @getStart__Q24Game49FixedSizePelletMgr<Game::PelletOtakara::Object>
-Fv(void)
+void @84 @getStart__Q24Game49FixedSizePelletMgr<Game::PelletOtakara::Object> Fv(void)
 {
 	/*
 	.loc_0x0:
@@ -4408,8 +4387,7 @@ Fv(void)
  * Address:	80202774
  * Size:	000008
  */
-void @84 @getNext__Q24Game49FixedSizePelletMgr<Game::PelletOtakara::Object>
-FPv(void)
+void @84 @getNext__Q24Game49FixedSizePelletMgr<Game::PelletOtakara::Object> FPv(void)
 {
 	/*
 	.loc_0x0:
@@ -4423,8 +4401,7 @@ FPv(void)
  * Address:	8020277C
  * Size:	000008
  */
-void @84 @get__Q24Game49FixedSizePelletMgr<Game::PelletOtakara::Object>
-FPv(void)
+void @84 @get__Q24Game49FixedSizePelletMgr<Game::PelletOtakara::Object> FPv(void)
 {
 	/*
 	.loc_0x0:

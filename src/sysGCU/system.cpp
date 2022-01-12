@@ -251,9 +251,8 @@
 
 extern char gStrSystem_CPP[11]; // system.cpp
 
-extern char
-    gStrSystem_MemoryAllocError[70]; // Memory Alloc Error!\n%x (size %d)
-                                     // align(%d)\nRestTotal=%d\nRestFree =%d\n
+extern char gStrSystem_MemoryAllocError[70]; // Memory Alloc Error!\n%x (size %d)
+                                             // align(%d)\nRestTotal=%d\nRestFree =%d\n
 
 extern char gStrSystem_Abort[7]; // abort\n
 
@@ -269,13 +268,10 @@ extern CallbackObject exCallbackObject;
  * Address:	80421EC4
  * Size:	0000A0
  */
-void Pikmin2DefaultMemoryErrorRoutine(void* address, unsigned long size,
-                                      int alignment)
+void Pikmin2DefaultMemoryErrorRoutine(void* address, unsigned long size, int alignment)
 {
-	JUTException::panic_f(gStrSystem_CPP, 99, gStrSystem_MemoryAllocError,
-	                      address, size, alignment,
-	                      static_cast<JKRHeap*>(address)->getTotalFreeSize(),
-	                      static_cast<JKRHeap*>(address)->getFreeSize());
+	JUTException::panic_f(gStrSystem_CPP, 99, gStrSystem_MemoryAllocError, address, size, alignment,
+	                      static_cast<JKRHeap*>(address)->getTotalFreeSize(), static_cast<JKRHeap*>(address)->getFreeSize());
 
 	OSPanic(gStrSystem_CPP, 101, gStrSystem_Abort);
 }

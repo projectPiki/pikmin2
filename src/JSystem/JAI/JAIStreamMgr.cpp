@@ -330,9 +330,7 @@ lbl_800B7954:
  * Address:	800B7968
  * Size:	000358
  */
-void JAInter::StreamMgr::storeStreamBuffer(JAIStream**, JAInter::Actor*,
-                                           unsigned long, unsigned long,
-                                           unsigned char, JAInter::SoundInfo*)
+void JAInter::StreamMgr::storeStreamBuffer(JAIStream**, JAInter::Actor*, unsigned long, unsigned long, unsigned char, JAInter::SoundInfo*)
 {
 	/*
 	.loc_0x0:

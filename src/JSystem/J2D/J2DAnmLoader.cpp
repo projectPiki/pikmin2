@@ -1099,8 +1099,7 @@ void J2DAnmKeyLoader_v15::readAnmTransform(const J3DAnmTransformKeyData*)
  * Address:	8004856C
  * Size:	00009C
  */
-void J2DAnmKeyLoader_v15::setAnmTransform(J2DAnmTransformKey*,
-                                          const J3DAnmTransformKeyData*)
+void J2DAnmKeyLoader_v15::setAnmTransform(J2DAnmTransformKey*, const J3DAnmTransformKeyData*)
 {
 	/*
 	.loc_0x0:
@@ -1173,8 +1172,7 @@ void J2DAnmKeyLoader_v15::readAnmTextureSRT(const J3DAnmTextureSRTKeyData*)
  * Address:	80048630
  * Size:	0001EC
  */
-void J2DAnmKeyLoader_v15::setAnmTextureSRT(J2DAnmTextureSRTKey*,
-                                           const J3DAnmTextureSRTKeyData*)
+void J2DAnmKeyLoader_v15::setAnmTextureSRT(J2DAnmTextureSRTKey*, const J3DAnmTextureSRTKeyData*)
 {
 	/*
 	.loc_0x0:
@@ -1341,8 +1339,7 @@ void J2DAnmKeyLoader_v15::readAnmColor(const J3DAnmColorKeyData*)
  * Address:	80048844
  * Size:	0000EC
  */
-void J2DAnmKeyLoader_v15::setAnmColor(J2DAnmColorKey*,
-                                      const J3DAnmColorKeyData*)
+void J2DAnmKeyLoader_v15::setAnmColor(J2DAnmColorKey*, const J3DAnmColorKeyData*)
 {
 	/*
 	.loc_0x0:
@@ -1435,8 +1432,7 @@ void J2DAnmKeyLoader_v15::readAnmVtxColor(const J3DAnmVtxColorKeyData*)
  * Address:	80048958
  * Size:	0000FC
  */
-void J2DAnmKeyLoader_v15::setAnmVtxColor(J2DAnmVtxColorKey*,
-                                         const J3DAnmVtxColorKeyData*)
+void J2DAnmKeyLoader_v15::setAnmVtxColor(J2DAnmVtxColorKey*, const J3DAnmVtxColorKeyData*)
 {
 	/*
 	.loc_0x0:
@@ -1802,8 +1798,7 @@ void J2DAnmFullLoader_v15::readAnmTransform(const J3DAnmTransformFullData*)
  * Address:	80048D4C
  * Size:	000094
  */
-void J2DAnmFullLoader_v15::setAnmTransform(J2DAnmTransformFull*,
-                                           const J3DAnmTransformFullData*)
+void J2DAnmFullLoader_v15::setAnmTransform(J2DAnmTransformFull*, const J3DAnmTransformFullData*)
 {
 	/*
 	.loc_0x0:
@@ -1874,8 +1869,7 @@ void J2DAnmFullLoader_v15::readAnmColor(const J3DAnmColorFullData*)
  * Address:	80048E08
  * Size:	0000CC
  */
-void J2DAnmFullLoader_v15::setAnmColor(J2DAnmColorFull*,
-                                       const J3DAnmColorFullData*)
+void J2DAnmFullLoader_v15::setAnmColor(J2DAnmColorFull*, const J3DAnmColorFullData*)
 {
 	/*
 	.loc_0x0:
@@ -1960,8 +1954,7 @@ void J2DAnmFullLoader_v15::readAnmTexPattern(const J3DAnmTexPatternFullData*)
  * Address:	80048EFC
  * Size:	0000A4
  */
-void J2DAnmFullLoader_v15::setAnmTexPattern(J2DAnmTexPattern*,
-                                            const J3DAnmTexPatternFullData*)
+void J2DAnmFullLoader_v15::setAnmTexPattern(J2DAnmTexPattern*, const J3DAnmTexPatternFullData*)
 {
 	/*
 	.loc_0x0:
@@ -2036,8 +2029,7 @@ void J2DAnmKeyLoader_v15::readAnmTevReg(const J3DAnmTevRegKeyData*)
  * Address:	80048FC8
  * Size:	00018C
  */
-void J2DAnmKeyLoader_v15::setAnmTevReg(J2DAnmTevRegKey*,
-                                       const J3DAnmTevRegKeyData*)
+void J2DAnmKeyLoader_v15::setAnmTevReg(J2DAnmTevRegKey*, const J3DAnmTevRegKeyData*)
 {
 	/*
 	.loc_0x0:
@@ -2170,8 +2162,7 @@ void J2DAnmFullLoader_v15::readAnmVisibility(const J3DAnmVisibilityFullData*)
  * Address:	8004917C
  * Size:	00007C
  */
-void J2DAnmFullLoader_v15::setAnmVisibility(J2DAnmVisibilityFull*,
-                                            const J3DAnmVisibilityFullData*)
+void J2DAnmFullLoader_v15::setAnmVisibility(J2DAnmVisibilityFull*, const J3DAnmVisibilityFullData*)
 {
 	/*
 	.loc_0x0:
@@ -2236,8 +2227,7 @@ void J2DAnmFullLoader_v15::readAnmVtxColor(const J3DAnmVtxColorFullData*)
  * Address:	80049220
  * Size:	0000FC
  */
-void J2DAnmFullLoader_v15::setAnmVtxColor(J2DAnmVtxColorFull*,
-                                          const J3DAnmVtxColorFullData*)
+void J2DAnmFullLoader_v15::setAnmVtxColor(J2DAnmVtxColorFull*, const J3DAnmVtxColorFullData*)
 {
 	/*
 	.loc_0x0:

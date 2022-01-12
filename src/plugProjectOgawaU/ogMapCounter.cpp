@@ -285,10 +285,8 @@ blr
  * Address:	........
  * Size:	0000E0
  */
-void setCallBack_CounterMap(P2DScreen::Mgr*, unsigned long long,
-                            unsigned long long, unsigned long long,
-                            unsigned long*, unsigned short, unsigned short,
-                            bool, JKRArchive*)
+void setCallBack_CounterMap(P2DScreen::Mgr*, unsigned long long, unsigned long long, unsigned long long, unsigned long*, unsigned short,
+                            unsigned short, bool, JKRArchive*)
 {
 	// UNUSED FUNCTION
 }

@@ -334,54 +334,35 @@ u32 TRenderingProcessorBase::tagSize(void const*, unsigned long) { return 0x1; }
  * Address:	804393B8
  * Size:	000008
  */
-u32 TRenderingProcessorBase::tagColor(void const*, unsigned long)
-{
-	return 0x1;
-}
+u32 TRenderingProcessorBase::tagColor(void const*, unsigned long) { return 0x1; }
 
 /*
  * --INFO--
  * Address:	804393C0
  * Size:	000008
  */
-void TRenderingProcessorBase::tagPosition(unsigned short, void const*,
-                                          unsigned long)
-{
-	return 0x1;
-}
+void TRenderingProcessorBase::tagPosition(unsigned short, void const*, unsigned long) { return 0x1; }
 
 /*
  * --INFO--
  * Address:	804393C8
  * Size:	000008
  */
-void TRenderingProcessorBase::tagControl(unsigned short, void const*,
-                                         unsigned long)
-{
-	return 0x1;
-}
+void TRenderingProcessorBase::tagControl(unsigned short, void const*, unsigned long) { return 0x1; }
 
 /*
  * --INFO--
  * Address:	804393D0
  * Size:	000008
  */
-void TRenderingProcessorBase::tagColorEX(unsigned short, void const*,
-                                         unsigned long)
-{
-	return 0x1;
-}
+void TRenderingProcessorBase::tagColorEX(unsigned short, void const*, unsigned long) { return 0x1; }
 
 /*
  * --INFO--
  * Address:	804393D8
  * Size:	000008
  */
-void TRenderingProcessorBase::tagImage(unsigned short, void const*,
-                                       unsigned long)
-{
-	return 0x1;
-}
+void TRenderingProcessorBase::tagImage(unsigned short, void const*, unsigned long) { return 0x1; }
 
 /*
  * --INFO--
@@ -1547,11 +1528,7 @@ lbl_8043A228:
  * Address:	8043A23C
  * Size:	000008
  */
-void TRenderingProcessor::do_systemTagCode(unsigned short, void const*,
-                                           unsigned long)
-{
-	return 0x0;
-}
+void TRenderingProcessor::do_systemTagCode(unsigned short, void const*, unsigned long) { return 0x0; }
 
 /*
  * --INFO--
@@ -1811,8 +1788,7 @@ void TRenderingProcessor::doTagControlAbtnWait(void)
  * Address:	8043A4BC
  * Size:	00071C
  */
-void TRenderingProcessor::tagPosition(unsigned short, void const*,
-                                      unsigned long)
+void TRenderingProcessor::tagPosition(unsigned short, void const*, unsigned long)
 {
 	/*
 	.loc_0x0:
@@ -2897,8 +2873,7 @@ lbl_8043B314:
  * Address:	........
  * Size:	0001B8
  */
-void TRenderingProcessor::calcColorCoe(JUtility::TColor const&,
-                                       JUtility::TColor*)
+void TRenderingProcessor::calcColorCoe(JUtility::TColor const&, JUtility::TColor*)
 {
 	// UNUSED FUNCTION
 }

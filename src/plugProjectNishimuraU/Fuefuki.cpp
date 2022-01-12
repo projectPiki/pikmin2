@@ -916,8 +916,7 @@ lbl_8029C7C4:
  */
 void Fuefuki::Obj::doStartWaitingBirthTypeDrop()
 {
-	blr lis r4, 0x8051 li r0, -0x1 lfs f0, 0x48B0(r4)lis r3, 0x804C stw r0,
-	    -0x6948(r13)stfsu f0, 0x2450(r3)stfs f0, -0x6944(r13)stfs f0,
+	blr lis r4, 0x8051 li r0, -0x1 lfs f0, 0x48B0(r4)lis r3, 0x804C stw r0, -0x6948(r13)stfsu f0, 0x2450(r3)stfs f0, -0x6944(r13)stfs f0,
 	    0x4(r3)stfs f0, 0x8(r3)blr * /
 }
 

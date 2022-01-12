@@ -34,20 +34,14 @@ void TagParm::dump() { doDump(); }
  * Address:	8041BD38
  * Size:	000034
  */
-template <> void PrimTagParm<int>::doRead(Stream& stream)
-{
-	m_data = stream.readInt();
-}
+template <> void PrimTagParm<int>::doRead(Stream& stream) { m_data = stream.readInt(); }
 
 /*
  * --INFO--
  * Address:	8041BD6C
  * Size:	00002C
  */
-template <> void PrimTagParm<int>::doWrite(Stream& stream)
-{
-	stream.writeInt(m_data);
-}
+template <> void PrimTagParm<int>::doWrite(Stream& stream) { stream.writeInt(m_data); }
 
 /*
  * --INFO--
@@ -61,20 +55,14 @@ template <> void PrimTagParm<int>::doDump() { }
  * Address:	8041BD9C
  * Size:	000034
  */
-template <> void PrimTagParm<u16>::doRead(Stream& stream)
-{
-	m_data = stream.readShort();
-}
+template <> void PrimTagParm<u16>::doRead(Stream& stream) { m_data = stream.readShort(); }
 
 /*
  * --INFO--
  * Address:	8041BDD0
  * Size:	00002C
  */
-template <> void PrimTagParm<u16>::doWrite(Stream& stream)
-{
-	stream.writeShort(m_data);
-}
+template <> void PrimTagParm<u16>::doWrite(Stream& stream) { stream.writeShort(m_data); }
 
 /*
  * --INFO--
@@ -122,20 +110,14 @@ template <> void PrimTagParm<u64>::doDump() { }
  * Address:	8041BEE8
  * Size:	000034
  */
-template <> void PrimTagParm<f32>::doRead(Stream& stream)
-{
-	m_data = stream.readFloat();
-}
+template <> void PrimTagParm<f32>::doRead(Stream& stream) { m_data = stream.readFloat(); }
 
 /*
  * --INFO--
  * Address:	8041BF1C
  * Size:	000028
  */
-template <> void PrimTagParm<f32>::doWrite(Stream& stream)
-{
-	stream.writeFloat(m_data);
-}
+template <> void PrimTagParm<f32>::doWrite(Stream& stream) { stream.writeFloat(m_data); }
 
 /*
  * --INFO--
@@ -149,20 +131,14 @@ template <> void PrimTagParm<f32>::doDump() { }
  * Address:	8041BF48
  * Size:	000024
  */
-template <> void PrimTagParm<Vector3f>::doRead(Stream& stream)
-{
-	m_data.read(stream);
-}
+template <> void PrimTagParm<Vector3f>::doRead(Stream& stream) { m_data.read(stream); }
 
 /*
  * --INFO--
  * Address:	8041BF6C
  * Size:	000024
  */
-template <> void PrimTagParm<Vector3f>::doWrite(Stream& stream)
-{
-	m_data.write(stream);
-}
+template <> void PrimTagParm<Vector3f>::doWrite(Stream& stream) { m_data.write(stream); }
 
 /*
  * --INFO--
@@ -194,10 +170,7 @@ void StringTagParm::flushValue() { }
  * Address:	8041BFDC
  * Size:	00003C
  */
-void StringTagParm::doRead(Stream& stream)
-{
-	m_data = stream.readString(nullptr, 0);
-}
+void StringTagParm::doRead(Stream& stream) { m_data = stream.readString(nullptr, 0); }
 
 /*
  * --INFO--

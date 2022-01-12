@@ -1228,8 +1228,7 @@ void SingleGame::GameState::on_section_fadeout(Game::SingleGameSection*)
  * Address:	802140F0
  * Size:	000B28
  */
-void SingleGame::GameState::on_demo_timer(Game::SingleGameSection*,
-                                          unsigned long)
+void SingleGame::GameState::on_demo_timer(Game::SingleGameSection*, unsigned long)
 {
 	/*
 	.loc_0x0:
@@ -2743,8 +2742,7 @@ lbl_80215584:
  * Address:	802155A8
  * Size:	0000DC
  */
-void SingleGame::GameState::onHoleIn(Game::SingleGameSection*,
-                                     Game::ItemCave::Item*)
+void SingleGame::GameState::onHoleIn(Game::SingleGameSection*, Game::ItemCave::Item*)
 {
 	/*
 	.loc_0x0:
@@ -2818,9 +2816,7 @@ void SingleGame::GameState::onMovieCommand(Game::SingleGameSection*, int) { }
  * Address:	80215688
  * Size:	000158
  */
-void SingleGame::GameState::onMovieStart(Game::SingleGameSection*,
-                                         Game::MovieConfig*, unsigned long,
-                                         unsigned long)
+void SingleGame::GameState::onMovieStart(Game::SingleGameSection*, Game::MovieConfig*, unsigned long, unsigned long)
 {
 	/*
 	.loc_0x0:
@@ -2934,9 +2930,7 @@ void SingleGame::GameState::onMovieStart(Game::SingleGameSection*,
  * Address:	802157E0
  * Size:	001A7C
  */
-void SingleGame::GameState::onMovieDone(Game::SingleGameSection*,
-                                        Game::MovieConfig*, unsigned long,
-                                        unsigned long)
+void SingleGame::GameState::onMovieDone(Game::SingleGameSection*, Game::MovieConfig*, unsigned long, unsigned long)
 {
 	/*
 	.loc_0x0:

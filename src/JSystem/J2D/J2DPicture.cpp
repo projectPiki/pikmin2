@@ -1099,8 +1099,7 @@ J2DPicture::J2DPicture(u64, const JGeometry::TBox2f&)
  * Address:	8003A714
  * Size:	00009C
  */
-void J2DPicture::setBlendRatio(float, float, float, float, float, float, float,
-                               float)
+void J2DPicture::setBlendRatio(float, float, float, float, float, float, float, float)
 {
 	/*
 	.loc_0x0:
@@ -1151,8 +1150,7 @@ void J2DPicture::setBlendRatio(float, float, float, float, float, float, float,
  * Address:	8003A7B0
  * Size:	0003F4
  */
-void J2DPicture::private_readStream(J2DPane*, JSURandomInputStream*,
-                                    JKRArchive*)
+void J2DPicture::private_readStream(J2DPane*, JSURandomInputStream*, JKRArchive*)
 {
 	/*
 	.loc_0x0:
@@ -3065,8 +3063,7 @@ lbl_8003BF18:
  * Address:	8003BF28
  * Size:	0003FC
  */
-void J2DPicture::drawOut(const JGeometry::TBox2<float>&,
-                         const JGeometry::TBox2<float>&)
+void J2DPicture::drawOut(const JGeometry::TBox2<float>&, const JGeometry::TBox2<float>&)
 {
 	/*
 	.loc_0x0:
@@ -3339,9 +3336,7 @@ void J2DPicture::drawOut(const JGeometry::TBox2<float>&,
  * Address:	8003C324
  * Size:	00023C
  */
-void J2DPicture::drawTexCoord(float, float, float, float, short, short, short,
-                              short, short, short, short, short,
-                              float (*)[3][4])
+void J2DPicture::drawTexCoord(float, float, float, float, short, short, short, short, short, short, short, short, float (*)[3][4])
 {
 	/*
 	.loc_0x0:
@@ -3845,8 +3840,7 @@ lbl_8003C9CC:
  * Address:	8003CA00
  * Size:	000030
  */
-void J2DPicture::setBlendColorRatio(float, float, float, float, float, float,
-                                    float, float)
+void J2DPicture::setBlendColorRatio(float, float, float, float, float, float, float, float)
 {
 	/*
 	.loc_0x0:
@@ -3870,8 +3864,7 @@ void J2DPicture::setBlendColorRatio(float, float, float, float, float, float,
  * Address:	8003CA30
  * Size:	000030
  */
-void J2DPicture::setBlendAlphaRatio(float, float, float, float, float, float,
-                                    float, float)
+void J2DPicture::setBlendAlphaRatio(float, float, float, float, float, float, float, float)
 {
 	/*
 	.loc_0x0:
@@ -4260,8 +4253,7 @@ void J2DPicture::setTexCoord(const JUTTexture*, J2DBinding, J2DMirror, bool)
  * Address:	8003CEA4
  * Size:	000318
  */
-void J2DPicture::setTexCoord(JGeometry::TVec2<short>*, const JUTTexture*,
-                             J2DBinding, J2DMirror, bool)
+void J2DPicture::setTexCoord(JGeometry::TVec2<short>*, const JUTTexture*, J2DBinding, J2DMirror, bool)
 {
 	/*
 	.loc_0x0:

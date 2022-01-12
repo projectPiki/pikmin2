@@ -729,8 +729,7 @@ lbl_80431020:
  * Address:	80431038
  * Size:	000310
  */
-void P2JST::ObjectSystem::JSGFindObject(const(JStage::TObject**, char const*,
-                                              JStage::TEObject))
+void P2JST::ObjectSystem::JSGFindObject(const(JStage::TObject**, char const*, JStage::TEObject))
 {
 	/*
 	.loc_0x0:

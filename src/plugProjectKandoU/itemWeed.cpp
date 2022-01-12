@@ -1347,8 +1347,7 @@ lbl_8020F750:
  * Address:	8020F780
  * Size:	000034
  */
-void start__Q24Game35StateMachine<Game::ItemWeed::Item>
-FPQ34Game8ItemWeed4ItemiPQ24Game8StateArg(void)
+void start__Q24Game35StateMachine<Game::ItemWeed::Item> FPQ34Game8ItemWeed4ItemiPQ24Game8StateArg(void)
 {
 	/*
 	.loc_0x0:
@@ -2435,8 +2434,7 @@ lbl_802103C8:
  * Address:	802103E4
  * Size:	0001DC
  */
-void generatorBirth__Q34Game8ItemWeed3MgrFR10Vector3f R10Vector3f
-PQ24Game11GenItemParm(void)
+void generatorBirth__Q34Game8ItemWeed3MgrFR10Vector3f R10Vector3f PQ24Game11GenItemParm(void)
 {
 	/*
 	.loc_0x0:
@@ -2861,9 +2859,7 @@ void ItemWeed::Item::DummyShape::getMatrix(int)
  * Address:	8021087C
  * Size:	000034
  */
-void doAI__Q24Game74FSMItem<Game::ItemWeed::Item, Game::ItemWeed::FSM,
-                            Game::ItemWeed::State>
-Fv(void)
+void doAI__Q24Game74FSMItem<Game::ItemWeed::Item, Game::ItemWeed::FSM, Game::ItemWeed::State> Fv(void)
 {
 	/*
 	.loc_0x0:
@@ -3106,107 +3102,77 @@ void killFlock__Q24Game32TFlockMgr<Game::ItemWeed::Weed> FPQ24Game6TFlock(void)
  * Address:	80210ADC
  * Size:	000004
  */
-void onDamage__Q24Game32ItemState<Game::ItemWeed::Item>
-FPQ34Game8ItemWeed4Itemf(void)
-{
-}
+void onDamage__Q24Game32ItemState<Game::ItemWeed::Item> FPQ34Game8ItemWeed4Itemf(void) { }
 
 /*
  * --INFO--
  * Address:	80210AE0
  * Size:	000004
  */
-void onKeyEvent__Q24Game32ItemState<Game::ItemWeed::Item>
-FPQ34Game8ItemWeed4ItemRCQ28SysShape8KeyEvent(void)
-{
-}
+void onKeyEvent__Q24Game32ItemState<Game::ItemWeed::Item> FPQ34Game8ItemWeed4ItemRCQ28SysShape8KeyEvent(void) { }
 
 /*
  * --INFO--
  * Address:	80210AE4
  * Size:	000004
  */
-void onBounce__Q24Game32ItemState<Game::ItemWeed::Item>
-FPQ34Game8ItemWeed4ItemPQ23Sys8Triangle(void)
-{
-}
+void onBounce__Q24Game32ItemState<Game::ItemWeed::Item> FPQ34Game8ItemWeed4ItemPQ23Sys8Triangle(void) { }
 
 /*
  * --INFO--
  * Address:	80210AE8
  * Size:	000004
  */
-void onPlatCollision__Q24Game32ItemState<Game::ItemWeed::Item>
-FPQ34Game8ItemWeed4ItemRQ24Game9PlatEvent(void)
-{
-}
+void onPlatCollision__Q24Game32ItemState<Game::ItemWeed::Item> FPQ34Game8ItemWeed4ItemRQ24Game9PlatEvent(void) { }
 
 /*
  * --INFO--
  * Address:	80210AEC
  * Size:	000004
  */
-void onCollision__Q24Game32ItemState<Game::ItemWeed::Item>
-FPQ34Game8ItemWeed4ItemRQ24Game9CollEvent(void)
-{
-}
+void onCollision__Q24Game32ItemState<Game::ItemWeed::Item> FPQ34Game8ItemWeed4ItemRQ24Game9CollEvent(void) { }
 
 /*
  * --INFO--
  * Address:	80210AF0
  * Size:	000004
  */
-void init__Q24Game31FSMState<Game::ItemWeed::Item>
-FPQ34Game8ItemWeed4ItemPQ24Game8StateArg(void)
-{
-}
+void init__Q24Game31FSMState<Game::ItemWeed::Item> FPQ34Game8ItemWeed4ItemPQ24Game8StateArg(void) { }
 
 /*
  * --INFO--
  * Address:	80210AF4
  * Size:	000004
  */
-void exec__Q24Game31FSMState<Game::ItemWeed::Item> FPQ34Game8ItemWeed4Item(void)
-{
-}
+void exec__Q24Game31FSMState<Game::ItemWeed::Item> FPQ34Game8ItemWeed4Item(void) { }
 
 /*
  * --INFO--
  * Address:	80210AF8
  * Size:	000004
  */
-void cleanup__Q24Game31FSMState<Game::ItemWeed::Item>
-FPQ34Game8ItemWeed4Item(void)
-{
-}
+void cleanup__Q24Game31FSMState<Game::ItemWeed::Item> FPQ34Game8ItemWeed4Item(void) { }
 
 /*
  * --INFO--
  * Address:	80210AFC
  * Size:	000004
  */
-void resume__Q24Game31FSMState<Game::ItemWeed::Item>
-FPQ34Game8ItemWeed4Item(void)
-{
-}
+void resume__Q24Game31FSMState<Game::ItemWeed::Item> FPQ34Game8ItemWeed4Item(void) { }
 
 /*
  * --INFO--
  * Address:	80210B00
  * Size:	000004
  */
-void restart__Q24Game31FSMState<Game::ItemWeed::Item>
-FPQ34Game8ItemWeed4Item(void)
-{
-}
+void restart__Q24Game31FSMState<Game::ItemWeed::Item> FPQ34Game8ItemWeed4Item(void) { }
 
 /*
  * --INFO--
  * Address:	80210B04
  * Size:	000030
  */
-void transit__Q24Game31FSMState<Game::ItemWeed::Item>
-FPQ34Game8ItemWeed4ItemiPQ24Game8StateArg(void)
+void transit__Q24Game31FSMState<Game::ItemWeed::Item> FPQ34Game8ItemWeed4ItemiPQ24Game8StateArg(void)
 {
 	/*
 	.loc_0x0:
@@ -3230,10 +3196,7 @@ FPQ34Game8ItemWeed4ItemiPQ24Game8StateArg(void)
  * Address:	80210B34
  * Size:	000004
  */
-void init__Q24Game35StateMachine<Game::ItemWeed::Item>
-FPQ34Game8ItemWeed4Item(void)
-{
-}
+void init__Q24Game35StateMachine<Game::ItemWeed::Item> FPQ34Game8ItemWeed4Item(void) { }
 
 /*
  * --INFO--
@@ -4854,8 +4817,7 @@ void MonoObjectMgr<Game::ItemWeed::Weed>::MonoObjectMgr()
  * Address:	80211CEC
  * Size:	00009C
  */
-void transit__Q24Game35StateMachine<Game::ItemWeed::Item>
-FPQ34Game8ItemWeed4ItemiPQ24Game8StateArg(void)
+void transit__Q24Game35StateMachine<Game::ItemWeed::Item> FPQ34Game8ItemWeed4ItemiPQ24Game8StateArg(void)
 {
 	/*
 	.loc_0x0:
@@ -4912,8 +4874,7 @@ FPQ34Game8ItemWeed4ItemiPQ24Game8StateArg(void)
  * Address:	80211D88
  * Size:	000084
  */
-void registerState__Q24Game35StateMachine<Game::ItemWeed::Item>
-FPQ24Game31FSMState<Game::ItemWeed::Item>(void)
+void registerState__Q24Game35StateMachine<Game::ItemWeed::Item> FPQ24Game31FSMState<Game::ItemWeed::Item>(void)
 {
 	/*
 	.loc_0x0:
@@ -4964,8 +4925,7 @@ FPQ24Game31FSMState<Game::ItemWeed::Item>(void)
  * Address:	80211E0C
  * Size:	000038
  */
-void exec__Q24Game35StateMachine<Game::ItemWeed::Item>
-FPQ34Game8ItemWeed4Item(void)
+void exec__Q24Game35StateMachine<Game::ItemWeed::Item> FPQ34Game8ItemWeed4Item(void)
 {
 	/*
 	.loc_0x0:
@@ -4993,9 +4953,7 @@ FPQ34Game8ItemWeed4Item(void)
  * Address:	80211E44
  * Size:	000044
  */
-void onKeyEvent__Q24Game74FSMItem<Game::ItemWeed::Item, Game::ItemWeed::FSM,
-                                  Game::ItemWeed::State>
-FRCQ28SysShape8KeyEvent(void)
+void onKeyEvent__Q24Game74FSMItem<Game::ItemWeed::Item, Game::ItemWeed::FSM, Game::ItemWeed::State> FRCQ28SysShape8KeyEvent(void)
 {
 	/*
 	.loc_0x0:
@@ -5026,9 +4984,7 @@ FRCQ28SysShape8KeyEvent(void)
  * Address:	80211E88
  * Size:	000044
  */
-void platCallback__Q24Game74FSMItem<Game::ItemWeed::Item, Game::ItemWeed::FSM,
-                                    Game::ItemWeed::State>
-FRQ24Game9PlatEvent(void)
+void platCallback__Q24Game74FSMItem<Game::ItemWeed::Item, Game::ItemWeed::FSM, Game::ItemWeed::State> FRQ24Game9PlatEvent(void)
 {
 	/*
 	.loc_0x0:
@@ -5059,9 +5015,7 @@ FRQ24Game9PlatEvent(void)
  * Address:	80211ECC
  * Size:	000044
  */
-void collisionCallback__Q24Game74FSMItem<
-    Game::ItemWeed::Item, Game::ItemWeed::FSM, Game::ItemWeed::State>
-FRQ24Game9CollEvent(void)
+void collisionCallback__Q24Game74FSMItem<Game::ItemWeed::Item, Game::ItemWeed::FSM, Game::ItemWeed::State> FRQ24Game9CollEvent(void)
 {
 	/*
 	.loc_0x0:
@@ -5092,9 +5046,7 @@ FRQ24Game9CollEvent(void)
  * Address:	80211F10
  * Size:	000044
  */
-void bounceCallback__Q24Game74FSMItem<Game::ItemWeed::Item, Game::ItemWeed::FSM,
-                                      Game::ItemWeed::State>
-FPQ23Sys8Triangle(void)
+void bounceCallback__Q24Game74FSMItem<Game::ItemWeed::Item, Game::ItemWeed::FSM, Game::ItemWeed::State> FPQ23Sys8Triangle(void)
 {
 	/*
 	.loc_0x0:
@@ -5628,10 +5580,7 @@ void @32 @get__Q24Game32TFlockMgr<Game::ItemWeed::Weed> FPv(void)
  * Address:	80212278
  * Size:	000008
  */
-void @376
-    @onKeyEvent__Q24Game74FSMItem<Game::ItemWeed::Item, Game::ItemWeed::FSM,
-                                  Game::ItemWeed::State>
-    FRCQ28SysShape8KeyEvent(void)
+void @376 @onKeyEvent__Q24Game74FSMItem<Game::ItemWeed::Item, Game::ItemWeed::FSM, Game::ItemWeed::State> FRCQ28SysShape8KeyEvent(void)
 {
 	/*
 	.loc_0x0:

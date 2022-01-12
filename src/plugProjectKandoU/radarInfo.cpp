@@ -107,8 +107,7 @@ lbl_8021E2E0:
  * Address:	........
  * Size:	000010
  */
-void Radar::Point::entry(Game::TPositionObject*, Radar::cRadarType,
-                         unsigned long)
+void Radar::Point::entry(Game::TPositionObject*, Radar::cRadarType, unsigned long)
 {
 	// UNUSED FUNCTION
 }
@@ -465,8 +464,7 @@ lbl_8021E644:
  * Address:	8021E64C
  * Size:	000064
  */
-void Radar::Mgr::attach(Game::TPositionObject*, Radar::cRadarType,
-                        unsigned long)
+void Radar::Mgr::attach(Game::TPositionObject*, Radar::cRadarType, unsigned long)
 {
 	/*
 	.loc_0x0:

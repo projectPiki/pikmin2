@@ -7571,8 +7571,7 @@ void Onyon::getOnyonState(void)
  * Address:	80179D60
  * Size:	00011C
  */
-void generatorBirth__Q34Game9ItemOnyon3MgrFR10Vector3f R10Vector3f
-PQ24Game11GenItemParm(void)
+void generatorBirth__Q34Game9ItemOnyon3MgrFR10Vector3f R10Vector3f PQ24Game11GenItemParm(void)
 {
 	/*
 	.loc_0x0:
@@ -10972,10 +10971,7 @@ u32 BaseItem::interactGotKey(Game::InteractGotKey&) { return 0x0; }
  * Address:	8017C2D4
  * Size:	000008
  */
-u32 getVectorField__Q24Game8BaseItemFRQ23Sys6SphereR10Vector3f(void)
-{
-	return 0x1;
-}
+u32 getVectorField__Q24Game8BaseItemFRQ23Sys6SphereR10Vector3f(void) { return 0x1; }
 
 namespace Game {
 

@@ -41,8 +41,7 @@ void JUTXfb::common_init(int)
  * Address:	........
  * Size:	0000B0
  */
-JUTXfb::JUTXfb(const _GXRenderModeObj* gxObj, JKRHeap* heap,
-               JUTXfb::EXfbNumber number)
+JUTXfb::JUTXfb(const _GXRenderModeObj* gxObj, JKRHeap* heap, JUTXfb::EXfbNumber number)
 {
 	// Used by createManager__6JUTXfbFP7JKRHeapQ26JUTXfb10EXfbNumber
 	// UNUSED FUNCTION
@@ -53,9 +52,7 @@ JUTXfb::JUTXfb(const _GXRenderModeObj* gxObj, JKRHeap* heap,
 	// float yScaleFactor = GXGetYScaleFactor(gxObj->xfbHeight,
 	// gxObj->viXOrigin); u16 xfbLines = GXGetNumXfbLines(yScaleFactor,
 	// gxObj->xfbHeight); initiate(gxObj->efbHeight, xfbLines, heap, number);
-	xfbLines = GXGetNumXfbLines(
-	    GXGetYScaleFactor(gxObj->xfbHeight, gxObj->viXOrigin),
-	    gxObj->xfbHeight);
+	xfbLines = GXGetNumXfbLines(GXGetYScaleFactor(gxObj->xfbHeight, gxObj->viXOrigin), gxObj->xfbHeight);
 	initiate(gxObj->efbHeight, xfbLines, heap, number);
 }
 
@@ -124,8 +121,7 @@ void JUTXfb::addToDoubleXfb(JKRHeap*)
  * Address:	........
  * Size:	0000CC
  */
-JUTXfb* JUTXfb::createManager(const _GXRenderModeObj*, JKRHeap*,
-                              JUTXfb::EXfbNumber)
+JUTXfb* JUTXfb::createManager(const _GXRenderModeObj*, JKRHeap*, JUTXfb::EXfbNumber)
 {
 	// UNUSED FUNCTION
 }
@@ -169,8 +165,7 @@ JUTXfb* JUTXfb::createManager(const _GXRenderModeObj*, void*, void*, void*)
 JUTXfb* JUTXfb::createManager(JKRHeap* heap, JUTXfb::EXfbNumber number)
 {
 	if (sManager == nullptr) {
-		sManager
-		    = new JUTXfb(JUTVideo::sManager->m_renderModeObj, heap, number);
+		sManager = new JUTXfb(JUTVideo::sManager->m_renderModeObj, heap, number);
 	}
 	return sManager;
 	/*
@@ -322,8 +317,7 @@ lbl_80033E24:
  * Address:	80033E48
  * Size:	0000E8
  */
-void JUTXfb::initiate(unsigned short p1, unsigned short p2, JKRHeap* heap,
-                      JUTXfb::EXfbNumber number)
+void JUTXfb::initiate(unsigned short p1, unsigned short p2, JKRHeap* heap, JUTXfb::EXfbNumber number)
 {
 	if (heap == nullptr) {
 		heap = JKRHeap::sSystemHeap;

@@ -393,10 +393,7 @@ lbl_8036C230:
  * Address:	8036C24C
  * Size:	000020
  */
-Obj* Mgr::birth(Game::EnemyBirthArg& arg)
-{
-	return static_cast<Obj*>(EnemyMgrBase::birth(arg));
-}
+Obj* Mgr::birth(Game::EnemyBirthArg& arg) { return static_cast<Obj*>(EnemyMgrBase::birth(arg)); }
 
 /*
  * --INFO--
@@ -529,9 +526,7 @@ void Mgr::doSimpleDraw(Viewport* viewport)
 	// matrix.m_matrix.mtxView = {{1.0f, 0.0f, 0.0f}, {0.0f,
 	//                       0.0f, 1.0f}, {0.0f, 0.0f,
 	//                       0.0f}, {0.0f, 1.0f, 0.0f}};
-	const Mtx mtx1 = { { 1.0f, 0.0f, 0.0f, 0.0f },
-		               { 0.0f, 1.0f, 0.0f, 0.0f },
-		               { 0.0f, 0.0f, 1.0f, 0.0f } };
+	const Mtx mtx1 = { { 1.0f, 0.0f, 0.0f, 0.0f }, { 0.0f, 1.0f, 0.0f, 0.0f }, { 0.0f, 0.0f, 1.0f, 0.0f } };
 	Mtx mtx2;
 
 	Matrixf matrix(mtx1);
@@ -818,11 +813,9 @@ void Mgr::initObjects()
 {
 	char path[256];
 	if (isValidEnemyTypeID()) {
-		char* collisionFolder
-		    = EnemyInfoFunc::getEnemyInfo(getEnemyTypeID(), 0xFFFF)->m_collName;
+		char* collisionFolder = EnemyInfoFunc::getEnemyInfo(getEnemyTypeID(), 0xFFFF)->m_collName;
 		if (*collisionFolder == '\0') {
-			collisionFolder
-			    = EnemyInfoFunc::getEnemyName(getEnemyTypeID(), 0xFFFF);
+			collisionFolder = EnemyInfoFunc::getEnemyName(getEnemyTypeID(), 0xFFFF);
 		}
 		sprintf(path, "%s/enemyColl.txt", collisionFolder);
 		SysShape::Model* model = createModel();
@@ -833,15 +826,13 @@ void Mgr::initObjects()
 			enemy->m_mgr               = this;
 			enemy->m_model             = model;
 		}
-		m_collPartFactory
-		    = CollPartFactory::load(gParmArc, "JigumoHouse/enemyColl.txt");
+		m_collPartFactory = CollPartFactory::load(gParmArc, "JigumoHouse/enemyColl.txt");
 		P2ASSERTLINE(220, m_collPartFactory != nullptr);
 		for (int i = 0; i < getMaxObjects(); i++) {
 			Obj* enemy = getEnemy(i);
 			P2ASSERTLINE(224, enemy != nullptr);
 			enemy->m_collTree = new CollTree();
-			enemy->m_collTree->createFromFactory(model, m_collPartFactory,
-			                                     nullptr);
+			enemy->m_collTree->createFromFactory(model, m_collPartFactory, nullptr);
 			enemy->m_collTree->attachModel(model);
 		}
 	}
@@ -997,10 +988,7 @@ lbl_8036C89C:
  * Address:	8036C8B0
  * Size:	000008
  */
-EnemyTypeID::EEnemyTypeID Mgr::getEnemyTypeID(void)
-{
-	return EnemyTypeID::EnemyID_PanHouse;
-}
+EnemyTypeID::EEnemyTypeID Mgr::getEnemyTypeID(void) { return EnemyTypeID::EnemyID_PanHouse; }
 
 // /*
 //  * --INFO--
