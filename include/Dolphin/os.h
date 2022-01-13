@@ -198,6 +198,9 @@ void OSSignalCond(OSThreadQueue*);
 void __OSUnlockSramEx(int);
 u8* __OSLockSramEx(void);
 
+int OSDisableInterrupts(void);
+void OSRestoreInterrupts(int);
+
 #ifdef __cplusplus
 };
 #endif // ifdef __cplusplus

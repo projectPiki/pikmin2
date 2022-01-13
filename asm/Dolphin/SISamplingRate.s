@@ -1,32 +1,56 @@
 .include "macros.inc"
 .section .data, "wa"  # 0x8049E220 - 0x804EFC20
 .balign 8
-XYNTSC:
-	.4byte 0x00F60200
-	.4byte 0x000F1200
-	.4byte 0x001E0900
-	.4byte 0x002C0600
-	.4byte 0x00340500
-	.4byte 0x00410400
-	.4byte 0x00570300
-	.4byte 0x00570300
-	.4byte 0x00570300
-	.4byte 0x00830200
-	.4byte 0x00830200
-	.4byte 0x00830200
-XYPAL:
-	.4byte 0x01280200
-	.4byte 0x000F1500
-	.4byte 0x001D0B00
-	.4byte 0x002D0700
-	.4byte 0x00340600
-	.4byte 0x003F0500
-	.4byte 0x004E0400
-	.4byte 0x00680300
-	.4byte 0x00680300
-	.4byte 0x00680300
-	.4byte 0x00680300
-	.4byte 0x009C0200
+XYNTSC: # static u16[24]
+	.2byte 0x00F6
+	.2byte 0x0200
+	.2byte 0x000F
+	.2byte 0x1200
+	.2byte 0x001E
+	.2byte 0x0900
+	.2byte 0x002C
+	.2byte 0x0600
+	.2byte 0x0034
+	.2byte 0x0500
+	.2byte 0x0041
+	.2byte 0x0400
+	.2byte 0x0057
+	.2byte 0x0300
+	.2byte 0x0057
+	.2byte 0x0300
+	.2byte 0x0057
+	.2byte 0x0300
+	.2byte 0x0083
+	.2byte 0x0200
+	.2byte 0x0083
+	.2byte 0x0200
+	.2byte 0x0083
+	.2byte 0x0200
+XYPAL: # static u16[24]
+	.2byte 0x0128
+	.2byte 0x0200
+	.2byte 0x000F
+	.2byte 0x1500
+	.2byte 0x001D
+	.2byte 0x0B00
+	.2byte 0x002D
+	.2byte 0x0700
+	.2byte 0x0034
+	.2byte 0x0600
+	.2byte 0x003F
+	.2byte 0x0500
+	.2byte 0x004E
+	.2byte 0x0400
+	.2byte 0x0068
+	.2byte 0x0300
+	.2byte 0x0068
+	.2byte 0x0300
+	.2byte 0x0068
+	.2byte 0x0300
+	.2byte 0x0068
+	.2byte 0x0300
+	.2byte 0x009C
+	.2byte 0x0200
 .balign 4
 lbl_804AA030:
 	.asciz "SISetSamplingRate: unknown TV format. Use default."
