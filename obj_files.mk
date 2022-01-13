@@ -270,7 +270,7 @@ DOLPHIN:=\
 	$(BUILD_DIR)/asm/Dolphin/main.o\
 	$(BUILD_DIR)/src/Dolphin/MWTrace.o\
 	$(BUILD_DIR)/src/Dolphin/MWCriticalSection_gc.o\
-	$(BUILD_DIR)/asm/Dolphin/__va_arg.o\
+	$(BUILD_DIR)/src/Dolphin/__va_arg.o\
 	$(BUILD_DIR)/asm/Dolphin/global_destructor_chain.o\
 	$(BUILD_DIR)/src/Dolphin/CPlusLibPPC.o\
 	$(BUILD_DIR)/asm/Dolphin/NMWException.o\

@@ -1,75 +1,49 @@
-
+#include "types.h"
+#include "Dolphin/va_arg.h"
 
 /*
  * --INFO--
  * Address:	800C15F0
  * Size:	0000C8
  */
-void __va_arg(void)
+void* __va_arg(struct va_list* v_list, s32 type)
 {
-	/*
-	.loc_0x0:
-	  lbz       r7, 0x0(r3)
-	  cmpwi     r4, 0x3
-	  mr        r6, r3
-	  li        r0, 0x8
-	  li        r8, 0x4
-	  extsb     r7, r7
-	  li        r9, 0x1
-	  li        r5, 0
-	  li        r10, 0
-	  li        r11, 0x4
-	  bne-      .loc_0x44
-	  lbz       r7, 0x1(r3)
-	  addi      r6, r3, 0x1
-	  li        r8, 0x8
-	  li        r10, 0x20
-	  extsb     r7, r7
-	  li        r11, 0x8
+	char* addr;
+	char* reg      = &(v_list->m_g_register);
+	s32 g_reg      = v_list->m_g_register;
+	s32 maxsize    = 8;
+	s32 size       = 4;
+	s32 increment  = 1;
+	s32 even       = 0;
+	s32 fpr_offset = 0;
+	s32 regsize    = 4;
 
-	.loc_0x44:
-	  cmpwi     r4, 0x2
-	  bne-      .loc_0x64
-	  rlwinm.   r0,r7,0,31,31
-	  li        r8, 0x8
-	  li        r0, 0x7
-	  beq-      .loc_0x60
-	  li        r5, 0x1
+	if (type == 3) {
+		reg        = &(v_list->m_float_register);
+		g_reg      = v_list->m_float_register;
+		size       = 8;
+		fpr_offset = 32;
+		regsize    = 8;
+	}
+	if (type == 2) {
+		size = 8;
+		maxsize--;
+		if (g_reg & 1)
+			even = 1;
+		increment = 2;
+	}
+	if (g_reg < maxsize) {
+		g_reg += even;
+		addr = v_list->m_reg_save_area + fpr_offset + (g_reg * regsize);
+		*reg = g_reg + increment;
+	} else {
+		*reg                     = 8;
+		addr                     = v_list->m_input_arg_area;
+		addr                     = (char*)(((u32)(addr) + ((size)-1)) & ~((size)-1));
+		v_list->m_input_arg_area = addr + size;
+	}
+	if (type == 0)
+		addr = *((char**)addr);
 
-	.loc_0x60:
-	  li        r9, 0x2
-
-	.loc_0x64:
-	  cmpw      r7, r0
-	  bge-      .loc_0x8C
-	  add       r7, r7, r5
-	  lwz       r5, 0x8(r3)
-	  mullw     r3, r7, r11
-	  add       r0, r7, r9
-	  stb       r0, 0x0(r6)
-	  add       r6, r10, r3
-	  add       r6, r5, r6
-	  b         .loc_0xB4
-
-	.loc_0x8C:
-	  li        r5, 0x8
-	  subi      r0, r8, 0x1
-	  stb       r5, 0x0(r6)
-	  not       r6, r0
-	  lwz       r0, 0x4(r3)
-	  add       r5, r8, r0
-	  subi      r0, r5, 0x1
-	  and       r6, r6, r0
-	  add       r0, r6, r8
-	  stw       r0, 0x4(r3)
-
-	.loc_0xB4:
-	  cmpwi     r4, 0
-	  bne-      .loc_0xC0
-	  lwz       r6, 0x0(r6)
-
-	.loc_0xC0:
-	  mr        r3, r6
-	  blr
-	*/
+	return addr;
 }
