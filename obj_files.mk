@@ -421,7 +421,7 @@ DOLPHIN:=\
 	$(BUILD_DIR)/asm/Dolphin/Padclamp.o\
 	$(BUILD_DIR)/asm/Dolphin/Pad.o\
 	$(BUILD_DIR)/asm/Dolphin/SIBios.o\
-	$(BUILD_DIR)/asm/Dolphin/SISamplingRate.o\
+	$(BUILD_DIR)/src/Dolphin/SISamplingRate.o\
 	$(BUILD_DIR)/asm/Dolphin/ai.o\
 	$(BUILD_DIR)/asm/Dolphin/THPDec.o\
 	$(BUILD_DIR)/asm/Dolphin/THPAudio.o\

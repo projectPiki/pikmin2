@@ -24,7 +24,7 @@ VERSION := usa
 #VERSION := usa.demo
 
 # Overkill epilogue fixup strategy. Set to 1 if necessary.
-EPILOGUE_PROCESS := 0
+EPILOGUE_PROCESS := 1
 
 BUILD_DIR := build/$(NAME).$(VERSION)
 ifeq ($(EPILOGUE_PROCESS),1)
@@ -66,7 +66,7 @@ endif
 
 MWCC_VERSION := 2.6
 ifeq ($(EPILOGUE_PROCESS),1)
-MWCC_EPI_VERSION := 1.2.5e
+MWCC_EPI_VERSION := 1.2.5
 MWCC_EPI_EXE := mwcceppc.exe
 endif
 MWLD_VERSION := 2.6
@@ -90,7 +90,7 @@ ELF2DOL := tools/elf2dol
 SHA1SUM := sha1sum
 PYTHON  := python3
 
-FRANK := tools/frank.py
+FRANK := tools/franklite.py
 
 # Options
 INCLUDES := -i include/
@@ -144,10 +144,10 @@ endif
 # Make sure build directory exists before compiling anything
 DUMMY != mkdir -p $(ALL_DIRS)
 
-ifeq ($(EPILOGUE_PROCESS),1)
+# ifeq ($(EPILOGUE_PROCESS),1)
 # Make sure profile directory exists before compiling anything
-DUMMY != mkdir -p $(EPI_DIRS)
-endif
+# DUMMY != mkdir -p $(EPI_DIRS)
+# endif
 
 .PHONY: tools
 
@@ -201,19 +201,18 @@ $(BUILD_DIR)/%.o: %.cpp
 ifeq ($(EPILOGUE_PROCESS),1)
 $(EPILOGUE_DIR)/%.o: %.c $(BUILD_DIR)/%.o
 	@echo Frank is fixing $<
-	$(QUIET) $(CC_EPI) $(CFLAGS) -c -o $@ $<
-	$(QUIET) $(PYTHON) $(FRANK) $(word 2,$^) $@ $(word 2,$^)
+	$(QUIET) $(PYTHON) $(FRANK) $(word 2,$^) $(word 2,$^)
 
 $(EPILOGUE_DIR)/%.o: %.cp $(BUILD_DIR)/%.o
 	@echo Frank is fixing $<
-	$(QUIET) $(CC_EPI) $(CFLAGS) -c -o $@ $<
-	$(QUIET) $(PYTHON) $(FRANK) $(word 2,$^) $@ $(word 2,$^)
+	$(QUIET) $(PYTHON) $(FRANK) $(word 2,$^) $(word 2,$^)
 
 $(EPILOGUE_DIR)/%.o: %.cpp $(BUILD_DIR)/%.o
 	@echo Frank is fixing $<
-	$(QUIET) $(CC_EPI) $(CFLAGS) -c -o $@ $<
-	$(QUIET) $(PYTHON) $(FRANK) $(word 2,$^) $@ $(word 2,$^)
+	$(QUIET) $(PYTHON) $(FRANK) $(word 2,$^) $(word 2,$^)
 endif
+# If we need Frank, add the following after the @echo
+# $(QUIET) $(CC_EPI) $(CFLAGS) -c -o $@ $<
 
 ### Debug Print ###
 
