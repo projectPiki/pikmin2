@@ -1,7 +1,6 @@
 .include "macros.inc"
 .section .data, "wa"  # 0x8049E220 - 0x804EFC20
-.balign 0x8
-.global XYNTSC
+.balign 8
 XYNTSC:
 	.4byte 0x00F60200
 	.4byte 0x000F1200
@@ -15,7 +14,6 @@ XYNTSC:
 	.4byte 0x00830200
 	.4byte 0x00830200
 	.4byte 0x00830200
-.global XYPAL
 XYPAL:
 	.4byte 0x01280200
 	.4byte 0x000F1500
@@ -29,14 +27,14 @@ XYPAL:
 	.4byte 0x00680300
 	.4byte 0x00680300
 	.4byte 0x009C0200
+.balign 4
+lbl_804AA030:
 	.asciz "SISetSamplingRate: unknown TV format. Use default."
-	.skip 1
 
 .section .sbss # 0x80514D80 - 0x80516360
-.balign 0x8
-.global SamplingRate
+.balign 8
 SamplingRate:
-	.skip 0x8
+	.skip 4
 
 .section .text, "ax"  # 0x800056C0 - 0x80472F00
 .global SISetSamplingRate

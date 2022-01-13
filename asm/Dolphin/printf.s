@@ -1,8 +1,7 @@
 .include "macros.inc"
 .section .rodata  # 0x804732E0 - 0x8049E220
-.balign 0x8
-.global "@stringBase0_3"
-"@stringBase0_3":
+.balign 8
+"@stringBase0":
 	.4byte 0x002D494E
 	.4byte 0x46002D69
 	.4byte 0x6E660049
@@ -15,8 +14,7 @@
 	.4byte 0x00000000
 
 .section .data, "wa"  # 0x8049E220 - 0x804EFC20
-.balign 0x8
-.global lbl_804A6F28
+.balign 8
 lbl_804A6F28:
 	.4byte lbl_800C8C20
 	.4byte lbl_800C8C30
@@ -51,7 +49,6 @@ lbl_804A6F28:
 	.4byte lbl_800C8C30
 	.4byte lbl_800C8C30
 	.4byte lbl_800C8C20
-.global lbl_804A6FAC
 lbl_804A6FAC:
 	.4byte lbl_800C8EE4
 	.4byte lbl_800C8EF0
@@ -86,7 +83,6 @@ lbl_804A6FAC:
 	.4byte lbl_800C8EF0
 	.4byte lbl_800C8EF0
 	.4byte lbl_800C8EE4
-.global lbl_804A7030
 lbl_804A7030:
 	.4byte lbl_800C9420
 	.4byte lbl_800C9550
@@ -144,7 +140,6 @@ lbl_804A7030:
 	.4byte lbl_800C9550
 	.4byte lbl_800C9550
 	.4byte lbl_800C93A0
-.global lbl_804A7110
 lbl_804A7110:
 	.4byte lbl_800C9150
 	.4byte lbl_800C918C
@@ -163,18 +158,15 @@ lbl_804A7110:
 	.4byte lbl_800C918C
 	.4byte lbl_800C918C
 	.4byte lbl_800C9174
-	.4byte 0x00000000
 
 .section .sdata, "wa"  # 0x80514680 - 0x80514D80
-.balign 0x8
-.global "@wstringBase0"
+.balign 8
 "@wstringBase0":
 	.4byte 0x00000000
 	.4byte 0x00000000
 
 .section .sdata2, "a"     # 0x80516360 - 0x80520E40
-.balign 0x8
-.global lbl_805170D0
+.balign 8
 lbl_805170D0:
 	.4byte 0x00000000
 	.4byte 0x00000000
@@ -812,8 +804,8 @@ lbl_800C7CD8:
 lbl_800C7CE8:
 /* 800C7CE8 000C4C28  28 14 00 00 */	cmplwi r20, 0
 /* 800C7CEC 000C4C2C  40 82 00 0C */	bne lbl_800C7CF8
-/* 800C7CF0 000C4C30  3C 60 80 48 */	lis r3, "@stringBase0_3"@ha
-/* 800C7CF4 000C4C34  3A 83 A0 B0 */	addi r20, r3, "@stringBase0_3"@l
+/* 800C7CF0 000C4C30  3C 60 80 48 */	lis r3, "@stringBase0"@ha
+/* 800C7CF4 000C4C34  3A 83 A0 B0 */	addi r20, r3, "@stringBase0"@l
 lbl_800C7CF8:
 /* 800C7CF8 000C4C38  88 01 00 6F */	lbz r0, 0x6f(r1)
 /* 800C7CFC 000C4C3C  28 00 00 00 */	cmplwi r0, 0
@@ -1087,16 +1079,16 @@ lbl_800C8078:
 /* 800C8094 000C4FD4  7C 03 00 AE */	lbzx r0, r3, r0
 /* 800C8098 000C4FD8  54 00 06 31 */	rlwinm. r0, r0, 0, 0x18, 0x18
 /* 800C809C 000C4FDC  41 82 00 1C */	beq lbl_800C80B8
-/* 800C80A0 000C4FE0  3C 80 80 48 */	lis r4, "@stringBase0_3"@ha
+/* 800C80A0 000C4FE0  3C 80 80 48 */	lis r4, "@stringBase0"@ha
 /* 800C80A4 000C4FE4  7F 83 E3 78 */	mr r3, r28
-/* 800C80A8 000C4FE8  38 84 A0 B0 */	addi r4, r4, "@stringBase0_3"@l
+/* 800C80A8 000C4FE8  38 84 A0 B0 */	addi r4, r4, "@stringBase0"@l
 /* 800C80AC 000C4FEC  38 84 00 01 */	addi r4, r4, 1
 /* 800C80B0 000C4FF0  48 00 27 A9 */	bl strcpy
 /* 800C80B4 000C4FF4  48 00 00 64 */	b lbl_800C8118
 lbl_800C80B8:
-/* 800C80B8 000C4FF8  3C 80 80 48 */	lis r4, "@stringBase0_3"@ha
+/* 800C80B8 000C4FF8  3C 80 80 48 */	lis r4, "@stringBase0"@ha
 /* 800C80BC 000C4FFC  7F 83 E3 78 */	mr r3, r28
-/* 800C80C0 000C5000  38 84 A0 B0 */	addi r4, r4, "@stringBase0_3"@l
+/* 800C80C0 000C5000  38 84 A0 B0 */	addi r4, r4, "@stringBase0"@l
 /* 800C80C4 000C5004  38 84 00 06 */	addi r4, r4, 6
 /* 800C80C8 000C5008  48 00 27 91 */	bl strcpy
 /* 800C80CC 000C500C  48 00 00 4C */	b lbl_800C8118
@@ -1108,16 +1100,16 @@ lbl_800C80D0:
 /* 800C80E0 000C5020  7C 03 00 AE */	lbzx r0, r3, r0
 /* 800C80E4 000C5024  54 00 06 31 */	rlwinm. r0, r0, 0, 0x18, 0x18
 /* 800C80E8 000C5028  41 82 00 1C */	beq lbl_800C8104
-/* 800C80EC 000C502C  3C 80 80 48 */	lis r4, "@stringBase0_3"@ha
+/* 800C80EC 000C502C  3C 80 80 48 */	lis r4, "@stringBase0"@ha
 /* 800C80F0 000C5030  7F 83 E3 78 */	mr r3, r28
-/* 800C80F4 000C5034  38 84 A0 B0 */	addi r4, r4, "@stringBase0_3"@l
+/* 800C80F4 000C5034  38 84 A0 B0 */	addi r4, r4, "@stringBase0"@l
 /* 800C80F8 000C5038  38 84 00 0B */	addi r4, r4, 0xb
 /* 800C80FC 000C503C  48 00 27 5D */	bl strcpy
 /* 800C8100 000C5040  48 00 00 18 */	b lbl_800C8118
 lbl_800C8104:
-/* 800C8104 000C5044  3C 80 80 48 */	lis r4, "@stringBase0_3"@ha
+/* 800C8104 000C5044  3C 80 80 48 */	lis r4, "@stringBase0"@ha
 /* 800C8108 000C5048  7F 83 E3 78 */	mr r3, r28
-/* 800C810C 000C504C  38 84 A0 B0 */	addi r4, r4, "@stringBase0_3"@l
+/* 800C810C 000C504C  38 84 A0 B0 */	addi r4, r4, "@stringBase0"@l
 /* 800C8110 000C5050  38 84 00 0F */	addi r4, r4, 0xf
 /* 800C8114 000C5054  48 00 27 45 */	bl strcpy
 lbl_800C8118:
@@ -1134,16 +1126,16 @@ lbl_800C8120:
 /* 800C813C 000C507C  7C 03 00 AE */	lbzx r0, r3, r0
 /* 800C8140 000C5080  54 00 06 31 */	rlwinm. r0, r0, 0, 0x18, 0x18
 /* 800C8144 000C5084  41 82 00 1C */	beq lbl_800C8160
-/* 800C8148 000C5088  3C 80 80 48 */	lis r4, "@stringBase0_3"@ha
+/* 800C8148 000C5088  3C 80 80 48 */	lis r4, "@stringBase0"@ha
 /* 800C814C 000C508C  7F 83 E3 78 */	mr r3, r28
-/* 800C8150 000C5090  38 84 A0 B0 */	addi r4, r4, "@stringBase0_3"@l
+/* 800C8150 000C5090  38 84 A0 B0 */	addi r4, r4, "@stringBase0"@l
 /* 800C8154 000C5094  38 84 00 13 */	addi r4, r4, 0x13
 /* 800C8158 000C5098  48 00 27 01 */	bl strcpy
 /* 800C815C 000C509C  48 00 00 64 */	b lbl_800C81C0
 lbl_800C8160:
-/* 800C8160 000C50A0  3C 80 80 48 */	lis r4, "@stringBase0_3"@ha
+/* 800C8160 000C50A0  3C 80 80 48 */	lis r4, "@stringBase0"@ha
 /* 800C8164 000C50A4  7F 83 E3 78 */	mr r3, r28
-/* 800C8168 000C50A8  38 84 A0 B0 */	addi r4, r4, "@stringBase0_3"@l
+/* 800C8168 000C50A8  38 84 A0 B0 */	addi r4, r4, "@stringBase0"@l
 /* 800C816C 000C50AC  38 84 00 18 */	addi r4, r4, 0x18
 /* 800C8170 000C50B0  48 00 26 E9 */	bl strcpy
 /* 800C8174 000C50B4  48 00 00 4C */	b lbl_800C81C0
@@ -1155,16 +1147,16 @@ lbl_800C8178:
 /* 800C8188 000C50C8  7C 03 00 AE */	lbzx r0, r3, r0
 /* 800C818C 000C50CC  54 00 06 31 */	rlwinm. r0, r0, 0, 0x18, 0x18
 /* 800C8190 000C50D0  41 82 00 1C */	beq lbl_800C81AC
-/* 800C8194 000C50D4  3C 80 80 48 */	lis r4, "@stringBase0_3"@ha
+/* 800C8194 000C50D4  3C 80 80 48 */	lis r4, "@stringBase0"@ha
 /* 800C8198 000C50D8  7F 83 E3 78 */	mr r3, r28
-/* 800C819C 000C50DC  38 84 A0 B0 */	addi r4, r4, "@stringBase0_3"@l
+/* 800C819C 000C50DC  38 84 A0 B0 */	addi r4, r4, "@stringBase0"@l
 /* 800C81A0 000C50E0  38 84 00 1D */	addi r4, r4, 0x1d
 /* 800C81A4 000C50E4  48 00 26 B5 */	bl strcpy
 /* 800C81A8 000C50E8  48 00 00 18 */	b lbl_800C81C0
 lbl_800C81AC:
-/* 800C81AC 000C50EC  3C 80 80 48 */	lis r4, "@stringBase0_3"@ha
+/* 800C81AC 000C50EC  3C 80 80 48 */	lis r4, "@stringBase0"@ha
 /* 800C81B0 000C50F0  7F 83 E3 78 */	mr r3, r28
-/* 800C81B4 000C50F4  38 84 A0 B0 */	addi r4, r4, "@stringBase0_3"@l
+/* 800C81B4 000C50F4  38 84 A0 B0 */	addi r4, r4, "@stringBase0"@l
 /* 800C81B8 000C50F8  38 84 00 21 */	addi r4, r4, 0x21
 /* 800C81BC 000C50FC  48 00 26 9D */	bl strcpy
 lbl_800C81C0:
@@ -1670,16 +1662,16 @@ lbl_800C8828:
 /* 800C8860 000C57A0  3B DE FF FB */	addi r30, r30, -5
 /* 800C8864 000C57A4  28 00 00 41 */	cmplwi r0, 0x41
 /* 800C8868 000C57A8  40 82 00 1C */	bne lbl_800C8884
-/* 800C886C 000C57AC  3C 80 80 48 */	lis r4, "@stringBase0_3"@ha
+/* 800C886C 000C57AC  3C 80 80 48 */	lis r4, "@stringBase0"@ha
 /* 800C8870 000C57B0  7F C3 F3 78 */	mr r3, r30
-/* 800C8874 000C57B4  38 84 A0 B0 */	addi r4, r4, "@stringBase0_3"@l
+/* 800C8874 000C57B4  38 84 A0 B0 */	addi r4, r4, "@stringBase0"@l
 /* 800C8878 000C57B8  38 84 00 01 */	addi r4, r4, 1
 /* 800C887C 000C57BC  48 00 1F DD */	bl strcpy
 /* 800C8880 000C57C0  48 00 00 58 */	b lbl_800C88D8
 lbl_800C8884:
-/* 800C8884 000C57C4  3C 80 80 48 */	lis r4, "@stringBase0_3"@ha
+/* 800C8884 000C57C4  3C 80 80 48 */	lis r4, "@stringBase0"@ha
 /* 800C8888 000C57C8  7F C3 F3 78 */	mr r3, r30
-/* 800C888C 000C57CC  38 84 A0 B0 */	addi r4, r4, "@stringBase0_3"@l
+/* 800C888C 000C57CC  38 84 A0 B0 */	addi r4, r4, "@stringBase0"@l
 /* 800C8890 000C57D0  38 84 00 06 */	addi r4, r4, 6
 /* 800C8894 000C57D4  48 00 1F C5 */	bl strcpy
 /* 800C8898 000C57D8  48 00 00 40 */	b lbl_800C88D8
@@ -1688,16 +1680,16 @@ lbl_800C889C:
 /* 800C88A0 000C57E0  3B DE FF FC */	addi r30, r30, -4
 /* 800C88A4 000C57E4  28 00 00 41 */	cmplwi r0, 0x41
 /* 800C88A8 000C57E8  40 82 00 1C */	bne lbl_800C88C4
-/* 800C88AC 000C57EC  3C 80 80 48 */	lis r4, "@stringBase0_3"@ha
+/* 800C88AC 000C57EC  3C 80 80 48 */	lis r4, "@stringBase0"@ha
 /* 800C88B0 000C57F0  7F C3 F3 78 */	mr r3, r30
-/* 800C88B4 000C57F4  38 84 A0 B0 */	addi r4, r4, "@stringBase0_3"@l
+/* 800C88B4 000C57F4  38 84 A0 B0 */	addi r4, r4, "@stringBase0"@l
 /* 800C88B8 000C57F8  38 84 00 0B */	addi r4, r4, 0xb
 /* 800C88BC 000C57FC  48 00 1F 9D */	bl strcpy
 /* 800C88C0 000C5800  48 00 00 18 */	b lbl_800C88D8
 lbl_800C88C4:
-/* 800C88C4 000C5804  3C 80 80 48 */	lis r4, "@stringBase0_3"@ha
+/* 800C88C4 000C5804  3C 80 80 48 */	lis r4, "@stringBase0"@ha
 /* 800C88C8 000C5808  7F C3 F3 78 */	mr r3, r30
-/* 800C88CC 000C580C  38 84 A0 B0 */	addi r4, r4, "@stringBase0_3"@l
+/* 800C88CC 000C580C  38 84 A0 B0 */	addi r4, r4, "@stringBase0"@l
 /* 800C88D0 000C5810  38 84 00 0F */	addi r4, r4, 0xf
 /* 800C88D4 000C5814  48 00 1F 85 */	bl strcpy
 lbl_800C88D8:
@@ -1713,16 +1705,16 @@ lbl_800C88E0:
 /* 800C88F8 000C5838  3B DE FF FB */	addi r30, r30, -5
 /* 800C88FC 000C583C  28 00 00 41 */	cmplwi r0, 0x41
 /* 800C8900 000C5840  40 82 00 1C */	bne lbl_800C891C
-/* 800C8904 000C5844  3C 80 80 48 */	lis r4, "@stringBase0_3"@ha
+/* 800C8904 000C5844  3C 80 80 48 */	lis r4, "@stringBase0"@ha
 /* 800C8908 000C5848  7F C3 F3 78 */	mr r3, r30
-/* 800C890C 000C584C  38 84 A0 B0 */	addi r4, r4, "@stringBase0_3"@l
+/* 800C890C 000C584C  38 84 A0 B0 */	addi r4, r4, "@stringBase0"@l
 /* 800C8910 000C5850  38 84 00 13 */	addi r4, r4, 0x13
 /* 800C8914 000C5854  48 00 1F 45 */	bl strcpy
 /* 800C8918 000C5858  48 00 00 58 */	b lbl_800C8970
 lbl_800C891C:
-/* 800C891C 000C585C  3C 80 80 48 */	lis r4, "@stringBase0_3"@ha
+/* 800C891C 000C585C  3C 80 80 48 */	lis r4, "@stringBase0"@ha
 /* 800C8920 000C5860  7F C3 F3 78 */	mr r3, r30
-/* 800C8924 000C5864  38 84 A0 B0 */	addi r4, r4, "@stringBase0_3"@l
+/* 800C8924 000C5864  38 84 A0 B0 */	addi r4, r4, "@stringBase0"@l
 /* 800C8928 000C5868  38 84 00 18 */	addi r4, r4, 0x18
 /* 800C892C 000C586C  48 00 1F 2D */	bl strcpy
 /* 800C8930 000C5870  48 00 00 40 */	b lbl_800C8970
@@ -1731,16 +1723,16 @@ lbl_800C8934:
 /* 800C8938 000C5878  3B DE FF FC */	addi r30, r30, -4
 /* 800C893C 000C587C  28 00 00 41 */	cmplwi r0, 0x41
 /* 800C8940 000C5880  40 82 00 1C */	bne lbl_800C895C
-/* 800C8944 000C5884  3C 80 80 48 */	lis r4, "@stringBase0_3"@ha
+/* 800C8944 000C5884  3C 80 80 48 */	lis r4, "@stringBase0"@ha
 /* 800C8948 000C5888  7F C3 F3 78 */	mr r3, r30
-/* 800C894C 000C588C  38 84 A0 B0 */	addi r4, r4, "@stringBase0_3"@l
+/* 800C894C 000C588C  38 84 A0 B0 */	addi r4, r4, "@stringBase0"@l
 /* 800C8950 000C5890  38 84 00 1D */	addi r4, r4, 0x1d
 /* 800C8954 000C5894  48 00 1F 05 */	bl strcpy
 /* 800C8958 000C5898  48 00 00 18 */	b lbl_800C8970
 lbl_800C895C:
-/* 800C895C 000C589C  3C 80 80 48 */	lis r4, "@stringBase0_3"@ha
+/* 800C895C 000C589C  3C 80 80 48 */	lis r4, "@stringBase0"@ha
 /* 800C8960 000C58A0  7F C3 F3 78 */	mr r3, r30
-/* 800C8964 000C58A4  38 84 A0 B0 */	addi r4, r4, "@stringBase0_3"@l
+/* 800C8964 000C58A4  38 84 A0 B0 */	addi r4, r4, "@stringBase0"@l
 /* 800C8968 000C58A8  38 84 00 21 */	addi r4, r4, 0x21
 /* 800C896C 000C58AC  48 00 1E ED */	bl strcpy
 lbl_800C8970:
