@@ -8,8 +8,7 @@
 
 import argparse
 
-# Byte sequence that marks code size
-CODESIZE_MAGIC = b"\x00\x00\x00\x06\x00\x00\x00\x00\x00\x00\x00\x34"
+# Byte sequences
 BLR_BYTE_SEQ = b"\x4E\x80\x00\x20"
 MTLR_BYTE_SEQ = b"\x7C\x08\x03\xA6"
 
