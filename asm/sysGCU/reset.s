@@ -1,8 +1,7 @@
 .include "macros.inc"
 .section .rodata  # 0x804732E0 - 0x8049E220
-.balign 0x8
-.global lbl_80499D20
-lbl_80499D20:
+.balign 8
+lbl_80499D20: # Shift-JIS
 	.4byte 0x09838183
 	.4byte 0x82838A81
 	.4byte 0x5B834A81
@@ -12,17 +11,20 @@ lbl_80499D20:
 	.4byte 0x4997B991
 	.4byte 0xD282BF0A
 	.4byte 0x00000000
+lbl_80499D44: # Shift-JIS
 	.4byte 0x09834981
 	.4byte 0x5B836683
 	.4byte 0x4283498F
 	.4byte 0x4997B991
 	.4byte 0xD282BF0A
 	.4byte 0x00000000
+lbl_80499D5C: # Shift-JIS
 	.4byte 0x0947508F
 	.4byte 0x88979D8F
 	.4byte 0x4997B991
 	.4byte 0xD282BF0A
 	.4byte 0x00000000
+lbl_80499D70: # Shift-JIS
 	.4byte 0x09838A83
 	.4byte 0x5A836283
 	.4byte 0x67837B83
@@ -31,15 +33,15 @@ lbl_80499D20:
 	.4byte 0xB382EA82
 	.4byte 0xC482A282
 	.4byte 0xE90A0000
+lbl_80499D90: # Shift-JIS
 	.4byte 0x8B9689C2
 	.4byte 0x82AA8F6F
 	.4byte 0x82C482A2
 	.4byte 0x82C882A2
 	.4byte 0x0A000000
-	.4byte 0x00000000
 
 .section .data, "wa"  # 0x8049E220 - 0x804EFC20
-.balign 0x8
+.balign 8
 .global __vt__12ResetManager
 __vt__12ResetManager:
 	.4byte 0
@@ -48,31 +50,23 @@ __vt__12ResetManager:
 	.4byte updateStatusEffects__12ResetManagerFv
 
 .section .sdata2, "a"     # 0x80516360 - 0x80520E40
-.balign 0x8
-.global lbl_80520548
+.balign 8
 lbl_80520548:
-	.4byte 0x00000000
-	.4byte 0x00000000
-.global lbl_80520550
+	.float 0.0
+.balign 8
 lbl_80520550:
 	.4byte 0x43300000
 	.4byte 0x00000000
-.global lbl_80520558
 lbl_80520558:
 	.float 0.25
-.global lbl_8052055C
 lbl_8052055C:
-	.4byte 0xBF800000
-.global lbl_80520560
+	.float -1.0
 lbl_80520560:
 	.float 1.0
-.global lbl_80520564
 lbl_80520564:
-	.4byte 0x437F0000
-.global lbl_80520568
+	.float 255.0
 lbl_80520568:
 	.float 0.5
-	.4byte 0x00000000
 
 .section .text, "ax"  # 0x800056C0 - 0x80472F00
 .global __ct__12ResetManagerFf
@@ -105,7 +99,7 @@ __ct__12ResetManagerFf:
 /* 80429E14 00426D54  38 A0 00 00 */	li r5, 0
 /* 80429E18 00426D58  C0 02 21 E8 */	lfs f0, lbl_80520548@sda21(r2)
 /* 80429E1C 00426D5C  7F E3 FB 78 */	mr r3, r31
-/* 80429E20 00426D60  90 8D 88 DC */	stw r4, lbl_80514F5C@sda21(r13)
+/* 80429E20 00426D60  90 8D 88 DC */	stw r4, sThreshold__Q210JUTGamePad13C3ButtonReset+4@sda21(r13)
 /* 80429E24 00426D64  98 BF 00 0C */	stb r5, 0xc(r31)
 /* 80429E28 00426D68  98 BF 00 0D */	stb r5, 0xd(r31)
 /* 80429E2C 00426D6C  98 BF 00 0E */	stb r5, 0xe(r31)

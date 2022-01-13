@@ -3,57 +3,48 @@
 .4byte __sinit_JMATrigonometric_cpp
 
 .section .bss  # 0x804EFC20 - 0x8051467C
+.balign 32
 .global sincosTable___5JMath
 sincosTable___5JMath:
 	.skip 0x6040
+.balign 32
 .global atanTable___5JMath
 atanTable___5JMath:
 	.skip 0x1020
+.balign 32
 .global asinAcosTable___5JMath
 asinAcosTable___5JMath:
 	.skip 0x1020
 
 .section .sdata2, "a"     # 0x80516360 - 0x80520E40
-.balign 0x8
-.global lbl_80516738
+.balign 8
 lbl_80516738:
-	.4byte 0x00000000
-.global lbl_8051673C
+	.float 0.0
 lbl_8051673C:
-	.4byte 0x3FC90FDB
-.global lbl_80516740
+	.float 1.5707964
 lbl_80516740:
 	.float 0.5
-.global lbl_80516744
 lbl_80516744:
-	.4byte 0x44800000
-.global lbl_80516748
+	.float 1024.0
 lbl_80516748:
-	.4byte 0xBFC90FDB
-.global lbl_8051674C
+	.float -1.5707964
 lbl_8051674C:
-	.4byte 0x40490FDB
-.global lbl_80516750
+	.float 3.1415927
 lbl_80516750:
-	.4byte 0xC0490FDB
-	.4byte 0x00000000
-.global lbl_80516758
+	.float -3.1415927
+.balign 8
 lbl_80516758:
-	.4byte 0x401921FB
-	.4byte 0x60000000
-.global lbl_80516760
+	.double 6.2831854820251465
+.balign 8
 lbl_80516760:
-	.4byte 0x40A00000
-	.4byte 0x00000000
-.global lbl_80516768
+	.double 2048.0
+.balign 8
 lbl_80516768:
 	.4byte 0x3F500000
 	.4byte 0x00000000
-.global lbl_80516770
 lbl_80516770:
-	.4byte 0x3F490FDB
-	.4byte 0x00000000
-.global lbl_80516778
+	.float 0.7853982
+.balign 8
 lbl_80516778:
 	.4byte 0x43300000
 	.4byte 0x80000000
@@ -235,7 +226,6 @@ lbl_80035354:
 /* 80035358 00032298  38 21 00 10 */	addi r1, r1, 0x10
 /* 8003535C 0003229C  4E 80 00 20 */	blr 
 
-.global __sinit_JMATrigonometric_cpp
 __sinit_JMATrigonometric_cpp:
 /* 80035360 000322A0  94 21 FF A0 */	stwu r1, -0x60(r1)
 /* 80035364 000322A4  7C 08 02 A6 */	mflr r0
@@ -353,7 +343,7 @@ lbl_8003549C:
 /* 80035518 00032458  38 21 00 60 */	addi r1, r1, 0x60
 /* 8003551C 0003245C  4E 80 00 20 */	blr 
 
-.global "__ct__Q23std9pair<f,f>Fv"
+.global "__ct__Q23std9pair<f,f>Fv" # weak function
 "__ct__Q23std9pair<f,f>Fv":
 /* 80035520 00032460  C0 02 83 D8 */	lfs f0, lbl_80516738@sda21(r2)
 /* 80035524 00032464  D0 03 00 00 */	stfs f0, 0(r3)

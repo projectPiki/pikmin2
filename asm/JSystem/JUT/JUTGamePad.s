@@ -3,7 +3,7 @@
 .4byte __sinit_JUTGamePad_cpp
 
 .section .data, "wa"  # 0x8049E220 - 0x804EFC20
-.balign 0x8
+.balign 8
 .global sChannelMask__Q210JUTGamePad7CRumble
 sChannelMask__Q210JUTGamePad7CRumble:
 	.4byte 0x80000000
@@ -21,7 +21,6 @@ __vt__10JUTGamePad:
 	.4byte 0
 	.4byte 0
 	.4byte __dt__10JUTGamePadFv
-	.4byte 0
 
 .section .bss  # 0x804EFC20 - 0x8051467C
 .global mPadList__10JUTGamePad
@@ -41,10 +40,10 @@ mPadSStick__10JUTGamePad:
 	.skip 0x40
 .global sPatternList__19JUTGamePadLongPress
 sPatternList__19JUTGamePadLongPress:
-	.skip 0x28
+	.skip 0xC
 
 .section .sdata, "wa"  # 0x80514680 - 0x80514D80
-.balign 0x8
+.balign 8
 .global sStickMode__10JUTGamePad
 sStickMode__10JUTGamePad:
 	.4byte 1
@@ -65,82 +64,73 @@ sResetMaskPattern__Q210JUTGamePad13C3ButtonReset:
 	.4byte 0x0000ffff
 
 .section .sbss # 0x80514D80 - 0x80516360
-.balign 0x8
+.balign 8
 .global mListInitialized__10JUTGamePad
 mListInitialized__10JUTGamePad:
-	.skip 0x4
+	.skip 1
+.balign 4
 .global mPadAssign__10JUTGamePad
 mPadAssign__10JUTGamePad:
-	.skip 0x4
+	.skip 4
 .global sSuppressPadReset__10JUTGamePad
 sSuppressPadReset__10JUTGamePad:
-	.skip 0x4
+	.skip 4
 .global sAnalogMode__10JUTGamePad
 sAnalogMode__10JUTGamePad:
-	.skip 0x4
+	.skip 4
 .global sRumbleSupported__10JUTGamePad
 sRumbleSupported__10JUTGamePad:
-	.skip 0x4
+	.skip 4
 .global mStatus__Q210JUTGamePad7CRumble
 mStatus__Q210JUTGamePad7CRumble:
-	.skip 0x4
+	.skip 4
 .global mEnabled__Q210JUTGamePad7CRumble
 mEnabled__Q210JUTGamePad7CRumble:
-	.skip 0x4
+	.skip 4
 .global sCallback__Q210JUTGamePad13C3ButtonReset
 sCallback__Q210JUTGamePad13C3ButtonReset:
-	.skip 0x4
+	.skip 4
 .global sCallbackArg__Q210JUTGamePad13C3ButtonReset
 sCallbackArg__Q210JUTGamePad13C3ButtonReset:
-	.skip 0x8
+	.skip 4
+.balign 8
 .global sThreshold__Q210JUTGamePad13C3ButtonReset
 sThreshold__Q210JUTGamePad13C3ButtonReset:
-	.skip 0x4
-.global lbl_80514F5C
-lbl_80514F5C:
-	.skip 0x4
+	.skip 8
 .global sResetSwitchPushing__Q210JUTGamePad13C3ButtonReset
 sResetSwitchPushing__Q210JUTGamePad13C3ButtonReset:
-	.skip 0x1
+	.skip 1
 .global sResetOccurred__Q210JUTGamePad13C3ButtonReset
 sResetOccurred__Q210JUTGamePad13C3ButtonReset:
-	.skip 0x3
+	.skip 1
+.balign 4
 .global sResetOccurredPort__Q210JUTGamePad13C3ButtonReset
 sResetOccurredPort__Q210JUTGamePad13C3ButtonReset:
-	.skip 0x4
+	.skip 4
 
 .section .sdata2, "a"     # 0x80516360 - 0x80520E40
-.balign 0x8
-.global lbl_80516660
+.balign 8
 lbl_80516660:
-	.4byte 0x43160000
-	.4byte 0x00000000
-.global lbl_80516668
+	.float 150.0
+.balign 8
 lbl_80516668:
 	.4byte 0x43300000
 	.4byte 0x80000000
-.global lbl_80516670
 lbl_80516670:
-	.4byte 0x00000000
-	.4byte 0x00000000
-.global lbl_80516678
+	.float 0.0
+.balign 8
 lbl_80516678:
-	.4byte 0x3FE00000
-	.4byte 0x00000000
-.global lbl_80516680
+	.double 0.5
+.balign 8
 lbl_80516680:
-	.4byte 0x40080000
-	.4byte 0x00000000
-.global lbl_80516688
+	.double 3.0
+.balign 8
 lbl_80516688:
-	.4byte 0x00000000
-	.4byte 0x00000000
-.global lbl_80516690
+	.double 0.0
 lbl_80516690:
 	.float 1.0
-.global lbl_80516694
 lbl_80516694:
-	.4byte 0x4622F984
+	.float 10430.379
 
 .section .text, "ax"  # 0x800056C0 - 0x80472F00
 .global __ct__10JUTGamePadFQ210JUTGamePad8EPadPort
@@ -543,7 +533,7 @@ checkResetCallback__10JUTGamePadFx:
 /* 8002D9D8 0002A918  6C A5 80 00 */	xoris r5, r5, 0x8000
 /* 8002D9DC 0002A91C  90 01 00 14 */	stw r0, 0x14(r1)
 /* 8002D9E0 0002A920  80 0D 88 D8 */	lwz r0, sThreshold__Q210JUTGamePad13C3ButtonReset@sda21(r13)
-/* 8002D9E4 0002A924  80 ED 88 DC */	lwz r7, lbl_80514F5C@sda21(r13)
+/* 8002D9E4 0002A924  80 ED 88 DC */	lwz r7, sThreshold__Q210JUTGamePad13C3ButtonReset+4@sda21(r13)
 /* 8002D9E8 0002A928  6C 04 80 00 */	xoris r4, r0, 0x8000
 /* 8002D9EC 0002A92C  7C 07 30 10 */	subfc r0, r7, r6
 /* 8002D9F0 0002A930  7C 84 29 10 */	subfe r4, r4, r5
@@ -686,7 +676,7 @@ lbl_8002DBD4:
 /* 8002DBF8 0002AB38  7C C0 20 10 */	subfc r6, r0, r4
 /* 8002DBFC 0002AB3C  80 0D 88 D8 */	lwz r0, sThreshold__Q210JUTGamePad13C3ButtonReset@sda21(r13)
 /* 8002DC00 0002AB40  7C 65 19 10 */	subfe r3, r5, r3
-/* 8002DC04 0002AB44  80 AD 88 DC */	lwz r5, lbl_80514F5C@sda21(r13)
+/* 8002DC04 0002AB44  80 AD 88 DC */	lwz r5, sThreshold__Q210JUTGamePad13C3ButtonReset+4@sda21(r13)
 /* 8002DC08 0002AB48  6C 64 80 00 */	xoris r4, r3, 0x8000
 /* 8002DC0C 0002AB4C  6C 03 80 00 */	xoris r3, r0, 0x8000
 /* 8002DC10 0002AB50  7C 05 30 10 */	subfc r0, r5, r6
@@ -1696,7 +1686,7 @@ __sinit_JUTGamePad_cpp:
 /* 8002E9F4 0002B934  1C C6 00 1E */	mulli r6, r6, 0x1e
 /* 8002E9F8 0002B938  7C 00 2A 14 */	add r0, r0, r5
 /* 8002E9FC 0002B93C  90 0D 88 D8 */	stw r0, sThreshold__Q210JUTGamePad13C3ButtonReset@sda21(r13)
-/* 8002EA00 0002B940  90 CD 88 DC */	stw r6, lbl_80514F5C@sda21(r13)
+/* 8002EA00 0002B940  90 CD 88 DC */	stw r6, sThreshold__Q210JUTGamePad13C3ButtonReset+4@sda21(r13)
 /* 8002EA04 0002B944  4B FF 7E 2D */	bl __ct__10JSUPtrListFb
 /* 8002EA08 0002B948  3C 60 80 50 */	lis r3, sPatternList__19JUTGamePadLongPress@ha
 /* 8002EA0C 0002B94C  3C 80 80 03 */	lis r4, "__dt__30JSUList<19JUTGamePadLongPress>Fv"@ha

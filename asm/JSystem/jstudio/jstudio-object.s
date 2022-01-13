@@ -3,7 +3,7 @@
 .4byte "__sinit_jstudio-object_cpp"
 
 .section .rodata  # 0x804732E0 - 0x8049E220
-.balign 0x8
+.balign 8
 .global sauVariableValue_3_TRANSLATION_XYZ__Q27JStudio14TAdaptor_actor
 sauVariableValue_3_TRANSLATION_XYZ__Q27JStudio14TAdaptor_actor:
 	.4byte 0x00000003
@@ -116,7 +116,7 @@ sauVariableValue_3_POSITION_XYZ__Q27JStudio14TAdaptor_sound:
 	.4byte 0x00000002
 
 .section .data, "wa"  # 0x8049E220 - 0x804EFC20
-.balign 0x8
+.balign 8
 .global lbl_8049E698
 lbl_8049E698:
 	.4byte 0x00000000
@@ -1133,13 +1133,13 @@ lbl_8049F4E8:
 	.4byte "__dt__Q37JStudio28@unnamed@jstudio_object_cpp@54TOutputVariableValue_BOOL_<Q27JStudio14TAdaptor_actor>Fv"
 
 .section .sbss # 0x80514D80 - 0x80516360
-.balign 0x8
+.balign 8
 .global soOutput_none___Q27JStudio14TVariableValue
 soOutput_none___Q27JStudio14TVariableValue:
-	.skip 0x8
+	.skip 4
 
 .section .sdata2, "a"     # 0x80516360 - 0x80520E40
-.balign 0x8
+.balign 8
 .global lbl_80516408
 lbl_80516408:
 	.4byte 0x43300000
@@ -1162,10 +1162,8 @@ sauVariableValue_2_RANGE_BEGIN_END__Q27JStudio12TAdaptor_fog:
 sauVariableValue_2_DIRECTION_THETA_PHI__Q27JStudio14TAdaptor_light:
 	.4byte 0x0000000A
 	.4byte 0x0000000B
-.global lbl_80516430
 lbl_80516430:
 	.float 0.5
-	.4byte 0x00000000
 
 .section .text, "ax"  # 0x800056C0 - 0x80472F00
 .global __dt__Q37JStudio14TVariableValue7TOutputFv
