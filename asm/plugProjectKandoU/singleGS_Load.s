@@ -3,23 +3,19 @@
 .4byte __sinit_singleGS_Load_cpp
 
 .section .rodata  # 0x804732E0 - 0x8049E220
-.balign 0x8
-.global lbl_80483D50
+.balign 8
 lbl_80483D50:
 	.asciz "singleGS_Load.cpp"
-	.skip 2
-.global lbl_80483D64
+.balign 4
 lbl_80483D64:
 	.asciz "P2Assert"
-	.skip 3
 
 .section .data, "wa"  # 0x8049E220 - 0x804EFC20
-.balign 0x8
-.global lbl_804C15C0
-lbl_804C15C0:
-	.4byte 0x00000000
-	.4byte 0x00000000
-	.4byte 0x00000000
+.balign 8
+govNAN___Q24Game5P2JST:
+	.float 0.0
+	.float 0.0
+	.float 0.0
 .global __vt__Q32og6Screen20DispMemberCourseName
 __vt__Q32og6Screen20DispMemberCourseName:
 	.4byte 0
@@ -48,16 +44,13 @@ __vt__Q34Game10SingleGame9LoadState:
 	.4byte onFountainReturn__Q34Game10SingleGame5StateFPQ24Game17SingleGameSectionPQ34Game15ItemBigFountain4Item
 	.4byte on_section_fadeout__Q34Game10SingleGame5StateFPQ24Game17SingleGameSection
 	.4byte on_demo_timer__Q34Game10SingleGame5StateFPQ24Game17SingleGameSectionUl
-	.4byte 0
 
 .section .sbss # 0x80514D80 - 0x80516360
-.balign 0x8
-.global lbl_80515CB8
-lbl_80515CB8:
-	.skip 0x4
-.global lbl_80515CBC
-lbl_80515CBC:
-	.skip 0x4
+.balign 8
+gu32NAN___Q24Game5P2JST:
+	.skip 4
+gfNAN___Q24Game5P2JST:
+	.skip 4
 
 .section .text, "ax"  # 0x800056C0 - 0x80472F00
 .global init__Q34Game10SingleGame9LoadStateFPQ24Game17SingleGameSectionPQ24Game8StateArg
@@ -333,10 +326,10 @@ __sinit_singleGS_Load_cpp:
 /* 8023A228 00237168  3C 80 80 51 */	lis r4, __float_nan@ha
 /* 8023A22C 0023716C  38 00 FF FF */	li r0, -1
 /* 8023A230 00237170  C0 04 48 B0 */	lfs f0, __float_nan@l(r4)
-/* 8023A234 00237174  3C 60 80 4C */	lis r3, lbl_804C15C0@ha
-/* 8023A238 00237178  90 0D 96 38 */	stw r0, lbl_80515CB8@sda21(r13)
-/* 8023A23C 0023717C  D4 03 15 C0 */	stfsu f0, lbl_804C15C0@l(r3)
-/* 8023A240 00237180  D0 0D 96 3C */	stfs f0, lbl_80515CBC@sda21(r13)
+/* 8023A234 00237174  3C 60 80 4C */	lis r3, govNAN___Q24Game5P2JST@ha
+/* 8023A238 00237178  90 0D 96 38 */	stw r0, gu32NAN___Q24Game5P2JST@sda21(r13)
+/* 8023A23C 0023717C  D4 03 15 C0 */	stfsu f0, govNAN___Q24Game5P2JST@l(r3)
+/* 8023A240 00237180  D0 0D 96 3C */	stfs f0, gfNAN___Q24Game5P2JST@sda21(r13)
 /* 8023A244 00237184  D0 03 00 04 */	stfs f0, 4(r3)
 /* 8023A248 00237188  D0 03 00 08 */	stfs f0, 8(r3)
 /* 8023A24C 0023718C  4E 80 00 20 */	blr 

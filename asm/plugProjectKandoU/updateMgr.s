@@ -1,29 +1,19 @@
 .include "macros.inc"
 .section .rodata  # 0x804732E0 - 0x8049E220
-.balign 0x8
-.global lbl_8047F048
+.balign 8
 lbl_8047F048:
-	.4byte 0x75706461
-	.4byte 0x74654D67
-	.4byte 0x722E6370
-	.4byte 0x70000000
-.global lbl_8047F058
+	.asciz "updateMgr.cpp"
+.balign 4
 lbl_8047F058:
-	.4byte 0x6D61696C
-	.4byte 0x20746F20
-	.4byte 0x5B25642D
-	.4byte 0x25645D20
-	.4byte 0x25640A00
-	.4byte 0x00000000
+	.asciz "mail to [%d-%d] %d\n"
 
 .section .sbss # 0x80514D80 - 0x80516360
-.balign 0x8
+.balign 8
 .global collisionUpdateMgr__4Game
 collisionUpdateMgr__4Game:
-	.skip 0x8
+	.skip 4
 
 .section .text, "ax"  # 0x800056C0 - 0x80472F00
-
 .global updatable__Q24Game9UpdateMgrFPQ24Game13UpdateContext
 updatable__Q24Game9UpdateMgrFPQ24Game13UpdateContext:
 /* 801967B8 001936F8  28 04 00 00 */	cmplwi r4, 0
