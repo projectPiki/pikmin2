@@ -1,18 +1,16 @@
 .include "macros.inc"
 .section .data, "wa"  # 0x8049E220 - 0x804EFC20
-.balign 0x8
-.global ResetFunctionInfo_1
-ResetFunctionInfo_1:
-	.4byte OnReset1
+.balign 8
+ResetFunctionInfo:
+	.4byte OnReset
 	.4byte 0xFFFFFFFF
 	.4byte 0x00000000
 	.4byte 0x00000000
 
 .section .sbss # 0x80514D80 - 0x80516360
-.balign 0x8
-.global AlarmQueue
+.balign 8
 AlarmQueue:
-	.skip 0x8
+	.skip 8
 
 .section .text, "ax"  # 0x800056C0 - 0x80472F00
 .global OSInitAlarm
@@ -32,8 +30,8 @@ OSInitAlarm:
 /* 800EBAE4 000E8A24  38 60 00 08 */	li r3, 8
 /* 800EBAE8 000E8A28  90 0D 8F 50 */	stw r0, AlarmQueue@sda21(r13)
 /* 800EBAEC 000E8A2C  4B FF FE 11 */	bl __OSSetExceptionHandler
-/* 800EBAF0 000E8A30  3C 60 80 4B */	lis r3, ResetFunctionInfo_1@ha
-/* 800EBAF4 000E8A34  38 63 8A F8 */	addi r3, r3, ResetFunctionInfo_1@l
+/* 800EBAF0 000E8A30  3C 60 80 4B */	lis r3, ResetFunctionInfo@ha
+/* 800EBAF4 000E8A34  38 63 8A F8 */	addi r3, r3, ResetFunctionInfo@l
 /* 800EBAF8 000E8A38  48 00 47 AD */	bl OSRegisterResetFunction
 lbl_800EBAFC:
 /* 800EBAFC 000E8A3C  80 01 00 0C */	lwz r0, 0xc(r1)
@@ -48,7 +46,6 @@ OSCreateAlarm:
 /* 800EBB14 000E8A54  90 03 00 04 */	stw r0, 4(r3)
 /* 800EBB18 000E8A58  4E 80 00 20 */	blr 
 
-.global InsertAlarm
 InsertAlarm:
 /* 800EBB1C 000E8A5C  7C 08 02 A6 */	mflr r0
 /* 800EBB20 000E8A60  90 01 00 04 */	stw r0, 4(r1)
@@ -321,7 +318,6 @@ lbl_800EBED4:
 /* 800EBEE8 000E8E28  7C 08 03 A6 */	mtlr r0
 /* 800EBEEC 000E8E2C  4E 80 00 20 */	blr 
 
-.global DecrementerExceptionCallback
 DecrementerExceptionCallback:
 /* 800EBEF0 000E8E30  7C 08 02 A6 */	mflr r0
 /* 800EBEF4 000E8E34  90 01 00 04 */	stw r0, 4(r1)
@@ -475,7 +471,6 @@ lbl_800EC0B8:
 /* 800EC118 000E9058  7C 08 03 A6 */	mtlr r0
 /* 800EC11C 000E905C  4E 80 00 20 */	blr 
 
-.global DecrementerExceptionHandler
 DecrementerExceptionHandler:
 /* 800EC120 000E9060  90 04 00 00 */	stw r0, 0(r4)
 /* 800EC124 000E9064  90 24 00 04 */	stw r1, 4(r4)
@@ -498,8 +493,7 @@ DecrementerExceptionHandler:
 /* 800EC168 000E90A8  94 21 FF F8 */	stwu r1, -8(r1)
 /* 800EC16C 000E90AC  4B FF FD 84 */	b DecrementerExceptionCallback
 
-.global OnReset1
-OnReset1:
+OnReset:
 /* 800EC170 000E90B0  7C 08 02 A6 */	mflr r0
 /* 800EC174 000E90B4  90 01 00 04 */	stw r0, 4(r1)
 /* 800EC178 000E90B8  94 21 FF E8 */	stwu r1, -0x18(r1)

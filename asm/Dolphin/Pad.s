@@ -1,79 +1,60 @@
 .include "macros.inc"
 .section .data, "wa"  # 0x8049E220 - 0x804EFC20
-.balign 0x8
-.global lbl_804A9E60
+.balign 8
 lbl_804A9E60:
 	.asciz "<< Dolphin SDK - PAD\trelease build: Aug  6 2003 04:30:02 (0x2301) >>"
-	.skip 3
-.global ResetFunctionInfo_3
-ResetFunctionInfo_3:
+.balign 4
+ResetFunctionInfo:
 	.4byte OnReset3
 	.4byte 0x0000007F
 	.4byte 0x00000000
 	.4byte 0x00000000
 
 .section .sdata, "wa"  # 0x80514680 - 0x80514D80
-.balign 0x8
+.balign 8
 .global __PADVersion
 __PADVersion:
 	.4byte lbl_804A9E60
-.global ResettingChan
 ResettingChan:
 	.4byte 0x00000020
-.global XPatchBits
 XPatchBits:
 	.4byte 0xF0000000
-.global AnalogMode
 AnalogMode:
 	.4byte 0x00000300
-.global Spec
 Spec:
 	.4byte 5
-.global MakeStatus
 MakeStatus:
 	.4byte SPEC2_MakeStatus
-.global CmdReadOrigin
 CmdReadOrigin:
 	.4byte 0x41000000
-.global CmdCalibrate
 CmdCalibrate:
 	.4byte 0x42000000
 
 .section .sbss # 0x80514D80 - 0x80516360
-.balign 0x8
-.global Initialized
+.balign 8
 Initialized:
-	.skip 0x4
-.global EnabledBits
+	.skip 4
 EnabledBits:
-	.skip 0x4
-.global ResettingBits
+	.skip 4
 ResettingBits:
-	.skip 0x4
-.global RecalibrateBits
+	.skip 4
 RecalibrateBits:
-	.skip 0x4
-.global WaitingBits
+	.skip 4
 WaitingBits:
-	.skip 0x4
-.global CheckingBits
+	.skip 4
 CheckingBits:
-	.skip 0x4
-.global PendingBits
+	.skip 4
 PendingBits:
-	.skip 0x4
-.global BarrelBits
+	.skip 4
 BarrelBits:
-	.skip 0x4
-.global SamplingCallback
+	.skip 4
 SamplingCallback:
-	.skip 0x4
-.global recalibrated$388
+	.skip 4
 recalibrated$388:
-	.skip 0x4
+	.skip 4
 .global __PADSpec
 __PADSpec:
-	.skip 0x8
+	.skip 4
 
 .section .text, "ax"  # 0x800056C0 - 0x80472F00
 .global UpdateOrigin
@@ -888,8 +869,8 @@ lbl_800F40BC:
 /* 800F40F8 000F1038  64 00 4D C0 */	oris r0, r0, 0x4dc0
 /* 800F40FC 000F103C  90 1F 00 4C */	stw r0, 0x4c(r31)
 /* 800F4100 000F1040  48 00 27 41 */	bl SIRefreshSamplingRate
-/* 800F4104 000F1044  3C 60 80 4B */	lis r3, ResetFunctionInfo_3@ha
-/* 800F4108 000F1048  38 63 9E A8 */	addi r3, r3, ResetFunctionInfo_3@l
+/* 800F4104 000F1044  3C 60 80 4B */	lis r3, ResetFunctionInfo@ha
+/* 800F4108 000F1048  38 63 9E A8 */	addi r3, r3, ResetFunctionInfo@l
 /* 800F410C 000F104C  4B FF C1 99 */	bl OSRegisterResetFunction
 /* 800F4110 000F1050  3C 60 F0 00 */	lis r3, 0xf000
 /* 800F4114 000F1054  4B FF FC A5 */	bl PADReset

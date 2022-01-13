@@ -1,31 +1,28 @@
 .include "macros.inc"
 .section .data, "wa"  # 0x8049E220 - 0x804EFC20
-.balign 0x8
-.global GBA_VERSION_STRING
+.balign 8
 GBA_VERSION_STRING:
 	.asciz "<< Dolphin SDK - GBA\trelease build: Dec  3 2003 18:41:55 (0x2301) >>"
-	.skip 3
-.global ResetFunctionInfo_4
-ResetFunctionInfo_4:
-	.4byte OnReset4
+.balign 4
+ResetFunctionInfo:
+	.4byte OnReset
 	.4byte 0x0000007E
 	.4byte 0x00000000
 	.4byte 0x00000000
 
 .section .sdata, "wa"  # 0x80514680 - 0x80514D80
-.balign 0x8
+.balign 8
 .global __GBAVersion
 __GBAVersion:
 	.4byte GBA_VERSION_STRING
 
 .section .sbss # 0x80514D80 - 0x80516360
-.balign 0x8
-.global Initialized_1
-Initialized_1:
-	.skip 0x4
+.balign 8
+Initialized:
+	.skip 4
 .global __GBAReset
 __GBAReset:
-	.skip 0x4
+	.skip 4
 
 .section .text, "ax"  # 0x800056C0 - 0x80472F00
 .global ShortCommandProc
@@ -60,12 +57,12 @@ GBAInit:
 /* 800FEB84 000FBAC4  90 01 00 04 */	stw r0, 4(r1)
 /* 800FEB88 000FBAC8  94 21 FF E0 */	stwu r1, -0x20(r1)
 /* 800FEB8C 000FBACC  BF 61 00 0C */	stmw r27, 0xc(r1)
-/* 800FEB90 000FBAD0  80 0D 91 98 */	lwz r0, Initialized_1@sda21(r13)
+/* 800FEB90 000FBAD0  80 0D 91 98 */	lwz r0, Initialized@sda21(r13)
 /* 800FEB94 000FBAD4  2C 00 00 00 */	cmpwi r0, 0
 /* 800FEB98 000FBAD8  40 82 00 94 */	bne lbl_800FEC2C
 /* 800FEB9C 000FBADC  38 00 00 01 */	li r0, 1
 /* 800FEBA0 000FBAE0  80 6D 83 B8 */	lwz r3, __GBAVersion@sda21(r13)
-/* 800FEBA4 000FBAE4  90 0D 91 98 */	stw r0, Initialized_1@sda21(r13)
+/* 800FEBA4 000FBAE4  90 0D 91 98 */	stw r0, Initialized@sda21(r13)
 /* 800FEBA8 000FBAE8  4B FE CE E1 */	bl OSRegisterVersion
 /* 800FEBAC 000FBAEC  3C 60 80 00 */	lis r3, 0x800000F8@ha
 /* 800FEBB0 000FBAF0  80 03 00 F8 */	lwz r0, 0x800000F8@l(r3)
@@ -96,9 +93,9 @@ lbl_800FEBE8:
 /* 800FEC10 000FBB50  4B FE CE A5 */	bl OSInitAlarm
 /* 800FEC14 000FBB54  4B FD C1 29 */	bl DSPInit
 /* 800FEC18 000FBB58  38 00 00 00 */	li r0, 0
-/* 800FEC1C 000FBB5C  3C 60 80 4B */	lis r3, ResetFunctionInfo_4@ha
+/* 800FEC1C 000FBB5C  3C 60 80 4B */	lis r3, ResetFunctionInfo@ha
 /* 800FEC20 000FBB60  90 0D 91 9C */	stw r0, __GBAReset@sda21(r13)
-/* 800FEC24 000FBB64  38 63 A1 40 */	addi r3, r3, ResetFunctionInfo_4@l
+/* 800FEC24 000FBB64  38 63 A1 40 */	addi r3, r3, ResetFunctionInfo@l
 /* 800FEC28 000FBB68  4B FF 16 7D */	bl OSRegisterResetFunction
 lbl_800FEC2C:
 /* 800FEC2C 000FBB6C  BB 61 00 0C */	lmw r27, 0xc(r1)
@@ -193,8 +190,7 @@ lbl_800FED4C:
 /* 800FED58 000FBC98  7C 08 03 A6 */	mtlr r0
 /* 800FED5C 000FBC9C  4E 80 00 20 */	blr 
 
-.global OnReset4
-OnReset4:
+OnReset:
 /* 800FED60 000FBCA0  38 00 00 01 */	li r0, 1
 /* 800FED64 000FBCA4  90 0D 91 9C */	stw r0, __GBAReset@sda21(r13)
 /* 800FED68 000FBCA8  38 60 00 01 */	li r3, 1

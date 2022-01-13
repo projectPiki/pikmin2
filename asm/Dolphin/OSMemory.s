@@ -1,16 +1,14 @@
 .include "macros.inc"
 .section .data, "wa"  # 0x8049E220 - 0x804EFC20
-.balign 0x8
-.global ResetFunctionInfo_2
-ResetFunctionInfo_2:
-	.4byte OnReset2
+.balign 8
+ResetFunctionInfo:
+	.4byte OnReset
 	.4byte 0x0000007F
 	.4byte 0x00000000
 	.4byte 0x00000000
 
 .section .text, "ax"  # 0x800056C0 - 0x80472F00
-.global OnReset2
-OnReset2:
+OnReset:
 /* 800EF794 000EC6D4  7C 08 02 A6 */	mflr r0
 /* 800EF798 000EC6D8  2C 03 00 00 */	cmpwi r3, 0
 /* 800EF79C 000EC6DC  90 01 00 04 */	stw r0, 4(r1)
@@ -228,8 +226,8 @@ __OSInitMemoryProtection:
 /* 800EFA90 000EC9D0  7F A4 EB 78 */	mr r4, r29
 /* 800EFA94 000EC9D4  38 60 00 04 */	li r3, 4
 /* 800EFA98 000EC9D8  4B FF F1 ED */	bl __OSSetInterruptHandler
-/* 800EFA9C 000EC9DC  3C 60 80 4B */	lis r3, ResetFunctionInfo_2@ha
-/* 800EFAA0 000EC9E0  38 63 9D F0 */	addi r3, r3, ResetFunctionInfo_2@l
+/* 800EFA9C 000EC9DC  3C 60 80 4B */	lis r3, ResetFunctionInfo@ha
+/* 800EFAA0 000EC9E0  38 63 9D F0 */	addi r3, r3, ResetFunctionInfo@l
 /* 800EFAA4 000EC9E4  48 00 08 01 */	bl OSRegisterResetFunction
 /* 800EFAA8 000EC9E8  80 7B 00 F0 */	lwz r3, 0xf0(r27)
 /* 800EFAAC 000EC9EC  80 1B 00 28 */	lwz r0, 0x28(r27)

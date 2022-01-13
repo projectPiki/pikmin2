@@ -92,7 +92,6 @@ lbl_800D6CB0:
 /* 800D6CB8 000D3BF8  7C 08 03 A6 */	mtlr r0
 /* 800D6CBC 000D3BFC  4E 80 00 20 */	blr 
 
-.global BlockWriteCallback
 BlockWriteCallback:
 /* 800D6CC0 000D3C00  7C 08 02 A6 */	mflr r0
 /* 800D6CC4 000D3C04  90 01 00 04 */	stw r0, 4(r1)
