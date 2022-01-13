@@ -3,12 +3,11 @@
 .4byte __sinit_aiAction_cpp
 
 .section .data, "wa"  # 0x8049E220 - 0x804EFC20
-.balign 0x8
-.global lbl_804B4A60
-lbl_804B4A60:
-	.4byte 0x00000000
-	.4byte 0x00000000
-	.4byte 0x00000000
+.balign 8
+govNAN___Q24Game5P2JST:
+	.float 0.0
+	.float 0.0
+	.float 0.0
 .global __vt__Q26PikiAI6Action
 __vt__Q26PikiAI6Action:
 	.4byte 0
@@ -28,30 +27,24 @@ __vt__Q26PikiAI6Action:
 	.4byte getInfo__Q26PikiAI6ActionFPc
 
 .section .sbss # 0x80514D80 - 0x80516360
-.balign 0x8
-.global lbl_805159D8
-lbl_805159D8:
-	.skip 0x4
-.global lbl_805159DC
-lbl_805159DC:
-	.skip 0x4
+.balign 8
+gu32NAN___Q24Game5P2JST:
+	.skip 4
+gfNAN___Q24Game5P2JST:
+	.skip 4
 
 .section .sdata2, "a"     # 0x80516360 - 0x80520E40
-.balign 0x8
-.global lbl_80518F48
+.balign 8
 lbl_80518F48:
-	.4byte 0x41637469
-	.4byte 0x6F6E0000
-.global lbl_80518F50
+	.asciz "Action"
+.balign 4
 lbl_80518F50:
-	.4byte 0x25730000
-.global lbl_80518F54
+	.asciz "%s"
+.balign 4
 lbl_80518F54:
-	.4byte 0x43960000
-.global lbl_80518F58
+	.float 300.0
 lbl_80518F58:
-	.4byte 0x00000000
-	.4byte 0x00000000
+	.float 0.0
 
 .section .text, "ax"  # 0x800056C0 - 0x80472F00
 .global __ct__Q26PikiAI6ActionFPQ24Game4Piki
@@ -700,10 +693,10 @@ __sinit_aiAction_cpp:
 /* 801972B4 001941F4  3C 80 80 51 */	lis r4, __float_nan@ha
 /* 801972B8 001941F8  38 00 FF FF */	li r0, -1
 /* 801972BC 001941FC  C0 04 48 B0 */	lfs f0, __float_nan@l(r4)
-/* 801972C0 00194200  3C 60 80 4B */	lis r3, lbl_804B4A60@ha
-/* 801972C4 00194204  90 0D 93 58 */	stw r0, lbl_805159D8@sda21(r13)
-/* 801972C8 00194208  D4 03 4A 60 */	stfsu f0, lbl_804B4A60@l(r3)
-/* 801972CC 0019420C  D0 0D 93 5C */	stfs f0, lbl_805159DC@sda21(r13)
+/* 801972C0 00194200  3C 60 80 4B */	lis r3, govNAN___Q24Game5P2JST@ha
+/* 801972C4 00194204  90 0D 93 58 */	stw r0, gu32NAN___Q24Game5P2JST@sda21(r13)
+/* 801972C8 00194208  D4 03 4A 60 */	stfsu f0, govNAN___Q24Game5P2JST@l(r3)
+/* 801972CC 0019420C  D0 0D 93 5C */	stfs f0, gfNAN___Q24Game5P2JST@sda21(r13)
 /* 801972D0 00194210  D0 03 00 04 */	stfs f0, 4(r3)
 /* 801972D4 00194214  D0 03 00 08 */	stfs f0, 8(r3)
 /* 801972D8 00194218  4E 80 00 20 */	blr 

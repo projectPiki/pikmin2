@@ -135,7 +135,7 @@ lbl_8047FC50:
 	.asciz "/user/Kando/aiConstants.txt"
 
 .section .data, "wa" # 0x8049E220 - 0x804EFC20
-.balign 0x8
+.balign 8
 .global __vt__Q24Game11AIConstants
 __vt__Q24Game11AIConstants:
 	.4byte 0
@@ -147,7 +147,7 @@ __vt__Q24Game11AIConstants:
 .balign 8
 .global _aiConstants__4Game
 _aiConstants__4Game:
-	.skip 8
+	.skip 4
 
 .section .sdata2, "a" # 0x80516360 - 0x80520E40
 .balign 8

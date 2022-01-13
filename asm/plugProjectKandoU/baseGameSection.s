@@ -3,31 +3,24 @@
 .4byte __sinit_baseGameSection_cpp
 
 .section .rodata  # 0x804732E0 - 0x8049E220
-.balign 0x8
-.global lbl_8047C948
+.balign 8
 lbl_8047C948:
 	.4byte 0x00000000
 	.4byte 0x00000000
 	.4byte 0x00000000
-	.4byte 0x62617365
-	.4byte 0x47616D65
-	.4byte 0x53656374
-	.4byte 0x696F6E00
-.global lbl_8047C964
+.balign 4
+lbl_8047C954:
+	.asciz "baseGameSection"
+.balign 4
 lbl_8047C964:
-	.4byte 0x62617365
-	.4byte 0x47616D65
-	.4byte 0x53656374
-	.4byte 0x696F6E2E
-	.4byte 0x63707000
-.global lbl_8047C978
-lbl_8047C978:
+	.asciz "baseGameSection.cpp"
+.balign 4
+lbl_8047C978: # Shift-JIS
 	.4byte 0x825189F1
 	.4byte 0x82CD96B3
 	.4byte 0x979D8297
 	.4byte 0x0A000000
-.global lbl_8047C988
-lbl_8047C988:
+lbl_8047C988: # Shift-JIS
 	.4byte 0x75736553
 	.4byte 0x70656369
 	.4byte 0x66696346
@@ -37,317 +30,222 @@ lbl_8047C988:
 	.4byte 0xC482C882
 	.4byte 0xA282970A
 	.4byte 0x00000000
-.global lbl_8047C9AC
+.balign 4
 lbl_8047C9AC:
-	.4byte 0x50534761
-	.4byte 0x6D652E68
-	.4byte 0x00000000
-.global lbl_8047C9B8
+	.asciz "PSGame.h"
+.balign 4
 lbl_8047C9B8:
 	.asciz "P2Assert"
-	.skip 3
-.global lbl_8047C9C4
+.balign 4
 lbl_8047C9C4:
-	.4byte 0x77616974
-	.4byte 0x53796E63
-	.4byte 0x4C6F6164
-	.4byte 0x00000000
-	.4byte 0x4247533A
-	.4byte 0x3A696E69
-	.4byte 0x74000000
-	.4byte 0x68656170
-	.4byte 0x53746174
-	.4byte 0x75730000
-	.4byte 0x62617365
-	.4byte 0x47616D65
-	.4byte 0x53656374
-	.4byte 0x696F6E3A
-	.4byte 0x3A696E69
-	.4byte 0x74000000
-	.4byte 0x42617365
-	.4byte 0x47616D65
-	.4byte 0x53656374
-	.4byte 0x696F6E3A
-	.4byte 0x3A696E69
-	.4byte 0x7448494F
-	.4byte 0x00000000
-	.4byte 0x42617365
-	.4byte 0x47616D65
-	.4byte 0x53656374
-	.4byte 0x696F6E3A
-	.4byte 0x3A4D6F76
-	.4byte 0x6965506C
-	.4byte 0x61796572
-	.4byte 0x00000000
-	.4byte 0x42617365
-	.4byte 0x47616D65
-	.4byte 0x53656374
-	.4byte 0x696F6E3A
-	.4byte 0x3A496E69
-	.4byte 0x744A3344
-	.4byte 0x00000000
-	.4byte 0x42617365
-	.4byte 0x47616D65
-	.4byte 0x53656374
-	.4byte 0x696F6E3A
-	.4byte 0x3A426566
-	.4byte 0x6F726520
-	.4byte 0x32440000
-	.4byte 0x42617365
-	.4byte 0x47616D65
-	.4byte 0x53656374
-	.4byte 0x696F6E3A
-	.4byte 0x3A47616D
-	.4byte 0x6532444D
-	.4byte 0x67720000
-.global lbl_8047CA94
+	.asciz "waitSyncLoad"
+.balign 4
+lbl_8047C9D4:
+	.asciz "BGS::init"
+.balign 4
+lbl_8047C9E0:
+	.asciz "heapStatus"
+.balign 4
+lbl_8047C9EC:
+	.asciz "baseGameSection::init"
+.balign 4
+lbl_8047CA04:
+	.asciz "BaseGameSection::initHIO"
+.balign 4
+lbl_8047CA20:
+	.asciz "BaseGameSection::MoviePlayer"
+.balign 4
+lbl_8047CA40:
+	.asciz "BaseGameSection::InitJ3D"
+.balign 4
+lbl_8047CA5C:
+	.asciz "BaseGameSection::Before 2D"
+.balign 4
+lbl_8047CA78:
+	.asciz "BaseGameSection::Game2DMgr"
+.balign 4
 lbl_8047CA94:
-	.4byte 0x70617274
-	.4byte 0x69636C65
-	.4byte 0x00000000
-.global lbl_8047CAA0
+	.asciz "particle"
+.balign 4
 lbl_8047CAA0:
-	.4byte 0x5F647261
-	.4byte 0x7733445F
-	.4byte 0x00000000
-	.4byte 0x6E6F726D
-	.4byte 0x616C2D66
-	.4byte 0x6F676F66
-	.4byte 0x66000000
-	.4byte 0x706F7374
-	.4byte 0x73686164
-	.4byte 0x6F770000
-	.4byte 0x6F626A65
-	.4byte 0x63746C61
-	.4byte 0x73740000
-	.4byte 0x47656E65
-	.4byte 0x7261746F
-	.4byte 0x72284465
-	.4byte 0x6661756C
-	.4byte 0x74290000
-	.4byte 0x47656E65
-	.4byte 0x7261746F
-	.4byte 0x7228496E
-	.4byte 0x69742900
-	.4byte 0x47656E65
-	.4byte 0x7261746F
-	.4byte 0x72284C69
-	.4byte 0x6D697429
-	.4byte 0x00000000
+	.asciz "_draw3D_"
+.balign 4
+lbl_8047CAAC:
+	.asciz "normal-fogoff"
+.balign 4
+lbl_8047CABC:
+	.asciz "postshadow"
+.balign 4
+lbl_8047CAC8:
+	.asciz "objectlast"
+.balign 4
+lbl_8047CAD4:
+	.asciz "Generator(Default)"
+.balign 4
+lbl_8047CAE8:
+	.asciz "Generator(Init)"
+.balign 4
+lbl_8047CAF8:
+	.asciz "Generator(Limit)"
+.balign 4
+lbl_8047CB0C: # Shift-JIS
 	.4byte 0x47656E65
 	.4byte 0x7261746F
 	.4byte 0x72289041
 	.4byte 0x95A82900
-	.4byte 0x47656E65
-	.4byte 0x7261746F
-	.4byte 0x72284441
-	.4byte 0x59290000
-	.4byte 0x25732F64
-	.4byte 0x65666175
-	.4byte 0x6C746765
-	.4byte 0x6E2E7478
-	.4byte 0x74000000
-	.4byte 0x2F25732F
-	.4byte 0x706C616E
-	.4byte 0x74736765
-	.4byte 0x6E2E7478
-	.4byte 0x74000000
-	.4byte 0x25732F69
-	.4byte 0x6E697467
-	.4byte 0x656E2E74
-	.4byte 0x78740000
-	.4byte 0x25732F6E
-	.4byte 0x6F6E6C6F
-	.4byte 0x6F702F25
-	.4byte 0x73000000
-	.4byte 0x25732F6C
-	.4byte 0x6F6F702F
-	.4byte 0x25730000
-	.4byte 0x25732F64
-	.4byte 0x61792F25
-	.4byte 0x642E7478
-	.4byte 0x74000000
-	.4byte 0x4B455348
-	.4byte 0x494D4153
-	.4byte 0x55210A00
-	.4byte 0x6E6F2064
-	.4byte 0x656D6F6D
-	.4byte 0x61747269
-	.4byte 0x780A0000
-	.4byte 0x6C6F7569
-	.4byte 0x65206E75
-	.4byte 0x6C6C0000
-	.4byte 0x7830355F
-	.4byte 0x6C6F7569
-	.4byte 0x65737461
-	.4byte 0x72740000
-.global lbl_8047CBC8
-lbl_8047CBC8:
+.balign 4
+lbl_8047CB1C:
+	.asciz "Generator(DAY)"
+.balign 4
+lbl_8047CB2C:
+	.asciz "%s/defaultgen.txt"
+.balign 4
+lbl_8047CB40:
+	.asciz "/%s/plantsgen.txt"
+.balign 4
+lbl_8047CB54:
+	.asciz "%s/initgen.txt"
+.balign 4
+lbl_8047CB64:
+	.asciz "%s/nonloop/%s"
+.balign 4
+lbl_8047CB74:
+	.asciz "%s/loop/%s"
+.balign 4
+lbl_8047CB80:
+	.asciz "%s/day/%d.txt"
+.balign 4
+lbl_8047CB90:
+	.asciz "KESHIMASU!\n"
+.balign 4
+lbl_8047CB9C:
+	.asciz "no demomatrix\n"
+.balign 4
+lbl_8047CBAC:
+	.asciz "louie null"
+.balign 4
+lbl_8047CBB8:
+	.asciz "x05_louiestart"
+.balign 4
+lbl_8047CBC8: # Shift-JIS
 	.4byte 0x8351815B
 	.4byte 0x83808389
 	.4byte 0x83438367
 	.4byte 0x837D836C
 	.4byte 0x815B8357
 	.4byte 0x83830000
-	.4byte 0x444F4E27
-	.4byte 0x54205553
-	.4byte 0x45205448
-	.4byte 0x49532021
-	.4byte 0x0A000000
+.balign 4
+lbl_8047CBE0:
+	.asciz "DON'T USE THIS !\n"
+.balign 4
+lbl_8047CBF4: # Shift-JIS
 	.4byte 0x8E6782C1
 	.4byte 0x82C482C8
 	.4byte 0x82A282A9
 	.4byte 0x82E00A00
-.global lbl_8047CC04
+.balign 4
 lbl_8047CC04:
-	.4byte 0x67616D65
-	.4byte 0x5379732D
-	.4byte 0x64610000
-.global lbl_8047CC10
+	.asciz "gameSys-da"
+.balign 4
 lbl_8047CC10:
-	.4byte 0x454E542D
-	.4byte 0x47535953
-	.4byte 0x00000000
-.global lbl_8047CC1C
+	.asciz "ENT-GSYS"
+.balign 4
 lbl_8047CC1C:
-	.4byte 0x454E542D
-	.4byte 0x52455354
-	.4byte 0x00000000
-	.4byte 0x73657475
-	.4byte 0x70466978
-	.4byte 0x4D656D6F
-	.4byte 0x72790000
-	.4byte 0x75736572
-	.4byte 0x2F4B616E
-	.4byte 0x646F2F6D
-	.4byte 0x697A752E
-	.4byte 0x62746900
-	.4byte 0x66625465
-	.4byte 0x78747572
-	.4byte 0x65000000
-	.4byte 0x75736572
-	.4byte 0x2F456269
-	.4byte 0x73617761
-	.4byte 0x2F656666
-	.4byte 0x6563742F
-	.4byte 0x67616D65
-	.4byte 0x2E6A7063
-	.4byte 0x00000000
-	.4byte 0x75736572
-	.4byte 0x2F456269
-	.4byte 0x73617761
-	.4byte 0x2F656666
-	.4byte 0x6563742F
-	.4byte 0x65666632
-	.4byte 0x645F6761
-	.4byte 0x6D653264
-	.4byte 0x2E6A7063
-	.4byte 0x00000000
-	.4byte 0x6E617669
-	.4byte 0x2D70696B
-	.4byte 0x69000000
-	.4byte 0x616C6C6F
-	.4byte 0x63617469
-	.4byte 0x6F6E2064
-	.4byte 0x616D6563
-	.4byte 0x6B210A25
-	.4byte 0x642F2564
-	.4byte 0x00000000
-	.4byte 0x5053436F
-	.4byte 0x6D6D6F6E
-	.4byte 0x2E680000
-	.4byte 0x73657475
-	.4byte 0x70466C6F
-	.4byte 0x61744D65
-	.4byte 0x6D6F7279
-	.4byte 0x00000000
-	.4byte 0x50696B6D
-	.4byte 0x696E2D50
-	.4byte 0x696B6943
-	.4byte 0x6C617373
-	.4byte 0x00000000
-	.4byte 0x75736572
-	.4byte 0x2F4D756B
-	.4byte 0x6B692F6D
-	.4byte 0x6170756E
-	.4byte 0x6974732F
-	.4byte 0x63617665
-	.4byte 0x696E666F
-	.4byte 0x2F257300
-	.4byte 0x75736572
-	.4byte 0x2F416265
-	.4byte 0x2F76732F
-	.4byte 0x25730000
-	.4byte 0x506C6174
-	.4byte 0x43656C6C
-	.4byte 0x4D677200
-	.4byte 0x4D617052
-	.4byte 0x6F6F6D43
-	.4byte 0x656C6C4D
-	.4byte 0x67720000
-	.4byte 0x3C666C6F
-	.4byte 0x61743E20
-	.4byte 0x446F6E65
-	.4byte 0x0A000000
-.global lbl_8047CD58
+	.asciz "ENT-REST"
+.balign 4
+lbl_8047CC28:
+	.asciz "setupFixMemory"
+.balign 4
+lbl_8047CC38:
+	.asciz "user/Kando/mizu.bti"
+.balign 4
+lbl_8047CC4C:
+	.asciz "fbTexture"
+.balign 4
+lbl_8047CC58:
+	.asciz "user/Ebisawa/effect/game.jpc"
+.balign 4
+lbl_8047CC78:
+	.asciz "user/Ebisawa/effect/eff2d_game2d.jpc"
+.balign 4
+lbl_8047CCA0:
+	.asciz "navi-piki"
+.balign 4
+lbl_8047CCAC:
+	.asciz "allocation dameck!\n%d/%d"
+.balign 4
+lbl_8047CCC8:
+	.asciz "PSCommon.h"
+.balign 4
+lbl_8047CCD4:
+	.asciz "setupFloatMemory"
+.balign 4
+lbl_8047CCE8:
+	.asciz "Pikmin-PikiClass"
+.balign 4
+lbl_8047CCFC:
+	.asciz "user/Mukki/mapunits/caveinfo/%s"
+.balign 4
+lbl_8047CD1C:
+	.asciz "user/Abe/vs/%s"
+.balign 4
+lbl_8047CD2C:
+	.asciz "PlatCellMgr"
+.balign 4
+lbl_8047CD38:
+	.asciz "MapRoomCellMgr"
+.balign 4
+lbl_8047CD48:
+	.asciz "<float> Done\n"
+.balign 4
 lbl_8047CD58:
-	.4byte 0x63617665
-	.4byte 0x696E666F
-	.4byte 0x2E747874
-	.4byte 0x00000000
-	.4byte 0x43726561
-	.4byte 0x74757265
-	.4byte 0x41637469
-	.4byte 0x6F6E4172
-	.4byte 0x67000000
-	.4byte 0x41637469
-	.4byte 0x6F6E4172
-	.4byte 0x67000000
-.global lbl_8047CD88
+	.asciz "caveinfo.txt"
+.balign 4
+lbl_8047CD68:
+	.asciz "CreatureActionArg"
+.balign 4
+lbl_8047CD7C:
+	.asciz "ActionArg"
+.balign 4
 lbl_8047CD88:
-	.4byte 0x23202564
-	.4byte 0x2F25640D
-	.4byte 0x0A000000
-	.4byte 0x00000000
+	.asciz "# %d/%d\r\n"
 
 .section .data, "wa"  # 0x8049E220 - 0x804EFC20
-.balign 0x8
-.global lbl_804B0C70
-lbl_804B0C70:
-	.4byte 0x00000000
-	.4byte 0x00000000
-	.4byte 0x00000000
+.balign 8
+govNAN___Q24Game5P2JST:
+	.float 0.0
+	.float 0.0
+	.float 0.0
 .global UfoMenuResult__Q22og6Screen
 UfoMenuResult__Q22og6Screen:
-	.4byte 0x00000001
-	.4byte 0x00000002
-	.4byte 0x00000003
-	.4byte 0x00000000
-.global lbl_804B0C8C
+	.4byte 1
+	.4byte 2
+	.4byte 3
+	.4byte 0
 lbl_804B0C8C:
 	.4byte 0x00000000
 	.4byte 0xFFFFFFFF
 	.4byte "onKanteiDone__Q24Game15BaseGameSectionFR7Rect<f>"
-.global lbl_804B0C98
 lbl_804B0C98:
 	.4byte 0x00000000
 	.4byte 0xFFFFFFFF
 	.4byte onCameraBlendFinished__Q24Game15BaseGameSectionFPQ24Game9CameraArg
+lbl_804B0CA4:
 	.4byte 0x00000000
 	.4byte 0xFFFFFFFF
 	.4byte dvdloadGameSystem__Q24Game15BaseGameSectionFv
+lbl_804B0CB0:
 	.4byte 0x00000000
 	.4byte 0xFFFFFFFF
 	.4byte movieDone__Q24Game15BaseGameSectionFPQ24Game11MovieConfigUlUl
+lbl_804B0CBC:
 	.4byte 0x00000000
 	.4byte 0x000000B0
 	.4byte 0x00000000
-.global lbl_804B0CC8
 lbl_804B0CC8:
 	.4byte 0x00000000
 	.4byte 0xFFFFFFFF
 	.4byte "changeGeneratorCursor__Q24Game15BaseGameSectionFR10Vector3<f>"
-.global lbl_804B0CD4
 lbl_804B0CD4:
 	.4byte 0x00000000
 	.4byte 0xFFFFFFFF
@@ -620,226 +518,174 @@ __vt__Q24Game15BaseGameSection:
 	.4byte 0
 
 .section .sdata, "wa"  # 0x80514680 - 0x80514D80
-.balign 0x8
+.balign 8
 .global sOptDraw__Q24Game15BaseGameSection
 sOptDraw__Q24Game15BaseGameSection:
-	.4byte 0x03000000
+	.byte 3
 
 .section .sbss # 0x80514D80 - 0x80516360
-.balign 0x8
-.global lbl_80515928
-lbl_80515928:
-	.skip 0x4
-.global lbl_8051592C
-lbl_8051592C:
-	.skip 0x4
+.balign 8
+gu32NAN___Q24Game5P2JST:
+	.skip 4
+gfNAN___Q24Game5P2JST:
+	.skip 4
 .global cameraMgrCallback
 cameraMgrCallback:
-	.skip 0x4
-.global theExpHeap
+	.skip 4
 theExpHeap:
-	.skip 0x4
-.global col$4567
+	.skip 4
 col$4567:
-	.skip 0x4
-.global init$4568
+	.skip 4
 init$4568:
-	.skip 0x4
+	.skip 1
 
 .section .sdata2, "a"     # 0x80516360 - 0x80520E40
-.balign 0x8
-.global lbl_80518498
+.balign 8
 lbl_80518498:
-	.4byte 0x00000000
-.global lbl_8051849C
+	.float 0.0
 lbl_8051849C:
-	.4byte 0x44180000
-.global lbl_805184A0
+	.float 608.0
 lbl_805184A0:
-	.4byte 0x43F00000
-.global lbl_805184A4
+	.float 480.0
 lbl_805184A4:
 	.float 1.0
-.global lbl_805184A8
+.balign 4
 lbl_805184A8:
-	.4byte 0x646F416E
-	.4byte 0x696D0000
-.global lbl_805184B0
+	.asciz "doAnim"
+.balign 4
 lbl_805184B0:
-	.4byte 0x454E5400
-.global lbl_805184B4
+	.asciz "ENT"
+.balign 4
 lbl_805184B4:
-	.4byte 0x454E542D
-	.4byte 0x41000000
-.global lbl_805184BC
+	.asciz "ENT-A"
+.balign 4
 lbl_805184BC:
-	.4byte 0x454E542D
-	.4byte 0x42000000
-.global lbl_805184C4
+	.asciz "ENT-B"
+.balign 4
 lbl_805184C4:
-	.4byte 0x646F5369
-	.4byte 0x6D000000
-.global lbl_805184CC
+	.asciz "doSim"
+.balign 4
 lbl_805184CC:
-	.4byte 0x636F6C6C
-	.4byte 0x00000000
-.global lbl_805184D4
+	.asciz "coll"
+.balign 4
 lbl_805184D4:
-	.4byte 0x32640000
-.global lbl_805184D8
+	.asciz "2d"
+.balign 4
 lbl_805184D8:
-	.4byte 0x4F504100
-.global lbl_805184DC
+	.asciz "OPA"
+.balign 4
 lbl_805184DC:
-	.4byte 0x6E6F6E61
-	.4byte 0x6D650000
-.global lbl_805184E4
+	.asciz "noname"
+.balign 4
 lbl_805184E4:
-	.4byte 0x6E6F726D
-	.4byte 0x616C0000
-.global lbl_805184EC
+	.asciz "normal"
+.balign 4
 lbl_805184EC:
-	.4byte 0x6D617000
-.global lbl_805184F0
+	.asciz "map"
+.balign 4
 lbl_805184F0:
-	.4byte 0x70696B69
-	.4byte 0x00000000
-.global lbl_805184F8
+	.asciz "piki"
+.balign 4
 lbl_805184F8:
-	.4byte 0x706F7374
-	.4byte 0x00000000
-.global lbl_80518500
+	.asciz "post"
+.balign 4
 lbl_80518500:
-	.4byte 0x66697273
-	.4byte 0x74000000
-.global lbl_80518508
+	.asciz "first"
+.balign 4
 lbl_80518508:
-	.4byte 0x6661726D
-	.4byte 0x00000000
-.global lbl_80518510
+	.asciz "farm"
+.balign 4
 lbl_80518510:
-	.4byte 0x584C5500
-.global lbl_80518514
+	.asciz "XLU"
+.balign 4
 lbl_80518514:
-	.4byte 0x706F796F
-	.4byte 0x31000000
-.global lbl_8051851C
+	.asciz "poyo1"
+.balign 4
 lbl_8051851C:
-	.4byte 0x42A00000
-.global lbl_80518520
+	.float 80.0
+.balign 8
 lbl_80518520:
 	.4byte 0x43300000
 	.4byte 0x00000000
-.global lbl_80518528
 lbl_80518528:
-	.4byte 0xC2200000
-.global lbl_8051852C
+	.float -40.0
 lbl_8051852C:
-	.4byte 0x40000000
-.global lbl_80518530
+	.float 2.0
 lbl_80518530:
-	.4byte 0x41080000
-.global lbl_80518534
+	.float 8.5
 lbl_80518534:
-	.4byte 0xC090D4FE
-.global lbl_80518538
+	.float -4.526
 lbl_80518538:
-	.4byte 0x40EE7EFA
-.global lbl_8051853C
+	.float 7.453
 lbl_8051853C:
-	.4byte 0xC2700000
-.global lbl_80518540
+	.float -60.0
 lbl_80518540:
-	.4byte 0xC1200000
-.global lbl_80518544
+	.float -10.0
 lbl_80518544:
-	.4byte 0x4190A7F0
-.global lbl_80518548
+	.float 18.082
 lbl_80518548:
-	.4byte 0xC137B646
-.global lbl_8051854C
+	.float -11.482
 lbl_8051854C:
 	.float 0.5
-.global lbl_80518550
 lbl_80518550:
-	.4byte 0x47000000
-.global lbl_80518554
+	.float 32768.0
 lbl_80518554:
-	.4byte 0xC7000000
-.global lbl_80518558
+	.float -32768.0
 lbl_80518558:
-	.4byte 0x40C90FDB
-.global lbl_8051855C
+	.float 6.2831855
 lbl_8051855C:
-	.4byte 0x42480000
-.global lbl_80518560
+	.float 50.0
 lbl_80518560:
-	.4byte 0x43A2F983
-.global lbl_80518564
+	.float 325.9493
 lbl_80518564:
-	.4byte 0xC3A2F983
-.global lbl_80518568
+	.float -325.9493
+.balign 8
 lbl_80518568:
 	.4byte 0x43300000
 	.4byte 0x80000000
-.global lbl_80518570
+.balign 4
 lbl_80518570:
-	.4byte 0x32646472
-	.4byte 0x61770000
-.global lbl_80518578
+	.asciz "2ddraw"
+.balign 4
 lbl_80518578:
-	.4byte 0x3E4CCCCD
-.global lbl_8051857C
+	.float 0.2
 lbl_8051857C:
-	.4byte 0x4479C000
-.global lbl_80518580
+	.float 999.0
+.balign 4
 lbl_80518580:
-	.4byte 0x6974656D
-	.4byte 0x4D677200
-.global lbl_80518588
+	.asciz "itemMgr"
+.balign 4
 lbl_80518588:
-	.4byte 0x72616E64
-	.4byte 0x6F6D0000
-.global lbl_80518590
+	.asciz "random"
+.balign 4
 lbl_80518590:
-	.4byte 0x6D61704D
-	.4byte 0x67720000
-.global lbl_80518598
+	.asciz "mapMgr"
+.balign 4
 lbl_80518598:
-	.4byte 0x43656C6C
-	.4byte 0x4D677200
-.global lbl_805185A0
+	.asciz "CellMgr"
+.balign 4
 lbl_805185A0:
-	.4byte 0x4B435000
-.global lbl_805185A4
+	.float 1.28E7
 lbl_805185A4:
-	.4byte 0xCB435000
-.global lbl_805185A8
+	.float -1.28E7
 lbl_805185A8:
-	.4byte 0x43000000
-.global lbl_805185AC
+	.float 128.0
 lbl_805185AC:
-	.4byte 0x432A0000
-.global lbl_805185B0
+	.float 170.0
 lbl_805185B0:
-	.4byte 0x42D80000
-.global lbl_805185B4
+	.float 108.0
 lbl_805185B4:
-	.4byte 0x40490FDB
-.global lbl_805185B8
+	.float 3.1415927
 lbl_805185B8:
-	.4byte 0x3BB60B61
-.global lbl_805185BC
+	.float 0.0055555557
+.balign 4
 lbl_805185BC:
-	.4byte 0x0D0A0000
+	.asciz "\r\n"
 
 .section .sbss2, "", @nobits # 0x80520e40 - 0x80520ED8
-.global lbl_80520E58
 lbl_80520E58:
-	.skip 0x4
-.global lbl_80520E5C
-lbl_80520E5C:
-	.skip 0x4
+	.skip 8
+
 
 .section .text, "ax"  # 0x800056C0 - 0x80472F00
 .global __ct__Q24Game15BaseGameSectionFP7JKRHeap
@@ -1363,8 +1209,8 @@ init__Q24Game15BaseGameSectionFv:
 /* 8014B4DC 0014841C  3C 60 80 48 */	lis r3, lbl_8047C948@ha
 /* 8014B4E0 00148420  3B E3 C9 48 */	addi r31, r3, lbl_8047C948@l
 /* 8014B4E4 00148424  90 1D 00 48 */	stw r0, 0x48(r29)
-/* 8014B4E8 00148428  3C 60 80 4B */	lis r3, lbl_804B0C70@ha
-/* 8014B4EC 0014842C  3B C3 0C 70 */	addi r30, r3, lbl_804B0C70@l
+/* 8014B4E8 00148428  3C 60 80 4B */	lis r3, govNAN___Q24Game5P2JST@ha
+/* 8014B4EC 0014842C  3B C3 0C 70 */	addi r30, r3, govNAN___Q24Game5P2JST@l
 /* 8014B4F0 00148430  38 9F 00 8C */	addi r4, r31, 0x8c
 /* 8014B4F4 00148434  90 1D 01 3C */	stw r0, 0x13c(r29)
 /* 8014B4F8 00148438  38 61 00 10 */	addi r3, r1, 0x10
@@ -7333,7 +7179,7 @@ lbl_80150A88:
 /* 80150A9C 0014D9DC  48 01 45 15 */	bl addGenNode__Q24Game14BaseHIOSectionFP5CNode
 /* 80150AA0 0014D9E0  80 82 2A F8 */	lwz r4, lbl_80520E58@sda21(r2)
 /* 80150AA4 0014D9E4  38 60 01 80 */	li r3, 0x180
-/* 80150AA8 0014D9E8  80 02 2A FC */	lwz r0, lbl_80520E5C@sda21(r2)
+/* 80150AA8 0014D9E8  80 02 2A FC */	lwz r0, lbl_80520E58+4@sda21(r2)
 /* 80150AAC 0014D9EC  90 81 00 08 */	stw r4, 8(r1)
 /* 80150AB0 0014D9F0  90 01 00 0C */	stw r0, 0xc(r1)
 /* 80150AB4 0014D9F4  80 1F 01 04 */	lwz r0, 0x104(r31)
@@ -8997,10 +8843,10 @@ __sinit_baseGameSection_cpp:
 /* 8015204C 0014EF8C  3C 80 80 51 */	lis r4, __float_nan@ha
 /* 80152050 0014EF90  38 00 FF FF */	li r0, -1
 /* 80152054 0014EF94  C0 04 48 B0 */	lfs f0, __float_nan@l(r4)
-/* 80152058 0014EF98  3C 60 80 4B */	lis r3, lbl_804B0C70@ha
-/* 8015205C 0014EF9C  90 0D 92 A8 */	stw r0, lbl_80515928@sda21(r13)
-/* 80152060 0014EFA0  D4 03 0C 70 */	stfsu f0, lbl_804B0C70@l(r3)
-/* 80152064 0014EFA4  D0 0D 92 AC */	stfs f0, lbl_8051592C@sda21(r13)
+/* 80152058 0014EF98  3C 60 80 4B */	lis r3, govNAN___Q24Game5P2JST@ha
+/* 8015205C 0014EF9C  90 0D 92 A8 */	stw r0, gu32NAN___Q24Game5P2JST@sda21(r13)
+/* 80152060 0014EFA0  D4 03 0C 70 */	stfsu f0, govNAN___Q24Game5P2JST@l(r3)
+/* 80152064 0014EFA4  D0 0D 92 AC */	stfs f0, gfNAN___Q24Game5P2JST@sda21(r13)
 /* 80152068 0014EFA8  D0 03 00 04 */	stfs f0, 4(r3)
 /* 8015206C 0014EFAC  D0 03 00 08 */	stfs f0, 8(r3)
 /* 80152070 0014EFB0  4E 80 00 20 */	blr 
