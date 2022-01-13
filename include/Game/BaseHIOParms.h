@@ -5,13 +5,12 @@
 
 namespace Game {
 namespace BaseHIOParms {
-extern s8 sEntryOpt;
-extern s8 sEntryOptMapRoom;
-extern s8 sDrawParticle;
-extern s8 sMabikiEfx;
-
-extern s8 sMapRoomFinal;
-extern s8 sTekiChappyFlag[3];
+extern bool sEntryOpt;
+extern bool sEntryOptMapRoom;
+extern bool sDrawParticle;
+extern bool sMabikiEfx;
+extern bool sMapRoomFinal;
+extern bool sTekiChappyFlag;
 } // namespace BaseHIOParms
 } // namespace Game
 
