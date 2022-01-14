@@ -1,15 +1,34 @@
+#include "CarryInfoMgr.h"
 #include "Controller.h"
+#include "Dolphin/dvd.h"
+#include "Dolphin/stl.h"
 #include "DvdThreadCommand.h"
 #include "Game/BaseGameSection.h"
 #include "Game/BaseHIOSection.h"
 #include "Game/CameraMgr.h"
+#include "Game/TimeMgr.h"
+#include "Game/gameGenerator.h"
+#include "Game/gameGeneratorCache.h"
+#include "Game/gamePlayData.h"
+#include "Game/gameStages.h"
 #include "Game/GameSystem.h"
+#include "Game/MapMgr.h"
+#include "Game/MoviePlayer.h"
+#include "Game/rumble.h"
+#include "Game/shadowMgr.h"
+#include "Graphics.h"
+#include "IDelegate.h"
 #include "JSystem/JFW/JFWDisplay.h"
+#include "JSystem/JKR/JKRDvdRipper.h"
 #include "JSystem/JUT/JUTException.h"
+#include "LifeGaugeMgr.h"
+#include "Screen/Game2DMgr.h"
 #include "og/Screen/ogScreen.h"
 #include "System.h"
+#include "stream.h"
 #include "types.h"
 #include "wipe.h"
+#include "nans.h"
 
 /*
     Generated from dpostproc
@@ -852,6 +871,8 @@
         .skip 0x4
 */
 
+static Delegate1<Game::BaseGameSection, Game::CameraArg*>* cameraMgrCallback;
+
 namespace og {
 
 namespace Screen {
@@ -895,7 +916,7 @@ BaseGameSection::BaseGameSection(JKRHeap* heap)
 	m_lightMgr           = nullptr;
 	m_splitter           = nullptr;
 	m_theExpHeap         = nullptr;
-	theExpHeap           = nullptr;
+	m_theExpHeap         = nullptr;
 	_100                 = nullptr;
 	_168                 = nullptr;
 	m_fbTexture          = nullptr;
@@ -1055,6 +1076,13 @@ blr
 }
 } // namespace Game
 
+/**
+ * @generated{__dt__11WipeInFaderFv}
+ * @generated{__dt__12WipeOutFaderFv}
+ * @generated{__dt__8WipeBaseFv}
+ * @generatedAndInlined{__dt__16DvdThreadCommandFv}
+ */
+
 // /*
 //  * --INFO--
 //  * Address:	8014AFBC
@@ -1198,9 +1226,9 @@ namespace Game {
 void BaseGameSection::useSpecificFBTexture(JUTTexture* texture)
 {
 	JUT_ASSERTLINE(1523, m_fbTexture == nullptr, "２回は無理ｗ\n");
-	m_fbTexture           = m_xfbImage;
-	m_xfbImage            = texture;
-	Game::gameSystem->_54 = m_xfbImage;
+	m_fbTexture                    = m_xfbImage;
+	m_xfbImage                     = texture;
+	Game::gameSystem->m_xfbTexture = m_xfbImage;
 	/*
 	stwu     r1, -0x10(r1)
 	mflr     r0
@@ -1244,9 +1272,9 @@ lbl_8014B140:
 void BaseGameSection::restoreFBTexture()
 {
 	JUT_ASSERTLINE(1533, m_fbTexture == nullptr, "useSpecificFBTexture してないｗ\n");
-	m_xfbImage            = m_fbTexture;
-	m_fbTexture           = nullptr;
-	Game::gameSystem->_54 = m_xfbImage;
+	m_xfbImage                     = m_fbTexture;
+	m_fbTexture                    = nullptr;
+	Game::gameSystem->m_xfbTexture = m_xfbImage;
 	/*
 	stwu     r1, -0x10(r1)
 	mflr     r0
@@ -1408,6 +1436,7 @@ void BaseGameSection::loadSync(IDelegate* delegate, bool p2)
  */
 void BaseGameSection::waitSyncLoad(bool)
 {
+	static bool
 	/*
 	stwu     r1, -0x20(r1)
 	mflr     r0
@@ -1501,6 +1530,9 @@ lbl_8014B444:
  */
 void BaseGameSection::dvdloadGameSystem(void)
 {
+	GameSystem* gs   = new GameSystem(this);
+	Game::gameSystem = gs;
+	gs->init();
 	/*
 	stwu     r1, -0x10(r1)
 	mflr     r0
@@ -1784,8 +1816,11 @@ void BaseGameSection::onInit(void) { }
  * Address:	8014B844
  * Size:	000034
  */
-void BaseGameSection::drawInit(Graphics&, Section::EDrawInitMode)
+void BaseGameSection::drawInit(Graphics& gfx, Section::EDrawInitMode mode)
 {
+	if (mode == Two) {
+		section_fadeout();
+	}
 	/*
 	stwu     r1, -0x10(r1)
 	mflr     r0
@@ -2107,8 +2142,34 @@ void BaseGameSection::onUpdate(void) { }
  * Address:	8014BC28
  * Size:	000170
  */
-void BaseGameSection::doDraw(Graphics&)
+void BaseGameSection::doDraw(Graphics& gfx)
 {
+	captureRadarmap(gfx);
+	if (Game::gameSystem->paused() == false) {
+		if (Game::cameraMgr != nullptr) {
+			Game::cameraMgr->update();
+		}
+	} else if (Game::cameraMgr != nullptr) {
+		Game::cameraMgr->controllerLock(2);
+		Game::cameraMgr->update();
+		Game::cameraMgr->controllerUnLock(2);
+	}
+	sys->m_timers->_start("_draw3D_", true);
+	draw3D(gfx);
+	sys->m_timers->_stop("_draw3D_");
+	if (Game::moviePlayer != nullptr && Game::gameSystem->m_isMoviePause == false) {
+		Game::moviePlayer->drawLoading(gfx);
+	}
+	pre2dDraw(gfx);
+	gfx.setToken("2d");
+	draw2D(gfx);
+	if (m_draw2DCreature != nullptr) {
+		drawOtakaraWindow(gfx);
+	}
+	Screen::gGame2DMgr->drawKanteiMsg(gfx);
+	if (Game::moviePlayer != nullptr && Game::gameSystem->m_isMoviePause == false) {
+		Game::moviePlayer->draw(gfx);
+	}
 	/*
 	stwu     r1, -0x10(r1)
 	mflr     r0
@@ -2625,6 +2686,8 @@ lbl_8014BEF8:
  */
 void BaseGameSection::initResources(void)
 {
+	setupFixMemory();
+	setupFloatMemory();
 	/*
 	stwu     r1, -0x10(r1)
 	mflr     r0
@@ -2854,6 +2917,132 @@ namespace Game {
  */
 void BaseGameSection::initGenerators(void)
 {
+	Game::generatorCache->clearGeneratorList();
+	Generator::initializeSystem();
+	CourseInfo* courseInfo = Game::mapMgr->m_courseInfo;
+
+	GeneratorMgr* mgr  = new GeneratorMgr();
+	Game::generatorMgr = mgr;
+	mgr->m_name        = "Generator(Default)";
+	addGenNode(Game::generatorMgr);
+
+	mgr                    = new GeneratorMgr();
+	Game::onceGeneratorMgr = mgr;
+	mgr->m_name            = "Generator(Init)";
+	addGenNode(Game::onceGeneratorMgr);
+
+	mgr                          = new GeneratorMgr();
+	Game::limitGeneratorMgr      = mgr;
+	mgr->m_name                  = "Generator(Limit)";
+	Game::limitGeneratorMgr->_6C = 1;
+	addGenNode(Game::limitGeneratorMgr);
+
+	mgr                      = new GeneratorMgr();
+	Game::plantsGeneratorMgr = mgr;
+	mgr->m_name              = "Generator(植物)";
+	addGenNode(Game::plantsGeneratorMgr);
+
+	mgr                   = new GeneratorMgr();
+	Game::dayGeneratorMgr = mgr;
+	mgr->m_name           = "Generator(DAY)";
+	addGenNode(Game::dayGeneratorMgr);
+
+	GeneratorMgr::cursorCallback = new Delegate1<BaseGameSection, Vector3f&>(this, &BaseGameSection::changeGeneratorCursor);
+
+	GenObjectEnemy::initialise();
+	GenItem::initialise();
+	GenPellet::initialise();
+	GenObjectPiki::initialise();
+	GenObjectNavi::initialise();
+
+	GeneratorMgr* mgrs[64];
+	void* mgrData[64];
+	char pathBuffer[256];
+	int currentIndex;
+	if (courseInfo != nullptr) {
+		Game::PelletBirthBuffer::clear();
+		Game::generatorCache->loadGenerators(courseInfo->m_courseIndex);
+		Game::generatorCache->updateUseList();
+		currentIndex = 0;
+		sprintf(pathBuffer, "%s/defaultgen.txt", courseInfo->m_abeFolder);
+		void* data
+		    = JKRDvdRipper::loadToMainRAM(pathBuffer, nullptr, Switch_0, 0, nullptr, JKRDvdRipper::ALLOC_DIR_BOTTOM, 0, nullptr, nullptr);
+		if (data != nullptr) {
+			RamStream input(data, -1);
+			input.m_mode = STREAM_MODE_TEXT;
+			if (input.m_mode == STREAM_MODE_TEXT) {
+				input.m_tabCount = 0;
+			}
+			Game::generatorMgr->read(input, false);
+			Game::generatorMgr->updateUseList();
+			currentIndex = 1;
+			mgrs[0]      = Game::generatorMgr;
+			mgrData[0]   = data;
+		}
+
+		sprintf(pathBuffer, "/%s/plantsgen.txt", courseInfo->m_abeFolder);
+		if (DVDConvertPathToEntrynum(pathBuffer) != -1) {
+			void* data = JKRDvdRipper::loadToMainRAM(pathBuffer, nullptr, Switch_0, 0, nullptr, JKRDvdRipper::ALLOC_DIR_BOTTOM, 0, nullptr,
+			                                         nullptr);
+			if (data != nullptr) {
+				RamStream input(data, -1);
+				input.m_mode = STREAM_MODE_TEXT;
+				if (input.m_mode) {
+					input.m_tabCount = 0;
+				}
+				Game::plantsGeneratorMgr->read(input, false);
+				Game::plantsGeneratorMgr->updateUseList();
+				mgrData[currentIndex] = data;
+				mgrs[currentIndex++]  = Game::plantsGeneratorMgr;
+			}
+		}
+
+		if (Game::playData->courseVisited(courseInfo->m_courseIndex) == false) {
+			Game::playData->visitCourse(courseInfo->m_courseIndex);
+			sprintf(pathBuffer, "%s/initgen.txt", courseInfo->m_abeFolder);
+			void* data = JKRDvdRipper::loadToMainRAM(pathBuffer, nullptr, Switch_0, 0, nullptr, JKRDvdRipper::ALLOC_DIR_BOTTOM, 0, nullptr,
+			                                         nullptr);
+			if (data != nullptr) {
+				RamStream input(data, -1);
+				input.m_mode = STREAM_MODE_TEXT;
+				if (input.m_mode) {
+					input.m_tabCount = 0;
+				}
+				Game::onceGeneratorMgr->read(input, false);
+				Game::onceGeneratorMgr->updateUseList();
+				mgrData[currentIndex] = data;
+				mgrs[currentIndex++]  = Game::onceGeneratorMgr;
+			}
+		}
+		uint dayCount = Game::gameSystem->m_timeMgr->m_dayCount;
+		for (int i = 0; i < courseInfo->m_limitGenCount; i++) {
+			LimitGen* gen = (LimitGen*)courseInfo->m_limitGenOwner.getChildAt(i);
+			if (gen->_18 <= dayCount && dayCount <= gen->_1C) {
+				if (Game::playData->m_limitGen[courseInfo->m_courseIndex].m_nonLoops.isFlag(i) == false) {
+					sprintf(pathBuffer, "%s/nonloop/%s", courseInfo->m_abeFolder, gen->m_name);
+					void* data = JKRDvdRipper::loadToMainRAM(pathBuffer, nullptr, Switch_0, 0, nullptr, JKRDvdRipper::ALLOC_DIR_BOTTOM, 0,
+					                                         nullptr, nullptr);
+					if (data != nullptr) {
+						RamStream input(data, -1);
+						input.m_mode = STREAM_MODE_TEXT;
+						if (input.m_mode) {
+							input.m_tabCount = 0;
+						}
+						GeneratorMgr* nonloopMgr = new GeneratorMgr();
+						nonloopMgr->_6C          = 1;
+						nonloopMgr->read(input, false);
+						nonloopMgr->setDayLimit(gen->m_dayLimit);
+						nonloopMgr->updateUseList();
+						mgrData[currentIndex] = data;
+						mgrs[currentIndex++]  = nonloopMgr;
+						Game::limitGeneratorMgr->addMgr(nonloopMgr);
+						Game::playData->m_limitGen[courseInfo->m_courseIndex].m_nonLoops.setFlag(i);
+					}
+				}
+			}
+		}
+		// TODO: The rest. What even is math?
+	}
 	/*
 	stwu     r1, -0x1ca0(r1)
 	mflr     r0
@@ -8162,21 +8351,21 @@ namespace Game {
  * Address:	80150700
  * Size:	000008
  */
-u32 BaseGameSection::enableAllocHalt(void) { return 0x0; }
+bool BaseGameSection::enableAllocHalt(void) { return false; }
 
 /*
  * --INFO--
  * Address:	80150708
  * Size:	000008
  */
-u32 BaseGameSection::disableAllocHalt(void) { return 0x0; }
+bool BaseGameSection::disableAllocHalt(void) { return false; }
 
 /*
  * --INFO--
  * Address:	........
  * Size:	000008
  */
-void BaseGameSection::isAllocHalt(void)
+bool BaseGameSection::isAllocHalt(void)
 {
 	// UNUSED FUNCTION
 }
@@ -9229,8 +9418,11 @@ namespace Game {
  * Address:	8015145C
  * Size:	0000A4
  */
-void BaseGameSection::setDrawBuffer(int)
+void BaseGameSection::setDrawBuffer(int index)
 {
+	P2ASSERTBOUNDSLINE(5295, 1, index, 10);
+	j3dSys._48 = _12C->get(index)->_1C;
+	j3dSys._4C = _130->get(index)->_1C;
 	/*
 	stwu     r1, -0x10(r1)
 	mflr     r0
@@ -9285,8 +9477,9 @@ lbl_801514B0:
  * Address:	80151500
  * Size:	000030
  */
-void BaseGameSection::postSetupFloatMemory(void)
+void BaseGameSection::postSetupFloatMemory()
 {
+	Game::mapMgr->setupJUTTextures();
 	/*
 	stwu     r1, -0x10(r1)
 	mflr     r0
@@ -9303,12 +9496,12 @@ void BaseGameSection::postSetupFloatMemory(void)
 	*/
 }
 
-/*
+/**
+ * @generated{setupJUTTextures__Q24Game6MapMgrFv}
  * --INFO--
  * Address:	80151530
  * Size:	000004
  */
-void MapMgr::setupJUTTextures(void) { }
 
 /*
  * --INFO--
@@ -9501,95 +9694,103 @@ void PikiCond_ExceptChappyPikmin::satisfy(Game::Piki*)
 	*/
 }
 
-/*
- * --INFO--
- * Address:	80151750
- * Size:	000070
+/**
+ * @generated{__dt__17Container<5Plane>Fv}
+ * @generated{__dt__22ArrayContainer<5Plane>Fv}
+ * @generated{readObject__9CullPlaneFR6StreamR5Plane}
+ * @generated{writeObject__9CullPlaneFR6StreamR5Plane}
+ * @generated{__dt__9CullPlaneFv}
  */
-void Container<Plane>::~Container()
-{
-	/*
-	stwu     r1, -0x10(r1)
-	mflr     r0
-	stw      r0, 0x14(r1)
-	stw      r31, 0xc(r1)
-	mr       r31, r4
-	stw      r30, 8(r1)
-	or.      r30, r3, r3
-	beq      lbl_801517A4
-	lis      r4, "__vt__17Container<5Plane>"@ha
-	addi     r0, r4, "__vt__17Container<5Plane>"@l
-	stw      r0, 0(r30)
-	beq      lbl_80151794
-	lis      r5, __vt__16GenericContainer@ha
-	li       r4, 0
-	addi     r0, r5, __vt__16GenericContainer@l
-	stw      r0, 0(r30)
-	bl       __dt__5CNodeFv
 
-lbl_80151794:
-	extsh.   r0, r31
-	ble      lbl_801517A4
-	mr       r3, r30
-	bl       __dl__FPv
+// /*
+//  * --INFO--
+//  * Address:	80151750
+//  * Size:	000070
+//  */
+// void Container<Plane>::~Container()
+// {
+// 	/*
+// 	stwu     r1, -0x10(r1)
+// 	mflr     r0
+// 	stw      r0, 0x14(r1)
+// 	stw      r31, 0xc(r1)
+// 	mr       r31, r4
+// 	stw      r30, 8(r1)
+// 	or.      r30, r3, r3
+// 	beq      lbl_801517A4
+// 	lis      r4, "__vt__17Container<5Plane>"@ha
+// 	addi     r0, r4, "__vt__17Container<5Plane>"@l
+// 	stw      r0, 0(r30)
+// 	beq      lbl_80151794
+// 	lis      r5, __vt__16GenericContainer@ha
+// 	li       r4, 0
+// 	addi     r0, r5, __vt__16GenericContainer@l
+// 	stw      r0, 0(r30)
+// 	bl       __dt__5CNodeFv
 
-lbl_801517A4:
-	lwz      r0, 0x14(r1)
-	mr       r3, r30
-	lwz      r31, 0xc(r1)
-	lwz      r30, 8(r1)
-	mtlr     r0
-	addi     r1, r1, 0x10
-	blr
-	*/
-}
+// lbl_80151794:
+// 	extsh.   r0, r31
+// 	ble      lbl_801517A4
+// 	mr       r3, r30
+// 	bl       __dl__FPv
 
-/*
- * --INFO--
- * Address:	801517C0
- * Size:	000080
- */
-void ArrayContainer<Plane>::~ArrayContainer()
-{
-	/*
-	stwu     r1, -0x10(r1)
-	mflr     r0
-	stw      r0, 0x14(r1)
-	stw      r31, 0xc(r1)
-	mr       r31, r4
-	stw      r30, 8(r1)
-	or.      r30, r3, r3
-	beq      lbl_80151824
-	lis      r4, "__vt__22ArrayContainer<5Plane>"@ha
-	addi     r0, r4, "__vt__22ArrayContainer<5Plane>"@l
-	stw      r0, 0(r30)
-	beq      lbl_80151814
-	lis      r4, "__vt__17Container<5Plane>"@ha
-	addi     r0, r4, "__vt__17Container<5Plane>"@l
-	stw      r0, 0(r30)
-	beq      lbl_80151814
-	lis      r5, __vt__16GenericContainer@ha
-	li       r4, 0
-	addi     r0, r5, __vt__16GenericContainer@l
-	stw      r0, 0(r30)
-	bl       __dt__5CNodeFv
+// lbl_801517A4:
+// 	lwz      r0, 0x14(r1)
+// 	mr       r3, r30
+// 	lwz      r31, 0xc(r1)
+// 	lwz      r30, 8(r1)
+// 	mtlr     r0
+// 	addi     r1, r1, 0x10
+// 	blr
+// 	*/
+// }
 
-lbl_80151814:
-	extsh.   r0, r31
-	ble      lbl_80151824
-	mr       r3, r30
-	bl       __dl__FPv
+// /*
+//  * --INFO--
+//  * Address:	801517C0
+//  * Size:	000080
+//  */
+// void ArrayContainer<Plane>::~ArrayContainer()
+// {
+// 	/*
+// 	stwu     r1, -0x10(r1)
+// 	mflr     r0
+// 	stw      r0, 0x14(r1)
+// 	stw      r31, 0xc(r1)
+// 	mr       r31, r4
+// 	stw      r30, 8(r1)
+// 	or.      r30, r3, r3
+// 	beq      lbl_80151824
+// 	lis      r4, "__vt__22ArrayContainer<5Plane>"@ha
+// 	addi     r0, r4, "__vt__22ArrayContainer<5Plane>"@l
+// 	stw      r0, 0(r30)
+// 	beq      lbl_80151814
+// 	lis      r4, "__vt__17Container<5Plane>"@ha
+// 	addi     r0, r4, "__vt__17Container<5Plane>"@l
+// 	stw      r0, 0(r30)
+// 	beq      lbl_80151814
+// 	lis      r5, __vt__16GenericContainer@ha
+// 	li       r4, 0
+// 	addi     r0, r5, __vt__16GenericContainer@l
+// 	stw      r0, 0(r30)
+// 	bl       __dt__5CNodeFv
 
-lbl_80151824:
-	lwz      r0, 0x14(r1)
-	mr       r3, r30
-	lwz      r31, 0xc(r1)
-	lwz      r30, 8(r1)
-	mtlr     r0
-	addi     r1, r1, 0x10
-	blr
-	*/
-}
+// lbl_80151814:
+// 	extsh.   r0, r31
+// 	ble      lbl_80151824
+// 	mr       r3, r30
+// 	bl       __dl__FPv
+
+// lbl_80151824:
+// 	lwz      r0, 0x14(r1)
+// 	mr       r3, r30
+// 	lwz      r31, 0xc(r1)
+// 	lwz      r30, 8(r1)
+// 	mtlr     r0
+// 	addi     r1, r1, 0x10
+// 	blr
+// 	*/
+// }
 
 /*
  * Generated?
@@ -9607,56 +9808,56 @@ lbl_80151824:
  */
 // void CullPlane::writeObject(Stream&, Plane&) { }
 
-/*
- * --INFO--
- * Address:	80151848
- * Size:	000090
- */
-CullPlane::~CullPlane()
-{
-	/*
-	stwu     r1, -0x10(r1)
-	mflr     r0
-	stw      r0, 0x14(r1)
-	stw      r31, 0xc(r1)
-	mr       r31, r4
-	stw      r30, 8(r1)
-	or.      r30, r3, r3
-	beq      lbl_801518BC
-	lis      r4, __vt__9CullPlane@ha
-	addi     r0, r4, __vt__9CullPlane@l
-	stw      r0, 0(r30)
-	beq      lbl_801518AC
-	lis      r4, "__vt__22ArrayContainer<5Plane>"@ha
-	addi     r0, r4, "__vt__22ArrayContainer<5Plane>"@l
-	stw      r0, 0(r30)
-	beq      lbl_801518AC
-	lis      r4, "__vt__17Container<5Plane>"@ha
-	addi     r0, r4, "__vt__17Container<5Plane>"@l
-	stw      r0, 0(r30)
-	beq      lbl_801518AC
-	lis      r5, __vt__16GenericContainer@ha
-	li       r4, 0
-	addi     r0, r5, __vt__16GenericContainer@l
-	stw      r0, 0(r30)
-	bl       __dt__5CNodeFv
+// /*
+//  * --INFO--
+//  * Address:	80151848
+//  * Size:	000090
+//  */
+// CullPlane::~CullPlane()
+// {
+// 	/*
+// 	stwu     r1, -0x10(r1)
+// 	mflr     r0
+// 	stw      r0, 0x14(r1)
+// 	stw      r31, 0xc(r1)
+// 	mr       r31, r4
+// 	stw      r30, 8(r1)
+// 	or.      r30, r3, r3
+// 	beq      lbl_801518BC
+// 	lis      r4, __vt__9CullPlane@ha
+// 	addi     r0, r4, __vt__9CullPlane@l
+// 	stw      r0, 0(r30)
+// 	beq      lbl_801518AC
+// 	lis      r4, "__vt__22ArrayContainer<5Plane>"@ha
+// 	addi     r0, r4, "__vt__22ArrayContainer<5Plane>"@l
+// 	stw      r0, 0(r30)
+// 	beq      lbl_801518AC
+// 	lis      r4, "__vt__17Container<5Plane>"@ha
+// 	addi     r0, r4, "__vt__17Container<5Plane>"@l
+// 	stw      r0, 0(r30)
+// 	beq      lbl_801518AC
+// 	lis      r5, __vt__16GenericContainer@ha
+// 	li       r4, 0
+// 	addi     r0, r5, __vt__16GenericContainer@l
+// 	stw      r0, 0(r30)
+// 	bl       __dt__5CNodeFv
 
-lbl_801518AC:
-	extsh.   r0, r31
-	ble      lbl_801518BC
-	mr       r3, r30
-	bl       __dl__FPv
+// lbl_801518AC:
+// 	extsh.   r0, r31
+// 	ble      lbl_801518BC
+// 	mr       r3, r30
+// 	bl       __dl__FPv
 
-lbl_801518BC:
-	lwz      r0, 0x14(r1)
-	mr       r3, r30
-	lwz      r31, 0xc(r1)
-	lwz      r30, 8(r1)
-	mtlr     r0
-	addi     r1, r1, 0x10
-	blr
-	*/
-}
+// lbl_801518BC:
+// 	lwz      r0, 0x14(r1)
+// 	mr       r3, r30
+// 	lwz      r31, 0xc(r1)
+// 	lwz      r30, 8(r1)
+// 	mtlr     r0
+// 	addi     r1, r1, 0x10
+// 	blr
+// 	*/
+// }
 
 namespace Game {
 
@@ -9665,8 +9866,10 @@ namespace Game {
  * Address:	801518D8
  * Size:	000010
  */
-bool BaseGameSection::forceFinish(void)
+bool BaseGameSection::forceFinish()
 {
+	m_isFinishedMaybe = true;
+	return m_isFinishedMaybe;
 	/*
 	li       r0, 1
 	stb      r0, 0x37(r3)
@@ -9715,8 +9918,9 @@ void BaseGameSection::goMainMap(Game::ItemBigFountain::Item*) { }
  * Address:	801518FC
  * Size:	00000C
  */
-void BaseGameSection::getCaveID(void)
+u32 BaseGameSection::getCaveID()
 {
+	return 'none';
 	/*
 	lis      r3, 0x6E6F6E65@ha
 	addi     r3, r3, 0x6E6F6E65@l
@@ -9729,14 +9933,14 @@ void BaseGameSection::getCaveID(void)
  * Address:	80151908
  * Size:	000008
  */
-u32 BaseGameSection::getCurrentCourseInfo(void) { return 0x0; }
+CourseInfo* BaseGameSection::getCurrentCourseInfo(void) { return nullptr; }
 
 /*
  * --INFO--
  * Address:	80151910
  * Size:	000008
  */
-u32 BaseGameSection::openContainerWindow(void) { return 0x0; }
+bool BaseGameSection::openContainerWindow(void) { return false; }
 
 /*
  * --INFO--
@@ -9815,14 +10019,14 @@ void Section::doExit() { }
  * Address:	80151940
  * Size:	000008
  */
-u32 Section::forceReset() { return 0x1; }
+bool Section::forceReset() { return true; }
 
 /*
  * --INFO--
  * Address:	80151948
  * Size:	000004
  */
-void Section::getCurrentSection() { }
+Section* Section::getCurrentSection() { return this; }
 
 /*
  * --INFO--
@@ -9836,7 +10040,7 @@ void Section::doLoadingStart() { }
  * Address:	80151950
  * Size:	000008
  */
-u32 Section::doLoading() { return 0x0; }
+bool Section::doLoading() { return false; }
 
 /*
  * --INFO--
@@ -9844,6 +10048,36 @@ u32 Section::doLoading() { return 0x0; }
  * Size:	000008
  */
 bool Section::isFinishable() { return true; }
+
+/**
+ * @generated{writeObject__22ArrayContainer<5Plane>FR6StreamR5Plane}
+ * @generated{readObject__22ArrayContainer<5Plane>FR6StreamR5Plane}
+ * @generated{write__22ArrayContainer<5Plane>FR6Stream}
+ * @generated{alloc__22ArrayContainer<5Plane>Fi}
+ * @generated{setArray__22ArrayContainer<5Plane>FP5Planei}
+ * @generated{get__22ArrayContainer<5Plane>FPv}
+ * @generated{getNext__22ArrayContainer<5Plane>FPv}
+ * @generated{getStart__22ArrayContainer<5Plane>Fv}
+ * @generated{getEnd__22ArrayContainer<5Plane>Fv}
+ * @generated{getAt__22ArrayContainer<5Plane>Fi}
+ * @generated{getTo__22ArrayContainer<5Plane>Fv}
+ * @generated{getObject__17Container<5Plane>FPv}
+ * @generated{getAt__17Container<5Plane>Fi}
+ * @generated{getTo__17Container<5Plane>Fv}
+ * @generated{invoke__63Delegate3<Q24Game15BaseGameSection,PQ24Game11MovieConfig,Ul,Ul>FPQ24Game11MovieConfigUlUl}
+ * @generated{invoke__49Delegate1<Q24Game15BaseGameSection,R10Vector3<f>>FR10Vector3<f>}
+ * @generated{invoke__54Delegate1<Q24Game15BaseGameSection,PQ24Game9CameraArg>FPQ24Game9CameraArg}
+ * @generated{invoke__45Delegate1<Q24Game15BaseGameSection,R7Rect<f>>FR7Rect<f>}
+ * @generated{invoke__34Delegate<Q24Game15BaseGameSection>Fv}
+ * @generated{addOne__22ArrayContainer<5Plane>FR5Plane}
+ * @generated{__ct__5PlaneFv}
+ * @generated{read__22ArrayContainer<5Plane>FR6Stream}
+ * @generated{alloc__27MonoObjectMgr<Q24Game4Navi>Fi}
+ * @generated{onAlloc__27MonoObjectMgr<Q24Game4Navi>Fi}
+ * @generated{alloc__27MonoObjectMgr<Q24Game4Piki>Fi}
+ * @generated{onAlloc__27MonoObjectMgr<Q24Game4Piki>Fi}
+ * @generated{__sinit_baseGameSection_cpp}
+ */
 
 /*
  * Generated?
@@ -9866,730 +10100,732 @@ bool Section::isFinishable() { return true; }
  * Address:	80151968
  * Size:	0000D4
  */
-void ArrayContainer<Plane>::write(Stream&)
-{
-	/*
-	stwu     r1, -0x20(r1)
-	mflr     r0
-	stw      r0, 0x24(r1)
-	stmw     r27, 0xc(r1)
-	mr       r28, r4
-	mr       r27, r3
-	lwz      r4, 0x14(r3)
-	mr       r3, r28
-	bl       textBeginGroup__6StreamFPc
-	lwz      r4, 0x414(r28)
-	mr       r3, r28
-	bl       textWriteTab__6StreamFi
-	lwz      r4, 0x20(r27)
-	mr       r3, r28
-	bl       writeInt__6StreamFi
-	mr       r3, r28
-	addi     r4, r2, lbl_805185BC@sda21
-	crclr    6
-	bl       textWriteText__6StreamFPce
-	lis      r3, lbl_8047CD88@ha
-	li       r29, 0
-	addi     r31, r3, lbl_8047CD88@l
-	li       r30, 0
-	b        lbl_80151A14
+// void ArrayContainer<Plane>::write(Stream&)
+// {
+// 	/*
+// 	stwu     r1, -0x20(r1)
+// 	mflr     r0
+// 	stw      r0, 0x24(r1)
+// 	stmw     r27, 0xc(r1)
+// 	mr       r28, r4
+// 	mr       r27, r3
+// 	lwz      r4, 0x14(r3)
+// 	mr       r3, r28
+// 	bl       textBeginGroup__6StreamFPc
+// 	lwz      r4, 0x414(r28)
+// 	mr       r3, r28
+// 	bl       textWriteTab__6StreamFi
+// 	lwz      r4, 0x20(r27)
+// 	mr       r3, r28
+// 	bl       writeInt__6StreamFi
+// 	mr       r3, r28
+// 	addi     r4, r2, lbl_805185BC@sda21
+// 	crclr    6
+// 	bl       textWriteText__6StreamFPce
+// 	lis      r3, lbl_8047CD88@ha
+// 	li       r29, 0
+// 	addi     r31, r3, lbl_8047CD88@l
+// 	li       r30, 0
+// 	b        lbl_80151A14
 
-lbl_801519C8:
-	lwz      r4, 0x414(r28)
-	mr       r3, r28
-	bl       textWriteTab__6StreamFi
-	mr       r3, r27
-	lwz      r0, 0x24(r27)
-	lwz      r12, 0(r27)
-	mr       r4, r28
-	add      r5, r0, r30
-	lwz      r12, 0x2c(r12)
-	mtctr    r12
-	bctrl
-	lwz      r6, 0x20(r27)
-	mr       r3, r28
-	mr       r4, r31
-	mr       r5, r29
-	crclr    6
-	bl       textWriteText__6StreamFPce
-	addi     r30, r30, 0x10
-	addi     r29, r29, 1
+// lbl_801519C8:
+// 	lwz      r4, 0x414(r28)
+// 	mr       r3, r28
+// 	bl       textWriteTab__6StreamFi
+// 	mr       r3, r27
+// 	lwz      r0, 0x24(r27)
+// 	lwz      r12, 0(r27)
+// 	mr       r4, r28
+// 	add      r5, r0, r30
+// 	lwz      r12, 0x2c(r12)
+// 	mtctr    r12
+// 	bctrl
+// 	lwz      r6, 0x20(r27)
+// 	mr       r3, r28
+// 	mr       r4, r31
+// 	mr       r5, r29
+// 	crclr    6
+// 	bl       textWriteText__6StreamFPce
+// 	addi     r30, r30, 0x10
+// 	addi     r29, r29, 1
 
-lbl_80151A14:
-	lwz      r0, 0x20(r27)
-	cmpw     r29, r0
-	blt      lbl_801519C8
-	mr       r3, r28
-	bl       textEndGroup__6StreamFv
-	lmw      r27, 0xc(r1)
-	lwz      r0, 0x24(r1)
-	mtlr     r0
-	addi     r1, r1, 0x20
-	blr
-	*/
-}
+// lbl_80151A14:
+// 	lwz      r0, 0x20(r27)
+// 	cmpw     r29, r0
+// 	blt      lbl_801519C8
+// 	mr       r3, r28
+// 	bl       textEndGroup__6StreamFv
+// 	lmw      r27, 0xc(r1)
+// 	lwz      r0, 0x24(r1)
+// 	mtlr     r0
+// 	addi     r1, r1, 0x20
+// 	blr
+// 	*/
+// }
 
-/*
- * --INFO--
- * Address:	80151A3C
- * Size:	000068
- */
-void ArrayContainer<Plane>::alloc(int)
-{
-	/*
-	stwu     r1, -0x10(r1)
-	mflr     r0
-	stw      r0, 0x14(r1)
-	stw      r31, 0xc(r1)
-	mr       r31, r4
-	stw      r30, 8(r1)
-	mr       r30, r3
-	slwi     r3, r4, 4
-	addi     r3, r3, 0x10
-	bl       __nwa__FUl
-	lis      r4, __ct__5PlaneFv@ha
-	mr       r7, r31
-	addi     r4, r4, __ct__5PlaneFv@l
-	li       r5, 0
-	li       r6, 0x10
-	bl       __construct_new_array
-	stw      r3, 0x24(r30)
-	li       r0, 0
-	stw      r31, 0x20(r30)
-	stw      r0, 0x1c(r30)
-	lwz      r31, 0xc(r1)
-	lwz      r30, 8(r1)
-	lwz      r0, 0x14(r1)
-	mtlr     r0
-	addi     r1, r1, 0x10
-	blr
-	*/
-}
+// /*
+//  * --INFO--
+//  * Address:	80151A3C
+//  * Size:	000068
+//  */
+// void ArrayContainer<Plane>::alloc(int)
+// {
+// 	/*
+// 	stwu     r1, -0x10(r1)
+// 	mflr     r0
+// 	stw      r0, 0x14(r1)
+// 	stw      r31, 0xc(r1)
+// 	mr       r31, r4
+// 	stw      r30, 8(r1)
+// 	mr       r30, r3
+// 	slwi     r3, r4, 4
+// 	addi     r3, r3, 0x10
+// 	bl       __nwa__FUl
+// 	lis      r4, __ct__5PlaneFv@ha
+// 	mr       r7, r31
+// 	addi     r4, r4, __ct__5PlaneFv@l
+// 	li       r5, 0
+// 	li       r6, 0x10
+// 	bl       __construct_new_array
+// 	stw      r3, 0x24(r30)
+// 	li       r0, 0
+// 	stw      r31, 0x20(r30)
+// 	stw      r0, 0x1c(r30)
+// 	lwz      r31, 0xc(r1)
+// 	lwz      r30, 8(r1)
+// 	lwz      r0, 0x14(r1)
+// 	mtlr     r0
+// 	addi     r1, r1, 0x10
+// 	blr
+// 	*/
+// }
 
-/*
- * --INFO--
- * Address:	80151AA4
- * Size:	000010
- */
-void ArrayContainer<Plane>::setArray(Plane*, int)
-{
-	/*
-	stw      r4, 0x24(r3)
-	stw      r5, 0x20(r3)
-	stw      r5, 0x1c(r3)
-	blr
-	*/
-}
+// /*
+//  * --INFO--
+//  * Address:	80151AA4
+//  * Size:	000010
+//  */
+// void ArrayContainer<Plane>::setArray(Plane*, int)
+// {
+// 	/*
+// 	stw      r4, 0x24(r3)
+// 	stw      r5, 0x20(r3)
+// 	stw      r5, 0x1c(r3)
+// 	blr
+// 	*/
+// }
 
-/*
- * --INFO--
- * Address:	80151AB4
- * Size:	000010
- */
-void ArrayContainer<Plane>::get(void*)
-{
-	/*
-	lwz      r3, 0x24(r3)
-	slwi     r0, r4, 4
-	add      r3, r3, r0
-	blr
-	*/
-}
+// /*
+//  * --INFO--
+//  * Address:	80151AB4
+//  * Size:	000010
+//  */
+// void ArrayContainer<Plane>::get(void*)
+// {
+// 	/*
+// 	lwz      r3, 0x24(r3)
+// 	slwi     r0, r4, 4
+// 	add      r3, r3, r0
+// 	blr
+// 	*/
+// }
 
-/*
- * --INFO--
- * Address:	80151AC4
- * Size:	000008
- */
-void ArrayContainer<Plane>::getNext(void*)
-{
-	/*
-	addi     r3, r4, 1
-	blr
-	*/
-}
+// /*
+//  * --INFO--
+//  * Address:	80151AC4
+//  * Size:	000008
+//  */
+// void ArrayContainer<Plane>::getNext(void*)
+// {
+// 	/*
+// 	addi     r3, r4, 1
+// 	blr
+// 	*/
+// }
 
-/*
- * --INFO--
- * Address:	80151ACC
- * Size:	000008
- */
-u32 ArrayContainer<Plane>::getStart() { return 0x0; }
+// /*
+//  * --INFO--
+//  * Address:	80151ACC
+//  * Size:	000008
+//  */
+// u32 ArrayContainer<Plane>::getStart() { return 0x0; }
 
-/*
- * --INFO--
- * Address:	80151AD4
- * Size:	000008
- */
-void ArrayContainer<Plane>::getEnd()
-{
-	/*
-	lwz      r3, 0x1c(r3)
-	blr
-	*/
-}
+// /*
+//  * --INFO--
+//  * Address:	80151AD4
+//  * Size:	000008
+//  */
+// void ArrayContainer<Plane>::getEnd()
+// {
+// 	/*
+// 	lwz      r3, 0x1c(r3)
+// 	blr
+// 	*/
+// }
 
-/*
- * --INFO--
- * Address:	80151ADC
- * Size:	000010
- */
-void ArrayContainer<Plane>::getAt(int)
-{
-	/*
-	lwz      r3, 0x24(r3)
-	slwi     r0, r4, 4
-	add      r3, r3, r0
-	blr
-	*/
-}
+// /*
+//  * --INFO--
+//  * Address:	80151ADC
+//  * Size:	000010
+//  */
+// void ArrayContainer<Plane>::getAt(int)
+// {
+// 	/*
+// 	lwz      r3, 0x24(r3)
+// 	slwi     r0, r4, 4
+// 	add      r3, r3, r0
+// 	blr
+// 	*/
+// }
 
-/*
- * --INFO--
- * Address:	80151AEC
- * Size:	000008
- */
-void ArrayContainer<Plane>::getTo()
-{
-	/*
-	lwz      r3, 0x20(r3)
-	blr
-	*/
-}
+// /*
+//  * --INFO--
+//  * Address:	80151AEC
+//  * Size:	000008
+//  */
+// void ArrayContainer<Plane>::getTo()
+// {
+// 	/*
+// 	lwz      r3, 0x20(r3)
+// 	blr
+// 	*/
+// }
 
-/*
- * --INFO--
- * Address:	80151AF4
- * Size:	00002C
- */
-void Container<Plane>::getObject(void*)
-{
-	/*
-	stwu     r1, -0x10(r1)
-	mflr     r0
-	stw      r0, 0x14(r1)
-	lwz      r12, 0(r3)
-	lwz      r12, 0x20(r12)
-	mtctr    r12
-	bctrl
-	lwz      r0, 0x14(r1)
-	mtlr     r0
-	addi     r1, r1, 0x10
-	blr
-	*/
-}
+// /*
+//  * --INFO--
+//  * Address:	80151AF4
+//  * Size:	00002C
+//  */
+// void Container<Plane>::getObject(void*)
+// {
+// 	/*
+// 	stwu     r1, -0x10(r1)
+// 	mflr     r0
+// 	stw      r0, 0x14(r1)
+// 	lwz      r12, 0(r3)
+// 	lwz      r12, 0x20(r12)
+// 	mtctr    r12
+// 	bctrl
+// 	lwz      r0, 0x14(r1)
+// 	mtlr     r0
+// 	addi     r1, r1, 0x10
+// 	blr
+// 	*/
+// }
 
-/*
- * --INFO--
- * Address:	80151B20
- * Size:	000008
- */
-u32 Container<Plane>::getAt(int) { return 0x0; }
+// /*
+//  * --INFO--
+//  * Address:	80151B20
+//  * Size:	000008
+//  */
+// u32 Container<Plane>::getAt(int) { return 0x0; }
 
-/*
- * --INFO--
- * Address:	80151B28
- * Size:	000008
- */
-u32 Container<Plane>::getTo() { return 0x0; }
+// /*
+//  * --INFO--
+//  * Address:	80151B28
+//  * Size:	000008
+//  */
+// u32 Container<Plane>::getTo() { return 0x0; }
 
-/*
- * --INFO--
- * Address:	80151B30
- * Size:	000030
- */
-void Delegate3<Game::BaseGameSection, Game::MovieConfig*, unsigned long, unsigned long>::invoke(Game::MovieConfig*, unsigned long,
-                                                                                                unsigned long)
-{
-	/*
-	.loc_0x0:
-	  stwu      r1, -0x10(r1)
-	  mflr      r0
-	  mr        r7, r3
-	  stw       r0, 0x14(r1)
-	  addi      r12, r7, 0x8
-	  lwz       r3, 0x4(r3)
-	  bl        -0x90024
-	  nop
-	  lwz       r0, 0x14(r1)
-	  mtlr      r0
-	  addi      r1, r1, 0x10
-	  blr
-	*/
-}
+// /*
+//  * --INFO--
+//  * Address:	80151B30
+//  * Size:	000030
+//  */
+// void Delegate3<Game::BaseGameSection, Game::MovieConfig*, unsigned long,
+//                unsigned long>::invoke(Game::MovieConfig*, unsigned long,
+//                                       unsigned long)
+// {
+// 	/*
+// 	.loc_0x0:
+// 	  stwu      r1, -0x10(r1)
+// 	  mflr      r0
+// 	  mr        r7, r3
+// 	  stw       r0, 0x14(r1)
+// 	  addi      r12, r7, 0x8
+// 	  lwz       r3, 0x4(r3)
+// 	  bl        -0x90024
+// 	  nop
+// 	  lwz       r0, 0x14(r1)
+// 	  mtlr      r0
+// 	  addi      r1, r1, 0x10
+// 	  blr
+// 	*/
+// }
 
-/*
- * --INFO--
- * Address:	80151B60
- * Size:	000030
- */
-void Delegate1<Game::BaseGameSection, Vector3f&>::invoke(Vector3f&)
-{
-	/*
-	stwu     r1, -0x10(r1)
-	mflr     r0
-	mr       r5, r3
-	stw      r0, 0x14(r1)
-	addi     r12, r5, 8
-	lwz      r3, 4(r3)
-	bl       __ptmf_scall
-	nop
-	lwz      r0, 0x14(r1)
-	mtlr     r0
-	addi     r1, r1, 0x10
-	blr
-	*/
-}
+// /*
+//  * --INFO--
+//  * Address:	80151B60
+//  * Size:	000030
+//  */
+// void Delegate1<Game::BaseGameSection, Vector3f&>::invoke(Vector3f&)
+// {
+// 	/*
+// 	stwu     r1, -0x10(r1)
+// 	mflr     r0
+// 	mr       r5, r3
+// 	stw      r0, 0x14(r1)
+// 	addi     r12, r5, 8
+// 	lwz      r3, 4(r3)
+// 	bl       __ptmf_scall
+// 	nop
+// 	lwz      r0, 0x14(r1)
+// 	mtlr     r0
+// 	addi     r1, r1, 0x10
+// 	blr
+// 	*/
+// }
 
-/*
- * --INFO--
- * Address:	80151B90
- * Size:	000030
- */
-void Delegate1<Game::BaseGameSection, Game::CameraArg*>::invoke(Game::CameraArg*)
-{
-	/*
-	.loc_0x0:
-	  stwu      r1, -0x10(r1)
-	  mflr      r0
-	  mr        r5, r3
-	  stw       r0, 0x14(r1)
-	  addi      r12, r5, 0x8
-	  lwz       r3, 0x4(r3)
-	  bl        -0x90084
-	  nop
-	  lwz       r0, 0x14(r1)
-	  mtlr      r0
-	  addi      r1, r1, 0x10
-	  blr
-	*/
-}
+// /*
+//  * --INFO--
+//  * Address:	80151B90
+//  * Size:	000030
+//  */
+// void Delegate1<Game::BaseGameSection, Game::CameraArg*>::invoke(
+//     Game::CameraArg*)
+// {
+// 	/*
+// 	.loc_0x0:
+// 	  stwu      r1, -0x10(r1)
+// 	  mflr      r0
+// 	  mr        r5, r3
+// 	  stw       r0, 0x14(r1)
+// 	  addi      r12, r5, 0x8
+// 	  lwz       r3, 0x4(r3)
+// 	  bl        -0x90084
+// 	  nop
+// 	  lwz       r0, 0x14(r1)
+// 	  mtlr      r0
+// 	  addi      r1, r1, 0x10
+// 	  blr
+// 	*/
+// }
 
-/*
- * --INFO--
- * Address:	80151BC0
- * Size:	000030
- */
-void Delegate1<Game::BaseGameSection, Rect<float>&>::invoke(Rect<float>&)
-{
-	/*
-	stwu     r1, -0x10(r1)
-	mflr     r0
-	mr       r5, r3
-	stw      r0, 0x14(r1)
-	addi     r12, r5, 8
-	lwz      r3, 4(r3)
-	bl       __ptmf_scall
-	nop
-	lwz      r0, 0x14(r1)
-	mtlr     r0
-	addi     r1, r1, 0x10
-	blr
-	*/
-}
+// /*
+//  * --INFO--
+//  * Address:	80151BC0
+//  * Size:	000030
+//  */
+// void Delegate1<Game::BaseGameSection, Rect<float>&>::invoke(Rect<float>&)
+// {
+// 	/*
+// 	stwu     r1, -0x10(r1)
+// 	mflr     r0
+// 	mr       r5, r3
+// 	stw      r0, 0x14(r1)
+// 	addi     r12, r5, 8
+// 	lwz      r3, 4(r3)
+// 	bl       __ptmf_scall
+// 	nop
+// 	lwz      r0, 0x14(r1)
+// 	mtlr     r0
+// 	addi     r1, r1, 0x10
+// 	blr
+// 	*/
+// }
 
-/*
- * --INFO--
- * Address:	80151BF0
- * Size:	000030
- */
-void Delegate<Game::BaseGameSection>::invoke()
-{
-	/*
-	stwu     r1, -0x10(r1)
-	mflr     r0
-	mr       r4, r3
-	stw      r0, 0x14(r1)
-	addi     r12, r4, 8
-	lwz      r3, 4(r3)
-	bl       __ptmf_scall
-	nop
-	lwz      r0, 0x14(r1)
-	mtlr     r0
-	addi     r1, r1, 0x10
-	blr
-	*/
-}
+// /*
+//  * --INFO--
+//  * Address:	80151BF0
+//  * Size:	000030
+//  */
+// void Delegate<Game::BaseGameSection>::invoke()
+// {
+// 	/*
+// 	stwu     r1, -0x10(r1)
+// 	mflr     r0
+// 	mr       r4, r3
+// 	stw      r0, 0x14(r1)
+// 	addi     r12, r4, 8
+// 	lwz      r3, 4(r3)
+// 	bl       __ptmf_scall
+// 	nop
+// 	lwz      r0, 0x14(r1)
+// 	mtlr     r0
+// 	addi     r1, r1, 0x10
+// 	blr
+// 	*/
+// }
 
-/*
- * --INFO--
- * Address:	80151C20
- * Size:	000048
- */
-void ArrayContainer<Plane>::addOne(Plane&)
-{
-	/*
-	lwz      r7, 0x1c(r3)
-	lwz      r0, 0x20(r3)
-	cmpw     r7, r0
-	bgelr
-	lwz      r6, 0x24(r3)
-	addi     r5, r7, 1
-	slwi     r0, r7, 4
-	stw      r5, 0x1c(r3)
-	add      r3, r6, r0
-	lfs      f0, 0(r4)
-	stfs     f0, 0(r3)
-	lfs      f0, 4(r4)
-	stfs     f0, 4(r3)
-	lfs      f0, 8(r4)
-	stfs     f0, 8(r3)
-	lfs      f0, 0xc(r4)
-	stfs     f0, 0xc(r3)
-	blr
-	*/
-}
+// /*
+//  * --INFO--
+//  * Address:	80151C20
+//  * Size:	000048
+//  */
+// void ArrayContainer<Plane>::addOne(Plane&)
+// {
+// 	/*
+// 	lwz      r7, 0x1c(r3)
+// 	lwz      r0, 0x20(r3)
+// 	cmpw     r7, r0
+// 	bgelr
+// 	lwz      r6, 0x24(r3)
+// 	addi     r5, r7, 1
+// 	slwi     r0, r7, 4
+// 	stw      r5, 0x1c(r3)
+// 	add      r3, r6, r0
+// 	lfs      f0, 0(r4)
+// 	stfs     f0, 0(r3)
+// 	lfs      f0, 4(r4)
+// 	stfs     f0, 4(r3)
+// 	lfs      f0, 8(r4)
+// 	stfs     f0, 8(r3)
+// 	lfs      f0, 0xc(r4)
+// 	stfs     f0, 0xc(r3)
+// 	blr
+// 	*/
+// }
 
-/*
- * --INFO--
- * Address:	80151C68
- * Size:	00001C
- */
-Plane::Plane()
-{
-	/*
-	lfs      f1, lbl_80518498@sda21(r2)
-	lfs      f0, lbl_805184A4@sda21(r2)
-	stfs     f1, 0(r3)
-	stfs     f0, 4(r3)
-	stfs     f1, 8(r3)
-	stfs     f1, 0xc(r3)
-	blr
-	*/
-}
+// /*
+//  * --INFO--
+//  * Address:	80151C68
+//  * Size:	00001C
+//  */
+// Plane::Plane()
+// {
+// 	/*
+// 	lfs      f1, lbl_80518498@sda21(r2)
+// 	lfs      f0, lbl_805184A4@sda21(r2)
+// 	stfs     f1, 0(r3)
+// 	stfs     f0, 4(r3)
+// 	stfs     f1, 8(r3)
+// 	stfs     f1, 0xc(r3)
+// 	blr
+// 	*/
+// }
 
-/*
- * --INFO--
- * Address:	80151C84
- * Size:	0000B0
- */
-void ArrayContainer<Plane>::read(Stream&)
-{
-	/*
-	stwu     r1, -0x20(r1)
-	mflr     r0
-	stw      r0, 0x24(r1)
-	stw      r31, 0x1c(r1)
-	stw      r30, 0x18(r1)
-	stw      r29, 0x14(r1)
-	mr       r29, r4
-	stw      r28, 0x10(r1)
-	mr       r28, r3
-	mr       r3, r29
-	bl       readInt__6StreamFv
-	stw      r3, 0x20(r28)
-	mr       r3, r28
-	lwz      r12, 0(r28)
-	lwz      r4, 0x20(r28)
-	lwz      r12, 0x3c(r12)
-	mtctr    r12
-	bctrl
-	lwz      r0, 0x20(r28)
-	li       r30, 0
-	li       r31, 0
-	stw      r0, 0x1c(r28)
-	b        lbl_80151D08
+// /*
+//  * --INFO--
+//  * Address:	80151C84
+//  * Size:	0000B0
+//  */
+// void ArrayContainer<Plane>::read(Stream&)
+// {
+// 	/*
+// 	stwu     r1, -0x20(r1)
+// 	mflr     r0
+// 	stw      r0, 0x24(r1)
+// 	stw      r31, 0x1c(r1)
+// 	stw      r30, 0x18(r1)
+// 	stw      r29, 0x14(r1)
+// 	mr       r29, r4
+// 	stw      r28, 0x10(r1)
+// 	mr       r28, r3
+// 	mr       r3, r29
+// 	bl       readInt__6StreamFv
+// 	stw      r3, 0x20(r28)
+// 	mr       r3, r28
+// 	lwz      r12, 0(r28)
+// 	lwz      r4, 0x20(r28)
+// 	lwz      r12, 0x3c(r12)
+// 	mtctr    r12
+// 	bctrl
+// 	lwz      r0, 0x20(r28)
+// 	li       r30, 0
+// 	li       r31, 0
+// 	stw      r0, 0x1c(r28)
+// 	b        lbl_80151D08
 
-lbl_80151CE0:
-	mr       r3, r28
-	lwz      r0, 0x24(r28)
-	lwz      r12, 0(r28)
-	mr       r4, r29
-	add      r5, r0, r31
-	lwz      r12, 0x30(r12)
-	mtctr    r12
-	bctrl
-	addi     r31, r31, 0x10
-	addi     r30, r30, 1
+// lbl_80151CE0:
+// 	mr       r3, r28
+// 	lwz      r0, 0x24(r28)
+// 	lwz      r12, 0(r28)
+// 	mr       r4, r29
+// 	add      r5, r0, r31
+// 	lwz      r12, 0x30(r12)
+// 	mtctr    r12
+// 	bctrl
+// 	addi     r31, r31, 0x10
+// 	addi     r30, r30, 1
 
-lbl_80151D08:
-	lwz      r0, 0x20(r28)
-	cmpw     r30, r0
-	blt      lbl_80151CE0
-	lwz      r0, 0x24(r1)
-	lwz      r31, 0x1c(r1)
-	lwz      r30, 0x18(r1)
-	lwz      r29, 0x14(r1)
-	lwz      r28, 0x10(r1)
-	mtlr     r0
-	addi     r1, r1, 0x20
-	blr
-	*/
-}
+// lbl_80151D08:
+// 	lwz      r0, 0x20(r28)
+// 	cmpw     r30, r0
+// 	blt      lbl_80151CE0
+// 	lwz      r0, 0x24(r1)
+// 	lwz      r31, 0x1c(r1)
+// 	lwz      r30, 0x18(r1)
+// 	lwz      r29, 0x14(r1)
+// 	lwz      r28, 0x10(r1)
+// 	mtlr     r0
+// 	addi     r1, r1, 0x20
+// 	blr
+// 	*/
+// }
 
-/*
- * --INFO--
- * Address:	80151D34
- * Size:	000188
- */
-void MonoObjectMgr<Game::Navi>::alloc(int)
-{
-	/*
-	stwu     r1, -0x20(r1)
-	mflr     r0
-	stw      r0, 0x24(r1)
-	stw      r31, 0x1c(r1)
-	mr       r31, r4
-	stw      r30, 0x18(r1)
-	mr       r30, r3
-	stw      r29, 0x14(r1)
-	mr       r29, r31
-	mulli    r3, r29, 0x320
-	stw      r28, 0x10(r1)
-	addi     r3, r3, 0x10
-	bl       __nwa__FUl
-	lis      r4, __ct__Q24Game4NaviFv@ha
-	mr       r7, r29
-	addi     r4, r4, __ct__Q24Game4NaviFv@l
-	li       r5, 0
-	li       r6, 0x320
-	bl       __construct_new_array
-	stw      r3, 0x28(r30)
-	li       r0, 0
-	mr       r3, r29
-	stw      r31, 0x24(r30)
-	stw      r0, 0x20(r30)
-	bl       __nwa__FUl
-	cmpwi    r31, 0
-	stw      r3, 0x2c(r30)
-	li       r11, 0
-	ble      lbl_80151E54
-	cmpwi    r31, 8
-	addi     r3, r31, -8
-	ble      lbl_80151E30
-	addi     r0, r3, 7
-	srwi     r0, r0, 3
-	mtctr    r0
-	cmpwi    r3, 0
-	ble      lbl_80151E30
+// /*
+//  * --INFO--
+//  * Address:	80151D34
+//  * Size:	000188
+//  */
+// void MonoObjectMgr<Game::Navi>::alloc(int)
+// {
+// 	/*
+// 	stwu     r1, -0x20(r1)
+// 	mflr     r0
+// 	stw      r0, 0x24(r1)
+// 	stw      r31, 0x1c(r1)
+// 	mr       r31, r4
+// 	stw      r30, 0x18(r1)
+// 	mr       r30, r3
+// 	stw      r29, 0x14(r1)
+// 	mr       r29, r31
+// 	mulli    r3, r29, 0x320
+// 	stw      r28, 0x10(r1)
+// 	addi     r3, r3, 0x10
+// 	bl       __nwa__FUl
+// 	lis      r4, __ct__Q24Game4NaviFv@ha
+// 	mr       r7, r29
+// 	addi     r4, r4, __ct__Q24Game4NaviFv@l
+// 	li       r5, 0
+// 	li       r6, 0x320
+// 	bl       __construct_new_array
+// 	stw      r3, 0x28(r30)
+// 	li       r0, 0
+// 	mr       r3, r29
+// 	stw      r31, 0x24(r30)
+// 	stw      r0, 0x20(r30)
+// 	bl       __nwa__FUl
+// 	cmpwi    r31, 0
+// 	stw      r3, 0x2c(r30)
+// 	li       r11, 0
+// 	ble      lbl_80151E54
+// 	cmpwi    r31, 8
+// 	addi     r3, r31, -8
+// 	ble      lbl_80151E30
+// 	addi     r0, r3, 7
+// 	srwi     r0, r0, 3
+// 	mtctr    r0
+// 	cmpwi    r3, 0
+// 	ble      lbl_80151E30
 
-lbl_80151DC8:
-	lwz      r3, 0x2c(r30)
-	li       r10, 1
-	addi     r8, r11, 1
-	addi     r7, r11, 2
-	stbx     r10, r3, r11
-	addi     r6, r11, 3
-	addi     r5, r11, 4
-	addi     r4, r11, 5
-	lwz      r9, 0x2c(r30)
-	addi     r3, r11, 6
-	addi     r0, r11, 7
-	addi     r11, r11, 8
-	stbx     r10, r9, r8
-	lwz      r8, 0x2c(r30)
-	stbx     r10, r8, r7
-	lwz      r7, 0x2c(r30)
-	stbx     r10, r7, r6
-	lwz      r6, 0x2c(r30)
-	stbx     r10, r6, r5
-	lwz      r5, 0x2c(r30)
-	stbx     r10, r5, r4
-	lwz      r4, 0x2c(r30)
-	stbx     r10, r4, r3
-	lwz      r3, 0x2c(r30)
-	stbx     r10, r3, r0
-	bdnz     lbl_80151DC8
+// lbl_80151DC8:
+// 	lwz      r3, 0x2c(r30)
+// 	li       r10, 1
+// 	addi     r8, r11, 1
+// 	addi     r7, r11, 2
+// 	stbx     r10, r3, r11
+// 	addi     r6, r11, 3
+// 	addi     r5, r11, 4
+// 	addi     r4, r11, 5
+// 	lwz      r9, 0x2c(r30)
+// 	addi     r3, r11, 6
+// 	addi     r0, r11, 7
+// 	addi     r11, r11, 8
+// 	stbx     r10, r9, r8
+// 	lwz      r8, 0x2c(r30)
+// 	stbx     r10, r8, r7
+// 	lwz      r7, 0x2c(r30)
+// 	stbx     r10, r7, r6
+// 	lwz      r6, 0x2c(r30)
+// 	stbx     r10, r6, r5
+// 	lwz      r5, 0x2c(r30)
+// 	stbx     r10, r5, r4
+// 	lwz      r4, 0x2c(r30)
+// 	stbx     r10, r4, r3
+// 	lwz      r3, 0x2c(r30)
+// 	stbx     r10, r3, r0
+// 	bdnz     lbl_80151DC8
 
-lbl_80151E30:
-	subf     r0, r11, r31
-	li       r4, 1
-	mtctr    r0
-	cmpw     r11, r31
-	bge      lbl_80151E54
+// lbl_80151E30:
+// 	subf     r0, r11, r31
+// 	li       r4, 1
+// 	mtctr    r0
+// 	cmpw     r11, r31
+// 	bge      lbl_80151E54
 
-lbl_80151E44:
-	lwz      r3, 0x2c(r30)
-	stbx     r4, r3, r11
-	addi     r11, r11, 1
-	bdnz     lbl_80151E44
+// lbl_80151E44:
+// 	lwz      r3, 0x2c(r30)
+// 	stbx     r4, r3, r11
+// 	addi     r11, r11, 1
+// 	bdnz     lbl_80151E44
 
-lbl_80151E54:
-	mr       r3, r30
-	lwz      r12, 0(r30)
-	lwz      r12, 0x88(r12)
-	mtctr    r12
-	bctrl
-	li       r28, 0
-	li       r29, 0
-	b        lbl_80151E94
+// lbl_80151E54:
+// 	mr       r3, r30
+// 	lwz      r12, 0(r30)
+// 	lwz      r12, 0x88(r12)
+// 	mtctr    r12
+// 	bctrl
+// 	li       r28, 0
+// 	li       r29, 0
+// 	b        lbl_80151E94
 
-lbl_80151E74:
-	lwz      r0, 0x28(r30)
-	add      r3, r0, r29
-	lwz      r12, 0(r3)
-	lwz      r12, 0x2c(r12)
-	mtctr    r12
-	bctrl
-	addi     r29, r29, 0x320
-	addi     r28, r28, 1
+// lbl_80151E74:
+// 	lwz      r0, 0x28(r30)
+// 	add      r3, r0, r29
+// 	lwz      r12, 0(r3)
+// 	lwz      r12, 0x2c(r12)
+// 	mtctr    r12
+// 	bctrl
+// 	addi     r29, r29, 0x320
+// 	addi     r28, r28, 1
 
-lbl_80151E94:
-	cmpw     r28, r31
-	blt      lbl_80151E74
-	lwz      r0, 0x24(r1)
-	lwz      r31, 0x1c(r1)
-	lwz      r30, 0x18(r1)
-	lwz      r29, 0x14(r1)
-	lwz      r28, 0x10(r1)
-	mtlr     r0
-	addi     r1, r1, 0x20
-	blr
-	*/
-}
+// lbl_80151E94:
+// 	cmpw     r28, r31
+// 	blt      lbl_80151E74
+// 	lwz      r0, 0x24(r1)
+// 	lwz      r31, 0x1c(r1)
+// 	lwz      r30, 0x18(r1)
+// 	lwz      r29, 0x14(r1)
+// 	lwz      r28, 0x10(r1)
+// 	mtlr     r0
+// 	addi     r1, r1, 0x20
+// 	blr
+// 	*/
+// }
 
-/*
- * --INFO--
- * Address:	80151EBC
- * Size:	000004
- */
-void MonoObjectMgr<Game::Navi>::onAlloc() { }
+// /*
+//  * --INFO--
+//  * Address:	80151EBC
+//  * Size:	000004
+//  */
+// void MonoObjectMgr<Game::Navi>::onAlloc() { }
 
-/*
- * --INFO--
- * Address:	80151EC0
- * Size:	000188
- */
-void MonoObjectMgr<Game::Piki>::alloc(int)
-{
-	/*
-	stwu     r1, -0x20(r1)
-	mflr     r0
-	stw      r0, 0x24(r1)
-	stw      r31, 0x1c(r1)
-	mr       r31, r4
-	stw      r30, 0x18(r1)
-	mr       r30, r3
-	stw      r29, 0x14(r1)
-	mr       r29, r31
-	mulli    r3, r29, 0x2c8
-	stw      r28, 0x10(r1)
-	addi     r3, r3, 0x10
-	bl       __nwa__FUl
-	lis      r4, __ct__Q24Game4PikiFv@ha
-	mr       r7, r29
-	addi     r4, r4, __ct__Q24Game4PikiFv@l
-	li       r5, 0
-	li       r6, 0x2c8
-	bl       __construct_new_array
-	stw      r3, 0x28(r30)
-	li       r0, 0
-	mr       r3, r29
-	stw      r31, 0x24(r30)
-	stw      r0, 0x20(r30)
-	bl       __nwa__FUl
-	cmpwi    r31, 0
-	stw      r3, 0x2c(r30)
-	li       r11, 0
-	ble      lbl_80151FE0
-	cmpwi    r31, 8
-	addi     r3, r31, -8
-	ble      lbl_80151FBC
-	addi     r0, r3, 7
-	srwi     r0, r0, 3
-	mtctr    r0
-	cmpwi    r3, 0
-	ble      lbl_80151FBC
+// /*
+//  * --INFO--
+//  * Address:	80151EC0
+//  * Size:	000188
+//  */
+// void MonoObjectMgr<Game::Piki>::alloc(int)
+// {
+// 	/*
+// 	stwu     r1, -0x20(r1)
+// 	mflr     r0
+// 	stw      r0, 0x24(r1)
+// 	stw      r31, 0x1c(r1)
+// 	mr       r31, r4
+// 	stw      r30, 0x18(r1)
+// 	mr       r30, r3
+// 	stw      r29, 0x14(r1)
+// 	mr       r29, r31
+// 	mulli    r3, r29, 0x2c8
+// 	stw      r28, 0x10(r1)
+// 	addi     r3, r3, 0x10
+// 	bl       __nwa__FUl
+// 	lis      r4, __ct__Q24Game4PikiFv@ha
+// 	mr       r7, r29
+// 	addi     r4, r4, __ct__Q24Game4PikiFv@l
+// 	li       r5, 0
+// 	li       r6, 0x2c8
+// 	bl       __construct_new_array
+// 	stw      r3, 0x28(r30)
+// 	li       r0, 0
+// 	mr       r3, r29
+// 	stw      r31, 0x24(r30)
+// 	stw      r0, 0x20(r30)
+// 	bl       __nwa__FUl
+// 	cmpwi    r31, 0
+// 	stw      r3, 0x2c(r30)
+// 	li       r11, 0
+// 	ble      lbl_80151FE0
+// 	cmpwi    r31, 8
+// 	addi     r3, r31, -8
+// 	ble      lbl_80151FBC
+// 	addi     r0, r3, 7
+// 	srwi     r0, r0, 3
+// 	mtctr    r0
+// 	cmpwi    r3, 0
+// 	ble      lbl_80151FBC
 
-lbl_80151F54:
-	lwz      r3, 0x2c(r30)
-	li       r10, 1
-	addi     r8, r11, 1
-	addi     r7, r11, 2
-	stbx     r10, r3, r11
-	addi     r6, r11, 3
-	addi     r5, r11, 4
-	addi     r4, r11, 5
-	lwz      r9, 0x2c(r30)
-	addi     r3, r11, 6
-	addi     r0, r11, 7
-	addi     r11, r11, 8
-	stbx     r10, r9, r8
-	lwz      r8, 0x2c(r30)
-	stbx     r10, r8, r7
-	lwz      r7, 0x2c(r30)
-	stbx     r10, r7, r6
-	lwz      r6, 0x2c(r30)
-	stbx     r10, r6, r5
-	lwz      r5, 0x2c(r30)
-	stbx     r10, r5, r4
-	lwz      r4, 0x2c(r30)
-	stbx     r10, r4, r3
-	lwz      r3, 0x2c(r30)
-	stbx     r10, r3, r0
-	bdnz     lbl_80151F54
+// lbl_80151F54:
+// 	lwz      r3, 0x2c(r30)
+// 	li       r10, 1
+// 	addi     r8, r11, 1
+// 	addi     r7, r11, 2
+// 	stbx     r10, r3, r11
+// 	addi     r6, r11, 3
+// 	addi     r5, r11, 4
+// 	addi     r4, r11, 5
+// 	lwz      r9, 0x2c(r30)
+// 	addi     r3, r11, 6
+// 	addi     r0, r11, 7
+// 	addi     r11, r11, 8
+// 	stbx     r10, r9, r8
+// 	lwz      r8, 0x2c(r30)
+// 	stbx     r10, r8, r7
+// 	lwz      r7, 0x2c(r30)
+// 	stbx     r10, r7, r6
+// 	lwz      r6, 0x2c(r30)
+// 	stbx     r10, r6, r5
+// 	lwz      r5, 0x2c(r30)
+// 	stbx     r10, r5, r4
+// 	lwz      r4, 0x2c(r30)
+// 	stbx     r10, r4, r3
+// 	lwz      r3, 0x2c(r30)
+// 	stbx     r10, r3, r0
+// 	bdnz     lbl_80151F54
 
-lbl_80151FBC:
-	subf     r0, r11, r31
-	li       r4, 1
-	mtctr    r0
-	cmpw     r11, r31
-	bge      lbl_80151FE0
+// lbl_80151FBC:
+// 	subf     r0, r11, r31
+// 	li       r4, 1
+// 	mtctr    r0
+// 	cmpw     r11, r31
+// 	bge      lbl_80151FE0
 
-lbl_80151FD0:
-	lwz      r3, 0x2c(r30)
-	stbx     r4, r3, r11
-	addi     r11, r11, 1
-	bdnz     lbl_80151FD0
+// lbl_80151FD0:
+// 	lwz      r3, 0x2c(r30)
+// 	stbx     r4, r3, r11
+// 	addi     r11, r11, 1
+// 	bdnz     lbl_80151FD0
 
-lbl_80151FE0:
-	mr       r3, r30
-	lwz      r12, 0(r30)
-	lwz      r12, 0x88(r12)
-	mtctr    r12
-	bctrl
-	li       r28, 0
-	li       r29, 0
-	b        lbl_80152020
+// lbl_80151FE0:
+// 	mr       r3, r30
+// 	lwz      r12, 0(r30)
+// 	lwz      r12, 0x88(r12)
+// 	mtctr    r12
+// 	bctrl
+// 	li       r28, 0
+// 	li       r29, 0
+// 	b        lbl_80152020
 
-lbl_80152000:
-	lwz      r0, 0x28(r30)
-	add      r3, r0, r29
-	lwz      r12, 0(r3)
-	lwz      r12, 0x2c(r12)
-	mtctr    r12
-	bctrl
-	addi     r29, r29, 0x2c8
-	addi     r28, r28, 1
+// lbl_80152000:
+// 	lwz      r0, 0x28(r30)
+// 	add      r3, r0, r29
+// 	lwz      r12, 0(r3)
+// 	lwz      r12, 0x2c(r12)
+// 	mtctr    r12
+// 	bctrl
+// 	addi     r29, r29, 0x2c8
+// 	addi     r28, r28, 1
 
-lbl_80152020:
-	cmpw     r28, r31
-	blt      lbl_80152000
-	lwz      r0, 0x24(r1)
-	lwz      r31, 0x1c(r1)
-	lwz      r30, 0x18(r1)
-	lwz      r29, 0x14(r1)
-	lwz      r28, 0x10(r1)
-	mtlr     r0
-	addi     r1, r1, 0x20
-	blr
-	*/
-}
+// lbl_80152020:
+// 	cmpw     r28, r31
+// 	blt      lbl_80152000
+// 	lwz      r0, 0x24(r1)
+// 	lwz      r31, 0x1c(r1)
+// 	lwz      r30, 0x18(r1)
+// 	lwz      r29, 0x14(r1)
+// 	lwz      r28, 0x10(r1)
+// 	mtlr     r0
+// 	addi     r1, r1, 0x20
+// 	blr
+// 	*/
+// }
 
-/*
- * --INFO--
- * Address:	80152048
- * Size:	000004
- */
-void MonoObjectMgr<Game::Piki>::onAlloc() { }
+// /*
+//  * --INFO--
+//  * Address:	80152048
+//  * Size:	000004
+//  */
+// void MonoObjectMgr<Game::Piki>::onAlloc() { }
 
-/*
- * --INFO--
- * Address:	8015204C
- * Size:	000028
- */
-void __sinit_baseGameSection_cpp(void)
-{
-	/*
-	lis      r4, __float_nan@ha
-	li       r0, -1
-	lfs      f0, __float_nan@l(r4)
-	lis      r3, lbl_804B0C70@ha
-	stw      r0, lbl_80515928@sda21(r13)
-	stfsu    f0, lbl_804B0C70@l(r3)
-	stfs     f0, lbl_8051592C@sda21(r13)
-	stfs     f0, 4(r3)
-	stfs     f0, 8(r3)
-	blr
-	*/
-}
+// /*
+//  * --INFO--
+//  * Address:	8015204C
+//  * Size:	000028
+//  */
+// void __sinit_baseGameSection_cpp(void)
+// {
+// 	/*
+// 	lis      r4, __float_nan@ha
+// 	li       r0, -1
+// 	lfs      f0, __float_nan@l(r4)
+// 	lis      r3, lbl_804B0C70@ha
+// 	stw      r0, lbl_80515928@sda21(r13)
+// 	stfsu    f0, lbl_804B0C70@l(r3)
+// 	stfs     f0, lbl_8051592C@sda21(r13)
+// 	stfs     f0, 4(r3)
+// 	stfs     f0, 8(r3)
+// 	blr
+// 	*/
+// }

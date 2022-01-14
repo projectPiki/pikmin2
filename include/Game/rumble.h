@@ -127,6 +127,8 @@ struct RumbleMgr : public CNode {
 	Controller* m_controller;  // _2C
 	Vector3f* _30;             // _30
 };
+
+extern RumbleMgr* rumbleMgr;
 } // namespace Game
 
 #endif

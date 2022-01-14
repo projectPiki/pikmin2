@@ -1,6 +1,7 @@
 #ifndef _GAME_GAMEGENERATOR_H
 #define _GAME_GAMEGENERATOR_H
 
+#include "IDelegate.h"
 #include "Matrixf.h"
 #include "Graphics.h"
 #include "Parameters.h"
@@ -108,6 +109,8 @@ struct GeneratorMgr : public CNode {
 	float _68;                 // _68
 	u8 _6C;                    // _6C
 	u8 _6D;                    // _6D
+
+	static Delegate1<struct BaseGameSection, Vector3f&>* cursorCallback;
 };
 
 struct GenArg {
@@ -185,6 +188,12 @@ struct GenObjectFactoryFactory {
 	GenObjectFactory* m_factories; // _08
 	u8 _0C[4];                     // _0C
 };
+
+extern GeneratorMgr* generatorMgr;
+extern GeneratorMgr* onceGeneratorMgr;
+extern GeneratorMgr* limitGeneratorMgr;
+extern GeneratorMgr* plantsGeneratorMgr;
+extern GeneratorMgr* dayGeneratorMgr;
 } // namespace Game
 
 extern u32 GeneratorCurrentVersion;

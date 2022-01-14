@@ -34,6 +34,9 @@ typedef volatile f64 vf64;
 
 typedef int BOOL;
 
+// Pointer to unknown, to be determined at a later date.
+typedef void* unkptr;
+
 #ifndef TRUE
 #define TRUE 1
 #endif // ifndef TRUE

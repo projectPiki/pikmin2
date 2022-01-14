@@ -73,7 +73,7 @@ struct BaseGameSection : public BaseHIOSection {
 	void createFallPikminSound();
 	void directDraw(Graphics&, struct Viewport*);
 	void directDrawPost(Graphics&, Viewport*);
-	void disableAllocHalt();
+	bool disableAllocHalt();
 	void disableTimer(unsigned long);
 	void do_drawOtakaraWindow(Graphics&);
 	void doAnimation();
@@ -93,12 +93,12 @@ struct BaseGameSection : public BaseHIOSection {
 	void drawOtakaraWindow(Graphics&);
 	void drawParticle(Graphics&, int);
 	void dvdloadGameSystem();
-	void enableAllocHalt();
+	bool enableAllocHalt();
 	void enableTimer(float, unsigned long);
 	virtual bool forceFinish();
 	void getCaveFilename();
-	void getCaveID();
-	void getCurrentCourseInfo();
+	u32 getCaveID();
+	CourseInfo* getCurrentCourseInfo();
 	void getCurrFloor();
 	void getEditorFilename();
 	void getTimerType();
@@ -140,7 +140,7 @@ struct BaseGameSection : public BaseHIOSection {
 	void onUpdate();
 	void openCaveInMenu(Game::ItemCave::Item*, int);
 	void openCaveMoreMenu(Game::ItemHole::Item*, Controller*);
-	void openContainerWindow();
+	bool openContainerWindow();
 	void openKanketuMenu(Game::ItemBigFountain::Item*, Controller*);
 	void playMovie_bootup(Game::Onyon*);
 	void playMovie_firstexperience(int, Game::Creature*);
@@ -180,6 +180,7 @@ struct BaseGameSection : public BaseHIOSection {
 
 	// Unused/inlined:
 	void pmPlayerJoin();
+	bool isAllocHalt();
 	int getActivePlayerID();
 	int getNumWindows();
 	void setupViewportMatrix(Graphics&);

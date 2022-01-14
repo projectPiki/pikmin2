@@ -29,7 +29,7 @@ struct Model : MtxObject {
 
 	void clearAnimatorAll();
 	void enableMaterialAnim(int);
-	void enableMaterialAnim(J3DModelData*, int);
+	static void enableMaterialAnim(J3DModelData*, int);
 	SysShape::Joint* getJoint(char*);
 	void getJointIndex(char*);
 	void getMatrix(int);

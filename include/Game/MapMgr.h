@@ -40,13 +40,17 @@ struct MapMgr : virtual public GenericObjectMgr {
 	virtual float getMinY(Vector3f&)         = 0;             // _20
 	virtual void getCurrTri(CurrTriInfo&)    = 0;             // _24
 	virtual void createTriangles(Sys::CreateTriangleArg&);    // _28
-	virtual void setupJUTTextures();                          // _2C
-	virtual bool frozenable();                                // _30
-	virtual void update();                                    // _34
-	virtual void do_update();                                 // _38
-	virtual void drawCollision(Graphics&, Sys::Sphere&) = 0;  // _3C
-	virtual void doSimulation(float);                         // _40
-	virtual void doDirectDraw(Graphics&);                     // _44
+	/**
+	 * @reifiedAddress{80151530}
+	 * @reifiedFile{plugProjectKandoU/baseGameSection.cpp}
+	 */
+	virtual void setupJUTTextures() {};                      // _2C
+	virtual bool frozenable();                               // _30
+	virtual void update();                                   // _34
+	virtual void do_update();                                // _38
+	virtual void drawCollision(Graphics&, Sys::Sphere&) = 0; // _3C
+	virtual void doSimulation(float);                        // _40
+	virtual void doDirectDraw(Graphics&);                    // _44
 
 	WaterBox* findWater(Sys::Sphere&);
 

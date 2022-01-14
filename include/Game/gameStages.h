@@ -27,9 +27,9 @@ struct CaveOtakara : public CNode {
 struct LimitGen : public CNode {
 	virtual ~LimitGen(); // _00
 
-	u32 _18; // _18
-	u32 _1C; // _1C
-	u32 _20; // _20
+	u32 _18;        // _18
+	u32 _1C;        // _1C
+	u32 m_dayLimit; // _20
 };
 
 /**

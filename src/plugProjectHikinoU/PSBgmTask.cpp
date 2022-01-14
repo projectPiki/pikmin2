@@ -1,3 +1,5 @@
+#include "Dolphin/os.h"
+#include "PSSystem/BankRandPrm.h"
 #include "PSSystem/Task.h"
 #include "types.h"
 
@@ -122,100 +124,45 @@ namespace PSSystem {
  * Address:	8033E6B4
  * Size:	000124
  */
-int ModParamWithFade::task(JASTrack&)
+int ModParamWithFade::task(JASTrack& track)
 {
-	/*
-	stwu     r1, -0x20(r1)
-	mflr     r0
-	stw      r0, 0x24(r1)
-	stw      r31, 0x1c(r1)
-	mr       r31, r4
-	stw      r30, 0x18(r1)
-	mr       r30, r3
-	lwz      r0, 0x28(r3)
-	cmplwi   r0, 0
-	bne      lbl_8033E750
-	lwz      r0, 0x1c(r30)
-	cmplwi   r0, 0
-	beq      lbl_8033E734
-	lwz      r12, 0(r3)
-	lwz      r12, 0xc(r12)
-	mtctr    r12
-	bctrl
-	lwz      r3, 0x1c(r30)
-	lis      r0, 0x4330
-	lfs      f0, 0x20(r30)
-	stw      r3, 0xc(r1)
-	lfd      f2, lbl_8051E178@sda21(r2)
-	fsubs    f3, f0, f1
-	stw      r0, 8(r1)
-	lfd      f0, 8(r1)
-	fsubs    f0, f0, f2
-	fdivs    f0, f3, f0
-	stfs     f0, 0x24(r30)
-	lfs      f0, 0x24(r30)
-	fadds    f0, f1, f0
-	stfs     f0, 0x2c(r30)
-	b        lbl_8033E750
-
-lbl_8033E734:
-	lwz      r12, 0(r3)
-	lfs      f1, 0x20(r30)
-	lwz      r12, 0x10(r12)
-	mtctr    r12
-	bctrl
-	li       r3, -1
-	b        lbl_8033E7C0
-
-lbl_8033E750:
-	lwz      r3, 0x28(r30)
-	lwz      r0, 0x1c(r30)
-	cmplw    r3, r0
-	bge      lbl_8033E7A0
-	lfs      f1, 0x2c(r30)
-	mr       r3, r30
-	lfs      f0, 0x24(r30)
-	mr       r4, r31
-	fadds    f0, f1, f0
-	stfs     f0, 0x2c(r30)
-	lwz      r12, 0(r30)
-	lfs      f1, 0x2c(r30)
-	lwz      r12, 0x10(r12)
-	mtctr    r12
-	bctrl
-	lwz      r4, 0x28(r30)
-	li       r3, 0
-	addi     r0, r4, 1
-	stw      r0, 0x28(r30)
-	b        lbl_8033E7C0
-
-lbl_8033E7A0:
-	mr       r3, r30
-	mr       r4, r31
-	lwz      r12, 0(r30)
-	lfs      f1, 0x20(r30)
-	lwz      r12, 0x10(r12)
-	mtctr    r12
-	bctrl
-	li       r3, -1
-
-lbl_8033E7C0:
-	lwz      r0, 0x24(r1)
-	lwz      r31, 0x1c(r1)
-	lwz      r30, 0x18(r1)
-	mtlr     r0
-	addi     r1, r1, 0x20
-	blr
-	*/
+	int result;
+	if (_28 == 0) {
+		if (_1C != 0) {
+			float preParam = getPreParam(track);
+			_24            = (_20 - preParam) / _1C;
+			_2C            = preParam + _24;
+		} else {
+			timeTask(track, _20);
+			return -1;
+		}
+	}
+	if (_28 < _1C) {
+		_2C += _24;
+		timeTask(track, _2C);
+		result = 0;
+		_28++;
+	} else {
+		timeTask(track, _20);
+		result = -1;
+	}
+	return result;
 }
 
 /*
+ * task__Q28PSSystem21ModParamWithTableTaskFR8JASTrack
  * --INFO--
  * Address:	8033E7D8
  * Size:	0000F4
  */
-int ModParamWithTableTask::task(JASTrack&)
+int ModParamWithTableTask::task(JASTrack& track)
 {
+	_24 += _20;
+	if (getTableIdxNum() < _24) {
+		_24 -= getTableIdxNum();
+	}
+	getTgtWithTable(_24);
+	tableTask(track, _24);
 	/*
 	stwu     r1, -0x20(r1)
 	mflr     r0
@@ -288,8 +235,10 @@ lbl_8033E874:
  * Address:	8033E8CC
  * Size:	000030
  */
-int PitchModTask::tableTask(JASTrack&, float)
+int PitchModTask::tableTask(JASTrack& track, float p2)
 {
+	track->setParam(1, p2, -1);
+	return -0x10;
 	/*
 	stwu     r1, -0x10(r1)
 	mflr     r0
@@ -448,8 +397,13 @@ lbl_8033EA28:
  * Address:	8033EA68
  * Size:	000028
  */
-int SimpleWaitTask::task(JASTrack&)
+int SimpleWaitTask::task(JASTrack& track)
 {
+	if (_20 <= _1C) {
+		return -1;
+	}
+	_1C++;
+	return -0x10;
 	/*
 	lwz      r4, 0x1c(r3)
 	lwz      r0, 0x20(r3)
@@ -472,7 +426,11 @@ lbl_8033EA80:
  * Size:	000074
  */
 BankRandPrm::BankRandPrm()
+    : m_inst()
 {
+	m_inst.setTarget(1);
+	m_inst._08 = 1.0f;
+	m_inst._0C = 0.0f;
 	/*
 	stwu     r1, -0x10(r1)
 	mflr     r0
@@ -511,8 +469,17 @@ BankRandPrm::BankRandPrm()
  * Address:	8033EB04
  * Size:	000080
  */
-void TaskEntry_OuterParam::makeEntry(float, unsigned long)
+void TaskEntry_OuterParam::makeEntry(float p1, unsigned long p2)
 {
+	OSDisableInterrupts();
+	m_outerParamTask._20 = p1;
+	m_outerParamTask._1C = p2;
+	m_outerParamTask._14 = 1;
+	m_outerParamTask._28 = 0;
+	m_outerParamTask._2C = 0.0f;
+	m_outerParamTask._24 = 0.0f;
+	OSEnableInterrupts();
+	append(&m_outerParamTask);
 	/*
 	stwu     r1, -0x20(r1)
 	mflr     r0
@@ -554,8 +521,13 @@ void TaskEntry_OuterParam::makeEntry(float, unsigned long)
  * Address:	8033EB84
  * Size:	000054
  */
-void TaskEntry_IdMask::makeEntry(unsigned char)
+void TaskEntry_IdMask::makeEntry(unsigned char noteMask)
 {
+	OSDisableInterupts();
+	m_idMaskTask.m_noteMask = noteMask;
+	m_idMaskTask._14        = 1;
+	OSEnableInterrupts();
+	append(&m_idMaskTask);
 	/*
 	stwu     r1, -0x10(r1)
 	mflr     r0
@@ -669,8 +641,25 @@ lbl_8033ECA4:
  * Address:	8033ECE8
  * Size:	0000A4
  */
-void TaskEntry_MuteVolume::makeEntry(float, unsigned long)
+void TaskEntry_MuteVolume::makeEntry(float p1, unsigned long p2)
 {
+	// TODO: This might be an unlisted inlined function?
+	OSDisableInterrupts();
+	m_muteTask._1C = 0;
+	m_muteTask._14 = 1;
+	OSEnableInterrupts();
+	append(&m_muteTask);
+	// TODO: This might be an unlisted inlined function?
+	OSDisableInterrupts();
+	m_outerParamTask._20 = p1;
+	m_outerParamTask._1C = p2;
+	m_outerParamTask._14 = 1;
+	m_outerParamTask._28 = 0;
+	m_outerParamTask._2C = 0.0f;
+	m_outerParamTask._24 = 0.0f;
+	OSEnableInterrupts();
+	append(&m_outerParamTask);
+
 	/*
 	stwu     r1, -0x20(r1)
 	mflr     r0

@@ -17,4 +17,6 @@ struct CarryInfoMgr {
 	void updatePokoInfoOwners();
 };
 
+extern CarryInfoMgr* carryInfoMgr;
+
 #endif

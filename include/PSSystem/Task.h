@@ -45,20 +45,25 @@ struct PitchResetTask : public TaskBase {
 
 struct SimpleWaitTask : public TaskBase {
 	virtual int task(JASTrack&); // _00
+
+	uint _1C;
+	uint _20;
 };
 
 struct ModParamWithTableTask : public TaskBase {
 	virtual int task(JASTrack&);                      // _00
 	virtual float getTgtWithTable(unsigned char) = 0; // _04
-	virtual uint getTableIdxNum()                = 0; // _08
+	virtual u8 getTableIdxNum()                  = 0; // _08
+	virtual int tableTask(JASTrack&, float)      = 0; // _0C
 
-	// TODO: This may or may not exist as pure virtual. TBD.
-	// virtual int tableTask(JASTrack&, float)      = 0; // _0C
+	float _1C;
+	float _20;
+	float _24;
 };
 
 struct TriangleTableModTask : public ModParamWithTableTask {
 	virtual float getTgtWithTable(unsigned char); // _04
-	virtual uint getTableIdxNum();                // _08
+	virtual u8 getTableIdxNum();                  // _08
 };
 
 struct PitchModTask : public TriangleTableModTask {
@@ -70,10 +75,10 @@ struct ModParamWithFade : public TaskBase {
 	virtual float getPreParam(JASTrack&)    = 0; // _04
 	virtual void timeTask(JASTrack&, float) = 0; // _08
 
-	float _1C; // _1C
+	uint _1C;  // _1C
 	float _20; // _20
 	float _24; // _24
-	int _28;   // _28
+	uint _28;  // _28
 	float _2C; // _2C
 };
 
@@ -85,6 +90,8 @@ struct BankRandTask : public ModParamWithFade {
 struct OuterParamTask : public ModParamWithFade {
 	virtual float getPreParam(JASTrack&);    // _04
 	virtual void timeTask(JASTrack&, float); // _08
+
+	int _30; // _30
 };
 
 struct TaskEntry : public MutexList<TaskBase> {

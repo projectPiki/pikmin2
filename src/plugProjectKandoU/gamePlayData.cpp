@@ -2844,7 +2844,7 @@ void PlayData::clearCurrentCave()
  */
 void PlayData::setCurrentCave(ID32& caveID, int floor)
 {
-	m_caveSaveData.m_currentCaveID.setID(caveID.m_id.raw);
+	m_caveSaveData.m_currentCaveID.setID(caveID.getID());
 	m_caveSaveData.m_currentFloor = floor;
 	m_caveSaveData.m_isInCave     = true;
 }
@@ -2907,7 +2907,7 @@ lbl_801E750C:
  */
 void PlayData::getCurrentCave(ID32& outCaveID, int& outCaveFloor)
 {
-	outCaveID.setID(m_caveSaveData.m_currentCaveID.m_id.raw);
+	outCaveID.setID(m_caveSaveData.m_currentCaveID.getID());
 	outCaveFloor = m_caveSaveData.m_currentFloor;
 }
 
@@ -4304,7 +4304,7 @@ bool PlayData::isCaveFirstTime(int courseIndex, ID32& caveID)
 		// TODO
 	}
 	ID32 caveIDCopy;
-	caveIDCopy.setID(caveID.m_id.raw);
+	caveIDCopy.setID(caveID.getID());
 	JUT_PANICLINE(1645, "no cave info : course(%d):[%s]\n", courseIndex, caveID);
 	/*
 	stwu     r1, -0x30(r1)
@@ -5980,8 +5980,20 @@ int PlayData::getMoney_Old() { return m_pokoCountOld; }
  * Address:	801E9AFC
  * Size:	0000A4
  */
-bool PlayData::isCaveFirstTime_Old(int, ID32&)
+bool PlayData::isCaveFirstTime_Old(int courseIndex, ID32& caveID)
 {
+	CourseInfo* info = Game::stageList->getCourseInfo(courseIndex);
+	if (info != nullptr) {
+		CaveOtakara* otakara = _F8;
+		int caveIndex        = info->getCaveIndex_FromID(caveID);
+		if (caveIndex != -1) {
+			if (0 <= caveIndex && caveIndex < otakara[courseIndex].m_caveCount) {
+				return otakara[courseIndex]._08[caveIndex] == 0;
+			}
+			return false;
+		}
+	}
+	return false;
 	/*
 	stwu     r1, -0x20(r1)
 	mflr     r0
