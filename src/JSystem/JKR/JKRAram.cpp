@@ -340,7 +340,7 @@ lbl_80017C34:
  * Address:	80017C50
  * Size:	000070
  */
-void JKRAram::run()
+u32 JKRAram::run()
 {
 	/*
 	stwu     r1, -0x20(r1)

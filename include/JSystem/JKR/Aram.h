@@ -52,7 +52,7 @@ struct JKRAram : public JKRThread {
 	JKRAram(u32, u32, long);
 
 	virtual ~JKRAram(); // _00
-	virtual void run(); // _04
+	virtual u32 run(); // _04
 
 	static JKRAram* create(u32, u32, long, long, long);
 	static JKRAramBlock* mainRamToAram(u8*, u32, u32, JKRExpandSwitch, u32, JKRHeap*, s32, u32*);

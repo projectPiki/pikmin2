@@ -1178,15 +1178,15 @@ blr
 // 	*/
 // }
 
-/*
- * --INFO--
- * Address:	........
- * Size:	000060
- */
-DvdThreadCommand::~DvdThreadCommand()
-{
-	// UNUSED FUNCTION
-}
+// /*
+//  * --INFO--
+//  * Address:	........
+//  * Size:	000060
+//  */
+// DvdThreadCommand::~DvdThreadCommand()
+// {
+// 	// UNUSED FUNCTION
+// }
 
 namespace Game {
 

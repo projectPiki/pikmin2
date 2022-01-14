@@ -10,6 +10,8 @@ struct JKRHeap;
 struct DvdThreadCommand {
 	DvdThreadCommand();
 
+	~DvdThreadCommand();
+
 	u32 _00;                      // _00
 	u32 m_loadType;               // _04
 	char* m_arcPath;              // _08
