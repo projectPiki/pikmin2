@@ -18,38 +18,14 @@
  * Address:	80019444
  * Size:	00006C
  */
-JKRAramBlock::JKRAramBlock(u32, u32, u32, u8, bool)
+JKRAramBlock::JKRAramBlock(u32 p1, u32 p2, u32 p3, u8 p4, bool p5)
+    : m_link(this)
+    , _14(p1)
+    , _18(p2)
+    , _1C(p3)
+    , _20(p4)
+    , _21(p5)
 {
-	/*
-	.loc_0x0:
-	  stwu      r1, -0x20(r1)
-	  mflr      r0
-	  lis       r9, 0x804A
-	  stw       r0, 0x24(r1)
-	  subi      r0, r9, 0x3E8
-	  stmw      r26, 0x8(r1)
-	  mr        r26, r3
-	  mr        r27, r4
-	  mr        r28, r5
-	  mr        r29, r6
-	  mr        r30, r7
-	  mr        r31, r8
-	  mr        r4, r26
-	  stw       r0, 0x0(r3)
-	  addi      r3, r26, 0x4
-	  bl        0xD338
-	  stw       r27, 0x14(r26)
-	  mr        r3, r26
-	  stw       r28, 0x18(r26)
-	  stw       r29, 0x1C(r26)
-	  stb       r30, 0x20(r26)
-	  stb       r31, 0x21(r26)
-	  lmw       r26, 0x8(r1)
-	  lwz       r0, 0x24(r1)
-	  mtlr      r0
-	  addi      r1, r1, 0x20
-	  blr
-	*/
 }
 
 /*
@@ -123,8 +99,12 @@ lbl_80019550:
  * Address:	8001956C
  * Size:	0000A8
  */
-JKRAramBlock* JKRAramBlock::allocHead(u32, u8, JKRAramHeap*)
+JKRAramBlock* JKRAramBlock::allocHead(u32 p1, u8 p2, JKRAramHeap* heap)
 {
+	JKRAramBlock* block = new (heap->_30, 0) JKRAramBlock(_14 + _18, p1, _1C - p1, p2, false);
+	_1C                 = 0;
+	m_link.m_list->insert(m_link.m_next, &block->m_link);
+	return block;
 	/*
 	stwu     r1, -0x20(r1)
 	mflr     r0

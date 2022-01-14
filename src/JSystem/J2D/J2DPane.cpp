@@ -1,3 +1,4 @@
+#include "JSystem/JSU/JSUList.h"
 #include "types.h"
 #include "Dolphin/mtx.h"
 #include "JSystem/J2D/J2DPane.h"
@@ -183,26 +184,6 @@ void J2DPane::calcMtx()
 	if (m_tree.m_link.m_list) {
 		makeMatrix(_0D4[0], _0D4[1]);
 	}
-	/*
-	stwu     r1, -0x10(r1)
-	mflr     r0
-	stw      r0, 0x14(r1)
-	lwz      r0, 0xec(r3)
-	cmplwi   r0, 0
-	beq      lbl_80036BE0
-	lwz      r12, 0(r3)
-	lfs      f1, 0xd4(r3)
-	lwz      r12, 0x44(r12)
-	lfs      f2, 0xd8(r3)
-	mtctr    r12
-	bctrl
-
-lbl_80036BE0:
-	lwz      r0, 0x14(r1)
-	mtlr     r0
-	addi     r1, r1, 0x10
-	blr
-	*/
 }
 
 /*
@@ -210,27 +191,7 @@ lbl_80036BE0:
  * Address:	80036BF0
  * Size:	00003C
  */
-void J2DPane::makeMatrix(float f1, float f2)
-{
-	makeMatrix(f1, f2, -_020.minX, -_020.minY);
-	/*
-	stwu     r1, -0x10(r1)
-	mflr     r0
-	stw      r0, 0x14(r1)
-	lwz      r12, 0(r3)
-	lfs      f3, 0x20(r3)
-	lfs      f0, 0x24(r3)
-	lwz      r12, 0x48(r12)
-	fneg     f3, f3
-	fneg     f4, f0
-	mtctr    r12
-	bctrl
-	lwz      r0, 0x14(r1)
-	mtlr     r0
-	addi     r1, r1, 0x10
-	blr
-	*/
-}
+void J2DPane::makeMatrix(float f1, float f2) { makeMatrix(f1, f2, -_020.minX, -_020.minY); }
 
 /*
  * --INFO--
@@ -294,6 +255,7 @@ void J2DPane::initiate()
 }
 
 /*
+ * __ct__7J2DPaneFP7J2DPanebUxRCQ29JGeometry8TBox2<f>
  * --INFO--
  * Address:	80036CB4
  * Size:	000088
@@ -357,7 +319,7 @@ void J2DPane::initialize(J2DPane* parent, bool isVisible, u64 tag, const JGeomet
 	m_tag          = tag;
 	m_messageID    = 0;
 	_020           = box;
-	if (parent) {
+	if (parent != nullptr) {
 		JSUPtrLink* link = m_tree.m_list.m_head;
 		if (link) {
 			link = &m_tree.m_link; // Could this be getting m_value?
@@ -464,6 +426,7 @@ void J2DPane::initialize(J2DPane* parent, bool isVisible, u64 tag, const JGeomet
 }
 
 /*
+ * __ct__7J2DPaneFUxRCQ29JGeometry8TBox2<f>
  * --INFO--
  * Address:	80036E5C
  * Size:	000078
@@ -581,6 +544,7 @@ void J2DPane::initialize(u64 tag, const JGeometry::TBox2f& box)
 }
 
 /*
+ * __ct__7J2DPaneFP7J2DPaneP20JSURandomInputStreamUc
  * --INFO--
  * Address:	80036FC8
  * Size:	000120
@@ -599,7 +563,7 @@ J2DPane::J2DPane(J2DPane* parent, JSURandomInputStream* input, u8 version)
 	} else {
 		J2DScrnBlockHeader header;
 		int position = input->getPosition();
-		input->read(&header, sizeof(J2DScrnBlockHeader));
+		input->peek(&header, sizeof(J2DScrnBlockHeader));
 		m_bloBlockType = header.m_bloBlockType;
 		makePaneExStream(parent, input);
 		input->seek(position + header.m_blockLength, SEEK_SET);
@@ -691,7 +655,80 @@ lbl_800370D0:
  */
 void J2DPane::makePaneStream(J2DPane* parent, JSURandomInputStream* input)
 {
-
+	u8 valuesRemaining;
+	input->read(&valuesRemaining, 1);
+	input->read(&m_isVisible, 1);
+	input->skip(2);
+	u32 tag;
+	input->read(&tag, 4);
+	m_tag = tag;
+	// JGeometry::TBox2<short> box()
+	JGeometry::TVec2<s16> shortTopLeft;
+	JGeometry::TVec2<s16> shortSize;
+	JGeometry::TVec2f topLeft;
+	JGeometry::TVec2f bottomRight;
+	input->read(&shortTopLeft.x, 2);
+	topLeft.x = shortTopLeft.x;
+	input->read(&shortTopLeft.y, 2);
+	topLeft.y = shortTopLeft.y;
+	input->read(&shortSize.x, 2);
+	bottomRight.x = topLeft.x + shortSize.x;
+	input->read(&shortSize.y, 2);
+	bottomRight.y = topLeft.y + shortSize.y;
+	_020.minX     = topLeft.x;
+	_020.minY     = topLeft.y;
+	_020.maxX     = bottomRight.x;
+	_020.maxY     = bottomRight.y;
+	valuesRemaining -= 6;
+	_0B8 = 0.0f;
+	_0BC = 0.0f;
+	_0C0 = 0.0f;
+	if (valuesRemaining != 0) {
+		u16 v1;
+		input->read(&v1, 2);
+		_0C0 = v1;
+		valuesRemaining--;
+	}
+	if (valuesRemaining != 0) {
+		u8 basePosition;
+		input->read(&basePosition, 1);
+		m_basePosition = (J2DBasePosition)basePosition;
+		valuesRemaining--;
+	} else {
+		m_basePosition = POS_TOP_LEFT;
+	}
+	m_rotationAxisMaybe = 0x7A;
+	m_alpha             = 0xFF;
+	if (valuesRemaining != 0) {
+		u8 alpha;
+		input->read(&alpha, 1);
+		m_alpha = alpha;
+		valuesRemaining--;
+	}
+	_0B4 = true;
+	if (valuesRemaining != 0) {
+		u8 v2;
+		input->read(&v2, 1);
+		_0B4 = v2;
+		valuesRemaining--;
+	}
+	input->align(4);
+	if (parent != nullptr) {
+		JSUPtrLink* link = m_tree.m_list.m_head;
+		if (link != nullptr) {
+			link = &m_tree.m_link;
+		}
+		parent->m_tree.m_list.append(link);
+	}
+	m_cullMode    = 0;
+	_0B3          = 0xFF;
+	_0B5          = 0;
+	_004          = -1;
+	m_widthScale  = 1.0f;
+	m_heightScale = 1.0f;
+	m_messageID   = 0;
+	changeUseTrans(parent);
+	calcMtx();
 	/*
 	stwu     r1, -0x80(r1)
 	mflr     r0
@@ -1138,8 +1175,22 @@ lbl_800376A4:
  * Address:	800376C4
  * Size:	0000B8
  */
-u32 J2DPane::appendChild(J2DPane*)
+u32 J2DPane::appendChild(J2DPane* child)
 {
+	if (child == nullptr) {
+		return 0;
+	}
+	J2DPane* oldParent = child->getParentPane();
+	JSUPtrLink* link   = child->m_tree.m_list.m_head;
+	if (link != nullptr) {
+		link = &child->m_tree.m_link;
+	}
+	bool appendResult = m_tree.m_list.append(link);
+	if (appendResult && oldParent == nullptr) {
+		child->add(_020.minX, _020.minY);
+		calcMtx();
+	}
+	return appendResult;
 	/*
 	stwu     r1, -0x20(r1)
 	mflr     r0
@@ -1262,6 +1313,13 @@ lbl_80037814:
 	blr
 	*/
 }
+
+/*
+ * --INFO--
+ * Address:	........
+ * Size:	0000DC
+ */
+void J2DPane::insertChild(J2DPane*, J2DPane*) { }
 
 /*
  * --INFO--
@@ -2243,6 +2301,13 @@ lbl_80038468:
 
 /*
  * --INFO--
+ * Address:	........
+ * Size:	000030
+ */
+float J2DPane::getRotate() const { }
+
+/*
+ * --INFO--
  * Address:	80038488
  * Size:	00007C
  */
@@ -2619,118 +2684,127 @@ void J2DPane::gather(J2DPane**, u64, u64, int, int&)
 }
 
 /*
+ * @generated{getNextChild__17JSUTree<7J2DPane>CFv}
  * --INFO--
  * Address:	800388C4
  * Size:	000014
  */
-template <> J2DPane* JSUTree<J2DPane>::getNextChild() const
-{
-	/*
-	lwz      r3, 0x18(r3)
-	cmplwi   r3, 0
-	beqlr
-	addi     r3, r3, -12
-	blr
-	*/
-}
+// template <> J2DPane* JSUTree<J2DPane>::getNextChild() const
+// {
+// 	/*
+// 	lwz      r3, 0x18(r3)
+// 	cmplwi   r3, 0
+// 	beqlr
+// 	addi     r3, r3, -12
+// 	blr
+// 	*/
+// }
 
 /*
+ * @generated{__ne__25JSUTreeIterator<7J2DPane>CFPC17JSUTree<7J2DPane>}
  * --INFO--
  * Address:	800388D8
  * Size:	000018
  */
-template <> bool JSUTreeIterator<J2DPane>::operator!=(const JSUTree<J2DPane>*) const
-{
-	/*
-	lwz      r0, 0(r3)
-	subf     r3, r0, r4
-	subf     r0, r4, r0
-	or       r0, r3, r0
-	srwi     r3, r0, 0x1f
-	blr
-	*/
-}
+// template <>
+// bool JSUTreeIterator<J2DPane>::operator!=(const JSUTree<J2DPane>*) const
+// {
+// 	/*
+// 	lwz      r0, 0(r3)
+// 	subf     r3, r0, r4
+// 	subf     r0, r4, r0
+// 	or       r0, r3, r0
+// 	srwi     r3, r0, 0x1f
+// 	blr
+// 	*/
+// }
 
 /*
+ * @generated{getEndChild__17JSUTree<7J2DPane>CFv}
  * --INFO--
  * Address:	800388F0
  * Size:	000008
  */
-template <> J2DPane* JSUTree<J2DPane>::getEndChild() const { return nullptr; }
+// template <> J2DPane* JSUTree<J2DPane>::getEndChild() const { return nullptr; }
 
 /*
+ * @generated{__pp__25JSUTreeIterator<7J2DPane>Fv}
  * --INFO--
  * Address:	800388F8
  * Size:	00001C
  */
-template <> void JSUTreeIterator<J2DPane>::operator++()
-{
-	/*
-	lwz      r4, 0(r3)
-	lwz      r4, 0x18(r4)
-	cmplwi   r4, 0
-	beq      lbl_8003890C
-	addi     r4, r4, -12
+// template <> void JSUTreeIterator<J2DPane>::operator++()
+// {
+// 	/*
+// 	lwz      r4, 0(r3)
+// 	lwz      r4, 0x18(r4)
+// 	cmplwi   r4, 0
+// 	beq      lbl_8003890C
+// 	addi     r4, r4, -12
 
-lbl_8003890C:
-	stw      r4, 0(r3)
-	blr
-	*/
-}
+// lbl_8003890C:
+// 	stw      r4, 0(r3)
+// 	blr
+// 	*/
+// }
 
 /*
+ * @generated{__ct__25JSUTreeIterator<7J2DPane>FP17JSUTree<7J2DPane>}
  * --INFO--
  * Address:	80038914
  * Size:	000008
  */
-template <> JSUTreeIterator<J2DPane>::JSUTreeIterator(JSUTree<J2DPane>* a1)
-{
-	// Generated from stw r4, 0x0(r3)
-	m_tree = a1;
-}
+// template <> JSUTreeIterator<J2DPane>::JSUTreeIterator(JSUTree<J2DPane>* a1)
+// {
+// 	// Generated from stw r4, 0x0(r3)
+// 	m_tree = a1;
+// }
 
 /*
+ * @generated{__rf__25JSUTreeIterator<7J2DPane>CFv}
  * --INFO--
  * Address:	8003891C
  * Size:	00000C
  */
-template <> J2DPane* JSUTreeIterator<J2DPane>::operator->() const
-{
-	/*
-	lwz      r3, 0(r3)
-	lwz      r3, 0xc(r3)
-	blr
-	*/
-}
+// template <> J2DPane* JSUTreeIterator<J2DPane>::operator->() const
+// {
+// 	/*
+// 	lwz      r3, 0(r3)
+// 	lwz      r3, 0xc(r3)
+// 	blr
+// 	*/
+// }
 
 /*
+ * @generated{getFirstChild__17JSUTree<7J2DPane>CFv}
  * --INFO--
  * Address:	80038928
  * Size:	000014
  */
-template <> J2DPane* JSUTree<J2DPane>::getFirstChild() const
-{
-	/*
-	lwz      r3, 0(r3)
-	cmplwi   r3, 0
-	beqlr
-	addi     r3, r3, -12
-	blr
-	*/
-}
+// template <> J2DPane* JSUTree<J2DPane>::getFirstChild() const
+// {
+// 	/*
+// 	lwz      r3, 0(r3)
+// 	cmplwi   r3, 0
+// 	beqlr
+// 	addi     r3, r3, -12
+// 	blr
+// 	*/
+// }
 
 /*
+ * @generated{getObject__17JSUTree<7J2DPane>CFv}
  * --INFO--
  * Address:	8003893C
  * Size:	000008
  */
-template <> J2DPane* JSUTree<J2DPane>::getObject() const
-{
-	/*
-	lwz      r3, 0xc(r3)
-	blr
-	*/
-}
+// template <> J2DPane* JSUTree<J2DPane>::getObject() const
+// {
+// 	/*
+// 	lwz      r3, 0xc(r3)
+// 	blr
+// 	*/
+// }
 
 /*
  * --INFO--
@@ -2796,6 +2870,13 @@ lbl_800389D8:
 	blr
 	*/
 }
+
+/*
+ * --INFO--
+ * Address:	........
+ * Size:	000310
+ */
+void J2DPane::gatherUserInfo(J2DPane**, u64, u64, int, int&) { }
 
 /*
  * --INFO--
@@ -2910,23 +2991,23 @@ lbl_80038AEC:
  */
 void J2DPane::makeMatrix(float f1, float f2, float f3, float f4)
 {
-	PSMatrix mtx6;
-	PSMatrix trans;
-	PSMatrix mtx4;
-	PSMatrix mtx3;
-	PSMatrix mtx2;
-	PSMatrix mtx1;
+	Mtx mtx6;
+	Mtx trans;
+	Mtx mtx4;
+	Mtx mtx3;
+	Mtx mtx2;
+	Mtx mtx1;
 	float x = m_anchorPoint.x - f3;
 	float y = m_anchorPoint.y - f4;
-	PSMTXTrans(-x, -y, 0.0f, trans);
-	PSMTXRotRad(_0B8 * 0.01745329f, mtx1, 0x78);
-	PSMTXRotRad(_0BC * 0.01745329f, mtx2, 0x79);
-	PSMTXRotRad(_0C0 * 0.01745329f, mtx3, 0x7A);
+	PSMTXTrans(trans, -x, -y, 0.0f);
+	PSMTXRotRad(mtx1, 0x78, _0B8 * 0.01745329f);
+	PSMTXRotRad(mtx2, 0x79, _0BC * 0.01745329f);
+	PSMTXRotRad(mtx3, 0x7A, _0C0 * 0.01745329f);
 	PSMTXConcat(mtx3, mtx1, mtx6);
 	PSMTXConcat(mtx2, mtx6, mtx4);
-	PSMTXScaleApply(m_widthScale, m_heightScale, 1.0f, trans, _050);
+	PSMTXScaleApply(trans, _050, m_widthScale, m_heightScale, 1.0f);
 	PSMTXConcat(mtx4, _050, mtx6);
-	PSMTXTransApply(f1 + x, f2 + y, 0.0f, mtx6, _050);
+	PSMTXTransApply(mtx6, _050, f1 + x, f2 + y, 0.0f);
 
 	/*
 	stwu     r1, -0x170(r1)
@@ -4329,7 +4410,7 @@ void J2DAnmTransform::getTransform(u16, J3DTransformInfo*) const { }
  * Address:	80039A64
  * Size:	000008
  */
-i32 J2DPane::getTypeID() const { return 0x10; }
+u32 J2DPane::getTypeID() const { return 0x10; }
 
 /*
  * --INFO--

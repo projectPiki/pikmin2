@@ -1,3 +1,4 @@
+#include "JSystem/JMath.h"
 #include "types.h"
 
 /*
@@ -283,13 +284,19 @@ float linearTransform(float x, float xStart, float xEnd, float yStart, float yEn
 //    */
 //}
 
-///*
+// /*
 // * --INFO--
 // * Address:	800BA4F4
 // * Size:	000070
 // */
-// void JALCalc::getRandom_0_1()
-//{
+// float getRandom_0_1()
+// {
+//     static JMath::TRandom_fast_ oRandom(0);
+//     u32 next = (oRandom.next() >> 9) | 0x3F800000;
+//     return *(float*)(void*)&next - 1.0f;
+// 	// oRandom.value = oRandom.value * 0x19660d + 0x3c6ef35f; // * 1664525 + 1013904223;
+// 	// return (float)(oRandom.value >> 9 | 0x3f800000) - 1.0f;
+
 //    /*
 //    .loc_0x0:
 //      stwu      r1, -0x10(r1)
@@ -323,7 +330,7 @@ float linearTransform(float x, float xStart, float xEnd, float yStart, float yEn
 //      addi      r1, r1, 0x10
 //      blr
 //    */
-//}
+// }
 
 ///*
 // * --INFO--

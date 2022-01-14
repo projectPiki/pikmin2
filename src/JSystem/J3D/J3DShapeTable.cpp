@@ -1,3 +1,4 @@
+#include "JSystem/J3D/J3DShape.h"
 #include "types.h"
 
 /*
@@ -9,8 +10,13 @@
  * Address:	80089664
  * Size:	000064
  */
-void J3DShapeTable::initShapeNodes(J3DDrawMtxData*, J3DVertexData*)
+void J3DShapeTable::initShapeNodes(J3DDrawMtxData* drawMtxData, J3DVertexData* vtxData)
 {
+	for (u16 i = 0; i < m_count; i++) {
+		m_items[i]->m_drawMtxData = drawMtxData;
+		m_items[i]->m_vtxData     = vtxData;
+		m_items[i]->makeVcdVatCmd();
+	}
 	/*
 	stwu     r1, -0x20(r1)
 	mflr     r0
@@ -51,6 +57,13 @@ lbl_800896A8:
  */
 void J3DShapeTable::sortVcdVatCmd()
 {
+	for (u16 i = 0; i < m_count; i++) {
+		for (u16 j = 0; j < i; j++) {
+			if (m_items[i]->isSameVcdVatCmd(m_items[j])) {
+				m_items[i]->_2C = m_items[j]->_2C;
+			}
+		}
+	}
 	/*
 	stwu     r1, -0x30(r1)
 	mflr     r0

@@ -34,7 +34,7 @@
  * Address:	8001B130
  * Size:	000064
  */
-JKRArchive* JKRArchive::mount(const char*, JKRArchive::EMountMode, JKRHeap*, JKRArchive::EMountDirection)
+JKRArchive* JKRArchive::mount(const char*, EMountMode, JKRHeap*, EMountDirection)
 {
 	/*
 	.loc_0x0:
@@ -75,7 +75,7 @@ JKRArchive* JKRArchive::mount(const char*, JKRArchive::EMountMode, JKRHeap*, JKR
  * Address:	8001B194
  * Size:	0000D8
  */
-void JKRArchive::mount(void*, JKRHeap*, JKRArchive::EMountDirection)
+JKRArchive* JKRArchive::mount(void*, JKRHeap*, EMountDirection)
 {
 	/*
 	stwu     r1, -0x10(r1)
@@ -158,7 +158,7 @@ lbl_8001B258:
  * Address:	8001B26C
  * Size:	0001D8
  */
-void JKRArchive::mount(long, JKRArchive::EMountMode, JKRHeap*, JKRArchive::EMountDirection)
+JKRArchive* JKRArchive::mount(long, EMountMode, JKRHeap*, EMountDirection)
 {
 	/*
 	.loc_0x0:
@@ -426,7 +426,7 @@ lbl_8001B52C:
  * Address:	8001B544
  * Size:	0000B8
  */
-void JKRArchive::getGlbResource(unsigned long, const char*, JKRArchive*)
+void* JKRArchive::getGlbResource(unsigned long, const char*, JKRArchive*)
 {
 	/*
 	stwu     r1, -0x20(r1)
@@ -495,7 +495,7 @@ lbl_8001B5E0:
  * Address:	8001B5FC
  * Size:	00007C
  */
-void JKRArchive::getResource(const char*)
+void* JKRArchive::getResource(const char*)
 {
 	/*
 	stwu     r1, -0x10(r1)
@@ -545,7 +545,7 @@ lbl_8001B664:
  * Address:	8001B678
  * Size:	000080
  */
-void JKRArchive::getResource(unsigned long, const char*)
+void* JKRArchive::getResource(unsigned long, const char*)
 {
 	/*
 	stwu     r1, -0x10(r1)
@@ -598,7 +598,7 @@ lbl_8001B6E4:
  * Address:	8001B6F8
  * Size:	000054
  */
-void JKRArchive::getIdxResource(unsigned long)
+void* JKRArchive::getIdxResource(unsigned long)
 {
 	/*
 	stwu     r1, -0x10(r1)

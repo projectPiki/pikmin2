@@ -1,3 +1,4 @@
+#include "JSystem/JUtility.h"
 #include "types.h"
 #include "JSystem/JUT/JUTFont.h"
 
@@ -33,20 +34,12 @@
  * Size:	00002C
  */
 JUTFont::JUTFont()
+    : _0C(0xFFFFFFFF)
+    , _10(0xFFFFFFFF)
+    , _14(0xFFFFFFFF)
+    , _18(0xFFFFFFFF)
 {
-	/*
-	lis      r5, __vt__7JUTFont@ha
-	li       r4, -1
-	addi     r5, r5, __vt__7JUTFont@l
-	li       r0, 0
-	stw      r5, 0(r3)
-	stw      r4, 0xc(r3)
-	stw      r4, 0x10(r3)
-	stw      r4, 0x14(r3)
-	stw      r4, 0x18(r3)
-	stb      r0, 4(r3)
-	blr
-	*/
+	_04 = 0;
 }
 
 /*
@@ -56,6 +49,11 @@ JUTFont::JUTFont()
  */
 void JUTFont::initialize_state()
 {
+	JUtility::TColor initialColor(0xFFFFFFFF);
+	setCharColor(initialColor);
+	_05 = 0;
+	_08 = 0;
+	_04 = 0;
 	/*
 	stwu     r1, -0x20(r1)
 	mflr     r0

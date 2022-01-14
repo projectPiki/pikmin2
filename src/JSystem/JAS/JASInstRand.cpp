@@ -1,3 +1,7 @@
+#include "Dolphin/float.h"
+#include "JSystem/JAL/JALCalc.h"
+#include "JSystem/JAS/JASInstEffect.h"
+#include "JSystem/JMath.h"
 #include "types.h"
 
 /*
@@ -33,8 +37,16 @@
  * Address:	8009B4E8
  * Size:	0000A4
  */
-void JASInstRand::getY(int, int) const
+float JASInstRand::getY(int, int) const
 {
+	// static JMath::TRandom_fast_ oRandom(0);
+	// oRandom.value = oRandom.value * 1664525 + 1013904223;
+	// return -((1.0f - __float_epsilon) * 1.0f - ((float)(oRandom.value >> 9 | 0x3f800000) - 1.0f) * 2.0f) * _0C + _08;
+
+	float v = -((1.0f - __float_epsilon) * 1.0f - JALCalc::getRandom_0_1() * 2.0f);
+	v *= _0C;
+	v += _08;
+	return v;
 	/*
 	stwu     r1, -0x20(r1)
 	mflr     r0

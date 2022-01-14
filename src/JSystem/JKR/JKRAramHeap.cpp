@@ -309,7 +309,7 @@ lbl_800199B8:
  * Address:	800199C8
  * Size:	000078
  */
-i32 JKRAramHeap::getFreeSize()
+s32 JKRAramHeap::getFreeSize()
 {
 	/*
 	stwu     r1, -0x10(r1)
@@ -352,63 +352,65 @@ lbl_80019A14:
 }
 
 /*
+ * @generated{__sinit_JKRAramHeap_cpp}
  * --INFO--
  * Address:	80019A40
  * Size:	000044
  */
-void __sinit_JKRAramHeap_cpp(void)
-{
-	/*
-	stwu     r1, -0x10(r1)
-	mflr     r0
-	lis      r3, sAramList__11JKRAramHeap@ha
-	stw      r0, 0x14(r1)
-	addi     r3, r3, sAramList__11JKRAramHeap@l
-	bl       initiate__10JSUPtrListFv
-	lis      r3, sAramList__11JKRAramHeap@ha
-	lis      r4, "__dt__23JSUList<12JKRAramBlock>Fv"@ha
-	lis      r5, lbl_804EFF20@ha
-	addi     r3, r3, sAramList__11JKRAramHeap@l
-	addi     r4, r4, "__dt__23JSUList<12JKRAramBlock>Fv"@l
-	addi     r5, r5, lbl_804EFF20@l
-	bl       __register_global_object
-	lwz      r0, 0x14(r1)
-	mtlr     r0
-	addi     r1, r1, 0x10
-	blr
-	*/
-}
+// void __sinit_JKRAramHeap_cpp(void)
+// {
+// 	/*
+// 	stwu     r1, -0x10(r1)
+// 	mflr     r0
+// 	lis      r3, sAramList__11JKRAramHeap@ha
+// 	stw      r0, 0x14(r1)
+// 	addi     r3, r3, sAramList__11JKRAramHeap@l
+// 	bl       initiate__10JSUPtrListFv
+// 	lis      r3, sAramList__11JKRAramHeap@ha
+// 	lis      r4, "__dt__23JSUList<12JKRAramBlock>Fv"@ha
+// 	lis      r5, lbl_804EFF20@ha
+// 	addi     r3, r3, sAramList__11JKRAramHeap@l
+// 	addi     r4, r4, "__dt__23JSUList<12JKRAramBlock>Fv"@l
+// 	addi     r5, r5, lbl_804EFF20@l
+// 	bl       __register_global_object
+// 	lwz      r0, 0x14(r1)
+// 	mtlr     r0
+// 	addi     r1, r1, 0x10
+// 	blr
+// 	*/
+// }
 
 /*
+ * @generated{__dt__23JSUList<12JKRAramBlock>Fv}
  * --INFO--
  * Address:	80019A84
  * Size:	000054
  */
-void JSUList<JKRAramBlock>::~JSUList()
-{
-	/*
-	stwu     r1, -0x10(r1)
-	mflr     r0
-	stw      r0, 0x14(r1)
-	stw      r31, 0xc(r1)
-	mr       r31, r4
-	stw      r30, 8(r1)
-	or.      r30, r3, r3
-	beq      lbl_80019ABC
-	li       r4, 0
-	bl       __dt__10JSUPtrListFv
-	extsh.   r0, r31
-	ble      lbl_80019ABC
-	mr       r3, r30
-	bl       __dl__FPv
+// void JSUList<JKRAramBlock>::~JSUList()
+// {
+// 	/*
+// 	stwu     r1, -0x10(r1)
+// 	mflr     r0
+// 	stw      r0, 0x14(r1)
+// 	stw      r31, 0xc(r1)
+// 	mr       r31, r4
+// 	stw      r30, 8(r1)
+// 	or.      r30, r3, r3
+// 	beq      lbl_80019ABC
+// 	li       r4, 0
+// 	bl       __dt__10JSUPtrListFv
+// 	extsh.   r0, r31
+// 	ble      lbl_80019ABC
+// 	mr       r3, r30
+// 	bl       __dl__FPv
 
-lbl_80019ABC:
-	lwz      r0, 0x14(r1)
-	mr       r3, r30
-	lwz      r31, 0xc(r1)
-	lwz      r30, 8(r1)
-	mtlr     r0
-	addi     r1, r1, 0x10
-	blr
-	*/
-}
+// lbl_80019ABC:
+// 	lwz      r0, 0x14(r1)
+// 	mr       r3, r30
+// 	lwz      r31, 0xc(r1)
+// 	lwz      r30, 8(r1)
+// 	mtlr     r0
+// 	addi     r1, r1, 0x10
+// 	blr
+// 	*/
+// }

@@ -1,3 +1,4 @@
+#include "JSystem/JAS/JASInstEffect.h"
 #include "types.h"
 
 /*
@@ -33,8 +34,42 @@
  * Address:	8009B58C
  * Size:	000124
  */
-void JASInstSense::getY(int, int) const
+float JASInstSense::getY(int p1, int p2) const
 {
+	int v1 = 0;
+	switch (_08) {
+	case 1:
+		v1 = p2;
+		break;
+	case 2:
+		v1 = p1;
+		break;
+	}
+	if (_09 == 0x7F || _09 == 0) {
+		return _0C + (v1 * (_10 - _0C)) / 127.0f;
+	} else if (v1 < _09) {
+		return (1.0f - _0C) * ((float)v1 / (float)_09) + _0C;
+	} else {
+		return (_10 - 1.0f) * ((float)(v1 - _09) / (float)(0x7F - _09)) + 1.0f;
+	}
+	// switch (_08) {
+	// 	case 2:
+	// 		break;
+	// 	case 1:
+	// 		p1 = p2;
+	// 		break;
+	// 	default:
+	// 		p1 = 0;
+	// 		break;
+	// }
+	// if (_09 == 0x7F || _09 == 0) {
+	// 	return _0C + (p1 * (_10 - _0C)) / 127.0f;
+	// } else if (p1 < _09) {
+	// 	return (1.0f - _0C) * ((float)p1 / (float)_09) + _0C;
+	// } else {
+	// 	return (_10 - 1.0f) * ((float)(p1 - _09) / (float)(0x7F - _09)) + 1.0f;
+	// }
+
 	/*
 	lbz      r0, 8(r3)
 	li       r7, 0
@@ -131,13 +166,10 @@ lbl_8009B6A8:
  * Address:	8009B6B0
  * Size:	000014
  */
-void JASInstSense::setParams(int, int, float, float)
+void JASInstSense::setParams(int p1, int p2, float p3, float p4)
 {
-	/*
-	stb      r4, 8(r3)
-	stb      r5, 9(r3)
-	stfs     f1, 0xc(r3)
-	stfs     f2, 0x10(r3)
-	blr
-	*/
+	_08 = p1;
+	_09 = p2;
+	_0C = p3;
+	_10 = p4;
 }

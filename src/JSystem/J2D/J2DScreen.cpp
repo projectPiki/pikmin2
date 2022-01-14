@@ -1,5 +1,5 @@
-#include "types.h"
 #include "JSystem/J2D/J2DPane.h"
+#include "types.h"
 
 /*
     Generated from dpostproc
@@ -230,7 +230,7 @@ lbl_8003F610:
  * Address:	8003F624
  * Size:	000104
  */
-void J2DScreen::set(const char*, unsigned long, JKRArchive*)
+bool J2DScreen::set(const char*, unsigned long, JKRArchive*)
 {
 	/*
 	stwu     r1, -0x30(r1)
@@ -310,7 +310,7 @@ lbl_8003F708:
  * Address:	8003F728
  * Size:	000024
  */
-void J2DScreen::set(JSURandomInputStream*, unsigned long)
+bool J2DScreen::set(JSURandomInputStream*, unsigned long)
 {
 	/*
 	stwu     r1, -0x10(r1)
@@ -330,7 +330,7 @@ void J2DScreen::set(JSURandomInputStream*, unsigned long)
  * Address:	8003F74C
  * Size:	000140
  */
-void J2DScreen::private_set(JSURandomInputStream*, unsigned long, JKRArchive*)
+bool J2DScreen::private_set(JSURandomInputStream*, unsigned long, JKRArchive*)
 {
 	/*
 	stwu     r1, -0x20(r1)
@@ -434,7 +434,7 @@ lbl_8003F86C:
  * Address:	8003F88C
  * Size:	000060
  */
-void J2DScreen::checkSignature(JSURandomInputStream*)
+bool J2DScreen::checkSignature(JSURandomInputStream*)
 {
 	/*
 	stwu     r1, -0x30(r1)
@@ -475,7 +475,7 @@ lbl_8003F8DC:
  * Address:	8003F8EC
  * Size:	0000FC
  */
-void J2DScreen::getScreenInformation(JSURandomInputStream*)
+bool J2DScreen::getScreenInformation(JSURandomInputStream*)
 {
 	/*
 	stwu     r1, -0x50(r1)
@@ -555,7 +555,7 @@ lbl_8003F9D0:
  * Address:	8003F9E8
  * Size:	000560
  */
-void J2DScreen::makeHierarchyPanes(J2DPane*, JSURandomInputStream*, unsigned long, JKRArchive*)
+u32 J2DScreen::makeHierarchyPanes(J2DPane*, JSURandomInputStream*, unsigned long, JKRArchive*)
 {
 	/*
 	.loc_0x0:
@@ -1424,7 +1424,7 @@ lbl_8004042C:
  * Address:	80040478
  * Size:	000040
  */
-void J2DScreen::search(unsigned long long)
+J2DPane* J2DScreen::search(unsigned long long)
 {
 	/*
 	stwu     r1, -0x10(r1)
@@ -1455,7 +1455,7 @@ lbl_800404A4:
  * Address:	800404B8
  * Size:	000030
  */
-void J2DScreen::gather(J2DPane**, unsigned long long, unsigned long long, int)
+u32 J2DScreen::gather(J2DPane**, unsigned long long, unsigned long long, int)
 {
 	/*
 	stwu     r1, -0x10(r1)
@@ -1478,7 +1478,7 @@ void J2DScreen::gather(J2DPane**, unsigned long long, unsigned long long, int)
  * Address:	800404E8
  * Size:	000040
  */
-void J2DScreen::searchUserInfo(unsigned long long)
+J2DPane* J2DScreen::searchUserInfo(unsigned long long)
 {
 	/*
 	stwu     r1, -0x10(r1)
@@ -1608,7 +1608,7 @@ lbl_8004066C:
  * Address:	80040680
  * Size:	0000F4
  */
-void J2DScreen::getResReference(JSURandomInputStream*, unsigned long)
+void* J2DScreen::getResReference(JSURandomInputStream*, unsigned long)
 {
 	/*
 	stwu     r1, -0x30(r1)
@@ -1686,7 +1686,7 @@ lbl_8004075C:
  * Address:	80040774
  * Size:	0002F0
  */
-void J2DScreen::createMaterial(JSURandomInputStream*, unsigned long, JKRArchive*)
+bool J2DScreen::createMaterial(JSURandomInputStream*, unsigned long, JKRArchive*)
 {
 	/*
 	.loc_0x0:
@@ -1914,7 +1914,7 @@ void J2DScreen::createMaterial(JSURandomInputStream*, unsigned long, JKRArchive*
  * Address:	80040A64
  * Size:	000038
  */
-void J2DScreen::getMaterial(unsigned short)
+J2DMaterial* J2DScreen::getMaterial(unsigned short)
 {
 	/*
 	lhz      r0, 0x102(r3)
@@ -1943,7 +1943,7 @@ lbl_80040A90:
  * Address:	80040A9C
  * Size:	000020
  */
-void J2DScreen::isUsed(const ResTIMG*)
+bool J2DScreen::isUsed(const ResTIMG*)
 {
 	/*
 	stwu     r1, -0x10(r1)
@@ -1962,7 +1962,7 @@ void J2DScreen::isUsed(const ResTIMG*)
  * Address:	80040ABC
  * Size:	000020
  */
-void J2DScreen::isUsed(const ResFONT*)
+bool J2DScreen::isUsed(const ResFONT*)
 {
 	/*
 	stwu     r1, -0x10(r1)
@@ -1981,7 +1981,7 @@ void J2DScreen::isUsed(const ResFONT*)
  * Address:	80040ADC
  * Size:	000050
  */
-void J2DScreen::getNameResource(const char*)
+void* J2DScreen::getNameResource(const char*)
 {
 	/*
 	stwu     r1, -0x10(r1)

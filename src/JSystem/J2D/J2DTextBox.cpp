@@ -493,7 +493,7 @@ u32 J2DTevBlock::getFont() { return 0x0; }
  * Address:	800414EC
  * Size:	00008C
  */
-J2DTextBox::J2DTextBox(unsigned long long, const JGeometry::TBox2<float>&, const ResFONT*, const char*, short, J2DTextBoxHBinding,
+J2DTextBox::J2DTextBox(unsigned long long, const JGeometry::TBox2f&, const ResFONT*, const char*, short, J2DTextBoxHBinding,
                        J2DTextBoxVBinding)
 {
 	/*
@@ -1000,7 +1000,7 @@ lbl_80041B6C:
  * Address:	80041B88
  * Size:	000008
  */
-void J2DTextBox::getFont() const
+JUTResFont* J2DTextBox::getFont() const
 {
 	/*
 	lwz      r3, 0x100(r3)
