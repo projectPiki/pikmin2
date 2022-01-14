@@ -18,6 +18,9 @@ struct SeaMgr : public NodeObjectMgr<WaterBox> {
 	void read(Stream&);
 	void update();
 
+	// Unused/inlined:
+	void directDraw(Graphics&);
+
 	int _3C;                            // _3C
 	J3DModelData** m_modelData;         // _40
 	Sys::MatTexAnimation* m_animations; // _44

@@ -1,4 +1,21 @@
+#include "Dolphin/math.h"
+#include "Dolphin/mtx.h"
+#include "Dolphin/string.h"
+#include "Game/GameSystem.h"
+#include "Game/MapMgr.h"
 #include "Game/seaMgr.h"
+#include "Game/AABBWaterBox.h"
+#include "Iterator.h"
+#include "JSystem/J3D/J3DModel.h"
+#include "JSystem/J3D/J3DTexture.h"
+#include "JSystem/JKR/JKRArchive.h"
+#include "JSystem/JUT/JUTException.h"
+#include "JSystem/JUT/JUTNameTab.h"
+#include "Matrixf.h"
+#include "Sys/MatBaseAnimation.h"
+#include "Sys/Sphere.h"
+#include "SysShape/Model.h"
+#include "System.h"
 #include "types.h"
 #include "Vector3.h"
 
@@ -286,8 +303,9 @@ namespace Game {
  * Address:	........
  * Size:	000028
  */
-WaterBox::WaterBox(void)
+WaterBox::WaterBox()
 {
+	const char* fakeMatch_gameSeaMgr[3] = { nullptr, nullptr, nullptr };
 	// UNUSED FUNCTION
 }
 
@@ -296,7 +314,7 @@ WaterBox::WaterBox(void)
  * Address:	........
  * Size:	0000B8
  */
-AABBWaterBox::AABBWaterBox(void)
+AABBWaterBox::AABBWaterBox()
 {
 	// UNUSED FUNCTION
 }
@@ -306,20 +324,15 @@ AABBWaterBox::AABBWaterBox(void)
  * Address:	801AE448
  * Size:	000028
  */
-void AABBWaterBox::startDown(float)
+void AABBWaterBox::startDown(float p1)
 {
-	/*
-	lhz      r0, 8(r3)
-	cmplwi   r0, 0
-	bnelr
-	stfs     f1, 0x10(r3)
-	li       r0, 1
-	lfs      f0, lbl_80519328@sda21(r2)
-	stfs     f0, 0x14(r3)
-	sth      r0, 8(r3)
-	stfs     f0, 0x38(r3)
-	blr
-	*/
+	if (_08 != 0) {
+		return;
+	}
+	_10 = p1;
+	_14 = 0.0f;
+	_08 = 1;
+	_38 = 0.0f;
 }
 
 /*
@@ -327,87 +340,28 @@ void AABBWaterBox::startDown(float)
  * Address:	801AE470
  * Size:	000038
  */
-void AABBWaterBox::startUp(float)
-{
-	/*
-	stwu     r1, -0x10(r1)
-	mflr     r0
-	lis      r3, lbl_8047F964@ha
-	lis      r5, lbl_8047F974@ha
-	stw      r0, 0x14(r1)
-	addi     r3, r3, lbl_8047F964@l
-	li       r4, 0xa7
-	addi     r5, r5, lbl_8047F974@l
-	crclr    6
-	bl       panic_f__12JUTExceptionFPCciPCce
-	lwz      r0, 0x14(r1)
-	mtlr     r0
-	addi     r1, r1, 0x10
-	blr
-	*/
-}
+void AABBWaterBox::startUp(float) { JUT_PANICLINE(167, "まんだ! startUp\n"); }
 
 /*
  * --INFO--
  * Address:	801AE4A8
  * Size:	0000B8
  */
-void AABBWaterBox::update(void)
+inline bool AABBWaterBox::update(void)
 {
-	/*
-	stwu     r1, -0x10(r1)
-	mflr     r0
-	mr       r4, r3
-	stw      r0, 0x14(r1)
-	lhz      r0, 8(r3)
-	cmpwi    r0, 1
-	beq      lbl_801AE4C8
-	b        lbl_801AE53C
-
-lbl_801AE4C8:
-	lwz      r3, sys@sda21(r13)
-	lfs      f3, 0x38(r4)
-	lfs      f1, 0x54(r3)
-	lfs      f0, 0xc(r4)
-	lfs      f2, lbl_8051932C@sda21(r2)
-	fnmsubs  f0, f3, f1, f0
-	stfs     f0, 0xc(r4)
-	lwz      r3, sys@sda21(r13)
-	lfs      f0, 0x38(r4)
-	lfs      f1, 0x54(r3)
-	fmadds   f0, f2, f1, f0
-	stfs     f0, 0x38(r4)
-	lfs      f1, 0x30(r4)
-	lfs      f0, 0xc(r4)
-	fadds    f0, f1, f0
-	stfs     f0, 0x34(r4)
-	lfs      f0, 0xc(r4)
-	lfs      f1, 0x10(r4)
-	fcmpo    cr0, f0, f1
-	cror     2, 0, 2
-	bne      lbl_801AE53C
-	stfs     f1, 0xc(r4)
-	li       r0, 3
-	sth      r0, 8(r4)
-	lwz      r3, mapMgr__4Game@sda21(r13)
-	lwz      r3, 0x10(r3)
-	bl       "delNode__31NodeObjectMgr<Q24Game8WaterBox>FPQ24Game8WaterBox"
-	li       r3, 1
-	b        lbl_801AE550
-
-lbl_801AE53C:
-	lfs      f1, 0x30(r4)
-	li       r3, 0
-	lfs      f0, 0xc(r4)
-	fadds    f0, f1, f0
-	stfs     f0, 0x34(r4)
-
-lbl_801AE550:
-	lwz      r0, 0x14(r1)
-	mtlr     r0
-	addi     r1, r1, 0x10
-	blr
-	*/
+	if (_08 == 1) {
+		_0C = -(_38 * sys->m_secondsPerFrame - _0C);
+		_38 = sys->m_secondsPerFrame * 5.0f + _38;
+		_34 = _30 + _0C;
+		if (_0C <= _10) {
+			_0C = _10;
+			_08 = 3;
+			Game::mapMgr->m_seaMgr->delNode(this);
+			return true;
+		}
+	}
+	_34 = _30 + _0C;
+	return false;
 }
 
 /*
@@ -415,126 +369,26 @@ lbl_801AE550:
  * Address:	801AE560
  * Size:	0001B0
  */
-void AABBWaterBox::attachModel(J3DModelData*, Sys::MatTexAnimation*, float)
+void AABBWaterBox::attachModel(J3DModelData* modelData, Sys::MatTexAnimation* anm, float p3)
 {
-	/*
-	stwu     r1, -0x30(r1)
-	mflr     r0
-	stw      r0, 0x34(r1)
-	stfd     f31, 0x20(r1)
-	psq_st   f31, 40(r1), 0, qr0
-	stw      r31, 0x1c(r1)
-	stw      r30, 0x18(r1)
-	stw      r29, 0x14(r1)
-	mr       r31, r3
-	li       r0, -1
-	sth      r0, 0x64(r3)
-	li       r0, 0
-	fmr      f31, f1
-	mr       r30, r4
-	stw      r0, 0x60(r3)
-	mr       r29, r5
-	li       r3, 0x14
-	bl       __nw__FUl
-	or.      r0, r3, r3
-	beq      lbl_801AE5C4
-	mr       r4, r30
-	li       r5, 0
-	li       r6, 2
-	bl       __ct__Q28SysShape5ModelFP12J3DModelDataUlUl
-	mr       r0, r3
-
-lbl_801AE5C4:
-	stw      r0, 0x50(r31)
-	li       r0, 1
-	lfs      f2, lbl_80519330@sda21(r2)
-	addi     r3, r31, 0x54
-	lwz      r5, 0x50(r31)
-	mr       r4, r29
-	stb      r0, 4(r5)
-	lfs      f1, 0x24(r31)
-	lfs      f0, 0x18(r31)
-	fsubs    f0, f1, f0
-	fabs     f0, f0
-	frsp     f0, f0
-	fdivs    f0, f0, f31
-	stfs     f0, 0x3c(r31)
-	lfs      f1, 0x2c(r31)
-	lfs      f0, 0x20(r31)
-	fsubs    f0, f1, f0
-	fabs     f0, f0
-	frsp     f0, f0
-	fdivs    f0, f0, f31
-	stfs     f0, 0x40(r31)
-	lfs      f1, 0x18(r31)
-	lfs      f0, 0x24(r31)
-	fadds    f0, f1, f0
-	fmuls    f0, f2, f0
-	stfs     f0, 0x44(r31)
-	lfs      f1, 0x20(r31)
-	lfs      f0, 0x2c(r31)
-	fadds    f0, f1, f0
-	fmuls    f0, f2, f0
-	stfs     f0, 0x4c(r31)
-	lfs      f1, 0x30(r31)
-	lfs      f0, 0xc(r31)
-	fadds    f0, f1, f0
-	stfs     f0, 0x48(r31)
-	lwz      r12, 0x54(r31)
-	lwz      r12, 8(r12)
-	mtctr    r12
-	bctrl
-	mr       r3, r31
-	lwz      r12, 0(r31)
-	lwz      r12, 0x44(r12)
-	mtctr    r12
-	bctrl
-	lfs      f1, 0x30(r31)
-	lis      r3, lbl_8047F988@ha
-	lfs      f0, 0xc(r31)
-	addi     r30, r3, lbl_8047F988@l
-	li       r29, 0
-	fadds    f0, f1, f0
-	stfs     f0, 0x34(r31)
-	b        lbl_801AE6CC
-
-lbl_801AE694:
-	lwz      r3, 0x70(r5)
-	mr       r4, r29
-	bl       getName__10JUTNameTabCFUs
-	mr       r4, r30
-	bl       strcmp
-	cmpwi    r3, 0
-	bne      lbl_801AE6C8
-	lwz      r3, 0x50(r31)
-	lwz      r3, 8(r3)
-	lwz      r3, 4(r3)
-	lwz      r0, 0x6c(r3)
-	stw      r0, 0x60(r31)
-	sth      r29, 0x64(r31)
-
-lbl_801AE6C8:
-	addi     r29, r29, 1
-
-lbl_801AE6CC:
-	lwz      r3, 0x50(r31)
-	clrlwi   r4, r29, 0x10
-	lwz      r3, 8(r3)
-	lwz      r5, 4(r3)
-	lwz      r3, 0x6c(r5)
-	lhz      r0, 0(r3)
-	cmplw    r4, r0
-	blt      lbl_801AE694
-	psq_l    f31, 40(r1), 0, qr0
-	lwz      r0, 0x34(r1)
-	lfd      f31, 0x20(r1)
-	lwz      r31, 0x1c(r1)
-	lwz      r30, 0x18(r1)
-	lwz      r29, 0x14(r1)
-	mtlr     r0
-	addi     r1, r1, 0x30
-	blr
-	*/
+	_64          = -1;
+	_60          = 0;
+	m_model      = new SysShape::Model(modelData, 0, 2);
+	m_model->_04 = 1;
+	_3C          = FABS(m_bounds.m_max.x - m_bounds.m_min.x) / p3;
+	_40          = FABS(m_bounds.m_max.z - m_bounds.m_min.z) / p3;
+	_44.x        = (m_bounds.m_min.x + m_bounds.m_max.x) * 0.5f;
+	_44.z        = (m_bounds.m_min.z + m_bounds.m_max.z) * 0.5f;
+	_44.y        = _30 + _0C;
+	m_matAnimator.start(anm);
+	calcMatrix();
+	_34 = _30 + _0C;
+	for (u16 i = 0; i < m_model->m_j3dModel->m_modelData->m_materialTable.m_texture->_00; i++) {
+		if (strcmp(m_model->m_j3dModel->m_modelData->m_materialTable._18->getName(i), "fbtex_dummy") == 0) {
+			_60 = m_model->m_j3dModel->m_modelData->m_materialTable.m_texture;
+			_64 = i;
+		}
+	}
 }
 
 /*
@@ -544,50 +398,14 @@ lbl_801AE6CC:
  */
 void AABBWaterBox::calcMatrix(void)
 {
-	/*
-	stwu     r1, -0x50(r1)
-	mflr     r0
-	stw      r0, 0x54(r1)
-	stw      r31, 0x4c(r1)
-	mr       r31, r3
-	lwz      r0, 0x50(r3)
-	cmplwi   r0, 0
-	beq      lbl_801AE79C
-	lfs      f2, 0x30(r31)
-	lis      r3, "zero__10Vector3<f>"@ha
-	lfs      f1, 0xc(r31)
-	addi     r5, r3, "zero__10Vector3<f>"@l
-	lfs      f0, lbl_80519334@sda21(r2)
-	addi     r3, r1, 0x14
-	fadds    f1, f2, f1
-	addi     r4, r1, 8
-	addi     r6, r31, 0x44
-	stfs     f1, 0x48(r31)
-	lfs      f2, 0x40(r31)
-	lfs      f1, 0x3c(r31)
-	stfs     f1, 8(r1)
-	stfs     f0, 0xc(r1)
-	stfs     f2, 0x10(r1)
-	bl       "makeSRT__7MatrixfFR10Vector3<f>R10Vector3<f>R10Vector3<f>"
-	lwz      r4, 0x50(r31)
-	addi     r3, r1, 0x14
-	lwz      r4, 8(r4)
-	addi     r4, r4, 0x24
-	bl       PSMTXCopy
-	lwz      r3, 0x50(r31)
-	lwz      r3, 8(r3)
-	lwz      r12, 0(r3)
-	lwz      r12, 0x10(r12)
-	mtctr    r12
-	bctrl
-
-lbl_801AE79C:
-	lwz      r0, 0x54(r1)
-	lwz      r31, 0x4c(r1)
-	mtlr     r0
-	addi     r1, r1, 0x50
-	blr
-	*/
+	if (m_model != nullptr) {
+		_44.y = _30 + _0C;
+		Vector3f v1(_3C, 1.0f, _40);
+		Matrixf mtx;
+		mtx.makeSRT(v1, Vector3f::zero, _44);
+		PSMTXCopy(mtx.m_matrix.mtxView, m_model->m_j3dModel->_24);
+		m_model->m_j3dModel->calc();
+	}
 }
 
 /*
@@ -597,26 +415,8 @@ lbl_801AE79C:
  */
 void AABBWaterBox::doAnimation(void)
 {
-	/*
-	stwu     r1, -0x10(r1)
-	mflr     r0
-	lfs      f1, lbl_80519338@sda21(r2)
-	stw      r0, 0x14(r1)
-	stw      r31, 0xc(r1)
-	mr       r31, r3
-	addi     r3, r31, 0x54
-	bl       animate__Q23Sys15MatBaseAnimatorFf
-	mr       r3, r31
-	lwz      r12, 0(r31)
-	lwz      r12, 0x44(r12)
-	mtctr    r12
-	bctrl
-	lwz      r0, 0x14(r1)
-	lwz      r31, 0xc(r1)
-	mtlr     r0
-	addi     r1, r1, 0x10
-	blr
-	*/
+	m_matAnimator.animate(30.0f);
+	calcMatrix();
 }
 
 /*
@@ -624,24 +424,11 @@ void AABBWaterBox::doAnimation(void)
  * Address:	801AE7F8
  * Size:	000030
  */
-void AABBWaterBox::doSetView(int)
+void AABBWaterBox::doSetView(int viewNo)
 {
-	/*
-	stwu     r1, -0x10(r1)
-	mflr     r0
-	stw      r0, 0x14(r1)
-	lwz      r3, 0x50(r3)
-	cmplwi   r3, 0
-	beq      lbl_801AE818
-	clrlwi   r4, r4, 0x10
-	bl       setCurrentViewNo__Q28SysShape5ModelFUl
-
-lbl_801AE818:
-	lwz      r0, 0x14(r1)
-	mtlr     r0
-	addi     r1, r1, 0x10
-	blr
-	*/
+	if (m_model != nullptr) {
+		m_model->setCurrentViewNo((u16)viewNo);
+	}
 }
 
 /*
@@ -651,21 +438,9 @@ lbl_801AE818:
  */
 void AABBWaterBox::doViewCalc(void)
 {
-	/*
-	stwu     r1, -0x10(r1)
-	mflr     r0
-	stw      r0, 0x14(r1)
-	lwz      r3, 0x50(r3)
-	cmplwi   r3, 0
-	beq      lbl_801AE844
-	bl       viewCalc__Q28SysShape5ModelFv
-
-lbl_801AE844:
-	lwz      r0, 0x14(r1)
-	mtlr     r0
-	addi     r1, r1, 0x10
-	blr
-	*/
+	if (m_model != nullptr) {
+		m_model->viewCalc();
+	}
 }
 
 /*
@@ -1199,8 +974,12 @@ lbl_801AEF88:
  * Address:	801AEF9C
  * Size:	000104
  */
-bool AABBWaterBox::inWater(Sys::Sphere&)
+bool AABBWaterBox::inWater(Sys::Sphere& collision)
 {
+	if (_34 - 3.0f < collision.m_position.y) {
+		return false;
+	}
+	// TODO: The rest
 	/*
 	lfs      f1, 0x34(r3)
 	lfs      f0, lbl_8051933C@sda21(r2)
@@ -1538,443 +1317,262 @@ lbl_801AF2F4:
 void AABBWaterBox::directDraw(Graphics&) { }
 
 /*
+ * __ct__Q24Game6SeaMgrFv
  * --INFO--
  * Address:	801AF350
  * Size:	0002F8
  */
 SeaMgr::SeaMgr(void)
 {
-	/*
-	stwu     r1, -0x20(r1)
-	mflr     r0
-	lis      r4, lbl_8047F958@ha
-	stw      r0, 0x24(r1)
-	stw      r31, 0x1c(r1)
-	addi     r31, r4, lbl_8047F958@l
-	stw      r30, 0x18(r1)
-	stw      r29, 0x14(r1)
-	mr       r29, r3
-	stw      r28, 0x10(r1)
-	mr       r28, r29
-	bl       __ct__5CNodeFv
-	lis      r4, __vt__16GenericContainer@ha
-	lis      r3, "__vt__27Container<Q24Game8WaterBox>"@ha
-	addi     r0, r4, __vt__16GenericContainer@l
-	lis      r5, __vt__16GenericObjectMgr@ha
-	stw      r0, 0(r28)
-	addi     r0, r3, "__vt__27Container<Q24Game8WaterBox>"@l
-	lis      r4, "__vt__27ObjectMgr<Q24Game8WaterBox>"@ha
-	lis      r3, "__vt__31NodeObjectMgr<Q24Game8WaterBox>"@ha
-	stw      r0, 0(r28)
-	li       r0, 0
-	addi     r6, r4, "__vt__27ObjectMgr<Q24Game8WaterBox>"@l
-	addi     r4, r3, "__vt__31NodeObjectMgr<Q24Game8WaterBox>"@l
-	stb      r0, 0x18(r28)
-	addi     r0, r5, __vt__16GenericObjectMgr@l
-	addi     r30, r28, 0x20
-	addi     r5, r6, 0x2c
-	stw      r0, 0x1c(r28)
-	addi     r0, r4, 0x2c
-	mr       r3, r30
-	stw      r6, 0(r28)
-	stw      r5, 0x1c(r28)
-	stw      r4, 0(r28)
-	stw      r0, 0x1c(r28)
-	bl       __ct__5CNodeFv
-	lis      r4, "__vt__29TObjectNode<Q24Game8WaterBox>"@ha
-	lis      r3, __vt__Q24Game6SeaMgr@ha
-	addi     r4, r4, "__vt__29TObjectNode<Q24Game8WaterBox>"@l
-	li       r0, 1
-	stw      r4, 0(r30)
-	addi     r4, r3, __vt__Q24Game6SeaMgr@l
-	addi     r3, r4, 0x2c
-	stw      r4, 0(r29)
-	stw      r3, 0x1c(r29)
-	stw      r0, 0x3c(r29)
-	lwz      r0, 0x3c(r29)
-	slwi     r3, r0, 2
-	bl       __nwa__FUl
-	stw      r3, 0x40(r29)
-	lwz      r3, gameSystem__4Game@sda21(r13)
-	cmplwi   r3, 0
-	beq      lbl_801AF464
-	lwz      r3, 0x44(r3)
-	li       r0, 0
-	cmpwi    r3, 1
-	beq      lbl_801AF43C
-	cmpwi    r3, 3
-	bne      lbl_801AF440
+	_3C         = 1;
+	m_modelData = new J3DModelData*[_3C];
 
-lbl_801AF43C:
-	li       r0, 1
+	JKRArchive* archive;
+	// if (Game::gameSystem != nullptr && !(Game::gameSystem->m_mode == GSM_VERSUS_MODE || Game::gameSystem->m_mode ==
+	// GSM_TWO_PLAYER_CHALLENGE)) {
+	if (Game::gameSystem != nullptr && !Game::gameSystem->isMultiplayerMode()) {
+		archive = JKRArchive::mount("user/Kando/map/waterbox.szs", JKRArchive::EMM_Unk1, nullptr, JKRArchive::EMD_Unk1);
+	} else {
+		archive = JKRArchive::mount("user/Kando/map/waterbox2p.szs", JKRArchive::EMM_Unk1, nullptr, JKRArchive::EMD_Unk1);
+	}
+	P2ASSERTLINE(527, archive != nullptr);
 
-lbl_801AF440:
-	clrlwi.  r0, r0, 0x18
-	bne      lbl_801AF464
-	addi     r3, r31, 0x3c
-	li       r4, 1
-	li       r5, 0
-	li       r6, 1
-	bl
-mount__10JKRArchiveFPCcQ210JKRArchive10EMountModeP7JKRHeapQ210JKRArchive15EMountDirection
-	mr       r30, r3
-	b        lbl_801AF47C
+	void* resourceData;
+	// if (Game::gameSystem != nullptr && !Game::gameSystem->m_mode == GSM_VERSUS_MODE || Game::gameSystem->m_mode ==
+	// GSM_TWO_PLAYER_CHALLENGE)) {
+	if (Game::gameSystem != nullptr && !Game::gameSystem->isMultiplayerMode()) {
+		resourceData = archive->getResource("100x100/mizu100x100.bmd");
+	} else {
+		resourceData = archive->getResource("2p/2p.bmd");
+	}
 
-lbl_801AF464:
-	addi     r3, r31, 0x58
-	li       r4, 1
-	li       r5, 0
-	li       r6, 1
-	bl
-mount__10JKRArchiveFPCcQ210JKRArchive10EMountModeP7JKRHeapQ210JKRArchive15EMountDirection
-	mr       r30, r3
+	u32 flags;
+	// if (Game::gameSystem == nullptr || !(Game::gameSystem->m_mode == GSM_VERSUS_MODE || Game::gameSystem->m_mode ==
+	// GSM_TWO_PLAYER_CHALLENGE)) {
+	if (!(Game::gameSystem == nullptr || !Game::gameSystem->isMultiplayerMode())) {
+		flags = 0x20240010;
+	} else {
+		flags = 0x21240010;
+	}
+	m_modelData[0] = J3DModelLoaderDataBase::load(resourceData, flags);
+	SysShape::Model::enableMaterialAnim(m_modelData[0], 0);
+	m_animations = new Sys::MatTexAnimation[_3C];
 
-lbl_801AF47C:
-	cmplwi   r30, 0
-	bne      lbl_801AF498
-	addi     r3, r31, 0xc
-	addi     r5, r31, 0x78
-	li       r4, 0x20f
-	crclr    6
-	bl       panic_f__12JUTExceptionFPCciPCce
-
-lbl_801AF498:
-	lwz      r3, gameSystem__4Game@sda21(r13)
-	cmplwi   r3, 0
-	beq      lbl_801AF4E4
-	lwz      r3, 0x44(r3)
-	li       r0, 0
-	cmpwi    r3, 1
-	beq      lbl_801AF4BC
-	cmpwi    r3, 3
-	bne      lbl_801AF4C0
-
-lbl_801AF4BC:
-	li       r0, 1
-
-lbl_801AF4C0:
-	clrlwi.  r0, r0, 0x18
-	bne      lbl_801AF4E4
-	mr       r3, r30
-	addi     r4, r31, 0x84
-	lwz      r12, 0(r30)
-	lwz      r12, 0x14(r12)
-	mtctr    r12
-	bctrl
-	b        lbl_801AF4FC
-
-lbl_801AF4E4:
-	mr       r3, r30
-	addi     r4, r31, 0x9c
-	lwz      r12, 0(r30)
-	lwz      r12, 0x14(r12)
-	mtctr    r12
-	bctrl
-
-lbl_801AF4FC:
-	lwz      r4, gameSystem__4Game@sda21(r13)
-	cmplwi   r4, 0
-	beq      lbl_801AF538
-	lwz      r4, 0x44(r4)
-	li       r0, 0
-	cmpwi    r4, 1
-	beq      lbl_801AF520
-	cmpwi    r4, 3
-	bne      lbl_801AF524
-
-lbl_801AF520:
-	li       r0, 1
-
-lbl_801AF524:
-	clrlwi.  r0, r0, 0x18
-	beq      lbl_801AF538
-	lis      r4, 0x20240010@ha
-	addi     r4, r4, 0x20240010@l
-	b        lbl_801AF540
-
-lbl_801AF538:
-	lis      r4, 0x21240010@ha
-	addi     r4, r4, 0x21240010@l
-
-lbl_801AF540:
-	bl       load__22J3DModelLoaderDataBaseFPCvUl
-	lwz      r5, 0x40(r29)
-	li       r4, 0
-	stw      r3, 0(r5)
-	lwz      r3, 0x40(r29)
-	lwz      r3, 0(r3)
-	bl       enableMaterialAnim__Q28SysShape5ModelFP12J3DModelDatai
-	lwz      r28, 0x3c(r29)
-	slwi     r3, r28, 4
-	addi     r3, r3, 0x10
-	bl       __nwa__FUl
-	lis      r4, __ct__Q23Sys15MatTexAnimationFv@ha
-	mr       r7, r28
-	addi     r4, r4, __ct__Q23Sys15MatTexAnimationFv@l
-	li       r5, 0
-	li       r6, 0x10
-	bl       __construct_new_array
-	stw      r3, 0x44(r29)
-	lwz      r3, gameSystem__4Game@sda21(r13)
-	cmplwi   r3, 0
-	beq      lbl_801AF5D8
-	lwz      r3, 0x44(r3)
-	li       r0, 0
-	cmpwi    r3, 1
-	beq      lbl_801AF5AC
-	cmpwi    r3, 3
-	bne      lbl_801AF5B0
-
-lbl_801AF5AC:
-	li       r0, 1
-
-lbl_801AF5B0:
-	clrlwi.  r0, r0, 0x18
-	bne      lbl_801AF5D8
-	mr       r3, r30
-	addi     r4, r31, 0xa8
-	lwz      r12, 0(r30)
-	lwz      r12, 0x14(r12)
-	mtctr    r12
-	bctrl
-	mr       r28, r3
-	b        lbl_801AF5F4
-
-lbl_801AF5D8:
-	mr       r3, r30
-	addi     r4, r31, 0xc0
-	lwz      r12, 0(r30)
-	lwz      r12, 0x14(r12)
-	mtctr    r12
-	bctrl
-	mr       r28, r3
-
-lbl_801AF5F4:
-	cmplwi   r28, 0
-	bne      lbl_801AF610
-	addi     r3, r31, 0xc
-	addi     r5, r31, 0x78
-	li       r4, 0x237
-	crclr    6
-	bl       panic_f__12JUTExceptionFPCciPCce
-
-lbl_801AF610:
-	lwz      r5, 0x40(r29)
-	mr       r4, r28
-	lwz      r3, 0x44(r29)
-	lwz      r5, 0(r5)
-	bl       attachResource__Q23Sys16MatBaseAnimationFPvP12J3DModelData
-	lwz      r0, 0x24(r1)
-	mr       r3, r29
-	lwz      r31, 0x1c(r1)
-	lwz      r30, 0x18(r1)
-	lwz      r29, 0x14(r1)
-	lwz      r28, 0x10(r1)
-	mtlr     r0
-	addi     r1, r1, 0x20
-	blr
-	*/
+	if (!(Game::gameSystem == nullptr || Game::gameSystem->isMultiplayerMode())) {
+		resourceData = archive->getResource("100x100/mizu100x100.btk");
+	} else {
+		resourceData = archive->getResource("2p/2p.btk");
+	}
+	P2ASSERTLINE(567, resourceData != nullptr);
+	m_animations[0].attachResource(resourceData, m_modelData[0]);
 }
 
-} // namespace Game
+// } // namespace Game
 
-/*
- * --INFO--
- * Address:	801AF648
- * Size:	0000C8
+/**
+ * @generated{__dt__31NodeObjectMgr<Q24Game8WaterBox>Fv}
+ * @generated{__dt__29TObjectNode<Q24Game8WaterBox>Fv}
+ * @generated{__dt__27ObjectMgr<Q24Game8WaterBox>Fv}
+ * @generated{__dt__27Container<Q24Game8WaterBox>Fv}
  */
-void NodeObjectMgr<Game::WaterBox>::~NodeObjectMgr()
-{
-	/*
-	stwu     r1, -0x10(r1)
-	mflr     r0
-	stw      r0, 0x14(r1)
-	stw      r31, 0xc(r1)
-	mr       r31, r4
-	stw      r30, 8(r1)
-	or.      r30, r3, r3
-	beq      lbl_801AF6F4
-	lis      r3, "__vt__31NodeObjectMgr<Q24Game8WaterBox>"@ha
-	addic.   r0, r30, 0x20
-	addi     r3, r3, "__vt__31NodeObjectMgr<Q24Game8WaterBox>"@l
-	stw      r3, 0(r30)
-	addi     r0, r3, 0x2c
-	stw      r0, 0x1c(r30)
-	beq      lbl_801AF69C
-	lis      r4, "__vt__29TObjectNode<Q24Game8WaterBox>"@ha
-	addi     r3, r30, 0x20
-	addi     r0, r4, "__vt__29TObjectNode<Q24Game8WaterBox>"@l
-	li       r4, 0
-	stw      r0, 0x20(r30)
-	bl       __dt__5CNodeFv
 
-lbl_801AF69C:
-	cmplwi   r30, 0
-	beq      lbl_801AF6E4
-	lis      r3, "__vt__27ObjectMgr<Q24Game8WaterBox>"@ha
-	addi     r3, r3, "__vt__27ObjectMgr<Q24Game8WaterBox>"@l
-	stw      r3, 0(r30)
-	addi     r0, r3, 0x2c
-	stw      r0, 0x1c(r30)
-	beq      lbl_801AF6E4
-	lis      r3, "__vt__27Container<Q24Game8WaterBox>"@ha
-	addi     r0, r3, "__vt__27Container<Q24Game8WaterBox>"@l
-	stw      r0, 0(r30)
-	beq      lbl_801AF6E4
-	lis      r4, __vt__16GenericContainer@ha
-	mr       r3, r30
-	addi     r0, r4, __vt__16GenericContainer@l
-	li       r4, 0
-	stw      r0, 0(r30)
-	bl       __dt__5CNodeFv
+// /*
+//  * --INFO--
+//  * Address:	801AF648
+//  * Size:	0000C8
+//  */
+// void NodeObjectMgr<Game::WaterBox>::~NodeObjectMgr()
+// {
+// 	/*
+// 	stwu     r1, -0x10(r1)
+// 	mflr     r0
+// 	stw      r0, 0x14(r1)
+// 	stw      r31, 0xc(r1)
+// 	mr       r31, r4
+// 	stw      r30, 8(r1)
+// 	or.      r30, r3, r3
+// 	beq      lbl_801AF6F4
+// 	lis      r3, "__vt__31NodeObjectMgr<Q24Game8WaterBox>"@ha
+// 	addic.   r0, r30, 0x20
+// 	addi     r3, r3, "__vt__31NodeObjectMgr<Q24Game8WaterBox>"@l
+// 	stw      r3, 0(r30)
+// 	addi     r0, r3, 0x2c
+// 	stw      r0, 0x1c(r30)
+// 	beq      lbl_801AF69C
+// 	lis      r4, "__vt__29TObjectNode<Q24Game8WaterBox>"@ha
+// 	addi     r3, r30, 0x20
+// 	addi     r0, r4, "__vt__29TObjectNode<Q24Game8WaterBox>"@l
+// 	li       r4, 0
+// 	stw      r0, 0x20(r30)
+// 	bl       __dt__5CNodeFv
 
-lbl_801AF6E4:
-	extsh.   r0, r31
-	ble      lbl_801AF6F4
-	mr       r3, r30
-	bl       __dl__FPv
+// lbl_801AF69C:
+// 	cmplwi   r30, 0
+// 	beq      lbl_801AF6E4
+// 	lis      r3, "__vt__27ObjectMgr<Q24Game8WaterBox>"@ha
+// 	addi     r3, r3, "__vt__27ObjectMgr<Q24Game8WaterBox>"@l
+// 	stw      r3, 0(r30)
+// 	addi     r0, r3, 0x2c
+// 	stw      r0, 0x1c(r30)
+// 	beq      lbl_801AF6E4
+// 	lis      r3, "__vt__27Container<Q24Game8WaterBox>"@ha
+// 	addi     r0, r3, "__vt__27Container<Q24Game8WaterBox>"@l
+// 	stw      r0, 0(r30)
+// 	beq      lbl_801AF6E4
+// 	lis      r4, __vt__16GenericContainer@ha
+// 	mr       r3, r30
+// 	addi     r0, r4, __vt__16GenericContainer@l
+// 	li       r4, 0
+// 	stw      r0, 0(r30)
+// 	bl       __dt__5CNodeFv
 
-lbl_801AF6F4:
-	lwz      r0, 0x14(r1)
-	mr       r3, r30
-	lwz      r31, 0xc(r1)
-	lwz      r30, 8(r1)
-	mtlr     r0
-	addi     r1, r1, 0x10
-	blr
-	*/
-}
+// lbl_801AF6E4:
+// 	extsh.   r0, r31
+// 	ble      lbl_801AF6F4
+// 	mr       r3, r30
+// 	bl       __dl__FPv
 
-/*
- * --INFO--
- * Address:	801AF710
- * Size:	000060
- */
-void TObjectNode<Game::WaterBox>::~TObjectNode()
-{
-	/*
-	stwu     r1, -0x10(r1)
-	mflr     r0
-	stw      r0, 0x14(r1)
-	stw      r31, 0xc(r1)
-	mr       r31, r4
-	stw      r30, 8(r1)
-	or.      r30, r3, r3
-	beq      lbl_801AF754
-	lis      r5, "__vt__29TObjectNode<Q24Game8WaterBox>"@ha
-	li       r4, 0
-	addi     r0, r5, "__vt__29TObjectNode<Q24Game8WaterBox>"@l
-	stw      r0, 0(r30)
-	bl       __dt__5CNodeFv
-	extsh.   r0, r31
-	ble      lbl_801AF754
-	mr       r3, r30
-	bl       __dl__FPv
+// lbl_801AF6F4:
+// 	lwz      r0, 0x14(r1)
+// 	mr       r3, r30
+// 	lwz      r31, 0xc(r1)
+// 	lwz      r30, 8(r1)
+// 	mtlr     r0
+// 	addi     r1, r1, 0x10
+// 	blr
+// 	*/
+// }
 
-lbl_801AF754:
-	lwz      r0, 0x14(r1)
-	mr       r3, r30
-	lwz      r31, 0xc(r1)
-	lwz      r30, 8(r1)
-	mtlr     r0
-	addi     r1, r1, 0x10
-	blr
-	*/
-}
+// /*
+//  * --INFO--
+//  * Address:	801AF710
+//  * Size:	000060
+//  */
+// void TObjectNode<Game::WaterBox>::~TObjectNode()
+// {
+// 	/*
+// 	stwu     r1, -0x10(r1)
+// 	mflr     r0
+// 	stw      r0, 0x14(r1)
+// 	stw      r31, 0xc(r1)
+// 	mr       r31, r4
+// 	stw      r30, 8(r1)
+// 	or.      r30, r3, r3
+// 	beq      lbl_801AF754
+// 	lis      r5, "__vt__29TObjectNode<Q24Game8WaterBox>"@ha
+// 	li       r4, 0
+// 	addi     r0, r5, "__vt__29TObjectNode<Q24Game8WaterBox>"@l
+// 	stw      r0, 0(r30)
+// 	bl       __dt__5CNodeFv
+// 	extsh.   r0, r31
+// 	ble      lbl_801AF754
+// 	mr       r3, r30
+// 	bl       __dl__FPv
 
-/*
- * --INFO--
- * Address:	801AF770
- * Size:	000088
- */
-void ObjectMgr<Game::WaterBox>::~ObjectMgr()
-{
-	/*
-	stwu     r1, -0x10(r1)
-	mflr     r0
-	stw      r0, 0x14(r1)
-	stw      r31, 0xc(r1)
-	mr       r31, r4
-	stw      r30, 8(r1)
-	or.      r30, r3, r3
-	beq      lbl_801AF7DC
-	lis      r4, "__vt__27ObjectMgr<Q24Game8WaterBox>"@ha
-	addi     r4, r4, "__vt__27ObjectMgr<Q24Game8WaterBox>"@l
-	stw      r4, 0(r30)
-	addi     r0, r4, 0x2c
-	stw      r0, 0x1c(r30)
-	beq      lbl_801AF7CC
-	lis      r4, "__vt__27Container<Q24Game8WaterBox>"@ha
-	addi     r0, r4, "__vt__27Container<Q24Game8WaterBox>"@l
-	stw      r0, 0(r30)
-	beq      lbl_801AF7CC
-	lis      r5, __vt__16GenericContainer@ha
-	li       r4, 0
-	addi     r0, r5, __vt__16GenericContainer@l
-	stw      r0, 0(r30)
-	bl       __dt__5CNodeFv
+// lbl_801AF754:
+// 	lwz      r0, 0x14(r1)
+// 	mr       r3, r30
+// 	lwz      r31, 0xc(r1)
+// 	lwz      r30, 8(r1)
+// 	mtlr     r0
+// 	addi     r1, r1, 0x10
+// 	blr
+// 	*/
+// }
 
-lbl_801AF7CC:
-	extsh.   r0, r31
-	ble      lbl_801AF7DC
-	mr       r3, r30
-	bl       __dl__FPv
+// /*
+//  * --INFO--
+//  * Address:	801AF770
+//  * Size:	000088
+//  */
+// void ObjectMgr<Game::WaterBox>::~ObjectMgr()
+// {
+// 	/*
+// 	stwu     r1, -0x10(r1)
+// 	mflr     r0
+// 	stw      r0, 0x14(r1)
+// 	stw      r31, 0xc(r1)
+// 	mr       r31, r4
+// 	stw      r30, 8(r1)
+// 	or.      r30, r3, r3
+// 	beq      lbl_801AF7DC
+// 	lis      r4, "__vt__27ObjectMgr<Q24Game8WaterBox>"@ha
+// 	addi     r4, r4, "__vt__27ObjectMgr<Q24Game8WaterBox>"@l
+// 	stw      r4, 0(r30)
+// 	addi     r0, r4, 0x2c
+// 	stw      r0, 0x1c(r30)
+// 	beq      lbl_801AF7CC
+// 	lis      r4, "__vt__27Container<Q24Game8WaterBox>"@ha
+// 	addi     r0, r4, "__vt__27Container<Q24Game8WaterBox>"@l
+// 	stw      r0, 0(r30)
+// 	beq      lbl_801AF7CC
+// 	lis      r5, __vt__16GenericContainer@ha
+// 	li       r4, 0
+// 	addi     r0, r5, __vt__16GenericContainer@l
+// 	stw      r0, 0(r30)
+// 	bl       __dt__5CNodeFv
 
-lbl_801AF7DC:
-	lwz      r0, 0x14(r1)
-	mr       r3, r30
-	lwz      r31, 0xc(r1)
-	lwz      r30, 8(r1)
-	mtlr     r0
-	addi     r1, r1, 0x10
-	blr
-	*/
-}
+// lbl_801AF7CC:
+// 	extsh.   r0, r31
+// 	ble      lbl_801AF7DC
+// 	mr       r3, r30
+// 	bl       __dl__FPv
 
-/*
- * --INFO--
- * Address:	801AF7F8
- * Size:	000070
- */
-void Container<Game::WaterBox>::~Container()
-{
-	/*
-	stwu     r1, -0x10(r1)
-	mflr     r0
-	stw      r0, 0x14(r1)
-	stw      r31, 0xc(r1)
-	mr       r31, r4
-	stw      r30, 8(r1)
-	or.      r30, r3, r3
-	beq      lbl_801AF84C
-	lis      r4, "__vt__27Container<Q24Game8WaterBox>"@ha
-	addi     r0, r4, "__vt__27Container<Q24Game8WaterBox>"@l
-	stw      r0, 0(r30)
-	beq      lbl_801AF83C
-	lis      r5, __vt__16GenericContainer@ha
-	li       r4, 0
-	addi     r0, r5, __vt__16GenericContainer@l
-	stw      r0, 0(r30)
-	bl       __dt__5CNodeFv
+// lbl_801AF7DC:
+// 	lwz      r0, 0x14(r1)
+// 	mr       r3, r30
+// 	lwz      r31, 0xc(r1)
+// 	lwz      r30, 8(r1)
+// 	mtlr     r0
+// 	addi     r1, r1, 0x10
+// 	blr
+// 	*/
+// }
 
-lbl_801AF83C:
-	extsh.   r0, r31
-	ble      lbl_801AF84C
-	mr       r3, r30
-	bl       __dl__FPv
+// /*
+//  * --INFO--
+//  * Address:	801AF7F8
+//  * Size:	000070
+//  */
+// void Container<Game::WaterBox>::~Container()
+// {
+// 	/*
+// 	stwu     r1, -0x10(r1)
+// 	mflr     r0
+// 	stw      r0, 0x14(r1)
+// 	stw      r31, 0xc(r1)
+// 	mr       r31, r4
+// 	stw      r30, 8(r1)
+// 	or.      r30, r3, r3
+// 	beq      lbl_801AF84C
+// 	lis      r4, "__vt__27Container<Q24Game8WaterBox>"@ha
+// 	addi     r0, r4, "__vt__27Container<Q24Game8WaterBox>"@l
+// 	stw      r0, 0(r30)
+// 	beq      lbl_801AF83C
+// 	lis      r5, __vt__16GenericContainer@ha
+// 	li       r4, 0
+// 	addi     r0, r5, __vt__16GenericContainer@l
+// 	stw      r0, 0(r30)
+// 	bl       __dt__5CNodeFv
 
-lbl_801AF84C:
-	lwz      r0, 0x14(r1)
-	mr       r3, r30
-	lwz      r31, 0xc(r1)
-	lwz      r30, 8(r1)
-	mtlr     r0
-	addi     r1, r1, 0x10
-	blr
-	*/
-}
+// lbl_801AF83C:
+// 	extsh.   r0, r31
+// 	ble      lbl_801AF84C
+// 	mr       r3, r30
+// 	bl       __dl__FPv
 
-namespace Game {
+// lbl_801AF84C:
+// 	lwz      r0, 0x14(r1)
+// 	mr       r3, r30
+// 	lwz      r31, 0xc(r1)
+// 	lwz      r30, 8(r1)
+// 	mtlr     r0
+// 	addi     r1, r1, 0x10
+// 	blr
+// 	*/
+// }
+
+// namespace Game {
 
 /*
  * --INFO--
@@ -1994,167 +1592,23 @@ void SeaMgr::addWaterBox(Game::WaterBox*)
 void WaterBox::attachModel(J3DModelData*, Sys::MatTexAnimation*, float) { }
 
 /*
+ * findWater__Q24Game6SeaMgrFRQ23Sys6Sphere
  * --INFO--
  * Address:	801AF86C
  * Size:	000214
  */
-WaterBox* SeaMgr::findWater(Sys::Sphere&)
+WaterBox* SeaMgr::findWater(Sys::Sphere& collision)
 {
-	/*
-	stwu     r1, -0x20(r1)
-	mflr     r0
-	lis      r5, "__vt__26Iterator<Q24Game8WaterBox>"@ha
-	stw      r0, 0x24(r1)
-	li       r0, 0
-	addi     r5, r5, "__vt__26Iterator<Q24Game8WaterBox>"@l
-	stw      r31, 0x1c(r1)
-	cmplwi   r0, 0
-	stw      r30, 0x18(r1)
-	mr       r30, r4
-	stw      r0, 0x14(r1)
-	stw      r5, 8(r1)
-	stw      r0, 0xc(r1)
-	stw      r3, 0x10(r1)
-	bne      lbl_801AF8C0
-	lwz      r12, 0(r3)
-	lwz      r12, 0x18(r12)
-	mtctr    r12
-	bctrl
-	stw      r3, 0xc(r1)
-	b        lbl_801AFA44
-
-lbl_801AF8C0:
-	lwz      r12, 0(r3)
-	lwz      r12, 0x18(r12)
-	mtctr    r12
-	bctrl
-	stw      r3, 0xc(r1)
-	b        lbl_801AF92C
-
-lbl_801AF8D8:
-	lwz      r3, 0x10(r1)
-	lwz      r4, 0xc(r1)
-	lwz      r12, 0(r3)
-	lwz      r12, 0x20(r12)
-	mtctr    r12
-	bctrl
-	mr       r4, r3
-	lwz      r3, 0x14(r1)
-	lwz      r12, 0(r3)
-	lwz      r12, 8(r12)
-	mtctr    r12
-	bctrl
-	clrlwi.  r0, r3, 0x18
-	bne      lbl_801AFA44
-	lwz      r3, 0x10(r1)
-	lwz      r4, 0xc(r1)
-	lwz      r12, 0(r3)
-	lwz      r12, 0x14(r12)
-	mtctr    r12
-	bctrl
-	stw      r3, 0xc(r1)
-
-lbl_801AF92C:
-	lwz      r12, 8(r1)
-	addi     r3, r1, 8
-	lwz      r12, 0x10(r12)
-	mtctr    r12
-	bctrl
-	clrlwi.  r0, r3, 0x18
-	beq      lbl_801AF8D8
-	b        lbl_801AFA44
-
-lbl_801AF94C:
-	lwz      r3, 0x10(r1)
-	lwz      r12, 0(r3)
-	lwz      r12, 0x20(r12)
-	mtctr    r12
-	bctrl
-	lwz      r12, 0(r3)
-	mr       r31, r3
-	mr       r4, r30
-	lwz      r12, 8(r12)
-	mtctr    r12
-	bctrl
-	clrlwi.  r0, r3, 0x18
-	beq      lbl_801AF988
-	mr       r3, r31
-	b        lbl_801AFA68
-
-lbl_801AF988:
-	lwz      r0, 0x14(r1)
-	cmplwi   r0, 0
-	bne      lbl_801AF9B4
-	lwz      r3, 0x10(r1)
-	lwz      r4, 0xc(r1)
-	lwz      r12, 0(r3)
-	lwz      r12, 0x14(r12)
-	mtctr    r12
-	bctrl
-	stw      r3, 0xc(r1)
-	b        lbl_801AFA44
-
-lbl_801AF9B4:
-	lwz      r3, 0x10(r1)
-	lwz      r4, 0xc(r1)
-	lwz      r12, 0(r3)
-	lwz      r12, 0x14(r12)
-	mtctr    r12
-	bctrl
-	stw      r3, 0xc(r1)
-	b        lbl_801AFA28
-
-lbl_801AF9D4:
-	lwz      r3, 0x10(r1)
-	lwz      r4, 0xc(r1)
-	lwz      r12, 0(r3)
-	lwz      r12, 0x20(r12)
-	mtctr    r12
-	bctrl
-	mr       r4, r3
-	lwz      r3, 0x14(r1)
-	lwz      r12, 0(r3)
-	lwz      r12, 8(r12)
-	mtctr    r12
-	bctrl
-	clrlwi.  r0, r3, 0x18
-	bne      lbl_801AFA44
-	lwz      r3, 0x10(r1)
-	lwz      r4, 0xc(r1)
-	lwz      r12, 0(r3)
-	lwz      r12, 0x14(r12)
-	mtctr    r12
-	bctrl
-	stw      r3, 0xc(r1)
-
-lbl_801AFA28:
-	lwz      r12, 8(r1)
-	addi     r3, r1, 8
-	lwz      r12, 0x10(r12)
-	mtctr    r12
-	bctrl
-	clrlwi.  r0, r3, 0x18
-	beq      lbl_801AF9D4
-
-lbl_801AFA44:
-	lwz      r3, 0x10(r1)
-	lwz      r12, 0(r3)
-	lwz      r12, 0x1c(r12)
-	mtctr    r12
-	bctrl
-	lwz      r4, 0xc(r1)
-	cmplw    r4, r3
-	bne      lbl_801AF94C
-	li       r3, 0
-
-lbl_801AFA68:
-	lwz      r0, 0x24(r1)
-	lwz      r31, 0x1c(r1)
-	lwz      r30, 0x18(r1)
-	mtlr     r0
-	addi     r1, r1, 0x20
-	blr
-	*/
+	Iterator<WaterBox> iterator(this);
+	iterator.first();
+	while (!iterator.isDone()) {
+		WaterBox* item = (*iterator);
+		if (item->inWater(collision)) {
+			return item;
+		}
+		iterator.next();
+	}
+	return nullptr;
 }
 
 /*
@@ -2326,7 +1780,7 @@ lbl_801AFC7C:
  * Address:	801AFC94
  * Size:	000008
  */
-u32 WaterBox::inWater2d(Sys::Sphere&) { return 0x0; }
+bool WaterBox::inWater2d(Sys::Sphere&) { return false; }
 
 /*
  * --INFO--
@@ -2791,7 +2245,7 @@ lbl_801B0274:
  * Address:	801B0290
  * Size:	000010
  */
-void AABBWaterBox::getSeaLevel(void)
+float AABBWaterBox::getSeaLevel(void)
 {
 	/*
 	lfs      f1, 0x30(r3)
@@ -2806,7 +2260,7 @@ void AABBWaterBox::getSeaLevel(void)
  * Address:	801B02A0
  * Size:	000008
  */
-void AABBWaterBox::getSeaHeightPtr(void)
+float* AABBWaterBox::getSeaHeightPtr(void)
 {
 	/*
 	addi     r3, r3, 0x34
@@ -2858,465 +2312,487 @@ void WaterBox::calcMatrix(void) { }
 
 } // namespace Game
 
-/*
- * --INFO--
- * Address:	801B02C0
- * Size:	000008
+/**
+ * @generated{get__31NodeObjectMgr<Q24Game8WaterBox>FPv}
+ * @generated{getNext__31NodeObjectMgr<Q24Game8WaterBox>FPv}
+ * @generated{getStart__31NodeObjectMgr<Q24Game8WaterBox>Fv}
+ * @generated{getEnd__31NodeObjectMgr<Q24Game8WaterBox>Fv}
+ * @generated{delNode__31NodeObjectMgr<Q24Game8WaterBox>FPQ24Game8WaterBox}
+ * @generated{resetMgr__31NodeObjectMgr<Q24Game8WaterBox>Fv}
+ * @generated{doSimulation__27ObjectMgr<Q24Game8WaterBox>Ff}
+ * @generated{doDirectDraw__27ObjectMgr<Q24Game8WaterBox>FR8Graphics}
+ * @generated{getObject__27Container<Q24Game8WaterBox>FPv}
+ * @generated{getAt__27Container<Q24Game8WaterBox>Fi}
+ * @generated{getTo__27Container<Q24Game8WaterBox>Fv}
+ * @generated{__sinit_gameSeaMgr_cpp}
+ * @generated{@28@resetMgr__31NodeObjectMgr<Q24Game8WaterBox>Fv}
+ * @generated{@28@doDirectDraw__27ObjectMgr<Q24Game8WaterBox>FR8Graphics}
+ * @generated{@28@doSimulation__27ObjectMgr<Q24Game8WaterBox>Ff}
+ * @generated{@28@doViewCalc__27ObjectMgr<Q24Game8WaterBox>Fv}
+ * @generated{@28@doSetView__27ObjectMgr<Q24Game8WaterBox>Fi}
+ * @generated{@28@doEntry__27ObjectMgr<Q24Game8WaterBox>Fv}
+ * @generated{@28@doAnimation__27ObjectMgr<Q24Game8WaterBox>Fv}
  */
-void NodeObjectMgr<Game::WaterBox>::get(void*)
-{
-	/*
-	lwz      r3, 0x18(r4)
-	blr
-	*/
-}
 
-/*
- * --INFO--
- * Address:	801B02C8
- * Size:	000008
- */
-void NodeObjectMgr<Game::WaterBox>::getNext(void*)
-{
-	/*
-	lwz      r3, 4(r4)
-	blr
-	*/
-}
+// /*
+//  * --INFO--
+//  * Address:	801B02C0
+//  * Size:	000008
+//  */
+// void NodeObjectMgr<Game::WaterBox>::get(void*)
+// {
+// 	/*
+// 	lwz      r3, 0x18(r4)
+// 	blr
+// 	*/
+// }
 
-/*
- * --INFO--
- * Address:	801B02D0
- * Size:	000008
- */
-void NodeObjectMgr<Game::WaterBox>::getStart()
-{
-	/*
-	lwz      r3, 0x30(r3)
-	blr
-	*/
-}
+// /*
+//  * --INFO--
+//  * Address:	801B02C8
+//  * Size:	000008
+//  */
+// void NodeObjectMgr<Game::WaterBox>::getNext(void*)
+// {
+// 	/*
+// 	lwz      r3, 4(r4)
+// 	blr
+// 	*/
+// }
 
-/*
- * --INFO--
- * Address:	801B02D8
- * Size:	000008
- */
-u32 NodeObjectMgr<Game::WaterBox>::getEnd() { return 0x0; }
+// /*
+//  * --INFO--
+//  * Address:	801B02D0
+//  * Size:	000008
+//  */
+// void NodeObjectMgr<Game::WaterBox>::getStart()
+// {
+// 	/*
+// 	lwz      r3, 0x30(r3)
+// 	blr
+// 	*/
+// }
 
-/*
- * --INFO--
- * Address:	801B02E0
- * Size:	000044
- */
-void NodeObjectMgr<Game::WaterBox>::delNode(Game::WaterBox*)
-{
-	/*
-	stwu     r1, -0x10(r1)
-	mflr     r0
-	stw      r0, 0x14(r1)
-	lwz      r3, 0x30(r3)
-	b        lbl_801B030C
+// /*
+//  * --INFO--
+//  * Address:	801B02D8
+//  * Size:	000008
+//  */
+// u32 NodeObjectMgr<Game::WaterBox>::getEnd() { return 0x0; }
 
-lbl_801B02F4:
-	lwz      r0, 0x18(r3)
-	cmplw    r0, r4
-	bne      lbl_801B0308
-	bl       del__5CNodeFv
-	b        lbl_801B0314
+// /*
+//  * --INFO--
+//  * Address:	801B02E0
+//  * Size:	000044
+//  */
+// void NodeObjectMgr<Game::WaterBox>::delNode(Game::WaterBox*)
+// {
+// 	/*
+// 	stwu     r1, -0x10(r1)
+// 	mflr     r0
+// 	stw      r0, 0x14(r1)
+// 	lwz      r3, 0x30(r3)
+// 	b        lbl_801B030C
 
-lbl_801B0308:
-	lwz      r3, 4(r3)
+// lbl_801B02F4:
+// 	lwz      r0, 0x18(r3)
+// 	cmplw    r0, r4
+// 	bne      lbl_801B0308
+// 	bl       del__5CNodeFv
+// 	b        lbl_801B0314
 
-lbl_801B030C:
-	cmplwi   r3, 0
-	bne      lbl_801B02F4
+// lbl_801B0308:
+// 	lwz      r3, 4(r3)
 
-lbl_801B0314:
-	lwz      r0, 0x14(r1)
-	mtlr     r0
-	addi     r1, r1, 0x10
-	blr
-	*/
-}
+// lbl_801B030C:
+// 	cmplwi   r3, 0
+// 	bne      lbl_801B02F4
 
-/*
- * --INFO--
- * Address:	801B0324
- * Size:	000018
- */
-void NodeObjectMgr<Game::WaterBox>::resetMgr()
-{
-	/*
-	li       r0, 0
-	stw      r0, 0x30(r3)
-	stw      r0, 0x2c(r3)
-	stw      r0, 0x28(r3)
-	stw      r0, 0x24(r3)
-	blr
-	*/
-}
+// lbl_801B0314:
+// 	lwz      r0, 0x14(r1)
+// 	mtlr     r0
+// 	addi     r1, r1, 0x10
+// 	blr
+// 	*/
+// }
 
-/*
- * --INFO--
- * Address:	801B033C
- * Size:	0001F4
- */
-void ObjectMgr<Game::WaterBox>::doSimulation(float)
-{
-	/*
-	stwu     r1, -0x20(r1)
-	mflr     r0
-	lis      r4, "__vt__26Iterator<Q24Game8WaterBox>"@ha
-	stw      r0, 0x24(r1)
-	li       r0, 0
-	addi     r4, r4, "__vt__26Iterator<Q24Game8WaterBox>"@l
-	stfd     f31, 0x18(r1)
-	fmr      f31, f1
-	cmplwi   r0, 0
-	stw      r4, 8(r1)
-	stw      r0, 0x14(r1)
-	stw      r0, 0xc(r1)
-	stw      r3, 0x10(r1)
-	bne      lbl_801B038C
-	lwz      r12, 0(r3)
-	lwz      r12, 0x18(r12)
-	mtctr    r12
-	bctrl
-	stw      r3, 0xc(r1)
-	b        lbl_801B04FC
+// /*
+//  * --INFO--
+//  * Address:	801B0324
+//  * Size:	000018
+//  */
+// void NodeObjectMgr<Game::WaterBox>::resetMgr()
+// {
+// 	/*
+// 	li       r0, 0
+// 	stw      r0, 0x30(r3)
+// 	stw      r0, 0x2c(r3)
+// 	stw      r0, 0x28(r3)
+// 	stw      r0, 0x24(r3)
+// 	blr
+// 	*/
+// }
 
-lbl_801B038C:
-	lwz      r12, 0(r3)
-	lwz      r12, 0x18(r12)
-	mtctr    r12
-	bctrl
-	stw      r3, 0xc(r1)
-	b        lbl_801B03F8
+// /*
+//  * --INFO--
+//  * Address:	801B033C
+//  * Size:	0001F4
+//  */
+// void ObjectMgr<Game::WaterBox>::doSimulation(float)
+// {
+// 	/*
+// 	stwu     r1, -0x20(r1)
+// 	mflr     r0
+// 	lis      r4, "__vt__26Iterator<Q24Game8WaterBox>"@ha
+// 	stw      r0, 0x24(r1)
+// 	li       r0, 0
+// 	addi     r4, r4, "__vt__26Iterator<Q24Game8WaterBox>"@l
+// 	stfd     f31, 0x18(r1)
+// 	fmr      f31, f1
+// 	cmplwi   r0, 0
+// 	stw      r4, 8(r1)
+// 	stw      r0, 0x14(r1)
+// 	stw      r0, 0xc(r1)
+// 	stw      r3, 0x10(r1)
+// 	bne      lbl_801B038C
+// 	lwz      r12, 0(r3)
+// 	lwz      r12, 0x18(r12)
+// 	mtctr    r12
+// 	bctrl
+// 	stw      r3, 0xc(r1)
+// 	b        lbl_801B04FC
 
-lbl_801B03A4:
-	lwz      r3, 0x10(r1)
-	lwz      r4, 0xc(r1)
-	lwz      r12, 0(r3)
-	lwz      r12, 0x20(r12)
-	mtctr    r12
-	bctrl
-	mr       r4, r3
-	lwz      r3, 0x14(r1)
-	lwz      r12, 0(r3)
-	lwz      r12, 8(r12)
-	mtctr    r12
-	bctrl
-	clrlwi.  r0, r3, 0x18
-	bne      lbl_801B04FC
-	lwz      r3, 0x10(r1)
-	lwz      r4, 0xc(r1)
-	lwz      r12, 0(r3)
-	lwz      r12, 0x14(r12)
-	mtctr    r12
-	bctrl
-	stw      r3, 0xc(r1)
+// lbl_801B038C:
+// 	lwz      r12, 0(r3)
+// 	lwz      r12, 0x18(r12)
+// 	mtctr    r12
+// 	bctrl
+// 	stw      r3, 0xc(r1)
+// 	b        lbl_801B03F8
 
-lbl_801B03F8:
-	lwz      r12, 8(r1)
-	addi     r3, r1, 8
-	lwz      r12, 0x10(r12)
-	mtctr    r12
-	bctrl
-	clrlwi.  r0, r3, 0x18
-	beq      lbl_801B03A4
-	b        lbl_801B04FC
+// lbl_801B03A4:
+// 	lwz      r3, 0x10(r1)
+// 	lwz      r4, 0xc(r1)
+// 	lwz      r12, 0(r3)
+// 	lwz      r12, 0x20(r12)
+// 	mtctr    r12
+// 	bctrl
+// 	mr       r4, r3
+// 	lwz      r3, 0x14(r1)
+// 	lwz      r12, 0(r3)
+// 	lwz      r12, 8(r12)
+// 	mtctr    r12
+// 	bctrl
+// 	clrlwi.  r0, r3, 0x18
+// 	bne      lbl_801B04FC
+// 	lwz      r3, 0x10(r1)
+// 	lwz      r4, 0xc(r1)
+// 	lwz      r12, 0(r3)
+// 	lwz      r12, 0x14(r12)
+// 	mtctr    r12
+// 	bctrl
+// 	stw      r3, 0xc(r1)
 
-lbl_801B0418:
-	lwz      r3, 0x10(r1)
-	lwz      r12, 0(r3)
-	lwz      r12, 0x20(r12)
-	mtctr    r12
-	bctrl
-	lwz      r12, 0(r3)
-	fmr      f1, f31
-	lwz      r12, 0x38(r12)
-	mtctr    r12
-	bctrl
-	lwz      r0, 0x14(r1)
-	cmplwi   r0, 0
-	bne      lbl_801B046C
-	lwz      r3, 0x10(r1)
-	lwz      r4, 0xc(r1)
-	lwz      r12, 0(r3)
-	lwz      r12, 0x14(r12)
-	mtctr    r12
-	bctrl
-	stw      r3, 0xc(r1)
-	b        lbl_801B04FC
+// lbl_801B03F8:
+// 	lwz      r12, 8(r1)
+// 	addi     r3, r1, 8
+// 	lwz      r12, 0x10(r12)
+// 	mtctr    r12
+// 	bctrl
+// 	clrlwi.  r0, r3, 0x18
+// 	beq      lbl_801B03A4
+// 	b        lbl_801B04FC
 
-lbl_801B046C:
-	lwz      r3, 0x10(r1)
-	lwz      r4, 0xc(r1)
-	lwz      r12, 0(r3)
-	lwz      r12, 0x14(r12)
-	mtctr    r12
-	bctrl
-	stw      r3, 0xc(r1)
-	b        lbl_801B04E0
+// lbl_801B0418:
+// 	lwz      r3, 0x10(r1)
+// 	lwz      r12, 0(r3)
+// 	lwz      r12, 0x20(r12)
+// 	mtctr    r12
+// 	bctrl
+// 	lwz      r12, 0(r3)
+// 	fmr      f1, f31
+// 	lwz      r12, 0x38(r12)
+// 	mtctr    r12
+// 	bctrl
+// 	lwz      r0, 0x14(r1)
+// 	cmplwi   r0, 0
+// 	bne      lbl_801B046C
+// 	lwz      r3, 0x10(r1)
+// 	lwz      r4, 0xc(r1)
+// 	lwz      r12, 0(r3)
+// 	lwz      r12, 0x14(r12)
+// 	mtctr    r12
+// 	bctrl
+// 	stw      r3, 0xc(r1)
+// 	b        lbl_801B04FC
 
-lbl_801B048C:
-	lwz      r3, 0x10(r1)
-	lwz      r4, 0xc(r1)
-	lwz      r12, 0(r3)
-	lwz      r12, 0x20(r12)
-	mtctr    r12
-	bctrl
-	mr       r4, r3
-	lwz      r3, 0x14(r1)
-	lwz      r12, 0(r3)
-	lwz      r12, 8(r12)
-	mtctr    r12
-	bctrl
-	clrlwi.  r0, r3, 0x18
-	bne      lbl_801B04FC
-	lwz      r3, 0x10(r1)
-	lwz      r4, 0xc(r1)
-	lwz      r12, 0(r3)
-	lwz      r12, 0x14(r12)
-	mtctr    r12
-	bctrl
-	stw      r3, 0xc(r1)
+// lbl_801B046C:
+// 	lwz      r3, 0x10(r1)
+// 	lwz      r4, 0xc(r1)
+// 	lwz      r12, 0(r3)
+// 	lwz      r12, 0x14(r12)
+// 	mtctr    r12
+// 	bctrl
+// 	stw      r3, 0xc(r1)
+// 	b        lbl_801B04E0
 
-lbl_801B04E0:
-	lwz      r12, 8(r1)
-	addi     r3, r1, 8
-	lwz      r12, 0x10(r12)
-	mtctr    r12
-	bctrl
-	clrlwi.  r0, r3, 0x18
-	beq      lbl_801B048C
+// lbl_801B048C:
+// 	lwz      r3, 0x10(r1)
+// 	lwz      r4, 0xc(r1)
+// 	lwz      r12, 0(r3)
+// 	lwz      r12, 0x20(r12)
+// 	mtctr    r12
+// 	bctrl
+// 	mr       r4, r3
+// 	lwz      r3, 0x14(r1)
+// 	lwz      r12, 0(r3)
+// 	lwz      r12, 8(r12)
+// 	mtctr    r12
+// 	bctrl
+// 	clrlwi.  r0, r3, 0x18
+// 	bne      lbl_801B04FC
+// 	lwz      r3, 0x10(r1)
+// 	lwz      r4, 0xc(r1)
+// 	lwz      r12, 0(r3)
+// 	lwz      r12, 0x14(r12)
+// 	mtctr    r12
+// 	bctrl
+// 	stw      r3, 0xc(r1)
 
-lbl_801B04FC:
-	lwz      r3, 0x10(r1)
-	lwz      r12, 0(r3)
-	lwz      r12, 0x1c(r12)
-	mtctr    r12
-	bctrl
-	lwz      r4, 0xc(r1)
-	cmplw    r4, r3
-	bne      lbl_801B0418
-	lwz      r0, 0x24(r1)
-	lfd      f31, 0x18(r1)
-	mtlr     r0
-	addi     r1, r1, 0x20
-	blr
-	*/
-}
+// lbl_801B04E0:
+// 	lwz      r12, 8(r1)
+// 	addi     r3, r1, 8
+// 	lwz      r12, 0x10(r12)
+// 	mtctr    r12
+// 	bctrl
+// 	clrlwi.  r0, r3, 0x18
+// 	beq      lbl_801B048C
 
-/*
- * --INFO--
- * Address:	801B0530
- * Size:	0001F4
- */
-void ObjectMgr<Game::WaterBox>::doDirectDraw(Graphics&)
-{
-	/*
-	stwu     r1, -0x20(r1)
-	mflr     r0
-	lis      r5, "__vt__26Iterator<Q24Game8WaterBox>"@ha
-	stw      r0, 0x24(r1)
-	li       r0, 0
-	addi     r5, r5, "__vt__26Iterator<Q24Game8WaterBox>"@l
-	stw      r31, 0x1c(r1)
-	cmplwi   r0, 0
-	mr       r31, r4
-	stw      r0, 0x14(r1)
-	stw      r5, 8(r1)
-	stw      r0, 0xc(r1)
-	stw      r3, 0x10(r1)
-	bne      lbl_801B0580
-	lwz      r12, 0(r3)
-	lwz      r12, 0x18(r12)
-	mtctr    r12
-	bctrl
-	stw      r3, 0xc(r1)
-	b        lbl_801B06F0
+// lbl_801B04FC:
+// 	lwz      r3, 0x10(r1)
+// 	lwz      r12, 0(r3)
+// 	lwz      r12, 0x1c(r12)
+// 	mtctr    r12
+// 	bctrl
+// 	lwz      r4, 0xc(r1)
+// 	cmplw    r4, r3
+// 	bne      lbl_801B0418
+// 	lwz      r0, 0x24(r1)
+// 	lfd      f31, 0x18(r1)
+// 	mtlr     r0
+// 	addi     r1, r1, 0x20
+// 	blr
+// 	*/
+// }
 
-lbl_801B0580:
-	lwz      r12, 0(r3)
-	lwz      r12, 0x18(r12)
-	mtctr    r12
-	bctrl
-	stw      r3, 0xc(r1)
-	b        lbl_801B05EC
+// /*
+//  * --INFO--
+//  * Address:	801B0530
+//  * Size:	0001F4
+//  */
+// void ObjectMgr<Game::WaterBox>::doDirectDraw(Graphics&)
+// {
+// 	/*
+// 	stwu     r1, -0x20(r1)
+// 	mflr     r0
+// 	lis      r5, "__vt__26Iterator<Q24Game8WaterBox>"@ha
+// 	stw      r0, 0x24(r1)
+// 	li       r0, 0
+// 	addi     r5, r5, "__vt__26Iterator<Q24Game8WaterBox>"@l
+// 	stw      r31, 0x1c(r1)
+// 	cmplwi   r0, 0
+// 	mr       r31, r4
+// 	stw      r0, 0x14(r1)
+// 	stw      r5, 8(r1)
+// 	stw      r0, 0xc(r1)
+// 	stw      r3, 0x10(r1)
+// 	bne      lbl_801B0580
+// 	lwz      r12, 0(r3)
+// 	lwz      r12, 0x18(r12)
+// 	mtctr    r12
+// 	bctrl
+// 	stw      r3, 0xc(r1)
+// 	b        lbl_801B06F0
 
-lbl_801B0598:
-	lwz      r3, 0x10(r1)
-	lwz      r4, 0xc(r1)
-	lwz      r12, 0(r3)
-	lwz      r12, 0x20(r12)
-	mtctr    r12
-	bctrl
-	mr       r4, r3
-	lwz      r3, 0x14(r1)
-	lwz      r12, 0(r3)
-	lwz      r12, 8(r12)
-	mtctr    r12
-	bctrl
-	clrlwi.  r0, r3, 0x18
-	bne      lbl_801B06F0
-	lwz      r3, 0x10(r1)
-	lwz      r4, 0xc(r1)
-	lwz      r12, 0(r3)
-	lwz      r12, 0x14(r12)
-	mtctr    r12
-	bctrl
-	stw      r3, 0xc(r1)
+// lbl_801B0580:
+// 	lwz      r12, 0(r3)
+// 	lwz      r12, 0x18(r12)
+// 	mtctr    r12
+// 	bctrl
+// 	stw      r3, 0xc(r1)
+// 	b        lbl_801B05EC
 
-lbl_801B05EC:
-	lwz      r12, 8(r1)
-	addi     r3, r1, 8
-	lwz      r12, 0x10(r12)
-	mtctr    r12
-	bctrl
-	clrlwi.  r0, r3, 0x18
-	beq      lbl_801B0598
-	b        lbl_801B06F0
+// lbl_801B0598:
+// 	lwz      r3, 0x10(r1)
+// 	lwz      r4, 0xc(r1)
+// 	lwz      r12, 0(r3)
+// 	lwz      r12, 0x20(r12)
+// 	mtctr    r12
+// 	bctrl
+// 	mr       r4, r3
+// 	lwz      r3, 0x14(r1)
+// 	lwz      r12, 0(r3)
+// 	lwz      r12, 8(r12)
+// 	mtctr    r12
+// 	bctrl
+// 	clrlwi.  r0, r3, 0x18
+// 	bne      lbl_801B06F0
+// 	lwz      r3, 0x10(r1)
+// 	lwz      r4, 0xc(r1)
+// 	lwz      r12, 0(r3)
+// 	lwz      r12, 0x14(r12)
+// 	mtctr    r12
+// 	bctrl
+// 	stw      r3, 0xc(r1)
 
-lbl_801B060C:
-	lwz      r3, 0x10(r1)
-	lwz      r12, 0(r3)
-	lwz      r12, 0x20(r12)
-	mtctr    r12
-	bctrl
-	lwz      r12, 0(r3)
-	mr       r4, r31
-	lwz      r12, 0x3c(r12)
-	mtctr    r12
-	bctrl
-	lwz      r0, 0x14(r1)
-	cmplwi   r0, 0
-	bne      lbl_801B0660
-	lwz      r3, 0x10(r1)
-	lwz      r4, 0xc(r1)
-	lwz      r12, 0(r3)
-	lwz      r12, 0x14(r12)
-	mtctr    r12
-	bctrl
-	stw      r3, 0xc(r1)
-	b        lbl_801B06F0
+// lbl_801B05EC:
+// 	lwz      r12, 8(r1)
+// 	addi     r3, r1, 8
+// 	lwz      r12, 0x10(r12)
+// 	mtctr    r12
+// 	bctrl
+// 	clrlwi.  r0, r3, 0x18
+// 	beq      lbl_801B0598
+// 	b        lbl_801B06F0
 
-lbl_801B0660:
-	lwz      r3, 0x10(r1)
-	lwz      r4, 0xc(r1)
-	lwz      r12, 0(r3)
-	lwz      r12, 0x14(r12)
-	mtctr    r12
-	bctrl
-	stw      r3, 0xc(r1)
-	b        lbl_801B06D4
+// lbl_801B060C:
+// 	lwz      r3, 0x10(r1)
+// 	lwz      r12, 0(r3)
+// 	lwz      r12, 0x20(r12)
+// 	mtctr    r12
+// 	bctrl
+// 	lwz      r12, 0(r3)
+// 	mr       r4, r31
+// 	lwz      r12, 0x3c(r12)
+// 	mtctr    r12
+// 	bctrl
+// 	lwz      r0, 0x14(r1)
+// 	cmplwi   r0, 0
+// 	bne      lbl_801B0660
+// 	lwz      r3, 0x10(r1)
+// 	lwz      r4, 0xc(r1)
+// 	lwz      r12, 0(r3)
+// 	lwz      r12, 0x14(r12)
+// 	mtctr    r12
+// 	bctrl
+// 	stw      r3, 0xc(r1)
+// 	b        lbl_801B06F0
 
-lbl_801B0680:
-	lwz      r3, 0x10(r1)
-	lwz      r4, 0xc(r1)
-	lwz      r12, 0(r3)
-	lwz      r12, 0x20(r12)
-	mtctr    r12
-	bctrl
-	mr       r4, r3
-	lwz      r3, 0x14(r1)
-	lwz      r12, 0(r3)
-	lwz      r12, 8(r12)
-	mtctr    r12
-	bctrl
-	clrlwi.  r0, r3, 0x18
-	bne      lbl_801B06F0
-	lwz      r3, 0x10(r1)
-	lwz      r4, 0xc(r1)
-	lwz      r12, 0(r3)
-	lwz      r12, 0x14(r12)
-	mtctr    r12
-	bctrl
-	stw      r3, 0xc(r1)
+// lbl_801B0660:
+// 	lwz      r3, 0x10(r1)
+// 	lwz      r4, 0xc(r1)
+// 	lwz      r12, 0(r3)
+// 	lwz      r12, 0x14(r12)
+// 	mtctr    r12
+// 	bctrl
+// 	stw      r3, 0xc(r1)
+// 	b        lbl_801B06D4
 
-lbl_801B06D4:
-	lwz      r12, 8(r1)
-	addi     r3, r1, 8
-	lwz      r12, 0x10(r12)
-	mtctr    r12
-	bctrl
-	clrlwi.  r0, r3, 0x18
-	beq      lbl_801B0680
+// lbl_801B0680:
+// 	lwz      r3, 0x10(r1)
+// 	lwz      r4, 0xc(r1)
+// 	lwz      r12, 0(r3)
+// 	lwz      r12, 0x20(r12)
+// 	mtctr    r12
+// 	bctrl
+// 	mr       r4, r3
+// 	lwz      r3, 0x14(r1)
+// 	lwz      r12, 0(r3)
+// 	lwz      r12, 8(r12)
+// 	mtctr    r12
+// 	bctrl
+// 	clrlwi.  r0, r3, 0x18
+// 	bne      lbl_801B06F0
+// 	lwz      r3, 0x10(r1)
+// 	lwz      r4, 0xc(r1)
+// 	lwz      r12, 0(r3)
+// 	lwz      r12, 0x14(r12)
+// 	mtctr    r12
+// 	bctrl
+// 	stw      r3, 0xc(r1)
 
-lbl_801B06F0:
-	lwz      r3, 0x10(r1)
-	lwz      r12, 0(r3)
-	lwz      r12, 0x1c(r12)
-	mtctr    r12
-	bctrl
-	lwz      r4, 0xc(r1)
-	cmplw    r4, r3
-	bne      lbl_801B060C
-	lwz      r0, 0x24(r1)
-	lwz      r31, 0x1c(r1)
-	mtlr     r0
-	addi     r1, r1, 0x20
-	blr
-	*/
-}
+// lbl_801B06D4:
+// 	lwz      r12, 8(r1)
+// 	addi     r3, r1, 8
+// 	lwz      r12, 0x10(r12)
+// 	mtctr    r12
+// 	bctrl
+// 	clrlwi.  r0, r3, 0x18
+// 	beq      lbl_801B0680
 
-/*
- * --INFO--
- * Address:	801B0724
- * Size:	00002C
- */
-void Container<Game::WaterBox>::getObject(void*)
-{
-	/*
-	stwu     r1, -0x10(r1)
-	mflr     r0
-	stw      r0, 0x14(r1)
-	lwz      r12, 0(r3)
-	lwz      r12, 0x20(r12)
-	mtctr    r12
-	bctrl
-	lwz      r0, 0x14(r1)
-	mtlr     r0
-	addi     r1, r1, 0x10
-	blr
-	*/
-}
+// lbl_801B06F0:
+// 	lwz      r3, 0x10(r1)
+// 	lwz      r12, 0(r3)
+// 	lwz      r12, 0x1c(r12)
+// 	mtctr    r12
+// 	bctrl
+// 	lwz      r4, 0xc(r1)
+// 	cmplw    r4, r3
+// 	bne      lbl_801B060C
+// 	lwz      r0, 0x24(r1)
+// 	lwz      r31, 0x1c(r1)
+// 	mtlr     r0
+// 	addi     r1, r1, 0x20
+// 	blr
+// 	*/
+// }
 
-/*
- * --INFO--
- * Address:	801B0750
- * Size:	000008
- */
-u32 Container<Game::WaterBox>::getAt(int) { return 0x0; }
+// /*
+//  * --INFO--
+//  * Address:	801B0724
+//  * Size:	00002C
+//  */
+// void Container<Game::WaterBox>::getObject(void*)
+// {
+// 	/*
+// 	stwu     r1, -0x10(r1)
+// 	mflr     r0
+// 	stw      r0, 0x14(r1)
+// 	lwz      r12, 0(r3)
+// 	lwz      r12, 0x20(r12)
+// 	mtctr    r12
+// 	bctrl
+// 	lwz      r0, 0x14(r1)
+// 	mtlr     r0
+// 	addi     r1, r1, 0x10
+// 	blr
+// 	*/
+// }
 
-/*
- * --INFO--
- * Address:	801B0758
- * Size:	000008
- */
-u32 Container<Game::WaterBox>::getTo() { return 0x0; }
+// /*
+//  * --INFO--
+//  * Address:	801B0750
+//  * Size:	000008
+//  */
+// u32 Container<Game::WaterBox>::getAt(int) { return 0x0; }
 
-/*
- * --INFO--
- * Address:	801B0760
- * Size:	000028
- */
-void __sinit_gameSeaMgr_cpp(void)
-{
-	/*
-	lis      r4, __float_nan@ha
-	li       r0, -1
-	lfs      f0, __float_nan@l(r4)
-	lis      r3, lbl_804B57A8@ha
-	stw      r0, lbl_80515A50@sda21(r13)
-	stfsu    f0, lbl_804B57A8@l(r3)
-	stfs     f0, lbl_80515A54@sda21(r13)
-	stfs     f0, 4(r3)
-	stfs     f0, 8(r3)
-	blr
-	*/
-}
+// /*
+//  * --INFO--
+//  * Address:	801B0758
+//  * Size:	000008
+//  */
+// u32 Container<Game::WaterBox>::getTo() { return 0x0; }
+
+// /*
+//  * --INFO--
+//  * Address:	801B0760
+//  * Size:	000028
+//  */
+// void __sinit_gameSeaMgr_cpp(void)
+// {
+// 	/*
+// 	lis      r4, __float_nan@ha
+// 	li       r0, -1
+// 	lfs      f0, __float_nan@l(r4)
+// 	lis      r3, lbl_804B57A8@ha
+// 	stw      r0, lbl_80515A50@sda21(r13)
+// 	stfsu    f0, lbl_804B57A8@l(r3)
+// 	stfs     f0, lbl_80515A54@sda21(r13)
+// 	stfs     f0, 4(r3)
+// 	stfs     f0, 8(r3)
+// 	blr
+// 	*/
+// }
 
 /*
  * --INFO--

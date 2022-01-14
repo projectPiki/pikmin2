@@ -133,9 +133,9 @@ struct EditorRouteMgr : public RouteMgr {
 	EditorRouteMgr();
 
 	virtual ~EditorRouteMgr();            // _00
-	virtual int getNext(void*);           // _0C
-	virtual int getStart();               // _10
-	virtual int getEnd();                 // _14
+	virtual void* getNext(void*);         // _0C
+	virtual void* getStart();             // _10
+	virtual void* getEnd();               // _14
 	virtual WayPoint* get(void*);         // _18
 	virtual WayPoint* getWayPoint(short); // _24
 	virtual void read(Stream&);           // _28
@@ -150,9 +150,9 @@ struct GameRouteMgr : public RouteMgr {
 	GameRouteMgr();
 
 	virtual ~GameRouteMgr();              // _00
-	virtual int getNext(void*);           // _0C
-	virtual int getStart();               // _10
-	virtual int getEnd();                 // _14
+	virtual void* getNext(void*);         // _0C
+	virtual void* getStart();             // _10
+	virtual void* getEnd();               // _14
 	virtual WayPoint* get(void*);         // _18
 	virtual WayPoint* getWayPoint(short); // _24
 	virtual void read(Stream&);           // _28

@@ -6,7 +6,7 @@
 
 // TODO: Verify virtual functions
 template <typename T> struct Iterator {
-	inline Iterator<T>(Container<T>* container, int startIndex = 0, Condition<T>* condition = nullptr)
+	inline Iterator<T>(Container<T>* container, void* startIndex = 0, Condition<T>* condition = nullptr)
 	    : m_condition(condition)
 	{
 		m_index     = startIndex;
@@ -20,10 +20,10 @@ template <typename T> struct Iterator {
 		} else {
 			m_index = m_container->getStart();
 			while (!isDone()) {
-				if (m_condition->satisfy(m_container->get(&m_index))) {
+				if (m_condition->satisfy(m_container->get(m_index))) {
 					return;
 				}
-				m_index = m_container->getNext(&m_index);
+				m_index = m_container->getNext(m_index);
 			}
 		}
 	}
@@ -31,30 +31,30 @@ template <typename T> struct Iterator {
 	virtual void next() // _04
 	{
 		if (m_condition == nullptr) {
-			m_index = m_container->getNext(&m_index);
+			m_index = m_container->getNext(m_index);
 		} else {
-			m_index = m_container->getNext(&m_index);
+			m_index = m_container->getNext(m_index);
 			while (!isDone()) {
-				if (m_condition->satisfy(m_container->get(&m_index))) {
+				if (m_condition->satisfy(m_container->get(m_index))) {
 					return;
 				}
-				m_index = m_container->getNext(&m_index);
+				m_index = m_container->getNext(m_index);
 			}
 		}
 	}
 
 	virtual bool isDone() // _08
 	{
-		return (m_container->getEnd() == m_index);
+		return (m_index == m_container->getEnd());
 	}
 
 	virtual T* operator*() // _0C
 	{
-		return m_container->get(&m_index);
+		return m_container->get(m_index);
 	}
 
 	// VTBL _00
-	int m_index;               // _04;
+	void* m_index;             // _04;
 	Container<T>* m_container; // _08
 	Condition<T>* m_condition; // _0C
 };

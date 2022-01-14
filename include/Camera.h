@@ -19,6 +19,7 @@ struct Cylinder;
 
 struct CullPlane : public ArrayContainer<Plane> {
 	CullPlane(int);
+	virtual ~CullPlane() { } // _00
 	virtual void writeObject(Stream&, Plane&) {};
 	virtual void readObject(Stream&, Plane&) {};
 	bool isPointVisible(Vector3f&, float);

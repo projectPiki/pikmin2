@@ -15,12 +15,12 @@ struct TimeMgr;
 
 #pragma enumalwaysint on
 enum GameSystemMode {
+	GSM_FORCE_INT = -0xFFFF,
 	GSM_STORY_MODE = 0,
 	GSM_VERSUS_MODE,
 	GSM_ONE_PLAYER_CHALLENGE,
 	GSM_TWO_PLAYER_CHALLENGE,
 	GSM_PIKLOPEDIA,
-	GSM_FORCE_UINT = 0xFFFFFFFF
 };
 #pragma enumalwaysint reset
 struct GameSystem : public NodeObjectMgr<GenericObjectMgr> {
@@ -65,6 +65,13 @@ struct GameSystem : public NodeObjectMgr<GenericObjectMgr> {
 	void setMoviePause(bool, char*);
 	void setPause(bool, char*, int);
 	void startPause(bool, int, char*);
+
+	/**
+	 * @fabricated
+	 */
+	inline bool isMultiplayerMode() {
+		return (m_mode == GSM_VERSUS_MODE || m_mode == GSM_TWO_PLAYER_CHALLENGE);
+	}
 
 	u8 _3C;                     // _3C /* bitfield */
 	TimeMgr* m_timeMgr;         // _40
