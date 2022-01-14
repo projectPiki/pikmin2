@@ -3,9 +3,9 @@
 
 #include "types.h"
 
-// u8 bUseSerialIO;
+extern u8 bUseSerialIO;
 
-extern u8 GetUseSerialIO(void);
-extern void SetUseSerialIO(u8);
+u8 GetUseSerialIO(void);
+void SetUseSerialIO(u8);
 
 #endif

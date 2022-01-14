@@ -262,7 +262,7 @@ DOLPHIN:=\
 	$(BUILD_DIR)/src/Dolphin/main_TRK.o\
 	$(BUILD_DIR)/asm/Dolphin/dolphin_trk_glue.o\
 	$(BUILD_DIR)/src/Dolphin/targcont.o\
-	$(BUILD_DIR)/asm/Dolphin/target_options.o\
+	$(BUILD_DIR)/src/Dolphin/target_options.o\
 	$(BUILD_DIR)/asm/Dolphin/mslsupp.o\
 	$(BUILD_DIR)/src/Dolphin/UDP_Stubs.o\
 	$(BUILD_DIR)/asm/Dolphin/ddh/main.o\
