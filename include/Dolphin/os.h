@@ -201,6 +201,9 @@ u8* __OSLockSramEx(void);
 int OSDisableInterrupts(void);
 void OSRestoreInterrupts(int);
 
+u32 GameCode : 0x80000000;
+u32 FSTLocationInRam : 0x80000038;
+
 #ifdef __cplusplus
 };
 #endif // ifdef __cplusplus

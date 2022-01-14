@@ -3,7 +3,7 @@
 
 namespace JGeometry {
 template <typename T> struct TVec2 {
-	inline TVec2() {}
+	inline TVec2() { }
 	inline TVec2(T inX, T inY)
 	    : x(inX)
 	    , y(inY) {};

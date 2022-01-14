@@ -286,8 +286,8 @@ WaitingQueue:
 .global bb2Buf
 bb2Buf:
 	.skip 0x40
-.global block$18
-block$18:
+.global block_18
+block_18:
 	.skip 0x30
 .global Ecb
 Ecb:
