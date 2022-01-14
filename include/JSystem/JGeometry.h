@@ -3,7 +3,7 @@
 
 namespace JGeometry {
 template <typename T> struct TVec2 {
-	inline TVec2();
+	inline TVec2() {}
 	inline TVec2(T inX, T inY)
 	    : x(inX)
 	    , y(inY) {};
@@ -18,8 +18,7 @@ template <typename T> struct TVec3 {
 	    , y(inY)
 	    , z(inZ) {};
 
-	// TODO: Determine if this could've actually existed, or if I'm just making
-	// it up.
+	// TODO: Determine if this could've actually existed, or if I'm just making it up.
 	inline TVec3(const TVec3<T>& other)
 	{
 		x = other.x;

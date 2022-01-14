@@ -33,7 +33,7 @@ struct J3DModelData {
 	void simpleCalcMaterial(u16, Mtx*);
 	void syncJ3DSysFlags() const;
 
-	u32 _00;                          // _00
+	// VTBL _00
 	u8* m_bmd;                        // _04
 	u32 m_modelLoaderFlags;           // _08
 	u16 _0C;                          // _0C

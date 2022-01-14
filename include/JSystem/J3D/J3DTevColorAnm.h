@@ -3,14 +3,15 @@
 
 #include "types.h"
 
+struct J3DAnmTevRegKey;
 struct J3DTevColorAnm {
-	u32 _00; // _00
-	u32 _04; // _04
+	u16 m_index; // _00
+	J3DAnmTevRegKey* m_key; // _04
 };
 
 struct J3DTevKColorAnm {
-	u32 _00; // _00
-	u32 _04; // _04
+	u16 m_index; // _00
+	J3DAnmTevRegKey* m_key; // _04
 };
 
 #endif

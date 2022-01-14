@@ -67,6 +67,12 @@ struct TRandom_fast_ {
 	u32 value;
 
 	TRandom_fast_(u32 param_0);
+
+	inline u32 next()
+	{
+		value = value * 0x19660d + 0x3c6ef35f;
+		return value;
+	}
 };
 } // namespace JMath
 

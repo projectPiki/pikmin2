@@ -137,7 +137,7 @@ struct J3DMaterialTable {
 	J3DMaterial* m_materials2;  // _10
 	J3DTexture* m_texture;      // _14
 	JUTNameTab* _18;            // _18
-	u16 _1C;
+	u16 _1C;                    // _1C
 };
 
 #endif

@@ -12,7 +12,7 @@ template <typename T> struct JSUTree {
 	JSUTree<T>* getEndChild() const;
 	int getNumChildren() const;
 	JSUTree<T>* getFirstChild() const;
-	T* getObject() const;
+	T* getObject() const { return m_link.m_value; }
 
 	// TODO: This is probably wrong?
 	JSUPtrList m_list; // _00
