@@ -1,45 +1,43 @@
 .include "macros.inc"
 .section .data, "wa"  # 0x8049E220 - 0x804EFC20
-.balign 0x8
-.global lbl_804A7E60
-lbl_804A7E60:
+.balign 8
+lbl_804A7E60: #read-only string flag is off here
 	.asciz "  Game Name ... %c%c%c%c\n"
-	.skip 2
+.balign 4
+lbl_804A7E7C:
 	.asciz "  Company ..... %c%c\n"
-	.skip 2
+.balign 4
+lbl_804A7E94:
 	.asciz "  Disk # ...... %d\n"
+.balign 4
+lbl_804A7EA8:
 	.asciz "  Game ver .... %d\n"
+.balign 4
+lbl_804A7EBC:
 	.asciz "  Streaming ... %s\n"
 
 .section .sdata, "wa"  # 0x80514680 - 0x80514D80
-.balign 0x8
-.global lbl_80514950
-lbl_80514950:
+.balign 8
+lbl_80514950: #read-only string flag is off here
 	.asciz "\n"
-	.skip 2
-.global lbl_80514954
+.balign 4
 lbl_80514954:
 	.asciz "OFF"
-.global lbl_80514958
+.balign 4
 lbl_80514958:
 	.asciz "ON"
-	.skip 1
 
 .section .sbss # 0x80514D80 - 0x80516360
-.balign 0x8
-.global status
+.balign 8 # literally everything aside from __fstLoad is local
 status:
-	.skip 0x4
-.global bb2
+	.skip 4
 bb2:
-	.skip 0x4
-.global idTmp
+	.skip 4
 idTmp:
-	.skip 0x8
+	.skip 4
 
 .section .text, "ax"  # 0x800056C0 - 0x80472F00
-.global cb
-cb:
+cb: # local func
 /* 800DF914 000DC854  7C 08 02 A6 */	mflr r0
 /* 800DF918 000DC858  2C 03 00 00 */	cmpwi r3, 0
 /* 800DF91C 000DC85C  90 01 00 04 */	stw r0, 4(r1)
