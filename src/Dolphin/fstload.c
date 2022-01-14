@@ -2,9 +2,17 @@
 #include "Dolphin/os.h"
 #include "Dolphin/dvd.h"
 
+struct bb2struct {
+	u32 _00;
+	u32 _04;
+	s32 _08;
+	u32 _0C;
+	void* _10;
+};
+
 static u32 status;
-static u8* bb2;   // pointer?
-static u8* idTmp; // also pointer
+static struct bb2struct* bb2; // pointer?
+static u8* idTmp;             // also pointer
 extern u8 bb2Buf[0x3F];
 extern u8 block_18[0x30];
 
@@ -15,7 +23,7 @@ struct blah {
 	u8 Version;
 	u8 Streaming;
 	u8 filler[0x38 - 0x9];
-	u32 FSTLocationInRam;
+	void* FSTLocationInRam;
 	u32 FSTMaxLength;
 }; // diskinfo : 0x80000000;
 
@@ -35,7 +43,7 @@ static void cb(s32 param_1, void* param_2) // param_2 is probably a struct
 			break;
 		case 1:
 			status = 2;
-			DVDReadAbsAsyncForBS(param_2, *(u32*)(bb2 + 0x10), *(int*)(bb2 + 8) + 0x1fU & 0xffffffe0, *(u32*)(bb2 + 4), cb); // wtf lmao
+			DVDReadAbsAsyncForBS(param_2, bb2->_10, OSRoundUp32B(bb2->_08), bb2->_04, cb);
 			break;
 		}
 	} else if (param_1 == -1) {
@@ -60,16 +68,16 @@ void __fstLoad(void)
 	struct blah* di;
 
 	arenaHi = OSGetArenaHi();
-	idTmp   = (void*)RoundUp20B(auStack64);
-	bb2     = (void*)RoundUp20B(bb2Buf);
+	idTmp   = (void*)OSRoundUp32B(auStack64);
+	bb2     = (void*)OSRoundUp32B(bb2Buf);
 	DVDReset();
 	DVDReadDiskID(&block_18, idTmp, cb);
 	do {
 		iVar1 = DVDGetDriveStatus();
 	} while (iVar1 != 0);
 	di                   = (void*)0x80000000;
-	di->FSTLocationInRam = *(u32*)(bb2 + 16);
-	di->FSTMaxLength     = *(u32*)(bb2 + 12);
+	di->FSTLocationInRam = bb2->_10;
+	di->FSTMaxLength     = bb2->_0C;
 	memcpy(di, idTmp, 32);
 	OSReport("\n");
 	OSReport("  Game Name ... %c%c%c%c\n", di->Gamecode[0], di->Gamecode[1], di->Gamecode[2], di->Gamecode[3]);
@@ -83,6 +91,6 @@ void __fstLoad(void)
 	}
 	OSReport("  Streaming ... %s\n", pcVar2);
 	OSReport("\n");
-	OSSetArenaHi(*(void**)(bb2 + 16));
+	OSSetArenaHi(bb2->_10);
 	return;
 }

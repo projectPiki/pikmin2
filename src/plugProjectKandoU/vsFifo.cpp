@@ -11,7 +11,7 @@ u8 VSFifo::mGpStatus[5];
  */
 VSFifo::VSFifo(unsigned long size)
 {
-	m_size = RoundUp20B(size);
+	m_size = OSRoundUp32B(size);
 
 	if (JKRHeap::sCurrentHeap) {
 		m_fifo = (GXFifoObj*)JKRHeap::sCurrentHeap->alloc(m_size + GX_FIFO_OBJ_SIZE, 0x20);

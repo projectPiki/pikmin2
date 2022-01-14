@@ -59,10 +59,6 @@ typedef void* unkptr;
 #define EXIT_FAILURE -1
 #endif // ifndef EXIT_SUCCESS
 
-// Rounds to nearest multiple of 20 upwards and downwards
-#define RoundUp20B(x)   (((u32)(x) + 0x1F) & ~(0x1F))
-#define RoundDown20B(x) (((u32)(x)) & ~(0x1F))
-
 #define ASSERT_HANG(cond) \
 	if (!(cond)) {        \
 		while (true) { }  \

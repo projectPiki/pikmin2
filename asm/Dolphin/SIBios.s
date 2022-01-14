@@ -1,7 +1,6 @@
 .include "macros.inc"
 .section .data, "wa"  # 0x8049E220 - 0x804EFC20
-.balign 0x8
-.global lbl_804A9EB8
+.balign 8
 lbl_804A9EB8:
 	.asciz "<< Dolphin SDK - SI\trelease build: Apr 17 2003 12:33:19 (0x2301) >>"
 .global Si
@@ -17,42 +16,55 @@ Type:
 	.4byte 0x00000008
 	.4byte 0x00000008
 	.4byte 0x00000008
+.balign 4
+lbl_804A9F20:
 	.asciz "No response"
+.balign 4
+lbl_804A9F2C:
 	.asciz "N64 controller"
-	.skip 1
+.balign 4
+lbl_804A9F3C:
 	.asciz "N64 microphone"
-	.skip 1
+.balign 4
+lbl_804A9F4C:
 	.asciz "N64 keyboard"
-	.skip 3
+.balign 4
+lbl_804A9F5C:
 	.asciz "N64 mouse"
-	.skip 2
+.balign 4
+lbl_804A9F68:
 	.asciz "GameBoy Advance"
+.balign 4
+lbl_804A9F78:
 	.asciz "Standard controller"
+.balign 4
+lbl_804A9F8C:
 	.asciz "Wireless receiver"
-	.skip 2
+.balign 4
+lbl_804A9FA0:
 	.asciz "WaveBird controller"
+.balign 4
+lbl_804A9FB4:
 	.asciz "Keyboard"
-	.skip 3
+.balign 4
+lbl_804A9FC0:
 	.asciz "Steering"
-	.skip 3
 
 .section .sdata, "wa"  # 0x80514680 - 0x80514D80
-.balign 0x8
+.balign 8
 .global __SIVersion
 __SIVersion:
 	.4byte lbl_804A9EB8
 
 .section .sbss # 0x80514D80 - 0x80516360
-.balign 0x8
-.global cmdTypeAndStatus$78
+.balign 8
 cmdTypeAndStatus$78:
-	.skip 0x4
-.global cmdTypeAndStatus$372
+	.skip 4
 cmdTypeAndStatus$372:
-	.skip 0x4
+	.skip 4
 .global __PADFixBits
 __PADFixBits:
-	.skip 0x8
+	.skip 4
 
 .section .text, "ax"  # 0x800056C0 - 0x80472F00
 .global SIBusy
@@ -1046,7 +1058,6 @@ lbl_800F5CB0:
 /* 800F5CBC 000F2BFC  7C 08 03 A6 */	mtlr r0
 /* 800F5CC0 000F2C00  4E 80 00 20 */	blr 
 
-.global SIGetResponseRaw
 SIGetResponseRaw:
 /* 800F5CC4 000F2C04  7C 08 02 A6 */	mflr r0
 /* 800F5CC8 000F2C08  3C 80 80 4F */	lis r4, Packet@ha
@@ -1159,8 +1170,7 @@ lbl_800F5E3C:
 /* 800F5E54 000F2D94  7C 08 03 A6 */	mtlr r0
 /* 800F5E58 000F2D98  4E 80 00 20 */	blr 
 
-.global AlarmHandler2
-AlarmHandler2:
+AlarmHandler:
 /* 800F5E5C 000F2D9C  7C 08 02 A6 */	mflr r0
 /* 800F5E60 000F2DA0  3C 80 80 4F */	lis r4, Alarm@ha
 /* 800F5E64 000F2DA4  90 01 00 04 */	stw r0, 4(r1)
@@ -1258,9 +1268,9 @@ lbl_800F5F98:
 /* 800F5FB4 000F2EF4  1C 18 00 28 */	mulli r0, r24, 0x28
 /* 800F5FB8 000F2EF8  7F C4 98 10 */	subfc r30, r4, r19
 /* 800F5FBC 000F2EFC  7F E3 A1 10 */	subfe r31, r3, r20
-/* 800F5FC0 000F2F00  3C 80 80 0F */	lis r4, AlarmHandler2@ha
+/* 800F5FC0 000F2F00  3C 80 80 0F */	lis r4, AlarmHandler@ha
 /* 800F5FC4 000F2F04  7C 77 02 14 */	add r3, r23, r0
-/* 800F5FC8 000F2F08  38 E4 5E 5C */	addi r7, r4, AlarmHandler2@l
+/* 800F5FC8 000F2F08  38 E4 5E 5C */	addi r7, r4, AlarmHandler@l
 /* 800F5FCC 000F2F0C  38 DE 00 00 */	addi r6, r30, 0
 /* 800F5FD0 000F2F10  38 BF 00 00 */	addi r5, r31, 0
 /* 800F5FD4 000F2F14  38 63 00 80 */	addi r3, r3, 0x80
@@ -1299,7 +1309,6 @@ lbl_800F6040:
 /* 800F604C 000F2F8C  7C 08 03 A6 */	mtlr r0
 /* 800F6050 000F2F90  4E 80 00 20 */	blr 
 
-.global GetTypeCallback
 GetTypeCallback:
 /* 800F6054 000F2F94  7C 08 02 A6 */	mflr r0
 /* 800F6058 000F2F98  90 01 00 04 */	stw r0, 4(r1)

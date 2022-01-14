@@ -1,7 +1,6 @@
 .include "macros.inc"
 .section .sbss # 0x80514D80 - 0x80516360
 .balign 8
-.global initialized$60
 initialized$60:
 	.skip 4
 

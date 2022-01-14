@@ -1,7 +1,6 @@
 .include "macros.inc"
 
 .section .text, "ax"  # 0x800056C0 - 0x80472F00
-.global WriteSramCallback
 WriteSramCallback:
 /* 800F0A7C 000ED9BC  7C 08 02 A6 */	mflr r0
 /* 800F0A80 000ED9C0  3C 60 80 4F */	lis r3, Scb@ha
@@ -29,7 +28,6 @@ lbl_800F0AC4:
 /* 800F0AD4 000EDA14  7C 08 03 A6 */	mtlr r0
 /* 800F0AD8 000EDA18  4E 80 00 20 */	blr 
 
-.global WriteSram
 WriteSram:
 /* 800F0ADC 000EDA1C  7C 08 02 A6 */	mflr r0
 /* 800F0AE0 000EDA20  3C C0 80 0F */	lis r6, WriteSramCallback@ha
@@ -246,7 +244,6 @@ lbl_800F0DD4:
 /* 800F0DE0 000EDD20  7C 08 03 A6 */	mtlr r0
 /* 800F0DE4 000EDD24  4E 80 00 20 */	blr 
 
-.global UnlockSram
 UnlockSram:
 /* 800F0DE8 000EDD28  7C 08 02 A6 */	mflr r0
 /* 800F0DEC 000EDD2C  2C 03 00 00 */	cmpwi r3, 0

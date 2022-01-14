@@ -201,8 +201,12 @@ u8* __OSLockSramEx(void);
 int OSDisableInterrupts(void);
 void OSRestoreInterrupts(int);
 
-u32 GameCode : 0x80000000;
-u32 FSTLocationInRam : 0x80000038;
+// u32 GameCode : 0x80000000;
+// u32 FSTLocationInRam : 0x80000038;
+
+// Rounds to nearest multiple of 20 upwards and downwards
+#define OSRoundUp32B(x)   (((u32)(x) + 0x1F) & ~(0x1F))
+#define OSRoundDown32B(x) (((u32)(x)) & ~(0x1F))
 
 #ifdef __cplusplus
 };

@@ -1,7 +1,6 @@
 .include "macros.inc"
 
 .section .text, "ax"  # 0x800056C0 - 0x80472F00
-.global SystemCallVector
 SystemCallVector:
 /* 800F17D4 000EE714  7D 30 FA A6 */	mfspr r9, 0x3f0
 /* 800F17D8 000EE718  61 2A 00 08 */	ori r10, r9, 8
