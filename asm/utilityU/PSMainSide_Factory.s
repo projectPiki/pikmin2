@@ -4,85 +4,76 @@
 
 .section .rodata  # 0x804732E0 - 0x8049E220
 .balign 8
-.global lbl_8049CE68
 lbl_8049CE68:
 	.4byte 0x00000000
 	.4byte 0x00000000
 	.4byte 0x00000000
-.global lbl_8049CE74
+.balign 4
 lbl_8049CE74:
-	.4byte 0x50534D61
-	.4byte 0x696E5369
-	.4byte 0x64655F46
-	.4byte 0x6163746F
-	.4byte 0x72792E63
-	.4byte 0x70700000
-.global lbl_8049CE8C
+	.asciz "PSMainSide_Factory.cpp"
+.balign 4
 lbl_8049CE8C:
 	.asciz "P2Assert"
-	.skip 3
-	.4byte 0x50534761
-	.4byte 0x6D652E68
-	.4byte 0x00000000
-	.4byte 0x50535363
-	.4byte 0x656E652E
-	.4byte 0x68000000
-	.4byte 0x67657420
-	.4byte 0x736F756E
-	.4byte 0x64207363
-	.4byte 0x656E6520
-	.4byte 0x61740A69
-	.4byte 0x6E76616C
-	.4byte 0x69642074
-	.4byte 0x696D6D69
-	.4byte 0x6E670A00
-	.4byte 0x50534D61
-	.4byte 0x696E5369
-	.4byte 0x64655F53
-	.4byte 0x63656E65
-	.4byte 0x2E680000
-	.4byte 0x6B75726F
-	.4byte 0x5F706F73
-	.4byte 0x742E626D
-	.4byte 0x73000000
-	.4byte 0x5053436F
-	.4byte 0x6D6D6F6E
-	.4byte 0x2E680000
-	.4byte 0x6D5F626F
-	.4byte 0x73732E62
-	.4byte 0x6D730000
-	.4byte 0x6C5F626F
-	.4byte 0x73732E62
-	.4byte 0x6D730000
-	.4byte 0x62617474
-	.4byte 0x6C655F74
-	.4byte 0x2E626D73
-	.4byte 0x00000000
-	.4byte 0x44BB8000
-	.4byte 0x43EF8000
-	.4byte 0x4430C000
-	.4byte 0x444A0000
+.balign 4
+lbl_8049CE98:
+	.asciz "PSGame.h"
+.balign 4
+lbl_8049CEA4:
+	.asciz "PSScene.h"
+.balign 4
+lbl_8049CEB0:
+	.asciz "get sound scene at\ninvalid timming\n"
+.balign 4
+lbl_8049CED4:
+	.asciz "PSMainSide_Scene.h"
+.balign 4
+lbl_8049CEE8:
+	.asciz "kuro_post.bms"
+.balign 4
+lbl_8049CEF8:
+	.asciz "PSCommon.h"
+.balign 4
+lbl_8049CF04:
+	.asciz "m_boss.bms"
+.balign 4
+lbl_8049CF10:
+	.asciz "l_boss.bms"
+.balign 4
+lbl_8049CF1C:
+	.asciz "battle_t.bms"
+.balign 4
+lbl_8049CF2C: # these are structs of five floats
+	.float 1500.0
+	.float 479.0
+	.float 707.0
+	.float 808.0
 	.float 1.0
-	.4byte 0x44BB8000
-	.4byte 0x43EF8000
-	.4byte 0x4430C000
-	.4byte 0x444A0000
+lbl_8049CF40: # these are structs of five floats
+	.float 1500.0
+	.float 479.0
+	.float 707.0
+	.float 808.0
 	.float 1.0
-	.4byte 0x44BB8000
-	.4byte 0x43BD8000
-	.4byte 0x4410C000
-	.4byte 0x4480E000
-	.4byte 0x3F666666
-	.4byte 0x44BB8000
-	.4byte 0x43EF8000
-	.4byte 0x4430C000
-	.4byte 0x444A0000
+lbl_8049CF54: # these are structs of five floats
+	.float 1500.0
+	.float 379.0
+	.float 579.0
+	.float 1031.0
+	.float 0.9
+lbl_8049CF68: # these are structs of five floats
+	.float 1500.0
+	.float 479.0
+	.float 707.0
+	.float 808.0
 	.float 1.0
-	.4byte 0x44BB8000
-	.4byte 0x43BD8000
-	.4byte 0x43EF8000
-	.4byte 0x448D6000
+lbl_8049CF7C: # these are structs of five floats
+	.float 1500.0
+	.float 379.0
+	.float 479.0
+	.float 1131.0
 	.float 1.0
+.balign 4
+lbl_8049CF90: # Shift-JIS "乱数位置Avoid"
 	.4byte 0x97909094
 	.4byte 0x88CA9275
 	.4byte 0x41766F69
@@ -90,12 +81,10 @@ lbl_8049CE8C:
 
 .section .data, "wa"  # 0x8049E220 - 0x804EFC20
 .balign 8
-.global lbl_804EE158
-lbl_804EE158:
-	.4byte 0x00000000
-	.4byte 0x00000000
-	.4byte 0x00000000
-.global lbl_804EE164
+govNAN___Q24Game5P2JST:
+	.float 0.0
+	.float 0.0
+	.float 0.0
 lbl_804EE164:
 	.4byte lbl_8045A578
 	.4byte lbl_8045A5CC
@@ -118,7 +107,6 @@ lbl_804EE164:
 	.4byte lbl_8045A618
 	.4byte lbl_8045A618
 	.4byte lbl_8045A5CC
-.global lbl_804EE1B8
 lbl_804EE1B8:
 	.4byte lbl_8045AB94
 	.4byte lbl_8045AC24
@@ -135,7 +123,6 @@ lbl_804EE1B8:
 	.4byte lbl_8045B4FC
 	.4byte lbl_8045B5D0
 	.4byte lbl_8045B6A4
-.global lbl_804EE1F4
 lbl_804EE1F4:
 	.4byte lbl_8045C8C8
 	.4byte lbl_8045C820
@@ -249,49 +236,35 @@ __vt__Q23PSM12Env_Pollutin:
 
 .section .sbss # 0x80514D80 - 0x80516360
 .balign 8
-.global lbl_80516308
-lbl_80516308:
-	.skip 0x4
-.global lbl_8051630C
-lbl_8051630C:
-	.skip 0x4
+gu32NAN___Q24Game5P2JST:
+	.skip 4
+gfNAN___Q24Game5P2JST:
+	.skip 4
 
 .section .sdata2, "a"     # 0x80516360 - 0x80520E40
 .balign 8
-.global lbl_80520C20
 lbl_80520C20:
 	.float 1.0
-.global lbl_80520C24
 lbl_80520C24:
-	.4byte 0x00000000
-.global lbl_80520C28
+	.float 0.0
 lbl_80520C28:
-	.4byte 0x43C80000
-.global lbl_80520C2C
+	.float 400.0
 lbl_80520C2C:
-	.4byte 0x43EF8000
-.global lbl_80520C30
+	.float 479.0
 lbl_80520C30:
-	.4byte 0x3AF330E5
-.global lbl_80520C34
+	.float 0.0018554
 lbl_80520C34:
-	.4byte 0x3A603CEC
-.global lbl_80520C38
+	.float 8.554E-4
 lbl_80520C38:
 	.float 0.5
-.global lbl_80520C3C
 lbl_80520C3C:
-	.4byte 0x43BD8000
-.global lbl_80520C40
+	.float 379.0
 lbl_80520C40:
-	.4byte 0x3E8F5C29
-.global lbl_80520C44
+	.float 0.28
 lbl_80520C44:
-	.4byte 0x3F19999A
-.global lbl_80520C48
+	.float 0.6
 lbl_80520C48:
-	.4byte 0x461C4000
-	.4byte 0x00000000
+	.float 10000.0
 
 .section .text, "ax"  # 0x800056C0 - 0x80472F00
 .global play__Q23PSM12Env_PollutinFv
@@ -3820,7 +3793,7 @@ lbl_8045CC6C:
 /* 8045CC7C 00459BBC  4E 80 00 20 */	blr 
 
 .global __dt__Q23PSM10BigBossSeqFv
-__dt__Q23PSM10BigBossSeqFv:
+__dt__Q23PSM10BigBossSeqFv: # weak function
 /* 8045CC80 00459BC0  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 8045CC84 00459BC4  7C 08 02 A6 */	mflr r0
 /* 8045CC88 00459BC8  90 01 00 14 */	stw r0, 0x14(r1)
@@ -3861,19 +3834,19 @@ lbl_8045CCF4:
 /* 8045CD0C 00459C4C  4E 80 00 20 */	blr 
 
 .global getCastType__Q23PSM24EnvSe_Perspective_AvoidYFv
-getCastType__Q23PSM24EnvSe_Perspective_AvoidYFv:
+getCastType__Q23PSM24EnvSe_Perspective_AvoidYFv: # weak function
 /* 8045CD10 00459C50  3C 60 70 65 */	lis r3, 0x70657273@ha
 /* 8045CD14 00459C54  38 63 72 73 */	addi r3, r3, 0x70657273@l
 /* 8045CD18 00459C58  4E 80 00 20 */	blr 
 
 .global getCastType__Q23PSM12Env_PollutinFv
-getCastType__Q23PSM12Env_PollutinFv:
+getCastType__Q23PSM12Env_PollutinFv: # weak function
 /* 8045CD1C 00459C5C  3C 60 70 6F */	lis r3, 0x706F6C6C@ha
 /* 8045CD20 00459C60  38 63 6C 6C */	addi r3, r3, 0x706F6C6C@l
 /* 8045CD24 00459C64  4E 80 00 20 */	blr 
 
 .global __dt__Q23PSM9SceneBaseFv
-__dt__Q23PSM9SceneBaseFv:
+__dt__Q23PSM9SceneBaseFv: # weak function
 /* 8045CD28 00459C68  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 8045CD2C 00459C6C  7C 08 02 A6 */	mflr r0
 /* 8045CD30 00459C70  90 01 00 14 */	stw r0, 0x14(r1)
@@ -3901,7 +3874,7 @@ lbl_8045CD6C:
 /* 8045CD84 00459CC4  4E 80 00 20 */	blr 
 
 .global __ct__Q28PSSystem8EnvSeMgrFv
-__ct__Q28PSSystem8EnvSeMgrFv:
+__ct__Q28PSSystem8EnvSeMgrFv: # weak function
 /* 8045CD88 00459CC8  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 8045CD8C 00459CCC  7C 08 02 A6 */	mflr r0
 /* 8045CD90 00459CD0  90 01 00 14 */	stw r0, 0x14(r1)
@@ -3925,7 +3898,7 @@ __ct__Q28PSSystem8EnvSeMgrFv:
 /* 8045CDD8 00459D18  4E 80 00 20 */	blr 
 
 .global __dt__Q23PSM15EnvSeObjBuilderFv
-__dt__Q23PSM15EnvSeObjBuilderFv:
+__dt__Q23PSM15EnvSeObjBuilderFv: # weak function
 /* 8045CDDC 00459D1C  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 8045CDE0 00459D20  7C 08 02 A6 */	mflr r0
 /* 8045CDE4 00459D24  90 01 00 14 */	stw r0, 0x14(r1)
@@ -3952,15 +3925,14 @@ lbl_8045CE20:
 /* 8045CE34 00459D74  38 21 00 10 */	addi r1, r1, 0x10
 /* 8045CE38 00459D78  4E 80 00 20 */	blr 
 
-.global __sinit_PSMainSide_Factory_cpp
 __sinit_PSMainSide_Factory_cpp:
 /* 8045CE3C 00459D7C  3C 80 80 51 */	lis r4, __float_nan@ha
 /* 8045CE40 00459D80  38 00 FF FF */	li r0, -1
 /* 8045CE44 00459D84  C0 04 48 B0 */	lfs f0, __float_nan@l(r4)
-/* 8045CE48 00459D88  3C 60 80 4F */	lis r3, lbl_804EE158@ha
-/* 8045CE4C 00459D8C  90 0D 9C 88 */	stw r0, lbl_80516308@sda21(r13)
-/* 8045CE50 00459D90  D4 03 E1 58 */	stfsu f0, lbl_804EE158@l(r3)
-/* 8045CE54 00459D94  D0 0D 9C 8C */	stfs f0, lbl_8051630C@sda21(r13)
+/* 8045CE48 00459D88  3C 60 80 4F */	lis r3, govNAN___Q24Game5P2JST@ha
+/* 8045CE4C 00459D8C  90 0D 9C 88 */	stw r0, gu32NAN___Q24Game5P2JST@sda21(r13)
+/* 8045CE50 00459D90  D4 03 E1 58 */	stfsu f0, govNAN___Q24Game5P2JST@l(r3)
+/* 8045CE54 00459D94  D0 0D 9C 8C */	stfs f0, gfNAN___Q24Game5P2JST@sda21(r13)
 /* 8045CE58 00459D98  D0 03 00 04 */	stfs f0, 4(r3)
 /* 8045CE5C 00459D9C  D0 03 00 08 */	stfs f0, 8(r3)
 /* 8045CE60 00459DA0  4E 80 00 20 */	blr 
