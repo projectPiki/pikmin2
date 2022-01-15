@@ -6,4 +6,4 @@
  * Size:	000050
  */
 
-void MWTRACE(char*, ...) { }
+void MWTRACE(u8, char*, ...) { }
