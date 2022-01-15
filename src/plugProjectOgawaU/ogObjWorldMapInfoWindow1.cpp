@@ -23,8 +23,7 @@
         .4byte confirmSetScene__Q26Screen7ObjBaseFRQ26Screen11SetSceneArg
         .4byte confirmStartScene__Q26Screen7ObjBaseFPQ26Screen13StartSceneArg
         .4byte confirmEndScene__Q26Screen7ObjBaseFPQ26Screen11EndSceneArg
-        .4byte
-   doStart__Q32og9newScreen22ObjWorldMapInfoWindow1FPCQ26Screen13StartSceneArg
+        .4byte doStart__Q32og9newScreen22ObjWorldMapInfoWindow1FPCQ26Screen13StartSceneArg
         .4byte doEnd__Q32og9newScreen15ObjSMenuPauseVSFPCQ26Screen11EndSceneArg
         .4byte doCreate__Q32og9newScreen22ObjWorldMapInfoWindow1FP10JKRArchive
         .4byte doUpdateFadein__Q32og9newScreen15ObjSMenuPauseVSFv
@@ -245,9 +244,14 @@ lbl_8032BDF8:
 	stw      r9, 0x28(r1)
 	lwz      r3, 0xb4(r30)
 	lwz      r4, 0xb0(r30)
-	bl init2takuTitle__Q32og6Screen7MenuMgrFP9J2DScreenUxUxUxUxUxUxUxUx li
-r0, 0 lis      r3, 0x6D303071@ha stw      r0, 0xac(r30) addi     r6, r3,
-0x6D303071@l li       r5, 0x54 lwz      r3, 0xb0(r30) lwz      r12, 0(r3)
+	bl       init2takuTitle__Q32og6Screen7MenuMgrFP9J2DScreenUxUxUxUxUxUxUxUx
+	li       r0, 0
+	lis      r3, 0x6D303071@ha
+	stw      r0, 0xac(r30)
+	addi     r6, r3,0x6D303071@l
+	li       r5, 0x54
+	lwz      r3, 0xb0(r30)
+	lwz      r12, 0(r3)
 	lwz      r12, 0x3c(r12)
 	mtctr    r12
 	bctrl
@@ -292,8 +296,11 @@ r0, 0 lis      r3, 0x6D303071@ha stw      r0, 0xac(r30) addi     r6, r3,
 	mr       r3, r31
 	li       r5, 0x54
 	addi     r6, r6, 0x6D303071@l
-	bl setMenuTitleScreen__Q22og6ScreenFP10JKRArchivePQ29P2DScreen3MgrUx stw
-r3, 0xd0(r30) lis      r6, 0x6D303079@ha mr       r3, r31 li       r5, 0x54
+	bl       setMenuTitleScreen__Q22og6ScreenFP10JKRArchivePQ29P2DScreen3MgrUx
+	stw      r3, 0xd0(r30)
+	lis      r6, 0x6D303079@ha
+	mr       r3, r31
+	li       r5, 0x54
 	lwz      r4, 0xb0(r30)
 	addi     r6, r6, 0x6D303079@l
 	bl       setMenuScreen__Q22og6ScreenFP10JKRArchivePQ29P2DScreen3MgrUx
@@ -351,7 +358,7 @@ void ObjWorldMapInfoWindow1::doStart(Screen::StartSceneArg const*)
 	bl       stop__Q32og6Screen15CallBack_FurikoFv
 	mr       r3, r31
 	li       r4, 0
-	bl start_LR__Q32og9newScreen12ObjSMenuBaseFPCQ26Screen13StartSceneArg
+	bl       start_LR__Q32og9newScreen12ObjSMenuBaseFPCQ26Screen13StartSceneArg
 	lwz      r0, 0x14(r1)
 	li       r3, 1
 	lwz      r31, 0xc(r1)
@@ -590,11 +597,11 @@ blr
 void DispMemberWorldMapInfoWin1::getMemberID(void)
 {
 	/*
-lis      r4, 0x57696E31@ha
-lis      r3, 0x574D6170@ha
-addi     r4, r4, 0x57696E31@l
-addi     r3, r3, 0x574D6170@l
-blr
+	lis      r4, 0x57696E31@ha
+	lis      r3, 0x574D6170@ha
+	addi     r4, r4, 0x57696E31@l
+	addi     r3, r3, 0x574D6170@l
+	blr
 	*/
 }
 
@@ -606,8 +613,8 @@ blr
 @24 @og::newScreen::ObjWorldMapInfoWindow1::~ObjWorldMapInfoWindow1(void)
 {
 	/*
-addi     r3, r3, -24
-b        __dt__Q32og9newScreen22ObjWorldMapInfoWindow1Fv
+	addi     r3, r3, -24
+	b        __dt__Q32og9newScreen22ObjWorldMapInfoWindow1Fv
 	*/
 }
 } // namespace newScreen
