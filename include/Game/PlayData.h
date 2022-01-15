@@ -5,6 +5,8 @@
 typedef struct PlayData;
 struct PlayData {
 	bool hasDope(int);
+	int getDopeCount(int);
+	void useDope(int);
 };
 extern PlayData* playData;
 

@@ -2366,66 +2366,32 @@ bool Navi::hasDope(int sprayType)
  * --INFO--
  * Address:	80140E7C
  * Size:	000044
+ * Matches
+ * https://decomp.me/scratch/1gQV1
  */
-int Navi::getDopeCount(int)
+int Navi::getDopeCount(int sprayType)
 {
-	/*
-	stwu     r1, -0x10(r1)
-	mflr     r0
-	stw      r0, 0x14(r1)
-	lwz      r5, gameSystem__4Game@sda21(r13)
-	lwz      r0, 0x44(r5)
-	cmpwi    r0, 1
-	bne      lbl_80140EA8
-	slwi     r0, r4, 2
-	add      r3, r3, r0
-	lwz      r3, 0x25c(r3)
-	b        lbl_80140EB0
-
-lbl_80140EA8:
-	lwz      r3, playData__4Game@sda21(r13)
-	bl       getDopeCount__Q24Game8PlayDataFi
-
-lbl_80140EB0:
-	lwz      r0, 0x14(r1)
-	mtlr     r0
-	addi     r1, r1, 0x10
-	blr
-	*/
+	if (gameSystem->m_mode == GSM_VERSUS_MODE) {
+		return (m_sprayCounts[sprayType]);
+	} else {
+		return playData->getDopeCount(sprayType);
+	}
 }
 
 /*
  * --INFO--
  * Address:	80140EC0
  * Size:	00004C
+ * Matches
+ * https://decomp.me/scratch/Z907P
  */
-void Navi::useDope(int)
+void Navi::useDope(int sprayType)
 {
-	/*
-	stwu     r1, -0x10(r1)
-	mflr     r0
-	stw      r0, 0x14(r1)
-	lwz      r5, gameSystem__4Game@sda21(r13)
-	lwz      r0, 0x44(r5)
-	cmpwi    r0, 1
-	bne      lbl_80140EF4
-	slwi     r0, r4, 2
-	add      r4, r3, r0
-	lwz      r3, 0x25c(r4)
-	addi     r0, r3, -1
-	stw      r0, 0x25c(r4)
-	b        lbl_80140EFC
-
-lbl_80140EF4:
-	lwz      r3, playData__4Game@sda21(r13)
-	bl       useDope__Q24Game8PlayDataFi
-
-lbl_80140EFC:
-	lwz      r0, 0x14(r1)
-	mtlr     r0
-	addi     r1, r1, 0x10
-	blr
-	*/
+	if (gameSystem->m_mode == GSM_VERSUS_MODE) {
+		(m_sprayCounts[sprayType]--);
+	} else {
+		playData->useDope(sprayType);
+	}
 }
 
 /*
