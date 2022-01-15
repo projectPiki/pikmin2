@@ -1,66 +1,32 @@
 .include "macros.inc"
 .section .rodata  # 0x804732E0 - 0x8049E220
-.balign 0x8
-.global lbl_8047C5A0
+.balign 8
 lbl_8047C5A0:
-	.4byte 0x636F6C6C
-	.4byte 0x696E666F
-	.4byte 0x2E637070
-	.4byte 0x00000000
-.global lbl_8047C5B0
+	.asciz "collinfo.cpp"
+.balign 4
 lbl_8047C5B0:
-	.4byte 0x706C6174
-	.4byte 0x666F726D
-	.4byte 0x20257320
-	.4byte 0x6E6F7420
-	.4byte 0x666F756E
-	.4byte 0x6420210A
-	.4byte 0x00000000
-.global lbl_8047C5CC
+	.asciz "platform %s not found !\n"
+.balign 4
 lbl_8047C5CC:
 	.asciz "P2Assert"
-	.skip 3
-.global lbl_8047C5D8
+.balign 4
 lbl_8047C5D8:
-	.4byte 0x636F6C6C
-	.4byte 0x70617274
-	.4byte 0x20626972
-	.4byte 0x74682066
-	.4byte 0x61696C65
-	.4byte 0x64203A20
-	.4byte 0x73696E67
-	.4byte 0x6C652073
-	.4byte 0x70686572
-	.4byte 0x650A0000
-.global lbl_8047C600
+	.asciz "collpart birth failed : single sphere\n"
+.balign 4
 lbl_8047C600:
-	.4byte 0x6E756D3D
-	.4byte 0x2564203A
-	.4byte 0x2072616E
-	.4byte 0x646F6D3D
-	.4byte 0x25640A00
-.global lbl_8047C614
+	.asciz "num=%d : random=%d\n"
+.balign 4
 lbl_8047C614:
-	.4byte 0x636F6C6C
-	.4byte 0x70617274
-	.4byte 0x20626972
-	.4byte 0x74682066
-	.4byte 0x61696C65
-	.4byte 0x6420210A
-	.4byte 0x00000000
-.global lbl_8047C630
+	.asciz "collpart birth failed !\n"
+.balign 4
 lbl_8047C630:
-	.4byte 0x436F6C6C
-	.4byte 0x50617274
-	.4byte 0x00000000
-.global lbl_8047C63C
+	.asciz "CollPart"
+.balign 4
 lbl_8047C63C:
-	.4byte 0x23202564
-	.4byte 0x2F25640D
-	.4byte 0x0A000000
+	.asciz "# %d/%d\r\n"
 
 .section .data, "wa"  # 0x8049E220 - 0x804EFC20
-.balign 0x8
+.balign 8
 .global __vt__11AgeCollPart
 __vt__11AgeCollPart:
 	.4byte 0
@@ -241,45 +207,36 @@ __vt__8Platform:
 	.4byte getChildCount__5CNodeFv
 
 .section .sbss # 0x80514D80 - 0x80516360
-.balign 0x8
+.balign 8
 .global mDebug__8CollTree
 mDebug__8CollTree:
-	.skip 0x8
+	.skip 1
 
 .section .sdata2, "a"     # 0x80516360 - 0x80520E40
-.balign 0x8
-.global lbl_80518208
+.balign 8
 lbl_80518208:
-	.4byte 0x47000000
-.global lbl_8051820C
+	.float 32768.0
 lbl_8051820C:
-	.4byte 0xC7000000
-.global lbl_80518210
+	.float -32768.0
 lbl_80518210:
-	.4byte 0x00000000
-.global lbl_80518214
+	.float 0.0
 lbl_80518214:
-	.4byte 0x47FA0000
-.global lbl_80518218
+	.float 128000.0
+.balign 8
 lbl_80518218:
 	.4byte 0x43300000
 	.4byte 0x80000000
-.global lbl_80518220
 lbl_80518220:
-	.4byte 0x3A83126F
-.global lbl_80518224
+	.float 0.001
 lbl_80518224:
 	.float 1.0
-.global lbl_80518228
 lbl_80518228:
 	.float 0.3
-.global lbl_8051822C
 lbl_8051822C:
 	.float 0.1
-.global lbl_80518230
+.balign 4
 lbl_80518230:
-	.4byte 0x0D0A0000
-	.4byte 0x00000000
+	.asciz "\r\n"
 
 .section .text, "ax"  # 0x800056C0 - 0x80472F00
 .global __ct__8PlatformFv

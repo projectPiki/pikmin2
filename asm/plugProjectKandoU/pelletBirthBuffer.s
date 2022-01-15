@@ -3,23 +3,12 @@
 .4byte __sinit_pelletBirthBuffer_cpp
 
 .section .rodata  # 0x804732E0 - 0x8049E220
-.balign 0x8
-.global lbl_80483F28
+.balign 8
 lbl_80483F28:
-	.4byte 0x70656C6C
-	.4byte 0x65744269
-	.4byte 0x72746842
-	.4byte 0x75666665
-	.4byte 0x722E6370
-	.4byte 0x70000000
-.global lbl_80483F40
+	.asciz "pelletBirthBuffer.cpp"
+.balign 4
 lbl_80483F40:
-	.4byte 0x746F6F20
-	.4byte 0x6D616E79
-	.4byte 0x20626972
-	.4byte 0x74686275
-	.4byte 0x66666572
-	.4byte 0x0A000000
+	.asciz "too many birthbuffer\n"
 
 .section .bss  # 0x804EFC20 - 0x8051467C
 .global sArgs__Q24Game17PelletBirthBuffer
@@ -27,10 +16,10 @@ sArgs__Q24Game17PelletBirthBuffer:
 	.skip 0x1400
 
 .section .sbss # 0x80514D80 - 0x80516360
-.balign 0x8
+.balign 8
 .global sNum__Q24Game17PelletBirthBuffer
 sNum__Q24Game17PelletBirthBuffer:
-	.skip 0x8
+	.skip 4
 
 .section .text, "ax"  # 0x800056C0 - 0x80472F00
 .global clear__Q24Game17PelletBirthBufferFv
@@ -152,7 +141,6 @@ lbl_8023D59C:
 /* 8023D5B0 0023A4F0  38 21 00 20 */	addi r1, r1, 0x20
 /* 8023D5B4 0023A4F4  4E 80 00 20 */	blr 
 
-.global __sinit_pelletBirthBuffer_cpp
 __sinit_pelletBirthBuffer_cpp:
 /* 8023D5B8 0023A4F8  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 8023D5BC 0023A4FC  7C 08 02 A6 */	mflr r0
@@ -170,7 +158,7 @@ __sinit_pelletBirthBuffer_cpp:
 /* 8023D5EC 0023A52C  38 21 00 10 */	addi r1, r1, 0x10
 /* 8023D5F0 0023A530  4E 80 00 20 */	blr 
 
-.global __ct__Q24Game13PelletInitArgFv
+.global __ct__Q24Game13PelletInitArgFv # weak function
 __ct__Q24Game13PelletInitArgFv:
 /* 8023D5F4 0023A534  3C A0 80 4B */	lis r5, __vt__Q24Game15CreatureInitArg@ha
 /* 8023D5F8 0023A538  3C 80 80 4B */	lis r4, __vt__Q24Game13PelletInitArg@ha

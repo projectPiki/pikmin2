@@ -3,49 +3,33 @@
 .4byte __sinit_baseHIOSection_cpp
 
 .section .rodata  # 0x804732E0 - 0x8049E220
-.balign 0x8
-.global lbl_8047E2A0
+.balign 8
 lbl_8047E2A0:
 	.4byte 0x00000000
 	.4byte 0x00000000
 	.4byte 0x00000000
-	.4byte 0x62617365
-	.4byte 0x48494F53
-	.4byte 0x65637469
-	.4byte 0x6F6E0000
-	.4byte 0x42617365
-	.4byte 0x48494F53
-	.4byte 0x65637469
-	.4byte 0x6F6E0000
-.global lbl_8047E2CC
+.balign 4
+lbl_8047E2AC:
+	.asciz "baseHIOSection"
+.balign 4
+lbl_8047E2BC:
+	.asciz "BaseHIOSection"
+.balign 4
 lbl_8047E2CC:
-	.4byte 0x62617365
-	.4byte 0x48494F53
-	.4byte 0x65637469
-	.4byte 0x6F6E2E63
-	.4byte 0x70700000
-	.4byte 0x66726167
-	.4byte 0x6D656E74
-	.4byte 0x6174696F
-	.4byte 0x6E206F63
-	.4byte 0x63757272
-	.4byte 0x6564203A
-	.4byte 0x20616674
-	.4byte 0x65722073
-	.4byte 0x6F756E64
-	.4byte 0x0A000000
-.global lbl_8047E308
+	.asciz "baseHIOSection.cpp"
+.balign 4
+lbl_8047E2E0:
+	.asciz "fragmentation occurred : after sound\n"
+.balign 4
 lbl_8047E308:
 	.asciz "P2Assert"
-	.skip 3
 
 .section .data, "wa"  # 0x8049E220 - 0x804EFC20
-.balign 0x8
-.global lbl_804B19F0
-lbl_804B19F0:
-	.4byte 0x00000000
-	.4byte 0x00000000
-	.4byte 0x00000000
+.balign 8
+govNAN___Q24Game5P2JST:
+	.float 0.0
+	.float 0.0
+	.float 0.0
 .global __vt__Q24Game11HIORootNode
 __vt__Q24Game11HIORootNode:
 	.4byte 0
@@ -74,23 +58,18 @@ __vt__Q24Game14BaseHIOSection:
 	.4byte isFinishable__7SectionFv
 	.4byte initHIO__Q24Game14BaseHIOSectionFPQ24Game11HIORootNode
 	.4byte refreshHIO__Q24Game14BaseHIOSectionFv
-	.4byte 0
 
 .section .sbss # 0x80514D80 - 0x80516360
-.balign 0x8
-.global lbl_80515990
-lbl_80515990:
-	.skip 0x4
-.global lbl_80515994
-lbl_80515994:
-	.skip 0x4
+.balign 8
+gu32NAN___Q24Game5P2JST:
+	.skip 4
+gfNAN___Q24Game5P2JST:
+	.skip 4
 
 .section .sdata2, "a"     # 0x80516360 - 0x80520E40
-.balign 0x8
-.global lbl_805188D8
+.balign 8
 lbl_805188D8:
-	.4byte 0x73797374
-	.4byte 0x656D0000
+	.asciz "system"
 
 .section .text, "ax"  # 0x800056C0 - 0x80472F00
 .global __ct__Q24Game14BaseHIOSectionFP7JKRHeap
@@ -202,7 +181,7 @@ lbl_80164D58:
 /* 80164D70 00161CB0  4E 80 00 20 */	blr 
 
 .global __dt__Q24Game11HIORootNodeFv
-__dt__Q24Game11HIORootNodeFv:
+__dt__Q24Game11HIORootNodeFv: # weak function
 /* 80164D74 00161CB4  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 80164D78 00161CB8  7C 08 02 A6 */	mflr r0
 /* 80164D7C 00161CBC  90 01 00 14 */	stw r0, 0x14(r1)
@@ -408,7 +387,7 @@ __ct__Q24Game11HIORootNodeFP7Section:
 /* 80165028 00161F68  4E 80 00 20 */	blr 
 
 .global drawInit__7SectionFR8GraphicsQ27Section13EDrawInitMode
-drawInit__7SectionFR8GraphicsQ27Section13EDrawInitMode:
+drawInit__7SectionFR8GraphicsQ27Section13EDrawInitMode: # weak function
 /* 8016502C 00161F6C  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 80165030 00161F70  7C 08 02 A6 */	mflr r0
 /* 80165034 00161F74  90 01 00 14 */	stw r0, 0x14(r1)
@@ -422,19 +401,18 @@ drawInit__7SectionFR8GraphicsQ27Section13EDrawInitMode:
 /* 80165054 00161F94  4E 80 00 20 */	blr 
 
 .global forceFinish__7SectionFv
-forceFinish__7SectionFv:
+forceFinish__7SectionFv: # weak function
 /* 80165058 00161F98  38 60 00 00 */	li r3, 0
 /* 8016505C 00161F9C  4E 80 00 20 */	blr 
 
-.global __sinit_baseHIOSection_cpp
 __sinit_baseHIOSection_cpp:
 /* 80165060 00161FA0  3C 80 80 51 */	lis r4, __float_nan@ha
 /* 80165064 00161FA4  38 00 FF FF */	li r0, -1
 /* 80165068 00161FA8  C0 04 48 B0 */	lfs f0, __float_nan@l(r4)
-/* 8016506C 00161FAC  3C 60 80 4B */	lis r3, lbl_804B19F0@ha
-/* 80165070 00161FB0  90 0D 93 10 */	stw r0, lbl_80515990@sda21(r13)
-/* 80165074 00161FB4  D4 03 19 F0 */	stfsu f0, lbl_804B19F0@l(r3)
-/* 80165078 00161FB8  D0 0D 93 14 */	stfs f0, lbl_80515994@sda21(r13)
+/* 8016506C 00161FAC  3C 60 80 4B */	lis r3, govNAN___Q24Game5P2JST@ha
+/* 80165070 00161FB0  90 0D 93 10 */	stw r0, gu32NAN___Q24Game5P2JST@sda21(r13)
+/* 80165074 00161FB4  D4 03 19 F0 */	stfsu f0, govNAN___Q24Game5P2JST@l(r3)
+/* 80165078 00161FB8  D0 0D 93 14 */	stfs f0, gfNAN___Q24Game5P2JST@sda21(r13)
 /* 8016507C 00161FBC  D0 03 00 04 */	stfs f0, 4(r3)
 /* 80165080 00161FC0  D0 03 00 08 */	stfs f0, 8(r3)
 /* 80165084 00161FC4  4E 80 00 20 */	blr 
