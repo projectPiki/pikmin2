@@ -3,7 +3,7 @@
 .4byte __sinit_JASSeqParser_cpp
 
 .section .rodata  # 0x804732E0 - 0x8049E220
-.balign 0x8
+.balign 8
 .global Arglist
 Arglist:
 	.4byte 0x00000000
@@ -72,7 +72,7 @@ Arglist:
 	.4byte 0x00000000
 
 .section .data, "wa"  # 0x8049E220 - 0x804EFC20
-.balign 0x8
+.balign 8
 .global lbl_804A3D68
 lbl_804A3D68:
 	.4byte 0x00000000
@@ -461,7 +461,7 @@ lbl_804A4318:
 	.4byte 0x00000000
 
 .section .sdata2, "a"     # 0x80516360 - 0x80520E40
-.balign 0x8
+.balign 8
 .global lbl_80516D30
 lbl_80516D30:
 	.4byte 0x43A3D5C3

@@ -1,6 +1,6 @@
 .include "macros.inc"
 .section .rodata  # 0x804732E0 - 0x8049E220
-.balign 0x8
+.balign 8
 .global lbl_8048DCC0
 lbl_8048DCC0:
 	.asciz "ogScreen"
@@ -102,7 +102,7 @@ lbl_8048DE34:
 	.asciz "tag[%s] is not exist!!\n"
 
 .section .data, "wa"  # 0x8049E220 - 0x804EFC20
-.balign 0x8
+.balign 8
 .global PikiIconTextureName__Q22og6Screen
 PikiIconTextureName__Q22og6Screen:
 	.4byte lbl_8048DD0C
@@ -140,7 +140,7 @@ PikiIconTextureResTIMG__Q22og6Screen:
 	.skip 0x4C
 
 .section .sbss # 0x80514D80 - 0x80516360
-.balign 0x8
+.balign 8
 .global wkPtr$3542
 wkPtr$3542:
 	.skip 0x4
@@ -161,7 +161,7 @@ init$3549:
 	.skip 0x4
 
 .section .sdata2, "a"     # 0x80516360 - 0x80520E40
-.balign 0x8
+.balign 8
 .global lbl_8051D508
 lbl_8051D508:
 	.4byte 0x41F00000

@@ -3,7 +3,7 @@
 .4byte __sinit_bombState_cpp
 
 .section .data, "wa"  # 0x8049E220 - 0x804EFC20
-.balign 0x8
+.balign 8
 .global lbl_804DB978
 lbl_804DB978:
 	.4byte 0x00000000
@@ -76,7 +76,7 @@ __vt__Q34Game4Bomb3FSM:
 	.4byte setCurrState__Q24Game17EnemyStateMachineFPQ24Game9EnemyBasePQ24Game13EnemyFSMState
 
 .section .sbss # 0x80514D80 - 0x80516360
-.balign 0x8
+.balign 8
 .global lbl_80515F28
 lbl_80515F28:
 	.skip 0x4
@@ -85,7 +85,7 @@ lbl_80515F2C:
 	.skip 0x4
 
 .section .sdata2, "a"     # 0x80516360 - 0x80520E40
-.balign 0x8
+.balign 8
 .global lbl_8051E300
 lbl_8051E300:
 	.4byte 0x77616974

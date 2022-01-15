@@ -3,7 +3,7 @@
 	.4byte __sinit_particle2dMgr_cpp
 
 .section .rodata  # 0x804732E0 - 0x8049E220
-.balign 0x8
+.balign 8
 .global lbl_80495A70
 lbl_80495A70:
 	.4byte 0x00000000
@@ -66,7 +66,7 @@ lbl_80495ACC:
 	.4byte 0x79000000
 
 .section .data, "wa"  # 0x8049E220 - 0x804EFC20
-.balign 0x8
+.balign 8
 .global lbl_804E7368
 lbl_804E7368:
 	.4byte 0x00000000
@@ -83,7 +83,7 @@ __vt__14TParticle2dMgr:
 	.4byte "@24@__dt__14TParticle2dMgrFv"
 
 .section .sbss # 0x80514D80 - 0x80516360
-.balign 0x8
+.balign 8
 .global lbl_80516080
 lbl_80516080:
 	.skip 0x4
@@ -98,7 +98,7 @@ _instance__14TParticle2dMgr:
 	.skip 0x4
 
 .section .sdata2, "a"     # 0x80516360 - 0x80520E40
-.balign 0x8
+.balign 8
 .global lbl_8051F6C0
 lbl_8051F6C0:
 	.4byte 0x00000000

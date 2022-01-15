@@ -1,6 +1,6 @@
 .include "macros.inc"
 .section .rodata  # 0x804732E0 - 0x8049E220
-.balign 0x8
+.balign 8
 .global lbl_80498510
 lbl_80498510:
 	.4byte 0x6E657747
@@ -62,7 +62,7 @@ lbl_804985A4:
 	.4byte 0x00000000
 
 .section .data, "wa"  # 0x8049E220 - 0x804EFC20
-.balign 0x8
+.balign 8
 .global lbl_804EA7D8
 lbl_804EA7D8:
 	.4byte lbl_803FD008
@@ -121,13 +121,13 @@ __vt__Q26Screen9Game2DMgr:
 	.4byte 0
 
 .section .sbss # 0x80514D80 - 0x80516360
-.balign 0x8
+.balign 8
 .global gGame2DMgr__6Screen
 gGame2DMgr__6Screen:
 	.skip 0x8
 
 .section .sdata2, "a"     # 0x80516360 - 0x80520E40
-.balign 0x8
+.balign 8
 .global lbl_80520038
 lbl_80520038:
 	.4byte 0x3FC00000

@@ -3,7 +3,7 @@
 .4byte __sinit_JKRFileLoader_cpp
 
 .section .data, "wa"  # 0x8049E220 - 0x804EFC20
-.balign 0x8
+.balign 8
 .global __vt__13JKRFileLoader
 __vt__13JKRFileLoader:
 	.4byte 0
@@ -29,20 +29,20 @@ sVolumeList__13JKRFileLoader:
 	.skip 0xC
 
 .section .sdata, "wa"  # 0x80514680 - 0x80514D80
-.balign 0x8
+.balign 8
 .global rootPath$2747
 rootPath$2747:
 	.byte 0x2f
 	.skip 0x3
 
 .section .sbss # 0x80514D80 - 0x80516360
-.balign 0x8
+.balign 8
 .global sCurrentVolume__13JKRFileLoader
 sCurrentVolume__13JKRFileLoader:
 	.skip 0x8
 
 .section .sdata2, "a"     # 0x80516360 - 0x80520E40
-.balign 0x8
+.balign 8
 .global lbl_80516528
 lbl_80516528:
 	.4byte 0x2F000000

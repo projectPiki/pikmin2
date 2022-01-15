@@ -16,7 +16,7 @@ __TRK_reset:
 /* 800050B0 000020B0  4E 80 00 20 */	blr 
 
 .section .data, "wa"  # 0x8049E220 - 0x804EFC20
-.balign 0x8
+.balign 8
 .global TRK_ISR_OFFSETS
 TRK_ISR_OFFSETS:
 	.4byte 0x00000100

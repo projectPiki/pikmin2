@@ -1,6 +1,6 @@
 .include "macros.inc"
 .section .rodata  # 0x804732E0 - 0x8049E220
-.balign 0x8
+.balign 8
 .global lbl_80497A18
 lbl_80497A18:
 	.asciz "ebiScreenOmake"
@@ -22,7 +22,7 @@ lbl_80497A94:
 	.skip 3
 
 .section .data, "wa"  # 0x8049E220 - 0x804EFC20
-.balign 0x8
+.balign 8
 .global lbl_804EA198
 lbl_804EA198:
 	.4byte lbl_803EE28C
@@ -55,7 +55,7 @@ __vt__Q33ebi6Screen6TOmake:
 	.4byte getName__Q33ebi6Screen6TOmakeFv
 
 .section .sdata2, "a"     # 0x80516360 - 0x80520E40
-.balign 0x8
+.balign 8
 .global lbl_8051FE60
 lbl_8051FE60:
 	.float 1.0

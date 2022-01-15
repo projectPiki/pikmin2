@@ -1,6 +1,6 @@
 .include "macros.inc"
 .section .rodata  # 0x804732E0 - 0x8049E220
-.balign 0x8
+.balign 8
 .global lbl_80473A78
 lbl_80473A78:
 	.asciz "JKRMemArchive.cpp"
@@ -11,7 +11,7 @@ lbl_80473A8C:
 	.skip 3
 
 .section .data, "wa"  # 0x8049E220 - 0x804EFC20
-.balign 0x8
+.balign 8
 .global __vt__13JKRMemArchive
 __vt__13JKRMemArchive:
 	.4byte 0

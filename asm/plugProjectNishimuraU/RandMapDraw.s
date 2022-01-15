@@ -1,6 +1,6 @@
 .include "macros.inc"
 .section .sdata2, "a"     # 0x80516360 - 0x80520E40
-.balign 0x8
+.balign 8
 .global lbl_8051A750
 lbl_8051A750:
 	.4byte 0x432A0000

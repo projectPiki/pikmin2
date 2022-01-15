@@ -1,6 +1,6 @@
 .include "macros.inc"
 .section .rodata  # 0x804732E0 - 0x8049E220
-.balign 0x8
+.balign 8
 .global lbl_80484D08
 lbl_80484D08:
 	.4byte 0x6A756D70
@@ -13,7 +13,7 @@ lbl_80484D14:
 	.4byte 0x6D650000
 
 .section .data, "wa"  # 0x8049E220 - 0x804EFC20
-.balign 0x8
+.balign 8
 .global __vt__Q34Game4Frog11StateGoHome
 __vt__Q34Game4Frog11StateGoHome:
 	.4byte 0
@@ -148,7 +148,7 @@ __vt__Q34Game4Frog3FSM:
 	.4byte setCurrState__Q24Game17EnemyStateMachineFPQ24Game9EnemyBasePQ24Game13EnemyFSMState
 
 .section .sdata2, "a"     # 0x80516360 - 0x80520E40
-.balign 0x8
+.balign 8
 .global lbl_8051AA28
 lbl_8051AA28:
 	.4byte 0x64656164

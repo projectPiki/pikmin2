@@ -3,7 +3,7 @@
 	.4byte __sinit_moviePlayerPauseAndDraw_cpp
 
 .section .data, "wa"  # 0x8049E220 - 0x804EFC20
-.balign 0x8
+.balign 8
 .global lbl_804EC810
 lbl_804EC810:
 	.4byte 0x00000000
@@ -12,7 +12,7 @@ lbl_804EC810:
 	.4byte 0x00000000
 
 .section .sbss # 0x80514D80 - 0x80516360
-.balign 0x8
+.balign 8
 .global lbl_80516240
 lbl_80516240:
 	.skip 0x4

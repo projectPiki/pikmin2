@@ -1,6 +1,6 @@
 .include "macros.inc"
 .section .rodata  # 0x804732E0 - 0x8049E220
-.balign 0x8
+.balign 8
 lbl_8049DA80:
 	.asciz "PSMainSide_DirectorMgr.cpp"
 	.skip 1
@@ -51,7 +51,7 @@ lbl_8049DA9C:
 	.skip 2
 
 .section .data, "wa"  # 0x8049E220 - 0x804EFC20
-.balign 0x8
+.balign 8
 lbl_804EF880:
 	.4byte lbl_8046F928
 	.4byte lbl_8046FB60
@@ -143,7 +143,7 @@ __vt__Q23PSM17DirectorMgr_Scene:
 	.4byte 0
 
 .section .sdata2, "a"     # 0x80516360 - 0x80520E40
-.balign 0x8
+.balign 8
 lbl_80520D60:
 	.asciz ""
 	.skip 3

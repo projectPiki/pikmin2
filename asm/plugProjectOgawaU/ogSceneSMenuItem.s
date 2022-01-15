@@ -1,6 +1,6 @@
 .include "macros.inc"
 .section .rodata  # 0x804732E0 - 0x8049E220
-.balign 0x8
+.balign 8
 .global lbl_8048E550
 lbl_8048E550:
 	.4byte 0x534D656E
@@ -17,7 +17,7 @@ lbl_8048E564:
 	.4byte 0x737A7300
 
 .section .data, "wa"  # 0x8049E220 - 0x804EFC20
-.balign 0x8
+.balign 8
 .global lbl_804D8778
 lbl_804D8778:
 	.4byte lbl_80313FE8

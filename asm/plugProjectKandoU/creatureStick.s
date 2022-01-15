@@ -1,6 +1,6 @@
 .include "macros.inc"
 .section .rodata  # 0x804732E0 - 0x8049E220
-.balign 0x8
+.balign 8
 .global lbl_8047F218
 lbl_8047F218:
 	.4byte 0x63726561
@@ -26,7 +26,7 @@ lbl_8047F23C:
 	.4byte 0x00000000
 
 .section .data, "wa"  # 0x8049E220 - 0x804EFC20
-.balign 0x8
+.balign 8
 .global __vt__Q24Game8Stickers
 __vt__Q24Game8Stickers:
 	.4byte 0
@@ -43,13 +43,13 @@ __vt__Q24Game8Stickers:
 	.4byte 0
 
 .section .sdata, "wa"  # 0x80514680 - 0x80514D80
-.balign 0x8
+.balign 8
 .global maxBuffer__Q24Game8Stickers
 maxBuffer__Q24Game8Stickers:
 	.4byte 0x0000006E
 
 .section .sbss # 0x80514D80 - 0x80516360
-.balign 0x8
+.balign 8
 .global numBuffer__Q24Game8Stickers
 numBuffer__Q24Game8Stickers:
 	.skip 0x4
@@ -61,7 +61,7 @@ buffer__Q24Game8Stickers:
 	.skip 0x8
 
 .section .sdata2, "a"     # 0x80516360 - 0x80520E40
-.balign 0x8
+.balign 8
 .global lbl_80519040
 lbl_80519040:
 	.float 1.0

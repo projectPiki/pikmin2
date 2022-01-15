@@ -3,7 +3,7 @@
 .4byte __sinit_ogCounterRV_cpp
 
 .section .data, "wa"  # 0x8049E220 - 0x804EFC20
-.balign 0x8
+.balign 8
 .global __vt__Q32og6Screen18CallBack_CounterRV
 __vt__Q32og6Screen18CallBack_CounterRV:
 	.4byte 0
@@ -25,7 +25,7 @@ msVal__Q32og6Screen18CallBack_CounterRV:
 	.skip 0xC
 
 .section .sdata2, "a"     # 0x80516360 - 0x80520E40
-.balign 0x8
+.balign 8
 .global lbl_8051D6A0
 lbl_8051D6A0:
 	.4byte 0x00000000

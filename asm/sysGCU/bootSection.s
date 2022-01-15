@@ -3,7 +3,7 @@
 	.4byte __sinit_bootSection_cpp
 
 .section .rodata  # 0x804732E0 - 0x8049E220
-.balign 0x8
+.balign 8
 .global lbl_8049AF08
 lbl_8049AF08:
 	.skip 0xC
@@ -58,7 +58,7 @@ TitlePiki_Violet:
 	.skip 0x3
 
 .section .data, "wa"	# 0x8049E220 - 0x804EFC20
-.balign 0x8
+.balign 8
 .global lbl_804ECFE8
 lbl_804ECFE8:
 	.4byte 0x00000001
@@ -194,13 +194,13 @@ sPikminTex__13TinyPikminMgr:
 	.skip 0x18
 
 .section .sdata, "wa"  # 0x80514680 - 0x80514D80
-.balign 0x8
+.balign 8
 .global sTinyPikminNum__13TinyPikminMgr
 sTinyPikminNum__13TinyPikminMgr:
 	.4byte 10
 
 .section .sbss # 0x80514D80 - 0x80516360
-.balign 0x8
+.balign 8
 .global lbl_80516290
 lbl_80516290:
 	.skip 0x4
@@ -215,7 +215,7 @@ sTinyPikminMgr:
 	.skip 0x4
 
 .section .sdata2, "a"     # 0x80516360 - 0x80520E40
-.balign 0x8
+.balign 8
 .global lbl_805209A0
 lbl_805209A0:
 	.4byte 0x00000000

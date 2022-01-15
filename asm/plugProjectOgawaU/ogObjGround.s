@@ -3,7 +3,7 @@
 .4byte __sinit_ogObjGround_cpp
 
 .section .rodata  # 0x804732E0 - 0x8049E220
-.balign 0x8
+.balign 8
 .global lbl_8048E110
 lbl_8048E110:
 	.skip 0xC
@@ -31,7 +31,7 @@ lbl_8048E110:
 	.skip 3
 
 .section .data, "wa"  # 0x8049E220 - 0x804EFC20
-.balign 0x8
+.balign 8
 .global lbl_804D82D8
 lbl_804D82D8:
 	.4byte 0x00000000
@@ -77,7 +77,7 @@ msVal__Q32og9newScreen9ObjGround:
 	.skip 0x28
 
 .section .sbss # 0x80514D80 - 0x80516360
-.balign 0x8
+.balign 8
 .global lbl_80515E38
 lbl_80515E38:
 	.skip 0x4
@@ -86,7 +86,7 @@ lbl_80515E3C:
 	.skip 0x4
 
 .section .sdata2, "a"     # 0x80516360 - 0x80520E40
-.balign 0x8
+.balign 8
 .global lbl_8051D6F0
 lbl_8051D6F0:
 	.4byte 0x00000000

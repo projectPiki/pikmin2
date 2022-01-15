@@ -3,7 +3,7 @@
 .4byte __sinit_ogObjContena_cpp
 
 .section .rodata  # 0x804732E0 - 0x8049E220
-.balign 0x8
+.balign 8
 .global lbl_8048EFE0
 lbl_8048EFE0:
 	.4byte 0x6F674F62
@@ -95,7 +95,7 @@ lbl_8048EFE0:
 	.skip 3
 
 .section .data, "wa"  # 0x8049E220 - 0x804EFC20
-.balign 0x8
+.balign 8
 .global __vt__Q32og9newScreen10ObjContena
 __vt__Q32og9newScreen10ObjContena:
 	.4byte 0
@@ -135,7 +135,7 @@ msVal__Q32og9newScreen10ObjContena:
 	.skip 0x44
 
 .section .sbss # 0x80514D80 - 0x80516360
-.balign 0x8
+.balign 8
 .global angle$4147
 angle$4147:
 	.skip 0x4
@@ -144,7 +144,7 @@ init$4148:
 	.skip 0x4
 
 .section .sdata2, "a"     # 0x80516360 - 0x80520E40
-.balign 0x8
+.balign 8
 .global lbl_8051DC88
 lbl_8051DC88:
 	.4byte 0x44480000

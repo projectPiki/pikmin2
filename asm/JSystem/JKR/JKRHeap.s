@@ -1,12 +1,12 @@
 .include "macros.inc"
 .section .rodata  # 0x804732E0 - 0x8049E220
-.balign 0x8
+.balign 8
 .global lbl_80473A68
 lbl_80473A68:
 	.asciz "JKRHeap.cpp"
 
 .section .data, "wa"  # 0x8049E220 - 0x804EFC20
-.balign 0x8
+.balign 8
 .global __vt__7JKRHeap
 __vt__7JKRHeap:
 	.4byte 0
@@ -35,14 +35,14 @@ __vt__7JKRHeap:
 	.4byte state_dump__7JKRHeapCFRCQ27JKRHeap6TState
 
 .section .sdata, "wa"  # 0x80514680 - 0x80514D80
-.balign 0x8
+.balign 8
 .global sDefaultFillFlag__7JKRHeap
 sDefaultFillFlag__7JKRHeap:
 	.byte 1
 	.skip 3
 
 .section .sbss # 0x80514D80 - 0x80516360
-.balign 0x8
+.balign 8
 .global sSystemHeap__7JKRHeap
 sSystemHeap__7JKRHeap:
 	.skip 0x4
@@ -78,7 +78,7 @@ bVerbose___Q27JKRHeap6TState:
 	.skip 0x8
 
 .section .sdata2, "a"     # 0x80516360 - 0x80520E40
-.balign 0x8
+.balign 8
 .global lbl_80516530
 lbl_80516530:
 	.4byte 0x61626F72

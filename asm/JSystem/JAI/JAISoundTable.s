@@ -1,6 +1,6 @@
 .include "macros.inc"
 .section .sbss # 0x80514D80 - 0x80516360
-.balign 0x8
+.balign 8
 .global mVersion__Q27JAInter10SoundTable
 mVersion__Q27JAInter10SoundTable:
 	.skip 0x1

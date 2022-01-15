@@ -1,6 +1,6 @@
 .include "macros.inc"
 .section .rodata  # 0x804732E0 - 0x8049E220
-.balign 0x8
+.balign 8
 .global lbl_8047D088
 lbl_8047D088:
 	.4byte 0x4E617669
@@ -464,7 +464,7 @@ lbl_8047D648:
 	.4byte 0x00000000
 
 .section .data, "wa"  # 0x8049E220 - 0x804EFC20
-.balign 0x8
+.balign 8
 .global __vt__Q24Game7NaviMgr
 __vt__Q24Game7NaviMgr:
 	.4byte 0
@@ -605,7 +605,7 @@ __vt__Q24Game9NaviParms:
 	.4byte 0
 
 .section .sbss # 0x80514D80 - 0x80516360
-.balign 0x8
+.balign 8
 .global naviMgr__4Game
 naviMgr__4Game:
 	.skip 0x4
@@ -614,7 +614,7 @@ animMgr__Q24Game7NaviMgr:
 	.skip 0x4
 
 .section .sdata2, "a"     # 0x80516360 - 0x80520E40
-.balign 0x8
+.balign 8
 .global lbl_80518668
 lbl_80518668:
 	.4byte 0x6E617669

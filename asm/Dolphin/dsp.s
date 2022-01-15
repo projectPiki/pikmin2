@@ -1,6 +1,6 @@
 .include "macros.inc"
 .section .data, "wa"  # 0x8049E220 - 0x804EFC20
-.balign 0x8
+.balign 8
 .global lbl_804A7938
 lbl_804A7938:
 	.asciz "<< Dolphin SDK - DSP\trelease build: Apr 17 2003 12:34:16 (0x2301) >>"
@@ -12,13 +12,13 @@ lbl_804A7938:
 	.skip 3
 
 .section .sdata, "wa"  # 0x80514680 - 0x80514D80
-.balign 0x8
+.balign 8
 .global __DSPVersion
 __DSPVersion:
 	.4byte lbl_804A7938
 
 .section .sbss # 0x80514D80 - 0x80516360
-.balign 0x8
+.balign 8
 .global __DSP_init_flag
 __DSP_init_flag:
 	.skip 0x8

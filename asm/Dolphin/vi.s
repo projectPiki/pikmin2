@@ -1,6 +1,6 @@
 .include "macros.inc"
 .section .data, "wa"  # 0x8049E220 - 0x804EFC20
-.balign 0x8
+.balign 8
 .global lbl_804A72B0
 lbl_804A72B0:
 	.asciz "<< Dolphin SDK - VI\trelease build: Apr 17 2003 12:33:22 (0x2301) >>"
@@ -241,7 +241,7 @@ lbl_804A7664:
 	.4byte lbl_800D235C
 
 .section .sdata, "wa"  # 0x80514680 - 0x80514D80
-.balign 0x8
+.balign 8
 .global __VIVersion
 __VIVersion:
 	.4byte lbl_804A72B0
@@ -251,7 +251,7 @@ lbl_805148EC:
 	.skip 3
 
 .section .sbss # 0x80514D80 - 0x80516360
-.balign 0x8
+.balign 8
 .global IsInitialized
 IsInitialized:
 	.skip 0x4

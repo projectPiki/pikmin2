@@ -3,7 +3,7 @@
 .4byte __sinit_pelletState_cpp
 
 .section .rodata  # 0x804732E0 - 0x8049E220
-.balign 0x8
+.balign 8
 .global lbl_8047F490
 lbl_8047F490:
 	.4byte 0x00000000
@@ -117,7 +117,7 @@ lbl_8047F4C4:
 	.4byte 0x72670000
 
 .section .data, "wa"  # 0x8049E220 - 0x804EFC20
-.balign 0x8
+.balign 8
 .global lbl_804B5008
 lbl_804B5008:
 	.4byte 0x00000000
@@ -280,7 +280,7 @@ __vt__Q24Game9PelletFSM:
 	.4byte "transit__Q24Game28StateMachine<Q24Game6Pellet>FPQ24Game6PelletiPQ24Game8StateArg"
 
 .section .sbss # 0x80514D80 - 0x80516360
-.balign 0x8
+.balign 8
 .global lbl_80515A08
 lbl_80515A08:
 	.skip 0x4
@@ -289,7 +289,7 @@ lbl_80515A0C:
 	.skip 0x4
 
 .section .sdata2, "a"     # 0x80516360 - 0x80520E40
-.balign 0x8
+.balign 8
 .global lbl_80519188
 lbl_80519188:
 	.4byte 0x00000000

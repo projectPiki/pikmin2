@@ -1,6 +1,6 @@
 .include "macros.inc"
 .section .rodata  # 0x804732E0 - 0x8049E220
-.balign 0x8
+.balign 8
 .global lbl_80484070
 lbl_80484070:
 	.4byte 0x52616E64
@@ -15,7 +15,7 @@ lbl_8048407C:
 	.4byte 0x65000000
 
 .section .data, "wa"  # 0x8049E220 - 0x804EFC20
-.balign 0x8
+.balign 8
 .global __vt__Q24Game8RoomLink
 __vt__Q24Game8RoomLink:
 	.4byte 0
@@ -30,13 +30,13 @@ __vt__Q34Game4Cave10RandMapMgr:
 	.4byte getChildCount__5CNodeFv
 
 .section .sbss # 0x80514D80 - 0x80516360
-.balign 0x8
+.balign 8
 .global randMapMgr__Q24Game4Cave
 randMapMgr__Q24Game4Cave:
 	.skip 0x8
 
 .section .sdata2, "a"     # 0x80516360 - 0x80520E40
-.balign 0x8
+.balign 8
 .global lbl_8051A728
 lbl_8051A728:
 	.4byte 0x42480000

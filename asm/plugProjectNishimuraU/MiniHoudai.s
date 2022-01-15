@@ -1,6 +1,6 @@
 .include "macros.inc"
 .section .data, "wa"  # 0x8049E220 - 0x804EFC20
-.balign 0x8
+.balign 8
 .global __vt__Q23efx12TChibiDeadSe
 __vt__Q23efx12TChibiDeadSe:
 	.4byte 0
@@ -285,7 +285,7 @@ __vt__Q34Game10MiniHoudai3Obj:
 	.4byte "viewEntryShape__Q24Game10PelletViewFR7MatrixfR10Vector3<f>"
 
 .section .sdata2, "a"     # 0x80516360 - 0x80520E40
-.balign 0x8
+.balign 8
 .global lbl_8051CF88
 lbl_8051CF88:
 	.4byte 0x43000000

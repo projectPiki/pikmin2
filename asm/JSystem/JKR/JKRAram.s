@@ -3,7 +3,7 @@
 .4byte __sinit_JKRAram_cpp
 
 .section .rodata  # 0x804732E0 - 0x8049E220
-.balign 0x8
+.balign 8
 .global lbl_80473480
 lbl_80473480:
 	.4byte 0x4A4B5241
@@ -46,7 +46,7 @@ lbl_8047348C:
 	.4byte 0x2E0A0000
 
 .section .data, "wa"  # 0x8049E220 - 0x804EFC20
-.balign 0x8
+.balign 8
 .global sMessageBuffer__7JKRAram
 sMessageBuffer__7JKRAram:
 	.4byte 0x00000000
@@ -76,13 +76,13 @@ sAramCommandList__7JKRAram:
 	.skip 0xC
 
 .section .sdata, "wa"  # 0x80514680 - 0x80514D80
-.balign 0x8
+.balign 8
 .global sSZSBufferSize__7JKRAram
 sSZSBufferSize__7JKRAram:
 	.4byte 0x00000400
 
 .section .sbss # 0x80514D80 - 0x80516360
-.balign 0x8
+.balign 8
 .global sAramObject__7JKRAram
 sAramObject__7JKRAram:
 	.skip 0x4
@@ -133,7 +133,7 @@ tsArea:
 	.skip 0x4
 
 .section .sdata2, "a"     # 0x80516360 - 0x80520E40
-.balign 0x8
+.balign 8
 .global lbl_805164D0
 lbl_805164D0:
 	.4byte 0x25730000

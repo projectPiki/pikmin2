@@ -1,6 +1,6 @@
 .include "macros.inc"
 .section .data, "wa"  # 0x8049E220 - 0x804EFC20
-.balign 0x8
+.balign 8
 .global __vt__Q23efx11THdamaShoot
 __vt__Q23efx11THdamaShoot:
 	.4byte 0
@@ -63,13 +63,13 @@ __vt__Q34Game6Houdai17HoudaiShotGunNode:
 	.4byte getChildCount__5CNodeFv
 
 .section .sbss # 0x80514D80 - 0x80516360
-.balign 0x8
+.balign 8
 .global sHoudaiShotGunMgr__Q24Game6Houdai
 sHoudaiShotGunMgr__Q24Game6Houdai:
 	.skip 0x8
 
 .section .sdata2, "a"     # 0x80516360 - 0x80520E40
-.balign 0x8
+.balign 8
 .global lbl_8051C588
 lbl_8051C588:
 	.4byte 0x00000000

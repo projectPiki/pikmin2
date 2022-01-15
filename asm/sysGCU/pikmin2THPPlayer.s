@@ -1,6 +1,6 @@
 .include "macros.inc"
 .section .rodata  # 0x804732E0 - 0x8049E220
-.balign 0x8
+.balign 8
 .global lbl_8049B510
 lbl_8049B510:
 	.asciz "/thp/opening1.thp"
@@ -158,7 +158,7 @@ lbl_8049B830:
 	.skip 3
 
 .section .data, "wa"	# 0x8049E220 - 0x804EFC20
-.balign 0x8
+.balign 8
 .global lbl_804ED4C0
 lbl_804ED4C0:
 	.4byte 0x00000000
@@ -185,7 +185,7 @@ __vt__Q24Game9THPPlayer:
 	.4byte 0
 
 .section .sdata2, "a"     # 0x80516360 - 0x80520E40
-.balign 0x8
+.balign 8
 .global lbl_80520B10
 lbl_80520B10:
 	.4byte 0x00000000

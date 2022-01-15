@@ -1,6 +1,6 @@
 .include "macros.inc"
 .section .rodata  # 0x804732E0 - 0x8049E220
-.balign 0x8
+.balign 8
 .global lbl_8049A6C0
 lbl_8049A6C0:
 	.4byte 0x50324453
@@ -14,7 +14,7 @@ lbl_8049A6D0:
 	.4byte 0x00000000
 
 .section .data, "wa"  # 0x8049E220 - 0x804EFC20
-.balign 0x8
+.balign 8
 .global __vt__Q29P2DScreen10Mgr_tuning
 __vt__Q29P2DScreen10Mgr_tuning:
 	.4byte 0
@@ -101,7 +101,7 @@ __vt__Q29P2DScreen3Mgr:
 	.4byte draw__Q29P2DScreen3MgrFR8GraphicsR14J2DGrafContext
 
 .section .sdata2, "a"     # 0x80516360 - 0x80520E40
-.balign 0x8
+.balign 8
 .global lbl_80520790
 lbl_80520790:
 	.4byte 0x00000000

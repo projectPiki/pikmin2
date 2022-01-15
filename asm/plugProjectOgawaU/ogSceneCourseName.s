@@ -1,6 +1,6 @@
 .include "macros.inc"
 .section .rodata  # 0x804732E0 - 0x8049E220
-.balign 0x8
+.balign 8
 .global lbl_8048E790
 lbl_8048E790:
 	.4byte 0x6F675363
@@ -108,7 +108,7 @@ lbl_8048E97C:
 	.skip 2
 
 .section .data, "wa"  # 0x8049E220 - 0x804EFC20
-.balign 0x8
+.balign 8
 .global CourseNumToSZS__Q22og9newScreen
 CourseNumToSZS__Q22og9newScreen:
 	.4byte lbl_8048E7F0
@@ -175,7 +175,7 @@ __vt__Q32og9newScreen10CourseName:
 	.4byte doGetFinishState__Q26Screen9SceneBaseFv
 
 .section .sdata2, "a"     # 0x80516360 - 0x80520E40
-.balign 0x8
+.balign 8
 .global lbl_8051D930
 lbl_8051D930:
 	.4byte 0x00000000

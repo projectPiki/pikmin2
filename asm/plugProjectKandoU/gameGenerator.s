@@ -3,7 +3,7 @@
 .4byte __sinit_gameGenerator_cpp
 
 .section .rodata  # 0x804732E0 - 0x8049E220
-.balign 0x8
+.balign 8
 .global lbl_8047F668
 lbl_8047F668:
 	.4byte 0x00000000
@@ -88,7 +88,7 @@ lbl_8047F728:
 	.4byte 0x00000000
 
 .section .data, "wa"  # 0x8049E220 - 0x804EFC20
-.balign 0x8
+.balign 8
 .global lbl_804B55F0
 lbl_804B55F0:
 	.4byte 0x00000000
@@ -147,13 +147,13 @@ __vt__Q24Game7GenBase:
 	.4byte getShape__Q24Game7GenBaseFv
 
 .section .sdata, "wa"  # 0x80514680 - 0x80514D80
-.balign 0x8
+.balign 8
 .global GeneratorCurrentVersion
 GeneratorCurrentVersion:
 	.ascii "v0.3"
 
 .section .sbss # 0x80514D80 - 0x80516360
-.balign 0x8
+.balign 8
 .global lbl_80515A18
 lbl_80515A18:
 	.skip 0x4
@@ -186,7 +186,7 @@ cursorCallback__Q24Game12GeneratorMgr:
 	.skip 0x4
 
 .section .sdata2, "a"     # 0x80516360 - 0x80520E40
-.balign 0x8
+.balign 8
 .global lbl_80519258
 lbl_80519258:
 	.4byte 0x00000000

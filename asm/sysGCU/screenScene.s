@@ -1,6 +1,6 @@
 .include "macros.inc"
 .section .rodata  # 0x804732E0 - 0x8049E220
-.balign 0x8
+.balign 8
 .global lbl_8049B8A0
 lbl_8049B8A0:
 	.4byte 0x73637265
@@ -18,7 +18,7 @@ lbl_8049B8BC:
 	.4byte 0x722E6800
 
 .section .data, "wa"	# 0x8049E220 - 0x804EFC20
-.balign 0x8
+.balign 8
 .global lbl_804ED680
 lbl_804ED680:
 	.4byte 0x00000000
@@ -59,7 +59,7 @@ __vt__Q26Screen9SceneBase:
 	.4byte 0
 
 .section .sdata2, "a"     # 0x80516360 - 0x80520E40
-.balign 0x8
+.balign 8
 .global lbl_80520B70
 lbl_80520B70:
 	.4byte 0x6E6F206E

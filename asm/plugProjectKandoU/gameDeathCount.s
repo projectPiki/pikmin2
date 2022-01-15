@@ -3,7 +3,7 @@
 .4byte __sinit_gameDeathCount_cpp
 
 .section .rodata  # 0x804732E0 - 0x8049E220
-.balign 0x8
+.balign 8
 .global lbl_804838F0
 lbl_804838F0:
 	.4byte 0x42697274
@@ -49,13 +49,13 @@ mTotal__Q24Game8DeathMgr:
 	.skip 0x24
 
 .section .sbss # 0x80514D80 - 0x80516360
-.balign 0x8
+.balign 8
 .global mSoundDeathCount__Q24Game8DeathMgr
 mSoundDeathCount__Q24Game8DeathMgr:
 	.skip 0x8
 
 .section .sdata2, "a"     # 0x80516360 - 0x80520E40
-.balign 0x8
+.balign 8
 .global lbl_8051A368
 lbl_8051A368:
 	.4byte 0x0D0A0000

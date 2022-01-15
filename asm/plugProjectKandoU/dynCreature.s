@@ -1,6 +1,6 @@
 .include "macros.inc"
 .section .rodata  # 0x804732E0 - 0x8049E220
-.balign 0x8
+.balign 8
 .global lbl_8047F630
 lbl_8047F630:
 	.4byte 0x64796E43
@@ -23,7 +23,7 @@ lbl_8047F654:
 	.4byte 0x00000000
 
 .section .data, "wa"  # 0x8049E220 - 0x804EFC20
-.balign 0x8
+.balign 8
 .global lbl_804B5218
 lbl_804B5218:
 	.4byte 0x00000000
@@ -292,13 +292,13 @@ __vt__Q24Game11DynParticle:
 	.4byte 0
 
 .section .sbss # 0x80514D80 - 0x80516360
-.balign 0x8
+.balign 8
 .global dynParticleMgr__4Game
 dynParticleMgr__4Game:
 	.skip 0x8
 
 .section .sdata2, "a"     # 0x80516360 - 0x80520E40
-.balign 0x8
+.balign 8
 .global lbl_80519238
 lbl_80519238:
 	.4byte 0x00000000

@@ -3,7 +3,7 @@
 .4byte __sinit_interactPiki_cpp
 
 .section .rodata  # 0x804732E0 - 0x8049E220
-.balign 0x8
+.balign 8
 .global lbl_8047EE90
 lbl_8047EE90:
 	.skip 0xC
@@ -65,7 +65,7 @@ lbl_8047EF40:
 	.4byte 0x00000000
 
 .section .data, "wa"  # 0x8049E220 - 0x804EFC20
-.balign 0x8
+.balign 8
 .global lbl_804B47D0
 lbl_804B47D0:
 	.4byte 0x00000000
@@ -244,7 +244,7 @@ __vt__Q24Game15InteractFueFuki:
 	.4byte 0
 
 .section .sbss # 0x80514D80 - 0x80516360
-.balign 0x8
+.balign 8
 .global lbl_805159C8
 lbl_805159C8:
 	.skip 0x4
@@ -253,7 +253,7 @@ lbl_805159CC:
 	.skip 0x4
 
 .section .sdata2, "a"     # 0x80516360 - 0x80520E40
-.balign 0x8
+.balign 8
 .global lbl_80518EB0
 lbl_80518EB0:
 	.4byte 0x47FA0000

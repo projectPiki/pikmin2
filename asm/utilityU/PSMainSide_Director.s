@@ -1,6 +1,6 @@
 .include "macros.inc"
 .section .rodata  # 0x804732E0 - 0x8049E220
-.balign 0x8
+.balign 8
 lbl_8049CD98:
 	.asciz "damageD  "
 	.skip 2
@@ -35,7 +35,7 @@ lbl_8049CE5C:
 	.skip 2
 
 .section .data, "wa"  # 0x8049E220 - 0x804EFC20
-.balign 0x8
+.balign 8
 .global __vt__Q23PSM13ExiteDirector
 __vt__Q23PSM13ExiteDirector:
 	.4byte 0
@@ -332,7 +332,7 @@ __vt__Q23PSM15OneShotDirector:
 	.4byte onDirectOff__Q28PSSystem12DirectorBaseFv
 
 .section .sdata2, "a"     # 0x80516360 - 0x80520E40
-.balign 0x8
+.balign 8
 lbl_80520C00:
 	.float 0.1
 lbl_80520C04:

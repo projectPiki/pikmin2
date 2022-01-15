@@ -3,7 +3,7 @@
 	.4byte __sinit_titleSection_cpp
 
 .section .rodata  # 0x804732E0 - 0x8049E220
-.balign 0x8
+.balign 8
 .global lbl_8049B100
 lbl_8049B100:
 	.4byte 0x00000000
@@ -161,7 +161,7 @@ lbl_8049B100:
 	.4byte 0x00000000
 
 .section .data, "wa"	# 0x8049E220 - 0x804EFC20
-.balign 0x8
+.balign 8
 .global lbl_804ED1A8
 lbl_804ED1A8:
 	.4byte 0x00000000
@@ -256,7 +256,7 @@ __vt__Q25Title7Section:
 	.4byte "invoke__26Delegate<Q25Title7Section>Fv"
 
 .section .sdata, "wa"  # 0x80514680 - 0x80514D80
-.balign 0x8
+.balign 8
 .global "sMovieIndex__26@unnamed@titleSection_cpp@"
 "sMovieIndex__26@unnamed@titleSection_cpp@":
 	.byte 0x0
@@ -271,7 +271,7 @@ __vt__Q25Title7Section:
 	.byte 0xFF
 
 .section .sbss # 0x80514D80 - 0x80516360
-.balign 0x8
+.balign 8
 .global lbl_805162A0
 lbl_805162A0:
 	.skip 0x4
@@ -280,7 +280,7 @@ lbl_805162A4:
 	.skip 0x4
 
 .section .sdata2, "a"     # 0x80516360 - 0x80520E40
-.balign 0x8
+.balign 8
 .global lbl_80520A80
 lbl_80520A80:
 	.4byte 0x00000000

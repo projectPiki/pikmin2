@@ -1,6 +1,6 @@
 .include "macros.inc"
 .section .data, "wa"  # 0x8049E220 - 0x804EFC20
-.balign 0x8
+.balign 8
 .global sMessageBuffer__9JKRDecomp
 sMessageBuffer__9JKRDecomp:
 	.4byte 0x00000000
@@ -25,7 +25,7 @@ __vt__9JKRDecomp:
 	.4byte run__9JKRDecompFv
 
 .section .sbss # 0x80514D80 - 0x80516360
-.balign 0x8
+.balign 8
 .global sDecompObject__9JKRDecomp
 sDecompObject__9JKRDecomp:
 	.skip 0x8

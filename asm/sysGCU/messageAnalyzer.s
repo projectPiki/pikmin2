@@ -1,6 +1,6 @@
 .include "macros.inc"
 .section .data, "wa"  # 0x8049E220 - 0x804EFC20
-.balign 0x8
+.balign 8
 .global __vt__Q25P2JME8Analyzer
 __vt__Q25P2JME8Analyzer:
 	.4byte 0

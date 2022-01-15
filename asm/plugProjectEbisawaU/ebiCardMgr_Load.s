@@ -1,6 +1,6 @@
 .include "macros.inc"
 .section .rodata  # 0x804732E0 - 0x8049E220
-.balign 0x8
+.balign 8
 .global lbl_80497118
 lbl_80497118:
 	.4byte 0x65626943
@@ -14,7 +14,7 @@ lbl_8049712C:
 	.skip 3
 
 .section .data, "wa"  # 0x8049E220 - 0x804EFC20
-.balign 0x8
+.balign 8
 .global __vt__Q33ebi9CardError29FSMState_WN1_NowCreateNewFile
 __vt__Q33ebi9CardError29FSMState_WN1_NowCreateNewFile:
 	.4byte 0

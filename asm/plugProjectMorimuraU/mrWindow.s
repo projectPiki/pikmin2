@@ -1,6 +1,6 @@
 .include "macros.inc"
 .section .data, "wa"  # 0x8049E220 - 0x804EFC20
-.balign 0x8
+.balign 8
 .global __vt__Q28Morimura24TSelectExplanationWindow
 __vt__Q28Morimura24TSelectExplanationWindow:
 	.4byte 0
@@ -59,7 +59,7 @@ __vt__Q28Morimura17TConfirmEndWindow:
 	.4byte getResult__Q32og9newScreen22ObjWorldMapInfoWindow0Fv
 
 .section .sdata2, "a"     # 0x80516360 - 0x80520E40
-.balign 0x8
+.balign 8
 .global lbl_8051F358
 lbl_8051F358:
 	.4byte 0x00000000

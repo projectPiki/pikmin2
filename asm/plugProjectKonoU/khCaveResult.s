@@ -3,7 +3,7 @@
 	.4byte __sinit_khCaveResult_cpp
 
 .section .rodata  # 0x804732E0 - 0x8049E220
-.balign 0x8
+.balign 8
 .global lbl_80498360
 lbl_80498360:
 	.4byte 0x6B684361
@@ -107,7 +107,7 @@ lbl_80498494:
 	.skip 3
 
 .section .data, "wa"  # 0x8049E220 - 0x804EFC20
-.balign 0x8
+.balign 8
 .global lbl_804EA560
 lbl_804EA560:
 	.4byte lbl_803F94EC
@@ -189,7 +189,7 @@ msVal__Q32kh6Screen13ObjCaveResult:
 	.skip 0x3C
 
 .section .sdata2, "a"     # 0x80516360 - 0x80520E40
-.balign 0x8
+.balign 8
 .global lbl_8051FFA8
 lbl_8051FFA8:
 	.4byte 0x00000000

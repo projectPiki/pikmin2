@@ -1,67 +1,77 @@
 .include "macros.inc"
 .section .rodata  # 0x804732E0 - 0x8049E220
-.balign 0x8
-.global lbl_8047BD48
-lbl_8047BD48:
+.balign 8
+lbl_8047BD48: #Shift-JIS
 	.4byte 0x835E8343
 	.4byte 0x8380837D
 	.4byte 0x836C815B
 	.4byte 0x83578383
 	.4byte 0x00000000
-	.4byte 0x54696D65
-	.4byte 0x4D677250
-	.4byte 0x61726D73
-	.4byte 0x00000000
+.balign 4
+lbl_8047BD5C:
+	.asciz "TimeMgrParms"
+.balign 4
+lbl_8047BD6C: #Shift-JIS
 	.4byte 0x8351815B
 	.4byte 0x83808A4A
 	.4byte 0x8E6E8E9E
 	.4byte 0x8D8F0000
+lbl_8047BD7C: #Shift-JIS
 	.4byte 0x8351815B
 	.4byte 0x83808F49
 	.4byte 0x97B98E9E
 	.4byte 0x8D8F0000
+lbl_8047BD8C: #Shift-JIS
 	.4byte 0x3193FA82
 	.4byte 0xCC8E9E8A
 	.4byte 0xD43C9562
 	.4byte 0x816A0000
+lbl_8047BD9C: #Shift-JIS
 	.4byte 0x92A98A4A
 	.4byte 0x8E6E8E9E
 	.4byte 0x8D8F0000
+lbl_8047BDA8: #Shift-JIS
 	.4byte 0x92A99286
 	.4byte 0x8AD48E9E
 	.4byte 0x8D8F0000
+lbl_8047BDB4: #Shift-JIS
 	.4byte 0x92A98F49
 	.4byte 0x97B98E9E
 	.4byte 0x8D8F0000
+lbl_8047BDC0: #Shift-JIS
 	.4byte 0x975B95FB
 	.4byte 0x8A4A8E6E
 	.4byte 0x8E9E8D8F
 	.4byte 0x00000000
+lbl_8047BDD0: #Shift-JIS
 	.4byte 0x975B95FB
 	.4byte 0x92868AD4
 	.4byte 0x8A4A8E6E
 	.4byte 0x8E9E8D8F
 	.4byte 0x00000000
+lbl_8047BDE4: #Shift-JIS
 	.4byte 0x975B95FB
 	.4byte 0x92868AD4
 	.4byte 0x8F4997B9
 	.4byte 0x8E9E8D8F
 	.4byte 0x00000000
+lbl_8047BDF8: #Shift-JIS
 	.4byte 0x975B95FB
 	.4byte 0x8F4997B9
 	.4byte 0x8E9E8D8F
 	.4byte 0x00000000
+lbl_8047BE08: #Shift-JIS
 	.4byte 0x96E98C78
 	.4byte 0x8D908E9E
 	.4byte 0x8D8F0000
+lbl_8047BE14: #Shift-JIS
 	.4byte 0x834A8345
 	.4byte 0x83938367
 	.4byte 0x835F8345
 	.4byte 0x83930000
-	.4byte 0x00000000
 
 .section .data, "wa"  # 0x8049E220 - 0x804EFC20
-.balign 0x8
+.balign 8
 .global __vt__Q24Game7TimeMgr
 __vt__Q24Game7TimeMgr:
 	.4byte 0
@@ -70,47 +80,33 @@ __vt__Q24Game7TimeMgr:
 	.4byte getChildCount__5CNodeFv
 
 .section .sdata2, "a"     # 0x80516360 - 0x80520E40
-.balign 0x8
-.global lbl_80517F50
+.balign 8
 lbl_80517F50:
 	.float 1.0
-.global lbl_80517F54
 lbl_80517F54:
-	.4byte 0x40E00000
-.global lbl_80517F58
+	.float 7.0
 lbl_80517F58:
-	.4byte 0x00000000
-.global lbl_80517F5C
+	.float 0.0
 lbl_80517F5C:
-	.4byte 0x41C00000
-.global lbl_80517F60
+	.float 24.0
 lbl_80517F60:
-	.4byte 0x41980000
-.global lbl_80517F64
+	.float 19.0
 lbl_80517F64:
-	.4byte 0x44C30000
-.global lbl_80517F68
+	.float 1560.0
 lbl_80517F68:
-	.4byte 0x45610000
-.global lbl_80517F6C
+	.float 3600.0
 lbl_80517F6C:
-	.4byte 0x40A80000
-.global lbl_80517F70
+	.float 5.25
 lbl_80517F70:
-	.4byte 0x41000000
-.global lbl_80517F74
+	.float 8.0
 lbl_80517F74:
-	.4byte 0x41700000
-.global lbl_80517F78
+	.float 15.0
 lbl_80517F78:
-	.4byte 0x41780000
-.global lbl_80517F7C
+	.float 15.5
 lbl_80517F7C:
-	.4byte 0x41940000
-.global lbl_80517F80
+	.float 18.5
 lbl_80517F80:
-	.4byte 0x41900000
-.global lbl_80517F84
+	.float 18.0
 lbl_80517F84:
 	.float 0.5
 

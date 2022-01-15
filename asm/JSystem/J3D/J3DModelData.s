@@ -1,6 +1,6 @@
 .include "macros.inc"
 .section .data, "wa"  # 0x8049E220 - 0x804EFC20
-.balign 0x8
+.balign 8
 .global __vt__13J3DShapeTable
 __vt__13J3DShapeTable:
 	.4byte 0
@@ -13,7 +13,7 @@ __vt__12J3DModelData:
 	.4byte __dt__12J3DModelDataFv
 
 .section .sbss # 0x80514D80 - 0x80516360
-.balign 0x8
+.balign 8
 .global sInterruptFlag$1509
 sInterruptFlag$1509:
 	.skip 0x4

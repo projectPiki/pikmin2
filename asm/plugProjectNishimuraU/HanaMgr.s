@@ -1,6 +1,6 @@
 .include "macros.inc"
 .section .rodata  # 0x804732E0 - 0x8049E220
-.balign 0x8
+.balign 8
 .global lbl_8048D1D8
 lbl_8048D1D8:
 	.4byte 0x836E8369
@@ -11,7 +11,7 @@ lbl_8048D1D8:
 	.4byte 0x83830000
 
 .section .data, "wa"  # 0x8049E220 - 0x804EFC20
-.balign 0x8
+.balign 8
 .global __vt__Q34Game4Hana3Mgr
 __vt__Q34Game4Hana3Mgr:
 	.4byte 0

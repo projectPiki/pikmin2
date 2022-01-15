@@ -1,6 +1,6 @@
 .include "macros.inc"
 .section .rodata  # 0x804732E0 - 0x8049E220
-.balign 0x8
+.balign 8
 .global lbl_80495B68
 lbl_80495B68:
 	.4byte 0x65667832
@@ -28,7 +28,7 @@ lbl_80495B68:
 	.4byte 0x6F707900
 
 .section .data, "wa"  # 0x8049E220 - 0x804EFC20
-.balign 0x8
+.balign 8
 .global __vt__Q35efx2d8WorldMap10T2DRocketB
 __vt__Q35efx2d8WorldMap10T2DRocketB:
 	.4byte 0
@@ -179,7 +179,7 @@ __vt__Q25efx2d9T2DCursor:
 	.4byte 0
 
 .section .sdata2, "a"     # 0x80516360 - 0x80520E40
-.balign 0x8
+.balign 8
 .global lbl_8051F6E0
 lbl_8051F6E0:
 	.4byte 0x3C8AD8F3

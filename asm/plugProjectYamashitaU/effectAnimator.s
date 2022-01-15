@@ -1,6 +1,6 @@
 .include "macros.inc"
 .section .rodata  # 0x804732E0 - 0x8049E220
-.balign 0x8
+.balign 8
 .global lbl_8047C570
 lbl_8047C570:
 	.4byte 0x65666665
@@ -19,7 +19,7 @@ lbl_8047C590:
 	.skip 3
 
 .section .data, "wa"  # 0x8049E220 - 0x804EFC20
-.balign 0x8
+.balign 8
 .global "sVibration_Move1__Q214EffectAnimator28@unnamed@effectAnimator_cpp@"
 "sVibration_Move1__Q214EffectAnimator28@unnamed@effectAnimator_cpp@":
 	.float 0.0
@@ -284,7 +284,7 @@ __vt__Q214EffectAnimator3Obj:
 	.4byte update__Q214EffectAnimator3ObjFPQ23efx13TKechappyTestf
 
 .section .sdata2, "a"     # 0x80516360 - 0x80520E40
-.balign 0x8
+.balign 8
 .global lbl_805181F8
 lbl_805181F8:
 	.4byte 0x00000000

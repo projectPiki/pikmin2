@@ -1,6 +1,6 @@
 .include "macros.inc"
 .section .data, "wa"  # 0x8049E220 - 0x804EFC20
-.balign 0x8
+.balign 8
 .global __vt__8JUTVideo
 __vt__8JUTVideo:
 	.4byte 0
@@ -9,7 +9,7 @@ __vt__8JUTVideo:
 	.4byte 0
 
 .section .sbss # 0x80514D80 - 0x80516360
-.balign 0x8
+.balign 8
 .global sManager__8JUTVideo
 sManager__8JUTVideo:
 	.skip 0x4

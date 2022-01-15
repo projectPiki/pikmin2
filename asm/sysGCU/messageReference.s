@@ -1,6 +1,6 @@
 .include "macros.inc"
 .section .data, "wa"  # 0x8049E220 - 0x804EFC20
-.balign 0x8
+.balign 8
 .global __vt__Q25P2JME10TReference
 __vt__Q25P2JME10TReference:
 	.4byte 0
@@ -9,7 +9,7 @@ __vt__Q25P2JME10TReference:
 	.4byte do_word__Q25P2JME10TReferenceCFUl
 
 .section .sbss # 0x80514D80 - 0x80516360
-.balign 0x8
+.balign 8
 .global frm$674
 frm$674:
 	.skip 0x1
@@ -18,7 +18,7 @@ init$675:
 	.skip 0x7
 
 .section .sdata2, "a"     # 0x80516360 - 0x80520E40
-.balign 0x8
+.balign 8
 .global lbl_805208E8
 lbl_805208E8:
 	.4byte 0x83658358

@@ -3,7 +3,7 @@
 .4byte __sinit_PSSystemIF_cpp
 
 .section .rodata  # 0x804732E0 - 0x8049E220
-.balign 0x8
+.balign 8
 .global lbl_8048FE28
 lbl_8048FE28:
 	.4byte 0x50535379
@@ -26,7 +26,7 @@ lbl_8048FE50:
 	.4byte 0x68000000
 
 .section .data, "wa"  # 0x8049E220 - 0x804EFC20
-.balign 0x8
+.balign 8
 .global __vt__Q28PSSystem12TextDataBase
 __vt__Q28PSSystem12TextDataBase:
 	.4byte 0
@@ -49,13 +49,13 @@ __vt__Q28PSSystem5SysIF:
 	.4byte 0
 
 .section .sdata, "wa"  # 0x80514680 - 0x80514D80
-.balign 0x8
+.balign 8
 .global sDistanceParameterMoveTime__8PSSystem
 sDistanceParameterMoveTime__8PSSystem:
 	.4byte 0x05000000
 
 .section .sbss # 0x80514D80 - 0x80516360
-.balign 0x8
+.balign 8
 .global spSysIF__8PSSystem
 spSysIF__8PSSystem:
 	.skip 0x4
@@ -67,7 +67,7 @@ sMakeJAISeCallback__Q28PSSystem5SysIF:
 	.skip 0x8
 
 .section .sdata2, "a"     # 0x80516360 - 0x80520E40
-.balign 0x8
+.balign 8
 .global lbl_8051E150
 lbl_8051E150:
 	.float 1.0

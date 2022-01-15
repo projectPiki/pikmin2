@@ -1,6 +1,6 @@
 .include "macros.inc"
 .section .rodata  # 0x804732E0 - 0x8049E220
-.balign 0x8
+.balign 8
 .global lbl_80497AA0
 lbl_80497AA0:
 	.asciz "ebiOmakeMgr.cpp"
@@ -25,7 +25,7 @@ lbl_80497B30:
 	.skip 3
 
 .section .data, "wa"  # 0x8049E220 - 0x804EFC20
-.balign 0x8
+.balign 8
 .global "__vt__Q24Game31StateMachine<Q33ebi5Omake4TMgr>"
 "__vt__Q24Game31StateMachine<Q33ebi5Omake4TMgr>":
 	.4byte 0
@@ -108,7 +108,7 @@ __vt__Q33ebi5Omake15FSMStateMachine:
 	.4byte 0
 
 .section .sdata2, "a"     # 0x80516360 - 0x80520E40
-.balign 0x8
+.balign 8
 .global lbl_8051FEA0
 lbl_8051FEA0:
 	.4byte 0x5374616E

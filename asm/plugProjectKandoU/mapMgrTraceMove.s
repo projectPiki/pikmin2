@@ -3,7 +3,7 @@
 .4byte __sinit_mapMgrTraceMove_cpp
 
 .section .data, "wa"  # 0x8049E220 - 0x804EFC20
-.balign 0x8
+.balign 8
 .global lbl_804BEF00
 lbl_804BEF00:
 	.4byte 0x00000000
@@ -12,13 +12,13 @@ lbl_804BEF00:
 	.4byte 0x00000000
 
 .section .sdata, "wa"  # 0x80514680 - 0x80514D80
-.balign 0x8
+.balign 8
 .global mTraceMoveOptLevel__Q24Game6MapMgr
 mTraceMoveOptLevel__Q24Game6MapMgr:
 	.4byte 0x01000000
 
 .section .sbss # 0x80514D80 - 0x80516360
-.balign 0x8
+.balign 8
 .global lbl_80515BB0
 lbl_80515BB0:
 	.skip 0x4
@@ -27,7 +27,7 @@ lbl_80515BB4:
 	.skip 0x4
 
 .section .sdata2, "a"     # 0x80516360 - 0x80520E40
-.balign 0x8
+.balign 8
 .global lbl_80519D60
 lbl_80519D60:
 	.4byte 0x00000000

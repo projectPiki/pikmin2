@@ -1,18 +1,18 @@
 .include "macros.inc"
 .section .data, "wa"  # 0x8049E220 - 0x804EFC20
-.balign 0x8
+.balign 8
 .global AI_VERSION_STRING
 AI_VERSION_STRING:
 	.asciz "<< Dolphin SDK - AI\trelease build: Apr 17 2003 12:33:54 (0x2301) >>"
 
 .section .sdata, "wa"  # 0x80514680 - 0x80514D80
-.balign 0x8
+.balign 8
 .global __AIVersion
 __AIVersion:
 	.4byte AI_VERSION_STRING
 
 .section .sbss # 0x80514D80 - 0x80516360
-.balign 0x8
+.balign 8
 .global __AIS_Callback
 __AIS_Callback:
 	.skip 0x4

@@ -1,6 +1,6 @@
 .include "macros.inc"
 .section .rodata  # 0x804732E0 - 0x8049E220
-.balign 0x8
+.balign 8
 .global lbl_80495210
 lbl_80495210:
 	.4byte 0x7363726F
@@ -13,7 +13,7 @@ lbl_80495220:
 	.skip 3
 
 .section .data, "wa"  # 0x8049E220 - 0x804EFC20
-.balign 0x8
+.balign 8
 .global __vt__Q28Morimura11TScrollList
 __vt__Q28Morimura11TScrollList:
 	.4byte 0
@@ -68,7 +68,7 @@ __vt__Q28Morimura11TListScreen:
 	.4byte draw__Q28Morimura11TScreenBaseFR8GraphicsP13J2DPerspGraph
 
 .section .sdata, "wa"  # 0x80514680 - 0x80514D80
-.balign 0x8
+.balign 8
 .global mWideWindow__Q28Morimura11TScrollList
 mWideWindow__Q28Morimura11TScrollList:
 	.byte 0x01
@@ -77,7 +77,7 @@ mWideWindow__Q28Morimura11TScrollList:
 	.byte 0x00
 
 .section .sbss # 0x80514D80 - 0x80516360
-.balign 0x8
+.balign 8
 .global mRightOffset__Q28Morimura11TScrollList
 mRightOffset__Q28Morimura11TScrollList:
 	.skip 0x4
@@ -86,7 +86,7 @@ mForceResetParm__Q28Morimura11TScrollList:
 	.skip 0x4
 
 .section .sdata2, "a"     # 0x80516360 - 0x80520E40
-.balign 0x8
+.balign 8
 .global lbl_8051F2F8
 lbl_8051F2F8:
 	.4byte 0x00000000

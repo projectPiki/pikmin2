@@ -1,6 +1,6 @@
 .include "macros.inc"
 .section .rodata  # 0x804732E0 - 0x8049E220
-.balign 0x8
+.balign 8
 .global lbl_80499E10
 lbl_80499E10:
 	.4byte 0x73797354
@@ -32,7 +32,7 @@ lbl_80499E38:
 	.4byte 0x00000000
 
 .section .data, "wa"  # 0x8049E220 - 0x804EFC20
-.balign 0x8
+.balign 8
 .global __vt__8TimerInf
 __vt__8TimerInf:
 	.4byte 0
@@ -47,13 +47,13 @@ __vt__9SysTimers:
 	.4byte 0
 
 .section .sbss # 0x80514D80 - 0x80516360
-.balign 0x8
+.balign 8
 .global drawFlag__9SysTimers
 drawFlag__9SysTimers:
 	.skip 0x8
 
 .section .sdata2, "a"     # 0x80516360 - 0x80520E40
-.balign 0x8
+.balign 8
 .global lbl_80520588
 lbl_80520588:
 	.4byte 0x6E6F6E61

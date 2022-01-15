@@ -5,7 +5,7 @@ lbl_80487418:
 	.asciz "yoroimushi"
 
 .section .data, "wa"  # 0x8049E220 - 0x804EFC20
-.balign 0x8
+.balign 8
 .global __vt__Q23efx9TYoroiEat
 __vt__Q23efx9TYoroiEat:
 	.4byte 0

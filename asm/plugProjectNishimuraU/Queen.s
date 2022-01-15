@@ -3,7 +3,7 @@
 .4byte __sinit_Queen_cpp
 
 .section .rodata  # 0x804732E0 - 0x8049E220
-.balign 0x8
+.balign 8
 .global lbl_80487FF8
 lbl_80487FF8:
 	.asciz "body_end"
@@ -18,7 +18,7 @@ lbl_8048801C:
 	.skip 3
 
 .section .data, "wa"  # 0x8049E220 - 0x804EFC20
-.balign 0x8
+.balign 8
 .global lbl_804C9D20
 lbl_804C9D20:
 	.4byte 0x00000000
@@ -449,7 +449,7 @@ __vt__Q34Game5Queen3Obj:
 	.4byte "viewEntryShape__Q24Game10PelletViewFR7MatrixfR10Vector3<f>"
 
 .section .sbss # 0x80514D80 - 0x80516360
-.balign 0x8
+.balign 8
 .global lbl_80515D50
 lbl_80515D50:
 	.skip 0x4
@@ -458,7 +458,7 @@ lbl_80515D54:
 	.skip 0x4
 
 .section .sdata2, "a"     # 0x80516360 - 0x80520E40
-.balign 0x8
+.balign 8
 .global lbl_8051B818
 lbl_8051B818:
 	.4byte 0x00000000

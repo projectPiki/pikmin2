@@ -1,6 +1,6 @@
 .include "macros.inc"
 .section .rodata  # 0x804732E0 - 0x8049E220
-.balign 0x8
+.balign 8
 .global lbl_8049B368
 lbl_8049B368:
 	.4byte 0x6C6F6164
@@ -30,7 +30,7 @@ lbl_8049B3A8:
 	.4byte 0x00000000
 
 .section .data, "wa"	# 0x8049E220 - 0x804EFC20
-.balign 0x8
+.balign 8
 .global __vt__Q212LoadResource4Node
 __vt__Q212LoadResource4Node:
 	.4byte 0
@@ -43,14 +43,14 @@ __vt__Q212LoadResource4Node:
 	.4byte 0
 
 .section .sdata2, "a"     # 0x80516360 - 0x80520E40
-.balign 0x8
+.balign 8
 .global lbl_80520AA8
 lbl_80520AA8:
 	.4byte 0x44766452
 	.4byte 0x6F6F7400
 
 .section .sbss # 0x80514D80 - 0x80516360
-.balign 0x8
+.balign 8
 .global gLoadResourceMgr
 gLoadResourceMgr:
 	.skip 0x8

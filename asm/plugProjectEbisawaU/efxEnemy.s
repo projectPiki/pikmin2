@@ -1,6 +1,6 @@
 .include "macros.inc"
 .section .rodata  # 0x804732E0 - 0x8049E220
-.balign 0x8
+.balign 8
 .global lbl_80495898
 lbl_80495898:
 	.4byte 0x65667845
@@ -73,7 +73,7 @@ lbl_80495960:
 	.float 0.02
 
 .section .data, "wa"  # 0x8049E220 - 0x804EFC20
-.balign 0x8
+.balign 8
 .global __vt__Q23efx13TDenkiHibaMgr
 __vt__Q23efx13TDenkiHibaMgr:
 	.4byte 0
@@ -456,7 +456,7 @@ __vt__Q23efx9TChibiHit:
 	.4byte 0
 
 .section .sdata2, "a"     # 0x80516360 - 0x80520E40
-.balign 0x8
+.balign 8
 .global lbl_8051F620
 lbl_8051F620:
 	.4byte 0x41726743

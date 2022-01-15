@@ -1,6 +1,6 @@
 .include "macros.inc"
 .section .rodata  # 0x804732E0 - 0x8049E220
-.balign 0x8
+.balign 8
 .global lbl_8048E030
 lbl_8048E030:
 	.asciz "PSGame.h"
@@ -12,7 +12,7 @@ lbl_8048E030:
 	.asciz "get sound scene at\ninvalid timming\n"
 
 .section .sbss # 0x80514D80 - 0x80516360
-.balign 0x8
+.balign 8
 .global ogSound__2og
 ogSound__2og:
 	.skip 0x8

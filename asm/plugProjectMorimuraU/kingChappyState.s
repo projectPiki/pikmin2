@@ -3,7 +3,7 @@
 .4byte __sinit_kingChappyState_cpp
 
 .section .rodata  # 0x804732E0 - 0x8049E220
-.balign 0x8
+.balign 8
 .global lbl_804910F0
 lbl_804910F0:
 	.4byte 0x50534D61
@@ -29,7 +29,7 @@ lbl_80491120:
 	.4byte 0x00000000
 
 .section .data, "wa"  # 0x8049E220 - 0x804EFC20
-.balign 0x8
+.balign 8
 .global lbl_804E1A00
 lbl_804E1A00:
 	.4byte 0x00000000
@@ -208,7 +208,7 @@ __vt__Q34Game10KingChappy3FSM:
 	.4byte 0
 
 .section .sbss # 0x80514D80 - 0x80516360
-.balign 0x8
+.balign 8
 .global lbl_80515F40
 lbl_80515F40:
 	.skip 0x4
@@ -217,7 +217,7 @@ lbl_80515F44:
 	.skip 0x4
 
 .section .sdata2, "a"     # 0x80516360 - 0x80520E40
-.balign 0x8
+.balign 8
 .global lbl_8051E568
 lbl_8051E568:
 	.4byte 0x77616C6B

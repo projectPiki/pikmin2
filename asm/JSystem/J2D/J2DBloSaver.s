@@ -3,7 +3,7 @@
 .4byte __sinit_J2DBloSaver_cpp
 
 .section .sbss # 0x80514D80 - 0x80516360
-.balign 0x8
+.balign 8
 .global TextureNameConnect__11J2DBloSaver
 TextureNameConnect__11J2DBloSaver:
 	.skip 0x8

@@ -3,7 +3,7 @@
 .4byte __sinit_DamagumoState_cpp
 
 .section .data, "wa"  # 0x8049E220 - 0x804EFC20
-.balign 0x8
+.balign 8
 .global lbl_804CD5D0
 lbl_804CD5D0:
 	.4byte 0x00000000
@@ -100,7 +100,7 @@ __vt__Q34Game8Damagumo3FSM:
 	.4byte 0
 
 .section .sbss # 0x80514D80 - 0x80516360
-.balign 0x8
+.balign 8
 .global lbl_80515D68
 lbl_80515D68:
 	.skip 0x4
@@ -109,7 +109,7 @@ lbl_80515D6C:
 	.skip 0x4
 
 .section .sdata2, "a"     # 0x80516360 - 0x80520E40
-.balign 0x8
+.balign 8
 .global lbl_8051BE48
 lbl_8051BE48:
 	.4byte 0x64656164

@@ -3,7 +3,7 @@
 	.4byte __sinit_khWinLoseReason_cpp
 
 .section .rodata  # 0x804732E0 - 0x8049E220
-.balign 0x8
+.balign 8
 .global lbl_804994F0
 lbl_804994F0:
 	.asciz "khWinLoseReason.cpp"
@@ -32,7 +32,7 @@ lbl_804995B0:
 	.asciz "screenObj.h"
 
 .section .data, "wa"  # 0x8049E220 - 0x804EFC20
-.balign 0x8
+.balign 8
 .global __vt__Q32kh6Screen18SceneWinLoseReason
 __vt__Q32kh6Screen18SceneWinLoseReason:
 	.4byte 0
@@ -94,7 +94,7 @@ msVal__Q32kh6Screen16ObjWinLoseReason:
 	.skip 0x1C
 
 .section .sdata2, "a"     # 0x80516360 - 0x80520E40
-.balign 0x8
+.balign 8
 .global lbl_80520240
 lbl_80520240:
 	.4byte 0x00000000

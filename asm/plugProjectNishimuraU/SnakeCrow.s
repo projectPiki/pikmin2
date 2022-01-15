@@ -3,7 +3,7 @@
 .4byte __sinit_SnakeCrow_cpp
 
 .section .rodata  # 0x804732E0 - 0x8049E220
-.balign 0x8
+.balign 8
 .global lbl_80488730
 lbl_80488730:
 	.4byte 0x00000000
@@ -119,7 +119,7 @@ lbl_804888B8:
 	.4byte 0x00000000
 
 .section .data, "wa"  # 0x8049E220 - 0x804EFC20
-.balign 0x8
+.balign 8
 .global lbl_804CB570
 lbl_804CB570:
 	.4byte 0x00000000
@@ -430,7 +430,7 @@ __vt__Q34Game9SnakeCrow3Obj:
 	.4byte 0
 
 .section .sbss # 0x80514D80 - 0x80516360
-.balign 0x8
+.balign 8
 .global lbl_80515D60
 lbl_80515D60:
 	.skip 0x4
@@ -439,7 +439,7 @@ lbl_80515D64:
 	.skip 0x4
 
 .section .sdata2, "a"     # 0x80516360 - 0x80520E40
-.balign 0x8
+.balign 8
 .global lbl_8051BA90
 lbl_8051BA90:
 	.4byte 0x00000000

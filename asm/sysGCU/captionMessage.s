@@ -1,6 +1,6 @@
 .include "macros.inc"
 .section .rodata  # 0x804732E0 - 0x8049E220
-.balign 0x8
+.balign 8
 .global lbl_8049B880
 lbl_8049B880:
 	.4byte 0x6D657373
@@ -14,7 +14,7 @@ lbl_8049B890:
 	.4byte 0x00000000
 
 .section .data, "wa"	# 0x8049E220 - 0x804EFC20
-.balign 0x8
+.balign 8
 .global __vt__Q35P2JME7Caption8TControl
 __vt__Q35P2JME7Caption8TControl:
 	.4byte 0
@@ -107,7 +107,7 @@ __vt__Q35P2JME7Caption19TRenderingProcessor:
 	.4byte doGetDrawInfo__Q35P2JME7Caption19TRenderingProcessorFPQ35P2JME6Window8DrawInfo
 
 .section .sdata2, "a"     # 0x80516360 - 0x80520E40
-.balign 0x8
+.balign 8
 .global lbl_80520B30
 lbl_80520B30:
 	.float 1.0

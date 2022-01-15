@@ -1,12 +1,12 @@
 .include "macros.inc"
 .section .sdata, "wa"  # 0x80514680 - 0x80514D80
-.balign 0x8
+.balign 8
 .global SendCount
 SendCount:
 	.4byte 0x80000000
 
 .section .sbss # 0x80514D80 - 0x80516360
-.balign 0x8
+.balign 8
 .global MTRCallback
 MTRCallback:
 	.skip 0x4

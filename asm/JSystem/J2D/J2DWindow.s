@@ -1,6 +1,6 @@
 .include "macros.inc"
 .section .rodata  # 0x804732E0 - 0x8049E220
-.balign 0x8
+.balign 8
 .global lbl_80478498
 lbl_80478498:
 	.4byte 0x00000000
@@ -29,7 +29,7 @@ lbl_804784C8:
 	.4byte 0x00000000
 
 .section .data, "wa"  # 0x8049E220 - 0x804EFC20
-.balign 0x8
+.balign 8
 .global __vt__9J2DWindow
 __vt__9J2DWindow:
 	.4byte 0
@@ -86,7 +86,7 @@ __vt__9J2DWindow:
 	.4byte 0
 
 .section .sdata2, "a"     # 0x80516360 - 0x80520E40
-.balign 0x8
+.balign 8
 .global lbl_80516880
 lbl_80516880:
 	.4byte 0x43300000

@@ -3,7 +3,7 @@
 .4byte __sinit_PomMgr_cpp
 
 .section .rodata  # 0x804732E0 - 0x8049E220
-.balign 0x8
+.balign 8
 .global lbl_80484940
 lbl_80484940:
 	.4byte 0x00000000
@@ -241,7 +241,7 @@ lbl_80484C98:
 	.4byte 0x00000000
 
 .section .data, "wa"  # 0x8049E220 - 0x804EFC20
-.balign 0x8
+.balign 8
 .global lbl_804C1C30
 lbl_804C1C30:
 	.4byte 0x00000000
@@ -312,7 +312,7 @@ __vt__Q34Game3Pom3Mgr:
 	.4byte initGenerator__Q24Game12EnemyMgrBaseFv
 
 .section .sbss # 0x80514D80 - 0x80516360
-.balign 0x8
+.balign 8
 .global lbl_80515D30
 lbl_80515D30:
 	.skip 0x4
@@ -321,7 +321,7 @@ lbl_80515D34:
 	.skip 0x4
 
 .section .sdata2, "a"     # 0x80516360 - 0x80520E40
-.balign 0x8
+.balign 8
 .global lbl_8051A990
 lbl_8051A990:
 	.4byte 0x41F00000

@@ -1,6 +1,6 @@
 .include "macros.inc"
 .section .rodata  # 0x804732E0 - 0x8049E220
-.balign 0x8
+.balign 8
 .global lbl_8048EAB8
 lbl_8048EAB8:
 	.4byte 0x6B616E74
@@ -15,7 +15,7 @@ lbl_8048EAC8:
 	.4byte 0x7A730000
 
 .section .data, "wa"  # 0x8049E220 - 0x804EFC20
-.balign 0x8
+.balign 8
 .global __vt__Q32og9newScreen10KanteiDemo
 __vt__Q32og9newScreen10KanteiDemo:
 	.4byte 0

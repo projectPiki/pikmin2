@@ -3,7 +3,7 @@
 .4byte __sinit_JASDriverIF_cpp
 
 .section .rodata  # 0x804732E0 - 0x8049E220
-.balign 0x8
+.balign 8
 .global C5BASE_PITCHTABLE__9JASDriver
 C5BASE_PITCHTABLE__9JASDriver:
 	.float 0.03125
@@ -140,7 +140,7 @@ C5BASE_PITCHTABLE__9JASDriver:
 	.4byte 0x00000000
 
 .section .sdata, "wa"  # 0x80514680 - 0x80514D80
-.balign 0x8
+.balign 8
 .global MAX_MIXERLEVEL__9JASDriver
 MAX_MIXERLEVEL__9JASDriver:
 	.2byte 0x2ee0
@@ -152,7 +152,7 @@ JAS_SYSTEM_OUTPUT_MODE__9JASDriver:
 	.4byte 1
 
 .section .sdata2, "a"     # 0x80516360 - 0x80520E40
-.balign 0x8
+.balign 8
 .global lbl_80516E50
 lbl_80516E50:
 	.4byte 0x467FFE00

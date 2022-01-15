@@ -1,6 +1,6 @@
 .include "macros.inc"
 .section .rodata  # 0x804732E0 - 0x8049E220
-.balign 0x8
+.balign 8
 .global lbl_8048F318
 lbl_8048F318:
 	.4byte 0x73617665
@@ -8,7 +8,7 @@ lbl_8048F318:
 	.4byte 0x75000000
 
 .section .data, "wa"  # 0x8049E220 - 0x804EFC20
-.balign 0x8
+.balign 8
 .global __vt__Q32og9newScreen4Save
 __vt__Q32og9newScreen4Save:
 	.4byte 0
@@ -33,7 +33,7 @@ __vt__Q32og9newScreen4Save:
 	.4byte doGetFinishState__Q26Screen9SceneBaseFv
 
 .section .sdata2, "a"     # 0x80516360 - 0x80520E40
-.balign 0x8
+.balign 8
 .global lbl_8051DD70
 lbl_8051DD70:
 	.4byte 0x00000000

@@ -1,6 +1,6 @@
 .include "macros.inc"
 .section .rodata  # 0x804732E0 - 0x8049E220
-.balign 0x8
+.balign 8
 .global lbl_80497010
 lbl_80497010:
 	.4byte 0x65626946
@@ -74,7 +74,7 @@ lbl_80497084:
 	.4byte 0x81490A00
 
 .section .data, "wa"  # 0x8049E220 - 0x804EFC20
-.balign 0x8
+.balign 8
 .global lbl_804E9678
 lbl_804E9678:
 	.4byte lbl_803E177C
@@ -249,7 +249,7 @@ __vt__Q33ebi10FileSelect15FSMStateMachine:
 	.4byte 0
 
 .section .sbss # 0x80514D80 - 0x80516360
-.balign 0x8
+.balign 8
 .global msInstance__Q33ebi10FileSelect4TMgr
 msInstance__Q33ebi10FileSelect4TMgr:
 	.skip 0x8

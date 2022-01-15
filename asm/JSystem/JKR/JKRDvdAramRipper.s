@@ -8,7 +8,7 @@ sDvdAramAsyncList__16JKRDvdAramRipper:
 	.skip 0xC
 
 .section .sdata, "wa"  # 0x80514680 - 0x80514D80
-.balign 0x8
+.balign 8
 .global errorRetry__16JKRDvdAramRipper
 errorRetry__16JKRDvdAramRipper:
 	.4byte 0x01000000
@@ -17,7 +17,7 @@ sSZSBufferSize__16JKRDvdAramRipper:
 	.4byte 0x00000400
 
 .section .sbss # 0x80514D80 - 0x80516360
-.balign 0x8
+.balign 8
 .global szpBuf_1
 szpBuf_1:
 	.skip 0x4

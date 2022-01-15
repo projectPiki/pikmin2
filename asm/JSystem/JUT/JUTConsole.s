@@ -1,6 +1,6 @@
 .include "macros.inc"
 .section .data, "wa"  # 0x8049E220 - 0x804EFC20
-.balign 0x8
+.balign 8
 .global __vt__10JUTConsole
 __vt__10JUTConsole:
 	.4byte 0
@@ -9,7 +9,7 @@ __vt__10JUTConsole:
 	.4byte 0
 
 .section .sbss # 0x80514D80 - 0x80516360
-.balign 0x8
+.balign 8
 .global sManager__17JUTConsoleManager
 sManager__17JUTConsoleManager:
 	.skip 0x4
@@ -21,7 +21,7 @@ sWarningConsole:
 	.skip 0x8
 
 .section .sdata2, "a"     # 0x80516360 - 0x80520E40
-.balign 0x8
+.balign 8
 .global lbl_80516568
 lbl_80516568:
 	.4byte 0x40000000

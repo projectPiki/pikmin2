@@ -3,7 +3,7 @@
 	.4byte __sinit_khFinalResult_cpp
 
 .section .rodata  # 0x804732E0 - 0x8049E220
-.balign 0x8
+.balign 8
 .global lbl_80498CD8
 lbl_80498CD8:
 	.asciz "khFinalResult.cpp"
@@ -239,7 +239,7 @@ lbl_80498FD8:
 	.4byte 0x00000000
 
 .section .data, "wa"  # 0x8049E220 - 0x804EFC20
-.balign 0x8
+.balign 8
 .global __vt__Q32kh6Screen16SceneFinalResult
 __vt__Q32kh6Screen16SceneFinalResult:
 	.4byte 0
@@ -309,7 +309,7 @@ msVal__Q32kh6Screen14ObjFinalResult:
 	.skip 0x24
 
 .section .sdata2, "a"     # 0x80516360 - 0x80520E40
-.balign 0x8
+.balign 8
 .global lbl_80520198
 lbl_80520198:
 	.4byte 0x6661696C

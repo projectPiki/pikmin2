@@ -1,6 +1,6 @@
 .include "macros.inc"
 .section .rodata  # 0x804732E0 - 0x8049E220
-.balign 0x8
+.balign 8
 .global lbl_80496DD0
 lbl_80496DD0:
 	.4byte 0x65626953
@@ -48,7 +48,7 @@ lbl_80496E4C:
 	.4byte 0x815B0000
 
 .section .data, "wa"  # 0x8049E220 - 0x804EFC20
-.balign 0x8
+.balign 8
 .global lbl_804E8F80
 lbl_804E8F80:
 	.4byte lbl_803DB994
@@ -271,13 +271,13 @@ __vt__Q33ebi4Save15FSMStateMachine:
 	.4byte "transit__Q24Game30StateMachine<Q33ebi4Save4TMgr>FPQ33ebi4Save4TMgriPQ24Game8StateArg"
 
 .section .sbss # 0x80514D80 - 0x80516360
-.balign 0x8
+.balign 8
 .global msInstance__Q33ebi4Save4TMgr
 msInstance__Q33ebi4Save4TMgr:
 	.skip 0x8
 
 .section .sdata2, "a"     # 0x80516360 - 0x80520E40
-.balign 0x8
+.balign 8
 .global lbl_8051FBA0
 lbl_8051FBA0:
 	.4byte 0x5374616E

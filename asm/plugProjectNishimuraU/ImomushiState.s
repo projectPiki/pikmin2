@@ -1,6 +1,6 @@
 .include "macros.inc"
 .section .rodata  # 0x804732E0 - 0x8049E220
-.balign 0x8
+.balign 8
 .global lbl_8048A8B0
 lbl_8048A8B0:
 	.4byte 0x3234362D
@@ -25,7 +25,7 @@ lbl_8048A8B0:
 	.4byte 0x65000000
 
 .section .data, "wa"  # 0x8049E220 - 0x804EFC20
-.balign 0x8
+.balign 8
 .global __vt__Q34Game8Imomushi14StateZukanMove
 __vt__Q34Game8Imomushi14StateZukanMove:
 	.4byte 0
@@ -204,7 +204,7 @@ __vt__Q34Game8Imomushi3FSM:
 	.4byte setCurrState__Q24Game17EnemyStateMachineFPQ24Game9EnemyBasePQ24Game13EnemyFSMState
 
 .section .sdata2, "a"     # 0x80516360 - 0x80520E40
-.balign 0x8
+.balign 8
 .global lbl_8051C330
 lbl_8051C330:
 	.4byte 0x64656164

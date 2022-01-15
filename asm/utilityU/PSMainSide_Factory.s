@@ -3,7 +3,7 @@
 	.4byte __sinit_PSMainSide_Factory_cpp
 
 .section .rodata  # 0x804732E0 - 0x8049E220
-.balign 0x8
+.balign 8
 .global lbl_8049CE68
 lbl_8049CE68:
 	.4byte 0x00000000
@@ -89,7 +89,7 @@ lbl_8049CE8C:
 	.4byte 0x64000000
 
 .section .data, "wa"  # 0x8049E220 - 0x804EFC20
-.balign 0x8
+.balign 8
 .global lbl_804EE158
 lbl_804EE158:
 	.4byte 0x00000000
@@ -248,7 +248,7 @@ __vt__Q23PSM12Env_Pollutin:
 	.4byte setPanAndDolby__Q26PSGame13EnvSe_AutoPanFP8JAISound
 
 .section .sbss # 0x80514D80 - 0x80516360
-.balign 0x8
+.balign 8
 .global lbl_80516308
 lbl_80516308:
 	.skip 0x4
@@ -257,7 +257,7 @@ lbl_8051630C:
 	.skip 0x4
 
 .section .sdata2, "a"     # 0x80516360 - 0x80520E40
-.balign 0x8
+.balign 8
 .global lbl_80520C20
 lbl_80520C20:
 	.float 1.0

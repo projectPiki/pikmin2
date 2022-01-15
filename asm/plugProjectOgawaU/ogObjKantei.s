@@ -3,7 +3,7 @@
 .4byte __sinit_ogObjKantei_cpp
 
 .section .rodata  # 0x804732E0 - 0x8049E220
-.balign 0x8
+.balign 8
 .global lbl_8048E990
 lbl_8048E990:
 	.asciz "ogObjKantei.cpp"
@@ -82,7 +82,7 @@ lbl_8048EA70:
 	.4byte 0x6A2E6800
 
 .section .data, "wa"  # 0x8049E220 - 0x804EFC20
-.balign 0x8
+.balign 8
 .global lbl_804D8BE8
 lbl_804D8BE8:
 	.4byte lbl_8031924C
@@ -150,7 +150,7 @@ msVal__Q32og9newScreen9ObjKantei:
 	.skip 0x40
 
 .section .sdata2, "a"     # 0x80516360 - 0x80520E40
-.balign 0x8
+.balign 8
 .global lbl_8051D938
 lbl_8051D938:
 	.4byte 0x00000000

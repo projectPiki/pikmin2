@@ -1,6 +1,6 @@
 .include "macros.inc"
 .section .rodata  # 0x804732E0 - 0x8049E220
-.balign 0x8
+.balign 8
 .global lbl_8048D1C0
 lbl_8048D1C0:
 	.asciz "weak_joint1"
@@ -9,7 +9,7 @@ lbl_8048D1CC:
 	.asciz "weak_joint2"
 
 .section .data, "wa"  # 0x8049E220 - 0x804EFC20
-.balign 0x8
+.balign 8
 .global __vt__Q24Game24UmimushiSphereShadowNode
 __vt__Q24Game24UmimushiSphereShadowNode:
 	.4byte 0
@@ -24,7 +24,7 @@ __vt__Q24Game22UmimushiTubeShadowNode:
 	.4byte getChildCount__5CNodeFv
 
 .section .sdata2, "a"     # 0x80516360 - 0x80520E40
-.balign 0x8
+.balign 8
 .global lbl_8051D180
 lbl_8051D180:
 	.float 0.5

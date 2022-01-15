@@ -1,6 +1,6 @@
 .include "macros.inc"
 .section .rodata  # 0x804732E0 - 0x8049E220
-.balign 0x8
+.balign 8
 .global lbl_8048D810
 lbl_8048D810:
 	.asciz "/enemy/data/Kabuto/babykabuto_green_s3tc.bti"
@@ -28,7 +28,7 @@ lbl_8048D880:
 	.skip 3
 
 .section .data, "wa"  # 0x8049E220 - 0x804EFC20
-.balign 0x8
+.balign 8
 .global __vt__Q34Game11GreenKabuto3Mgr
 __vt__Q34Game11GreenKabuto3Mgr:
 	.4byte 0
@@ -95,7 +95,7 @@ __vt__Q34Game6Kabuto5Parms:
 	.4byte read__Q34Game6Kabuto5ParmsFR6Stream
 
 .section .sdata, "wa"  # 0x80514680 - 0x80514D80
-.balign 0x8
+.balign 8
 .global "cKabutoChangeTexName__Q34Game11GreenKabuto28@unnamed@GreenKabutoMgr_cpp@"
 "cKabutoChangeTexName__Q34Game11GreenKabuto28@unnamed@GreenKabutoMgr_cpp@":
 	.4byte lbl_8048D810

@@ -1,6 +1,6 @@
 .include "macros.inc"
 .section .data, "wa"  # 0x8049E220 - 0x804EFC20
-.balign 0x8
+.balign 8
 .global lbl_804A8900
 lbl_804A8900:
 	.asciz "<< Dolphin SDK - OS\trelease build: Nov 26 2003 05:18:37 (0x2301) >>"
@@ -55,7 +55,7 @@ __OSExceptionLocations:
 	.skip 1
 
 .section .sdata, "wa"  # 0x80514680 - 0x80514D80
-.balign 0x8
+.balign 8
 .global __OSVersion
 __OSVersion:
 	.4byte lbl_804A8900
@@ -68,7 +68,7 @@ lbl_805149D4:
 	.asciz "%s\n"
 
 .section .sbss # 0x80514D80 - 0x80516360
-.balign 0x8
+.balign 8
 .global BootInfo_1
 BootInfo_1:
 	.skip 0x4

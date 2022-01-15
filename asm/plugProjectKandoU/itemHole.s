@@ -3,7 +3,7 @@
 .4byte __sinit_itemHole_cpp
 
 .section .rodata  # 0x804732E0 - 0x8049E220
-.balign 0x8
+.balign 8
 .global lbl_80480520
 lbl_80480520:
 	.4byte 0x00000000
@@ -48,7 +48,7 @@ lbl_80480548:
 	.4byte 0x6E000000
 
 .section .data, "wa"  # 0x8049E220 - 0x804EFC20
-.balign 0x8
+.balign 8
 .global lbl_804B7970
 lbl_804B7970:
 	.4byte 0x00000000
@@ -385,7 +385,7 @@ __vt__Q34Game8ItemHole3FSM:
 	.4byte "transit__Q24Game30StateMachine<Q24Game8CFSMItem>FPQ24Game8CFSMItemiPQ24Game8StateArg"
 
 .section .sbss # 0x80514D80 - 0x80516360
-.balign 0x8
+.balign 8
 .global lbl_80515AC0
 lbl_80515AC0:
 	.skip 0x4
@@ -397,7 +397,7 @@ mgr__Q24Game8ItemHole:
 	.skip 0x8
 
 .section .sdata2, "a"     # 0x80516360 - 0x80520E40
-.balign 0x8
+.balign 8
 .global lbl_80519638
 lbl_80519638:
 	.4byte 0x00000000

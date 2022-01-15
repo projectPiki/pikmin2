@@ -1,6 +1,6 @@
 .include "macros.inc"
 .section .rodata  # 0x804732E0 - 0x8049E220
-.balign 0x8
+.balign 8
 .global sMixFuncs__9JASDriver
 sMixFuncs__9JASDriver:
 	.4byte mixMonoTrack__9JASDriverFPsUlPFl_Ps
@@ -35,7 +35,7 @@ lbl_80479630:
 	.4byte 0x00000000
 
 .section .data, "wa"  # 0x8049E220 - 0x804EFC20
-.balign 0x8
+.balign 8
 .global history$449
 history$449:
 	.4byte 0x000F4240
@@ -50,7 +50,7 @@ history$449:
 	.4byte 0x00000000
 
 .section .sdata, "wa"  # 0x80514680 - 0x80514D80
-.balign 0x8
+.balign 8
 .global sDspDacBufferCount__9JASDriver
 sDspDacBufferCount__9JASDriver:
 	.4byte 0x03000000
@@ -65,7 +65,7 @@ sDacRate__9JASDriver:
 	.float 32028.5
 
 .section .sbss # 0x80514D80 - 0x80516360
-.balign 0x8
+.balign 8
 .global sDspDacBuffer__9JASDriver
 sDspDacBuffer__9JASDriver:
 	.skip 0x4
@@ -107,7 +107,7 @@ init$447:
 	.skip 0x8
 
 .section .sdata2, "a"     # 0x80516360 - 0x80520E40
-.balign 0x8
+.balign 8
 .global lbl_80516E80
 lbl_80516E80:
 	.4byte 0x3F8CCCCD

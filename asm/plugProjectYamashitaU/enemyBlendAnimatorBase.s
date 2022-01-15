@@ -3,7 +3,7 @@
 .4byte __sinit_enemyBlendAnimatorBase_cpp
 
 .section .data, "wa"  # 0x8049E220 - 0x804EFC20
-.balign 0x8
+.balign 8
 .global __vt__Q28SysShape14BlendLinearFun
 __vt__Q28SysShape14BlendLinearFun:
 	.4byte 0
@@ -28,7 +28,7 @@ __vt__Q28SysShape18BlendQuadraticFunc:
 	.4byte getValue__Q28SysShape18BlendQuadraticFuncFf
 
 .section .sbss # 0x80514D80 - 0x80516360
-.balign 0x8
+.balign 8
 .global sBlendLinearFun__Q24Game22EnemyBlendAnimatorBase
 sBlendLinearFun__Q24Game22EnemyBlendAnimatorBase:
 	.skip 0x4
@@ -37,7 +37,7 @@ sBlendQuadraticFun__Q24Game22EnemyBlendAnimatorBase:
 	.skip 0x4
 
 .section .sdata2, "a"     # 0x80516360 - 0x80520E40
-.balign 0x8
+.balign 8
 .global lbl_80518118
 lbl_80518118:
 	.4byte 0x00000000

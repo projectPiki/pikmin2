@@ -1,6 +1,6 @@
 .include "macros.inc"
 .section .rodata  # 0x804732E0 - 0x8049E220
-.balign 0x8
+.balign 8
 .global j2dDefaultTexCoordInfo
 j2dDefaultTexCoordInfo:
 	.4byte 0x01043C00
@@ -45,7 +45,7 @@ j2dDefaultIndTevStageInfo:
 	.4byte 0x00000000
 
 .section .sdata2, "a"     # 0x80516360 - 0x80520E40
-.balign 0x8
+.balign 8
 .global lbl_805168F8
 lbl_805168F8:
 	.4byte 0x40490FDB

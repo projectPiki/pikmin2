@@ -3,7 +3,7 @@
 	.4byte __sinit_khDayEndResult_cpp
 
 .section .rodata  # 0x804732E0 - 0x8049E220
-.balign 0x8
+.balign 8
 .global lbl_80498830
 lbl_80498830:
 	.4byte 0x6B684461
@@ -297,7 +297,7 @@ lbl_80498900:
 	.4byte 0x00000000
 
 .section .data, "wa"  # 0x8049E220 - 0x804EFC20
-.balign 0x8
+.balign 8
 .global arrow__Q22kh6Screen
 arrow__Q22kh6Screen:
 	.4byte 0x004E7961
@@ -607,13 +607,13 @@ msVal__Q32kh6Screen19ObjDayEndResultBase:
 	.skip 0x54
 
 .section .sbss # 0x80514D80 - 0x80516360
-.balign 0x8
+.balign 8
 .global msVal__Q32kh6Screen19ObjDayEndResultTitl
 msVal__Q32kh6Screen19ObjDayEndResultTitl:
 	.skip 0x8
 
 .section .sdata2, "a"     # 0x80516360 - 0x80520E40
-.balign 0x8
+.balign 8
 .global lbl_805200A8
 lbl_805200A8:
 	.4byte 0x00000000

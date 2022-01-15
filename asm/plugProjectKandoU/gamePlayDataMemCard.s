@@ -1,6 +1,6 @@
 .include "macros.inc"
 .section .rodata  # 0x804732E0 - 0x8049E220
-.balign 0x8
+.balign 8
 .global lbl_804827B8
 lbl_804827B8:
 	.4byte 0x506C6179
@@ -272,7 +272,7 @@ lbl_80482B8C:
 	.skip 2
 
 .section .data, "wa"  # 0x8049E220 - 0x804EFC20
-.balign 0x8
+.balign 8
 .global __vt__Q24Game16PelletCropMemory
 __vt__Q24Game16PelletCropMemory:
 	.4byte 0
@@ -281,13 +281,13 @@ __vt__Q24Game16PelletCropMemory:
 	.4byte write__Q24Game16PelletCropMemoryFR6Stream
 
 .section .sdata, "wa"  # 0x80514680 - 0x80514D80
-.balign 0x8
+.balign 8
 .global mVersion__Q24Game8PlayData
 mVersion__Q24Game8PlayData:
 	.ascii "j009"
 
 .section .sbss # 0x80514D80 - 0x80516360
-.balign 0x8
+.balign 8
 .global sCurrPlayDataSize__Q24Game8PlayData
 sCurrPlayDataSize__Q24Game8PlayData:
 	.skip 0x4
@@ -296,7 +296,7 @@ sMaxPlayDataSize__Q24Game8PlayData:
 	.skip 0x4
 
 .section .sdata2, "a"     # 0x80516360 - 0x80520E40
-.balign 0x8
+.balign 8
 .global lbl_8051A078
 lbl_8051A078:
 	.4byte 0x0D0A0000

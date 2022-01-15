@@ -3,7 +3,7 @@
 	.4byte __sinit_graphics_cpp
 
 .section .rodata  # 0x804732E0 - 0x8049E220
-.balign 0x8
+.balign 8
 .global lbl_80499C38
 lbl_80499C38:
 	.asciz "initPrimDraw"
@@ -14,7 +14,7 @@ lbl_80499C48:
 	.skip 6
 
 .section .data, "wa"  # 0x8049E220 - 0x804EFC20
-.balign 0x8
+.balign 8
 .global lbl_804EBD98
 lbl_804EBD98:
 	.4byte 0x00000000
@@ -35,7 +35,7 @@ __vt__8Splitter:
 	.4byte 0
 
 .section .sbss # 0x80514D80 - 0x80516360
-.balign 0x8
+.balign 8
 .global lbl_80516190
 lbl_80516190:
 	.skip 0x4
@@ -50,7 +50,7 @@ lastTokenName__8Graphics:
 	.skip 0x4
 
 .section .sdata2, "a"     # 0x80516360 - 0x80520E40
-.balign 0x8
+.balign 8
 .global lbl_805204B8
 lbl_805204B8:
 	.4byte 0x00000000

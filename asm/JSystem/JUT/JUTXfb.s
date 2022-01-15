@@ -1,6 +1,6 @@
 .include "macros.inc"
 .section .sbss # 0x80514D80 - 0x80516360
-.balign 0x8
+.balign 8
 .global sManager__6JUTXfb
 sManager__6JUTXfb:
 	.skip 0x8

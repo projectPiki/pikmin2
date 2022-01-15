@@ -1,11 +1,11 @@
 .include "macros.inc"
 .section .sbss # 0x80514D80 - 0x80516360
-.balign 0x8
+.balign 8
 zero:
 	.skip 0x8
 
 .section .sdata2, "a"     # 0x80516360 - 0x80520E40
-.balign 0x8
+.balign 8
 .global lbl_80517248
 lbl_80517248:
 	.4byte 0xC3500000

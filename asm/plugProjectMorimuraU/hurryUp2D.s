@@ -3,7 +3,7 @@
 .4byte __sinit_hurryUp2D_cpp
 
 .section .rodata  # 0x804732E0 - 0x8049E220
-.balign 0x8
+.balign 8
 .global lbl_80490280
 lbl_80490280:
 	.4byte 0x00000000
@@ -45,7 +45,7 @@ lbl_804902D8:
 	.4byte 0x6A2E6800
 
 .section .data, "wa"  # 0x8049E220 - 0x804EFC20
-.balign 0x8
+.balign 8
 .global lbl_804DB2E8
 lbl_804DB2E8:
 	.4byte 0x00000000
@@ -172,7 +172,7 @@ __vt__Q28Morimura15THuWhitePaneSet:
 	.4byte 0
 
 .section .sdata, "wa"  # 0x80514680 - 0x80514D80
-.balign 0x8
+.balign 8
 .global mInitPosX__Q28Morimura10THurryUp2D
 mInitPosX__Q28Morimura10THurryUp2D:
 	.float 900.0
@@ -193,7 +193,7 @@ mColorUpSp__Q28Morimura10THurryUp2D:
 	.float 1.0
 
 .section .sbss # 0x80514D80 - 0x80516360
-.balign 0x8
+.balign 8
 .global lbl_80515F18
 lbl_80515F18:
 	.skip 0x4
@@ -202,7 +202,7 @@ lbl_80515F1C:
 	.skip 0x4
 
 .section .sdata2, "a"     # 0x80516360 - 0x80520E40
-.balign 0x8
+.balign 8
 .global lbl_8051E258
 lbl_8051E258:
 	.4byte 0x00000000

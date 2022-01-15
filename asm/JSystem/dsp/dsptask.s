@@ -1,6 +1,6 @@
 .include "macros.inc"
 .section .data, "wa"  # 0x8049E220 - 0x804EFC20
-.balign 0x8
+.balign 8
 .global jdsp
 jdsp:
 	.4byte 0x029F0012
@@ -1869,7 +1869,7 @@ jdsp:
 	.4byte 0x02DF0000
 
 .section .sbss # 0x80514D80 - 0x80516360
-.balign 0x8
+.balign 8
 .global taskreadp
 taskreadp:
 	.skip 0x4

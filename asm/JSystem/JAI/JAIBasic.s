@@ -1,6 +1,6 @@
 .include "macros.inc"
 .section .data, "wa"  # 0x8049E220 - 0x804EFC20
-.balign 0x8
+.balign 8
 .global __vt__8JAIBasic
 __vt__8JAIBasic:
 	.4byte 0
@@ -15,13 +15,13 @@ __vt__8JAIBasic:
 	.4byte setRegisterTrackCallback__8JAIBasicFv
 
 .section .sdata, "wa"  # 0x80514680 - 0x80514D80
-.balign 0x8
+.balign 8
 .global msStopStatus__8JAIBasic
 msStopStatus__8JAIBasic:
 	.4byte 0x03000000
 
 .section .sbss # 0x80514D80 - 0x80516360
-.balign 0x8
+.balign 8
 .global msBasic__8JAIBasic
 msBasic__8JAIBasic:
 	.skip 0x4
@@ -48,7 +48,7 @@ msDspDif__8JAIBasic:
 	.skip 0x4
 
 .section .sdata2, "a"     # 0x80516360 - 0x80520E40
-.balign 0x8
+.balign 8
 .global lbl_80516F08
 lbl_80516F08:
 	.4byte 0x25732573

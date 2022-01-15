@@ -3,7 +3,7 @@
 	.4byte __sinit_camera_cpp
 
 .section .data, "wa"  # 0x8049E220 - 0x804EFC20
-.balign 0x8
+.balign 8
 .global lbl_804EB718
 lbl_804EB718:
 	.4byte 0x00000000
@@ -134,7 +134,7 @@ __vt__11CullFrustum:
 	.4byte updatePlanes__11CullFrustumFv
 
 .section .sbss # 0x80514D80 - 0x80516360
-.balign 0x8
+.balign 8
 .global lbl_80516158
 lbl_80516158:
 	.skip 0x4
@@ -143,7 +143,7 @@ lbl_8051615C:
 	.skip 0x4
 
 .section .sdata2, "a"     # 0x80516360 - 0x80520E40
-.balign 0x8
+.balign 8
 .global lbl_80520358
 lbl_80520358:
 	.4byte 0x00000000

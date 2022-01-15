@@ -1,6 +1,6 @@
 .include "macros.inc"
 .section .data, "wa"  # 0x8049E220 - 0x804EFC20
-.balign 0x8
+.balign 8
 .global lbl_804A62A0
 lbl_804A62A0:
 	.4byte lbl_800ADCFC
@@ -15,7 +15,7 @@ lbl_804A62A0:
 	.4byte 0x00000000
 
 .section .sdata, "wa"  # 0x80514680 - 0x80514D80
-.balign 0x8
+.balign 8
 .global wsInitCallback__Q27JAInter8InitData
 wsInitCallback__Q27JAInter8InitData:
 	.4byte initWsList__Q27JAInter8InitDataFPUl
@@ -24,13 +24,13 @@ bnkInitCallback__Q27JAInter8InitData:
 	.4byte initBnkList__Q27JAInter8InitDataFPUl
 
 .section .sbss # 0x80514D80 - 0x80516360
-.balign 0x8
+.balign 8
 .global aafPointer__Q27JAInter8InitData
 aafPointer__Q27JAInter8InitData:
 	.skip 0x8
 
 .section .sdata2, "a"     # 0x80516360 - 0x80520E40
-.balign 0x8
+.balign 8
 .global lbl_80516F40
 lbl_80516F40:
 	.asciz "%s%s%c"

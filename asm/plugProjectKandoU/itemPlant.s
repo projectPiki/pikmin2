@@ -1,6 +1,6 @@
 .include "macros.inc"
 .section .rodata  # 0x804732E0 - 0x8049E220
-.balign 0x8
+.balign 8
 .global lbl_804808F0
 lbl_804808F0:
 	.4byte 0x6974656D
@@ -152,7 +152,7 @@ lbl_80480980:
 	.4byte 0x67000000
 
 .section .data, "wa"  # 0x8049E220 - 0x804EFC20
-.balign 0x8
+.balign 8
 .global __vt__Q34Game9ItemPlant9FruitSlot
 __vt__Q34Game9ItemPlant9FruitSlot:
 	.4byte 0
@@ -807,13 +807,13 @@ __vt__Q34Game9ItemPlant3FSM:
 	.4byte 0
 
 .section .sbss # 0x80514D80 - 0x80516360
-.balign 0x8
+.balign 8
 .global mgr__Q24Game9ItemPlant
 mgr__Q24Game9ItemPlant:
 	.skip 0x8
 
 .section .sdata2, "a"     # 0x80516360 - 0x80520E40
-.balign 0x8
+.balign 8
 .global lbl_80519800
 lbl_80519800:
 	.4byte 0x00000000

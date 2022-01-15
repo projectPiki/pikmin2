@@ -1,6 +1,6 @@
 .include "macros.inc"
 .section .rodata  # 0x804732E0 - 0x8049E220
-.balign 0x8
+.balign 8
 .global "saCompositeOperation___Q37JStudio3fvb17@unnamed@fvb_cpp@"
 "saCompositeOperation___Q37JStudio3fvb17@unnamed@fvb_cpp@":
 	.4byte 0x00000000
@@ -21,7 +21,7 @@
 	.4byte "getCompositeData_divide___Q37JStudio3fvb17@unnamed@fvb_cpp@FPCv"
 
 .section .data, "wa"  # 0x8049E220 - 0x804EFC20
-.balign 0x8
+.balign 8
 .global lbl_8049E548
 lbl_8049E548:
 	.4byte lbl_8000BD3C

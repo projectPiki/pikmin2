@@ -1,6 +1,6 @@
 .include "macros.inc"
 .section .rodata  # 0x804732E0 - 0x8049E220
-.balign 0x8
+.balign 8
 .global lbl_80484868
 lbl_80484868:
 	.4byte 0x3234362D
@@ -69,7 +69,7 @@ lbl_80484928:
 	.4byte 0x00000000
 
 .section .data, "wa"  # 0x8049E220 - 0x804EFC20
-.balign 0x8
+.balign 8
 .global __vt__Q24Game9RumbleMgr
 __vt__Q24Game9RumbleMgr:
 	.4byte 0
@@ -78,13 +78,13 @@ __vt__Q24Game9RumbleMgr:
 	.4byte getChildCount__5CNodeFv
 
 .section .sbss # 0x80514D80 - 0x80516360
-.balign 0x8
+.balign 8
 .global rumbleMgr__4Game
 rumbleMgr__4Game:
 	.skip 0x8
 
 .section .sdata2, "a"     # 0x80516360 - 0x80520E40
-.balign 0x8
+.balign 8
 .global lbl_8051A978
 lbl_8051A978:
 	.4byte 0x443B8000

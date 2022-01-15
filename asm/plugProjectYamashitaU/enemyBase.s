@@ -3,7 +3,7 @@
 .4byte __sinit_enemyBase_cpp
 
 .section .rodata  # 0x804732E0 - 0x8049E220
-.balign 0x8
+.balign 8
 lbl_8047A520:
 	.skip 0xC
 .balign 4
@@ -62,7 +62,7 @@ lbl_8047A64C:
 	.asciz "ArgEnemyType"
 
 .section .data, "wa"  # 0x8049E220 - 0x804EFC20
-.balign 0x8
+.balign 8
 lbl_804AA150:
 	.4byte 0x00000000
 	.4byte 0x00000000
@@ -660,7 +660,7 @@ __vt__Q34Game12EnemyBaseFSM5State:
 	.4byte animation__Q34Game12EnemyBaseFSM5StateFPQ24Game9EnemyBase
 
 .section .sbss # 0x80514D80 - 0x80516360
-.balign 0x8
+.balign 8
 gu32NAN___Q24Game5P2JST:
 	.skip 0x4
 gfNAN___Q24Game5P2JST:

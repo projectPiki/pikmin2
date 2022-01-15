@@ -1,6 +1,6 @@
 .include "macros.inc"
 .section .rodata  # 0x804732E0 - 0x8049E220
-.balign 0x8
+.balign 8
 .global lbl_8047F2A0
 lbl_8047F2A0:
 	.asciz "actAttack"
@@ -48,7 +48,7 @@ lbl_8047F31C:
 	.4byte 0x00000000
 
 .section .data, "wa"  # 0x8049E220 - 0x804EFC20
-.balign 0x8
+.balign 8
 .global __vt__13FindCondition
 __vt__13FindCondition:
 	.4byte 0
@@ -93,7 +93,7 @@ __vt__Q26PikiAI9ActAttack:
 	.4byte 0
 
 .section .sdata2, "a"     # 0x80516360 - 0x80520E40
-.balign 0x8
+.balign 8
 .global lbl_80519078
 lbl_80519078:
 	.asciz "SA"

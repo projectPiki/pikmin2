@@ -3,7 +3,7 @@
 	.4byte __sinit_sysShapeAnimation_cpp
 
 .section .rodata  # 0x804732E0 - 0x8049E220
-.balign 0x8
+.balign 8
 .global lbl_8049AC40
 lbl_8049AC40:
 	.4byte 0x00000000
@@ -32,7 +32,7 @@ lbl_8049AC74:
 	.4byte 0x7E3F0A00
 
 .section .data, "wa"  # 0x8049E220 - 0x804EFC20
-.balign 0x8
+.balign 8
 .global lbl_804ECBF0
 lbl_804ECBF0:
 	.4byte 0x00000000
@@ -41,7 +41,7 @@ lbl_804ECBF0:
 	.4byte 0x00000000
 
 .section .sbss # 0x80514D80 - 0x80516360
-.balign 0x8
+.balign 8
 .global lbl_80516270
 lbl_80516270:
 	.skip 0x4
@@ -50,7 +50,7 @@ lbl_80516274:
 	.skip 0x4
 
 .section .sdata2, "a"     # 0x80516360 - 0x80520E40
-.balign 0x8
+.balign 8
 .global lbl_805208F8
 lbl_805208F8:
 	.4byte 0x25732F25

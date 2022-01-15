@@ -3,7 +3,7 @@
 .4byte __sinit_itemCave_cpp
 
 .section .rodata  # 0x804732E0 - 0x8049E220
-.balign 0x8
+.balign 8
 .global lbl_80480F98
 lbl_80480F98:
 	.4byte 0x00000000
@@ -83,7 +83,7 @@ lbl_80481078:
 	.4byte 0x00000000
 
 .section .data, "wa"  # 0x8049E220 - 0x804EFC20
-.balign 0x8
+.balign 8
 .global lbl_804BA3A0
 lbl_804BA3A0:
 	.4byte 0x00000000
@@ -524,7 +524,7 @@ __vt__Q34Game8ItemCave3FSM:
 	.4byte "transit__Q24Game35StateMachine<Q34Game8ItemCave4Item>FPQ34Game8ItemCave4ItemiPQ24Game8StateArg"
 
 .section .sbss # 0x80514D80 - 0x80516360
-.balign 0x8
+.balign 8
 .global lbl_80515B18
 lbl_80515B18:
 	.skip 0x4
@@ -536,7 +536,7 @@ mgr__Q24Game8ItemCave:
 	.skip 0x8
 
 .section .sdata2, "a"     # 0x80516360 - 0x80520E40
-.balign 0x8
+.balign 8
 .global lbl_805199E0
 lbl_805199E0:
 	.4byte 0x466F6750

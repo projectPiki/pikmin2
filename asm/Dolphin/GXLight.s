@@ -1,6 +1,6 @@
 .include "macros.inc"
 .section .data, "wa"  # 0x8049E220 - 0x804EFC20
-.balign 0x8
+.balign 8
 .global lbl_804A8530
 lbl_804A8530:
 	.4byte lbl_800E69EC
@@ -13,7 +13,7 @@ lbl_804A8530:
 	.4byte 0x00000000
 
 .section .sdata2, "a"     # 0x80516360 - 0x80520E40
-.balign 0x8
+.balign 8
 .global lbl_80517628
 lbl_80517628:
 	.4byte 0x00000000

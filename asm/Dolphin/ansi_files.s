@@ -1,7 +1,7 @@
 .include "macros.inc"
 
 .section .data, "wa"  # 0x8049E220 - 0x804EFC20
-.balign 0x8
+.balign 8
 .global __files
 __files:
 	.4byte 0x00000000

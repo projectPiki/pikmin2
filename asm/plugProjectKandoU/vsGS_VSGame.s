@@ -3,7 +3,7 @@
 .4byte __sinit_vsGS_VSGame_cpp
 
 .section .rodata  # 0x804732E0 - 0x8049E220
-.balign 0x8
+.balign 8
 .global lbl_80483850
 lbl_80483850:
 	.4byte 0x00000000
@@ -23,7 +23,7 @@ lbl_80483850:
 	.4byte 0x00000000
 
 .section .data, "wa"  # 0x8049E220 - 0x804EFC20
-.balign 0x8
+.balign 8
 .global lbl_804C1158
 lbl_804C1158:
 	.4byte 0x00000000
@@ -54,7 +54,7 @@ __vt__Q34Game6VsGame7VSState:
 	.4byte do_init__Q34Game6VsGame7VSStateFPQ24Game13VsGameSection
 
 .section .sbss # 0x80514D80 - 0x80516360
-.balign 0x8
+.balign 8
 .global lbl_80515C90
 lbl_80515C90:
 	.skip 0x4

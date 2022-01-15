@@ -1,6 +1,6 @@
 .include "macros.inc"
 .section .rodata  # 0x804732E0 - 0x8049E220
-.balign 0x8
+.balign 8
 .global lbl_80496D38
 lbl_80496D38:
 	.4byte 0x65626953
@@ -48,7 +48,7 @@ lbl_80496DC4:
 	.4byte 0x6E750000
 
 .section .data, "wa"  # 0x8049E220 - 0x804EFC20
-.balign 0x8
+.balign 8
 .global __vt__Q33ebi6Screen10TTitleMenu
 __vt__Q33ebi6Screen10TTitleMenu:
 	.4byte 0
@@ -73,7 +73,7 @@ __vt__Q33ebi6Screen10TTitleMenu:
 	.4byte 0
 
 .section .sdata2, "a"     # 0x80516360 - 0x80520E40
-.balign 0x8
+.balign 8
 .global lbl_8051FB68
 lbl_8051FB68:
 	.4byte 0x3F28F5C3

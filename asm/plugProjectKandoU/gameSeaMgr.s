@@ -3,7 +3,7 @@
 .4byte __sinit_gameSeaMgr_cpp
 
 .section .rodata  # 0x804732E0 - 0x8049E220
-.balign 0x8
+.balign 8
 .global lbl_8047F958
 lbl_8047F958:
 	.4byte 0x00000000
@@ -65,7 +65,7 @@ lbl_8047F988:
 	.4byte 0x00000000
 
 .section .data, "wa"  # 0x8049E220 - 0x804EFC20
-.balign 0x8
+.balign 8
 .global lbl_804B57A8
 lbl_804B57A8:
 	.4byte 0x00000000
@@ -234,7 +234,7 @@ __vt__Q24Game8WaterBox:
 	.4byte 0
 
 .section .sbss # 0x80514D80 - 0x80516360
-.balign 0x8
+.balign 8
 .global lbl_80515A50
 lbl_80515A50:
 	.skip 0x4
@@ -243,7 +243,7 @@ lbl_80515A54:
 	.skip 0x4
 
 .section .sdata2, "a"     # 0x80516360 - 0x80520E40
-.balign 0x8
+.balign 8
 .global lbl_80519320
 lbl_80519320:
 	.4byte 0x47000000

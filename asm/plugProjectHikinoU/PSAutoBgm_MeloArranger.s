@@ -1,6 +1,6 @@
 .include "macros.inc"
 .section .rodata  # 0x804732E0 - 0x8049E220
-.balign 0x8
+.balign 8
 .global lbl_80490010
 lbl_80490010:
 	.4byte 0x50534175
@@ -16,7 +16,7 @@ lbl_8049002C:
 	.skip 3
 
 .section .data, "wa"  # 0x8049E220 - 0x804EFC20
-.balign 0x8
+.balign 8
 .global __vt__Q29PSAutoBgm11MeloArrBase
 __vt__Q29PSAutoBgm11MeloArrBase:
 	.4byte 0

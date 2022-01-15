@@ -1,6 +1,6 @@
 .include "macros.inc"
 .section .rodata  # 0x804732E0 - 0x8049E220
-.balign 0x8
+.balign 8
 .global lbl_80473AA8
 lbl_80473AA8:
 	.asciz "allocFromHead: cannot alloc memory (0x%x byte).\n"
@@ -33,7 +33,7 @@ lbl_80473B98:
 	.skip 2
 
 .section .data, "wa"  # 0x8049E220 - 0x804EFC20
-.balign 0x8
+.balign 8
 .global __vt__12JKRSolidHeap
 __vt__12JKRSolidHeap:
 	.4byte 0
@@ -62,7 +62,7 @@ __vt__12JKRSolidHeap:
 	.4byte state_dump__7JKRHeapCFRCQ27JKRHeap6TState
 
 .section .sdata2, "a"     # 0x80516360 - 0x80520E40
-.balign 0x8
+.balign 8
 .global lbl_80516538
 lbl_80516538:
 	.4byte 0x42C80000

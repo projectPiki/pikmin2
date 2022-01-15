@@ -3,7 +3,7 @@
 	.4byte __sinit_moviePlayer_cpp
 
 .section .rodata  # 0x804732E0 - 0x8049E220
-.balign 0x8
+.balign 8
 .global lbl_80499F10
 lbl_80499F10:
 	.4byte 0x00000000
@@ -167,7 +167,7 @@ lbl_8049A118:
 	.4byte 0x664B0000
 
 .section .data, "wa"  # 0x8049E220 - 0x804EFC20
-.balign 0x8
+.balign 8
 .global lbl_804EBFB0
 lbl_804EBFB0:
 	.4byte 0x00000000
@@ -208,7 +208,7 @@ __vt__Q24Game11MoviePlayer:
 	.4byte __dt__Q24Game11MoviePlayerFv
 
 .section .sbss # 0x80514D80 - 0x80516360
-.balign 0x8
+.balign 8
 .global lbl_805161C8
 lbl_805161C8:
 	.skip 0x4
@@ -223,7 +223,7 @@ moviePlayer__4Game:
 	.skip 0x4
 
 .section .sdata2, "a"     # 0x80516360 - 0x80520E40
-.balign 0x8
+.balign 8
 .global lbl_80520610
 lbl_80520610:
 	.4byte 0x00000000

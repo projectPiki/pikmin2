@@ -3,7 +3,7 @@
 .4byte __sinit_ogLifeGauge_cpp
 
 .section .rodata  # 0x804732E0 - 0x8049E220
-.balign 0x8
+.balign 8
 .global lbl_8048DFB8
 lbl_8048DFB8:
 	.asciz "ogLifeGauge.cpp"
@@ -13,7 +13,7 @@ lbl_8048DFC8:
 	.skip 2
 
 .section .data, "wa"  # 0x8049E220 - 0x804EFC20
-.balign 0x8
+.balign 8
 .global __vt__Q32og6Screen13NaviLifeGauge
 __vt__Q32og6Screen13NaviLifeGauge:
 	.4byte 0
@@ -81,7 +81,7 @@ msVal__Q32og6Screen18CallBack_LifeGauge:
 	.skip 0x10
 
 .section .sdata2, "a"     # 0x80516360 - 0x80520E40
-.balign 0x8
+.balign 8
 .global lbl_8051D5B0
 lbl_8051D5B0:
 	.float 1.0

@@ -1,6 +1,6 @@
 .include "macros.inc"
 .section .rodata  # 0x804732E0 - 0x8049E220
-.balign 0x8
+.balign 8
 .global lbl_8047A660
 lbl_8047A660:
 	.4byte 0x70656C70
@@ -258,7 +258,7 @@ lbl_8047A70C:
 	.4byte 0x00000000
 
 .section .data, "wa"  # 0x8049E220 - 0x804EFC20
-.balign 0x8
+.balign 8
 .global "sLODRadius__Q34Game8Pelplant22@unnamed@pelplant_cpp@"
 "sLODRadius__Q34Game8Pelplant22@unnamed@pelplant_cpp@":
 	.4byte 0x42340000
@@ -769,7 +769,7 @@ __vt__Q34Game8Pelplant21BlendAccelerationFunc:
 	.4byte getValue__Q34Game8Pelplant21BlendAccelerationFuncFf
 
 .section .sbss # 0x80514D80 - 0x80516360
-.balign 0x8
+.balign 8
 .global farmMgr__Q24Game4Farm
 farmMgr__Q24Game4Farm:
 	.skip 0x4
@@ -778,7 +778,7 @@ sCurrentObj__Q34Game8Pelplant3Obj:
 	.skip 0x4
 
 .section .sdata2, "a"     # 0x80516360 - 0x80520E40
-.balign 0x8
+.balign 8
 .global lbl_80517850
 lbl_80517850:
 	.4byte 0xC3A2F983

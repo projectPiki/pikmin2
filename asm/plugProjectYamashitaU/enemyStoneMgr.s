@@ -1,6 +1,6 @@
 .include "macros.inc"
 .section .rodata  # 0x804732E0 - 0x8049E220
-.balign 0x8
+.balign 8
 .global lbl_8047BE58
 lbl_8047BE58:
 	.asciz "sekikaobj_large.bmd"
@@ -41,7 +41,7 @@ lbl_8047BE6C:
 	.4byte 0x00000000
 
 .section .sdata, "wa"  # 0x80514680 - 0x80514D80
-.balign 0x8
+.balign 8
 .global "sStoneMdlName__27@unnamed@enemyStoneMgr_cpp@"
 "sStoneMdlName__27@unnamed@enemyStoneMgr_cpp@":
 	.4byte lbl_8047BE58

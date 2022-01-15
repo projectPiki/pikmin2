@@ -1,6 +1,6 @@
 .include "macros.inc"
 .section .rodata  # 0x804732E0 - 0x8049E220
-.balign 0x8
+.balign 8
 .global lbl_8047F3C0
 lbl_8047F3C0:
 	.4byte 0x6169456E
@@ -26,7 +26,7 @@ lbl_8047F3E8:
 	.4byte 0x00000000
 
 .section .data, "wa"  # 0x8049E220 - 0x804EFC20
-.balign 0x8
+.balign 8
 .global __vt__Q26PikiAI7ActExit
 __vt__Q26PikiAI7ActExit:
 	.4byte 0
@@ -77,7 +77,7 @@ __vt__Q26PikiAI8ActEnter:
 	.4byte "@96@4@onKeyEvent__Q26PikiAI8ActEnterFRCQ28SysShape8KeyEvent"
 
 .section .sdata2, "a"     # 0x80516360 - 0x80520E40
-.balign 0x8
+.balign 8
 .global lbl_80519110
 lbl_80519110:
 	.4byte 0x456E7465

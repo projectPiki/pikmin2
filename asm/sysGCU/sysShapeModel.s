@@ -3,7 +3,7 @@
 	.4byte __sinit_sysShapeModel_cpp
 
 .section .rodata  # 0x804732E0 - 0x8049E220
-.balign 0x8
+.balign 8
 .global lbl_8049AC90
 lbl_8049AC90:
 	.4byte 0x73797353
@@ -14,7 +14,7 @@ lbl_8049AC90:
 	.4byte 0x00000000
 
 .section .data, "wa"  # 0x8049E220 - 0x804EFC20
-.balign 0x8
+.balign 8
 .global lbl_804ECC00
 lbl_804ECC00:
 	.4byte 0x00000000
@@ -43,7 +43,7 @@ __vt__Q28SysShape5Model:
 	.4byte 0
 
 .section .sdata, "wa"  # 0x80514680 - 0x80514D80
-.balign 0x8
+.balign 8
 .global viewCalcMode__Q28SysShape5Model
 viewCalcMode__Q28SysShape5Model:
 	.byte 0x01
@@ -52,7 +52,7 @@ viewCalcMode__Q28SysShape5Model:
 	.byte 0x00
 
 .section .sbss # 0x80514D80 - 0x80516360
-.balign 0x8
+.balign 8
 .global lbl_80516278
 lbl_80516278:
 	.skip 0x4
@@ -64,7 +64,7 @@ cullCount__Q28SysShape5Model:
 	.skip 0x8
 
 .section .sdata2, "a"     # 0x80516360 - 0x80520E40
-.balign 0x8
+.balign 8
 .global lbl_80520908
 lbl_80520908:
 	.4byte 0x6D616E64

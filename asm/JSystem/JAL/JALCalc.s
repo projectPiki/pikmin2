@@ -1,6 +1,6 @@
 .include "macros.inc"
 .section .sbss # 0x80514D80 - 0x80516360
-.balign 0x8
+.balign 8
 .global init$484
 init$484:
 	.skip 0x4
@@ -9,7 +9,7 @@ oRandom$483:
 	.skip 0x4
 
 .section .sdata2, "a"     # 0x80516360 - 0x80520E40
-.balign 0x8
+.balign 8
 .global cEqualCSlope__7JALCalc
 cEqualCSlope__7JALCalc:
 	.float 1.0

@@ -1,6 +1,6 @@
 .include "macros.inc"
 .section .data, "wa"  # 0x8049E220 - 0x804EFC20
-.balign 0x8
+.balign 8
 .global sDifferedRegister
 sDifferedRegister:
 	.4byte 0x00000001
@@ -54,7 +54,7 @@ sGDLObj__17J3DDisplayListObj:
 	.skip 0x10
 
 .section .sbss # 0x80514D80 - 0x80516360
-.balign 0x8
+.balign 8
 .global sInterruptFlag__17J3DDisplayListObj
 sInterruptFlag__17J3DDisplayListObj:
 	.skip 0x8

@@ -3,7 +3,7 @@
 	.4byte __sinit_JSTObjectSystem_cpp
 
 .section .rodata  # 0x804732E0 - 0x8049E220
-.balign 0x8
+.balign 8
 .global lbl_8049A300
 lbl_8049A300:
 	.4byte 0x4A53544F
@@ -24,7 +24,7 @@ lbl_8049A314:
 	.4byte 0x00000000
 
 .section .data, "wa"  # 0x8049E220 - 0x804EFC20
-.balign 0x8
+.balign 8
 .global lbl_804EC2C8
 lbl_804EC2C8:
 	.4byte 0x00000000
@@ -67,7 +67,7 @@ __vt__Q34Game5P2JST12ObjectSystem:
 	.4byte 0
 
 .section .sbss # 0x80514D80 - 0x80516360
-.balign 0x8
+.balign 8
 .global lbl_805161F8
 lbl_805161F8:
 	.skip 0x4

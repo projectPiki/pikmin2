@@ -1,6 +1,6 @@
 .include "macros.inc"
 .section .rodata  # 0x804732E0 - 0x8049E220
-.balign 0x8
+.balign 8
 .global lbl_80494720
 lbl_80494720:
 	.4byte 0x6368616C
@@ -266,7 +266,7 @@ lbl_80494A74:
 	.asciz "screenObj.h"
 
 .section .data, "wa"  # 0x8049E220 - 0x804EFC20
-.balign 0x8
+.balign 8
 .global __vt__Q28Morimura21TChallengeResultScene
 __vt__Q28Morimura21TChallengeResultScene:
 	.4byte 0
@@ -379,7 +379,7 @@ __vt__Q28Morimura22TChallengeResultScreen:
 	.4byte 0
 
 .section .sdata, "wa"  # 0x80514680 - 0x80514D80
-.balign 0x8
+.balign 8
 .global mMoveSpeed__Q28Morimura16TChallengeResult
 mMoveSpeed__Q28Morimura16TChallengeResult:
 	.float 12.0
@@ -415,7 +415,7 @@ mFlashColor__Q28Morimura16TChallengeResult:
 	.4byte 0xFFFF00FF
 
 .section .sbss # 0x80514D80 - 0x80516360
-.balign 0x8
+.balign 8
 .global mForceDemoStart__Q28Morimura16TChallengeResult
 mForceDemoStart__Q28Morimura16TChallengeResult:
 	.skip 0x1
@@ -439,7 +439,7 @@ mRedFlowerTexture__Q28Morimura16TChallengeResult:
 	.skip 0x4
 
 .section .sdata2, "a"     # 0x80516360 - 0x80520E40
-.balign 0x8
+.balign 8
 .global lbl_8051F080
 lbl_8051F080:
 	.4byte 0x42F00000

@@ -1,6 +1,6 @@
 .include "macros.inc"
 .section .rodata  # 0x804732E0 - 0x8049E220
-.balign 0x8
+.balign 8
 .global lbl_80496378
 lbl_80496378:
 	.4byte 0x65667854
@@ -27,7 +27,7 @@ lbl_8049639C:
 	.4byte 0x00000000
 
 .section .data, "wa"  # 0x8049E220 - 0x804EFC20
-.balign 0x8
+.balign 8
 .global lbl_804E7AC8
 lbl_804E7AC8:
 	.4byte lbl_803C715C
@@ -72,7 +72,7 @@ __vt__Q23efx19TPkOneEmitterSimple:
 	.4byte 0
 
 .section .sbss # 0x80514D80 - 0x80516360
-.balign 0x8
+.balign 8
 .global pkEffectMgr
 pkEffectMgr:
 	.skip 0x4

@@ -1,6 +1,6 @@
 .include "macros.inc"
 .section .rodata  # 0x804732E0 - 0x8049E220
-.balign 0x8
+.balign 8
 .global lbl_8048F918
 lbl_8048F918:
 	.asciz "PSGame.cpp"
@@ -317,7 +317,7 @@ lbl_8048FAD0:
 	.4byte 0x6E670A00
 
 .section .data, "wa"  # 0x8049E220 - 0x804EFC20
-.balign 0x8
+.balign 8
 .global lbl_804DA920
 lbl_804DA920:
 	.4byte lbl_80337278
@@ -445,7 +445,7 @@ newSeqName__6PSGame:
 	.skip 0x20
 
 .section .sbss # 0x80514D80 - 0x80516360
-.balign 0x8
+.balign 8
 .global sToolMode__Q26PSGame13ConductorList
 sToolMode__Q26PSGame13ConductorList:
 	.skip 0x4
@@ -454,7 +454,7 @@ sToolMode__Q26PSGame13ConductorList:
 	.skip 0x4
 
 .section .sdata2, "a"     # 0x80516360 - 0x80520E40
-.balign 0x8
+.balign 8
 .global lbl_8051E0C0
 lbl_8051E0C0:
 	.4byte 0x30300000

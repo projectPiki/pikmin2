@@ -3,7 +3,7 @@
 .4byte __sinit_carryInfoMgr_cpp
 
 .section .rodata  # 0x804732E0 - 0x8049E220
-.balign 0x8
+.balign 8
 lbl_8047B268:
 	.asciz "carryInfoMgr.cpp"
 	.skip 3
@@ -16,7 +16,7 @@ lbl_8047B2B0:
 	.skip 3
 
 .section .data, "wa"  # 0x8049E220 - 0x804EFC20
-.balign 0x8
+.balign 8
 .global lbl_804AC320
 lbl_804AC320:
 	.4byte 0x00000000
@@ -103,7 +103,7 @@ __vt__13CarryInfoList:
 	.4byte isFinish__13CarryInfoListFv
 
 .section .sbss # 0x80514D80 - 0x80516360
-.balign 0x8
+.balign 8
 .global lbl_80515890
 lbl_80515890:
 	.skip 0x4
@@ -115,7 +115,7 @@ carryInfoMgr:
 	.skip 0x8
 
 .section .sdata2, "a"     # 0x80516360 - 0x80520E40
-.balign 0x8
+.balign 8
 lbl_80517B60:
 	.float 0.0
 lbl_80517B64:

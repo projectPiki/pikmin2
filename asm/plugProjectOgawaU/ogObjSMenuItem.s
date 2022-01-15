@@ -3,7 +3,7 @@
 .4byte __sinit_ogObjSMenuItem_cpp
 
 .section .rodata  # 0x804732E0 - 0x8049E220
-.balign 0x8
+.balign 8
 .global lbl_8048E438
 lbl_8048E438:
 	.4byte 0x6F674F62
@@ -76,7 +76,7 @@ lbl_8048E438:
 	.skip 3
 
 .section .data, "wa"  # 0x8049E220 - 0x804EFC20
-.balign 0x8
+.balign 8
 .global EquipItemList__Q24Game5Equip
 EquipItemList__Q24Game5Equip:
 	.4byte 0x00000002
@@ -168,7 +168,7 @@ msVal__Q32og9newScreen12ObjSMenuItem:
 	.skip 0x20
 
 .section .sdata2, "a"     # 0x80516360 - 0x80520E40
-.balign 0x8
+.balign 8
 .global lbl_8051D830
 lbl_8051D830:
 	.4byte 0xC2C00000

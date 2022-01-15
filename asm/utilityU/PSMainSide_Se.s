@@ -1,6 +1,6 @@
 .include "macros.inc"
 .section .rodata  # 0x804732E0 - 0x8049E220
-.balign 0x8
+.balign 8
 .global lbl_8049DA08
 lbl_8049DA08:
 	.4byte 0x50534D61
@@ -40,7 +40,7 @@ lbl_8049DA70:
 	.4byte 0x00000000
 
 .section .data, "wa"  # 0x8049E220 - 0x804EFC20
-.balign 0x8
+.balign 8
 .global lbl_804EF6F0
 lbl_804EF6F0:
 	.4byte lbl_8046D858
@@ -151,7 +151,7 @@ __vt__Q23PSM14WorldMapRocket:
 	.4byte __dt__Q23PSM14WorldMapRocketFv
 
 .section .sdata, "wa"  # 0x80514680 - 0x80514D80
-.balign 0x8
+.balign 8
 .global sTreasureLader_PitchDistance
 sTreasureLader_PitchDistance:
 	.float 0.77
@@ -185,7 +185,7 @@ sLaderNoiseFuefukiVolumeMax:
 	.float 0.5
 
 .section .sbss # 0x80514D80 - 0x80516360
-.balign 0x8
+.balign 8
 .global tmpVol$3526
 tmpVol$3526:
 	.skip 0x4
@@ -203,7 +203,7 @@ sLaderNoiseFuefukiSensMin:
 	.skip 0x4
 
 .section .sdata2, "a"     # 0x80516360 - 0x80520E40
-.balign 0x8
+.balign 8
 .global lbl_80520CE0
 lbl_80520CE0:
 	.4byte 0x00000000

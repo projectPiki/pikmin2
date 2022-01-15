@@ -1,13 +1,13 @@
 .include "macros.inc"
 .section .rodata  # 0x804732E0 - 0x8049E220
-.balign 0x8
+.balign 8
 .global lbl_804997A8
 lbl_804997A8:
 	.asciz "# %d/%d\r\n"
 	.skip 0x6
 
 .section .data, "wa"  # 0x8049E220 - 0x804EFC20
-.balign 0x8
+.balign 8
 .global __vt__Q23Sys11VertexTable
 __vt__Q23Sys11VertexTable:
 	.4byte 0
@@ -98,13 +98,13 @@ __vt__Q23Sys11GridDivider:
 	.4byte 0
 
 .section .sbss # 0x80514D80 - 0x80516360
-.balign 0x8
+.balign 8
 .global debug__Q23Sys8Triangle
 debug__Q23Sys8Triangle:
 	.skip 0x8
 
 .section .sdata2, "a"     # 0x80516360 - 0x80520E40
-.balign 0x8
+.balign 8
 .global lbl_80520308
 lbl_80520308:
 	.4byte 0x00000000

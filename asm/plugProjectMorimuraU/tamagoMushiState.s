@@ -1,6 +1,6 @@
 .include "macros.inc"
 .section .data, "wa"  # 0x8049E220 - 0x804EFC20
-.balign 0x8
+.balign 8
 .global __vt__Q34Game11TamagoMushi9StateWait
 __vt__Q34Game11TamagoMushi9StateWait:
 	.4byte 0
@@ -91,7 +91,7 @@ __vt__Q34Game11TamagoMushi3FSM:
 	.4byte setCurrState__Q24Game17EnemyStateMachineFPQ24Game9EnemyBasePQ24Game13EnemyFSMState
 
 .section .sdata2, "a"     # 0x80516360 - 0x80520E40
-.balign 0x8
+.balign 8
 .global lbl_8051EA00
 lbl_8051EA00:
 	.4byte 0x77616C6B

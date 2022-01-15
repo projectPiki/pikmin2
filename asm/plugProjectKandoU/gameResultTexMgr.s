@@ -1,6 +1,6 @@
 .include "macros.inc"
 .section .rodata  # 0x804732E0 - 0x8049E220
-.balign 0x8
+.balign 8
 .global lbl_804831C8
 lbl_804831C8:
 	.4byte 0x72657375
@@ -100,7 +100,7 @@ lbl_804832B8:
 	.4byte 0x0A000000
 
 .section .data, "wa"  # 0x8049E220 - 0x804EFC20
-.balign 0x8
+.balign 8
 .global __vt__Q24Game5DNode
 __vt__Q24Game5DNode:
 	.4byte 0
@@ -115,7 +115,7 @@ __vt__Q34Game12ResultTexMgr3Mgr:
 	.4byte 0
 
 .section .sdata2, "a"     # 0x80516360 - 0x80520E40
-.balign 0x8
+.balign 8
 .global lbl_8051A230
 lbl_8051A230:
 	.4byte 0x6A706E00

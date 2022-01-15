@@ -3,7 +3,7 @@
 .4byte __sinit_gameStat_cpp
 
 .section .rodata  # 0x804732E0 - 0x8049E220
-.balign 0x8
+.balign 8
 .global lbl_80480500
 lbl_80480500:
 	.4byte 0x67616D65
@@ -16,7 +16,7 @@ lbl_80480510:
 	.skip 3
 
 .section .data, "wa"  # 0x8049E220 - 0x804EFC20
-.balign 0x8
+.balign 8
 .global __vt__Q34Game8GameStat11PikiCounter
 __vt__Q34Game8GameStat11PikiCounter:
 	.4byte 0

@@ -1,19 +1,19 @@
 .include "macros.inc"
 .section .sdata, "wa"  # 0x80514680 - 0x80514D80
-.balign 0x8
+.balign 8
 .global "sVisible__Q212JUTAssertion23@unnamed@JUTAssert_cpp@"
 "sVisible__Q212JUTAssertion23@unnamed@JUTAssert_cpp@":
 	.byte 1
 	.skip 3
 
 .section .sbss # 0x80514D80 - 0x80516360
-.balign 0x8
+.balign 8
 .global "sMessageLife__Q212JUTAssertion23@unnamed@JUTAssert_cpp@"
 "sMessageLife__Q212JUTAssertion23@unnamed@JUTAssert_cpp@":
 	.skip 0x8
 
 .section .sdata2, "a"     # 0x80516360 - 0x80520E40
-.balign 0x8
+.balign 8
 .global lbl_80516550
 lbl_80516550:
 	.4byte 0x41F00000

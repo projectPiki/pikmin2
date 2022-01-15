@@ -1,6 +1,6 @@
 .include "macros.inc"
 .section .rodata  # 0x804732E0 - 0x8049E220
-.balign 0x8
+.balign 8
 .global lbl_804977F0
 lbl_804977F0:
 	.4byte 0x54536372
@@ -52,7 +52,7 @@ lbl_8049786C:
 	.4byte 0x00000000
 
 .section .data, "wa"  # 0x8049E220 - 0x804EFC20
-.balign 0x8
+.balign 8
 .global __vt__Q33ebi6Screen13TNintendoLogo
 __vt__Q33ebi6Screen13TNintendoLogo:
 	.4byte 0
@@ -97,7 +97,7 @@ __vt__Q33ebi6Screen7TTMBack:
 	.4byte getName__Q33ebi6Screen7TTMBackFv
 
 .section .sdata2, "a"     # 0x80516360 - 0x80520E40
-.balign 0x8
+.balign 8
 .global lbl_8051FDF8
 lbl_8051FDF8:
 	.float 0.5

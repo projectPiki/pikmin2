@@ -1,6 +1,6 @@
 .include "macros.inc"
 .section .rodata  # 0x804732E0 - 0x8049E220
-.balign 0x8
+.balign 8
 .global "cSphereShadowRadius__Q34Game9SnakeCrow29@unnamed@SnakeCrowShadow_cpp@"
 "cSphereShadowRadius__Q34Game9SnakeCrow29@unnamed@SnakeCrowShadow_cpp@":
 	.float 17.5
@@ -65,7 +65,7 @@ lbl_8048D2E0:
 	.4byte lbl_8048D2D4
 
 .section .data, "wa"  # 0x8049E220 - 0x804EFC20
-.balign 0x8
+.balign 8
 .global __vt__Q24Game25SnakeCrowSphereShadowNode
 __vt__Q24Game25SnakeCrowSphereShadowNode:
 	.4byte 0
@@ -80,7 +80,7 @@ __vt__Q24Game23SnakeCrowTubeShadowNode:
 	.4byte getChildCount__5CNodeFv
 
 .section .sdata2, "a"     # 0x80516360 - 0x80520E40
-.balign 0x8
+.balign 8
 .global lbl_8051D2C0
 lbl_8051D2C0:
 	.float 0.5

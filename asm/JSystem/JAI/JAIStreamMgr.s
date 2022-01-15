@@ -1,6 +1,6 @@
 .include "macros.inc"
 .section .rodata  # 0x804732E0 - 0x8049E220
-.balign 0x8
+.balign 8
 .global lbl_804796B0
 lbl_804796B0:
 	.4byte 0x00000000
@@ -11,7 +11,7 @@ lbl_804796B0:
 	.4byte 0x00000000
 
 .section .data, "wa"  # 0x8049E220 - 0x804EFC20
-.balign 0x8
+.balign 8
 .global lbl_804A6638
 lbl_804A6638:
 	.4byte lbl_800B7EE4
@@ -24,7 +24,7 @@ lbl_804A6638:
 	.4byte lbl_800B7EB4
 
 .section .sdata, "wa"  # 0x80514680 - 0x80514D80
-.balign 0x8
+.balign 8
 .global sChannelMax__Q27JAInter9StreamMgr
 sChannelMax__Q27JAInter9StreamMgr:
 	.4byte 0x00000002
@@ -33,7 +33,7 @@ decodedBufferBlocks__Q27JAInter9StreamMgr:
 	.4byte 0x00002760
 
 .section .sbss # 0x80514D80 - 0x80516360
-.balign 0x8
+.balign 8
 .global flags__Q27JAInter9StreamMgr
 flags__Q27JAInter9StreamMgr:
 	.skip 0x2
@@ -93,7 +93,7 @@ mgrCallback__Q27JAInter9StreamMgr:
 	.skip 0x4
 
 .section .sdata2, "a"     # 0x80516360 - 0x80520E40
-.balign 0x8
+.balign 8
 .global lbl_80517040
 lbl_80517040:
 	.float 1.0

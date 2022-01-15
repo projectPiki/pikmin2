@@ -1,12 +1,12 @@
 .include "macros.inc"
 .section .sdata, "wa"  # 0x80514680 - 0x80514D80
-.balign 0x8
+.balign 8
 .global zz_80514788
 zz_80514788:
 	.double 0.0078125
 
 .section .data, "wa"  # 0x8049E220 - 0x804EFC20
-.balign 0x8
+.balign 8
 .global lbl_804A4350
 lbl_804A4350:
 	.4byte lbl_800A184C
@@ -47,7 +47,7 @@ lbl_804A4394:
 	.4byte lbl_800A1CB8
 
 .section .sbss # 0x80514D80 - 0x80516360
-.balign 0x8
+.balign 8
 .global sCallBackFunc__8JASTrack
 sCallBackFunc__8JASTrack:
 	.skip 0x4
@@ -62,7 +62,7 @@ sFreeListEnd__8JASTrack:
 	.skip 0x4
 
 .section .sdata2, "a"     # 0x80516360 - 0x80520E40
-.balign 0x8
+.balign 8
 .global lbl_80516D78
 lbl_80516D78:
 	.4byte 0x00000000

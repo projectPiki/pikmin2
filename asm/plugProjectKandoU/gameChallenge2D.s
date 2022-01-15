@@ -1,6 +1,6 @@
 .include "macros.inc"
 .section .rodata  # 0x804732E0 - 0x8049E220
-.balign 0x8
+.balign 8
 .global lbl_80483AB0
 lbl_80483AB0:
 	.asciz "gameChallenge2D.cpp"
@@ -10,7 +10,7 @@ lbl_80483AC4:
 	.skip 3
 
 .section .sdata2, "a"     # 0x80516360 - 0x80520E40
-.balign 0x8
+.balign 8
 .global lbl_8051A3B8
 lbl_8051A3B8:
 	.4byte 0x5A414E4E

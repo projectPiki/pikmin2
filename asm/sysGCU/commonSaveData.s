@@ -1,6 +1,6 @@
 .include "macros.inc"
 .section .rodata  # 0x804732E0 - 0x8049E220
-.balign 0x8
+.balign 8
 .global lbl_8049AEC0
 lbl_8049AEC0:
 	.asciz "commonSaveData.cpp"
@@ -14,7 +14,7 @@ lbl_8049AED4:
 	.skip 3
 
 .section .sdata2, "a"     # 0x80516360 - 0x80520E40
-.balign 0x8
+.balign 8
 .global lbl_80520980
 lbl_80520980:
 	.float 255.0

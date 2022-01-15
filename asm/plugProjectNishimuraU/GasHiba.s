@@ -1,6 +1,6 @@
 .include "macros.inc"
 .section .rodata  # 0x804732E0 - 0x8049E220
-.balign 0x8
+.balign 8
 .global lbl_804864F8
 lbl_804864F8:
 	.4byte 0x41726747
@@ -8,7 +8,7 @@ lbl_804864F8:
 	.4byte 0x69626100
 
 .section .data, "wa"  # 0x8049E220 - 0x804EFC20
-.balign 0x8
+.balign 8
 .global __vt__Q23efx11ArgGasuHiba
 __vt__Q23efx11ArgGasuHiba:
 	.4byte 0
@@ -221,7 +221,7 @@ __vt__Q34Game7GasHiba3Obj:
 	.4byte "viewEntryShape__Q24Game10PelletViewFR7MatrixfR10Vector3<f>"
 
 .section .sdata2, "a"     # 0x80516360 - 0x80520E40
-.balign 0x8
+.balign 8
 .global lbl_8051B078
 lbl_8051B078:
 	.4byte 0x00000000

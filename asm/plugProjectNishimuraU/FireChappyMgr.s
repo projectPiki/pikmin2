@@ -1,6 +1,6 @@
 .include "macros.inc"
 .section .rodata  # 0x804732E0 - 0x8049E220
-.balign 0x8
+.balign 8
 .global lbl_80488348
 lbl_80488348:
 	.asciz "/enemy/data/FireChappy/yakichappy.btk"
@@ -28,7 +28,7 @@ lbl_804883C8:
 	.skip 3
 
 .section .data, "wa"  # 0x8049E220 - 0x804EFC20
-.balign 0x8
+.balign 8
 .global __vt__Q34Game10FireChappy3Mgr
 __vt__Q34Game10FireChappy3Mgr:
 	.4byte 0
@@ -89,7 +89,7 @@ __vt__Q34Game10FireChappy3Mgr:
 	.4byte initGenerator__Q24Game12EnemyMgrBaseFv
 
 .section .sdata, "wa"  # 0x80514680 - 0x80514D80
-.balign 0x8
+.balign 8
 .global "cMatAnimBtkTexName__Q34Game10FireChappy27@unnamed@FireChappyMgr_cpp@"
 "cMatAnimBtkTexName__Q34Game10FireChappy27@unnamed@FireChappyMgr_cpp@":
 	.4byte lbl_80488348

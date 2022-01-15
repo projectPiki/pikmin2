@@ -1,6 +1,6 @@
 .include "macros.inc"
 .section .rodata  # 0x804732E0 - 0x8049E220
-.balign 0x8
+.balign 8
 .global lbl_8048B030
 lbl_8048B030:
 	.asciz "246-HoudaiShadow"
@@ -31,7 +31,7 @@ lbl_8048B030:
 	.skip 2
 
 .section .sdata2, "a"     # 0x80516360 - 0x80520E40
-.balign 0x8
+.balign 8
 .global lbl_8051C4B0
 lbl_8051C4B0:
 	.4byte 0x6B6F7369

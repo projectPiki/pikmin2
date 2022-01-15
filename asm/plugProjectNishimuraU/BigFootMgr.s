@@ -1,6 +1,6 @@
 .include "macros.inc"
 .section .rodata  # 0x804732E0 - 0x8049E220
-.balign 0x8
+.balign 8
 .global lbl_8048B218
 lbl_8048B218:
 	.asciz "246-BigFootMgr"
@@ -266,7 +266,7 @@ lbl_8048B634:
 	.skip 3
 
 .section .data, "wa"  # 0x8049E220 - 0x804EFC20
-.balign 0x8
+.balign 8
 .global __vt__Q34Game7BigFoot3Mgr
 __vt__Q34Game7BigFoot3Mgr:
 	.4byte 0
@@ -333,13 +333,13 @@ __vt__Q34Game7BigFoot5Parms:
 	.4byte 0
 
 .section .sdata, "wa"  # 0x80514680 - 0x80514D80
-.balign 0x8
+.balign 8
 .global "cMatAnimBrkTexName__Q34Game7BigFoot24@unnamed@BigFootMgr_cpp@"
 "cMatAnimBrkTexName__Q34Game7BigFoot24@unnamed@BigFootMgr_cpp@":
 	.4byte lbl_8048B228
 
 .section .sdata2, "a"     # 0x80516360 - 0x80520E40
-.balign 0x8
+.balign 8
 .global lbl_8051C6B0
 lbl_8051C6B0:
 	.4byte 0x40400000

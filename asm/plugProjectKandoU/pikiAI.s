@@ -3,7 +3,7 @@
 .4byte __sinit_pikiAI_cpp
 
 .section .rodata  # 0x804732E0 - 0x8049E220
-.balign 0x8
+.balign 8
 .global lbl_8047FA28
 lbl_8047FA28:
 	.4byte 0x696E766F
@@ -55,7 +55,7 @@ lbl_8047FA9C:
 	.4byte 0x72670000
 
 .section .data, "wa"  # 0x8049E220 - 0x804EFC20
-.balign 0x8
+.balign 8
 .global lbl_804B5A00
 lbl_804B5A00:
 	.4byte 0x00000000
@@ -114,13 +114,13 @@ __vt__Q26PikiAI10ActWeedArg:
 	.4byte 0
 
 .section .sdata, "wa"  # 0x80514680 - 0x80514D80
-.balign 0x8
+.balign 8
 .global sGraspSituationOptimise__Q24Game4Piki
 sGraspSituationOptimise__Q24Game4Piki:
 	.4byte 0x01000000
 
 .section .sbss # 0x80514D80 - 0x80516360
-.balign 0x8
+.balign 8
 .global lbl_80515A58
 lbl_80515A58:
 	.skip 0x4
@@ -129,7 +129,7 @@ lbl_80515A5C:
 	.skip 0x4
 
 .section .sdata2, "a"     # 0x80516360 - 0x80520E40
-.balign 0x8
+.balign 8
 .global lbl_80519348
 lbl_80519348:
 	.4byte 0x43C80000

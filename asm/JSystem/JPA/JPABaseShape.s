@@ -1,6 +1,6 @@
 .include "macros.inc"
 .section .data, "wa"  # 0x8049E220 - 0x804EFC20
-.balign 0x8
+.balign 8
 .global jpa_dl
 jpa_dl:
 	.4byte 0x80000400
@@ -135,14 +135,14 @@ st_aa__12JPABaseShape:
 	.4byte 0x00000000
 
 .section .sdata, "wa"  # 0x80514680 - 0x80514D80
-.balign 0x8
+.balign 8
 .global p_dl
 p_dl:
 	.4byte jpa_dl
 	.4byte jpa_dl_x
 
 .section .sdata2, "a"     # 0x80516360 - 0x80520E40
-.balign 0x8
+.balign 8
 .global lbl_80516B38
 lbl_80516B38:
 	.4byte 0x41C80000

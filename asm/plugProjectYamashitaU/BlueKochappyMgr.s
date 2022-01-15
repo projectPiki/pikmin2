@@ -1,6 +1,6 @@
 .include "macros.inc"
 .section .rodata  # 0x804732E0 - 0x8049E220
-.balign 0x8
+.balign 8
 .global lbl_8047C0C0
 lbl_8047C0C0:
 	.asciz "/enemy/data/BlueKochappy/kochappy_body_s3tc.3.bti"
@@ -16,7 +16,7 @@ lbl_8047C0F4:
 	.4byte 0x00000000
 
 .section .data, "wa"  # 0x8049E220 - 0x804EFC20
-.balign 0x8
+.balign 8
 .global __vt__Q34Game12BlueKochappy3Mgr
 __vt__Q34Game12BlueKochappy3Mgr:
 	.4byte 0
@@ -79,7 +79,7 @@ __vt__Q34Game12BlueKochappy3Mgr:
 	.4byte 0
 
 .section .sdata, "wa"  # 0x80514680 - 0x80514D80
-.balign 0x8
+.balign 8
 .global "cKochappyChangeTexName__Q34Game12BlueKochappy29@unnamed@BlueKochappyMgr_cpp@"
 "cKochappyChangeTexName__Q34Game12BlueKochappy29@unnamed@BlueKochappyMgr_cpp@":
 	.4byte lbl_8047C0C0

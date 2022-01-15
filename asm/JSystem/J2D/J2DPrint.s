@@ -1,6 +1,6 @@
 .include "macros.inc"
 .section .data, "wa"  # 0x8049E220 - 0x804EFC20
-.balign 0x8
+.balign 8
 .global lbl_804A0880
 lbl_804A0880:
 	.4byte lbl_8003EB18
@@ -35,7 +35,7 @@ __vt__8J2DPrint:
 	.4byte 0
 
 .section .sbss # 0x80514D80 - 0x80516360
-.balign 0x8
+.balign 8
 .global mStrBuff__8J2DPrint
 mStrBuff__8J2DPrint:
 	.skip 0x4
@@ -50,7 +50,7 @@ mBufferNotEnough__8J2DPrint:
 	.skip 0x4
 
 .section .sdata2, "a"     # 0x80516360 - 0x80520E40
-.balign 0x8
+.balign 8
 .global lbl_80516818
 lbl_80516818:
 	.4byte 0x00000000

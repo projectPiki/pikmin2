@@ -3,7 +3,7 @@
 .4byte __sinit_ogObjFloor_cpp
 
 .section .rodata  # 0x804732E0 - 0x8049E220
-.balign 0x8
+.balign 8
 .global lbl_8048EBA8
 lbl_8048EBA8:
 	.4byte 0x6F674F62
@@ -60,7 +60,7 @@ lbl_8048EBA8:
 	.skip 3
 
 .section .data, "wa"  # 0x8049E220 - 0x804EFC20
-.balign 0x8
+.balign 8
 .global vsRuleMsgId__Q22og9newScreen
 vsRuleMsgId__Q22og9newScreen:
 	.4byte 0x00323032
@@ -114,7 +114,7 @@ msVal__Q32og9newScreen8ObjFloor:
 	.skip 0x7C
 
 .section .sdata2, "a"     # 0x80516360 - 0x80520E40
-.balign 0x8
+.balign 8
 .global lbl_8051D998
 lbl_8051D998:
 	.4byte 0x00000000

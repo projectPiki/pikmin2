@@ -1,6 +1,6 @@
 .include "macros.inc"
 .section .rodata  # 0x804732E0 - 0x8049E220
-.balign 0x8
+.balign 8
 .global lbl_80481228
 lbl_80481228:
 	.4byte 0x6974656D
@@ -140,7 +140,7 @@ lbl_80481418:
 	.4byte 0x67000000
 
 .section .data, "wa"  # 0x8049E220 - 0x804EFC20
-.balign 0x8
+.balign 8
 .global bridgeFirstPos
 bridgeFirstPos:
 	.4byte 0x422A0000
@@ -723,13 +723,13 @@ __vt__Q34Game10ItemBridge3FSM:
 	.4byte "transit__Q24Game38StateMachine<Q34Game10ItemBridge4Item>FPQ34Game10ItemBridge4ItemiPQ24Game8StateArg"
 
 .section .sbss # 0x80514D80 - 0x80516360
-.balign 0x8
+.balign 8
 .global mgr__Q24Game10ItemBridge
 mgr__Q24Game10ItemBridge:
 	.skip 0x8
 
 .section .sdata2, "a"     # 0x80516360 - 0x80520E40
-.balign 0x8
+.balign 8
 .global lbl_80519B10
 lbl_80519B10:
 	.4byte 0x00000000

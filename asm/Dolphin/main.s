@@ -1,6 +1,6 @@
 .include "macros.inc"
 .section .rodata  # 0x804732E0 - 0x8049E220
-.balign 0x8
+.balign 8
 .global lbl_80479E30
 lbl_80479E30:
 	.4byte 0x6363206E
@@ -69,7 +69,7 @@ lbl_80479EF8:
 	.4byte 0x69740A00
 
 .section .sbss # 0x80514D80 - 0x80516360
-.balign 0x8
+.balign 8
 .global gIsInitialized_1
 gIsInitialized_1:
 	.skip 0x8

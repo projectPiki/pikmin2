@@ -3,7 +3,7 @@
 .4byte __sinit_ogObjChallenge2P_cpp
 
 .section .rodata  # 0x804732E0 - 0x8049E220
-.balign 0x8
+.balign 8
 .global lbl_8048EEF0
 lbl_8048EEF0:
 	.4byte 0x6F674F62
@@ -45,7 +45,7 @@ lbl_8048EEF0:
 	.skip 3
 
 .section .data, "wa"  # 0x8049E220 - 0x804EFC20
-.balign 0x8
+.balign 8
 .global __vt__Q32og9newScreen14ObjChallenge2P
 __vt__Q32og9newScreen14ObjChallenge2P:
 	.4byte 0
@@ -87,7 +87,7 @@ msVal__Q32og9newScreen14ObjChallenge2P:
 	.skip 0x90
 
 .section .sdata2, "a"     # 0x80516360 - 0x80520E40
-.balign 0x8
+.balign 8
 .global lbl_8051DC48
 lbl_8051DC48:
 	.4byte 0x00000000

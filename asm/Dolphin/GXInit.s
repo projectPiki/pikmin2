@@ -1,6 +1,6 @@
 .include "macros.inc"
 .section .data, "wa"  # 0x8049E220 - 0x804EFC20
-.balign 0x8
+.balign 8
 .global lbl_804A8060
 lbl_804A8060:
 	.asciz "<< Dolphin SDK - GX\trelease build: Nov 26 2003 05:19:07 (0x2301) >>"
@@ -143,13 +143,13 @@ GXResetFuncInfo:
 	.4byte 0x00000000
 
 .section .sdata, "wa"  # 0x80514680 - 0x80514D80
-.balign 0x8
+.balign 8
 .global __GXVersion
 __GXVersion:
 	.4byte lbl_804A8060
 
 .section .sbss # 0x80514D80 - 0x80516360
-.balign 0x8
+.balign 8
 .global __piReg
 __piReg:
 	.skip 0x4
@@ -179,7 +179,7 @@ resetFuncRegistered$70:
 	.skip 0x4
 
 .section .sdata2, "a"     # 0x80516360 - 0x80520E40
-.balign 0x8
+.balign 8
 .global __GXData
 __GXData:
 	.4byte gxData

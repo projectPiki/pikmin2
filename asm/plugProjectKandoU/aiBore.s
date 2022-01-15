@@ -1,6 +1,6 @@
 .include "macros.inc"
 .section .rodata  # 0x804732E0 - 0x8049E220
-.balign 0x8
+.balign 8
 .global lbl_80483930
 lbl_80483930:
 	.4byte 0x00000000
@@ -40,7 +40,7 @@ lbl_8048395C:
 	.4byte 0x67000000
 
 .section .data, "wa"  # 0x8049E220 - 0x804EFC20
-.balign 0x8
+.balign 8
 .global __vt__Q26PikiAI10ActOneshot
 __vt__Q26PikiAI10ActOneshot:
 	.4byte 0
@@ -131,7 +131,7 @@ __vt__Q26PikiAI7ActBore:
 	.4byte 0
 
 .section .sdata2, "a"     # 0x80516360 - 0x80520E40
-.balign 0x8
+.balign 8
 .global lbl_8051A370
 lbl_8051A370:
 	.4byte 0x47000000

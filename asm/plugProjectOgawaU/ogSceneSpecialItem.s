@@ -1,6 +1,6 @@
 .include "macros.inc"
 .section .rodata  # 0x804732E0 - 0x8049E220
-.balign 0x8
+.balign 8
 .global lbl_8048EB78
 lbl_8048EB78:
 	.4byte 0x73706563
@@ -18,7 +18,7 @@ lbl_8048EB8C:
 	.4byte 0x00000000
 
 .section .data, "wa"  # 0x8049E220 - 0x804EFC20
-.balign 0x8
+.balign 8
 .global __vt__Q32og9newScreen11SpecialItem
 __vt__Q32og9newScreen11SpecialItem:
 	.4byte 0

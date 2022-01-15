@@ -1,6 +1,6 @@
 .include "macros.inc"
 .section .rodata  # 0x804732E0 - 0x8049E220
-.balign 0x8
+.balign 8
 .global lbl_8048DE90
 lbl_8048DE90:
 	.asciz "0_32.bti"
@@ -95,7 +95,7 @@ lbl_8048DF9C:
 	.skip 1
 
 .section .data, "wa"  # 0x8049E220 - 0x804EFC20
-.balign 0x8
+.balign 8
 .global SujiTex32__Q22og6Screen
 SujiTex32__Q22og6Screen:
 	.4byte lbl_8048DE90

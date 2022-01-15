@@ -3,7 +3,7 @@
 .4byte __sinit_flockMgr_cpp
 
 .section .rodata  # 0x804732E0 - 0x8049E220
-.balign 0x8
+.balign 8
 .global lbl_80481FA0
 lbl_80481FA0:
 	.4byte 0x666C6F63
@@ -16,7 +16,7 @@ lbl_80481FB0:
 	.skip 3
 
 .section .data, "wa"  # 0x8049E220 - 0x804EFC20
-.balign 0x8
+.balign 8
 .global lbl_804BFB60
 lbl_804BFB60:
 	.4byte 0x00000000
@@ -39,7 +39,7 @@ __vt__Q24Game12BaseFlockMgr:
 	.4byte 0
 
 .section .sbss # 0x80514D80 - 0x80516360
-.balign 0x8
+.balign 8
 .global lbl_80515BD0
 lbl_80515BD0:
 	.skip 0x4
@@ -48,7 +48,7 @@ lbl_80515BD4:
 	.skip 0x4
 
 .section .sdata2, "a"     # 0x80516360 - 0x80520E40
-.balign 0x8
+.balign 8
 .global lbl_80519EE8
 lbl_80519EE8:
 	.4byte 0x46480000

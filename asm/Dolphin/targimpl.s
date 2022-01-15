@@ -1,6 +1,6 @@
 .include "macros.inc"
 .section .rodata  # 0x804732E0 - 0x8049E220
-.balign 0x8
+.balign 8
 .global gTRKMemMap
 gTRKMemMap:
 	.4byte 0x00000000
@@ -51,7 +51,7 @@ lbl_80479C28:
 	.4byte 0x28290A00
 
 .section .data, "wa"  # 0x8049E220 - 0x804EFC20
-.balign 0x8
+.balign 8
 .global gTRKRestoreFlags
 gTRKRestoreFlags:
 	.4byte 0x00000000

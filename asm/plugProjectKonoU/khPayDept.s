@@ -3,7 +3,7 @@
 	.4byte __sinit_khPayDept_cpp
 
 .section .rodata  # 0x804732E0 - 0x8049E220
-.balign 0x8
+.balign 8
 .global lbl_80499160
 lbl_80499160:
 	.asciz "khPayDept.cpp"
@@ -99,7 +99,7 @@ lbl_804992E4:
 	.skip 7
 
 .section .data, "wa"  # 0x8049E220 - 0x804EFC20
-.balign 0x8
+.balign 8
 .global cpNumTexLargeName__Q22kh6Screen
 cpNumTexLargeName__Q22kh6Screen:
 	.4byte lbl_80499170
@@ -176,13 +176,13 @@ __vt__Q32kh6Screen11DispPayDept:
 	.4byte doSetSubMemberAll__Q32og6Screen14DispMemberBaseFv
 
 .section .sbss # 0x80514D80 - 0x80516360
-.balign 0x8
+.balign 8
 .global msVal__Q32kh6Screen10ObjPayDept
 msVal__Q32kh6Screen10ObjPayDept:
 	.skip 0x8
 
 .section .sdata2, "a"     # 0x80516360 - 0x80520E40
-.balign 0x8
+.balign 8
 .global lbl_805201E8
 lbl_805201E8:
 	.4byte 0x00000000

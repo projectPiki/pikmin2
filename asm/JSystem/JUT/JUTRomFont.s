@@ -1,6 +1,6 @@
 .include "macros.inc"
 .section .rodata  # 0x804732E0 - 0x8049E220
-.balign 0x8
+.balign 8
 .global lbl_80474280
 lbl_80474280:
 	.asciz "Font Encode Type %d\n"
@@ -12,7 +12,7 @@ lbl_80474298:
 	.skip 0xC
 
 .section .data, "wa"  # 0x8049E220 - 0x804EFC20
-.balign 0x8
+.balign 8
 .global saoAboutEncoding___10JUTRomFont
 saoAboutEncoding___10JUTRomFont:
 	.4byte 0x00000000
@@ -43,7 +43,7 @@ __vt__10JUTRomFont:
 	.4byte 0
 
 .section .sbss # 0x80514D80 - 0x80516360
-.balign 0x8
+.balign 8
 .global spAboutEncoding___10JUTRomFont
 spAboutEncoding___10JUTRomFont:
 	.skip 0x4
@@ -55,7 +55,7 @@ suFontHeaderRefered___10JUTRomFont:
 	.skip 0x8
 
 .section .sdata2, "a"     # 0x80516360 - 0x80520E40
-.balign 0x8
+.balign 8
 .global lbl_805166F8
 lbl_805166F8:
 	.4byte 0x00000000

@@ -1,6 +1,6 @@
 .include "macros.inc"
 .section .rodata  # 0x804732E0 - 0x8049E220
-.balign 0x8
+.balign 8
 .global lbl_804736E8
 lbl_804736E8:
 	.asciz ":::cannot alloc memory (0x%x byte).\n"
@@ -58,7 +58,7 @@ lbl_80473720:
 	.skip 3
 
 .section .data, "wa"  # 0x8049E220 - 0x804EFC20
-.balign 0x8
+.balign 8
 .global __vt__10JKRExpHeap
 __vt__10JKRExpHeap:
 	.4byte 0
@@ -87,7 +87,7 @@ __vt__10JKRExpHeap:
 	.4byte state_dump__7JKRHeapCFRCQ27JKRHeap6TState
 
 .section .sbss # 0x80514D80 - 0x80516360
-.balign 0x8
+.balign 8
 .global DBfoundSize
 DBfoundSize:
 	.skip 0x4
@@ -105,7 +105,7 @@ DBnewUsedBlock:
 	.skip 0x8
 
 .section .sdata2, "a"     # 0x80516360 - 0x80520E40
-.balign 0x8
+.balign 8
 .global lbl_805164F0
 lbl_805164F0:
 	.asciz " NONE\n"

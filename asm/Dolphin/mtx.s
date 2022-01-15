@@ -1,13 +1,13 @@
 .include "macros.inc"
 .section .sdata, "wa"  # 0x80514680 - 0x80514D80
-.balign 0x8
+.balign 8
 .global Unit01_1
 Unit01_1:
 	.4byte 0x00000000
 	.float 1.0
 
 .section .sdata2, "a"     # 0x80516360 - 0x80520E40
-.balign 0x8
+.balign 8
 .global lbl_80517710
 lbl_80517710:
 	.float 1.0

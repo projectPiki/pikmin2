@@ -1,6 +1,6 @@
 .include "macros.inc"
 .section .rodata  # 0x804732E0 - 0x8049E220
-.balign 0x8
+.balign 8
 .global lbl_80485AD8
 lbl_80485AD8:
 	.4byte 0x6D6F7665
@@ -13,7 +13,7 @@ lbl_80485AE4:
 	.4byte 0x72650000
 
 .section .data, "wa"  # 0x8049E220 - 0x804EFC20
-.balign 0x8
+.balign 8
 .global __vt__Q34Game4Ujia12StateAttack1
 __vt__Q34Game4Ujia12StateAttack1:
 	.4byte 0
@@ -160,7 +160,7 @@ __vt__Q34Game4Ujia3FSM:
 	.4byte 0
 
 .section .sdata2, "a"     # 0x80516360 - 0x80520E40
-.balign 0x8
+.balign 8
 .global lbl_8051AE08
 lbl_8051AE08:
 	.4byte 0x64656164

@@ -1,6 +1,6 @@
 .include "macros.inc"
 .section .data, "wa"  # 0x8049E220 - 0x804EFC20
-.balign 0x8
+.balign 8
 .global __vt__Q210JADUtility6StrPrm
 __vt__Q210JADUtility6StrPrm:
 	.4byte 0
@@ -69,7 +69,7 @@ __vt__Q210JADUtility11DataMgrBase:
 	.4byte init__Q210JADUtility11DataMgrBaseFv
 
 .section .sdata2, "a"     # 0x80516360 - 0x80520E40
-.balign 0x8
+.balign 8
 .global lbl_80517090
 lbl_80517090:
 	.4byte 0x00000000

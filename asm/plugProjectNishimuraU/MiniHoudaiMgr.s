@@ -1,6 +1,6 @@
 .include "macros.inc"
 .section .rodata  # 0x804732E0 - 0x8049E220
-.balign 0x8
+.balign 8
 .global lbl_8048CDC0
 lbl_8048CDC0:
 	.4byte 0x83608372
@@ -11,7 +11,7 @@ lbl_8048CDC0:
 	.4byte 0x83830000
 
 .section .data, "wa"  # 0x8049E220 - 0x804EFC20
-.balign 0x8
+.balign 8
 .global __vt__Q34Game10MiniHoudai3Mgr
 __vt__Q34Game10MiniHoudai3Mgr:
 	.4byte 0
@@ -72,7 +72,7 @@ __vt__Q34Game10MiniHoudai3Mgr:
 	.4byte initGenerator__Q24Game12EnemyMgrBaseFv
 
 .section .sdata2, "a"     # 0x80516360 - 0x80520E40
-.balign 0x8
+.balign 8
 .global lbl_8051CF78
 lbl_8051CF78:
 	.4byte 0x0000004E

@@ -1,12 +1,12 @@
 .include "macros.inc"
 .section .sdata, "wa"  # 0x80514680 - 0x80514D80
-.balign 0x8
+.balign 8
 .global __OSCurrHeap
 __OSCurrHeap:
 	.4byte 0xFFFFFFFF
 
 .section .sbss # 0x80514D80 - 0x80516360
-.balign 0x8
+.balign 8
 .global HeapArray
 HeapArray:
 	.skip 0x4

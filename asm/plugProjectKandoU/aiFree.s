@@ -1,6 +1,6 @@
 .include "macros.inc"
 .section .rodata  # 0x804732E0 - 0x8049E220
-.balign 0x8
+.balign 8
 .global lbl_8047F260
 lbl_8047F260:
 	.asciz "ActFreeArg"
@@ -16,7 +16,7 @@ lbl_8047F290:
 	.asciz "GatherActionArg"
 
 .section .data, "wa"  # 0x8049E220 - 0x804EFC20
-.balign 0x8
+.balign 8
 .global __vt__Q26PikiAI15GatherActionArg
 __vt__Q26PikiAI15GatherActionArg:
 	.4byte 0
@@ -45,7 +45,7 @@ __vt__Q26PikiAI7ActFree:
 	.4byte "@32@4@onKeyEvent__Q26PikiAI7ActFreeFRCQ28SysShape8KeyEvent"
 
 .section .sdata2, "a"     # 0x80516360 - 0x80520E40
-.balign 0x8
+.balign 8
 .global lbl_80519058
 lbl_80519058:
 	.asciz "Free"

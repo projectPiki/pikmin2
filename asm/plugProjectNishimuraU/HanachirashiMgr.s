@@ -1,6 +1,6 @@
 .include "macros.inc"
 .section .rodata  # 0x804732E0 - 0x8049E220
-.balign 0x8
+.balign 8
 .global lbl_804890B8
 lbl_804890B8:
 	.asciz "246-HanachirashiMgr"
@@ -238,7 +238,7 @@ lbl_804894AC:
 	.skip 3
 
 .section .data, "wa"  # 0x8049E220 - 0x804EFC20
-.balign 0x8
+.balign 8
 .global __vt__Q34Game12Hanachirashi3Mgr
 __vt__Q34Game12Hanachirashi3Mgr:
 	.4byte 0
@@ -305,7 +305,7 @@ __vt__Q34Game12Hanachirashi5Parms:
 	.4byte 0
 
 .section .sdata, "wa"  # 0x80514680 - 0x80514D80
-.balign 0x8
+.balign 8
 .global "cMatAnimBtkTexName__Q34Game12Hanachirashi29@unnamed@HanachirashiMgr_cpp@"
 "cMatAnimBtkTexName__Q34Game12Hanachirashi29@unnamed@HanachirashiMgr_cpp@":
 	.4byte lbl_804890CC
@@ -314,7 +314,7 @@ __vt__Q34Game12Hanachirashi5Parms:
 	.4byte lbl_804890FC
 
 .section .sdata2, "a"     # 0x80516360 - 0x80520E40
-.balign 0x8
+.balign 8
 .global lbl_8051BD90
 lbl_8051BD90:
 	.4byte 0x42B40000

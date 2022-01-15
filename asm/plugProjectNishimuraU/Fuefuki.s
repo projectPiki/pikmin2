@@ -1,13 +1,13 @@
 .include "macros.inc"
 .section .rodata  # 0x804732E0 - 0x8049E220
-.balign 0x8
+.balign 8
 .global lbl_80488FA8
 lbl_80488FA8:
 	.asciz "ArgCursor"
 	.skip 2
 
 .section .data, "wa"  # 0x8049E220 - 0x804EFC20
-.balign 0x8
+.balign 8
 .global __vt__Q23efx9ArgCursor
 __vt__Q23efx9ArgCursor:
 	.4byte 0
@@ -252,7 +252,7 @@ __vt__Q24Game25InteractFuefukiTimerReset:
 	.4byte actItem__Q24Game11InteractionFPQ24Game8BaseItem
 
 .section .sdata2, "a"     # 0x80516360 - 0x80520E40
-.balign 0x8
+.balign 8
 .global lbl_8051BC98
 lbl_8051BC98:
 	.4byte 0x40A00000

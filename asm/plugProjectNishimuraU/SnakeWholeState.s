@@ -3,7 +3,7 @@
 .4byte __sinit_SnakeWholeState_cpp
 
 .section .rodata  # 0x804732E0 - 0x8049E220
-.balign 0x8
+.balign 8
 .global lbl_8048B7F0
 lbl_8048B7F0:
 	.4byte 0x64697361
@@ -16,7 +16,7 @@ lbl_8048B7FC:
 	.4byte 0x00000000
 
 .section .data, "wa"  # 0x8049E220 - 0x804EFC20
-.balign 0x8
+.balign 8
 .global lbl_804D2150
 lbl_804D2150:
 	.4byte 0x00000000
@@ -167,7 +167,7 @@ __vt__Q34Game10SnakeWhole3FSM:
 	.4byte setCurrState__Q24Game17EnemyStateMachineFPQ24Game9EnemyBasePQ24Game13EnemyFSMState
 
 .section .sbss # 0x80514D80 - 0x80516360
-.balign 0x8
+.balign 8
 .global lbl_80515DB8
 lbl_80515DB8:
 	.skip 0x4
@@ -176,7 +176,7 @@ lbl_80515DBC:
 	.skip 0x4
 
 .section .sdata2, "a"     # 0x80516360 - 0x80520E40
-.balign 0x8
+.balign 8
 .global lbl_8051C7D0
 lbl_8051C7D0:
 	.4byte 0x64656164

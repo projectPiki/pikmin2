@@ -1,6 +1,6 @@
 .include "macros.inc"
 .section .rodata  # 0x804732E0 - 0x8049E220
-.balign 0x8
+.balign 8
 .global lbl_804732E0
 lbl_804732E0:
 	.4byte 0x00000000
@@ -9,7 +9,7 @@ lbl_804732E0:
 	.4byte 0x00000000
 
 .section .data, "wa"  # 0x8049E220 - 0x804EFC20
-.balign 0x8
+.balign 8
 .global __vt__Q317JStudio_JParticle17TAdaptor_particle13TJPACallback_
 __vt__Q317JStudio_JParticle17TAdaptor_particle13TJPACallback_:
 	.4byte 0
@@ -66,13 +66,13 @@ __vt__Q27JStudio17TAdaptor_particle:
 	.4byte 0
 
 .section .sbss # 0x80514D80 - 0x80516360
-.balign 0x8
+.balign 8
 .global init$1233
 init$1233:
 	.skip 0x8
 
 .section .sdata2, "a"     # 0x80516360 - 0x80520E40
-.balign 0x8
+.balign 8
 .global lbl_80516360
 lbl_80516360:
 	.4byte 0x00000000

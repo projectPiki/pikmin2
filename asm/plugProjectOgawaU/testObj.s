@@ -1,6 +1,6 @@
 .include "macros.inc"
 .section .rodata  # 0x804732E0 - 0x8049E220
-.balign 0x8
+.balign 8
 .global lbl_8048E078
 lbl_8048E078:
 	.asciz "screenObj.h"
@@ -10,7 +10,7 @@ lbl_8048E084:
 	.skip 3
 
 .section .data, "wa"  # 0x8049E220 - 0x804EFC20
-.balign 0x8
+.balign 8
 .global __vt__Q26Screen8IObjBase
 __vt__Q26Screen8IObjBase:
 	.4byte 0

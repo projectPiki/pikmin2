@@ -1,6 +1,6 @@
 .include "macros.inc"
 .section .rodata  # 0x804732E0 - 0x8049E220
-.balign 0x8
+.balign 8
 .global lbl_8047EFA8
 lbl_8047EFA8:
 	.4byte 0x4E617669
@@ -54,7 +54,7 @@ lbl_8047F030:
 	.4byte 0x00000000
 
 .section .data, "wa"  # 0x8049E220 - 0x804EFC20
-.balign 0x8
+.balign 8
 .global "__vt__27Container<Q24Game8Creature>"
 "__vt__27Container<Q24Game8Creature>":
 	.4byte 0
@@ -83,7 +83,7 @@ __vt__Q24Game6CPlate:
 	.4byte "getTo__27Container<Q24Game8Creature>Fv"
 
 .section .sdata2, "a"     # 0x80516360 - 0x80520E40
-.balign 0x8
+.balign 8
 .global lbl_80518EF0
 lbl_80518EF0:
 	.4byte 0x418C0000

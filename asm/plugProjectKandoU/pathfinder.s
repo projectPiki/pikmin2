@@ -1,6 +1,6 @@
 .include "macros.inc"
 .section .rodata  # 0x804732E0 - 0x8049E220
-.balign 0x8
+.balign 8
 .global lbl_8047F400
 lbl_8047F400:
 	.asciz "pathfinder"
@@ -23,7 +23,7 @@ lbl_8047F47C:
 	.skip 3
 
 .section .sbss # 0x80514D80 - 0x80516360
-.balign 0x8
+.balign 8
 .global testPathfinder__4Game
 testPathfinder__4Game:
 	.skip 0x4
@@ -32,7 +32,7 @@ routeMgr__Q24Game15PathfindContext:
 	.skip 0x4
 
 .section .sdata2, "a"     # 0x80516360 - 0x80520E40
-.balign 0x8
+.balign 8
 .global lbl_80519178
 lbl_80519178:
 	.asciz "path"

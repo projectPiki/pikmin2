@@ -1,6 +1,6 @@
 .include "macros.inc"
 .section .data, "wa"  # 0x8049E220 - 0x804EFC20
-.balign 0x8
+.balign 8
 .global __vt__Q37JStudio3stb6TParse
 __vt__Q37JStudio3stb6TParse:
 	.4byte 0
@@ -45,7 +45,7 @@ __vt__Q37JStudio3stb7TObject:
 	.4byte do_data__Q37JStudio3stb7TObjectFPCvUlPCvUl
 
 .section .sdata2, "a"     # 0x80516360 - 0x80520E40
-.balign 0x8
+.balign 8
 .global gu32Mask_TSequence_value_signExpansion__Q37JStudio3stb4data
 gu32Mask_TSequence_value_signExpansion__Q37JStudio3stb4data:
 	.4byte 0xFF000000

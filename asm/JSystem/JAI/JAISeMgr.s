@@ -1,12 +1,12 @@
 .include "macros.inc"
 .section .sdata, "wa"  # 0x80514680 - 0x80514D80
-.balign 0x8
+.balign 8
 .global seStartCallback__Q27JAInter5SeMgr
 seStartCallback__Q27JAInter5SeMgr:
 	.4byte startSeSequence__Q27JAInter5SeMgrFv
 
 .section .sbss # 0x80514D80 - 0x80516360
-.balign 0x8
+.balign 8
 .global seTrackUpdate__Q27JAInter5SeMgr
 seTrackUpdate__Q27JAInter5SeMgr:
 	.skip 0x4
@@ -36,7 +36,7 @@ seEntryCancel__Q27JAInter5SeMgr:
 	.skip 0x8
 
 .section .sdata2, "a"     # 0x80516360 - 0x80520E40
-.balign 0x8
+.balign 8
 .global lbl_80516F48
 lbl_80516F48:
 	.float 1.0

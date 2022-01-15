@@ -3,7 +3,7 @@
 .4byte __sinit_lifeGaugeMgr_cpp
 
 .section .rodata  # 0x804732E0 - 0x8049E220
-.balign 0x8
+.balign 8
 .global lbl_8047B238
 lbl_8047B238:
 	.4byte 0x2F757365
@@ -22,7 +22,7 @@ lbl_8047B258:
 	.4byte 0x69000000
 
 .section .data, "wa"  # 0x8049E220 - 0x804EFC20
-.balign 0x8
+.balign 8
 .global lbl_804AC308
 lbl_804AC308:
 	.4byte 0x00000000
@@ -35,7 +35,7 @@ __vt__13LifeGaugeList:
 	.4byte __dt__13LifeGaugeListFv
 
 .section .sbss # 0x80514D80 - 0x80516360
-.balign 0x8
+.balign 8
 .global lbl_80515880
 lbl_80515880:
 	.skip 0x4
@@ -47,7 +47,7 @@ lifeGaugeMgr:
 	.skip 0x8
 
 .section .sdata2, "a"     # 0x80516360 - 0x80520E40
-.balign 0x8
+.balign 8
 .global lbl_80517B28
 lbl_80517B28:
 	.4byte 0x00000000

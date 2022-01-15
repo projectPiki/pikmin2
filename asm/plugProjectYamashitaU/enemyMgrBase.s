@@ -1,6 +1,6 @@
 .include "macros.inc"
 .section .rodata  # 0x804732E0 - 0x8049E220
-.balign 0x8
+.balign 8
 .global lbl_8047C1E8
 lbl_8047C1E8:
 	.4byte 0x656E656D
@@ -116,7 +116,7 @@ lbl_8047C344:
 	.4byte 0x00000000
 
 .section .data, "wa"  # 0x8049E220 - 0x804EFC20
-.balign 0x8
+.balign 8
 .global __vt__Q24Game12EnemyMgrBase
 __vt__Q24Game12EnemyMgrBase:
 	.4byte 0
@@ -177,7 +177,7 @@ __vt__Q24Game12EnemyMgrBase:
 	.4byte initGenerator__Q24Game12EnemyMgrBaseFv
 
 .section .sdata2, "a"     # 0x80516360 - 0x80520E40
-.balign 0x8
+.balign 8
 .global lbl_80518130
 lbl_80518130:
 	.4byte 0x00000000

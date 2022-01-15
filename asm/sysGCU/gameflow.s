@@ -3,7 +3,7 @@
 	.4byte __sinit_gameflow_cpp
 
 .section .rodata  # 0x804732E0 - 0x8049E220
-.balign 0x8
+.balign 8
 str_RootMenu:
 	.asciz "Root Menu"
 	.skip 2
@@ -92,7 +92,7 @@ lbl_80499BF4:
 	.skip 3
 
 .section .data, "wa"  # 0x8049E220 - 0x804EFC20
-.balign 0x8
+.balign 8
 .global lbl_804EBBF0
 lbl_804EBBF0:
 	.4byte 0x00000000
@@ -185,13 +185,13 @@ __vt__11ISectionMgr:
 	.4byte 0
 
 .section .sdata, "wa"  # 0x80514680 - 0x80514D80
-.balign 0x8
+.balign 8
 .global mActiveSectionFlag__8GameFlow
 mActiveSectionFlag__8GameFlow:
 	.4byte 0x00000015
 
 .section .sbss # 0x80514D80 - 0x80516360
-.balign 0x8
+.balign 8
 .global lbl_80516188
 lbl_80516188:
 	.skip 0x4
@@ -200,7 +200,7 @@ lbl_8051618C:
 	.skip 0x4
 
 .section .sdata2, "a"     # 0x80516360 - 0x80520E40
-.balign 0x8
+.balign 8
 str_Ogawa:
 	.asciz "Ogawa"
 	.skip 0x2

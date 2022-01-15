@@ -1,6 +1,6 @@
 .include "macros.inc"
 .section .data, "wa"  # 0x8049E220 - 0x804EFC20
-.balign 0x8
+.balign 8
 .global __vt__Q24Game17EnemyStateMachine
 __vt__Q24Game17EnemyStateMachine:
 	.4byte 0
@@ -25,7 +25,7 @@ __vt__Q24Game13EnemyFSMState:
 	.4byte doDirectDraw__Q24Game13EnemyFSMStateFPQ24Game9EnemyBaseR8Graphics
 
 .section .sdata2, "a"     # 0x80516360 - 0x80520E40
-.balign 0x8
+.balign 8
 .global lbl_80518148
 lbl_80518148:
 	.4byte 0x6E6F206E

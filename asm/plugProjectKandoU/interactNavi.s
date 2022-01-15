@@ -1,6 +1,6 @@
 .include "macros.inc"
 .section .data, "wa"  # 0x8049E220 - 0x804EFC20
-.balign 0x8
+.balign 8
 .global __vt__Q24Game14InteractKaisan
 __vt__Q24Game14InteractKaisan:
 	.4byte 0
@@ -25,7 +25,7 @@ __vt__Q24Game13InteractSarai:
 	.4byte actItem__Q24Game14InteractAttackFPQ24Game8BaseItem
 
 .section .sdata2, "a"     # 0x80516360 - 0x80520E40
-.balign 0x8
+.balign 8
 .global lbl_80519788
 lbl_80519788:
 	.4byte 0xC1200000

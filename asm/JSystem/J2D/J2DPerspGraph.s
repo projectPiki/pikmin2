@@ -1,6 +1,6 @@
 .include "macros.inc"
 .section .data, "wa"  # 0x8049E220 - 0x804EFC20
-.balign 0x8
+.balign 8
 .global __vt__13J2DPerspGraph
 __vt__13J2DPerspGraph:
 	.4byte 0
@@ -15,7 +15,7 @@ __vt__13J2DPerspGraph:
 	.4byte setLookat__13J2DPerspGraphFv
 
 .section .sdata2, "a"     # 0x80516360 - 0x80520E40
-.balign 0x8
+.balign 8
 .global lbl_80516788
 lbl_80516788:
 	.4byte 0x00000000

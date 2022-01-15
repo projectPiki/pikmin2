@@ -1,6 +1,6 @@
 .include "macros.inc"
 .section .rodata  # 0x804732E0 - 0x8049E220
-.balign 0x8
+.balign 8
 .global fix_pool_sizes
 fix_pool_sizes:
 	.4byte 0x00000004
@@ -11,7 +11,7 @@ fix_pool_sizes:
 	.4byte 0x00000044
 
 .section .sbss # 0x80514D80 - 0x80516360
-.balign 0x8
+.balign 8
 .global init$193
 init$193:
 	.skip 0x8

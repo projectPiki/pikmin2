@@ -1,6 +1,6 @@
 .include "macros.inc"
 .section .rodata  # 0x804732E0 - 0x8049E220
-.balign 0x8
+.balign 8
 .global lbl_8047F338
 lbl_8047F338:
 	.4byte 0x61637454
@@ -46,7 +46,7 @@ lbl_8047F3B0:
 	.4byte 0x00000000
 
 .section .data, "wa"  # 0x8049E220 - 0x804EFC20
-.balign 0x8
+.balign 8
 .global __vt__Q26PikiAI11PathMoveArg
 __vt__Q26PikiAI11PathMoveArg:
 	.4byte 0
@@ -81,7 +81,7 @@ __vt__Q26PikiAI12ActTransport:
 	.4byte 0
 
 .section .sdata2, "a"     # 0x80516360 - 0x80520E40
-.balign 0x8
+.balign 8
 .global lbl_805190D0
 lbl_805190D0:
 	.ascii "SLOT"

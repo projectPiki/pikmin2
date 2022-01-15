@@ -1,6 +1,6 @@
 .include "macros.inc"
 .section .rodata  # 0x804732E0 - 0x8049E220
-.balign 0x8
+.balign 8
 .global OSC_RELEASE_TABLE__10JASBankMgr
 OSC_RELEASE_TABLE__10JASBankMgr:
 	.4byte 0x0001000A
@@ -17,7 +17,7 @@ OSC_ENV__10JASBankMgr:
 	.4byte 0x00000000
 
 .section .sbss # 0x80514D80 - 0x80516360
-.balign 0x8
+.balign 8
 .global sTableSize__10JASBankMgr
 sTableSize__10JASBankMgr:
 	.skip 0x4
@@ -32,7 +32,7 @@ sVir2PhyTable__10JASBankMgr:
 	.skip 0x4
 
 .section .sdata2, "a"     # 0x80516360 - 0x80520E40
-.balign 0x8
+.balign 8
 .global lbl_80516C88
 lbl_80516C88:
 	.float 1.0

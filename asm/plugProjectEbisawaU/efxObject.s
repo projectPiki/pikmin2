@@ -1,6 +1,6 @@
 .include "macros.inc"
 .section .rodata  # 0x804732E0 - 0x8049E220
-.balign 0x8
+.balign 8
 .global lbl_80495988
 lbl_80495988:
 	.asciz "efxObject.cpp"
@@ -45,7 +45,7 @@ lbl_804959F8:
 	.float 0.06
 
 .section .data, "wa"  # 0x8049E220 - 0x804EFC20
-.balign 0x8
+.balign 8
 .global __vt__Q23efx12ContainerAct
 __vt__Q23efx12ContainerAct:
 	.4byte 0
@@ -150,7 +150,7 @@ __vt__Q23efx12TOtakaraDive:
 	.4byte fade__Q23efx8TSimple3Fv
 
 .section .sdata2, "a"     # 0x80516360 - 0x80520E40
-.balign 0x8
+.balign 8
 .global lbl_8051F650
 lbl_8051F650:
 	.4byte 0x420C0000

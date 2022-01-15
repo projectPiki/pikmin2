@@ -1,6 +1,6 @@
 .include "macros.inc"
 .section .rodata  # 0x804732E0 - 0x8049E220
-.balign 0x8
+.balign 8
 .global lbl_80496428
 lbl_80496428:
 	.4byte 0x65626932
@@ -13,7 +13,7 @@ lbl_80496438:
 	.skip 3
 
 .section .sdata2, "a"     # 0x80516360 - 0x80520E40
-.balign 0x8
+.balign 8
 .global kFadeTime__Q23ebi8E2DFader
 kFadeTime__Q23ebi8E2DFader:
 	.float 0.5

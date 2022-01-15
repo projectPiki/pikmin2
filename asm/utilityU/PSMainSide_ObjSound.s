@@ -1,6 +1,6 @@
 .include "macros.inc"
 .section .rodata  # 0x804732E0 - 0x8049E220
-.balign 0x8
+.balign 8
 .global lbl_8049CFA0
 lbl_8049CFA0:
 	.4byte 0x50534D61
@@ -72,7 +72,7 @@ lbl_8049D05C:
 	.4byte 0x68000000
 
 .section .data, "wa"  # 0x8049E220 - 0x804EFC20
-.balign 0x8
+.balign 8
 .global lbl_804EE370
 lbl_804EE370:
 	.4byte lbl_804629F8
@@ -1081,7 +1081,7 @@ __vt__Q23PSM7ObjBase:
 	.4byte 0
 
 .section .sbss # 0x80514D80 - 0x80516360
-.balign 0x8
+.balign 8
 .global sBigBoss__Q23PSM12EnemyBigBoss
 sBigBoss__Q23PSM12EnemyBigBoss:
 	.skip 0x4
@@ -1090,7 +1090,7 @@ sDopedPikminNum__Q23PSM4Piki:
 	.skip 0x4
 
 .section .sdata2, "a"     # 0x80516360 - 0x80520E40
-.balign 0x8
+.balign 8
 .global lbl_80520C50
 lbl_80520C50:
 	.4byte 0x00000000

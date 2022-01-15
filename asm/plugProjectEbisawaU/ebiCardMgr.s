@@ -1,6 +1,6 @@
 .include "macros.inc"
 .section .rodata  # 0x804732E0 - 0x8049E220
-.balign 0x8
+.balign 8
 .global lbl_80496698
 lbl_80496698:
 	.4byte 0x65626943
@@ -160,7 +160,7 @@ lbl_804968EC:
 	.skip 3
 
 .section .data, "wa"  # 0x8049E220 - 0x804EFC20
-.balign 0x8
+.balign 8
 .global lbl_804E8AA0
 lbl_804E8AA0:
 	.4byte lbl_803D2000
@@ -307,7 +307,7 @@ __vt__Q33ebi9CardError15FSMStateMachine:
 	.4byte 0
 
 .section .sdata2, "a"     # 0x80516360 - 0x80520E40
-.balign 0x8
+.balign 8
 .global lbl_8051FAC0
 lbl_8051FAC0:
 	.4byte 0x5374616E

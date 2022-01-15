@@ -1,6 +1,6 @@
 .include "macros.inc"
 .section .rodata  # 0x804732E0 - 0x8049E220
-.balign 0x8
+.balign 8
 .global lbl_80499660
 lbl_80499660:
 	.asciz "stream.cpp"
@@ -43,7 +43,7 @@ lbl_80499774:
 	.skip 0x2
 
 .section .data, "wa"  # 0x8049E220 - 0x804EFC20
-.balign 0x8
+.balign 8
 .global __vt__9RamStream
 __vt__9RamStream:
 	.4byte 0
@@ -62,7 +62,7 @@ __vt__6Stream:
 	.4byte getPending__6StreamFv
 
 .section .sdata2, "a"     # 0x80516360 - 0x80520E40
-.balign 0x8
+.balign 8
 .global lbl_805202E0
 lbl_805202E0:
 	.4byte 0x23202573

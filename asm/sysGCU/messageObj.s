@@ -1,6 +1,6 @@
 .include "macros.inc"
 .section .rodata  # 0x804732E0 - 0x8049E220
-.balign 0x8
+.balign 8
 .global lbl_8049AB98
 lbl_8049AB98:
 	.asciz "messageObj.cpp"
@@ -27,7 +27,7 @@ lbl_8049ABD4:
 	.skip 7
 
 .section .data, "wa"  # 0x8049E220 - 0x804EFC20
-.balign 0x8
+.balign 8
 .global __vt__Q25P2JME8TControl
 __vt__Q25P2JME8TControl:
 	.4byte 0
@@ -50,7 +50,7 @@ __vt__Q25P2JME8TControl:
 	.4byte createRenderingProcessor__Q25P2JME8TControlFv
 
 .section .sdata2, "a"     # 0x80516360 - 0x80520E40
-.balign 0x8
+.balign 8
 .global lbl_805208A8
 lbl_805208A8:
 	.float 0.0

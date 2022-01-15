@@ -1,6 +1,6 @@
 .include "macros.inc"
 .section .rodata  # 0x804732E0 - 0x8049E220
-.balign 0x8
+.balign 8
 .global OSC_RELEASE_TABLE
 OSC_RELEASE_TABLE:
 	.4byte 0x00000002
@@ -17,7 +17,7 @@ OSC_ENV:
 	.4byte 0x00000000
 
 .section .data, "wa"  # 0x8049E220 - 0x804EFC20
-.balign 0x8
+.balign 8
 .global lbl_804A44A0
 lbl_804A44A0:
 	.4byte lbl_800A9AF8
@@ -38,7 +38,7 @@ lbl_804A44A0:
 	.4byte 0x00000000
 
 .section .sbss # 0x80514D80 - 0x80516360
-.balign 0x8
+.balign 8
 .global sLoadThread__13JASAramStream
 sLoadThread__13JASAramStream:
 	.skip 0x4
@@ -59,7 +59,7 @@ sFatalErrorFlag__13JASAramStream:
 	.skip 0x7
 
 .section .sdata2, "a"     # 0x80516360 - 0x80520E40
-.balign 0x8
+.balign 8
 .global lbl_80516EB0
 lbl_80516EB0:
 	.4byte 0x00000000

@@ -1,6 +1,6 @@
 .include "macros.inc"
 .section .rodata  # 0x804732E0 - 0x8049E220
-.balign 0x8
+.balign 8
 .global lbl_8048FEF0
 lbl_8048FEF0:
 	.4byte 0x5053426E
@@ -17,7 +17,7 @@ lbl_8048FF00:
 	.4byte 0x6E6B7300
 
 .section .data, "wa"  # 0x8049E220 - 0x804EFC20
-.balign 0x8
+.balign 8
 .global __vt__Q38PSSystem9WaveScene8WaveArea
 __vt__Q38PSSystem9WaveScene8WaveArea:
 	.4byte 0
@@ -30,7 +30,7 @@ __vt__Q28PSSystem7BankMgr:
 	.4byte __dt__Q28PSSystem7BankMgrFv
 
 .section .sbss # 0x80514D80 - 0x80516360
-.balign 0x8
+.balign 8
 .global sBankMgr__Q28PSSystem7BankMgr
 sBankMgr__Q28PSSystem7BankMgr:
 	.skip 0x8

@@ -3,7 +3,7 @@
 .4byte __sinit_J3DSys_cpp
 
 .section .rodata  # 0x804732E0 - 0x8049E220
-.balign 0x8
+.balign 8
 .global lbl_80478700
 lbl_80478700:
 	.4byte 0x00008000
@@ -56,7 +56,7 @@ lbl_80478804:
 	.4byte lbl_80478804
 
 .section .data, "wa"  # 0x8049E220 - 0x804EFC20
-.balign 0x8
+.balign 8
 .global NullTexData
 NullTexData:
 	.4byte 0x00000000
@@ -104,7 +104,7 @@ sTexCoordScaleTable__6J3DSys:
 	.skip 0x40
 
 .section .sdata, "wa"  # 0x80514680 - 0x80514D80
-.balign 0x8
+.balign 8
 .global ColorBlack
 ColorBlack:
 	.4byte 0
@@ -113,13 +113,13 @@ ColorWhite:
 	.4byte 0xffffffff
 
 .section .sbss # 0x80514D80 - 0x80516360
-.balign 0x8
+.balign 8
 .global j3dDefaultViewNo
 j3dDefaultViewNo:
 	.skip 0x8
 
 .section .sdata2, "a"     # 0x80516360 - 0x80520E40
-.balign 0x8
+.balign 8
 .global lbl_80516988
 lbl_80516988:
 	.4byte 0x00000000

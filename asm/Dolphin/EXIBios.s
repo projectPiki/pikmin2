@@ -1,6 +1,6 @@
 .include "macros.inc"
 .section .data, "wa"  # 0x8049E220 - 0x804EFC20
-.balign 0x8
+.balign 8
 .global lbl_804A7ED0
 lbl_804A7ED0:
 	.asciz "<< Dolphin SDK - EXI\trelease build: Apr 17 2003 12:33:17 (0x2301) >>"
@@ -27,13 +27,13 @@ lbl_804A7ED0:
 	.skip 2
 
 .section .sdata, "wa"  # 0x80514680 - 0x80514D80
-.balign 0x8
+.balign 8
 .global __EXIVersion
 __EXIVersion:
 	.4byte lbl_804A7ED0
 
 .section .sbss # 0x80514D80 - 0x80516360
-.balign 0x8
+.balign 8
 .global IDSerialPort1
 IDSerialPort1:
 	.skip 0x8

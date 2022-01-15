@@ -3,7 +3,7 @@
 .4byte __sinit_ogSceneSMenuMap_cpp
 
 .section .rodata  # 0x804732E0 - 0x8049E220
-.balign 0x8
+.balign 8
 .global lbl_8048E300
 lbl_8048E300:
 	.4byte 0x00000000
@@ -89,7 +89,7 @@ lbl_8048E420:
 	.4byte 0x7A730000
 
 .section .data, "wa"  # 0x8049E220 - 0x804EFC20
-.balign 0x8
+.balign 8
 .global lbl_804D8520
 lbl_804D8520:
 	.4byte 0x00000000
@@ -172,7 +172,7 @@ __vt__Q32og9newScreen14SceneSMenuBase:
 	.4byte 0
 
 .section .sbss # 0x80514D80 - 0x80516360
-.balign 0x8
+.balign 8
 .global lbl_80515E58
 lbl_80515E58:
 	.skip 0x4
@@ -181,7 +181,7 @@ lbl_80515E5C:
 	.skip 0x4
 
 .section .sdata2, "a"     # 0x80516360 - 0x80520E40
-.balign 0x8
+.balign 8
 .global lbl_8051D828
 lbl_8051D828:
 	.4byte 0x25730000

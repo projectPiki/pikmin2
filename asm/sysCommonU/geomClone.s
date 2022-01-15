@@ -1,6 +1,6 @@
 .include "macros.inc"
 .section .data, "wa"  # 0x8049E220 - 0x804EFC20
-.balign 0x8
+.balign 8
 .global __vt__Q23Sys10TriDivider
 __vt__Q23Sys10TriDivider:
 	.4byte 0
@@ -17,7 +17,7 @@ __vt__Q23Sys10TriDivider:
 	.4byte do_clone__Q23Sys10TriDividerFR7MatrixfPQ23Sys11VertexTablePQ23Sys13TriangleTable
 
 .section .sdata2, "a"     # 0x80516360 - 0x80520E40
-.balign 0x8
+.balign 8
 .global lbl_805203F8
 lbl_805203F8:
 	.float 32768.0

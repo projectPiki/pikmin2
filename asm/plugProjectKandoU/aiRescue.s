@@ -1,6 +1,6 @@
 .include "macros.inc"
 .section .rodata  # 0x804732E0 - 0x8049E220
-.balign 0x8
+.balign 8
 .global lbl_80483CD0
 lbl_80483CD0:
 	.asciz "actRescue"
@@ -21,7 +21,7 @@ lbl_80483CEC:
 	.skip 2
 
 .section .data, "wa"  # 0x8049E220 - 0x804EFC20
-.balign 0x8
+.balign 8
 .global __vt__10WPFindCond
 __vt__10WPFindCond:
 	.4byte 0
@@ -50,7 +50,7 @@ __vt__Q26PikiAI9ActRescue:
 	.4byte "@40@4@onKeyEvent__Q26PikiAI9ActRescueFRCQ28SysShape8KeyEvent"
 
 .section .sdata2, "a"     # 0x80516360 - 0x80520E40
-.balign 0x8
+.balign 8
 .global lbl_8051A4F0
 lbl_8051A4F0:
 	.4byte 0x52657363

@@ -3,7 +3,7 @@
 	.4byte __sinit_PSMainSide_CreaturePrm_cpp
 	
 .section .rodata  # 0x804732E0 - 0x8049E220
-.balign 0x8
+.balign 8
 .global lbl_8049E0F0
 lbl_8049E0F0:
 	.asciz "Opening1"
@@ -71,7 +71,7 @@ cVolZeroDist_InnerSize_Kehai__Q23PSM11CreaturePrm:
 	.float 467.99997
 
 .section .data, "wa"  # 0x8049E220 - 0x804EFC20
-.balign 0x8
+.balign 8
 .global sThpDemoDinamics__3PSM
 sThpDemoDinamics__3PSM:
 	.float 0.8
@@ -163,7 +163,7 @@ sInsReal__3PSM:
 	.skip 0x1C
 
 .section .sdata, "wa"  # 0x80514680 - 0x80514D80
-.balign 0x8
+.balign 8
 .global sCamFov__3PSM
 sCamFov__3PSM:
 	.float 0.25
@@ -178,13 +178,13 @@ sBoss_DistMax__3PSM:
 	.float 4000.0
 
 .section .sbss # 0x80514D80 - 0x80516360
-.balign 0x8
+.balign 8
 .global sTHPDinamicsProc__3PSM
 sTHPDinamicsProc__3PSM:
 	.skip 0x4
 
 .section .sdata2, "a"     # 0x80516360 - 0x80520E40
-.balign 0x8
+.balign 8
 .global lbl_80520DB8
 lbl_80520DB8:
 	.asciz "Ending1"

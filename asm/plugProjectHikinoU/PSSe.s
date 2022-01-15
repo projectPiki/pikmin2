@@ -1,6 +1,6 @@
 .include "macros.inc"
 .section .rodata  # 0x804732E0 - 0x8049E220
-.balign 0x8
+.balign 8
 .global lbl_80490038
 lbl_80490038:
 	.4byte 0x8373834C
@@ -58,7 +58,7 @@ lbl_804900D4:
 	.4byte 0x82F10000
 
 .section .data, "wa"  # 0x8049E220 - 0x804EFC20
-.balign 0x8
+.balign 8
 .global __vt__Q26PSGame25Builder_EvnSe_Perspective
 __vt__Q26PSGame25Builder_EvnSe_Perspective:
 	.4byte 0
@@ -107,7 +107,7 @@ __vt__Q26PSGame5SeMgr:
 	.4byte "__dt__Q28PSSystem30SingletonBase<Q26PSGame5SeMgr>Fv"
 
 .section .sdata, "wa"  # 0x80514680 - 0x80514D80
-.balign 0x8
+.balign 8
 .global cRatio__Q26PSGame5Rappa
 cRatio__Q26PSGame5Rappa:
 	.float 15.0
@@ -123,7 +123,7 @@ cNotUsingMasterIdRatio__Q26PSGame6RandId:
 	.float -1.0
 
 .section .sdata2, "a"     # 0x80516360 - 0x80520E40
-.balign 0x8
+.balign 8
 .global lbl_8051E188
 lbl_8051E188:
 	.4byte 0x934794C4

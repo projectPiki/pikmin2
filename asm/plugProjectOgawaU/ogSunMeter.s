@@ -1,6 +1,6 @@
 .include "macros.inc"
 .section .data, "wa"  # 0x8049E220 - 0x804EFC20
-.balign 0x8
+.balign 8
 .global __vt__Q32og6Screen8SunMeter
 __vt__Q32og6Screen8SunMeter:
 	.4byte 0
@@ -55,7 +55,7 @@ __vt__Q32og6Screen17CallBack_SunMeter:
 	.4byte 0
 
 .section .sdata2, "a"     # 0x80516360 - 0x80520E40
-.balign 0x8
+.balign 8
 .global lbl_8051D5F0
 lbl_8051D5F0:
 	.4byte 0x00000000

@@ -1,6 +1,6 @@
 .include "macros.inc"
 .section .rodata  # 0x804732E0 - 0x8049E220
-.balign 0x8
+.balign 8
 .global lbl_80491D98
 lbl_80491D98:
 	.4byte 0x6A696775
@@ -23,7 +23,7 @@ lbl_80491DBC:
 	.4byte 0x00000000
 
 .section .data, "wa"  # 0x8049E220 - 0x804EFC20
-.balign 0x8
+.balign 8
 .global __vt__Q34Game6Jigumo3Obj
 __vt__Q34Game6Jigumo3Obj:
 	.4byte 0
@@ -232,13 +232,13 @@ __vt__Q34Game6Jigumo3Obj:
 	.4byte 0
 
 .section .sbss # 0x80514D80 - 0x80516360
-.balign 0x8
+.balign 8
 .global curJ__Q24Game6Jigumo
 curJ__Q24Game6Jigumo:
 	.skip 0x8
 
 .section .sdata2, "a"     # 0x80516360 - 0x80520E40
-.balign 0x8
+.balign 8
 .global lbl_8051E960
 lbl_8051E960:
 	.4byte 0x47000000

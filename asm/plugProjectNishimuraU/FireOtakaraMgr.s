@@ -1,6 +1,6 @@
 .include "macros.inc"
 .section .rodata  # 0x804732E0 - 0x8049E220
-.balign 0x8
+.balign 8
 .global lbl_8048A3B8
 lbl_8048A3B8:
 	.asciz "246-FireOtakaraMgr"
@@ -230,7 +230,7 @@ lbl_8048A754:
 	.skip 3
 
 .section .data, "wa"  # 0x8049E220 - 0x804EFC20
-.balign 0x8
+.balign 8
 .global __vt__Q34Game11FireOtakara3Mgr
 __vt__Q34Game11FireOtakara3Mgr:
 	.4byte 0
@@ -297,13 +297,13 @@ __vt__Q34Game11OtakaraBase5Parms:
 	.4byte read__Q34Game11OtakaraBase5ParmsFR6Stream
 
 .section .sdata, "wa"  # 0x80514680 - 0x80514D80
-.balign 0x8
+.balign 8
 .global "cOtakaraChangeTexName__Q34Game11FireOtakara28@unnamed@FireOtakaraMgr_cpp@"
 "cOtakaraChangeTexName__Q34Game11FireOtakara28@unnamed@FireOtakaraMgr_cpp@":
 	.4byte lbl_8048A3CC
 
 .section .sdata2, "a"     # 0x80516360 - 0x80520E40
-.balign 0x8
+.balign 8
 .global lbl_8051C2E8
 lbl_8051C2E8:
 	.4byte 0x42C80000

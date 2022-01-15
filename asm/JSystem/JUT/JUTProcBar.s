@@ -1,6 +1,6 @@
 .include "macros.inc"
 .section .sdata, "wa"  # 0x80514680 - 0x80514D80
-.balign 0x8
+.balign 8
 .global oneFrameRate
 oneFrameRate:
 	.float 8.0
@@ -9,7 +9,7 @@ oneFrameRateUser:
 	.float 10.0
 
 .section .sbss # 0x80514D80 - 0x80516360
-.balign 0x8
+.balign 8
 .global sManager__10JUTProcBar
 sManager__10JUTProcBar:
 	.skip 0x4
@@ -27,7 +27,7 @@ init$2645:
 	.skip 0x8
 
 .section .sdata2, "a"     # 0x80516360 - 0x80520E40
-.balign 0x8
+.balign 8
 .global lbl_80516698
 lbl_80516698:
 	.4byte 0x41000000

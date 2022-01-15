@@ -3,7 +3,7 @@
 .4byte __sinit_genPiki_cpp
 
 .section .rodata  # 0x804732E0 - 0x8049E220
-.balign 0x8
+.balign 8
 .global lbl_8047F788
 lbl_8047F788:
 	.4byte 0x6F626A65
@@ -32,7 +32,7 @@ lbl_8047F7CC:
 	.4byte 0x63707000
 
 .section .data, "wa"  # 0x8049E220 - 0x804EFC20
-.balign 0x8
+.balign 8
 .global lbl_804B56A8
 lbl_804B56A8:
 	.4byte 0x00000000
@@ -59,7 +59,7 @@ __vt__Q24Game13GenObjectPiki:
 	.4byte 0
 
 .section .sbss # 0x80514D80 - 0x80516360
-.balign 0x8
+.balign 8
 .global lbl_80515A40
 lbl_80515A40:
 	.skip 0x4
@@ -68,7 +68,7 @@ lbl_80515A44:
 	.skip 0x4
 
 .section .sdata2, "a"     # 0x80516360 - 0x80520E40
-.balign 0x8
+.balign 8
 .global lbl_80519278
 lbl_80519278:
 	.4byte 0x90460000

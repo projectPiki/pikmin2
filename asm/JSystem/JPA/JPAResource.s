@@ -1,6 +1,6 @@
 .include "macros.inc"
 .section .data, "wa"  # 0x8049E220 - 0x804EFC20
-.balign 0x8
+.balign 8
 .global jpa_pos
 jpa_pos:
 	.4byte 0x00000032
@@ -143,7 +143,7 @@ lbl_804A3558:
 	.4byte 0x00000000
 
 .section .sdata2, "a"     # 0x80516360 - 0x80520E40
-.balign 0x8
+.balign 8
 .global lbl_80516C58
 lbl_80516C58:
 	.4byte 0x3F828F5C

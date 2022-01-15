@@ -1,6 +1,6 @@
 .include "macros.inc"
 .section .rodata  # 0x804732E0 - 0x8049E220
-.balign 0x8
+.balign 8
 .global lbl_804894B8
 lbl_804894B8:
 	.asciz "246-DamagumoMgr"
@@ -227,7 +227,7 @@ lbl_80489860:
 	.skip 3
 
 .section .data, "wa"  # 0x8049E220 - 0x804EFC20
-.balign 0x8
+.balign 8
 .global __vt__Q34Game8Damagumo3Mgr
 __vt__Q34Game8Damagumo3Mgr:
 	.4byte 0
@@ -294,7 +294,7 @@ __vt__Q34Game8Damagumo5Parms:
 	.4byte 0
 
 .section .sdata, "wa"  # 0x80514680 - 0x80514D80
-.balign 0x8
+.balign 8
 .global "cMatAnimBtkTexName__Q34Game8Damagumo25@unnamed@DamagumoMgr_cpp@"
 "cMatAnimBtkTexName__Q34Game8Damagumo25@unnamed@DamagumoMgr_cpp@":
 	.4byte lbl_804894C8
@@ -303,7 +303,7 @@ __vt__Q34Game8Damagumo5Parms:
 	.4byte lbl_804894F0
 
 .section .sdata2, "a"     # 0x80516360 - 0x80520E40
-.balign 0x8
+.balign 8
 .global lbl_8051BEA0
 lbl_8051BEA0:
 	.4byte 0x40400000

@@ -3,7 +3,7 @@
 	.4byte __sinit_efxBase_cpp
 
 .section .rodata  # 0x804732E0 - 0x8049E220
-.balign 0x8
+.balign 8
 .global lbl_80495880
 lbl_80495880:
 	.4byte 0x65667842
@@ -15,7 +15,7 @@ lbl_8049588C:
 	.skip 3
 
 .section .data, "wa"  # 0x8049E220 - 0x804EFC20
-.balign 0x8
+.balign 8
 .global __vt__Q23efx23TChasePosPosLocalYScale
 __vt__Q23efx23TChasePosPosLocalYScale:
 	.4byte 0
@@ -312,13 +312,13 @@ __vt__Q23efx24TCallBack_StaticClipping:
 	.4byte drawAfter__18JPAEmitterCallBackFP14JPABaseEmitter
 
 .section .sbss # 0x80514D80 - 0x80516360
-.balign 0x8
+.balign 8
 .global mCallBack_StaticClipping__Q23efx5TBase
 mCallBack_StaticClipping__Q23efx5TBase:
 	.skip 0x8
 
 .section .sdata2, "a"     # 0x80516360 - 0x80520E40
-.balign 0x8
+.balign 8
 .global lbl_8051F610
 lbl_8051F610:
 	.float 0.5

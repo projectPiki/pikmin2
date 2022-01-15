@@ -1,6 +1,6 @@
 .include "macros.inc"
 .section .rodata  # 0x804732E0 - 0x8049E220
-.balign 0x8
+.balign 8
 .global lbl_80481C50
 lbl_80481C50:
 	.asciz "pelletItem.cpp"
@@ -19,7 +19,7 @@ lbl_80481C78:
 	.skip 1
 
 .section .data, "wa"  # 0x8049E220 - 0x804EFC20
-.balign 0x8
+.balign 8
 .global __vt__Q34Game10PelletItem3Mgr
 __vt__Q34Game10PelletItem3Mgr:
 	.4byte 0
@@ -348,13 +348,13 @@ __vt__Q34Game10PelletItem6Object:
 	.4byte sound_otakaraEventFinish__Q34Game10PelletItem6ObjectFv
 
 .section .sbss # 0x80514D80 - 0x80516360
-.balign 0x8
+.balign 8
 .global mgr__Q24Game10PelletItem
 mgr__Q24Game10PelletItem:
 	.skip 0x8
 
 .section .sdata2, "a"     # 0x80516360 - 0x80520E40
-.balign 0x8
+.balign 8
 .global lbl_80519D50
 lbl_80519D50:
 	.4byte 0x6B657900

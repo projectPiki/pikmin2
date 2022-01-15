@@ -1,6 +1,6 @@
 .include "macros.inc"
 .section .rodata  # 0x804732E0 - 0x8049E220
-.balign 0x8
+.balign 8
 .global lbl_804785D0
 lbl_804785D0:
 	.4byte 0x00000000
@@ -9,7 +9,7 @@ lbl_804785D0:
 	.4byte 0x00000003
 
 .section .data, "wa"  # 0x8049E220 - 0x804EFC20
-.balign 0x8
+.balign 8
 .global __vt__15J2DIndBlockFull
 __vt__15J2DIndBlockFull:
 	.4byte 0

@@ -1,6 +1,6 @@
 .include "macros.inc"
 .section .rodata  # 0x804732E0 - 0x8049E220
-.balign 0x8
+.balign 8
 .global lbl_8048F6B0
 lbl_8048F6B0:
 	.4byte 0x7467615F
@@ -35,7 +35,7 @@ lbl_8048F6F8:
 	.4byte 0x62747000
 
 .section .data, "wa"  # 0x8049E220 - 0x804EFC20
-.balign 0x8
+.balign 8
 .global __vt__Q32og6Screen16CallBack_Picture
 __vt__Q32og6Screen16CallBack_Picture:
 	.4byte 0
@@ -48,7 +48,7 @@ __vt__Q32og6Screen16CallBack_Picture:
 	.4byte 0
 
 .section .sdata2, "a"     # 0x80516360 - 0x80520E40
-.balign 0x8
+.balign 8
 .global lbl_8051DF60
 lbl_8051DF60:
 	.4byte 0x00000000

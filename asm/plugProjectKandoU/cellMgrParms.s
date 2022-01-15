@@ -1,6 +1,6 @@
 .include "macros.inc"
 .section .rodata  # 0x804732E0 - 0x8049E220
-.balign 0x8
+.balign 8
 .global lbl_804837E8
 lbl_804837E8:
 	.4byte 0x43656C6C
@@ -21,7 +21,7 @@ lbl_804837E8:
 	.4byte 0x72000000
 
 .section .data, "wa"  # 0x8049E220 - 0x804EFC20
-.balign 0x8
+.balign 8
 .global __vt__12CellMgrParms
 __vt__12CellMgrParms:
 	.4byte 0
@@ -32,13 +32,13 @@ __vt__12CellMgrParms:
 	.4byte __dt__12CellMgrParmsFv
 
 .section .sbss # 0x80514D80 - 0x80516360
-.balign 0x8
+.balign 8
 .global mInstance__12CellMgrParms
 mInstance__12CellMgrParms:
 	.skip 0x8
 
 .section .sdata2, "a"     # 0x80516360 - 0x80520E40
-.balign 0x8
+.balign 8
 .global lbl_8051A2F0
 lbl_8051A2F0:
 	.4byte 0x43656C6C

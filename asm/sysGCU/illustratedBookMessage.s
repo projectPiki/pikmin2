@@ -1,6 +1,6 @@
 .include "macros.inc"
 .section .rodata  # 0x804732E0 - 0x8049E220
-.balign 0x8
+.balign 8
 .global lbl_8049BAA0
 lbl_8049BAA0:
 	.4byte 0x696C6C75
@@ -22,7 +22,7 @@ lbl_8049BAC8:
 	.4byte 0x00000000
 
 .section .data, "wa"  # 0x8049E220 - 0x804EFC20
-.balign 0x8
+.balign 8
 .global __vt__Q35P2JME15IllustratedBook8TControl
 __vt__Q35P2JME15IllustratedBook8TControl:
 	.4byte 0
@@ -147,7 +147,7 @@ __vt__Q25P2JME13TSeqProcNoSeq:
 	.4byte reset__Q25P2JME18TSequenceProcessorFv
 
 .section .sdata2, "a"     # 0x80516360 - 0x80520E40
-.balign 0x8
+.balign 8
 .global lbl_80520BC0
 lbl_80520BC0:
 	.float 1.0

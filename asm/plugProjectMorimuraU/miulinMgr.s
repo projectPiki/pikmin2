@@ -1,6 +1,6 @@
 .include "macros.inc"
 .section .rodata  # 0x804732E0 - 0x8049E220
-.balign 0x8
+.balign 8
 .global lbl_804916B0
 lbl_804916B0:
 	.asciz "miulinMgr"
@@ -224,7 +224,7 @@ lbl_804916BC:
 	.4byte 0x82630000
 
 .section .data, "wa"  # 0x8049E220 - 0x804EFC20
-.balign 0x8
+.balign 8
 .global __vt__Q34Game6Miulin3Mgr
 __vt__Q34Game6Miulin3Mgr:
 	.4byte 0
@@ -291,7 +291,7 @@ __vt__Q34Game6Miulin5Parms:
 	.4byte 0
 
 .section .sdata2, "a"     # 0x80516360 - 0x80520E40
-.balign 0x8
+.balign 8
 .global lbl_8051E7F0
 lbl_8051E7F0:
 	.4byte 0x41A00000

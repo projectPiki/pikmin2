@@ -1,6 +1,6 @@
 .include "macros.inc"
 .section .rodata  # 0x804732E0 - 0x8049E220
-.balign 0x8
+.balign 8
 .global __THPJpegNaturalOrder
 __THPJpegNaturalOrder:
 	.4byte 0x00010810
@@ -35,20 +35,20 @@ __THPAANScaleFactor:
 	.double 0.27589938044548035
 
 .section .data, "wa"  # 0x8049E220 - 0x804EFC20
-.balign 0x8
+.balign 8
 .global THP_VERSION_STRING
 THP_VERSION_STRING:
 	.asciz "<< Dolphin SDK - THP\trelease build: Jan  9 2004 13:06:55 (0x2301) >>"
 	.skip 3
 
 .section .sdata, "wa"  # 0x80514680 - 0x80514D80
-.balign 0x8
+.balign 8
 .global __THPVersion
 __THPVersion:
 	.4byte THP_VERSION_STRING
 
 .section .sbss # 0x80514D80 - 0x80516360
-.balign 0x8
+.balign 8
 .global Ydchuff
 Ydchuff:
 	.skip 0x20
@@ -102,7 +102,7 @@ __THPInitFlag:
 	.skip 0x4
 
 .section .sdata2, "a"     # 0x80516360 - 0x80520E40
-.balign 0x8
+.balign 8
 .global lbl_80517778
 lbl_80517778:
 	.4byte 0x43300000

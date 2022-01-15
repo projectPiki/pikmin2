@@ -3,7 +3,7 @@
 .4byte __sinit_ogObjVs_cpp
 
 .section .rodata  # 0x804732E0 - 0x8049E220
-.balign 0x8
+.balign 8
 .global lbl_8048F368
 lbl_8048F368:
 	.4byte 0x6F674F62
@@ -50,7 +50,7 @@ lbl_8048F3D4:
 	.skip 3
 
 .section .data, "wa"  # 0x8049E220 - 0x804EFC20
-.balign 0x8
+.balign 8
 .global __vt__Q25efx2d8ArgScale
 __vt__Q25efx2d8ArgScale:
 	.4byte 0
@@ -96,7 +96,7 @@ msVal__Q32og9newScreen5ObjVs:
 	.skip 0x34
 
 .section .sdata2, "a"     # 0x80516360 - 0x80520E40
-.balign 0x8
+.balign 8
 .global lbl_8051DD98
 lbl_8051DD98:
 	.4byte 0x00000000

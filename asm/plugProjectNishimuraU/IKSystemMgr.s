@@ -1,6 +1,6 @@
 .include "macros.inc"
 .section .rodata  # 0x804732E0 - 0x8049E220
-.balign 0x8
+.balign 8
 .global lbl_80489968
 lbl_80489968:
 	.float 0.4
@@ -9,13 +9,13 @@ lbl_80489968:
 	.float 0.1
 
 .section .sbss # 0x80514D80 - 0x80516360
-.balign 0x8
+.balign 8
 .global gIKSystemMgr__4Game
 gIKSystemMgr__4Game:
 	.skip 0x8
 
 .section .sdata2, "a"     # 0x80516360 - 0x80520E40
-.balign 0x8
+.balign 8
 .global lbl_8051BF70
 lbl_8051BF70:
 	.4byte 0x42C80000

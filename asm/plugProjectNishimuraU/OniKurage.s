@@ -3,7 +3,7 @@
 .4byte __sinit_OniKurage_cpp
 
 .section .rodata  # 0x804732E0 - 0x8049E220
-.balign 0x8
+.balign 8
 lbl_8048C0C0:
 	.4byte 0x00000000
 	.4byte 0x41F00000
@@ -68,7 +68,7 @@ lbl_8048C178:
 	.4byte 0x00000000
 
 .section .data, "wa"  # 0x8049E220 - 0x804EFC20
-.balign 0x8
+.balign 8
 .global lbl_804D2AD8
 lbl_804D2AD8:
 	.4byte 0x00000000
@@ -391,7 +391,7 @@ __vt__Q34Game9OniKurage3Obj:
 	.4byte 0
 
 .section .sbss # 0x80514D80 - 0x80516360
-.balign 0x8
+.balign 8
 .global lbl_80515DD0
 lbl_80515DD0:
 	.skip 0x4
@@ -400,7 +400,7 @@ lbl_80515DD4:
 	.skip 0x4
 
 .section .sdata2, "a"     # 0x80516360 - 0x80520E40
-.balign 0x8
+.balign 8
 .global "cDefaultKamuJointOffset__Q34Game9OniKurage23@unnamed@OniKurage_cpp@"
 "cDefaultKamuJointOffset__Q34Game9OniKurage23@unnamed@OniKurage_cpp@":
 	.4byte 0x40F00000

@@ -1,6 +1,6 @@
 .include "macros.inc"
 .section .rodata  # 0x804732E0 - 0x8049E220
-.balign 0x8
+.balign 8
 .global lbl_80495B48
 lbl_80495B48:
 	.4byte 0x65667832
@@ -13,7 +13,7 @@ lbl_80495B58:
 	.skip 3
 
 .section .data, "wa"  # 0x8049E220 - 0x804EFC20
-.balign 0x8
+.balign 8
 .global __vt__Q25efx2d12TChasePosDir
 __vt__Q25efx2d12TChasePosDir:
 	.4byte 0
@@ -98,7 +98,7 @@ __vt__Q25efx2d8TSimple1:
 	.4byte setGroup__Q25efx2d5TBaseFUc
 
 .section .sdata2, "a"     # 0x80516360 - 0x80520E40
-.balign 0x8
+.balign 8
 .global lbl_8051F6D8
 lbl_8051F6D8:
 	.4byte 0x00000000

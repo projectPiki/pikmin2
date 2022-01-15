@@ -1,6 +1,6 @@
 .include "macros.inc"
 .section .rodata  # 0x804732E0 - 0x8049E220
-.balign 0x8
+.balign 8
 .global lbl_80496270
 lbl_80496270:
 	.4byte 0x65626953
@@ -74,7 +74,7 @@ lbl_804962CC:
 	.4byte 0x636B0000
 
 .section .data, "wa"  # 0x8049E220 - 0x804EFC20
-.balign 0x8
+.balign 8
 .global lbl_804E7A08
 lbl_804E7A08:
 	.4byte lbl_803C2980
@@ -129,7 +129,7 @@ __vt__Q33ebi6Screen17TResourceObserver:
 	.4byte 0
 
 .section .sdata2, "a"     # 0x80516360 - 0x80520E40
-.balign 0x8
+.balign 8
 .global lbl_8051F8A8
 lbl_8051F8A8:
 	.4byte 0x42700000

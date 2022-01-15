@@ -1,6 +1,6 @@
 .include "macros.inc"
 .section .rodata  # 0x804732E0 - 0x8049E220
-.balign 0x8
+.balign 8
 .global lbl_80487428
 lbl_80487428:
 	.asciz "246-MarMgr"
@@ -241,7 +241,7 @@ lbl_804877F0:
 	.skip 3
 
 .section .data, "wa"  # 0x8049E220 - 0x804EFC20
-.balign 0x8
+.balign 8
 .global __vt__Q34Game3Mar3Mgr
 __vt__Q34Game3Mar3Mgr:
 	.4byte 0
@@ -308,7 +308,7 @@ __vt__Q34Game3Mar5Parms:
 	.4byte 0
 
 .section .sdata, "wa"  # 0x80514680 - 0x80514D80
-.balign 0x8
+.balign 8
 .global "cMatAnimBtkTexName__Q34Game3Mar20@unnamed@MarMgr_cpp@"
 "cMatAnimBtkTexName__Q34Game3Mar20@unnamed@MarMgr_cpp@":
 	.4byte lbl_80487434
@@ -317,7 +317,7 @@ __vt__Q34Game3Mar5Parms:
 	.4byte lbl_80487458
 
 .section .sdata2, "a"     # 0x80516360 - 0x80520E40
-.balign 0x8
+.balign 8
 .global lbl_8051B618
 lbl_8051B618:
 	.4byte 0x42B40000

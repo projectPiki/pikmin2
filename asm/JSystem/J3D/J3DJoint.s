@@ -1,6 +1,6 @@
 .include "macros.inc"
 .section .rodata  # 0x804732E0 - 0x8049E220
-.balign 0x8
+.balign 8
 .global lbl_804789B0
 lbl_804789B0:
 	.float 1.0
@@ -23,7 +23,7 @@ lbl_804789D4:
 	.4byte 0x00000000
 
 .section .data, "wa"  # 0x8049E220 - 0x804EFC20
-.balign 0x8
+.balign 8
 .global "__vt__114J3DMtxCalcAnimation<64J3DMtxCalcAnimationAdaptorDefault<27J3DMtxCalcCalcTransformMaya>,24J3DMtxCalcJ3DSysInitMaya>"
 "__vt__114J3DMtxCalcAnimation<64J3DMtxCalcAnimationAdaptorDefault<27J3DMtxCalcCalcTransformMaya>,24J3DMtxCalcJ3DSysInitMaya>":
 	.4byte 0
@@ -78,7 +78,7 @@ __vt__17J3DMtxCalcAnmBase:
 	.4byte 0
 
 .section .sbss # 0x80514D80 - 0x80516360
-.balign 0x8
+.balign 8
 .global mMtxBuffer__10J3DMtxCalc
 mMtxBuffer__10J3DMtxCalc:
 	.skip 0x4
@@ -90,7 +90,7 @@ mCurrentMtxCalc__8J3DJoint:
 	.skip 0x8
 
 .section .sdata2, "a"     # 0x80516360 - 0x80520E40
-.balign 0x8
+.balign 8
 .global lbl_80516A78
 lbl_80516A78:
 	.float 1.0

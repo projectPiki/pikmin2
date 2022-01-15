@@ -1,6 +1,6 @@
 .include "macros.inc"
 .section .data, "wa"  # 0x8049E220 - 0x804EFC20
-.balign 0x8
+.balign 8
 .global __vt__Q34Game4Cave9EnemyNode
 __vt__Q34Game4Cave9EnemyNode:
 	.4byte 0
@@ -31,7 +31,7 @@ __vt__Q24Game16ObjectLayoutNode:
 	.4byte isFixedBattery__Q24Game16ObjectLayoutNodeFv
 
 .section .sdata2, "a"     # 0x80516360 - 0x80520E40
-.balign 0x8
+.balign 8
 .global lbl_8051A708
 lbl_8051A708:
 	.4byte 0x00000000

@@ -1,6 +1,6 @@
 .include "macros.inc"
 .section .rodata  # 0x804732E0 - 0x8049E220
-.balign 0x8
+.balign 8
 .global lbl_80496678
 lbl_80496678:
 	.4byte 0x65626932
@@ -14,7 +14,7 @@ lbl_8049668C:
 	.skip 3
 
 .section .data, "wa"  # 0x8049E220 - 0x804EFC20
-.balign 0x8
+.balign 8
 .global __vt__Q23ebi24E2DCallBack_WindowCursor
 __vt__Q23ebi24E2DCallBack_WindowCursor:
 	.4byte 0
@@ -73,7 +73,7 @@ __vt__Q23ebi20E2DCallBack_Purupuru:
 	.4byte 0
 
 .section .sdata2, "a"     # 0x80516360 - 0x80520E40
-.balign 0x8
+.balign 8
 .global lbl_8051FA98
 lbl_8051FA98:
 	.4byte 0x3A83126F

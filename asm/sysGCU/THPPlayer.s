@@ -1,6 +1,6 @@
 .include "macros.inc"
 .section .rodata  # 0x804732E0 - 0x8049E220
-.balign 0x8
+.balign 8
 .global lbl_8049B470
 lbl_8049B470:
 	.4byte 0x54485050
@@ -47,7 +47,7 @@ lbl_8049B4F8:
 	.4byte 0x89BB0A00
 
 .section .data, "wa"	# 0x8049E220 - 0x804EFC20
-.balign 0x8
+.balign 8
 .global VolumeTable
 VolumeTable:
 	.4byte 0x00000002
@@ -121,7 +121,7 @@ ActivePlayer:
 	.skip 0x1D0
 
 .section .sbss # 0x80514D80 - 0x80516360
-.balign 0x8
+.balign 8
 .global Initialized_2
 Initialized_2:
 	.skip 0x4
@@ -142,7 +142,7 @@ CurAudioBuffer:
 	.skip 0x4
 
 .section .sdata2, "a"     # 0x80516360 - 0x80520E40
-.balign 0x8
+.balign 8
 .global lbl_80520AF8
 lbl_80520AF8:
 	.4byte 0x54485000

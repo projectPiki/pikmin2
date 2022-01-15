@@ -1,6 +1,6 @@
 .include "macros.inc"
 .section .data, "wa"  # 0x8049E220 - 0x804EFC20
-.balign 0x8
+.balign 8
 .global sCurrentDir__16JASWaveArcLoader
 sCurrentDir__16JASWaveArcLoader:
 	.4byte 0x2F42616E
@@ -33,7 +33,7 @@ __vt__11JASDisposer:
 	.4byte onDispose__11JASDisposerFv
 
 .section .sbss # 0x80514D80 - 0x80516360
-.balign 0x8
+.balign 8
 .global sAramHeap__16JASWaveArcLoader
 sAramHeap__16JASWaveArcLoader:
 	.skip 0x8

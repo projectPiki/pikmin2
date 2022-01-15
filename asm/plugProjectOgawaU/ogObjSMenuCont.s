@@ -3,7 +3,7 @@
 .4byte __sinit_ogObjSMenuCont_cpp
 
 .section .rodata  # 0x804732E0 - 0x8049E220
-.balign 0x8
+.balign 8
 .global lbl_8048F7D0
 lbl_8048F7D0:
 	.4byte 0x6F674F62
@@ -37,7 +37,7 @@ lbl_8048F7D0:
 	.skip 3
 
 .section .data, "wa"  # 0x8049E220 - 0x804EFC20
-.balign 0x8
+.balign 8
 .global lbl_804DA328
 lbl_804DA328:
 	.4byte lbl_8033058C
@@ -132,13 +132,13 @@ __vt__Q32og9newScreen12ObjSMenuCont:
 	.4byte commonUpdate__Q32og9newScreen12ObjSMenuContFv
 
 .section .sbss # 0x80514D80 - 0x80516360
-.balign 0x8
+.balign 8
 .global msVal__Q32og9newScreen12ObjSMenuCont
 msVal__Q32og9newScreen12ObjSMenuCont:
 	.skip 0x8
 
 .section .sdata2, "a"     # 0x80516360 - 0x80520E40
-.balign 0x8
+.balign 8
 .global lbl_8051E090
 lbl_8051E090:
 	.4byte 0x00000000

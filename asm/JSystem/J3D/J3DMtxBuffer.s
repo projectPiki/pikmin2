@@ -8,7 +8,7 @@ sNoUseNrmMtx__12J3DMtxBuffer:
 	.skip 0x24
 
 .section .sdata, "wa"  # 0x80514680 - 0x80514D80
-.balign 0x8
+.balign 8
 .global sNoUseDrawMtxPtr__12J3DMtxBuffer
 sNoUseDrawMtxPtr__12J3DMtxBuffer:
 	.4byte sNoUseDrawMtx__12J3DMtxBuffer
@@ -21,7 +21,7 @@ J3DUnit01:
 	.float 1.0
 
 .section .sdata2, "a"     # 0x80516360 - 0x80520E40
-.balign 0x8
+.balign 8
 .global lbl_80516AF8
 lbl_80516AF8:
 	.float 1.0

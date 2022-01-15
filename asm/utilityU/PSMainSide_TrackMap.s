@@ -1,6 +1,6 @@
 .include "macros.inc"
 .section .rodata  # 0x804732E0 - 0x8049E220
-.balign 0x8
+.balign 8
 lbl_8049DE78:
 	.asciz "PSMainSide_TrackMap.cpp"
 .balign 4
@@ -75,7 +75,7 @@ lbl_8049E0DC:
 .balign 4
 
 .section .data, "wa"  # 0x8049E220 - 0x804EFC20
-.balign 0x8
+.balign 8
 .global __vt__Q23PSM15BgmTrackMapFile
 __vt__Q23PSM15BgmTrackMapFile:
 	.4byte 0
@@ -88,7 +88,7 @@ __vt__Q23PSM15BgmTrackMapFile:
 	.4byte 0
 
 .section .sdata2, "a"     # 0x80516360 - 0x80520E40
-.balign 0x8
+.balign 8
 lbl_80520DB0:
 	.asciz ""
 .balign 4

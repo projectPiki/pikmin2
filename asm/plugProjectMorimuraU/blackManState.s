@@ -3,7 +3,7 @@
 .4byte __sinit_blackManState_cpp
 
 .section .rodata  # 0x804732E0 - 0x8049E220
-.balign 0x8
+.balign 8
 .global lbl_80495230
 lbl_80495230:
 	.4byte 0x50534D61
@@ -18,7 +18,7 @@ lbl_80495248:
 	.skip 3
 
 .section .data, "wa"  # 0x8049E220 - 0x804EFC20
-.balign 0x8
+.balign 8
 .global lbl_804E5A50
 lbl_804E5A50:
 	.4byte 0x00000000
@@ -147,7 +147,7 @@ __vt__Q34Game8BlackMan3FSM:
 	.4byte setCurrState__Q24Game17EnemyStateMachineFPQ24Game9EnemyBasePQ24Game13EnemyFSMState
 
 .section .sbss # 0x80514D80 - 0x80516360
-.balign 0x8
+.balign 8
 .global lbl_80516050
 lbl_80516050:
 	.skip 0x4
@@ -156,7 +156,7 @@ lbl_80516054:
 	.skip 0x4
 
 .section .sdata2, "a"     # 0x80516360 - 0x80520E40
-.balign 0x8
+.balign 8
 .global lbl_8051F370
 lbl_8051F370:
 	.4byte 0x77616C6B

@@ -1,6 +1,6 @@
 .include "macros.inc"
 .section .rodata  # 0x804732E0 - 0x8049E220
-.balign 0x8
+.balign 8
 .global two_over_pi
 two_over_pi:
 	.4byte 0x00A2F983
@@ -105,7 +105,7 @@ npio2_hw:
 	.4byte 0x404921FB
 
 .section .sdata2, "a"     # 0x80516360 - 0x80520E40
-.balign 0x8
+.balign 8
 .global lbl_80517408
 lbl_80517408:
 	.4byte 0x00000000

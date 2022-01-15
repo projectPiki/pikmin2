@@ -1,6 +1,6 @@
 .include "macros.inc"
 .section .rodata  # 0x804732E0 - 0x8049E220
-.balign 0x8
+.balign 8
 .global lbl_8047AEA8
 lbl_8047AEA8:
 	.asciz "StateCautionBase"
@@ -11,7 +11,7 @@ lbl_8047AEBC:
 	.skip 1
 
 .section .data, "wa"  # 0x8049E220 - 0x804EFC20
-.balign 0x8
+.balign 8
 .global __vt__Q34Game10ChappyBase11StateGoHome
 __vt__Q34Game10ChappyBase11StateGoHome:
 	.4byte 0
@@ -146,7 +146,7 @@ __vt__Q34Game10ChappyBase3FSM:
 	.4byte setCurrState__Q24Game17EnemyStateMachineFPQ24Game9EnemyBasePQ24Game13EnemyFSMState
 
 .section .sdata2, "a"     # 0x80516360 - 0x80520E40
-.balign 0x8
+.balign 8
 .global lbl_80517AA0
 lbl_80517AA0:
 	.4byte 0x00000000

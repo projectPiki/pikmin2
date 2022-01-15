@@ -1,6 +1,6 @@
 .include "macros.inc"
 .section .rodata  # 0x804732E0 - 0x8049E220
-.balign 0x8
+.balign 8
 .global lbl_8047BF00
 lbl_8047BF00:
 	.4byte 0x50534761
@@ -12,7 +12,7 @@ lbl_8047BF0C:
 	.skip 3
 
 .section .data, "wa"  # 0x8049E220 - 0x804EFC20
-.balign 0x8
+.balign 8
 .global "__vt__Q24Game42StateMachine<Q34Game10EnemyStone8DrawInfo>"
 "__vt__Q24Game42StateMachine<Q34Game10EnemyStone8DrawInfo>":
 	.4byte 0
@@ -131,13 +131,13 @@ __vt__Q34Game10EnemyStone12StateMachine:
 	.4byte 0
 
 .section .sbss # 0x80514D80 - 0x80516360
-.balign 0x8
+.balign 8
 .global sOwnerEnemy__Q34Game10EnemyStone8DrawInfo
 sOwnerEnemy__Q34Game10EnemyStone8DrawInfo:
 	.skip 0x8
 
 .section .sdata2, "a"     # 0x80516360 - 0x80520E40
-.balign 0x8
+.balign 8
 .global lbl_80517FC0
 lbl_80517FC0:
 	.4byte 0x41200000

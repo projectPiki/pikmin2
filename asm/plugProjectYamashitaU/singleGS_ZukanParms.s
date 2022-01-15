@@ -3,7 +3,7 @@
 .4byte __sinit_singleGS_ZukanParms_cpp
 
 .section .rodata  # 0x804732E0 - 0x8049E220
-.balign 0x8
+.balign 8
 .global lbl_8047C358
 lbl_8047C358:
 	.4byte 0x00000000
@@ -133,7 +133,7 @@ lbl_8047C3F4:
 	.4byte 0x00000000
 
 .section .data, "wa"  # 0x8049E220 - 0x804EFC20
-.balign 0x8
+.balign 8
 .global lbl_804AF9C8
 lbl_804AF9C8:
 	.4byte 0x00000000
@@ -202,7 +202,7 @@ __vt__Q34Game15IllustratedBook12ColorSetting:
 	.4byte read__Q34Game15IllustratedBook12ColorSettingFR6Stream
 
 .section .sbss # 0x80514D80 - 0x80516360
-.balign 0x8
+.balign 8
 .global lbl_805158C8
 lbl_805158C8:
 	.skip 0x4
@@ -217,7 +217,7 @@ sCamera__Q34Game15IllustratedBook5Parms:
 	.skip 0x4
 
 .section .sdata2, "a"     # 0x80516360 - 0x80520E40
-.balign 0x8
+.balign 8
 .global lbl_80518150
 lbl_80518150:
 	.4byte 0x904690DD

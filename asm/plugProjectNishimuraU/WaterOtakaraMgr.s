@@ -1,6 +1,6 @@
 .include "macros.inc"
 .section .rodata  # 0x804732E0 - 0x8049E220
-.balign 0x8
+.balign 8
 .global lbl_8048A760
 lbl_8048A760:
 	.asciz "/enemy/data/WaterOtakara/otakara_blue_s3tc.bti"
@@ -23,7 +23,7 @@ lbl_8048A7C0:
 	.skip 3
 
 .section .data, "wa"  # 0x8049E220 - 0x804EFC20
-.balign 0x8
+.balign 8
 .global __vt__Q34Game12WaterOtakara3Mgr
 __vt__Q34Game12WaterOtakara3Mgr:
 	.4byte 0
@@ -86,7 +86,7 @@ __vt__Q34Game12WaterOtakara3Mgr:
 	.4byte 0
 
 .section .sdata, "wa"  # 0x80514680 - 0x80514D80
-.balign 0x8
+.balign 8
 .global "cOtakaraChangeTexName__Q34Game12WaterOtakara29@unnamed@WaterOtakaraMgr_cpp@"
 "cOtakaraChangeTexName__Q34Game12WaterOtakara29@unnamed@WaterOtakaraMgr_cpp@":
 	.4byte lbl_8048A760

@@ -1,6 +1,6 @@
 .include "macros.inc"
 .section .rodata  # 0x804732E0 - 0x8049E220
-.balign 0x8
+.balign 8
 .global lbl_8047AA70
 lbl_8047AA70:
 	.asciz "enemyBase"
@@ -33,7 +33,7 @@ lbl_8047AAD0:
 	.asciz "CreatureKillArg"
 
 .section .data, "wa"  # 0x8049E220 - 0x804EFC20
-.balign 0x8
+.balign 8
 .global lbl_804AB390
 lbl_804AB390:
 	.4byte lbl_8010BDB8
@@ -210,7 +210,7 @@ __vt__16GenericObjectMgr:
 	.4byte getMatrixLoadType__16GenericObjectMgrFv
 
 .section .sbss # 0x80514D80 - 0x80516360
-.balign 0x8
+.balign 8
 .global generalEnemyMgr__4Game
 generalEnemyMgr__4Game:
 	.skip 0x4
@@ -222,7 +222,7 @@ mTotalCount__Q24Game15GeneralEnemyMgr:
 	.skip 0x8
 
 .section .sdata2, "a"     # 0x80516360 - 0x80520E40
-.balign 0x8
+.balign 8
 .global lbl_805179A0
 lbl_805179A0:
 	.4byte 0x646F6154

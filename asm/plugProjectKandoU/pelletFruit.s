@@ -3,7 +3,7 @@
 .4byte __sinit_pelletFruit_cpp
 
 .section .rodata  # 0x804732E0 - 0x8049E220
-.balign 0x8
+.balign 8
 .global lbl_80481B40
 lbl_80481B40:
 	.4byte 0x50656C6C
@@ -12,7 +12,7 @@ lbl_80481B40:
 	.4byte 0x00000000
 
 .section .data, "wa"  # 0x8049E220 - 0x804EFC20
-.balign 0x8
+.balign 8
 .global lbl_804BDFD0
 lbl_804BDFD0:
 	.4byte 0x00000000
@@ -355,7 +355,7 @@ __vt__Q34Game11PelletFruit6Object:
 	.4byte 0
 
 .section .sbss # 0x80514D80 - 0x80516360
-.balign 0x8
+.balign 8
 .global lbl_80515B88
 lbl_80515B88:
 	.skip 0x4
@@ -367,7 +367,7 @@ mgr__Q24Game11PelletFruit:
 	.skip 0x8
 
 .section .sdata2, "a"     # 0x80516360 - 0x80520E40
-.balign 0x8
+.balign 8
 .global lbl_80519D08
 lbl_80519D08:
 	.4byte 0x42C80000

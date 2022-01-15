@@ -3,7 +3,7 @@
 	.4byte __sinit_JSTFindCreature_cpp
 
 .section .rodata  # 0x804732E0 - 0x8049E220
-.balign 0x8
+.balign 8
 .global lbl_8049A338
 lbl_8049A338:
 	.4byte 0x00000000
@@ -37,7 +37,7 @@ lbl_8049A338:
 	.4byte 0x64000000
 
 .section .data, "wa"  # 0x8049E220 - 0x804EFC20
-.balign 0x8
+.balign 8
 .global lbl_804EC358
 lbl_804EC358:
 	.4byte 0x00000000
@@ -46,7 +46,7 @@ lbl_804EC358:
 	.4byte 0x00000000
 
 .section .sbss # 0x80514D80 - 0x80516360
-.balign 0x8
+.balign 8
 .global lbl_80516208
 lbl_80516208:
 	.skip 0x4
@@ -55,7 +55,7 @@ lbl_8051620C:
 	.skip 0x4
 
 .section .sdata2, "a"     # 0x80516360 - 0x80520E40
-.balign 0x8
+.balign 8
 .global lbl_805206C8
 lbl_805206C8:
 	.4byte 0x6F6E796F

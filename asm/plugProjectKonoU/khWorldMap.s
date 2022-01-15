@@ -3,7 +3,7 @@
 	.4byte __sinit_khWorldMap_cpp
 
 .section .rodata  # 0x804732E0 - 0x8049E220
-.balign 0x8
+.balign 8
 .global lbl_80497C70
 lbl_80497C70:
 	.asciz "khWorldMap.cpp"
@@ -449,7 +449,7 @@ lbl_80498348:
 	.4byte 0x00000000
 
 .section .data, "wa"  # 0x8049E220 - 0x804EFC20
-.balign 0x8
+.balign 8
 .global lbl_804EA3A0
 lbl_804EA3A0:
 	.4byte lbl_803F3D80
@@ -591,7 +591,7 @@ msVal__Q32kh6Screen8WorldMap:
 	.skip 0x7C
 
 .section .sdata2, "a"     # 0x80516360 - 0x80520E40
-.balign 0x8
+.balign 8
 .global lbl_8051FEF0
 lbl_8051FEF0:
 	.float 1.0

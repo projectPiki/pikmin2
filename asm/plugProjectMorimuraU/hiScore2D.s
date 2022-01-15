@@ -3,7 +3,7 @@
 .4byte __sinit_hiScore2D_cpp
 
 .section .rodata  # 0x804732E0 - 0x8049E220
-.balign 0x8
+.balign 8
 .global lbl_804932E0
 lbl_804932E0:
 	.asciz "hiScore2D"
@@ -219,7 +219,7 @@ lbl_80493680:
 	.4byte 0x6A2E6800
 
 .section .data, "wa"  # 0x8049E220 - 0x804EFC20
-.balign 0x8
+.balign 8
 .global mPicTexture__Q28Morimura8THiScore
 mPicTexture__Q28Morimura8THiScore:
 	.4byte 0x00000000
@@ -387,7 +387,7 @@ mScrollParm__Q28Morimura8THiScore:
 	.skip 0x14
 
 .section .sdata, "wa"  # 0x80514680 - 0x80514D80
-.balign 0x8
+.balign 8
 .global mPictureOffsetY__Q28Morimura8THiScore
 mPictureOffsetY__Q28Morimura8THiScore:
 	.float -8.0
@@ -402,7 +402,7 @@ mClearListHeightRate__Q28Morimura8THiScore:
 	.float 1.55
 
 .section .sbss # 0x80514D80 - 0x80516360
-.balign 0x8
+.balign 8
 .global mForceClear__Q28Morimura8THiScore
 mForceClear__Q28Morimura8THiScore:
 	.skip 0x1
@@ -414,7 +414,7 @@ mLoopDrum__Q28Morimura8THiScore:
 	.skip 0x6
 
 .section .sdata2, "a"     # 0x80516360 - 0x80520E40
-.balign 0x8
+.balign 8
 .global lbl_8051EC18
 lbl_8051EC18:
 	.4byte 0x00000000

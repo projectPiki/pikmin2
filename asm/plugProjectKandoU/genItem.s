@@ -1,6 +1,6 @@
 .include "macros.inc"
 .section .rodata  # 0x804732E0 - 0x8049E220
-.balign 0x8
+.balign 8
 .global lbl_8047F810
 lbl_8047F810:
 	.4byte 0x6F626A65
@@ -51,7 +51,7 @@ lbl_8047F880:
 	.4byte 0x90B60000
 
 .section .data, "wa"  # 0x8049E220 - 0x804EFC20
-.balign 0x8
+.balign 8
 .global __vt__Q24Game7GenItem
 __vt__Q24Game7GenItem:
 	.4byte 0
@@ -72,7 +72,7 @@ __vt__Q24Game7GenItem:
 	.4byte getDebugInfo__Q24Game9GenObjectFPc
 
 .section .sdata2, "a"     # 0x80516360 - 0x80520E40
-.balign 0x8
+.balign 8
 .global lbl_805192B8
 lbl_805192B8:
 	.4byte 0x00000000

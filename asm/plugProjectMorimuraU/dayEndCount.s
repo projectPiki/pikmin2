@@ -1,6 +1,6 @@
 .include "macros.inc"
 .section .rodata  # 0x804732E0 - 0x8049E220
-.balign 0x8
+.balign 8
 .global lbl_804901E8
 lbl_804901E8:
 	.4byte 0x64617945
@@ -52,7 +52,7 @@ lbl_80490264:
 	.4byte 0x6A2E6800
 
 .section .data, "wa"  # 0x8049E220 - 0x804EFC20
-.balign 0x8
+.balign 8
 .global deTagName__8Morimura
 deTagName__8Morimura:
 	.4byte 0x63643030
@@ -223,7 +223,7 @@ __vt__Q28Morimura12TDayEndCount:
 	.4byte 0
 
 .section .sdata, "wa"  # 0x80514680 - 0x80514D80
-.balign 0x8
+.balign 8
 .global mWaitTime__Q28Morimura12TDayEndCount
 mWaitTime__Q28Morimura12TDayEndCount:
 	.float 0.4
@@ -258,7 +258,7 @@ mNumberColor__Q28Morimura12TDayEndCount:
 	.4byte 0xFF6400FF
 
 .section .sbss # 0x80514D80 - 0x80516360
-.balign 0x8
+.balign 8
 .global mColorTest__Q28Morimura12TDayEndCount
 mColorTest__Q28Morimura12TDayEndCount:
 	.skip 0x1
@@ -270,7 +270,7 @@ mCountDownType__Q28Morimura12TDayEndCount:
 	.skip 0x6
 
 .section .sdata2, "a"     # 0x80516360 - 0x80520E40
-.balign 0x8
+.balign 8
 .global lbl_8051E1F8
 lbl_8051E1F8:
 	.float 1.0

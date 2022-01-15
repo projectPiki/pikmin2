@@ -1,6 +1,6 @@
 .include "macros.inc"
 .section .rodata  # 0x804732E0 - 0x8049E220
-.balign 0x8
+.balign 8
 .global lbl_80479688
 lbl_80479688:
 	.asciz "JaiInit.aaf"
@@ -13,7 +13,7 @@ lbl_804796A0:
 	.asciz "JaiSeqs.arc"
 
 .section .sdata, "wa"  # 0x80514680 - 0x80514D80
-.balign 0x8
+.balign 8
 .global distanceParameterMoveTime__18JAIGlobalParameter
 distanceParameterMoveTime__18JAIGlobalParameter:
 	.byte 0x3
@@ -149,7 +149,7 @@ seDistancepitchMax__18JAIGlobalParameter:
 	.float 0.2
 
 .section .sbss # 0x80514D80 - 0x80516360
-.balign 0x8
+.balign 8
 .global seDefaultFx__18JAIGlobalParameter
 seDefaultFx__18JAIGlobalParameter:
 	.skip 0x4
@@ -161,7 +161,7 @@ minDistanceVolume__18JAIGlobalParameter:
 	.skip 0x8
 
 .section .sdata2, "a"     # 0x80516360 - 0x80520E40
-.balign 0x8
+.balign 8
 .global lbl_80516F28
 lbl_80516F28:
 	.asciz "Banks/"

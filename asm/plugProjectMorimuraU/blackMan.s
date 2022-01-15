@@ -3,7 +3,7 @@
 .4byte __sinit_blackMan_cpp
 
 .section .rodata  # 0x804732E0 - 0x8049E220
-.balign 0x8
+.balign 8
 .global lbl_80495670
 lbl_80495670:
 	.4byte 0x00000000
@@ -81,7 +81,7 @@ lbl_804957C4:
 	.asciz "ArgPrmColor"
 
 .section .data, "wa"  # 0x8049E220 - 0x804EFC20
-.balign 0x8
+.balign 8
 .global lbl_804E5D00
 lbl_804E5D00:
 	.4byte 0x00000000
@@ -412,7 +412,7 @@ __vt__Q34Game8BlackMan3Obj:
 	.4byte 0
 
 .section .sbss # 0x80514D80 - 0x80516360
-.balign 0x8
+.balign 8
 .global lbl_80516058
 lbl_80516058:
 	.skip 0x4
@@ -424,7 +424,7 @@ curB__Q24Game8BlackMan:
 	.skip 0x8
 
 .section .sdata2, "a"     # 0x80516360 - 0x80520E40
-.balign 0x8
+.balign 8
 .global lbl_8051F438
 lbl_8051F438:
 	.4byte 0x00000000

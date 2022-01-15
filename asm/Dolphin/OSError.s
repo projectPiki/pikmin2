@@ -1,6 +1,6 @@
 .include "macros.inc"
 .section .data, "wa"  # 0x8049E220 - 0x804EFC20
-.balign 0x8
+.balign 8
 .global lbl_804A8F90
 lbl_804A8F90:
 	.asciz " in \"%s\" on line %d.\n"
@@ -49,7 +49,7 @@ lbl_804A926C:
 	.4byte 0
 
 .section .sdata, "wa"  # 0x80514680 - 0x80514D80
-.balign 0x8
+.balign 8
 .global __OSFpscrEnableBits
 __OSFpscrEnableBits:
 	.4byte 0x000000F8

@@ -3,7 +3,7 @@
 	.4byte __sinit_khWinLose_cpp
 
 .section .rodata  # 0x804732E0 - 0x8049E220
-.balign 0x8
+.balign 8
 .global lbl_80499358
 lbl_80499358:
 	.asciz "khWinLose.cpp"
@@ -106,7 +106,7 @@ lbl_804994C4:
 	.skip 7
 
 .section .data, "wa"  # 0x8049E220 - 0x804EFC20
-.balign 0x8
+.balign 8
 .global __vt__Q32kh6Screen10ObjWinLose
 __vt__Q32kh6Screen10ObjWinLose:
 	.4byte 0
@@ -146,7 +146,7 @@ msVal__Q32kh6Screen10ObjWinLose:
 	.skip 0x1C
 
 .section .sdata2, "a"     # 0x80516360 - 0x80520E40
-.balign 0x8
+.balign 8
 .global lbl_80520208
 lbl_80520208:
 	.float 0.0

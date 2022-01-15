@@ -3,7 +3,7 @@
 .4byte __sinit_singleGS_CaveGame_cpp
 
 .section .rodata  # 0x804732E0 - 0x8049E220
-.balign 0x8
+.balign 8
 .global lbl_80482430
 lbl_80482430:
 	.4byte 0x00000000
@@ -109,7 +109,7 @@ lbl_8048255C:
 	.4byte 0x41726700
 
 .section .data, "wa"  # 0x8049E220 - 0x804EFC20
-.balign 0x8
+.balign 8
 .global lbl_804C05F0
 lbl_804C05F0:
 	.4byte 0x00000000
@@ -138,7 +138,7 @@ __vt__Q34Game10SingleGame9CaveState:
 	.4byte 0
 
 .section .sbss # 0x80514D80 - 0x80516360
-.balign 0x8
+.balign 8
 .global lbl_80515BF0
 lbl_80515BF0:
 	.skip 0x4
@@ -147,7 +147,7 @@ lbl_80515BF4:
 	.skip 0x4
 
 .section .sdata2, "a"     # 0x80516360 - 0x80520E40
-.balign 0x8
+.balign 8
 .global lbl_8051A000
 lbl_8051A000:
 	.float 1.0

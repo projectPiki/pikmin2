@@ -1,6 +1,6 @@
 .include "macros.inc"
 .section .rodata  # 0x804732E0 - 0x8049E220
-.balign 0x8
+.balign 8
 .global lbl_80481428
 lbl_80481428:
 	.4byte 0x70696B69
@@ -30,7 +30,7 @@ lbl_8048144C:
 	.4byte 0x00000000
 
 .section .data, "wa"  # 0x8049E220 - 0x804EFC20
-.balign 0x8
+.balign 8
 .global __vt__Q24Game13PikiContainer
 __vt__Q24Game13PikiContainer:
 	.4byte 0

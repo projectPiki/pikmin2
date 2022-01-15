@@ -1,12 +1,12 @@
 .include "macros.inc"
 .section .sdata, "wa"  # 0x80514680 - 0x80514D80
-.balign 0x8
+.balign 8
 .global FirstRead
 FirstRead:
 	.4byte 0x00000001
 
 .section .sbss # 0x80514D80 - 0x80516360
-.balign 0x8
+.balign 8
 .global StopAtNextInt
 StopAtNextInt:
 	.skip 0x4

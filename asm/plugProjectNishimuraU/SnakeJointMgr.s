@@ -1,6 +1,6 @@
 .include "macros.inc"
 .section .rodata  # 0x804732E0 - 0x8049E220
-.balign 0x8
+.balign 8
 .global "cJointModRatio__Q24Game27@unnamed@SnakeJointMgr_cpp@"
 "cJointModRatio__Q24Game27@unnamed@SnakeJointMgr_cpp@":
 	.float 0.0
@@ -43,13 +43,13 @@ lbl_8048BD20:
 	.4byte lbl_8048BD14
 
 .section .sbss # 0x80514D80 - 0x80516360
-.balign 0x8
+.balign 8
 .global sSnakeJointMgr__4Game
 sSnakeJointMgr__4Game:
 	.skip 0x8
 
 .section .sdata2, "a"     # 0x80516360 - 0x80520E40
-.balign 0x8
+.balign 8
 .global lbl_8051C8D8
 lbl_8051C8D8:
 	.4byte 0x00000000

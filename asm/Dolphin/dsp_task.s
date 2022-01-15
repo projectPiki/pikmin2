@@ -1,6 +1,6 @@
 .include "macros.inc"
 .section .data, "wa"  # 0x8049E220 - 0x804EFC20
-.balign 0x8
+.balign 8
 .global lbl_804A79B8
 lbl_804A79B8:
 	.asciz "DSP is booting task: 0x%08X\n"
@@ -19,7 +19,7 @@ lbl_804A79B8:
 	.skip 1
 
 .section .sbss # 0x80514D80 - 0x80516360
-.balign 0x8
+.balign 8
 .global __DSP_tmp_task
 __DSP_tmp_task:
 	.skip 0x4

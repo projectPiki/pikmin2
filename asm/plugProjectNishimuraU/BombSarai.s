@@ -1,6 +1,6 @@
 .include "macros.inc"
 .section .rodata  # 0x804732E0 - 0x8049E220
-.balign 0x8
+.balign 8
 .global lbl_8048A250
 lbl_8048A250:
 	.4byte 0x3234362D
@@ -39,7 +39,7 @@ lbl_8048A278:
 	.4byte 0x00000000
 
 .section .data, "wa"  # 0x8049E220 - 0x804EFC20
-.balign 0x8
+.balign 8
 .global __vt__Q23efx11TBsaraiDead
 __vt__Q23efx11TBsaraiDead:
 	.4byte 0
@@ -276,7 +276,7 @@ __vt__Q34Game9BombSarai3Obj:
 	.4byte 0
 
 .section .sdata2, "a"     # 0x80516360 - 0x80520E40
-.balign 0x8
+.balign 8
 .global lbl_8051C1F8
 lbl_8051C1F8:
 	.4byte 0x00000000

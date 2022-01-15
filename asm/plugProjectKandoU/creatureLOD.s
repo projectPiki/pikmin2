@@ -3,7 +3,7 @@
 .4byte __sinit_creatureLOD_cpp
 
 .section .rodata  # 0x804732E0 - 0x8049E220
-.balign 0x8
+.balign 8
 .global lbl_804807C8
 lbl_804807C8:
 	.asciz "creatureLOD.cpp"
@@ -21,7 +21,7 @@ lbl_804807F0:
 	.skip 3
 
 .section .data, "wa"  # 0x8049E220 - 0x804EFC20
-.balign 0x8
+.balign 8
 .global lbl_804B8610
 lbl_804B8610:
 	.4byte 0x00000000
@@ -30,7 +30,7 @@ lbl_804B8610:
 	.4byte 0x00000000
 
 .section .sbss # 0x80514D80 - 0x80516360
-.balign 0x8
+.balign 8
 .global lbl_80515AD8
 lbl_80515AD8:
 	.skip 0x4
@@ -42,7 +42,7 @@ drawInfo__Q24Game5AILOD:
 	.skip 0x8
 
 .section .sdata2, "a"     # 0x80516360 - 0x80520E40
-.balign 0x8
+.balign 8
 .global lbl_80519750
 lbl_80519750:
 	.float 0.07

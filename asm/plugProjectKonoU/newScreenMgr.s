@@ -1,6 +1,6 @@
 .include "macros.inc"
 .section .rodata  # 0x804732E0 - 0x8049E220
-.balign 0x8
+.balign 8
 .global lbl_804985B8
 lbl_804985B8:
 	.4byte 0x7265735F
@@ -71,7 +71,7 @@ lbl_80498660:
 	.4byte 0x7A730000
 
 .section .data, "wa"  # 0x8049E220 - 0x804EFC20
-.balign 0x8
+.balign 8
 .global lbl_804EA878
 lbl_804EA878:
 	.4byte lbl_8040020C
@@ -296,7 +296,7 @@ __vt__Q28Morimura13THurryUpScene:
 	.4byte 0
 
 .section .sdata2, "a"     # 0x80516360 - 0x80520E40
-.balign 0x8
+.balign 8
 .global lbl_80520048
 lbl_80520048:
 	.4byte 0x00000000

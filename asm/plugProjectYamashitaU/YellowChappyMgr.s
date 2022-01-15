@@ -1,6 +1,6 @@
 .include "macros.inc"
 .section .rodata  # 0x804732E0 - 0x8049E220
-.balign 0x8
+.balign 8
 .global lbl_8047C030
 lbl_8047C030:
 	.asciz "/enemy/data/YellowChappy/moyou_565.2.bti"
@@ -19,7 +19,7 @@ lbl_8047C088:
 	.4byte 0x83830000
 
 .section .data, "wa"  # 0x8049E220 - 0x804EFC20
-.balign 0x8
+.balign 8
 .global __vt__Q34Game12YellowChappy3Mgr
 __vt__Q34Game12YellowChappy3Mgr:
 	.4byte 0
@@ -82,7 +82,7 @@ __vt__Q34Game12YellowChappy3Mgr:
 	.4byte getChangeTexture1__Q34Game12YellowChappy3MgrFv
 
 .section .sdata, "wa"  # 0x80514680 - 0x80514D80
-.balign 0x8
+.balign 8
 .global "cChappyChangeTexName0__Q34Game12YellowChappy29@unnamed@YellowChappyMgr_cpp@"
 "cChappyChangeTexName0__Q34Game12YellowChappy29@unnamed@YellowChappyMgr_cpp@":
 	.4byte lbl_8047C030

@@ -1,6 +1,6 @@
 .include "macros.inc"
 .section .rodata  # 0x804732E0 - 0x8049E220
-.balign 0x8
+.balign 8
 .global lbl_80480460
 lbl_80480460:
 	.4byte 0x61637442
@@ -48,7 +48,7 @@ lbl_804804E0:
 	.4byte 0x00000000
 
 .section .data, "wa"  # 0x8049E220 - 0x804EFC20
-.balign 0x8
+.balign 8
 .global __vt__Q26PikiAI26FollowVectorFieldActionArg
 __vt__Q26PikiAI26FollowVectorFieldActionArg:
 	.4byte 0
@@ -77,7 +77,7 @@ __vt__Q26PikiAI12ActBreakGate:
 	.4byte "@52@4@onKeyEvent__Q26PikiAI12ActBreakGateFRCQ28SysShape8KeyEvent"
 
 .section .sdata2, "a"     # 0x80516360 - 0x80520E40
-.balign 0x8
+.balign 8
 .global lbl_80519630
 lbl_80519630:
 	.float 0.7

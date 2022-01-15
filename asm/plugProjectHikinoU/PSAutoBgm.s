@@ -1,6 +1,6 @@
 .include "macros.inc"
 .section .rodata  # 0x804732E0 - 0x8049E220
-.balign 0x8
+.balign 8
 .global lbl_8048FE60
 lbl_8048FE60:
 	.4byte 0x50534175
@@ -44,7 +44,7 @@ lbl_8048FED4:
 	.4byte 0x00000000
 
 .section .data, "wa"  # 0x8049E220 - 0x804EFC20
-.balign 0x8
+.balign 8
 .global __vt__Q29PSAutoBgm7AutoBgm
 __vt__Q29PSAutoBgm7AutoBgm:
 	.4byte 0
@@ -253,7 +253,7 @@ __vt__Q29PSAutoBgm9Conductor:
 	.4byte "load__Q210JADUtility7Prm<Uc>FR20JSUMemoryInputStream"
 
 .section .sbss # 0x80514D80 - 0x80516360
-.balign 0x8
+.balign 8
 .global sHeap__Q29PSAutoBgm12ConductorMgr
 sHeap__Q29PSAutoBgm12ConductorMgr:
 	.skip 0x4
@@ -262,7 +262,7 @@ sInstance__Q29PSAutoBgm15ConductorArcMgr:
 	.skip 0x4
 
 .section .sdata2, "a"     # 0x80516360 - 0x80520E40
-.balign 0x8
+.balign 8
 .global lbl_8051E160
 lbl_8051E160:
 	.4byte 0x00000000

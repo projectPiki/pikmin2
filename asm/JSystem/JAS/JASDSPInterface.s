@@ -1,6 +1,6 @@
 .include "macros.inc"
 .section .rodata  # 0x804732E0 - 0x8049E220
-.balign 0x8
+.balign 8
 .global DSPADPCM_FILTER__6JASDsp
 DSPADPCM_FILTER__6JASDsp:
 	.4byte 0x00000000
@@ -351,7 +351,7 @@ connect_table$774:
 	.4byte 0x0B0009A0
 
 .section .data, "wa"  # 0x8049E220 - 0x804EFC20
-.balign 0x8
+.balign 8
 .global SEND_TABLE__6JASDsp
 SEND_TABLE__6JASDsp:
 	.4byte 0x0D000D60
@@ -362,7 +362,7 @@ SEND_TABLE__6JASDsp:
 	.4byte 0x09A00000
 
 .section .sdata, "wa"  # 0x80514680 - 0x80514D80
-.balign 0x8
+.balign 8
 .global COMP_BLOCKSAMPLES$600
 COMP_BLOCKSAMPLES$600:
 	.4byte 0x10100101
@@ -373,7 +373,7 @@ COMP_BLOCKBYTES$601:
 	.4byte 0x01010101
 
 .section .sbss # 0x80514D80 - 0x80516360
-.balign 0x8
+.balign 8
 .global CH_BUF__6JASDsp
 CH_BUF__6JASDsp:
 	.skip 0x4

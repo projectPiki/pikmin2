@@ -1,6 +1,6 @@
 .include "macros.inc"
 .section .data, "wa"  # 0x8049E220 - 0x804EFC20
-.balign 0x8
+.balign 8
 .global lbl_804A2048
 lbl_804A2048:
 	.4byte lbl_80075010
@@ -51,7 +51,7 @@ c2r$1298:
 	.4byte 0x00000007
 
 .section .sdata, "wa"  # 0x80514680 - 0x80514D80
-.balign 0x8
+.balign 8
 .global cm2hw$551
 cm2hw$551:
 	.4byte 0x00020103
@@ -89,7 +89,7 @@ J3DTexImage2Ids:
 	.4byte 0xb0b1b2b3
 
 .section .sdata2, "a"     # 0x80516360 - 0x80520E40
-.balign 0x8
+.balign 8
 .global lbl_80516A98
 lbl_80516A98:
 	.4byte 0x42000000

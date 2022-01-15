@@ -1,6 +1,6 @@
 .include "macros.inc"
 .section .rodata  # 0x804732E0 - 0x8049E220
-.balign 0x8
+.balign 8
 .global lbl_80481C88
 lbl_80481C88:
 	.asciz "efxModelObjects"
@@ -25,7 +25,7 @@ lbl_80481CD0:
 	.skip 3
 
 .section .data, "wa"  # 0x8049E220 - 0x804EFC20
-.balign 0x8
+.balign 8
 .global __vt__Q23efx13OnyonSpotData
 __vt__Q23efx13OnyonSpotData:
 	.4byte 0
@@ -52,7 +52,7 @@ __vt__Q23efx9OnyonSpot:
 	.4byte doDirectDraw__11ModelEffectFR8Graphics
 
 .section .sdata2, "a"     # 0x80516360 - 0x80520E40
-.balign 0x8
+.balign 8
 .global lbl_80519D70
 lbl_80519D70:
 	.4byte 0x41200000

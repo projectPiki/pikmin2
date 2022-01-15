@@ -1,6 +1,6 @@
 .include "macros.inc"
 .section .rodata  # 0x804732E0 - 0x8049E220
-.balign 0x8
+.balign 8
 .global lbl_8047C0A0
 lbl_8047C0A0:
 	.asciz "YellowChappy.cpp"
@@ -11,7 +11,7 @@ lbl_8047C0B4:
 	.skip 3
 
 .section .data, "wa"  # 0x8049E220 - 0x804EFC20
-.balign 0x8
+.balign 8
 .global "__vt__Q23efx29TSyncGroup3<Q23efx9TChaseMtx>"
 "__vt__Q23efx29TSyncGroup3<Q23efx9TChaseMtx>":
 	.4byte 0
@@ -268,7 +268,7 @@ __vt__Q34Game12YellowChappy3Obj:
 	.4byte 0
 
 .section .sdata2, "a"     # 0x80516360 - 0x80520E40
-.balign 0x8
+.balign 8
 .global lbl_805180D0
 lbl_805180D0:
 	.float 0.5

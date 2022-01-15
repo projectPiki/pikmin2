@@ -3,7 +3,7 @@
 .4byte __sinit_challengeSelect2D_cpp
 
 .section .rodata  # 0x804732E0 - 0x8049E220
-.balign 0x8
+.balign 8
 .global lbl_80493FC0
 lbl_80493FC0:
 	.4byte 0x6368616C
@@ -485,7 +485,7 @@ lbl_804946FC:
 	.4byte 0x6A2E6800
 
 .section .data, "wa"  # 0x8049E220 - 0x804EFC20
-.balign 0x8
+.balign 8
 .global mIconTexture__Q28Morimura16TChallengeSelect
 mIconTexture__Q28Morimura16TChallengeSelect:
 	.4byte 0x00000000
@@ -598,7 +598,7 @@ __vt__Q28Morimura16TChallengeScreen:
 	.4byte 0
 
 .section .sdata, "wa"  # 0x80514680 - 0x80514D80
-.balign 0x8
+.balign 8
 .global mSelected1p__Q28Morimura16TChallengeSelect
 mSelected1p__Q28Morimura16TChallengeSelect:
 	.4byte 0x01000000
@@ -638,7 +638,7 @@ mSelectIconScale__Q28Morimura16TChallengeSelect:
 	.float 1.5
 
 .section .sbss # 0x80514D80 - 0x80516360
-.balign 0x8
+.balign 8
 .global mRightOffset__Q28Morimura16TChallengeSelect
 mRightOffset__Q28Morimura16TChallengeSelect:
 	.skip 0x4
@@ -668,7 +668,7 @@ mDebugHeap__Q28Morimura16TChallengeSelect:
 	.skip 0x4
 
 .section .sdata2, "a"     # 0x80516360 - 0x80520E40
-.balign 0x8
+.balign 8
 .global lbl_8051EF88
 lbl_8051EF88:
 	.4byte 0x00000000

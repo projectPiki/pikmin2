@@ -1,6 +1,6 @@
 .include "macros.inc"
 .section .rodata  # 0x804732E0 - 0x8049E220
-.balign 0x8
+.balign 8
 .global lbl_80487080
 lbl_80487080:
 	.asciz "/enemy/data/Wtank/mizu_butadokkuri_main_s3tc.bti"
@@ -28,7 +28,7 @@ lbl_804870EC:
 	.skip 3
 
 .section .data, "wa"  # 0x8049E220 - 0x804EFC20
-.balign 0x8
+.balign 8
 .global __vt__Q34Game5Wtank3Mgr
 __vt__Q34Game5Wtank3Mgr:
 	.4byte 0
@@ -95,7 +95,7 @@ __vt__Q34Game4Tank5Parms:
 	.4byte read__Q34Game4Tank5ParmsFR6Stream
 
 .section .sdata, "wa"  # 0x80514680 - 0x80514D80
-.balign 0x8
+.balign 8
 .global "cTankChangeTexName__Q34Game5Wtank22@unnamed@WtankMgr_cpp@"
 "cTankChangeTexName__Q34Game5Wtank22@unnamed@WtankMgr_cpp@":
 	.4byte lbl_80487080

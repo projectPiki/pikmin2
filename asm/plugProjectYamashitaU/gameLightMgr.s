@@ -3,7 +3,7 @@
 .4byte __sinit_gameLightMgr_cpp
 
 .section .rodata  # 0x804732E0 - 0x8049E220
-.balign 0x8
+.balign 8
 .global lbl_8047B2C0
 lbl_8047B2C0:
 	.4byte 0x00000000
@@ -106,7 +106,7 @@ lbl_8047B40C:
 	.4byte 0x64290A00
 
 .section .data, "wa"  # 0x8049E220 - 0x804EFC20
-.balign 0x8
+.balign 8
 .global lbl_804AC420
 lbl_804AC420:
 	.4byte 0x00000000
@@ -203,7 +203,7 @@ __vt__Q24Game20GameLightTimeSetting:
 	.4byte getChildCount__5CNodeFv
 
 .section .sbss # 0x80514D80 - 0x80516360
-.balign 0x8
+.balign 8
 .global lbl_805158A0
 lbl_805158A0:
 	.skip 0x4
@@ -212,7 +212,7 @@ lbl_805158A4:
 	.skip 0x4
 
 .section .sdata2, "a"     # 0x80516360 - 0x80520E40
-.balign 0x8
+.balign 8
 .global lbl_80517BF0
 lbl_80517BF0:
 	.float 0.5

@@ -1,6 +1,6 @@
 .include "macros.inc"
 .section .rodata  # 0x804732E0 - 0x8049E220
-.balign 0x8
+.balign 8
 .global lbl_8048D7E0
 lbl_8048D7E0:
 	.asciz "world_root"
@@ -15,7 +15,7 @@ lbl_8048D804:
 	.skip 3
 
 .section .data, "wa"  # 0x8049E220 - 0x804EFC20
-.balign 0x8
+.balign 8
 .global __vt__Q23efx9TDangoFly
 __vt__Q23efx9TDangoFly:
 	.4byte 0
@@ -314,7 +314,7 @@ __vt__Q34Game10DangoMushi14ProperAnimator:
 	.4byte getTypeID__Q24Game22EnemyBlendAnimatorBaseFv
 
 .section .sdata2, "a"     # 0x80516360 - 0x80520E40
-.balign 0x8
+.balign 8
 .global lbl_8051D3A8
 lbl_8051D3A8:
 	.4byte 0x00000000

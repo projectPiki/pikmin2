@@ -1,6 +1,6 @@
 .include "macros.inc"
 .section .data, "wa"  # 0x8049E220 - 0x804EFC20
-.balign 0x8
+.balign 8
 .global CardData
 CardData:
 	.4byte 0x00000000
@@ -93,7 +93,7 @@ CardData:
 	.4byte 0x00000000
 
 .section .sdata, "wa"  # 0x80514680 - 0x80514D80
-.balign 0x8
+.balign 8
 .global next_1
 next_1:
 	.4byte 0x00000001

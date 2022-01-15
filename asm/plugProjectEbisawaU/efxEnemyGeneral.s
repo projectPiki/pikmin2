@@ -1,6 +1,6 @@
 .include "macros.inc"
 .section .rodata  # 0x804732E0 - 0x8049E220
-.balign 0x8
+.balign 8
 .global lbl_804963C8
 lbl_804963C8:
 	.4byte 0x65667845
@@ -19,7 +19,7 @@ lbl_804963C8:
 	.4byte 0x00000000
 
 .section .data, "wa"  # 0x8049E220 - 0x804EFC20
-.balign 0x8
+.balign 8
 .global lbl_804E7B50
 lbl_804E7B50:
 	.4byte lbl_803C7A10
@@ -852,7 +852,7 @@ __vt__Q23efx10TEnemyPiyo:
 	.4byte 0
 
 .section .sdata2, "a"     # 0x80516360 - 0x80520E40
-.balign 0x8
+.balign 8
 .global lbl_8051F8D0
 lbl_8051F8D0:
 	.4byte 0x3FE00000

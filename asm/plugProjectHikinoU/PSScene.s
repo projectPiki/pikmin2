@@ -1,6 +1,6 @@
 .include "macros.inc"
 .section .rodata  # 0x804732E0 - 0x8049E220
-.balign 0x8
+.balign 8
 .global lbl_80490120
 lbl_80490120:
 	.4byte 0x50535363
@@ -21,7 +21,7 @@ lbl_80490144:
 	.4byte 0x00000000
 
 .section .data, "wa"  # 0x8049E220 - 0x804EFC20
-.balign 0x8
+.balign 8
 .global __vt__Q28PSSystem5Scene
 __vt__Q28PSSystem5Scene:
 	.4byte 0
@@ -46,7 +46,7 @@ __vt__Q28PSSystem9WaveScene:
 	.4byte __dt__Q28PSSystem9WaveSceneFv
 
 .section .sbss # 0x80514D80 - 0x80516360
-.balign 0x8
+.balign 8
 .global spSceneMgr__8PSSystem
 spSceneMgr__8PSSystem:
 	.skip 0x8

@@ -1,6 +1,6 @@
 .include "macros.inc"
 .section .data, "wa"  # 0x8049E220 - 0x804EFC20
-.balign 0x8
+.balign 8
 .global __vt__17J3DLockedMaterial
 __vt__17J3DLockedMaterial:
 	.4byte 0

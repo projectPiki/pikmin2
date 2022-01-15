@@ -1,6 +1,6 @@
 .include "macros.inc"
 .section .rodata  # 0x804732E0 - 0x8049E220
-.balign 0x8
+.balign 8
 .global s_key_table
 s_key_table:
 	.float 1.0
@@ -101,7 +101,7 @@ sTremoroDef__9JASPlayer:
 	.float 1.0
 
 .section .data, "wa"  # 0x8049E220 - 0x804EFC20
-.balign 0x8
+.balign 8
 .global CUTOFF_TO_IIR_TABLE__9JASPlayer
 CUTOFF_TO_IIR_TABLE__9JASPlayer:
 	.4byte 0x0F5C0A3D
@@ -398,7 +398,7 @@ sTreTable__9JASPlayer:
 	.4byte 0x00000000
 
 .section .sbss # 0x80514D80 - 0x80516360
-.balign 0x8
+.balign 8
 .global sV0$663
 sV0$663:
 	.skip 0x4
@@ -413,7 +413,7 @@ init$667:
 	.skip 0x4
 
 .section .sdata2, "a"     # 0x80516360 - 0x80520E40
-.balign 0x8
+.balign 8
 .global lbl_80516D18
 lbl_80516D18:
 	.4byte 0x40800000

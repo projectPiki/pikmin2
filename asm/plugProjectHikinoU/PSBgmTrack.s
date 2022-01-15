@@ -1,6 +1,6 @@
 .include "macros.inc"
 .section .rodata  # 0x804732E0 - 0x8049E220
-.balign 0x8
+.balign 8
 .global lbl_80490158
 lbl_80490158:
 	.4byte 0x50534267
@@ -18,7 +18,7 @@ lbl_80490170:
 	.4byte 0x70700000
 
 .section .data, "wa"  # 0x8049E220 - 0x804EFC20
-.balign 0x8
+.balign 8
 .global __vt__Q28PSSystem13SeqTrackChild
 __vt__Q28PSSystem13SeqTrackChild:
 	.4byte 0
@@ -55,7 +55,7 @@ __vt__Q28PSSystem12SeqTrackBase:
 	.4byte 0
 
 .section .sdata2, "a"     # 0x80516360 - 0x80520E40
-.balign 0x8
+.balign 8
 .global lbl_8051E1D8
 lbl_8051E1D8:
 	.4byte 0x40000000

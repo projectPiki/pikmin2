@@ -1,6 +1,6 @@
 .include "macros.inc"
 .section .rodata  # 0x804732E0 - 0x8049E220
-.balign 0x8
+.balign 8
 .global lbl_8047AB38
 lbl_8047AB38:
 	.asciz "kochappyMgr"
@@ -195,7 +195,7 @@ lbl_8047AB74:
 	.4byte 0x82630000
 
 .section .data, "wa"  # 0x8049E220 - 0x804EFC20
-.balign 0x8
+.balign 8
 .global __vt__Q34Game8Kochappy3Mgr
 __vt__Q34Game8Kochappy3Mgr:
 	.4byte 0
@@ -262,13 +262,13 @@ __vt__Q34Game12KochappyBase5Parms:
 	.4byte read__Q34Game12KochappyBase5ParmsFR6Stream
 
 .section .sdata, "wa"  # 0x80514680 - 0x80514D80
-.balign 0x8
+.balign 8
 .global "cKochappyChangeTexName__Q34Game8Kochappy25@unnamed@kochappyMgr_cpp@"
 "cKochappyChangeTexName__Q34Game8Kochappy25@unnamed@kochappyMgr_cpp@":
 	.4byte lbl_8047AB44
 
 .section .sdata2, "a"     # 0x80516360 - 0x80520E40
-.balign 0x8
+.balign 8
 .global lbl_80517A58
 lbl_80517A58:
 	.4byte 0x40000000

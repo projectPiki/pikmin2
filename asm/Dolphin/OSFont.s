@@ -1,6 +1,6 @@
 .include "macros.inc"
 .section .data, "wa"  # 0x8049E220 - 0x804EFC20
-.balign 0x8
+.balign 8
 .global HankakuToCode
 HankakuToCode:
 	.4byte 0x020C020D
@@ -715,13 +715,13 @@ Zenkaku2Code:
 	.4byte 0x00000000
 
 .section .sdata, "wa"  # 0x80514680 - 0x80514D80
-.balign 0x8
+.balign 8
 .global fontEncode$80
 fontEncode$80:
 	.4byte 0xFFFF0000
 
 .section .sbss # 0x80514D80 - 0x80516360
-.balign 0x8
+.balign 8
 .global FontData
 FontData:
 	.skip 0x4
@@ -736,7 +736,7 @@ CharsInSheet:
 	.skip 0x4
 
 .section .sdata2, "a"     # 0x80516360 - 0x80520E40
-.balign 0x8
+.balign 8
 .global lbl_80517750
 lbl_80517750:
 	.4byte 0x2ABE003D

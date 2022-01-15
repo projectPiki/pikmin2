@@ -1,6 +1,6 @@
 .include "macros.inc"
 .section .sdata, "wa"  # 0x80514680 - 0x80514D80
-.balign 0x8
+.balign 8
 .global flags__Q27JAInter8BankWave
 flags__Q27JAInter8BankWave:
 	.4byte 0x00000000
@@ -18,7 +18,7 @@ secondLoadCallback__Q27JAInter8BankWave:
 	.4byte loadSecondStayWave__Q27JAInter8BankWaveFv
 
 .section .sbss # 0x80514D80 - 0x80516360
-.balign 0x8
+.balign 8
 .global initOnCodeBnk__Q27JAInter8BankWave
 initOnCodeBnk__Q27JAInter8BankWave:
 	.skip 0x4

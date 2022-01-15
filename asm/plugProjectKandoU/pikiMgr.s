@@ -3,7 +3,7 @@
 .4byte __sinit_pikiMgr_cpp
 
 .section .rodata  # 0x804732E0 - 0x8049E220
-.balign 0x8
+.balign 8
 .global lbl_8047D7A0
 lbl_8047D7A0:
 	.4byte 0x00000000
@@ -657,7 +657,7 @@ lbl_8047E164:
 	.4byte 0x41726700
 
 .section .data, "wa"  # 0x8049E220 - 0x804EFC20
-.balign 0x8
+.balign 8
 .global lbl_804B1698
 lbl_804B1698:
 	.4byte 0x00000000
@@ -810,7 +810,7 @@ __vt__Q24Game9PikiParms:
 	.4byte read__Q24Game9PikiParmsFR6Stream
 
 .section .sbss # 0x80514D80 - 0x80516360
-.balign 0x8
+.balign 8
 .global lbl_80515968
 lbl_80515968:
 	.skip 0x4
@@ -828,7 +828,7 @@ mBirthMode__Q24Game7PikiMgr:
 	.skip 0x8
 
 .section .sdata2, "a"     # 0x80516360 - 0x80520E40
-.balign 0x8
+.balign 8
 .global lbl_80518758
 lbl_80518758:
 	.4byte 0x70696B69

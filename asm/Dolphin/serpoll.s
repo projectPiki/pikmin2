@@ -1,6 +1,6 @@
 .include "macros.inc"
 .section .rodata  # 0x804732E0 - 0x8049E220
-.balign 0x8
+.balign 8
 .global lbl_80479740
 lbl_80479740:
 	.4byte 0x54524B5F
@@ -105,7 +105,7 @@ lbl_80479740:
 	.4byte 0x00000000
 
 .section .sbss # 0x80514D80 - 0x80516360
-.balign 0x8
+.balign 8
 .global gTRKInputPendingPtr
 gTRKInputPendingPtr:
 	.skip 0x8

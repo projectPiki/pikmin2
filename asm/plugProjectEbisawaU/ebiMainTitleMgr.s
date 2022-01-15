@@ -3,7 +3,7 @@
 	.4byte __sinit_ebiMainTitleMgr_cpp
 
 .section .rodata  # 0x804732E0 - 0x8049E220
-.balign 0x8
+.balign 8
 .global lbl_80497880
 lbl_80497880:
 	.4byte 0x00000000
@@ -49,7 +49,7 @@ lbl_80497900:
 	.4byte 0x00000000
 
 .section .data, "wa"  # 0x8049E220 - 0x804EFC20
-.balign 0x8
+.balign 8
 .global lbl_804E9F60
 lbl_804E9F60:
 	.4byte 0x00000000
@@ -82,7 +82,7 @@ __vt__Q33ebi6Screen7ArgOpen:
 	.4byte getName__Q33ebi6Screen7ArgOpenFv
 
 .section .sbss # 0x80514D80 - 0x80516360
-.balign 0x8
+.balign 8
 .global lbl_80516108
 lbl_80516108:
 	.skip 0x4
@@ -91,7 +91,7 @@ lbl_8051610C:
 	.skip 0x4
 
 .section .sdata2, "a"     # 0x80516360 - 0x80520E40
-.balign 0x8
+.balign 8
 .global kFadeOutTime__Q23ebi13TMainTitleMgr
 kFadeOutTime__Q23ebi13TMainTitleMgr:
 	.float 1.0

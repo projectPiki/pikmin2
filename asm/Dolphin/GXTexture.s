@@ -1,6 +1,6 @@
 .include "macros.inc"
 .section .data, "wa"  # 0x8049E220 - 0x804EFC20
-.balign 0x8
+.balign 8
 .global lbl_804A8550
 lbl_804A8550:
 	.4byte lbl_800E6F80
@@ -147,7 +147,7 @@ lbl_804A8738:
 	.4byte 0x00000000
 
 .section .sdata, "wa"  # 0x80514680 - 0x80514D80
-.balign 0x8
+.balign 8
 .global GXTexMode0Ids
 GXTexMode0Ids:
 	.4byte 0x80818283
@@ -182,7 +182,7 @@ GX2HWFiltConv_1:
 	.4byte 0x02060000
 
 .section .sdata2, "a"     # 0x80516360 - 0x80520E40
-.balign 0x8
+.balign 8
 .global lbl_80517670
 lbl_80517670:
 	.4byte 0x41800000

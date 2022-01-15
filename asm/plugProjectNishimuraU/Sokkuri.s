@@ -1,12 +1,12 @@
 .include "macros.inc"
 .section .rodata  # 0x804732E0 - 0x8049E220
-.balign 0x8
+.balign 8
 .global lbl_8048D1B0
 lbl_8048D1B0:
 	.asciz "leaf_joint1"
 
 .section .data, "wa"  # 0x8049E220 - 0x804EFC20
-.balign 0x8
+.balign 8
 .global __vt__Q23efx10TJgmBubble
 __vt__Q23efx10TJgmBubble:
 	.4byte 0
@@ -221,7 +221,7 @@ __vt__Q34Game7Sokkuri3Obj:
 	.4byte "viewEntryShape__Q24Game10PelletViewFR7MatrixfR10Vector3<f>"
 
 .section .sdata2, "a"     # 0x80516360 - 0x80520E40
-.balign 0x8
+.balign 8
 .global lbl_8051D120
 lbl_8051D120:
 	.4byte 0x00000000

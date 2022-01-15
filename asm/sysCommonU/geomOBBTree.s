@@ -1,6 +1,6 @@
 .include "macros.inc"
 .section .data, "wa"  # 0x8049E220 - 0x804EFC20
-.balign 0x8
+.balign 8
 .global __vt__Q23Sys7OBBTree
 __vt__Q23Sys7OBBTree:
 	.4byte 0
@@ -17,13 +17,13 @@ __vt__Q23Sys7OBBTree:
 	.4byte do_clone__Q23Sys10TriDividerFR7MatrixfPQ23Sys11VertexTablePQ23Sys13TriangleTable
 
 .section .sbss # 0x80514D80 - 0x80516360
-.balign 0x8
+.balign 8
 .global debugTraceMove__Q23Sys7OBBTree
 debugTraceMove__Q23Sys7OBBTree:
 	.skip 0x8
 
 .section .sdata2, "a"     # 0x80516360 - 0x80520E40
-.balign 0x8
+.balign 8
 .global lbl_805203B8
 lbl_805203B8:
 	.float 32768.0

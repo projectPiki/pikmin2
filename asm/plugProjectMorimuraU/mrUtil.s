@@ -1,6 +1,6 @@
 .include "macros.inc"
 .section .rodata  # 0x804732E0 - 0x8049E220
-.balign 0x8
+.balign 8
 .global lbl_804951F8
 lbl_804951F8:
 	.4byte 0x6D725574
@@ -12,7 +12,7 @@ lbl_80495204:
 	.skip 3
 
 .section .data, "wa"  # 0x8049E220 - 0x804EFC20
-.balign 0x8
+.balign 8
 .global __vt__Q28Morimura12TScissorPane
 __vt__Q28Morimura12TScissorPane:
 	.4byte 0
@@ -143,7 +143,7 @@ __vt__Q28Morimura16TCallbackScissor:
 	.4byte doInit__Q29P2DScreen4NodeFv
 
 .section .sdata2, "a"     # 0x80516360 - 0x80520E40
-.balign 0x8
+.balign 8
 .global lbl_8051F2C0
 lbl_8051F2C0:
 	.4byte 0x40240000

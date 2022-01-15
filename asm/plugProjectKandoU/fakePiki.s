@@ -3,7 +3,7 @@
 .4byte __sinit_fakePiki_cpp
 
 .section .rodata  # 0x804732E0 - 0x8049E220
-.balign 0x8
+.balign 8
 .global lbl_8047C708
 lbl_8047C708:
 	.4byte 0x00000000
@@ -47,7 +47,7 @@ lbl_8047C764:
 	.4byte 0x00000000
 
 .section .data, "wa"  # 0x8049E220 - 0x804EFC20
-.balign 0x8
+.balign 8
 .global lbl_804B02B0
 lbl_804B02B0:
 	.4byte 0x00000000
@@ -194,13 +194,13 @@ __vt__Q24Game8FakePiki:
 	.4byte 0
 
 .section .sdata, "wa"  # 0x80514680 - 0x80514D80
-.balign 0x8
+.balign 8
 .global kAngleSpeed__Q23efx7TCursor
 kAngleSpeed__Q23efx7TCursor:
 	.float 0.05235988
 
 .section .sbss # 0x80514D80 - 0x80516360
-.balign 0x8
+.balign 8
 .global lbl_80515900
 lbl_80515900:
 	.skip 0x4
@@ -215,7 +215,7 @@ sCurrNeckPhi__Q24Game8FakePiki:
 	.skip 0x4
 
 .section .sdata2, "a"     # 0x80516360 - 0x80520E40
-.balign 0x8
+.balign 8
 .global lbl_805182B0
 lbl_805182B0:
 	.4byte 0x41080000

@@ -1,6 +1,6 @@
 .include "macros.inc"
 .section .rodata  # 0x804732E0 - 0x8049E220
-.balign 0x8
+.balign 8
 .global lbl_8049B3C0
 lbl_8049B3C0:
 	.asciz "demoSection.cpp"
@@ -26,7 +26,7 @@ lbl_8049B41C:
 	.asciz "/data/timg/pikmin2_logo.bti"
 
 .section .data, "wa"	# 0x8049E220 - 0x804EFC20
-.balign 0x8
+.balign 8
 .global "sLogoLocate__Q24Demo25@unnamed@demoSection_cpp@"
 "sLogoLocate__Q24Demo25@unnamed@demoSection_cpp@":
 	.4byte 0x0172000F
@@ -77,7 +77,7 @@ __vt__Q24Demo7Section:
 	.4byte refreshHIO__Q24Game14BaseHIOSectionFv
 
 .section .sdata, "wa"  # 0x80514680 - 0x80514D80
-.balign 0x8
+.balign 8
 .global "sMovieIndexTable__Q24Demo25@unnamed@demoSection_cpp@"
 "sMovieIndexTable__Q24Demo25@unnamed@demoSection_cpp@":
 	.byte 0x05
@@ -96,7 +96,7 @@ __vt__Q24Demo7Section:
 	.byte 0x00
 
 .section .sdata2, "a"     # 0x80516360 - 0x80520E40
-.balign 0x8
+.balign 8
 .global lbl_80520AB0
 lbl_80520AB0:
 	.float 0.0

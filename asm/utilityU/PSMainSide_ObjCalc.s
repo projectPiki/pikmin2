@@ -1,6 +1,6 @@
 .include "macros.inc"
 .section .rodata  # 0x804732E0 - 0x8049E220
-.balign 0x8
+.balign 8
 .global lbl_8049E1C8
 lbl_8049E1C8:
 	.asciz "PSMainSide_ObjCalc.cpp"
@@ -26,7 +26,7 @@ lbl_8049E200:
     .asciz "2"
 
 .section .data, "wa"  # 0x8049E220 - 0x804EFC20
-.balign 0x8
+.balign 8
 .global __vt__Q23PSM14ObjCalc_2PGame
 __vt__Q23PSM14ObjCalc_2PGame:
 	.4byte 0
@@ -47,7 +47,7 @@ __vt__Q23PSM18ObjCalc_SingleGame:
 	.4byte is1PGame__Q23PSM11ObjCalcBaseFv
 
 .section .sdata2, "a"     # 0x80516360 - 0x80520E40
-.balign 0x8
+.balign 8
 .global lbl_80520E28
 lbl_80520E28:
 	.float 100000.0

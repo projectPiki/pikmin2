@@ -3,7 +3,7 @@
 .4byte __sinit_Damagumo_cpp
 
 .section .rodata  # 0x804732E0 - 0x8049E220
-.balign 0x8
+.balign 8
 .global lbl_80489870
 lbl_80489870:
 	.asciz "rhand1jnt"
@@ -82,7 +82,7 @@ lbl_80489958:
 	.skip 3
 
 .section .data, "wa"  # 0x8049E220 - 0x804EFC20
-.balign 0x8
+.balign 8
 .global lbl_804CD818
 lbl_804CD818:
 	.4byte 0x00000000
@@ -549,7 +549,7 @@ __vt__Q34Game8Damagumo22DamagumoGroundCallBack:
 	.4byte invokeOffGround__Q34Game8Damagumo22DamagumoGroundCallBackFiPQ24Game8WaterBox
 
 .section .sbss # 0x80514D80 - 0x80516360
-.balign 0x8
+.balign 8
 .global lbl_80515D70
 lbl_80515D70:
 	.skip 0x4
@@ -558,7 +558,7 @@ lbl_80515D74:
 	.skip 0x4
 
 .section .sdata2, "a"     # 0x80516360 - 0x80520E40
-.balign 0x8
+.balign 8
 .global lbl_8051BED0
 lbl_8051BED0:
 	.4byte 0x00000000

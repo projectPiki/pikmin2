@@ -3,14 +3,14 @@
 .4byte __sinit_kochappyState_cpp
 
 .section .rodata  # 0x804732E0 - 0x8049E220
-.balign 0x8
+.balign 8
 .global lbl_8047AB28
 lbl_8047AB28:
 	.asciz "TurnToHome"
 	.skip 1
 
 .section .data, "wa"  # 0x8049E220 - 0x804EFC20
-.balign 0x8
+.balign 8
 .global lbl_804AB998
 lbl_804AB998:
 	.4byte 0x00000000
@@ -151,7 +151,7 @@ __vt__Q34Game12KochappyBase3FSM:
 	.4byte 0
 
 .section .sbss # 0x80514D80 - 0x80516360
-.balign 0x8
+.balign 8
 .global lbl_80515870
 lbl_80515870:
 	.skip 0x4
@@ -160,7 +160,7 @@ lbl_80515874:
 	.skip 0x4
 
 .section .sdata2, "a"     # 0x80516360 - 0x80520E40
-.balign 0x8
+.balign 8
 .global lbl_805179D8
 lbl_805179D8:
 	.4byte 0x70726573

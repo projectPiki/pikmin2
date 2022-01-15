@@ -3,7 +3,7 @@
 .4byte __sinit_itemPikihead_cpp
 
 .section .rodata  # 0x804732E0 - 0x8049E220
-.balign 0x8
+.balign 8
 .global lbl_80480800
 lbl_80480800:
 	.skip 0xC
@@ -81,7 +81,7 @@ lbl_804808C4:
 	.4byte 0x00000000
 
 .section .data, "wa"  # 0x8049E220 - 0x804EFC20
-.balign 0x8
+.balign 8
 .global lbl_804B8668
 lbl_804B8668:
 	.4byte 0x00000000
@@ -750,7 +750,7 @@ lbl_804B8FF8:
 	.4byte "invoke__83Delegate1<Q24Game44FixedSizeItemMgr<Q34Game12ItemPikihead4Item>,PQ28SysShape5Model>FPQ28SysShape5Model"
 
 .section .sbss # 0x80514D80 - 0x80516360
-.balign 0x8
+.balign 8
 .global lbl_80515AE8
 lbl_80515AE8:
 	.skip 0x4
@@ -762,7 +762,7 @@ mgr__Q24Game12ItemPikihead:
 	.skip 0x8
 
 .section .sdata2, "a"     # 0x80516360 - 0x80520E40
-.balign 0x8
+.balign 8
 .global lbl_805197B0
 lbl_805197B0:
 	.4byte 0x47000000

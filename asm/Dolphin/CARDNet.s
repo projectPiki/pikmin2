@@ -1,6 +1,6 @@
 .include "macros.inc"
 .section .sdata, "wa"  # 0x80514680 - 0x80514D80
-.balign 0x8
+.balign 8
 .global __CARDVendorID
 __CARDVendorID:
 	.byte 0xFF

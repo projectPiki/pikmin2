@@ -1,6 +1,6 @@
 .include "macros.inc"
 .section .data, "wa"  # 0x8049E220 - 0x804EFC20
-.balign 0x8
+.balign 8
 .global InterruptPrioTable
 InterruptPrioTable:
 	.4byte 0x00000100
@@ -17,7 +17,7 @@ InterruptPrioTable:
 	.4byte 0x00000000
 
 .section .sbss # 0x80514D80 - 0x80516360
-.balign 0x8
+.balign 8
 .global InterruptHandlerTable
 InterruptHandlerTable:
 	.skip 0x4

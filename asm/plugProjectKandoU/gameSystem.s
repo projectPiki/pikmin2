@@ -3,7 +3,7 @@
 .4byte __sinit_gameSystem_cpp
 
 .section .rodata  # 0x804732E0 - 0x8049E220
-.balign 0x8
+.balign 8
 .global lbl_8047FBB8
 lbl_8047FBB8:
 	.4byte 0x00000000
@@ -40,7 +40,7 @@ lbl_8047FBDC:
 	.4byte 0x00000000
 
 .section .data, "wa"  # 0x8049E220 - 0x804EFC20
-.balign 0x8
+.balign 8
 .global lbl_804B5B50
 lbl_804B5B50:
 	.4byte 0x00000000
@@ -97,7 +97,7 @@ __vt__Q24Game10GameSystem:
 	.4byte 0
 
 .section .sbss # 0x80514D80 - 0x80516360
-.balign 0x8
+.balign 8
 .global lbl_80515A60
 lbl_80515A60:
 	.skip 0x4

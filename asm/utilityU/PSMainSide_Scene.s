@@ -3,7 +3,7 @@
 	.4byte __sinit_PSMainSide_Scene_cpp
 	
 .section .rodata  # 0x804732E0 - 0x8049E220
-.balign 0x8
+.balign 8
 .global lbl_8049D908
 lbl_8049D908:
 	.4byte 0x00000000
@@ -59,7 +59,7 @@ lbl_8049D990:
 	.4byte 0x00000000
 
 .section .data, "wa"  # 0x8049E220 - 0x804EFC20
-.balign 0x8
+.balign 8
 .global lbl_804EF268
 lbl_804EF268:
 	.4byte 0x00000000
@@ -378,7 +378,7 @@ __vt__Q23PSM9SceneBase:
 	.4byte pauseOff_Demo__Q23PSM9SceneBaseFv
 
 .section .sbss # 0x80514D80 - 0x80516360
-.balign 0x8
+.balign 8
 .global lbl_80516318
 lbl_80516318:
 	.skip 0x4
@@ -387,7 +387,7 @@ lbl_8051631C:
 	.skip 0x4
 
 .section .sdata2, "a"     # 0x80516360 - 0x80520E40
-.balign 0x8
+.balign 8
 .global lbl_80520C98
 lbl_80520C98:
 	.4byte 0x3DA3D70A

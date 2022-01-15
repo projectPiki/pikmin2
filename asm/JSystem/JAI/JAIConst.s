@@ -3,7 +3,7 @@
 .4byte __sinit_JAIConst_cpp
 
 .section .data, "wa"  # 0x8049E220 - 0x804EFC20
-.balign 0x8
+.balign 8
 .global dummyZeroVec__Q27JAInter5Const
 dummyZeroVec__Q27JAInter5Const:
 	.4byte 0x00000000
@@ -39,7 +39,7 @@ camPreTrans__Q27JAInter5Const:
 	.skip 0xC
 
 .section .sbss # 0x80514D80 - 0x80516360
-.balign 0x8
+.balign 8
 .global random__Q27JAInter5Const
 random__Q27JAInter5Const:
 	.skip 0x8

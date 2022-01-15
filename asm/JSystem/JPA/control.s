@@ -1,6 +1,6 @@
 .include "macros.inc"
 .section .data, "wa"  # 0x8049E220 - 0x804EFC20
-.balign 0x8
+.balign 8
 .global __vt__Q217JStudio_JParticle13TCreateObject
 __vt__Q217JStudio_JParticle13TCreateObject:
 	.4byte 0

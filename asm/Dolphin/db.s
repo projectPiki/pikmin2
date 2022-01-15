@@ -1,12 +1,12 @@
 .include "macros.inc"
 .section .data, "wa"  # 0x8049E220 - 0x804EFC20
-.balign 0x8
+.balign 8
 .global lbl_804A7920
 lbl_804A7920:
 	.asciz "DBExceptionDestination\n"
 
 .section .sbss # 0x80514D80 - 0x80516360
-.balign 0x8
+.balign 8
 .global __DBInterface
 __DBInterface:
 	.skip 0x4

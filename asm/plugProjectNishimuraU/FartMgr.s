@@ -1,6 +1,6 @@
 .include "macros.inc"
 .section .rodata  # 0x804732E0 - 0x8049E220
-.balign 0x8
+.balign 8
 .global lbl_80487BE8
 lbl_80487BE8:
 	.asciz "/enemy/data/Fart/babakogane_s3tc.bti"
@@ -22,7 +22,7 @@ lbl_80487C34:
 	.skip 3
 
 .section .data, "wa"  # 0x8049E220 - 0x804EFC20
-.balign 0x8
+.balign 8
 .global __vt__Q34Game4Fart3Mgr
 __vt__Q34Game4Fart3Mgr:
 	.4byte 0
@@ -85,7 +85,7 @@ __vt__Q34Game4Fart3Mgr:
 	.4byte 0
 
 .section .sdata, "wa"  # 0x80514680 - 0x80514D80
-.balign 0x8
+.balign 8
 .global "cKoganeChangeTexName__Q34Game4Fart21@unnamed@FartMgr_cpp@"
 "cKoganeChangeTexName__Q34Game4Fart21@unnamed@FartMgr_cpp@":
 	.4byte lbl_80487BE8

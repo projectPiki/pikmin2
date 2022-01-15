@@ -1,6 +1,6 @@
 .include "macros.inc"
 .section .rodata  # 0x804732E0 - 0x8049E220
-.balign 0x8
+.balign 8
 .global lbl_8047CFE0
 lbl_8047CFE0:
 	.4byte 0x63656C6C
@@ -52,7 +52,7 @@ lbl_8047D01C:
 	.4byte 0x00000000
 
 .section .data, "wa"  # 0x8049E220 - 0x804EFC20
-.balign 0x8
+.balign 8
 .global __vt__13SweepCallback
 __vt__13SweepCallback:
 	.4byte 0
@@ -65,7 +65,7 @@ __vt__Q310SweepPrune5World8Callback:
 	.4byte 0
 
 .section .sdata, "wa"  # 0x80514680 - 0x80514D80
-.balign 0x8
+.balign 8
 .global sOptResolveColl__Q24Game11CellPyramid
 sOptResolveColl__Q24Game11CellPyramid:
 	.4byte 0x02000000
@@ -74,7 +74,7 @@ sCellBugName__Q24Game11CellPyramid:
 	.4byte lbl_80518640
 
 .section .sbss # 0x80514D80 - 0x80516360
-.balign 0x8
+.balign 8
 .global cellMgr__4Game
 cellMgr__4Game:
 	.skip 0x4
@@ -98,7 +98,7 @@ sCellBugID__Q24Game11CellPyramid:
 	.skip 0x4
 
 .section .sdata2, "a"     # 0x80516360 - 0x80520E40
-.balign 0x8
+.balign 8
 .global lbl_80518628
 lbl_80518628:
 	.float 0.0

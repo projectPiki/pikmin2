@@ -1,6 +1,6 @@
 .include "macros.inc"
 .section .rodata  # 0x804732E0 - 0x8049E220
-.balign 0x8
+.balign 8
 .global lbl_8049ADB8
 lbl_8049ADB8:
 	.asciz "Pikmin2_SaveData"
@@ -41,7 +41,7 @@ lbl_8049AEA0:
 	.skip 2
 
 .section .data, "wa"  # 0x8049E220 - 0x804EFC20
-.balign 0x8
+.balign 8
 .global lbl_804ECF58
 lbl_804ECF58:
 	.4byte lbl_80443790
@@ -92,13 +92,13 @@ __vt__Q34Game10MemoryCard8Resource:
 	.4byte 0
 
 .section .sdata, "wa"  # 0x80514680 - 0x80514D80
-.balign 0x8
+.balign 8
 .global cFileName__Q24Game10MemoryCard
 cFileName__Q24Game10MemoryCard:
 	.4byte lbl_8049ADB8
 
 .section .sdata2, "a"     # 0x80516360 - 0x80520E40
-.balign 0x8
+.balign 8
 .global lbl_80520978
 lbl_80520978:
 	.asciz "dameck\n"
