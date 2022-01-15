@@ -3,6 +3,6 @@
 
 #include "types.h"
 
-void __DSP_debug_printf(u8, char*, ...);
+void __DSP_debug_printf(char*, ...);
 
 #endif

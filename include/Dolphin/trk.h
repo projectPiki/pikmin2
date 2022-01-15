@@ -57,7 +57,7 @@ void UnreserveEXI2Port(void);
 void ReserveEXI2Port(void);
 
 /* MW */
-void MWTRACE(u8, char*, ...);
+void MWTRACE(char*, ...);
 
 /* UART */
 typedef int UARTError;
