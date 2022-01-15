@@ -250,7 +250,7 @@ DOLPHIN:=\
 	$(BUILD_DIR)/asm/Dolphin/msghndlr.o\
 	$(BUILD_DIR)/asm/Dolphin/support.o\
 	$(BUILD_DIR)/src/Dolphin/mutex_TRK.o\
-	$(BUILD_DIR)/asm/Dolphin/notify.o\
+	$(BUILD_DIR)/src/Dolphin/notify.o\
 	$(BUILD_DIR)/asm/Dolphin/flush_cache.o\
 	$(BUILD_DIR)/src/Dolphin/mem_TRK.o\
 	$(BUILD_DIR)/asm/Dolphin/mem_TRK.o\
