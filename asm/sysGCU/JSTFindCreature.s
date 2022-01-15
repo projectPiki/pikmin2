@@ -4,84 +4,71 @@
 
 .section .rodata  # 0x804732E0 - 0x8049E220
 .balign 8
-.global lbl_8049A338
 lbl_8049A338:
 	.4byte 0x00000000
 	.4byte 0x00000000
 	.4byte 0x00000000
-	.4byte 0x4A535446
-	.4byte 0x696E6443
-	.4byte 0x72656174
-	.4byte 0x75726500
-	.4byte 0x4A535446
-	.4byte 0x696E6443
-	.4byte 0x72656174
-	.4byte 0x7572652E
-	.4byte 0x63707000
-	.4byte 0x4F472D44
-	.4byte 0x524F4E0A
-	.4byte 0x00000000
-	.4byte 0x7468654F
-	.4byte 0x72696D61
-	.4byte 0x00000000
-	.4byte 0x7468654C
-	.4byte 0x6F756965
-	.4byte 0x00000000
-	.4byte 0x6F72696D
-	.4byte 0x61416C69
-	.4byte 0x76650000
+.balign 4
+lbl_8049A344:
+	.asciz "JSTFindCreature"
+.balign 4
+lbl_8049A354:
+	.asciz "JSTFindCreature.cpp"
+.balign 4
+lbl_8049A368:
+	.asciz "OG-DRON\n"
+.balign 4
+lbl_8049A374:
+	.asciz "theOrima"
+.balign 4
+lbl_8049A380:
+	.asciz "theLouie"
+.balign 4
+lbl_8049A38C:
+	.asciz "orimaAlive"
+.balign 4
+lbl_8049A398:
 	.asciz "P2Assert"
-	.skip 3
-	.4byte 0x6F72696D
-	.4byte 0x61446561
-	.4byte 0x64000000
+.balign 4
+lbl_8049A3A4:
+	.asciz "orimaDead"
 
 .section .data, "wa"  # 0x8049E220 - 0x804EFC20
 .balign 8
-.global lbl_804EC358
-lbl_804EC358:
-	.4byte 0x00000000
-	.4byte 0x00000000
-	.4byte 0x00000000
-	.4byte 0x00000000
+govNAN___Q24Game5P2JST:
+	.float 0.0
+	.float 0.0
+	.float 0.0
 
 .section .sbss # 0x80514D80 - 0x80516360
 .balign 8
-.global lbl_80516208
-lbl_80516208:
-	.skip 0x4
-.global lbl_8051620C
-lbl_8051620C:
-	.skip 0x4
+gu32NAN___Q24Game5P2JST:
+	.skip 4
+gfNAN___Q24Game5P2JST:
+	.skip 4
 
 .section .sdata2, "a"     # 0x80516360 - 0x80520E40
 .balign 8
-.global lbl_805206C8
 lbl_805206C8:
-	.4byte 0x6F6E796F
-	.4byte 0x6E000000
-.global lbl_805206D0
+	.asciz "onyon"
+.balign 4
 lbl_805206D0:
-	.4byte 0x70696B6D
-	.4byte 0x696E0000
-.global lbl_805206D8
+	.asciz "pikmin"
+.balign 4
 lbl_805206D8:
-	.4byte 0x74617267
-	.4byte 0x65740000
-.global lbl_805206E0
+	.asciz "target"
+.balign 4
 lbl_805206E0:
-	.4byte 0x75666F00
-.global lbl_805206E4
+	.asciz "ufo"
+.balign 4
 lbl_805206E4:
-	.4byte 0x706F6400
-.global lbl_805206E8
+	.asciz "pod"
+.balign 4
 lbl_805206E8:
-	.4byte 0x6F72696D
-	.4byte 0x61000000
-.global lbl_805206F0
+	.asciz "orima"
+.balign 4
 lbl_805206F0:
-	.4byte 0x706C6179
-	.4byte 0x65720000
+	.asciz "player"
 
 .section .text, "ax"  # 0x800056C0 - 0x80472F00
 .global findCreature__Q34Game5P2JST12ObjectSystemCFPCc
@@ -391,15 +378,14 @@ lbl_804317F0:
 /* 80431800 0042E740  38 21 01 30 */	addi r1, r1, 0x130
 /* 80431804 0042E744  4E 80 00 20 */	blr 
 
-.global __sinit_JSTFindCreature_cpp
 __sinit_JSTFindCreature_cpp:
 /* 80431808 0042E748  3C 80 80 51 */	lis r4, __float_nan@ha
 /* 8043180C 0042E74C  38 00 FF FF */	li r0, -1
 /* 80431810 0042E750  C0 04 48 B0 */	lfs f0, __float_nan@l(r4)
-/* 80431814 0042E754  3C 60 80 4F */	lis r3, lbl_804EC358@ha
-/* 80431818 0042E758  90 0D 9B 88 */	stw r0, lbl_80516208@sda21(r13)
-/* 8043181C 0042E75C  D4 03 C3 58 */	stfsu f0, lbl_804EC358@l(r3)
-/* 80431820 0042E760  D0 0D 9B 8C */	stfs f0, lbl_8051620C@sda21(r13)
+/* 80431814 0042E754  3C 60 80 4F */	lis r3, govNAN___Q24Game5P2JST@ha
+/* 80431818 0042E758  90 0D 9B 88 */	stw r0, gu32NAN___Q24Game5P2JST@sda21(r13)
+/* 8043181C 0042E75C  D4 03 C3 58 */	stfsu f0, govNAN___Q24Game5P2JST@l(r3)
+/* 80431820 0042E760  D0 0D 9B 8C */	stfs f0, gfNAN___Q24Game5P2JST@sda21(r13)
 /* 80431824 0042E764  D0 03 00 04 */	stfs f0, 4(r3)
 /* 80431828 0042E768  D0 03 00 08 */	stfs f0, 8(r3)
 /* 8043182C 0042E76C  4E 80 00 20 */	blr 

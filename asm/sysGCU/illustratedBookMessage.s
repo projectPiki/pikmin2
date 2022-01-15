@@ -1,25 +1,14 @@
 .include "macros.inc"
 .section .rodata  # 0x804732E0 - 0x8049E220
 .balign 8
-.global lbl_8049BAA0
 lbl_8049BAA0:
-	.4byte 0x696C6C75
-	.4byte 0x73747261
-	.4byte 0x74656442
-	.4byte 0x6F6F6B4D
-	.4byte 0x65737361
-	.4byte 0x67652E63
-	.4byte 0x70700000
-.global lbl_8049BABC
+	.asciz "illustratedBookMessage.cpp"
+.balign 4
 lbl_8049BABC:
 	.asciz "P2Assert"
-	.skip 3
-.global lbl_8049BAC8
+.balign 4
 lbl_8049BAC8:
-	.4byte 0x6D657373
-	.4byte 0x6167654F
-	.4byte 0x626A2E68
-	.4byte 0x00000000
+	.asciz "messageObj.h"
 
 .section .data, "wa"  # 0x8049E220 - 0x804EFC20
 .balign 8
@@ -148,23 +137,17 @@ __vt__Q25P2JME13TSeqProcNoSeq:
 
 .section .sdata2, "a"     # 0x80516360 - 0x80520E40
 .balign 8
-.global lbl_80520BC0
 lbl_80520BC0:
 	.float 1.0
-.global lbl_80520BC4
 lbl_80520BC4:
-	.4byte 0x00000000
-.global lbl_80520BC8
+	.float 0.0
 lbl_80520BC8:
-	.4byte 0x40600000
-.global lbl_80520BCC
+	.float 3.5
 lbl_80520BCC:
-	.4byte 0x3DA3D70A
-.global lbl_80520BD0
+	.float 0.08
 lbl_80520BD0:
-	.4byte 0x42700000
-	.4byte 0x00000000
-.global lbl_80520BD8
+	.float 60.0
+.balign 8
 lbl_80520BD8:
 	.4byte 0x43300000
 	.4byte 0x80000000

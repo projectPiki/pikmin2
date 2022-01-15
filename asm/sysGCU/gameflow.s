@@ -6,99 +6,97 @@
 .balign 8
 str_RootMenu:
 	.asciz "Root Menu"
-	.skip 2
+.balign 4
 str_objedit:
 	.asciz "Object Editor"
-	.skip 2
+.balign 4
 str_sgame:
 	.asciz "Single Game"
+.balign 4
 str_cgame:
 	.asciz "Challenge Game"
-	.skip 1
+.balign 4
 str_test_challenge:
 	.asciz "Test Challenge"
-	.skip 1
+.balign 4
 str_test_teki:
 	.asciz "Teki Test"
-	.skip 2
+.balign 4
 str_animEdit:
 	.asciz "Anim Editor"
+.balign 4
 str_mapEdit:
 	.asciz "Map Parts Editor"
-	.skip 3
+.balign 4
 str_texview:
 	.asciz "Tex Viewer"
-	.skip 1
+.balign 4
 str_ogtest:
 	.asciz "Ogawa Screen Test"
-	.skip 2
+.balign 4
 str_yamashita:
 	.asciz "Yamashita"
-	.skip 2
+.balign 4
 str_nishimura:
 	.asciz "Nishimura"
-	.skip 2
+.balign 4
 str_nishimura2:
 	.asciz "Nishimura2"
-	.skip 1
+.balign 4
 str_morimura:
 	.asciz "Morimura"
-	.skip 3
+.balign 4
 str_2D_Debug:
 	.asciz "2D Debug"
-	.skip 3
+.balign 4
 str_caveEditor:
 	.asciz "Cave Editor"
+.balign 4
 str_cameraEditor:
 	.asciz "JStudio CameraEditor"
-	.skip 3
+.balign 4
 str_movieTest:
 	.asciz "Movie Test"
-	.skip 1
+.balign 4
 str_kandoTest:
 	.asciz "JStudio Kando Test"
-	.skip 1
+.balign 4
 str_pelletTest:
 	.asciz "Pellet Test"
+.balign 4
 str_mainTitle:
 	.asciz "Main Title"
-	.skip 1
+.balign 4
 str_msgPreviewer:
 	.asciz "Message Previewer"
-	.skip 2
+.balign 4
 str_ebiMainTitle:
 	.asciz "Ebi Main Title"
-	.skip 1
+.balign 4
 str_E3_Thanks:
 	.asciz "E3 Thanks Section"
-	.skip 2
+.balign 4
 str_ebimunEff:
 	.asciz "Ebimun Effect"
-	.skip 2
+.balign 4
 str_2D_Debug2:
 	.asciz "2D Debug2"
-	.skip 2
-.global lbl_80499BC8
+.balign 4
 lbl_80499BC8:
 	.asciz "gameflow.cpp"
-	.skip 3
-.global lbl_80499BD8
+.balign 4
 lbl_80499BD8:
 	.asciz "Unknown SectionFlag. %d \n"
-	.skip 2
-.global lbl_80499BF4
+.balign 4
 lbl_80499BF4:
 	.asciz "P2Assert"
-	.skip 3
 
 .section .data, "wa"  # 0x8049E220 - 0x804EFC20
 .balign 8
-.global lbl_804EBBF0
-lbl_804EBBF0:
-	.4byte 0x00000000
-	.4byte 0x00000000
-	.4byte 0x00000000
-.global "sSectionInfo__22@unnamed@gameflow_cpp@"
+govNAN___Q24Game5P2JST:
+	.float 0.0
+	.float 0.0
+	.float 0.0
 "sSectionInfo__22@unnamed@gameflow_cpp@":
 	.4byte str_RootMenu
 	.4byte 0x00000000
@@ -182,50 +180,48 @@ __vt__11ISectionMgr:
 	.4byte 0
 	.4byte 0
 	.4byte getCurrentSection__11ISectionMgrFv
-	.4byte 0
 
 .section .sdata, "wa"  # 0x80514680 - 0x80514D80
 .balign 8
 .global mActiveSectionFlag__8GameFlow
 mActiveSectionFlag__8GameFlow:
-	.4byte 0x00000015
+	.4byte 21
 
 .section .sbss # 0x80514D80 - 0x80516360
 .balign 8
-.global lbl_80516188
-lbl_80516188:
-	.skip 0x4
-.global lbl_8051618C
-lbl_8051618C:
-	.skip 0x4
+gu32NAN___Q24Game5P2JST:
+	.skip 4
+gfNAN___Q24Game5P2JST:
+	.skip 4
 
 .section .sdata2, "a"     # 0x80516360 - 0x80520E40
 .balign 8
 str_Ogawa:
 	.asciz "Ogawa"
-	.skip 0x2
+.balign 4
 str_Hikino:
 	.asciz "Hikino"
-	.skip 0x1
+.balign 4
 str_Fujino:
 	.asciz "Fujino"
-	.skip 0x1
+.balign 4
 str_Ebisawa:
 	.asciz "Ebisawa"
+.balign 4
 str_boot:
 	.asciz "Boot"
-	.skip 0x3
+.balign 4
 str_demo:
 	.asciz "Demo"
-	.skip 0x3
+.balign 4
 str_vsgame:
 	.asciz "VS Game"
+.balign 4
 str_exp_c:
 	.asciz "EXP_C"
-	.skip 0x2
+.balign 4
 str_exp_s:
 	.asciz "EXP_S"
-	.skip 0x2
 
 .section .text, "ax"  # 0x800056C0 - 0x80472F00
 .global __ct__8GameFlowFv
@@ -529,15 +525,14 @@ lbl_80424594:
 /* 8042459C 004214DC  38 21 00 10 */	addi r1, r1, 0x10
 /* 804245A0 004214E0  4E 80 00 20 */	blr 
 
-.global __sinit_gameflow_cpp
 __sinit_gameflow_cpp:
 /* 804245A4 004214E4  3C 80 80 51 */	lis r4, __float_nan@ha
 /* 804245A8 004214E8  38 00 FF FF */	li r0, -1
 /* 804245AC 004214EC  C0 04 48 B0 */	lfs f0, __float_nan@l(r4)
-/* 804245B0 004214F0  3C 60 80 4F */	lis r3, lbl_804EBBF0@ha
-/* 804245B4 004214F4  90 0D 9B 08 */	stw r0, lbl_80516188@sda21(r13)
-/* 804245B8 004214F8  D4 03 BB F0 */	stfsu f0, lbl_804EBBF0@l(r3)
-/* 804245BC 004214FC  D0 0D 9B 0C */	stfs f0, lbl_8051618C@sda21(r13)
+/* 804245B0 004214F0  3C 60 80 4F */	lis r3, govNAN___Q24Game5P2JST@ha
+/* 804245B4 004214F4  90 0D 9B 08 */	stw r0, gu32NAN___Q24Game5P2JST@sda21(r13)
+/* 804245B8 004214F8  D4 03 BB F0 */	stfsu f0, govNAN___Q24Game5P2JST@l(r3)
+/* 804245BC 004214FC  D0 0D 9B 0C */	stfs f0, gfNAN___Q24Game5P2JST@sda21(r13)
 /* 804245C0 00421500  D0 03 00 04 */	stfs f0, 4(r3)
 /* 804245C4 00421504  D0 03 00 08 */	stfs f0, 8(r3)
 /* 804245C8 00421508  4E 80 00 20 */	blr 

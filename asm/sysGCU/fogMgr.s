@@ -4,45 +4,35 @@
 
 .section .rodata  # 0x804732E0 - 0x8049E220
 .balign 8
-.global lbl_8049A610
-lbl_8049A610:
+lbl_8049A610: #Shift-JIS
 	.4byte 0x83748348
 	.4byte 0x834F837D
 	.4byte 0x836C815B
 	.4byte 0x83578383
 	.4byte 0x00000000
-	.4byte 0x00000000
 
 .section .data, "wa"  # 0x8049E220 - 0x804EFC20
 .balign 8
-.global lbl_804EC3B8
-lbl_804EC3B8:
-	.4byte 0x00000000
-	.4byte 0x00000000
-	.4byte 0x00000000
-	.4byte 0x00000000
+govNAN___Q24Game5P2JST:
+	.float 0.0
+	.float 0.0
+	.float 0.0
 
 .section .sbss # 0x80514D80 - 0x80516360
 .balign 8
-.global lbl_80516220
-lbl_80516220:
-	.skip 0x4
-.global lbl_80516224
-lbl_80516224:
-	.skip 0x4
+gu32NAN___Q24Game5P2JST:
+	.skip 4
+gfNAN___Q24Game5P2JST:
+	.skip 4
 
 .section .sdata2, "a"     # 0x80516360 - 0x80520E40
 .balign 8
-.global lbl_80520760
 lbl_80520760:
-	.4byte 0x44200000
-.global lbl_80520764
+	.float 640.0
 lbl_80520764:
-	.4byte 0x453D0000
-.global lbl_80520768
+	.float 3024.0
 lbl_80520768:
-	.4byte 0x00000000
-	.4byte 0x00000000
+	.float 0.0
 
 .section .text, "ax"  # 0x800056C0 - 0x80472F00
 .global __ct__6FogMgrFv
@@ -166,15 +156,14 @@ getColor__6FogMgrFR6Color4:
 /* 80432AE8 0042FA28  98 04 00 03 */	stb r0, 3(r4)
 /* 80432AEC 0042FA2C  4E 80 00 20 */	blr 
 
-.global __sinit_fogMgr_cpp
 __sinit_fogMgr_cpp:
 /* 80432AF0 0042FA30  3C 80 80 51 */	lis r4, __float_nan@ha
 /* 80432AF4 0042FA34  38 00 FF FF */	li r0, -1
 /* 80432AF8 0042FA38  C0 04 48 B0 */	lfs f0, __float_nan@l(r4)
-/* 80432AFC 0042FA3C  3C 60 80 4F */	lis r3, lbl_804EC3B8@ha
-/* 80432B00 0042FA40  90 0D 9B A0 */	stw r0, lbl_80516220@sda21(r13)
-/* 80432B04 0042FA44  D4 03 C3 B8 */	stfsu f0, lbl_804EC3B8@l(r3)
-/* 80432B08 0042FA48  D0 0D 9B A4 */	stfs f0, lbl_80516224@sda21(r13)
+/* 80432AFC 0042FA3C  3C 60 80 4F */	lis r3, govNAN___Q24Game5P2JST@ha
+/* 80432B00 0042FA40  90 0D 9B A0 */	stw r0, gu32NAN___Q24Game5P2JST@sda21(r13)
+/* 80432B04 0042FA44  D4 03 C3 B8 */	stfsu f0, govNAN___Q24Game5P2JST@l(r3)
+/* 80432B08 0042FA48  D0 0D 9B A4 */	stfs f0, gfNAN___Q24Game5P2JST@sda21(r13)
 /* 80432B0C 0042FA4C  D0 03 00 04 */	stfs f0, 4(r3)
 /* 80432B10 0042FA50  D0 03 00 08 */	stfs f0, 8(r3)
 /* 80432B14 0042FA54  4E 80 00 20 */	blr 

@@ -4,22 +4,18 @@
 
 .section .rodata  # 0x804732E0 - 0x8049E220
 .balign 8
-.global lbl_80499C38
 lbl_80499C38:
 	.asciz "initPrimDraw"
-	.skip 3
-.global lbl_80499C48
+.balign 4
 lbl_80499C48:
 	.asciz "draw axis"
-	.skip 6
 
 .section .data, "wa"  # 0x8049E220 - 0x804EFC20
 .balign 8
-.global lbl_804EBD98
-lbl_804EBD98:
-	.4byte 0x00000000
-	.4byte 0x00000000
-	.4byte 0x00000000
+govNAN___Q24Game5P2JST:
+	.float 0.0
+	.float 0.0
+	.float 0.0
 .global __vt__17HorizonalSplitter
 __vt__17HorizonalSplitter:
 	.4byte 0
@@ -32,85 +28,64 @@ __vt__8Splitter:
 	.4byte 0
 	.4byte split2__8SplitterFf
 	.4byte split4__8SplitterFff
-	.4byte 0
 
 .section .sbss # 0x80514D80 - 0x80516360
 .balign 8
-.global lbl_80516190
-lbl_80516190:
-	.skip 0x4
-.global lbl_80516194
-lbl_80516194:
-	.skip 0x4
+gu32NAN___Q24Game5P2JST:
+	.skip 4
+gfNAN___Q24Game5P2JST:
+	.skip 4
 .global gScissorOffset
 gScissorOffset:
-	.skip 0x4
+	.skip 4
 .global lastTokenName__8Graphics
 lastTokenName__8Graphics:
-	.skip 0x4
+	.skip 4
 
 .section .sdata2, "a"     # 0x80516360 - 0x80520E40
 .balign 8
-.global lbl_805204B8
 lbl_805204B8:
-	.4byte 0x00000000
-.global lbl_805204BC
+	.float 0.0
 lbl_805204BC:
 	.float 0.5
-.global lbl_805204C0
+.balign 8
 lbl_805204C0:
 	.4byte 0x43300000
 	.4byte 0x00000000
-.global lbl_805204C8
 lbl_805204C8:
 	.float 1.0
-.global lbl_805204CC
 lbl_805204CC:
-	.4byte 0xBF800000
-.global lbl_805204D0
+	.float -1.0
+.balign 8
 lbl_805204D0:
 	.4byte 0x43300000
 	.4byte 0x80000000
-.global lbl_805204D8
 lbl_805204D8:
-	.4byte 0x3EC90FDB
-.global lbl_805204DC
+	.float 0.3926991
 lbl_805204DC:
-	.4byte 0x43A2F983
-.global lbl_805204E0
+	.float 325.9493
 lbl_805204E0:
-	.4byte 0xC3A2F983
-.global lbl_805204E4
+	.float -325.9493
 lbl_805204E4:
-	.4byte 0x40490FDB
-.global lbl_805204E8
+	.float 3.1415927 #pi
 lbl_805204E8:
-	.4byte 0xBF7FBE77
-.global lbl_805204EC
+	.float -0.999
 lbl_805204EC:
-	.4byte 0x3BB60B61
-.global lbl_805204F0
+	.float 0.0055555557
 lbl_805204F0:
-	.4byte 0x33D6BF95
-.global lbl_805204F4
+	.float 1.0E-7
 lbl_805204F4:
-	.4byte 0x40C90FDB
-.global lbl_805204F8
+	.float 6.2831855 #tau
 lbl_805204F8:
-	.4byte 0xC4800000
-.global lbl_805204FC
+	.float -1024.0
 lbl_805204FC:
-	.4byte 0x44800000
-.global lbl_80520500
+	.float 1024.0
 lbl_80520500:
-	.4byte 0x41F00000
-.global lbl_80520504
+	.float 30.0
 lbl_80520504:
-	.4byte 0x41200000
-.global lbl_80520508
+	.float 10.0
 lbl_80520508:
-	.4byte 0x461C4000
-	.4byte 0x00000000
+	.float 10000.0
 
 .section .text, "ax"  # 0x800056C0 - 0x80472F00
 .global __ct__17HorizonalSplitterFP8Graphics
@@ -3500,19 +3475,18 @@ clearInitGX__8GraphicsFv:
 /* 80427F5C 00424E9C  38 21 00 10 */	addi r1, r1, 0x10
 /* 80427F60 00424EA0  4E 80 00 20 */	blr 
 
-.global split4__8SplitterFff
+.global split4__8SplitterFff # weak function
 split4__8SplitterFff:
 /* 80427F64 00424EA4  4E 80 00 20 */	blr 
 
-.global __sinit_graphics_cpp
 __sinit_graphics_cpp:
 /* 80427F68 00424EA8  3C 80 80 51 */	lis r4, __float_nan@ha
 /* 80427F6C 00424EAC  38 00 FF FF */	li r0, -1
 /* 80427F70 00424EB0  C0 04 48 B0 */	lfs f0, __float_nan@l(r4)
-/* 80427F74 00424EB4  3C 60 80 4F */	lis r3, lbl_804EBD98@ha
-/* 80427F78 00424EB8  90 0D 9B 10 */	stw r0, lbl_80516190@sda21(r13)
-/* 80427F7C 00424EBC  D4 03 BD 98 */	stfsu f0, lbl_804EBD98@l(r3)
-/* 80427F80 00424EC0  D0 0D 9B 14 */	stfs f0, lbl_80516194@sda21(r13)
+/* 80427F74 00424EB4  3C 60 80 4F */	lis r3, govNAN___Q24Game5P2JST@ha
+/* 80427F78 00424EB8  90 0D 9B 10 */	stw r0, gu32NAN___Q24Game5P2JST@sda21(r13)
+/* 80427F7C 00424EBC  D4 03 BD 98 */	stfsu f0, govNAN___Q24Game5P2JST@l(r3)
+/* 80427F80 00424EC0  D0 0D 9B 14 */	stfs f0, gfNAN___Q24Game5P2JST@sda21(r13)
 /* 80427F84 00424EC4  D0 03 00 04 */	stfs f0, 4(r3)
 /* 80427F88 00424EC8  D0 03 00 08 */	stfs f0, 8(r3)
 /* 80427F8C 00424ECC  4E 80 00 20 */	blr 

@@ -1,12 +1,8 @@
 .include "macros.inc"
 .section .rodata  # 0x804732E0 - 0x8049E220
 .balign 8
-.global lbl_80499EE8
 lbl_80499EE8:
-	.4byte 0x68656170
-	.4byte 0x53746174
-	.4byte 0x75732E63
-	.4byte 0x70700000
+	.asciz "heapStatus.cpp"
 
 .section .data, "wa"  # 0x8049E220 - 0x804EFC20
 .balign 8
@@ -21,18 +17,14 @@ __vt__8HeapInfo:
 	.4byte 0
 	.4byte "@36@__dt__8HeapInfoFv"
 	.4byte __dt__8HeapInfoFv
-	.4byte 0
 
 .section .sdata2, "a"     # 0x80516360 - 0x80520E40
 .balign 8
-.global lbl_80520598
 lbl_80520598:
-	.4byte 0x726F6F74
-	.4byte 0x00000000
-.global lbl_805205A0
+	.asciz "root"
+.balign 4
 lbl_805205A0:
-	.4byte 0x45584954
-	.4byte 0x0A000000
+	.asciz "EXIT\n"
 
 .section .text, "ax"  # 0x800056C0 - 0x80472F00
 .global __ct__10HeapStatusFv
@@ -389,7 +381,6 @@ lbl_8042B44C:
 /* 8042B45C 0042839C  38 21 00 30 */	addi r1, r1, 0x30
 /* 8042B460 004283A0  4E 80 00 20 */	blr 
 
-.global "@36@__dt__8HeapInfoFv"
 "@36@__dt__8HeapInfoFv":
 /* 8042B464 004283A4  38 63 FF DC */	addi r3, r3, -36
 /* 8042B468 004283A8  4B FF FC 0C */	b __dt__8HeapInfoFv
