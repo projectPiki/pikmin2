@@ -3,33 +3,32 @@ text : origin = 0x80003100
 }
 SECTIONS {
 GROUP: {
-    .init ALIGN(0x20) : {}
-    ._extab ALIGN(0x20) : {}
-    ._exidx ALIGN(0x20) : {}
-    .text ALIGN(0x20) : {}
-    .ctors ALIGN(0x20) : {}
-    .dtors ALIGN(0x20) : {}
-    .rodata ALIGN(0x20) : {}
-    .data ALIGN(0x20) : {}
-    .bss ALIGN(0x20) : {}
-    .sdata ALIGN(0x20) : {}
-    .sbss ALIGN(0x20) : {}
-    .sdata2 ALIGN(0x20): {}
-    .sbss2 ALIGN(0x20) : {}
-    .stack ALIGN(0x100) : {}
+	.init ALIGN(0x20) : {}
+	._extab ALIGN(0x20) : {}
+	._exidx ALIGN(0x20) : {}
+	.text ALIGN(0x20) : {}
+	.ctors ALIGN(0x20) : {}
+	.dtors ALIGN(0x20) : {}
+	.rodata ALIGN(0x20) : {}
+	.data ALIGN(0x20) : {}
+	.bss ALIGN(0x20) : {}
+	.sdata ALIGN(0x20) : {}
+	.sbss ALIGN(0x20) : {}
+	.sdata2 ALIGN(0x20): {}
+	.sbss2 ALIGN(0x20) : {}
+	.stack ALIGN(0x100) : {}
 } > text
 	_stack_addr = (_f_sbss2 + SIZEOF(.sbss2) + 65536 + 0x7) & ~0x7;
-    _stack_end = _f_sbss2 + SIZEOF(.sbss2);
-    _db_stack_addr = (_stack_addr + 0x2000);
-    _db_stack_end = _stack_addr;
-    __ArenaLo = (_db_stack_addr + 0x1f) & ~0x1f;
-    __ArenaHi = 0x81700000;
+	_stack_end = _f_sbss2 + SIZEOF(.sbss2);
+	_db_stack_addr = (_stack_addr + 0x2000);
+	_db_stack_end = _stack_addr;
+	__ArenaLo = (_db_stack_addr + 0x1f) & ~0x1f;
+	__ArenaHi = 0x81700000;
 }
 
 FORCEFILES {
-    __init_cpp_exceptions.o
-    ebiP2TitleCamera.o
-    targsupp.o
-    ctors.o
-    dtors.o
+	__init_cpp_exceptions.o
+	targsupp.o
+	ctors.o
+	dtors.o
 }
