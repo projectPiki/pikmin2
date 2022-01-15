@@ -4,18 +4,17 @@
 
 .section .data, "wa"  # 0x8049E220 - 0x804EFC20
 .balign 8
-lbl_804E9FA8:
-	.4byte 0x00000000
-	.4byte 0x00000000
-	.4byte 0x00000000
-	.4byte 0x00000000
+govNAN___Q24Game5P2JST:
+	.float 0.0
+	.float 0.0
+	.float 0.0
 
 .section .sbss # 0x80514D80 - 0x80516360
 .balign 8
 gu32NAN___Q24Game5P2JST:
-	.skip 0x4
+	.skip 4
 gfNAN___Q24Game5P2JST:
-	.skip 0x4
+	.skip 4
 
 .section .sdata2, "a"     # 0x80516360 - 0x80520E40
 .balign 8
@@ -134,14 +133,13 @@ lbl_803EB324:
 /* 803EB330 003E8270  38 21 04 30 */	addi r1, r1, 0x430
 /* 803EB334 003E8274  4E 80 00 20 */	blr 
 
-.global __sinit_ebiP2TitleFog_cpp
 __sinit_ebiP2TitleFog_cpp:
 /* 803EB338 003E8278  3C 80 80 51 */	lis r4, __float_nan@ha
 /* 803EB33C 003E827C  38 00 FF FF */	li r0, -1
 /* 803EB340 003E8280  C0 04 48 B0 */	lfs f0, __float_nan@l(r4)
-/* 803EB344 003E8284  3C 60 80 4F */	lis r3, lbl_804E9FA8@ha
+/* 803EB344 003E8284  3C 60 80 4F */	lis r3, govNAN___Q24Game5P2JST@ha
 /* 803EB348 003E8288  90 0D 9A 90 */	stw r0, gu32NAN___Q24Game5P2JST@sda21(r13)
-/* 803EB34C 003E828C  D4 03 9F A8 */	stfsu f0, lbl_804E9FA8@l(r3)
+/* 803EB34C 003E828C  D4 03 9F A8 */	stfsu f0, govNAN___Q24Game5P2JST@l(r3)
 /* 803EB350 003E8290  D0 0D 9A 94 */	stfs f0, gfNAN___Q24Game5P2JST@sda21(r13)
 /* 803EB354 003E8294  D0 03 00 04 */	stfs f0, 4(r3)
 /* 803EB358 003E8298  D0 03 00 08 */	stfs f0, 8(r3)
