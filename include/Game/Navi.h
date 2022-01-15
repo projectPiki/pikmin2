@@ -4,6 +4,8 @@
 #include "Game/FakePiki.h"
 #include "Game/PelletView.h"
 #include "Game/StateMachine.h"
+#include "Game/GameSystem.h"
+#include "Game/PlayData.h"
 
 #include "SysShape/Joint.h"
 
@@ -259,7 +261,7 @@ struct Navi : public FakePiki, virtual public PelletView {
 	CPlate* m_cPlateMgr;       // _254
 	u8 _258;                   // _258
 	u8 m_stick;                // _259
-	u32 m_sprayCounts[2];      // _25C
+	s32 m_sprayCounts[2];      // _25C proven signed by Navi::hasDope
 	u8 _264[4];                // _264
 	bool m_isAlive;            // _268
 	u8 _269;                   // _269

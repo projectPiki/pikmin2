@@ -2350,35 +2350,16 @@ void Navi::setupNukuAdjustArg(Game::ItemPikihead::Item*, Game::NaviNukuAdjustSta
  * --INFO--
  * Address:	80140E2C
  * Size:	000050
+ * Matches
+ * https://decomp.me/scratch/6AZ0H
  */
-bool Navi::hasDope(int)
+bool Navi::hasDope(int sprayType)
 {
-	/*
-	stwu     r1, -0x10(r1)
-	mflr     r0
-	stw      r0, 0x14(r1)
-	lwz      r5, gameSystem__4Game@sda21(r13)
-	lwz      r0, 0x44(r5)
-	cmpwi    r0, 1
-	bne      lbl_80140E64
-	slwi     r0, r4, 2
-	add      r3, r3, r0
-	lwz      r3, 0x25c(r3)
-	neg      r0, r3
-	andc     r0, r0, r3
-	srwi     r3, r0, 0x1f
-	b        lbl_80140E6C
-
-lbl_80140E64:
-	lwz      r3, playData__4Game@sda21(r13)
-	bl       hasDope__Q24Game8PlayDataFi
-
-lbl_80140E6C:
-	lwz      r0, 0x14(r1)
-	mtlr     r0
-	addi     r1, r1, 0x10
-	blr
-	*/
+	if (gameSystem->m_mode == GSM_VERSUS_MODE) {
+		return (m_sprayCounts[sprayType] > 0); // signed to generate andc
+	} else {
+		return playData->hasDope(sprayType);
+	}
 }
 
 /*
