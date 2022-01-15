@@ -150,44 +150,25 @@ lbl_8022E4E4:
 	*/
 }
 
-// /*
-//  * --INFO--
-//  * Address:	8022E500
-//  * Size:	000034
-//  */
-// void CellIterator::next(void)
-// {
-// 	/*
-// 	stwu     r1, -0x10(r1)
-// 	mflr     r0
-// 	stw      r0, 0x14(r1)
-// 	stw      r31, 0xc(r1)
-// 	mr       r31, r3
-// 	bl       step__Q24Game12CellIteratorFv
-// 	mr       r3, r31
-// 	bl       find__Q24Game12CellIteratorFv
-// 	lwz      r0, 0x14(r1)
-// 	lwz      r31, 0xc(r1)
-// 	mtlr     r0
-// 	addi     r1, r1, 0x10
-// 	blr
-// 	*/
-// }
+/*
+ * --INFO--
+ * Address:	8022E500
+ * Size:	000034
+ * Matches
+ */
+bool CellIterator::next()
+{
+	step();
+	return find();
+}
 
-// /*
-//  * --INFO--
-//  * Address:	8022E534
-//  * Size:	000010
-//  */
-// void CellIterator::isDone(void)
-// {
-// 	/*
-// 	lwz      r0, 0(r3)
-// 	cntlzw   r0, r0
-// 	srwi     r3, r0, 5
-// 	blr
-// 	*/
-// }
+/*
+ * --INFO--
+ * Address:	8022E534
+ * Size:	000010
+ * Matches
+ */
+bool CellIterator::isDone(void) { return _00 == 0; }
 
 // /*
 //  * --INFO--
@@ -644,10 +625,10 @@ lbl_8022E4E4:
 // 	*/
 // }
 
-// /*
-//  * --INFO--
-//  * Address:	8022EA90
-//  * Size:	000004
-//  */
-// void CellIterator::dump(void) { }
+/*
+ * --INFO--
+ * Address:	8022EA90
+ * Size:	000004
+ */
+void CellIterator::dump(void) { }
 } // namespace Game

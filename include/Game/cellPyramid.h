@@ -189,11 +189,11 @@ struct CellIterator {
 
 	void calcExtent();
 	void dump();
-	void find();
+	bool find();
 	void first();
 	void getCellObject();
 	bool isDone();
-	void next();
+	bool next();
 	CellObject* operator*();
 	void satisfy();
 	void step();
