@@ -331,9 +331,10 @@ struct NaviFSM : public StateMachine<Navi> {
 
 struct NaviMgr {
 	void setupNavi(Navi*);
-
-	u8 _00[0xCC];
-	CollPartFactory* _CC; // _CC
+	u8 _00[0x54];
+	int naviIndexArray[2]; // _54
+	u8 _5C[0x70];
+	CollPartFactory* _CC;
 };
 
 NaviMgr* naviMgr;

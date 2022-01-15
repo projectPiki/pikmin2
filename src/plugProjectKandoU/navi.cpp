@@ -521,7 +521,7 @@
     lbl_80518408:
         .asciz "orima"
 */
-
+static const u32 fillerbytes[3] = { 0, 0, 0 };
 namespace Game {
 
 /*
@@ -1355,6 +1355,7 @@ namespace Game {
  * Address:	801400B0
  * Size:	000290
  * Majority matches except for var offsets and end of func
+ * Believe it's fixed -EpochFlame
  */
 void Navi::onInit(Game::CreatureInitArg* arg)
 {
@@ -1416,15 +1417,17 @@ void Navi::onInit(Game::CreatureInitArg* arg)
 
 	_26A = 0;
 	_269 = 0;
-	// needs an extra fmr
-	float navi_scale  = 1.3f;
-	float louie_scale = 1.3f;
-	if (m_naviIndex.m_shortView == 1) {
-		navi_scale  = 1.3f;
-		louie_scale = 1.5f;
+	Vector3f navi_scale; // navi model scale
+	navi_scale.x = 1.3f;
+	navi_scale.y = 1.3f;
+	navi_scale.z = 1.3f;
+	if (m_naviIndex.m_shortView == 1) { // case for Louie/President scale
+		navi_scale.x = 1.5f;
+		navi_scale.y = 1.5f;
+		navi_scale.z = 1.5f;
 	}
 
-	m_scale = Vector3f(navi_scale, navi_scale, louie_scale);
+	m_scale = navi_scale;
 	uVar2   = m_naviIndex.m_shortView;
 	m_cursorMatAnim->start((Sys::MatBaseAnimation*)(naviMgr->naviIndexArray + (u32)uVar2 * 5 + 3));
 	m_arrowMatAnim->start((Sys::MatBaseAnimation*)(naviMgr->naviIndexArray + (u32)uVar2 * 5 + 0xd));
