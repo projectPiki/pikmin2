@@ -1,6 +1,7 @@
 #ifndef _SYS_OBB_H
 #define _SYS_OBB_H
 
+#include "CNode.h"
 #include "Vector3.h"
 
 namespace Game {
@@ -16,9 +17,13 @@ struct RayIntersectInfo;
 struct Sphere;
 struct CurrTriInfo;
 
-struct OBB {
+/**
+ * @size{0x110}
+ */
+struct OBB : public CNode {
 	OBB();
-	~OBB();
+
+	virtual ~OBB(); // _00
 
 	void autoDivide(Sys::VertexTable&, Sys::TriangleTable&, int, int);
 	void create2(Sys::VertexTable&, Sys::TriangleTable&, struct Matrix3f&, Matrix3f&, Vector3f&);

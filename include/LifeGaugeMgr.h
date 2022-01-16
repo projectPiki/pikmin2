@@ -48,6 +48,7 @@ struct LifeGaugeList : public JKRDisposer {
 };
 
 /**
+ * @todo This is so close to being an InfoMgr. Perhaps lessons can be learned from that, or the other way around?
  * @size{0x94}
  */
 struct LifeGaugeMgr {

@@ -5,7 +5,8 @@
 
 struct Controller : public JUTGamePad {
 	Controller(JUTGamePad::EPadPort);
-	virtual ~Controller();
+
+	virtual ~Controller(); // _00
 };
 
 #endif

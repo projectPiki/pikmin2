@@ -30,21 +30,18 @@ struct ObjBase;
 struct ObjMgrBase;
 struct Mgr;
 
-struct SceneArg {
-	virtual SceneType getSceneType(); // _00
-	virtual int getClassSize();       // _04
+struct SceneArgBase {
+	virtual SceneType getSceneType() const; // _00
+	virtual int getClassSize() = 0;         // _04
 };
 
-struct StartSceneArg : public SceneArg {
-	virtual SceneType getSceneType(); // _00
-	virtual int getClassSize();       // _04
-
+struct StartSceneArg : public SceneArgBase {
 	float _04; // _04
 };
 
-struct SetSceneArg : public SceneArg {
-	virtual SceneType getSceneType(); // _00
-	virtual int getClassSize();       // _04
+struct SetSceneArg : public SceneArgBase {
+	virtual SceneType getSceneType() const; // _00
+	virtual int getClassSize();             // _04
 
 	SceneType m_sceneType;                    // _04
 	u8 _08;                                   // _08
@@ -52,9 +49,8 @@ struct SetSceneArg : public SceneArg {
 	og::Screen::DispMemberBase* m_dispMember; // _0C
 };
 
-struct EndSceneArg : public SceneArg {
-	virtual SceneType getSceneType(); // _00
-	virtual int getClassSize();       // _04
+struct EndSceneArg : public SceneArgBase {
+	virtual int getClassSize(); // _04
 
 	u8 _04; // _04
 };

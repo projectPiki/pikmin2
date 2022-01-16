@@ -33,7 +33,7 @@ struct TimeMgrParms {
 struct TimeMgr : public CNode {
 	TimeMgr();
 
-	virtual ~TimeMgr();
+	virtual ~TimeMgr(); // _00
 
 	float getRealDayTime();
 	float getSunGaugeRatio();

@@ -5,7 +5,9 @@
 
 namespace Game {
 struct TPositionObject {
-	virtual Vector3<float> getPosition();
+	virtual Vector3f getPosition() = 0; // _00
+
+	// VTBL _00
 };
 } // namespace Game
 

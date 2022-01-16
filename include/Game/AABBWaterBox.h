@@ -21,6 +21,10 @@ struct Model;
 
 namespace Game {
 struct WaterBox {
+	enum Flags {
+		WBF_Unset    = 0x0,
+		WBF_Unknown1 = 0x1,
+	};
 	WaterBox();
 
 	/**
@@ -32,9 +36,9 @@ struct WaterBox {
 		return false;
 	}
 	virtual bool inWater2d(Sys::Sphere&);        // _04
-	virtual float getSeaLevel();                 // _08
-	virtual float* getSeaHeightPtr();            // _0C
-	virtual bool update();                       // _10
+	virtual float getSeaLevel()      = 0;        // _08
+	virtual float* getSeaHeightPtr() = 0;        // _0C
+	virtual bool update()            = 0;        // _10
 	virtual void startDown(float);               // _14
 	virtual void startUp(float);                 // _18
 	virtual void directDraw(struct Graphics&);   // _1C

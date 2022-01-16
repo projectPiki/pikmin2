@@ -12,6 +12,7 @@ namespace og {
 namespace Screen {
 struct AnimBaseBase {
 	AnimBaseBase();
+
 	virtual void start()    = 0; // _00
 	virtual void moveAnim() = 0; // _04
 
@@ -46,6 +47,7 @@ struct AnimBaseBase {
 
 struct AnimScreen : public AnimBaseBase {
 	AnimScreen();
+
 	virtual void start();    // _00
 	virtual void moveAnim(); // _04
 
@@ -56,6 +58,7 @@ struct AnimScreen : public AnimBaseBase {
 
 struct AnimPane : public AnimBaseBase {
 	AnimPane();
+
 	virtual void start();    // _00
 	virtual void moveAnim(); // _04
 

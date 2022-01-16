@@ -39,9 +39,9 @@ struct CPlate : public Container<Creature> {
 	CPlate(int);
 
 	virtual ~CPlate();            // _00
-	virtual int getNext(void*);   // _0C
-	virtual int getStart();       // _10
-	virtual int getEnd();         // _14
+	virtual void* getNext(void*); // _0C
+	virtual void* getStart();     // _10
+	virtual void* getEnd();       // _14
 	virtual Creature* get(void*); // _18
 
 	void changeFlower(Creature*);

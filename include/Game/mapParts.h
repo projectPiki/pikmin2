@@ -104,6 +104,8 @@ struct MapUnit {
 struct PartsView : public CNode {
 	PartsView();
 	PartsView(MapUnit*, u8*);
+
+	virtual ~PartsView();                 // _00
 	virtual void constructor();           // _08
 	virtual void doAnimation();           // _0C
 	virtual void doEntry();               // _10
