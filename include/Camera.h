@@ -95,15 +95,31 @@ struct Camera : public CullFrustum {
 
 struct LookAtCamera : public Camera {
 	LookAtCamera();
-	virtual ~LookAtCamera() { }
-
-	virtual void startVibration(int); // _74
+	virtual ~LookAtCamera() { }            // _00
+	virtual Vector3f getLookAtPosition_(); // _50
+	virtual Vector3f* on_getPositionPtr(); // _5C
+	virtual void updateMatrix();           // _6C
+	virtual void startVibration(int);      // _74
 
 	Matrixf _144;              // _144
-	Vector3f _174;             // _174 /* Sodium called this `position`, PikDecomp called it
-	                           // `angle`. :shrug: */
+	Vector3f _174;             // _174 /* Sodium called this `position`, PikDecomp called it `angle`. :shrug: */
 	Vector3f m_lookAtPosition; // _180 /* PikDecomp called this `position`. */
 	Vector3f _18C;             // _18C
+};
+
+struct BlendCamera : public Camera {
+	BlendCamera(int, struct Camera**);
+
+	virtual ~BlendCamera();  // _00
+	virtual void doUpdate(); // _70
+
+	void setBlendFactor(float);
+	void setCameras(Camera**);
+
+	int m_cameraCount;   // _144
+	Camera** m_cameras;  // _148
+	float m_blendFactor; // _14C
+	Matrixf _150;        // _150
 };
 
 #endif
