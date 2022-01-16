@@ -1,4 +1,4 @@
-#include "CarryInfoMgr.h"
+#include "CarryInfo.h"
 #include "Controller.h"
 #include "Dolphin/dvd.h"
 #include "Dolphin/stl.h"
