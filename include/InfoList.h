@@ -7,10 +7,10 @@
 struct Graphics;
 
 struct InfoMgrBase {
-	virtual ~InfoMgrBase(); // _00
-	virtual void loadResource() = 0;           // _04
-	virtual void update() = 0;                 // _08
-	virtual void draw(Graphics&) = 0;          // _0C
+	virtual ~InfoMgrBase();           // _00
+	virtual void loadResource()  = 0; // _04
+	virtual void update()        = 0; // _08
+	virtual void draw(Graphics&) = 0; // _0C
 
 	// VTBL _00
 };
@@ -27,28 +27,27 @@ template <typename Owner, typename List> struct InfoListBase : public JKRDispose
 		_1C = nullptr;
 		_18 = nullptr;
 	}
-	virtual void init() {}; // _04
-	virtual void update() {}; // _08
+	virtual void init() {};          // _04
+	virtual void update() {};        // _08
 	virtual void draw(Graphics&) {}; // _0C
-	virtual bool isFinish() = 0; // _10
+	virtual bool isFinish() = 0;     // _10
 
 	// TODO: These may be just List*?
 	InfoListBase<Owner, List>* _18; // _18
 	InfoListBase<Owner, List>* _1C; // _1C
-	Owner* m_owner; // _20
+	Owner* m_owner;                 // _20
 };
-
 
 template <typename Owner, typename List> struct InfoMgr : public InfoMgrBase {
 	// TODO: ctor
 	InfoMgr();
 
 	// TODO: dtor
-	virtual ~InfoMgr();               // _00
+	virtual ~InfoMgr(); // _00
 
-	virtual void loadResource() = 0;           // _04
+	virtual void loadResource() = 0; // _04
 
-	virtual void update()                 // _08
+	virtual void update() // _08
 	{
 		// InfoListBase<Owner, List>* next;
 		// for (
@@ -56,7 +55,7 @@ template <typename Owner, typename List> struct InfoMgr : public InfoMgrBase {
 		// 	current != nullptr;
 		// 	current = next
 		// ) {
-		InfoListBase<Owner, List>* next = ((InfoListBase<Owner,List>)m_activeList)._1C;
+		InfoListBase<Owner, List>* next = ((InfoListBase<Owner, List>)m_activeList)._1C;
 		InfoListBase<Owner, List>* current;
 		while (current = next, current != nullptr) {
 			next = current->_1C;
@@ -67,9 +66,9 @@ template <typename Owner, typename List> struct InfoMgr : public InfoMgrBase {
 		}
 	}
 
-	virtual void draw(Graphics& gfx)          // _0C
+	virtual void draw(Graphics& gfx) // _0C
 	{
-		InfoListBase<Owner, List>* list = ((InfoListBase<Owner,List>)m_activeList)._1C;
+		InfoListBase<Owner, List>* list = ((InfoListBase<Owner, List>)m_activeList)._1C;
 		if (list != nullptr) {
 			for (; list != nullptr; list = list->_1C) {
 				list->draw(gfx);
@@ -80,17 +79,13 @@ template <typename Owner, typename List> struct InfoMgr : public InfoMgrBase {
 	virtual List* regist(Owner* owner) // _10
 	{
 		InfoListBase<Owner, List>* list;
-		for (
-			list = ((InfoListBase<Owner,List>)m_activeList)._1C;
-			list != nullptr;
-			list = list->_1C
-		) {
+		for (list = ((InfoListBase<Owner, List>)m_activeList)._1C; list != nullptr; list = list->_1C) {
 			if (list->m_owner == owner) {
 				break;
 			}
 		}
 		if (list == nullptr) {
-			list = ((InfoListBase<Owner,List>)m_activeList)._1C;
+			list = ((InfoListBase<Owner, List>)m_activeList)._1C;
 		}
 		if (list != nullptr) {
 			list->m_owner = owner;
@@ -115,9 +110,9 @@ template <typename Owner, typename List> struct InfoMgr : public InfoMgrBase {
 	void addActiveList(List*);
 	void addInactiveList(List*);
 
-	List m_activeList; // _04 when List is CarryInfoList
+	List m_activeList;   // _04 when List is CarryInfoList
 	List m_inactiveList; // _5C when List is CarryInfoList
-	int m_count; // _B4 when List is CarryInfoList
+	int m_count;         // _B4 when List is CarryInfoList
 };
 
 #endif
