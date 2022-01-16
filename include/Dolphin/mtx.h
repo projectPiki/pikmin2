@@ -29,7 +29,7 @@ void PSMTXTransApply(const Mtx, Mtx, float, float, float);
 void PSMTXScale(Mtx, float, float, float);
 void PSMTXScaleApply(const Mtx, Mtx, float, float, float);
 void PSMTXQuat(Mtx, const PSQuaternion*);
-void PSMTXMultVec(Mtx, Vec, Vec);
+void PSMTXMultVec(Mtx, Vec*, Vec*);
 void PSMTXMultVecSR(Mtx, Vec, Vec);
 /* TODO: Determine what these params are. */
 void PSMTXMultVecArraySR(Mtx, float*, float*, float*);

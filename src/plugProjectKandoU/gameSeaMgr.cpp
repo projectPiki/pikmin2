@@ -1,8 +1,11 @@
+#include "BoundBox.h"
 #include "Dolphin/math.h"
 #include "Dolphin/mtx.h"
 #include "Dolphin/string.h"
+#include "Dolphin/vec.h"
 #include "Game/GameSystem.h"
 #include "Game/MapMgr.h"
+#include "Game/routeMgr.h"
 #include "Game/seaMgr.h"
 #include "Game/AABBWaterBox.h"
 #include "Iterator.h"
@@ -12,6 +15,8 @@
 #include "JSystem/JUT/JUTException.h"
 #include "JSystem/JUT/JUTNameTab.h"
 #include "Matrixf.h"
+#include "ObjectMgr.h"
+#include "nans.h"
 #include "Sys/MatBaseAnimation.h"
 #include "Sys/Sphere.h"
 #include "SysShape/Model.h"
@@ -304,9 +309,12 @@ namespace Game {
  * Size:	000028
  */
 WaterBox::WaterBox()
+    : m_flags(0)
 {
 	const char* fakeMatch_gameSeaMgr[3] = { nullptr, nullptr, nullptr };
 	// UNUSED FUNCTION
+	m_flags = 0;
+	m_flags |= WBF_Unknown1;
 }
 
 /*
@@ -315,8 +323,18 @@ WaterBox::WaterBox()
  * Size:	0000B8
  */
 AABBWaterBox::AABBWaterBox()
+    : m_bounds()
+    , m_matAnimator()
 {
 	// UNUSED FUNCTION
+	_0C     = 0.0f;
+	_08     = 0;
+	_10     = 0.0f;
+	_14     = 0.0f;
+	_30     = 0.0f;
+	m_model = nullptr;
+	_34     = 0.0f;
+	_60     = nullptr;
 }
 
 /*
@@ -375,10 +393,10 @@ void AABBWaterBox::attachModel(J3DModelData* modelData, Sys::MatTexAnimation* an
 	_60          = 0;
 	m_model      = new SysShape::Model(modelData, 0, 2);
 	m_model->_04 = 1;
-	_3C          = FABS(m_bounds.m_max.x - m_bounds.m_min.x) / p3;
-	_40          = FABS(m_bounds.m_max.z - m_bounds.m_min.z) / p3;
-	_44.x        = (m_bounds.m_min.x + m_bounds.m_max.x) * 0.5f;
-	_44.z        = (m_bounds.m_min.z + m_bounds.m_max.z) * 0.5f;
+	_3C          = FABS(m_bounds.m_min.x - m_bounds.m_max.x) / p3;
+	_40          = FABS(m_bounds.m_min.z - m_bounds.m_max.z) / p3;
+	_44.x        = (m_bounds.m_max.x + m_bounds.m_min.x) * 0.5f;
+	_44.z        = (m_bounds.m_max.z + m_bounds.m_min.z) * 0.5f;
 	_44.y        = _30 + _0C;
 	m_matAnimator.start(anm);
 	calcMatrix();
@@ -807,166 +825,26 @@ lbl_801AED74:
 }
 
 /*
+ * update__Q24Game6SeaMgrFv
  * --INFO--
  * Address:	801AED8C
  * Size:	000210
  */
-void SeaMgr::update(void)
+void SeaMgr::update()
 {
-	/*
-	stwu     r1, -0x20(r1)
-	mflr     r0
-	lis      r4, "__vt__26Iterator<Q24Game8WaterBox>"@ha
-	stw      r0, 0x24(r1)
-	li       r0, 0
-	addi     r4, r4, "__vt__26Iterator<Q24Game8WaterBox>"@l
-	stw      r31, 0x1c(r1)
-	cmplwi   r0, 0
-	li       r31, 0
-	stw      r0, 0x14(r1)
-	stw      r4, 8(r1)
-	stw      r0, 0xc(r1)
-	stw      r3, 0x10(r1)
-	bne      lbl_801AEDDC
-	lwz      r12, 0(r3)
-	lwz      r12, 0x18(r12)
-	mtctr    r12
-	bctrl
-	stw      r3, 0xc(r1)
-	b        lbl_801AEF54
-
-lbl_801AEDDC:
-	lwz      r12, 0(r3)
-	lwz      r12, 0x18(r12)
-	mtctr    r12
-	bctrl
-	stw      r3, 0xc(r1)
-	b        lbl_801AEE48
-
-lbl_801AEDF4:
-	lwz      r3, 0x10(r1)
-	lwz      r4, 0xc(r1)
-	lwz      r12, 0(r3)
-	lwz      r12, 0x20(r12)
-	mtctr    r12
-	bctrl
-	mr       r4, r3
-	lwz      r3, 0x14(r1)
-	lwz      r12, 0(r3)
-	lwz      r12, 8(r12)
-	mtctr    r12
-	bctrl
-	clrlwi.  r0, r3, 0x18
-	bne      lbl_801AEF54
-	lwz      r3, 0x10(r1)
-	lwz      r4, 0xc(r1)
-	lwz      r12, 0(r3)
-	lwz      r12, 0x14(r12)
-	mtctr    r12
-	bctrl
-	stw      r3, 0xc(r1)
-
-lbl_801AEE48:
-	lwz      r12, 8(r1)
-	addi     r3, r1, 8
-	lwz      r12, 0x10(r12)
-	mtctr    r12
-	bctrl
-	clrlwi.  r0, r3, 0x18
-	beq      lbl_801AEDF4
-	b        lbl_801AEF54
-
-lbl_801AEE68:
-	lwz      r3, 0x10(r1)
-	lwz      r12, 0(r3)
-	lwz      r12, 0x20(r12)
-	mtctr    r12
-	bctrl
-	lwz      r12, 0(r3)
-	lwz      r12, 0x18(r12)
-	mtctr    r12
-	bctrl
-	clrlwi.  r0, r3, 0x18
-	beq      lbl_801AEE98
-	li       r31, 1
-
-lbl_801AEE98:
-	lwz      r0, 0x14(r1)
-	cmplwi   r0, 0
-	bne      lbl_801AEEC4
-	lwz      r3, 0x10(r1)
-	lwz      r4, 0xc(r1)
-	lwz      r12, 0(r3)
-	lwz      r12, 0x14(r12)
-	mtctr    r12
-	bctrl
-	stw      r3, 0xc(r1)
-	b        lbl_801AEF54
-
-lbl_801AEEC4:
-	lwz      r3, 0x10(r1)
-	lwz      r4, 0xc(r1)
-	lwz      r12, 0(r3)
-	lwz      r12, 0x14(r12)
-	mtctr    r12
-	bctrl
-	stw      r3, 0xc(r1)
-	b        lbl_801AEF38
-
-lbl_801AEEE4:
-	lwz      r3, 0x10(r1)
-	lwz      r4, 0xc(r1)
-	lwz      r12, 0(r3)
-	lwz      r12, 0x20(r12)
-	mtctr    r12
-	bctrl
-	mr       r4, r3
-	lwz      r3, 0x14(r1)
-	lwz      r12, 0(r3)
-	lwz      r12, 8(r12)
-	mtctr    r12
-	bctrl
-	clrlwi.  r0, r3, 0x18
-	bne      lbl_801AEF54
-	lwz      r3, 0x10(r1)
-	lwz      r4, 0xc(r1)
-	lwz      r12, 0(r3)
-	lwz      r12, 0x14(r12)
-	mtctr    r12
-	bctrl
-	stw      r3, 0xc(r1)
-
-lbl_801AEF38:
-	lwz      r12, 8(r1)
-	addi     r3, r1, 8
-	lwz      r12, 0x10(r12)
-	mtctr    r12
-	bctrl
-	clrlwi.  r0, r3, 0x18
-	beq      lbl_801AEEE4
-
-lbl_801AEF54:
-	lwz      r3, 0x10(r1)
-	lwz      r12, 0(r3)
-	lwz      r12, 0x1c(r12)
-	mtctr    r12
-	bctrl
-	lwz      r4, 0xc(r1)
-	cmplw    r4, r3
-	bne      lbl_801AEE68
-	clrlwi.  r0, r31, 0x18
-	beq      lbl_801AEF88
-	lwz      r3, mapMgr__4Game@sda21(r13)
-	lwz      r3, 8(r3)
-	bl       refreshWater__Q24Game8RouteMgrFv
-
-lbl_801AEF88:
-	lwz      r0, 0x24(r1)
-	lwz      r31, 0x1c(r1)
-	mtlr     r0
-	addi     r1, r1, 0x20
-	blr
-	*/
+	bool isRefreshNeeded = false;
+	Iterator<WaterBox> iterator(this);
+	iterator.first();
+	while (!iterator.isDone()) {
+		WaterBox* item = (*iterator);
+		if (item->update()) {
+			isRefreshNeeded = true;
+		}
+		iterator.next();
+	}
+	if (isRefreshNeeded) {
+		mapMgr->m_routeMgr->refreshWater();
+	}
 }
 
 /*
@@ -1175,8 +1053,61 @@ void AABBWaterBox::create(Vector3f&, Vector3f&)
  * Address:	801AF184
  * Size:	0001C8
  */
-void AABBWaterBox::globalise(Game::AABBWaterBox*, Matrixf&)
+void AABBWaterBox::globalise(Game::AABBWaterBox* other, Matrixf& p2)
 {
+	Matrixf a;
+	Vec b;
+	Vec* c   = &a.m_matrix.flippedVecView.x;
+	m_bounds = other->m_bounds;
+	// a.m_matrix.flippedVectorView.x = m_bounds.m_max;
+	// a.m_matrix.flippedVectorView.z = m_bounds.m_min;
+	a.m_matrix.flippedVectorView.x.x = m_bounds.m_max.x;
+	a.m_matrix.flippedVectorView.x.y = m_bounds.m_max.y;
+	a.m_matrix.flippedVectorView.x.z = m_bounds.m_max.z;
+	a.m_matrix.flippedVectorView.z.x = m_bounds.m_min.x;
+	a.m_matrix.flippedVectorView.z.y = m_bounds.m_min.y;
+	a.m_matrix.flippedVectorView.z.z = m_bounds.m_min.z;
+	a.m_matrix.flippedVectorView.y.z = m_bounds.m_min.z;
+	a.m_matrix.flippedVectorView.y.y = m_bounds.m_max.y;
+	a.m_matrix.flippedVectorView.y.x = m_bounds.m_max.x;
+	a.m_matrix.flippedVectorView.t.z = m_bounds.m_max.z;
+	a.m_matrix.flippedVectorView.t.y = m_bounds.m_max.y;
+	a.m_matrix.flippedVectorView.t.x = m_bounds.m_min.x;
+	m_bounds.m_max.x                 = 32768.0f;
+	m_bounds.m_max.y                 = 32768.0f;
+	m_bounds.m_max.z                 = 32768.0f;
+	m_bounds.m_min.x                 = -32768.0f;
+	m_bounds.m_min.y                 = -32768.0f;
+	m_bounds.m_min.z                 = -32768.0f;
+	for (int i = 0; i < 4; i++) {
+		PSMTXMultVec(p2.m_matrix.mtxView, c, &b);
+		*c = b;
+		if (c->x < m_bounds.m_max.x) {
+			m_bounds.m_max.x = c->x;
+		}
+		if (c->y < m_bounds.m_max.y) {
+			m_bounds.m_max.y = c->y;
+		}
+		if (c->z < m_bounds.m_max.z) {
+			m_bounds.m_max.z = c->z;
+		}
+		if (c->x > m_bounds.m_min.x) {
+			m_bounds.m_min.x = c->x;
+		}
+		if (c->y > m_bounds.m_min.y) {
+			m_bounds.m_min.y = c->y;
+		}
+		if (c->z > m_bounds.m_min.z) {
+			m_bounds.m_min.z = c->z;
+		}
+		c++;
+	}
+	_30 = other->_30;
+	m_bounds.m_max.y -= 1000.0f;
+	_30 = m_bounds.m_min.y;
+	_08 = 0;
+	_0C = 0.0f;
+	_14 = 0.0f;
 	/*
 	stwu     r1, -0x60(r1)
 	mflr     r0
@@ -1578,10 +1509,15 @@ SeaMgr::SeaMgr(void)
  * --INFO--
  * Address:	........
  * Size:	000090
+ * @matchedSize
  */
-void SeaMgr::addWaterBox(Game::WaterBox*)
+void SeaMgr::addWaterBox(Game::WaterBox* wb)
 {
-	// UNUSED FUNCTION
+	// INLINED FUNCTION
+	TObjectNode<Game::WaterBox>* node = new TObjectNode<Game::WaterBox>();
+	node->m_contents                  = wb;
+	wb->attachModel(*m_modelData, m_animations, 100.0f);
+	m_node.add(node);
 }
 
 /*
@@ -1612,167 +1548,23 @@ WaterBox* SeaMgr::findWater(Sys::Sphere& collision)
 }
 
 /*
+ * findWater2d__Q24Game6SeaMgrFRQ23Sys6Sphere
  * --INFO--
  * Address:	801AFA80
  * Size:	000214
  */
-WaterBox* SeaMgr::findWater2d(Sys::Sphere&)
+WaterBox* SeaMgr::findWater2d(Sys::Sphere& collision)
 {
-	/*
-	stwu     r1, -0x20(r1)
-	mflr     r0
-	lis      r5, "__vt__26Iterator<Q24Game8WaterBox>"@ha
-	stw      r0, 0x24(r1)
-	li       r0, 0
-	addi     r5, r5, "__vt__26Iterator<Q24Game8WaterBox>"@l
-	stw      r31, 0x1c(r1)
-	cmplwi   r0, 0
-	stw      r30, 0x18(r1)
-	mr       r30, r4
-	stw      r0, 0x14(r1)
-	stw      r5, 8(r1)
-	stw      r0, 0xc(r1)
-	stw      r3, 0x10(r1)
-	bne      lbl_801AFAD4
-	lwz      r12, 0(r3)
-	lwz      r12, 0x18(r12)
-	mtctr    r12
-	bctrl
-	stw      r3, 0xc(r1)
-	b        lbl_801AFC58
-
-lbl_801AFAD4:
-	lwz      r12, 0(r3)
-	lwz      r12, 0x18(r12)
-	mtctr    r12
-	bctrl
-	stw      r3, 0xc(r1)
-	b        lbl_801AFB40
-
-lbl_801AFAEC:
-	lwz      r3, 0x10(r1)
-	lwz      r4, 0xc(r1)
-	lwz      r12, 0(r3)
-	lwz      r12, 0x20(r12)
-	mtctr    r12
-	bctrl
-	mr       r4, r3
-	lwz      r3, 0x14(r1)
-	lwz      r12, 0(r3)
-	lwz      r12, 8(r12)
-	mtctr    r12
-	bctrl
-	clrlwi.  r0, r3, 0x18
-	bne      lbl_801AFC58
-	lwz      r3, 0x10(r1)
-	lwz      r4, 0xc(r1)
-	lwz      r12, 0(r3)
-	lwz      r12, 0x14(r12)
-	mtctr    r12
-	bctrl
-	stw      r3, 0xc(r1)
-
-lbl_801AFB40:
-	lwz      r12, 8(r1)
-	addi     r3, r1, 8
-	lwz      r12, 0x10(r12)
-	mtctr    r12
-	bctrl
-	clrlwi.  r0, r3, 0x18
-	beq      lbl_801AFAEC
-	b        lbl_801AFC58
-
-lbl_801AFB60:
-	lwz      r3, 0x10(r1)
-	lwz      r12, 0(r3)
-	lwz      r12, 0x20(r12)
-	mtctr    r12
-	bctrl
-	lwz      r12, 0(r3)
-	mr       r31, r3
-	mr       r4, r30
-	lwz      r12, 0xc(r12)
-	mtctr    r12
-	bctrl
-	clrlwi.  r0, r3, 0x18
-	beq      lbl_801AFB9C
-	mr       r3, r31
-	b        lbl_801AFC7C
-
-lbl_801AFB9C:
-	lwz      r0, 0x14(r1)
-	cmplwi   r0, 0
-	bne      lbl_801AFBC8
-	lwz      r3, 0x10(r1)
-	lwz      r4, 0xc(r1)
-	lwz      r12, 0(r3)
-	lwz      r12, 0x14(r12)
-	mtctr    r12
-	bctrl
-	stw      r3, 0xc(r1)
-	b        lbl_801AFC58
-
-lbl_801AFBC8:
-	lwz      r3, 0x10(r1)
-	lwz      r4, 0xc(r1)
-	lwz      r12, 0(r3)
-	lwz      r12, 0x14(r12)
-	mtctr    r12
-	bctrl
-	stw      r3, 0xc(r1)
-	b        lbl_801AFC3C
-
-lbl_801AFBE8:
-	lwz      r3, 0x10(r1)
-	lwz      r4, 0xc(r1)
-	lwz      r12, 0(r3)
-	lwz      r12, 0x20(r12)
-	mtctr    r12
-	bctrl
-	mr       r4, r3
-	lwz      r3, 0x14(r1)
-	lwz      r12, 0(r3)
-	lwz      r12, 8(r12)
-	mtctr    r12
-	bctrl
-	clrlwi.  r0, r3, 0x18
-	bne      lbl_801AFC58
-	lwz      r3, 0x10(r1)
-	lwz      r4, 0xc(r1)
-	lwz      r12, 0(r3)
-	lwz      r12, 0x14(r12)
-	mtctr    r12
-	bctrl
-	stw      r3, 0xc(r1)
-
-lbl_801AFC3C:
-	lwz      r12, 8(r1)
-	addi     r3, r1, 8
-	lwz      r12, 0x10(r12)
-	mtctr    r12
-	bctrl
-	clrlwi.  r0, r3, 0x18
-	beq      lbl_801AFBE8
-
-lbl_801AFC58:
-	lwz      r3, 0x10(r1)
-	lwz      r12, 0(r3)
-	lwz      r12, 0x1c(r12)
-	mtctr    r12
-	bctrl
-	lwz      r4, 0xc(r1)
-	cmplw    r4, r3
-	bne      lbl_801AFB60
-	li       r3, 0
-
-lbl_801AFC7C:
-	lwz      r0, 0x24(r1)
-	lwz      r31, 0x1c(r1)
-	lwz      r30, 0x18(r1)
-	mtlr     r0
-	addi     r1, r1, 0x20
-	blr
-	*/
+	Iterator<WaterBox> iterator(this);
+	iterator.first();
+	while (!iterator.isDone()) {
+		WaterBox* item = (*iterator);
+		if (item->inWater2d(collision)) {
+			return item;
+		}
+		iterator.next();
+	}
+	return nullptr;
 }
 
 /*
@@ -1797,149 +1589,25 @@ void SeaMgr::directDraw(Graphics&)
  * Address:	801AFC9C
  * Size:	00020C
  */
-void SeaMgr::read(Stream&)
+void SeaMgr::read(Stream& input)
 {
-	/*
-	stwu     r1, -0x80(r1)
-	mflr     r0
-	stw      r0, 0x84(r1)
-	stfd     f31, 0x70(r1)
-	psq_st   f31, 120(r1), 0, qr0
-	stfd     f30, 0x60(r1)
-	psq_st   f30, 104(r1), 0, qr0
-	stfd     f29, 0x50(r1)
-	psq_st   f29, 88(r1), 0, qr0
-	stfd     f28, 0x40(r1)
-	psq_st   f28, 72(r1), 0, qr0
-	stmw     r26, 0x28(r1)
-	mr       r28, r4
-	mr       r27, r3
-	mr       r3, r28
-	bl       readInt__6StreamFv
-	mr       r3, r28
-	bl       readInt__6StreamFv
-	lfs      f28, lbl_80519320@sda21(r2)
-	mr       r31, r3
-	lfs      f29, lbl_80519324@sda21(r2)
-	li       r29, 0
-	lfs      f30, lbl_80519340@sda21(r2)
-	lfs      f31, lbl_80519328@sda21(r2)
-	b        lbl_801AFE6C
-
-lbl_801AFD00:
-	stfs     f28, 8(r1)
-	mr       r4, r28
-	addi     r3, r1, 8
-	stfs     f28, 0xc(r1)
-	stfs     f28, 0x10(r1)
-	stfs     f29, 0x14(r1)
-	stfs     f29, 0x18(r1)
-	stfs     f29, 0x1c(r1)
-	bl       read__8BoundBoxFR6Stream
-	li       r3, 0x68
-	bl       __nw__FUl
-	or.      r30, r3, r3
-	beq      lbl_801AFDC0
-	lis      r4, __vt__Q24Game8WaterBox@ha
-	lis      r3, __vt__Q24Game12AABBWaterBox@ha
-	addi     r0, r4, __vt__Q24Game8WaterBox@l
-	li       r4, 0
-	stw      r0, 0(r30)
-	addi     r0, r3, __vt__Q24Game12AABBWaterBox@l
-	lfs      f1, lbl_80519320@sda21(r2)
-	addi     r3, r30, 0x54
-	stb      r4, 4(r30)
-	lfs      f0, lbl_80519324@sda21(r2)
-	stb      r4, 4(r30)
-	lbz      r4, 4(r30)
-	ori      r4, r4, 1
-	stb      r4, 4(r30)
-	stw      r0, 0(r30)
-	stfs     f1, 0x18(r30)
-	stfs     f1, 0x1c(r30)
-	stfs     f1, 0x20(r30)
-	stfs     f0, 0x24(r30)
-	stfs     f0, 0x28(r30)
-	stfs     f0, 0x2c(r30)
-	bl       __ct__Q23Sys15MatBaseAnimatorFv
-	lis      r3, __vt__Q23Sys15MatLoopAnimator@ha
-	lfs      f0, lbl_80519328@sda21(r2)
-	addi     r3, r3, __vt__Q23Sys15MatLoopAnimator@l
-	li       r0, 0
-	stw      r3, 0x54(r30)
-	stfs     f0, 0xc(r30)
-	sth      r0, 8(r30)
-	stfs     f0, 0x10(r30)
-	stfs     f0, 0x14(r30)
-	stfs     f0, 0x30(r30)
-	stw      r0, 0x50(r30)
-	stfs     f0, 0x34(r30)
-	stw      r0, 0x60(r30)
-
-lbl_801AFDC0:
-	lfs      f1, 0xc(r1)
-	li       r0, 0
-	lfs      f0, 8(r1)
-	li       r3, 0x1c
-	fsubs    f1, f1, f30
-	stfs     f1, 0xc(r1)
-	stfs     f0, 0x18(r30)
-	lfs      f0, 0xc(r1)
-	stfs     f0, 0x1c(r30)
-	lfs      f0, 0x10(r1)
-	stfs     f0, 0x20(r30)
-	lfs      f0, 0x14(r1)
-	stfs     f0, 0x24(r30)
-	lfs      f0, 0x18(r1)
-	stfs     f0, 0x28(r30)
-	lfs      f0, 0x1c(r1)
-	stfs     f0, 0x2c(r30)
-	lfs      f0, 0x18(r1)
-	stfs     f0, 0x30(r30)
-	sth      r0, 8(r30)
-	stfs     f31, 0xc(r30)
-	stfs     f31, 0x14(r30)
-	bl       __nw__FUl
-	or.      r26, r3, r3
-	beq      lbl_801AFE34
-	bl       __ct__5CNodeFv
-	lis      r3, "__vt__29TObjectNode<Q24Game8WaterBox>"@ha
-	addi     r0, r3, "__vt__29TObjectNode<Q24Game8WaterBox>"@l
-	stw      r0, 0(r26)
-
-lbl_801AFE34:
-	stw      r30, 0x18(r26)
-	mr       r3, r30
-	lfs      f1, lbl_80519344@sda21(r2)
-	lwz      r12, 0(r30)
-	lwz      r4, 0x40(r27)
-	lwz      r12, 0x40(r12)
-	lwz      r4, 0(r4)
-	lwz      r5, 0x44(r27)
-	mtctr    r12
-	bctrl
-	mr       r4, r26
-	addi     r3, r27, 0x20
-	bl       add__5CNodeFP5CNode
-	addi     r29, r29, 1
-
-lbl_801AFE6C:
-	cmpw     r29, r31
-	blt      lbl_801AFD00
-	psq_l    f31, 120(r1), 0, qr0
-	lfd      f31, 0x70(r1)
-	psq_l    f30, 104(r1), 0, qr0
-	lfd      f30, 0x60(r1)
-	psq_l    f29, 88(r1), 0, qr0
-	lfd      f29, 0x50(r1)
-	psq_l    f28, 72(r1), 0, qr0
-	lfd      f28, 0x40(r1)
-	lmw      r26, 0x28(r1)
-	lwz      r0, 0x84(r1)
-	mtlr     r0
-	addi     r1, r1, 0x80
-	blr
-	*/
+	input.readInt();
+	int wbCount = input.readInt();
+	for (int i = 0; i < wbCount; i++) {
+		BoundBox boundBox;
+		boundBox.read(input);
+		AABBWaterBox* wb = new AABBWaterBox();
+		boundBox.m_max.y -= 1000.0f;
+		wb->m_bounds                      = boundBox;
+		wb->_30                           = boundBox.m_min.y;
+		wb->_08                           = 0;
+		wb->_0C                           = 0.0f;
+		wb->_14                           = 0.0f;
+		TObjectNode<Game::WaterBox>* node = new TObjectNode<Game::WaterBox>();
+		node->m_contents                  = wb;
+		wb->attachModel(*m_modelData, m_animations, 100.0f);
+		m_node.add(node);
+	}
 }
 
 /*
@@ -1947,8 +1615,21 @@ lbl_801AFE6C:
  * Address:	801AFEA8
  * Size:	000308
  */
-void SeaMgr::addSeaMgr(Game::SeaMgr*, Matrixf&)
+void SeaMgr::addSeaMgr(Game::SeaMgr* otherMgr, Matrixf& p2)
 {
+	Iterator<WaterBox> iterator(otherMgr);
+	iterator.first();
+	while (!iterator.isDone()) {
+		WaterBox* otherWB = (*iterator);
+		AABBWaterBox* wb  = new AABBWaterBox();
+		wb->globalise((AABBWaterBox*)otherWB, p2);
+		addWaterBox(wb);
+		// TObjectNode<Game::WaterBox>* node = new TObjectNode<Game::WaterBox>();
+		// node->m_contents = wb;
+		// wb->attachModel(*m_modelData, m_animations, 100.0f);
+		// m_node.add(node);
+		iterator.next();
+	}
 	/*
 	stwu     r1, -0x30(r1)
 	mflr     r0
@@ -2322,7 +2003,6 @@ void WaterBox::calcMatrix(void) { }
  * @generated{doSimulation__27ObjectMgr<Q24Game8WaterBox>Ff}
  * @generated{doDirectDraw__27ObjectMgr<Q24Game8WaterBox>FR8Graphics}
  * @generated{getObject__27Container<Q24Game8WaterBox>FPv}
- * @generated{getAt__27Container<Q24Game8WaterBox>Fi}
  * @generated{getTo__27Container<Q24Game8WaterBox>Fv}
  * @generated{__sinit_gameSeaMgr_cpp}
  * @generated{@28@resetMgr__31NodeObjectMgr<Q24Game8WaterBox>Fv}
@@ -2759,12 +2439,12 @@ void WaterBox::calcMatrix(void) { }
 // 	*/
 // }
 
-// /*
-//  * --INFO--
-//  * Address:	801B0750
-//  * Size:	000008
-//  */
-// u32 Container<Game::WaterBox>::getAt(int) { return 0x0; }
+/*
+ * @generated{getAt__27Container<Q24Game8WaterBox>Fi}
+ * --INFO--
+ * Address:	801B0750
+ * Size:	000008
+ */
 
 // /*
 //  * --INFO--

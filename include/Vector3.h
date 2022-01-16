@@ -8,6 +8,15 @@
 template <typename T> struct Vector3 {
 	T x, y, z;
 	inline Vector3() {};
+	/**
+	 * @fabricated
+	 */
+	inline Vector3(T value)
+	    : x(value)
+	    , y(value)
+	    , z(value)
+	{
+	}
 	inline Vector3(T x, T y, T z)
 	{
 		this->x = x;

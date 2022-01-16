@@ -1,3 +1,5 @@
+#include "Game/MoveInfo.h"
+#include "Sys/OBB.h"
 #include "Sys/OBBTree.h"
 #include "types.h"
 
@@ -18,7 +20,7 @@ namespace Sys {
  * Address:	8041FFA8
  * Size:	0001C0
  */
-void OBBTree::traceMove_new(Matrixf&, Matrixf&, Game::MoveInfo&, float)
+void OBBTree::traceMove_new(Matrixf& p1, Matrixf& p2, Game::MoveInfo& moveInfo, float p4)
 {
 	/*
 	stwu     r1, -0x130(r1)
@@ -148,8 +150,9 @@ lbl_8042014C:
  * Address:	80420168
  * Size:	0002FC
  */
-void traceMoveTriList_new__Q23Sys3OBBFRQ24Game8MoveInfoRQ23Sys11VertexTableRQ23Sys13TriangleTableR7MatrixfR7MatrixfRiPPQ23Sys8TrianglePfP10Vector3<
-    float>(void)
+// void traceMoveTriList_new__Q23Sys3OBBFRQ24Game8MoveInfoRQ23Sys11VertexTableRQ23Sys13TriangleTableR7MatrixfR7MatrixfRiPPQ23Sys8TrianglePfP10Vector3<
+//     float>(void)
+void OBB::traceMoveTriList_new(Game::MoveInfo& moveInfo, Sys::VertexTable& vertexTable, Sys::TriangleTable& triangleTable, Matrixf& p4, Matrixf& p5, int& p6, Sys::Triangle** p7, float* p8, Vector3f* p9)
 {
 	/*
 	.loc_0x0:
@@ -370,8 +373,7 @@ void traceMoveTriList_new__Q23Sys3OBBFRQ24Game8MoveInfoRQ23Sys11VertexTableRQ23S
  * Address:	80420464
  * Size:	0007F0
  */
-void traceMove_new__Q23Sys3OBBFRQ24Game8MoveInfoRQ23Sys11VertexTableRQ23Sys13TriangleTableR7MatrixfR7MatrixfRiPPQ23Sys8TrianglePfP10Vector3<
-    float>(void)
+void OBB::traceMove_new(Game::MoveInfo& moveInfo, Sys::VertexTable& vertexTable, Sys::TriangleTable& triangleTable, Matrixf& p4, Matrixf& p5, int& p6, Sys::Triangle** p7, float* p8, Vector3f* p9)
 {
 	/*
 	.loc_0x0:
@@ -1007,8 +1009,7 @@ lbl_80420CD4:
  * Address:	80420CEC
  * Size:	00024C
  */
-void traceMoveTriList_new_global__Q23Sys3OBBFRQ24Game8MoveInfoRQ23Sys11VertexTableRQ23Sys13TriangleTableRiPPQ23Sys8TrianglePfP10Vector3<
-    float>(void)
+void OBB::traceMoveTriList_new_global(Game::MoveInfo& moveInfo, Sys::VertexTable& vertexTable, Sys::TriangleTable& triangleTable, int& p4, Sys::Triangle** p5, float* p6, Vector3f* p7)
 {
 	/*
 	.loc_0x0:
@@ -1183,8 +1184,7 @@ void traceMoveTriList_new_global__Q23Sys3OBBFRQ24Game8MoveInfoRQ23Sys11VertexTab
  * Address:	80420F38
  * Size:	0006F0
  */
-void traceMove_new_global__Q23Sys3OBBFRQ24Game8MoveInfoRQ23Sys11VertexTableRQ23Sys13TriangleTableRiPPQ23Sys8TrianglePfP10Vector3<float>(
-    void)
+void OBB::traceMove_new_global(Game::MoveInfo& moveInfo, Sys::VertexTable& vertexTable, Sys::TriangleTable& triangleTable, int& p4, Sys::Triangle** p5, float* p6, Vector3f* p7)
 {
 	/*
 	.loc_0x0:

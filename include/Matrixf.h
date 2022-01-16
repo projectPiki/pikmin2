@@ -52,6 +52,19 @@ struct Matrixf {
 			f32 z[4];
 		} vecView;
 		struct {
+			Vec x;
+			Vec y;
+			Vec z;
+			Vec t;
+		} flippedVecView;
+		struct {
+			Vector3f x;
+			Vector3f y;
+			Vector3f z;
+			Vector3f t;
+		} flippedVectorView;
+
+		struct {
 			float xx, yx, zx, tx;
 			float xy, yy, zy, ty;
 			float xz, yz, zz, tz;

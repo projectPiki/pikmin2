@@ -347,7 +347,7 @@ Sys::OBBTree* Platform::getTriDivider()
  */
 void Platform::setMapCodeAll(MapCode::Code& code)
 {
-	for (int i = 0; i < m_triDivider->m_triangleTable->m_endIndex; i++) {
+	for (int i = 0; i < m_triDivider->m_triangleTable->m_count; i++) {
 		m_triDivider->m_triangleTable->m_objects[i].m_code = code;
 	}
 	/*
@@ -7216,7 +7216,7 @@ lbl_801387D0:
  * Address:	801387F4
  * Size:	000150
  */
-void CollPartFactory::load(char*)
+CollPartFactory* CollPartFactory::load(char*)
 {
 	/*
 	stwu     r1, -0x440(r1)
@@ -7320,7 +7320,7 @@ lbl_80138928:
  * Address:	80138944
  * Size:	000128
  */
-void CollPartFactory::load(JKRFileLoader*, char*)
+CollPartFactory* CollPartFactory::load(JKRFileLoader*, char*)
 {
 	/*
 	stwu     r1, -0x430(r1)

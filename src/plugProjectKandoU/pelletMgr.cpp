@@ -1,4 +1,5 @@
 #include "Game/PelletMgr.h"
+#include "Game/Pellet.h"
 #include "types.h"
 
 /*
@@ -986,7 +987,7 @@ namespace Game {
  * Address:	801658EC
  * Size:	000020
  */
-void Pellet::getCreatureName(void)
+char* Pellet::getCreatureName()
 {
 	/*
 	lwz      r3, 0x35c(r3)
@@ -1007,7 +1008,7 @@ lbl_80165900:
  * Address:	8016590C
  * Size:	000034
  */
-void Pellet::getCreatureID(void)
+s32 Pellet::getCreatureID(void)
 {
 	/*
 	stwu     r1, -0x10(r1)

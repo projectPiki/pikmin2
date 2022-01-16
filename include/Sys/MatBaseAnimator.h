@@ -24,7 +24,11 @@ struct MatBaseAnimator {
  * @size{0xC}
  */
 struct MatLoopAnimator : MatBaseAnimator {
-	MatLoopAnimator();
+	/**
+	 * @reifiedAddress{801638EC}
+	 * @reifiedFile{plugProjectKandoU/mapMgr.cpp}
+	 */
+	MatLoopAnimator() {};
 
 	virtual void do_animate(float); // _08
 };
