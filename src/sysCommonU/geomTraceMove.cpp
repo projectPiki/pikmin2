@@ -150,9 +150,11 @@ lbl_8042014C:
  * Address:	80420168
  * Size:	0002FC
  */
-// void traceMoveTriList_new__Q23Sys3OBBFRQ24Game8MoveInfoRQ23Sys11VertexTableRQ23Sys13TriangleTableR7MatrixfR7MatrixfRiPPQ23Sys8TrianglePfP10Vector3<
+// void
+// traceMoveTriList_new__Q23Sys3OBBFRQ24Game8MoveInfoRQ23Sys11VertexTableRQ23Sys13TriangleTableR7MatrixfR7MatrixfRiPPQ23Sys8TrianglePfP10Vector3<
 //     float>(void)
-void OBB::traceMoveTriList_new(Game::MoveInfo& moveInfo, Sys::VertexTable& vertexTable, Sys::TriangleTable& triangleTable, Matrixf& p4, Matrixf& p5, int& p6, Sys::Triangle** p7, float* p8, Vector3f* p9)
+void OBB::traceMoveTriList_new(Game::MoveInfo& moveInfo, Sys::VertexTable& vertexTable, Sys::TriangleTable& triangleTable, Matrixf& p4,
+                               Matrixf& p5, int& p6, Sys::Triangle** p7, float* p8, Vector3f* p9)
 {
 	/*
 	.loc_0x0:
@@ -373,7 +375,8 @@ void OBB::traceMoveTriList_new(Game::MoveInfo& moveInfo, Sys::VertexTable& verte
  * Address:	80420464
  * Size:	0007F0
  */
-void OBB::traceMove_new(Game::MoveInfo& moveInfo, Sys::VertexTable& vertexTable, Sys::TriangleTable& triangleTable, Matrixf& p4, Matrixf& p5, int& p6, Sys::Triangle** p7, float* p8, Vector3f* p9)
+void OBB::traceMove_new(Game::MoveInfo& moveInfo, Sys::VertexTable& vertexTable, Sys::TriangleTable& triangleTable, Matrixf& p4,
+                        Matrixf& p5, int& p6, Sys::Triangle** p7, float* p8, Vector3f* p9)
 {
 	/*
 	.loc_0x0:
@@ -1009,7 +1012,8 @@ lbl_80420CD4:
  * Address:	80420CEC
  * Size:	00024C
  */
-void OBB::traceMoveTriList_new_global(Game::MoveInfo& moveInfo, Sys::VertexTable& vertexTable, Sys::TriangleTable& triangleTable, int& p4, Sys::Triangle** p5, float* p6, Vector3f* p7)
+void OBB::traceMoveTriList_new_global(Game::MoveInfo& moveInfo, Sys::VertexTable& vertexTable, Sys::TriangleTable& triangleTable, int& p4,
+                                      Sys::Triangle** p5, float* p6, Vector3f* p7)
 {
 	/*
 	.loc_0x0:
@@ -1184,7 +1188,8 @@ void OBB::traceMoveTriList_new_global(Game::MoveInfo& moveInfo, Sys::VertexTable
  * Address:	80420F38
  * Size:	0006F0
  */
-void OBB::traceMove_new_global(Game::MoveInfo& moveInfo, Sys::VertexTable& vertexTable, Sys::TriangleTable& triangleTable, int& p4, Sys::Triangle** p5, float* p6, Vector3f* p7)
+void OBB::traceMove_new_global(Game::MoveInfo& moveInfo, Sys::VertexTable& vertexTable, Sys::TriangleTable& triangleTable, int& p4,
+                               Sys::Triangle** p5, float* p6, Vector3f* p7)
 {
 	/*
 	.loc_0x0:

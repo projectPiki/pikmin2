@@ -147,6 +147,11 @@ struct GenBase : public Parameters {
 };
 
 struct GenObject : public GenBase {
+	GenObject(u32 tag, char* description, char* t)
+	    : GenBase(tag, description, t)
+	{
+	}
+
 	virtual void render(Graphics&, Generator*);            // _18
 	virtual u32 getLatestVersion();                        // _1C
 	virtual J3DModelData* getShape();                      // _20
