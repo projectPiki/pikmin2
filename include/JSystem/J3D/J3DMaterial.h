@@ -117,6 +117,8 @@ struct J3DMaterialTable {
 
 	virtual ~J3DMaterialTable(); // _00
 
+	// virtual void _04(); // _04
+
 	void clear();
 
 	void allocTexMtxAnimator(J3DAnmTextureSRTKey*, J3DTexMtxAnm**);

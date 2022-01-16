@@ -1,11 +1,8 @@
 #ifndef _JSYSTEM_J3D_J3DJOINTTREE_H
 #define _JSYSTEM_J3D_J3DJOINTTREE_H
 
-#include "types.h"
-#include "Quat.h"
-#include "Vector3.h"
-
 #include "JSystem/J3D/J3DDrawMtxData.h"
+#include "types.h"
 
 struct J3DJoint;
 struct J3DJointBlock;
@@ -22,6 +19,8 @@ struct J3DJointTree {
 
 	virtual void calc(J3DMtxBuffer*, const Vec&, const float (&)[3][4]); // _00
 	virtual ~J3DJointTree();                                             // _04
+
+	// virtual void _08() = 0;                                              // _08
 
 	void findImportantMtxIndex();
 	void makeHierarchy(J3DJoint*, const J3DModelHierarchy**, J3DMaterialTable*, J3DShapeTable*);

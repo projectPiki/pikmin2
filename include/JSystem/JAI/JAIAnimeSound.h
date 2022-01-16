@@ -11,14 +11,11 @@ struct Actor;
 } // namespace JAInter
 
 struct JAIAnimeSound : public JAInter::Object {
-	virtual ~JAIAnimeSound();         // _00
-	virtual void handleStop(u8, u32); // _2C
-	virtual void playActorAnimSound(JAInter::Actor*, float,
-	                                u8); // _34
-	virtual void startAnimSound(u32, JAISound**, JAInter::Actor*,
-	                            u8); // _38
-	virtual void setSpeedModifySound(JAISound*, JAIAnimeFrameSoundData*,
-	                                 float); // _3C
+	virtual ~JAIAnimeSound();                                                    // _00
+	virtual void handleStop(u8, u32);                                            // _2C
+	virtual void playActorAnimSound(JAInter::Actor*, float, u8);                 // _34
+	virtual void startAnimSound(u32, JAISound**, JAInter::Actor*, u8);           // _38
+	virtual void setSpeedModifySound(JAISound*, JAIAnimeFrameSoundData*, float); // _3C
 
 	// _00 VTBL
 	void* _40;                      // _40
