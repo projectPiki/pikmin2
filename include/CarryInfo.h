@@ -1,8 +1,12 @@
 #ifndef _CARRYINFO_H
 #define _CARRYINFO_H
 
+#include "CNode.h"
+#include "InfoList.h"
+#include "JSystem/JUT/JUTTexture.h"
 #include "types.h"
 #include "Vector3.h"
+
 struct CarryInfo {
 	void disappear();
 	void draw(struct Graphics&, struct CarryInfoParam&);
@@ -35,5 +39,57 @@ struct CarryInfoOwner {
 
 	// _00 VTBL
 };
+
+/**
+ * @size{0x34}
+ */
+struct PokoInfoOwner : public CarryInfoOwner, public CNode {
+	// vtable 1 (CarryInfoOwner)
+	virtual void getCarryInfoParam(CarryInfoParam&); // _00
+	// vtable 2 (CNode)
+	virtual ~PokoInfoOwner(); // _08 (thunked at _00)
+
+	float _1C;           // _1C
+	u32 _20;             // _20
+	Vector3f m_position; // _24
+	u32 _30;             // _30
+};
+
+/**
+ * @size(0x58)
+ */
+struct CarryInfoList : public InfoListBase<CarryInfoOwner, CarryInfoList> {
+	virtual ~CarryInfoList();     // _00
+	virtual void init();          // _04
+	virtual void update();        // _08
+	virtual void draw(Graphics&); // _0C
+	virtual bool isFinish();      // _10
+
+	CarryInfoParam m_param; // _24
+};
+
+/**
+ * @size(0xEC)
+ */
+struct CarryInfoMgr : public InfoMgr<CarryInfoOwner, CarryInfoList> {
+	CarryInfoMgr(int);
+
+	virtual ~CarryInfoMgr();                         // _00
+	virtual void loadResource();                     // _04
+	virtual void update();                           // _08
+	virtual void draw(Graphics&);                    // _0C
+	virtual CarryInfoList* regist(CarryInfoOwner*);  // _10
+	virtual CarryInfoList* scratch(CarryInfoOwner*); // _14
+
+	void appear(CarryInfoOwner*);
+	void appearPoko(const Vector3f&, int);
+	void updatePokoInfoOwners();
+
+	JUTTexture* m_texture; // _B8
+	CNode _BC;             // _BC
+	CNode _D4;             // _D4
+};
+
+extern CarryInfoMgr* carryInfoMgr;
 
 #endif
