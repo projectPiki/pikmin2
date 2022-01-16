@@ -1,4 +1,9 @@
+#include "Dolphin/os.h"
 #include "Game/Data.h"
+#include "JSystem/JAI/JAIGlobalParameter.h"
+#include "JSystem/JUT/JUTException.h"
+#include "System.h"
+#include "stream.h"
 #include "types.h"
 
 /*
@@ -36,9 +41,6 @@
     lbl_80520998:
         .float 0.5
 */
-
-#include "System.h"
-#include "Game/Data.h"
 
 namespace Game {
 namespace CommonSaveData {
@@ -180,55 +182,20 @@ lbl_80446D90:
  * Address:	80446E08
  * Size:	0000AC
  */
-void CommonSaveData::Mgr::read(Stream&)
+void CommonSaveData::Mgr::read(Stream& input)
 {
-	/*
-	stwu     r1, -0x10(r1)
-	mflr     r0
-	stw      r0, 0x14(r1)
-	stw      r31, 0xc(r1)
-	mr       r31, r4
-	li       r4, 0
-	stw      r30, 8(r1)
-	mr       r30, r3
-	stw      r4, 0xc(r31)
-	lwz      r0, 0xc(r31)
-	cmpwi    r0, 1
-	bne      lbl_80446E3C
-	stw      r4, 0x414(r31)
-
-lbl_80446E3C:
-	mr       r3, r31
-	bl       readByte__6StreamFv
-	stb      r3, 0x38(r30)
-	mr       r3, r31
-	bl       readByte__6StreamFv
-	stb      r3, 0x39(r30)
-	mr       r3, r31
-	bl       readByte__6StreamFv
-	stb      r3, 0x3a(r30)
-	mr       r3, r31
-	bl       readByte__6StreamFv
-	stb      r3, 0x3b(r30)
-	mr       r3, r31
-	bl       readByte__6StreamFv
-	stb      r3, 0x3c(r30)
-	mr       r3, r31
-	bl       readByte__6StreamFv
-	stb      r3, 0x3d(r30)
-	mr       r3, r31
-	bl       readByte__6StreamFv
-	stb      r3, 0x3e(r30)
-	mr       r3, r30
-	mr       r4, r31
-	bl       read__Q24Game14PlayCommonDataFR6Stream
-	lwz      r0, 0x14(r1)
-	lwz      r31, 0xc(r1)
-	lwz      r30, 8(r1)
-	mtlr     r0
-	addi     r1, r1, 0x10
-	blr
-	*/
+	input.m_mode = STREAM_MODE_BINARY;
+	if (input.m_mode == STREAM_MODE_TEXT) {
+		input.m_tabCount = 0;
+	}
+	m_soundMode = input.readByte();
+	_39         = input.readByte();
+	_3A         = input.readByte();
+	_3B         = input.readByte();
+	_3C         = input.readByte();
+	_3D         = input.readByte();
+	m_region    = input.readByte();
+	PlayCommonData::read(input);
 }
 
 /*
@@ -238,6 +205,30 @@ lbl_80446E3C:
  */
 void CommonSaveData::Mgr::setup(void)
 {
+	BOOL soundModeCheck = OSGetSoundMode();
+	switch (soundModeCheck) {
+	case false:
+		setSoundModeMono();
+		break;
+	case true:
+		switch (m_soundMode) {
+		case SM_SurroundSound:
+			setSoundModeSurround();
+			break;
+		case SM_Mono:
+			break;
+		case SM_Stereo:
+			setSoundModeStereo();
+			break;
+		default:
+			JUT_PANICLINE(268, "Unknown sound mode:%d \n", m_soundMode);
+			break;
+		}
+		break;
+	}
+	setBgmVolume(_39 / 255.0f);
+	setSeVolume((u8)_3A / 255.0f);
+	setDeflicker();
 	/*
 	stwu     r1, -0x20(r1)
 	mflr     r0
@@ -323,15 +314,11 @@ lbl_80446F40:
  * Address:	80446FB4
  * Size:	000014
  */
-void CommonSaveData::Mgr::resetPlayer(signed char)
+void CommonSaveData::Mgr::resetPlayer(signed char fileIndex)
 {
-	/*
-	stb      r4, 0x20(r3)
-	li       r0, 0
-	stw      r0, 0x1c(r3)
-	stw      r0, 0x18(r3)
-	blr
-	*/
+	m_fileIndex = fileIndex;
+	_1C         = 0;
+	_18         = 0;
 }
 
 /*
@@ -339,23 +326,7 @@ void CommonSaveData::Mgr::resetPlayer(signed char)
  * Address:	80446FC8
  * Size:	000030
  */
-void CommonSaveData::Mgr::setDeflicker(void)
-{
-	/*
-	stwu     r1, -0x10(r1)
-	mflr     r0
-	stw      r0, 0x14(r1)
-	lbz      r4, 0x3d(r3)
-	neg      r0, r4
-	or       r0, r0, r4
-	srwi     r4, r0, 0x1f
-	bl       setDeflicker__Q34Game14CommonSaveData3MgrFb
-	lwz      r0, 0x14(r1)
-	mtlr     r0
-	addi     r1, r1, 0x10
-	blr
-	*/
-}
+void CommonSaveData::Mgr::setDeflicker() { setDeflicker(_3D); }
 
 /*
  * --INFO--
@@ -431,23 +402,11 @@ lbl_804470B0:
  * Address:	804470C8
  * Size:	000034
  */
-void CommonSaveData::Mgr::setSoundModeMono(void)
+void CommonSaveData::Mgr::setSoundModeMono()
 {
-	/*
-	stwu     r1, -0x10(r1)
-	mflr     r0
-	stw      r0, 0x14(r1)
-	li       r0, 0
-	stb      r0, 0x38(r3)
-	li       r3, 0
-	bl       setParamSoundOutputMode__18JAIGlobalParameterFUl
-	li       r3, 0
-	bl       OSSetSoundMode
-	lwz      r0, 0x14(r1)
-	mtlr     r0
-	addi     r1, r1, 0x10
-	blr
-	*/
+	m_soundMode = SM_Mono;
+	JAIGlobalParameter::setParamSoundOutputMode(SM_Mono);
+	OSSetSoundMode(false);
 }
 
 /*
@@ -457,21 +416,9 @@ void CommonSaveData::Mgr::setSoundModeMono(void)
  */
 void CommonSaveData::Mgr::setSoundModeStereo(void)
 {
-	/*
-	stwu     r1, -0x10(r1)
-	mflr     r0
-	stw      r0, 0x14(r1)
-	li       r0, 1
-	stb      r0, 0x38(r3)
-	li       r3, 1
-	bl       setParamSoundOutputMode__18JAIGlobalParameterFUl
-	li       r3, 1
-	bl       OSSetSoundMode
-	lwz      r0, 0x14(r1)
-	mtlr     r0
-	addi     r1, r1, 0x10
-	blr
-	*/
+	m_soundMode = SM_Stereo;
+	JAIGlobalParameter::setParamSoundOutputMode(SM_Stereo);
+	OSSetSoundMode(true);
 }
 
 /*
@@ -481,21 +428,9 @@ void CommonSaveData::Mgr::setSoundModeStereo(void)
  */
 void CommonSaveData::Mgr::setSoundModeSurround(void)
 {
-	/*
-	stwu     r1, -0x10(r1)
-	mflr     r0
-	stw      r0, 0x14(r1)
-	li       r0, 2
-	stb      r0, 0x38(r3)
-	li       r3, 2
-	bl       setParamSoundOutputMode__18JAIGlobalParameterFUl
-	li       r3, 1
-	bl       OSSetSoundMode
-	lwz      r0, 0x14(r1)
-	mtlr     r0
-	addi     r1, r1, 0x10
-	blr
-	*/
+	m_soundMode = SM_SurroundSound;
+	JAIGlobalParameter::setParamSoundOutputMode(SM_SurroundSound);
+	OSSetSoundMode(true);
 }
 
 /*
