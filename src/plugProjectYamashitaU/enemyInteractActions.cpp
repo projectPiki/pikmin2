@@ -23,5 +23,5 @@ bool InteractFarmHaero::actEnemy(Game::EnemyBase* base) { return base->farmCallB
  * Address:	80127938
  * Size:	00003C
  */
-bool InteractDope::actEnemy(Game::EnemyBase* base) { return base->dopeCallBack(m_creature, _08); }
+bool InteractDope::actEnemy(Game::EnemyBase* base) { return base->dopeCallBack(m_creature, m_sprayType); }
 } // namespace Game
