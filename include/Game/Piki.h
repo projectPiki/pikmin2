@@ -59,9 +59,10 @@ typedef enum EPikiColor {
 } EPikiColor;
 
 typedef enum EPikiHappa {
-	Leaf       = 0,
-	Bud        = 1,
-	Flower     = 2,
+	Leaf   = 0,
+	Bud    = 1,
+	Flower = 2,
+	PikiGrowthStageCount,
 	Bud_Red    = 3,
 	Flower_Red = 4,
 } EPikiHappa;
