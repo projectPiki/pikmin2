@@ -19,6 +19,8 @@ struct GenericObjectMgr {
 	virtual bool pausable();                  // _24
 	virtual bool frozenable();                // _28
 	virtual u32 getMatrixLoadType();          // _2C
+
+	// VTBL _00
 };
 
 #endif

@@ -12,6 +12,7 @@
 #include "Game/PelletMgr.h"
 #include "Dolphin/rand.h"
 #include "Game/enemyInfo.h"
+#include "JAInter/Object.h"
 #include "Matrix3f.h"
 #include "Sys/Sphere.h"
 #include "SysShape/MotionListener.h"
@@ -121,7 +122,7 @@ struct EnemyBase : public Creature, public SysShape::MotionListener, virtual pub
 	virtual void bounceCallback(Sys::Triangle*);                // _E0
 	virtual void collisionCallback(CollEvent&);                 // _E4
 	virtual void platCallback(PlatEvent&);                      // _E8
-	virtual void getJAIObject();                                // _EC
+	virtual JAInter::Object* getJAIObject();                    // _EC
 	virtual PSM::Creature* getPSCreature();                     // _F0
 	virtual AILOD* getSound_AILOD();                            // _F4
 	virtual Vector3f* getSound_PosPtr();                        // _F8
@@ -165,7 +166,7 @@ struct EnemyBase : public Creature, public SysShape::MotionListener, virtual pub
 	virtual Vector3f getGoalPos();                              // _190
 	virtual bool isSuckReady();                                 // _194
 	virtual bool isSuckArriveWait();                            // _198
-	virtual void stimulate(Interaction&);                       // _19C
+	virtual bool stimulate(Interaction&);                       // _19C
 	virtual char* getCreatureName();                            // _1A0
 	virtual s32 getCreatureID();                                // _1A4
 	// vtable 2 (MotionListener+self)

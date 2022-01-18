@@ -2,6 +2,7 @@
 #define _GAME_PIKI_H
 
 #include "Game/FakePiki.h"
+#include "JAInter/Object.h"
 #include "JSystem/JUtility.h"
 #include "types.h"
 
@@ -90,7 +91,7 @@ struct Piki : public FakePiki {
 	virtual void bounceCallback(Sys::Triangle*);                // _E0
 	virtual void collisionCallback(CollEvent&);                 // _E4
 	virtual void platCallback(PlatEvent&);                      // _E8
-	virtual void getJAIObject();                                // _EC
+	virtual JAInter::Object* getJAIObject();                    // _EC
 	virtual PSM::Creature* getPSCreature();                     // _F0
 	virtual void on_movie_begin(bool);                          // _108
 	virtual void on_movie_end(bool);                            // _10C
@@ -104,7 +105,7 @@ struct Piki : public FakePiki {
 	virtual void onStickStartSelf(Creature*);                   // _158
 	virtual void onStickEndSelf(Creature*);                     // _15C
 	virtual bool ignoreAtari(Creature*);                        // _188
-	virtual void stimulate(Interaction&);                       // _19C
+	virtual bool stimulate(Interaction&);                       // _19C
 	virtual char* getCreatureName();                            // _1A0
 	virtual s32 getCreatureID();                                // _1A4
 	// vtable 2 (MotionListener + FakePiki + self)

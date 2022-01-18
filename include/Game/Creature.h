@@ -15,6 +15,10 @@ struct CollPart;
 struct CollTree;
 struct Parameters;
 
+namespace JAInter {
+struct Object;
+} // namespace JAInter
+
 namespace PSM {
 struct Creature;
 }
@@ -33,6 +37,7 @@ namespace Game {
 struct AILODParm;
 struct CellObject;
 struct CollEvent;
+struct Creature;
 struct Footmarks;
 struct Generator;
 struct WaterBox;
@@ -65,10 +70,16 @@ struct CreatureInitArg {
 };
 
 struct CreatureKillArg {
+	inline CreatureKillArg(int p1)
+	    : _04(p1)
+	{
+	}
 	virtual const char* getName() // _00
 	{
 		return "CreatureKillArg";
 	}
+
+	int _04; // _04
 };
 
 struct Creature : public CellObject {
@@ -129,7 +140,7 @@ struct Creature : public CellObject {
 	virtual void bounceCallback(Sys::Triangle*);
 	virtual void collisionCallback(CollEvent&);
 	virtual void platCallback(PlatEvent&);
-	virtual void getJAIObject();
+	virtual JAInter::Object* getJAIObject();
 	virtual PSM::Creature* getPSCreature();
 	virtual AILOD* getSound_AILOD();
 	virtual Vector3f* getSound_PosPtr();
@@ -173,7 +184,7 @@ struct Creature : public CellObject {
 	virtual Vector3f getGoalPos();
 	virtual bool isSuckReady();
 	virtual bool isSuckArriveWait();
-	virtual void stimulate(Interaction&);
+	virtual bool stimulate(Interaction&);
 	virtual char* getCreatureName();
 	virtual s32 getCreatureID(); // leave as s32 or matching breaks. unsure why.
 

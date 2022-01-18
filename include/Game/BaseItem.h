@@ -2,6 +2,7 @@
 #define _GAME_BASEITEM_H
 
 #include "Game/Creature.h"
+#include "Game/StateMachine.h"
 #include "SysShape/MotionListener.h"
 #include "types.h"
 
@@ -11,6 +12,8 @@ struct CreatureObj;
 
 namespace Game {
 struct BaseItemMgr;
+struct CItemFSM;
+struct CItemState;
 struct InteractAbsorb;
 struct InteractAttack;
 struct InteractBreakBridge;
@@ -46,7 +49,7 @@ struct BaseItem : public Creature, public SysShape::MotionListener {
 	virtual void bounceCallback(Sys::Triangle*);               // _E0
 	virtual void collisionCallback(CollEvent&);                // _E4
 	virtual void platCallback(PlatEvent&);                     // _E8
-	virtual void getJAIObject();                               // _EC
+	virtual JAInter::Object* getJAIObject();                   // _EC
 	virtual PSM::Creature* getPSCreature();                    // _F0
 	virtual Vector3f* getSound_PosPtr();                       // _F8
 	virtual void movieStartAnimation(u32);                     // _110
@@ -54,11 +57,11 @@ struct BaseItem : public Creature, public SysShape::MotionListener {
 	virtual void movieSetAnimationLastFrame();                 // _118
 	virtual void movieSetTranslation(Vector3f&, float);        // _11C
 	virtual void getVelocityAt(Vector3f&, Vector3f&);          // _17C
-	virtual void stimulate(Interaction&);                      // _19C
+	virtual bool stimulate(Interaction&);                      // _19C
 	virtual char* getCreatureName();                           // _1A0
 	virtual s32 getCreatureID();                               // _1A4
 	// vtable 2 (MotionListener + self)
-	virtual void onKeyEvent(const SysShape::KeyEvent&) = 0; // _1B0
+	// virtual void onKeyEvent(const SysShape::KeyEvent&) = 0; // _1B0
 	virtual void initDependency();                          // _1B4
 	virtual void startSound(u32);                           // _1B8
 	virtual void makeTrMatrix();                            // _1BC
@@ -68,15 +71,15 @@ struct BaseItem : public Creature, public SysShape::MotionListener {
 	virtual void do_updateLOD();                            // _1CC
 	virtual void do_setLODParm(AILODParm&);                 // _1D0
 	virtual float getMapCollisionRadius();                  // _1D4
-	virtual void interactAttack(InteractAttack&);           // _1D8
-	virtual void interactBreakBridge(InteractBreakBridge&); // _1DC
-	virtual void interactEat(InteractEat&);                 // _1E0
-	virtual void interactFlockAttack(InteractFlockAttack&); // _1E4
-	virtual void interactAbsorb(InteractAbsorb&);           // _1E8
-	virtual void interactFue(InteractFue&);                 // _1EC
-	virtual void interactFarmKarero(InteractFarmKarero&);   // _1F0
-	virtual void interactFarmHaero(InteractFarmHaero&);     // _1F4
-	virtual void interactGotKey(InteractGotKey&);           // _1F8
+	virtual bool interactAttack(InteractAttack&);           // _1D8
+	virtual bool interactBreakBridge(InteractBreakBridge&); // _1DC
+	virtual bool interactEat(InteractEat&);                 // _1E0
+	virtual bool interactFlockAttack(InteractFlockAttack&); // _1E4
+	virtual bool interactAbsorb(InteractAbsorb&);           // _1E8
+	virtual bool interactFue(InteractFue&);                 // _1EC
+	virtual bool interactFarmKarero(InteractFarmKarero&);   // _1F0
+	virtual bool interactFarmHaero(InteractFarmHaero&);     // _1F4
+	virtual bool interactGotKey(InteractGotKey&);           // _1F8
 	virtual bool getVectorField(Sys::Sphere&, Vector3f&);   // _1FC
 	virtual float getWorkDistance(Sys::Sphere&);            // _200
 	virtual void do_doAnimation();                          // _204
@@ -84,6 +87,8 @@ struct BaseItem : public Creature, public SysShape::MotionListener {
 	virtual void update();                                  // _20C
 	virtual void entryShape();                              // _210
 	virtual void onSetPosition();                           // _214
+
+	void updateCollTree();
 
 	// Creature: _000 - _178
 	// MotionListener: _178 - _17C
@@ -97,6 +102,51 @@ struct BaseItem : public Creature, public SysShape::MotionListener {
 	SysShape::Animator m_animator; // _1A8
 	Sys::Sphere m_boundingSphere;  // _1C4
 	float m_animSpeed;             // _1D4
+};
+
+struct CFSMItem : public BaseItem {
+	virtual void constructor();                         // _24
+	virtual void bounceCallback(Sys::Triangle*);        // _E0
+	virtual void collisionCallback(CollEvent&);         // _E4
+	virtual void platCallback(PlatEvent&);              // _E8
+	virtual void doAI();                                // _1C0
+	virtual CItemFSM* createFSM() = 0;                  // _218
+	virtual void onKeyEvent(const SysShape::KeyEvent&); // _21C
+
+	void initFSM();
+	void setCurrState(FSMState<CFSMItem>*);
+	FSMState<CFSMItem>* getCurrState();
+	int getStateID();
+
+	CItemFSM* m_stateMachine;        // _1D8
+	FSMState<CFSMItem>* m_currState; // _1DC
+};
+
+struct CItemFSM : public StateMachine<CFSMItem> {
+};
+
+struct CItemState : public FSMState<CFSMItem> {
+	virtual void onDamage(CFSMItem*, float) {}; // _18
+	/**
+	 * @reifiedAddress{801CCB74}
+	 * @reifiedFile{plugProjectKandoU/itemMgr.cpp}
+	 */
+	virtual void onKeyEvent(CFSMItem*, const SysShape::KeyEvent&) {}; // _1C
+	/**
+	 * @reifiedAddress{801CCA9C}
+	 * @reifiedFile{plugProjectKandoU/itemMgr.cpp}
+	 */
+	virtual void onBounce(CFSMItem*, Sys::Triangle*) {}; // _20
+	/**
+	 * @reifiedAddress{801CCB2C}
+	 * @reifiedFile{plugProjectKandoU/itemMgr.cpp}
+	 */
+	virtual void onPlatCollision(CFSMItem*, PlatEvent&) {}; // _24
+	/**
+	 * @reifiedAddress{801CCAE4}
+	 * @reifiedFile{plugProjectKandoU/itemMgr.cpp}
+	 */
+	virtual void onCollision(CFSMItem*, CollEvent&) {}; // _28
 };
 } // namespace Game
 

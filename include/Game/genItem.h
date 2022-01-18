@@ -8,7 +8,7 @@ struct J3DModelData;
 namespace Game {
 struct BaseItemMgr;
 struct GenItemParm {
-	virtual void getShapeID(); // _00
+	virtual int getShapeID(); // _00
 
 	// _00 VTBL
 };
