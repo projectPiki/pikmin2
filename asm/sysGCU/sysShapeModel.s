@@ -1,5 +1,6 @@
 .include "macros.inc"
 .section .ctors, "wa"  # 0x80472F00 - 0x804732C0
+lbl_constructor:
 	.4byte __sinit_sysShapeModel_cpp
 
 .section .rodata  # 0x804732E0 - 0x8049E220

@@ -1,16 +1,14 @@
 .include "macros.inc"
 .section .ctors, "wa"  # 0x80472F00 - 0x804732C0
+lbl_constructor:
 .4byte __sinit_ogLifeGauge_cpp
 
 .section .rodata  # 0x804732E0 - 0x8049E220
 .balign 8
-.global lbl_8048DFB8
 lbl_8048DFB8:
 	.asciz "ogLifeGauge.cpp"
-.global lbl_8048DFC8
 lbl_8048DFC8:
 	.asciz "ERR! : NULL Pane !!!\n"
-	.skip 2
 
 .section .data, "wa"  # 0x8049E220 - 0x804EFC20
 .balign 8
@@ -74,11 +72,6 @@ __vt__Q29P2DScreen12CallBackNode:
 	.4byte update__Q29P2DScreen12CallBackNodeFv
 	.4byte draw__Q29P2DScreen4NodeFR8GraphicsR14J2DGrafContext
 	.4byte doInit__Q29P2DScreen4NodeFv
-
-.section .bss  # 0x804EFC20 - 0x8051467C
-.global msVal__Q32og6Screen18CallBack_LifeGauge
-msVal__Q32og6Screen18CallBack_LifeGauge:
-	.skip 0x10
 
 .section .sdata2, "a"     # 0x80516360 - 0x80520E40
 .balign 8

@@ -10,12 +10,12 @@ extern "C" {
 
 /* TRK */
 
-#define TRK_DISPATCH_CMD_CONNECT        1 /* Connect to the console */
-#define TRK_DISPATCH_CMD_DISCONNECT     2 /* Disconnect from the console */
-#define TRK_DISPATCH_CMD_RESET          3 /* Reset the debugger */
-#define TRK_DISPATCH_CMD_GETVERSION     4 /* Get debugger version */
-#define TRK_DISPATCH_CMD_GETSUPPORTMASK 5 /* Get Support Mask */
-#define TRK_DISPATCH_CMD_OVERRIDE       7 /* Override? */
+#define TRK_DISPATCH_CMD_CONNECT        1  /* Connect to the console */
+#define TRK_DISPATCH_CMD_DISCONNECT     2  /* Disconnect from the console */
+#define TRK_DISPATCH_CMD_RESET          3  /* Reset the debugger */
+#define TRK_DISPATCH_CMD_GETVERSION     4  /* Get debugger version */
+#define TRK_DISPATCH_CMD_GETSUPPORTMASK 5  /* Get Support Mask */
+#define TRK_DISPATCH_CMD_OVERRIDE       7  /* Override? */
 #define TRK_DISPATCH_CMD_READMEM        16 /* Reading from memory */
 #define TRK_DISPATCH_CMD_WRITEMEM       17 /* Writing to memory */
 #define TRK_DISPATCH_CMD_READREGS       18 /* Read a register value */

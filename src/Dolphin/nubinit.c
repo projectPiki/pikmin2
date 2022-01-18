@@ -150,3 +150,4 @@ unsigned int TRKTerminateNub(void)
   blr
 */
 //}
+const char lbl_804796E4[] = "Initialize NUB\n";

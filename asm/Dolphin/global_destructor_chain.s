@@ -7,7 +7,7 @@ __destroy_global_chain_reference:
 .balign 8
 .global __global_destructor_chain
 __global_destructor_chain:
-	.skip 0x8
+	.skip 4
 
 .section .text, "ax"  # 0x800056C0 - 0x80472F00
 .global __destroy_global_chain

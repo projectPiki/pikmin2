@@ -1,5 +1,6 @@
 .include "macros.inc"
 .section .ctors, "wa"  # 0x80472F00 - 0x804732C0
+lbl_constructor:
 .4byte __sinit_J2DPane_cpp
 
 .section .data, "wa"  # 0x8049E220 - 0x804EFC20
@@ -56,6 +57,7 @@ __vt__7J2DPane:
 	.4byte 0
 
 .section .bss  # 0x804EFC20 - 0x8051467C
+bss_entry:
 .global static_mBounds__7J2DPane
 static_mBounds__7J2DPane:
 	.skip 0x10

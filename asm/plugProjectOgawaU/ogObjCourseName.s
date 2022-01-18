@@ -1,5 +1,6 @@
 .include "macros.inc"
 .section .ctors, "wa"  # 0x80472F00 - 0x804732C0
+lbl_constructor:
 .4byte __sinit_ogObjCourseName_cpp
 
 .section .rodata  # 0x804732E0 - 0x8049E220
@@ -32,8 +33,8 @@ lbl_8048E700:
 	.4byte 0x73637265
 	.4byte 0x656E4F62
 	.4byte 0x6A2E6800
+.balign 4
 	.asciz "P2Assert"
-	.skip 3
 
 .section .data, "wa"  # 0x8049E220 - 0x804EFC20
 .balign 8

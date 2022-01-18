@@ -1,5 +1,6 @@
 .include "macros.inc"
 .section .ctors, "wa"  # 0x80472F00 - 0x804732C0
+lbl_constructor:
 .4byte __sinit_J3DSys_cpp
 
 .section .rodata  # 0x804732E0 - 0x8049E220
@@ -102,6 +103,9 @@ mParentS__6J3DSys:
 .global sTexCoordScaleTable__6J3DSys
 sTexCoordScaleTable__6J3DSys:
 	.skip 0x40
+.global sGDLObj__17J3DDisplayListObj # technically goes with J3DPacket.cpp
+sGDLObj__17J3DDisplayListObj:
+	.skip 0x10
 
 .section .sdata, "wa"  # 0x80514680 - 0x80514D80
 .balign 8
@@ -116,20 +120,16 @@ ColorWhite:
 .balign 8
 .global j3dDefaultViewNo
 j3dDefaultViewNo:
-	.skip 0x8
+	.skip 4
 
 .section .sdata2, "a"     # 0x80516360 - 0x80520E40
 .balign 8
-.global lbl_80516988
 lbl_80516988:
-	.4byte 0x00000000
-.global lbl_8051698C
+	.float 0.0
 lbl_8051698C:
 	.float 1.0
-.global lbl_80516990
 lbl_80516990:
 	.float 0.1
-	.4byte 0x00000000
 
 .section .text, "ax"  # 0x800056C0 - 0x80472F00
 .global __ct__6J3DSysFv

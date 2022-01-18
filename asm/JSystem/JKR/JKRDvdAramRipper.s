@@ -1,5 +1,6 @@
 .include "macros.inc"
 .section .ctors, "wa"  # 0x80472F00 - 0x804732C0
+lbl_constructor:
 .4byte __sinit_JKRDvdAramRipper_cpp
 
 .section .bss  # 0x804EFC20 - 0x8051467C

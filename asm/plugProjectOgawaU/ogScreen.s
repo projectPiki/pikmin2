@@ -138,6 +138,9 @@ __vt__Q29P2DScreen4Node:
 .global PikiIconTextureResTIMG__Q22og6Screen
 PikiIconTextureResTIMG__Q22og6Screen:
 	.skip 0x4C
+.global msVal__Q32og6Screen18CallBack_LifeGauge # belongs in ogLifeGauge
+msVal__Q32og6Screen18CallBack_LifeGauge:
+	.skip 0x10
 
 .section .sbss # 0x80514D80 - 0x80516360
 .balign 8

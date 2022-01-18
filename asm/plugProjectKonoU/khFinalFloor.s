@@ -803,6 +803,7 @@ __sinit_khFinalFloor_cpp:
 /* 80402848 003FF788  4B FF FF 04 */	b __dt__Q32kh6Screen13ObjFinalFloorFv
 
 .section .ctors, "wa"  # 0x80472F00 - 0x804732C0
+lbl_constructor:
 	.4byte __sinit_khFinalFloor_cpp
 
 .section .rodata  # 0x804732E0 - 0x8049E220
