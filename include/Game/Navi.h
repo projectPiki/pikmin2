@@ -333,7 +333,10 @@ struct NaviFSM : public StateMachine<Navi> {
 };
 
 struct NaviMgr {
+	virtual Navi* birth();
+
 	void setupNavi(Navi*);
+
 	u8 _00[0x54];
 	int naviIndexArray[2]; // _54
 	u8 _5C[0x70];

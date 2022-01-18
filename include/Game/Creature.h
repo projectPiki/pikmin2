@@ -65,10 +65,6 @@ enum CreatureFlags {
 	CF_IS_DEBUG_COLLISION = 0x80000000
 };
 
-struct CreatureInitArg {
-	virtual const char* getName() = 0; // _00
-};
-
 struct CreatureKillArg {
 	inline CreatureKillArg(int p1)
 	    : _04(p1)

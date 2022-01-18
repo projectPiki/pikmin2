@@ -179,6 +179,7 @@ struct FakePiki : public Creature, public SysShape::MotionListener {
 	u32 _1A0;                           // _1A0
 	u8 _1A4;                            // _1A4
 	Creature* m_lookAtTargetCreature;   // _1A8
+	u32 _1A8;                           // _1A8 TODO: figure out where the discrepency is
 	PikiAnimator m_animator;            // _1AC
 	Vector3f m_velocity;                // _1E4
 	Vector3f _1F0;                      // _1F0

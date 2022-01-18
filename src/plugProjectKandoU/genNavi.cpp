@@ -59,6 +59,11 @@
 */
 
 #include "Game/gameGenerator.h"
+#include "Game/Creature.h"
+#include "Game/Navi.h"
+
+#include "SysShape/AnimInfo.h"
+
 #include "BaseParm.h"
 
 namespace Game {
@@ -68,6 +73,13 @@ struct GenObjectNavi : public GenObject {
 	    , m_rotParm(this, 'p000', "スタ?[ト向き", 0, 0, 360)
 	{
 	}
+
+	virtual void ramSaveParameters(Stream&);
+	virtual void ramLoadParameters(Stream&);
+	virtual Creature* generate(Generator*);
+	virtual Creature* birth(GenArg*);
+
+	static void initialise();
 
 	Parm<float> m_rotParm; // _24
 };
@@ -79,260 +91,207 @@ struct GenObjectNavi : public GenObject {
  * Size:	0000B8
  * Matches (I think... TODO: make a decomp me and check)
  */
-Game::GenObjectNavi* makeObjectNavi() { return new Game::GenObjectNavi(); }
+Game::GenObject* makeObjectNavi() { return new Game::GenObjectNavi(); }
 
-// namespace Game {
-
+namespace Game {
 /*
  * --INFO--
  * Address:	801ACAC0
  * Size:	00008C
-
+ * Matches
+ */
 void GenObjectNavi::initialise(void)
 {
-    /*
-    lwz      r8, factory__Q24Game16GenObjectFactory@sda21(r13)
-    lwz      r5, 0(r8)
-    lwz      r0, 4(r8)
-    cmpw     r5, r0
-    bgelr
-    lis      r4, 0x6E617669@ha
-    lwz      r3, 8(r8)
-    addi     r4, r4, 0x6E617669@l
-    slwi     r0, r5, 4
-    stwx     r4, r3, r0
-    lis      r5, makeObjectNavi__Fv@ha
-    lis      r4, lbl_8047F804@ha
-    lis      r3, 0x30303030@ha
-    lwz      r0, 0(r8)
-    addi     r7, r5, makeObjectNavi__Fv@l
-    lwz      r6, 8(r8)
-    addi     r5, r4, lbl_8047F804@l
-    slwi     r0, r0, 4
-    addi     r4, r3, 0x30303030@l
-    add      r3, r6, r0
-    stw      r7, 4(r3)
-    lwz      r0, 0(r8)
-    lwz      r3, 8(r8)
-    slwi     r0, r0, 4
-    add      r3, r3, r0
-    stw      r5, 8(r3)
-    lwz      r0, 0(r8)
-    lwz      r3, 8(r8)
-    slwi     r0, r0, 4
-    add      r3, r3, r0
-    stw      r4, 0xc(r3)
-    lwz      r3, 0(r8)
-    addi     r0, r3, 1
-    stw      r0, 0(r8)
-    blr
-
+	GenObjectFactoryFactory* factory = GenObjectFactory::factory;
+	if (factory->m_count < factory->m_limit) {
+		factory->m_factories[factory->m_count].m_typeID       = 'navi';
+		factory->m_factories[factory->m_count].m_makeFunction = makeObjectNavi;
+		factory->m_factories[factory->m_count].m_name         = "ビを発生";
+		factory->m_factories[factory->m_count].m_version      = '0000';
+		factory->m_count++;
+	}
 }
 
 /*
  * --INFO--
  * Address:	801ACB4C
  * Size:	000004
-
+ */
 void GenObjectNavi::ramSaveParameters(Stream&) { }
 
 /*
  * --INFO--
  * Address:	801ACB50
  * Size:	000004
-
+ */
 void GenObjectNavi::ramLoadParameters(Stream&) { }
 
 /*
  * --INFO--
  * Address:	801ACB54
  * Size:	000078
-
-void GenObjectNavi::generate(Game::Generator*)
+ * Matches
+ */
+Creature* GenObjectNavi::generate(Game::Generator* gen)
 {
-    /*
-    stwu     r1, -0x20(r1)
-    mflr     r0
-    lis      r6, __vt__Q24Game15CreatureInitArg@ha
-    lis      r5, __vt__Q24Game6GenArg@ha
-    stw      r0, 0x24(r1)
-    addi     r6, r6, __vt__Q24Game15CreatureInitArg@l
-    addi     r0, r5, __vt__Q24Game6GenArg@l
-    lfs      f1, 0x9c(r4)
-    lfs      f0, 0xa8(r4)
-    lfs      f3, 0x98(r4)
-    fadds    f4, f1, f0
-    lfs      f2, 0xa4(r4)
-    lfs      f1, 0x94(r4)
-    lfs      f0, 0xa0(r4)
-    fadds    f2, f3, f2
-    addi     r4, r1, 8
-    fadds    f0, f1, f0
-    stw      r6, 8(r1)
-    stw      r0, 8(r1)
-    stfs     f0, 0xc(r1)
-    stfs     f2, 0x10(r1)
-    stfs     f4, 0x14(r1)
-    lwz      r12, 0xc(r3)
-    lwz      r12, 0x34(r12)
-    mtctr    r12
-    bctrl
-    lwz      r0, 0x24(r1)
-    mtlr     r0
-    addi     r1, r1, 0x20
-    blr
+	Vector3f finalPos(gen->m_position.x + gen->m_offset.x, gen->m_position.y + gen->m_offset.y, gen->m_position.z + gen->m_offset.z);
 
+	GenArg arg;
+	arg.m_position = finalPos;
+	return birth(&arg);
 }
-
 } // namespace Game
 
 /*
  * --INFO--
  * Address:	........
  * Size:	000018
-
+ */
 void print_calcs(SysShape::Model*)
 {
-    // UNUSED FUNCTION
+	// UNUSED FUNCTION
 }
 
 /*
  * --INFO--
  * Address:	........
  * Size:	000080
-
-void clear_calcs(SysShape::Model*, SysShape::Animator&)
+ */
+void clear_calcs(SysShape::Model* model, SysShape::Animator& anim)
 {
-    // UNUSED FUNCTION
+	// UNUSED FUNCTION
 }
 
 namespace Game {
-
 /*
  * --INFO--
  * Address:	801ACBCC
  * Size:	000138
-
-void GenObjectNavi::birth(Game::GenArg*)
+ */
+Creature* GenObjectNavi::birth(Game::GenArg* arg)
 {
-    /*
-    stwu     r1, -0x20(r1)
-    mflr     r0
-    stw      r0, 0x24(r1)
-    stw      r31, 0x1c(r1)
-    stw      r30, 0x18(r1)
-    stw      r29, 0x14(r1)
-    mr       r29, r4
-    stw      r28, 0x10(r1)
-    mr       r28, r3
-    lwz      r12, 0xc(r3)
-    lwz      r12, 0x24(r12)
-    mtctr    r12
-    bctrl
-    lwz      r3, naviMgr__4Game@sda21(r13)
-    lwz      r12, 0(r3)
-    lwz      r12, 0x7c(r12)
-    mtctr    r12
-    bctrl
-    or.      r30, r3, r3
-    beq      lbl_801ACCE0
-    li       r4, 0
-    bl       init__Q24Game8CreatureFPQ24Game15CreatureInitArg
-    addi     r3, r30, 0x1ac
-    lwz      r12, 0x1ac(r30)
-    lwz      r12, 8(r12)
-    mtctr    r12
-    bctrl
-    addi     r3, r30, 0x1c8
-    lwz      r12, 0x1c8(r30)
-    lwz      r12, 8(r12)
-    mtctr    r12
-    bctrl
-    lwz      r31, 0x174(r30)
-    lwz      r0, 0xc(r31)
-    mtctr    r0
-    cmpwi    r0, 0
-    ble      lbl_801ACC64
+	u32 latestVer = getLatestVersion();
+
+	Navi* newObj = naviMgr->birth();
+	if (newObj) {
+		newObj->init(nullptr);
+
+		newObj->m_animator.m_animators[0].getCalc();
+		newObj->m_animator.m_animators[1].getCalc();
+
+		SysShape::Model* model = newObj->m_model;
+		for (int i = model->m_jointCount; i > 0; i--) {
+			J3DMtxCalc* calc = newObj->m_animator.m_animators[1].getCalc();
+			calc->setAnmTransform(0);
+		}
+
+		newObj->setPosition(arg->m_position, false);
+		newObj->m_faceDir = PI * ((1.0f / 180) * m_rotParm.m_value);
+	}
+	return newObj;
+
+	/*
+	stwu     r1, -0x20(r1)
+	mflr     r0
+	stw      r0, 0x24(r1)
+	stw      r31, 0x1c(r1)
+	stw      r30, 0x18(r1)
+	stw      r29, 0x14(r1)
+	mr       r29, r4
+	stw      r28, 0x10(r1)
+	mr       r28, r3
+	lwz      r12, 0xc(r3)
+	lwz      r12, 0x24(r12)
+	mtctr    r12
+	bctrl
+	lwz      r3, naviMgr__4Game@sda21(r13)
+	lwz      r12, 0(r3)
+	lwz      r12, 0x7c(r12)
+	mtctr    r12
+	bctrl
+	or.      r30, r3, r3
+	beq      lbl_801ACCE0
+	li       r4, 0
+	bl       init__Q24Game8CreatureFPQ24Game15CreatureInitArg
+	addi     r3, r30, 0x1ac
+	lwz      r12, 0x1ac(r30)
+	lwz      r12, 8(r12)
+	mtctr    r12
+	bctrl
+	addi     r3, r30, 0x1c8
+	lwz      r12, 0x1c8(r30)
+	lwz      r12, 8(r12)
+	mtctr    r12
+	bctrl
+	lwz      r31, 0x174(r30)
+	lwz      r0, 0xc(r31)
+	mtctr    r0
+	cmpwi    r0, 0
+	ble      lbl_801ACC64
 
 lbl_801ACC60:
-    bdnz     lbl_801ACC60
+	bdnz     lbl_801ACC60
 
 lbl_801ACC64:
-    addi     r3, r30, 0x1c8
-    lwz      r12, 0x1c8(r30)
-    lwz      r12, 8(r12)
-    mtctr    r12
-    bctrl
-    lwz      r4, 8(r31)
-    lwz      r4, 4(r4)
-    lwz      r4, 0x28(r4)
-    lwz      r4, 0(r4)
-    stw      r3, 0x54(r4)
-    lwz      r3, 0x174(r30)
-    lwz      r0, 0xc(r3)
-    mtctr    r0
-    cmpwi    r0, 0
-    ble      lbl_801ACCA4
+	addi     r3, r30, 0x1c8
+	lwz      r12, 0x1c8(r30)
+	lwz      r12, 8(r12)
+	mtctr    r12
+	bctrl
+	lwz      r4, 8(r31)
+	lwz      r4, 4(r4)
+	lwz      r4, 0x28(r4)
+	lwz      r4, 0(r4)
+	stw      r3, 0x54(r4)
+	lwz      r3, 0x174(r30)
+	lwz      r0, 0xc(r3)
+	mtctr    r0
+	cmpwi    r0, 0
+	ble      lbl_801ACCA4
 
 lbl_801ACCA0:
-    bdnz     lbl_801ACCA0
+	bdnz     lbl_801ACCA0
 
 lbl_801ACCA4:
-    lwz      r0, 0xc(r3)
-    mtctr    r0
-    cmpwi    r0, 0
-    ble      lbl_801ACCB8
+	lwz      r0, 0xc(r3)
+	mtctr    r0
+	cmpwi    r0, 0
+	ble      lbl_801ACCB8
 
 lbl_801ACCB4:
-    bdnz     lbl_801ACCB4
+	bdnz     lbl_801ACCB4
 
 lbl_801ACCB8:
-    mr       r3, r30
-    addi     r4, r29, 4
-    li       r5, 0
-    bl       "setPosition__Q24Game8CreatureFR10Vector3<f>b"
-    lfs      f1, lbl_805192B4@sda21(r2)
-    lfs      f0, 0x3c(r28)
-    lfs      f2, lbl_805192B0@sda21(r2)
-    fmuls    f0, f1, f0
-    fmuls    f0, f2, f0
-    stfs     f0, 0x1fc(r30)
+	mr       r3, r30
+	addi     r4, r29, 4
+	li       r5, 0
+	bl       "setPosition__Q24Game8CreatureFR10Vector3<f>b"
+	lfs      f1, lbl_805192B4@sda21(r2)
+	lfs      f0, 0x3c(r28)
+	lfs      f2, lbl_805192B0@sda21(r2)
+	fmuls    f0, f1, f0
+	fmuls    f0, f2, f0
+	stfs     f0, 0x1fc(r30)
 
 lbl_801ACCE0:
-    lwz      r0, 0x24(r1)
-    mr       r3, r30
-    lwz      r31, 0x1c(r1)
-    lwz      r30, 0x18(r1)
-    lwz      r29, 0x14(r1)
-    lwz      r28, 0x10(r1)
-    mtlr     r0
-    addi     r1, r1, 0x20
-    blr
-
+	lwz      r0, 0x24(r1)
+	mr       r3, r30
+	lwz      r31, 0x1c(r1)
+	lwz      r30, 0x18(r1)
+	lwz      r29, 0x14(r1)
+	lwz      r28, 0x10(r1)
+	mtlr     r0
+	addi     r1, r1, 0x20
+	blr
+*/
 }
-
 } // namespace Game
 
 namespace SysShape {
-
 /*
  * --INFO--
  * Address:	801ACD04
  * Size:	00001C
-
-void Animator::getCalc(void)
-{
-    /*
-    lwz      r3, 0xc(r3)
-    cmplwi   r3, 0
-    beq      lbl_801ACD18
-    lwz      r3, 0x1c(r3)
-    blr
-
-lbl_801ACD18:
-    li       r3, 0
-    blr
-
-}
+ */
+J3DMtxCalc* Animator::getCalc() { return m_animInfo ? m_animInfo->m_calc : nullptr; }
 } // namespace SysShape
-*/
