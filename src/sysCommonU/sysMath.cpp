@@ -1277,10 +1277,10 @@ Quat::Quat(float _w, Vector3f vec)
 * Size:	000014
 */
 void Quat::set(float a, float b, float c, float d) {
-    this->a = a;
-    this->b = b;
-    this->c = c;
-    this->d = d;
+    this->w = a;
+    this->x = b;
+    this->y = c;
+    this->z = d;
 }
 
 ///*
