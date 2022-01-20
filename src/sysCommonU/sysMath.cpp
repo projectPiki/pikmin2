@@ -1270,24 +1270,19 @@ Quat::Quat(float _w, Vector3f vec)
 //      blr
 //    */
 //}
-//
-///*
-// * --INFO--
-// * Address:	80412784
-// * Size:	000014
-// */
-// void Quat::set(float, float, float, float)
-//{
-//    /*
-//    .loc_0x0:
-//      stfs      f1, 0x0(r3)
-//      stfs      f2, 0x4(r3)
-//      stfs      f3, 0x8(r3)
-//      stfs      f4, 0xC(r3)
-//      blr
-//    */
-//}
-//
+
+/*
+* --INFO--
+* Address:	80412784
+* Size:	000014
+*/
+void Quat::set(float a, float b, float c, float d) {
+    this->a = a;
+    this->b = b;
+    this->c = c;
+    this->d = d;
+}
+
 ///*
 // * --INFO--
 // * Address:	........
