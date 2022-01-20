@@ -8,6 +8,7 @@
 struct Quat {
 	Quat();
 	Quat(float, Vector3f);
+	void set(float a, float b, float c, float d);
 
 	f32 w, // _00
 	    x, // _04

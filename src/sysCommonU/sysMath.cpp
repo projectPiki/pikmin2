@@ -988,6 +988,20 @@ Quat::Quat(float _w, Vector3f vec)
 	z = vec.z;
 }
 
+/*
+* --INFO--
+* Address: 80412784
+* Size:	   000014
+*/
+void Quat::set(float a, float b, float c, float d)
+{
+    this->w = a;
+    this->x = b;
+    this->y = c;
+    this->z = d;
+}
+
+
 ///*
 // * --INFO--
 // * Address:	80412400
@@ -1270,19 +1284,8 @@ Quat::Quat(float _w, Vector3f vec)
 //      blr
 //    */
 //}
-
-/*
-* --INFO--
-* Address:	80412784
-* Size:	000014
-*/
-void Quat::set(float a, float b, float c, float d) {
-    this->w = a;
-    this->x = b;
-    this->y = c;
-    this->z = d;
-}
-
+//
+//
 ///*
 // * --INFO--
 // * Address:	........
