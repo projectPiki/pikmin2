@@ -220,7 +220,7 @@ void PlatInstance::setCollision(bool flag)
 	}
 }
 
-#if NOPE
+// #if NOPE
 
 /*
  * --INFO--
@@ -3832,6 +3832,6 @@ bool PlatInstance::collisionUpdatable() { return 0x0; }
 // 	*/
 // }
 
-#endif
+// #endif
 
 } // namespace Game
