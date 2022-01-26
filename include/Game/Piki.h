@@ -74,7 +74,7 @@ struct PikiFSM {
 	virtual void transit(Game::Piki*, int, Game::StateArg*); // _0C
 };
 
-struct Piki : public FakePiki {
+struct Piki : public FakePiki, public SysShape::MotionListener {
 	struct InvokeAIFreeArg {
 	};
 
@@ -173,6 +173,7 @@ struct Piki : public FakePiki {
 	void updateColor();
 
 	// FakePiki: _000 - _24C
+	// MotionListener: _24C - _250 (presumably)
 	PSM::Piki* m_soundObj;          // _250
 	float m_targetLookAngle;        // _254
 	efx::TPkEffect* m_effectsObj;   // _258
