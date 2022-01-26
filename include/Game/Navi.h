@@ -151,7 +151,7 @@ struct NaviWhistle {
 	u16 _3A;      // _3A
 };
 
-struct Navi : public FakePiki, virtual public PelletView, public SysShape::MotionListener {
+struct Navi : public FakePiki, virtual public PelletView {
 	Navi();
 
 	// vtable 1 (Creature)
