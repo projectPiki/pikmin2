@@ -71,7 +71,7 @@ template <typename T> struct ArrayContainer : public Container<T> {
 	}
 	virtual void* getEnd() // _14
 	{
-		return m_count;
+		return (void*)m_count;
 	}
 	virtual T* getAt(int index) // _1C
 	{

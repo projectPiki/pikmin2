@@ -1017,54 +1017,27 @@ bool Game::RouteMgr::linkable(Game::WayPoint*, Game::WayPoint*)
  */
 void Game::RouteMgr::refreshWater(void)
 {
-	Iterator<Game::WayPoint> iterator(this, 0, nullptr);
-	if (!iterator.m_container) {
-		iterator.m_index = getStart();
-	} else {
-		iterator.m_index = getStart();
-		while (!iterator.isDone()) {
-			WayPoint* wp = iterator.m_container->get(&iterator.m_index);
-			if (iterator.m_condition->satisfy(wp)) {
-				break;
+	Iterator<WayPoint> iterator(this, 0, nullptr);
+	iterator.first();
+	while (!iterator.isDone()) {
+		WayPoint* wp = (*iterator);
+		wp->m_flags &= ~WPF_Water;
+		if (Game::mapMgr != nullptr) {
+			Sys::Sphere searchSphere;
+			searchSphere.m_position.y = wp->m_position.y;
+			searchSphere.m_position.z = wp->m_position.z;
+			searchSphere.m_position.x = wp->m_position.x;
+			if (wp->m_flags & WPF_Water) {
+				searchSphere.m_position.y = mapMgr->getMinY(searchSphere.m_position);
 			}
-			iterator.m_index = iterator.m_container->getNext(&iterator.m_index);
+			searchSphere.m_radius = 4.0f;
+			WaterBox* waterBox    = mapMgr->findWater(searchSphere);
+			if ((waterBox) && (waterBox->m_flags & 1)) {
+				wp->m_flags |= WPF_Water;
+			}
 		}
+		iterator.next();
 	}
-	do {
-		while (true) {
-			if (iterator.m_index == iterator.m_container->getEnd()) {
-				return;
-			}
-			WayPoint* wp = iterator.m_container->get(&iterator.m_index);
-			wp->m_flags &= ~WPF_Water;
-			if (Game::mapMgr != nullptr) {
-				Sys::Sphere searchSphere;
-				searchSphere.m_position.y = wp->m_position.y;
-				searchSphere.m_position.z = wp->m_position.z;
-				searchSphere.m_position.x = wp->m_position.x;
-				if (wp->m_flags & WPF_Water) {
-					searchSphere.m_position.y = mapMgr->getMinY(searchSphere.m_position);
-				}
-				searchSphere.m_radius = 4.0f;
-				WaterBox* waterBox    = mapMgr->findWater(searchSphere);
-				if ((waterBox) && (waterBox->m_flags & 1)) {
-					wp->m_flags |= WPF_Water;
-				}
-			}
-			if (iterator.m_condition) {
-				break;
-			}
-			iterator.m_index = iterator.m_container->getNext(&iterator.m_index);
-		}
-		iterator.m_index = iterator.m_container->getNext(&iterator.m_index);
-		while (!iterator.isDone()) {
-			WayPoint* wp = iterator.m_container->get(&iterator.m_index);
-			if (iterator.m_condition->satisfy(wp)) {
-				break;
-			}
-			iterator.m_index = iterator.m_container->getNext(&iterator.m_index);
-		}
-	} while (true);
 	/*
 	.loc_0x0:
 	  stwu      r1, -0x30(r1)
@@ -2219,145 +2192,13 @@ void Game::RouteMgr::getNearestEdge(Game::WPEdgeSearchArg&)
  */
 void Game::RouteMgr::setCloseAll(void)
 {
-	/*
-	.loc_0x0:
-	  stwu      r1, -0x20(r1)
-	  mflr      r0
-	  lis       r4, 0x804B
-	  stw       r0, 0x24(r1)
-	  li        r0, 0
-	  addi      r4, r4, 0x2380
-	  cmplwi    r0, 0
-	  stw       r0, 0x14(r1)
-	  stw       r4, 0x8(r1)
-	  stw       r0, 0xC(r1)
-	  stw       r3, 0x10(r1)
-	  bne-      .loc_0x48
-	  lwz       r12, 0x0(r3)
-	  lwz       r12, 0x18(r12)
-	  mtctr     r12
-	  bctrl
-	  stw       r3, 0xC(r1)
-	  b         .loc_0x1B0
-
-	.loc_0x48:
-	  lwz       r12, 0x0(r3)
-	  lwz       r12, 0x18(r12)
-	  mtctr     r12
-	  bctrl
-	  stw       r3, 0xC(r1)
-	  b         .loc_0xB4
-
-	.loc_0x60:
-	  lwz       r3, 0x10(r1)
-	  lwz       r4, 0xC(r1)
-	  lwz       r12, 0x0(r3)
-	  lwz       r12, 0x20(r12)
-	  mtctr     r12
-	  bctrl
-	  mr        r4, r3
-	  lwz       r3, 0x14(r1)
-	  lwz       r12, 0x0(r3)
-	  lwz       r12, 0x8(r12)
-	  mtctr     r12
-	  bctrl
-	  rlwinm.   r0,r3,0,24,31
-	  bne-      .loc_0x1B0
-	  lwz       r3, 0x10(r1)
-	  lwz       r4, 0xC(r1)
-	  lwz       r12, 0x0(r3)
-	  lwz       r12, 0x14(r12)
-	  mtctr     r12
-	  bctrl
-	  stw       r3, 0xC(r1)
-
-	.loc_0xB4:
-	  lwz       r12, 0x8(r1)
-	  addi      r3, r1, 0x8
-	  lwz       r12, 0x10(r12)
-	  mtctr     r12
-	  bctrl
-	  rlwinm.   r0,r3,0,24,31
-	  beq+      .loc_0x60
-	  b         .loc_0x1B0
-
-	.loc_0xD4:
-	  lwz       r3, 0x10(r1)
-	  lwz       r12, 0x0(r3)
-	  lwz       r12, 0x20(r12)
-	  mtctr     r12
-	  bctrl
-	  lbz       r0, 0x34(r3)
-	  ori       r0, r0, 0x80
-	  stb       r0, 0x34(r3)
-	  lwz       r0, 0x14(r1)
-	  cmplwi    r0, 0
-	  bne-      .loc_0x120
-	  lwz       r3, 0x10(r1)
-	  lwz       r4, 0xC(r1)
-	  lwz       r12, 0x0(r3)
-	  lwz       r12, 0x14(r12)
-	  mtctr     r12
-	  bctrl
-	  stw       r3, 0xC(r1)
-	  b         .loc_0x1B0
-
-	.loc_0x120:
-	  lwz       r3, 0x10(r1)
-	  lwz       r4, 0xC(r1)
-	  lwz       r12, 0x0(r3)
-	  lwz       r12, 0x14(r12)
-	  mtctr     r12
-	  bctrl
-	  stw       r3, 0xC(r1)
-	  b         .loc_0x194
-
-	.loc_0x140:
-	  lwz       r3, 0x10(r1)
-	  lwz       r4, 0xC(r1)
-	  lwz       r12, 0x0(r3)
-	  lwz       r12, 0x20(r12)
-	  mtctr     r12
-	  bctrl
-	  mr        r4, r3
-	  lwz       r3, 0x14(r1)
-	  lwz       r12, 0x0(r3)
-	  lwz       r12, 0x8(r12)
-	  mtctr     r12
-	  bctrl
-	  rlwinm.   r0,r3,0,24,31
-	  bne-      .loc_0x1B0
-	  lwz       r3, 0x10(r1)
-	  lwz       r4, 0xC(r1)
-	  lwz       r12, 0x0(r3)
-	  lwz       r12, 0x14(r12)
-	  mtctr     r12
-	  bctrl
-	  stw       r3, 0xC(r1)
-
-	.loc_0x194:
-	  lwz       r12, 0x8(r1)
-	  addi      r3, r1, 0x8
-	  lwz       r12, 0x10(r12)
-	  mtctr     r12
-	  bctrl
-	  rlwinm.   r0,r3,0,24,31
-	  beq+      .loc_0x140
-
-	.loc_0x1B0:
-	  lwz       r3, 0x10(r1)
-	  lwz       r12, 0x0(r3)
-	  lwz       r12, 0x1C(r12)
-	  mtctr     r12
-	  bctrl
-	  lwz       r4, 0xC(r1)
-	  cmplw     r4, r3
-	  bne+      .loc_0xD4
-	  lwz       r0, 0x24(r1)
-	  mtlr      r0
-	  addi      r1, r1, 0x20
-	  blr
-	*/
+	Iterator<WayPoint> iterator(this);
+	iterator.first();
+	while (!iterator.isDone()) {
+		WayPoint* wp = (*iterator);
+		wp->m_flags |= WPF_Unknown8;
+		iterator.next();
+	}
 }
 
 /*
@@ -2365,8 +2206,20 @@ void Game::RouteMgr::setCloseAll(void)
  * Address:	80173D68
  * Size:	000210
  */
-void Game::RouteMgr::openRoom(short)
+void Game::RouteMgr::openRoom(short p1)
 {
+	Iterator<WayPoint> iterator(this);
+	iterator.first();
+	while (!iterator.isDone()) {
+		WayPoint* wp = (*iterator);
+		for (WayPoint::RoomList* node = (WayPoint::RoomList*)wp->m_roomList.m_child; node != nullptr;
+		     node                     = (WayPoint::RoomList*)node->m_next) {
+			if (node->_18 == p1) {
+				wp->m_flags &= ~WPF_Closed;
+			}
+		}
+		iterator.next();
+	}
 	/*
 	.loc_0x0:
 	  stwu      r1, -0x20(r1)
@@ -3026,9 +2879,9 @@ Game::WayPoint* Game::GameRouteMgr::get(void* index)
  * Address:	80174578
  * Size:	000008
  */
-int Game::GameRouteMgr::getNext(void* index)
+void* Game::GameRouteMgr::getNext(void* index)
 {
-	return *(int*)index + 1;
+	return (int*)index + 1;
 	/*
 	.loc_0x0:
 	  addi      r3, r4, 0x1
@@ -3041,7 +2894,7 @@ int Game::GameRouteMgr::getNext(void* index)
  * Address:	80174580
  * Size:	000008
  */
-int Game::GameRouteMgr::getStart()
+void* Game::GameRouteMgr::getStart()
 {
 	return 0;
 	/*
@@ -3056,9 +2909,9 @@ int Game::GameRouteMgr::getStart()
  * Address:	80174588
  * Size:	000008
  */
-int Game::GameRouteMgr::getEnd()
+void* Game::GameRouteMgr::getEnd()
 {
-	return m_count;
+	return &m_count;
 	/*
 	.loc_0x0:
 	  lhz       r3, 0x1C(r3)
@@ -3122,7 +2975,7 @@ Game::EditorRouteMgr::WPNode::~WPNode(void)
  */
 void Game::EditorRouteMgr::read(Stream& input)
 {
-	for (WPNode* node = (WPNode*)m_node._10; node != nullptr; node = (WPNode*)node->_04) {
+	for (WPNode* node = (WPNode*)m_node.m_child; node != nullptr; node = (WPNode*)node->m_next) {
 		delWayPoint(node->m_wayPoint);
 	}
 	u16 count = input.readShort();
@@ -3384,7 +3237,7 @@ Game::WayPoint* Game::EditorRouteMgr::get(void* node)
  * Address:	8017499C
  * Size:	000008
  */
-int Game::EditorRouteMgr::getNext(void*)
+void* Game::EditorRouteMgr::getNext(void*)
 {
 	/*
 	.loc_0x0:
@@ -3398,7 +3251,7 @@ int Game::EditorRouteMgr::getNext(void*)
  * Address:	801749A4
  * Size:	000008
  */
-int Game::EditorRouteMgr::getStart()
+void* Game::EditorRouteMgr::getStart()
 {
 	/*
 	.loc_0x0:
@@ -3412,8 +3265,9 @@ int Game::EditorRouteMgr::getStart()
  * Address:	801749AC
  * Size:	000008
  */
-int Game::EditorRouteMgr::getEnd()
+void* Game::EditorRouteMgr::getEnd()
 {
+	return nullptr;
 	/*
 	.loc_0x0:
 	  li        r3, 0
@@ -3490,26 +3344,26 @@ Game::EditorRouteMgr::~EditorRouteMgr(void)
  * Address:	80174A6C
  * Size:	000038
  */
-template <> Game::WayPoint* Iterator<Game::WayPoint>::operator*()
-{
-	/*
-	.loc_0x0:
-	  stwu      r1, -0x10(r1)
-	  mflr      r0
-	  mr        r4, r3
-	  stw       r0, 0x14(r1)
-	  lwz       r3, 0x8(r3)
-	  lwz       r4, 0x4(r4)
-	  lwz       r12, 0x0(r3)
-	  lwz       r12, 0x20(r12)
-	  mtctr     r12
-	  bctrl
-	  lwz       r0, 0x14(r1)
-	  mtlr      r0
-	  addi      r1, r1, 0x10
-	  blr
-	*/
-}
+// template <> Game::WayPoint* Iterator<Game::WayPoint>::operator*()
+// {
+// 	/*
+// 	.loc_0x0:
+// 	  stwu      r1, -0x10(r1)
+// 	  mflr      r0
+// 	  mr        r4, r3
+// 	  stw       r0, 0x14(r1)
+// 	  lwz       r3, 0x8(r3)
+// 	  lwz       r4, 0x4(r4)
+// 	  lwz       r12, 0x0(r3)
+// 	  lwz       r12, 0x20(r12)
+// 	  mtctr     r12
+// 	  bctrl
+// 	  lwz       r0, 0x14(r1)
+// 	  mtlr      r0
+// 	  addi      r1, r1, 0x10
+// 	  blr
+// 	*/
+// }
 
 #endif
 

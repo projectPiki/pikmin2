@@ -24,8 +24,11 @@ struct CNode {
 	void addHead(CNode*);
 	void concat(CNode*);
 	void del();
-
-	void setName(char*);
+	/**
+	 * @reifiedAddress{8013917C}
+	 * @reifiedFile{plugProjectKandoU/collinfo.cpp}
+	 */
+	void setName(char* name) { m_name = name; }
 
 	inline void reset(char* name)
 	{

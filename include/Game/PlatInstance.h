@@ -27,8 +27,26 @@ struct MoveInfo;
 namespace Game {
 struct PlatAddInstanceArg {
 	PlatAddInstanceArg();
+
+	BaseItem* m_item;     // _00
+	ID32 m_id;            // _04
+	Platform* m_platform; // _10
+	Matrixf* m_matrix;    // _14
+	bool _18;             // _18
+	float _1C;            // _1C
 };
 struct PlatInstance : public CellObject {
+	inline PlatInstance()
+	    : CellObject()
+	{
+		_B8 = nullptr;
+		_EC = nullptr;
+		_F4 = nullptr;
+		m_id.setID('none');
+		_F0  = nullptr;
+		_108 = 1;
+	}
+
 	void setCollision(bool);
 	Vector3f getPosition();
 	void getBoundingSphere(Sys::Sphere&);
@@ -80,7 +98,7 @@ struct PlatInstanceAttacher {
 struct PlatMgr : public NodeObjectMgr<PlatInstance> {
 	PlatMgr();
 	virtual ~PlatMgr();
-	void addInstance(PlatAddInstanceArg&);
+	PlatInstance* addInstance(PlatAddInstanceArg&);
 	void delInstance(PlatInstance*);
 	void traceMove(MoveInfo&, float);
 	void getMinY(Vector3f&) const;

@@ -32,49 +32,77 @@ struct CollPart : public CNode {
 	virtual void doDirectDraw(Graphics&); // _28
 
 	void init(SysShape::MtxObject*);
-	void addChild(CollPart*);
+	/**
+	 * @reifiedAddress{8013915C}
+	 * @reifiedFile{plugProjectKandoU/collinfo.cpp}
+	 */
+	void addChild(CollPart* child) { add(child); }
 	void attachModel(SysShape::MtxObject*);
 	void calcStickGlobal(Vector3f&, Vector3f&);
 	void calcStickLocal(Vector3f&, Vector3f&);
 	void calcPoseMatrix(Vector3f&, Matrixf&);
 	void checkCollision(Sys::Sphere&, IDelegate1<CollPart*>*);
 	void checkCollisionMulti(CollPart*, IDelegate3<CollPart*, CollPart*, Vector3f&>*);
-	void clone(SysShape::MtxObject*, CollPartMgr*);
-	void collide(CollPart*, Vector3f&);
-	void getAllCollPartToArray(CollPart**, int, int&);
-	CollPart* getChild();
+	CollPart* clone(SysShape::MtxObject*, CollPartMgr*);
+	bool collide(CollPart*, Vector3f&);
+	int getAllCollPartToArray(CollPart**, int, int&);
+	/**
+	 * @reifiedAddress{80134540}
+	 * @reifiedFile{plugProjectKandoU/collinfo.cpp}
+	 */
+	CollPart* getChild() { return (CollPart*)m_child; }
 	CollPart* getCollPart(u32);
-	CollPart* getNext();
+	/**
+	 * @reifiedAddress{80134548}
+	 * @reifiedFile{plugProjectKandoU/collinfo.cpp}
+	 */
+	CollPart* getNext() { return (CollPart*)m_next; }
 	void getSphere(Sys::Sphere&);
 	void getTube(Sys::Tube&);
-	bool isLeaf();
-	bool isPrim();
-	bool isSphere();
+	/**
+	 * @reifiedAddress{80134B90}
+	 * @reifiedFile{plugProjectKandoU/collinfo.cpp}
+	 */
+	bool isLeaf() { return (m_child == nullptr); }
+	/**
+	 * @reifiedAddress{80135510}
+	 * @reifiedFile{plugProjectKandoU/collinfo.cpp}
+	 */
+	bool isSphere() { return (m_hasCollPart == 0); }
 	bool isStickable();
-	bool isTube();
-	bool isTubeTree();
+	bool isTube() { return (m_hasCollPart == 2); }
+	bool isTubeTree() { return (m_hasCollPart == 1); }
+	/**
+	 * @fabricated
+	 */
+	bool isTubeLike() { return isTubeTree() || isTube(); }
+	/**
+	 * @reifiedAddress{80134BA0}
+	 * @reifiedFile{plugProjectKandoU/collinfo.cpp}
+	 */
+	bool isPrim() { return (isLeaf() || isTubeTree() || isTube()); }
 	void makeMatrixTo(Matrixf&);
 	void makeTubeTree();
 	void read(Stream&, bool);
 	void setScale(float);
 	void update();
 
-	float _18;                // _18   /* PikDecomp calls this `radius1`. */
-	float _1C;                // _1C   /* PikDecomp calls this `radius`. */
-	Vector3f _20;             // _20   /* PikDecomp calls this `Offset`. SodiumDecomp calls
-	                          // this `size_0x20`. :shrug: */
-	u32 m_jointIndex;         // _2C
-	ID32 _30;                 // _30
-	ID32 _3C;                 // _3C
-	short m_attribute;        // _48   /* name from PikDecomp */
-	Vector3f m_position;      // _4C   /* name from PikDecomp */
-	u8 m_hasCollPart;         // _58   /* name from PikDecomp */
-	SysShape::Model* m_model; // _5C
-	u32 _60;                  // _60
+	float _18;                    // _18   /* PikDecomp calls this `radius1`. */
+	float _1C;                    // _1C   /* PikDecomp calls this `radius`. */
+	Vector3f _20;                 // _20   /* PikDecomp calls this `Offset`. SodiumDecomp calls
+	                              // this `size_0x20`. :shrug: */
+	u32 m_jointIndex;             // _2C
+	ID32 _30;                     // _30
+	ID32 _3C;                     // _3C
+	short m_attribute;            // _48   /* name from PikDecomp */
+	Vector3f m_position;          // _4C   /* name from PikDecomp */
+	u8 m_hasCollPart;             // _58   /* name from PikDecomp */
+	SysShape::MtxObject* m_model; // _5C
+	u32 _60;                      // _60
 };
 
 struct CollPartMgr : public MonoObjectMgr<CollPart> {
-	void createOne(SysShape::MtxObject*);
+	CollPart* createOne(SysShape::MtxObject*);
 };
 
 struct MouthCollPart : public CollPart {
@@ -88,7 +116,7 @@ struct MouthCollPart : public CollPart {
 
 	CollPart* _64;        // _64
 	SysShape::Joint* _68; // _68
-	u8 _6C[4];            // _6C
+	u8 _6C;               // _6C
 };
 
 struct MouthSlots {
@@ -130,9 +158,9 @@ struct CollTree {
 	void attachModel(SysShape::MtxObject*);
 	void createFromFactory(SysShape::MtxObject*, CollPartFactory*, CollPartMgr*);
 	void createSingleSphere(SysShape::MtxObject*, int, Sys::Sphere&, CollPartMgr*);
-	void checkCollision(CollTree*, CollPart**, CollPart**, Vector3f&);
+	bool checkCollision(CollTree*, CollPart**, CollPart**, Vector3f&);
 	void checkCollision(Sys::Sphere&, IDelegate1<CollPart*>*);
-	void checkCollisionRec(CollPart*, CollPart*, CollPart**, CollPart**, Vector3f&);
+	bool checkCollisionRec(CollPart*, CollPart*, CollPart**, CollPart**, Vector3f&);
 	void checkCollisionMulti(CollTree*, IDelegate3<CollPart*, CollPart*, Vector3f&>*);
 	void findCollPart(FindCollPartArg&);
 	void getBoundingSphere(Sys::Sphere&);
@@ -141,6 +169,9 @@ struct CollTree {
 	void release();
 	void releaseRec(CollPart*);
 	void update();
+
+	// Unused/inlined:
+	void checkCollisionMultiRec(CollPart*, CollPart*, IDelegate3<CollPart*, CollPart*, Vector3f&>*);
 
 	CollPart* m_part;   // _00
 	CollPartMgr* m_mgr; // _04

@@ -86,6 +86,22 @@ struct Cell {
 };
 
 struct CellObject : public TPositionObject {
+	inline CellObject()
+	    : TPositionObject()
+	    , m_sweepPruneObject()
+	// , m_cellLegs()
+	// , m_collisionBuffer()
+	{
+		m_cellLegs[0].m_flags  = 1;
+		m_cellLegs[1].m_flags  = 0;
+		m_cellLegs[2].m_flags  = 0;
+		m_cellLegs[3].m_flags  = 0;
+		m_cellLegs[0].m_object = this;
+		m_cellLegs[1].m_object = this;
+		m_cellLegs[2].m_object = this;
+		m_cellLegs[3].m_object = this;
+		m_passID               = 0;
+	}
 	virtual void checkCollision(CellObject*);
 	virtual void getBoundingSphere(Sys::Sphere&);
 	virtual bool collisionUpdatable();
@@ -101,15 +117,16 @@ struct CellObject : public TPositionObject {
 	void resolveUsingBuffer();
 
 	SweepPrune::Object m_sweepPruneObject; // _04
-	union {
-		CellLeg arrayView[4];
-		struct {
-			CellLeg X1;
-			CellLeg X2;
-			CellLeg Z1;
-			CellLeg Z2;
-		} structView;
-	} m_cellLegs;                      // _54
+	// union {
+	// 	CellLeg arrayView[4];
+	// 	struct {
+	// 		CellLeg X1;
+	// 		CellLeg X2;
+	// 		CellLeg Z1;
+	// 		CellLeg Z2;
+	// 	} structView;
+	// } m_cellLegs;                      // _54
+	CellLeg m_cellLegs[4];             // _54
 	u32 m_passID;                      // _A4
 	CollisionBuffer m_collisionBuffer; // _A8
 };
@@ -143,7 +160,7 @@ struct CellPyramid : public SweepPrune::World {
 	void resolveCollision();
 	void clearAllCollBuffer();
 	void clear();
-	void calcExtent(Sys::Sphere&, int&, Recti&) const;
+	void calcExtent(Sys::Sphere&, int&, Recti&);
 	void entry(CellObject*, Sys::Sphere&);
 	void entry(CellObject*, Sys::Sphere&, int&, Recti&);
 	void create(BoundBox2d&, float);
@@ -211,6 +228,7 @@ struct CellIterator {
 };
 
 extern CellPyramid* cellMgr;
+extern CellPyramid* platCellMgr;
 } // namespace Game
 
 #endif

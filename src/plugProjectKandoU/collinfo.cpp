@@ -1,15 +1,23 @@
 #include "CNode.h"
 #include "CollInfo.h"
+#include "Dolphin/mtx.h"
+#include "Dolphin/stl.h"
+#include "JSystem/J3D/J3DJoint.h"
+#include "JSystem/JKR/JKRDvdRipper.h"
 #include "JSystem/JUT/JUTException.h"
+#include "mapCode.h"
+#include "Matrixf.h"
+#include "Platform.h"
+#include "PlatAttacher.h"
 #include "Sys/OBB.h"
 #include "Sys/OBBTree.h"
 #include "Sys/GridDivider.h"
 #include "Sys/TriIndexList.h"
+#include "Sys/TriangleTable.h"
+#include "SysShape/Joint.h"
+#include "stream.h"
 #include "types.h"
-#include "Platform.h"
-#include "PlatAttacher.h"
-#include "mapCode.h"
-#include "Matrixf.h"
+#include "Vector3.h"
 
 /*
     Generated from dpostproc
@@ -295,6 +303,7 @@
 */
 
 /*
+ * __ct__8PlatformFv
  * --INFO--
  * Address:	801336A8
  * Size:	000044
@@ -303,26 +312,17 @@ Platform::Platform()
     : CNode()
     , m_triDivider(nullptr)
 {
-	/*
-	.loc_0x0:
-	  stwu      r1, -0x10(r1)
-	  mflr      r0
-	  stw       r0, 0x14(r1)
-	  stw       r31, 0xC(r1)
-	  mr        r31, r3
-	  bl        0x2DDCD4
-	  lis       r3, 0x804B
-	  li        r0, 0
-	  addi      r4, r3, 0x58
-	  mr        r3, r31
-	  stw       r4, 0x0(r31)
-	  stw       r0, 0x18(r31)
-	  lwz       r31, 0xC(r1)
-	  lwz       r0, 0x14(r1)
-	  mtlr      r0
-	  addi      r1, r1, 0x10
-	  blr
-	*/
+}
+
+/*
+ * --INFO--
+ * Address:	........
+ * Size:	000008
+ */
+void Platform::setTriDivider(Sys::TriDivider* triDivider)
+{
+	// UNUSED FUNCTION
+	m_triDivider = (Sys::OBBTree*)triDivider;
 }
 
 /*
@@ -330,14 +330,19 @@ Platform::Platform()
  * Address:	801336EC
  * Size:	000008
  */
-Sys::OBBTree* Platform::getTriDivider()
+Sys::TriDivider* Platform::getTriDivider() { return m_triDivider; }
+
+/*
+ * read__8PlatformFR6Stream
+ * --INFO--
+ * Address:	........
+ * Size:	000068
+ */
+void Platform::read(Stream& input)
 {
-	return m_triDivider;
-	/*
-	.loc_0x0:
-	  lwz       r3, 0x18(r3)
-	  blr
-	*/
+	// UNUSED FUNCTION
+	setTriDivider(new Sys::OBBTree());
+	getTriDivider()->read(input);
 }
 
 /*
@@ -347,31 +352,10 @@ Sys::OBBTree* Platform::getTriDivider()
  */
 void Platform::setMapCodeAll(MapCode::Code& code)
 {
-	for (int i = 0; i < m_triDivider->m_triangleTable->m_count; i++) {
-		m_triDivider->m_triangleTable->m_objects[i].m_code = code;
+	Sys::TriangleTable* triTable = m_triDivider->m_triangleTable;
+	for (int i = 0; i < triTable->m_count; i++) {
+		triTable->m_objects[i].m_code.m_contents = code.m_contents;
 	}
-	/*
-	.loc_0x0:
-	  lwz       r3, 0x18(r3)
-	  li        r8, 0
-	  li        r6, 0
-	  lwz       r7, 0x1C(r3)
-	  b         .loc_0x2C
-
-	.loc_0x14:
-	  lbz       r5, 0x0(r4)
-	  addi      r0, r6, 0x5C
-	  lwz       r3, 0x24(r7)
-	  addi      r6, r6, 0x60
-	  addi      r8, r8, 0x1
-	  stbx      r5, r3, r0
-
-	.loc_0x2C:
-	  lwz       r0, 0x1C(r7)
-	  cmpw      r8, r0
-	  blt+      .loc_0x14
-	  blr
-	*/
 }
 
 /*
@@ -379,54 +363,37 @@ void Platform::setMapCodeAll(MapCode::Code& code)
  * Address:	80133730
  * Size:	000084
  */
-void Platform::clone(Matrixf& matrix)
+Platform* Platform::clone(Matrixf& matrix)
 {
-	/*
-	stwu     r1, -0x20(r1)
-	mflr     r0
-	stw      r0, 0x24(r1)
-	stw      r31, 0x1c(r1)
-	stw      r30, 0x18(r1)
-	mr       r30, r4
-	stw      r29, 0x14(r1)
-	mr       r29, r3
-	li       r3, 0x1c
-	bl       __nw__FUl
-	or.      r31, r3, r3
-	beq      lbl_80133778
-	bl       __ct__5CNodeFv
-	lis      r3, __vt__8Platform@ha
-	li       r0, 0
-	addi     r3, r3, __vt__8Platform@l
-	stw      r3, 0(r31)
-	stw      r0, 0x18(r31)
-
-lbl_80133778:
-	lwz      r3, 0x18(r29)
-	mr       r4, r30
-	lwz      r12, 0(r3)
-	lwz      r12, 0x28(r12)
-	mtctr    r12
-	bctrl
-	stw      r3, 0x18(r31)
-	mr       r3, r31
-	lwz      r0, 0x24(r1)
-	lwz      r31, 0x1c(r1)
-	lwz      r30, 0x18(r1)
-	lwz      r29, 0x14(r1)
-	mtlr     r0
-	addi     r1, r1, 0x20
-	blr
-	*/
+	Platform* copy     = new Platform();
+	copy->m_triDivider = (Sys::OBBTree*)m_triDivider->clone(matrix);
+	return copy;
 }
 
 /*
+ * load__8PlatformFPc
+ * --INFO--
+ * Address:	........
+ * Size:	0000E0
+ */
+void Platform::load(char* path)
+{
+	// UNUSED FUNCTION
+}
+
+/*
+ * load__8PlatformFP13JKRFileLoaderPc
  * --INFO--
  * Address:	801337B4
  * Size:	0000AC
  */
-void Platform::load(JKRFileLoader*, char*)
+void Platform::load(JKRFileLoader* loader, char* path)
 {
+	void* data = JKRFileLoader::getGlbResource(path, loader);
+	JUT_ASSERTLINE(236, data != nullptr, "platform %s not found !\n", path);
+	RamStream input(data, -1);
+	read(input);
+
 	/*
 	stwu     r1, -0x430(r1)
 	mflr     r0
@@ -486,427 +453,124 @@ lbl_80133848:
  * Size:	000014
  */
 PlatAttacher::PlatAttacher()
+    : m_numShapes(0)
+    , m_jointIndices(nullptr)
+    , m_platforms(nullptr)
 {
-	/*
-	li       r0, 0
-	stw      r0, 0(r3)
-	stw      r0, 4(r3)
-	stw      r0, 8(r3)
-	blr
-	*/
 }
 
 /*
+ * setMapCodeAll__12PlatAttacherFRQ27MapCode4Code
  * --INFO--
  * Address:	80133874
  * Size:	000064
  */
-void PlatAttacher::setMapCodeAll(MapCode::Code&)
+void PlatAttacher::setMapCodeAll(MapCode::Code& code)
 {
-	/*
-	li       r11, 0
-	li       r10, 0
-	b        lbl_801338C8
-
-lbl_80133880:
-	lwz      r5, 8(r3)
-	addi     r0, r10, 0x18
-	li       r7, 0
-	lwzx     r5, r5, r0
-	mr       r9, r7
-	lwz      r8, 0x1c(r5)
-	b        lbl_801338B4
-
-lbl_8013389C:
-	lbz      r6, 0(r4)
-	addi     r0, r9, 0x5c
-	lwz      r5, 0x24(r8)
-	addi     r9, r9, 0x60
-	addi     r7, r7, 1
-	stbx     r6, r5, r0
-
-lbl_801338B4:
-	lwz      r0, 0x1c(r8)
-	cmpw     r7, r0
-	blt      lbl_8013389C
-	addi     r10, r10, 0x1c
-	addi     r11, r11, 1
-
-lbl_801338C8:
-	lwz      r0, 0(r3)
-	cmpw     r11, r0
-	blt      lbl_80133880
-	blr
-	*/
+	for (int shapeIndex = 0; shapeIndex < m_numShapes; shapeIndex++) {
+		m_platforms[shapeIndex].setMapCodeAll(code);
+	}
 }
 
 /*
+ * alloc__12PlatAttacherFiPUs
+ * --INFO--
+ * Address:	........
+ * Size:	000178
+ */
+void PlatAttacher::alloc(int, unsigned short*)
+{
+	// UNUSED FUNCTION
+}
+
+/*
+ * __dt__8PlatformFv
  * --INFO--
  * Address:	801338D8
  * Size:	000060
  */
-Platform::~Platform()
-{
-	/*
-	stwu     r1, -0x10(r1)
-	mflr     r0
-	stw      r0, 0x14(r1)
-	stw      r31, 0xc(r1)
-	mr       r31, r4
-	stw      r30, 8(r1)
-	or.      r30, r3, r3
-	beq      lbl_8013391C
-	lis      r5, __vt__8Platform@ha
-	li       r4, 0
-	addi     r0, r5, __vt__8Platform@l
-	stw      r0, 0(r30)
-	bl       __dt__5CNodeFv
-	extsh.   r0, r31
-	ble      lbl_8013391C
-	mr       r3, r30
-	bl       __dl__FPv
+Platform::~Platform() { }
 
-lbl_8013391C:
-	lwz      r0, 0x14(r1)
-	mr       r3, r30
-	lwz      r31, 0xc(r1)
-	lwz      r30, 8(r1)
-	mtlr     r0
-	addi     r1, r1, 0x10
-	blr
-	*/
+/*
+ * write__12PlatAttacherFR6Stream
+ * --INFO--
+ * Address:	........
+ * Size:	0000D8
+ */
+void PlatAttacher::write(Stream& output)
+{
+	// UNUSED FUNCTION
 }
 
 /*
+ * read__12PlatAttacherFR6Stream
  * --INFO--
  * Address:	80133938
  * Size:	000190
  */
-void PlatAttacher::read(Stream&)
+void PlatAttacher::read(Stream& input)
 {
-	/*
-	stwu     r1, -0x20(r1)
-	mflr     r0
-	stw      r0, 0x24(r1)
-	stmw     r26, 8(r1)
-	mr       r31, r4
-	mr       r30, r3
-	mr       r3, r31
-	bl       readInt__6StreamFv
-	stw      r3, 0(r30)
-	lwz      r0, 0(r30)
-	slwi     r3, r0, 1
-	bl       __nwa__FUl
-	stw      r3, 4(r30)
-	li       r29, 0
-	li       r28, 0
-	b        lbl_80133990
-
-lbl_80133978:
-	mr       r3, r31
-	bl       readShort__6StreamFv
-	lwz      r4, 4(r30)
-	addi     r29, r29, 1
-	sthx     r3, r4, r28
-	addi     r28, r28, 2
-
-lbl_80133990:
-	lwz      r27, 0(r30)
-	cmpw     r29, r27
-	blt      lbl_80133978
-	mulli    r3, r27, 0x1c
-	addi     r3, r3, 0x10
-	bl       __nwa__FUl
-	lis      r4, __ct__8PlatformFv@ha
-	lis      r5, __dt__8PlatformFv@ha
-	addi     r4, r4, __ct__8PlatformFv@l
-	mr       r7, r27
-	addi     r5, r5, __dt__8PlatformFv@l
-	li       r6, 0x1c
-	bl       __construct_new_array
-	stw      r3, 8(r30)
-	li       r3, 0x50
-	bl       __nw__FUl
-	or.      r29, r3, r3
-	beq      lbl_80133A48
-	bl       __ct__5CNodeFv
-	lis      r4, __vt__16GenericContainer@ha
-	lis      r3, "__vt__23Container<10Vector3<f>>"@ha
-	addi     r0, r4, __vt__16GenericContainer@l
-	lis      r4, "__vt__28ArrayContainer<10Vector3<f>>"@ha
-	stw      r0, 0(r29)
-	addi     r0, r3, "__vt__23Container<10Vector3<f>>"@l
-	lis      r3, __vt__Q23Sys11VertexTable@ha
-	li       r6, 0
-	stw      r0, 0(r29)
-	addi     r5, r4, "__vt__28ArrayContainer<10Vector3<f>>"@l
-	li       r4, 1
-	addi     r0, r3, __vt__Q23Sys11VertexTable@l
-	stb      r6, 0x18(r29)
-	lfs      f1, lbl_80518208@sda21(r2)
-	stw      r5, 0(r29)
-	lfs      f0, lbl_8051820C@sda21(r2)
-	stb      r4, 0x18(r29)
-	stw      r6, 0x20(r29)
-	stw      r6, 0x1c(r29)
-	stw      r6, 0x24(r29)
-	stw      r0, 0(r29)
-	stfs     f1, 0x28(r29)
-	stfs     f1, 0x2c(r29)
-	stfs     f1, 0x30(r29)
-	stfs     f0, 0x34(r29)
-	stfs     f0, 0x38(r29)
-	stfs     f0, 0x3c(r29)
-
-lbl_80133A48:
-	mr       r3, r29
-	mr       r4, r31
-	lwz      r12, 0(r29)
-	lwz      r12, 0x38(r12)
-	mtctr    r12
-	bctrl
-	li       r26, 0
-	li       r27, 0
-	b        lbl_80133AA8
-
-lbl_80133A6C:
-	li       r3, 0x130
-	bl       __nw__FUl
-	or.      r28, r3, r3
-	beq      lbl_80133A84
-	bl       __ct__Q23Sys7OBBTreeFv
-	mr       r28, r3
-
-lbl_80133A84:
-	mr       r3, r28
-	mr       r4, r31
-	mr       r5, r29
-	bl       readWithoutVerts__Q23Sys7OBBTreeFR6StreamRQ23Sys11VertexTable
-	lwz      r3, 8(r30)
-	addi     r0, r27, 0x18
-	addi     r27, r27, 0x1c
-	addi     r26, r26, 1
-	stwx     r28, r3, r0
-
-lbl_80133AA8:
-	lwz      r0, 0(r30)
-	cmpw     r26, r0
-	blt      lbl_80133A6C
-	lmw      r26, 8(r1)
-	lwz      r0, 0x24(r1)
-	mtlr     r0
-	addi     r1, r1, 0x20
-	blr
-	*/
+	m_numShapes    = input.readInt();
+	m_jointIndices = new u16[m_numShapes];
+	for (int i = 0; i < m_numShapes; i++) {
+		m_jointIndices[i] = input.readShort();
+	}
+	m_platforms             = new Platform[m_numShapes];
+	Sys::VertexTable* table = new Sys::VertexTable();
+	table->read(input);
+	for (int i = 0; i < m_numShapes; i++) {
+		Sys::OBBTree* tree = new Sys::OBBTree();
+		tree->readWithoutVerts(input, *table);
+		m_platforms[i].m_triDivider = tree;
+	}
 }
 
 /*
+ * read__28ArrayContainer<10Vector3<f>>FR6Stream
  * --INFO--
  * Address:	80133AC8
  * Size:	0000B0
  */
-template <> void ArrayContainer<Vector3f>::read(Stream&)
-{
-	/*
-	stwu     r1, -0x20(r1)
-	mflr     r0
-	stw      r0, 0x24(r1)
-	stw      r31, 0x1c(r1)
-	stw      r30, 0x18(r1)
-	stw      r29, 0x14(r1)
-	mr       r29, r4
-	stw      r28, 0x10(r1)
-	mr       r28, r3
-	mr       r3, r29
-	bl       readInt__6StreamFv
-	stw      r3, 0x20(r28)
-	mr       r3, r28
-	lwz      r12, 0(r28)
-	lwz      r4, 0x20(r28)
-	lwz      r12, 0x3c(r12)
-	mtctr    r12
-	bctrl
-	lwz      r0, 0x20(r28)
-	li       r30, 0
-	li       r31, 0
-	stw      r0, 0x1c(r28)
-	b        lbl_80133B4C
-
-lbl_80133B24:
-	mr       r3, r28
-	lwz      r0, 0x24(r28)
-	lwz      r12, 0(r28)
-	mr       r4, r29
-	add      r5, r0, r31
-	lwz      r12, 0x30(r12)
-	mtctr    r12
-	bctrl
-	addi     r31, r31, 0xc
-	addi     r30, r30, 1
-
-lbl_80133B4C:
-	lwz      r0, 0x20(r28)
-	cmpw     r30, r0
-	blt      lbl_80133B24
-	lwz      r0, 0x24(r1)
-	lwz      r31, 0x1c(r1)
-	lwz      r30, 0x18(r1)
-	lwz      r29, 0x14(r1)
-	lwz      r28, 0x10(r1)
-	mtlr     r0
-	addi     r1, r1, 0x20
-	blr
-	*/
-}
+// template <> void ArrayContainer<Vector3f>::read(Stream&) {}
 
 /*
+ * readObject__28ArrayContainer<10Vector3<f>>FR6StreamR10Vector3<f>
  * --INFO--
  * Address:	80133B78
  * Size:	000004
  */
-template <> void ArrayContainer<Vector3f>::readObject(Stream&, Vector3f&) { }
+// template <> void ArrayContainer<Vector3f>::readObject(Stream&, Vector3f&) { }
 
 /*
+ * alloc__28ArrayContainer<10Vector3<f>>Fi
  * --INFO--
  * Address:	80133B7C
  * Size:	000068
  */
-template <> void ArrayContainer<Vector3f>::alloc(int)
-{
-	/*
-	stwu     r1, -0x10(r1)
-	mflr     r0
-	stw      r0, 0x14(r1)
-	stw      r31, 0xc(r1)
-	mr       r31, r4
-	stw      r30, 8(r1)
-	mr       r30, r3
-	mulli    r3, r31, 0xc
-	addi     r3, r3, 0x10
-	bl       __nwa__FUl
-	lis      r4, "__ct__10Vector3<f>Fv"@ha
-	mr       r7, r31
-	addi     r4, r4, "__ct__10Vector3<f>Fv"@l
-	li       r5, 0
-	li       r6, 0xc
-	bl       __construct_new_array
-	stw      r3, 0x24(r30)
-	li       r0, 0
-	stw      r31, 0x20(r30)
-	stw      r0, 0x1c(r30)
-	lwz      r31, 0xc(r1)
-	lwz      r30, 8(r1)
-	lwz      r0, 0x14(r1)
-	mtlr     r0
-	addi     r1, r1, 0x10
-	blr
-	*/
-}
+// template <> void ArrayContainer<Vector3f>::alloc(int) {}
 
 /*
+ * __dt__28ArrayContainer<10Vector3<f>>Fv
  * --INFO--
  * Address:	80133BE4
  * Size:	000080
  */
-template <> ArrayContainer<Vector3f>::~ArrayContainer()
-{
-	/*
-	stwu     r1, -0x10(r1)
-	mflr     r0
-	stw      r0, 0x14(r1)
-	stw      r31, 0xc(r1)
-	mr       r31, r4
-	stw      r30, 8(r1)
-	or.      r30, r3, r3
-	beq      lbl_80133C48
-	lis      r4, "__vt__28ArrayContainer<10Vector3<f>>"@ha
-	addi     r0, r4, "__vt__28ArrayContainer<10Vector3<f>>"@l
-	stw      r0, 0(r30)
-	beq      lbl_80133C38
-	lis      r4, "__vt__23Container<10Vector3<f>>"@ha
-	addi     r0, r4, "__vt__23Container<10Vector3<f>>"@l
-	stw      r0, 0(r30)
-	beq      lbl_80133C38
-	lis      r5, __vt__16GenericContainer@ha
-	li       r4, 0
-	addi     r0, r5, __vt__16GenericContainer@l
-	stw      r0, 0(r30)
-	bl       __dt__5CNodeFv
-
-lbl_80133C38:
-	extsh.   r0, r31
-	ble      lbl_80133C48
-	mr       r3, r30
-	bl       __dl__FPv
-
-lbl_80133C48:
-	lwz      r0, 0x14(r1)
-	mr       r3, r30
-	lwz      r31, 0xc(r1)
-	lwz      r30, 8(r1)
-	mtlr     r0
-	addi     r1, r1, 0x10
-	blr
-	*/
-}
+// template <> ArrayContainer<Vector3f>::~ArrayContainer() {}
 
 /*
+ * __dt__23Container<10Vector3<f>>Fv
  * --INFO--
  * Address:	80133C64
  * Size:	000070
  */
-template <> Container<Vector3f>::~Container()
-{
-	/*
-	stwu     r1, -0x10(r1)
-	mflr     r0
-	stw      r0, 0x14(r1)
-	stw      r31, 0xc(r1)
-	mr       r31, r4
-	stw      r30, 8(r1)
-	or.      r30, r3, r3
-	beq      lbl_80133CB8
-	lis      r4, "__vt__23Container<10Vector3<f>>"@ha
-	addi     r0, r4, "__vt__23Container<10Vector3<f>>"@l
-	stw      r0, 0(r30)
-	beq      lbl_80133CA8
-	lis      r5, __vt__16GenericContainer@ha
-	li       r4, 0
-	addi     r0, r5, __vt__16GenericContainer@l
-	stw      r0, 0(r30)
-	bl       __dt__5CNodeFv
-
-lbl_80133CA8:
-	extsh.   r0, r31
-	ble      lbl_80133CB8
-	mr       r3, r30
-	bl       __dl__FPv
-
-lbl_80133CB8:
-	lwz      r0, 0x14(r1)
-	mr       r3, r30
-	lwz      r31, 0xc(r1)
-	lwz      r30, 8(r1)
-	mtlr     r0
-	addi     r1, r1, 0x10
-	blr
-	*/
-}
+// template <> Container<Vector3f>::~Container() {}
 
 /*
  * --INFO--
  * Address:	80133CD4
  * Size:	000008
  */
-int PlatAttacher::getNumShapes()
-{
-	return m_numShapes;
-	/*
-	.loc_0x0:
-	  lwz       r3, 0x0(r3)
-	  blr
-	*/
-}
+int PlatAttacher::getNumShapes() { return m_numShapes; }
 
 /*
  * --INFO--
@@ -918,46 +582,9 @@ u16 PlatAttacher::getJointIndex(int i)
 	// #ifdef MATCHING
 	// #line 311 // Will be 312 on assert line
 	// #endif
-	P2ASSERTLINE(312, (-1 < i) && (m_numShapes < i));
+	// P2ASSERTLINE(312, (-1 < i) && (m_numShapes < i));
+	P2ASSERTBOUNDSLINE(312, 0, i, m_numShapes);
 	return m_jointIndices[i];
-	/*
-	.loc_0x0:
-	  stwu      r1, -0x10(r1)
-	  mflr      r0
-	  stw       r0, 0x14(r1)
-	  stw       r31, 0xC(r1)
-	  mr.       r31, r4
-	  stw       r30, 0x8(r1)
-	  mr        r30, r3
-	  li        r3, 0
-	  blt-      .loc_0x34
-	  lwz       r0, 0x0(r30)
-	  cmpw      r31, r0
-	  bge-      .loc_0x34
-	  li        r3, 0x1
-
-	.loc_0x34:
-	  rlwinm.   r0,r3,0,24,31
-	  bne-      .loc_0x58
-	  lis       r3, 0x8048
-	  lis       r5, 0x8048
-	  subi      r3, r3, 0x3A60
-	  li        r4, 0x138
-	  subi      r5, r5, 0x3A34
-	  crclr     6, 0x6
-	  bl        -0x1096F0
-
-	.loc_0x58:
-	  lwz       r3, 0x4(r30)
-	  rlwinm    r0,r31,1,0,30
-	  lhzx      r3, r3, r0
-	  lwz       r31, 0xC(r1)
-	  lwz       r30, 0x8(r1)
-	  lwz       r0, 0x14(r1)
-	  mtlr      r0
-	  addi      r1, r1, 0x10
-	  blr
-	*/
 }
 
 /*
@@ -968,57 +595,46 @@ u16 PlatAttacher::getJointIndex(int i)
 Platform* PlatAttacher::getPlatform(int i)
 {
 	// Only 6 lines difference from the previous assert!
-	P2ASSERTLINE(318, (-1 < i) && (m_numShapes < i));
+	P2ASSERTBOUNDSLINE(318, 0, i, m_numShapes);
 	return &m_platforms[i];
-	/*
-	.loc_0x0:
-	  stwu      r1, -0x10(r1)
-	  mflr      r0
-	  stw       r0, 0x14(r1)
-	  stw       r31, 0xC(r1)
-	  mr.       r31, r4
-	  stw       r30, 0x8(r1)
-	  mr        r30, r3
-	  li        r3, 0
-	  blt-      .loc_0x34
-	  lwz       r0, 0x0(r30)
-	  cmpw      r31, r0
-	  bge-      .loc_0x34
-	  li        r3, 0x1
-
-	.loc_0x34:
-	  rlwinm.   r0,r3,0,24,31
-	  bne-      .loc_0x58
-	  lis       r3, 0x8048
-	  lis       r5, 0x8048
-	  subi      r3, r3, 0x3A60
-	  li        r4, 0x13E
-	  subi      r5, r5, 0x3A34
-	  crclr     6, 0x6
-	  bl        -0x10976C
-
-	.loc_0x58:
-	  mulli     r0, r31, 0x1C
-	  lwz       r3, 0x8(r30)
-	  add       r3, r3, r0
-	  lwz       r31, 0xC(r1)
-	  lwz       r30, 0x8(r1)
-	  lwz       r0, 0x14(r1)
-	  mtlr      r0
-	  addi      r1, r1, 0x10
-	  blr
-	*/
 }
+
+/*
+ * draw__12PlatAttacherFR8Graphicsi
+ * --INFO--
+ * Address:	........
+ * Size:	000004
+ */
+void PlatAttacher::draw(Graphics& gfx, int p2)
+{
+	// UNUSED FUNCTION
+}
+
+/*
+ * __ct__11AgePlatformFv
+ * --INFO--
+ * Address:	........
+ * Size:	0000C8
+ */
+// AgePlatform::AgePlatform()
+// {
+// 	// UNUSED FUNCTION
+// }
 
 namespace Sys {
 
 /*
+ * __dt__Q23Sys11GridDividerFv
  * --INFO--
  * Address:	80133DD4
  * Size:	000090
  */
 GridDivider::~GridDivider()
 {
+	// TODO: I think GridInfo is involved here, given the order of subsquent generated dtors.
+	if (m_triIndexLists != nullptr) {
+		delete[] m_triIndexLists;
+	}
 	/*
 	stwu     r1, -0x10(r1)
 	mflr     r0
@@ -1066,179 +682,94 @@ lbl_80133E48:
 }
 
 /*
+ * __dt__Q23Sys12TriIndexListFv
+ * @generated
  * --INFO--
  * Address:	80133E64
  * Size:	0000A0
  */
-TriIndexList::~TriIndexList()
-{
-	/*
-	stwu     r1, -0x10(r1)
-	mflr     r0
-	stw      r0, 0x14(r1)
-	stw      r31, 0xc(r1)
-	mr       r31, r4
-	stw      r30, 8(r1)
-	or.      r30, r3, r3
-	beq      lbl_80133EE8
-	lis      r4, __vt__Q23Sys12TriIndexList@ha
-	addi     r0, r4, __vt__Q23Sys12TriIndexList@l
-	stw      r0, 0(r30)
-	beq      lbl_80133ED8
-	lis      r4, __vt__Q23Sys9IndexList@ha
-	addi     r0, r4, __vt__Q23Sys9IndexList@l
-	stw      r0, 0(r30)
-	beq      lbl_80133ED8
-	lis      r4, "__vt__17ArrayContainer<i>"@ha
-	addi     r0, r4, "__vt__17ArrayContainer<i>"@l
-	stw      r0, 0(r30)
-	beq      lbl_80133ED8
-	lis      r4, "__vt__12Container<i>"@ha
-	addi     r0, r4, "__vt__12Container<i>"@l
-	stw      r0, 0(r30)
-	beq      lbl_80133ED8
-	lis      r5, __vt__16GenericContainer@ha
-	li       r4, 0
-	addi     r0, r5, __vt__16GenericContainer@l
-	stw      r0, 0(r30)
-	bl       __dt__5CNodeFv
-
-lbl_80133ED8:
-	extsh.   r0, r31
-	ble      lbl_80133EE8
-	mr       r3, r30
-	bl       __dl__FPv
-
-lbl_80133EE8:
-	lwz      r0, 0x14(r1)
-	mr       r3, r30
-	lwz      r31, 0xc(r1)
-	lwz      r30, 8(r1)
-	mtlr     r0
-	addi     r1, r1, 0x10
-	blr
-	*/
-}
+// TriIndexList::~TriIndexList()
+// {
+// }
 
 /*
+ * __dt__Q23Sys8GridInfoFv
+ * --INFO--
+ * Address:	........
+ * Size:	00005C
+ */
+// GridInfo::~GridInfo()
+// {
+// 	// UNUSED FUNCTION
+// }
+
+/*
+ * __dt__Q23Sys10TriDividerFv
  * --INFO--
  * Address:	80133F04
  * Size:	000060
  */
-TriDivider::~TriDivider()
-{
-	/*
-	stwu     r1, -0x10(r1)
-	mflr     r0
-	stw      r0, 0x14(r1)
-	stw      r31, 0xc(r1)
-	mr       r31, r4
-	stw      r30, 8(r1)
-	or.      r30, r3, r3
-	beq      lbl_80133F48
-	lis      r5, __vt__Q23Sys10TriDivider@ha
-	li       r4, 0
-	addi     r0, r5, __vt__Q23Sys10TriDivider@l
-	stw      r0, 0(r30)
-	bl       __dt__5CNodeFv
-	extsh.   r0, r31
-	ble      lbl_80133F48
-	mr       r3, r30
-	bl       __dl__FPv
+// TriDivider::~TriDivider()
+// {
+// 	/*
+// 	stwu     r1, -0x10(r1)
+// 	mflr     r0
+// 	stw      r0, 0x14(r1)
+// 	stw      r31, 0xc(r1)
+// 	mr       r31, r4
+// 	stw      r30, 8(r1)
+// 	or.      r30, r3, r3
+// 	beq      lbl_80133F48
+// 	lis      r5, __vt__Q23Sys10TriDivider@ha
+// 	li       r4, 0
+// 	addi     r0, r5, __vt__Q23Sys10TriDivider@l
+// 	stw      r0, 0(r30)
+// 	bl       __dt__5CNodeFv
+// 	extsh.   r0, r31
+// 	ble      lbl_80133F48
+// 	mr       r3, r30
+// 	bl       __dl__FPv
 
-lbl_80133F48:
-	lwz      r0, 0x14(r1)
-	mr       r3, r30
-	lwz      r31, 0xc(r1)
-	lwz      r30, 8(r1)
-	mtlr     r0
-	addi     r1, r1, 0x10
-	blr
-	*/
-}
+// lbl_80133F48:
+// 	lwz      r0, 0x14(r1)
+// 	mr       r3, r30
+// 	lwz      r31, 0xc(r1)
+// 	lwz      r30, 8(r1)
+// 	mtlr     r0
+// 	addi     r1, r1, 0x10
+// 	blr
+// 	*/
+// }
 
 /*
+ * __dt__Q23Sys7OBBTreeFv
  * --INFO--
  * Address:	80133F64
  * Size:	0000F8
  */
-OBBTree::~OBBTree()
-{
-	/*
-	stwu     r1, -0x10(r1)
-	mflr     r0
-	stw      r0, 0x14(r1)
-	stw      r31, 0xc(r1)
-	mr       r31, r4
-	stw      r30, 8(r1)
-	or.      r30, r3, r3
-	beq      lbl_80134040
-	lis      r3, __vt__Q23Sys7OBBTree@ha
-	addic.   r0, r30, 0x20
-	addi     r0, r3, __vt__Q23Sys7OBBTree@l
-	stw      r0, 0(r30)
-	beq      lbl_80134010
-	lis      r4, __vt__Q23Sys3OBB@ha
-	addic.   r3, r30, 0xf8
-	addi     r0, r4, __vt__Q23Sys3OBB@l
-	stw      r0, 0x20(r30)
-	beq      lbl_80134004
-	lis      r4, __vt__Q23Sys12TriIndexList@ha
-	cmplwi   r3, 0
-	addi     r0, r4, __vt__Q23Sys12TriIndexList@l
-	stw      r0, 0xf8(r30)
-	beq      lbl_80134004
-	lis      r4, __vt__Q23Sys9IndexList@ha
-	addi     r0, r4, __vt__Q23Sys9IndexList@l
-	stw      r0, 0xf8(r30)
-	beq      lbl_80134004
-	lis      r4, "__vt__17ArrayContainer<i>"@ha
-	addi     r0, r4, "__vt__17ArrayContainer<i>"@l
-	stw      r0, 0xf8(r30)
-	beq      lbl_80134004
-	lis      r4, "__vt__12Container<i>"@ha
-	addi     r0, r4, "__vt__12Container<i>"@l
-	stw      r0, 0xf8(r30)
-	beq      lbl_80134004
-	lis      r4, __vt__16GenericContainer@ha
-	addi     r0, r4, __vt__16GenericContainer@l
-	stw      r0, 0xf8(r30)
-	li       r4, 0
-	bl       __dt__5CNodeFv
-
-lbl_80134004:
-	addi     r3, r30, 0x20
-	li       r4, 0
-	bl       __dt__5CNodeFv
-
-lbl_80134010:
-	cmplwi   r30, 0
-	beq      lbl_80134030
-	lis      r4, __vt__Q23Sys10TriDivider@ha
-	mr       r3, r30
-	addi     r0, r4, __vt__Q23Sys10TriDivider@l
-	li       r4, 0
-	stw      r0, 0(r30)
-	bl       __dt__5CNodeFv
-
-lbl_80134030:
-	extsh.   r0, r31
-	ble      lbl_80134040
-	mr       r3, r30
-	bl       __dl__FPv
-
-lbl_80134040:
-	lwz      r0, 0x14(r1)
-	mr       r3, r30
-	lwz      r31, 0xc(r1)
-	lwz      r30, 8(r1)
-	mtlr     r0
-	addi     r1, r1, 0x10
-	blr
-	*/
-}
+OBBTree::~OBBTree() { }
 
 } // namespace Sys
+
+/*
+ * --INFO--
+ * Address:	........
+ * Size:	00006C
+ */
+// AgePlatform::directCreate(unsigned char*)
+// {
+// 	// UNUSED FUNCTION
+// }
+
+/*
+ * --INFO--
+ * Address:	........
+ * Size:	000040
+ */
+// AgePlatform::createGrid(int, int)
+// {
+// 	// UNUSED FUNCTION
+// }
 
 /*
  * --INFO--
@@ -1246,13 +777,9 @@ lbl_80134040:
  * Size:	000010
  */
 CollTree::CollTree()
+    : m_part(nullptr)
+    , m_mgr(nullptr)
 {
-	/*
-	li       r0, 0
-	stw      r0, 0(r3)
-	stw      r0, 4(r3)
-	blr
-	*/
 }
 
 /*
@@ -1260,8 +787,13 @@ CollTree::CollTree()
  * Address:	8013406C
  * Size:	000044
  */
-void CollTree::createFromFactory(SysShape::MtxObject*, CollPartFactory*, CollPartMgr*)
+void CollTree::createFromFactory(SysShape::MtxObject* mtxObject, CollPartFactory* factory, CollPartMgr* mgr)
 {
+	m_mgr = mgr;
+	if (factory != nullptr) {
+		factory->createInstance(mtxObject, mgr);
+		m_part = factory;
+	}
 	/*
 	.loc_0x0:
 	  stwu      r1, -0x10(r1)
@@ -1291,82 +823,21 @@ void CollTree::createFromFactory(SysShape::MtxObject*, CollPartFactory*, CollPar
  * Address:	801340B0
  * Size:	000104
  */
-void CollTree::createSingleSphere(SysShape::MtxObject*, int, Sys::Sphere&, CollPartMgr*)
+void CollTree::createSingleSphere(SysShape::MtxObject* mtxObject, int jointIndex, Sys::Sphere& sphere, CollPartMgr* mgr)
 {
-	/*
-	.loc_0x0:
-	  stwu      r1, -0x20(r1)
-	  mflr      r0
-	  cmplwi    r7, 0
-	  stw       r0, 0x24(r1)
-	  stw       r31, 0x1C(r1)
-	  mr        r31, r3
-	  stw       r30, 0x18(r1)
-	  mr        r30, r6
-	  stw       r29, 0x14(r1)
-	  mr        r29, r5
-	  stw       r28, 0x10(r1)
-	  mr        r28, r4
-	  stw       r7, 0x4(r3)
-	  beq-      .loc_0x70
-	  mr        r3, r7
-	  bl        0x49A0
-	  stw       r3, 0x0(r31)
-	  lwz       r0, 0x0(r31)
-	  cmplwi    r0, 0
-	  bne-      .loc_0x90
-	  lis       r3, 0x8048
-	  lis       r5, 0x8048
-	  subi      r3, r3, 0x3A60
-	  li        r4, 0x1BE
-	  subi      r5, r5, 0x3A28
-	  crclr     6, 0x6
-	  bl        -0x109AD8
-	  b         .loc_0x90
-
-	.loc_0x70:
-	  li        r3, 0x64
-	  bl        -0x110280
-	  mr.       r0, r3
-	  beq-      .loc_0x8C
-	  mr        r4, r28
-	  bl        0x2B40
-	  mr        r0, r3
-
-	.loc_0x8C:
-	  stw       r0, 0x0(r31)
-
-	.loc_0x90:
-	  lfs       f1, 0xC(r30)
-	  lis       r3, 0x726F
-	  lwz       r5, 0x0(r31)
-	  li        r0, 0
-	  lfs       f0, -0x6150(r2)
-	  addi      r4, r3, 0x6F74
-	  stfs      f1, 0x1C(r5)
-	  lfs       f1, 0xC(r30)
-	  lwz       r3, 0x0(r31)
-	  stfs      f1, 0x18(r3)
-	  lwz       r3, 0x0(r31)
-	  stfs      f0, 0x20(r3)
-	  stfs      f0, 0x24(r3)
-	  stfs      f0, 0x28(r3)
-	  lwz       r3, 0x0(r31)
-	  stw       r29, 0x2C(r3)
-	  lwz       r3, 0x0(r31)
-	  sth       r0, 0x48(r3)
-	  lwz       r3, 0x0(r31)
-	  addi      r3, r3, 0x30
-	  bl        0x2DF148
-	  lwz       r0, 0x24(r1)
-	  lwz       r31, 0x1C(r1)
-	  lwz       r30, 0x18(r1)
-	  lwz       r29, 0x14(r1)
-	  lwz       r28, 0x10(r1)
-	  mtlr      r0
-	  addi      r1, r1, 0x20
-	  blr
-	*/
+	m_mgr = mgr;
+	if (mgr != nullptr) {
+		m_part = mgr->createOne(mtxObject);
+		JUT_ASSERTLINE(446, m_part != nullptr, "collpart birth failed : single sphere\n");
+	} else {
+		m_part = new CollPart(mtxObject);
+	}
+	m_part->_1C          = sphere.m_radius;
+	m_part->_18          = sphere.m_radius;
+	m_part->_20          = 0.0f;
+	m_part->m_jointIndex = jointIndex;
+	m_part->m_attribute  = 0;
+	m_part->_30.setID('root');
 }
 
 /*
@@ -1376,27 +847,10 @@ void CollTree::createSingleSphere(SysShape::MtxObject*, int, Sys::Sphere&, CollP
  */
 void CollTree::release()
 {
-	/*
-	stwu     r1, -0x10(r1)
-	mflr     r0
-	stw      r0, 0x14(r1)
-	stw      r31, 0xc(r1)
-	mr       r31, r3
-	lwz      r0, 4(r3)
-	cmplwi   r0, 0
-	beq      lbl_801341E4
-	lwz      r4, 0(r31)
-	bl       releaseRec__8CollTreeFP8CollPart
-	li       r0, 0
-	stw      r0, 4(r31)
-
-lbl_801341E4:
-	lwz      r0, 0x14(r1)
-	lwz      r31, 0xc(r1)
-	mtlr     r0
-	addi     r1, r1, 0x10
-	blr
-	*/
+	if (m_mgr != nullptr) {
+		releaseRec(m_part);
+		m_mgr = nullptr;
+	}
 }
 
 /*
@@ -1404,8 +858,18 @@ lbl_801341E4:
  * Address:	801341F8
  * Size:	000348
  */
-void CollTree::releaseRec(CollPart*)
+void CollTree::releaseRec(CollPart* part)
 {
+	CollPart* next  = part->getNext();
+	CollPart* child = part->getChild();
+	if (child != nullptr) {
+		releaseRec(child);
+	}
+	m_mgr->kill(part);
+	if (next != nullptr) {
+		releaseRec(next);
+	}
+
 	/*
 	stwu     r1, -0x30(r1)
 	mflr     r0
@@ -1653,56 +1117,33 @@ lbl_8013452C:
 }
 
 /*
+ * @generated
  * --INFO--
  * Address:	80134540
  * Size:	000008
  */
-CollPart* CollPart::getChild()
-{
-	/*
-	lwz      r3, 0x10(r3)
-	blr
-	*/
-}
+// CollPart* CollPart::getChild()
+// {
+// }
 
 /*
+ * @generated
  * --INFO--
  * Address:	80134548
  * Size:	000008
  */
-CollPart* CollPart::getNext()
-{
-	/*
-	lwz      r3, 4(r3)
-	blr
-	*/
-}
+// CollPart* CollPart::getNext()
+// {
+// }
 
 /*
  * --INFO--
  * Address:	80134550
  * Size:	00003C
  */
-void CollTree::checkCollision(CollTree*, CollPart**, CollPart**, Vector3f&)
+bool CollTree::checkCollision(CollTree* p1, CollPart** p2, CollPart** p3, Vector3f& p4)
 {
-	/*
-	stwu     r1, -0x10(r1)
-	mflr     r0
-	mr       r9, r4
-	mr       r8, r7
-	stw      r0, 0x14(r1)
-	mr       r0, r6
-	mr       r6, r5
-	lwz      r4, 0(r3)
-	mr       r7, r0
-	lwz      r5, 0(r9)
-	bl
-	"checkCollisionRec__8CollTreeFP8CollPartP8CollPartPP8CollPartPP8CollPartR10Vector3<f>"
-	lwz      r0, 0x14(r1)
-	mtlr     r0
-	addi     r1, r1, 0x10
-	blr
-	*/
+	return checkCollisionRec(m_part, p1->m_part, p2, p3, p4);
 }
 
 /*
@@ -1710,547 +1151,71 @@ void CollTree::checkCollision(CollTree*, CollPart**, CollPart**, Vector3f&)
  * Address:	8013458C
  * Size:	000604
  */
-void CollTree::checkCollisionRec(CollPart*, CollPart*, CollPart**, CollPart**, Vector3f&)
+bool CollTree::checkCollisionRec(CollPart* p1, CollPart* p2, CollPart** p3, CollPart** p4, Vector3f& p5)
 {
-	/*
-	.loc_0x0:
-	  stwu      r1, -0x30(r1)
-	  mflr      r0
-	  stw       r0, 0x34(r1)
-	  stmw      r25, 0x14(r1)
-	  mr.       r25, r4
-	  mr        r28, r3
-	  mr        r26, r5
-	  mr        r31, r6
-	  mr        r29, r7
-	  mr        r30, r8
-	  beq-      .loc_0x34
-	  cmplwi    r26, 0
-	  bne-      .loc_0x3C
-
-	.loc_0x34:
-	  li        r3, 0
-	  b         .loc_0x5F0
-
-	.loc_0x3C:
-	  mr        r3, r25
-	  mr        r4, r26
-	  mr        r5, r30
-	  bl        0x1318
-	  rlwinm.   r0,r3,0,24,31
-	  beq-      .loc_0x34C
-	  lwz       r27, 0x10(r25)
-	  li        r3, 0
-	  cmplwi    r27, 0
-	  beq-      .loc_0x78
-	  lbz       r0, 0x58(r25)
-	  cmplwi    r0, 0x1
-	  beq-      .loc_0x78
-	  cmplwi    r0, 0x2
-	  bne-      .loc_0x7C
-
-	.loc_0x78:
-	  li        r3, 0x1
-
-	.loc_0x7C:
-	  rlwinm.   r0,r3,0,24,31
-	  beq-      .loc_0xC4
-	  lwz       r0, 0x10(r26)
-	  li        r3, 0
-	  cmplwi    r0, 0
-	  beq-      .loc_0xA8
-	  lbz       r0, 0x58(r26)
-	  cmplwi    r0, 0x1
-	  beq-      .loc_0xA8
-	  cmplwi    r0, 0x2
-	  bne-      .loc_0xAC
-
-	.loc_0xA8:
-	  li        r3, 0x1
-
-	.loc_0xAC:
-	  rlwinm.   r0,r3,0,24,31
-	  beq-      .loc_0xC4
-	  stw       r25, 0x0(r31)
-	  li        r3, 0x1
-	  stw       r26, 0x0(r29)
-	  b         .loc_0x5F0
-
-	.loc_0xC4:
-	  cmplwi    r27, 0
-	  beq-      .loc_0x208
-	  beq-      .loc_0xD8
-	  cmplwi    r26, 0
-	  bne-      .loc_0xE0
-
-	.loc_0xD8:
-	  li        r3, 0
-	  b         .loc_0x5F0
-
-	.loc_0xE0:
-	  mr        r3, r27
-	  mr        r4, r26
-	  mr        r5, r30
-	  bl        0x1274
-	  rlwinm.   r0,r3,0,24,31
-	  beq-      .loc_0x188
-	  mr        r3, r27
-	  bl        0x518
-	  rlwinm.   r0,r3,0,24,31
-	  beq-      .loc_0x128
-	  mr        r3, r26
-	  bl        0x508
-	  rlwinm.   r0,r3,0,24,31
-	  beq-      .loc_0x128
-	  stw       r27, 0x0(r31)
-	  li        r3, 0x1
-	  stw       r26, 0x0(r29)
-	  b         .loc_0x5F0
-
-	.loc_0x128:
-	  mr        r3, r27
-	  bl        .loc_0x604
-	  rlwinm.   r0,r3,0,24,31
-	  bne-      .loc_0x160
-	  mr        r3, r27
-	  bl        -0x188
-	  mr        r4, r3
-	  mr        r3, r28
-	  mr        r5, r26
-	  mr        r6, r31
-	  mr        r7, r29
-	  mr        r8, r30
-	  bl        .loc_0x0
-	  b         .loc_0x5F0
-
-	.loc_0x160:
-	  mr        r3, r26
-	  bl        -0x1B0
-	  mr        r5, r3
-	  mr        r3, r28
-	  mr        r4, r27
-	  mr        r6, r31
-	  mr        r7, r29
-	  mr        r8, r30
-	  bl        .loc_0x0
-	  b         .loc_0x5F0
-
-	.loc_0x188:
-	  mr        r3, r27
-	  bl        -0x1D0
-	  cmplwi    r3, 0
-	  beq-      .loc_0x1C0
-	  mr        r3, r27
-	  bl        -0x1E0
-	  mr        r4, r3
-	  mr        r3, r28
-	  mr        r5, r26
-	  mr        r6, r31
-	  mr        r7, r29
-	  mr        r8, r30
-	  bl        .loc_0x0
-	  b         .loc_0x5F0
-
-	.loc_0x1C0:
-	  mr        r3, r26
-	  bl        -0x208
-	  cmplwi    r3, 0
-	  beq-      .loc_0x1F8
-	  mr        r3, r26
-	  bl        -0x218
-	  mr        r5, r3
-	  mr        r3, r28
-	  mr        r4, r27
-	  mr        r6, r31
-	  mr        r7, r29
-	  mr        r8, r30
-	  bl        .loc_0x0
-	  b         .loc_0x5F0
-
-	.loc_0x1F8:
-	  li        r3, 0
-	  stw       r3, 0x0(r31)
-	  stw       r3, 0x0(r29)
-	  b         .loc_0x5F0
-
-	.loc_0x208:
-	  cmplwi    r25, 0
-	  lwz       r26, 0x10(r26)
-	  beq-      .loc_0x21C
-	  cmplwi    r26, 0
-	  bne-      .loc_0x224
-
-	.loc_0x21C:
-	  li        r3, 0
-	  b         .loc_0x5F0
-
-	.loc_0x224:
-	  mr        r3, r25
-	  mr        r4, r26
-	  mr        r5, r30
-	  bl        0x1130
-	  rlwinm.   r0,r3,0,24,31
-	  beq-      .loc_0x2CC
-	  mr        r3, r25
-	  bl        0x3D4
-	  rlwinm.   r0,r3,0,24,31
-	  beq-      .loc_0x26C
-	  mr        r3, r26
-	  bl        0x3C4
-	  rlwinm.   r0,r3,0,24,31
-	  beq-      .loc_0x26C
-	  stw       r25, 0x0(r31)
-	  li        r3, 0x1
-	  stw       r26, 0x0(r29)
-	  b         .loc_0x5F0
-
-	.loc_0x26C:
-	  mr        r3, r25
-	  bl        .loc_0x604
-	  rlwinm.   r0,r3,0,24,31
-	  bne-      .loc_0x2A4
-	  mr        r3, r25
-	  bl        -0x2CC
-	  mr        r4, r3
-	  mr        r3, r28
-	  mr        r5, r26
-	  mr        r6, r31
-	  mr        r7, r29
-	  mr        r8, r30
-	  bl        .loc_0x0
-	  b         .loc_0x5F0
-
-	.loc_0x2A4:
-	  mr        r3, r26
-	  bl        -0x2F4
-	  mr        r5, r3
-	  mr        r3, r28
-	  mr        r4, r25
-	  mr        r6, r31
-	  mr        r7, r29
-	  mr        r8, r30
-	  bl        .loc_0x0
-	  b         .loc_0x5F0
-
-	.loc_0x2CC:
-	  mr        r3, r25
-	  bl        -0x314
-	  cmplwi    r3, 0
-	  beq-      .loc_0x304
-	  mr        r3, r25
-	  bl        -0x324
-	  mr        r4, r3
-	  mr        r3, r28
-	  mr        r5, r26
-	  mr        r6, r31
-	  mr        r7, r29
-	  mr        r8, r30
-	  bl        .loc_0x0
-	  b         .loc_0x5F0
-
-	.loc_0x304:
-	  mr        r3, r26
-	  bl        -0x34C
-	  cmplwi    r3, 0
-	  beq-      .loc_0x33C
-	  mr        r3, r26
-	  bl        -0x35C
-	  mr        r5, r3
-	  mr        r3, r28
-	  mr        r4, r25
-	  mr        r6, r31
-	  mr        r7, r29
-	  mr        r8, r30
-	  bl        .loc_0x0
-	  b         .loc_0x5F0
-
-	.loc_0x33C:
-	  li        r3, 0
-	  stw       r3, 0x0(r31)
-	  stw       r3, 0x0(r29)
-	  b         .loc_0x5F0
-
-	.loc_0x34C:
-	  lwz       r27, 0x4(r25)
-	  cmplwi    r27, 0
-	  beq-      .loc_0x494
-	  beq-      .loc_0x364
-	  cmplwi    r26, 0
-	  bne-      .loc_0x36C
-
-	.loc_0x364:
-	  li        r3, 0
-	  b         .loc_0x5F0
-
-	.loc_0x36C:
-	  mr        r3, r27
-	  mr        r4, r26
-	  mr        r5, r30
-	  bl        0xFE8
-	  rlwinm.   r0,r3,0,24,31
-	  beq-      .loc_0x414
-	  mr        r3, r27
-	  bl        0x28C
-	  rlwinm.   r0,r3,0,24,31
-	  beq-      .loc_0x3B4
-	  mr        r3, r26
-	  bl        0x27C
-	  rlwinm.   r0,r3,0,24,31
-	  beq-      .loc_0x3B4
-	  stw       r27, 0x0(r31)
-	  li        r3, 0x1
-	  stw       r26, 0x0(r29)
-	  b         .loc_0x5F0
-
-	.loc_0x3B4:
-	  mr        r3, r27
-	  bl        .loc_0x604
-	  rlwinm.   r0,r3,0,24,31
-	  bne-      .loc_0x3EC
-	  mr        r3, r27
-	  bl        -0x414
-	  mr        r4, r3
-	  mr        r3, r28
-	  mr        r5, r26
-	  mr        r6, r31
-	  mr        r7, r29
-	  mr        r8, r30
-	  bl        .loc_0x0
-	  b         .loc_0x5F0
-
-	.loc_0x3EC:
-	  mr        r3, r26
-	  bl        -0x43C
-	  mr        r5, r3
-	  mr        r3, r28
-	  mr        r4, r27
-	  mr        r6, r31
-	  mr        r7, r29
-	  mr        r8, r30
-	  bl        .loc_0x0
-	  b         .loc_0x5F0
-
-	.loc_0x414:
-	  mr        r3, r27
-	  bl        -0x45C
-	  cmplwi    r3, 0
-	  beq-      .loc_0x44C
-	  mr        r3, r27
-	  bl        -0x46C
-	  mr        r4, r3
-	  mr        r3, r28
-	  mr        r5, r26
-	  mr        r6, r31
-	  mr        r7, r29
-	  mr        r8, r30
-	  bl        .loc_0x0
-	  b         .loc_0x5F0
-
-	.loc_0x44C:
-	  mr        r3, r26
-	  bl        -0x494
-	  cmplwi    r3, 0
-	  beq-      .loc_0x484
-	  mr        r3, r26
-	  bl        -0x4A4
-	  mr        r5, r3
-	  mr        r3, r28
-	  mr        r4, r27
-	  mr        r6, r31
-	  mr        r7, r29
-	  mr        r8, r30
-	  bl        .loc_0x0
-	  b         .loc_0x5F0
-
-	.loc_0x484:
-	  li        r3, 0
-	  stw       r3, 0x0(r31)
-	  stw       r3, 0x0(r29)
-	  b         .loc_0x5F0
-
-	.loc_0x494:
-	  lwz       r26, 0x4(r26)
-	  cmplwi    r26, 0
-	  beq-      .loc_0x5E0
-	  cmplwi    r25, 0
-	  beq-      .loc_0x4B0
-	  cmplwi    r26, 0
-	  bne-      .loc_0x4B8
-
-	.loc_0x4B0:
-	  li        r3, 0
-	  b         .loc_0x5F0
-
-	.loc_0x4B8:
-	  mr        r3, r25
-	  mr        r4, r26
-	  mr        r5, r30
-	  bl        0xE9C
-	  rlwinm.   r0,r3,0,24,31
-	  beq-      .loc_0x560
-	  mr        r3, r25
-	  bl        0x140
-	  rlwinm.   r0,r3,0,24,31
-	  beq-      .loc_0x500
-	  mr        r3, r26
-	  bl        0x130
-	  rlwinm.   r0,r3,0,24,31
-	  beq-      .loc_0x500
-	  stw       r25, 0x0(r31)
-	  li        r3, 0x1
-	  stw       r26, 0x0(r29)
-	  b         .loc_0x5F0
-
-	.loc_0x500:
-	  mr        r3, r25
-	  bl        .loc_0x604
-	  rlwinm.   r0,r3,0,24,31
-	  bne-      .loc_0x538
-	  mr        r3, r25
-	  bl        -0x560
-	  mr        r4, r3
-	  mr        r3, r28
-	  mr        r5, r26
-	  mr        r6, r31
-	  mr        r7, r29
-	  mr        r8, r30
-	  bl        .loc_0x0
-	  b         .loc_0x5F0
-
-	.loc_0x538:
-	  mr        r3, r26
-	  bl        -0x588
-	  mr        r5, r3
-	  mr        r3, r28
-	  mr        r4, r25
-	  mr        r6, r31
-	  mr        r7, r29
-	  mr        r8, r30
-	  bl        .loc_0x0
-	  b         .loc_0x5F0
-
-	.loc_0x560:
-	  mr        r3, r25
-	  bl        -0x5A8
-	  cmplwi    r3, 0
-	  beq-      .loc_0x598
-	  mr        r3, r25
-	  bl        -0x5B8
-	  mr        r4, r3
-	  mr        r3, r28
-	  mr        r5, r26
-	  mr        r6, r31
-	  mr        r7, r29
-	  mr        r8, r30
-	  bl        .loc_0x0
-	  b         .loc_0x5F0
-
-	.loc_0x598:
-	  mr        r3, r26
-	  bl        -0x5E0
-	  cmplwi    r3, 0
-	  beq-      .loc_0x5D0
-	  mr        r3, r26
-	  bl        -0x5F0
-	  mr        r5, r3
-	  mr        r3, r28
-	  mr        r4, r25
-	  mr        r6, r31
-	  mr        r7, r29
-	  mr        r8, r30
-	  bl        .loc_0x0
-	  b         .loc_0x5F0
-
-	.loc_0x5D0:
-	  li        r3, 0
-	  stw       r3, 0x0(r31)
-	  stw       r3, 0x0(r29)
-	  b         .loc_0x5F0
-
-	.loc_0x5E0:
-	  li        r0, 0
-	  li        r3, 0
-	  stw       r0, 0x0(r31)
-	  stw       r0, 0x0(r29)
-
-	.loc_0x5F0:
-	  lmw       r25, 0x14(r1)
-	  lwz       r0, 0x34(r1)
-	  mtlr      r0
-	  addi      r1, r1, 0x30
-	  blr
-
-	.loc_0x604:
-	*/
+	if (p1 == nullptr || p2 == nullptr) {
+		return false;
+	}
+	if (p1->collide(p2, p5)) {
+		if (p1->isPrim()) {
+			if (p2->isPrim()) {
+				*p3 = p1;
+				*p4 = p2;
+				return true;
+			}
+		}
+		if (!p1->isLeaf()) {
+			return checkCollisionRec(p1->getChild(), p2, p3, p4, p5);
+		} else {
+			return checkCollisionRec(p1, p2->getChild(), p3, p4, p5);
+		}
+	} else {
+		if (p1->getNext() != nullptr) {
+			return checkCollisionRec(p1->getNext(), p2, p3, p4, p5);
+		}
+		if (p2->getNext() != nullptr) {
+			return checkCollisionRec(p1, p2->getNext(), p3, p4, p5);
+		}
+		*p3 = nullptr;
+		*p4 = nullptr;
+		return false;
+	}
 }
 
 /*
+ * @generated
  * --INFO--
  * Address:	80134B90
  * Size:	000010
  */
-bool CollPart::isLeaf()
-{
-	/*
-	lwz      r0, 0x10(r3)
-	cntlzw   r0, r0
-	srwi     r3, r0, 5
-	blr
-	*/
-}
+// bool CollPart::isLeaf()
+// }
 
 /*
+ * @generated
  * --INFO--
  * Address:	80134BA0
  * Size:	000030
  */
-bool CollPart::isPrim()
-{
-	/*
-	lwz      r0, 0x10(r3)
-	li       r4, 0
-	cmplwi   r0, 0
-	beq      lbl_80134BC4
-	lbz      r0, 0x58(r3)
-	cmplwi   r0, 1
-	beq      lbl_80134BC4
-	cmplwi   r0, 2
-	bne      lbl_80134BC8
-
-lbl_80134BC4:
-	li       r4, 1
-
-lbl_80134BC8:
-	mr       r3, r4
-	blr
-	*/
-}
+// bool CollPart::isPrim()
+// {
+// }
 
 /*
+ * checkCollision__8CollTreeFRQ23Sys6SphereP22IDelegate1<P8CollPart>
  * --INFO--
  * Address:	80134BD0
  * Size:	00002C
  */
-void CollTree::checkCollision(Sys::Sphere&, IDelegate1<CollPart*>*)
+void CollTree::checkCollision(Sys::Sphere& sphere, IDelegate1<CollPart*>* delegate)
 {
-	/*
-	stwu     r1, -0x10(r1)
-	mflr     r0
-	stw      r0, 0x14(r1)
-	lwz      r3, 0(r3)
-	cmplwi   r3, 0
-	beq      lbl_80134BEC
-	bl       "checkCollision__8CollPartFRQ23Sys6SphereP22IDelegate1<P8CollPart>"
-
-lbl_80134BEC:
-	lwz      r0, 0x14(r1)
-	mtlr     r0
-	addi     r1, r1, 0x10
-	blr
-	*/
+	if (m_part != nullptr) {
+		m_part->checkCollision(sphere, delegate);
+	}
 }
 
 /*
+ * checkCollision__8CollPartFRQ23Sys6SphereP22IDelegate1<P8CollPart>
  * --INFO--
  * Address:	80134BFC
  * Size:	0008B8
@@ -2890,126 +1855,137 @@ lbl_80135490:
 }
 
 namespace Sys {
-
+// TODO: These are probably generated...
 /*
+ * __ct__Q23Sys4TubeFR10Vector3<f>R10Vector3<f>ff
  * --INFO--
  * Address:	801354B4
  * Size:	00003C
  */
-Tube::Tube(Vector3f&, Vector3f&, float, float)
+Tube::Tube(Vector3f& p1, Vector3f& p2, float p3, float p4)
 {
-	/*
-	lfs      f0, 0(r4)
-	stfs     f0, 0(r3)
-	lfs      f0, 4(r4)
-	stfs     f0, 4(r3)
-	lfs      f0, 8(r4)
-	stfs     f0, 8(r3)
-	lfs      f0, 0(r5)
-	stfs     f0, 0xc(r3)
-	lfs      f0, 4(r5)
-	stfs     f0, 0x10(r3)
-	lfs      f0, 8(r5)
-	stfs     f0, 0x14(r3)
-	stfs     f1, 0x18(r3)
-	stfs     f2, 0x1c(r3)
-	blr
-	*/
+	_00 = p1;
+	_0C = p2;
+	_18 = p3;
+	_1C = p4;
 }
 
 /*
+ * __ct__Q23Sys6SphereFR10Vector3<f>f
  * --INFO--
  * Address:	801354F0
  * Size:	000020
  */
-Sphere::Sphere(Vector3f&, float)
+Sphere::Sphere(Vector3f& position, float radius)
 {
-	/*
-	lfs      f0, 0(r4)
-	stfs     f0, 0(r3)
-	lfs      f0, 4(r4)
-	stfs     f0, 4(r3)
-	lfs      f0, 8(r4)
-	stfs     f0, 8(r3)
-	stfs     f1, 0xc(r3)
-	blr
-	*/
+	m_position = position;
+	m_radius   = radius;
 }
 
 } // namespace Sys
 
 /*
+ * @generated
  * --INFO--
  * Address:	80135510
  * Size:	000010
  */
-bool CollPart::isSphere()
-{
-	/*
-	lbz      r0, 0x58(r3)
-	cntlzw   r0, r0
-	srwi     r3, r0, 5
-	blr
-	*/
-}
+// bool CollPart::isSphere()
+// {
+// }
 
 /*
+ * __ct__10Vector3<f>FRC10Vector3<f>
  * --INFO--
  * Address:	80135520
  * Size:	00001C
  */
-Vector3f::Vector3(const Vector3f&)
-{
-	/*
-	lfs      f0, 0(r4)
-	lfs      f1, 4(r4)
-	stfs     f0, 0(r3)
-	lfs      f0, 8(r4)
-	stfs     f1, 4(r3)
-	stfs     f0, 8(r3)
-	blr
-	*/
-}
+// Vector3f::Vector3(const Vector3f&)
+// {
+// 	/*
+// 	lfs      f0, 0(r4)
+// 	lfs      f1, 4(r4)
+// 	stfs     f0, 0(r3)
+// 	lfs      f0, 8(r4)
+// 	stfs     f1, 4(r3)
+// 	stfs     f0, 8(r3)
+// 	blr
+// 	*/
+// }
 
 /*
+ * isTubeTree__8CollPartFv
  * --INFO--
  * Address:	8013553C
  * Size:	000014
  */
-bool CollPart::isTubeTree()
-{
-	/*
-	lbz      r0, 0x58(r3)
-	subfic   r0, r0, 2
-	cntlzw   r0, r0
-	srwi     r3, r0, 5
-	blr
-	*/
-}
+// bool CollPart::isTubeTree()
+// {
+// 	/*
+// 	lbz      r0, 0x58(r3)
+// 	subfic   r0, r0, 2
+// 	cntlzw   r0, r0
+// 	srwi     r3, r0, 5
+// 	blr
+// 	*/
+// }
 
 /*
+ * isTube__8CollPartFv
  * --INFO--
  * Address:	80135550
  * Size:	000014
  */
-bool CollPart::isTube()
-{
-	/*
-	lbz      r0, 0x58(r3)
-	subfic   r0, r0, 1
-	cntlzw   r0, r0
-	srwi     r3, r0, 5
-	blr
-	*/
-}
+// bool CollPart::isTube()
+// {
+// 	/*
+// 	lbz      r0, 0x58(r3)
+// 	subfic   r0, r0, 1
+// 	cntlzw   r0, r0
+// 	srwi     r3, r0, 5
+// 	blr
+// 	*/
+// }
 
 /*
+ * checkCollisionMulti__8CollTreeFP8CollTreeP47IDelegate3<P8CollPart,P8CollPart,R10Vector3<f>>
  * --INFO--
  * Address:	80135564
  * Size:	000198
  */
-void CollTree::checkCollisionMulti(CollTree*, IDelegate3<CollPart*, CollPart*, Vector3f&>*)
+void CollTree::checkCollisionMulti(CollTree* other, IDelegate3<CollPart*, CollPart*, Vector3f&>* delegate)
 {
+	CollPart* otherPart;
+	for (CollPart* thisPart = m_part; thisPart != nullptr; thisPart = thisPart->getNext()) {
+		for (otherPart = other->m_part; otherPart != nullptr; otherPart = otherPart->getNext()) {
+			Vector3f outPosition;
+			if (thisPart->collide(otherPart, outPosition)) {
+				if (thisPart->isPrim()) {
+					if (otherPart->isPrim()) {
+						delegate->invoke(thisPart, otherPart, outPosition);
+						if (!thisPart->isLeaf()) {
+							thisPart->getChild()->checkCollisionMulti(otherPart, delegate);
+						} else {
+							if (!otherPart->isLeaf()) {
+								thisPart->checkCollisionMulti(otherPart->getChild(), delegate);
+							}
+						}
+						continue;
+					}
+				}
+				if (thisPart->isLeaf()) {
+					thisPart->checkCollisionMulti(otherPart->getChild(), delegate);
+				} else if (otherPart->isLeaf()) {
+					thisPart->getChild()->checkCollisionMulti(otherPart, delegate);
+				} else if (thisPart->getChild()) {
+					thisPart->getChild()->checkCollisionMulti(otherPart, delegate);
+				} else {
+					thisPart->checkCollisionMulti(otherPart->getChild(), delegate);
+				}
+			}
+		}
+	}
+
 	/*
 	.loc_0x0:
 	  stwu      r1, -0x30(r1)
@@ -3148,6 +2124,7 @@ void CollTree::checkCollisionMulti(CollTree*, IDelegate3<CollPart*, CollPart*, V
 }
 
 /*
+ * checkCollisionMulti__8CollPartFP8CollPartP47IDelegate3<P8CollPart,P8CollPart,R10Vector3<f>>
  * --INFO--
  * Address:	801356FC
  * Size:	0001F0
@@ -3322,11 +2299,24 @@ void CollPart::checkCollisionMulti(CollPart*, IDelegate3<CollPart*, CollPart*, V
 }
 
 /*
+ * checkCollisionMultiRec__8CollTreeFP8CollPartP8CollPartP47IDelegate3<P8CollPart,P8CollPart,R10Vector3<f>>
+ * --INFO--
+ * Address:	........
+ * Size:	001410
+ */
+void CollTree::checkCollisionMultiRec(CollPart*, CollPart*, IDelegate3<CollPart*, CollPart*, Vector3f&>*)
+{
+	// UNUSED FUNCTION
+}
+
+/**
+ * @param other The other part participating in this collision.
+ * @param outPosition The center of the collision between the two parts.
  * --INFO--
  * Address:	801358EC
  * Size:	0001B0
  */
-void CollPart::collide(CollPart*, Vector3f&)
+bool CollPart::collide(CollPart* other, Vector3f& outPosition)
 {
 	/*
 	stwu     r1, -0x90(r1)
@@ -3453,865 +2443,80 @@ lbl_80135A8C:
 }
 
 /*
+ * update__8CollTreeFv
  * --INFO--
  * Address:	80135A9C
  * Size:	00002C
  */
 void CollTree::update()
 {
-	/*
-	stwu     r1, -0x10(r1)
-	mflr     r0
-	stw      r0, 0x14(r1)
-	lwz      r3, 0(r3)
-	cmplwi   r3, 0
-	beq      lbl_80135AB8
-	bl       update__8CollPartFv
-
-lbl_80135AB8:
-	lwz      r0, 0x14(r1)
-	mtlr     r0
-	addi     r1, r1, 0x10
-	blr
-	*/
+	if (m_part != nullptr) {
+		m_part->update();
+	}
 }
 
 /*
+ * attachModel__8CollTreeFPQ28SysShape9MtxObject
  * --INFO--
  * Address:	80135AC8
  * Size:	00002C
  */
-void CollTree::attachModel(SysShape::MtxObject*)
+void CollTree::attachModel(SysShape::MtxObject* mtxObject)
 {
-	/*
-	stwu     r1, -0x10(r1)
-	mflr     r0
-	stw      r0, 0x14(r1)
-	lwz      r3, 0(r3)
-	cmplwi   r3, 0
-	beq      lbl_80135AE4
-	bl       attachModel__8CollPartFPQ28SysShape9MtxObject
-
-lbl_80135AE4:
-	lwz      r0, 0x14(r1)
-	mtlr     r0
-	addi     r1, r1, 0x10
-	blr
-	*/
+	if (m_part != nullptr) {
+		m_part->attachModel(mtxObject);
+	}
 }
 
 /*
+ * attachModel__8CollPartFPQ28SysShape9MtxObject
  * --INFO--
  * Address:	80135AF4
  * Size:	000350
  */
-void CollPart::attachModel(SysShape::MtxObject*)
+void CollPart::attachModel(SysShape::MtxObject* mtxObject)
 {
-	/*
-	stwu     r1, -0x20(r1)
-	mflr     r0
-	stw      r0, 0x24(r1)
-	stmw     r27, 0xc(r1)
-	mr       r31, r4
-	mr       r30, r3
-	stw      r31, 0x5c(r3)
-	lwz      r28, 4(r3)
-	cmplwi   r28, 0
-	beq      lbl_80135CA0
-	stw      r31, 0x5c(r28)
-	lwz      r27, 4(r28)
-	cmplwi   r27, 0
-	beq      lbl_80135BE0
-	stw      r31, 0x5c(r27)
-	lwz      r0, 4(r27)
-	cmplwi   r0, 0
-	beq      lbl_80135B88
-	mr       r3, r27
-	bl       getNext__8CollPartFv
-	stw      r31, 0x5c(r3)
-	mr       r29, r3
-	bl       getNext__8CollPartFv
-	cmplwi   r3, 0
-	beq      lbl_80135B68
-	mr       r3, r29
-	bl       getNext__8CollPartFv
-	mr       r4, r31
-	bl       attachModel__8CollPartFPQ28SysShape9MtxObject
-
-lbl_80135B68:
-	mr       r3, r29
-	bl       getChild__8CollPartFv
-	cmplwi   r3, 0
-	beq      lbl_80135B88
-	mr       r3, r29
-	bl       getChild__8CollPartFv
-	mr       r4, r31
-	bl       attachModel__8CollPartFPQ28SysShape9MtxObject
-
-lbl_80135B88:
-	lwz      r0, 0x10(r27)
-	cmplwi   r0, 0
-	beq      lbl_80135BE0
-	mr       r3, r27
-	bl       getChild__8CollPartFv
-	stw      r31, 0x5c(r3)
-	mr       r29, r3
-	bl       getNext__8CollPartFv
-	cmplwi   r3, 0
-	beq      lbl_80135BC0
-	mr       r3, r29
-	bl       getNext__8CollPartFv
-	mr       r4, r31
-	bl       attachModel__8CollPartFPQ28SysShape9MtxObject
-
-lbl_80135BC0:
-	mr       r3, r29
-	bl       getChild__8CollPartFv
-	cmplwi   r3, 0
-	beq      lbl_80135BE0
-	mr       r3, r29
-	bl       getChild__8CollPartFv
-	mr       r4, r31
-	bl       attachModel__8CollPartFPQ28SysShape9MtxObject
-
-lbl_80135BE0:
-	lwz      r27, 0x10(r28)
-	cmplwi   r27, 0
-	beq      lbl_80135CA0
-	stw      r31, 0x5c(r27)
-	lwz      r0, 4(r27)
-	cmplwi   r0, 0
-	beq      lbl_80135C48
-	mr       r3, r27
-	bl       getNext__8CollPartFv
-	stw      r31, 0x5c(r3)
-	mr       r29, r3
-	bl       getNext__8CollPartFv
-	cmplwi   r3, 0
-	beq      lbl_80135C28
-	mr       r3, r29
-	bl       getNext__8CollPartFv
-	mr       r4, r31
-	bl       attachModel__8CollPartFPQ28SysShape9MtxObject
-
-lbl_80135C28:
-	mr       r3, r29
-	bl       getChild__8CollPartFv
-	cmplwi   r3, 0
-	beq      lbl_80135C48
-	mr       r3, r29
-	bl       getChild__8CollPartFv
-	mr       r4, r31
-	bl       attachModel__8CollPartFPQ28SysShape9MtxObject
-
-lbl_80135C48:
-	lwz      r0, 0x10(r27)
-	cmplwi   r0, 0
-	beq      lbl_80135CA0
-	mr       r3, r27
-	bl       getChild__8CollPartFv
-	stw      r31, 0x5c(r3)
-	mr       r29, r3
-	bl       getNext__8CollPartFv
-	cmplwi   r3, 0
-	beq      lbl_80135C80
-	mr       r3, r29
-	bl       getNext__8CollPartFv
-	mr       r4, r31
-	bl       attachModel__8CollPartFPQ28SysShape9MtxObject
-
-lbl_80135C80:
-	mr       r3, r29
-	bl       getChild__8CollPartFv
-	cmplwi   r3, 0
-	beq      lbl_80135CA0
-	mr       r3, r29
-	bl       getChild__8CollPartFv
-	mr       r4, r31
-	bl       attachModel__8CollPartFPQ28SysShape9MtxObject
-
-lbl_80135CA0:
-	lwz      r27, 0x10(r30)
-	cmplwi   r27, 0
-	beq      lbl_80135E30
-	stw      r31, 0x5c(r27)
-	lwz      r28, 4(r27)
-	cmplwi   r28, 0
-	beq      lbl_80135D70
-	stw      r31, 0x5c(r28)
-	lwz      r0, 4(r28)
-	cmplwi   r0, 0
-	beq      lbl_80135D18
-	mr       r3, r28
-	bl       getNext__8CollPartFv
-	stw      r31, 0x5c(r3)
-	mr       r29, r3
-	bl       getNext__8CollPartFv
-	cmplwi   r3, 0
-	beq      lbl_80135CF8
-	mr       r3, r29
-	bl       getNext__8CollPartFv
-	mr       r4, r31
-	bl       attachModel__8CollPartFPQ28SysShape9MtxObject
-
-lbl_80135CF8:
-	mr       r3, r29
-	bl       getChild__8CollPartFv
-	cmplwi   r3, 0
-	beq      lbl_80135D18
-	mr       r3, r29
-	bl       getChild__8CollPartFv
-	mr       r4, r31
-	bl       attachModel__8CollPartFPQ28SysShape9MtxObject
-
-lbl_80135D18:
-	lwz      r0, 0x10(r28)
-	cmplwi   r0, 0
-	beq      lbl_80135D70
-	mr       r3, r28
-	bl       getChild__8CollPartFv
-	stw      r31, 0x5c(r3)
-	mr       r29, r3
-	bl       getNext__8CollPartFv
-	cmplwi   r3, 0
-	beq      lbl_80135D50
-	mr       r3, r29
-	bl       getNext__8CollPartFv
-	mr       r4, r31
-	bl       attachModel__8CollPartFPQ28SysShape9MtxObject
-
-lbl_80135D50:
-	mr       r3, r29
-	bl       getChild__8CollPartFv
-	cmplwi   r3, 0
-	beq      lbl_80135D70
-	mr       r3, r29
-	bl       getChild__8CollPartFv
-	mr       r4, r31
-	bl       attachModel__8CollPartFPQ28SysShape9MtxObject
-
-lbl_80135D70:
-	lwz      r27, 0x10(r27)
-	cmplwi   r27, 0
-	beq      lbl_80135E30
-	stw      r31, 0x5c(r27)
-	lwz      r0, 4(r27)
-	cmplwi   r0, 0
-	beq      lbl_80135DD8
-	mr       r3, r27
-	bl       getNext__8CollPartFv
-	stw      r31, 0x5c(r3)
-	mr       r29, r3
-	bl       getNext__8CollPartFv
-	cmplwi   r3, 0
-	beq      lbl_80135DB8
-	mr       r3, r29
-	bl       getNext__8CollPartFv
-	mr       r4, r31
-	bl       attachModel__8CollPartFPQ28SysShape9MtxObject
-
-lbl_80135DB8:
-	mr       r3, r29
-	bl       getChild__8CollPartFv
-	cmplwi   r3, 0
-	beq      lbl_80135DD8
-	mr       r3, r29
-	bl       getChild__8CollPartFv
-	mr       r4, r31
-	bl       attachModel__8CollPartFPQ28SysShape9MtxObject
-
-lbl_80135DD8:
-	lwz      r0, 0x10(r27)
-	cmplwi   r0, 0
-	beq      lbl_80135E30
-	mr       r3, r27
-	bl       getChild__8CollPartFv
-	stw      r31, 0x5c(r3)
-	mr       r29, r3
-	bl       getNext__8CollPartFv
-	cmplwi   r3, 0
-	beq      lbl_80135E10
-	mr       r3, r29
-	bl       getNext__8CollPartFv
-	mr       r4, r31
-	bl       attachModel__8CollPartFPQ28SysShape9MtxObject
-
-lbl_80135E10:
-	mr       r3, r29
-	bl       getChild__8CollPartFv
-	cmplwi   r3, 0
-	beq      lbl_80135E30
-	mr       r3, r29
-	bl       getChild__8CollPartFv
-	mr       r4, r31
-	bl       attachModel__8CollPartFPQ28SysShape9MtxObject
-
-lbl_80135E30:
-	lmw      r27, 0xc(r1)
-	lwz      r0, 0x24(r1)
-	mtlr     r0
-	addi     r1, r1, 0x20
-	blr
-	*/
+	m_model = mtxObject;
+	if (getNext()) {
+		getNext()->attachModel(mtxObject);
+	}
+	if (getChild()) {
+		getChild()->attachModel(mtxObject);
+	}
 }
 
 /*
+ * getCollPart__8CollTreeFUl
  * --INFO--
  * Address:	80135E44
  * Size:	000034
  */
-CollPart* CollTree::getCollPart(unsigned long)
-{
-	/*
-	stwu     r1, -0x10(r1)
-	mflr     r0
-	stw      r0, 0x14(r1)
-	lwz      r3, 0(r3)
-	cmplwi   r3, 0
-	beq      lbl_80135E64
-	bl       getCollPart__8CollPartFUl
-	b        lbl_80135E68
-
-lbl_80135E64:
-	li       r3, 0
-
-lbl_80135E68:
-	lwz      r0, 0x14(r1)
-	mtlr     r0
-	addi     r1, r1, 0x10
-	blr
-	*/
-}
+CollPart* CollTree::getCollPart(unsigned long partID) { return (m_part != nullptr) ? m_part->getCollPart(partID) : nullptr; }
 
 /*
+ * getCollPart__8CollPartFUl
  * --INFO--
  * Address:	80135E78
  * Size:	000640
  */
-CollPart* CollPart::getCollPart(unsigned long)
+CollPart* CollPart::getCollPart(unsigned long partID)
 {
-	/*
-	stwu     r1, -0x20(r1)
-	mflr     r0
-	stw      r0, 0x24(r1)
-	stmw     r27, 0xc(r1)
-	mr       r29, r3
-	mr       r30, r4
-	addi     r3, r29, 0x30
-	bl       __eq__4ID32FUl
-	clrlwi.  r0, r3, 0x18
-	beq      lbl_80135EA8
-	mr       r3, r29
-	b        lbl_801364A4
-
-lbl_80135EA8:
-	lwz      r31, 4(r29)
-	cmplwi   r31, 0
-	beq      lbl_801361A4
-	mr       r4, r30
-	addi     r3, r31, 0x30
-	bl       __eq__4ID32FUl
-	clrlwi.  r0, r3, 0x18
-	beq      lbl_80135ECC
-	b        lbl_80136194
-
-lbl_80135ECC:
-	lwz      r27, 4(r31)
-	cmplwi   r27, 0
-	beq      lbl_80136030
-	mr       r4, r30
-	addi     r3, r27, 0x30
-	bl       __eq__4ID32FUl
-	clrlwi.  r0, r3, 0x18
-	beq      lbl_80135EF0
-	b        lbl_80136020
-
-lbl_80135EF0:
-	lwz      r28, 4(r27)
-	cmplwi   r28, 0
-	beq      lbl_80135F88
-	mr       r4, r30
-	addi     r3, r28, 0x30
-	bl       __eq__4ID32FUl
-	clrlwi.  r0, r3, 0x18
-	beq      lbl_80135F14
-	b        lbl_80135F78
-
-lbl_80135F14:
-	mr       r3, r28
-	bl       getNext__8CollPartFv
-	cmplwi   r3, 0
-	beq      lbl_80135F44
-	mr       r3, r28
-	bl       getNext__8CollPartFv
-	mr       r4, r30
-	bl       getCollPart__8CollPartFUl
-	cmplwi   r3, 0
-	beq      lbl_80135F44
-	mr       r28, r3
-	b        lbl_80135F78
-
-lbl_80135F44:
-	mr       r3, r28
-	bl       getChild__8CollPartFv
-	cmplwi   r3, 0
-	beq      lbl_80135F74
-	mr       r3, r28
-	bl       getChild__8CollPartFv
-	mr       r4, r30
-	bl       getCollPart__8CollPartFUl
-	cmplwi   r3, 0
-	beq      lbl_80135F74
-	mr       r28, r3
-	b        lbl_80135F78
-
-lbl_80135F74:
-	li       r28, 0
-
-lbl_80135F78:
-	cmplwi   r28, 0
-	beq      lbl_80135F88
-	mr       r27, r28
-	b        lbl_80136020
-
-lbl_80135F88:
-	lwz      r27, 0x10(r27)
-	cmplwi   r27, 0
-	beq      lbl_8013601C
-	mr       r4, r30
-	addi     r3, r27, 0x30
-	bl       __eq__4ID32FUl
-	clrlwi.  r0, r3, 0x18
-	beq      lbl_80135FAC
-	b        lbl_80136010
-
-lbl_80135FAC:
-	mr       r3, r27
-	bl       getNext__8CollPartFv
-	cmplwi   r3, 0
-	beq      lbl_80135FDC
-	mr       r3, r27
-	bl       getNext__8CollPartFv
-	mr       r4, r30
-	bl       getCollPart__8CollPartFUl
-	cmplwi   r3, 0
-	beq      lbl_80135FDC
-	mr       r27, r3
-	b        lbl_80136010
-
-lbl_80135FDC:
-	mr       r3, r27
-	bl       getChild__8CollPartFv
-	cmplwi   r3, 0
-	beq      lbl_8013600C
-	mr       r3, r27
-	bl       getChild__8CollPartFv
-	mr       r4, r30
-	bl       getCollPart__8CollPartFUl
-	cmplwi   r3, 0
-	beq      lbl_8013600C
-	mr       r27, r3
-	b        lbl_80136010
-
-lbl_8013600C:
-	li       r27, 0
-
-lbl_80136010:
-	cmplwi   r27, 0
-	beq      lbl_8013601C
-	b        lbl_80136020
-
-lbl_8013601C:
-	li       r27, 0
-
-lbl_80136020:
-	cmplwi   r27, 0
-	beq      lbl_80136030
-	mr       r31, r27
-	b        lbl_80136194
-
-lbl_80136030:
-	lwz      r31, 0x10(r31)
-	cmplwi   r31, 0
-	beq      lbl_80136190
-	mr       r4, r30
-	addi     r3, r31, 0x30
-	bl       __eq__4ID32FUl
-	clrlwi.  r0, r3, 0x18
-	beq      lbl_80136054
-	b        lbl_80136184
-
-lbl_80136054:
-	lwz      r27, 4(r31)
-	cmplwi   r27, 0
-	beq      lbl_801360EC
-	mr       r4, r30
-	addi     r3, r27, 0x30
-	bl       __eq__4ID32FUl
-	clrlwi.  r0, r3, 0x18
-	beq      lbl_80136078
-	b        lbl_801360DC
-
-lbl_80136078:
-	mr       r3, r27
-	bl       getNext__8CollPartFv
-	cmplwi   r3, 0
-	beq      lbl_801360A8
-	mr       r3, r27
-	bl       getNext__8CollPartFv
-	mr       r4, r30
-	bl       getCollPart__8CollPartFUl
-	cmplwi   r3, 0
-	beq      lbl_801360A8
-	mr       r27, r3
-	b        lbl_801360DC
-
-lbl_801360A8:
-	mr       r3, r27
-	bl       getChild__8CollPartFv
-	cmplwi   r3, 0
-	beq      lbl_801360D8
-	mr       r3, r27
-	bl       getChild__8CollPartFv
-	mr       r4, r30
-	bl       getCollPart__8CollPartFUl
-	cmplwi   r3, 0
-	beq      lbl_801360D8
-	mr       r27, r3
-	b        lbl_801360DC
-
-lbl_801360D8:
-	li       r27, 0
-
-lbl_801360DC:
-	cmplwi   r27, 0
-	beq      lbl_801360EC
-	mr       r31, r27
-	b        lbl_80136184
-
-lbl_801360EC:
-	lwz      r31, 0x10(r31)
-	cmplwi   r31, 0
-	beq      lbl_80136180
-	mr       r4, r30
-	addi     r3, r31, 0x30
-	bl       __eq__4ID32FUl
-	clrlwi.  r0, r3, 0x18
-	beq      lbl_80136110
-	b        lbl_80136174
-
-lbl_80136110:
-	mr       r3, r31
-	bl       getNext__8CollPartFv
-	cmplwi   r3, 0
-	beq      lbl_80136140
-	mr       r3, r31
-	bl       getNext__8CollPartFv
-	mr       r4, r30
-	bl       getCollPart__8CollPartFUl
-	cmplwi   r3, 0
-	beq      lbl_80136140
-	mr       r31, r3
-	b        lbl_80136174
-
-lbl_80136140:
-	mr       r3, r31
-	bl       getChild__8CollPartFv
-	cmplwi   r3, 0
-	beq      lbl_80136170
-	mr       r3, r31
-	bl       getChild__8CollPartFv
-	mr       r4, r30
-	bl       getCollPart__8CollPartFUl
-	cmplwi   r3, 0
-	beq      lbl_80136170
-	mr       r31, r3
-	b        lbl_80136174
-
-lbl_80136170:
-	li       r31, 0
-
-lbl_80136174:
-	cmplwi   r31, 0
-	beq      lbl_80136180
-	b        lbl_80136184
-
-lbl_80136180:
-	li       r31, 0
-
-lbl_80136184:
-	cmplwi   r31, 0
-	beq      lbl_80136190
-	b        lbl_80136194
-
-lbl_80136190:
-	li       r31, 0
-
-lbl_80136194:
-	cmplwi   r31, 0
-	beq      lbl_801361A4
-	mr       r3, r31
-	b        lbl_801364A4
-
-lbl_801361A4:
-	lwz      r31, 0x10(r29)
-	cmplwi   r31, 0
-	beq      lbl_801364A0
-	mr       r4, r30
-	addi     r3, r31, 0x30
-	bl       __eq__4ID32FUl
-	clrlwi.  r0, r3, 0x18
-	beq      lbl_801361C8
-	b        lbl_80136490
-
-lbl_801361C8:
-	lwz      r28, 4(r31)
-	cmplwi   r28, 0
-	beq      lbl_8013632C
-	mr       r4, r30
-	addi     r3, r28, 0x30
-	bl       __eq__4ID32FUl
-	clrlwi.  r0, r3, 0x18
-	beq      lbl_801361EC
-	b        lbl_8013631C
-
-lbl_801361EC:
-	lwz      r27, 4(r28)
-	cmplwi   r27, 0
-	beq      lbl_80136284
-	mr       r4, r30
-	addi     r3, r27, 0x30
-	bl       __eq__4ID32FUl
-	clrlwi.  r0, r3, 0x18
-	beq      lbl_80136210
-	b        lbl_80136274
-
-lbl_80136210:
-	mr       r3, r27
-	bl       getNext__8CollPartFv
-	cmplwi   r3, 0
-	beq      lbl_80136240
-	mr       r3, r27
-	bl       getNext__8CollPartFv
-	mr       r4, r30
-	bl       getCollPart__8CollPartFUl
-	cmplwi   r3, 0
-	beq      lbl_80136240
-	mr       r27, r3
-	b        lbl_80136274
-
-lbl_80136240:
-	mr       r3, r27
-	bl       getChild__8CollPartFv
-	cmplwi   r3, 0
-	beq      lbl_80136270
-	mr       r3, r27
-	bl       getChild__8CollPartFv
-	mr       r4, r30
-	bl       getCollPart__8CollPartFUl
-	cmplwi   r3, 0
-	beq      lbl_80136270
-	mr       r27, r3
-	b        lbl_80136274
-
-lbl_80136270:
-	li       r27, 0
-
-lbl_80136274:
-	cmplwi   r27, 0
-	beq      lbl_80136284
-	mr       r28, r27
-	b        lbl_8013631C
-
-lbl_80136284:
-	lwz      r28, 0x10(r28)
-	cmplwi   r28, 0
-	beq      lbl_80136318
-	mr       r4, r30
-	addi     r3, r28, 0x30
-	bl       __eq__4ID32FUl
-	clrlwi.  r0, r3, 0x18
-	beq      lbl_801362A8
-	b        lbl_8013630C
-
-lbl_801362A8:
-	mr       r3, r28
-	bl       getNext__8CollPartFv
-	cmplwi   r3, 0
-	beq      lbl_801362D8
-	mr       r3, r28
-	bl       getNext__8CollPartFv
-	mr       r4, r30
-	bl       getCollPart__8CollPartFUl
-	cmplwi   r3, 0
-	beq      lbl_801362D8
-	mr       r28, r3
-	b        lbl_8013630C
-
-lbl_801362D8:
-	mr       r3, r28
-	bl       getChild__8CollPartFv
-	cmplwi   r3, 0
-	beq      lbl_80136308
-	mr       r3, r28
-	bl       getChild__8CollPartFv
-	mr       r4, r30
-	bl       getCollPart__8CollPartFUl
-	cmplwi   r3, 0
-	beq      lbl_80136308
-	mr       r28, r3
-	b        lbl_8013630C
-
-lbl_80136308:
-	li       r28, 0
-
-lbl_8013630C:
-	cmplwi   r28, 0
-	beq      lbl_80136318
-	b        lbl_8013631C
-
-lbl_80136318:
-	li       r28, 0
-
-lbl_8013631C:
-	cmplwi   r28, 0
-	beq      lbl_8013632C
-	mr       r31, r28
-	b        lbl_80136490
-
-lbl_8013632C:
-	lwz      r31, 0x10(r31)
-	cmplwi   r31, 0
-	beq      lbl_8013648C
-	mr       r4, r30
-	addi     r3, r31, 0x30
-	bl       __eq__4ID32FUl
-	clrlwi.  r0, r3, 0x18
-	beq      lbl_80136350
-	b        lbl_80136480
-
-lbl_80136350:
-	lwz      r27, 4(r31)
-	cmplwi   r27, 0
-	beq      lbl_801363E8
-	mr       r4, r30
-	addi     r3, r27, 0x30
-	bl       __eq__4ID32FUl
-	clrlwi.  r0, r3, 0x18
-	beq      lbl_80136374
-	b        lbl_801363D8
-
-lbl_80136374:
-	mr       r3, r27
-	bl       getNext__8CollPartFv
-	cmplwi   r3, 0
-	beq      lbl_801363A4
-	mr       r3, r27
-	bl       getNext__8CollPartFv
-	mr       r4, r30
-	bl       getCollPart__8CollPartFUl
-	cmplwi   r3, 0
-	beq      lbl_801363A4
-	mr       r27, r3
-	b        lbl_801363D8
-
-lbl_801363A4:
-	mr       r3, r27
-	bl       getChild__8CollPartFv
-	cmplwi   r3, 0
-	beq      lbl_801363D4
-	mr       r3, r27
-	bl       getChild__8CollPartFv
-	mr       r4, r30
-	bl       getCollPart__8CollPartFUl
-	cmplwi   r3, 0
-	beq      lbl_801363D4
-	mr       r27, r3
-	b        lbl_801363D8
-
-lbl_801363D4:
-	li       r27, 0
-
-lbl_801363D8:
-	cmplwi   r27, 0
-	beq      lbl_801363E8
-	mr       r31, r27
-	b        lbl_80136480
-
-lbl_801363E8:
-	lwz      r31, 0x10(r31)
-	cmplwi   r31, 0
-	beq      lbl_8013647C
-	mr       r4, r30
-	addi     r3, r31, 0x30
-	bl       __eq__4ID32FUl
-	clrlwi.  r0, r3, 0x18
-	beq      lbl_8013640C
-	b        lbl_80136470
-
-lbl_8013640C:
-	mr       r3, r31
-	bl       getNext__8CollPartFv
-	cmplwi   r3, 0
-	beq      lbl_8013643C
-	mr       r3, r31
-	bl       getNext__8CollPartFv
-	mr       r4, r30
-	bl       getCollPart__8CollPartFUl
-	cmplwi   r3, 0
-	beq      lbl_8013643C
-	mr       r31, r3
-	b        lbl_80136470
-
-lbl_8013643C:
-	mr       r3, r31
-	bl       getChild__8CollPartFv
-	cmplwi   r3, 0
-	beq      lbl_8013646C
-	mr       r3, r31
-	bl       getChild__8CollPartFv
-	mr       r4, r30
-	bl       getCollPart__8CollPartFUl
-	cmplwi   r3, 0
-	beq      lbl_8013646C
-	mr       r31, r3
-	b        lbl_80136470
-
-lbl_8013646C:
-	li       r31, 0
-
-lbl_80136470:
-	cmplwi   r31, 0
-	beq      lbl_8013647C
-	b        lbl_80136480
-
-lbl_8013647C:
-	li       r31, 0
-
-lbl_80136480:
-	cmplwi   r31, 0
-	beq      lbl_8013648C
-	b        lbl_80136490
-
-lbl_8013648C:
-	li       r31, 0
-
-lbl_80136490:
-	cmplwi   r31, 0
-	beq      lbl_801364A0
-	mr       r3, r31
-	b        lbl_801364A4
-
-lbl_801364A0:
-	li       r3, 0
-
-lbl_801364A4:
-	lmw      r27, 0xc(r1)
-	lwz      r0, 0x24(r1)
-	mtlr     r0
-	addi     r1, r1, 0x20
-	blr
-	*/
+	if (_30 == partID) {
+		return this;
+	}
+	if (getNext() != nullptr) {
+		CollPart* result = getNext()->getCollPart(partID);
+		if (result != nullptr) {
+			return result;
+		}
+	}
+	if (getChild() != nullptr) {
+		CollPart* result = getChild()->getCollPart(partID);
+		if (result != nullptr) {
+			return result;
+		}
+	}
+	return nullptr;
 }
 
 /*
@@ -4319,8 +2524,36 @@ lbl_801364A4:
  * Address:	801364B8
  * Size:	00054C
  */
-void CollPart::getAllCollPartToArray(CollPart**, int, int&)
+int CollPart::getAllCollPartToArray(CollPart** array, int limit, int& count)
 {
+	int index = count;
+	if (index < limit) {
+		count++;
+		array[index] = this;
+		if (getNext()) {
+			getNext()->getAllCollPartToArray(array, limit, count);
+		}
+		if (getChild()) {
+			getChild()->getAllCollPartToArray(array, limit, count);
+		}
+	} else {
+		// ???
+	}
+	return count;
+
+	// int index = count;
+	// if (index >= limit) {
+	// 	return count;
+	// }
+	// count++;
+	// array[index] = this;
+	// if (getNext()) {
+	// 	getNext()->getAllCollPartToArray(array, limit, count);
+	// }
+	// if (getChild()) {
+	// 	getChild()->getAllCollPartToArray(array, limit, count);
+	// }
+	// return count;
 	/*
 	stwu     r1, -0x30(r1)
 	mflr     r0
@@ -4800,6 +3033,16 @@ lbl_80136B00:
  */
 CollPart* CollTree::getRandomCollPart()
 {
+	if (m_part == nullptr) {
+		return nullptr;
+	}
+	CollPart* parts[0x10];
+	int v1;
+	uint num  = m_part->getAllCollPartToArray(parts, 0x10, v1);
+	int index = (int)((float)num * ((float)rand() / 23768.0f));
+	JUT_ASSERTLINE(886, parts[index] != nullptr, "num=%d : random=%d\n", num, index);
+	JUT_ASSERTLINE(889, 0xf < index, "num=%d : random=%d\n", num, index);
+	return parts[index];
 	/*
 	stwu     r1, -0x80(r1)
 	mflr     r0
@@ -4890,92 +3133,41 @@ lbl_80136C20:
  * Address:	80136C40
  * Size:	000034
  */
-void CollTree::getBoundingSphere(Sys::Sphere&)
+void CollTree::getBoundingSphere(Sys::Sphere& sphere)
 {
-	/*
-	lwz      r5, 0(r3)
-	cmplwi   r5, 0
-	beqlr
-	lfs      f0, 0x4c(r5)
-	stfs     f0, 0(r4)
-	lfs      f0, 0x50(r5)
-	stfs     f0, 4(r4)
-	lfs      f0, 0x54(r5)
-	stfs     f0, 8(r4)
-	lwz      r3, 0(r3)
-	lfs      f0, 0x1c(r3)
-	stfs     f0, 0xc(r4)
-	blr
-	*/
+	if (m_part == nullptr) {
+		return;
+	}
+	sphere.m_position = m_part->m_position;
+	sphere.m_radius   = m_part->_1C;
 }
 
 /*
+ * __ct__8CollPartFPQ28SysShape9MtxObject
  * --INFO--
  * Address:	80136C74
  * Size:	000064
  */
-CollPart::CollPart(SysShape::MtxObject*)
+CollPart::CollPart(SysShape::MtxObject* mtxObject)
+    : CNode()
+    , _30()
+    , _3C()
 {
-	/*
-	stwu     r1, -0x10(r1)
-	mflr     r0
-	stw      r0, 0x14(r1)
-	stw      r31, 0xc(r1)
-	mr       r31, r4
-	stw      r30, 8(r1)
-	mr       r30, r3
-	bl       __ct__5CNodeFv
-	lis      r4, __vt__8CollPart@ha
-	addi     r3, r30, 0x30
-	addi     r0, r4, __vt__8CollPart@l
-	stw      r0, 0(r30)
-	bl       __ct__4ID32Fv
-	addi     r3, r30, 0x3c
-	bl       __ct__4ID32Fv
-	mr       r3, r30
-	mr       r4, r31
-	bl       init__8CollPartFPQ28SysShape9MtxObject
-	lwz      r0, 0x14(r1)
-	mr       r3, r30
-	lwz      r31, 0xc(r1)
-	lwz      r30, 8(r1)
-	mtlr     r0
-	addi     r1, r1, 0x10
-	blr
-	*/
+	init(mtxObject);
 }
 
 /*
+ * __ct__8CollPartFv
  * --INFO--
  * Address:	80136CD8
  * Size:	000058
  */
 CollPart::CollPart()
+    : CNode()
+    , _30()
+    , _3C()
 {
-	/*
-	stwu     r1, -0x10(r1)
-	mflr     r0
-	stw      r0, 0x14(r1)
-	stw      r31, 0xc(r1)
-	mr       r31, r3
-	bl       __ct__5CNodeFv
-	lis      r4, __vt__8CollPart@ha
-	addi     r3, r31, 0x30
-	addi     r0, r4, __vt__8CollPart@l
-	stw      r0, 0(r31)
-	bl       __ct__4ID32Fv
-	addi     r3, r31, 0x3c
-	bl       __ct__4ID32Fv
-	mr       r3, r31
-	li       r4, 0
-	bl       init__8CollPartFPQ28SysShape9MtxObject
-	lwz      r0, 0x14(r1)
-	mr       r3, r31
-	lwz      r31, 0xc(r1)
-	mtlr     r0
-	addi     r1, r1, 0x10
-	blr
-	*/
+	init(nullptr);
 }
 
 /*
@@ -4983,42 +3175,22 @@ CollPart::CollPart()
  * Address:	80136D30
  * Size:	000080
  */
-void CollPart::init(SysShape::MtxObject*)
+void CollPart::init(SysShape::MtxObject* mtxObject)
 {
-	/*
-	stwu     r1, -0x10(r1)
-	mflr     r0
-	li       r6, 0
-	mr       r7, r3
-	stw      r0, 0x14(r1)
-	li       r0, -1
-	lfs      f0, lbl_80518210@sda21(r2)
-	lis      r5, 0x5F5F5F5F@ha
-	stw      r6, 0x10(r3)
-	stw      r6, 0xc(r3)
-	addi     r3, r7, 0x3c
-	stw      r6, 8(r7)
-	stw      r6, 4(r7)
-	stfs     f0, 0x1c(r7)
-	stfs     f0, 0x18(r7)
-	stfs     f0, 0x20(r7)
-	stfs     f0, 0x24(r7)
-	stfs     f0, 0x28(r7)
-	stfs     f0, 0x4c(r7)
-	stfs     f0, 0x50(r7)
-	stfs     f0, 0x54(r7)
-	stw      r4, 0x5c(r7)
-	addi     r4, r5, 0x5F5F5F5F@l
-	stw      r0, 0x2c(r7)
-	stw      r6, 0x60(r7)
-	sth      r6, 0x48(r7)
-	stb      r6, 0x58(r7)
-	bl       setID__4ID32FUl
-	lwz      r0, 0x14(r1)
-	mtlr     r0
-	addi     r1, r1, 0x10
-	blr
-	*/
+	m_child       = nullptr;
+	m_parent      = nullptr;
+	m_prev        = nullptr;
+	m_next        = nullptr;
+	_1C           = 0.0f;
+	_18           = 0.0f;
+	_20           = 0.0f;
+	m_position    = 0.0f;
+	m_model       = mtxObject;
+	m_jointIndex  = -1;
+	_60           = 0;
+	m_attribute   = 0;
+	m_hasCollPart = 0;
+	_3C.setID('____');
 }
 
 /*
@@ -5026,377 +3198,25 @@ void CollPart::init(SysShape::MtxObject*)
  * Address:	80136DB0
  * Size:	000030
  */
-bool CollPart::isStickable()
-{
-	/*
-	stwu     r1, -0x10(r1)
-	mflr     r0
-	lis      r4, 0x732A2A2A@ha
-	addi     r3, r3, 0x3c
-	stw      r0, 0x14(r1)
-	li       r5, 0x2a
-	addi     r4, r4, 0x732A2A2A@l
-	bl       match__4ID32FUlc
-	lwz      r0, 0x14(r1)
-	mtlr     r0
-	addi     r1, r1, 0x10
-	blr
-	*/
-}
+bool CollPart::isStickable() { return _3C.match('s***', '*'); }
 
 /*
+ * update__8CollPartFv
  * --INFO--
  * Address:	80136DE0
  * Size:	0004E0
  */
 void CollPart::update()
 {
-	/*
-	stwu     r1, -0x2f0(r1)
-	mflr     r0
-	stw      r0, 0x2f4(r1)
-	addi     r4, r1, 0x2a8
-	stw      r31, 0x2ec(r1)
-	mr       r31, r3
-	stw      r30, 0x2e8(r1)
-	stw      r29, 0x2e4(r1)
-	stw      r28, 0x2e0(r1)
-	bl       makeMatrixTo__8CollPartFR7Matrixf
-	lfs      f0, 0x2b4(r1)
-	stfs     f0, 0x4c(r31)
-	lfs      f0, 0x2c4(r1)
-	stfs     f0, 0x50(r31)
-	lfs      f0, 0x2d4(r1)
-	stfs     f0, 0x54(r31)
-	lwz      r29, 4(r31)
-	cmplwi   r29, 0
-	beq      lbl_80137060
-	mr       r3, r29
-	addi     r4, r1, 0x278
-	bl       makeMatrixTo__8CollPartFR7Matrixf
-	addi     r3, r1, 0x278
-	li       r4, 0
-	li       r5, 3
-	bl       __cl__7MatrixfFii
-	lfs      f0, 0(r3)
-	addi     r3, r1, 0x278
-	li       r4, 1
-	li       r5, 3
-	stfs     f0, 0x4c(r29)
-	bl       __cl__7MatrixfFii
-	lfs      f0, 0(r3)
-	addi     r3, r1, 0x278
-	li       r4, 2
-	li       r5, 3
-	stfs     f0, 0x50(r29)
-	bl       __cl__7MatrixfFii
-	lfs      f0, 0(r3)
-	stfs     f0, 0x54(r29)
-	lwz      r28, 4(r29)
-	cmplwi   r28, 0
-	beq      lbl_80136F70
-	mr       r3, r28
-	addi     r4, r1, 0x218
-	bl       makeMatrixTo__8CollPartFR7Matrixf
-	addi     r3, r1, 0x218
-	addi     r5, r28, 0x4c
-	li       r4, 3
-	bl       "getBasis__7MatrixfFiR10Vector3<f>"
-	lwz      r0, 4(r28)
-	cmplwi   r0, 0
-	beq      lbl_80136F0C
-	mr       r3, r28
-	bl       getNext__8CollPartFv
-	addi     r4, r1, 0x158
-	mr       r30, r3
-	bl       makeMatrixTo__8CollPartFR7Matrixf
-	addi     r3, r1, 0x158
-	addi     r4, r30, 0x4c
-	bl       "getTranslation__7MatrixfFR10Vector3<f>"
-	mr       r3, r30
-	bl       getNext__8CollPartFv
-	cmplwi   r3, 0
-	beq      lbl_80136EF0
-	mr       r3, r30
-	bl       getNext__8CollPartFv
-	bl       update__8CollPartFv
-
-lbl_80136EF0:
-	mr       r3, r30
-	bl       getChild__8CollPartFv
-	cmplwi   r3, 0
-	beq      lbl_80136F0C
-	mr       r3, r30
-	bl       getChild__8CollPartFv
-	bl       update__8CollPartFv
-
-lbl_80136F0C:
-	lwz      r0, 0x10(r28)
-	cmplwi   r0, 0
-	beq      lbl_80136F70
-	mr       r3, r28
-	bl       getChild__8CollPartFv
-	addi     r4, r1, 0x128
-	mr       r30, r3
-	bl       makeMatrixTo__8CollPartFR7Matrixf
-	addi     r3, r1, 0x128
-	addi     r4, r30, 0x4c
-	bl       "getTranslation__7MatrixfFR10Vector3<f>"
-	mr       r3, r30
-	bl       getNext__8CollPartFv
-	cmplwi   r3, 0
-	beq      lbl_80136F54
-	mr       r3, r30
-	bl       getNext__8CollPartFv
-	bl       update__8CollPartFv
-
-lbl_80136F54:
-	mr       r3, r30
-	bl       getChild__8CollPartFv
-	cmplwi   r3, 0
-	beq      lbl_80136F70
-	mr       r3, r30
-	bl       getChild__8CollPartFv
-	bl       update__8CollPartFv
-
-lbl_80136F70:
-	lwz      r28, 0x10(r29)
-	cmplwi   r28, 0
-	beq      lbl_80137060
-	mr       r3, r28
-	addi     r4, r1, 0x1e8
-	bl       makeMatrixTo__8CollPartFR7Matrixf
-	addi     r3, r1, 0x1e8
-	addi     r5, r28, 0x4c
-	li       r4, 3
-	bl       "getBasis__7MatrixfFiR10Vector3<f>"
-	lwz      r0, 4(r28)
-	cmplwi   r0, 0
-	beq      lbl_80136FFC
-	mr       r3, r28
-	bl       getNext__8CollPartFv
-	addi     r4, r1, 0xf8
-	mr       r30, r3
-	bl       makeMatrixTo__8CollPartFR7Matrixf
-	addi     r3, r1, 0xf8
-	addi     r4, r30, 0x4c
-	bl       "getTranslation__7MatrixfFR10Vector3<f>"
-	mr       r3, r30
-	bl       getNext__8CollPartFv
-	cmplwi   r3, 0
-	beq      lbl_80136FE0
-	mr       r3, r30
-	bl       getNext__8CollPartFv
-	bl       update__8CollPartFv
-
-lbl_80136FE0:
-	mr       r3, r30
-	bl       getChild__8CollPartFv
-	cmplwi   r3, 0
-	beq      lbl_80136FFC
-	mr       r3, r30
-	bl       getChild__8CollPartFv
-	bl       update__8CollPartFv
-
-lbl_80136FFC:
-	lwz      r0, 0x10(r28)
-	cmplwi   r0, 0
-	beq      lbl_80137060
-	mr       r3, r28
-	bl       getChild__8CollPartFv
-	addi     r4, r1, 0xc8
-	mr       r30, r3
-	bl       makeMatrixTo__8CollPartFR7Matrixf
-	addi     r3, r1, 0xc8
-	addi     r4, r30, 0x4c
-	bl       "getTranslation__7MatrixfFR10Vector3<f>"
-	mr       r3, r30
-	bl       getNext__8CollPartFv
-	cmplwi   r3, 0
-	beq      lbl_80137044
-	mr       r3, r30
-	bl       getNext__8CollPartFv
-	bl       update__8CollPartFv
-
-lbl_80137044:
-	mr       r3, r30
-	bl       getChild__8CollPartFv
-	cmplwi   r3, 0
-	beq      lbl_80137060
-	mr       r3, r30
-	bl       getChild__8CollPartFv
-	bl       update__8CollPartFv
-
-lbl_80137060:
-	lwz      r28, 0x10(r31)
-	cmplwi   r28, 0
-	beq      lbl_801372A0
-	mr       r3, r28
-	addi     r4, r1, 0x248
-	bl       makeMatrixTo__8CollPartFR7Matrixf
-	addi     r3, r1, 0x248
-	li       r4, 0
-	li       r5, 3
-	bl       __cl__7MatrixfFii
-	lfs      f0, 0(r3)
-	addi     r3, r1, 0x248
-	li       r4, 1
-	li       r5, 3
-	stfs     f0, 0x4c(r28)
-	bl       __cl__7MatrixfFii
-	lfs      f0, 0(r3)
-	addi     r3, r1, 0x248
-	li       r4, 2
-	li       r5, 3
-	stfs     f0, 0x50(r28)
-	bl       __cl__7MatrixfFii
-	lfs      f0, 0(r3)
-	stfs     f0, 0x54(r28)
-	lwz      r29, 4(r28)
-	cmplwi   r29, 0
-	beq      lbl_801371B0
-	mr       r3, r29
-	addi     r4, r1, 0x1b8
-	bl       makeMatrixTo__8CollPartFR7Matrixf
-	addi     r3, r1, 0x1b8
-	addi     r5, r29, 0x4c
-	li       r4, 3
-	bl       "getBasis__7MatrixfFiR10Vector3<f>"
-	lwz      r0, 4(r29)
-	cmplwi   r0, 0
-	beq      lbl_8013714C
-	mr       r3, r29
-	bl       getNext__8CollPartFv
-	addi     r4, r1, 0x98
-	mr       r30, r3
-	bl       makeMatrixTo__8CollPartFR7Matrixf
-	addi     r3, r1, 0x98
-	addi     r4, r30, 0x4c
-	bl       "getTranslation__7MatrixfFR10Vector3<f>"
-	mr       r3, r30
-	bl       getNext__8CollPartFv
-	cmplwi   r3, 0
-	beq      lbl_80137130
-	mr       r3, r30
-	bl       getNext__8CollPartFv
-	bl       update__8CollPartFv
-
-lbl_80137130:
-	mr       r3, r30
-	bl       getChild__8CollPartFv
-	cmplwi   r3, 0
-	beq      lbl_8013714C
-	mr       r3, r30
-	bl       getChild__8CollPartFv
-	bl       update__8CollPartFv
-
-lbl_8013714C:
-	lwz      r0, 0x10(r29)
-	cmplwi   r0, 0
-	beq      lbl_801371B0
-	mr       r3, r29
-	bl       getChild__8CollPartFv
-	addi     r4, r1, 0x68
-	mr       r30, r3
-	bl       makeMatrixTo__8CollPartFR7Matrixf
-	addi     r3, r1, 0x68
-	addi     r4, r30, 0x4c
-	bl       "getTranslation__7MatrixfFR10Vector3<f>"
-	mr       r3, r30
-	bl       getNext__8CollPartFv
-	cmplwi   r3, 0
-	beq      lbl_80137194
-	mr       r3, r30
-	bl       getNext__8CollPartFv
-	bl       update__8CollPartFv
-
-lbl_80137194:
-	mr       r3, r30
-	bl       getChild__8CollPartFv
-	cmplwi   r3, 0
-	beq      lbl_801371B0
-	mr       r3, r30
-	bl       getChild__8CollPartFv
-	bl       update__8CollPartFv
-
-lbl_801371B0:
-	lwz      r28, 0x10(r28)
-	cmplwi   r28, 0
-	beq      lbl_801372A0
-	mr       r3, r28
-	addi     r4, r1, 0x188
-	bl       makeMatrixTo__8CollPartFR7Matrixf
-	addi     r3, r1, 0x188
-	addi     r5, r28, 0x4c
-	li       r4, 3
-	bl       "getBasis__7MatrixfFiR10Vector3<f>"
-	lwz      r0, 4(r28)
-	cmplwi   r0, 0
-	beq      lbl_8013723C
-	mr       r3, r28
-	bl       getNext__8CollPartFv
-	addi     r4, r1, 0x38
-	mr       r30, r3
-	bl       makeMatrixTo__8CollPartFR7Matrixf
-	addi     r3, r1, 0x38
-	addi     r4, r30, 0x4c
-	bl       "getTranslation__7MatrixfFR10Vector3<f>"
-	mr       r3, r30
-	bl       getNext__8CollPartFv
-	cmplwi   r3, 0
-	beq      lbl_80137220
-	mr       r3, r30
-	bl       getNext__8CollPartFv
-	bl       update__8CollPartFv
-
-lbl_80137220:
-	mr       r3, r30
-	bl       getChild__8CollPartFv
-	cmplwi   r3, 0
-	beq      lbl_8013723C
-	mr       r3, r30
-	bl       getChild__8CollPartFv
-	bl       update__8CollPartFv
-
-lbl_8013723C:
-	lwz      r0, 0x10(r28)
-	cmplwi   r0, 0
-	beq      lbl_801372A0
-	mr       r3, r28
-	bl       getChild__8CollPartFv
-	addi     r4, r1, 8
-	mr       r30, r3
-	bl       makeMatrixTo__8CollPartFR7Matrixf
-	addi     r3, r1, 8
-	addi     r4, r30, 0x4c
-	bl       "getTranslation__7MatrixfFR10Vector3<f>"
-	mr       r3, r30
-	bl       getNext__8CollPartFv
-	cmplwi   r3, 0
-	beq      lbl_80137284
-	mr       r3, r30
-	bl       getNext__8CollPartFv
-	bl       update__8CollPartFv
-
-lbl_80137284:
-	mr       r3, r30
-	bl       getChild__8CollPartFv
-	cmplwi   r3, 0
-	beq      lbl_801372A0
-	mr       r3, r30
-	bl       getChild__8CollPartFv
-	bl       update__8CollPartFv
-
-lbl_801372A0:
-	lwz      r0, 0x2f4(r1)
-	lwz      r31, 0x2ec(r1)
-	lwz      r30, 0x2e8(r1)
-	lwz      r29, 0x2e4(r1)
-	lwz      r28, 0x2e0(r1)
-	mtlr     r0
-	addi     r1, r1, 0x2f0
-	blr
-	*/
+	Matrixf mtx;
+	makeMatrixTo(mtx);
+	mtx.getTranslation(m_position);
+	if (getNext()) {
+		getNext()->update();
+	}
+	if (getChild()) {
+		getChild()->update();
+	}
 }
 
 /*
@@ -5404,100 +3224,48 @@ lbl_801372A0:
  * Address:	801372C0
  * Size:	00001C
  */
-void Matrixf::getTranslation(Vector3f&)
-{
-	/*
-	lfs      f0, 0xc(r3)
-	stfs     f0, 0(r4)
-	lfs      f0, 0x1c(r3)
-	stfs     f0, 4(r4)
-	lfs      f0, 0x2c(r3)
-	stfs     f0, 8(r4)
-	blr
-	*/
-}
+// void Matrixf::getTranslation(Vector3f& translation)
+// {
+// 	translation.x = m_matrix.structView.tx;
+// 	translation.y = m_matrix.structView.ty;
+// 	translation.z = m_matrix.structView.tz;
+// }
 
 /*
  * --INFO--
  * Address:	801372DC
  * Size:	000024
  */
-void Matrixf::getBasis(int, Vector3f&)
-{
-	/*
-	slwi     r0, r4, 2
-	lfsx     f0, r3, r0
-	add      r3, r3, r0
-	stfs     f0, 0(r5)
-	lfs      f0, 0x10(r3)
-	stfs     f0, 4(r5)
-	lfs      f0, 0x20(r3)
-	stfs     f0, 8(r5)
-	blr
-	*/
-}
+// void Matrixf::getBasis(int v1, Vector3f& v2)
+// {
+// 	v2.x = m_matrix.vecView.x[v1];
+// 	v2.y = m_matrix.vecView.y[v1];
+// 	v2.z = m_matrix.vecView.z[v1];
+// }
 
 /*
+ * __cl__7MatrixfFii
  * --INFO--
  * Address:	80137300
  * Size:	000018
  */
-void Matrixf::operator()(int, int)
-{
-	/*
-	slwi     r4, r4, 4
-	slwi     r0, r5, 2
-	mr       r5, r3
-	add      r3, r4, r0
-	add      r3, r5, r3
-	blr
-	*/
-}
+// float& Matrixf::operator()(int v1, int v2)
+// {
+// }
 
 /*
  * --INFO--
  * Address:	80137318
  * Size:	000084
  */
-void CollPart::makeMatrixTo(Matrixf&)
+void CollPart::makeMatrixTo(Matrixf& p1)
 {
-	/*
-	stwu     r1, -0x40(r1)
-	mflr     r0
-	stw      r0, 0x44(r1)
-	stw      r31, 0x3c(r1)
-	mr       r31, r4
-	stw      r30, 0x38(r1)
-	mr       r30, r3
-	lwz      r0, 0x2c(r3)
-	cmpwi    r0, -1
-	beq      lbl_80137384
-	addi     r3, r1, 8
-	bl       PSMTXIdentity
-	lfs      f0, 0x20(r30)
-	stfs     f0, 0x14(r1)
-	lfs      f0, 0x24(r30)
-	stfs     f0, 0x24(r1)
-	lfs      f0, 0x28(r30)
-	stfs     f0, 0x34(r1)
-	lwz      r3, 0x5c(r30)
-	lwz      r4, 0x2c(r30)
-	lwz      r12, 0(r3)
-	lwz      r12, 8(r12)
-	mtctr    r12
-	bctrl
-	mr       r5, r31
-	addi     r4, r1, 8
-	bl       PSMTXConcat
-
-lbl_80137384:
-	lwz      r0, 0x44(r1)
-	lwz      r31, 0x3c(r1)
-	lwz      r30, 0x38(r1)
-	mtlr     r0
-	addi     r1, r1, 0x40
-	blr
-	*/
+	if ((int)m_jointIndex != -1) {
+		Matrixf mtx;
+		PSMTXIdentity(mtx.m_matrix.mtxView);
+		mtx.setTranslation(_20);
+		PSMTXConcat(m_model->getMatrix(m_jointIndex)->m_matrix.mtxView, mtx.m_matrix.mtxView, p1.m_matrix.mtxView);
+	}
 }
 
 /*
@@ -5507,6 +3275,14 @@ lbl_80137384:
  */
 void CollPart::makeTubeTree()
 {
+	if (getChild() != nullptr) {
+		m_hasCollPart = 2;
+	} else {
+		m_hasCollPart = 0;
+	}
+	for (CollPart* part = getChild(); part != nullptr; part = part->getNext()) {
+		part->makeTubeTree();
+	}
 	/*
 	stwu     r1, -0x30(r1)
 	mflr     r0
@@ -5891,8 +3667,31 @@ lbl_801377B8:
  * Address:	801377DC
  * Size:	000168
  */
-void CollPart::calcStickGlobal(Vector3f&, Vector3f&)
+void CollPart::calcStickGlobal(Vector3f& p1, Vector3f& p2)
 {
+	switch (m_hasCollPart) {
+	case 0:
+		Matrixf m;
+		makeMatrixTo(m);
+		Vec v;
+		PSMTXMultVec(m.m_matrix.mtxView, (Vec*)(&p1), &v);
+		p2.x = v.x;
+		p2.y = v.y;
+		p2.z = v.z;
+		break;
+	case 1:
+		calcStickLocal(p2, p1);
+		Sys::Tube tube;
+		getTube(tube);
+		p2 = tube.setPos(p1.y);
+		break;
+	case 2:
+		calcStickLocal(p2, p1);
+		Sys::Tube tube2;
+		getTube(tube2);
+		p2 = tube2.setPos(p1.y);
+		break;
+	}
 	/*
 	stwu     r1, -0xe0(r1)
 	mflr     r0
@@ -6375,294 +4174,15 @@ lbl_80137DF0:
  * Address:	80137E0C
  * Size:	0003F0
  */
-void CollPart::setScale(float)
+void CollPart::setScale(float scale)
 {
-	/*
-	stwu     r1, -0x30(r1)
-	mflr     r0
-	stw      r0, 0x34(r1)
-	stfd     f31, 0x20(r1)
-	psq_st   f31, 40(r1), 0, qr0
-	stw      r31, 0x1c(r1)
-	stw      r30, 0x18(r1)
-	stw      r29, 0x14(r1)
-	stw      r28, 0x10(r1)
-	mr       r28, r3
-	fmr      f31, f1
-	lfs      f0, 0x18(r3)
-	fmuls    f0, f0, f31
-	stfs     f0, 0x1c(r3)
-	lwz      r30, 0x10(r3)
-	cmplwi   r30, 0
-	beq      lbl_8013800C
-	lfs      f0, 0x18(r30)
-	fmuls    f0, f0, f31
-	stfs     f0, 0x1c(r30)
-	lwz      r29, 0x10(r30)
-	cmplwi   r29, 0
-	beq      lbl_80137F34
-	lfs      f0, 0x18(r29)
-	fmuls    f0, f0, f31
-	stfs     f0, 0x1c(r29)
-	lwz      r0, 0x10(r29)
-	cmplwi   r0, 0
-	beq      lbl_80137ED4
-	mr       r3, r29
-	bl       getChild__8CollPartFv
-	lfs      f0, 0x18(r3)
-	mr       r31, r3
-	fmuls    f0, f0, f31
-	stfs     f0, 0x1c(r3)
-	bl       getChild__8CollPartFv
-	cmplwi   r3, 0
-	beq      lbl_80137EB4
-	mr       r3, r31
-	bl       getChild__8CollPartFv
-	fmr      f1, f31
-	bl       setScale__8CollPartFf
-
-lbl_80137EB4:
-	mr       r3, r31
-	bl       getNext__8CollPartFv
-	cmplwi   r3, 0
-	beq      lbl_80137ED4
-	mr       r3, r31
-	bl       getNext__8CollPartFv
-	fmr      f1, f31
-	bl       setScale__8CollPartFf
-
-lbl_80137ED4:
-	lwz      r0, 4(r29)
-	cmplwi   r0, 0
-	beq      lbl_80137F34
-	mr       r3, r29
-	bl       getNext__8CollPartFv
-	lfs      f0, 0x18(r3)
-	mr       r31, r3
-	fmuls    f0, f0, f31
-	stfs     f0, 0x1c(r3)
-	bl       getChild__8CollPartFv
-	cmplwi   r3, 0
-	beq      lbl_80137F14
-	mr       r3, r31
-	bl       getChild__8CollPartFv
-	fmr      f1, f31
-	bl       setScale__8CollPartFf
-
-lbl_80137F14:
-	mr       r3, r31
-	bl       getNext__8CollPartFv
-	cmplwi   r3, 0
-	beq      lbl_80137F34
-	mr       r3, r31
-	bl       getNext__8CollPartFv
-	fmr      f1, f31
-	bl       setScale__8CollPartFf
-
-lbl_80137F34:
-	lwz      r29, 4(r30)
-	cmplwi   r29, 0
-	beq      lbl_8013800C
-	lfs      f0, 0x18(r29)
-	fmuls    f0, f0, f31
-	stfs     f0, 0x1c(r29)
-	lwz      r0, 0x10(r29)
-	cmplwi   r0, 0
-	beq      lbl_80137FAC
-	mr       r3, r29
-	bl       getChild__8CollPartFv
-	lfs      f0, 0x18(r3)
-	mr       r31, r3
-	fmuls    f0, f0, f31
-	stfs     f0, 0x1c(r3)
-	bl       getChild__8CollPartFv
-	cmplwi   r3, 0
-	beq      lbl_80137F8C
-	mr       r3, r31
-	bl       getChild__8CollPartFv
-	fmr      f1, f31
-	bl       setScale__8CollPartFf
-
-lbl_80137F8C:
-	mr       r3, r31
-	bl       getNext__8CollPartFv
-	cmplwi   r3, 0
-	beq      lbl_80137FAC
-	mr       r3, r31
-	bl       getNext__8CollPartFv
-	fmr      f1, f31
-	bl       setScale__8CollPartFf
-
-lbl_80137FAC:
-	lwz      r0, 4(r29)
-	cmplwi   r0, 0
-	beq      lbl_8013800C
-	mr       r3, r29
-	bl       getNext__8CollPartFv
-	lfs      f0, 0x18(r3)
-	mr       r31, r3
-	fmuls    f0, f0, f31
-	stfs     f0, 0x1c(r3)
-	bl       getChild__8CollPartFv
-	cmplwi   r3, 0
-	beq      lbl_80137FEC
-	mr       r3, r31
-	bl       getChild__8CollPartFv
-	fmr      f1, f31
-	bl       setScale__8CollPartFf
-
-lbl_80137FEC:
-	mr       r3, r31
-	bl       getNext__8CollPartFv
-	cmplwi   r3, 0
-	beq      lbl_8013800C
-	mr       r3, r31
-	bl       getNext__8CollPartFv
-	fmr      f1, f31
-	bl       setScale__8CollPartFf
-
-lbl_8013800C:
-	lwz      r29, 4(r28)
-	cmplwi   r29, 0
-	beq      lbl_801381D4
-	lfs      f0, 0x18(r29)
-	fmuls    f0, f0, f31
-	stfs     f0, 0x1c(r29)
-	lwz      r30, 0x10(r29)
-	cmplwi   r30, 0
-	beq      lbl_801380FC
-	lfs      f0, 0x18(r30)
-	fmuls    f0, f0, f31
-	stfs     f0, 0x1c(r30)
-	lwz      r0, 0x10(r30)
-	cmplwi   r0, 0
-	beq      lbl_8013809C
-	mr       r3, r30
-	bl       getChild__8CollPartFv
-	lfs      f0, 0x18(r3)
-	mr       r31, r3
-	fmuls    f0, f0, f31
-	stfs     f0, 0x1c(r3)
-	bl       getChild__8CollPartFv
-	cmplwi   r3, 0
-	beq      lbl_8013807C
-	mr       r3, r31
-	bl       getChild__8CollPartFv
-	fmr      f1, f31
-	bl       setScale__8CollPartFf
-
-lbl_8013807C:
-	mr       r3, r31
-	bl       getNext__8CollPartFv
-	cmplwi   r3, 0
-	beq      lbl_8013809C
-	mr       r3, r31
-	bl       getNext__8CollPartFv
-	fmr      f1, f31
-	bl       setScale__8CollPartFf
-
-lbl_8013809C:
-	lwz      r0, 4(r30)
-	cmplwi   r0, 0
-	beq      lbl_801380FC
-	mr       r3, r30
-	bl       getNext__8CollPartFv
-	lfs      f0, 0x18(r3)
-	mr       r31, r3
-	fmuls    f0, f0, f31
-	stfs     f0, 0x1c(r3)
-	bl       getChild__8CollPartFv
-	cmplwi   r3, 0
-	beq      lbl_801380DC
-	mr       r3, r31
-	bl       getChild__8CollPartFv
-	fmr      f1, f31
-	bl       setScale__8CollPartFf
-
-lbl_801380DC:
-	mr       r3, r31
-	bl       getNext__8CollPartFv
-	cmplwi   r3, 0
-	beq      lbl_801380FC
-	mr       r3, r31
-	bl       getNext__8CollPartFv
-	fmr      f1, f31
-	bl       setScale__8CollPartFf
-
-lbl_801380FC:
-	lwz      r29, 4(r29)
-	cmplwi   r29, 0
-	beq      lbl_801381D4
-	lfs      f0, 0x18(r29)
-	fmuls    f0, f0, f31
-	stfs     f0, 0x1c(r29)
-	lwz      r0, 0x10(r29)
-	cmplwi   r0, 0
-	beq      lbl_80138174
-	mr       r3, r29
-	bl       getChild__8CollPartFv
-	lfs      f0, 0x18(r3)
-	mr       r31, r3
-	fmuls    f0, f0, f31
-	stfs     f0, 0x1c(r3)
-	bl       getChild__8CollPartFv
-	cmplwi   r3, 0
-	beq      lbl_80138154
-	mr       r3, r31
-	bl       getChild__8CollPartFv
-	fmr      f1, f31
-	bl       setScale__8CollPartFf
-
-lbl_80138154:
-	mr       r3, r31
-	bl       getNext__8CollPartFv
-	cmplwi   r3, 0
-	beq      lbl_80138174
-	mr       r3, r31
-	bl       getNext__8CollPartFv
-	fmr      f1, f31
-	bl       setScale__8CollPartFf
-
-lbl_80138174:
-	lwz      r0, 4(r29)
-	cmplwi   r0, 0
-	beq      lbl_801381D4
-	mr       r3, r29
-	bl       getNext__8CollPartFv
-	lfs      f0, 0x18(r3)
-	mr       r31, r3
-	fmuls    f0, f0, f31
-	stfs     f0, 0x1c(r3)
-	bl       getChild__8CollPartFv
-	cmplwi   r3, 0
-	beq      lbl_801381B4
-	mr       r3, r31
-	bl       getChild__8CollPartFv
-	fmr      f1, f31
-	bl       setScale__8CollPartFf
-
-lbl_801381B4:
-	mr       r3, r31
-	bl       getNext__8CollPartFv
-	cmplwi   r3, 0
-	beq      lbl_801381D4
-	mr       r3, r31
-	bl       getNext__8CollPartFv
-	fmr      f1, f31
-	bl       setScale__8CollPartFf
-
-lbl_801381D4:
-	psq_l    f31, 40(r1), 0, qr0
-	lwz      r0, 0x34(r1)
-	lfd      f31, 0x20(r1)
-	lwz      r31, 0x1c(r1)
-	lwz      r30, 0x18(r1)
-	lwz      r29, 0x14(r1)
-	lwz      r28, 0x10(r1)
-	mtlr     r0
-	addi     r1, r1, 0x30
-	blr
-	*/
+	_1C = _18 * scale;
+	if (getChild()) {
+		getChild()->setScale(scale);
+	}
+	if (getNext()) {
+		getNext()->setScale(scale);
+	}
 }
 
 /*
@@ -6670,43 +4190,12 @@ lbl_801381D4:
  * Address:	801381FC
  * Size:	00007C
  */
-void CollPart::getSphere(Sys::Sphere&)
+void CollPart::getSphere(Sys::Sphere& sphere)
 {
-	/*
-	stwu     r1, -0x10(r1)
-	mflr     r0
-	stw      r0, 0x14(r1)
-	stw      r31, 0xc(r1)
-	mr       r31, r4
-	stw      r30, 8(r1)
-	mr       r30, r3
-	lbz      r0, 0x58(r3)
-	cmplwi   r0, 0
-	beq      lbl_80138240
-	lis      r3, lbl_8047C5A0@ha
-	lis      r5, lbl_8047C5CC@ha
-	addi     r3, r3, lbl_8047C5A0@l
-	li       r4, 0x509
-	addi     r5, r5, lbl_8047C5CC@l
-	crclr    6
-	bl       panic_f__12JUTExceptionFPCciPCce
-
-lbl_80138240:
-	lfs      f1, 0x1c(r30)
-	lfs      f0, 0x4c(r30)
-	stfs     f0, 0(r31)
-	lfs      f0, 0x50(r30)
-	stfs     f0, 4(r31)
-	lfs      f0, 0x54(r30)
-	stfs     f0, 8(r31)
-	stfs     f1, 0xc(r31)
-	lwz      r31, 0xc(r1)
-	lwz      r30, 8(r1)
-	lwz      r0, 0x14(r1)
-	mtlr     r0
-	addi     r1, r1, 0x10
-	blr
-	*/
+	P2ASSERTLINE(1289, isSphere());
+	float radius      = _1C;
+	sphere.m_position = m_position;
+	sphere.m_radius   = radius;
 }
 
 /*
@@ -6714,62 +4203,24 @@ lbl_80138240:
  * Address:	80138278
  * Size:	0000B8
  */
-void CollPart::getTube(Sys::Tube&)
+void CollPart::getTube(Sys::Tube& tube)
 {
-	/*
-	stwu     r1, -0x10(r1)
-	mflr     r0
-	stw      r0, 0x14(r1)
-	li       r0, 0
-	stw      r31, 0xc(r1)
-	mr       r31, r4
-	stw      r30, 8(r1)
-	mr       r30, r3
-	lbz      r3, 0x58(r3)
-	cmplwi   r3, 1
-	beq      lbl_801382AC
-	cmplwi   r3, 2
-	bne      lbl_801382B0
-
-lbl_801382AC:
-	li       r0, 1
-
-lbl_801382B0:
-	clrlwi.  r0, r0, 0x18
-	bne      lbl_801382D4
-	lis      r3, lbl_8047C5A0@ha
-	lis      r5, lbl_8047C5CC@ha
-	addi     r3, r3, lbl_8047C5A0@l
-	li       r4, 0x50f
-	addi     r5, r5, lbl_8047C5CC@l
-	crclr    6
-	bl       panic_f__12JUTExceptionFPCciPCce
-
-lbl_801382D4:
-	lwz      r3, 0x10(r30)
-	lfs      f1, 0x1c(r30)
-	lfs      f2, 0x1c(r3)
-	lfs      f0, 0x4c(r30)
-	stfs     f0, 0(r31)
-	lfs      f0, 0x50(r30)
-	stfs     f0, 4(r31)
-	lfs      f0, 0x54(r30)
-	stfs     f0, 8(r31)
-	lfs      f0, 0x4c(r3)
-	stfs     f0, 0xc(r31)
-	lfs      f0, 0x50(r3)
-	stfs     f0, 0x10(r31)
-	lfs      f0, 0x54(r3)
-	stfs     f0, 0x14(r31)
-	stfs     f1, 0x18(r31)
-	stfs     f2, 0x1c(r31)
-	lwz      r31, 0xc(r1)
-	lwz      r30, 8(r1)
-	lwz      r0, 0x14(r1)
-	mtlr     r0
-	addi     r1, r1, 0x10
-	blr
-	*/
+	// bool check = false;
+	// if (isTubeLike()) {
+	// 	check = true;
+	// }
+	// P2ASSERTLINE(1295, check != false);
+	P2ASSERTLINE(1295, isTubeLike());
+	CollPart* child = getChild();
+#if !MATCHING
+	P2ASSERT(child != nullptr);
+#endif
+	float v1 = _1C;
+	float v2 = child->_1C;
+	tube._00 = m_position;
+	tube._0C = child->m_position;
+	tube._18 = v1;
+	tube._1C = v2;
 }
 
 /*
@@ -6780,11 +4231,15 @@ lbl_801382D4:
 void CollPart::draw(Graphics&) { }
 
 /*
+ * __ct__13MouthCollPartFv
  * --INFO--
  * Address:	80138334
  * Size:	000134
  */
 MouthCollPart::MouthCollPart()
+    : CollPart()
+    , _64(nullptr)
+    , _6C(0)
 {
 	/*
 	stwu     r1, -0x10(r1)
@@ -6868,237 +4323,89 @@ MouthCollPart::MouthCollPart()
 }
 
 /*
+ * __dt__8CollPartFv
  * --INFO--
  * Address:	80138468
  * Size:	000060
  */
-CollPart::~CollPart()
-{
-	/*
-	stwu     r1, -0x10(r1)
-	mflr     r0
-	stw      r0, 0x14(r1)
-	stw      r31, 0xc(r1)
-	mr       r31, r4
-	stw      r30, 8(r1)
-	or.      r30, r3, r3
-	beq      lbl_801384AC
-	lis      r5, __vt__8CollPart@ha
-	li       r4, 0
-	addi     r0, r5, __vt__8CollPart@l
-	stw      r0, 0(r30)
-	bl       __dt__5CNodeFv
-	extsh.   r0, r31
-	ble      lbl_801384AC
-	mr       r3, r30
-	bl       __dl__FPv
-
-lbl_801384AC:
-	lwz      r0, 0x14(r1)
-	mr       r3, r30
-	lwz      r31, 0xc(r1)
-	lwz      r30, 8(r1)
-	mtlr     r0
-	addi     r1, r1, 0x10
-	blr
-	*/
-}
+CollPart::~CollPart() { }
 
 /*
+ * getPosition__13MouthCollPartFR10Vector3<f>
  * --INFO--
  * Address:	801384C8
  * Size:	000048
  */
-void MouthCollPart::getPosition(Vector3f&)
-{
-	/*
-	stwu     r1, -0x10(r1)
-	mflr     r0
-	stw      r0, 0x14(r1)
-	stw      r31, 0xc(r1)
-	mr       r31, r4
-	lwz      r3, 0x68(r3)
-	bl       getWorldMatrix__Q28SysShape5JointFv
-	lfs      f0, 0xc(r3)
-	stfs     f0, 0(r31)
-	lfs      f0, 0x1c(r3)
-	stfs     f0, 4(r31)
-	lfs      f0, 0x2c(r3)
-	stfs     f0, 8(r31)
-	lwz      r31, 0xc(r1)
-	lwz      r0, 0x14(r1)
-	mtlr     r0
-	addi     r1, r1, 0x10
-	blr
-	*/
-}
+void MouthCollPart::getPosition(Vector3f& outPosition) { _68->getWorldMatrix()->getTranslation(outPosition); }
 
 /*
  * --INFO--
  * Address:	80138510
  * Size:	000038
  */
-void MouthCollPart::copyMatrixTo(Matrixf&)
-{
-	/*
-	stwu     r1, -0x10(r1)
-	mflr     r0
-	stw      r0, 0x14(r1)
-	stw      r31, 0xc(r1)
-	mr       r31, r4
-	lwz      r3, 0x68(r3)
-	bl       getWorldMatrix__Q28SysShape5JointFv
-	mr       r4, r31
-	bl       PSMTXCopy
-	lwz      r0, 0x14(r1)
-	lwz      r31, 0xc(r1)
-	mtlr     r0
-	addi     r1, r1, 0x10
-	blr
-	*/
-}
+void MouthCollPart::copyMatrixTo(Matrixf& outMtx) { PSMTXCopy(_68->getWorldMatrix()->m_matrix.mtxView, outMtx.m_matrix.mtxView); }
 
 /*
+ * __ct__10MouthSlotsFv
  * --INFO--
  * Address:	80138548
  * Size:	000010
  */
 MouthSlots::MouthSlots()
+    : m_max(0)
+    , m_slots(nullptr)
 {
-	/*
-	li       r0, 0
-	stw      r0, 0(r3)
-	stw      r0, 4(r3)
-	blr
-	*/
 }
 
 /*
+ * alloc__10MouthSlotsFi
  * --INFO--
  * Address:	80138558
  * Size:	000064
  */
-void MouthSlots::alloc(int)
+void MouthSlots::alloc(int count)
 {
-	/*
-	stwu     r1, -0x10(r1)
-	mflr     r0
-	stw      r0, 0x14(r1)
-	stw      r31, 0xc(r1)
-	mr       r31, r4
-	stw      r30, 8(r1)
-	mr       r30, r3
-	stw      r4, 0(r3)
-	mulli    r3, r31, 0x70
-	addi     r3, r3, 0x10
-	bl       __nwa__FUl
-	lis      r4, __ct__13MouthCollPartFv@ha
-	lis      r5, __dt__13MouthCollPartFv@ha
-	addi     r4, r4, __ct__13MouthCollPartFv@l
-	mr       r7, r31
-	addi     r5, r5, __dt__13MouthCollPartFv@l
-	li       r6, 0x70
-	bl       __construct_new_array
-	stw      r3, 4(r30)
-	lwz      r0, 0x14(r1)
-	lwz      r31, 0xc(r1)
-	lwz      r30, 8(r1)
-	mtlr     r0
-	addi     r1, r1, 0x10
-	blr
-	*/
+	m_max   = count;
+	m_slots = new MouthCollPart[count];
 }
 
 /*
+ * __dt__13MouthCollPartFv
  * --INFO--
  * Address:	801385BC
  * Size:	000070
  */
-MouthCollPart::~MouthCollPart()
-{
-	/*
-	stwu     r1, -0x10(r1)
-	mflr     r0
-	stw      r0, 0x14(r1)
-	stw      r31, 0xc(r1)
-	mr       r31, r4
-	stw      r30, 8(r1)
-	or.      r30, r3, r3
-	beq      lbl_80138610
-	lis      r4, __vt__13MouthCollPart@ha
-	addi     r0, r4, __vt__13MouthCollPart@l
-	stw      r0, 0(r30)
-	beq      lbl_80138600
-	lis      r5, __vt__8CollPart@ha
-	li       r4, 0
-	addi     r0, r5, __vt__8CollPart@l
-	stw      r0, 0(r30)
-	bl       __dt__5CNodeFv
-
-lbl_80138600:
-	extsh.   r0, r31
-	ble      lbl_80138610
-	mr       r3, r30
-	bl       __dl__FPv
-
-lbl_80138610:
-	lwz      r0, 0x14(r1)
-	mr       r3, r30
-	lwz      r31, 0xc(r1)
-	lwz      r30, 8(r1)
-	mtlr     r0
-	addi     r1, r1, 0x10
-	blr
-	*/
-}
+MouthCollPart::~MouthCollPart() { }
 
 /*
+ * update__10MouthSlotsFv
  * --INFO--
  * Address:	8013862C
  * Size:	000064
  */
 void MouthSlots::update()
 {
-	/*
-	stwu     r1, -0x20(r1)
-	mflr     r0
-	stw      r0, 0x24(r1)
-	stw      r31, 0x1c(r1)
-	li       r31, 0
-	stw      r30, 0x18(r1)
-	li       r30, 0
-	stw      r29, 0x14(r1)
-	mr       r29, r3
-	b        lbl_80138668
-
-lbl_80138654:
-	lwz      r0, 4(r29)
-	add      r3, r0, r31
-	bl       update__8CollPartFv
-	addi     r31, r31, 0x70
-	addi     r30, r30, 1
-
-lbl_80138668:
-	lwz      r0, 0(r29)
-	cmpw     r30, r0
-	blt      lbl_80138654
-	lwz      r0, 0x24(r1)
-	lwz      r31, 0x1c(r1)
-	lwz      r30, 0x18(r1)
-	lwz      r29, 0x14(r1)
-	mtlr     r0
-	addi     r1, r1, 0x20
-	blr
-	*/
+	for (int i = 0; i < m_max; i++) {
+		m_slots[i].update();
+	}
 }
 
 /*
+ * setup__10MouthSlotsFiPQ28SysShape5ModelPc
  * --INFO--
  * Address:	80138690
  * Size:	0000E8
  */
-void MouthSlots::setup(int, SysShape::Model*, char*)
+void MouthSlots::setup(int slotIndex, SysShape::Model* model, char* jointName)
 {
+
+	P2ASSERTBOUNDSLINE(1485, 0, slotIndex, m_max);
+	m_slots[slotIndex].m_model      = model;
+	m_slots[slotIndex]._68          = model->getJoint(jointName);
+	m_slots[slotIndex]._20          = Vector3f::zero;
+	m_slots[slotIndex].m_jointIndex = m_slots[slotIndex]._68->m_j3d->m_jointIdx;
+	m_slots[slotIndex]._1C          = 0.0f;
+	m_slots[slotIndex]._64          = nullptr;
 	/*
 	stwu     r1, -0x20(r1)
 	mflr     r0
@@ -7170,54 +4477,47 @@ lbl_801386F8:
  * Address:	80138778
  * Size:	00007C
  */
-MouthCollPart* MouthSlots::getSlot(int)
+MouthCollPart* MouthSlots::getSlot(int slotIndex)
 {
-	/*
-	stwu     r1, -0x10(r1)
-	mflr     r0
-	stw      r0, 0x14(r1)
-	stw      r31, 0xc(r1)
-	or.      r31, r4, r4
-	stw      r30, 8(r1)
-	mr       r30, r3
-	li       r3, 0
-	blt      lbl_801387AC
-	lwz      r0, 0(r30)
-	cmpw     r31, r0
-	bge      lbl_801387AC
-	li       r3, 1
-
-lbl_801387AC:
-	clrlwi.  r0, r3, 0x18
-	bne      lbl_801387D0
-	lis      r3, lbl_8047C5A0@ha
-	lis      r5, lbl_8047C5CC@ha
-	addi     r3, r3, lbl_8047C5A0@l
-	li       r4, 0x5d3
-	addi     r5, r5, lbl_8047C5CC@l
-	crclr    6
-	bl       panic_f__12JUTExceptionFPCciPCce
-
-lbl_801387D0:
-	mulli    r0, r31, 0x70
-	lwz      r3, 4(r30)
-	add      r3, r3, r0
-	lwz      r31, 0xc(r1)
-	lwz      r30, 8(r1)
-	lwz      r0, 0x14(r1)
-	mtlr     r0
-	addi     r1, r1, 0x10
-	blr
-	*/
+	P2ASSERTBOUNDSLINE(1491, 0, slotIndex, m_max);
+	return &m_slots[slotIndex];
 }
 
 /*
+ * __ct__15CollPartFactoryFR6Stream
+ * @generatedAndInlined
+ * --INFO--
+ * Address:	........
+ * Size:	0000E4
+ */
+// CollPartFactory::CollPartFactory(Stream&)
+// {
+// 	// UNUSED FUNCTION
+// }
+
+/*
+ * load__15CollPartFactoryFPc
  * --INFO--
  * Address:	801387F4
  * Size:	000150
  */
-CollPartFactory* CollPartFactory::load(char*)
+CollPartFactory* CollPartFactory::load(char* path)
 {
+	void* data = JKRDvdRipper::loadToMainRAM(path, nullptr, Switch_0, 0, JKRHeap::sSystemHeap, JKRDvdRipper::ALLOC_DIR_BOTTOM, 0, nullptr,
+	                                         nullptr);
+	CollPartFactory* factory;
+	if (data == nullptr) {
+		factory = nullptr;
+	} else {
+		RamStream input(data, -1);
+		input.m_mode = STREAM_MODE_TEXT;
+		if (input.m_mode == STREAM_MODE_TEXT) {
+			input.m_tabCount = 0;
+		}
+		factory = new CollPartFactory(input);
+		delete[] data;
+	}
+	return factory;
 	/*
 	stwu     r1, -0x440(r1)
 	mflr     r0
@@ -7316,96 +4616,26 @@ lbl_80138928:
 }
 
 /*
+ * load__15CollPartFactoryFP13JKRFileLoaderPc
  * --INFO--
  * Address:	80138944
  * Size:	000128
  */
-CollPartFactory* CollPartFactory::load(JKRFileLoader*, char*)
+CollPartFactory* CollPartFactory::load(JKRFileLoader* loader, char* path)
 {
-	/*
-	stwu     r1, -0x430(r1)
-	mflr     r0
-	stw      r0, 0x434(r1)
-	stw      r31, 0x42c(r1)
-	stw      r30, 0x428(r1)
-	lwz      r12, 0(r3)
-	lwz      r12, 0x14(r12)
-	mtctr    r12
-	bctrl
-	cmplwi   r3, 0
-	bne      lbl_80138978
-	li       r3, 0
-	b        lbl_80138A54
-
-lbl_80138978:
-	mr       r4, r3
-	addi     r3, r1, 8
-	li       r5, -1
-	bl       __ct__9RamStreamFPvi
-	li       r0, 1
-	cmpwi    r0, 1
-	stw      r0, 0x14(r1)
-	bne      lbl_801389A0
-	li       r0, 0
-	stw      r0, 0x41c(r1)
-
-lbl_801389A0:
-	li       r3, 0x64
-	bl       __nw__FUl
-	or.      r31, r3, r3
-	beq      lbl_80138A50
-	mr       r30, r31
-	bl       __ct__5CNodeFv
-	lis      r4, __vt__8CollPart@ha
-	addi     r3, r31, 0x30
-	addi     r0, r4, __vt__8CollPart@l
-	stw      r0, 0(r31)
-	bl       __ct__4ID32Fv
-	addi     r3, r31, 0x3c
-	bl       __ct__4ID32Fv
-	li       r5, 0
-	lis      r4, 0x5F5F5F5F@ha
-	stw      r5, 0x10(r31)
-	li       r0, -1
-	lfs      f0, lbl_80518210@sda21(r2)
-	addi     r3, r31, 0x3c
-	stw      r5, 0xc(r31)
-	addi     r4, r4, 0x5F5F5F5F@l
-	stw      r5, 8(r31)
-	stw      r5, 4(r31)
-	stfs     f0, 0x1c(r31)
-	stfs     f0, 0x18(r31)
-	stfs     f0, 0x20(r31)
-	stfs     f0, 0x24(r31)
-	stfs     f0, 0x28(r31)
-	stfs     f0, 0x4c(r31)
-	stfs     f0, 0x50(r31)
-	stfs     f0, 0x54(r31)
-	stw      r5, 0x5c(r31)
-	stw      r0, 0x2c(r31)
-	stw      r5, 0x60(r31)
-	sth      r5, 0x48(r31)
-	stb      r5, 0x58(r31)
-	bl       setID__4ID32FUl
-	lis      r4, __vt__15CollPartFactory@ha
-	mr       r3, r30
-	addi     r0, r4, __vt__15CollPartFactory@l
-	addi     r4, r1, 8
-	stw      r0, 0(r30)
-	li       r5, 0
-	bl       read__8CollPartFR6Streamb
-
-lbl_80138A50:
-	mr       r3, r31
-
-lbl_80138A54:
-	lwz      r0, 0x434(r1)
-	lwz      r31, 0x42c(r1)
-	lwz      r30, 0x428(r1)
-	mtlr     r0
-	addi     r1, r1, 0x430
-	blr
-	*/
+	void* data = loader->getResource(path);
+	CollPartFactory* factory;
+	if (data == nullptr) {
+		factory = nullptr;
+	} else {
+		RamStream input(data, -1);
+		input.m_mode = STREAM_MODE_TEXT;
+		if (input.m_mode == STREAM_MODE_TEXT) {
+			input.m_tabCount = 0;
+		}
+		factory = new CollPartFactory(input);
+	}
+	return factory;
 }
 
 /*
@@ -7413,26 +4643,14 @@ lbl_80138A54:
  * Address:	80138A6C
  * Size:	000020
  */
-void CollPartFactory::createInstance(SysShape::MtxObject*, CollPartMgr*)
-{
-	/*
-	stwu     r1, -0x10(r1)
-	mflr     r0
-	stw      r0, 0x14(r1)
-	bl       clone__8CollPartFPQ28SysShape9MtxObjectP11CollPartMgr
-	lwz      r0, 0x14(r1)
-	mtlr     r0
-	addi     r1, r1, 0x10
-	blr
-	*/
-}
+void CollPartFactory::createInstance(SysShape::MtxObject* mtxObject, CollPartMgr* mgr) { clone(mtxObject, mgr); }
 
 /*
  * --INFO--
  * Address:	80138A8C
  * Size:	0000AC
  */
-void CollPartMgr::createOne(SysShape::MtxObject*)
+CollPart* CollPartMgr::createOne(SysShape::MtxObject*)
 {
 	/*
 	stwu     r1, -0x10(r1)
@@ -7484,12 +4702,39 @@ lbl_80138B1C:
 }
 
 /*
+ * clone__8CollPartFPQ28SysShape9MtxObjectP11CollPartMgr
  * --INFO--
  * Address:	80138B38
  * Size:	0002A8
  */
-void CollPart::clone(SysShape::MtxObject*, CollPartMgr*)
+CollPart* CollPart::clone(SysShape::MtxObject* mtxObject, CollPartMgr* mgr)
 {
+	CollPart* copy;
+	if (mgr != nullptr) {
+		copy = mgr->birth();
+		JUT_ASSERTLINE(1571, copy != nullptr, "collpart birth failed !\n");
+	} else {
+		copy = new CollPart(mtxObject);
+	}
+	copy->_1C           = _1C;
+	copy->_18           = _18;
+	copy->_30           = _30;
+	copy->_3C           = _3C;
+	copy->_20           = _20;
+	copy->m_hasCollPart = m_hasCollPart;
+	copy->m_jointIndex  = m_jointIndex;
+	copy->m_model       = m_model;
+	copy->_60           = _60;
+	copy->m_attribute   = m_attribute;
+	copy->m_model       = mtxObject;
+	int childCount      = getChildCount();
+	CollPart* child     = getChild();
+	for (int i = 0; i < childCount; i++) {
+		copy->addChild(child->clone(mtxObject, mgr));
+		child = child->getChild();
+	}
+	return copy;
+
 	/*
 	stwu     r1, -0x20(r1)
 	mflr     r0
@@ -7696,308 +4941,65 @@ int CollPart::getChildCount()
 }
 
 /*
+ * read__8CollPartFR6Streamb
  * --INFO--
  * Address:	80138E00
  * Size:	00035C
  */
-void CollPart::read(Stream&, bool)
+void CollPart::read(Stream& input, bool isAgeCollPart)
 {
-	/*
-	stwu     r1, -0x40(r1)
-	mflr     r0
-	stw      r0, 0x44(r1)
-	stmw     r18, 8(r1)
-	mr       r30, r4
-	mr       r24, r3
-	mr       r31, r5
-	mr       r3, r30
-	bl       readInt__6StreamFv
-	mr       r19, r3
-	mr       r3, r30
-	bl       readFloat__6StreamFv
-	stfs     f1, 0x1c(r24)
-	mr       r4, r30
-	addi     r3, r24, 0x30
-	lfs      f0, 0x1c(r24)
-	stfs     f0, 0x18(r24)
-	bl       read__4ID32FR6Stream
-	mr       r4, r30
-	addi     r3, r24, 0x3c
-	bl       read__4ID32FR6Stream
-	mr       r4, r30
-	addi     r3, r24, 0x20
-	bl       "read__10Vector3<f>FR6Stream"
-	mr       r3, r30
-	bl       readInt__6StreamFv
-	stw      r3, 0x2c(r24)
-	mr       r3, r30
-	bl       readShort__6StreamFv
-	lis      r4, lbl_8047C630@ha
-	sth      r3, 0x48(r24)
-	clrlwi   r28, r31, 0x18
-	li       r23, 0
-	addi     r29, r4, lbl_8047C630@l
-	b        lbl_80139140
-
-lbl_80138E8C:
-	cmplwi   r28, 0
-	beq      lbl_80138EB8
-	li       r3, 0x68
-	bl       __nw__FUl
-	or.      r0, r3, r3
-	beq      lbl_80138EB0
-	lwz      r4, 0x5c(r24)
-	bl       __ct__11AgeCollPartFPQ28SysShape5Model
-	mr       r0, r3
-
-lbl_80138EB0:
-	mr       r25, r0
-	b        lbl_80138F54
-
-lbl_80138EB8:
-	li       r3, 0x64
-	bl       __nw__FUl
-	or.      r20, r3, r3
-	beq      lbl_80138F50
-	lwz      r21, 0x5c(r24)
-	mr       r18, r20
-	bl       __ct__5CNodeFv
-	lis      r4, __vt__8CollPart@ha
-	addi     r3, r18, 0x30
-	addi     r0, r4, __vt__8CollPart@l
-	stw      r0, 0(r18)
-	bl       __ct__4ID32Fv
-	addi     r3, r18, 0x3c
-	bl       __ct__4ID32Fv
-	li       r5, 0
-	lis      r4, 0x5F5F5F5F@ha
-	stw      r5, 0x10(r18)
-	li       r0, -1
-	lfs      f0, lbl_80518210@sda21(r2)
-	addi     r3, r18, 0x3c
-	stw      r5, 0xc(r18)
-	addi     r4, r4, 0x5F5F5F5F@l
-	stw      r5, 8(r18)
-	stw      r5, 4(r18)
-	stfs     f0, 0x1c(r18)
-	stfs     f0, 0x18(r18)
-	stfs     f0, 0x20(r18)
-	stfs     f0, 0x24(r18)
-	stfs     f0, 0x28(r18)
-	stfs     f0, 0x4c(r18)
-	stfs     f0, 0x50(r18)
-	stfs     f0, 0x54(r18)
-	stw      r21, 0x5c(r18)
-	stw      r0, 0x2c(r18)
-	stw      r5, 0x60(r18)
-	sth      r5, 0x48(r18)
-	stb      r5, 0x58(r18)
-	bl       setID__4ID32FUl
-
-lbl_80138F50:
-	mr       r25, r20
-
-lbl_80138F54:
-	mr       r3, r30
-	bl       readInt__6StreamFv
-	mr       r27, r3
-	mr       r3, r30
-	bl       readFloat__6StreamFv
-	stfs     f1, 0x1c(r25)
-	mr       r4, r30
-	addi     r3, r25, 0x30
-	lfs      f0, 0x1c(r25)
-	stfs     f0, 0x18(r25)
-	bl       read__4ID32FR6Stream
-	mr       r4, r30
-	addi     r3, r25, 0x3c
-	bl       read__4ID32FR6Stream
-	mr       r4, r30
-	addi     r3, r25, 0x20
-	bl       "read__10Vector3<f>FR6Stream"
-	mr       r3, r30
-	bl       readInt__6StreamFv
-	stw      r3, 0x2c(r25)
-	mr       r3, r30
-	bl       readShort__6StreamFv
-	sth      r3, 0x48(r25)
-	li       r26, 0
-	b        lbl_80139124
-
-lbl_80138FB8:
-	cmplwi   r28, 0
-	beq      lbl_80138FE0
-	li       r3, 0x68
-	bl       __nw__FUl
-	or.      r20, r3, r3
-	beq      lbl_80139034
-	lwz      r4, 0x5c(r25)
-	bl       __ct__11AgeCollPartFPQ28SysShape5Model
-	mr       r20, r3
-	b        lbl_80139034
-
-lbl_80138FE0:
-	li       r3, 0x64
-	bl       __nw__FUl
-	or.      r20, r3, r3
-	beq      lbl_80139034
-	lwz      r21, 0x5c(r25)
-	mr       r18, r20
-	bl       __ct__5CNodeFv
-	lis      r4, __vt__8CollPart@ha
-	addi     r3, r18, 0x20
-	addi     r0, r4, __vt__8CollPart@l
-	stw      r0, 0(r18)
-	bl       "__ct__10Vector3<f>Fv"
-	addi     r3, r18, 0x30
-	bl       __ct__4ID32Fv
-	addi     r3, r18, 0x3c
-	bl       __ct__4ID32Fv
-	addi     r3, r18, 0x4c
-	bl       "__ct__10Vector3<f>Fv"
-	mr       r3, r18
-	mr       r4, r21
-	bl       init__8CollPartFPQ28SysShape9MtxObject
-
-lbl_80139034:
-	mr       r3, r30
-	bl       readInt__6StreamFv
-	mr       r22, r3
-	mr       r3, r30
-	bl       readFloat__6StreamFv
-	stfs     f1, 0x1c(r20)
-	mr       r4, r30
-	addi     r3, r20, 0x30
-	lfs      f0, 0x1c(r20)
-	stfs     f0, 0x18(r20)
-	bl       read__4ID32FR6Stream
-	mr       r4, r30
-	addi     r3, r20, 0x3c
-	bl       read__4ID32FR6Stream
-	mr       r4, r30
-	addi     r3, r20, 0x20
-	bl       "read__10Vector3<f>FR6Stream"
-	mr       r3, r30
-	bl       readInt__6StreamFv
-	stw      r3, 0x2c(r20)
-	mr       r3, r30
-	bl       readU16__6StreamFv
-	sth      r3, 0x48(r20)
-	li       r21, 0
-	b        lbl_80139108
-
-lbl_80139098:
-	cmplwi   r28, 0
-	beq      lbl_801390C0
-	li       r3, 0x68
-	bl       __nw__FUl
-	or.      r18, r3, r3
-	beq      lbl_801390DC
-	lwz      r4, 0x5c(r20)
-	bl       __ct__11AgeCollPartFPQ28SysShape5Model
-	mr       r18, r3
-	b        lbl_801390DC
-
-lbl_801390C0:
-	li       r3, 0x64
-	bl       __nw__FUl
-	or.      r18, r3, r3
-	beq      lbl_801390DC
-	lwz      r4, 0x5c(r20)
-	bl       __ct__8CollPartFPQ28SysShape9MtxObject
-	mr       r18, r3
-
-lbl_801390DC:
-	mr       r3, r18
-	mr       r4, r30
-	mr       r5, r31
-	bl       read__8CollPartFR6Streamb
-	mr       r3, r18
-	mr       r4, r29
-	bl       setName__5CNodeFPc
-	mr       r3, r20
-	mr       r4, r18
-	bl       addChild__8CollPartFP8CollPart
-	addi     r21, r21, 1
-
-lbl_80139108:
-	cmpw     r21, r22
-	blt      lbl_80139098
-	stw      r29, 0x14(r20)
-	mr       r3, r25
-	mr       r4, r20
-	bl       add__5CNodeFP5CNode
-	addi     r26, r26, 1
-
-lbl_80139124:
-	cmpw     r26, r27
-	blt      lbl_80138FB8
-	stw      r29, 0x14(r25)
-	mr       r3, r24
-	mr       r4, r25
-	bl       add__5CNodeFP5CNode
-	addi     r23, r23, 1
-
-lbl_80139140:
-	cmpw     r23, r19
-	blt      lbl_80138E8C
-	lmw      r18, 8(r1)
-	lwz      r0, 0x44(r1)
-	mtlr     r0
-	addi     r1, r1, 0x40
-	blr
-	*/
+	int childCount = input.readInt();
+	_1C            = input.readFloat();
+	_18            = _1C;
+	_30.read(input);
+	_3C.read(input);
+	_20.read(input);
+	m_jointIndex = input.readInt();
+	m_attribute  = input.readU16();
+	for (int i = 0; i < childCount; i++) {
+		CollPart* child;
+		if (isAgeCollPart) {
+			child = new AgeCollPart((SysShape::Model*)m_model);
+		} else {
+			child = new CollPart(m_model);
+		}
+		child->read(input, isAgeCollPart);
+		child->setName("CollPart");
+		addChild(child);
+	}
 }
 
 /*
+ * @generated
+ * addChild__8CollPartFP8CollPart
  * --INFO--
  * Address:	8013915C
  * Size:	000020
  */
-void CollPart::addChild(CollPart*)
-{
-	/*
-	stwu     r1, -0x10(r1)
-	mflr     r0
-	stw      r0, 0x14(r1)
-	bl       add__5CNodeFP5CNode
-	lwz      r0, 0x14(r1)
-	mtlr     r0
-	addi     r1, r1, 0x10
-	blr
-	*/
-}
+// void CollPart::addChild(CollPart*)
+// {
+// }
 
 /*
+ * @generated
+ * setName__5CNodeFPc
  * --INFO--
  * Address:	8013917C
  * Size:	000008
  */
-void CNode::setName(char* name)
-{
-	// Generated from stw r4, 0x14(r3)
-	m_name = name;
-}
+// void CNode::setName(char* name)
+// {
+// }
 
 /*
+ * @generated
  * --INFO--
  * Address:	80139184
  * Size:	000024
  */
-u16 Stream::readU16()
-{
-	/*
-	stwu     r1, -0x10(r1)
-	mflr     r0
-	stw      r0, 0x14(r1)
-	bl       readShort__6StreamFv
-	lwz      r0, 0x14(r1)
-	clrlwi   r3, r3, 0x10
-	mtlr     r0
-	addi     r1, r1, 0x10
-	blr
-	*/
-}
+// u16 Stream::readU16()
+// {
+// }
 
 /*
  * --INFO--
@@ -8084,65 +5086,15 @@ lbl_80139290:
 }
 
 /*
+ * __ct__11AgeCollPartFPQ28SysShape5Model
  * --INFO--
  * Address:	801392B4
  * Size:	0000CC
  */
-AgeCollPart::AgeCollPart(SysShape::Model*)
+AgeCollPart::AgeCollPart(SysShape::Model* model)
+    : CollPart(model)
+    , _64(0)
 {
-	/*
-	stwu     r1, -0x10(r1)
-	mflr     r0
-	stw      r0, 0x14(r1)
-	stw      r31, 0xc(r1)
-	mr       r31, r4
-	stw      r30, 8(r1)
-	mr       r30, r3
-	bl       __ct__5CNodeFv
-	lis      r4, __vt__8CollPart@ha
-	addi     r3, r30, 0x30
-	addi     r0, r4, __vt__8CollPart@l
-	stw      r0, 0(r30)
-	bl       __ct__4ID32Fv
-	addi     r3, r30, 0x3c
-	bl       __ct__4ID32Fv
-	li       r5, 0
-	lis      r4, 0x5F5F5F5F@ha
-	stw      r5, 0x10(r30)
-	li       r0, -1
-	lfs      f0, lbl_80518210@sda21(r2)
-	addi     r3, r30, 0x3c
-	stw      r5, 0xc(r30)
-	addi     r4, r4, 0x5F5F5F5F@l
-	stw      r5, 8(r30)
-	stw      r5, 4(r30)
-	stfs     f0, 0x1c(r30)
-	stfs     f0, 0x18(r30)
-	stfs     f0, 0x20(r30)
-	stfs     f0, 0x24(r30)
-	stfs     f0, 0x28(r30)
-	stfs     f0, 0x4c(r30)
-	stfs     f0, 0x50(r30)
-	stfs     f0, 0x54(r30)
-	stw      r31, 0x5c(r30)
-	stw      r0, 0x2c(r30)
-	stw      r5, 0x60(r30)
-	sth      r5, 0x48(r30)
-	stb      r5, 0x58(r30)
-	bl       setID__4ID32FUl
-	lis      r3, __vt__11AgeCollPart@ha
-	li       r0, 0
-	addi     r4, r3, __vt__11AgeCollPart@l
-	mr       r3, r30
-	stw      r4, 0(r30)
-	stb      r0, 0x64(r30)
-	lwz      r31, 0xc(r1)
-	lwz      r30, 8(r1)
-	lwz      r0, 0x14(r1)
-	mtlr     r0
-	addi     r1, r1, 0x10
-	blr
-	*/
 }
 
 /*
@@ -8245,47 +5197,12 @@ void CollPart::doSimulation(float) { }
 void CollPart::doDirectDraw(Graphics&) { }
 
 /*
+ * __dt__15CollPartFactoryFv
  * --INFO--
  * Address:	80139414
  * Size:	000070
  */
-CollPartFactory::~CollPartFactory()
-{
-	/*
-	stwu     r1, -0x10(r1)
-	mflr     r0
-	stw      r0, 0x14(r1)
-	stw      r31, 0xc(r1)
-	mr       r31, r4
-	stw      r30, 8(r1)
-	or.      r30, r3, r3
-	beq      lbl_80139468
-	lis      r4, __vt__15CollPartFactory@ha
-	addi     r0, r4, __vt__15CollPartFactory@l
-	stw      r0, 0(r30)
-	beq      lbl_80139458
-	lis      r5, __vt__8CollPart@ha
-	li       r4, 0
-	addi     r0, r5, __vt__8CollPart@l
-	stw      r0, 0(r30)
-	bl       __dt__5CNodeFv
-
-lbl_80139458:
-	extsh.   r0, r31
-	ble      lbl_80139468
-	mr       r3, r30
-	bl       __dl__FPv
-
-lbl_80139468:
-	lwz      r0, 0x14(r1)
-	mr       r3, r30
-	lwz      r31, 0xc(r1)
-	lwz      r30, 8(r1)
-	mtlr     r0
-	addi     r1, r1, 0x10
-	blr
-	*/
-}
+CollPartFactory::~CollPartFactory() { }
 
 /*
  * --INFO--
@@ -8297,264 +5214,70 @@ bool MouthCollPart::isMouth() { return true; }
 namespace Sys {
 
 /*
+ * __dt__Q23Sys3OBBFv
+ * @generated
  * --INFO--
  * Address:	8013948C
  * Size:	0000D4
  */
-OBB::~OBB()
-{
-	/*
-	stwu     r1, -0x10(r1)
-	mflr     r0
-	stw      r0, 0x14(r1)
-	stw      r31, 0xc(r1)
-	mr       r31, r4
-	stw      r30, 8(r1)
-	or.      r30, r3, r3
-	beq      lbl_80139544
-	lis      r3, __vt__Q23Sys3OBB@ha
-	addic.   r0, r30, 0xd8
-	addi     r0, r3, __vt__Q23Sys3OBB@l
-	stw      r0, 0(r30)
-	beq      lbl_80139528
-	lis      r3, __vt__Q23Sys12TriIndexList@ha
-	addic.   r0, r30, 0xd8
-	addi     r0, r3, __vt__Q23Sys12TriIndexList@l
-	stw      r0, 0xd8(r30)
-	beq      lbl_80139528
-	lis      r3, __vt__Q23Sys9IndexList@ha
-	addic.   r0, r30, 0xd8
-	addi     r0, r3, __vt__Q23Sys9IndexList@l
-	stw      r0, 0xd8(r30)
-	beq      lbl_80139528
-	lis      r3, "__vt__17ArrayContainer<i>"@ha
-	addic.   r0, r30, 0xd8
-	addi     r0, r3, "__vt__17ArrayContainer<i>"@l
-	stw      r0, 0xd8(r30)
-	beq      lbl_80139528
-	lis      r3, "__vt__12Container<i>"@ha
-	addic.   r0, r30, 0xd8
-	addi     r0, r3, "__vt__12Container<i>"@l
-	stw      r0, 0xd8(r30)
-	beq      lbl_80139528
-	lis      r4, __vt__16GenericContainer@ha
-	addi     r3, r30, 0xd8
-	addi     r0, r4, __vt__16GenericContainer@l
-	li       r4, 0
-	stw      r0, 0xd8(r30)
-	bl       __dt__5CNodeFv
-
-lbl_80139528:
-	mr       r3, r30
-	li       r4, 0
-	bl       __dt__5CNodeFv
-	extsh.   r0, r31
-	ble      lbl_80139544
-	mr       r3, r30
-	bl       __dl__FPv
-
-lbl_80139544:
-	lwz      r0, 0x14(r1)
-	mr       r3, r30
-	lwz      r31, 0xc(r1)
-	lwz      r30, 8(r1)
-	mtlr     r0
-	addi     r1, r1, 0x10
-	blr
-	*/
-}
+// OBB::~OBB()
+// {
+// }
 
 } // namespace Sys
 
 /*
+ * __dt__12Container<i>Fv
  * --INFO--
  * Address:	80139560
  * Size:	000070
  */
-template <> Container<int>::~Container()
-{
-	/*
-	stwu     r1, -0x10(r1)
-	mflr     r0
-	stw      r0, 0x14(r1)
-	stw      r31, 0xc(r1)
-	mr       r31, r4
-	stw      r30, 8(r1)
-	or.      r30, r3, r3
-	beq      lbl_801395B4
-	lis      r4, "__vt__12Container<i>"@ha
-	addi     r0, r4, "__vt__12Container<i>"@l
-	stw      r0, 0(r30)
-	beq      lbl_801395A4
-	lis      r5, __vt__16GenericContainer@ha
-	li       r4, 0
-	addi     r0, r5, __vt__16GenericContainer@l
-	stw      r0, 0(r30)
-	bl       __dt__5CNodeFv
-
-lbl_801395A4:
-	extsh.   r0, r31
-	ble      lbl_801395B4
-	mr       r3, r30
-	bl       __dl__FPv
-
-lbl_801395B4:
-	lwz      r0, 0x14(r1)
-	mr       r3, r30
-	lwz      r31, 0xc(r1)
-	lwz      r30, 8(r1)
-	mtlr     r0
-	addi     r1, r1, 0x10
-	blr
-	*/
-}
+// template <> Container<int>::~Container()
+// {
+// }
 
 /*
+ * __dt__17ArrayContainer<i>Fv
  * --INFO--
  * Address:	801395D0
  * Size:	000080
  */
-template <> ArrayContainer<int>::~ArrayContainer()
-{
-	/*
-	stwu     r1, -0x10(r1)
-	mflr     r0
-	stw      r0, 0x14(r1)
-	stw      r31, 0xc(r1)
-	mr       r31, r4
-	stw      r30, 8(r1)
-	or.      r30, r3, r3
-	beq      lbl_80139634
-	lis      r4, "__vt__17ArrayContainer<i>"@ha
-	addi     r0, r4, "__vt__17ArrayContainer<i>"@l
-	stw      r0, 0(r30)
-	beq      lbl_80139624
-	lis      r4, "__vt__12Container<i>"@ha
-	addi     r0, r4, "__vt__12Container<i>"@l
-	stw      r0, 0(r30)
-	beq      lbl_80139624
-	lis      r5, __vt__16GenericContainer@ha
-	li       r4, 0
-	addi     r0, r5, __vt__16GenericContainer@l
-	stw      r0, 0(r30)
-	bl       __dt__5CNodeFv
-
-lbl_80139624:
-	extsh.   r0, r31
-	ble      lbl_80139634
-	mr       r3, r30
-	bl       __dl__FPv
-
-lbl_80139634:
-	lwz      r0, 0x14(r1)
-	mr       r3, r30
-	lwz      r31, 0xc(r1)
-	lwz      r30, 8(r1)
-	mtlr     r0
-	addi     r1, r1, 0x10
-	blr
-	*/
-}
+// template <> ArrayContainer<int>::~ArrayContainer()
+// {
+// }
 
 /*
+ * alloc__17ArrayContainer<i>Fi
  * --INFO--
  * Address:	80139650
  * Size:	00004C
  */
-template <> void ArrayContainer<int>::alloc(int)
-{
-	/*
-	stwu     r1, -0x10(r1)
-	mflr     r0
-	stw      r0, 0x14(r1)
-	stw      r31, 0xc(r1)
-	mr       r31, r4
-	stw      r30, 8(r1)
-	mr       r30, r3
-	slwi     r3, r4, 2
-	bl       __nwa__FUl
-	stw      r3, 0x24(r30)
-	li       r0, 0
-	stw      r31, 0x20(r30)
-	stw      r0, 0x1c(r30)
-	lwz      r31, 0xc(r1)
-	lwz      r30, 8(r1)
-	lwz      r0, 0x14(r1)
-	mtlr     r0
-	addi     r1, r1, 0x10
-	blr
-	*/
-}
+// template <> void ArrayContainer<int>::alloc(int)
+// {
+// }
 
 /*
+ * read__17ArrayContainer<i>FR6Stream
  * --INFO--
  * Address:	8013969C
  * Size:	0000B0
  */
-template <> void ArrayContainer<int>::read(Stream&)
-{
-	/*
-	stwu     r1, -0x20(r1)
-	mflr     r0
-	stw      r0, 0x24(r1)
-	stw      r31, 0x1c(r1)
-	stw      r30, 0x18(r1)
-	stw      r29, 0x14(r1)
-	mr       r29, r4
-	stw      r28, 0x10(r1)
-	mr       r28, r3
-	mr       r3, r29
-	bl       readInt__6StreamFv
-	stw      r3, 0x20(r28)
-	mr       r3, r28
-	lwz      r12, 0(r28)
-	lwz      r4, 0x20(r28)
-	lwz      r12, 0x3c(r12)
-	mtctr    r12
-	bctrl
-	lwz      r0, 0x20(r28)
-	li       r30, 0
-	li       r31, 0
-	stw      r0, 0x1c(r28)
-	b        lbl_80139720
-
-lbl_801396F8:
-	mr       r3, r28
-	lwz      r0, 0x24(r28)
-	lwz      r12, 0(r28)
-	mr       r4, r29
-	add      r5, r0, r31
-	lwz      r12, 0x30(r12)
-	mtctr    r12
-	bctrl
-	addi     r31, r31, 4
-	addi     r30, r30, 1
-
-lbl_80139720:
-	lwz      r0, 0x20(r28)
-	cmpw     r30, r0
-	blt      lbl_801396F8
-	lwz      r0, 0x24(r1)
-	lwz      r31, 0x1c(r1)
-	lwz      r30, 0x18(r1)
-	lwz      r29, 0x14(r1)
-	lwz      r28, 0x10(r1)
-	mtlr     r0
-	addi     r1, r1, 0x20
-	blr
-	*/
-}
+// template <> void ArrayContainer<int>::read(Stream&)
+// {
+// }
 
 /*
+ * readObject__17ArrayContainer<i>FR6StreamRi
  * --INFO--
  * Address:	8013974C
  * Size:	000004
  */
-template <> void ArrayContainer<int>::readObject(Stream&, int&) { }
+// template <> void ArrayContainer<int>::readObject(Stream&, int&) { }
 
 namespace Sys {
 
 /*
+ * readObject__Q23Sys9IndexListFR6StreamRi
  * --INFO--
  * Address:	80139750
  * Size:	000034
@@ -8579,6 +5302,7 @@ void IndexList::readObject(Stream&, int&)
 }
 
 /*
+ * writeObject__Q23Sys9IndexListFR6StreamRi
  * --INFO--
  * Address:	80139784
  * Size:	000028
@@ -8600,614 +5324,410 @@ void IndexList::writeObject(Stream&, int&)
 }
 
 /*
+ * __dt__Q23Sys9IndexListFv
+ * @generated
  * --INFO--
  * Address:	801397AC
  * Size:	000090
  */
-IndexList::~IndexList()
-{
-	/*
-	stwu     r1, -0x10(r1)
-	mflr     r0
-	stw      r0, 0x14(r1)
-	stw      r31, 0xc(r1)
-	mr       r31, r4
-	stw      r30, 8(r1)
-	or.      r30, r3, r3
-	beq      lbl_80139820
-	lis      r4, __vt__Q23Sys9IndexList@ha
-	addi     r0, r4, __vt__Q23Sys9IndexList@l
-	stw      r0, 0(r30)
-	beq      lbl_80139810
-	lis      r4, "__vt__17ArrayContainer<i>"@ha
-	addi     r0, r4, "__vt__17ArrayContainer<i>"@l
-	stw      r0, 0(r30)
-	beq      lbl_80139810
-	lis      r4, "__vt__12Container<i>"@ha
-	addi     r0, r4, "__vt__12Container<i>"@l
-	stw      r0, 0(r30)
-	beq      lbl_80139810
-	lis      r5, __vt__16GenericContainer@ha
-	li       r4, 0
-	addi     r0, r5, __vt__16GenericContainer@l
-	stw      r0, 0(r30)
-	bl       __dt__5CNodeFv
-
-lbl_80139810:
-	extsh.   r0, r31
-	ble      lbl_80139820
-	mr       r3, r30
-	bl       __dl__FPv
-
-lbl_80139820:
-	lwz      r0, 0x14(r1)
-	mr       r3, r30
-	lwz      r31, 0xc(r1)
-	lwz      r30, 8(r1)
-	mtlr     r0
-	addi     r1, r1, 0x10
-	blr
-	*/
-}
+// IndexList::~IndexList()
+// {
+// }
 
 } // namespace Sys
 
 /*
+ * __dt__11AgePlatformFv
+ * --INFO--
+ * Address:	........
+ * Size:	000180
+ */
+// AgePlatform::~AgePlatform()
+// {
+// 	// UNUSED FUNCTION
+// }
+
+/*
+ * setArray__28ArrayContainer<10Vector3<f>>FP10Vector3<f>i
  * --INFO--
  * Address:	8013983C
  * Size:	000010
  */
-template <> void ArrayContainer<Vector3f>::setArray(Vector3f*, int)
-{
-	/*
-	stw      r4, 0x24(r3)
-	stw      r5, 0x20(r3)
-	stw      r5, 0x1c(r3)
-	blr
-	*/
-}
+// template <> void ArrayContainer<Vector3f>::setArray(Vector3f*, int)
+// {
+// }
 
 /*
+ * addOne__28ArrayContainer<10Vector3<f>>FR10Vector3<f>
  * --INFO--
  * Address:	8013984C
  * Size:	000040
  */
-template <> void ArrayContainer<Vector3f>::addOne(Vector3f&)
-{
-	/*
-	lwz      r7, 0x1c(r3)
-	lwz      r0, 0x20(r3)
-	cmpw     r7, r0
-	bgelr
-	lwz      r6, 0x24(r3)
-	addi     r5, r7, 1
-	mulli    r0, r7, 0xc
-	stw      r5, 0x1c(r3)
-	lfs      f0, 0(r4)
-	add      r3, r6, r0
-	stfs     f0, 0(r3)
-	lfs      f0, 4(r4)
-	stfs     f0, 4(r3)
-	lfs      f0, 8(r4)
-	stfs     f0, 8(r3)
-	blr
-	*/
-}
+// template <> void ArrayContainer<Vector3f>::addOne(Vector3f&)
+// {
+// 	/*
+// 	lwz      r7, 0x1c(r3)
+// 	lwz      r0, 0x20(r3)
+// 	cmpw     r7, r0
+// 	bgelr
+// 	lwz      r6, 0x24(r3)
+// 	addi     r5, r7, 1
+// 	mulli    r0, r7, 0xc
+// 	stw      r5, 0x1c(r3)
+// 	lfs      f0, 0(r4)
+// 	add      r3, r6, r0
+// 	stfs     f0, 0(r3)
+// 	lfs      f0, 4(r4)
+// 	stfs     f0, 4(r3)
+// 	lfs      f0, 8(r4)
+// 	stfs     f0, 8(r3)
+// 	blr
+// 	*/
+// }
 
 /*
+ * birth__24MonoObjectMgr<8CollPart>Fv
  * --INFO--
  * Address:	8013988C
  * Size:	000060
  */
-template <> void MonoObjectMgr<CollPart>::birth()
-{
-	/*
-	stwu     r1, -0x10(r1)
-	mflr     r0
-	stw      r0, 0x14(r1)
-	stw      r31, 0xc(r1)
-	mr       r31, r3
-	bl       "getEmptyIndex__24MonoObjectMgr<8CollPart>Fv"
-	cmpwi    r3, -1
-	beq      lbl_801398D4
-	lwz      r6, 0x28(r31)
-	li       r0, 0
-	lwz      r4, 0x2c(r31)
-	mulli    r5, r3, 0x64
-	stbx     r0, r4, r3
-	add      r3, r6, r5
-	lwz      r4, 0x20(r31)
-	addi     r0, r4, 1
-	stw      r0, 0x20(r31)
-	b        lbl_801398D8
+// template <> void MonoObjectMgr<CollPart>::birth()
+// {
+// 	/*
+// 	stwu     r1, -0x10(r1)
+// 	mflr     r0
+// 	stw      r0, 0x14(r1)
+// 	stw      r31, 0xc(r1)
+// 	mr       r31, r3
+// 	bl       "getEmptyIndex__24MonoObjectMgr<8CollPart>Fv"
+// 	cmpwi    r3, -1
+// 	beq      lbl_801398D4
+// 	lwz      r6, 0x28(r31)
+// 	li       r0, 0
+// 	lwz      r4, 0x2c(r31)
+// 	mulli    r5, r3, 0x64
+// 	stbx     r0, r4, r3
+// 	add      r3, r6, r5
+// 	lwz      r4, 0x20(r31)
+// 	addi     r0, r4, 1
+// 	stw      r0, 0x20(r31)
+// 	b        lbl_801398D8
 
-lbl_801398D4:
-	li       r3, 0
+// lbl_801398D4:
+// 	li       r3, 0
 
-lbl_801398D8:
-	lwz      r0, 0x14(r1)
-	lwz      r31, 0xc(r1)
-	mtlr     r0
-	addi     r1, r1, 0x10
-	blr
-	*/
-}
+// lbl_801398D8:
+// 	lwz      r0, 0x14(r1)
+// 	lwz      r31, 0xc(r1)
+// 	mtlr     r0
+// 	addi     r1, r1, 0x10
+// 	blr
+// 	*/
+// }
 
 /*
+ * kill__24MonoObjectMgr<8CollPart>FP8CollPart
  * --INFO--
  * Address:	801398EC
  * Size:	000054
  */
-template <> void MonoObjectMgr<CollPart>::kill(CollPart*)
-{
-	/*
-	lwz      r0, 0x24(r3)
-	li       r6, 0
-	li       r5, 0
-	mtctr    r0
-	cmpwi    r0, 0
-	blelr
+// template <> void MonoObjectMgr<CollPart>::kill(CollPart*)
+// {
+// 	/*
+// 	lwz      r0, 0x24(r3)
+// 	li       r6, 0
+// 	li       r5, 0
+// 	mtctr    r0
+// 	cmpwi    r0, 0
+// 	blelr
 
-lbl_80139904:
-	lwz      r0, 0x28(r3)
-	add      r0, r0, r5
-	cmplw    r0, r4
-	bne      lbl_80139930
-	lwz      r4, 0x2c(r3)
-	li       r0, 1
-	stbx     r0, r4, r6
-	lwz      r4, 0x20(r3)
-	addi     r0, r4, -1
-	stw      r0, 0x20(r3)
-	blr
+// lbl_80139904:
+// 	lwz      r0, 0x28(r3)
+// 	add      r0, r0, r5
+// 	cmplw    r0, r4
+// 	bne      lbl_80139930
+// 	lwz      r4, 0x2c(r3)
+// 	li       r0, 1
+// 	stbx     r0, r4, r6
+// 	lwz      r4, 0x20(r3)
+// 	addi     r0, r4, -1
+// 	stw      r0, 0x20(r3)
+// 	blr
 
-lbl_80139930:
-	addi     r5, r5, 0x64
-	addi     r6, r6, 1
-	bdnz     lbl_80139904
-	blr
-	*/
-}
+// lbl_80139930:
+// 	addi     r5, r5, 0x64
+// 	addi     r6, r6, 1
+// 	bdnz     lbl_80139904
+// 	blr
+// 	*/
+// }
 
 /*
+ * getEmptyIndex__24MonoObjectMgr<8CollPart>Fv
  * --INFO--
  * Address:	80139940
  * Size:	00003C
  */
-template <> void MonoObjectMgr<CollPart>::getEmptyIndex()
-{
-	/*
-	lwz      r0, 0x24(r3)
-	li       r5, 0
-	mtctr    r0
-	cmpwi    r0, 0
-	ble      lbl_80139974
+// template <> void MonoObjectMgr<CollPart>::getEmptyIndex()
+// {
+// 	/*
+// 	lwz      r0, 0x24(r3)
+// 	li       r5, 0
+// 	mtctr    r0
+// 	cmpwi    r0, 0
+// 	ble      lbl_80139974
 
-lbl_80139954:
-	lwz      r4, 0x2c(r3)
-	lbzx     r0, r4, r5
-	cmplwi   r0, 1
-	bne      lbl_8013996C
-	mr       r3, r5
-	blr
+// lbl_80139954:
+// 	lwz      r4, 0x2c(r3)
+// 	lbzx     r0, r4, r5
+// 	cmplwi   r0, 1
+// 	bne      lbl_8013996C
+// 	mr       r3, r5
+// 	blr
 
-lbl_8013996C:
-	addi     r5, r5, 1
-	bdnz     lbl_80139954
+// lbl_8013996C:
+// 	addi     r5, r5, 1
+// 	bdnz     lbl_80139954
 
-lbl_80139974:
-	li       r3, -1
-	blr
-	*/
-}
+// lbl_80139974:
+// 	li       r3, -1
+// 	blr
+// 	*/
+// }
 
 /*
+ * writeObject__28ArrayContainer<10Vector3<f>>FR6StreamR10Vector3<f>
  * --INFO--
  * Address:	8013997C
  * Size:	000004
  */
-template <> void ArrayContainer<Vector3f>::writeObject(Stream&, Vector3f&) { }
+// template <> void ArrayContainer<Vector3f>::writeObject(Stream&, Vector3f&) { }
 
 /*
+ * write__28ArrayContainer<10Vector3<f>>FR6Stream
  * --INFO--
  * Address:	80139980
  * Size:	0000D4
  */
-template <> void ArrayContainer<Vector3f>::write(Stream&)
-{
-	/*
-	stwu     r1, -0x20(r1)
-	mflr     r0
-	stw      r0, 0x24(r1)
-	stmw     r27, 0xc(r1)
-	mr       r28, r4
-	mr       r27, r3
-	lwz      r4, 0x14(r3)
-	mr       r3, r28
-	bl       textBeginGroup__6StreamFPc
-	lwz      r4, 0x414(r28)
-	mr       r3, r28
-	bl       textWriteTab__6StreamFi
-	lwz      r4, 0x20(r27)
-	mr       r3, r28
-	bl       writeInt__6StreamFi
-	mr       r3, r28
-	addi     r4, r2, lbl_80518230@sda21
-	crclr    6
-	bl       textWriteText__6StreamFPce
-	lis      r3, lbl_8047C63C@ha
-	li       r29, 0
-	addi     r31, r3, lbl_8047C63C@l
-	li       r30, 0
-	b        lbl_80139A2C
-
-lbl_801399E0:
-	lwz      r4, 0x414(r28)
-	mr       r3, r28
-	bl       textWriteTab__6StreamFi
-	mr       r3, r27
-	lwz      r0, 0x24(r27)
-	lwz      r12, 0(r27)
-	mr       r4, r28
-	add      r5, r0, r30
-	lwz      r12, 0x2c(r12)
-	mtctr    r12
-	bctrl
-	lwz      r6, 0x20(r27)
-	mr       r3, r28
-	mr       r4, r31
-	mr       r5, r29
-	crclr    6
-	bl       textWriteText__6StreamFPce
-	addi     r30, r30, 0xc
-	addi     r29, r29, 1
-
-lbl_80139A2C:
-	lwz      r0, 0x20(r27)
-	cmpw     r29, r0
-	blt      lbl_801399E0
-	mr       r3, r28
-	bl       textEndGroup__6StreamFv
-	lmw      r27, 0xc(r1)
-	lwz      r0, 0x24(r1)
-	mtlr     r0
-	addi     r1, r1, 0x20
-	blr
-	*/
-}
+// template <> void ArrayContainer<Vector3f>::write(Stream&)
+// {
+// }
 
 /*
+ * get__28ArrayContainer<10Vector3<f>>FPv
  * --INFO--
  * Address:	80139A54
  * Size:	000010
  */
-template <> void ArrayContainer<Vector3f>::get(void*)
-{
-	/*
-	mulli    r0, r4, 0xc
-	lwz      r3, 0x24(r3)
-	add      r3, r3, r0
-	blr
-	*/
-}
+// template <> void ArrayContainer<Vector3f>::get(void*)
+// {
+// }
 
 /*
+ * getNext__28ArrayContainer<10Vector3<f>>FPv
  * --INFO--
  * Address:	80139A64
  * Size:	000008
  */
-template <> void ArrayContainer<Vector3f>::getNext(void*)
-{
-	/*
-	addi     r3, r4, 1
-	blr
-	*/
-}
+// template <> void ArrayContainer<Vector3f>::getNext(void*)
+// {
+// }
 
 /*
+ * getStart__28ArrayContainer<10Vector3<f>>Fv
  * --INFO--
  * Address:	80139A6C
  * Size:	000008
  */
-template <> u32 ArrayContainer<Vector3f>::getStart() { return 0x0; }
+// template <> u32 ArrayContainer<Vector3f>::getStart() { return 0x0; }
 
 /*
+ * getEnd__28ArrayContainer<10Vector3<f>>Fv
  * --INFO--
  * Address:	80139A74
  * Size:	000008
  */
-template <> void ArrayContainer<Vector3f>::getEnd()
-{
-	/*
-	lwz      r3, 0x1c(r3)
-	blr
-	*/
-}
+// template <> void ArrayContainer<Vector3f>::getEnd()
+// {
+// }
 
 /*
+ * getAt__28ArrayContainer<10Vector3<f>>Fi
  * --INFO--
  * Address:	80139A7C
  * Size:	000010
  */
-void ArrayContainer<Vector3f>::getAt(int)
-{
-	/*
-	mulli    r0, r4, 0xc
-	lwz      r3, 0x24(r3)
-	add      r3, r3, r0
-	blr
-	*/
-}
+// void ArrayContainer<Vector3f>::getAt(int)
+// {
+// }
 
 /*
+ * getTo__28ArrayContainer<10Vector3<f>>Fv
  * --INFO--
  * Address:	80139A8C
  * Size:	000008
  */
-void ArrayContainer<Vector3f>::getTo()
-{
-	/*
-	lwz      r3, 0x20(r3)
-	blr
-	*/
-}
+// void ArrayContainer<Vector3f>::getTo()
+// {
+// }
 
 /*
+ * writeObject__17ArrayContainer<i>FR6StreamRi
  * --INFO--
  * Address:	80139A94
  * Size:	000004
  */
-void ArrayContainer<int>::writeObject(Stream&, int&) { }
+// void ArrayContainer<int>::writeObject(Stream&, int&) { }
 
 /*
+ * write__17ArrayContainer<i>FR6Stream
  * --INFO--
  * Address:	80139A98
  * Size:	0000D4
  */
-void ArrayContainer<int>::write(Stream&)
-{
-	/*
-	stwu     r1, -0x20(r1)
-	mflr     r0
-	stw      r0, 0x24(r1)
-	stmw     r27, 0xc(r1)
-	mr       r28, r4
-	mr       r27, r3
-	lwz      r4, 0x14(r3)
-	mr       r3, r28
-	bl       textBeginGroup__6StreamFPc
-	lwz      r4, 0x414(r28)
-	mr       r3, r28
-	bl       textWriteTab__6StreamFi
-	lwz      r4, 0x20(r27)
-	mr       r3, r28
-	bl       writeInt__6StreamFi
-	mr       r3, r28
-	addi     r4, r2, lbl_80518230@sda21
-	crclr    6
-	bl       textWriteText__6StreamFPce
-	lis      r3, lbl_8047C63C@ha
-	li       r29, 0
-	addi     r31, r3, lbl_8047C63C@l
-	li       r30, 0
-	b        lbl_80139B44
-
-lbl_80139AF8:
-	lwz      r4, 0x414(r28)
-	mr       r3, r28
-	bl       textWriteTab__6StreamFi
-	mr       r3, r27
-	lwz      r0, 0x24(r27)
-	lwz      r12, 0(r27)
-	mr       r4, r28
-	add      r5, r0, r30
-	lwz      r12, 0x2c(r12)
-	mtctr    r12
-	bctrl
-	lwz      r6, 0x20(r27)
-	mr       r3, r28
-	mr       r4, r31
-	mr       r5, r29
-	crclr    6
-	bl       textWriteText__6StreamFPce
-	addi     r30, r30, 4
-	addi     r29, r29, 1
-
-lbl_80139B44:
-	lwz      r0, 0x20(r27)
-	cmpw     r29, r0
-	blt      lbl_80139AF8
-	mr       r3, r28
-	bl       textEndGroup__6StreamFv
-	lmw      r27, 0xc(r1)
-	lwz      r0, 0x24(r1)
-	mtlr     r0
-	addi     r1, r1, 0x20
-	blr
-	*/
-}
+// void ArrayContainer<int>::write(Stream&)
+// {
+// }
 
 /*
+ * addOne__17ArrayContainer<i>FRi
  * --INFO--
  * Address:	80139B6C
  * Size:	00002C
  */
-void ArrayContainer<int>::addOne(int&)
-{
-	/*
-	lwz      r7, 0x1c(r3)
-	lwz      r0, 0x20(r3)
-	cmpw     r7, r0
-	bgelr
-	lwz      r6, 0(r4)
-	addi     r4, r7, 1
-	lwz      r5, 0x24(r3)
-	slwi     r0, r7, 2
-	stw      r4, 0x1c(r3)
-	stwx     r6, r5, r0
-	blr
-	*/
-}
+// void ArrayContainer<int>::addOne(int&)
+// {
+// 	/*
+// 	lwz      r7, 0x1c(r3)
+// 	lwz      r0, 0x20(r3)
+// 	cmpw     r7, r0
+// 	bgelr
+// 	lwz      r6, 0(r4)
+// 	addi     r4, r7, 1
+// 	lwz      r5, 0x24(r3)
+// 	slwi     r0, r7, 2
+// 	stw      r4, 0x1c(r3)
+// 	stwx     r6, r5, r0
+// 	blr
+// 	*/
+// }
 
 /*
+ * setArray__17ArrayContainer<i>FPii
  * --INFO--
  * Address:	80139B98
  * Size:	000010
  */
-void ArrayContainer<int>::setArray(int*, int)
-{
-	/*
-	stw      r4, 0x24(r3)
-	stw      r5, 0x20(r3)
-	stw      r5, 0x1c(r3)
-	blr
-	*/
-}
+// void ArrayContainer<int>::setArray(int*, int)
+// {
+// }
 
 /*
+ * get__17ArrayContainer<i>FPv
  * --INFO--
  * Address:	80139BA8
  * Size:	000010
  */
-void ArrayContainer<int>::get(void*)
-{
-	/*
-	lwz      r3, 0x24(r3)
-	slwi     r0, r4, 2
-	add      r3, r3, r0
-	blr
-	*/
-}
+// void ArrayContainer<int>::get(void*)
+// {
+// }
 
 /*
+ * getNext__17ArrayContainer<i>FPv
  * --INFO--
  * Address:	80139BB8
  * Size:	000008
  */
-void ArrayContainer<int>::getNext(void*)
-{
-	/*
-	addi     r3, r4, 1
-	blr
-	*/
-}
+// void ArrayContainer<int>::getNext(void*)
+// {
+// }
 
 /*
+ * getStart__17ArrayContainer<i>Fv
  * --INFO--
  * Address:	80139BC0
  * Size:	000008
  */
-u32 ArrayContainer<int>::getStart() { return 0x0; }
+// u32 ArrayContainer<int>::getStart() { return 0x0; }
 
 /*
+ * getEnd__17ArrayContainer<i>Fv
  * --INFO--
  * Address:	80139BC8
  * Size:	000008
  */
-void ArrayContainer<int>::getEnd()
-{
-	/*
-	lwz      r3, 0x1c(r3)
-	blr
-	*/
-}
+// void ArrayContainer<int>::getEnd()
+// {
+// }
 
 /*
+ * getAt__17ArrayContainer<i>Fi
  * --INFO--
  * Address:	80139BD0
  * Size:	000010
  */
-void ArrayContainer<int>::getAt(int)
-{
-	/*
-	lwz      r3, 0x24(r3)
-	slwi     r0, r4, 2
-	add      r3, r3, r0
-	blr
-	*/
-}
+// void ArrayContainer<int>::getAt(int)
+// {
+// }
 
 /*
+ * getTo__17ArrayContainer<i>Fv
  * --INFO--
  * Address:	80139BE0
  * Size:	000008
  */
-void ArrayContainer<int>::getTo()
-{
-	/*
-	lwz      r3, 0x20(r3)
-	blr
-	*/
-}
+// void ArrayContainer<int>::getTo()
+// {
+// }
 
 /*
+ * getObject__23Container<10Vector3<f>>FPv
  * --INFO--
  * Address:	80139BE8
  * Size:	00002C
  */
-void Container<Vector3f>::getObject(void*)
-{
-	/*
-	stwu     r1, -0x10(r1)
-	mflr     r0
-	stw      r0, 0x14(r1)
-	lwz      r12, 0(r3)
-	lwz      r12, 0x20(r12)
-	mtctr    r12
-	bctrl
-	lwz      r0, 0x14(r1)
-	mtlr     r0
-	addi     r1, r1, 0x10
-	blr
-	*/
-}
+// void Container<Vector3f>::getObject(void*)
+// {
+// }
 
 /*
+ * getAt__23Container<10Vector3<f>>Fi
  * --INFO--
  * Address:	80139C14
  * Size:	000008
  */
-u32 Container<Vector3f>::getAt(int) { return 0x0; }
+// u32 Container<Vector3f>::getAt(int) { return 0x0; }
 
 /*
+ * getTo__23Container<10Vector3<f>>Fv
  * --INFO--
  * Address:	80139C1C
  * Size:	000008
  */
-u32 Container<Vector3f>::getTo() { return 0x0; }
+// u32 Container<Vector3f>::getTo() { return 0x0; }
 
 /*
+ * getObject__12Container<i>FPv
  * --INFO--
  * Address:	80139C24
  * Size:	00002C
  */
-void Container<int>::getObject(void*)
-{
-	/*
-	stwu     r1, -0x10(r1)
-	mflr     r0
-	stw      r0, 0x14(r1)
-	lwz      r12, 0(r3)
-	lwz      r12, 0x20(r12)
-	mtctr    r12
-	bctrl
-	lwz      r0, 0x14(r1)
-	mtlr     r0
-	addi     r1, r1, 0x10
-	blr
-	*/
-}
+// void Container<int>::getObject(void*)
+// {
+// }
 
 /*
+ * getAt__12Container<i>Fi
  * --INFO--
  * Address:	80139C50
  * Size:	000008
  */
-u32 Container<int>::getAt(int) { return 0x0; }
+// u32 Container<int>::getAt(int) { return 0x0; }
 
 /*
+ * getTo__12Container<i>Fv
  * --INFO--
  * Address:	80139C58
  * Size:	000008
  */
-u32 Container<int>::getTo() { return 0x0; }
+// u32 Container<int>::getTo() { return 0x0; }

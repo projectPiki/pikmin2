@@ -26,7 +26,11 @@ struct CurrTriInfo;
 struct OBB : public CNode {
 	OBB();
 
-	virtual ~OBB(); // _00
+	/**
+	 * @reifiedAddress{8013948C}
+	 * @reifiedFile{plugProjectKandoU/collinfo.cpp}
+	 */
+	virtual ~OBB() { } // _00
 
 	void autoDivide(Sys::VertexTable&, Sys::TriangleTable&, int, int);
 	void create2(Sys::VertexTable&, Sys::TriangleTable&, struct Matrix3f&, Matrix3f&, Vector3f&);

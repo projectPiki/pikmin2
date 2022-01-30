@@ -32,7 +32,7 @@ void* __va_arg(va_list, int);
  * Size:	0000E0 or 0000E4, depending on param.
  */
 #define DEFINE__PRINT(unit) \
-	inline void _Print(char*, ...) { printf(unit); }
+	inline static void _Print(char*, ...) { printf(unit); }
 
 int printf(const char*, ...);
 int vprintf(const char*, va_list);

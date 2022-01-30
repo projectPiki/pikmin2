@@ -4,8 +4,20 @@
 #include "Vector3.h"
 
 namespace Sys {
+struct Sphere;
 struct Tube {
+	inline Tube() {};
 	Tube(Vector3f&, Vector3f&, float, float);
+
+	void getAxisVector(Vector3f&);
+	void collide(Sphere&, Vector3f&, float&);
+	void getPosRatio(const Vector3f&);
+	Vector3f setPos(float);
+
+	// Unused/inlined:
+	void getYRatio(float);
+	void getRatioRadius(float);
+	void getPosGradient(Vector3f&, float, Vector3f&, Vector3f&);
 
 	Vector3f _00; // _00
 	Vector3f _0C; // _0C

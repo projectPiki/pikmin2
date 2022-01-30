@@ -96,6 +96,6 @@ template <typename T> struct StateMachine {
 		void registerState(FSMState<T>*);         \
 	}
 
-template <> void Game::FSMState<void>::transit(void* obj, int id, StateArg* arg) { m_stateMachine->transit(obj, id, arg); }
+// template <> void Game::FSMState<void>::transit(void* obj, int id, StateArg* arg) { m_stateMachine->transit(obj, id, arg); }
 
 #endif

@@ -1,4 +1,16 @@
+#include "Dolphin/mtx.h"
+#include "Game/BaseItem.h"
+#include "Game/cellPyramid.h"
+#include "Iterator.h"
+#include "ObjectMgr.h"
+#include "Platform.h"
+#include "PlatAttacher.h"
 #include "Game/PlatInstance.h"
+#include "Rect.h"
+#include "Sys/OBBTree.h"
+#include "Sys/Sphere.h"
+#include "Vector3.h"
+#include "id32.h"
 
 /*
     Generated from dpostproc
@@ -217,17 +229,11 @@ void PlatInstance::setCollision(bool flag)
  */
 Vector3f PlatInstance::getPosition()
 {
-	/*
-	.loc_0x0:
-	  lwz       r4, 0xB8(r4)
-	  lfs       f1, 0x1C(r4)
-	  lfs       f2, 0x2C(r4)
-	  lfs       f0, 0xC(r4)
-	  stfs      f0, 0x0(r3)
-	  stfs      f1, 0x4(r3)
-	  stfs      f2, 0x8(r3)
-	  blr
-	*/
+	Vector3f result;
+	result.x = _B8->m_matrix.structView.tx;
+	result.y = _B8->m_matrix.structView.ty;
+	result.z = _B8->m_matrix.structView.tz;
+	return result;
 }
 
 /*
@@ -235,32 +241,7 @@ Vector3f PlatInstance::getPosition()
  * Address:	801C4C1C
  * Size:	000050
  */
-void Game::PlatInstance::getBoundingSphere(Sys::Sphere&)
-{
-	/*
-	.loc_0x0:
-	  stwu      r1, -0x10(r1)
-	  mflr      r0
-	  stw       r0, 0x14(r1)
-	  stw       r31, 0xC(r1)
-	  mr        r31, r4
-	  lwz       r3, 0xEC(r3)
-	  bl        -0x91548
-	  lfs       f0, 0x120(r3)
-	  stfs      f0, 0x0(r31)
-	  lfs       f0, 0x124(r3)
-	  stfs      f0, 0x4(r31)
-	  lfs       f0, 0x128(r3)
-	  stfs      f0, 0x8(r31)
-	  lfs       f0, 0x12C(r3)
-	  stfs      f0, 0xC(r31)
-	  lwz       r31, 0xC(r1)
-	  lwz       r0, 0x14(r1)
-	  mtlr      r0
-	  addi      r1, r1, 0x10
-	  blr
-	*/
-}
+void PlatInstance::getBoundingSphere(Sys::Sphere& sphere) { sphere = ((Sys::OBBTree*)_EC->getTriDivider())->m_obb._100; }
 
 /*
  * --INFO--
@@ -675,16 +656,11 @@ void PlatInstance::traceMove(MoveInfo&, float)
  * Size:	000018
  */
 PlatInstanceAttacher::PlatInstanceAttacher()
+    : m_instanceCount(0)
+    , m_platInstances(nullptr)
+    , m_attacher(nullptr)
+    , m_model(nullptr)
 {
-	/*
-	.loc_0x0:
-	  li        r0, 0
-	  stw       r0, 0x0(r3)
-	  stw       r0, 0x4(r3)
-	  stw       r0, 0x8(r3)
-	  stw       r0, 0xC(r3)
-	  blr
-	*/
 }
 
 /*
@@ -692,7 +668,7 @@ PlatInstanceAttacher::PlatInstanceAttacher()
  * Address:	801C51BC
  * Size:	0001B0
  */
-void Game::PlatInstanceAttacher::addToMgr(Creature*, ID32&, PlatAttacher*, bool)
+void PlatInstanceAttacher::addToMgr(Creature*, ID32&, PlatAttacher*, bool)
 {
 	/*
 	.loc_0x0:
@@ -818,8 +794,18 @@ void Game::PlatInstanceAttacher::addToMgr(Creature*, ID32&, PlatAttacher*, bool)
  * Address:	801C536C
  * Size:	000094
  */
-void Game::PlatInstanceAttacher::setCollision(bool, unsigned short)
+void PlatInstanceAttacher::setCollision(bool p1, unsigned short jointIndex)
 {
+	for (int i = 0; i < m_instanceCount; i++) {
+		if (jointIndex == m_attacher->getJointIndex(i)) {
+			PlatInstance* instance = m_platInstances[i];
+			if (p1) {
+				instance->_108 &= ~0x1;
+			} else {
+				instance->_108 |= 0x1;
+			}
+		}
+	}
 	/*
 	.loc_0x0:
 	  stwu      r1, -0x20(r1)
@@ -875,7 +861,7 @@ void Game::PlatInstanceAttacher::setCollision(bool, unsigned short)
  * Address:	........
  * Size:	0000A0
  */
-void Game::PlatInstanceAttacher::fixCollision(bool, unsigned short)
+void PlatInstanceAttacher::fixCollision(bool, unsigned short)
 {
 	// UNUSED FUNCTION
 }
@@ -885,8 +871,17 @@ void Game::PlatInstanceAttacher::fixCollision(bool, unsigned short)
  * Address:	801C5400
  * Size:	00009C
  */
-void Game::PlatInstanceAttacher::fixCollision(bool)
+void PlatInstanceAttacher::fixCollision(bool p1)
 {
+	for (int i = 0; i < m_instanceCount; i++) {
+		PlatInstance* instance = m_platInstances[i];
+		if (p1) {
+			instance->_108 &= ~0x2;
+		} else {
+			instance->_108 |= 0x2;
+			PSMTXInverse(instance->_B8->m_matrix.mtxView, instance->_BC.m_matrix.mtxView);
+		}
+	}
 	/*
 	.loc_0x0:
 	  stwu      r1, -0x20(r1)
@@ -944,7 +939,7 @@ void Game::PlatInstanceAttacher::fixCollision(bool)
  * Address:	801C549C
  * Size:	00008C
  */
-void Game::PlatInstanceAttacher::setCode(ID32&, unsigned short)
+void PlatInstanceAttacher::setCode(ID32&, unsigned short)
 {
 	/*
 	.loc_0x0:
@@ -997,7 +992,7 @@ void Game::PlatInstanceAttacher::setCode(ID32&, unsigned short)
  * Address:	........
  * Size:	000098
  */
-void Game::PlatInstanceAttacher::setCode(ID32&, char*)
+void PlatInstanceAttacher::setCode(ID32&, char*)
 {
 	// UNUSED FUNCTION
 }
@@ -1007,7 +1002,7 @@ void Game::PlatInstanceAttacher::setCode(ID32&, char*)
  * Address:	........
  * Size:	0000A4
  */
-void Game::PlatInstanceAttacher::setCollision(bool, char*)
+void PlatInstanceAttacher::setCollision(bool, char*)
 {
 	// UNUSED FUNCTION
 }
@@ -1017,7 +1012,7 @@ void Game::PlatInstanceAttacher::setCollision(bool, char*)
  * Address:	........
  * Size:	0000AC
  */
-void Game::PlatInstanceAttacher::fixCollision(bool, char*)
+void PlatInstanceAttacher::fixCollision(bool, char*)
 {
 	// UNUSED FUNCTION
 }
@@ -1027,7 +1022,7 @@ void Game::PlatInstanceAttacher::fixCollision(bool, char*)
  * Address:	801C5528
  * Size:	0000C0
  */
-void Game::PlatInstanceAttacher::setShapeVisibility()
+void PlatInstanceAttacher::setShapeVisibility()
 {
 	/*
 	.loc_0x0:
@@ -1153,200 +1148,200 @@ PlatMgr::PlatMgr()
  * Address:	801C56A0
  * Size:	0000C8
  */
-NodeObjectMgr<Game::PlatInstance>::~NodeObjectMgr()
-{
-	/*
-	.loc_0x0:
-	  stwu      r1, -0x10(r1)
-	  mflr      r0
-	  stw       r0, 0x14(r1)
-	  stw       r31, 0xC(r1)
-	  mr        r31, r4
-	  stw       r30, 0x8(r1)
-	  mr.       r30, r3
-	  beq-      .loc_0xAC
-	  lis       r3, 0x804B
-	  addic.    r0, r30, 0x20
-	  addi      r3, r3, 0x63E4
-	  stw       r3, 0x0(r30)
-	  addi      r0, r3, 0x2C
-	  stw       r0, 0x1C(r30)
-	  beq-      .loc_0x54
-	  lis       r4, 0x804B
-	  addi      r3, r30, 0x20
-	  addi      r0, r4, 0x63D4
-	  li        r4, 0
-	  stw       r0, 0x20(r30)
-	  bl        0x24BE98
+// NodeObjectMgr<Game::PlatInstance>::~NodeObjectMgr()
+// {
+// 	/*
+// 	.loc_0x0:
+// 	  stwu      r1, -0x10(r1)
+// 	  mflr      r0
+// 	  stw       r0, 0x14(r1)
+// 	  stw       r31, 0xC(r1)
+// 	  mr        r31, r4
+// 	  stw       r30, 0x8(r1)
+// 	  mr.       r30, r3
+// 	  beq-      .loc_0xAC
+// 	  lis       r3, 0x804B
+// 	  addic.    r0, r30, 0x20
+// 	  addi      r3, r3, 0x63E4
+// 	  stw       r3, 0x0(r30)
+// 	  addi      r0, r3, 0x2C
+// 	  stw       r0, 0x1C(r30)
+// 	  beq-      .loc_0x54
+// 	  lis       r4, 0x804B
+// 	  addi      r3, r30, 0x20
+// 	  addi      r0, r4, 0x63D4
+// 	  li        r4, 0
+// 	  stw       r0, 0x20(r30)
+// 	  bl        0x24BE98
 
-	.loc_0x54:
-	  cmplwi    r30, 0
-	  beq-      .loc_0x9C
-	  lis       r3, 0x804B
-	  addi      r3, r3, 0x6464
-	  stw       r3, 0x0(r30)
-	  addi      r0, r3, 0x2C
-	  stw       r0, 0x1C(r30)
-	  beq-      .loc_0x9C
-	  lis       r3, 0x804B
-	  addi      r0, r3, 0x64E0
-	  stw       r0, 0x0(r30)
-	  beq-      .loc_0x9C
-	  lis       r4, 0x804B
-	  mr        r3, r30
-	  subi      r0, r4, 0x5324
-	  li        r4, 0
-	  stw       r0, 0x0(r30)
-	  bl        0x24BE50
+// 	.loc_0x54:
+// 	  cmplwi    r30, 0
+// 	  beq-      .loc_0x9C
+// 	  lis       r3, 0x804B
+// 	  addi      r3, r3, 0x6464
+// 	  stw       r3, 0x0(r30)
+// 	  addi      r0, r3, 0x2C
+// 	  stw       r0, 0x1C(r30)
+// 	  beq-      .loc_0x9C
+// 	  lis       r3, 0x804B
+// 	  addi      r0, r3, 0x64E0
+// 	  stw       r0, 0x0(r30)
+// 	  beq-      .loc_0x9C
+// 	  lis       r4, 0x804B
+// 	  mr        r3, r30
+// 	  subi      r0, r4, 0x5324
+// 	  li        r4, 0
+// 	  stw       r0, 0x0(r30)
+// 	  bl        0x24BE50
 
-	.loc_0x9C:
-	  extsh.    r0, r31
-	  ble-      .loc_0xAC
-	  mr        r3, r30
-	  bl        -0x1A1694
+// 	.loc_0x9C:
+// 	  extsh.    r0, r31
+// 	  ble-      .loc_0xAC
+// 	  mr        r3, r30
+// 	  bl        -0x1A1694
 
-	.loc_0xAC:
-	  lwz       r0, 0x14(r1)
-	  mr        r3, r30
-	  lwz       r31, 0xC(r1)
-	  lwz       r30, 0x8(r1)
-	  mtlr      r0
-	  addi      r1, r1, 0x10
-	  blr
-	*/
-}
+// 	.loc_0xAC:
+// 	  lwz       r0, 0x14(r1)
+// 	  mr        r3, r30
+// 	  lwz       r31, 0xC(r1)
+// 	  lwz       r30, 0x8(r1)
+// 	  mtlr      r0
+// 	  addi      r1, r1, 0x10
+// 	  blr
+// 	*/
+// }
 
 /*
  * --INFO--
  * Address:	801C5768
  * Size:	000060
  */
-TObjectNode<Game::PlatInstance>::~TObjectNode()
-{
-	/*
-	.loc_0x0:
-	  stwu      r1, -0x10(r1)
-	  mflr      r0
-	  stw       r0, 0x14(r1)
-	  stw       r31, 0xC(r1)
-	  mr        r31, r4
-	  stw       r30, 0x8(r1)
-	  mr.       r30, r3
-	  beq-      .loc_0x44
-	  lis       r5, 0x804B
-	  li        r4, 0
-	  addi      r0, r5, 0x63D4
-	  stw       r0, 0x0(r30)
-	  bl        0x24BDF0
-	  extsh.    r0, r31
-	  ble-      .loc_0x44
-	  mr        r3, r30
-	  bl        -0x1A16F4
+// TObjectNode<Game::PlatInstance>::~TObjectNode()
+// {
+// 	/*
+// 	.loc_0x0:
+// 	  stwu      r1, -0x10(r1)
+// 	  mflr      r0
+// 	  stw       r0, 0x14(r1)
+// 	  stw       r31, 0xC(r1)
+// 	  mr        r31, r4
+// 	  stw       r30, 0x8(r1)
+// 	  mr.       r30, r3
+// 	  beq-      .loc_0x44
+// 	  lis       r5, 0x804B
+// 	  li        r4, 0
+// 	  addi      r0, r5, 0x63D4
+// 	  stw       r0, 0x0(r30)
+// 	  bl        0x24BDF0
+// 	  extsh.    r0, r31
+// 	  ble-      .loc_0x44
+// 	  mr        r3, r30
+// 	  bl        -0x1A16F4
 
-	.loc_0x44:
-	  lwz       r0, 0x14(r1)
-	  mr        r3, r30
-	  lwz       r31, 0xC(r1)
-	  lwz       r30, 0x8(r1)
-	  mtlr      r0
-	  addi      r1, r1, 0x10
-	  blr
-	*/
-}
+// 	.loc_0x44:
+// 	  lwz       r0, 0x14(r1)
+// 	  mr        r3, r30
+// 	  lwz       r31, 0xC(r1)
+// 	  lwz       r30, 0x8(r1)
+// 	  mtlr      r0
+// 	  addi      r1, r1, 0x10
+// 	  blr
+// 	*/
+// }
 
 /*
  * --INFO--
  * Address:	801C57C8
  * Size:	000088
  */
-ObjectMgr<Game::PlatInstance>::~ObjectMgr()
-{
-	/*
-	.loc_0x0:
-	  stwu      r1, -0x10(r1)
-	  mflr      r0
-	  stw       r0, 0x14(r1)
-	  stw       r31, 0xC(r1)
-	  mr        r31, r4
-	  stw       r30, 0x8(r1)
-	  mr.       r30, r3
-	  beq-      .loc_0x6C
-	  lis       r4, 0x804B
-	  addi      r4, r4, 0x6464
-	  stw       r4, 0x0(r30)
-	  addi      r0, r4, 0x2C
-	  stw       r0, 0x1C(r30)
-	  beq-      .loc_0x5C
-	  lis       r4, 0x804B
-	  addi      r0, r4, 0x64E0
-	  stw       r0, 0x0(r30)
-	  beq-      .loc_0x5C
-	  lis       r5, 0x804B
-	  li        r4, 0
-	  subi      r0, r5, 0x5324
-	  stw       r0, 0x0(r30)
-	  bl        0x24BD68
+// ObjectMgr<Game::PlatInstance>::~ObjectMgr()
+// {
+// 	/*
+// 	.loc_0x0:
+// 	  stwu      r1, -0x10(r1)
+// 	  mflr      r0
+// 	  stw       r0, 0x14(r1)
+// 	  stw       r31, 0xC(r1)
+// 	  mr        r31, r4
+// 	  stw       r30, 0x8(r1)
+// 	  mr.       r30, r3
+// 	  beq-      .loc_0x6C
+// 	  lis       r4, 0x804B
+// 	  addi      r4, r4, 0x6464
+// 	  stw       r4, 0x0(r30)
+// 	  addi      r0, r4, 0x2C
+// 	  stw       r0, 0x1C(r30)
+// 	  beq-      .loc_0x5C
+// 	  lis       r4, 0x804B
+// 	  addi      r0, r4, 0x64E0
+// 	  stw       r0, 0x0(r30)
+// 	  beq-      .loc_0x5C
+// 	  lis       r5, 0x804B
+// 	  li        r4, 0
+// 	  subi      r0, r5, 0x5324
+// 	  stw       r0, 0x0(r30)
+// 	  bl        0x24BD68
 
-	.loc_0x5C:
-	  extsh.    r0, r31
-	  ble-      .loc_0x6C
-	  mr        r3, r30
-	  bl        -0x1A177C
+// 	.loc_0x5C:
+// 	  extsh.    r0, r31
+// 	  ble-      .loc_0x6C
+// 	  mr        r3, r30
+// 	  bl        -0x1A177C
 
-	.loc_0x6C:
-	  lwz       r0, 0x14(r1)
-	  mr        r3, r30
-	  lwz       r31, 0xC(r1)
-	  lwz       r30, 0x8(r1)
-	  mtlr      r0
-	  addi      r1, r1, 0x10
-	  blr
-	*/
-}
+// 	.loc_0x6C:
+// 	  lwz       r0, 0x14(r1)
+// 	  mr        r3, r30
+// 	  lwz       r31, 0xC(r1)
+// 	  lwz       r30, 0x8(r1)
+// 	  mtlr      r0
+// 	  addi      r1, r1, 0x10
+// 	  blr
+// 	*/
+// }
 
 /*
  * --INFO--
  * Address:	801C5850
  * Size:	000070
  */
-Container<Game::PlatInstance>::~Container()
-{
-	/*
-	.loc_0x0:
-	  stwu      r1, -0x10(r1)
-	  mflr      r0
-	  stw       r0, 0x14(r1)
-	  stw       r31, 0xC(r1)
-	  mr        r31, r4
-	  stw       r30, 0x8(r1)
-	  mr.       r30, r3
-	  beq-      .loc_0x54
-	  lis       r4, 0x804B
-	  addi      r0, r4, 0x64E0
-	  stw       r0, 0x0(r30)
-	  beq-      .loc_0x44
-	  lis       r5, 0x804B
-	  li        r4, 0
-	  subi      r0, r5, 0x5324
-	  stw       r0, 0x0(r30)
-	  bl        0x24BCF8
+// Container<Game::PlatInstance>::~Container()
+// {
+// 	/*
+// 	.loc_0x0:
+// 	  stwu      r1, -0x10(r1)
+// 	  mflr      r0
+// 	  stw       r0, 0x14(r1)
+// 	  stw       r31, 0xC(r1)
+// 	  mr        r31, r4
+// 	  stw       r30, 0x8(r1)
+// 	  mr.       r30, r3
+// 	  beq-      .loc_0x54
+// 	  lis       r4, 0x804B
+// 	  addi      r0, r4, 0x64E0
+// 	  stw       r0, 0x0(r30)
+// 	  beq-      .loc_0x44
+// 	  lis       r5, 0x804B
+// 	  li        r4, 0
+// 	  subi      r0, r5, 0x5324
+// 	  stw       r0, 0x0(r30)
+// 	  bl        0x24BCF8
 
-	.loc_0x44:
-	  extsh.    r0, r31
-	  ble-      .loc_0x54
-	  mr        r3, r30
-	  bl        -0x1A17EC
+// 	.loc_0x44:
+// 	  extsh.    r0, r31
+// 	  ble-      .loc_0x54
+// 	  mr        r3, r30
+// 	  bl        -0x1A17EC
 
-	.loc_0x54:
-	  lwz       r0, 0x14(r1)
-	  mr        r3, r30
-	  lwz       r31, 0xC(r1)
-	  lwz       r30, 0x8(r1)
-	  mtlr      r0
-	  addi      r1, r1, 0x10
-	  blr
-	*/
-}
+// 	.loc_0x54:
+// 	  lwz       r0, 0x14(r1)
+// 	  mr        r3, r30
+// 	  lwz       r31, 0xC(r1)
+// 	  lwz       r30, 0x8(r1)
+// 	  mtlr      r0
+// 	  addi      r1, r1, 0x10
+// 	  blr
+// 	*/
+// }
 
 /*
  * --INFO--
@@ -1354,35 +1349,14 @@ Container<Game::PlatInstance>::~Container()
  * Size:	000064
  */
 PlatAddInstanceArg::PlatAddInstanceArg()
+    : m_id()
 {
-	/*
-	.loc_0x0:
-	  stwu      r1, -0x10(r1)
-	  mflr      r0
-	  stw       r0, 0x14(r1)
-	  stw       r31, 0xC(r1)
-	  mr        r31, r3
-	  addi      r3, r31, 0x4
-	  bl        0x24D998
-	  li        r0, 0
-	  lis       r4, 0x6E75
-	  stw       r0, 0x0(r31)
-	  addi      r3, r31, 0x4
-	  addi      r4, r4, 0x6C6C
-	  bl        0x24D9E8
-	  li        r0, 0
-	  lfs       f0, -0x4DD8(r2)
-	  stw       r0, 0x10(r31)
-	  mr        r3, r31
-	  stw       r0, 0x14(r31)
-	  stb       r0, 0x18(r31)
-	  stfs      f0, 0x1C(r31)
-	  lwz       r31, 0xC(r1)
-	  lwz       r0, 0x14(r1)
-	  mtlr      r0
-	  addi      r1, r1, 0x10
-	  blr
-	*/
+	m_item = nullptr;
+	m_id.setID('null');
+	m_platform = nullptr;
+	m_matrix   = nullptr;
+	_18        = false;
+	_1C        = 0.0f;
 }
 
 /*
@@ -1390,8 +1364,45 @@ PlatAddInstanceArg::PlatAddInstanceArg()
  * Address:	801C5924
  * Size:	000270
  */
-void PlatMgr::addInstance(PlatAddInstanceArg&)
+PlatInstance* PlatMgr::addInstance(PlatAddInstanceArg& arg)
 {
+	PlatInstance* instance = new PlatInstance();
+	instance->_B8          = arg.m_matrix;
+	instance->m_id         = arg.m_id;
+	instance->_F4          = arg.m_item;
+	if (arg._18) {
+		instance->_EC = arg.m_platform;
+		instance->_F0 = arg.m_platform->clone(*arg.m_matrix);
+		instance->_108 |= 0x80;
+	} else {
+		instance->_EC = arg.m_platform;
+	}
+	TObjectNode<PlatInstance>* node = new TObjectNode<PlatInstance>();
+	node->m_contents                = instance;
+	m_node.add(node);
+	node->m_contents->constructor();
+	if (Game::platCellMgr != nullptr) {
+		Sys::Sphere sphere;
+		sphere.m_position.x = instance->_B8->m_matrix.structView.tx;
+		sphere.m_position.y = instance->_B8->m_matrix.structView.ty;
+		sphere.m_position.z = instance->_B8->m_matrix.structView.tz;
+		Sys::OBBTree* div   = (Sys::OBBTree*)instance->_EC->getTriDivider();
+		sphere.m_position.x += div->m_obb._100.m_position.x;
+		sphere.m_position.y += div->m_obb._100.m_position.y;
+		sphere.m_position.z += div->m_obb._100.m_position.z;
+		sphere.m_radius = div->m_obb._100.m_radius;
+		if (0.0 < arg._1C) {
+			sphere.m_radius = arg._1C;
+		}
+		int v1;
+		Recti v2;
+		Game::platCellMgr->calcExtent(sphere, v1, v2);
+		Game::platCellMgr->entry(instance, sphere);
+		if (instance->_F4 != nullptr) {
+			instance->_F4->getCreatureName();
+		}
+	}
+	return instance;
 	/*
 	.loc_0x0:
 	  stwu      r1, -0x40(r1)
@@ -1806,31 +1817,31 @@ void PlatMgr::traceMove(MoveInfo&, float)
  * Address:	801C5E5C
  * Size:	00004C
  */
-void Iterator<Game::PlatInstance>::isDone()
-{
-	/*
-	.loc_0x0:
-	  stwu      r1, -0x10(r1)
-	  mflr      r0
-	  stw       r0, 0x14(r1)
-	  stw       r31, 0xC(r1)
-	  mr        r31, r3
-	  lwz       r3, 0x8(r3)
-	  lwz       r12, 0x0(r3)
-	  lwz       r12, 0x1C(r12)
-	  mtctr     r12
-	  bctrl
-	  lwz       r0, 0x4(r31)
-	  sub       r0, r3, r0
-	  cntlzw    r0, r0
-	  rlwinm    r3,r0,27,5,31
-	  lwz       r31, 0xC(r1)
-	  lwz       r0, 0x14(r1)
-	  mtlr      r0
-	  addi      r1, r1, 0x10
-	  blr
-	*/
-}
+// void Iterator<Game::PlatInstance>::isDone()
+// {
+// 	/*
+// 	.loc_0x0:
+// 	  stwu      r1, -0x10(r1)
+// 	  mflr      r0
+// 	  stw       r0, 0x14(r1)
+// 	  stw       r31, 0xC(r1)
+// 	  mr        r31, r3
+// 	  lwz       r3, 0x8(r3)
+// 	  lwz       r12, 0x0(r3)
+// 	  lwz       r12, 0x1C(r12)
+// 	  mtctr     r12
+// 	  bctrl
+// 	  lwz       r0, 0x4(r31)
+// 	  sub       r0, r3, r0
+// 	  cntlzw    r0, r0
+// 	  rlwinm    r3,r0,27,5,31
+// 	  lwz       r31, 0xC(r1)
+// 	  lwz       r0, 0x14(r1)
+// 	  mtlr      r0
+// 	  addi      r1, r1, 0x10
+// 	  blr
+// 	*/
+// }
 
 /*
  * --INFO--
@@ -2306,146 +2317,15 @@ void PlatMgr::findRayIntersection(Sys::RayIntersectInfo&)
  * Address:	801C6490
  * Size:	0001DC
  */
-void PlatMgr::resetOnCount(void)
+void PlatMgr::resetOnCount()
 {
-	/*
-	.loc_0x0:
-	  stwu      r1, -0x20(r1)
-	  mflr      r0
-	  lis       r4, 0x804B
-	  stw       r0, 0x24(r1)
-	  li        r0, 0
-	  addi      r4, r4, 0x63BC
-	  cmplwi    r0, 0
-	  stw       r0, 0x14(r1)
-	  stw       r4, 0x8(r1)
-	  stw       r0, 0xC(r1)
-	  stw       r3, 0x10(r1)
-	  bne-      .loc_0x48
-	  lwz       r12, 0x0(r3)
-	  lwz       r12, 0x18(r12)
-	  mtctr     r12
-	  bctrl
-	  stw       r3, 0xC(r1)
-	  b         .loc_0x1AC
-
-	.loc_0x48:
-	  lwz       r12, 0x0(r3)
-	  lwz       r12, 0x18(r12)
-	  mtctr     r12
-	  bctrl
-	  stw       r3, 0xC(r1)
-	  b         .loc_0xB4
-
-	.loc_0x60:
-	  lwz       r3, 0x10(r1)
-	  lwz       r4, 0xC(r1)
-	  lwz       r12, 0x0(r3)
-	  lwz       r12, 0x20(r12)
-	  mtctr     r12
-	  bctrl
-	  mr        r4, r3
-	  lwz       r3, 0x14(r1)
-	  lwz       r12, 0x0(r3)
-	  lwz       r12, 0x8(r12)
-	  mtctr     r12
-	  bctrl
-	  rlwinm.   r0,r3,0,24,31
-	  bne-      .loc_0x1AC
-	  lwz       r3, 0x10(r1)
-	  lwz       r4, 0xC(r1)
-	  lwz       r12, 0x0(r3)
-	  lwz       r12, 0x14(r12)
-	  mtctr     r12
-	  bctrl
-	  stw       r3, 0xC(r1)
-
-	.loc_0xB4:
-	  lwz       r12, 0x8(r1)
-	  addi      r3, r1, 0x8
-	  lwz       r12, 0x10(r12)
-	  mtctr     r12
-	  bctrl
-	  rlwinm.   r0,r3,0,24,31
-	  beq+      .loc_0x60
-	  b         .loc_0x1AC
-
-	.loc_0xD4:
-	  lwz       r3, 0x10(r1)
-	  lwz       r12, 0x0(r3)
-	  lwz       r12, 0x20(r12)
-	  mtctr     r12
-	  bctrl
-	  li        r0, 0
-	  stw       r0, 0x104(r3)
-	  lwz       r0, 0x14(r1)
-	  cmplwi    r0, 0
-	  bne-      .loc_0x11C
-	  lwz       r3, 0x10(r1)
-	  lwz       r4, 0xC(r1)
-	  lwz       r12, 0x0(r3)
-	  lwz       r12, 0x14(r12)
-	  mtctr     r12
-	  bctrl
-	  stw       r3, 0xC(r1)
-	  b         .loc_0x1AC
-
-	.loc_0x11C:
-	  lwz       r3, 0x10(r1)
-	  lwz       r4, 0xC(r1)
-	  lwz       r12, 0x0(r3)
-	  lwz       r12, 0x14(r12)
-	  mtctr     r12
-	  bctrl
-	  stw       r3, 0xC(r1)
-	  b         .loc_0x190
-
-	.loc_0x13C:
-	  lwz       r3, 0x10(r1)
-	  lwz       r4, 0xC(r1)
-	  lwz       r12, 0x0(r3)
-	  lwz       r12, 0x20(r12)
-	  mtctr     r12
-	  bctrl
-	  mr        r4, r3
-	  lwz       r3, 0x14(r1)
-	  lwz       r12, 0x0(r3)
-	  lwz       r12, 0x8(r12)
-	  mtctr     r12
-	  bctrl
-	  rlwinm.   r0,r3,0,24,31
-	  bne-      .loc_0x1AC
-	  lwz       r3, 0x10(r1)
-	  lwz       r4, 0xC(r1)
-	  lwz       r12, 0x0(r3)
-	  lwz       r12, 0x14(r12)
-	  mtctr     r12
-	  bctrl
-	  stw       r3, 0xC(r1)
-
-	.loc_0x190:
-	  lwz       r12, 0x8(r1)
-	  addi      r3, r1, 0x8
-	  lwz       r12, 0x10(r12)
-	  mtctr     r12
-	  bctrl
-	  rlwinm.   r0,r3,0,24,31
-	  beq+      .loc_0x13C
-
-	.loc_0x1AC:
-	  lwz       r3, 0x10(r1)
-	  lwz       r12, 0x0(r3)
-	  lwz       r12, 0x1C(r12)
-	  mtctr     r12
-	  bctrl
-	  lwz       r4, 0xC(r1)
-	  cmplw     r4, r3
-	  bne+      .loc_0xD4
-	  lwz       r0, 0x24(r1)
-	  mtlr      r0
-	  addi      r1, r1, 0x20
-	  blr
-	*/
+	Iterator<PlatInstance> iterator(this);
+	iterator.first();
+	while (!iterator.isDone()) {
+		PlatInstance* item = (*iterator);
+		item->_104         = 0;
+		iterator.next();
+	}
 }
 
 /*
@@ -2534,234 +2414,234 @@ PlatMgr::~PlatMgr(void)
  * Address:	801C6750
  * Size:	000038
  */
-void Iterator<Game::PlatInstance>::operator*()
-{
-	/*
-	.loc_0x0:
-	  stwu      r1, -0x10(r1)
-	  mflr      r0
-	  mr        r4, r3
-	  stw       r0, 0x14(r1)
-	  lwz       r3, 0x8(r3)
-	  lwz       r4, 0x4(r4)
-	  lwz       r12, 0x0(r3)
-	  lwz       r12, 0x20(r12)
-	  mtctr     r12
-	  bctrl
-	  lwz       r0, 0x14(r1)
-	  mtlr      r0
-	  addi      r1, r1, 0x10
-	  blr
-	*/
-}
+// void Iterator<Game::PlatInstance>::operator*()
+// {
+// 	/*
+// 	.loc_0x0:
+// 	  stwu      r1, -0x10(r1)
+// 	  mflr      r0
+// 	  mr        r4, r3
+// 	  stw       r0, 0x14(r1)
+// 	  lwz       r3, 0x8(r3)
+// 	  lwz       r4, 0x4(r4)
+// 	  lwz       r12, 0x0(r3)
+// 	  lwz       r12, 0x20(r12)
+// 	  mtctr     r12
+// 	  bctrl
+// 	  lwz       r0, 0x14(r1)
+// 	  mtlr      r0
+// 	  addi      r1, r1, 0x10
+// 	  blr
+// 	*/
+// }
 
 /*
  * --INFO--
  * Address:	801C6788
  * Size:	0000E4
  */
-void Iterator<Game::PlatInstance>::next()
-{
-	/*
-	.loc_0x0:
-	  stwu      r1, -0x10(r1)
-	  mflr      r0
-	  stw       r0, 0x14(r1)
-	  stw       r31, 0xC(r1)
-	  mr        r31, r3
-	  lwz       r0, 0xC(r3)
-	  cmplwi    r0, 0
-	  bne-      .loc_0x40
-	  lwz       r3, 0x8(r31)
-	  lwz       r4, 0x4(r31)
-	  lwz       r12, 0x0(r3)
-	  lwz       r12, 0x14(r12)
-	  mtctr     r12
-	  bctrl
-	  stw       r3, 0x4(r31)
-	  b         .loc_0xD0
+// void Iterator<Game::PlatInstance>::next()
+// {
+// 	/*
+// 	.loc_0x0:
+// 	  stwu      r1, -0x10(r1)
+// 	  mflr      r0
+// 	  stw       r0, 0x14(r1)
+// 	  stw       r31, 0xC(r1)
+// 	  mr        r31, r3
+// 	  lwz       r0, 0xC(r3)
+// 	  cmplwi    r0, 0
+// 	  bne-      .loc_0x40
+// 	  lwz       r3, 0x8(r31)
+// 	  lwz       r4, 0x4(r31)
+// 	  lwz       r12, 0x0(r3)
+// 	  lwz       r12, 0x14(r12)
+// 	  mtctr     r12
+// 	  bctrl
+// 	  stw       r3, 0x4(r31)
+// 	  b         .loc_0xD0
 
-	.loc_0x40:
-	  lwz       r3, 0x8(r31)
-	  lwz       r4, 0x4(r31)
-	  lwz       r12, 0x0(r3)
-	  lwz       r12, 0x14(r12)
-	  mtctr     r12
-	  bctrl
-	  stw       r3, 0x4(r31)
-	  b         .loc_0xB4
+// 	.loc_0x40:
+// 	  lwz       r3, 0x8(r31)
+// 	  lwz       r4, 0x4(r31)
+// 	  lwz       r12, 0x0(r3)
+// 	  lwz       r12, 0x14(r12)
+// 	  mtctr     r12
+// 	  bctrl
+// 	  stw       r3, 0x4(r31)
+// 	  b         .loc_0xB4
 
-	.loc_0x60:
-	  lwz       r3, 0x8(r31)
-	  lwz       r4, 0x4(r31)
-	  lwz       r12, 0x0(r3)
-	  lwz       r12, 0x20(r12)
-	  mtctr     r12
-	  bctrl
-	  mr        r4, r3
-	  lwz       r3, 0xC(r31)
-	  lwz       r12, 0x0(r3)
-	  lwz       r12, 0x8(r12)
-	  mtctr     r12
-	  bctrl
-	  rlwinm.   r0,r3,0,24,31
-	  bne-      .loc_0xD0
-	  lwz       r3, 0x8(r31)
-	  lwz       r4, 0x4(r31)
-	  lwz       r12, 0x0(r3)
-	  lwz       r12, 0x14(r12)
-	  mtctr     r12
-	  bctrl
-	  stw       r3, 0x4(r31)
+// 	.loc_0x60:
+// 	  lwz       r3, 0x8(r31)
+// 	  lwz       r4, 0x4(r31)
+// 	  lwz       r12, 0x0(r3)
+// 	  lwz       r12, 0x20(r12)
+// 	  mtctr     r12
+// 	  bctrl
+// 	  mr        r4, r3
+// 	  lwz       r3, 0xC(r31)
+// 	  lwz       r12, 0x0(r3)
+// 	  lwz       r12, 0x8(r12)
+// 	  mtctr     r12
+// 	  bctrl
+// 	  rlwinm.   r0,r3,0,24,31
+// 	  bne-      .loc_0xD0
+// 	  lwz       r3, 0x8(r31)
+// 	  lwz       r4, 0x4(r31)
+// 	  lwz       r12, 0x0(r3)
+// 	  lwz       r12, 0x14(r12)
+// 	  mtctr     r12
+// 	  bctrl
+// 	  stw       r3, 0x4(r31)
 
-	.loc_0xB4:
-	  mr        r3, r31
-	  lwz       r12, 0x0(r31)
-	  lwz       r12, 0x10(r12)
-	  mtctr     r12
-	  bctrl
-	  rlwinm.   r0,r3,0,24,31
-	  beq+      .loc_0x60
+// 	.loc_0xB4:
+// 	  mr        r3, r31
+// 	  lwz       r12, 0x0(r31)
+// 	  lwz       r12, 0x10(r12)
+// 	  mtctr     r12
+// 	  bctrl
+// 	  rlwinm.   r0,r3,0,24,31
+// 	  beq+      .loc_0x60
 
-	.loc_0xD0:
-	  lwz       r0, 0x14(r1)
-	  lwz       r31, 0xC(r1)
-	  mtlr      r0
-	  addi      r1, r1, 0x10
-	  blr
-	*/
-}
+// 	.loc_0xD0:
+// 	  lwz       r0, 0x14(r1)
+// 	  lwz       r31, 0xC(r1)
+// 	  mtlr      r0
+// 	  addi      r1, r1, 0x10
+// 	  blr
+// 	*/
+// }
 
 /*
  * --INFO--
  * Address:	801C686C
  * Size:	0000DC
  */
-void Iterator<Game::PlatInstance>::first()
-{
-	/*
-	.loc_0x0:
-	  stwu      r1, -0x10(r1)
-	  mflr      r0
-	  stw       r0, 0x14(r1)
-	  stw       r31, 0xC(r1)
-	  mr        r31, r3
-	  lwz       r0, 0xC(r3)
-	  cmplwi    r0, 0
-	  bne-      .loc_0x3C
-	  lwz       r3, 0x8(r31)
-	  lwz       r12, 0x0(r3)
-	  lwz       r12, 0x18(r12)
-	  mtctr     r12
-	  bctrl
-	  stw       r3, 0x4(r31)
-	  b         .loc_0xC8
+// void Iterator<Game::PlatInstance>::first()
+// {
+// 	/*
+// 	.loc_0x0:
+// 	  stwu      r1, -0x10(r1)
+// 	  mflr      r0
+// 	  stw       r0, 0x14(r1)
+// 	  stw       r31, 0xC(r1)
+// 	  mr        r31, r3
+// 	  lwz       r0, 0xC(r3)
+// 	  cmplwi    r0, 0
+// 	  bne-      .loc_0x3C
+// 	  lwz       r3, 0x8(r31)
+// 	  lwz       r12, 0x0(r3)
+// 	  lwz       r12, 0x18(r12)
+// 	  mtctr     r12
+// 	  bctrl
+// 	  stw       r3, 0x4(r31)
+// 	  b         .loc_0xC8
 
-	.loc_0x3C:
-	  lwz       r3, 0x8(r31)
-	  lwz       r12, 0x0(r3)
-	  lwz       r12, 0x18(r12)
-	  mtctr     r12
-	  bctrl
-	  stw       r3, 0x4(r31)
-	  b         .loc_0xAC
+// 	.loc_0x3C:
+// 	  lwz       r3, 0x8(r31)
+// 	  lwz       r12, 0x0(r3)
+// 	  lwz       r12, 0x18(r12)
+// 	  mtctr     r12
+// 	  bctrl
+// 	  stw       r3, 0x4(r31)
+// 	  b         .loc_0xAC
 
-	.loc_0x58:
-	  lwz       r3, 0x8(r31)
-	  lwz       r4, 0x4(r31)
-	  lwz       r12, 0x0(r3)
-	  lwz       r12, 0x20(r12)
-	  mtctr     r12
-	  bctrl
-	  mr        r4, r3
-	  lwz       r3, 0xC(r31)
-	  lwz       r12, 0x0(r3)
-	  lwz       r12, 0x8(r12)
-	  mtctr     r12
-	  bctrl
-	  rlwinm.   r0,r3,0,24,31
-	  bne-      .loc_0xC8
-	  lwz       r3, 0x8(r31)
-	  lwz       r4, 0x4(r31)
-	  lwz       r12, 0x0(r3)
-	  lwz       r12, 0x14(r12)
-	  mtctr     r12
-	  bctrl
-	  stw       r3, 0x4(r31)
+// 	.loc_0x58:
+// 	  lwz       r3, 0x8(r31)
+// 	  lwz       r4, 0x4(r31)
+// 	  lwz       r12, 0x0(r3)
+// 	  lwz       r12, 0x20(r12)
+// 	  mtctr     r12
+// 	  bctrl
+// 	  mr        r4, r3
+// 	  lwz       r3, 0xC(r31)
+// 	  lwz       r12, 0x0(r3)
+// 	  lwz       r12, 0x8(r12)
+// 	  mtctr     r12
+// 	  bctrl
+// 	  rlwinm.   r0,r3,0,24,31
+// 	  bne-      .loc_0xC8
+// 	  lwz       r3, 0x8(r31)
+// 	  lwz       r4, 0x4(r31)
+// 	  lwz       r12, 0x0(r3)
+// 	  lwz       r12, 0x14(r12)
+// 	  mtctr     r12
+// 	  bctrl
+// 	  stw       r3, 0x4(r31)
 
-	.loc_0xAC:
-	  mr        r3, r31
-	  lwz       r12, 0x0(r31)
-	  lwz       r12, 0x10(r12)
-	  mtctr     r12
-	  bctrl
-	  rlwinm.   r0,r3,0,24,31
-	  beq+      .loc_0x58
+// 	.loc_0xAC:
+// 	  mr        r3, r31
+// 	  lwz       r12, 0x0(r31)
+// 	  lwz       r12, 0x10(r12)
+// 	  mtctr     r12
+// 	  bctrl
+// 	  rlwinm.   r0,r3,0,24,31
+// 	  beq+      .loc_0x58
 
-	.loc_0xC8:
-	  lwz       r0, 0x14(r1)
-	  lwz       r31, 0xC(r1)
-	  mtlr      r0
-	  addi      r1, r1, 0x10
-	  blr
-	*/
-}
+// 	.loc_0xC8:
+// 	  lwz       r0, 0x14(r1)
+// 	  lwz       r31, 0xC(r1)
+// 	  mtlr      r0
+// 	  addi      r1, r1, 0x10
+// 	  blr
+// 	*/
+// }
 
 /*
  * --INFO--
  * Address:	801C6948
  * Size:	000004
  */
-void Game::PlatInstance::checkCollision(Game::CellObject*) { }
+void PlatInstance::checkCollision(Game::CellObject*) { }
 
 /*
  * --INFO--
  * Address:	801C694C
  * Size:	000004
  */
-void Game::PlatInstance::doAnimation() { }
+void PlatInstance::doAnimation() { }
 
 /*
  * --INFO--
  * Address:	801C6950
  * Size:	000004
  */
-void Game::PlatInstance::doEntry() { }
+void PlatInstance::doEntry() { }
 
 /*
  * --INFO--
  * Address:	801C6954
  * Size:	000004
  */
-void Game::PlatInstance::doSetView(int) { }
+void PlatInstance::doSetView(int) { }
 
 /*
  * --INFO--
  * Address:	801C6958
  * Size:	000004
  */
-void Game::PlatInstance::doViewCalc(void) { }
+void PlatInstance::doViewCalc(void) { }
 
 /*
  * --INFO--
  * Address:	801C695C
  * Size:	000004
  */
-void Game::PlatInstance::doSimulation(float) { }
+void PlatInstance::doSimulation(float) { }
 
 /*
  * --INFO--
  * Address:	801C6960
  * Size:	000004
  */
-void Game::PlatInstance::doDirectDraw(Graphics&) { }
+void PlatInstance::doDirectDraw(Graphics&) { }
 
 /*
  * --INFO--
  * Address:	801C6964
  * Size:	00000C
  */
-char* Game::PlatInstance::getTypeName()
+char* PlatInstance::getTypeName()
 {
 	/*
 	.loc_0x0:
@@ -2776,7 +2656,7 @@ char* Game::PlatInstance::getTypeName()
  * Address:	801C6970
  * Size:	00000C
  */
-u8 Game::PlatInstance::getObjType()
+u16 PlatInstance::getObjType()
 {
 	/*
 	.loc_0x0:
@@ -2791,1166 +2671,1166 @@ u8 Game::PlatInstance::getObjType()
  * Address:	801C697C
  * Size:	000008
  */
-bool Game::PlatInstance::collisionUpdatable() { return 0x0; }
+bool PlatInstance::collisionUpdatable() { return 0x0; }
 
 /*
  * --INFO--
  * Address:	801C6984
  * Size:	000008
  */
-void NodeObjectMgr<Game::PlatInstance>::get(void*)
-{
-	/*
-	.loc_0x0:
-	  lwz       r3, 0x18(r4)
-	  blr
-	*/
-}
+// void NodeObjectMgr<Game::PlatInstance>::get(void*)
+// {
+// 	/*
+// 	.loc_0x0:
+// 	  lwz       r3, 0x18(r4)
+// 	  blr
+// 	*/
+// }
 
 /*
  * --INFO--
  * Address:	801C698C
  * Size:	000008
  */
-void NodeObjectMgr<Game::PlatInstance>::getNext(void*)
-{
-	/*
-	.loc_0x0:
-	  lwz       r3, 0x4(r4)
-	  blr
-	*/
-}
+// void NodeObjectMgr<Game::PlatInstance>::getNext(void*)
+// {
+// 	/*
+// 	.loc_0x0:
+// 	  lwz       r3, 0x4(r4)
+// 	  blr
+// 	*/
+// }
 
 /*
  * --INFO--
  * Address:	801C6994
  * Size:	000008
  */
-void NodeObjectMgr<Game::PlatInstance>::getStart()
-{
-	/*
-	.loc_0x0:
-	  lwz       r3, 0x30(r3)
-	  blr
-	*/
-}
+// void NodeObjectMgr<Game::PlatInstance>::getStart()
+// {
+// 	/*
+// 	.loc_0x0:
+// 	  lwz       r3, 0x30(r3)
+// 	  blr
+// 	*/
+// }
 
 /*
  * --INFO--
  * Address:	801C699C
  * Size:	000008
  */
-u32 NodeObjectMgr<Game::PlatInstance>::getEnd() { return 0x0; }
+// u32 NodeObjectMgr<Game::PlatInstance>::getEnd() { return 0x0; }
 
 /*
  * --INFO--
  * Address:	801C69A4
  * Size:	000044
  */
-void NodeObjectMgr<Game::PlatInstance>::delNode(Game::PlatInstance*)
-{
-	/*
-	.loc_0x0:
-	  stwu      r1, -0x10(r1)
-	  mflr      r0
-	  stw       r0, 0x14(r1)
-	  lwz       r3, 0x30(r3)
-	  b         .loc_0x2C
+// void NodeObjectMgr<Game::PlatInstance>::delNode(Game::PlatInstance*)
+// {
+// 	/*
+// 	.loc_0x0:
+// 	  stwu      r1, -0x10(r1)
+// 	  mflr      r0
+// 	  stw       r0, 0x14(r1)
+// 	  lwz       r3, 0x30(r3)
+// 	  b         .loc_0x2C
 
-	.loc_0x14:
-	  lwz       r0, 0x18(r3)
-	  cmplw     r0, r4
-	  bne-      .loc_0x28
-	  bl        0x24AC0C
-	  b         .loc_0x34
+// 	.loc_0x14:
+// 	  lwz       r0, 0x18(r3)
+// 	  cmplw     r0, r4
+// 	  bne-      .loc_0x28
+// 	  bl        0x24AC0C
+// 	  b         .loc_0x34
 
-	.loc_0x28:
-	  lwz       r3, 0x4(r3)
+// 	.loc_0x28:
+// 	  lwz       r3, 0x4(r3)
 
-	.loc_0x2C:
-	  cmplwi    r3, 0
-	  bne+      .loc_0x14
+// 	.loc_0x2C:
+// 	  cmplwi    r3, 0
+// 	  bne+      .loc_0x14
 
-	.loc_0x34:
-	  lwz       r0, 0x14(r1)
-	  mtlr      r0
-	  addi      r1, r1, 0x10
-	  blr
-	*/
-}
+// 	.loc_0x34:
+// 	  lwz       r0, 0x14(r1)
+// 	  mtlr      r0
+// 	  addi      r1, r1, 0x10
+// 	  blr
+// 	*/
+// }
 
 /*
  * --INFO--
  * Address:	801C69E8
  * Size:	000018
  */
-void NodeObjectMgr<Game::PlatInstance>::resetMgr()
-{
-	/*
-	.loc_0x0:
-	  li        r0, 0
-	  stw       r0, 0x30(r3)
-	  stw       r0, 0x2C(r3)
-	  stw       r0, 0x28(r3)
-	  stw       r0, 0x24(r3)
-	  blr
-	*/
-}
+// void NodeObjectMgr<Game::PlatInstance>::resetMgr()
+// {
+// 	/*
+// 	.loc_0x0:
+// 	  li        r0, 0
+// 	  stw       r0, 0x30(r3)
+// 	  stw       r0, 0x2C(r3)
+// 	  stw       r0, 0x28(r3)
+// 	  stw       r0, 0x24(r3)
+// 	  blr
+// 	*/
+// }
 
 /*
  * --INFO--
  * Address:	801C6A00
  * Size:	0001E4
  */
-void ObjectMgr<Game::PlatInstance>::doAnimation()
-{
-	/*
-	.loc_0x0:
-	  stwu      r1, -0x20(r1)
-	  mflr      r0
-	  lis       r4, 0x804B
-	  stw       r0, 0x24(r1)
-	  li        r0, 0
-	  addi      r4, r4, 0x63BC
-	  cmplwi    r0, 0
-	  stw       r0, 0x14(r1)
-	  stw       r4, 0x8(r1)
-	  stw       r0, 0xC(r1)
-	  stw       r3, 0x10(r1)
-	  bne-      .loc_0x48
-	  lwz       r12, 0x0(r3)
-	  lwz       r12, 0x18(r12)
-	  mtctr     r12
-	  bctrl
-	  stw       r3, 0xC(r1)
-	  b         .loc_0x1B4
+// void ObjectMgr<Game::PlatInstance>::doAnimation()
+// {
+// 	/*
+// 	.loc_0x0:
+// 	  stwu      r1, -0x20(r1)
+// 	  mflr      r0
+// 	  lis       r4, 0x804B
+// 	  stw       r0, 0x24(r1)
+// 	  li        r0, 0
+// 	  addi      r4, r4, 0x63BC
+// 	  cmplwi    r0, 0
+// 	  stw       r0, 0x14(r1)
+// 	  stw       r4, 0x8(r1)
+// 	  stw       r0, 0xC(r1)
+// 	  stw       r3, 0x10(r1)
+// 	  bne-      .loc_0x48
+// 	  lwz       r12, 0x0(r3)
+// 	  lwz       r12, 0x18(r12)
+// 	  mtctr     r12
+// 	  bctrl
+// 	  stw       r3, 0xC(r1)
+// 	  b         .loc_0x1B4
 
-	.loc_0x48:
-	  lwz       r12, 0x0(r3)
-	  lwz       r12, 0x18(r12)
-	  mtctr     r12
-	  bctrl
-	  stw       r3, 0xC(r1)
-	  b         .loc_0xB4
+// 	.loc_0x48:
+// 	  lwz       r12, 0x0(r3)
+// 	  lwz       r12, 0x18(r12)
+// 	  mtctr     r12
+// 	  bctrl
+// 	  stw       r3, 0xC(r1)
+// 	  b         .loc_0xB4
 
-	.loc_0x60:
-	  lwz       r3, 0x10(r1)
-	  lwz       r4, 0xC(r1)
-	  lwz       r12, 0x0(r3)
-	  lwz       r12, 0x20(r12)
-	  mtctr     r12
-	  bctrl
-	  mr        r4, r3
-	  lwz       r3, 0x14(r1)
-	  lwz       r12, 0x0(r3)
-	  lwz       r12, 0x8(r12)
-	  mtctr     r12
-	  bctrl
-	  rlwinm.   r0,r3,0,24,31
-	  bne-      .loc_0x1B4
-	  lwz       r3, 0x10(r1)
-	  lwz       r4, 0xC(r1)
-	  lwz       r12, 0x0(r3)
-	  lwz       r12, 0x14(r12)
-	  mtctr     r12
-	  bctrl
-	  stw       r3, 0xC(r1)
+// 	.loc_0x60:
+// 	  lwz       r3, 0x10(r1)
+// 	  lwz       r4, 0xC(r1)
+// 	  lwz       r12, 0x0(r3)
+// 	  lwz       r12, 0x20(r12)
+// 	  mtctr     r12
+// 	  bctrl
+// 	  mr        r4, r3
+// 	  lwz       r3, 0x14(r1)
+// 	  lwz       r12, 0x0(r3)
+// 	  lwz       r12, 0x8(r12)
+// 	  mtctr     r12
+// 	  bctrl
+// 	  rlwinm.   r0,r3,0,24,31
+// 	  bne-      .loc_0x1B4
+// 	  lwz       r3, 0x10(r1)
+// 	  lwz       r4, 0xC(r1)
+// 	  lwz       r12, 0x0(r3)
+// 	  lwz       r12, 0x14(r12)
+// 	  mtctr     r12
+// 	  bctrl
+// 	  stw       r3, 0xC(r1)
 
-	.loc_0xB4:
-	  lwz       r12, 0x8(r1)
-	  addi      r3, r1, 0x8
-	  lwz       r12, 0x10(r12)
-	  mtctr     r12
-	  bctrl
-	  rlwinm.   r0,r3,0,24,31
-	  beq+      .loc_0x60
-	  b         .loc_0x1B4
+// 	.loc_0xB4:
+// 	  lwz       r12, 0x8(r1)
+// 	  addi      r3, r1, 0x8
+// 	  lwz       r12, 0x10(r12)
+// 	  mtctr     r12
+// 	  bctrl
+// 	  rlwinm.   r0,r3,0,24,31
+// 	  beq+      .loc_0x60
+// 	  b         .loc_0x1B4
 
-	.loc_0xD4:
-	  lwz       r3, 0x10(r1)
-	  lwz       r12, 0x0(r3)
-	  lwz       r12, 0x20(r12)
-	  mtctr     r12
-	  bctrl
-	  lwz       r12, 0x0(r3)
-	  lwz       r12, 0x30(r12)
-	  mtctr     r12
-	  bctrl
-	  lwz       r0, 0x14(r1)
-	  cmplwi    r0, 0
-	  bne-      .loc_0x124
-	  lwz       r3, 0x10(r1)
-	  lwz       r4, 0xC(r1)
-	  lwz       r12, 0x0(r3)
-	  lwz       r12, 0x14(r12)
-	  mtctr     r12
-	  bctrl
-	  stw       r3, 0xC(r1)
-	  b         .loc_0x1B4
+// 	.loc_0xD4:
+// 	  lwz       r3, 0x10(r1)
+// 	  lwz       r12, 0x0(r3)
+// 	  lwz       r12, 0x20(r12)
+// 	  mtctr     r12
+// 	  bctrl
+// 	  lwz       r12, 0x0(r3)
+// 	  lwz       r12, 0x30(r12)
+// 	  mtctr     r12
+// 	  bctrl
+// 	  lwz       r0, 0x14(r1)
+// 	  cmplwi    r0, 0
+// 	  bne-      .loc_0x124
+// 	  lwz       r3, 0x10(r1)
+// 	  lwz       r4, 0xC(r1)
+// 	  lwz       r12, 0x0(r3)
+// 	  lwz       r12, 0x14(r12)
+// 	  mtctr     r12
+// 	  bctrl
+// 	  stw       r3, 0xC(r1)
+// 	  b         .loc_0x1B4
 
-	.loc_0x124:
-	  lwz       r3, 0x10(r1)
-	  lwz       r4, 0xC(r1)
-	  lwz       r12, 0x0(r3)
-	  lwz       r12, 0x14(r12)
-	  mtctr     r12
-	  bctrl
-	  stw       r3, 0xC(r1)
-	  b         .loc_0x198
+// 	.loc_0x124:
+// 	  lwz       r3, 0x10(r1)
+// 	  lwz       r4, 0xC(r1)
+// 	  lwz       r12, 0x0(r3)
+// 	  lwz       r12, 0x14(r12)
+// 	  mtctr     r12
+// 	  bctrl
+// 	  stw       r3, 0xC(r1)
+// 	  b         .loc_0x198
 
-	.loc_0x144:
-	  lwz       r3, 0x10(r1)
-	  lwz       r4, 0xC(r1)
-	  lwz       r12, 0x0(r3)
-	  lwz       r12, 0x20(r12)
-	  mtctr     r12
-	  bctrl
-	  mr        r4, r3
-	  lwz       r3, 0x14(r1)
-	  lwz       r12, 0x0(r3)
-	  lwz       r12, 0x8(r12)
-	  mtctr     r12
-	  bctrl
-	  rlwinm.   r0,r3,0,24,31
-	  bne-      .loc_0x1B4
-	  lwz       r3, 0x10(r1)
-	  lwz       r4, 0xC(r1)
-	  lwz       r12, 0x0(r3)
-	  lwz       r12, 0x14(r12)
-	  mtctr     r12
-	  bctrl
-	  stw       r3, 0xC(r1)
+// 	.loc_0x144:
+// 	  lwz       r3, 0x10(r1)
+// 	  lwz       r4, 0xC(r1)
+// 	  lwz       r12, 0x0(r3)
+// 	  lwz       r12, 0x20(r12)
+// 	  mtctr     r12
+// 	  bctrl
+// 	  mr        r4, r3
+// 	  lwz       r3, 0x14(r1)
+// 	  lwz       r12, 0x0(r3)
+// 	  lwz       r12, 0x8(r12)
+// 	  mtctr     r12
+// 	  bctrl
+// 	  rlwinm.   r0,r3,0,24,31
+// 	  bne-      .loc_0x1B4
+// 	  lwz       r3, 0x10(r1)
+// 	  lwz       r4, 0xC(r1)
+// 	  lwz       r12, 0x0(r3)
+// 	  lwz       r12, 0x14(r12)
+// 	  mtctr     r12
+// 	  bctrl
+// 	  stw       r3, 0xC(r1)
 
-	.loc_0x198:
-	  lwz       r12, 0x8(r1)
-	  addi      r3, r1, 0x8
-	  lwz       r12, 0x10(r12)
-	  mtctr     r12
-	  bctrl
-	  rlwinm.   r0,r3,0,24,31
-	  beq+      .loc_0x144
+// 	.loc_0x198:
+// 	  lwz       r12, 0x8(r1)
+// 	  addi      r3, r1, 0x8
+// 	  lwz       r12, 0x10(r12)
+// 	  mtctr     r12
+// 	  bctrl
+// 	  rlwinm.   r0,r3,0,24,31
+// 	  beq+      .loc_0x144
 
-	.loc_0x1B4:
-	  lwz       r3, 0x10(r1)
-	  lwz       r12, 0x0(r3)
-	  lwz       r12, 0x1C(r12)
-	  mtctr     r12
-	  bctrl
-	  lwz       r4, 0xC(r1)
-	  cmplw     r4, r3
-	  bne+      .loc_0xD4
-	  lwz       r0, 0x24(r1)
-	  mtlr      r0
-	  addi      r1, r1, 0x20
-	  blr
-	*/
-}
+// 	.loc_0x1B4:
+// 	  lwz       r3, 0x10(r1)
+// 	  lwz       r12, 0x0(r3)
+// 	  lwz       r12, 0x1C(r12)
+// 	  mtctr     r12
+// 	  bctrl
+// 	  lwz       r4, 0xC(r1)
+// 	  cmplw     r4, r3
+// 	  bne+      .loc_0xD4
+// 	  lwz       r0, 0x24(r1)
+// 	  mtlr      r0
+// 	  addi      r1, r1, 0x20
+// 	  blr
+// 	*/
+// }
 
 /*
  * --INFO--
  * Address:	801C6BE4
  * Size:	0001E4
  */
-void ObjectMgr<Game::PlatInstance>::doEntry()
-{
-	/*
-	.loc_0x0:
-	  stwu      r1, -0x20(r1)
-	  mflr      r0
-	  lis       r4, 0x804B
-	  stw       r0, 0x24(r1)
-	  li        r0, 0
-	  addi      r4, r4, 0x63BC
-	  cmplwi    r0, 0
-	  stw       r0, 0x14(r1)
-	  stw       r4, 0x8(r1)
-	  stw       r0, 0xC(r1)
-	  stw       r3, 0x10(r1)
-	  bne-      .loc_0x48
-	  lwz       r12, 0x0(r3)
-	  lwz       r12, 0x18(r12)
-	  mtctr     r12
-	  bctrl
-	  stw       r3, 0xC(r1)
-	  b         .loc_0x1B4
+// void ObjectMgr<Game::PlatInstance>::doEntry()
+// {
+// 	/*
+// 	.loc_0x0:
+// 	  stwu      r1, -0x20(r1)
+// 	  mflr      r0
+// 	  lis       r4, 0x804B
+// 	  stw       r0, 0x24(r1)
+// 	  li        r0, 0
+// 	  addi      r4, r4, 0x63BC
+// 	  cmplwi    r0, 0
+// 	  stw       r0, 0x14(r1)
+// 	  stw       r4, 0x8(r1)
+// 	  stw       r0, 0xC(r1)
+// 	  stw       r3, 0x10(r1)
+// 	  bne-      .loc_0x48
+// 	  lwz       r12, 0x0(r3)
+// 	  lwz       r12, 0x18(r12)
+// 	  mtctr     r12
+// 	  bctrl
+// 	  stw       r3, 0xC(r1)
+// 	  b         .loc_0x1B4
 
-	.loc_0x48:
-	  lwz       r12, 0x0(r3)
-	  lwz       r12, 0x18(r12)
-	  mtctr     r12
-	  bctrl
-	  stw       r3, 0xC(r1)
-	  b         .loc_0xB4
+// 	.loc_0x48:
+// 	  lwz       r12, 0x0(r3)
+// 	  lwz       r12, 0x18(r12)
+// 	  mtctr     r12
+// 	  bctrl
+// 	  stw       r3, 0xC(r1)
+// 	  b         .loc_0xB4
 
-	.loc_0x60:
-	  lwz       r3, 0x10(r1)
-	  lwz       r4, 0xC(r1)
-	  lwz       r12, 0x0(r3)
-	  lwz       r12, 0x20(r12)
-	  mtctr     r12
-	  bctrl
-	  mr        r4, r3
-	  lwz       r3, 0x14(r1)
-	  lwz       r12, 0x0(r3)
-	  lwz       r12, 0x8(r12)
-	  mtctr     r12
-	  bctrl
-	  rlwinm.   r0,r3,0,24,31
-	  bne-      .loc_0x1B4
-	  lwz       r3, 0x10(r1)
-	  lwz       r4, 0xC(r1)
-	  lwz       r12, 0x0(r3)
-	  lwz       r12, 0x14(r12)
-	  mtctr     r12
-	  bctrl
-	  stw       r3, 0xC(r1)
+// 	.loc_0x60:
+// 	  lwz       r3, 0x10(r1)
+// 	  lwz       r4, 0xC(r1)
+// 	  lwz       r12, 0x0(r3)
+// 	  lwz       r12, 0x20(r12)
+// 	  mtctr     r12
+// 	  bctrl
+// 	  mr        r4, r3
+// 	  lwz       r3, 0x14(r1)
+// 	  lwz       r12, 0x0(r3)
+// 	  lwz       r12, 0x8(r12)
+// 	  mtctr     r12
+// 	  bctrl
+// 	  rlwinm.   r0,r3,0,24,31
+// 	  bne-      .loc_0x1B4
+// 	  lwz       r3, 0x10(r1)
+// 	  lwz       r4, 0xC(r1)
+// 	  lwz       r12, 0x0(r3)
+// 	  lwz       r12, 0x14(r12)
+// 	  mtctr     r12
+// 	  bctrl
+// 	  stw       r3, 0xC(r1)
 
-	.loc_0xB4:
-	  lwz       r12, 0x8(r1)
-	  addi      r3, r1, 0x8
-	  lwz       r12, 0x10(r12)
-	  mtctr     r12
-	  bctrl
-	  rlwinm.   r0,r3,0,24,31
-	  beq+      .loc_0x60
-	  b         .loc_0x1B4
+// 	.loc_0xB4:
+// 	  lwz       r12, 0x8(r1)
+// 	  addi      r3, r1, 0x8
+// 	  lwz       r12, 0x10(r12)
+// 	  mtctr     r12
+// 	  bctrl
+// 	  rlwinm.   r0,r3,0,24,31
+// 	  beq+      .loc_0x60
+// 	  b         .loc_0x1B4
 
-	.loc_0xD4:
-	  lwz       r3, 0x10(r1)
-	  lwz       r12, 0x0(r3)
-	  lwz       r12, 0x20(r12)
-	  mtctr     r12
-	  bctrl
-	  lwz       r12, 0x0(r3)
-	  lwz       r12, 0x34(r12)
-	  mtctr     r12
-	  bctrl
-	  lwz       r0, 0x14(r1)
-	  cmplwi    r0, 0
-	  bne-      .loc_0x124
-	  lwz       r3, 0x10(r1)
-	  lwz       r4, 0xC(r1)
-	  lwz       r12, 0x0(r3)
-	  lwz       r12, 0x14(r12)
-	  mtctr     r12
-	  bctrl
-	  stw       r3, 0xC(r1)
-	  b         .loc_0x1B4
+// 	.loc_0xD4:
+// 	  lwz       r3, 0x10(r1)
+// 	  lwz       r12, 0x0(r3)
+// 	  lwz       r12, 0x20(r12)
+// 	  mtctr     r12
+// 	  bctrl
+// 	  lwz       r12, 0x0(r3)
+// 	  lwz       r12, 0x34(r12)
+// 	  mtctr     r12
+// 	  bctrl
+// 	  lwz       r0, 0x14(r1)
+// 	  cmplwi    r0, 0
+// 	  bne-      .loc_0x124
+// 	  lwz       r3, 0x10(r1)
+// 	  lwz       r4, 0xC(r1)
+// 	  lwz       r12, 0x0(r3)
+// 	  lwz       r12, 0x14(r12)
+// 	  mtctr     r12
+// 	  bctrl
+// 	  stw       r3, 0xC(r1)
+// 	  b         .loc_0x1B4
 
-	.loc_0x124:
-	  lwz       r3, 0x10(r1)
-	  lwz       r4, 0xC(r1)
-	  lwz       r12, 0x0(r3)
-	  lwz       r12, 0x14(r12)
-	  mtctr     r12
-	  bctrl
-	  stw       r3, 0xC(r1)
-	  b         .loc_0x198
+// 	.loc_0x124:
+// 	  lwz       r3, 0x10(r1)
+// 	  lwz       r4, 0xC(r1)
+// 	  lwz       r12, 0x0(r3)
+// 	  lwz       r12, 0x14(r12)
+// 	  mtctr     r12
+// 	  bctrl
+// 	  stw       r3, 0xC(r1)
+// 	  b         .loc_0x198
 
-	.loc_0x144:
-	  lwz       r3, 0x10(r1)
-	  lwz       r4, 0xC(r1)
-	  lwz       r12, 0x0(r3)
-	  lwz       r12, 0x20(r12)
-	  mtctr     r12
-	  bctrl
-	  mr        r4, r3
-	  lwz       r3, 0x14(r1)
-	  lwz       r12, 0x0(r3)
-	  lwz       r12, 0x8(r12)
-	  mtctr     r12
-	  bctrl
-	  rlwinm.   r0,r3,0,24,31
-	  bne-      .loc_0x1B4
-	  lwz       r3, 0x10(r1)
-	  lwz       r4, 0xC(r1)
-	  lwz       r12, 0x0(r3)
-	  lwz       r12, 0x14(r12)
-	  mtctr     r12
-	  bctrl
-	  stw       r3, 0xC(r1)
+// 	.loc_0x144:
+// 	  lwz       r3, 0x10(r1)
+// 	  lwz       r4, 0xC(r1)
+// 	  lwz       r12, 0x0(r3)
+// 	  lwz       r12, 0x20(r12)
+// 	  mtctr     r12
+// 	  bctrl
+// 	  mr        r4, r3
+// 	  lwz       r3, 0x14(r1)
+// 	  lwz       r12, 0x0(r3)
+// 	  lwz       r12, 0x8(r12)
+// 	  mtctr     r12
+// 	  bctrl
+// 	  rlwinm.   r0,r3,0,24,31
+// 	  bne-      .loc_0x1B4
+// 	  lwz       r3, 0x10(r1)
+// 	  lwz       r4, 0xC(r1)
+// 	  lwz       r12, 0x0(r3)
+// 	  lwz       r12, 0x14(r12)
+// 	  mtctr     r12
+// 	  bctrl
+// 	  stw       r3, 0xC(r1)
 
-	.loc_0x198:
-	  lwz       r12, 0x8(r1)
-	  addi      r3, r1, 0x8
-	  lwz       r12, 0x10(r12)
-	  mtctr     r12
-	  bctrl
-	  rlwinm.   r0,r3,0,24,31
-	  beq+      .loc_0x144
+// 	.loc_0x198:
+// 	  lwz       r12, 0x8(r1)
+// 	  addi      r3, r1, 0x8
+// 	  lwz       r12, 0x10(r12)
+// 	  mtctr     r12
+// 	  bctrl
+// 	  rlwinm.   r0,r3,0,24,31
+// 	  beq+      .loc_0x144
 
-	.loc_0x1B4:
-	  lwz       r3, 0x10(r1)
-	  lwz       r12, 0x0(r3)
-	  lwz       r12, 0x1C(r12)
-	  mtctr     r12
-	  bctrl
-	  lwz       r4, 0xC(r1)
-	  cmplw     r4, r3
-	  bne+      .loc_0xD4
-	  lwz       r0, 0x24(r1)
-	  mtlr      r0
-	  addi      r1, r1, 0x20
-	  blr
-	*/
-}
+// 	.loc_0x1B4:
+// 	  lwz       r3, 0x10(r1)
+// 	  lwz       r12, 0x0(r3)
+// 	  lwz       r12, 0x1C(r12)
+// 	  mtctr     r12
+// 	  bctrl
+// 	  lwz       r4, 0xC(r1)
+// 	  cmplw     r4, r3
+// 	  bne+      .loc_0xD4
+// 	  lwz       r0, 0x24(r1)
+// 	  mtlr      r0
+// 	  addi      r1, r1, 0x20
+// 	  blr
+// 	*/
+// }
 
 /*
  * --INFO--
  * Address:	801C6DC8
  * Size:	0001F4
  */
-void ObjectMgr<Game::PlatInstance>::doSetView(int)
-{
-	/*
-	.loc_0x0:
-	  stwu      r1, -0x20(r1)
-	  mflr      r0
-	  lis       r5, 0x804B
-	  stw       r0, 0x24(r1)
-	  li        r0, 0
-	  addi      r5, r5, 0x63BC
-	  stw       r31, 0x1C(r1)
-	  cmplwi    r0, 0
-	  mr        r31, r4
-	  stw       r0, 0x14(r1)
-	  stw       r5, 0x8(r1)
-	  stw       r0, 0xC(r1)
-	  stw       r3, 0x10(r1)
-	  bne-      .loc_0x50
-	  lwz       r12, 0x0(r3)
-	  lwz       r12, 0x18(r12)
-	  mtctr     r12
-	  bctrl
-	  stw       r3, 0xC(r1)
-	  b         .loc_0x1C0
+// void ObjectMgr<Game::PlatInstance>::doSetView(int)
+// {
+// 	/*
+// 	.loc_0x0:
+// 	  stwu      r1, -0x20(r1)
+// 	  mflr      r0
+// 	  lis       r5, 0x804B
+// 	  stw       r0, 0x24(r1)
+// 	  li        r0, 0
+// 	  addi      r5, r5, 0x63BC
+// 	  stw       r31, 0x1C(r1)
+// 	  cmplwi    r0, 0
+// 	  mr        r31, r4
+// 	  stw       r0, 0x14(r1)
+// 	  stw       r5, 0x8(r1)
+// 	  stw       r0, 0xC(r1)
+// 	  stw       r3, 0x10(r1)
+// 	  bne-      .loc_0x50
+// 	  lwz       r12, 0x0(r3)
+// 	  lwz       r12, 0x18(r12)
+// 	  mtctr     r12
+// 	  bctrl
+// 	  stw       r3, 0xC(r1)
+// 	  b         .loc_0x1C0
 
-	.loc_0x50:
-	  lwz       r12, 0x0(r3)
-	  lwz       r12, 0x18(r12)
-	  mtctr     r12
-	  bctrl
-	  stw       r3, 0xC(r1)
-	  b         .loc_0xBC
+// 	.loc_0x50:
+// 	  lwz       r12, 0x0(r3)
+// 	  lwz       r12, 0x18(r12)
+// 	  mtctr     r12
+// 	  bctrl
+// 	  stw       r3, 0xC(r1)
+// 	  b         .loc_0xBC
 
-	.loc_0x68:
-	  lwz       r3, 0x10(r1)
-	  lwz       r4, 0xC(r1)
-	  lwz       r12, 0x0(r3)
-	  lwz       r12, 0x20(r12)
-	  mtctr     r12
-	  bctrl
-	  mr        r4, r3
-	  lwz       r3, 0x14(r1)
-	  lwz       r12, 0x0(r3)
-	  lwz       r12, 0x8(r12)
-	  mtctr     r12
-	  bctrl
-	  rlwinm.   r0,r3,0,24,31
-	  bne-      .loc_0x1C0
-	  lwz       r3, 0x10(r1)
-	  lwz       r4, 0xC(r1)
-	  lwz       r12, 0x0(r3)
-	  lwz       r12, 0x14(r12)
-	  mtctr     r12
-	  bctrl
-	  stw       r3, 0xC(r1)
+// 	.loc_0x68:
+// 	  lwz       r3, 0x10(r1)
+// 	  lwz       r4, 0xC(r1)
+// 	  lwz       r12, 0x0(r3)
+// 	  lwz       r12, 0x20(r12)
+// 	  mtctr     r12
+// 	  bctrl
+// 	  mr        r4, r3
+// 	  lwz       r3, 0x14(r1)
+// 	  lwz       r12, 0x0(r3)
+// 	  lwz       r12, 0x8(r12)
+// 	  mtctr     r12
+// 	  bctrl
+// 	  rlwinm.   r0,r3,0,24,31
+// 	  bne-      .loc_0x1C0
+// 	  lwz       r3, 0x10(r1)
+// 	  lwz       r4, 0xC(r1)
+// 	  lwz       r12, 0x0(r3)
+// 	  lwz       r12, 0x14(r12)
+// 	  mtctr     r12
+// 	  bctrl
+// 	  stw       r3, 0xC(r1)
 
-	.loc_0xBC:
-	  lwz       r12, 0x8(r1)
-	  addi      r3, r1, 0x8
-	  lwz       r12, 0x10(r12)
-	  mtctr     r12
-	  bctrl
-	  rlwinm.   r0,r3,0,24,31
-	  beq+      .loc_0x68
-	  b         .loc_0x1C0
+// 	.loc_0xBC:
+// 	  lwz       r12, 0x8(r1)
+// 	  addi      r3, r1, 0x8
+// 	  lwz       r12, 0x10(r12)
+// 	  mtctr     r12
+// 	  bctrl
+// 	  rlwinm.   r0,r3,0,24,31
+// 	  beq+      .loc_0x68
+// 	  b         .loc_0x1C0
 
-	.loc_0xDC:
-	  lwz       r3, 0x10(r1)
-	  lwz       r12, 0x0(r3)
-	  lwz       r12, 0x20(r12)
-	  mtctr     r12
-	  bctrl
-	  lwz       r12, 0x0(r3)
-	  mr        r4, r31
-	  lwz       r12, 0x38(r12)
-	  mtctr     r12
-	  bctrl
-	  lwz       r0, 0x14(r1)
-	  cmplwi    r0, 0
-	  bne-      .loc_0x130
-	  lwz       r3, 0x10(r1)
-	  lwz       r4, 0xC(r1)
-	  lwz       r12, 0x0(r3)
-	  lwz       r12, 0x14(r12)
-	  mtctr     r12
-	  bctrl
-	  stw       r3, 0xC(r1)
-	  b         .loc_0x1C0
+// 	.loc_0xDC:
+// 	  lwz       r3, 0x10(r1)
+// 	  lwz       r12, 0x0(r3)
+// 	  lwz       r12, 0x20(r12)
+// 	  mtctr     r12
+// 	  bctrl
+// 	  lwz       r12, 0x0(r3)
+// 	  mr        r4, r31
+// 	  lwz       r12, 0x38(r12)
+// 	  mtctr     r12
+// 	  bctrl
+// 	  lwz       r0, 0x14(r1)
+// 	  cmplwi    r0, 0
+// 	  bne-      .loc_0x130
+// 	  lwz       r3, 0x10(r1)
+// 	  lwz       r4, 0xC(r1)
+// 	  lwz       r12, 0x0(r3)
+// 	  lwz       r12, 0x14(r12)
+// 	  mtctr     r12
+// 	  bctrl
+// 	  stw       r3, 0xC(r1)
+// 	  b         .loc_0x1C0
 
-	.loc_0x130:
-	  lwz       r3, 0x10(r1)
-	  lwz       r4, 0xC(r1)
-	  lwz       r12, 0x0(r3)
-	  lwz       r12, 0x14(r12)
-	  mtctr     r12
-	  bctrl
-	  stw       r3, 0xC(r1)
-	  b         .loc_0x1A4
+// 	.loc_0x130:
+// 	  lwz       r3, 0x10(r1)
+// 	  lwz       r4, 0xC(r1)
+// 	  lwz       r12, 0x0(r3)
+// 	  lwz       r12, 0x14(r12)
+// 	  mtctr     r12
+// 	  bctrl
+// 	  stw       r3, 0xC(r1)
+// 	  b         .loc_0x1A4
 
-	.loc_0x150:
-	  lwz       r3, 0x10(r1)
-	  lwz       r4, 0xC(r1)
-	  lwz       r12, 0x0(r3)
-	  lwz       r12, 0x20(r12)
-	  mtctr     r12
-	  bctrl
-	  mr        r4, r3
-	  lwz       r3, 0x14(r1)
-	  lwz       r12, 0x0(r3)
-	  lwz       r12, 0x8(r12)
-	  mtctr     r12
-	  bctrl
-	  rlwinm.   r0,r3,0,24,31
-	  bne-      .loc_0x1C0
-	  lwz       r3, 0x10(r1)
-	  lwz       r4, 0xC(r1)
-	  lwz       r12, 0x0(r3)
-	  lwz       r12, 0x14(r12)
-	  mtctr     r12
-	  bctrl
-	  stw       r3, 0xC(r1)
+// 	.loc_0x150:
+// 	  lwz       r3, 0x10(r1)
+// 	  lwz       r4, 0xC(r1)
+// 	  lwz       r12, 0x0(r3)
+// 	  lwz       r12, 0x20(r12)
+// 	  mtctr     r12
+// 	  bctrl
+// 	  mr        r4, r3
+// 	  lwz       r3, 0x14(r1)
+// 	  lwz       r12, 0x0(r3)
+// 	  lwz       r12, 0x8(r12)
+// 	  mtctr     r12
+// 	  bctrl
+// 	  rlwinm.   r0,r3,0,24,31
+// 	  bne-      .loc_0x1C0
+// 	  lwz       r3, 0x10(r1)
+// 	  lwz       r4, 0xC(r1)
+// 	  lwz       r12, 0x0(r3)
+// 	  lwz       r12, 0x14(r12)
+// 	  mtctr     r12
+// 	  bctrl
+// 	  stw       r3, 0xC(r1)
 
-	.loc_0x1A4:
-	  lwz       r12, 0x8(r1)
-	  addi      r3, r1, 0x8
-	  lwz       r12, 0x10(r12)
-	  mtctr     r12
-	  bctrl
-	  rlwinm.   r0,r3,0,24,31
-	  beq+      .loc_0x150
+// 	.loc_0x1A4:
+// 	  lwz       r12, 0x8(r1)
+// 	  addi      r3, r1, 0x8
+// 	  lwz       r12, 0x10(r12)
+// 	  mtctr     r12
+// 	  bctrl
+// 	  rlwinm.   r0,r3,0,24,31
+// 	  beq+      .loc_0x150
 
-	.loc_0x1C0:
-	  lwz       r3, 0x10(r1)
-	  lwz       r12, 0x0(r3)
-	  lwz       r12, 0x1C(r12)
-	  mtctr     r12
-	  bctrl
-	  lwz       r4, 0xC(r1)
-	  cmplw     r4, r3
-	  bne+      .loc_0xDC
-	  lwz       r0, 0x24(r1)
-	  lwz       r31, 0x1C(r1)
-	  mtlr      r0
-	  addi      r1, r1, 0x20
-	  blr
-	*/
-}
+// 	.loc_0x1C0:
+// 	  lwz       r3, 0x10(r1)
+// 	  lwz       r12, 0x0(r3)
+// 	  lwz       r12, 0x1C(r12)
+// 	  mtctr     r12
+// 	  bctrl
+// 	  lwz       r4, 0xC(r1)
+// 	  cmplw     r4, r3
+// 	  bne+      .loc_0xDC
+// 	  lwz       r0, 0x24(r1)
+// 	  lwz       r31, 0x1C(r1)
+// 	  mtlr      r0
+// 	  addi      r1, r1, 0x20
+// 	  blr
+// 	*/
+// }
 
 /*
  * --INFO--
  * Address:	801C6FBC
  * Size:	0001E4
  */
-void ObjectMgr<Game::PlatInstance>::doViewCalc()
-{
-	/*
-	.loc_0x0:
-	  stwu      r1, -0x20(r1)
-	  mflr      r0
-	  lis       r4, 0x804B
-	  stw       r0, 0x24(r1)
-	  li        r0, 0
-	  addi      r4, r4, 0x63BC
-	  cmplwi    r0, 0
-	  stw       r0, 0x14(r1)
-	  stw       r4, 0x8(r1)
-	  stw       r0, 0xC(r1)
-	  stw       r3, 0x10(r1)
-	  bne-      .loc_0x48
-	  lwz       r12, 0x0(r3)
-	  lwz       r12, 0x18(r12)
-	  mtctr     r12
-	  bctrl
-	  stw       r3, 0xC(r1)
-	  b         .loc_0x1B4
+// void ObjectMgr<Game::PlatInstance>::doViewCalc()
+// {
+// 	/*
+// 	.loc_0x0:
+// 	  stwu      r1, -0x20(r1)
+// 	  mflr      r0
+// 	  lis       r4, 0x804B
+// 	  stw       r0, 0x24(r1)
+// 	  li        r0, 0
+// 	  addi      r4, r4, 0x63BC
+// 	  cmplwi    r0, 0
+// 	  stw       r0, 0x14(r1)
+// 	  stw       r4, 0x8(r1)
+// 	  stw       r0, 0xC(r1)
+// 	  stw       r3, 0x10(r1)
+// 	  bne-      .loc_0x48
+// 	  lwz       r12, 0x0(r3)
+// 	  lwz       r12, 0x18(r12)
+// 	  mtctr     r12
+// 	  bctrl
+// 	  stw       r3, 0xC(r1)
+// 	  b         .loc_0x1B4
 
-	.loc_0x48:
-	  lwz       r12, 0x0(r3)
-	  lwz       r12, 0x18(r12)
-	  mtctr     r12
-	  bctrl
-	  stw       r3, 0xC(r1)
-	  b         .loc_0xB4
+// 	.loc_0x48:
+// 	  lwz       r12, 0x0(r3)
+// 	  lwz       r12, 0x18(r12)
+// 	  mtctr     r12
+// 	  bctrl
+// 	  stw       r3, 0xC(r1)
+// 	  b         .loc_0xB4
 
-	.loc_0x60:
-	  lwz       r3, 0x10(r1)
-	  lwz       r4, 0xC(r1)
-	  lwz       r12, 0x0(r3)
-	  lwz       r12, 0x20(r12)
-	  mtctr     r12
-	  bctrl
-	  mr        r4, r3
-	  lwz       r3, 0x14(r1)
-	  lwz       r12, 0x0(r3)
-	  lwz       r12, 0x8(r12)
-	  mtctr     r12
-	  bctrl
-	  rlwinm.   r0,r3,0,24,31
-	  bne-      .loc_0x1B4
-	  lwz       r3, 0x10(r1)
-	  lwz       r4, 0xC(r1)
-	  lwz       r12, 0x0(r3)
-	  lwz       r12, 0x14(r12)
-	  mtctr     r12
-	  bctrl
-	  stw       r3, 0xC(r1)
+// 	.loc_0x60:
+// 	  lwz       r3, 0x10(r1)
+// 	  lwz       r4, 0xC(r1)
+// 	  lwz       r12, 0x0(r3)
+// 	  lwz       r12, 0x20(r12)
+// 	  mtctr     r12
+// 	  bctrl
+// 	  mr        r4, r3
+// 	  lwz       r3, 0x14(r1)
+// 	  lwz       r12, 0x0(r3)
+// 	  lwz       r12, 0x8(r12)
+// 	  mtctr     r12
+// 	  bctrl
+// 	  rlwinm.   r0,r3,0,24,31
+// 	  bne-      .loc_0x1B4
+// 	  lwz       r3, 0x10(r1)
+// 	  lwz       r4, 0xC(r1)
+// 	  lwz       r12, 0x0(r3)
+// 	  lwz       r12, 0x14(r12)
+// 	  mtctr     r12
+// 	  bctrl
+// 	  stw       r3, 0xC(r1)
 
-	.loc_0xB4:
-	  lwz       r12, 0x8(r1)
-	  addi      r3, r1, 0x8
-	  lwz       r12, 0x10(r12)
-	  mtctr     r12
-	  bctrl
-	  rlwinm.   r0,r3,0,24,31
-	  beq+      .loc_0x60
-	  b         .loc_0x1B4
+// 	.loc_0xB4:
+// 	  lwz       r12, 0x8(r1)
+// 	  addi      r3, r1, 0x8
+// 	  lwz       r12, 0x10(r12)
+// 	  mtctr     r12
+// 	  bctrl
+// 	  rlwinm.   r0,r3,0,24,31
+// 	  beq+      .loc_0x60
+// 	  b         .loc_0x1B4
 
-	.loc_0xD4:
-	  lwz       r3, 0x10(r1)
-	  lwz       r12, 0x0(r3)
-	  lwz       r12, 0x20(r12)
-	  mtctr     r12
-	  bctrl
-	  lwz       r12, 0x0(r3)
-	  lwz       r12, 0x3C(r12)
-	  mtctr     r12
-	  bctrl
-	  lwz       r0, 0x14(r1)
-	  cmplwi    r0, 0
-	  bne-      .loc_0x124
-	  lwz       r3, 0x10(r1)
-	  lwz       r4, 0xC(r1)
-	  lwz       r12, 0x0(r3)
-	  lwz       r12, 0x14(r12)
-	  mtctr     r12
-	  bctrl
-	  stw       r3, 0xC(r1)
-	  b         .loc_0x1B4
+// 	.loc_0xD4:
+// 	  lwz       r3, 0x10(r1)
+// 	  lwz       r12, 0x0(r3)
+// 	  lwz       r12, 0x20(r12)
+// 	  mtctr     r12
+// 	  bctrl
+// 	  lwz       r12, 0x0(r3)
+// 	  lwz       r12, 0x3C(r12)
+// 	  mtctr     r12
+// 	  bctrl
+// 	  lwz       r0, 0x14(r1)
+// 	  cmplwi    r0, 0
+// 	  bne-      .loc_0x124
+// 	  lwz       r3, 0x10(r1)
+// 	  lwz       r4, 0xC(r1)
+// 	  lwz       r12, 0x0(r3)
+// 	  lwz       r12, 0x14(r12)
+// 	  mtctr     r12
+// 	  bctrl
+// 	  stw       r3, 0xC(r1)
+// 	  b         .loc_0x1B4
 
-	.loc_0x124:
-	  lwz       r3, 0x10(r1)
-	  lwz       r4, 0xC(r1)
-	  lwz       r12, 0x0(r3)
-	  lwz       r12, 0x14(r12)
-	  mtctr     r12
-	  bctrl
-	  stw       r3, 0xC(r1)
-	  b         .loc_0x198
+// 	.loc_0x124:
+// 	  lwz       r3, 0x10(r1)
+// 	  lwz       r4, 0xC(r1)
+// 	  lwz       r12, 0x0(r3)
+// 	  lwz       r12, 0x14(r12)
+// 	  mtctr     r12
+// 	  bctrl
+// 	  stw       r3, 0xC(r1)
+// 	  b         .loc_0x198
 
-	.loc_0x144:
-	  lwz       r3, 0x10(r1)
-	  lwz       r4, 0xC(r1)
-	  lwz       r12, 0x0(r3)
-	  lwz       r12, 0x20(r12)
-	  mtctr     r12
-	  bctrl
-	  mr        r4, r3
-	  lwz       r3, 0x14(r1)
-	  lwz       r12, 0x0(r3)
-	  lwz       r12, 0x8(r12)
-	  mtctr     r12
-	  bctrl
-	  rlwinm.   r0,r3,0,24,31
-	  bne-      .loc_0x1B4
-	  lwz       r3, 0x10(r1)
-	  lwz       r4, 0xC(r1)
-	  lwz       r12, 0x0(r3)
-	  lwz       r12, 0x14(r12)
-	  mtctr     r12
-	  bctrl
-	  stw       r3, 0xC(r1)
+// 	.loc_0x144:
+// 	  lwz       r3, 0x10(r1)
+// 	  lwz       r4, 0xC(r1)
+// 	  lwz       r12, 0x0(r3)
+// 	  lwz       r12, 0x20(r12)
+// 	  mtctr     r12
+// 	  bctrl
+// 	  mr        r4, r3
+// 	  lwz       r3, 0x14(r1)
+// 	  lwz       r12, 0x0(r3)
+// 	  lwz       r12, 0x8(r12)
+// 	  mtctr     r12
+// 	  bctrl
+// 	  rlwinm.   r0,r3,0,24,31
+// 	  bne-      .loc_0x1B4
+// 	  lwz       r3, 0x10(r1)
+// 	  lwz       r4, 0xC(r1)
+// 	  lwz       r12, 0x0(r3)
+// 	  lwz       r12, 0x14(r12)
+// 	  mtctr     r12
+// 	  bctrl
+// 	  stw       r3, 0xC(r1)
 
-	.loc_0x198:
-	  lwz       r12, 0x8(r1)
-	  addi      r3, r1, 0x8
-	  lwz       r12, 0x10(r12)
-	  mtctr     r12
-	  bctrl
-	  rlwinm.   r0,r3,0,24,31
-	  beq+      .loc_0x144
+// 	.loc_0x198:
+// 	  lwz       r12, 0x8(r1)
+// 	  addi      r3, r1, 0x8
+// 	  lwz       r12, 0x10(r12)
+// 	  mtctr     r12
+// 	  bctrl
+// 	  rlwinm.   r0,r3,0,24,31
+// 	  beq+      .loc_0x144
 
-	.loc_0x1B4:
-	  lwz       r3, 0x10(r1)
-	  lwz       r12, 0x0(r3)
-	  lwz       r12, 0x1C(r12)
-	  mtctr     r12
-	  bctrl
-	  lwz       r4, 0xC(r1)
-	  cmplw     r4, r3
-	  bne+      .loc_0xD4
-	  lwz       r0, 0x24(r1)
-	  mtlr      r0
-	  addi      r1, r1, 0x20
-	  blr
-	*/
-}
+// 	.loc_0x1B4:
+// 	  lwz       r3, 0x10(r1)
+// 	  lwz       r12, 0x0(r3)
+// 	  lwz       r12, 0x1C(r12)
+// 	  mtctr     r12
+// 	  bctrl
+// 	  lwz       r4, 0xC(r1)
+// 	  cmplw     r4, r3
+// 	  bne+      .loc_0xD4
+// 	  lwz       r0, 0x24(r1)
+// 	  mtlr      r0
+// 	  addi      r1, r1, 0x20
+// 	  blr
+// 	*/
+// }
 
 /*
  * --INFO--
  * Address:	801C71A0
  * Size:	0001F4
  */
-void ObjectMgr<Game::PlatInstance>::doSimulation(float)
-{
-	/*
-	.loc_0x0:
-	  stwu      r1, -0x20(r1)
-	  mflr      r0
-	  lis       r4, 0x804B
-	  stw       r0, 0x24(r1)
-	  li        r0, 0
-	  addi      r4, r4, 0x63BC
-	  stfd      f31, 0x18(r1)
-	  fmr       f31, f1
-	  cmplwi    r0, 0
-	  stw       r4, 0x8(r1)
-	  stw       r0, 0x14(r1)
-	  stw       r0, 0xC(r1)
-	  stw       r3, 0x10(r1)
-	  bne-      .loc_0x50
-	  lwz       r12, 0x0(r3)
-	  lwz       r12, 0x18(r12)
-	  mtctr     r12
-	  bctrl
-	  stw       r3, 0xC(r1)
-	  b         .loc_0x1C0
+// void ObjectMgr<Game::PlatInstance>::doSimulation(float)
+// {
+// 	/*
+// 	.loc_0x0:
+// 	  stwu      r1, -0x20(r1)
+// 	  mflr      r0
+// 	  lis       r4, 0x804B
+// 	  stw       r0, 0x24(r1)
+// 	  li        r0, 0
+// 	  addi      r4, r4, 0x63BC
+// 	  stfd      f31, 0x18(r1)
+// 	  fmr       f31, f1
+// 	  cmplwi    r0, 0
+// 	  stw       r4, 0x8(r1)
+// 	  stw       r0, 0x14(r1)
+// 	  stw       r0, 0xC(r1)
+// 	  stw       r3, 0x10(r1)
+// 	  bne-      .loc_0x50
+// 	  lwz       r12, 0x0(r3)
+// 	  lwz       r12, 0x18(r12)
+// 	  mtctr     r12
+// 	  bctrl
+// 	  stw       r3, 0xC(r1)
+// 	  b         .loc_0x1C0
 
-	.loc_0x50:
-	  lwz       r12, 0x0(r3)
-	  lwz       r12, 0x18(r12)
-	  mtctr     r12
-	  bctrl
-	  stw       r3, 0xC(r1)
-	  b         .loc_0xBC
+// 	.loc_0x50:
+// 	  lwz       r12, 0x0(r3)
+// 	  lwz       r12, 0x18(r12)
+// 	  mtctr     r12
+// 	  bctrl
+// 	  stw       r3, 0xC(r1)
+// 	  b         .loc_0xBC
 
-	.loc_0x68:
-	  lwz       r3, 0x10(r1)
-	  lwz       r4, 0xC(r1)
-	  lwz       r12, 0x0(r3)
-	  lwz       r12, 0x20(r12)
-	  mtctr     r12
-	  bctrl
-	  mr        r4, r3
-	  lwz       r3, 0x14(r1)
-	  lwz       r12, 0x0(r3)
-	  lwz       r12, 0x8(r12)
-	  mtctr     r12
-	  bctrl
-	  rlwinm.   r0,r3,0,24,31
-	  bne-      .loc_0x1C0
-	  lwz       r3, 0x10(r1)
-	  lwz       r4, 0xC(r1)
-	  lwz       r12, 0x0(r3)
-	  lwz       r12, 0x14(r12)
-	  mtctr     r12
-	  bctrl
-	  stw       r3, 0xC(r1)
+// 	.loc_0x68:
+// 	  lwz       r3, 0x10(r1)
+// 	  lwz       r4, 0xC(r1)
+// 	  lwz       r12, 0x0(r3)
+// 	  lwz       r12, 0x20(r12)
+// 	  mtctr     r12
+// 	  bctrl
+// 	  mr        r4, r3
+// 	  lwz       r3, 0x14(r1)
+// 	  lwz       r12, 0x0(r3)
+// 	  lwz       r12, 0x8(r12)
+// 	  mtctr     r12
+// 	  bctrl
+// 	  rlwinm.   r0,r3,0,24,31
+// 	  bne-      .loc_0x1C0
+// 	  lwz       r3, 0x10(r1)
+// 	  lwz       r4, 0xC(r1)
+// 	  lwz       r12, 0x0(r3)
+// 	  lwz       r12, 0x14(r12)
+// 	  mtctr     r12
+// 	  bctrl
+// 	  stw       r3, 0xC(r1)
 
-	.loc_0xBC:
-	  lwz       r12, 0x8(r1)
-	  addi      r3, r1, 0x8
-	  lwz       r12, 0x10(r12)
-	  mtctr     r12
-	  bctrl
-	  rlwinm.   r0,r3,0,24,31
-	  beq+      .loc_0x68
-	  b         .loc_0x1C0
+// 	.loc_0xBC:
+// 	  lwz       r12, 0x8(r1)
+// 	  addi      r3, r1, 0x8
+// 	  lwz       r12, 0x10(r12)
+// 	  mtctr     r12
+// 	  bctrl
+// 	  rlwinm.   r0,r3,0,24,31
+// 	  beq+      .loc_0x68
+// 	  b         .loc_0x1C0
 
-	.loc_0xDC:
-	  lwz       r3, 0x10(r1)
-	  lwz       r12, 0x0(r3)
-	  lwz       r12, 0x20(r12)
-	  mtctr     r12
-	  bctrl
-	  lwz       r12, 0x0(r3)
-	  fmr       f1, f31
-	  lwz       r12, 0x40(r12)
-	  mtctr     r12
-	  bctrl
-	  lwz       r0, 0x14(r1)
-	  cmplwi    r0, 0
-	  bne-      .loc_0x130
-	  lwz       r3, 0x10(r1)
-	  lwz       r4, 0xC(r1)
-	  lwz       r12, 0x0(r3)
-	  lwz       r12, 0x14(r12)
-	  mtctr     r12
-	  bctrl
-	  stw       r3, 0xC(r1)
-	  b         .loc_0x1C0
+// 	.loc_0xDC:
+// 	  lwz       r3, 0x10(r1)
+// 	  lwz       r12, 0x0(r3)
+// 	  lwz       r12, 0x20(r12)
+// 	  mtctr     r12
+// 	  bctrl
+// 	  lwz       r12, 0x0(r3)
+// 	  fmr       f1, f31
+// 	  lwz       r12, 0x40(r12)
+// 	  mtctr     r12
+// 	  bctrl
+// 	  lwz       r0, 0x14(r1)
+// 	  cmplwi    r0, 0
+// 	  bne-      .loc_0x130
+// 	  lwz       r3, 0x10(r1)
+// 	  lwz       r4, 0xC(r1)
+// 	  lwz       r12, 0x0(r3)
+// 	  lwz       r12, 0x14(r12)
+// 	  mtctr     r12
+// 	  bctrl
+// 	  stw       r3, 0xC(r1)
+// 	  b         .loc_0x1C0
 
-	.loc_0x130:
-	  lwz       r3, 0x10(r1)
-	  lwz       r4, 0xC(r1)
-	  lwz       r12, 0x0(r3)
-	  lwz       r12, 0x14(r12)
-	  mtctr     r12
-	  bctrl
-	  stw       r3, 0xC(r1)
-	  b         .loc_0x1A4
+// 	.loc_0x130:
+// 	  lwz       r3, 0x10(r1)
+// 	  lwz       r4, 0xC(r1)
+// 	  lwz       r12, 0x0(r3)
+// 	  lwz       r12, 0x14(r12)
+// 	  mtctr     r12
+// 	  bctrl
+// 	  stw       r3, 0xC(r1)
+// 	  b         .loc_0x1A4
 
-	.loc_0x150:
-	  lwz       r3, 0x10(r1)
-	  lwz       r4, 0xC(r1)
-	  lwz       r12, 0x0(r3)
-	  lwz       r12, 0x20(r12)
-	  mtctr     r12
-	  bctrl
-	  mr        r4, r3
-	  lwz       r3, 0x14(r1)
-	  lwz       r12, 0x0(r3)
-	  lwz       r12, 0x8(r12)
-	  mtctr     r12
-	  bctrl
-	  rlwinm.   r0,r3,0,24,31
-	  bne-      .loc_0x1C0
-	  lwz       r3, 0x10(r1)
-	  lwz       r4, 0xC(r1)
-	  lwz       r12, 0x0(r3)
-	  lwz       r12, 0x14(r12)
-	  mtctr     r12
-	  bctrl
-	  stw       r3, 0xC(r1)
+// 	.loc_0x150:
+// 	  lwz       r3, 0x10(r1)
+// 	  lwz       r4, 0xC(r1)
+// 	  lwz       r12, 0x0(r3)
+// 	  lwz       r12, 0x20(r12)
+// 	  mtctr     r12
+// 	  bctrl
+// 	  mr        r4, r3
+// 	  lwz       r3, 0x14(r1)
+// 	  lwz       r12, 0x0(r3)
+// 	  lwz       r12, 0x8(r12)
+// 	  mtctr     r12
+// 	  bctrl
+// 	  rlwinm.   r0,r3,0,24,31
+// 	  bne-      .loc_0x1C0
+// 	  lwz       r3, 0x10(r1)
+// 	  lwz       r4, 0xC(r1)
+// 	  lwz       r12, 0x0(r3)
+// 	  lwz       r12, 0x14(r12)
+// 	  mtctr     r12
+// 	  bctrl
+// 	  stw       r3, 0xC(r1)
 
-	.loc_0x1A4:
-	  lwz       r12, 0x8(r1)
-	  addi      r3, r1, 0x8
-	  lwz       r12, 0x10(r12)
-	  mtctr     r12
-	  bctrl
-	  rlwinm.   r0,r3,0,24,31
-	  beq+      .loc_0x150
+// 	.loc_0x1A4:
+// 	  lwz       r12, 0x8(r1)
+// 	  addi      r3, r1, 0x8
+// 	  lwz       r12, 0x10(r12)
+// 	  mtctr     r12
+// 	  bctrl
+// 	  rlwinm.   r0,r3,0,24,31
+// 	  beq+      .loc_0x150
 
-	.loc_0x1C0:
-	  lwz       r3, 0x10(r1)
-	  lwz       r12, 0x0(r3)
-	  lwz       r12, 0x1C(r12)
-	  mtctr     r12
-	  bctrl
-	  lwz       r4, 0xC(r1)
-	  cmplw     r4, r3
-	  bne+      .loc_0xDC
-	  lwz       r0, 0x24(r1)
-	  lfd       f31, 0x18(r1)
-	  mtlr      r0
-	  addi      r1, r1, 0x20
-	  blr
-	*/
-}
+// 	.loc_0x1C0:
+// 	  lwz       r3, 0x10(r1)
+// 	  lwz       r12, 0x0(r3)
+// 	  lwz       r12, 0x1C(r12)
+// 	  mtctr     r12
+// 	  bctrl
+// 	  lwz       r4, 0xC(r1)
+// 	  cmplw     r4, r3
+// 	  bne+      .loc_0xDC
+// 	  lwz       r0, 0x24(r1)
+// 	  lfd       f31, 0x18(r1)
+// 	  mtlr      r0
+// 	  addi      r1, r1, 0x20
+// 	  blr
+// 	*/
+// }
 
 /*
  * --INFO--
  * Address:	801C7394
  * Size:	0001F4
  */
-void ObjectMgr<Game::PlatInstance>::doDirectDraw(Graphics&)
-{
-	/*
-	.loc_0x0:
-	  stwu      r1, -0x20(r1)
-	  mflr      r0
-	  lis       r5, 0x804B
-	  stw       r0, 0x24(r1)
-	  li        r0, 0
-	  addi      r5, r5, 0x63BC
-	  stw       r31, 0x1C(r1)
-	  cmplwi    r0, 0
-	  mr        r31, r4
-	  stw       r0, 0x14(r1)
-	  stw       r5, 0x8(r1)
-	  stw       r0, 0xC(r1)
-	  stw       r3, 0x10(r1)
-	  bne-      .loc_0x50
-	  lwz       r12, 0x0(r3)
-	  lwz       r12, 0x18(r12)
-	  mtctr     r12
-	  bctrl
-	  stw       r3, 0xC(r1)
-	  b         .loc_0x1C0
+// void ObjectMgr<Game::PlatInstance>::doDirectDraw(Graphics&)
+// {
+// 	/*
+// 	.loc_0x0:
+// 	  stwu      r1, -0x20(r1)
+// 	  mflr      r0
+// 	  lis       r5, 0x804B
+// 	  stw       r0, 0x24(r1)
+// 	  li        r0, 0
+// 	  addi      r5, r5, 0x63BC
+// 	  stw       r31, 0x1C(r1)
+// 	  cmplwi    r0, 0
+// 	  mr        r31, r4
+// 	  stw       r0, 0x14(r1)
+// 	  stw       r5, 0x8(r1)
+// 	  stw       r0, 0xC(r1)
+// 	  stw       r3, 0x10(r1)
+// 	  bne-      .loc_0x50
+// 	  lwz       r12, 0x0(r3)
+// 	  lwz       r12, 0x18(r12)
+// 	  mtctr     r12
+// 	  bctrl
+// 	  stw       r3, 0xC(r1)
+// 	  b         .loc_0x1C0
 
-	.loc_0x50:
-	  lwz       r12, 0x0(r3)
-	  lwz       r12, 0x18(r12)
-	  mtctr     r12
-	  bctrl
-	  stw       r3, 0xC(r1)
-	  b         .loc_0xBC
+// 	.loc_0x50:
+// 	  lwz       r12, 0x0(r3)
+// 	  lwz       r12, 0x18(r12)
+// 	  mtctr     r12
+// 	  bctrl
+// 	  stw       r3, 0xC(r1)
+// 	  b         .loc_0xBC
 
-	.loc_0x68:
-	  lwz       r3, 0x10(r1)
-	  lwz       r4, 0xC(r1)
-	  lwz       r12, 0x0(r3)
-	  lwz       r12, 0x20(r12)
-	  mtctr     r12
-	  bctrl
-	  mr        r4, r3
-	  lwz       r3, 0x14(r1)
-	  lwz       r12, 0x0(r3)
-	  lwz       r12, 0x8(r12)
-	  mtctr     r12
-	  bctrl
-	  rlwinm.   r0,r3,0,24,31
-	  bne-      .loc_0x1C0
-	  lwz       r3, 0x10(r1)
-	  lwz       r4, 0xC(r1)
-	  lwz       r12, 0x0(r3)
-	  lwz       r12, 0x14(r12)
-	  mtctr     r12
-	  bctrl
-	  stw       r3, 0xC(r1)
+// 	.loc_0x68:
+// 	  lwz       r3, 0x10(r1)
+// 	  lwz       r4, 0xC(r1)
+// 	  lwz       r12, 0x0(r3)
+// 	  lwz       r12, 0x20(r12)
+// 	  mtctr     r12
+// 	  bctrl
+// 	  mr        r4, r3
+// 	  lwz       r3, 0x14(r1)
+// 	  lwz       r12, 0x0(r3)
+// 	  lwz       r12, 0x8(r12)
+// 	  mtctr     r12
+// 	  bctrl
+// 	  rlwinm.   r0,r3,0,24,31
+// 	  bne-      .loc_0x1C0
+// 	  lwz       r3, 0x10(r1)
+// 	  lwz       r4, 0xC(r1)
+// 	  lwz       r12, 0x0(r3)
+// 	  lwz       r12, 0x14(r12)
+// 	  mtctr     r12
+// 	  bctrl
+// 	  stw       r3, 0xC(r1)
 
-	.loc_0xBC:
-	  lwz       r12, 0x8(r1)
-	  addi      r3, r1, 0x8
-	  lwz       r12, 0x10(r12)
-	  mtctr     r12
-	  bctrl
-	  rlwinm.   r0,r3,0,24,31
-	  beq+      .loc_0x68
-	  b         .loc_0x1C0
+// 	.loc_0xBC:
+// 	  lwz       r12, 0x8(r1)
+// 	  addi      r3, r1, 0x8
+// 	  lwz       r12, 0x10(r12)
+// 	  mtctr     r12
+// 	  bctrl
+// 	  rlwinm.   r0,r3,0,24,31
+// 	  beq+      .loc_0x68
+// 	  b         .loc_0x1C0
 
-	.loc_0xDC:
-	  lwz       r3, 0x10(r1)
-	  lwz       r12, 0x0(r3)
-	  lwz       r12, 0x20(r12)
-	  mtctr     r12
-	  bctrl
-	  lwz       r12, 0x0(r3)
-	  mr        r4, r31
-	  lwz       r12, 0x44(r12)
-	  mtctr     r12
-	  bctrl
-	  lwz       r0, 0x14(r1)
-	  cmplwi    r0, 0
-	  bne-      .loc_0x130
-	  lwz       r3, 0x10(r1)
-	  lwz       r4, 0xC(r1)
-	  lwz       r12, 0x0(r3)
-	  lwz       r12, 0x14(r12)
-	  mtctr     r12
-	  bctrl
-	  stw       r3, 0xC(r1)
-	  b         .loc_0x1C0
+// 	.loc_0xDC:
+// 	  lwz       r3, 0x10(r1)
+// 	  lwz       r12, 0x0(r3)
+// 	  lwz       r12, 0x20(r12)
+// 	  mtctr     r12
+// 	  bctrl
+// 	  lwz       r12, 0x0(r3)
+// 	  mr        r4, r31
+// 	  lwz       r12, 0x44(r12)
+// 	  mtctr     r12
+// 	  bctrl
+// 	  lwz       r0, 0x14(r1)
+// 	  cmplwi    r0, 0
+// 	  bne-      .loc_0x130
+// 	  lwz       r3, 0x10(r1)
+// 	  lwz       r4, 0xC(r1)
+// 	  lwz       r12, 0x0(r3)
+// 	  lwz       r12, 0x14(r12)
+// 	  mtctr     r12
+// 	  bctrl
+// 	  stw       r3, 0xC(r1)
+// 	  b         .loc_0x1C0
 
-	.loc_0x130:
-	  lwz       r3, 0x10(r1)
-	  lwz       r4, 0xC(r1)
-	  lwz       r12, 0x0(r3)
-	  lwz       r12, 0x14(r12)
-	  mtctr     r12
-	  bctrl
-	  stw       r3, 0xC(r1)
-	  b         .loc_0x1A4
+// 	.loc_0x130:
+// 	  lwz       r3, 0x10(r1)
+// 	  lwz       r4, 0xC(r1)
+// 	  lwz       r12, 0x0(r3)
+// 	  lwz       r12, 0x14(r12)
+// 	  mtctr     r12
+// 	  bctrl
+// 	  stw       r3, 0xC(r1)
+// 	  b         .loc_0x1A4
 
-	.loc_0x150:
-	  lwz       r3, 0x10(r1)
-	  lwz       r4, 0xC(r1)
-	  lwz       r12, 0x0(r3)
-	  lwz       r12, 0x20(r12)
-	  mtctr     r12
-	  bctrl
-	  mr        r4, r3
-	  lwz       r3, 0x14(r1)
-	  lwz       r12, 0x0(r3)
-	  lwz       r12, 0x8(r12)
-	  mtctr     r12
-	  bctrl
-	  rlwinm.   r0,r3,0,24,31
-	  bne-      .loc_0x1C0
-	  lwz       r3, 0x10(r1)
-	  lwz       r4, 0xC(r1)
-	  lwz       r12, 0x0(r3)
-	  lwz       r12, 0x14(r12)
-	  mtctr     r12
-	  bctrl
-	  stw       r3, 0xC(r1)
+// 	.loc_0x150:
+// 	  lwz       r3, 0x10(r1)
+// 	  lwz       r4, 0xC(r1)
+// 	  lwz       r12, 0x0(r3)
+// 	  lwz       r12, 0x20(r12)
+// 	  mtctr     r12
+// 	  bctrl
+// 	  mr        r4, r3
+// 	  lwz       r3, 0x14(r1)
+// 	  lwz       r12, 0x0(r3)
+// 	  lwz       r12, 0x8(r12)
+// 	  mtctr     r12
+// 	  bctrl
+// 	  rlwinm.   r0,r3,0,24,31
+// 	  bne-      .loc_0x1C0
+// 	  lwz       r3, 0x10(r1)
+// 	  lwz       r4, 0xC(r1)
+// 	  lwz       r12, 0x0(r3)
+// 	  lwz       r12, 0x14(r12)
+// 	  mtctr     r12
+// 	  bctrl
+// 	  stw       r3, 0xC(r1)
 
-	.loc_0x1A4:
-	  lwz       r12, 0x8(r1)
-	  addi      r3, r1, 0x8
-	  lwz       r12, 0x10(r12)
-	  mtctr     r12
-	  bctrl
-	  rlwinm.   r0,r3,0,24,31
-	  beq+      .loc_0x150
+// 	.loc_0x1A4:
+// 	  lwz       r12, 0x8(r1)
+// 	  addi      r3, r1, 0x8
+// 	  lwz       r12, 0x10(r12)
+// 	  mtctr     r12
+// 	  bctrl
+// 	  rlwinm.   r0,r3,0,24,31
+// 	  beq+      .loc_0x150
 
-	.loc_0x1C0:
-	  lwz       r3, 0x10(r1)
-	  lwz       r12, 0x0(r3)
-	  lwz       r12, 0x1C(r12)
-	  mtctr     r12
-	  bctrl
-	  lwz       r4, 0xC(r1)
-	  cmplw     r4, r3
-	  bne+      .loc_0xDC
-	  lwz       r0, 0x24(r1)
-	  lwz       r31, 0x1C(r1)
-	  mtlr      r0
-	  addi      r1, r1, 0x20
-	  blr
-	*/
-}
+// 	.loc_0x1C0:
+// 	  lwz       r3, 0x10(r1)
+// 	  lwz       r12, 0x0(r3)
+// 	  lwz       r12, 0x1C(r12)
+// 	  mtctr     r12
+// 	  bctrl
+// 	  lwz       r4, 0xC(r1)
+// 	  cmplw     r4, r3
+// 	  bne+      .loc_0xDC
+// 	  lwz       r0, 0x24(r1)
+// 	  lwz       r31, 0x1C(r1)
+// 	  mtlr      r0
+// 	  addi      r1, r1, 0x20
+// 	  blr
+// 	*/
+// }
 
 /*
  * --INFO--
  * Address:	801C7588
  * Size:	00002C
  */
-void Container<Game::PlatInstance>::getObject(void*)
-{
-	/*
-	.loc_0x0:
-	  stwu      r1, -0x10(r1)
-	  mflr      r0
-	  stw       r0, 0x14(r1)
-	  lwz       r12, 0x0(r3)
-	  lwz       r12, 0x20(r12)
-	  mtctr     r12
-	  bctrl
-	  lwz       r0, 0x14(r1)
-	  mtlr      r0
-	  addi      r1, r1, 0x10
-	  blr
-	*/
-}
+// void Container<Game::PlatInstance>::getObject(void*)
+// {
+// 	/*
+// 	.loc_0x0:
+// 	  stwu      r1, -0x10(r1)
+// 	  mflr      r0
+// 	  stw       r0, 0x14(r1)
+// 	  lwz       r12, 0x0(r3)
+// 	  lwz       r12, 0x20(r12)
+// 	  mtctr     r12
+// 	  bctrl
+// 	  lwz       r0, 0x14(r1)
+// 	  mtlr      r0
+// 	  addi      r1, r1, 0x10
+// 	  blr
+// 	*/
+// }
 
 /*
  * --INFO--
  * Address:	801C75B4
  * Size:	000008
  */
-u32 Container<Game::PlatInstance>::getAt(int) { return 0x0; }
+// u32 Container<Game::PlatInstance>::getAt(int) { return 0x0; }
 
 /*
  * --INFO--
  * Address:	801C75BC
  * Size:	000008
  */
-u32 Container<Game::PlatInstance>::getTo() { return 0x0; }
+// u32 Container<Game::PlatInstance>::getTo() { return 0x0; }
 
 /*
  * --INFO--
  * Address:	801C75C4
  * Size:	000008
  */
-void ObjectMgr<Game::PlatInstance>::@28 @doDirectDraw(Graphics&)
-{
-	/*
-	.loc_0x0:
-	  subi      r3, r3, 0x1C
-	  b         -0x234
-	*/
-}
+// void ObjectMgr<Game::PlatInstance>::@28 @doDirectDraw(Graphics&)
+// {
+// 	/*
+// 	.loc_0x0:
+// 	  subi      r3, r3, 0x1C
+// 	  b         -0x234
+// 	*/
+// }
 
 /*
  * --INFO--
  * Address:	801C75CC
  * Size:	000008
  */
-void NodeObjectMgr<Game::PlatInstance>::@28 @resetMgr()
-{
-	/*
-	.loc_0x0:
-	  subi      r3, r3, 0x1C
-	  b         -0xBE8
-	*/
-}
+// void NodeObjectMgr<Game::PlatInstance>::@28 @resetMgr()
+// {
+// 	/*
+// 	.loc_0x0:
+// 	  subi      r3, r3, 0x1C
+// 	  b         -0xBE8
+// 	*/
+// }
 
 /*
  * --INFO--
  * Address:	801C75D4
  * Size:	000008
  */
-void @28 @Game::PlatMgr::doDirectDraw(Graphics&)
-{
-	/*
-	.loc_0x0:
-	  subi      r3, r3, 0x1C
-	  b         -0xF6C
-	*/
-}
+// void @28 @Game::PlatMgr::doDirectDraw(Graphics&)
+// {
+// 	/*
+// 	.loc_0x0:
+// 	  subi      r3, r3, 0x1C
+// 	  b         -0xF6C
+// 	*/
+// }
 
 /*
  * --INFO--
  * Address:	801C75DC
  * Size:	000008
  */
-void ObjectMgr<Game::PlatInstance>::@28 @doSimulation(float)
-{
-	/*
-	.loc_0x0:
-	  subi      r3, r3, 0x1C
-	  b         -0x440
-	*/
-}
+// void ObjectMgr<Game::PlatInstance>::@28 @doSimulation(float)
+// {
+// 	/*
+// 	.loc_0x0:
+// 	  subi      r3, r3, 0x1C
+// 	  b         -0x440
+// 	*/
+// }
 
 /*
  * --INFO--
  * Address:	801C75E4
  * Size:	000008
  */
-void ObjectMgr<Game::PlatInstance>::@28 @doViewCalc()
-{
-	/*
-	.loc_0x0:
-	  subi      r3, r3, 0x1C
-	  b         -0x62C
-	*/
-}
+// void ObjectMgr<Game::PlatInstance>::@28 @doViewCalc()
+// {
+// 	/*
+// 	.loc_0x0:
+// 	  subi      r3, r3, 0x1C
+// 	  b         -0x62C
+// 	*/
+// }
 
 /*
  * --INFO--
  * Address:	801C75EC
  * Size:	000008
  */
-void ObjectMgr<Game::PlatInstance>::@28 @doSetView(int)
-{
-	/*
-	.loc_0x0:
-	  subi      r3, r3, 0x1C
-	  b         -0x828
-	*/
-}
+// void ObjectMgr<Game::PlatInstance>::@28 @doSetView(int)
+// {
+// 	/*
+// 	.loc_0x0:
+// 	  subi      r3, r3, 0x1C
+// 	  b         -0x828
+// 	*/
+// }
 
 /*
  * --INFO--
  * Address:	801C75F4
  * Size:	000008
  */
-void ObjectMgr<Game::PlatInstance>::@28 @doEntry()
-{
-	/*
-	.loc_0x0:
-	  subi      r3, r3, 0x1C
-	  b         -0xA14
-	*/
-}
+// void ObjectMgr<Game::PlatInstance>::@28 @doEntry()
+// {
+// 	/*
+// 	.loc_0x0:
+// 	  subi      r3, r3, 0x1C
+// 	  b         -0xA14
+// 	*/
+// }
 
 /*
  * --INFO--
  * Address:	801C75FC
  * Size:	000008
  */
-void ObjectMgr<Game::PlatInstance>::@28 @doAnimation()
-{
-	/*
-	.loc_0x0:
-	  subi      r3, r3, 0x1C
-	  b         -0xC00
-	*/
-}
+// void ObjectMgr<Game::PlatInstance>::@28 @doAnimation()
+// {
+// 	/*
+// 	.loc_0x0:
+// 	  subi      r3, r3, 0x1C
+// 	  b         -0xC00
+// 	*/
+// }
 
 #endif
 

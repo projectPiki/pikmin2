@@ -7,28 +7,65 @@
 
 struct Quat;
 
+/**
+ * This class CANNOT have any explicit constructors, due to CollPart::update.
+ * If it does, then it loses the implicit default constructor.
+ * Explicit constructors show up in recursion. Implicit does not.
+ */
 struct Matrixf {
-	inline Matrixf() {};
-	// TODO: Determine if this could've actually existed, or if I'm just making
-	// it up.
-	inline Matrixf(const Mtx mtx)
+	// inline Matrixf() {};
+	// // TODO: Determine if this could've actually existed, or if I'm just making
+	// // it up.
+	// inline Matrixf(const Mtx mtx)
+	// {
+	// 	m_matrix.mtxView[0][0] = mtx[0][0];
+	// 	m_matrix.mtxView[0][1] = mtx[0][1];
+	// 	m_matrix.mtxView[0][2] = mtx[0][2];
+	// 	m_matrix.mtxView[0][3] = mtx[0][3];
+	// 	m_matrix.mtxView[1][0] = mtx[1][0];
+	// 	m_matrix.mtxView[1][1] = mtx[1][1];
+	// 	m_matrix.mtxView[1][2] = mtx[1][2];
+	// 	m_matrix.mtxView[1][3] = mtx[1][3];
+	// 	m_matrix.mtxView[2][0] = mtx[2][0];
+	// 	m_matrix.mtxView[2][1] = mtx[2][1];
+	// 	m_matrix.mtxView[2][2] = mtx[2][2];
+	// 	m_matrix.mtxView[2][3] = mtx[2][3];
+	// }
+	/**
+	 * @reifiedAddress{80137300}
+	 * @reifiedFile{plugProjectKandoU/collinfo.cpp}
+	 */
+	float& operator()(int p1, int p2) { return m_matrix.mtxView[p1][p2]; }
+	/**
+	 * @reifiedAddress{801372DC}
+	 * @reifiedFile{plugProjectKandoU/collinfo.cpp}
+	 */
+	void getBasis(int p1, Vector3f& p2)
 	{
-		m_matrix.mtxView[0][0] = mtx[0][0];
-		m_matrix.mtxView[0][1] = mtx[0][1];
-		m_matrix.mtxView[0][2] = mtx[0][2];
-		m_matrix.mtxView[0][3] = mtx[0][3];
-		m_matrix.mtxView[1][0] = mtx[1][0];
-		m_matrix.mtxView[1][1] = mtx[1][1];
-		m_matrix.mtxView[1][2] = mtx[1][2];
-		m_matrix.mtxView[1][3] = mtx[1][3];
-		m_matrix.mtxView[2][0] = mtx[2][0];
-		m_matrix.mtxView[2][1] = mtx[2][1];
-		m_matrix.mtxView[2][2] = mtx[2][2];
-		m_matrix.mtxView[2][3] = mtx[2][3];
+		p2.x = (*this)(0, p1);
+		p2.y = (*this)(1, p1);
+		p2.z = (*this)(2, p1);
 	}
-	void getBasis(int, Vector3f&);
-	void getTranslation(Vector3f&);
-	void operator()(int, int);
+	/**
+	 * @reifiedAddress{801372C0}
+	 * @reifiedFile{plugProjectKandoU/collinfo.cpp}
+	 */
+	void getTranslation(Vector3f& translation) { getBasis(3, translation); }
+
+	/**
+	 * @fabricated
+	 */
+	void setBasis(int p1, Vector3f& p2)
+	{
+		(*this)(0, p1) = p2.x;
+		(*this)(1, p1) = p2.y;
+		(*this)(2, p1) = p2.z;
+	}
+
+	/**
+	 * @fabricated
+	 */
+	void setTranslation(Vector3f& translation) { setBasis(3, translation); }
 
 	void makeNaturalPosture(Vector3f&, float);
 	void print(char*);
@@ -57,12 +94,12 @@ struct Matrixf {
 			Vec z;
 			Vec t;
 		} flippedVecView;
-		struct {
-			Vector3f x;
-			Vector3f y;
-			Vector3f z;
-			Vector3f t;
-		} flippedVectorView;
+		// struct {
+		// 	Vector3f x;
+		// 	Vector3f y;
+		// 	Vector3f z;
+		// 	Vector3f t;
+		// } flippedVectorView;
 
 		struct {
 			float xx, yx, zx, tx;

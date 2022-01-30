@@ -13,8 +13,7 @@
 # so overloaded names have issues without specifically writing those out...).
 #   By default, the script trims the function-relative offsets in the first output column,
 # and after branch instructions (e.g. `                ; 0x00000020`).
-# Passing a 3rd argument of any sort to the script disables this feature.
-#
+# Passing a 3rd argument that isn't 0 to the script disables this feature.
 #
 # Example vscode task to invoke on the current selection (when it's something that uniquely matches a mangled name):
 # {
@@ -66,11 +65,24 @@ echo $Library
 # TODO: this and $Library might be useful for opts
 CodeUnitExtension=${1##*.}
 Func=$2
+# 0 = genasm
+# 1 = genasm w/o cutting addresses
+# 2 = genrodata
 if (( $# < 3 )); then
 	ShouldCutAddresses=1
+	Mode=0
+elif (( $3 == 0 )); then
+	Mode=$3
+	ShouldCutAddresses=1
 else
+	Mode=$3
 	ShouldCutAddresses=0
-fi;
+fi
+# if (( $# < 3 )); then
+# 	ShouldCutAddresses=1
+# else
+# 	ShouldCutAddresses=0
+# fi;
 
 # TODO: Check for linux/windows
 # Nevermind, not needed. Wine automatically handles it so long as I have my paths right.
@@ -106,10 +118,18 @@ function stripFile () {
 	echo "Stripping $File"
 	# Remove Blank lines.
 	sed -i '/^[[:space:]]*$/d' ${File}
-	# Delete everything before the function.
+	# Delete everything before the target.
 	# TODO: capture the name and prepend to file? Can you preserve back references like that?
-	sed -ri "0,/.*+Kind=HUNK_GLOBAL_CODE\\s+Name=\".*${Func}.*/d" ${File}
-	# Delete all lines after the function.
+	if (( $Mode == 2 )); then
+		# set -x
+		sed -i '0,/==> .rodata[[:space:]]*$/d' ${File}
+		# set +x
+		# echo "Help?"
+		# wc ${File}
+	else
+		sed -ri "0,/.*+Kind=HUNK_GLOBAL_CODE\\s+Name=\".*${Func}.*/d" ${File}
+	fi
+	# Delete all lines after the target function/section.
 	# This will either be at the start of next hunk...:
 	sed -ri '/\s*Hunk:\s+Kind=HUNK_GLOBAL_CODE\s+Name=\".*/,$d' ${File}
 	# ...or start of next section if it's the last function in the file:
