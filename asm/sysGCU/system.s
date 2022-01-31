@@ -249,8 +249,7 @@ lbl_80520438:
 	.4byte 0x80000000
 
 .section .text, "ax"  # 0x800056C0 - 0x80472F00
-.global Pikmin2DefaultMemoryErrorRoutine__FPvUli
-Pikmin2DefaultMemoryErrorRoutine__FPvUli:
+Pikmin2DefaultMemoryErrorRoutine__FPvUli: #local function
 /* 80421EC4 0041EE04  94 21 FF E0 */	stwu r1, -0x20(r1)
 /* 80421EC8 0041EE08  7C 08 02 A6 */	mflr r0
 /* 80421ECC 0041EE0C  90 01 00 24 */	stw r0, 0x24(r1)
@@ -292,8 +291,7 @@ Pikmin2DefaultMemoryErrorRoutine__FPvUli:
 /* 80421F5C 0041EE9C  38 21 00 20 */	addi r1, r1, 0x20
 /* 80421F60 0041EEA0  4E 80 00 20 */	blr 
 
-.global kando_panic_f__FbPCciPCce
-kando_panic_f__FbPCciPCce:
+kando_panic_f__FbPCciPCce: #local function
 /* 80421F64 0041EEA4  94 21 FB A0 */	stwu r1, -0x460(r1)
 /* 80421F68 0041EEA8  7C 08 02 A6 */	mflr r0
 /* 80421F6C 0041EEAC  90 01 04 64 */	stw r0, 0x464(r1)
@@ -398,8 +396,7 @@ lbl_804220B8:
 /* 804220E4 0041F024  38 21 04 60 */	addi r1, r1, 0x460
 /* 804220E8 0041F028  4E 80 00 20 */	blr 
 
-.global preUserCallback__FUsP9OSContextUlUl
-preUserCallback__FUsP9OSContextUlUl:
+preUserCallback__FUsP9OSContextUlUl: #local function
 /* 804220EC 0041F02C  94 21 FF C0 */	stwu r1, -0x40(r1)
 /* 804220F0 0041F030  7C 08 02 A6 */	mflr r0
 /* 804220F4 0041F034  3C 80 80 4A */	lis r4, sStrSystem_CPP@ha
@@ -1471,7 +1468,7 @@ lbl_80422FD0:
 /* 80422FE0 0041FF20  4E 80 00 20 */	blr 
 
 .global __dt__9DvdThreadFv
-__dt__9DvdThreadFv:
+__dt__9DvdThreadFv: #weak function
 /* 80422FE4 0041FF24  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 80422FE8 0041FF28  7C 08 02 A6 */	mflr r0
 /* 80422FEC 0041FF2C  90 01 00 14 */	stw r0, 0x14(r1)
@@ -1951,7 +1948,7 @@ lbl_80423574:
 /* 804235C8 00420508  4E 80 00 20 */	blr 
 
 .global getCurrentSection__11ISectionMgrFv
-getCurrentSection__11ISectionMgrFv:
+getCurrentSection__11ISectionMgrFv: #weak function
 /* 804235CC 0042050C  38 60 00 00 */	li r3, 0
 /* 804235D0 00420510  4E 80 00 20 */	blr 
 
@@ -2015,7 +2012,7 @@ lbl_8042367C:
 /* 8042368C 004205CC  4E 80 00 20 */	blr 
 
 .global __dt__9AppThreadFv
-__dt__9AppThreadFv:
+__dt__9AppThreadFv: #weak function
 /* 80423690 004205D0  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 80423694 004205D4  7C 08 02 A6 */	mflr r0
 /* 80423698 004205D8  90 01 00 14 */	stw r0, 0x14(r1)
@@ -2043,7 +2040,7 @@ lbl_804236D4:
 /* 804236EC 0042062C  4E 80 00 20 */	blr 
 
 .global newSceneMgr__Q23PSM7FactoryFv
-newSceneMgr__Q23PSM7FactoryFv:
+newSceneMgr__Q23PSM7FactoryFv: #weak function
 /* 804236F0 00420630  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 804236F4 00420634  7C 08 02 A6 */	mflr r0
 /* 804236F8 00420638  38 60 00 14 */	li r3, 0x14
@@ -2061,7 +2058,7 @@ lbl_80423714:
 /* 80423724 00420664  4E 80 00 20 */	blr 
 
 .global "invoke__17Delegate<6System>Fv"
-"invoke__17Delegate<6System>Fv":
+"invoke__17Delegate<6System>Fv": #weak function
 /* 80423728 00420668  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 8042372C 0042066C  7C 08 02 A6 */	mflr r0
 /* 80423730 00420670  7C 64 1B 78 */	mr r4, r3
@@ -2075,8 +2072,7 @@ lbl_80423714:
 /* 80423750 00420690  38 21 00 10 */	addi r1, r1, 0x10
 /* 80423754 00420694  4E 80 00 20 */	blr 
 
-.global __sinit_system_cpp
-__sinit_system_cpp:
+__sinit_system_cpp: #static initializer
 /* 80423758 00420698  38 80 00 01 */	li r4, 1
 /* 8042375C 0042069C  38 00 00 00 */	li r0, 0
 /* 80423760 004206A0  38 6D 9A F0 */	addi r3, r13, sVerifyArg__6System@sda21
