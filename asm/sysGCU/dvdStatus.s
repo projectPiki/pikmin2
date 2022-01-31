@@ -1,38 +1,26 @@
 .include "macros.inc"
 .section .rodata  # 0x804732E0 - 0x8049E220
 .balign 8
-.global lbl_80499DA8
 lbl_80499DA8:
-	.4byte 0x64766453
-	.4byte 0x74617475
-	.4byte 0x73000000
-	.4byte 0x64766453
-	.4byte 0x74617475
-	.4byte 0x732E6370
-	.4byte 0x70000000
-	.4byte 0x6E6F2064
-	.4byte 0x6973706C
-	.4byte 0x61792E0A
-	.4byte 0x00000000
-	.4byte 0x64697370
-	.4byte 0x6C617920
-	.4byte 0x6368616E
-	.4byte 0x67656420
-	.4byte 0x210A0000
-	.4byte 0x6E6F2052
-	.4byte 0x4F4D2066
-	.4byte 0x6F6E740A
-	.4byte 0x00000000
-	.4byte 0x756E6B6E
-	.4byte 0x6F776E20
-	.4byte 0x6C616E67
-	.4byte 0x75616765
-	.4byte 0x2E202564
-	.4byte 0x00000000
+	.asciz "dvdStatus"
+.balign 4
+lbl_80499DB4:
+	.asciz "dvdStatus.cpp"
+.balign 4
+lbl_80499DC4:
+	.asciz "no display.\n"
+.balign 4
+lbl_80499DD4:
+	.asciz "display changed !\n"
+.balign 4
+lbl_80499DE8:
+	.asciz "no ROM font\n"
+.balign 4
+lbl_80499DF8:
+	.asciz "unknown language. %d"
 
 .section .data, "wa"  # 0x8049E220 - 0x804EFC20
 .balign 8
-.global lbl_804EBE20
 lbl_804EBE20:
 	.4byte lbl_8042A6C4
 	.4byte lbl_8042A6D4
@@ -41,21 +29,16 @@ lbl_804EBE20:
 	.4byte lbl_8042A6F4
 	.4byte lbl_8042A704
 	.4byte lbl_8042A714
-	.4byte 0x00000000
 
 .section .sdata2, "a"     # 0x80516360 - 0x80520E40
 .balign 8
-.global lbl_80520570
 lbl_80520570:
-	.4byte 0x00000000
-.global lbl_80520574
+	.float 0.0
 lbl_80520574:
-	.4byte 0x42200000
-.global lbl_80520578
+	.float 40.0
 lbl_80520578:
-	.4byte 0x43480000
-	.4byte 0x00000000
-.global lbl_80520580
+	.float 200.0
+.balign 8
 lbl_80520580:
 	.4byte 0x43300000
 	.4byte 0x00000000
