@@ -1,9 +1,11 @@
 .include "macros.inc"
+.if version == 2
 .section .sdata, "wa"  # 0x80514680 - 0x80514D80
 .balign 8
 .global zz_80514788
 zz_80514788:
 	.double 0.0078125
+.endif
 
 .section .data, "wa"  # 0x8049E220 - 0x804EFC20
 .balign 8
@@ -45,6 +47,19 @@ lbl_804A4394:
 	.4byte lbl_800A1CBC
 	.4byte lbl_800A1CBC
 	.4byte lbl_800A1CB8
+
+.if version == 1
+.balign 32
+c32:
+	.float 1.0
+	.float 1.0
+	.float 1.0
+	.float 1.0
+	.float 1.0
+	.float 1.0
+	.float 1.0
+	.float 1.0
+.endif
 
 .section .sbss # 0x80514D80 - 0x80516360
 .balign 8
@@ -4154,6 +4169,76 @@ lbl_800A2650:
 /* 800A2650 0009F590  C0 22 8A 18 */	lfs f1, lbl_80516D78@sda21(r2)
 /* 800A2654 0009F594  4E 80 00 20 */	blr 
 
+.if version == 1
+.global rootCallback__8JASTrackFPv
+rootCallback__8JASTrackFPv:
+/* 800A2658 0009F598  94 21 FF F0 */	stwu r1, -0x10(r1)
+/* 800A265C 0009F59C  7C 08 02 A6 */	mflr r0
+/* 800A2660 0009F5A0  90 01 00 14 */	stw r0, 0x14(r1)
+/* 800A2664 0009F5A4  93 E1 00 0C */	stw r31, 0xc(r1)
+/* 800A2668 0009F5A8  93 C1 00 08 */	stw r30, 0x8(r1)
+/* 800A266C 0009F5AC  7C 7E 1B 79 */	or. r30, r3, r3
+/* 800A2670 0009F5B0  40 82 00 0C */	bne lbl_800A267C
+/* 800A2674 0009F5B4  38 60 FF FF */	li r3, -1
+/* 800A2678 0009F5B8  48 00 00 B0 */	b lbl_800A2738
+lbl_800A267C:
+/* 800A267C 0009F5BC  88 1F 03 5B */	lbz r0, 0x35b(r30)
+/* 800A2680 0009F5C0  28 00 00 00 */	cmplwi r0, 0
+/* 800A2684 0009F5C4  40 82 00 0C */	bne lbl_800A2690
+/* 800A2688 0009F5C8  38 60 FF FF */	li r3, -1
+/* 800A268C 0009F5CC  48 00 00 9C */	b lbl_800A2738
+lbl_800A2690:
+/* 800A2690 0009F5D0  28 00 00 03 */	cmplwi r0, 3
+/* 800A2694 0009F5D0  40 82 00 10 */	bne lbl_800A26A4
+/* 800A2698 0009F5D4  4B FF E9 C1 */	bl stopSeqMain__8JASTrackFv
+/* 800A269C 0009F5D8  38 60 FF FF */	li r3, -1
+/* 800A26A0 0009F5DC  48 00 00 9C */	b lbl_800A2738
+lbl_800A26A4:
+/* 800A26A0 0009F5E0  C0 3F 03 40 */	lfs f1, 0x340(r30)
+/* 800A26A4 0009F5E4  38 6D 81 08 */	lis r4, c32@ha
+/* 800A26A8 0009F5E8  C0 1F 03 44 */	lfs f0, 0x344(r31)
+/* 800A26AC 0009F5EC  38 80 00 04 */	addi r31, r4, c32@l
+/* 800A26B0 0009F5F0  EC 01 00 2A */	fadds f0, f1, f0
+/* 800A26B4 0009F5F4  D0 1F 03 40 */	stfs f0, 0x340(r30)
+/* 800A26BC 0009F5FC  C0 3F 03 40 */	lfs f1, 0x340(r30)
+/* 800A26C0 0009F600  C0 0D 81 08 */	lfs f0, 0x0(r31)
+/* 800A26C4 0009F604  FC 01 00 40 */	fcmpo cr0, f1, f0
+/* 800A26C8 0009F608  40 80 00 58 */	bge lbl_800A2720
+/* 800A26D0 0009F610  38 80 00 00 */	li r4, 0
+/* 800A26D4 0009F614  38 A0 00 01 */	li r5, 1
+/* 800A26D8 0009F618  4B FF E3 B5 */	bl updateSeq__8JASTrackFUlb
+/* 800A26DC 0009F61C  48 00 00 58 */	b lbl_800A2734
+lbl_800A26E0:
+/* 800A26EC 0009F62C  C0 3F 03 40 */	lfs f1, 0x340(r30)
+/* 800A26F0 0009F630  7F E3 F3 78 */	mr r3, r30
+/* 800A26F4 0009F634  C0 0D 81 08 */	lfs f0, 0x0(r31)
+/* 800A26F8 0009F638  EC 01 00 28 */	fsubs f0, f1, f0
+/* 800A26FC 0009F63C  D0 1F 03 40 */	stfs f0, 0x340(r30)
+/* 800A2700 0009F640  4B FF CD 3D */	bl mainProc__8JASTrackFv
+/* 800A2704 0009F644  7C 60 07 74 */	extsb r0, r3
+/* 800A2708 0009F648  2C 00 FF FF */	cmpwi r0, -1
+/* 800A270C 0009F64C  40 82 00 14 */	bne lbl_800A2720
+/* 800A2710 0009F650  7F E3 FB 78 */	mr r3, r30
+/* 800A2714 0009F654  4B FF E9 41 */	bl stopSeqMain__8JASTrackFv
+/* 800A2718 0009F658  38 60 FF FF */	li r3, -1
+/* 800A271C 0009F65C  48 00 00 1C */	b lbl_800A2738
+lbl_800A2720:
+/* 800A2720 0009F660  C0 3F 03 40 */	lfs f1, 0x340(r30)
+/* 800A2724 0009F664  C0 0D 81 08 */	lfs f0, 0x0(r31)
+/* 800A2728 0009F668  FC 01 00 40 */	fcmpo cr0, f1, f0
+/* 800A272C 0009F66C  4C 41 13 82 */	cror 2, 1, 2
+/* 800A2730 0009F670  41 82 FF BC */	beq lbl_800A26E0
+lbl_800A2734:
+/* 800A2734 0009F674  38 60 00 00 */	li r3, 0
+lbl_800A2738:
+/* 800A2738 0009F678  80 01 00 14 */	lwz r0, 0x14(r1)
+/* 800A273C 0009F67C  83 E1 00 0C */	lwz r31, 0xc(r1)
+/* 800A273C 0009F67C  83 E1 00 0C */	lwz r30, 0x8(r1)
+/* 800A2740 0009F680  7C 08 03 A6 */	mtlr r0
+/* 800A2744 0009F684  38 21 00 10 */	addi r1, r1, 0x10
+/* 800A2748 0009F688  4E 80 00 20 */	blr 
+
+.else
 .global rootCallback__8JASTrackFPv
 rootCallback__8JASTrackFPv:
 /* 800A2658 0009F598  94 21 FF F0 */	stwu r1, -0x10(r1)
@@ -4224,6 +4309,7 @@ lbl_800A2738:
 /* 800A2740 0009F680  7C 08 03 A6 */	mtlr r0
 /* 800A2744 0009F684  38 21 00 10 */	addi r1, r1, 0x10
 /* 800A2748 0009F688  4E 80 00 20 */	blr 
+.endif
 
 .global registerSeqCallback__8JASTrackFPFP8JASTrackUs_Us
 registerSeqCallback__8JASTrackFPFP8JASTrackUs_Us:

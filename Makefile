@@ -20,8 +20,16 @@ endif
 #-------------------------------------------------------------------------------
 
 NAME := pikmin2
-VERSION := usa
+VERSION ?= usa
 #VERSION := usa.demo
+
+ifeq ($(VERSION), usa)
+    VERNUM = 2
+else ifeq ($(VERSION), usa.demo)
+    VERNUM = 1
+else
+    VERNUM = 0
+endif
 
 # Overkill epilogue fixup strategy. Set to 1 if necessary.
 EPILOGUE_PROCESS := 1
@@ -96,7 +104,7 @@ FRANK := tools/franklite.py
 INCLUDES := -i include/
 ASM_INCLUDES := -I include/
 
-ASFLAGS := -mgekko $(ASM_INCLUDES)
+ASFLAGS := -mgekko $(ASM_INCLUDES) --defsym version=$(VERNUM)
 ifeq ($(VERBOSE),1)
 # this set of LDFLAGS outputs warnings.
 LDFLAGS := $(MAPGEN) -fp hard -nodefaults
