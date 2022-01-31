@@ -5,26 +5,30 @@ lbl_constructor:
 
 .section .rodata  # 0x804732E0 - 0x8049E220
 .balign 8
-.global lbl_804999F0
-lbl_804999F0:
+lbl_804999F0: #unused? three zero floats?
 	.skip 0xC
+.balign 4
+lbl_804999FC:
 	.asciz "PSGame.h"
-	.skip 3
+.balign 4
+lbl_80499A08:
 	.asciz "P2Assert"
-	.skip 3
+.balign 4
+lbl_80499A14:
 	.asciz "PSScene.h"
-	.skip 2
+.balign 4
+lbl_80499A20:
 	.asciz "section.cpp"
+.balign 4
+lbl_80499A2C:
 	.asciz "no Display manager.\n"
-	.skip 7
 
 .section .data, "wa"  # 0x8049E220 - 0x804EFC20
 .balign 8
-.global lbl_804EBB80
-lbl_804EBB80:
-	.4byte 0x00000000
-	.4byte 0x00000000
-	.4byte 0x00000000
+govNAN___Q24Game5P2JST:
+	.float 0.0
+	.float 0.0
+	.float 0.0
 .global __vt__7Section
 __vt__7Section:
 	.4byte 0
@@ -57,39 +61,31 @@ __vt__8ISection:
 
 .section .sbss # 0x80514D80 - 0x80516360
 .balign 8
-.global lbl_80516178
-lbl_80516178:
+gu32NAN___Q24Game5P2JST:
 	.skip 0x4
-.global lbl_8051617C
-lbl_8051617C:
+gfNAN___Q24Game5P2JST:
 	.skip 0x4
-.global sPlayTime
+.balign 8
 sPlayTime:
-	.skip 0x4
-.global lbl_80516184
-lbl_80516184:
-	.skip 0x4
+	.skip 0x8
 
 .section .sdata2, "a"     # 0x80516360 - 0x80520E40
 .balign 8
-.global lbl_80520440
 lbl_80520440:
 	.float 0.5
-.global lbl_80520444
 lbl_80520444:
 	.float 0.016666668
-.global lbl_80520448
 lbl_80520448:
 	.float 0.0
-.global lbl_8052044C
+.balign 4
 lbl_8052044C:
 	.asciz "draw"
-	.skip 0x3
-.global lbl_80520454
+.balign 4
 lbl_80520454:
 	.asciz "update"
-	.skip 0x1
-	.4byte 0x00000000
+.balign 4
+lbl_8052045C: #unused?
+	.float 0.0
 
 .section .text, "ax"  # 0x800056C0 - 0x80472F00
 .global init__7SectionFv
@@ -222,7 +218,7 @@ lbl_8042391C:
 /* 80423940 00420880  4E 80 00 20 */	blr 
 
 .global __dt__8ISectionFv
-__dt__8ISectionFv:
+__dt__8ISectionFv: #weak function
 /* 80423944 00420884  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 80423948 00420888  7C 08 02 A6 */	mflr r0
 /* 8042394C 0042088C  90 01 00 14 */	stw r0, 0x14(r1)
@@ -680,7 +676,7 @@ exit__7SectionFv:
 /* 80423FC8 00420F08  4E 80 00 20 */	blr 
 
 .global beginFrame__7SectionFv
-beginFrame__7SectionFv:
+beginFrame__7SectionFv: #weak function
 /* 80423FCC 00420F0C  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 80423FD0 00420F10  7C 08 02 A6 */	mflr r0
 /* 80423FD4 00420F14  90 01 00 14 */	stw r0, 0x14(r1)
@@ -692,7 +688,7 @@ beginFrame__7SectionFv:
 /* 80423FEC 00420F2C  4E 80 00 20 */	blr 
 
 .global endFrame__7SectionFv
-endFrame__7SectionFv:
+endFrame__7SectionFv: #weak function
 /* 80423FF0 00420F30  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 80423FF4 00420F34  7C 08 02 A6 */	mflr r0
 /* 80423FF8 00420F38  90 01 00 14 */	stw r0, 0x14(r1)
@@ -704,7 +700,7 @@ endFrame__7SectionFv:
 /* 80424010 00420F50  4E 80 00 20 */	blr 
 
 .global beginRender__7SectionFv
-beginRender__7SectionFv:
+beginRender__7SectionFv: #weak function
 /* 80424014 00420F54  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 80424018 00420F58  7C 08 02 A6 */	mflr r0
 /* 8042401C 00420F5C  90 01 00 14 */	stw r0, 0x14(r1)
@@ -716,7 +712,7 @@ beginRender__7SectionFv:
 /* 80424034 00420F74  4E 80 00 20 */	blr 
 
 .global endRender__7SectionFv
-endRender__7SectionFv:
+endRender__7SectionFv: #weak function
 /* 80424038 00420F78  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 8042403C 00420F7C  7C 08 02 A6 */	mflr r0
 /* 80424040 00420F80  90 01 00 14 */	stw r0, 0x14(r1)
@@ -798,26 +794,25 @@ lbl_80424138:
 /* 80424148 00421088  38 21 00 10 */	addi r1, r1, 0x10
 /* 8042414C 0042108C  4E 80 00 20 */	blr 
 
-.global __sinit_section_cpp
-__sinit_section_cpp:
+__sinit_section_cpp: #static initializer
 /* 80424150 00421090  3C 60 80 00 */	lis r3, 0x800000F8@ha
 /* 80424154 00421094  3C 80 80 51 */	lis r4, __float_nan@ha
 /* 80424158 00421098  80 03 00 F8 */	lwz r0, 0x800000F8@l(r3)
 /* 8042415C 0042109C  38 E0 FF FF */	li r7, -1
 /* 80424160 004210A0  C0 04 48 B0 */	lfs f0, __float_nan@l(r4)
-/* 80424164 004210A4  3C C0 80 4F */	lis r6, lbl_804EBB80@ha
+/* 80424164 004210A4  3C C0 80 4F */	lis r6, govNAN___Q24Game5P2JST@ha
 /* 80424168 004210A8  54 05 F0 BE */	srwi r5, r0, 2
 /* 8042416C 004210AC  38 60 01 2C */	li r3, 0x12c
 /* 80424170 004210B0  38 80 00 00 */	li r4, 0
-/* 80424174 004210B4  D4 06 BB 80 */	stfsu f0, lbl_804EBB80@l(r6)
+/* 80424174 004210B4  D4 06 BB 80 */	stfsu f0, govNAN___Q24Game5P2JST@l(r6)
 /* 80424178 004210B8  7C 05 18 16 */	mulhwu r0, r5, r3
-/* 8042417C 004210BC  90 ED 9A F8 */	stw r7, lbl_80516178@sda21(r13)
-/* 80424180 004210C0  D0 0D 9A FC */	stfs f0, lbl_8051617C@sda21(r13)
+/* 8042417C 004210BC  90 ED 9A F8 */	stw r7, gu32NAN___Q24Game5P2JST@sda21(r13)
+/* 80424180 004210C0  D0 0D 9A FC */	stfs f0, gfNAN___Q24Game5P2JST@sda21(r13)
 /* 80424184 004210C4  7C 64 19 D6 */	mullw r3, r4, r3
 /* 80424188 004210C8  D0 06 00 04 */	stfs f0, 4(r6)
 /* 8042418C 004210CC  D0 06 00 08 */	stfs f0, 8(r6)
 /* 80424190 004210D0  1C 85 01 2C */	mulli r4, r5, 0x12c
 /* 80424194 004210D4  7C 00 1A 14 */	add r0, r0, r3
 /* 80424198 004210D8  90 0D 9B 00 */	stw r0, sPlayTime@sda21(r13)
-/* 8042419C 004210DC  90 8D 9B 04 */	stw r4, lbl_80516184@sda21(r13)
+/* 8042419C 004210DC  90 8D 9B 04 */	stw r4, sPlayTime+4@sda21(r13)
 /* 804241A0 004210E0  4E 80 00 20 */	blr 
