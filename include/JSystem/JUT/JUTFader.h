@@ -1,6 +1,8 @@
 #ifndef _JUTFADER_H
 #define _JUTFADER_H
 
+#include "types.h"
+
 /*
     __vt__8JUTFader:
     .4byte 0
@@ -18,6 +20,11 @@ struct JUTFader {
 	virtual void draw();            // _0C
 
 	// _00 VTBL
+
+	u32 _04;
+	s16 _08;
+	s16 _0A;
+	u8 filler[0x28 - 0xC];
 };
 
 #endif

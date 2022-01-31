@@ -2,6 +2,7 @@
 #define _DVDSTATUS_H
 
 #include "types.h"
+#include "Game/MemoryCard/Mgr.h"
 
 struct JUTFader;
 
