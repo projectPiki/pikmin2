@@ -1,14 +1,11 @@
 .include "macros.inc"
 .section .rodata  # 0x804732E0 - 0x8049E220
 .balign 8
-.global lbl_8049A680
 lbl_8049A680:
 	.asciz "resourceMgr2D.cpp"
-	.skip 2
-.global lbl_8049A694
+.balign 4
 lbl_8049A694:
 	.asciz "P2Assert"
-	.skip 3
 
 .section .data, "wa"  # 0x8049E220 - 0x804EFC20
 .balign 8
@@ -17,13 +14,12 @@ __vt__Q28Resource5Mgr2D:
 	.4byte 0
 	.4byte 0
 	.4byte drawDump__Q28Resource3MgrFR8Graphicsii
-	.4byte 0
 
 .section .sbss # 0x80514D80 - 0x80516360
 .balign 8
 .global gResMgr2D
 gResMgr2D:
-	.skip 0x8
+	.skip 0x4
 
 .section .text, "ax"  # 0x800056C0 - 0x80472F00
 .global init__Q28Resource5Mgr2DFP7JKRHeap

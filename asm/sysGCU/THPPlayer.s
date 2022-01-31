@@ -116,6 +116,7 @@ VolumeTable:
 	.4byte 0x7DFE8000
 
 .section .bss  # 0x804EFC20 - 0x8051467C
+.balign 8
 .global ActivePlayer
 ActivePlayer:
 	.skip 0x1D0

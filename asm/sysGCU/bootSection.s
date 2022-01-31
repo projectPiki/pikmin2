@@ -5,78 +5,95 @@ lbl_constructor:
 
 .section .rodata  # 0x804732E0 - 0x8049E220
 .balign 8
-.global lbl_8049AF08
 lbl_8049AF08:
 	.skip 0xC
+.balign 4
+lbl_8049AF14:
 	.asciz "bootSection.cpp"
+.balign 4
+lbl_8049AF24:
 	.asciz "P2Assert"
-	.skip 0x3
+.balign 4
 TitlePiki_Red:
 	.asciz "title_red_5a3.bti"
-	.skip 0x2
+.balign 4
 TitlePiki_Yellow:
 	.asciz "title_yellow_5a3.bti"
-	.skip 0x3
+.balign 4
 TitlePiki_Blue:
 	.asciz "title_blue_5a3.bti"
-	.skip 0x1
+.balign 4
 TitlePiki_White:
 	.asciz "title_white_5a3.bti"
+.balign 4
 TitlePiki_Violet:
 	.asciz "title_violet_5a3.bti"
-	.skip 0x3
+.balign 4
+lbl_8049AF9C:
 	.4byte TitlePiki_Red
 	.4byte TitlePiki_Yellow
 	.4byte TitlePiki_Blue
 	.4byte TitlePiki_White
 	.4byte TitlePiki_Violet
+.balign 4
+lbl_8049AFB0: #Shift-JIS
 	.4byte 0x8375815B
 	.4byte 0x8367835A
 	.4byte 0x834E8356
 	.4byte 0x83878393
-	.4byte 0x00000000
+	.byte 0x00
+.balign 4
+lbl_8049AFC4:
 	.asciz "/user/yamashita/arc/boot_us.szs"
+.balign 4
+lbl_8049AFE4:
 	.asciz "/data/timg/nintendo_376x104.bti"
+.balign 4
+lbl_8049B004:
 	.asciz "/data/timg/dolby_mark.bti"
-	.skip 0x2
+.balign 4
+lbl_8049B020:
 	.asciz "/data/timg/warning.bti"
-	.skip 0x1
+.balign 4
+lbl_8049B038:
 	.asciz "/data/timg/warning_pstart.bti"
-	.skip 0x2
+.balign 4
+lbl_8049B058:
 	.asciz "og::Screen::Manager2D::create"
-	.skip 0x2
+.balign 4
+lbl_8049B078:
 	.asciz "ebiScreen"
-	.skip 0x2
+.balign 4
+lbl_8049B084:
 	.asciz "TParticle2dMgr"
-	.skip 0x1
+.balign 4
+lbl_8049B094:
 	.asciz "user/Ebisawa/effect/eff2d_game2d.jpc"
-	.skip 0x3
+.balign 4
+lbl_8049B0BC:
 	.asciz "ebi::TScreenProgre"
-	.skip 0x1
+.balign 4
+lbl_8049B0D0:
 	.asciz "ebi::TScreenProgre::loadResource"
-	.skip 0x3
+.balign 4
+lbl_8049B0F4:
 	.asciz "PSGame.h"
-	.skip 0x3
 
 .section .data, "wa"	# 0x8049E220 - 0x804EFC20
 .balign 8
-.global lbl_804ECFE8
-lbl_804ECFE8:
+lbl_804ECFE8: #no idea wtf this is
 	.4byte 0x00000001
 	.4byte 0x00000002
 	.4byte 0x00000003
 	.4byte 0x00000000
-.global lbl_804ECFF8
-lbl_804ECFF8:
-	.4byte 0x00000000
-	.4byte 0x00000000
-	.4byte 0x00000000
-.global lbl_804ED004
+govNAN___Q24Game5P2JST:
+	.float 0.0
+	.float 0.0
+	.float 0.0
 lbl_804ED004:
 	.4byte 0x00000000
 	.4byte 0xFFFFFFFF
 	.4byte loadResident__11BootSectionFv
-.global lbl_804ED010
 lbl_804ED010:
 	.4byte lbl_80448834
 	.4byte lbl_80448834
@@ -89,7 +106,6 @@ lbl_804ED010:
 	.4byte lbl_8044890C
 	.4byte lbl_8044896C
 	.4byte lbl_8044896C
-.global lbl_804ED03C
 lbl_804ED03C:
 	.4byte lbl_8044907C
 	.4byte lbl_80449088
@@ -102,21 +118,23 @@ lbl_804ED03C:
 	.4byte lbl_804490B8
 	.4byte lbl_8044959C
 	.4byte lbl_8044962C
-.global lbl_804ED068
 lbl_804ED068:
 	.4byte 0x00000000
 	.4byte 0xFFFFFFFF
 	.4byte load2DResource__11BootSectionFv
+lbl_804ED074:
 	.4byte 0x00000000
 	.4byte 0xFFFFFFFF
 	.4byte loadBootResource__11BootSectionFv
+lbl_804ED080:
 	.4byte 0x00000000
 	.4byte 0xFFFFFFFF
 	.4byte waitLoadResource__11BootSectionFv
+lbl_804ED08C:
 	.4byte 0x00000000
 	.4byte 0xFFFFFFFF
 	.4byte waitLoadResource__11BootSectionFv
-	.4byte 0x00000000
+	.4byte 0x00000000 #this is likely padding for alignment
 	.4byte 0x00000000
 	.4byte 0x00000000
 	.4byte 0x00000000
@@ -185,14 +203,12 @@ __vt__11BootSection:
 	.4byte 0
 	.4byte 0
 	.4byte "invoke__23Delegate<11BootSection>Fv"
-	.4byte 0
-	.4byte 0
-	.4byte 0
+	.skip 0xC #padding for alignment?
 
 .section .bss  # 0x804EFC20 - 0x8051467C
 .global sPikminTex__13TinyPikminMgr
 sPikminTex__13TinyPikminMgr:
-	.skip 0x18
+	.skip 0x14
 
 .section .sdata, "wa"  # 0x80514680 - 0x80514D80
 .balign 8
@@ -202,179 +218,126 @@ sTinyPikminNum__13TinyPikminMgr:
 
 .section .sbss # 0x80514D80 - 0x80516360
 .balign 8
-.global lbl_80516290
-lbl_80516290:
+gu32NAN___Q24Game5P2JST:
 	.skip 0x4
-.global lbl_80516294
-lbl_80516294:
+gfNAN___Q24Game5P2JST:
 	.skip 0x4
 .global sBootSection
 sBootSection:
 	.skip 0x4
-.global sTinyPikminMgr
 sTinyPikminMgr:
 	.skip 0x4
 
 .section .sdata2, "a"     # 0x80516360 - 0x80520E40
 .balign 8
-.global lbl_805209A0
 lbl_805209A0:
-	.4byte 0x00000000
-.global lbl_805209A4
+	.float 0.0
 lbl_805209A4:
 	.float 1.0
-.global lbl_805209A8
 lbl_805209A8:
-	.4byte 0x428C0000
-.global lbl_805209AC
+	.float 70.0
 lbl_805209AC:
-	.4byte 0x47000000
-.global lbl_805209B0
+	.float 32768.0
 lbl_805209B0:
-	.4byte 0x40000000
-.global lbl_805209B4
+	.float 2.0
 lbl_805209B4:
-	.4byte 0xC3480000
-.global lbl_805209B8
+	.float -200.0
 lbl_805209B8:
-	.4byte 0x3FC00000
-	.4byte 0x00000000
-.global lbl_805209C0
+	.float 1.5
+.balign 8
 lbl_805209C0:
 	.4byte 0x43300000
 	.4byte 0x80000000
-.global lbl_805209C8
 lbl_805209C8:
-	.4byte 0x41200000
-.global lbl_805209CC
+	.float 10.0
 lbl_805209CC:
-	.4byte 0x41A00000
-.global lbl_805209D0
+	.float 20.0
 lbl_805209D0:
-	.4byte 0x40800000
-.global lbl_805209D4
+	.float 4.0
 lbl_805209D4:
-	.4byte 0x40A00000
-.global lbl_805209D8
+	.float 5.0
 lbl_805209D8:
-	.4byte 0x41080000
-.global lbl_805209DC
+	.float 8.5
 lbl_805209DC:
-	.4byte 0x40E00000
-.global lbl_805209E0
+	.float 7.0
 lbl_805209E0:
-	.4byte 0x3F0CCCCD
-.global lbl_805209E4
+	.float 0.55
 lbl_805209E4:
-	.4byte 0x43960000
-.global lbl_805209E8
+	.float 300.0
 lbl_805209E8:
-	.4byte 0xBF800000
-.global lbl_805209EC
+	.float -1.0
 lbl_805209EC:
-	.4byte 0x41700000
-.global lbl_805209F0
+	.float 15.0
 lbl_805209F0:
-	.4byte 0xC0800000
-.global lbl_805209F4
+	.float -4.0
 lbl_805209F4:
-	.4byte 0x3F666666
-.global lbl_805209F8
+	.float 0.9
 lbl_805209F8:
 	.float 0.5
-.global lbl_805209FC
 lbl_805209FC:
 	.float 0.98
-.global lbl_80520A00
 lbl_80520A00:
-	.4byte 0x3F400000
-.global lbl_80520A04
+	.float 0.75
 lbl_80520A04:
-	.4byte 0x43B40000
-.global lbl_80520A08
+	.float 360.0
 lbl_80520A08:
-	.4byte 0x43E00000
-.global lbl_80520A0C
+	.float 448.0
 lbl_80520A0C:
-	.4byte 0x3F4CCCCD
-.global lbl_80520A10
+	.float 0.8
 lbl_80520A10:
-	.4byte 0x3E4CCCCD
-.global lbl_80520A14
-lbl_80520A14:
-	.4byte 0x40C90FDB
-.global lbl_80520A18
+	.float 0.2
+lbl_80520A14: #tau
+	.float 6.2831855
 lbl_80520A18:
 	.float 0.1
-.global lbl_80520A1C
 lbl_80520A1C:
-	.4byte 0xC3A2F983
-.global lbl_80520A20
+	.float -325.9493
 lbl_80520A20:
-	.4byte 0x43A2F983
-.global lbl_80520A24
+	.float 325.9493
 lbl_80520A24:
-	.4byte 0x3DA3D70A
-.global lbl_80520A28
+	.float 0.08
+.balign 4
 lbl_80520A28:
-	.4byte 0x74696D67
-	.4byte 0x2F257300
-.global lbl_80520A30
+	.asciz "timg/%s"
+.balign 4
 lbl_80520A30:
-	.4byte 0x43890000
-.global lbl_80520A34
+	.float 274.0
 lbl_80520A34:
-	.4byte 0x432F0000
-.global lbl_80520A38
+	.float 175.0
 lbl_80520A38:
-	.4byte 0x43260000
-	.4byte 0x00000000
-.global lbl_80520A40
+	.float 166.0
+.balign 8
 lbl_80520A40:
 	.4byte 0x43300000
 	.4byte 0x00000000
-.global lbl_80520A48
 lbl_80520A48:
-	.4byte 0x3D08850A
-.global lbl_80520A4C
+	.float 0.03333
 lbl_80520A4C:
-	.4byte 0x42EA0000
-.global lbl_80520A50
+	.float 117.0
 lbl_80520A50:
-	.4byte 0x431A0000
-.global lbl_80520A54
+	.float 154.0
 lbl_80520A54:
-	.4byte 0x43BC0000
-.global lbl_80520A58
+	.float 376.0
 lbl_80520A58:
 	.float 104.0
-.global lbl_80520A5C
 lbl_80520A5C:
-	.4byte 0x3F70A3D7
-.global lbl_80520A60
+	.float 0.94
 lbl_80520A60:
-	.4byte 0x433D0000
-.global lbl_80520A64
+	.float 189.0
 lbl_80520A64:
-	.4byte 0x43160000
-.global lbl_80520A68
+	.float 150.0
 lbl_80520A68:
-	.4byte 0x43680000
-.global lbl_80520A6C
+	.float 232.0
 lbl_80520A6C:
-	.4byte 0x42E00000
-.global lbl_80520A70
+	.float 112.0
 lbl_80520A70:
-	.4byte 0x44180000
-.global lbl_80520A74
+	.float 608.0
 lbl_80520A74:
-	.4byte 0x42FF0000
-.global lbl_80520A78
+	.float 127.5
 lbl_80520A78:
-	.4byte 0x42400000
-.global zz_80520a7c
-zz_80520a7c:
-	.4byte 0x42700000
+	.float 48.0
+zz_80520A7C:
+	.float 60.0
 
 .section .text, "ax"  # 0x800056C0 - 0x80472F00
 .global __ct__10TinyPikminFv
@@ -1789,9 +1752,6 @@ doDraw__11BootSectionFR8Graphics:
 /* 8044882C 0044576C  7C 09 03 A6 */	mtctr r0
 /* 80448830 00445770  4E 80 04 20 */	bctr 
 lbl_80448834:
-lbl_80448834:
-lbl_80448834:
-lbl_80448834:
 /* 80448834 00445774  7F C3 F3 78 */	mr r3, r30
 /* 80448838 00445778  7F E4 FB 78 */	mr r4, r31
 /* 8044883C 0044577C  48 00 06 49 */	bl drawEpilepsy__11BootSectionFR8Graphics
@@ -1874,7 +1834,6 @@ lbl_8044890C:
 /* 80448960 004458A0  38 A0 00 00 */	li r5, 0
 /* 80448964 004458A4  4B F7 0C 71 */	bl draw__14TParticle2dMgrFUcUs
 /* 80448968 004458A8  48 00 00 10 */	b lbl_80448978
-lbl_8044896C:
 lbl_8044896C:
 /* 8044896C 004458AC  7F C3 F3 78 */	mr r3, r30
 /* 80448970 004458B0  7F E4 FB 78 */	mr r4, r31
@@ -2640,7 +2599,7 @@ lbl_804493F4:
 /* 80449440 00446380  48 00 00 18 */	b lbl_80449458
 lbl_80449444:
 /* 80449444 00446384  C0 3F 00 50 */	lfs f1, 0x50(r31)
-/* 80449448 00446388  C0 02 27 1C */	lfs f0, zz_80520a7c@sda21(r2)
+/* 80449448 00446388  C0 02 27 1C */	lfs f0, zz_80520A7C@sda21(r2)
 /* 8044944C 0044638C  FC 01 00 40 */	fcmpo cr0, f1, f0
 /* 80449450 00446390  40 81 00 08 */	ble lbl_80449458
 /* 80449454 00446394  38 80 00 01 */	li r4, 1
@@ -3471,12 +3430,12 @@ lbl_80449FC8:
 /* 80449FD8 00446F18  4E 80 00 20 */	blr 
 
 .global forceReset__11BootSectionFv
-forceReset__11BootSectionFv:
+forceReset__11BootSectionFv: #weak function
 /* 80449FDC 00446F1C  38 60 00 00 */	li r3, 0
 /* 80449FE0 00446F20  4E 80 00 20 */	blr 
 
 .global "invoke__23Delegate<11BootSection>Fv"
-"invoke__23Delegate<11BootSection>Fv":
+"invoke__23Delegate<11BootSection>Fv": #weak function
 /* 80449FE4 00446F24  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 80449FE8 00446F28  7C 08 02 A6 */	mflr r0
 /* 80449FEC 00446F2C  7C 64 1B 78 */	mr r4, r3
@@ -3490,15 +3449,14 @@ forceReset__11BootSectionFv:
 /* 8044A00C 00446F4C  38 21 00 10 */	addi r1, r1, 0x10
 /* 8044A010 00446F50  4E 80 00 20 */	blr 
 
-.global __sinit_bootSection_cpp
-__sinit_bootSection_cpp:
+__sinit_bootSection_cpp: #static initializer
 /* 8044A014 00446F54  3C 80 80 51 */	lis r4, __float_nan@ha
 /* 8044A018 00446F58  38 00 FF FF */	li r0, -1
 /* 8044A01C 00446F5C  C0 04 48 B0 */	lfs f0, __float_nan@l(r4)
-/* 8044A020 00446F60  3C 60 80 4F */	lis r3, lbl_804ECFF8@ha
-/* 8044A024 00446F64  90 0D 9C 10 */	stw r0, lbl_80516290@sda21(r13)
-/* 8044A028 00446F68  D4 03 CF F8 */	stfsu f0, lbl_804ECFF8@l(r3)
-/* 8044A02C 00446F6C  D0 0D 9C 14 */	stfs f0, lbl_80516294@sda21(r13)
+/* 8044A020 00446F60  3C 60 80 4F */	lis r3, govNAN___Q24Game5P2JST@ha
+/* 8044A024 00446F64  90 0D 9C 10 */	stw r0, gu32NAN___Q24Game5P2JST@sda21(r13)
+/* 8044A028 00446F68  D4 03 CF F8 */	stfsu f0, govNAN___Q24Game5P2JST@l(r3)
+/* 8044A02C 00446F6C  D0 0D 9C 14 */	stfs f0, gfNAN___Q24Game5P2JST@sda21(r13)
 /* 8044A030 00446F70  D0 03 00 04 */	stfs f0, 4(r3)
 /* 8044A034 00446F74  D0 03 00 08 */	stfs f0, 8(r3)
 /* 8044A038 00446F78  4E 80 00 20 */	blr 

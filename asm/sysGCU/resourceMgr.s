@@ -1,18 +1,13 @@
 .include "macros.inc"
 .section .rodata  # 0x804732E0 - 0x8049E220
 .balign 8
-.global lbl_8049A640
 lbl_8049A640:
-	.4byte 0x7265736F
-	.4byte 0x75726365
-	.4byte 0x4D67722E
-	.4byte 0x63707000
-.global lbl_8049A650
+	.asciz "resourceMgr.cpp"
+.balign 4
 lbl_8049A650:
 	.asciz "P2Assert"
-	.skip 3
-.global lbl_8049A65C
-lbl_8049A65C:
+.balign 4
+lbl_8049A65C: #Shift-JIS
 	.4byte 0x974C82E8
 	.4byte 0x82A682C8
 	.4byte 0x82A28FF3
@@ -20,19 +15,19 @@ lbl_8049A65C:
 	.4byte 0x82B282B4
 	.4byte 0x82A282DC
 	.4byte 0x82B7200A
-	.4byte 0x00000000
-	.4byte 0x00000000
+	.byte 0x00
 
 .section .data, "wa"  # 0x8049E220 - 0x804EFC20
 .balign 8
-.global lbl_804EC3D8
 lbl_804EC3D8:
 	.4byte 0x00000000
 	.4byte 0x0000001C
 	.4byte 0x00000000
+lbl_804EC3E4:
 	.4byte 0x00000000
 	.4byte 0x00000020
 	.4byte 0x00000000
+lbl_804EC3F0:
 	.4byte 0x00000000
 	.4byte 0x00000024
 	.4byte 0x00000000
@@ -70,7 +65,6 @@ __vt__Q28Resource4Node:
 	.4byte 0
 	.4byte 0
 	.4byte "@24@__dt__Q28Resource4NodeFv"
-	.4byte 0
 
 .section .text, "ax"  # 0x800056C0 - 0x80472F00
 .global __dt__Q28Resource4NodeFv
@@ -1127,7 +1121,7 @@ lbl_80433F24:
 /* 80433F2C 00430E6C  4E 80 00 20 */	blr 
 
 .global "invoke__33Delegate<Q28Resource10MgrCommand>Fv"
-"invoke__33Delegate<Q28Resource10MgrCommand>Fv":
+"invoke__33Delegate<Q28Resource10MgrCommand>Fv": #weak function
 /* 80433F30 00430E70  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 80433F34 00430E74  7C 08 02 A6 */	mflr r0
 /* 80433F38 00430E78  7C 64 1B 78 */	mr r4, r3
@@ -1142,11 +1136,11 @@ lbl_80433F24:
 /* 80433F5C 00430E9C  4E 80 00 20 */	blr 
 
 .global "@24@__dt__Q28Resource4NodeFv"
-"@24@__dt__Q28Resource4NodeFv":
+"@24@__dt__Q28Resource4NodeFv": #weak function
 /* 80433F60 00430EA0  38 63 FF E8 */	addi r3, r3, -24
 /* 80433F64 00430EA4  4B FF F1 74 */	b __dt__Q28Resource4NodeFv
 
 .global "@24@__dt__Q28Resource10MgrCommandFv"
-"@24@__dt__Q28Resource10MgrCommandFv":
+"@24@__dt__Q28Resource10MgrCommandFv": #weak function
 /* 80433F68 00430EA8  38 63 FF E8 */	addi r3, r3, -24
 /* 80433F6C 00430EAC  4B FF F3 80 */	b __dt__Q28Resource10MgrCommandFv
