@@ -21,7 +21,7 @@ struct DvdStatus {
 
 	void draw();
 	bool isErrorOccured();
-	void update();
+	bool update();
 
 	int _00;           // _00
 	JUTFader* m_fader; // _04

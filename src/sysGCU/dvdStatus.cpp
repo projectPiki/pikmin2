@@ -61,6 +61,8 @@ void onDvdErrorRecovered__Q33ebi10FileSelect4TMgrFv();
         .4byte 0x00000000
 */
 
+const char* filler1 = "dvdStatus";
+
 /*
  * --INFO--
  * Address:	8042A314
@@ -91,44 +93,40 @@ bool DvdStatus::isErrorOccured()
  * Address:	8042A354
  * Size:	0001F0
  */
-void DvdStatus::update()
+bool DvdStatus::update()
 {
 	int status = DVDGetDriveStatus();
-	switch (status) {
-	case -1:
+	if (status == -1)
 		_00 = 1;
-		break;
-	case 11:
+	else if (status == 11)
 		_00 = 2;
-		break;
-	case 4:
+	else if (status == 4)
 		_00 = 3;
-		break;
-	case 5:
+	else if (status == 5)
 		_00 = 4;
-		break;
-	case 6:
+	else if (status == 6)
 		_00 = 5;
-		break;
-	default:
-		if (_00 == -1 || status != 1) {
-			_00 = -1;
-		}
-		break;
+	else if (_00 != -1 && status == 1) {
+		_00 = 0;
+	} else {
+		_00 = -1;
 	}
 	if (m_fader == nullptr) {
 		if (0 < _00) {
 			JFWDisplay* display = sys->m_display;
 			// This is line 170? Really???
-			JUT_ASSERTLINE(170, display != nullptr, "no display.\n");
-			m_fader          = display->m_fader;
-			display->m_fader = nullptr;
+
+			if (display) {
+				m_fader          = display->m_fader;
+				display->m_fader = nullptr;
+			} else {
+				JUT_PANICLINE(170, "no display.\n");
+			}
 			PADControlMotor(0, 2);
 			PADControlMotor(1, 2);
 			PADControlMotor(2, 2);
 			PADControlMotor(3, 2);
-			sys->disableCPULockDetector();
-			_08 = status;
+			_08 = sys->disableCPULockDetector();
 			// ebi::FileSelect::TMgr::onDvdErrorOccured();
 			onDvdErrorOccured__Q33ebi10FileSelect4TMgrFv();
 			// ebi::Save::TMgr::onDvdErrorOccured();
@@ -137,12 +135,17 @@ void DvdStatus::update()
 	} else {
 		if (_00 == -1) {
 			JFWDisplay* display = sys->m_display;
-			// This is line 204? Really???
-			JUT_ASSERTLINE(204, display != nullptr, "no display.\n");
-			// Line 197 now???
-			JUT_ASSERTLINE(197, display->m_fader != nullptr, "display changed !\n");
-			display->m_fader = m_fader;
-			m_fader          = nullptr;
+			if (display) {
+				// Line 197 now???
+				JUT_ASSERTLINE(197, display->m_fader == nullptr, "display changed !\n");
+
+				// This is line 204? Really???
+
+				display->m_fader = m_fader;
+				m_fader          = nullptr;
+			} else {
+				JUT_PANICLINE(204, "no display.\n");
+			}
 			sys->enableCPULockDetector(_08);
 			// ebi::FileSelect::TMgr::onDvdErrorRecovered();
 			onDvdErrorRecovered__Q33ebi10FileSelect4TMgrFv();
@@ -150,161 +153,7 @@ void DvdStatus::update()
 			onDvdErrorRecovered__Q33ebi4Save4TMgrFv();
 		}
 	}
-	// return m_fader != nullptr???
-	/*
-	stwu     r1, -0x20(r1)
-	mflr     r0
-	lis      r4, lbl_80499DA8@ha
-	stw      r0, 0x24(r1)
-	stw      r31, 0x1c(r1)
-	mr       r31, r3
-	stw      r30, 0x18(r1)
-	addi     r30, r4, lbl_80499DA8@l
-	stw      r29, 0x14(r1)
-	bl       DVDGetDriveStatus
-	cmpwi    r3, -1
-	bne      lbl_8042A390
-	li       r0, 1
-	stw      r0, 0(r31)
-	b        lbl_8042A408
-
-lbl_8042A390:
-	cmpwi    r3, 0xb
-	bne      lbl_8042A3A4
-	li       r0, 2
-	stw      r0, 0(r31)
-	b        lbl_8042A408
-
-lbl_8042A3A4:
-	cmpwi    r3, 4
-	bne      lbl_8042A3B8
-	li       r0, 3
-	stw      r0, 0(r31)
-	b        lbl_8042A408
-
-lbl_8042A3B8:
-	cmpwi    r3, 5
-	bne      lbl_8042A3CC
-	li       r0, 4
-	stw      r0, 0(r31)
-	b        lbl_8042A408
-
-lbl_8042A3CC:
-	cmpwi    r3, 6
-	bne      lbl_8042A3E0
-	li       r0, 5
-	stw      r0, 0(r31)
-	b        lbl_8042A408
-
-lbl_8042A3E0:
-	lwz      r0, 0(r31)
-	cmpwi    r0, -1
-	beq      lbl_8042A400
-	cmpwi    r3, 1
-	bne      lbl_8042A400
-	li       r0, 0
-	stw      r0, 0(r31)
-	b        lbl_8042A408
-
-lbl_8042A400:
-	li       r0, -1
-	stw      r0, 0(r31)
-
-lbl_8042A408:
-	lwz      r0, 4(r31)
-	cmplwi   r0, 0
-	bne      lbl_8042A4A0
-	lwz      r0, 0(r31)
-	cmpwi    r0, 0
-	ble      lbl_8042A518
-	lwz      r3, sys@sda21(r13)
-	lwz      r4, 0x4c(r3)
-	cmplwi   r4, 0
-	beq      lbl_8042A444
-	lwz      r3, 4(r4)
-	li       r0, 0
-	stw      r3, 4(r31)
-	stw      r0, 4(r4)
-	b        lbl_8042A458
-
-lbl_8042A444:
-	addi     r3, r30, 0xc
-	addi     r5, r30, 0x1c
-	li       r4, 0xaa
-	crclr    6
-	bl       panic_f__12JUTExceptionFPCciPCce
-
-lbl_8042A458:
-	li       r3, 0
-	li       r4, 2
-	bl       PADControlMotor
-	li       r3, 1
-	li       r4, 2
-	bl       PADControlMotor
-	li       r3, 2
-	li       r4, 2
-	bl       PADControlMotor
-	li       r3, 3
-	li       r4, 2
-	bl       PADControlMotor
-	lwz      r3, sys@sda21(r13)
-	bl       disableCPULockDetector__6SystemFv
-	stw      r3, 8(r31)
-	bl       onDvdErrorOccured__Q33ebi10FileSelect4TMgrFv
-	bl       onDvdErrorOccured__Q33ebi4Save4TMgrFv
-	b        lbl_8042A518
-
-lbl_8042A4A0:
-	lwz      r0, 0(r31)
-	cmpwi    r0, -1
-	bne      lbl_8042A518
-	lwz      r3, sys@sda21(r13)
-	lwz      r29, 0x4c(r3)
-	cmplwi   r29, 0
-	beq      lbl_8042A4F0
-	lwz      r0, 4(r29)
-	cmplwi   r0, 0
-	beq      lbl_8042A4DC
-	addi     r3, r30, 0xc
-	addi     r5, r30, 0x2c
-	li       r4, 0xc5
-	crclr    6
-	bl       panic_f__12JUTExceptionFPCciPCce
-
-lbl_8042A4DC:
-	lwz      r3, 4(r31)
-	li       r0, 0
-	stw      r3, 4(r29)
-	stw      r0, 4(r31)
-	b        lbl_8042A504
-
-lbl_8042A4F0:
-	addi     r3, r30, 0xc
-	addi     r5, r30, 0x1c
-	li       r4, 0xcc
-	crclr    6
-	bl       panic_f__12JUTExceptionFPCciPCce
-
-lbl_8042A504:
-	lwz      r3, sys@sda21(r13)
-	lwz      r4, 8(r31)
-	bl       enableCPULockDetector__6SystemFi
-	bl       onDvdErrorRecovered__Q33ebi10FileSelect4TMgrFv
-	bl       onDvdErrorRecovered__Q33ebi4Save4TMgrFv
-
-lbl_8042A518:
-	lwz      r3, 4(r31)
-	neg      r0, r3
-	or       r0, r0, r3
-	srwi     r3, r0, 0x1f
-	lwz      r31, 0x1c(r1)
-	lwz      r30, 0x18(r1)
-	lwz      r29, 0x14(r1)
-	lwz      r0, 0x24(r1)
-	mtlr     r0
-	addi     r1, r1, 0x20
-	blr
-	*/
+	return m_fader != nullptr;
 }
 
 /*
