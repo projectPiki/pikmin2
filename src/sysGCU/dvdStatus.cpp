@@ -114,7 +114,6 @@ bool DvdStatus::update()
 	if (m_fader == nullptr) {
 		if (0 < _00) {
 			JFWDisplay* display = sys->m_display;
-			// This is line 170? Really???
 
 			if (display) {
 				m_fader          = display->m_fader;
@@ -136,11 +135,7 @@ bool DvdStatus::update()
 		if (_00 == -1) {
 			JFWDisplay* display = sys->m_display;
 			if (display) {
-				// Line 197 now???
 				JUT_ASSERTLINE(197, display->m_fader == nullptr, "display changed !\n");
-
-				// This is line 204? Really???
-
 				display->m_fader = m_fader;
 				m_fader          = nullptr;
 			} else {
