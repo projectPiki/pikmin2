@@ -10,7 +10,7 @@ struct Graphics;
 namespace P2DScreen {
 struct Node : public CNode {
 	Node()
-		: CNode()
+	    : CNode()
 	{
 		_18 = nullptr;
 	}
@@ -29,8 +29,9 @@ struct CallBackNode : public Node {
 	 * @reifiedFile{plugProjectOgawaU/ogCallBackMessage.cpp}
 	 */
 	CallBackNode()
-		: Node()
-	{}
+	    : Node()
+	{
+	}
 	virtual ~CallBackNode(); // _00
 	virtual void update();   // _08
 };

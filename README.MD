@@ -69,6 +69,7 @@ pikmin2.usa.dol: `sha1: 90d328bf8f190c90472e8c19e7e53c6ad0fe0d1a`
 	- <a href="https://github.com/projectPiki/pikmin2/tree/main/src/plugProjectKonoU/khMailSaveData.cpp">plugProjectKonoU/khMailSaveData.cpp</a>
 - plugProjectOgawaU
 	- <a href="https://github.com/projectPiki/pikmin2/tree/main/src/plugProjectOgawaU/ogAngleMgr.cpp">plugProjectOgawaU/ogAngleMgr.cpp</a>
+	- <a href="https://github.com/projectPiki/pikmin2/tree/main/src/plugProjectOgawaU/ogCounter.cpp">plugProjectOgawaU/ogCounter.cpp</a>
 	- <a href="https://github.com/projectPiki/pikmin2/tree/main/src/plugProjectOgawaU/ogLib2D.cpp">plugProjectOgawaU/ogLib2D.cpp</a>
 	- <a href="https://github.com/projectPiki/pikmin2/tree/main/src/plugProjectOgawaU/ogSceneSMenuPauseVs.cpp">plugProjectOgawaU/ogSceneSMenuPauseVs.cpp</a>
 	- <a href="https://github.com/projectPiki/pikmin2/tree/main/src/plugProjectOgawaU/ogSceneWorldMapInfoWindow0.cpp">plugProjectOgawaU/ogSceneWorldMapInfoWindow0.cpp</a>

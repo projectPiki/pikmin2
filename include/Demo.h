@@ -14,7 +14,7 @@ enum EDrawInitMode {};
 namespace Demo {
 struct HIORootNode : public Game::HIORootNode {
 	HIORootNode()
-		: Game::HIORootNode(nullptr)
+	    : Game::HIORootNode(nullptr)
 	{
 		m_name = "THPセクション";
 	}

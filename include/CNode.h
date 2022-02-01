@@ -31,11 +31,11 @@ struct CNode {
 	 */
 	void setName(char* name) { m_name = name; }
 
-
 	/**
 	 * @fabricated
 	 */
-	inline void clearRelations() {
+	inline void clearRelations()
+	{
 		m_child  = nullptr;
 		m_parent = nullptr;
 		m_prev   = nullptr;

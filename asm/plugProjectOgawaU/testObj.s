@@ -1,13 +1,11 @@
 .include "macros.inc"
 .section .rodata  # 0x804732E0 - 0x8049E220
 .balign 8
-.global lbl_8048E078
 lbl_8048E078:
 	.asciz "screenObj.h"
-.global lbl_8048E084
+.balign 4
 lbl_8048E084:
 	.asciz "P2Assert"
-	.skip 3
 
 .section .data, "wa"  # 0x8049E220 - 0x804EFC20
 .balign 8
@@ -20,21 +18,11 @@ __vt__Q26Screen8IObjBase:
 	.4byte 0
 	.4byte 0
 	.4byte "@24@__dt__Q26Screen8IObjBaseFv"
-	.4byte 0
-	.4byte 0
-	.4byte 0
-	.4byte 0
-	.4byte 0
-	.4byte 0
-	.4byte 0
-	.4byte 0
-	.4byte 0
-	.4byte 0
-	.4byte 0
+	.skip 0x2C #padding for alignment
 
 .section .text, "ax"  # 0x800056C0 - 0x80472F00
 .global __dt__Q26Screen7ObjBaseFv
-__dt__Q26Screen7ObjBaseFv:
+__dt__Q26Screen7ObjBaseFv: #weak func
 /* 8030D868 0030A7A8  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 8030D86C 0030A7AC  7C 08 02 A6 */	mflr r0
 /* 8030D870 0030A7B0  90 01 00 14 */	stw r0, 0x14(r1)
@@ -76,7 +64,7 @@ lbl_8030D8E0:
 /* 8030D8F8 0030A838  4E 80 00 20 */	blr 
 
 .global setOwner__Q26Screen7ObjBaseFPQ26Screen9SceneBase
-setOwner__Q26Screen7ObjBaseFPQ26Screen9SceneBase:
+setOwner__Q26Screen7ObjBaseFPQ26Screen9SceneBase: #weak func
 /* 8030D8FC 0030A83C  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 8030D900 0030A840  7C 08 02 A6 */	mflr r0
 /* 8030D904 0030A844  90 01 00 14 */	stw r0, 0x14(r1)
@@ -104,27 +92,27 @@ lbl_8030D940:
 /* 8030D958 0030A898  4E 80 00 20 */	blr 
 
 .global getOwner__Q26Screen7ObjBaseCFv
-getOwner__Q26Screen7ObjBaseCFv:
+getOwner__Q26Screen7ObjBaseCFv: #weak func
 /* 8030D95C 0030A89C  80 63 00 34 */	lwz r3, 0x34(r3)
 /* 8030D960 0030A8A0  4E 80 00 20 */	blr 
 
 .global doConfirmSetScene__Q26Screen7ObjBaseFRQ26Screen11SetSceneArg
-doConfirmSetScene__Q26Screen7ObjBaseFRQ26Screen11SetSceneArg:
+doConfirmSetScene__Q26Screen7ObjBaseFRQ26Screen11SetSceneArg: #weak func
 /* 8030D964 0030A8A4  38 60 00 01 */	li r3, 1
 /* 8030D968 0030A8A8  4E 80 00 20 */	blr 
 
 .global doConfirmStartScene__Q26Screen7ObjBaseFPQ26Screen13StartSceneArg
-doConfirmStartScene__Q26Screen7ObjBaseFPQ26Screen13StartSceneArg:
+doConfirmStartScene__Q26Screen7ObjBaseFPQ26Screen13StartSceneArg: #weak func
 /* 8030D96C 0030A8AC  38 60 00 01 */	li r3, 1
 /* 8030D970 0030A8B0  4E 80 00 20 */	blr 
 
 .global doConfirmEndScene__Q26Screen7ObjBaseFRPQ26Screen11EndSceneArg
-doConfirmEndScene__Q26Screen7ObjBaseFRPQ26Screen11EndSceneArg:
+doConfirmEndScene__Q26Screen7ObjBaseFRPQ26Screen11EndSceneArg: #weak func
 /* 8030D974 0030A8B4  38 60 00 01 */	li r3, 1
 /* 8030D978 0030A8B8  4E 80 00 20 */	blr 
 
 .global __dt__Q26Screen8IObjBaseFv
-__dt__Q26Screen8IObjBaseFv:
+__dt__Q26Screen8IObjBaseFv: #weak func
 /* 8030D97C 0030A8BC  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 8030D980 0030A8C0  7C 08 02 A6 */	mflr r0
 /* 8030D984 0030A8C4  90 01 00 14 */	stw r0, 0x14(r1)
@@ -159,6 +147,6 @@ lbl_8030D9DC:
 /* 8030D9F4 0030A934  4E 80 00 20 */	blr 
 
 .global "@24@__dt__Q26Screen8IObjBaseFv"
-"@24@__dt__Q26Screen8IObjBaseFv":
+"@24@__dt__Q26Screen8IObjBaseFv": #weak func
 /* 8030D9F8 0030A938  38 63 FF E8 */	addi r3, r3, -24
 /* 8030D9FC 0030A93C  4B FF FF 80 */	b __dt__Q26Screen8IObjBaseFv
