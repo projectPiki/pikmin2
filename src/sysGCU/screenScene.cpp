@@ -1,7 +1,12 @@
 #include "Dolphin/stl.h"
 #include "IDelegate.h"
+#include "JSystem/JKR/JKRArchive.h"
 #include "JSystem/JUT/JUTException.h"
 #include "JSystem/JUtility.h"
+#include "Screen/Enums.h"
+#include "Screen/SceneInfoList.h"
+#include "og/Screen/DispMemberDummy.h"
+#include "og/Screen/ogScreen.h"
 #include "og/newScreen/ogUtil.h"
 #include "Screen/Bases.h"
 #include "System.h"
@@ -100,8 +105,8 @@ SceneBase::SceneBase(void)
 	m_objMgr           = new ObjMgrBase();
 	m_dispMemberBuffer = new u8[0x400];
 	P2ASSERTLINE(113, m_dispMemberBuffer != nullptr);
-	DispMemberDummy dummy;
-	memcpy(m_dispMemberBuffer, dummy, sizeof(dummy));
+	og::Screen::DispMemberDummy dummy;
+	memcpy(m_dispMemberBuffer, (void*)&dummy, sizeof(dummy));
 	sprintf(m_name, "???");
 	/*
 	stwu     r1, -0x30(r1)
@@ -182,24 +187,7 @@ lbl_8045186C:
  * Address:	804518C4
  * Size:	000030
  */
-IObjBase* SceneBase::searchObj(char* name)
-{
-	return m_objMgr->search(this, name);
-	/*
-	stwu     r1, -0x10(r1)
-	mflr     r0
-	mr       r6, r3
-	mr       r5, r4
-	stw      r0, 0x14(r1)
-	mr       r4, r6
-	lwz      r3, 0x218(r3)
-	bl       search__Q26Screen10ObjMgrBaseFPQ26Screen9SceneBasePc
-	lwz      r0, 0x14(r1)
-	mtlr     r0
-	addi     r1, r1, 0x10
-	blr
-	*/
-}
+IObjBase* SceneBase::searchObj(char* name) { return m_objMgr->search(this, name); }
 
 /*
  * --INFO--
@@ -211,24 +199,6 @@ void SceneBase::destroy(void)
 	if (m_command._30 != -1) {
 		gResMgr2D->destroy(&m_command);
 	}
-	/*
-	stwu     r1, -0x10(r1)
-	mflr     r0
-	mr       r4, r3
-	stw      r0, 0x14(r1)
-	lwz      r0, 0x158(r3)
-	cmpwi    r0, -1
-	beq      lbl_8045191C
-	lwz      r3, gResMgr2D@sda21(r13)
-	addi     r4, r4, 0x128
-	bl       destroy__Q28Resource3MgrFPQ28Resource10MgrCommand
-
-lbl_8045191C:
-	lwz      r0, 0x14(r1)
-	mtlr     r0
-	addi     r1, r1, 0x10
-	blr
-	*/
 }
 
 /*
@@ -241,11 +211,11 @@ void SceneBase::create(void)
 	if (m_command._30 == -1) {
 		m_someTime    = sys->getTime();
 		m_command._B0 = &_10C;
-		if (getResName()[0] == '\0') {
-			gResMgr2D->loadResource(&m_command, "", true);
-		} else {
+		if (getResName()[0] != '\0') {
 			og::newScreen::makeLanguageResName(m_name, getResName());
 			gResMgr2D->loadResource(&m_command, m_name, true);
+		} else {
+			gResMgr2D->loadResource(&m_command, "", true);
 		}
 		m_stateID = Unknown1;
 	}
@@ -311,18 +281,18 @@ lbl_804519D4:
  * Address:	804519E8
  * Size:	00015C
  */
-void SceneBase::update(void)
+void SceneBase::update()
 {
 	switch (m_stateID) {
 	case Unknown0:
 		break;
 	case Unknown1:
-		if (gResMgr2D->sync(&m_command, false) != '\0') {
+		if (gResMgr2D->sync(&m_command, false) != false) {
 			if (getResName()[0] != '\0') {
 				void* res = m_command.getResource();
 				P2ASSERTLINE(194, res != nullptr);
 				m_command.becomeCurrentHeap();
-				JKRArchive* archive = JKRArchive::mount(res, nullptr, 1);
+				JKRArchive* archive = JKRArchive::mount(res, nullptr, JKRArchive::EMD_Unk1);
 				P2ASSERTLINE(197, archive != nullptr);
 				createObj(archive);
 				m_command.releaseCurrentHeap();
@@ -341,115 +311,9 @@ void SceneBase::update(void)
 	case Unknown4:
 		break;
 	default:
-	case Invalid:
 		JUTException::panic_f(__FILE__, 226, "P2Assert");
 		break;
 	}
-	/*
-	stwu     r1, -0x10(r1)
-	mflr     r0
-	stw      r0, 0x14(r1)
-	stw      r31, 0xc(r1)
-	mr       r31, r3
-	stw      r30, 8(r1)
-	lwz      r0, 0x120(r3)
-	cmpwi    r0, 2
-	beq      lbl_80451B2C
-	bge      lbl_80451A20
-	cmpwi    r0, 0
-	beq      lbl_80451B2C
-	bge      lbl_80451A30
-	b        lbl_80451B10
-
-lbl_80451A20:
-	cmpwi    r0, 4
-	beq      lbl_80451B2C
-	bge      lbl_80451B10
-	b        lbl_80451AF8
-
-lbl_80451A30:
-	lwz      r3, gResMgr2D@sda21(r13)
-	addi     r4, r31, 0x128
-	li       r5, 0
-	bl       sync__Q28Resource3MgrFPQ28Resource10MgrCommandb
-	clrlwi.  r0, r3, 0x18
-	beq      lbl_80451B2C
-	mr       r3, r31
-	lwz      r12, 0(r31)
-	lwz      r12, 0x1c(r12)
-	mtctr    r12
-	bctrl
-	lbz      r0, 0(r3)
-	extsb.   r0, r0
-	beq      lbl_80451AE4
-	addi     r3, r31, 0x128
-	bl       getResource__Q28Resource10MgrCommandFv
-	or.      r30, r3, r3
-	bne      lbl_80451A94
-	lis      r3, lbl_8049B8A0@ha
-	lis      r5, lbl_8049B8B0@ha
-	addi     r3, r3, lbl_8049B8A0@l
-	li       r4, 0xc2
-	addi     r5, r5, lbl_8049B8B0@l
-	crclr    6
-	bl       panic_f__12JUTExceptionFPCciPCce
-
-lbl_80451A94:
-	addi     r3, r31, 0x128
-	bl       becomeCurrentHeap__Q28Resource10MgrCommandFv
-	mr       r3, r30
-	li       r4, 0
-	li       r5, 1
-	bl       mount__10JKRArchiveFPvP7JKRHeapQ210JKRArchive15EMountDirection
-	or.      r30, r3, r3
-	bne      lbl_80451AD0
-	lis      r3, lbl_8049B8A0@ha
-	lis      r5, lbl_8049B8B0@ha
-	addi     r3, r3, lbl_8049B8A0@l
-	li       r4, 0xc5
-	addi     r5, r5, lbl_8049B8B0@l
-	crclr    6
-	bl       panic_f__12JUTExceptionFPCciPCce
-
-lbl_80451AD0:
-	mr       r3, r31
-	mr       r4, r30
-	bl       createObj__Q26Screen9SceneBaseFP10JKRArchive
-	addi     r3, r31, 0x128
-	bl       releaseCurrentHeap__Q28Resource10MgrCommandFv
-
-lbl_80451AE4:
-	li       r0, 2
-	stw      r0, 0x120(r31)
-	lwz      r3, sys@sda21(r13)
-	bl       getTime__6SystemFv
-	b        lbl_80451B2C
-
-lbl_80451AF8:
-	bl       updateActive__Q26Screen9SceneBaseFv
-	clrlwi.  r0, r3, 0x18
-	beq      lbl_80451B2C
-	li       r0, 4
-	stw      r0, 0x120(r31)
-	b        lbl_80451B2C
-
-lbl_80451B10:
-	lis      r3, lbl_8049B8A0@ha
-	lis      r5, lbl_8049B8B0@ha
-	addi     r3, r3, lbl_8049B8A0@l
-	li       r4, 0xe2
-	addi     r5, r5, lbl_8049B8B0@l
-	crclr    6
-	bl       panic_f__12JUTExceptionFPCciPCce
-
-lbl_80451B2C:
-	lwz      r0, 0x14(r1)
-	lwz      r31, 0xc(r1)
-	lwz      r30, 8(r1)
-	mtlr     r0
-	addi     r1, r1, 0x10
-	blr
-	*/
 }
 
 /*
@@ -457,28 +321,10 @@ lbl_80451B2C:
  * Address:	80451B44
  * Size:	000040
  */
-bool SceneBase::updateActive(void)
+bool SceneBase::updateActive()
 {
 	doUpdateActive();
-	m_objMgr->update();
-	/*
-	stwu     r1, -0x10(r1)
-	mflr     r0
-	stw      r0, 0x14(r1)
-	stw      r31, 0xc(r1)
-	mr       r31, r3
-	lwz      r12, 0(r3)
-	lwz      r12, 0x2c(r12)
-	mtctr    r12
-	bctrl
-	lwz      r3, 0x218(r31)
-	bl       update__Q26Screen10ObjMgrBaseFv
-	lwz      r0, 0x14(r1)
-	lwz      r31, 0xc(r1)
-	mtlr     r0
-	addi     r1, r1, 0x10
-	blr
-	*/
+	return m_objMgr->update();
 }
 
 /*
@@ -486,9 +332,10 @@ bool SceneBase::updateActive(void)
  * Address:	80451B84
  * Size:	000004
  */
-void SceneBase::doUpdateActive(void) { }
+void SceneBase::doUpdateActive() { }
 
 /*
+ * @note `break;` has a different result from `return;` here.
  * --INFO--
  * Address:	80451B88
  * Size:	000090
@@ -499,59 +346,17 @@ void SceneBase::draw(Graphics& gfx)
 	case Unknown0:
 	case Unknown1:
 	case Unknown2:
-		return;
+		// return;
+		break;
 	case Unknown3:
 	case Unknown4:
 		setPort(gfx);
 		m_objMgr->draw(gfx);
-		return;
+		// return;
+		break;
 	default:
-		JUT_PANICLINE(285, "P2Assert");
+		P2ASSERTLINE(285, false);
 	}
-	/*
-	stwu     r1, -0x10(r1)
-	mflr     r0
-	stw      r0, 0x14(r1)
-	stw      r31, 0xc(r1)
-	mr       r31, r4
-	stw      r30, 8(r1)
-	mr       r30, r3
-	lwz      r0, 0x120(r3)
-	cmpwi    r0, 3
-	bge      lbl_80451BBC
-	cmpwi    r0, 0
-	bge      lbl_80451C00
-	b        lbl_80451BE4
-
-lbl_80451BBC:
-	cmpwi    r0, 5
-	bge      lbl_80451BE4
-	lwz      r12, 0(r3)
-	lwz      r12, 0x28(r12)
-	mtctr    r12
-	bctrl
-	lwz      r3, 0x218(r30)
-	mr       r4, r31
-	bl       draw__Q26Screen10ObjMgrBaseFR8Graphics
-	b        lbl_80451C00
-
-lbl_80451BE4:
-	lis      r3, lbl_8049B8A0@ha
-	lis      r5, lbl_8049B8B0@ha
-	addi     r3, r3, lbl_8049B8A0@l
-	li       r4, 0x11d
-	addi     r5, r5, lbl_8049B8B0@l
-	crclr    6
-	bl       panic_f__12JUTExceptionFPCciPCce
-
-lbl_80451C00:
-	lwz      r0, 0x14(r1)
-	lwz      r31, 0xc(r1)
-	lwz      r30, 8(r1)
-	mtlr     r0
-	addi     r1, r1, 0x10
-	blr
-	*/
 }
 
 /*
@@ -561,37 +366,12 @@ lbl_80451C00:
  */
 bool SceneBase::start(Screen::StartSceneArg* arg)
 {
-	if (m_stateID == Unknown0 || m_stateID == Unknown1) {
+	if (m_stateID != Unknown0 && m_stateID != Unknown1) {
+		m_stateID = Unknown3;
+		return doStart(arg);
+	} else {
 		return false;
 	}
-	m_stateID = Unknown3;
-	return doStart(arg);
-	/*
-	stwu     r1, -0x10(r1)
-	mflr     r0
-	stw      r0, 0x14(r1)
-	lwz      r0, 0x120(r3)
-	cmpwi    r0, 0
-	beq      lbl_80451C54
-	cmpwi    r0, 1
-	beq      lbl_80451C54
-	li       r0, 3
-	stw      r0, 0x120(r3)
-	lwz      r12, 0(r3)
-	lwz      r12, 0x3c(r12)
-	mtctr    r12
-	bctrl
-	b        lbl_80451C58
-
-lbl_80451C54:
-	li       r3, 0
-
-lbl_80451C58:
-	lwz      r0, 0x14(r1)
-	mtlr     r0
-	addi     r1, r1, 0x10
-	blr
-	*/
 }
 
 /*
@@ -603,18 +383,6 @@ bool SceneBase::doStart(Screen::StartSceneArg* arg)
 {
 	m_objMgr->start(arg);
 	return true;
-	/*
-	stwu     r1, -0x10(r1)
-	mflr     r0
-	stw      r0, 0x14(r1)
-	lwz      r3, 0x218(r3)
-	bl       start__Q26Screen10ObjMgrBaseFPQ26Screen13StartSceneArg
-	lwz      r0, 0x14(r1)
-	li       r3, 1
-	mtlr     r0
-	addi     r1, r1, 0x10
-	blr
-	*/
 }
 
 /*
@@ -624,52 +392,16 @@ bool SceneBase::doStart(Screen::StartSceneArg* arg)
  */
 bool SceneBase::end(Screen::EndSceneArg* arg)
 {
-	switch (m_stateID) {
-	case Unknown0:
-	case Unknown2:
+	bool result;
+	if (m_stateID == Unknown0 || m_stateID == Unknown2) {
 		m_stateID = Unknown4;
-		return true;
-	case Unknown1:
-		return false;
-	default:
-		return doEnd(arg);
+		result    = true;
+	} else if (m_stateID != Unknown1) {
+		result = doEnd(arg);
+	} else {
+		result = false;
 	}
-	/*
-	stwu     r1, -0x10(r1)
-	mflr     r0
-	stw      r0, 0x14(r1)
-	lwz      r0, 0x120(r3)
-	cmpwi    r0, 0
-	beq      lbl_80451CB0
-	cmpwi    r0, 2
-	bne      lbl_80451CC0
-
-lbl_80451CB0:
-	li       r0, 4
-	li       r4, 1
-	stw      r0, 0x120(r3)
-	b        lbl_80451CE4
-
-lbl_80451CC0:
-	cmpwi    r0, 1
-	beq      lbl_80451CE0
-	lwz      r12, 0(r3)
-	lwz      r12, 0x40(r12)
-	mtctr    r12
-	bctrl
-	mr       r4, r3
-	b        lbl_80451CE4
-
-lbl_80451CE0:
-	li       r4, 0
-
-lbl_80451CE4:
-	lwz      r0, 0x14(r1)
-	mr       r3, r4
-	mtlr     r0
-	addi     r1, r1, 0x10
-	blr
-	*/
+	return result;
 }
 
 /*
@@ -677,67 +409,21 @@ lbl_80451CE4:
  * Address:	80451CF8
  * Size:	000024
  */
-bool SceneBase::doEnd(Screen::EndSceneArg* arg)
-{
-	m_objMgr->end(arg);
-	/*
-	stwu     r1, -0x10(r1)
-	mflr     r0
-	stw      r0, 0x14(r1)
-	lwz      r3, 0x218(r3)
-	bl       end__Q26Screen10ObjMgrBaseFPQ26Screen11EndSceneArg
-	lwz      r0, 0x14(r1)
-	mtlr     r0
-	addi     r1, r1, 0x10
-	blr
-	*/
-}
+bool SceneBase::doEnd(Screen::EndSceneArg* arg) { return m_objMgr->end(arg); }
 
 /*
  * --INFO--
  * Address:	80451D1C
  * Size:	00002C
  */
-void SceneBase::userCallBackFunc(Resource::MgrCommand* command)
-{
-	doUserCallBackFunc(command);
-	/*
-	stwu     r1, -0x10(r1)
-	mflr     r0
-	stw      r0, 0x14(r1)
-	lwz      r12, 0(r3)
-	lwz      r12, 0x24(r12)
-	mtctr    r12
-	bctrl
-	lwz      r0, 0x14(r1)
-	mtlr     r0
-	addi     r1, r1, 0x10
-	blr
-	*/
-}
+void SceneBase::userCallBackFunc(Resource::MgrCommand* command) { doUserCallBackFunc(command); }
 
 /*
  * --INFO--
  * Address:	80451D48
  * Size:	00002C
  */
-void SceneBase::createObj(JKRArchive* archive)
-{
-	doCreateObj(archive);
-	/*
-	stwu     r1, -0x10(r1)
-	mflr     r0
-	stw      r0, 0x14(r1)
-	lwz      r12, 0(r3)
-	lwz      r12, 0x20(r12)
-	mtctr    r12
-	bctrl
-	lwz      r0, 0x14(r1)
-	mtlr     r0
-	addi     r1, r1, 0x10
-	blr
-	*/
-}
+void SceneBase::createObj(JKRArchive* archive) { doCreateObj(archive); }
 
 /*
  * --INFO--
@@ -747,32 +433,7 @@ void SceneBase::createObj(JKRArchive* archive)
 void SceneBase::registObj(Screen::ObjBase* obj, JKRArchive* archive)
 {
 	m_objMgr->registObj(obj, this);
-	obj->create(*archive);
-	/*
-	stwu     r1, -0x10(r1)
-	mflr     r0
-	mr       r6, r3
-	stw      r0, 0x14(r1)
-	stw      r31, 0xc(r1)
-	mr       r31, r5
-	mr       r5, r6
-	stw      r30, 8(r1)
-	mr       r30, r4
-	lwz      r3, 0x218(r3)
-	bl registObj__Q26Screen10ObjMgrBaseFPQ26Screen8IObjBasePQ26Screen9SceneBase
-	mr       r3, r30
-	mr       r4, r31
-	lwz      r12, 0(r30)
-	lwz      r12, 0x34(r12)
-	mtctr    r12
-	bctrl
-	lwz      r0, 0x14(r1)
-	lwz      r31, 0xc(r1)
-	lwz      r30, 8(r1)
-	mtlr     r0
-	addi     r1, r1, 0x10
-	blr
-	*/
+	obj->create(archive);
 }
 
 /*
@@ -780,207 +441,74 @@ void SceneBase::registObj(Screen::ObjBase* obj, JKRArchive* archive)
  * Address:	80451DD0
  * Size:	000078
  */
-void SceneBase::confirmSetScene(Screen::SetSceneArg&)
-{
-	/*
-	stwu     r1, -0x20(r1)
-	mflr     r0
-	stw      r0, 0x24(r1)
-	stw      r31, 0x1c(r1)
-	li       r31, 0
-	stw      r30, 0x18(r1)
-	mr       r30, r4
-	stw      r29, 0x14(r1)
-	mr       r29, r3
-	lwz      r3, 0x218(r3)
-	bl       confirmSetScene__Q26Screen10ObjMgrBaseFRQ26Screen11SetSceneArg
-	clrlwi.  r0, r3, 0x18
-	beq      lbl_80451E28
-	mr       r3, r29
-	mr       r4, r30
-	lwz      r12, 0(r29)
-	lwz      r12, 0x30(r12)
-	mtctr    r12
-	bctrl
-	clrlwi.  r0, r3, 0x18
-	beq      lbl_80451E28
-	li       r31, 1
-
-lbl_80451E28:
-	lwz      r0, 0x24(r1)
-	mr       r3, r31
-	lwz      r31, 0x1c(r1)
-	lwz      r30, 0x18(r1)
-	lwz      r29, 0x14(r1)
-	mtlr     r0
-	addi     r1, r1, 0x20
-	blr
-	*/
-}
+bool SceneBase::confirmSetScene(Screen::SetSceneArg& arg) { return (m_objMgr->confirmSetScene(arg) && doConfirmSetScene(arg)); }
 
 /*
  * --INFO--
  * Address:	80451E48
  * Size:	000078
  */
-void SceneBase::confirmStartScene(Screen::StartSceneArg*)
-{
-	/*
-	stwu     r1, -0x20(r1)
-	mflr     r0
-	stw      r0, 0x24(r1)
-	stw      r31, 0x1c(r1)
-	li       r31, 0
-	stw      r30, 0x18(r1)
-	mr       r30, r4
-	stw      r29, 0x14(r1)
-	mr       r29, r3
-	lwz      r3, 0x218(r3)
-	bl       confirmStartScene__Q26Screen10ObjMgrBaseFPQ26Screen13StartSceneArg
-	clrlwi.  r0, r3, 0x18
-	beq      lbl_80451EA0
-	mr       r3, r29
-	mr       r4, r30
-	lwz      r12, 0(r29)
-	lwz      r12, 0x34(r12)
-	mtctr    r12
-	bctrl
-	clrlwi.  r0, r3, 0x18
-	beq      lbl_80451EA0
-	li       r31, 1
-
-lbl_80451EA0:
-	lwz      r0, 0x24(r1)
-	mr       r3, r31
-	lwz      r31, 0x1c(r1)
-	lwz      r30, 0x18(r1)
-	lwz      r29, 0x14(r1)
-	mtlr     r0
-	addi     r1, r1, 0x20
-	blr
-	*/
-}
+bool SceneBase::confirmStartScene(Screen::StartSceneArg* arg) { return (m_objMgr->confirmStartScene(arg) && doConfirmStartScene(arg)); }
 
 /*
  * --INFO--
  * Address:	80451EC0
  * Size:	000070
  */
-void SceneBase::confirmEndScene(Screen::EndSceneArg*)
-{
-	/*
-	stwu     r1, -0x20(r1)
-	mflr     r0
-	stw      r0, 0x24(r1)
-	stw      r31, 0x1c(r1)
-	li       r31, 0
-	stw      r30, 0x18(r1)
-	mr       r30, r3
-	stw      r4, 8(r1)
-	lwz      r3, 0x218(r3)
-	bl       confirmEndScene__Q26Screen10ObjMgrBaseFPQ26Screen11EndSceneArg
-	clrlwi.  r0, r3, 0x18
-	beq      lbl_80451F14
-	mr       r3, r30
-	addi     r4, r1, 8
-	lwz      r12, 0(r30)
-	lwz      r12, 0x38(r12)
-	mtctr    r12
-	bctrl
-	clrlwi.  r0, r3, 0x18
-	beq      lbl_80451F14
-	li       r31, 1
-
-lbl_80451F14:
-	lwz      r0, 0x24(r1)
-	mr       r3, r31
-	lwz      r31, 0x1c(r1)
-	lwz      r30, 0x18(r1)
-	mtlr     r0
-	addi     r1, r1, 0x20
-	blr
-	*/
-}
+bool SceneBase::confirmEndScene(Screen::EndSceneArg* arg) { return (m_objMgr->confirmEndScene(arg) && doConfirmEndScene(arg)); }
 
 /*
+ * setScene__Q26Screen9SceneBaseFRQ26Screen11SetSceneArg
  * --INFO--
  * Address:	80451F30
  * Size:	000030
  */
-void SceneBase::setScene(Screen::SetSceneArg& arg)
-{
-	m_screenMgr->setScene(arg);
-	/*
-	stwu     r1, -0x10(r1)
-	mflr     r0
-	stw      r0, 0x14(r1)
-	lwz      r3, 0x108(r3)
-	lwz      r12, 0(r3)
-	lwz      r12, 0xc(r12)
-	mtctr    r12
-	bctrl
-	lwz      r0, 0x14(r1)
-	mtlr     r0
-	addi     r1, r1, 0x10
-	blr
-	*/
-}
+void SceneBase::setScene(Screen::SetSceneArg& arg) { m_screenMgr->setScene(arg); }
 
 /*
+ * startScene__Q26Screen9SceneBaseFPQ26Screen13StartSceneArg
  * --INFO--
  * Address:	80451F60
  * Size:	000030
  */
-void SceneBase::startScene(Screen::StartSceneArg* arg)
-{
-	m_screenMgr->startScene(arg);
-	/*
-	stwu     r1, -0x10(r1)
-	mflr     r0
-	stw      r0, 0x14(r1)
-	lwz      r3, 0x108(r3)
-	lwz      r12, 0(r3)
-	lwz      r12, 0x10(r12)
-	mtctr    r12
-	bctrl
-	lwz      r0, 0x14(r1)
-	mtlr     r0
-	addi     r1, r1, 0x10
-	blr
-	*/
-}
+void SceneBase::startScene(Screen::StartSceneArg* arg) { m_screenMgr->startScene(arg); }
 
 /*
+ * endScene__Q26Screen9SceneBaseFPQ26Screen11EndSceneArg
  * --INFO--
  * Address:	80451F90
  * Size:	000030
  */
-void SceneBase::endScene(Screen::EndSceneArg* arg)
-{
-	m_screenMgr->endScene(arg);
-	/*
-	stwu     r1, -0x10(r1)
-	mflr     r0
-	stw      r0, 0x14(r1)
-	lwz      r3, 0x108(r3)
-	lwz      r12, 0(r3)
-	lwz      r12, 0x14(r12)
-	mtctr    r12
-	bctrl
-	lwz      r0, 0x14(r1)
-	mtlr     r0
-	addi     r1, r1, 0x10
-	blr
-	*/
-}
+void SceneBase::endScene(Screen::EndSceneArg* arg) { m_screenMgr->endScene(arg); }
 
 /*
+ * setBackupScene__Q26Screen9SceneBaseFv
  * --INFO--
  * Address:	80451FC0
  * Size:	000100
  */
-void SceneBase::setBackupScene(void)
+bool SceneBase::setBackupScene()
 {
+	bool result         = false;
+	SceneInfoList* list = (SceneInfoList*)m_screenMgr->_60.m_child;
+	if (list != nullptr) {
+		SetSceneArg arg(list->m_sceneType, (og::Screen::DispMemberBase*)list->m_dispMemberBuffer);
+		// SetSceneArg arg;
+		// arg.m_sceneType = list->m_sceneType;
+		// arg.m_dispMember = (og::Screen::DispMemberBase*)list->m_dispMemberBuffer;
+		arg._08 = 0;
+		arg._09 = true;
+		doSetBackupScene(arg);
+		result = m_screenMgr->setScene(arg);
+		if (result) {
+			Mgr* mgr  = m_screenMgr;
+			CNode* v1 = mgr->_60.m_child;
+			P2ASSERTLINE(329, v1 != nullptr);
+			v1->del();
+			mgr->m_sceneInfoListNode.add(v1);
+		}
+	}
+	return result;
 	/*
 	stwu     r1, -0x30(r1)
 	mflr     r0
@@ -1064,12 +592,24 @@ u32 SceneBase::getBackupSceneType()
 }
 
 /*
+ * setDispMember__Q26Screen9SceneBaseFPQ32og6Screen14DispMemberBase
  * --INFO--
  * Address:	804520C0
  * Size:	000130
  */
-void SceneBase::setDispMember(og::Screen::DispMemberBase*)
+bool SceneBase::setDispMember(og::Screen::DispMemberBase* disp)
 {
+	if (!disp->isID(getOwnerID(), getMemberID())) {
+		og::Screen::DispMemberBase* submember = disp->getSubMember(getOwnerID(), getMemberID());
+		if (submember == nullptr) {
+			if (!disp->isID(OWNER_OGA, MEMBER_DUMMY)) {
+				return false;
+			}
+			return setDefaultDispMember();
+		}
+	}
+	memcpy(m_dispMemberBuffer, (void*)disp, disp->getSize());
+	return true;
 	/*
 	stwu     r1, -0x20(r1)
 	mflr     r0
@@ -1161,32 +701,7 @@ lbl_804521D8:
  * Address:	804521F0
  * Size:	000040
  */
-int SceneBase::getFinishState()
-{
-	return (m_stateID == 4) ? doGetFinishState() : -2;
-	/*
-	stwu     r1, -0x10(r1)
-	mflr     r0
-	stw      r0, 0x14(r1)
-	lwz      r0, 0x120(r3)
-	cmpwi    r0, 4
-	bne      lbl_8045221C
-	lwz      r12, 0(r3)
-	lwz      r12, 0x4c(r12)
-	mtctr    r12
-	bctrl
-	b        lbl_80452220
-
-lbl_8045221C:
-	li       r3, -2
-
-lbl_80452220:
-	lwz      r0, 0x14(r1)
-	mtlr     r0
-	addi     r1, r1, 0x10
-	blr
-	*/
-}
+int SceneBase::getFinishState() { return (m_stateID == 4) ? doGetFinishState() : -2; }
 
 /*
  * --INFO--
@@ -1233,26 +748,6 @@ void SceneBase::setColorBG(u8 r, u8 g, u8 b, u8 a)
 {
 	JUtility::TColor color(r, g, b, a);
 	m_screenMgr->setColorBG(color);
-	/*
-	.loc_0x0:
-	  stwu      r1, -0x10(r1)
-	  mflr      r0
-	  stw       r0, 0x14(r1)
-	  stb       r4, 0x8(r1)
-	  addi      r4, r1, 0x8
-	  stb       r5, 0x9(r1)
-	  stb       r6, 0xA(r1)
-	  stb       r7, 0xB(r1)
-	  lwz       r3, 0x108(r3)
-	  lwz       r12, 0x0(r3)
-	  lwz       r12, 0x1C(r12)
-	  mtctr     r12
-	  bctrl
-	  lwz       r0, 0x14(r1)
-	  mtlr      r0
-	  addi      r1, r1, 0x10
-	  blr
-	*/
 }
 
 /*
@@ -1282,13 +777,12 @@ void Mgr::setBGMode(int) { }
 } // namespace Screen
 
 /*
- * Generated
+ * @generated{Delegate1<Screen::SceneBase, Resource::MgrCommand*>::invoke(Resource::MgrCommand*)}
  * --INFO--
  * Address:	804522D0
  * Size:	000030
  */
-// void Delegate1<Screen::SceneBase, Resource::MgrCommand*>::invoke(
-//     Resource::MgrCommand*)
+// void Delegate1<Screen::SceneBase, Resource::MgrCommand*>::invoke(Resource::MgrCommand*)
 // {
 /*
 .loc_0x0:

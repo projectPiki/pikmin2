@@ -1,4 +1,6 @@
+#include "P2DScreen.h"
 #include "og/Screen/callbackNodes.h"
+#include "og/ogLib2D.h"
 #include "types.h"
 /*
     Generated from dpostproc
@@ -39,48 +41,19 @@ namespace Screen {
  * Address:	80309614
  * Size:	000098
  */
-CallBack_Message::CallBack_Message(void)
+CallBack_Message::CallBack_Message()
+    : P2DScreen::CallBackNode()
 {
-	/*
-stwu     r1, -0x10(r1)
-mflr     r0
-stw      r0, 0x14(r1)
-stw      r31, 0xc(r1)
-mr       r31, r3
-bl       __ct__5CNodeFv
-lis      r3, __vt__Q29P2DScreen4Node@ha
-lis      r4, __vt__Q29P2DScreen12CallBackNode@ha
-addi     r0, r3, __vt__Q29P2DScreen4Node@l
-lis      r3, __vt__Q32og6Screen16CallBack_Message@ha
-stw      r0, 0(r31)
-li       r5, 0
-addi     r4, r4, __vt__Q29P2DScreen12CallBackNode@l
-addi     r0, r3, __vt__Q32og6Screen16CallBack_Message@l
-stw      r5, 0x18(r31)
-mr       r3, r31
-lfs      f1, lbl_8051D670@sda21(r2)
-stw      r4, 0(r31)
-lfs      f0, lbl_8051D674@sda21(r2)
-stw      r0, 0(r31)
-lwz      r4, gLib2D__2og@sda21(r13)
-lwz      r0, 0x18(r4)
-stw      r0, 0x1c(r31)
-stw      r5, 0x24(r31)
-stw      r5, 0x20(r31)
-stw      r5, 0x28(r31)
-stw      r5, 0x2c(r31)
-stfs     f1, 0x30(r31)
-stfs     f1, 0x34(r31)
-stfs     f0, 0x44(r31)
-stfs     f0, 0x40(r31)
-stfs     f0, 0x3c(r31)
-stfs     f0, 0x38(r31)
-lwz      r31, 0xc(r1)
-lwz      r0, 0x14(r1)
-mtlr     r0
-addi     r1, r1, 0x10
-blr
-	*/
+	m_message           = og::gLib2D->m_message;
+	m_messageIDAsULL    = 0;
+	m_messageIDAs2UL[0] = 0;
+	m_messageIDAs2UL[1] = 0;
+	_30                 = 0.0f;
+	_34                 = 0.0f;
+	_44                 = 1.0f;
+	_40                 = 1.0f;
+	_3C                 = 1.0f;
+	_38                 = 1.0f;
 }
 
 /*
@@ -307,171 +280,22 @@ void MessageSetInfoShadow(J2DPane*, P2JME::TRenderingProcessor*, J2DPane*)
  * Address:	803098E0
  * Size:	000194
  */
-void checkVisibleGlb(J2DPane*)
+bool checkVisibleGlb(J2DPane* pane)
 {
-	/*
-stwu     r1, -0x10(r1)
-mflr     r0
-stw      r0, 0x14(r1)
-stw      r31, 0xc(r1)
-lbz      r0, 0xb0(r3)
-cmplwi   r0, 0
-beq      lbl_80309A5C
-bl       getParentPane__7J2DPaneFv
-cmplwi   r3, 0
-beq      lbl_80309A54
-lbz      r0, 0xb0(r3)
-cmplwi   r0, 0
-beq      lbl_80309A4C
-bl       getParentPane__7J2DPaneFv
-cmplwi   r3, 0
-beq      lbl_80309A44
-lbz      r0, 0xb0(r3)
-cmplwi   r0, 0
-beq      lbl_80309A3C
-bl       getParentPane__7J2DPaneFv
-cmplwi   r3, 0
-beq      lbl_80309A34
-lbz      r0, 0xb0(r3)
-cmplwi   r0, 0
-beq      lbl_80309A2C
-bl       getParentPane__7J2DPaneFv
-cmplwi   r3, 0
-beq      lbl_80309A24
-lbz      r0, 0xb0(r3)
-cmplwi   r0, 0
-beq      lbl_80309A1C
-bl       getParentPane__7J2DPaneFv
-cmplwi   r3, 0
-beq      lbl_80309A14
-lbz      r0, 0xb0(r3)
-cmplwi   r0, 0
-beq      lbl_80309A0C
-bl       getParentPane__7J2DPaneFv
-cmplwi   r3, 0
-beq      lbl_80309A04
-lbz      r0, 0xb0(r3)
-cmplwi   r0, 0
-beq      lbl_803099FC
-bl       getParentPane__7J2DPaneFv
-cmplwi   r3, 0
-beq      lbl_803099F4
-lbz      r0, 0xb0(r3)
-cmplwi   r0, 0
-beq      lbl_803099EC
-bl       getParentPane__7J2DPaneFv
-or.      r31, r3, r3
-beq      lbl_803099E4
-bl       isVisible__7J2DPaneCFv
-clrlwi.  r0, r3, 0x18
-beq      lbl_803099DC
-mr       r3, r31
-bl       getParentPane__7J2DPaneFv
-cmplwi   r3, 0
-beq      lbl_803099D4
-bl       checkVisibleGlb__Q22og6ScreenFP7J2DPane
-b        lbl_80309A60
-
-lbl_803099D4:
-li       r3, 1
-b        lbl_80309A60
-
-lbl_803099DC:
-li       r3, 0
-b        lbl_80309A60
-
-lbl_803099E4:
-li       r3, 1
-b        lbl_80309A60
-
-lbl_803099EC:
-li       r3, 0
-b        lbl_80309A60
-
-lbl_803099F4:
-li       r3, 1
-b        lbl_80309A60
-
-lbl_803099FC:
-li       r3, 0
-b        lbl_80309A60
-
-lbl_80309A04:
-li       r3, 1
-b        lbl_80309A60
-
-lbl_80309A0C:
-li       r3, 0
-b        lbl_80309A60
-
-lbl_80309A14:
-li       r3, 1
-b        lbl_80309A60
-
-lbl_80309A1C:
-li       r3, 0
-b        lbl_80309A60
-
-lbl_80309A24:
-li       r3, 1
-b        lbl_80309A60
-
-lbl_80309A2C:
-li       r3, 0
-b        lbl_80309A60
-
-lbl_80309A34:
-li       r3, 1
-b        lbl_80309A60
-
-lbl_80309A3C:
-li       r3, 0
-b        lbl_80309A60
-
-lbl_80309A44:
-li       r3, 1
-b        lbl_80309A60
-
-lbl_80309A4C:
-li       r3, 0
-b        lbl_80309A60
-
-lbl_80309A54:
-li       r3, 1
-b        lbl_80309A60
-
-lbl_80309A5C:
-li       r3, 0
-
-lbl_80309A60:
-lwz      r0, 0x14(r1)
-lwz      r31, 0xc(r1)
-mtlr     r0
-addi     r1, r1, 0x10
-blr
-	*/
+	if (pane->isVisible()) {
+		J2DPane* parent = pane->getParentPane();
+		return (parent != nullptr) ? checkVisibleGlb(parent) : true;
+	} else {
+		return false;
+	}
 }
 
-} // namespace Screen
-
-} // namespace og
-
 /*
+ * @generated{J2DPane::isVisible() const}
  * --INFO--
  * Address:	80309A74
  * Size:	000008
  */
-void J2DPane::isVisible() const
-{
-	/*
-	lbz      r3, 0xb0(r3)
-	blr
-	*/
-}
-
-namespace og {
-
-namespace Screen {
 
 /*
  * --INFO--
@@ -712,64 +536,66 @@ blr
 } // namespace og
 
 /*
+ * @generated{2DPane::getUserInfo() const}
  * --INFO--
  * Address:	80309D98
  * Size:	000010
  */
-u64 J2DPane::getUserInfo() const
-{
-	return m_messageID;
-	/*
-	mr       r4, r3
-	lwz      r3, 0x18(r3)
-	lwz      r4, 0x1c(r4)
-	blr
-	*/
-}
+// u64 J2DPane::getUserInfo() const
+// {
+// 	return m_messageID;
+// 	/*
+// 	mr       r4, r3
+// 	lwz      r3, 0x18(r3)
+// 	lwz      r4, 0x1c(r4)
+// 	blr
+// 	*/
+// }
 
 /*
+ * @generated{og::Lib2D::getMsgPtr()}
  * --INFO--
  * Address:	80309DA8
  * Size:	000008
  */
-void og::Lib2D::getMsgPtr(void)
-{
-	/*
-	lwz      r3, 0x18(r3)
-	blr
-	*/
-}
+// void og::Lib2D::getMsgPtr(void)
+// {
+// 	/*
+// 	lwz      r3, 0x18(r3)
+// 	blr
+// 	*/
+// }
 
 /*
  * --INFO--
  * Address:	80309DB0
  * Size:	000050
  */
-P2DScreen::CallBackNode::CallBackNode(void)
-{
-	/*
-	stwu     r1, -0x10(r1)
-	mflr     r0
-	stw      r0, 0x14(r1)
-	stw      r31, 0xc(r1)
-	mr       r31, r3
-	bl       __ct__5CNodeFv
-	lis      r4, __vt__Q29P2DScreen4Node@ha
-	lis      r3, __vt__Q29P2DScreen12CallBackNode@ha
-	addi     r0, r4, __vt__Q29P2DScreen4Node@l
-	li       r4, 0
-	stw      r0, 0(r31)
-	addi     r0, r3, __vt__Q29P2DScreen12CallBackNode@l
-	mr       r3, r31
-	stw      r4, 0x18(r31)
-	stw      r0, 0(r31)
-	lwz      r31, 0xc(r1)
-	lwz      r0, 0x14(r1)
-	mtlr     r0
-	addi     r1, r1, 0x10
-	blr
-	*/
-}
+// P2DScreen::CallBackNode::CallBackNode()
+// {
+// 	/*
+// 	stwu     r1, -0x10(r1)
+// 	mflr     r0
+// 	stw      r0, 0x14(r1)
+// 	stw      r31, 0xc(r1)
+// 	mr       r31, r3
+// 	bl       __ct__5CNodeFv
+// 	lis      r4, __vt__Q29P2DScreen4Node@ha
+// 	lis      r3, __vt__Q29P2DScreen12CallBackNode@ha
+// 	addi     r0, r4, __vt__Q29P2DScreen4Node@l
+// 	li       r4, 0
+// 	stw      r0, 0(r31)
+// 	addi     r0, r3, __vt__Q29P2DScreen12CallBackNode@l
+// 	mr       r3, r31
+// 	stw      r4, 0x18(r31)
+// 	stw      r0, 0(r31)
+// 	lwz      r31, 0xc(r1)
+// 	lwz      r0, 0x14(r1)
+// 	mtlr     r0
+// 	addi     r1, r1, 0x10
+// 	blr
+// 	*/
+// }
 
 namespace og {
 namespace Screen {
@@ -819,7 +645,7 @@ void setCallBackMessageAndShadow(P2DScreen::Mgr*, float, float, J2DPane*, unsign
  * Address:	........
  * Size:	000090
  */
-CallBack_MessageAndShadow::~CallBack_MessageAndShadow(void)
+CallBack_MessageAndShadow::~CallBack_MessageAndShadow()
 {
 	// UNUSED FUNCTION
 }
@@ -829,6 +655,6 @@ CallBack_MessageAndShadow::~CallBack_MessageAndShadow(void)
  * Address:	80309E24
  * Size:	000004
  */
-void CallBack_Message::update(void) { }
+void CallBack_Message::update() { }
 } // namespace Screen
 } // namespace og

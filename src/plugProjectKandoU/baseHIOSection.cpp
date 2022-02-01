@@ -1,4 +1,13 @@
 #include "Game/BaseHIOSection.h"
+#include "CNode.h"
+#include "Controller.h"
+#include "Dolphin/os.h"
+#include "JSystem/JFW/JFWDisplay.h"
+#include "JSystem/JKR/JKRHeap.h"
+#include "JSystem/JUT/JUTException.h"
+#include "JSystem/JUT/JUTXfb.h"
+#include "nans.h"
+#include "System.h"
 #include "types.h"
 
 /*
@@ -111,8 +120,14 @@ namespace Game {
  * Address:	80164BF0
  * Size:	0000C0
  */
-BaseHIOSection::BaseHIOSection(JKRHeap*)
+BaseHIOSection::BaseHIOSection(JKRHeap* heap)
+    : Section(nullptr, heap, false)
 {
+	System::assert_fragmentation("BaseHIOSection");
+	m_hioRootNode = nullptr;
+	JUT_ASSERTLINE(314, JKRHeap::sCurrentHeap->getTotalFreeSize() == JKRHeap::sCurrentHeap->getFreeSize(),
+	               "fragmentation occurred : after sound\n");
+	_44 = new Controller(Controller::PORT_3);
 	/*
 	stwu     r1, -0x20(r1)
 	mflr     r0
@@ -236,49 +251,65 @@ lbl_80164D58:
 }
 
 /*
+ * @generated{HIORootNode::~HIORootNode()}
  * --INFO--
  * Address:	80164D74
  * Size:	000060
  */
-HIORootNode::~HIORootNode(void)
-{
-	/*
-	stwu     r1, -0x10(r1)
-	mflr     r0
-	stw      r0, 0x14(r1)
-	stw      r31, 0xc(r1)
-	mr       r31, r4
-	stw      r30, 8(r1)
-	or.      r30, r3, r3
-	beq      lbl_80164DB8
-	lis      r5, __vt__Q24Game11HIORootNode@ha
-	li       r4, 0
-	addi     r0, r5, __vt__Q24Game11HIORootNode@l
-	stw      r0, 0(r30)
-	bl       __dt__5CNodeFv
-	extsh.   r0, r31
-	ble      lbl_80164DB8
-	mr       r3, r30
-	bl       __dl__FPv
+// HIORootNode::~HIORootNode(void)
+// {
+// 	/*
+// 	stwu     r1, -0x10(r1)
+// 	mflr     r0
+// 	stw      r0, 0x14(r1)
+// 	stw      r31, 0xc(r1)
+// 	mr       r31, r4
+// 	stw      r30, 8(r1)
+// 	or.      r30, r3, r3
+// 	beq      lbl_80164DB8
+// 	lis      r5, __vt__Q24Game11HIORootNode@ha
+// 	li       r4, 0
+// 	addi     r0, r5, __vt__Q24Game11HIORootNode@l
+// 	stw      r0, 0(r30)
+// 	bl       __dt__5CNodeFv
+// 	extsh.   r0, r31
+// 	ble      lbl_80164DB8
+// 	mr       r3, r30
+// 	bl       __dl__FPv
 
-lbl_80164DB8:
-	lwz      r0, 0x14(r1)
-	mr       r3, r30
-	lwz      r31, 0xc(r1)
-	lwz      r30, 8(r1)
-	mtlr     r0
-	addi     r1, r1, 0x10
-	blr
-	*/
-}
+// lbl_80164DB8:
+// 	lwz      r0, 0x14(r1)
+// 	mr       r3, r30
+// 	lwz      r31, 0xc(r1)
+// 	lwz      r30, 8(r1)
+// 	mtlr     r0
+// 	addi     r1, r1, 0x10
+// 	blr
+// 	*/
+// }
 
 /*
  * --INFO--
  * Address:	80164DD4
  * Size:	000150
  */
-void BaseHIOSection::setDisplay(JFWDisplay*, int)
+void BaseHIOSection::setDisplay(JFWDisplay* display, int secondsPer60Frames)
 {
+	// bool check = false;
+	// if (m_display == nullptr && display != nullptr) {
+	// 	check = true;
+	// }
+	// P2ASSERTLINE(333, check);
+	// m_display = display;
+	// m_fader = new JUTFader(0, 0, JUTVideo::sManager->m_renderModeObj->fbWidth, JUTVideo::sManager->m_renderModeObj->efbHeight, 0);
+	// m_display->m_fader = m_fader;
+	// _35 = 1;
+	// sys->setCurrentDisplay(m_display);
+	// sys->setFrameRate(secondsPer60Frames);
+	// DCInvalidateRange(JFWDisplay::sManager->m_Xfb->m_buffers[0], JUTXfb::accumeXfbSize());
+	// DCInvalidateRange(JFWDisplay::sManager->m_Xfb->m_buffers[1], JUTXfb::accumeXfbSize());
+	// JUTProcBar::sManager->_10C = 0;
+	// JUTProcBar::sManager->_130 = 0;
 	/*
 	stwu     r1, -0x20(r1)
 	mflr     r0
@@ -378,8 +409,18 @@ lbl_80164E8C:
  * Address:	80164F24
  * Size:	000080
  */
-void BaseHIOSection::initHIO(Game::HIORootNode*)
+void BaseHIOSection::initHIO(Game::HIORootNode* node)
 {
+	// if (node == nullptr) {
+	// 	m_hioRootNode = new HIORootNode(this);
+	// } else {
+	// 	m_hioRootNode = node;
+	// }
+	// sys->addGenNode(m_hioRootNode);
+	// if (JUTProcBar::sManager != nullptr) {
+	// 	JUTProcBar::sManager->_10C = 0;
+	// 	JUTProcBar::sManager->_130 = 0;
+	// }
 	/*
 	stwu     r1, -0x10(r1)
 	mflr     r0
@@ -429,7 +470,7 @@ lbl_80164F90:
  * Address:	80164FA4
  * Size:	000004
  */
-void BaseHIOSection::createScreenRootNode(void) { }
+void BaseHIOSection::createScreenRootNode() { }
 
 /*
  * --INFO--
@@ -443,20 +484,7 @@ bool BaseHIOSection::doUpdate() { return true; }
  * Address:	80164FB0
  * Size:	000024
  */
-void BaseHIOSection::addGenNode(CNode*)
-{
-	/*
-	stwu     r1, -0x10(r1)
-	mflr     r0
-	stw      r0, 0x14(r1)
-	lwz      r3, 0x3c(r3)
-	bl       add__5CNodeFP5CNode
-	lwz      r0, 0x14(r1)
-	mtlr     r0
-	addi     r1, r1, 0x10
-	blr
-	*/
-}
+void BaseHIOSection::addGenNode(CNode* node) { m_hioRootNode->add(node); }
 
 /*
  * --INFO--
@@ -470,8 +498,11 @@ void BaseHIOSection::refreshHIO(void) { }
  * Address:	80164FD8
  * Size:	000054
  */
-HIORootNode::HIORootNode(Section*)
+HIORootNode::HIORootNode(Section* section)
+    : CNode()
 {
+	m_section = section;
+	setName("system");
 	/*
 	stwu     r1, -0x10(r1)
 	mflr     r0
@@ -504,22 +535,7 @@ HIORootNode::HIORootNode(Section*)
  * Address:	8016502C
  * Size:	00002C
  */
-void Section::drawInit(Graphics&, Section::EDrawInitMode)
-{
-	/*
-	stwu     r1, -0x10(r1)
-	mflr     r0
-	stw      r0, 0x14(r1)
-	lwz      r12, 0(r3)
-	lwz      r12, 0x1c(r12)
-	mtctr    r12
-	bctrl
-	lwz      r0, 0x14(r1)
-	mtlr     r0
-	addi     r1, r1, 0x10
-	blr
-	*/
-}
+void Section::drawInit(Graphics& gfx, Section::EDrawInitMode mode) { drawInit(gfx); }
 
 /*
  * --INFO--

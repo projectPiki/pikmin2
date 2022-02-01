@@ -986,7 +986,7 @@ lbl_80433BC8:
  * Address:	80433BF0
  * Size:	0001E0
  */
-void Resource::Mgr::sync(Resource::MgrCommand*, bool)
+bool Resource::Mgr::sync(Resource::MgrCommand*, bool)
 {
 	/*
 	stwu     r1, -0x10(r1)

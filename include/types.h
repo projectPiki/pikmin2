@@ -37,6 +37,8 @@ typedef int BOOL;
 // Pointer to unknown, to be determined at a later date.
 typedef void* unkptr;
 
+typedef u32 unknown;
+
 #ifndef TRUE
 #define TRUE 1
 #endif // ifndef TRUE

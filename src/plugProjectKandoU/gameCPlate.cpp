@@ -746,7 +746,7 @@ void CPlate::setPosNeutral(Vector3f& p1, float p2, Vector3f& p3, float p4)
  * Address:	80195708
  * Size:	0000A8
  */
-void CPlate::getSlot(Game::Creature*, Game::SlotChangeListener*, bool)
+void CPlate::getSlot(Game::Creature* p1, Game::SlotChangeListener* p2, bool p3)
 {
 	/*
 	stwu     r1, -0x20(r1)
@@ -969,23 +969,12 @@ void CPlate::swapSlot(int, int)
  * Address:	80195990
  * Size:	000024
  */
-bool CPlate::validSlot(int)
+bool CPlate::validSlot(int index)
 {
-	/*
-	cmpwi    r4, 0
-	blt      lbl_801959A4
-	lwz      r0, 0xc8(r3)
-	cmpw     r4, r0
-	blt      lbl_801959AC
-
-lbl_801959A4:
-	li       r3, 0
-	blr
-
-lbl_801959AC:
-	li       r3, 1
-	blr
-	*/
+	if (0 > index || index >= m_slotCount) {
+		return false;
+	}
+	return true;
 }
 
 } // namespace Game

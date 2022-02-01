@@ -339,18 +339,16 @@ void GenBase::doRead(Stream&) { }
  */
 u32 GenObject::getLatestVersion()
 {
-	u32 count = GenObjectFactory::factory->m_count;
-	if (count <= 0) {
-		return m_typeID;
-	}
-	int i = 0;
-	do {
+	int count = GenObjectFactory::factory->m_count;
+	for (int i = 0; count > 0; i++, count--) {
 		if (m_typeID == GenObjectFactory::factory->m_factories[i].m_typeID) {
 			return GenObjectFactory::factory->m_factories[i].m_version;
 		}
-		i++;
-	} while (--count != 0);
+	}
 	return m_typeID;
+	// i++;
+	// } while (--count != 0);
+	// return m_typeID;
 	/*
 	lwz      r7, factory__Q24Game16GenObjectFactory@sda21(r13)
 	li       r4, 0
@@ -940,16 +938,24 @@ void Generator::read(Stream& input)
 	_18 = nullptr;
 	ID32 temp;
 	temp.read(input);
-	int i                 = 0;
-	u32 count             = GenObjectFactory::factory->m_count;
+	// int i                 = 0;
+	s32 count             = GenObjectFactory::factory->m_count;
 	GenObject* makeResult = nullptr;
+	// if (0 < count) {
+	// 	do {
+	// 		if (temp.getID() == GenObjectFactory::factory->m_factories[i].m_typeID) {
+	// 			makeResult = GenObjectFactory::factory->m_factories[i].m_makeFunction();
+	// 			break;
+	// 		}
+	// 	} while (--count != 0);
+	// }
 	if (0 < count) {
-		do {
+		for (int i = 0; i < count; i++) {
 			if (temp.getID() == GenObjectFactory::factory->m_factories[i].m_typeID) {
 				makeResult = GenObjectFactory::factory->m_factories[i].m_makeFunction();
 				break;
 			}
-		} while (--count != 0);
+		}
 	}
 	_18 = makeResult;
 	if (_18 != nullptr) {

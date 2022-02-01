@@ -21,9 +21,35 @@ struct BoundBox {
 	    , m_min(min)
 	{
 	}
+
 	void makeBoundSphere(Sys::Sphere&);
 	void read(struct Stream&);
 	void transform(struct Matrixf&);
+
+	/**
+	 * @fabricated
+	 */
+	inline void include(Vector3f& point)
+	{
+		if (point.x < m_max.x) {
+			m_max.x = point.x;
+		}
+		if (point.y < m_max.y) {
+			m_max.y = point.y;
+		}
+		if (point.z < m_max.z) {
+			m_max.z = point.z;
+		}
+		if (point.x > m_min.x) {
+			m_min.x = point.x;
+		}
+		if (point.y > m_min.y) {
+			m_min.y = point.y;
+		}
+		if (point.z > m_min.z) {
+			m_min.z = point.z;
+		}
+	}
 
 	Vector3f m_max;
 	Vector3f m_min;

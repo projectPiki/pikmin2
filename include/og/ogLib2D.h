@@ -12,6 +12,12 @@ struct Lib2D : public JKRDisposer {
 
 	static void create();
 
+	/**
+	 * @reifiedAddress{80309DA8}
+	 * @reifiedFile{plugProjectOgawaU/ogCallBackMessage.cpp}
+	 */
+	P2JME::SimpleMessage* getMsgPtr() { return m_message; }
+
 	P2JME::SimpleMessage* m_message; // _18
 };
 

@@ -1,8 +1,10 @@
 #ifndef _SYS_DRAWBUFFERS_H
 #define _SYS_DRAWBUFFERS_H
 
+#include "BitFlag.h"
 #include "CNode.h"
 #include "JSystem/J3D/J3DDrawBuffer.h"
+#include "types.h"
 #include "Vector3.h"
 
 namespace Sys {
@@ -15,6 +17,8 @@ struct DrawBuffer : public CNode {
 		u32 _00;            // _00
 		u16 _04;            // _04
 		const char* m_name; // _08
+		unknown _0C;        // _0C
+		unknown _10;        // _10
 	};
 
 	DrawBuffer();
@@ -25,12 +29,11 @@ struct DrawBuffer : public CNode {
 	void create(CreateArg&);
 	void frameInit();
 
-	u8 _18;             // _18
-	u8 _19;             // _19
-	J3DDrawBuffer* _1C; // _1C
-	int _20;            // _20
-	u32 _24;            // _24
-	u32 _28;            // _28
+	BitFlag<unsigned short> _18; // _18
+	J3DDrawBuffer* _1C;          // _1C
+	int _20;                     // _20
+	u32 _24;                     // _24
+	u32 _28;                     // _28
 };
 
 /**

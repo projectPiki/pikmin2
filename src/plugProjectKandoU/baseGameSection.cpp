@@ -21,6 +21,7 @@
 #include "JSystem/JFW/JFWDisplay.h"
 #include "JSystem/JKR/JKRDvdRipper.h"
 #include "JSystem/JUT/JUTException.h"
+#include "JSystem/JUT/JUTXfb.h"
 #include "LifeGaugeMgr.h"
 #include "Screen/Game2DMgr.h"
 #include "og/Screen/ogScreen.h"
@@ -901,7 +902,7 @@ BaseGameSection::BaseGameSection(JKRHeap* heap)
     , m_dvdThreadCommand()
 {
 	_164 = 0;
-	setDisplay(JFWDisplay::createManager(nullptr, _1C, 2, true), 1);
+	setDisplay(JFWDisplay::createManager(nullptr, _1C, JUTXfb::DoubleBuffer, true), 1);
 	m_playerMode         = 2;
 	m_draw2DCreature     = nullptr;
 	m_treasureZoomCamera = nullptr;
@@ -1436,7 +1437,6 @@ void BaseGameSection::loadSync(IDelegate* delegate, bool p2)
  */
 void BaseGameSection::waitSyncLoad(bool)
 {
-	static bool
 	/*
 	stwu     r1, -0x20(r1)
 	mflr     r0

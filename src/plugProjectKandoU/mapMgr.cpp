@@ -1,4 +1,6 @@
 #include "Game/MapMgr.h"
+#include "Game/AABBWaterBox.h"
+#include "MapCollision.h"
 #include "types.h"
 
 /*
@@ -577,14 +579,12 @@ lbl_80162654:
 	*/
 }
 
-} // namespace Game
-
 /*
  * --INFO--
  * Address:	8016267C
  * Size:	00007C
  */
-void getStartPosition__Q24Game6MapMgrFR10Vector3f i(void)
+void MapMgr::getStartPosition(Vector3f&, int)
 {
 	/*
 	stwu     r1, -0x10(r1)
@@ -625,14 +625,12 @@ lbl_801626E4:
 	*/
 }
 
-namespace Game {
-
 /*
  * --INFO--
  * Address:	801626F8
  * Size:	00002C
  */
-void MapMgr::getMapRotation(void)
+void MapMgr::getMapRotation()
 {
 	/*
 	lwz      r3, 0xc(r3)
@@ -671,14 +669,12 @@ lbl_80162738:
 	*/
 }
 
-} // namespace Game
-
 /*
  * --INFO--
  * Address:	80162740
  * Size:	000704
  */
-void getBestAngle__Q24Game6MapMgrFR10Vector3f ff(void)
+void MapMgr::getBestAngle(Vector3f&, float, float)
 {
 	/*
 	stwu     r1, -0x180(r1)
@@ -1153,8 +1149,6 @@ lbl_80162DC0:
 	blr
 	*/
 }
-
-namespace Game {
 
 /*
  * --INFO--
@@ -2118,7 +2112,7 @@ void MapMgr::do_update(void) { }
  * Address:	80163A4C
  * Size:	000018
  */
-void MapMgr::clearPerfMonitor(void)
+void MapMgr::clearPerfMonitor()
 {
 	/*
 	li       r0, 0
@@ -2260,7 +2254,8 @@ void TriDivider::createTriangles(Sys::CreateTriangleArg&) { }
  * Address:	80163B70
  * Size:	00008C
  */
-void getMinY__Q24Game11ShapeMapMgrFR10Vector3f(void)
+// void getMinY__Q24Game11ShapeMapMgrFR10Vector3f(void)
+float ShapeMapMgr::getMinY(Vector3f&)
 {
 	/*
 	stwu     r1, -0x40(r1)
@@ -2739,7 +2734,7 @@ void ShapeMapMgr::getBoundBox(BoundBox&)
  * Address:	801640F0
  * Size:	000008
  */
-u32 MapMgr::frozenable(void) { return 0x0; }
+bool MapMgr::frozenable(void) { return false; }
 
 /*
  * --INFO--

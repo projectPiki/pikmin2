@@ -56,7 +56,7 @@ PlayCommonData::PlayCommonData()
  * Address:	80234208
  * Size:	000078
  */
-void PlayCommonData::reset(void)
+void PlayCommonData::reset()
 {
 	_00 = 0;
 	m_challengeData.reset();
@@ -64,40 +64,6 @@ void PlayCommonData::reset(void)
 		_04[i]->clear();
 		_08[i]->clear();
 	}
-	/*
-	stwu     r1, -0x20(r1)
-	mflr     r0
-	stw      r0, 0x24(r1)
-	li       r0, 0
-	stw      r31, 0x1c(r1)
-	stw      r30, 0x18(r1)
-	stw      r29, 0x14(r1)
-	mr       r29, r3
-	stb      r0, 0(r3)
-	addi     r3, r29, 0xc
-	bl       reset__Q24Game21PlayChallengeGameDataFv
-	li       r30, 0
-	li       r31, 0
-
-lbl_8023423C:
-	lwz      r3, 4(r29)
-	lwzx     r3, r3, r31
-	bl       clear__Q24Game9HighscoreFv
-	lwz      r3, 8(r29)
-	lwzx     r3, r3, r31
-	bl       clear__Q24Game9HighscoreFv
-	addi     r30, r30, 1
-	addi     r31, r31, 4
-	cmpwi    r30, 0x10
-	blt      lbl_8023423C
-	lwz      r0, 0x24(r1)
-	lwz      r31, 0x1c(r1)
-	lwz      r30, 0x18(r1)
-	lwz      r29, 0x14(r1)
-	mtlr     r0
-	addi     r1, r1, 0x20
-	blr
-	*/
 }
 
 /*
@@ -731,7 +697,7 @@ lbl_802349BC:
  */
 int PlayCommonData::challenge_openNewCourse(void)
 {
-	if (gGameConfig.m_parms.KFesVersion.m_data != 0) {
+	if (gGameConfig.m_parms.m_KFesVersion.m_data != 0) {
 		return -1;
 	}
 	for (int i = 0; i < m_challengeData.m_courseCount; i++) {

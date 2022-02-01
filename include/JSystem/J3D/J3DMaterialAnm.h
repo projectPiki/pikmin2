@@ -8,8 +8,20 @@
 #include "JSystem/J3D/J3DTexNoAnm.h"
 #include "JSystem/J3D/J3DTevColorAnm.h"
 
+struct J3DMaterial;
+
 struct J3DMaterialAnm {
-	u32 _00; // _00, VTBL!
+	/**
+	 * @fabricated
+	 */
+	J3DMaterialAnm() { initialize(); }
+
+	virtual ~J3DMaterialAnm();             // _00
+	virtual void calc(J3DMaterial*) const; // _04
+
+	void initialize();
+
+	// VTBL _00
 	J3DMatColorAnm m_matColAnmList[2];
 	J3DTexMtxAnm m_texMtxAnmList[8];
 	J3DTexNoAnm m_texNoAnmList[8];

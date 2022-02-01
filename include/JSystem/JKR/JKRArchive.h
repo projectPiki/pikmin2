@@ -35,23 +35,22 @@ struct JKRArchive : public JKRFileLoader {
 
 	virtual ~JKRArchive(); // _00
 	// virtual void unmount();                                       // _04
-	virtual void becomeCurrent(const char*);                      // _08
-	virtual void* getResource(const char*);                       // _0C
-	virtual void* getResource(unsigned long, const char*);        // _10
-	virtual void readResource(void*, unsigned long, const char*); // _14
-	virtual void readResource(void*, unsigned long, unsigned long,
-	                          const char*);                           // _18
-	virtual void removeResourceAll();                                 // _1C
-	virtual void removeResource(void*);                               // _20
-	virtual void detachResource(void*);                               // _24
-	virtual void getResSize(const void*) const;                       // _28
-	virtual void countFile(const char*) const;                        // _2C
-	virtual void getFirstFile(const char*) const;                     // _30
-	virtual void getExpandedResSize(const void*) const;               // _34
-	virtual u32 fetchResource(SDIFileEntry*, u32*)               = 0; // _38
-	virtual void* fetchResource(void*, u32, SDIFileEntry*, u32*) = 0; // _3C
-	virtual void setExpandSize(SDIFileEntry*, unsigned long);         // _40
-	virtual void getExpandSize(SDIFileEntry*) const;                  // _44
+	virtual void becomeCurrent(const char*);                                    // _08
+	virtual void* getResource(const char*);                                     // _0C
+	virtual void* getResource(unsigned long, const char*);                      // _10
+	virtual void readResource(void*, unsigned long, const char*);               // _14
+	virtual int readResource(void*, unsigned long, unsigned long, const char*); // _18
+	virtual void removeResourceAll();                                           // _1C
+	virtual bool removeResource(void*);                                         // _20
+	virtual bool detachResource(void*);                                         // _24
+	virtual long getResSize(const void*) const;                                 // _28
+	virtual int countFile(const char*) const;                                   // _2C
+	virtual unkptr getFirstFile(const char*) const;                             // _30
+	virtual void getExpandedResSize(const void*) const;                         // _34
+	virtual u32 fetchResource(SDIFileEntry*, u32*)               = 0;           // _38
+	virtual void* fetchResource(void*, u32, SDIFileEntry*, u32*) = 0;           // _3C
+	virtual void setExpandSize(SDIFileEntry*, unsigned long);                   // _40
+	virtual void getExpandSize(SDIFileEntry*) const;                            // _44
 
 	u32 findDirectory(const char*, u32) const;
 	SDIFileEntry* findFsResource(const char*, u32) const;

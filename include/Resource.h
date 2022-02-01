@@ -79,7 +79,7 @@ struct Mgr {
 	void destroyAll();
 	void loadResource(MgrCommand*, const char*, bool);
 	void searchCommand(MgrCommand*);
-	void sync(MgrCommand*, bool);
+	bool sync(MgrCommand*, bool);
 
 	// Unused/inlined:
 	void search(const char*);

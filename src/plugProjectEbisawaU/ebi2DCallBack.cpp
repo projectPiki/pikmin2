@@ -116,11 +116,11 @@ namespace ebi {
 void E2DCallBack_Purupuru::do_update(void)
 {
 	if (_18) {
-		_3C                 = m_scaleMgr.calc();
-		J2DPane* pane       = _18;
-		float scale         = _3C;
-		pane->m_widthScale  = scale;
-		pane->m_heightScale = scale;
+		_3C             = m_scaleMgr.calc();
+		J2DPane* pane   = _18;
+		float scale     = _3C;
+		pane->m_scale.x = scale;
+		pane->m_scale.y = scale;
 		pane->calcMtx();
 	}
 }

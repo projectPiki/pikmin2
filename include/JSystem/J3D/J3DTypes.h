@@ -54,4 +54,10 @@ struct J3DNBTScale {
 	float _0C; // _0C
 };
 
+enum J3DTexDiffFlag {
+};
+
+enum J3DDeformAttachFlag {
+};
+
 #endif

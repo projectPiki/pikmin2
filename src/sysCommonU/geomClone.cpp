@@ -1,3 +1,4 @@
+#include "Dolphin/mtx.h"
 #include "Sys/GridDivider.h"
 #include "Sys/TriangleTable.h"
 #include "Sys/TriDivider.h"
@@ -39,87 +40,13 @@ namespace Sys {
  * Address:	80421ACC
  * Size:	000120
  */
-void* TriDivider::clone(Matrixf&)
+TriDivider* TriDivider::clone(Matrixf& p1)
 {
-	/*
-	stwu     r1, -0x20(r1)
-	mflr     r0
-	stw      r0, 0x24(r1)
-	stw      r31, 0x1c(r1)
-	stw      r30, 0x18(r1)
-	stw      r29, 0x14(r1)
-	mr       r29, r4
-	stw      r28, 0x10(r1)
-	mr       r28, r3
-	li       r3, 0x50
-	bl       __nw__FUl
-	or.      r31, r3, r3
-	beq      lbl_80421B70
-	bl       __ct__5CNodeFv
-	lis      r4, __vt__16GenericContainer@ha
-	lis      r3, "__vt__23Container<10Vector3<f>>"@ha
-	addi     r0, r4, __vt__16GenericContainer@l
-	lis      r4, "__vt__28ArrayContainer<10Vector3<f>>"@ha
-	stw      r0, 0(r31)
-	addi     r0, r3, "__vt__23Container<10Vector3<f>>"@l
-	lis      r3, __vt__Q23Sys11VertexTable@ha
-	li       r6, 0
-	stw      r0, 0(r31)
-	addi     r5, r4, "__vt__28ArrayContainer<10Vector3<f>>"@l
-	li       r4, 1
-	addi     r0, r3, __vt__Q23Sys11VertexTable@l
-	stb      r6, 0x18(r31)
-	lfs      f1, lbl_805203F8@sda21(r2)
-	stw      r5, 0(r31)
-	lfs      f0, lbl_805203FC@sda21(r2)
-	stb      r4, 0x18(r31)
-	stw      r6, 0x20(r31)
-	stw      r6, 0x1c(r31)
-	stw      r6, 0x24(r31)
-	stw      r0, 0(r31)
-	stfs     f1, 0x28(r31)
-	stfs     f1, 0x2c(r31)
-	stfs     f1, 0x30(r31)
-	stfs     f0, 0x34(r31)
-	stfs     f0, 0x38(r31)
-	stfs     f0, 0x3c(r31)
-
-lbl_80421B70:
-	lwz      r5, 0x18(r28)
-	mr       r3, r31
-	mr       r4, r29
-	bl       cloneFrom__Q23Sys11VertexTableFR7MatrixfPQ23Sys11VertexTable
-	li       r3, 0x28
-	bl       __nw__FUl
-	or.      r30, r3, r3
-	beq      lbl_80421B98
-	bl       __ct__Q23Sys13TriangleTableFv
-	mr       r30, r3
-
-lbl_80421B98:
-	lwz      r5, 0x1c(r28)
-	mr       r3, r30
-	mr       r4, r29
-	mr       r6, r31
-	bl
-cloneFrom__Q23Sys13TriangleTableFR7MatrixfPQ23Sys13TriangleTablePQ23Sys11VertexTable
-	mr       r3, r28
-	mr       r4, r29
-	lwz      r12, 0(r28)
-	mr       r5, r31
-	mr       r6, r30
-	lwz      r12, 0x2c(r12)
-	mtctr    r12
-	bctrl
-	lwz      r0, 0x24(r1)
-	lwz      r31, 0x1c(r1)
-	lwz      r30, 0x18(r1)
-	lwz      r29, 0x14(r1)
-	lwz      r28, 0x10(r1)
-	mtlr     r0
-	addi     r1, r1, 0x20
-	blr
-	*/
+	VertexTable* vtxTable = new VertexTable();
+	vtxTable->cloneFrom(p1, m_vertexTable);
+	TriangleTable* triTable = new TriangleTable();
+	triTable->cloneFrom(p1, m_triangleTable, vtxTable);
+	return do_clone(&p1, vtxTable, triTable);
 }
 
 /*
@@ -127,8 +54,20 @@ cloneFrom__Q23Sys13TriangleTableFR7MatrixfPQ23Sys13TriangleTablePQ23Sys11VertexT
  * Address:	80421BEC
  * Size:	000160
  */
-void VertexTable::cloneFrom(Matrixf&, Sys::VertexTable*)
+void VertexTable::cloneFrom(Matrixf& p1, Sys::VertexTable* other)
 {
+	alloc(other->m_limit);
+	m_count = other->m_count;
+	for (int i = 0; i < m_limit; i++) {
+		Vector3f v1;
+		PSMTXMultVec(p1.m_matrix.mtxView, (Vec*)&other->m_objects[i], (Vec*)&v1);
+		m_objects[i] = v1;
+	}
+	_28.m_max = 32768.0f;
+	_28.m_min = -32768.0f;
+	for (int i = 0; i < m_limit; i++) {
+		_28.include(m_objects[i]);
+	}
 	/*
 	stwu     r1, -0x30(r1)
 	mflr     r0
@@ -242,12 +181,21 @@ lbl_80421D2C:
 }
 
 /*
+ * cloneFrom__Q23Sys13TriangleTableFR7MatrixfPQ23Sys13TriangleTablePQ23Sys11VertexTable
  * --INFO--
  * Address:	80421D4C
  * Size:	0000B4
  */
-void TriangleTable::cloneFrom(Matrixf&, Sys::TriangleTable*, Sys::VertexTable*)
+void TriangleTable::cloneFrom(Matrixf& p1, Sys::TriangleTable* other, Sys::VertexTable* vertices)
 {
+	alloc(other->m_limit);
+	m_count = other->m_count;
+	for (int i = 0; i < m_limit; i++) {
+		m_objects[i].m_vertices = other->m_objects[i].m_vertices;
+		m_objects[i].m_code     = other->m_objects[i].m_code;
+		m_objects[i].makePlanes(*vertices);
+		m_objects[i].createSphere(*vertices);
+	}
 	/*
 	stwu     r1, -0x20(r1)
 	mflr     r0
@@ -306,61 +254,10 @@ lbl_80421DE0:
  * Address:	80421E00
  * Size:	0000C4
  */
-void GridDivider::do_clone(Matrixf&, Sys::VertexTable*, Sys::TriangleTable*)
+TriDivider* GridDivider::do_clone(Matrixf& p1, Sys::VertexTable* vertices, Sys::TriangleTable* triangles)
 {
-	/*
-	stwu     r1, -0x20(r1)
-	mflr     r0
-	stw      r0, 0x24(r1)
-	stw      r31, 0x1c(r1)
-	stw      r30, 0x18(r1)
-	mr       r30, r6
-	stw      r29, 0x14(r1)
-	mr       r29, r5
-	stw      r28, 0x10(r1)
-	mr       r28, r3
-	li       r3, 0x4c
-	bl       __nw__FUl
-	or.      r31, r3, r3
-	beq      lbl_80421E84
-	bl       __ct__5CNodeFv
-	lis      r4, __vt__Q23Sys10TriDivider@ha
-	lis      r3, __vt__Q23Sys11GridDivider@ha
-	addi     r0, r4, __vt__Q23Sys10TriDivider@l
-	lfs      f1, lbl_805203F8@sda21(r2)
-	stw      r0, 0(r31)
-	addi     r3, r3, __vt__Q23Sys11GridDivider@l
-	lfs      f0, lbl_805203FC@sda21(r2)
-	li       r0, 0
-	stw      r3, 0(r31)
-	stfs     f1, 0x2c(r31)
-	stfs     f1, 0x30(r31)
-	stfs     f1, 0x34(r31)
-	stfs     f0, 0x38(r31)
-	stfs     f0, 0x3c(r31)
-	stfs     f0, 0x40(r31)
-	stw      r0, 0x28(r31)
-	stw      r0, 0x24(r31)
-	stw      r0, 0x20(r31)
-
-lbl_80421E84:
-	lwz      r5, 0x20(r28)
-	mr       r3, r31
-	lwz      r6, 0x24(r28)
-	mr       r7, r29
-	mr       r8, r30
-	addi     r4, r29, 0x28
-	bl
-create__Q23Sys11GridDividerFR8BoundBoxiiPQ23Sys11VertexTablePQ23Sys13TriangleTable
-	lwz      r0, 0x24(r1)
-	mr       r3, r31
-	lwz      r31, 0x1c(r1)
-	lwz      r30, 0x18(r1)
-	lwz      r29, 0x14(r1)
-	lwz      r28, 0x10(r1)
-	mtlr     r0
-	addi     r1, r1, 0x20
-	blr
-	*/
+	GridDivider* copy = new GridDivider();
+	copy->create(vertices->_28, _20, _24, vertices, triangles);
+	return copy;
 }
 } // namespace Sys

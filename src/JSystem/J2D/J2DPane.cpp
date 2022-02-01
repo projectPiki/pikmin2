@@ -208,8 +208,8 @@ void J2DPane::initiate()
 	m_anchorPoint.y     = 0.0f;
 	m_basePosition      = POS_TOP_LEFT;
 	m_rotationAxisMaybe = 122; // 0x7A
-	m_widthScale        = 1.0f;
-	m_heightScale       = 1.0f;
+	m_scale.x           = 1.0f;
+	m_scale.y           = 1.0f;
 	m_cullMode          = 0;
 	m_alpha             = 0xFF;
 	_0B4                = true;
@@ -334,8 +334,8 @@ void J2DPane::initialize(J2DPane* parent, bool isVisible, u64 tag, const JGeomet
 	m_anchorPoint.y     = 0.0f;
 	m_basePosition      = POS_TOP_LEFT;
 	m_rotationAxisMaybe = 122; // 0x7A
-	m_widthScale        = 1.0f;
-	m_heightScale       = 1.0f;
+	m_scale.x           = 1.0f;
+	m_scale.y           = 1.0f;
 	m_cullMode          = 0;
 	m_alpha             = 0xFF;
 	_0B4                = true;
@@ -720,13 +720,13 @@ void J2DPane::makePaneStream(J2DPane* parent, JSURandomInputStream* input)
 		}
 		parent->m_tree.m_list.append(link);
 	}
-	m_cullMode    = 0;
-	_0B3          = 0xFF;
-	_0B5          = 0;
-	_004          = -1;
-	m_widthScale  = 1.0f;
-	m_heightScale = 1.0f;
-	m_messageID   = 0;
+	m_cullMode  = 0;
+	_0B3        = 0xFF;
+	_0B5        = 0;
+	_004        = -1;
+	m_scale.x   = 1.0f;
+	m_scale.y   = 1.0f;
+	m_messageID = 0;
 	changeUseTrans(parent);
 	calcMtx();
 	/*
@@ -3005,7 +3005,7 @@ void J2DPane::makeMatrix(float f1, float f2, float f3, float f4)
 	PSMTXRotRad(mtx3, 0x7A, _0C0 * 0.01745329f);
 	PSMTXConcat(mtx3, mtx1, mtx6);
 	PSMTXConcat(mtx2, mtx6, mtx4);
-	PSMTXScaleApply(trans, _050, m_widthScale, m_heightScale, 1.0f);
+	PSMTXScaleApply(trans, _050, m_scale.x, m_scale.y, 1.0f);
 	PSMTXConcat(mtx4, _050, mtx6);
 	PSMTXTransApply(mtx6, _050, f1 + x, f2 + y, 0.0f);
 

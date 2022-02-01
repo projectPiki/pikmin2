@@ -84,5 +84,6 @@ template <typename T> struct Vector3 {
 
 // Use instead of Vector3<float> or Vector3<f32>
 typedef Vector3<float> Vector3f;
+typedef Vector3<int> Vector3i;
 
 #endif

@@ -3,6 +3,7 @@
 #include "Sys/TriangleTable.h"
 #include "Sys/TriIndexList.h"
 #include "Sys/Tube.h"
+#include "Vector3.h"
 #include "types.h"
 
 /*
@@ -530,7 +531,7 @@ void Tube::getPosGradient(Vector3f&, float, Vector3f&, Vector3f&)
  * Address:	80415EC8
  * Size:	00004C
  */
-void Tube::setPos(float)
+Vector3f Tube::setPos(float)
 {
 	/*
 	lfs      f6, 0(r4)
@@ -560,7 +561,7 @@ void Tube::setPos(float)
  * Address:	80415F14
  * Size:	000058
  */
-void Sphere::intersect(Sys::Sphere&)
+bool Sphere::intersect(Sys::Sphere&)
 {
 	/*
 	lfs      f2, 4(r4)
@@ -593,7 +594,7 @@ void Sphere::intersect(Sys::Sphere&)
  * Address:	80415F6C
  * Size:	000120
  */
-void Sphere::intersect(Sys::Sphere&, Vector3f&)
+bool Sphere::intersect(Sys::Sphere&, Vector3f&)
 {
 	/*
 	stwu     r1, -0x20(r1)
@@ -684,7 +685,7 @@ lbl_80416070:
  * Address:	8041608C
  * Size:	000204
  */
-void Sphere::intersect(Sys::Edge&, float&)
+bool Sphere::intersect(Sys::Edge&, float&)
 {
 	/*
 	stwu     r1, -0x50(r1)
@@ -838,7 +839,7 @@ lbl_8041625C:
  * Address:	80416290
  * Size:	00028C
  */
-void Sphere::intersect(Sys::Edge&, float&, Vector3f&)
+bool Sphere::intersect(Sys::Edge&, float&, Vector3f&)
 {
 	/*
 	stwu     r1, -0x60(r1)
@@ -1026,7 +1027,7 @@ lbl_804164DC:
  * Address:	8041651C
  * Size:	0003D4
  */
-void Sphere::intersect(Sys::Edge&, float&, Vector3f&, float&)
+bool Sphere::intersect(Sys::Edge&, float&, Vector3f&, float&)
 {
 	/*
 	stwu     r1, -0x50(r1)
@@ -1316,7 +1317,7 @@ lbl_804168C4:
  * Address:	........
  * Size:	0000D8
  */
-void Sphere::intersectRay(Vector3f&, Vector3f&)
+bool Sphere::intersectRay(Vector3f&, Vector3f&)
 {
 	// UNUSED FUNCTION
 }
@@ -1478,7 +1479,7 @@ lbl_80416A60:
  * Address:	80416AC0
  * Size:	000084
  */
-void Triangle::fastIntersect(Sys::Sphere&)
+bool Triangle::fastIntersect(Sys::Sphere&)
 {
 	/*
 	stwu     r1, -0x10(r1)
@@ -1654,7 +1655,7 @@ lbl_80416C30:
  * Address:	........
  * Size:	0001EC
  */
-void Triangle::intersect(Sys::VertexTable&, BoundBox2d&)
+bool Triangle::intersect(Sys::VertexTable&, BoundBox2d&)
 {
 	// UNUSED FUNCTION
 }
@@ -1664,7 +1665,7 @@ void Triangle::intersect(Sys::VertexTable&, BoundBox2d&)
  * Address:	........
  * Size:	0002F0
  */
-void Triangle::intersect(Sys::Edge&, Vector3f&)
+bool Triangle::intersect(Sys::Edge&, Vector3f&)
 {
 	// UNUSED FUNCTION
 }
@@ -1674,7 +1675,7 @@ void Triangle::intersect(Sys::Edge&, Vector3f&)
  * Address:	80416C48
  * Size:	000334
  */
-void Triangle::intersect(Sys::Edge&, float, Vector3f&)
+bool Triangle::intersect(Sys::Edge&, float, Vector3f&)
 {
 	/*
 	stwu     r1, -0x60(r1)
@@ -1914,7 +1915,7 @@ lbl_80416F40:
  * Address:	80416F7C
  * Size:	000370
  */
-void Triangle::intersect(Sys::Edge&, float, Vector3f&, float&)
+bool Triangle::intersect(Sys::Edge&, float, Vector3f&, float&)
 {
 	/*
 	stwu     r1, -0x60(r1)
@@ -2169,7 +2170,7 @@ lbl_804172AC:
  * Address:	804172EC
  * Size:	0002AC
  */
-void Triangle::intersect(Sys::VertexTable&, Sys::Sphere&)
+bool Triangle::intersect(Sys::VertexTable&, Sys::Sphere&)
 {
 	/*
 	stwu     r1, -0x40(r1)
@@ -2373,7 +2374,7 @@ lbl_8041757C:
  * Address:	80417598
  * Size:	0002F8
  */
-void Triangle::intersect(Sys::VertexTable&, Sys::Sphere&, Vector3f&)
+bool Triangle::intersect(Sys::VertexTable&, Sys::Sphere&, Vector3f&)
 {
 	/*
 	stwu     r1, -0x40(r1)
@@ -2590,7 +2591,7 @@ lbl_80417870:
  * Address:	80417890
  * Size:	0002F8
  */
-void Triangle::intersectHard(Sys::VertexTable&, Sys::Sphere&, Vector3f&)
+bool Triangle::intersectHard(Sys::VertexTable&, Sys::Sphere&, Vector3f&)
 {
 	/*
 	stwu     r1, -0x40(r1)
@@ -2813,7 +2814,7 @@ lbl_80417B68:
  * Address:	........
  * Size:	00014C
  */
-void Triangle::intersectOptimistic(Sys::Sphere&, Vector3f&)
+bool Triangle::intersectOptimistic(Sys::Sphere&, Vector3f&)
 {
 	// UNUSED FUNCTION
 }
@@ -2823,7 +2824,7 @@ void Triangle::intersectOptimistic(Sys::Sphere&, Vector3f&)
  * Address:	80417B88
  * Size:	0000EC
  */
-void Triangle::insideXZ(Vector3f&)
+bool Triangle::insideXZ(Vector3f&)
 {
 	/*
 	lfs      f4, 0x10(r3)
@@ -3558,7 +3559,7 @@ lbl_80418584:
  * Address:	804185A4
  * Size:	0001D8
  */
-void GridDivider::getMinY(Vector3f&)
+float GridDivider::getMinY(Vector3f&)
 {
 	/*
 	stwu     r1, -0x20(r1)
@@ -3885,7 +3886,7 @@ lbl_804189A8:
  * Address:	804189B0
  * Size:	000230
  */
-void GridDivider::findTriLists(Sys::Sphere&)
+TriIndexList* GridDivider::findTriLists(Sys::Sphere&)
 {
 	/*
 	stwu     r1, -0x50(r1)
@@ -4435,7 +4436,7 @@ void GridDivider::create(BoundBox&, int, int, Sys::VertexTable*, Sys::TriangleTa
  * Address:	8041903C
  * Size:	000088
  */
-TriIndexList::TriIndexList(void)
+TriIndexList::TriIndexList()
 {
 	/*
 	stwu     r1, -0x10(r1)

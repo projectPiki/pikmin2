@@ -1,4 +1,7 @@
+#include "JSystem/J2D/J2DPane.h"
+#include "JSystem/JUT/JUTTexture.h"
 #include "og/Screen/callbackNodes.h"
+#include "og/Screen/ogScreen.h"
 #include "types.h"
 
 /*
@@ -31,30 +34,10 @@ namespace Screen {
  * Address:	8030D2B8
  * Size:	00004C
  */
-CallBack_CounterDay::CallBack_CounterDay(char**, unsigned short, JKRArchive*)
+CallBack_CounterDay::CallBack_CounterDay(char** p1, unsigned short p2, JKRArchive* p3)
+    : CallBack_CounterRV(p1, p2, 2, p3)
 {
-	/*
-	.loc_0x0:
-	  stwu      r1, -0x10(r1)
-	  mflr      r0
-	  mr        r7, r6
-	  li        r6, 0x2
-	  stw       r0, 0x14(r1)
-	  stw       r31, 0xC(r1)
-	  mr        r31, r3
-	  bl        -0x1DB0
-	  lis       r3, 0x804E
-	  li        r0, 0
-	  subi      r4, r3, 0x7E08
-	  mr        r3, r31
-	  stw       r4, 0x0(r31)
-	  stw       r0, 0xA8(r31)
-	  lwz       r31, 0xC(r1)
-	  lwz       r0, 0x14(r1)
-	  mtlr      r0
-	  addi      r1, r1, 0x10
-	  blr
-	*/
+	_A8 = nullptr;
 }
 
 /*
@@ -62,74 +45,22 @@ CallBack_CounterDay::CallBack_CounterDay(char**, unsigned short, JKRArchive*)
  * Address:	8030D304
  * Size:	0000EC
  */
-void CallBack_CounterDay::init(J2DScreen*, unsigned long long, unsigned long long, unsigned long long, unsigned long*, bool)
+void CallBack_CounterDay::init(J2DScreen* p2, unsigned long long p3, unsigned long long p4, unsigned long long p5, unsigned long* p6,
+                               bool p7)
 {
-	/*
-	.loc_0x0:
-	  stwu      r1, -0x30(r1)
-	  mflr      r0
-	  stw       r0, 0x34(r1)
-	  stmw      r25, 0x14(r1)
-	  mr        r28, r5
-	  mr        r27, r6
-	  mr        r26, r4
-	  mr        r25, r3
-	  lwz       r31, 0x38(r1)
-	  mr        r30, r7
-	  mr        r29, r8
-	  mr        r3, r26
-	  mr        r6, r10
-	  mr        r5, r9
-	  bl        -0xA490
-	  stw       r3, 0xA8(r25)
-	  lwz       r3, 0xA8(r25)
-	  cmplwi    r3, 0
-	  beq-      .loc_0x60
-	  li        r0, 0
-	  li        r4, 0x4
-	  stb       r0, 0xB0(r3)
-	  lwz       r3, 0xA8(r25)
-	  bl        -0x2D46A4
-
-	.loc_0x60:
-	  stw       r31, 0x8(r1)
-	  li        r0, 0x1
-	  mr        r3, r25
-	  mr        r4, r26
-	  stw       r0, 0xC(r1)
-	  mr        r6, r27
-	  mr        r5, r28
-	  mr        r8, r29
-	  mr        r7, r30
-	  li        r10, 0
-	  li        r9, 0
-	  bl        -0x1AAC
-	  mr        r3, r25
-	  li        r4, 0x1
-	  bl        -0x1AC0
-	  mr        r3, r25
-	  lwz       r12, 0x0(r25)
-	  lwz       r12, 0x2C(r12)
-	  mtctr     r12
-	  bctrl
-	  lwz       r3, 0x74(r25)
-	  cmplwi    r3, 0
-	  beq-      .loc_0xC4
-	  li        r0, 0
-	  stb       r0, 0xB0(r3)
-
-	.loc_0xC4:
-	  lwz       r3, 0x6C(r25)
-	  li        r0, 0
-	  stb       r0, 0xB0(r3)
-	  lwz       r3, 0x70(r25)
-	  stb       r0, 0xB0(r3)
-	  lmw       r25, 0x14(r1)
-	  lwz       r0, 0x34(r1)
-	  mtlr      r0
-	  addi      r1, r1, 0x30
-	  blr
-	*/
+	_A8 = (J2DPicture*)TagSearch(p2, p5);
+	if (_A8 != nullptr) {
+		_A8->hide();
+		_A8->setBasePosition(POS_CENTER);
+	}
+	CallBack_CounterRV::init(p2, p3, p4, 0, p6, true);
+	setCenteringMode(ECM_Unknown1);
+	setValue();
+	if (_74 != nullptr) {
+		_74->hide();
+	}
+	_6C->hide();
+	_70->hide();
 }
 
 /*
@@ -137,8 +68,33 @@ void CallBack_CounterDay::init(J2DScreen*, unsigned long long, unsigned long lon
  * Address:	8030D3F0
  * Size:	000168
  */
-void CallBack_CounterDay::setValue(void)
+void CallBack_CounterDay::setValue()
 {
+	if (m_isPuyoAnim) {
+		bool v1 = false;
+		bool v2 = false;
+		if (_24 > _28) {
+			v1 = true;
+		} else if (_24 < _28) {
+			v2 = true;
+		}
+		CallBack_CounterRV::setValue(v1, v2);
+	} else {
+		CallBack_CounterRV::setValue(false, false);
+	}
+	J2DPicture* picture = m_counters[0]->m_picture;
+	_A8->changeTexture(picture->getTexture(0)->_20, 0);
+	if (m_isHidden) {
+		_A8->hide();
+		picture->hide();
+	} else if (_24 >= 10) {
+		_A8->hide();
+		picture->show();
+	} else {
+		_A8->show();
+		picture->hide();
+		picture->centerWithScale(picture->m_scale.x, picture->m_scale.y);
+	}
 	/*
 stwu     r1, -0x30(r1)
 mflr     r0
@@ -252,28 +208,12 @@ blr
  * Address:	8030D558
  * Size:	000040
  */
-void CallBack_CounterDay::show(void)
+void CallBack_CounterDay::show()
 {
-	/*
-stwu     r1, -0x10(r1)
-mflr     r0
-stw      r0, 0x14(r1)
-lbz      r0, 0x87(r3)
-cmplwi   r0, 0
-beq      lbl_8030D588
-li       r0, 0
-stb      r0, 0x87(r3)
-lwz      r12, 0(r3)
-lwz      r12, 0x2c(r12)
-mtctr    r12
-bctrl
-
-lbl_8030D588:
-lwz      r0, 0x14(r1)
-mtlr     r0
-addi     r1, r1, 0x10
-blr
-	*/
+	if (m_isHidden) {
+		m_isHidden = false;
+		setValue();
+	}
 }
 
 /*
@@ -281,33 +221,13 @@ blr
  * Address:	8030D598
  * Size:	00004C
  */
-void CallBack_CounterDay::hide(void)
+void CallBack_CounterDay::hide()
 {
-	/*
-li       r0, 1
-li       r6, 0
-stb      r0, 0x87(r3)
-mr       r5, r6
-li       r7, 0
-b        lbl_8030D5C8
-
-lbl_8030D5B0:
-lwz      r4, 0x7c(r3)
-addi     r7, r7, 1
-lwzx     r4, r4, r6
-addi     r6, r6, 4
-lwz      r4, 0(r4)
-stb      r5, 0xb0(r4)
-
-lbl_8030D5C8:
-lhz      r0, 0x2e(r3)
-cmpw     r7, r0
-blt      lbl_8030D5B0
-lwz      r3, 0xa8(r3)
-li       r0, 0
-stb      r0, 0xb0(r3)
-blr
-	*/
+	m_isHidden = true;
+	for (int i = 0; i < m_counterLimit; i++) {
+		m_counters[i]->m_picture->hide();
+	}
+	_A8->hide();
 }
 
 /*
@@ -315,26 +235,11 @@ blr
  * Address:	8030D5E4
  * Size:	000040
  */
-void CallBack_CounterDay::update(void)
+void CallBack_CounterDay::update()
 {
-	/*
-stwu     r1, -0x10(r1)
-mflr     r0
-stw      r0, 0x14(r1)
-lwz      r0, 0x24(r3)
-stw      r0, 0x28(r3)
-lwz      r4, 0x20(r3)
-lwz      r0, 0(r4)
-stw      r0, 0x24(r3)
-lwz      r12, 0(r3)
-lwz      r12, 0x2c(r12)
-mtctr    r12
-bctrl
-lwz      r0, 0x14(r1)
-mtlr     r0
-addi     r1, r1, 0x10
-blr
-	*/
+	_28 = _24;
+	_24 = *_20;
+	setValue();
 }
 
 /*
@@ -342,69 +247,13 @@ blr
  * Address:	8030D624
  * Size:	0000DC
  */
-void setCallBack_CounterDay(P2DScreen::Mgr*, unsigned long long, unsigned long long, unsigned long long, unsigned long*, unsigned short,
-                            JKRArchive*)
+CallBack_CounterDay* setCallBack_CounterDay(P2DScreen::Mgr* p1, unsigned long long p2, unsigned long long p3, unsigned long long p4,
+                                            unsigned long* p5, unsigned short p6, JKRArchive* p7)
 {
-	/*
-	.loc_0x0:
-	  stwu      r1, -0x40(r1)
-	  mflr      r0
-	  stw       r0, 0x44(r1)
-	  stmw      r21, 0x14(r1)
-	  mr        r24, r3
-	  lwz       r31, 0x48(r1)
-	  mr        r26, r5
-	  lhz       r21, 0x4E(r1)
-	  mr        r25, r6
-	  lwz       r22, 0x50(r1)
-	  mr        r28, r7
-	  mr        r27, r8
-	  mr        r30, r9
-	  mr        r29, r10
-	  li        r3, 0xAC
-	  bl        -0x2E97BC
-	  mr.       r23, r3
-	  beq-      .loc_0x74
-	  lis       r4, 0x804D
-	  mr        r5, r21
-	  addi      r4, r4, 0x7E18
-	  mr        r7, r22
-	  li        r6, 0x2
-	  bl        -0x215C
-	  lis       r3, 0x804E
-	  li        r0, 0
-	  subi      r3, r3, 0x7E08
-	  stw       r3, 0x0(r23)
-	  stw       r0, 0xA8(r23)
-
-	.loc_0x74:
-	  stw       r31, 0x8(r1)
-	  li        r0, 0x1
-	  mr        r3, r23
-	  mr        r4, r24
-	  stw       r0, 0xC(r1)
-	  mr        r6, r25
-	  mr        r5, r26
-	  mr        r8, r27
-	  lwz       r12, 0x0(r23)
-	  mr        r7, r28
-	  mr        r10, r29
-	  mr        r9, r30
-	  lwz       r12, 0x1C(r12)
-	  mtctr     r12
-	  bctrl
-	  mr        r3, r24
-	  mr        r6, r25
-	  mr        r5, r26
-	  mr        r7, r23
-	  bl        0x127440
-	  mr        r3, r23
-	  lmw       r21, 0x14(r1)
-	  lwz       r0, 0x44(r1)
-	  mtlr      r0
-	  addi      r1, r1, 0x40
-	  blr
-	*/
+	CallBack_CounterDay* counter = new CallBack_CounterDay(const_cast<char**>(SujiTex32), p6, p7);
+	counter->init(p1, p2, p3, p4, p5, true);
+	p1->addCallBack(p2, counter);
+	return counter;
 }
 
 /*
@@ -412,18 +261,19 @@ void setCallBack_CounterDay(P2DScreen::Mgr*, unsigned long long, unsigned long l
  * Address:	........
  * Size:	0000DC
  */
-void setCallBack_CounterDay(char**, P2DScreen::Mgr*, unsigned long long, unsigned long long, unsigned long long, unsigned long*,
-                            unsigned short, JKRArchive*)
+CallBack_CounterDay* setCallBack_CounterDay(char**, P2DScreen::Mgr*, unsigned long long, unsigned long long, unsigned long long,
+                                            unsigned long*, unsigned short, JKRArchive*)
 {
 	// UNUSED FUNCTION
 }
 
 /*
+ * __dt
  * --INFO--
  * Address:	8030D700
  * Size:	000090
  */
-CallBack_CounterDay::~CallBack_CounterDay(void)
+CallBack_CounterDay::~CallBack_CounterDay()
 {
 	/*
 stwu     r1, -0x10(r1)

@@ -9,10 +9,18 @@ template <typename T> struct TVec2 {
 	    , y(inY) {};
 	T x;
 	T y;
+
+	// TODO: Determine if this could've actually existed, or if I'm just making it up.
+	inline TVec2& operator=(const TVec2& other)
+	{
+		x = other.x;
+		y = other.y;
+		return *this;
+	}
 };
 
 template <typename T> struct TVec3 {
-	inline TVec3();
+	inline TVec3() { }
 	inline TVec3(T inX, T inY, T inZ)
 	    : x(inX)
 	    , y(inY)

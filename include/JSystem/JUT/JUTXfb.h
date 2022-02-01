@@ -16,7 +16,7 @@ struct JUTXfb {
 	static JUTXfb* createManager(JKRHeap*, EXfbNumber);
 	static void destroyManager();
 	void initiate(u16, u16, JKRHeap*, EXfbNumber);
-	int accumeXfbSize();
+	static int accumeXfbSize();
 
 	// Unused/inlined:
 	JUTXfb(const _GXRenderModeObj*, JKRHeap*, EXfbNumber);

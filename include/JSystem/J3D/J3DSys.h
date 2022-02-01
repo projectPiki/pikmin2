@@ -24,7 +24,7 @@ struct J3DSys {
 	static void reinitTevStages();
 	static void reinitTransform();
 
-	Mtx44 _00;                     // _000
+	Mtx _00;                       // _000
 	J3DMtxCalc* m_mtxCalc;         // _030
 	u32 _34;                       // _034 /* bitfield */
 	J3DModel* _38;                 // _038

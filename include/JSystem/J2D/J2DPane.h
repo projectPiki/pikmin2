@@ -105,7 +105,12 @@ struct J2DPane {
 	u64 getTagName() const;
 	float getTranslateX() const;
 	float getTranslateY() const;
-	u64 getUserInfo() const;
+
+	/**
+	 * @reifiedAddress{80309D98}
+	 * @reifiedFile{plugProjectOgawaU/ogCallBackMessage.cpp}
+	 */
+	u64 getUserInfo() const { return m_messageID; }
 
 	J2DPane* getFirstChildPane();
 	J2DPane* getNextChildPane();
@@ -123,6 +128,12 @@ struct J2DPane {
 	void updateTransform(const J2DAnmTransform*);
 
 	/**
+	 * @reifiedAddress{80309A74}
+	 * @reifiedFile{plugProjectOgawaU/ogCallBackMessage.cpp}
+	 */
+	bool isVisible() const { return m_isVisible; }
+
+	/**
 	 * @reifiedAddress{803CA760}
 	 * @reifiedFile{plugProjectEbisawaU/ebi2DGraph.cpp}
 	 */
@@ -136,6 +147,25 @@ struct J2DPane {
 
 	void setBasePosition(J2DBasePosition);
 	void setInfluencedAlpha(bool, bool);
+
+	/**
+	 * @fabricated
+	 */
+	void centerWithScale(float width, float height)
+	{
+		setBasePosition(POS_CENTER);
+		m_scale.x = width;
+		m_scale.y = height;
+		calcMtx();
+	}
+
+	// /**
+	//  * @fabricated
+	//  */
+	// void setScale(float width, float height) {
+	// 	m_scale.x = width;
+	// 	m_scale.y = height;
+	// }
 
 	u32 appendChild(J2DPane*);
 	u32 prependChild(J2DPane*);
@@ -173,13 +203,12 @@ struct J2DPane {
 	bool _0B4;                       // _0B4
 	u8 _0B5;                         // _0B5
 	u8 m_rotationAxisMaybe;          // _0B6
-	J2DBasePosition m_basePosition;  // _0B7
+	u8 m_basePosition;               // _0B7
 	float _0B8;                      // _0B8
 	float _0BC;                      // _0BC
 	float _0C0;                      // _0C0
 	JGeometry::TVec2f m_anchorPoint; // _0C4
-	float m_widthScale;              // _0CC
-	float m_heightScale;             // _0D0
+	JGeometry::TVec2f m_scale;       // _0CC
 	float _0D4[2];                   // _0D4 /* offset X,Y? */
 	JSUTree<J2DPane> m_tree;         // _0DC
 	J2DAnmTransform* m_transform;    // _0F8

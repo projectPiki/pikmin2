@@ -867,7 +867,7 @@ OGAWA:=\
 	$(BUILD_DIR)/asm/plugProjectOgawaU/ogDopingScreen.o\
 	$(BUILD_DIR)/asm/plugProjectOgawaU/ogPikminCounter.o\
 	$(BUILD_DIR)/asm/plugProjectOgawaU/ogAnime.o\
-	$(BUILD_DIR)/asm/plugProjectOgawaU/ogCounter.o\
+	$(BUILD_DIR)/src/plugProjectOgawaU/ogCounter.o\
 	$(BUILD_DIR)/asm/plugProjectOgawaU/ogLifeGauge.o\
 	$(BUILD_DIR)/asm/plugProjectOgawaU/ogSunMeter.o\
 	$(BUILD_DIR)/asm/plugProjectOgawaU/ogCatchPiki.o\

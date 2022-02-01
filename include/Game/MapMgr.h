@@ -26,6 +26,9 @@ struct WaterBox;
 // };
 
 struct MapMgr : virtual public GenericObjectMgr {
+	struct BeamCollisionArg {
+	};
+
 	MapMgr();
 
 	// vtable 1 (MapMgr)

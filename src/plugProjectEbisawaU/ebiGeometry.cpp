@@ -1,5 +1,6 @@
 #include "Vector2.h"
 #include "ebi/Geometry.h"
+#include "sysMath.h"
 #include "types.h"
 
 /*
@@ -49,23 +50,23 @@ bool EGEBox2f::isOut(Vector2f& point)
 }
 
 /*
+ * in__Q23ebi8EGEBox2fFP10Vector2<f>
  * --INFO--
  * Address:	........
  * Size:	000054
  */
-// void in__Q23ebi8EGEBox2fFP10Vector2<float>(void)
-void EGEBox2f::in(Vector2f*) const
+void EGEBox2f::in(Vector2f*)
 {
 	// UNUSED FUNCTION
 }
 
 /*
+ * isIn__Q23ebi8EGEBox2fFR10Vector2<f>f
  * --INFO--
  * Address:	803CA04C
  * Size:	000070
  */
-// void isIn__Q23ebi8EGEBox2fFR10Vector2<float> f(void)
-bool EGEBox2f::isIn(Vector2f& point, float pointSize) const
+bool EGEBox2f::isIn(Vector2f& point, float pointSize)
 {
 	if (point.x - pointSize < minX) {
 		return false;
@@ -77,51 +78,15 @@ bool EGEBox2f::isIn(Vector2f& point, float pointSize) const
 		return false;
 	}
 	return (maxY < point.y + pointSize) == false;
-	/*
-	lfs      f3, 0(r4)
-	lfs      f0, 0(r3)
-	fsubs    f2, f3, f1
-	fcmpo    cr0, f2, f0
-	bge      lbl_803CA068
-	li       r3, 0
-	blr
-
-lbl_803CA068:
-	fadds    f0, f3, f1
-	lfs      f2, 8(r3)
-	fcmpo    cr0, f2, f0
-	bge      lbl_803CA080
-	li       r3, 0
-	blr
-
-lbl_803CA080:
-	lfs      f3, 4(r4)
-	lfs      f0, 4(r3)
-	fsubs    f2, f3, f1
-	fcmpo    cr0, f2, f0
-	bge      lbl_803CA09C
-	li       r3, 0
-	blr
-
-lbl_803CA09C:
-	fadds    f0, f3, f1
-	lfs      f1, 0xc(r3)
-	fcmpo    cr0, f1, f0
-	mfcr     r0
-	srwi     r0, r0, 0x1f
-	cntlzw   r0, r0
-	srwi     r3, r0, 5
-	blr
-	*/
 }
 
 /*
+ * isOut__Q23ebi8EGEBox2fFR10Vector2<f>f
  * --INFO--
  * Address:	803CA0BC
  * Size:	000068
  */
-// void isOut__Q23ebi8EGEBox2fFR10Vector2<float> f(void)
-bool EGEBox2f::isOut(Vector2f& point, float pointSize) const
+bool EGEBox2f::isOut(Vector2f& point, float pointSize)
 {
 	if (point.x + pointSize < minX) {
 		return true;
@@ -133,92 +98,45 @@ bool EGEBox2f::isOut(Vector2f& point, float pointSize) const
 		return true;
 	}
 	return (maxY < point.y - pointSize);
-	/*
-	lfs      f3, 0(r4)
-	lfs      f0, 0(r3)
-	fadds    f2, f3, f1
-	fcmpo    cr0, f2, f0
-	bge      lbl_803CA0D8
-	li       r3, 1
-	blr
-
-lbl_803CA0D8:
-	fsubs    f0, f3, f1
-	lfs      f2, 8(r3)
-	fcmpo    cr0, f2, f0
-	bge      lbl_803CA0F0
-	li       r3, 1
-	blr
-
-lbl_803CA0F0:
-	lfs      f3, 4(r4)
-	lfs      f0, 4(r3)
-	fadds    f2, f3, f1
-	fcmpo    cr0, f2, f0
-	bge      lbl_803CA10C
-	li       r3, 1
-	blr
-
-lbl_803CA10C:
-	fsubs    f0, f3, f1
-	lfs      f1, 0xc(r3)
-	fcmpo    cr0, f1, f0
-	mfcr     r0
-	srwi     r3, r0, 0x1f
-	blr
-	*/
 }
 
 /*
+ * Constrains the given vector to be inside the box by at least the given margin.
+ *
+ * in__Q23ebi8EGEBox2fFP10Vector2<f>f
  * --INFO--
  * Address:	803CA124
  * Size:	000064
  */
-// void in__Q23ebi8EGEBox2fFP10Vector2<float> f(void)
-void EGEBox2f::in(Vector2f*, float) const
+void EGEBox2f::in(Vector2f* point, float margin)
 {
-	/*
-	lfs      f0, 0(r3)
-	lfs      f2, 0(r4)
-	fadds    f0, f0, f1
-	fcmpo    cr0, f2, f0
-	bge      lbl_803CA140
-	stfs     f0, 0(r4)
-	b        lbl_803CA154
-
-lbl_803CA140:
-	lfs      f0, 8(r3)
-	fsubs    f0, f0, f1
-	fcmpo    cr0, f0, f2
-	bge      lbl_803CA154
-	stfs     f0, 0(r4)
-
-lbl_803CA154:
-	lfs      f0, 4(r3)
-	lfs      f2, 4(r4)
-	fadds    f0, f0, f1
-	fcmpo    cr0, f2, f0
-	bge      lbl_803CA170
-	stfs     f0, 4(r4)
-	blr
-
-lbl_803CA170:
-	lfs      f0, 0xc(r3)
-	fsubs    f0, f0, f1
-	fcmpo    cr0, f0, f2
-	bgelr
-	stfs     f0, 4(r4)
-	blr
-	*/
+	float x = minX + margin;
+	if (point->x < x) {
+		point->x = x;
+	} else {
+		x = maxX - margin;
+		if (x < point->x) {
+			point->x = x;
+		}
+	}
+	float y = minY + margin;
+	if (point->y < y) {
+		point->y = y;
+	} else {
+		y = maxY - margin;
+		if (y < point->y) {
+			point->y = y;
+		}
+	}
 }
 
 /*
+ * isOut__Q23ebi11EGECircle2fFR10Vector2<f>
  * --INFO--
  * Address:	803CA188
  * Size:	00005C
  */
-// void isOut__Q23ebi11EGECircle2fFR10Vector2<float>(void)
-bool EGECircle2f::isOut(Vector2f&) const
+bool EGECircle2f::isOut(Vector2f& point)
 {
 	/*
 	lfs      f1, 4(r4)
@@ -254,12 +172,12 @@ lbl_803CA1DC:
 }
 
 /*
+ * in__Q23ebi11EGECircle2fFP10Vector2<f>
  * --INFO--
  * Address:	803CA1E4
  * Size:	0000B8
  */
-// void in__Q23ebi11EGECircle2fFP10Vector2<float>(void)
-void EGECircle2f::in(Vector2f*) const
+void EGECircle2f::in(Vector2f*)
 {
 	/*
 	lfs      f7, 4(r3)
@@ -324,12 +242,12 @@ lbl_803CA294:
 }
 
 /*
+ * out__Q23ebi11EGECircle2fFP10Vector2<f>
  * --INFO--
  * Address:	803CA29C
  * Size:	0000BC
  */
-// void out__Q23ebi11EGECircle2fFP10Vector2<float>(void)
-void EGECircle2f::out(Vector2f*) const
+void EGECircle2f::out(Vector2f* point)
 {
 	/*
 	lfs      f7, 4(r3)

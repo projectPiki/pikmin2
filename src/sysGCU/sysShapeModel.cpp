@@ -2,10 +2,13 @@
 #include "Graphics.h"
 #include "JSystem/J3D/J3DJoint.h"
 #include "JSystem/J3D/J3DMaterial.h"
+#include "JSystem/J3D/J3DMaterialAnm.h"
 #include "JSystem/J3D/J3DModel.h"
 #include "JSystem/J3D/J3DShape.h"
+#include "JSystem/JUT/JUTException.h"
 #include "SysShape/Model.h"
 #include "SysShape/Joint.h"
+#include "SysShape/MtxObject.h"
 #include "System.h"
 #include "types.h"
 #include "Viewport.h"
@@ -99,8 +102,15 @@ namespace SysShape {
  * Address:	8043E1D8
  * Size:	0000C4
  */
-Model::Model(J3DModelData*, unsigned long, unsigned long)
+Model::Model(J3DModelData* data, unsigned long p2, unsigned long modelType)
+    : MtxObject()
 {
+	m_j3dModel   = new J3DModel(data, p2, modelType);
+	m_jointCount = m_j3dModel->m_modelData->m_jointTree.m_jointCnt;
+	initJoints();
+	_05 = 1;
+	_04 = 0;
+	clearAnimatorAll();
 	/*
 	stwu     r1, -0x20(r1)
 	mflr     r0
@@ -161,8 +171,19 @@ lbl_8043E250:
  * Address:	8043E29C
  * Size:	00017C
  */
-void Model::enableMaterialAnim(J3DModelData*, int)
+void Model::enableMaterialAnim(J3DModelData* data, int p2)
 {
+	switch (p2) {
+	case 0:
+		for (int i = 0; i < data->m_materialTable.m_count1; i++) {
+			J3DMaterialAnm* anm = new J3DMaterialAnm();
+			data->m_materialTable.m_materials1[i]->change();
+			data->m_materialTable.m_materials1[i]->m_anm = anm;
+		}
+		break;
+	case 1:
+		JUT_PANICLINE(79, "manda\n");
+	}
 	/*
 	stwu     r1, -0x20(r1)
 	mflr     r0
@@ -279,8 +300,21 @@ lbl_8043E3F8:
  * Address:	8043E418
  * Size:	000174
  */
-void Model::enableMaterialAnim(int)
+void Model::enableMaterialAnim(int p1)
 {
+	switch (p1) {
+	case 0:
+		J3DModelData* data = m_j3dModel->m_modelData;
+		for (int i = 0; i < data->m_materialTable.m_count1; i++) {
+			J3DMaterialAnm* anm = new J3DMaterialAnm();
+			data->m_materialTable.m_materials1[i]->change();
+			data->m_materialTable.m_materials1[i]->m_anm = anm;
+		}
+		break;
+	case 1:
+		JUT_PANICLINE(100, "manda\n");
+	}
+	_04 = 1;
 	/*
 	stwu     r1, -0x20(r1)
 	mflr     r0
@@ -395,8 +429,19 @@ lbl_8043E570:
  * Address:	8043E58C
  * Size:	000048
  */
-void Model::getMatrix(int)
+Matrixf* Model::getMatrix(int jointIndex)
 {
+	if (jointIndex == -1) {
+		return nullptr;
+	}
+	return (m_joints[jointIndex] != nullptr) ? m_joints[jointIndex]->getWorldMatrix() : nullptr;
+	// if (jointIndex == -1) {
+	// 	return nullptr;
+	// } else if (m_joints[jointIndex] != nullptr) {
+	// 	return m_joints[jointIndex]->getWorldMatrix();
+	// } else {
+	// 	return nullptr;
+	// }
 	/*
 	stwu     r1, -0x10(r1)
 	mflr     r0
@@ -1337,43 +1382,47 @@ lbl_8043EF88:
 } // namespace SysShape
 
 /*
+ * @generated{J3DJoint::getJntNo() const}
  * --INFO--
  * Address:	8043EF9C
  * Size:	000008
  */
-int J3DJoint::getJntNo() const
-{
-	/*
-	lhz      r3, 0x14(r3)
-	blr
-	*/
-}
+// s16 J3DJoint::getJntNo() const
+// {
+// 	return m_jointIdx;
+// 	/*
+// 	lhz      r3, 0x14(r3)
+// 	blr
+// 	*/
+// }
 
 /*
+ * @generated{J3DJoint::getYounger()}
  * --INFO--
  * Address:	8043EFA4
  * Size:	000008
  */
-J3DJoint* J3DJoint::getYounger()
-{
-	/*
-	lwz      r3, 0x10(r3)
-	blr
-	*/
-}
+// J3DJoint* J3DJoint::getYounger()
+// {
+// 	/*
+// 	lwz      r3, 0x10(r3)
+// 	blr
+// 	*/
+// }
 
 /*
+ * @generated{J3DJoint::getChild()}
  * --INFO--
  * Address:	8043EFAC
  * Size:	000008
  */
-J3DJoint* J3DJoint::getChild()
-{
-	/*
-	lwz      r3, 0xc(r3)
-	blr
-	*/
-}
+// J3DJoint* J3DJoint::getChild()
+// {
+// 	/*
+// 	lwz      r3, 0xc(r3)
+// 	blr
+// 	*/
+// }
 
 namespace SysShape {
 
@@ -1405,7 +1454,7 @@ void Model::getJointIndex(char*)
  * Address:	8043EFE4
  * Size:	00005C
  */
-void Model::getJoint(char*)
+Joint* Model::getJoint(char*)
 {
 	/*
 	stwu     r1, -0x10(r1)

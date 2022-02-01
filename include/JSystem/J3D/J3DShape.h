@@ -28,7 +28,7 @@ struct J3DShape {
 	J3DMaterial* _04;              // _04
 	s16 m_id;                      // _08
 	u16 _0A;                       // _0A
-	Flags m_flags;                 // _0C
+	u32 m_flags;                   // _0C
 	f32 _10;                       // _10
 	f32 _14;                       // _14
 	f32 _18;                       // _18

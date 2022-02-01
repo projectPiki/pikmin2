@@ -395,8 +395,8 @@ void P2DScreen::Mgr_tuning::draw(Graphics& gfx, J2DGrafContext& context)
 	float xfb = (float)System::getRenderModeObj()->xfbHeight;
 	float efb = (float)System::getRenderModeObj()->efbHeight;
 	rotate(xfb * 0.5f, efb * 0.5f, 0x7A, 0.0f);
-	m_widthScale  = m_widthMaybe;
-	m_heightScale = m_heightMaybe;
+	m_scale.x = m_widthMaybe;
+	m_scale.y = m_heightMaybe;
 	calcMtx();
 	_0D4[0] = m_someX;
 	_0D4[1] = m_someY;

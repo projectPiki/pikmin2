@@ -1,3 +1,5 @@
+#include "CNode.h"
+#include "JSystem/JUT/JUTException.h"
 #include "Screen/Bases.h"
 #include "Screen/screenObj.h"
 #include "og/Screen/ogScreen.h"
@@ -74,45 +76,10 @@ namespace Screen {
  * Size:	000090
  */
 ObjBase::ObjBase(void)
+    : IObjBase()
 {
-	/*
-	stwu     r1, -0x10(r1)
-	mflr     r0
-	lis      r4, __vt__5CNode@ha
-	stw      r0, 0x14(r1)
-	addi     r0, r4, __vt__5CNode@l
-	li       r4, 0
-	stw      r31, 0xc(r1)
-	mr       r31, r3
-	stw      r0, 0(r3)
-	addi     r0, r2, lbl_80520B88@sda21
-	stw      r4, 0x10(r3)
-	addi     r3, r31, 0x18
-	stw      r4, 0xc(r31)
-	stw      r4, 8(r31)
-	stw      r4, 4(r31)
-	stw      r0, 0x14(r31)
-	bl       __ct__11JKRDisposerFv
-	lis      r4, __vt__Q26Screen8IObjBase@ha
-	lis      r3, __vt__Q26Screen7ObjBase@ha
-	addi     r4, r4, __vt__Q26Screen8IObjBase@l
-	li       r0, 0
-	stw      r4, 0(r31)
-	addi     r4, r4, 0x10
-	addi     r5, r3, __vt__Q26Screen7ObjBase@l
-	mr       r3, r31
-	stw      r4, 0x18(r31)
-	addi     r4, r5, 0x10
-	stw      r5, 0(r31)
-	stw      r4, 0x18(r31)
-	stw      r0, 0x30(r31)
-	stw      r0, 0x34(r31)
-	lwz      r31, 0xc(r1)
-	lwz      r0, 0x14(r1)
-	mtlr     r0
-	addi     r1, r1, 0x10
-	blr
-	*/
+	_30     = 0;
+	m_owner = nullptr;
 }
 
 /*
@@ -127,8 +94,23 @@ void ObjBase::create(JKRArchive* archive) { doCreate(archive); }
  * Address:	80453BA4
  * Size:	0000AC
  */
-bool ObjBase::start(Screen::StartSceneArg const*)
+bool ObjBase::start(Screen::StartSceneArg const* arg)
 {
+	switch (_30) {
+	case 0:
+		if (doStart(arg)) {
+			_30 = 1;
+			return true;
+		}
+		return false;
+	case 1:
+		return true;
+	case 2:
+	case 3:
+		return false;
+	default:
+		JUT_PANICLINE(97, "P2Assert");
+	}
 	/*
 	stwu     r1, -0x10(r1)
 	mflr     r0
@@ -389,26 +371,11 @@ lbl_80453E7C:
  * Address:	80453E98
  * Size:	000038
  */
-void ObjBase::draw(Graphics&)
+void ObjBase::draw(Graphics& gfx)
 {
-	/*
-	stwu     r1, -0x10(r1)
-	mflr     r0
-	stw      r0, 0x14(r1)
-	lwz      r0, 0x30(r3)
-	cmpwi    r0, 0
-	beq      lbl_80453EC0
-	lwz      r12, 0(r3)
-	lwz      r12, 0x68(r12)
-	mtctr    r12
-	bctrl
-
-lbl_80453EC0:
-	lwz      r0, 0x14(r1)
-	mtlr     r0
-	addi     r1, r1, 0x10
-	blr
-	*/
+	if (_30 != 0) {
+		doDraw(gfx);
+	}
 }
 
 /*
@@ -418,6 +385,17 @@ lbl_80453EC0:
  */
 void ObjBase::doDraw(Graphics&)
 {
+	// J2DPrint print(JFWSystem::systemFont, 0.0f);
+	// print.initiate();
+	// print._40.r = 0xFF;
+	// print._40.g = 0xFF;
+	// print._40.b = 0xFF;
+	// print._40.a = 0xFF;
+	// print._44.r = 0xFF;
+	// print._44.g = 0xFF;
+	// print._44.b = 0xFF;
+	// print._44.a = 0xFF;
+	// print.print(100.0f, m_name); // TODO: What's the other double param?
 	/*
 	stwu     r1, -0x80(r1)
 	mflr     r0
@@ -481,132 +459,45 @@ void ObjBase::doDraw(Graphics&)
  * Address:	80453FA8
  * Size:	00000C
  */
-og::Screen::DispMemberBase* ObjBase::getDispMember(void)
-{
-	/*
-	lwz      r3, 0x34(r3)
-	lwz      r3, 0x21c(r3)
-	blr
-	*/
-}
+og::Screen::DispMemberBase* ObjBase::getDispMember(void) { return (og::Screen::DispMemberBase*)m_owner->m_dispMemberBuffer; }
 
 /*
  * --INFO--
  * Address:	80453FB4
  * Size:	00002C
  */
-void ObjBase::confirmSetScene(Screen::SetSceneArg&)
-{
-	/*
-	stwu     r1, -0x10(r1)
-	mflr     r0
-	stw      r0, 0x14(r1)
-	lwz      r12, 0(r3)
-	lwz      r12, 0x6c(r12)
-	mtctr    r12
-	bctrl
-	lwz      r0, 0x14(r1)
-	mtlr     r0
-	addi     r1, r1, 0x10
-	blr
-	*/
-}
+bool ObjBase::confirmSetScene(Screen::SetSceneArg& arg) { return doConfirmSetScene(arg); }
 
 /*
  * --INFO--
  * Address:	80453FE0
  * Size:	00002C
  */
-void ObjBase::confirmStartScene(Screen::StartSceneArg*)
-{
-	/*
-	stwu     r1, -0x10(r1)
-	mflr     r0
-	stw      r0, 0x14(r1)
-	lwz      r12, 0(r3)
-	lwz      r12, 0x70(r12)
-	mtctr    r12
-	bctrl
-	lwz      r0, 0x14(r1)
-	mtlr     r0
-	addi     r1, r1, 0x10
-	blr
-	*/
-}
+bool ObjBase::confirmStartScene(Screen::StartSceneArg* arg) { return doConfirmStartScene(arg); }
 
 /*
  * --INFO--
  * Address:	8045400C
  * Size:	000034
  */
-void ObjBase::confirmEndScene(Screen::EndSceneArg*)
-{
-	/*
-	stwu     r1, -0x10(r1)
-	mflr     r0
-	stw      r0, 0x14(r1)
-	stw      r4, 8(r1)
-	addi     r4, r1, 8
-	lwz      r12, 0(r3)
-	lwz      r12, 0x74(r12)
-	mtctr    r12
-	bctrl
-	lwz      r0, 0x14(r1)
-	mtlr     r0
-	addi     r1, r1, 0x10
-	blr
-	*/
-}
+bool ObjBase::confirmEndScene(Screen::EndSceneArg* arg) { return doConfirmEndScene(arg); }
 
 /*
  * --INFO--
  * Address:	80454040
  * Size:	000030
  */
-Controller* ObjBase::getGamePad() const
-{
-	/*
-	stwu     r1, -0x10(r1)
-	mflr     r0
-	stw      r0, 0x14(r1)
-	lwz      r12, 0(r3)
-	lwz      r12, 0x30(r12)
-	mtctr    r12
-	bctrl
-	bl       getGamePad__Q26Screen9SceneBaseCFv
-	lwz      r0, 0x14(r1)
-	mtlr     r0
-	addi     r1, r1, 0x10
-	blr
-	*/
-}
+Controller* ObjBase::getGamePad() const { return getOwner()->getGamePad(); }
 
 /*
  * --INFO--
  * Address:	80454070
  * Size:	000044
  */
-ObjMgrBase::ObjMgrBase(void)
+ObjMgrBase::ObjMgrBase()
+    : _00()
 {
-	/*
-	stwu     r1, -0x10(r1)
-	mflr     r0
-	stw      r0, 0x14(r1)
-	stw      r31, 0xc(r1)
-	mr       r31, r3
-	bl       __ct__5CNodeFv
-	li       r0, 0
-	mr       r3, r31
-	stw      r0, 0x10(r31)
-	stw      r0, 0xc(r31)
-	stw      r0, 8(r31)
-	stw      r0, 4(r31)
-	lwz      r31, 0xc(r1)
-	lwz      r0, 0x14(r1)
-	mtlr     r0
-	addi     r1, r1, 0x10
-	blr
-	*/
+	_00.clearRelations();
 }
 
 /*
@@ -614,41 +505,27 @@ ObjMgrBase::ObjMgrBase(void)
  * Address:	804540B4
  * Size:	000058
  */
-void ObjMgrBase::registObj(Screen::IObjBase*, Screen::SceneBase*)
+void ObjMgrBase::registObj(Screen::IObjBase* obj, Screen::SceneBase* scene)
 {
-	/*
-	stwu     r1, -0x10(r1)
-	mflr     r0
-	stw      r0, 0x14(r1)
-	stw      r31, 0xc(r1)
-	mr       r31, r4
-	mr       r4, r5
-	stw      r30, 8(r1)
-	mr       r30, r3
-	mr       r3, r31
-	lwz      r12, 0(r31)
-	lwz      r12, 0x2c(r12)
-	mtctr    r12
-	bctrl
-	mr       r3, r30
-	mr       r4, r31
-	bl       add__5CNodeFP5CNode
-	lwz      r0, 0x14(r1)
-	lwz      r31, 0xc(r1)
-	lwz      r30, 8(r1)
-	mtlr     r0
-	addi     r1, r1, 0x10
-	blr
-	*/
+	obj->setOwner(scene);
+	_00.add(obj);
 }
 
 /*
+ * update__Q26Screen10ObjMgrBaseFv
  * --INFO--
  * Address:	8045410C
  * Size:	000068
  */
 bool ObjMgrBase::update(void)
 {
+	bool result = true;
+	for (IObjBase* obj = (IObjBase*)_00.m_child; obj != nullptr; obj = (IObjBase*)obj->m_next) {
+		if (!obj->update()) {
+			result = false;
+		}
+	}
+	return result;
 	/*
 	stwu     r1, -0x10(r1)
 	mflr     r0
@@ -686,12 +563,16 @@ lbl_80454150:
 }
 
 /*
+ * draw__Q26Screen10ObjMgrBaseFR8Graphics
  * --INFO--
  * Address:	80454174
  * Size:	00005C
  */
-void ObjMgrBase::draw(Graphics&)
+void ObjMgrBase::draw(Graphics& gfx)
 {
+	for (IObjBase* obj = (IObjBase*)_00.m_child; obj != nullptr; obj = (IObjBase*)obj->m_next) {
+		obj->draw(gfx);
+	}
 	/*
 	stwu     r1, -0x10(r1)
 	mflr     r0

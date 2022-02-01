@@ -5,7 +5,15 @@
 
 struct J3DMatPacket;
 
+/**
+ * @size{0x24}
+ */
 struct J3DDrawBuffer {
+	inline J3DDrawBuffer(unsigned long size)
+	{
+		initialize();
+		allocBuffer(size);
+	}
 	void initialize();
 	void allocBuffer(unsigned long);
 	void frameInit();

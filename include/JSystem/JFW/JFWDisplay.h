@@ -18,7 +18,7 @@ struct JFWDisplay {
 	// virtual void _10() = 0;     // _10
 	// virtual void _14() = 0;     // _14
 
-	static JFWDisplay* createManager(_GXRenderModeObj* const, JKRHeap);
+	static JFWDisplay* createManager(_GXRenderModeObj* const, JKRHeap*, JUTXfb::EXfbNumber, bool);
 
 	// Unused/inlined:
 	void ctor_subroutine(bool);

@@ -1,4 +1,7 @@
 #include "Demo.h"
+#include "Game/BaseHIOSection.h"
+#include "Game/THPPlayer.h"
+#include "System.h"
 #include "types.h"
 
 /*
@@ -125,7 +128,11 @@
  * Address:	8044CBB8
  * Size:	000054
  */
-Demo::Section::Section(JKRHeap*)
+Demo::Section::Section(JKRHeap* heap)
+    : Game::BaseHIOSection(heap)
+    , m_threadCommand()
+    , _DC(0.0f)
+    , m_thpPlayer()
 {
 	/*
 	stwu     r1, -0x10(r1)
@@ -157,7 +164,7 @@ Demo::Section::Section(JKRHeap*)
  * Address:	8044CC0C
  * Size:	000088
  */
-Demo::Section::~Section(void)
+Demo::Section::~Section()
 {
 	/*
 	stwu     r1, -0x10(r1)
@@ -206,8 +213,14 @@ lbl_8044CC78:
  * Address:	8044CC94
  * Size:	0001A0
  */
-void Demo::Section::init(void)
+void Demo::Section::init()
 {
+	sys->heapStatusStart("TitleSection::init", nullptr);
+	sys->heapStatusStart("JMANewSinTable", nullptr);
+	sys->heapStatusEnd("JMANewSinTable");
+	HIORootNode* node = new HIORootNode();
+	// TODO: The rest
+
 	/*
 	stwu     r1, -0x30(r1)
 	mflr     r0
@@ -397,7 +410,7 @@ void Demo::Section::doDraw(Graphics&)
  * Address:	8044CF1C
  * Size:	0000AC
  */
-void Demo::Section::doUpdate(void)
+bool Demo::Section::doUpdate()
 {
 	/*
 	stwu     r1, -0x10(r1)
@@ -455,7 +468,7 @@ lbl_8044CF94:
  * Address:	8044CFC8
  * Size:	0000B0
  */
-void Demo::Section::doExit(void)
+void Demo::Section::doExit()
 {
 	/*
 	stwu     r1, -0x10(r1)
@@ -516,7 +529,7 @@ lbl_8044D058:
  * Address:	8044D078
  * Size:	0000A4
  */
-void Demo::Section::doLoadingStart(void)
+void Demo::Section::doLoadingStart()
 {
 	/*
 	stwu     r1, -0x20(r1)
@@ -567,7 +580,7 @@ lbl_8044D0FC:
  * Address:	8044D11C
  * Size:	000038
  */
-void Demo::Section::doLoading(void)
+bool Demo::Section::doLoading()
 {
 	/*
 	stwu     r1, -0x10(r1)
@@ -592,7 +605,7 @@ void Demo::Section::doLoading(void)
  * Address:	8044D154
  * Size:	0000C8
  */
-void Demo::Section::loadResource(void)
+void Demo::Section::loadResource()
 {
 	/*
 	stwu     r1, -0x20(r1)
@@ -660,7 +673,7 @@ lbl_8044D1FC:
  * Address:	8044D21C
  * Size:	000070
  */
-Demo::HIORootNode::~HIORootNode(void)
+Demo::HIORootNode::~HIORootNode()
 {
 	/*
 	stwu     r1, -0x10(r1)
@@ -703,27 +716,28 @@ lbl_8044D270:
  * Address:	8044D28C
  * Size:	000008
  */
-u32 Demo::Section::forceReset(void) { return 0x0; }
+bool Demo::Section::forceReset() { return false; }
 
 /*
+ * @generated
  * --INFO--
  * Address:	8044D294
  * Size:	000030
  */
-void Delegate<Demo::Section>::invoke()
-{
-	/*
-	stwu     r1, -0x10(r1)
-	mflr     r0
-	mr       r4, r3
-	stw      r0, 0x14(r1)
-	addi     r12, r4, 8
-	lwz      r3, 4(r3)
-	bl       __ptmf_scall
-	nop
-	lwz      r0, 0x14(r1)
-	mtlr     r0
-	addi     r1, r1, 0x10
-	blr
-	*/
-}
+// void Delegate<Demo::Section>::invoke()
+// {
+// 	/*
+// 	stwu     r1, -0x10(r1)
+// 	mflr     r0
+// 	mr       r4, r3
+// 	stw      r0, 0x14(r1)
+// 	addi     r12, r4, 8
+// 	lwz      r3, 4(r3)
+// 	bl       __ptmf_scall
+// 	nop
+// 	lwz      r0, 0x14(r1)
+// 	mtlr     r0
+// 	addi     r1, r1, 0x10
+// 	blr
+// 	*/
+// }

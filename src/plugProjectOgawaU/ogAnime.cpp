@@ -234,47 +234,6 @@ AnimScreen::AnimScreen()
 {
 	m_screen = nullptr;
 	_04      = 1;
-	/*
-lis      r5, __vt__Q32og6Screen12AnimBaseBase@ha
-lis      r4, __vt__Q32og6Screen10AnimScreen@ha
-addi     r0, r5, __vt__Q32og6Screen12AnimBaseBase@l
-li       r7, 0
-stw      r0, 0(r3)
-li       r6, 1
-lfs      f3, lbl_8051D598@sda21(r2)
-li       r5, 0xff
-stw      r7, 4(r3)
-addi     r0, r4, __vt__Q32og6Screen10AnimScreen@l
-lfs      f1, lbl_8051D59C@sda21(r2)
-stfs     f3, 0x18(r3)
-lfs      f0, lbl_8051D5A0@sda21(r2)
-stfs     f1, 0x1c(r3)
-stfs     f1, 0x20(r3)
-stfs     f1, 0x24(r3)
-stb      r6, 0x38(r3)
-stb      r7, 0x39(r3)
-stfs     f3, 0x2c(r3)
-stfs     f1, 0x30(r3)
-lfs      f2, 0x30(r3)
-lfs      f1, 0x2c(r3)
-fsubs    f1, f2, f1
-stfs     f1, 0x34(r3)
-lwz      r4, sys@sda21(r13)
-lfs      f1, 0x54(r4)
-fdivs    f0, f1, f0
-stfs     f0, 0x28(r3)
-stw      r7, 0x14(r3)
-stw      r7, 0x3c(r3)
-stb      r7, 8(r3)
-stfs     f3, 0xc(r3)
-stb      r6, 0x10(r3)
-stb      r5, 0x11(r3)
-stb      r7, 0x12(r3)
-stw      r0, 0(r3)
-stw      r7, 0x40(r3)
-stw      r6, 4(r3)
-blr
-	*/
 }
 
 /*
@@ -428,48 +387,6 @@ AnimPane::AnimPane(void)
 {
 	m_pane = nullptr;
 	_04    = 2;
-	/*
-lis      r5, __vt__Q32og6Screen12AnimBaseBase@ha
-lis      r4, __vt__Q32og6Screen8AnimPane@ha
-addi     r0, r5, __vt__Q32og6Screen12AnimBaseBase@l
-li       r8, 0
-stw      r0, 0(r3)
-li       r7, 1
-lfs      f3, lbl_8051D598@sda21(r2)
-li       r5, 0xff
-stw      r8, 4(r3)
-addi     r4, r4, __vt__Q32og6Screen8AnimPane@l
-lfs      f1, lbl_8051D59C@sda21(r2)
-li       r0, 2
-stfs     f3, 0x18(r3)
-lfs      f0, lbl_8051D5A0@sda21(r2)
-stfs     f1, 0x1c(r3)
-stfs     f1, 0x20(r3)
-stfs     f1, 0x24(r3)
-stb      r7, 0x38(r3)
-stb      r8, 0x39(r3)
-stfs     f3, 0x2c(r3)
-stfs     f1, 0x30(r3)
-lfs      f2, 0x30(r3)
-lfs      f1, 0x2c(r3)
-fsubs    f1, f2, f1
-stfs     f1, 0x34(r3)
-lwz      r6, sys@sda21(r13)
-lfs      f1, 0x54(r6)
-fdivs    f0, f1, f0
-stfs     f0, 0x28(r3)
-stw      r8, 0x14(r3)
-stw      r8, 0x3c(r3)
-stb      r8, 8(r3)
-stfs     f3, 0xc(r3)
-stb      r7, 0x10(r3)
-stb      r5, 0x11(r3)
-stb      r8, 0x12(r3)
-stw      r4, 0(r3)
-stw      r8, 0x40(r3)
-stw      r0, 4(r3)
-blr
-	*/
 }
 
 /*

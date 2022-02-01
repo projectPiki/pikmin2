@@ -14,9 +14,25 @@ struct J3DJoint {
 
 	void appendChild(J3DJoint*);
 	void entryIn();
-	J3DJoint* getChild();
-	J3DJoint* getYounger();
 	void recursiveCalc();
+
+	/**
+	 * @reifiedAddress{8043EF9C}
+	 * @reifiedFile{sysGCU/sysShapeModel.cpp}
+	 */
+	s16 getJntNo() const { return m_jointIdx; }
+
+	/**
+	 * @reifiedAddress{8043EFA4}
+	 * @reifiedFile{sysGCU/sysShapeModel.cpp}
+	 */
+	J3DJoint* getYounger() { return m_parent; }
+
+	/**
+	 * @reifiedAddress{8043EFAC}
+	 * @reifiedFile{sysGCU/sysShapeModel.cpp}
+	 */
+	J3DJoint* getChild() { return m_child; }
 
 	u32 _00;                      // _00
 	u32 m_function;               // _04

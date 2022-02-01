@@ -165,7 +165,7 @@ struct CellPyramid : public SweepPrune::World {
 	void entry(CellObject*, Sys::Sphere&, int&, Recti&);
 	void create(BoundBox2d&, float);
 	void drawCell(Graphics&, Sys::Sphere&);
-	int getPikiCount(int, Recti&) const;
+	int getPikiCount(int, Recti&);
 	void drawCell(Graphics&, int, Recti&, float) const;
 	void drawCell(Graphics&, int);
 	void drawCell(Graphics&);

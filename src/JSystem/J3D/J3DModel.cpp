@@ -148,7 +148,7 @@ lbl_80066430:
  * Address:	80066444
  * Size:	0000BC
  */
-void J3DModel::createShapePacket(J3DModelData*)
+J3DShapePacket* J3DModel::createShapePacket(J3DModelData*)
 {
 	/*
 	stwu     r1, -0x20(r1)
@@ -212,7 +212,7 @@ lbl_800664E0:
  * Address:	80066500
  * Size:	0001D8
  */
-void J3DModel::createMatPacket(J3DModelData*, unsigned long)
+J3DMatPacket* J3DModel::createMatPacket(J3DModelData*, unsigned long)
 {
 	/*
 	stwu     r1, -0x30(r1)

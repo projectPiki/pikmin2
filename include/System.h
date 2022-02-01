@@ -45,7 +45,7 @@ struct System {
 	void loadResourceFirst();
 	void loadResourceSecond();
 	int run();
-	static float getTime();
+	float getTime();
 	void clearOptionBlockSaveFlag();
 	void setOptionBlockSaveFlag();
 	Game::CommonSaveData::Mgr* getPlayCommonData();
