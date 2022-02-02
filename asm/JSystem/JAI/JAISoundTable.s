@@ -6,7 +6,8 @@ mVersion__Q27JAInter10SoundTable:
 	.skip 0x1
 .global mCategotyMax__Q27JAInter10SoundTable
 mCategotyMax__Q27JAInter10SoundTable:
-	.skip 0x3
+	.skip 0x1
+.balign 4
 .global mSoundMax__Q27JAInter10SoundTable
 mSoundMax__Q27JAInter10SoundTable:
 	.skip 0x4
@@ -18,7 +19,7 @@ mPointerCategory__Q27JAInter10SoundTable:
 	.skip 0x4
 .global mAddress__Q27JAInter10SoundTable
 mAddress__Q27JAInter10SoundTable:
-	.skip 0x8
+	.skip 0x4
 
 .section .text, "ax"  # 0x800056C0 - 0x80472F00
 .global init__Q27JAInter10SoundTableFPUcUl
