@@ -1,46 +1,38 @@
 .include "macros.inc"
 .section .rodata  # 0x804732E0 - 0x8049E220
 .balign 8
-.global lbl_80499660
 lbl_80499660:
 	.asciz "stream.cpp"
-	.skip 0x1
-.global lbl_8049966C
+.balign 4
 lbl_8049966C:
 	.asciz "Reached EOF\n"
-	.skip 0x3
-.global readByteTokErr
+.balign 4
 readByteTokErr:
 	.asciz "readByte:Token Error\n"
-	.skip 0x2
-.global readShortTokErr
+.balign 4
 readShortTokErr:
 	.asciz "readShort:Token Error\n"
-	.skip 0x1
-.global readIntTokErr
+.balign 4
 readIntTokErr:
 	.asciz "readInt:Token Error\n"
-	.skip 0x3
-.global readFloatTokErr
+.balign 4
 readFloatTokErr:
 	.asciz "readFloat:Token Error\n"
-	.skip 0x1
-.global "assert@3391"
-"assert@3391":
+.balign 4
+lbl_804996DC:
 	.asciz "P2Assert"
-	.skip 0x3
+.balign 4
+lbl_804996E8:
 	.asciz "can not use readFixedString in text mode\n"
-	.skip 0x2
+.balign 4
+lbl_80499714:
 	.asciz "can not use writeFixedString in text mode\n"
-	.skip 0x1
-.global lbl_80499740
+.balign 4
 lbl_80499740:
 	.asciz "RamStream::read out of bounds (pos=%d,bound=%d)\n"
-	.skip 0x3
-.global lbl_80499774
+.balign 4
 lbl_80499774:
 	.asciz "RamStream::write out of bounds (pos=%d,bound=%d)\n"
-	.skip 0x2
 
 .section .data, "wa"  # 0x8049E220 - 0x804EFC20
 .balign 8
@@ -63,36 +55,33 @@ __vt__6Stream:
 
 .section .sdata2, "a"     # 0x80516360 - 0x80520E40
 .balign 8
-.global lbl_805202E0
 lbl_805202E0:
-	.4byte 0x23202573
-	.4byte 0x0D0A0000
-.global lbl_805202E8
+	.asciz "# %s\r\n"
+.balign 4
 lbl_805202E8:
-	.4byte 0x7B0D0A00
-.global lbl_805202EC
+	.asciz "{\r\n"
+.balign 4
 lbl_805202EC:
-	.4byte 0x7D0D0A00
-.global lbl_805202F0
+	.asciz "}\r\n"
+.balign 4
 lbl_805202F0:
-	.4byte 0x25640000
-.global lbl_805202F4
+	.asciz "%d"
+.balign 4
 lbl_805202F4:
-	.4byte 0x25660000
-.global lbl_805202F8
+	.asciz "%f"
+.balign 4
 lbl_805202F8:
-	.4byte 0x20000000
-.global lbl_805202FC
+	.asciz " "
+.balign 4
 lbl_805202FC:
-	.4byte 0x25642000
-.global lbl_80520300
+	.asciz "%d "
+.balign 4
 lbl_80520300:
-	.4byte 0x25662000
-	.4byte 0x00000000
+	.asciz "%f "
 
 .section .text, "ax"  # 0x800056C0 - 0x80472F00
 .global eof__6StreamFv
-eof__6StreamFv:
+eof__6StreamFv: # weak function
 /* 80413DEC 00410D2C  38 60 00 00 */	li r3, 0
 /* 80413DF0 00410D30  4E 80 00 20 */	blr 
 
@@ -2193,6 +2182,6 @@ lbl_80415A94:
 /* 80415A98 004129D8  4E 80 00 20 */	blr 
 
 .global getPending__6StreamFv
-getPending__6StreamFv:
+getPending__6StreamFv: # weak function
 /* 80415A9C 004129DC  38 60 00 00 */	li r3, 0
 /* 80415AA0 004129E0  4E 80 00 20 */	blr 

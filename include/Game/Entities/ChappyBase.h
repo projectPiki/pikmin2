@@ -6,9 +6,9 @@
 namespace Game {
 namespace ChappyBase {
 struct ProperAnimator : public EnemyAnimatorBase {
-	virtual ~ProperAnimator();
+	virtual ~ProperAnimator() {};
 	virtual void setAnimMgr(SysShape::AnimMgr*);
-	virtual SysShape::Animator& getAnimator();
+	virtual SysShape::Animator& getAnimator() { return m_animator; };
 	virtual SysShape::Animator& getAnimator(int);
 
 	SysShape::Animator m_animator; // _10

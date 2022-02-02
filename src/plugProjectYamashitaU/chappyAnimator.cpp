@@ -17,19 +17,5 @@ void ProperAnimator::setAnimMgr(SysShape::AnimMgr* mgr) { m_animator.m_animMgr =
  * Size:	000008
  */
 SysShape::Animator& ProperAnimator::getAnimator(int idx) { return m_animator; }
-
-/*
- * --INFO--
- * Address:	80119720
- * Size:	00005C
- */
-ProperAnimator::~ProperAnimator() { }
-
-/*
- * --INFO--
- * Address:	8011977C
- * Size:	000008
- */
-SysShape::Animator& ProperAnimator::getAnimator() { return m_animator; }
 } // namespace ChappyBase
 } // namespace Game
