@@ -2614,4 +2614,4 @@ lbl_80415A94:
  * Address:	80415A9C
  * Size:	000008
  */
-u32 Stream::getPending() { return 0x0; }
+u32 Stream::getPending() { return 0; }

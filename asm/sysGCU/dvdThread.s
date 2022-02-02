@@ -1,14 +1,11 @@
 .include "macros.inc"
 .section .rodata  # 0x804732E0 - 0x8049E220
 .balign 8
-.global lbl_80499C18
 lbl_80499C18:
 	.asciz "dvdThread.cpp"
-	.skip 2
-.global lbl_80499C28
+.balign 4
 lbl_80499C28:
 	.asciz "P2Assert"
-	.skip 7
 
 .section .data, "wa"  # 0x8049E220 - 0x804EFC20
 .balign 8
@@ -21,7 +18,6 @@ __vt__9DvdThread:
 
 .section .sdata2, "a"     # 0x80516360 - 0x80520E40
 .balign 8
-.global lbl_805204B0
 lbl_805204B0:
 	.4byte 0x61726300
 	.4byte 0x00000000

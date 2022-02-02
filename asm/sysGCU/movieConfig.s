@@ -39,7 +39,6 @@ lbl_8049A3D8:
 	.4byte 0x6669672E
 	.4byte 0x63707000
 	.asciz "P2Assert"
-	.skip 3
 
 .section .data, "wa"  # 0x8049E220 - 0x804EFC20
 .balign 8

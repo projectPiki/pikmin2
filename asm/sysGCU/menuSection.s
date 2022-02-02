@@ -1,10 +1,8 @@
 .include "macros.inc"
 .section .rodata  # 0x804732E0 - 0x8049E220
 .balign 8
-.global lbl_80499C00
 lbl_80499C00:
 	.asciz "ChildSection::init"
-	.skip 5
 
 .section .data, "wa"  # 0x8049E220 - 0x804EFC20
 .balign 8
@@ -33,10 +31,8 @@ __vt__11MenuSection:
 
 .section .sdata2, "a"     # 0x80516360 - 0x80520E40
 .balign 8
-.global lbl_805204A8
 lbl_805204A8:
 	.4byte 0x42700000
-	.4byte 0x00000000
 
 .section .text, "ax"  # 0x800056C0 - 0x80472F00
 .global __ct__11MenuSectionFP10JFWDisplayP7JKRHeapb
@@ -173,7 +169,7 @@ lbl_8042476C:
 /* 804247AC 004216EC  4E 80 00 20 */	blr 
 
 .global __dt__11MenuSectionFv
-__dt__11MenuSectionFv:
+__dt__11MenuSectionFv: #weak function
 /* 804247B0 004216F0  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 804247B4 004216F4  7C 08 02 A6 */	mflr r0
 /* 804247B8 004216F8  90 01 00 14 */	stw r0, 0x14(r1)
@@ -201,6 +197,6 @@ lbl_804247F4:
 /* 8042480C 0042174C  4E 80 00 20 */	blr 
 
 .global getCurrentSection__11MenuSectionFv
-getCurrentSection__11MenuSectionFv:
+getCurrentSection__11MenuSectionFv: #weak function
 /* 80424810 00421750  80 63 00 40 */	lwz r3, 0x40(r3)
 /* 80424814 00421754  4E 80 00 20 */	blr 

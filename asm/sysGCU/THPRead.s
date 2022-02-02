@@ -3,10 +3,10 @@
 .balign 8
 .global gTHPReaderDvdAccess
 gTHPReaderDvdAccess:
-	.skip 0x4
-.global ReadThreadCreated
+	.skip 1
+.balign 4
 ReadThreadCreated:
-	.skip 0x4
+	.skip 4
 
 .section .text, "ax"  # 0x800056C0 - 0x80472F00
 .global CreateReadThread
@@ -90,8 +90,7 @@ lbl_8044F68C:
 /* 8044F694 0044C5D4  38 21 00 10 */	addi r1, r1, 0x10
 /* 8044F698 0044C5D8  4E 80 00 20 */	blr 
 
-.global Reader__FPv
-Reader__FPv:
+Reader__FPv: #local func
 /* 8044F69C 0044C5DC  94 21 FF E0 */	stwu r1, -0x20(r1)
 /* 8044F6A0 0044C5E0  7C 08 02 A6 */	mflr r0
 /* 8044F6A4 0044C5E4  3C 60 80 51 */	lis r3, ActivePlayer@ha
