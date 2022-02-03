@@ -1,9 +1,10 @@
+#include "types.h"
 #include "JSystem/JKR/JKRHeap.h"
 #include "JSystem/JKR/JKRFile.h"
 #include "JSystem/JKR/JKRDvdRipper.h"
 #include "JSystem/JAI/JAIBasic.h"
 #include "JSystem/JAI/JAInter.h"
-#include "types.h"
+
 extern JKRSolidHeap* JASDram;
 /*
     Generated from dpostproc
@@ -68,7 +69,6 @@ u8* transInitDataFile(u8* param_1, u32 param_2)
 	}
 	return charptr;
 }
-} // namespace JAInter
 
 /*
  * --INFO--
@@ -113,7 +113,6 @@ void deleteTmpDVDFile(u8** bing)
 u32 routeToTrack(u32 param_1)
 {
 	u32 uVar2;
-
 	uVar2 = 0;
 	if ((param_1 & 0xf0000000) == 0) {
 		return 0;
@@ -173,3 +172,4 @@ addi     r1, r1, 0x10
 blr
 */
 //}
+} // namespace JAInter

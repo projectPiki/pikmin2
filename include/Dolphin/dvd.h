@@ -23,7 +23,7 @@ struct DVDPlayer {
 	void* _28;             // _28
 	u8 _2C[4];             // _2C
 	u32 _30;               // _30
-	int m_fileSize;        // _34
+	u32 m_fileSize;        // _34
 	void* m_func;          // _38
 };
 #pragma cplusplus reset
