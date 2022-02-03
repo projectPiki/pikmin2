@@ -1,4 +1,36 @@
+#include "types.h"
 
+typedef struct _IO_FILE _IO_FILE, *P_IO_FILE;
+typedef struct _IO_FILE FILE;
+extern int fflush(FILE* __stream);
+
+static FILE __files;
+
+struct _IO_FILE {
+	u16 _00;
+	u16 _02;
+	u16 _04;
+	u8 _05;
+	char* _08;
+	u8 _0C;
+	char* _10;
+	char* _14;
+	char* _18;
+	char* _1C;
+	char* _20;
+	char* _24;
+	char* _28;
+	char* _2C;
+	u32 _30;
+	u32 _34;
+	u32 _38;
+	u32 _3C;
+	u16 _40;
+	char _42;
+	u32 _44;
+	s32 _48;
+	struct _IO_FILE* _chain; // _4C
+};
 
 /*
  * --INFO--
@@ -15,45 +47,19 @@ void __flush_line_buffered_output_files(void)
  * Address:	800C2A04
  * Size:	000070
  */
-void __flush_all(void)
+
+u32 __flush_all(void)
 {
-	/*
-	.loc_0x0:
-	  stwu      r1, -0x10(r1)
-	  mflr      r0
-	  lis       r3, 0x804A
-	  stw       r0, 0x14(r1)
-	  addi      r0, r3, 0x6948
-	  stw       r31, 0xC(r1)
-	  li        r31, 0
-	  stw       r30, 0x8(r1)
-	  mr        r30, r0
-	  b         .loc_0x4C
-
-	.loc_0x28:
-	  lhz       r0, 0x4(r30)
-	  rlwinm.   r0,r0,26,29,31
-	  beq-      .loc_0x48
-	  mr        r3, r30
-	  bl        0x3BD4
-	  cmpwi     r3, 0
-	  beq-      .loc_0x48
-	  li        r31, -0x1
-
-	.loc_0x48:
-	  lwz       r30, 0x4C(r30)
-
-	.loc_0x4C:
-	  cmplwi    r30, 0
-	  bne+      .loc_0x28
-	  lwz       r0, 0x14(r1)
-	  mr        r3, r31
-	  lwz       r31, 0xC(r1)
-	  lwz       r30, 0x8(r1)
-	  mtlr      r0
-	  addi      r1, r1, 0x10
-	  blr
-	*/
+	u32 retval = 0;
+	FILE* __stream;
+	__stream = &__files;
+	while (__stream) {
+		if ((__stream->_04 >> 6 & 7) && (fflush(__stream))) {
+			retval = -1;
+		}
+		__stream = __stream->_chain;
+	};
+	return retval;
 }
 
 /*
