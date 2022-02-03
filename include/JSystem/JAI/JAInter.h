@@ -64,8 +64,8 @@ extern u8* mAddress;
 
 void deleteTmpDVDFile(u8**);
 void loadTmpDVDFile(char*, u8**);
-void transInitDataFile(u8*, u32);
-void routeToTrack(u32);
+u8* transInitDataFile(u8*, u32);
+u32 routeToTrack(u32);
 } // namespace JAInter
 
 #endif

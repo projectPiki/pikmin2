@@ -7,9 +7,9 @@ lbl_constructor:
 .balign 8
 .global dummyZeroVec__Q27JAInter5Const
 dummyZeroVec__Q27JAInter5Const:
-	.4byte 0x00000000
-	.4byte 0x00000000
-	.4byte 0x00000000
+	.float 0.0
+	.float 0.0
+	.float 0.0
 .global sCInfos_0__Q27JAInter5Const
 sCInfos_0__Q27JAInter5Const:
 	.4byte 0x04020402
@@ -20,7 +20,6 @@ sCInfos_0__Q27JAInter5Const:
 	.4byte 0x04020402
 	.4byte 0x04020402
 	.4byte 0x04020402
-	.4byte 0x00000000
 
 .section .bss  # 0x804EFC20 - 0x8051467C
 .global nullCamera__Q27JAInter5Const
@@ -43,7 +42,7 @@ camPreTrans__Q27JAInter5Const:
 .balign 8
 .global random__Q27JAInter5Const
 random__Q27JAInter5Const:
-	.skip 0x8
+	.skip 0x4
 
 .section .text, "ax"  # 0x800056C0 - 0x80472F00
 .global transInitDataFile__7JAInterFPUcUl
@@ -216,8 +215,7 @@ lbl_800AD404:
 /* 800AD404 000AA344  7C 63 28 38 */	and r3, r3, r5
 /* 800AD408 000AA348  4E 80 00 20 */	blr 
 
-.global __sinit_JAIConst_cpp
-__sinit_JAIConst_cpp:
+__sinit_JAIConst_cpp: # local func
 /* 800AD40C 000AA34C  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 800AD410 000AA350  7C 08 02 A6 */	mflr r0
 /* 800AD414 000AA354  3C E0 80 51 */	lis r7, camTrans__Q27JAInter5Const@ha
