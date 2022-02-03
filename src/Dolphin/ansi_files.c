@@ -1,36 +1,12 @@
 #include "types.h"
+#include "Dolphin/ansi_files.h"
 
-typedef struct _IO_FILE _IO_FILE, *P_IO_FILE;
-typedef struct _IO_FILE FILE;
 extern int fflush(FILE* __stream);
+extern void __begin_critical_region(int);
+extern void __end_critical_region(int);
+extern void fclose(FILE*);
 
 static FILE __files;
-
-struct _IO_FILE {
-	u16 _00;
-	u16 _02;
-	u16 _04;
-	u8 _05;
-	char* _08;
-	u8 _0C;
-	char* _10;
-	char* _14;
-	char* _18;
-	char* _1C;
-	char* _20;
-	char* _24;
-	char* _28;
-	char* _2C;
-	u32 _30;
-	u32 _34;
-	u32 _38;
-	u32 _3C;
-	u16 _40;
-	char _42;
-	u32 _44;
-	s32 _48;
-	struct _IO_FILE* _chain; // _4C
-};
 
 /*
  * --INFO--
@@ -54,10 +30,10 @@ u32 __flush_all(void)
 	FILE* __stream;
 	__stream = &__files;
 	while (__stream) {
-		if ((__stream->_04 >> 6 & 7) && (fflush(__stream))) {
+		if ((__stream->mode.file_kind) && (fflush(__stream))) {
 			retval = -1;
 		}
-		__stream = __stream->_chain;
+		__stream = __stream->next_file_struct;
 	};
 	return retval;
 }
@@ -69,59 +45,28 @@ u32 __flush_all(void)
  */
 void __close_all(void)
 {
-	/*
-	.loc_0x0:
-	  stwu      r1, -0x10(r1)
-	  mflr      r0
-	  lis       r4, 0x804A
-	  li        r3, 0x2
-	  stw       r0, 0x14(r1)
-	  addi      r0, r4, 0x6948
-	  stw       r31, 0xC(r1)
-	  mr        r31, r0
-	  bl        0x37C8
-	  b         .loc_0x84
+	FILE* p = &__files;
+	FILE* plast;
 
-	.loc_0x28:
-	  lhz       r0, 0x4(r31)
-	  rlwinm.   r0,r0,26,29,31
-	  beq-      .loc_0x3C
-	  mr        r3, r31
-	  bl        0x3C9C
+	__begin_critical_region(2);
 
-	.loc_0x3C:
-	  mr        r3, r31
-	  lwz       r31, 0x4C(r31)
-	  lbz       r0, 0xC(r3)
-	  cmplwi    r0, 0
-	  beq-      .loc_0x58
-	  bl        -0x574
-	  b         .loc_0x84
+	while (p != nullptr) {
+		if (p->mode.file_kind != __closed_file) {
+			fclose(p);
+		}
 
-	.loc_0x58:
-	  lhz       r0, 0x4(r3)
-	  li        r4, 0x3
-	  rlwimi    r0,r4,6,23,25
-	  cmplwi    r31, 0
-	  sth       r0, 0x4(r3)
-	  beq-      .loc_0x84
-	  lbz       r0, 0xC(r31)
-	  cmplwi    r0, 0
-	  beq-      .loc_0x84
-	  li        r0, 0
-	  stw       r0, 0x4C(r3)
+		plast = p;
+		p     = p->next_file_struct;
+		if (plast->is_dynamically_allocated)
+			free(plast);
+		else {
+			plast->mode.file_kind = __unavailable_file;
+			if ((p != NULL) && p->is_dynamically_allocated)
+				plast->next_file_struct = nullptr;
+		}
+	}
 
-	.loc_0x84:
-	  cmplwi    r31, 0
-	  bne+      .loc_0x28
-	  li        r3, 0x2
-	  bl        0x3754
-	  lwz       r0, 0x14(r1)
-	  lwz       r31, 0xC(r1)
-	  mtlr      r0
-	  addi      r1, r1, 0x10
-	  blr
-	*/
+	__end_critical_region(2);
 }
 
 /*
