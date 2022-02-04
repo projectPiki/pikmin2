@@ -1150,7 +1150,7 @@ GC:=\
 	$(BUILD_DIR)/asm/sysGCU/messageMgr.o\
 	$(BUILD_DIR)/asm/sysGCU/messageObj.o\
 	$(BUILD_DIR)/asm/sysGCU/messageRendering.o\
-	$(BUILD_DIR)/asm/sysGCU/message.o\
+	$(BUILD_DIR)/src/sysGCU/message.o\
 	$(BUILD_DIR)/asm/sysGCU/modelEffect.o\
 	$(BUILD_DIR)/asm/sysGCU/messageReference.o\
 	$(BUILD_DIR)/src/sysGCU/simpleMessage.o\
