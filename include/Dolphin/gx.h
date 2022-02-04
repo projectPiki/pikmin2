@@ -23,13 +23,13 @@ typedef u32 GXCullMode;
 typedef u32 _GXVtxAttrFmtList;
 
 typedef enum _GXPrimitive {
-	GX_POINTS = 0x0,
-	GX_LINES = 0x1,
-	GX_LINESTRIP = 0x2,
-	GX_TRIANGLES = 0x3,
+	GX_POINTS        = 0x0,
+	GX_LINES         = 0x1,
+	GX_LINESTRIP     = 0x2,
+	GX_TRIANGLES     = 0x3,
 	GX_TRIANGLESTRIP = 0x4,
-	GX_TRIANGLEFAN = 0x5,
-	GX_QUADS = 0x6,
+	GX_TRIANGLEFAN   = 0x5,
+	GX_QUADS         = 0x6,
 } GXPrimitive;
 
 // Name of the vertex attribute or array. Attributes are listed in the ascending
@@ -126,14 +126,7 @@ typedef enum _GXTexWrapMode {
 	GX_MIRROR,
 } GXTexWrapMode;
 
-typedef enum _GXTexFilter {
-	GX_NEAR,
-	GX_LINEAR,
-	GX_NEAR_MIP_NEAR,
-	GX_LIN_MIP_NEAR,
-	GX_NEAR_MIP_LIN,
-	GX_LIN_MIP_LIN
-} GXTexFilter;
+typedef enum _GXTexFilter { GX_NEAR, GX_LINEAR, GX_NEAR_MIP_NEAR, GX_LIN_MIP_NEAR, GX_NEAR_MIP_LIN, GX_LIN_MIP_LIN } GXTexFilter;
 
 typedef enum _GXTexCoordID {
 	GX_TEXCOORD_NULL,
@@ -160,18 +153,9 @@ typedef enum _GXTevOp {
 	GX_TEV_COMP_RGB8_EQ,
 } GXTevOp;
 
-typedef enum _GXTevBias {
-	GX_TB_ZERO,
-	GX_TB_ADDHALF,
-	GX_TB_SUBHALF
-} GXTevBias;
+typedef enum _GXTevBias { GX_TB_ZERO, GX_TB_ADDHALF, GX_TB_SUBHALF } GXTevBias;
 
-typedef enum _GXTevScale {
-	GX_CS_SCALE_1,
-	GX_CS_SCALE_2,
-	GX_CS_SCALE_4,
-	GX_CS_DIVIDE_2
-} GXTevScale;
+typedef enum _GXTevScale { GX_CS_SCALE_1, GX_CS_SCALE_2, GX_CS_SCALE_4, GX_CS_DIVIDE_2 } GXTevScale;
 
 typedef enum _GXTevSwapSel {
 	GX_TEV_SWAP0,
@@ -267,11 +251,7 @@ typedef enum _GXTevStageID {
 	GX_TEVSTAGE15,
 } GXTevStageID;
 
-typedef enum _GXTevRegID {
-	GX_TEVREG0,
-	GX_TEVREG1,
-	GX_TEVREG2
-} GXTevRegID;
+typedef enum _GXTevRegID { GX_TEVREG0, GX_TEVREG1, GX_TEVREG2 } GXTevRegID;
 
 typedef enum _GXTexGenType {
 	GX_TG_MTX2X4,
@@ -490,15 +470,15 @@ typedef struct GXTexObj {
 	u32 _04;
 	u32 _08;
 	u32 _0c;
-	u8  _10;
-	u8  _11;
-	u8  _12;
-	u8  _13;
+	u8 _10;
+	u8 _11;
+	u8 _12;
+	u8 _13;
 	u32 format_14;
 	u32 tlut_name_18;
 	u16 _1c;
-	s8  _1e;
-	s8  _1f;
+	s8 _1e;
+	s8 _1f;
 } GXTexObj;
 
 // Compressed Z format

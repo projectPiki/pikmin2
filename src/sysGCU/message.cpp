@@ -28,15 +28,15 @@ void convertCharToMessageID(char* str, u32* messageID, u32* variantID)
 {
 	*variantID = 0;
 	*messageID = 0;
-    for (int i = 0; i < 4; i++) {
-        if (isdigit(str[i])) {
-		    *messageID = str[i] + *messageID * 10 - '0';
-	    }   
-    }
-    for (int i = 5; i < 7; i++) {
-        if (isdigit(str[i])) {
-            *variantID = str[i] + *variantID * 10 - '0';
-        }
-    }
+	for (int i = 0; i < 4; i++) {
+		if (isdigit(str[i])) {
+			*messageID = str[i] + *messageID * 10 - '0';
+		}
+	}
+	for (int i = 5; i < 7; i++) {
+		if (isdigit(str[i])) {
+			*variantID = str[i] + *variantID * 10 - '0';
+		}
+	}
 }
 } // namespace P2JME
