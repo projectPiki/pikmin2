@@ -22,6 +22,16 @@ typedef u8 GXBool;
 typedef u32 GXCullMode;
 typedef u32 _GXVtxAttrFmtList;
 
+typedef enum _GXPrimitive {
+	GX_POINTS = 0x0,
+	GX_LINES = 0x1,
+	GX_LINESTRIP = 0x2,
+	GX_TRIANGLES = 0x3,
+	GX_TRIANGLESTRIP = 0x4,
+	GX_TRIANGLEFAN = 0x5,
+	GX_QUADS = 0x6,
+} GXPrimitive;
+
 // Name of the vertex attribute or array. Attributes are listed in the ascending
 // order vertex data is required to be sent to the GP. Havent confirmed the GX
 // docs match pikmin 2 here
@@ -65,6 +75,12 @@ typedef enum _GXAttrType {
 	GX_INDEX16 // Value sent is INDEX value of data array (16-bit).
 } GXAttrType;
 
+typedef enum _GXAnisotropy {
+	GX_ANISO_1,
+	GX_ANISO_2,
+	GX_ANISO_4,
+} GXAnisotropy;
+
 /*
  * RGB, RGBA, Intensity, Intensity/Alpha, Compressed, and Z texture format
  * types. See GXCITexFmt for information on color index formats. The CTF format
@@ -103,6 +119,197 @@ typedef enum _GXTexFmt {
 	GX_CTF_Z16L		// 16-bit Z (lower portion). For copying the lower 16 bits of Z.
 } GXTexFmt;
 // clang-format on
+
+typedef enum _GXTexWrapMode {
+	GX_CLAMP,
+	GX_REPEAT,
+	GX_MIRROR,
+} GXTexWrapMode;
+
+typedef enum _GXTexFilter {
+	GX_NEAR,
+	GX_LINEAR,
+	GX_NEAR_MIP_NEAR,
+	GX_LIN_MIP_NEAR,
+	GX_NEAR_MIP_LIN,
+	GX_LIN_MIP_LIN
+} GXTexFilter;
+
+typedef enum _GXTexCoordID {
+	GX_TEXCOORD_NULL,
+	GX_TEXCOORD0,
+	GX_TEXCOORD1,
+	GX_TEXCOORD2,
+	GX_TEXCOORD3,
+	GX_TEXCOORD4,
+	GX_TEXCOORD5,
+	GX_TEXCOORD6,
+	GX_TEXCOORD7,
+} GXTexCoordID;
+
+typedef enum _GXTevOp {
+	GX_TEV_ADD,
+	GX_TEV_SUB,
+	GX_TEV_COMP_R8_GT,
+	GX_TEV_COMP_R8_EQ,
+	GX_TEV_COMP_GR16_GT,
+	GX_TEV_COMP_GR16_EQ,
+	GX_TEV_COMP_BGR24_GT,
+	GX_TEV_COMP_BGR24_EQ,
+	GX_TEV_COMP_RGB8_GT,
+	GX_TEV_COMP_RGB8_EQ,
+} GXTevOp;
+
+typedef enum _GXTevBias {
+	GX_TB_ZERO,
+	GX_TB_ADDHALF,
+	GX_TB_SUBHALF
+} GXTevBias;
+
+typedef enum _GXTevScale {
+	GX_CS_SCALE_1,
+	GX_CS_SCALE_2,
+	GX_CS_SCALE_4,
+	GX_CS_DIVIDE_2
+} GXTevScale;
+
+typedef enum _GXTevSwapSel {
+	GX_TEV_SWAP0,
+	GX_TEV_SWAP1,
+	GX_TEV_SWAP2,
+	GX_TEV_SWAP3,
+} GXTevSwapSel;
+
+typedef enum _GXTevAlphaArg {
+	GX_CA_A0,
+	GX_CA_A1,
+	GX_CA_A2,
+	GX_CA_APREV,
+	GX_CA_TEXA,
+	GX_CA_RASA,
+	GX_ZERO,
+	GX_KONST,
+} GXTevAlphaArg;
+
+typedef enum _GXTevKColorID {
+	GX_KCOLOR0,
+	GX_KCOLOR1,
+	GX_KCOLOR2,
+	GX_KCOLOR3,
+} GXTevKColorID;
+
+typedef enum _GXTevKColorSel {
+	GX_TEV_KCSEL_K0,
+	GX_TEV_KCSEL_K1,
+	GX_TEV_KCSEL_K2,
+	GX_TEV_KCSEL_K3,
+	GX_TEV_KCSEL_K0_R,
+	GX_TEV_KCSEL_K1_R,
+	GX_TEV_KCSEL_K2_R,
+	GX_TEV_KCSEL_K3_R,
+	GX_TEV_KCSEL_K0_G,
+	GX_TEV_KCSEL_K1_G,
+	GX_TEV_KCSEL_K2_G,
+	GX_TEV_KCSEL_K3_G,
+	GX_TEV_KCSEL_K0_B,
+	GX_TEV_KCSEL_K1_B,
+	GX_TEV_KCSEL_K2_B,
+	GX_TEV_KCSEL_K3_B,
+	GX_TEV_KCSEL_K0_A,
+	GX_TEV_KCSEL_K1_A,
+	GX_TEV_KCSEL_K2_A,
+	GX_TEV_KCSEL_K3_A,
+	GX_TEV_KCSEL_8_8,
+	GX_TEV_KCSEL_7_8,
+	GX_TEV_KCSEL_6_8,
+	GX_TEV_KCSEL_5_8,
+	GX_TEV_KCSEL_4_8,
+	GX_TEV_KCSEL_3_8,
+	GX_TEV_KCSEL_2_8,
+	GX_TEV_KCSEL_1_8,
+} GXTevKColorSel;
+
+typedef enum _GXTevColorArg {
+	GX_CC_C0,
+	GX_CC_C1,
+	GX_CC_C2,
+	GX_CC_CPREV,
+	GX_CC_A0,
+	GX_CC_A1,
+	GX_CC_A2,
+	GX_CC_APREV,
+	GX_CC_TEXC,
+	GX_CC_TEXA,
+	GX_CC_RASC,
+	GX_CC_RASA,
+	GX_CC_ONE,
+	GX_CC_HALF,
+	GX_CC_ZERO,
+	GX_CC_KONST,
+} GXTevColorArg;
+
+typedef enum _GXTevStageID {
+	GX_TEVSTAGE0,
+	GX_TEVSTAGE1,
+	GX_TEVSTAGE2,
+	GX_TEVSTAGE3,
+	GX_TEVSTAGE4,
+	GX_TEVSTAGE5,
+	GX_TEVSTAGE6,
+	GX_TEVSTAGE7,
+	GX_TEVSTAGE8,
+	GX_TEVSTAGE9,
+	GX_TEVSTAGE10,
+	GX_TEVSTAGE11,
+	GX_TEVSTAGE12,
+	GX_TEVSTAGE13,
+	GX_TEVSTAGE14,
+	GX_TEVSTAGE15,
+} GXTevStageID;
+
+typedef enum _GXTevRegID {
+	GX_TEVREG0,
+	GX_TEVREG1,
+	GX_TEVREG2
+} GXTevRegID;
+
+typedef enum _GXTexGenType {
+	GX_TG_MTX2X4,
+	GX_TG_MTX3X4,
+	GX_TG_BUMP0,
+	GX_TG_BUMP1,
+	GX_TG_BUMP2,
+	GX_TG_BUMP3,
+	GX_TG_BUMP4,
+	GX_TG_BUMP5,
+	GX_TG_BUMP6,
+	GX_TG_BUMP7,
+	GX_TG_SRTG,
+} GXTexGenType;
+
+typedef enum _GXTexGenSrc {
+	GX_TG_POS,
+	GX_TG_NRM,
+	GX_TG_BINRM,
+	GX_TG_TANGENT,
+	GX_TG_TEX0,
+	GX_TG_TEX1,
+	GX_TG_TEX2,
+	GX_TG_TEX3,
+	GX_TG_TEX4,
+	GX_TG_TEX5,
+	GX_TG_TEX6,
+	GX_TG_TEX7,
+	GX_TG_TEXCOORD0,
+	GX_TG_TEXCOORD1,
+	GX_TG_TEXCOORD2,
+	GX_TG_TEXCOORD3,
+	GX_TG_TEXCOORD4,
+	GX_TG_TEXCOORD5,
+	GX_TG_TEXCOORD6,
+	GX_TG_COLOR0,
+	GX_TG_COLOR1,
+} GXTexGenSrc;
 
 // Texture map name.
 // Havent confirmed the GX docs match pikmin 2 here
@@ -278,6 +485,22 @@ typedef struct _GXRenderModeObj {
 	u8 vfilter[7];
 } GXRenderModeObj;
 
+typedef struct GXTexObj {
+	u32 _00;
+	u32 _04;
+	u32 _08;
+	u32 _0c;
+	u8  _10;
+	u8  _11;
+	u8  _12;
+	u8  _13;
+	u32 format_14;
+	u32 tlut_name_18;
+	u16 _1c;
+	s8  _1e;
+	s8  _1f;
+} GXTexObj;
+
 // Compressed Z format
 typedef enum _SDK_GXZFmt16 {
 	GX_ZC_LINEAR, // 16-bit linear.
@@ -289,10 +512,15 @@ typedef enum _SDK_GXZFmt16 {
 void GXSetNumTexGens(u32);
 void GXSetNumChans(u32);
 void GXSetNumTevStages(u32);
-void GXSetTevOrder(u32, u32, u32, s32);
+void GXSetTevOrder(GXTevStageID, GXTexCoordID, GXTexMapID, s32);
 void GXSetTevOp(s32, s32);
 void GXSetTevSwapMode(s32, u32, u32);
 void GXSetTevSwapModeTable(s32, u32, u32, u32, u32);
+void GXSetTevAlphaIn(GXTevStageID, GXTevAlphaArg, GXTevAlphaArg, GXTevAlphaArg, GXTevAlphaArg);
+void GXSetTevAlphaOp(GXTevStageID, uint, GXTevBias, GXTevScale, GXBool, GXTevRegID);
+void GXSetTevKColor(GXTevKColorID, GXColor);
+void GXSetTevKColorSel(GXTevStageID, GXTevKColorSel);
+void GXSetVtxAttrFmt(uint, GXAttr, GXCompCnt, GXCompType, uint);
 
 void GXBeginDisplayList(void*, u32 dlSize);
 u32 GXEndDisplayList(void);
@@ -399,53 +627,6 @@ void GXLoadTlut(GXTlutObj*, _GXTlut);
 void GXSetTlutRegionCallback(GXTlutRegionCallback*);
 
 GXTlutRegion* __GXDefaultTlutRegionCallback(_GXTlut);
-
-typedef enum _GXTexWrapMode { // Manually added
-	GX_CLAMP,
-	GX_REPEAT,
-	GX_MIRROR,
-} GXTexWrapMode;
-typedef enum _GXTexFilter { // Manually added
-	GX_NEAR,
-	GX_LINEAR,
-	GX_NEAR_MIP_NEAR,
-	GX_LIN_MIP_NEAR,
-	GX_NEAR_MIP_LIN,
-	GX_LIN_MIP_LIN
-} GXTexFilter;
-
-typedef struct GXTexObj { // Manually added
-	u32 _00;
-	u32 _04;
-	u32 _08;
-	u32 _0c;
-	u8 _10;
-	u8 _11;
-	u8 _12;
-	u8 _13;
-	u32 format_14;
-	u32 tlut_name_18;
-	u16 _1c;
-	s8 _1e;
-	s8 _1f;
-} GXTexObj;
-typedef enum _GXPrimitive { // Manually added
-	GX_POINTS        = 0x0,
-	GX_LINES         = 0x1,
-	GX_LINESTRIP     = 0x2,
-	GX_TRIANGLES     = 0x3,
-	GX_TRIANGLESTRIP = 0x4,
-	GX_TRIANGLEFAN   = 0x5,
-	GX_QUADS         = 0x6,
-} GXPrimitive;
-
-typedef enum _GXAnisotropy { // Manually Added
-	GX_ANISO_1,
-	GX_ANISO_2,
-	GX_ANISO_4,
-} GXAnisotropy;
-
-// Relative Functions
 void GXInitTexObj(GXTexObj*, u32*, u16, u16, GXTexFmt, GXTexWrapMode, GXTexWrapMode, GXBool);
 void GXInitTexObjLOD(GXTexObj*, GXTexFilter, GXTexFilter, float, float, float, GXBool, GXBool, GXAnisotropy);
 void GXLoadTexObj(GXTexObj*, GXTexMapID);
@@ -456,13 +637,6 @@ void GXLoadNrmMtxImm(Mtx, int);
 
 u16 GXGetNumXfbLines(float, u16);
 float GXGetYScaleFactor(u16, u16);
-
-typedef enum _GXTevKColorID { // Manually added
-	GX_KCOLOR0,
-	GX_KCOLOR1,
-	GX_KCOLOR2,
-	GX_KCOLOR3,
-} GXTevKColorID;
 
 void GXSetViewport(float, float, float, float, float, float);
 void GXSetTevKColor(GXTevKColorID, GXColor);
