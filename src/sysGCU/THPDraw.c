@@ -39,18 +39,13 @@ void THPGXYuv2RgbSetup(u16* param_1)
 	Mtx44 MStack116;
 	Mtx MStack164;
 
-	// u32 uStack36;
-	// u32 uStack32;
-	// uint uStack28;
-	// uint uStack20;
-
 	r31 = param_1[2];
 	r30 = param_1[3];
 
 	GXSetPixelFmt(0, 0);
-	C_MTXOrtho(MStack116, 0, r30, 0, r31, 0, -1); // idk what args go here
+	C_MTXOrtho(MStack116, 0, r30, 0, r31, 0, -1);
 	GXSetProjection(MStack116, 1);
-	GXSetViewport(0, 0, r31, r30, 0.0, 1.0); // same, idk
+	GXSetViewport(0, 0, r31, r30, 0.0, 1.0);
 	GXSetScissor(0, 0, r31, r30);
 	PSMTXIdentity(MStack164);
 	GXLoadPosMtxImm(MStack164, 0);
