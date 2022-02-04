@@ -308,6 +308,7 @@ void GXSetBlendMode(GXBlendMode type, GXBlendFactor src_factor, GXBlendFactor ds
 
 void GXSetColorUpdate(GXBool update_enable);
 void GXSetAlphaUpdate(GXBool update_enable);
+void GXSetDispCopyGamma(GXBool update_enable);
 void GXSetZMode(GXBool compare_enable, GXCompare func, GXBool update_enable);
 
 void GXSetZCompLoc(GXBool before_tex);
@@ -399,11 +400,72 @@ void GXSetTlutRegionCallback(GXTlutRegionCallback*);
 
 GXTlutRegion* __GXDefaultTlutRegionCallback(_GXTlut);
 
+typedef enum _GXTexWrapMode { // Manually added
+	GX_CLAMP,
+	GX_REPEAT,
+	GX_MIRROR,
+} GXTexWrapMode;
+typedef enum _GXTexFilter { // Manually added
+	GX_NEAR,
+	GX_LINEAR,
+	GX_NEAR_MIP_NEAR,
+	GX_LIN_MIP_NEAR,
+	GX_NEAR_MIP_LIN,
+	GX_LIN_MIP_LIN
+} GXTexFilter;
+
+typedef struct GXTexObj { // Manually added
+	u32 _00;
+	u32 _04;
+	u32 _08;
+	u32 _0c;
+	u8 _10;
+	u8 _11;
+	u8 _12;
+	u8 _13;
+	u32 format_14;
+	u32 tlut_name_18;
+	u16 _1c;
+	s8 _1e;
+	s8 _1f;
+} GXTexObj;
+typedef enum _GXPrimitive { // Manually added
+	GX_POINTS        = 0x0,
+	GX_LINES         = 0x1,
+	GX_LINESTRIP     = 0x2,
+	GX_TRIANGLES     = 0x3,
+	GX_TRIANGLESTRIP = 0x4,
+	GX_TRIANGLEFAN   = 0x5,
+	GX_QUADS         = 0x6,
+} GXPrimitive;
+
+typedef enum _GXAnisotropy { // Manually Added
+	GX_ANISO_1,
+	GX_ANISO_2,
+	GX_ANISO_4,
+} GXAnisotropy;
+
+// Relative Functions
+void GXInitTexObj(GXTexObj*, u32*, u16, u16, GXTexFmt, GXTexWrapMode, GXTexWrapMode, GXBool);
+void GXInitTexObjLOD(GXTexObj*, GXTexFilter, GXTexFilter, float, float, float, GXBool, GXBool, GXAnisotropy);
+void GXLoadTexObj(GXTexObj*, GXTexMapID);
+void GXBegin(GXPrimitive, GXVtxFmt, u16);
+
 void GXLoadPosMtxImm(Mtx, int);
 void GXLoadNrmMtxImm(Mtx, int);
 
 u16 GXGetNumXfbLines(float, u16);
 float GXGetYScaleFactor(u16, u16);
+
+typedef enum _GXTevKColorID { // Manually added
+	GX_KCOLOR0,
+	GX_KCOLOR1,
+	GX_KCOLOR2,
+	GX_KCOLOR3,
+} GXTevKColorID;
+
+void GXSetViewport(float, float, float, float, float, float);
+void GXSetTevKColor(GXTevKColorID, GXColor);
 
 #ifdef __cplusplus
 };

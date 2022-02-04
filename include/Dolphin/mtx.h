@@ -36,6 +36,7 @@ void PSMTXMultVecArraySR(Mtx, float*, float*, float*);
 void PSMTX44Copy(Mtx44, Mtx44);
 
 void C_MTXPerspective(float, float, float, float, Mtx);
+void C_MTXOrtho(Mtx44, float, float, float, float, float, float);
 
 #ifdef __cplusplus
 }

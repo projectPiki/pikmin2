@@ -34,6 +34,8 @@ typedef volatile f64 vf64;
 
 typedef int BOOL;
 
+typedef unsigned int uintptr_t; // Manually added
+
 // Pointer to unknown, to be determined at a later date.
 typedef void* unkptr;
 

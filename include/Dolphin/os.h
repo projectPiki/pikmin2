@@ -205,6 +205,8 @@ void OSRestoreInterrupts(int);
 BOOL OSGetSoundMode();
 void OSSetSoundMode(uint);
 
+#define HW_REG(reg, type) *(volatile type*)(uintptr_t)(reg) // manually added
+
 // u32 GameCode : 0x80000000;
 // u32 FSTLocationInRam : 0x80000038;
 

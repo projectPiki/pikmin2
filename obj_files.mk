@@ -1167,7 +1167,6 @@ GC:=\
 	$(BUILD_DIR)/asm/sysGCU/demoSection.o\
 	$(BUILD_DIR)/asm/sysGCU/THPAudioDecode.o\
 	$(BUILD_DIR)/src/sysGCU/THPDraw.o\
-	$(BUILD_DIR)/asm/sysGCU/THPDraw.o\
 	$(BUILD_DIR)/asm/sysGCU/THPPlayer.o\
 	$(BUILD_DIR)/asm/sysGCU/THPRead.o\
 	$(BUILD_DIR)/asm/sysGCU/THPVideoDecode.o\
