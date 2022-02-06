@@ -13,6 +13,12 @@ struct TriangleTable;
 struct CreateTriangleArg;
 struct Sphere;
 
+struct GridInfo {
+	// Unused/inlined:
+	~GridInfo();
+	void write(Stream&);
+};
+
 /**
  * @size{0x4C}
  */
@@ -35,6 +41,9 @@ struct GridDivider : public TriDivider {
 	virtual TriDivider* do_clone(Matrixf&, Sys::VertexTable*, Sys::TriangleTable*); // _24
 
 	void create(BoundBox&, int, int, Sys::VertexTable*, Sys::TriangleTable*);
+
+	// Unused/inlined:
+	void write(Stream&); // TODO: I wonder if this was declared virtual and then removed when unused somehow...
 
 	u32 _20;
 	u32 _24;
