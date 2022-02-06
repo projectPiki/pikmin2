@@ -1,7 +1,7 @@
 #include "Dolphin/runtime.h"
 #include "JSystem/JGeometry.h"
 #include "ebi/E2DGraph.h"
-#include "ebi/Option.h"
+#include "ebi/Screen/TOption.h"
 #include "Game/Data.h"
 #include "JSystem/JUT/JUTException.h"
 #include "og/newScreen/ogUtil.h"

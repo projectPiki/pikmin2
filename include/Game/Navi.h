@@ -1,6 +1,8 @@
 #ifndef _GAME_NAVI_H
 #define _GAME_NAVI_H
 
+#include "Color4.h"
+#include "efx/TChaseMtx.h"
 #include "Game/FakePiki.h"
 #include "Game/PelletView.h"
 #include "Game/StateMachine.h"
@@ -35,15 +37,6 @@ struct KeyEvent;
 } // namespace SysShape
 
 namespace efx {
-struct Context {
-	Context();
-	~Context();
-};
-
-struct TOneEmitter {
-	~TOneEmitter();
-};
-
 struct TFueactCircle {
 	~TFueactCircle();
 };
@@ -58,13 +51,6 @@ struct TFueactBiri1 {
 
 struct TFueactBiri2 {
 	~TFueactBiri2();
-};
-
-struct TChaseMtxT {
-	~TChaseMtxT();
-};
-
-struct TChaseMtx2 {
 };
 
 struct TNaviEffect {
@@ -136,19 +122,24 @@ struct NaviState {
 struct NaviWhistle {
 	NaviWhistle(Navi*);
 
-	f32 _00;      // _00
-	f32 _04;      // _04
-	f32 _08;      // _08
+	void init();
+	void updatePosition();
+	void start();
+	void stop();
+	void timeout();
+	void setFaceDir(float);
+	void updateWhistle();
+	void update(Vector3f&, bool);
+
+	Vector3f _00; // _00
 	Vector3f _0C; // _0C
-	u8 _18[0xC];  // _18
+	Vector3f _18; // _18
 	f32 _24;      // _24
 	u16 _28;      // _28
 	f32 _2C;      // _2C
 	u32 _30;      // _30
-	u32* _34;     // _34
-	u8 _38;       // _38
-	u8 _39;       // _39
-	u16 _3A;      // _3A
+	Navi* m_navi; // _34
+	Color4 _38;   // _38
 };
 
 struct Navi : public FakePiki, virtual public PelletView {
@@ -343,7 +334,7 @@ struct NaviMgr {
 	CollPartFactory* _CC;
 };
 
-NaviMgr* naviMgr;
+extern NaviMgr* naviMgr;
 } // namespace Game
 
 #endif

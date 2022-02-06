@@ -1,0 +1,201 @@
+#ifndef _EFX_TSYNCGROUP_H
+#define _EFX_TSYNCGROUP_H
+
+#include "efx/TBase.h"
+#include "efx/TSync.h"
+
+// #define TSYNCGROUP_DECL(count)
+
+namespace efx {
+template <typename T> struct TSyncGroup2 : public TBase {
+	virtual bool create(Arg* arg) // _00
+	{
+		for (u32 i = 0; i < 2; i++) {
+			if (reinterpret_cast<TSync*>(&m_items[i])->create(arg) == false) {
+				return false;
+			}
+		}
+		return true;
+	}
+	virtual void forceKill() // _04
+	{
+		for (u32 i = 0; i < 2; i++) {
+			reinterpret_cast<TSync*>(&m_items[i])->forceKill();
+		}
+	}
+	virtual void fade() // _08
+	{
+		for (u32 i = 0; i < 2; i++) {
+			reinterpret_cast<TSync*>(&m_items[i])->fade();
+		}
+	}
+	virtual void startDemoDrawOff() // _0C
+	{
+		for (u32 i = 0; i < 2; i++) {
+			reinterpret_cast<TSync*>(&m_items[i])->startDemoDrawOff();
+		}
+	}
+
+	virtual void endDemoDrawOn() // _10
+	{
+		for (u32 i = 0; i < 2; i++) {
+			reinterpret_cast<TSync*>(&m_items[i])->endDemoDrawOn();
+		}
+	}
+	T m_items[2];
+};
+
+template <typename T> struct TSyncGroup3 : public TBase {
+	virtual bool create(Arg* arg) // _00
+	{
+		for (u32 i = 0; i < 3; i++) {
+			if (reinterpret_cast<TSync*>(&m_items[i])->create(arg) == false) {
+				return false;
+			}
+		}
+		return true;
+	}
+	virtual void forceKill() // _04
+	{
+		for (u32 i = 0; i < 3; i++) {
+			reinterpret_cast<TSync*>(&m_items[i])->forceKill();
+		}
+	}
+	virtual void fade() // _08
+	{
+		for (u32 i = 0; i < 3; i++) {
+			reinterpret_cast<TSync*>(&m_items[i])->fade();
+		}
+	}
+	virtual void startDemoDrawOff() // _0C
+	{
+		for (u32 i = 0; i < 3; i++) {
+			reinterpret_cast<TSync*>(&m_items[i])->startDemoDrawOff();
+		}
+	}
+
+	virtual void endDemoDrawOn() // _10
+	{
+		for (u32 i = 0; i < 3; i++) {
+			reinterpret_cast<TSync*>(&m_items[i])->endDemoDrawOn();
+		}
+	}
+	T m_items[3];
+};
+
+template <typename T> struct TSyncGroup4 : public TBase {
+	virtual bool create(Arg* arg) // _00
+	{
+		for (u32 i = 0; i < 4; i++) {
+			if (reinterpret_cast<TSync*>(&m_items[i])->create(arg) == false) {
+				return false;
+			}
+		}
+		return true;
+	}
+	virtual void forceKill() // _04
+	{
+		for (u32 i = 0; i < 4; i++) {
+			reinterpret_cast<TSync*>(&m_items[i])->forceKill();
+		}
+	}
+	virtual void fade() // _08
+	{
+		for (u32 i = 0; i < 4; i++) {
+			reinterpret_cast<TSync*>(&m_items[i])->fade();
+		}
+	}
+	virtual void startDemoDrawOff() // _0C
+	{
+		for (u32 i = 0; i < 4; i++) {
+			reinterpret_cast<TSync*>(&m_items[i])->startDemoDrawOff();
+		}
+	}
+
+	virtual void endDemoDrawOn() // _10
+	{
+		for (u32 i = 0; i < 4; i++) {
+			reinterpret_cast<TSync*>(&m_items[i])->endDemoDrawOn();
+		}
+	}
+	T m_items[4];
+};
+
+template <typename T> struct TSyncGroup5 : public TBase {
+	virtual bool create(Arg* arg) // _00
+	{
+		for (u32 i = 0; i < 5; i++) {
+			if (reinterpret_cast<TSync*>(&m_items[i])->create(arg) == false) {
+				return false;
+			}
+		}
+		return true;
+	}
+	virtual void forceKill() // _04
+	{
+		for (u32 i = 0; i < 5; i++) {
+			reinterpret_cast<TSync*>(&m_items[i])->forceKill();
+		}
+	}
+	virtual void fade() // _08
+	{
+		for (u32 i = 0; i < 5; i++) {
+			reinterpret_cast<TSync*>(&m_items[i])->fade();
+		}
+	}
+	virtual void startDemoDrawOff() // _0C
+	{
+		for (u32 i = 0; i < 5; i++) {
+			reinterpret_cast<TSync*>(&m_items[i])->startDemoDrawOff();
+		}
+	}
+
+	virtual void endDemoDrawOn() // _10
+	{
+		for (u32 i = 0; i < 5; i++) {
+			reinterpret_cast<TSync*>(&m_items[i])->endDemoDrawOn();
+		}
+	}
+	T m_items[5];
+};
+
+template <typename T> struct TSyncGroup6 : public TBase {
+	virtual bool create(Arg* arg) // _00
+	{
+		for (u32 i = 0; i < 6; i++) {
+			if (reinterpret_cast<TSync*>(&m_items[i])->create(arg) == false) {
+				return false;
+			}
+		}
+		return true;
+	}
+	virtual void forceKill() // _04
+	{
+		for (u32 i = 0; i < 6; i++) {
+			reinterpret_cast<TSync*>(&m_items[i])->forceKill();
+		}
+	}
+	virtual void fade() // _08
+	{
+		for (u32 i = 0; i < 6; i++) {
+			reinterpret_cast<TSync*>(&m_items[i])->fade();
+		}
+	}
+	virtual void startDemoDrawOff() // _0C
+	{
+		for (u32 i = 0; i < 6; i++) {
+			reinterpret_cast<TSync*>(&m_items[i])->startDemoDrawOff();
+		}
+	}
+
+	virtual void endDemoDrawOn() // _10
+	{
+		for (u32 i = 0; i < 6; i++) {
+			reinterpret_cast<TSync*>(&m_items[i])->endDemoDrawOn();
+		}
+	}
+	T m_items[6];
+};
+} // namespace efx
+
+#endif

@@ -30,7 +30,7 @@ struct PikiMgr : public MonoObjectMgr<Game::Piki> {
 	// vtable 2
 	virtual void doAnimation();           // _30
 	virtual void doEntry();               // _34
-	virtual void birth();                 // _48
+	virtual Piki* birth();                // _48
 	virtual void resetMgr();              // _4C
 	virtual void onAlloc();               // _54
 	virtual void doSimpleDraw(Viewport*); // _58

@@ -9355,7 +9355,7 @@ void EnemyBase::onKeyEvent(const SysShape::KeyEvent&)
  * Address:	80105300
  * Size:	000080
  */
-void EnemyBase::stimulate(Game::Interaction&)
+bool EnemyBase::stimulate(Game::Interaction&)
 {
 	/*
 	.loc_0x0:
@@ -12219,7 +12219,7 @@ void EnemyAnimatorBase::resetAnimSpeed()
  * Address:	801073D8
  * Size:	000014
  */
-void EnemyBase::getJAIObject()
+JAInter::Object* EnemyBase::getJAIObject()
 {
 	/*
 	.loc_0x0:

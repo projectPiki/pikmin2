@@ -1,6 +1,7 @@
 #ifndef _VECTOR3_H
 #define _VECTOR3_H
 
+#include "JSystem/JGeometry.h"
 #include "stream.h"
 #include "Dolphin/math.h"
 #include "sysMath.h"
@@ -43,6 +44,28 @@ template <typename T> struct Vector3 {
 		x = other.x;
 		y = other.y;
 		z = other.z;
+	}
+
+	/**
+	 * @fabricated
+	 */
+	// inline JGeometry::TVec3<T> toTVec() const
+	// {
+	// 	JGeometry::TVec3<T> vec;
+	// 	vec.x = x;
+	// 	vec.y = y;
+	// 	vec.z = z;
+	// 	return vec;
+	// }
+
+	/**
+	 * @fabricated
+	 */
+	inline void setTVec(JGeometry::TVec3<T>& vec)
+	{
+		vec.x = x;
+		vec.y = y;
+		vec.z = z;
 	}
 	// 	inline Vector3& operator+(const Vector3 other) {
 	//     Vector3 newVector = *this;
