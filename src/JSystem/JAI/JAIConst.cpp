@@ -4,6 +4,7 @@
 #include "JSystem/JKR/JKRDvdRipper.h"
 #include "JSystem/JAI/JAIBasic.h"
 #include "JSystem/JAI/JAInter.h"
+#include "JSystem/JAI/JAIConst.h"
 
 extern JKRSolidHeap* JASDram;
 /*
@@ -124,7 +125,11 @@ u32 routeToTrack(u32 param_1)
 	}
 	return param_1 & uVar2;
 }
-
+/*
+namespace Const {
+Actor::nullActor { m_flag.boolView[0] = true };
+} // namespace Const
+*/
 /*
  * --INFO--
  * Address:	800AD40C

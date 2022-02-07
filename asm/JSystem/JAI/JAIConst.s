@@ -3,24 +3,6 @@
 lbl_constructor:
 .4byte __sinit_JAIConst_cpp
 
-.section .data, "wa"  # 0x8049E220 - 0x804EFC20
-.balign 8
-.global dummyZeroVec__Q27JAInter5Const
-dummyZeroVec__Q27JAInter5Const:
-	.float 0.0
-	.float 0.0
-	.float 0.0
-.global sCInfos_0__Q27JAInter5Const
-sCInfos_0__Q27JAInter5Const:
-	.4byte 0x04020402
-	.4byte 0x04020402
-	.4byte 0x04020402
-	.4byte 0x04020402
-	.4byte 0x04020402
-	.4byte 0x04020402
-	.4byte 0x04020402
-	.4byte 0x04020402
-
 .section .bss  # 0x804EFC20 - 0x8051467C
 .global nullCamera__Q27JAInter5Const
 nullCamera__Q27JAInter5Const:
