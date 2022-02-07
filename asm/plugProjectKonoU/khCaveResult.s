@@ -5,111 +5,71 @@ lbl_constructor:
 
 .section .rodata  # 0x804732E0 - 0x8049E220
 .balign 8
-.global lbl_80498360
 lbl_80498360:
-	.4byte 0x6B684361
-	.4byte 0x76655265
-	.4byte 0x73756C74
-	.4byte 0x2E637070
-	.4byte 0x00000000
-.global lbl_80498374
+	.asciz "khCaveResult.cpp"
+.balign 4
 lbl_80498374:
-	.4byte 0x64697370
-	.4byte 0x206D656D
-	.4byte 0x62657220
-	.4byte 0x65727200
-	.4byte 0x72657375
-	.4byte 0x6C745F64
-	.4byte 0x6F756B75
-	.4byte 0x74752E62
-	.4byte 0x6C6F0000
-	.4byte 0x72657375
-	.4byte 0x6C745F64
-	.4byte 0x6F756B75
-	.4byte 0x74755F64
-	.4byte 0x726F705F
-	.4byte 0x6974656D
-	.4byte 0x2E626C6F
-	.4byte 0x00000000
-	.4byte 0x72657375
-	.4byte 0x6C745F64
-	.4byte 0x6F756B75
-	.4byte 0x74752E62
-	.4byte 0x636B0000
-	.4byte 0x72657375
-	.4byte 0x6C745F64
-	.4byte 0x6F756B75
-	.4byte 0x74752E62
-	.4byte 0x706B0000
-	.4byte 0x72657375
-	.4byte 0x6C745F64
-	.4byte 0x6F756B75
-	.4byte 0x74752E62
-	.4byte 0x746B0000
-	.4byte 0x72657375
-	.4byte 0x6C745F64
-	.4byte 0x6F756B75
-	.4byte 0x74752E62
-	.4byte 0x726B0000
-	.4byte 0x646F756B
-	.4byte 0x7574755F
-	.4byte 0x636F6D70
-	.4byte 0x6C657465
-	.4byte 0x2E626C6F
-	.4byte 0x00000000
-	.4byte 0x646F756B
-	.4byte 0x7574755F
-	.4byte 0x636F6D70
-	.4byte 0x6C657465
-	.4byte 0x2E62636B
-	.4byte 0x00000000
-	.4byte 0x646F756B
-	.4byte 0x7574755F
-	.4byte 0x636F6D70
-	.4byte 0x6C657465
-	.4byte 0x2E62706B
-	.4byte 0x00000000
-.global lbl_80498450
+	.asciz "disp member err"
+.balign 4
+lbl_80498384:
+	.asciz "result_doukutu.blo"
+.balign 4
+lbl_80498398:
+	.asciz "result_doukutu_drop_item.blo"
+.balign 4
+lbl_804983B8:
+	.asciz "result_doukutu.bck"
+.balign 4
+lbl_804983CC:
+	.asciz "result_doukutu.bpk"
+.balign 4
+lbl_804983E0:
+	.asciz "result_doukutu.btk"
+.balign 4
+lbl_804983F4:
+	.asciz "result_doukutu.brk"
+.balign 4
+lbl_80498408:
+	.asciz "doukutu_complete.blo"
+.balign 4
+lbl_80498420:
+	.asciz "doukutu_complete.bck"
+.balign 4
+lbl_80498438:
+	.asciz "doukutu_complete.bpk"
+.balign 4
 lbl_80498450:
 	.4byte 0x69506963
 	.4byte 0x6F6E3030
 	.4byte 0x69506963
 	.4byte 0x6F6E3031
-.global lbl_80498460
 lbl_80498460:
 	.4byte 0x50696E61
 	.4byte 0x6D653030
 	.4byte 0x50696E61
 	.4byte 0x6D653031
-.global lbl_80498470
 lbl_80498470:
 	.4byte 0x004E6963
 	.4byte 0x6F6E3030
 	.4byte 0x004E6963
 	.4byte 0x6F6E3031
-.global lbl_80498480
 lbl_80498480:
 	.4byte 0x00000000
 	.4byte 0x00000000
 	.4byte 0x00000000
 	.4byte 0x00000000
 	.4byte 0x00000000
-.global lbl_80498494
 lbl_80498494:
-	.4byte 0x72657375
-	.4byte 0x6C745F64
-	.4byte 0x6F756B75
-	.4byte 0x74752E73
-	.4byte 0x7A730000
-	.4byte 0x73637265
-	.4byte 0x656E4F62
-	.4byte 0x6A2E6800
+	.asciz "result_doukutu.szs"
+.balign 4
+lbl_804984A8:
+	.asciz "screenObj.h"
+.balign 4
+lbl_804984B4:
 	.asciz "P2Assert"
-	.skip 3
 
 .section .data, "wa"  # 0x8049E220 - 0x804EFC20
 .balign 8
-.global lbl_804EA560
 lbl_804EA560:
 	.4byte lbl_803F94EC
 	.4byte lbl_803F94F8
@@ -182,7 +142,6 @@ __vt__Q32kh6Screen14DispCaveResult:
 	.4byte getOwnerID__Q32kh6Screen14DispCaveResultFv
 	.4byte getMemberID__Q32kh6Screen14DispCaveResultFv
 	.4byte doSetSubMemberAll__Q32og6Screen14DispMemberBaseFv
-	.4byte 0
 
 .section .bss  # 0x804EFC20 - 0x8051467C
 .global msVal__Q32kh6Screen13ObjCaveResult
@@ -191,114 +150,81 @@ msVal__Q32kh6Screen13ObjCaveResult:
 
 .section .sdata2, "a"     # 0x80516360 - 0x80520E40
 .balign 8
-.global lbl_8051FFA8
 lbl_8051FFA8:
-	.4byte 0x00000000
-	.4byte 0x00000000
-.global lbl_8051FFB0
+	.float 0.0
+.balign 8
 lbl_8051FFB0:
 	.4byte 0x43300000
 	.4byte 0x80000000
-.global lbl_8051FFB8
 lbl_8051FFB8:
 	.float 1.0
-.global lbl_8051FFBC
 lbl_8051FFBC:
-	.4byte 0x40000000
-.global lbl_8051FFC0
+	.float 2.0
+.balign 8
 lbl_8051FFC0:
 	.4byte 0x43300000
 	.4byte 0x00000000
-.global lbl_8051FFC8
 lbl_8051FFC8:
-	.4byte 0x432F0000
-.global lbl_8051FFCC
+	.float 175.0
 lbl_8051FFCC:
-	.4byte 0x43608000
-.global lbl_8051FFD0
+	.float 224.5
 lbl_8051FFD0:
 	.float 0.5
-.global lbl_8051FFD4
 lbl_8051FFD4:
-	.4byte 0x41F00000
-.global lbl_8051FFD8
+	.float 30.0
 lbl_8051FFD8:
-	.4byte 0x3F59999A
-.global lbl_8051FFDC
+	.float 0.85
 lbl_8051FFDC:
-	.4byte 0x42700000
-.global lbl_8051FFE0
+	.float 60.0
 lbl_8051FFE0:
-	.4byte 0x47000000
-.global lbl_8051FFE4
+	.float 32768.0
 lbl_8051FFE4:
-	.4byte 0x42200000
-.global lbl_8051FFE8
+	.float 40.0
 lbl_8051FFE8:
-	.4byte 0x41A00000
-.global lbl_8051FFEC
+	.float 20.0
 lbl_8051FFEC:
-	.4byte 0x42000000
-.global lbl_8051FFF0
+	.float 32.0
 lbl_8051FFF0:
-	.4byte 0x40800000
-.global lbl_8051FFF4
+	.float 4.0
 lbl_8051FFF4:
-	.4byte 0x461C4000
-.global lbl_8051FFF8
+	.float 10000.0
 lbl_8051FFF8:
-	.4byte 0x459C4000
-.global lbl_8051FFFC
+	.float 5000.0
 lbl_8051FFFC:
-	.4byte 0x41000000
-.global lbl_80520000
+	.float 8.0
 lbl_80520000:
-	.4byte 0x41200000
-.global lbl_80520004
+	.float 10.0
 lbl_80520004:
-	.4byte 0x43B40000
-.global lbl_80520008
+	.float 360.0
 lbl_80520008:
-	.4byte 0x47800000
-.global lbl_8052000C
+	.float 65536.0
+.balign 4
 lbl_8052000C:
-	.4byte 0x6661696C
-	.4byte 0x65640000
-.global lbl_80520014
+	.asciz "failed"
+.balign 4
 lbl_80520014:
-	.4byte 0x00000000
-.global lbl_80520018
+	.asciz ""
+.balign 4
 lbl_80520018:
 	.float 0.7
-.global lbl_8052001C
 lbl_8052001C:
-	.4byte 0x42B40000
-.global lbl_80520020
+	.float 90.0
 lbl_80520020:
-	.4byte 0xC1F00000
-.global lbl_80520024
+	.float -30.0
 lbl_80520024:
-	.4byte 0xC1A00000
-.global lbl_80520028
+	.float -20.0
 lbl_80520028:
-	.4byte 0x430C0000
-.global lbl_8052002C
+	.float 140.0
 lbl_8052002C:
-	.4byte 0x432D0000
-.global lbl_80520030
+	.float 173.0
 lbl_80520030:
-	.4byte 0x434E0000
-.global lbl_80520034
+	.float 206.0
 lbl_80520034:
-	.4byte 0x43700000
+	.float 240.0
 
 .section .sbss2, "", @nobits # 0x80520e40 - 0x80520ED8
-.global lbl_80520EC0
 lbl_80520EC0:
-	.skip 0x4
-.global lbl_80520EC4
-lbl_80520EC4:
-	.skip 0x4
+	.skip 0x8
 
 .section .text, "ax"  # 0x800056C0 - 0x80472F00
 .global __ct__Q32kh6Screen14DispCaveResultFPQ34Game6Result5TNodeUlUlUlUlbP7JKRHeapb
@@ -1264,47 +1190,38 @@ lbl_803F94C8:
 /* 803F94E0 003F6420  7C 03 00 2E */	lwzx r0, r3, r0
 /* 803F94E4 003F6424  7C 09 03 A6 */	mtctr r0
 /* 803F94E8 003F6428  4E 80 04 20 */	bctr 
-.global lbl_803F94EC
 lbl_803F94EC:
 /* 803F94EC 003F642C  7F C3 F3 78 */	mr r3, r30
 /* 803F94F0 003F6430  48 00 0A 9D */	bl statusNormal__Q32kh6Screen13ObjCaveResultFv
 /* 803F94F4 003F6434  48 00 00 60 */	b lbl_803F9554
-.global lbl_803F94F8
 lbl_803F94F8:
 /* 803F94F8 003F6438  7F C3 F3 78 */	mr r3, r30
 /* 803F94FC 003F643C  48 00 0C 6D */	bl statusScrollUp__Q32kh6Screen13ObjCaveResultFv
 /* 803F9500 003F6440  48 00 00 54 */	b lbl_803F9554
-.global lbl_803F9504
 lbl_803F9504:
 /* 803F9504 003F6444  7F C3 F3 78 */	mr r3, r30
 /* 803F9508 003F6448  48 00 0D 55 */	bl statusScrollDown__Q32kh6Screen13ObjCaveResultFv
 /* 803F950C 003F644C  48 00 00 48 */	b lbl_803F9554
-.global lbl_803F9510
 lbl_803F9510:
 /* 803F9510 003F6450  7F C3 F3 78 */	mr r3, r30
 /* 803F9514 003F6454  48 00 0E 3D */	bl statusForceScroll__Q32kh6Screen13ObjCaveResultFv
 /* 803F9518 003F6458  48 00 00 3C */	b lbl_803F9554
-.global lbl_803F951C
 lbl_803F951C:
 /* 803F951C 003F645C  7F C3 F3 78 */	mr r3, r30
 /* 803F9520 003F6460  48 00 11 21 */	bl statusDrumRoll__Q32kh6Screen13ObjCaveResultFv
 /* 803F9524 003F6464  48 00 00 30 */	b lbl_803F9554
-.global lbl_803F9528
 lbl_803F9528:
 /* 803F9528 003F6468  7F C3 F3 78 */	mr r3, r30
 /* 803F952C 003F646C  48 00 12 D9 */	bl statusLost__Q32kh6Screen13ObjCaveResultFv
 /* 803F9530 003F6470  48 00 00 24 */	b lbl_803F9554
-.global lbl_803F9534
 lbl_803F9534:
 /* 803F9534 003F6474  7F C3 F3 78 */	mr r3, r30
 /* 803F9538 003F6478  48 00 11 E5 */	bl statusDecP__Q32kh6Screen13ObjCaveResultFv
 /* 803F953C 003F647C  48 00 00 18 */	b lbl_803F9554
-.global lbl_803F9540
 lbl_803F9540:
 /* 803F9540 003F6480  7F C3 F3 78 */	mr r3, r30
 /* 803F9544 003F6484  48 00 13 D1 */	bl statusEffect__Q32kh6Screen13ObjCaveResultFv
 /* 803F9548 003F6488  48 00 00 0C */	b lbl_803F9554
-.global lbl_803F954C
 lbl_803F954C:
 /* 803F954C 003F648C  7F C3 F3 78 */	mr r3, r30
 /* 803F9550 003F6490  48 00 11 0D */	bl statusAllMoney__Q32kh6Screen13ObjCaveResultFv
@@ -1469,7 +1386,7 @@ doDraw__Q32kh6Screen13ObjCaveResultFR8Graphics:
 /* 803F9798 003F66D8  3C A0 74 70 */	lis r5, 0x74703030@ha
 /* 803F979C 003F66DC  81 83 00 00 */	lwz r12, 0(r3)
 /* 803F97A0 003F66E0  3C 80 00 4E */	lis r4, 0x004E7365@ha
-/* 803F97A4 003F66E4  80 02 2B 64 */	lwz r0, lbl_80520EC4@sda21(r2)
+/* 803F97A4 003F66E4  80 02 2B 64 */	lwz r0, (lbl_80520EC0+4)@sda21(r2)
 /* 803F97A8 003F66E8  38 C5 30 30 */	addi r6, r5, 0x74703030@l
 /* 803F97AC 003F66EC  81 8C 00 3C */	lwz r12, 0x3c(r12)
 /* 803F97B0 003F66F0  38 A4 73 65 */	addi r5, r4, 0x004E7365@l

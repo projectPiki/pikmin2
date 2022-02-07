@@ -534,7 +534,7 @@ checkResetCallback__10JUTGamePadFx:
 /* 8002D9D8 0002A918  6C A5 80 00 */	xoris r5, r5, 0x8000
 /* 8002D9DC 0002A91C  90 01 00 14 */	stw r0, 0x14(r1)
 /* 8002D9E0 0002A920  80 0D 88 D8 */	lwz r0, sThreshold__Q210JUTGamePad13C3ButtonReset@sda21(r13)
-/* 8002D9E4 0002A924  80 ED 88 DC */	lwz r7, sThreshold__Q210JUTGamePad13C3ButtonReset+4@sda21(r13)
+/* 8002D9E4 0002A924  80 ED 88 DC */	lwz r7, (sThreshold__Q210JUTGamePad13C3ButtonReset+4)@sda21(r13)
 /* 8002D9E8 0002A928  6C 04 80 00 */	xoris r4, r0, 0x8000
 /* 8002D9EC 0002A92C  7C 07 30 10 */	subfc r0, r7, r6
 /* 8002D9F0 0002A930  7C 84 29 10 */	subfe r4, r4, r5
@@ -677,7 +677,7 @@ lbl_8002DBD4:
 /* 8002DBF8 0002AB38  7C C0 20 10 */	subfc r6, r0, r4
 /* 8002DBFC 0002AB3C  80 0D 88 D8 */	lwz r0, sThreshold__Q210JUTGamePad13C3ButtonReset@sda21(r13)
 /* 8002DC00 0002AB40  7C 65 19 10 */	subfe r3, r5, r3
-/* 8002DC04 0002AB44  80 AD 88 DC */	lwz r5, sThreshold__Q210JUTGamePad13C3ButtonReset+4@sda21(r13)
+/* 8002DC04 0002AB44  80 AD 88 DC */	lwz r5, (sThreshold__Q210JUTGamePad13C3ButtonReset+4)@sda21(r13)
 /* 8002DC08 0002AB48  6C 64 80 00 */	xoris r4, r3, 0x8000
 /* 8002DC0C 0002AB4C  6C 03 80 00 */	xoris r3, r0, 0x8000
 /* 8002DC10 0002AB50  7C 05 30 10 */	subfc r0, r5, r6
@@ -1687,7 +1687,7 @@ __sinit_JUTGamePad_cpp:
 /* 8002E9F4 0002B934  1C C6 00 1E */	mulli r6, r6, 0x1e
 /* 8002E9F8 0002B938  7C 00 2A 14 */	add r0, r0, r5
 /* 8002E9FC 0002B93C  90 0D 88 D8 */	stw r0, sThreshold__Q210JUTGamePad13C3ButtonReset@sda21(r13)
-/* 8002EA00 0002B940  90 CD 88 DC */	stw r6, sThreshold__Q210JUTGamePad13C3ButtonReset+4@sda21(r13)
+/* 8002EA00 0002B940  90 CD 88 DC */	stw r6, (sThreshold__Q210JUTGamePad13C3ButtonReset+4)@sda21(r13)
 /* 8002EA04 0002B944  4B FF 7E 2D */	bl __ct__10JSUPtrListFb
 /* 8002EA08 0002B948  3C 60 80 50 */	lis r3, sPatternList__19JUTGamePadLongPress@ha
 /* 8002EA0C 0002B94C  3C 80 80 03 */	lis r4, "__dt__30JSUList<19JUTGamePadLongPress>Fv"@ha

@@ -1,38 +1,20 @@
 .include "macros.inc"
 .section .rodata  # 0x804732E0 - 0x8049E220
 .balign 8
-.global lbl_804984C0
 lbl_804984C0:
-	.4byte 0x72657375
-	.4byte 0x6C745F74
-	.4byte 0x69746C65
-	.4byte 0x5F6E6577
-	.4byte 0x2E737A73
-	.4byte 0x00000000
-.global lbl_804984D8
+	.asciz "result_title_new.szs"
+.balign 4
 lbl_804984D8:
-	.4byte 0x77696E5F
-	.4byte 0x6C6F7365
-	.4byte 0x2E737A73
-	.4byte 0x00000000
-.global lbl_804984E8
+	.asciz "win_lose.szs"
+.balign 4
 lbl_804984E8:
-	.4byte 0x72657375
-	.4byte 0x6C745F66
-	.4byte 0x75657461
-	.4byte 0x68657461
-	.4byte 0x2E737A73
-	.4byte 0x00000000
-.global lbl_80498500
+	.asciz "result_fuetaheta.szs"
+.balign 4
 lbl_80498500:
-	.4byte 0x72657375
-	.4byte 0x6C745F69
-	.4byte 0x74656D2E
-	.4byte 0x737A7300
+	.asciz "result_item.szs"
 
 .section .data, "wa"  # 0x8049E220 - 0x804EFC20
 .balign 8
-.global lbl_804EA668
 lbl_804EA668:
 	.4byte lbl_803FBB0C
 	.4byte lbl_803FBB34
@@ -133,7 +115,6 @@ __vt__Q32kh6Screen21SceneDayEndResultItem:
 	.4byte setDefaultDispMember__Q26Screen9SceneBaseFv
 	.4byte doSetBackupScene__Q26Screen9SceneBaseFRQ26Screen11SetSceneArg
 	.4byte doGetFinishState__Q26Screen9SceneBaseFv
-	.4byte 0
 
 .section .text, "ax"  # 0x800056C0 - 0x80472F00
 .global createScene_Koono__Q22kh6ScreenFl
@@ -152,7 +133,6 @@ createScene_Koono__Q22kh6ScreenFl:
 /* 803FBB00 003F8A40  7C 04 00 2E */	lwzx r0, r4, r0
 /* 803FBB04 003F8A44  7C 09 03 A6 */	mtctr r0
 /* 803FBB08 003F8A48  4E 80 04 20 */	bctr 
-.global lbl_803FBB0C
 lbl_803FBB0C:
 /* 803FBB0C 003F8A4C  38 60 02 20 */	li r3, 0x220
 /* 803FBB10 003F8A50  4B C2 83 95 */	bl __nw__FUl
@@ -165,7 +145,6 @@ lbl_803FBB0C:
 lbl_803FBB2C:
 /* 803FBB2C 003F8A6C  7F E3 FB 78 */	mr r3, r31
 /* 803FBB30 003F8A70  48 00 01 88 */	b lbl_803FBCB8
-.global lbl_803FBB34
 lbl_803FBB34:
 /* 803FBB34 003F8A74  38 60 02 20 */	li r3, 0x220
 /* 803FBB38 003F8A78  4B C2 83 6D */	bl __nw__FUl
@@ -178,7 +157,6 @@ lbl_803FBB34:
 lbl_803FBB54:
 /* 803FBB54 003F8A94  7F E3 FB 78 */	mr r3, r31
 /* 803FBB58 003F8A98  48 00 01 60 */	b lbl_803FBCB8
-.global lbl_803FBB5C
 lbl_803FBB5C:
 /* 803FBB5C 003F8A9C  38 60 02 24 */	li r3, 0x224
 /* 803FBB60 003F8AA0  4B C2 83 45 */	bl __nw__FUl
@@ -193,7 +171,6 @@ lbl_803FBB5C:
 lbl_803FBB84:
 /* 803FBB84 003F8AC4  7F E3 FB 78 */	mr r3, r31
 /* 803FBB88 003F8AC8  48 00 01 30 */	b lbl_803FBCB8
-.global lbl_803FBB8C
 lbl_803FBB8C:
 /* 803FBB8C 003F8ACC  38 60 02 20 */	li r3, 0x220
 /* 803FBB90 003F8AD0  4B C2 83 15 */	bl __nw__FUl
@@ -206,7 +183,6 @@ lbl_803FBB8C:
 lbl_803FBBAC:
 /* 803FBBAC 003F8AEC  7F E3 FB 78 */	mr r3, r31
 /* 803FBBB0 003F8AF0  48 00 01 08 */	b lbl_803FBCB8
-.global lbl_803FBBB4
 lbl_803FBBB4:
 /* 803FBBB4 003F8AF4  38 60 02 20 */	li r3, 0x220
 /* 803FBBB8 003F8AF8  4B C2 82 ED */	bl __nw__FUl
@@ -219,7 +195,6 @@ lbl_803FBBB4:
 lbl_803FBBD4:
 /* 803FBBD4 003F8B14  7F E3 FB 78 */	mr r3, r31
 /* 803FBBD8 003F8B18  48 00 00 E0 */	b lbl_803FBCB8
-.global lbl_803FBBDC
 lbl_803FBBDC:
 /* 803FBBDC 003F8B1C  38 60 02 3C */	li r3, 0x23c
 /* 803FBBE0 003F8B20  4B C2 82 C5 */	bl __nw__FUl
@@ -230,7 +205,6 @@ lbl_803FBBDC:
 lbl_803FBBF4:
 /* 803FBBF4 003F8B34  7C 03 03 78 */	mr r3, r0
 /* 803FBBF8 003F8B38  48 00 00 C0 */	b lbl_803FBCB8
-.global lbl_803FBBFC
 lbl_803FBBFC:
 /* 803FBBFC 003F8B3C  38 60 02 20 */	li r3, 0x220
 /* 803FBC00 003F8B40  4B C2 82 A5 */	bl __nw__FUl
@@ -243,7 +217,6 @@ lbl_803FBBFC:
 lbl_803FBC1C:
 /* 803FBC1C 003F8B5C  7F E3 FB 78 */	mr r3, r31
 /* 803FBC20 003F8B60  48 00 00 98 */	b lbl_803FBCB8
-.global lbl_803FBC24
 lbl_803FBC24:
 /* 803FBC24 003F8B64  38 60 02 20 */	li r3, 0x220
 /* 803FBC28 003F8B68  4B C2 82 7D */	bl __nw__FUl
@@ -256,7 +229,6 @@ lbl_803FBC24:
 lbl_803FBC44:
 /* 803FBC44 003F8B84  7F E3 FB 78 */	mr r3, r31
 /* 803FBC48 003F8B88  48 00 00 70 */	b lbl_803FBCB8
-.global lbl_803FBC4C
 lbl_803FBC4C:
 /* 803FBC4C 003F8B8C  38 60 02 20 */	li r3, 0x220
 /* 803FBC50 003F8B90  4B C2 82 55 */	bl __nw__FUl
@@ -269,7 +241,6 @@ lbl_803FBC4C:
 lbl_803FBC6C:
 /* 803FBC6C 003F8BAC  7F E3 FB 78 */	mr r3, r31
 /* 803FBC70 003F8BB0  48 00 00 48 */	b lbl_803FBCB8
-.global lbl_803FBC74
 lbl_803FBC74:
 /* 803FBC74 003F8BB4  38 60 02 38 */	li r3, 0x238
 /* 803FBC78 003F8BB8  4B C2 82 2D */	bl __nw__FUl
@@ -280,7 +251,6 @@ lbl_803FBC74:
 lbl_803FBC8C:
 /* 803FBC8C 003F8BCC  7C 03 03 78 */	mr r3, r0
 /* 803FBC90 003F8BD0  48 00 00 28 */	b lbl_803FBCB8
-.global lbl_803FBC94
 lbl_803FBC94:
 /* 803FBC94 003F8BD4  38 60 02 20 */	li r3, 0x220
 /* 803FBC98 003F8BD8  4B C2 82 0D */	bl __nw__FUl

@@ -814,5 +814,5 @@ __sinit_section_cpp: #static initializer
 /* 80424190 004210D0  1C 85 01 2C */	mulli r4, r5, 0x12c
 /* 80424194 004210D4  7C 00 1A 14 */	add r0, r0, r3
 /* 80424198 004210D8  90 0D 9B 00 */	stw r0, sPlayTime@sda21(r13)
-/* 8042419C 004210DC  90 8D 9B 04 */	stw r4, sPlayTime+4@sda21(r13)
+/* 8042419C 004210DC  90 8D 9B 04 */	stw r4, (sPlayTime+4)@sda21(r13)
 /* 804241A0 004210E0  4E 80 00 20 */	blr 

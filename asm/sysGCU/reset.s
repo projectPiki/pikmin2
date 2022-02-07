@@ -99,7 +99,7 @@ __ct__12ResetManagerFf:
 /* 80429E14 00426D54  38 A0 00 00 */	li r5, 0
 /* 80429E18 00426D58  C0 02 21 E8 */	lfs f0, lbl_80520548@sda21(r2)
 /* 80429E1C 00426D5C  7F E3 FB 78 */	mr r3, r31
-/* 80429E20 00426D60  90 8D 88 DC */	stw r4, sThreshold__Q210JUTGamePad13C3ButtonReset+4@sda21(r13)
+/* 80429E20 00426D60  90 8D 88 DC */	stw r4, (sThreshold__Q210JUTGamePad13C3ButtonReset+4)@sda21(r13)
 /* 80429E24 00426D64  98 BF 00 0C */	stb r5, 0xc(r31)
 /* 80429E28 00426D68  98 BF 00 0D */	stb r5, 0xd(r31)
 /* 80429E2C 00426D6C  98 BF 00 0E */	stb r5, 0xe(r31)
