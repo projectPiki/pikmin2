@@ -5,10 +5,15 @@ lbl_constructor:
 
 .section .rodata  # 0x804732E0 - 0x8049E220
 .balign 8
-.global lbl_8048E110
 lbl_8048E110:
-	.skip 0xC
+	.4byte 0
+	.4byte 0
+	.4byte 0
+.balign 4
+lbl_8048E11C:
 	.asciz "ogObjGround.cpp"
+.balign 4
+lbl_8048E12C: #Shift-JIS
 	.4byte 0x45525221
 	.4byte 0x20696E20
 	.4byte 0x4F626A43
@@ -17,27 +22,34 @@ lbl_8048E110:
 	.4byte 0x74658EB8
 	.4byte 0x94738149
 	.4byte 0x0A000000
+.balign 4
+lbl_8048E14C:
 	.asciz "sun_meter.blo"
-	.skip 2
+.balign 4
+lbl_8048E15C:
 	.asciz "doping.blo"
-	.skip 1
+.balign 4
+lbl_8048E168:
 	.asciz "orima.blo"
-	.skip 2
+.balign 4
+lbl_8048E174:
 	.asciz "gr_pikmin.blo"
-	.skip 2
+.balign 4
+lbl_8048E184:
 	.asciz "sensor.blo"
-	.skip 1
+.balign 4
+lbl_8048E190:
 	.asciz "screenObj.h"
+.balign 4
+lbl_8048E19C:
 	.asciz "P2Assert"
-	.skip 3
 
 .section .data, "wa"  # 0x8049E220 - 0x804EFC20
 .balign 8
-.global lbl_804D82D8
-lbl_804D82D8:
-	.4byte 0x00000000
-	.4byte 0x00000000
-	.4byte 0x00000000
+govNAN___Q24Game5P2JST:
+	.float 0.0
+	.float 0.0
+	.float 0.0
 .global __vt__Q32og9newScreen9ObjGround
 __vt__Q32og9newScreen9ObjGround:
 	.4byte 0
@@ -70,7 +82,6 @@ __vt__Q32og9newScreen9ObjGround:
 	.4byte doConfirmSetScene__Q26Screen7ObjBaseFRQ26Screen11SetSceneArg
 	.4byte doConfirmStartScene__Q26Screen7ObjBaseFPQ26Screen13StartSceneArg
 	.4byte doConfirmEndScene__Q26Screen7ObjBaseFRPQ26Screen11EndSceneArg
-	.4byte 0
 
 .section .bss  # 0x804EFC20 - 0x8051467C
 .global msVal__Q32og9newScreen9ObjGround
@@ -79,65 +90,47 @@ msVal__Q32og9newScreen9ObjGround:
 
 .section .sbss # 0x80514D80 - 0x80516360
 .balign 8
-.global lbl_80515E38
-lbl_80515E38:
+gu32NAN___Q24Game5P2JST:
 	.skip 0x4
-.global lbl_80515E3C
-lbl_80515E3C:
+gfNAN___Q24Game5P2JST:
 	.skip 0x4
 
 .section .sdata2, "a"     # 0x80516360 - 0x80520E40
 .balign 8
-.global lbl_8051D6F0
 lbl_8051D6F0:
-	.4byte 0x00000000
-.global lbl_8051D6F4
+	.float 0.0
 lbl_8051D6F4:
 	.float 1.0
-.global lbl_8051D6F8
 lbl_8051D6F8:
-	.4byte 0x3F666666
-.global lbl_8051D6FC
+	.float 0.9
 lbl_8051D6FC:
-	.4byte 0x3F4CCCCD
-.global lbl_8051D700
+	.float 0.8
 lbl_8051D700:
-	.4byte 0x44610000
-.global lbl_8051D704
+	.float 900.0
 lbl_8051D704:
 	.float 0.5
-.global lbl_8051D708
-lbl_8051D708:
-	.4byte 0x40490FDB
-.global lbl_8051D70C
+lbl_8051D708: #pi
+	.float 3.1415927
 lbl_8051D70C:
-	.4byte 0x3ECCCCCD
-.global lbl_8051D710
+	.float 0.4
 lbl_8051D710:
-	.4byte 0x43A2F983
-	.4byte 0x00000000
-.global lbl_8051D718
+	.float 325.9493
+.balign 8
 lbl_8051D718:
 	.4byte 0x43300000
 	.4byte 0x00000000
-.global lbl_8051D720
 lbl_8051D720:
 	.float 0.3
-.global lbl_8051D724
 lbl_8051D724:
 	.float 0.1
-.global lbl_8051D728
 lbl_8051D728:
-	.4byte 0xC2480000
-.global lbl_8051D72C
+	.float -50.0
 lbl_8051D72C:
-	.4byte 0x41200000
-.global lbl_8051D730
+	.float 10.0
 lbl_8051D730:
-	.4byte 0xC2200000
-.global lbl_8051D734
+	.float -40.0
 lbl_8051D734:
-	.4byte 0xC1F00000
+	.float -30.0
 
 .section .text, "ax"  # 0x800056C0 - 0x80472F00
 .global __ct__Q32og9newScreen9ObjGroundFPCc
@@ -857,17 +850,16 @@ lbl_8030E89C:
 doUpdateFadeoutFinish__Q32og9newScreen9ObjGroundFv:
 /* 8030E8D0 0030B810  4E 80 00 20 */	blr 
 
-.global __sinit_ogObjGround_cpp
-__sinit_ogObjGround_cpp:
+__sinit_ogObjGround_cpp: #static initializer
 /* 8030E8D4 0030B814  3C 60 80 51 */	lis r3, __float_nan@ha
 /* 8030E8D8 0030B818  C0 E2 F3 C0 */	lfs f7, lbl_8051D720@sda21(r2)
 /* 8030E8DC 0030B81C  38 A3 48 B0 */	addi r5, r3, __float_nan@l
-/* 8030E8E0 0030B820  3C 80 80 4E */	lis r4, lbl_804D82D8@ha
+/* 8030E8E0 0030B820  3C 80 80 4E */	lis r4, govNAN___Q24Game5P2JST@ha
 /* 8030E8E4 0030B824  C1 05 00 00 */	lfs f8, 0(r5)
 /* 8030E8E8 0030B828  3C 60 80 51 */	lis r3, msVal__Q32og9newScreen9ObjGround@ha
 /* 8030E8EC 0030B82C  38 A0 FF FF */	li r5, -1
 /* 8030E8F0 0030B830  C0 82 F3 90 */	lfs f4, lbl_8051D6F0@sda21(r2)
-/* 8030E8F4 0030B834  D5 04 82 D8 */	stfsu f8, lbl_804D82D8@l(r4)
+/* 8030E8F4 0030B834  D5 04 82 D8 */	stfsu f8, govNAN___Q24Game5P2JST@l(r4)
 /* 8030E8F8 0030B838  38 00 00 00 */	li r0, 0
 /* 8030E8FC 0030B83C  C0 C2 F3 C4 */	lfs f6, lbl_8051D724@sda21(r2)
 /* 8030E900 0030B840  D4 E3 3C 18 */	stfsu f7, msVal__Q32og9newScreen9ObjGround@l(r3)
@@ -876,8 +868,8 @@ __sinit_ogObjGround_cpp:
 /* 8030E90C 0030B84C  C0 42 F3 D0 */	lfs f2, lbl_8051D730@sda21(r2)
 /* 8030E910 0030B850  C0 22 F3 98 */	lfs f1, lbl_8051D6F8@sda21(r2)
 /* 8030E914 0030B854  C0 02 F3 D4 */	lfs f0, lbl_8051D734@sda21(r2)
-/* 8030E918 0030B858  90 AD 97 B8 */	stw r5, lbl_80515E38@sda21(r13)
-/* 8030E91C 0030B85C  D1 0D 97 BC */	stfs f8, lbl_80515E3C@sda21(r13)
+/* 8030E918 0030B858  90 AD 97 B8 */	stw r5, gu32NAN___Q24Game5P2JST@sda21(r13)
+/* 8030E91C 0030B85C  D1 0D 97 BC */	stfs f8, gfNAN___Q24Game5P2JST@sda21(r13)
 /* 8030E920 0030B860  D1 04 00 04 */	stfs f8, 4(r4)
 /* 8030E924 0030B864  D1 04 00 08 */	stfs f8, 8(r4)
 /* 8030E928 0030B868  D0 C3 00 04 */	stfs f6, 4(r3)

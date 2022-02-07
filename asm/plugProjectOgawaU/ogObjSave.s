@@ -1,14 +1,10 @@
 .include "macros.inc"
 .section .rodata  # 0x804732E0 - 0x8049E220
 .balign 8
-.global lbl_8048F2E8
 lbl_8048F2E8:
-	.4byte 0x6F674F62
-	.4byte 0x6A536176
-	.4byte 0x652E6370
-	.4byte 0x70000000
-.global lbl_8048F2F8
-lbl_8048F2F8:
+	.asciz "ogObjSave.cpp"
+.balign 4
+lbl_8048F2F8: #Shift-JIS
 	.4byte 0x45525221
 	.4byte 0x20696E20
 	.4byte 0x4F626A53
@@ -55,10 +51,8 @@ __vt__Q32og9newScreen7ObjSave:
 
 .section .sdata2, "a"     # 0x80516360 - 0x80520E40
 .balign 8
-.global lbl_8051DD68
 lbl_8051DD68:
-	.4byte 0x00000000
-.global lbl_8051DD6C
+	.float 0.0
 lbl_8051DD6C:
 	.float 0.1
 

@@ -5,63 +5,37 @@ lbl_constructor:
 
 .section .rodata  # 0x804732E0 - 0x8049E220
 .balign 8
-.global lbl_8048E658
 lbl_8048E658:
-	.4byte 0x6F674F62
-	.4byte 0x6A534D65
-	.4byte 0x6E754261
-	.4byte 0x73652E63
-	.4byte 0x70700000
-.global lbl_8048E66C
+	.asciz "ogObjSMenuBase.cpp"
+.balign 4
 lbl_8048E66C:
-	.4byte 0x735F6D65
-	.4byte 0x6E755F79
-	.4byte 0x616A6972
-	.4byte 0x75736869
-	.4byte 0x5F4C522E
-	.4byte 0x626C6F00
-.global lbl_8048E684
+	.asciz "s_menu_yajirushi_LR.blo"
+.balign 4
 lbl_8048E684:
-	.4byte 0x43616E63
-	.4byte 0x656C2045
-	.4byte 0x5252210A
-	.4byte 0x00000000
-.global lbl_8048E694
+	.asciz "Cancel ERR!\n"
+.balign 4
 lbl_8048E694:
-	.4byte 0x75706461
-	.4byte 0x74654669
-	.4byte 0x6E697368
-	.4byte 0x20455252
-	.4byte 0x210A0000
-.global lbl_8048E6A8
-lbl_8048E6A8:
+	.asciz "updateFinish ERR!\n"
+.balign 4
+lbl_8048E6A8: #Shift-JIS
 	.4byte 0x82BE82DF
 	.4byte 0x82C582B7
 	.4byte 0x0A000000
-.global lbl_8048E6B4
+.balign 4
 lbl_8048E6B4:
-	.4byte 0x73657459
-	.4byte 0x616A694E
-	.4byte 0x616D6520
-	.4byte 0x45525221
-	.4byte 0x200A0000
-.global lbl_8048E6C8
+	.asciz "setYajiName ERR! \n"
+.balign 4
 lbl_8048E6C8:
-	.4byte 0x46616465
-	.4byte 0x496E2045
-	.4byte 0x5252210A
-	.4byte 0x00000000
-.global lbl_8048E6D8
+	.asciz "FadeIn ERR!\n"
+.balign 4
 lbl_8048E6D8:
-	.4byte 0x46616465
-	.4byte 0x4F757420
-	.4byte 0x45525221
-	.4byte 0x0A000000
-	.4byte 0x73637265
-	.4byte 0x656E4F62
-	.4byte 0x6A2E6800
+	.asciz "FadeOut ERR!\n"
+.balign 4
+lbl_8048E6E8:
+	.asciz "screenObj.h"
+.balign 4
+lbl_8048E6F4:
 	.asciz "P2Assert"
-	.skip 3
 
 .section .data, "wa"  # 0x8049E220 - 0x804EFC20
 .balign 8
@@ -135,69 +109,49 @@ msBaseVal__Q32og9newScreen12ObjSMenuBase:
 
 .section .sbss # 0x80514D80 - 0x80516360
 .balign 8
-.global angle$3853
 angle$3853:
 	.skip 0x4
-.global init$3854
 init$3854:
-	.skip 0x4
+	.skip 0x1
 
 .section .sdata2, "a"     # 0x80516360 - 0x80520E40
 .balign 8
-.global lbl_8051D880
 lbl_8051D880:
-	.4byte 0x00000000
-.global lbl_8051D884
+	.float 0.0
 lbl_8051D884:
 	.float 1.0
-.global lbl_8051D888
 lbl_8051D888:
 	.float 0.1
-.global lbl_8051D88C
 lbl_8051D88C:
 	.float 0.7
-.global lbl_8051D890
 lbl_8051D890:
 	.float 0.3
-.global lbl_8051D894
 lbl_8051D894:
-	.4byte 0x44480000
-.global lbl_8051D898
+	.float 800.0
 lbl_8051D898:
-	.4byte 0xC4480000
-.global lbl_8051D89C
-lbl_8051D89C:
-	.4byte 0x40C90FDB
-.global lbl_8051D8A0
+	.float -800.0
+lbl_8051D89C: #tau
+	.float 6.2831855
 lbl_8051D8A0:
-	.4byte 0xC3A2F983
-.global lbl_8051D8A4
+	.float -325.9493
 lbl_8051D8A4:
-	.4byte 0x43A2F983
-.global lbl_8051D8A8
-lbl_8051D8A8:
-	.4byte 0x3FC90FDB
-.global lbl_8051D8AC
-lbl_8051D8AC:
-	.4byte 0x40490FDB
-.global lbl_8051D8B0
-lbl_8051D8B0:
-	.4byte 0x3F490FDB
-.global lbl_8051D8B4
-lbl_8051D8B4:
-	.4byte 0x4016CBE4
-.global lbl_8051D8B8
-lbl_8051D8B8:
-	.4byte 0x3F490FDC
-	.4byte 0x00000000
-.global lbl_8051D8C0
+	.float 325.9493
+lbl_8051D8A8: #halfpi
+	.float 1.5707964
+lbl_8051D8AC: #pi
+	.float 3.1415927
+lbl_8051D8B0: #pi/4
+	.float 0.7853982
+lbl_8051D8B4: #pi/3
+	.float 2.3561945
+lbl_8051D8B8: #pi/4 but more precise
+	.float 0.78539824
+.balign 8
 lbl_8051D8C0:
 	.4byte 0x43300000
 	.4byte 0x00000000
-.global lbl_8051D8C8
 lbl_8051D8C8:
-	.4byte 0x41F00000
-	.4byte 0x00000000
+	.float 30.0
 
 .section .text, "ax"  # 0x800056C0 - 0x80472F00
 .global __ct__Q32og9newScreen12ObjSMenuBaseFv
