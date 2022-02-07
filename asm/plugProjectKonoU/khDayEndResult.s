@@ -764,13 +764,9 @@ lbl_80520178:
 	.4byte 0x3F2E147B
 	.4byte 0x00000000
 
-.section .sbss2, "", @nobits # 0x80520e40 - 0x80520ED8
-.global lbl_80520EC8
+.section .sbss2, "", @nobits # 0x80520E40 - 0x80520ED8
 lbl_80520EC8:
-	.skip 0x4
-.global lbl_80520ECC
-lbl_80520ECC:
-	.skip 0x4
+	.skip 0x8
 
 .section .text, "ax"  # 0x800056C0 - 0x80472F00
 .global __ct__Q32kh6Screen20DispDayEndResultItemFPQ34Game6Result5TNodeiib
@@ -2789,7 +2785,7 @@ lbl_804045A0:
 /* 804045FC 0040153C  3C A0 74 70 */	lis r5, 0x74703030@ha
 /* 80404600 00401540  81 83 00 00 */	lwz r12, 0(r3)
 /* 80404604 00401544  3C 80 00 4E */	lis r4, 0x004E7365@ha
-/* 80404608 00401548  80 02 2B 6C */	lwz r0, lbl_80520ECC@sda21(r2)
+/* 80404608 00401548  80 02 2B 6C */	lwz r0, (lbl_80520EC8+4)@sda21(r2)
 /* 8040460C 0040154C  38 C5 30 30 */	addi r6, r5, 0x74703030@l
 /* 80404610 00401550  81 8C 00 3C */	lwz r12, 0x3c(r12)
 /* 80404614 00401554  38 A4 73 65 */	addi r5, r4, 0x004E7365@l

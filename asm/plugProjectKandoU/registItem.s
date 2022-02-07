@@ -5,97 +5,80 @@ lbl_constructor:
 
 .section .rodata  # 0x804732E0 - 0x8049E220
 .balign 8
-.global lbl_80480DB0
 lbl_80480DB0:
 	.4byte 0x00000000
 	.4byte 0x00000000
 	.4byte 0x00000000
-	.4byte 0x72656769
-	.4byte 0x73744974
-	.4byte 0x656D0000
-	.4byte 0x2D426172
-	.4byte 0x72656C2D
-	.4byte 0x00000000
-	.4byte 0x2D556A61
-	.4byte 0x6D757368
-	.4byte 0x692D0000
-	.4byte 0x2D446F77
-	.4byte 0x6E466C6F
-	.4byte 0x6F722D00
-	.4byte 0x2D547265
-	.4byte 0x61737572
-	.4byte 0x652D0000
-	.4byte 0x2D50696B
-	.4byte 0x69486561
-	.4byte 0x642D0000
-	.4byte 0x2D426967
-	.4byte 0x466F756E
-	.4byte 0x7461696E
-	.4byte 0x2D000000
-	.4byte 0x2D427269
-	.4byte 0x6467652D
-	.4byte 0x00000000
-	.4byte 0x2D44656E
-	.4byte 0x67656B69
-	.4byte 0x47617465
-	.4byte 0x2D000000
-	.4byte 0x43726561
-	.4byte 0x74757265
-	.4byte 0x4B696C6C
-	.4byte 0x41726700
+.balign 4
+lbl_80480DBC:
+	.asciz "registItem"
+.balign 4
+lbl_80480DC8:
+	.asciz "-Barrel-"
+.balign 4
+lbl_80480DD4:
+	.asciz "-Ujamushi-"
+.balign 4
+lbl_80480DE0:
+	.asciz "-DownFloor-"
+.balign 4
+lbl_80480DEC:
+	.asciz "-Treasure-"
+.balign 4
+lbl_80480DF8:
+	.asciz "-PikiHead-"
+.balign 4
+lbl_80480E04:
+	.asciz "-BigFountain-"
+.balign 4
+lbl_80480E14:
+	.asciz "-Bridge-"
+.balign 4
+lbl_80480E20:
+	.asciz "-DengekiGate-"
+.balign 4
+lbl_80480E30:
+	.asciz "CreatureKillArg"
 
 .section .data, "wa"  # 0x8049E220 - 0x804EFC20
 .balign 8
-.global lbl_804BA360
-lbl_804BA360:
-	.4byte 0x00000000
-	.4byte 0x00000000
-	.4byte 0x00000000
-	.4byte 0x00000000
+govNAN___Q24Game5P2JST:
+	.float 0.0
+	.float 0.0
+	.float 0.0
 
 .section .sbss # 0x80514D80 - 0x80516360
 .balign 8
-.global lbl_80515B08
-lbl_80515B08:
+gu32NAN___Q24Game5P2JST:
 	.skip 0x4
-.global lbl_80515B0C
-lbl_80515B0C:
+gfNAN___Q24Game5P2JST:
 	.skip 0x4
 
 .section .sdata2, "a"     # 0x80516360 - 0x80520E40
 .balign 8
-.global lbl_80519990
 lbl_80519990:
-	.4byte 0x2D576565
-	.4byte 0x642D0000
-.global lbl_80519998
+	.asciz "-Weed-"
+.balign 4
 lbl_80519998:
-	.4byte 0x2D506C61
-	.4byte 0x6E742D00
-.global lbl_805199A0
+	.asciz "-Plant-"
+.balign 4
 lbl_805199A0:
-	.4byte 0x2D526F63
-	.4byte 0x6B2D0000
-.global lbl_805199A8
+	.asciz "-Rock-"
+.balign 4
 lbl_805199A8:
-	.4byte 0x2D486F6E
-	.4byte 0x65792D00
-.global lbl_805199B0
+	.asciz "-Honey-"
+.balign 4
 lbl_805199B0:
-	.4byte 0x2D4F6E79
-	.4byte 0x6F6E2D00
-.global lbl_805199B8
+	.asciz "-Onyon-"
+.balign 4
 lbl_805199B8:
-	.4byte 0x2D486F6C
-	.4byte 0x652D0000
-.global lbl_805199C0
+	.asciz "-Hole-"
+.balign 4
 lbl_805199C0:
-	.4byte 0x2D436176
-	.4byte 0x652D0000
-.global lbl_805199C8
+	.asciz "-Cave-"
+.balign 4
 lbl_805199C8:
-	.4byte 0x2D476174
-	.4byte 0x652D0000
+	.asciz "-Gate-"
 
 .section .text, "ax"  # 0x800056C0 - 0x80472F00
 .global createManagers__Q24Game7ItemMgrFUl
@@ -630,15 +613,14 @@ lbl_801E531C:
 /* 801E5324 001E2264  38 21 00 10 */	addi r1, r1, 0x10
 /* 801E5328 001E2268  4E 80 00 20 */	blr 
 
-.global __sinit_registItem_cpp
-__sinit_registItem_cpp:
+__sinit_registItem_cpp: # static initializer
 /* 801E532C 001E226C  3C 80 80 51 */	lis r4, __float_nan@ha
 /* 801E5330 001E2270  38 00 FF FF */	li r0, -1
 /* 801E5334 001E2274  C0 04 48 B0 */	lfs f0, __float_nan@l(r4)
-/* 801E5338 001E2278  3C 60 80 4C */	lis r3, lbl_804BA360@ha
-/* 801E533C 001E227C  90 0D 94 88 */	stw r0, lbl_80515B08@sda21(r13)
-/* 801E5340 001E2280  D4 03 A3 60 */	stfsu f0, lbl_804BA360@l(r3)
-/* 801E5344 001E2284  D0 0D 94 8C */	stfs f0, lbl_80515B0C@sda21(r13)
+/* 801E5338 001E2278  3C 60 80 4C */	lis r3, govNAN___Q24Game5P2JST@ha
+/* 801E533C 001E227C  90 0D 94 88 */	stw r0, gu32NAN___Q24Game5P2JST@sda21(r13)
+/* 801E5340 001E2280  D4 03 A3 60 */	stfsu f0, govNAN___Q24Game5P2JST@l(r3)
+/* 801E5344 001E2284  D0 0D 94 8C */	stfs f0, gfNAN___Q24Game5P2JST@sda21(r13)
 /* 801E5348 001E2288  D0 03 00 04 */	stfs f0, 4(r3)
 /* 801E534C 001E228C  D0 03 00 08 */	stfs f0, 8(r3)
 /* 801E5350 001E2290  4E 80 00 20 */	blr 

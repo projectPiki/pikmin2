@@ -8,7 +8,7 @@ lbl_80516AE0:
 lbl_80516AE4:
 	.4byte 0xFFFFFFFF
 
-.section .sbss2, "", @nobits # 0x80520e40 - 0x80520ED8
+.section .sbss2, "", @nobits # 0x80520E40 - 0x80520ED8
 .global lbl_80520E50
 lbl_80520E50:
 	.skip 0x4

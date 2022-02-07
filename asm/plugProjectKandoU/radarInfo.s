@@ -12,50 +12,37 @@ __vt__Q25Radar5Point:
 	.4byte 0
 	.4byte __dt__Q25Radar5PointFv
 	.4byte getChildCount__5CNodeFv
-	.4byte 0
 
 .section .sbss # 0x80514D80 - 0x80516360
 .balign 8
 .global mgr__5Radar
 mgr__5Radar:
-	.skip 0x8
+	.skip 0x4
 
 .section .sdata2, "a"     # 0x80516360 - 0x80520E40
 .balign 8
-.global lbl_8051A090
 lbl_8051A090:
-	.4byte 0x00000000
-.global lbl_8051A094
+	.float 0.0
 lbl_8051A094:
-	.4byte 0xC4104000
-.global lbl_8051A098
+	.float -577.0
 lbl_8051A098:
-	.4byte 0xC2140000
-.global lbl_8051A09C
+	.float -37.0
 lbl_8051A09C:
-	.4byte 0x44F80000
-.global lbl_8051A0A0
+	.float 1984.0
 lbl_8051A0A0:
-	.4byte 0xC3BC8000
-.global lbl_8051A0A4
+	.float -377.0
 lbl_8051A0A4:
-	.4byte 0x4506B000
-.global lbl_8051A0A8
+	.float 2155.0
 lbl_8051A0A8:
-	.4byte 0xC3990000
-.global lbl_8051A0AC
+	.float -306.0
 lbl_8051A0AC:
-	.4byte 0x44E3E000
-.global lbl_8051A0B0
+	.float 1823.0
 lbl_8051A0B0:
-	.4byte 0x42800000
-.global lbl_8051A0B4
+	.float 64.0
 lbl_8051A0B4:
-	.4byte 0x44F70000
-.global lbl_8051A0B8
+	.float 1976.0
 lbl_8051A0B8:
 	.float -337.0
-.global lbl_8051A0BC
 lbl_8051A0BC:
 	.float 2101.0
 

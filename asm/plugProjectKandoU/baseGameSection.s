@@ -683,7 +683,7 @@ lbl_805185B8:
 lbl_805185BC:
 	.asciz "\r\n"
 
-.section .sbss2, "", @nobits # 0x80520e40 - 0x80520ED8
+.section .sbss2, "", @nobits # 0x80520E40 - 0x80520ED8
 lbl_80520E58:
 	.skip 8
 

@@ -1,49 +1,32 @@
 .include "macros.inc"
 .section .rodata  # 0x804732E0 - 0x8049E220
 .balign 8
-.global lbl_80480CA0
 lbl_80480CA0:
-	.4byte 0x61637442
-	.4byte 0x7265616B
-	.4byte 0x57616C6C
-	.4byte 0x00000000
-.global lbl_80480CB0
+	.asciz "actBreakWall"
+.balign 4
 lbl_80480CB0:
-	.4byte 0x42726561
-	.4byte 0x6B526F63
-	.4byte 0x6B000000
-	.4byte 0x41637442
-	.4byte 0x7265616B
-	.4byte 0x526F636B
-	.4byte 0x41726700
-	.4byte 0x61694272
-	.4byte 0x65616B52
-	.4byte 0x6F636B2E
-	.4byte 0x63707000
+	.asciz "BreakRock"
+.balign 4
+lbl_80480CBC:
+	.asciz "ActBreakRockArg"
+.balign 4
+lbl_80480CCC:
+	.asciz "aiBreakRock.cpp"
+.balign 4
+lbl_80480CDC:
 	.asciz "P2Assert"
-	.skip 3
-	.4byte 0x41637469
-	.4byte 0x6F6E4172
-	.4byte 0x67000000
-	.4byte 0x53746963
-	.4byte 0x6B417474
-	.4byte 0x61636B41
-	.4byte 0x6374696F
-	.4byte 0x6E417267
-	.4byte 0x00000000
-	.4byte 0x476F746F
-	.4byte 0x506F7341
-	.4byte 0x6374696F
-	.4byte 0x6E417267
-	.4byte 0x00000000
-	.4byte 0x466F6C6C
-	.4byte 0x6F775665
-	.4byte 0x63746F72
-	.4byte 0x4669656C
-	.4byte 0x64416374
-	.4byte 0x696F6E41
-	.4byte 0x72670000
-	.4byte 0x00000000
+.balign 4
+lbl_80480CE8:
+	.asciz "ActionArg"
+.balign 4
+lbl_80480CF4:
+	.asciz "StickAttackActionArg"
+.balign 4
+lbl_80480D0C:
+	.asciz "GotoPosActionArg"
+.balign 4
+lbl_80480D20:
+	.asciz "FollowVectorFieldActionArg"
 
 .section .data, "wa"  # 0x8049E220 - 0x804EFC20
 .balign 8
@@ -68,7 +51,6 @@ __vt__Q26PikiAI12ActBreakRock:
 	.4byte 0
 	.4byte 0
 	.4byte "@48@4@onKeyEvent__Q26PikiAI12ActBreakRockFRCQ28SysShape8KeyEvent"
-	.4byte 0
 
 .section .text, "ax"  # 0x800056C0 - 0x80472F00
 .global __ct__Q26PikiAI12ActBreakRockFPQ24Game4Piki

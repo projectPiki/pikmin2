@@ -8,71 +8,71 @@ lbl_constructor:
 .global lbl_80498CD8
 lbl_80498CD8:
 	.asciz "khFinalResult.cpp"
-	.skip 2
+.balign 4
 .global lbl_80498CEC
 lbl_80498CEC:
 	.asciz "result_final_image00.blo"
-	.skip 3
+.balign 4
 .global lbl_80498D08
 lbl_80498D08:
 	.asciz "result_final_image01.blo"
-	.skip 3
+.balign 4
 .global lbl_80498D24
 lbl_80498D24:
 	.asciz "result_final_image02.blo"
-	.skip 3
+.balign 4
 .global lbl_80498D40
 lbl_80498D40:
 	.asciz "result_final_image03.blo"
-	.skip 3
+.balign 4
 .global lbl_80498D5C
 lbl_80498D5C:
 	.asciz "result_final_image04.blo"
-	.skip 3
+.balign 4
 .global lbl_80498D78
 lbl_80498D78:
 	.asciz "result_final_image05.blo"
-	.skip 3
+.balign 4
 .global lbl_80498D94
 lbl_80498D94:
 	.asciz "result_final_image06.blo"
-	.skip 3
+.balign 4
 .global lbl_80498DB0
 lbl_80498DB0:
 	.asciz "result_final_image07.blo"
-	.skip 3
+.balign 4
 .global lbl_80498DCC
 lbl_80498DCC:
 	.asciz "result_final_image08.blo"
-	.skip 3
+.balign 4
 .global lbl_80498DE8
 lbl_80498DE8:
 	.asciz "result_final_image09.blo"
-	.skip 3
+.balign 4
 .global lbl_80498E04
 lbl_80498E04:
 	.asciz "result_final_image10.blo"
-	.skip 3
+.balign 4
 .global lbl_80498E20
 lbl_80498E20:
 	.asciz "result_final_image11.blo"
-	.skip 3
+.balign 4
 .global lbl_80498E3C
 lbl_80498E3C:
 	.asciz "result_final_image12.blo"
-	.skip 3
+.balign 4
 .global lbl_80498E58
 lbl_80498E58:
 	.asciz "result_final_image13.blo"
-	.skip 3
+.balign 4
 .global lbl_80498E74
 lbl_80498E74:
 	.asciz "result_final_image14.blo"
-	.skip 3
+.balign 4
 .global lbl_80498E90
 lbl_80498E90:
 	.asciz "result_final_image15.blo"
-	.skip 3
+.balign 4
 	.4byte lbl_80498CEC
 	.4byte lbl_80498D08
 	.4byte lbl_80498D24
@@ -235,9 +235,8 @@ lbl_80498FD8:
 	.4byte 0x73637265
 	.4byte 0x656E4F62
 	.4byte 0x6A2E6800
+.balign 4
 	.asciz "P2Assert"
-	.skip 3
-	.4byte 0x00000000
 
 .section .data, "wa"  # 0x8049E220 - 0x804EFC20
 .balign 8

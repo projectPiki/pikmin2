@@ -2,20 +2,14 @@
 
 .section .sdata2, "a"     # 0x80516360 - 0x80520E40
 .balign 8
-.global lbl_805168D8
 lbl_805168D8:
 	.4byte 0xFFFFFFFF
-.global lbl_805168DC
 lbl_805168DC:
 	.4byte 0xFFFFFFFF
 
-.section .sbss2, "", @nobits # 0x80520e40 - 0x80520ED8
-.global lbl_80520E40
+.section .sbss2, "", @nobits # 0x80520E40 - 0x80520ED8
 lbl_80520E40:
-	.skip 0x4
-.global lbl_80520E44
-lbl_80520E44:
-	.skip 0x4
+	.skip 0x8
 
 .section .text, "ax"  # 0x800056C0 - 0x80472F00
 .global __ct__18J2DMaterialFactoryFRC16J2DMaterialBlock
@@ -1122,7 +1116,7 @@ newTevColor__18J2DMaterialFactoryCFii:
 /* 8005427C 000511BC  54 A5 08 3C */	slwi r5, r5, 1
 /* 80054280 000511C0  81 02 2A E0 */	lwz r8, lbl_80520E40@sda21(r2)
 /* 80054284 000511C4  7C A7 2A 2E */	lhzx r5, r7, r5
-/* 80054288 000511C8  80 E2 2A E4 */	lwz r7, lbl_80520E44@sda21(r2)
+/* 80054288 000511C8  80 E2 2A E4 */	lwz r7, (lbl_80520E40+4)@sda21(r2)
 /* 8005428C 000511CC  1C A5 00 E8 */	mulli r5, r5, 0xe8
 /* 80054290 000511D0  80 C4 00 04 */	lwz r6, 4(r4)
 /* 80054294 000511D4  91 01 00 08 */	stw r8, 8(r1)

@@ -1,39 +1,26 @@
 .include "macros.inc"
 .section .rodata  # 0x804732E0 - 0x8049E220
 .balign 8
-.global lbl_80480D40
 lbl_80480D40:
-	.4byte 0x61637442
-	.4byte 0x7265616B
-	.4byte 0x57616C6C
-	.4byte 0x00000000
-	.4byte 0x41637443
-	.4byte 0x726F7041
-	.4byte 0x72670000
-.global lbl_80480D5C
+	.asciz "actBreakWall"
+.balign 4
+lbl_80480D50:
+	.asciz "ActCropArg"
+.balign 4
 lbl_80480D5C:
-	.4byte 0x61694372
-	.4byte 0x6F702E63
-	.4byte 0x70700000
-.global lbl_80480D68
+	.asciz "aiCrop.cpp"
+.balign 4
 lbl_80480D68:
 	.asciz "P2Assert"
-	.skip 3
-	.4byte 0x41637469
-	.4byte 0x6F6E4172
-	.4byte 0x67000000
-	.4byte 0x53746963
-	.4byte 0x6B417474
-	.4byte 0x61636B41
-	.4byte 0x6374696F
-	.4byte 0x6E417267
-	.4byte 0x00000000
-	.4byte 0x476F746F
-	.4byte 0x506F7341
-	.4byte 0x6374696F
-	.4byte 0x6E417267
-	.4byte 0x00000000
-	.4byte 0x00000000
+.balign 4
+lbl_80480D74:
+	.asciz "ActionArg"
+.balign 4
+lbl_80480D80:
+	.asciz "StickAttackActionArg"
+.balign 4
+lbl_80480D98:
+	.asciz "GotoPosActionArg"
 
 .section .data, "wa"  # 0x8049E220 - 0x804EFC20
 .balign 8
@@ -62,58 +49,41 @@ __vt__Q26PikiAI7ActCrop:
 
 .section .sdata2, "a"     # 0x80516360 - 0x80520E40
 .balign 8
-.global lbl_80519940
 lbl_80519940:
-	.4byte 0x43726F70
-	.4byte 0x00000000
-.global lbl_80519948
+	.asciz "Crop"
+.balign 4
 lbl_80519948:
-	.4byte 0x00000000
-.global lbl_8051994C
+	.float 0.0
 lbl_8051994C:
 	.float 1.0
-.global lbl_80519950
 lbl_80519950:
-	.4byte 0x41C80000
-.global lbl_80519954
+	.float 25.0
 lbl_80519954:
-	.4byte 0x40000000
-.global lbl_80519958
+	.float 2.0
 lbl_80519958:
-	.4byte 0x41A00000
-.global lbl_8051995C
+	.float 20.0
 lbl_8051995C:
-	.4byte 0x47000000
-.global lbl_80519960
-lbl_80519960:
-	.4byte 0x40C90FDB
-	.4byte 0x00000000
-.global lbl_80519968
+	.float 32768.0
+lbl_80519960: #tau
+	.float 6.2831855
+.balign 8
 lbl_80519968:
 	.4byte 0x43300000
 	.4byte 0x80000000
-.global lbl_80519970
 lbl_80519970:
-	.4byte 0x42200000
-.global lbl_80519974
+	.float 40.0
 lbl_80519974:
-	.4byte 0x43A2F983
-.global lbl_80519978
+	.float 325.9493
 lbl_80519978:
-	.4byte 0xC3A2F983
-.global lbl_8051997C
+	.float -325.9493
 lbl_8051997C:
-	.4byte 0x43480000
-.global lbl_80519980
+	.float 200.0
 lbl_80519980:
-	.4byte 0x3F666666
-.global lbl_80519984
+	.float 0.9
 lbl_80519984:
-	.4byte 0xBF666666
-.global lbl_80519988
+	.float -0.9
 lbl_80519988:
-	.4byte 0x41200000
-	.4byte 0x00000000
+	.float 10.0
 
 .section .text, "ax"  # 0x800056C0 - 0x80472F00
 .global __ct__Q26PikiAI7ActCropFPQ24Game4Piki
