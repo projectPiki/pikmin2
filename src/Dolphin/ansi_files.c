@@ -5,12 +5,12 @@ extern int fflush(FILE* __stream);
 extern void __begin_critical_region(int);
 extern void __end_critical_region(int);
 extern void fclose(FILE*);
-extern char stderr_buff[100];
+extern char stderr_buff[100]; // these three buffs should be static!
 extern char stdout_buff[100];
 extern char stdin_buff[100];
 
 extern int __read_console(u32, u32, u32*);
-extern int __write_console(u32, u32, u32*, u32);
+extern BOOL __write_console(s32, s32, s32*, s32);
 extern int __close_console(u32);
 
 FILE __files[4] = { { 0,

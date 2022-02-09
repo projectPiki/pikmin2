@@ -227,13 +227,13 @@ __atexit_funcs:
 protopool$192:
 	.skip 0x38
 .global stderr_buff
-stderr_buff:
+stderr_buff: # should be local to ansi_files.c
 	.skip 0x100
 .global stdout_buff
-stdout_buff:
+stdout_buff: # should be local to ansi_files.c
 	.skip 0x100
 .global stdin_buff
-stdin_buff:
+stdin_buff: # should be local to ansi_files.c
 	.skip 0x100
 .global regs
 regs:

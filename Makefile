@@ -122,6 +122,7 @@ endif
 
 $(BUILD_DIR)/src/Dolphin/dvdFatal.o: MWCC_VERSION := 1.2.5
 $(BUILD_DIR)/src/Dolphin/dvderror.o: MWCC_VERSION := 1.2.5
+$(BUILD_DIR)/src/Dolphin/dvdidutils.o: MWCC_VERSION := 1.2.5
 $(BUILD_DIR)/src/Dolphin/__start.o: MWCC_VERSION := 1.2.5
 $(BUILD_DIR)/src/Dolphin/OSLink.o: MWCC_VERSION := 1.2.5
 $(BUILD_DIR)/src/Dolphin/PPCArch.o: MWCC_VERSION := 1.2.5
