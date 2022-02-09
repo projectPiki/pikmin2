@@ -16,7 +16,7 @@ void strnlen(void)
  * Address:	800DF7EC
  * Size:	0000F8
  */
-BOOL DVDCompareDiskID(char arg0[8], char* arg1)
+BOOL DVDCompareDiskID(const char* arg0, const char* arg1) // these are probably pointers to dvd id structs
 {
 	u8 temp_r0;
 	u8 temp_r3;
@@ -29,17 +29,17 @@ BOOL DVDCompareDiskID(char arg0[8], char* arg1)
 	}
 	temp_r3 = arg0[6];
 	temp_r0 = temp_r3;
-	if (temp_r3 != 0xFFU) {
+	if (temp_r3 != 0xFF) {
 		temp_r0 = arg1[6];
-		if ((temp_r0 != 0xFFU) && (temp_r3 != temp_r0)) {
+		if ((temp_r0 != 0xFF) && (temp_r3 != temp_r0)) {
 			return FALSE;
 		}
 	}
 	temp_r3 = arg0[7];
 	temp_r0 = temp_r3;
-	if (temp_r3 != 0xFFU) {
+	if (temp_r3 != 0xFF) {
 		temp_r0 = arg1[7];
-		if ((temp_r0 != 0xFFU) && (temp_r3 != temp_r0)) {
+		if ((temp_r0 != 0xFF) && (temp_r3 != temp_r0)) {
 			return FALSE;
 		}
 	}
