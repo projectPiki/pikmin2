@@ -15,6 +15,7 @@ extern "C" {
 #endif
 
 #define FABS(x) (float)__fabs(x)
+#define fabs(x) __fabs(x)
 // #define __frsqrtes opword
 
 #define SQUARE(v) ((v) * (v))
