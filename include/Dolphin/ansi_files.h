@@ -1,6 +1,9 @@
 #ifndef _DOLPHIN_ANSI_FILES_H
 #define _DOLPHIN_ANSI_FILES_H
 #include "types.h"
+
+typedef unsigned long __file_handle;
+typedef unsigned long fpos_t;
 typedef struct _IO_FILE _IO_FILE, *P_IO_FILE;
 
 #define __ungetc_buffer_size 2
@@ -45,7 +48,13 @@ struct _IO_FILE {
 	unsigned char char_buffer;
 	unsigned char char_buffer_overflow;
 	unsigned char ungetc_buffer[__ungetc_buffer_size];
-	u32 padding[0xE];
+	u32 padding[2];
+	void* buff1;
+	u32 buffsize;
+	void* buff2;
+	u32 padding2[5];
+	void* io[3];
+	u32 unknown;
 	struct _IO_FILE* next_file_struct;
 };
 
@@ -53,6 +62,6 @@ typedef struct _IO_FILE FILE;
 
 extern int fflush(FILE* __stream);
 extern void free(FILE* __stream);
-static FILE __files;
+extern FILE __files[4];
 
 #endif

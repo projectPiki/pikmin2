@@ -282,7 +282,7 @@ DOLPHIN:=\
 	$(BUILD_DIR)/src/Dolphin/GCN_mem_alloc.o\
 	$(BUILD_DIR)/asm/Dolphin/abort_exit.o\
 	$(BUILD_DIR)/asm/Dolphin/alloc.o\
-	$(BUILD_DIR)/asm/Dolphin/ansi_files.o\
+	$(BUILD_DIR)/src/Dolphin/ansi_files.o\
 	$(BUILD_DIR)/asm/Dolphin/ansi_fp.o\
 	$(BUILD_DIR)/src/Dolphin/arith.o\
 	$(BUILD_DIR)/src/Dolphin/buffer_io.o\

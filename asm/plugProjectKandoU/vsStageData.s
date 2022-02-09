@@ -5,48 +5,34 @@ lbl_constructor:
 
 .section .rodata  # 0x804732E0 - 0x8049E220
 .balign 8
-.global lbl_80483788
 lbl_80483788:
-	.4byte 0x63617665
-	.4byte 0x696E666F
-	.4byte 0x2E747874
-	.4byte 0x00000000
-.global lbl_80483798
-lbl_80483798:
+	.asciz "caveinfo.txt"
+.balign 4
+lbl_80483798: #Shift-JIS
 	.4byte 0x83608383
 	.4byte 0x838C8393
 	.4byte 0x83578358
 	.4byte 0x8365815B
 	.4byte 0x83570000
-.global lbl_804837AC
+.balign 4
 lbl_804837AC:
-	.4byte 0x76735374
-	.4byte 0x61676544
-	.4byte 0x6174612E
-	.4byte 0x63707000
-.global lbl_804837BC
+	.asciz "vsStageData.cpp"
+.balign 4
 lbl_804837BC:
-	.4byte 0x696C6C65
-	.4byte 0x67616C20
-	.4byte 0x73746167
-	.4byte 0x6520696E
-	.4byte 0x64657820
-	.4byte 0x25640A00
-.global lbl_804837D4
-lbl_804837D4:
+	.asciz "illegal stage index %d\n"
+.balign 4
+lbl_804837D4: #Shift-JIS
 	.4byte 0x91CE90ED
 	.4byte 0x97708358
 	.4byte 0x8365815B
 	.4byte 0x83570000
-	.4byte 0x00000000
 
 .section .data, "wa"  # 0x8049E220 - 0x804EFC20
 .balign 8
-.global lbl_804C10F0
-lbl_804C10F0:
-	.4byte 0x00000000
-	.4byte 0x00000000
-	.4byte 0x00000000
+govNAN___Q24Game5P2JST:
+	.float 0.0
+	.float 0.0
+	.float 0.0
 .global __vt__Q34Game6VsGame9StageList
 __vt__Q34Game6VsGame9StageList:
 	.4byte 0
@@ -71,29 +57,23 @@ __vt__Q34Game13ChallengeGame9StageData:
 	.4byte 0
 	.4byte __dt__Q34Game13ChallengeGame9StageDataFv
 	.4byte getChildCount__5CNodeFv
-	.4byte 0
 
 .section .sbss # 0x80514D80 - 0x80516360
 .balign 8
-.global lbl_80515C80
-lbl_80515C80:
+gu32NAN___Q24Game5P2JST:
 	.skip 0x4
-.global lbl_80515C84
-lbl_80515C84:
+gfNAN___Q24Game5P2JST:
 	.skip 0x4
 
 .section .sdata2, "a"     # 0x80516360 - 0x80520E40
 .balign 8
-.global lbl_8051A2E0
 lbl_8051A2E0:
-	.4byte 0x43480000
-.global lbl_8051A2E4
+	.float 200.0
 lbl_8051A2E4:
-	.4byte 0x42C80000
-.global lbl_8051A2E8
+	.float 100.0
+.balign 4
 lbl_8051A2E8:
-	.4byte 0x72616E64
-	.4byte 0x6F6D0000
+	.asciz "random"
 
 .section .text, "ax"  # 0x800056C0 - 0x80472F00
 .global read__Q34Game13ChallengeGame9StageDataFR6Stream
@@ -861,15 +841,14 @@ lbl_8022E144:
 /* 8022E158 0022B098  38 21 00 10 */	addi r1, r1, 0x10
 /* 8022E15C 0022B09C  4E 80 00 20 */	blr 
 
-.global __sinit_vsStageData_cpp
-__sinit_vsStageData_cpp:
+__sinit_vsStageData_cpp: #static initializer
 /* 8022E160 0022B0A0  3C 80 80 51 */	lis r4, __float_nan@ha
 /* 8022E164 0022B0A4  38 00 FF FF */	li r0, -1
 /* 8022E168 0022B0A8  C0 04 48 B0 */	lfs f0, __float_nan@l(r4)
-/* 8022E16C 0022B0AC  3C 60 80 4C */	lis r3, lbl_804C10F0@ha
-/* 8022E170 0022B0B0  90 0D 96 00 */	stw r0, lbl_80515C80@sda21(r13)
-/* 8022E174 0022B0B4  D4 03 10 F0 */	stfsu f0, lbl_804C10F0@l(r3)
-/* 8022E178 0022B0B8  D0 0D 96 04 */	stfs f0, lbl_80515C84@sda21(r13)
+/* 8022E16C 0022B0AC  3C 60 80 4C */	lis r3, govNAN___Q24Game5P2JST@ha
+/* 8022E170 0022B0B0  90 0D 96 00 */	stw r0, gu32NAN___Q24Game5P2JST@sda21(r13)
+/* 8022E174 0022B0B4  D4 03 10 F0 */	stfsu f0, govNAN___Q24Game5P2JST@l(r3)
+/* 8022E178 0022B0B8  D0 0D 96 04 */	stfs f0, gfNAN___Q24Game5P2JST@sda21(r13)
 /* 8022E17C 0022B0BC  D0 03 00 04 */	stfs f0, 4(r3)
 /* 8022E180 0022B0C0  D0 03 00 08 */	stfs f0, 8(r3)
 /* 8022E184 0022B0C4  4E 80 00 20 */	blr 

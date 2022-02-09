@@ -5,31 +5,29 @@ lbl_constructor:
 
 .section .rodata  # 0x804732E0 - 0x8049E220
 .balign 8
-.global lbl_80483850
 lbl_80483850:
 	.4byte 0x00000000
 	.4byte 0x00000000
 	.4byte 0x00000000
-	.4byte 0x76734753
-	.4byte 0x5F47616D
-	.4byte 0x65000000
-	.4byte 0x50534761
-	.4byte 0x6D652E68
-	.4byte 0x00000000
+.balign 4
+lbl_8048385C:
+	.asciz "vsGS_Game"
+.balign 4
+lbl_80483868:
+	.asciz "PSGame.h"
+.balign 4
+lbl_80483874:
 	.asciz "P2Assert"
-	.skip 3
-	.4byte 0x50535363
-	.4byte 0x656E652E
-	.4byte 0x68000000
-	.4byte 0x00000000
+.balign 4
+lbl_80483880:
+	.asciz "PSScene.h"
 
 .section .data, "wa"  # 0x8049E220 - 0x804EFC20
 .balign 8
-.global lbl_804C1158
-lbl_804C1158:
-	.4byte 0x00000000
-	.4byte 0x00000000
-	.4byte 0x00000000
+govNAN___Q24Game5P2JST:
+	.float 0.0
+	.float 0.0
+	.float 0.0
 .global __vt__Q34Game6VsGame7VSState
 __vt__Q34Game6VsGame7VSState:
 	.4byte 0
@@ -56,11 +54,9 @@ __vt__Q34Game6VsGame7VSState:
 
 .section .sbss # 0x80514D80 - 0x80516360
 .balign 8
-.global lbl_80515C90
-lbl_80515C90:
+gu32NAN___Q24Game5P2JST:
 	.skip 0x4
-.global lbl_80515C94
-lbl_80515C94:
+gfNAN___Q24Game5P2JST:
 	.skip 0x4
 
 .section .text, "ax"  # 0x800056C0 - 0x80472F00
@@ -140,15 +136,14 @@ lbl_8022EB60:
 /* 8022EB9C 0022BADC  38 21 00 20 */	addi r1, r1, 0x20
 /* 8022EBA0 0022BAE0  4E 80 00 20 */	blr 
 
-.global __sinit_vsGS_VSGame_cpp
-__sinit_vsGS_VSGame_cpp:
+__sinit_vsGS_VSGame_cpp: #static initializer
 /* 8022EBA4 0022BAE4  3C 80 80 51 */	lis r4, __float_nan@ha
 /* 8022EBA8 0022BAE8  38 00 FF FF */	li r0, -1
 /* 8022EBAC 0022BAEC  C0 04 48 B0 */	lfs f0, __float_nan@l(r4)
-/* 8022EBB0 0022BAF0  3C 60 80 4C */	lis r3, lbl_804C1158@ha
-/* 8022EBB4 0022BAF4  90 0D 96 10 */	stw r0, lbl_80515C90@sda21(r13)
-/* 8022EBB8 0022BAF8  D4 03 11 58 */	stfsu f0, lbl_804C1158@l(r3)
-/* 8022EBBC 0022BAFC  D0 0D 96 14 */	stfs f0, lbl_80515C94@sda21(r13)
+/* 8022EBB0 0022BAF0  3C 60 80 4C */	lis r3, govNAN___Q24Game5P2JST@ha
+/* 8022EBB4 0022BAF4  90 0D 96 10 */	stw r0, gu32NAN___Q24Game5P2JST@sda21(r13)
+/* 8022EBB8 0022BAF8  D4 03 11 58 */	stfsu f0, govNAN___Q24Game5P2JST@l(r3)
+/* 8022EBBC 0022BAFC  D0 0D 96 14 */	stfs f0, gfNAN___Q24Game5P2JST@sda21(r13)
 /* 8022EBC0 0022BB00  D0 03 00 04 */	stfs f0, 4(r3)
 /* 8022EBC4 0022BB04  D0 03 00 08 */	stfs f0, 8(r3)
 /* 8022EBC8 0022BB08  4E 80 00 20 */	blr 

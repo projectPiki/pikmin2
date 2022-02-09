@@ -5,48 +5,51 @@ lbl_constructor:
 
 .section .rodata  # 0x804732E0 - 0x8049E220
 .balign 8
-.global lbl_80483458
 lbl_80483458:
-	.skip 0xC
-.global lbl_80483464
+	.4byte 0
+	.4byte 0
+	.4byte 0
+.balign 4
 lbl_80483464:
 	.asciz "vsGS_Title"
-	.skip 1
-.global lbl_80483470
+.balign 4
 lbl_80483470:
 	.asciz "caveinfo.txt"
-	.skip 3
-.global lbl_80483480
+.balign 4
 lbl_80483480:
 	.asciz "caveinfo_metal.txt"
-	.skip 1
-.global lbl_80483494
+.balign 4
 lbl_80483494:
 	.asciz "caveinfo_conc.txt"
-	.skip 2
-.global lbl_804834A8
+.balign 4
 lbl_804834A8:
 	.asciz "caveinfo_tsuchi.txt"
+.balign 4
+lbl_804834BC: #Shift-JIS
 	.4byte 0x83528393
 	.4byte 0x834E838A
 	.4byte 0x815B8367
-	.4byte 0x00000000
-.global lbl_804834CC
+	.byte 0x00
+.balign 4
 lbl_804834CC:
 	.asciz "PSGame.h"
-	.skip 3
-.global lbl_804834D8
+.balign 4
 lbl_804834D8:
 	.asciz "P2Assert"
-	.skip 3
+.balign 4
+lbl_804834E4:
 	.asciz "PSScene.h"
-	.skip 2
+.balign 4
+lbl_804834F0:
 	.asciz "from Morimun:STATE_GO:stageNo=%d:playType=%d\n"
-	.skip 2
+.balign 4
+lbl_80483520:
 	.asciz "vsGS_Title.cpp"
-	.skip 1
+.balign 4
+lbl_80483530:
 	.asciz "PikiContainer"
-	.skip 2
+.balign 4
+lbl_80483540:
 	.4byte 0x00000000
 	.4byte 0x00000001
 	.4byte 0x00000002
@@ -54,19 +57,16 @@ lbl_804834D8:
 
 .section .data, "wa"  # 0x8049E220 - 0x804EFC20
 .balign 8
-.global lbl_804C0DE8
-lbl_804C0DE8:
-	.4byte 0x00000000
-	.4byte 0x00000000
-	.4byte 0x00000000
-.global "cMaps__24@unnamed@vsGS_Title_cpp@"
-"cMaps__24@unnamed@vsGS_Title_cpp@":
+govNAN___Q24Game5P2JST:
+	.float 0.0
+	.float 0.0
+	.float 0.0
+"cMaps__24@unnamed@vsGS_Title_cpp@": #local object
 	.4byte lbl_80483470
 	.4byte lbl_80483480
 	.4byte lbl_80483494
 	.4byte lbl_804834A8
-.global lbl_804C0E04
-lbl_804C0E04:
+lbl_804C0E04: #local object
 	.4byte 0x00000000
 	.4byte 0xFFFFFFFF
 	.4byte dvdload__Q34Game6VsGame10TitleStateFv
@@ -143,35 +143,26 @@ __vt__Q34Game6VsGame5State:
 	.4byte "resume__Q24Game32FSMState<Q24Game13VsGameSection>FPQ24Game13VsGameSection"
 	.4byte "restart__Q24Game32FSMState<Q24Game13VsGameSection>FPQ24Game13VsGameSection"
 	.4byte "transit__Q24Game32FSMState<Q24Game13VsGameSection>FPQ24Game13VsGameSectioniPQ24Game8StateArg"
-	.4byte 0
 
 .section .sbss # 0x80514D80 - 0x80516360
 .balign 8
-.global lbl_80515C60
-lbl_80515C60:
+gu32NAN___Q24Game5P2JST:
 	.skip 0x4
-.global lbl_80515C64
-lbl_80515C64:
+gfNAN___Q24Game5P2JST:
 	.skip 0x4
 
 .section .sdata2, "a"     # 0x80516360 - 0x80520E40
 .balign 8
-.global lbl_8051A250
 lbl_8051A250:
-	.4byte 0x00000000
-.global lbl_8051A254
+	.float 0.0
 lbl_8051A254:
 	.float 1.0
-.global lbl_8051A258
 lbl_8051A258:
-	.4byte 0xBF800000
-.global lbl_8051A25C
+	.float -1.0
 lbl_8051A25C:
 	.float 0.5
-.global lbl_8051A260
 lbl_8051A260:
-	.4byte 0x3F7FBE77
-	.4byte 0x00000000
+	.float 0.999
 
 .section .text, "ax"  # 0x800056C0 - 0x80472F00
 .global __ct__Q34Game6VsGame10TitleStateFv
@@ -1272,15 +1263,14 @@ getMemberID__Q28Morimura25DispMemberChallengeSelectFv:
 /* 80229274 002261B4  38 21 00 10 */	addi r1, r1, 0x10
 /* 80229278 002261B8  4E 80 00 20 */	blr 
 
-.global __sinit_vsGS_Title_cpp
-__sinit_vsGS_Title_cpp:
+__sinit_vsGS_Title_cpp: # static initializer
 /* 8022927C 002261BC  3C 80 80 51 */	lis r4, __float_nan@ha
 /* 80229280 002261C0  38 00 FF FF */	li r0, -1
 /* 80229284 002261C4  C0 04 48 B0 */	lfs f0, __float_nan@l(r4)
-/* 80229288 002261C8  3C 60 80 4C */	lis r3, lbl_804C0DE8@ha
-/* 8022928C 002261CC  90 0D 95 E0 */	stw r0, lbl_80515C60@sda21(r13)
-/* 80229290 002261D0  D4 03 0D E8 */	stfsu f0, lbl_804C0DE8@l(r3)
-/* 80229294 002261D4  D0 0D 95 E4 */	stfs f0, lbl_80515C64@sda21(r13)
+/* 80229288 002261C8  3C 60 80 4C */	lis r3, govNAN___Q24Game5P2JST@ha
+/* 8022928C 002261CC  90 0D 95 E0 */	stw r0, gu32NAN___Q24Game5P2JST@sda21(r13)
+/* 80229290 002261D0  D4 03 0D E8 */	stfsu f0, govNAN___Q24Game5P2JST@l(r3)
+/* 80229294 002261D4  D0 0D 95 E4 */	stfs f0, gfNAN___Q24Game5P2JST@sda21(r13)
 /* 80229298 002261D8  D0 03 00 04 */	stfs f0, 4(r3)
 /* 8022929C 002261DC  D0 03 00 08 */	stfs f0, 8(r3)
 /* 802292A0 002261E0  4E 80 00 20 */	blr 

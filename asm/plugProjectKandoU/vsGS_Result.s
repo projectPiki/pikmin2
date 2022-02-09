@@ -5,26 +5,21 @@ lbl_constructor:
 
 .section .rodata  # 0x804732E0 - 0x8049E220
 .balign 8
-.global lbl_80483720
 lbl_80483720:
 	.4byte 0x00000000
 	.4byte 0x00000000
 	.4byte 0x00000000
-	.4byte 0x76734753
-	.4byte 0x5F526573
-	.4byte 0x756C7400
-.global lbl_80483738
+.balign 4
+lbl_8048372C:
+	.asciz "vsGS_Result"
+.balign 4
 lbl_80483738:
-	.4byte 0x76734753
-	.4byte 0x5F526573
-	.4byte 0x756C742E
-	.4byte 0x63707000
-.global lbl_80483748
+	.asciz "vsGS_Result.cpp"
+.balign 4
 lbl_80483748:
 	.asciz "P2Assert"
-	.skip 3
-.global lbl_80483754
-lbl_80483754:
+.balign 4
+lbl_80483754: # "Course %d Opened !!\n" Shift-JIS
 	.4byte 0x81978197
 	.4byte 0x81972043
 	.4byte 0x6F757273
@@ -32,24 +27,20 @@ lbl_80483754:
 	.4byte 0x204F7065
 	.4byte 0x6E656420
 	.4byte 0x21210A00
-.global lbl_80483770
+.balign 4
 lbl_80483770:
-	.4byte 0x50534761
-	.4byte 0x6D652E68
-	.4byte 0x00000000
-	.4byte 0x50535363
-	.4byte 0x656E652E
-	.4byte 0x68000000
+	.asciz "PSGame.h"
+.balign 4
+lbl_8048377C:
+	.asciz "PSScene.h"
 
 .section .data, "wa"  # 0x8049E220 - 0x804EFC20
 .balign 8
-.global lbl_804C0FE0
-lbl_804C0FE0:
-	.4byte 0x00000000
-	.4byte 0x00000000
-	.4byte 0x00000000
-.global lbl_804C0FEC
-lbl_804C0FEC:
+govNAN___Q24Game5P2JST:
+	.float 0.0
+	.float 0.0
+	.float 0.0
+lbl_804C0FEC: # local object
 	.4byte 0x00000000
 	.4byte 0xFFFFFFFF
 	.4byte dvdload__Q34Game6VsGame11ResultStateFv
@@ -90,19 +81,15 @@ __vt__Q34Game6VsGame11ResultState:
 
 .section .sbss # 0x80514D80 - 0x80516360
 .balign 8
-.global lbl_80515C70
-lbl_80515C70:
+gu32NAN___Q24Game5P2JST:
 	.skip 0x4
-.global lbl_80515C74
-lbl_80515C74:
+gfNAN___Q24Game5P2JST:
 	.skip 0x4
 
 .section .sdata2, "a"     # 0x80516360 - 0x80520E40
 .balign 8
-.global lbl_8051A2C0
 lbl_8051A2C0:
-	.4byte 0x00000000
-	.4byte 0x00000000
+	.float 0.0
 
 .section .text, "ax"  # 0x800056C0 - 0x80472F00
 .global __ct__Q34Game6VsGame11ResultStateFv
@@ -733,15 +720,14 @@ getMemberID__Q28Morimura25DispMemberChallengeResultFv:
 /* 8022D0B8 00229FF8  38 21 00 10 */	addi r1, r1, 0x10
 /* 8022D0BC 00229FFC  4E 80 00 20 */	blr 
 
-.global __sinit_vsGS_Result_cpp
-__sinit_vsGS_Result_cpp:
+__sinit_vsGS_Result_cpp: #static initializer
 /* 8022D0C0 0022A000  3C 80 80 51 */	lis r4, __float_nan@ha
 /* 8022D0C4 0022A004  38 00 FF FF */	li r0, -1
 /* 8022D0C8 0022A008  C0 04 48 B0 */	lfs f0, __float_nan@l(r4)
-/* 8022D0CC 0022A00C  3C 60 80 4C */	lis r3, lbl_804C0FE0@ha
-/* 8022D0D0 0022A010  90 0D 95 F0 */	stw r0, lbl_80515C70@sda21(r13)
-/* 8022D0D4 0022A014  D4 03 0F E0 */	stfsu f0, lbl_804C0FE0@l(r3)
-/* 8022D0D8 0022A018  D0 0D 95 F4 */	stfs f0, lbl_80515C74@sda21(r13)
+/* 8022D0CC 0022A00C  3C 60 80 4C */	lis r3, govNAN___Q24Game5P2JST@ha
+/* 8022D0D0 0022A010  90 0D 95 F0 */	stw r0, gu32NAN___Q24Game5P2JST@sda21(r13)
+/* 8022D0D4 0022A014  D4 03 0F E0 */	stfsu f0, govNAN___Q24Game5P2JST@l(r3)
+/* 8022D0D8 0022A018  D0 0D 95 F4 */	stfs f0, gfNAN___Q24Game5P2JST@sda21(r13)
 /* 8022D0DC 0022A01C  D0 03 00 04 */	stfs f0, 4(r3)
 /* 8022D0E0 0022A020  D0 03 00 08 */	stfs f0, 8(r3)
 /* 8022D0E4 0022A024  4E 80 00 20 */	blr 
