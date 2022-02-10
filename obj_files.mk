@@ -317,7 +317,7 @@ DOLPHIN:=\
 	$(BUILD_DIR)/src/Dolphin/k_cos.o\
 	$(BUILD_DIR)/src/Dolphin/k_rem_pio2.o\
 	$(BUILD_DIR)/src/Dolphin/k_sin.o\
-	$(BUILD_DIR)/asm/Dolphin/k_tan.o\
+	$(BUILD_DIR)/src/Dolphin/k_tan.o\
 	$(BUILD_DIR)/src/Dolphin/s_atan.o\
 	$(BUILD_DIR)/src/Dolphin/s_ceil.o\
 	$(BUILD_DIR)/src/Dolphin/s_copysign.o\
