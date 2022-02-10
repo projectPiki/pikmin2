@@ -1,196 +1,163 @@
-
-
 /*
  * --INFO--
  * Address:	800CCDD8
  * Size:	00027C
  */
-void __ieee754_log(void)
+
+/* @(#)e_log.c 1.3 95/01/18 */
+/*
+ * ====================================================
+ * Copyright (C) 1993 by Sun Microsystems, Inc. All rights reserved.
+ *
+ * Developed at SunSoft, a Sun Microsystems, Inc. business.
+ * Permission to use, copy, modify, and distribute this
+ * software is freely granted, provided that this notice
+ * is preserved.
+ * ====================================================
+ */
+
+/* __ieee754_log(x)
+ * Return the logrithm of x
+ *
+ * Method :
+ *   1. Argument Reduction: find k and f such that
+ *			x = 2^k * (1+f),
+ *	   where  sqrt(2)/2 < 1+f < sqrt(2) .
+ *
+ *   2. Approximation of log(1+f).
+ *	Let s = f/(2+f) ; based on log(1+f) = log(1+s) - log(1-s)
+ *		 = 2s + 2/3 s**3 + 2/5 s**5 + .....,
+ *	     	 = 2s + s*R
+ *      We use a special Reme algorithm on [0,0.1716] to generate
+ * 	a polynomial of degree 14 to approximate R The maximum error
+ *	of this polynomial approximation is bounded by 2**-58.45. In
+ *	other words,
+ *		        2      4      6      8      10      12      14
+ *	    R(z) ~ Lg1*s +Lg2*s +Lg3*s +Lg4*s +Lg5*s  +Lg6*s  +Lg7*s
+ *  	(the values of Lg1 to Lg7 are listed in the program)
+ *	and
+ *	    |      2          14          |     -58.45
+ *	    | Lg1*s +...+Lg7*s    -  R(z) | <= 2
+ *	    |                             |
+ *	Note that 2s = f - s*f = f - hfsq + s*hfsq, where hfsq = f*f/2.
+ *	In order to guarantee error in log below 1ulp, we compute log
+ *	by
+ *		log(1+f) = f - s*(f - R)	(if f is not too large)
+ *		log(1+f) = f - (hfsq - s*(hfsq+R)).	(better accuracy)
+ *
+ *	3. Finally,  log(x) = k*ln2 + log(1+f).
+ *			    = k*ln2_hi+(f-(hfsq-(s*(hfsq+R)+k*ln2_lo)))
+ *	   Here ln2 is split into two floating point number:
+ *			ln2_hi + ln2_lo,
+ *	   where n*ln2_hi is always exact for |n| < 2000.
+ *
+ * Special cases:
+ *	log(x) is NaN with signal if x < 0 (including -INF) ;
+ *	log(+INF) is +INF; log(0) is -INF with signal;
+ *	log(NaN) is that NaN with no signal.
+ *
+ * Accuracy:
+ *	according to an error analysis, the error is always less than
+ *	1 ulp (unit in the last place).
+ *
+ * Constants:
+ * The hexadecimal values are the intended ones for the following
+ * constants. The decimal values may be used, provided that the
+ * compiler will convert from decimal to binary accurately enough
+ * to produce the hexadecimal values shown.
+ */
+
+#include "fdlibm.h"
+#include "errno.h"
+
+#ifdef __STDC__
+static const double
+#else
+static double
+#endif
+    ln2_hi
+    = 6.93147180369123816490e-01,        /* 3fe62e42 fee00000 */
+    ln2_lo = 1.90821492927058770002e-10, /* 3dea39ef 35793c76 */
+    two54  = 1.80143985094819840000e+16, /* 43500000 00000000 */
+    Lg1    = 6.666666666666735130e-01,   /* 3FE55555 55555593 */
+    Lg2    = 3.999999999940941908e-01,   /* 3FD99999 9997FA04 */
+    Lg3    = 2.857142874366239149e-01,   /* 3FD24924 94229359 */
+    Lg4    = 2.222219843214978396e-01,   /* 3FCC71C5 1D8E78AF */
+    Lg5    = 1.818357216161805012e-01,   /* 3FC74664 96CB03DE */
+    Lg6    = 1.531383769920937332e-01,   /* 3FC39A09 D078C69F */
+    Lg7    = 1.479819860511658591e-01;   /* 3FC2F112 DF3E5244 */
+
+static double zero = 0.0;
+
+#ifdef __STDC__
+double __ieee754_log(double x)
+#else
+double __ieee754_log(x) double x;
+#endif
 {
-	/*
-	.loc_0x0:
-	  stwu      r1, -0x20(r1)
-	  lis       r0, 0x10
-	  li        r8, 0
-	  stfd      f1, 0x8(r1)
-	  lwz       r3, 0x8(r1)
-	  lwz       r4, 0xC(r1)
-	  cmpw      r3, r0
-	  bge-      .loc_0x70
-	  rlwinm    r0,r3,0,1,31
-	  or.       r0, r0, r4
-	  bne-      .loc_0x3C
-	  lfd       f1, -0x7118(r2)
-	  lfd       f0, -0x7330(r13)
-	  fdiv      f1, f1, f0
-	  b         .loc_0x274
+	double hfsq, f, s, z, R, w, t1, t2, dk;
+	int k, hx, i, j;
+	unsigned lx;
 
-	.loc_0x3C:
-	  cmpwi     r3, 0
-	  bge-      .loc_0x5C
-	  fsub      f1, f1, f1
-	  lfd       f0, -0x7330(r13)
-	  li        r0, 0x21
-	  stw       r0, -0x7340(r13)
-	  fdiv      f1, f1, f0
-	  b         .loc_0x274
+	hx = __HI(x); /* high word of x */
+	lx = __LO(x); /* low  word of x */
 
-	.loc_0x5C:
-	  lfd       f0, -0x7110(r2)
-	  li        r8, -0x36
-	  fmul      f0, f1, f0
-	  stfd      f0, 0x8(r1)
-	  lwz       r3, 0x8(r1)
-
-	.loc_0x70:
-	  lis       r0, 0x7FF0
-	  cmpw      r3, r0
-	  blt-      .loc_0x88
-	  lfd       f0, 0x8(r1)
-	  fadd      f1, f0, f0
-	  b         .loc_0x274
-
-	.loc_0x88:
-	  rlwinm    r6,r3,0,12,31
-	  srawi     r4, r3, 0x14
-	  addis     r3, r6, 0x9
-	  lfd       f0, -0x7108(r2)
-	  addi      r5, r3, 0x5F64
-	  add       r8, r4, r8
-	  rlwinm    r3,r5,0,11,11
-	  addi      r0, r6, 0x2
-	  xoris     r3, r3, 0x3FF0
-	  subi      r8, r8, 0x3FF
-	  or        r4, r6, r3
-	  rlwinm    r0,r0,0,12,31
-	  stw       r4, 0x8(r1)
-	  rlwinm    r3,r5,12,31,31
-	  cmpwi     r0, 0x3
-	  lfd       f1, 0x8(r1)
-	  add       r8, r8, r3
-	  fsub      f0, f1, f0
-	  bge-      .loc_0x174
-	  lfd       f1, -0x7330(r13)
-	  fcmpu     cr0, f0, f1
-	  bne-      .loc_0x11C
-	  cmpwi     r8, 0
-	  bne-      .loc_0xEC
-	  b         .loc_0x274
-
-	.loc_0xEC:
-	  xoris     r3, r8, 0x8000
-	  lis       r0, 0x4330
-	  stw       r3, 0x14(r1)
-	  lfd       f3, -0x70A0(r2)
-	  stw       r0, 0x10(r1)
-	  lfd       f0, -0x70F8(r2)
-	  lfd       f2, 0x10(r1)
-	  lfd       f1, -0x7100(r2)
-	  fsub      f2, f2, f3
-	  fmul      f0, f0, f2
-	  fmadd     f1, f1, f2, f0
-	  b         .loc_0x274
-
-	.loc_0x11C:
-	  lfd       f3, -0x70E8(r2)
-	  fmul      f1, f0, f0
-	  lfd       f2, -0x70F0(r2)
-	  cmpwi     r8, 0
-	  fnmsub    f2, f3, f0, f2
-	  fmul      f5, f2, f1
-	  bne-      .loc_0x140
-	  fsub      f1, f0, f5
-	  b         .loc_0x274
-
-	.loc_0x140:
-	  xoris     r3, r8, 0x8000
-	  lis       r0, 0x4330
-	  stw       r3, 0x14(r1)
-	  lfd       f4, -0x70A0(r2)
-	  stw       r0, 0x10(r1)
-	  lfd       f1, -0x70F8(r2)
-	  lfd       f3, 0x10(r1)
-	  lfd       f2, -0x7100(r2)
-	  fsub      f3, f3, f4
-	  fnmsub    f1, f1, f3, f5
-	  fsub      f0, f1, f0
-	  fmsub     f1, f2, f3, f0
-	  b         .loc_0x274
-
-	.loc_0x174:
-	  lfd       f1, -0x70E0(r2)
-	  xoris     r5, r8, 0x8000
-	  lis       r4, 0x4330
-	  lis       r3, 0x7
-	  fadd      f1, f1, f0
-	  subis     r7, r6, 0x6
-	  subi      r0, r3, 0x47AF
-	  lfd       f8, -0x70C0(r2)
-	  lfd       f7, -0x70C8(r2)
-	  sub       r0, r0, r6
-	  fdiv      f1, f0, f1
-	  subi      r7, r7, 0x147A
-	  lfd       f6, -0x70D0(r2)
-	  or.       r7, r7, r0
-	  lfd       f4, -0x70A8(r2)
-	  lfd       f3, -0x70B0(r2)
-	  fmul      f11, f1, f1
-	  lfd       f5, -0x70D8(r2)
-	  lfd       f2, -0x70B8(r2)
-	  stw       r5, 0x14(r1)
-	  lfd       f10, -0x70A0(r2)
-	  fmul      f12, f11, f11
-	  stw       r4, 0x10(r1)
-	  lfd       f9, 0x10(r1)
-	  fmadd     f7, f8, f12, f7
-	  fmadd     f3, f4, f12, f3
-	  fmadd     f4, f12, f7, f6
-	  fmadd     f2, f12, f3, f2
-	  fmadd     f3, f12, f4, f5
-	  fmul      f2, f12, f2
-	  fmul      f3, f11, f3
-	  fsub      f5, f9, f10
-	  fadd      f3, f3, f2
-	  ble-      .loc_0x244
-	  lfd       f2, -0x70F0(r2)
-	  cmpwi     r8, 0
-	  fmul      f2, f2, f0
-	  fmul      f6, f2, f0
-	  bne-      .loc_0x220
-	  fadd      f2, f6, f3
-	  fnmsub    f1, f1, f2, f6
-	  fsub      f1, f0, f1
-	  b         .loc_0x274
-
-	.loc_0x220:
-	  lfd       f2, -0x70F8(r2)
-	  fadd      f3, f6, f3
-	  lfd       f4, -0x7100(r2)
-	  fmul      f2, f2, f5
-	  fmadd     f1, f1, f3, f2
-	  fsub      f1, f6, f1
-	  fsub      f0, f1, f0
-	  fmsub     f1, f4, f5, f0
-	  b         .loc_0x274
-
-	.loc_0x244:
-	  cmpwi     r8, 0
-	  bne-      .loc_0x258
-	  fsub      f2, f0, f3
-	  fnmsub    f1, f1, f2, f0
-	  b         .loc_0x274
-
-	.loc_0x258:
-	  lfd       f2, -0x70F8(r2)
-	  fsub      f3, f0, f3
-	  lfd       f4, -0x7100(r2)
-	  fmul      f2, f2, f5
-	  fmsub     f1, f1, f3, f2
-	  fsub      f0, f1, f0
-	  fmsub     f1, f4, f5, f0
-
-	.loc_0x274:
-	  addi      r1, r1, 0x20
-	  blr
-	*/
+	k = 0;
+	if (hx < 0x00100000) { /* x < 2**-1022  */
+		if (((hx & 0x7fffffff) | lx) == 0)
+			return -two54 / zero; /* log(+-0)=-inf */
+		if (hx < 0) {
+			errno = 33;
+			return (x - x) / zero;
+		} /* log(-#) = NaN */
+		k -= 54;
+		x *= two54;   /* subnormal number, scale up x */
+		hx = __HI(x); /* high word of x */
+	}
+	if (hx >= 0x7ff00000)
+		return x + x;
+	k += (hx >> 20) - 1023;
+	hx &= 0x000fffff;
+	i       = (hx + 0x95f64) & 0x100000;
+	__HI(x) = hx | (i ^ 0x3ff00000); /* normalize x or x/2 */
+	k += (i >> 20);
+	f = x - 1.0;
+	if ((0x000fffff & (2 + hx)) < 3) { /* |f| < 2**-20 */
+		if (f == zero)
+			if (k == 0)
+				return zero;
+			else {
+				dk = (double)k;
+				return dk * ln2_hi + dk * ln2_lo;
+			}
+		R = f * f * (0.5 - 0.33333333333333333 * f);
+		if (k == 0)
+			return f - R;
+		else {
+			dk = (double)k;
+			return dk * ln2_hi - ((R - dk * ln2_lo) - f);
+		}
+	}
+	s  = f / (2.0 + f);
+	dk = (double)k;
+	z  = s * s;
+	i  = hx - 0x6147a;
+	w  = z * z;
+	j  = 0x6b851 - hx;
+	t1 = w * (Lg2 + w * (Lg4 + w * Lg6));
+	t2 = z * (Lg1 + w * (Lg3 + w * (Lg5 + w * Lg7)));
+	i |= j;
+	R = t2 + t1;
+	if (i > 0) {
+		hfsq = 0.5 * f * f;
+		if (k == 0)
+			return f - (hfsq - s * (hfsq + R));
+		else
+			return dk * ln2_hi - ((hfsq - (s * (hfsq + R) + dk * ln2_lo)) - f);
+	} else {
+		if (k == 0)
+			return f - s * (f - R);
+		else
+			return dk * ln2_hi - ((s * (f - R) - dk * ln2_lo) - f);
+	}
 }

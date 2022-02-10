@@ -75,8 +75,10 @@ double __ieee754_log10(x) double x;
 
 	k = 0;
 	if (hx < 0x00100000) { /* x < 2**-1022  */
-		if (((hx & 0x7fffffff) | lx) == 0)
-			return -two54 / zero; /* log(+-0)=-inf */
+		if (((hx & 0x7fffffff) | lx) == 0) {
+			errno = 33;
+			return -two54 / zero;
+		} /* log(+-0)=-inf */
 		if (hx < 0) {
 			errno = 33;
 			return (x - x) / zero;
