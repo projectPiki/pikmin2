@@ -1,15 +1,17 @@
 .include "macros.inc"
 .section .data, "wa"  # 0x8049E220 - 0x804EFC20
 .balign 8
-.global lbl_804A7938
 lbl_804A7938:
 	.asciz "<< Dolphin SDK - DSP\trelease build: Apr 17 2003 12:34:16 (0x2301) >>"
-	.skip 3
+.balign 4
+lbl_804A7980:
 	.asciz "DSPInit(): Build Date: %s %s\n"
-	.skip 2
+.balign 4
+lbl_804A79A0:
 	.asciz "Apr 17 2003"
+.balign 4
+lbl_804A79AC:
 	.asciz "12:34:16"
-	.skip 3
 
 .section .sdata, "wa"  # 0x80514680 - 0x80514D80
 .balign 8
@@ -19,9 +21,8 @@ __DSPVersion:
 
 .section .sbss # 0x80514D80 - 0x80516360
 .balign 8
-.global __DSP_init_flag
-__DSP_init_flag:
-	.skip 0x8
+__DSP_init_flag: # local object
+	.skip 4
 
 .section .text, "ax"  # 0x800056C0 - 0x80472F00
 .global DSPCheckMailToDSP
