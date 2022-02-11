@@ -42,6 +42,8 @@
  */
 
 #include "fdlibm.h"
+#include "Dolphin/float.h"
+#include "Dolphin/math.h"
 
 #ifdef __STDC__
 static const double
@@ -79,7 +81,7 @@ double __ieee754_asin(x) double x;
 		if (((ix - 0x3ff00000) | __LO(x)) == 0)
 			/* asin(1)=+-pi/2 with inexact */
 			return x * pio2_hi + x * pio2_lo;
-		return (x - x) / (x - x); /* asin(|x|>1) is NaN */
+		return __float_nan;       /* asin(|x|>1) is NaN */
 	} else if (ix < 0x3fe00000) { /* |x|<0.5 */
 		if (ix < 0x3e400000) {    /* if |x| < 2**-27 */
 			if (huge + x > one)
@@ -92,7 +94,7 @@ double __ieee754_asin(x) double x;
 		return x + x * w;
 	}
 	/* 1> |x|>= 0.5 */
-	w = one - __fabs(x);
+	w = one - fabs(x);
 	t = w * 0.5;
 	p = t * (pS0 + t * (pS1 + t * (pS2 + t * (pS3 + t * (pS4 + t * pS5)))));
 	q = one + t * (qS1 + t * (qS2 + t * (qS3 + t * qS4)));

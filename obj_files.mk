@@ -306,7 +306,7 @@ DOLPHIN:=\
 	$(BUILD_DIR)/asm/Dolphin/strtoul.o\
 	$(BUILD_DIR)/src/Dolphin/wchar_io.o\
 	$(BUILD_DIR)/src/Dolphin/uart_console_io_gcn.o\
-	$(BUILD_DIR)/asm/Dolphin/e_asin.o\
+	$(BUILD_DIR)/src/Dolphin/e_asin.o\
 	$(BUILD_DIR)/src/Dolphin/e_atan2.o\
 	$(BUILD_DIR)/src/Dolphin/e_exp.o\
 	$(BUILD_DIR)/src/Dolphin/e_fmod.o\
@@ -334,7 +334,7 @@ DOLPHIN:=\
 	$(BUILD_DIR)/src/Dolphin/w_fmod.o\
 	$(BUILD_DIR)/src/Dolphin/w_log10.o\
 	$(BUILD_DIR)/src/Dolphin/w_pow.o\
-	$(BUILD_DIR)/asm/Dolphin/e_sqrt.o\
+	$(BUILD_DIR)/src/Dolphin/e_sqrt.o\
 	$(BUILD_DIR)/src/Dolphin/math_ppc.o\
 	$(BUILD_DIR)/src/Dolphin/w_sqrt.o\
 	$(BUILD_DIR)/asm/Dolphin/extras.o\
