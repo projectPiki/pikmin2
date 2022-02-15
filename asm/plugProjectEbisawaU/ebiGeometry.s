@@ -1,10 +1,8 @@
 .include "macros.inc"
 .section .sdata2, "a"     # 0x80516360 - 0x80520E40
 .balign 8
-.global lbl_8051F9F0
 lbl_8051F9F0:
-	.4byte 0x00000000
-.global lbl_8051F9F4
+	.float 0.0
 lbl_8051F9F4:
 	.float 1.0
 

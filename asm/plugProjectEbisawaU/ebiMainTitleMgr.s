@@ -5,57 +5,37 @@ lbl_constructor:
 
 .section .rodata  # 0x804732E0 - 0x8049E220
 .balign 8
-.global lbl_80497880
 lbl_80497880:
 	.4byte 0x00000000
 	.4byte 0x00000000
 	.4byte 0x00000000
-	.4byte 0x6562694D
-	.4byte 0x61696E54
-	.4byte 0x69746C65
-	.4byte 0x4D677200
-	.4byte 0x544D6169
-	.4byte 0x6E546974
-	.4byte 0x6C654D67
-	.4byte 0x723A3A6C
-	.4byte 0x6F616452
-	.4byte 0x65736F75
-	.4byte 0x72636500
-	.4byte 0x54546974
-	.4byte 0x6C654D65
-	.4byte 0x6E753A3A
-	.4byte 0x6C6F6164
-	.4byte 0x5265736F
-	.4byte 0x75726365
-	.4byte 0x00000000
-	.4byte 0x7469746C
-	.4byte 0x652E737A
-	.4byte 0x73000000
-.global lbl_804978E0
+lbl_8049788C:
+	.asciz "ebiMainTitleMgr"
+.balign 4
+lbl_8049789C:
+	.asciz "TMainTitleMgr::loadResource"
+.balign 4
+lbl_804978B8:
+	.asciz "TTitleMenu::loadResource"
+.balign 4
+lbl_804978D4:
+	.asciz "title.szs"
+.balign 4
 lbl_804978E0:
-	.4byte 0x6562694D
-	.4byte 0x61696E54
-	.4byte 0x69746C65
-	.4byte 0x4D67722E
-	.4byte 0x63707000
-.global lbl_804978F4
+	.asciz "ebiMainTitleMgr.cpp"
+.balign 4
 lbl_804978F4:
 	.asciz "P2Assert"
-	.skip 3
-.global lbl_80497900
+.balign 4
 lbl_80497900:
-	.4byte 0x41726743
-	.4byte 0x6C6F7365
-	.4byte 0x00000000
-	.4byte 0x00000000
+	.asciz "ArgClose"
 
 .section .data, "wa"  # 0x8049E220 - 0x804EFC20
 .balign 8
-.global lbl_804E9F60
-lbl_804E9F60:
-	.4byte 0x00000000
-	.4byte 0x00000000
-	.4byte 0x00000000
+govNAN___Q24Game5P2JST:
+	.float 0.0
+	.float 0.0
+	.float 0.0
 .global __vt__Q33ebi6Screen14ArgCloseTMBack
 __vt__Q33ebi6Screen14ArgCloseTMBack:
 	.4byte 0
@@ -84,11 +64,9 @@ __vt__Q33ebi6Screen7ArgOpen:
 
 .section .sbss # 0x80514D80 - 0x80516360
 .balign 8
-.global lbl_80516108
-lbl_80516108:
+gu32NAN___Q24Game5P2JST:
 	.skip 0x4
-.global lbl_8051610C
-lbl_8051610C:
+gfNAN___Q24Game5P2JST:
 	.skip 0x4
 
 .section .sdata2, "a"     # 0x80516360 - 0x80520E40
@@ -96,20 +74,17 @@ lbl_8051610C:
 .global kFadeOutTime__Q23ebi13TMainTitleMgr
 kFadeOutTime__Q23ebi13TMainTitleMgr:
 	.float 1.0
-.global lbl_8051FE14
 lbl_8051FE14:
-	.4byte 0x40A00000
-.global lbl_8051FE18
+	.float 5.0
 lbl_8051FE18:
-	.4byte 0x00000000
-.global lbl_8051FE1C
+	.float 0.0
 lbl_8051FE1C:
 	.float 1.0
-.global lbl_8051FE20
+.balign 8
 lbl_8051FE20:
 	.4byte 0x43300000
 	.4byte 0x00000000
-.global lbl_8051FE28
+.balign 4
 lbl_8051FE28:
 	.asciz "ArgOpen"
 
@@ -1235,15 +1210,14 @@ getName__Q33ebi6Screen7ArgOpenFv:
 /* 803EB174 003E80B4  38 62 1A C8 */	addi r3, r2, lbl_8051FE28@sda21
 /* 803EB178 003E80B8  4E 80 00 20 */	blr 
 
-.global __sinit_ebiMainTitleMgr_cpp
-__sinit_ebiMainTitleMgr_cpp:
+__sinit_ebiMainTitleMgr_cpp: # static initializer
 /* 803EB17C 003E80BC  3C 80 80 51 */	lis r4, __float_nan@ha
 /* 803EB180 003E80C0  38 00 FF FF */	li r0, -1
 /* 803EB184 003E80C4  C0 04 48 B0 */	lfs f0, __float_nan@l(r4)
-/* 803EB188 003E80C8  3C 60 80 4F */	lis r3, lbl_804E9F60@ha
-/* 803EB18C 003E80CC  90 0D 9A 88 */	stw r0, lbl_80516108@sda21(r13)
-/* 803EB190 003E80D0  D4 03 9F 60 */	stfsu f0, lbl_804E9F60@l(r3)
-/* 803EB194 003E80D4  D0 0D 9A 8C */	stfs f0, lbl_8051610C@sda21(r13)
+/* 803EB188 003E80C8  3C 60 80 4F */	lis r3, govNAN___Q24Game5P2JST@ha
+/* 803EB18C 003E80CC  90 0D 9A 88 */	stw r0, gu32NAN___Q24Game5P2JST@sda21(r13)
+/* 803EB190 003E80D0  D4 03 9F 60 */	stfsu f0, govNAN___Q24Game5P2JST@l(r3)
+/* 803EB194 003E80D4  D0 0D 9A 8C */	stfs f0, gfNAN___Q24Game5P2JST@sda21(r13)
 /* 803EB198 003E80D8  D0 03 00 04 */	stfs f0, 4(r3)
 /* 803EB19C 003E80DC  D0 03 00 08 */	stfs f0, 8(r3)
 /* 803EB1A0 003E80E0  4E 80 00 20 */	blr 

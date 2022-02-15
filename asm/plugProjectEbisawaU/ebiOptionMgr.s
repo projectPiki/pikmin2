@@ -1,69 +1,38 @@
 .include "macros.inc"
 .section .rodata  # 0x804732E0 - 0x8049E220
 .balign 8
-.global lbl_804965A0
 lbl_804965A0:
-	.4byte 0x6562694F
-	.4byte 0x7074696F
-	.4byte 0x6E4D6772
-	.4byte 0x00000000
-	.4byte 0x4C6F6164
-	.4byte 0x4F707469
-	.4byte 0x6F6E0000
-	.4byte 0x53637265
-	.4byte 0x656E4F70
-	.4byte 0x656E0000
-	.4byte 0x53637265
-	.4byte 0x656E5761
-	.4byte 0x69740000
-	.4byte 0x53637265
-	.4byte 0x656E436C
-	.4byte 0x6F736500
-	.4byte 0x57616974
-	.4byte 0x436C6F73
-	.4byte 0x65466F72
-	.4byte 0x4E6F4361
-	.4byte 0x72640000
-	.4byte 0x576F726C
-	.4byte 0x644D6170
-	.4byte 0x496E666F
-	.4byte 0x57696E64
-	.4byte 0x6F770000
-.global lbl_80496608
+	.asciz "ebiOptionMgr"
+.balign 4
+lbl_804965B0:
+	.asciz "LoadOption"
+.balign 4
+lbl_804965BC:
+	.asciz "ScreenOpen"
+.balign 4
+lbl_804965C8:
+	.asciz "ScreenWait"
+.balign 4
+lbl_804965D4:
+	.asciz "ScreenClose"
+.balign 4
+lbl_804965E0:
+	.asciz "WaitCloseForNoCard"
+.balign 4
+lbl_804965F4:
+	.asciz "WorldMapInfoWindow"
+.balign 4
 lbl_80496608:
-	.4byte 0x6562694F
-	.4byte 0x7074696F
-	.4byte 0x6E4D6772
-	.4byte 0x2E637070
-	.4byte 0x00000000
-.global lbl_8049661C
+	.asciz "ebiOptionMgr.cpp"
+.balign 4
 lbl_8049661C:
-	.4byte 0x6661696C
-	.4byte 0x20746F20
-	.4byte 0x6D656D6F
-	.4byte 0x72792063
-	.4byte 0x61726420
-	.4byte 0x52657175
-	.4byte 0x65737420
-	.4byte 0x6576656E
-	.4byte 0x20696620
-	.4byte 0x66696E69
-	.4byte 0x73682074
-	.4byte 0x61736B0A
-	.4byte 0x00000000
-.global lbl_80496650
+	.asciz "fail to memory card Request even if finish task\n"
+.balign 4
 lbl_80496650:
-	.4byte 0x4F707469
-	.4byte 0x6F6E3A3A
-	.4byte 0x544D6772
-	.4byte 0x3A3A6C6F
-	.4byte 0x61645265
-	.4byte 0x736F7572
-	.4byte 0x63650000
-.global lbl_8049666C
+	.asciz "Option::TMgr::loadResource"
+.balign 4
 lbl_8049666C:
 	.asciz "P2Assert"
-	.skip 3
 
 .section .data, "wa"  # 0x8049E220 - 0x804EFC20
 .balign 8
@@ -222,27 +191,21 @@ __vt__Q33ebi6Option15FSMStateMachine:
 	.4byte "start__Q24Game32StateMachine<Q33ebi6Option4TMgr>FPQ33ebi6Option4TMgriPQ24Game8StateArg"
 	.4byte "exec__Q24Game32StateMachine<Q33ebi6Option4TMgr>FPQ33ebi6Option4TMgr"
 	.4byte "transit__Q24Game32StateMachine<Q33ebi6Option4TMgr>FPQ33ebi6Option4TMgriPQ24Game8StateArg"
-	.4byte 0
 
 .section .sdata2, "a"     # 0x80516360 - 0x80520E40
 .balign 8
-.global lbl_8051FA78
 lbl_8051FA78:
-	.4byte 0x5374616E
-	.4byte 0x64627900
-.global lbl_8051FA80
+	.asciz "Standby"
+.balign 4
 lbl_8051FA80:
-	.4byte 0x53617665
-	.4byte 0x4D677200
-.global lbl_8051FA88
+	.asciz "SaveMgr"
+.balign 4
 lbl_8051FA88:
 	.float 1.0
-.global lbl_8051FA8C
 lbl_8051FA8C:
-	.4byte 0x00000000
-.global lbl_8051FA90
+	.float 0.0
 lbl_8051FA90:
-	.4byte 0x3D08850A
+	.float 0.03333
 
 .section .text, "ax"  # 0x800056C0 - 0x80472F00
 .global init__Q33ebi6Option15FSMStateMachineFPQ33ebi6Option4TMgr

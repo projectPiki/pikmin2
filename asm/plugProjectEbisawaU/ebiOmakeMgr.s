@@ -1,28 +1,34 @@
 .include "macros.inc"
 .section .rodata  # 0x804732E0 - 0x8049E220
 .balign 8
-.global lbl_80497AA0
 lbl_80497AA0:
 	.asciz "ebiOmakeMgr.cpp"
+.balign 4
+lbl_80497AB0:
 	.asciz "FSMState_OmakeScreen"
-	.skip 3
+.balign 4
+lbl_80497AC8:
 	.asciz "FSMState_CardEScreen"
-	.skip 3
+.balign 4
+lbl_80497AE0:
 	.asciz "FSMState_SelectGame"
+.balign 4
+lbl_80497AF4: # Shift-JIS
 	.4byte 0x4D6F7669
 	.4byte 0x658FF391
 	.4byte 0xD4000000
+.balign 4
+lbl_80497B00:
 	.asciz "TOmakeMgr::loadResource"
+.balign 4
+lbl_80497B18:
 	.asciz "omake.szs"
-	.skip 2
-.global lbl_80497B24
+.balign 4
 lbl_80497B24:
 	.asciz "P2Assert"
-	.skip 3
-.global lbl_80497B30
+.balign 4
 lbl_80497B30:
 	.asciz "ArgOpenOmake"
-	.skip 3
 
 .section .data, "wa"  # 0x8049E220 - 0x804EFC20
 .balign 8
@@ -105,20 +111,16 @@ __vt__Q33ebi5Omake15FSMStateMachine:
 	.4byte "start__Q24Game31StateMachine<Q33ebi5Omake4TMgr>FPQ33ebi5Omake4TMgriPQ24Game8StateArg"
 	.4byte "exec__Q24Game31StateMachine<Q33ebi5Omake4TMgr>FPQ33ebi5Omake4TMgr"
 	.4byte "transit__Q24Game31StateMachine<Q33ebi5Omake4TMgr>FPQ33ebi5Omake4TMgriPQ24Game8StateArg"
-	.4byte 0
 
 .section .sdata2, "a"     # 0x80516360 - 0x80520E40
 .balign 8
-.global lbl_8051FEA0
 lbl_8051FEA0:
-	.4byte 0x5374616E
-	.4byte 0x64627900
-.global lbl_8051FEA8
+	.asciz "Standby"
+.balign 4
 lbl_8051FEA8:
-	.4byte 0x40400000
-.global lbl_8051FEAC
+	.float 3.0
 lbl_8051FEAC:
-	.4byte 0x40A00000
+	.float 5.0
 
 .section .text, "ax"  # 0x800056C0 - 0x80472F00
 .global init__Q33ebi5Omake15FSMStateMachineFPQ33ebi5Omake4TMgr

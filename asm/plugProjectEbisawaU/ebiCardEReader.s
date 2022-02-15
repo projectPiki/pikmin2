@@ -1,51 +1,23 @@
 .include "macros.inc"
 .section .rodata  # 0x804732E0 - 0x8049E220
 .balign 8
-.global lbl_80497978
 lbl_80497978:
-	.4byte 0x65626943
-	.4byte 0x61726445
-	.4byte 0x52656164
-	.4byte 0x65720000
-.global lbl_80497988
+	.asciz "ebiCardEReader"
+.balign 4
 lbl_80497988:
-	.4byte 0x65626943
-	.4byte 0x61726445
-	.4byte 0x52656164
-	.4byte 0x65722E63
-	.4byte 0x70700000
-.global lbl_8049799C
+	.asciz "ebiCardEReader.cpp"
+.balign 4
 lbl_8049799C:
 	.asciz "P2Assert"
-	.skip 3
-	.4byte 0x75736572
-	.4byte 0x2F456269
-	.4byte 0x73617761
-	.4byte 0x2F636172
-	.4byte 0x645F655F
-	.4byte 0x72656164
-	.4byte 0x65722F70
-	.4byte 0x70312E64
-	.4byte 0x776E0000
-	.4byte 0x75736572
-	.4byte 0x2F456269
-	.4byte 0x73617761
-	.4byte 0x2F636172
-	.4byte 0x645F655F
-	.4byte 0x72656164
-	.4byte 0x65722F70
-	.4byte 0x70322E64
-	.4byte 0x776E0000
-	.4byte 0x75736572
-	.4byte 0x2F456269
-	.4byte 0x73617761
-	.4byte 0x2F636172
-	.4byte 0x645F655F
-	.4byte 0x72656164
-	.4byte 0x65722F70
-	.4byte 0x70332E64
-	.4byte 0x776E0000
-	.4byte 0x00000000
+.balign 4
+lbl_804979A8:
+	.asciz "user/Ebisawa/card_e_reader/pp1.dwn"
+.balign 4
+lbl_804979CC:
+	.asciz "user/Ebisawa/card_e_reader/pp2.dwn"
+.balign 4
+lbl_804979F0:
+	.asciz "user/Ebisawa/card_e_reader/pp3.dwn"
 
 .section .data, "wa"  # 0x8049E220 - 0x804EFC20
 .balign 8
@@ -54,25 +26,22 @@ __vt__Q33ebi11CardEReader4TMgr:
 	.4byte 0
 	.4byte 0
 	.4byte __dt__Q33ebi11CardEReader4TMgrFv
-	.4byte 0
 
 .section .sdata, "wa"  # 0x80514680 - 0x80514D80
 .balign 8
-.global cInitialCode__Q23ebi11CardEReader
-cInitialCode__Q23ebi11CardEReader:
+cInitialCode__Q23ebi11CardEReader: # local object
 	.ascii "PSAJ"
 
 .section .sbss # 0x80514D80 - 0x80516360
 .balign 8
 .global gCardEMgr__3ebi
 gCardEMgr__3ebi:
-	.skip 0x8
+	.skip 0x4
 
 .section .sdata2, "a"     # 0x80516360 - 0x80520E40
 .balign 8
-.global lbl_8051FE58
 lbl_8051FE58:
-	.4byte 0x00000000
+	.byte 0
 
 .section .text, "ax"  # 0x800056C0 - 0x80472F00
 .global gCardEMgr_ThreadFunc__3ebiFPv

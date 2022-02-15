@@ -1,17 +1,11 @@
 .include "macros.inc"
 .section .rodata  # 0x804732E0 - 0x8049E220
 .balign 8
-.global lbl_80497118
 lbl_80497118:
-	.4byte 0x65626943
-	.4byte 0x6172644D
-	.4byte 0x67725F4C
-	.4byte 0x6F61642E
-	.4byte 0x63707000
-.global lbl_8049712C
+	.asciz "ebiCardMgr_Load.cpp"
+.balign 4
 lbl_8049712C:
 	.asciz "P2Assert"
-	.skip 3
 
 .section .data, "wa"  # 0x8049E220 - 0x804EFC20
 .balign 8
@@ -394,7 +388,6 @@ __vt__Q33ebi9CardError19FSMState_W00_NoCard:
 	.4byte do_open__Q33ebi9CardError19FSMState_W00_NoCardFPQ33ebi9CardError4TMgr
 	.4byte do_transit__Q33ebi9CardError19FSMState_W00_NoCardFPQ33ebi9CardError4TMgr
 	.4byte do_transitOnCard__Q33ebi9CardError19FSMState_W00_NoCardFPQ33ebi9CardError4TMgr
-	.4byte 0
 
 .section .text, "ax"  # 0x800056C0 - 0x80472F00
 .global do_open__Q33ebi9CardError19FSMState_W00_NoCardFPQ33ebi9CardError4TMgr

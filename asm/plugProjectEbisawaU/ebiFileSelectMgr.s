@@ -1,43 +1,31 @@
 .include "macros.inc"
 .section .rodata  # 0x804732E0 - 0x8049E220
 .balign 8
-.global lbl_80497010
 lbl_80497010:
-	.4byte 0x65626946
-	.4byte 0x696C6553
-	.4byte 0x656C6563
-	.4byte 0x744D6772
-	.4byte 0x00000000
-	.4byte 0x456E7074
-	.4byte 0x79557064
-	.4byte 0x61746500
-	.4byte 0x4D6F756E
-	.4byte 0x74436865
-	.4byte 0x636B0000
-	.4byte 0x47657450
-	.4byte 0x6C617965
-	.4byte 0x72486561
-	.4byte 0x64657200
-	.4byte 0x43617264
-	.4byte 0x4572726F
-	.4byte 0x72000000
-	.4byte 0x53637265
-	.4byte 0x656E4669
-	.4byte 0x6C655365
-	.4byte 0x6C656374
-	.4byte 0x00000000
-.global lbl_8049706C
+	.asciz "ebiFileSelectMgr"
+.balign 4
+lbl_80497024:
+	.asciz "EnptyUpdate" # typo lol
+.balign 4
+lbl_80497030:
+	.asciz "MountCheck"
+.balign 4
+lbl_8049703C:
+	.asciz "GetPlayerHeader"
+.balign 4
+lbl_8049704C:
+	.asciz "CardError"
+.balign 4
+lbl_80497058:
+	.asciz "ScreenFileSelect"
+.balign 4
 lbl_8049706C:
-	.4byte 0x65626946
-	.4byte 0x696C6553
-	.4byte 0x656C6563
-	.4byte 0x744D6772
-	.4byte 0x2E637070
-	.4byte 0x00000000
-.global lbl_80497084
+	.asciz "ebiFileSelectMgr.cpp"
+.balign 4
 lbl_80497084:
 	.asciz "P2Assert"
-	.skip 3
+.balign 4
+lbl_80497090: # Shift-JIS
 	.4byte 0x81A68381
 	.4byte 0x8382838A
 	.4byte 0x815B834A
@@ -49,6 +37,8 @@ lbl_80497084:
 	.4byte 0x50815B83
 	.4byte 0x5882C582
 	.4byte 0xB70A0000
+.balign 4
+lbl_804970BC: # Shift-JIS
 	.4byte 0x81A6838D
 	.4byte 0x815B8368
 	.4byte 0x82C58356
@@ -59,6 +49,8 @@ lbl_80497084:
 	.4byte 0x82E882A6
 	.4byte 0x82C882A2
 	.4byte 0x0A000000
+.balign 4
+lbl_804970E4: # Shift-JIS
 	.4byte 0x81A68140
 	.4byte 0x6D67722D
 	.4byte 0x3E6D4361
@@ -75,7 +67,6 @@ lbl_80497084:
 
 .section .data, "wa"  # 0x8049E220 - 0x804EFC20
 .balign 8
-.global lbl_804E9678
 lbl_804E9678:
 	.4byte lbl_803E177C
 	.4byte lbl_803E181C
@@ -246,13 +237,12 @@ __vt__Q33ebi10FileSelect15FSMStateMachine:
 	.4byte "start__Q24Game37StateMachine<Q33ebi10FileSelect4TMgr>FPQ33ebi10FileSelect4TMgriPQ24Game8StateArg"
 	.4byte "exec__Q24Game37StateMachine<Q33ebi10FileSelect4TMgr>FPQ33ebi10FileSelect4TMgr"
 	.4byte "transit__Q24Game37StateMachine<Q33ebi10FileSelect4TMgr>FPQ33ebi10FileSelect4TMgriPQ24Game8StateArg"
-	.4byte 0
 
 .section .sbss # 0x80514D80 - 0x80516360
 .balign 8
 .global msInstance__Q33ebi10FileSelect4TMgr
 msInstance__Q33ebi10FileSelect4TMgr:
-	.skip 0x8
+	.skip 0x4
 
 .section .text, "ax"  # 0x800056C0 - 0x80472F00
 .global init__Q33ebi10FileSelect15FSMStateMachineFPQ33ebi10FileSelect4TMgr
@@ -589,91 +579,78 @@ lbl_803E1744:
 /* 803E175C 003DE69C  7C 05 00 2E */	lwzx r0, r5, r0
 /* 803E1760 003DE6A0  7C 09 03 A6 */	mtctr r0
 /* 803E1764 003DE6A4  4E 80 04 20 */	bctr 
-.global lbl_803E1768
 lbl_803E1768:
 /* 803E1768 003DE6A8  81 83 00 00 */	lwz r12, 0(r3)
 /* 803E176C 003DE6AC  81 8C 00 2C */	lwz r12, 0x2c(r12)
 /* 803E1770 003DE6B0  7D 89 03 A6 */	mtctr r12
 /* 803E1774 003DE6B4  4E 80 04 21 */	bctrl 
 /* 803E1778 003DE6B8  48 00 01 08 */	b lbl_803E1880
-.global lbl_803E177C
 lbl_803E177C:
 /* 803E177C 003DE6BC  81 83 00 00 */	lwz r12, 0(r3)
 /* 803E1780 003DE6C0  81 8C 00 30 */	lwz r12, 0x30(r12)
 /* 803E1784 003DE6C4  7D 89 03 A6 */	mtctr r12
 /* 803E1788 003DE6C8  4E 80 04 21 */	bctrl 
 /* 803E178C 003DE6CC  48 00 00 F4 */	b lbl_803E1880
-.global lbl_803E1790
 lbl_803E1790:
 /* 803E1790 003DE6D0  81 83 00 00 */	lwz r12, 0(r3)
 /* 803E1794 003DE6D4  81 8C 00 34 */	lwz r12, 0x34(r12)
 /* 803E1798 003DE6D8  7D 89 03 A6 */	mtctr r12
 /* 803E179C 003DE6DC  4E 80 04 21 */	bctrl 
 /* 803E17A0 003DE6E0  48 00 00 E0 */	b lbl_803E1880
-.global lbl_803E17A4
 lbl_803E17A4:
 /* 803E17A4 003DE6E4  81 83 00 00 */	lwz r12, 0(r3)
 /* 803E17A8 003DE6E8  81 8C 00 38 */	lwz r12, 0x38(r12)
 /* 803E17AC 003DE6EC  7D 89 03 A6 */	mtctr r12
 /* 803E17B0 003DE6F0  4E 80 04 21 */	bctrl 
 /* 803E17B4 003DE6F4  48 00 00 CC */	b lbl_803E1880
-.global lbl_803E17B8
 lbl_803E17B8:
 /* 803E17B8 003DE6F8  81 83 00 00 */	lwz r12, 0(r3)
 /* 803E17BC 003DE6FC  81 8C 00 3C */	lwz r12, 0x3c(r12)
 /* 803E17C0 003DE700  7D 89 03 A6 */	mtctr r12
 /* 803E17C4 003DE704  4E 80 04 21 */	bctrl 
 /* 803E17C8 003DE708  48 00 00 B8 */	b lbl_803E1880
-.global lbl_803E17CC
 lbl_803E17CC:
 /* 803E17CC 003DE70C  81 83 00 00 */	lwz r12, 0(r3)
 /* 803E17D0 003DE710  81 8C 00 40 */	lwz r12, 0x40(r12)
 /* 803E17D4 003DE714  7D 89 03 A6 */	mtctr r12
 /* 803E17D8 003DE718  4E 80 04 21 */	bctrl 
 /* 803E17DC 003DE71C  48 00 00 A4 */	b lbl_803E1880
-.global lbl_803E17E0
 lbl_803E17E0:
 /* 803E17E0 003DE720  81 83 00 00 */	lwz r12, 0(r3)
 /* 803E17E4 003DE724  81 8C 00 44 */	lwz r12, 0x44(r12)
 /* 803E17E8 003DE728  7D 89 03 A6 */	mtctr r12
 /* 803E17EC 003DE72C  4E 80 04 21 */	bctrl 
 /* 803E17F0 003DE730  48 00 00 90 */	b lbl_803E1880
-.global lbl_803E17F4
 lbl_803E17F4:
 /* 803E17F4 003DE734  81 83 00 00 */	lwz r12, 0(r3)
 /* 803E17F8 003DE738  81 8C 00 48 */	lwz r12, 0x48(r12)
 /* 803E17FC 003DE73C  7D 89 03 A6 */	mtctr r12
 /* 803E1800 003DE740  4E 80 04 21 */	bctrl 
 /* 803E1804 003DE744  48 00 00 7C */	b lbl_803E1880
-.global lbl_803E1808
 lbl_803E1808:
 /* 803E1808 003DE748  81 83 00 00 */	lwz r12, 0(r3)
 /* 803E180C 003DE74C  81 8C 00 4C */	lwz r12, 0x4c(r12)
 /* 803E1810 003DE750  7D 89 03 A6 */	mtctr r12
 /* 803E1814 003DE754  4E 80 04 21 */	bctrl 
 /* 803E1818 003DE758  48 00 00 68 */	b lbl_803E1880
-.global lbl_803E181C
 lbl_803E181C:
 /* 803E181C 003DE75C  81 83 00 00 */	lwz r12, 0(r3)
 /* 803E1820 003DE760  81 8C 00 50 */	lwz r12, 0x50(r12)
 /* 803E1824 003DE764  7D 89 03 A6 */	mtctr r12
 /* 803E1828 003DE768  4E 80 04 21 */	bctrl 
 /* 803E182C 003DE76C  48 00 00 54 */	b lbl_803E1880
-.global lbl_803E1830
 lbl_803E1830:
 /* 803E1830 003DE770  81 83 00 00 */	lwz r12, 0(r3)
 /* 803E1834 003DE774  81 8C 00 54 */	lwz r12, 0x54(r12)
 /* 803E1838 003DE778  7D 89 03 A6 */	mtctr r12
 /* 803E183C 003DE77C  4E 80 04 21 */	bctrl 
 /* 803E1840 003DE780  48 00 00 40 */	b lbl_803E1880
-.global lbl_803E1844
 lbl_803E1844:
 /* 803E1844 003DE784  81 83 00 00 */	lwz r12, 0(r3)
 /* 803E1848 003DE788  81 8C 00 58 */	lwz r12, 0x58(r12)
 /* 803E184C 003DE78C  7D 89 03 A6 */	mtctr r12
 /* 803E1850 003DE790  4E 80 04 21 */	bctrl 
 /* 803E1854 003DE794  48 00 00 2C */	b lbl_803E1880
-.global lbl_803E1858
 lbl_803E1858:
 /* 803E1858 003DE798  38 7D 00 5C */	addi r3, r29, 0x5c
 /* 803E185C 003DE79C  38 BD 00 80 */	addi r5, r29, 0x80
