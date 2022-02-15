@@ -27,7 +27,7 @@ struct J3DJointTree {
 
 	// VTBL _00
 	J3DModelHierarchy* m_hierarchy; // _04
-	s8* _08;                        // _08
+	s32 m_08;                       // _08 previously s8*
 	u32 m_flags;                    // _0C
 	J3DJoint* _10;                  // _10
 	J3DMtxCalc* m_transformCalc;    // _14

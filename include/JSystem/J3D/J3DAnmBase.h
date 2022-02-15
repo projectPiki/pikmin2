@@ -32,7 +32,7 @@ struct J3DAnmBase {
 	virtual J3DAnmKind getKind() const = 0; // _04
 
 	// vtbl
-	s16 _04;     // _04
+	s16 m_04;    // _04
 	s16 m_time;  // _08
 	f32 m_fTime; // _0C
 };
