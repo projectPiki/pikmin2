@@ -30,7 +30,7 @@ __vt__Q33ebi11CardEReader4TMgr:
 .section .sdata, "wa"  # 0x80514680 - 0x80514D80
 .balign 8
 cInitialCode__Q23ebi11CardEReader: # local object
-	.ascii "PSAJ"
+	.ascii "PSAJ" # char literal
 
 .section .sbss # 0x80514D80 - 0x80516360
 .balign 8
@@ -41,7 +41,7 @@ gCardEMgr__3ebi:
 .section .sdata2, "a"     # 0x80516360 - 0x80520E40
 .balign 8
 lbl_8051FE58:
-	.byte 0
+	.asciz ""
 
 .section .text, "ax"  # 0x800056C0 - 0x80472F00
 .global gCardEMgr_ThreadFunc__3ebiFPv

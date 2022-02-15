@@ -1,17 +1,11 @@
 .include "macros.inc"
 .section .rodata  # 0x804732E0 - 0x8049E220
 .balign 8
-.global lbl_80496678
 lbl_80496678:
-	.4byte 0x65626932
-	.4byte 0x4443616C
-	.4byte 0x6C426163
-	.4byte 0x6B2E6370
-	.4byte 0x70000000
-.global lbl_8049668C
+	.asciz "ebi2DCallBack.cpp"
+.balign 4
 lbl_8049668C:
 	.asciz "P2Assert"
-	.skip 3
 
 .section .data, "wa"  # 0x8049E220 - 0x804EFC20
 .balign 8
@@ -70,34 +64,27 @@ __vt__Q23ebi20E2DCallBack_Purupuru:
 	.4byte doInit__Q29P2DScreen4NodeFv
 	.4byte do_update__Q23ebi20E2DCallBack_PurupuruFv
 	.4byte do_draw__Q23ebi16E2DCallBack_BaseFR8GraphicsR14J2DGrafContext
-	.4byte 0
 
 .section .sdata2, "a"     # 0x80516360 - 0x80520E40
 .balign 8
-.global lbl_8051FA98
 lbl_8051FA98:
-	.4byte 0x3A83126F
-.global lbl_8051FA9C
+	.float 0.001
 lbl_8051FA9C:
 	.float 1.0
-.global lbl_8051FAA0
 lbl_8051FAA0:
-	.4byte 0x00000000
-	.4byte 0x00000000
-.global lbl_8051FAA8
+	.float 0.0
+.balign 8
 lbl_8051FAA8:
 	.4byte 0x43300000
 	.4byte 0x80000000
-.global lbl_8051FAB0
+.balign 8
 lbl_8051FAB0:
 	.4byte 0x43300000
 	.4byte 0x00000000
-.global lbl_8051FAB8
 lbl_8051FAB8:
-	.4byte 0x46FFFE00
-.global lbl_8051FABC
+	.float 32767.0
 lbl_8051FABC:
-	.4byte 0x3F8CCCCD
+	.float 1.1
 
 .section .text, "ax"  # 0x800056C0 - 0x80472F00
 .global do_update__Q23ebi20E2DCallBack_PurupuruFv

@@ -1,21 +1,21 @@
 .include "macros.inc"
 .section .rodata  # 0x804732E0 - 0x8049E220
 .balign 8
-.global lbl_80495988
 lbl_80495988:
 	.asciz "efxObject.cpp"
-	.skip 2
+.balign 4
+lbl_80495998:
 	.asciz "ArgScale"
-	.skip 3
-.global lbl_804959A4
+.balign 4
 lbl_804959A4:
 	.asciz "P2Assert"
-	.skip 3
+.balign 4
+lbl_804959B0:
 	.asciz "ArgKouhai"
-	.skip 2
+.balign 4
+lbl_804959BC:
 	.asciz "ArgPelType"
-	.skip 1
-.global lbl_804959C8
+.balign 4
 lbl_804959C8:
 	.float 0.3
 	.float 0.25
@@ -29,7 +29,6 @@ lbl_804959C8:
 	.float 0.1
 	.float 0.08
 	.float 0.06
-.global lbl_804959F8
 lbl_804959F8:
 	.float 0.3
 	.float 0.25
@@ -151,26 +150,21 @@ __vt__Q23efx12TOtakaraDive:
 
 .section .sdata2, "a"     # 0x80516360 - 0x80520E40
 .balign 8
-.global lbl_8051F650
 lbl_8051F650:
-	.4byte 0x420C0000
-.global lbl_8051F654
+	.float 35.0
+.balign 4
 lbl_8051F654:
-	.4byte 0x41726752
-	.4byte 0x6F745900
-.global lbl_8051F65C
+	.asciz "ArgRotY"
+.balign 4
 lbl_8051F65C:
-	.4byte 0x3EB33333
-.global lbl_8051F660
+	.float 0.35
 lbl_8051F660:
-	.4byte 0x3F19999A
-.global lbl_8051F664
+	.float 0.6
 lbl_8051F664:
 	.float 1.0
-.global lbl_8051F668
+.balign 4
 lbl_8051F668:
-	.4byte 0x41726754
-	.4byte 0x79706500
+	.asciz "ArgType"
 
 .section .text, "ax"  # 0x800056C0 - 0x80472F00
 .global create__Q23efx12TOtakaraDiveFPQ23efx3Arg
