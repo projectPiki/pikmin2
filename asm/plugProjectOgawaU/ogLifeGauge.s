@@ -7,6 +7,7 @@ lbl_constructor:
 .balign 8
 lbl_8048DFB8:
 	.asciz "ogLifeGauge.cpp"
+.balign 4
 lbl_8048DFC8:
 	.asciz "ERR! : NULL Pane !!!\n"
 
@@ -75,52 +76,36 @@ __vt__Q29P2DScreen12CallBackNode:
 
 .section .sdata2, "a"     # 0x80516360 - 0x80520E40
 .balign 8
-.global lbl_8051D5B0
 lbl_8051D5B0:
 	.float 1.0
-.global lbl_8051D5B4
 lbl_8051D5B4:
-	.4byte 0x41880000
-.global lbl_8051D5B8
+	.float 17.0
 lbl_8051D5B8:
-	.4byte 0x00000000
-.global lbl_8051D5BC
+	.float 0.0
 lbl_8051D5BC:
-	.4byte 0x43000000
-.global lbl_8051D5C0
-lbl_8051D5C0:
-	.4byte 0x40490FDB
-.global lbl_8051D5C4
+	.float 128.0
+lbl_8051D5C0: # pi
+	.float 3.1415927
 lbl_8051D5C4:
 	.float 0.5
-.global lbl_8051D5C8
 lbl_8051D5C8:
-	.4byte 0x3ECCCCCD
-.global lbl_8051D5CC
+	.float 0.4
 lbl_8051D5CC:
-	.4byte 0x41F00000
-.global lbl_8051D5D0
+	.float 30.0
 lbl_8051D5D0:
-	.4byte 0x3F19999A
-.global lbl_8051D5D4
+	.float 0.6
 lbl_8051D5D4:
-	.4byte 0x42480000
-.global lbl_8051D5D8
+	.float 50.0
 lbl_8051D5D8:
-	.4byte 0xC3A2F983
-.global lbl_8051D5DC
+	.float -325.9493
 lbl_8051D5DC:
-	.4byte 0x43A2F983
-.global lbl_8051D5E0
+	.float 325.9493
 lbl_8051D5E0:
 	.float 0.7
-.global lbl_8051D5E4
 lbl_8051D5E4:
-	.4byte 0x437F0000
-.global lbl_8051D5E8
+	.float 255.0
 lbl_8051D5E8:
 	.float 0.3
-	.4byte 0x00000000
 
 .section .text, "ax"  # 0x800056C0 - 0x80472F00
 .global __ct__Q32og6Screen18CallBack_LifeGaugeFv
@@ -216,7 +201,7 @@ lbl_80306160:
 /* 8030618C 003030CC  4E 80 00 20 */	blr 
 
 .global __dt__Q29P2DScreen12CallBackNodeFv
-__dt__Q29P2DScreen12CallBackNodeFv:
+__dt__Q29P2DScreen12CallBackNodeFv: # weak func
 /* 80306190 003030D0  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 80306194 003030D4  7C 08 02 A6 */	mflr r0
 /* 80306198 003030D8  90 01 00 14 */	stw r0, 0x14(r1)
@@ -1283,7 +1268,7 @@ lbl_80307134:
 /* 80307144 00304084  4E 80 00 20 */	blr 
 
 .global __dt__Q32og6Screen13NaviLifeGaugeFv
-__dt__Q32og6Screen13NaviLifeGaugeFv:
+__dt__Q32og6Screen13NaviLifeGaugeFv: # weak func
 /* 80307148 00304088  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 8030714C 0030408C  7C 08 02 A6 */	mflr r0
 /* 80307150 00304090  90 01 00 14 */	stw r0, 0x14(r1)
@@ -1330,7 +1315,7 @@ lbl_803071D0:
 /* 803071E8 00304128  4E 80 00 20 */	blr 
 
 .global __dt__Q32og6Screen18CallBack_LifeGaugeFv
-__dt__Q32og6Screen18CallBack_LifeGaugeFv:
+__dt__Q32og6Screen18CallBack_LifeGaugeFv: # weak func
 /* 803071EC 0030412C  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 803071F0 00304130  7C 08 02 A6 */	mflr r0
 /* 803071F4 00304134  90 01 00 14 */	stw r0, 0x14(r1)
@@ -1367,11 +1352,10 @@ lbl_80307250:
 /* 80307268 003041A8  4E 80 00 20 */	blr 
 
 .global update__Q29P2DScreen12CallBackNodeFv
-update__Q29P2DScreen12CallBackNodeFv:
+update__Q29P2DScreen12CallBackNodeFv: # weak func
 /* 8030726C 003041AC  4E 80 00 20 */	blr 
 
-.global __sinit_ogLifeGauge_cpp
-__sinit_ogLifeGauge_cpp:
+__sinit_ogLifeGauge_cpp: # static initializer
 /* 80307270 003041B0  C0 42 F2 68 */	lfs f2, lbl_8051D5C8@sda21(r2)
 /* 80307274 003041B4  3C 60 80 51 */	lis r3, msVal__Q32og6Screen18CallBack_LifeGauge@ha
 /* 80307278 003041B8  C0 22 F2 70 */	lfs f1, lbl_8051D5D0@sda21(r2)
