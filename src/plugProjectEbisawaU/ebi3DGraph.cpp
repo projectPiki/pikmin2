@@ -134,46 +134,9 @@ void E3DAnimCtrl::setStartFrame(void)
  */
 void E3DAnimCtrl::play(void)
 {
-	/*
-	stwu     r1, -0x10(r1)
-	mflr     r0
-	stw      r0, 0x14(r1)
-	stw      r31, 0xc(r1)
-	mr       r31, r3
-	lwz      r0, 0xc(r3)
-	cmplwi   r0, 0
-	bne      lbl_803C9F4C
-	lis      r3, lbl_80496408@ha
-	lis      r5, lbl_80496418@ha
-	addi     r3, r3, lbl_80496408@l
-	li       r4, 0x3f
-	addi     r5, r5, lbl_80496418@l
-	crclr    6
-	bl       panic_f__12JUTExceptionFPCciPCce
-
-lbl_803C9F4C:
-	lwz      r0, 8(r31)
-	cmpwi    r0, 3
-	beq      lbl_803C9F7C
-	lwz      r3, 0xc(r31)
-	lwz      r0, 0x1c(r3)
-	cmpwi    r0, 1
-	bne      lbl_803C9F74
-	li       r0, 1
-	stw      r0, 8(r31)
-	b        lbl_803C9F7C
-
-lbl_803C9F74:
-	li       r0, 2
-	stw      r0, 8(r31)
-
-lbl_803C9F7C:
-	lwz      r0, 0x14(r1)
-	lwz      r31, 0xc(r1)
-	mtlr     r0
-	addi     r1, r1, 0x10
-	blr
-	*/
+	P2ASSERTLINE(63, _0C);
+	if (_08 != 3)
+		_0C->int_0x1C == 1 ? _08 = 1 : _08 = 2;
 }
 
 /*
@@ -183,37 +146,9 @@ lbl_803C9F7C:
  */
 void E3DAnimCtrl::playStopEnd(void)
 {
-	/*
-	stwu     r1, -0x10(r1)
-	mflr     r0
-	stw      r0, 0x14(r1)
-	stw      r31, 0xc(r1)
-	mr       r31, r3
-	lwz      r0, 0xc(r3)
-	cmplwi   r0, 0
-	bne      lbl_803C9FCC
-	lis      r3, lbl_80496408@ha
-	lis      r5, lbl_80496418@ha
-	addi     r3, r3, lbl_80496408@l
-	li       r4, 0x4c
-	addi     r5, r5, lbl_80496418@l
-	crclr    6
-	bl       panic_f__12JUTExceptionFPCciPCce
-
-lbl_803C9FCC:
-	lwz      r0, 8(r31)
-	cmpwi    r0, 3
-	beq      lbl_803C9FE0
-	li       r0, 2
-	stw      r0, 8(r31)
-
-lbl_803C9FE0:
-	lwz      r0, 0x14(r1)
-	lwz      r31, 0xc(r1)
-	mtlr     r0
-	addi     r1, r1, 0x10
-	blr
-	*/
+	P2ASSERTLINE(76, _0C);
+	if (_08 != 3)
+		_08 = 2;
 }
 
 /*
