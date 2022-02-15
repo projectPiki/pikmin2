@@ -5,68 +5,76 @@ lbl_constructor:
 
 .section .rodata  # 0x804732E0 - 0x8049E220
 .balign 8
-.global lbl_804974A0
 lbl_804974A0:
 	.4byte 0x00000000
 	.4byte 0x00000000
 	.4byte 0x00000000
-	.4byte 0x65626950
-	.4byte 0x32546974
-	.4byte 0x6C654B6F
-	.4byte 0x67616E65
-	.4byte 0x00000000
-.global lbl_804974C0
+.balign 4
+lbl_804974AC:
+	.asciz "ebiP2TitleKogane"
+.balign 4
 lbl_804974C0:
-	.4byte 0x4B6F6761
-	.4byte 0x6E654D67
-	.4byte 0x72000000
+	.asciz "KoganeMgr"
+.balign 4
+lbl_804974CC: # Shift-JIS
 	.4byte 0x83588350
 	.4byte 0x815B838B
 	.4byte 0x00000000
+lbl_804974D8: # Shift-JIS
 	.4byte 0x834A838A
 	.4byte 0x8393834F
 	.4byte 0x94BC8C61
 	.4byte 0x00000000
+lbl_804974E8: # Shift-JIS
 	.4byte 0x8352838A
 	.4byte 0x83578387
 	.4byte 0x839394BC
 	.4byte 0x8C610000
+lbl_804974F8: # Shift-JIS
 	.4byte 0x8373834E
 	.4byte 0x837E8393
 	.4byte 0x94BD899E
 	.4byte 0x94BC8C61
 	.4byte 0x00000000
+lbl_8049750C: # Shift-JIS
 	.4byte 0x95E08D73
 	.4byte 0x83898393
 	.4byte 0x835F8380
 	.4byte 0x8A709378
 	.4byte 0x00000000
+lbl_80497520: # Shift-JIS
 	.4byte 0x95E08D73
 	.4byte 0x91AC9378
 	.4byte 0x00000000
+lbl_8049752C: # Shift-JIS
 	.4byte 0x90F989F1
 	.4byte 0x90AB945C
 	.4byte 0x00000000
+lbl_80497538: # Shift-JIS
 	.4byte 0x91D282BF
 	.4byte 0x8E9E8AD4
 	.4byte 0x8DC58FAC
 	.4byte 0x28956229
 	.4byte 0x00000000
+lbl_8049754C: # Shift-JIS
 	.4byte 0x91D282BF
 	.4byte 0x8E9E8AD4
 	.4byte 0x8DC591E5
 	.4byte 0x28956229
 	.4byte 0x00000000
+lbl_80497560: # Shift-JIS
 	.4byte 0x88DA93AE
 	.4byte 0x8E9E8AD4
 	.4byte 0x8DC58FAC
 	.4byte 0x28956229
 	.4byte 0x00000000
+lbl_80497574: # Shift-JIS
 	.4byte 0x88DA93AE
 	.4byte 0x8E9E8AD4
 	.4byte 0x8DC591E5
 	.4byte 0x28956229
 	.4byte 0x00000000
+lbl_80497588: # Shift-JIS
 	.4byte 0x83528393
 	.4byte 0x8367838D
 	.4byte 0x815B8389
@@ -74,49 +82,31 @@ lbl_804974C0:
 	.4byte 0x8E9E8AD4
 	.4byte 0x28956229
 	.4byte 0x00000000
-.global lbl_804975A4
+.balign 4
 lbl_804975A4:
-	.4byte 0x70617261
-	.4byte 0x6D2F7061
-	.4byte 0x72616D5F
-	.4byte 0x6B6F6761
-	.4byte 0x6E652E74
-	.4byte 0x78740000
-	.4byte 0x6B6F6761
-	.4byte 0x6E652F6B
-	.4byte 0x6F67616E
-	.4byte 0x655F6D6F
-	.4byte 0x76652E62
-	.4byte 0x636B0000
-	.4byte 0x6B6F6761
-	.4byte 0x6E652F6B
-	.4byte 0x6F67616E
-	.4byte 0x655F7761
-	.4byte 0x69742E62
-	.4byte 0x636B0000
-	.4byte 0x6B6F6761
-	.4byte 0x6E652F6B
-	.4byte 0x6F67616E
-	.4byte 0x655F7469
-	.4byte 0x746C652E
-	.4byte 0x626D6400
-	.4byte 0x65626950
-	.4byte 0x32546974
-	.4byte 0x6C654B6F
-	.4byte 0x67616E65
-	.4byte 0x2E637070
-	.4byte 0x00000000
+	.asciz "param/param_kogane.txt"
+.balign 4
+lbl_804975BC:
+	.asciz "kogane/kogane_move.bck"
+.balign 4
+lbl_804975D4:
+	.asciz "kogane/kogane_wait.bck"
+.balign 4
+lbl_804975EC:
+	.asciz "kogane/kogane_title.bmd"
+.balign 4
+lbl_80497604:
+	.asciz "ebiP2TitleKogane.cpp"
+.balign 4
+lbl_8049761C:
 	.asciz "P2Assert"
-	.skip 3
 
 .section .data, "wa"  # 0x8049E220 - 0x804EFC20
 .balign 8
-.global lbl_804E9E10
-lbl_804E9E10:
-	.4byte 0x00000000
-	.4byte 0x00000000
-	.4byte 0x00000000
-.global lbl_804E9E1C
+govNAN___Q24Game5P2JST:
+	.float 0.0
+	.float 0.0
+	.float 0.0
 lbl_804E9E1C:
 	.4byte lbl_803E78A8
 	.4byte lbl_803E78E8
@@ -144,87 +134,63 @@ __vt__Q23ebi17E3DAnimFolderBase:
 
 .section .sbss # 0x80514D80 - 0x80516360
 .balign 8
-.global lbl_805160F8
-lbl_805160F8:
+gu32NAN___Q24Game5P2JST:
 	.skip 0x4
-.global lbl_805160FC
-lbl_805160FC:
+gfNAN___Q24Game5P2JST:
 	.skip 0x4
 
 .section .sdata2, "a"     # 0x80516360 - 0x80520E40
 .balign 8
-.global lbl_8051FD00
 lbl_8051FD00:
-	.4byte 0x00000000
-.global lbl_8051FD04
+	.float 0.0
 lbl_8051FD04:
-	.4byte 0xBF800000
-.global lbl_8051FD08
+	.float -1.0
 lbl_8051FD08:
 	.float 1.0
-.global lbl_8051FD0C
+.balign 4
 lbl_8051FD0C:
-	.4byte 0x5061726D
-	.4byte 0x73000000
-.global lbl_8051FD14
+	.asciz "Parms"
+.balign 4
 lbl_8051FD14:
-	.4byte 0x40000000
-.global lbl_8051FD18
+	.float 2.0
 lbl_8051FD18:
-	.4byte 0x41200000
-.global lbl_8051FD1C
+	.float 10.0
 lbl_8051FD1C:
-	.4byte 0x42480000
-.global lbl_8051FD20
+	.float 50.0
 lbl_8051FD20:
-	.4byte 0x43FA0000
-.global lbl_8051FD24
+	.float 500.0
 lbl_8051FD24:
-	.4byte 0x43160000
-.global lbl_8051FD28
+	.float 150.0
 lbl_8051FD28:
-	.4byte 0x42700000
-.global lbl_8051FD2C
+	.float 60.0
 lbl_8051FD2C:
-	.4byte 0x42B40000
-.global lbl_8051FD30
+	.float 90.0
 lbl_8051FD30:
-	.4byte 0x42C80000
-.global lbl_8051FD34
+	.float 100.0
 lbl_8051FD34:
 	.float 0.1
-.global lbl_8051FD38
 lbl_8051FD38:
-	.4byte 0x3FC00000
-.global lbl_8051FD3C
+	.float 1.5
 lbl_8051FD3C:
 	.float 0.3
-.global lbl_8051FD40
 lbl_8051FD40:
-	.4byte 0x40A00000
-.global lbl_8051FD44
+	.float 5.0
 lbl_8051FD44:
-	.4byte 0x46FFFE00
-.global lbl_8051FD48
-lbl_8051FD48:
-	.4byte 0x40490FDB
-.global lbl_8051FD4C
+	.float 32767.0
+lbl_8051FD48: #pi
+	.float 3.1415927
 lbl_8051FD4C:
-	.4byte 0x3BB60B61
-.global lbl_8051FD50
+	.float 0.0055555557
 lbl_8051FD50:
-	.4byte 0xC3A2F983
-.global lbl_8051FD54
+	.float -325.9493
 lbl_8051FD54:
-	.4byte 0x43A2F983
-.global lbl_8051FD58
+	.float 325.9493
+.balign 8
 lbl_8051FD58:
 	.4byte 0x43300000
 	.4byte 0x80000000
-.global lbl_8051FD60
 lbl_8051FD60:
 	.float 0.7
-.global lbl_8051FD64
 lbl_8051FD64:
 	.float 0.5
 
@@ -614,7 +580,6 @@ startState__Q43ebi5title6Kogane5TUnitFQ53ebi5title6Kogane5TUnit9enumState:
 /* 803E789C 003E47DC  7C 03 00 2E */	lwzx r0, r3, r0
 /* 803E78A0 003E47E0  7C 09 03 A6 */	mtctr r0
 /* 803E78A4 003E47E4  4E 80 04 20 */	bctr 
-.global lbl_803E78A8
 lbl_803E78A8:
 /* 803E78A8 003E47E8  80 8D 9A 28 */	lwz r4, titleMgr__Q23ebi5title@sda21(r13)
 /* 803E78AC 003E47EC  38 61 00 08 */	addi r3, r1, 8
@@ -623,7 +588,6 @@ lbl_803E78A8:
 /* 803E78B8 003E47F8  D0 1F 00 04 */	stfs f0, 4(r31)
 /* 803E78BC 003E47FC  C0 01 00 0C */	lfs f0, 0xc(r1)
 /* 803E78C0 003E4800  D0 1F 00 08 */	stfs f0, 8(r31)
-.global lbl_803E78C4
 lbl_803E78C4:
 /* 803E78C4 003E4804  80 9F 00 48 */	lwz r4, 0x48(r31)
 /* 803E78C8 003E4808  80 6D 9A EC */	lwz r3, sys@sda21(r13)
@@ -634,7 +598,6 @@ lbl_803E78C4:
 /* 803E78DC 003E481C  90 7F 00 3C */	stw r3, 0x3c(r31)
 /* 803E78E0 003E4820  90 7F 00 40 */	stw r3, 0x40(r31)
 /* 803E78E4 003E4824  48 00 02 28 */	b lbl_803E7B0C
-.global lbl_803E78E8
 lbl_803E78E8:
 /* 803E78E8 003E4828  80 7F 00 48 */	lwz r3, 0x48(r31)
 /* 803E78EC 003E482C  C3 C3 01 58 */	lfs f30, 0x158(r3)
@@ -658,7 +621,6 @@ lbl_803E78E8:
 /* 803E7934 003E4874  90 7F 00 3C */	stw r3, 0x3c(r31)
 /* 803E7938 003E4878  90 7F 00 40 */	stw r3, 0x40(r31)
 /* 803E793C 003E487C  48 00 01 D0 */	b lbl_803E7B0C
-.global lbl_803E7940
 lbl_803E7940:
 /* 803E7940 003E4880  C0 3F 00 30 */	lfs f1, 0x30(r31)
 /* 803E7944 003E4884  3C 60 80 51 */	lis r3, atanTable___5JMath@ha
@@ -733,7 +695,6 @@ lbl_803E7A24:
 /* 803E7A4C 003E498C  D0 1F 00 34 */	stfs f0, 0x34(r31)
 /* 803E7A50 003E4990  D0 3F 00 38 */	stfs f1, 0x38(r31)
 /* 803E7A54 003E4994  48 00 00 B8 */	b lbl_803E7B0C
-.global lbl_803E7A58
 lbl_803E7A58:
 /* 803E7A58 003E4998  80 7F 00 48 */	lwz r3, 0x48(r31)
 /* 803E7A5C 003E499C  C3 C3 01 D0 */	lfs f30, 0x1d0(r3)
@@ -757,7 +718,6 @@ lbl_803E7A58:
 /* 803E7AA4 003E49E4  90 7F 00 3C */	stw r3, 0x3c(r31)
 /* 803E7AA8 003E49E8  90 7F 00 40 */	stw r3, 0x40(r31)
 /* 803E7AAC 003E49EC  48 00 00 60 */	b lbl_803E7B0C
-.global lbl_803E7AB0
 lbl_803E7AB0:
 /* 803E7AB0 003E49F0  C0 1F 00 08 */	lfs f0, 8(r31)
 /* 803E7AB4 003E49F4  C0 3F 00 04 */	lfs f1, 4(r31)
@@ -785,7 +745,6 @@ lbl_803E7AE8:
 lbl_803E7B04:
 /* 803E7B04 003E4A44  D0 5F 00 0C */	stfs f2, 0xc(r31)
 /* 803E7B08 003E4A48  D0 7F 00 10 */	stfs f3, 0x10(r31)
-.global lbl_803E7B0C
 lbl_803E7B0C:
 /* 803E7B0C 003E4A4C  E3 E1 00 58 */	psq_l f31, 88(r1), 0, qr0
 /* 803E7B10 003E4A50  CB E1 00 50 */	lfd f31, 0x50(r1)
@@ -1530,15 +1489,14 @@ getAnimRes__Q43ebi5title6Kogane11TAnimFolderFl:
 __ct__Q23ebi10E3DAnimResFv:
 /* 803E85AC 003E54EC  4E 80 00 20 */	blr 
 
-.global __sinit_ebiP2TitleKogane_cpp
-__sinit_ebiP2TitleKogane_cpp:
+__sinit_ebiP2TitleKogane_cpp: # static initializer
 /* 803E85B0 003E54F0  3C 80 80 51 */	lis r4, __float_nan@ha
 /* 803E85B4 003E54F4  38 00 FF FF */	li r0, -1
 /* 803E85B8 003E54F8  C0 04 48 B0 */	lfs f0, __float_nan@l(r4)
-/* 803E85BC 003E54FC  3C 60 80 4F */	lis r3, lbl_804E9E10@ha
-/* 803E85C0 003E5500  90 0D 9A 78 */	stw r0, lbl_805160F8@sda21(r13)
-/* 803E85C4 003E5504  D4 03 9E 10 */	stfsu f0, lbl_804E9E10@l(r3)
-/* 803E85C8 003E5508  D0 0D 9A 7C */	stfs f0, lbl_805160FC@sda21(r13)
+/* 803E85BC 003E54FC  3C 60 80 4F */	lis r3, govNAN___Q24Game5P2JST@ha
+/* 803E85C0 003E5500  90 0D 9A 78 */	stw r0, gu32NAN___Q24Game5P2JST@sda21(r13)
+/* 803E85C4 003E5504  D4 03 9E 10 */	stfsu f0, govNAN___Q24Game5P2JST@l(r3)
+/* 803E85C8 003E5508  D0 0D 9A 7C */	stfs f0, gfNAN___Q24Game5P2JST@sda21(r13)
 /* 803E85CC 003E550C  D0 03 00 04 */	stfs f0, 4(r3)
 /* 803E85D0 003E5510  D0 03 00 08 */	stfs f0, 8(r3)
 /* 803E85D4 003E5514  4E 80 00 20 */	blr 

@@ -3,6 +3,7 @@
 
 #include "types.h"
 #include "JSystem/J3D/J3DAnmTransform.h"
+#include "JSystem/J3D/J3DAnmLoader.h"
 #include "JSystem/J3D/J3DModel.h"
 #include "JSystem/J3D/J3DMtxCalc.h"
 #include "JSystem/JKR/JKRArchive.h"
@@ -18,13 +19,6 @@ namespace ebi {
     .4byte 0
 */
 
-struct E3DAnimFolderBase {
-	// virtual void _00() = 0; // _00
-	virtual E3DAnimRes* getAnimRes(void*, long) = 0; // _08
-
-	// _00 VTBL
-};
-
 struct E3DAnimRes {
 	J3DAnmTransform* pAnmTransform_0x0;
 	J3DMtxCalcAnmBase* pMtxCalcAnm_0x4;
@@ -38,8 +32,15 @@ struct E3DAnimRes {
 	void load(J3DModelData*, JKRArchive*, char*);
 };
 
+struct E3DAnimFolderBase {
+	// virtual void _00() = 0; // _00
+	virtual E3DAnimRes* getAnimRes(long) = 0; // _08
+
+	// _00 VTBL
+};
+
 struct E3DAnimCtrl {
-	u32 _00;
+	f32 _00;
 	f32 _04;
 	int _08;
 	E3DAnimRes* _0C; // unconfirmed, but likely - Epoch

@@ -1041,7 +1041,7 @@ EBISAWA:=\
 	$(BUILD_DIR)/asm/plugProjectEbisawaU/ebiScreenMemoryCard.o\
 	$(BUILD_DIR)/asm/plugProjectEbisawaU/efxTPkEffectMgr.o\
 	$(BUILD_DIR)/asm/plugProjectEbisawaU/efxEnemyGeneral.o\
-	$(BUILD_DIR)/asm/plugProjectEbisawaU/ebi3DGraph.o\
+	$(BUILD_DIR)/src/plugProjectEbisawaU/ebi3DGraph.o\
 	$(BUILD_DIR)/asm/plugProjectEbisawaU/ebiGeometry.o\
 	$(BUILD_DIR)/asm/plugProjectEbisawaU/ebi2DGraph.o\
 	$(BUILD_DIR)/asm/plugProjectEbisawaU/ebiScreenOption.o\
