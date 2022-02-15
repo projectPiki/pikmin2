@@ -1,21 +1,17 @@
 .include "macros.inc"
 .section .rodata  # 0x804732E0 - 0x8049E220
 .balign 8
-.global lbl_8048D1F0
 lbl_8048D1F0:
 	.asciz "otakara_elec_eff"
-	.skip 3
-.global lbl_8048D204
+.balign 4
 lbl_8048D204:
 	.asciz "otakara_fire_eff"
-	.skip 3
-.global lbl_8048D218
+.balign 4
 lbl_8048D218:
 	.asciz "otakara_gas_eff"
-.global lbl_8048D228
+.balign 4
 lbl_8048D228:
 	.asciz "otakara_water_eff"
-	.skip 2
 
 .section .data, "wa"  # 0x8049E220 - 0x804EFC20
 .balign 8
@@ -232,152 +228,105 @@ __vt__Q34Game11BigTreasure16AttackShadowNode:
 	.4byte 0
 	.4byte __dt__Q34Game11BigTreasure16AttackShadowNodeFv
 	.4byte getChildCount__5CNodeFv
-	.4byte 0
 
 .section .sdata2, "a"     # 0x80516360 - 0x80520E40
 .balign 8
-.global lbl_8051D200
 lbl_8051D200:
-	.4byte 0x00000000
-.global lbl_8051D204
+	.float 0.0
 lbl_8051D204:
-	.4byte 0x41700000
-.global lbl_8051D208
+	.float 15.0
 lbl_8051D208:
-	.4byte 0x40200000
-.global lbl_8051D20C
+	.float 2.5
 lbl_8051D20C:
-	.4byte 0xC1C80000
-.global lbl_8051D210
+	.float -25.0
 lbl_8051D210:
 	.float 1.0
-.global lbl_8051D214
 lbl_8051D214:
-	.4byte 0x40400000
-.global lbl_8051D218
+	.float 3.0
 lbl_8051D218:
-	.4byte 0x43480000
-.global lbl_8051D21C
+	.float 200.0
 lbl_8051D21C:
-	.4byte 0x42200000
-.global lbl_8051D220
+	.float 40.0
 lbl_8051D220:
-	.4byte 0x41C80000
-.global lbl_8051D224
+	.float 25.0
 lbl_8051D224:
-	.4byte 0x47000000
-.global lbl_8051D228
+	.float 32768.0
 lbl_8051D228:
-	.4byte 0x3EA8F5C3
-.global lbl_8051D22C
+	.float 0.33
 lbl_8051D22C:
-	.4byte 0xC47A0000
-.global lbl_8051D230
+	.float -1000.0
+.balign 8
 lbl_8051D230:
 	.4byte 0x43300000
 	.4byte 0x80000000
-.global lbl_8051D238
 lbl_8051D238:
-	.4byte 0x43A2F983
-.global lbl_8051D23C
+	.float 325.9493
 lbl_8051D23C:
-	.4byte 0xC3A2F983
-.global lbl_8051D240
+	.float -325.9493
 lbl_8051D240:
-	.4byte 0xC1700000
-.global lbl_8051D244
+	.float -15.0
 lbl_8051D244:
-	.4byte 0x3E8A3D71
-.global lbl_8051D248
+	.float 0.27
 lbl_8051D248:
-	.4byte 0x41200000
-.global lbl_8051D24C
+	.float 10.0
 lbl_8051D24C:
 	.float 0.5
-.global lbl_8051D250
 lbl_8051D250:
-	.4byte 0x43F00000
-.global lbl_8051D254
+	.float 480.0
 lbl_8051D254:
-	.4byte 0x41F00000
-.global lbl_8051D258
+	.float 30.0
 lbl_8051D258:
-	.4byte 0x3F2B851F
-.global lbl_8051D25C
+	.float 0.67
 lbl_8051D25C:
-	.4byte 0x41A00000
-.global lbl_8051D260
+	.float 20.0
 lbl_8051D260:
-	.4byte 0x43960000
-.global lbl_8051D264
+	.float 300.0
 lbl_8051D264:
-	.4byte 0x3F19999A
-.global lbl_8051D268
+	.float 0.6
 lbl_8051D268:
-	.4byte 0x43160000
-.global lbl_8051D26C
+	.float 150.0
 lbl_8051D26C:
-	.4byte 0x3F400000
-.global lbl_8051D270
+	.float 0.75
 lbl_8051D270:
-	.4byte 0x3F266666
-.global lbl_8051D274
+	.float 0.65
 lbl_8051D274:
-	.4byte 0x42C80000
-.global lbl_8051D278
+	.float 100.0
 lbl_8051D278:
-	.4byte 0x435C0000
-.global lbl_8051D27C
+	.float 220.0
 lbl_8051D27C:
-	.4byte 0x432A0000
-.global lbl_8051D280
+	.float 170.0
 lbl_8051D280:
-	.4byte 0x402CCCCD
-.global lbl_8051D284
+	.float 2.7
 lbl_8051D284:
 	.float 0.1
-.global lbl_8051D288
 lbl_8051D288:
-	.4byte 0x3CA3D70A
-.global lbl_8051D28C
+	.float 0.02
 lbl_8051D28C:
 	.float 0.25
-.global lbl_8051D290
 lbl_8051D290:
-	.4byte 0x42480000
-.global lbl_8051D294
+	.float 50.0
 lbl_8051D294:
-	.4byte 0x3F0CCCCD
-.global lbl_8051D298
-lbl_8051D298:
-	.4byte 0x40C90FDB
-.global lbl_8051D29C
-lbl_8051D29C:
+	.float 0.55
+lbl_8051D298: # tau
+	.float 6.2831855
+lbl_8051D29C: #four individual bytes, loaded as one word?
 	.4byte 0x01010101
-.global lbl_8051D2A0
 lbl_8051D2A0:
-	.4byte 0x43FA0000
-.global lbl_8051D2A4
+	.float 500.0
 lbl_8051D2A4:
-	.4byte 0x40000000
-.global lbl_8051D2A8
+	.float 2.0
 lbl_8051D2A8:
-	.4byte 0x43AF0000
-.global lbl_8051D2AC
+	.float 350.0
 lbl_8051D2AC:
-	.4byte 0x43340000
-.global lbl_8051D2B0
+	.float 180.0
 lbl_8051D2B0:
-	.4byte 0x44A00000
-.global lbl_8051D2B4
+	.float 1280.0
 lbl_8051D2B4:
-	.4byte 0x3E4CCCCD
-.global lbl_8051D2B8
+	.float 0.2
 lbl_8051D2B8:
-	.4byte 0x41480000
-.global lbl_8051D2BC
+	.float 12.5
 lbl_8051D2BC:
-	.4byte 0x40F00000
+	.float 7.5
 
 .section .text, "ax"  # 0x800056C0 - 0x80472F00
 .global makeShadowSRT__Q34Game11BigTreasure16AttackShadowNodeFv

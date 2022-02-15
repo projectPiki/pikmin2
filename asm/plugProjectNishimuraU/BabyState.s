@@ -89,28 +89,28 @@ __vt__Q34Game4Baby3FSM:
 .section .sdata2, "a"     # 0x80516360 - 0x80520E40
 .balign 8
 lbl_8051B888:
-	.4byte 0x64656164
-	.4byte 0x00000000
+	.asciz "dead"
+.balign 4
 lbl_8051B890:
-	.4byte 0x70726573
-	.4byte 0x73000000
+	.asciz "press"
+.balign 4
 lbl_8051B898:
-	.4byte 0x626F726E
-	.4byte 0x00000000
+	.asciz "born"
+.balign 4
 lbl_8051B8A0:
-	.4byte 0x6D6F7665
-	.4byte 0x00000000
+	.asciz "move"
+.balign 4
 lbl_8051B8A8:
-	.4byte 0x61747461
-	.4byte 0x636B0000
+	.asciz "attack"
+.balign 4
 lbl_8051B8B0:
-	.4byte 0x00000000
+	.float 0.0
 lbl_8051B8B4:
-	.4byte 0x3F733333
-lbl_8051B8B8:
-	.4byte 0x40490FDB
+	.float 0.95
+lbl_8051B8B8: # pi
+	.float 3.1415927
 lbl_8051B8BC:
-	.4byte 0x3BB60B61
+	.float 0.0055555557
 lbl_8051B8C0:
 	.float 0.25
 

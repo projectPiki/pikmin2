@@ -5,37 +5,32 @@ lbl_constructor:
 
 .section .rodata  # 0x804732E0 - 0x8049E220
 .balign 8
-.global lbl_8048C198
 lbl_8048C198:
 	.4byte 0x00000000
 	.4byte 0x00000000
 	.4byte 0x00000000
-	.4byte 0x3234362D
-	.4byte 0x42696754
-	.4byte 0x72656173
-	.4byte 0x75726553
-	.4byte 0x74617465
-	.4byte 0x00000000
-	.4byte 0x6974656D
-	.4byte 0x77616974
-	.4byte 0x00000000
-	.4byte 0x70726561
-	.4byte 0x74746163
-	.4byte 0x6B000000
-	.4byte 0x64726F70
-	.4byte 0x6974656D
-	.4byte 0x00000000
-	.4byte 0x6974656D
-	.4byte 0x77616C6B
-	.4byte 0x00000000
+.balign 4
+lbl_8048C1A4:
+	.asciz "246-BigTreasureState"
+.balign 4
+lbl_8048C1BC:
+	.asciz "itemwait"
+.balign 4
+lbl_8048C1C8:
+	.asciz "preattack"
+.balign 4
+lbl_8048C1D4:
+	.asciz "dropitem"
+.balign 4
+lbl_8048C1E0:
+	.asciz "itemwalk"
 
 .section .data, "wa"  # 0x8049E220 - 0x804EFC20
 .balign 8
-.global lbl_804D2F90
-lbl_804D2F90:
-	.4byte 0x00000000
-	.4byte 0x00000000
-	.4byte 0x00000000
+govNAN___Q24Game5P2JST:
+	.float 0.0
+	.float 0.0
+	.float 0.0
 .global __vt__Q34Game11BigTreasure13StateItemWalk
 __vt__Q34Game11BigTreasure13StateItemWalk:
 	.4byte 0
@@ -190,78 +185,58 @@ __vt__Q34Game11BigTreasure3FSM:
 	.4byte doDirectDraw__Q24Game17EnemyStateMachineFPQ24Game9EnemyBaseR8Graphics
 	.4byte getCurrState__Q24Game17EnemyStateMachineFPQ24Game9EnemyBase
 	.4byte setCurrState__Q24Game17EnemyStateMachineFPQ24Game9EnemyBasePQ24Game13EnemyFSMState
-	.4byte 0
 
 .section .sbss # 0x80514D80 - 0x80516360
 .balign 8
-.global lbl_80515DD8
-lbl_80515DD8:
+gu32NAN___Q24Game5P2JST:
 	.skip 0x4
-.global lbl_80515DDC
-lbl_80515DDC:
+gfNAN___Q24Game5P2JST:
 	.skip 0x4
 
 .section .sdata2, "a"     # 0x80516360 - 0x80520E40
 .balign 8
-.global lbl_8051CA40
 lbl_8051CA40:
-	.4byte 0x64656164
-	.4byte 0x00000000
-.global lbl_8051CA48
+	.asciz "dead"
+.balign 4
 lbl_8051CA48:
-	.4byte 0x73746179
-	.4byte 0x00000000
-.global lbl_8051CA50
+	.asciz "stay"
+.balign 4
 lbl_8051CA50:
-	.4byte 0x6C616E64
-	.4byte 0x00000000
-.global lbl_8051CA58
+	.asciz "land"
+.balign 4
 lbl_8051CA58:
-	.4byte 0x77616974
-	.4byte 0x00000000
-.global lbl_8051CA60
+	.asciz "wait"
+.balign 4
 lbl_8051CA60:
-	.4byte 0x666C6963
-	.4byte 0x6B000000
-.global lbl_8051CA68
+	.asciz "flick"
+.balign 4
 lbl_8051CA68:
-	.4byte 0x61747461
-	.4byte 0x636B0000
-.global lbl_8051CA70
+	.asciz "attack"
+.balign 4
 lbl_8051CA70:
-	.4byte 0x70757469
-	.4byte 0x74656D00
-.global lbl_8051CA78
+	.asciz "putitem"
+.balign 4
 lbl_8051CA78:
-	.4byte 0x77616C6B
-	.4byte 0x00000000
-.global lbl_8051CA80
+	.asciz "walk"
+.balign 4
 lbl_8051CA80:
-	.4byte 0x00000000
-.global lbl_8051CA84
+	.float 0.0
 lbl_8051CA84:
-	.4byte 0x438C0000
-.global lbl_8051CA88
+	.float 280.0
 lbl_8051CA88:
-	.4byte 0x3C23D70A
-.global lbl_8051CA8C
+	.float 0.01
 lbl_8051CA8C:
-	.4byte 0x40800000
-.global lbl_8051CA90
+	.float 4.0
 lbl_8051CA90:
-	.4byte 0xC47A0000
-.global lbl_8051CA94
+	.float -1000.0
 lbl_8051CA94:
-	.4byte 0x40A00000
-.global lbl_8051CA98
+	.float 5.0
 lbl_8051CA98:
-	.4byte 0x47000000
-	.4byte 0x00000000
-.global lbl_8051CAA0
+	.float 32768.0
+.balign 8
 lbl_8051CAA0:
 	.4byte 0x43300000
 	.4byte 0x80000000
-.global lbl_8051CAA8
 lbl_8051CAA8:
 	.float 10.0
 
@@ -2396,15 +2371,14 @@ lbl_802D90A0:
 cleanup__Q34Game11BigTreasure13StateItemWalkFPQ24Game9EnemyBase:
 /* 802D90B8 002D5FF8  4E 80 00 20 */	blr 
 
-.global __sinit_BigTreasureState_cpp
-__sinit_BigTreasureState_cpp:
+__sinit_BigTreasureState_cpp: # static initializer
 /* 802D90BC 002D5FFC  3C 80 80 51 */	lis r4, __float_nan@ha
 /* 802D90C0 002D6000  38 00 FF FF */	li r0, -1
 /* 802D90C4 002D6004  C0 04 48 B0 */	lfs f0, __float_nan@l(r4)
-/* 802D90C8 002D6008  3C 60 80 4D */	lis r3, lbl_804D2F90@ha
-/* 802D90CC 002D600C  90 0D 97 58 */	stw r0, lbl_80515DD8@sda21(r13)
-/* 802D90D0 002D6010  D4 03 2F 90 */	stfsu f0, lbl_804D2F90@l(r3)
-/* 802D90D4 002D6014  D0 0D 97 5C */	stfs f0, lbl_80515DDC@sda21(r13)
+/* 802D90C8 002D6008  3C 60 80 4D */	lis r3, govNAN___Q24Game5P2JST@ha
+/* 802D90CC 002D600C  90 0D 97 58 */	stw r0, gu32NAN___Q24Game5P2JST@sda21(r13)
+/* 802D90D0 002D6010  D4 03 2F 90 */	stfsu f0, govNAN___Q24Game5P2JST@l(r3)
+/* 802D90D4 002D6014  D0 0D 97 5C */	stfs f0, gfNAN___Q24Game5P2JST@sda21(r13)
 /* 802D90D8 002D6018  D0 03 00 04 */	stfs f0, 4(r3)
 /* 802D90DC 002D601C  D0 03 00 08 */	stfs f0, 8(r3)
 /* 802D90E0 002D6020  4E 80 00 20 */	blr 

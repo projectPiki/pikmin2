@@ -232,20 +232,16 @@ __vt__Q34Game11ElecOtakara3Obj:
 	.4byte "@760@12@viewStartCarryMotion__Q24Game9EnemyBaseFv"
 	.4byte "@760@12@viewOnPelletKilled__Q24Game9EnemyBaseFv"
 	.4byte "viewEntryShape__Q24Game10PelletViewFR7MatrixfR10Vector3<f>"
-	.4byte 0
 
 .section .sdata2, "a"     # 0x80516360 - 0x80520E40
 .balign 8
-.global lbl_8051C320
 lbl_8051C320:
-	.4byte 0x00000000
-.global lbl_8051C324
+	.float 0.0
 lbl_8051C324:
 	.float 1.0
-.global lbl_8051C328
+.balign 4
 lbl_8051C328:
-	.4byte 0x63656E74
-	.4byte 0x65720000
+	.asciz "center"
 
 .section .text, "ax"  # 0x800056C0 - 0x80472F00
 .global __ct__Q34Game11ElecOtakara3ObjFv

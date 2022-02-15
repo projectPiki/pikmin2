@@ -264,47 +264,49 @@ __vt__Q34Game5Armor3Obj:
 .section .sdata2, "a"     # 0x80516360 - 0x80520E40
 .balign 8
 lbl_8051B540:
-	.4byte 0x00000000
+	.float 0.0
 lbl_8051B544:
-	.4byte 0x42480000
+	.float 50.0
 lbl_8051B548:
-	.4byte 0x40200000
+	.float 2.5
 lbl_8051B54C:
-	.4byte 0x41C80000
+	.float 25.0
 lbl_8051B550:
 	.float 1.0
 lbl_8051B554:
-	.4byte 0xC47A0000
+	.float -1000.0
+.balign 4
 lbl_8051B558:
-	.4byte 0x6B616D75
-	.4byte 0x6A6E7400
+	.asciz "kamujnt"
+.balign 4
 lbl_8051B560:
-	.4byte 0x47000000
+	.float 32768.0
 lbl_8051B564:
 	.float 0.5
+.balign 8
 lbl_8051B568:
 	.4byte 0x43300000
 	.4byte 0x80000000
 lbl_8051B570:
-	.4byte 0x40A00000
+	.float 5.0
 lbl_8051B574:
-	.4byte 0xC2480000
+	.float -50.0
 lbl_8051B578:
-	.4byte 0x437A0000
+	.float 250.0
 lbl_8051B57C:
-	.4byte 0x3F400000
-lbl_8051B580:
-	.4byte 0x40490FDB
+	.float 0.75
+lbl_8051B580: # pi
+	.float 3.1415927
 lbl_8051B584:
-	.4byte 0x3BB60B61
+	.float 0.0055555557
 lbl_8051B588:
 	.float 0.7
 lbl_8051B58C:
-	.4byte 0xC1C80000
+	.float -25.0
 lbl_8051B590:
-	.4byte 0x443B8000
+	.float 750.0
 lbl_8051B594:
-	.4byte 0x3F666666
+	.float 0.9
 
 .section .text, "ax"  # 0x800056C0 - 0x80472F00
 .global __ct__Q34Game5Armor3ObjFv

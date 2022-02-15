@@ -70,26 +70,20 @@ __vt__Q34Game8ElecHiba3FSM:
 
 .section .sdata2, "a"     # 0x80516360 - 0x80520E40
 .balign 8
-.global lbl_8051B098
 lbl_8051B098:
-	.4byte 0x64656164
-	.4byte 0x00000000
-.global lbl_8051B0A0
+	.asciz "dead"
+.balign 4
 lbl_8051B0A0:
-	.4byte 0x77616974
-	.4byte 0x00000000
-.global lbl_8051B0A8
+	.asciz "wait"
+.balign 4
 lbl_8051B0A8:
-	.4byte 0x7369676E
-	.4byte 0x00000000
-.global lbl_8051B0B0
+	.asciz "sign"
+.balign 4
 lbl_8051B0B0:
-	.4byte 0x61747461
-	.4byte 0x636B0000
-.global lbl_8051B0B8
+	.asciz "attack"
+.balign 4
 lbl_8051B0B8:
-	.4byte 0x00000000
-	.4byte 0x00000000
+	.float 0.0
 
 .section .text, "ax"  # 0x800056C0 - 0x80472F00
 .global init__Q34Game8ElecHiba3FSMFPQ24Game9EnemyBase

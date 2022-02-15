@@ -5,11 +5,10 @@ lbl_constructor:
 
 .section .data, "wa"  # 0x8049E220 - 0x804EFC20
 .balign 8
-.global lbl_804D1978
-lbl_804D1978:
-	.4byte 0x00000000
-	.4byte 0x00000000
-	.4byte 0x00000000
+govNAN___Q24Game5P2JST:
+	.float 0.0
+	.float 0.0
+	.float 0.0
 .global __vt__Q34Game7BigFoot9StateWalk
 __vt__Q34Game7BigFoot9StateWalk:
 	.4byte 0
@@ -102,55 +101,41 @@ __vt__Q34Game7BigFoot3FSM:
 
 .section .sbss # 0x80514D80 - 0x80516360
 .balign 8
-.global lbl_80515DA8
-lbl_80515DA8:
+gu32NAN___Q24Game5P2JST:
 	.skip 0x4
-.global lbl_80515DAC
-lbl_80515DAC:
+gfNAN___Q24Game5P2JST:
 	.skip 0x4
 
 .section .sdata2, "a"     # 0x80516360 - 0x80520E40
 .balign 8
-.global lbl_8051C668
 lbl_8051C668:
-	.4byte 0x64656164
-	.4byte 0x00000000
-.global lbl_8051C670
+	.asciz "dead"
+.balign 4
 lbl_8051C670:
-	.4byte 0x73746179
-	.4byte 0x00000000
-.global lbl_8051C678
+	.asciz "stay"
+.balign 4
 lbl_8051C678:
-	.4byte 0x6C616E64
-	.4byte 0x00000000
-.global lbl_8051C680
-lbl_8051C680:
-	.4byte 0x77616974
-	.4byte 0x00000000
-.global lbl_8051C688
+	.asciz "land"
+.balign 4
+lbl_8051C680: # SDA BASE
+	.asciz "wait"
+.balign 4
 lbl_8051C688:
-	.4byte 0x666C6963
-	.4byte 0x6B000000
-.global lbl_8051C690
+	.asciz "flick"
+.balign 4
 lbl_8051C690:
-	.4byte 0x77616C6B
-	.4byte 0x00000000
-.global lbl_8051C698
+	.asciz "walk"
+.balign 4
 lbl_8051C698:
-	.4byte 0x00000000
-.global lbl_8051C69C
+	.float 0.0
 lbl_8051C69C:
-	.4byte 0x3A83126F
-.global lbl_8051C6A0
+	.float 0.001
 lbl_8051C6A0:
 	.float 1.0
-.global lbl_8051C6A4
 lbl_8051C6A4:
-	.4byte 0x40A00000
-.global lbl_8051C6A8
+	.float 5.0
 lbl_8051C6A8:
-	.4byte 0xC47A0000
-	.4byte 0x00000000
+	.float -1000.0
 
 .section .text, "ax"  # 0x800056C0 - 0x80472F00
 .global init__Q34Game7BigFoot3FSMFPQ24Game9EnemyBase
@@ -998,15 +983,14 @@ lbl_802C6EAC:
 /* 802C6EB4 002C3DF4  38 21 00 10 */	addi r1, r1, 0x10
 /* 802C6EB8 002C3DF8  4E 80 00 20 */	blr 
 
-.global __sinit_BigFootState_cpp
-__sinit_BigFootState_cpp:
+__sinit_BigFootState_cpp: # static initializer
 /* 802C6EBC 002C3DFC  3C 80 80 51 */	lis r4, __float_nan@ha
 /* 802C6EC0 002C3E00  38 00 FF FF */	li r0, -1
 /* 802C6EC4 002C3E04  C0 04 48 B0 */	lfs f0, __float_nan@l(r4)
-/* 802C6EC8 002C3E08  3C 60 80 4D */	lis r3, lbl_804D1978@ha
-/* 802C6ECC 002C3E0C  90 0D 97 28 */	stw r0, lbl_80515DA8@sda21(r13)
-/* 802C6ED0 002C3E10  D4 03 19 78 */	stfsu f0, lbl_804D1978@l(r3)
-/* 802C6ED4 002C3E14  D0 0D 97 2C */	stfs f0, lbl_80515DAC@sda21(r13)
+/* 802C6EC8 002C3E08  3C 60 80 4D */	lis r3, govNAN___Q24Game5P2JST@ha
+/* 802C6ECC 002C3E0C  90 0D 97 28 */	stw r0, gu32NAN___Q24Game5P2JST@sda21(r13)
+/* 802C6ED0 002C3E10  D4 03 19 78 */	stfsu f0, govNAN___Q24Game5P2JST@l(r3)
+/* 802C6ED4 002C3E14  D0 0D 97 2C */	stfs f0, gfNAN___Q24Game5P2JST@sda21(r13)
 /* 802C6ED8 002C3E18  D0 03 00 04 */	stfs f0, 4(r3)
 /* 802C6EDC 002C3E1C  D0 03 00 08 */	stfs f0, 8(r3)
 /* 802C6EE0 002C3E20  4E 80 00 20 */	blr 

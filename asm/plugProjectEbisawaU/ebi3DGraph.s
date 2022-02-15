@@ -1,30 +1,23 @@
 .include "macros.inc"
 .section .rodata  # 0x804732E0 - 0x8049E220
 .balign 8
-.global lbl_80496408
 lbl_80496408:
 	.asciz "ebi3DGraph.cpp"
-	.skip 1
-.global lbl_80496418
+.balign 4
 lbl_80496418:
 	.asciz "P2Assert"
-	.skip 3
 
 .section .sdata2, "a"     # 0x80516360 - 0x80520E40
 .balign 8
-.global lbl_8051F9D8
 lbl_8051F9D8:
 	.float 0.0
-.global lbl_8051F9DC
 lbl_8051F9DC:
 	.float 2.0
-.global lbl_8051F9E0
 lbl_8051F9E0:
 	.float 0.5
-.global lbl_8051F9E4
 lbl_8051F9E4:
 	.float 60.0
-.global lbl_8051F9E8
+.balign 8
 lbl_8051F9E8:
 	.4byte 0x43300000
 	.4byte 0x80000000

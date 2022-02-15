@@ -1,14 +1,11 @@
 .include "macros.inc"
 .section .rodata  # 0x804732E0 - 0x8049E220
 .balign 8
-.global lbl_80487C40
 lbl_80487C40:
 	.asciz "moveside"
-	.skip 3
-.global lbl_80487C4C
+.balign 4
 lbl_80487C4C:
 	.asciz "movecentre"
-	.skip 1
 
 .section .data, "wa"  # 0x8049E220 - 0x804EFC20
 .balign 8
@@ -191,68 +188,52 @@ __vt__Q34Game5Armor3FSM:
 
 .section .sdata2, "a"     # 0x80516360 - 0x80520E40
 .balign 8
-.global lbl_8051B728
 lbl_8051B728:
-	.4byte 0x64656164
-	.4byte 0x00000000
-.global lbl_8051B730
+	.asciz "dead"
+.balign 4
 lbl_8051B730:
-	.4byte 0x73746179
-	.4byte 0x00000000
-.global lbl_8051B738
+	.asciz "stay"
+.balign 4
 lbl_8051B738:
-	.4byte 0x61707065
-	.4byte 0x61720000
-.global lbl_8051B740
+	.asciz "appear"
+.balign 4
 lbl_8051B740:
-	.4byte 0x64697665
-	.4byte 0x00000000
-.global lbl_8051B748
+	.asciz "dive"
+.balign 4
 lbl_8051B748:
-	.4byte 0x6D6F7665
-	.4byte 0x00000000
-.global lbl_8051B750
+	.asciz "move"
+.balign 4
 lbl_8051B750:
-	.4byte 0x6D6F7665
-	.4byte 0x746F7000
-.global lbl_8051B758
+	.asciz "movetop"
+.balign 4
 lbl_8051B758:
-	.4byte 0x676F686F
-	.4byte 0x6D650000
-.global lbl_8051B760
+	.asciz "gohome"
+.balign 4
 lbl_8051B760:
-	.4byte 0x61747461
-	.4byte 0x636B3100
-.global lbl_8051B768
+	.asciz "attack1"
+.balign 4
 lbl_8051B768:
-	.4byte 0x61747461
-	.4byte 0x636B3200
-.global lbl_8051B770
+	.asciz "attack2"
+.balign 4
 lbl_8051B770:
-	.4byte 0x65617400
-.global lbl_8051B774
+	.asciz "eat"
+.balign 4
 lbl_8051B774:
-	.4byte 0x666C6963
-	.4byte 0x6B000000
-.global lbl_8051B77C
+	.asciz "flick"
+.balign 4
 lbl_8051B77C:
-	.4byte 0x6661696C
-	.4byte 0x00000000
-.global lbl_8051B784
+	.asciz "fail"
+.balign 4
 lbl_8051B784:
-	.4byte 0x00000000
-.global lbl_8051B788
-lbl_8051B788:
-	.4byte 0x40490FDB
-.global lbl_8051B78C
+	.float 0.0
+lbl_8051B788: # pi
+	.float 3.1415927
 lbl_8051B78C:
-	.4byte 0x3BB60B61
-.global lbl_8051B790
+	.float 0.0055555557
 lbl_8051B790:
-	.4byte 0x41880000
-.global lbl_8051B794
+	.float 17.0
 lbl_8051B794:
-	.4byte 0x41D80000
+	.float 27.0
 
 .section .text, "ax"  # 0x800056C0 - 0x80472F00
 .global init__Q34Game5Armor3FSMFPQ24Game9EnemyBase

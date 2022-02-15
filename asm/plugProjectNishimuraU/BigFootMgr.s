@@ -1,23 +1,23 @@
 .include "macros.inc"
 .section .rodata  # 0x804732E0 - 0x8049E220
 .balign 8
-.global lbl_8048B218
 lbl_8048B218:
 	.asciz "246-BigFootMgr"
-	.skip 1
-.global lbl_8048B228
+.balign 4
 lbl_8048B228:
 	.asciz "/enemy/data/BigFoot/ooashi_model.brk"
-	.skip 3
-.global lbl_8048B250
-lbl_8048B250:
+.balign 4
+lbl_8048B250: # Shift-JIS
 	.4byte 0x83498349
 	.4byte 0x83418356
 	.4byte 0x837D836C
 	.4byte 0x815B8357
 	.4byte 0x83830000
+.balign 4
+lbl_8048B264:
 	.asciz "EnemyParmsBase"
-	.skip 1
+.balign 4
+lbl_8048B274: # Shift-JIS
 	.4byte 0x8378815B
 	.4byte 0x83588C57
 	.4byte 0x90940000
@@ -254,16 +254,12 @@ lbl_8048B250:
 	.4byte 0x95A582A2
 	.4byte 0x91C58C82
 	.4byte 0x82630000
-.global lbl_8048B624
+.balign 4
 lbl_8048B624:
-	.4byte 0x42696746
-	.4byte 0x6F6F744D
-	.4byte 0x67722E63
-	.4byte 0x70700000
-.global lbl_8048B634
+	.asciz "BigFootMgr.cpp"
+.balign 4
 lbl_8048B634:
 	.asciz "P2Assert"
-	.skip 3
 
 .section .data, "wa"  # 0x8049E220 - 0x804EFC20
 .balign 8
@@ -330,58 +326,42 @@ __vt__Q34Game7BigFoot5Parms:
 	.4byte 0
 	.4byte 0
 	.4byte read__Q34Game7BigFoot5ParmsFR6Stream
-	.4byte 0
 
 .section .sdata, "wa"  # 0x80514680 - 0x80514D80
 .balign 8
-.global "cMatAnimBrkTexName__Q34Game7BigFoot24@unnamed@BigFootMgr_cpp@"
-"cMatAnimBrkTexName__Q34Game7BigFoot24@unnamed@BigFootMgr_cpp@":
+"cMatAnimBrkTexName__Q34Game7BigFoot24@unnamed@BigFootMgr_cpp@": # local object
 	.4byte lbl_8048B228
 
 .section .sdata2, "a"     # 0x80516360 - 0x80520E40
 .balign 8
-.global lbl_8051C6B0
 lbl_8051C6B0:
-	.4byte 0x40400000
-.global lbl_8051C6B4
+	.float 3.0
 lbl_8051C6B4:
-	.4byte 0x00000000
-.global lbl_8051C6B8
+	.float 0.0
 lbl_8051C6B8:
-	.4byte 0x41200000
-.global lbl_8051C6BC
+	.float 10.0
 lbl_8051C6BC:
-	.4byte 0xBE4CCCCD
-.global lbl_8051C6C0
+	.float -0.2
 lbl_8051C6C0:
-	.4byte 0xC0A00000
-.global lbl_8051C6C4
+	.float -5.0
 lbl_8051C6C4:
-	.4byte 0x40A00000
-.global lbl_8051C6C8
+	.float 5.0
 lbl_8051C6C8:
 	.float 0.5
-.global lbl_8051C6CC
 lbl_8051C6CC:
-	.4byte 0xC0200000
-.global lbl_8051C6D0
+	.float -2.5
 lbl_8051C6D0:
-	.4byte 0xC1200000
-.global lbl_8051C6D4
+	.float -10.0
 lbl_8051C6D4:
-	.4byte 0x42F00000
-.global lbl_8051C6D8
+	.float 120.0
 lbl_8051C6D8:
-	.4byte 0x43480000
-.global lbl_8051C6DC
+	.float 200.0
 lbl_8051C6DC:
-	.4byte 0xC0000000
-.global lbl_8051C6E0
+	.float -2.0
 lbl_8051C6E0:
-	.4byte 0x42480000
-.global lbl_8051C6E4
+	.float 50.0
 lbl_8051C6E4:
-	.4byte 0x42C80000
+	.float 100.0
 
 .section .text, "ax"  # 0x800056C0 - 0x80472F00
 .global __ct__Q34Game7BigFoot3MgrFiUc

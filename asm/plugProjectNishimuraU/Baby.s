@@ -230,58 +230,42 @@ __vt__Q34Game4Baby3Obj:
 
 .section .sdata2, "a"     # 0x80516360 - 0x80520E40
 .balign 8
-.global lbl_8051B8E0
 lbl_8051B8E0:
-	.4byte 0x40200000
-.global lbl_8051B8E4
+	.float 2.5
 lbl_8051B8E4:
-	.4byte 0x00000000
-.global lbl_8051B8E8
+	.float 0.0
 lbl_8051B8E8:
 	.float 1.0
-.global lbl_8051B8EC
 lbl_8051B8EC:
-	.4byte 0x42480000
-.global lbl_8051B8F0
+	.float 50.0
 lbl_8051B8F0:
-	.4byte 0x41200000
-.global lbl_8051B8F4
+	.float 10.0
+.balign 4
 lbl_8051B8F4:
-	.4byte 0x6B616D75
-	.4byte 0x00000000
-.global lbl_8051B8FC
+	.asciz "kamu"
+.balign 4
 lbl_8051B8FC:
-	.4byte 0x41A00000
-.global lbl_8051B900
+	.float 20.0
 lbl_8051B900:
-	.4byte 0x47000000
-	.4byte 0x00000000
-.global lbl_8051B908
+	.float 32768.0
+.balign 8
 lbl_8051B908:
 	.4byte 0x43300000
 	.4byte 0x80000000
-.global lbl_8051B910
 lbl_8051B910:
-	.4byte 0x43FA0000
-.global lbl_8051B914
+	.float 500.0
 lbl_8051B914:
-	.4byte 0x42C80000
-.global lbl_8051B918
-lbl_8051B918:
-	.4byte 0x40490FDB
-.global lbl_8051B91C
-lbl_8051B91C:
-	.4byte 0x3FC90FDB
-.global lbl_8051B920
+	.float 100.0
+lbl_8051B918: # pi
+	.float 3.1415927
+lbl_8051B91C: # half-pi
+	.float 1.5707964
 lbl_8051B920:
-	.4byte 0xC3A2F983
-.global lbl_8051B924
+	.float -325.9493
 lbl_8051B924:
-	.4byte 0x43A2F983
-.global lbl_8051B928
+	.float 325.9493
 lbl_8051B928:
-	.4byte 0x437A0000
-	.4byte 0x00000000
+	.float 250.0
 
 .section .text, "ax"  # 0x800056C0 - 0x80472F00
 .global __ct__Q34Game4Baby3ObjFv
