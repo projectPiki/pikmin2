@@ -2,6 +2,7 @@
 #include "ebi/E3DGraph.h"
 
 extern J3DMtxCalcAnmBase* J3DNewMtxCalcAnm(u32, J3DAnmTransform*);
+// put this somewhere relevant in a header, perhaps? -Epoch
 
 namespace ebi {
 
@@ -11,7 +12,6 @@ namespace ebi {
  * Size:	000104
  */
 void E3DAnimRes::load(J3DModelData* param_1, JKRArchive* param_2, char* param_3)
-
 {
 	void* pvVar1 = param_2->getResource(param_3);
 

@@ -403,7 +403,6 @@ __vt__Q28PSSystem11SeqDataList:
 	.4byte 0
 	.4byte 0
 	.4byte "__dt__Q28PSSystem39SingletonBase<Q28PSSystem11SeqDataList>Fv"
-	.4byte 0
 
 .section .sbss # 0x80514D80 - 0x80516360
 .balign 8
@@ -425,7 +424,7 @@ lbl_8051E0A4:
 .global lbl_8051E0A8
 lbl_8051E0A8:
 	.float 1.0
-	.4byte 0x00000000
+.balign 8
 .global lbl_8051E0B0
 lbl_8051E0B0:
 	.4byte 0x43300000

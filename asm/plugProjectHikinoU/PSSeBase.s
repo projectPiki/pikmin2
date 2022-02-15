@@ -7,10 +7,8 @@ lbl_80490100:
 	.4byte 0x42617365
 	.4byte 0x2E637070
 	.4byte 0x00000000
-.global lbl_80490110
 lbl_80490110:
 	.asciz "P2Assert"
-	.skip 3
 
 .section .data, "wa"  # 0x8049E220 - 0x804EFC20
 .balign 8
@@ -41,19 +39,15 @@ __vt__Q28PSSystem9EnvSeBase:
 
 .section .sdata2, "a"     # 0x80516360 - 0x80520E40
 .balign 8
-.global lbl_8051E1C0
 lbl_8051E1C0:
 	.4byte 0x00000000
-.global lbl_8051E1C4
 lbl_8051E1C4:
 	.float 0.3
-.global lbl_8051E1C8
 lbl_8051E1C8:
 	.4byte 0x3ECCCCCD
-.global lbl_8051E1CC
 lbl_8051E1CC:
 	.float 1.0
-.global lbl_8051E1D0
+.balign 8
 lbl_8051E1D0:
 	.4byte 0x43300000
 	.4byte 0x00000000

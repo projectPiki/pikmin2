@@ -43,7 +43,7 @@ struct E3DAnimCtrl {
 	f32 _00;
 	f32 _04;
 	int _08;
-	E3DAnimRes* _0C; // unconfirmed, but likely - Epoch
+	E3DAnimRes* _0C; // basically confirmed? - Epoch
 	E3DAnimFolderBase* pAnimFolder_0x10;
 
 	void setAnimFolder(ebi::E3DAnimFolderBase*);
