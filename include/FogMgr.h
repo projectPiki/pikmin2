@@ -20,7 +20,7 @@ struct FogMgr : public CNode {
 	GXFogType m_type; // _18
 	float m_nearZ;    // _1C
 	float m_farZ;     // _20
-	Color4 m_color;   // _24
+	u_color m_color;  // _24
 };
 
 #endif
