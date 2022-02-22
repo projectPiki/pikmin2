@@ -1144,7 +1144,6 @@ enum SoundID {
 	PSSTR_EXPLAIN_75             = 0x1049,
 	PSSTR_EXPLAIN_90             = 0x104A,
 	dropItem                     = 22544,
-	_PSSE_FORCE_UINT             = 0xFFFFFFFF
 };
 
 #endif

@@ -4,16 +4,7 @@
 namespace og {
 namespace Screen {
 struct ScaleMgr {
-	enum State {
-		SCM_Unknown_0 = 0,
-		SCM_Growing,
-		SCM_Shrinking,
-		SCM_OtherGrowingMaybe,
-
-		// Force the compiler to use an int to represent the enum
-		DONT_USE_1 = -1,
-		DONT_USE_2 = 0xFFFFFFFF
-	};
+	enum State { SCM_Unknown_0 = 0, SCM_Growing, SCM_Shrinking, SCM_OtherGrowingMaybe };
 
 	~ScaleMgr(); // { }
 	ScaleMgr();

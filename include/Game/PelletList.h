@@ -12,10 +12,6 @@ struct PelletList {
 		OTAKARA,
 		ITEM,
 		SIZE,
-
-		// Force the compiler to use an int to represent the enum
-		DONT_USE_1 = -1,
-		DONT_USE_2 = 0xFFFFFFFF,
 	};
 
 	struct Mgr {

@@ -13,16 +13,8 @@ namespace Game {
 struct BaseGameSection;
 struct TimeMgr;
 
-#pragma enumalwaysint on
-enum GameSystemMode {
-	GSM_FORCE_INT  = -0xFFFF,
-	GSM_STORY_MODE = 0,
-	GSM_VERSUS_MODE,
-	GSM_ONE_PLAYER_CHALLENGE,
-	GSM_TWO_PLAYER_CHALLENGE,
-	GSM_PIKLOPEDIA,
-};
-#pragma enumalwaysint reset
+enum GameSystemMode { GSM_STORY_MODE = 0, GSM_VERSUS_MODE, GSM_ONE_PLAYER_CHALLENGE, GSM_TWO_PLAYER_CHALLENGE, GSM_PIKLOPEDIA };
+
 struct GameSystem : public NodeObjectMgr<GenericObjectMgr> {
 	GameSystem(Game::BaseGameSection*);
 	// vtable 1

@@ -47,7 +47,7 @@ struct CallBack_CatchPiki : public P2DScreen::CallBackNode {
 };
 
 struct CallBack_CounterRV : public P2DScreen::CallBackNode {
-	enum EnumCenteringMode { ECM_Unknown0 = 0, ECM_Unknown1 = 1, ECM_UNKNOWN_2 = 2, _ECM_FORCE_UINT = 0xFFFFFFFF };
+	enum EnumCenteringMode { ECM_Unknown0 = 0, ECM_Unknown1 = 1, ECM_UNKNOWN_2 = 2 };
 
 	CallBack_CounterRV(char**, u16, u16, JKRArchive*);
 
@@ -208,7 +208,8 @@ struct CallBack_Furiko : public P2DScreen::CallBackNode {
 };
 
 struct CallBack_LifeGauge : public P2DScreen::CallBackNode {
-	enum LifeGaugeType { _LGT_FORCE_UINT = 0xFFFFFFFF };
+	// what goes here?
+	enum LifeGaugeType {};
 
 	CallBack_LifeGauge();
 

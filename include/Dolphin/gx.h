@@ -363,9 +363,8 @@ typedef enum _SDK_GXFogType {
 	                       // For perspective projection mode.
 	GX_FOG_REVERSEEXP = 6, // Use the inverse exponential fog density function.
 	                       // For perspective projection mode.
-	GX_FOG_REVERSEXP2 = 7, // Use the inverse exponential-squared fog density
+	GX_FOG_REVERSEXP2 = 7  // Use the inverse exponential-squared fog density
 	                       // function. For perspective projection mode.
-	_FORCE_UINT = 0xFFFFFFFF
 } GXFogType;
 
 typedef struct _SDK_GXColor {

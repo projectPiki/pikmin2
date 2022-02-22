@@ -6,8 +6,7 @@
 struct JKRFile;
 
 // Named after standard C++ constants with the exact same meaning.
-// (Except _FORCE_UINT, of course.)
-enum JSUStreamSeekFrom { SEEK_SET = 0, SEEK_CUR, SEEK_END, _SEEK_FORCE_UINT = 0xFFFFFFFF };
+enum JSUStreamSeekFrom { SEEK_SET = 0, SEEK_CUR, SEEK_END };
 
 struct JSUIosBase {
 	inline JSUIosBase()

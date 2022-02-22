@@ -15,9 +15,8 @@ struct DeathMgr {
 		COD_Unknown4,
 		COD_Unknown5,
 		COD_Unknown6,
-		COD_All,                   // All causes combined
-		COD_SourceCount = COD_All, // Count of individual causes
-		_FORCE_UINT     = 0xFFFFFFFF
+		COD_All,                  // All causes combined
+		COD_SourceCount = COD_All // Count of individual causes
 	};
 	DeathMgr();
 

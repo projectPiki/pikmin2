@@ -27,8 +27,7 @@ struct BootSection : public Game::BaseHIOSection {
 		SID_SET_INTERLACE,
 		SID_SET_PROGRESSIVE,
 		SID_DOLBY_LOGO_1,
-		SID_DOLBY_LOGO_2,
-		_FORCE_UINT = 0xFFFFFFFF
+		SID_DOLBY_LOGO_2
 	};
 
 	BootSection(JKRHeap*);
