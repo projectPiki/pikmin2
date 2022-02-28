@@ -22,9 +22,11 @@ extern RandMapMgr* randMapMgr;
  * --INFO--
  * Address:	8024C5E4
  * Size:	0000F0
+ * Matches!
  */
 void RoomMapMgr::nishimuraCreateRandomMap(MapUnitInterface* muiArray, int p2, Cave::FloorInfo* floorInfo, bool p4, Cave::EditMapUnit* unit)
 {
+	// p2 and p4 could stand to have more descriptive parameter names
 	bool isVersusHiba = false;
 	if (gameSystem != nullptr && gameSystem->m_mode == GSM_VERSUS_MODE && gGameConfig.m_parms.m_vsHiba.m_data != 0) {
 		isVersusHiba = true;
@@ -34,79 +36,9 @@ void RoomMapMgr::nishimuraCreateRandomMap(MapUnitInterface* muiArray, int p2, Ca
 	Cave::randMapMgr->create();
 	int numRooms = Cave::randMapMgr->getNumRooms();
 	for (int roomIndex = 0; roomIndex < numRooms; roomIndex++) {
-		useUnit(Cave::randMapMgr->getUseUnitName(roomIndex));
+		char* name = Cave::randMapMgr->getUseUnitName(roomIndex);
+		useUnit(name);
 	}
-	/*
-	.loc_0x0:
-	  stwu      r1, -0x30(r1)
-	  mflr      r0
-	  stw       r0, 0x34(r1)
-	  stmw      r25, 0x14(r1)
-	  mr        r31, r3
-	  mr        r25, r4
-	  mr        r26, r5
-	  mr        r27, r6
-	  mr        r28, r7
-	  mr        r29, r8
-	  li        r30, 0
-	  lwz       r9, -0x6C18(r13)
-	  cmplwi    r9, 0
-	  beq-      .loc_0x5C
-	  lwz       r0, 0x44(r9)
-	  cmpwi     r0, 0x1
-	  bne-      .loc_0x5C
-	  lis       r3, 0x8051
-	  addi      r3, r3, 0x41FC
-	  lwz       r0, 0x1A8(r3)
-	  cmpwi     r0, 0
-	  beq-      .loc_0x5C
-	  li        r30, 0x1
-
-	.loc_0x5C:
-	  li        r3, 0x48
-	  bl        -0x2287A0
-	  mr.       r0, r3
-	  beq-      .loc_0x78
-	  mr        r4, r30
-	  bl        -0x812C
-	  mr        r0, r3
-
-	.loc_0x78:
-	  stw       r0, -0x6978(r13)
-	  mr        r3, r0
-	  mr        r4, r25
-	  mr        r5, r26
-	  mr        r6, r27
-	  mr        r7, r28
-	  mr        r8, r29
-	  bl        -0x80C8
-	  lwz       r3, -0x6978(r13)
-	  bl        -0x7F2C
-	  lwz       r3, -0x6978(r13)
-	  bl        -0x7E30
-	  mr        r30, r3
-	  li        r29, 0
-	  b         .loc_0xD4
-
-	.loc_0xB4:
-	  lwz       r3, -0x6978(r13)
-	  mr        r4, r29
-	  bl        -0x7E14
-	  mr        r0, r3
-	  mr        r3, r31
-	  mr        r4, r0
-	  bl        -0x93630
-	  addi      r29, r29, 0x1
-
-	.loc_0xD4:
-	  cmpw      r29, r30
-	  blt+      .loc_0xB4
-	  lmw       r25, 0x14(r1)
-	  lwz       r0, 0x34(r1)
-	  mtlr      r0
-	  addi      r1, r1, 0x30
-	  blr
-	*/
 }
 
 /*
