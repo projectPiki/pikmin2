@@ -9,6 +9,7 @@ typedef struct {
 } div_t;
 
 div_t div(s32 __numer, s32 __denom);
+long labs(long __x);
 int abs(int __x);
 
 #endif

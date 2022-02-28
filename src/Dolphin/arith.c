@@ -1,4 +1,4 @@
-#include "dolphin/arith.h"
+#include "Dolphin/arith.h"
 
 /*
  * --INFO--
@@ -214,9 +214,17 @@ void llabs(void)
  * Address:	........
  * Size:	000010
  */
-void labs(void)
+long labs(long __x)
 {
 	// UNUSED FUNCTION
+	return (__x >> 0x1f ^ __x) - (__x >> 0x1f);
+	/*
+	.loc_0x0:
+	  srawi     r4, r3, 0x1F
+	  xor       r0, r4, r3
+	  sub       r3, r0, r4
+	  blr
+	*/
 }
 
 /*

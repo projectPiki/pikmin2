@@ -304,6 +304,7 @@ void iswblank(void)
  */
 int toupper(int __c)
 {
+	// UNUSED FUNCTION
 	{
 		if (__c == -1) {
 			return 0xffffffff;
