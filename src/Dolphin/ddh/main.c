@@ -1,4 +1,5 @@
 #include "types.h"
+#include "trk.h"
 #include "Dolphin/AmcExi2Stubs.h"
 /*
  * --INFO--
@@ -16,47 +17,21 @@ BOOL ddh_cc_initinterrupts(void)
  * Address:	800C0C74
  * Size:	000070
  */
-void ddh_cc_peek(void)
+int ddh_cc_peek(void)
 {
-	/*
-	.loc_0x0:
-	  stwu      r1, -0x810(r1)
-	  mflr      r0
-	  stw       r0, 0x814(r1)
-	  stw       r31, 0x80C(r1)
-	  bl        0x119C8
-	  mr.       r31, r3
-	  bgt-      .loc_0x24
-	  li        r3, 0
-	  b         .loc_0x5C
+	s32 temp_r3;
+	u8 sp8[2048];
 
-	.loc_0x24:
-	  mr        r4, r31
-	  addi      r3, r1, 0x8
-	  bl        0x119B4
-	  cmpwi     r3, 0
-	  bne-      .loc_0x50
-	  lis       r3, 0x804F
-	  mr        r5, r31
-	  addi      r3, r3, 0x5020
-	  addi      r4, r1, 0x8
-	  bl        0x3E0
-	  b         .loc_0x58
-
-	.loc_0x50:
-	  li        r3, -0x2719
-	  b         .loc_0x5C
-
-	.loc_0x58:
-	  mr        r3, r31
-
-	.loc_0x5C:
-	  lwz       r0, 0x814(r1)
-	  lwz       r31, 0x80C(r1)
-	  mtlr      r0
-	  addi      r1, r1, 0x810
-	  blr
-	*/
+	temp_r3 = EXI2_Poll();
+	if (temp_r3 <= 0) {
+		return 0;
+	}
+	if (EXI2_ReadN(sp8, temp_r3) == 0) {
+		CircleBufferWriteBytes(gRecvCB, sp8, temp_r3);
+	} else {
+		return -0x2719;
+	}
+	return temp_r3;
 }
 
 /*
@@ -64,20 +39,10 @@ void ddh_cc_peek(void)
  * Address:	800C0CE4
  * Size:	000024
  */
-void ddh_cc_post_stop(void)
+BOOL ddh_cc_post_stop(void)
 {
-	/*
-	.loc_0x0:
-	  stwu      r1, -0x10(r1)
-	  mflr      r0
-	  stw       r0, 0x14(r1)
-	  bl        0x11974
-	  lwz       r0, 0x14(r1)
-	  li        r3, 0
-	  mtlr      r0
-	  addi      r1, r1, 0x10
-	  blr
-	*/
+	EXI2_Reserve();
+	return FALSE;
 }
 
 /*
@@ -85,20 +50,10 @@ void ddh_cc_post_stop(void)
  * Address:	800C0D08
  * Size:	000024
  */
-void ddh_cc_pre_continue(void)
+BOOL ddh_cc_pre_continue(void)
 {
-	/*
-	.loc_0x0:
-	  stwu      r1, -0x10(r1)
-	  mflr      r0
-	  stw       r0, 0x14(r1)
-	  bl        0x11954
-	  lwz       r0, 0x14(r1)
-	  li        r3, 0
-	  mtlr      r0
-	  addi      r1, r1, 0x10
-	  blr
-	*/
+	EXI2_Unreserve();
+	return FALSE;
 }
 
 /*

@@ -58,10 +58,9 @@ void RoomMapMgr::nishimuraPlaceRooms(void)
 		Vector3f startPos(0.0f, 0.0f, 0.0f);
 		Cave::randMapMgr->getStartPosition(startPos, i);
 
-		Vector3f* pStartPos = &m_startPositions[i];
-		pStartPos->x        = startPos.x;
-		pStartPos->y        = startPos.y;
-		pStartPos->z        = startPos.z;
+		m_startPositions[i].x = startPos.x;
+		m_startPositions[i].y = startPos.y;
+		m_startPositions[i].z = startPos.z;
 	}
 }
 
@@ -69,48 +68,15 @@ void RoomMapMgr::nishimuraPlaceRooms(void)
  * --INFO--
  * Address:	8024C7F0
  * Size:	000088
+ * Matches!
  */
 void RoomMapMgr::nishimuraSetTexture(void)
 {
-	/*
-	stwu     r1, -0x20(r1)
-	mflr     r0
-	stw      r0, 0x24(r1)
-	stw      r31, 0x1c(r1)
-	stw      r30, 0x18(r1)
-	stw      r29, 0x14(r1)
-	mr       r29, r3
-	lwz      r3, randMapMgr__Q24Game4Cave@sda21(r13)
-	bl       getNumRooms__Q34Game4Cave10RandMapMgrFv
-	mr       r31, r3
-	li       r30, 0
-	b        lbl_8024C854
-
-lbl_8024C820:
-	lwz      r3, randMapMgr__Q24Game4Cave@sda21(r13)
-	mr       r4, r30
-	bl       getUseUnitName__Q34Game4Cave10RandMapMgrFi
-	mr       r0, r3
-	mr       r3, r29
-	mr       r4, r0
-	bl       getTexture__Q24Game10RoomMapMgrFPc
-	mr       r0, r3
-	lwz      r3, randMapMgr__Q24Game4Cave@sda21(r13)
-	mr       r5, r0
-	mr       r4, r30
-	bl       setUnitTexture__Q34Game4Cave10RandMapMgrFiP10JUTTexture
-	addi     r30, r30, 1
-
-lbl_8024C854:
-	cmpw     r30, r31
-	blt      lbl_8024C820
-	lwz      r0, 0x24(r1)
-	lwz      r31, 0x1c(r1)
-	lwz      r30, 0x18(r1)
-	lwz      r29, 0x14(r1)
-	mtlr     r0
-	addi     r1, r1, 0x20
-	blr
-	*/
+	int numRooms = Cave::randMapMgr->getNumRooms();
+	for (int unitIndex = 0; unitIndex < numRooms; unitIndex++) {
+		char* unitName      = Cave::randMapMgr->getUseUnitName(unitIndex);
+		JUTTexture* texture = getTexture(unitName);
+		Cave::randMapMgr->setUnitTexture(unitIndex, texture);
+	}
 }
 } // namespace Game

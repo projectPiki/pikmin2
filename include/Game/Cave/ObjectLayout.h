@@ -6,6 +6,14 @@
 
 namespace Game {
 struct ObjectLayoutNode : public CNode {
+	virtual int getObjectId();
+	virtual u8 getObjectType();
+	virtual int getBirthCount();
+	virtual double getDirection();
+	virtual int getBirthDoorIndex();
+	virtual void getBirthPosition(float&, float&);
+	virtual u32 getExtraCode();
+	virtual bool isFixedBattery();
 };
 
 struct ObjectLayoutInfo {

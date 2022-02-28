@@ -2,6 +2,7 @@
 #define _GAME_CAVE_RANDMAPMGR_H
 
 #include "types.h"
+#include "Game/mapParts.h"
 #include "Game/Cave/RandMapUnit.h"
 #include "JSystem/JUT/JUTTexture.h"
 
@@ -50,6 +51,7 @@ struct RandMapMgr : public CNode {
 	RoomLink* makeRoomLink(int);
 	ObjectLayoutInfo* makeObjectLayoutInfo(int);
 	void getStartPosition(Vector3f&, int);
+	void setUnitTexture(int, JUTTexture*);
 };
 } // namespace Cave
 } // namespace Game

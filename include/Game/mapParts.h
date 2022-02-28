@@ -200,17 +200,6 @@ struct MapRoom : public CellObject {
 	Sys::Sphere _190;                       // _190
 };
 
-struct ObjectLayoutNode : public CNode {
-	virtual int getObjectId();
-	virtual u8 getObjectType();
-	virtual int getBirthCount();
-	virtual double getDirection();
-	virtual int getBirthDoorIndex();
-	virtual void getBirthPosition(float&, float&);
-	virtual u32 getExtraCode();
-	virtual bool isFixedBattery();
-};
-
 struct RoomMapMgr : public MapMgr {
 	SysShape::Model* m_modelOrCaveVRBoxOrBothMaybe; // _24
 	Cave::CaveInfo* m_caveInfo;                     // _28
@@ -242,6 +231,7 @@ struct RoomMapMgr : public MapMgr {
 	void useUnit(char*);
 	void allocRooms(int);
 	void makeRoom(char*, float, float, int, int, Game::RoomLink*, Game::ObjectLayoutInfo*);
+	JUTTexture* getTexture(char*);
 };
 
 struct CaveVRBox {
