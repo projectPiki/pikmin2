@@ -46,6 +46,10 @@ struct RandMapMgr : public CNode {
 	int getNumRooms(void);
 	char* getUseUnitName(int);
 	void loadResource(Game::MapUnitInterface*, int, Game::Cave::FloorInfo*, bool, Game::Cave::EditMapUnit*);
+	char* getRoomData(int index, float& centreX, float& centreY, int& direction);
+	RoomLink* makeRoomLink(int);
+	ObjectLayoutInfo* makeObjectLayoutInfo(int);
+	void getStartPosition(Vector3f&, int);
 };
 } // namespace Cave
 } // namespace Game

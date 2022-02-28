@@ -8,6 +8,13 @@ namespace Game {
 struct ObjectLayoutNode : public CNode {
 };
 
+struct ObjectLayoutInfo {
+	ObjectLayoutInfo() { }
+
+	virtual s32 getCount(int)        = 0;
+	virtual CNode* getNode(int, int) = 0;
+};
+
 namespace Cave {
 struct MapNode : public CNode {
 	struct UnitInfo* m_unitInfo; // _18
@@ -23,13 +30,6 @@ struct MapNode : public CNode {
 	s32 m_enemyScore;     // _34
 	s32 m_nodeScore;      // _38
 	s32 m_vsScore;        // _3C
-};
-
-struct ObjectLayoutInfo {
-	ObjectLayoutInfo() { }
-
-	virtual s32 getCount(int)        = 0;
-	virtual CNode* getNode(int, int) = 0;
 };
 
 struct ObjectLayout : public ObjectLayoutInfo {
