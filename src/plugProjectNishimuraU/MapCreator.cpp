@@ -1,4 +1,6 @@
 #include "Game/GameSystem.h"
+#include "Game/GameConfig.h"
+#include "Game/Cave/RandMapMgr.h"
 #include "Game/mapParts.h"
 #include "types.h"
 
@@ -13,7 +15,9 @@
 */
 
 namespace Game {
-
+namespace Cave {
+extern RandMapMgr* randMapMgr;
+} // namespace Cave
 /*
  * --INFO--
  * Address:	8024C5E4
@@ -22,16 +26,15 @@ namespace Game {
 void RoomMapMgr::nishimuraCreateRandomMap(MapUnitInterface* muiArray, int p2, Cave::FloorInfo* floorInfo, bool p4, Cave::EditMapUnit* unit)
 {
 	bool isVersusHiba = false;
-	if (gameSystem != nullptr && gameSystem->m_mode == GSM_VERSUS_MODE && gGameConfig.m_parms.m_vsHiba.m_value != 0) {
+	if (gameSystem != nullptr && gameSystem->m_mode == GSM_VERSUS_MODE && gGameConfig.m_parms.m_vsHiba.m_data != 0) {
 		isVersusHiba = true;
-	}
-	RandMapMgr* mgr        = new RandMapMgr(isVersusHiba);
-	Game::Cave::randMapMgr = mgr;
-	mgr->loadResource(muiArray, p2, floorInfo, p4, unit);
-	Game::Cave::randMapMgr->create();
-	int numRooms = Game::Cave::randMapMgr->getNumRooms();
+	} // maybe a ternary or inline?
+	Cave::randMapMgr = new Cave::RandMapMgr(isVersusHiba);
+	Cave::randMapMgr->loadResource(muiArray, p2, floorInfo, p4, unit);
+	Cave::randMapMgr->create();
+	int numRooms = Cave::randMapMgr->getNumRooms();
 	for (int roomIndex = 0; roomIndex < numRooms; roomIndex++) {
-		useUnit(Game::Cave::randMapMgr->useUnitName(roomIndex));
+		useUnit(Cave::randMapMgr->getUseUnitName(roomIndex));
 	}
 	/*
 	.loc_0x0:

@@ -216,6 +216,7 @@ struct RoomMapMgr : public MapMgr {
 	void nishimuraCreateRandomMap(MapUnitInterface*, int, Cave::FloorInfo*, bool, Cave::EditMapUnit*);
 	void nishimuraPlaceRooms();
 	void nishimuraSetTexture();
+	void useUnit(char*);
 };
 
 struct CaveVRBox {
