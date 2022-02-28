@@ -3,6 +3,7 @@
 #include "SysShape/AnimInfo.h"
 #include "SysShape/AnimMgr.h"
 #include "types.h"
+#include "nans.h"
 
 /*
     Generated from dpostproc

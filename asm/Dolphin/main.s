@@ -1,78 +1,31 @@
 .include "macros.inc"
 .section .rodata  # 0x804732E0 - 0x8049E220
 .balign 8
-.global lbl_80479E30
 lbl_80479E30:
-	.4byte 0x6363206E
-	.4byte 0x6F742069
-	.4byte 0x6E697469
-	.4byte 0x616C697A
-	.4byte 0x65640A00
-	.4byte 0x63635F77
-	.4byte 0x72697465
-	.4byte 0x203A204F
-	.4byte 0x75747075
-	.4byte 0x74206461
-	.4byte 0x74612030
-	.4byte 0x78253038
-	.4byte 0x7820256C
-	.4byte 0x64206279
-	.4byte 0x7465730A
-	.4byte 0x00000000
-	.4byte 0x63635F77
-	.4byte 0x72697465
-	.4byte 0x2073656E
-	.4byte 0x64696E67
-	.4byte 0x20256C64
-	.4byte 0x20627974
-	.4byte 0x65730A00
-.global lbl_80479E8C
+	.asciz "cc not initialized\n"
+.balign 4
+lbl_80479E44:
+	.asciz "cc_write : Output data 0x%08x %ld bytes\n"
+.balign 4
+lbl_80479E70:
+	.asciz "cc_write sending %ld bytes\n"
+.balign 4
 lbl_80479E8C:
-	.4byte 0x45787065
-	.4byte 0x63746564
-	.4byte 0x20706163
-	.4byte 0x6B657420
-	.4byte 0x73697A65
-	.4byte 0x203A2030
-	.4byte 0x78253038
-	.4byte 0x78202825
-	.4byte 0x6C64290A
-	.4byte 0x00000000
-.global lbl_80479EB4
+	.asciz "Expected packet size : 0x%08x (%ld)\n"
+.balign 4
 lbl_80479EB4:
-	.4byte 0x63635F72
-	.4byte 0x65616420
-	.4byte 0x3A206572
-	.4byte 0x726F7220
-	.4byte 0x72656164
-	.4byte 0x696E6720
-	.4byte 0x62797465
-	.4byte 0x73206672
-	.4byte 0x6F6D2045
-	.4byte 0x58493220
-	.4byte 0x256C640A
-	.4byte 0x00000000
-.global lbl_80479EE4
+	.asciz "cc_read : error reading bytes from EXI2 %ld\n"
+.balign 4
 lbl_80479EE4:
-	.4byte 0x43414C4C
-	.4byte 0x494E4720
-	.4byte 0x45584932
-	.4byte 0x5F496E69
-	.4byte 0x740A0000
-.global lbl_80479EF8
+	.asciz "CALLING EXI2_Init\n"
+.balign 4
 lbl_80479EF8:
-	.4byte 0x444F4E45
-	.4byte 0x2043414C
-	.4byte 0x4C494E47
-	.4byte 0x20455849
-	.4byte 0x325F496E
-	.4byte 0x69740A00
+	.asciz "DONE CALLING EXI2_Init\n"
 
 .section .sbss # 0x80514D80 - 0x80516360
 .balign 8
-.global gIsInitialized_1
-gIsInitialized_1:
-	.skip 0x8
+gIsInitialized:
+	.skip 4
 
 .section .text, "ax"  # 0x800056C0 - 0x80472F00
 .global gdev_cc_initinterrupts
@@ -158,7 +111,7 @@ gdev_cc_write:
 /* 800C12F4 000BE234  7C 9E 23 78 */	mr r30, r4
 /* 800C12F8 000BE238  93 A1 00 14 */	stw r29, 0x14(r1)
 /* 800C12FC 000BE23C  7C 7D 1B 78 */	mr r29, r3
-/* 800C1300 000BE240  80 0D 8C 98 */	lwz r0, gIsInitialized_1@sda21(r13)
+/* 800C1300 000BE240  80 0D 8C 98 */	lwz r0, gIsInitialized@sda21(r13)
 /* 800C1304 000BE244  2C 00 00 00 */	cmpwi r0, 0
 /* 800C1308 000BE248  40 82 00 1C */	bne lbl_800C1324
 /* 800C130C 000BE24C  38 9F 00 00 */	addi r4, r31, 0
@@ -211,7 +164,7 @@ gdev_cc_read:
 /* 800C13A8 000BE2E8  7C 7A 1B 78 */	mr r26, r3
 /* 800C13AC 000BE2EC  7C 9B 23 78 */	mr r27, r4
 /* 800C13B0 000BE2F0  3B 80 00 00 */	li r28, 0
-/* 800C13B4 000BE2F4  80 0D 8C 98 */	lwz r0, gIsInitialized_1@sda21(r13)
+/* 800C13B4 000BE2F4  80 0D 8C 98 */	lwz r0, gIsInitialized@sda21(r13)
 /* 800C13B8 000BE2F8  2C 00 00 00 */	cmpwi r0, 0
 /* 800C13BC 000BE2FC  40 82 00 0C */	bne lbl_800C13C8
 /* 800C13C0 000BE300  38 60 D8 EF */	li r3, -10001
@@ -279,7 +232,7 @@ gdev_cc_close:
 
 .global gdev_cc_open
 gdev_cc_open:
-/* 800C1494 000BE3D4  80 0D 8C 98 */	lwz r0, gIsInitialized_1@sda21(r13)
+/* 800C1494 000BE3D4  80 0D 8C 98 */	lwz r0, gIsInitialized@sda21(r13)
 /* 800C1498 000BE3D8  2C 00 00 00 */	cmpwi r0, 0
 /* 800C149C 000BE3DC  41 82 00 0C */	beq lbl_800C14A8
 /* 800C14A0 000BE3E0  38 60 D8 EB */	li r3, -10005
@@ -287,7 +240,7 @@ gdev_cc_open:
 lbl_800C14A8:
 /* 800C14A8 000BE3E8  38 00 00 01 */	li r0, 1
 /* 800C14AC 000BE3EC  38 60 00 00 */	li r3, 0
-/* 800C14B0 000BE3F0  90 0D 8C 98 */	stw r0, gIsInitialized_1@sda21(r13)
+/* 800C14B0 000BE3F0  90 0D 8C 98 */	stw r0, gIsInitialized@sda21(r13)
 /* 800C14B4 000BE3F4  4E 80 00 20 */	blr 
 
 .global gdev_cc_shutdown

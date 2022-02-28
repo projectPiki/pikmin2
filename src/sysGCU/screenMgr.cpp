@@ -1,5 +1,6 @@
 #include "Screen/Game2DMgr.h"
 #include "types.h"
+#include "nans.h"
 
 /*
     Generated from dpostproc

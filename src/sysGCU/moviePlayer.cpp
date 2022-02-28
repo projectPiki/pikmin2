@@ -1,5 +1,6 @@
 #include "Game/MoviePlayer.h"
 #include "types.h"
+#include "nans.h"
 
 /*
     Generated from dpostproc

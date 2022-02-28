@@ -1,24 +1,14 @@
 #include "types.h"
-
+#include "Dolphin/AmcExi2Stubs.h"
 /*
  * --INFO--
  * Address:	800C0C50
  * Size:	000024
  */
-void ddh_cc_initinterrupts(void)
+BOOL ddh_cc_initinterrupts(void)
 {
-	/*
-	.loc_0x0:
-	  stwu      r1, -0x10(r1)
-	  mflr      r0
-	  stw       r0, 0x14(r1)
-	  bl        0x119EC
-	  lwz       r0, 0x14(r1)
-	  li        r3, 0
-	  mtlr      r0
-	  addi      r1, r1, 0x10
-	  blr
-	*/
+	EXI2_EnableInterrupts();
+	return FALSE;
 }
 
 /*
@@ -269,7 +259,7 @@ void ddh_cc_read(void)
  * Address:	800C0ED8
  * Size:	000008
  */
-u32 ddh_cc_close(void) { return 0x0; }
+BOOL ddh_cc_close(void) { return FALSE; }
 
 /*
  * --INFO--
@@ -299,7 +289,7 @@ void ddh_cc_open(void)
  * Address:	800C0F04
  * Size:	000008
  */
-u32 ddh_cc_shutdown(void) { return 0x0; }
+BOOL ddh_cc_shutdown(void) { return FALSE; }
 
 /*
  * --INFO--

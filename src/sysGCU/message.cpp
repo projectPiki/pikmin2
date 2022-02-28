@@ -2,10 +2,6 @@
 #include "P2JME/P2JME.h"
 #include "types.h"
 
-/*
-    Generated from dpostproc
-*/
-
 namespace P2JME {
 
 /*

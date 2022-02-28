@@ -3,6 +3,7 @@
 #include "SysShape/Model.h"
 #include "SysShape/MtxObject.h"
 #include "types.h"
+#include "nans.h"
 
 /*
     Generated from dpostproc

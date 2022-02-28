@@ -1,4 +1,5 @@
 #include "types.h"
+#include "Dolphin/AmcExi2Stubs.h"
 
 /*
  * --INFO--
@@ -26,7 +27,7 @@ BOOL EXI2_Poll(void) { return FALSE; }
  * Address:	800D2654
  * Size:	000008
  */
-BOOL EXI2_ReadN(void) { return FALSE; }
+BOOL EXI2_ReadN(u8*, int) { return FALSE; }
 
 /*
  * --INFO--

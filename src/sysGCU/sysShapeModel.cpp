@@ -1,5 +1,6 @@
 #include "Camera.h"
 #include "Graphics.h"
+#include "nans.h"
 #include "JSystem/J3D/J3DJoint.h"
 #include "JSystem/J3D/J3DMaterial.h"
 #include "JSystem/J3D/J3DMaterialAnm.h"
@@ -861,6 +862,7 @@ lbl_8043E9B0:
  * --INFO--
  * Address:	8043E9BC
  * Size:	000058
+ * Matching! https://decomp.me/scratch/ZILok
  */
 void Model::hide(void)
 {
@@ -870,38 +872,6 @@ void Model::hide(void)
 			material->m_shape->m_flags |= J3DShape::IsHidden;
 		}
 	}
-	/*
-	li       r5, 0
-	b        lbl_8043EA00
-
-lbl_8043E9C4:
-	lwz      r4, 8(r3)
-	rlwinm   r0, r5, 2, 0xe, 0x1d
-	lwz      r4, 4(r4)
-	lwz      r4, 0x28(r4)
-	lwzx     r4, r4, r0
-	lwz      r6, 0x58(r4)
-	b        lbl_8043E9F4
-
-lbl_8043E9E0:
-	lwz      r4, 8(r6)
-	lwz      r0, 0xc(r4)
-	ori      r0, r0, 1
-	stw      r0, 0xc(r4)
-	lwz      r6, 4(r6)
-
-lbl_8043E9F4:
-	cmplwi   r6, 0
-	bne      lbl_8043E9E0
-	addi     r5, r5, 1
-
-lbl_8043EA00:
-	lwz      r0, 0xc(r3)
-	clrlwi   r4, r5, 0x10
-	cmpw     r4, r0
-	blt      lbl_8043E9C4
-	blr
-	*/
 }
 
 /*
