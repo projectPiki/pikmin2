@@ -38,80 +38,31 @@ bool RandMapChecker::isPutOnMap(MapNode* mapnode)
  * Address:	802456E8
  * Size:	0000F0
  * Description: Appears to check if map parts would overlap
+ * Matches!
  */
 bool RandMapChecker::isPartsOnParts(MapNode* mapnode)
 {
-	/*
-	stwu     r1, -0x40(r1)
-	mflr     r0
-	stw      r0, 0x44(r1)
-	stmw     r23, 0x1c(r1)
-	mr       r24, r4
-	mr       r23, r3
-	mr       r3, r24
-	bl       getNodeOffsetX__Q34Game4Cave7MapNodeFv
-	mr       r0, r3
-	mr       r3, r24
-	mr       r31, r0
-	bl       getNodeOffsetY__Q34Game4Cave7MapNodeFv
-	mr       r0, r3
-	lwz      r3, 0x18(r24)
-	mr       r30, r0
-	bl       getUnitSizeX__Q34Game4Cave8UnitInfoFv
-	add      r29, r31, r3
-	lwz      r3, 0x18(r24)
-	bl       getUnitSizeY__Q34Game4Cave8UnitInfoFv
-	lwz      r4, 0(r23)
-	add      r28, r30, r3
-	lwz      r24, 0x10(r4)
-	b        lbl_802457B8
+	int thisX1, thisY1, thisX2, thisY2;
+	int nextX1, nextY1, nextX2, nextY2;
 
-lbl_80245744:
-	mr       r3, r24
-	bl       getNodeOffsetX__Q34Game4Cave7MapNodeFv
-	mr       r0, r3
-	mr       r3, r24
-	mr       r27, r0
-	bl       getNodeOffsetY__Q34Game4Cave7MapNodeFv
-	mr       r0, r3
-	lwz      r3, 0x18(r24)
-	mr       r26, r0
-	bl       getUnitSizeX__Q34Game4Cave8UnitInfoFv
-	add      r25, r27, r3
-	lwz      r3, 0x18(r24)
-	bl       getUnitSizeY__Q34Game4Cave8UnitInfoFv
-	add      r0, r26, r3
-	mr       r3, r23
-	stw      r0, 8(r1)
-	mr       r4, r31
-	mr       r5, r30
-	mr       r6, r29
-	mr       r7, r28
-	mr       r8, r27
-	mr       r9, r26
-	mr       r10, r25
-	bl       isInnerBox__Q34Game4Cave14RandMapCheckerFiiiiiiii
-	clrlwi.  r0, r3, 0x18
-	beq      lbl_802457B4
-	li       r3, 1
-	b        lbl_802457C4
+	thisX1 = mapnode->getNodeOffsetX();
+	thisY1 = mapnode->getNodeOffsetY();
+	thisX2 = thisX1 + mapnode->m_unitInfo->getUnitSizeX();
+	thisY2 = thisY1 + mapnode->m_unitInfo->getUnitSizeY();
 
-lbl_802457B4:
-	lwz      r24, 4(r24)
+	MapNode* nextMapNode = (MapNode*)m_mapNode->m_child;
+	for (; nextMapNode != nullptr; nextMapNode = (MapNode*)nextMapNode->m_next) {
+		nextX1 = nextMapNode->getNodeOffsetX();
+		nextY1 = nextMapNode->getNodeOffsetY();
+		nextX2 = nextX1 + nextMapNode->m_unitInfo->getUnitSizeX();
+		nextY2 = nextY1 + nextMapNode->m_unitInfo->getUnitSizeY();
 
-lbl_802457B8:
-	cmplwi   r24, 0
-	bne      lbl_80245744
-	li       r3, 0
+		if (isInnerBox(thisX1, thisY1, thisX2, thisY2, nextX1, nextY1, nextX2, nextY2))
+			return true;
+	}
 
-lbl_802457C4:
-	lmw      r23, 0x1c(r1)
-	lwz      r0, 0x44(r1)
-	mtlr     r0
-	addi     r1, r1, 0x40
-	blr
-	*/
-}
+	return false;
+};
 
 /*
  * --INFO--
