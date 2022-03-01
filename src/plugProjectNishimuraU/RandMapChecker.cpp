@@ -38,22 +38,22 @@ bool RandMapChecker::isPutOnMap(MapNode* mapnode)
  */
 bool RandMapChecker::isPartsOnParts(MapNode* mapnode)
 {
-	int thisX1, thisY1, thisX2, thisY2;
-	int nextX1, nextY1, nextX2, nextY2;
+	int outerX1, outerY1, outerX2, outerY2;
+	int innerX1, innerY1, innerX2, innerY2;
 
-	thisX1 = mapnode->getNodeOffsetX();
-	thisY1 = mapnode->getNodeOffsetY();
-	thisX2 = thisX1 + mapnode->m_unitInfo->getUnitSizeX();
-	thisY2 = thisY1 + mapnode->m_unitInfo->getUnitSizeY();
+	outerX1 = mapnode->getNodeOffsetX();
+	outerY1 = mapnode->getNodeOffsetY();
+	outerX2 = outerX1 + mapnode->m_unitInfo->getUnitSizeX();
+	outerY2 = outerY1 + mapnode->m_unitInfo->getUnitSizeY();
 
 	for (CNode* node = m_mapNode->m_child; node != nullptr; node = node->m_next) {
 		MapNode* nextMapNode = (MapNode*)node;
-		nextX1               = nextMapNode->getNodeOffsetX();
-		nextY1               = nextMapNode->getNodeOffsetY();
-		nextX2               = nextX1 + nextMapNode->m_unitInfo->getUnitSizeX();
-		nextY2               = nextY1 + nextMapNode->m_unitInfo->getUnitSizeY();
+		innerX1              = nextMapNode->getNodeOffsetX();
+		innerY1              = nextMapNode->getNodeOffsetY();
+		innerX2              = innerX1 + nextMapNode->m_unitInfo->getUnitSizeX();
+		innerY2              = innerY1 + nextMapNode->m_unitInfo->getUnitSizeY();
 
-		if (isInnerBox(thisX1, thisY1, thisX2, thisY2, nextX1, nextY1, nextX2, nextY2))
+		if (isInnerBox(outerX1, outerY1, outerX2, outerY2, innerX1, innerY1, innerX2, innerY2))
 			return true;
 	}
 
@@ -68,16 +68,16 @@ bool RandMapChecker::isPartsOnParts(MapNode* mapnode)
  */
 bool RandMapChecker::isDoorOnParts(MapNode* mapnode)
 {
-	int thisX1, thisY1, nextX1, nextY1;
-	int thisX2, thisY2, nextX2, nextY2;
+	int outerX1, outerY1, outerX2, outerY2;
+	int innerX1, innerY1, innerX2, innerY2;
 
 	int doorCount1 = mapnode->getNumDoors();
-	thisX1         = mapnode->getNodeOffsetX();
-	thisY1         = mapnode->getNodeOffsetY();
+	outerX1        = mapnode->getNodeOffsetX();
+	outerY1        = mapnode->getNodeOffsetY();
 
 	for (int doorIndex = 0; doorCount1 > doorIndex; doorIndex++) {
 		bool b_flag = false;
-		mapnode->getDoorOffset(doorIndex, thisX1, thisY1);
+		mapnode->getDoorOffset(doorIndex, outerX1, outerY1);
 
 		for (CNode* node = m_mapNode->m_child; node != nullptr; node = node->m_next) {
 			MapNode* mapNode = (MapNode*)node;
@@ -86,8 +86,8 @@ bool RandMapChecker::isDoorOnParts(MapNode* mapnode)
 			for (int doorIndex2 = 0; doorIndex2 < doorCount2; doorIndex2++) {
 				if ((!b_flag) && (!(mapNode->isDoorClose(doorIndex2)))) {
 					if (mapnode->getDoorNode(doorIndex)->isDoorAdjust(mapNode->getDoorNode(doorIndex2))) {
-						mapNode->getDoorOffset(doorIndex2, nextX1, nextY1);
-						if (thisX1 == nextX1 && thisY1 == nextY1)
+						mapNode->getDoorOffset(doorIndex2, outerX2, outerY2);
+						if (outerX1 == outerX2 && outerY1 == outerY2)
 							b_flag = true;
 					}
 				}
@@ -97,27 +97,27 @@ bool RandMapChecker::isDoorOnParts(MapNode* mapnode)
 		if (!b_flag) {
 			switch (mapnode->getDoorDirect(doorIndex)) {
 			case CD_UP:
-				thisY1--;
+				outerY1--;
 				break;
 			case CD_LEFT:
-				thisX1--;
+				outerX1--;
 			case CD_RIGHT:
 			case CD_DOWN:
 				break;
 			}
 
-			nextX1 = thisX1 + 1;
-			nextY1 = thisY1 + 1;
+			outerX2 = outerX1 + 1;
+			outerY2 = outerY1 + 1;
 
 			for (CNode* node = m_mapNode->m_child; node != nullptr; node = node->m_next) {
 				MapNode* mapNode = (MapNode*)node;
 
-				thisX2 = mapNode->getNodeOffsetX();
-				thisY2 = mapNode->getNodeOffsetY();
-				nextX2 = thisX2 + mapNode->m_unitInfo->getUnitSizeX();
-				nextY2 = thisY2 + mapNode->m_unitInfo->getUnitSizeY();
+				innerX1 = mapNode->getNodeOffsetX();
+				innerY1 = mapNode->getNodeOffsetY();
+				innerX2 = innerX1 + mapNode->m_unitInfo->getUnitSizeX();
+				innerY2 = innerY1 + mapNode->m_unitInfo->getUnitSizeY();
 
-				if (isInnerBox(thisX1, thisY1, nextX1, nextY1, thisX2, thisY2, nextX2, nextY2))
+				if (isInnerBox(outerX1, outerY1, outerX2, outerY2, innerX1, innerY1, innerX2, innerY2))
 					return true;
 			}
 		}
@@ -134,13 +134,13 @@ bool RandMapChecker::isDoorOnParts(MapNode* mapnode)
  */
 bool RandMapChecker::isPartsOnDoor(MapNode* mapnode)
 {
-	int thisX1, thisY1, nextX1, nextY1;
-	int thisX2, thisY2, nextX2, nextY2;
+	int outerX1, outerY1, innerX1, innerY1;
+	int outerX2, outerY2, innerX2, innerY2;
 
-	thisX1 = mapnode->getNodeOffsetX();
-	thisY1 = mapnode->getNodeOffsetY();
-	thisX2 = thisX1 + mapnode->m_unitInfo->getUnitSizeX();
-	thisY2 = thisY1 + mapnode->m_unitInfo->getUnitSizeY();
+	outerX1 = mapnode->getNodeOffsetX();
+	outerY1 = mapnode->getNodeOffsetY();
+	outerX2 = outerX1 + mapnode->m_unitInfo->getUnitSizeX();
+	outerY2 = outerY1 + mapnode->m_unitInfo->getUnitSizeY();
 
 	for (CNode* node = m_mapNode->m_child; node != nullptr; node = node->m_next) {
 		MapNode* child = (MapNode*)node;
@@ -152,12 +152,12 @@ bool RandMapChecker::isPartsOnDoor(MapNode* mapnode)
 			if (!child->isDoorClose(adjustInfoIndex)) {
 				b_flag         = false;
 				int doorCount2 = mapnode->getNumDoors();
-				child->getDoorOffset(adjustInfoIndex, nextX1, nextY1);
+				child->getDoorOffset(adjustInfoIndex, innerX1, innerY1);
 				for (int adjustInfoIndex2 = 0; adjustInfoIndex2 < doorCount2; adjustInfoIndex2++) {
 					if (!b_flag) {
 						if (child->getDoorNode(adjustInfoIndex)->isDoorAdjust(mapnode->getDoorNode(adjustInfoIndex2))) {
-							mapnode->getDoorOffset(adjustInfoIndex2, nextX2, nextY2);
-							if (nextX1 == nextX2 && nextY1 == nextY2)
+							mapnode->getDoorOffset(adjustInfoIndex2, innerX2, innerY2);
+							if (innerX1 == innerX2 && innerY1 == innerY2)
 								b_flag = true;
 						}
 					}
@@ -166,19 +166,19 @@ bool RandMapChecker::isPartsOnDoor(MapNode* mapnode)
 				if (!b_flag) {
 					switch (child->getDoorDirect(adjustInfoIndex)) {
 					case CD_UP:
-						nextY1--;
+						innerY1--;
 						break;
 					case CD_LEFT:
-						nextX1--;
+						innerX1--;
 					case CD_RIGHT:
 					case CD_DOWN:
 						break;
 					}
 
-					nextX2 = nextX1 + 1;
-					nextY2 = nextY1 + 1;
+					innerX2 = innerX1 + 1;
+					innerY2 = innerY1 + 1;
 
-					if (isInnerBox(thisX1, thisY1, thisX2, thisY2, nextX1, nextY1, nextX2, nextY2))
+					if (isInnerBox(outerX1, outerY1, outerX2, outerY2, innerX1, innerY1, innerX2, innerY2))
 						return true;
 				}
 			}
