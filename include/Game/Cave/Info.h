@@ -15,14 +15,12 @@ namespace Game {
 namespace Cave {
 
 struct BaseGen : public CNode {
-#pragma enumsalwaysint on
 	/**
 	 * Spawn type used by BaseGen (caves).
 	 * UNUSED_3 is player 1 spawn in vs mode? (see
 	 * Game::Cave::RandMapMgr::getStartPosition)
 	 */
 	enum Type { TekiA__Easy = 0, TekiB__Hard, Treasure__Item, Unused3, HoleOrGeyser, Seam__Door, Plant, Start, TekiF__Special, Alcove };
-#pragma enumsalwaysint reset
 	BaseGen();
 	virtual ~BaseGen();
 	virtual void read(Stream&);

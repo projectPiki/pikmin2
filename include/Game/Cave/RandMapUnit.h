@@ -2,14 +2,22 @@
 #define _GAME_CAVE_RANDMAPUNIT_H
 
 #include "types.h"
+#include "Game/Cave/ObjectLayout.h"
 
 namespace Game {
 namespace Cave {
-struct MapNode;
 struct MapUnitGenerator;
-struct RandMapChecker;
-struct UnitInfo;
+struct RandMapChecker {
+	MapNode* m_mapNode; // _00
 
+	RandMapChecker(MapNode*);
+	bool isPutOnMap(MapNode*);
+	bool isPartsOnParts(MapNode*);
+	bool isDoorOnParts(MapNode*);
+	bool isPartsOnDoor(MapNode*);
+	bool isInnerBox(int, int, int, int, int, int, int, int);
+};
+// probably North/South/East/West?
 enum CardinalDirection { CD_Unknown0 = 0, CD_Unknown1, CD_Unknown2, CD_Unknown3 };
 
 /// @size{0x2C}

@@ -1,78 +1,45 @@
 #include "types.h"
+#include "Game/Cave/RandMapUnit.h"
 
 /*
     Generated from dpostproc
 */
 
 namespace Game {
+namespace Cave {
 
 /*
  * --INFO--
  * Address:	80245664
  * Size:	000008
+ * Matches!
  */
-Cave::RandMapChecker::RandMapChecker(Game::Cave::MapNode*)
-{
-	/*
-	stw      r4, 0(r3)
-	blr
-	*/
-}
+RandMapChecker::RandMapChecker(MapNode* mapnode) { m_mapNode = mapnode; }
 
 /*
  * --INFO--
  * Address:	8024566C
  * Size:	00007C
+ * Matches!
  */
-void Cave::RandMapChecker::isPutOnMap(Game::Cave::MapNode*)
+bool RandMapChecker::isPutOnMap(MapNode* mapnode)
 {
-	/*
-	stwu     r1, -0x10(r1)
-	mflr     r0
-	stw      r0, 0x14(r1)
-	stw      r31, 0xc(r1)
-	mr       r31, r4
-	stw      r30, 8(r1)
-	mr       r30, r3
-	bl       isPartsOnParts__Q34Game4Cave14RandMapCheckerFPQ34Game4Cave7MapNode
-	clrlwi.  r0, r3, 0x18
-	beq      lbl_8024569C
-	li       r3, 0
-	b        lbl_802456D0
-
-lbl_8024569C:
-	mr       r3, r30
-	mr       r4, r31
-	bl       isDoorOnParts__Q34Game4Cave14RandMapCheckerFPQ34Game4Cave7MapNode
-	clrlwi.  r0, r3, 0x18
-	beq      lbl_802456B8
-	li       r3, 0
-	b        lbl_802456D0
-
-lbl_802456B8:
-	mr       r3, r30
-	mr       r4, r31
-	bl       isPartsOnDoor__Q34Game4Cave14RandMapCheckerFPQ34Game4Cave7MapNode
-	clrlwi   r0, r3, 0x18
-	cntlzw   r0, r0
-	srwi     r3, r0, 5
-
-lbl_802456D0:
-	lwz      r0, 0x14(r1)
-	lwz      r31, 0xc(r1)
-	lwz      r30, 8(r1)
-	mtlr     r0
-	addi     r1, r1, 0x10
-	blr
-	*/
+	if (isPartsOnParts(mapnode))
+		return false;
+	if (isDoorOnParts(mapnode))
+		return false;
+	if (isPartsOnDoor(mapnode))
+		return false;
+	return true;
 }
 
 /*
  * --INFO--
  * Address:	802456E8
  * Size:	0000F0
+ * Description: Appears to check if map parts would overlap
  */
-void Cave::RandMapChecker::isPartsOnParts(Game::Cave::MapNode*)
+bool RandMapChecker::isPartsOnParts(MapNode* mapnode)
 {
 	/*
 	stwu     r1, -0x40(r1)
@@ -151,7 +118,7 @@ lbl_802457C4:
  * Address:	802457D8
  * Size:	000220
  */
-void Cave::RandMapChecker::isDoorOnParts(Game::Cave::MapNode*)
+bool RandMapChecker::isDoorOnParts(MapNode*)
 {
 	/*
 	stwu     r1, -0x50(r1)
@@ -328,7 +295,7 @@ lbl_802459E4:
  * Address:	802459F8
  * Size:	0001E8
  */
-void Cave::RandMapChecker::isPartsOnDoor(Game::Cave::MapNode*)
+bool RandMapChecker::isPartsOnDoor(MapNode*)
 {
 	/*
 	stwu     r1, -0x60(r1)
@@ -485,7 +452,7 @@ lbl_80245BCC:
  * Address:	80245BE0
  * Size:	00007C
  */
-void Cave::RandMapChecker::isInnerBox(int, int, int, int, int, int, int, int)
+bool RandMapChecker::isInnerBox(int, int, int, int, int, int, int, int)
 {
 	/*
 	cmpw     r4, r8
@@ -529,4 +496,5 @@ lbl_80245C54:
 	blr
 	*/
 }
+} // namespace Cave
 } // namespace Game

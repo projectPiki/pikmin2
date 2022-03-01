@@ -24,8 +24,20 @@ struct ObjectLayoutInfo {
 };
 
 namespace Cave {
+struct UnitInfo {
+	struct DoorNode* m_doorNode;     // _00
+	struct AdjustNode* m_adjustNode; // _04
+	struct MapUnits* m_mapUnits;     // _08
+	int m_unitRotation;              // _0C
+	int m_unitSizeX;                 // _10
+	int m_unitSizeY;                 // _14
+
+	int getUnitSizeX();
+	int getUnitSizeY();
+};
+
 struct MapNode : public CNode {
-	struct UnitInfo* m_unitInfo; // _18
+	UnitInfo* m_unitInfo; // _18
 
 	// Types are EnemyNode, GateNode and ItemNode respectively
 	ObjectLayoutNode* m_enemyNode; // _1C
@@ -38,6 +50,9 @@ struct MapNode : public CNode {
 	s32 m_enemyScore;     // _34
 	s32 m_nodeScore;      // _38
 	s32 m_vsScore;        // _3C
+
+	int getNodeOffsetX();
+	int getNodeOffsetY();
 };
 
 struct ObjectLayout : public ObjectLayoutInfo {
