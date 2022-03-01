@@ -24,8 +24,12 @@ struct ObjectLayoutInfo {
 };
 
 namespace Cave {
+enum CardinalDirection { CD_UP, CD_RIGHT, CD_DOWN, CD_LEFT };
+struct DoorNode {
+	bool isDoorAdjust(DoorNode*);
+};
 struct UnitInfo {
-	struct DoorNode* m_doorNode;     // _00
+	DoorNode* m_doorNode;            // _00
 	struct AdjustNode* m_adjustNode; // _04
 	struct MapUnits* m_mapUnits;     // _08
 	int m_unitRotation;              // _0C
@@ -53,6 +57,11 @@ struct MapNode : public CNode {
 
 	int getNodeOffsetX();
 	int getNodeOffsetY();
+	int getNumDoors();
+	int getDoorOffset(int, int&, int&);
+	CardinalDirection getDoorDirect(int);
+	bool isDoorClose(int);
+	DoorNode* getDoorNode(int);
 };
 
 struct ObjectLayout : public ObjectLayoutInfo {

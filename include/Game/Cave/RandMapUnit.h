@@ -17,8 +17,6 @@ struct RandMapChecker {
 	bool isPartsOnDoor(MapNode*);
 	bool isInnerBox(int, int, int, int, int, int, int, int);
 };
-// probably North/South/East/West?
-enum CardinalDirection { CD_Unknown0 = 0, CD_Unknown1, CD_Unknown2, CD_Unknown3 };
 
 /// @size{0x2C}
 struct RandMapUnit {
