@@ -1,24 +1,21 @@
 .include "macros.inc"
 .section .sdata, "wa"  # 0x80514680 - 0x80514D80
 .balign 8
-.global DSP_MIXERLEVEL
 DSP_MIXERLEVEL:
-	.4byte 0x40000000
+	.2byte 0x4000
 
 .section .sbss # 0x80514D80 - 0x80516360
 .balign 8
-.global flag
 flag:
-	.skip 0x8
+	.skip 4
 
 .section .sdata2, "a"     # 0x80516360 - 0x80520E40
 .balign 8
-.global lbl_80516ED0
 lbl_80516ED0:
-	.4byte 0x45800000
-	.4byte 0x00000000
+	.float 4096.0
 
 .section .text, "ax"  # 0x800056C0 - 0x80472F00
+.balign 32, 0
 .global DSPReleaseHalt2__FUl
 DSPReleaseHalt2__FUl:
 /* 800AA760 000A76A0  94 21 FF E0 */	stwu r1, -0x20(r1)
@@ -39,24 +36,15 @@ DSPReleaseHalt2__FUl:
 /* 800AA79C 000A76DC  7C 08 03 A6 */	mtlr r0
 /* 800AA7A0 000A76E0  38 21 00 20 */	addi r1, r1, 0x20
 /* 800AA7A4 000A76E4  4E 80 00 20 */	blr 
-/* 800AA7A8 000A76E8  00 00 00 00 */	.4byte 0x00000000  /* unknown instruction */
-/* 800AA7AC 000A76EC  00 00 00 00 */	.4byte 0x00000000  /* unknown instruction */
-/* 800AA7B0 000A76F0  00 00 00 00 */	.4byte 0x00000000  /* unknown instruction */
-/* 800AA7B4 000A76F4  00 00 00 00 */	.4byte 0x00000000  /* unknown instruction */
-/* 800AA7B8 000A76F8  00 00 00 00 */	.4byte 0x00000000  /* unknown instruction */
-/* 800AA7BC 000A76FC  00 00 00 00 */	.4byte 0x00000000  /* unknown instruction */
 
+.balign 32, 0
 .global setup_callback__FUs
 setup_callback__FUs:
 /* 800AA7C0 000A7700  38 00 00 00 */	li r0, 0
 /* 800AA7C4 000A7704  90 0D 8B 30 */	stw r0, flag@sda21(r13)
 /* 800AA7C8 000A7708  4E 80 00 20 */	blr 
-/* 800AA7CC 000A770C  00 00 00 00 */	.4byte 0x00000000  /* unknown instruction */
-/* 800AA7D0 000A7710  00 00 00 00 */	.4byte 0x00000000  /* unknown instruction */
-/* 800AA7D4 000A7714  00 00 00 00 */	.4byte 0x00000000  /* unknown instruction */
-/* 800AA7D8 000A7718  00 00 00 00 */	.4byte 0x00000000  /* unknown instruction */
-/* 800AA7DC 000A771C  00 00 00 00 */	.4byte 0x00000000  /* unknown instruction */
 
+.balign 32, 0
 .global DsetupTable__FUlUlUlUlUl
 DsetupTable__FUlUlUlUlUl:
 /* 800AA7E0 000A7720  94 21 FF E0 */	stwu r1, -0x20(r1)
@@ -85,14 +73,8 @@ lbl_800AA828:
 /* 800AA838 000A7778  7C 08 03 A6 */	mtlr r0
 /* 800AA83C 000A777C  38 21 00 20 */	addi r1, r1, 0x20
 /* 800AA840 000A7780  4E 80 00 20 */	blr 
-/* 800AA844 000A7784  00 00 00 00 */	.4byte 0x00000000  /* unknown instruction */
-/* 800AA848 000A7788  00 00 00 00 */	.4byte 0x00000000  /* unknown instruction */
-/* 800AA84C 000A778C  00 00 00 00 */	.4byte 0x00000000  /* unknown instruction */
-/* 800AA850 000A7790  00 00 00 00 */	.4byte 0x00000000  /* unknown instruction */
-/* 800AA854 000A7794  00 00 00 00 */	.4byte 0x00000000  /* unknown instruction */
-/* 800AA858 000A7798  00 00 00 00 */	.4byte 0x00000000  /* unknown instruction */
-/* 800AA85C 000A779C  00 00 00 00 */	.4byte 0x00000000  /* unknown instruction */
 
+.balign 32, 0
 .global DsetMixerLevel__Ff
 DsetMixerLevel__Ff:
 /* 800AA860 000A77A0  C0 02 8B 70 */	lfs f0, lbl_80516ED0@sda21(r2)
@@ -104,14 +86,8 @@ DsetMixerLevel__Ff:
 /* 800AA878 000A77B8  B0 0D 81 38 */	sth r0, DSP_MIXERLEVEL@sda21(r13)
 /* 800AA87C 000A77BC  38 21 00 10 */	addi r1, r1, 0x10
 /* 800AA880 000A77C0  4E 80 00 20 */	blr 
-/* 800AA884 000A77C4  00 00 00 00 */	.4byte 0x00000000  /* unknown instruction */
-/* 800AA888 000A77C8  00 00 00 00 */	.4byte 0x00000000  /* unknown instruction */
-/* 800AA88C 000A77CC  00 00 00 00 */	.4byte 0x00000000  /* unknown instruction */
-/* 800AA890 000A77D0  00 00 00 00 */	.4byte 0x00000000  /* unknown instruction */
-/* 800AA894 000A77D4  00 00 00 00 */	.4byte 0x00000000  /* unknown instruction */
-/* 800AA898 000A77D8  00 00 00 00 */	.4byte 0x00000000  /* unknown instruction */
-/* 800AA89C 000A77DC  00 00 00 00 */	.4byte 0x00000000  /* unknown instruction */
 
+.balign 32, 0
 .global DsyncFrame__FUlUlUl
 DsyncFrame__FUlUlUl:
 /* 800AA8A0 000A77E0  94 21 FF E0 */	stwu r1, -0x20(r1)
@@ -132,9 +108,3 @@ DsyncFrame__FUlUlUl:
 /* 800AA8DC 000A781C  7C 08 03 A6 */	mtlr r0
 /* 800AA8E0 000A7820  38 21 00 20 */	addi r1, r1, 0x20
 /* 800AA8E4 000A7824  4E 80 00 20 */	blr 
-/* 800AA8E8 000A7828  00 00 00 00 */	.4byte 0x00000000  /* unknown instruction */
-/* 800AA8EC 000A782C  00 00 00 00 */	.4byte 0x00000000  /* unknown instruction */
-/* 800AA8F0 000A7830  00 00 00 00 */	.4byte 0x00000000  /* unknown instruction */
-/* 800AA8F4 000A7834  00 00 00 00 */	.4byte 0x00000000  /* unknown instruction */
-/* 800AA8F8 000A7838  00 00 00 00 */	.4byte 0x00000000  /* unknown instruction */
-/* 800AA8FC 000A783C  00 00 00 00 */	.4byte 0x00000000  /* unknown instruction */

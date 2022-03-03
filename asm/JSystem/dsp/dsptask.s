@@ -1,6 +1,6 @@
 .include "macros.inc"
 .section .data, "wa"  # 0x8049E220 - 0x804EFC20
-.balign 8
+.balign 32
 .global jdsp
 jdsp:
 	.4byte 0x029F0012
@@ -1870,14 +1870,13 @@ jdsp:
 
 .section .sbss # 0x80514D80 - 0x80516360
 .balign 8
-.global taskreadp
-taskreadp:
+taskreadp: # local data
 	.skip 0x4
-.global taskwritep
-taskwritep:
+taskwritep: # local data
 	.skip 0x4
 
 .section .text, "ax"  # 0x800056C0 - 0x80472F00
+.balign 32, 0
 .global DspHandShake__FPv
 DspHandShake__FPv:
 /* 800AA900 000A7840  94 21 FF F0 */	stwu r1, -0x10(r1)
@@ -1895,9 +1894,8 @@ lbl_800AA910:
 /* 800AA92C 000A786C  7C 08 03 A6 */	mtlr r0
 /* 800AA930 000A7870  38 21 00 10 */	addi r1, r1, 0x10
 /* 800AA934 000A7874  4E 80 00 20 */	blr 
-/* 800AA938 000A7878  00 00 00 00 */	.4byte 0x00000000  /* unknown instruction */
-/* 800AA93C 000A787C  00 00 00 00 */	.4byte 0x00000000  /* unknown instruction */
 
+.balign 32, 0
 .global DspBoot__FPFPv_v
 DspBoot__FPFPv_v:
 /* 800AA940 000A7880  94 21 FF F0 */	stwu r1, -0x10(r1)
@@ -1943,12 +1941,8 @@ DspBoot__FPFPv_v:
 /* 800AA9E0 000A7920  7C 08 03 A6 */	mtlr r0
 /* 800AA9E4 000A7924  38 21 00 10 */	addi r1, r1, 0x10
 /* 800AA9E8 000A7928  4E 80 00 20 */	blr 
-/* 800AA9EC 000A792C  00 00 00 00 */	.4byte 0x00000000  /* unknown instruction */
-/* 800AA9F0 000A7930  00 00 00 00 */	.4byte 0x00000000  /* unknown instruction */
-/* 800AA9F4 000A7934  00 00 00 00 */	.4byte 0x00000000  /* unknown instruction */
-/* 800AA9F8 000A7938  00 00 00 00 */	.4byte 0x00000000  /* unknown instruction */
-/* 800AA9FC 000A793C  00 00 00 00 */	.4byte 0x00000000  /* unknown instruction */
 
+.balign 32, 0
 .global DSPSendCommands2__FPUlUlPFUs_v
 DSPSendCommands2__FPUlUlPFUs_v:
 /* 800AAA00 000A7940  94 21 FF E0 */	stwu r1, -0x20(r1)
@@ -2018,13 +2012,8 @@ lbl_800AAAD0:
 /* 800AAADC 000A7A1C  7C 08 03 A6 */	mtlr r0
 /* 800AAAE0 000A7A20  38 21 00 20 */	addi r1, r1, 0x20
 /* 800AAAE4 000A7A24  4E 80 00 20 */	blr 
-/* 800AAAE8 000A7A28  00 00 00 00 */	.4byte 0x00000000  /* unknown instruction */
-/* 800AAAEC 000A7A2C  00 00 00 00 */	.4byte 0x00000000  /* unknown instruction */
-/* 800AAAF0 000A7A30  00 00 00 00 */	.4byte 0x00000000  /* unknown instruction */
-/* 800AAAF4 000A7A34  00 00 00 00 */	.4byte 0x00000000  /* unknown instruction */
-/* 800AAAF8 000A7A38  00 00 00 00 */	.4byte 0x00000000  /* unknown instruction */
-/* 800AAAFC 000A7A3C  00 00 00 00 */	.4byte 0x00000000  /* unknown instruction */
 
+.balign 32, 0
 .global DspInitWork__Fv
 DspInitWork__Fv:
 /* 800AAB00 000A7A40  38 60 00 00 */	li r3, 0
@@ -2039,12 +2028,8 @@ lbl_800AAB18:
 /* 800AAB20 000A7A60  90 C4 00 04 */	stw r6, 4(r4)
 /* 800AAB24 000A7A64  42 00 FF F4 */	bdnz lbl_800AAB18
 /* 800AAB28 000A7A68  4E 80 00 20 */	blr 
-/* 800AAB2C 000A7A6C  00 00 00 00 */	.4byte 0x00000000  /* unknown instruction */
-/* 800AAB30 000A7A70  00 00 00 00 */	.4byte 0x00000000  /* unknown instruction */
-/* 800AAB34 000A7A74  00 00 00 00 */	.4byte 0x00000000  /* unknown instruction */
-/* 800AAB38 000A7A78  00 00 00 00 */	.4byte 0x00000000  /* unknown instruction */
-/* 800AAB3C 000A7A7C  00 00 00 00 */	.4byte 0x00000000  /* unknown instruction */
 
+.balign 32, 0
 .global DspStartWork__FUlPFUs_v
 DspStartWork__FUlPFUs_v:
 /* 800AAB40 000A7A80  80 ED 8B 3C */	lwz r7, taskwritep@sda21(r13)
@@ -2066,13 +2051,8 @@ lbl_800AAB60:
 /* 800AAB7C 000A7ABC  7C A5 3A 14 */	add r5, r5, r7
 /* 800AAB80 000A7AC0  90 85 00 04 */	stw r4, 4(r5)
 /* 800AAB84 000A7AC4  4E 80 00 20 */	blr 
-/* 800AAB88 000A7AC8  00 00 00 00 */	.4byte 0x00000000  /* unknown instruction */
-/* 800AAB8C 000A7ACC  00 00 00 00 */	.4byte 0x00000000  /* unknown instruction */
-/* 800AAB90 000A7AD0  00 00 00 00 */	.4byte 0x00000000  /* unknown instruction */
-/* 800AAB94 000A7AD4  00 00 00 00 */	.4byte 0x00000000  /* unknown instruction */
-/* 800AAB98 000A7AD8  00 00 00 00 */	.4byte 0x00000000  /* unknown instruction */
-/* 800AAB9C 000A7ADC  00 00 00 00 */	.4byte 0x00000000  /* unknown instruction */
 
+.balign 32, 0
 .global DspFinishWork__FUs
 DspFinishWork__FUs:
 /* 800AABA0 000A7AE0  94 21 FF F0 */	stwu r1, -0x10(r1)
@@ -2103,9 +2083,3 @@ lbl_800AABF8:
 /* 800AABFC 000A7B3C  7C 08 03 A6 */	mtlr r0
 /* 800AAC00 000A7B40  38 21 00 10 */	addi r1, r1, 0x10
 /* 800AAC04 000A7B44  4E 80 00 20 */	blr 
-/* 800AAC08 000A7B48  00 00 00 00 */	.4byte 0x00000000  /* unknown instruction */
-/* 800AAC0C 000A7B4C  00 00 00 00 */	.4byte 0x00000000  /* unknown instruction */
-/* 800AAC10 000A7B50  00 00 00 00 */	.4byte 0x00000000  /* unknown instruction */
-/* 800AAC14 000A7B54  00 00 00 00 */	.4byte 0x00000000  /* unknown instruction */
-/* 800AAC18 000A7B58  00 00 00 00 */	.4byte 0x00000000  /* unknown instruction */
-/* 800AAC1C 000A7B5C  00 00 00 00 */	.4byte 0x00000000  /* unknown instruction */

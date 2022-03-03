@@ -18,7 +18,6 @@ OSC_ENV:
 
 .section .data, "wa"  # 0x8049E220 - 0x804EFC20
 .balign 8
-.global lbl_804A44A0
 lbl_804A44A0:
 	.4byte lbl_800A9AF8
 	.4byte lbl_800A9AEC
@@ -33,9 +32,6 @@ lbl_804A44A0:
 	.4byte lbl_800A9AF8
 	.4byte lbl_800A9AF8
 	.4byte lbl_800A9AF8
-	.4byte 0x00000000
-	.4byte 0x00000000
-	.4byte 0x00000000
 
 .section .sbss # 0x80514D80 - 0x80516360
 .balign 8
@@ -899,16 +895,13 @@ dvdErrorCheck__13JASAramStreamFPv:
 /* 800A9AE0 000A6A20  7C 03 00 2E */	lwzx r0, r3, r0
 /* 800A9AE4 000A6A24  7C 09 03 A6 */	mtctr r0
 /* 800A9AE8 000A6A28  4E 80 04 20 */	bctr 
-.global lbl_800A9AEC
 lbl_800A9AEC:
 /* 800A9AEC 000A6A2C  38 00 00 00 */	li r0, 0
 /* 800A9AF0 000A6A30  98 0D 8B 28 */	stb r0, sSystemPauseFlag__13JASAramStream@sda21(r13)
 /* 800A9AF4 000A6A34  48 00 00 0C */	b lbl_800A9B00
-.global lbl_800A9AF8
 lbl_800A9AF8:
 /* 800A9AF8 000A6A38  38 00 00 01 */	li r0, 1
 /* 800A9AFC 000A6A3C  98 0D 8B 28 */	stb r0, sSystemPauseFlag__13JASAramStream@sda21(r13)
-.global lbl_800A9B00
 lbl_800A9B00:
 /* 800A9B00 000A6A40  80 01 00 14 */	lwz r0, 0x14(r1)
 /* 800A9B04 000A6A44  38 60 00 00 */	li r3, 0
@@ -1789,10 +1782,3 @@ lbl_800AA718:
 /* 800AA738 000A7678  7C 08 03 A6 */	mtlr r0
 /* 800AA73C 000A767C  38 21 00 20 */	addi r1, r1, 0x20
 /* 800AA740 000A7680  4E 80 00 20 */	blr 
-/* 800AA744 000A7684  00 00 00 00 */	.4byte 0x00000000  /* unknown instruction */
-/* 800AA748 000A7688  00 00 00 00 */	.4byte 0x00000000  /* unknown instruction */
-/* 800AA74C 000A768C  00 00 00 00 */	.4byte 0x00000000  /* unknown instruction */
-/* 800AA750 000A7690  00 00 00 00 */	.4byte 0x00000000  /* unknown instruction */
-/* 800AA754 000A7694  00 00 00 00 */	.4byte 0x00000000  /* unknown instruction */
-/* 800AA758 000A7698  00 00 00 00 */	.4byte 0x00000000  /* unknown instruction */
-/* 800AA75C 000A769C  00 00 00 00 */	.4byte 0x00000000  /* unknown instruction */

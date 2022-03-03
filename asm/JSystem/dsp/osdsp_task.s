@@ -12,6 +12,7 @@ DSP_prior_task:
 	.skip 0x8
 
 .section .text, "ax"  # 0x800056C0 - 0x80472F00
+.balign 32, 0
 .global __DSPHandler
 __DSPHandler:
 /* 800AAD00 000A7C40  94 21 FD 20 */	stwu r1, -0x2e0(r1)
@@ -229,14 +230,8 @@ lbl_800AAFE0:
 /* 800AAFF8 000A7F38  7C 08 03 A6 */	mtlr r0
 /* 800AAFFC 000A7F3C  38 21 02 E0 */	addi r1, r1, 0x2e0
 /* 800AB000 000A7F40  4E 80 00 20 */	blr 
-/* 800AB004 000A7F44  00 00 00 00 */	.4byte 0x00000000  /* unknown instruction */
-/* 800AB008 000A7F48  00 00 00 00 */	.4byte 0x00000000  /* unknown instruction */
-/* 800AB00C 000A7F4C  00 00 00 00 */	.4byte 0x00000000  /* unknown instruction */
-/* 800AB010 000A7F50  00 00 00 00 */	.4byte 0x00000000  /* unknown instruction */
-/* 800AB014 000A7F54  00 00 00 00 */	.4byte 0x00000000  /* unknown instruction */
-/* 800AB018 000A7F58  00 00 00 00 */	.4byte 0x00000000  /* unknown instruction */
-/* 800AB01C 000A7F5C  00 00 00 00 */	.4byte 0x00000000  /* unknown instruction */
 
+.balign 32, 0
 .global DsyncFrame2__FUlUlUl
 DsyncFrame2__FUlUlUl:
 /* 800AB020 000A7F60  94 21 FF F0 */	stwu r1, -0x10(r1)
@@ -261,11 +256,8 @@ lbl_800AB060:
 /* 800AB064 000A7FA4  7C 08 03 A6 */	mtlr r0
 /* 800AB068 000A7FA8  38 21 00 10 */	addi r1, r1, 0x10
 /* 800AB06C 000A7FAC  4E 80 00 20 */	blr 
-/* 800AB070 000A7FB0  00 00 00 00 */	.4byte 0x00000000  /* unknown instruction */
-/* 800AB074 000A7FB4  00 00 00 00 */	.4byte 0x00000000  /* unknown instruction */
-/* 800AB078 000A7FB8  00 00 00 00 */	.4byte 0x00000000  /* unknown instruction */
-/* 800AB07C 000A7FBC  00 00 00 00 */	.4byte 0x00000000  /* unknown instruction */
 
+.balign 32, 0
 .global Dsp_Update_Request__Fv
 Dsp_Update_Request__Fv:
 /* 800AB080 000A7FC0  94 21 FF F0 */	stwu r1, -0x10(r1)
@@ -286,6 +278,7 @@ lbl_800AB0B0:
 /* 800AB0B8 000A7FF8  38 21 00 10 */	addi r1, r1, 0x10
 /* 800AB0BC 000A7FFC  4E 80 00 20 */	blr 
 
+.balign 32, 0
 .global Dsp_Running_Check__Fv
 Dsp_Running_Check__Fv:
 /* 800AB0C0 000A8000  88 0D 8B 40 */	lbz r0, DSP_prior_yield@sda21(r13)
@@ -293,10 +286,8 @@ Dsp_Running_Check__Fv:
 /* 800AB0C8 000A8008  7C 00 00 34 */	cntlzw r0, r0
 /* 800AB0CC 000A800C  54 03 D9 7E */	srwi r3, r0, 5
 /* 800AB0D0 000A8010  4E 80 00 20 */	blr 
-/* 800AB0D4 000A8014  00 00 00 00 */	.4byte 0x00000000  /* unknown instruction */
-/* 800AB0D8 000A8018  00 00 00 00 */	.4byte 0x00000000  /* unknown instruction */
-/* 800AB0DC 000A801C  00 00 00 00 */	.4byte 0x00000000  /* unknown instruction */
 
+.balign 32, 0
 .global Dsp_Running_Start__Fv
 Dsp_Running_Start__Fv:
 /* 800AB0E0 000A8020  38 00 00 01 */	li r0, 1

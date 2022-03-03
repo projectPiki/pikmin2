@@ -1,7 +1,6 @@
 .include "macros.inc"
 .section .rodata  # 0x804732E0 - 0x8049E220
 .balign 8
-.global "saCompositeOperation___Q37JStudio3fvb17@unnamed@fvb_cpp@"
 "saCompositeOperation___Q37JStudio3fvb17@unnamed@fvb_cpp@":
 	.4byte 0x00000000
 	.4byte 0x00000000
@@ -22,7 +21,6 @@
 
 .section .data, "wa"  # 0x8049E220 - 0x804EFC20
 .balign 8
-.global lbl_8049E548
 lbl_8049E548:
 	.4byte lbl_8000BD3C
 	.4byte lbl_8000BBE4
@@ -152,7 +150,6 @@ lbl_8000BBAC:
 /* 8000BBD8 00008B18  7C 03 00 2E */	lwzx r0, r3, r0
 /* 8000BBDC 00008B1C  7C 09 03 A6 */	mtctr r0
 /* 8000BBE0 00008B20  4E 80 04 20 */	bctr 
-.global lbl_8000BBE4
 lbl_8000BBE4:
 /* 8000BBE4 00008B24  7F 43 D3 78 */	mr r3, r26
 /* 8000BBE8 00008B28  7F 65 DB 78 */	mr r5, r27
@@ -162,7 +159,6 @@ lbl_8000BBE4:
 /* 8000BBF8 00008B38  7D 89 03 A6 */	mtctr r12
 /* 8000BBFC 00008B3C  4E 80 04 21 */	bctrl 
 /* 8000BC00 00008B40  48 00 01 30 */	b lbl_8000BD30
-.global lbl_8000BC04
 lbl_8000BC04:
 /* 8000BC04 00008B44  28 1F 00 00 */	cmplwi r31, 0
 /* 8000BC08 00008B48  41 82 01 28 */	beq lbl_8000BD30
@@ -193,7 +189,6 @@ lbl_8000BC60:
 /* 8000BC60 00008BA0  28 19 00 00 */	cmplwi r25, 0
 /* 8000BC64 00008BA4  40 82 FF B4 */	bne lbl_8000BC18
 /* 8000BC68 00008BA8  48 00 00 C8 */	b lbl_8000BD30
-.global lbl_8000BC6C
 lbl_8000BC6C:
 /* 8000BC6C 00008BAC  28 1F 00 00 */	cmplwi r31, 0
 /* 8000BC70 00008BB0  41 82 00 C0 */	beq lbl_8000BD30
@@ -219,7 +214,6 @@ lbl_8000BCB0:
 /* 8000BCB4 00008BF4  3A F7 00 04 */	addi r23, r23, 4
 /* 8000BCB8 00008BF8  40 82 FF C8 */	bne lbl_8000BC80
 /* 8000BCBC 00008BFC  48 00 00 74 */	b lbl_8000BD30
-.global lbl_8000BCC0
 lbl_8000BCC0:
 /* 8000BCC0 00008C00  28 1E 00 00 */	cmplwi r30, 0
 /* 8000BCC4 00008C04  41 82 00 6C */	beq lbl_8000BD30
@@ -228,21 +222,18 @@ lbl_8000BCC0:
 /* 8000BCD0 00008C10  C0 44 00 04 */	lfs f2, 4(r4)
 /* 8000BCD4 00008C14  4B FF CF 09 */	bl range_set__Q27JStudio29TFunctionValueAttribute_rangeFdd
 /* 8000BCD8 00008C18  48 00 00 58 */	b lbl_8000BD30
-.global lbl_8000BCDC
 lbl_8000BCDC:
 /* 8000BCDC 00008C1C  28 1E 00 00 */	cmplwi r30, 0
 /* 8000BCE0 00008C20  41 82 00 50 */	beq lbl_8000BD30
 /* 8000BCE4 00008C24  80 04 00 00 */	lwz r0, 0(r4)
 /* 8000BCE8 00008C28  98 1E 00 18 */	stb r0, 0x18(r30)
 /* 8000BCEC 00008C2C  48 00 00 44 */	b lbl_8000BD30
-.global lbl_8000BCF0
 lbl_8000BCF0:
 /* 8000BCF0 00008C30  28 1E 00 00 */	cmplwi r30, 0
 /* 8000BCF4 00008C34  41 82 00 3C */	beq lbl_8000BD30
 /* 8000BCF8 00008C38  80 04 00 00 */	lwz r0, 0(r4)
 /* 8000BCFC 00008C3C  98 1E 00 19 */	stb r0, 0x19(r30)
 /* 8000BD00 00008C40  48 00 00 30 */	b lbl_8000BD30
-.global lbl_8000BD04
 lbl_8000BD04:
 /* 8000BD04 00008C44  28 1E 00 00 */	cmplwi r30, 0
 /* 8000BD08 00008C48  41 82 00 28 */	beq lbl_8000BD30
@@ -251,19 +242,16 @@ lbl_8000BD04:
 /* 8000BD14 00008C54  90 1E 00 30 */	stw r0, 0x30(r30)
 /* 8000BD18 00008C58  90 7E 00 34 */	stw r3, 0x34(r30)
 /* 8000BD1C 00008C5C  48 00 00 14 */	b lbl_8000BD30
-.global lbl_8000BD20
 lbl_8000BD20:
 /* 8000BD20 00008C60  28 1D 00 00 */	cmplwi r29, 0
 /* 8000BD24 00008C64  41 82 00 0C */	beq lbl_8000BD30
 /* 8000BD28 00008C68  80 04 00 00 */	lwz r0, 0(r4)
 /* 8000BD2C 00008C6C  90 1D 00 00 */	stw r0, 0(r29)
-.global lbl_8000BD30
 lbl_8000BD30:
 /* 8000BD30 00008C70  80 61 00 2C */	lwz r3, 0x2c(r1)
 lbl_8000BD34:
 /* 8000BD34 00008C74  7C 03 E0 40 */	cmplw r3, r28
 /* 8000BD38 00008C78  41 80 FE 74 */	blt lbl_8000BBAC
-.global lbl_8000BD3C
 lbl_8000BD3C:
 /* 8000BD3C 00008C7C  80 7A 00 14 */	lwz r3, 0x14(r26)
 /* 8000BD40 00008C80  81 83 00 00 */	lwz r12, 0(r3)

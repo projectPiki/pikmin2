@@ -4,9 +4,9 @@
 .global lbl_80479668
 lbl_80479668:
 	.asciz "Already inited prior DSP task\n"
-	.skip 1
 
 .section .text, "ax"  # 0x800056C0 - 0x80472F00
+.balign 32, 0
 .global DSPAddTask
 DSPAddTask:
 /* 800AAC20 000A7B60  94 21 FF F0 */	stwu r1, -0x10(r1)
@@ -34,6 +34,7 @@ DSPAddTask:
 /* 800AAC78 000A7BB8  38 21 00 10 */	addi r1, r1, 0x10
 /* 800AAC7C 000A7BBC  4E 80 00 20 */	blr 
 
+.balign 32, 0
 .global DSPAddPriorTask__FP15STRUCT_DSP_TASK
 DSPAddPriorTask__FP15STRUCT_DSP_TASK:
 /* 800AAC80 000A7BC0  94 21 FF F0 */	stwu r1, -0x10(r1)
@@ -69,4 +70,3 @@ lbl_800AACE4:
 /* 800AACF0 000A7C30  7C 08 03 A6 */	mtlr r0
 /* 800AACF4 000A7C34  38 21 00 10 */	addi r1, r1, 0x10
 /* 800AACF8 000A7C38  4E 80 00 20 */	blr 
-/* 800AACFC 000A7C3C  00 00 00 00 */	.4byte 0x00000000  /* unknown instruction */
