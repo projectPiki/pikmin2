@@ -5,30 +5,20 @@ lbl_constructor:
 
 .section .rodata  # 0x804732E0 - 0x8049E220
 .balign 8
-.global lbl_80473540
 lbl_80473540:
-	.4byte 0x64697265
-	.4byte 0x6374696F
-	.4byte 0x6E203D20
-	.4byte 0x25780A00
-	.4byte 0x736F7572
-	.4byte 0x6365203D
-	.4byte 0x2025780A
-	.4byte 0x00000000
-	.4byte 0x64657374
-	.4byte 0x696E6174
-	.4byte 0x696F6E20
-	.4byte 0x3D202578
-	.4byte 0x0A000000
-	.4byte 0x6C656E67
-	.4byte 0x7468203D
-	.4byte 0x2025780A
-	.4byte 0x00000000
-	.4byte 0x4A4B5241
-	.4byte 0x72616D50
-	.4byte 0x69656365
-	.4byte 0x2E637070
-	.4byte 0x00000000
+	.asciz "direction = %x\n"
+.balign 4
+lbl_80473550:
+	.asciz "source = %x\n"
+.balign 4
+lbl_80473560:
+	.asciz "destination = %x\n"
+.balign 4
+lbl_80473574:
+	.asciz "length = %x\n"
+.balign 4
+lbl_80473584:
+	.asciz "JKRAramPiece.cpp"
 
 .section .bss  # 0x804EFC20 - 0x8051467C
 .global sAramPieceCommandList__12JKRAramPiece
@@ -40,10 +30,8 @@ mMutex__12JKRAramPiece:
 
 .section .sdata2, "a"     # 0x80516360 - 0x80520E40
 .balign 8
-.global lbl_805164D8
 lbl_805164D8:
-	.4byte 0x41626F72
-	.4byte 0x742E0000
+	.asciz "Abort."
 
 .section .text, "ax"  # 0x800056C0 - 0x80472F00
 .global sendCommand__12JKRAramPieceFP12JKRAMCommand
@@ -338,8 +326,7 @@ lbl_80019EC0:
 /* 80019ED4 00016E14  38 21 00 10 */	addi r1, r1, 0x10
 /* 80019ED8 00016E18  4E 80 00 20 */	blr 
 
-.global __sinit_JKRAramPiece_cpp
-__sinit_JKRAramPiece_cpp:
+__sinit_JKRAramPiece_cpp: # static initializer
 /* 80019EDC 00016E1C  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 80019EE0 00016E20  7C 08 02 A6 */	mflr r0
 /* 80019EE4 00016E24  3C 60 80 50 */	lis r3, sAramPieceCommandList__12JKRAramPiece@ha
