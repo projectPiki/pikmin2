@@ -2418,8 +2418,7 @@ lbl_8031E9DC:
 /* 8031EA24 0031B964  38 21 00 10 */	addi r1, r1, 0x10
 /* 8031EA28 0031B968  4E 80 00 20 */	blr 
 
-.global __sinit_ogObjAnaDemo_cpp
-__sinit_ogObjAnaDemo_cpp:
+__sinit_ogObjAnaDemo_cpp: # static initalizer
 /* 8031EA2C 0031B96C  C0 42 F8 DC */	lfs f2, lbl_8051DC3C@sda21(r2)
 /* 8031EA30 0031B970  3C 60 80 51 */	lis r3, msVal__Q32og9newScreen10ObjAnaDemo@ha
 /* 8031EA34 0031B974  C0 22 F8 E0 */	lfs f1, lbl_8051DC40@sda21(r2)

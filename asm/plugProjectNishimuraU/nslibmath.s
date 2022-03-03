@@ -1,22 +1,16 @@
 .include "macros.inc"
 .section .sdata2, "a"     # 0x80516360 - 0x80520E40
 .balign 8
-.global lbl_8051A600
 lbl_8051A600:
 	.float 1.0
-.global lbl_8051A604
 lbl_8051A604:
-	.4byte 0x40000000
-.global lbl_8051A608
+	.float 2.0
 lbl_8051A608:
 	.float 0.5
-.global lbl_8051A60C
 lbl_8051A60C:
-	.4byte 0x358637BD
-.global lbl_8051A610
+	.float 1.0E-6
 lbl_8051A610:
-	.4byte 0x00000000
-	.4byte 0x00000000
+	.float 0.0
 
 .section .text, "ax"  # 0x800056C0 - 0x80472F00
 .global "calcLagrange__Q24Game9NsMathExpFPC10Vector3<f>fR10Vector3<f>"

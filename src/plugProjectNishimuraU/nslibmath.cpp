@@ -1,78 +1,37 @@
 #include "types.h"
+#include "Vector3.h"
 
 /*
     Generated from dpostproc
 
     .section .sdata2, "a"     # 0x80516360 - 0x80520E40
-    .global lbl_8051A600
     lbl_8051A600:
         .float 1.0
-    .global lbl_8051A604
     lbl_8051A604:
-        .4byte 0x40000000
-    .global lbl_8051A608
+        .float 2.0
     lbl_8051A608:
         .float 0.5
-    .global lbl_8051A60C
     lbl_8051A60C:
-        .4byte 0x358637BD
-    .global lbl_8051A610
+        .float 1.0E-6
     lbl_8051A610:
-        .4byte 0x00000000
-        .4byte 0x00000000
+        .float 0.0
 */
-
+namespace Game {
+namespace NsMathExp {
 /*
  * --INFO--
  * Address:	8023D7B0
  * Size:	0000A8
+ * Matches!
  */
-void calcLagrange__Q24Game9NsMathExpFPC10Vector3f fR10Vector3f(void)
+void calcLagrange(const Vector3f* p_vec, float p2, Vector3f& new_vec)
+// calculates Lagrange, stores in new_vec
 {
-	/*
-	lfs      f0, lbl_8051A600@sda21(r2)
-	lfs      f2, lbl_8051A604@sda21(r2)
-	lfs      f3, 0xc(r3)
-	fsubs    f0, f1, f0
-	lfs      f4, 0x10(r3)
-	fsubs    f2, f1, f2
-	fmuls    f6, f3, f1
-	lfs      f3, 0x14(r3)
-	fmuls    f5, f4, f1
-	fmuls    f3, f3, f1
-	lfs      f12, lbl_8051A608@sda21(r2)
-	lfs      f7, 0(r3)
-	lfs      f4, 4(r3)
-	fmuls    f9, f2, f6
-	fmuls    f8, f12, f7
-	lfs      f10, 0x18(r3)
-	fmuls    f7, f12, f4
-	lfs      f4, 8(r3)
-	fmuls    f6, f2, f5
-	fmuls    f11, f12, f10
-	fmuls    f10, f8, f0
-	lfs      f8, 0x1c(r3)
-	fmuls    f4, f12, f4
-	lfs      f5, 0x20(r3)
-	fmuls    f8, f12, f8
-	fmuls    f7, f7, f0
-	fmuls    f5, f12, f5
-	fmuls    f11, f11, f1
-	fmsubs   f9, f2, f10, f9
-	fmuls    f4, f4, f0
-	fmuls    f3, f2, f3
-	fmadds   f9, f0, f11, f9
-	fmuls    f8, f8, f1
-	fmsubs   f6, f2, f7, f6
-	fmuls    f5, f5, f1
-	stfs     f9, 0(r4)
-	fmsubs   f1, f2, f4, f3
-	fmadds   f2, f0, f8, f6
-	fmadds   f0, f0, f5, f1
-	stfs     f2, 4(r4)
-	stfs     f0, 8(r4)
-	blr
-	*/
+	float p2_sub1 = p2 - 1.0f;
+	float p2_sub2 = p2 - 2.0f;
+	new_vec.x     = p2_sub1 * (p_vec[2].x * 0.5f * p2) + (p2_sub2 * (p_vec[0].x * 0.5f * p2_sub1) - (p2_sub2 * (p_vec[1].x * p2)));
+	new_vec.y     = p2_sub1 * (p_vec[2].y * 0.5f * p2) + (p2_sub2 * (p_vec[0].y * 0.5f * p2_sub1) - (p2_sub2 * (p_vec[1].y * p2)));
+	new_vec.z     = p2_sub1 * (p_vec[2].z * 0.5f * p2) + (p2_sub2 * (p_vec[0].z * 0.5f * p2_sub1) - (p2_sub2 * (p_vec[1].z * p2)));
 }
 
 /*
@@ -80,7 +39,7 @@ void calcLagrange__Q24Game9NsMathExpFPC10Vector3f fR10Vector3f(void)
  * Address:	8023D858
  * Size:	0001D8
  */
-void calcJointPos__Q24Game9NsMathExpFRC10Vector3f RC10Vector3f ffR10Vector3f R10Vector3f(void)
+void calcJointPos(const Vector3f&, const Vector3f&, float, float, Vector3f&, Vector3f&)
 {
 	/*
 	.loc_0x0:
@@ -220,3 +179,5 @@ void calcJointPos__Q24Game9NsMathExpFRC10Vector3f RC10Vector3f ffR10Vector3f R10
 	  blr
 	*/
 }
+} // namespace NsMathExp
+} // namespace Game

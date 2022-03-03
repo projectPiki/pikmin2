@@ -10,37 +10,39 @@ lbl_80498670:
 	.4byte 0x00000000
 	.4byte 0x00000000
 	.4byte 0x00000000
+.balign 4
 .global lbl_8049867C
 lbl_8049867C:
 	.asciz "khReadyGo.cpp"
-	.skip 2
+.balign 4
 .global lbl_8049868C
 lbl_8049868C:
 	.asciz "disp member err"
+.balign 4
 .global lbl_8049869C
 lbl_8049869C:
 	.asciz "ready_go.blo"
-	.skip 3
+.balign 4
 .global lbl_804986AC
 lbl_804986AC:
 	.asciz "ready_go.bck"
-	.skip 3
+.balign 4
 .global lbl_804986BC
 lbl_804986BC:
 	.asciz "ready_go.bpk"
-	.skip 3
+.balign 4
 .global lbl_804986CC
 lbl_804986CC:
 	.asciz "ready_go_reverse.blo"
-	.skip 3
+.balign 4
 .global lbl_804986E4
 lbl_804986E4:
 	.asciz "ready_go_reverse.bck"
-	.skip 3
+.balign 4
 .global lbl_804986FC
 lbl_804986FC:
 	.asciz "ready_go_reverse.bpk"
-	.skip 3
+.balign 4
 	.4byte lbl_8049869C
 	.4byte lbl_804986AC
 	.4byte lbl_804986BC
@@ -50,10 +52,10 @@ lbl_804986FC:
 .global lbl_8049872C
 lbl_8049872C:
 	.asciz "ready_go.szs"
-	.skip 3
+.balign 4
 	.asciz "screenObj.h"
+.balign 4
 	.asciz "P2Assert"
-	.skip 7
 
 .section .data, "wa"  # 0x8049E220 - 0x804EFC20
 .balign 8
@@ -150,33 +152,24 @@ lbl_8051612C:
 
 .section .sdata2, "a"     # 0x80516360 - 0x80520E40
 .balign 8
-.global lbl_80520058
 lbl_80520058:
 	.4byte 0x00000000
-.global lbl_8052005C
 lbl_8052005C:
 	.4byte 0x42700000
-.global lbl_80520060
 lbl_80520060:
 	.4byte 0x429C0000
 	.4byte 0x00000000
-.global lbl_80520068
 lbl_80520068:
 	.4byte 0x43300000
 	.4byte 0x80000000
-.global lbl_80520070
 lbl_80520070:
 	.4byte 0xC2F00000
-.global lbl_80520074
 lbl_80520074:
 	.4byte 0x42F00000
-.global lbl_80520078
 lbl_80520078:
 	.float 0.7
-.global lbl_8052007C
 lbl_8052007C:
 	.4byte 0xC1400000
-.global lbl_80520080
 lbl_80520080:
 	.4byte 0xC1B00000
 	.4byte 0x00000000
@@ -918,8 +911,7 @@ lbl_80401CB8:
 /* 80401CCC 003FEC0C  38 21 00 10 */	addi r1, r1, 0x10
 /* 80401CD0 003FEC10  4E 80 00 20 */	blr 
 
-.global __sinit_khReadyGo_cpp
-__sinit_khReadyGo_cpp:
+__sinit_khReadyGo_cpp: # static initializer
 /* 80401CD4 003FEC14  3C 60 80 51 */	lis r3, __float_nan@ha
 /* 80401CD8 003FEC18  38 00 FF FF */	li r0, -1
 /* 80401CDC 003FEC1C  38 A3 48 B0 */	addi r5, r3, __float_nan@l
