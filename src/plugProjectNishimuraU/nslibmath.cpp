@@ -22,6 +22,7 @@ namespace NsMathExp {
  * --INFO--
  * Address:	8023D7B0
  * Size:	0000A8
+ * Aside from arg order and defines, identical to Pikmin 1's NsCalculation::calcLagrange
  * Matches!
  */
 void calcLagrange(const Vector3f* p_vec, float p2, Vector3f& new_vec)
