@@ -40,8 +40,7 @@ Challenge2D_TitleInfo::Info::Info(void)
  */
 Challenge2D_TitleInfo::Info* Challenge2D_TitleInfo::operator()(int count)
 {
-	bool isLegal = count >= 0 && count < m_count;
-	P2ASSERTLINE(31, (isLegal));
+	P2ASSERTBOUNDSLINE(31, 0, count, m_count);
 	return &pInfoArray[count];
 }
 
@@ -72,8 +71,7 @@ Vs2D_TitleInfo::Info* Vs2D_TitleInfo::operator()(int infoIndex)
 {
 	bool amLegal = ((infoIndex >= 0));
 	JUT_ASSERTLINE(52, (amLegal && (infoIndex < m_infoCount)), "ZANNEN\n");
-	bool isLegal = infoIndex >= 0 && infoIndex < m_infoCount;
-	P2ASSERTLINE(54, (isLegal));
+	P2ASSERTBOUNDSLINE(54, 0, infoIndex, m_infoCount);
 	return &pInfoArray[infoIndex];
 }
 
