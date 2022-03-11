@@ -1,43 +1,53 @@
 .include "macros.inc"
 .section .rodata  # 0x804732E0 - 0x8049E220
 .balign 8
-.global lbl_8047C648
 lbl_8047C648:
-	.4byte 0x44796E61
-	.4byte 0x6D696373
-	.4byte 0x00000000
+	.asciz "Dynamics"
+.balign 4
+lbl_8047C654: #Shift-JIS
 	.4byte 0x90568374
 	.4byte 0x838A834E
 	.4byte 0x83568387
 	.4byte 0x83930000
-	.4byte 0x5374612D
-	.4byte 0x5061726D
-	.4byte 0x00000000
-	.4byte 0x6D696372
-	.4byte 0x6F20636F
-	.4byte 0x6C6C6973
-	.4byte 0x696F6E00
+.balign 4
+lbl_8047C664:
+	.asciz "Sta-Parm"
+.balign 4
+lbl_8047C670:
+	.asciz "micro collision"
+.balign 4
+lbl_8047C680: #Shift-JIS
 	.4byte 0x5265736F
 	.4byte 0x6C76658E
 	.4byte 0x9E82CC96
 	.4byte 0x808E4300
-	.4byte 0x656C6173
-	.4byte 0x74696369
-	.4byte 0x74790000
+.balign 4
+lbl_8047C690:
+	.asciz "elasticity"
+.balign 4
+lbl_8047C69C: #Shift-JIS
 	.4byte 0x96808E43
 	.4byte 0x3A74616E
 	.4byte 0x76656C00
+.balign 4
+lbl_8047C6A8: #Shift-JIS
 	.4byte 0x8CC592E8
 	.4byte 0x96808E43
 	.4byte 0x00000000
+.balign 4
+lbl_8047C6B4: #Shift-JIS
 	.4byte 0x8CC592E8
 	.4byte 0x96808E43
 	.4byte 0x926C0000
+.balign 4
+lbl_8047C6C0: #Shift-JIS
 	.4byte 0x89F1935D
 	.4byte 0x89658BBF
 	.4byte 0x82C882B5
 	.4byte 0x82C982B7
 	.4byte 0x82E90000
+.balign 4
+lbl_8047C6D4: #Shift-JIS
 	.4byte 0x89F1935D
 	.4byte 0x8382815B
 	.4byte 0x83818393
@@ -61,64 +71,50 @@ __vt__13DynamicsParms:
 	.4byte "size__7Parm<b>Fv"
 	.4byte "write__7Parm<b>FR6Stream"
 	.4byte "read__7Parm<b>FR6Stream"
-	.4byte 0
 
 .section .sbss # 0x80514D80 - 0x80516360
 .balign 8
 .global mInstance__13DynamicsParms
 mInstance__13DynamicsParms:
-	.skip 0x8
+	.skip 4
 
 .section .sdata2, "a"     # 0x80516360 - 0x80520E40
 .balign 8
-.global lbl_80518238
 lbl_80518238:
-	.4byte 0x430C0000
-.global lbl_8051823C
+	.float 140.0
 lbl_8051823C:
-	.4byte 0x00000000
-.global lbl_80518240
+	.float 0.0
 lbl_80518240:
-	.4byte 0x459C4000
-.global lbl_80518244
+	.float 5000.0
+.balign 4
 lbl_80518244:
-	.4byte 0x53746174
-	.4byte 0x69630000
-.global lbl_8051824C
+	.asciz "Static"
+.balign 4
 lbl_8051824C:
-	.4byte 0x41200000
-.global lbl_80518250
+	.float 10.0
 lbl_80518250:
-	.4byte 0x3C75C28F
-.global lbl_80518254
+	.float 0.015
 lbl_80518254:
 	.float 0.3
-.global lbl_80518258
 lbl_80518258:
 	.float 1.0
-.global lbl_8051825C
-lbl_8051825C:
+.balign 4
+lbl_8051825C: #Shift-JIS
 	.4byte 0x96808E43
 	.4byte 0x00000000
-.global lbl_80518264
+.balign 4
 lbl_80518264:
-	.4byte 0x42C80000
-.global lbl_80518268
+	.float 100.0
 lbl_80518268:
-	.4byte 0x461C4000
-.global lbl_8051826C
+	.float 10000.0
 lbl_8051826C:
 	.float 0.05
-.global lbl_80518270
 lbl_80518270:
 	.float 0.5
-.global lbl_80518274
 lbl_80518274:
-	.4byte 0x447A0000
-.global lbl_80518278
+	.float 1000.0
 lbl_80518278:
-	.4byte 0x448C0000
-	.4byte 0x00000000
+	.float 1120.0
 
 .section .text, "ax"  # 0x800056C0 - 0x80472F00
 .global __ct__13DynamicsParmsFv

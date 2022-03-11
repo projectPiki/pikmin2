@@ -5,96 +5,68 @@ lbl_constructor:
 
 .section .rodata  # 0x804732E0 - 0x8049E220
 .balign 8
-.global lbl_8047F668
 lbl_8047F668:
 	.4byte 0x00000000
 	.4byte 0x00000000
 	.4byte 0x00000000
-	.4byte 0x67656E65
-	.4byte 0x7261746F
-	.4byte 0x72000000
-.global lbl_8047F680
+.balign 4
+lbl_8047F674:
+	.asciz "generator"
+.balign 4
 lbl_8047F680:
-	.4byte 0x67656E20
-	.4byte 0x62617365
-	.4byte 0x00000000
-.global lbl_8047F68C
+	.asciz "gen base"
+.balign 4
 lbl_8047F68C:
-	.4byte 0x67616D65
-	.4byte 0x47656E65
-	.4byte 0x7261746F
-	.4byte 0x722E6370
-	.4byte 0x70000000
-.global lbl_8047F6A0
+	.asciz "gameGenerator.cpp"
+.balign 4
 lbl_8047F6A0:
-	.4byte 0x47656E65
-	.4byte 0x72616F74
-	.4byte 0x723A3A73
-	.4byte 0x61766543
-	.4byte 0x72656174
-	.4byte 0x75726520
-	.4byte 0x63726561
-	.4byte 0x74757265
-	.4byte 0x20697320
-	.4byte 0x300A0000
-	.4byte 0x43726561
-	.4byte 0x74757265
-	.4byte 0x00000000
-	.4byte 0x09232076
-	.4byte 0x65727369
-	.4byte 0x6F6E0D0A
-	.4byte 0x00000000
-	.4byte 0x09232072
-	.4byte 0x65736572
-	.4byte 0x7665640D
-	.4byte 0x0A000000
+	.asciz "Generaotr::saveCreature creature is 0\n"
+.balign 4
+lbl_8047F6C8:
+	.asciz "Creature"
+.balign 4
+lbl_8047F6D4:
+	.asciz "\t# version\r\n"
+.balign 4
+lbl_8047F6E4:
+	.asciz "\t# reserved\r\n"
+.balign 4
+lbl_8047F6F4: #Shift-JIS
 	.4byte 0x09232095
 	.4byte 0x9C8A8893
 	.4byte 0xFA90940D
 	.4byte 0x0A000000
-	.4byte 0x0923203C
-	.4byte 0x25733E0D
-	.4byte 0x0A000000
-	.4byte 0x09232070
-	.4byte 0x6F730D0A
-	.4byte 0x00000000
-	.4byte 0x0923206F
-	.4byte 0x66667365
-	.4byte 0x740D0A00
-.global lbl_8047F728
+.balign 4
+lbl_8047F704:
+	.asciz "\t# <%s>\r\n"
+.balign 4
+lbl_8047F710:
+	.asciz "\t# pos\r\n"
+.balign 4
+lbl_8047F71C:
+	.asciz "\t# offset\r\n"
+.balign 4
 lbl_8047F728:
-	.4byte 0x47656E65
-	.4byte 0x7261746F
-	.4byte 0x724D6772
-	.4byte 0x00000000
-	.4byte 0x23206765
-	.4byte 0x6E657261
-	.4byte 0x746F724D
-	.4byte 0x6772203C
-	.4byte 0x25733E0D
-	.4byte 0x0A000000
-	.4byte 0x09232073
-	.4byte 0x74617274
-	.4byte 0x506F730D
-	.4byte 0x0A000000
-	.4byte 0x09232073
-	.4byte 0x74617274
-	.4byte 0x4469720D
-	.4byte 0x0A000000
-	.4byte 0x09232025
-	.4byte 0x64206765
-	.4byte 0x6E657261
-	.4byte 0x746F7273
-	.4byte 0x0D0A0000
-	.4byte 0x00000000
+	.asciz "GeneratorMgr"
+.balign 4
+lbl_8047F738:
+	.asciz "# generatorMgr <%s>\r\n"
+.balign 4
+lbl_8047F750:
+	.asciz "\t# startPos\r\n"
+.balign 4
+lbl_8047F760:
+	.asciz "\t# startDir\r\n"
+.balign 4
+lbl_8047F770:
+	.asciz "\t# %d generators\r\n"
 
 .section .data, "wa"  # 0x8049E220 - 0x804EFC20
 .balign 8
-.global lbl_804B55F0
-lbl_804B55F0:
-	.4byte 0x00000000
-	.4byte 0x00000000
-	.4byte 0x00000000
+govNAN___Q24Game5P2JST:
+	.float 0.0
+	.float 0.0
+	.float 0.0
 .global __vt__Q24Game12GeneratorMgr
 __vt__Q24Game12GeneratorMgr:
 	.4byte 0
@@ -155,18 +127,17 @@ GeneratorCurrentVersion:
 
 .section .sbss # 0x80514D80 - 0x80516360
 .balign 8
-.global lbl_80515A18
-lbl_80515A18:
+gu32NAN___Q24Game5P2JST:
 	.skip 0x4
-.global lbl_80515A1C
-lbl_80515A1C:
+gfNAN___Q24Game5P2JST:
 	.skip 0x4
 .global factory__Q24Game16GenObjectFactory
 factory__Q24Game16GenObjectFactory:
 	.skip 0x4
 .global ramMode__Q24Game9Generator
 ramMode__Q24Game9Generator:
-	.skip 0x4
+	.skip 0x1
+.balign 4
 .global generatorMgr__4Game
 generatorMgr__4Game:
 	.skip 0x4
@@ -188,22 +159,18 @@ cursorCallback__Q24Game12GeneratorMgr:
 
 .section .sdata2, "a"     # 0x80516360 - 0x80520E40
 .balign 8
-.global lbl_80519258
 lbl_80519258:
-	.4byte 0x00000000
-.global lbl_8051925C
+	.float 0.0
+.balign 4
 lbl_8051925C:
-	.4byte 0x756E7365
-	.4byte 0x74000000
-	.4byte 0x00000000
-.global lbl_80519268
+	.asciz "unset"
+.balign 8
 lbl_80519268:
 	.4byte 0x43300000
 	.4byte 0x80000000
-.global lbl_80519270
+.balign 4
 lbl_80519270:
-	.4byte 0x67656E4D
-	.4byte 0x67720000
+	.asciz "genMgr"
 
 .section .text, "ax"  # 0x800056C0 - 0x80472F00
 .global __ct__Q24Game7GenBaseFUlPcPc
@@ -2307,15 +2274,14 @@ update__Q24Game7GenBaseFPQ24Game9Generator:
 render__Q24Game7GenBaseFR8GraphicsPQ24Game9Generator:
 /* 801AC394 001A92D4  4E 80 00 20 */	blr 
 
-.global __sinit_gameGenerator_cpp
-__sinit_gameGenerator_cpp:
+__sinit_gameGenerator_cpp: # static initializer
 /* 801AC398 001A92D8  3C 80 80 51 */	lis r4, __float_nan@ha
 /* 801AC39C 001A92DC  38 00 FF FF */	li r0, -1
 /* 801AC3A0 001A92E0  C0 04 48 B0 */	lfs f0, __float_nan@l(r4)
-/* 801AC3A4 001A92E4  3C 60 80 4B */	lis r3, lbl_804B55F0@ha
-/* 801AC3A8 001A92E8  90 0D 93 98 */	stw r0, lbl_80515A18@sda21(r13)
-/* 801AC3AC 001A92EC  D4 03 55 F0 */	stfsu f0, lbl_804B55F0@l(r3)
-/* 801AC3B0 001A92F0  D0 0D 93 9C */	stfs f0, lbl_80515A1C@sda21(r13)
+/* 801AC3A4 001A92E4  3C 60 80 4B */	lis r3, govNAN___Q24Game5P2JST@ha
+/* 801AC3A8 001A92E8  90 0D 93 98 */	stw r0, gu32NAN___Q24Game5P2JST@sda21(r13)
+/* 801AC3AC 001A92EC  D4 03 55 F0 */	stfsu f0, govNAN___Q24Game5P2JST@l(r3)
+/* 801AC3B0 001A92F0  D0 0D 93 9C */	stfs f0, gfNAN___Q24Game5P2JST@sda21(r13)
 /* 801AC3B4 001A92F4  D0 03 00 04 */	stfs f0, 4(r3)
 /* 801AC3B8 001A92F8  D0 03 00 08 */	stfs f0, 8(r3)
 /* 801AC3BC 001A92FC  4E 80 00 20 */	blr 

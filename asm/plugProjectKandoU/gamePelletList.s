@@ -7,56 +7,55 @@ __vt__Q34Game10PelletList3Mgr:
 	.4byte 0
 	.4byte 0
 	.4byte __dt__Q34Game10PelletList3MgrFv
-	.4byte 0
 
 .section .rodata  # 0x804732E0 - 0x8049E220
 .balign 8
-.global lbl_80483320
 lbl_80483320:
 	.asciz "gamePelletList"
-	.skip 1
-.global lbl_80483330
+.balign 4
 lbl_80483330:
 	.asciz "gamePelletList.cpp"
-	.skip 1
-.global lbl_80483344
+.balign 4
 lbl_80483344:
 	.asciz "P2Assert"
-	.skip 3
-.global lbl_80483350
+.balign 4
 lbl_80483350:
 	.asciz "numberpellet_config.txt"
-.global lbl_80483368
+.balign 4
 lbl_80483368:
 	.asciz "carcass_config.txt"
-	.skip 1
-.global lbl_8048337C
+.balign 4
 lbl_8048337C:
 	.asciz "fruit_config.txt"
-	.skip 3
-.global lbl_80483390
+.balign 4
 lbl_80483390:
 	.asciz "otakara_config.txt"
-	.skip 1
-.global lbl_804833A4
+.balign 4
 lbl_804833A4:
 	.asciz "item_config.txt"
+.balign 4
+lbl_804833B4:
 	.4byte lbl_80483350
 	.4byte lbl_80483368
 	.4byte lbl_8048337C
 	.4byte lbl_80483390
 	.4byte lbl_804833A4
+.balign 4
+lbl_804833C8:
 	.asciz "/user/Abe/Pellet/%s/pelletlist_%s.szs"
-	.skip 2
+.balign 4
+lbl_804833F0:
 	.asciz "don't use this !\n"
-	.skip 2
+.balign 4
+lbl_80483404:
 	.asciz "/user/Kando/pelletlist.szs"
-	.skip 1
+.balign 4
+lbl_80483420:
 	.asciz "no pelletlist.szs\n"
-	.skip 1
+.balign 4
+lbl_80483434:
 	.asciz "no config file [%s]\n"
-	.skip 3
-.global lbl_8048344C
+.balign 4
 lbl_8048344C:
 	.asciz "dictNo:%d \n"
 
@@ -64,17 +63,15 @@ lbl_8048344C:
 .balign 8
 .global mInstance__Q34Game10PelletList3Mgr
 mInstance__Q34Game10PelletList3Mgr:
-	.skip 0x8
+	.skip 4
 
 .section .sdata2, "a"     # 0x80516360 - 0x80520E40
 .balign 8
-.global lbl_8051A248
 lbl_8051A248:
 	.asciz "jpn"
-.global lbl_8051A24C
+.balign 4
 lbl_8051A24C:
 	.asciz "us"
-	.skip 1
 
 .section .text, "ax"  # 0x800056C0 - 0x80472F00
 .global getConfigList__Q34Game10PelletList3MgrFQ34Game10PelletList5cKind
