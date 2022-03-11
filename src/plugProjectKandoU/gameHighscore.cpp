@@ -3,28 +3,6 @@
 #include "Game/Highscore.h"
 #include "JSystem/JUT/JUTException.h"
 
-/*
-    Generated from dpostproc
-
-    .section .rodata  # 0x804732E0 - 0x8049E220
-    .global lbl_80483A68
-    lbl_80483A68:
-        .asciz "gameHighscore.cpp"
-        .skip 2
-    .global lbl_80483A7C
-    lbl_80483A7C:
-        .asciz "P2Assert"
-        .skip 3
-
-    .section .data, "wa"  # 0x8049E220 - 0x804EFC20
-    .global __vt__Q24Game9Highscore
-    __vt__Q24Game9Highscore:
-        .4byte 0
-        .4byte 0
-        .4byte do_higher__Q24Game9HighscoreFii
-        .4byte 0
-*/
-
 namespace Game {
 
 /*
