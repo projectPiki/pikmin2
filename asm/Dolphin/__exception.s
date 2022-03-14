@@ -4,7 +4,7 @@
 .global gTRKInterruptVectorTable
 gTRKInterruptVectorTable:
 .asciz "Metrowerks Target Resident Kernel for PowerPC"
-.skip 0x2
+.balign 4
 /* 80003184 00000184  00 00 00 00 */	.4byte 0x00000000  /* unknown instruction */
 /* 80003188 00000188  00 00 00 00 */	.4byte 0x00000000  /* unknown instruction */
 /* 8000318C 0000018C  00 00 00 00 */	.4byte 0x00000000  /* unknown instruction */
