@@ -5,141 +5,166 @@ lbl_constructor:
 
 .section .rodata  # 0x804732E0 - 0x8049E220
 .balign 8
-.global lbl_8047C358
 lbl_8047C358:
 	.4byte 0x00000000
 	.4byte 0x00000000
 	.4byte 0x00000000
-.global lbl_8047C364
+.balign 4
 lbl_8047C364:
-	.4byte 0x73696E67
-	.4byte 0x6C654753
-	.4byte 0x5F5A756B
-	.4byte 0x616E5061
-	.4byte 0x726D732E
-	.4byte 0x63707000
-.global lbl_8047C37C
+	.asciz "singleGS_ZukanParms.cpp"
+.balign 4
 lbl_8047C37C:
-	.4byte 0x496C6C65
-	.4byte 0x67616C20
-	.4byte 0x736C6F74
-	.4byte 0x2E0A0000
-	.4byte 0x506F7369
-	.4byte 0x74696F6E
-	.4byte 0x5061726D
-	.4byte 0x73000000
+	.asciz "Illegal slot.\n"
+.balign 4
+lbl_8047C38C:
+	.asciz "PositionParms"
+.balign 4
+lbl_8047C39C: # Shift-JIS
 	.4byte 0x8F6F8CBB
 	.4byte 0x88CA9275
 	.4byte 0x81408298
 	.4byte 0x00000000
+.balign 4
+lbl_8047C3AC: # Shift-JIS
 	.4byte 0x8F6F8CBB
 	.4byte 0x88CA9275
 	.4byte 0x81408299
 	.4byte 0x00000000
+.balign 4
+lbl_8047C3BC: # Shift-JIS
 	.4byte 0x8F6F8CBB
 	.4byte 0x88CA9275
 	.4byte 0x8140829A
 	.4byte 0x00000000
+.balign 4
+lbl_8047C3CC: # Shift-JIS
 	.4byte 0x8F6F8CBB
 	.4byte 0x8FEA8F8A
 	.4byte 0x96BC0000
+.balign 4
+lbl_8047C3D8: # Shift-JIS
 	.4byte 0x8F6F8CBB
 	.4byte 0x88CA9275
 	.4byte 0x838A8358
 	.4byte 0x83670000
-.global lbl_8047C3E8
+.balign 4
 lbl_8047C3E8:
-	.4byte 0x656E656D
-	.4byte 0x79506172
-	.4byte 0x6D730000
-.global lbl_8047C3F4
-lbl_8047C3F4:
+	.asciz "enemyParms"
+.balign 4
+lbl_8047C3F4: # Shift-JIS
 	.4byte 0x8F6F8CBB
 	.4byte 0x94CD88CD
 	.4byte 0x00000000
-	.4byte 0x63616D65
-	.4byte 0x72615061
-	.4byte 0x726D7300
+.balign 4
+lbl_8047C400:
+	.asciz "cameraParms"
+.balign 4
+lbl_8047C40C: # Shift-JIS
 	.4byte 0x8D8282B3
 	.4byte 0x81408F89
 	.4byte 0x8AFA926C
 	.4byte 0x00000000
+.balign 4
+lbl_8047C41C: # Shift-JIS
 	.4byte 0x8D8282B3
 	.4byte 0x81408DC5
 	.4byte 0x8FAC926C
 	.4byte 0x00000000
+.balign 4
+lbl_8047C42C: # Shift-JIS
 	.4byte 0x8D8282B3
 	.4byte 0x81408DC5
 	.4byte 0x91E5926C
 	.4byte 0x00000000
+.balign 4
+lbl_8047C43C: # Shift-JIS
 	.4byte 0x83498374
 	.4byte 0x835A8362
 	.4byte 0x83678140
 	.4byte 0x82980000
+.balign 4
+lbl_8047C44C: # Shift-JIS
 	.4byte 0x83498374
 	.4byte 0x835A8362
 	.4byte 0x83678140
 	.4byte 0x82990000
+.balign 4
+lbl_8047C45C: # Shift-JIS
 	.4byte 0x83498374
 	.4byte 0x835A8362
 	.4byte 0x83678140
 	.4byte 0x829A0000
+.balign 4
+lbl_8047C46C: # Shift-JIS
 	.4byte 0x89E68A70
 	.4byte 0x81408F89
 	.4byte 0x8AFA926C
 	.4byte 0x00000000
+.balign 4
+lbl_8047C47C: # Shift-JIS
 	.4byte 0x89E68A70
 	.4byte 0x81408DC5
 	.4byte 0x8FAC926C
 	.4byte 0x00000000
+.balign 4
+lbl_8047C48C: # Shift-JIS
 	.4byte 0x89E68A70
 	.4byte 0x81408DC5
 	.4byte 0x91E5926C
 	.4byte 0x00000000
+.balign 4
+lbl_8047C49C: # Shift-JIS
 	.4byte 0x89F1935D
 	.4byte 0x81408F89
 	.4byte 0x8AFA926C
 	.4byte 0x00000000
+.balign 4
+lbl_8047C4AC: # Shift-JIS
 	.4byte 0x83498374
 	.4byte 0x835A8362
 	.4byte 0x83678298
 	.4byte 0x00000000
+.balign 4
+lbl_8047C4BC: # Shift-JIS
 	.4byte 0x83498374
 	.4byte 0x835A8362
 	.4byte 0x83678299
 	.4byte 0x00000000
+.balign 4
+lbl_8047C4CC: # Shift-JIS
 	.4byte 0x83498374
 	.4byte 0x835A8362
 	.4byte 0x8367829A
 	.4byte 0x00000000
+.balign 4
+lbl_8047C4DC: # Shift-JIS
 	.4byte 0x82A895F3
 	.4byte 0x907D8AD3
 	.4byte 0x00000000
+.balign 4
+lbl_8047C4E8: # Shift-JIS
 	.4byte 0x907D8AD3
 	.4byte 0x90DD92E8
 	.4byte 0x00000000
+.balign 4
+lbl_8047C4F4:
 	.asciz "P2Assert"
-	.skip 3
-	.4byte 0x73657474
-	.4byte 0x696E672E
-	.4byte 0x696E6900
-	.4byte 0x6C6F6164
-	.4byte 0x20657272
-	.4byte 0x6F722E5B
-	.4byte 0x25735D0A
-	.4byte 0x00000000
-	.4byte 0x6E6F2066
-	.4byte 0x696C654E
-	.4byte 0x616D6500
-	.4byte 0x00000000
+.balign 4
+lbl_8047C500:
+	.asciz "setting.ini"
+.balign 4
+lbl_8047C50C:
+	.asciz "load error.[%s]\n"
+.balign 4
+lbl_8047C520:
+	.asciz "no fileName"
 
 .section .data, "wa"  # 0x8049E220 - 0x804EFC20
 .balign 8
-.global lbl_804AF9C8
-lbl_804AF9C8:
-	.4byte 0x00000000
-	.4byte 0x00000000
-	.4byte 0x00000000
+govNAN___Q24Game5P2JST:
+	.float 0.0
+	.float 0.0
+	.float 0.0
 .global __vt__Q34Game15IllustratedBook5Parms
 __vt__Q34Game15IllustratedBook5Parms:
 	.4byte 0
@@ -204,11 +229,9 @@ __vt__Q34Game15IllustratedBook12ColorSetting:
 
 .section .sbss # 0x80514D80 - 0x80516360
 .balign 8
-.global lbl_805158C8
-lbl_805158C8:
+gu32NAN___Q24Game5P2JST:
 	.skip 0x4
-.global lbl_805158CC
-lbl_805158CC:
+gfNAN___Q24Game5P2JST:
 	.skip 0x4
 .global sZukanState__Q34Game15IllustratedBook5Parms
 sZukanState__Q34Game15IllustratedBook5Parms:
@@ -219,85 +242,70 @@ sCamera__Q34Game15IllustratedBook5Parms:
 
 .section .sdata2, "a"     # 0x80516360 - 0x80520E40
 .balign 8
-.global lbl_80518150
-lbl_80518150:
+lbl_80518150: # Shift-JIS
 	.4byte 0x904690DD
 	.4byte 0x92E80000
-.global lbl_80518158
+.balign 4
 lbl_80518158:
 	.float 0.5
-.global lbl_8051815C
 lbl_8051815C:
-	.4byte 0x40000000
-.global lbl_80518160
+	.float 2.0
+.balign 8
 lbl_80518160:
 	.4byte 0x43300000
 	.4byte 0x00000000
-.global lbl_80518168
 lbl_80518168:
-	.4byte 0x00000000
-.global lbl_8051816C
+	.float 0.0
 lbl_8051816C:
-	.4byte 0xC61C4000
-.global lbl_80518170
+	.float -10000.0
 lbl_80518170:
-	.4byte 0x461C4000
-.global lbl_80518174
+	.float 10000.0
+.balign 4
 lbl_80518174:
-	.4byte 0x00000000
-.global lbl_80518178
-lbl_80518178:
+	.asciz ""
+.balign 4
+lbl_80518178: # Shift-JIS
 	.4byte 0x91E582AB
 	.4byte 0x82B30000
-.global lbl_80518180
+.balign 4
 lbl_80518180:
-	.4byte 0x41200000
-.global lbl_80518184
+	.float 10.0
 lbl_80518184:
-	.4byte 0x447A0000
-.global lbl_80518188
-lbl_80518188:
+	.float 1000.0
+.balign 4
+lbl_80518188: # Shift-JIS
 	.4byte 0x8F6F8CBB
 	.4byte 0x90940000
-.global lbl_80518190
-lbl_80518190:
+.balign 4
+lbl_80518190: # Shift-JIS
 	.4byte 0x94BC8C61
 	.4byte 0x00000000
-.global lbl_80518198
+.balign 4
 lbl_80518198:
-	.4byte 0x43AF0000
-.global lbl_8051819C
+	.float 350.0
 lbl_8051819C:
-	.4byte 0x44FA0000
-.global lbl_805181A0
+	.float 2000.0
 lbl_805181A0:
-	.4byte 0x43FA0000
-.global lbl_805181A4
+	.float 500.0
 lbl_805181A4:
-	.4byte 0x442F0000
-.global lbl_805181A8
+	.float 700.0
 lbl_805181A8:
-	.4byte 0xC3FA0000
-.global lbl_805181AC
+	.float -500.0
 lbl_805181AC:
-	.4byte 0x41F00000
-.global lbl_805181B0
+	.float 30.0
 lbl_805181B0:
-	.4byte 0x42B40000
-.global lbl_805181B4
+	.float 90.0
 lbl_805181B4:
 	.float 0.1
-.global lbl_805181B8
 lbl_805181B8:
-	.4byte 0x43B40000
-.global lbl_805181BC
-lbl_805181BC:
+	.float 360.0
+.balign 4
+lbl_805181BC: # Shift-JIS
 	.4byte 0x9347907D
 	.4byte 0x8AD30000
-.global lbl_805181C4
-lbl_805181C4:
+.balign 4
+lbl_805181C4: # Shift-JIS
 	.4byte 0x90DD92E8
-	.4byte 0x00000000
 	.4byte 0x00000000
 
 .section .text, "ax"  # 0x800056C0 - 0x80472F00
@@ -2252,15 +2260,14 @@ lbl_80132828:
 /* 8013283C 0012F77C  38 21 00 10 */	addi r1, r1, 0x10
 /* 80132840 0012F780  4E 80 00 20 */	blr 
 
-.global __sinit_singleGS_ZukanParms_cpp
-__sinit_singleGS_ZukanParms_cpp:
+__sinit_singleGS_ZukanParms_cpp: # static initializer
 /* 80132844 0012F784  3C 80 80 51 */	lis r4, __float_nan@ha
 /* 80132848 0012F788  38 00 FF FF */	li r0, -1
 /* 8013284C 0012F78C  C0 04 48 B0 */	lfs f0, __float_nan@l(r4)
-/* 80132850 0012F790  3C 60 80 4B */	lis r3, lbl_804AF9C8@ha
-/* 80132854 0012F794  90 0D 92 48 */	stw r0, lbl_805158C8@sda21(r13)
-/* 80132858 0012F798  D4 03 F9 C8 */	stfsu f0, lbl_804AF9C8@l(r3)
-/* 8013285C 0012F79C  D0 0D 92 4C */	stfs f0, lbl_805158CC@sda21(r13)
+/* 80132850 0012F790  3C 60 80 4B */	lis r3, govNAN___Q24Game5P2JST@ha
+/* 80132854 0012F794  90 0D 92 48 */	stw r0, gu32NAN___Q24Game5P2JST@sda21(r13)
+/* 80132858 0012F798  D4 03 F9 C8 */	stfsu f0, govNAN___Q24Game5P2JST@l(r3)
+/* 8013285C 0012F79C  D0 0D 92 4C */	stfs f0, gfNAN___Q24Game5P2JST@sda21(r13)
 /* 80132860 0012F7A0  D0 03 00 04 */	stfs f0, 4(r3)
 /* 80132864 0012F7A4  D0 03 00 08 */	stfs f0, 8(r3)
 /* 80132868 0012F7A8  4E 80 00 20 */	blr 

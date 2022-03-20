@@ -5,32 +5,35 @@ lbl_constructor:
 
 .section .rodata  # 0x804732E0 - 0x8049E220
 .balign 8
-.global lbl_8047C530
 lbl_8047C530:
 	.4byte 0x00000000
 	.4byte 0x00000000
 	.4byte 0x00000000
+.balign 4
+lbl_8047C53C: # Shift-JIS
 	.4byte 0x82A895F3
 	.4byte 0x83898343
 	.4byte 0x83670000
+.balign 4
+lbl_8047C548: # Shift-JIS
 	.4byte 0x83818343
 	.4byte 0x83938389
 	.4byte 0x83438367
 	.4byte 0x00000000
+.balign 4
+lbl_8047C558: # Shift-JIS
 	.4byte 0x83588379
 	.4byte 0x834C8385
 	.4byte 0x83892D83
 	.4byte 0x89834383
 	.4byte 0x67000000
-	.4byte 0x00000000
 
 .section .data, "wa"  # 0x8049E220 - 0x804EFC20
 .balign 8
-.global lbl_804AFA80
-lbl_804AFA80:
-	.4byte 0x00000000
-	.4byte 0x00000000
-	.4byte 0x00000000
+govNAN___Q24Game5P2JST:
+	.float 0.0
+	.float 0.0
+	.float 0.0
 .global __vt__Q213TreasureLight3Mgr
 __vt__Q213TreasureLight3Mgr:
 	.4byte 0
@@ -40,50 +43,37 @@ __vt__Q213TreasureLight3Mgr:
 	.4byte update__Q213TreasureLight3MgrFv
 	.4byte set__Q213TreasureLight3MgrFR8Graphics
 	.4byte set__Q213TreasureLight3MgrFR7Matrixf
-	.4byte drawDebugInfo__Q213TreasureLight3MgrFR8Graphics
-	.4byte 0
+	.4byte drawDebugInfo__Q213TreasureLight3MgrFR8Graphics	
 
 .section .sbss # 0x80514D80 - 0x80516360
 .balign 8
-.global lbl_805158D8
-lbl_805158D8:
+gu32NAN___Q24Game5P2JST:
 	.skip 0x4
-.global lbl_805158DC
-lbl_805158DC:
+gfNAN___Q24Game5P2JST:
 	.skip 0x4
 
 .section .sdata2, "a"     # 0x80516360 - 0x80520E40
 .balign 8
-.global lbl_805181D0
 lbl_805181D0:
-	.4byte 0x43960000
-.global lbl_805181D4
+	.float 300.0
 lbl_805181D4:
-	.4byte 0x43A50000
-.global lbl_805181D8
+	.float 330.0
 lbl_805181D8:
-	.4byte 0x00000000
-.global lbl_805181DC
+	.float 0.0
 lbl_805181DC:
 	.float -1.0
-.global lbl_805181E0
 lbl_805181E0:
-	.4byte 0x42200000
-.global lbl_805181E4
-lbl_805181E4:
-	.4byte 0x40490FDB
-.global lbl_805181E8
+	.float 40.0
+lbl_805181E4: # pi
+	.float 3.1415927
 lbl_805181E8:
-	.4byte 0x3BB60B61
-.global lbl_805181EC
+	.float 0.0055555557
 lbl_805181EC:
-	.4byte 0x453B8000
-.global lbl_805181F0
+	.float 3000.0
 lbl_805181F0:
 	.float 1.0
-.global lbl_805181F4
 lbl_805181F4:
-	.4byte 0x3F59999A
+	.float 0.85
 
 .section .text, "ax"  # 0x800056C0 - 0x80472F00
 .global __ct__Q213TreasureLight3MgrFv
@@ -332,7 +322,7 @@ drawDebugInfo__Q213TreasureLight3MgrFR8Graphics:
 /* 80132BE8 0012FB28  4E 80 00 20 */	blr 
 
 .global __dt__Q213TreasureLight3MgrFv
-__dt__Q213TreasureLight3MgrFv:
+__dt__Q213TreasureLight3MgrFv: # weak function
 /* 80132BEC 0012FB2C  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 80132BF0 0012FB30  7C 08 02 A6 */	mflr r0
 /* 80132BF4 0012FB34  90 01 00 14 */	stw r0, 0x14(r1)
@@ -377,15 +367,14 @@ lbl_80132C70:
 /* 80132C84 0012FBC4  38 21 00 10 */	addi r1, r1, 0x10
 /* 80132C88 0012FBC8  4E 80 00 20 */	blr 
 
-.global __sinit_treasureLightMgr_cpp
-__sinit_treasureLightMgr_cpp:
+__sinit_treasureLightMgr_cpp: # static initializer
 /* 80132C8C 0012FBCC  3C 80 80 51 */	lis r4, __float_nan@ha
 /* 80132C90 0012FBD0  38 00 FF FF */	li r0, -1
 /* 80132C94 0012FBD4  C0 04 48 B0 */	lfs f0, __float_nan@l(r4)
-/* 80132C98 0012FBD8  3C 60 80 4B */	lis r3, lbl_804AFA80@ha
-/* 80132C9C 0012FBDC  90 0D 92 58 */	stw r0, lbl_805158D8@sda21(r13)
-/* 80132CA0 0012FBE0  D4 03 FA 80 */	stfsu f0, lbl_804AFA80@l(r3)
-/* 80132CA4 0012FBE4  D0 0D 92 5C */	stfs f0, lbl_805158DC@sda21(r13)
+/* 80132C98 0012FBD8  3C 60 80 4B */	lis r3, govNAN___Q24Game5P2JST@ha
+/* 80132C9C 0012FBDC  90 0D 92 58 */	stw r0, gu32NAN___Q24Game5P2JST@sda21(r13)
+/* 80132CA0 0012FBE0  D4 03 FA 80 */	stfsu f0, govNAN___Q24Game5P2JST@l(r3)
+/* 80132CA4 0012FBE4  D0 0D 92 5C */	stfs f0, gfNAN___Q24Game5P2JST@sda21(r13)
 /* 80132CA8 0012FBE8  D0 03 00 04 */	stfs f0, 4(r3)
 /* 80132CAC 0012FBEC  D0 03 00 08 */	stfs f0, 8(r3)
 /* 80132CB0 0012FBF0  4E 80 00 20 */	blr 

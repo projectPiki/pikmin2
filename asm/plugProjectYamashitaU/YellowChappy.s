@@ -1,14 +1,11 @@
 .include "macros.inc"
 .section .rodata  # 0x804732E0 - 0x8049E220
 .balign 8
-.global lbl_8047C0A0
 lbl_8047C0A0:
 	.asciz "YellowChappy.cpp"
-	.skip 3
-.global lbl_8047C0B4
+.balign 4
 lbl_8047C0B4:
 	.asciz "P2Assert"
-	.skip 3
 
 .section .data, "wa"  # 0x8049E220 - 0x804EFC20
 .balign 8
@@ -265,18 +262,13 @@ __vt__Q34Game12YellowChappy3Obj:
 	.4byte "@752@12@viewStartCarryMotion__Q24Game9EnemyBaseFv"
 	.4byte "@752@12@viewOnPelletKilled__Q24Game9EnemyBaseFv"
 	.4byte "viewEntryShape__Q24Game10PelletViewFR7MatrixfR10Vector3<f>"
-	.4byte 0
 
 .section .sdata2, "a"     # 0x80516360 - 0x80520E40
 .balign 8
-.global lbl_805180D0
 lbl_805180D0:
 	.float 0.5
-.global lbl_805180D4
 lbl_805180D4:
-	.4byte 0x626F6479
-	.4byte 0x00000000
-	.4byte 0x00000000
+	.asciz "body"
 
 .section .text, "ax"  # 0x800056C0 - 0x80472F00
 .global __ct__Q34Game12YellowChappy3ObjFv

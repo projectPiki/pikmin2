@@ -220,7 +220,6 @@ __vt__Q34Game10BlueChappy3Obj:
 	.4byte "@740@12@viewStartCarryMotion__Q24Game9EnemyBaseFv"
 	.4byte "@740@12@viewOnPelletKilled__Q24Game9EnemyBaseFv"
 	.4byte "viewEntryShape__Q24Game10PelletViewFR7MatrixfR10Vector3<f>"
-	.4byte 0
 
 .section .text, "ax"  # 0x800056C0 - 0x80472F00
 .global __ct__Q34Game10BlueChappy3ObjFv

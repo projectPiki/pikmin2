@@ -5,55 +5,41 @@ lbl_constructor:
 
 .section .rodata  # 0x804732E0 - 0x8049E220
 .balign 8
-.global lbl_8047C708
 lbl_8047C708:
 	.4byte 0x00000000
 	.4byte 0x00000000
 	.4byte 0x00000000
-	.4byte 0x66616B65
-	.4byte 0x50696B69
-	.4byte 0x00000000
-.global lbl_8047C720
+.balign 4
+lbl_8047C714:
+	.asciz "fakePiki"
+.balign 4
 lbl_8047C720:
-	.4byte 0x66616B65
-	.4byte 0x50696B69
-	.4byte 0x2E637070
-	.4byte 0x00000000
-.global lbl_8047C730
+	.asciz "fakePiki.cpp"
+.balign 4
 lbl_8047C730:
 	.asciz "P2Assert"
-	.skip 3
-.global lbl_8047C73C
+.balign 4
 lbl_8047C73C:
-	.4byte 0x64616D65
-	.4byte 0x6461796F
-	.4byte 0x210A0000
-	.4byte 0x7A616D61
-	.4byte 0x2D2D2D2D
-	.4byte 0x2D2D2D2D
-	.4byte 0x6E0A0000
-	.4byte 0x63616C63
-	.4byte 0x2D636F6C
-	.4byte 0x6C000000
-.global lbl_8047C764
+	.asciz "damedayo!\n"
+.balign 4
+lbl_8047C748:
+	.asciz "zama--------n\n"
+.balign 4
+lbl_8047C758:
+	.asciz "calc-coll"
+.balign 4
 lbl_8047C764:
-	.4byte 0x6E6F2072
-	.4byte 0x65636F76
-	.4byte 0x6572206F
-	.4byte 0x6E796F6E
-	.4byte 0x0A000000
-	.4byte 0x43726561
-	.4byte 0x74757265
-	.4byte 0x00000000
-	.4byte 0x00000000
+	.asciz "no recover onyon\n"
+.balign 4
+lbl_8047C778:
+	.asciz "Creature"
 
 .section .data, "wa"  # 0x8049E220 - 0x804EFC20
 .balign 8
-.global lbl_804B02B0
-lbl_804B02B0:
-	.4byte 0x00000000
-	.4byte 0x00000000
-	.4byte 0x00000000
+govNAN___Q24Game5P2JST:
+	.float 0.0
+	.float 0.0
+	.float 0.0
 .global __vt__Q24Game8FakePiki
 __vt__Q24Game8FakePiki:
 	.4byte 0
@@ -192,7 +178,6 @@ __vt__Q24Game8FakePiki:
 	.4byte do_updateLookCreature__Q24Game8FakePikiFv
 	.4byte onSetPosition__Q24Game8FakePikiFv
 	.4byte isWalking__Q24Game8FakePikiFv
-	.4byte 0
 
 .section .sdata, "wa"  # 0x80514680 - 0x80514D80
 .balign 8
@@ -202,11 +187,9 @@ kAngleSpeed__Q23efx7TCursor:
 
 .section .sbss # 0x80514D80 - 0x80516360
 .balign 8
-.global lbl_80515900
-lbl_80515900:
+gu32NAN___Q24Game5P2JST:
 	.skip 0x4
-.global lbl_80515904
-lbl_80515904:
+gfNAN___Q24Game5P2JST:
 	.skip 0x4
 .global sCurrNeckTheta__Q24Game8FakePiki
 sCurrNeckTheta__Q24Game8FakePiki:
@@ -217,116 +200,82 @@ sCurrNeckPhi__Q24Game8FakePiki:
 
 .section .sdata2, "a"     # 0x80516360 - 0x80520E40
 .balign 8
-.global lbl_805182B0
 lbl_805182B0:
-	.4byte 0x41080000
-.global lbl_805182B4
+	.float 8.5
 lbl_805182B4:
-	.4byte 0x00000000
-.global lbl_805182B8
+	.float 0.0
 lbl_805182B8:
-	.4byte 0x41F00000
-.global lbl_805182BC
+	.float 30.0
 lbl_805182BC:
-	.4byte 0x41200000
-.global lbl_805182C0
+	.float 10.0
 lbl_805182C0:
-	.4byte 0x3C23D70A
-.global lbl_805182C4
+	.float 0.01
 lbl_805182C4:
-	.4byte 0x42700000
-.global lbl_805182C8
+	.float 60.0
 lbl_805182C8:
-	.4byte 0xC3A2F983
-.global lbl_805182CC
+	.float -325.9493
 lbl_805182CC:
-	.4byte 0x43A2F983
-.global lbl_805182D0
+	.float 325.9493
 lbl_805182D0:
-	.4byte 0x3E4CCCCD
-.global lbl_805182D4
+	.float 0.2
 lbl_805182D4:
 	.float 0.1
-.global lbl_805182D8
-lbl_805182D8:
-	.4byte 0x40490FDB
-.global lbl_805182DC
-lbl_805182DC:
-	.4byte 0x40C90FDB
-.global lbl_805182E0
+lbl_805182D8: # pi
+	.float 3.1415927
+lbl_805182DC: # tau
+	.float 6.2831855
 lbl_805182E0:
 	.float -1.0
-.global lbl_805182E4
 lbl_805182E4:
-	.4byte 0x3E20D97C
-.global lbl_805182E8
+	.float 0.15707964
 lbl_805182E8:
 	.float 0.05
-.global lbl_805182EC
-lbl_805182EC:
-	.4byte 0x3EA0D97C
-.global lbl_805182F0
-lbl_805182F0:
-	.4byte 0xBEA0D97C
-.global lbl_805182F4
+lbl_805182EC: # pi/10
+	.float 0.31415927
+lbl_805182F0: # -pi/10
+	.float -0.31415927
 lbl_805182F4:
-	.4byte 0x40060A92
-.global lbl_805182F8
+	.float 2.0943952
 lbl_805182F8:
-	.4byte 0x40860A92
-.global lbl_805182FC
+	.float 4.1887903
 lbl_805182FC:
-	.4byte 0x3F860A92
-.global lbl_80518300
+	.float 1.0471976
 lbl_80518300:
-	.4byte 0x40A78D36
-.global lbl_80518304
+	.float 5.2359877
 lbl_80518304:
 	.float 1.0
-.global lbl_80518308
 lbl_80518308:
-	.4byte 0x40200000
-.global lbl_8051830C
+	.float 2.5
 lbl_8051830C:
-	.4byte 0x40800000
-.global lbl_80518310
+	.float 4.0
 lbl_80518310:
-	.4byte 0x3F4CCCCD
-.global lbl_80518314
+	.float 0.8
 lbl_80518314:
-	.4byte 0x3F19999A
-.global lbl_80518318
+	.float 0.6
 lbl_80518318:
-	.4byte 0x3D088889
-.global lbl_8051831C
+	.float 0.033333335
 lbl_8051831C:
-	.4byte 0xBCCCCCCE
-.global lbl_80518320
+	.float -0.025000002
 lbl_80518320:
-	.4byte 0x42C80000
-.global lbl_80518324
+	.float 100.0
 lbl_80518324:
-	.4byte 0x47000000
-.global lbl_80518328
+	.float 32768.0
+.balign 8
 lbl_80518328:
 	.4byte 0x43300000
 	.4byte 0x80000000
-.global lbl_80518330
+.balign 4
 lbl_80518330:
-	.4byte 0x646F6131
-	.4byte 0x00000000
-.global lbl_80518338
+	.asciz "doa1"
+.balign 4
 lbl_80518338:
-	.4byte 0x3C1374BC
-.global lbl_8051833C
+	.float 0.009
 lbl_8051833C:
-	.4byte 0x40000000
-.global lbl_80518340
+	.float 2.0
 lbl_80518340:
-	.4byte 0x43160000
-.global lbl_80518344
+	.float 150.0
 lbl_80518344:
-	.4byte 0x3F8CCCCD
+	.float 1.1
 
 .section .text, "ax"  # 0x800056C0 - 0x80472F00
 .global __ct__Q24Game8FakePikiFv
@@ -3391,15 +3340,14 @@ isWalking__Q24Game8FakePikiFv:
 onKeyEvent__Q24Game8FakePikiFRCQ28SysShape8KeyEvent:
 /* 8013F6A0 0013C5E0  4E 80 00 20 */	blr 
 
-.global __sinit_fakePiki_cpp
-__sinit_fakePiki_cpp:
+__sinit_fakePiki_cpp: # static initializer
 /* 8013F6A4 0013C5E4  3C 80 80 51 */	lis r4, __float_nan@ha
 /* 8013F6A8 0013C5E8  38 00 FF FF */	li r0, -1
 /* 8013F6AC 0013C5EC  C0 04 48 B0 */	lfs f0, __float_nan@l(r4)
-/* 8013F6B0 0013C5F0  3C 60 80 4B */	lis r3, lbl_804B02B0@ha
-/* 8013F6B4 0013C5F4  90 0D 92 80 */	stw r0, lbl_80515900@sda21(r13)
-/* 8013F6B8 0013C5F8  D4 03 02 B0 */	stfsu f0, lbl_804B02B0@l(r3)
-/* 8013F6BC 0013C5FC  D0 0D 92 84 */	stfs f0, lbl_80515904@sda21(r13)
+/* 8013F6B0 0013C5F0  3C 60 80 4B */	lis r3, govNAN___Q24Game5P2JST@ha
+/* 8013F6B4 0013C5F4  90 0D 92 80 */	stw r0, gu32NAN___Q24Game5P2JST@sda21(r13)
+/* 8013F6B8 0013C5F8  D4 03 02 B0 */	stfsu f0, govNAN___Q24Game5P2JST@l(r3)
+/* 8013F6BC 0013C5FC  D0 0D 92 84 */	stfs f0, gfNAN___Q24Game5P2JST@sda21(r13)
 /* 8013F6C0 0013C600  D0 03 00 04 */	stfs f0, 4(r3)
 /* 8013F6C4 0013C604  D0 03 00 08 */	stfs f0, 8(r3)
 /* 8013F6C8 0013C608  4E 80 00 20 */	blr 
