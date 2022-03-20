@@ -156,23 +156,17 @@ float pikmin2_atan2f(float x, float y) { return JMath::atanTable_.atan2_(x, y); 
  * --INFO--
  * Address:	80411804
  * Size:	000018
+ * The asm seems necessary to match, but why would they do this?
  */
-float pikmin2_sqrtf(float x)
+float pikmin2_sqrtf(register float x)
 {
-	if (!(x > lbl_80520270)) { // if x <= 0
-		return x;
+	if (x > lbl_80520270) {
+		register double reg_f0 = __frsqrte(x);
+		asm {
+            fmuls x, reg_f0, x
+		}
 	}
-
-	register float reg1 = x;
-	register float reg2 = lbl_80520270;
-	register float result;
-
-	asm {
-      frsqrte reg2, reg1
-      fmuls result, reg2, reg1
-	}
-
-	return result;
+	return x;
 }
 
 /*
