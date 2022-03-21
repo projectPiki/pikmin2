@@ -1,24 +1,17 @@
 .include "macros.inc"
 .section .rodata  # 0x804732E0 - 0x8049E220
 .balign 8
-.global lbl_80490120
 lbl_80490120:
-	.4byte 0x50535363
-	.4byte 0x656E652E
-	.4byte 0x63707000
-.global lbl_8049012C
+	.asciz "PSScene.cpp"
+.balign 4
 lbl_8049012C:
 	.asciz "P2Assert"
-	.skip 3
-	.4byte 0x50535363
-	.4byte 0x656E652E
-	.4byte 0x68000000
-.global lbl_80490144
+.balign 4
+lbl_80490138:
+	.asciz "PSScene.h"
+.balign 4
 lbl_80490144:
-	.4byte 0x50535379
-	.4byte 0x7374656D
-	.4byte 0x49462E68
-	.4byte 0x00000000
+	.asciz "PSSystemIF.h"
 
 .section .data, "wa"  # 0x8049E220 - 0x804EFC20
 .balign 8
@@ -49,7 +42,7 @@ __vt__Q28PSSystem9WaveScene:
 .balign 8
 .global spSceneMgr__8PSSystem
 spSceneMgr__8PSSystem:
-	.skip 0x8
+	.skip 0x4
 
 .section .text, "ax"  # 0x800056C0 - 0x80472F00
 .global __dt__Q28PSSystem9WaveSceneFv

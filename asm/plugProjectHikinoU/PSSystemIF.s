@@ -5,26 +5,17 @@ lbl_constructor:
 
 .section .rodata  # 0x804732E0 - 0x8049E220
 .balign 8
-.global lbl_8048FE28
 lbl_8048FE28:
-	.4byte 0x50535379
-	.4byte 0x7374656D
-	.4byte 0x49462E63
-	.4byte 0x70700000
-.global lbl_8048FE38
+	.asciz "PSSystemIF.cpp"
+.balign 4
 lbl_8048FE38:
 	.asciz "P2Assert"
-	.skip 3
-.global lbl_8048FE44
+.balign 4
 lbl_8048FE44:
-	.4byte 0x50534761
-	.4byte 0x6D652E68
-	.4byte 0x00000000
-.global lbl_8048FE50
+	.asciz "PSGame.h"
+.balign 4
 lbl_8048FE50:
-	.4byte 0x50535363
-	.4byte 0x656E652E
-	.4byte 0x68000000
+	.asciz "PSScene.h"
 
 .section .data, "wa"  # 0x8049E220 - 0x804EFC20
 .balign 8
@@ -47,13 +38,12 @@ __vt__Q28PSSystem5SysIF:
 	.4byte setSeExtParameter__8JAIBasicFP8JAISound
 	.4byte setRegisterTrackCallback__8JAIBasicFv
 	.4byte initIF__Q28PSSystem5SysIFFRCQ28PSSystem8SetupArg
-	.4byte 0
 
 .section .sdata, "wa"  # 0x80514680 - 0x80514D80
 .balign 8
 .global sDistanceParameterMoveTime__8PSSystem
 sDistanceParameterMoveTime__8PSSystem:
-	.4byte 0x05000000
+	.byte 0x05
 
 .section .sbss # 0x80514D80 - 0x80516360
 .balign 8
@@ -65,20 +55,16 @@ oRandom__8PSSystem:
 	.skip 0x4
 .global sMakeJAISeCallback__Q28PSSystem5SysIF
 sMakeJAISeCallback__Q28PSSystem5SysIF:
-	.skip 0x8
+	.skip 0x4
 
 .section .sdata2, "a"     # 0x80516360 - 0x80520E40
 .balign 8
-.global lbl_8051E150
 lbl_8051E150:
 	.float 1.0
-.global lbl_8051E154
 lbl_8051E154:
-	.4byte 0x3F666666
-.global lbl_8051E158
+	.float 0.9
 lbl_8051E158:
-	.4byte 0x4079999A
-	.4byte 0x00000000
+	.float 3.9
 
 .section .text, "ax"  # 0x800056C0 - 0x80472F00
 .global getObject__8PSSystemFP8JASTrackUc
@@ -618,7 +604,7 @@ lbl_80338A9C:
 /* 80338AAC 003359EC  4E 80 00 20 */	blr 
 
 .global onlyLoad__Q28PSSystem12TextDataBaseFPCcQ212JKRDvdRipper15EAllocDirection
-onlyLoad__Q28PSSystem12TextDataBaseFPCcQ212JKRDvdRipper15EAllocDirection:
+onlyLoad__Q28PSSystem12TextDataBaseFPCcQ212JKRDvdRipper15EAllocDirection: # weak function
 /* 80338AB0 003359F0  94 21 FF E0 */	stwu r1, -0x20(r1)
 /* 80338AB4 003359F4  7C 08 02 A6 */	mflr r0
 /* 80338AB8 003359F8  7C A8 2B 78 */	mr r8, r5
@@ -647,13 +633,13 @@ onlyLoad__Q28PSSystem12TextDataBaseFPCcQ212JKRDvdRipper15EAllocDirection:
 /* 80338B14 00335A54  4E 80 00 20 */	blr 
 
 .global start1stSeq__Q28PSSystem5SysIFFv
-start1stSeq__Q28PSSystem5SysIFFv:
+start1stSeq__Q28PSSystem5SysIFFv: # weak function
 /* 80338B18 00335A58  38 00 00 00 */	li r0, 0
 /* 80338B1C 00335A5C  90 0D 8B E0 */	stw r0, seHandle__Q27JAInter5SeMgr@sda21(r13)
 /* 80338B20 00335A60  4E 80 00 20 */	blr 
 
 .global makeSequence__Q28PSSystem5SysIFFv
-makeSequence__Q28PSSystem5SysIFFv:
+makeSequence__Q28PSSystem5SysIFFv: # weak function
 /* 80338B24 00335A64  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 80338B28 00335A68  7C 08 02 A6 */	mflr r0
 /* 80338B2C 00335A6C  90 01 00 14 */	stw r0, 0x14(r1)
@@ -688,7 +674,7 @@ lbl_80338B84:
 /* 80338B90 00335AD0  4E 80 00 20 */	blr 
 
 .global __ct__Q28PSSystem8SeqSoundFv
-__ct__Q28PSSystem8SeqSoundFv:
+__ct__Q28PSSystem8SeqSoundFv: # weak function
 /* 80338B94 00335AD4  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 80338B98 00335AD8  7C 08 02 A6 */	mflr r0
 /* 80338B9C 00335ADC  90 01 00 14 */	stw r0, 0x14(r1)
@@ -713,7 +699,7 @@ __ct__Q28PSSystem8SeqSoundFv:
 /* 80338BE8 00335B28  4E 80 00 20 */	blr 
 
 .global makeStream__Q28PSSystem5SysIFFv
-makeStream__Q28PSSystem5SysIFFv:
+makeStream__Q28PSSystem5SysIFFv: # weak function
 /* 80338BEC 00335B2C  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 80338BF0 00335B30  7C 08 02 A6 */	mflr r0
 /* 80338BF4 00335B34  90 01 00 14 */	stw r0, 0x14(r1)
@@ -748,7 +734,7 @@ lbl_80338C4C:
 /* 80338C58 00335B98  4E 80 00 20 */	blr 
 
 .global __ct__Q28PSSystem11StreamSoundFv
-__ct__Q28PSSystem11StreamSoundFv:
+__ct__Q28PSSystem11StreamSoundFv: # weak function
 /* 80338C5C 00335B9C  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 80338C60 00335BA0  7C 08 02 A6 */	mflr r0
 /* 80338C64 00335BA4  90 01 00 14 */	stw r0, 0x14(r1)
@@ -773,7 +759,7 @@ __ct__Q28PSSystem11StreamSoundFv:
 /* 80338CB0 00335BF0  4E 80 00 20 */	blr 
 
 .global "startSoundActorReturnHandleT<5JAISe>__8JAIBasicFPP5JAISeUlPQ27JAInter5ActorUlUc"
-"startSoundActorReturnHandleT<5JAISe>__8JAIBasicFPP5JAISeUlPQ27JAInter5ActorUlUc":
+"startSoundActorReturnHandleT<5JAISe>__8JAIBasicFPP5JAISeUlPQ27JAInter5ActorUlUc": # weak function
 /* 80338CB4 00335BF4  94 21 FF E0 */	stwu r1, -0x20(r1)
 /* 80338CB8 00335BF8  7C 08 02 A6 */	mflr r0
 /* 80338CBC 00335BFC  39 20 00 00 */	li r9, 0
@@ -806,7 +792,7 @@ lbl_80338D10:
 /* 80338D20 00335C60  4E 80 00 20 */	blr 
 
 .global "startSoundActorT<5JAISe>__8JAIBasicFUlPP5JAISePQ27JAInter5ActorUlUc"
-"startSoundActorT<5JAISe>__8JAIBasicFUlPP5JAISePQ27JAInter5ActorUlUc":
+"startSoundActorT<5JAISe>__8JAIBasicFUlPP5JAISePQ27JAInter5ActorUlUc": # weak function
 /* 80338D24 00335C64  94 21 FF E0 */	stwu r1, -0x20(r1)
 /* 80338D28 00335C68  7C 08 02 A6 */	mflr r0
 /* 80338D2C 00335C6C  90 01 00 24 */	stw r0, 0x24(r1)
@@ -835,8 +821,7 @@ lbl_80338D78:
 /* 80338D84 00335CC4  38 21 00 20 */	addi r1, r1, 0x20
 /* 80338D88 00335CC8  4E 80 00 20 */	blr 
 
-.global __sinit_PSSystemIF_cpp
-__sinit_PSSystemIF_cpp:
+__sinit_PSSystemIF_cpp: # static initializer
 /* 80338D8C 00335CCC  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 80338D90 00335CD0  7C 08 02 A6 */	mflr r0
 /* 80338D94 00335CD4  38 6D 98 5C */	addi r3, r13, oRandom__8PSSystem@sda21

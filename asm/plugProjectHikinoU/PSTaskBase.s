@@ -1,20 +1,14 @@
 .include "macros.inc"
 .section .rodata  # 0x804732E0 - 0x8049E220
 .balign 8
-.global lbl_8048FF20
 lbl_8048FF20:
-	.4byte 0x50535461
-	.4byte 0x736B4261
-	.4byte 0x73652E63
-	.4byte 0x70700000
-.global lbl_8048FF30
+	.asciz "PSTaskBase.cpp"
+.balign 4
 lbl_8048FF30:
 	.asciz "P2Assert"
-	.skip 3
-	.4byte 0x50535461
-	.4byte 0x736B4261
-	.4byte 0x73652E68
-	.4byte 0x00000000
+.balign 4
+lbl_8048FF3C:
+	.asciz "PSTaskBase.h"
 
 .section .text, "ax"  # 0x800056C0 - 0x80472F00
 .global __ct__Q28PSSystem8TaskBaseFv
@@ -297,7 +291,7 @@ lbl_8033E588:
 /* 8033E5A8 0033B4E8  4E 80 00 20 */	blr 
 
 .global "remove_Lock__Q28PSSystem32MutexList<Q28PSSystem9TaskEntry>FP30JSULink<Q28PSSystem9TaskEntry>"
-"remove_Lock__Q28PSSystem32MutexList<Q28PSSystem9TaskEntry>FP30JSULink<Q28PSSystem9TaskEntry>":
+"remove_Lock__Q28PSSystem32MutexList<Q28PSSystem9TaskEntry>FP30JSULink<Q28PSSystem9TaskEntry>": # weak function
 /* 8033E5AC 0033B4EC  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 8033E5B0 0033B4F0  7C 08 02 A6 */	mflr r0
 /* 8033E5B4 0033B4F4  90 01 00 14 */	stw r0, 0x14(r1)
@@ -322,7 +316,7 @@ lbl_8033E588:
 /* 8033E600 0033B540  4E 80 00 20 */	blr 
 
 .global "append_Lock__Q28PSSystem31MutexList<Q28PSSystem8TaskBase>FP29JSULink<Q28PSSystem8TaskBase>"
-"append_Lock__Q28PSSystem31MutexList<Q28PSSystem8TaskBase>FP29JSULink<Q28PSSystem8TaskBase>":
+"append_Lock__Q28PSSystem31MutexList<Q28PSSystem8TaskBase>FP29JSULink<Q28PSSystem8TaskBase>": # weak function
 /* 8033E604 0033B544  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 8033E608 0033B548  7C 08 02 A6 */	mflr r0
 /* 8033E60C 0033B54C  90 01 00 14 */	stw r0, 0x14(r1)
@@ -347,7 +341,7 @@ lbl_8033E588:
 /* 8033E658 0033B598  4E 80 00 20 */	blr 
 
 .global "append_Lock__Q28PSSystem32MutexList<Q28PSSystem9TaskEntry>FP30JSULink<Q28PSSystem9TaskEntry>"
-"append_Lock__Q28PSSystem32MutexList<Q28PSSystem9TaskEntry>FP30JSULink<Q28PSSystem9TaskEntry>":
+"append_Lock__Q28PSSystem32MutexList<Q28PSSystem9TaskEntry>FP30JSULink<Q28PSSystem9TaskEntry>": # weak function
 /* 8033E65C 0033B59C  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 8033E660 0033B5A0  7C 08 02 A6 */	mflr r0
 /* 8033E664 0033B5A4  90 01 00 14 */	stw r0, 0x14(r1)

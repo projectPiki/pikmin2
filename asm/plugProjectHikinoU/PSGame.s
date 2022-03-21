@@ -1,117 +1,121 @@
 .include "macros.inc"
 .section .rodata  # 0x804732E0 - 0x8049E220
 .balign 8
-.global lbl_8048F918
 lbl_8048F918:
 	.asciz "PSGame.cpp"
-	.skip 1
-.global lbl_8048F924
+.balign 4
 lbl_8048F924:
 	.asciz "P2Assert"
-	.skip 3
+.balign 4
+lbl_8048F930:
 	.asciz "endoffile"
-	.skip 2
+.balign 4
+lbl_8048F93C:
 	.asciz "cavesoil"
-	.skip 3
+.balign 4
+lbl_8048F948:
 	.asciz "cavesoil.bms"
-	.skip 3
+.balign 4
+lbl_8048F958:
 	.asciz "cavesoil_"
-	.skip 2
+.balign 4
+lbl_8048F964:
 	.asciz "cavemetal"
-	.skip 2
+.balign 4
+lbl_8048F970:
 	.asciz "cavemetal.bms"
-	.skip 2
+.balign 4
+lbl_8048F980:
 	.asciz "cavemetal_"
-	.skip 1
+.balign 4
+lbl_8048F98C:
 	.asciz "caveconc"
-	.skip 3
+.balign 4
+lbl_8048F998:
 	.asciz "caveconc.bms"
-	.skip 3
+.balign 4
+lbl_8048F9A8:
 	.asciz "caveconc_"
-	.skip 2
+.balign 4
+lbl_8048F9B4:
 	.asciz "cavetile"
-	.skip 3
+.balign 4
+lbl_8048F9C0:
 	.asciz "cavetile.bms"
-	.skip 3
+.balign 4
+lbl_8048F9D0:
 	.asciz "caveglass"
-	.skip 2
+.balign 4
+lbl_8048F9DC:
 	.asciz "caveglass.bms"
-	.skip 2
+.balign 4
+lbl_8048F9EC:
 	.asciz "cavetsumiki"
+.balign 4
+lbl_8048F9F8:
 	.asciz "cavetsumiki.bms"
+.balign 4
+lbl_8048FA08:
 	.asciz "caverelax"
-	.skip 2
+.balign 4
+lbl_8048FA14:
 	.asciz "caverelax.bms"
-	.skip 2
-.global lbl_8048FA24
+.balign 4
 lbl_8048FA24:
 	.asciz "/SeqTest/"
-	.skip 2
+.balign 4
+lbl_8048FA30: # SetupArg
 	.4byte 0x00000000
 	.4byte 0x00000000
 	.4byte 0x000000E7
 	.4byte seqCpuSync__6PSGameFP8JASTrackUs
 	.4byte 0x00000000
-	.4byte lbl_8048FA24
-	.4byte 0x50534175
-	.4byte 0x746F4267
-	.4byte 0x6D2E6800
-	.4byte 0x2F417564
-	.4byte 0x696F5265
-	.4byte 0x732F436F
-	.4byte 0x6E647563
-	.4byte 0x746F722E
-	.4byte 0x61726300
-.global lbl_8048FA6C
+	.4byte lbl_8048FA24 # end of struct
+lbl_8048FA48:
+	.asciz "PSAutoBgm.h"
+.balign 4
+lbl_8048FA54:
+	.asciz "/AudioRes/Conductor.arc"
+.balign 4
 lbl_8048FA6C:
-	.4byte 0x50535379
-	.4byte 0x7374656D
-	.4byte 0x49462E68
-	.4byte 0x00000000
-	.4byte 0x2F417564
-	.4byte 0x696F5265
-	.4byte 0x732F4B65
-	.4byte 0x792E6172
-	.4byte 0x63000000
-.global lbl_8048FA90
+	.asciz "PSSystemIF.h"
+.balign 4
+lbl_8048FA7C:
+	.asciz "/AudioRes/Key.arc"
+.balign 4
 lbl_8048FA90:
-	.4byte 0x5053436F
-	.4byte 0x6D6D6F6E
-	.4byte 0x2E680000
-.global lbl_8048FA9C
+	.asciz "PSCommon.h"
+.balign 4
 lbl_8048FA9C:
-	.4byte 0x50534761
-	.4byte 0x6D652E61
-	.4byte 0x61660000
-.global lbl_8048FAA8
+	.asciz "PSGame.aaf"
+.balign 4
 lbl_8048FAA8:
-	.4byte 0x50534761
-	.4byte 0x6D652E68
-	.4byte 0x00000000
-.global lbl_8048FAB4
-lbl_8048FAB4:
+	.asciz "PSGame.h"
+.balign 4
+lbl_8048FAB4: # Shift-JIS
 	.4byte 0x666C6167
 	.4byte 0x82CD3020
 	.4byte 0x6F723182
 	.4byte 0xC582B700
-.global lbl_8048FAC4
+.balign 4
 lbl_8048FAC4:
-	.4byte 0x6D5F626F
-	.4byte 0x73732E62
-	.4byte 0x6D730000
-.global lbl_8048FAD0
+	.asciz "m_boss.bms"
+.balign 4
 lbl_8048FAD0:
-	.4byte 0x6C5F626F
-	.4byte 0x73732E62
-	.4byte 0x6D730000
+	.asciz "l_boss.bms"
+.balign 4
+lbl_8048FADC: # SoundInfo
 	.4byte 0x00001F00
 	.4byte 0xFF000000
-	.float 1.0
+	.4byte 0x3F800000
 	.4byte 0x7F000000
+lbl_8048FAEC: # SoundInfo
 	.4byte 0x00000000
 	.4byte 0x7F010000
-	.float 1.0
+	.4byte 0x3F800000
 	.4byte 0x32000000
+.balign 4
+lbl_8048FAFC: # Shift-JIS
 	.4byte 0x328F6482
 	.4byte 0xC9834F83
 	.4byte 0x8D815B83
@@ -122,27 +126,23 @@ lbl_8048FAD0:
 	.4byte 0xB582E682
 	.4byte 0xA482C682
 	.4byte 0xB582BD00
-	.4byte 0x2F757365
-	.4byte 0x722F546F
-	.4byte 0x74616B61
-	.4byte 0x2F537472
-	.4byte 0x65616D4C
-	.4byte 0x6973742E
-	.4byte 0x74787400
-	.4byte 0x2F757365
-	.4byte 0x722F546F
-	.4byte 0x74616B61
-	.4byte 0x2F42676D
-	.4byte 0x4C697374
-	.4byte 0x2E747874
-	.4byte 0x00000000
+.balign 4
+lbl_8048FB24:
+	.asciz "/user/Totaka/StreamList.txt"
+.balign 4
+lbl_8048FB40:
+	.asciz "/user/Totaka/BgmList.txt"
+.balign 4
+lbl_8048FB5C: # Shift-JIS
 	.4byte 0x7363656E
 	.4byte 0x65206E6F
 	.4byte 0x82AA9573
 	.4byte 0x90B30000
-	.4byte 0x50535363
-	.4byte 0x656E652E
-	.4byte 0x68000000
+.balign 4
+lbl_8048FB6C:
+	.asciz "PSScene.h"
+.balign 4
+lbl_8048FB78: # Shift-JIS
 	.4byte 0x914F89F1
 	.4byte 0x82CC6D43
 	.4byte 0x75727265
@@ -152,173 +152,116 @@ lbl_8048FAD0:
 	.4byte 0x88979D82
 	.4byte 0xAA957390
 	.4byte 0xB3000000
+.balign 4
+lbl_8048FB9C: # SoundInfo
 	.4byte 0x00000000
 	.4byte 0x7F020000
-	.float 1.0
+	.4byte 0x3F800000
 	.4byte 0x28000000
+lbl_8048FBAC: # SoundInfo
 	.4byte 0x00000000
 	.4byte 0x7F010000
-	.float 1.0
+	.4byte 0x3F800000
 	.4byte 0x32000000
-	.4byte 0x68697363
-	.4byte 0x6F72652E
-	.4byte 0x626D7300
-	.4byte 0x6E5F7475
-	.4byte 0x746F7269
-	.4byte 0x616C5F31
-	.4byte 0x73746461
-	.4byte 0x792E626D
-	.4byte 0x73000000
-	.4byte 0x63617665
-	.4byte 0x6B657967
-	.4byte 0x65742E63
-	.4byte 0x6E640000
-	.4byte 0x63617665
-	.4byte 0x6B657967
-	.4byte 0x65742E62
-	.4byte 0x6D730000
-	.4byte 0x6B75726F
-	.4byte 0x5F706F73
-	.4byte 0x742E626D
-	.4byte 0x73000000
+.balign 4
+lbl_8048FBBC:
+	.asciz "hiscore.bms"
+.balign 4
+lbl_8048FBC8:
+	.asciz "n_tutorial_1stday.bms"
+.balign 4
+lbl_8048FBE0:
+	.asciz "cavekeyget.cnd"
+.balign 4
+lbl_8048FBF0:
+	.asciz "cavekeyget.bms"
+.balign 4
+lbl_8048FC00:
+	.asciz "kuro_post.bms"
+.balign 4
+lbl_8048FC10: # SoundInfo
 	.4byte 0x00001F00
 	.4byte 0x7FFF0000
-	.float 1.0
+	.4byte 0x3F800000
 	.4byte 0x32000000
-	.4byte 0x2F757365
-	.4byte 0x722F546F
-	.4byte 0x74616B61
-	.4byte 0x2F436861
-	.4byte 0x6C6C656E
-	.4byte 0x67654267
-	.4byte 0x6D4C6973
-	.4byte 0x742E7478
-	.4byte 0x74000000
-	.4byte 0x62617474
-	.4byte 0x6C655F74
-	.4byte 0x2E626D73
-	.4byte 0x00000000
-	.4byte 0x63617665
-	.4byte 0x636F6E63
-	.4byte 0x5F30305F
-	.4byte 0x302E636E
-	.4byte 0x64000000
-	.4byte 0x63617665
-	.4byte 0x72656C61
-	.4byte 0x782E636E
-	.4byte 0x64000000
-	.4byte 0x6B75726F
-	.4byte 0x5F707265
-	.4byte 0x2E626D73
-	.4byte 0x00000000
-	.4byte 0x2F757365
-	.4byte 0x722F546F
-	.4byte 0x74616B61
-	.4byte 0x2F42676D
-	.4byte 0x4C697374
-	.4byte 0x5F547574
-	.4byte 0x6F726961
-	.4byte 0x6C2E7478
-	.4byte 0x74000000
-	.4byte 0x2F757365
-	.4byte 0x722F546F
-	.4byte 0x74616B61
-	.4byte 0x2F42676D
-	.4byte 0x4C697374
-	.4byte 0x5F466F72
-	.4byte 0x6573742E
-	.4byte 0x74787400
-	.4byte 0x2F757365
-	.4byte 0x722F546F
-	.4byte 0x74616B61
-	.4byte 0x2F42676D
-	.4byte 0x4C697374
-	.4byte 0x5F59616B
-	.4byte 0x75736869
-	.4byte 0x6D612E74
-	.4byte 0x78740000
-	.4byte 0x2F757365
-	.4byte 0x722F546F
-	.4byte 0x74616B61
-	.4byte 0x2F42676D
-	.4byte 0x4C697374
-	.4byte 0x5F4C6173
-	.4byte 0x742E7478
-	.4byte 0x74000000
-	.4byte 0x2F757365
-	.4byte 0x722F546F
-	.4byte 0x74616B61
-	.4byte 0x2F42676D
-	.4byte 0x4C697374
-	.4byte 0x5F42676D
-	.4byte 0x54657374
-	.4byte 0x2E747874
-	.4byte 0x00000000
-	.4byte 0x63617665
-	.4byte 0x49443D3D
-	.4byte 0x25640A00
-	.4byte 0x6E5F7475
-	.4byte 0x746F7269
-	.4byte 0x616C2E62
-	.4byte 0x6D730000
-	.4byte 0x666F7265
-	.4byte 0x73742E62
-	.4byte 0x6D730000
-	.4byte 0x79616B75
-	.4byte 0x7368696D
-	.4byte 0x612E626D
-	.4byte 0x73000000
-	.4byte 0x6C617374
-	.4byte 0x2E626D73
-	.4byte 0x00000000
-	.4byte 0x776F726C
-	.4byte 0x646D6170
-	.4byte 0x2E626D73
-	.4byte 0x00000000
-	.4byte 0x776F726C
-	.4byte 0x646D6170
-	.4byte 0x5F696E74
-	.4byte 0x726F2E62
-	.4byte 0x6D730000
-	.4byte 0x635F6D65
-	.4byte 0x6E752E62
-	.4byte 0x6D730000
-	.4byte 0x626F6F6B
-	.4byte 0x2E626D73
-	.4byte 0x00000000
-	.4byte 0x636F6D70
-	.4byte 0x5F726573
-	.4byte 0x756C742E
-	.4byte 0x626D7300
-	.4byte 0x665F7265
-	.4byte 0x73756C74
-	.4byte 0x2E626D73
-	.4byte 0x00000000
-	.4byte 0x25735F25
-	.4byte 0x3032645F
-	.4byte 0x302E636E
-	.4byte 0x64000000
-	.4byte 0x0A6E6F74
-	.4byte 0x2066696E
-	.4byte 0x64205365
-	.4byte 0x710A0000
-	.4byte 0x25735F25
-	.4byte 0x3032645F
-	.4byte 0x2531642E
-	.4byte 0x636E6400
-	.4byte 0x67657420
-	.4byte 0x736F756E
-	.4byte 0x64207363
-	.4byte 0x656E6520
-	.4byte 0x61740A69
-	.4byte 0x6E76616C
-	.4byte 0x69642074
-	.4byte 0x696D6D69
-	.4byte 0x6E670A00
+.balign 4
+lbl_8048FC20:
+	.asciz "/user/Totaka/ChallengeBgmList.txt"
+.balign 4
+lbl_8048FC44:
+	.asciz "battle_t.bms"
+.balign 4
+lbl_8048FC54:
+	.asciz "caveconc_00_0.cnd"
+.balign 4
+lbl_8048FC68:
+	.asciz "caverelax.cnd"
+.balign 4
+lbl_8048FC78:
+	.asciz "kuro_pre.bms"
+.balign 4
+lbl_8048FC88:
+	.asciz "/user/Totaka/BgmList_Tutorial.txt"
+.balign 4
+lbl_8048FCAC:
+	.asciz "/user/Totaka/BgmList_Forest.txt"
+.balign 4
+lbl_8048FCCC:
+	.asciz "/user/Totaka/BgmList_Yakushima.txt"
+.balign 4
+lbl_8048FCF0:
+	.asciz "/user/Totaka/BgmList_Last.txt"
+.balign 4
+lbl_8048FD10:
+	.asciz "/user/Totaka/BgmList_BgmTest.txt"
+.balign 4
+lbl_8048FD34:
+	.asciz "caveID==%d\n"
+.balign 4
+lbl_8048FD40: # These are used near 80336D58
+	.asciz "n_tutorial.bms"
+.balign 4
+lbl_8048FD50:
+	.asciz "forest.bms"
+.balign 4
+lbl_8048FD5C:
+	.asciz "yakushima.bms"
+.balign 4
+lbl_8048FD6C:
+	.asciz "last.bms"
+.balign 4
+lbl_8048FD78:
+	.asciz "worldmap.bms"
+.balign 4
+lbl_8048FD88:
+	.asciz "worldmap_intro.bms"
+.balign 4
+lbl_8048FD9C:
+	.asciz "c_menu.bms"
+.balign 4
+lbl_8048FDA8:
+	.asciz "book.bms"
+.balign 4
+lbl_8048FDB4:
+	.asciz "comp_result.bms"
+.balign 4
+lbl_8048FDC4:
+	.asciz "f_result.bms"
+.balign 4
+lbl_8048FDD4:
+	.asciz "%s_%02d_0.cnd"
+.balign 4
+lbl_8048FDE4:
+	.asciz "\nnot find Seq\n"
+.balign 4
+lbl_8048FDF4:
+	.asciz "%s_%02d_%1d.cnd"
+.balign 4
+lbl_8048FE04:
+	.asciz "get sound scene at\ninvalid timming\n"
 
 .section .data, "wa"  # 0x8049E220 - 0x804EFC20
 .balign 8
-.global lbl_804DA920
 lbl_804DA920:
 	.4byte lbl_80337278
 	.4byte lbl_80336D5C
@@ -341,7 +284,6 @@ lbl_804DA920:
 	.4byte lbl_80337278
 	.4byte lbl_8033722C
 	.4byte lbl_80336D5C
-.global lbl_804DA974
 lbl_804DA974:
 	.4byte lbl_80336AB8
 	.4byte lbl_80336A94
@@ -437,7 +379,6 @@ __vt__Q26PSGame13ConductorList:
 	.4byte 0
 	.4byte 0
 	.4byte "__dt__Q28PSSystem39SingletonBase<Q26PSGame13ConductorList>Fv"
-	.4byte 0
 
 .section .bss  # 0x804EFC20 - 0x8051467C
 .global newSeqName__6PSGame
@@ -448,109 +389,84 @@ newSeqName__6PSGame:
 .balign 8
 .global sToolMode__Q26PSGame13ConductorList
 sToolMode__Q26PSGame13ConductorList:
-	.skip 0x4
+	.skip 0x1
+.balign 4
 .global "sInstance__Q28PSSystem39SingletonBase<Q26PSGame13ConductorList>"
-"sInstance__Q28PSSystem39SingletonBase<Q26PSGame13ConductorList>":
+"sInstance__Q28PSSystem39SingletonBase<Q26PSGame13ConductorList>": # weak object
 	.skip 0x4
 
 .section .sdata2, "a"     # 0x80516360 - 0x80520E40
 .balign 8
-.global lbl_8051E0C0
 lbl_8051E0C0:
-	.4byte 0x30300000
-.global lbl_8051E0C4
+	.asciz "00"
+.balign 4
 lbl_8051E0C4:
-	.4byte 0x30350000
-.global lbl_8051E0C8
+	.asciz "05"
+.balign 4
 lbl_8051E0C8:
-	.4byte 0x6E657700
-.global lbl_8051E0CC
+	.asciz "new"
+.balign 4
 lbl_8051E0CC:
-	.4byte 0x2E626D73
-	.4byte 0x00000000
-.global lbl_8051E0D4
+	.asciz ".bms"
+.balign 4
 lbl_8051E0D4:
 	.float 1.0
-.global lbl_8051E0D8
 lbl_8051E0D8:
-	.4byte 0x00000000
-.global lbl_8051E0DC
+	.float 0.0
 lbl_8051E0DC:
-	.4byte 0x442F0000
-.global lbl_8051E0E0
+	.float 700.0
 lbl_8051E0E0:
-	.4byte 0x3E3851EC
-.global lbl_8051E0E4
+	.float 0.18
 lbl_8051E0E4:
-	.4byte 0x45228000
-.global lbl_8051E0E8
+	.float 2600.0
 lbl_8051E0E8:
-	.4byte 0x43480000
-.global lbl_8051E0EC
+	.float 200.0
 lbl_8051E0EC:
-	.4byte 0x442B0000
-.global lbl_8051E0F0
+	.float 684.0
 lbl_8051E0F0:
-	.4byte 0x3E49BA5E
-.global lbl_8051E0F4
+	.float 0.197
 lbl_8051E0F4:
-	.4byte 0x457AC800
-.global lbl_8051E0F8
+	.float 4012.5
 lbl_8051E0F8:
-	.4byte 0x40000000
-.global lbl_8051E0FC
+	.float 2.0
 lbl_8051E0FC:
 	.float 0.5
-.global lbl_8051E100
 lbl_8051E100:
 	.float 0.25
 .global sDefaultVol__Q26PSGame9CameraMgr
 sDefaultVol__Q26PSGame9CameraMgr:
-	.4byte 0x3F4CCCCD
-.global lbl_8051E108
+	.float 0.8
 lbl_8051E108:
-	.4byte 0x4276A3D7
-.global lbl_8051E10C
+	.float 61.66
 lbl_8051E10C:
-	.4byte 0x43034000
-.global lbl_8051E110
+	.float 131.25
 lbl_8051E110:
-	.4byte 0x43570A3D
-.global lbl_8051E114
+	.float 215.04
 lbl_8051E114:
-	.4byte 0x43A5170A
-.global lbl_8051E118
+	.float 330.18
 lbl_8051E118:
-	.4byte 0x3F4CCCCD
-.global lbl_8051E11C
+	.float 0.8
 lbl_8051E11C:
-	.4byte 0x3F35C28F
-.global lbl_8051E120
+	.float 0.71
 lbl_8051E120:
-	.4byte 0x3F1EB852
-.global lbl_8051E124
+	.float 0.62
 lbl_8051E124:
-	.4byte 0x3EE66666
-.global lbl_8051E128
+	.float 0.45
+.balign 4
 lbl_8051E128:
-	.4byte 0x5365712E
-	.4byte 0x61726300
-.global lbl_8051E130
+	.asciz "Seq.arc"
+.balign 4
 lbl_8051E130:
-	.4byte 0x42F00000
-.global lbl_8051E134
+	.float 120.0
+.balign 4
 lbl_8051E134:
-	.4byte 0x73652E62
-	.4byte 0x6D730000
-.global lbl_8051E13C
+	.asciz "se.bms"
+.balign 4
 lbl_8051E13C:
-	.4byte 0x50535365
-	.4byte 0x712E6800
-.global lbl_8051E144
+	.asciz "PSSeq.h"
+.balign 4
 lbl_8051E144:
-	.4byte 0x50535365
-	.4byte 0x2E680000
-	.4byte 0x00000000
+	.asciz "PSSe.h"
 
 .section .text, "ax"  # 0x800056C0 - 0x80472F00
 .global getCaveNoFromID__Q26PSGame13CaveFloorInfoFv
@@ -3431,26 +3347,20 @@ lbl_80336A6C:
 /* 80336A88 003339C8  7C 03 00 2E */	lwzx r0, r3, r0
 /* 80336A8C 003339CC  7C 09 03 A6 */	mtctr r0
 /* 80336A90 003339D0  4E 80 04 20 */	bctr 
-.global lbl_80336A94
 lbl_80336A94:
 /* 80336A94 003339D4  3B 3F 03 70 */	addi r25, r31, 0x370
 /* 80336A98 003339D8  48 00 00 20 */	b lbl_80336AB8
-.global lbl_80336A9C
 lbl_80336A9C:
 /* 80336A9C 003339DC  3B 3F 03 94 */	addi r25, r31, 0x394
 /* 80336AA0 003339E0  48 00 00 18 */	b lbl_80336AB8
-.global lbl_80336AA4
 lbl_80336AA4:
 /* 80336AA4 003339E4  3B 3F 03 B4 */	addi r25, r31, 0x3b4
 /* 80336AA8 003339E8  48 00 00 10 */	b lbl_80336AB8
-.global lbl_80336AAC
 lbl_80336AAC:
 /* 80336AAC 003339EC  3B 3F 03 D8 */	addi r25, r31, 0x3d8
 /* 80336AB0 003339F0  48 00 00 08 */	b lbl_80336AB8
-.global lbl_80336AB4
 lbl_80336AB4:
 /* 80336AB4 003339F4  3B 3F 03 F8 */	addi r25, r31, 0x3f8
-.global lbl_80336AB8
 lbl_80336AB8:
 /* 80336AB8 003339F8  80 0D 98 54 */	lwz r0, "sInstance__Q28PSSystem39SingletonBase<Q26PSGame13ConductorList>"@sda21(r13)
 /* 80336ABC 003339FC  28 00 00 00 */	cmplwi r0, 0
@@ -3639,7 +3549,6 @@ lbl_80336D38:
 /* 80336D50 00333C90  7C 03 00 2E */	lwzx r0, r3, r0
 /* 80336D54 00333C94  7C 09 03 A6 */	mtctr r0
 /* 80336D58 00333C98  4E 80 04 20 */	bctr 
-.global lbl_80336D5C
 lbl_80336D5C:
 /* 80336D5C 00333C9C  7F 63 DB 78 */	mr r3, r27
 /* 80336D60 00333CA0  38 9F 04 28 */	addi r4, r31, 0x428
@@ -3652,7 +3561,6 @@ lbl_80336D5C:
 /* 80336D7C 00333CBC  7C 78 1B 78 */	mr r24, r3
 /* 80336D80 00333CC0  98 1E 00 00 */	stb r0, 0(r30)
 /* 80336D84 00333CC4  48 00 05 08 */	b lbl_8033728C
-.global lbl_80336D88
 lbl_80336D88:
 /* 80336D88 00333CC8  7F 63 DB 78 */	mr r3, r27
 /* 80336D8C 00333CCC  38 9F 04 38 */	addi r4, r31, 0x438
@@ -3665,7 +3573,6 @@ lbl_80336D88:
 /* 80336DA8 00333CE8  7C 78 1B 78 */	mr r24, r3
 /* 80336DAC 00333CEC  98 1E 00 00 */	stb r0, 0(r30)
 /* 80336DB0 00333CF0  48 00 04 DC */	b lbl_8033728C
-.global lbl_80336DB4
 lbl_80336DB4:
 /* 80336DB4 00333CF4  7F 63 DB 78 */	mr r3, r27
 /* 80336DB8 00333CF8  38 9F 04 44 */	addi r4, r31, 0x444
@@ -3705,7 +3612,6 @@ lbl_80336E30:
 /* 80336E34 00333D74  38 00 00 1E */	li r0, 0x1e
 /* 80336E38 00333D78  B0 03 00 3E */	sth r0, 0x3e(r3)
 /* 80336E3C 00333D7C  48 00 04 50 */	b lbl_8033728C
-.global lbl_80336E40
 lbl_80336E40:
 /* 80336E40 00333D80  7F 63 DB 78 */	mr r3, r27
 /* 80336E44 00333D84  38 9F 04 54 */	addi r4, r31, 0x454
@@ -3745,7 +3651,6 @@ lbl_80336EBC:
 /* 80336EC0 00333E00  38 00 00 1E */	li r0, 0x1e
 /* 80336EC4 00333E04  B0 03 00 3E */	sth r0, 0x3e(r3)
 /* 80336EC8 00333E08  48 00 03 C4 */	b lbl_8033728C
-.global lbl_80336ECC
 lbl_80336ECC:
 /* 80336ECC 00333E0C  38 00 00 00 */	li r0, 0
 /* 80336ED0 00333E10  38 60 00 74 */	li r3, 0x74
@@ -3770,7 +3675,6 @@ lbl_80336F14:
 /* 80336F14 00333E54  38 00 00 15 */	li r0, 0x15
 /* 80336F18 00333E58  98 1E 00 00 */	stb r0, 0(r30)
 /* 80336F1C 00333E5C  48 00 03 70 */	b lbl_8033728C
-.global lbl_80336F20
 lbl_80336F20:
 /* 80336F20 00333E60  38 00 00 00 */	li r0, 0
 /* 80336F24 00333E64  38 60 00 74 */	li r3, 0x74
@@ -3792,7 +3696,6 @@ lbl_80336F4C:
 /* 80336F60 00333EA0  4C C6 31 82 */	crclr 6
 /* 80336F64 00333EA4  4B CF 36 DD */	bl panic_f__12JUTExceptionFPCciPCce
 /* 80336F68 00333EA8  48 00 03 24 */	b lbl_8033728C
-.global lbl_80336F6C
 lbl_80336F6C:
 /* 80336F6C 00333EAC  38 00 00 00 */	li r0, 0
 /* 80336F70 00333EB0  38 60 00 74 */	li r3, 0x74
@@ -3814,7 +3717,6 @@ lbl_80336F98:
 /* 80336FAC 00333EEC  4C C6 31 82 */	crclr 6
 /* 80336FB0 00333EF0  4B CF 36 91 */	bl panic_f__12JUTExceptionFPCciPCce
 /* 80336FB4 00333EF4  48 00 02 D8 */	b lbl_8033728C
-.global lbl_80336FB8
 lbl_80336FB8:
 /* 80336FB8 00333EF8  38 00 00 00 */	li r0, 0
 /* 80336FBC 00333EFC  38 60 00 74 */	li r3, 0x74
@@ -3836,7 +3738,6 @@ lbl_80336FE4:
 /* 80336FF8 00333F38  4C C6 31 82 */	crclr 6
 /* 80336FFC 00333F3C  4B CF 36 45 */	bl panic_f__12JUTExceptionFPCciPCce
 /* 80337000 00333F40  48 00 02 8C */	b lbl_8033728C
-.global lbl_80337004
 lbl_80337004:
 /* 80337004 00333F44  38 60 00 6C */	li r3, 0x6c
 /* 80337008 00333F48  4B CE CE 9D */	bl __nw__FUl
@@ -3863,7 +3764,6 @@ lbl_80337040:
 /* 80337054 00333F94  38 00 00 10 */	li r0, 0x10
 /* 80337058 00333F98  98 1E 00 00 */	stb r0, 0(r30)
 /* 8033705C 00333F9C  48 00 02 30 */	b lbl_8033728C
-.global lbl_80337060
 lbl_80337060:
 /* 80337060 00333FA0  38 60 00 6C */	li r3, 0x6c
 /* 80337064 00333FA4  4B CE CE 41 */	bl __nw__FUl
@@ -3890,7 +3790,6 @@ lbl_8033709C:
 /* 803370B0 00333FF0  38 00 00 10 */	li r0, 0x10
 /* 803370B4 00333FF4  98 1E 00 00 */	stb r0, 0(r30)
 /* 803370B8 00333FF8  48 00 01 D4 */	b lbl_8033728C
-.global lbl_803370BC
 lbl_803370BC:
 /* 803370BC 00333FFC  38 60 00 6C */	li r3, 0x6c
 /* 803370C0 00334000  4B CE CD E5 */	bl __nw__FUl
@@ -3917,7 +3816,6 @@ lbl_803370F8:
 /* 8033710C 0033404C  38 00 00 14 */	li r0, 0x14
 /* 80337110 00334050  98 1E 00 00 */	stb r0, 0(r30)
 /* 80337114 00334054  48 00 01 78 */	b lbl_8033728C
-.global lbl_80337118
 lbl_80337118:
 /* 80337118 00334058  38 60 00 6C */	li r3, 0x6c
 /* 8033711C 0033405C  4B CE CD 89 */	bl __nw__FUl
@@ -3944,7 +3842,6 @@ lbl_80337154:
 /* 80337168 003340A8  38 00 00 24 */	li r0, 0x24
 /* 8033716C 003340AC  98 1E 00 00 */	stb r0, 0(r30)
 /* 80337170 003340B0  48 00 01 1C */	b lbl_8033728C
-.global lbl_80337174
 lbl_80337174:
 /* 80337174 003340B4  38 60 00 6C */	li r3, 0x6c
 /* 80337178 003340B8  4B CE CD 2D */	bl __nw__FUl
@@ -3971,7 +3868,6 @@ lbl_803371B0:
 /* 803371C4 00334104  38 00 00 13 */	li r0, 0x13
 /* 803371C8 00334108  98 1E 00 00 */	stb r0, 0(r30)
 /* 803371CC 0033410C  48 00 00 C0 */	b lbl_8033728C
-.global lbl_803371D0
 lbl_803371D0:
 /* 803371D0 00334110  38 60 00 6C */	li r3, 0x6c
 /* 803371D4 00334114  4B CE CC D1 */	bl __nw__FUl
@@ -3998,7 +3894,6 @@ lbl_8033720C:
 /* 80337220 00334160  38 00 00 13 */	li r0, 0x13
 /* 80337224 00334164  98 1E 00 00 */	stb r0, 0(r30)
 /* 80337228 00334168  48 00 00 64 */	b lbl_8033728C
-.global lbl_8033722C
 lbl_8033722C:
 /* 8033722C 0033416C  38 00 00 00 */	li r0, 0
 /* 80337230 00334170  38 60 00 74 */	li r3, 0x74
@@ -4020,7 +3915,6 @@ lbl_80337258:
 /* 8033726C 003341AC  4C C6 31 82 */	crclr 6
 /* 80337270 003341B0  4B CF 33 D1 */	bl panic_f__12JUTExceptionFPCciPCce
 /* 80337274 003341B4  48 00 00 18 */	b lbl_8033728C
-.global lbl_80337278
 lbl_80337278:
 /* 80337278 003341B8  38 7F 00 00 */	addi r3, r31, 0
 /* 8033727C 003341BC  38 BF 00 0C */	addi r5, r31, 0xc

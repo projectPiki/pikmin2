@@ -1,16 +1,13 @@
 .include "macros.inc"
 .section .rodata  # 0x804732E0 - 0x8049E220
 .balign 8
-.global lbl_8048FE60
 lbl_8048FE60:
-	.4byte 0x50534175
-	.4byte 0x746F4267
-	.4byte 0x6D2E6370
-	.4byte 0x70000000
-.global lbl_8048FE70
+	.asciz "PSAutoBgm.cpp"
+.balign 4
 lbl_8048FE70:
 	.asciz "P2Assert"
-	.skip 3
+.balign 4
+lbl_8048FE7C: # Shift-JIS
 	.4byte 0x8386836A
 	.4byte 0x835D8393
 	.4byte 0x837D8358
@@ -33,15 +30,12 @@ lbl_8048FE70:
 	.4byte 0x82A082E8
 	.4byte 0x82DC82B7
 	.4byte 0x00000000
-.global lbl_8048FED4
+.balign 4
 lbl_8048FED4:
-	.4byte 0x50534175
-	.4byte 0x746F4267
-	.4byte 0x6D2E6800
-	.4byte 0x6E6F7420
-	.4byte 0x66696E64
-	.4byte 0x28257329
-	.4byte 0x00000000
+	.asciz "PSAutoBgm.h"
+.balign 4
+lbl_8048FEE0:
+	.asciz "not find(%s)"
 
 .section .data, "wa"  # 0x8049E220 - 0x804EFC20
 .balign 8
@@ -263,19 +257,16 @@ sInstance__Q29PSAutoBgm15ConductorArcMgr:
 
 .section .sdata2, "a"     # 0x80516360 - 0x80520E40
 .balign 8
-.global lbl_8051E160
 lbl_8051E160:
-	.4byte 0x00000000
-.global lbl_8051E164
+	.asciz "\0"
+.balign 4
 lbl_8051E164:
-	.4byte 0x42FE0000
-.global lbl_8051E168
+	.float 127.0
 lbl_8051E168:
-	.4byte 0x00000000
-.global lbl_8051E16C
+	.float 0.0
 lbl_8051E16C:
 	.float 1.0
-.global lbl_8051E170
+.balign 8
 lbl_8051E170:
 	.4byte 0x43300000
 	.4byte 0x00000000

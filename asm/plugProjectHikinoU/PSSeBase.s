@@ -1,12 +1,9 @@
 .include "macros.inc"
 .section .rodata  # 0x804732E0 - 0x8049E220
 .balign 8
-.global lbl_80490100
 lbl_80490100:
-	.4byte 0x50535365
-	.4byte 0x42617365
-	.4byte 0x2E637070
-	.4byte 0x00000000
+	.asciz "PSSeBase.cpp"
+.balign 4
 lbl_80490110:
 	.asciz "P2Assert"
 
@@ -40,11 +37,11 @@ __vt__Q28PSSystem9EnvSeBase:
 .section .sdata2, "a"     # 0x80516360 - 0x80520E40
 .balign 8
 lbl_8051E1C0:
-	.4byte 0x00000000
+	.float 0.0
 lbl_8051E1C4:
 	.float 0.3
 lbl_8051E1C8:
-	.4byte 0x3ECCCCCD
+	.float 0.4
 lbl_8051E1CC:
 	.float 1.0
 .balign 8

@@ -1,62 +1,35 @@
 .include "macros.inc"
 .section .rodata  # 0x804732E0 - 0x8049E220
 .balign 8
-.global lbl_8048F848
 lbl_8048F848:
-	.4byte 0x50535365
-	.4byte 0x712E6370
-	.4byte 0x70000000
-.global lbl_8048F854
+	.asciz "PSSeq.cpp"
+.balign 4
 lbl_8048F854:
 	.asciz "P2Assert"
-	.skip 3
-	.4byte 0x656E646F
-	.4byte 0x6666696C
-	.4byte 0x65000000
-	.4byte 0x73657120
-	.4byte 0x6C697374
-	.4byte 0x0A6E6F74
-	.4byte 0x2066696E
-	.4byte 0x640A2825
-	.4byte 0x73290A00
-	.4byte 0x73747265
-	.4byte 0x616D206C
-	.4byte 0x6973740A
-	.4byte 0x6E6F7420
-	.4byte 0x66696E64
-	.4byte 0x0A286964
-	.4byte 0x3D256429
-	.4byte 0x0A000000
-	.4byte 0x53657142
-	.4byte 0x6173653A
-	.4byte 0x3A6C6F61
-	.4byte 0x64536571
-	.4byte 0x4173796E
-	.4byte 0x63282920
-	.4byte 0x6661756C
-	.4byte 0x74206C6F
-	.4byte 0x6164696E
-	.4byte 0x67207365
-	.4byte 0x7175656E
-	.4byte 0x63650000
-	.4byte 0x6E6F7420
-	.4byte 0x66696E64
-	.4byte 0x28257329
-	.4byte 0x00000000
-	.4byte 0x73657120
-	.4byte 0x6E6F7420
-	.4byte 0x706C6179
-	.4byte 0x65640000
-.global lbl_8048F8F4
+.balign 4
+lbl_8048F860:
+	.asciz "endoffile"
+.balign 4
+lbl_8048F86C:
+	.asciz "seq list\nnot find\n(%s)\n"
+.balign 4
+lbl_8048F884:
+	.asciz "stream list\nnot find\n(id=%d)\n"
+.balign 4
+lbl_8048F8A4:
+	.asciz "SeqBase::loadSeqAsync() fault loading sequence"
+.balign 4
+lbl_8048F8D4:
+	.asciz "not find(%s)"
+.balign 4
+lbl_8048F8E4:
+	.asciz "seq not played"
+.balign 4
 lbl_8048F8F4:
-	.4byte 0x50535379
-	.4byte 0x7374656D
-	.4byte 0x49462E68
-	.4byte 0x00000000
-	.4byte 0x50534469
-	.4byte 0x72656374
-	.4byte 0x6F722E68
-	.4byte 0x00000000
+	.asciz "PSSystemIF.h"
+.balign 4
+lbl_8048F904:
+	.asciz "PSDirector.h"
 
 .section .data, "wa"  # 0x8049E220 - 0x804EFC20
 .balign 8
@@ -406,33 +379,25 @@ __vt__Q28PSSystem11SeqDataList:
 
 .section .sbss # 0x80514D80 - 0x80516360
 .balign 8
-.global oldID$2940
 oldID$2940:
 	.skip 0x4
-.global init$2941
 init$2941:
-	.skip 0x4
+	.skip 0x1
 
 .section .sdata2, "a"     # 0x80516360 - 0x80520E40
 .balign 8
-.global lbl_8051E0A0
 lbl_8051E0A0:
-	.4byte 0x00000000
-.global lbl_8051E0A4
+	.float 0.0
 lbl_8051E0A4:
-	.4byte 0x42FE0000
-.global lbl_8051E0A8
+	.float 127.0
 lbl_8051E0A8:
 	.float 1.0
 .balign 8
-.global lbl_8051E0B0
 lbl_8051E0B0:
 	.4byte 0x43300000
 	.4byte 0x00000000
-.global lbl_8051E0B8
 lbl_8051E0B8:
-	.4byte 0x3F4CCCCD
-.global lbl_8051E0BC
+	.float 0.8
 lbl_8051E0BC:
 	.float 0.5
 
@@ -4249,17 +4214,17 @@ onJump__Q28PSSystem10JumpBgmSeqFUs:
 /* 8033414C 0033108C  4E 80 00 20 */	blr 
 
 .global getCastType__Q28PSSystem10JumpBgmSeqFv
-getCastType__Q28PSSystem10JumpBgmSeqFv:
+getCastType__Q28PSSystem10JumpBgmSeqFv: # weak function
 /* 80334150 00331090  38 60 00 04 */	li r3, 4
 /* 80334154 00331094  4E 80 00 20 */	blr 
 
 .global getSeqType__Q28PSSystem6BgmSeqFv
-getSeqType__Q28PSSystem6BgmSeqFv:
+getSeqType__Q28PSSystem6BgmSeqFv: # weak function
 /* 80334158 00331098  3C 60 80 00 */	lis r3, 0x8000
 /* 8033415C 0033109C  4E 80 00 20 */	blr 
 
 .global getCastType__Q28PSSystem11DirectedBgmFv
-getCastType__Q28PSSystem11DirectedBgmFv:
+getCastType__Q28PSSystem11DirectedBgmFv: # weak function
 /* 80334160 003310A0  38 60 00 02 */	li r3, 2
 /* 80334164 003310A4  4E 80 00 20 */	blr 
 
