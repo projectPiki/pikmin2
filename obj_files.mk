@@ -168,7 +168,7 @@ JSYSTEM:=\
 	$(BUILD_DIR)/src/JSystem/JPA/JPATexture.o\
 	$(BUILD_DIR)/asm/JSystem/JSG/JSGSystem.o\
 	$(BUILD_DIR)/asm/JSystem/JSG/JSGCamera.o\
-	$(BUILD_DIR)/asm/JSystem/JSG/JSGObject.o\
+	$(BUILD_DIR)/src/JSystem/JSG/JSGObject.o\
 	$(BUILD_DIR)/asm/JSystem/JSG/JSGActor.o\
 	$(BUILD_DIR)/asm/JSystem/JAS/JASWSParser.o\
 	$(BUILD_DIR)/asm/JSystem/JAS/JASBankMgr.o\

@@ -179,6 +179,7 @@ pikmin2.usa.dol: `sha1: 90d328bf8f190c90472e8c19e7e53c6ad0fe0d1a`
 	- <a href="https://github.com/projectPiki/pikmin2/tree/main/src/JSystem/JMath/random.cpp">JSystem/JMath/random.cpp</a>
 	- <a href="https://github.com/projectPiki/pikmin2/tree/main/src/JSystem/JPA/JPAKeyBlock.cpp">JSystem/JPA/JPAKeyBlock.cpp</a>
 	- <a href="https://github.com/projectPiki/pikmin2/tree/main/src/JSystem/JPA/JPATexture.cpp">JSystem/JPA/JPATexture.cpp</a>
+	- <a href="https://github.com/projectPiki/pikmin2/tree/main/src/JSystem/JSG/JSGObject.cpp">JSystem/JSG/JSGObject.cpp</a>
 	- <a href="https://github.com/projectPiki/pikmin2/tree/main/src/JSystem/jstudio/jstudio-data.cpp">JSystem/jstudio/jstudio-data.cpp</a>
 	- <a href="https://github.com/projectPiki/pikmin2/tree/main/src/JSystem/JSU/JSUList.cpp">JSystem/JSU/JSUList.cpp</a>
 	- <a href="https://github.com/projectPiki/pikmin2/tree/main/src/JSystem/JUT/JUTFontData_Ascfont_fix12.cpp">JSystem/JUT/JUTFontData_Ascfont_fix12.cpp</a>

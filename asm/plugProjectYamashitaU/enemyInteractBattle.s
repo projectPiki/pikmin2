@@ -56,7 +56,6 @@ __vt__Q24Game15InteractHipdrop:
 	.4byte actPellet__Q24Game11InteractionFPQ24Game6Pellet
 	.4byte actOnyon__Q24Game11InteractionFPQ24Game5Onyon
 	.4byte actItem__Q24Game14InteractAttackFPQ24Game8BaseItem
-	.4byte 0
 
 .section .text, "ax"  # 0x800056C0 - 0x80472F00
 .global actEnemy__Q24Game15InteractHipdropFPQ24Game9EnemyBase
