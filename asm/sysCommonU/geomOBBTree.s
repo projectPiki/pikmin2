@@ -20,38 +20,30 @@ __vt__Q23Sys7OBBTree:
 .balign 8
 .global debugTraceMove__Q23Sys7OBBTree
 debugTraceMove__Q23Sys7OBBTree:
-	.skip 0x8
+	.skip 0x1
 
 .section .sdata2, "a"     # 0x80516360 - 0x80520E40
 .balign 8
-.global lbl_805203B8
 lbl_805203B8:
 	.float 32768.0
-.global lbl_805203BC
 lbl_805203BC:
 	.float -32768.0
-.global lbl_805203C0
 lbl_805203C0:
 	.float 0.0
-.global lbl_805203C4
 lbl_805203C4:
 	.float 1.0
-.global lbl_805203C8
+.balign 4
 lbl_805203C8:
 	.asciz "OBB"
-.global lbl_805203CC
+.balign 4
 lbl_805203CC:
 	.float 0.5
-.global lbl_805203D0
 lbl_805203D0:
 	.float 0.01
-.global lbl_805203D4
 lbl_805203D4:
 	.float -0.01
-.global lbl_805203D8
 lbl_805203D8:
 	.float -128000.0
-	.4byte 0x00000000
 
 .section .text, "ax"  # 0x800056C0 - 0x80472F00
 .global clone__Q23Sys7OBBTreeFR7Matrixf

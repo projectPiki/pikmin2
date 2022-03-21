@@ -1,23 +1,14 @@
 .include "macros.inc"
 .section .rodata  # 0x804732E0 - 0x8049E220
 .balign 8
-.global lbl_8049BAD8
 lbl_8049BAD8:
-	.4byte 0x73797344
-	.4byte 0x72617742
-	.4byte 0x75666665
-	.4byte 0x722E6370
-	.4byte 0x70000000
-.global lbl_8049BAEC
+	.asciz "sysDrawBuffer.cpp"
+.balign 4
 lbl_8049BAEC:
 	.asciz "P2Assert"
-	.skip 3
-.global lbl_8049BAF8
+.balign 4
 lbl_8049BAF8:
-	.4byte 0x44726177
-	.4byte 0x42756666
-	.4byte 0x65720000
-	.4byte 0x00000000
+	.asciz "DrawBuffer"
 
 .section .data, "wa"  # 0x8049E220 - 0x804EFC20
 .balign 8

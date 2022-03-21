@@ -5,11 +5,10 @@ lbl_constructor:
 
 .section .data, "wa"  # 0x8049E220 - 0x804EFC20
 .balign 8
-.global lbl_804EB718
-lbl_804EB718:
-	.4byte 0x00000000
-	.4byte 0x00000000
-	.4byte 0x00000000
+govNAN___Q24Game5P2JST:
+	.float 0.0
+	.float 0.0
+	.float 0.0
 .global __vt__11BlendCamera
 __vt__11BlendCamera:
 	.4byte 0
@@ -136,65 +135,47 @@ __vt__11CullFrustum:
 
 .section .sbss # 0x80514D80 - 0x80516360
 .balign 8
-.global lbl_80516158
-lbl_80516158:
+gu32NAN___Q24Game5P2JST:
 	.skip 0x4
-.global lbl_8051615C
-lbl_8051615C:
+gfNAN___Q24Game5P2JST:
 	.skip 0x4
 
 .section .sdata2, "a"     # 0x80516360 - 0x80520E40
 .balign 8
-.global lbl_80520358
 lbl_80520358:
-	.4byte 0x00000000
-.global lbl_8052035C
+	.float 0.0
 lbl_8052035C:
 	.float 1.0
-.global lbl_80520360
 lbl_80520360:
-	.4byte 0x42700000
-	.4byte 0x00000000
-.global lbl_80520368
+	.float 60.0
+.balign 8
 lbl_80520368:
 	.4byte 0x43300000
 	.4byte 0x80000000
-.global lbl_80520370
-lbl_80520370:
-	.4byte 0x40490FDB
-.global lbl_80520374
+lbl_80520370: # pi
+	.float 3.1415927
 lbl_80520374:
-	.4byte 0x43B40000
-.global lbl_80520378
+	.float 360.0
 lbl_80520378:
-	.4byte 0x47FA0000
-.global lbl_8052037C
+	.float 128000.0
 lbl_8052037C:
 	.float 0.7
-.global lbl_80520380
 lbl_80520380:
-	.4byte 0x42C80000
-.global lbl_80520384
+	.float 100.0
 lbl_80520384:
-	.4byte 0x3C23D70A
-.global lbl_80520388
+	.float 0.01
 lbl_80520388:
 	.float 0.5
-.global lbl_8052038C
 lbl_8052038C:
-	.4byte 0x43340000
-.global lbl_80520390
+	.float 180.0
 lbl_80520390:
-	.4byte 0x43A2F983
-.global lbl_80520394
+	.float 325.9493
 lbl_80520394:
-	.4byte 0xC3A2F983
-.global lbl_80520398
+	.float -325.9493
 lbl_80520398:
-	.4byte 0x40000000
-.global lbl_8052039C
+	.float 2.0
 lbl_8052039C:
-	.4byte 0x447A0000
+	.float 1000.0
 
 .section .text, "ax"  # 0x800056C0 - 0x80472F00
 .global isVisible__9CullPlaneFRQ23Sys6Sphere
@@ -2121,15 +2102,14 @@ getViewMatrix__11CullFrustumFb:
 /* 8041BCFC 00418C3C  80 63 00 30 */	lwz r3, 0x30(r3)
 /* 8041BD00 00418C40  4E 80 00 20 */	blr 
 
-.global __sinit_camera_cpp
-__sinit_camera_cpp:
+__sinit_camera_cpp: # static initializer
 /* 8041BD04 00418C44  3C 80 80 51 */	lis r4, __float_nan@ha
 /* 8041BD08 00418C48  38 00 FF FF */	li r0, -1
 /* 8041BD0C 00418C4C  C0 04 48 B0 */	lfs f0, __float_nan@l(r4)
-/* 8041BD10 00418C50  3C 60 80 4F */	lis r3, lbl_804EB718@ha
-/* 8041BD14 00418C54  90 0D 9A D8 */	stw r0, lbl_80516158@sda21(r13)
-/* 8041BD18 00418C58  D4 03 B7 18 */	stfsu f0, lbl_804EB718@l(r3)
-/* 8041BD1C 00418C5C  D0 0D 9A DC */	stfs f0, lbl_8051615C@sda21(r13)
+/* 8041BD10 00418C50  3C 60 80 4F */	lis r3, govNAN___Q24Game5P2JST@ha
+/* 8041BD14 00418C54  90 0D 9A D8 */	stw r0, gu32NAN___Q24Game5P2JST@sda21(r13)
+/* 8041BD18 00418C58  D4 03 B7 18 */	stfsu f0, govNAN___Q24Game5P2JST@l(r3)
+/* 8041BD1C 00418C5C  D0 0D 9A DC */	stfs f0, gfNAN___Q24Game5P2JST@sda21(r13)
 /* 8041BD20 00418C60  D0 03 00 04 */	stfs f0, 4(r3)
 /* 8041BD24 00418C64  D0 03 00 08 */	stfs f0, 8(r3)
 /* 8041BD28 00418C68  4E 80 00 20 */	blr 

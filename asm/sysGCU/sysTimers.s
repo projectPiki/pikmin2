@@ -2,18 +2,15 @@
 .section .rodata  # 0x804732E0 - 0x8049E220
 .balign 8
 lbl_80499E10:
-	.4byte 0x73797354
-	.4byte 0x696D6572
-	.4byte 0x73000000
+	.asciz "sysTimers"
+.balign 4
 lbl_80499E1C:
-	.4byte 0x73797354
-	.4byte 0x696D6572
-	.4byte 0x732E6370
-	.4byte 0x70000000
+	.asciz "sysTimers.cpp"
+.balign 4
 lbl_80499E2C:
 	.asciz "P2Assert"
 .balign 4
-lbl_80499E38:
+lbl_80499E38: # Shift-JIS
 	.4byte 0x974C82E8
 	.4byte 0x82A682C8
 	.4byte 0x82A2815B
@@ -50,10 +47,10 @@ drawFlag__9SysTimers:
 .section .sdata2, "a"     # 0x80516360 - 0x80520E40
 .balign 8
 lbl_80520588:
-	.4byte 0x6E6F6E61
-	.4byte 0x6D650000
+	.asciz "noname"
+.balign 4
 lbl_80520590:
-	.4byte 0x00000000
+	.float 0.0
 
 .section .text, "ax"  # 0x800056C0 - 0x80472F00
 .global __ct__9SysTimersFv

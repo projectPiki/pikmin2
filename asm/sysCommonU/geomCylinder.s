@@ -1,16 +1,12 @@
 .include "macros.inc"
 .section .sdata2, "a"     # 0x80516360 - 0x80520E40
 .balign 8
-.global lbl_805203E8
 lbl_805203E8:
 	.float 0.5
-.global lbl_805203EC
 lbl_805203EC:
 	.float 0.0
-.global lbl_805203F0
 lbl_805203F0:
 	.float 1.0
-	.4byte 0x00000000
 
 .section .text, "ax"  # 0x800056C0 - 0x80472F00
 .global "__ct__Q23Sys8CylinderFRC10Vector3<f>RC10Vector3<f>f"

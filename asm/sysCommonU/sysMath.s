@@ -1107,8 +1107,7 @@ lbl_80413208:
 /* 80413220 00410160  38 21 00 90 */	addi r1, r1, 0x90
 /* 80413224 00410164  4E 80 00 20 */	blr 
 
-.global __sinit_sysMath_cpp
-__sinit_sysMath_cpp:
+__sinit_sysMath_cpp: # static initializer
 /* 80413228 00410168  88 0D 9A C8 */	lbz r0, "__init__zero__10Vector3<f>"@sda21(r13)
 /* 8041322C 0041016C  7C 00 07 75 */	extsb. r0, r0
 /* 80413230 00410170  4C 82 00 20 */	bnelr 

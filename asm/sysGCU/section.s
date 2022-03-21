@@ -57,7 +57,6 @@ __vt__8ISection:
 	.4byte 0
 	.4byte 0
 	.4byte 0
-	.4byte 0
 
 .section .sbss # 0x80514D80 - 0x80516360
 .balign 8
@@ -85,7 +84,7 @@ lbl_80520454:
 	.asciz "update"
 .balign 4
 lbl_8052045C: #unused?
-	.float 0.0
+	.4byte 0x00000000
 
 .section .text, "ax"  # 0x800056C0 - 0x80472F00
 .global init__7SectionFv

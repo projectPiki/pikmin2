@@ -1,10 +1,8 @@
 .include "macros.inc"
 .section .rodata  # 0x804732E0 - 0x8049E220
 .balign 8
-.global lbl_804997A8
 lbl_804997A8:
 	.asciz "# %d/%d\r\n"
-	.skip 0x6
 
 .section .data, "wa"  # 0x8049E220 - 0x804EFC20
 .balign 8

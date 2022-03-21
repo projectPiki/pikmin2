@@ -65,7 +65,6 @@ __vt__Q37MapCode3Mgr9CodeArray:
 lbl_805203A8:
 	.asciz "\r\n"
 
-
 .section .text, "ax"  # 0x800056C0 - 0x80472F00
 .global getAttribute__Q27MapCode4CodeFv
 getAttribute__Q27MapCode4CodeFv:
