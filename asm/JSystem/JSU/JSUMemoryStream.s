@@ -12,7 +12,6 @@ __vt__20JSUMemoryInputStream:
 	.4byte getLength__20JSUMemoryInputStreamCFv
 	.4byte getPosition__20JSUMemoryInputStreamCFv
 	.4byte seekPos__20JSUMemoryInputStreamFl17JSUStreamSeekFrom
-	.4byte 0
 
 .section .text, "ax"  # 0x800056C0 - 0x80472F00
 .global setBuffer__20JSUMemoryInputStreamFPCvl

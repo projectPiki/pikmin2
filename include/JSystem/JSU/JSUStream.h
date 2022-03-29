@@ -11,7 +11,7 @@ enum JSUStreamSeekFrom { SEEK_SET = 0, SEEK_CUR, SEEK_END };
 struct JSUIosBase {
 	inline JSUIosBase()
 	    : m_isEOFMaybe(0) {};
-	virtual ~JSUIosBase(); //_00
+	virtual ~JSUIosBase() {}; //_00
 
 	// VTBL _00
 	u8 m_isEOFMaybe; // _04
@@ -21,8 +21,7 @@ struct JSUInputStream : public JSUIosBase {
 	virtual ~JSUInputStream();                // _00
 	virtual u8 getAvailable() = 0;            // _04
 	virtual void skip(long);                  // _08
-	virtual size_t readData(void*, long) = 0; // _0C
-	virtual int getLength() const        = 0; // _10
+	virtual int readData(void*, long) = 0; // _0C
 
 	void read(void*, long);
 	void read(char*);
@@ -30,7 +29,7 @@ struct JSUInputStream : public JSUIosBase {
 
 struct JSUMemoryInputStream : public JSUInputStream {
 	virtual ~JSUMemoryInputStream();              // _00
-	virtual size_t readData(void*, long);         // _0C
+	virtual int readData(void*, long);         // _0C
 	virtual int getLength() const;                // _10
 	virtual int getPosition() const;              // _14
 	virtual int seekPos(long, JSUStreamSeekFrom); // _18
@@ -54,7 +53,7 @@ struct JSURandomInputStream : public JSUMemoryInputStream {
 // Size: 0x10
 struct JSUFileInputStream : public JSURandomInputStream {
 	JSUFileInputStream(JKRFile*);
-	virtual size_t readData(void*, long);         // _0C
+	virtual int readData(void*, long);         // _0C
 	virtual int getLength() const;                // _10
 	virtual int getPosition() const;              // _14
 	virtual int seekPos(long, JSUStreamSeekFrom); // _18
@@ -67,7 +66,7 @@ struct JSUOutputStream : public JSUIosBase {
 	/* Just a guess. No instances of this survived in vanilla. */
 	virtual long writeData(const void*, long) = 0; // _08
 
-	void write(const void*, long);
+	int write(const void*, long);
 	void write(const char*);
 };
 

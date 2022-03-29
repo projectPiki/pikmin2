@@ -12,7 +12,6 @@ __vt__18JSUFileInputStream:
 	.4byte getLength__18JSUFileInputStreamCFv
 	.4byte getPosition__18JSUFileInputStreamCFv
 	.4byte seekPos__18JSUFileInputStreamFl17JSUStreamSeekFrom
-	.4byte 0
 
 .section .text, "ax"  # 0x800056C0 - 0x80472F00
 .global __ct__18JSUFileInputStreamFP7JKRFile

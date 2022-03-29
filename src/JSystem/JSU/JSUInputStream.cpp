@@ -24,7 +24,6 @@
         .4byte 0
         .4byte skip__14JSUInputStreamFl
         .4byte 0
-        .4byte 0
 */
 
 /*
@@ -32,72 +31,20 @@
  * Address:	80026378
  * Size:	00005C
  */
-JSUInputStream::~JSUInputStream()
-{
-	/*
-	stwu     r1, -0x10(r1)
-	mflr     r0
-	stw      r0, 0x14(r1)
-	stw      r31, 0xc(r1)
-	or.      r31, r3, r3
-	beq      lbl_800263BC
-	lis      r3, __vt__14JSUInputStream@ha
-	addi     r0, r3, __vt__14JSUInputStream@l
-	stw      r0, 0(r31)
-	beq      lbl_800263AC
-	lis      r3, __vt__10JSUIosBase@ha
-	addi     r0, r3, __vt__10JSUIosBase@l
-	stw      r0, 0(r31)
-
-lbl_800263AC:
-	extsh.   r0, r4
-	ble      lbl_800263BC
-	mr       r3, r31
-	bl       __dl__FPv
-
-lbl_800263BC:
-	lwz      r0, 0x14(r1)
-	mr       r3, r31
-	lwz      r31, 0xc(r1)
-	mtlr     r0
-	addi     r1, r1, 0x10
-	blr
-	*/
-}
+JSUInputStream::~JSUInputStream() { }
 
 /*
  * --INFO--
  * Address:	800263D4
  * Size:	000058
  */
-void JSUInputStream::read(void*, long)
+void JSUInputStream::read(void* data, long length)
 {
-	/*
-	stwu     r1, -0x10(r1)
-	mflr     r0
-	stw      r0, 0x14(r1)
-	stw      r31, 0xc(r1)
-	mr       r31, r5
-	stw      r30, 8(r1)
-	mr       r30, r3
-	lwz      r12, 0(r3)
-	lwz      r12, 0x14(r12)
-	mtctr    r12
-	bctrl
-	cmpw     r3, r31
-	beq      lbl_80026414
-	lbz      r0, 4(r30)
-	ori      r0, r0, 1
-	stb      r0, 4(r30)
-
-lbl_80026414:
-	lwz      r0, 0x14(r1)
-	lwz      r31, 0xc(r1)
-	lwz      r30, 8(r1)
-	mtlr     r0
-	addi     r1, r1, 0x10
-	blr
-	*/
+	int len = readData(data, length);
+	if (len != length) {
+		m_isEOFMaybe = m_isEOFMaybe | 1;
+	}
+	return;
 }
 
 /*
@@ -219,7 +166,7 @@ lbl_80026544:
  * Address:	80026564
  * Size:	00008C
  */
-i32 JSURandomInputStream::align(long)
+u32 JSURandomInputStream::align(long)
 {
 	/*
 	stwu     r1, -0x10(r1)
@@ -260,6 +207,7 @@ lbl_800265D4:
 	addi     r1, r1, 0x10
 	blr
 	*/
+	return 0; // placeholder, delete this
 }
 
 /*

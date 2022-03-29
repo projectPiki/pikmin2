@@ -20,7 +20,6 @@ __vt__14JSUInputStream:
 	.4byte 0
 	.4byte skip__14JSUInputStreamFl
 	.4byte 0
-	.4byte 0
 
 .section .text, "ax"  # 0x800056C0 - 0x80472F00
 .global __dt__14JSUInputStreamFv
