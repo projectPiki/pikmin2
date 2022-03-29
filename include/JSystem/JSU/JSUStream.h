@@ -24,7 +24,7 @@ struct JSUInputStream : public JSUIosBase {
 	virtual int readData(void*, long) = 0; // _0C
 
 	void read(void*, long);
-	void read(char*);
+	char* read(char*);
 };
 
 struct JSUMemoryInputStream : public JSUInputStream {

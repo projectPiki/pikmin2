@@ -52,61 +52,24 @@ void JSUInputStream::read(void* data, long length)
  * Address:	8002642C
  * Size:	0000B0
  */
-void JSUInputStream::read(char*)
+char* JSUInputStream::read(char* str)
 {
-	/*
-	stwu     r1, -0x20(r1)
-	mflr     r0
-	li       r5, 2
-	stw      r0, 0x24(r1)
-	stw      r31, 0x1c(r1)
-	mr       r31, r4
-	addi     r4, r1, 8
-	stw      r30, 0x18(r1)
-	mr       r30, r3
-	lwz      r12, 0(r3)
-	lwz      r12, 0x14(r12)
-	mtctr    r12
-	bctrl
-	cmplwi   r3, 2
-	beq      lbl_80026484
-	li       r0, 0
-	li       r3, 0
-	stb      r0, 0(r31)
-	lbz      r0, 4(r30)
-	ori      r0, r0, 1
-	stb      r0, 4(r30)
-	b        lbl_800264C4
+	u16 val;
+	if (readData(&val, sizeof(val)) != sizeof(val)) {
+		str[0] = '\0';
+		m_isEOFMaybe |= 1;
+		return nullptr;
+	}
 
-lbl_80026484:
-	mr       r3, r30
-	mr       r4, r31
-	lwz      r12, 0(r30)
-	lhz      r5, 8(r1)
-	lwz      r12, 0x14(r12)
-	mtctr    r12
-	bctrl
-	li       r0, 0
-	stbx     r0, r31, r3
-	lhz      r0, 8(r1)
-	cmpw     r3, r0
-	beq      lbl_800264C0
-	lbz      r0, 4(r30)
-	ori      r0, r0, 1
-	stb      r0, 4(r30)
+	int len  = readData(str, val);
+	str[len] = '\0';
+	if (len != val) {
+		m_isEOFMaybe |= 1;
+	}
 
-lbl_800264C0:
-	mr       r3, r31
-
-lbl_800264C4:
-	lwz      r0, 0x24(r1)
-	lwz      r31, 0x1c(r1)
-	lwz      r30, 0x18(r1)
-	mtlr     r0
-	addi     r1, r1, 0x20
-	blr
-	*/
+	return str;
 }
+
 
 /*
  * --INFO--
