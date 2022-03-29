@@ -60,17 +60,15 @@ systemConsole__9JFWSystem:
 	.skip 0x4
 .global sInitCalled__9JFWSystem
 sInitCalled__9JFWSystem:
-	.skip 0x4
+	.skip 0x1
 
 .section .sdata2, "a"     # 0x80516360 - 0x80520E40
 .balign 8
-.global lbl_80516B00
 lbl_80516B00:
 	.float 0.5
-.global lbl_80516B04
 lbl_80516B04:
-	.4byte 0x3F59999A
-.global lbl_80516B08
+	.float 0.85
+.balign 8
 lbl_80516B08:
 	.4byte 0x43300000
 	.4byte 0x80000000

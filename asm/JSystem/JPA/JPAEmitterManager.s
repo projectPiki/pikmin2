@@ -1,22 +1,16 @@
 .include "macros.inc"
 .section .sdata2, "a"     # 0x80516360 - 0x80520E40
 .balign 8
-.global lbl_80516BB8
 lbl_80516BB8:
-	.4byte 0x00000000
-.global lbl_80516BBC
+	.float 0.0
 lbl_80516BBC:
-	.4byte 0x42000000
-.global lbl_80516BC0
+	.float 32.0
 lbl_80516BC0:
 	.float 0.5
-.global lbl_80516BC4
 lbl_80516BC4:
-	.4byte 0x40400000
-.global lbl_80516BC8
+	.float 3.0
 lbl_80516BC8:
 	.float 1.0
-	.4byte 0x00000000
 
 .section .text, "ax"  # 0x800056C0 - 0x80472F00
 .global __ct__17JPAEmitterManagerFUlUlP7JKRHeapUcUc
@@ -159,7 +153,7 @@ lbl_80090718:
 /* 80090730 0008D670  4E 80 00 20 */	blr 
 
 .global "__ct__25JSUList<14JPABaseEmitter>Fv"
-"__ct__25JSUList<14JPABaseEmitter>Fv":
+"__ct__25JSUList<14JPABaseEmitter>Fv": # weak function
 /* 80090734 0008D674  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 80090738 0008D678  7C 08 02 A6 */	mflr r0
 /* 8009073C 0008D67C  90 01 00 14 */	stw r0, 0x14(r1)
@@ -174,7 +168,7 @@ lbl_80090718:
 /* 80090760 0008D6A0  4E 80 00 20 */	blr 
 
 .global "__dt__26JPANode<15JPABaseParticle>Fv"
-"__dt__26JPANode<15JPABaseParticle>Fv":
+"__dt__26JPANode<15JPABaseParticle>Fv": # weak function
 /* 80090764 0008D6A4  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 80090768 0008D6A8  7C 08 02 A6 */	mflr r0
 /* 8009076C 0008D6AC  90 01 00 14 */	stw r0, 0x14(r1)
@@ -193,14 +187,14 @@ lbl_80090788:
 /* 8009079C 0008D6DC  4E 80 00 20 */	blr 
 
 .global "__ct__26JPANode<15JPABaseParticle>Fv"
-"__ct__26JPANode<15JPABaseParticle>Fv":
+"__ct__26JPANode<15JPABaseParticle>Fv": # weak function
 /* 800907A0 0008D6E0  38 00 00 00 */	li r0, 0
 /* 800907A4 0008D6E4  90 03 00 00 */	stw r0, 0(r3)
 /* 800907A8 0008D6E8  90 03 00 04 */	stw r0, 4(r3)
 /* 800907AC 0008D6EC  4E 80 00 20 */	blr 
 
 .global __dt__14JPABaseEmitterFv
-__dt__14JPABaseEmitterFv:
+__dt__14JPABaseEmitterFv: # weak function
 /* 800907B0 0008D6F0  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 800907B4 0008D6F4  7C 08 02 A6 */	mflr r0
 /* 800907B8 0008D6F8  90 01 00 14 */	stw r0, 0x14(r1)
@@ -229,7 +223,7 @@ lbl_800907F4:
 /* 8009080C 0008D74C  4E 80 00 20 */	blr 
 
 .global __ct__14JPABaseEmitterFv
-__ct__14JPABaseEmitterFv:
+__ct__14JPABaseEmitterFv: # weak function
 /* 80090810 0008D750  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 80090814 0008D754  7C 08 02 A6 */	mflr r0
 /* 80090818 0008D758  90 01 00 14 */	stw r0, 0x14(r1)
@@ -254,7 +248,7 @@ __ct__14JPABaseEmitterFv:
 /* 80090864 0008D7A4  4E 80 00 20 */	blr 
 
 .global "__dt__25JSUList<14JPABaseEmitter>Fv"
-"__dt__25JSUList<14JPABaseEmitter>Fv":
+"__dt__25JSUList<14JPABaseEmitter>Fv": # weak function
 /* 80090868 0008D7A8  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 8009086C 0008D7AC  7C 08 02 A6 */	mflr r0
 /* 80090870 0008D7B0  90 01 00 14 */	stw r0, 0x14(r1)

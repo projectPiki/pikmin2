@@ -12,7 +12,6 @@ __vt__Q216JStudio_JMessage16TAdaptor_message:
 	.4byte adaptor_do_update__Q27JStudio8TAdaptorFPCQ27JStudio7TObjectUl
 	.4byte adaptor_do_data__Q27JStudio8TAdaptorFPCQ27JStudio7TObjectPCvUlPCvUl
 	.4byte adaptor_do_MESSAGE__Q216JStudio_JMessage16TAdaptor_messageFQ37JStudio4data15TEOperationDataPCvUl
-	.4byte 0
 
 .section .text, "ax"  # 0x800056C0 - 0x80472F00
 .global __ct__Q216JStudio_JMessage16TAdaptor_messageFPQ28JMessage8TControl

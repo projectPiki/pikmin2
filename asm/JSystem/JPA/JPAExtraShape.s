@@ -1,30 +1,22 @@
 .include "macros.inc"
 .section .sdata2, "a"     # 0x80516360 - 0x80520E40
 .balign 8
-.global lbl_80516BD0
 lbl_80516BD0:
 	.float 1.0
-	.4byte 0x00000000
-.global lbl_80516BD8
+.balign 8
 lbl_80516BD8:
 	.4byte 0x43300000
 	.4byte 0x80000000
-.global lbl_80516BE0
 lbl_80516BE0:
-	.4byte 0x40000000
-.global lbl_80516BE4
+	.float 2.0
 lbl_80516BE4:
-	.4byte 0x437F0000
-.global lbl_80516BE8
+	.float 255.0
 lbl_80516BE8:
 	.float 0.5
-.global lbl_80516BEC
 lbl_80516BEC:
-	.4byte 0x46800000
-.global lbl_80516BF0
+	.float 16384.0
 lbl_80516BF0:
-	.4byte 0x00000000
-	.4byte 0x00000000
+	.float 0.0
 
 .section .text, "ax"  # 0x800056C0 - 0x80472F00
 .global JPACalcScaleX__FP18JPAEmitterWorkDataP15JPABaseParticle

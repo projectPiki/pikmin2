@@ -18,9 +18,9 @@ struct JSUIosBase {
 };
 
 struct JSUInputStream : public JSUIosBase {
-	virtual ~JSUInputStream();                // _00
-	virtual u8 getAvailable() = 0;            // _04
-	virtual void skip(long);                  // _08
+	virtual ~JSUInputStream();             // _00
+	virtual u8 getAvailable() = 0;         // _04
+	virtual void skip(long);               // _08
 	virtual int readData(void*, long) = 0; // _0C
 
 	void read(void*, long);
@@ -29,7 +29,7 @@ struct JSUInputStream : public JSUIosBase {
 
 struct JSUMemoryInputStream : public JSUInputStream {
 	virtual ~JSUMemoryInputStream();              // _00
-	virtual int readData(void*, long);         // _0C
+	virtual int readData(void*, long);            // _0C
 	virtual int getLength() const;                // _10
 	virtual int getPosition() const;              // _14
 	virtual int seekPos(long, JSUStreamSeekFrom); // _18
@@ -53,7 +53,7 @@ struct JSURandomInputStream : public JSUMemoryInputStream {
 // Size: 0x10
 struct JSUFileInputStream : public JSURandomInputStream {
 	JSUFileInputStream(JKRFile*);
-	virtual int readData(void*, long);         // _0C
+	virtual int readData(void*, long);            // _0C
 	virtual int getLength() const;                // _10
 	virtual int getPosition() const;              // _14
 	virtual int seekPos(long, JSUStreamSeekFrom); // _18

@@ -1,8 +1,7 @@
 .include "macros.inc"
 .section .data, "wa"  # 0x8049E220 - 0x804EFC20
-.balign 8
-.global jpa_pos
-jpa_pos:
+.balign 32
+jpa_pos: # local object
 	.4byte 0x00000032
 	.4byte 0x000032CE
 	.4byte 0x0000CE00
@@ -84,15 +83,8 @@ jpa_pos:
 	.4byte 0x0032CE00
 	.4byte 0x32000000
 	.4byte 0x000000CE
-	.4byte 0x00000000
-	.4byte 0x00000000
-	.4byte 0x00000000
-	.4byte 0x00000000
-	.4byte 0x00000000
-	.4byte 0x00000000
-	.4byte 0x00000000
-.global jpa_crd
-jpa_crd:
+.balign 32
+jpa_crd: # local object
 	.4byte 0x00000100
 	.4byte 0x01010001
 	.4byte 0x00000200
@@ -101,7 +93,6 @@ jpa_crd:
 	.4byte 0x01020002
 	.4byte 0x00000200
 	.4byte 0x02020002
-.global lbl_804A3500
 lbl_804A3500:
 	.4byte lbl_80096AC0
 	.4byte lbl_80096AD4
@@ -114,7 +105,6 @@ lbl_804A3500:
 	.4byte lbl_80096AAC
 	.4byte lbl_80096A98
 	.4byte lbl_80096A38
-.global lbl_804A352C
 lbl_804A352C:
 	.4byte lbl_80096764
 	.4byte lbl_80096778
@@ -127,7 +117,6 @@ lbl_804A352C:
 	.4byte lbl_80096750
 	.4byte lbl_8009673C
 	.4byte lbl_800966DC
-.global lbl_804A3558
 lbl_804A3558:
 	.4byte lbl_80097DD0
 	.4byte lbl_80097DDC
@@ -140,23 +129,18 @@ lbl_804A3558:
 	.4byte lbl_80097E30
 	.4byte lbl_80097E3C
 	.4byte lbl_80097E48
-	.4byte 0x00000000
 
 .section .sdata2, "a"     # 0x80516360 - 0x80520E40
 .balign 8
-.global lbl_80516C58
 lbl_80516C58:
-	.4byte 0x3F828F5C
-.global lbl_80516C5C
+	.float 1.02
 lbl_80516C5C:
-	.4byte 0x3ECCCCCD
-.global lbl_80516C60
+	.float 0.4
 lbl_80516C60:
 	.float 1.0
-.global lbl_80516C64
 lbl_80516C64:
-	.4byte 0x00000000
-.global lbl_80516C68
+	.float 0.0
+.balign 8
 lbl_80516C68:
 	.4byte 0x43300000
 	.4byte 0x00000000
@@ -1376,7 +1360,6 @@ lbl_80096668:
 /* 800966A0 000935E0  7C 03 00 2E */	lwzx r0, r3, r0
 /* 800966A4 000935E4  7C 09 03 A6 */	mtctr r0
 /* 800966A8 000935E8  4E 80 04 20 */	bctr 
-.global lbl_800966AC
 lbl_800966AC:
 /* 800966AC 000935EC  2C 18 00 00 */	cmpwi r24, 0
 /* 800966B0 000935F0  41 82 00 18 */	beq lbl_800966C8
@@ -1391,7 +1374,6 @@ lbl_800966C8:
 /* 800966D0 00093610  38 04 C5 08 */	addi r0, r4, JPADrawBillboard__FP18JPAEmitterWorkDataP15JPABaseParticle@l
 /* 800966D4 00093614  90 03 00 00 */	stw r0, 0(r3)
 /* 800966D8 00093618  48 00 00 B0 */	b lbl_80096788
-.global lbl_800966DC
 lbl_800966DC:
 /* 800966DC 0009361C  2C 18 00 00 */	cmpwi r24, 0
 /* 800966E0 00093620  41 82 00 18 */	beq lbl_800966F8
@@ -1406,7 +1388,6 @@ lbl_800966F8:
 /* 80096700 00093640  38 04 C7 08 */	addi r0, r4, JPADrawYBillboard__FP18JPAEmitterWorkDataP15JPABaseParticle@l
 /* 80096704 00093644  90 03 00 00 */	stw r0, 0(r3)
 /* 80096708 00093648  48 00 00 80 */	b lbl_80096788
-.global lbl_8009670C
 lbl_8009670C:
 /* 8009670C 0009364C  2C 18 00 00 */	cmpwi r24, 0
 /* 80096710 00093650  41 82 00 18 */	beq lbl_80096728
@@ -1421,34 +1402,29 @@ lbl_80096728:
 /* 80096730 00093670  38 04 CC AC */	addi r0, r4, JPADrawDirection__FP18JPAEmitterWorkDataP15JPABaseParticle@l
 /* 80096734 00093674  90 03 00 00 */	stw r0, 0(r3)
 /* 80096738 00093678  48 00 00 50 */	b lbl_80096788
-.global lbl_8009673C
 lbl_8009673C:
 /* 8009673C 0009367C  3C 80 80 09 */	lis r4, JPADrawDBillboard__FP18JPAEmitterWorkDataP15JPABaseParticle@ha
 /* 80096740 00093680  80 6F 00 10 */	lwz r3, 0x10(r15)
 /* 80096744 00093684  38 04 D3 F8 */	addi r0, r4, JPADrawDBillboard__FP18JPAEmitterWorkDataP15JPABaseParticle@l
 /* 80096748 00093688  90 03 00 00 */	stw r0, 0(r3)
 /* 8009674C 0009368C  48 00 00 3C */	b lbl_80096788
-.global lbl_80096750
 lbl_80096750:
 /* 80096750 00093690  3C 80 80 09 */	lis r4, JPADrawRotation__FP18JPAEmitterWorkDataP15JPABaseParticle@ha
 /* 80096754 00093694  80 6F 00 10 */	lwz r3, 0x10(r15)
 /* 80096758 00093698  38 04 D6 00 */	addi r0, r4, JPADrawRotation__FP18JPAEmitterWorkDataP15JPABaseParticle@l
 /* 8009675C 0009369C  90 03 00 00 */	stw r0, 0(r3)
 /* 80096760 000936A0  48 00 00 28 */	b lbl_80096788
-.global lbl_80096764
 lbl_80096764:
 /* 80096764 000936A4  3C 80 80 09 */	lis r4, JPADrawPoint__FP18JPAEmitterWorkDataP15JPABaseParticle@ha
 /* 80096768 000936A8  80 6F 00 10 */	lwz r3, 0x10(r15)
 /* 8009676C 000936AC  38 04 D7 50 */	addi r0, r4, JPADrawPoint__FP18JPAEmitterWorkDataP15JPABaseParticle@l
 /* 80096770 000936B0  90 03 00 00 */	stw r0, 0(r3)
 /* 80096774 000936B4  48 00 00 14 */	b lbl_80096788
-.global lbl_80096778
 lbl_80096778:
 /* 80096778 000936B8  3C 80 80 09 */	lis r4, JPADrawLine__FP18JPAEmitterWorkDataP15JPABaseParticle@ha
 /* 8009677C 000936BC  80 6F 00 10 */	lwz r3, 0x10(r15)
 /* 80096780 000936C0  38 04 D7 EC */	addi r0, r4, JPADrawLine__FP18JPAEmitterWorkDataP15JPABaseParticle@l
 /* 80096784 000936C4  90 03 00 00 */	stw r0, 0(r3)
-.global lbl_80096788
 lbl_80096788:
 /* 80096788 000936C8  38 60 00 01 */	li r3, 1
 lbl_8009678C:
@@ -1626,7 +1602,6 @@ lbl_800969BC:
 /* 800969FC 0009393C  7C 03 00 2E */	lwzx r0, r3, r0
 /* 80096A00 00093940  7C 09 03 A6 */	mtctr r0
 /* 80096A04 00093944  4E 80 04 20 */	bctr 
-.global lbl_80096A08
 lbl_80096A08:
 /* 80096A08 00093948  2C 17 00 00 */	cmpwi r23, 0
 /* 80096A0C 0009394C  41 82 00 18 */	beq lbl_80096A24
@@ -1641,7 +1616,6 @@ lbl_80096A24:
 /* 80096A2C 0009396C  38 04 C5 08 */	addi r0, r4, JPADrawBillboard__FP18JPAEmitterWorkDataP15JPABaseParticle@l
 /* 80096A30 00093970  90 03 00 00 */	stw r0, 0(r3)
 /* 80096A34 00093974  48 00 00 B0 */	b lbl_80096AE4
-.global lbl_80096A38
 lbl_80096A38:
 /* 80096A38 00093978  2C 17 00 00 */	cmpwi r23, 0
 /* 80096A3C 0009397C  41 82 00 18 */	beq lbl_80096A54
@@ -1656,7 +1630,6 @@ lbl_80096A54:
 /* 80096A5C 0009399C  38 04 C7 08 */	addi r0, r4, JPADrawYBillboard__FP18JPAEmitterWorkDataP15JPABaseParticle@l
 /* 80096A60 000939A0  90 03 00 00 */	stw r0, 0(r3)
 /* 80096A64 000939A4  48 00 00 80 */	b lbl_80096AE4
-.global lbl_80096A68
 lbl_80096A68:
 /* 80096A68 000939A8  2C 17 00 00 */	cmpwi r23, 0
 /* 80096A6C 000939AC  41 82 00 18 */	beq lbl_80096A84
@@ -1671,34 +1644,29 @@ lbl_80096A84:
 /* 80096A8C 000939CC  38 04 CC AC */	addi r0, r4, JPADrawDirection__FP18JPAEmitterWorkDataP15JPABaseParticle@l
 /* 80096A90 000939D0  90 03 00 00 */	stw r0, 0(r3)
 /* 80096A94 000939D4  48 00 00 50 */	b lbl_80096AE4
-.global lbl_80096A98
 lbl_80096A98:
 /* 80096A98 000939D8  3C 80 80 09 */	lis r4, JPADrawDBillboard__FP18JPAEmitterWorkDataP15JPABaseParticle@ha
 /* 80096A9C 000939DC  80 6F 00 18 */	lwz r3, 0x18(r15)
 /* 80096AA0 000939E0  38 04 D3 F8 */	addi r0, r4, JPADrawDBillboard__FP18JPAEmitterWorkDataP15JPABaseParticle@l
 /* 80096AA4 000939E4  90 03 00 00 */	stw r0, 0(r3)
 /* 80096AA8 000939E8  48 00 00 3C */	b lbl_80096AE4
-.global lbl_80096AAC
 lbl_80096AAC:
 /* 80096AAC 000939EC  3C 80 80 09 */	lis r4, JPADrawRotation__FP18JPAEmitterWorkDataP15JPABaseParticle@ha
 /* 80096AB0 000939F0  80 6F 00 18 */	lwz r3, 0x18(r15)
 /* 80096AB4 000939F4  38 04 D6 00 */	addi r0, r4, JPADrawRotation__FP18JPAEmitterWorkDataP15JPABaseParticle@l
 /* 80096AB8 000939F8  90 03 00 00 */	stw r0, 0(r3)
 /* 80096ABC 000939FC  48 00 00 28 */	b lbl_80096AE4
-.global lbl_80096AC0
 lbl_80096AC0:
 /* 80096AC0 00093A00  3C 80 80 09 */	lis r4, JPADrawPoint__FP18JPAEmitterWorkDataP15JPABaseParticle@ha
 /* 80096AC4 00093A04  80 6F 00 18 */	lwz r3, 0x18(r15)
 /* 80096AC8 00093A08  38 04 D7 50 */	addi r0, r4, JPADrawPoint__FP18JPAEmitterWorkDataP15JPABaseParticle@l
 /* 80096ACC 00093A0C  90 03 00 00 */	stw r0, 0(r3)
 /* 80096AD0 00093A10  48 00 00 14 */	b lbl_80096AE4
-.global lbl_80096AD4
 lbl_80096AD4:
 /* 80096AD4 00093A14  3C 80 80 09 */	lis r4, JPADrawLine__FP18JPAEmitterWorkDataP15JPABaseParticle@ha
 /* 80096AD8 00093A18  80 6F 00 18 */	lwz r3, 0x18(r15)
 /* 80096ADC 00093A1C  38 04 D7 EC */	addi r0, r4, JPADrawLine__FP18JPAEmitterWorkDataP15JPABaseParticle@l
 /* 80096AE0 00093A20  90 03 00 00 */	stw r0, 0(r3)
-.global lbl_80096AE4
 lbl_80096AE4:
 /* 80096AE4 00093A24  38 60 00 01 */	li r3, 1
 lbl_80096AE8:
@@ -3050,12 +3018,10 @@ lbl_80097D7C:
 /* 80097DC4 00094D04  7C 03 00 2E */	lwzx r0, r3, r0
 /* 80097DC8 00094D08  7C 09 03 A6 */	mtctr r0
 /* 80097DCC 00094D0C  4E 80 04 20 */	bctr 
-.global lbl_80097DD0
 lbl_80097DD0:
 /* 80097DD0 00094D10  80 7C 00 00 */	lwz r3, 0(r28)
 /* 80097DD4 00094D14  D0 23 00 28 */	stfs f1, 0x28(r3)
 /* 80097DD8 00094D18  48 00 00 78 */	b lbl_80097E50
-.global lbl_80097DDC
 lbl_80097DDC:
 /* 80097DDC 00094D1C  FC 00 08 1E */	fctiwz f0, f1
 /* 80097DE0 00094D20  80 7C 00 00 */	lwz r3, 0(r28)
@@ -3063,12 +3029,10 @@ lbl_80097DDC:
 /* 80097DE8 00094D28  80 01 00 0C */	lwz r0, 0xc(r1)
 /* 80097DEC 00094D2C  B0 03 00 54 */	sth r0, 0x54(r3)
 /* 80097DF0 00094D30  48 00 00 60 */	b lbl_80097E50
-.global lbl_80097DF4
 lbl_80097DF4:
 /* 80097DF4 00094D34  80 7C 00 00 */	lwz r3, 0(r28)
 /* 80097DF8 00094D38  D0 23 00 30 */	stfs f1, 0x30(r3)
 /* 80097DFC 00094D3C  48 00 00 54 */	b lbl_80097E50
-.global lbl_80097E00
 lbl_80097E00:
 /* 80097E00 00094D40  FC 00 08 1E */	fctiwz f0, f1
 /* 80097E04 00094D44  80 7C 00 00 */	lwz r3, 0(r28)
@@ -3076,31 +3040,25 @@ lbl_80097E00:
 /* 80097E0C 00094D4C  80 01 00 0C */	lwz r0, 0xc(r1)
 /* 80097E10 00094D50  B0 03 00 52 */	sth r0, 0x52(r3)
 /* 80097E14 00094D54  48 00 00 3C */	b lbl_80097E50
-.global lbl_80097E18
 lbl_80097E18:
 /* 80097E18 00094D58  80 7C 00 00 */	lwz r3, 0(r28)
 /* 80097E1C 00094D5C  D0 23 00 34 */	stfs f1, 0x34(r3)
 /* 80097E20 00094D60  48 00 00 30 */	b lbl_80097E50
-.global lbl_80097E24
 lbl_80097E24:
 /* 80097E24 00094D64  80 7C 00 00 */	lwz r3, 0(r28)
 /* 80097E28 00094D68  D0 23 00 38 */	stfs f1, 0x38(r3)
 /* 80097E2C 00094D6C  48 00 00 24 */	b lbl_80097E50
-.global lbl_80097E30
 lbl_80097E30:
 /* 80097E30 00094D70  80 7C 00 00 */	lwz r3, 0(r28)
 /* 80097E34 00094D74  D0 23 00 3C */	stfs f1, 0x3c(r3)
 /* 80097E38 00094D78  48 00 00 18 */	b lbl_80097E50
-.global lbl_80097E3C
 lbl_80097E3C:
 /* 80097E3C 00094D7C  80 7C 00 00 */	lwz r3, 0(r28)
 /* 80097E40 00094D80  D0 23 00 40 */	stfs f1, 0x40(r3)
 /* 80097E44 00094D84  48 00 00 0C */	b lbl_80097E50
-.global lbl_80097E48
 lbl_80097E48:
 /* 80097E48 00094D88  80 7C 00 00 */	lwz r3, 0(r28)
 /* 80097E4C 00094D8C  D0 23 00 FC */	stfs f1, 0xfc(r3)
-.global lbl_80097E50
 lbl_80097E50:
 /* 80097E50 00094D90  3B DE FF FC */	addi r30, r30, -4
 /* 80097E54 00094D94  3B BD FF FF */	addi r29, r29, -1

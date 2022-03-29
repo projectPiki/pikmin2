@@ -5,85 +5,45 @@ lbl_constructor:
 
 .section .rodata  # 0x804732E0 - 0x8049E220
 .balign 8
-.global lbl_804789E0
 lbl_804789E0:
-	.4byte 0x47502073
-	.4byte 0x74617475
-	.4byte 0x73202564
-	.4byte 0x25642564
-	.4byte 0x25642564
-	.4byte 0x2564202D
-	.4byte 0x2D3E2000
-	.4byte 0x47502068
-	.4byte 0x616E6720
-	.4byte 0x64756520
-	.4byte 0x746F2058
-	.4byte 0x46207374
-	.4byte 0x616C6C20
-	.4byte 0x6275672E
-	.4byte 0x0A000000
-	.4byte 0x47502068
-	.4byte 0x616E6720
-	.4byte 0x64756520
-	.4byte 0x746F2075
-	.4byte 0x6E746572
-	.4byte 0x6D696E61
-	.4byte 0x74656420
-	.4byte 0x7072696D
-	.4byte 0x69746976
-	.4byte 0x652E0A00
-	.4byte 0x47502068
-	.4byte 0x616E6720
-	.4byte 0x64756520
-	.4byte 0x746F2069
-	.4byte 0x6C6C6567
-	.4byte 0x616C2069
-	.4byte 0x6E737472
-	.4byte 0x75637469
-	.4byte 0x6F6E2E0A
-	.4byte 0x00000000
-	.4byte 0x47502061
-	.4byte 0x70706561
-	.4byte 0x72732074
-	.4byte 0x6F206265
-	.4byte 0x206E6F74
-	.4byte 0x2068756E
-	.4byte 0x67202877
-	.4byte 0x61697469
-	.4byte 0x6E672066
-	.4byte 0x6F722069
-	.4byte 0x6E707574
-	.4byte 0x292E0A00
-	.4byte 0x47502069
-	.4byte 0x7320696E
-	.4byte 0x20756E6B
-	.4byte 0x6E6F776E
-	.4byte 0x20737461
-	.4byte 0x74652E0A
-	.4byte 0x00000000
+	.asciz "GP status %d%d%d%d%d%d --> "
+.balign 4
+lbl_804789FC:
+	.asciz "GP hang due to XF stall bug.\n"
+.balign 4
+lbl_80478A1C:
+	.asciz "GP hang due to unterminated primitive.\n"
+.balign 4
+lbl_80478A44:
+	.asciz "GP hang due to illegal instruction.\n"
+.balign 4
+lbl_80478A6C:
+	.asciz "GP appears to be not hung (waiting for input).\n"
+.balign 4
+lbl_80478A9C:
+	.asciz "GP is in unknown state.\n"
 
 .section .data, "wa"  # 0x8049E220 - 0x804EFC20
 .balign 8
 .global e_mtx
 e_mtx:
 	.float 1.0
-	.4byte 0x00000000
-	.4byte 0x00000000
-	.4byte 0x00000000
-	.4byte 0x00000000
+	.float 0.0
+	.float 0.0
+	.float 0.0
+	.float 0.0
 	.float 1.0
-	.4byte 0x00000000
-	.4byte 0x00000000
-	.4byte 0x00000000
-	.4byte 0x00000000
+	.float 0.0
+	.float 0.0
+	.float 0.0
+	.float 0.0
 	.float 1.0
-	.4byte 0x00000000
-	.4byte 0x00000000
-	.4byte 0x00000000
-	.4byte 0x00000000
-	.4byte 0x00000000
-.global clear_z_TX
-clear_z_TX:
+	.float 0.0
+	.float 0.0
+	.float 0.0
+	.float 0.0
+	.float 0.0
+clear_z_TX: # local object
 	.4byte 0x00FF00FF
 	.4byte 0x00FF00FF
 	.4byte 0x00FF00FF
@@ -108,8 +68,6 @@ __vt__10JFWDisplay:
 	.4byte endRender__10JFWDisplayFv
 	.4byte endFrame__10JFWDisplayFv
 	.4byte __dt__10JFWDisplayFv
-	.4byte 0
-	.4byte 0
 
 .section .bss  # 0x804EFC20 - 0x8051467C
 .global sList__8JFWAlarm
@@ -121,52 +79,40 @@ sList__8JFWAlarm:
 .global sManager__10JFWDisplay
 sManager__10JFWDisplay:
 	.skip 0x4
-.global prevFrame$3378
-prevFrame$3378:
+prevFrame$3378: # local
 	.skip 0x4
-.global init$3379
-init$3379:
+init$3379: # local
+	.skip 0x1
+.balign 8
+nextTick$3423: # local
 	.skip 0x8
-.global nextTick$3423
-nextTick$3423:
+init$3424: # local
+	.skip 0x1
+.balign 4
+nextCount$3431: # local
 	.skip 0x4
-.global lbl_8051507C
-lbl_8051507C:
-	.skip 0x4
-.global init$3424
-init$3424:
-	.skip 0x4
-.global nextCount$3431
-nextCount$3431:
-	.skip 0x4
-.global init$3432
-init$3432:
-	.skip 0x8
+init$3432: # local
+	.skip 0x1
 
 .section .sdata2, "a"     # 0x80516360 - 0x80520E40
 .balign 8
-.global lbl_80516B10
 lbl_80516B10:
-	.4byte 0x00000000
-.global lbl_80516B14
+	.float 0.0
 lbl_80516B14:
 	.float -1.0
-.global lbl_80516B18
 lbl_80516B18:
 	.float 1.0
-	.4byte 0x00000000
-.global lbl_80516B20
+.balign 8
 lbl_80516B20:
 	.4byte 0x43300000
 	.4byte 0x00000000
-.global lbl_80516B28
+.balign 8
 lbl_80516B28:
 	.4byte 0x43300000
 	.4byte 0x80000000
-.global lbl_80516B30
+.balign 8
 lbl_80516B30:
-	.4byte 0x3FE00000
-	.4byte 0x00000000
+	.double 0.5
 
 .section .text, "ax"  # 0x800056C0 - 0x80472F00
 .global __dt__10JFWDisplayFv
@@ -995,7 +941,7 @@ waitForTick__FUlUs:
 /* 8008A650 00087590  40 82 00 18 */	bne lbl_8008A668
 /* 8008A654 00087594  48 06 85 3D */	bl OSGetTime
 /* 8008A658 00087598  38 00 00 01 */	li r0, 1
-/* 8008A65C 0008759C  90 8D 89 FC */	stw r4, lbl_8051507C@sda21(r13)
+/* 8008A65C 0008759C  90 8D 89 FC */	stw r4, nextTick$3423+4@sda21(r13)
 /* 8008A660 000875A0  90 6D 89 F8 */	stw r3, nextTick$3423@sda21(r13)
 /* 8008A664 000875A4  98 0D 8A 00 */	stb r0, init$3424@sda21(r13)
 lbl_8008A668:
@@ -1012,7 +958,7 @@ lbl_8008A674:
 lbl_8008A68C:
 /* 8008A68C 000875CC  80 ED 89 F8 */	lwz r7, nextTick$3423@sda21(r13)
 /* 8008A690 000875D0  6D 05 80 00 */	xoris r5, r8, 0x8000
-/* 8008A694 000875D4  80 CD 89 FC */	lwz r6, lbl_8051507C@sda21(r13)
+/* 8008A694 000875D4  80 CD 89 FC */	lwz r6, nextTick$3423+4@sda21(r13)
 /* 8008A698 000875D8  6C E3 80 00 */	xoris r3, r7, 0x8000
 /* 8008A69C 000875DC  7C 06 20 10 */	subfc r0, r6, r4
 /* 8008A6A0 000875E0  7C 63 29 10 */	subfe r3, r3, r5
@@ -1022,7 +968,7 @@ lbl_8008A68C:
 /* 8008A6B0 000875F0  7C 64 F8 14 */	addc r3, r4, r31
 /* 8008A6B4 000875F4  38 00 00 00 */	li r0, 0
 /* 8008A6B8 000875F8  7C 08 01 14 */	adde r0, r8, r0
-/* 8008A6BC 000875FC  90 6D 89 FC */	stw r3, lbl_8051507C@sda21(r13)
+/* 8008A6BC 000875FC  90 6D 89 FC */	stw r3, nextTick$3423+4@sda21(r13)
 /* 8008A6C0 00087600  90 0D 89 F8 */	stw r0, nextTick$3423@sda21(r13)
 /* 8008A6C4 00087604  48 00 00 6C */	b lbl_8008A730
 lbl_8008A6C8:
@@ -1699,8 +1645,7 @@ lbl_8008B064:
 /* 8008B070 00087FB0  38 21 00 10 */	addi r1, r1, 0x10
 /* 8008B074 00087FB4  4E 80 00 20 */	blr 
 
-.global __sinit_JFWDisplay_cpp
-__sinit_JFWDisplay_cpp:
+__sinit_JFWDisplay_cpp: # static initializer
 /* 8008B078 00087FB8  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 8008B07C 00087FBC  7C 08 02 A6 */	mflr r0
 /* 8008B080 00087FC0  3C 60 80 51 */	lis r3, sList__8JFWAlarm@ha

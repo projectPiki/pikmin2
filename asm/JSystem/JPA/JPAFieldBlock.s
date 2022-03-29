@@ -1,7 +1,6 @@
 .include "macros.inc"
 .section .data, "wa"  # 0x8049E220 - 0x804EFC20
 .balign 8
-.global lbl_804A3268
 lbl_804A3268:
 	.4byte lbl_800934C8
 	.4byte lbl_800934FC
@@ -82,28 +81,21 @@ __vt__15JPAFieldGravity:
 	.4byte __dt__15JPAFieldGravityFv
 	.4byte prepare__15JPAFieldGravityFP18JPAEmitterWorkDataP13JPAFieldBlock
 	.4byte calc__15JPAFieldGravityFP18JPAEmitterWorkDataP13JPAFieldBlockP15JPABaseParticle
-	.4byte 0
 
 .section .sdata2, "a"     # 0x80516360 - 0x80520E40
 .balign 8
-.global lbl_80516BF8
 lbl_80516BF8:
 	.float 1.0
-.global lbl_80516BFC
 lbl_80516BFC:
-	.4byte 0x00000000
-.global lbl_80516C00
+	.float 0.0
 lbl_80516C00:
-	.4byte 0x42000000
-.global lbl_80516C04
+	.float 32.0
 lbl_80516C04:
 	.float 0.5
-.global lbl_80516C08
 lbl_80516C08:
-	.4byte 0x40400000
-.global lbl_80516C0C
+	.float 3.0
 lbl_80516C0C:
-	.4byte 0x41200000
+	.float 10.0
 
 .section .text, "ax"  # 0x800056C0 - 0x80472F00
 .global prepare__15JPAFieldGravityFP18JPAEmitterWorkDataP13JPAFieldBlock
@@ -2299,7 +2291,6 @@ lbl_80093458:
 /* 800934BC 000903FC  7C 03 00 2E */	lwzx r0, r3, r0
 /* 800934C0 00090400  7C 09 03 A6 */	mtctr r0
 /* 800934C4 00090404  4E 80 04 20 */	bctr 
-.global lbl_800934C8
 lbl_800934C8:
 /* 800934C8 00090408  38 60 00 10 */	li r3, 0x10
 /* 800934CC 0009040C  38 A0 00 00 */	li r5, 0
@@ -2315,7 +2306,6 @@ lbl_800934C8:
 lbl_800934F4:
 /* 800934F4 00090434  90 7F 00 04 */	stw r3, 4(r31)
 /* 800934F8 00090438  48 00 01 AC */	b lbl_800936A4
-.global lbl_800934FC
 lbl_800934FC:
 /* 800934FC 0009043C  38 60 00 10 */	li r3, 0x10
 /* 80093500 00090440  38 A0 00 00 */	li r5, 0
@@ -2331,7 +2321,6 @@ lbl_800934FC:
 lbl_80093528:
 /* 80093528 00090468  90 7F 00 04 */	stw r3, 4(r31)
 /* 8009352C 0009046C  48 00 01 78 */	b lbl_800936A4
-.global lbl_80093530
 lbl_80093530:
 /* 80093530 00090470  38 60 00 1C */	li r3, 0x1c
 /* 80093534 00090474  38 A0 00 00 */	li r5, 0
@@ -2347,7 +2336,6 @@ lbl_80093530:
 lbl_8009355C:
 /* 8009355C 0009049C  90 7F 00 04 */	stw r3, 4(r31)
 /* 80093560 000904A0  48 00 01 44 */	b lbl_800936A4
-.global lbl_80093564
 lbl_80093564:
 /* 80093564 000904A4  38 60 00 20 */	li r3, 0x20
 /* 80093568 000904A8  38 A0 00 00 */	li r5, 0
@@ -2363,7 +2351,6 @@ lbl_80093564:
 lbl_80093590:
 /* 80093590 000904D0  90 7F 00 04 */	stw r3, 4(r31)
 /* 80093594 000904D4  48 00 01 10 */	b lbl_800936A4
-.global lbl_80093598
 lbl_80093598:
 /* 80093598 000904D8  38 60 00 24 */	li r3, 0x24
 /* 8009359C 000904DC  38 A0 00 00 */	li r5, 0
@@ -2379,7 +2366,6 @@ lbl_80093598:
 lbl_800935C4:
 /* 800935C4 00090504  90 7F 00 04 */	stw r3, 4(r31)
 /* 800935C8 00090508  48 00 00 DC */	b lbl_800936A4
-.global lbl_800935CC
 lbl_800935CC:
 /* 800935CC 0009050C  38 60 00 10 */	li r3, 0x10
 /* 800935D0 00090510  38 A0 00 00 */	li r5, 0
@@ -2395,7 +2381,6 @@ lbl_800935CC:
 lbl_800935F8:
 /* 800935F8 00090538  90 7F 00 04 */	stw r3, 4(r31)
 /* 800935FC 0009053C  48 00 00 A8 */	b lbl_800936A4
-.global lbl_80093600
 lbl_80093600:
 /* 80093600 00090540  38 60 00 10 */	li r3, 0x10
 /* 80093604 00090544  38 A0 00 00 */	li r5, 0
@@ -2411,7 +2396,6 @@ lbl_80093600:
 lbl_8009362C:
 /* 8009362C 0009056C  90 7F 00 04 */	stw r3, 4(r31)
 /* 80093630 00090570  48 00 00 74 */	b lbl_800936A4
-.global lbl_80093634
 lbl_80093634:
 /* 80093634 00090574  38 60 00 34 */	li r3, 0x34
 /* 80093638 00090578  38 A0 00 00 */	li r5, 0
@@ -2427,7 +2411,6 @@ lbl_80093634:
 lbl_80093660:
 /* 80093660 000905A0  90 7F 00 04 */	stw r3, 4(r31)
 /* 80093664 000905A4  48 00 00 40 */	b lbl_800936A4
-.global lbl_80093668
 lbl_80093668:
 /* 80093668 000905A8  38 60 00 34 */	li r3, 0x34
 /* 8009366C 000905AC  38 A0 00 00 */	li r5, 0
@@ -2454,7 +2437,7 @@ lbl_800936A4:
 /* 800936B4 000905F4  4E 80 00 20 */	blr 
 
 .global __dt__12JPAFieldBaseFv
-__dt__12JPAFieldBaseFv:
+__dt__12JPAFieldBaseFv: # weak function
 /* 800936B8 000905F8  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 800936BC 000905FC  7C 08 02 A6 */	mflr r0
 /* 800936C0 00090600  90 01 00 14 */	stw r0, 0x14(r1)
@@ -2476,11 +2459,11 @@ lbl_800936E8:
 /* 800936FC 0009063C  4E 80 00 20 */	blr 
 
 .global prepare__12JPAFieldBaseFP18JPAEmitterWorkDataP13JPAFieldBlock
-prepare__12JPAFieldBaseFP18JPAEmitterWorkDataP13JPAFieldBlock:
+prepare__12JPAFieldBaseFP18JPAEmitterWorkDataP13JPAFieldBlock: # weak function
 /* 80093700 00090640  4E 80 00 20 */	blr 
 
 .global __dt__12JPAFieldSpinFv
-__dt__12JPAFieldSpinFv:
+__dt__12JPAFieldSpinFv: # weak function
 /* 80093704 00090644  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 80093708 00090648  7C 08 02 A6 */	mflr r0
 /* 8009370C 0009064C  90 01 00 14 */	stw r0, 0x14(r1)
@@ -2508,7 +2491,7 @@ lbl_80093748:
 /* 8009375C 0009069C  4E 80 00 20 */	blr 
 
 .global __dt__12JPAFieldDragFv
-__dt__12JPAFieldDragFv:
+__dt__12JPAFieldDragFv: # weak function
 /* 80093760 000906A0  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 80093764 000906A4  7C 08 02 A6 */	mflr r0
 /* 80093768 000906A8  90 01 00 14 */	stw r0, 0x14(r1)
@@ -2536,7 +2519,7 @@ lbl_800937A4:
 /* 800937B8 000906F8  4E 80 00 20 */	blr 
 
 .global __dt__14JPAFieldRandomFv
-__dt__14JPAFieldRandomFv:
+__dt__14JPAFieldRandomFv: # weak function
 /* 800937BC 000906FC  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 800937C0 00090700  7C 08 02 A6 */	mflr r0
 /* 800937C4 00090704  90 01 00 14 */	stw r0, 0x14(r1)
@@ -2564,7 +2547,7 @@ lbl_80093800:
 /* 80093814 00090754  4E 80 00 20 */	blr 
 
 .global __dt__18JPAFieldConvectionFv
-__dt__18JPAFieldConvectionFv:
+__dt__18JPAFieldConvectionFv: # weak function
 /* 80093818 00090758  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 8009381C 0009075C  7C 08 02 A6 */	mflr r0
 /* 80093820 00090760  90 01 00 14 */	stw r0, 0x14(r1)
@@ -2592,7 +2575,7 @@ lbl_8009385C:
 /* 80093870 000907B0  4E 80 00 20 */	blr 
 
 .global __dt__14JPAFieldVortexFv
-__dt__14JPAFieldVortexFv:
+__dt__14JPAFieldVortexFv: # weak function
 /* 80093874 000907B4  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 80093878 000907B8  7C 08 02 A6 */	mflr r0
 /* 8009387C 000907BC  90 01 00 14 */	stw r0, 0x14(r1)
@@ -2620,7 +2603,7 @@ lbl_800938B8:
 /* 800938CC 0009080C  4E 80 00 20 */	blr 
 
 .global __dt__14JPAFieldNewtonFv
-__dt__14JPAFieldNewtonFv:
+__dt__14JPAFieldNewtonFv: # weak function
 /* 800938D0 00090810  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 800938D4 00090814  7C 08 02 A6 */	mflr r0
 /* 800938D8 00090818  90 01 00 14 */	stw r0, 0x14(r1)
@@ -2648,7 +2631,7 @@ lbl_80093914:
 /* 80093928 00090868  4E 80 00 20 */	blr 
 
 .global __dt__14JPAFieldMagnetFv
-__dt__14JPAFieldMagnetFv:
+__dt__14JPAFieldMagnetFv: # weak function
 /* 8009392C 0009086C  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 80093930 00090870  7C 08 02 A6 */	mflr r0
 /* 80093934 00090874  90 01 00 14 */	stw r0, 0x14(r1)
@@ -2676,7 +2659,7 @@ lbl_80093970:
 /* 80093984 000908C4  4E 80 00 20 */	blr 
 
 .global __dt__11JPAFieldAirFv
-__dt__11JPAFieldAirFv:
+__dt__11JPAFieldAirFv: # weak function
 /* 80093988 000908C8  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 8009398C 000908CC  7C 08 02 A6 */	mflr r0
 /* 80093990 000908D0  90 01 00 14 */	stw r0, 0x14(r1)
@@ -2704,7 +2687,7 @@ lbl_800939CC:
 /* 800939E0 00090920  4E 80 00 20 */	blr 
 
 .global __dt__15JPAFieldGravityFv
-__dt__15JPAFieldGravityFv:
+__dt__15JPAFieldGravityFv: # weak function
 /* 800939E4 00090924  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 800939E8 00090928  7C 08 02 A6 */	mflr r0
 /* 800939EC 0009092C  90 01 00 14 */	stw r0, 0x14(r1)

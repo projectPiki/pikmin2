@@ -1,8 +1,7 @@
 .include "macros.inc"
 .section .data, "wa"  # 0x8049E220 - 0x804EFC20
-.balign 8
-.global jpa_dl
-jpa_dl:
+.balign 32
+jpa_dl: # local object
 	.4byte 0x80000400
 	.4byte 0x00010102
 	.4byte 0x02030300
@@ -11,8 +10,8 @@ jpa_dl:
 	.4byte 0x00000000
 	.4byte 0x00000000
 	.4byte 0x00000000
-.global jpa_dl_x
-jpa_dl_x:
+.balign 32
+jpa_dl_x: # local object
 	.4byte 0x80000800
 	.4byte 0x00010102
 	.4byte 0x02030348
@@ -21,27 +20,23 @@ jpa_dl_x:
 	.4byte 0x00000000
 	.4byte 0x00000000
 	.4byte 0x00000000
-.global p_prj
-p_prj:
+p_prj: # local object
 	.4byte noLoadPrj__FPC18JPAEmitterWorkDataPA4_Cf
 	.4byte loadPrj__FPC18JPAEmitterWorkDataPA4_Cf
 	.4byte loadPrjAnm__FPC18JPAEmitterWorkDataPA4_Cf
-.global p_direction
-p_direction:
+p_direction: # local object
 	.4byte "dirTypeVel__FPC18JPAEmitterWorkDataPC15JPABaseParticlePQ29JGeometry8TVec3<f>"
 	.4byte "dirTypePos__FPC18JPAEmitterWorkDataPC15JPABaseParticlePQ29JGeometry8TVec3<f>"
 	.4byte "dirTypePosInv__FPC18JPAEmitterWorkDataPC15JPABaseParticlePQ29JGeometry8TVec3<f>"
 	.4byte "dirTypeEmtrDir__FPC18JPAEmitterWorkDataPC15JPABaseParticlePQ29JGeometry8TVec3<f>"
 	.4byte "dirTypePrevPtcl__FPC18JPAEmitterWorkDataPC15JPABaseParticlePQ29JGeometry8TVec3<f>"
-.global p_rot
-p_rot:
+p_rot: # local object
 	.4byte rotTypeY__FffRA3_A4_f
 	.4byte rotTypeX__FffRA3_A4_f
 	.4byte rotTypeZ__FffRA3_A4_f
 	.4byte rotTypeXYZ__FffRA3_A4_f
 	.4byte rotTypeY__FffRA3_A4_f
-.global p_plane
-p_plane:
+p_plane: # local object
 	.4byte basePlaneTypeXY__FPA4_fff
 	.4byte basePlaneTypeXZ__FPA4_fff
 	.4byte basePlaneTypeX__FPA4_fff
@@ -132,51 +127,39 @@ st_aa__12JPABaseShape:
 	.4byte 0x00000007
 	.4byte 0x00000007
 	.4byte 0x00000001
-	.4byte 0x00000000
 
 .section .sdata, "wa"  # 0x80514680 - 0x80514D80
 .balign 8
-.global p_dl
-p_dl:
+p_dl: # local object
 	.4byte jpa_dl
 	.4byte jpa_dl_x
 
 .section .sdata2, "a"     # 0x80516360 - 0x80520E40
 .balign 8
-.global lbl_80516B38
 lbl_80516B38:
-	.4byte 0x41C80000
-	.4byte 0x00000000
-.global lbl_80516B40
+	.float 25.0
+.balign 8
 lbl_80516B40:
 	.4byte 0x43300000
 	.4byte 0x80000000
-.global lbl_80516B48
 lbl_80516B48:
 	.float 0.5
-.global lbl_80516B4C
 lbl_80516B4C:
 	.float 1.0
-.global lbl_80516B50
 lbl_80516B50:
-	.4byte 0x00000000
-	.4byte 0x00000000
-.global lbl_80516B58
+	.float 0.0
+.balign 8
 lbl_80516B58:
 	.4byte 0x43300000
 	.4byte 0x00000000
-.global lbl_80516B60
 lbl_80516B60:
-	.4byte 0x3EAAAA9F
-.global lbl_80516B64
+	.float 0.333333
 lbl_80516B64:
-	.4byte 0x3F13CD36
-.global lbl_80516B68
+	.float 0.57735
 lbl_80516B68:
-	.4byte 0x42000000
-.global lbl_80516B6C
+	.float 32.0
 lbl_80516B6C:
-	.4byte 0x40400000
+	.float 3.0
 
 .section .text, "ax"  # 0x800056C0 - 0x80472F00
 .global JPASetPointSize__FP18JPAEmitterWorkData
@@ -1476,12 +1459,10 @@ JPALoadPosMtxCam__FP18JPAEmitterWorkData:
 /* 8008C318 00089258  38 21 00 10 */	addi r1, r1, 0x10
 /* 8008C31C 0008925C  4E 80 00 20 */	blr 
 
-.global noLoadPrj__FPC18JPAEmitterWorkDataPA4_Cf
-noLoadPrj__FPC18JPAEmitterWorkDataPA4_Cf:
+noLoadPrj__FPC18JPAEmitterWorkDataPA4_Cf: # local function
 /* 8008C320 00089260  4E 80 00 20 */	blr 
 
-.global loadPrj__FPC18JPAEmitterWorkDataPA4_Cf
-loadPrj__FPC18JPAEmitterWorkDataPA4_Cf:
+loadPrj__FPC18JPAEmitterWorkDataPA4_Cf: # local function
 /* 8008C324 00089264  94 21 FF C0 */	stwu r1, -0x40(r1)
 /* 8008C328 00089268  7C 08 02 A6 */	mflr r0
 /* 8008C32C 0008926C  38 63 01 B4 */	addi r3, r3, 0x1b4
@@ -1497,8 +1478,7 @@ loadPrj__FPC18JPAEmitterWorkDataPA4_Cf:
 /* 8008C354 00089294  38 21 00 40 */	addi r1, r1, 0x40
 /* 8008C358 00089298  4E 80 00 20 */	blr 
 
-.global loadPrjAnm__FPC18JPAEmitterWorkDataPA4_Cf
-loadPrjAnm__FPC18JPAEmitterWorkDataPA4_Cf:
+loadPrjAnm__FPC18JPAEmitterWorkDataPA4_Cf: # local function
 /* 8008C35C 0008929C  94 21 FF 90 */	stwu r1, -0x70(r1)
 /* 8008C360 000892A0  7C 08 02 A6 */	mflr r0
 /* 8008C364 000892A4  90 01 00 74 */	stw r0, 0x74(r1)
@@ -1890,8 +1870,7 @@ lbl_8008C91C:
 /* 8008C92C 0008986C  38 21 00 50 */	addi r1, r1, 0x50
 /* 8008C930 00089870  4E 80 00 20 */	blr 
 
-.global "dirTypeVel__FPC18JPAEmitterWorkDataPC15JPABaseParticlePQ29JGeometry8TVec3<f>"
-"dirTypeVel__FPC18JPAEmitterWorkDataPC15JPABaseParticlePQ29JGeometry8TVec3<f>":
+"dirTypeVel__FPC18JPAEmitterWorkDataPC15JPABaseParticlePQ29JGeometry8TVec3<f>": # local function
 /* 8008C934 00089874  C0 04 00 24 */	lfs f0, 0x24(r4)
 /* 8008C938 00089878  C0 24 00 28 */	lfs f1, 0x28(r4)
 /* 8008C93C 0008987C  D0 05 00 00 */	stfs f0, 0(r5)
@@ -1900,8 +1879,7 @@ lbl_8008C91C:
 /* 8008C948 00089888  D0 05 00 08 */	stfs f0, 8(r5)
 /* 8008C94C 0008988C  4E 80 00 20 */	blr 
 
-.global "dirTypePos__FPC18JPAEmitterWorkDataPC15JPABaseParticlePQ29JGeometry8TVec3<f>"
-"dirTypePos__FPC18JPAEmitterWorkDataPC15JPABaseParticlePQ29JGeometry8TVec3<f>":
+"dirTypePos__FPC18JPAEmitterWorkDataPC15JPABaseParticlePQ29JGeometry8TVec3<f>": # local function
 /* 8008C950 00089890  C0 04 00 0C */	lfs f0, 0xc(r4)
 /* 8008C954 00089894  C0 24 00 10 */	lfs f1, 0x10(r4)
 /* 8008C958 00089898  D0 05 00 00 */	stfs f0, 0(r5)
@@ -1910,8 +1888,7 @@ lbl_8008C91C:
 /* 8008C964 000898A4  D0 05 00 08 */	stfs f0, 8(r5)
 /* 8008C968 000898A8  4E 80 00 20 */	blr 
 
-.global "dirTypePosInv__FPC18JPAEmitterWorkDataPC15JPABaseParticlePQ29JGeometry8TVec3<f>"
-"dirTypePosInv__FPC18JPAEmitterWorkDataPC15JPABaseParticlePQ29JGeometry8TVec3<f>":
+"dirTypePosInv__FPC18JPAEmitterWorkDataPC15JPABaseParticlePQ29JGeometry8TVec3<f>": # local function
 /* 8008C96C 000898AC  C0 04 00 0C */	lfs f0, 0xc(r4)
 /* 8008C970 000898B0  C0 24 00 10 */	lfs f1, 0x10(r4)
 /* 8008C974 000898B4  D0 05 00 00 */	stfs f0, 0(r5)
@@ -1929,8 +1906,7 @@ lbl_8008C91C:
 /* 8008C9A4 000898E4  D0 05 00 08 */	stfs f0, 8(r5)
 /* 8008C9A8 000898E8  4E 80 00 20 */	blr 
 
-.global "dirTypeEmtrDir__FPC18JPAEmitterWorkDataPC15JPABaseParticlePQ29JGeometry8TVec3<f>"
-"dirTypeEmtrDir__FPC18JPAEmitterWorkDataPC15JPABaseParticlePQ29JGeometry8TVec3<f>":
+"dirTypeEmtrDir__FPC18JPAEmitterWorkDataPC15JPABaseParticlePQ29JGeometry8TVec3<f>": # local function
 /* 8008C9AC 000898EC  C0 03 01 20 */	lfs f0, 0x120(r3)
 /* 8008C9B0 000898F0  C0 23 01 24 */	lfs f1, 0x124(r3)
 /* 8008C9B4 000898F4  D0 05 00 00 */	stfs f0, 0(r5)
@@ -1939,8 +1915,7 @@ lbl_8008C91C:
 /* 8008C9C0 00089900  D0 05 00 08 */	stfs f0, 8(r5)
 /* 8008C9C4 00089904  4E 80 00 20 */	blr 
 
-.global "dirTypePrevPtcl__FPC18JPAEmitterWorkDataPC15JPABaseParticlePQ29JGeometry8TVec3<f>"
-"dirTypePrevPtcl__FPC18JPAEmitterWorkDataPC15JPABaseParticlePQ29JGeometry8TVec3<f>":
+"dirTypePrevPtcl__FPC18JPAEmitterWorkDataPC15JPABaseParticlePQ29JGeometry8TVec3<f>": # local function
 /* 8008C9C8 00089908  94 21 FF C0 */	stwu r1, -0x40(r1)
 /* 8008C9CC 0008990C  7C 08 02 A6 */	mflr r0
 /* 8008C9D0 00089910  90 01 00 44 */	stw r0, 0x44(r1)
@@ -1992,8 +1967,7 @@ lbl_8008CA38:
 /* 8008CA80 000899C0  38 21 00 40 */	addi r1, r1, 0x40
 /* 8008CA84 000899C4  4E 80 00 20 */	blr 
 
-.global rotTypeY__FffRA3_A4_f
-rotTypeY__FffRA3_A4_f:
+rotTypeY__FffRA3_A4_f: # local function
 /* 8008CA88 000899C8  D0 43 00 00 */	stfs f2, 0(r3)
 /* 8008CA8C 000899CC  FC 60 08 50 */	fneg f3, f1
 /* 8008CA90 000899D0  C0 82 87 F0 */	lfs f4, lbl_80516B50@sda21(r2)
@@ -2011,8 +1985,7 @@ rotTypeY__FffRA3_A4_f:
 /* 8008CAC0 00089A00  D0 83 00 2C */	stfs f4, 0x2c(r3)
 /* 8008CAC4 00089A04  4E 80 00 20 */	blr 
 
-.global rotTypeX__FffRA3_A4_f
-rotTypeX__FffRA3_A4_f:
+rotTypeX__FffRA3_A4_f: # local function
 /* 8008CAC8 00089A08  C0 82 87 EC */	lfs f4, lbl_80516B4C@sda21(r2)
 /* 8008CACC 00089A0C  FC 00 08 50 */	fneg f0, f1
 /* 8008CAD0 00089A10  C0 62 87 F0 */	lfs f3, lbl_80516B50@sda21(r2)
@@ -2030,8 +2003,7 @@ rotTypeX__FffRA3_A4_f:
 /* 8008CB00 00089A40  D0 63 00 2C */	stfs f3, 0x2c(r3)
 /* 8008CB04 00089A44  4E 80 00 20 */	blr 
 
-.global rotTypeZ__FffRA3_A4_f
-rotTypeZ__FffRA3_A4_f:
+rotTypeZ__FffRA3_A4_f: # local function
 /* 8008CB08 00089A48  FC 80 08 50 */	fneg f4, f1
 /* 8008CB0C 00089A4C  D0 43 00 00 */	stfs f2, 0(r3)
 /* 8008CB10 00089A50  C0 62 87 F0 */	lfs f3, lbl_80516B50@sda21(r2)
@@ -2049,8 +2021,7 @@ rotTypeZ__FffRA3_A4_f:
 /* 8008CB40 00089A80  D0 63 00 2C */	stfs f3, 0x2c(r3)
 /* 8008CB44 00089A84  4E 80 00 20 */	blr 
 
-.global rotTypeXYZ__FffRA3_A4_f
-rotTypeXYZ__FffRA3_A4_f:
+rotTypeXYZ__FffRA3_A4_f: # local function
 /* 8008CB48 00089A88  C0 62 87 EC */	lfs f3, lbl_80516B4C@sda21(r2)
 /* 8008CB4C 00089A8C  C0 02 88 04 */	lfs f0, lbl_80516B64@sda21(r2)
 /* 8008CB50 00089A90  EC 63 10 28 */	fsubs f3, f3, f2
@@ -2075,8 +2046,7 @@ rotTypeXYZ__FffRA3_A4_f:
 /* 8008CB9C 00089ADC  D0 03 00 2C */	stfs f0, 0x2c(r3)
 /* 8008CBA0 00089AE0  4E 80 00 20 */	blr 
 
-.global basePlaneTypeXY__FPA4_fff
-basePlaneTypeXY__FPA4_fff:
+basePlaneTypeXY__FPA4_fff: # local function
 /* 8008CBA4 00089AE4  C0 03 00 00 */	lfs f0, 0(r3)
 /* 8008CBA8 00089AE8  EC 00 00 72 */	fmuls f0, f0, f1
 /* 8008CBAC 00089AEC  D0 03 00 00 */	stfs f0, 0(r3)
@@ -2097,8 +2067,7 @@ basePlaneTypeXY__FPA4_fff:
 /* 8008CBE8 00089B28  D0 03 00 24 */	stfs f0, 0x24(r3)
 /* 8008CBEC 00089B2C  4E 80 00 20 */	blr 
 
-.global basePlaneTypeXZ__FPA4_fff
-basePlaneTypeXZ__FPA4_fff:
+basePlaneTypeXZ__FPA4_fff: # local function
 /* 8008CBF0 00089B30  C0 03 00 00 */	lfs f0, 0(r3)
 /* 8008CBF4 00089B34  EC 00 00 72 */	fmuls f0, f0, f1
 /* 8008CBF8 00089B38  D0 03 00 00 */	stfs f0, 0(r3)
@@ -2119,8 +2088,7 @@ basePlaneTypeXZ__FPA4_fff:
 /* 8008CC34 00089B74  D0 03 00 28 */	stfs f0, 0x28(r3)
 /* 8008CC38 00089B78  4E 80 00 20 */	blr 
 
-.global basePlaneTypeX__FPA4_fff
-basePlaneTypeX__FPA4_fff:
+basePlaneTypeX__FPA4_fff: # local function
 /* 8008CC3C 00089B7C  C0 03 00 00 */	lfs f0, 0(r3)
 /* 8008CC40 00089B80  EC 00 00 72 */	fmuls f0, f0, f1
 /* 8008CC44 00089B84  D0 03 00 00 */	stfs f0, 0(r3)
@@ -2896,10 +2864,10 @@ JPADrawPoint__FP18JPAEmitterWorkDataP15JPABaseParticle:
 /* 8008D7AC 0008A6EC  38 80 00 02 */	li r4, 2
 /* 8008D7B0 0008A6F0  C0 02 87 F0 */	lfs f0, lbl_80516B50@sda21(r2)
 /* 8008D7B4 0008A6F4  D0 25 80 00 */	stfs f1, 0xCC008000@l(r5)
-/* 8008D7B8 0008A6F8  D0 45 80 00 */	stfs f2, -0x8000(r5)
-/* 8008D7BC 0008A6FC  D0 65 80 00 */	stfs f3, -0x8000(r5)
-/* 8008D7C0 0008A700  D0 05 80 00 */	stfs f0, -0x8000(r5)
-/* 8008D7C4 0008A704  D0 05 80 00 */	stfs f0, -0x8000(r5)
+/* 8008D7B8 0008A6F8  D0 45 80 00 */	stfs f2, 0xCC008000@l(r5)
+/* 8008D7BC 0008A6FC  D0 65 80 00 */	stfs f3, 0xCC008000@l(r5)
+/* 8008D7C0 0008A700  D0 05 80 00 */	stfs f0, 0xCC008000@l(r5)
+/* 8008D7C4 0008A704  D0 05 80 00 */	stfs f0, 0xCC008000@l(r5)
 /* 8008D7C8 0008A708  48 05 6A BD */	bl GXSetVtxDesc
 /* 8008D7CC 0008A70C  38 60 00 0D */	li r3, 0xd
 /* 8008D7D0 0008A710  38 80 00 02 */	li r4, 2
@@ -2999,15 +2967,15 @@ lbl_8008D8DC:
 /* 8008D92C 0008A86C  D0 05 80 00 */	stfs f0, 0xCC008000@l(r5)
 /* 8008D930 0008A870  38 80 00 02 */	li r4, 2
 /* 8008D934 0008A874  C0 02 87 EC */	lfs f0, lbl_80516B4C@sda21(r2)
-/* 8008D938 0008A878  D3 E5 80 00 */	stfs f31, -0x8000(r5)
-/* 8008D93C 0008A87C  D3 C5 80 00 */	stfs f30, -0x8000(r5)
-/* 8008D940 0008A880  D0 25 80 00 */	stfs f1, -0x8000(r5)
-/* 8008D944 0008A884  D0 25 80 00 */	stfs f1, -0x8000(r5)
-/* 8008D948 0008A888  D3 A5 80 00 */	stfs f29, -0x8000(r5)
-/* 8008D94C 0008A88C  D3 85 80 00 */	stfs f28, -0x8000(r5)
-/* 8008D950 0008A890  D3 65 80 00 */	stfs f27, -0x8000(r5)
-/* 8008D954 0008A894  D0 25 80 00 */	stfs f1, -0x8000(r5)
-/* 8008D958 0008A898  D0 05 80 00 */	stfs f0, -0x8000(r5)
+/* 8008D938 0008A878  D3 E5 80 00 */	stfs f31, 0xCC008000@l(r5)
+/* 8008D93C 0008A87C  D3 C5 80 00 */	stfs f30, 0xCC008000@l(r5)
+/* 8008D940 0008A880  D0 25 80 00 */	stfs f1, 0xCC008000@l(r5)
+/* 8008D944 0008A884  D0 25 80 00 */	stfs f1, 0xCC008000@l(r5)
+/* 8008D948 0008A888  D3 A5 80 00 */	stfs f29, 0xCC008000@l(r5)
+/* 8008D94C 0008A88C  D3 85 80 00 */	stfs f28, 0xCC008000@l(r5)
+/* 8008D950 0008A890  D3 65 80 00 */	stfs f27, 0xCC008000@l(r5)
+/* 8008D954 0008A894  D0 25 80 00 */	stfs f1, 0xCC008000@l(r5)
+/* 8008D958 0008A898  D0 05 80 00 */	stfs f0, 0xCC008000@l(r5)
 /* 8008D95C 0008A89C  48 05 69 29 */	bl GXSetVtxDesc
 /* 8008D960 0008A8A0  38 60 00 0D */	li r3, 0xd
 /* 8008D964 0008A8A4  38 80 00 02 */	li r4, 2
@@ -3028,13 +2996,11 @@ lbl_8008D96C:
 /* 8008D99C 0008A8DC  38 21 00 70 */	addi r1, r1, 0x70
 /* 8008D9A0 0008A8E0  4E 80 00 20 */	blr 
 
-.global "getNext__FP26JPANode<15JPABaseParticle>"
-"getNext__FP26JPANode<15JPABaseParticle>":
+"getNext__FP26JPANode<15JPABaseParticle>": # local function
 /* 8008D9A4 0008A8E4  80 63 00 04 */	lwz r3, 4(r3)
 /* 8008D9A8 0008A8E8  4E 80 00 20 */	blr 
 
-.global "getPrev__FP26JPANode<15JPABaseParticle>"
-"getPrev__FP26JPANode<15JPABaseParticle>":
+"getPrev__FP26JPANode<15JPABaseParticle>": # local function
 /* 8008D9AC 0008A8EC  80 63 00 00 */	lwz r3, 0(r3)
 /* 8008D9B0 0008A8F0  4E 80 00 20 */	blr 
 
@@ -3351,26 +3317,26 @@ lbl_8008DDEC:
 /* 8008DE4C 0008AD8C  7F EC FB 78 */	mr r12, r31
 /* 8008DE50 0008AD90  7F 03 C3 78 */	mr r3, r24
 /* 8008DE54 0008AD94  EC 00 E8 2A */	fadds f0, f0, f29
-/* 8008DE58 0008AD98  D0 1D 80 00 */	stfs f0, -0x8000(r29)
+/* 8008DE58 0008AD98  D0 1D 80 00 */	stfs f0, 0xCC008000@l(r29)
 /* 8008DE5C 0008AD9C  C0 01 00 18 */	lfs f0, 0x18(r1)
 /* 8008DE60 0008ADA0  EC 00 E0 2A */	fadds f0, f0, f28
-/* 8008DE64 0008ADA4  D0 1D 80 00 */	stfs f0, -0x8000(r29)
+/* 8008DE64 0008ADA4  D0 1D 80 00 */	stfs f0, 0xCC008000@l(r29)
 /* 8008DE68 0008ADA8  C0 01 00 1C */	lfs f0, 0x1c(r1)
 /* 8008DE6C 0008ADAC  EC 00 D8 2A */	fadds f0, f0, f27
-/* 8008DE70 0008ADB0  D0 1D 80 00 */	stfs f0, -0x8000(r29)
-/* 8008DE74 0008ADB4  D3 DD 80 00 */	stfs f30, -0x8000(r29)
-/* 8008DE78 0008ADB8  D3 5D 80 00 */	stfs f26, -0x8000(r29)
+/* 8008DE70 0008ADB0  D0 1D 80 00 */	stfs f0, 0xCC008000@l(r29)
+/* 8008DE74 0008ADB4  D3 DD 80 00 */	stfs f30, 0xCC008000@l(r29)
+/* 8008DE78 0008ADB8  D3 5D 80 00 */	stfs f26, 0xCC008000@l(r29)
 /* 8008DE7C 0008ADBC  C0 01 00 20 */	lfs f0, 0x20(r1)
 /* 8008DE80 0008ADC0  EC 00 E8 2A */	fadds f0, f0, f29
-/* 8008DE84 0008ADC4  D0 1D 80 00 */	stfs f0, -0x8000(r29)
+/* 8008DE84 0008ADC4  D0 1D 80 00 */	stfs f0, 0xCC008000@l(r29)
 /* 8008DE88 0008ADC8  C0 01 00 24 */	lfs f0, 0x24(r1)
 /* 8008DE8C 0008ADCC  EC 00 E0 2A */	fadds f0, f0, f28
-/* 8008DE90 0008ADD0  D0 1D 80 00 */	stfs f0, -0x8000(r29)
+/* 8008DE90 0008ADD0  D0 1D 80 00 */	stfs f0, 0xCC008000@l(r29)
 /* 8008DE94 0008ADD4  C0 01 00 28 */	lfs f0, 0x28(r1)
 /* 8008DE98 0008ADD8  EC 00 D8 2A */	fadds f0, f0, f27
-/* 8008DE9C 0008ADDC  D0 1D 80 00 */	stfs f0, -0x8000(r29)
-/* 8008DEA0 0008ADE0  D2 DD 80 00 */	stfs f22, -0x8000(r29)
-/* 8008DEA4 0008ADE4  D3 5D 80 00 */	stfs f26, -0x8000(r29)
+/* 8008DE9C 0008ADDC  D0 1D 80 00 */	stfs f0, 0xCC008000@l(r29)
+/* 8008DEA0 0008ADE0  D2 DD 80 00 */	stfs f22, 0xCC008000@l(r29)
+/* 8008DEA4 0008ADE4  D3 5D 80 00 */	stfs f26, 0xCC008000@l(r29)
 /* 8008DEA8 0008ADE8  7D 89 03 A6 */	mtctr r12
 /* 8008DEAC 0008ADEC  4E 80 04 21 */	bctrl 
 /* 8008DEB0 0008ADF0  EF 5A C8 2A */	fadds f26, f26, f25
@@ -3740,26 +3706,26 @@ lbl_8008E3B4:
 /* 8008E414 0008B354  7F 8C E3 78 */	mr r12, r28
 /* 8008E418 0008B358  7F E3 FB 78 */	mr r3, r31
 /* 8008E41C 0008B35C  EC 00 E0 2A */	fadds f0, f0, f28
-/* 8008E420 0008B360  D0 1A 80 00 */	stfs f0, -0x8000(r26)
+/* 8008E420 0008B360  D0 1A 80 00 */	stfs f0, 0xCC008000@l(r26)
 /* 8008E424 0008B364  C0 01 00 18 */	lfs f0, 0x18(r1)
 /* 8008E428 0008B368  EC 00 D8 2A */	fadds f0, f0, f27
-/* 8008E42C 0008B36C  D0 1A 80 00 */	stfs f0, -0x8000(r26)
+/* 8008E42C 0008B36C  D0 1A 80 00 */	stfs f0, 0xCC008000@l(r26)
 /* 8008E430 0008B370  C0 01 00 1C */	lfs f0, 0x1c(r1)
 /* 8008E434 0008B374  EC 00 D0 2A */	fadds f0, f0, f26
-/* 8008E438 0008B378  D0 1A 80 00 */	stfs f0, -0x8000(r26)
-/* 8008E43C 0008B37C  D3 BA 80 00 */	stfs f29, -0x8000(r26)
-/* 8008E440 0008B380  D3 3A 80 00 */	stfs f25, -0x8000(r26)
+/* 8008E438 0008B378  D0 1A 80 00 */	stfs f0, 0xCC008000@l(r26)
+/* 8008E43C 0008B37C  D3 BA 80 00 */	stfs f29, 0xCC008000@l(r26)
+/* 8008E440 0008B380  D3 3A 80 00 */	stfs f25, 0xCC008000@l(r26)
 /* 8008E444 0008B384  C0 01 00 20 */	lfs f0, 0x20(r1)
 /* 8008E448 0008B388  EC 00 E0 2A */	fadds f0, f0, f28
-/* 8008E44C 0008B38C  D0 1A 80 00 */	stfs f0, -0x8000(r26)
+/* 8008E44C 0008B38C  D0 1A 80 00 */	stfs f0, 0xCC008000@l(r26)
 /* 8008E450 0008B390  C0 01 00 24 */	lfs f0, 0x24(r1)
 /* 8008E454 0008B394  EC 00 D8 2A */	fadds f0, f0, f27
-/* 8008E458 0008B398  D0 1A 80 00 */	stfs f0, -0x8000(r26)
+/* 8008E458 0008B398  D0 1A 80 00 */	stfs f0, 0xCC008000@l(r26)
 /* 8008E45C 0008B39C  C0 01 00 28 */	lfs f0, 0x28(r1)
 /* 8008E460 0008B3A0  EC 00 D0 2A */	fadds f0, f0, f26
-/* 8008E464 0008B3A4  D0 1A 80 00 */	stfs f0, -0x8000(r26)
-/* 8008E468 0008B3A8  D2 DA 80 00 */	stfs f22, -0x8000(r26)
-/* 8008E46C 0008B3AC  D3 3A 80 00 */	stfs f25, -0x8000(r26)
+/* 8008E464 0008B3A4  D0 1A 80 00 */	stfs f0, 0xCC008000@l(r26)
+/* 8008E468 0008B3A8  D2 DA 80 00 */	stfs f22, 0xCC008000@l(r26)
+/* 8008E46C 0008B3AC  D3 3A 80 00 */	stfs f25, 0xCC008000@l(r26)
 /* 8008E470 0008B3B0  7D 89 03 A6 */	mtctr r12
 /* 8008E474 0008B3B4  4E 80 04 21 */	bctrl 
 /* 8008E478 0008B3B8  EF 39 F8 2A */	fadds f25, f25, f31
@@ -3996,26 +3962,26 @@ lbl_8008E780:
 /* 8008E7E0 0008B720  7F 8C E3 78 */	mr r12, r28
 /* 8008E7E4 0008B724  7E E3 BB 78 */	mr r3, r23
 /* 8008E7E8 0008B728  EC 00 D0 2A */	fadds f0, f0, f26
-/* 8008E7EC 0008B72C  D0 1D 80 00 */	stfs f0, -0x8000(r29)
+/* 8008E7EC 0008B72C  D0 1D 80 00 */	stfs f0, 0xCC008000@l(r29)
 /* 8008E7F0 0008B730  C0 01 00 18 */	lfs f0, 0x18(r1)
 /* 8008E7F4 0008B734  EC 00 D8 2A */	fadds f0, f0, f27
-/* 8008E7F8 0008B738  D0 1D 80 00 */	stfs f0, -0x8000(r29)
+/* 8008E7F8 0008B738  D0 1D 80 00 */	stfs f0, 0xCC008000@l(r29)
 /* 8008E7FC 0008B73C  C0 01 00 1C */	lfs f0, 0x1c(r1)
 /* 8008E800 0008B740  EC 00 E0 2A */	fadds f0, f0, f28
-/* 8008E804 0008B744  D0 1D 80 00 */	stfs f0, -0x8000(r29)
-/* 8008E808 0008B748  D3 1D 80 00 */	stfs f24, -0x8000(r29)
-/* 8008E80C 0008B74C  D3 3D 80 00 */	stfs f25, -0x8000(r29)
+/* 8008E804 0008B744  D0 1D 80 00 */	stfs f0, 0xCC008000@l(r29)
+/* 8008E808 0008B748  D3 1D 80 00 */	stfs f24, 0xCC008000@l(r29)
+/* 8008E80C 0008B74C  D3 3D 80 00 */	stfs f25, 0xCC008000@l(r29)
 /* 8008E810 0008B750  C0 01 00 20 */	lfs f0, 0x20(r1)
 /* 8008E814 0008B754  EC 00 D0 2A */	fadds f0, f0, f26
-/* 8008E818 0008B758  D0 1D 80 00 */	stfs f0, -0x8000(r29)
+/* 8008E818 0008B758  D0 1D 80 00 */	stfs f0, 0xCC008000@l(r29)
 /* 8008E81C 0008B75C  C0 01 00 24 */	lfs f0, 0x24(r1)
 /* 8008E820 0008B760  EC 00 D8 2A */	fadds f0, f0, f27
-/* 8008E824 0008B764  D0 1D 80 00 */	stfs f0, -0x8000(r29)
+/* 8008E824 0008B764  D0 1D 80 00 */	stfs f0, 0xCC008000@l(r29)
 /* 8008E828 0008B768  C0 01 00 28 */	lfs f0, 0x28(r1)
 /* 8008E82C 0008B76C  EC 00 E0 2A */	fadds f0, f0, f28
-/* 8008E830 0008B770  D0 1D 80 00 */	stfs f0, -0x8000(r29)
-/* 8008E834 0008B774  D2 DD 80 00 */	stfs f22, -0x8000(r29)
-/* 8008E838 0008B778  D3 3D 80 00 */	stfs f25, -0x8000(r29)
+/* 8008E830 0008B770  D0 1D 80 00 */	stfs f0, 0xCC008000@l(r29)
+/* 8008E834 0008B774  D2 DD 80 00 */	stfs f22, 0xCC008000@l(r29)
+/* 8008E838 0008B778  D3 3D 80 00 */	stfs f25, 0xCC008000@l(r29)
 /* 8008E83C 0008B77C  7D 89 03 A6 */	mtctr r12
 /* 8008E840 0008B780  4E 80 04 21 */	bctrl 
 /* 8008E844 0008B784  EF 39 F8 2A */	fadds f25, f25, f31
@@ -4103,11 +4069,10 @@ lbl_8008E958:
 /* 8008E964 0008B8A4  4E 80 00 20 */	blr 
 
 .global draw__19JPAParticleCallBackFP14JPABaseEmitterP15JPABaseParticle
-draw__19JPAParticleCallBackFP14JPABaseEmitterP15JPABaseParticle:
+draw__19JPAParticleCallBackFP14JPABaseEmitterP15JPABaseParticle: # weak function
 /* 8008E968 0008B8A8  4E 80 00 20 */	blr 
 
-.global makeColorTable__FPP8_GXColorPC16JPAClrAnmKeyDataUcsP7JKRHeap
-makeColorTable__FPP8_GXColorPC16JPAClrAnmKeyDataUcsP7JKRHeap:
+makeColorTable__FPP8_GXColorPC16JPAClrAnmKeyDataUcsP7JKRHeap: # local function
 /* 8008E96C 0008B8AC  94 21 FF C0 */	stwu r1, -0x40(r1)
 /* 8008E970 0008B8B0  7C 08 02 A6 */	mflr r0
 /* 8008E974 0008B8B4  7C C6 07 34 */	extsh r6, r6

@@ -8,37 +8,26 @@ __vt__19JPAParticleCallBack:
 	.4byte 0
 	.4byte execute__19JPAParticleCallBackFP14JPABaseEmitterP15JPABaseParticle
 	.4byte draw__19JPAParticleCallBackFP14JPABaseEmitterP15JPABaseParticle
-	.4byte 0
-	.4byte 0
-	.4byte 0
-	.4byte 0
-	.4byte 0
 
 .section .sdata2, "a"     # 0x80516360 - 0x80520E40
 .balign 8
-.global lbl_80516C30
 lbl_80516C30:
 	.float 1.0
-.global lbl_80516C34
 lbl_80516C34:
-	.4byte 0x00000000
-.global lbl_80516C38
+	.float 0.0
 lbl_80516C38:
-	.4byte 0x42000000
-.global lbl_80516C3C
+	.float 32.0
 lbl_80516C3C:
 	.float 0.5
-.global lbl_80516C40
 lbl_80516C40:
-	.4byte 0x40400000
-.global lbl_80516C44
+	.float 3.0
 lbl_80516C44:
-	.4byte 0x47000000
-.global lbl_80516C48
+	.float 32768.0
+.balign 8
 lbl_80516C48:
 	.4byte 0x43300000
 	.4byte 0x80000000
-.global lbl_80516C50
+.balign 8
 lbl_80516C50:
 	.4byte 0x43300000
 	.4byte 0x00000000
