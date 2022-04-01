@@ -33,7 +33,7 @@ wsLoadStatus__Q27JAInter8BankWave:
 	.skip 0x4
 .global wsMax__Q27JAInter8BankWave
 wsMax__Q27JAInter8BankWave:
-	.skip 0x8
+	.skip 0x4
 
 .section .text, "ax"  # 0x800056C0 - 0x80472F00
 .global setInitCallback__Q27JAInter8BankWaveFPFv_v

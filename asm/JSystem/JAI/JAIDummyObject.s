@@ -9,7 +9,7 @@ deadObjectUsedPointer__Q27JAInter14DummyObjectMgr:
 	.skip 0x4
 .global deadObjectObject__Q27JAInter14DummyObjectMgr
 deadObjectObject__Q27JAInter14DummyObjectMgr:
-	.skip 0x8
+	.skip 0x4
 
 .section .text, "ax"  # 0x800056C0 - 0x80472F00
 .global init__Q27JAInter14DummyObjectMgrFv

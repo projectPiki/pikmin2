@@ -34,28 +34,19 @@ __vt__Q27JAInter10ObjectBase:
 	.4byte getFreeSoundHandlePointer__Q27JAInter10ObjectBaseFv
 	.4byte getUseSoundHandlePointer__Q27JAInter10ObjectBaseFUl
 	.4byte handleStop__Q27JAInter10ObjectBaseFUcUl
-	.4byte 0
 
 .section .sdata2, "a"     # 0x80516360 - 0x80520E40
 .balign 8
-.global lbl_80517058
 lbl_80517058:
-	.4byte 0x00000000
-.global lbl_8051705C
+	.float 0.0
 lbl_8051705C:
 	.float 0.5
-.global lbl_80517060
 lbl_80517060:
-	.4byte 0x3FE00000
-	.4byte 0x00000000
-.global lbl_80517068
+	.double 0.5
 lbl_80517068:
-	.4byte 0x40080000
-	.4byte 0x00000000
-.global lbl_80517070
+	.double 3.0
 lbl_80517070:
-	.4byte 0x00000000
-	.4byte 0x00000000
+	.double 0.0
 
 .section .text, "ax"  # 0x800056C0 - 0x80472F00
 .global __dt__Q27JAInter10ObjectBaseFv

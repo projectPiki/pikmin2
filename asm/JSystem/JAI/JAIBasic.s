@@ -18,7 +18,7 @@ __vt__8JAIBasic:
 .balign 8
 .global msStopStatus__8JAIBasic
 msStopStatus__8JAIBasic:
-	.4byte 0x03000000
+	.byte 3
 
 .section .sbss # 0x80514D80 - 0x80516360
 .balign 8
@@ -30,7 +30,8 @@ msCurrentHeap__8JAIBasic:
 	.skip 0x4
 .global msStopMode__8JAIBasic
 msStopMode__8JAIBasic:
-	.skip 0x4
+	.skip 0x1
+.balign 4
 .global msAudioStopTime__8JAIBasic
 msAudioStopTime__8JAIBasic:
 	.skip 0x4
@@ -49,23 +50,18 @@ msDspDif__8JAIBasic:
 
 .section .sdata2, "a"     # 0x80516360 - 0x80520E40
 .balign 8
-.global lbl_80516F08
 lbl_80516F08:
-	.4byte 0x25732573
-	.4byte 0x25630000
-.global lbl_80516F10
+	.asciz "%s%s%c"
+.balign 4
 lbl_80516F10:
-	.4byte 0x00000000
-.global lbl_80516F14
+	.float 0.0
 lbl_80516F14:
-	.4byte 0xC2480000
-.global lbl_80516F18
+	.float -50.0
 lbl_80516F18:
 	.float 1.0
-.global lbl_80516F1C
 lbl_80516F1C:
-	.4byte 0x42FE0000
-.global lbl_80516F20
+	.float 127.0
+.balign 8
 lbl_80516F20:
 	.4byte 0x43300000
 	.4byte 0x00000000
