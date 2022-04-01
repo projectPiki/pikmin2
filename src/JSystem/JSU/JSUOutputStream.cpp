@@ -15,6 +15,14 @@
 
 /*
  * --INFO--
+ * Address:	........
+ * Size:	00005C
+ * Unused function.
+ */
+JSUOutputStream::~JSUOutputStream() { }
+
+/*
+ * --INFO--
  * Address:	800261E0
  * Size:	000058
  */

@@ -1,22 +1,11 @@
 .include "macros.inc"
 .section .rodata  # 0x804732E0 - 0x8049E220
 .balign 8
-.global lbl_80473598
 lbl_80473598:
-	.4byte 0x4A4B5241
-	.4byte 0x72616D53
-	.4byte 0x74726561
-	.4byte 0x6D2E6370
-	.4byte 0x70000000
-.global lbl_804735AC
+	.asciz "JKRAramStream.cpp"
+.balign 4
 lbl_804735AC:
-	.4byte 0x3A3A3A43
-	.4byte 0x616E6E6F
-	.4byte 0x7420616C
-	.4byte 0x6C6F6320
-	.4byte 0x6D656D6F
-	.4byte 0x72790A00
-	.4byte 0x00000000
+	.asciz ":::Cannot alloc memory\n"
 
 .section .data, "wa"  # 0x8049E220 - 0x804EFC20
 .balign 8
@@ -60,10 +49,8 @@ transHeap__13JKRAramStream:
 
 .section .sdata2, "a"     # 0x80516360 - 0x80520E40
 .balign 8
-.global lbl_805164E0
 lbl_805164E0:
-	.4byte 0x25730000
-	.4byte 0x00000000
+	.asciz "%s"
 
 .section .text, "ax"  # 0x800056C0 - 0x80472F00
 .global create__13JKRAramStreamFl
@@ -331,7 +318,7 @@ lbl_8001A27C:
 /* 8001A2A0 000171E0  4E 80 00 20 */	blr 
 
 .global getAvailable__20JSURandomInputStreamCFv
-getAvailable__20JSURandomInputStreamCFv:
+getAvailable__20JSURandomInputStreamCFv: # weak, matched in JSUStream.h
 /* 8001A2A4 000171E4  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 8001A2A8 000171E8  7C 08 02 A6 */	mflr r0
 /* 8001A2AC 000171EC  90 01 00 14 */	stw r0, 0x14(r1)

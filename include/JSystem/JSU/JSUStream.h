@@ -19,8 +19,8 @@ struct JSUIosBase {
 
 struct JSUInputStream : public JSUIosBase {
 	virtual ~JSUInputStream();             // _00
-	virtual u8 getAvailable() = 0;         // _04
-	virtual void skip(long);               // _08
+	virtual int getAvailable() = 0;        // _04
+	virtual s32 skip(long);                // _08
 	virtual int readData(void*, long) = 0; // _0C
 
 	void read(void*, long);
@@ -41,9 +41,14 @@ struct JSUMemoryInputStream : public JSUInputStream {
 	int m_position;       // _10
 };
 
-struct JSURandomInputStream : public JSUMemoryInputStream {
-	virtual ~JSURandomInputStream(); // _00
-	virtual void skip(long);         // _08
+struct JSURandomInputStream : public JSUInputStream {
+	virtual ~JSURandomInputStream() {};                                 // _00
+	virtual int getAvailable() { return getLength() - getPosition(); }; // _04 weak, found in JKRAramStream.cpp
+	virtual s32 skip(long);                                             // _08
+	virtual int readData(void*, long)            = 0;                   // _0C
+	virtual int getLength() const                = 0;                   // _10
+	virtual int getPosition() const              = 0;                   // _14
+	virtual int seekPos(long, JSUStreamSeekFrom) = 0;                   // _18
 
 	u32 align(long);
 	size_t peek(void*, long);
@@ -61,6 +66,7 @@ struct JSUFileInputStream : public JSURandomInputStream {
 
 /* Not much remains of this. */
 struct JSUOutputStream : public JSUIosBase {
+	virtual ~JSUOutputStream(); // _00
 	/* No calls to this appear to have survived. */
 	virtual void _04(); // _04
 	/* Just a guess. No instances of this survived in vanilla. */

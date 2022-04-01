@@ -64,7 +64,6 @@ JSYSTEM:=\
 	$(BUILD_DIR)/asm/JSystem/JKR/JKRSolidHeap.o\
 	$(BUILD_DIR)/asm/JSystem/JKR/JKRThread.o\
 	$(BUILD_DIR)/src/JSystem/JSU/JSUOutputStream.o\
-	$(BUILD_DIR)/asm/JSystem/JSU/JSUOutputStream.o\
 	$(BUILD_DIR)/asm/JSystem/JSU/JSUInputStream.o\
 	$(BUILD_DIR)/src/JSystem/JSU/JSUList.o\
 	$(BUILD_DIR)/asm/JSystem/JSU/JSUMemoryStream.o\
