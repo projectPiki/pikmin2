@@ -3,17 +3,6 @@
 #include "JSystem/JSU/JSUStream.h"
 
 /*
-    Generated from dpostproc
-
-    .section .data, "wa"  # 0x8049E220 - 0x804EFC20
-    .global __vt__10JSUIosBase
-    __vt__10JSUIosBase:
-        .4byte 0
-        .4byte 0
-        .4byte __dt__10JSUIosBaseFv
-*/
-
-/*
  * --INFO--
  * Address:	........
  * Size:	00005C

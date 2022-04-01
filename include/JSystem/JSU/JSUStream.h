@@ -27,20 +27,6 @@ struct JSUInputStream : public JSUIosBase {
 	char* read(char*);
 };
 
-struct JSUMemoryInputStream : public JSUInputStream {
-	virtual ~JSUMemoryInputStream();              // _00
-	virtual int readData(void*, long);            // _0C
-	virtual int getLength() const;                // _10
-	virtual int getPosition() const;              // _14
-	virtual int seekPos(long, JSUStreamSeekFrom); // _18
-
-	void setBuffer(const void*, long);
-
-	const void* m_object; // _08
-	long m_length;        // _0C
-	int m_position;       // _10
-};
-
 struct JSURandomInputStream : public JSUInputStream {
 	virtual ~JSURandomInputStream() {};                                 // _00
 	virtual int getAvailable() { return getLength() - getPosition(); }; // _04 weak, found in JKRAramStream.cpp
@@ -53,6 +39,20 @@ struct JSURandomInputStream : public JSUInputStream {
 	u32 align(long);
 	size_t peek(void*, long);
 	void seek(long, JSUStreamSeekFrom);
+};
+
+struct JSUMemoryInputStream : public JSURandomInputStream {
+	virtual ~JSUMemoryInputStream();              // _00
+	virtual int readData(void*, long);            // _0C
+	virtual int getLength() const;                // _10
+	virtual int getPosition() const;              // _14
+	virtual int seekPos(long, JSUStreamSeekFrom); // _18
+
+	void setBuffer(const void*, long);
+
+	const void* m_object; // _08
+	long m_length;        // _0C
+	int m_position;       // _10
 };
 
 // Size: 0x10
