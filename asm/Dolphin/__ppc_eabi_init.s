@@ -42,8 +42,7 @@ __init_user:
 /* 800F2FCC 000EFF0C  7C 08 03 A6 */	mtlr r0
 /* 800F2FD0 000EFF10  4E 80 00 20 */	blr 
 
-.global __init_cpp
-__init_cpp:
+__init_cpp: # local function
 /* 800F2FD4 000EFF14  7C 08 02 A6 */	mflr r0
 /* 800F2FD8 000EFF18  90 01 00 04 */	stw r0, 4(r1)
 /* 800F2FDC 000EFF1C  94 21 FF F0 */	stwu r1, -0x10(r1)

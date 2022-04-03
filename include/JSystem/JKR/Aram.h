@@ -52,7 +52,7 @@ struct JKRAram : public JKRThread {
 	JKRAram(u32, u32, long);
 
 	virtual ~JKRAram(); // _00
-	virtual u32 run();  // _04
+	virtual void run(); // _04
 
 	static JKRAram* create(u32, u32, long, long, long);
 	static JKRAramBlock* mainRamToAram(u8*, u32, u32, JKRExpandSwitch, u32, JKRHeap*, s32, u32*);
@@ -113,6 +113,30 @@ struct JKRAMCommand {
 	void* _94;             // _94
 };
 
+enum ECommandType {
+	ECT_Zero,
+	ECT_One,
+	ECT_Two,
+};
+typedef struct JKRAramStreamCommand {
+	ECommandType type;
+};
+
+struct JKRAramStream : public JKRThread {
+	virtual ~JKRAramStream(); // _00
+	virtual void run();       // _04
+
+	// _00 VTBL
+
+	JKRAramStream(s32);
+	static JKRAramStream* create(s32);
+	static void setTransBuffer(u8*, u32, JKRHeap*);
+	static JKRAramStream* sAramStreamObject;
+	static OSMessageQueue sMessageQueue;
+	static OSMessage sMessageBuffer[4];
+	static u32 readFromAram();
+	static void writeToAram(JKRAramStreamCommand*);
+};
 namespace JKRAramPiece {
 void doneDMA(u32);
 void orderSync(s32, u32, u32, u32, JKRAramBlock*);

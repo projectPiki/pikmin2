@@ -16,7 +16,7 @@ struct JKRThread : public JKRDisposer {
 	JKRThread(OSThread*, int);
 
 	virtual ~JKRThread(); // _00
-	virtual u32 run();    // _04
+	virtual void run();   // _04
 
 	void setCommon_mesgQueue(JKRHeap*, int);
 	void setCommon_heapSpecified(JKRHeap*, unsigned long, int);
@@ -47,7 +47,7 @@ struct JKRThread : public JKRDisposer {
 struct JKRTask : public JKRThread {
 	typedef void RequestCallback(void*);
 	virtual ~JKRTask(); // _00
-	virtual u32 run();  // _04
+	virtual void run(); // _04
 
 	static JKRTask* create(int, int, unsigned long, JKRHeap*);
 

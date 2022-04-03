@@ -36,7 +36,7 @@ struct JSURandomInputStream : public JSUInputStream {
 	virtual int getPosition() const              = 0;                   // _14
 	virtual int seekPos(long, JSUStreamSeekFrom) = 0;                   // _18
 
-	u32 align(long);
+	u32 align(s32);
 	size_t peek(void*, long);
 	void seek(long, JSUStreamSeekFrom);
 };

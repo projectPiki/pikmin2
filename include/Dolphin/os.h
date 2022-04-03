@@ -25,13 +25,16 @@ typedef struct OSContext {
 typedef struct OSMessageQueue {
 	char filler[32];
 } OSMessageQueue;
-typedef void* OSMessage;
+typedef struct OSMessage {
+	void* message;
+	u32 args[3];
+};
 
 #define MSG_QUEUE_SHOULD_BLOCK 1
 
-void OSInitMessageQueue(OSMessageQueue* queue, OSMessage* msgSlots, int slotCount);
-BOOL OSSendMessage(OSMessageQueue* queue, OSMessage message, int flags);
-BOOL OSReceiveMessage(OSMessageQueue* queue, OSMessage* msg, int flags);
+void OSInitMessageQueue(OSMessageQueue* queue, void** msgSlots, int slotCount);
+BOOL OSSendMessage(OSMessageQueue* queue, void* message, int flags);
+BOOL OSReceiveMessage(OSMessageQueue* queue, void* msg, int flags);
 
 // OSArena
 extern void* __OSArenaHi;
@@ -59,8 +62,8 @@ typedef struct OSMutexObject {
 void __OSModuleInit(void);
 
 // targsupp
-extern void func_800BFA40(void);
-extern void func_800BFA50(void);
+extern void TRKAccessFile(void);
+extern void TRKCloseFile(void);
 
 typedef struct OSFstEntry {
 	int m_entryNum;

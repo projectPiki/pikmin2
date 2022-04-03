@@ -1346,9 +1346,6 @@ void nextSrcData(unsigned char*)
 	stw      r0, 0x24(r1)
 	stw      r31, 0x1c(r1)
 	stw      r30, 0x18(r1)
-	.global  lbl_80018800
-
-lbl_80018800:
 	stw      r29, 0x14(r1)
 	stw      r28, 0x10(r1)
 	lwz      r0, szpEnd@sda21(r13)
