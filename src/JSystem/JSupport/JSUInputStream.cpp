@@ -38,13 +38,13 @@ JSUInputStream::~JSUInputStream() { }
  * Address:	800263D4
  * Size:	000058
  */
-void JSUInputStream::read(void* data, long length)
+s32 JSUInputStream::read(void* data, long length)
 {
 	int len = readData(data, length);
 	if (len != length) {
 		m_isEOFMaybe |= 1;
 	}
-	return;
+	return len;
 }
 
 /*

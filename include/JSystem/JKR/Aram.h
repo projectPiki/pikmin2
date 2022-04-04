@@ -151,7 +151,6 @@ struct JKRAramStream : public JKRThread {
 
 	JKRAramStream(s32);
 	static JKRAramStream* create(s32);
-	static void setTransBuffer(u8*, u32, JKRHeap*);
 	static JKRAramStream* sAramStreamObject;
 	static OSMessageQueue sMessageQueue;
 	static OSMessage sMessageBuffer[4];
@@ -159,6 +158,7 @@ struct JKRAramStream : public JKRThread {
 	static s32 writeToAram(JKRAramStreamCommand*);
 	static JKRAramStreamCommand* write_StreamToAram_Async(JSUFileInputStream*, u32, u32, u32, u32*);
 	static JKRAramStreamCommand* sync(JKRAramStreamCommand*, BOOL);
+	static void setTransBuffer(u8*, u32, JKRHeap*);
 	static u8* transBuffer;
 	static JKRHeap* transHeap;
 	static u32 transSize;
