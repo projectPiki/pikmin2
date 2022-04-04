@@ -409,10 +409,14 @@ asm void PPCMthid2 ( register u32 newhid2 )
  * --INFO--
  * Address:	........
  * Size:	00000C
+ * UNUSED
  */
-void PPCMfwpar(void)
+asm u32 PPCMfwpar(void)
 {
-	// UNUSED FUNCTION
+	nofralloc
+	sync
+	mfspr r3, 921
+	blr
 }
 
 /*
@@ -501,10 +505,13 @@ void PPCDisableSpeculation (void)
  * --INFO--
  * Address:	........
  * Size:	000008
+ * UNUSED
  */
-void PPCSetFpIEEEMode(void)
+asm void PPCSetFpIEEEMode(void)
 {
-	// UNUSED FUNCTION
+    nofralloc
+    mtfsb0      29
+    blr
 }
 
 /*
