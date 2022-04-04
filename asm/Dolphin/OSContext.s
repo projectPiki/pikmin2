@@ -1,37 +1,47 @@
 .include "macros.inc"
 .section .data, "wa"  # 0x8049E220 - 0x804EFC20
 .balign 8
-.global lbl_804A8DB8
 lbl_804A8DB8:
 	.asciz "------------------------- Context 0x%08x -------------------------\n"
+.balign 4
+lbl_804A8DFC:
 	.asciz "r%-2d  = 0x%08x (%14d)  r%-2d  = 0x%08x (%14d)\n"
+.balign 4
+lbl_804A8E2C:
 	.asciz "LR   = 0x%08x                   CR   = 0x%08x\n"
-	.skip 1
+.balign 4
+lbl_804A8E5C:
 	.asciz "SRR0 = 0x%08x                   SRR1 = 0x%08x\n"
-	.skip 1
+.balign 4
+lbl_804A8E8C:
 	.asciz "\nGQRs----------\n"
-	.skip 3
+.balign 4
+lbl_804A8EA0:
 	.asciz "gqr%d = 0x%08x \t gqr%d = 0x%08x\n"
-	.skip 3
+.balign 4
+lbl_804A8EC4:
 	.asciz "\n\nFPRs----------\n"
-	.skip 2
+.balign 4
+lbl_804A8ED8:
 	.asciz "fr%d \t= %d \t fr%d \t= %d\n"
-	.skip 3
+.balign 4
+lbl_804A8EF4:
 	.asciz "\n\nPSFs----------\n"
-	.skip 2
+.balign 4
+lbl_804A8F08:
 	.asciz "ps%d \t= 0x%x \t ps%d \t= 0x%x\n"
-	.skip 3
+.balign 4
+lbl_804A8F28:
 	.asciz "\nAddress:      Back Chain    LR Save\n"
-	.skip 2
+.balign 4
+lbl_804A8F50:
 	.asciz "0x%08x:   0x%08x    0x%08x\n"
-.global lbl_804A8F6C
+.balign 4
 lbl_804A8F6C:
 	.asciz "FPU-unavailable handler installed\n"
-	.skip 1
 
 .section .text, "ax"  # 0x800056C0 - 0x80472F00
-.global __OSLoadFPUContext
-__OSLoadFPUContext:
+__OSLoadFPUContext: # local function
 /* 800ECD50 000E9C90  A0 A4 01 A2 */	lhz r5, 0x1a2(r4)
 /* 800ECD54 000E9C94  54 A5 07 FF */	clrlwi. r5, r5, 0x1f
 /* 800ECD58 000E9C98  41 82 01 18 */	beq lbl_800ECE70
@@ -108,8 +118,7 @@ lbl_800ECDF0:
 lbl_800ECE70:
 /* 800ECE70 000E9DB0  4E 80 00 20 */	blr 
 
-.global __OSSaveFPUContext
-__OSSaveFPUContext:
+__OSSaveFPUContext: # local function
 /* 800ECE74 000E9DB4  A0 65 01 A2 */	lhz r3, 0x1a2(r5)
 /* 800ECE78 000E9DB8  60 63 00 01 */	ori r3, r3, 1
 /* 800ECE7C 000E9DBC  B0 65 01 A2 */	sth r3, 0x1a2(r5)
@@ -580,8 +589,7 @@ lbl_800ED4E0:
 /* 800ED4EC 000EA42C  7C 08 03 A6 */	mtlr r0
 /* 800ED4F0 000EA430  4E 80 00 20 */	blr 
 
-.global OSSwitchFPUContext
-OSSwitchFPUContext:
+OSSwitchFPUContext: # local function
 /* 800ED4F4 000EA434  7C A0 00 A6 */	mfmsr r5
 /* 800ED4F8 000EA438  60 A5 20 00 */	ori r5, r5, 0x2000
 /* 800ED4FC 000EA43C  7C A0 01 24 */	mtmsr r5

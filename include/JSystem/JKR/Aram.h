@@ -119,8 +119,28 @@ enum ECommandType {
 	ECT_READ,
 	ECT_WRITE,
 };
+
+typedef struct JSUFileInputStream;
+
 typedef struct JKRAramStreamCommand {
-	ECommandType type;
+	JKRAramStreamCommand();
+	ECommandType type;             // _00
+	u32 mAddress;                  // _04
+	u32 mSize;                     // _08
+	u32 field_0x0c;                // _0C
+	JSUFileInputStream* mStream;   // _10
+	u32 mOffset;                   // _14
+	u32* mReturnSize;              // _18
+	u8* mTransferBuffer;           // _1C
+	u32 mTransferBufferSize;       // _20
+	JKRHeap* mHeap;                // _24
+	bool mAllocatedTransferBuffer; // _28
+	u8 padding_0x29[3];            // _29
+	u32 field_0x2c;                // _2C
+	OSMessageQueue mMessageQueue;  // _30
+	void* mMessage;                // _50
+	u32 field_0x54;                // _54
+	u32 field_0x58;                // _58
 };
 
 struct JKRAramStream : public JKRThread {
@@ -136,7 +156,12 @@ struct JKRAramStream : public JKRThread {
 	static OSMessageQueue sMessageQueue;
 	static OSMessage sMessageBuffer[4];
 	static u32 readFromAram();
-	static void writeToAram(JKRAramStreamCommand*);
+	static s32 writeToAram(JKRAramStreamCommand*);
+	static JKRAramStreamCommand* write_StreamToAram_Async(JSUFileInputStream*, u32, u32, u32, u32*);
+	static JKRAramStreamCommand* sync(JKRAramStreamCommand*, BOOL);
+	static u8* transBuffer;
+	static JKRHeap* transHeap;
+	static u32 transSize;
 };
 namespace JKRAramPiece {
 void doneDMA(u32);

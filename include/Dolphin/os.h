@@ -35,7 +35,8 @@ typedef struct OSMessage {
 	u32 args[3];
 };
 
-#define MSG_QUEUE_SHOULD_BLOCK 1
+#define OS_MESSAGE_NON_BLOCKING 0
+#define OS_MESSAGE_BLOCKING     1
 
 void OSInitMessageQueue(OSMessageQueue* queue, void** msgSlots, int slotCount);
 BOOL OSSendMessage(OSMessageQueue* queue, void* message, int flags);

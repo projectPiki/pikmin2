@@ -1,33 +1,47 @@
 .include "macros.inc"
 .section .data, "wa"  # 0x8049E220 - 0x804EFC20
 .balign 8
-.global lbl_804A8B88
 lbl_804A8B88:
 	.asciz ">>> L2 INVALIDATE : SHOULD NEVER HAPPEN\n"
-	.skip 3
+.balign 4
+lbl_804A8BB4:
 	.asciz "Machine check received\n"
+.balign 4
+lbl_804A8BCC:
 	.asciz "HID2 = 0x%x   SRR1 = 0x%x\n"
-	.skip 1
+.balign 4
+lbl_804A8BE8:
 	.asciz "Machine check was not DMA/locked cache related\n"
+.balign 4
+lbl_804A8C18:
 	.asciz "DMAErrorHandler(): An error occurred while processing DMA.\n"
+.balign 4
+lbl_804A8C54:
 	.asciz "The following errors have been detected and cleared :\n"
-	.skip 1
+.balign 4
+lbl_804A8C8C:
 	.asciz "\t- Requested a locked cache tag that was already in the cache\n"
-	.skip 1
+.balign 4
+lbl_804A8CCC:
 	.asciz "\t- DMA attempted to access normal cache\n"
-	.skip 3
+.balign 4
+lbl_804A8CF8:
 	.asciz "\t- DMA missed in data cache\n"
-	.skip 3
+.balign 4
+lbl_804A8D18:
 	.asciz "\t- DMA queue overflowed\n"
-	.skip 3
+.balign 4
+lbl_804A8D34:
 	.asciz "L1 i-caches initialized\n"
-	.skip 3
+.balign 4
+lbl_804A8D50:
 	.asciz "L1 d-caches initialized\n"
-	.skip 3
+.balign 4
+lbl_804A8D6C:
 	.asciz "L2 cache initialized\n"
-	.skip 2
+.balign 4
+lbl_804A8D84:
 	.asciz "Locked cache machine check handler installed\n"
-	.skip 2
 
 .section .text, "ax"  # 0x800056C0 - 0x80472F00
 .global DCEnable
@@ -162,8 +176,7 @@ ICEnable:
 /* 800EC84C 000E978C  7C 70 FB A6 */	mtspr 0x3f0, r3
 /* 800EC850 000E9790  4E 80 00 20 */	blr 
 
-.global __LCEnable
-__LCEnable:
+__LCEnable: # local function
 /* 800EC854 000E9794  7C A0 00 A6 */	mfmsr r5
 /* 800EC858 000E9798  60 A5 10 00 */	ori r5, r5, 0x1000
 /* 800EC85C 000E979C  7C A0 01 24 */	mtmsr r5

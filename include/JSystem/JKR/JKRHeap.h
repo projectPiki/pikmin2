@@ -118,7 +118,15 @@ struct JKRHeap : public JKRDisposer {
 	static u8* mUserRamStart;
 	static u8* mUserRamEnd;
 	static u32 mMemorySize;
+
+	inline void* JKRAllocFromHeap(u32 size, int alignment) { return JKRHeap::alloc(size, alignment, this); }
 };
+
+inline void* JKRAllocFromSysHeap(u32 size, int alignment)
+{
+	JKRHeap* systemHeap = JKRHeap::sSystemHeap;
+	return systemHeap->alloc(size, alignment);
+}
 
 struct JKRExpHeap : public JKRHeap {
 	struct CMemBlock {

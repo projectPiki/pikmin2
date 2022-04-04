@@ -23,7 +23,7 @@ struct JSUInputStream : public JSUIosBase {
 	virtual s32 skip(long);                // _08
 	virtual int readData(void*, long) = 0; // _0C
 
-	void read(void*, long);
+	s32 read(void*, long);
 	char* read(char*);
 };
 
