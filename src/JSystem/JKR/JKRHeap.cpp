@@ -1,8 +1,8 @@
 #include "types.h"
 
 #include "JSystem/JKR/JKRHeap.h"
-#include "JSystem/JSU/JSUTree.h"
-#include "JSystem/JSU/JSUTreeIterator.h"
+#include "JSystem/JSupport/JSUTree.h"
+#include "JSystem/JSupport/JSUTreeIterator.h"
 #include "Dolphin/os.h"
 #include "JSystem/JKR/JKRDisposer.h"
 

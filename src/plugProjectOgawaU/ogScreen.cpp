@@ -1,5 +1,5 @@
 #include "types.h"
-#include "JSystem/JSU/JSUTreeIterator.h"
+#include "JSystem/JSupport/JSUTreeIterator.h"
 #include "og/Screen/AlphaMgr.h"
 #include "og/Screen/ogScreen.h"
 #include "P2DScreen.h"

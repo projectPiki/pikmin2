@@ -1,7 +1,7 @@
 #ifndef _JSYSTEM_JSU_JSUTREEITERATOR_H
 #define _JSYSTEM_JSU_JSUTREEITERATOR_H
 
-#include "JSystem/JSU/JSUTree.h"
+#include "JSystem/JSupport/JSUTree.h"
 
 template <typename T> struct JSUTreeIterator {
 	JSUTreeIterator(JSUTree<T>*);

@@ -1,12 +1,12 @@
-#include "JSystem/JSU/JSUList.h"
+#include "JSystem/JSupport/JSUList.h"
 #include "types.h"
 #include "Dolphin/mtx.h"
 #include "JSystem/J2D/J2DPane.h"
 #include "JSystem/J2D/J2DAnm.h"
 #include "JSystem/J2D/J2DGrafContext.h"
 #include "JSystem/JGeometry.h"
-#include "JSystem/JSU/JSUStream.h"
-#include "JSystem/JSU/JSUTreeIterator.h"
+#include "JSystem/JSupport/JSUStream.h"
+#include "JSystem/JSupport/JSUTreeIterator.h"
 
 JGeometry::TBox2f J2DPane::static_mBounds(0.0f, 0.0f, 0.0f, 0.0f);
 /*

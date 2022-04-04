@@ -4,7 +4,7 @@
 #include "Dolphin/gx.h"
 #include "Dolphin/mtx.h"
 #include "JSystem/JGeometry.h"
-#include "JSystem/JSU/JSUList.h"
+#include "JSystem/JSupport/JSUList.h"
 #include "JSystem/JUtility.h"
 #include "types.h"
 

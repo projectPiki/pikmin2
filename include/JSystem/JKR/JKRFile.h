@@ -4,7 +4,7 @@
 #include "Dolphin/os.h"
 #include "Dolphin/dvd.h"
 #include "JSystem/JKR/JKRDisposer.h"
-#include "JSystem/JSU/JSUList.h"
+#include "JSystem/JSupport/JSUList.h"
 #include "types.h"
 
 struct JSUFileInputStream;

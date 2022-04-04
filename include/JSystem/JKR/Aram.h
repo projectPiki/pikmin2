@@ -4,7 +4,8 @@
 #include "JSystem/JKR/JKRArchive.h"
 #include "JSystem/JKR/JKRThread.h"
 #include "JSystem/JKR/JKRDvdRipper.h"
-#include "JSystem/JSU/JSUList.h"
+#include "JSystem/JSupport/JSUList.h"
+#include "JSystem/JUT/JUTException.h"
 #include "types.h"
 
 struct JKRDvdFile;
@@ -114,9 +115,9 @@ struct JKRAMCommand {
 };
 
 enum ECommandType {
-	ECT_Zero,
-	ECT_One,
-	ECT_Two,
+	ECT_UNK,
+	ECT_READ,
+	ECT_WRITE,
 };
 typedef struct JKRAramStreamCommand {
 	ECommandType type;

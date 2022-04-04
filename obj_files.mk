@@ -63,11 +63,11 @@ JSYSTEM:=\
 	$(BUILD_DIR)/asm/JSystem/JKR/JKRMemArchive.o\
 	$(BUILD_DIR)/asm/JSystem/JKR/JKRSolidHeap.o\
 	$(BUILD_DIR)/asm/JSystem/JKR/JKRThread.o\
-	$(BUILD_DIR)/src/JSystem/JSU/JSUOutputStream.o\
-	$(BUILD_DIR)/asm/JSystem/JSU/JSUInputStream.o\
-	$(BUILD_DIR)/src/JSystem/JSU/JSUList.o\
-	$(BUILD_DIR)/asm/JSystem/JSU/JSUMemoryStream.o\
-	$(BUILD_DIR)/asm/JSystem/JSU/JSUFileStream.o\
+	$(BUILD_DIR)/src/JSystem/JSupport/JSUOutputStream.o\
+	$(BUILD_DIR)/asm/JSystem/JSupport/JSUInputStream.o\
+	$(BUILD_DIR)/src/JSystem/JSupport/JSUList.o\
+	$(BUILD_DIR)/asm/JSystem/JSupport/JSUMemoryStream.o\
+	$(BUILD_DIR)/asm/JSystem/JSupport/JSUFileStream.o\
 	$(BUILD_DIR)/asm/JSystem/binary.o\
 	$(BUILD_DIR)/asm/JSystem/linklist.o\
 	$(BUILD_DIR)/asm/JSystem/std/std-list.o\

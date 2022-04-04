@@ -2,7 +2,7 @@
 #define _JSYSTEM_JKR_JKRDISPOSER_H
 
 #include "types.h"
-#include "JSystem/JSU/JSUList.h"
+#include "JSystem/JSupport/JSUList.h"
 
 struct JKRHeap;
 

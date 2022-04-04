@@ -1,6 +1,6 @@
 #include "types.h"
 #include "Dolphin/string.h"
-#include "JSystem/JSU/JSUStream.h"
+#include "JSystem/JSupport/JSUStream.h"
 
 /*
  * --INFO--

@@ -2,7 +2,7 @@
 #define _PSSYSTEM_TASKBASE_H
 
 #include "Dolphin/os.h"
-#include "JSystem/JSU/JSUList.h"
+#include "JSystem/JSupport/JSUList.h"
 #include "PSSystem/MutexList.h"
 
 struct JASTrack;

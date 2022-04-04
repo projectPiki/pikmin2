@@ -7,6 +7,11 @@
 extern "C" {
 #endif // ifdef __cplusplus
 
+// __ppc_eabi_init
+extern void __OSPSInit();
+extern void __OSFPRInit();
+extern void __OSCacheInit();
+
 // OS logging
 void OSReport(const char*, ...);
 void OSPanic(const char* file, int line, const char* message, ...);

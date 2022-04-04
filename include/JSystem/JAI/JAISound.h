@@ -3,7 +3,7 @@
 
 #include "JSystem/JAI/JAInter.h"
 #include "JSystem/JGeometry.h"
-#include "JSystem/JSU/JSUList.h"
+#include "JSystem/JSupport/JSUList.h"
 #include "SoundID.h"
 #include "types.h"
 

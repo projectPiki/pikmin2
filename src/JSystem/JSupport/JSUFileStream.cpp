@@ -1,5 +1,5 @@
 #include "JSystem/JKR/JKRFile.h"
-#include "JSystem/JSU/JSUStream.h"
+#include "JSystem/JSupport/JSUStream.h"
 #include "types.h"
 
 /*

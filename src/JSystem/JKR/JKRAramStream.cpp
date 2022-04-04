@@ -1,5 +1,5 @@
 #include "JSystem/JKR/Aram.h"
-#include "JSystem/JSU/JSUStream.h"
+#include "JSystem/JSupport/JSUStream.h"
 #include "Dolphin/os.h"
 #include "types.h"
 
@@ -102,15 +102,16 @@ JKRAramStream::~JKRAramStream() {};
 void JKRAramStream::run(void)
 {
 	OSMessage result;
-	OSInitMessageQueue(&JKRAramStream::sMessageQueue, JKRAramStream::sMessageBuffer, 4);
+	OSInitMessageQueue(&JKRAramStream::sMessageQueue, (void**)JKRAramStream::sMessageBuffer,
+	                   ARRAY_SIZE(sMessageBuffer)); // jank cast to void** to satisfy prototype
 	while (true) {
-		OSReceiveMessage(&JKRAramStream::sMessageQueue, &result, true);
+		OSReceiveMessage(&JKRAramStream::sMessageQueue, &result, MSG_QUEUE_SHOULD_BLOCK);
 		JKRAramStreamCommand* command = static_cast<JKRAramStreamCommand*>(result.message);
 		switch (command->type) {
-		case ECT_One:
+		case ECT_READ:
 			readFromAram();
 			break;
-		case ECT_Two:
+		case ECT_WRITE:
 			writeToAram(command);
 			break;
 		}
@@ -122,7 +123,7 @@ void JKRAramStream::run(void)
  * Address:	8001A0B0
  * Size:	000008
  */
-u32 JKRAramStream::readFromAram() { return 1; }
+u32 JKRAramStream::readFromAram() { return 1; } // probably a define evaluating to 1
 
 /*
  * --INFO--
@@ -464,5 +465,5 @@ lbl_8001A498:
 JKRAramStreamCommand::JKRAramStreamCommand()
 {
 	// Generated from stb r0, 0x28(r3)
-	_28 = 0;
+	mAllocatedTransferBuffer = false;
 }

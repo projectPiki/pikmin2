@@ -57,6 +57,9 @@ typedef u32 unknown;
 #define nullptr 0
 #endif // ifndef nullptr
 
+// Array size define
+#define ARRAY_SIZE(o) (sizeof((o)) / sizeof(*(o)))
+
 // For functions that return 0 on a success and -1 on failure
 #ifndef EXIT_SUCCESS
 #define EXIT_SUCCESS 0

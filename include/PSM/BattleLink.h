@@ -1,7 +1,7 @@
 #ifndef _PSM_BATTLELINK_H
 #define _PSM_BATTLELINK_H
 
-#include "JSystem/JSU/JSUList.h"
+#include "JSystem/JSupport/JSUList.h"
 
 namespace PSM {
 /**

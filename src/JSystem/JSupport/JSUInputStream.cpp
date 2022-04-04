@@ -1,5 +1,5 @@
 #include "types.h"
-#include "JSystem/JSU/JSUStream.h"
+#include "JSystem/JSupport/JSUStream.h"
 
 /*
     Generated from dpostproc
