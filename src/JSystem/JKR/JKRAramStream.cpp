@@ -270,36 +270,23 @@ s32 JKRAramStream::writeToAram(JKRAramStreamCommand* command)
 	 * Address:	8001A45C
 	 * Size:	000054
 	 */
-	void JKRAramStream::setTransBuffer(unsigned char*, unsigned long, JKRHeap*)
-	{
-		/*
-		lis      r6, 0x00008000@ha
-		li       r7, 0
-		addi     r0, r6, 0x00008000@l
-		cmplwi   r3, 0
-		stw      r7, transBuffer__13JKRAramStream@sda21(r13)
-		stw      r0, transSize__13JKRAramStream@sda21(r13)
-		stw      r7, transHeap__13JKRAramStream@sda21(r13)
-		beq      lbl_8001A488
-		addi     r0, r3, 0x1f
-		rlwinm   r0, r0, 0, 0, 0x1a
-		stw      r0, transBuffer__13JKRAramStream@sda21(r13)
+void JKRAramStream::setTransBuffer(u8* buffer, u32 bufferSize, JKRHeap* heap) {
+    transBuffer = nullptr;
+    transSize = 0x8000;
+    transHeap = nullptr;
 
-	lbl_8001A488:
-		cmplwi   r4, 0
-		beq      lbl_8001A498
-		rlwinm   r0, r4, 0, 0, 0x1a
-		stw      r0, transSize__13JKRAramStream@sda21(r13)
+    if (buffer) {
+        transBuffer = (u8*)ALIGN_NEXT((u32)buffer, 0x20);
+    }
 
-	lbl_8001A498:
-		cmplwi   r5, 0
-		beqlr
-		cmplwi   r3, 0
-		bnelr
-		stw      r5, transHeap__13JKRAramStream@sda21(r13)
-		blr
-		*/
-	}
+    if (bufferSize) {
+        transSize = ALIGN_PREV(bufferSize, 0x20);
+    }
+
+    if (heap && !buffer) {
+        transHeap = heap;
+    }
+}
 
 	/*
 	 * --INFO--

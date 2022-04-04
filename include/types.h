@@ -60,6 +60,11 @@ typedef u32 unknown;
 // Array size define
 #define ARRAY_SIZE(o) (sizeof((o)) / sizeof(*(o)))
 
+// Align X to the previous N bytes (N must be power of two)
+#define ALIGN_PREV(X, N) ((X) & ~((N)-1))
+// Align X to the next N bytes (N must be power of two)
+#define ALIGN_NEXT(X, N) ALIGN_PREV(((X) + (N)-1), N)
+
 // For functions that return 0 on a success and -1 on failure
 #ifndef EXIT_SUCCESS
 #define EXIT_SUCCESS 0
