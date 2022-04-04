@@ -152,8 +152,8 @@ struct JKRAramStream : public JKRThread {
 	JKRAramStream(s32);
 	static JKRAramStream* create(s32);
 	static JKRAramStream* sAramStreamObject;
+	static void* sMessageBuffer[4]; // OSMessage
 	static OSMessageQueue sMessageQueue;
-	static OSMessage sMessageBuffer[4];
 	static u32 readFromAram();
 	static s32 writeToAram(JKRAramStreamCommand*);
 	static JKRAramStreamCommand* write_StreamToAram_Async(JSUFileInputStream*, u32, u32, u32, u32*);
@@ -165,7 +165,7 @@ struct JKRAramStream : public JKRThread {
 };
 namespace JKRAramPiece {
 void doneDMA(u32);
-void orderSync(s32, u32, u32, u32, JKRAramBlock*);
+void orderSync(int, u32, u32, u32, JKRAramBlock*);
 void sendCommand(JKRAMCommand*);
 void startDMA(JKRAMCommand*);
 } // namespace JKRAramPiece

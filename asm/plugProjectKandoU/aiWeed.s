@@ -112,15 +112,12 @@ __vt__Q26PikiAI7ActWeed:
 	.4byte doDirectDraw__Q26PikiAI6ActionFR8Graphics
 	.4byte "wallCallback__Q26PikiAI6ActionFR10Vector3<f>"
 	.4byte getInfo__Q26PikiAI7ActWeedFPc
-	.4byte 0
 
 .section .sbss # 0x80514D80 - 0x80516360
 .balign 8
-.global lbl_80515BC8
-lbl_80515BC8:
+gu32NAN___Q24Game5P2JST:
 	.skip 0x4
-.global lbl_80515BCC
-lbl_80515BCC:
+gfNAN___Q24Game5P2JST:
 	.skip 0x4
 
 .section .sdata2, "a"     # 0x80516360 - 0x80520E40
@@ -136,8 +133,6 @@ lbl_80519EBC:
 .global lbl_80519EC0
 lbl_80519EC0:
 	.4byte lbl_80519EB8
-.global lbl_80519EC4
-lbl_80519EC4:
 	.4byte lbl_80519EBC
 .global lbl_80519EC8
 lbl_80519EC8:
@@ -155,7 +150,7 @@ lbl_80519EDC:
 	.4byte 0x40800000
 .global lbl_80519EE0
 lbl_80519EE0:
-	.4byte 0xBF800000
+	.float -1.0
 .global lbl_80519EE4
 lbl_80519EE4:
 	.4byte 0x00000000
@@ -170,7 +165,7 @@ getInfo__Q26PikiAI7ActWeedFPc:
 /* 8020D794 0020A6D4  80 E2 BB 60 */	lwz r7, lbl_80519EC0@sda21(r2)
 /* 8020D798 0020A6D8  A0 03 00 14 */	lhz r0, 0x14(r3)
 /* 8020D79C 0020A6DC  7C 83 23 78 */	mr r3, r4
-/* 8020D7A0 0020A6E0  80 C2 BB 64 */	lwz r6, lbl_80519EC4@sda21(r2)
+/* 8020D7A0 0020A6E0  80 C2 BB 64 */	lwz r6, lbl_80519EC0+4@sda21(r2)
 /* 8020D7A4 0020A6E4  38 82 BB 68 */	addi r4, r2, lbl_80519EC8@sda21
 /* 8020D7A8 0020A6E8  90 E1 00 08 */	stw r7, 8(r1)
 /* 8020D7AC 0020A6EC  54 00 10 3A */	slwi r0, r0, 2
@@ -1506,9 +1501,9 @@ __sinit_aiWeed_cpp:
 /* 8020EAA4 0020B9E4  38 00 FF FF */	li r0, -1
 /* 8020EAA8 0020B9E8  C0 04 48 B0 */	lfs f0, __float_nan@l(r4)
 /* 8020EAAC 0020B9EC  3C 60 80 4C */	lis r3, lbl_804BFAA8@ha
-/* 8020EAB0 0020B9F0  90 0D 95 48 */	stw r0, lbl_80515BC8@sda21(r13)
+/* 8020EAB0 0020B9F0  90 0D 95 48 */	stw r0, gu32NAN___Q24Game5P2JST@sda21(r13)
 /* 8020EAB4 0020B9F4  D4 03 FA A8 */	stfsu f0, lbl_804BFAA8@l(r3)
-/* 8020EAB8 0020B9F8  D0 0D 95 4C */	stfs f0, lbl_80515BCC@sda21(r13)
+/* 8020EAB8 0020B9F8  D0 0D 95 4C */	stfs f0, gfNAN___Q24Game5P2JST@sda21(r13)
 /* 8020EABC 0020B9FC  D0 03 00 04 */	stfs f0, 4(r3)
 /* 8020EAC0 0020BA00  D0 03 00 08 */	stfs f0, 8(r3)
 /* 8020EAC4 0020BA04  4E 80 00 20 */	blr 

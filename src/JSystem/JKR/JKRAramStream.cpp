@@ -59,6 +59,13 @@
     lbl_805164E0:
         .asciz "%s"
 */
+void* JKRAramStream::sMessageBuffer[4]      = { 0 }; // OSMessage
+OSMessageQueue JKRAramStream::sMessageQueue = { 0 };
+
+JKRAramStream* JKRAramStream::sAramStreamObject = nullptr;
+u8* JKRAramStream::transBuffer                  = nullptr;
+JKRHeap* JKRAramStream::transHeap               = nullptr;
+u32 JKRAramStream::transSize                    = nullptr;
 
 /*
  * --INFO--
@@ -179,7 +186,7 @@ s32 JKRAramStream::writeToAram(JKRAramStreamCommand* command)
 				break;
 			}
 
-			JKRAramPiece::orderSync(0, (int)buffer, destination, length, nullptr);
+			JKRAramPiece::orderSync(0, (u32)buffer, destination, length, nullptr);
 			dstSize -= length;
 			writtenLength += length;
 			destination += length;
@@ -203,9 +210,11 @@ s32 JKRAramStream::writeToAram(JKRAramStreamCommand* command)
  * --INFO--
  * Address:	8001A2A4
  * Size:	00005C
- * void JSURandomInputStream::getAvailable() const
- * Weak function, lives in JSUStream.h
+ * int JSURandomInputStream::getAvailable() const
+ * Weak function, should live in JSUStream.h
  */
+
+__declspec(weak) int JSURandomInputStream::getAvailable() const { return getLength() - getPosition(); };
 
 /*
  * --INFO--
