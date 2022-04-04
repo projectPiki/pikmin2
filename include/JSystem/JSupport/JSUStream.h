@@ -28,13 +28,13 @@ struct JSUInputStream : public JSUIosBase {
 };
 
 struct JSURandomInputStream : public JSUInputStream {
-	virtual ~JSURandomInputStream() {};                                            // _00
-	virtual int getAvailable() const /*{  return getLength() - getPosition(); }*/; // _04 weak, found in JKRAramStream.cpp
-	virtual s32 skip(long);                                                        // _08
-	virtual int readData(void*, long)            = 0;                              // _0C
-	virtual int getLength() const                = 0;                              // _10
-	virtual int getPosition() const              = 0;                              // _14
-	virtual int seekPos(long, JSUStreamSeekFrom) = 0;                              // _18
+	virtual ~JSURandomInputStream() {};                                              // _00
+	inline virtual int getAvailable() const { return getLength() - getPosition(); }; // _04 weak, found in JKRAramStream.cpp
+	virtual s32 skip(long);                                                          // _08
+	virtual int readData(void*, long)            = 0;                                // _0C
+	virtual int getLength() const                = 0;                                // _10
+	virtual int getPosition() const              = 0;                                // _14
+	virtual int seekPos(long, JSUStreamSeekFrom) = 0;                                // _18
 
 	u32 align(s32);
 	size_t peek(void*, long);

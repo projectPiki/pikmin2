@@ -214,7 +214,7 @@ s32 JKRAramStream::writeToAram(JKRAramStreamCommand* command)
  * Weak function, should live in JSUStream.h
  */
 
-__declspec(weak) int JSURandomInputStream::getAvailable() const { return getLength() - getPosition(); };
+// inline int JSURandomInputStream::getAvailable() const { return getLength() - getPosition(); };
 
 /*
  * --INFO--
