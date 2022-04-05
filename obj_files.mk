@@ -66,8 +66,8 @@ JSYSTEM:=\
 	$(BUILD_DIR)/src/JSystem/JSupport/JSUOutputStream.o\
 	$(BUILD_DIR)/src/JSystem/JSupport/JSUInputStream.o\
 	$(BUILD_DIR)/src/JSystem/JSupport/JSUList.o\
-	$(BUILD_DIR)/asm/JSystem/JSupport/JSUMemoryStream.o\
-	$(BUILD_DIR)/asm/JSystem/JSupport/JSUFileStream.o\
+	$(BUILD_DIR)/src/JSystem/JSupport/JSUMemoryStream.o\
+	$(BUILD_DIR)/src/JSystem/JSupport/JSUFileStream.o\
 	$(BUILD_DIR)/asm/JSystem/binary.o\
 	$(BUILD_DIR)/asm/JSystem/linklist.o\
 	$(BUILD_DIR)/asm/JSystem/std/std-list.o\

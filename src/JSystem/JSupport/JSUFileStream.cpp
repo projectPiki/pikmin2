@@ -17,7 +17,6 @@
         .4byte getLength__18JSUFileInputStreamCFv
         .4byte getPosition__18JSUFileInputStreamCFv
         .4byte seekPos__18JSUFileInputStreamFl17JSUStreamSeekFrom
-        .4byte 0
 */
 
 /*
@@ -26,38 +25,21 @@
  * --INFO--
  * Address:	80026EE4
  * Size:	000044
+ * Matches
  */
 JSUFileInputStream::JSUFileInputStream(JKRFile* file)
 {
 	m_object = file;
 	m_length = 0;
-	/*
-	lis      r5, __vt__10JSUIosBase@ha
-	lis      r7, __vt__14JSUInputStream@ha
-	addi     r0, r5, __vt__10JSUIosBase@l
-	lis      r6, __vt__20JSURandomInputStream@ha
-	stw      r0, 0(r3)
-	li       r8, 0
-	lis      r5, __vt__18JSUFileInputStream@ha
-	addi     r7, r7, __vt__14JSUInputStream@l
-	stb      r8, 4(r3)
-	addi     r6, r6, __vt__20JSURandomInputStream@l
-	addi     r0, r5, __vt__18JSUFileInputStream@l
-	stw      r7, 0(r3)
-	stw      r6, 0(r3)
-	stw      r0, 0(r3)
-	stw      r4, 8(r3)
-	stw      r8, 0xc(r3)
-	blr
-	*/
 }
 
 /*
  * --INFO--
  * Address:	80026F28
  * Size:	0000E0
+ * Matches
  */
-size_t JSUFileInputStream::readData(void* buffer, long byteCount)
+int JSUFileInputStream::readData(void* buffer, long byteCount)
 {
 	int readBytes = 0;
 	if (((JKRFile*)m_object)->_18) {
@@ -80,6 +62,7 @@ size_t JSUFileInputStream::readData(void* buffer, long byteCount)
  * --INFO--
  * Address:	80027008
  * Size:	0000E8
+ * Matches
  */
 int JSUFileInputStream::seekPos(long offset, JSUStreamSeekFrom mode)
 {
@@ -110,12 +93,16 @@ int JSUFileInputStream::seekPos(long offset, JSUStreamSeekFrom mode)
  * --INFO--
  * Address:	800270F0
  * Size:	000030
+ * Weak function. Found in JSUStream.h
+ * Matches
  */
-int JSUFileInputStream::getLength() const { return ((JKRFile*)m_object)->getFileSize(); }
+// int JSUFileInputStream::getLength() const { return ((JKRFile*)m_object)->getFileSize(); }
 
 /*
  * --INFO--
  * Address:	80027120
  * Size:	000008
+ * Weak function. Found in JSUStream.h
+ * Matches
  */
-int JSUFileInputStream::getPosition() const { return m_length; }
+// int JSUFileInputStream::getPosition() const { return m_length; }

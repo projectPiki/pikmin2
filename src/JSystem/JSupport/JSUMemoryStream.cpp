@@ -17,13 +17,13 @@
         .4byte getLength__20JSUMemoryInputStreamCFv
         .4byte getPosition__20JSUMemoryInputStreamCFv
         .4byte seekPos__20JSUMemoryInputStreamFl17JSUStreamSeekFrom
-        .4byte 0
 */
 
 /*
  * --INFO--
  * Address:	80026D5C
  * Size:	000014
+ * Matches
  */
 void JSUMemoryInputStream::setBuffer(const void* buffer, long length)
 {
@@ -36,8 +36,9 @@ void JSUMemoryInputStream::setBuffer(const void* buffer, long length)
  * --INFO--
  * Address:	80026D70
  * Size:	000078
+ * Matches
  */
-size_t JSUMemoryInputStream::readData(void* data, long length)
+int JSUMemoryInputStream::readData(void* data, long length)
 {
 	if (m_position + length > m_length) {
 		length = m_length - m_position;
@@ -53,6 +54,7 @@ size_t JSUMemoryInputStream::readData(void* data, long length)
  * --INFO--
  * Address:	80026DE8
  * Size:	00007C
+ * Matches
  */
 int JSUMemoryInputStream::seekPos(long offset, JSUStreamSeekFrom mode)
 {
@@ -83,55 +85,25 @@ int JSUMemoryInputStream::seekPos(long offset, JSUStreamSeekFrom mode)
  * --INFO--
  * Address:	80026E64
  * Size:	000070
+ * Weak function. Found in JSUStream.h
+ * Matches
  */
 // JSUMemoryInputStream::~JSUMemoryInputStream()
-// {
-/*
-stwu     r1, -0x10(r1)
-mflr     r0
-stw      r0, 0x14(r1)
-stw      r31, 0xc(r1)
-mr       r31, r4
-stw      r30, 8(r1)
-or.      r30, r3, r3
-beq      lbl_80026EB8
-lis      r4, __vt__20JSUMemoryInputStream@ha
-addi     r0, r4, __vt__20JSUMemoryInputStream@l
-stw      r0, 0(r30)
-beq      lbl_80026EA8
-lis      r5, __vt__20JSURandomInputStream@ha
-li       r4, 0
-addi     r0, r5, __vt__20JSURandomInputStream@l
-stw      r0, 0(r30)
-bl       __dt__14JSUInputStreamFv
-
-lbl_80026EA8:
-extsh.   r0, r31
-ble      lbl_80026EB8
-mr       r3, r30
-bl       __dl__FPv
-
-lbl_80026EB8:
-lwz      r0, 0x14(r1)
-mr       r3, r30
-lwz      r31, 0xc(r1)
-lwz      r30, 8(r1)
-mtlr     r0
-addi     r1, r1, 0x10
-blr
-*/
-// }
 
 /*
  * --INFO--
  * Address:	80026ED4
  * Size:	000008
+ * Weak function. Found in JSUStream.h
+ * Matches
  */
-int JSUMemoryInputStream::getLength() const { return m_length; }
+// int JSUMemoryInputStream::getLength() const { return m_length; }
 
 /*
  * --INFO--
  * Address:	80026EDC
  * Size:	000008
+ * Weak function. Found in JSUStream.h
+ * Matches
  */
-int JSUMemoryInputStream::getPosition() const { return m_position; }
+// int JSUMemoryInputStream::getPosition() const { return m_position; }

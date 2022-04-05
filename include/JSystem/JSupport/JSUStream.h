@@ -1,9 +1,8 @@
 #ifndef _JSYSTEM_JSUINPUTSTREAM_H
 #define _JSYSTEM_JSUINPUTSTREAM_H
 
+#include "JSystem/JKR/JKRFile.h"
 #include "types.h"
-
-struct JKRFile;
 
 // Named after standard C++ constants with the exact same meaning.
 enum JSUStreamSeekFrom { SEEK_SET = 0, SEEK_CUR, SEEK_END };
@@ -42,11 +41,11 @@ struct JSURandomInputStream : public JSUInputStream {
 };
 
 struct JSUMemoryInputStream : public JSURandomInputStream {
-	virtual ~JSUMemoryInputStream();              // _00
-	virtual int readData(void*, long);            // _0C
-	virtual int getLength() const;                // _10
-	virtual int getPosition() const;              // _14
-	virtual int seekPos(long, JSUStreamSeekFrom); // _18
+	virtual ~JSUMemoryInputStream() {};                     // _00
+	virtual int readData(void*, long);                      // _0C
+	virtual int getLength() const { return m_length; };     // _10
+	virtual int getPosition() const { return m_position; }; // _14
+	virtual int seekPos(long, JSUStreamSeekFrom);           // _18
 
 	void setBuffer(const void*, long);
 
@@ -58,10 +57,14 @@ struct JSUMemoryInputStream : public JSURandomInputStream {
 // Size: 0x10
 struct JSUFileInputStream : public JSURandomInputStream {
 	JSUFileInputStream(JKRFile*);
-	virtual int readData(void*, long);            // _0C
-	virtual int getLength() const;                // _10
-	virtual int getPosition() const;              // _14
-	virtual int seekPos(long, JSUStreamSeekFrom); // _18
+	virtual int readData(void*, long);                                             // _0C
+	virtual int getLength() const { return ((JKRFile*)m_object)->getFileSize(); }; // _10
+	virtual int getPosition() const { return m_length; };                          // _14
+	virtual int seekPos(long, JSUStreamSeekFrom);                                  // _18
+
+	const void* m_object; // _08
+	long m_length;        // _0C
+	int m_position;       // _10
 };
 
 /* Not much remains of this. */
