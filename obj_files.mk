@@ -44,7 +44,7 @@ JSYSTEM:=\
 	$(BUILD_DIR)/asm/JSystem/JKR/JKRAramBlock.o\
 	$(BUILD_DIR)/asm/JSystem/JKR/JKRAramHeap.o\
 	$(BUILD_DIR)/asm/JSystem/JKR/JKRAramPiece.o\
-	$(BUILD_DIR)/asm/JSystem/JKR/JKRAramStream.o\
+	$(BUILD_DIR)/src/JSystem/JKR/JKRAramStream.o\
 	$(BUILD_DIR)/asm/JSystem/JKR/JKRArchivePri.o\
 	$(BUILD_DIR)/asm/JSystem/JKR/JKRArchivePub.o\
 	$(BUILD_DIR)/asm/JSystem/JKR/JKRCompArchive.o\
@@ -64,7 +64,7 @@ JSYSTEM:=\
 	$(BUILD_DIR)/asm/JSystem/JKR/JKRSolidHeap.o\
 	$(BUILD_DIR)/asm/JSystem/JKR/JKRThread.o\
 	$(BUILD_DIR)/src/JSystem/JSupport/JSUOutputStream.o\
-	$(BUILD_DIR)/asm/JSystem/JSupport/JSUInputStream.o\
+	$(BUILD_DIR)/src/JSystem/JSupport/JSUInputStream.o\
 	$(BUILD_DIR)/src/JSystem/JSupport/JSUList.o\
 	$(BUILD_DIR)/asm/JSystem/JSupport/JSUMemoryStream.o\
 	$(BUILD_DIR)/asm/JSystem/JSupport/JSUFileStream.o\

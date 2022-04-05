@@ -64,8 +64,8 @@ OSMessageQueue JKRAramStream::sMessageQueue = { 0 };
 
 JKRAramStream* JKRAramStream::sAramStreamObject = nullptr;
 u8* JKRAramStream::transBuffer                  = nullptr;
-JKRHeap* JKRAramStream::transHeap               = nullptr;
 u32 JKRAramStream::transSize                    = nullptr;
+JKRHeap* JKRAramStream::transHeap               = nullptr;
 
 /*
  * --INFO--
@@ -208,13 +208,45 @@ s32 JKRAramStream::writeToAram(JKRAramStreamCommand* command)
 
 /*
  * --INFO--
+ * Address:	........
+ * Size:	0000A0
+ * Unused function, made-up contents. Do not take this seriously!
+ * While the function exists in the map, this is almost certainly incorrect.
+ * Should exist to generate JSURandomInputStream::getAvailable() const afterwards.
+ */
+
+JKRAramStreamCommand* JKRAramStream::write_StreamToAram_Async(JSUFileInputStream* stream, JKRAramBlock* addr, u32 size, u32 offset,
+                                                              u32* returnSize)
+{
+	JKRAramStreamCommand* command = new (JKRHeap::sSystemHeap, -4) JKRAramStreamCommand();
+	command->type                 = ECT_WRITE;
+	command->mAddress             = (u32)addr;
+	command->mSize                = size;
+	command->mStream              = stream;
+	command->field_0x2c           = stream->getAvailable();
+	command->mOffset              = offset;
+	command->mTransferBuffer      = transBuffer;
+	command->mHeap                = transHeap;
+	command->mTransferBufferSize  = transSize;
+	command->mReturnSize          = returnSize;
+	if (returnSize) {
+		*returnSize = 0;
+	}
+
+	OSInitMessageQueue(&command->mMessageQueue, &command->mMessage, 1);
+	OSSendMessage(&sMessageQueue, command, OS_MESSAGE_BLOCKING);
+	return command;
+}
+
+/*
+ * --INFO--
  * Address:	8001A2A4
  * Size:	00005C
  * int JSURandomInputStream::getAvailable() const
  * Weak function, should live in JSUStream.h
  */
 
-// inline int JSURandomInputStream::getAvailable() const { return getLength() - getPosition(); };
+// int JSURandomInputStream::getAvailable() const { return getLength() - getPosition(); };
 
 /*
  * --INFO--
