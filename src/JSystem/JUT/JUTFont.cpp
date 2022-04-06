@@ -60,68 +60,52 @@ void JUTFont::initialize_state()
  * --INFO--
  * Address:	8002D1BC
  * Size:	000054
+ * Matches
  */
-void JUTFont::setCharColor(JUtility::TColor)
+void JUTFont::setCharColor(JUtility::TColor color)
 {
-	/*
-	lbz      r7, 0(r4)
-	lbz      r6, 1(r4)
-	stb      r7, 0xc(r3)
-	lbz      r5, 2(r4)
-	stb      r6, 0xd(r3)
-	lbz      r0, 3(r4)
-	stb      r5, 0xe(r3)
-	stb      r0, 0xf(r3)
-	stb      r7, 0x10(r3)
-	stb      r6, 0x11(r3)
-	stb      r5, 0x12(r3)
-	stb      r0, 0x13(r3)
-	stb      r7, 0x14(r3)
-	stb      r6, 0x15(r3)
-	stb      r5, 0x16(r3)
-	stb      r0, 0x17(r3)
-	stb      r7, 0x18(r3)
-	stb      r6, 0x19(r3)
-	stb      r5, 0x1a(r3)
-	stb      r0, 0x1b(r3)
-	blr
-	*/
+	_0C.channels.r = color.channels.r;
+	_0C.channels.g = color.channels.g;
+	_0C.channels.b = color.channels.b;
+	_0C.channels.a = color.channels.a;
+	_10.channels.r = color.channels.r;
+	_10.channels.g = color.channels.g;
+	_10.channels.b = color.channels.b;
+	_10.channels.a = color.channels.a;
+	_14.channels.r = color.channels.r;
+	_14.channels.g = color.channels.g;
+	_14.channels.b = color.channels.b;
+	_14.channels.a = color.channels.a;
+	_18.channels.r = color.channels.r;
+	_18.channels.g = color.channels.g;
+	_18.channels.b = color.channels.b;
+	_18.channels.a = color.channels.a;
 }
 
 /*
  * --INFO--
  * Address:	8002D210
  * Size:	000064
+ * Matches
  */
-void JUTFont::setGradColor(JUtility::TColor, JUtility::TColor)
+void JUTFont::setGradColor(JUtility::TColor color, JUtility::TColor color2)
 {
-	/*
-	lbz      r10, 0(r4)
-	lbz      r0, 1(r4)
-	stb      r10, 0xc(r3)
-	lbz      r9, 2(r4)
-	stb      r0, 0xd(r3)
-	lbz      r8, 3(r4)
-	stb      r9, 0xe(r3)
-	lbz      r7, 0(r5)
-	stb      r8, 0xf(r3)
-	lbz      r6, 1(r5)
-	stb      r10, 0x10(r3)
-	lbz      r4, 2(r5)
-	stb      r0, 0x11(r3)
-	lbz      r0, 3(r5)
-	stb      r9, 0x12(r3)
-	stb      r8, 0x13(r3)
-	stb      r7, 0x14(r3)
-	stb      r6, 0x15(r3)
-	stb      r4, 0x16(r3)
-	stb      r0, 0x17(r3)
-	stb      r7, 0x18(r3)
-	stb      r6, 0x19(r3)
-	stb      r4, 0x1a(r3)
-	stb      r0, 0x1b(r3)
-	blr
-	*/
+	_0C.channels.r = color.channels.r;
+	_0C.channels.g = color.channels.g;
+	_0C.channels.b = color.channels.b;
+	_0C.channels.a = color.channels.a;
+	_10.channels.r = color.channels.r;
+	_10.channels.g = color.channels.g;
+	_10.channels.b = color.channels.b;
+	_10.channels.a = color.channels.a;
+	_14.channels.r = color2.channels.r;
+	_14.channels.g = color2.channels.g;
+	_14.channels.b = color2.channels.b;
+	_14.channels.a = color2.channels.a;
+	_18.channels.r = color2.channels.r;
+	_18.channels.g = color2.channels.g;
+	_18.channels.b = color2.channels.b;
+	_18.channels.a = color2.channels.a;
 }
 
 /*
@@ -129,7 +113,7 @@ void JUTFont::setGradColor(JUtility::TColor, JUtility::TColor)
  * Address:	8002D274
  * Size:	000118
  */
-void JUTFont::drawString_size_scale(float, float, float, float, const char*, u32, bool)
+void JUTFont::drawString_size_scale(f32, f32, f32, f32, const char* str, u32, bool)
 {
 	/*
 	.loc_0x0:
