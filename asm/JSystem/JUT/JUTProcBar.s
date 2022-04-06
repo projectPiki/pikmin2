@@ -1,11 +1,9 @@
 .include "macros.inc"
 .section .sdata, "wa"  # 0x80514680 - 0x80514D80
 .balign 8
-.global oneFrameRate
-oneFrameRate:
+oneFrameRate: # local object
 	.float 8.0
-.global oneFrameRateUser
-oneFrameRateUser:
+oneFrameRateUser: # local object
 	.float 10.0
 
 .section .sbss # 0x80514D80 - 0x80516360
@@ -13,67 +11,50 @@ oneFrameRateUser:
 .global sManager__10JUTProcBar
 sManager__10JUTProcBar:
 	.skip 0x4
-.global cnt$2595
-cnt$2595:
+cnt$2595: # local object
 	.skip 0x4
-.global init$2596
-init$2596:
+init$2596: # local object
+	.skip 0x1
+.balign 4
+cntUser$2644: # local object
 	.skip 0x4
-.global cntUser$2644
-cntUser$2644:
-	.skip 0x4
-.global init$2645
-init$2645:
-	.skip 0x8
+init$2645: # local object
+	.skip 0x1
 
 .section .sdata2, "a"     # 0x80516360 - 0x80520E40
 .balign 8
-.global lbl_80516698
 lbl_80516698:
-	.4byte 0x41000000
-.global lbl_8051669C
+	.float 8.0
 lbl_8051669C:
-	.4byte 0x41200000
-.global lbl_805166A0
+	.float 10.0
 lbl_805166A0:
-	.4byte 0x40C00000
-	.4byte 0x00000000
-.global lbl_805166A8
+	.float 6.0
+.balign 8
 lbl_805166A8:
 	.4byte 0x43300000
 	.4byte 0x80000000
-.global lbl_805166B0
 lbl_805166B0:
-	.4byte 0x41A00000
-.global lbl_805166B4
+	.float 20.0
 lbl_805166B4:
-	.4byte 0x46823400
-.global lbl_805166B8
+	.float 16666.0
 lbl_805166B8:
-	.4byte 0x41F00000
-.global lbl_805166BC
+	.float 30.0
 lbl_805166BC:
 	.float 0.1
-.global lbl_805166C0
 lbl_805166C0:
-	.4byte 0x3E4CCCCD
-.global lbl_805166C4
+	.float 0.2
 lbl_805166C4:
-	.4byte 0x42700000
-.global lbl_805166C8
+	.float 60.0
+.balign 8
 lbl_805166C8:
 	.4byte 0x43300000
 	.4byte 0x00000000
-.global lbl_805166D0
 lbl_805166D0:
 	.float 1.0
-.global lbl_805166D4
 lbl_805166D4:
-	.4byte 0x411CCCCD
-.global lbl_805166D8
+	.float 9.8
 lbl_805166D8:
-	.4byte 0x40400000
-	.4byte 0x00000000
+	.float 3.0
 
 .section .text, "ax"  # 0x800056C0 - 0x80472F00
 .global __ct__Q210JUTProcBar5CTimeFv

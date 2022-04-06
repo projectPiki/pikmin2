@@ -2,82 +2,80 @@
 .section .rodata  # 0x804732E0 - 0x8049E220
 .balign 8
 "@stringBase0":
-	.4byte 0x31373937
-	.4byte 0x36393331
-	.4byte 0x33343836
-	.4byte 0x32333135
-	.4byte 0x38303739
-	.4byte 0x33373239
-	.4byte 0x30313134
-	.4byte 0x30353330
-	.4byte 0x33343230
-	.4byte 0x00353432
-	.4byte 0x31303130
-	.4byte 0x38363234
-	.4byte 0x32373532
-	.4byte 0x32313730
-	.4byte 0x30333732
-	.4byte 0x36343030
-	.4byte 0x34333439
-	.4byte 0x37303835
-	.4byte 0x35373132
-	.4byte 0x38393036
-	.4byte 0x32350031
-	.4byte 0x31313032
-	.4byte 0x32333032
-	.4byte 0x34363235
-	.4byte 0x31353635
-	.4byte 0x34303432
-	.4byte 0x33363331
-	.4byte 0x36363830
-	.4byte 0x39303832
-	.4byte 0x30333132
-	.4byte 0x35003233
-	.4byte 0x32383330
-	.4byte 0x36343336
-	.4byte 0x35333836
-	.4byte 0x39363238
-	.4byte 0x39303632
-	.4byte 0x35003135
-	.4byte 0x32353837
-	.4byte 0x38393036
-	.4byte 0x32350033
-	.4byte 0x39303632
-	.4byte 0x35003738
-	.4byte 0x31323500
-	.4byte 0x31353632
-	.4byte 0x35003331
-	.4byte 0x32350036
-	.4byte 0x32350031
-	.4byte 0x32350032
-	.4byte 0x35003500
-	.4byte 0x31003200
-	.4byte 0x34003800
-	.4byte 0x31360033
-	.4byte 0x32003634
-	.4byte 0x00313238
-	.4byte 0x00323536
-	.4byte 0x00000000
+	.ascii "1"
+	.ascii "7"
+	.asciz "9769313486231580793729011405303420"
+	.ascii "5"
+	.ascii "4"
+	.asciz "2101086242752217003726400434970855712890625"
+	.ascii "1"
+	.ascii "1"
+	.asciz "102230246251565404236316680908203125"
+	.ascii "2"
+	.ascii "3"
+	.asciz "283064365386962890625"
+	.ascii "1"
+	.ascii "5"
+	.asciz "2587890625"
+	.ascii "3"
+	.ascii "9"
+	.asciz "0625"
+	.ascii "7"
+	.ascii "8"
+	.asciz "125"
+	.ascii "1"
+	.ascii "5"
+	.asciz "625"
+	.ascii "3"
+	.ascii "1"
+	.asciz "25"
+	.ascii "6"
+	.ascii "2"
+	.asciz "5"
+	.ascii "1"
+	.ascii "2"
+	.asciz "5"
+	.ascii "2"
+	.ascii "5"
+	.asciz ""
+	.ascii "5"
+	.asciz ""
+	.ascii "1"
+	.asciz ""
+	.ascii "2"
+	.asciz ""
+	.ascii "4"
+	.asciz ""
+	.ascii "8"
+	.asciz ""
+	.ascii "1"
+	.ascii "6"
+	.asciz ""
+	.ascii "3"
+	.ascii "2"
+	.asciz ""
+	.ascii "6"
+	.ascii "4"
+	.asciz ""
+	.ascii "1"
+	.ascii "2"
+	.ascii "8"
+	.asciz ""
+	.ascii "2"
+	.ascii "5"
+	.ascii "6"
 
 .section .data, "wa"  # 0x8049E220 - 0x804EFC20
 .balign 8
 pow_10$416:
-	.4byte 0x40240000
-	.4byte 0x00000000
-	.4byte 0x40590000
-	.4byte 0x00000000
-	.4byte 0x408F4000
-	.4byte 0x00000000
-	.4byte 0x40C38800
-	.4byte 0x00000000
-	.4byte 0x40F86A00
-	.4byte 0x00000000
-	.4byte 0x412E8480
-	.4byte 0x00000000
-	.4byte 0x416312D0
-	.4byte 0x00000000
-	.4byte 0x4197D784
-	.4byte 0x00000000
+	.double 10.0
+	.double 100.0
+	.double 1000.0
+	.double 10000.0
+	.double 100000.0
+	.double 1000000.0
+	.double 10000000.0
+	.double 100000000.0
 lbl_804A6AC8:
 	.4byte lbl_800C473C
 	.4byte lbl_800C5BD8
@@ -156,20 +154,16 @@ lbl_804A6AC8:
 .section .sdata2, "a"     # 0x80516360 - 0x80520E40
 .balign 8
 lbl_80517098:
-	.4byte 0x00000000
-	.4byte 0x00000000
+	.double 0.0
 .balign 8
 lbl_805170A0:
-	.4byte 0x3FF00000
-	.4byte 0x00000000
+	.double 1.0
 .balign 8
 lbl_805170A8:
-	.4byte 0xBFF00000
-	.4byte 0x00000000
+	.double -1.0
 .balign 8
 lbl_805170B0:
-	.4byte 0x40140000
-	.4byte 0x00000000
+	.double 5.0
 .balign 8
 lbl_805170B8:
 	.4byte 0x43300000
@@ -1529,8 +1523,7 @@ lbl_800C3D28:
 /* 800C3D38 000C0C78  38 21 00 10 */	addi r1, r1, 0x10
 /* 800C3D3C 000C0C7C  4E 80 00 20 */	blr 
 
-.global __num2dec_internal
-__num2dec_internal:
+__num2dec_internal: # local function
 /* 800C3D40 000C0C80  94 21 FF 50 */	stwu r1, -0xb0(r1)
 /* 800C3D44 000C0C84  7C 08 02 A6 */	mflr r0
 /* 800C3D48 000C0C88  C8 02 8D 38 */	lfd f0, lbl_80517098@sda21(r2)
@@ -1809,8 +1802,7 @@ lbl_800C40DC:
 /* 800C40EC 000C102C  38 21 00 B0 */	addi r1, r1, 0xb0
 /* 800C40F0 000C1030  4E 80 00 20 */	blr 
 
-.global __minus_dec
-__minus_dec:
+__minus_dec: # local function
 /* 800C40F4 000C1034  80 04 00 00 */	lwz r0, 0(r4)
 /* 800C40F8 000C1038  80 C4 00 04 */	lwz r6, 4(r4)
 /* 800C40FC 000C103C  90 03 00 00 */	stw r0, 0(r3)
@@ -2165,8 +2157,7 @@ lbl_800C45E0:
 /* 800C45E8 000C1528  98 03 00 04 */	stb r0, 4(r3)
 /* 800C45EC 000C152C  4E 80 00 20 */	blr 
 
-.global __equals_dec
-__equals_dec:
+__equals_dec: # local function
 /* 800C45F0 000C1530  88 A3 00 05 */	lbz r5, 5(r3)
 /* 800C45F4 000C1534  28 05 00 00 */	cmplwi r5, 0
 /* 800C45F8 000C1538  40 82 00 14 */	bne lbl_800C460C
@@ -2248,8 +2239,7 @@ lbl_800C46F4:
 /* 800C46F4 000C1634  38 60 00 00 */	li r3, 0
 /* 800C46F8 000C1638  4E 80 00 20 */	blr 
 
-.global __two_exp
-__two_exp:
+__two_exp: # local function
 /* 800C46FC 000C163C  94 21 FF 90 */	stwu r1, -0x70(r1)
 /* 800C4700 000C1640  7C 08 02 A6 */	mflr r0
 /* 800C4704 000C1644  90 01 00 74 */	stw r0, 0x74(r1)
@@ -3988,8 +3978,7 @@ lbl_800C5E68:
 /* 800C5E78 000C2DB8  38 21 00 70 */	addi r1, r1, 0x70
 /* 800C5E7C 000C2DBC  4E 80 00 20 */	blr 
 
-.global __timesdec
-__timesdec:
+__timesdec: # local function
 /* 800C5E80 000C2DC0  94 21 FF 90 */	stwu r1, -0x70(r1)
 /* 800C5E84 000C2DC4  3C E0 CC CD */	lis r7, 0xCCCCCCCD@ha
 /* 800C5E88 000C2DC8  89 85 00 04 */	lbz r12, 4(r5)
