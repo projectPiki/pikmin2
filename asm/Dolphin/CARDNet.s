@@ -3,12 +3,10 @@
 .balign 8
 .global __CARDVendorID
 __CARDVendorID:
-	.byte 0xFF
-	.byte 0xFF
+	.2byte 0xFFFF
 .global __CARDPermMask
 __CARDPermMask:
 	.byte 0x1C
-	.byte 0x0
 
 .section .text, "ax"  # 0x800056C0 - 0x80472F00
 .global CARDGetSerialNo

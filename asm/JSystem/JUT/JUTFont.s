@@ -20,7 +20,6 @@ __vt__7JUTFont:
 	.4byte 0
 	.4byte 0
 	.4byte 0
-	.4byte 0
 
 .section .text, "ax"  # 0x800056C0 - 0x80472F00
 .global __ct__7JUTFontFv

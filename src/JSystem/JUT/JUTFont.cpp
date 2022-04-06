@@ -25,7 +25,6 @@
         .4byte 0
         .4byte 0
         .4byte 0
-        .4byte 0
 */
 
 /*
@@ -46,6 +45,7 @@ JUTFont::JUTFont()
  * --INFO--
  * Address:	8002D170
  * Size:	00004C
+ * Matches
  */
 void JUTFont::initialize_state()
 {
