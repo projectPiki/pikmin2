@@ -2,8 +2,9 @@
 .section .rodata  # 0x804732E0 - 0x8049E220
 .balign 8
 "@stringBase0":
-	.4byte 0x2E000043
-	.4byte 0x00000000
+	.asciz "."
+	.asciz ""
+	.asciz "C"
 
 .section .data, "wa"  # 0x8049E220 - 0x804EFC20
 .balign 8

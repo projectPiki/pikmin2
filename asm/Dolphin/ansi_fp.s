@@ -63,7 +63,7 @@
 	.asciz ""
 	.ascii "2"
 	.ascii "5"
-	.ascii "6"
+	.asciz "6"
 
 .section .data, "wa"  # 0x8049E220 - 0x804EFC20
 .balign 8

@@ -70,10 +70,8 @@ __vt__Q210JADUtility11DataMgrBase:
 
 .section .sdata2, "a"     # 0x80516360 - 0x80520E40
 .balign 8
-.global lbl_80517090
 lbl_80517090:
-	.4byte 0x00000000
-	.4byte 0x00000000
+	.2byte 0x0000
 
 .section .text, "ax"  # 0x800056C0 - 0x80472F00
 .global __ct__Q210JADUtility11DataMgrBaseFv
@@ -189,7 +187,7 @@ lbl_800BA960:
 /* 800BA978 000B78B8  4E 80 00 20 */	blr 
 
 .global isTempBuffaMode__Q210JADUtility15DataLoadMgrNodeFv
-isTempBuffaMode__Q210JADUtility15DataLoadMgrNodeFv:
+isTempBuffaMode__Q210JADUtility15DataLoadMgrNodeFv: # weak function
 /* 800BA97C 000B78BC  38 60 00 00 */	li r3, 0
 /* 800BA980 000B78C0  4E 80 00 20 */	blr 
 
@@ -362,7 +360,7 @@ lbl_800BAB40:
 /* 800BABE0 000B7B20  4E 80 00 20 */	blr 
 
 .global __dt__Q210JADUtility6StrPrmFv
-__dt__Q210JADUtility6StrPrmFv:
+__dt__Q210JADUtility6StrPrmFv: # weak function
 /* 800BABE4 000B7B24  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 800BABE8 000B7B28  7C 08 02 A6 */	mflr r0
 /* 800BABEC 000B7B2C  90 01 00 14 */	stw r0, 0x14(r1)
@@ -410,7 +408,7 @@ lbl_800BAC70:
 /* 800BAC88 000B7BC8  4E 80 00 20 */	blr 
 
 .global "__dt__Q210JADUtility10PrmHio<Pc>Fv"
-"__dt__Q210JADUtility10PrmHio<Pc>Fv":
+"__dt__Q210JADUtility10PrmHio<Pc>Fv": # weak function
 /* 800BAC8C 000B7BCC  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 800BAC90 000B7BD0  7C 08 02 A6 */	mflr r0
 /* 800BAC94 000B7BD4  90 01 00 14 */	stw r0, 0x14(r1)
@@ -454,7 +452,7 @@ lbl_800BAD08:
 /* 800BAD20 000B7C60  4E 80 00 20 */	blr 
 
 .global "__dt__Q210JADUtility7Prm<Pc>Fv"
-"__dt__Q210JADUtility7Prm<Pc>Fv":
+"__dt__Q210JADUtility7Prm<Pc>Fv": # weak function
 /* 800BAD24 000B7C64  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 800BAD28 000B7C68  7C 08 02 A6 */	mflr r0
 /* 800BAD2C 000B7C6C  90 01 00 14 */	stw r0, 0x14(r1)
@@ -494,7 +492,7 @@ lbl_800BAD90:
 /* 800BADA8 000B7CE8  4E 80 00 20 */	blr 
 
 .global __dt__Q210JADUtility7PrmBaseFv
-__dt__Q210JADUtility7PrmBaseFv:
+__dt__Q210JADUtility7PrmBaseFv: # weak function
 /* 800BADAC 000B7CEC  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 800BADB0 000B7CF0  7C 08 02 A6 */	mflr r0
 /* 800BADB4 000B7CF4  90 01 00 14 */	stw r0, 0x14(r1)
@@ -529,7 +527,7 @@ lbl_800BAE08:
 /* 800BAE20 000B7D60  4E 80 00 20 */	blr 
 
 .global save__Q210JADUtility6StrPrmFR21JSUMemoryOutputStream
-save__Q210JADUtility6StrPrmFR21JSUMemoryOutputStream:
+save__Q210JADUtility6StrPrmFR21JSUMemoryOutputStream: # weak function
 /* 800BAE24 000B7D64  94 21 FF E0 */	stwu r1, -0x20(r1)
 /* 800BAE28 000B7D68  7C 08 02 A6 */	mflr r0
 /* 800BAE2C 000B7D6C  90 01 00 24 */	stw r0, 0x24(r1)
@@ -576,7 +574,7 @@ lbl_800BAE94:
 /* 800BAEC0 000B7E00  4E 80 00 20 */	blr 
 
 .global load__Q210JADUtility6StrPrmFR20JSUMemoryInputStream
-load__Q210JADUtility6StrPrmFR20JSUMemoryInputStream:
+load__Q210JADUtility6StrPrmFR20JSUMemoryInputStream: # weak function
 /* 800BAEC4 000B7E04  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 800BAEC8 000B7E08  7C 08 02 A6 */	mflr r0
 /* 800BAECC 000B7E0C  90 01 00 14 */	stw r0, 0x14(r1)
@@ -623,7 +621,7 @@ lbl_800BAF4C:
 /* 800BAF60 000B7EA0  4E 80 00 20 */	blr 
 
 .global save__Q210JADUtility7PrmBaseFR21JSUMemoryOutputStream
-save__Q210JADUtility7PrmBaseFR21JSUMemoryOutputStream:
+save__Q210JADUtility7PrmBaseFR21JSUMemoryOutputStream: # weak function
 /* 800BAF64 000B7EA4  94 21 FF E0 */	stwu r1, -0x20(r1)
 /* 800BAF68 000B7EA8  7C 08 02 A6 */	mflr r0
 /* 800BAF6C 000B7EAC  90 01 00 24 */	stw r0, 0x24(r1)
@@ -658,7 +656,7 @@ lbl_800BAFAC:
 /* 800BAFD8 000B7F18  4E 80 00 20 */	blr 
 
 .global __dt__Q210JADUtility11DataMgrNodeFv
-__dt__Q210JADUtility11DataMgrNodeFv:
+__dt__Q210JADUtility11DataMgrNodeFv: # weak function
 /* 800BAFDC 000B7F1C  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 800BAFE0 000B7F20  7C 08 02 A6 */	mflr r0
 /* 800BAFE4 000B7F24  90 01 00 14 */	stw r0, 0x14(r1)
@@ -756,12 +754,12 @@ lbl_800BB124:
 /* 800BB13C 000B807C  4E 80 00 20 */	blr 
 
 .global getPath__Q210JADUtility11DataMgrNodeFv
-getPath__Q210JADUtility11DataMgrNodeFv:
+getPath__Q210JADUtility11DataMgrNodeFv: # weak function
 /* 800BB140 000B8080  38 63 00 0C */	addi r3, r3, 0xc
 /* 800BB144 000B8084  4E 80 00 20 */	blr 
 
 .global setPath__Q210JADUtility11DataMgrNodeFPc
-setPath__Q210JADUtility11DataMgrNodeFPc:
+setPath__Q210JADUtility11DataMgrNodeFPc: # weak function
 /* 800BB148 000B8088  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 800BB14C 000B808C  7C 08 02 A6 */	mflr r0
 /* 800BB150 000B8090  90 01 00 14 */	stw r0, 0x14(r1)
@@ -785,7 +783,7 @@ lbl_800BB180:
 /* 800BB194 000B80D4  4E 80 00 20 */	blr 
 
 .global init__Q210JADUtility11DataMgrNodeFv
-init__Q210JADUtility11DataMgrNodeFv:
+init__Q210JADUtility11DataMgrNodeFv: # weak function
 /* 800BB198 000B80D8  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 800BB19C 000B80DC  7C 08 02 A6 */	mflr r0
 /* 800BB1A0 000B80E0  38 80 00 00 */	li r4, 0
@@ -805,7 +803,7 @@ init__Q210JADUtility11DataMgrNodeFv:
 /* 800BB1D8 000B8118  4E 80 00 20 */	blr 
 
 .global init__Q210JADUtility15DataLoadMgrNodeFv
-init__Q210JADUtility15DataLoadMgrNodeFv:
+init__Q210JADUtility15DataLoadMgrNodeFv: # weak function
 /* 800BB1DC 000B811C  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 800BB1E0 000B8120  7C 08 02 A6 */	mflr r0
 /* 800BB1E4 000B8124  38 80 00 00 */	li r4, 0
@@ -825,7 +823,7 @@ init__Q210JADUtility15DataLoadMgrNodeFv:
 /* 800BB21C 000B815C  4E 80 00 20 */	blr 
 
 .global init__Q210JADUtility11DataMgrBaseFv
-init__Q210JADUtility11DataMgrBaseFv:
+init__Q210JADUtility11DataMgrBaseFv: # weak function
 /* 800BB220 000B8160  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 800BB224 000B8164  7C 08 02 A6 */	mflr r0
 /* 800BB228 000B8168  38 80 00 00 */	li r4, 0
@@ -843,7 +841,7 @@ init__Q210JADUtility11DataMgrBaseFv:
 /* 800BB258 000B8198  4E 80 00 20 */	blr 
 
 .global "save__Q210JADUtility7Prm<Pc>FR21JSUMemoryOutputStream"
-"save__Q210JADUtility7Prm<Pc>FR21JSUMemoryOutputStream":
+"save__Q210JADUtility7Prm<Pc>FR21JSUMemoryOutputStream": # weak function
 /* 800BB25C 000B819C  94 21 FF E0 */	stwu r1, -0x20(r1)
 /* 800BB260 000B81A0  7C 08 02 A6 */	mflr r0
 /* 800BB264 000B81A4  90 01 00 24 */	stw r0, 0x24(r1)
@@ -881,7 +879,7 @@ lbl_800BB2B0:
 /* 800BB2DC 000B821C  4E 80 00 20 */	blr 
 
 .global "load__Q210JADUtility7Prm<Pc>FR20JSUMemoryInputStream"
-"load__Q210JADUtility7Prm<Pc>FR20JSUMemoryInputStream":
+"load__Q210JADUtility7Prm<Pc>FR20JSUMemoryInputStream": # weak function
 /* 800BB2E0 000B8220  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 800BB2E4 000B8224  7C 08 02 A6 */	mflr r0
 /* 800BB2E8 000B8228  90 01 00 14 */	stw r0, 0x14(r1)
@@ -909,7 +907,7 @@ lbl_800BB328:
 /* 800BB33C 000B827C  4E 80 00 20 */	blr 
 
 .global "@532@28@init__Q210JADUtility15DataLoadMgrNodeFv"
-"@532@28@init__Q210JADUtility15DataLoadMgrNodeFv":
+"@532@28@init__Q210JADUtility15DataLoadMgrNodeFv": # weak function
 /* 800BB340 000B8280  39 60 00 1C */	li r11, 0x1c
 /* 800BB344 000B8284  7D 63 58 2E */	lwzx r11, r3, r11
 /* 800BB348 000B8288  7C 63 5A 14 */	add r3, r3, r11
@@ -917,7 +915,7 @@ lbl_800BB328:
 /* 800BB350 000B8290  4B FF FE 8C */	b init__Q210JADUtility15DataLoadMgrNodeFv
 
 .global "@532@28@__dt__Q210JADUtility15DataLoadMgrNodeFv"
-"@532@28@__dt__Q210JADUtility15DataLoadMgrNodeFv":
+"@532@28@__dt__Q210JADUtility15DataLoadMgrNodeFv": # weak function
 /* 800BB354 000B8294  39 60 00 1C */	li r11, 0x1c
 /* 800BB358 000B8298  7D 63 58 2E */	lwzx r11, r3, r11
 /* 800BB35C 000B829C  7C 63 5A 14 */	add r3, r3, r11
@@ -925,7 +923,7 @@ lbl_800BB328:
 /* 800BB364 000B82A4  4B FF F5 50 */	b __dt__Q210JADUtility15DataLoadMgrNodeFv
 
 .global "@592@28@init__Q210JADUtility11DataMgrNodeFv"
-"@592@28@init__Q210JADUtility11DataMgrNodeFv":
+"@592@28@init__Q210JADUtility11DataMgrNodeFv": # weak function
 /* 800BB368 000B82A8  39 60 00 1C */	li r11, 0x1c
 /* 800BB36C 000B82AC  7D 63 58 2E */	lwzx r11, r3, r11
 /* 800BB370 000B82B0  7C 63 5A 14 */	add r3, r3, r11
@@ -933,7 +931,7 @@ lbl_800BB328:
 /* 800BB378 000B82B8  4B FF FE 20 */	b init__Q210JADUtility11DataMgrNodeFv
 
 .global "@592@28@__dt__Q210JADUtility11DataMgrNodeFv"
-"@592@28@__dt__Q210JADUtility11DataMgrNodeFv":
+"@592@28@__dt__Q210JADUtility11DataMgrNodeFv": # weak function
 /* 800BB37C 000B82BC  39 60 00 1C */	li r11, 0x1c
 /* 800BB380 000B82C0  7D 63 58 2E */	lwzx r11, r3, r11
 /* 800BB384 000B82C4  7C 63 5A 14 */	add r3, r3, r11
