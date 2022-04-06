@@ -17,5 +17,6 @@ typedef struct {
 } lconv;
 
 lconv __lconv = {
-	".", "\0C", "\0C", "\0C", "\0C", "\0C", "\0C", "\0C", "\0C", 0x7F7F7F7F, 0x7F7F7F00, "\0C", 0x7F7F7F7F, 0x7F7F7F00,
+	".", "", "", "", "", "", "", "", "", 0x7F7F7F7F, 0x7F7F7F00, "", 0x7F7F7F7F, 0x7F7F7F00,
 };
+const char* UNUSED = "C";
