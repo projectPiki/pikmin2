@@ -1630,8 +1630,7 @@ lbl_8002E914:
 /* 8002E91C 0002B85C  38 21 00 10 */	addi r1, r1, 0x10
 /* 8002E920 0002B860  4E 80 00 20 */	blr 
 
-.global __sinit_JUTGamePad_cpp
-__sinit_JUTGamePad_cpp:
+__sinit_JUTGamePad_cpp: # static initializer
 /* 8002E924 0002B864  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 8002E928 0002B868  7C 08 02 A6 */	mflr r0
 /* 8002E92C 0002B86C  3C 60 80 50 */	lis r3, mPadList__10JUTGamePad@ha
@@ -1702,7 +1701,7 @@ __sinit_JUTGamePad_cpp:
 /* 8002EA30 0002B970  4E 80 00 20 */	blr 
 
 .global "__dt__30JSUList<19JUTGamePadLongPress>Fv"
-"__dt__30JSUList<19JUTGamePadLongPress>Fv":
+"__dt__30JSUList<19JUTGamePadLongPress>Fv": # weak function
 /* 8002EA34 0002B974  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 8002EA38 0002B978  7C 08 02 A6 */	mflr r0
 /* 8002EA3C 0002B97C  90 01 00 14 */	stw r0, 0x14(r1)
@@ -1727,7 +1726,7 @@ lbl_8002EA6C:
 /* 8002EA84 0002B9C4  4E 80 00 20 */	blr 
 
 .global __ct__Q210JUTGamePad6CStickFv
-__ct__Q210JUTGamePad6CStickFv:
+__ct__Q210JUTGamePad6CStickFv: # weak function
 /* 8002EA88 0002B9C8  C0 02 83 10 */	lfs f0, lbl_80516670@sda21(r2)
 /* 8002EA8C 0002B9CC  38 00 00 00 */	li r0, 0
 /* 8002EA90 0002B9D0  D0 03 00 00 */	stfs f0, 0(r3)
@@ -1737,7 +1736,7 @@ __ct__Q210JUTGamePad6CStickFv:
 /* 8002EAA0 0002B9E0  4E 80 00 20 */	blr 
 
 .global __ct__Q210JUTGamePad7CButtonFv
-__ct__Q210JUTGamePad7CButtonFv:
+__ct__Q210JUTGamePad7CButtonFv: # weak function
 /* 8002EAA4 0002B9E4  38 00 00 00 */	li r0, 0
 /* 8002EAA8 0002B9E8  90 03 00 00 */	stw r0, 0(r3)
 /* 8002EAAC 0002B9EC  90 03 00 04 */	stw r0, 4(r3)
@@ -1755,7 +1754,7 @@ __ct__Q210JUTGamePad7CButtonFv:
 /* 8002EADC 0002BA1C  4E 80 00 20 */	blr 
 
 .global "__dt__21JSUList<10JUTGamePad>Fv"
-"__dt__21JSUList<10JUTGamePad>Fv":
+"__dt__21JSUList<10JUTGamePad>Fv": # weak function
 /* 8002EAE0 0002BA20  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 8002EAE4 0002BA24  7C 08 02 A6 */	mflr r0
 /* 8002EAE8 0002BA28  90 01 00 14 */	stw r0, 0x14(r1)

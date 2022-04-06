@@ -1,30 +1,23 @@
 .include "macros.inc"
 .section .sdata, "wa"  # 0x80514680 - 0x80514D80
 .balign 8
-.global "sVisible__Q212JUTAssertion23@unnamed@JUTAssert_cpp@"
-"sVisible__Q212JUTAssertion23@unnamed@JUTAssert_cpp@":
+"sVisible__Q212JUTAssertion23@unnamed@JUTAssert_cpp@": # local object
 	.byte 1
-	.skip 3
 
 .section .sbss # 0x80514D80 - 0x80516360
 .balign 8
-.global "sMessageLife__Q212JUTAssertion23@unnamed@JUTAssert_cpp@"
-"sMessageLife__Q212JUTAssertion23@unnamed@JUTAssert_cpp@":
-	.skip 0x8
+"sMessageLife__Q212JUTAssertion23@unnamed@JUTAssert_cpp@": # local object
+	.skip 0x4
 
 .section .sdata2, "a"     # 0x80516360 - 0x80520E40
 .balign 8
-.global lbl_80516550
 lbl_80516550:
-	.4byte 0x41F00000
-.global lbl_80516554
+	.float 30.0
 lbl_80516554:
-	.4byte 0x42100000
-.global lbl_80516558
+	.float 36.0
 lbl_80516558:
-	.4byte 0x42580000
-	.4byte 0x00000000
-.global lbl_80516560
+	.float 54.0
+.balign 8
 lbl_80516560:
 	.4byte 0x43300000
 	.4byte 0x80000000

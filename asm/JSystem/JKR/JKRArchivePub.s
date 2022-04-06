@@ -829,7 +829,7 @@ lbl_8001BB74:
 /* 8001BB88 00018AC8  4E 80 00 20 */	blr 
 
 .global getExpandedResSize__10JKRArchiveCFPCv
-getExpandedResSize__10JKRArchiveCFPCv:
+getExpandedResSize__10JKRArchiveCFPCv: # weak function
 /* 8001BB8C 00018ACC  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 8001BB90 00018AD0  7C 08 02 A6 */	mflr r0
 /* 8001BB94 00018AD4  90 01 00 14 */	stw r0, 0x14(r1)

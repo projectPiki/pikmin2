@@ -6,14 +6,11 @@ saoAboutEncoding___10JUTResFont:
 	.4byte isLeadByte_1Byte__7JUTFontFi
 	.4byte isLeadByte_2Byte__7JUTFontFi
 	.4byte isLeadByte_ShiftJIS__7JUTFontFi
-.global lbl_8047418C
 lbl_8047418C:
 	.asciz "JUTResFont: Unknown data block\n"
-.global lbl_804741AC
 lbl_804741AC:
 	.asciz "Unknown data block\n"
-.global halftofull$725
-halftofull$725:
+halftofull$725: # local object
 	.4byte 0x81408149
 	.4byte 0x81688194
 	.4byte 0x81908193
@@ -86,19 +83,16 @@ __vt__10JUTResFont:
 	.4byte isLeadByte__10JUTResFontCFi
 	.4byte loadImage__10JUTResFontFi11_GXTexMapID
 	.4byte setBlock__10JUTResFontFv
-	.4byte 0
 
 .section .sdata2, "a"     # 0x80516360 - 0x80520E40
 .balign 8
-.global lbl_805166E0
 lbl_805166E0:
-	.4byte 0x00000000
-	.4byte 0x00000000
-.global lbl_805166E8
+	.float 0.0
+.balign 8
 lbl_805166E8:
 	.4byte 0x43300000
 	.4byte 0x80000000
-.global lbl_805166F0
+.balign 8
 lbl_805166F0:
 	.4byte 0x43300000
 	.4byte 0x00000000
@@ -999,13 +993,13 @@ lbl_80031C34:
 /* 80031E54 0002ED94  4E 80 00 20 */	blr 
 
 .global getDescent__10JUTResFontCFv
-getDescent__10JUTResFontCFv:
+getDescent__10JUTResFontCFv: # weak function
 /* 80031E58 0002ED98  80 63 00 4C */	lwz r3, 0x4c(r3)
 /* 80031E5C 0002ED9C  A0 63 00 0C */	lhz r3, 0xc(r3)
 /* 80031E60 0002EDA0  4E 80 00 20 */	blr 
 
 .global getHeight__10JUTResFontCFv
-getHeight__10JUTResFontCFv:
+getHeight__10JUTResFontCFv: # weak function
 /* 80031E64 0002EDA4  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 80031E68 0002EDA8  7C 08 02 A6 */	mflr r0
 /* 80031E6C 0002EDAC  90 01 00 14 */	stw r0, 0x14(r1)
@@ -1031,7 +1025,7 @@ getHeight__10JUTResFontCFv:
 /* 80031EBC 0002EDFC  4E 80 00 20 */	blr 
 
 .global getAscent__10JUTResFontCFv
-getAscent__10JUTResFontCFv:
+getAscent__10JUTResFontCFv: # weak function
 /* 80031EC0 0002EE00  80 63 00 4C */	lwz r3, 0x4c(r3)
 /* 80031EC4 0002EE04  A0 63 00 0A */	lhz r3, 0xa(r3)
 /* 80031EC8 0002EE08  4E 80 00 20 */	blr 
@@ -1153,7 +1147,7 @@ lbl_80032050:
 /* 8003205C 0002EF9C  4E 80 00 20 */	blr 
 
 .global getWidth__10JUTResFontCFv
-getWidth__10JUTResFontCFv:
+getWidth__10JUTResFontCFv: # weak function
 /* 80032060 0002EFA0  80 63 00 4C */	lwz r3, 0x4c(r3)
 /* 80032064 0002EFA4  A0 63 00 0E */	lhz r3, 0xe(r3)
 /* 80032068 0002EFA8  4E 80 00 20 */	blr 
@@ -1320,7 +1314,7 @@ lbl_80032274:
 /* 80032290 0002F1D0  4E 80 00 20 */	blr 
 
 .global getFontType__10JUTResFontCFv
-getFontType__10JUTResFontCFv:
+getFontType__10JUTResFontCFv: # weak function
 /* 80032294 0002F1D4  80 63 00 4C */	lwz r3, 0x4c(r3)
 /* 80032298 0002F1D8  A0 63 00 08 */	lhz r3, 8(r3)
 /* 8003229C 0002F1DC  4E 80 00 20 */	blr 
@@ -1453,12 +1447,12 @@ lbl_80032448:
 /* 80032460 0002F3A0  4E 80 00 20 */	blr 
 
 .global getResFont__10JUTResFontCFv
-getResFont__10JUTResFontCFv:
+getResFont__10JUTResFontCFv: # weak function
 /* 80032464 0002F3A4  80 63 00 48 */	lwz r3, 0x48(r3)
 /* 80032468 0002F3A8  4E 80 00 20 */	blr 
 
 .global getLeading__10JUTResFontCFv
-getLeading__10JUTResFontCFv:
+getLeading__10JUTResFontCFv: # weak function
 /* 8003246C 0002F3AC  80 63 00 4C */	lwz r3, 0x4c(r3)
 /* 80032470 0002F3B0  A0 63 00 10 */	lhz r3, 0x10(r3)
 /* 80032474 0002F3B4  4E 80 00 20 */	blr 

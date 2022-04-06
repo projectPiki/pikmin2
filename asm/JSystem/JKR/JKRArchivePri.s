@@ -3,7 +3,7 @@
 .balign 8
 .global sCurrentDirID__10JKRArchive
 sCurrentDirID__10JKRArchive:
-	.skip 0x8
+	.skip 0x4
 
 .section .text, "ax"  # 0x800056C0 - 0x80472F00
 .global __ct__10JKRArchiveFlQ210JKRArchive10EMountMode
