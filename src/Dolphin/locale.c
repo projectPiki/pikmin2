@@ -1,4 +1,5 @@
 #include "types.h"
+
 typedef struct {
 	char* _0;
 	char* _4;
@@ -9,14 +10,23 @@ typedef struct {
 	char* _18;
 	char* _1C;
 	char* _20;
-	u32 _24;
-	u32 _28;
+	char  _24;
+	char _25;
+	char _26;
+	char _27;
+	char _28;
+	char _29;
+	char _2A;
 	char* _2C;
-	u32 _30;
-	u32 _34;
+	char _30;
+	char _31; 
+	char _32; 
+	char _33; 
+	char _34; 
+	char _35; 
+	char _36; 
 } lconv;
 
-lconv __lconv = {
-	".", "", "", "", "", "", "", "", "", 0x7F7F7F7F, 0x7F7F7F00, "", 0x7F7F7F7F, 0x7F7F7F00,
-};
-const char* UNUSED = "C";
+lconv __lconv = { ".","","","","","","","","",0x7F,0x7F, 0x7F, 0x7F,0x7F,0x7F,0x7F,"",0x7F,0x7F,0x7F,0x7F,0x7F,0x7F,0x7F};
+
+const char* dummy = "C";
