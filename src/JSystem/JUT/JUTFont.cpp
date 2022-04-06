@@ -31,12 +31,13 @@
  * --INFO--
  * Address:	8002D144
  * Size:	00002C
+ * Matches
  */
 JUTFont::JUTFont()
-    : _0C(0xFFFFFFFF)
-    , _10(0xFFFFFFFF)
-    , _14(0xFFFFFFFF)
-    , _18(0xFFFFFFFF)
+    : _0C()
+    , _10()
+    , _14()
+    , _18()
 {
 	_04 = 0;
 }
@@ -49,32 +50,10 @@ JUTFont::JUTFont()
  */
 void JUTFont::initialize_state()
 {
-	JUtility::TColor initialColor(0xFFFFFFFF);
-	setCharColor(initialColor);
+	setCharColor(JUtility::TColor());
 	_05 = 0;
 	_08 = 0;
 	_04 = 0;
-	/*
-	stwu     r1, -0x20(r1)
-	mflr     r0
-	stw      r0, 0x24(r1)
-	li       r0, -1
-	addi     r4, r1, 0xc
-	stw      r31, 0x1c(r1)
-	mr       r31, r3
-	stw      r0, 8(r1)
-	stw      r0, 0xc(r1)
-	bl       setCharColor__7JUTFontFQ28JUtility6TColor
-	li       r0, 0
-	stb      r0, 5(r31)
-	stw      r0, 8(r31)
-	stb      r0, 4(r31)
-	lwz      r31, 0x1c(r1)
-	lwz      r0, 0x24(r1)
-	mtlr     r0
-	addi     r1, r1, 0x20
-	blr
-	*/
 }
 
 /*
@@ -237,6 +216,7 @@ void JUTFont::drawString_size_scale(float, float, float, float, const char*, u32
  * --INFO--
  * Address:	8002D38C
  * Size:	000048
+ * Weak function.
  */
 JUTFont::~JUTFont()
 {
@@ -268,6 +248,7 @@ lbl_8002D3BC:
  * --INFO--
  * Address:	8002D3D4
  * Size:	00002C
+ * Weak function.
  */
 void JUTFont::setGX(JUtility::TColor, JUtility::TColor)
 {
@@ -290,6 +271,7 @@ void JUTFont::setGX(JUtility::TColor, JUtility::TColor)
  * --INFO--
  * Address:	8002D400
  * Size:	00002C
+ * Weak function.
  */
 u16 JUTFont::getCellWidth() const
 {
@@ -312,6 +294,7 @@ u16 JUTFont::getCellWidth() const
  * --INFO--
  * Address:	8002D42C
  * Size:	00002C
+ * Weak function.
  */
 u16 JUTFont::getCellHeight() const
 {

@@ -187,7 +187,7 @@ lbl_8002D344:
 /* 8002D388 0002A2C8  4E 80 00 20 */	blr 
 
 .global __dt__7JUTFontFv
-__dt__7JUTFontFv:
+__dt__7JUTFontFv: # weak function
 /* 8002D38C 0002A2CC  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 8002D390 0002A2D0  7C 08 02 A6 */	mflr r0
 /* 8002D394 0002A2D4  90 01 00 14 */	stw r0, 0x14(r1)
@@ -209,7 +209,7 @@ lbl_8002D3BC:
 /* 8002D3D0 0002A310  4E 80 00 20 */	blr 
 
 .global setGX__7JUTFontFQ28JUtility6TColorQ28JUtility6TColor
-setGX__7JUTFontFQ28JUtility6TColorQ28JUtility6TColor:
+setGX__7JUTFontFQ28JUtility6TColorQ28JUtility6TColor: # weak function
 /* 8002D3D4 0002A314  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 8002D3D8 0002A318  7C 08 02 A6 */	mflr r0
 /* 8002D3DC 0002A31C  90 01 00 14 */	stw r0, 0x14(r1)
@@ -223,7 +223,7 @@ setGX__7JUTFontFQ28JUtility6TColorQ28JUtility6TColor:
 /* 8002D3FC 0002A33C  4E 80 00 20 */	blr 
 
 .global getCellWidth__7JUTFontCFv
-getCellWidth__7JUTFontCFv:
+getCellWidth__7JUTFontCFv: # weak function
 /* 8002D400 0002A340  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 8002D404 0002A344  7C 08 02 A6 */	mflr r0
 /* 8002D408 0002A348  90 01 00 14 */	stw r0, 0x14(r1)
@@ -237,7 +237,7 @@ getCellWidth__7JUTFontCFv:
 /* 8002D428 0002A368  4E 80 00 20 */	blr 
 
 .global getCellHeight__7JUTFontCFv
-getCellHeight__7JUTFontCFv:
+getCellHeight__7JUTFontCFv: # weak function
 /* 8002D42C 0002A36C  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 8002D430 0002A370  7C 08 02 A6 */	mflr r0
 /* 8002D434 0002A374  90 01 00 14 */	stw r0, 0x14(r1)
