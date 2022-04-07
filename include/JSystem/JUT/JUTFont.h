@@ -36,7 +36,7 @@ struct JUTFont {
 	void initialize_state();
 	void setCharColor(JUtility::TColor);
 	void setGradColor(JUtility::TColor, JUtility::TColor);
-	void drawString_size_scale(f32, f32, f32, f32, const char*, u32, bool);
+	f32 drawString_size_scale(f32, f32, f32, f32, const char*, u32, bool);
 
 	static bool isLeadByte_1Byte(int);
 	static bool isLeadByte_2Byte(int);
