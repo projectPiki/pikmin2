@@ -1,15 +1,11 @@
 .include "macros.inc"
 .section .rodata  # 0x804732E0 - 0x8049E220
 .balign 8
-.global lbl_80474280
 lbl_80474280:
 	.asciz "Font Encode Type %d\n"
-	.skip 3
-.global lbl_80474298
+.balign 4
 lbl_80474298:
 	.asciz "IPLROM fontdata size : %u\n"
-	.skip 1
-	.skip 0xC
 
 .section .data, "wa"  # 0x8049E220 - 0x804EFC20
 .balign 8
@@ -40,7 +36,6 @@ __vt__10JUTRomFont:
 	.4byte getFontType__10JUTRomFontCFv
 	.4byte getResFont__10JUTRomFontCFv
 	.4byte isLeadByte__10JUTRomFontCFi
-	.4byte 0
 
 .section .sbss # 0x80514D80 - 0x80516360
 .balign 8
@@ -52,17 +47,15 @@ spFontHeader___10JUTRomFont:
 	.skip 0x4
 .global suFontHeaderRefered___10JUTRomFont
 suFontHeaderRefered___10JUTRomFont:
-	.skip 0x8
+	.skip 0x4
 
 .section .sdata2, "a"     # 0x80516360 - 0x80520E40
 .balign 8
-.global lbl_805166F8
 lbl_805166F8:
-	.4byte 0x00000000
-.global lbl_805166FC
+	.float 0.0
 lbl_805166FC:
 	.float 0.5
-.global lbl_80516700
+.balign 8
 lbl_80516700:
 	.4byte 0x43300000
 	.4byte 0x80000000
@@ -579,7 +572,7 @@ lbl_80032D90:
 /* 80032DD0 0002FD10  4E 80 00 20 */	blr 
 
 .global getHeight__10JUTRomFontCFv
-getHeight__10JUTRomFontCFv:
+getHeight__10JUTRomFontCFv: # weak function
 /* 80032DD4 0002FD14  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 80032DD8 0002FD18  7C 08 02 A6 */	mflr r0
 /* 80032DDC 0002FD1C  90 01 00 14 */	stw r0, 0x14(r1)
@@ -605,25 +598,25 @@ getHeight__10JUTRomFontCFv:
 /* 80032E2C 0002FD6C  4E 80 00 20 */	blr 
 
 .global getDescent__10JUTRomFontCFv
-getDescent__10JUTRomFontCFv:
+getDescent__10JUTRomFontCFv: # weak function
 /* 80032E30 0002FD70  80 6D 89 14 */	lwz r3, spFontHeader___10JUTRomFont@sda21(r13)
 /* 80032E34 0002FD74  A0 63 00 0A */	lhz r3, 0xa(r3)
 /* 80032E38 0002FD78  4E 80 00 20 */	blr 
 
 .global getAscent__10JUTRomFontCFv
-getAscent__10JUTRomFontCFv:
+getAscent__10JUTRomFontCFv: # weak function
 /* 80032E3C 0002FD7C  80 6D 89 14 */	lwz r3, spFontHeader___10JUTRomFont@sda21(r13)
 /* 80032E40 0002FD80  A0 63 00 08 */	lhz r3, 8(r3)
 /* 80032E44 0002FD84  4E 80 00 20 */	blr 
 
 .global getCellHeight__10JUTRomFontCFv
-getCellHeight__10JUTRomFontCFv:
+getCellHeight__10JUTRomFontCFv: # weak function
 /* 80032E48 0002FD88  80 6D 89 14 */	lwz r3, spFontHeader___10JUTRomFont@sda21(r13)
 /* 80032E4C 0002FD8C  A0 63 00 12 */	lhz r3, 0x12(r3)
 /* 80032E50 0002FD90  4E 80 00 20 */	blr 
 
 .global getCellWidth__10JUTRomFontCFv
-getCellWidth__10JUTRomFontCFv:
+getCellWidth__10JUTRomFontCFv: # weak function
 /* 80032E54 0002FD94  80 6D 89 14 */	lwz r3, spFontHeader___10JUTRomFont@sda21(r13)
 /* 80032E58 0002FD98  A0 63 00 10 */	lhz r3, 0x10(r3)
 /* 80032E5C 0002FD9C  4E 80 00 20 */	blr 
@@ -672,24 +665,24 @@ isLeadByte__10JUTRomFontCFi:
 /* 80032EEC 0002FE2C  4E 80 00 20 */	blr 
 
 .global getWidth__10JUTRomFontCFv
-getWidth__10JUTRomFontCFv:
+getWidth__10JUTRomFontCFv: # weak function
 /* 80032EF0 0002FE30  80 6D 89 14 */	lwz r3, spFontHeader___10JUTRomFont@sda21(r13)
 /* 80032EF4 0002FE34  A0 63 00 0C */	lhz r3, 0xc(r3)
 /* 80032EF8 0002FE38  4E 80 00 20 */	blr 
 
 .global getLeading__10JUTRomFontCFv
-getLeading__10JUTRomFontCFv:
+getLeading__10JUTRomFontCFv: # weak function
 /* 80032EFC 0002FE3C  80 6D 89 14 */	lwz r3, spFontHeader___10JUTRomFont@sda21(r13)
 /* 80032F00 0002FE40  A0 63 00 0E */	lhz r3, 0xe(r3)
 /* 80032F04 0002FE44  4E 80 00 20 */	blr 
 
 .global getResFont__10JUTRomFontCFv
-getResFont__10JUTRomFontCFv:
+getResFont__10JUTRomFontCFv: # weak function
 /* 80032F08 0002FE48  38 60 00 00 */	li r3, 0
 /* 80032F0C 0002FE4C  4E 80 00 20 */	blr 
 
 .global getFontType__10JUTRomFontCFv
-getFontType__10JUTRomFontCFv:
+getFontType__10JUTRomFontCFv: # weak function
 /* 80032F10 0002FE50  80 6D 89 10 */	lwz r3, spAboutEncoding___10JUTRomFont@sda21(r13)
 /* 80032F14 0002FE54  80 63 00 00 */	lwz r3, 0(r3)
 /* 80032F18 0002FE58  4E 80 00 20 */	blr 
