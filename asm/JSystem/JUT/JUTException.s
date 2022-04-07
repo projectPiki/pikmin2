@@ -5,129 +5,165 @@ lbl_constructor:
 
 .section .rodata  # 0x804732E0 - 0x8049E220
 .balign 8
-.global lbl_80473C18
 lbl_80473C18:
 	.asciz "SYSTEM RESET"
-	.skip 3
-.global lbl_80473C28
+.balign 4
 lbl_80473C28:
 	.asciz "MACHINE CHECK"
-	.skip 2
-.global lbl_80473C38
+.balign 4
 lbl_80473C38:
 	.asciz "EXTERNAL INTERRUPT"
-	.skip 1
-.global lbl_80473C4C
+.balign 4
 lbl_80473C4C:
 	.asciz "ALIGNMENT"
-	.skip 2
-.global lbl_80473C58
+.balign 4
 lbl_80473C58:
 	.asciz "FLOATING POINT"
-	.skip 1
-.global lbl_80473C68
+.balign 4
 lbl_80473C68:
 	.asciz "DECREMENTER"
-.global lbl_80473C74
+.balign 4
 lbl_80473C74:
 	.asciz "SYSTEM CALL"
-.global lbl_80473C80
+.balign 4
 lbl_80473C80:
 	.asciz "PERFORMACE MONITOR"
-	.skip 1
-.global lbl_80473C94
+.balign 4
 lbl_80473C94:
 	.asciz "BREAK POINT"
-.global lbl_80473CA0
+.balign 4
 lbl_80473CA0:
 	.asciz "SYSTEM INTERRUPT"
-	.skip 3
-.global lbl_80473CB4
+.balign 4
 lbl_80473CB4:
 	.asciz "THERMAL INTERRUPT"
-	.skip 2
-.global lbl_80473CC8
+.balign 4
 lbl_80473CC8:
 	.asciz "PROTECTION"
-	.skip 1
-.global lbl_80473CD4
+.balign 4
 lbl_80473CD4:
 	.asciz "%s in \"%s\" on line %d\n"
-	.skip 1
+.balign 4
+lbl_80473CEC:
 	.asciz "F%02d: Nan      "
-	.skip 3
+.balign 4
+lbl_80473D00:
 	.asciz "F%02d:+Inf     "
+.balign 4
+lbl_80473D10:
 	.asciz "F%02d:-Inf     "
+.balign 4
+lbl_80473D20:
 	.asciz "F%02d: 0.0      "
-	.skip 3
+.balign 4
+lbl_80473D34:
 	.asciz "F%02d:%+.3E"
+.balign 4
+lbl_80473D40:
 	.asciz "-------------------------------- FPR\n"
-	.skip 2
+.balign 4
+lbl_80473D68:
 	.asciz "-------------------------------- TRACE\n"
+.balign 4
+lbl_80473D90:
 	.asciz "Address:   BackChain   LR save\n"
+.balign 4
+lbl_80473DB0:
 	.asciz "Suppress trace.\n"
-	.skip 3
+.balign 4
+lbl_80473DC4:
 	.asciz "%08X:  %08X    %08X\n"
-	.skip 3
+.balign 4
+lbl_80473DDC:
 	.asciz "CONTEXT:%08XH  (%s EXCEPTION)\n"
-	.skip 1
+.balign 4
+lbl_80473DFC:
 	.asciz "CONTEXT:%08XH\n"
-	.skip 1
+.balign 4
+lbl_80473E0C:
 	.asciz " FPE: Invalid operation\n"
-	.skip 3
+.balign 4
+lbl_80473E28:
 	.asciz " Infinity - Infinity\n"
-	.skip 2
+.balign 4
+lbl_80473E40:
 	.asciz " Infinity / Infinity\n"
-	.skip 2
+.balign 4
+lbl_80473E58:
 	.asciz " Infinity * 0\n"
-	.skip 1
+.balign 4
+lbl_80473E68:
 	.asciz " Invalid compare\n"
-	.skip 2
+.balign 4
+lbl_80473E7C:
 	.asciz " Software request\n"
-	.skip 1
+.balign 4
+lbl_80473E90:
 	.asciz " Invalid square root\n"
-	.skip 2
+.balign 4
+lbl_80473EA8:
 	.asciz " Invalid integer convert\n"
-	.skip 2
+.balign 4
+lbl_80473EC4:
 	.asciz " FPE: Overflow\n"
+.balign 4
+lbl_80473ED4:
 	.asciz " FPE: Underflow\n"
-	.skip 3
+.balign 4
+lbl_80473EE8:
 	.asciz " FPE: Zero division\n"
-	.skip 3
+.balign 4
+lbl_80473F00:
 	.asciz " FPE: Inexact result\n"
-	.skip 2
+.balign 4
+lbl_80473F18:
 	.asciz "SRR0:   %08XH   SRR1:%08XH\n"
+.balign 4
+lbl_80473F34:
 	.asciz "DSISR:  %08XH   DAR: %08XH\n"
+.balign 4
+lbl_80473F50:
 	.asciz "-------------------------------- GPR\n"
-	.skip 2
+.balign 4
+lbl_80473F78:
 	.asciz "R%02d:%08XH  R%02d:%08XH  R%02d:%08XH\n"
-	.skip 1
+.balign 4
+lbl_80473FA0:
 	.asciz "R%02d:%08XH  R%02d:%08XH\n"
-	.skip 2
-.global lbl_80473FBC
+.balign 4
 lbl_80473FBC:
 	.asciz "%s %s:%x section:%d\n"
-	.skip 3
+.balign 4
+lbl_80473FD4:
 	.asciz "-------------------------------- GPRMAP\n"
-	.skip 3
+.balign 4
+lbl_80474000:
 	.asciz "R%02d: %08XH"
-	.skip 3
+.balign 4
+lbl_80474010:
 	.asciz "  no information\n"
-	.skip 2
+.balign 4
+lbl_80474024:
 	.asciz "  no register which seem to address.\n"
-	.skip 2
+.balign 4
+lbl_8047404C:
 	.asciz "-------------------------------- SRR0MAP\n"
-	.skip 2
+.balign 4
+lbl_80474078:
 	.asciz "SRR0: %08XH"
+.balign 4
+lbl_80474084:
 	.asciz " MSR:%08XH\t FPSCR:%08XH\n"
-	.skip 3
+.balign 4
+lbl_804740A0:
 	.asciz "******** EXCEPTION OCCURRED! ********\nFrameMemory:%XH\n"
-	.skip 1
+.balign 4
+lbl_804740D8:
 	.asciz "******** USER HALT ********\nFrameMemory:%XH\n"
-	.skip 3
+.balign 4
+lbl_80474108:
 	.asciz "--------------------------------\n"
-	.skip 2
-.global lbl_8047412C
+.balign 4
 lbl_8047412C:
 	.asciz "  [%08X]: .%s [%08X: %XH]\n  %s\n"
 
@@ -143,8 +179,7 @@ sMessageQueue__12JUTException:
 	.4byte 0x00000000
 	.4byte 0x00000000
 	.4byte 0x00000000
-.global c3bcnt
-c3bcnt:
+c3bcnt: # local object
 	.4byte 0x00000000
 	.4byte 0x00000000
 	.4byte 0x00000000
@@ -178,7 +213,6 @@ __vt__12JUTException:
 	.4byte 0
 	.4byte __dt__12JUTExceptionFv
 	.4byte run__12JUTExceptionFv
-	.4byte 0
 
 .section .bss  # 0x804EFC20 - 0x8051467C
 .global sMapFileList__12JUTException
@@ -220,47 +254,41 @@ fpscr__12JUTException:
 
 .section .sdata2, "a"     # 0x80516360 - 0x80520E40
 .balign 8
-.global lbl_80516610
 lbl_80516610:
 	.asciz "DSI"
-.global lbl_80516614
+.balign 4
 lbl_80516614:
 	.asciz "ISI"
-.global lbl_80516618
+.balign 4
 lbl_80516618:
 	.asciz "PROGRAM"
-.global lbl_80516620
+.balign 4
 lbl_80516620:
 	.asciz "TRACE"
-	.skip 2
-.global lbl_80516628
+.balign 4
 lbl_80516628:
 	.float 0.0
-.global lbl_8051662C
+.balign 4
 lbl_8051662C:
-	.4byte 0x20000000
-.global lbl_80516630
+	.asciz " "
+.balign 4
 lbl_80516630:
-	.4byte 0x0A000000
-.global lbl_80516634
+	.asciz "\n"
+.balign 4
 lbl_80516634:
-	.4byte 0x20534E61
-	.4byte 0x4E0A0000
-.global lbl_8051663C
+	.asciz " SNaN\n"
+.balign 4
 lbl_8051663C:
-	.4byte 0x2030202F
-	.4byte 0x20300A00
-.global lbl_80516644
+	.asciz " 0 / 0\n"
+.balign 4
 lbl_80516644:
-	.4byte 0x00000000
-.global lbl_80516648
+	.asciz ""
+.balign 4
 lbl_80516648:
 	.asciz ".map"
-	.skip 3
-.global lbl_80516650
+.balign 4
 lbl_80516650:
 	.float 10.0
-.global lbl_80516654
 lbl_80516654:
 	.float 6.0
 
@@ -3361,7 +3389,7 @@ __ct__13JUTExternalFBFP16_GXRenderModeObj8_GXGammaPvUl:
 /* 8002CD5C 00029C9C  4E 80 00 20 */	blr 
 
 .global __dt__12JUTExceptionFv
-__dt__12JUTExceptionFv:
+__dt__12JUTExceptionFv: # weak function
 /* 8002CD60 00029CA0  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 8002CD64 00029CA4  7C 08 02 A6 */	mflr r0
 /* 8002CD68 00029CA8  90 01 00 14 */	stw r0, 0x14(r1)
@@ -3388,8 +3416,7 @@ lbl_8002CDA4:
 /* 8002CDB8 00029CF8  38 21 00 10 */	addi r1, r1, 0x10
 /* 8002CDBC 00029CFC  4E 80 00 20 */	blr 
 
-.global __sinit_JUTException_cpp
-__sinit_JUTException_cpp:
+__sinit_JUTException_cpp: # static initializer
 /* 8002CDC0 00029D00  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 8002CDC4 00029D04  7C 08 02 A6 */	mflr r0
 /* 8002CDC8 00029D08  3C 60 80 50 */	lis r3, sMapFileList__12JUTException@ha
@@ -3410,7 +3437,7 @@ __sinit_JUTException_cpp:
 /* 8002CE04 00029D44  4E 80 00 20 */	blr 
 
 .global "__dt__39JSUList<Q212JUTException12JUTExMapFile>Fv"
-"__dt__39JSUList<Q212JUTException12JUTExMapFile>Fv":
+"__dt__39JSUList<Q212JUTException12JUTExMapFile>Fv": # weak function
 /* 8002CE08 00029D48  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 8002CE0C 00029D4C  7C 08 02 A6 */	mflr r0
 /* 8002CE10 00029D50  90 01 00 14 */	stw r0, 0x14(r1)

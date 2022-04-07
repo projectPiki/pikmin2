@@ -3,7 +3,7 @@
 .balign 8
 .global sManager__6JUTXfb
 sManager__6JUTXfb:
-	.skip 0x8
+	.skip 0x4
 
 .section .text, "ax"  # 0x800056C0 - 0x80472F00
 .global clearIndex__6JUTXfbFv
