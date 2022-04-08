@@ -88,6 +88,10 @@ ifeq ($(WINDOWS),1)
   CPP     := $(DEVKITPPC)/bin/powerpc-eabi-cpp.exe -P
 else
   WINE ?= wine
+  # Disable wine debug output for cleanliness
+  export WINEDEBUG ?= -all
+  # Default devkitPPC path
+  DEVKITPPC ?= /opt/devkitpro/devkitPPC
   AS      := $(DEVKITPPC)/bin/powerpc-eabi-as
   CPP     := $(DEVKITPPC)/bin/powerpc-eabi-cpp -P
 endif
@@ -176,7 +180,7 @@ $(DOL): $(ELF) | tools
 	$(QUIET) $(ELF2DOL) $< $@
 	$(QUIET) $(SHA1SUM) -c sha1/$(NAME).$(VERSION).sha1
 ifneq ($(findstring -map,$(LDFLAGS)),)
-	$(QUIET) $(PYTHON) tools/calcprogress.py $@
+	$(QUIET) $(PYTHON) tools/calcprogress.py $(DOL) $(MAP)
 endif
 ifeq ($(UPDATE_README),1)
 	$(WINE) $(READMEGEN)

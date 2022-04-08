@@ -31,9 +31,6 @@ import math
 #                                             #
 ###############################################
 
-DOL_PATH = "baserom.dol"
-MAP_PATH = "build/pikmin2.usa/pikmin2UP.MAP"
-
 MEM1_HI = 0x81200000
 MEM1_LO = 0x80004000
 
@@ -84,7 +81,7 @@ dataItem = "treasures"  # data flavor item
 
 if __name__ == "__main__":
     # Sum up DOL section sizes
-    dol_handle = open(DOL_PATH, "rb")
+    dol_handle = open(sys.argv[1], "rb")
 
     # Seek to virtual addresses
     dol_handle.seek(0x48)
@@ -126,7 +123,7 @@ if __name__ == "__main__":
         dol_code_size += i
 
     # Open map file
-    mapfile = open(MAP_PATH, "r")
+    mapfile = open(sys.argv[2], "r")
     symbols = mapfile.readlines()
 
     decomp_code_size = 0

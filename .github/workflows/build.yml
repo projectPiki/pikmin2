@@ -24,4 +24,4 @@ jobs:
           | bsdtar -xvf- -C tools --exclude Wii
         mv tools/GC tools/mwcc_compiler
     - name: make
-      run: UPDATE_README=0 make -j
+      run: MAPGENFLAG=1 UPDATE_README=0 make -j$(nproc)
