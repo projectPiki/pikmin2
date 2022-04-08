@@ -9,12 +9,12 @@
  */
 void THPGXRestore(void)
 {
-	GXSetZMode(1, 7, 0);
-	GXSetBlendMode(0, 1, 0, 0xF);
+	GXSetZMode(GX_ENABLE, GX_ALWAYS, GX_DISABLE);
+	GXSetBlendMode(GX_BM_NONE, GX_BL_ONE, GX_BL_ZERO, GX_LO_SET);
 	GXSetNumTexGens(1);
 	GXSetNumChans(0);
 	GXSetNumTevStages(1);
-	GXSetTevOrder(0, 0, 0, 0xFF);
+	GXSetTevOrder(GX_TEVSTAGE0, GX_TEXCOORD_NULL, GX_TEXMAP0, 0xFF);
 	GXSetTevOp(0, 3);
 	GXSetTevSwapMode(0, 0, 0);
 	GXSetTevSwapMode(1, 0, 0);
@@ -40,7 +40,7 @@ void THPGXYuv2RgbSetup(u16* param_1)
 	r31 = param_1[2];
 	r30 = param_1[3];
 
-	GXSetPixelFmt(0, 0);
+	GXSetPixelFmt(GX_PF_RGB8_Z24, GX_ZC_LINEAR);
 	C_MTXOrtho(MStack116, 0, r30, 0, r31, 0, -1);
 	GXSetProjection(MStack116, 1);
 	GXSetViewport(0, 0, r31, r30, 0.0, 1.0);
@@ -61,10 +61,11 @@ void THPGXYuv2RgbSetup(u16* param_1)
 	GXClearVtxDesc();
 	GXSetVtxDesc(GX_VA_POS, 1);
 	GXSetVtxDesc(GX_VA_TEX0, 1);
-	GXSetVtxAttrFmt(7, GX_VA_POS, 1, 3, 0); // These two should have more enums but there is clashing when i try to implement them
-	GXSetVtxAttrFmt(7, GX_VA_TEX0, 1, 2, 0);
+	GXSetVtxAttrFmt(7, GX_VA_POS, GX_POS_XYZ, GX_S16,
+	                0); // These two should have more enums but there is clashing when i try to implement them
+	GXSetVtxAttrFmt(7, GX_VA_TEX0, GX_POS_XYZ, GX_U16, 0);
 	GXSetNumTevStages(4);
-	GXSetTevOrder(GX_TEVSTAGE0, GX_TEXCOORD0, 1, 0xff);
+	GXSetTevOrder(GX_TEVSTAGE0, GX_TEXCOORD0, GX_TEXMAP1, 0xff);
 	GXSetTevColorIn(GX_TEVSTAGE0, GX_CC_KONST, GX_CC_TEXC, GX_CC_ZERO, GX_CC_C2);
 	GXSetTevColorOp(GX_TEVSTAGE0, GX_TEV_ADD, GX_TB_ZERO, GX_CS_SCALE_1, GX_FALSE, GX_TEVREG0);
 	GXSetTevAlphaIn(GX_TEVSTAGE0, GX_KONST, GX_CA_TEXA, GX_ZERO, GX_CA_A1);

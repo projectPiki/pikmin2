@@ -67,6 +67,10 @@ typedef struct OSMutexObject {
 // OSLink
 void __OSModuleInit(void);
 
+// OSFont
+u16 OSGetFontEncode();
+u8 OSInitFont();
+
 // targsupp
 extern void TRKAccessFile(void);
 extern void TRKCloseFile(void);

@@ -66,7 +66,8 @@ lbl_80516700:
     .4byte 0x43300000
     .4byte 0x80000000
 */
-
+JUTRomFont::AboutEncoding JUTRomFont::saoAboutEncoding_[2]
+    = { 0, 0x00020120, &JUTFont::isLeadByte_1Byte, 2, 0x00120F00, &JUTFont::isLeadByte_ShiftJIS };
 /*
  * --INFO--
  * Address:	........
@@ -117,138 +118,47 @@ JUTRomFont::~JUTRomFont()
  * Address:	80032790
  * Size:	0000CC
  */
-void JUTRomFont::loadImage(JKRHeap*)
+void JUTRomFont::loadImage(JKRHeap* param_1)
 {
-	/*
-	stwu     r1, -0x20(r1)
-	mflr     r0
-	stw      r0, 0x24(r1)
-	stw      r31, 0x1c(r1)
-	stw      r30, 0x18(r1)
-	or.      r30, r4, r4
-	stw      r29, 0x14(r1)
-	mr       r29, r3
-	bne      lbl_800327B8
-	lwz      r30, sCurrentHeap__7JKRHeap@sda21(r13)
+	u32 byteCount;
 
-lbl_800327B8:
-	lwz      r0, spFontHeader___10JUTRomFont@sda21(r13)
-	cmplwi   r0, 0
-	bne      lbl_80032834
-	bl       OSGetFontEncode
-	lis      r5, lbl_80474280@ha
-	clrlwi   r4, r3, 0x10
-	addi     r3, r5, lbl_80474280@l
-	crclr    6
-	bl       JUTReportConsole_f
-	bl       OSGetFontEncode
-	clrlwi   r0, r3, 0x10
-	lis      r3, lbl_80474298@ha
-	mulli    r5, r0, 0xc
-	lis      r4, saoAboutEncoding___10JUTRomFont@ha
-	addi     r3, r3, lbl_80474298@l
-	addi     r0, r4, saoAboutEncoding___10JUTRomFont@l
-	add      r4, r0, r5
-	stw      r4, spAboutEncoding___10JUTRomFont@sda21(r13)
-	lwz      r31, 4(r4)
-	mr       r4, r31
-	crclr    6
-	bl       JUTReportConsole_f
-	mr       r3, r31
-	mr       r5, r30
-	li       r4, 0x20
-	bl       alloc__7JKRHeapFUliP7JKRHeap
-	stw      r3, spFontHeader___10JUTRomFont@sda21(r13)
-	bl       OSInitFont
-	lwz      r3, spFontHeader___10JUTRomFont@sda21(r13)
-	lhz      r0, 0xc(r3)
-	stw      r0, 8(r29)
-
-lbl_80032834:
-	lwz      r3, suFontHeaderRefered___10JUTRomFont@sda21(r13)
-	addi     r0, r3, 1
-	stw      r0, suFontHeaderRefered___10JUTRomFont@sda21(r13)
-	lwz      r31, 0x1c(r1)
-	lwz      r30, 0x18(r1)
-	lwz      r29, 0x14(r1)
-	lwz      r0, 0x24(r1)
-	mtlr     r0
-	addi     r1, r1, 0x20
-	blr
-	*/
+	if (param_1 == nullptr) {
+		param_1 = JKRHeap::sCurrentHeap;
+	}
+	if (spFontHeader_ == nullptr) {
+		JUTReportConsole_f("Font Encode Type %d\n", OSGetFontEncode());
+		spAboutEncoding_ = &saoAboutEncoding_[OSGetFontEncode()];
+		byteCount        = (spAboutEncoding_->m_dataSize);
+		JUTReportConsole_f("IPLROM fontdata size : %u\n", byteCount);
+		spFontHeader_ = (FontHeader*)JKRHeap::alloc(byteCount, 0x20, param_1);
+		OSInitFont();
+		_08 = spFontHeader_->m_width;
+	}
+	suFontHeaderRefered_++;
 }
 
 /*
  * --INFO--
  * Address:	8003285C
  * Size:	0000F8
+ * TODO: finish GX enums
  */
-void JUTRomFont::setGX()
+void JUTRomFont::setGX(void)
 {
-	/*
-	stwu     r1, -0x10(r1)
-	mflr     r0
-	li       r3, 1
-	stw      r0, 0x14(r1)
-	bl       GXSetNumChans
-	li       r3, 1
-	bl       GXSetNumTevStages
-	li       r3, 1
-	bl       GXSetNumTexGens
-	li       r3, 0
-	li       r4, 0
-	li       r5, 0
-	li       r6, 4
-	bl       GXSetTevOrder
-	li       r3, 4
-	li       r4, 0
-	li       r5, 0
-	li       r6, 1
-	li       r7, 0
-	li       r8, 0
-	li       r9, 2
-	bl       GXSetChanCtrl
-	li       r3, 0
-	li       r4, 0
-	bl       GXSetTevOp
-	li       r3, 1
-	li       r4, 4
-	li       r5, 5
-	li       r6, 0xf
-	bl       GXSetBlendMode
-	li       r3, 0
-	li       r4, 9
-	li       r5, 1
-	li       r6, 4
-	li       r7, 0
-	bl       GXSetVtxAttrFmt
-	li       r3, 0
-	li       r4, 0xb
-	li       r5, 1
-	li       r6, 5
-	li       r7, 0
-	bl       GXSetVtxAttrFmt
-	li       r3, 0
-	li       r4, 0xd
-	li       r5, 1
-	li       r6, 2
-	li       r7, 0xf
-	bl       GXSetVtxAttrFmt
-	bl       GXClearVtxDesc
-	li       r3, 9
-	li       r4, 1
-	bl       GXSetVtxDesc
-	li       r3, 0xb
-	li       r4, 1
-	bl       GXSetVtxDesc
-	li       r3, 0xd
-	li       r4, 1
-	bl       GXSetVtxDesc
-	lwz      r0, 0x14(r1)
-	mtlr     r0
-	addi     r1, r1, 0x10
-	blr
-	*/
+	GXSetNumChans(1);
+	GXSetNumTevStages(1);
+	GXSetNumTexGens(1);
+	GXSetTevOrder(GX_TEVSTAGE0, GX_TEXCOORD_NULL, GX_TEXMAP0, 4);
+	GXSetChanCtrl(4, GX_DISABLE, 0, 1, 0, 0, 2);
+	GXSetTevOp(0, 0);
+	GXSetBlendMode(GX_BM_BLEND, GX_BL_SRCALPHA, GX_BL_INVSRCALPHA, GX_LO_SET);
+	GXSetVtxAttrFmt(0, GX_VA_POS, GX_POS_XYZ, GX_F32, 0);
+	GXSetVtxAttrFmt(0, GX_VA_CLR0, GX_POS_XYZ, GX_RGB565, 0);
+	GXSetVtxAttrFmt(0, GX_VA_TEX0, GX_POS_XYZ, GX_U16, 0xf);
+	GXClearVtxDesc();
+	GXSetVtxDesc(9, 1);
+	GXSetVtxDesc(0xb, 1);
+	GXSetVtxDesc(0xd, 1);
 }
 
 /*

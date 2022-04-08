@@ -95,6 +95,7 @@ struct JUTRomFont : public JUTFont {
 	static AboutEncoding* spAboutEncoding_;
 	static FontHeader* spFontHeader_;
 	static u32 suFontHeaderRefered_; // they misspelled referred
+	static AboutEncoding saoAboutEncoding_[2];
 };
 
 /**

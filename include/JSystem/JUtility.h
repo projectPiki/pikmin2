@@ -3,6 +3,10 @@
 
 #include "types.h"
 
+extern "C" {
+void JUTReportConsole_f(char const*, ...);
+}
+
 namespace JUtility {
 struct TColor {
 	inline TColor() { asU32 = 0xFFFFFFFF; }

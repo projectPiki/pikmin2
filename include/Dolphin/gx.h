@@ -1,6 +1,8 @@
 #ifndef _DOLPHIN_GX_H
 #define _DOLPHIN_GX_H
 
+// TODO: Finish GX enums
+
 #include "types.h"
 
 #ifdef __cplusplus
@@ -490,6 +492,7 @@ typedef enum _SDK_GXZFmt16 {
 
 void GXSetNumTexGens(u32);
 void GXSetNumChans(u32);
+void GXSetChanCtrl(u32 chan, GXBool enable, u32 amb_src, u32 mat_src, u32 light_mask, u32 diff_fn, u32 attn_fn);
 void GXSetNumTevStages(u32);
 void GXSetTevOrder(GXTevStageID, GXTexCoordID, GXTexMapID, s32);
 void GXSetTevOp(s32, s32);
@@ -500,6 +503,8 @@ void GXSetTevAlphaOp(GXTevStageID, uint, GXTevBias, GXTevScale, GXBool, GXTevReg
 void GXSetTevKColor(GXTevKColorID, GXColor);
 void GXSetTevKColorSel(GXTevStageID, GXTevKColorSel);
 void GXSetVtxAttrFmt(uint, GXAttr, GXCompCnt, GXCompType, uint);
+void GXClearVtxDesc();
+void GXSetVtxDesc(u32, u32);
 
 void GXBeginDisplayList(void*, u32 dlSize);
 u32 GXEndDisplayList(void);
