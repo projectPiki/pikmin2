@@ -5,69 +5,66 @@
 /*
     Generated from dpostproc
 
-    .section .rodata  # 0x804732E0 - 0x8049E220
-    .global lbl_80474280
-    lbl_80474280:
-        .asciz "Font Encode Type %d\n"
-        .skip 3
-    .global lbl_80474298
-    lbl_80474298:
-        .asciz "IPLROM fontdata size : %u\n"
-        .skip 1
-        .skip 0xC
+.section .rodata  # 0x804732E0 - 0x8049E220
+.balign 8
+lbl_80474280:
+    .asciz "Font Encode Type %d\n"
+.balign 4
+lbl_80474298:
+    .asciz "IPLROM fontdata size : %u\n"
 
-    .section .data, "wa"  # 0x8049E220 - 0x804EFC20
-    .global saoAboutEncoding___10JUTRomFont
-    saoAboutEncoding___10JUTRomFont:
-        .4byte 0x00000000
-        .4byte 0x00020120
-        .4byte isLeadByte_1Byte__7JUTFontFi
-        .4byte 0x00000002
-        .4byte 0x00120F00
-        .4byte isLeadByte_ShiftJIS__7JUTFontFi
-    .global __vt__10JUTRomFont
-    __vt__10JUTRomFont:
-        .4byte 0
-        .4byte 0
-        .4byte __dt__10JUTRomFontFv
-        .4byte setGX__10JUTRomFontFv
-        .4byte setGX__7JUTFontFQ28JUtility6TColorQ28JUtility6TColor
-        .4byte drawChar_scale__10JUTRomFontFffffib
-        .4byte getLeading__10JUTRomFontCFv
-        .4byte getAscent__10JUTRomFontCFv
-        .4byte getDescent__10JUTRomFontCFv
-        .4byte getHeight__10JUTRomFontCFv
-        .4byte getWidth__10JUTRomFontCFv
-        .4byte getWidthEntry__10JUTRomFontCFiPQ27JUTFont6TWidth
-        .4byte getCellWidth__10JUTRomFontCFv
-        .4byte getCellHeight__10JUTRomFontCFv
-        .4byte getFontType__10JUTRomFontCFv
-        .4byte getResFont__10JUTRomFontCFv
-        .4byte isLeadByte__10JUTRomFontCFi
-        .4byte 0
+.section .data, "wa"  # 0x8049E220 - 0x804EFC20
+.balign 8
+.global saoAboutEncoding___10JUTRomFont
+saoAboutEncoding___10JUTRomFont:
+    .4byte 0x00000000
+    .4byte 0x00020120
+    .4byte isLeadByte_1Byte__7JUTFontFi
+    .4byte 0x00000002
+    .4byte 0x00120F00
+    .4byte isLeadByte_ShiftJIS__7JUTFontFi
+.global __vt__10JUTRomFont
+__vt__10JUTRomFont:
+    .4byte 0
+    .4byte 0
+    .4byte __dt__10JUTRomFontFv
+    .4byte setGX__10JUTRomFontFv
+    .4byte setGX__7JUTFontFQ28JUtility6TColorQ28JUtility6TColor
+    .4byte drawChar_scale__10JUTRomFontFffffib
+    .4byte getLeading__10JUTRomFontCFv
+    .4byte getAscent__10JUTRomFontCFv
+    .4byte getDescent__10JUTRomFontCFv
+    .4byte getHeight__10JUTRomFontCFv
+    .4byte getWidth__10JUTRomFontCFv
+    .4byte getWidthEntry__10JUTRomFontCFiPQ27JUTFont6TWidth
+    .4byte getCellWidth__10JUTRomFontCFv
+    .4byte getCellHeight__10JUTRomFontCFv
+    .4byte getFontType__10JUTRomFontCFv
+    .4byte getResFont__10JUTRomFontCFv
+    .4byte isLeadByte__10JUTRomFontCFi
 
-    .section .sbss # 0x80514D80 - 0x80516360
-    .global spAboutEncoding___10JUTRomFont
-    spAboutEncoding___10JUTRomFont:
-        .skip 0x4
-    .global spFontHeader___10JUTRomFont
-    spFontHeader___10JUTRomFont:
-        .skip 0x4
-    .global suFontHeaderRefered___10JUTRomFont
-    suFontHeaderRefered___10JUTRomFont:
-        .skip 0x8
+.section .sbss # 0x80514D80 - 0x80516360
+.balign 8
+.global spAboutEncoding___10JUTRomFont
+spAboutEncoding___10JUTRomFont:
+    .skip 0x4
+.global spFontHeader___10JUTRomFont
+spFontHeader___10JUTRomFont:
+    .skip 0x4
+.global suFontHeaderRefered___10JUTRomFont
+suFontHeaderRefered___10JUTRomFont:
+    .skip 0x4
 
-    .section .sdata2, "a"     # 0x80516360 - 0x80520E40
-    .global lbl_805166F8
-    lbl_805166F8:
-        .4byte 0x00000000
-    .global lbl_805166FC
-    lbl_805166FC:
-        .float 0.5
-    .global lbl_80516700
-    lbl_80516700:
-        .4byte 0x43300000
-        .4byte 0x80000000
+.section .sdata2, "a"     # 0x80516360 - 0x80520E40
+.balign 8
+lbl_805166F8:
+    .float 0.0
+lbl_805166FC:
+    .float 0.5
+.balign 8
+lbl_80516700:
+    .4byte 0x43300000
+    .4byte 0x80000000
 */
 
 /*
@@ -85,63 +82,19 @@ JUTRomFont::JUTRomFont()
  * Address:	8003264C
  * Size:	000054
  */
-JUTRomFont::JUTRomFont(JKRHeap*)
-{
-	/*
-	stwu     r1, -0x10(r1)
-	mflr     r0
-	stw      r0, 0x14(r1)
-	stw      r31, 0xc(r1)
-	mr       r31, r4
-	stw      r30, 8(r1)
-	mr       r30, r3
-	bl       __ct__7JUTFontFv
-	lis      r4, __vt__10JUTRomFont@ha
-	mr       r3, r30
-	addi     r0, r4, __vt__10JUTRomFont@l
-	mr       r4, r31
-	stw      r0, 0(r30)
-	bl       initiate__10JUTRomFontFP7JKRHeap
-	lwz      r0, 0x14(r1)
-	mr       r3, r30
-	lwz      r31, 0xc(r1)
-	lwz      r30, 8(r1)
-	mtlr     r0
-	addi     r1, r1, 0x10
-	blr
-	*/
-}
+JUTRomFont::JUTRomFont(JKRHeap* heap) { initiate(heap); }
 
 /*
  * --INFO--
  * Address:	800326A0
  * Size:	000054
  */
-void JUTRomFont::initiate(JKRHeap*)
+void JUTRomFont::initiate(JKRHeap* heap)
 {
-	/*
-	stwu     r1, -0x10(r1)
-	mflr     r0
-	stw      r0, 0x14(r1)
-	li       r0, 0
-	stw      r31, 0xc(r1)
-	mr       r31, r4
-	stw      r30, 8(r1)
-	mr       r30, r3
-	stb      r0, 4(r3)
-	bl       initialize_state__7JUTFontFv
-	mr       r3, r30
-	mr       r4, r31
-	bl       loadImage__10JUTRomFontFP7JKRHeap
-	li       r0, 1
-	stb      r0, 4(r30)
-	lwz      r0, 0x14(r1)
-	lwz      r31, 0xc(r1)
-	lwz      r30, 8(r1)
-	mtlr     r0
-	addi     r1, r1, 0x10
-	blr
-	*/
+	_04 = false;
+	JUTFont::initialize_state();
+	JUTRomFont::loadImage(heap);
+	_04 = true;
 }
 
 /*

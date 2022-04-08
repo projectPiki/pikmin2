@@ -39,7 +39,7 @@ JUTFont::JUTFont()
     , _14()
     , _18()
 {
-	_04 = 0;
+	_04 = false;
 }
 
 /*
@@ -51,9 +51,9 @@ JUTFont::JUTFont()
 void JUTFont::initialize_state()
 {
 	setCharColor(JUtility::TColor());
-	_05 = 0;
+	_05 = false;
 	_08 = 0;
-	_04 = 0;
+	_04 = false;
 }
 
 /*

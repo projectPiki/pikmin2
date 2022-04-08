@@ -42,8 +42,8 @@ struct JUTFont {
 	static bool isLeadByte_2Byte(int);
 	static bool isLeadByte_ShiftJIS(int);
 
-	u8 _04;
-	u8 _05;
+	bool _04;
+	bool _05;
 	u32 _08;
 	JUtility::TColor _0C;
 	JUtility::TColor _10;
@@ -94,7 +94,7 @@ struct JUTRomFont : public JUTFont {
 
 	static AboutEncoding* spAboutEncoding_;
 	static FontHeader* spFontHeader_;
-	static u32 suFontHeaderReferred_;
+	static u32 suFontHeaderRefered_; // they misspelled referred
 };
 
 /**
