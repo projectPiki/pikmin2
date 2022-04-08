@@ -34,6 +34,9 @@ endif
 # Overkill epilogue fixup strategy. Set to 1 if necessary.
 EPILOGUE_PROCESS := 1
 
+# Update the README after build
+UPDATE_README ?= 1
+
 BUILD_DIR := build/$(NAME).$(VERSION)
 ifeq ($(EPILOGUE_PROCESS),1)
 EPILOGUE_DIR := epilogue/$(NAME).$(VERSION)
@@ -175,7 +178,9 @@ $(DOL): $(ELF) | tools
 ifneq ($(findstring -map,$(LDFLAGS)),)
 	$(QUIET) $(PYTHON) tools/calcprogress.py $@
 endif
-	./$(READMEGEN)
+ifeq ($(UPDATE_README),1)
+	$(WINE) $(READMEGEN)
+endif
 
 clean:
 	rm -f -d -r build
