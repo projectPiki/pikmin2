@@ -104,53 +104,12 @@ void JUTRomFont::initiate(JKRHeap* heap)
  */
 JUTRomFont::~JUTRomFont()
 {
-	/*
-	stwu     r1, -0x10(r1)
-	mflr     r0
-	stw      r0, 0x14(r1)
-	stw      r31, 0xc(r1)
-	mr       r31, r4
-	stw      r30, 8(r1)
-	or.      r30, r3, r3
-	beq      lbl_80032774
-	lis      r3, __vt__10JUTRomFont@ha
-	addi     r0, r3, __vt__10JUTRomFont@l
-	stw      r0, 0(r30)
-	lwz      r3, suFontHeaderRefered___10JUTRomFont@sda21(r13)
-	addic.   r0, r3, -1
-	stw      r0, suFontHeaderRefered___10JUTRomFont@sda21(r13)
-	bne      lbl_80032748
-	lwz      r3, spFontHeader___10JUTRomFont@sda21(r13)
-	li       r4, 0
-	bl       free__7JKRHeapFPvP7JKRHeap
-	li       r0, 0
-	stw      r0, spFontHeader___10JUTRomFont@sda21(r13)
-	stw      r0, spAboutEncoding___10JUTRomFont@sda21(r13)
-
-lbl_80032748:
-	li       r0, 0
-	cmplwi   r30, 0
-	stb      r0, 4(r30)
-	beq      lbl_80032764
-	lis      r3, __vt__7JUTFont@ha
-	addi     r0, r3, __vt__7JUTFont@l
-	stw      r0, 0(r30)
-
-lbl_80032764:
-	extsh.   r0, r31
-	ble      lbl_80032774
-	mr       r3, r30
-	bl       __dl__FPv
-
-lbl_80032774:
-	lwz      r0, 0x14(r1)
-	mr       r3, r30
-	lwz      r31, 0xc(r1)
-	lwz      r30, 8(r1)
-	mtlr     r0
-	addi     r1, r1, 0x10
-	blr
-	*/
+	if (--suFontHeaderRefered_ == 0) {
+		JKRHeap::free(spFontHeader_, nullptr);
+		spFontHeader_    = nullptr;
+		spAboutEncoding_ = nullptr;
+	}
+	_04 = false;
 }
 
 /*
