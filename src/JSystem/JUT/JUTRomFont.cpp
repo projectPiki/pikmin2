@@ -281,6 +281,7 @@ f32 JUTRomFont::drawChar_scale(f32 pos_x, f32 pos_y, f32 scale_x, f32 scale_y, i
  * Address:	80032E30
  * Size:	00000C
  * int JUTRomFont::getDescent() const { return spFontHeader_->m_descent; }
+ * Weak function.
  */
 
 /*
@@ -288,6 +289,7 @@ f32 JUTRomFont::drawChar_scale(f32 pos_x, f32 pos_y, f32 scale_x, f32 scale_y, i
  * Address:	80032E3C
  * Size:	00000C
  * int JUTRomFont::getAscent() const { return spFontHeader_->m_ascent; }
+ * Weak function.
  */
 
 /*
@@ -295,6 +297,7 @@ f32 JUTRomFont::drawChar_scale(f32 pos_x, f32 pos_y, f32 scale_x, f32 scale_y, i
  * Address:	80032E48
  * Size:	00000C
  * int JUTRomFont::getCellHeight() const { return spFontHeader_->m_cellHeight; }
+ * Weak function.
  */
 
 /*
@@ -302,6 +305,7 @@ f32 JUTRomFont::drawChar_scale(f32 pos_x, f32 pos_y, f32 scale_x, f32 scale_y, i
  * Address:	80032E54
  * Size:	00000C
  * int JUTRomFont::getCellWidth() const { return spFontHeader_->m_cellWidth; }
+ * Weak function.
  */
 
 /*
@@ -335,9 +339,22 @@ bool JUTRomFont::isLeadByte(int c) const { return spAboutEncoding_->m_isLeadByte
 
 /*
  * --INFO--
+ * Address:	........
+ * Size:	00004C
+ * Fake function to force weak virtual ordering.
+ */
+void JUTRomFont::fakefunc()
+{
+	getLeading();
+	getWidth();
+}
+
+/*
+ * --INFO--
  * Address:	80032EF0
  * Size:	00000C
  * int JUTRomFont::getWidth() const { return spFontHeader_->m_width; }
+ * Weak function.
  */
 
 /*
@@ -345,13 +362,27 @@ bool JUTRomFont::isLeadByte(int c) const { return spAboutEncoding_->m_isLeadByte
  * Address:	80032EFC
  * Size:	00000C
  * int JUTRomFont::getLeading() const { return spFontHeader_->m_leading; }
+ * Weak function.
  */
+
+/*
+ * --INFO--
+ * Address:	........
+ * Size:	00004C
+ * Fake function to force weak virtual ordering.
+ */
+void JUTRomFont::fakefunc2()
+{
+	getFontType();
+	getResFont();
+}
 
 /*
  * --INFO--
  * Address:	80032F08
  * Size:	000008
  * ResFONT* JUTRomFont::getResFont() const { return nullptr; }
+ * Weak function.
  */
 
 /*
@@ -359,4 +390,5 @@ bool JUTRomFont::isLeadByte(int c) const { return spAboutEncoding_->m_isLeadByte
  * Address:	80032F10
  * Size:	00000C
  * u32 JUTRomFont::getFontType() const { return spAboutEncoding_->m_fontType; }
+ * Weak function.
  */
