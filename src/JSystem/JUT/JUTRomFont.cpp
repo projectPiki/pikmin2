@@ -166,308 +166,103 @@ void JUTRomFont::setGX(void)
  * Address:	80032954
  * Size:	000480
  */
-float JUTRomFont::drawChar_scale(float, float, float, float, int, bool)
+f32 JUTRomFont::drawChar_scale(f32 pos_x, f32 pos_y, f32 scale_x, f32 scale_y, int str_int, bool flag)
 {
-	/*
-	stwu     r1, -0x160(r1)
-	mflr     r0
-	stw      r0, 0x164(r1)
-	stfd     f31, 0x150(r1)
-	psq_st   f31, 344(r1), 0, qr0
-	stfd     f30, 0x140(r1)
-	psq_st   f30, 328(r1), 0, qr0
-	stfd     f29, 0x130(r1)
-	psq_st   f29, 312(r1), 0, qr0
-	stfd     f28, 0x120(r1)
-	psq_st   f28, 296(r1), 0, qr0
-	stfd     f27, 0x110(r1)
-	psq_st   f27, 280(r1), 0, qr0
-	stfd     f26, 0x100(r1)
-	psq_st   f26, 264(r1), 0, qr0
-	stmw     r26, 0xe8(r1)
-	or.      r27, r4, r4
-	fmr      f28, f1
-	fmr      f30, f2
-	mr       r26, r3
-	fmr      f27, f3
-	fmr      f26, f4
-	bne      lbl_800329B8
-	lfs      f1, lbl_805166F8@sda21(r2)
-	b        lbl_80032D90
+	GXTexObj sp1C_tex;
+	s32 sp18_width;
+	void* sp14_image;
+	s32 sp10_x, spC_y;
 
-lbl_800329B8:
-	lwz      r12, 0(r3)
-	lwz      r12, 0x30(r12)
-	mtctr    r12
-	bctrl
-	xoris    r3, r3, 0x8000
-	lis      r0, 0x4330
-	stw      r3, 0x44(r1)
-	mr       r3, r26
-	lwz      r12, 0(r26)
-	stw      r0, 0x40(r1)
-	lfd      f1, lbl_80516700@sda21(r2)
-	lfd      f0, 0x40(r1)
-	lwz      r12, 0x34(r12)
-	fsubs    f0, f0, f1
-	fdivs    f31, f27, f0
-	mtctr    r12
-	bctrl
-	xoris    r3, r3, 0x8000
-	lis      r0, 0x4330
-	stw      r3, 0x4c(r1)
-	cmpwi    r27, 0x100
-	lfd      f1, lbl_80516700@sda21(r2)
-	addi     r3, r1, 8
-	stw      r0, 0x48(r1)
-	lfd      f0, 0x48(r1)
-	fsubs    f0, f0, f1
-	fdivs    f29, f26, f0
-	blt      lbl_80032A34
-	srawi    r0, r27, 8
-	addi     r3, r3, 1
-	stb      r0, 8(r1)
+	// 58
+	if (str_int == 0) {
+		return 0.0f;
+	}
 
-lbl_80032A34:
-	stb      r27, 0(r3)
-	addi     r3, r1, 8
-	addi     r4, r1, 0x14
-	addi     r5, r1, 0x10
-	addi     r6, r1, 0xc
-	addi     r7, r1, 0x18
-	bl       OSGetFontTexture
-	lwz      r4, 0x14(r1)
-	addi     r3, r1, 0x1c
-	li       r5, 0x200
-	li       r6, 0x200
-	li       r7, 0
-	li       r8, 0
-	li       r9, 0
-	li       r10, 0
-	bl       GXInitTexObj
-	lfs      f1, lbl_805166F8@sda21(r2)
-	addi     r3, r1, 0x1c
-	li       r4, 1
-	li       r5, 1
-	fmr      f2, f1
-	li       r6, 0
-	fmr      f3, f1
-	li       r7, 0
-	li       r8, 0
-	bl       GXInitTexObjLOD
-	addi     r3, r1, 0x1c
-	li       r4, 0
-	bl       GXLoadTexObj
-	lbz      r0, 5(r26)
-	cmplwi   r0, 0
-	beq      lbl_80032AC4
-	lwz      r3, 0x18(r1)
-	lwz      r0, 8(r26)
-	subf     r31, r3, r0
-	b        lbl_80032AC8
+	// 64
+	f32 _f31 = scale_x / getCellWidth();
+	f32 _f29 = scale_y / getCellHeight();
 
-lbl_80032AC4:
-	li       r31, 0
+	// d0
+	char sp8_str[2];
+	char* thing_p = sp8_str;
+	if (str_int >= 0x100) {
+		thing_p++;
+		sp8_str[0] = str_int >> 8;
+	}
+	*thing_p = str_int;
 
-lbl_80032AC8:
-	lis      r4, 0x4330
-	xoris    r0, r31, 0x8000
-	stw      r0, 0x4c(r1)
-	mr       r3, r26
-	lwz      r0, 0x18(r1)
-	stw      r4, 0x48(r1)
-	lfd      f3, lbl_80516700@sda21(r2)
-	xoris    r0, r0, 0x8000
-	lfd      f0, 0x48(r1)
-	lwz      r12, 0(r26)
-	fsubs    f0, f0, f3
-	stw      r0, 0x44(r1)
-	lfs      f1, lbl_805166FC@sda21(r2)
-	stw      r4, 0x40(r1)
-	fmuls    f2, f31, f0
-	lwz      r12, 0x1c(r12)
-	lfd      f0, 0x40(r1)
-	fmadds   f28, f2, f1, f28
-	fsubs    f0, f0, f3
-	fmadds   f27, f0, f31, f28
-	mtctr    r12
-	bctrl
-	xoris    r3, r3, 0x8000
-	lis      r0, 0x4330
-	stw      r3, 0x54(r1)
-	mr       r3, r26
-	lwz      r12, 0(r26)
-	stw      r0, 0x50(r1)
-	lfd      f1, lbl_80516700@sda21(r2)
-	lfd      f0, 0x50(r1)
-	lwz      r12, 0x20(r12)
-	fsubs    f0, f0, f1
-	fnmsubs  f26, f29, f0, f30
-	mtctr    r12
-	bctrl
-	xoris    r6, r3, 0x8000
-	lis      r5, 0x4330
-	lwz      r7, 0x10(r1)
-	mr       r3, r26
-	lwz      r0, 0x18(r1)
-	slwi     r4, r7, 0xf
-	stw      r6, 0x5c(r1)
-	srawi    r4, r4, 9
-	add      r0, r7, r0
-	stw      r5, 0x58(r1)
-	addze    r30, r4
-	slwi     r4, r0, 0xf
-	lwz      r0, 0xc(r1)
-	lwz      r12, 0(r26)
-	srawi    r4, r4, 9
-	lfd      f1, lbl_80516700@sda21(r2)
-	addze    r29, r4
-	lfd      f0, 0x58(r1)
-	slwi     r0, r0, 0xf
-	srawi    r0, r0, 9
-	lwz      r12, 0x24(r12)
-	fsubs    f0, f0, f1
-	addze    r28, r0
-	fmadds   f29, f29, f0, f30
-	mtctr    r12
-	bctrl
-	lwz      r0, 0xc(r1)
-	li       r4, 0
-	li       r5, 4
-	add      r0, r0, r3
-	li       r3, 0x80
-	slwi     r0, r0, 0xf
-	srawi    r0, r0, 9
-	addze    r27, r0
-	bl       GXBegin
-	fctiwz   f7, f28
-	lis      r0, 0x4330
-	fctiwz   f2, f26
-	stw      r0, 0x68(r1)
-	fctiwz   f3, f27
-	lfd      f6, lbl_80516700@sda21(r2)
-	stfd     f7, 0x60(r1)
-	fctiwz   f1, f29
-	lis      r3, 0xCC008000@ha
-	lfs      f4, lbl_805166F8@sda21(r2)
-	stfd     f2, 0x70(r1)
-	lwz      r5, 0x64(r1)
-	lwz      r4, 0x74(r1)
-	extsh    r5, r5
-	stw      r0, 0x78(r1)
-	xoris    r5, r5, 0x8000
-	extsh    r4, r4
-	stw      r5, 0x6c(r1)
-	xoris    r5, r4, 0x8000
-	lfd      f0, 0x68(r1)
-	stfd     f3, 0x80(r1)
-	fsubs    f5, f0, f6
-	stw      r5, 0x7c(r1)
-	lwz      r4, 0x84(r1)
-	lfd      f0, 0x78(r1)
-	extsh    r4, r4
-	stfs     f5, 0xCC008000@l(r3)
-	fsubs    f0, f0, f6
-	xoris    r5, r4, 0x8000
-	stfd     f2, 0x90(r1)
-	stfs     f0, -0x8000(r3)
-	lwz      r4, 0x94(r1)
-	stfs     f4, -0x8000(r3)
-	extsh    r4, r4
-	xoris    r6, r4, 0x8000
-	lwz      r4, 0xc(r26)
-	stw      r5, 0x8c(r1)
-	stw      r0, 0x88(r1)
-	stw      r4, -0x8000(r3)
-	lfd      f0, 0x88(r1)
-	sth      r30, -0x8000(r3)
-	fsubs    f2, f0, f6
-	sth      r28, -0x8000(r3)
-	stfd     f3, 0xa0(r1)
-	lwz      r5, 0xa4(r1)
-	stfd     f1, 0xb0(r1)
-	extsh    r5, r5
-	lwz      r4, 0xb4(r1)
-	xoris    r5, r5, 0x8000
-	stw      r6, 0x9c(r1)
-	extsh    r4, r4
-	stw      r0, 0x98(r1)
-	xoris    r4, r4, 0x8000
-	lfd      f0, 0x98(r1)
-	stfs     f2, -0x8000(r3)
-	fsubs    f0, f0, f6
-	stw      r5, 0xac(r1)
-	stfs     f0, -0x8000(r3)
-	stfs     f4, -0x8000(r3)
-	lwz      r5, 0x10(r26)
-	stw      r0, 0xa8(r1)
-	stw      r5, -0x8000(r3)
-	lfd      f0, 0xa8(r1)
-	sth      r29, -0x8000(r3)
-	fsubs    f2, f0, f6
-	sth      r28, -0x8000(r3)
-	stw      r4, 0xbc(r1)
-	stw      r0, 0xb8(r1)
-	lfd      f0, 0xb8(r1)
-	stfs     f2, -0x8000(r3)
-	fsubs    f0, f0, f6
-	stfs     f0, -0x8000(r3)
-	stfd     f7, 0xc0(r1)
-	lwz      r4, 0xc4(r1)
-	stfs     f4, -0x8000(r3)
-	extsh    r5, r4
-	stfd     f1, 0xd0(r1)
-	xoris    r5, r5, 0x8000
-	lwz      r6, 0x18(r26)
-	lwz      r4, 0xd4(r1)
-	stw      r6, -0x8000(r3)
-	extsh    r4, r4
-	xoris    r4, r4, 0x8000
-	sth      r29, -0x8000(r3)
-	stw      r5, 0xcc(r1)
-	stw      r0, 0xc8(r1)
-	lfd      f0, 0xc8(r1)
-	stw      r4, 0xdc(r1)
-	fsubs    f1, f0, f6
-	stw      r0, 0xd8(r1)
-	lfd      f0, 0xd8(r1)
-	sth      r27, -0x8000(r3)
-	fsubs    f0, f0, f6
-	stfs     f1, -0x8000(r3)
-	stfs     f0, -0x8000(r3)
-	stfs     f4, -0x8000(r3)
-	stw      r0, 0xe0(r1)
-	lwz      r0, 0x14(r26)
-	stw      r0, -0x8000(r3)
-	sth      r30, -0x8000(r3)
-	sth      r27, -0x8000(r3)
-	lwz      r0, 0x18(r1)
-	add      r0, r0, r31
-	xoris    r0, r0, 0x8000
-	stw      r0, 0xe4(r1)
-	lfd      f0, 0xe0(r1)
-	fsubs    f0, f0, f6
-	fmuls    f1, f31, f0
+	// f8
+	// char* OSGetFontTexture(const char* string, void** image, s32 *x, s32 *y, s32* width);
+	OSGetFontTexture(sp8_str, &sp14_image, &sp10_x, &spC_y, &sp18_width);
+	// void GXInitTexObj(GXTexObj*, void*, u16, u16, GXTexFmt, GXTexWrapMode, GXTexWrapMode, GXBool);
+	GXInitTexObj(&sp1C_tex, sp14_image, 0x200, 0x200, GX_TF_I4, GX_CLAMP, GX_CLAMP, GX_DISABLE);
+	// void GXInitTexObjLOD(GXTexObj*, GXTexFilter, GXTexFilter, float, float, float, GXBool, GXBool, GXAnisotropy);
+	GXInitTexObjLOD(&sp1C_tex, GX_LINEAR, GX_LINEAR, 0.0f, 0.0f, 0.0f, GX_DISABLE, GX_DISABLE, GX_ANISO_1);
+	// void GXLoadTexObj(GXTexObj*, GXTexMapID);
+	GXLoadTexObj(&sp1C_tex, GX_TEXMAP0);
 
-lbl_80032D90:
-	psq_l    f31, 344(r1), 0, qr0
-	lfd      f31, 0x150(r1)
-	psq_l    f30, 328(r1), 0, qr0
-	lfd      f30, 0x140(r1)
-	psq_l    f29, 312(r1), 0, qr0
-	lfd      f29, 0x130(r1)
-	psq_l    f28, 296(r1), 0, qr0
-	lfd      f28, 0x120(r1)
-	psq_l    f27, 280(r1), 0, qr0
-	lfd      f27, 0x110(r1)
-	psq_l    f26, 264(r1), 0, qr0
-	lfd      f26, 0x100(r1)
-	lmw      r26, 0xe8(r1)
-	lwz      r0, 0x164(r1)
-	mtlr     r0
-	addi     r1, r1, 0x160
-	blr
-	*/
+	// 154
+	s32 _r31;
+	if (_05 != 0) {
+		_r31 = _08 - sp18_width;
+	} else {
+		_r31 = 0;
+	}
+
+	// 174
+	// 1ac
+	// f32 _f2 = _f31 * _r31;
+	// 1b8
+	f32 _f28 = _f31 * _r31 / 2 + pos_x;
+	// 1c0
+	f32 _f27 = sp18_width * _f31 + _f28;
+
+	// 1c4
+	// 1f4
+	f32 _f26 = pos_y - _f29 * getAscent();
+
+	// 25c
+	f32 _f29_2 = _f29 * getDescent() + pos_y;
+
+	s32 _r30 = (sp10_x << 15) / 512;                // 228
+	s32 _r29 = ((sp10_x + sp18_width) << 15) / 512; // 240
+	s32 _r28 = (spC_y << 15) / 512;                 // 258
+	s32 _r27 = ((spC_y + getHeight()) << 15) / 512; // 284
+
+	// 288
+	GXBegin(GX_QUADS, GX_VTXFMT0, 4);
+
+	f32 _f4 = 0.0f;
+
+	HW_REG(0xCC008000, f32) = (s16)_f28; // 2f4
+	HW_REG(0xCC008000, f32) = (s16)_f26; // 304
+	HW_REG(0xCC008000, f32) = _f4;       // 30c
+	HW_REG(0xCC008000, u32) = _0C.asU32; // 324
+	HW_REG(0xCC008000, s16) = _r30;      // 32c
+	HW_REG(0xCC008000, s16) = _r28;      // 334
+
+	HW_REG(0xCC008000, f32) = (s16)_f27; // 364
+	HW_REG(0xCC008000, f32) = (s16)_f26; // 370
+	HW_REG(0xCC008000, f32) = _f4;       // 374
+	HW_REG(0xCC008000, u32) = _10.asU32; // 380
+	HW_REG(0xCC008000, s16) = _r29;      // 388
+	HW_REG(0xCC008000, s16) = _r28;      // 390
+
+	HW_REG(0xCC008000, f32) = (s16)_f27;   // 3a0
+	HW_REG(0xCC008000, f32) = (s16)_f29_2; // 3a8
+	HW_REG(0xCC008000, f32) = _f4;         // 3b4
+	HW_REG(0xCC008000, u32) = _18.asU32;   // 3cc
+	HW_REG(0xCC008000, s16) = _r29;        // 3d8
+	HW_REG(0xCC008000, s16) = _r27;        // 3f8
+
+	HW_REG(0xCC008000, f32) = (s16)_f28;   // 400
+	HW_REG(0xCC008000, f32) = (s16)_f29_2; // 404
+	HW_REG(0xCC008000, f32) = _f4;         // 408
+	HW_REG(0xCC008000, u32) = _14.asU32;   // 414
+	HW_REG(0xCC008000, s16) = _r30;        // 418
+	HW_REG(0xCC008000, s16) = _r27;        // 41c
+
+	return _f31 * (sp18_width + _r31);
 }
 
 /*
@@ -475,7 +270,7 @@ lbl_80032D90:
  * Address:	80032DD4
  * Size:	00005C
  */
-u16 JUTRomFont::getHeight() const
+int JUTRomFont::getHeight() const
 {
 	return getAscent() + getDescent();
 	/*
@@ -510,35 +305,35 @@ u16 JUTRomFont::getHeight() const
  * Address:	80032E30
  * Size:	00000C
  */
-u16 JUTRomFont::getDescent() const { return spFontHeader_->m_descent; }
+int JUTRomFont::getDescent() const { return spFontHeader_->m_descent; }
 
 /*
  * --INFO--
  * Address:	80032E3C
  * Size:	00000C
  */
-u16 JUTRomFont::getAscent() const { return spFontHeader_->m_ascent; }
+int JUTRomFont::getAscent() const { return spFontHeader_->m_ascent; }
 
 /*
  * --INFO--
  * Address:	80032E48
  * Size:	00000C
  */
-u16 JUTRomFont::getCellHeight() const { return spFontHeader_->m_cellHeight; }
+int JUTRomFont::getCellHeight() const { return spFontHeader_->m_cellHeight; }
 
 /*
  * --INFO--
  * Address:	80032E54
  * Size:	00000C
  */
-u16 JUTRomFont::getCellWidth() const { return spFontHeader_->m_cellWidth; }
+int JUTRomFont::getCellWidth() const { return spFontHeader_->m_cellWidth; }
 
 /*
  * --INFO--
  * Address:	80032E60
  * Size:	000060
  */
-void JUTRomFont::getWidthEntry(int, JUTFont::TWidth*) const
+int JUTRomFont::getWidthEntry(int, JUTFont::TWidth*) const
 {
 	/*
 	stwu     r1, -0x20(r1)
@@ -582,7 +377,7 @@ bool JUTRomFont::isLeadByte(int c) const { return spAboutEncoding_->m_isLeadByte
  * Address:	80032EF0
  * Size:	00000C
  */
-u16 JUTRomFont::getWidth() const
+int JUTRomFont::getWidth() const
 {
 	return spFontHeader_->m_width;
 	/*
@@ -597,7 +392,7 @@ u16 JUTRomFont::getWidth() const
  * Address:	80032EFC
  * Size:	00000C
  */
-u16 JUTRomFont::getLeading() const { return spFontHeader_->m_leading; }
+int JUTRomFont::getLeading() const { return spFontHeader_->m_leading; }
 
 /*
  * --INFO--

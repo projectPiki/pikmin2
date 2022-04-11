@@ -70,6 +70,7 @@ void __OSModuleInit(void);
 // OSFont
 u16 OSGetFontEncode();
 u8 OSInitFont();
+char* OSGetFontTexture(const char* string, void** image, s32* x, s32* y, s32* width);
 
 // targsupp
 extern void TRKAccessFile(void);

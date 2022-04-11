@@ -25,13 +25,13 @@ typedef u32 GXCullMode;
 typedef u32 _GXVtxAttrFmtList;
 
 typedef enum _GXPrimitive {
-	GX_POINTS        = 0x0,
-	GX_LINES         = 0x1,
-	GX_LINESTRIP     = 0x2,
-	GX_TRIANGLES     = 0x3,
-	GX_TRIANGLESTRIP = 0x4,
-	GX_TRIANGLEFAN   = 0x5,
-	GX_QUADS         = 0x6,
+	GX_POINTS        = 0xb8,
+	GX_LINES         = 0xa8,
+	GX_LINESTRIP     = 0xb0,
+	GX_TRIANGLES     = 0x90,
+	GX_TRIANGLESTRIP = 0x98,
+	GX_TRIANGLEFAN   = 0xa0,
+	GX_QUADS         = 0x80
 } GXPrimitive;
 
 // Name of the vertex attribute or array. Attributes are listed in the ascending
@@ -611,7 +611,7 @@ void GXLoadTlut(GXTlutObj*, _GXTlut);
 void GXSetTlutRegionCallback(GXTlutRegionCallback*);
 
 GXTlutRegion* __GXDefaultTlutRegionCallback(_GXTlut);
-void GXInitTexObj(GXTexObj*, u32*, u16, u16, GXTexFmt, GXTexWrapMode, GXTexWrapMode, GXBool);
+void GXInitTexObj(GXTexObj*, void*, u16, u16, GXTexFmt, GXTexWrapMode, GXTexWrapMode, GXBool);
 void GXInitTexObjLOD(GXTexObj*, GXTexFilter, GXTexFilter, float, float, float, GXBool, GXBool, GXAnisotropy);
 void GXLoadTexObj(GXTexObj*, GXTexMapID);
 void GXBegin(GXPrimitive, GXVtxFmt, u16);
