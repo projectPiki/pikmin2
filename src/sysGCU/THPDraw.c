@@ -14,7 +14,7 @@ void THPGXRestore(void)
 	GXSetNumTexGens(1);
 	GXSetNumChans(0);
 	GXSetNumTevStages(1);
-	GXSetTevOrder(GX_TEVSTAGE0, GX_TEXCOORD_NULL, GX_TEXMAP0, 0xFF);
+	GXSetTevOrder(GX_TEVSTAGE0, GX_TEXCOORD0, GX_TEXMAP0, 0xFF);
 	GXSetTevOp(0, 3);
 	GXSetTevSwapMode(0, 0, 0);
 	GXSetTevSwapMode(1, 0, 0);
@@ -55,8 +55,8 @@ void THPGXYuv2RgbSetup(u16* param_1)
 	GXSetDispCopyGamma(0);
 	GXSetNumChans(0);
 	GXSetNumTexGens(2);
-	GXSetTexCoordGen2(GX_TEXCOORD_NULL, GX_TG_MTX3X4, GX_TG_TEX0, 0x3c, GX_FALSE, 0x7d);
 	GXSetTexCoordGen2(GX_TEXCOORD0, GX_TG_MTX3X4, GX_TG_TEX0, 0x3c, GX_FALSE, 0x7d);
+	GXSetTexCoordGen2(GX_TEXCOORD1, GX_TG_MTX3X4, GX_TG_TEX0, 0x3c, GX_FALSE, 0x7d);
 	GXInvalidateTexAll();
 	GXClearVtxDesc();
 	GXSetVtxDesc(GX_VA_POS, 1);
@@ -65,7 +65,7 @@ void THPGXYuv2RgbSetup(u16* param_1)
 	                0); // These two should have more enums but there is clashing when i try to implement them
 	GXSetVtxAttrFmt(7, GX_VA_TEX0, GX_POS_XYZ, GX_U16, 0);
 	GXSetNumTevStages(4);
-	GXSetTevOrder(GX_TEVSTAGE0, GX_TEXCOORD0, GX_TEXMAP1, 0xff);
+	GXSetTevOrder(GX_TEVSTAGE0, GX_TEXCOORD1, GX_TEXMAP1, 0xff);
 	GXSetTevColorIn(GX_TEVSTAGE0, GX_CC_KONST, GX_CC_TEXC, GX_CC_ZERO, GX_CC_C2);
 	GXSetTevColorOp(GX_TEVSTAGE0, GX_TEV_ADD, GX_TB_ZERO, GX_CS_SCALE_1, GX_FALSE, GX_TEVREG0);
 	GXSetTevAlphaIn(GX_TEVSTAGE0, GX_KONST, GX_CA_TEXA, GX_ZERO, GX_CA_A1);
@@ -73,7 +73,7 @@ void THPGXYuv2RgbSetup(u16* param_1)
 	GXSetTevKColorSel(GX_TEVSTAGE0, GX_TEV_KCSEL_K0_B);
 	GXSetTevKAlphaSel(GX_TEVSTAGE0, 0x1c);
 	GXSetTevSwapMode(GX_TEVSTAGE0, GX_TEV_SWAP0, GX_TEV_SWAP0);
-	GXSetTevOrder(GX_TEVSTAGE1, GX_TEXCOORD0, 2, 0xff); // Unsure as to what the proper form of the GXTexMapID should be
+	GXSetTevOrder(GX_TEVSTAGE1, GX_TEXCOORD1, GX_TEXMAP2, 0xff); // Unsure as to what the proper form of the GXTexMapID should be
 	GXSetTevColorIn(GX_TEVSTAGE1, GX_CC_KONST, GX_CC_TEXC, GX_CC_ZERO, GX_CC_C0);
 	GXSetTevColorOp(GX_TEVSTAGE1, GX_TEV_ADD, GX_TB_ZERO, GX_CS_SCALE_2, GX_FALSE, GX_TEVREG0);
 	GXSetTevAlphaIn(GX_TEVSTAGE1, GX_KONST, GX_CA_TEXA, GX_ZERO, GX_CA_A0);
@@ -81,13 +81,13 @@ void THPGXYuv2RgbSetup(u16* param_1)
 	GXSetTevKColorSel(GX_TEVSTAGE1, GX_TEV_KCSEL_K1_B);
 	GXSetTevKAlphaSel(GX_TEVSTAGE1, 0x1d);
 	GXSetTevSwapMode(GX_TEVSTAGE1, GX_TEV_SWAP0, GX_TEV_SWAP0);
-	GXSetTevOrder(GX_TEVSTAGE2, GX_TEXCOORD_NULL, GX_TEXMAP0, 0xff);
+	GXSetTevOrder(GX_TEVSTAGE2, GX_TEXCOORD0, GX_TEXMAP0, 0xff);
 	GXSetTevColorIn(GX_TEVSTAGE2, GX_CC_KONST, GX_CC_TEXC, GX_CC_ONE, GX_CC_C0);
 	GXSetTevColorOp(GX_TEVSTAGE2, GX_TEV_ADD, GX_TB_ZERO, GX_CS_SCALE_1, GX_TRUE, GX_TEVREG0);
 	GXSetTevAlphaIn(GX_TEVSTAGE2, GX_CA_TEXA, GX_KONST, GX_KONST, GX_CA_A0);
 	GXSetTevAlphaOp(GX_TEVSTAGE2, 0, GX_TB_ZERO, GX_CS_SCALE_1, GX_TRUE, GX_TEVREG0);
 	GXSetTevSwapMode(GX_TEVSTAGE2, GX_TEV_SWAP0, GX_TEV_SWAP0);
-	GXSetTevOrder(GX_TEVSTAGE3, 0xff, 0xff, 0xff);
+	GXSetTevOrder(GX_TEVSTAGE3, GX_TEXCOORD_NULL, GX_TEXMAP_NULL, 0xff);
 	GXSetTevColorIn(GX_TEVSTAGE3, GX_CC_C1, GX_CC_C0, GX_CC_ZERO, GX_CC_KONST);
 	GXSetTevColorOp(GX_TEVSTAGE3, GX_TEV_ADD, GX_TB_ZERO, GX_CS_SCALE_1, GX_TRUE, GX_TEVREG0);
 	GXSetTevAlphaIn(GX_TEVSTAGE3, GX_KONST, GX_KONST, GX_KONST, GX_ZERO);

@@ -131,7 +131,6 @@ typedef enum _GXTexWrapMode {
 typedef enum _GXTexFilter { GX_NEAR, GX_LINEAR, GX_NEAR_MIP_NEAR, GX_LIN_MIP_NEAR, GX_NEAR_MIP_LIN, GX_LIN_MIP_LIN } GXTexFilter;
 
 typedef enum _GXTexCoordID {
-	GX_TEXCOORD_NULL,
 	GX_TEXCOORD0,
 	GX_TEXCOORD1,
 	GX_TEXCOORD2,
@@ -140,6 +139,8 @@ typedef enum _GXTexCoordID {
 	GX_TEXCOORD5,
 	GX_TEXCOORD6,
 	GX_TEXCOORD7,
+	GX_MAX_TEXCOORD  = 8,
+	GX_TEXCOORD_NULL = 0xff
 } GXTexCoordID;
 
 typedef enum _GXTevOp {
@@ -305,8 +306,8 @@ typedef enum _GXTexMapID {
 	GX_TEXMAP6, // Texture map ID 6.
 	GX_TEXMAP7, // Texture map ID 7.
 	GX_MAX_TEXMAP,
-	GX_TEXMAP_NULL, // No textures used.
-	GX_TEX_DISABLE  // No texture map look-up.
+	GX_TEXMAP_NULL = 0xff, // No textures used.
+	GX_TEX_DISABLE = 0x100 // No texture map look-up.
 } GXTexMapID;
 
 // Vertex format number.
@@ -490,7 +491,7 @@ typedef enum _SDK_GXZFmt16 {
 	GX_ZC_FAR     // Compressed format (12e4) for large far/near ratio.
 } GXZFmt16;
 
-void GXSetNumTexGens(u32);
+void GXSetNumTexGens(u8);
 void GXSetNumChans(u32);
 void GXSetChanCtrl(u32 chan, GXBool enable, u32 amb_src, u32 mat_src, u32 light_mask, u32 diff_fn, u32 attn_fn);
 void GXSetNumTevStages(u32);
