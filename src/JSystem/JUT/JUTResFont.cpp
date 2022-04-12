@@ -1,4 +1,5 @@
 #include "JSystem/JUT/JUTFont.h"
+#include "JSystem/JKR/JKRHeap.h"
 #include "types.h"
 
 /*
