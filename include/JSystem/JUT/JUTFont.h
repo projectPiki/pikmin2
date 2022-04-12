@@ -6,7 +6,24 @@
 
 struct JKRAramBlock;
 struct JKRHeap;
-struct ResFONT;
+
+struct ResFONT {
+	u32 m_rawType;     // _00
+	u32 m_blockLength; // _04
+	u16 m_encoding;    // _08
+	u16 _0A;           // _0A
+	union {
+		u32 asU32;
+		struct {
+			s16 m_messageCodeHighWord, m_messageCodeLowWord;
+		} words;
+	};
+	u32 _10;      // _10
+	u32 _14;      // _14
+	u32 _18;      // _18
+	u32 _1C;      // _1C
+	void* m_data; // _20
+};
 
 struct JUTFont {
 	typedef bool IsLeadByte(int);
@@ -236,18 +253,6 @@ struct JUTCacheFont : public JUTResFont {
 	u8 _B0;                    // _B0
 	u32 : 0;
 	u8 _B4[4]; // _B4
-};
-
-struct ResFONT {
-	u32 _00;
-	u32 _04;
-	u32 _08;
-	u32 _0C;
-	u32 _10;
-	u32 _14;
-	u32 _18;
-	u32 _1C;
-	void* data_0x20;
 };
 
 #endif

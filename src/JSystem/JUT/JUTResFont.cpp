@@ -292,15 +292,12 @@ bool JUTResFont::protected_initiate(const ResFONT* a, JKRHeap* b)
  */
 void JUTResFont::countBlock()
 {
-	void** ppvVar3;
-
-	u32 uVar2         = 0;
 	m_widthBlockCount = 0;
 	m_glyphBlockCount = 0;
 	m_mapBlockCount   = 0;
-	ppvVar3           = &m_resource->data_0x20;
-	while (m_resource->_0C > uVar2) {
-		int pvVar1 = (int)*ppvVar3;
+	ResFONT* ppvVar3  = (ResFONT*)&m_resource->m_data;
+	for (u32 i = 0; m_resource->asU32 > i; i++, (u8*)ppvVar3 += ppvVar3->m_blockLength) {
+		u32 pvVar1 = ppvVar3->m_rawType;
 		switch (pvVar1) {
 		case 'WID1':
 			m_widthBlockCount++;
@@ -317,8 +314,6 @@ void JUTResFont::countBlock()
 		default:
 			JUTReportConsole("JUTResFont: Unknown data block\n");
 		}
-		uVar2++;
-		ppvVar3 = (void**)((int)ppvVar3 + (int)ppvVar3[1]); // jank?
 	};
 }
 
