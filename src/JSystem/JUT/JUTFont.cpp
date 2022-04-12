@@ -160,7 +160,7 @@ f32 JUTFont::drawString_size_scale(f32 w, f32 x, f32 y, f32 z, const char* str, 
  * --INFO--
  * Address:	8002D400
  * Size:	00002C
- * u16 JUTFont::getCellWidth() const
+ * int JUTFont::getCellWidth() const
  * Weak function.
  */
 
@@ -168,6 +168,6 @@ f32 JUTFont::drawString_size_scale(f32 w, f32 x, f32 y, f32 z, const char* str, 
  * --INFO--
  * Address:	8002D42C
  * Size:	00002C
- * u16 JUTFont::getCellHeight() const
+ * int JUTFont::getCellHeight() const
  * Weak function.
  */

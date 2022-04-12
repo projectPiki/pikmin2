@@ -135,9 +135,9 @@ struct JUTResFont : public JUTFont {
 	void deleteMemBlocks_ResFont();
 	u32 getFontCode(int) const;
 	void initialize_state();
-	void initiate(const ResFONT*, JKRHeap*);
+	bool initiate(const ResFONT*, JKRHeap*);
 	void loadFont(int, _GXTexMapID, TWidth*);
-	void protected_initiate(const ResFONT*, JKRHeap*);
+	bool protected_initiate(const ResFONT*, JKRHeap*);
 
 	u32 _1C;             // _1C
 	u32 _20;             // _20
@@ -236,6 +236,18 @@ struct JUTCacheFont : public JUTResFont {
 	u8 _B0;                    // _B0
 	u32 : 0;
 	u8 _B4[4]; // _B4
+};
+
+struct ResFONT {
+	u32 _00;
+	u32 _04;
+	u32 _08;
+	u32 _0C;
+	u32 _10;
+	u32 _14;
+	u32 _18;
+	u32 _1C;
+	void* data_0x20;
 };
 
 #endif

@@ -4,6 +4,7 @@
 #include "types.h"
 
 extern "C" {
+void JUTReportConsole(char const*);
 void JUTReportConsole_f(char const*, ...);
 }
 

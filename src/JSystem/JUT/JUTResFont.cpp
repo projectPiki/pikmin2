@@ -18,54 +18,101 @@
         .asciz "Unknown data block\n"
     .global halftofull$725
     halftofull$725:
-        .4byte 0x81408149
-        .4byte 0x81688194
-        .4byte 0x81908193
-        .4byte 0x81958166
-        .4byte 0x8169816A
-        .4byte 0x8196817B
-        .4byte 0x8143817C
-        .4byte 0x8144815E
-        .4byte 0x824F8250
-        .4byte 0x82518252
-        .4byte 0x82538254
-        .4byte 0x82558256
-        .4byte 0x82578258
-        .4byte 0x81468147
-        .4byte 0x81838181
-        .4byte 0x81848148
-        .4byte 0x81978260
-        .4byte 0x82618262
-        .4byte 0x82638264
-        .4byte 0x82658266
-        .4byte 0x82678268
-        .4byte 0x8269826A
-        .4byte 0x826B826C
-        .4byte 0x826D826E
-        .4byte 0x826F8270
-        .4byte 0x82718272
-        .4byte 0x82738274
-        .4byte 0x82758276
-        .4byte 0x82778278
-        .4byte 0x8279816D
-        .4byte 0x818F816E
-        .4byte 0x814F8151
-        .4byte 0x81658281
-        .4byte 0x82828283
-        .4byte 0x82848285
-        .4byte 0x82868287
-        .4byte 0x82888289
-        .4byte 0x828A828B
-        .4byte 0x828C828D
-        .4byte 0x828E828F
-        .4byte 0x82908291
-        .4byte 0x82928293
-        .4byte 0x82948295
-        .4byte 0x82968297
-        .4byte 0x82988299
-        .4byte 0x829A816F
-        .4byte 0x81628170
-        .4byte 0x81600000
+        .2byte 0x8140
+        .2byte 0x8149
+        .2byte 0x8168
+        .2byte 0x8194
+        .2byte 0x8190
+        .2byte 0x8193
+        .2byte 0x8195
+        .2byte 0x8166
+        .2byte 0x8169
+        .2byte 0x816A
+        .2byte 0x8196
+        .2byte 0x817B
+        .2byte 0x8143
+        .2byte 0x817C
+        .2byte 0x8144
+        .2byte 0x815E
+        .2byte 0x824F
+        .2byte 0x8250
+        .2byte 0x8251
+        .2byte 0x8252
+        .2byte 0x8253
+        .2byte 0x8254
+        .2byte 0x8255
+        .2byte 0x8256
+        .2byte 0x8257
+        .2byte 0x8258
+        .2byte 0x8146
+        .2byte 0x8147
+        .2byte 0x8183
+        .2byte 0x8181
+        .2byte 0x8184
+        .2byte 0x8148
+        .2byte 0x8197
+        .2byte 0x8260
+        .2byte 0x8261
+        .2byte 0x8262
+        .2byte 0x8263
+        .2byte 0x8264
+        .2byte 0x8265
+        .2byte 0x8266
+        .2byte 0x8267
+        .2byte 0x8268
+        .2byte 0x8269
+        .2byte 0x826A
+        .2byte 0x826B
+        .2byte 0x826C
+        .2byte 0x826D
+        .2byte 0x826E
+        .2byte 0x826F
+        .2byte 0x8270
+        .2byte 0x8271
+        .2byte 0x8272
+        .2byte 0x8273
+        .2byte 0x8274
+        .2byte 0x8275
+        .2byte 0x8276
+        .2byte 0x8277
+        .2byte 0x8278
+        .2byte 0x8279
+        .2byte 0x816D
+        .2byte 0x818F
+        .2byte 0x816E
+        .2byte 0x814F
+        .2byte 0x8151
+        .2byte 0x8165
+        .2byte 0x8281
+        .2byte 0x8282
+        .2byte 0x8283
+        .2byte 0x8284
+        .2byte 0x8285
+        .2byte 0x8286
+        .2byte 0x8287
+        .2byte 0x8288
+        .2byte 0x8289
+        .2byte 0x828A
+        .2byte 0x828B
+        .2byte 0x828C
+        .2byte 0x828D
+        .2byte 0x828E
+        .2byte 0x828F
+        .2byte 0x8290
+        .2byte 0x8291
+        .2byte 0x8292
+        .2byte 0x8293
+        .2byte 0x8294
+        .2byte 0x8295
+        .2byte 0x8296
+        .2byte 0x8297
+        .2byte 0x8298
+        .2byte 0x8299
+        .2byte 0x829A
+        .2byte 0x816F
+        .2byte 0x8162
+        .2byte 0x8170
+        .2byte 0x8160
 
     .section .data, "wa"  # 0x8049E220 - 0x804EFC20
     .global __vt__10JUTResFont
@@ -89,18 +136,16 @@
         .4byte isLeadByte__10JUTResFontCFi
         .4byte loadImage__10JUTResFontFi11_GXTexMapID
         .4byte setBlock__10JUTResFontFv
-        .4byte 0
 
     .section .sdata2, "a"     # 0x80516360 - 0x80520E40
-    .global lbl_805166E0
+    .balign 8
     lbl_805166E0:
-        .4byte 0x00000000
-        .4byte 0x00000000
-    .global lbl_805166E8
+        .float 0.0
+    .balign 8
     lbl_805166E8:
         .4byte 0x43300000
         .4byte 0x80000000
-    .global lbl_805166F0
+    .balign 8
     lbl_805166F0:
         .4byte 0x43300000
         .4byte 0x00000000
@@ -110,406 +155,167 @@
  * --INFO--
  * Address:	80031180
  * Size:	00004C
+ * Matches
  */
 JUTResFont::JUTResFont()
 {
-	/*
-	stwu     r1, -0x10(r1)
-	mflr     r0
-	stw      r0, 0x14(r1)
-	stw      r31, 0xc(r1)
-	mr       r31, r3
-	bl       __ct__7JUTFontFv
-	lis      r4, __vt__10JUTResFont@ha
-	mr       r3, r31
-	addi     r0, r4, __vt__10JUTResFont@l
-	stw      r0, 0(r31)
-	bl       initialize_state__10JUTResFontFv
-	mr       r3, r31
-	bl       initialize_state__7JUTFontFv
-	lwz      r0, 0x14(r1)
-	mr       r3, r31
-	lwz      r31, 0xc(r1)
-	mtlr     r0
-	addi     r1, r1, 0x10
-	blr
-	*/
+	initialize_state();
+	JUTFont::initialize_state();
 }
 
 /*
  * --INFO--
  * Address:	800311CC
  * Size:	000074
+ * Matches
  */
-JUTResFont::JUTResFont(const ResFONT*, JKRHeap*)
+JUTResFont::JUTResFont(const ResFONT* a, JKRHeap* b)
 {
-	/*
-	stwu     r1, -0x20(r1)
-	mflr     r0
-	stw      r0, 0x24(r1)
-	stw      r31, 0x1c(r1)
-	mr       r31, r5
-	stw      r30, 0x18(r1)
-	mr       r30, r4
-	stw      r29, 0x14(r1)
-	mr       r29, r3
-	bl       __ct__7JUTFontFv
-	lis      r4, __vt__10JUTResFont@ha
-	mr       r3, r29
-	addi     r0, r4, __vt__10JUTResFont@l
-	stw      r0, 0(r29)
-	bl       initialize_state__10JUTResFontFv
-	mr       r3, r29
-	bl       initialize_state__7JUTFontFv
-	mr       r3, r29
-	mr       r4, r30
-	mr       r5, r31
-	bl       initiate__10JUTResFontFPC7ResFONTP7JKRHeap
-	lwz      r0, 0x24(r1)
-	mr       r3, r29
-	lwz      r31, 0x1c(r1)
-	lwz      r30, 0x18(r1)
-	lwz      r29, 0x14(r1)
-	mtlr     r0
-	addi     r1, r1, 0x20
-	blr
-	*/
+	initialize_state();
+	JUTFont::initialize_state();
+	JUTResFont::initiate(a, b);
 }
 
 /*
  * --INFO--
  * Address:	80031240
  * Size:	00008C
+ * Matches
  */
 JUTResFont::~JUTResFont()
 {
-	/*
-	stwu     r1, -0x10(r1)
-	mflr     r0
-	stw      r0, 0x14(r1)
-	stw      r31, 0xc(r1)
-	mr       r31, r4
-	stw      r30, 8(r1)
-	or.      r30, r3, r3
-	beq      lbl_800312B0
-	lis      r4, __vt__10JUTResFont@ha
-	addi     r0, r4, __vt__10JUTResFont@l
-	stw      r0, 0(r30)
-	lbz      r0, 4(r30)
-	cmplwi   r0, 0
-	beq      lbl_8003128C
-	bl       deleteMemBlocks_ResFont__10JUTResFontFv
-	mr       r3, r30
-	bl       initialize_state__10JUTResFontFv
-	mr       r3, r30
-	bl       initialize_state__7JUTFontFv
-
-lbl_8003128C:
-	cmplwi   r30, 0
-	beq      lbl_800312A0
-	lis      r3, __vt__7JUTFont@ha
-	addi     r0, r3, __vt__7JUTFont@l
-	stw      r0, 0(r30)
-
-lbl_800312A0:
-	extsh.   r0, r31
-	ble      lbl_800312B0
-	mr       r3, r30
-	bl       __dl__FPv
-
-lbl_800312B0:
-	lwz      r0, 0x14(r1)
-	mr       r3, r30
-	lwz      r31, 0xc(r1)
-	lwz      r30, 8(r1)
-	mtlr     r0
-	addi     r1, r1, 0x10
-	blr
-	*/
+	if (_04) {
+		deleteMemBlocks_ResFont();
+		initialize_state();
+		JUTFont::initialize_state();
+	}
 }
 
 /*
  * --INFO--
  * Address:	800312CC
  * Size:	000024
+ * Matches
  */
-void JUTResFont::deleteMemBlocks_ResFont()
-{
-	/*
-	stwu     r1, -0x10(r1)
-	mflr     r0
-	stw      r0, 0x14(r1)
-	lwz      r3, 0x50(r3)
-	bl       __dla__FPv
-	lwz      r0, 0x14(r1)
-	mtlr     r0
-	addi     r1, r1, 0x10
-	blr
-	*/
-}
+void JUTResFont::deleteMemBlocks_ResFont(void) { delete[] m_memBlocks; }
 
 /*
  * --INFO--
  * Address:	800312F0
  * Size:	00002C
+ * Matches
  */
-void JUTResFont::initialize_state()
+void JUTResFont::initialize_state(void)
 {
-	/*
-	li       r4, 0
-	li       r0, -1
-	stw      r4, 0x48(r3)
-	stw      r4, 0x50(r3)
-	stw      r4, 0x54(r3)
-	stw      r4, 0x58(r3)
-	stw      r4, 0x5c(r3)
-	stw      r4, 0x1c(r3)
-	stw      r4, 0x20(r3)
-	stw      r0, 0x44(r3)
-	blr
-	*/
+	m_resource    = nullptr;
+	m_memBlocks   = nullptr;
+	m_widthBlocks = nullptr;
+	m_glyphBlocks = nullptr;
+	m_mapBlocks   = nullptr;
+	_1C           = 0;
+	_20           = 0;
+	_44           = -1;
 }
 
 /*
  * --INFO--
  * Address:	8003131C
  * Size:	000080
+ * Matches
  */
-void JUTResFont::initiate(const ResFONT*, JKRHeap*)
+bool JUTResFont::initiate(const ResFONT* a, JKRHeap* b)
 {
-	/*
-	stwu     r1, -0x10(r1)
-	mflr     r0
-	stw      r0, 0x14(r1)
-	stw      r31, 0xc(r1)
-	mr       r31, r3
-	bl       protected_initiate__10JUTResFontFPC7ResFONTP7JKRHeap
-	clrlwi.  r0, r3, 0x18
-	bne      lbl_80031384
-	lwz      r3, 0x50(r31)
-	bl       __dla__FPv
-	li       r4, 0
-	li       r0, -1
-	stw      r4, 0x48(r31)
-	mr       r3, r31
-	stw      r4, 0x50(r31)
-	stw      r4, 0x54(r31)
-	stw      r4, 0x58(r31)
-	stw      r4, 0x5c(r31)
-	stw      r4, 0x1c(r31)
-	stw      r4, 0x20(r31)
-	stw      r0, 0x44(r31)
-	bl       initialize_state__7JUTFontFv
-	li       r0, 0
-	li       r3, 0
-	stb      r0, 4(r31)
-	b        lbl_80031388
-
-lbl_80031384:
-	li       r3, 1
-
-lbl_80031388:
-	lwz      r0, 0x14(r1)
-	lwz      r31, 0xc(r1)
-	mtlr     r0
-	addi     r1, r1, 0x10
-	blr
-	*/
+	if (!protected_initiate(a, b)) {
+		deleteMemBlocks_ResFont();
+		initialize_state();
+		JUTFont::initialize_state();
+		_04 = false;
+		return false;
+	}
+	return true;
 }
 
 /*
  * --INFO--
  * Address:	8003139C
  * Size:	000138
+ * Matches, but kind of jank?
+ * TODO: try to reduce casting
+ * Also, give variables descriptive names.
  */
-void JUTResFont::protected_initiate(const ResFONT*, JKRHeap*)
+bool JUTResFont::protected_initiate(const ResFONT* a, JKRHeap* b)
 {
-	/*
-	stwu     r1, -0x20(r1)
-	mflr     r0
-	stw      r0, 0x24(r1)
-	stw      r31, 0x1c(r1)
-	mr       r31, r3
-	stw      r30, 0x18(r1)
-	mr       r30, r5
-	stw      r29, 0x14(r1)
-	mr       r29, r4
-	lwz      r3, 0x50(r3)
-	bl       __dla__FPv
-	li       r4, 0
-	li       r0, -1
-	stw      r4, 0x48(r31)
-	mr       r3, r31
-	stw      r4, 0x50(r31)
-	stw      r4, 0x54(r31)
-	stw      r4, 0x58(r31)
-	stw      r4, 0x5c(r31)
-	stw      r4, 0x1c(r31)
-	stw      r4, 0x20(r31)
-	stw      r0, 0x44(r31)
-	bl       initialize_state__7JUTFontFv
-	cmplwi   r29, 0
-	bne      lbl_80031408
-	li       r3, 0
-	b        lbl_800314B8
+	void** p;
+	deleteMemBlocks_ResFont();
+	initialize_state();
+	JUTFont::initialize_state();
+	if (!a) {
+		return false;
+	}
+	m_resource = (ResFONT*)a;
+	_04        = true;
+	countBlock();
+	u32 v = m_widthBlockCount + m_glyphBlockCount + m_mapBlockCount;
+	// m_memBlocks = new(b,v);
+	m_memBlocks = new (b, 0) void*[v];
+	p           = (void**)m_memBlocks;
+	if (m_memBlocks == nullptr) {
+		return false;
+	} else {
+		if (m_widthBlockCount != 0) {
+			m_widthBlocks = p;
+			p += m_widthBlockCount;
+		}
 
-lbl_80031408:
-	stw      r29, 0x48(r31)
-	li       r0, 1
-	mr       r3, r31
-	stb      r0, 4(r31)
-	bl       countBlock__10JUTResFontFv
-	lhz      r6, 0x64(r31)
-	mr       r4, r30
-	lhz      r0, 0x62(r31)
-	li       r5, 0
-	lhz      r3, 0x60(r31)
-	add      r0, r0, r6
-	add      r0, r3, r0
-	slwi     r3, r0, 2
-	bl       __nwa__FUlP7JKRHeapi
-	stw      r3, 0x50(r31)
-	lwz      r3, 0x50(r31)
-	cmplwi   r3, 0
-	bne      lbl_80031458
-	li       r3, 0
-	b        lbl_800314B8
+		if (m_glyphBlockCount != 0) {
+			m_glyphBlocks = p;
+			p += m_glyphBlockCount;
+		}
 
-lbl_80031458:
-	lhz      r0, 0x60(r31)
-	cmplwi   r0, 0
-	beq      lbl_80031474
-	stw      r3, 0x54(r31)
-	lhz      r0, 0x60(r31)
-	slwi     r0, r0, 2
-	add      r3, r3, r0
-
-lbl_80031474:
-	lhz      r0, 0x62(r31)
-	cmplwi   r0, 0
-	beq      lbl_80031490
-	stw      r3, 0x58(r31)
-	lhz      r0, 0x62(r31)
-	slwi     r0, r0, 2
-	add      r3, r3, r0
-
-lbl_80031490:
-	lhz      r0, 0x64(r31)
-	cmplwi   r0, 0
-	beq      lbl_800314A0
-	stw      r3, 0x5c(r31)
-
-lbl_800314A0:
-	mr       r3, r31
-	lwz      r12, 0(r31)
-	lwz      r12, 0x48(r12)
-	mtctr    r12
-	bctrl
-	li       r3, 1
-
-lbl_800314B8:
-	lwz      r0, 0x24(r1)
-	lwz      r31, 0x1c(r1)
-	lwz      r30, 0x18(r1)
-	lwz      r29, 0x14(r1)
-	mtlr     r0
-	addi     r1, r1, 0x20
-	blr
-	*/
+		if (m_mapBlockCount != 0) {
+			m_mapBlocks = p;
+		}
+	}
+	setBlock();
+	return true;
 }
 
 /*
  * --INFO--
  * Address:	800314D4
  * Size:	00010C
+ * Matches
  */
 void JUTResFont::countBlock()
 {
-	/*
-	stwu     r1, -0x20(r1)
-	mflr     r0
-	stw      r0, 0x24(r1)
-	li       r0, 0
-	stw      r31, 0x1c(r1)
-	stw      r30, 0x18(r1)
-	stw      r29, 0x14(r1)
-	li       r29, 0
-	stw      r28, 0x10(r1)
-	mr       r28, r3
-	sth      r0, 0x60(r3)
-	lis      r3, 0x4D415031@ha
-	addi     r31, r3, 0x4D415031@l
-	sth      r0, 0x62(r28)
-	sth      r0, 0x64(r28)
-	lwz      r3, 0x48(r28)
-	addi     r30, r3, 0x20
-	b        lbl_800315B0
+	void** ppvVar3;
 
-lbl_8003151C:
-	lwz      r4, 0(r30)
-	cmpw     r4, r31
-	beq      lbl_80031588
-	bge      lbl_80031554
-	lis      r3, 0x494E4631@ha
-	addi     r0, r3, 0x494E4631@l
-	cmpw     r4, r0
-	beq      lbl_800315A4
-	bge      lbl_80031598
-	lis      r3, 0x474C5931@ha
-	addi     r0, r3, 0x474C5931@l
-	cmpw     r4, r0
-	beq      lbl_80031578
-	b        lbl_80031598
-
-lbl_80031554:
-	lis      r3, 0x57494431@ha
-	addi     r0, r3, 0x57494431@l
-	cmpw     r4, r0
-	beq      lbl_80031568
-	b        lbl_80031598
-
-lbl_80031568:
-	lhz      r3, 0x60(r28)
-	addi     r0, r3, 1
-	sth      r0, 0x60(r28)
-	b        lbl_800315A4
-
-lbl_80031578:
-	lhz      r3, 0x62(r28)
-	addi     r0, r3, 1
-	sth      r0, 0x62(r28)
-	b        lbl_800315A4
-
-lbl_80031588:
-	lhz      r3, 0x64(r28)
-	addi     r0, r3, 1
-	sth      r0, 0x64(r28)
-	b        lbl_800315A4
-
-lbl_80031598:
-	lis      r3, lbl_8047418C@ha
-	addi     r3, r3, lbl_8047418C@l
-	bl       JUTReportConsole
-
-lbl_800315A4:
-	lwz      r0, 4(r30)
-	addi     r29, r29, 1
-	add      r30, r30, r0
-
-lbl_800315B0:
-	lwz      r3, 0x48(r28)
-	lwz      r0, 0xc(r3)
-	cmplw    r29, r0
-	blt      lbl_8003151C
-	lwz      r0, 0x24(r1)
-	lwz      r31, 0x1c(r1)
-	lwz      r30, 0x18(r1)
-	lwz      r29, 0x14(r1)
-	lwz      r28, 0x10(r1)
-	mtlr     r0
-	addi     r1, r1, 0x20
-	blr
-	*/
+	u32 uVar2         = 0;
+	m_widthBlockCount = 0;
+	m_glyphBlockCount = 0;
+	m_mapBlockCount   = 0;
+	ppvVar3           = &m_resource->data_0x20;
+	while (m_resource->_0C > uVar2) {
+		int pvVar1 = (int)*ppvVar3;
+		switch (pvVar1) {
+		case 'WID1':
+			m_widthBlockCount++;
+			break;
+		case 'GLY1':
+			m_glyphBlockCount++;
+			break;
+		case 'MAP1':
+			m_mapBlockCount++;
+			break;
+		case 'INF1':
+			// m_infoBlock;
+			break;
+		default:
+			JUTReportConsole("JUTResFont: Unknown data block\n");
+		}
+		uVar2++;
+		ppvVar3 = (void**)((int)ppvVar3 + (int)ppvVar3[1]); // jank?
+	};
 }
 
 /*
@@ -1137,7 +943,7 @@ lbl_80031C34:
  * Address:	80031E58
  * Size:	00000C
  */
-u16 JUTResFont::getDescent() const
+int JUTResFont::getDescent() const
 {
 	/*
 	lwz      r3, 0x4c(r3)
@@ -1151,7 +957,7 @@ u16 JUTResFont::getDescent() const
  * Address:	80031E64
  * Size:	00005C
  */
-u16 JUTResFont::getHeight() const
+int JUTResFont::getHeight() const
 {
 	/*
 	stwu     r1, -0x10(r1)
@@ -1185,7 +991,7 @@ u16 JUTResFont::getHeight() const
  * Address:	80031EC0
  * Size:	00000C
  */
-u16 JUTResFont::getAscent() const
+int JUTResFont::getAscent() const
 {
 	/*
 	lwz      r3, 0x4c(r3)
@@ -1311,7 +1117,7 @@ lbl_80031FFC:
  * Address:	80032014
  * Size:	00004C
  */
-u16 JUTResFont::getCellWidth() const
+int JUTResFont::getCellWidth() const
 {
 	/*
 	stwu     r1, -0x10(r1)
@@ -1345,7 +1151,7 @@ lbl_80032050:
  * Address:	80032060
  * Size:	00000C
  */
-u16 JUTResFont::getWidth() const
+int JUTResFont::getWidth() const
 {
 	/*
 	lwz      r3, 0x4c(r3)
@@ -1359,7 +1165,7 @@ u16 JUTResFont::getWidth() const
  * Address:	8003206C
  * Size:	00004C
  */
-u16 JUTResFont::getCellHeight() const
+int JUTResFont::getCellHeight() const
 {
 	/*
 	stwu     r1, -0x10(r1)
@@ -1737,7 +1543,7 @@ ResFONT* JUTResFont::getResFont() const
  * Address:	8003246C
  * Size:	00000C
  */
-u16 JUTResFont::getLeading() const
+int JUTResFont::getLeading() const
 {
 	/*
 	lwz      r3, 0x4c(r3)
