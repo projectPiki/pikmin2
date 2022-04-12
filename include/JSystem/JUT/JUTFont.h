@@ -160,7 +160,7 @@ struct JUTResFont : public JUTFont {
 	u16 _68;                  // _68
 	IsLeadByte* m_isLeadByte; // _6C
 
-	static IsLeadByte* saoAboutEncoding_[3];
+	static IsLeadByte* const saoAboutEncoding_[3];
 };
 
 struct JUTCacheFont : public JUTResFont {

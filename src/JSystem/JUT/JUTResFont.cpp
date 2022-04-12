@@ -152,6 +152,9 @@
         .4byte 0x00000000
 */
 
+JUTFont::IsLeadByte* const JUTResFont::saoAboutEncoding_[3]
+    = { JUTFont::isLeadByte_1Byte, JUTFont::isLeadByte_2Byte, JUTFont::isLeadByte_ShiftJIS };
+
 /*
  * --INFO--
  * Address:	80031180
