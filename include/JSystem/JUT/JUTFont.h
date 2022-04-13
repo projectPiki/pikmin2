@@ -162,14 +162,14 @@ struct JUTResFont : public JUTFont {
 	int _44;             // _44
 	ResFONT* m_resource; // _48
 	// INF1
-	u8* m_infoBlock;   // _4C
-	void* m_memBlocks; // _50
+	ResFONT* m_infoBlock;  // _4C
+	ResFONT** m_memBlocks; // _50
 	// WID1
-	void** m_widthBlocks; // _54
+	ResFONT** m_widthBlocks; // _54
 	// GLY1
-	void** m_glyphBlocks; // _58
+	ResFONT** m_glyphBlocks; // _58
 	// MAP1
-	void** m_mapBlocks;       // _5C
+	ResFONT** m_mapBlocks;    // _5C
 	u16 m_widthBlockCount;    // _60
 	u16 m_glyphBlockCount;    // _62
 	u16 m_mapBlockCount;      // _64

@@ -243,13 +243,12 @@ bool JUTResFont::initiate(const ResFONT* a, JKRHeap* b)
  * --INFO--
  * Address:	8003139C
  * Size:	000138
- * Matches, but kind of jank?
- * TODO: try to reduce casting
- * Also, give variables descriptive names.
+ * Matches
+ * TODO: give variables descriptive names.
  */
 bool JUTResFont::protected_initiate(const ResFONT* a, JKRHeap* b)
 {
-	void** p;
+	ResFONT** p;
 	deleteMemBlocks_ResFont();
 	initialize_state();
 	JUTFont::initialize_state();
@@ -261,8 +260,8 @@ bool JUTResFont::protected_initiate(const ResFONT* a, JKRHeap* b)
 	countBlock();
 	u32 v = m_widthBlockCount + m_glyphBlockCount + m_mapBlockCount;
 	// m_memBlocks = new(b,v);
-	m_memBlocks = new (b, 0) void*[v];
-	p           = (void**)m_memBlocks;
+	m_memBlocks = new (b, 0) ResFONT*[v];
+	p           = m_memBlocks;
 	if (m_memBlocks == nullptr) {
 		return false;
 	} else {
@@ -324,107 +323,39 @@ void JUTResFont::countBlock()
  */
 void JUTResFont::setBlock()
 {
-	/*
-	stwu     r1, -0x30(r1)
-	mflr     r0
-	lis      r4, 0x0000FFFF@ha
-	stw      r0, 0x34(r1)
-	addi     r0, r4, 0x0000FFFF@l
-	stmw     r25, 0x14(r1)
-	mr       r25, r3
-	li       r30, 0
-	lis      r3, 0x4D415031@ha
-	addi     r31, r3, 0x4D415031@l
-	li       r26, 0
-	mr       r29, r30
-	mr       r28, r30
-	sth      r0, 0x68(r25)
-	lwz      r3, 0x48(r25)
-	addi     r27, r3, 0x20
-	b        lbl_800316F8
+	int wid, gly, map;
+	wid = gly = map  = 0;
+	_68              = -1;
+	ResFONT* ppvVar3 = (ResFONT*)&m_resource->m_data;
+	// int enc = ppvVar3->m_encoding;
 
-lbl_80031624:
-	lwz      r4, 0(r27)
-	cmpw     r4, r31
-	beq      lbl_800316B4
-	bge      lbl_8003165C
-	lis      r3, 0x494E4631@ha
-	addi     r0, r3, 0x494E4631@l
-	cmpw     r4, r0
-	beq      lbl_80031670
-	bge      lbl_800316E0
-	lis      r3, 0x474C5931@ha
-	addi     r0, r3, 0x474C5931@l
-	cmpw     r4, r0
-	beq      lbl_800316A4
-	b        lbl_800316E0
-
-lbl_8003165C:
-	lis      r3, 0x57494431@ha
-	addi     r0, r3, 0x57494431@l
-	cmpw     r4, r0
-	beq      lbl_80031694
-	b        lbl_800316E0
-
-lbl_80031670:
-	stw      r27, 0x4c(r25)
-	lis      r3, saoAboutEncoding___10JUTResFont@ha
-	addi     r0, r3, saoAboutEncoding___10JUTResFont@l
-	lwz      r3, 0x4c(r25)
-	lhz      r3, 8(r3)
-	slwi     r3, r3, 2
-	add      r0, r0, r3
-	stw      r0, 0x6c(r25)
-	b        lbl_800316EC
-
-lbl_80031694:
-	lwz      r3, 0x54(r25)
-	stwx     r27, r3, r30
-	addi     r30, r30, 4
-	b        lbl_800316EC
-
-lbl_800316A4:
-	lwz      r3, 0x58(r25)
-	stwx     r27, r3, r29
-	addi     r29, r29, 4
-	b        lbl_800316EC
-
-lbl_800316B4:
-	lwz      r3, 0x5c(r25)
-	stwx     r27, r3, r28
-	lwz      r3, 0x5c(r25)
-	lhz      r0, 0x68(r25)
-	lwzx     r3, r3, r28
-	lhz      r3, 0xa(r3)
-	cmplw    r0, r3
-	ble      lbl_800316D8
-	sth      r3, 0x68(r25)
-
-lbl_800316D8:
-	addi     r28, r28, 4
-	b        lbl_800316EC
-
-lbl_800316E0:
-	lis      r3, lbl_804741AC@ha
-	addi     r3, r3, lbl_804741AC@l
-	bl       JUTReportConsole
-
-lbl_800316EC:
-	lwz      r0, 4(r27)
-	addi     r26, r26, 1
-	add      r27, r27, r0
-
-lbl_800316F8:
-	lwz      r3, 0x48(r25)
-	lwz      r0, 0xc(r3)
-	cmplw    r26, r0
-	blt      lbl_80031624
-	lmw      r25, 0x14(r1)
-	lwz      r0, 0x34(r1)
-	mtlr     r0
-	addi     r1, r1, 0x30
-	blr
-	*/
+	for (u32 i = 0; m_resource->asU32 > i; i++, (u8*)ppvVar3 += ppvVar3->m_blockLength) {
+		int pvVar1 = ppvVar3->m_rawType;
+		switch (pvVar1) {
+		case 'INF1':
+			m_infoBlock  = ppvVar3;
+			m_isLeadByte = (IsLeadByte*)&saoAboutEncoding_[m_infoBlock->m_encoding];
+			break;
+		case 'WID1':
+			m_widthBlocks[wid] = ppvVar3;
+			wid++;
+			break;
+		case 'GLY1':
+			m_glyphBlocks[gly] = ppvVar3;
+			gly++;
+			break;
+		case 'MAP1':
+			m_mapBlocks[map] = ppvVar3;
+			if (_68 > m_mapBlocks[map]->_0A) {
+				_68 = m_mapBlocks[map]->_0A;
+			}
+			map++;
+			break;
+		default:
+			JUTReportConsole("Unknown data block\n");
+		}
+		// ppvVar3+= ppvVar3->m_blockLength;
+	};
 }
 
 /*
@@ -434,70 +365,20 @@ lbl_800316F8:
  */
 void JUTResFont::setGX()
 {
-	/*
-	stwu     r1, -0x10(r1)
-	mflr     r0
-	li       r3, 1
-	stw      r0, 0x14(r1)
-	bl       GXSetNumChans
-	li       r3, 1
-	bl       GXSetNumTevStages
-	li       r3, 1
-	bl       GXSetNumTexGens
-	li       r3, 0
-	li       r4, 0
-	li       r5, 0
-	li       r6, 4
-	bl       GXSetTevOrder
-	li       r3, 4
-	li       r4, 0
-	li       r5, 0
-	li       r6, 1
-	li       r7, 0
-	li       r8, 0
-	li       r9, 2
-	bl       GXSetChanCtrl
-	li       r3, 0
-	li       r4, 0
-	bl       GXSetTevOp
-	li       r3, 1
-	li       r4, 4
-	li       r5, 5
-	li       r6, 0xf
-	bl       GXSetBlendMode
-	li       r3, 0
-	li       r4, 9
-	li       r5, 1
-	li       r6, 3
-	li       r7, 0
-	bl       GXSetVtxAttrFmt
-	li       r3, 0
-	li       r4, 0xb
-	li       r5, 1
-	li       r6, 5
-	li       r7, 0
-	bl       GXSetVtxAttrFmt
-	li       r3, 0
-	li       r4, 0xd
-	li       r5, 1
-	li       r6, 2
-	li       r7, 0xf
-	bl       GXSetVtxAttrFmt
-	bl       GXClearVtxDesc
-	li       r3, 9
-	li       r4, 1
-	bl       GXSetVtxDesc
-	li       r3, 0xb
-	li       r4, 1
-	bl       GXSetVtxDesc
-	li       r3, 0xd
-	li       r4, 1
-	bl       GXSetVtxDesc
-	lwz      r0, 0x14(r1)
-	mtlr     r0
-	addi     r1, r1, 0x10
-	blr
-	*/
+	GXSetNumChans(1);
+	GXSetNumTevStages(1);
+	GXSetNumTexGens(1);
+	GXSetTevOrder(GX_TEVSTAGE0, GX_TEXCOORD0, GX_TEXMAP0, GX_COLOR0A0);
+	GXSetChanCtrl(GX_COLOR0A0, GX_FALSE, GX_SRC_REG, GX_SRC_VTX, GX_LIGHT_NULL, GX_DF_NONE, GX_AF_NONE);
+	GXSetTevOp(GX_TEVSTAGE0, GX_MODULATE);
+	GXSetBlendMode(GX_BM_BLEND, GX_BL_SRCALPHA, GX_BL_INVSRCALPHA, GX_LO_SET);
+	GXSetVtxAttrFmt(GX_VTXFMT0, GX_VA_POS, GX_CLR_RGBA, GX_RGBA4, 0);
+	GXSetVtxAttrFmt(GX_VTXFMT0, GX_VA_CLR0, GX_CLR_RGBA, GX_RGBA8, 0);
+	GXSetVtxAttrFmt(GX_VTXFMT0, GX_VA_TEX0, GX_CLR_RGBA, GX_RGBX8, 15);
+	GXClearVtxDesc();
+	GXSetVtxDesc(GX_VA_POS, GX_DIRECT);
+	GXSetVtxDesc(GX_VA_CLR0, GX_DIRECT);
+	GXSetVtxDesc(GX_VA_TEX0, GX_DIRECT);
 }
 
 /*
@@ -505,158 +386,36 @@ void JUTResFont::setGX()
  * Address:	80031814
  * Size:	000240
  */
-void JUTResFont::setGX(JUtility::TColor, JUtility::TColor)
+void JUTResFont::setGX(JUtility::TColor param_0, JUtility::TColor param_1)
 {
-	/*
-	stwu     r1, -0x20(r1)
-	mflr     r0
-	stw      r0, 0x24(r1)
-	lwz      r0, 0(r4)
-	stw      r31, 0x1c(r1)
-	mr       r31, r5
-	cmplwi   r0, 0
-	stw      r30, 0x18(r1)
-	mr       r30, r4
-	bne      lbl_80031860
-	lwz      r4, 0(r31)
-	addis    r0, r4, 1
-	cmplwi   r0, 0xffff
-	bne      lbl_80031860
-	lwz      r12, 0(r3)
-	lwz      r12, 0xc(r12)
-	mtctr    r12
-	bctrl
-	b        lbl_80031A3C
-
-lbl_80031860:
-	li       r3, 1
-	bl       GXSetNumChans
-	li       r3, 2
-	bl       GXSetNumTevStages
-	li       r3, 1
-	bl       GXSetNumTexGens
-	li       r3, 0
-	li       r4, 0
-	li       r5, 0
-	li       r6, 0xff
-	bl       GXSetTevOrder
-	li       r3, 4
-	li       r4, 0
-	li       r5, 0
-	li       r6, 1
-	li       r7, 0
-	li       r8, 0
-	li       r9, 2
-	bl       GXSetChanCtrl
-	lwz      r0, 0(r30)
-	addi     r4, r1, 0xc
-	li       r3, 1
-	stw      r0, 0xc(r1)
-	bl       GXSetTevColor
-	lwz      r0, 0(r31)
-	addi     r4, r1, 8
-	li       r3, 2
-	stw      r0, 8(r1)
-	bl       GXSetTevColor
-	li       r3, 0
-	li       r4, 2
-	li       r5, 4
-	li       r6, 8
-	li       r7, 0xf
-	bl       GXSetTevColorIn
-	li       r3, 0
-	li       r4, 1
-	li       r5, 2
-	li       r6, 4
-	li       r7, 7
-	bl       GXSetTevAlphaIn
-	li       r3, 0
-	li       r4, 0
-	li       r5, 0
-	li       r6, 0
-	li       r7, 1
-	li       r8, 0
-	bl       GXSetTevColorOp
-	li       r3, 0
-	li       r4, 0
-	li       r5, 0
-	li       r6, 0
-	li       r7, 1
-	li       r8, 0
-	bl       GXSetTevAlphaOp
-	li       r3, 1
-	li       r4, 0xff
-	li       r5, 0xff
-	li       r6, 4
-	bl       GXSetTevOrder
-	li       r3, 1
-	li       r4, 0xf
-	li       r5, 0
-	li       r6, 0xa
-	li       r7, 0xf
-	bl       GXSetTevColorIn
-	li       r3, 1
-	li       r4, 7
-	li       r5, 0
-	li       r6, 5
-	li       r7, 7
-	bl       GXSetTevAlphaIn
-	li       r3, 1
-	li       r4, 0
-	li       r5, 0
-	li       r6, 0
-	li       r7, 1
-	li       r8, 0
-	bl       GXSetTevColorOp
-	li       r3, 1
-	li       r4, 0
-	li       r5, 0
-	li       r6, 0
-	li       r7, 1
-	li       r8, 0
-	bl       GXSetTevAlphaOp
-	li       r3, 1
-	li       r4, 4
-	li       r5, 5
-	li       r6, 0xf
-	bl       GXSetBlendMode
-	li       r3, 0
-	li       r4, 9
-	li       r5, 1
-	li       r6, 3
-	li       r7, 0
-	bl       GXSetVtxAttrFmt
-	li       r3, 0
-	li       r4, 0xb
-	li       r5, 1
-	li       r6, 5
-	li       r7, 0
-	bl       GXSetVtxAttrFmt
-	li       r3, 0
-	li       r4, 0xd
-	li       r5, 1
-	li       r6, 2
-	li       r7, 0xf
-	bl       GXSetVtxAttrFmt
-	bl       GXClearVtxDesc
-	li       r3, 9
-	li       r4, 1
-	bl       GXSetVtxDesc
-	li       r3, 0xb
-	li       r4, 1
-	bl       GXSetVtxDesc
-	li       r3, 0xd
-	li       r4, 1
-	bl       GXSetVtxDesc
-
-lbl_80031A3C:
-	lwz      r0, 0x24(r1)
-	lwz      r31, 0x1c(r1)
-	lwz      r30, 0x18(r1)
-	mtlr     r0
-	addi     r1, r1, 0x20
-	blr
-	*/
+	if (param_0.asU32 == 0 && param_1.asU32 == -1) {
+		setGX();
+	} else {
+		GXSetNumChans(1);
+		GXSetNumTevStages(2);
+		GXSetNumTexGens(1);
+		GXSetTevOrder(GX_TEVSTAGE0, GX_TEXCOORD0, GX_TEXMAP0, GX_COLOR_NULL);
+		GXSetChanCtrl(GX_COLOR0A0, GX_FALSE, GX_SRC_REG, GX_SRC_VTX, GX_LIGHT_NULL, GX_DF_NONE, GX_AF_NONE);
+		GXSetTevColor(GX_TEVREG0, (GXColor)param_0.asU32);
+		GXSetTevColor(GX_TEVREG1, (GXColor)param_1.asU32);
+		GXSetTevColorIn(GX_TEVSTAGE0, GX_CC_C0, GX_CC_C1, GX_CC_TEXC, GX_CC_ZERO);
+		GXSetTevAlphaIn(GX_TEVSTAGE0, GX_CA_A0, GX_CA_A1, GX_CA_TEXA, GX_ZERO);
+		GXSetTevColorOp(GX_TEVSTAGE0, GX_TEV_ADD, GX_TB_ZERO, GX_CS_SCALE_1, GX_TRUE, GX_TEVPREV);
+		GXSetTevAlphaOp(GX_TEVSTAGE0, GX_TEV_ADD, GX_TB_ZERO, GX_CS_SCALE_1, GX_TRUE, GX_TEVPREV);
+		GXSetTevOrder(GX_TEVSTAGE1, GX_TEXCOORD_NULL, GX_TEXMAP_NULL, GX_COLOR0A0);
+		GXSetTevColorIn(GX_TEVSTAGE1, GX_CC_ZERO, GX_CC_CPREV, GX_CC_RASC, GX_CC_ZERO);
+		GXSetTevAlphaIn(GX_TEVSTAGE1, GX_ZERO, GX_CA_APREV, GX_CA_RASA, GX_ZERO);
+		GXSetTevColorOp(GX_TEVSTAGE1, GX_TEV_ADD, GX_TB_ZERO, GX_CS_SCALE_1, GX_TRUE, GX_TEVPREV);
+		GXSetTevAlphaOp(GX_TEVSTAGE1, GX_TEV_ADD, GX_TB_ZERO, GX_CS_SCALE_1, GX_TRUE, GX_TEVPREV);
+		GXSetBlendMode(GX_BM_BLEND, GX_BL_SRCALPHA, GX_BL_INVSRCALPHA, GX_LO_SET);
+		GXSetVtxAttrFmt(GX_VTXFMT0, GX_VA_POS, GX_CLR_RGBA, GX_RGBA4, 0);
+		GXSetVtxAttrFmt(GX_VTXFMT0, GX_VA_CLR0, GX_CLR_RGBA, GX_RGBA8, 0);
+		GXSetVtxAttrFmt(GX_VTXFMT0, GX_VA_TEX0, GX_CLR_RGBA, GX_RGBX8, 15);
+		GXClearVtxDesc();
+		GXSetVtxDesc(GX_VA_POS, GX_DIRECT);
+		GXSetVtxDesc(GX_VA_CLR0, GX_DIRECT);
+		GXSetVtxDesc(GX_VA_TEX0, GX_DIRECT);
+	}
 }
 
 /*

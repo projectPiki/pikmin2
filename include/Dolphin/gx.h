@@ -168,14 +168,14 @@ typedef enum _GXTevSwapSel {
 } GXTevSwapSel;
 
 typedef enum _GXTevAlphaArg {
+	GX_CA_APREV,
 	GX_CA_A0,
 	GX_CA_A1,
 	GX_CA_A2,
-	GX_CA_APREV,
 	GX_CA_TEXA,
 	GX_CA_RASA,
-	GX_ZERO,
 	GX_KONST,
+	GX_ZERO,
 } GXTevAlphaArg;
 
 typedef enum _GXTevKColorID {
@@ -254,7 +254,15 @@ typedef enum _GXTevStageID {
 	GX_TEVSTAGE15,
 } GXTevStageID;
 
-typedef enum _GXTevRegID { GX_TEVREG0, GX_TEVREG1, GX_TEVREG2 } GXTevRegID;
+typedef enum _GXTevRegID { GX_TEVPREV = 0, GX_TEVREG0, GX_TEVREG1, GX_TEVREG2, GX_MAX_TEVREG } GXTevRegID;
+
+typedef enum _GXTevMode {
+	GX_MODULATE,
+	GX_DECAL,
+	GX_BLEND,
+	GX_REPLACE,
+	GX_PASSCLR,
+} GXTevMode;
 
 typedef enum _GXTexGenType {
 	GX_TG_MTX2X4,
@@ -323,6 +331,49 @@ typedef enum _GXVtxFmt {
 	GX_VTXFMT7, // Vertex attribute format ID 7.
 	GX_MAX_VTXFMT
 } GXVtxFmt;
+
+typedef enum _GXChannelID {
+	GX_COLOR0,
+	GX_COLOR1,
+	GX_ALPHA0,
+	GX_ALPHA1,
+	GX_COLOR0A0,
+	GX_COLOR1A1,
+	GX_COLOR_ZERO,
+	GX_ALPHA_BUMP,
+	GX_ALPHA_BUMPN,
+	GX_COLOR_NULL = 0xFF,
+} GXChannelID;
+
+typedef enum _GXColorSrc {
+	GX_SRC_REG,
+	GX_SRC_VTX,
+} GXColorSrc;
+
+typedef enum _GXLightID {
+	GX_LIGHT_NULL,
+	GX_LIGHT0,
+	GX_LIGHT1,
+	GX_LIGHT2    = 0x4,
+	GX_LIGHT3    = 0x8,
+	GX_LIGHT4    = 0x10,
+	GX_LIGHT5    = 0x20,
+	GX_LIGHT6    = 0x40,
+	GX_LIGHT7    = 0x80,
+	GX_MAX_LIGHT = 0x100,
+} GXLightID;
+
+typedef enum _GXDiffuseFn {
+	GX_DF_NONE,
+	GX_DF_SIGN,
+	GX_DF_CLAMP,
+} GXDiffuseFn;
+
+typedef enum _GXAttnFn {
+	GX_AF_SPEC,
+	GX_AF_SPOT,
+	GX_AF_NONE,
+} GXAttnFn;
 
 // Number of components in an attribute.
 // Havent confirmed the GX docs match pikmin 2 here
@@ -493,19 +544,23 @@ typedef enum _SDK_GXZFmt16 {
 
 void GXSetNumTexGens(u8);
 void GXSetNumChans(u32);
-void GXSetChanCtrl(u32 chan, GXBool enable, u32 amb_src, u32 mat_src, u32 light_mask, u32 diff_fn, u32 attn_fn);
+void GXSetChanCtrl(GXChannelID chan, GXBool enable, GXColorSrc amb_src, GXColorSrc mat_src, GXLightID light_mask, GXDiffuseFn diff_fn,
+                   GXAttnFn attn_fn);
 void GXSetNumTevStages(u32);
-void GXSetTevOrder(GXTevStageID, GXTexCoordID, GXTexMapID, s32);
-void GXSetTevOp(s32, s32);
-void GXSetTevSwapMode(s32, u32, u32);
-void GXSetTevSwapModeTable(s32, u32, u32, u32, u32);
+void GXSetTevOrder(GXTevStageID, GXTexCoordID, GXTexMapID, GXChannelID);
+void GXSetTevOp(GXTevStageID, GXTevMode);
+void GXSetTevColor(GXTevRegID, GXColor);
+void GXSetTevSwapMode(GXTevStageID, u32, u32);
+void GXSetTevSwapModeTable(GXTevSwapSel, u32, u32, u32, u32);
+void GXSetTevColorIn(GXTevStageID, GXTevColorArg, GXTevColorArg, GXTevColorArg, GXTevColorArg);
 void GXSetTevAlphaIn(GXTevStageID, GXTevAlphaArg, GXTevAlphaArg, GXTevAlphaArg, GXTevAlphaArg);
-void GXSetTevAlphaOp(GXTevStageID, uint, GXTevBias, GXTevScale, GXBool, GXTevRegID);
+void GXSetTevColorOp(GXTevStageID, GXTevOp, GXTevBias, GXTevScale, GXBool, GXTevRegID);
+void GXSetTevAlphaOp(GXTevStageID, GXTevOp, GXTevBias, GXTevScale, GXBool, GXTevRegID);
 void GXSetTevKColor(GXTevKColorID, GXColor);
 void GXSetTevKColorSel(GXTevStageID, GXTevKColorSel);
-void GXSetVtxAttrFmt(uint, GXAttr, GXCompCnt, GXCompType, uint);
+void GXSetVtxAttrFmt(GXVtxFmt, GXAttr, GXCompCnt, GXCompType, uint);
 void GXClearVtxDesc();
-void GXSetVtxDesc(u32, u32);
+void GXSetVtxDesc(GXAttr, GXAttrType);
 
 void GXBeginDisplayList(void*, u32 dlSize);
 u32 GXEndDisplayList(void);
