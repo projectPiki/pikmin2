@@ -362,6 +362,7 @@ void JUTResFont::setBlock()
  * --INFO--
  * Address:	8003171C
  * Size:	0000F8
+ * Matches
  */
 void JUTResFont::setGX()
 {
@@ -396,9 +397,9 @@ void JUTResFont::setGX(JUtility::TColor param_0, JUtility::TColor param_1)
 		GXSetNumTexGens(1);
 		GXSetTevOrder(GX_TEVSTAGE0, GX_TEXCOORD0, GX_TEXMAP0, GX_COLOR_NULL);
 		GXSetChanCtrl(GX_COLOR0A0, GX_FALSE, GX_SRC_REG, GX_SRC_VTX, GX_LIGHT_NULL, GX_DF_NONE, GX_AF_NONE);
-		GXSetTevColor(GX_TEVREG0, (GXColor)param_0.asU32);
-		GXSetTevColor(GX_TEVREG1, (GXColor)param_1.asU32);
-		GXSetTevColorIn(GX_TEVSTAGE0, GX_CC_C0, GX_CC_C1, GX_CC_TEXC, GX_CC_ZERO);
+		GXSetTevColor(GX_TEVREG0, param_0.asGXColor);
+		GXSetTevColor(GX_TEVREG1, param_1.asGXColor);
+		GXSetTevColorIn(GX_TEVSTAGE0, GX_CC_C0, GX_CC_C2, GX_CC_TEXC, GX_CC_ZERO);
 		GXSetTevAlphaIn(GX_TEVSTAGE0, GX_CA_A0, GX_CA_A1, GX_CA_TEXA, GX_ZERO);
 		GXSetTevColorOp(GX_TEVSTAGE0, GX_TEV_ADD, GX_TB_ZERO, GX_CS_SCALE_1, GX_TRUE, GX_TEVPREV);
 		GXSetTevAlphaOp(GX_TEVSTAGE0, GX_TEV_ADD, GX_TB_ZERO, GX_CS_SCALE_1, GX_TRUE, GX_TEVPREV);

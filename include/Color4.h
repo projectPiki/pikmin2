@@ -3,6 +3,7 @@
 
 #include "types.h"
 
+// TODO: See if this inherits GXColor
 struct Color4 {
 	// TODO: Remove inline def when linking singleGS_ZukanParms.cpp!
 	inline Color4() {};

@@ -64,25 +64,25 @@ void JUTFont::initialize_state()
  */
 void JUTFont::setCharColor(JUtility::TColor color)
 {
-	_0C.channels.r = color.channels.r;
-	_0C.channels.g = color.channels.g;
-	_0C.channels.b = color.channels.b;
-	_0C.channels.a = color.channels.a;
+	_0C.asGXColor.r = color.asGXColor.r;
+	_0C.asGXColor.g = color.asGXColor.g;
+	_0C.asGXColor.b = color.asGXColor.b;
+	_0C.asGXColor.a = color.asGXColor.a;
 
-	_10.channels.r = color.channels.r;
-	_10.channels.g = color.channels.g;
-	_10.channels.b = color.channels.b;
-	_10.channels.a = color.channels.a;
+	_10.asGXColor.r = color.asGXColor.r;
+	_10.asGXColor.g = color.asGXColor.g;
+	_10.asGXColor.b = color.asGXColor.b;
+	_10.asGXColor.a = color.asGXColor.a;
 
-	_14.channels.r = color.channels.r;
-	_14.channels.g = color.channels.g;
-	_14.channels.b = color.channels.b;
-	_14.channels.a = color.channels.a;
+	_14.asGXColor.r = color.asGXColor.r;
+	_14.asGXColor.g = color.asGXColor.g;
+	_14.asGXColor.b = color.asGXColor.b;
+	_14.asGXColor.a = color.asGXColor.a;
 
-	_18.channels.r = color.channels.r;
-	_18.channels.g = color.channels.g;
-	_18.channels.b = color.channels.b;
-	_18.channels.a = color.channels.a;
+	_18.asGXColor.r = color.asGXColor.r;
+	_18.asGXColor.g = color.asGXColor.g;
+	_18.asGXColor.b = color.asGXColor.b;
+	_18.asGXColor.a = color.asGXColor.a;
 }
 
 /*
@@ -93,25 +93,25 @@ void JUTFont::setCharColor(JUtility::TColor color)
  */
 void JUTFont::setGradColor(JUtility::TColor color, JUtility::TColor color2)
 {
-	_0C.channels.r = color.channels.r;
-	_0C.channels.g = color.channels.g;
-	_0C.channels.b = color.channels.b;
-	_0C.channels.a = color.channels.a;
+	_0C.asGXColor.r = color.asGXColor.r;
+	_0C.asGXColor.g = color.asGXColor.g;
+	_0C.asGXColor.b = color.asGXColor.b;
+	_0C.asGXColor.a = color.asGXColor.a;
 
-	_10.channels.r = color.channels.r;
-	_10.channels.g = color.channels.g;
-	_10.channels.b = color.channels.b;
-	_10.channels.a = color.channels.a;
+	_10.asGXColor.r = color.asGXColor.r;
+	_10.asGXColor.g = color.asGXColor.g;
+	_10.asGXColor.b = color.asGXColor.b;
+	_10.asGXColor.a = color.asGXColor.a;
 
-	_14.channels.r = color2.channels.r;
-	_14.channels.g = color2.channels.g;
-	_14.channels.b = color2.channels.b;
-	_14.channels.a = color2.channels.a;
+	_14.asGXColor.r = color2.asGXColor.r;
+	_14.asGXColor.g = color2.asGXColor.g;
+	_14.asGXColor.b = color2.asGXColor.b;
+	_14.asGXColor.a = color2.asGXColor.a;
 
-	_18.channels.r = color2.channels.r;
-	_18.channels.g = color2.channels.g;
-	_18.channels.b = color2.channels.b;
-	_18.channels.a = color2.channels.a;
+	_18.asGXColor.r = color2.asGXColor.r;
+	_18.asGXColor.g = color2.asGXColor.g;
+	_18.asGXColor.b = color2.asGXColor.b;
+	_18.asGXColor.a = color2.asGXColor.a;
 }
 
 /*

@@ -217,22 +217,22 @@ typedef enum _GXTevKColorSel {
 } GXTevKColorSel;
 
 typedef enum _GXTevColorArg {
+	GX_CC_CPREV,
+	GX_CC_APREV,
 	GX_CC_C0,
 	GX_CC_C1,
 	GX_CC_C2,
-	GX_CC_CPREV,
 	GX_CC_A0,
 	GX_CC_A1,
 	GX_CC_A2,
-	GX_CC_APREV,
 	GX_CC_TEXC,
 	GX_CC_TEXA,
 	GX_CC_RASC,
 	GX_CC_RASA,
 	GX_CC_ONE,
 	GX_CC_HALF,
-	GX_CC_ZERO,
 	GX_CC_KONST,
+	GX_CC_ZERO,
 } GXTevColorArg;
 
 typedef enum _GXTevStageID {
@@ -378,32 +378,33 @@ typedef enum _GXAttnFn {
 // Number of components in an attribute.
 // Havent confirmed the GX docs match pikmin 2 here
 typedef enum _GXCompCnt {
-	GX_POS_XY,   // Position X, Y (two components).
-	GX_POS_XYZ,  // Position X, Y, Z (three components).
-	GX_NRM_XYZ,  // Normal X, Y, Z (three components).
-	GX_NRM_NBT,  // Normal, binormal, tangent (three components).
-	GX_NRM_NBT3, // Normal, binormal, tangent (three components). Use when NBT
-	             // normal is indexed independently.
-	GX_CLR_RGB,  // RGB (three components).
-	GX_CLR_RGBA, // RGBA (four components).
-	GX_TEX_S,    // Texture coordinate S (one component).
-	GX_TEX_ST    // Texture coordinates S, T (two components).
+	GX_POS_XY   = 0, // Position X, Y (two components).
+	GX_POS_XYZ  = 1, // Position X, Y, Z (three components).
+	GX_NRM_XYZ  = 0, // Normal X, Y, Z (three components).
+	GX_NRM_NBT  = 1, // Normal, binormal, tangent (three components).
+	GX_NRM_NBT3 = 2, // Normal, binormal, tangent (three components). Use when NBT
+	                 // normal is indexed independently.
+	GX_CLR_RGB  = 0, // RGB (three components).
+	GX_CLR_RGBA = 1, // RGBA (four components).
+	GX_TEX_S    = 0, // Texture coordinate S (one component).
+	GX_TEX_ST   = 1  // Texture coordinates S, T (two components).
 } GXCompCnt;
 
 // Type of components in an attribute.
 // Havent confirmed the GX docs match pikmin 2 here
 typedef enum _GXCompType {
-	GX_U8,     // Unsigned 8-bit.
-	GX_S8,     // Signed 8-bit.
-	GX_U16,    // Unsigned 16-bit.
-	GX_S16,    // Signed 16-bit.
-	GX_F32,    // Floating-point 32-bit.
-	GX_RGB565, // RGB565 16-bit.
-	GX_RGB8,   // RGB888 24-bit.
-	GX_RGBX8,  // RGB888x 32-bit.
-	GX_RGBA4,  // RGBA4444 16-bit.
-	GX_RGBA6,  // RGBA6666 24-bit.
-	GX_RGBA8   // RGBA8888 32-bit.
+	GX_U8  = 0, // Unsigned 8-bit.
+	GX_S8  = 1, // Signed 8-bit.
+	GX_U16 = 2, // Unsigned 16-bit.
+	GX_S16 = 3, // Signed 16-bit.
+	GX_F32 = 4, // Floating-point 32-bit.
+
+	GX_RGB565 = 0, // RGB565 16-bit.
+	GX_RGB8   = 1, // RGB888 24-bit.
+	GX_RGBX8  = 2, // RGB888x 32-bit.
+	GX_RGBA4  = 3, // RGBA4444 16-bit.
+	GX_RGBA6  = 4, // RGBA6666 24-bit.
+	GX_RGBA8  = 5  // RGBA8888 32-bit.
 } GXCompType;
 
 // Names are guessed
