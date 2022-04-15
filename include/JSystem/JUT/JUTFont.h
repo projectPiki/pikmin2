@@ -20,8 +20,9 @@ struct ResFONT {
 	};
 	u32 _10;      // _10
 	u32 _14;      // _14
-	u32 _18;      // _18
-	u32 _1C;      // _1C
+	u16 _18;      // _18
+	u16 _1A;      // _1A
+	u16 _1C;      // _1C
 	void* m_data; // _20
 };
 
@@ -64,7 +65,7 @@ struct JUTFont {
 
 	bool _04;
 	bool _05;
-	u32 _08;
+	int _08;
 	JUtility::TColor _0C;
 	JUtility::TColor _10;
 	JUtility::TColor _14;
@@ -156,8 +157,8 @@ struct JUTResFont : public JUTFont {
 	void loadFont(int, _GXTexMapID, TWidth*);
 	bool protected_initiate(const ResFONT*, JKRHeap*);
 
-	u32 _1C;             // _1C
-	u32 _20;             // _20
+	int _1C;             // _1C
+	int _20;             // _20
 	u8 _24[0x20];        // _24
 	int _44;             // _44
 	ResFONT* m_resource; // _48
