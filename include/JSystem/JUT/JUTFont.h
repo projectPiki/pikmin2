@@ -7,23 +7,29 @@
 struct JKRAramBlock;
 struct JKRHeap;
 
+/*
+ * ResFONT should probably be broken up into more structs, or at least have a large portion within a union.
+ * Mostly due to JUTResFont usage as various members, such as m_glyphBlocks, m_mapBlocks, etc.
+ * Unless... m_infoBlock is a FontHeader? That would make sense.
+ */
 struct ResFONT {
 	u32 m_rawType;     // _00
 	u32 m_blockLength; // _04
 	u16 m_encoding;    // _08
-	u16 _0A;           // _0A
+	u16 m_ascent;      // _0A
 	union {
 		u32 asU32;
 		struct {
 			s16 m_messageCodeHighWord, m_messageCodeLowWord;
 		} words;
 	};
-	u32 _10;      // _10
-	u32 _14;      // _14
-	u16 _18;      // _18
-	u16 _1A;      // _1A
-	u16 _1C;      // _1C
-	void* m_data; // _20
+	u16 m_leading; // _10
+	u16 _12;       // _12
+	u32 _14;       // _14
+	u16 _18;       // _18
+	u16 _1A;       // _1A
+	u16 _1C;       // _1C
+	void* m_data;  // _20
 };
 
 struct JUTFont {
@@ -41,7 +47,7 @@ struct JUTFont {
 	virtual void setGX() = 0;                                                // _0C
 	virtual void setGX(JUtility::TColor, JUtility::TColor) { setGX(); };     // _10
 	virtual float drawChar_scale(float, float, float, float, int, bool) = 0; // _14
-	virtual int getLeading() const                                      = 0; // _18
+	virtual u16 getLeading() const                                      = 0; // _18
 	virtual int getAscent() const                                       = 0; // _1C
 	virtual int getDescent() const                                      = 0; // _20
 	virtual int getHeight() const                                       = 0; // _24
@@ -82,7 +88,8 @@ struct JUTRomFont : public JUTFont {
 	// @fabricatedName
 	struct FontHeader {
 		u32 m_fontType;
-		u8 _04[4];
+		u16 _04;
+		u16 m_encoding;
 		u16 m_ascent;
 		u16 m_descent;
 		u16 m_width;
@@ -97,7 +104,7 @@ struct JUTRomFont : public JUTFont {
 	virtual ~JUTRomFont();                                                     // _08
 	virtual void setGX();                                                      // _0C
 	virtual float drawChar_scale(f32, f32, f32, f32, int, bool);               // _14
-	virtual int getLeading() const { return spFontHeader_->m_leading; };       // _18
+	virtual u16 getLeading() const { return spFontHeader_->m_leading; };       // _18
 	virtual int getAscent() const { return spFontHeader_->m_ascent; };         // _1C
 	virtual int getDescent() const { return spFontHeader_->m_descent; };       // _20
 	virtual int getHeight() const { return getAscent() + getDescent(); };      // _24
@@ -126,26 +133,38 @@ struct JUTRomFont : public JUTFont {
  * @size{0x70}
  */
 struct JUTResFont : public JUTFont {
+	// @fabricatedName
+	struct FontHeader {
+		u32 m_fontType;
+		u32 _04;
+		u16 m_encoding;
+		u16 m_ascent;
+		u16 m_descent;
+		u16 m_width;
+		u16 m_leading;
+		u16 m_cellWidth;
+		u16 m_cellHeight;
+	};
 	JUTResFont();
 	JUTResFont(const ResFONT*, JKRHeap*);
 
-	virtual ~JUTResFont();                                               // _08
-	virtual void setGX();                                                // _0C
-	virtual void setGX(JUtility::TColor, JUtility::TColor);              // _10
-	virtual float drawChar_scale(float, float, float, float, int, bool); // _14
-	virtual int getLeading() const;                                      // _18
-	virtual int getAscent() const;                                       // _1C
-	virtual int getDescent() const;                                      // _20
-	virtual int getHeight() const;                                       // _24
-	virtual int getWidth() const;                                        // _28
-	virtual void getWidthEntry(int, JUTFont::TWidth*) const;             // _2C
-	virtual int getCellWidth() const;                                    // _30
-	virtual int getCellHeight() const;                                   // _34
-	virtual u32 getFontType() const;                                     // _38
-	virtual ResFONT* getResFont() const;                                 // _3C
-	virtual bool isLeadByte(int) const;                                  // _40
-	virtual void loadImage(int, _GXTexMapID);                            // _44
-	virtual void setBlock();                                             // _48
+	virtual ~JUTResFont();                                                // _08
+	virtual void setGX();                                                 // _0C
+	virtual void setGX(JUtility::TColor, JUtility::TColor);               // _10
+	virtual float drawChar_scale(float, float, float, float, int, bool);  // _14
+	virtual u16 getLeading() const { return m_infoBlock->m_leading; };    // _18
+	virtual int getAscent() const { return m_infoBlock->m_ascent; };      // _1C
+	virtual int getDescent() const { return m_infoBlock->m_descent; };    // _20
+	virtual int getHeight() const { return getAscent() + getDescent(); }; // _24
+	virtual int getWidth() const { return m_infoBlock->m_width; };        // _28
+	virtual void getWidthEntry(int, JUTFont::TWidth*) const;              // _2C
+	virtual int getCellWidth() const;                                     // _30
+	virtual int getCellHeight() const;                                    // _34
+	virtual u32 getFontType() const { return m_infoBlock->m_encoding; };  // _38
+	virtual ResFONT* getResFont() const { return m_resource; };           // _3C
+	virtual bool isLeadByte(int) const;                                   // _40
+	virtual void loadImage(int, _GXTexMapID);                             // _44
+	virtual void setBlock();                                              // _48
 	// virtual void _4C(); // _4C
 
 	void convertSjis(int, unsigned short*) const;
@@ -163,8 +182,8 @@ struct JUTResFont : public JUTFont {
 	int _44;             // _44
 	ResFONT* m_resource; // _48
 	// INF1
-	ResFONT* m_infoBlock;  // _4C
-	ResFONT** m_memBlocks; // _50
+	FontHeader* m_infoBlock; // _4C
+	ResFONT** m_memBlocks;   // _50
 	// WID1
 	ResFONT** m_widthBlocks; // _54
 	// GLY1
@@ -198,7 +217,7 @@ struct JUTCacheFont : public JUTResFont {
 	virtual ~JUTCacheFont();                                             // _08
 	virtual void setGX();                                                // _0C
 	virtual float drawChar_scale(float, float, float, float, int, bool); // _14
-	virtual int getLeading() const;                                      // _18
+	virtual u16 getLeading() const;                                      // _18
 	virtual int getAscent() const;                                       // _1C
 	virtual int getDescent() const;                                      // _20
 	virtual int getHeight() const;                                       // _24

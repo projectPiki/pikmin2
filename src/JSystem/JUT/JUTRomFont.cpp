@@ -361,7 +361,7 @@ void JUTRomFont::fakefunc()
  * --INFO--
  * Address:	80032EFC
  * Size:	00000C
- * int JUTRomFont::getLeading() const { return spFontHeader_->m_leading; }
+ * u16 JUTRomFont::getLeading() const { return spFontHeader_->m_leading; }
  * Weak function.
  */
 
