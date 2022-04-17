@@ -163,8 +163,6 @@ pikmin2.usa.dol: `sha1: 90d328bf8f190c90472e8c19e7e53c6ad0fe0d1a`
 	- <a href="https://github.com/projectPiki/pikmin2/tree/main/src/plugProjectYamashitaU/kochappyAnimator.cpp">plugProjectYamashitaU/kochappyAnimator.cpp</a>
 - JSystem
 	- <a href="https://github.com/projectPiki/pikmin2/tree/main/src/JSystem/data.cpp">JSystem/data.cpp</a>
-	- <a href="https://github.com/projectPiki/pikmin2/tree/main/src/JSystem/fvb/fvb-data-parse.cpp">JSystem/fvb/fvb-data-parse.cpp</a>
-	- <a href="https://github.com/projectPiki/pikmin2/tree/main/src/JSystem/fvb/fvb-data.cpp">JSystem/fvb/fvb-data.cpp</a>
 	- <a href="https://github.com/projectPiki/pikmin2/tree/main/src/JSystem/J3D/J3DBinaryFormat.cpp">JSystem/J3D/J3DBinaryFormat.cpp</a>
 	- <a href="https://github.com/projectPiki/pikmin2/tree/main/src/JSystem/J3D/J3DModelSaver.cpp">JSystem/J3D/J3DModelSaver.cpp</a>
 	- <a href="https://github.com/projectPiki/pikmin2/tree/main/src/JSystem/J3D/J3DShapeDraw.cpp">JSystem/J3D/J3DShapeDraw.cpp</a>
@@ -182,7 +180,11 @@ pikmin2.usa.dol: `sha1: 90d328bf8f190c90472e8c19e7e53c6ad0fe0d1a`
 	- <a href="https://github.com/projectPiki/pikmin2/tree/main/src/JSystem/JPA/JPATexture.cpp">JSystem/JPA/JPATexture.cpp</a>
 	- <a href="https://github.com/projectPiki/pikmin2/tree/main/src/JSystem/JSG/JSGActor.cpp">JSystem/JSG/JSGActor.cpp</a>
 	- <a href="https://github.com/projectPiki/pikmin2/tree/main/src/JSystem/JSG/JSGObject.cpp">JSystem/JSG/JSGObject.cpp</a>
-	- <a href="https://github.com/projectPiki/pikmin2/tree/main/src/JSystem/jstudio/jstudio-data.cpp">JSystem/jstudio/jstudio-data.cpp</a>
+	- <a href="https://github.com/projectPiki/pikmin2/tree/main/src/JSystem/JStudio/data/jstudio-data.cpp">JSystem/JStudio/data/jstudio-data.cpp</a>
+	- <a href="https://github.com/projectPiki/pikmin2/tree/main/src/JSystem/JStudio/fvb/data/fvb-data-parse.cpp">JSystem/JStudio/fvb/data/fvb-data-parse.cpp</a>
+	- <a href="https://github.com/projectPiki/pikmin2/tree/main/src/JSystem/JStudio/fvb/data/fvb-data.cpp">JSystem/JStudio/fvb/data/fvb-data.cpp</a>
+	- <a href="https://github.com/projectPiki/pikmin2/tree/main/src/JSystem/JStudio/stb/data/stb-data-parse.cpp">JSystem/JStudio/stb/data/stb-data-parse.cpp</a>
+	- <a href="https://github.com/projectPiki/pikmin2/tree/main/src/JSystem/JStudio/stb/data/stb-data.cpp">JSystem/JStudio/stb/data/stb-data.cpp</a>
 	- <a href="https://github.com/projectPiki/pikmin2/tree/main/src/JSystem/JSupport/JSUFileStream.cpp">JSystem/JSupport/JSUFileStream.cpp</a>
 	- <a href="https://github.com/projectPiki/pikmin2/tree/main/src/JSystem/JSupport/JSUInputStream.cpp">JSystem/JSupport/JSUInputStream.cpp</a>
 	- <a href="https://github.com/projectPiki/pikmin2/tree/main/src/JSystem/JSupport/JSUList.cpp">JSystem/JSupport/JSUList.cpp</a>
@@ -192,8 +194,6 @@ pikmin2.usa.dol: `sha1: 90d328bf8f190c90472e8c19e7e53c6ad0fe0d1a`
 	- <a href="https://github.com/projectPiki/pikmin2/tree/main/src/JSystem/JUT/JUTFontData_Ascfont_fix12.cpp">JSystem/JUT/JUTFontData_Ascfont_fix12.cpp</a>
 	- <a href="https://github.com/projectPiki/pikmin2/tree/main/src/JSystem/JUT/JUTNameTab.cpp">JSystem/JUT/JUTNameTab.cpp</a>
 	- <a href="https://github.com/projectPiki/pikmin2/tree/main/src/JSystem/JUT/JUTRomFont.cpp">JSystem/JUT/JUTRomFont.cpp</a>
-	- <a href="https://github.com/projectPiki/pikmin2/tree/main/src/JSystem/stb/stb-data-parse.cpp">JSystem/stb/stb-data-parse.cpp</a>
-	- <a href="https://github.com/projectPiki/pikmin2/tree/main/src/JSystem/stb/stb-data.cpp">JSystem/stb/stb-data.cpp</a>
 ### WIP
 - sysBootupU
 - sysGCU
