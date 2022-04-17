@@ -170,7 +170,7 @@ struct JUTResFont : public JUTFont {
 	void convertSjis(int, unsigned short*) const;
 	void countBlock();
 	void deleteMemBlocks_ResFont();
-	u32 getFontCode(int) const;
+	int getFontCode(int) const;
 	void initialize_state();
 	bool initiate(const ResFONT*, JKRHeap*);
 	void loadFont(int, _GXTexMapID, TWidth*);

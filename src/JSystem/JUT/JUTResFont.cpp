@@ -537,46 +537,13 @@ f32 JUTResFont::drawChar_scale(f32 pos_x, f32 pos_y, f32 scale_x, f32 scale_y, i
  * Address:	80031ECC
  * Size:	000088
  */
-void JUTResFont::loadFont(int, _GXTexMapID, JUTFont::TWidth*)
+void JUTResFont::loadFont(int a, _GXTexMapID id, JUTFont::TWidth* width)
 {
-	/*
-	stwu     r1, -0x20(r1)
-	mflr     r0
-	cmplwi   r6, 0
-	stw      r0, 0x24(r1)
-	stw      r31, 0x1c(r1)
-	mr       r31, r5
-	stw      r30, 0x18(r1)
-	mr       r30, r4
-	stw      r29, 0x14(r1)
-	mr       r29, r3
-	beq      lbl_80031F0C
-	lwz      r12, 0(r3)
-	mr       r5, r6
-	lwz      r12, 0x2c(r12)
-	mtctr    r12
-	bctrl
-
-lbl_80031F0C:
-	mr       r3, r29
-	mr       r4, r30
-	bl       getFontCode__10JUTResFontCFi
-	lwz      r12, 0(r29)
-	mr       r0, r3
-	mr       r3, r29
-	mr       r5, r31
-	lwz      r12, 0x44(r12)
-	mr       r4, r0
-	mtctr    r12
-	bctrl
-	lwz      r0, 0x24(r1)
-	lwz      r31, 0x1c(r1)
-	lwz      r30, 0x18(r1)
-	lwz      r29, 0x14(r1)
-	mtlr     r0
-	addi     r1, r1, 0x20
-	blr
-	*/
+	if (width) {
+		getWidthEntry(a, width);
+	}
+	int fontcode = getFontCode(a);
+	loadImage(fontcode, id);
 }
 
 /*
@@ -746,8 +713,9 @@ bool JUTResFont::isLeadByte(int) const
  * --INFO--
  * Address:	800320E8
  * Size:	0001AC
- * u32 JUTResFont::getFontCode(int) const
  */
+
+int JUTResFont::getFontCode(int) const { }
 
 /*
  * --INFO--
