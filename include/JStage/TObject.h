@@ -1,6 +1,6 @@
 #ifndef _JSTAGE_TOBJECT_H
 #define _JSTAGE_TOBJECT_H
-
+#include "types.h"
 /*
     __vt__Q26JStage7TObject:
     .4byte 0
@@ -23,10 +23,10 @@
 namespace JStage {
 struct TObject {
 	virtual void _00()              = 0;                                      // _00
-	virtual u32 JSGFGetType() const = 0;                                      // _04
+	virtual int JSGFGetType() const = 0;                                      // _04
 	virtual char* JSGGetName() const;                                         // _08
 	virtual void JSGUpdate();                                                 // _0C
-	virtual u32 JSGGetFlag() const;                                           // _10
+	virtual int JSGGetFlag() const;                                           // _10
 	virtual void JSGSetFlag(unsigned long);                                   // _14
 	virtual void* JSGGetData(unsigned long, void*, unsigned long) const;      // _18
 	virtual void JSGSetData(unsigned long, const void*, unsigned long);       // _1C

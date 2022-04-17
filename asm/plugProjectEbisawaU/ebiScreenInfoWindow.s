@@ -2,7 +2,7 @@
 
 .section .text, "ax"  # 0x800056C0 - 0x80472F00
 .global __dt__Q29P2DScreen3MgrFv
-__dt__Q29P2DScreen3MgrFv:
+__dt__Q29P2DScreen3MgrFv: # weak function
 /* 803F1A80 003EE9C0  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 803F1A84 003EE9C4  7C 08 02 A6 */	mflr r0
 /* 803F1A88 003EE9C8  90 01 00 14 */	stw r0, 0x14(r1)

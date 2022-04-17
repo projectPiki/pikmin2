@@ -10,17 +10,14 @@ __vt__Q25P2JME10TReference:
 
 .section .sbss # 0x80514D80 - 0x80516360
 .balign 8
-.global frm$674
-frm$674:
+frm$674: # local object
 	.skip 0x1
-.global init$675
-init$675:
-	.skip 0x7
+init$675: # local object
+	.skip 0x1
 
 .section .sdata2, "a"     # 0x80516360 - 0x80520E40
 .balign 8
-.global lbl_805208E8
-lbl_805208E8:
+lbl_805208E8: # Shift-JIS
 	.4byte 0x83658358
 	.4byte 0x83670000
 .balign 4
@@ -64,7 +61,7 @@ lbl_8043DB7C:
 /* 8043DB88 0043AAC8  4E 80 00 20 */	blr 
 
 .global __dt__Q25P2JME10TReferenceFv
-__dt__Q25P2JME10TReferenceFv:
+__dt__Q25P2JME10TReferenceFv: # weak function
 /* 8043DB8C 0043AACC  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 8043DB90 0043AAD0  7C 08 02 A6 */	mflr r0
 /* 8043DB94 0043AAD4  90 01 00 14 */	stw r0, 0x14(r1)
