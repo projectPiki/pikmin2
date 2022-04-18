@@ -33,7 +33,7 @@ struct ResFONT {
 };
 
 struct JUTFont {
-	typedef bool IsLeadByte(int);
+	typedef bool (*IsLeadByte)(int);
 
 	struct TWidth {
 		u8 w0;
@@ -83,7 +83,7 @@ struct JUTRomFont : public JUTFont {
 	struct AboutEncoding {
 		u32 m_fontType;
 		u32 m_dataSize;
-		IsLeadByte* m_isLeadByteFunction;
+		IsLeadByte m_isLeadByteFunction;
 	};
 	// @fabricatedName
 	struct FontHeader {
@@ -197,7 +197,7 @@ struct JUTResFont : public JUTFont {
 	u16 _68;                  // _68
 	IsLeadByte* m_isLeadByte; // _6C
 
-	static IsLeadByte* const saoAboutEncoding_[3];
+	static IsLeadByte const saoAboutEncoding_[3];
 };
 
 struct JUTCacheFont : public JUTResFont {

@@ -152,7 +152,7 @@
         .4byte 0x00000000
 */
 
-JUTFont::IsLeadByte* const JUTResFont::saoAboutEncoding_[3]
+JUTFont::IsLeadByte const JUTResFont::saoAboutEncoding_[3]
     = { JUTFont::isLeadByte_1Byte, JUTFont::isLeadByte_2Byte, JUTFont::isLeadByte_ShiftJIS };
 
 /*
@@ -616,33 +616,19 @@ lbl_80031FFC:
  * Address:	80032014
  * Size:	00004C
  */
-int JUTResFont::getCellWidth() const
+int JUTResFont::getCellWidth(void) const
 {
-	/*
-	stwu     r1, -0x10(r1)
-	mflr     r0
-	lwz      r4, 0x58(r3)
-	stw      r0, 0x14(r1)
-	cmplwi   r4, 0
-	beq      lbl_80032040
-	lwz      r4, 0(r4)
-	cmplwi   r4, 0
-	beq      lbl_80032040
-	lhz      r3, 0xc(r4)
-	b        lbl_80032050
+	ResFONT* glyph;
+	ResFONT** glyphs;
 
-lbl_80032040:
-	lwz      r12, 0(r3)
-	lwz      r12, 0x28(r12)
-	mtctr    r12
-	bctrl
-
-lbl_80032050:
-	lwz      r0, 0x14(r1)
-	mtlr     r0
-	addi     r1, r1, 0x10
-	blr
-	*/
+	glyphs = m_glyphBlocks;
+	if (glyphs != nullptr) {
+		glyph = *glyphs;
+		if (glyph != nullptr) {
+			return glyph->words.m_messageCodeHighWord;
+		}
+	}
+	return getWidth();
 }
 
 /*
@@ -657,33 +643,19 @@ lbl_80032050:
  * Address:	8003206C
  * Size:	00004C
  */
-int JUTResFont::getCellHeight() const
+int JUTResFont::getCellHeight(void) const
 {
-	/*
-	stwu     r1, -0x10(r1)
-	mflr     r0
-	lwz      r4, 0x58(r3)
-	stw      r0, 0x14(r1)
-	cmplwi   r4, 0
-	beq      lbl_80032098
-	lwz      r4, 0(r4)
-	cmplwi   r4, 0
-	beq      lbl_80032098
-	lhz      r3, 0xe(r4)
-	b        lbl_800320A8
+	ResFONT* glyph;
+	ResFONT** glyphs;
 
-lbl_80032098:
-	lwz      r12, 0(r3)
-	lwz      r12, 0x24(r12)
-	mtctr    r12
-	bctrl
-
-lbl_800320A8:
-	lwz      r0, 0x14(r1)
-	mtlr     r0
-	addi     r1, r1, 0x10
-	blr
-	*/
+	glyphs = m_glyphBlocks;
+	if (glyphs != nullptr) {
+		glyph = *glyphs;
+		if (glyph != nullptr) {
+			return glyph->words.m_messageCodeLowWord;
+		}
+	}
+	return getHeight();
 }
 
 /*
@@ -691,23 +663,7 @@ lbl_800320A8:
  * Address:	800320B8
  * Size:	000030
  */
-bool JUTResFont::isLeadByte(int) const
-{
-	/*
-	stwu     r1, -0x10(r1)
-	mflr     r0
-	lwz      r5, 0x6c(r3)
-	mr       r3, r4
-	stw      r0, 0x14(r1)
-	lwz      r12, 0(r5)
-	mtctr    r12
-	bctrl
-	lwz      r0, 0x14(r1)
-	mtlr     r0
-	addi     r1, r1, 0x10
-	blr
-	*/
-}
+bool JUTResFont::isLeadByte(int a) const { return (*m_isLeadByte)(a); }
 
 /*
  * --INFO--
