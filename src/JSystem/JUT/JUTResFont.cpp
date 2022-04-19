@@ -551,64 +551,26 @@ void JUTResFont::loadFont(int a, _GXTexMapID id, JUTFont::TWidth* width)
  * Address:	80031F54
  * Size:	0000C0
  */
-void JUTResFont::getWidthEntry(int, JUTFont::TWidth*) const
+void JUTResFont::getWidthEntry(int a, JUTFont::TWidth* width) const
 {
-	/*
-	stwu     r1, -0x10(r1)
-	mflr     r0
-	stw      r0, 0x14(r1)
-	stw      r31, 0xc(r1)
-	mr       r31, r5
-	stw      r30, 8(r1)
-	mr       r30, r3
-	bl       getFontCode__10JUTResFontCFi
-	li       r0, 0
-	lwz      r7, 0x54(r30)
-	stb      r0, 0(r31)
-	li       r8, 0
-	lwz      r5, 0x4c(r30)
-	mr       r4, r7
-	lhz      r6, 0x60(r30)
-	lhz      r0, 0xe(r5)
-	stb      r0, 1(r31)
-	mtctr    r6
-	cmpwi    r6, 0
-	ble      lbl_80031FFC
+	int fontcode          = getFontCode(a);
+	width->w0             = 0;
+	ResFONT** widthblocks = m_widthBlocks;
+	int cellwidth         = m_infoBlock->m_cellWidth;
+	width->w1             = m_infoBlock->m_width;
 
-lbl_80031FA4:
-	lwz      r5, 0(r4)
-	lhz      r0, 8(r5)
-	cmpw     r0, r3
-	bgt      lbl_80031FF0
-	lhz      r0, 0xa(r5)
-	cmpw     r3, r0
-	bgt      lbl_80031FF0
-	slwi     r0, r8, 2
-	lwzx     r4, r7, r0
-	lhz      r0, 8(r4)
-	subf     r0, r0, r3
-	slwi     r3, r0, 1
-	addi     r3, r3, 0xc
-	add      r3, r4, r3
-	lbz      r0, 0(r3)
-	stb      r0, 0(r31)
-	lbz      r0, 1(r3)
-	stb      r0, 1(r31)
-	b        lbl_80031FFC
+	for (int i = 0; i < m_widthBlockCount; i++) {
 
-lbl_80031FF0:
-	addi     r4, r4, 4
-	addi     r8, r8, 1
-	bdnz     lbl_80031FA4
+		ResFONT* tmp2 = m_widthBlocks[i];
+		if (tmp2->m_encoding <= fontcode && fontcode <= tmp2->m_ascent) {
 
-lbl_80031FFC:
-	lwz      r0, 0x14(r1)
-	lwz      r31, 0xc(r1)
-	lwz      r30, 8(r1)
-	mtlr     r0
-	addi     r1, r1, 0x10
-	blr
-	*/
+			u8* ptr   = &widthblocks[i]->_0C[(fontcode - widthblocks[i]->m_encoding) * 2];
+			width->w0 = ptr[0];
+			width->w1 = ptr[1];
+			break;
+		}
+	}
+	return;
 }
 
 /*

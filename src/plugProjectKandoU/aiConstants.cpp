@@ -77,7 +77,7 @@ AIConstants::AIConstants()
 	m_debt.m_data        = 10000;
 	m_cameraAngle.m_data = 180.0f;
 
-	void* handle = JKRDvdRipper::loadToMainRAM("/user/Kando/aiConstants.txt", nullptr, Switch_0, 0, 0, JKRDvdRipper::AllocDirection_2, 0,
+	void* handle = JKRDvdRipper::loadToMainRAM("/user/Kando/aiConstants.txt", nullptr, Switch_0, 0, 0, JKRDvdRipper::ALLOC_DIR_BOTTOM, 0,
 	                                           nullptr, nullptr);
 
 	if (handle) {
@@ -92,7 +92,7 @@ AIConstants::AIConstants()
  * --INFO--
  * Address:	801B63F8
  * Size:	000070
+ * AIConstants::~AIConstants() { }
  */
-AIConstants::~AIConstants() { }
 
 } // namespace Game

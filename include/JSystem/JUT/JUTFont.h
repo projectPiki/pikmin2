@@ -19,6 +19,7 @@ struct ResFONT {
 	u16 m_ascent;      // _0A
 	union {
 		u32 asU32;
+		u8 _0C[4];
 		struct {
 			s16 m_messageCodeHighWord, m_messageCodeLowWord;
 		} words;
