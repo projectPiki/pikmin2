@@ -8,7 +8,7 @@ extern const double __double_max;
 extern const double __double_huge;
 extern const double __extended_min;
 extern const double __extended_max;
-extern const float __float_max;
+extern const float __float_max[];
 extern const float __float_epsilon;
 
 #endif

@@ -179,6 +179,7 @@ pikmin2.usa.dol: `sha1: 90d328bf8f190c90472e8c19e7e53c6ad0fe0d1a`
 	- <a href="https://github.com/projectPiki/pikmin2/tree/main/src/JSystem/JPA/JPAKeyBlock.cpp">JSystem/JPA/JPAKeyBlock.cpp</a>
 	- <a href="https://github.com/projectPiki/pikmin2/tree/main/src/JSystem/JPA/JPATexture.cpp">JSystem/JPA/JPATexture.cpp</a>
 	- <a href="https://github.com/projectPiki/pikmin2/tree/main/src/JSystem/JSG/JSGActor.cpp">JSystem/JSG/JSGActor.cpp</a>
+	- <a href="https://github.com/projectPiki/pikmin2/tree/main/src/JSystem/JSG/JSGCamera.cpp">JSystem/JSG/JSGCamera.cpp</a>
 	- <a href="https://github.com/projectPiki/pikmin2/tree/main/src/JSystem/JSG/JSGObject.cpp">JSystem/JSG/JSGObject.cpp</a>
 	- <a href="https://github.com/projectPiki/pikmin2/tree/main/src/JSystem/JStudio/data/jstudio-data.cpp">JSystem/JStudio/data/jstudio-data.cpp</a>
 	- <a href="https://github.com/projectPiki/pikmin2/tree/main/src/JSystem/JStudio/fvb/data/fvb-data-parse.cpp">JSystem/JStudio/fvb/data/fvb-data-parse.cpp</a>
