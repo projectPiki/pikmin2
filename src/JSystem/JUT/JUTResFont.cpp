@@ -823,31 +823,19 @@ lbl_80032400:
  * Address:	80032420
  * Size:	000044
  */
-int JUTResFont::convertSjis(int, unsigned short*) const
+int JUTResFont::convertSjis(int inChr, u16* inLead) const
 {
-	/*
-	clrlwi   r3, r4, 0x18
-	rlwinm   r4, r4, 0x18, 0x18, 0x1f
-	addi     r6, r3, -64
-	cmpwi    r6, 0x40
-	blt      lbl_80032438
-	addi     r6, r6, -1
-
-lbl_80032438:
-	cmplwi   r5, 0
-	li       r3, 0x31c
-	beq      lbl_80032448
-	lhz      r3, 0(r5)
-
-lbl_80032448:
-	addi     r0, r4, -136
-	clrlwi   r4, r3, 0x10
-	mulli    r3, r0, 0xbc
-	addi     r0, r3, -94
-	add      r3, r0, r4
-	add      r3, r6, r3
-	blr
-	*/
+	int outChr = (u8)inChr;
+	inChr      = ((inChr >> 8) & 0xFF);
+	outChr -= 0x40;
+	if (0x40 <= outChr) {
+		outChr--;
+	}
+	u16 lead = 0x31c;
+	if (inLead) {
+		lead = *inLead;
+	}
+	return outChr + (inChr - 0x88) * 0xbc + -0x5e + lead;
 }
 
 /*
