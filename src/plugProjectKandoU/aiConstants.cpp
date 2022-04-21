@@ -2,35 +2,27 @@
 
 #include "Game/AIConstants.h"
 #include "JSystem/JKR/JKRDvdRipper.h"
-#include "JSystem/JKR/JKRExpandSwitch.h"
 #include "stream.h"
 
 /*
     Generated from dpostproc
 
-    .section .rodata  # 0x804732E0 - 0x8049E220
-    .global lbl_8047FC28
+    .section .rodata # 0x804732E0 - 0x8049E220
+    .balign 8
     lbl_8047FC28:
-        .4byte 0x6169436F
-        .4byte 0x6E737461
-        .4byte 0x6E747300
-        .4byte 0x646F7065
-        .4byte 0x636F756E
-        .4byte 0x74000000
-        .4byte 0x63616D65
-        .4byte 0x72615F61
-        .4byte 0x6E676C65
-        .4byte 0x00000000
-        .4byte 0x2F757365
-        .4byte 0x722F4B61
-        .4byte 0x6E646F2F
-        .4byte 0x6169436F
-        .4byte 0x6E737461
-        .4byte 0x6E74732E
-        .4byte 0x74787400
-        .4byte 0x00000000
+        .asciz "aiConstants"
+    .balign 4
+    lbl_8047FC34:
+        .asciz "dopecount"
+    .balign 4
+    lbl_8047FC40:
+        .asciz "camera_angle"
+    .balign 4
+    lbl_8047FC50:
+        .asciz "/user/Kando/aiConstants.txt"
 
-    .section .data, "wa"  # 0x8049E220 - 0x804EFC20
+    .section .data, "wa" # 0x8049E220 - 0x804EFC20
+    .balign 8
     .global __vt__Q24Game11AIConstants
     __vt__Q24Game11AIConstants:
         .4byte 0
@@ -39,23 +31,21 @@
         .4byte getChildCount__5CNodeFv
 
     .section .sbss # 0x80514D80 - 0x80516360
+    .balign 8
     .global _aiConstants__4Game
     _aiConstants__4Game:
-        .skip 0x8
+        .skip 4
 
-    .section .sdata2, "a"     # 0x80516360 - 0x80520E40
-    .global lbl_80519428
+    .section .sdata2, "a" # 0x80516360 - 0x80520E40
+    .balign 8
     lbl_80519428:
-        .4byte 0x67726176
-        .4byte 0x69747900
-    .global lbl_80519430
+        .asciz "gravity"
+    .balign 4
     lbl_80519430:
-        .4byte 0x64656274
-        .4byte 0x00000000
-    .global lbl_80519438
+        .asciz "debt"
+    .balign 4
     lbl_80519438:
-        .4byte 0x43340000
-        .4byte 0x00000000
+        .float 180.0
 */
 
 namespace Game {

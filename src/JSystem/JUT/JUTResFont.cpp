@@ -633,7 +633,64 @@ bool JUTResFont::isLeadByte(int a) const { return (*m_isLeadByte)(a); }
  * Size:	0001AC
  */
 
-int JUTResFont::getFontCode(int) const { }
+int JUTResFont::getFontCode(int chr) const
+{
+
+	static const u16 halftofull[95] = {
+		0x8140, 0x8149, 0x8168, 0x8194, 0x8190, 0x8193, 0x8195, 0x8166, 0x8169, 0x816A, 0x8196, 0x817B, 0x8143, 0x817C, 0x8144, 0x815E,
+		0x824F, 0x8250, 0x8251, 0x8252, 0x8253, 0x8254, 0x8255, 0x8256, 0x8257, 0x8258, 0x8146, 0x8147, 0x8183, 0x8181, 0x8184, 0x8148,
+		0x8197, 0x8260, 0x8261, 0x8262, 0x8263, 0x8264, 0x8265, 0x8266, 0x8267, 0x8268, 0x8269, 0x826A, 0x826B, 0x826C, 0x826D, 0x826E,
+		0x826F, 0x8270, 0x8271, 0x8272, 0x8273, 0x8274, 0x8275, 0x8276, 0x8277, 0x8278, 0x8279, 0x816D, 0x818F, 0x816E, 0x814F, 0x8151,
+		0x8165, 0x8281, 0x8282, 0x8283, 0x8284, 0x8285, 0x8286, 0x8287, 0x8288, 0x8289, 0x828A, 0x828B, 0x828C, 0x828D, 0x828E, 0x828F,
+		0x8290, 0x8291, 0x8292, 0x8293, 0x8294, 0x8295, 0x8296, 0x8297, 0x8298, 0x8299, 0x829A, 0x816F, 0x8162, 0x8170, 0x8160,
+	}; /* const */
+	int ret = m_infoBlock->m_cellWidth;
+	if ((getFontType() == 2) && (_68 >= 0x8000U) && (chr >= 0x20) && (chr < 0x7FU)) {
+		chr = halftofull[chr - 32] /*.unk-40*/;
+	}
+	for (int i = m_mapBlockCount, j = 0; i > 0; j++, i--) {
+		if ((m_mapBlocks[j]->m_ascent <= chr) && (chr <= m_mapBlocks[j]->uwords.m_messageCodeHighWord)) {
+			if (m_mapBlocks[j]->m_encoding == 0) {
+				ret = chr - m_mapBlocks[j]->m_ascent;
+				break;
+			} else if (m_mapBlocks[j]->m_encoding == 2) {
+				ret = *(&m_mapBlocks[j]->m_leading + ((chr - m_mapBlocks[j]->m_ascent))); // type punning sin
+				break;
+			} else if (m_mapBlocks[j]->m_encoding == 3) {
+				u16* leadPtr = &m_mapBlocks[j]->m_leading;
+				int leadIdx  = 0;
+				int maxIdx   = m_mapBlocks[j]->uwords.m_messageCodeLowWord - 1;
+
+				while (maxIdx >= leadIdx) {
+					u32 curOff = (maxIdx + leadIdx);
+					int curIdx = (int)((curOff >> 31) + maxIdx + leadIdx) >> 1; // macro?
+
+					if (chr < *(leadPtr + curIdx * 2)) {
+						maxIdx = curIdx - 1;
+						continue;
+					}
+
+					if (chr > *(leadPtr + curIdx * 2)) {
+						leadIdx = curIdx + 1;
+						continue;
+					}
+
+					ret = *(leadPtr + curIdx * 2 + 1); // jank? possibly type punning fuckery
+					break;
+				}
+			} else if (m_mapBlocks[j]->m_encoding == 1) {
+				u16* lead = nullptr;
+				if (m_mapBlocks[j]->uwords.m_messageCodeLowWord == 1) {
+					lead = &m_mapBlocks[j]->m_leading;
+				}
+				ret = JUTResFont::convertSjis(chr, lead);
+				break;
+			}
+			break;
+		}
+	}
+	return ret;
+}
 
 /*
  * --INFO--
@@ -766,7 +823,7 @@ lbl_80032400:
  * Address:	80032420
  * Size:	000044
  */
-void JUTResFont::convertSjis(int, unsigned short*) const
+int JUTResFont::convertSjis(int, unsigned short*) const
 {
 	/*
 	clrlwi   r3, r4, 0x18

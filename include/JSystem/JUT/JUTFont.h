@@ -23,6 +23,9 @@ struct ResFONT {
 		struct {
 			s16 m_messageCodeHighWord, m_messageCodeLowWord;
 		} words;
+		struct {
+			u16 m_messageCodeHighWord, m_messageCodeLowWord;
+		} uwords;
 	};
 	u16 m_leading; // _10
 	u16 _12;       // _12
@@ -168,7 +171,7 @@ struct JUTResFont : public JUTFont {
 	virtual void setBlock();                                              // _48
 	// virtual void _4C(); // _4C
 
-	void convertSjis(int, unsigned short*) const;
+	int convertSjis(int, unsigned short*) const;
 	void countBlock();
 	void deleteMemBlocks_ResFont();
 	int getFontCode(int) const;
