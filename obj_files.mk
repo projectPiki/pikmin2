@@ -85,7 +85,7 @@ JSYSTEM:=\
 	$(BUILD_DIR)/src/JSystem/JUT/JUTNameTab.o\
 	$(BUILD_DIR)/asm/JSystem/JUT/JUTPalette.o\
 	$(BUILD_DIR)/asm/JSystem/JUT/JUTProcBar.o\
-	$(BUILD_DIR)/asm/JSystem/JUT/JUTResFont.o\
+	$(BUILD_DIR)/src/JSystem/JUT/JUTResFont.o\
 	$(BUILD_DIR)/asm/JSystem/JUT/JUTResource.o\
 	$(BUILD_DIR)/src/JSystem/JUT/JUTRomFont.o\
 	$(BUILD_DIR)/src/JSystem/JUT/JUTFontData_Ascfont_fix12.o\

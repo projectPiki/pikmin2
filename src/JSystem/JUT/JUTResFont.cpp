@@ -336,7 +336,7 @@ void JUTResFont::setBlock()
 			m_isLeadByte = (IsLeadByte*)&saoAboutEncoding_[m_infoBlock->m_encoding]; // I believe this is a function pointer, FYI. Once this
 			                                                                         // function pointer table is decomp'd, we shouldn't
 			                                                                         // need the cast anymore. -Jasper
-			break;																	 // it is decomped in JUTFont.h - Epoch
+			break;                                                                   // it is decomped in JUTFont.h - Epoch
 		case 'WID1':
 			m_widthBlocks[widthNum] = (WidthBlock*)pData;
 			widthNum++;
@@ -522,15 +522,21 @@ f32 JUTResFont::drawChar_scale(f32 pos_x, f32 pos_y, f32 scale_x, f32 scale_y, i
  * --INFO--
  * Address:	80031E64
  * Size:	00005C
- * int JUTResFont::getHeight() const
+ * int JUTResFont::getHeight() const { return getAscent() + getDescent(); }
+ * should have weak linkage
  */
+
+int JUTResFont::getHeight() const { return getAscent() + getDescent(); }
 
 /*
  * --INFO--
  * Address:	80031EC0
  * Size:	00000C
- * int JUTResFont::getAscent() const
+ * int JUTResFont::getAscent() const { return m_infoBlock->m_ascent; };
+ * should have weak linkage
  */
+
+int JUTResFont::getAscent() const { return m_infoBlock->m_ascent; };
 
 /*
  * --INFO--
@@ -700,7 +706,7 @@ int JUTResFont::getFontCode(int arg0) const
  * --INFO--
  * Address:	80032294
  * Size:	00000C
- * u32 JUTResFont::getFontType() const
+ * int JUTResFont::getFontType() const
  */
 
 /*
@@ -767,7 +773,10 @@ int JUTResFont::convertSjis(int inChr, u16* inLead) const
  * Address:	80032464
  * Size:	000008
  * ResFONT* JUTResFont::getResFont() const
+ * should have weak linkage
  */
+
+ResFONT* JUTResFont::getResFont() const { return m_resource; };
 
 /*
  * --INFO--
