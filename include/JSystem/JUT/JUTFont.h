@@ -8,32 +8,60 @@ struct JKRAramBlock;
 struct JKRHeap;
 
 /*
- * ResFONT should probably be broken up into more structs, or at least have a large portion within a union.
- * Mostly due to JUTResFont usage as various members, such as m_glyphBlocks, m_mapBlocks, etc.
- * Unless... m_infoBlock is a FontHeader? That would make sense.
+ * ResFONT is probably an intermediate able to be casted to the various Block structs below
  */
 struct ResFONT {
-	u32 m_rawType;     // _00
+	u32 m_magic;       // _00
 	u32 m_blockLength; // _04
 	u16 m_encoding;    // _08
-	u16 m_ascent;      // _0A
-	union {
-		u32 asU32;
-		u8 _0C[4];
-		struct {
-			s16 m_messageCodeHighWord, m_messageCodeLowWord;
-		} words;
-		struct {
-			u16 m_messageCodeHighWord, m_messageCodeLowWord;
-		} uwords;
-	};
-	u16 m_leading; // _10
-	u16 _12;       // _12
-	u32 _14;       // _14
-	u16 _18;       // _18
-	u16 _1A;       // _1A
-	u16 _1C;       // _1C
-	void* m_data;  // _20
+	u16 m_maxGlyph;    // _0A
+	u32 m_chunkNum;    // _0C
+	u32 _10;           // _10
+	u32 _14;           // _14
+	u16 _18;           // _18
+	u16 _1A;           // _1A
+	u16 _1C;           // _1C
+	void* m_data;      // _20
+};
+struct BlockHeader {
+	u32 m_magic; // _00
+	u32 m_size;  // _04
+};
+struct WidthBlock {
+	BlockHeader m_header;
+	u16 m_encoding;   // _08
+	u16 m_maxGlyph;   // _0A
+	u8 m_chunkNum[4]; // _0C
+	u32 _10;          // _10
+	u32 _14;          // _14
+	u16 _18;          // _18
+	u16 _1A;          // _1A
+	u16 _1C;          // _1C
+	u16 m_data[];     // _20
+};
+struct GlyphBlock {
+	BlockHeader m_header;
+	u16 m_minCode;      // _08
+	u16 m_maxCode;      // _0A
+	u16 m_cellWidth;    // _0C
+	u16 m_cellHeight;   // _0E
+	int m_pageByteSize; // _10
+	u16 m_texFormat;    // _14
+	u16 m_pageCellNumW; // _16
+	u16 m_pageCellNumH; // _18
+	u16 m_texWidth;     // _1A
+	u16 m_texHeight;    // _1C
+	u16 _pad;           // _1E
+	u8 m_data[];        // _20
+};
+
+struct MapBlock {
+	BlockHeader m_header;
+	u16 m_minCode;
+	u16 m_maxCode;
+	u16 m_messageCodeHighWord; // _0C
+	u16 m_messageCodeLowWord;  // _0E
+	u16 m_leading;             // _10
 };
 
 struct JUTFont {
@@ -171,7 +199,7 @@ struct JUTResFont : public JUTFont {
 	virtual void setBlock();                                              // _48
 	// virtual void _4C(); // _4C
 
-	int convertSjis(int, unsigned short*) const;
+	int convertSjis(int, u16*) const;
 	void countBlock();
 	void deleteMemBlocks_ResFont();
 	int getFontCode(int) const;
@@ -180,25 +208,25 @@ struct JUTResFont : public JUTFont {
 	void loadFont(int, _GXTexMapID, TWidth*);
 	bool protected_initiate(const ResFONT*, JKRHeap*);
 
-	int _1C;             // _1C
-	int _20;             // _20
-	u8 _24[0x20];        // _24
+	int m_width;         // _1C
+	int m_height;        // _20
+	GXTexObj _24;        // _24
 	int _44;             // _44
 	ResFONT* m_resource; // _48
 	// INF1
 	FontHeader* m_infoBlock; // _4C
-	ResFONT** m_memBlocks;   // _50
+	void** m_memBlocks;      // _50
 	// WID1
-	ResFONT** m_widthBlocks; // _54
+	WidthBlock** m_widthBlocks; // _54
 	// GLY1
-	ResFONT** m_glyphBlocks; // _58
+	GlyphBlock** m_glyphBlocks; // _58
 	// MAP1
-	ResFONT** m_mapBlocks;    // _5C
+	MapBlock** m_mapBlocks;   // _5C
 	u16 m_widthBlockCount;    // _60
 	u16 m_glyphBlockCount;    // _62
 	u16 m_mapBlockCount;      // _64
 	u16 _66;                  // _66
-	u16 _68;                  // _68
+	u16 m_maxCode;            // _68
 	IsLeadByte* m_isLeadByte; // _6C
 
 	static IsLeadByte const saoAboutEncoding_[3];

@@ -216,8 +216,8 @@ void JUTResFont::initialize_state(void)
 	m_widthBlocks = nullptr;
 	m_glyphBlocks = nullptr;
 	m_mapBlocks   = nullptr;
-	_1C           = 0;
-	_20           = 0;
+	m_width       = 0;
+	m_height      = 0;
 	_44           = -1;
 }
 
@@ -248,7 +248,7 @@ bool JUTResFont::initiate(const ResFONT* a, JKRHeap* b)
  */
 bool JUTResFont::protected_initiate(const ResFONT* a, JKRHeap* b)
 {
-	ResFONT** p;
+	void** p;
 	deleteMemBlocks_ResFont();
 	initialize_state();
 	JUTFont::initialize_state();
@@ -260,23 +260,23 @@ bool JUTResFont::protected_initiate(const ResFONT* a, JKRHeap* b)
 	countBlock();
 	u32 v = m_widthBlockCount + m_glyphBlockCount + m_mapBlockCount;
 	// m_memBlocks = new(b,v);
-	m_memBlocks = new (b, 0) ResFONT*[v];
+	m_memBlocks = new (b, 0) void*[v];
 	p           = m_memBlocks;
 	if (m_memBlocks == nullptr) {
 		return false;
 	} else {
 		if (m_widthBlockCount != 0) {
-			m_widthBlocks = p;
+			m_widthBlocks = (WidthBlock**)p;
 			p += m_widthBlockCount;
 		}
 
 		if (m_glyphBlockCount != 0) {
-			m_glyphBlocks = p;
+			m_glyphBlocks = (GlyphBlock**)p;
 			p += m_glyphBlockCount;
 		}
 
 		if (m_mapBlockCount != 0) {
-			m_mapBlocks = p;
+			m_mapBlocks = (MapBlock**)p;
 		}
 	}
 	setBlock();
@@ -294,10 +294,10 @@ void JUTResFont::countBlock()
 	m_widthBlockCount = 0;
 	m_glyphBlockCount = 0;
 	m_mapBlockCount   = 0;
-	ResFONT* ppvVar3  = (ResFONT*)&m_resource->m_data;
-	for (u32 i = 0; m_resource->asU32 > i; i++, (u8*)ppvVar3 += ppvVar3->m_blockLength) {
-		u32 pvVar1 = ppvVar3->m_rawType;
-		switch (pvVar1) {
+	u8* pData         = (u8*)&m_resource->m_data;
+	for (u32 i = 0; i < m_resource->m_chunkNum; i++, pData += ((BlockHeader*)pData)->m_size) {
+		int magic = ((BlockHeader*)pData)->m_magic;
+		switch (magic) {
 		case 'WID1':
 			m_widthBlockCount++;
 			break;
@@ -323,39 +323,40 @@ void JUTResFont::countBlock()
  */
 void JUTResFont::setBlock()
 {
-	int wid, gly, map;
-	wid = gly = map  = 0;
-	_68              = -1;
-	ResFONT* ppvVar3 = (ResFONT*)&m_resource->m_data;
-	// int enc = ppvVar3->m_encoding;
+	int widthNum, glyphNum, mapNum;
+	widthNum = glyphNum = mapNum = 0;
+	m_maxCode                    = -1;
+	u8* pData                    = (u8*)&m_resource->m_data;
 
-	for (u32 i = 0; m_resource->asU32 > i; i++, (u8*)ppvVar3 += ppvVar3->m_blockLength) {
-		int pvVar1 = ppvVar3->m_rawType;
-		switch (pvVar1) {
+	for (u32 i = 0; i < m_resource->m_chunkNum; i++, pData += ((BlockHeader*)pData)->m_size) {
+		int magic = ((BlockHeader*)pData)->m_magic;
+		switch (magic) {
 		case 'INF1':
-			m_infoBlock  = (FontHeader*)ppvVar3;
-			m_isLeadByte = (IsLeadByte*)&saoAboutEncoding_[m_infoBlock->m_encoding];
-			break;
+			m_infoBlock  = (FontHeader*)pData;
+			m_isLeadByte = (IsLeadByte*)&saoAboutEncoding_[m_infoBlock->m_encoding]; // I believe this is a function pointer, FYI. Once this
+			                                                                         // function pointer table is decomp'd, we shouldn't
+			                                                                         // need the cast anymore. -Jasper
+			break;																	 // it is decomped in JUTFont.h - Epoch
 		case 'WID1':
-			m_widthBlocks[wid] = ppvVar3;
-			wid++;
+			m_widthBlocks[widthNum] = (WidthBlock*)pData;
+			widthNum++;
 			break;
 		case 'GLY1':
-			m_glyphBlocks[gly] = ppvVar3;
-			gly++;
+			m_glyphBlocks[glyphNum] = (GlyphBlock*)pData;
+			glyphNum++;
 			break;
 		case 'MAP1':
-			m_mapBlocks[map] = ppvVar3;
-			if (_68 > m_mapBlocks[map]->m_ascent) {
-				_68 = m_mapBlocks[map]->m_ascent;
+			m_mapBlocks[mapNum] = (MapBlock*)pData;
+			if (m_maxCode > m_mapBlocks[mapNum]->m_maxCode) {
+				m_maxCode = m_mapBlocks[mapNum]->m_maxCode;
 			}
-			map++;
+			mapNum++;
 			break;
 		default:
 			JUTReportConsole("Unknown data block\n");
+			break;
 		}
-		// ppvVar3+= ppvVar3->m_blockLength;
-	};
+	}
 }
 
 /*
@@ -458,21 +459,20 @@ f32 JUTResFont::drawChar_scale(f32 pos_x, f32 pos_y, f32 scale_x, f32 scale_y, i
 	f32 deshei      = descent * scaled_height + pos_y;
 
 	// glyph section
-	ResFONT* used_glyphs = m_glyphBlocks[_66];
-	u16 glyph1           = used_glyphs->_1A;
-	u16 glyph2           = used_glyphs->_1C;
-	int nema             = _1C;
-	int amen             = _20;
-	int glyhi            = (nema + used_glyphs->words.m_messageCodeHighWord) << 15;
-	int aaaa             = (nema << 15) / glyph1;
-	int bbbb             = (amen << 15) / glyph2;
-	u16 glyhi2           = nema + used_glyphs->words.m_messageCodeHighWord;
-	int glylo            = amen + used_glyphs->words.m_messageCodeLowWord << 15;
-	u16 glylo2           = amen + used_glyphs->words.m_messageCodeLowWord;
-	s32 glyph_hi         = glyhi / glyph1;
-	s32 glyph_lo         = glylo / glyph2;
+	GlyphBlock* used_glyphs = m_glyphBlocks[_66];
+	u16 tex_width           = used_glyphs->m_texWidth;
+	u16 tex_height          = used_glyphs->m_texHeight;
+	int t_width             = m_width;
+	int t_height            = m_height;
+	int shift_width         = (t_width + used_glyphs->m_cellWidth) << 15;
+	int div_width           = (t_width << 15) / tex_width;
+	int div_height          = (t_height << 15) / tex_height;
+	u16 sum_width           = t_width + used_glyphs->m_cellWidth;
+	int shift_height        = t_height + used_glyphs->m_cellHeight << 15;
+	u16 sum_height          = t_height + used_glyphs->m_cellHeight;
+	s32 width_ratio         = shift_width / tex_width;
+	s32 height_ratio        = shift_height / tex_height;
 	// end glyph section
-
 	GXSetVtxAttrFmt(GX_VTXFMT0, GX_VA_POS, GX_POS_XYZ, GX_F32, 0);
 	GXBegin(GX_QUADS, GX_VTXFMT0, 4);
 
@@ -482,29 +482,29 @@ f32 JUTResFont::drawChar_scale(f32 pos_x, f32 pos_y, f32 scale_x, f32 scale_y, i
 	HW_REG(0xCC008000, f32) = ascent_val;
 	HW_REG(0xCC008000, f32) = zero_f;
 	HW_REG(0xCC008000, u32) = _0C.asU32;
-	HW_REG(0xCC008000, s16) = aaaa;
-	HW_REG(0xCC008000, s16) = bbbb;
+	HW_REG(0xCC008000, s16) = div_width;
+	HW_REG(0xCC008000, s16) = div_height;
 
 	HW_REG(0xCC008000, f32) = sca_wid;
 	HW_REG(0xCC008000, f32) = ascent_val;
 	HW_REG(0xCC008000, f32) = zero_f;
 	HW_REG(0xCC008000, u32) = _10.asU32;
-	HW_REG(0xCC008000, s16) = glyph_hi;
-	HW_REG(0xCC008000, s16) = bbbb;
+	HW_REG(0xCC008000, s16) = width_ratio;
+	HW_REG(0xCC008000, s16) = div_height;
 
 	HW_REG(0xCC008000, f32) = sca_wid;
 	HW_REG(0xCC008000, f32) = deshei;
 	HW_REG(0xCC008000, f32) = zero_f;
 	HW_REG(0xCC008000, u32) = _18.asU32;
-	HW_REG(0xCC008000, s16) = glyph_hi;
-	HW_REG(0xCC008000, s16) = glyph_lo;
+	HW_REG(0xCC008000, s16) = width_ratio;
+	HW_REG(0xCC008000, s16) = height_ratio;
 
 	HW_REG(0xCC008000, f32) = width_val;
 	HW_REG(0xCC008000, f32) = deshei;
 	HW_REG(0xCC008000, f32) = zero_f;
 	HW_REG(0xCC008000, u32) = _14.asU32;
-	HW_REG(0xCC008000, s16) = aaaa;
-	HW_REG(0xCC008000, s16) = glyph_lo;
+	HW_REG(0xCC008000, s16) = div_width;
+	HW_REG(0xCC008000, s16) = height_ratio;
 
 	GXSetVtxAttrFmt(GX_VTXFMT0, GX_VA_POS, GX_POS_XYZ, GX_S16, 0);
 
@@ -553,18 +553,18 @@ void JUTResFont::loadFont(int a, _GXTexMapID id, JUTFont::TWidth* width)
  */
 void JUTResFont::getWidthEntry(int a, JUTFont::TWidth* width) const
 {
-	int fontcode          = getFontCode(a);
-	width->w0             = 0;
-	ResFONT** widthblocks = m_widthBlocks;
-	int cellwidth         = m_infoBlock->m_cellWidth;
-	width->w1             = m_infoBlock->m_width;
+	int fontcode             = getFontCode(a);
+	width->w0                = 0;
+	WidthBlock** widthblocks = m_widthBlocks;
+	int cellwidth            = m_infoBlock->m_cellWidth;
+	width->w1                = m_infoBlock->m_width;
 
 	for (int i = 0; i < m_widthBlockCount; i++) {
 
-		ResFONT* tmp2 = m_widthBlocks[i];
-		if (tmp2->m_encoding <= fontcode && fontcode <= tmp2->m_ascent) {
+		WidthBlock* tmp2 = m_widthBlocks[i];
+		if (tmp2->m_encoding <= fontcode && fontcode <= tmp2->m_maxGlyph) {
 
-			u8* ptr   = &widthblocks[i]->_0C[(fontcode - widthblocks[i]->m_encoding) * 2];
+			u8* ptr   = &widthblocks[i]->m_chunkNum[(fontcode - widthblocks[i]->m_encoding) * 2];
 			width->w0 = ptr[0];
 			width->w1 = ptr[1];
 			break;
@@ -580,14 +580,14 @@ void JUTResFont::getWidthEntry(int a, JUTFont::TWidth* width) const
  */
 int JUTResFont::getCellWidth(void) const
 {
-	ResFONT* glyph;
-	ResFONT** glyphs;
+	GlyphBlock* glyph;
+	GlyphBlock** glyphs;
 
 	glyphs = m_glyphBlocks;
 	if (glyphs != nullptr) {
 		glyph = *glyphs;
 		if (glyph != nullptr) {
-			return glyph->words.m_messageCodeHighWord;
+			return glyph->m_cellWidth;
 		}
 	}
 	return getWidth();
@@ -607,14 +607,14 @@ int JUTResFont::getCellWidth(void) const
  */
 int JUTResFont::getCellHeight(void) const
 {
-	ResFONT* glyph;
-	ResFONT** glyphs;
+	GlyphBlock* glyph;
+	GlyphBlock** glyphs;
 
 	glyphs = m_glyphBlocks;
 	if (glyphs != nullptr) {
 		glyph = *glyphs;
 		if (glyph != nullptr) {
-			return glyph->words.m_messageCodeLowWord;
+			return glyph->m_cellHeight;
 		}
 	}
 	return getHeight();
@@ -631,9 +631,10 @@ bool JUTResFont::isLeadByte(int a) const { return (*m_isLeadByte)(a); }
  * --INFO--
  * Address:	800320E8
  * Size:	0001AC
+ * TODO: cleanup of variable names
  */
 
-int JUTResFont::getFontCode(int chr) const
+int JUTResFont::getFontCode(int arg0) const
 {
 
 	static const u16 halftofull[95] = {
@@ -645,45 +646,48 @@ int JUTResFont::getFontCode(int chr) const
 		0x8290, 0x8291, 0x8292, 0x8293, 0x8294, 0x8295, 0x8296, 0x8297, 0x8298, 0x8299, 0x829A, 0x816F, 0x8162, 0x8170, 0x8160,
 	}; /* const */
 	int ret = m_infoBlock->m_cellWidth;
-	if ((getFontType() == 2) && (_68 >= 0x8000U) && (chr >= 0x20) && (chr < 0x7FU)) {
-		chr = halftofull[chr - 32] /*.unk-40*/;
+	if ((getFontType() == 2) && (m_maxCode >= 0x8000U) && (arg0 >= 0x20) && (arg0 < 0x7FU)) {
+		arg0 = halftofull[arg0 - 32];
 	}
-	for (int i = m_mapBlockCount, j = 0; i > 0; j++, i--) {
-		if ((m_mapBlocks[j]->m_ascent <= chr) && (chr <= m_mapBlocks[j]->uwords.m_messageCodeHighWord)) {
-			if (m_mapBlocks[j]->m_encoding == 0) {
-				ret = chr - m_mapBlocks[j]->m_ascent;
+	int j = 0;
+	for (int i = m_mapBlockCount; i > 0; j++, i--) {
+		if ((m_mapBlocks[j]->m_maxCode <= arg0) && (arg0 <= m_mapBlocks[j]->m_messageCodeHighWord)) {
+			MapBlock* temp_r4 = m_mapBlocks[j];
+			if (temp_r4->m_minCode == 0) {
+				ret = arg0 - temp_r4->m_maxCode;
 				break;
-			} else if (m_mapBlocks[j]->m_encoding == 2) {
-				ret = *(&m_mapBlocks[j]->m_leading + ((chr - m_mapBlocks[j]->m_ascent))); // type punning sin
+			} else if (temp_r4->m_minCode == 2) {
+				ret = *(&m_mapBlocks[j]->m_leading + ((arg0 - m_mapBlocks[j]->m_maxCode))); // type punning sin
 				break;
-			} else if (m_mapBlocks[j]->m_encoding == 3) {
-				u16* leadPtr = &m_mapBlocks[j]->m_leading;
-				int leadIdx  = 0;
-				int maxIdx   = m_mapBlocks[j]->uwords.m_messageCodeLowWord - 1;
+			} else if (temp_r4->m_minCode == 3) {
+				u16* leading_temp = &temp_r4->m_leading;
+				int phi_r5        = 0;
+				int phi_r6_2      = temp_r4->m_messageCodeLowWord - 1;
 
-				while (maxIdx >= leadIdx) {
-					u32 curOff = (maxIdx + leadIdx);
-					int curIdx = (int)((curOff >> 31) + maxIdx + leadIdx) >> 1; // macro?
+				while (phi_r6_2 >= phi_r5) {
 
-					if (chr < *(leadPtr + curIdx * 2)) {
-						maxIdx = curIdx - 1;
+					u32 temp_r3 = phi_r6_2 + phi_r5;
+					int temp_r7 = (int)((temp_r3 >> 0x1FU) + phi_r6_2 + phi_r5) >> 1; // macro?
+
+					if (arg0 < leading_temp[temp_r7 * 2]) {
+						phi_r6_2 = temp_r7 - 1;
 						continue;
 					}
 
-					if (chr > *(leadPtr + curIdx * 2)) {
-						leadIdx = curIdx + 1;
+					if (arg0 > leading_temp[temp_r7 * 2]) {
+						phi_r5 = temp_r7 + 1;
 						continue;
 					}
 
-					ret = *(leadPtr + curIdx * 2 + 1); // jank? possibly type punning fuckery
+					ret = leading_temp[temp_r7 * 2 + 1]; // jank? possibly type punning fuckery
 					break;
+				} // loop closes here
+			} else if (temp_r4->m_minCode == 1) {
+				u16* phi_r5_2 = nullptr;
+				if (temp_r4->m_messageCodeLowWord == 1) {
+					phi_r5_2 = &temp_r4->m_leading;
 				}
-			} else if (m_mapBlocks[j]->m_encoding == 1) {
-				u16* lead = nullptr;
-				if (m_mapBlocks[j]->uwords.m_messageCodeLowWord == 1) {
-					lead = &m_mapBlocks[j]->m_leading;
-				}
-				ret = JUTResFont::convertSjis(chr, lead);
+				ret = JUTResFont::convertSjis(arg0, phi_r5_2);
 				break;
 			}
 			break;
@@ -704,118 +708,38 @@ int JUTResFont::getFontCode(int chr) const
  * Address:	800322A0
  * Size:	000180
  */
-void JUTResFont::loadImage(int, _GXTexMapID)
+void JUTResFont::loadImage(int code, enum _GXTexMapID arg1)
 {
-	/*
-	stwu     r1, -0x20(r1)
-	mflr     r0
-	stw      r0, 0x24(r1)
-	stw      r31, 0x1c(r1)
-	li       r31, 0
-	stw      r30, 0x18(r1)
-	stw      r29, 0x14(r1)
-	mr       r29, r5
-	stw      r28, 0x10(r1)
-	mr       r28, r3
-	lhz      r7, 0x62(r3)
-	li       r3, 0
-	mtctr    r7
-	cmpwi    r7, 0
-	ble      lbl_8003231C
 
-lbl_800322DC:
-	lwz      r6, 0x58(r28)
-	lwzx     r5, r6, r3
-	lhz      r0, 8(r5)
-	cmpw     r0, r4
-	bgt      lbl_80032310
-	lhz      r0, 0xa(r5)
-	cmpw     r4, r0
-	bgt      lbl_80032310
-	slwi     r0, r31, 2
-	lwzx     r3, r6, r0
-	lhz      r0, 8(r3)
-	subf     r4, r0, r4
-	b        lbl_8003231C
+	int i = 0;
+	for (; i < m_glyphBlockCount; i++) {
+		if (m_glyphBlocks[i]->m_minCode <= code && code <= m_glyphBlocks[i]->m_maxCode) {
+			code -= m_glyphBlocks[i]->m_minCode;
+			break;
+		}
+	}
 
-lbl_80032310:
-	addi     r3, r3, 4
-	addi     r31, r31, 1
-	bdnz     lbl_800322DC
+	if (i == m_glyphBlockCount)
+		return;
 
-lbl_8003231C:
-	cmpw     r31, r7
-	beq      lbl_80032400
-	lwz      r3, 0x58(r28)
-	slwi     r7, r31, 2
-	lwzx     r5, r3, r7
-	lhz      r6, 0x16(r5)
-	lhz      r3, 0x18(r5)
-	lhz      r0, 0xc(r5)
-	mullw    r3, r6, r3
-	divw     r30, r4, r3
-	mullw    r3, r30, r3
-	subf     r4, r3, r4
-	divw     r5, r4, r6
-	mullw    r3, r5, r6
-	subf     r3, r3, r4
-	mullw    r0, r3, r0
-	stw      r0, 0x1c(r28)
-	lwz      r3, 0x58(r28)
-	lwzx     r3, r3, r7
-	lhz      r0, 0xe(r3)
-	mullw    r0, r5, r0
-	stw      r0, 0x20(r28)
-	lwz      r0, 0x44(r28)
-	cmpw     r30, r0
-	bne      lbl_8003238C
-	lhz      r0, 0x66(r28)
-	cmpw     r31, r0
-	beq      lbl_800323F4
+	s32 pageNumCells  = m_glyphBlocks[i]->m_pageCellNumW * m_glyphBlocks[i]->m_pageCellNumH;
+	s32 pageIdx       = code / pageNumCells;
+	s32 cellIdxInPage = code % pageNumCells;
+	s32 cellCol       = (cellIdxInPage % m_glyphBlocks[i]->m_pageCellNumW);
+	s32 cellRow       = (cellIdxInPage / m_glyphBlocks[i]->m_pageCellNumW);
+	m_width           = cellCol * m_glyphBlocks[i]->m_cellWidth;
+	m_height          = cellRow * m_glyphBlocks[i]->m_cellHeight;
 
-lbl_8003238C:
-	lwz      r4, 0x58(r28)
-	addi     r3, r28, 0x24
-	li       r8, 0
-	li       r9, 0
-	lwzx     r11, r4, r7
-	li       r10, 0
-	lwz      r0, 0x10(r11)
-	lhz      r5, 0x1a(r11)
-	mullw    r4, r30, r0
-	lhz      r6, 0x1c(r11)
-	lhz      r7, 0x14(r11)
-	addi     r4, r4, 0x20
-	add      r4, r11, r4
-	bl       GXInitTexObj
-	lfs      f1, lbl_805166E0@sda21(r2)
-	addi     r3, r28, 0x24
-	li       r4, 1
-	li       r5, 1
-	fmr      f2, f1
-	li       r6, 0
-	fmr      f3, f1
-	li       r7, 0
-	li       r8, 0
-	bl       GXInitTexObjLOD
-	stw      r30, 0x44(r28)
-	sth      r31, 0x66(r28)
+	if (pageIdx != _44 || i != _66) {
+		GXInitTexObj(&_24, &m_glyphBlocks[i]->m_data[pageIdx * m_glyphBlocks[i]->m_pageByteSize], m_glyphBlocks[i]->m_texWidth,
+		             m_glyphBlocks[i]->m_texHeight, (GXTexFmt)m_glyphBlocks[i]->m_texFormat, GX_CLAMP, GX_CLAMP, 0);
 
-lbl_800323F4:
-	mr       r4, r29
-	addi     r3, r28, 0x24
-	bl       GXLoadTexObj
+		GXInitTexObjLOD(&_24, GX_LINEAR, GX_LINEAR, 0.0f, 0.0f, 0.0f, 0U, 0U, GX_ANISO_1);
+		_44 = pageIdx;
+		_66 = i;
+	}
 
-lbl_80032400:
-	lwz      r0, 0x24(r1)
-	lwz      r31, 0x1c(r1)
-	lwz      r30, 0x18(r1)
-	lwz      r29, 0x14(r1)
-	lwz      r28, 0x10(r1)
-	mtlr     r0
-	addi     r1, r1, 0x20
-	blr
-	*/
+	GXLoadTexObj(&_24, arg1);
 }
 
 /*
