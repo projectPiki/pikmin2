@@ -1,4 +1,5 @@
 #include "types.h"
+#include "Dolphin/PPCArch.h"
 // clang-format off
 
 union FpscrUnion

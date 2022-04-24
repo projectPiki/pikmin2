@@ -417,7 +417,7 @@ DOLPHIN:=\
 	$(BUILD_DIR)/asm/Dolphin/OSTime.o\
 	$(BUILD_DIR)/asm/Dolphin/__mem.o\
 	$(BUILD_DIR)/src/Dolphin/__start.o\
-	$(BUILD_DIR)/asm/Dolphin/__ppc_eabi_init.o\
+	$(BUILD_DIR)/src/Dolphin/__ppc_eabi_init.o\
 	$(BUILD_DIR)/asm/Dolphin/Padclamp.o\
 	$(BUILD_DIR)/asm/Dolphin/Pad.o\
 	$(BUILD_DIR)/asm/Dolphin/SIBios.o\
