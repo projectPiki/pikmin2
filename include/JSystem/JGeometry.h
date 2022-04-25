@@ -1,22 +1,51 @@
 #ifndef _JSYSTEM_JGEOMETRY_H
 #define _JSYSTEM_JGEOMETRY_H
 
+#include "types.h"
+
 namespace JGeometry {
 template <typename T> struct TVec2 {
-	inline TVec2() { }
-	inline TVec2(T inX, T inY)
-	    : x(inX)
-	    , y(inY) {};
-	T x;
-	T y;
+	TVec2() { }
+	TVec2(T x, T y) { set(x, y); }
 
-	// TODO: Determine if this could've actually existed, or if I'm just making it up.
-	inline TVec2& operator=(const TVec2& other)
+	void set(T x, T y)
+	{
+		this->x = x;
+		this->y = y;
+	}
+
+	void set(const TVec2& other)
 	{
 		x = other.x;
 		y = other.y;
-		return *this;
 	}
+
+	void setMin(const TVec2<f32>& min)
+	{
+		if (x >= min.x)
+			x = min.x;
+		if (y >= min.y)
+			y = min.y;
+	}
+
+	void setMax(const TVec2<f32>& max)
+	{
+		if (x <= max.x)
+			x = max.x;
+		if (y <= max.y)
+			y = max.y;
+	}
+
+	void add(const TVec2<T>& other)
+	{
+		x += other.x;
+		y += other.y;
+	}
+
+	bool isAbove(const TVec2<T>& other) const { return (x >= other.x) && (y >= other.y) ? true : false; }
+
+	T x;
+	T y;
 };
 
 template <typename T> struct TVec3 {
@@ -50,27 +79,68 @@ template <typename T> struct TVec3 {
 };
 
 // Size: 0x10
-template <typename T> struct TBox2 {
-	inline TBox2()
-	    : minX()
-	    , minY()
-	    , maxX()
-	    , maxY() {};
-	inline TBox2(T x1, T y1, T x2, T y2)
-	    : minX(x1)
-	    , minY(y1)
-	    , maxX(x2)
-	    , maxY(y2) {};
-	inline TBox2(TVec2<T> max, TVec2<T> min)
-	    : maxX(max.x)
-	    , maxY(max.y)
-	    , minX(min.x)
-	    , minY(min.y) {};
-	T minX;
-	T minY;
-	T maxX;
-	T maxY;
+template <class T> struct TBox {
+	TBox()
+	    : i()
+	    , f()
+	{
+	}
+	TBox(const TBox& other)
+	    : i(other.f)
+	    , f(other.y)
+	{
+	}
+
+	T i, f;
 };
+
+// clang-format off
+template<> struct TBox<TVec2<f32> > {
+    f32 getWidth() const { return f.x - i.x; }
+    f32 getHeight() const { return f.y - i.y; }
+
+    bool isValid() const { return f.isAbove(i); }
+
+    void addPos(f32 x, f32 y) {
+        addPos(TVec2<f32>(x, y));
+    }
+
+    void addPos(const TVec2<f32>& pos) {
+        i.add(pos);
+        f.add(pos);
+    }
+
+    bool intersect(const TBox<TVec2<f32> >& other) {
+        i.setMax(other.i);
+        f.setMin(other.f);
+        return isValid();
+    }
+
+    TVec2<f32> i, f;
+};
+
+template <typename T>
+struct TBox2 : TBox<TVec2<T> > {
+    TBox2() {}
+    TBox2(const TVec2<f32>& i, const TVec2<f32> f) { set(i, f); }
+    TBox2(f32 x0, f32 y0, f32 x1, f32 y1) { set(x0, y0, x1, y1); }
+
+    void absolute() {
+        if (!this->isValid()) {
+            TBox2<T> box(*this);
+            this->i.setMin(box.i);
+            this->i.setMin(box.f);
+            this->f.setMax(box.i);
+            this->f.setMax(box.f);
+        }
+    }
+
+    void set(const TBox2& other) { set(other.i, other.f); }
+    void set(const TVec2<f32>& i, const TVec2<f32>& f) { this->i.set(i), this->f.set(f); }
+    void set(f32 x0, f32 y0, f32 x1, f32 y1) { i.set(x0, y0); f.set(x1, y1); }
+};
+
+// clang-format on
 
 template <typename T> struct TBox3 {
 	T minX;

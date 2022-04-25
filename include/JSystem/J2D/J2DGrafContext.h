@@ -76,10 +76,23 @@ struct J2DOrthoGraph : public J2DGrafContext {
 	virtual void setLookat();                      // _24
 
 	// _00 VTBL
+	J2DOrthoGraph();
+	J2DOrthoGraph(f32, f32, f32, f32, f32, f32);
+	void setOrtho(JGeometry::TBox2<f32> const&, f32, f32);
+	void scissorBounds(JGeometry::TBox2<f32>*, JGeometry::TBox2<f32> const*);
+
+	f32 getWidthPower() const { return m_Bounds.getWidth() / m_Ortho.getWidth(); }
+	f32 getHeightPower() const { return m_Bounds.getHeight() / m_Ortho.getHeight(); }
+
 private:
 	JGeometry::TBox2<f32> m_Ortho; // _BC
 	f32 m_Near;                    // _CC
 	f32 m_Far;                     // _D0
 };
+
+void J2DFillBox(f32 param_0, f32 param_1, f32 param_2, f32 param_3, JUtility::TColor color);
+void J2DFillBox(JGeometry::TBox2<f32> const& param_0, JUtility::TColor param_1);
+void J2DDrawFrame(f32 param_0, f32 param_1, f32 param_2, f32 param_3, JUtility::TColor param_4, u8 param_5);
+void J2DDrawFrame(JGeometry::TBox2<f32> const& param_0, JUtility::TColor param_1, u8 param_2);
 
 #endif
