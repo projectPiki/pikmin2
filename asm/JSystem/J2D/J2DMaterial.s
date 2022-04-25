@@ -30,13 +30,11 @@ __vt__13J2DColorBlock:
 
 .section .sdata2, "a"     # 0x80516360 - 0x80520E40
 .balign 8
-.global lbl_805168C8
 lbl_805168C8:
-	.4byte 0x43B40000
-.global lbl_805168CC
+	.float 360.0
 lbl_805168CC:
-	.4byte 0x477FFF00
-.global lbl_805168D0
+	.float 65535.0
+.balign 8
 lbl_805168D0:
 	.4byte 0x43300000
 	.4byte 0x00000000

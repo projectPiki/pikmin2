@@ -1,7 +1,6 @@
 .include "macros.inc"
 .section .rodata  # 0x804732E0 - 0x8049E220
 .balign 8
-.global lbl_804785D0
 lbl_804785D0:
 	.4byte 0x00000000
 	.4byte 0x00000002
@@ -341,7 +340,6 @@ __vt__14J2DTexGenBlock:
 	.4byte 0
 	.4byte 0
 	.4byte __dt__14J2DTexGenBlockFv
-	.4byte 0
 
 .section .text, "ax"  # 0x800056C0 - 0x80472F00
 .global initialize__13J2DColorBlockFv
@@ -10095,14 +10093,14 @@ setUndeleteFlag__12J2DTevBlock1FUc:
 /* 80051E08 0004ED48  4E 80 00 20 */	blr 
 
 .global setFontUndeleteFlag__12J2DTevBlock1Fv
-setFontUndeleteFlag__12J2DTevBlock1Fv:
+setFontUndeleteFlag__12J2DTevBlock1Fv: # weak function
 /* 80051E0C 0004ED4C  88 03 00 5C */	lbz r0, 0x5c(r3)
 /* 80051E10 0004ED50  54 00 06 7E */	clrlwi r0, r0, 0x19
 /* 80051E14 0004ED54  98 03 00 5C */	stb r0, 0x5c(r3)
 /* 80051E18 0004ED58  4E 80 00 20 */	blr 
 
 .global initialize__11J2DTevBlockFv
-initialize__11J2DTevBlockFv:
+initialize__11J2DTevBlockFv: # weak function, as are the funcs below
 /* 80051E1C 0004ED5C  4E 80 00 20 */	blr 
 
 .global setGX__11J2DTevBlockFv
@@ -10183,7 +10181,7 @@ setFont__11J2DTevBlockFP7JUTFont:
 /* 80051E84 0004EDC4  4E 80 00 20 */	blr 
 
 .global setFont__11J2DTevBlockFP7ResFONT
-setFont__11J2DTevBlockFP7ResFONT:
+setFont__11J2DTevBlockFP7ResFONT: # weak function
 /* 80051E88 0004EDC8  38 60 00 00 */	li r3, 0
 /* 80051E8C 0004EDCC  4E 80 00 20 */	blr 
 

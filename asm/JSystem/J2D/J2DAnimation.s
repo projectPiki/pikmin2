@@ -72,27 +72,21 @@ __vt__19J2DAnmTransformFull:
 
 .section .sdata2, "a"     # 0x80516360 - 0x80520E40
 .balign 8
-.global lbl_80516960
 lbl_80516960:
-	.4byte 0x00000000
-	.4byte 0x00000000
-.global lbl_80516968
+	.float 0.0
+.balign 8
 lbl_80516968:
 	.4byte 0x43300000
 	.4byte 0x00000000
-.global lbl_80516970
 lbl_80516970:
 	.float 1.0
-.global lbl_80516974
 lbl_80516974:
-	.4byte 0x437F0000
-.global lbl_80516978
+	.float 255.0
 lbl_80516978:
-	.4byte 0xC4800000
-.global lbl_8051697C
+	.float -1024.0
 lbl_8051697C:
-	.4byte 0x447FC000
-.global lbl_80516980
+	.float 1023.0
+.balign 8
 lbl_80516980:
 	.4byte 0x43300000
 	.4byte 0x80000000

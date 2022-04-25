@@ -7,37 +7,37 @@ lbl_constructor:
 .balign 8
 .global TextureNameConnect__11J2DBloSaver
 TextureNameConnect__11J2DBloSaver:
-	.skip 0x8
+	.skip 0x4
 
 .section .text, "ax"  # 0x800056C0 - 0x80472F00
 .global getTexNo__11J2DTevBlockCFUl
-getTexNo__11J2DTevBlockCFUl:
+getTexNo__11J2DTevBlockCFUl: # weak function
 /* 800494E4 00046424  3C 60 00 01 */	lis r3, 0x0000FFFF@ha
 /* 800494E8 00046428  38 63 FF FF */	addi r3, r3, 0x0000FFFF@l
 /* 800494EC 0004642C  4E 80 00 20 */	blr 
 
 .global setTexNo__11J2DTevBlockFUlUs
-setTexNo__11J2DTevBlockFUlUs:
+setTexNo__11J2DTevBlockFUlUs: # weak function
 /* 800494F0 00046430  4E 80 00 20 */	blr 
 
 .global getTevSwapModeTable__11J2DTevBlockFUl
-getTevSwapModeTable__11J2DTevBlockFUl:
+getTevSwapModeTable__11J2DTevBlockFUl: # weak function
 /* 800494F4 00046434  38 60 00 00 */	li r3, 0
 /* 800494F8 00046438  4E 80 00 20 */	blr 
 
 .global getTevOrder__11J2DTevBlockFUl
-getTevOrder__11J2DTevBlockFUl:
+getTevOrder__11J2DTevBlockFUl: # weak function
 /* 800494FC 0004643C  38 60 00 00 */	li r3, 0
 /* 80049500 00046440  4E 80 00 20 */	blr 
 
 .global getFontNo__11J2DTevBlockCFv
-getFontNo__11J2DTevBlockCFv:
+getFontNo__11J2DTevBlockCFv: # weak function
 /* 80049504 00046444  3C 60 00 01 */	lis r3, 0x0000FFFF@ha
 /* 80049508 00046448  38 63 FF FF */	addi r3, r3, 0x0000FFFF@l
 /* 8004950C 0004644C  4E 80 00 20 */	blr 
 
 .global getIndTexStageNum__11J2DIndBlockCFv
-getIndTexStageNum__11J2DIndBlockCFv:
+getIndTexStageNum__11J2DIndBlockCFv: # weak function
 /* 80049510 00046450  38 60 00 00 */	li r3, 0
 /* 80049514 00046454  4E 80 00 20 */	blr 
 
@@ -100,7 +100,7 @@ lbl_800495AC:
 /* 800495D4 00046514  4E 80 00 20 */	blr 
 
 .global __ct__11J2DTevStageFv
-__ct__11J2DTevStageFv:
+__ct__11J2DTevStageFv: # weak function
 /* 800495D8 00046518  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 800495DC 0004651C  7C 08 02 A6 */	mflr r0
 /* 800495E0 00046520  3C 80 80 48 */	lis r4, j2dDefaultTevStageInfo@ha
@@ -129,7 +129,7 @@ __ct__11J2DTevStageFv:
 /* 8004963C 0004657C  4E 80 00 20 */	blr 
 
 .global setTevStageInfo__11J2DTevStageFRC15J2DTevStageInfo
-setTevStageInfo__11J2DTevStageFRC15J2DTevStageInfo:
+setTevStageInfo__11J2DTevStageFRC15J2DTevStageInfo: # weak function
 /* 80049640 00046580  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 80049644 00046584  88 A4 00 01 */	lbz r5, 1(r4)
 /* 80049648 00046588  93 E1 00 0C */	stw r31, 0xc(r1)
@@ -255,8 +255,7 @@ lbl_800497EC:
 /* 80049818 00046758  38 21 00 10 */	addi r1, r1, 0x10
 /* 8004981C 0004675C  4E 80 00 20 */	blr 
 
-.global __sinit_J2DBloSaver_cpp
-__sinit_J2DBloSaver_cpp:
+__sinit_J2DBloSaver_cpp: # static initializer
 /* 80049820 00046760  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 80049824 00046764  7C 08 02 A6 */	mflr r0
 /* 80049828 00046768  3C 60 80 05 */	lis r3, __dt__Q211J2DBloSaver19CTextureNameConnectFv@ha
