@@ -10,14 +10,14 @@
 // separate library.
 struct J2DGrafContext {
 	J2DGrafContext(float, float, float, float);
-	virtual ~J2DGrafContext();                      // _00
-	virtual void place(const JGeometry::TBox2f&);   // _04
-	virtual void place(float, float, float, float); // _08
-	virtual void setPort();                         // _0C
-	virtual void setup2D();                         // _10
-	virtual void setScissor();                      // _14
-	virtual u32 getGrafType() const;                // _18
-	virtual void setLookat();                       // _1C
+	virtual ~J2DGrafContext();                      // _08
+	virtual void place(const JGeometry::TBox2f&);   // _0C
+	virtual void place(float, float, float, float); // _10
+	virtual void setPort();                         // _14
+	virtual void setup2D();                         // _18
+	virtual void setScissor();                      // _1C
+	virtual u32 getGrafType() const;                // _20
+	virtual void setLookat();                       // _24
 
 	void drawFrame(const JGeometry::TBox2f&);
 	void fillBox(const JGeometry::TBox2f&);
@@ -27,47 +27,40 @@ struct J2DGrafContext {
 	void setLineWidth(u8);
 
 	// VTBL _00
-	float _04;            // _04
-	float _08;            // _08
-	float _0C;            // _0C
-	float _10;            // _10
-	float _14;            // _14
-	float _18;            // _18
-	float _1C;            // _1C
-	float _20;            // _20
-	JUtility::TColor _24; // _24
-	JUtility::TColor _28; // _28
-	JUtility::TColor _2C; // _2C
-	JUtility::TColor _30; // _30
-	u8 m_lineWidth;       // _34
-	float _38;            // _38
-	float _3C;            // _3C
-	Mtx _40;              // _40 /* Might actually be larger than Matrixf. See
-	                      // C_MTXPerspective, called by J2DPerspGraph::setPort */
-	u8 _70[0x10];         // _70
-	Mtx _80;              // _80
-	u8 _B0;               // _B0
-	u8 _B1;               // _B1
-	u8 _B2;               // _B2
-	u8 _B3;               // _B3
-	u8 _B4;               // _B4
-	u8 _B5;               // _B5
-	u8 _B6;               // _B6
-	u8 _B7;               // _B7
-	u8 _B8;               // _B8
+	JGeometry::TBox2<f32> m_Bounds;        // _04
+	JGeometry::TBox2<f32> m_ScissorBounds; // _14
+	JUtility::TColor m_ColorTL;            // _24
+	JUtility::TColor m_ColorTR;            // _28
+	JUtility::TColor m_ColorBR;            // _2C
+	JUtility::TColor m_ColorBL;            // _30
+	u8 m_lineWidth;                        // _34
+	JGeometry::TVec2<f32> m_PrevPos;       // _38
+	Mtx44 m_Mtx44;                         // _40 /* Might actually be larger than Matrixf. See
+	                                       // C_MTXPerspective, called by J2DPerspGraph::setPort */
+	Mtx m_PosMtx;                          // _80
+	u8 _B0;                                // _B0
+	u8 _B1;                                // _B1
+	u8 _B2;                                // _B2
+	u8 m_LinePart;                         // _B3
+	u8 _B4;                                // _B4
+	u8 _B5;                                // _B5
+	u8 m_BoxPart;                          // _B6
+	u8 _B7;                                // _B7
+	u8 _B8;                                // _B8
 };
 
 struct J2DPerspGraph : public J2DGrafContext {
 	J2DPerspGraph();
-	virtual ~J2DPerspGraph();        // _00
-	virtual void setPort();          // _0C
-	virtual u32 getGrafType() const; // _18
-	virtual void setLookat();        // _1C
+	virtual ~J2DPerspGraph();        // _08
+	virtual void setPort();          // _14
+	virtual u32 getGrafType() const; // _20
+	virtual void setLookat();        // _24
 
 	void makeLookat();
 	void set(float, float, float);
 	void setFovy(float);
 
+private:
 	float m_fovY; // _BC
 	float _C0;    // _C0
 	float _C4;    // _C4
@@ -75,7 +68,18 @@ struct J2DPerspGraph : public J2DGrafContext {
 };
 
 struct J2DOrthoGraph : public J2DGrafContext {
-	u8 _BC[0x18]; // _BC
+	virtual ~J2DOrthoGraph();                      // _08
+	virtual void setPort();                        // _14
+	virtual void setup2D();                        // _18
+	virtual void setScissor();                     // _1C
+	virtual u32 getGrafType() const { return 1; }; // _20
+	virtual void setLookat();                      // _24
+
+	// _00 VTBL
+private:
+	JGeometry::TBox2<f32> m_Ortho; // _BC
+	f32 m_Near;                    // _CC
+	f32 m_Far;                     // _D0
 };
 
 #endif

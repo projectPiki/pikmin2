@@ -1,4 +1,5 @@
 #include "types.h"
+#include "JSystem/J2D/J2DGrafContext.h"
 
 /*
     Generated from dpostproc
@@ -18,10 +19,8 @@
         .4byte setLookat__13J2DOrthoGraphFv
 
     .section .sdata2, "a"     # 0x80516360 - 0x80520E40
-    .global lbl_80516780
     lbl_80516780:
-        .4byte 0x00000000
-        .4byte 0x00000000
+        .float 0.0
 */
 
 /*
@@ -736,8 +735,9 @@ void J2DDrawFrame(const JGeometry::TBox2<float>&, JUtility::TColor, unsigned cha
  * --INFO--
  * Address:	80035D78
  * Size:	000008
+ * u32 J2DOrthoGraph::getGrafType() const { return 1; }
+ * Weak function definned in J2DGrafContext.h
  */
-u32 J2DOrthoGraph::getGrafType() const { return 0x1; }
 
 /*
  * --INFO--
