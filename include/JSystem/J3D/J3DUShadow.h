@@ -4,7 +4,6 @@
 #include "Dolphin/gx.h"
 #include "types.h"
 
-typedef u32 _GXProjectionType;
 typedef GXColor _GXColor;
 struct J3DModel;
 struct J3DUClipper;

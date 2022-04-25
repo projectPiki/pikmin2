@@ -95,7 +95,7 @@ void J2DPerspGraph::setPort()
 {
 	J2DGrafContext::setPort();
 	C_MTXPerspective(m_fovY, (_0C - _04) / (_10 - _08), _C0, _C4, _40);
-	GXSetProjection(_40, 0);
+	GXSetProjection(_40, GX_PERSPECTIVE);
 }
 
 /*

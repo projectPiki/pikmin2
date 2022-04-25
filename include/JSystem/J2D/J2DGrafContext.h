@@ -10,19 +10,30 @@
 // separate library.
 struct J2DGrafContext {
 	J2DGrafContext(float, float, float, float);
-	virtual ~J2DGrafContext();                      // _08
-	virtual void place(const JGeometry::TBox2f&);   // _0C
-	virtual void place(float, float, float, float); // _10
-	virtual void setPort();                         // _14
-	virtual void setup2D();                         // _18
-	virtual void setScissor();                      // _1C
-	virtual u32 getGrafType() const;                // _20
-	virtual void setLookat();                       // _24
+	virtual ~J2DGrafContext() {};                 // _08
+	virtual void place(const JGeometry::TBox2f&); // _0C
+	virtual void place(f32 x, f32 y, f32 width, f32 height)
+	{
+		JGeometry::TBox2<f32> box(x, y, x + width, y + height);
+		this->place(box);
+	}                                // _10
+	virtual void setPort();          // _14
+	virtual void setup2D();          // _18
+	virtual void setScissor();       // _1C
+	virtual u32 getGrafType() const; // _20
+	virtual void setLookat();        // _24
 
 	void drawFrame(const JGeometry::TBox2f&);
 	void fillBox(const JGeometry::TBox2f&);
-	void lineTo(JGeometry::TVec2f&);
+	void lineTo(JGeometry::TVec2f);
+
+	void lineTo(f32 x, f32 y) { this->lineTo(JGeometry::TVec2<f32>(x, y)); }
+	void moveTo(f32 x, f32 y) { this->moveTo(JGeometry::TVec2<f32>(x, y)); }
+
+	void moveTo(JGeometry::TVec2<f32> pos) { m_PrevPos = pos; }
+
 	void scissor(const JGeometry::TBox2f&);
+	void setColor(JUtility::TColor c) { this->setColor(c, c, c, c); }
 	void setColor(JUtility::TColor, JUtility::TColor, JUtility::TColor, JUtility::TColor);
 	void setLineWidth(u8);
 
@@ -70,8 +81,6 @@ private:
 struct J2DOrthoGraph : public J2DGrafContext {
 	virtual ~J2DOrthoGraph();                      // _08
 	virtual void setPort();                        // _14
-	virtual void setup2D();                        // _18
-	virtual void setScissor();                     // _1C
 	virtual u32 getGrafType() const { return 1; }; // _20
 	virtual void setLookat();                      // _24
 
@@ -92,6 +101,8 @@ private:
 
 void J2DFillBox(f32 param_0, f32 param_1, f32 param_2, f32 param_3, JUtility::TColor color);
 void J2DFillBox(JGeometry::TBox2<f32> const& param_0, JUtility::TColor param_1);
+void J2DFillBox(f32, f32, f32, f32, JUtility::TColor, JUtility::TColor, JUtility::TColor, JUtility::TColor);
+void J2DFillBox(const JGeometry::TBox2<f32>&, JUtility::TColor, JUtility::TColor, JUtility::TColor, JUtility::TColor);
 void J2DDrawFrame(f32 param_0, f32 param_1, f32 param_2, f32 param_3, JUtility::TColor param_4, u8 param_5);
 void J2DDrawFrame(JGeometry::TBox2<f32> const& param_0, JUtility::TColor param_1, u8 param_2);
 

@@ -422,6 +422,11 @@ typedef enum _SDK_GXFogType {
 	                       // function. For perspective projection mode.
 } GXFogType;
 
+typedef enum _GXProjectionType {
+	GX_PERSPECTIVE, // 0x0
+	GX_ORTHOGRAPHIC // 0x1
+} GXProjectionType;
+
 typedef struct _SDK_GXColor {
 	u8 r, g, b, a;
 } GXColor;
@@ -605,7 +610,7 @@ void GXSetGPFifo(GXFifoObj* fifo);
 void GXSaveCPUFifo(GXFifoObj* fifo);
 void GXSaveGPFifo(GXFifoObj* fifo);
 
-void GXSetProjection(Mtx, u32);
+void GXSetProjection(Mtx, GXProjectionType);
 
 typedef u8 _GXTlut;
 typedef u8 _GXTlutFmt;

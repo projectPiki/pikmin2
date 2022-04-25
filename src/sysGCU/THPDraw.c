@@ -43,7 +43,7 @@ void THPGXYuv2RgbSetup(u16* param_1)
 
 	GXSetPixelFmt(GX_PF_RGB8_Z24, GX_ZC_LINEAR);
 	C_MTXOrtho(MStack116, 0, r30, 0, r31, 0, -1);
-	GXSetProjection(MStack116, 1);
+	GXSetProjection(MStack116, GX_ORTHOGRAPHIC);
 	GXSetViewport(0, 0, r31, r30, 0.0, 1.0);
 	GXSetScissor(0, 0, r31, r30);
 	PSMTXIdentity(MStack164);

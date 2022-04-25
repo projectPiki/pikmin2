@@ -37,7 +37,7 @@ int TCamera::JSGGetProjectionType() const { return 1; }
  * Address:	80098864
  * Size:	000004
  */
-void TCamera::JSGSetProjectionType(TECameraProjection) { }
+void TCamera::JSGSetProjectionType(TECameraProjection) { return; }
 
 /*
  * --INFO--
@@ -51,7 +51,7 @@ f32 TCamera::JSGGetProjectionNear() const { return 0.0f; }
  * Address:	80098870
  * Size:	000004
  */
-void TCamera::JSGSetProjectionNear(float) { }
+void TCamera::JSGSetProjectionNear(float) { return; }
 
 /*
  * --INFO--
@@ -65,7 +65,7 @@ f32 TCamera::JSGGetProjectionFar() const { return *__float_max; }
  * Address:	80098880
  * Size:	000004
  */
-void TCamera::JSGSetProjectionFar(float) { }
+void TCamera::JSGSetProjectionFar(float) { return; }
 
 /*
  * --INFO--
@@ -79,7 +79,7 @@ f32 TCamera::JSGGetProjectionFovy() const { return 0.0f; }
  * Address:	8009888C
  * Size:	000004
  */
-void TCamera::JSGSetProjectionFovy(float) { }
+void TCamera::JSGSetProjectionFovy(float) { return; }
 
 /*
  * --INFO--
@@ -93,21 +93,21 @@ f32 TCamera::JSGGetProjectionAspect() const { return 0.0f; }
  * Address:	80098898
  * Size:	000004
  */
-void TCamera::JSGSetProjectionAspect(float) { }
+void TCamera::JSGSetProjectionAspect(float) { return; }
 
 /*
  * --INFO--
  * Address:	8009889C
  * Size:	000004
  */
-void TCamera::JSGGetProjectionField(float*) const { }
+void TCamera::JSGGetProjectionField(float*) const { return; }
 
 /*
  * --INFO--
  * Address:	800988A0
  * Size:	000004
  */
-void TCamera::JSGSetProjectionField(const float*) { }
+void TCamera::JSGSetProjectionField(const float*) { return; }
 
 /*
  * --INFO--
@@ -121,49 +121,49 @@ int TCamera::JSGGetViewType() const { return 1; }
  * Address:	800988AC
  * Size:	000004
  */
-void TCamera::JSGSetViewType(TECameraView) { }
+void TCamera::JSGSetViewType(TECameraView) { return; }
 
 /*
  * --INFO--
  * Address:	800988B0
  * Size:	000004
  */
-void TCamera::JSGGetViewPosition(Vec*) const { }
+void TCamera::JSGGetViewPosition(Vec*) const { return; }
 
 /*
  * --INFO--
  * Address:	800988B4
  * Size:	000004
  */
-void TCamera::JSGSetViewPosition(const Vec&) { }
+void TCamera::JSGSetViewPosition(const Vec&) { return; }
 
 /*
  * --INFO--
  * Address:	800988B8
  * Size:	000004
  */
-void TCamera::JSGGetViewUpVector(Vec*) const { }
+void TCamera::JSGGetViewUpVector(Vec*) const { return; }
 
 /*
  * --INFO--
  * Address:	800988BC
  * Size:	000004
  */
-void TCamera::JSGSetViewUpVector(const Vec&) { }
+void TCamera::JSGSetViewUpVector(const Vec&) { return; }
 
 /*
  * --INFO--
  * Address:	800988C0
  * Size:	000004
  */
-void TCamera::JSGGetViewTargetPosition(Vec*) const { }
+void TCamera::JSGGetViewTargetPosition(Vec*) const { return; }
 
 /*
  * --INFO--
  * Address:	800988C4
  * Size:	000004
  */
-void TCamera::JSGSetViewTargetPosition(const Vec&) { }
+void TCamera::JSGSetViewTargetPosition(const Vec&) { return; }
 
 /*
  * --INFO--
@@ -177,5 +177,5 @@ f32 TCamera::JSGGetViewRoll() const { return 0.0f; }
  * Address:	800988D0
  * Size:	000004
  */
-void TCamera::JSGSetViewRoll(float) { }
+void TCamera::JSGSetViewRoll(float) { return; }
 } // namespace JStage
