@@ -1,4 +1,5 @@
 #include "types.h"
+#include "JSystem/JUT/JUTConsole.h"
 
 /*
     Generated from dpostproc
@@ -55,7 +56,7 @@
  * Address:	800280DC
  * Size:	000088
  */
-void JUTConsole::create(unsigned int, unsigned int, JKRHeap*)
+JUTConsole* JUTConsole::create(unsigned int, unsigned int, JKRHeap*)
 {
 	/*
 	stwu     r1, -0x20(r1)
@@ -102,50 +103,30 @@ lbl_80028130:
  * Address:	80028164
  * Size:	000098
  */
-void JUTConsole::create(unsigned int, void*, unsigned long)
+JUTConsole::JUTConsole(unsigned int param_0, unsigned int param_1, bool param_2)
 {
-	/*
-	stwu     r1, -0x20(r1)
-	mflr     r0
-	stw      r0, 0x24(r1)
-	stw      r31, 0x1c(r1)
-	stw      r30, 0x18(r1)
-	stw      r29, 0x14(r1)
-	mr       r29, r4
-	stw      r28, 0x10(r1)
-	mr       r28, r3
-	mr       r3, r5
-	lwz      r30, sManager__17JUTConsoleManager@sda21(r13)
-	mr       r4, r28
-	bl       getLineFromObjectSize__10JUTConsoleFUlUi
-	cmplwi   r29, 0
-	mr       r5, r3
-	mr       r31, r29
-	beq      lbl_800281BC
-	mr       r3, r29
-	mr       r4, r28
-	li       r6, 0
-	bl       __ct__10JUTConsoleFUiUib
-	mr       r31, r3
+	field_0x2c = param_2;
+	field_0x20 = param_0;
+	field_0x24 = param_1;
 
-lbl_800281BC:
-	addi     r0, r29, 0x6c
-	mr       r3, r31
-	stw      r0, 0x28(r31)
-	bl       clear__10JUTConsoleFv
-	mr       r3, r30
-	mr       r4, r31
-	bl       appendConsole__17JUTConsoleManagerFP10JUTConsole
-	lwz      r0, 0x24(r1)
-	mr       r3, r31
-	lwz      r31, 0x1c(r1)
-	lwz      r30, 0x18(r1)
-	lwz      r29, 0x14(r1)
-	lwz      r28, 0x10(r1)
-	mtlr     r0
-	addi     r1, r1, 0x20
-	blr
-	*/
+	mPositionX = 30;
+	mPositionY = 50;
+	mHeight    = 20;
+
+	if (mHeight > field_0x24) {
+		mHeight = field_0x24;
+	}
+
+	mFont      = nullptr;
+	mVisible   = true;
+	field_0x69 = false;
+	field_0x6a = false;
+	field_0x6b = false;
+	mOutput    = 1;
+
+	field_0x5c.set(0, 0, 0, 100);
+	field_0x60.set(0, 0, 0, 230);
+	field_0x64 = 8;
 }
 
 /*
@@ -281,7 +262,7 @@ lbl_80028350:
  * Address:	8002836C
  * Size:	000010
  */
-void JUTConsole::getObjectSizeFromBufferSize(unsigned int, unsigned int)
+size_t JUTConsole::getObjectSizeFromBufferSize(unsigned int, unsigned int)
 {
 	/*
 	addi     r0, r3, 2
@@ -296,7 +277,7 @@ void JUTConsole::getObjectSizeFromBufferSize(unsigned int, unsigned int)
  * Address:	8002837C
  * Size:	000010
  */
-void JUTConsole::getLineFromObjectSize(unsigned long, unsigned int)
+size_t JUTConsole::getLineFromObjectSize(unsigned long, unsigned int)
 {
 	/*
 	addi     r3, r3, -108

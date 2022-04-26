@@ -31,6 +31,13 @@ struct TColor {
 		// asGXColor.a = other.asGXColor.a;
 		return *this;
 	}
+	void set(u8 cR, u8 cG, u8 cB, u8 cA)
+	{
+		asGXColor.r = cR;
+		asGXColor.g = cG;
+		asGXColor.b = cB;
+		asGXColor.a = cA;
+	}
 	union {
 		u32 asU32;
 		GXColor asGXColor;

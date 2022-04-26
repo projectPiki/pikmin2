@@ -57,6 +57,47 @@ struct TNodeLinkList {
 	         // doesnt match what i see here
 };
 
+template <typename T, int I> struct TLinkList : public TNodeLinkList {
+	TLinkList()
+	    : TNodeLinkList()
+	{
+	}
+
+	struct iterator : TNodeLinkList::iterator {
+		iterator(TNodeLinkList::iterator iter)
+		    : TNodeLinkList::iterator(iter)
+		{
+		}
+	};
+
+	TLinkListNode* Element_toNode(T* element) const { return &element->ocObject_; }
+
+	void Insert(TLinkList::iterator iter, T* element)
+	{
+		TLinkListNode* node = Element_toNode(element);
+		TNodeLinkList::Insert(iter, node);
+	}
+
+	iterator Erase(T* element)
+	{
+		TLinkListNode* node = Element_toNode(element);
+		return ((TNodeLinkList*)this)->Erase(node);
+	}
+
+	TLinkList::iterator end()
+	{
+		TNodeLinkList::iterator node_iter = TNodeLinkList::end();
+		TLinkList::iterator iter(node_iter);
+		return iter;
+	}
+
+	void Push_back(T* element)
+	{
+		TLinkList::iterator iter(TLinkList::end());
+		this->Insert(iter, element);
+	}
+};
+
 }; // namespace JGadget
 
 #endif
