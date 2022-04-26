@@ -94,8 +94,8 @@ void J2DPerspGraph::setFovy(float fovY)
 void J2DPerspGraph::setPort()
 {
 	J2DGrafContext::setPort();
-	C_MTXPerspective(m_fovY, (_0C - _04) / (_10 - _08), _C0, _C4, _40);
-	GXSetProjection(_40, GX_PERSPECTIVE);
+	C_MTXPerspective(m_fovY, m_Bounds.getWidth() / m_Bounds.getHeight(), _C0, _C4, m_Mtx44);
+	GXSetProjection(m_Mtx44, GX_PERSPECTIVE);
 }
 
 /*
@@ -105,7 +105,7 @@ void J2DPerspGraph::setPort()
  */
 void J2DPerspGraph::setLookat()
 {
-	_C8 = ((_10 - _08) * 0.5) / tan((m_fovY * PI) / 360.0f);
+	_C8 = (m_Bounds.getHeight() * 0.5f) / tan((m_fovY * PI) / 360.0f);
 	makeLookat();
 	/*
 	stwu     r1, -0x10(r1)
@@ -192,43 +192,14 @@ void J2DPerspGraph::makeLookat()
  * --INFO--
  * Address:	80036010
  * Size:	00005C
+ * J2DPerspGraph::~J2DPerspGraph()
+ * Weak function.
  */
-J2DPerspGraph::~J2DPerspGraph()
-{
-	/*
-	stwu     r1, -0x10(r1)
-	mflr     r0
-	stw      r0, 0x14(r1)
-	stw      r31, 0xc(r1)
-	or.      r31, r3, r3
-	beq      lbl_80036054
-	lis      r3, __vt__13J2DPerspGraph@ha
-	addi     r0, r3, __vt__13J2DPerspGraph@l
-	stw      r0, 0(r31)
-	beq      lbl_80036044
-	lis      r3, __vt__14J2DGrafContext@ha
-	addi     r0, r3, __vt__14J2DGrafContext@l
-	stw      r0, 0(r31)
-
-lbl_80036044:
-	extsh.   r0, r4
-	ble      lbl_80036054
-	mr       r3, r31
-	bl       __dl__FPv
-
-lbl_80036054:
-	lwz      r0, 0x14(r1)
-	mr       r3, r31
-	lwz      r31, 0xc(r1)
-	mtlr     r0
-	addi     r1, r1, 0x10
-	blr
-	*/
-}
 
 /*
  * --INFO--
  * Address:	8003606C
  * Size:	000008
+ * int J2DPerspGraph::getGrafType() const { return 2; }
+ * Weak function; defined in J2DGrafContext.h
  */
-u32 J2DPerspGraph::getGrafType() const { return 0x2; }

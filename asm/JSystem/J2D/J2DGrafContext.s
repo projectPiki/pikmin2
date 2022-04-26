@@ -16,17 +16,13 @@ __vt__14J2DGrafContext:
 
 .section .sdata2, "a"     # 0x80516360 - 0x80520E40
 .balign 8
-.global lbl_805167A8
 lbl_805167A8:
-	.4byte 0x00000000
-.global lbl_805167AC
+	.float 0.0
 lbl_805167AC:
 	.float 1.0
-.global lbl_805167B0
 lbl_805167B0:
-	.4byte 0x44800000
-	.4byte 0x00000000
-.global lbl_805167B8
+	.float 1024.0
+.balign 8
 lbl_805167B8:
 	.4byte 0x43300000
 	.4byte 0x00000000
@@ -755,10 +751,10 @@ setLineWidth__14J2DGrafContextFUc:
 /* 80036AE0 00033A20  4E 80 00 20 */	blr 
 
 .global getGrafType__14J2DGrafContextCFv
-getGrafType__14J2DGrafContextCFv:
+getGrafType__14J2DGrafContextCFv: # weak function
 /* 80036AE4 00033A24  38 60 00 00 */	li r3, 0
 /* 80036AE8 00033A28  4E 80 00 20 */	blr 
 
 .global setLookat__14J2DGrafContextFv
-setLookat__14J2DGrafContextFv:
+setLookat__14J2DGrafContextFv: # weak function
 /* 80036AEC 00033A2C  4E 80 00 20 */	blr 

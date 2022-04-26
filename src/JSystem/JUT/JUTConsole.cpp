@@ -4,59 +4,50 @@
     Generated from dpostproc
 
     .section .data, "wa"  # 0x8049E220 - 0x804EFC20
+    .balign 8
     .global __vt__10JUTConsole
     __vt__10JUTConsole:
         .4byte 0
         .4byte 0
         .4byte __dt__10JUTConsoleFv
-        .4byte 0
 
     .section .sbss # 0x80514D80 - 0x80516360
+    .balign 8
     .global sManager__17JUTConsoleManager
     sManager__17JUTConsoleManager:
         .skip 0x4
-    .global sReportConsole
-    sReportConsole:
+    sReportConsole: # local object
         .skip 0x4
-    .global sWarningConsole
-    sWarningConsole:
-        .skip 0x8
+    sWarningConsole: # local object
+        .skip 0x4
 
     .section .sdata2, "a"     # 0x80516360 - 0x80520E40
-    .global lbl_80516568
+    .balign 8
     lbl_80516568:
-        .4byte 0x40000000
-    .global lbl_8051656C
+        .float 2.0
     lbl_8051656C:
-        .4byte 0x00000000
-    .global lbl_80516570
+        .float 0.0
     lbl_80516570:
-        .4byte 0x44200000
-    .global lbl_80516574
+        .float 640.0
     lbl_80516574:
-        .4byte 0x43F00000
-    .global lbl_80516578
+        .float 480.0
     lbl_80516578:
         .float -1.0
-    .global lbl_8051657C
     lbl_8051657C:
         .float 1.0
-    .global lbl_80516580
     lbl_80516580:
-        .4byte 0x40800000
-        .4byte 0x00000000
-    .global lbl_80516588
+        .float 4.0
+    .balign 8
     lbl_80516588:
         .4byte 0x43300000
         .4byte 0x00000000
-    .global lbl_80516590
+    .balign 8
     lbl_80516590:
         .4byte 0x43300000
         .4byte 0x80000000
-    .global lbl_80516598
+    .balign 4
     lbl_80516598:
-        .4byte 0x25730000
-        .4byte 0x00000000
+        .asciz "%s"
 */
 
 /*

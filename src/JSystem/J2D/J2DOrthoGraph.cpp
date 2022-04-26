@@ -195,7 +195,7 @@ void J2DDrawFrame(JGeometry::TBox2<f32> const& param_0, JUtility::TColor color, 
  * --INFO--
  * Address:	80035D78
  * Size:	000008
- * u32 J2DOrthoGraph::getGrafType() const { return 1; }
+ * int J2DOrthoGraph::getGrafType() const { return 1; }
  * Weak function defined in J2DGrafContext.h
  */
 

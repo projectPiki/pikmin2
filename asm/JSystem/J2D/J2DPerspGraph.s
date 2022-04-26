@@ -16,28 +16,20 @@ __vt__13J2DPerspGraph:
 
 .section .sdata2, "a"     # 0x80516360 - 0x80520E40
 .balign 8
-.global lbl_80516788
 lbl_80516788:
-	.4byte 0x00000000
-.global lbl_8051678C
+	.float 0.0
 lbl_8051678C:
 	.float 1.0
-.global lbl_80516790
 lbl_80516790:
-	.4byte 0x43330000
-.global lbl_80516794
-lbl_80516794:
-	.4byte 0x40490FDB
-.global lbl_80516798
+	.float 179.0
+lbl_80516794: # pi
+	.float 3.1415927
 lbl_80516798:
-	.4byte 0x43B40000
-.global lbl_8051679C
+	.float 360.0
 lbl_8051679C:
 	.float 0.5
-.global lbl_805167A0
 lbl_805167A0:
 	.float -1.0
-	.4byte 0x00000000
 
 .section .text, "ax"  # 0x800056C0 - 0x80472F00
 .global __ct__13J2DPerspGraphFv
@@ -206,7 +198,7 @@ makeLookat__13J2DPerspGraphFv:
 /* 8003600C 00032F4C  4E 80 00 20 */	blr 
 
 .global __dt__13J2DPerspGraphFv
-__dt__13J2DPerspGraphFv:
+__dt__13J2DPerspGraphFv: # weak function
 /* 80036010 00032F50  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 80036014 00032F54  7C 08 02 A6 */	mflr r0
 /* 80036018 00032F58  90 01 00 14 */	stw r0, 0x14(r1)
@@ -234,6 +226,6 @@ lbl_80036054:
 /* 80036068 00032FA8  4E 80 00 20 */	blr 
 
 .global getGrafType__13J2DPerspGraphCFv
-getGrafType__13J2DPerspGraphCFv:
+getGrafType__13J2DPerspGraphCFv: # weak function
 /* 8003606C 00032FAC  38 60 00 02 */	li r3, 2
 /* 80036070 00032FB0  4E 80 00 20 */	blr 

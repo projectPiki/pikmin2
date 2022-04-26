@@ -16,12 +16,12 @@ struct J2DGrafContext {
 	{
 		JGeometry::TBox2<f32> box(x, y, x + width, y + height);
 		this->place(box);
-	}                                // _10
-	virtual void setPort();          // _14
-	virtual void setup2D();          // _18
-	virtual void setScissor();       // _1C
-	virtual u32 getGrafType() const; // _20
-	virtual void setLookat();        // _24
+	}                                              // _10
+	virtual void setPort();                        // _14
+	virtual void setup2D();                        // _18
+	virtual void setScissor();                     // _1C
+	virtual int getGrafType() const { return 0; }; // _20
+	virtual void setLookat();                      // _24
 
 	void drawFrame(const JGeometry::TBox2f&);
 	void fillBox(const JGeometry::TBox2f&);
@@ -62,10 +62,10 @@ struct J2DGrafContext {
 
 struct J2DPerspGraph : public J2DGrafContext {
 	J2DPerspGraph();
-	virtual ~J2DPerspGraph();        // _08
-	virtual void setPort();          // _14
-	virtual u32 getGrafType() const; // _20
-	virtual void setLookat();        // _24
+	virtual ~J2DPerspGraph() {};                   // _08
+	virtual void setPort();                        // _14
+	virtual int getGrafType() const { return 2; }; // _20
+	virtual void setLookat();                      // _24
 
 	void makeLookat();
 	void set(float, float, float);
@@ -79,9 +79,9 @@ private:
 };
 
 struct J2DOrthoGraph : public J2DGrafContext {
-	virtual ~J2DOrthoGraph();                      // _08
+	virtual ~J2DOrthoGraph() {};                   // _08
 	virtual void setPort();                        // _14
-	virtual u32 getGrafType() const { return 1; }; // _20
+	virtual int getGrafType() const { return 1; }; // _20
 	virtual void setLookat();                      // _24
 
 	// _00 VTBL

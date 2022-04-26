@@ -873,7 +873,7 @@ void J2DGrafContext::lineTo(JGeometry::TVec2<float>)
  * Address:	80036AE4
  * Size:	000008
  */
-u32 J2DGrafContext::getGrafType() const { return 0x0; }
+int J2DGrafContext::getGrafType() const { return 0x0; }
 
 /*
  * --INFO--
