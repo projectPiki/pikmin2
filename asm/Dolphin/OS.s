@@ -1,35 +1,49 @@
 .include "macros.inc"
 .section .data, "wa"  # 0x8049E220 - 0x804EFC20
 .balign 8
-.global lbl_804A8900
 lbl_804A8900:
 	.asciz "<< Dolphin SDK - OS\trelease build: Nov 26 2003 05:18:37 (0x2301) >>"
+.balign 4
+lbl_804A8944:
 	.asciz "\nDolphin OS\n"
-	.skip 3
+.balign 4
+lbl_804A8954:
 	.asciz "Kernel built : %s %s\n"
-	.skip 2
+.balign 4
+lbl_804A896C:
 	.asciz "Nov 26 2003"
+.balign 4
+lbl_804A8978:
 	.asciz "05:18:37"
-	.skip 3
+.balign 4
+lbl_804A8984:
 	.asciz "Console Type : "
+.balign 4
+lbl_804A8994:
 	.asciz "Retail %d\n"
-	.skip 1
+.balign 4
+lbl_804A89A0:
 	.asciz "Mac Emulator\n"
-	.skip 2
+.balign 4
+lbl_804A89B0:
 	.asciz "PC Emulator\n"
-	.skip 3
+.balign 4
+lbl_804A89C0:
 	.asciz "EPPC Arthur\n"
-	.skip 3
+.balign 4
+lbl_804A89D0:
 	.asciz "EPPC Minnow\n"
-	.skip 3
+.balign 4
+lbl_804A89E0:
 	.asciz "Development HW%d (%08x)\n"
-	.skip 3
+.balign 4
+lbl_804A89FC:
 	.asciz "Memory %d MB\n"
-	.skip 2
+.balign 4
+lbl_804A8A0C:
 	.asciz "Arena : 0x%x - 0x%x\n"
-	.skip 3
-.global __OSExceptionLocations
-__OSExceptionLocations:
+.balign 4
+__OSExceptionLocations: # local object
 	.4byte 0x00000100
 	.4byte 0x00000200
 	.4byte 0x00000300
@@ -45,53 +59,51 @@ __OSExceptionLocations:
 	.4byte 0x00001300
 	.4byte 0x00001400
 	.4byte 0x00001700
+.balign 4
+lbl_804A8A60:
 	.asciz "Installing OSDBIntegrator\n"
-	.skip 1
+.balign 4
+lbl_804A8A7C:
 	.asciz ">>> OSINIT: exception %d commandeered by TRK\n"
-	.skip 2
+.balign 4
+lbl_804A8AAC:
 	.asciz ">>> OSINIT: exception %d vectored to debugger\n"
-	.skip 1
+.balign 4
+lbl_804A8ADC:
 	.asciz "Exceptions initialized...\n"
-	.skip 1
 
 .section .sdata, "wa"  # 0x80514680 - 0x80514D80
 .balign 8
 .global __OSVersion
 __OSVersion:
 	.4byte lbl_804A8900
-.global lbl_805149CC
+.balign 4
 lbl_805149CC:
 	.asciz "%08x\n"
-	.skip 2
-.global lbl_805149D4
+.balign 4
 lbl_805149D4:
 	.asciz "%s\n"
 
 .section .sbss # 0x80514D80 - 0x80516360
 .balign 8
-.global BootInfo_1
-BootInfo_1:
+BootInfo: # local object
 	.skip 0x4
-.global BI2DebugFlag
-BI2DebugFlag:
+BI2DebugFlag: # local object
 	.skip 0x4
-.global BI2DebugFlagHolder
-BI2DebugFlagHolder:
+BI2DebugFlagHolder: # local object
 	.skip 0x4
 .global __OSIsGcam
-__OSIsGcam:
+__OSIsGcam: # weak object
 	.skip 0x4
-.global ZeroF
-ZeroF:
+.balign 8
+ZeroF: # local object
 	.skip 0x8
-.global ZeroPS
-ZeroPS:
+.balign 4
+ZeroPS: # local object
 	.skip 0x8
-.global AreWeInitialized
-AreWeInitialized:
+AreWeInitialized: # local object
 	.skip 0x4
-.global OSExceptionTable
-OSExceptionTable:
+OSExceptionTable: # local object
 	.skip 0x4
 .global __OSSavedRegionEnd
 __OSSavedRegionEnd:
@@ -101,13 +113,11 @@ __OSSavedRegionStart:
 	.skip 0x4
 .global __OSInIPL
 __OSInIPL:
-	.skip 0x8
+	.skip 0x4
+.balign 8
 .global __OSStartTime
 __OSStartTime:
-	.skip 0x4
-.global lbl_805155CC
-lbl_805155CC:
-	.skip 0x4
+	.skip 0x8
 
 .section .text, "ax"  # 0x800056C0 - 0x80472F00
 .global __OSFPRInit
@@ -190,7 +200,7 @@ lbl_800EB068:
 
 .global OSGetConsoleType
 OSGetConsoleType:
-/* 800EB0F0 000E8030  80 6D 8F 10 */	lwz r3, BootInfo_1@sda21(r13)
+/* 800EB0F0 000E8030  80 6D 8F 10 */	lwz r3, BootInfo@sda21(r13)
 /* 800EB0F4 000E8034  28 03 00 00 */	cmplwi r3, 0
 /* 800EB0F8 000E8038  41 82 00 10 */	beq lbl_800EB108
 /* 800EB0FC 000E803C  80 63 00 2C */	lwz r3, 0x2c(r3)
@@ -323,7 +333,7 @@ OSInit:
 /* 800EB2B0 000E81F0  38 00 00 01 */	li r0, 1
 /* 800EB2B4 000E81F4  90 0D 8F 30 */	stw r0, AreWeInitialized@sda21(r13)
 /* 800EB2B8 000E81F8  48 00 78 F9 */	bl __OSGetSystemTime
-/* 800EB2BC 000E81FC  90 8D 8F 4C */	stw r4, lbl_805155CC@sda21(r13)
+/* 800EB2BC 000E81FC  90 8D 8F 4C */	stw r4, (__OSStartTime+4)@sda21(r13)
 /* 800EB2C0 000E8200  90 6D 8F 48 */	stw r3, __OSStartTime@sda21(r13)
 /* 800EB2C4 000E8204  48 00 39 75 */	bl OSDisableInterrupts
 /* 800EB2C8 000E8208  38 60 00 00 */	li r3, 0
@@ -343,7 +353,7 @@ OSInit:
 /* 800EB300 000E8240  38 00 00 00 */	li r0, 0
 /* 800EB304 000E8244  3C 80 80 00 */	lis r4, 0x800000F4@ha
 /* 800EB308 000E8248  90 0D 8F 14 */	stw r0, BI2DebugFlag@sda21(r13)
-/* 800EB30C 000E824C  90 8D 8F 10 */	stw r4, BootInfo_1@sda21(r13)
+/* 800EB30C 000E824C  90 8D 8F 10 */	stw r4, BootInfo@sda21(r13)
 /* 800EB310 000E8250  90 0D 8E 24 */	stw r0, __DVDLongFileNameFlag@sda21(r13)
 /* 800EB314 000E8254  80 64 00 F4 */	lwz r3, 0x800000F4@l(r4)
 /* 800EB318 000E8258  28 03 00 00 */	cmplwi r3, 0
@@ -372,7 +382,7 @@ lbl_800EB350:
 /* 800EB370 000E82B0  90 0D 90 18 */	stw r0, __PADSpec@sda21(r13)
 lbl_800EB374:
 /* 800EB374 000E82B4  38 00 00 01 */	li r0, 1
-/* 800EB378 000E82B8  80 6D 8F 10 */	lwz r3, BootInfo_1@sda21(r13)
+/* 800EB378 000E82B8  80 6D 8F 10 */	lwz r3, BootInfo@sda21(r13)
 /* 800EB37C 000E82BC  90 0D 8E 24 */	stw r0, __DVDLongFileNameFlag@sda21(r13)
 /* 800EB380 000E82C0  80 63 00 30 */	lwz r3, 0x30(r3)
 /* 800EB384 000E82C4  28 03 00 00 */	cmplwi r3, 0
@@ -382,7 +392,7 @@ lbl_800EB374:
 /* 800EB394 000E82D4  48 00 00 04 */	b lbl_800EB398
 lbl_800EB398:
 /* 800EB398 000E82D8  48 00 10 A5 */	bl OSSetArenaLo
-/* 800EB39C 000E82DC  80 6D 8F 10 */	lwz r3, BootInfo_1@sda21(r13)
+/* 800EB39C 000E82DC  80 6D 8F 10 */	lwz r3, BootInfo@sda21(r13)
 /* 800EB3A0 000E82E0  80 03 00 30 */	lwz r0, 0x30(r3)
 /* 800EB3A4 000E82E4  28 00 00 00 */	cmplwi r0, 0
 /* 800EB3A8 000E82E8  40 82 00 30 */	bne lbl_800EB3D8
@@ -398,7 +408,7 @@ lbl_800EB398:
 /* 800EB3D0 000E8310  54 03 00 34 */	rlwinm r3, r0, 0, 0, 0x1a
 /* 800EB3D4 000E8314  48 00 10 69 */	bl OSSetArenaLo
 lbl_800EB3D8:
-/* 800EB3D8 000E8318  80 6D 8F 10 */	lwz r3, BootInfo_1@sda21(r13)
+/* 800EB3D8 000E8318  80 6D 8F 10 */	lwz r3, BootInfo@sda21(r13)
 /* 800EB3DC 000E831C  80 63 00 34 */	lwz r3, 0x34(r3)
 /* 800EB3E0 000E8320  28 03 00 00 */	cmplwi r3, 0
 /* 800EB3E4 000E8324  40 82 00 10 */	bne lbl_800EB3F4
@@ -442,7 +452,7 @@ lbl_800EB454:
 /* 800EB474 000E83B4  38 7F 00 84 */	addi r3, r31, 0x84
 /* 800EB478 000E83B8  4C C6 31 82 */	crclr 6
 /* 800EB47C 000E83BC  48 00 22 71 */	bl OSReport
-/* 800EB480 000E83C0  80 6D 8F 10 */	lwz r3, BootInfo_1@sda21(r13)
+/* 800EB480 000E83C0  80 6D 8F 10 */	lwz r3, BootInfo@sda21(r13)
 /* 800EB484 000E83C4  28 03 00 00 */	cmplwi r3, 0
 /* 800EB488 000E83C8  41 82 00 10 */	beq lbl_800EB498
 /* 800EB48C 000E83CC  80 83 00 2C */	lwz r4, 0x2c(r3)
@@ -520,7 +530,7 @@ lbl_800EB578:
 /* 800EB57C 000E84BC  38 6D 83 4C */	addi r3, r13, lbl_805149CC@sda21
 /* 800EB580 000E84C0  48 00 21 6D */	bl OSReport
 lbl_800EB584:
-/* 800EB584 000E84C4  80 8D 8F 10 */	lwz r4, BootInfo_1@sda21(r13)
+/* 800EB584 000E84C4  80 8D 8F 10 */	lwz r4, BootInfo@sda21(r13)
 /* 800EB588 000E84C8  38 7F 00 FC */	addi r3, r31, 0xfc
 /* 800EB58C 000E84CC  4C C6 31 82 */	crclr 6
 /* 800EB590 000E84D0  80 04 00 28 */	lwz r0, 0x28(r4)

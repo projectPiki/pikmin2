@@ -1,17 +1,17 @@
 .include "macros.inc"
 .section .sbss # 0x80514D80 - 0x80516360
 .balign 8
-ResetCallback:
+ResetCallback: # local object
 	.skip 4
-Down:
+Down: # local object
 	.skip 4
-LastState:
+LastState: # local object
 	.skip 4
 .balign 8
-HoldUp:
+HoldUp: # local object
 	.skip 8
 .balign 8
-HoldDown:
+HoldDown: # local object
 	.skip 8
 
 .section .text, "ax"  # 0x800056C0 - 0x80472F00
@@ -214,7 +214,7 @@ lbl_800F0984:
 /* 800F0994 000ED8D4  41 82 00 A0 */	beq lbl_800F0A34
 /* 800F0998 000ED8D8  1D 40 00 3C */	mulli r10, r0, 0x3c
 /* 800F099C 000ED8DC  80 05 00 F8 */	lwz r0, 0xf8(r5)
-/* 800F09A0 000ED8E0  81 2D 8F 4C */	lwz r9, lbl_805155CC@sda21(r13)
+/* 800F09A0 000ED8E0  81 2D 8F 4C */	lwz r9, (__OSStartTime+4)@sda21(r13)
 /* 800F09A4 000ED8E4  81 0D 8F 48 */	lwz r8, __OSStartTime@sda21(r13)
 /* 800F09A8 000ED8E8  54 06 F0 BE */	srwi r6, r0, 2
 /* 800F09AC 000ED8EC  7D 40 FE 70 */	srawi r0, r10, 0x1f
