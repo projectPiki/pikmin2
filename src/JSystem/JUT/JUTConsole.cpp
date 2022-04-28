@@ -56,52 +56,52 @@
  * Address:	800280DC
  * Size:	000088
  */
-JUTConsole* JUTConsole::create(unsigned int, unsigned int, JKRHeap*)
+JUTConsole* JUTConsole::create(unsigned int param_0, unsigned int param_1, JKRHeap* param_2)
 {
-	/*
-	stwu     r1, -0x20(r1)
-	mflr     r0
-	stw      r0, 0x24(r1)
-	stmw     r27, 0xc(r1)
-	mr       r27, r3
-	mr       r28, r4
-	mr       r29, r5
-	lwz      r30, sManager__17JUTConsoleManager@sda21(r13)
-	bl       getObjectSizeFromBufferSize__10JUTConsoleFUiUi
-	mr       r5, r29
-	li       r4, 0
-	bl       alloc__7JKRHeapFUliP7JKRHeap
-	mr       r0, r3
-	mr       r29, r0
-	or.      r31, r29, r29
-	beq      lbl_80028130
-	mr       r4, r27
-	mr       r5, r28
-	li       r6, 1
-	bl       __ct__10JUTConsoleFUiUib
-	mr       r31, r3
+	JUTConsoleManager* mgr = JUTConsoleManager::sManager;
+	u32 byteCount          = getObjectSizeFromBufferSize(param_0, param_1);
+	void* buf              = JKRHeap::alloc(byteCount, 0, param_2);
+	u8* mem                = (u8*)buf;
+	JUTConsole* console    = new (mem) JUTConsole(param_0, param_1, true);
+	console->mBuf          = mem + sizeof(JUTConsole);
+	console->clear();
 
-lbl_80028130:
-	addi     r0, r29, 0x6c
-	mr       r3, r31
-	stw      r0, 0x28(r31)
-	bl       clear__10JUTConsoleFv
-	mr       r3, r30
-	mr       r4, r31
-	bl       appendConsole__17JUTConsoleManagerFP10JUTConsole
-	mr       r3, r31
-	lmw      r27, 0xc(r1)
-	lwz      r0, 0x24(r1)
-	mtlr     r0
-	addi     r1, r1, 0x20
-	blr
-	*/
+	mgr->appendConsole(console);
+	return console;
 }
 
 /*
  * --INFO--
  * Address:	80028164
  * Size:	000098
+ */
+JUTConsole* JUTConsole::create(unsigned int param_0, void* param_1, u32 param_2)
+{
+	JUTConsoleManager* mgr = JUTConsoleManager::sManager;
+	u32 byteCount          = getLineFromObjectSize(param_2, param_0);
+	u8* mem                = (u8*)param_1;
+	JUTConsole* console    = new (mem) JUTConsole(param_0, byteCount, false);
+	console->mBuf          = mem + sizeof(JUTConsole);
+	console->clear();
+
+	mgr->appendConsole(console);
+	return console;
+}
+
+/*
+ * --INFO--
+ * Address:	........
+ * Size:	00005C
+ */
+void JUTConsole::destroy(JUTConsole*)
+{
+	// UNUSED FUNCTION
+}
+
+/*
+ * --INFO--
+ * Address:	800281FC
+ * Size:	000100
  */
 JUTConsole::JUTConsole(unsigned int param_0, unsigned int param_1, bool param_2)
 {
@@ -127,93 +127,6 @@ JUTConsole::JUTConsole(unsigned int param_0, unsigned int param_1, bool param_2)
 	field_0x5c.set(0, 0, 0, 100);
 	field_0x60.set(0, 0, 0, 230);
 	field_0x64 = 8;
-}
-
-/*
- * --INFO--
- * Address:	........
- * Size:	00005C
- */
-void JUTConsole::destroy(JUTConsole*)
-{
-	// UNUSED FUNCTION
-}
-
-/*
- * --INFO--
- * Address:	800281FC
- * Size:	000100
- */
-JUTConsole::JUTConsole(unsigned int, unsigned int, bool)
-{
-	/*
-	stwu     r1, -0x20(r1)
-	mflr     r0
-	stw      r0, 0x24(r1)
-	stw      r31, 0x1c(r1)
-	mr       r31, r6
-	stw      r30, 0x18(r1)
-	mr       r30, r5
-	stw      r29, 0x14(r1)
-	mr       r29, r4
-	stw      r28, 0x10(r1)
-	mr       r28, r3
-	bl       __ct__11JKRDisposerFv
-	lis      r3, __vt__10JUTConsole@ha
-	li       r6, 0
-	addi     r0, r3, __vt__10JUTConsole@l
-	li       r5, -1
-	stw      r0, 0(r28)
-	li       r4, 0x1e
-	li       r3, 0x32
-	li       r0, 0x14
-	stw      r6, 0x18(r28)
-	stw      r6, 0x1c(r28)
-	stw      r5, 0x5c(r28)
-	stw      r5, 0x60(r28)
-	stb      r31, 0x2c(r28)
-	stw      r29, 0x20(r28)
-	stw      r30, 0x24(r28)
-	stw      r4, 0x40(r28)
-	stw      r3, 0x44(r28)
-	stw      r0, 0x48(r28)
-	lwz      r0, 0x48(r28)
-	lwz      r3, 0x24(r28)
-	cmplw    r0, r3
-	ble      lbl_80028288
-	stw      r3, 0x48(r28)
-
-lbl_80028288:
-	li       r7, 0
-	li       r6, 1
-	stw      r7, 0x4c(r28)
-	li       r5, 0x64
-	li       r4, 0xe6
-	li       r0, 8
-	stb      r6, 0x68(r28)
-	mr       r3, r28
-	stb      r7, 0x69(r28)
-	stb      r7, 0x6a(r28)
-	stb      r7, 0x6b(r28)
-	stw      r6, 0x58(r28)
-	stb      r7, 0x5c(r28)
-	stb      r7, 0x5d(r28)
-	stb      r7, 0x5e(r28)
-	stb      r5, 0x5f(r28)
-	stb      r7, 0x60(r28)
-	stb      r7, 0x61(r28)
-	stb      r7, 0x62(r28)
-	stb      r4, 0x63(r28)
-	stw      r0, 0x64(r28)
-	lwz      r31, 0x1c(r1)
-	lwz      r30, 0x18(r1)
-	lwz      r29, 0x14(r1)
-	lwz      r28, 0x10(r1)
-	lwz      r0, 0x24(r1)
-	mtlr     r0
-	addi     r1, r1, 0x20
-	blr
-	*/
 }
 
 /*
@@ -1174,7 +1087,7 @@ lbl_80028E34:
  * Address:	80028E50
  * Size:	000024
  */
-void JUTConsole::getUsedLine() const
+int JUTConsole::getUsedLine() const
 {
 	/*
 	lwz      r4, 0x34(r3)
@@ -1196,7 +1109,7 @@ lbl_80028E68:
  * Address:	80028E74
  * Size:	000024
  */
-void JUTConsole::getLineOffset() const
+int JUTConsole::getLineOffset() const
 {
 	/*
 	lwz      r4, 0x34(r3)
