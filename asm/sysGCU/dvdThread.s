@@ -19,8 +19,7 @@ __vt__9DvdThread:
 .section .sdata2, "a"     # 0x80516360 - 0x80520E40
 .balign 8
 lbl_805204B0:
-	.4byte 0x61726300
-	.4byte 0x00000000
+	.asciz "arc"
 
 .section .text, "ax"  # 0x800056C0 - 0x80472F00
 .global __ct__16DvdThreadCommandFv
