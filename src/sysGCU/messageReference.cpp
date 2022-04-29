@@ -33,6 +33,8 @@
         .skip 1
 */
 
+extern char str_673[256]; // should be static to TReference::do_word
+
 namespace P2JME {
 
 /*
@@ -40,82 +42,26 @@ namespace P2JME {
  * Address:	8043DB18
  * Size:	000074
  */
-// void TReference::do_word(unsigned long arg) const
-//{
-/* WTF?
-    stwu     r1, -0x10(r1)
-    mflr     r0
-    stw      r0, 0x14(r1)
-    lbz      r0, init$675@sda21(r13)
-    extsb.   r0, r0
-    bne      lbl_8043DB40
-    li       r3, 0x22
-    li       r0, 1
-    stb      r3, frm$674@sda21(r13)
-    stb      r0, init$675@sda21(r13)
+char* TReference::do_word(unsigned long arg) const
+{
+	static u8 frm = 34;
+	// static char str[256]; what it should be
 
-lbl_8043DB40:
-    lbz      r3, frm$674@sda21(r13)
-    cmplwi   r4, 0
-    addi     r0, r3, 1
-    stb      r0, frm$674@sda21(r13)
-    bne      lbl_8043DB5C
-    addi     r3, r2, lbl_805208E8@sda21
-    b        lbl_8043DB7C
+	frm++;
 
-lbl_8043DB5C:
-    lis      r3, str$673@ha
-    clrlwi   r5, r0, 0x18
-    addi     r3, r3, str$673@l
-    addi     r4, r2, lbl_805208F0@sda21
-    crclr    6
-    bl       sprintf
-    lis      r3, str$673@ha
-    addi     r3, r3, str$673@l
-
-lbl_8043DB7C:
-    lwz      r0, 0x14(r1)
-    mtlr     r0
-    addi     r1, r1, 0x10
-    blr
-*/
-// }
+	if (arg == 0) {
+		return "ƒeƒXƒg";
+	}
+	sprintf(str_673, "%d", frm);
+	return str_673;
+}
 
 /*
  * --INFO--
  * Address:	8043DB8C
  * Size:	000060
+ * TReference::~TReference(){};
+ * Weak function. Defined in TReference.h
  */
-TReference::~TReference()
-{
-	/*
-	stwu     r1, -0x10(r1)
-	mflr     r0
-	stw      r0, 0x14(r1)
-	stw      r31, 0xc(r1)
-	mr       r31, r4
-	stw      r30, 8(r1)
-	or.      r30, r3, r3
-	beq      lbl_8043DBD0
-	lis      r5, __vt__Q25P2JME10TReference@ha
-	li       r4, 0
-	addi     r0, r5, __vt__Q25P2JME10TReference@l
-	stw      r0, 0(r30)
-	bl       __dt__Q28JMessage10TReferenceFv
-	extsh.   r0, r31
-	ble      lbl_8043DBD0
-	mr       r3, r30
-	bl       __dl__FPv
-
-lbl_8043DBD0:
-	lwz      r0, 0x14(r1)
-	mr       r3, r30
-	lwz      r31, 0xc(r1)
-	lwz      r30, 8(r1)
-	mtlr     r0
-	addi     r1, r1, 0x10
-	blr
-	*/
-}
 
 } // namespace P2JME

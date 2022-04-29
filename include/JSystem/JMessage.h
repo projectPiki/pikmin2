@@ -12,7 +12,7 @@ struct JMessage {
 
 	struct TReference {
 		virtual ~TReference();
-		virtual void do_word(unsigned long) const;
+		virtual char* do_word(unsigned long) const;
 	};
 
 	struct TProcessor {

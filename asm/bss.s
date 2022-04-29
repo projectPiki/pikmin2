@@ -400,9 +400,10 @@ lbl_804F7C38:
 .global sRubyDataBuffer__5P2JME
 sRubyDataBuffer__5P2JME:
 	.skip 0x28
-.global str$673
-str$673:
-	.skip 0x110
+.global str_673
+str_673:
+	.skip 0x100
+.balign 32
 .global sCardWorkArea
 sCardWorkArea:
 	.skip 0xA000
@@ -423,7 +424,8 @@ FreeAudioBufferMessage:
 	.skip 0xC
 .global DecodedAudioBufferMessage
 DecodedAudioBufferMessage:
-	.skip 0x1C
+	.skip 0xC
+.balign 32
 .global WorkBuffer
 WorkBuffer:
 	.skip 0x40
@@ -435,7 +437,8 @@ UsedTextureSetQueue:
 	.skip 0x20
 .global UsedTextureSetMessage
 UsedTextureSetMessage:
-	.skip 0x20
+	.skip 0xC
+.balign 32
 .global SoundBuffer
 SoundBuffer:
 	.skip 0x1180
