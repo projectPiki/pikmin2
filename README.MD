@@ -23,6 +23,7 @@ pikmin2.usa.dol: `sha1: 90d328bf8f190c90472e8c19e7e53c6ad0fe0d1a`
 - JHawk
 - Minty-Meeo
 - Revo
+- ShadowLugia
 
 ## Building
 
@@ -35,7 +36,7 @@ pikmin2.usa.dol: `sha1: 90d328bf8f190c90472e8c19e7e53c6ad0fe0d1a`
 * WINDOWS ONLY STEP:
 	- Launch msys2(Provided by devkitPro) and run the command `pacman -S gcc`.
 	
-1. Download GC_WII_COMPILERS.zip from (https://cdn.discordapp.com/attachments/727918646525165659/917185027656286218/GC_WII_COMPILERS.zip) and extract the GC folder to tools/mwcc_compiler/.
+1. Download GC_WII_COMPILERS.zip from (https://cdn.discordapp.com/attachments/727918646525165659/917185027656286218/GC_WII_COMPILERS.zip) and extract the GC folder to tools/mwcc_compiler/. This folder should be made by the user.
 2. Run `make -j` in a command prompt or terminal.
 	- -j Allows make to use multiple threads, speeding up the process.
 
