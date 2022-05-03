@@ -1,11 +1,9 @@
 .include "macros.inc"
 .section .rodata  # 0x804732E0 - 0x8049E220
 .balign 8
-.global lbl_80493C08
 lbl_80493C08:
 	.asciz "shijimiChouMgr"
-	.skip 1
-.global lbl_80493C18
+.balign 4
 lbl_80493C18:
 	.4byte 0x83568357
 	.4byte 0x837E92B1
@@ -217,7 +215,7 @@ lbl_80493C18:
 	.4byte 0x67722E63
 	.4byte 0x70700000
 	.asciz "P2Assert"
-	.skip 3
+.balign 4
 	.4byte 0x6D61745F
 	.4byte 0x7368696A
 	.4byte 0x696D695F
@@ -289,7 +287,6 @@ __vt__Q34Game11ShijimiChou5Parms:
 	.4byte 0
 	.4byte 0
 	.4byte read__Q34Game11ShijimiChou5ParmsFR6Stream
-	.4byte 0
 
 .section .sdata2, "a"     # 0x80516360 - 0x80520E40
 .balign 8

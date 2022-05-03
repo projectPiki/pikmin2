@@ -5,55 +5,42 @@ lbl_constructor:
 
 .section .rodata  # 0x804732E0 - 0x8049E220
 .balign 8
-.global lbl_80489870
 lbl_80489870:
 	.asciz "rhand1jnt"
-	.skip 2
-.global lbl_8048987C
+.balign 4
 lbl_8048987C:
 	.asciz "rhand2jnt"
-	.skip 2
-.global lbl_80489888
+.balign 4
 lbl_80489888:
 	.asciz "rhand3jnt"
-	.skip 2
-.global lbl_80489894
+.balign 4
 lbl_80489894:
 	.asciz "lhand1jnt"
-	.skip 2
-.global lbl_804898A0
+.balign 4
 lbl_804898A0:
 	.asciz "lhand2jnt"
-	.skip 2
-.global lbl_804898AC
+.balign 4
 lbl_804898AC:
 	.asciz "lhand3jnt"
-	.skip 2
-.global lbl_804898B8
+.balign 4
 lbl_804898B8:
 	.asciz "rfoot1jnt"
-	.skip 2
-.global lbl_804898C4
+.balign 4
 lbl_804898C4:
 	.asciz "rfoot2jnt"
-	.skip 2
-.global lbl_804898D0
+.balign 4
 lbl_804898D0:
 	.asciz "rfoot3jnt"
-	.skip 2
-.global lbl_804898DC
+.balign 4
 lbl_804898DC:
 	.asciz "lfoot1jnt"
-	.skip 2
-.global lbl_804898E8
+.balign 4
 lbl_804898E8:
 	.asciz "lfoot2jnt"
-	.skip 2
-.global lbl_804898F4
+.balign 4
 lbl_804898F4:
 	.asciz "lfoot3jnt"
-	.skip 2
-.global lbl_80489900
+.balign 4
 lbl_80489900:
 	.4byte lbl_80489870
 	.4byte lbl_8048987C
@@ -67,28 +54,25 @@ lbl_80489900:
 	.4byte lbl_804898DC
 	.4byte lbl_804898E8
 	.4byte lbl_804898F4
-.global lbl_80489930
-lbl_80489930:
+.balign 4
+lbl_80489930: # local object
 	.ascii "lft1"
 	.ascii "lht1"
 	.ascii "rft1"
 	.ascii "rht1"
-.global lbl_80489940
+.balign 4
 lbl_80489940:
 	.asciz "PSMainSide_ObjSound.h"
-	.skip 2
-.global lbl_80489958
+.balign 4
 lbl_80489958:
 	.asciz "P2Assert"
-	.skip 3
 
 .section .data, "wa"  # 0x8049E220 - 0x804EFC20
 .balign 8
-.global lbl_804CD818
-lbl_804CD818:
-	.4byte 0x00000000
-	.4byte 0x00000000
-	.4byte 0x00000000
+govNAN___Q24Game5P2JST:
+	.float 0.0
+	.float 0.0
+	.float 0.0
 .global __vt__Q23efx13TDamaDeadBomb
 __vt__Q23efx13TDamaDeadBomb:
 	.4byte 0
@@ -551,123 +535,88 @@ __vt__Q34Game8Damagumo22DamagumoGroundCallBack:
 
 .section .sbss # 0x80514D80 - 0x80516360
 .balign 8
-.global lbl_80515D70
-lbl_80515D70:
+gu32NAN___Q24Game5P2JST:
 	.skip 0x4
-.global lbl_80515D74
-lbl_80515D74:
+gfNAN___Q24Game5P2JST:
 	.skip 0x4
 
 .section .sdata2, "a"     # 0x80516360 - 0x80520E40
 .balign 8
-.global lbl_8051BED0
 lbl_8051BED0:
-	.4byte 0x00000000
-.global lbl_8051BED4
+	.float 0.0
 lbl_8051BED4:
 	.float 1.0
-.global lbl_8051BED8
 lbl_8051BED8:
 	.float 0.1
-.global lbl_8051BEDC
 lbl_8051BEDC:
-	.4byte 0x43FA0000
-.global lbl_8051BEE0
+	.float 500.0
 lbl_8051BEE0:
-	.4byte 0x41200000
-.global lbl_8051BEE4
+	.float 10.0
 lbl_8051BEE4:
-	.4byte 0xC47A0000
-.global lbl_8051BEE8
+	.float -1000.0
+.balign 4
 lbl_8051BEE8:
-	.4byte 0x6B6F7369
-	.4byte 0x00000000
-.global lbl_8051BEF0
+	.asciz "kosi"
+.balign 4
 lbl_8051BEF0:
-	.4byte 0x41F00000
-.global lbl_8051BEF4
+	.float 30.0
 lbl_8051BEF4:
-	.4byte 0x441C4000
-.global lbl_8051BEF8
+	.float 625.0
 lbl_8051BEF8:
-	.4byte 0x47000000
-.global lbl_8051BEFC
-lbl_8051BEFC:
-	.4byte 0x40490FDB
-.global lbl_8051BF00
-lbl_8051BF00:
-	.4byte 0x3FC90FDB
-.global lbl_8051BF04
+	.float 32768.0
+lbl_8051BEFC: # pi
+	.float 3.1415927
+lbl_8051BF00: # pi/2
+	.float 1.5707964
 lbl_8051BF04:
-	.4byte 0xC3A2F983
-.global lbl_8051BF08
+	.float -325.9493
 lbl_8051BF08:
-	.4byte 0x43A2F983
-	.4byte 0x00000000
-.global lbl_8051BF10
+	.float 325.9493
+.balign 8
 lbl_8051BF10:
 	.4byte 0x43300000
 	.4byte 0x80000000
-.global lbl_8051BF18
 lbl_8051BF18:
-	.4byte 0x3F400000
-.global lbl_8051BF1C
+	.float 0.75
 lbl_8051BF1C:
-	.4byte 0x42F00000
-.global lbl_8051BF20
+	.float 120.0
 lbl_8051BF20:
-	.4byte 0x40400000
-.global lbl_8051BF24
+	.float 3.0
 lbl_8051BF24:
-	.4byte 0xBE19999A
-.global lbl_8051BF28
+	.float -0.15
 lbl_8051BF28:
 	.float 0.5
-.global lbl_8051BF2C
 lbl_8051BF2C:
-	.4byte 0xC0000000
-.global lbl_8051BF30
+	.float -2.0
 lbl_8051BF30:
-	.4byte 0x42960000
-.global lbl_8051BF34
+	.float 75.0
 lbl_8051BF34:
-	.4byte 0x42700000
-.global lbl_8051BF38
+	.float 60.0
 lbl_8051BF38:
 	.float 0.7
-.global lbl_8051BF3C
 lbl_8051BF3C:
-	.4byte 0xBFC00000
-.global lbl_8051BF40
+	.float -1.5
 lbl_8051BF40:
-	.4byte 0x3F2B851F
-.global lbl_8051BF44
+	.float 0.67
 lbl_8051BF44:
-	.4byte 0x42480000
-.global lbl_8051BF48
+	.float 50.0
+.balign 4
 lbl_8051BF48:
-	.4byte 0x74616D61
-	.4byte 0x31000000
-.global lbl_8051BF50
+	.asciz "tama1"
+.balign 4
 lbl_8051BF50:
-	.4byte 0x74616D61
-	.4byte 0x32000000
-.global lbl_8051BF58
+	.asciz "tama2"
+.balign 4
 lbl_8051BF58:
-	.4byte 0x3E333333
-.global lbl_8051BF5C
+	.float 0.175
 lbl_8051BF5C:
-	.4byte 0x3EB33333
-.global lbl_8051BF60
+	.float 0.35
 lbl_8051BF60:
-	.4byte 0x40000000
-.global lbl_8051BF64
+	.float 2.0
 lbl_8051BF64:
-	.4byte 0x40800000
-.global lbl_8051BF68
+	.float 4.0
 lbl_8051BF68:
 	.float 0.25
-	.4byte 0x00000000
 
 .section .text, "ax"  # 0x800056C0 - 0x80472F00
 .global invokeOnGround__Q34Game8Damagumo22DamagumoGroundCallBackFiPQ24Game8WaterBox
@@ -4224,15 +4173,14 @@ getEnemyTypeID__Q34Game8Damagumo3ObjFv:
 /* 802A8990 002A58D0  38 60 00 38 */	li r3, 0x38
 /* 802A8994 002A58D4  4E 80 00 20 */	blr 
 
-.global __sinit_Damagumo_cpp
-__sinit_Damagumo_cpp:
+__sinit_Damagumo_cpp: # static initializer
 /* 802A8998 002A58D8  3C 80 80 51 */	lis r4, __float_nan@ha
 /* 802A899C 002A58DC  38 00 FF FF */	li r0, -1
 /* 802A89A0 002A58E0  C0 04 48 B0 */	lfs f0, __float_nan@l(r4)
-/* 802A89A4 002A58E4  3C 60 80 4D */	lis r3, lbl_804CD818@ha
-/* 802A89A8 002A58E8  90 0D 96 F0 */	stw r0, lbl_80515D70@sda21(r13)
-/* 802A89AC 002A58EC  D4 03 D8 18 */	stfsu f0, lbl_804CD818@l(r3)
-/* 802A89B0 002A58F0  D0 0D 96 F4 */	stfs f0, lbl_80515D74@sda21(r13)
+/* 802A89A4 002A58E4  3C 60 80 4D */	lis r3, govNAN___Q24Game5P2JST@ha
+/* 802A89A8 002A58E8  90 0D 96 F0 */	stw r0, gu32NAN___Q24Game5P2JST@sda21(r13)
+/* 802A89AC 002A58EC  D4 03 D8 18 */	stfsu f0, govNAN___Q24Game5P2JST@l(r3)
+/* 802A89B0 002A58F0  D0 0D 96 F4 */	stfs f0, gfNAN___Q24Game5P2JST@sda21(r13)
 /* 802A89B4 002A58F4  D0 03 00 04 */	stfs f0, 4(r3)
 /* 802A89B8 002A58F8  D0 03 00 08 */	stfs f0, 8(r3)
 /* 802A89BC 002A58FC  4E 80 00 20 */	blr 

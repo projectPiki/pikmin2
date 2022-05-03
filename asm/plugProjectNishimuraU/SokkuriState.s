@@ -1,22 +1,17 @@
 .include "macros.inc"
 .section .rodata  # 0x804732E0 - 0x8049E220
 .balign 8
-.global lbl_8048CDE8
 lbl_8048CDE8:
-	.4byte 0x3234362D
-	.4byte 0x536F6B6B
-	.4byte 0x75726953
-	.4byte 0x74617465
-	.4byte 0x00000000
-	.4byte 0x64697361
-	.4byte 0x70706561
-	.4byte 0x72000000
-	.4byte 0x6D6F7665
-	.4byte 0x67726F75
-	.4byte 0x6E640000
-	.4byte 0x6D6F7665
-	.4byte 0x77617465
-	.4byte 0x72000000
+	.asciz "246-SokkuriState"
+.balign 4
+lbl_8048CDFC:
+	.asciz "disappear"
+.balign 4
+lbl_8048CE08:
+	.asciz "moveground"
+.balign 4
+lbl_8048CE14:
+	.asciz "movewater"
 
 .section .data, "wa"  # 0x8049E220 - 0x804EFC20
 .balign 8
@@ -141,68 +136,51 @@ __vt__Q34Game7Sokkuri3FSM:
 	.4byte doDirectDraw__Q24Game17EnemyStateMachineFPQ24Game9EnemyBaseR8Graphics
 	.4byte getCurrState__Q24Game17EnemyStateMachineFPQ24Game9EnemyBase
 	.4byte setCurrState__Q24Game17EnemyStateMachineFPQ24Game9EnemyBasePQ24Game13EnemyFSMState
-	.4byte 0
 
 .section .sdata2, "a"     # 0x80516360 - 0x80520E40
 .balign 8
-.global lbl_8051D090
 lbl_8051D090:
-	.4byte 0x64656164
-	.4byte 0x00000000
-.global lbl_8051D098
+	.asciz "dead"
+.balign 4
 lbl_8051D098:
-	.4byte 0x70726573
-	.4byte 0x73000000
-.global lbl_8051D0A0
+	.asciz "press"
+.balign 4
 lbl_8051D0A0:
-	.4byte 0x73746179
-	.4byte 0x00000000
-.global lbl_8051D0A8
+	.asciz "stay"
+.balign 4
 lbl_8051D0A8:
-	.4byte 0x61707065
-	.4byte 0x61720000
-.global lbl_8051D0B0
+	.asciz "appear"
+.balign 4
 lbl_8051D0B0:
-	.4byte 0x77616974
-	.4byte 0x00000000
-.global lbl_8051D0B8
+	.asciz "wait"
+.balign 4
 lbl_8051D0B8:
-	.4byte 0x666C6963
-	.4byte 0x6B000000
-.global lbl_8051D0C0
+	.asciz "flick"
+.balign 4
 lbl_8051D0C0:
-	.4byte 0x00000000
-.global lbl_8051D0C4
+	.float 0.0
 lbl_8051D0C4:
 	.float 0.5
-.global lbl_8051D0C8
 lbl_8051D0C8:
-	.4byte 0x3F0CCCCD
-.global lbl_8051D0CC
+	.float 0.55
 lbl_8051D0CC:
-	.4byte 0x3F400000
-.global lbl_8051D0D0
+	.float 0.75
 lbl_8051D0D0:
-	.4byte 0x3EB33333
-.global lbl_8051D0D4
+	.float 0.35
 lbl_8051D0D4:
-	.4byte 0x3E8F5C29
-.global lbl_8051D0D8
+	.float 0.28
 lbl_8051D0D8:
 	.float 1.0
-.global lbl_8051D0DC
 lbl_8051D0DC:
-	.4byte 0x47000000
-.global lbl_8051D0E0
+	.float 32768.0
+.balign 8
 lbl_8051D0E0:
 	.4byte 0x43300000
 	.4byte 0x80000000
-.global lbl_8051D0E8
 lbl_8051D0E8:
-	.4byte 0x3F19999A
-.global lbl_8051D0EC
+	.float 0.6
 lbl_8051D0EC:
-	.4byte 0xC47A0000
+	.float -1000.0
 
 .section .text, "ax"  # 0x800056C0 - 0x80472F00
 .global init__Q34Game7Sokkuri3FSMFPQ24Game9EnemyBase

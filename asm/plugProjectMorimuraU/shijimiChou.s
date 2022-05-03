@@ -5,26 +5,17 @@ lbl_constructor:
 
 .section .rodata  # 0x804732E0 - 0x8049E220
 .balign 8
-.global lbl_80493F80
 lbl_80493F80:
-	.4byte 0x7368696A
-	.4byte 0x696D6943
-	.4byte 0x686F7500
-	.4byte 0x6D61745F
-	.4byte 0x7368696A
-	.4byte 0x696D695F
-	.4byte 0x68616E65
-	.4byte 0x5F760000
-.global lbl_80493FA0
+	.asciz "shijimiChou"
+.balign 4
+lbl_80493F8C:
+	.asciz "mat_shijimi_hane_v"
+.balign 4
 lbl_80493FA0:
-	.4byte 0x7368696A
-	.4byte 0x696D6943
-	.4byte 0x686F752E
-	.4byte 0x63707000
-.global lbl_80493FB0
+	.asciz "shijimiChou.cpp"
+.balign 4
 lbl_80493FB0:
 	.asciz "P2Assert"
-	.skip 3
 
 .section .data, "wa"  # 0x8049E220 - 0x804EFC20
 .balign 8
@@ -245,130 +236,91 @@ __vt__Q34Game11ShijimiChou3Obj:
 	.4byte "@828@12@viewStartCarryMotion__Q24Game9EnemyBaseFv"
 	.4byte "@828@12@viewOnPelletKilled__Q24Game9EnemyBaseFv"
 	.4byte "viewEntryShape__Q24Game10PelletViewFR7MatrixfR10Vector3<f>"
-	.4byte 0
 
 .section .sbss # 0x80514D80 - 0x80516360
 .balign 8
-.global mMatColorY0__Q24Game11ShijimiChou
 mMatColorY0__Q24Game11ShijimiChou:
 	.skip 0x8
-.global mMatColorR0__Q24Game11ShijimiChou
 mMatColorR0__Q24Game11ShijimiChou:
 	.skip 0x8
-.global mMatColorB0__Q24Game11ShijimiChou
 mMatColorB0__Q24Game11ShijimiChou:
 	.skip 0x8
-.global mMatKColorY__Q24Game11ShijimiChou
 mMatKColorY__Q24Game11ShijimiChou:
 	.skip 0x4
-.global mMatKColorR__Q24Game11ShijimiChou
 mMatKColorR__Q24Game11ShijimiChou:
 	.skip 0x4
-.global mMatKColorB__Q24Game11ShijimiChou
 mMatKColorB__Q24Game11ShijimiChou:
-	.skip 0x8
+	.skip 0x4
 
 .section .sdata2, "a"     # 0x80516360 - 0x80520E40
 .balign 8
-.global lbl_8051EEF8
 lbl_8051EEF8:
-	.4byte 0x47000000
-	.4byte 0x00000000
-.global lbl_8051EF00
+	.float 32768.0
+.balign 8
 lbl_8051EF00:
 	.4byte 0x43300000
 	.4byte 0x80000000
-.global lbl_8051EF08
 lbl_8051EF08:
-	.4byte 0x00000000
-.global lbl_8051EF0C
-lbl_8051EF0C:
-	.4byte 0x40C90FDB
-.global lbl_8051EF10
+	.float 0.0
+lbl_8051EF0C: # tau
+	.float 6.2831855
 lbl_8051EF10:
-	.4byte 0xC3A2F983
-.global lbl_8051EF14
+	.float -325.9493
 lbl_8051EF14:
-	.4byte 0x43A2F983
-.global lbl_8051EF18
+	.float 325.9493
 lbl_8051EF18:
-	.4byte 0x40400000
-.global lbl_8051EF1C
+	.float 3.0
 lbl_8051EF1C:
 	.float 0.1
-.global lbl_8051EF20
 lbl_8051EF20:
-	.4byte 0x40000000
-.global lbl_8051EF24
+	.float 2.0
 lbl_8051EF24:
-	.4byte 0x42C80000
-.global lbl_8051EF28
+	.float 100.0
 lbl_8051EF28:
 	.float 1.0
-.global lbl_8051EF2C
 lbl_8051EF2C:
-	.4byte 0x41A00000
-.global lbl_8051EF30
+	.float 20.0
 lbl_8051EF30:
-	.4byte 0x40E00000
-.global lbl_8051EF34
+	.float 7.0
 lbl_8051EF34:
-	.4byte 0x42480000
-.global lbl_8051EF38
+	.float 50.0
 lbl_8051EF38:
-	.4byte 0x43480000
-.global lbl_8051EF3C
+	.float 200.0
 lbl_8051EF3C:
-	.4byte 0x447A0000
-.global lbl_8051EF40
+	.float 1000.0
 lbl_8051EF40:
-	.4byte 0x43B40000
-.global lbl_8051EF44
-lbl_8051EF44:
-	.4byte 0x40490FDB
-.global lbl_8051EF48
+	.float 360.0
+lbl_8051EF44: # pi
+	.float 3.1415927
 lbl_8051EF48:
-	.4byte 0x3BB60B61
-.global lbl_8051EF4C
+	.float 0.0055555557
 lbl_8051EF4C:
-	.4byte 0x3C23D70A
-.global lbl_8051EF50
+	.float 0.01
 lbl_8051EF50:
-	.4byte 0x3E4CCCCD
-.global lbl_8051EF54
+	.float 0.2
 lbl_8051EF54:
 	.float 0.05
-.global lbl_8051EF58
 lbl_8051EF58:
-	.4byte 0x3F99999A
-.global lbl_8051EF5C
+	.float 1.2
 lbl_8051EF5C:
 	.float 0.3
-.global lbl_8051EF60
 lbl_8051EF60:
-	.4byte 0x3CA3D70A
-.global lbl_8051EF64
+	.float 0.02
 lbl_8051EF64:
-	.4byte 0xBF800000
-.global lbl_8051EF68
+	.float -1.0
 lbl_8051EF68:
-	.4byte 0x43FA0000
-.global lbl_8051EF6C
+	.float 500.0
 lbl_8051EF6C:
-	.4byte 0x43340000
-.global lbl_8051EF70
+	.float 180.0
 lbl_8051EF70:
 	.float 0.5
-.global lbl_8051EF74
 lbl_8051EF74:
-	.4byte 0x41200000
-.global lbl_8051EF78
+	.float 10.0
 lbl_8051EF78:
-	.4byte 0x3EB33333
-.global lbl_8051EF7C
+	.float 0.35
+.balign 4
 lbl_8051EF7C:
-	.4byte 0x41726743
-	.4byte 0x686F7500
+	.asciz "ArgChou"
 
 .section .text, "ax"  # 0x800056C0 - 0x80472F00
 .global setParameters__Q34Game11ShijimiChou3ObjFv
@@ -3605,8 +3557,7 @@ getEnemyTypeID__Q34Game11ShijimiChou3ObjFv:
 /* 8038C404 00389344  38 60 00 4D */	li r3, 0x4d
 /* 8038C408 00389348  4E 80 00 20 */	blr 
 
-.global __sinit_shijimiChou_cpp
-__sinit_shijimiChou_cpp:
+__sinit_shijimiChou_cpp: # static initializer
 /* 8038C40C 0038934C  4E 80 00 20 */	blr 
 
 .global "@828@12@viewOnPelletKilled__Q24Game9EnemyBaseFv"

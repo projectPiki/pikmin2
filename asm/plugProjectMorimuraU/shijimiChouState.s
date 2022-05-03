@@ -92,70 +92,56 @@ __vt__Q34Game11ShijimiChou3FSM:
 
 .section .sdata2, "a"     # 0x80516360 - 0x80520E40
 .balign 8
-.global lbl_8051EE10
 lbl_8051EE10:
-	.4byte 0x77616974
-	.4byte 0x00000000
-.global lbl_8051EE18
+	.asciz "wait"
+.balign 4
 lbl_8051EE18:
-	.4byte 0x00000000
-.global lbl_8051EE1C
+	.float 0.0
 lbl_8051EE1C:
-	.4byte 0x47000000
-.global lbl_8051EE20
+	.float 32768.0
+.balign 8
 lbl_8051EE20:
 	.4byte 0x43300000
 	.4byte 0x80000000
-.global lbl_8051EE28
 lbl_8051EE28:
-	.4byte 0x43340000
-.global lbl_8051EE2C
+	.float 180.0
 lbl_8051EE2C:
-	.4byte 0x43160000
-.global lbl_8051EE30
+	.float 150.0
+.balign 4
 lbl_8051EE30:
-	.4byte 0x666C7900
-.global lbl_8051EE34
+	.asciz "fly"
+.balign 4
 lbl_8051EE34:
-	.4byte 0x42700000
-.global lbl_8051EE38
+	.float 60.0
+.balign 4
 lbl_8051EE38:
-	.4byte 0x66616C6C
-	.4byte 0x00000000
-.global lbl_8051EE40
+	.asciz "fall"
+.balign 4
 lbl_8051EE40:
-	.4byte 0xC1A00000
-.global lbl_8051EE44
+	.float -20.0
+.balign 4
 lbl_8051EE44:
-	.4byte 0x64656164
-	.4byte 0x00000000
-.global lbl_8051EE4C
+	.asciz "dead"
+.balign 4
 lbl_8051EE4C:
 	.float 1.0
-.global lbl_8051EE50
+.balign 4
 lbl_8051EE50:
-	.4byte 0x6C656176
-	.4byte 0x65000000
-.global lbl_8051EE58
+	.asciz "leave"
+.balign 4
 lbl_8051EE58:
-	.4byte 0x72657374
-	.4byte 0x00000000
-.global lbl_8051EE60
+	.asciz "rest"
+.balign 4
 lbl_8051EE60:
-	.4byte 0x41F00000
-.global lbl_8051EE64
+	.float 30.0
 lbl_8051EE64:
-	.4byte 0x42C80000
-.global lbl_8051EE68
+	.float 100.0
 lbl_8051EE68:
-	.4byte 0x42480000
-.global lbl_8051EE6C
+	.float 50.0
 lbl_8051EE6C:
-	.4byte 0x44160000
-.global lbl_8051EE70
+	.float 600.0
 lbl_8051EE70:
-	.4byte 0x43C80000
-	.4byte 0x00000000
+	.float 400.0
 
 .section .text, "ax"  # 0x800056C0 - 0x80472F00
 .global init__Q34Game11ShijimiChou3FSMFPQ24Game9EnemyBase
