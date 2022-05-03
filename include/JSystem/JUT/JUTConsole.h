@@ -26,8 +26,8 @@ public:
 	static JUTConsole* create(unsigned int, void*, u32);
 	static void destroy(JUTConsole*); // UNUSED
 	JUTConsole(unsigned int, unsigned int, bool);
-	static size_t getObjectSizeFromBufferSize(unsigned int, unsigned int);
-	static size_t getLineFromObjectSize(u32, unsigned int);
+	static size_t getObjectSizeFromBufferSize(uint, uint);
+	static size_t getLineFromObjectSize(u32, uint);
 	void clear();
 	void doDraw(JUTConsole::EConsoleType) const;
 	void print_f(char const*, ...);

@@ -141,30 +141,14 @@ JUTConsole::~JUTConsole() { JUTConsoleManager::sManager->JUTConsoleManager::remo
  * Address:	8002836C
  * Size:	000010
  */
-size_t JUTConsole::getObjectSizeFromBufferSize(unsigned int, unsigned int)
-{
-	/*
-	addi     r0, r3, 2
-	mullw    r3, r0, r4
-	addi     r3, r3, 0x6c
-	blr
-	*/
-}
+size_t JUTConsole::getObjectSizeFromBufferSize(uint b1, uint b2) { return (b1 + 2) * b2 + sizeof(JUTConsole); }
 
 /*
  * --INFO--
  * Address:	8002837C
  * Size:	000010
  */
-size_t JUTConsole::getLineFromObjectSize(unsigned long, unsigned int)
-{
-	/*
-	addi     r3, r3, -108
-	addi     r0, r4, 2
-	divwu    r3, r3, r0
-	blr
-	*/
-}
+size_t JUTConsole::getLineFromObjectSize(u32 param_1, uint param_2) { return (param_1 - sizeof(JUTConsole)) / (param_2 + 2); }
 
 /*
  * --INFO--
