@@ -898,7 +898,7 @@ OGAWA:=\
 	$(BUILD_DIR)/asm/plugProjectOgawaU/ogObjSMenuPause.o\
 	$(BUILD_DIR)/asm/plugProjectOgawaU/ogObjSMenuBase.o\
 	$(BUILD_DIR)/asm/plugProjectOgawaU/ogObjCourseName.o\
-	$(BUILD_DIR)/asm/plugProjectOgawaU/ogUtil.o\
+	$(BUILD_DIR)/src/plugProjectOgawaU/ogUtil.o\
 	$(BUILD_DIR)/asm/plugProjectOgawaU/ogSceneCourseName.o\
 	$(BUILD_DIR)/asm/plugProjectOgawaU/ogObjKantei.o\
 	$(BUILD_DIR)/asm/plugProjectOgawaU/ogSceneKantei.o\

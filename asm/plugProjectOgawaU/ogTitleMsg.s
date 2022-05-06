@@ -110,16 +110,13 @@ __vt__Q32og9newScreen20TitleMessageAnalyzer:
 	.4byte tagColorEX__Q25P2JME8AnalyzerFUsPCvUl
 	.4byte tagControl__Q25P2JME8AnalyzerFUsPCvUl
 	.4byte tagPosition__Q25P2JME8AnalyzerFUsPCvUl
-	.4byte 0
 
 .section .sbss # 0x80514D80 - 0x80516360
 .balign 8
-.global sFrame$4053
-sFrame$4053:
+sFrame$4053: # local object
 	.skip 0x4
-.global init$4054
-init$4054:
-	.skip 0x4
+init$4054: # local object
+	.skip 0x1
 
 .section .sdata2, "a"     # 0x80516360 - 0x80520E40
 .balign 8
