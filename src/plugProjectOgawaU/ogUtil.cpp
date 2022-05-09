@@ -32,6 +32,7 @@ void drawObjName(Graphics&, char*)
  * --INFO--
  * Address:	........
  * Size:	000084
+ * Tells the game which resource folder path to use, based on system language.
  */
 void getLanguageDir(char*& path)
 {
