@@ -129,8 +129,7 @@ PelletList::Mgr* PelletList::Mgr::mInstance;
 inline void checkKindValidity(PelletList::cKind kind)
 {
 	bool isValid = ((s32)kind) >= 0 && ((s32)kind) < 5;
-#line 16
-	P2ASSERT(isValid);
+	P2ASSERTLINE(16, isValid);
 }
 
 /*
@@ -172,8 +171,7 @@ PelletConfig* PelletList::Mgr::getConfigAndKind(char* config, PelletList::cKind&
 		kind     = (PelletList::cKind)i;
 		kindCopy = kind;
 		isValid  = kind >= 0 && kindCopy < 5;
-#line 16
-		P2ASSERT(isValid);
+		P2ASSERTLINE(16, isValid);
 
 		PelletConfig* list = PelletList::Mgr::mInstance->m_configList[kindCopy].getPelletConfig(config);
 		if (list) {
@@ -407,8 +405,7 @@ int PelletList::Mgr::getDictionaryNum()
 PelletConfig* PelletList::Mgr::getConfigFromDictionaryNo(int dictNo)
 {
 	bool isValid = dictNo >= 0 && dictNo < DICT_OTAKARA;
-#line 188
-	P2ASSERT(isValid);
+	P2ASSERTLINE(188, isValid);
 	PelletConfig* result = mInstance->m_configList[OTAKARA].getPelletConfig_ByDictionaryNo(dictNo);
 	if (!result) {
 		result = mInstance->m_configList[ITEM].getPelletConfig_ByDictionaryNo(dictNo);

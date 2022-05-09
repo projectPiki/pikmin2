@@ -1334,12 +1334,10 @@ void MapUnitMgr::makeUnit(Game::MapUnit* unit, char* path) { char path[512]; } /
 
 sprintf(path, "%s/arc.szs", path);
 JKRArchive* archive = JKRArchive::mount(path, 1, nullptr, 1);
-#line 651
-P2ASSERT(archive);
+P2ASSERTLINE(651, archive);
 
 void* viewModelData = archive.getResource("view.bmd");
-#line 657
-P2ASSERT(viewModelData);
+P2ASSERT(657, viewModelData);
 
 // unit->_0C = J3DModelData*
 unit->_0C = J3DModelLoaderDataBase::load(viewModelData,

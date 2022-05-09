@@ -69,8 +69,7 @@ inline Node::Node(void)
  */
 inline int Node::dvdToAram(char const* name, bool useNull)
 {
-#line 105
-	P2ASSERT(name);
+	P2ASSERTLINE(105, name);
 	m_name = (char*)name;
 
 	if (!m_status) {
@@ -139,8 +138,7 @@ void Mgr::init(void) { new Mgr(); }
 Mgr::Mgr(void)
     : m_node("root")
 {
-#line 248
-	P2ASSERT(gAramMgr == nullptr);
+	P2ASSERTLINE(248, gAramMgr == nullptr);
 	gAramMgr = this;
 }
 /*
