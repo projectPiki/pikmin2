@@ -1,5 +1,7 @@
 #include "types.h"
 #include "JSystem/JUT/JUTConsole.h"
+#include "JSystem/JUT/JUTVideo.h"
+#include "JSystem/J2D/J2DGrafContext.h"
 
 /*
     Generated from dpostproc
@@ -157,35 +159,16 @@ size_t JUTConsole::getLineFromObjectSize(u32 param_1, uint param_2) { return (pa
  */
 void JUTConsole::clear()
 {
-	/*
-	li       r6, 0
-	li       r7, 0
-	stw      r6, 0x30(r3)
-	stw      r6, 0x34(r3)
-	stw      r6, 0x38(r3)
-	stw      r6, 0x3c(r3)
-	b        lbl_800283C0
+	field_0x30 = 0;
+	field_0x34 = 0;
+	field_0x38 = 0;
+	field_0x3c = 0;
 
-lbl_800283A8:
-	lwz      r4, 0x20(r3)
-	lwz      r5, 0x28(r3)
-	addi     r0, r4, 2
-	mullw    r0, r0, r7
-	addi     r7, r7, 1
-	stbx     r6, r5, r0
-
-lbl_800283C0:
-	lwz      r0, 0x24(r3)
-	cmplw    r7, r0
-	blt      lbl_800283A8
-	lwz      r4, 0x28(r3)
-	li       r5, 0xff
-	li       r0, 0
-	stb      r5, 0(r4)
-	lwz      r3, 0x28(r3)
-	stb      r0, 1(r3)
-	blr
-	*/
+	for (int i = 0; i < field_0x24; i++) {
+		mBuf[(field_0x20 + 2) * i] = 0;
+	}
+	mBuf[0] = 0xFF;
+	mBuf[1] = 0;
 }
 
 /*
