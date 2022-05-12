@@ -1,14 +1,11 @@
 .include "macros.inc"
 .section .rodata  # 0x804732E0 - 0x8049E220
 .balign 8
-.global lbl_80482138
 lbl_80482138:
 	.asciz "aiTeki.cpp"
-	.skip 1
-.global lbl_80482144
+.balign 4
 lbl_80482144:
 	.asciz "P2Assert"
-	.skip 3
 
 .section .data, "wa"  # 0x8049E220 - 0x804EFC20
 .balign 8
@@ -33,52 +30,38 @@ __vt__Q26PikiAI7ActTeki:
 	.4byte 0
 	.4byte 0
 	.4byte "@72@4@onKeyEvent__Q26PikiAI7ActTekiFRCQ28SysShape8KeyEvent"
-	.4byte 0
 
 .section .sdata2, "a"     # 0x80516360 - 0x80520E40
 .balign 8
-.global lbl_80519F68
 lbl_80519F68:
-	.4byte 0x54656B69
-	.4byte 0x00000000
-.global lbl_80519F70
+	.asciz "Teki"
+.balign 4
 lbl_80519F70:
-	.4byte 0x00000000
-.global lbl_80519F74
+	.float 0.0
 lbl_80519F74:
-	.4byte 0x46480000
-.global lbl_80519F78
+	.float 12800.0
 lbl_80519F78:
-	.4byte 0x42C80000
-.global lbl_80519F7C
+	.float 100.0
 lbl_80519F7C:
 	.float 1.0
-.global lbl_80519F80
 lbl_80519F80:
-	.4byte 0x47000000
-.global lbl_80519F84
+	.float 32768.0
 lbl_80519F84:
 	.float 0.5
-.global lbl_80519F88
+.balign 8
 lbl_80519F88:
 	.4byte 0x43300000
 	.4byte 0x80000000
-.global lbl_80519F90
 lbl_80519F90:
-	.4byte 0x42480000
-.global lbl_80519F94
+	.float 50.0
 lbl_80519F94:
-	.4byte 0x41200000
-.global lbl_80519F98
+	.float 10.0
 lbl_80519F98:
 	.float 0.3
-.global lbl_80519F9C
 lbl_80519F9C:
 	.float 0.1
-.global lbl_80519FA0
 lbl_80519FA0:
-	.4byte 0xBDCCCCCD
-	.4byte 0x00000000
+	.float -0.1
 
 .section .text, "ax"  # 0x800056C0 - 0x80472F00
 .global __ct__Q26PikiAI7ActTekiFPQ24Game4Piki
@@ -946,12 +929,12 @@ onKeyEvent__Q26PikiAI7ActTekiFRCQ28SysShape8KeyEvent:
 /* 8021358C 002104CC  4E 80 00 20 */	blr 
 
 .global getNextAIType__Q26PikiAI7ActTekiFv
-getNextAIType__Q26PikiAI7ActTekiFv:
+getNextAIType__Q26PikiAI7ActTekiFv: # weak function
 /* 80213590 002104D0  38 60 00 01 */	li r3, 1
 /* 80213594 002104D4  4E 80 00 20 */	blr 
 
 .global "@72@4@onKeyEvent__Q26PikiAI7ActTekiFRCQ28SysShape8KeyEvent"
-"@72@4@onKeyEvent__Q26PikiAI7ActTekiFRCQ28SysShape8KeyEvent":
+"@72@4@onKeyEvent__Q26PikiAI7ActTekiFRCQ28SysShape8KeyEvent": # weak function (thunk?)
 /* 80213598 002104D8  39 60 00 04 */	li r11, 4
 /* 8021359C 002104DC  7D 63 58 2E */	lwzx r11, r3, r11
 /* 802135A0 002104E0  7C 63 5A 14 */	add r3, r3, r11

@@ -120,86 +120,60 @@ init$4054: # local object
 
 .section .sdata2, "a"     # 0x80516360 - 0x80520E40
 .balign 8
-.global lbl_8051E008
 lbl_8051E008:
-	.4byte 0x00000000
-.global lbl_8051E00C
+	.float 0.0
 lbl_8051E00C:
 	.float 1.0
-.global lbl_8051E010
 lbl_8051E010:
-	.4byte 0xC1200000
-.global lbl_8051E014
+	.float -10.0
 lbl_8051E014:
 	.float 0.5
-.global lbl_8051E018
 lbl_8051E018:
-	.4byte 0x40400000
-.global lbl_8051E01C
+	.float 3.0
 lbl_8051E01C:
-	.4byte 0x42C80000
-.global lbl_8051E020
+	.float 100.0
 lbl_8051E020:
-	.4byte 0x47000000
-.global lbl_8051E024
+	.float 32768.0
 lbl_8051E024:
-	.4byte 0x40A00000
-.global lbl_8051E028
+	.float 5.0
 lbl_8051E028:
-	.4byte 0x43480000
-	.4byte 0x00000000
-.global lbl_8051E030
+	.float 200.0
+.balign 8
 lbl_8051E030:
 	.4byte 0x43300000
 	.4byte 0x80000000
-.global lbl_8051E038
+.balign 8
 lbl_8051E038:
 	.4byte 0x43300000
 	.4byte 0x00000000
-.global lbl_8051E040
 lbl_8051E040:
-	.4byte 0xBE99999A
-.global lbl_8051E044
+	.float -0.3
 lbl_8051E044:
-	.4byte 0x3DF5C28F
-.global lbl_8051E048
+	.float 0.12
 lbl_8051E048:
-	.4byte 0x40E00000
-.global lbl_8051E04C
+	.float 7.0
 lbl_8051E04C:
-	.4byte 0x3FC00000
-.global lbl_8051E050
+	.float 1.5
 lbl_8051E050:
-	.4byte 0x3D8F5C29
-.global lbl_8051E054
+	.float 0.07
 lbl_8051E054:
-	.4byte 0x3E4CCCCD
-.global lbl_8051E058
-lbl_8051E058:
-	.4byte 0x40C90FDB
-.global lbl_8051E05C
+	.float 0.2
+lbl_8051E058: # tau
+	.float 6.2831855
 lbl_8051E05C:
-	.4byte 0x3E000000
-.global lbl_8051E060
+	.float 0.125
 lbl_8051E060:
 	.float 0.25
-.global lbl_8051E064
 lbl_8051E064:
 	.float 0.1
-.global lbl_8051E068
 lbl_8051E068:
-	.4byte 0x42480000
-.global lbl_8051E06C
+	.float 50.0
 lbl_8051E06C:
-	.4byte 0x3ECCCCCD
+	.float 0.4
 
 .section .sbss2, "", @nobits # 0x80520E40 - 0x80520ED8
-.global lbl_80520EB8
 lbl_80520EB8:
-	.skip 0x2
-.global lbl_80520EBA
-lbl_80520EBA:
-	.skip 0x6
+	.skip 0x3
 
 .section .text, "ax"  # 0x800056C0 - 0x80472F00
 .global __dt__Q25P2JME8AnalyzerFv
@@ -242,7 +216,7 @@ do_character__Q32og9newScreen20TitleMessageAnalyzerFi:
 /* 8032EAD0 0032BA10  54 86 06 3E */	clrlwi r6, r4, 0x18
 /* 8032EAD4 0032BA14  38 E0 00 00 */	li r7, 0
 /* 8032EAD8 0032BA18  A0 A2 2B 58 */	lhz r5, lbl_80520EB8@sda21(r2)
-/* 8032EADC 0032BA1C  88 02 2B 5A */	lbz r0, lbl_80520EBA@sda21(r2)
+/* 8032EADC 0032BA1C  88 02 2B 5A */	lbz r0, (lbl_80520EB8+2)@sda21(r2)
 /* 8032EAE0 0032BA20  B0 A1 00 08 */	sth r5, 8(r1)
 /* 8032EAE4 0032BA24  98 01 00 0A */	stb r0, 0xa(r1)
 /* 8032EAE8 0032BA28  40 82 00 18 */	bne lbl_8032EB00

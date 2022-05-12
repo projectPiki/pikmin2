@@ -223,6 +223,7 @@ lbl_80520034:
 	.float 240.0
 
 .section .sbss2, "", @nobits # 0x80520E40 - 0x80520ED8
+.balign 8
 lbl_80520EC0:
 	.skip 0x8
 

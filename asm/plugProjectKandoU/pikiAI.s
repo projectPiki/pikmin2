@@ -5,64 +5,39 @@ lbl_constructor:
 
 .section .rodata  # 0x804732E0 - 0x8049E220
 .balign 8
-.global lbl_8047FA28
 lbl_8047FA28:
-	.4byte 0x696E766F
-	.4byte 0x6B654149
-	.4byte 0x2D660000
-.global lbl_8047FA34
+	.asciz "invokeAI-f"
+.balign 4
 lbl_8047FA34:
-	.4byte 0x70696B69
-	.4byte 0x41492E63
-	.4byte 0x70700000
-.global lbl_8047FA40
+	.asciz "pikiAI.cpp"
+.balign 4
 lbl_8047FA40:
 	.asciz "P2Assert"
-	.skip 3
-.global lbl_8047FA4C
+.balign 4
 lbl_8047FA4C:
-	.4byte 0x41637442
-	.4byte 0x72696467
-	.4byte 0x65417267
-	.4byte 0x00000000
-.global lbl_8047FA5C
+	.asciz "ActBridgeArg"
+.balign 4
 lbl_8047FA5C:
-	.4byte 0x41637442
-	.4byte 0x7265616B
-	.4byte 0x526F636B
-	.4byte 0x41726700
-.global lbl_8047FA6C
+	.asciz "ActBreakRockArg"
+.balign 4
 lbl_8047FA6C:
-	.4byte 0x41637442
-	.4byte 0x7265616B
-	.4byte 0x47617465
-	.4byte 0x41726700
-.global lbl_8047FA7C
+	.asciz "ActBreakGateArg"
+.balign 4
 lbl_8047FA7C:
-	.4byte 0x41637454
-	.4byte 0x72616E73
-	.4byte 0x706F7274
-	.4byte 0x41726700
-.global lbl_8047FA8C
+	.asciz "ActTransportArg"
+.balign 4
 lbl_8047FA8C:
-	.4byte 0x41637441
-	.4byte 0x74746163
-	.4byte 0x6B417267
-	.4byte 0x00000000
-.global lbl_8047FA9C
+	.asciz "ActAttackArg"
+.balign 4
 lbl_8047FA9C:
-	.4byte 0x41637457
-	.4byte 0x65656441
-	.4byte 0x72670000
+	.asciz "ActWeedArg"
 
 .section .data, "wa"  # 0x8049E220 - 0x804EFC20
 .balign 8
-.global lbl_804B5A00
-lbl_804B5A00:
-	.4byte 0x00000000
-	.4byte 0x00000000
-	.4byte 0x00000000
-.global lbl_804B5A0C
+govNAN___Q24Game5P2JST:
+	.float 0.0
+	.float 0.0
+	.float 0.0
 lbl_804B5A0C:
 	.4byte lbl_801B3A04
 	.4byte lbl_801B3A54
@@ -112,52 +87,40 @@ __vt__Q26PikiAI10ActWeedArg:
 	.4byte "next__26Iterator<Q24Game8ItemGate>Fv"
 	.4byte "isDone__26Iterator<Q24Game8ItemGate>Fv"
 	.4byte "__ml__26Iterator<Q24Game8ItemGate>Fv"
-	.4byte 0
 
 .section .sdata, "wa"  # 0x80514680 - 0x80514D80
 .balign 8
 .global sGraspSituationOptimise__Q24Game4Piki
 sGraspSituationOptimise__Q24Game4Piki:
-	.4byte 0x01000000
+	.byte 1
 
 .section .sbss # 0x80514D80 - 0x80516360
 .balign 8
-.global lbl_80515A58
-lbl_80515A58:
+gu32NAN___Q24Game5P2JST:
 	.skip 0x4
-.global lbl_80515A5C
-lbl_80515A5C:
+gfNAN___Q24Game5P2JST:
 	.skip 0x4
 
 .section .sdata2, "a"     # 0x80516360 - 0x80520E40
 .balign 8
-.global lbl_80519348
 lbl_80519348:
-	.4byte 0x43C80000
-.global lbl_8051934C
+	.float 400.0
 lbl_8051934C:
-	.4byte 0x43960000
-.global lbl_80519350
+	.float 300.0
 lbl_80519350:
-	.4byte 0x428C0000
-.global lbl_80519354
+	.float 70.0
 lbl_80519354:
-	.4byte 0x430C0000
-.global lbl_80519358
+	.float 140.0
 lbl_80519358:
-	.4byte 0x43000000
-.global lbl_8051935C
+	.float 128.0
 lbl_8051935C:
-	.4byte 0x00000000
-.global lbl_80519360
+	.float 0.0
 lbl_80519360:
-	.4byte 0x41F00000
-.global lbl_80519364
+	.float 30.0
 lbl_80519364:
-	.4byte 0x42C80000
-.global lbl_80519368
+	.float 100.0
 lbl_80519368:
-	.4byte 0x3E4CCCCD
+	.float 0.2
 
 .section .text, "ax"  # 0x800056C0 - 0x80472F00
 .global graspSituation_Fast__Q24Game4PikiFPPQ24Game8Creature
@@ -3584,7 +3547,6 @@ lbl_801B3978:
 /* 801B3990 001B08D0  7C 04 00 2E */	lwzx r0, r4, r0
 /* 801B3994 001B08D4  7C 09 03 A6 */	mtctr r0
 /* 801B3998 001B08D8  4E 80 04 20 */	bctr 
-.global lbl_801B399C
 lbl_801B399C:
 /* 801B399C 001B08DC  81 83 00 00 */	lwz r12, 0(r3)
 /* 801B39A0 001B08E0  81 8C 00 18 */	lwz r12, 0x18(r12)
@@ -3613,7 +3575,6 @@ lbl_801B39D0:
 /* 801B39F8 001B0938  80 7E 02 94 */	lwz r3, 0x294(r30)
 /* 801B39FC 001B093C  4B FE 35 99 */	bl start__Q26PikiAI5BrainFiPQ26PikiAI9ActionArg
 /* 801B3A00 001B0940  48 00 01 EC */	b lbl_801B3BEC
-.global lbl_801B3A04
 lbl_801B3A04:
 /* 801B3A04 001B0944  3C 60 80 4B */	lis r3, __vt__Q26PikiAI9ActionArg@ha
 /* 801B3A08 001B0948  3C 80 80 4B */	lis r4, __vt__Q26PikiAI15ActTransportArg@ha
@@ -3636,7 +3597,6 @@ lbl_801B3A04:
 lbl_801B3A4C:
 /* 801B3A4C 001B098C  38 60 00 01 */	li r3, 1
 /* 801B3A50 001B0990  48 00 01 9C */	b lbl_801B3BEC
-.global lbl_801B3A54
 lbl_801B3A54:
 /* 801B3A54 001B0994  3C A0 80 4B */	lis r5, __vt__Q26PikiAI9ActionArg@ha
 /* 801B3A58 001B0998  3C 80 80 4B */	lis r4, __vt__Q26PikiAI12ActAttackArg@ha
@@ -3652,7 +3612,6 @@ lbl_801B3A54:
 /* 801B3A80 001B09C0  80 7E 02 94 */	lwz r3, 0x294(r30)
 /* 801B3A84 001B09C4  4B FE 35 11 */	bl start__Q26PikiAI5BrainFiPQ26PikiAI9ActionArg
 /* 801B3A88 001B09C8  48 00 01 64 */	b lbl_801B3BEC
-.global lbl_801B3A8C
 lbl_801B3A8C:
 /* 801B3A8C 001B09CC  3C A0 80 4B */	lis r5, __vt__Q26PikiAI9ActionArg@ha
 /* 801B3A90 001B09D0  3C 80 80 4B */	lis r4, __vt__Q26PikiAI17CreatureActionArg@ha
@@ -3666,7 +3625,6 @@ lbl_801B3A8C:
 /* 801B3AB0 001B09F0  80 7E 02 94 */	lwz r3, 0x294(r30)
 /* 801B3AB4 001B09F4  4B FE 34 E1 */	bl start__Q26PikiAI5BrainFiPQ26PikiAI9ActionArg
 /* 801B3AB8 001B09F8  48 00 01 34 */	b lbl_801B3BEC
-.global lbl_801B3ABC
 lbl_801B3ABC:
 /* 801B3ABC 001B09FC  3C A0 80 4B */	lis r5, __vt__Q26PikiAI9ActionArg@ha
 /* 801B3AC0 001B0A00  3C 80 80 4B */	lis r4, __vt__Q26PikiAI15ActBreakGateArg@ha
@@ -3680,7 +3638,6 @@ lbl_801B3ABC:
 /* 801B3AE0 001B0A20  80 7E 02 94 */	lwz r3, 0x294(r30)
 /* 801B3AE4 001B0A24  4B FE 34 B1 */	bl start__Q26PikiAI5BrainFiPQ26PikiAI9ActionArg
 /* 801B3AE8 001B0A28  48 00 01 04 */	b lbl_801B3BEC
-.global lbl_801B3AEC
 lbl_801B3AEC:
 /* 801B3AEC 001B0A2C  81 83 00 00 */	lwz r12, 0(r3)
 /* 801B3AF0 001B0A30  7C 7F 1B 78 */	mr r31, r3
@@ -3710,7 +3667,6 @@ lbl_801B3AEC:
 lbl_801B3B50:
 /* 801B3B50 001B0A90  38 60 00 01 */	li r3, 1
 /* 801B3B54 001B0A94  48 00 00 98 */	b lbl_801B3BEC
-.global lbl_801B3B58
 lbl_801B3B58:
 /* 801B3B58 001B0A98  3C A0 80 4B */	lis r5, __vt__Q26PikiAI9ActionArg@ha
 /* 801B3B5C 001B0A9C  3C 80 80 4B */	lis r4, __vt__Q26PikiAI15ActBreakRockArg@ha
@@ -3724,7 +3680,6 @@ lbl_801B3B58:
 /* 801B3B7C 001B0ABC  80 7E 02 94 */	lwz r3, 0x294(r30)
 /* 801B3B80 001B0AC0  4B FE 34 15 */	bl start__Q26PikiAI5BrainFiPQ26PikiAI9ActionArg
 /* 801B3B84 001B0AC4  48 00 00 68 */	b lbl_801B3BEC
-.global lbl_801B3B88
 lbl_801B3B88:
 /* 801B3B88 001B0AC8  3C A0 80 4B */	lis r5, __vt__Q26PikiAI9ActionArg@ha
 /* 801B3B8C 001B0ACC  3C 80 80 4B */	lis r4, __vt__Q26PikiAI10ActCropArg@ha
@@ -3738,7 +3693,6 @@ lbl_801B3B88:
 /* 801B3BAC 001B0AEC  80 7E 02 94 */	lwz r3, 0x294(r30)
 /* 801B3BB0 001B0AF0  4B FE 33 E5 */	bl start__Q26PikiAI5BrainFiPQ26PikiAI9ActionArg
 /* 801B3BB4 001B0AF4  48 00 00 38 */	b lbl_801B3BEC
-.global lbl_801B3BB8
 lbl_801B3BB8:
 /* 801B3BB8 001B0AF8  3C A0 80 4B */	lis r5, __vt__Q26PikiAI9ActionArg@ha
 /* 801B3BBC 001B0AFC  3C 80 80 4B */	lis r4, __vt__Q26PikiAI10ActWeedArg@ha
@@ -3752,7 +3706,6 @@ lbl_801B3BB8:
 /* 801B3BDC 001B0B1C  80 7E 02 94 */	lwz r3, 0x294(r30)
 /* 801B3BE0 001B0B20  4B FE 33 B5 */	bl start__Q26PikiAI5BrainFiPQ26PikiAI9ActionArg
 /* 801B3BE4 001B0B24  48 00 00 08 */	b lbl_801B3BEC
-.global lbl_801B3BE8
 lbl_801B3BE8:
 /* 801B3BE8 001B0B28  38 60 00 00 */	li r3, 0
 lbl_801B3BEC:
@@ -3822,7 +3775,7 @@ getName__Q26PikiAI15ActBreakGateArgFv:
 /* 801B3CA4 001B0BE4  4E 80 00 20 */	blr 
 
 .global getName__Q26PikiAI15ActTransportArgFv
-getName__Q26PikiAI15ActTransportArgFv:
+getName__Q26PikiAI15ActTransportArgFv: # weak function
 /* 801B3CA8 001B0BE8  3C 60 80 48 */	lis r3, lbl_8047FA7C@ha
 /* 801B3CAC 001B0BEC  38 63 FA 7C */	addi r3, r3, lbl_8047FA7C@l
 /* 801B3CB0 001B0BF0  4E 80 00 20 */	blr 
@@ -3982,15 +3935,14 @@ lbl_801B3EB0:
 /* 801B3EBC 001B0DFC  38 21 00 10 */	addi r1, r1, 0x10
 /* 801B3EC0 001B0E00  4E 80 00 20 */	blr 
 
-.global __sinit_pikiAI_cpp
-__sinit_pikiAI_cpp:
+__sinit_pikiAI_cpp: # static initializer
 /* 801B3EC4 001B0E04  3C 80 80 51 */	lis r4, __float_nan@ha
 /* 801B3EC8 001B0E08  38 00 FF FF */	li r0, -1
 /* 801B3ECC 001B0E0C  C0 04 48 B0 */	lfs f0, __float_nan@l(r4)
-/* 801B3ED0 001B0E10  3C 60 80 4B */	lis r3, lbl_804B5A00@ha
-/* 801B3ED4 001B0E14  90 0D 93 D8 */	stw r0, lbl_80515A58@sda21(r13)
-/* 801B3ED8 001B0E18  D4 03 5A 00 */	stfsu f0, lbl_804B5A00@l(r3)
-/* 801B3EDC 001B0E1C  D0 0D 93 DC */	stfs f0, lbl_80515A5C@sda21(r13)
+/* 801B3ED0 001B0E10  3C 60 80 4B */	lis r3, govNAN___Q24Game5P2JST@ha
+/* 801B3ED4 001B0E14  90 0D 93 D8 */	stw r0, gu32NAN___Q24Game5P2JST@sda21(r13)
+/* 801B3ED8 001B0E18  D4 03 5A 00 */	stfsu f0, govNAN___Q24Game5P2JST@l(r3)
+/* 801B3EDC 001B0E1C  D0 0D 93 DC */	stfs f0, gfNAN___Q24Game5P2JST@sda21(r13)
 /* 801B3EE0 001B0E20  D0 03 00 04 */	stfs f0, 4(r3)
 /* 801B3EE4 001B0E24  D0 03 00 08 */	stfs f0, 8(r3)
 /* 801B3EE8 001B0E28  4E 80 00 20 */	blr 

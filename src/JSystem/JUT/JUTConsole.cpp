@@ -165,7 +165,7 @@ void JUTConsole::clear()
 	field_0x3c = 0;
 
 	for (int i = 0; i < field_0x24; i++) {
-		setLineAttr(i,0);
+		setLineAttr(i, 0);
 	}
 	mBuf[0] = 0xFF;
 	mBuf[1] = 0;

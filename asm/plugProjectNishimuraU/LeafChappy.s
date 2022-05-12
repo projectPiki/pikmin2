@@ -210,80 +210,61 @@ __vt__Q34Game10LeafChappy3Obj:
 	.4byte "@764@12@viewStartCarryMotion__Q24Game9EnemyBaseFv"
 	.4byte "@764@12@viewOnPelletKilled__Q24Game9EnemyBaseFv"
 	.4byte "viewEntryShape__Q24Game10PelletViewFR7MatrixfR10Vector3<f>"
-	.4byte 0
 
 .section .sdata2, "a"     # 0x80516360 - 0x80520E40
 .balign 8
-.global lbl_8051C5F8
 lbl_8051C5F8:
-	.4byte 0x00000000
-.global lbl_8051C5FC
+	.float 0.0
 lbl_8051C5FC:
-	.4byte 0x40200000
-.global lbl_8051C600
+	.float 2.5
+.balign 8
 lbl_8051C600:
 	.4byte 0x43300000
 	.4byte 0x80000000
-.global lbl_8051C608
+.balign 4
 lbl_8051C608:
-	.4byte 0x61676F00
-.global lbl_8051C60C
+	.asciz "ago"
+.balign 4
 lbl_8051C60C:
-	.4byte 0x40E00000
-.global lbl_8051C610
+	.float 7.0
 lbl_8051C610:
-	.4byte 0x40A00000
-.global lbl_8051C614
+	.float 5.0
 lbl_8051C614:
 	.float 1.0
-.global lbl_8051C618
 lbl_8051C618:
-	.4byte 0x42480000
-.global lbl_8051C61C
+	.float 50.0
 lbl_8051C61C:
-	.4byte 0x41F00000
-.global lbl_8051C620
+	.float 30.0
 lbl_8051C620:
-	.4byte 0x41480000
-.global lbl_8051C624
+	.float 12.5
+.balign 4
 lbl_8051C624:
-	.4byte 0x6B616D75
-	.4byte 0x31000000
-.global lbl_8051C62C
+	.asciz "kamu1"
+.balign 4
 lbl_8051C62C:
-	.4byte 0x6B616D75
-	.4byte 0x32000000
-.global lbl_8051C634
+	.asciz "kamu2"
+.balign 4
 lbl_8051C634:
-	.4byte 0x6B616D75
-	.4byte 0x33000000
-.global lbl_8051C63C
+	.asciz "kamu3"
+.balign 4
 lbl_8051C63C:
-	.4byte 0x6173694C
-	.4byte 0x00000000
-.global lbl_8051C644
+	.asciz "asiL"
+.balign 4
 lbl_8051C644:
-	.4byte 0x61736952
-	.4byte 0x00000000
-.global lbl_8051C64C
-lbl_8051C64C:
-	.4byte 0x40490FDB
-.global lbl_8051C650
+	.asciz "asiR"
+.balign 4
+lbl_8051C64C: # pi
+	.float 3.1415927
 lbl_8051C650:
-	.4byte 0x43A2F983
-.global lbl_8051C654
+	.float 325.9493
 lbl_8051C654:
-	.4byte 0xC3A2F983
-.global lbl_8051C658
+	.float -325.9493
 lbl_8051C658:
-	.4byte 0x418C0000
-.global lbl_8051C65C
+	.float 17.5
 lbl_8051C65C:
-	.4byte 0x3ECCCCCD
-.global lbl_8051C660
+	.float 0.4
 lbl_8051C660:
-	.4byte 0x3F0CCCCD
-	.4byte 0x00000000
+	.float 0.55
 
 .section .text, "ax"  # 0x800056C0 - 0x80472F00
 .global __ct__Q34Game10LeafChappy3ObjFv
@@ -764,29 +745,29 @@ lbl_802C629C:
 /* 802C62BC 002C31FC  4E 80 00 20 */	blr 
 
 .global getDownSmokeScale__Q34Game10LeafChappy3ObjFv
-getDownSmokeScale__Q34Game10LeafChappy3ObjFv:
+getDownSmokeScale__Q34Game10LeafChappy3ObjFv: # weak function
 /* 802C62C0 002C3200  C0 22 E3 00 */	lfs f1, lbl_8051C660@sda21(r2)
 /* 802C62C4 002C3204  4E 80 00 20 */	blr 
 
 .global getEnemyTypeID__Q34Game10LeafChappy3ObjFv
-getEnemyTypeID__Q34Game10LeafChappy3ObjFv:
+getEnemyTypeID__Q34Game10LeafChappy3ObjFv: # weak function
 /* 802C62C8 002C3208  38 60 00 43 */	li r3, 0x43
 /* 802C62CC 002C320C  4E 80 00 20 */	blr 
 
 .global createChappyRelation__Q34Game10LeafChappy3ObjFv
-createChappyRelation__Q34Game10LeafChappy3ObjFv:
+createChappyRelation__Q34Game10LeafChappy3ObjFv: # weak function
 /* 802C62D0 002C3210  4E 80 00 20 */	blr 
 
 .global resetChappyRelation__Q34Game10LeafChappy3ObjFv
-resetChappyRelation__Q34Game10LeafChappy3ObjFv:
+resetChappyRelation__Q34Game10LeafChappy3ObjFv: # weak function
 /* 802C62D4 002C3214  4E 80 00 20 */	blr 
 
 .global getChappyRelation__Q34Game10LeafChappy3ObjFv
-getChappyRelation__Q34Game10LeafChappy3ObjFv:
+getChappyRelation__Q34Game10LeafChappy3ObjFv: # weak function
 /* 802C62D8 002C3218  38 60 00 00 */	li r3, 0
 /* 802C62DC 002C321C  4E 80 00 20 */	blr 
 
 .global getFootmarks__Q34Game10LeafChappy3ObjFv
-getFootmarks__Q34Game10LeafChappy3ObjFv:
+getFootmarks__Q34Game10LeafChappy3ObjFv: # weak function
 /* 802C62E0 002C3220  80 63 02 F8 */	lwz r3, 0x2f8(r3)
 /* 802C62E4 002C3224  4E 80 00 20 */	blr 
