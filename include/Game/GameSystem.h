@@ -4,14 +4,14 @@
 #include "types.h"
 #include "CNode.h"
 #include "ObjectMgr.h"
+#include "Game/BaseGameSection.h"
+#include "Game/TimeMgr.h"
 
 struct Graphics;
 struct JUTTexture;
 struct LightMgr;
 struct Viewport;
 namespace Game {
-struct BaseGameSection;
-struct TimeMgr;
 
 enum GameSystemMode { GSM_STORY_MODE = 0, GSM_VERSUS_MODE, GSM_ONE_PLAYER_CHALLENGE, GSM_TWO_PLAYER_CHALLENGE, GSM_PIKLOPEDIA };
 
