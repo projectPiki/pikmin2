@@ -5,53 +5,41 @@ lbl_constructor:
 
 .section .rodata  # 0x804732E0 - 0x8049E220
 .balign 8
-.global lbl_80490280
 lbl_80490280:
 	.4byte 0x00000000
 	.4byte 0x00000000
 	.4byte 0x00000000
-	.4byte 0x68757272
-	.4byte 0x79557032
-	.4byte 0x44000000
-.global lbl_80490298
+.balign 4
+lbl_8049028C:
+	.asciz "hurryUp2D"
+.balign 4
 lbl_80490298:
-	.4byte 0x48757272
-	.4byte 0x79557032
-	.4byte 0x44000000
-	.4byte 0x73756E64
-	.4byte 0x2E626C6F
-	.4byte 0x00000000
-.global lbl_804902B0
+	.asciz "HurryUp2D"
+.balign 4
+lbl_804902A4:
+	.asciz "sund.blo"
+.balign 4
 lbl_804902B0:
-	.4byte 0x68757272
-	.4byte 0x79557032
-	.4byte 0x442E6370
-	.4byte 0x70000000
-.global lbl_804902C0
+	.asciz "hurryUp2D.cpp"
+.balign 4
 lbl_804902C0:
 	.asciz "P2Assert"
-	.skip 3
-	.4byte 0x73756E68
-	.4byte 0x5F772E62
-	.4byte 0x74690000
-.global lbl_804902D8
+.balign 4
+lbl_804902CC:
+	.asciz "sunh_w.bti"
+.balign 4
 lbl_804902D8:
-	.4byte 0x6730395F
-	.4byte 0x66697273
-	.4byte 0x745F7375
-	.4byte 0x6E736574
-	.4byte 0x00000000
-	.4byte 0x73637265
-	.4byte 0x656E4F62
-	.4byte 0x6A2E6800
+	.asciz "g09_first_sunset"
+.balign 4
+lbl_804902EC:
+	.asciz "screenObj.h"
 
 .section .data, "wa"  # 0x8049E220 - 0x804EFC20
 .balign 8
-.global lbl_804DB2E8
-lbl_804DB2E8:
-	.4byte 0x00000000
-	.4byte 0x00000000
-	.4byte 0x00000000
+govNAN___Q24Game5P2JST:
+	.float 0.0
+	.float 0.0
+	.float 0.0
 .global __vt__Q28Morimura10THurryUp2D
 __vt__Q28Morimura10THurryUp2D:
 	.4byte 0
@@ -170,7 +158,6 @@ __vt__Q28Morimura15THuWhitePaneSet:
 	.4byte drawFullSet__12J2DPictureExFffffPA3_A4_f
 	.4byte drawTexCoord__12J2DPictureExFffffssssssssPA3_A4_f
 	.4byte getUsableTlut__12J2DPictureExFUc
-	.4byte 0
 
 .section .sdata, "wa"  # 0x80514680 - 0x80514D80
 .balign 8
@@ -195,95 +182,67 @@ mColorUpSp__Q28Morimura10THurryUp2D:
 
 .section .sbss # 0x80514D80 - 0x80516360
 .balign 8
-.global lbl_80515F18
-lbl_80515F18:
+gu32NAN___Q24Game5P2JST:
 	.skip 0x4
-.global lbl_80515F1C
-lbl_80515F1C:
+gfNAN___Q24Game5P2JST:
 	.skip 0x4
 
 .section .sdata2, "a"     # 0x80516360 - 0x80520E40
 .balign 8
-.global lbl_8051E258
 lbl_8051E258:
-	.4byte 0x00000000
-.global lbl_8051E25C
+	.float 0.0
 lbl_8051E25C:
-	.4byte 0x437F0000
-.global lbl_8051E260
+	.float 255.0
 lbl_8051E260:
 	.float 0.5
-	.4byte 0x00000000
-.global lbl_8051E268
+.balign 8
 lbl_8051E268:
 	.4byte 0x43300000
 	.4byte 0x80000000
-.global lbl_8051E270
 lbl_8051E270:
 	.float 1.0
-.global lbl_8051E274
 lbl_8051E274:
-	.4byte 0x3F4CCCCD
-.global lbl_8051E278
+	.float 0.8
 lbl_8051E278:
-	.4byte 0x3727C5AC
-.global lbl_8051E27C
+	.float 1.0E-5
 lbl_8051E27C:
-	.4byte 0x3F4D9168
-.global lbl_8051E280
+	.float 0.803
 lbl_8051E280:
-	.4byte 0x41200000
-.global lbl_8051E284
-lbl_8051E284:
+	.float 10.0
+lbl_8051E284: # RGBA?
 	.4byte 0xFFFFFF00
-.global lbl_8051E288
 lbl_8051E288:
-	.4byte 0x42600000
-.global lbl_8051E28C
-lbl_8051E28C:
-	.4byte 0x40C90FDB
-.global lbl_8051E290
+	.float 56.0
+lbl_8051E28C: # tau
+	.float 6.2831855
 lbl_8051E290:
-	.4byte 0x43B40000
-.global lbl_8051E294
+	.float 360.0
 lbl_8051E294:
-	.4byte 0x42A00000
-.global lbl_8051E298
+	.float 80.0
 lbl_8051E298:
-	.4byte 0xC3A2F983
-.global lbl_8051E29C
+	.float -325.9493
 lbl_8051E29C:
-	.4byte 0x43A2F983
-.global lbl_8051E2A0
+	.float 325.9493
 lbl_8051E2A0:
-	.4byte 0xBF800000
-	.4byte 0x00000000
-.global lbl_8051E2A8
+	.float -1.0
+.balign 8
 lbl_8051E2A8:
 	.4byte 0x43300000
 	.4byte 0x00000000
-.global lbl_8051E2B0
 lbl_8051E2B0:
-	.4byte 0x38345AE6
-.global lbl_8051E2B4
+	.float 4.3E-5
 lbl_8051E2B4:
-	.4byte 0x38D1B717
-.global lbl_8051E2B8
+	.float 1.0E-4
 lbl_8051E2B8:
-	.4byte 0x3F666666
-.global lbl_8051E2BC
+	.float 0.9
 lbl_8051E2BC:
-	.4byte 0x3F866666
-.global lbl_8051E2C0
+	.float 1.05
 lbl_8051E2C0:
-	.4byte 0x40000000
-.global lbl_8051E2C4
+	.float 2.0
 lbl_8051E2C4:
-	.4byte 0x42700000
-.global lbl_8051E2C8
+	.float 60.0
 lbl_8051E2C8:
-	.4byte 0x42F00000
-	.4byte 0x00000000
+	.float 120.0
 
 .section .text, "ax"  # 0x800056C0 - 0x80472F00
 .global drawSelf__Q28Morimura15THuWhitePaneSetFffPA3_A4_f
@@ -2198,7 +2157,7 @@ lbl_80347DAC:
 /* 80347DBC 00344CFC  4E 80 00 20 */	blr 
 
 .global getDispMemberBase__Q28Morimura10THurryUp2DFv
-getDispMemberBase__Q28Morimura10THurryUp2DFv:
+getDispMemberBase__Q28Morimura10THurryUp2DFv: # weak function
 /* 80347DC0 00344D00  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 80347DC4 00344D04  7C 08 02 A6 */	mflr r0
 /* 80347DC8 00344D08  90 01 00 14 */	stw r0, 0x14(r1)
@@ -2216,7 +2175,7 @@ lbl_80347DE4:
 /* 80347DF0 00344D30  4E 80 00 20 */	blr 
 
 .global __dt__Q28Morimura10THurryUp2DFv
-__dt__Q28Morimura10THurryUp2DFv:
+__dt__Q28Morimura10THurryUp2DFv: # weak function
 /* 80347DF4 00344D34  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 80347DF8 00344D38  7C 08 02 A6 */	mflr r0
 /* 80347DFC 00344D3C  90 01 00 14 */	stw r0, 0x14(r1)
@@ -2270,7 +2229,7 @@ lbl_80347E9C:
 /* 80347EB4 00344DF4  4E 80 00 20 */	blr 
 
 .global __dt__Q28Morimura15THuWhitePaneSetFv
-__dt__Q28Morimura15THuWhitePaneSetFv:
+__dt__Q28Morimura15THuWhitePaneSetFv: # weak function
 /* 80347EB8 00344DF8  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 80347EBC 00344DFC  7C 08 02 A6 */	mflr r0
 /* 80347EC0 00344E00  90 01 00 14 */	stw r0, 0x14(r1)
@@ -2297,15 +2256,14 @@ lbl_80347EFC:
 /* 80347F10 00344E50  38 21 00 10 */	addi r1, r1, 0x10
 /* 80347F14 00344E54  4E 80 00 20 */	blr 
 
-.global __sinit_hurryUp2D_cpp
-__sinit_hurryUp2D_cpp:
+__sinit_hurryUp2D_cpp: # static initializer
 /* 80347F18 00344E58  3C 80 80 51 */	lis r4, __float_nan@ha
 /* 80347F1C 00344E5C  38 00 FF FF */	li r0, -1
 /* 80347F20 00344E60  C0 04 48 B0 */	lfs f0, __float_nan@l(r4)
-/* 80347F24 00344E64  3C 60 80 4E */	lis r3, lbl_804DB2E8@ha
-/* 80347F28 00344E68  90 0D 98 98 */	stw r0, lbl_80515F18@sda21(r13)
-/* 80347F2C 00344E6C  D4 03 B2 E8 */	stfsu f0, lbl_804DB2E8@l(r3)
-/* 80347F30 00344E70  D0 0D 98 9C */	stfs f0, lbl_80515F1C@sda21(r13)
+/* 80347F24 00344E64  3C 60 80 4E */	lis r3, govNAN___Q24Game5P2JST@ha
+/* 80347F28 00344E68  90 0D 98 98 */	stw r0, gu32NAN___Q24Game5P2JST@sda21(r13)
+/* 80347F2C 00344E6C  D4 03 B2 E8 */	stfsu f0, govNAN___Q24Game5P2JST@l(r3)
+/* 80347F30 00344E70  D0 0D 98 9C */	stfs f0, gfNAN___Q24Game5P2JST@sda21(r13)
 /* 80347F34 00344E74  D0 03 00 04 */	stfs f0, 4(r3)
 /* 80347F38 00344E78  D0 03 00 08 */	stfs f0, 8(r3)
 /* 80347F3C 00344E7C  4E 80 00 20 */	blr 

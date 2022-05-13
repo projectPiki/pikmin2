@@ -206,57 +206,41 @@ __vt__Q34Game3Egg3Obj:
 	.4byte "@708@12@viewStartCarryMotion__Q24Game9EnemyBaseFv"
 	.4byte "@708@12@viewOnPelletKilled__Q24Game9EnemyBaseFv"
 	.4byte "viewEntryShape__Q24Game10PelletViewFR7MatrixfR10Vector3<f>"
-	.4byte 0
 
 .section .sdata2, "a"     # 0x80516360 - 0x80520E40
 .balign 8
-.global lbl_8051E388
 lbl_8051E388:
-	.4byte 0x41A00000
-.global lbl_8051E38C
+	.float 20.0
 lbl_8051E38C:
-	.4byte 0x00000000
-.global lbl_8051E390
+	.float 0.0
 lbl_8051E390:
-	.4byte 0x40000000
-.global lbl_8051E394
+	.float 2.0
 lbl_8051E394:
 	.float 1.0
-.global lbl_8051E398
 lbl_8051E398:
-	.4byte 0x41200000
-.global lbl_8051E39C
+	.float 10.0
 lbl_8051E39C:
-	.4byte 0x437A0000
-.global lbl_8051E3A0
+	.float 250.0
 lbl_8051E3A0:
-	.4byte 0x47000000
-.global lbl_8051E3A4
+	.float 32768.0
 lbl_8051E3A4:
-	.4byte 0x40400000
-.global lbl_8051E3A8
-lbl_8051E3A8:
-	.4byte 0x40C90FDB
-.global lbl_8051E3AC
-lbl_8051E3AC:
-	.4byte 0x40490FDB
-.global lbl_8051E3B0
+	.float 3.0
+lbl_8051E3A8: # tau
+	.float 6.2831855
+lbl_8051E3AC: # pi
+	.float 3.1415927
 lbl_8051E3B0:
-	.4byte 0x42480000
-.global lbl_8051E3B4
+	.float 50.0
 lbl_8051E3B4:
-	.4byte 0xC3A2F983
-.global lbl_8051E3B8
+	.float -325.9493
 lbl_8051E3B8:
-	.4byte 0x43A2F983
-.global lbl_8051E3BC
+	.float 325.9493
 lbl_8051E3BC:
-	.4byte 0x43480000
-.global lbl_8051E3C0
+	.float 200.0
+.balign 8
 lbl_8051E3C0:
 	.4byte 0x43300000
 	.4byte 0x80000000
-.global lbl_8051E3C8
 lbl_8051E3C8:
 	.float 0.4
 

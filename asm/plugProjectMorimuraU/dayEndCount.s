@@ -1,71 +1,51 @@
 .include "macros.inc"
 .section .rodata  # 0x804732E0 - 0x8049E220
 .balign 8
-.global lbl_804901E8
 lbl_804901E8:
-	.4byte 0x64617945
-	.4byte 0x6E64436F
-	.4byte 0x756E7400
-.global lbl_804901F4
+	.asciz "dayEndCount"
+.balign 4
 lbl_804901F4:
-	.4byte 0x44617945
-	.4byte 0x6E64436F
-	.4byte 0x756E7400
-	.4byte 0x636F756E
-	.4byte 0x742E626C
-	.4byte 0x6F000000
-.global lbl_8049020C
+	.asciz "DayEndCount"
+.balign 4
+lbl_80490200:
+	.asciz "count.blo"
+.balign 4
 lbl_8049020C:
-	.4byte 0x64617945
-	.4byte 0x6E64436F
-	.4byte 0x756E742E
-	.4byte 0x63707000
-.global lbl_8049021C
+	.asciz "dayEndCount.cpp"
+.balign 4
 lbl_8049021C:
 	.asciz "P2Assert"
-	.skip 3
-.global lbl_80490228
+.balign 4
 lbl_80490228:
-	.4byte 0x6368616C
-	.4byte 0x6C656E67
-	.4byte 0x65456E64
-	.4byte 0x436F756E
-	.4byte 0x74000000
-	.4byte 0x6368616C
-	.4byte 0x6C656E67
-	.4byte 0x65456E64
-	.4byte 0x436F756E
-	.4byte 0x74317000
-	.4byte 0x6368616C
-	.4byte 0x6C656E67
-	.4byte 0x65456E64
-	.4byte 0x436F756E
-	.4byte 0x74327000
-.global lbl_80490264
+	.asciz "challengeEndCount"
+.balign 4
+lbl_8049023C:
+	.asciz "challengeEndCount1p"
+.balign 4
+lbl_80490250:
+	.asciz "challengeEndCount2p"
+.balign 4
 lbl_80490264:
-	.4byte 0x7265735F
-	.4byte 0x67726F75
-	.4byte 0x6E642E73
-	.4byte 0x7A730000
-	.4byte 0x73637265
-	.4byte 0x656E4F62
-	.4byte 0x6A2E6800
+	.asciz "res_ground.szs"
+.balign 4
+lbl_80490274:
+	.asciz "screenObj.h"
 
 .section .data, "wa"  # 0x8049E220 - 0x804EFC20
 .balign 8
 .global deTagName__8Morimura
 deTagName__8Morimura:
-	.4byte 0x63643030
-	.4byte 0x63643031
-	.4byte 0x63643032
-	.4byte 0x63643033
-	.4byte 0x63643034
-	.4byte 0x63643035
-	.4byte 0x63643036
-	.4byte 0x63643037
-	.4byte 0x63643038
-	.4byte 0x63643039
-	.4byte 0x63643130
+	.ascii "cd00"
+	.ascii "cd01"
+	.ascii "cd02"
+	.ascii "cd03"
+	.ascii "cd04"
+	.ascii "cd05"
+	.ascii "cd06"
+	.ascii "cd07"
+	.ascii "cd08"
+	.ascii "cd09"
+	.ascii "cd10"
 .global __vt__Q28Morimura15TCountDownScene
 __vt__Q28Morimura15TCountDownScene:
 	.4byte 0
@@ -220,7 +200,6 @@ __vt__Q28Morimura12TDayEndCount:
 	.4byte doConfirmStartScene__Q26Screen7ObjBaseFPQ26Screen13StartSceneArg
 	.4byte doConfirmEndScene__Q26Screen7ObjBaseFRPQ26Screen11EndSceneArg
 	.4byte getDispMemberBase__Q28Morimura12TDayEndCountFv
-	.4byte 0
 
 .section .sdata, "wa"  # 0x80514680 - 0x80514D80
 .balign 8
@@ -233,8 +212,7 @@ mAlphaMax__Q28Morimura12TDayEndCount:
 .global mWaitAlpha__Q28Morimura12TDayEndCount
 mWaitAlpha__Q28Morimura12TDayEndCount:
 	.byte 0x64
-	.byte 0x0
-	.byte 0x0
+.balign 4
 .global mWaitScale__Q28Morimura12TDayEndCount
 mWaitScale__Q28Morimura12TDayEndCount:
 	.float 0.2
@@ -267,78 +245,58 @@ mTestChangeColor__Q28Morimura12TDayEndCount:
 	.skip 0x1
 .global mCountDownType__Q28Morimura12TDayEndCount
 mCountDownType__Q28Morimura12TDayEndCount:
-	.skip 0x6
+	.skip 0x1
 
 .section .sdata2, "a"     # 0x80516360 - 0x80520E40
 .balign 8
-.global lbl_8051E1F8
 lbl_8051E1F8:
 	.float 1.0
-.global lbl_8051E1FC
 lbl_8051E1FC:
-	.4byte 0x00000000
-.global lbl_8051E200
+	.float 0.0
 lbl_8051E200:
-	.4byte 0x3F666666
-.global lbl_8051E204
+	.float 0.9
 lbl_8051E204:
-	.4byte 0x41C80000
-.global lbl_8051E208
+	.float 25.0
 lbl_8051E208:
-	.4byte 0x38D1B717
-.global lbl_8051E20C
+	.float 1.0E-4
 lbl_8051E20C:
-	.4byte 0x3C23D70A
-.global lbl_8051E210
+	.float 0.01
 lbl_8051E210:
-	.4byte 0x41200000
-.global lbl_8051E214
+	.float 10.0
 lbl_8051E214:
-	.4byte 0x3F8CCCCD
-.global lbl_8051E218
+	.float 1.1
 lbl_8051E218:
-	.4byte 0x41300000
-.global lbl_8051E21C
+	.float 11.0
 lbl_8051E21C:
 	.float 0.5
-.global lbl_8051E220
 lbl_8051E220:
-	.4byte 0x42C80000
-.global lbl_8051E224
+	.float 100.0
 lbl_8051E224:
-	.4byte 0x437F0000
-.global lbl_8051E228
-lbl_8051E228:
-	.4byte 0x41490FDB
-.global lbl_8051E22C
+	.float 255.0
+lbl_8051E228: # 4 pi
+	.float 12.566371
 lbl_8051E22C:
-	.4byte 0xC3A2F983
-.global lbl_8051E230
+	.float -325.9493
 lbl_8051E230:
-	.4byte 0x43A2F983
-.global lbl_8051E234
+	.float 325.9493
 lbl_8051E234:
-	.4byte 0x40A00000
-.global lbl_8051E238
+	.float 5.0
+.balign 8
 lbl_8051E238:
 	.4byte 0x43300000
 	.4byte 0x80000000
-.global lbl_8051E240
+.balign 8
 lbl_8051E240:
 	.4byte 0x43300000
 	.4byte 0x00000000
-.global lbl_8051E248
-lbl_8051E248:
-	.4byte 0x40C90FDB
-.global lbl_8051E24C
+lbl_8051E248: # tau
+	.float 6.2831855
 lbl_8051E24C:
-	.4byte 0x42100000
-.global lbl_8051E250
+	.float 36.0
 lbl_8051E250:
-	.4byte 0x43B40000
-.global lbl_8051E254
+	.float 360.0
 lbl_8051E254:
-	.4byte 0x42A00000
+	.float 80.0
 
 .section .text, "ax"  # 0x800056C0 - 0x80472F00
 .global __ct__Q28Morimura12TDayEndCountFv
