@@ -5,147 +5,98 @@ lbl_constructor:
 
 .section .rodata  # 0x804732E0 - 0x8049E220
 .balign 8
-.global lbl_80481800
 lbl_80481800:
 	.4byte 0x00000000
 	.4byte 0x00000000
 	.4byte 0x00000000
-	.4byte 0x6974656D
-	.4byte 0x446F776E
-	.4byte 0x466C6F6F
-	.4byte 0x72000000
-.global lbl_8048181C
+.balign 4
+lbl_8048180C:
+	.asciz "itemDownFloor"
+.balign 4
 lbl_8048181C:
-	.4byte 0x6974656D
-	.4byte 0x446F776E
-	.4byte 0x466C6F6F
-	.4byte 0x722E6370
-	.4byte 0x70000000
-.global lbl_80481830
+	.asciz "itemDownFloor.cpp"
+.balign 4
 lbl_80481830:
-	.4byte 0x6E6F2073
-	.4byte 0x68617065
-	.4byte 0x20210A00
-.global lbl_8048183C
+	.asciz "no shape !\n"
+.balign 4
 lbl_8048183C:
-	.4byte 0x4E6F2046
-	.4byte 0x7269656E
-	.4byte 0x6420466F
-	.4byte 0x756E6420
-	.4byte 0x666F7220
-	.4byte 0x73656573
-	.4byte 0x61773A20
-	.4byte 0x73656172
-	.4byte 0x6368696E
-	.4byte 0x6720666F
-	.4byte 0x72207361
-	.4byte 0x6D652069
-	.4byte 0x64202825
-	.4byte 0x73290A00
-.global lbl_80481874
+	.asciz "No Friend Found for seesaw: searching for same id (%s)\n"
+.balign 4
 lbl_80481874:
 	.asciz "P2Assert"
-	.skip 3
-	.4byte 0x446F776E
-	.4byte 0x466C6F6F
-	.4byte 0x72000000
-.global lbl_8048188C
+.balign 4
+lbl_80481880:
+	.asciz "DownFloor"
+.balign 4
 lbl_8048188C:
-	.4byte 0x4974656D
-	.4byte 0x446F776E
-	.4byte 0x466C6F6F
-	.4byte 0x72000000
-	.4byte 0x75736572
-	.4byte 0x2F4B616E
-	.4byte 0x646F2F6F
-	.4byte 0x626A6563
-	.4byte 0x74732F64
-	.4byte 0x6F776E66
-	.4byte 0x6C6F6F72
-	.4byte 0x00000000
-	.4byte 0x74657874
-	.4byte 0x732E737A
-	.4byte 0x73000000
-	.4byte 0x646F776E
-	.4byte 0x5F666C6F
-	.4byte 0x6F725F31
-	.4byte 0x2E626D64
-	.4byte 0x00000000
-	.4byte 0x646F776E
-	.4byte 0x5F666C6F
-	.4byte 0x6F725F32
-	.4byte 0x2E626D64
-	.4byte 0x00000000
-	.4byte 0x646F776E
-	.4byte 0x5F666C6F
-	.4byte 0x6F725F33
-	.4byte 0x2E626D64
-	.4byte 0x00000000
-	.4byte 0x616E696D
-	.4byte 0x6D67722E
-	.4byte 0x74787400
-	.4byte 0x706C6174
-	.4byte 0x666F726D
-	.4byte 0x2E62696E
-	.4byte 0x00000000
-	.4byte 0x706C6174
-	.4byte 0x666F726D
-	.4byte 0x5F322E62
-	.4byte 0x696E0000
-	.4byte 0x706C6174
-	.4byte 0x666F726D
-	.4byte 0x5F332E62
-	.4byte 0x696E0000
-.global lbl_80481940
+	.asciz "ItemDownFloor"
+.balign 4
+lbl_8048189C:
+	.asciz "user/Kando/objects/downfloor"
+.balign 4
+lbl_804818BC:
+	.asciz "texts.szs"
+.balign 4
+lbl_804818C8:
+	.asciz "down_floor_1.bmd"
+.balign 4
+lbl_804818DC:
+	.asciz "down_floor_2.bmd"
+.balign 4
+lbl_804818F0:
+	.asciz "down_floor_3.bmd"
+.balign 4
+lbl_80481904:
+	.asciz "animmgr.txt"
+.balign 4
+lbl_80481910:
+	.asciz "platform.bin"
+.balign 4
+lbl_80481920:
+	.asciz "platform_2.bin"
+.balign 4
+lbl_80481930:
+	.asciz "platform_3.bin"
+.balign 4
 lbl_80481940:
-	.4byte 0x6E657720
-	.4byte 0x4D6F6465
-	.4byte 0x6C000000
-.global lbl_8048194C
+	.asciz "new Model"
+.balign 4
 lbl_8048194C:
-	.4byte 0x506C6174
-	.4byte 0x666F726D
-	.4byte 0x00000000
-.global lbl_80481958
+	.asciz "Platform"
+.balign 4
 lbl_80481958:
-	.4byte 0x506C6174
-	.4byte 0x666F726D
-	.4byte 0x2D446F77
-	.4byte 0x6E000000
-	.4byte 0x446F776E
-	.4byte 0x466C6F6F
-	.4byte 0x72320000
-	.4byte 0x446F776E
-	.4byte 0x466C6F6F
-	.4byte 0x72330000
-	.4byte 0x7830365F
-	.4byte 0x6A6F696E
-	.4byte 0x00000000
+	.asciz "Platform-Down"
+.balign 4
+lbl_80481968:
+	.asciz "DownFloor2"
+.balign 4
+lbl_80481974:
+	.asciz "DownFloor3"
+.balign 4
+lbl_80481980:
+	.asciz "x06_join"
+.balign 4
+lbl_8048198C: # Shift-JIS
 	.4byte 0x092392BE
 	.4byte 0x82DD906C
 	.4byte 0x90940D0A
-	.4byte 0x00000000
-	.4byte 0x09237479
-	.4byte 0x70650D0A
-	.4byte 0x00000000
-	.4byte 0x09232031
-	.4byte 0x3A736565
-	.4byte 0x7361770D
-	.4byte 0x0A000000
-.global lbl_804819B8
+	.byte 0
+.balign 4
+lbl_8048199C:
+	.asciz "\t#type\r\n"
+.balign 4
+lbl_804819A8:
+	.asciz "\t# 1:seesaw\r\n"
+.balign 4
 lbl_804819B8:
-	.4byte 0x446F776E
-	.4byte 0x666C6F6F
-	.4byte 0x72000000
-	.4byte 0x00000000
+	.asciz "Downfloor"
 
 .section .data, "wa"  # 0x8049E220 - 0x804EFC20
 .balign 8
-.global lbl_804BC480
-lbl_804BC480:
-	.4byte 0x00000000
-	.4byte 0x00000000
-	.4byte 0x00000000
+govNAN___Q24Game5P2JST:
+	.float 0.0
+	.float 0.0
+	.float 0.0
 .global __vt__16GenDownFloorParm
 __vt__16GenDownFloorParm:
 	.4byte 0
@@ -720,64 +671,48 @@ __vt__Q34Game13ItemDownFloor3FSM:
 	.4byte "start__Q24Game41StateMachine<Q34Game13ItemDownFloor4Item>FPQ34Game13ItemDownFloor4ItemiPQ24Game8StateArg"
 	.4byte "exec__Q24Game41StateMachine<Q34Game13ItemDownFloor4Item>FPQ34Game13ItemDownFloor4Item"
 	.4byte "transit__Q24Game41StateMachine<Q34Game13ItemDownFloor4Item>FPQ34Game13ItemDownFloor4ItemiPQ24Game8StateArg"
-	.4byte 0
 
 .section .sbss # 0x80514D80 - 0x80516360
 .balign 8
-.global lbl_80515B58
-lbl_80515B58:
+gu32NAN___Q24Game5P2JST:
 	.skip 0x4
-.global lbl_80515B5C
-lbl_80515B5C:
+gfNAN___Q24Game5P2JST:
 	.skip 0x4
 .global mgr__Q24Game13ItemDownFloor
 mgr__Q24Game13ItemDownFloor:
-	.skip 0x8
+	.skip 0x4
 
 .section .sdata2, "a"     # 0x80516360 - 0x80520E40
 .balign 8
-.global lbl_80519C38
 lbl_80519C38:
-	.4byte 0x432A0000
-.global lbl_80519C3C
+	.float 170.0
 lbl_80519C3C:
-	.4byte 0x47000000
-.global lbl_80519C40
-lbl_80519C40:
-	.4byte 0x40C90FDB
-	.4byte 0x00000000
-.global lbl_80519C48
+	.float 32768.0
+lbl_80519C40: # tau
+	.float 6.2831855
+.balign 8
 lbl_80519C48:
 	.4byte 0x43300000
 	.4byte 0x80000000
-.global lbl_80519C50
 lbl_80519C50:
-	.4byte 0x00000000
-.global lbl_80519C54
+	.float 0.0
 lbl_80519C54:
-	.4byte 0x41200000
-.global lbl_80519C58
+	.float 10.0
 lbl_80519C58:
-	.4byte 0x41F00000
-.global lbl_80519C5C
+	.float 30.0
 lbl_80519C5C:
-	.4byte 0x41A00000
-.global lbl_80519C60
+	.float 20.0
 lbl_80519C60:
-	.4byte 0x42480000
-.global lbl_80519C64
+	.float 50.0
+.balign 4
 lbl_80519C64:
-	.4byte 0x6172632E
-	.4byte 0x737A7300
-.global lbl_80519C6C
+	.asciz "arc.szs"
+.balign 4
 lbl_80519C6C:
-	.4byte 0x6D6F7665
-	.4byte 0x00000000
-.global lbl_80519C74
+	.asciz "move"
+.balign 4
 lbl_80519C74:
-	.4byte 0x09232069
-	.4byte 0x640D0A00
-	.4byte 0x00000000
+	.asciz "\t# id\r\n"
 
 .section .text, "ax"  # 0x800056C0 - 0x80472F00
 .global init__Q34Game13ItemDownFloor3FSMFPQ34Game13ItemDownFloor4Item
@@ -3475,7 +3410,7 @@ lbl_801F7224:
 /* 801F729C 001F41DC  4E 80 00 20 */	blr 
 
 .global __dt__Q34Game13ItemDownFloor3MgrFv
-__dt__Q34Game13ItemDownFloor3MgrFv:
+__dt__Q34Game13ItemDownFloor3MgrFv: # weak function
 /* 801F72A0 001F41E0  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 801F72A4 001F41E4  7C 08 02 A6 */	mflr r0
 /* 801F72A8 001F41E8  90 01 00 14 */	stw r0, 0x14(r1)
@@ -3645,13 +3580,13 @@ lbl_801F74FC:
 /* 801F7510 001F4450  4E 80 00 20 */	blr 
 
 .global generatorGetID__Q34Game13ItemDownFloor3MgrFv
-generatorGetID__Q34Game13ItemDownFloor3MgrFv:
+generatorGetID__Q34Game13ItemDownFloor3MgrFv: # weak function
 /* 801F7514 001F4454  3C 60 64 77 */	lis r3, 0x6477666C@ha
 /* 801F7518 001F4458  38 63 66 6C */	addi r3, r3, 0x6477666C@l
 /* 801F751C 001F445C  4E 80 00 20 */	blr 
 
 .global generatorLocalVersion__Q34Game13ItemDownFloor3MgrFv
-generatorLocalVersion__Q34Game13ItemDownFloor3MgrFv:
+generatorLocalVersion__Q34Game13ItemDownFloor3MgrFv: # weak function
 /* 801F7520 001F4460  3C 60 30 30 */	lis r3, 0x30303032@ha
 /* 801F7524 001F4464  38 63 30 32 */	addi r3, r3, 0x30303032@l
 /* 801F7528 001F4468  4E 80 00 20 */	blr 
@@ -3961,15 +3896,14 @@ lbl_801F7870:
 /* 801F7878 001F47B8  38 21 00 10 */	addi r1, r1, 0x10
 /* 801F787C 001F47BC  4E 80 00 20 */	blr 
 
-.global __sinit_itemDownFloor_cpp
-__sinit_itemDownFloor_cpp:
+__sinit_itemDownFloor_cpp: # static initializer
 /* 801F7880 001F47C0  3C 80 80 51 */	lis r4, __float_nan@ha
 /* 801F7884 001F47C4  38 00 FF FF */	li r0, -1
 /* 801F7888 001F47C8  C0 04 48 B0 */	lfs f0, __float_nan@l(r4)
-/* 801F788C 001F47CC  3C 60 80 4C */	lis r3, lbl_804BC480@ha
-/* 801F7890 001F47D0  90 0D 94 D8 */	stw r0, lbl_80515B58@sda21(r13)
-/* 801F7894 001F47D4  D4 03 C4 80 */	stfsu f0, lbl_804BC480@l(r3)
-/* 801F7898 001F47D8  D0 0D 94 DC */	stfs f0, lbl_80515B5C@sda21(r13)
+/* 801F788C 001F47CC  3C 60 80 4C */	lis r3, govNAN___Q24Game5P2JST@ha
+/* 801F7890 001F47D0  90 0D 94 D8 */	stw r0, gu32NAN___Q24Game5P2JST@sda21(r13)
+/* 801F7894 001F47D4  D4 03 C4 80 */	stfsu f0, govNAN___Q24Game5P2JST@l(r3)
+/* 801F7898 001F47D8  D0 0D 94 DC */	stfs f0, gfNAN___Q24Game5P2JST@sda21(r13)
 /* 801F789C 001F47DC  D0 03 00 04 */	stfs f0, 4(r3)
 /* 801F78A0 001F47E0  D0 03 00 08 */	stfs f0, 8(r3)
 /* 801F78A4 001F47E4  4E 80 00 20 */	blr 
