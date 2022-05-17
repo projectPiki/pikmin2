@@ -157,14 +157,16 @@ float pikmin2_atan2f(float x, float y) { return JMath::atanTable_.atan2_(x, y); 
  * Address:	80411804
  * Size:	000018
  * The asm seems necessary to match, but why would they do this?
+ * Perhaps they didn't want to call the intrinsic.
  */
 float pikmin2_sqrtf(register float x)
 {
 	if (x > lbl_80520270) {
-		register double reg_f0 = __frsqrte(x);
+		register float reg_f0;
 		asm {
-            fmuls x, reg_f0, x
+            frsqrte reg_f0, x
 		}
+		return reg_f0 * x;
 	}
 	return x;
 }

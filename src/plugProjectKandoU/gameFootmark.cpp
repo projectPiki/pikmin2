@@ -118,12 +118,8 @@ void Footmarks::add(Footmark& mark)
 		if (v8 < m_count)
 			_08 = v8 + 1;
 		_10 = Game::gameSystem->m_frameTimer;
-		namespace Game {
-
-		}
 	}
-
-} // namespace Game
+}
 #ifdef UNFINISHED
 void Footmarks::add(Game::Footmark&)
 {
