@@ -239,9 +239,9 @@ lbl_8051A658:
 	.4byte 0x00000000
 
 .section .sbss2, "", @nobits # 0x80520E40 - 0x80520ED8
-.global lbl_80520E88
+.balign 8
 lbl_80520E88:
-	.skip 0x8
+	.skip 0x4
 
 .section .text, "ax"  # 0x800056C0 - 0x80472F00
 .global __ct__Q24Game12CylinderBaseFv
@@ -1990,8 +1990,7 @@ drawScreenFilter__Q24Game15ShadowCylinder3Fv:
 setFilterTextureID__Q24Game15ShadowCylinder3Fi:
 /* 8023F3C4 0023C304  4E 80 00 20 */	blr 
 
-.global __sinit_ShadowCylinder_cpp
-__sinit_ShadowCylinder_cpp:
+__sinit_ShadowCylinder_cpp: # static initializer
 /* 8023F3C8 0023C308  3C 80 80 51 */	lis r4, __float_nan@ha
 /* 8023F3CC 0023C30C  38 00 FF FF */	li r0, -1
 /* 8023F3D0 0023C310  C0 04 48 B0 */	lfs f0, __float_nan@l(r4)

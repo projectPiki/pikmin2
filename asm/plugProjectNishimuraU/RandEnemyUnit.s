@@ -80,24 +80,13 @@ lbl_8051A7D4:
 	.float 0.5
 
 .section .sbss2, "", @nobits # 0x80520E40 - 0x80520ED8
-.global lbl_80520E90
+.balign 8
 lbl_80520E90:
-	.skip 0x4
-.global lbl_80520E94
-lbl_80520E94:
-	.skip 0x4
-.global lbl_80520E98
+	.skip 0x8
 lbl_80520E98:
-	.skip 0x4
-.global lbl_80520E9C
-lbl_80520E9C:
-	.skip 0x4
-.global lbl_80520EA0
+	.skip 0x8
 lbl_80520EA0:
-	.skip 0x4
-.global lbl_80520EA4
-lbl_80520EA4:
-	.skip 0x4
+	.skip 0x8
 
 .section .text, "ax"  # 0x800056C0 - 0x80472F00
 .global __ct__Q34Game4Cave13RandEnemyUnitFPQ34Game4Cave16MapUnitGeneratorb
@@ -2294,9 +2283,9 @@ setVersusEasyEnemy__Q34Game4Cave13RandEnemyUnitFv:
 /* 8024A7D8 00247718  BF 01 00 50 */	stmw r24, 0x50(r1)
 /* 8024A7DC 0024771C  7C 7B 1B 78 */	mr r27, r3
 /* 8024A7E0 00247720  80 E2 2B 30 */	lwz r7, lbl_80520E90@sda21(r2)
-/* 8024A7E4 00247724  80 C2 2B 34 */	lwz r6, lbl_80520E94@sda21(r2)
+/* 8024A7E4 00247724  80 C2 2B 34 */	lwz r6, (lbl_80520E90+4)@sda21(r2)
 /* 8024A7E8 00247728  80 A2 2B 38 */	lwz r5, lbl_80520E98@sda21(r2)
-/* 8024A7EC 0024772C  80 02 2B 3C */	lwz r0, lbl_80520E9C@sda21(r2)
+/* 8024A7EC 0024772C  80 02 2B 3C */	lwz r0, (lbl_80520E98+4)@sda21(r2)
 /* 8024A7F0 00247730  90 E1 00 20 */	stw r7, 0x20(r1)
 /* 8024A7F4 00247734  80 63 00 04 */	lwz r3, 4(r3)
 /* 8024A7F8 00247738  90 C1 00 24 */	stw r6, 0x24(r1)
@@ -2325,7 +2314,7 @@ setVersusEasyEnemy__Q34Game4Cave13RandEnemyUnitFv:
 /* 8024A854 00247794  80 C5 00 08 */	lwz r6, 8(r5)
 /* 8024A858 00247798  80 A5 00 0C */	lwz r5, 0xc(r5)
 /* 8024A85C 0024779C  80 82 2B 40 */	lwz r4, lbl_80520EA0@sda21(r2)
-/* 8024A860 002477A0  80 02 2B 44 */	lwz r0, lbl_80520EA4@sda21(r2)
+/* 8024A860 002477A0  80 02 2B 44 */	lwz r0, (lbl_80520EA0+4)@sda21(r2)
 /* 8024A864 002477A4  90 61 00 1C */	stw r3, 0x1c(r1)
 /* 8024A868 002477A8  83 9E 00 10 */	lwz r28, 0x10(r30)
 /* 8024A86C 002477AC  91 21 00 10 */	stw r9, 0x10(r1)

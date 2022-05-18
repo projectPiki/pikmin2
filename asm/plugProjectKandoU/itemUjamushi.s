@@ -5,132 +5,115 @@ lbl_constructor:
 
 .section .rodata  # 0x804732E0 - 0x8049E220
 .balign 8
-.global lbl_80481D40
 lbl_80481D40:
 	.skip 0xC
+.balign 4
+lbl_80481D4C:
 	.asciz "itemUjamushi"
-	.skip 3
+.balign 4
+lbl_80481D5C:
 	.asciz "BoidParms"
-	.skip 2
-	.4byte 0x436F6865
-	.4byte 0x6E73696F
-	.4byte 0x6E000000
-	.4byte 0x416C6967
-	.4byte 0x6E6D656E
-	.4byte 0x74000000
-	.4byte 0x53657061
-	.4byte 0x72617469
-	.4byte 0x6F6E0000
-	.4byte 0x436F6C6C
-	.4byte 0x6973696F
-	.4byte 0x6E000000
-	.4byte 0x4D617853
-	.4byte 0x70656564
-	.4byte 0x00000000
-	.4byte 0x44697374
-	.4byte 0x616E6365
-	.4byte 0x00000000
-	.4byte 0x526F7461
-	.4byte 0x74696F6E
-	.4byte 0x2F730000
-	.4byte 0x52616E64
-	.4byte 0x6F6D416E
-	.4byte 0x676C6500
-.global lbl_80481DC8
+.balign 4
+lbl_80481D68:
+	.asciz "Cohension"
+.balign 4
+lbl_80481D74:
+	.asciz "Alignment"
+.balign 4
+lbl_80481D80:
+	.asciz "Separation"
+.balign 4
+lbl_80481D8C:
+	.asciz "Collision"
+.balign 4
+lbl_80481D98:
+	.asciz "MaxSpeed"
+.balign 4
+lbl_80481DA4:
+	.asciz "Distance"
+.balign 4
+lbl_80481DB0:
+	.asciz "Rotation/s"
+.balign 4
+lbl_80481DBC:
+	.asciz "RandomAngle"
+.balign 4
 lbl_80481DC8:
-	.4byte 0x6974656D
-	.4byte 0x556A616D
-	.4byte 0x75736869
-	.4byte 0x2E637070
-	.4byte 0x00000000
-.global lbl_80481DDC
+	.asciz "itemUjamushi.cpp"
+.balign 4
 lbl_80481DDC:
 	.asciz "P2Assert"
-	.skip 3
-	.4byte 0x0923206E
-	.4byte 0x756D2070
-	.4byte 0x61726D73
-	.4byte 0x0D0A0000
-	.4byte 0x556A6150
-	.4byte 0x61726D73
-	.4byte 0x00000000
+.balign 4
+lbl_80481DE8:
+	.asciz "\t# num parms\r\n"
+.balign 4
+lbl_80481DF8:
+	.asciz "UjaParms"
+.balign 4
+lbl_80481E04: # Shift-JIS
 	.4byte 0x955C8EA6
 	.4byte 0x83588350
 	.4byte 0x815B838B
-	.4byte 0x00000000
+	.byte 0x00
+.balign 4
+lbl_80481E14: # Shift-JIS
 	.4byte 0x93E4204D
 	.4byte 0x756C7469
 	.4byte 0x706C7900
+.balign 4
+lbl_80481E20: # Shift-JIS
 	.4byte 0x8382815B
 	.4byte 0x83568387
 	.4byte 0x839391AC
-	.4byte 0x93780000
-.global lbl_80481E30
-lbl_80481E30:
+	.byte 0x93,0x78,0x00
+.balign 4
+lbl_80481E30: # Shift-JIS
 	.4byte 0x835F8381
 	.4byte 0x8362834E
-	.4byte 0x0A000000
-.global lbl_80481E3C
+	.2byte 0x0A00
+.balign 4
 lbl_80481E3C:
-	.4byte 0x666C6F63
-	.4byte 0x6B4D6772
-	.4byte 0x2E680000
-	.4byte 0x556A616D
-	.4byte 0x75736869
-	.4byte 0x00000000
-	.4byte 0x75736572
-	.4byte 0x2F4B616E
-	.4byte 0x646F2F6F
-	.4byte 0x626A6563
-	.4byte 0x74732F75
-	.4byte 0x6A616D75
-	.4byte 0x73686900
-	.4byte 0x756A616D
-	.4byte 0x75736869
-	.4byte 0x5F706F6C
-	.4byte 0x792E626D
-	.4byte 0x64000000
-	.4byte 0x756A616D
-	.4byte 0x75736869
-	.4byte 0x5F62696C
-	.4byte 0x6C2E626D
-	.4byte 0x64000000
-	.4byte 0x74657874
-	.4byte 0x732E737A
-	.4byte 0x73000000
-	.4byte 0x7061726D
-	.4byte 0x732E7478
-	.4byte 0x74000000
-.global lbl_80481EB0
+	.asciz "flockMgr.h"
+.balign 4
+lbl_80481E48:
+	.asciz "Ujamushi"
+.balign 4
+lbl_80481E54:
+	.asciz "user/Kando/objects/ujamushi"
+.balign 4
+lbl_80481E70:
+	.asciz "ujamushi_poly.bmd"
+.balign 4
+lbl_80481E84:
+	.asciz "ujamushi_bill.bmd"
+.balign 4
+lbl_80481E98:
+	.asciz "texts.szs"
+.balign 4
+lbl_80481EA4:
+	.asciz "parms.txt"
+.balign 4
 lbl_80481EB0:
-	.4byte 0x756A616D
-	.4byte 0x75736869
-	.4byte 0x00000000
+	.asciz "ujamushi"
+.balign 4
+lbl_80481EBC: # Shift-JIS
 	.4byte 0x092382A4
 	.4byte 0x82B682E1
 	.4byte 0x89A49094
 	.4byte 0x0D0A0000
-.global lbl_80481ECC
+.balign 4
 lbl_80481ECC:
-	.4byte 0x4974656D
-	.4byte 0x556A616D
-	.4byte 0x75736869
-	.4byte 0x3A3A496E
-	.4byte 0x69744172
-	.4byte 0x67000000
-	.4byte 0x43726561
-	.4byte 0x74757265
-	.4byte 0x4B696C6C
-	.4byte 0x41726700
-	.4byte 0x00000000
+	.asciz "ItemUjamushi::InitArg"
+.balign 4
+lbl_80481EE4:
+	.asciz "CreatureKillArg"
 
 .section .data, "wa"  # 0x8049E220 - 0x804EFC20
 .balign 8
-.global lbl_804BEF60
-lbl_804BEF60:
-	.4byte 0x00000000
-	.4byte 0x00000000
-	.4byte 0x00000000
+govNAN___Q24Game5P2JST:
+	.float 0.0
+	.float 0.0
+	.float 0.0
 .global __vt__Q34Game12ItemUjamushi7InitArg
 __vt__Q34Game12ItemUjamushi7InitArg:
 	.4byte 0
@@ -915,11 +898,9 @@ __vt__Q34Game12ItemUjamushi13BoidParameter:
 
 .section .sbss # 0x80514D80 - 0x80516360
 .balign 8
-.global lbl_80515BB8
-lbl_80515BB8:
+gu32NAN___Q24Game5P2JST:
 	.skip 0x4
-.global lbl_80515BBC
-lbl_80515BBC:
+gfNAN___Q24Game5P2JST:
 	.skip 0x4
 .global mgr__Q24Game12ItemUjamushi
 mgr__Q24Game12ItemUjamushi:
@@ -1119,14 +1100,13 @@ lbl_80519EA4:
 lbl_80519EA8:
 	.4byte 0x6172632E
 	.4byte 0x737A7300
-.global lbl_80519EB0
 lbl_80519EB0:
 	.float 0.35
 
 .section .sbss2, "", @nobits # 0x80520E40 - 0x80520ED8
-.global lbl_80520E80
+.balign 8
 lbl_80520E80:
-	.skip 0x8
+	.skip 0x4
 
 .section .text, "ax"  # 0x800056C0 - 0x80472F00
 .global __ct__Q34Game12ItemUjamushi9BoidParmsFv
@@ -3605,7 +3585,7 @@ lbl_80207E68:
 /* 80207E6C 00204DAC  4E 80 00 20 */	blr 
 
 .global "__mi__FRC10Vector3<f>RC10Vector3<f>"
-"__mi__FRC10Vector3<f>RC10Vector3<f>":
+"__mi__FRC10Vector3<f>RC10Vector3<f>": # weak function
 /* 80207E70 00204DB0  C0 24 00 00 */	lfs f1, 0(r4)
 /* 80207E74 00204DB4  C0 05 00 00 */	lfs f0, 0(r5)
 /* 80207E78 00204DB8  C0 44 00 04 */	lfs f2, 4(r4)
@@ -10001,10 +9981,10 @@ __sinit_itemUjamushi_cpp:
 /* 8020D654 0020A594  3C 80 80 51 */	lis r4, __float_nan@ha
 /* 8020D658 0020A598  38 00 FF FF */	li r0, -1
 /* 8020D65C 0020A59C  C0 04 48 B0 */	lfs f0, __float_nan@l(r4)
-/* 8020D660 0020A5A0  3C 60 80 4C */	lis r3, lbl_804BEF60@ha
-/* 8020D664 0020A5A4  90 0D 95 38 */	stw r0, lbl_80515BB8@sda21(r13)
-/* 8020D668 0020A5A8  D4 03 EF 60 */	stfsu f0, lbl_804BEF60@l(r3)
-/* 8020D66C 0020A5AC  D0 0D 95 3C */	stfs f0, lbl_80515BBC@sda21(r13)
+/* 8020D660 0020A5A0  3C 60 80 4C */	lis r3, govNAN___Q24Game5P2JST@ha
+/* 8020D664 0020A5A4  90 0D 95 38 */	stw r0, gu32NAN___Q24Game5P2JST@sda21(r13)
+/* 8020D668 0020A5A8  D4 03 EF 60 */	stfsu f0, govNAN___Q24Game5P2JST@l(r3)
+/* 8020D66C 0020A5AC  D0 0D 95 3C */	stfs f0, gfNAN___Q24Game5P2JST@sda21(r13)
 /* 8020D670 0020A5B0  D0 03 00 04 */	stfs f0, 4(r3)
 /* 8020D674 0020A5B4  D0 03 00 08 */	stfs f0, 8(r3)
 /* 8020D678 0020A5B8  4E 80 00 20 */	blr 
