@@ -3749,24 +3749,7 @@ lbl_80207B98:
  * Address:	80207BA0
  * Size:	000034
  */
-void operator+(const Vector3f&, const Vector3f&)
-{
-	/*
-	lfs      f1, 0(r4)
-	lfs      f0, 0(r5)
-	lfs      f2, 4(r4)
-	fadds    f0, f1, f0
-	lfs      f1, 4(r5)
-	lfs      f4, 8(r4)
-	lfs      f3, 8(r5)
-	fadds    f1, f2, f1
-	stfs     f0, 0(r3)
-	fadds    f0, f4, f3
-	stfs     f1, 4(r3)
-	stfs     f0, 8(r3)
-	blr
-	*/
-}
+Vector3f operator+(const Vector3f& a, const Vector3f& b) { return Vector3f(a.x + b.x, a.y + b.y, a.z + b.z); }
 
 /*
  * --INFO--
@@ -4006,24 +3989,7 @@ lbl_80207E68:
  * Address:	80207E70
  * Size:	000034
  */
-void operator-(const Vector3f&, const Vector3f&)
-{
-	/*
-	lfs      f1, 0(r4)
-	lfs      f0, 0(r5)
-	lfs      f2, 4(r4)
-	fsubs    f0, f1, f0
-	lfs      f1, 4(r5)
-	lfs      f4, 8(r4)
-	lfs      f3, 8(r5)
-	fsubs    f1, f2, f1
-	stfs     f0, 0(r3)
-	fsubs    f0, f4, f3
-	stfs     f1, 4(r3)
-	stfs     f0, 8(r3)
-	blr
-	*/
-}
+Vector3f operator-(const Vector3f& a, const Vector3f& b) { return Vector3f(a.x - b.x, a.y - b.y, a.z - b.z); }
 
 namespace Game {
 
