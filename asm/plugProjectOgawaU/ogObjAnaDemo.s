@@ -5,13 +5,10 @@ lbl_constructor:
 
 .section .rodata  # 0x804732E0 - 0x8049E220
 .balign 8
-.global lbl_8048EDD8
 lbl_8048EDD8:
-	.4byte 0x6F674F62
-	.4byte 0x6A416E61
-	.4byte 0x44656D6F
-	.4byte 0x2E637070
-	.4byte 0x00000000
+	.asciz "ogObjAnaDemo.cpp"
+.balign 4
+lbl_8048EDEC: # Shift-JIS
 	.4byte 0x45525221
 	.4byte 0x20696E20
 	.4byte 0x4F626A41
@@ -21,317 +18,38 @@ lbl_8048EDD8:
 	.4byte 0x658EB894
 	.4byte 0x7381490A
 	.4byte 0x00000000
-	.4byte 0x616E615F
-	.4byte 0x64656D6F
-	.4byte 0x2E626C6F
-	.4byte 0x00000000
-	.4byte 0x7761726E
-	.4byte 0x696E675F
-	.4byte 0x6D655F70
-	.4byte 0x696B692E
-	.4byte 0x626C6F00
-	.4byte 0x696E666F
-	.4byte 0x5F77696E
-	.4byte 0x646F772E
-	.4byte 0x626C6F00
-	.4byte 0x616E615F
-	.4byte 0x64656D6F
-	.4byte 0x2E62746B
-	.4byte 0x00000000
-	.4byte 0x616E615F
-	.4byte 0x64656D6F
-	.4byte 0x5F30322E
-	.4byte 0x62746B00
-	.4byte 0x616E615F
-	.4byte 0x64656D6F
-	.4byte 0x5F30332E
-	.4byte 0x62746B00
-.global lbl_8048EE74
-lbl_8048EE74:
+.balign 4
+lbl_8048EE10:
+	.asciz "ana_demo.blo"
+.balign 4
+lbl_8048EE20:
+	.asciz "warning_me_piki.blo"
+.balign 4
+lbl_8048EE34:
+	.asciz "info_window.blo"
+.balign 4
+lbl_8048EE44:
+	.asciz "ana_demo.btk"
+.balign 4
+lbl_8048EE54:
+	.asciz "ana_demo_02.btk"
+.balign 4
+lbl_8048EE64:
+	.asciz "ana_demo_03.btk"
+.balign 4
+lbl_8048EE74: # Shift-JIS
 	.4byte 0x82BE82DF
 	.4byte 0x82C582B7
 	.4byte 0x0A000000
-	.4byte 0x73637265
-	.4byte 0x656E4F62
-	.4byte 0x6A2E6800
+.balign 4
+lbl_8048EE80:
+	.asciz "screenObj.h"
+.balign 4
+lbl_8048EE8C:
 	.asciz "P2Assert"
-	.skip 3
 
 .section .data, "wa"  # 0x8049E220 - 0x804EFC20
-.balign 8
-.global CaveTitleMsg__Q22og9newScreen
-CaveTitleMsg__Q22og9newScreen:
-	.4byte 0x745F3031
-	.4byte 0x00000000
-	.4byte 0x00383339
-	.4byte 0x355F3030
-	.4byte 0x00000000
-	.4byte 0x00000000
-	.4byte 0x745F3032
-	.4byte 0x00000000
-	.4byte 0x00383339
-	.4byte 0x395F3030
-	.4byte 0x01010001
-	.4byte 0x00000000
-	.4byte 0x745F3033
-	.4byte 0x00000000
-	.4byte 0x00383430
-	.4byte 0x305F3030
-	.4byte 0x01010101
-	.4byte 0x00000000
-	.4byte 0x665F3031
-	.4byte 0x00000000
-	.4byte 0x00383339
-	.4byte 0x365F3030
-	.4byte 0x01000000
-	.4byte 0x00000000
-	.4byte 0x665F3032
-	.4byte 0x00000000
-	.4byte 0x00383339
-	.4byte 0x385F3030
-	.4byte 0x01000001
-	.4byte 0x00000000
-	.4byte 0x665F3033
-	.4byte 0x00000000
-	.4byte 0x00383430
-	.4byte 0x315F3030
-	.4byte 0x01010000
-	.4byte 0x00000000
-	.4byte 0x665F3034
-	.4byte 0x00000000
-	.4byte 0x00383431
-	.4byte 0x305F3030
-	.4byte 0x00010101
-	.4byte 0x00000000
-	.4byte 0x795F3031
-	.4byte 0x00000000
-	.4byte 0x00383339
-	.4byte 0x375F3030
-	.4byte 0x01010000
-	.4byte 0x00000000
-	.4byte 0x795F3032
-	.4byte 0x00000000
-	.4byte 0x00383430
-	.4byte 0x325F3030
-	.4byte 0x00010000
-	.4byte 0x00000000
-	.4byte 0x795F3033
-	.4byte 0x00000000
-	.4byte 0x00383430
-	.4byte 0x335F3030
-	.4byte 0x01010101
-	.4byte 0x00000000
-	.4byte 0x795F3034
-	.4byte 0x00000000
-	.4byte 0x00383431
-	.4byte 0x315F3030
-	.4byte 0x01010101
-	.4byte 0x00000000
-	.4byte 0x6C5F3031
-	.4byte 0x00000000
-	.4byte 0x00383431
-	.4byte 0x325F3030
-	.4byte 0x01010101
-	.4byte 0x00000000
-	.4byte 0x6C5F3032
-	.4byte 0x00000000
-	.4byte 0x00383431
-	.4byte 0x335F3030
-	.4byte 0x01010101
-	.4byte 0x00000000
-	.4byte 0x6C5F3033
-	.4byte 0x00000000
-	.4byte 0x00383431
-	.4byte 0x345F3030
-	.4byte 0x01010101
-	.4byte 0x00000000
-	.4byte 0x635F3030
-	.4byte 0x00000000
-	.4byte 0x00383339
-	.4byte 0x355F3030
-	.4byte 0x00000000
-	.4byte 0x00000000
-	.4byte 0x635F3031
-	.4byte 0x00000000
-	.4byte 0x00383339
-	.4byte 0x355F3030
-	.4byte 0x00000000
-	.4byte 0x00000000
-	.4byte 0x635F3032
-	.4byte 0x00000000
-	.4byte 0x00383339
-	.4byte 0x355F3030
-	.4byte 0x00000000
-	.4byte 0x00000000
-	.4byte 0x635F3033
-	.4byte 0x00000000
-	.4byte 0x00383339
-	.4byte 0x355F3030
-	.4byte 0x00000000
-	.4byte 0x00000000
-	.4byte 0x635F3034
-	.4byte 0x00000000
-	.4byte 0x00383339
-	.4byte 0x355F3030
-	.4byte 0x00000000
-	.4byte 0x00000000
-	.4byte 0x635F3035
-	.4byte 0x00000000
-	.4byte 0x00383339
-	.4byte 0x355F3030
-	.4byte 0x00000000
-	.4byte 0x00000000
-	.4byte 0x635F3036
-	.4byte 0x00000000
-	.4byte 0x00383339
-	.4byte 0x355F3030
-	.4byte 0x00000000
-	.4byte 0x00000000
-	.4byte 0x635F3037
-	.4byte 0x00000000
-	.4byte 0x00383339
-	.4byte 0x355F3030
-	.4byte 0x00000000
-	.4byte 0x00000000
-	.4byte 0x635F3038
-	.4byte 0x00000000
-	.4byte 0x00383339
-	.4byte 0x355F3030
-	.4byte 0x00000000
-	.4byte 0x00000000
-	.4byte 0x635F3039
-	.4byte 0x00000000
-	.4byte 0x00383339
-	.4byte 0x355F3030
-	.4byte 0x00000000
-	.4byte 0x00000000
-	.4byte 0x635F3130
-	.4byte 0x00000000
-	.4byte 0x00383339
-	.4byte 0x355F3030
-	.4byte 0x00000000
-	.4byte 0x00000000
-	.4byte 0x635F3131
-	.4byte 0x00000000
-	.4byte 0x00383339
-	.4byte 0x355F3030
-	.4byte 0x00000000
-	.4byte 0x00000000
-	.4byte 0x635F3132
-	.4byte 0x00000000
-	.4byte 0x00383339
-	.4byte 0x355F3030
-	.4byte 0x00000000
-	.4byte 0x00000000
-	.4byte 0x635F3133
-	.4byte 0x00000000
-	.4byte 0x00383339
-	.4byte 0x355F3030
-	.4byte 0x00000000
-	.4byte 0x00000000
-	.4byte 0x635F3134
-	.4byte 0x00000000
-	.4byte 0x00383339
-	.4byte 0x355F3030
-	.4byte 0x00000000
-	.4byte 0x00000000
-	.4byte 0x635F3135
-	.4byte 0x00000000
-	.4byte 0x00383339
-	.4byte 0x355F3030
-	.4byte 0x00000000
-	.4byte 0x00000000
-	.4byte 0x635F3136
-	.4byte 0x00000000
-	.4byte 0x00383339
-	.4byte 0x355F3030
-	.4byte 0x00000000
-	.4byte 0x00000000
-	.4byte 0x635F3137
-	.4byte 0x00000000
-	.4byte 0x00383339
-	.4byte 0x355F3030
-	.4byte 0x00000000
-	.4byte 0x00000000
-	.4byte 0x635F3138
-	.4byte 0x00000000
-	.4byte 0x00383339
-	.4byte 0x355F3030
-	.4byte 0x00000000
-	.4byte 0x00000000
-	.4byte 0x635F3139
-	.4byte 0x00000000
-	.4byte 0x00383339
-	.4byte 0x355F3030
-	.4byte 0x00000000
-	.4byte 0x00000000
-	.4byte 0x635F3230
-	.4byte 0x00000000
-	.4byte 0x00383339
-	.4byte 0x355F3030
-	.4byte 0x00000000
-	.4byte 0x00000000
-	.4byte 0x635F3231
-	.4byte 0x00000000
-	.4byte 0x00383339
-	.4byte 0x355F3030
-	.4byte 0x00000000
-	.4byte 0x00000000
-	.4byte 0x635F3232
-	.4byte 0x00000000
-	.4byte 0x00383339
-	.4byte 0x355F3030
-	.4byte 0x00000000
-	.4byte 0x00000000
-	.4byte 0x635F3233
-	.4byte 0x00000000
-	.4byte 0x00383339
-	.4byte 0x355F3030
-	.4byte 0x00000000
-	.4byte 0x00000000
-	.4byte 0x635F3234
-	.4byte 0x00000000
-	.4byte 0x00383339
-	.4byte 0x355F3030
-	.4byte 0x00000000
-	.4byte 0x00000000
-	.4byte 0x635F3235
-	.4byte 0x00000000
-	.4byte 0x00383339
-	.4byte 0x355F3030
-	.4byte 0x00000000
-	.4byte 0x00000000
-	.4byte 0x635F3236
-	.4byte 0x00000000
-	.4byte 0x00383339
-	.4byte 0x355F3030
-	.4byte 0x00000000
-	.4byte 0x00000000
-	.4byte 0x635F3237
-	.4byte 0x00000000
-	.4byte 0x00383339
-	.4byte 0x355F3030
-	.4byte 0x00000000
-	.4byte 0x00000000
-	.4byte 0x635F3238
-	.4byte 0x00000000
-	.4byte 0x00383339
-	.4byte 0x355F3030
-	.4byte 0x00000000
-	.4byte 0x00000000
-	.4byte 0x635F3239
-	.4byte 0x00000000
-	.4byte 0x00383339
-	.4byte 0x355F3030
-	.4byte 0x00000000
-	.4byte 0x00000000
-	.4byte 0x00454E44
-	.4byte 0x00000000
-	.4byte 0x00000000
-	.4byte 0x00454E44
-	.4byte 0x00000000
-	.4byte 0x00000000
-.global lbl_804D93D8
+.balign 4
 lbl_804D93D8:
 	.4byte lbl_8031E6F0
 	.4byte lbl_8031E184
@@ -372,7 +90,6 @@ __vt__Q32og9newScreen10ObjAnaDemo:
 	.4byte doConfirmSetScene__Q26Screen7ObjBaseFRQ26Screen11SetSceneArg
 	.4byte doConfirmStartScene__Q26Screen7ObjBaseFPQ26Screen13StartSceneArg
 	.4byte doConfirmEndScene__Q26Screen7ObjBaseFRPQ26Screen11EndSceneArg
-	.4byte 0
 
 .section .bss  # 0x804EFC20 - 0x8051467C
 .global msVal__Q32og9newScreen10ObjAnaDemo
@@ -381,44 +98,32 @@ msVal__Q32og9newScreen10ObjAnaDemo:
 
 .section .sdata2, "a"     # 0x80516360 - 0x80520E40
 .balign 8
-.global lbl_8051DC10
 lbl_8051DC10:
-	.4byte 0x00000000
-.global lbl_8051DC14
+	.float 0.0
 lbl_8051DC14:
 	.float 0.5
-.global lbl_8051DC18
 lbl_8051DC18:
-	.4byte 0x3F19999A
-.global lbl_8051DC1C
+	.float 0.6
 lbl_8051DC1C:
 	.float 0.7
-.global lbl_8051DC20
 lbl_8051DC20:
 	.float 1.0
-.global lbl_8051DC24
 lbl_8051DC24:
 	.float 0.1
-.global lbl_8051DC28
 lbl_8051DC28:
-	.4byte 0x41F00000
-.global lbl_8051DC2C
+	.float 30.0
 lbl_8051DC2C:
-	.4byte 0xC4480000
-.global lbl_8051DC30
+	.float -800.0
+.balign 8
 lbl_8051DC30:
 	.4byte 0x43300000
 	.4byte 0x00000000
-.global lbl_8051DC38
 lbl_8051DC38:
-	.4byte 0x44480000
-.global lbl_8051DC3C
+	.float 800.0
 lbl_8051DC3C:
 	.float 0.3
-.global lbl_8051DC40
 lbl_8051DC40:
-	.4byte 0x423C0000
-	.4byte 0x00000000
+	.float 47.0
 
 .section .text, "ax"  # 0x800056C0 - 0x80472F00
 .global caveIDtoMsgID__Q22og9newScreenFUl
@@ -1784,7 +1489,6 @@ doUpdate__Q32og9newScreen10ObjAnaDemoFv:
 /* 8031E178 0031B0B8  7C 04 00 2E */	lwzx r0, r4, r0
 /* 8031E17C 0031B0BC  7C 09 03 A6 */	mtctr r0
 /* 8031E180 0031B0C0  4E 80 04 20 */	bctr 
-.global lbl_8031E184
 lbl_8031E184:
 /* 8031E184 0031B0C4  38 00 00 02 */	li r0, 2
 /* 8031E188 0031B0C8  3C 60 80 51 */	lis r3, msVal__Q32og9newScreen10ObjAnaDemo@ha
@@ -1795,7 +1499,6 @@ lbl_8031E184:
 /* 8031E19C 0031B0DC  C0 03 00 0C */	lfs f0, 0xc(r3)
 /* 8031E1A0 0031B0E0  D0 1E 00 84 */	stfs f0, 0x84(r30)
 /* 8031E1A4 0031B0E4  48 00 05 4C */	b lbl_8031E6F0
-.global lbl_8031E1A8
 lbl_8031E1A8:
 /* 8031E1A8 0031B0E8  C0 5E 00 84 */	lfs f2, 0x84(r30)
 /* 8031E1AC 0031B0EC  C0 22 F8 B0 */	lfs f1, lbl_8051DC10@sda21(r2)
@@ -1846,7 +1549,6 @@ lbl_8031E250:
 /* 8031E250 0031B190  38 00 00 03 */	li r0, 3
 /* 8031E254 0031B194  90 1E 00 40 */	stw r0, 0x40(r30)
 /* 8031E258 0031B198  48 00 04 98 */	b lbl_8031E6F0
-.global lbl_8031E25C
 lbl_8031E25C:
 /* 8031E25C 0031B19C  3C 80 08 00 */	lis r4, 0x08000008@ha
 /* 8031E260 0031B1A0  80 A3 00 1C */	lwz r5, 0x1c(r3)
@@ -2041,7 +1743,6 @@ lbl_8031E4F4:
 /* 8031E510 0031B450  80 6D 97 A8 */	lwz r3, ogSound__2og@sda21(r13)
 /* 8031E514 0031B454  4B FE E6 C1 */	bl setClose__Q22og5SoundFv
 /* 8031E518 0031B458  48 00 01 D8 */	b lbl_8031E6F0
-.global lbl_8031E51C
 lbl_8031E51C:
 /* 8031E51C 0031B45C  80 83 00 1C */	lwz r4, 0x1c(r3)
 /* 8031E520 0031B460  38 60 00 00 */	li r3, 0
@@ -2070,7 +1771,6 @@ lbl_8031E550:
 /* 8031E574 0031B4B4  80 6D 97 A8 */	lwz r3, ogSound__2og@sda21(r13)
 /* 8031E578 0031B4B8  4B FE E6 5D */	bl setClose__Q22og5SoundFv
 /* 8031E57C 0031B4BC  48 00 01 74 */	b lbl_8031E6F0
-.global lbl_8031E580
 lbl_8031E580:
 /* 8031E580 0031B4C0  C0 5E 00 74 */	lfs f2, 0x74(r30)
 /* 8031E584 0031B4C4  C0 02 F8 C0 */	lfs f0, lbl_8051DC20@sda21(r2)
@@ -2145,7 +1845,6 @@ lbl_8031E61C:
 /* 8031E688 0031B5C8  40 81 00 68 */	ble lbl_8031E6F0
 /* 8031E68C 0031B5CC  D0 1E 00 74 */	stfs f0, 0x74(r30)
 /* 8031E690 0031B5D0  48 00 00 60 */	b lbl_8031E6F0
-.global lbl_8031E694
 lbl_8031E694:
 /* 8031E694 0031B5D4  80 8D 9A EC */	lwz r4, sys@sda21(r13)
 /* 8031E698 0031B5D8  3C 60 80 51 */	lis r3, msVal__Q32og9newScreen10ObjAnaDemo@ha
@@ -2170,7 +1869,6 @@ lbl_8031E694:
 /* 8031E6E4 0031B624  3B E0 00 01 */	li r31, 1
 /* 8031E6E8 0031B628  98 03 00 1F */	stb r0, 0x1f(r3)
 /* 8031E6EC 0031B62C  90 1E 00 40 */	stw r0, 0x40(r30)
-.global lbl_8031E6F0
 lbl_8031E6F0:
 /* 8031E6F0 0031B630  80 01 00 24 */	lwz r0, 0x24(r1)
 /* 8031E6F4 0031B634  7F E3 FB 78 */	mr r3, r31

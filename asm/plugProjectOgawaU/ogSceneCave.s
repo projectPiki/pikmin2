@@ -1,17 +1,11 @@
 .include "macros.inc"
 .section .rodata  # 0x804732E0 - 0x8049E220
 .balign 8
-.global lbl_8048EDB8
 lbl_8048EDB8:
-	.4byte 0x63617665
-	.4byte 0x20736372
-	.4byte 0x65656E00
-.global lbl_8048EDC4
+	.asciz "cave screen"
+.balign 4
 lbl_8048EDC4:
-	.4byte 0x7265735F
-	.4byte 0x63617665
-	.4byte 0x2E737A73
-	.4byte 0x00000000
+	.asciz "res_cave.szs"
 
 .section .data, "wa"  # 0x8049E220 - 0x804EFC20
 .balign 8

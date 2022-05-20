@@ -908,6 +908,7 @@ OGAWA:=\
 	$(BUILD_DIR)/asm/plugProjectOgawaU/ogSceneFloor.o\
 	$(BUILD_DIR)/asm/plugProjectOgawaU/ogObjCave.o\
 	$(BUILD_DIR)/asm/plugProjectOgawaU/ogSceneCave.o\
+	$(BUILD_DIR)/src/plugProjectOgawaU/ogObjAnaDemo.o\
 	$(BUILD_DIR)/asm/plugProjectOgawaU/ogObjAnaDemo.o\
 	$(BUILD_DIR)/asm/plugProjectOgawaU/ogSceneAnaDemo.o\
 	$(BUILD_DIR)/asm/plugProjectOgawaU/ogObjChallenge2P.o\

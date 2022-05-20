@@ -1,425 +1,65 @@
 #include "types.h"
+#include "og/newScreen/TitleMsg.h"
 
-/*
-    Generated from dpostproc
+namespace og {
 
-    .section .ctors, "wa"  # 0x80472F00 - 0x804732C0
-    .4byte __sinit_ogObjAnaDemo_cpp
+namespace newScreen {
+// should be static once the file is finished!
+// clang-format off
+CaveTitleMsg CaveTitleMsg [45] = {
+//   id, filler, msg,      fire,  elec,  water, poison, filler
+    {'t_01', 0, '8395_00', false, false, false, false, 0},
+    {'t_02', 0, '8399_00', true , true , false, true , 0},
+    {'t_03', 0, '8400_00', true , true , true , true , 0},
+    {'f_01', 0, '8396_00', true , false, false, false, 0},
+    {'f_02', 0, '8398_00', true , false, false, true , 0},
+    {'f_03', 0, '8401_00', true , true , false, false, 0},
+    {'f_04', 0, '8410_00', false, true , true , true , 0},
+    {'y_01', 0, '8397_00', true , true , false, false, 0},
+    {'y_02', 0, '8402_00', false, true , false, false, 0},
+    {'y_03', 0, '8403_00', true , true , true , true , 0},
+    {'y_04', 0, '8411_00', true , true , true , true , 0},
+    {'l_01', 0, '8412_00', true , true , true , true , 0},
+    {'l_02', 0, '8413_00', true , true , true , true , 0},
+    {'l_03', 0, '8414_00', true , true , true , true , 0},
+    {'c_00', 0, '8395_00', false, false, false, false, 0},
+    {'c_01', 0, '8395_00', false, false, false, false, 0},
+    {'c_02', 0, '8395_00', false, false, false, false, 0},
+    {'c_03', 0, '8395_00', false, false, false, false, 0},
+    {'c_04', 0, '8395_00', false, false, false, false, 0},
+    {'c_05', 0, '8395_00', false, false, false, false, 0},
+    {'c_06', 0, '8395_00', false, false, false, false, 0},
+    {'c_07', 0, '8395_00', false, false, false, false, 0},
+    {'c_08', 0, '8395_00', false, false, false, false, 0},
+    {'c_09', 0, '8395_00', false, false, false, false, 0},
+    {'c_10', 0, '8395_00', false, false, false, false, 0},
+    {'c_11', 0, '8395_00', false, false, false, false, 0},
+    {'c_12', 0, '8395_00', false, false, false, false, 0},
+    {'c_13', 0, '8395_00', false, false, false, false, 0},
+    {'c_14', 0, '8395_00', false, false, false, false, 0},
+    {'c_15', 0, '8395_00', false, false, false, false, 0},
+    {'c_16', 0, '8395_00', false, false, false, false, 0},
+    {'c_17', 0, '8395_00', false, false, false, false, 0},
+    {'c_18', 0, '8395_00', false, false, false, false, 0},
+    {'c_19', 0, '8395_00', false, false, false, false, 0},
+    {'c_20', 0, '8395_00', false, false, false, false, 0},
+    {'c_21', 0, '8395_00', false, false, false, false, 0},
+    {'c_22', 0, '8395_00', false, false, false, false, 0},
+    {'c_23', 0, '8395_00', false, false, false, false, 0},
+    {'c_24', 0, '8395_00', false, false, false, false, 0},
+    {'c_25', 0, '8395_00', false, false, false, false, 0},
+    {'c_26', 0, '8395_00', false, false, false, false, 0},
+    {'c_27', 0, '8395_00', false, false, false, false, 0},
+    {'c_28', 0, '8395_00', false, false, false, false, 0},
+    {'c_29', 0, '8395_00', false, false, false, false, 0},
+    {'END' , 0, 'END'    , false, false, false, false, 0},
+};
+// clang-format on
+} // namespace newScreen
 
-    .section .rodata  # 0x804732E0 - 0x8049E220
-    .global lbl_8048EDD8
-    lbl_8048EDD8:
-        .4byte 0x6F674F62
-        .4byte 0x6A416E61
-        .4byte 0x44656D6F
-        .4byte 0x2E637070
-        .4byte 0x00000000
-        .4byte 0x45525221
-        .4byte 0x20696E20
-        .4byte 0x4F626A41
-        .4byte 0x6E614465
-        .4byte 0x6D6F2043
-        .4byte 0x72656174
-        .4byte 0x658EB894
-        .4byte 0x7381490A
-        .4byte 0x00000000
-        .4byte 0x616E615F
-        .4byte 0x64656D6F
-        .4byte 0x2E626C6F
-        .4byte 0x00000000
-        .4byte 0x7761726E
-        .4byte 0x696E675F
-        .4byte 0x6D655F70
-        .4byte 0x696B692E
-        .4byte 0x626C6F00
-        .4byte 0x696E666F
-        .4byte 0x5F77696E
-        .4byte 0x646F772E
-        .4byte 0x626C6F00
-        .4byte 0x616E615F
-        .4byte 0x64656D6F
-        .4byte 0x2E62746B
-        .4byte 0x00000000
-        .4byte 0x616E615F
-        .4byte 0x64656D6F
-        .4byte 0x5F30322E
-        .4byte 0x62746B00
-        .4byte 0x616E615F
-        .4byte 0x64656D6F
-        .4byte 0x5F30332E
-        .4byte 0x62746B00
-    .global lbl_8048EE74
-    lbl_8048EE74:
-        .4byte 0x82BE82DF
-        .4byte 0x82C582B7
-        .4byte 0x0A000000
-        .4byte 0x73637265
-        .4byte 0x656E4F62
-        .4byte 0x6A2E6800
-        .asciz "P2Assert"
-        .skip 3
+} // namespace og
 
-    .section .data, "wa"  # 0x8049E220 - 0x804EFC20
-    .global CaveTitleMsg__Q22og9newScreen
-    CaveTitleMsg__Q22og9newScreen:
-        .4byte 0x745F3031
-        .4byte 0x00000000
-        .4byte 0x00383339
-        .4byte 0x355F3030
-        .4byte 0x00000000
-        .4byte 0x00000000
-        .4byte 0x745F3032
-        .4byte 0x00000000
-        .4byte 0x00383339
-        .4byte 0x395F3030
-        .4byte 0x01010001
-        .4byte 0x00000000
-        .4byte 0x745F3033
-        .4byte 0x00000000
-        .4byte 0x00383430
-        .4byte 0x305F3030
-        .4byte 0x01010101
-        .4byte 0x00000000
-        .4byte 0x665F3031
-        .4byte 0x00000000
-        .4byte 0x00383339
-        .4byte 0x365F3030
-        .4byte 0x01000000
-        .4byte 0x00000000
-        .4byte 0x665F3032
-        .4byte 0x00000000
-        .4byte 0x00383339
-        .4byte 0x385F3030
-        .4byte 0x01000001
-        .4byte 0x00000000
-        .4byte 0x665F3033
-        .4byte 0x00000000
-        .4byte 0x00383430
-        .4byte 0x315F3030
-        .4byte 0x01010000
-        .4byte 0x00000000
-        .4byte 0x665F3034
-        .4byte 0x00000000
-        .4byte 0x00383431
-        .4byte 0x305F3030
-        .4byte 0x00010101
-        .4byte 0x00000000
-        .4byte 0x795F3031
-        .4byte 0x00000000
-        .4byte 0x00383339
-        .4byte 0x375F3030
-        .4byte 0x01010000
-        .4byte 0x00000000
-        .4byte 0x795F3032
-        .4byte 0x00000000
-        .4byte 0x00383430
-        .4byte 0x325F3030
-        .4byte 0x00010000
-        .4byte 0x00000000
-        .4byte 0x795F3033
-        .4byte 0x00000000
-        .4byte 0x00383430
-        .4byte 0x335F3030
-        .4byte 0x01010101
-        .4byte 0x00000000
-        .4byte 0x795F3034
-        .4byte 0x00000000
-        .4byte 0x00383431
-        .4byte 0x315F3030
-        .4byte 0x01010101
-        .4byte 0x00000000
-        .4byte 0x6C5F3031
-        .4byte 0x00000000
-        .4byte 0x00383431
-        .4byte 0x325F3030
-        .4byte 0x01010101
-        .4byte 0x00000000
-        .4byte 0x6C5F3032
-        .4byte 0x00000000
-        .4byte 0x00383431
-        .4byte 0x335F3030
-        .4byte 0x01010101
-        .4byte 0x00000000
-        .4byte 0x6C5F3033
-        .4byte 0x00000000
-        .4byte 0x00383431
-        .4byte 0x345F3030
-        .4byte 0x01010101
-        .4byte 0x00000000
-        .4byte 0x635F3030
-        .4byte 0x00000000
-        .4byte 0x00383339
-        .4byte 0x355F3030
-        .4byte 0x00000000
-        .4byte 0x00000000
-        .4byte 0x635F3031
-        .4byte 0x00000000
-        .4byte 0x00383339
-        .4byte 0x355F3030
-        .4byte 0x00000000
-        .4byte 0x00000000
-        .4byte 0x635F3032
-        .4byte 0x00000000
-        .4byte 0x00383339
-        .4byte 0x355F3030
-        .4byte 0x00000000
-        .4byte 0x00000000
-        .4byte 0x635F3033
-        .4byte 0x00000000
-        .4byte 0x00383339
-        .4byte 0x355F3030
-        .4byte 0x00000000
-        .4byte 0x00000000
-        .4byte 0x635F3034
-        .4byte 0x00000000
-        .4byte 0x00383339
-        .4byte 0x355F3030
-        .4byte 0x00000000
-        .4byte 0x00000000
-        .4byte 0x635F3035
-        .4byte 0x00000000
-        .4byte 0x00383339
-        .4byte 0x355F3030
-        .4byte 0x00000000
-        .4byte 0x00000000
-        .4byte 0x635F3036
-        .4byte 0x00000000
-        .4byte 0x00383339
-        .4byte 0x355F3030
-        .4byte 0x00000000
-        .4byte 0x00000000
-        .4byte 0x635F3037
-        .4byte 0x00000000
-        .4byte 0x00383339
-        .4byte 0x355F3030
-        .4byte 0x00000000
-        .4byte 0x00000000
-        .4byte 0x635F3038
-        .4byte 0x00000000
-        .4byte 0x00383339
-        .4byte 0x355F3030
-        .4byte 0x00000000
-        .4byte 0x00000000
-        .4byte 0x635F3039
-        .4byte 0x00000000
-        .4byte 0x00383339
-        .4byte 0x355F3030
-        .4byte 0x00000000
-        .4byte 0x00000000
-        .4byte 0x635F3130
-        .4byte 0x00000000
-        .4byte 0x00383339
-        .4byte 0x355F3030
-        .4byte 0x00000000
-        .4byte 0x00000000
-        .4byte 0x635F3131
-        .4byte 0x00000000
-        .4byte 0x00383339
-        .4byte 0x355F3030
-        .4byte 0x00000000
-        .4byte 0x00000000
-        .4byte 0x635F3132
-        .4byte 0x00000000
-        .4byte 0x00383339
-        .4byte 0x355F3030
-        .4byte 0x00000000
-        .4byte 0x00000000
-        .4byte 0x635F3133
-        .4byte 0x00000000
-        .4byte 0x00383339
-        .4byte 0x355F3030
-        .4byte 0x00000000
-        .4byte 0x00000000
-        .4byte 0x635F3134
-        .4byte 0x00000000
-        .4byte 0x00383339
-        .4byte 0x355F3030
-        .4byte 0x00000000
-        .4byte 0x00000000
-        .4byte 0x635F3135
-        .4byte 0x00000000
-        .4byte 0x00383339
-        .4byte 0x355F3030
-        .4byte 0x00000000
-        .4byte 0x00000000
-        .4byte 0x635F3136
-        .4byte 0x00000000
-        .4byte 0x00383339
-        .4byte 0x355F3030
-        .4byte 0x00000000
-        .4byte 0x00000000
-        .4byte 0x635F3137
-        .4byte 0x00000000
-        .4byte 0x00383339
-        .4byte 0x355F3030
-        .4byte 0x00000000
-        .4byte 0x00000000
-        .4byte 0x635F3138
-        .4byte 0x00000000
-        .4byte 0x00383339
-        .4byte 0x355F3030
-        .4byte 0x00000000
-        .4byte 0x00000000
-        .4byte 0x635F3139
-        .4byte 0x00000000
-        .4byte 0x00383339
-        .4byte 0x355F3030
-        .4byte 0x00000000
-        .4byte 0x00000000
-        .4byte 0x635F3230
-        .4byte 0x00000000
-        .4byte 0x00383339
-        .4byte 0x355F3030
-        .4byte 0x00000000
-        .4byte 0x00000000
-        .4byte 0x635F3231
-        .4byte 0x00000000
-        .4byte 0x00383339
-        .4byte 0x355F3030
-        .4byte 0x00000000
-        .4byte 0x00000000
-        .4byte 0x635F3232
-        .4byte 0x00000000
-        .4byte 0x00383339
-        .4byte 0x355F3030
-        .4byte 0x00000000
-        .4byte 0x00000000
-        .4byte 0x635F3233
-        .4byte 0x00000000
-        .4byte 0x00383339
-        .4byte 0x355F3030
-        .4byte 0x00000000
-        .4byte 0x00000000
-        .4byte 0x635F3234
-        .4byte 0x00000000
-        .4byte 0x00383339
-        .4byte 0x355F3030
-        .4byte 0x00000000
-        .4byte 0x00000000
-        .4byte 0x635F3235
-        .4byte 0x00000000
-        .4byte 0x00383339
-        .4byte 0x355F3030
-        .4byte 0x00000000
-        .4byte 0x00000000
-        .4byte 0x635F3236
-        .4byte 0x00000000
-        .4byte 0x00383339
-        .4byte 0x355F3030
-        .4byte 0x00000000
-        .4byte 0x00000000
-        .4byte 0x635F3237
-        .4byte 0x00000000
-        .4byte 0x00383339
-        .4byte 0x355F3030
-        .4byte 0x00000000
-        .4byte 0x00000000
-        .4byte 0x635F3238
-        .4byte 0x00000000
-        .4byte 0x00383339
-        .4byte 0x355F3030
-        .4byte 0x00000000
-        .4byte 0x00000000
-        .4byte 0x635F3239
-        .4byte 0x00000000
-        .4byte 0x00383339
-        .4byte 0x355F3030
-        .4byte 0x00000000
-        .4byte 0x00000000
-        .4byte 0x00454E44
-        .4byte 0x00000000
-        .4byte 0x00000000
-        .4byte 0x00454E44
-        .4byte 0x00000000
-        .4byte 0x00000000
-    .global lbl_804D93D8
-    lbl_804D93D8:
-        .4byte lbl_8031E6F0
-        .4byte lbl_8031E184
-        .4byte lbl_8031E1A8
-        .4byte lbl_8031E25C
-        .4byte lbl_8031E694
-        .4byte lbl_8031E580
-        .4byte lbl_8031E51C
-    .global __vt__Q32og9newScreen10ObjAnaDemo
-    __vt__Q32og9newScreen10ObjAnaDemo:
-        .4byte 0
-        .4byte 0
-        .4byte __dt__Q32og9newScreen10ObjAnaDemoFv
-        .4byte getChildCount__5CNodeFv
-        .4byte 0
-        .4byte 0
-        .4byte "@24@__dt__Q32og9newScreen10ObjAnaDemoFv"
-        .4byte update__Q26Screen7ObjBaseFv
-        .4byte draw__Q26Screen7ObjBaseFR8Graphics
-        .4byte start__Q26Screen7ObjBaseFPCQ26Screen13StartSceneArg
-        .4byte end__Q26Screen7ObjBaseFPCQ26Screen11EndSceneArg
-        .4byte setOwner__Q26Screen7ObjBaseFPQ26Screen9SceneBase
-        .4byte getOwner__Q26Screen7ObjBaseCFv
-        .4byte create__Q26Screen7ObjBaseFP10JKRArchive
-        .4byte confirmSetScene__Q26Screen7ObjBaseFRQ26Screen11SetSceneArg
-        .4byte confirmStartScene__Q26Screen7ObjBaseFPQ26Screen13StartSceneArg
-        .4byte confirmEndScene__Q26Screen7ObjBaseFPQ26Screen11EndSceneArg
-        .4byte doStart__Q32og9newScreen10ObjAnaDemoFPCQ26Screen13StartSceneArg
-        .4byte doEnd__Q32og9newScreen10ObjAnaDemoFPCQ26Screen11EndSceneArg
-        .4byte doCreate__Q32og9newScreen10ObjAnaDemoFP10JKRArchive
-        .4byte doUpdateFadein__Q32og9newScreen10ObjAnaDemoFv
-        .4byte doUpdateFadeinFinish__Q32og9newScreen10ObjAnaDemoFv
-        .4byte doUpdate__Q32og9newScreen10ObjAnaDemoFv
-        .4byte doUpdateFinish__Q32og9newScreen10ObjAnaDemoFv
-        .4byte doUpdateFadeout__Q32og9newScreen10ObjAnaDemoFv
-        .4byte doUpdateFadeoutFinish__Q32og9newScreen10ObjAnaDemoFv
-        .4byte doDraw__Q32og9newScreen10ObjAnaDemoFR8Graphics
-        .4byte doConfirmSetScene__Q26Screen7ObjBaseFRQ26Screen11SetSceneArg
-        .4byte doConfirmStartScene__Q26Screen7ObjBaseFPQ26Screen13StartSceneArg
-        .4byte doConfirmEndScene__Q26Screen7ObjBaseFRPQ26Screen11EndSceneArg
-        .4byte 0
-
-    .section .bss  # 0x804EFC20 - 0x8051467C
-    .global msVal__Q32og9newScreen10ObjAnaDemo
-    msVal__Q32og9newScreen10ObjAnaDemo:
-        .skip 0x10
-
-    .section .sdata2, "a"     # 0x80516360 - 0x80520E40
-    .global lbl_8051DC10
-    lbl_8051DC10:
-        .4byte 0x00000000
-    .global lbl_8051DC14
-    lbl_8051DC14:
-        .float 0.5
-    .global lbl_8051DC18
-    lbl_8051DC18:
-        .4byte 0x3F19999A
-    .global lbl_8051DC1C
-    lbl_8051DC1C:
-        .float 0.7
-    .global lbl_8051DC20
-    lbl_8051DC20:
-        .float 1.0
-    .global lbl_8051DC24
-    lbl_8051DC24:
-        .float 0.1
-    .global lbl_8051DC28
-    lbl_8051DC28:
-        .4byte 0x41F00000
-    .global lbl_8051DC2C
-    lbl_8051DC2C:
-        .4byte 0xC4480000
-    .global lbl_8051DC30
-    lbl_8051DC30:
-        .4byte 0x43300000
-        .4byte 0x00000000
-    .global lbl_8051DC38
-    lbl_8051DC38:
-        .4byte 0x44480000
-    .global lbl_8051DC3C
-    lbl_8051DC3C:
-        .float 0.3
-    .global lbl_8051DC40
-    lbl_8051DC40:
-        .4byte 0x423C0000
-        .4byte 0x00000000
-*/
+#if 0
 
 namespace og {
 
@@ -2672,3 +2312,4 @@ void __sinit_ogObjAnaDemo_cpp(void)
 	b        __dt__Q32og9newScreen10ObjAnaDemoFv
 	*/
 }
+#endif
