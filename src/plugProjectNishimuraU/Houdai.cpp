@@ -639,6 +639,8 @@
         .4byte 0x3EB33333
 */
 
+#include "Game/Entities/Houdai.h"
+
 namespace Game {
 
 /*
@@ -646,8 +648,9 @@ namespace Game {
  * Address:	802BFCB0
  * Size:	000024
  */
-void Houdai::HoudaiGroundCallBack::invokeOnGround(int, Game::WaterBox*)
+void Houdai::HoudaiGroundCallBack::invokeOnGround(int idx, Game::WaterBox* water)
 {
+	m_parent->createOnGroundEffect(idx, water);
 	/*
 	stwu     r1, -0x10(r1)
 	mflr     r0
@@ -666,8 +669,9 @@ void Houdai::HoudaiGroundCallBack::invokeOnGround(int, Game::WaterBox*)
  * Address:	802BFCD4
  * Size:	000024
  */
-void Houdai::HoudaiGroundCallBack::invokeOffGround(int, Game::WaterBox*)
+void Houdai::HoudaiGroundCallBack::invokeOffGround(int idx, WaterBox* water)
 {
+	m_parent->createOffGroundEffect(idx, water);
 	/*
 	stwu     r1, -0x10(r1)
 	mflr     r0
@@ -794,7 +798,7 @@ lbl_802BFE14:
  * Address:	802BFE64
  * Size:	000004
  */
-void Houdai::Obj::setInitialSetting(Game::EnemyInitialParamBase*) { }
+void Houdai::Obj::setInitialSetting(EnemyInitialParamBase*) { }
 
 /*
  * --INFO--
@@ -803,6 +807,18 @@ void Houdai::Obj::setInitialSetting(Game::EnemyInitialParamBase*) { }
  */
 void Houdai::Obj::onInit(Game::CreatureInitArg*)
 {
+	// TODO: Finish
+	onInit();
+	hardConstraintOn();
+	setupIKSystem();
+	setupShadowSystem();
+	setTargetPattern();
+	setupShotgun();
+	setupCollision();
+	setupEffect();
+	startSteamEffect();
+	resetBossAppearBGM();
+	shadowMgr->delShadow(this);
 	/*
 	stwu     r1, -0x10(r1)
 	mflr     r0
@@ -893,8 +909,12 @@ void Houdai::Obj::onInit(Game::CreatureInitArg*)
  * Address:	802BFFAC
  * Size:	000054
  */
-void Houdai::Obj::onKill(Game::CreatureKillArg*)
+void Houdai::Obj::onKill(Game::CreatureKillArg* arg)
 {
+	finishSteamEffect();
+	finishChimneyEffect();
+	forceFinishShotGun();
+	onKill(arg);
 	/*
 	stwu     r1, -0x10(r1)
 	mflr     r0
