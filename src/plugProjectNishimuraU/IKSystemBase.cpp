@@ -1,4 +1,5 @@
-#include "types.h"
+#include "Game/IKSystemBase.h"
+#include "Game/MapMgr.h"
 
 /*
     Generated from dpostproc
@@ -45,7 +46,6 @@
 */
 
 namespace Game {
-
 /*
  * --INFO--
  * Address:	802A9E5C
@@ -53,6 +53,15 @@ namespace Game {
  */
 IKSystemBase::IKSystemBase()
 {
+	m_enabled     = false;
+	_03           = true;
+	m_onGround    = true;
+	m_scaleJoints = false;
+
+	m_bendRatio = 0.0f;
+	m_moveRatio = 0.0f;
+
+	m_parameters = nullptr;
 	/*
 	stwu     r1, -0x10(r1)
 	mflr     r0
@@ -92,6 +101,17 @@ IKSystemBase::IKSystemBase()
  */
 void IKSystemBase::init()
 {
+	m_enabled     = false;
+	_03           = true;
+	m_onGround    = true;
+	m_scaleJoints = false;
+
+	m_bendRatio = 0.0f;
+	m_moveRatio = 0.0f;
+	m_timer     = 0.0f;
+
+	m_parameters = nullptr;
+
 	/*
 	li       r4, 0
 	li       r0, 1
@@ -113,8 +133,9 @@ void IKSystemBase::init()
  * Address:	802A9EFC
  * Size:	000010
  */
-void IKSystemBase::setLegJointMatrix(int, Matrixf*)
+void IKSystemBase::setLegJointMatrix(int index, Matrixf* joint)
 {
+	m_legJointMatrices[index] = joint;
 	/*
 	slwi     r0, r4, 2
 	add      r3, r3, r0
@@ -128,11 +149,7 @@ void IKSystemBase::setLegJointMatrix(int, Matrixf*)
  * Address:	802A9F0C
  * Size:	000008
  */
-void IKSystemBase::setParameters(Game::IKSystemParms* a1)
-{
-	// Generated from stw r4, 0x58(r3)
-	_58 = a1;
-}
+void IKSystemBase::setParameters(IKSystemParms* params) { m_parameters = params; }
 
 /*
  * --INFO--
@@ -141,6 +158,23 @@ void IKSystemBase::setParameters(Game::IKSystemParms* a1)
  */
 void IKSystemBase::startProgramedIK()
 {
+	m_enabled     = true;
+	m_blendMotion = false;
+	m_scaleJoints = false;
+
+	m_bendRatio = 0.0f;
+	m_moveRatio = 2.0f;
+	m_timer     = 0.0f;
+
+	// TODO!
+
+	m_targetPosition.x = _50.m_matrix.mtxView[0][1];
+	m_targetPosition.y = _50.m_matrix.mtxView[1][1];
+	m_targetPosition.z = _50.m_matrix.mtxView[2][1];
+
+	// m_distance1 = distance(m_legJointMatrices[0].m_matrix.flippedVectorView.z, m_targetPosition);
+	// m_distance2 = distance(m_targetPosition, _50.m_matrix.flippedVectorView.z);
+
 	/*
 	li       r4, 1
 	li       r0, 0
@@ -218,8 +252,32 @@ lbl_802A9FFC:
  * Address:	802AA004
  * Size:	0000F4
  */
-void IKSystemBase::startMovePosition(Vector3f&)
+void IKSystemBase::startMovePosition(Vector3f& pos)
 {
+	m_onGround = false;
+
+	m_bendRatio = 0.0f;
+	m_moveRatio = 0.0f;
+	m_timer     = 0.0f;
+
+	// Set top position directly
+	m_ikPositions[0] = m_targetPosition;
+
+	// Set end position to the floor
+	pos.y            = mapMgr->getMinY(pos);
+	m_ikPositions[2] = pos;
+
+	// Work out the position inbetween using the parameters
+	f32 fc  = m_parameters->_0C;
+	f32 fcn = 1.0f - m_parameters->_0C;
+
+	m_ikPositions[1].x = (fc * m_ikPositions[2].x) + (fcn * m_ikPositions[0].x);
+	m_ikPositions[1].y = (fc * m_ikPositions[2].y) + (fcn * m_ikPositions[0].y);
+	m_ikPositions[1].z = (fc * m_ikPositions[2].z) + (fcn * m_ikPositions[0].z);
+
+	// Apply a vertical offset for the artists to change
+	m_ikPositions[1].y += m_parameters->m_heightOffset;
+
 	/*
 	stwu     r1, -0x10(r1)
 	mflr     r0
@@ -290,33 +348,21 @@ void IKSystemBase::startMovePosition(Vector3f&)
  * Address:	802AA0F8
  * Size:	00000C
  */
-void IKSystemBase::startBlendMotion()
-{
-	// Generated from stb r0, 0x1(r3)
-	_01 = 1;
-}
+void IKSystemBase::startBlendMotion() { m_blendMotion = true; }
 
 /*
  * --INFO--
  * Address:	802AA104
  * Size:	00000C
  */
-void IKSystemBase::finishBlendMotion()
-{
-	// Generated from stb r0, 0x1(r3)
-	_01 = 0;
-}
+void IKSystemBase::finishBlendMotion() { m_blendMotion = false; }
 
 /*
  * --INFO--
  * Address:	802AA110
  * Size:	00000C
  */
-void IKSystemBase::checkJointScaleOn()
-{
-	// Generated from stb r0, 0x4(r3)
-	_04 = 1;
-}
+void IKSystemBase::checkJointScaleOn() { m_scaleJoints = true; }
 
 /*
  * --INFO--
@@ -325,6 +371,20 @@ void IKSystemBase::checkJointScaleOn()
  */
 void IKSystemBase::update()
 {
+	if (!m_enabled) {
+		return;
+	}
+
+	if (!m_onGround) {
+		moveBottomJointPosition();
+		if (m_moveRatio > 1 && onGroundPosition()) {
+			m_onGround = true;
+		}
+	}
+
+	makeBendRatio();
+	_03 = m_onGround;
+
 	/*
 	stwu     r1, -0x10(r1)
 	mflr     r0
