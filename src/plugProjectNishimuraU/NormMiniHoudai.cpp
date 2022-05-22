@@ -1,8 +1,5 @@
 #include "types.h"
-
-/*
-    Generated from dpostproc
-*/
+#include "Game/Entities/MiniHoudai.h"
 
 namespace Game {
 
@@ -12,7 +9,10 @@ namespace Game {
  * Size:	000090
  */
 NormMiniHoudai::Obj::Obj()
+    : MiniHoudai::Obj()
 {
+	// _308[something] ??? WTF is going on here
+	// m_creature =
 	/*
 	stwu     r1, -0x10(r1)
 	mflr     r0

@@ -25,6 +25,12 @@ struct Obj : public MiniHoudai::Obj {
 	Obj();
 };
 } // namespace FixMiniHoudai
+
+namespace NormMiniHoudai {
+struct Obj : public MiniHoudai::Obj {
+	Obj();
+};
+} // namespace NormMiniHoudai
 } // namespace Game
 
 #endif

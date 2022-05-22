@@ -639,7 +639,7 @@ NISHIMURA:=\
 	$(BUILD_DIR)/src/plugProjectNishimuraU/RandMapChecker.o\
 	$(BUILD_DIR)/asm/plugProjectNishimuraU/RandMapUnit.o\
 	$(BUILD_DIR)/asm/plugProjectNishimuraU/RandEnemyUnit.o\
-	$(BUILD_DIR)/asm/plugProjectNishimuraU/DoorNode.o\
+	$(BUILD_DIR)/src/plugProjectNishimuraU/DoorNode.o\
 	$(BUILD_DIR)/asm/plugProjectNishimuraU/MapUnitGenerator.o\
 	$(BUILD_DIR)/src/plugProjectNishimuraU/MapCreator.o\
 	$(BUILD_DIR)/asm/plugProjectNishimuraU/RandMapScore.o\
