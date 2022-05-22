@@ -891,31 +891,31 @@ govNAN___Q24Game5P2JST:
 	.float 0.0
 .global mCategoryArray__Q28Morimura10TItemZukan
 mCategoryArray__Q28Morimura10TItemZukan: # treasure id of final category member
-	.4byte 0x00000007
-	.4byte 0x00000010
-	.4byte 0x00000016
-	.4byte 0x0000001B
-	.4byte 0x0000002A
-	.4byte 0x00000033
-	.4byte 0x00000039
-	.4byte 0x0000003F
-	.4byte 0x00000047
-	.4byte 0x0000004F
-	.4byte 0x00000056
-	.4byte 0x0000005E
-	.4byte 0x00000067
-	.4byte 0x0000006D
-	.4byte 0x00000078
-	.4byte 0x0000007E
-	.4byte 0x00000092
-	.4byte 0x0000009C
-	.4byte 0x000000A0
-	.4byte 0x000000A6
-	.4byte 0x000000A8
-	.4byte 0x000000B0
-	.4byte 0x000000B7
-	.4byte 0x000000C4
-	.4byte 0x000000C9
+	.4byte 7	# Succulent Series
+	.4byte 16	# Nature's Candy Series
+	.4byte 22	# Xenoflora Series
+	.4byte 27	# Gourmet Series
+	.4byte 42	# Sweet Tooth Series
+	.4byte 51	# Paleontology Series
+	.4byte 57	# Ancient Secrets Series
+	.4byte 63	# Cook's Arsenal Series
+	.4byte 71	# Tortured Artist Series
+	.4byte 79	# Modern Amenities Series
+	.4byte 86	# Frigid Series
+	.4byte 94	# Hyper-technology Series
+	.4byte 103	# Industrial Set
+	.4byte 109	# Husband's Tears Series
+	.4byte 120	# Space Love Series
+	.4byte 126	# Crystallized Emotion Series
+	.4byte 146	# Dream Series
+	.4byte 156	# Blast from the Past Series
+	.4byte 160	# Mystical Energy Series
+	.4byte 166	# Massive Receptacle Series
+	.4byte 168	# Survival Series
+	.4byte 176	# Ancient Ad Series
+	.4byte 183	# Odd Logo Series
+	.4byte 196	# Explorer's Friend Series
+	.4byte 201	# Titan Dweevil Series
 .global eIDInfo__8Morimura
 eIDInfo__8Morimura:
 	.4byte 0x00000000
@@ -1442,7 +1442,7 @@ mRequestTimerMax__Q28Morimura10TZukanBase:
 .global mIconMove__Q28Morimura10TZukanBase
 mIconMove__Q28Morimura10TZukanBase:
 	.byte 0x1
-	.byte 0x0
+.balign 4
 .global mLineSpace__Q28Morimura10TZukanBase
 mLineSpace__Q28Morimura10TZukanBase:
 	.float 48.0
@@ -1469,15 +1469,13 @@ mCategoryAlphaRate__Q28Morimura10TZukanBase:
 	.float 0.6
 .global mDrawLineType__Q28Morimura10TZukanBase
 mDrawLineType__Q28Morimura10TZukanBase:
-	.4byte 0x02000000
+	.byte 0x2
 
 .section .sbss # 0x80514D80 - 0x80516360
 .balign 8
-.global lbl_80515F70
-lbl_80515F70:
+gu32NAN___Q24Game5P2JST:
 	.skip 0x4
-.global lbl_80515F74
-lbl_80515F74:
+gfNAN___Q24Game5P2JST:
 	.skip 0x4
 .global mShowAllObjects__Q28Morimura10TZukanBase
 mShowAllObjects__Q28Morimura10TZukanBase:
@@ -14904,12 +14902,12 @@ __sinit_zukan2D_cpp: # static initializer
 /* 8037C968 003798A8  9B E3 00 01 */	stb r31, 1(r3)
 /* 8037C96C 003798AC  9B E3 00 02 */	stb r31, 2(r3)
 /* 8037C970 003798B0  99 23 00 03 */	stb r9, 3(r3)
-/* 8037C974 003798B4  93 4D 98 F0 */	stw r26, lbl_80515F70@sda21(r13)
+/* 8037C974 003798B4  93 4D 98 F0 */	stw r26, gu32NAN___Q24Game5P2JST@sda21(r13)
 /* 8037C978 003798B8  D1 5B 00 00 */	stfs f10, 0(r27)
 /* 8037C97C 003798BC  D1 5B 00 04 */	stfs f10, 4(r27)
 /* 8037C980 003798C0  D1 5B 00 08 */	stfs f10, 8(r27)
 /* 8037C984 003798C4  BB 41 00 08 */	lmw r26, 8(r1)
-/* 8037C988 003798C8  D1 4D 98 F4 */	stfs f10, lbl_80515F74@sda21(r13)
+/* 8037C988 003798C8  D1 4D 98 F4 */	stfs f10, gfNAN___Q24Game5P2JST@sda21(r13)
 /* 8037C98C 003798CC  38 21 00 20 */	addi r1, r1, 0x20
 /* 8037C990 003798D0  4E 80 00 20 */	blr 
 
