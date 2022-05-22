@@ -6,10 +6,10 @@
 
 namespace Game {
 struct ObjectLayoutNode : public CNode {
-	virtual int getObjectId();
-	virtual u8 getObjectType();
-	virtual int getBirthCount();
-	virtual double getDirection();
+	virtual int getObjectId()   = 0;
+	virtual u32 getObjectType() = 0;
+	virtual int getBirthCount() = 0;
+	virtual float getDirection();
 	virtual int getBirthDoorIndex();
 	virtual void getBirthPosition(float&, float&);
 	virtual u32 getExtraCode();
@@ -25,9 +25,7 @@ struct ObjectLayoutInfo {
 
 namespace Cave {
 enum CardinalDirection { CD_UP, CD_RIGHT, CD_DOWN, CD_LEFT };
-struct DoorNode {
-	bool isDoorAdjust(DoorNode*);
-};
+struct DoorNode;
 struct UnitInfo {
 	DoorNode* m_doorNode;            // _00
 	struct AdjustNode* m_adjustNode; // _04

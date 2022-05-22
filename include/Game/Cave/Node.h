@@ -1,8 +1,8 @@
 #ifndef _GAME_CAVE_NODE_H
 #define _GAME_CAVE_NODE_H
 
-#include "types.h"
-#include "CNode.h"
+#include "Game/Cave/ObjectLayout.h"
+#include "Game/Cave/Info.h"
 
 namespace Game {
 namespace Cave {
@@ -42,6 +42,26 @@ struct DoorNode : public CNode {
 
 	DoorNode(Door&);
 	bool isDoorAdjust(DoorNode*);
+};
+
+struct GateUnit {
+	GateInfo* m_info; // _00
+};
+
+struct GateNode : public ObjectLayoutNode {
+	GateNode();
+	GateNode(GateUnit* unit, int index, int dir); // for dir, use cardinal direction
+	~GateNode();
+
+	virtual int getObjectId();
+	virtual u32 getObjectType();
+	virtual int getBirthCount();
+	virtual float getDirection();
+	virtual int getBirthDoorIndex();
+
+	GateUnit* m_unit;  // _18
+	f32 m_rotationDir; // _1C
+	s32 m_index;       // _20
 };
 } // namespace Cave
 } // namespace Game
