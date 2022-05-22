@@ -60,7 +60,7 @@ lbl_8047FCF4:
 	.4byte 0x72632E73
 	.4byte 0x7A730000
 	.asciz "P2Assert"
-	.skip 3
+.balign 4
 	.4byte 0x76696577
 	.4byte 0x2E626D64
 	.4byte 0x00000000
@@ -225,12 +225,10 @@ lbl_8047FF64:
 
 .section .data, "wa"  # 0x8049E220 - 0x804EFC20
 .balign 8
-.global lbl_804B5C20
-lbl_804B5C20:
-	.4byte 0x00000000
-	.4byte 0x00000000
-	.4byte 0x00000000
-.global lbl_804B5C2C
+govNAN___Q24Game5P2JST:
+	.float 0.0
+	.float 0.0
+	.float 0.0
 lbl_804B5C2C:
 	.4byte lbl_801B7350
 	.4byte lbl_801B74A8
@@ -572,15 +570,12 @@ __vt__Q24Game8DoorLink:
 	.4byte 0
 	.4byte __dt__Q24Game8DoorLinkFv
 	.4byte getChildCount__5CNodeFv
-	.4byte 0
 
 .section .sbss # 0x80514D80 - 0x80516360
 .balign 8
-.global lbl_80515A78
-lbl_80515A78:
+gu32NAN___Q24Game5P2JST:
 	.skip 0x4
-.global lbl_80515A7C
-lbl_80515A7C:
+gfNAN___Q24Game5P2JST:
 	.skip 0x4
 .global numRoomCulled__Q24Game10RoomMapMgr
 numRoomCulled__Q24Game10RoomMapMgr:
@@ -12570,15 +12565,14 @@ lbl_801C0BE0:
 /* 801C0C9C 001BDBDC  38 21 00 10 */	addi r1, r1, 0x10
 /* 801C0CA0 001BDBE0  4E 80 00 20 */	blr 
 
-.global __sinit_gameMapParts_cpp
-__sinit_gameMapParts_cpp:
+__sinit_gameMapParts_cpp: # static initializer
 /* 801C0CA4 001BDBE4  3C 80 80 51 */	lis r4, __float_nan@ha
 /* 801C0CA8 001BDBE8  38 00 FF FF */	li r0, -1
 /* 801C0CAC 001BDBEC  C0 04 48 B0 */	lfs f0, __float_nan@l(r4)
-/* 801C0CB0 001BDBF0  3C 60 80 4B */	lis r3, lbl_804B5C20@ha
-/* 801C0CB4 001BDBF4  90 0D 93 F8 */	stw r0, lbl_80515A78@sda21(r13)
-/* 801C0CB8 001BDBF8  D4 03 5C 20 */	stfsu f0, lbl_804B5C20@l(r3)
-/* 801C0CBC 001BDBFC  D0 0D 93 FC */	stfs f0, lbl_80515A7C@sda21(r13)
+/* 801C0CB0 001BDBF0  3C 60 80 4B */	lis r3, govNAN___Q24Game5P2JST@ha
+/* 801C0CB4 001BDBF4  90 0D 93 F8 */	stw r0, gu32NAN___Q24Game5P2JST@sda21(r13)
+/* 801C0CB8 001BDBF8  D4 03 5C 20 */	stfsu f0, govNAN___Q24Game5P2JST@l(r3)
+/* 801C0CBC 001BDBFC  D0 0D 93 FC */	stfs f0, gfNAN___Q24Game5P2JST@sda21(r13)
 /* 801C0CC0 001BDC00  D0 03 00 04 */	stfs f0, 4(r3)
 /* 801C0CC4 001BDC04  D0 03 00 08 */	stfs f0, 8(r3)
 /* 801C0CC8 001BDC08  4E 80 00 20 */	blr 

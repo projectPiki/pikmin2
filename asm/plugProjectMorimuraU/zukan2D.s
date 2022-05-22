@@ -5,31 +5,26 @@ lbl_constructor:
 
 .section .rodata  # 0x804732E0 - 0x8049E220
 .balign 8
-.global lbl_80492520
 lbl_80492520:
 	.4byte 0x00000000
 	.4byte 0x00000000
 	.4byte 0x00000000
-.global lbl_8049252C
 lbl_8049252C:
-	.4byte 0x7A756B61
-	.4byte 0x6E32442E
-	.4byte 0x63707000
-.global lbl_80492538
+	.asciz "zukan2D.cpp"
+.balign 4
 lbl_80492538:
 	.asciz "P2Assert"
-	.skip 3
-	.4byte 0x6E657769
-	.4byte 0x636F6E2E
-	.4byte 0x626C6F00
-	.4byte 0x6C5F6274
-	.4byte 0x6E2E6274
-	.4byte 0x69000000
-.global lbl_8049255C
+.balign 4
+lbl_80492544:
+	.asciz "newicon.blo"
+.balign 4
+lbl_80492550:
+	.asciz "l_btn.bti"
+.balign 4
 lbl_8049255C:
-	.4byte 0x6D725574
-	.4byte 0x696C2E68
-	.4byte 0x00000000
+	.asciz "mrUtil.h"
+.balign 8
+lbl_80492568: # table of 10 Tmenu00-Tmenu09 char[8] (7 and 6 are swapped)
 	.4byte 0x00546D65
 	.4byte 0x6E753030
 	.4byte 0x00546D65
@@ -50,18 +45,14 @@ lbl_8049255C:
 	.4byte 0x6E753038
 	.4byte 0x00546D65
 	.4byte 0x6E753039
-	.4byte 0x506E3030
-	.4byte 0x5F305F31
-	.4byte 0x506E3030
-	.4byte 0x5F315F31
-	.4byte 0x506E3030
-	.4byte 0x5F325F31
-	.4byte 0x506E3030
-	.4byte 0x5F305F32
-	.4byte 0x506E3030
-	.4byte 0x5F315F32
-	.4byte 0x506E3030
-	.4byte 0x5F325F32
+.balign 8
+lbl_804925B8: # table of 120 ID64 (char[8]) elements
+	.ascii "Pn00_0_1"
+	.ascii "Pn00_1_1"
+	.ascii "Pn00_2_1"
+	.ascii "Pn00_0_2"
+	.ascii "Pn00_1_2"
+	.ascii "Pn00_2_2"
 	.4byte 0x50696D30
 	.4byte 0x305F3030
 	.4byte 0x50696D30
@@ -294,7 +285,6 @@ lbl_8049255C:
 	.4byte 0x34385F67
 	.4byte 0x72612E62
 	.4byte 0x74690000
-.global lbl_80492988
 lbl_80492988:
 	.4byte 0x74696D67
 	.4byte 0x2F666C6F
@@ -302,7 +292,6 @@ lbl_80492988:
 	.4byte 0x69636F6E
 	.4byte 0x2E627469
 	.4byte 0x00000000
-.global lbl_804929A0
 lbl_804929A0:
 	.4byte 0x656E656D
 	.4byte 0x795A756B
@@ -14907,8 +14896,7 @@ getCategoryColorId__Q28Morimura10TZukanBaseFi:
 /* 8037C858 00379798  38 60 00 00 */	li r3, 0
 /* 8037C85C 0037979C  4E 80 00 20 */	blr 
 
-.global __sinit_zukan2D_cpp
-__sinit_zukan2D_cpp:
+__sinit_zukan2D_cpp: # static initializer
 /* 8037C860 003797A0  94 21 FF E0 */	stwu r1, -0x20(r1)
 /* 8037C864 003797A4  3C 60 80 51 */	lis r3, __float_nan@ha
 /* 8037C868 003797A8  39 43 48 B0 */	addi r10, r3, __float_nan@l

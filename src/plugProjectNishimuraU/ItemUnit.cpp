@@ -92,11 +92,4 @@ void Cave::ItemNode::getBirthPosition(float& x, float& z)
  * Size:	000008
  */
 f32 Cave::ItemNode::getDirection() { return m_direction; }
-
-/*
- * --INFO--
- * Address:	8024E31C
- * Size:	000070
- */
-Cave::ItemNode::~ItemNode() { }
 } // namespace Game

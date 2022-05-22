@@ -97,12 +97,5 @@ bool DoorNode::isDoorAdjust(DoorNode* other)
 
 	return false;
 }
-
-/*
- * --INFO--
- * Address:	8024BA4C
- * Size:	000060
- */
-DoorNode::~DoorNode() { }
 } // namespace Cave
 } // namespace Game

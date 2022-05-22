@@ -67,11 +67,4 @@ float Cave::GateNode::getDirection() { return m_direction; }
  * Size:	000008
  */
 int Cave::GateNode::getBirthDoorIndex() { return m_index; }
-
-/*
- * --INFO--
- * Address:	8024FE00
- * Size:	000070
- */
-Cave::GateNode::~GateNode() { }
 } // namespace Game

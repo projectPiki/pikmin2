@@ -34,7 +34,7 @@ struct DoorNode : public CNode {
 	Door m_node; // _18
 
 	DoorNode();
-	~DoorNode();
+	~DoorNode() {};
 
 	inline void reset()
 	{
@@ -53,7 +53,7 @@ struct GateUnit {
 struct GateNode : public ObjectLayoutNode {
 	GateNode();
 	GateNode(GateUnit* unit, int index, int dir); // for dir, use cardinal direction
-	~GateNode();
+	~GateNode() {};
 
 	virtual int getObjectId();
 	virtual u32 getObjectType();
@@ -73,7 +73,7 @@ struct ItemUnit {
 struct ItemNode : public ObjectLayoutNode {
 	ItemNode();
 	ItemNode(ItemUnit*, BaseGen*, int);
-	~ItemNode();
+	~ItemNode() {};
 
 	void makeGlobalData(MapNode*);
 
