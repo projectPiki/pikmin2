@@ -1,5 +1,6 @@
 #include "types.h"
 #include "Game/Cave/RandMapUnit.h"
+#include "Game/Cave/Node.h"
 
 namespace Game {
 namespace Cave {
