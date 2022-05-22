@@ -53,6 +53,15 @@ struct RandMapMgr : public CNode {
 	void getStartPosition(Vector3f&, int);
 	void setUnitTexture(int, JUTTexture*);
 };
+
+struct RandMapDraw {
+	RandMapDraw(MapUnitGenerator*);
+
+	void radarMapPartsOpen(Vector3f&);
+	void draw(struct Graphics&, float, float, float);
+
+	MapUnitGenerator* m_generator; // _00
+};
 } // namespace Cave
 } // namespace Game
 

@@ -3,10 +3,32 @@
 
 #include "types.h"
 #include "Game/Cave/ObjectLayout.h"
+#include "Game/Cave/Node.h"
 
 namespace Game {
 namespace Cave {
-struct MapUnitGenerator;
+struct EditMapUnit;
+
+struct MapUnitGenerator {
+	bool m_isFinalFloor;
+	bool m_hasEscapeFountain;
+	bool m_versusMode;
+
+	u32 _04; // _04
+
+	FloorInfo* m_floorInfo;     // _08
+	MapNode* dwordC;            // _0C
+	MapNode* m_mapNodeArr;      // _10
+	EnemyNode* dword14;         // _14
+	EnemyNode* dword18;         // _18
+	EnemyNode* dword1C;         // _1C
+	GateNode* dword20;          // _20
+	ItemNode* dword24;          // _24
+	MapNode* dword28;           // _28
+	MapNode* dword2C;           // _2C
+	EditMapUnit* m_editMapUnit; // _30
+};
+
 struct RandMapChecker {
 	MapNode* m_mapNode; // _00
 

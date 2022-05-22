@@ -15,7 +15,8 @@ extern RandMapMgr* randMapMgr;
  * Size:	0000F0
  * Matches!
  */
-void RoomMapMgr::nishimuraCreateRandomMap(MapUnitInterface* muiArray, int p2, Cave::FloorInfo* floorInfo, bool p4, Cave::EditMapUnit* unit)
+void RoomMapMgr::nishimuraCreateRandomMap(MapUnitInterface* muiArray, int p2, Cave::FloorInfo* floorInfo, bool lastFloor,
+                                          Cave::EditMapUnit* unit)
 {
 	// p2 and p4 could stand to have more descriptive parameter names
 	bool isVersusHiba = false;
@@ -23,7 +24,7 @@ void RoomMapMgr::nishimuraCreateRandomMap(MapUnitInterface* muiArray, int p2, Ca
 		isVersusHiba = true;
 	} // maybe a ternary or inline?
 	Cave::randMapMgr = new Cave::RandMapMgr(isVersusHiba);
-	Cave::randMapMgr->loadResource(muiArray, p2, floorInfo, p4, unit);
+	Cave::randMapMgr->loadResource(muiArray, p2, floorInfo, lastFloor, unit);
 	Cave::randMapMgr->create();
 	int numRooms = Cave::randMapMgr->getNumRooms();
 	for (int roomIndex = 0; roomIndex < numRooms; roomIndex++) {

@@ -1,18 +1,5 @@
-#include "types.h"
-
-/*
-    Generated from dpostproc
-
-    .section .sdata2, "a"     # 0x80516360 - 0x80520E40
-    .global lbl_8051A750
-    lbl_8051A750:
-        .4byte 0x432A0000
-        .4byte 0x00000000
-    .global lbl_8051A758
-    lbl_8051A758:
-        .4byte 0x43300000
-        .4byte 0x80000000
-*/
+#include "Game/Cave/RandMapMgr.h"
+#include "Graphics.h"
 
 namespace Game {
 
@@ -21,13 +8,7 @@ namespace Game {
  * Address:	80245418
  * Size:	000008
  */
-Cave::RandMapDraw::RandMapDraw(Game::Cave::MapUnitGenerator*)
-{
-	/*
-	stw      r4, 0(r3)
-	blr
-	*/
-}
+Cave::RandMapDraw::RandMapDraw(Game::Cave::MapUnitGenerator* generator) { m_generator = generator; }
 
 } // namespace Game
 
@@ -36,8 +17,36 @@ Cave::RandMapDraw::RandMapDraw(Game::Cave::MapUnitGenerator*)
  * Address:	80245420
  * Size:	0001CC
  */
-void radarMapPartsOpen__Q34Game4Cave11RandMapDrawFR10Vector3f(void)
+void Game::Cave::RandMapDraw::radarMapPartsOpen(Vector3f& a1)
 {
+	f32 v1 = a1.x / 170;
+	f32 v2 = a1.z / 170;
+
+	MapUnitGenerator* generator = m_generator;
+	MapNode* node               = generator->dword28;
+	MapNode* node2              = generator->dword2C;
+
+	MapNode* nc = (MapNode*)node->m_child;
+	while (nc) {
+		if (v1 > nc->getNodeOffsetX() && v2 > nc->getNodeOffsetY()) {
+			if (v1 < nc->m_unitInfo->getUnitSizeX() && v2 < nc->m_unitInfo->getUnitSizeY()) {
+				nc->del();
+				node2->add(nc);
+
+				u32 doorCount = nc->getNumDoors();
+				for (int i = 0; i < doorCount; i++) {
+					MapNode* doorNode = nc->m_nodeList[i];
+					if (doorNode == m_generator->dword28 && !doorNode->m_unitInfo->getUnitKind()) {
+						doorNode->del();
+						node2->add(doorNode);
+					}
+				}
+			}
+		}
+
+		nc = (MapNode*)nc->m_next;
+	}
+
 	/*
 	stwu     r1, -0x60(r1)
 	mflr     r0
@@ -176,43 +185,48 @@ namespace Game {
  * Address:	802455EC
  * Size:	000078
  */
-void Cave::RandMapDraw::draw(Graphics&, float, float, float)
+void Cave::RandMapDraw::draw(Graphics& gfx, float x, float y, float z)
 {
-	/*
-	stwu     r1, -0x30(r1)
-	mflr     r0
-	stw      r0, 0x34(r1)
-	stfd     f31, 0x28(r1)
-	fmr      f31, f3
-	stfd     f30, 0x20(r1)
-	fmr      f30, f2
-	stfd     f29, 0x18(r1)
-	fmr      f29, f1
-	stw      r31, 0x14(r1)
-	lwz      r3, 0(r3)
-	lwz      r3, 0x2c(r3)
-	lwz      r31, 0x10(r3)
-	b        lbl_8024563C
+	MapNode* node = m_generator->dword2C;
+	for (MapNode* n = (MapNode*)node->m_child; n; n = (MapNode*)n->m_next) {
+		n->draw(x, y, z);
+	}
+}
+/*
+stwu     r1, -0x30(r1)
+mflr     r0
+stw      r0, 0x34(r1)
+stfd     f31, 0x28(r1)
+fmr      f31, f3
+stfd     f30, 0x20(r1)
+fmr      f30, f2
+stfd     f29, 0x18(r1)
+fmr      f29, f1
+stw      r31, 0x14(r1)
+lwz      r3, 0(r3)
+lwz      r3, 0x2c(r3)
+lwz      r31, 0x10(r3)
+b        lbl_8024563C
 
 lbl_80245624:
-	fmr      f1, f29
-	mr       r3, r31
-	fmr      f2, f30
-	fmr      f3, f31
-	bl       draw__Q34Game4Cave7MapNodeFfff
-	lwz      r31, 4(r31)
+fmr      f1, f29
+mr       r3, r31
+fmr      f2, f30
+fmr      f3, f31
+bl       draw__Q34Game4Cave7MapNodeFfff
+lwz      r31, 4(r31)
 
 lbl_8024563C:
-	cmplwi   r31, 0
-	bne      lbl_80245624
-	lwz      r0, 0x34(r1)
-	lfd      f31, 0x28(r1)
-	lfd      f30, 0x20(r1)
-	lfd      f29, 0x18(r1)
-	lwz      r31, 0x14(r1)
-	mtlr     r0
-	addi     r1, r1, 0x30
-	blr
-	*/
-}
+cmplwi   r31, 0
+bne      lbl_80245624
+lwz      r0, 0x34(r1)
+lfd      f31, 0x28(r1)
+lfd      f30, 0x20(r1)
+lfd      f29, 0x18(r1)
+lwz      r31, 0x14(r1)
+mtlr     r0
+addi     r1, r1, 0x30
+blr
+*/
+//}
 } // namespace Game

@@ -89,6 +89,37 @@ struct ItemNode : public ObjectLayoutNode {
 	f32 m_direction;      // _24
 	Vector3f m_position;  // _28
 };
+
+struct MapNode : public CNode {
+	UnitInfo* m_unitInfo; // _18
+
+	// Types are EnemyNode, GateNode and ItemNode respectively
+	ObjectLayoutNode* m_enemyNode; // _1C
+	ObjectLayoutNode* m_gateNode;  // _20
+	ObjectLayoutNode* m_itemNode;  // _24
+
+	MapNode** m_nodeList; // _28
+	s32 m_xGridOffset;    // _2C
+	s32 m_yGridOffset;    // _30
+	s32 m_enemyScore;     // _34
+	s32 m_nodeScore;      // _38
+	s32 m_vsScore;        // _3C
+
+	int getNodeOffsetX();
+	int getNodeOffsetY();
+	int getNumDoors();
+	int getDoorOffset(int, int&, int&);
+	CardinalDirection getDoorDirect(int);
+	bool isDoorClose(int);
+	DoorNode* getDoorNode(int);
+	void draw(float, float, float);
+
+	Vector3f getBaseGenGlobalPosition(BaseGen*);
+	f32 getBaseGenGlobalDirection(BaseGen*);
+};
+
+struct EnemyNode : public ObjectLayoutNode {
+};
 } // namespace Cave
 } // namespace Game
 
