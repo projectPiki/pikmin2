@@ -400,7 +400,6 @@ lbl_804929A0:
 	.4byte 0x69727573
 	.4byte 0x68692E62
 	.4byte 0x6C6F0000
-.global lbl_80492B4C
 lbl_80492B4C:
 	.4byte 0x70726963
 	.4byte 0x65202825
@@ -771,11 +770,9 @@ lbl_80492B4C:
 	.4byte 0x315F3031
 	.4byte 0x506D6531
 	.4byte 0x315F3032
-.global lbl_80493110
 lbl_80493110:
 	.asciz "endWindow"
-	.skip 2
-.global lbl_8049311C
+.balign 4
 lbl_8049311C:
 	.4byte 0x6974656D
 	.4byte 0x5A756B61
@@ -877,25 +874,23 @@ lbl_8049311C:
 	.4byte 0x25642920
 	.4byte 0x3D202564
 	.4byte 0x0A000000
-.global lbl_804932AC
 lbl_804932AC:
 	.asciz "res_itemZukan.szs"
-	.skip 2
+.balign 4
+lbl_804932C0:
 	.asciz "screenObj.h"
-.global lbl_804932CC
+.balign 4
 lbl_804932CC:
 	.asciz "res_enemyZukan.szs"
-	.skip 1
 
 .section .data, "wa"  # 0x8049E220 - 0x804EFC20
 .balign 8
-.global lbl_804E3928
-lbl_804E3928:
-	.4byte 0x00000000
-	.4byte 0x00000000
-	.4byte 0x00000000
+govNAN___Q24Game5P2JST:
+	.float 0.0
+	.float 0.0
+	.float 0.0
 .global mCategoryArray__Q28Morimura10TItemZukan
-mCategoryArray__Q28Morimura10TItemZukan:
+mCategoryArray__Q28Morimura10TItemZukan: # treasure id of final category member
 	.4byte 0x00000007
 	.4byte 0x00000010
 	.4byte 0x00000016
@@ -1535,179 +1530,122 @@ mDebugHeap__Q28Morimura10TZukanBase:
 
 .section .sdata2, "a"     # 0x80516360 - 0x80520E40
 .balign 8
-.global lbl_8051EB20
 lbl_8051EB20:
 	.4byte 0x00000000
-.global lbl_8051EB24
 lbl_8051EB24:
 	.float 1.0
-.global lbl_8051EB28
 lbl_8051EB28:
 	.4byte 0x3CA3D70A
-.global lbl_8051EB2C
 lbl_8051EB2C:
 	.float 0.5
-.global lbl_8051EB30
 lbl_8051EB30:
 	.float 0.25
-.global lbl_8051EB34
 lbl_8051EB34:
 	.4byte 0xC3960000
-.global lbl_8051EB38
 lbl_8051EB38:
 	.float 0.1
-.global lbl_8051EB3C
 lbl_8051EB3C:
 	.float 0.7
-.global lbl_8051EB40
 lbl_8051EB40:
 	.float 0.3
-.global lbl_8051EB44
 lbl_8051EB44:
 	.4byte 0x40A00000
-.global lbl_8051EB48
 lbl_8051EB48:
 	.4byte 0x40200000
-.global lbl_8051EB4C
 lbl_8051EB4C:
-	.4byte 0x40000000
-.global lbl_8051EB50
+	.float 2.0
 lbl_8051EB50:
 	.4byte 0x3F99999A
-.global lbl_8051EB54
 lbl_8051EB54:
 	.4byte 0x3E4CCCCD
-.global lbl_8051EB58
 lbl_8051EB58:
 	.4byte 0x41C80000
-.global lbl_8051EB5C
 lbl_8051EB5C:
 	.4byte 0x3F666666
-.global lbl_8051EB60
 lbl_8051EB60:
 	.4byte 0x40400000
-.global lbl_8051EB64
 lbl_8051EB64:
-	.4byte 0xBF000000
-.global lbl_8051EB68
+	.float -0.5
 lbl_8051EB68:
-	.4byte 0xBF800000
-.global lbl_8051EB6C
+	.float -1.0
 lbl_8051EB6C:
 	.4byte 0x3EB33333
-.global lbl_8051EB70
 lbl_8051EB70:
 	.4byte 0x437F0000
-.global lbl_8051EB74
 lbl_8051EB74:
 	.4byte 0x3F19999A
-.global lbl_8051EB78
 lbl_8051EB78:
 	.float 0.05
-	.4byte 0x00000000
-.global lbl_8051EB80
+.balign 8
 lbl_8051EB80:
 	.4byte 0x43300000
 	.4byte 0x80000000
-.global lbl_8051EB88
 lbl_8051EB88:
 	.4byte 0x42F00000
 	.4byte 0x00000000
-.global lbl_8051EB90
 lbl_8051EB90:
 	.4byte 0x43300000
 	.4byte 0x00000000
-.global lbl_8051EB98
 lbl_8051EB98:
 	.4byte 0x41200000
-.global lbl_8051EB9C
 lbl_8051EB9C:
 	.4byte 0x41A00000
-.global lbl_8051EBA0
 lbl_8051EBA0:
 	.4byte 0x40C90FDB
-.global lbl_8051EBA4
 lbl_8051EBA4:
 	.4byte 0x3F59999A
-.global lbl_8051EBA8
 lbl_8051EBA8:
 	.4byte 0xC3A2F983
-.global lbl_8051EBAC
 lbl_8051EBAC:
 	.4byte 0x43A2F983
-.global lbl_8051EBB0
 lbl_8051EBB0:
 	.4byte 0x42780000
-.global lbl_8051EBB4
 lbl_8051EBB4:
 	.4byte 0x47000000
-.global lbl_8051EBB8
 lbl_8051EBB8:
 	.4byte 0x3F8CCCCD
-.global lbl_8051EBBC
 lbl_8051EBBC:
 	.4byte 0x3F7D70A4
-.global lbl_8051EBC0
 lbl_8051EBC0:
 	.4byte 0x3FC00000
-.global lbl_8051EBC4
 lbl_8051EBC4:
 	.4byte 0x42480000
-.global lbl_8051EBC8
 lbl_8051EBC8:
 	.4byte 0x447A0000
-.global lbl_8051EBCC
 lbl_8051EBCC:
 	.4byte 0x47C35000
-.global lbl_8051EBD0
 lbl_8051EBD0:
 	.4byte 0x41F00000
-.global lbl_8051EBD4
 lbl_8051EBD4:
 	.4byte 0x3FA00000
-.global lbl_8051EBD8
 lbl_8051EBD8:
 	.4byte 0x43160000
-.global lbl_8051EBDC
 lbl_8051EBDC:
 	.4byte 0x41000000
-.global lbl_8051EBE0
 lbl_8051EBE0:
 	.4byte 0x42400000
-.global lbl_8051EBE4
 lbl_8051EBE4:
 	.4byte 0x41700000
-.global lbl_8051EBE8
 lbl_8051EBE8:
 	.4byte 0x44200000
-.global lbl_8051EBEC
 lbl_8051EBEC:
 	.4byte 0x43F00000
-.global lbl_8051EBF0
 lbl_8051EBF0:
 	.4byte 0x41400000
-.global lbl_8051EBF4
 lbl_8051EBF4:
 	.4byte 0x42C80000
-.global lbl_8051EBF8
 lbl_8051EBF8:
 	.4byte 0x42AC0000
-.global lbl_8051EBFC
 lbl_8051EBFC:
 	.4byte 0x41500000
-.global lbl_8051EC00
 lbl_8051EC00:
 	.float 0.15
-.global lbl_8051EC04
 lbl_8051EC04:
 	.4byte 0xC1480000
-.global lbl_8051EC08
 lbl_8051EC08:
 	.4byte 0xC1F00000
-.global lbl_8051EC0C
 lbl_8051EC0C:
 	.4byte 0x3FA66666
-.global lbl_8051EC10
 lbl_8051EC10:
 	.4byte 0x3F933333
 	.4byte 0x00000000
@@ -14900,7 +14838,7 @@ __sinit_zukan2D_cpp: # static initializer
 /* 8037C860 003797A0  94 21 FF E0 */	stwu r1, -0x20(r1)
 /* 8037C864 003797A4  3C 60 80 51 */	lis r3, __float_nan@ha
 /* 8037C868 003797A8  39 43 48 B0 */	addi r10, r3, __float_nan@l
-/* 8037C86C 003797AC  3C E0 80 4E */	lis r7, lbl_804E3928@ha
+/* 8037C86C 003797AC  3C E0 80 4E */	lis r7, govNAN___Q24Game5P2JST@ha
 /* 8037C870 003797B0  BF 41 00 08 */	stmw r26, 8(r1)
 /* 8037C874 003797B4  3B E0 00 FF */	li r31, 0xff
 /* 8037C878 003797B8  38 8D 99 28 */	addi r4, r13, mCategoryColor1w__Q28Morimura10TZukanBase@sda21
@@ -14910,7 +14848,7 @@ __sinit_zukan2D_cpp: # static initializer
 /* 8037C888 003797C8  39 0D 99 14 */	addi r8, r13, mNewColor1__Q28Morimura10TZukanBase@sda21
 /* 8037C88C 003797CC  38 AD 99 24 */	addi r5, r13, mCategoryColor0b__Q28Morimura10TZukanBase@sda21
 /* 8037C890 003797D0  38 6D 99 2C */	addi r3, r13, mCategoryColor1b__Q28Morimura10TZukanBase@sda21
-/* 8037C894 003797D4  3B 67 39 28 */	addi r27, r7, lbl_804E3928@l
+/* 8037C894 003797D4  3B 67 39 28 */	addi r27, r7, govNAN___Q24Game5P2JST@l
 /* 8037C898 003797D8  C0 22 08 AC */	lfs f1, lbl_8051EC0C@sda21(r2)
 /* 8037C89C 003797DC  3C E0 80 51 */	lis r7, mScrollParm__Q28Morimura10TZukanBase@ha
 /* 8037C8A0 003797E0  39 6D 99 10 */	addi r11, r13, mNewColor0__Q28Morimura10TZukanBase@sda21
