@@ -6,6 +6,8 @@
 
 namespace Game {
 namespace Cave {
+enum NodeType { Item = 1, Gate };
+
 struct Adjust {
 	s32 _00; // _00
 	s32 _04; // _04
@@ -59,9 +61,33 @@ struct GateNode : public ObjectLayoutNode {
 	virtual float getDirection();
 	virtual int getBirthDoorIndex();
 
-	GateUnit* m_unit;  // _18
-	f32 m_rotationDir; // _1C
-	s32 m_index;       // _20
+	GateUnit* m_unit; // _18
+	f32 m_direction;  // _1C
+	s32 m_index;      // _20
+};
+
+struct ItemUnit {
+	ItemInfo* m_info; // _00
+};
+
+struct ItemNode : public ObjectLayoutNode {
+	ItemNode();
+	ItemNode(ItemUnit*, BaseGen*, int);
+	~ItemNode();
+
+	void makeGlobalData(MapNode*);
+
+	virtual int getObjectId();
+	virtual u32 getObjectType();
+	virtual int getBirthCount();
+	virtual float getDirection();
+	virtual void getBirthPosition(float&, float&);
+
+	ItemUnit* m_unit;     // _18
+	BaseGen* m_generator; // _1C
+	u32 m_birthCount;     // _20
+	f32 m_direction;      // _24
+	Vector3f m_position;  // _28
 };
 } // namespace Cave
 } // namespace Game

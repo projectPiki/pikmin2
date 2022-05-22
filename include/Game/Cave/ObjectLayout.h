@@ -3,6 +3,7 @@
 
 #include "types.h"
 #include "CNode.h"
+#include "Vector3.h"
 
 namespace Game {
 struct ObjectLayoutNode : public CNode {
@@ -38,6 +39,8 @@ struct UnitInfo {
 	int getUnitSizeY();
 };
 
+struct BaseGen;
+
 struct MapNode : public CNode {
 	UnitInfo* m_unitInfo; // _18
 
@@ -60,6 +63,9 @@ struct MapNode : public CNode {
 	CardinalDirection getDoorDirect(int);
 	bool isDoorClose(int);
 	DoorNode* getDoorNode(int);
+
+	Vector3f getBaseGenGlobalPosition(BaseGen*);
+	f32 getBaseGenGlobalDirection(BaseGen*);
 };
 
 struct ObjectLayout : public ObjectLayoutInfo {

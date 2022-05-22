@@ -1,6 +1,5 @@
 #include "Game/Cave/Node.h"
 #include "Dolphin/math.h"
-#include "ObjectTypes.h"
 
 namespace Game {
 /*
@@ -10,9 +9,9 @@ namespace Game {
  */
 Cave::GateNode::GateNode()
 {
-	m_unit        = nullptr;
-	m_index       = 0;
-	m_rotationDir = 0.0f;
+	m_unit      = nullptr;
+	m_index     = 0;
+	m_direction = 0.0f;
 }
 
 /*
@@ -22,9 +21,9 @@ Cave::GateNode::GateNode()
  */
 Cave::GateNode::GateNode(Cave::GateUnit* unit, int index, int dir)
 {
-	m_unit        = unit;
-	m_index       = index;
-	m_rotationDir = -HALF_PI * dir;
+	m_unit      = unit;
+	m_index     = index;
+	m_direction = -HALF_PI * dir;
 }
 
 /*
@@ -46,7 +45,7 @@ int Cave::GateNode::getObjectId()
  * Address:	8024FDE0
  * Size:	000008
  */
-u32 Cave::GateNode::getObjectType() { return OBJTYPE_Teki; }
+u32 Cave::GateNode::getObjectType() { return Gate; }
 
 /*
  * --INFO--
@@ -60,7 +59,7 @@ int Cave::GateNode::getBirthCount() { return 1; }
  * Address:	8024FDF0
  * Size:	000008
  */
-float Cave::GateNode::getDirection() { return m_rotationDir; }
+float Cave::GateNode::getDirection() { return m_direction; }
 
 /*
  * --INFO--
