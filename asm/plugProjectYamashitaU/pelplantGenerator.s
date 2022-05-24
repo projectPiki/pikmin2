@@ -1,14 +1,18 @@
 .include "macros.inc"
 .section .rodata  # 0x804732E0 - 0x8049E220
 .balign 8
-.global lbl_8047BE28
-lbl_8047BE28:
+lbl_8047BE28: # Shift-JIS
 	.4byte 0x8379838C
 	.4byte 0x83628367
 	.4byte 0x91900000
+.balign 4
+lbl_8047BE34:
 	.asciz "\t\t# %s \r\n"
-	.skip 2
+.balign 4
+lbl_8047BE40:
 	.asciz "pellet type"
+.balign 4
+lbl_8047BE4C:
 	.asciz "pellet size"
 
 .section .data, "wa"  # 0x8049E220 - 0x804EFC20
@@ -24,14 +28,11 @@ __vt__Q34Game8Pelplant9Generator:
 	.4byte getLatestVersion__Q34Game8Pelplant9GeneratorFv
 	.4byte draw__Q24Game18EnemyGeneratorBaseFR8GraphicsPQ24Game9Generator
 	.4byte getInitialParam__Q34Game8Pelplant9GeneratorFv
-	.4byte 0
 
 .section .sdata2, "a"     # 0x80516360 - 0x80520E40
 .balign 8
-.global lbl_80517F88
 lbl_80517F88:
-	.4byte 0x73697A65
-	.4byte 0x00000000
+	.asciz "size"
 
 .section .text, "ax"  # 0x800056C0 - 0x80472F00
 .global __ct__Q34Game8Pelplant9GeneratorFv
