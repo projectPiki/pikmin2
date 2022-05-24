@@ -5,83 +5,73 @@ lbl_constructor:
 
 .section .rodata  # 0x804732E0 - 0x8049E220
 .balign 8
-.global lbl_804807C8
 lbl_804807C8:
 	.asciz "creatureLOD.cpp"
-.global lbl_804807D8
+.balign 4
 lbl_804807D8:
 	.asciz "P2Assert"
-	.skip 3
+.balign 4
 lbl_804807E4:
 	.4byte lbl_80519758
 	.4byte lbl_80519760
 	.4byte lbl_80519764
-.global lbl_804807F0
+.balign 4
 lbl_804807F0:
 	.asciz "[%s%s %s %s]"
-	.skip 3
 
 .section .data, "wa"  # 0x8049E220 - 0x804EFC20
 .balign 8
-.global lbl_804B8610
-lbl_804B8610:
-	.4byte 0x00000000
-	.4byte 0x00000000
-	.4byte 0x00000000
-	.4byte 0x00000000
+govNAN___Q24Game5P2JST:
+	.float 0.0
+	.float 0.0
+	.float 0.0
 
 .section .sbss # 0x80514D80 - 0x80516360
 .balign 8
-.global lbl_80515AD8
-lbl_80515AD8:
+gu32NAN___Q24Game5P2JST:
 	.skip 0x4
-.global lbl_80515ADC
-lbl_80515ADC:
+gfNAN___Q24Game5P2JST:
 	.skip 0x4
 .global drawInfo__Q24Game5AILOD
 drawInfo__Q24Game5AILOD:
-	.skip 0x8
+	.skip 0x1
 
 .section .sdata2, "a"     # 0x80516360 - 0x80520E40
 .balign 8
-.global lbl_80519750
 lbl_80519750:
 	.float 0.07
-.global lbl_80519754
 lbl_80519754:
 	.float 0.02
-.global lbl_80519758
+.balign 4
 lbl_80519758:
 	.asciz "near"
-	.skip 3
-.global lbl_80519760
+.balign 4
 lbl_80519760:
 	.asciz "mid"
-.global lbl_80519764
+.balign 4
 lbl_80519764:
 	.asciz "far"
-.global lbl_80519768
+.balign 4
 lbl_80519768:
 	.float 1.0
-.global lbl_8051976C
+.balign 4
 lbl_8051976C:
-	.4byte 0x70000000
-.global lbl_80519770
+	.asciz "p"
+.balign 4
 lbl_80519770:
-	.4byte 0x5F000000
-.global lbl_80519774
+	.asciz "_"
+.balign 4
 lbl_80519774:
-	.4byte 0x76000000
-.global lbl_80519778
+	.asciz "v"
+.balign 4
 lbl_80519778:
-	.4byte 0x78000000
-.global lbl_8051977C
+	.asciz "x"
+.balign 4
 lbl_8051977C:
-	.4byte 0x41700000
-.global lbl_80519780
+	.float 15.0
+.balign 4
 lbl_80519780:
-	.4byte 0x3C25663E
-	.4byte 0x00000000
+	.asciz "<%f>"
 
 .section .text, "ax"  # 0x800056C0 - 0x80472F00
 .global __ct__Q24Game9AILODParmFv
@@ -527,15 +517,14 @@ lbl_801D7E1C:
 /* 801D7E34 001D4D74  38 21 00 60 */	addi r1, r1, 0x60
 /* 801D7E38 001D4D78  4E 80 00 20 */	blr 
 
-.global __sinit_creatureLOD_cpp
-__sinit_creatureLOD_cpp:
+__sinit_creatureLOD_cpp: # static initializer
 /* 801D7E3C 001D4D7C  3C 80 80 51 */	lis r4, __float_nan@ha
 /* 801D7E40 001D4D80  38 00 FF FF */	li r0, -1
 /* 801D7E44 001D4D84  C0 04 48 B0 */	lfs f0, __float_nan@l(r4)
-/* 801D7E48 001D4D88  3C 60 80 4C */	lis r3, lbl_804B8610@ha
-/* 801D7E4C 001D4D8C  90 0D 94 58 */	stw r0, lbl_80515AD8@sda21(r13)
-/* 801D7E50 001D4D90  D4 03 86 10 */	stfsu f0, lbl_804B8610@l(r3)
-/* 801D7E54 001D4D94  D0 0D 94 5C */	stfs f0, lbl_80515ADC@sda21(r13)
+/* 801D7E48 001D4D88  3C 60 80 4C */	lis r3, govNAN___Q24Game5P2JST@ha
+/* 801D7E4C 001D4D8C  90 0D 94 58 */	stw r0, gu32NAN___Q24Game5P2JST@sda21(r13)
+/* 801D7E50 001D4D90  D4 03 86 10 */	stfsu f0, govNAN___Q24Game5P2JST@l(r3)
+/* 801D7E54 001D4D94  D0 0D 94 5C */	stfs f0, gfNAN___Q24Game5P2JST@sda21(r13)
 /* 801D7E58 001D4D98  D0 03 00 04 */	stfs f0, 4(r3)
 /* 801D7E5C 001D4D9C  D0 03 00 08 */	stfs f0, 8(r3)
 /* 801D7E60 001D4DA0  4E 80 00 20 */	blr 
