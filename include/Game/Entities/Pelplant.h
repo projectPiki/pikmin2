@@ -15,7 +15,7 @@ struct EnemyGeneratorBase : public CNode {
 	    , m_version('????')
 	{
 	}
-	virtual ~EnemyGeneratorBase();            // _08
+	virtual ~EnemyGeneratorBase() {};         // _08
 	virtual void doWrite(Stream&);            // _10
 	virtual void doRead(Stream&);             // _14
 	virtual u32 getLatestVersion();           // _18
@@ -29,11 +29,12 @@ struct EnemyGeneratorBase : public CNode {
 namespace Pelplant {
 struct Generator : public EnemyGeneratorBase {
 	Generator();
-	virtual ~Generator();           // _08
-	virtual void doWrite(Stream&);  // _10
-	virtual void doRead(Stream&);   // _14
-	virtual u32 getLatestVersion(); // _18
-	virtual u8 getInitialParam();   // _20
+	virtual ~Generator() {};                                   // _08
+	virtual void doWrite(Stream&);                             // _10
+	virtual void doRead(Stream&);                              // _14
+	virtual u32 getLatestVersion() { return '0001'; };         // _18
+	virtual void* getInitialParam() { return &m_pelletType; }; // _20
+	// getInitialParam returns address of first parameter
 
 	// _00 VTBL
 
