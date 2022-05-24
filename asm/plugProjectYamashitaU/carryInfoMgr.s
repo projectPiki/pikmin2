@@ -7,24 +7,23 @@ lbl_constructor:
 .balign 8
 lbl_8047B268:
 	.asciz "carryInfoMgr.cpp"
-	.skip 3
+.balign 4
 lbl_8047B27C:
 	.asciz "Illegal useType %d\n"
+.balign 4
 lbl_8047B290:
 	.asciz "/user/Yamashita/arc/gameTex.szs"
+.balign 4
 lbl_8047B2B0:
 	.asciz "item_0_9.bti"
-	.skip 3
 
 .section .data, "wa"  # 0x8049E220 - 0x804EFC20
 .balign 8
-.global lbl_804AC320
-lbl_804AC320:
-	.4byte 0x00000000
-	.4byte 0x00000000
-	.4byte 0x00000000
-.global "sColorTableNumerator__26@unnamed@carryInfoMgr_cpp@"
-"sColorTableNumerator__26@unnamed@carryInfoMgr_cpp@":
+govNAN___Q24Game5P2JST:
+	.float 0.0
+	.float 0.0
+	.float 0.0
+"sColorTableNumerator__26@unnamed@carryInfoMgr_cpp@": # local object
 	.4byte 0x1E1EFFFF
 	.4byte 0xFF0000FF
 	.4byte 0xEAEA00FF
@@ -32,8 +31,7 @@ lbl_804AC320:
 	.4byte 0xFFFFFFFF
 	.4byte 0x669999FF
 	.4byte 0x66D3D3FF
-.global "sColorTableDenominator__26@unnamed@carryInfoMgr_cpp@"
-"sColorTableDenominator__26@unnamed@carryInfoMgr_cpp@":
+"sColorTableDenominator__26@unnamed@carryInfoMgr_cpp@": # local object
 	.4byte 0x1E1EFFFF
 	.4byte 0xFF0000FF
 	.4byte 0xEAEA00FF
@@ -105,15 +103,13 @@ __vt__13CarryInfoList:
 
 .section .sbss # 0x80514D80 - 0x80516360
 .balign 8
-.global lbl_80515890
-lbl_80515890:
+gu32NAN___Q24Game5P2JST:
 	.skip 0x4
-.global lbl_80515894
-lbl_80515894:
+gfNAN___Q24Game5P2JST:
 	.skip 0x4
 .global carryInfoMgr
 carryInfoMgr:
-	.skip 0x8
+	.skip 0x4
 
 .section .sdata2, "a"     # 0x80516360 - 0x80520E40
 .balign 8
@@ -143,7 +139,7 @@ lbl_80517B8C:
 	.float 10.150001
 lbl_80517B90:
 	.float -7.7000003
-lbl_80517B94:
+lbl_80517B94: # tau
 	.float 6.2831855
 lbl_80517B98:
 	.float 0.03125
@@ -159,10 +155,11 @@ lbl_80517BAC:
 	.float 7.0
 lbl_80517BB0:
 	.float 3.0
-	.skip 4
+.balign 8
 lbl_80517BB8:
 	.4byte 0x43300000
 	.4byte 0x80000000
+.balign 8
 lbl_80517BC0:
 	.4byte 0x43300000
 	.4byte 0x00000000
@@ -180,9 +177,10 @@ lbl_80517BDC:
 	.float 25.0
 lbl_80517BE0:
 	.float 1.5
+.balign 4
 lbl_80517BE4:
 	.asciz ""
-	.skip 3
+.balign 4
 lbl_80517BE8:
 	.float 50.0
 
@@ -2242,15 +2240,14 @@ lbl_8011CCA8:
 /* 8011CCA8 00119BE8  90 83 00 20 */	stw r4, 0x20(r3)
 /* 8011CCAC 00119BEC  4E 80 00 20 */	blr 
 
-.global __sinit_carryInfoMgr_cpp
-__sinit_carryInfoMgr_cpp:
+__sinit_carryInfoMgr_cpp: # static initializer
 /* 8011CCB0 00119BF0  3C 80 80 51 */	lis r4, __float_nan@ha
 /* 8011CCB4 00119BF4  38 00 FF FF */	li r0, -1
 /* 8011CCB8 00119BF8  C0 04 48 B0 */	lfs f0, __float_nan@l(r4)
-/* 8011CCBC 00119BFC  3C 60 80 4B */	lis r3, lbl_804AC320@ha
-/* 8011CCC0 00119C00  90 0D 92 10 */	stw r0, lbl_80515890@sda21(r13)
-/* 8011CCC4 00119C04  D4 03 C3 20 */	stfsu f0, lbl_804AC320@l(r3)
-/* 8011CCC8 00119C08  D0 0D 92 14 */	stfs f0, lbl_80515894@sda21(r13)
+/* 8011CCBC 00119BFC  3C 60 80 4B */	lis r3, govNAN___Q24Game5P2JST@ha
+/* 8011CCC0 00119C00  90 0D 92 10 */	stw r0, gu32NAN___Q24Game5P2JST@sda21(r13)
+/* 8011CCC4 00119C04  D4 03 C3 20 */	stfsu f0, govNAN___Q24Game5P2JST@l(r3)
+/* 8011CCC8 00119C08  D0 0D 92 14 */	stfs f0, gfNAN___Q24Game5P2JST@sda21(r13)
 /* 8011CCCC 00119C0C  D0 03 00 04 */	stfs f0, 4(r3)
 /* 8011CCD0 00119C10  D0 03 00 08 */	stfs f0, 8(r3)
 /* 8011CCD4 00119C14  4E 80 00 20 */	blr 

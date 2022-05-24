@@ -5,34 +5,29 @@ lbl_constructor:
 
 .section .rodata  # 0x804732E0 - 0x8049E220
 .balign 8
-.global lbl_8047B718
 lbl_8047B718:
 	.4byte 0x945F8D6B
 	.4byte 0x837D836C
 	.4byte 0x815B8357
 	.4byte 0x83830000
-.global lbl_8047B728
 lbl_8047B728:
 	.4byte 0x945F8D6B
 	.4byte 0x837C8343
 	.4byte 0x83938367
 	.4byte 0x00000000
-.global lbl_8047B738
 lbl_8047B738:
 	.4byte 0x4661726D
 	.4byte 0x4D677220
 	.4byte 0x5265736F
 	.4byte 0x75726365
 	.4byte 0x00000000
-	.4byte 0x00000000
 
 .section .data, "wa"  # 0x8049E220 - 0x804EFC20
 .balign 8
-.global lbl_804AD9B8
-lbl_804AD9B8:
-	.4byte 0x00000000
-	.4byte 0x00000000
-	.4byte 0x00000000
+govNAN___Q24Game5P2JST:
+	.float 0.0
+	.float 0.0
+	.float 0.0
 .global __vt__Q34Game4Farm7FarmMgr
 __vt__Q34Game4Farm7FarmMgr:
 	.4byte 0
@@ -55,23 +50,18 @@ __vt__Q34Game4Farm7FarmMgr:
 	.4byte getChildCount__5CNodeFv
 	.4byte doDebugDraw__Q34Game4Farm7FarmMgrFR8Graphics
 	.4byte __dt__Q34Game4Farm7FarmMgrFv
-	.4byte 0
 
 .section .sbss # 0x80514D80 - 0x80516360
 .balign 8
-.global lbl_805158A8
-lbl_805158A8:
+gu32NAN___Q24Game5P2JST:
 	.skip 0x4
-.global lbl_805158AC
-lbl_805158AC:
+gfNAN___Q24Game5P2JST:
 	.skip 0x4
 
 .section .sdata2, "a"     # 0x80516360 - 0x80520E40
 .balign 8
-.global lbl_80517EA0
 lbl_80517EA0:
-	.4byte 0x00000000
-	.4byte 0x00000000
+	.float 0.0
 
 .section .text, "ax"  # 0x800056C0 - 0x80472F00
 .global __ct__Q34Game4Farm7FarmMgrFUl
@@ -627,15 +617,14 @@ lbl_8012472C:
 /* 80124740 00121680  38 21 00 10 */	addi r1, r1, 0x10
 /* 80124744 00121684  4E 80 00 20 */	blr 
 
-.global __sinit_farmMgr_cpp
-__sinit_farmMgr_cpp:
+__sinit_farmMgr_cpp: # static initializer
 /* 80124748 00121688  3C 80 80 51 */	lis r4, __float_nan@ha
 /* 8012474C 0012168C  38 00 FF FF */	li r0, -1
 /* 80124750 00121690  C0 04 48 B0 */	lfs f0, __float_nan@l(r4)
-/* 80124754 00121694  3C 60 80 4B */	lis r3, lbl_804AD9B8@ha
-/* 80124758 00121698  90 0D 92 28 */	stw r0, lbl_805158A8@sda21(r13)
-/* 8012475C 0012169C  D4 03 D9 B8 */	stfsu f0, lbl_804AD9B8@l(r3)
-/* 80124760 001216A0  D0 0D 92 2C */	stfs f0, lbl_805158AC@sda21(r13)
+/* 80124754 00121694  3C 60 80 4B */	lis r3, govNAN___Q24Game5P2JST@ha
+/* 80124758 00121698  90 0D 92 28 */	stw r0, gu32NAN___Q24Game5P2JST@sda21(r13)
+/* 8012475C 0012169C  D4 03 D9 B8 */	stfsu f0, govNAN___Q24Game5P2JST@l(r3)
+/* 80124760 001216A0  D0 0D 92 2C */	stfs f0, gfNAN___Q24Game5P2JST@sda21(r13)
 /* 80124764 001216A4  D0 03 00 04 */	stfs f0, 4(r3)
 /* 80124768 001216A8  D0 03 00 08 */	stfs f0, 8(r3)
 /* 8012476C 001216AC  4E 80 00 20 */	blr 

@@ -1,11 +1,9 @@
 .include "macros.inc"
 .section .rodata  # 0x804732E0 - 0x8049E220
 .balign 8
-.global lbl_8047B6C8
 lbl_8047B6C8:
 	.asciz "ObstacleNode"
-	.skip 3
-.global lbl_8047B6D8
+.balign 4
 lbl_8047B6D8:
 	.4byte 0x506C616E
 	.4byte 0x744E6F64
@@ -20,7 +18,6 @@ lbl_8047B6D8:
 	.4byte 0x76747843
 	.4byte 0x6C72416E
 	.4byte 0x6D000000
-.global lbl_8047B70C
 lbl_8047B70C:
 	.4byte 0x43726561
 	.4byte 0x74757265
@@ -49,25 +46,19 @@ __vt__Q34Game4Farm5Plant:
 
 .section .sdata2, "a"     # 0x80516360 - 0x80520E40
 .balign 8
-.global lbl_80517E78
 lbl_80517E78:
 	.4byte 0x00000000
-.global lbl_80517E7C
 lbl_80517E7C:
 	.4byte 0x945F8D6B
 	.4byte 0x00000000
-.global lbl_80517E84
 lbl_80517E84:
 	.4byte 0x6D646C44
 	.4byte 0x61746100
-.global lbl_80517E8C
 lbl_80517E8C:
 	.4byte 0x00000000
-.global lbl_80517E90
 lbl_80517E90:
 	.float 1.0
-	.4byte 0x00000000
-.global lbl_80517E98
+.balign 8
 lbl_80517E98:
 	.4byte 0x43300000
 	.4byte 0x00000000
