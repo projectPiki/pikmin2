@@ -5,21 +5,19 @@ lbl_constructor:
 
 .section .rodata  # 0x804732E0 - 0x8049E220
 .balign 8
-.global lbl_8047B2C0
 lbl_8047B2C0:
 	.4byte 0x00000000
 	.4byte 0x00000000
 	.4byte 0x00000000
+lbl_8047B2CC:
 	.4byte 0x67616D65
 	.4byte 0x4C696768
 	.4byte 0x744D6772
 	.4byte 0x00000000
-.global lbl_8047B2DC
 lbl_8047B2DC:
 	.4byte 0x436F6C6F
 	.4byte 0x72506172
 	.4byte 0x6D730000
-.global lbl_8047B2E8
 lbl_8047B2E8:
 	.4byte 0x8341838B
 	.4byte 0x83748340
@@ -59,14 +57,12 @@ lbl_8047B2E8:
 	.4byte 0x93649394
 	.4byte 0x83698356
 	.4byte 0x00000000
-.global lbl_8047B380
 lbl_8047B380:
 	.4byte 0x67616D65
 	.4byte 0x4C696768
 	.4byte 0x744D6772
 	.4byte 0x2E637070
 	.4byte 0x00000000
-.global lbl_8047B394
 lbl_8047B394:
 	.4byte 0x556E6B6E
 	.4byte 0x6F776E20
@@ -98,7 +94,6 @@ lbl_8047B394:
 	.4byte 0x69676874
 	.4byte 0x2E696E69
 	.4byte 0x00000000
-.global lbl_8047B40C
 lbl_8047B40C:
 	.4byte 0x696C6C65
 	.4byte 0x67616C20
@@ -108,13 +103,11 @@ lbl_8047B40C:
 
 .section .data, "wa"  # 0x8049E220 - 0x804EFC20
 .balign 8
-.global lbl_804AC420
-lbl_804AC420:
-	.4byte 0x00000000
-	.4byte 0x00000000
-	.4byte 0x00000000
-.global "GameLightMgrSettinglabel__Q24Game26@unnamed@gameLightMgr_cpp@"
-"GameLightMgrSettinglabel__Q24Game26@unnamed@gameLightMgr_cpp@":
+govNAN___Q24Game5P2JST:
+	.float 0.0
+	.float 0.0
+	.float 0.0
+"GameLightMgrSettinglabel__Q24Game26@unnamed@gameLightMgr_cpp@": # local object
 	.4byte lbl_80517C00
 	.4byte lbl_80517C04
 	.4byte lbl_80517C08
@@ -205,157 +198,110 @@ __vt__Q24Game20GameLightTimeSetting:
 
 .section .sbss # 0x80514D80 - 0x80516360
 .balign 8
-.global lbl_805158A0
-lbl_805158A0:
+gu32NAN___Q24Game5P2JST:
 	.skip 0x4
-.global lbl_805158A4
-lbl_805158A4:
+gfNAN___Q24Game5P2JST:
 	.skip 0x4
 
 .section .sdata2, "a"     # 0x80516360 - 0x80520E40
 .balign 8
-.global lbl_80517BF0
 lbl_80517BF0:
 	.float 0.5
-.global lbl_80517BF4
 lbl_80517BF4:
 	.4byte 0x00000000
-.global lbl_80517BF8
+.balign 8
 lbl_80517BF8:
 	.4byte 0x43300000
 	.4byte 0x00000000
-.global lbl_80517C00
 lbl_80517C00:
 	.4byte 0x96E90000
-.global lbl_80517C04
 lbl_80517C04:
 	.4byte 0x92A90000
-.global lbl_80517C08
 lbl_80517C08:
 	.4byte 0x928B0000
-.global lbl_80517C0C
 lbl_80517C0C:
 	.4byte 0x975B0000
-.global lbl_80517C10
 lbl_80517C10:
 	.4byte 0x83668382
 	.4byte 0x92860000
-.global lbl_80517C18
 lbl_80517C18:
 	.4byte 0x00000000
-.global lbl_80517C1C
 lbl_80517C1C:
 	.4byte 0x90D40000
-.global lbl_80517C20
 lbl_80517C20:
 	.4byte 0x97CE0000
-.global lbl_80517C24
 lbl_80517C24:
 	.4byte 0x90C20000
-.global lbl_80517C28
 lbl_80517C28:
 	.4byte 0x8A4A8E6E
 	.4byte 0x7A926C00
-.global lbl_80517C30
 lbl_80517C30:
 	.4byte 0x447A0000
-.global lbl_80517C34
 lbl_80517C34:
 	.4byte 0x466A6000
-.global lbl_80517C38
 lbl_80517C38:
 	.4byte 0x8F4997B9
 	.4byte 0x7A926C00
-.global lbl_80517C40
 lbl_80517C40:
 	.4byte 0x469C4000
-.global lbl_80517C44
 lbl_80517C44:
 	.4byte 0x46EA6000
-.global lbl_80517C48
 lbl_80517C48:
 	.4byte 0x41A00000
-.global lbl_80517C4C
 lbl_80517C4C:
 	.4byte 0x43B40000
-.global lbl_80517C50
 lbl_80517C50:
 	.4byte 0x43200000
-.global lbl_80517C54
 lbl_80517C54:
 	.4byte 0x42700000
-.global lbl_80517C58
 lbl_80517C58:
 	.4byte 0x42B40000
-.global lbl_80517C5C
 lbl_80517C5C:
 	.4byte 0x90DD92E8
 	.4byte 0x00000000
-.global lbl_80517C64
 lbl_80517C64:
 	.float 1.0
-.global lbl_80517C68
 lbl_80517C68:
 	.4byte 0x40800000
-.global lbl_80517C6C
 lbl_80517C6C:
 	.4byte 0x3F666666
-.global lbl_80517C70
 lbl_80517C70:
 	.float 0.1
-.global lbl_80517C74
 lbl_80517C74:
 	.4byte 0x40C90FDB
-.global lbl_80517C78
 lbl_80517C78:
 	.float 0.25
-.global lbl_80517C7C
 lbl_80517C7C:
 	.float -1.0
-.global lbl_80517C80
 lbl_80517C80:
 	.4byte 0x40490FDB
-.global lbl_80517C84
 lbl_80517C84:
 	.4byte 0x437F0000
-.global lbl_80517C88
 lbl_80517C88:
 	.4byte 0x42200000
-.global lbl_80517C8C
 lbl_80517C8C:
 	.4byte 0x6E6F5F6E
 	.4byte 0x616D6500
-.global lbl_80517C94
 lbl_80517C94:
 	.4byte 0x3FC00000
-.global lbl_80517C98
 lbl_80517C98:
 	.4byte 0x40000000
-.global lbl_80517C9C
 lbl_80517C9C:
 	.4byte 0x44800000
-.global lbl_80517CA0
 lbl_80517CA0:
 	.4byte 0x43FA0000
-.global lbl_80517CA4
 lbl_80517CA4:
 	.4byte 0x41500000
-.global lbl_80517CA8
 lbl_80517CA8:
 	.4byte 0x40400000
-.global lbl_80517CAC
 lbl_80517CAC:
 	.4byte 0x3FA00000
-.global lbl_80517CB0
 lbl_80517CB0:
 	.4byte 0x3C23D70A
-.global lbl_80517CB4
 lbl_80517CB4:
 	.4byte 0x43340000
-.global lbl_80517CB8
 lbl_80517CB8:
 	.4byte 0x3BB60B61
-.global lbl_80517CBC
 lbl_80517CBC:
 	.4byte 0x3F5F66F3
 
@@ -6183,7 +6129,7 @@ lbl_8012223C:
 /* 80122264 0011F1A4  4E 80 00 20 */	blr 
 
 .global __dt__Q24Game12GameLightMgrFv
-__dt__Q24Game12GameLightMgrFv:
+__dt__Q24Game12GameLightMgrFv: # weak function
 /* 80122268 0011F1A8  94 21 FF E0 */	stwu r1, -0x20(r1)
 /* 8012226C 0011F1AC  7C 08 02 A6 */	mflr r0
 /* 80122270 0011F1B0  90 01 00 24 */	stw r0, 0x24(r1)
@@ -6278,7 +6224,7 @@ lbl_8012239C:
 /* 801223B8 0011F2F8  4E 80 00 20 */	blr 
 
 .global __dt__15AmbientLightObjFv
-__dt__15AmbientLightObjFv:
+__dt__15AmbientLightObjFv: # weak function
 /* 801223BC 0011F2FC  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 801223C0 0011F300  7C 08 02 A6 */	mflr r0
 /* 801223C4 0011F304  90 01 00 14 */	stw r0, 0x14(r1)
@@ -6306,20 +6252,19 @@ lbl_80122400:
 /* 80122418 0011F358  4E 80 00 20 */	blr 
 
 .global "complement<f>__4GameFfff"
-"complement<f>__4GameFfff":
+"complement<f>__4GameFfff": # weak function
 /* 8012241C 0011F35C  EC 02 08 28 */	fsubs f0, f2, f1
 /* 80122420 0011F360  EC 23 08 3A */	fmadds f1, f3, f0, f1
 /* 80122424 0011F364  4E 80 00 20 */	blr 
 
-.global __sinit_gameLightMgr_cpp
-__sinit_gameLightMgr_cpp:
+__sinit_gameLightMgr_cpp: # static initializer
 /* 80122428 0011F368  3C 80 80 51 */	lis r4, __float_nan@ha
 /* 8012242C 0011F36C  38 00 FF FF */	li r0, -1
 /* 80122430 0011F370  C0 04 48 B0 */	lfs f0, __float_nan@l(r4)
-/* 80122434 0011F374  3C 60 80 4B */	lis r3, lbl_804AC420@ha
-/* 80122438 0011F378  90 0D 92 20 */	stw r0, lbl_805158A0@sda21(r13)
-/* 8012243C 0011F37C  D4 03 C4 20 */	stfsu f0, lbl_804AC420@l(r3)
-/* 80122440 0011F380  D0 0D 92 24 */	stfs f0, lbl_805158A4@sda21(r13)
+/* 80122434 0011F374  3C 60 80 4B */	lis r3, govNAN___Q24Game5P2JST@ha
+/* 80122438 0011F378  90 0D 92 20 */	stw r0, gu32NAN___Q24Game5P2JST@sda21(r13)
+/* 8012243C 0011F37C  D4 03 C4 20 */	stfsu f0, govNAN___Q24Game5P2JST@l(r3)
+/* 80122440 0011F380  D0 0D 92 24 */	stfs f0, gfNAN___Q24Game5P2JST@sda21(r13)
 /* 80122444 0011F384  D0 03 00 04 */	stfs f0, 4(r3)
 /* 80122448 0011F388  D0 03 00 08 */	stfs f0, 8(r3)
 /* 8012244C 0011F38C  4E 80 00 20 */	blr 

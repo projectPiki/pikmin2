@@ -482,7 +482,7 @@ YAMASHITA:=\
 	$(BUILD_DIR)/asm/plugProjectYamashitaU/enemyMgrBase.o\
 	$(BUILD_DIR)/asm/plugProjectYamashitaU/enemyFSM.o\
 	$(BUILD_DIR)/asm/plugProjectYamashitaU/singleGS_ZukanParms.o\
-	$(BUILD_DIR)/asm/plugProjectYamashitaU/treasureLightMgr.o\
+	$(BUILD_DIR)/src/plugProjectYamashitaU/treasureLightMgr.o\
 	$(BUILD_DIR)/asm/plugProjectYamashitaU/effectAnimator.o\
 
 KANDO:=\

@@ -15,8 +15,8 @@ enum ELightTypeFlag {
 };
 
 struct AmbientLightObj : public CNode {
-	virtual ~AmbientLightObj(); // _08
-	                            // virtual void getChildCount(); // _10
+	virtual ~AmbientLightObj() {}; // _08
+	                               // virtual void getChildCount(); // _10
 
 	// _00 VTBL
 
@@ -44,8 +44,8 @@ struct LightObj : public CNode {
 
 	u8 m_lightID;              // _18
 	u8 m_typeFlag;             // _19
-	Vector3f m_position;       // _1C
-	Vector3f m_offset;         // _28
+	Vector3f m_rotation;       // _1C
+	Vector3f m_elevation;      // _28
 	Color4 m_color;            // _34
 	f32 m_colorScale;          // _38
 	f32 m_float_3C;            // _3C
@@ -62,7 +62,7 @@ struct LightMgr : public CNode {
 	LightMgr(char*);
 	void registLightObj(LightObj*);
 
-	virtual ~LightMgr(); // _08
+	virtual ~LightMgr() {}; // _08
 	// virtual void getChildCount();        // _0C
 	virtual void update();                 // _10
 	virtual void set(Graphics&);           // _14
@@ -93,8 +93,8 @@ struct Mgr : public LightMgr {
 
 	LightObj* m_lightObj_50; // _50
 	LightObj* m_lightObj_54; // _54
-	f32 m_float_pos;         // _58
-	f32 m_float_offset;      // _5C
+	f32 m_rotation_angle;    // _58
+	f32 m_elevation_angle;   // _5C
 };
 } // namespace TreasureLight
 
