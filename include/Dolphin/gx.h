@@ -351,16 +351,16 @@ typedef enum _GXColorSrc {
 } GXColorSrc;
 
 typedef enum _GXLightID {
-	GX_LIGHT_NULL,
-	GX_LIGHT0,
-	GX_LIGHT1,
-	GX_LIGHT2    = 0x4,
-	GX_LIGHT3    = 0x8,
-	GX_LIGHT4    = 0x10,
-	GX_LIGHT5    = 0x20,
-	GX_LIGHT6    = 0x40,
-	GX_LIGHT7    = 0x80,
-	GX_MAX_LIGHT = 0x100,
+	GX_LIGHT_NULL = 0,
+	GX_LIGHT0     = 1 << 0,
+	GX_LIGHT1     = 1 << 1,
+	GX_LIGHT2     = 1 << 2,
+	GX_LIGHT3     = 1 << 3,
+	GX_LIGHT4     = 1 << 4,
+	GX_LIGHT5     = 1 << 5,
+	GX_LIGHT6     = 1 << 6,
+	GX_LIGHT7     = 1 << 7,
+	GX_MAX_LIGHT  = 1 << 8,
 } GXLightID;
 
 typedef enum _GXDiffuseFn {
