@@ -91,10 +91,10 @@ struct Mgr : public LightMgr {
 
 	// _00 VTBL
 
-	LightObj* m_lightObj_50; // _50
-	LightObj* m_lightObj_54; // _54
-	f32 m_rotation_angle;    // _58
-	f32 m_elevation_angle;   // _5C
+	LightObj* m_lightObj_main;     // _50
+	LightObj* m_lightObj_specular; // _54
+	f32 m_rotation_angle;          // _58
+	f32 m_elevation_angle;         // _5C
 };
 } // namespace TreasureLight
 

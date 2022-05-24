@@ -16,15 +16,15 @@ namespace TreasureLight {
 Mgr::Mgr()
     : LightMgr("お宝ライト")
 {
-	m_rotation_angle           = 300.0f;
-	m_elevation_angle          = 330.0f;
-	m_lightObj_50              = new LightObj("メインライト", GX_LIGHT0, TYPE_2, JUtility::TColor(0xFF, 0xFF, 0xFF, 0xFF));
-	m_lightObj_50->m_spotType  = 3;
-	m_lightObj_50->m_elevation = Vector3f(0.0f, -1.0f, 0.0f);
-	this->registLightObj(m_lightObj_50);
-	m_lightObj_54           = new LightObj("スペキュラ-ライト", GX_LIGHT7, TYPE_4, JUtility::TColor(0xFF, 0xFF, 0xFF, 0xFF));
-	m_lightObj_54->m_kScale = 40.0f;
-	this->registLightObj(m_lightObj_54);
+	m_rotation_angle             = 300.0f;
+	m_elevation_angle            = 330.0f;
+	m_lightObj_main              = new LightObj("メインライト", GX_LIGHT0, TYPE_2, JUtility::TColor(0xFF, 0xFF, 0xFF, 0xFF));
+	m_lightObj_main->m_spotType  = 3;
+	m_lightObj_main->m_elevation = Vector3f(0.0f, -1.0f, 0.0f);
+	this->registLightObj(m_lightObj_main);
+	m_lightObj_specular           = new LightObj("スペキュラ-ライト", GX_LIGHT7, TYPE_4, JUtility::TColor(0xFF, 0xFF, 0xFF, 0xFF));
+	m_lightObj_specular->m_kScale = 40.0f;
+	this->registLightObj(m_lightObj_specular);
 	m_ambientLightColor.r = 0x32;
 	m_ambientLightColor.g = 0x32;
 	m_ambientLightColor.b = 0x32;
@@ -113,11 +113,11 @@ void Mgr::setCommonProc()
 		elevation.y *= 1 / dist;
 		elevation.z *= 1 / dist;
 	}
-	m_lightObj_50->m_rotation  = rotation;
-	m_lightObj_50->m_elevation = elevation;
-	m_lightObj_50->m_float_40  = 0.85f;
-	m_lightObj_54->m_rotation  = rotation;
-	m_lightObj_54->m_elevation = elevation;
+	m_lightObj_main->m_rotation      = rotation;
+	m_lightObj_main->m_elevation     = elevation;
+	m_lightObj_main->m_float_40      = 0.85f;
+	m_lightObj_specular->m_rotation  = rotation;
+	m_lightObj_specular->m_elevation = elevation;
 }
 
 /*
