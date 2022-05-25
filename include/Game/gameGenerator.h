@@ -193,8 +193,6 @@ struct GenObject : public GenBase {
 	virtual void getDebugInfo(char*);                      // _34
 };
 
-void* makeObjectEnemy(void);
-
 struct GenObjectEnemy : public GenObject {
 	GenObjectEnemy();
 	void initialise();
@@ -225,6 +223,8 @@ struct GenObjectEnemy : public GenObject {
 	EnemyGeneratorBase* m_enemyGenerator; // _48
 	u8 m_byte_4C;                         // _4C
 };
+
+GenObjectEnemy* makeObjectEnemy(void);
 
 /**
  * @size{0x10}

@@ -8,76 +8,30 @@ namespace Game {
  * Address:	80124778
  * Size:	00003C
  */
-void* makeObjectEnemy(void)
-{
-	void* new_enemy = new GenObjectEnemy;
-	return new_enemy;
-}
+GenObjectEnemy* makeObjectEnemy(void) { return new GenObjectEnemy; }
 
 /*
  * --INFO--
  * Address:	801247B4
  * Size:	0000D0
+ * Nearly matches; only mismatch is a misordered pair of epilogue instructions.
+ * https://decomp.me/scratch/O7lwP
  */
 GenObjectEnemy::GenObjectEnemy()
     : GenObject('teki', "object type", "“G‚ðƒZƒbƒg")
+    , m_enemyID(EnemyTypeID::EnemyID_Pelplant)
+    , m_spawnType(1)
+    , m_tekiBirthType(0)
+    , m_tekiNum(1)
+    , m_appearRadius(100.0f)
+    , m_direction(0)
+    , m_enemySize(0)
+    , m_otakaraItemCode(0)
+    , m_enemyGenerator(nullptr)
+    , m_byte_4C(0)
 {
-	/*
-	stwu     r1, -0x10(r1)
-	mflr     r0
-	stw      r0, 0x14(r1)
-	extsh.   r0, r4
-	stw      r31, 0xc(r1)
-	mr       r31, r3
-	beq      lbl_801247D8
-	addi     r0, r31, 0x4d
-	stw      r0, 0(r31)
-
-lbl_801247D8:
-	lis      r4, lbl_8047B75C@ha
-	lis      r3, lbl_8047B768@ha
-	addi     r6, r4, lbl_8047B75C@l
-	lis      r4, 0x74656B69@ha
-	addi     r7, r3, lbl_8047B768@l
-	addi     r5, r4, 0x74656B69@l
-	mr       r3, r31
-	li       r4, 0
-	bl       __ct__Q24Game7GenBaseFUlPcPc
-	lis      r4, __vt__Q24Game9GenObject@ha
-	lis      r3, __vt__Q24Game14GenObjectEnemy@ha
-	addi     r0, r4, __vt__Q24Game9GenObject@l
-	li       r4, 0
-	stw      r0, 0xc(r31)
-	addi     r3, r3, __vt__Q24Game14GenObjectEnemy@l
-	li       r0, 1
-	lfs      f1, lbl_80517EA8@sda21(r2)
-	stw      r3, 0xc(r31)
-	addi     r3, r31, 0x3c
-	lfs      f0, lbl_80517EAC@sda21(r2)
-	stw      r4, 0x24(r31)
-	stb      r0, 0x28(r31)
-	stb      r4, 0x29(r31)
-	sth      r0, 0x2a(r31)
-	stfs     f1, 0x2c(r31)
-	stfs     f0, 0x30(r31)
-	stfs     f0, 0x34(r31)
-	sth      r4, 0x38(r31)
-	bl       __ct__Q24Game15EnemyPelletInfoFv
-	li       r0, 0
-	mr       r3, r31
-	stw      r0, 0x48(r31)
-	stb      r0, 0x4c(r31)
-	bl       createEnemyGenerator__Q24Game14GenObjectEnemyFv
-	lbz      r0, 0x4c(r31)
-	mr       r3, r31
-	ori      r0, r0, 1
-	stb      r0, 0x4c(r31)
-	lwz      r31, 0xc(r1)
-	lwz      r0, 0x14(r1)
-	mtlr     r0
-	addi     r1, r1, 0x10
-	blr
-	*/
+	createEnemyGenerator();
+	m_byte_4C |= 1;
 }
 
 /*
