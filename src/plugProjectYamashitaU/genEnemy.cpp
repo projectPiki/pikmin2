@@ -8,27 +8,10 @@ namespace Game {
  * Address:	80124778
  * Size:	00003C
  */
-void makeObjectEnemy()
+void* makeObjectEnemy(void)
 {
-	/*
-	stwu     r1, -0x10(r1)
-	mflr     r0
-	li       r3, 0x50
-	stw      r0, 0x14(r1)
-	bl       __nw__FUl
-	or.      r0, r3, r3
-	beq      lbl_801247A0
-	li       r4, 1
-	bl       __ct__Q24Game14GenObjectEnemyFv
-	mr       r0, r3
-
-lbl_801247A0:
-	mr       r3, r0
-	lwz      r0, 0x14(r1)
-	mtlr     r0
-	addi     r1, r1, 0x10
-	blr
-	*/
+	void* new_enemy = new GenObjectEnemy;
+	return new_enemy;
 }
 
 /*

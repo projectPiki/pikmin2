@@ -192,6 +192,9 @@ struct GenObject : public GenBase {
 	virtual void generatorMakeMatrix(Matrixf&, Vector3f&); // _30
 	virtual void getDebugInfo(char*);                      // _34
 };
+
+void* makeObjectEnemy(void);
+
 struct GenObjectEnemy : public GenObject {
 	GenObjectEnemy();
 	void initialise();
@@ -210,7 +213,7 @@ struct GenObjectEnemy : public GenObject {
 
 	// vtable end
 
-	EnemyTypeID m_enemyID;                // _24
+	EnemyTypeID::EEnemyTypeID m_enemyID;  // _24
 	u8 m_spawnType;                       // _28 // 0: point, 1: circle
 	u8 m_tekiBirthType;                   // _29
 	s16 m_tekiNum;                        // _2A
