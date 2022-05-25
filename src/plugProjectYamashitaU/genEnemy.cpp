@@ -1,4 +1,5 @@
 #include "types.h"
+#include "Game/gameGenerator.h"
 
 namespace Game {
 
@@ -36,6 +37,7 @@ lbl_801247A0:
  * Size:	0000D0
  */
 GenObjectEnemy::GenObjectEnemy()
+    : GenObject('teki', "object type", "“G‚ðƒZƒbƒg")
 {
 	/*
 	stwu     r1, -0x10(r1)
@@ -160,485 +162,486 @@ void GenObjectEnemy::ramLoadParameters(Stream&) { }
  * Address:	80124918
  * Size:	0006B4
  */
-void GenObjectEnemy::generate(Game::Generator*)
+Creature* GenObjectEnemy::generate(Game::Generator*)
 {
-	/*
-	stwu     r1, -0x1b0(r1)
-	mflr     r0
-	stw      r0, 0x1b4(r1)
-	stfd     f31, 0x1a0(r1)
-	psq_st   f31, 424(r1), 0, qr0
-	stfd     f30, 0x190(r1)
-	psq_st   f30, 408(r1), 0, qr0
-	stfd     f29, 0x180(r1)
-	psq_st   f29, 392(r1), 0, qr0
-	stfd     f28, 0x170(r1)
-	psq_st   f28, 376(r1), 0, qr0
-	stfd     f27, 0x160(r1)
-	psq_st   f27, 360(r1), 0, qr0
-	stfd     f26, 0x150(r1)
-	psq_st   f26, 344(r1), 0, qr0
-	stmw     r20, 0x120(r1)
-	lfs      f1, 0x94(r4)
-	mr       r27, r4
-	lfs      f0, 0xa0(r4)
-	mr       r26, r3
-	lfs      f3, 0x98(r27)
-	lis      r3, "__ct__10Vector3<f>Fv"@ha
-	fadds    f31, f1, f0
-	lfs      f2, 0xa4(r27)
-	lfs      f1, 0x9c(r27)
-	addi     r4, r3, "__ct__10Vector3<f>Fv"@l
-	lfs      f0, 0xa8(r27)
-	fadds    f30, f3, f2
-	lwz      r7, 0x74(r27)
-	fadds    f29, f1, f0
-	lha      r0, 0x2a(r26)
-	addi     r3, r1, 0x90
-	li       r5, 0
-	li       r6, 0xc
-	subf     r29, r7, r0
-	li       r7, 0xa
-	bl       __construct_array
-	lis      r4, "__ct__10Vector3<f>Fv"@ha
-	addi     r3, r1, 0x18
-	addi     r4, r4, "__ct__10Vector3<f>Fv"@l
-	li       r5, 0
-	li       r6, 0xc
-	li       r7, 0xa
-	bl       __construct_array
-	addi     r31, r1, 0x90
-	li       r22, 0
-	mr       r28, r31
-	b        lbl_80124AA8
-
-lbl_801249D8:
-	lbz      r0, 0x28(r26)
-	cmplwi   r0, 1
-	bne      lbl_801249F4
-	stfs     f31, 0(r28)
-	stfs     f30, 4(r28)
-	stfs     f29, 8(r28)
-	b        lbl_80124AA0
-
-lbl_801249F4:
-	bl       rand
-	xoris    r3, r3, 0x8000
-	lis      r0, 0x4330
-	stw      r3, 0x10c(r1)
-	lfd      f3, lbl_80517EC8@sda21(r2)
-	stw      r0, 0x108(r1)
-	lfs      f1, lbl_80517EB0@sda21(r2)
-	lfd      f2, 0x108(r1)
-	lfs      f0, lbl_80517EB4@sda21(r2)
-	fsubs    f2, f2, f3
-	fdivs    f1, f2, f1
-	fmuls    f26, f0, f1
-	bl       rand
-	xoris    r3, r3, 0x8000
-	lis      r0, 0x4330
-	stw      r3, 0x114(r1)
-	fmr      f1, f26
-	lfd      f4, lbl_80517EC8@sda21(r2)
-	stw      r0, 0x110(r1)
-	lfs      f2, lbl_80517EB0@sda21(r2)
-	lfd      f3, 0x110(r1)
-	lfs      f0, 0x2c(r26)
-	fsubs    f3, f3, f4
-	fdivs    f2, f3, f2
-	fmuls    f28, f0, f2
-	bl       pikmin2_cosf__Ff
-	fmuls    f27, f28, f1
-	fmr      f1, f26
-	bl       pikmin2_sinf__Ff
-	fmuls    f1, f28, f1
-	lfs      f0, lbl_80517EAC@sda21(r2)
-	stfs     f1, 0(r28)
-	stfs     f0, 4(r28)
-	stfs     f27, 8(r28)
-	lfs      f0, 0(r28)
-	lfs      f1, 4(r28)
-	fadds    f0, f0, f31
-	lfs      f2, 8(r28)
-	fadds    f1, f1, f30
-	fadds    f2, f2, f29
-	stfs     f0, 0(r28)
-	stfs     f1, 4(r28)
-	stfs     f2, 8(r28)
-
-lbl_80124AA0:
-	addi     r28, r28, 0xc
-	addi     r22, r22, 1
-
-lbl_80124AA8:
-	cmpw     r22, r29
-	blt      lbl_801249D8
-	lfs      f1, 0x34(r26)
-	lfs      f0, lbl_80517EAC@sda21(r2)
-	lfs      f28, lbl_80517EB8@sda21(r2)
-	fcmpo    cr0, f1, f0
-	ble      lbl_80124AC8
-	fmr      f28, f1
-
-lbl_80124AC8:
-	li       r28, 0
-	addi     r30, r1, 0x18
-
-lbl_80124AD0:
-	cmpwi    r29, 0
-	li       r5, 0
-	ble      lbl_80124BA8
-	cmpwi    r29, 8
-	addi     r3, r29, -8
-	ble      lbl_80124B70
-	addi     r0, r3, 7
-	addi     r4, r1, 0x18
-	srwi     r0, r0, 3
-	lfs      f0, lbl_80517EAC@sda21(r2)
-	mtctr    r0
-	cmpwi    r3, 0
-	ble      lbl_80124B70
-
-lbl_80124B04:
-	stfs     f0, 8(r4)
-	addi     r5, r5, 8
-	stfs     f0, 4(r4)
-	stfs     f0, 0(r4)
-	stfs     f0, 0x14(r4)
-	stfs     f0, 0x10(r4)
-	stfs     f0, 0xc(r4)
-	stfs     f0, 0x20(r4)
-	stfs     f0, 0x1c(r4)
-	stfs     f0, 0x18(r4)
-	stfs     f0, 0x2c(r4)
-	stfs     f0, 0x28(r4)
-	stfs     f0, 0x24(r4)
-	stfs     f0, 0x38(r4)
-	stfs     f0, 0x34(r4)
-	stfs     f0, 0x30(r4)
-	stfs     f0, 0x44(r4)
-	stfs     f0, 0x40(r4)
-	stfs     f0, 0x3c(r4)
-	stfs     f0, 0x50(r4)
-	stfs     f0, 0x4c(r4)
-	stfs     f0, 0x48(r4)
-	stfs     f0, 0x5c(r4)
-	stfs     f0, 0x58(r4)
-	stfs     f0, 0x54(r4)
-	addi     r4, r4, 0x60
-	bdnz     lbl_80124B04
-
-lbl_80124B70:
-	mulli    r3, r5, 0xc
-	addi     r4, r1, 0x18
-	subf     r0, r5, r29
-	lfs      f0, lbl_80517EAC@sda21(r2)
-	add      r4, r4, r3
-	mtctr    r0
-	cmpw     r5, r29
-	bge      lbl_80124BA8
-
-lbl_80124B90:
-	stfs     f0, 8(r4)
-	addi     r5, r5, 1
-	stfs     f0, 4(r4)
-	stfs     f0, 0(r4)
-	addi     r4, r4, 0xc
-	bdnz     lbl_80124B90
-
-lbl_80124BA8:
-	mr       r23, r31
-	mr       r22, r30
-	li       r21, 0
-	b        lbl_80124CC0
-
-lbl_80124BB8:
-	addi     r20, r21, 1
-	addi     r25, r1, 0x90
-	mulli    r0, r20, 0xc
-	addi     r24, r1, 0x18
-	add      r25, r25, r0
-	add      r24, r24, r0
-	b        lbl_80124CAC
-
-lbl_80124BD4:
-	lfs      f2, 4(r23)
-	lfs      f0, 4(r25)
-	lfs      f1, 0(r23)
-	fsubs    f30, f2, f0
-	lfs      f0, 0(r25)
-	lfs      f2, 8(r23)
-	fsubs    f29, f1, f0
-	lfs      f1, 8(r25)
-	fmuls    f0, f30, f30
-	fsubs    f31, f2, f1
-	fmadds   f0, f29, f29, f0
-	fmadds   f26, f31, f31, f0
-	fmr      f1, f26
-	bl       pikmin2_sqrtf__Ff
-	fmr      f27, f1
-	fcmpo    cr0, f27, f28
-	bge      lbl_80124CA0
-	fmr      f1, f26
-	bl       pikmin2_sqrtf__Ff
-	lfs      f0, lbl_80517EAC@sda21(r2)
-	fcmpo    cr0, f1, f0
-	ble      lbl_80124C40
-	lfs      f0, lbl_80517EBC@sda21(r2)
-	fdivs    f0, f0, f1
-	fmuls    f29, f29, f0
-	fmuls    f30, f30, f0
-	fmuls    f31, f31, f0
-
-lbl_80124C40:
-	fsubs    f1, f28, f27
-	lfs      f2, lbl_80517EC0@sda21(r2)
-	lfs      f0, 0(r22)
-	fmuls    f1, f2, f1
-	fmuls    f29, f29, f1
-	fmuls    f30, f30, f1
-	fmuls    f31, f31, f1
-	fadds    f0, f0, f29
-	stfs     f0, 0(r22)
-	lfs      f0, 4(r22)
-	fadds    f0, f0, f30
-	stfs     f0, 4(r22)
-	lfs      f0, 8(r22)
-	fadds    f0, f0, f31
-	stfs     f0, 8(r22)
-	lfs      f0, 0(r24)
-	fsubs    f0, f0, f29
-	stfs     f0, 0(r24)
-	lfs      f0, 4(r24)
-	fsubs    f0, f0, f30
-	stfs     f0, 4(r24)
-	lfs      f0, 8(r24)
-	fsubs    f0, f0, f31
-	stfs     f0, 8(r24)
-
-lbl_80124CA0:
-	addi     r25, r25, 0xc
-	addi     r24, r24, 0xc
-	addi     r20, r20, 1
-
-lbl_80124CAC:
-	cmpw     r20, r29
-	blt      lbl_80124BD4
-	addi     r23, r23, 0xc
-	addi     r22, r22, 0xc
-	addi     r21, r21, 1
-
-lbl_80124CC0:
-	cmpw     r21, r29
-	blt      lbl_80124BB8
-	cmpwi    r29, 0
-	li       r6, 0
-	ble      lbl_80124EF0
-	cmpwi    r29, 8
-	addi     r3, r29, -8
-	ble      lbl_80124E8C
-	addi     r0, r3, 7
-	mr       r4, r30
-	srwi     r0, r0, 3
-	mr       r5, r31
-	mtctr    r0
-	cmpwi    r3, 0
-	ble      lbl_80124E8C
-
-lbl_80124CFC:
-	lfs      f1, 0(r5)
-	addi     r6, r6, 8
-	lfs      f0, 0(r4)
-	fadds    f0, f1, f0
-	stfs     f0, 0(r5)
-	lfs      f1, 4(r5)
-	lfs      f0, 4(r4)
-	fadds    f0, f1, f0
-	stfs     f0, 4(r5)
-	lfs      f1, 8(r5)
-	lfs      f0, 8(r4)
-	fadds    f0, f1, f0
-	stfs     f0, 8(r5)
-	lfs      f1, 0xc(r5)
-	lfs      f0, 0xc(r4)
-	fadds    f0, f1, f0
-	stfs     f0, 0xc(r5)
-	lfs      f1, 0x10(r5)
-	lfs      f0, 0x10(r4)
-	fadds    f0, f1, f0
-	stfs     f0, 0x10(r5)
-	lfs      f1, 0x14(r5)
-	lfs      f0, 0x14(r4)
-	fadds    f0, f1, f0
-	stfs     f0, 0x14(r5)
-	lfs      f1, 0x18(r5)
-	lfs      f0, 0x18(r4)
-	fadds    f0, f1, f0
-	stfs     f0, 0x18(r5)
-	lfs      f1, 0x1c(r5)
-	lfs      f0, 0x1c(r4)
-	fadds    f0, f1, f0
-	stfs     f0, 0x1c(r5)
-	lfs      f1, 0x20(r5)
-	lfs      f0, 0x20(r4)
-	fadds    f0, f1, f0
-	stfs     f0, 0x20(r5)
-	lfs      f1, 0x24(r5)
-	lfs      f0, 0x24(r4)
-	fadds    f0, f1, f0
-	stfs     f0, 0x24(r5)
-	lfs      f1, 0x28(r5)
-	lfs      f0, 0x28(r4)
-	fadds    f0, f1, f0
-	stfs     f0, 0x28(r5)
-	lfs      f1, 0x2c(r5)
-	lfs      f0, 0x2c(r4)
-	fadds    f0, f1, f0
-	stfs     f0, 0x2c(r5)
-	lfs      f1, 0x30(r5)
-	lfs      f0, 0x30(r4)
-	fadds    f0, f1, f0
-	stfs     f0, 0x30(r5)
-	lfs      f1, 0x34(r5)
-	lfs      f0, 0x34(r4)
-	fadds    f0, f1, f0
-	stfs     f0, 0x34(r5)
-	lfs      f1, 0x38(r5)
-	lfs      f0, 0x38(r4)
-	fadds    f0, f1, f0
-	stfs     f0, 0x38(r5)
-	lfs      f1, 0x3c(r5)
-	lfs      f0, 0x3c(r4)
-	fadds    f0, f1, f0
-	stfs     f0, 0x3c(r5)
-	lfs      f1, 0x40(r5)
-	lfs      f0, 0x40(r4)
-	fadds    f0, f1, f0
-	stfs     f0, 0x40(r5)
-	lfs      f1, 0x44(r5)
-	lfs      f0, 0x44(r4)
-	fadds    f0, f1, f0
-	stfs     f0, 0x44(r5)
-	lfs      f1, 0x48(r5)
-	lfs      f0, 0x48(r4)
-	fadds    f0, f1, f0
-	stfs     f0, 0x48(r5)
-	lfs      f1, 0x4c(r5)
-	lfs      f0, 0x4c(r4)
-	fadds    f0, f1, f0
-	stfs     f0, 0x4c(r5)
-	lfs      f1, 0x50(r5)
-	lfs      f0, 0x50(r4)
-	fadds    f0, f1, f0
-	stfs     f0, 0x50(r5)
-	lfs      f1, 0x54(r5)
-	lfs      f0, 0x54(r4)
-	fadds    f0, f1, f0
-	stfs     f0, 0x54(r5)
-	lfs      f1, 0x58(r5)
-	lfs      f0, 0x58(r4)
-	fadds    f0, f1, f0
-	stfs     f0, 0x58(r5)
-	lfs      f0, 0x5c(r4)
-	addi     r4, r4, 0x60
-	lfs      f1, 0x5c(r5)
-	fadds    f0, f1, f0
-	stfs     f0, 0x5c(r5)
-	addi     r5, r5, 0x60
-	bdnz     lbl_80124CFC
-
-lbl_80124E8C:
-	mulli    r5, r6, 0xc
-	addi     r3, r1, 0x18
-	addi     r4, r1, 0x90
-	subf     r0, r6, r29
-	add      r3, r3, r5
-	add      r4, r4, r5
-	mtctr    r0
-	cmpw     r6, r29
-	bge      lbl_80124EF0
-
-lbl_80124EB0:
-	lfs      f2, 0(r4)
-	addi     r6, r6, 1
-	lfs      f0, 0(r3)
-	lfs      f1, 4(r3)
-	fadds    f2, f2, f0
-	lfs      f0, 8(r3)
-	addi     r3, r3, 0xc
-	stfs     f2, 0(r4)
-	lfs      f2, 4(r4)
-	fadds    f1, f2, f1
-	stfs     f1, 4(r4)
-	lfs      f1, 8(r4)
-	fadds    f0, f1, f0
-	stfs     f0, 8(r4)
-	addi     r4, r4, 0xc
-	bdnz     lbl_80124EB0
-
-lbl_80124EF0:
-	addi     r28, r28, 1
-	cmpwi    r28, 5
-	blt      lbl_80124AD0
-	lis      r4, __vt__Q24Game15CreatureInitArg@ha
-	lis      r3, __vt__Q24Game6GenArg@ha
-	li       r20, 0
-	addi     r30, r4, __vt__Q24Game15CreatureInitArg@l
-	addi     r28, r3, __vt__Q24Game6GenArg@l
-	b        lbl_80124F7C
-
-lbl_80124F14:
-	lwz      r3, mapMgr__4Game@sda21(r13)
-	cmplwi   r3, 0
-	beq      lbl_80124F38
-	lwz      r12, 4(r3)
-	mr       r4, r31
-	lwz      r12, 0x28(r12)
-	mtctr    r12
-	bctrl
-	stfs     f1, 4(r31)
-
-lbl_80124F38:
-	stw      r30, 8(r1)
-	mr       r3, r26
-	lfs      f2, 0(r31)
-	addi     r4, r1, 8
-	lfs      f1, 4(r31)
-	lfs      f0, 8(r31)
-	stw      r28, 8(r1)
-	stfs     f2, 0xc(r1)
-	stfs     f1, 0x10(r1)
-	stfs     f0, 0x14(r1)
-	lwz      r12, 0xc(r26)
-	lwz      r12, 0x34(r12)
-	mtctr    r12
-	bctrl
-	stw      r27, 0xc4(r3)
-	addi     r31, r31, 0xc
-	addi     r20, r20, 1
-
-lbl_80124F7C:
-	cmpw     r20, r29
-	blt      lbl_80124F14
-	li       r3, 0
-	psq_l    f31, 424(r1), 0, qr0
-	lfd      f31, 0x1a0(r1)
-	psq_l    f30, 408(r1), 0, qr0
-	lfd      f30, 0x190(r1)
-	psq_l    f29, 392(r1), 0, qr0
-	lfd      f29, 0x180(r1)
-	psq_l    f28, 376(r1), 0, qr0
-	lfd      f28, 0x170(r1)
-	psq_l    f27, 360(r1), 0, qr0
-	lfd      f27, 0x160(r1)
-	psq_l    f26, 344(r1), 0, qr0
-	lfd      f26, 0x150(r1)
-	lmw      r20, 0x120(r1)
-	lwz      r0, 0x1b4(r1)
-	mtlr     r0
-	addi     r1, r1, 0x1b0
-	blr
-	*/
+	return nullptr; // placeholder
+	                /*
+	                stwu     r1, -0x1b0(r1)
+	                mflr     r0
+	                stw      r0, 0x1b4(r1)
+	                stfd     f31, 0x1a0(r1)
+	                psq_st   f31, 424(r1), 0, qr0
+	                stfd     f30, 0x190(r1)
+	                psq_st   f30, 408(r1), 0, qr0
+	                stfd     f29, 0x180(r1)
+	                psq_st   f29, 392(r1), 0, qr0
+	                stfd     f28, 0x170(r1)
+	                psq_st   f28, 376(r1), 0, qr0
+	                stfd     f27, 0x160(r1)
+	                psq_st   f27, 360(r1), 0, qr0
+	                stfd     f26, 0x150(r1)
+	                psq_st   f26, 344(r1), 0, qr0
+	                stmw     r20, 0x120(r1)
+	                lfs      f1, 0x94(r4)
+	                mr       r27, r4
+	                lfs      f0, 0xa0(r4)
+	                mr       r26, r3
+	                lfs      f3, 0x98(r27)
+	                lis      r3, "__ct__10Vector3<f>Fv"@ha
+	                fadds    f31, f1, f0
+	                lfs      f2, 0xa4(r27)
+	                lfs      f1, 0x9c(r27)
+	                addi     r4, r3, "__ct__10Vector3<f>Fv"@l
+	                lfs      f0, 0xa8(r27)
+	                fadds    f30, f3, f2
+	                lwz      r7, 0x74(r27)
+	                fadds    f29, f1, f0
+	                lha      r0, 0x2a(r26)
+	                addi     r3, r1, 0x90
+	                li       r5, 0
+	                li       r6, 0xc
+	                subf     r29, r7, r0
+	                li       r7, 0xa
+	                bl       __construct_array
+	                lis      r4, "__ct__10Vector3<f>Fv"@ha
+	                addi     r3, r1, 0x18
+	                addi     r4, r4, "__ct__10Vector3<f>Fv"@l
+	                li       r5, 0
+	                li       r6, 0xc
+	                li       r7, 0xa
+	                bl       __construct_array
+	                addi     r31, r1, 0x90
+	                li       r22, 0
+	                mr       r28, r31
+	                b        lbl_80124AA8
+	            
+	            lbl_801249D8:
+	                lbz      r0, 0x28(r26)
+	                cmplwi   r0, 1
+	                bne      lbl_801249F4
+	                stfs     f31, 0(r28)
+	                stfs     f30, 4(r28)
+	                stfs     f29, 8(r28)
+	                b        lbl_80124AA0
+	            
+	            lbl_801249F4:
+	                bl       rand
+	                xoris    r3, r3, 0x8000
+	                lis      r0, 0x4330
+	                stw      r3, 0x10c(r1)
+	                lfd      f3, lbl_80517EC8@sda21(r2)
+	                stw      r0, 0x108(r1)
+	                lfs      f1, lbl_80517EB0@sda21(r2)
+	                lfd      f2, 0x108(r1)
+	                lfs      f0, lbl_80517EB4@sda21(r2)
+	                fsubs    f2, f2, f3
+	                fdivs    f1, f2, f1
+	                fmuls    f26, f0, f1
+	                bl       rand
+	                xoris    r3, r3, 0x8000
+	                lis      r0, 0x4330
+	                stw      r3, 0x114(r1)
+	                fmr      f1, f26
+	                lfd      f4, lbl_80517EC8@sda21(r2)
+	                stw      r0, 0x110(r1)
+	                lfs      f2, lbl_80517EB0@sda21(r2)
+	                lfd      f3, 0x110(r1)
+	                lfs      f0, 0x2c(r26)
+	                fsubs    f3, f3, f4
+	                fdivs    f2, f3, f2
+	                fmuls    f28, f0, f2
+	                bl       pikmin2_cosf__Ff
+	                fmuls    f27, f28, f1
+	                fmr      f1, f26
+	                bl       pikmin2_sinf__Ff
+	                fmuls    f1, f28, f1
+	                lfs      f0, lbl_80517EAC@sda21(r2)
+	                stfs     f1, 0(r28)
+	                stfs     f0, 4(r28)
+	                stfs     f27, 8(r28)
+	                lfs      f0, 0(r28)
+	                lfs      f1, 4(r28)
+	                fadds    f0, f0, f31
+	                lfs      f2, 8(r28)
+	                fadds    f1, f1, f30
+	                fadds    f2, f2, f29
+	                stfs     f0, 0(r28)
+	                stfs     f1, 4(r28)
+	                stfs     f2, 8(r28)
+	            
+	            lbl_80124AA0:
+	                addi     r28, r28, 0xc
+	                addi     r22, r22, 1
+	            
+	            lbl_80124AA8:
+	                cmpw     r22, r29
+	                blt      lbl_801249D8
+	                lfs      f1, 0x34(r26)
+	                lfs      f0, lbl_80517EAC@sda21(r2)
+	                lfs      f28, lbl_80517EB8@sda21(r2)
+	                fcmpo    cr0, f1, f0
+	                ble      lbl_80124AC8
+	                fmr      f28, f1
+	            
+	            lbl_80124AC8:
+	                li       r28, 0
+	                addi     r30, r1, 0x18
+	            
+	            lbl_80124AD0:
+	                cmpwi    r29, 0
+	                li       r5, 0
+	                ble      lbl_80124BA8
+	                cmpwi    r29, 8
+	                addi     r3, r29, -8
+	                ble      lbl_80124B70
+	                addi     r0, r3, 7
+	                addi     r4, r1, 0x18
+	                srwi     r0, r0, 3
+	                lfs      f0, lbl_80517EAC@sda21(r2)
+	                mtctr    r0
+	                cmpwi    r3, 0
+	                ble      lbl_80124B70
+	            
+	            lbl_80124B04:
+	                stfs     f0, 8(r4)
+	                addi     r5, r5, 8
+	                stfs     f0, 4(r4)
+	                stfs     f0, 0(r4)
+	                stfs     f0, 0x14(r4)
+	                stfs     f0, 0x10(r4)
+	                stfs     f0, 0xc(r4)
+	                stfs     f0, 0x20(r4)
+	                stfs     f0, 0x1c(r4)
+	                stfs     f0, 0x18(r4)
+	                stfs     f0, 0x2c(r4)
+	                stfs     f0, 0x28(r4)
+	                stfs     f0, 0x24(r4)
+	                stfs     f0, 0x38(r4)
+	                stfs     f0, 0x34(r4)
+	                stfs     f0, 0x30(r4)
+	                stfs     f0, 0x44(r4)
+	                stfs     f0, 0x40(r4)
+	                stfs     f0, 0x3c(r4)
+	                stfs     f0, 0x50(r4)
+	                stfs     f0, 0x4c(r4)
+	                stfs     f0, 0x48(r4)
+	                stfs     f0, 0x5c(r4)
+	                stfs     f0, 0x58(r4)
+	                stfs     f0, 0x54(r4)
+	                addi     r4, r4, 0x60
+	                bdnz     lbl_80124B04
+	            
+	            lbl_80124B70:
+	                mulli    r3, r5, 0xc
+	                addi     r4, r1, 0x18
+	                subf     r0, r5, r29
+	                lfs      f0, lbl_80517EAC@sda21(r2)
+	                add      r4, r4, r3
+	                mtctr    r0
+	                cmpw     r5, r29
+	                bge      lbl_80124BA8
+	            
+	            lbl_80124B90:
+	                stfs     f0, 8(r4)
+	                addi     r5, r5, 1
+	                stfs     f0, 4(r4)
+	                stfs     f0, 0(r4)
+	                addi     r4, r4, 0xc
+	                bdnz     lbl_80124B90
+	            
+	            lbl_80124BA8:
+	                mr       r23, r31
+	                mr       r22, r30
+	                li       r21, 0
+	                b        lbl_80124CC0
+	            
+	            lbl_80124BB8:
+	                addi     r20, r21, 1
+	                addi     r25, r1, 0x90
+	                mulli    r0, r20, 0xc
+	                addi     r24, r1, 0x18
+	                add      r25, r25, r0
+	                add      r24, r24, r0
+	                b        lbl_80124CAC
+	            
+	            lbl_80124BD4:
+	                lfs      f2, 4(r23)
+	                lfs      f0, 4(r25)
+	                lfs      f1, 0(r23)
+	                fsubs    f30, f2, f0
+	                lfs      f0, 0(r25)
+	                lfs      f2, 8(r23)
+	                fsubs    f29, f1, f0
+	                lfs      f1, 8(r25)
+	                fmuls    f0, f30, f30
+	                fsubs    f31, f2, f1
+	                fmadds   f0, f29, f29, f0
+	                fmadds   f26, f31, f31, f0
+	                fmr      f1, f26
+	                bl       pikmin2_sqrtf__Ff
+	                fmr      f27, f1
+	                fcmpo    cr0, f27, f28
+	                bge      lbl_80124CA0
+	                fmr      f1, f26
+	                bl       pikmin2_sqrtf__Ff
+	                lfs      f0, lbl_80517EAC@sda21(r2)
+	                fcmpo    cr0, f1, f0
+	                ble      lbl_80124C40
+	                lfs      f0, lbl_80517EBC@sda21(r2)
+	                fdivs    f0, f0, f1
+	                fmuls    f29, f29, f0
+	                fmuls    f30, f30, f0
+	                fmuls    f31, f31, f0
+	            
+	            lbl_80124C40:
+	                fsubs    f1, f28, f27
+	                lfs      f2, lbl_80517EC0@sda21(r2)
+	                lfs      f0, 0(r22)
+	                fmuls    f1, f2, f1
+	                fmuls    f29, f29, f1
+	                fmuls    f30, f30, f1
+	                fmuls    f31, f31, f1
+	                fadds    f0, f0, f29
+	                stfs     f0, 0(r22)
+	                lfs      f0, 4(r22)
+	                fadds    f0, f0, f30
+	                stfs     f0, 4(r22)
+	                lfs      f0, 8(r22)
+	                fadds    f0, f0, f31
+	                stfs     f0, 8(r22)
+	                lfs      f0, 0(r24)
+	                fsubs    f0, f0, f29
+	                stfs     f0, 0(r24)
+	                lfs      f0, 4(r24)
+	                fsubs    f0, f0, f30
+	                stfs     f0, 4(r24)
+	                lfs      f0, 8(r24)
+	                fsubs    f0, f0, f31
+	                stfs     f0, 8(r24)
+	            
+	            lbl_80124CA0:
+	                addi     r25, r25, 0xc
+	                addi     r24, r24, 0xc
+	                addi     r20, r20, 1
+	            
+	            lbl_80124CAC:
+	                cmpw     r20, r29
+	                blt      lbl_80124BD4
+	                addi     r23, r23, 0xc
+	                addi     r22, r22, 0xc
+	                addi     r21, r21, 1
+	            
+	            lbl_80124CC0:
+	                cmpw     r21, r29
+	                blt      lbl_80124BB8
+	                cmpwi    r29, 0
+	                li       r6, 0
+	                ble      lbl_80124EF0
+	                cmpwi    r29, 8
+	                addi     r3, r29, -8
+	                ble      lbl_80124E8C
+	                addi     r0, r3, 7
+	                mr       r4, r30
+	                srwi     r0, r0, 3
+	                mr       r5, r31
+	                mtctr    r0
+	                cmpwi    r3, 0
+	                ble      lbl_80124E8C
+	            
+	            lbl_80124CFC:
+	                lfs      f1, 0(r5)
+	                addi     r6, r6, 8
+	                lfs      f0, 0(r4)
+	                fadds    f0, f1, f0
+	                stfs     f0, 0(r5)
+	                lfs      f1, 4(r5)
+	                lfs      f0, 4(r4)
+	                fadds    f0, f1, f0
+	                stfs     f0, 4(r5)
+	                lfs      f1, 8(r5)
+	                lfs      f0, 8(r4)
+	                fadds    f0, f1, f0
+	                stfs     f0, 8(r5)
+	                lfs      f1, 0xc(r5)
+	                lfs      f0, 0xc(r4)
+	                fadds    f0, f1, f0
+	                stfs     f0, 0xc(r5)
+	                lfs      f1, 0x10(r5)
+	                lfs      f0, 0x10(r4)
+	                fadds    f0, f1, f0
+	                stfs     f0, 0x10(r5)
+	                lfs      f1, 0x14(r5)
+	                lfs      f0, 0x14(r4)
+	                fadds    f0, f1, f0
+	                stfs     f0, 0x14(r5)
+	                lfs      f1, 0x18(r5)
+	                lfs      f0, 0x18(r4)
+	                fadds    f0, f1, f0
+	                stfs     f0, 0x18(r5)
+	                lfs      f1, 0x1c(r5)
+	                lfs      f0, 0x1c(r4)
+	                fadds    f0, f1, f0
+	                stfs     f0, 0x1c(r5)
+	                lfs      f1, 0x20(r5)
+	                lfs      f0, 0x20(r4)
+	                fadds    f0, f1, f0
+	                stfs     f0, 0x20(r5)
+	                lfs      f1, 0x24(r5)
+	                lfs      f0, 0x24(r4)
+	                fadds    f0, f1, f0
+	                stfs     f0, 0x24(r5)
+	                lfs      f1, 0x28(r5)
+	                lfs      f0, 0x28(r4)
+	                fadds    f0, f1, f0
+	                stfs     f0, 0x28(r5)
+	                lfs      f1, 0x2c(r5)
+	                lfs      f0, 0x2c(r4)
+	                fadds    f0, f1, f0
+	                stfs     f0, 0x2c(r5)
+	                lfs      f1, 0x30(r5)
+	                lfs      f0, 0x30(r4)
+	                fadds    f0, f1, f0
+	                stfs     f0, 0x30(r5)
+	                lfs      f1, 0x34(r5)
+	                lfs      f0, 0x34(r4)
+	                fadds    f0, f1, f0
+	                stfs     f0, 0x34(r5)
+	                lfs      f1, 0x38(r5)
+	                lfs      f0, 0x38(r4)
+	                fadds    f0, f1, f0
+	                stfs     f0, 0x38(r5)
+	                lfs      f1, 0x3c(r5)
+	                lfs      f0, 0x3c(r4)
+	                fadds    f0, f1, f0
+	                stfs     f0, 0x3c(r5)
+	                lfs      f1, 0x40(r5)
+	                lfs      f0, 0x40(r4)
+	                fadds    f0, f1, f0
+	                stfs     f0, 0x40(r5)
+	                lfs      f1, 0x44(r5)
+	                lfs      f0, 0x44(r4)
+	                fadds    f0, f1, f0
+	                stfs     f0, 0x44(r5)
+	                lfs      f1, 0x48(r5)
+	                lfs      f0, 0x48(r4)
+	                fadds    f0, f1, f0
+	                stfs     f0, 0x48(r5)
+	                lfs      f1, 0x4c(r5)
+	                lfs      f0, 0x4c(r4)
+	                fadds    f0, f1, f0
+	                stfs     f0, 0x4c(r5)
+	                lfs      f1, 0x50(r5)
+	                lfs      f0, 0x50(r4)
+	                fadds    f0, f1, f0
+	                stfs     f0, 0x50(r5)
+	                lfs      f1, 0x54(r5)
+	                lfs      f0, 0x54(r4)
+	                fadds    f0, f1, f0
+	                stfs     f0, 0x54(r5)
+	                lfs      f1, 0x58(r5)
+	                lfs      f0, 0x58(r4)
+	                fadds    f0, f1, f0
+	                stfs     f0, 0x58(r5)
+	                lfs      f0, 0x5c(r4)
+	                addi     r4, r4, 0x60
+	                lfs      f1, 0x5c(r5)
+	                fadds    f0, f1, f0
+	                stfs     f0, 0x5c(r5)
+	                addi     r5, r5, 0x60
+	                bdnz     lbl_80124CFC
+	            
+	            lbl_80124E8C:
+	                mulli    r5, r6, 0xc
+	                addi     r3, r1, 0x18
+	                addi     r4, r1, 0x90
+	                subf     r0, r6, r29
+	                add      r3, r3, r5
+	                add      r4, r4, r5
+	                mtctr    r0
+	                cmpw     r6, r29
+	                bge      lbl_80124EF0
+	            
+	            lbl_80124EB0:
+	                lfs      f2, 0(r4)
+	                addi     r6, r6, 1
+	                lfs      f0, 0(r3)
+	                lfs      f1, 4(r3)
+	                fadds    f2, f2, f0
+	                lfs      f0, 8(r3)
+	                addi     r3, r3, 0xc
+	                stfs     f2, 0(r4)
+	                lfs      f2, 4(r4)
+	                fadds    f1, f2, f1
+	                stfs     f1, 4(r4)
+	                lfs      f1, 8(r4)
+	                fadds    f0, f1, f0
+	                stfs     f0, 8(r4)
+	                addi     r4, r4, 0xc
+	                bdnz     lbl_80124EB0
+	            
+	            lbl_80124EF0:
+	                addi     r28, r28, 1
+	                cmpwi    r28, 5
+	                blt      lbl_80124AD0
+	                lis      r4, __vt__Q24Game15CreatureInitArg@ha
+	                lis      r3, __vt__Q24Game6GenArg@ha
+	                li       r20, 0
+	                addi     r30, r4, __vt__Q24Game15CreatureInitArg@l
+	                addi     r28, r3, __vt__Q24Game6GenArg@l
+	                b        lbl_80124F7C
+	            
+	            lbl_80124F14:
+	                lwz      r3, mapMgr__4Game@sda21(r13)
+	                cmplwi   r3, 0
+	                beq      lbl_80124F38
+	                lwz      r12, 4(r3)
+	                mr       r4, r31
+	                lwz      r12, 0x28(r12)
+	                mtctr    r12
+	                bctrl
+	                stfs     f1, 4(r31)
+	            
+	            lbl_80124F38:
+	                stw      r30, 8(r1)
+	                mr       r3, r26
+	                lfs      f2, 0(r31)
+	                addi     r4, r1, 8
+	                lfs      f1, 4(r31)
+	                lfs      f0, 8(r31)
+	                stw      r28, 8(r1)
+	                stfs     f2, 0xc(r1)
+	                stfs     f1, 0x10(r1)
+	                stfs     f0, 0x14(r1)
+	                lwz      r12, 0xc(r26)
+	                lwz      r12, 0x34(r12)
+	                mtctr    r12
+	                bctrl
+	                stw      r27, 0xc4(r3)
+	                addi     r31, r31, 0xc
+	                addi     r20, r20, 1
+	            
+	            lbl_80124F7C:
+	                cmpw     r20, r29
+	                blt      lbl_80124F14
+	                li       r3, 0
+	                psq_l    f31, 424(r1), 0, qr0
+	                lfd      f31, 0x1a0(r1)
+	                psq_l    f30, 408(r1), 0, qr0
+	                lfd      f30, 0x190(r1)
+	                psq_l    f29, 392(r1), 0, qr0
+	                lfd      f29, 0x180(r1)
+	                psq_l    f28, 376(r1), 0, qr0
+	                lfd      f28, 0x170(r1)
+	                psq_l    f27, 360(r1), 0, qr0
+	                lfd      f27, 0x160(r1)
+	                psq_l    f26, 344(r1), 0, qr0
+	                lfd      f26, 0x150(r1)
+	                lmw      r20, 0x120(r1)
+	                lwz      r0, 0x1b4(r1)
+	                mtlr     r0
+	                addi     r1, r1, 0x1b0
+	                blr
+	                */
 }
 
 /*
@@ -646,68 +649,69 @@ lbl_80124F7C:
  * Address:	80124FCC
  * Size:	0000E0
  */
-void GenObjectEnemy::birth(Game::GenArg*)
+Creature* GenObjectEnemy::birth(Game::GenArg*)
 {
-	/*
-	stwu     r1, -0x50(r1)
-	mflr     r0
-	stw      r0, 0x54(r1)
-	stw      r31, 0x4c(r1)
-	mr       r31, r4
-	stw      r30, 0x48(r1)
-	mr       r30, r3
-	lwz      r12, 0xc(r3)
-	lwz      r12, 0x24(r12)
-	mtctr    r12
-	bctrl
-	addi     r3, r1, 8
-	bl       __ct__Q24Game13EnemyBirthArgFv
-	lfs      f0, 4(r31)
-	addi     r5, r1, 8
-	lfs      f1, lbl_80517ED4@sda21(r2)
-	stfs     f0, 8(r1)
-	lfs      f2, lbl_80517ED0@sda21(r2)
-	lfs      f0, 8(r31)
-	lwz      r3, generalEnemyMgr__4Game@sda21(r13)
-	stfs     f0, 0xc(r1)
-	lfs      f0, 0xc(r31)
-	stfs     f0, 0x10(r1)
-	lfs      f0, 0x30(r30)
-	fmuls    f0, f1, f0
-	fmuls    f0, f2, f0
-	stfs     f0, 0x14(r1)
-	lbz      r0, 0x29(r30)
-	stb      r0, 0x18(r1)
-	lwz      r0, 0x48(r30)
-	stw      r0, 0x1c(r1)
-	lha      r0, 0x38(r30)
-	sth      r0, 0x20(r1)
-	lbz      r0, 0x3c(r30)
-	stb      r0, 0x24(r1)
-	lbz      r0, 0x3d(r30)
-	stb      r0, 0x25(r1)
-	lbz      r0, 0x3e(r30)
-	stb      r0, 0x26(r1)
-	lbz      r0, 0x3f(r30)
-	stb      r0, 0x27(r1)
-	lfs      f0, 0x40(r30)
-	stfs     f0, 0x28(r1)
-	lwz      r4, 0x24(r30)
-	bl       birth__Q24Game15GeneralEnemyMgrFiRQ24Game13EnemyBirthArg
-	or.      r31, r3, r3
-	beq      lbl_80125090
-	li       r4, 0
-	bl       init__Q24Game8CreatureFPQ24Game15CreatureInitArg
-
-lbl_80125090:
-	lwz      r0, 0x54(r1)
-	mr       r3, r31
-	lwz      r31, 0x4c(r1)
-	lwz      r30, 0x48(r1)
-	mtlr     r0
-	addi     r1, r1, 0x50
-	blr
-	*/
+	return nullptr; // placeholder
+	                /*
+	                stwu     r1, -0x50(r1)
+	                mflr     r0
+	                stw      r0, 0x54(r1)
+	                stw      r31, 0x4c(r1)
+	                mr       r31, r4
+	                stw      r30, 0x48(r1)
+	                mr       r30, r3
+	                lwz      r12, 0xc(r3)
+	                lwz      r12, 0x24(r12)
+	                mtctr    r12
+	                bctrl
+	                addi     r3, r1, 8
+	                bl       __ct__Q24Game13EnemyBirthArgFv
+	                lfs      f0, 4(r31)
+	                addi     r5, r1, 8
+	                lfs      f1, lbl_80517ED4@sda21(r2)
+	                stfs     f0, 8(r1)
+	                lfs      f2, lbl_80517ED0@sda21(r2)
+	                lfs      f0, 8(r31)
+	                lwz      r3, generalEnemyMgr__4Game@sda21(r13)
+	                stfs     f0, 0xc(r1)
+	                lfs      f0, 0xc(r31)
+	                stfs     f0, 0x10(r1)
+	                lfs      f0, 0x30(r30)
+	                fmuls    f0, f1, f0
+	                fmuls    f0, f2, f0
+	                stfs     f0, 0x14(r1)
+	                lbz      r0, 0x29(r30)
+	                stb      r0, 0x18(r1)
+	                lwz      r0, 0x48(r30)
+	                stw      r0, 0x1c(r1)
+	                lha      r0, 0x38(r30)
+	                sth      r0, 0x20(r1)
+	                lbz      r0, 0x3c(r30)
+	                stb      r0, 0x24(r1)
+	                lbz      r0, 0x3d(r30)
+	                stb      r0, 0x25(r1)
+	                lbz      r0, 0x3e(r30)
+	                stb      r0, 0x26(r1)
+	                lbz      r0, 0x3f(r30)
+	                stb      r0, 0x27(r1)
+	                lfs      f0, 0x40(r30)
+	                stfs     f0, 0x28(r1)
+	                lwz      r4, 0x24(r30)
+	                bl       birth__Q24Game15GeneralEnemyMgrFiRQ24Game13EnemyBirthArg
+	                or.      r31, r3, r3
+	                beq      lbl_80125090
+	                li       r4, 0
+	                bl       init__Q24Game8CreatureFPQ24Game15CreatureInitArg
+	            
+	            lbl_80125090:
+	                lwz      r0, 0x54(r1)
+	                mr       r3, r31
+	                lwz      r31, 0x4c(r1)
+	                lwz      r30, 0x48(r1)
+	                mtlr     r0
+	                addi     r1, r1, 0x50
+	                blr
+	                */
 }
 
 /*
@@ -869,8 +873,9 @@ void EnemyGeneratorBase::doWrite(Stream&) { }
  * Address:	801252C8
  * Size:	00000C
  */
-void EnemyGeneratorBase::getLatestVersion()
+u32 EnemyGeneratorBase::getLatestVersion()
 {
+	return '????';
 	/*
 	lis      r3, 0x3F3F3F3F@ha
 	addi     r3, r3, 0x3F3F3F3F@l
@@ -2773,60 +2778,31 @@ lbl_80126748:
  * --INFO--
  * Address:	80126764
  * Size:	00006C
+ * Weak function. Matched.
+ * EnemyGeneratorBase::EnemyGeneratorBase(char*)
  */
-EnemyGeneratorBase::EnemyGeneratorBase(char*)
-{
-	/*
-	stwu     r1, -0x10(r1)
-	mflr     r0
-	lis      r5, __vt__5CNode@ha
-	li       r6, 0
-	stw      r0, 0x14(r1)
-	addi     r0, r5, __vt__5CNode@l
-	lis      r5, 0x3F3F3F3F@ha
-	stw      r31, 0xc(r1)
-	mr       r31, r3
-	lis      r3, __vt__Q24Game18EnemyGeneratorBase@ha
-	stw      r0, 0(r31)
-	addi     r0, r3, __vt__Q24Game18EnemyGeneratorBase@l
-	addi     r3, r31, 0x18
-	stw      r6, 0x10(r31)
-	stw      r6, 0xc(r31)
-	stw      r6, 8(r31)
-	stw      r6, 4(r31)
-	stw      r4, 0x14(r31)
-	addi     r4, r5, 0x3F3F3F3F@l
-	stw      r0, 0(r31)
-	bl       __ct__4ID32FUl
-	lwz      r0, 0x14(r1)
-	mr       r3, r31
-	lwz      r31, 0xc(r1)
-	mtlr     r0
-	addi     r1, r1, 0x10
-	blr
-	*/
-}
 
 /*
  * --INFO--
  * Address:	801267D0
  * Size:	00002C
  */
-void GenObjectEnemy::getShape()
+J3DModelData* GenObjectEnemy::getShape()
 {
-	/*
-	stwu     r1, -0x10(r1)
-	mflr     r0
-	mr       r4, r3
-	stw      r0, 0x14(r1)
-	lwz      r3, generalEnemyMgr__4Game@sda21(r13)
-	lwz      r4, 0x24(r4)
-	bl       getJ3DModelData__Q24Game15GeneralEnemyMgrFi
-	lwz      r0, 0x14(r1)
-	mtlr     r0
-	addi     r1, r1, 0x10
-	blr
-	*/
+	return nullptr; // placeholder
+	                /*
+	                stwu     r1, -0x10(r1)
+	                mflr     r0
+	                mr       r4, r3
+	                stw      r0, 0x14(r1)
+	                lwz      r3, generalEnemyMgr__4Game@sda21(r13)
+	                lwz      r4, 0x24(r4)
+	                bl       getJ3DModelData__Q24Game15GeneralEnemyMgrFi
+	                lwz      r0, 0x14(r1)
+	                mtlr     r0
+	                addi     r1, r1, 0x10
+	                blr
+	                */
 }
 
 /*
@@ -3083,39 +3059,9 @@ void EnemyGeneratorBase::draw(Graphics&, Game::Generator*) { }
  * --INFO--
  * Address:	80126B5C
  * Size:	000060
+ * EnemyGeneratorBase::~EnemyGeneratorBase()
+ * Weak function.
  */
-EnemyGeneratorBase::~EnemyGeneratorBase()
-{
-	/*
-	stwu     r1, -0x10(r1)
-	mflr     r0
-	stw      r0, 0x14(r1)
-	stw      r31, 0xc(r1)
-	mr       r31, r4
-	stw      r30, 8(r1)
-	or.      r30, r3, r3
-	beq      lbl_80126BA0
-	lis      r5, __vt__Q24Game18EnemyGeneratorBase@ha
-	li       r4, 0
-	addi     r0, r5, __vt__Q24Game18EnemyGeneratorBase@l
-	stw      r0, 0(r30)
-	bl       __dt__5CNodeFv
-	extsh.   r0, r31
-	ble      lbl_80126BA0
-	mr       r3, r30
-	bl       __dl__FPv
-
-lbl_80126BA0:
-	lwz      r0, 0x14(r1)
-	mr       r3, r30
-	lwz      r31, 0xc(r1)
-	lwz      r30, 8(r1)
-	mtlr     r0
-	addi     r1, r1, 0x10
-	blr
-	*/
-}
-
 /*
  * --INFO--
  * Address:	80126BBC
@@ -3128,12 +3074,13 @@ u32 EnemyGeneratorBase::getInitialParam() { return 0x0; }
  * Address:	80126BC4
  * Size:	000008
  */
-void GenArg::getName()
+const char* GenArg::getName()
 {
-	/*
-	addi     r3, r2, lbl_80517F48@sda21
-	blr
-	*/
+	return nullptr; // placeholder
+	                /*
+	                addi     r3, r2, lbl_80517F48@sda21
+	                blr
+	                */
 }
 
 /*

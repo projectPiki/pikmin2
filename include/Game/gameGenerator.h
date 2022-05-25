@@ -8,6 +8,8 @@
 #include "stream.h"
 #include "CNode.h"
 #include "id32.h"
+#include "Game/enemyInfo.h"
+#include "Game/EnemyPelletInfo.h"
 
 struct J3DModelData;
 
@@ -153,11 +155,33 @@ struct GenBase : public Parameters {
 	u32 _20;      // _20
 };
 
+struct EnemyGeneratorBase : public CNode {
+	EnemyGeneratorBase(char* name)
+	    : CNode(name)
+	    , m_version('????')
+	{
+	}
+
+	u32 getInitialParam();
+
+	virtual ~EnemyGeneratorBase() {};         // _08
+	virtual void doWrite(Stream&);            // _10
+	virtual void doRead(Stream&);             // _14
+	virtual u32 getLatestVersion();           // _18
+	virtual void draw(Graphics&, Generator*); // _1C
+
+	// _00 VTBL
+
+	ID32 m_version; // _18
+};
+
 struct GenObject : public GenBase {
 	GenObject(u32 tag, char* description, char* t)
 	    : GenBase(tag, description, t)
 	{
 	}
+
+	void update(Game::Generator*);
 
 	virtual void render(Graphics&, Generator*);            // _18
 	virtual u32 getLatestVersion();                        // _1C
@@ -167,6 +191,36 @@ struct GenObject : public GenBase {
 	virtual Creature* birth(GenArg*);                      // _2C
 	virtual void generatorMakeMatrix(Matrixf&, Vector3f&); // _30
 	virtual void getDebugInfo(char*);                      // _34
+};
+struct GenObjectEnemy : public GenObject {
+	GenObjectEnemy();
+	void initialise();
+	void createEnemyGenerator();
+	void doReadOldVersion(Stream&);
+
+	virtual void doWrite(Stream&);               // _08
+	virtual void ramSaveParameters(Stream&);     // _0C
+	virtual void ramLoadParameters(Stream&);     // _10
+	virtual void doRead(Stream&);                // _18
+	virtual void render(Graphics&, Generator*);  // _20
+	virtual J3DModelData* getShape();            // _28
+	virtual void updateUseList(Generator*, int); // _2C
+	virtual Creature* generate(Generator*);      // _30
+	virtual Creature* birth(GenArg*);            // _34
+
+	// vtable end
+
+	EnemyTypeID m_enemyID;                // _24
+	u8 m_spawnType;                       // _28 // 0: point, 1: circle
+	u8 m_tekiBirthType;                   // _29
+	s16 m_tekiNum;                        // _2A
+	f32 m_appearRadius;                   // _2C
+	f32 m_direction;                      // _30
+	f32 m_enemySize;                      // _34
+	s16 m_otakaraItemCode;                // _38
+	EnemyPelletInfo m_pelletInfo;         // _3C
+	EnemyGeneratorBase* m_enemyGenerator; // _48
+	u8 m_byte_4C;                         // _4C
 };
 
 /**

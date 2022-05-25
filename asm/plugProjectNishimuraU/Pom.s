@@ -1,22 +1,16 @@
 .include "macros.inc"
 .section .rodata  # 0x804732E0 - 0x8049E220
 .balign 8
-.global lbl_80484CD8
 lbl_80484CD8:
-	.4byte 0x68616E61
-	.4byte 0x62697261
-	.4byte 0x315F7600
-.global lbl_80484CE4
+	.asciz "hanabira1_v"
+.balign 4
 lbl_80484CE4:
-	.4byte 0x6A6E745F
-	.4byte 0x63656E74
-	.4byte 0x65720000
-.global lbl_80484CF0
-lbl_80484CF0:
+	.asciz "jnt_center"
+.balign 4
+lbl_80484CF0: # array of 5 32-byte elements? perhaps pikmin ID enum
 	.4byte 0x00000000
 	.4byte 0x00000001
 	.4byte 0x00000002
-	.4byte 0x00000000
 	.4byte 0x00000000
 	.4byte 0x00000000
 
@@ -237,58 +231,42 @@ __vt__Q34Game3Pom3Obj:
 
 .section .sdata2, "a"     # 0x80516360 - 0x80520E40
 .balign 8
-.global lbl_8051A9A8
 lbl_8051A9A8:
-	.4byte 0x00000000
-.global lbl_8051A9AC
+	.float 0.0
 lbl_8051A9AC:
-	.4byte 0x40000000
-.global lbl_8051A9B0
+	.float 2.0
 lbl_8051A9B0:
 	.float 1.0
-.global lbl_8051A9B4
 lbl_8051A9B4:
 	.float 0.1
-.global lbl_8051A9B8
 lbl_8051A9B8:
-	.4byte 0x42480000
-.global lbl_8051A9BC
-lbl_8051A9BC:
-	.4byte 0x40C90FDB
-.global lbl_8051A9C0
+	.float 50.0
+lbl_8051A9BC: # tau
+	.float 6.2831855
 lbl_8051A9C0:
-	.4byte 0x47000000
-.global lbl_8051A9C4
+	.float 32768.0
 lbl_8051A9C4:
-	.4byte 0x42DC0000
-.global lbl_8051A9C8
+	.float 110.0
 lbl_8051A9C8:
-	.4byte 0xC3A2F983
-.global lbl_8051A9CC
+	.float -325.9493
 lbl_8051A9CC:
-	.4byte 0x43A2F983
-.global lbl_8051A9D0
+	.float 325.9493
 lbl_8051A9D0:
-	.4byte 0x443B8000
-.global lbl_8051A9D4
+	.float 750.0
 lbl_8051A9D4:
-	.4byte 0xBF800000
-.global lbl_8051A9D8
+	.float -1.0
+.balign 8
 lbl_8051A9D8:
 	.4byte 0x43300000
 	.4byte 0x80000000
-.global lbl_8051A9E0
 lbl_8051A9E0:
 	.float 0.7
-.global lbl_8051A9E4
 lbl_8051A9E4:
-	.4byte 0x40A00000
-.global lbl_8051A9E8
+	.float 5.0
 lbl_8051A9E8:
-	.4byte 0x42700000
-.global lbl_8051A9EC
-lbl_8051A9EC:
-	.4byte 0x3F4CCCCD
+	.float 60.0
+lbl_8051A9EC: # DownSmokeScale
+	.float 0.8
 
 .section .text, "ax"  # 0x800056C0 - 0x80472F00
 .global __ct__Q34Game3Pom3ObjFv
@@ -1160,7 +1138,7 @@ lbl_80255388:
 /* 80255398 002522D8  4E 80 00 20 */	blr 
 
 .global getEnemyTypeID__Q34Game3Pom3ObjFv
-getEnemyTypeID__Q34Game3Pom3ObjFv:
+getEnemyTypeID__Q34Game3Pom3ObjFv: # weak function
 /* 8025539C 002522DC  80 63 02 EC */	lwz r3, 0x2ec(r3)
 /* 802553A0 002522E0  4E 80 00 20 */	blr 
 
@@ -1779,24 +1757,24 @@ createPomDeadEffect__Q34Game3Pom3ObjFv:
 /* 80255C80 00252BC0  4E 80 00 20 */	blr 
 
 .global inWaterCallback__Q34Game3Pom3ObjFPQ24Game8WaterBox
-inWaterCallback__Q34Game3Pom3ObjFPQ24Game8WaterBox:
+inWaterCallback__Q34Game3Pom3ObjFPQ24Game8WaterBox: # weak function
 /* 80255C84 00252BC4  4E 80 00 20 */	blr 
 
 .global outWaterCallback__Q34Game3Pom3ObjFv
-outWaterCallback__Q34Game3Pom3ObjFv:
+outWaterCallback__Q34Game3Pom3ObjFv: # weak function
 /* 80255C88 00252BC8  4E 80 00 20 */	blr 
 
 .global isLivingThing__Q34Game3Pom3ObjFv
-isLivingThing__Q34Game3Pom3ObjFv:
+isLivingThing__Q34Game3Pom3ObjFv: # weak function
 /* 80255C8C 00252BCC  38 60 00 00 */	li r3, 0
 /* 80255C90 00252BD0  4E 80 00 20 */	blr 
 
 .global getMouthSlots__Q34Game3Pom3ObjFv
-getMouthSlots__Q34Game3Pom3ObjFv:
+getMouthSlots__Q34Game3Pom3ObjFv: # weak function
 /* 80255C94 00252BD4  38 63 02 D0 */	addi r3, r3, 0x2d0
 /* 80255C98 00252BD8  4E 80 00 20 */	blr 
 
 .global getDownSmokeScale__Q34Game3Pom3ObjFv
-getDownSmokeScale__Q34Game3Pom3ObjFv:
+getDownSmokeScale__Q34Game3Pom3ObjFv: # weak function
 /* 80255C9C 00252BDC  C0 22 C6 8C */	lfs f1, lbl_8051A9EC@sda21(r2)
 /* 80255CA0 00252BE0  4E 80 00 20 */	blr 
