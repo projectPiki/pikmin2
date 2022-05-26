@@ -10,6 +10,7 @@
 #include "id32.h"
 #include "Game/enemyInfo.h"
 #include "Game/EnemyPelletInfo.h"
+#include "Game/PelletMgr.h"
 
 struct J3DModelData;
 
@@ -211,20 +212,20 @@ struct GenObjectEnemy : public GenObject {
 
 	// vtable end
 
-	EnemyTypeID::EEnemyTypeID m_enemyID;  // _24
-	u8 m_spawnType;                       // _28 // 0: point, 1: circle
-	u8 m_tekiBirthType;                   // _29
-	s16 m_tekiNum;                        // _2A
-	f32 m_appearRadius;                   // _2C
-	f32 m_direction;                      // _30
-	f32 m_enemySize;                      // _34
-	s16 m_otakaraItemCode;                // _38
-	EnemyPelletInfo m_pelletInfo;         // _3C
-	EnemyGeneratorBase* m_enemyGenerator; // _48
-	u8 m_byte_4C;                         // _4C
+	EnemyTypeID::EEnemyTypeID m_enemyID;          // _24
+	u8 m_spawnType;                               // _28 // 0: point, 1: circle
+	u8 m_tekiBirthType;                           // _29
+	s16 m_tekiNum;                                // _2A
+	f32 m_appearRadius;                           // _2C
+	f32 m_direction;                              // _30
+	f32 m_enemySize;                              // _34
+	PelletMgr::OtakaraItemCode m_otakaraItemCode; // _38
+	EnemyPelletInfo m_pelletInfo;                 // _3C
+	EnemyGeneratorBase* m_enemyGenerator;         // _48
+	u8 m_byte_4C;                                 // _4C
 };
 
-GenObjectEnemy* makeObjectEnemy(void);
+GenObject* makeObjectEnemy(void);
 
 /**
  * @size{0x10}

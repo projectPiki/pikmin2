@@ -8,7 +8,7 @@ namespace Game {
  * Address:	80124778
  * Size:	00003C
  */
-GenObjectEnemy* makeObjectEnemy(void) { return new GenObjectEnemy; }
+GenObject* makeObjectEnemy(void) { return new GenObjectEnemy; }
 
 /*
  * --INFO--
@@ -41,43 +41,19 @@ GenObjectEnemy::GenObjectEnemy()
  */
 void GenObjectEnemy::initialise()
 {
-	/*
-	lwz      r8, factory__Q24Game16GenObjectFactory@sda21(r13)
-	lwz      r5, 0(r8)
-	lwz      r0, 4(r8)
-	cmpw     r5, r0
-	bgelr
-	lis      r4, 0x74656B69@ha
-	lwz      r3, 8(r8)
-	addi     r4, r4, 0x74656B69@l
-	slwi     r0, r5, 4
-	stwx     r4, r3, r0
-	lis      r5, makeObjectEnemy__4GameFv@ha
-	lis      r4, lbl_8047B774@ha
-	lis      r3, 0x30303035@ha
-	lwz      r0, 0(r8)
-	addi     r7, r5, makeObjectEnemy__4GameFv@l
-	lwz      r6, 8(r8)
-	addi     r5, r4, lbl_8047B774@l
-	slwi     r0, r0, 4
-	addi     r4, r3, 0x30303035@l
-	add      r3, r6, r0
-	stw      r7, 4(r3)
-	lwz      r0, 0(r8)
-	lwz      r3, 8(r8)
-	slwi     r0, r0, 4
-	add      r3, r3, r0
-	stw      r5, 8(r3)
-	lwz      r0, 0(r8)
-	lwz      r3, 8(r8)
-	slwi     r0, r0, 4
-	add      r3, r3, r0
-	stw      r4, 0xc(r3)
-	lwz      r3, 0(r8)
-	addi     r0, r3, 1
-	stw      r0, 0(r8)
-	blr
-	*/
+	GenObjectFactoryFactory* metafactory = GenObjectFactory::factory;
+
+	// Make sure we don't create a new factory over the limit
+	if (metafactory->m_count >= metafactory->m_limit) {
+		return;
+	}
+
+	// Initialise the new factory with default teki parameters
+	metafactory->m_factories[metafactory->m_count].m_typeID       = 'teki';
+	metafactory->m_factories[metafactory->m_count].m_makeFunction = &makeObjectEnemy;
+	metafactory->m_factories[metafactory->m_count].m_name         = "“G‚ğ”­¶";
+	metafactory->m_factories[metafactory->m_count].m_version      = '0005';
+	metafactory->m_count++;
 }
 
 /*

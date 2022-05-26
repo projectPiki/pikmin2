@@ -9,7 +9,11 @@ namespace Game {
 
 struct PelletMgr : public NodeObjectMgr<GenericObjectMgr> {
 	struct OtakaraItemCode {
-		short m_value; // _00
+		OtakaraItemCode(s16 v)
+		    : m_value(v)
+		{
+		}
+		s16 m_value; // _00
 	};
 	void makeOtakaraItemCode(char*, OtakaraItemCode&);
 
