@@ -1,5 +1,9 @@
 #include "types.h"
 #include "Game/gameGenerator.h"
+#include "Game/MapMgr.h"
+#include "Dolphin/rand.h"
+#include "sysMath.h"
+#include "Game/Creature.h"
 
 namespace Game {
 
