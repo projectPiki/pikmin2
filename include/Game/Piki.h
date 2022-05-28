@@ -48,13 +48,14 @@ struct PikiState;
 struct StateArg;
 
 typedef enum EPikiColor {
-	Blue    = 0,
-	Red     = 1,
-	Yellow  = 2,
-	Purple  = 3,
-	White   = 4,
-	Bulbmin = 5,
-	Carrot  = 6,
+	Blue       = 0,
+	Red        = 1,
+	Yellow     = 2,
+	OnyonCount = 2,
+	Purple     = 3,
+	White      = 4,
+	Bulbmin    = 5,
+	Carrot     = 6,
 	PikiColorCount,
 } EPikiColor;
 

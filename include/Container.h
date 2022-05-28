@@ -5,6 +5,10 @@
 #include "stream.h"
 
 struct GenericContainer : public CNode {
+	/**
+	 * @reifiedAddress{8010A900}
+	 * @reifiedFile{plugProjectYamashitaU/pelplant.cpp}
+	 */
 	virtual ~GenericContainer() {};     // _00
 	virtual void* getObject(void*) = 0; // _08
 	virtual void* getNext(void*)   = 0; // _0C

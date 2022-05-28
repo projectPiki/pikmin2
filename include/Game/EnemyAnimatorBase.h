@@ -13,7 +13,7 @@ struct EnemyAnimatorBase {
 	virtual void animate(float);                      // _14
 	virtual void animate(int, float);                 // _18
 	virtual void resetAnimSpeed();                    // _1C
-	virtual void getTypeID();                         // _20
+	virtual u32 getTypeID();                          // _20
 
 	inline void reset()
 	{
@@ -44,9 +44,20 @@ struct EnemyBlendAnimatorBase : public EnemyAnimatorBase {
 	virtual SysShape::Animator& getAnimator();    // _08
 	virtual SysShape::Animator& getAnimator(int); // _0C
 	virtual void animate(float);                  // _10
-	virtual void animate(int, float);             // _14
-	virtual void resetAnimSpeed();                // _18
-	virtual void getTypeID();                     // _1C
+	/**
+	 * @reifiedAddress{8010AA4C}
+	 * @reifiedFile{plugProjectYamashitaU/pelplant.cpp}
+	 */
+	virtual void animate(int p1, float p2) // _14
+	{
+		EnemyAnimatorBase::animate(p1, p2);
+	}
+	virtual void resetAnimSpeed(); // _18
+	/**
+	 * @reifiedAddress{8010AA6C}
+	 * @reifiedFile{plugProjectYamashitaU/pelplant.cpp}
+	 */
+	virtual u32 getTypeID() { return 'blnd'; } // _1C
 
 	void startBlend(int, int, SysShape::BlendFunction*, float, SysShape::MotionListener*);
 	void endBlend();

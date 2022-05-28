@@ -1,4 +1,13 @@
+#include "Graphics.h"
+#include "Game/Piki.h"
+#include "Game/enemyInfo.h"
 #include "types.h"
+#include "Game/Entities/Pelplant.h"
+#include "CollInfo.h"
+#include "SysShape/Joint.h"
+#include "SysShape/Model.h"
+#include "JSystem/JUT/JUTException.h"
+#include "JSystem/J3D/J3DJoint.h"
 
 /*
     Generated from dpostproc
@@ -971,7 +980,7 @@ namespace Game {
  * Address:	80108300
  * Size:	0000B0
  */
-void Pelplant::BlendAccelerationFunc::getValue(float)
+float Pelplant::BlendAccelerationFunc::getValue(float)
 {
 	/*
 	fneg     f2, f1
@@ -1096,207 +1105,77 @@ lbl_80108438:
  * Address:	80108464
  * Size:	000280
  */
-void Pelplant::Obj::setInitialSetting(Game::EnemyInitialParamBase*)
+void Pelplant::Obj::setInitialSetting(EnemyInitialParamBase* param)
 {
-	/*
-	stwu     r1, -0x30(r1)
-	mflr     r0
-	stw      r0, 0x34(r1)
-	stfd     f31, 0x20(r1)
-	psq_st   f31, 40(r1), 0, qr0
-	stw      r31, 0x1c(r1)
-	stw      r30, 0x18(r1)
-	stw      r29, 0x14(r1)
-	stw      r28, 0x10(r1)
-	mr       r29, r3
-	lis      r3, lbl_8047A660@ha
-	lbz      r0, 0x2d6(r29)
-	mr       r30, r4
-	addi     r31, r3, lbl_8047A660@l
-	extsb.   r0, r0
-	bne      lbl_801084B4
-	lbz      r0, 0x2c8(r29)
-	ori      r0, r0, 1
-	stb      r0, 0x2c8(r29)
-	b        lbl_801084C0
-
-lbl_801084B4:
-	lbz      r0, 0x2c8(r29)
-	rlwinm   r0, r0, 0, 0x18, 0x1e
-	stb      r0, 0x2c8(r29)
-
-lbl_801084C0:
-	lbz      r0, 0x2d6(r29)
-	extsb.   r0, r0
-	bge      lbl_801084D4
-	li       r0, 0
-	stb      r0, 2(r30)
-
-lbl_801084D4:
-	lbz      r0, 0(r30)
-	mr       r3, r29
-	li       r5, 0
-	stb      r0, 0x2d4(r29)
-	lbz      r4, 0x2d4(r29)
-	bl       setPelletColor__Q34Game8Pelplant3ObjFUsb
-	lbz      r0, 1(r30)
-	stb      r0, 0x2d5(r29)
-	lbz      r0, 2(r30)
-	cmpwi    r0, 1
-	beq      lbl_80108540
-	bge      lbl_80108510
-	cmpwi    r0, 0
-	bge      lbl_8010851C
-	b        lbl_8010858C
-
-lbl_80108510:
-	cmpwi    r0, 3
-	bge      lbl_8010858C
-	b        lbl_80108564
-
-lbl_8010851C:
-	lwz      r3, 0x2bc(r29)
-	mr       r4, r29
-	li       r5, 0
-	li       r6, 0
-	lwz      r12, 0(r3)
-	lwz      r12, 0xc(r12)
-	mtctr    r12
-	bctrl
-	b        lbl_8010858C
-
-lbl_80108540:
-	lwz      r3, 0x2bc(r29)
-	mr       r4, r29
-	li       r5, 1
-	li       r6, 0
-	lwz      r12, 0(r3)
-	lwz      r12, 0xc(r12)
-	mtctr    r12
-	bctrl
-	b        lbl_8010858C
-
-lbl_80108564:
-	lwz      r3, 0x2bc(r29)
-	mr       r4, r29
-	li       r5, 2
-	li       r6, 0
-	lwz      r12, 0(r3)
-	lwz      r12, 0xc(r12)
-	mtctr    r12
-	bctrl
-	mr       r3, r29
-	bl       attachPellet__Q34Game8Pelplant3ObjFv
-
-lbl_8010858C:
-	lbz      r0, 1(r30)
-	cmplwi   r0, 5
-	bne      lbl_801085DC
-	stw      r29, sCurrentObj__Q34Game8Pelplant3Obj@sda21(r13)
-	addi     r4, r2, lbl_8051786C@sda21
-	lwz      r3, 0x174(r29)
-	bl       getJoint__Q28SysShape5ModelFPc
-	or.      r28, r3, r3
-	bne      lbl_801085C4
-	addi     r3, r31, 0
-	addi     r5, r31, 0x4c
-	li       r4, 0x16d
-	crclr    6
-	bl       panic_f__12JUTExceptionFPCciPCce
-
-lbl_801085C4:
-	lis      r4, headJointCallBack__Q34Game8Pelplant3ObjFP8J3DJointi@ha
-	lwz      r3, 0x18(r28)
-	addi     r4, r4, headJointCallBack__Q34Game8Pelplant3ObjFP8J3DJointi@l
-	li       r0, 0
-	stw      r4, 4(r3)
-	stw      r0, sCurrentObj__Q34Game8Pelplant3Obj@sda21(r13)
-
-lbl_801085DC:
-	lbz      r0, 1(r30)
-	cmplwi   r0, 0xa
-	beq      lbl_801085F0
-	cmplwi   r0, 0x14
-	bne      lbl_8010866C
-
-lbl_801085F0:
-	stw      r29, sCurrentObj__Q34Game8Pelplant3Obj@sda21(r13)
-	addi     r4, r2, lbl_8051786C@sda21
-	lwz      r3, 0x174(r29)
-	bl       getJoint__Q28SysShape5ModelFPc
-	or.      r30, r3, r3
-	bne      lbl_8010861C
-	addi     r3, r31, 0
-	addi     r5, r31, 0x4c
-	li       r4, 0x178
-	crclr    6
-	bl       panic_f__12JUTExceptionFPCciPCce
-
-lbl_8010861C:
-	lis      r4, headJointCallBack__Q34Game8Pelplant3ObjFP8J3DJointi@ha
-	lwz      r3, 0x18(r30)
-	addi     r0, r4, headJointCallBack__Q34Game8Pelplant3ObjFP8J3DJointi@l
-	addi     r4, r31, 0x58
-	stw      r0, 4(r3)
-	lwz      r3, 0x174(r29)
-	bl       getJoint__Q28SysShape5ModelFPc
-	or.      r30, r3, r3
-	bne      lbl_80108654
-	addi     r3, r31, 0
-	addi     r5, r31, 0x4c
-	li       r4, 0x17d
-	crclr    6
-	bl       panic_f__12JUTExceptionFPCciPCce
-
-lbl_80108654:
-	lis      r4, neckJointCallBack__Q34Game8Pelplant3ObjFP8J3DJointi@ha
-	lwz      r3, 0x18(r30)
-	addi     r4, r4, neckJointCallBack__Q34Game8Pelplant3ObjFP8J3DJointi@l
-	li       r0, 0
-	stw      r4, 4(r3)
-	stw      r0, sCurrentObj__Q34Game8Pelplant3Obj@sda21(r13)
-
-lbl_8010866C:
-	lis      r4, 0x68656164@ha
-	lwz      r3, 0x114(r29)
-	addi     r4, r4, 0x68656164@l
-	bl       getCollPart__8CollTreeFUl
-	mr       r0, r3
-	mr       r3, r29
-	mr       r28, r0
-	bl       getHeadScale__Q34Game8Pelplant3ObjFv
-	fmr      f31, f1
-	mr       r3, r28
-	bl       setScale__8CollPartFf
-	lfs      f0, 0x20(r28)
-	fmuls    f0, f0, f31
-	stfs     f0, 0x20(r28)
-	lfs      f0, 0x24(r28)
-	fmuls    f0, f0, f31
-	stfs     f0, 0x24(r28)
-	lfs      f0, 0x28(r28)
-	fmuls    f0, f0, f31
-	stfs     f0, 0x28(r28)
-	psq_l    f31, 40(r1), 0, qr0
-	lwz      r0, 0x34(r1)
-	lfd      f31, 0x20(r1)
-	lwz      r31, 0x1c(r1)
-	lwz      r30, 0x18(r1)
-	lwz      r29, 0x14(r1)
-	lwz      r28, 0x10(r1)
-	mtlr     r0
-	addi     r1, r1, 0x30
-	blr
-	*/
+	if (m_farmPow == 0) {
+		_2C8 |= 1;
+	} else {
+		_2C8 &= ~1;
+	}
+	if (m_farmPow < 0) {
+		param->_02 = 0;
+	}
+	_2D4 = param->_00;
+	setPelletColor(_2D4, false);
+	m_pelletSize = param->_01;
+	switch (param->_02) {
+	case 0:
+		m_fsm->start(this, 0, nullptr);
+		break;
+	case 1:
+		m_fsm->start(this, 1, nullptr);
+		break;
+	case 2:
+		m_fsm->start(this, 2, nullptr);
+		attachPellet();
+		break;
+	}
+	if (param->_01 == 5) {
+		sCurrentObj            = this;
+		SysShape::Joint* joint = m_model->getJoint("headjnt");
+		P2ASSERTLINE(365, joint);
+		joint->m_j3d->m_function = *(Obj::headJointCallBack);
+		sCurrentObj              = nullptr;
+	}
+	if (param->_01 == 10 || param->_01 == 20) {
+		sCurrentObj            = this;
+		SysShape::Joint* joint = m_model->getJoint("headjnt");
+		P2ASSERTLINE(376, joint);
+		joint->m_j3d->m_function = *(Obj::headJointCallBack);
+		joint                    = m_model->getJoint("bodyjnt1");
+		P2ASSERTLINE(381, joint);
+		joint->m_j3d->m_function = *(Obj::neckJointCallBack);
+		sCurrentObj              = nullptr;
+	}
+	CollPart* part = m_collTree->getCollPart('head');
+	float scale    = getHeadScale();
+	part->setScale(scale);
+	part->_20.x *= scale;
+	part->_20.y *= scale;
+	part->_20.z *= scale;
 }
 
-/*
+/**
+ * __ct__Q34Game8Pelplant3ObjFv
  * --INFO--
  * Address:	801086E4
  * Size:	000138
+ * @todo Depends on SysShape::BlendAnimator::BlendAnimator() in SysShape.cpp for proper matching output?
  */
 Pelplant::Obj::Obj()
+    : EnemyBase()
+    , m_fsm(nullptr)
+    , _2C4(nullptr)
+    , _2C8(0)
+    , m_pellet(nullptr)
+    , _2D0(0.0f)
+    , _2D4(3)
+    , m_pelletSize(1)
+    , m_farmPow(0)
 {
+	m_animator = new ProperAnimator();
+	setFSM(new FSM());
+	_2C8 = 0;
 	/*
 	stwu     r1, -0x10(r1)
 	mflr     r0
@@ -1390,32 +1269,15 @@ lbl_801087E4:
  * Address:	8010881C
  * Size:	00004C
  */
-void Pelplant::Obj::setFSM(Game::Pelplant::FSM*)
+void Pelplant::Obj::setFSM(Game::Pelplant::FSM* fsm)
 {
-	/*
-	stwu     r1, -0x10(r1)
-	mflr     r0
-	stw      r0, 0x14(r1)
-	stw      r31, 0xc(r1)
-	mr       r31, r3
-	stw      r4, 0x2bc(r3)
-	mr       r4, r31
-	lwz      r3, 0x2bc(r3)
-	lwz      r12, 0(r3)
-	lwz      r12, 8(r12)
-	mtctr    r12
-	bctrl
-	li       r0, 0
-	stw      r0, 0x2b4(r31)
-	lwz      r0, 0x14(r1)
-	lwz      r31, 0xc(r1)
-	mtlr     r0
-	addi     r1, r1, 0x10
-	blr
-	*/
+	m_fsm = fsm;
+	m_fsm->init(this);
+	m_currentLifecycleState = nullptr;
 }
 
 /*
+ * __dt__Q24Game22EnemyBlendAnimatorBaseFv
  * --INFO--
  * Address:	80108868
  * Size:	00005C
@@ -1458,85 +1320,33 @@ lbl_801088AC:
  * Address:	801088C4
  * Size:	000034
  */
-void Pelplant::Obj::doUpdate()
-{
-	/*
-	stwu     r1, -0x10(r1)
-	mflr     r0
-	mr       r4, r3
-	stw      r0, 0x14(r1)
-	lwz      r3, 0x2bc(r3)
-	lwz      r12, 0(r3)
-	lwz      r12, 0x10(r12)
-	mtctr    r12
-	bctrl
-	lwz      r0, 0x14(r1)
-	mtlr     r0
-	addi     r1, r1, 0x10
-	blr
-	*/
-}
+void Pelplant::Obj::doUpdate() { m_fsm->exec(this); }
 
 /*
  * --INFO--
  * Address:	801088F8
  * Size:	000088
  */
-void Pelplant::Obj::updateLODSphereRadius(int)
+void Pelplant::Obj::updateLODSphereRadius(int p1)
 {
-	/*
-	cmpwi    r4, 2
-	bne      lbl_80108970
-	lbz      r0, 0x2d5(r3)
-	cmplwi   r0, 0x14
-	bgtlr
-	lis      r4, lbl_804AA9B8@ha
-	slwi     r0, r0, 2
-	addi     r4, r4, lbl_804AA9B8@l
-	lwzx     r0, r4, r0
-	mtctr    r0
-	bctr
-	.global  lbl_80108924
-
-lbl_80108924:
-	lis      r4, "sLODRadius__Q34Game8Pelplant22@unnamed@pelplant_cpp@"@ha
-	lfs      f0, "sLODRadius__Q34Game8Pelplant22@unnamed@pelplant_cpp@"@l(r4)
-	stfs     f0, 0x27c(r3)
-	blr
-	.global  lbl_80108934
-
-lbl_80108934:
-	lis      r4, "sLODRadius__Q34Game8Pelplant22@unnamed@pelplant_cpp@"@ha
-	addi     r4, r4, "sLODRadius__Q34Game8Pelplant22@unnamed@pelplant_cpp@"@l
-	lfs      f0, 4(r4)
-	stfs     f0, 0x27c(r3)
-	blr
-	.global  lbl_80108948
-
-lbl_80108948:
-	lis      r4, "sLODRadius__Q34Game8Pelplant22@unnamed@pelplant_cpp@"@ha
-	addi     r4, r4, "sLODRadius__Q34Game8Pelplant22@unnamed@pelplant_cpp@"@l
-	lfs      f0, 8(r4)
-	stfs     f0, 0x27c(r3)
-	blr
-	.global  lbl_8010895C
-
-lbl_8010895C:
-	lis      r4, "sLODRadius__Q34Game8Pelplant22@unnamed@pelplant_cpp@"@ha
-	addi     r4, r4, "sLODRadius__Q34Game8Pelplant22@unnamed@pelplant_cpp@"@l
-	lfs      f0, 0xc(r4)
-	stfs     f0, 0x27c(r3)
-	blr
-
-lbl_80108970:
-	lis      r4, "sLODRadius__Q34Game8Pelplant22@unnamed@pelplant_cpp@"@ha
-	lfs      f0, "sLODRadius__Q34Game8Pelplant22@unnamed@pelplant_cpp@"@l(r4)
-	stfs     f0, 0x27c(r3)
-	.global  lbl_8010897C
-
-lbl_8010897C:
-	blr
-	*/
+	if (p1 == 2) {
+		switch (m_pelletSize) {
+		case 1:
+			m_lodRange.m_radius = sLODRadius[0];
+			return;
+		case 5:
+			m_lodRange.m_radius = sLODRadius[1];
+			return;
+		case 10:
+			m_lodRange.m_radius = sLODRadius[2];
+			return;
+		case 20:
+			m_lodRange.m_radius = sLODRadius[3];
+			return;
+		}
+	} else {
+		m_lodRange.m_radius = sLODRadius[0];
+	}
 }
 
 /*
@@ -1551,8 +1361,14 @@ void Pelplant::Obj::doDirectDraw(Graphics&) { }
  * Address:	80108984
  * Size:	00018C
  */
-void Pelplant::Obj::doDebugDraw(Graphics&)
+void Pelplant::Obj::doDebugDraw(Graphics& gfx)
 {
+	EnemyBase::doDebugDraw(gfx);
+	if (((Parms*)m_parms)->m_flags[0].typeView & 1) {
+		gfx.initPerspPrintf(gfx._25C);
+	}
+	PerspPrintfInfo info;
+	// info.m_font = JFWSystem::systemFont;
 	/*
 	stwu     r1, -0x40(r1)
 	mflr     r0
@@ -1779,49 +1595,22 @@ void Pelplant::Obj::doAnimationUpdateAnimator()
  * Address:	80108C60
  * Size:	000058
  */
-void Pelplant::Obj::getHeadScale()
+float Pelplant::Obj::getHeadScale()
 {
-	/*
-	lwz      r0, 0x2cc(r3)
-	cmplwi   r0, 0
-	beq      lbl_80108CB0
-	lbz      r0, 0x2d5(r3)
-	cmplwi   r0, 0x14
-	bgtlr
-	lis      r3, lbl_804AAA0C@ha
-	slwi     r0, r0, 2
-	addi     r3, r3, lbl_804AAA0C@l
-	lwzx     r0, r3, r0
-	mtctr    r0
-	bctr
-	.global  lbl_80108C90
-
-lbl_80108C90:
-	lfs      f1, lbl_80517868@sda21(r2)
-	blr
-	.global  lbl_80108C98
-
-lbl_80108C98:
-	lfs      f1, lbl_80517884@sda21(r2)
-	blr
-	.global  lbl_80108CA0
-
-lbl_80108CA0:
-	lfs      f1, lbl_80517890@sda21(r2)
-	blr
-	.global  lbl_80108CA8
-
-lbl_80108CA8:
-	lfs      f1, lbl_80517894@sda21(r2)
-	blr
-
-lbl_80108CB0:
-	lfs      f1, lbl_80517868@sda21(r2)
-	.global  lbl_80108CB4
-
-lbl_80108CB4:
-	blr
-	*/
+	if (m_pellet) {
+		switch (m_pelletSize) {
+		case 1:
+			return 1.0f;
+		case 5:
+			return 2.0f;
+		case 10:
+			return 3.5f;
+		case 20:
+			return 4.8f;
+		}
+	} else {
+		return 1.0f;
+	}
 }
 
 /*
@@ -1985,8 +1774,13 @@ void Pelplant::Obj::doSimulation(float) { }
  * Address:	80108E54
  * Size:	0000F0
  */
-void Pelplant::Obj::setPelletColor(unsigned short, bool)
+void Pelplant::Obj::setPelletColor(unsigned short pikiType, bool p2)
 {
+	if (m_pellet != nullptr) {
+		if (OnyonCount < pikiType || false) {
+			// m_pellet->m_onyonType = EPikiColor::Red;
+		}
+	}
 	/*
 	stwu     r1, -0x20(r1)
 	mflr     r0
@@ -2300,7 +2094,7 @@ lbl_801091C4:
  * Address:	801091E4
  * Size:	000098
  */
-void Pelplant::Obj::damageCallBack(Game::Creature*, float, CollPart*)
+bool Pelplant::Obj::damageCallBack(Game::Creature*, float, CollPart*)
 {
 	/*
 	stwu     r1, -0x20(r1)
@@ -2351,62 +2145,23 @@ lbl_80109258:
  * Address:	8010927C
  * Size:	00000C
  */
-void Pelplant::Obj::isLivingThing()
-{
-	/*
-	lbz      r0, 0x2c8(r3)
-	rlwinm   r3, r0, 0x1f, 0x1f, 0x1f
-	blr
-	*/
-}
+bool Pelplant::Obj::isLivingThing() { return (_2C8 >> 1 & 1); }
 
 /*
  * --INFO--
  * Address:	80109288
  * Size:	000078
  */
-void Pelplant::Obj::farmCallBack(Game::Creature*, float)
+bool Pelplant::Obj::farmCallBack(Game::Creature* p1, float p2)
 {
-	/*
-	lfs      f0, lbl_80517860@sda21(r2)
-	stwu     r1, -0x10(r1)
-	fcmpo    cr0, f1, f0
-	cror     2, 1, 2
-	bne      lbl_801092A8
-	lfs      f0, lbl_80517864@sda21(r2)
-	fadds    f0, f0, f1
-	b        lbl_801092B0
-
-lbl_801092A8:
-	lfs      f0, lbl_80517864@sda21(r2)
-	fsubs    f0, f1, f0
-
-lbl_801092B0:
-	fctiwz   f0, f0
-	stfd     f0, 8(r1)
-	lwz      r0, 0xc(r1)
-	stb      r0, 0x2d6(r3)
-	lbz      r0, 0x2d6(r3)
-	extsb.   r0, r0
-	bge      lbl_801092DC
-	lbz      r0, 0x2c8(r3)
-	rlwinm   r0, r0, 0, 0x18, 0x1e
-	stb      r0, 0x2c8(r3)
-	b        lbl_801092E8
-
-lbl_801092DC:
-	lbz      r0, 0x2c8(r3)
-	ori      r0, r0, 1
-	stb      r0, 0x2c8(r3)
-
-lbl_801092E8:
-	lwz      r0, 0x1e0(r3)
-	rlwinm   r0, r0, 0, 0x1a, 0x18
-	stw      r0, 0x1e0(r3)
-	li       r3, 1
-	addi     r1, r1, 0x10
-	blr
-	*/
+	m_farmPow = (char)((p2 >= 0.0f) ? p2 + 0.5f : p2 - 0.5f);
+	if (m_farmPow < 0) {
+		_2C8 &= ~1;
+	} else {
+		_2C8 |= 1;
+	}
+	_1E0[0].typeView &= 0xFFFFFFBF;
+	return true;
 }
 
 /*
@@ -2414,36 +2169,12 @@ lbl_801092E8:
  * Address:	80109300
  * Size:	000060
  */
-void Pelplant::Obj::onStickStart(Game::Creature*)
+void Pelplant::Obj::onStickStart(Game::Creature* other)
 {
-	/*
-	stwu     r1, -0x10(r1)
-	mflr     r0
-	stw      r0, 0x14(r1)
-	stw      r31, 0xc(r1)
-	mr       r31, r4
-	stw      r30, 8(r1)
-	mr       r30, r3
-	bl       onStickStart__Q24Game9EnemyBaseFPQ24Game8Creature
-	lwz      r3, 0xf8(r31)
-	cmplwi   r3, 0
-	beq      lbl_80109348
-	lbz      r0, 0x47(r3)
-	cmpwi    r0, 0x30
-	bne      lbl_80109348
-	lfs      f1, 0x204(r30)
-	mr       r3, r30
-	lfs      f2, lbl_80517868@sda21(r2)
-	bl       addDamage__Q24Game9EnemyBaseFff
-
-lbl_80109348:
-	lwz      r0, 0x14(r1)
-	lwz      r31, 0xc(r1)
-	lwz      r30, 8(r1)
-	mtlr     r0
-	addi     r1, r1, 0x10
-	blr
-	*/
+	EnemyBase::onStickStart(other);
+	if (other->_0F8 && other->_0F8->_3C.getStrID()[3] == '0') {
+		addDamage(m_maxHealth, 1.0f);
+	}
 }
 
 /*
@@ -2451,7 +2182,7 @@ lbl_80109348:
  * Address:	80109360
  * Size:	0000F0
  */
-void Pelplant::Obj::headJointCallBack(J3DJoint*, int)
+unknown Pelplant::Obj::headJointCallBack(J3DJoint*, int)
 {
 	/*
 	lwz      r5, sCurrentObj__Q34Game8Pelplant3Obj@sda21(r13)
@@ -2541,7 +2272,7 @@ lbl_80109448:
  * Address:	80109450
  * Size:	000104
  */
-void Pelplant::Obj::neckJointCallBack(J3DJoint*, int)
+unknown Pelplant::Obj::neckJointCallBack(J3DJoint*, int)
 {
 	/*
 	lwz      r5, sCurrentObj__Q34Game8Pelplant3Obj@sda21(r13)
@@ -2632,37 +2363,19 @@ lbl_8010954C:
 }
 
 /*
+ * __ct__Q34Game8Pelplant3MgrFiUc
  * --INFO--
  * Address:	80109554
  * Size:	000050
  */
-Pelplant::Mgr::Mgr(int, unsigned char)
+Pelplant::Mgr::Mgr(int p1, unsigned char p2)
+    : EnemyMgrBase(p1, p2)
 {
-	/*
-	stwu     r1, -0x10(r1)
-	mflr     r0
-	stw      r0, 0x14(r1)
-	stw      r31, 0xc(r1)
-	mr       r31, r3
-	bl       __ct__Q24Game12EnemyMgrBaseFiUc
-	lis      r3, __vt__Q34Game8Pelplant3Mgr@ha
-	lis      r4, lbl_8047A70C@ha
-	addi     r5, r3, __vt__Q34Game8Pelplant3Mgr@l
-	mr       r3, r31
-	stw      r5, 0(r31)
-	addi     r5, r5, 0x38
-	addi     r0, r4, lbl_8047A70C@l
-	stw      r5, 4(r31)
-	stw      r0, 0x18(r31)
-	lwz      r31, 0xc(r1)
-	lwz      r0, 0x14(r1)
-	mtlr     r0
-	addi     r1, r1, 0x10
-	blr
-	*/
+	m_name = "ペレット草マネージャ";
 }
 
 /*
+ * __dt__Q24Game12EnemyMgrBaseFv
  * --INFO--
  * Address:	801095A4
  * Size:	000098
@@ -2720,949 +2433,937 @@ lbl_80109620:
  * Address:	8010963C
  * Size:	000048
  */
-void Pelplant::Mgr::doAlloc()
-{
-	/*
-	stwu     r1, -0x10(r1)
-	mflr     r0
-	stw      r0, 0x14(r1)
-	stw      r31, 0xc(r1)
-	mr       r31, r3
-	li       r3, 0x880
-	bl       __nw__FUl
-	or.      r4, r3, r3
-	beq      lbl_80109668
-	bl       __ct__Q34Game8Pelplant5ParmsFv
-	mr       r4, r3
-
-lbl_80109668:
-	mr       r3, r31
-	bl       init__Q24Game12EnemyMgrBaseFPQ24Game14EnemyParmsBase
-	lwz      r0, 0x14(r1)
-	lwz      r31, 0xc(r1)
-	mtlr     r0
-	addi     r1, r1, 0x10
-	blr
-	*/
-}
+void Pelplant::Mgr::doAlloc() { init(new Parms()); }
 
 /*
+ * __ct__Q34Game8Pelplant5ParmsFv
  * --INFO--
  * Address:	80109684
  * Size:	000118
  */
-Pelplant::Parms::Parms()
-{
-	/*
-	stwu     r1, -0x10(r1)
-	mflr     r0
-	lis      r4, lbl_8047A660@ha
-	stw      r0, 0x14(r1)
-	stw      r31, 0xc(r1)
-	addi     r31, r4, lbl_8047A660@l
-	stw      r30, 8(r1)
-	mr       r30, r3
-	bl       __ct__Q24Game14EnemyParmsBaseFv
-	lis      r3, __vt__Q34Game8Pelplant5Parms@ha
-	lis      r5, 0x66703031@ha
-	addi     r0, r3, __vt__Q34Game8Pelplant5Parms@l
-	addi     r4, r30, 0x87c
-	stw      r0, 0xd8(r30)
-	li       r7, 0
-	addi     r0, r31, 0xc4
-	addi     r3, r30, 0x804
-	stw      r4, 0x7f8(r30)
-	addi     r4, r30, 0x7f8
-	addi     r5, r5, 0x66703031@l
-	addi     r6, r31, 0xd4
-	stw      r7, 0x7fc(r30)
-	stw      r0, 0x800(r30)
-	bl       __ct__8BaseParmFP10ParametersUlPc
-	lis      r3, "__vt__7Parm<f>"@ha
-	lis      r5, 0x66703032@ha
-	addi     r0, r3, "__vt__7Parm<f>"@l
-	lfs      f0, lbl_805178B8@sda21(r2)
-	stw      r0, 0x804(r30)
-	addi     r3, r30, 0x82c
-	lfs      f1, lbl_80517860@sda21(r2)
-	addi     r4, r30, 0x7f8
-	stfs     f0, 0x81c(r30)
-	addi     r5, r5, 0x66703032@l
-	lfs      f0, lbl_805178BC@sda21(r2)
-	addi     r6, r31, 0xe4
-	stfs     f1, 0x824(r30)
-	stfs     f0, 0x828(r30)
-	bl       __ct__8BaseParmFP10ParametersUlPc
-	lis      r3, "__vt__7Parm<f>"@ha
-	lis      r5, 0x66703033@ha
-	addi     r0, r3, "__vt__7Parm<f>"@l
-	lfs      f0, lbl_805178B8@sda21(r2)
-	stw      r0, 0x82c(r30)
-	addi     r3, r30, 0x854
-	lfs      f1, lbl_80517860@sda21(r2)
-	addi     r4, r30, 0x7f8
-	stfs     f0, 0x844(r30)
-	addi     r5, r5, 0x66703033@l
-	lfs      f0, lbl_805178BC@sda21(r2)
-	addi     r6, r31, 0xf4
-	stfs     f1, 0x84c(r30)
-	stfs     f0, 0x850(r30)
-	bl       __ct__8BaseParmFP10ParametersUlPc
-	lis      r3, "__vt__7Parm<f>"@ha
-	lfs      f2, lbl_80517898@sda21(r2)
-	addi     r0, r3, "__vt__7Parm<f>"@l
-	lfs      f1, lbl_80517860@sda21(r2)
-	stw      r0, 0x854(r30)
-	mr       r3, r30
-	lfs      f0, lbl_805178C0@sda21(r2)
-	stfs     f2, 0x86c(r30)
-	stfs     f1, 0x874(r30)
-	stfs     f0, 0x878(r30)
-	lwz      r31, 0xc(r1)
-	lwz      r30, 8(r1)
-	lwz      r0, 0x14(r1)
-	mtlr     r0
-	addi     r1, r1, 0x10
-	blr
-	*/
-}
+// Pelplant::Parms::Parms()
+//     : EnemyParmsBase()
+//     , m_pelplantParms()
+// {
+// 	/*
+// 	stwu     r1, -0x10(r1)
+// 	mflr     r0
+// 	lis      r4, lbl_8047A660@ha
+// 	stw      r0, 0x14(r1)
+// 	stw      r31, 0xc(r1)
+// 	addi     r31, r4, lbl_8047A660@l
+// 	stw      r30, 8(r1)
+// 	mr       r30, r3
+// 	bl       __ct__Q24Game14EnemyParmsBaseFv
+// 	lis      r3, __vt__Q34Game8Pelplant5Parms@ha
+// 	lis      r5, 0x66703031@ha
+// 	addi     r0, r3, __vt__Q34Game8Pelplant5Parms@l
+// 	addi     r4, r30, 0x87c
+// 	stw      r0, 0xd8(r30)
+// 	li       r7, 0
+// 	addi     r0, r31, 0xc4
+// 	addi     r3, r30, 0x804
+// 	stw      r4, 0x7f8(r30)
+// 	addi     r4, r30, 0x7f8
+// 	addi     r5, r5, 0x66703031@l
+// 	addi     r6, r31, 0xd4
+// 	stw      r7, 0x7fc(r30)
+// 	stw      r0, 0x800(r30)
+// 	bl       __ct__8BaseParmFP10ParametersUlPc
+// 	lis      r3, "__vt__7Parm<f>"@ha
+// 	lis      r5, 0x66703032@ha
+// 	addi     r0, r3, "__vt__7Parm<f>"@l
+// 	lfs      f0, lbl_805178B8@sda21(r2)
+// 	stw      r0, 0x804(r30)
+// 	addi     r3, r30, 0x82c
+// 	lfs      f1, lbl_80517860@sda21(r2)
+// 	addi     r4, r30, 0x7f8
+// 	stfs     f0, 0x81c(r30)
+// 	addi     r5, r5, 0x66703032@l
+// 	lfs      f0, lbl_805178BC@sda21(r2)
+// 	addi     r6, r31, 0xe4
+// 	stfs     f1, 0x824(r30)
+// 	stfs     f0, 0x828(r30)
+// 	bl       __ct__8BaseParmFP10ParametersUlPc
+// 	lis      r3, "__vt__7Parm<f>"@ha
+// 	lis      r5, 0x66703033@ha
+// 	addi     r0, r3, "__vt__7Parm<f>"@l
+// 	lfs      f0, lbl_805178B8@sda21(r2)
+// 	stw      r0, 0x82c(r30)
+// 	addi     r3, r30, 0x854
+// 	lfs      f1, lbl_80517860@sda21(r2)
+// 	addi     r4, r30, 0x7f8
+// 	stfs     f0, 0x844(r30)
+// 	addi     r5, r5, 0x66703033@l
+// 	lfs      f0, lbl_805178BC@sda21(r2)
+// 	addi     r6, r31, 0xf4
+// 	stfs     f1, 0x84c(r30)
+// 	stfs     f0, 0x850(r30)
+// 	bl       __ct__8BaseParmFP10ParametersUlPc
+// 	lis      r3, "__vt__7Parm<f>"@ha
+// 	lfs      f2, lbl_80517898@sda21(r2)
+// 	addi     r0, r3, "__vt__7Parm<f>"@l
+// 	lfs      f1, lbl_80517860@sda21(r2)
+// 	stw      r0, 0x854(r30)
+// 	mr       r3, r30
+// 	lfs      f0, lbl_805178C0@sda21(r2)
+// 	stfs     f2, 0x86c(r30)
+// 	stfs     f1, 0x874(r30)
+// 	stfs     f0, 0x878(r30)
+// 	lwz      r31, 0xc(r1)
+// 	lwz      r30, 8(r1)
+// 	lwz      r0, 0x14(r1)
+// 	mtlr     r0
+// 	addi     r1, r1, 0x10
+// 	blr
+// 	*/
+// }
 
 /*
+ * __ct__Q24Game14EnemyParmsBaseFv
  * --INFO--
  * Address:	8010979C
  * Size:	0001D4
  */
-EnemyParmsBase::EnemyParmsBase()
-{
-	/*
-	stwu     r1, -0x10(r1)
-	mflr     r0
-	lis      r5, 0x73303030@ha
-	lis      r4, __vt__Q24Game13CreatureParms@ha
-	stw      r0, 0x14(r1)
-	addi     r0, r4, __vt__Q24Game13CreatureParms@l
-	addi     r5, r5, 0x73303030@l
-	stw      r31, 0xc(r1)
-	mr       r31, r3
-	lis      r3, lbl_8047A660@ha
-	stw      r30, 8(r1)
-	addi     r30, r3, lbl_8047A660@l
-	li       r3, 0
-	mr       r4, r31
-	stw      r0, 0xd8(r31)
-	addi     r0, r31, 0xd4
-	addi     r6, r30, 0x118
-	stw      r0, 0(r31)
-	addi     r0, r30, 0x104
-	stw      r3, 4(r31)
-	addi     r3, r31, 0xc
-	stw      r0, 8(r31)
-	bl       __ct__8BaseParmFP10ParametersUlPc
-	lis      r3, "__vt__7Parm<f>"@ha
-	lis      r5, 0x73303031@ha
-	addi     r0, r3, "__vt__7Parm<f>"@l
-	lfs      f0, lbl_80517864@sda21(r2)
-	stw      r0, 0xc(r31)
-	mr       r4, r31
-	lfs      f1, lbl_80517860@sda21(r2)
-	addi     r3, r31, 0x34
-	stfs     f0, 0x24(r31)
-	addi     r5, r5, 0x73303031@l
-	lfs      f0, lbl_80517868@sda21(r2)
-	addi     r6, r30, 0x12c
-	stfs     f1, 0x2c(r31)
-	stfs     f0, 0x30(r31)
-	bl       __ct__8BaseParmFP10ParametersUlPc
-	lis      r3, "__vt__7Parm<f>"@ha
-	lis      r5, 0x73303032@ha
-	addi     r0, r3, "__vt__7Parm<f>"@l
-	lfs      f0, lbl_80517864@sda21(r2)
-	stw      r0, 0x34(r31)
-	mr       r4, r31
-	lfs      f1, lbl_80517860@sda21(r2)
-	addi     r3, r31, 0x5c
-	stfs     f0, 0x4c(r31)
-	addi     r5, r5, 0x73303032@l
-	lfs      f0, lbl_80517868@sda21(r2)
-	addi     r6, r30, 0x13c
-	stfs     f1, 0x54(r31)
-	stfs     f0, 0x58(r31)
-	bl       __ct__8BaseParmFP10ParametersUlPc
-	lis      r3, "__vt__7Parm<f>"@ha
-	lis      r5, 0x73303033@ha
-	addi     r0, r3, "__vt__7Parm<f>"@l
-	lfs      f0, lbl_805178C4@sda21(r2)
-	stw      r0, 0x5c(r31)
-	mr       r4, r31
-	lfs      f1, lbl_80517860@sda21(r2)
-	addi     r3, r31, 0x84
-	stfs     f0, 0x74(r31)
-	addi     r5, r5, 0x73303033@l
-	lfs      f0, lbl_80517868@sda21(r2)
-	addi     r6, r2, lbl_805178C8@sda21
-	stfs     f1, 0x7c(r31)
-	stfs     f0, 0x80(r31)
-	bl       __ct__8BaseParmFP10ParametersUlPc
-	lis      r3, "__vt__7Parm<f>"@ha
-	lis      r5, 0x73303034@ha
-	addi     r0, r3, "__vt__7Parm<f>"@l
-	lfs      f0, lbl_805178D0@sda21(r2)
-	stw      r0, 0x84(r31)
-	mr       r4, r31
-	lfs      f1, lbl_805178D4@sda21(r2)
-	addi     r3, r31, 0xac
-	stfs     f0, 0x9c(r31)
-	addi     r5, r5, 0x73303034@l
-	lfs      f0, lbl_80517884@sda21(r2)
-	addi     r6, r30, 0x14c
-	stfs     f1, 0xa4(r31)
-	stfs     f0, 0xa8(r31)
-	bl       __ct__8BaseParmFP10ParametersUlPc
-	lis      r3, "__vt__7Parm<f>"@ha
-	lfs      f0, lbl_805178D8@sda21(r2)
-	addi     r0, r3, "__vt__7Parm<f>"@l
-	lfs      f1, lbl_805178D4@sda21(r2)
-	stw      r0, 0xac(r31)
-	lis      r5, __vt__Q24Game14EnemyParmsBase@ha
-	addi     r0, r5, __vt__Q24Game14EnemyParmsBase@l
-	lis      r3, "__ct__11BitFlag<Us>Fv"@ha
-	stfs     f0, 0xc4(r31)
-	addi     r4, r3, "__ct__11BitFlag<Us>Fv"@l
-	lfs      f0, lbl_80517884@sda21(r2)
-	addi     r3, r31, 0xdc
-	stfs     f1, 0xcc(r31)
-	li       r5, 0
-	li       r6, 2
-	li       r7, 2
-	stfs     f0, 0xd0(r31)
-	stw      r0, 0xd8(r31)
-	bl       __construct_array
-	addi     r3, r31, 0xe0
-	li       r4, 1
-	bl       __ct__Q34Game14EnemyParmsBase5ParmsFv
-	li       r0, 0
-	mr       r3, r31
-	stb      r0, 0xdc(r31)
-	stb      r0, 0xdd(r31)
-	stb      r0, 0xde(r31)
-	stb      r0, 0xdf(r31)
-	lwz      r31, 0xc(r1)
-	lwz      r30, 8(r1)
-	lwz      r0, 0x14(r1)
-	mtlr     r0
-	addi     r1, r1, 0x10
-	blr
-	*/
-}
+// EnemyParmsBase::EnemyParmsBase()
+//     : CreatureParms()
+//     , m_flags()
+//     , m_general()
+// {
+// 	m_flags[0].byteView[0] = 0;
+// 	m_flags[0].byteView[1] = 0;
+// 	m_flags[1].byteView[0] = 0;
+// 	m_flags[1].byteView[1] = 0;
+// 	/*
+// 	stwu     r1, -0x10(r1)
+// 	mflr     r0
+// 	lis      r5, 0x73303030@ha
+// 	lis      r4, __vt__Q24Game13CreatureParms@ha
+// 	stw      r0, 0x14(r1)
+// 	addi     r0, r4, __vt__Q24Game13CreatureParms@l
+// 	addi     r5, r5, 0x73303030@l
+// 	stw      r31, 0xc(r1)
+// 	mr       r31, r3
+// 	lis      r3, lbl_8047A660@ha
+// 	stw      r30, 8(r1)
+// 	addi     r30, r3, lbl_8047A660@l
+// 	li       r3, 0
+// 	mr       r4, r31
+// 	stw      r0, 0xd8(r31)
+// 	addi     r0, r31, 0xd4
+// 	addi     r6, r30, 0x118
+// 	stw      r0, 0(r31)
+// 	addi     r0, r30, 0x104
+// 	stw      r3, 4(r31)
+// 	addi     r3, r31, 0xc
+// 	stw      r0, 8(r31)
+// 	bl       __ct__8BaseParmFP10ParametersUlPc
+// 	lis      r3, "__vt__7Parm<f>"@ha
+// 	lis      r5, 0x73303031@ha
+// 	addi     r0, r3, "__vt__7Parm<f>"@l
+// 	lfs      f0, lbl_80517864@sda21(r2)
+// 	stw      r0, 0xc(r31)
+// 	mr       r4, r31
+// 	lfs      f1, lbl_80517860@sda21(r2)
+// 	addi     r3, r31, 0x34
+// 	stfs     f0, 0x24(r31)
+// 	addi     r5, r5, 0x73303031@l
+// 	lfs      f0, lbl_80517868@sda21(r2)
+// 	addi     r6, r30, 0x12c
+// 	stfs     f1, 0x2c(r31)
+// 	stfs     f0, 0x30(r31)
+// 	bl       __ct__8BaseParmFP10ParametersUlPc
+// 	lis      r3, "__vt__7Parm<f>"@ha
+// 	lis      r5, 0x73303032@ha
+// 	addi     r0, r3, "__vt__7Parm<f>"@l
+// 	lfs      f0, lbl_80517864@sda21(r2)
+// 	stw      r0, 0x34(r31)
+// 	mr       r4, r31
+// 	lfs      f1, lbl_80517860@sda21(r2)
+// 	addi     r3, r31, 0x5c
+// 	stfs     f0, 0x4c(r31)
+// 	addi     r5, r5, 0x73303032@l
+// 	lfs      f0, lbl_80517868@sda21(r2)
+// 	addi     r6, r30, 0x13c
+// 	stfs     f1, 0x54(r31)
+// 	stfs     f0, 0x58(r31)
+// 	bl       __ct__8BaseParmFP10ParametersUlPc
+// 	lis      r3, "__vt__7Parm<f>"@ha
+// 	lis      r5, 0x73303033@ha
+// 	addi     r0, r3, "__vt__7Parm<f>"@l
+// 	lfs      f0, lbl_805178C4@sda21(r2)
+// 	stw      r0, 0x5c(r31)
+// 	mr       r4, r31
+// 	lfs      f1, lbl_80517860@sda21(r2)
+// 	addi     r3, r31, 0x84
+// 	stfs     f0, 0x74(r31)
+// 	addi     r5, r5, 0x73303033@l
+// 	lfs      f0, lbl_80517868@sda21(r2)
+// 	addi     r6, r2, lbl_805178C8@sda21
+// 	stfs     f1, 0x7c(r31)
+// 	stfs     f0, 0x80(r31)
+// 	bl       __ct__8BaseParmFP10ParametersUlPc
+// 	lis      r3, "__vt__7Parm<f>"@ha
+// 	lis      r5, 0x73303034@ha
+// 	addi     r0, r3, "__vt__7Parm<f>"@l
+// 	lfs      f0, lbl_805178D0@sda21(r2)
+// 	stw      r0, 0x84(r31)
+// 	mr       r4, r31
+// 	lfs      f1, lbl_805178D4@sda21(r2)
+// 	addi     r3, r31, 0xac
+// 	stfs     f0, 0x9c(r31)
+// 	addi     r5, r5, 0x73303034@l
+// 	lfs      f0, lbl_80517884@sda21(r2)
+// 	addi     r6, r30, 0x14c
+// 	stfs     f1, 0xa4(r31)
+// 	stfs     f0, 0xa8(r31)
+// 	bl       __ct__8BaseParmFP10ParametersUlPc
+// 	lis      r3, "__vt__7Parm<f>"@ha
+// 	lfs      f0, lbl_805178D8@sda21(r2)
+// 	addi     r0, r3, "__vt__7Parm<f>"@l
+// 	lfs      f1, lbl_805178D4@sda21(r2)
+// 	stw      r0, 0xac(r31)
+// 	lis      r5, __vt__Q24Game14EnemyParmsBase@ha
+// 	addi     r0, r5, __vt__Q24Game14EnemyParmsBase@l
+// 	lis      r3, "__ct__11BitFlag<Us>Fv"@ha
+// 	stfs     f0, 0xc4(r31)
+// 	addi     r4, r3, "__ct__11BitFlag<Us>Fv"@l
+// 	lfs      f0, lbl_80517884@sda21(r2)
+// 	addi     r3, r31, 0xdc
+// 	stfs     f1, 0xcc(r31)
+// 	li       r5, 0
+// 	li       r6, 2
+// 	li       r7, 2
+// 	stfs     f0, 0xd0(r31)
+// 	stw      r0, 0xd8(r31)
+// 	bl       __construct_array
+// 	addi     r3, r31, 0xe0
+// 	li       r4, 1
+// 	bl       __ct__Q34Game14EnemyParmsBase5ParmsFv
+// 	li       r0, 0
+// 	mr       r3, r31
+// 	stb      r0, 0xdc(r31)
+// 	stb      r0, 0xdd(r31)
+// 	stb      r0, 0xde(r31)
+// 	stb      r0, 0xdf(r31)
+// 	lwz      r31, 0xc(r1)
+// 	lwz      r30, 8(r1)
+// 	lwz      r0, 0x14(r1)
+// 	mtlr     r0
+// 	addi     r1, r1, 0x10
+// 	blr
+// 	*/
+// }
 
 /*
+ * __ct__Q34Game14EnemyParmsBase5ParmsFv
  * --INFO--
  * Address:	80109970
  * Size:	000AE0
  */
-EnemyParmsBase::Parms::Parms()
-{
-	/*
-	stwu     r1, -0x10(r1)
-	mflr     r0
-	stw      r0, 0x14(r1)
-	extsh.   r0, r4
-	lis      r4, lbl_8047A660@ha
-	stw      r31, 0xc(r1)
-	addi     r31, r4, lbl_8047A660@l
-	stw      r30, 8(r1)
-	mr       r30, r3
-	beq      lbl_801099A0
-	addi     r0, r30, 0x714
-	stw      r0, 0(r30)
+// EnemyParmsBase::Parms::Parms()
+// {
+// 	/*
+// 	stwu     r1, -0x10(r1)
+// 	mflr     r0
+// 	stw      r0, 0x14(r1)
+// 	extsh.   r0, r4
+// 	lis      r4, lbl_8047A660@ha
+// 	stw      r31, 0xc(r1)
+// 	addi     r31, r4, lbl_8047A660@l
+// 	stw      r30, 8(r1)
+// 	mr       r30, r3
+// 	beq      lbl_801099A0
+// 	addi     r0, r30, 0x714
+// 	stw      r0, 0(r30)
 
-lbl_801099A0:
-	li       r0, 0
-	lis      r5, 0x66703030@ha
-	stw      r0, 4(r30)
-	addi     r0, r31, 0xc4
-	mr       r4, r30
-	addi     r3, r30, 0xc
-	stw      r0, 8(r30)
-	addi     r5, r5, 0x66703030@l
-	addi     r6, r2, lbl_805178DC@sda21
-	bl       __ct__8BaseParmFP10ParametersUlPc
-	lis      r3, "__vt__7Parm<f>"@ha
-	lis      r5, 0x66703237@ha
-	addi     r0, r3, "__vt__7Parm<f>"@l
-	lfs      f0, lbl_80517874@sda21(r2)
-	stw      r0, 0xc(r30)
-	mr       r4, r30
-	lfs      f1, lbl_80517860@sda21(r2)
-	addi     r3, r30, 0x34
-	stfs     f0, 0x24(r30)
-	addi     r5, r5, 0x66703237@l
-	lfs      f0, lbl_805178E4@sda21(r2)
-	addi     r6, r31, 0x15c
-	stfs     f1, 0x2c(r30)
-	stfs     f0, 0x30(r30)
-	bl       __ct__8BaseParmFP10ParametersUlPc
-	lis      r3, "__vt__7Parm<f>"@ha
-	lis      r5, 0x66703331@ha
-	addi     r0, r3, "__vt__7Parm<f>"@l
-	lfs      f0, lbl_80517888@sda21(r2)
-	stw      r0, 0x34(r30)
-	mr       r4, r30
-	lfs      f1, lbl_80517860@sda21(r2)
-	addi     r3, r30, 0x5c
-	stfs     f0, 0x4c(r30)
-	addi     r5, r5, 0x66703331@l
-	lfs      f0, lbl_805178E8@sda21(r2)
-	addi     r6, r31, 0x16c
-	stfs     f1, 0x54(r30)
-	stfs     f0, 0x58(r30)
-	bl       __ct__8BaseParmFP10ParametersUlPc
-	lis      r3, "__vt__7Parm<f>"@ha
-	lis      r5, 0x66703330@ha
-	addi     r0, r3, "__vt__7Parm<f>"@l
-	lfs      f0, lbl_805178D4@sda21(r2)
-	stw      r0, 0x5c(r30)
-	mr       r4, r30
-	lfs      f1, lbl_80517860@sda21(r2)
-	addi     r3, r30, 0x84
-	stfs     f0, 0x74(r30)
-	addi     r5, r5, 0x66703330@l
-	lfs      f0, lbl_80517868@sda21(r2)
-	addi     r6, r31, 0x17c
-	stfs     f1, 0x7c(r30)
-	stfs     f0, 0x80(r30)
-	bl       __ct__8BaseParmFP10ParametersUlPc
-	lis      r3, "__vt__7Parm<f>"@ha
-	lis      r5, 0x66703031@ha
-	addi     r0, r3, "__vt__7Parm<f>"@l
-	lfs      f0, lbl_805178EC@sda21(r2)
-	stw      r0, 0x84(r30)
-	mr       r4, r30
-	lfs      f1, lbl_80517860@sda21(r2)
-	addi     r3, r30, 0xac
-	stfs     f0, 0x9c(r30)
-	addi     r5, r5, 0x66703031@l
-	lfs      f0, lbl_805178E4@sda21(r2)
-	addi     r6, r31, 0x188
-	stfs     f1, 0xa4(r30)
-	stfs     f0, 0xa8(r30)
-	bl       __ct__8BaseParmFP10ParametersUlPc
-	lis      r3, "__vt__7Parm<f>"@ha
-	lis      r5, 0x66703333@ha
-	addi     r0, r3, "__vt__7Parm<f>"@l
-	lfs      f0, lbl_805178F0@sda21(r2)
-	stw      r0, 0xac(r30)
-	mr       r4, r30
-	lfs      f1, lbl_80517860@sda21(r2)
-	addi     r3, r30, 0xd4
-	stfs     f0, 0xc4(r30)
-	addi     r5, r5, 0x66703333@l
-	lfs      f0, lbl_80517874@sda21(r2)
-	addi     r6, r31, 0x198
-	stfs     f1, 0xcc(r30)
-	stfs     f0, 0xd0(r30)
-	bl       __ct__8BaseParmFP10ParametersUlPc
-	lis      r3, "__vt__7Parm<f>"@ha
-	lis      r5, 0x66703334@ha
-	addi     r0, r3, "__vt__7Parm<f>"@l
-	lfs      f0, lbl_805178F0@sda21(r2)
-	stw      r0, 0xd4(r30)
-	mr       r4, r30
-	lfs      f1, lbl_80517860@sda21(r2)
-	addi     r3, r30, 0xfc
-	stfs     f0, 0xec(r30)
-	addi     r5, r5, 0x66703334@l
-	lfs      f0, lbl_805178F4@sda21(r2)
-	addi     r6, r31, 0x1b8
-	stfs     f1, 0xf4(r30)
-	stfs     f0, 0xf8(r30)
-	bl       __ct__8BaseParmFP10ParametersUlPc
-	lis      r3, "__vt__7Parm<f>"@ha
-	lis      r5, 0x66703332@ha
-	addi     r0, r3, "__vt__7Parm<f>"@l
-	lfs      f0, lbl_805178F0@sda21(r2)
-	stw      r0, 0xfc(r30)
-	mr       r4, r30
-	lfs      f1, lbl_80517860@sda21(r2)
-	addi     r3, r30, 0x124
-	stfs     f0, 0x114(r30)
-	addi     r5, r5, 0x66703332@l
-	lfs      f0, lbl_805178F4@sda21(r2)
-	addi     r6, r2, lbl_805178F8@sda21
-	stfs     f1, 0x11c(r30)
-	stfs     f0, 0x120(r30)
-	bl       __ct__8BaseParmFP10ParametersUlPc
-	lis      r3, "__vt__7Parm<f>"@ha
-	lis      r5, 0x66703032@ha
-	addi     r0, r3, "__vt__7Parm<f>"@l
-	lfs      f0, lbl_805178F0@sda21(r2)
-	stw      r0, 0x124(r30)
-	mr       r4, r30
-	lfs      f1, lbl_80517860@sda21(r2)
-	addi     r3, r30, 0x14c
-	stfs     f0, 0x13c(r30)
-	addi     r5, r5, 0x66703032@l
-	lfs      f0, lbl_805178F4@sda21(r2)
-	addi     r6, r31, 0x1cc
-	stfs     f1, 0x144(r30)
-	stfs     f0, 0x148(r30)
-	bl       __ct__8BaseParmFP10ParametersUlPc
-	lis      r3, "__vt__7Parm<f>"@ha
-	lis      r5, 0x66703033@ha
-	addi     r0, r3, "__vt__7Parm<f>"@l
-	lfs      f0, lbl_80517900@sda21(r2)
-	stw      r0, 0x14c(r30)
-	mr       r4, r30
-	lfs      f1, lbl_80517860@sda21(r2)
-	addi     r3, r30, 0x174
-	stfs     f0, 0x164(r30)
-	addi     r5, r5, 0x66703033@l
-	lfs      f0, lbl_80517868@sda21(r2)
-	addi     r6, r31, 0x1e0
-	stfs     f1, 0x16c(r30)
-	stfs     f0, 0x170(r30)
-	bl       __ct__8BaseParmFP10ParametersUlPc
-	lis      r3, "__vt__7Parm<f>"@ha
-	lis      r5, 0x66703034@ha
-	addi     r0, r3, "__vt__7Parm<f>"@l
-	lfs      f0, lbl_805178C4@sda21(r2)
-	stw      r0, 0x174(r30)
-	mr       r4, r30
-	lfs      f1, lbl_80517860@sda21(r2)
-	addi     r3, r30, 0x19c
-	stfs     f0, 0x18c(r30)
-	addi     r5, r5, 0x66703034@l
-	lfs      f0, lbl_80517868@sda21(r2)
-	addi     r6, r31, 0x1f4
-	stfs     f1, 0x194(r30)
-	stfs     f0, 0x198(r30)
-	bl       __ct__8BaseParmFP10ParametersUlPc
-	lis      r3, "__vt__7Parm<f>"@ha
-	lis      r5, 0x66703035@ha
-	addi     r0, r3, "__vt__7Parm<f>"@l
-	lfs      f0, lbl_80517904@sda21(r2)
-	stw      r0, 0x19c(r30)
-	mr       r4, r30
-	lfs      f1, lbl_80517860@sda21(r2)
-	addi     r3, r30, 0x1c4
-	stfs     f0, 0x1b4(r30)
-	addi     r5, r5, 0x66703035@l
-	lfs      f0, lbl_80517868@sda21(r2)
-	addi     r6, r2, lbl_80517908@sda21
-	stfs     f1, 0x1bc(r30)
-	stfs     f0, 0x1c0(r30)
-	bl       __ct__8BaseParmFP10ParametersUlPc
-	lis      r3, "__vt__7Parm<f>"@ha
-	lis      r5, 0x66703036@ha
-	addi     r0, r3, "__vt__7Parm<f>"@l
-	lfs      f0, lbl_80517868@sda21(r2)
-	stw      r0, 0x1c4(r30)
-	mr       r4, r30
-	lfs      f1, lbl_80517860@sda21(r2)
-	addi     r3, r30, 0x1ec
-	stfs     f0, 0x1dc(r30)
-	addi     r5, r5, 0x66703036@l
-	lfs      f0, lbl_80517874@sda21(r2)
-	addi     r6, r2, lbl_80517910@sda21
-	stfs     f1, 0x1e4(r30)
-	stfs     f0, 0x1e8(r30)
-	bl       __ct__8BaseParmFP10ParametersUlPc
-	lis      r3, "__vt__7Parm<f>"@ha
-	lis      r5, 0x66703038@ha
-	addi     r0, r3, "__vt__7Parm<f>"@l
-	lfs      f0, lbl_80517918@sda21(r2)
-	stw      r0, 0x1ec(r30)
-	mr       r4, r30
-	lfs      f1, lbl_80517860@sda21(r2)
-	addi     r3, r30, 0x214
-	stfs     f0, 0x204(r30)
-	addi     r5, r5, 0x66703038@l
-	lfs      f0, lbl_805178E8@sda21(r2)
-	addi     r6, r31, 0x208
-	stfs     f1, 0x20c(r30)
-	stfs     f0, 0x210(r30)
-	bl       __ct__8BaseParmFP10ParametersUlPc
-	lis      r3, "__vt__7Parm<f>"@ha
-	lis      r5, 0x66703238@ha
-	addi     r0, r3, "__vt__7Parm<f>"@l
-	lfs      f0, lbl_805178D0@sda21(r2)
-	stw      r0, 0x214(r30)
-	mr       r4, r30
-	lfs      f1, lbl_80517860@sda21(r2)
-	addi     r3, r30, 0x23c
-	stfs     f0, 0x22c(r30)
-	addi     r5, r5, 0x66703238@l
-	lfs      f0, lbl_80517868@sda21(r2)
-	addi     r6, r31, 0x214
-	stfs     f1, 0x234(r30)
-	stfs     f0, 0x238(r30)
-	bl       __ct__8BaseParmFP10ParametersUlPc
-	lis      r3, "__vt__7Parm<f>"@ha
-	lis      r5, 0x66703039@ha
-	addi     r0, r3, "__vt__7Parm<f>"@l
-	lfs      f0, lbl_8051791C@sda21(r2)
-	stw      r0, 0x23c(r30)
-	mr       r4, r30
-	lfs      f1, lbl_80517860@sda21(r2)
-	addi     r3, r30, 0x264
-	stfs     f0, 0x254(r30)
-	addi     r5, r5, 0x66703039@l
-	lfs      f0, lbl_80517920@sda21(r2)
-	addi     r6, r31, 0x224
-	stfs     f1, 0x25c(r30)
-	stfs     f0, 0x260(r30)
-	bl       __ct__8BaseParmFP10ParametersUlPc
-	lis      r3, "__vt__7Parm<f>"@ha
-	lis      r5, 0x66703130@ha
-	addi     r0, r3, "__vt__7Parm<f>"@l
-	lfs      f0, lbl_80517924@sda21(r2)
-	stw      r0, 0x264(r30)
-	mr       r4, r30
-	lfs      f1, lbl_80517868@sda21(r2)
-	addi     r3, r30, 0x28c
-	stfs     f0, 0x27c(r30)
-	addi     r5, r5, 0x66703130@l
-	lfs      f0, lbl_805178E8@sda21(r2)
-	addi     r6, r31, 0x230
-	stfs     f1, 0x284(r30)
-	stfs     f0, 0x288(r30)
-	bl       __ct__8BaseParmFP10ParametersUlPc
-	lis      r3, "__vt__7Parm<f>"@ha
-	lis      r5, 0x66703131@ha
-	addi     r0, r3, "__vt__7Parm<f>"@l
-	lfs      f0, lbl_80517928@sda21(r2)
-	stw      r0, 0x28c(r30)
-	mr       r4, r30
-	lfs      f1, lbl_80517868@sda21(r2)
-	addi     r3, r30, 0x2b4
-	stfs     f0, 0x2a4(r30)
-	addi     r5, r5, 0x66703131@l
-	lfs      f0, lbl_805178E8@sda21(r2)
-	addi     r6, r31, 0x23c
-	stfs     f1, 0x2ac(r30)
-	stfs     f0, 0x2b0(r30)
-	bl       __ct__8BaseParmFP10ParametersUlPc
-	lis      r3, "__vt__7Parm<f>"@ha
-	lis      r5, 0x66703132@ha
-	addi     r0, r3, "__vt__7Parm<f>"@l
-	lfs      f0, lbl_8051792C@sda21(r2)
-	stw      r0, 0x2b4(r30)
-	mr       r4, r30
-	lfs      f1, lbl_80517860@sda21(r2)
-	addi     r3, r30, 0x2dc
-	stfs     f0, 0x2cc(r30)
-	addi     r5, r5, 0x66703132@l
-	lfs      f0, lbl_805178E8@sda21(r2)
-	addi     r6, r31, 0x250
-	stfs     f1, 0x2d4(r30)
-	stfs     f0, 0x2d8(r30)
-	bl       __ct__8BaseParmFP10ParametersUlPc
-	lis      r3, "__vt__7Parm<f>"@ha
-	lis      r5, 0x66703235@ha
-	addi     r0, r3, "__vt__7Parm<f>"@l
-	lfs      f0, lbl_80517924@sda21(r2)
-	stw      r0, 0x2dc(r30)
-	mr       r4, r30
-	lfs      f1, lbl_80517860@sda21(r2)
-	addi     r3, r30, 0x304
-	stfs     f0, 0x2f4(r30)
-	addi     r5, r5, 0x66703235@l
-	lfs      f0, lbl_805178E8@sda21(r2)
-	addi     r6, r2, lbl_80517930@sda21
-	stfs     f1, 0x2fc(r30)
-	stfs     f0, 0x300(r30)
-	bl       __ct__8BaseParmFP10ParametersUlPc
-	lis      r3, "__vt__7Parm<f>"@ha
-	lis      r5, 0x66703133@ha
-	addi     r0, r3, "__vt__7Parm<f>"@l
-	lfs      f0, lbl_80517888@sda21(r2)
-	stw      r0, 0x304(r30)
-	mr       r4, r30
-	lfs      f1, lbl_80517860@sda21(r2)
-	addi     r3, r30, 0x32c
-	stfs     f0, 0x31c(r30)
-	addi     r5, r5, 0x66703133@l
-	lfs      f0, lbl_805178E8@sda21(r2)
-	addi     r6, r31, 0x25c
-	stfs     f1, 0x324(r30)
-	stfs     f0, 0x328(r30)
-	bl       __ct__8BaseParmFP10ParametersUlPc
-	lis      r3, "__vt__7Parm<f>"@ha
-	lis      r5, 0x66703134@ha
-	addi     r0, r3, "__vt__7Parm<f>"@l
-	lfs      f0, lbl_80517938@sda21(r2)
-	stw      r0, 0x32c(r30)
-	mr       r4, r30
-	lfs      f1, lbl_80517860@sda21(r2)
-	addi     r3, r30, 0x354
-	stfs     f0, 0x344(r30)
-	addi     r5, r5, 0x66703134@l
-	lfs      f0, lbl_8051793C@sda21(r2)
-	addi     r6, r31, 0x268
-	stfs     f1, 0x34c(r30)
-	stfs     f0, 0x350(r30)
-	bl       __ct__8BaseParmFP10ParametersUlPc
-	lis      r3, "__vt__7Parm<f>"@ha
-	lis      r5, 0x66703236@ha
-	addi     r0, r3, "__vt__7Parm<f>"@l
-	lfs      f0, lbl_80517924@sda21(r2)
-	stw      r0, 0x354(r30)
-	mr       r4, r30
-	lfs      f1, lbl_80517860@sda21(r2)
-	addi     r3, r30, 0x37c
-	stfs     f0, 0x36c(r30)
-	addi     r5, r5, 0x66703236@l
-	lfs      f0, lbl_805178E8@sda21(r2)
-	addi     r6, r2, lbl_80517940@sda21
-	stfs     f1, 0x374(r30)
-	stfs     f0, 0x378(r30)
-	bl       __ct__8BaseParmFP10ParametersUlPc
-	lis      r3, "__vt__7Parm<f>"@ha
-	lis      r5, 0x66703135@ha
-	addi     r0, r3, "__vt__7Parm<f>"@l
-	lfs      f0, lbl_80517888@sda21(r2)
-	stw      r0, 0x37c(r30)
-	mr       r4, r30
-	lfs      f1, lbl_80517860@sda21(r2)
-	addi     r3, r30, 0x3a4
-	stfs     f0, 0x394(r30)
-	addi     r5, r5, 0x66703135@l
-	lfs      f0, lbl_805178E8@sda21(r2)
-	addi     r6, r31, 0x274
-	stfs     f1, 0x39c(r30)
-	stfs     f0, 0x3a0(r30)
-	bl       __ct__8BaseParmFP10ParametersUlPc
-	lis      r3, "__vt__7Parm<f>"@ha
-	lis      r5, 0x66703137@ha
-	addi     r0, r3, "__vt__7Parm<f>"@l
-	lfs      f0, lbl_805178B8@sda21(r2)
-	stw      r0, 0x3a4(r30)
-	mr       r4, r30
-	lfs      f1, lbl_80517860@sda21(r2)
-	addi     r3, r30, 0x3cc
-	stfs     f0, 0x3bc(r30)
-	addi     r5, r5, 0x66703137@l
-	lfs      f0, lbl_8051793C@sda21(r2)
-	addi     r6, r31, 0x280
-	stfs     f1, 0x3c4(r30)
-	stfs     f0, 0x3c8(r30)
-	bl       __ct__8BaseParmFP10ParametersUlPc
-	lis      r3, "__vt__7Parm<f>"@ha
-	lis      r5, 0x66703138@ha
-	addi     r0, r3, "__vt__7Parm<f>"@l
-	lfs      f0, lbl_805178BC@sda21(r2)
-	stw      r0, 0x3cc(r30)
-	mr       r4, r30
-	lfs      f1, lbl_80517860@sda21(r2)
-	addi     r3, r30, 0x3f4
-	stfs     f0, 0x3e4(r30)
-	addi     r5, r5, 0x66703138@l
-	lfs      f0, lbl_805178E8@sda21(r2)
-	addi     r6, r31, 0x28c
-	stfs     f1, 0x3ec(r30)
-	stfs     f0, 0x3f0(r30)
-	bl       __ct__8BaseParmFP10ParametersUlPc
-	lis      r3, "__vt__7Parm<f>"@ha
-	lis      r5, 0x66703139@ha
-	addi     r0, r3, "__vt__7Parm<f>"@l
-	lfs      f1, lbl_80517860@sda21(r2)
-	stw      r0, 0x3f4(r30)
-	mr       r4, r30
-	lfs      f0, lbl_805178E8@sda21(r2)
-	addi     r3, r30, 0x41c
-	stfs     f1, 0x40c(r30)
-	addi     r5, r5, 0x66703139@l
-	addi     r6, r31, 0x2a0
-	stfs     f1, 0x414(r30)
-	stfs     f0, 0x418(r30)
-	bl       __ct__8BaseParmFP10ParametersUlPc
-	lis      r3, "__vt__7Parm<f>"@ha
-	lis      r5, 0x66703136@ha
-	addi     r0, r3, "__vt__7Parm<f>"@l
-	lfs      f0, lbl_805178B8@sda21(r2)
-	stw      r0, 0x41c(r30)
-	mr       r4, r30
-	lfs      f1, lbl_80517860@sda21(r2)
-	addi     r3, r30, 0x444
-	stfs     f0, 0x434(r30)
-	addi     r5, r5, 0x66703136@l
-	lfs      f0, lbl_805178E8@sda21(r2)
-	addi     r6, r31, 0x2b0
-	stfs     f1, 0x43c(r30)
-	stfs     f0, 0x440(r30)
-	bl       __ct__8BaseParmFP10ParametersUlPc
-	lis      r3, "__vt__7Parm<f>"@ha
-	lis      r5, 0x66703230@ha
-	addi     r0, r3, "__vt__7Parm<f>"@l
-	lfs      f1, lbl_80517868@sda21(r2)
-	stw      r0, 0x444(r30)
-	mr       r4, r30
-	lfs      f0, lbl_80517860@sda21(r2)
-	addi     r3, r30, 0x46c
-	stfs     f1, 0x45c(r30)
-	addi     r5, r5, 0x66703230@l
-	addi     r6, r31, 0x2bc
-	stfs     f0, 0x464(r30)
-	stfs     f1, 0x468(r30)
-	bl       __ct__8BaseParmFP10ParametersUlPc
-	lis      r3, "__vt__7Parm<f>"@ha
-	lis      r5, 0x66703231@ha
-	addi     r0, r3, "__vt__7Parm<f>"@l
-	lfs      f0, lbl_8051792C@sda21(r2)
-	stw      r0, 0x46c(r30)
-	mr       r4, r30
-	lfs      f1, lbl_80517860@sda21(r2)
-	addi     r3, r30, 0x494
-	stfs     f0, 0x484(r30)
-	addi     r5, r5, 0x66703231@l
-	lfs      f0, lbl_805178E8@sda21(r2)
-	addi     r6, r31, 0x2cc
-	stfs     f1, 0x48c(r30)
-	stfs     f0, 0x490(r30)
-	bl       __ct__8BaseParmFP10ParametersUlPc
-	lis      r3, "__vt__7Parm<f>"@ha
-	lis      r5, 0x66703232@ha
-	addi     r0, r3, "__vt__7Parm<f>"@l
-	lfs      f0, lbl_80517928@sda21(r2)
-	stw      r0, 0x494(r30)
-	mr       r4, r30
-	lfs      f1, lbl_80517860@sda21(r2)
-	addi     r3, r30, 0x4bc
-	stfs     f0, 0x4ac(r30)
-	addi     r5, r5, 0x66703232@l
-	lfs      f0, lbl_8051793C@sda21(r2)
-	addi     r6, r31, 0x2dc
-	stfs     f1, 0x4b4(r30)
-	stfs     f0, 0x4b8(r30)
-	bl       __ct__8BaseParmFP10ParametersUlPc
-	lis      r3, "__vt__7Parm<f>"@ha
-	lis      r5, 0x66703233@ha
-	addi     r0, r3, "__vt__7Parm<f>"@l
-	lfs      f0, lbl_8051792C@sda21(r2)
-	stw      r0, 0x4bc(r30)
-	mr       r4, r30
-	lfs      f1, lbl_80517860@sda21(r2)
-	addi     r3, r30, 0x4e4
-	stfs     f0, 0x4d4(r30)
-	addi     r5, r5, 0x66703233@l
-	lfs      f0, lbl_805178E8@sda21(r2)
-	addi     r6, r31, 0x2ec
-	stfs     f1, 0x4dc(r30)
-	stfs     f0, 0x4e0(r30)
-	bl       __ct__8BaseParmFP10ParametersUlPc
-	lis      r3, "__vt__7Parm<f>"@ha
-	lis      r5, 0x66703234@ha
-	addi     r0, r3, "__vt__7Parm<f>"@l
-	lfs      f0, lbl_80517928@sda21(r2)
-	stw      r0, 0x4e4(r30)
-	mr       r4, r30
-	lfs      f1, lbl_80517860@sda21(r2)
-	addi     r3, r30, 0x50c
-	stfs     f0, 0x4fc(r30)
-	addi     r5, r5, 0x66703234@l
-	lfs      f0, lbl_8051793C@sda21(r2)
-	addi     r6, r2, lbl_80517948@sda21
-	stfs     f1, 0x504(r30)
-	stfs     f0, 0x508(r30)
-	bl       __ct__8BaseParmFP10ParametersUlPc
-	lis      r3, "__vt__7Parm<f>"@ha
-	lis      r5, 0x66703239@ha
-	addi     r0, r3, "__vt__7Parm<f>"@l
-	lfs      f0, lbl_8051791C@sda21(r2)
-	stw      r0, 0x50c(r30)
-	mr       r4, r30
-	lfs      f1, lbl_80517860@sda21(r2)
-	addi     r3, r30, 0x534
-	stfs     f0, 0x524(r30)
-	addi     r5, r5, 0x66703239@l
-	lfs      f0, lbl_805178E8@sda21(r2)
-	addi     r6, r31, 0x2fc
-	stfs     f1, 0x52c(r30)
-	stfs     f0, 0x530(r30)
-	bl       __ct__8BaseParmFP10ParametersUlPc
-	lis      r3, "__vt__7Parm<f>"@ha
-	lis      r5, 0x66703335@ha
-	addi     r0, r3, "__vt__7Parm<f>"@l
-	lfs      f0, lbl_80517928@sda21(r2)
-	stw      r0, 0x534(r30)
-	mr       r4, r30
-	lfs      f1, lbl_80517860@sda21(r2)
-	addi     r3, r30, 0x55c
-	stfs     f0, 0x54c(r30)
-	addi     r5, r5, 0x66703335@l
-	lfs      f0, lbl_80517950@sda21(r2)
-	addi     r6, r31, 0x308
-	stfs     f1, 0x554(r30)
-	stfs     f0, 0x558(r30)
-	bl       __ct__8BaseParmFP10ParametersUlPc
-	lis      r3, "__vt__7Parm<f>"@ha
-	lis      r5, 0x66703336@ha
-	addi     r0, r3, "__vt__7Parm<f>"@l
-	lfs      f0, lbl_80517868@sda21(r2)
-	stw      r0, 0x55c(r30)
-	mr       r4, r30
-	lfs      f1, lbl_80517860@sda21(r2)
-	addi     r3, r30, 0x584
-	stfs     f0, 0x574(r30)
-	addi     r5, r5, 0x66703336@l
-	lfs      f0, lbl_80517954@sda21(r2)
-	addi     r6, r31, 0x314
-	stfs     f1, 0x57c(r30)
-	stfs     f0, 0x580(r30)
-	bl       __ct__8BaseParmFP10ParametersUlPc
-	lis      r3, "__vt__7Parm<f>"@ha
-	lis      r5, 0x66703337@ha
-	addi     r0, r3, "__vt__7Parm<f>"@l
-	lfs      f0, lbl_8051791C@sda21(r2)
-	stw      r0, 0x584(r30)
-	mr       r4, r30
-	lfs      f1, lbl_80517860@sda21(r2)
-	addi     r3, r30, 0x5ac
-	stfs     f0, 0x59c(r30)
-	addi     r5, r5, 0x66703337@l
-	lfs      f0, lbl_805178E8@sda21(r2)
-	addi     r6, r31, 0x32c
-	stfs     f1, 0x5a4(r30)
-	stfs     f0, 0x5a8(r30)
-	bl       __ct__8BaseParmFP10ParametersUlPc
-	lis      r3, "__vt__7Parm<f>"@ha
-	lis      r5, 0x66703338@ha
-	addi     r0, r3, "__vt__7Parm<f>"@l
-	lfs      f0, lbl_80517958@sda21(r2)
-	stw      r0, 0x5ac(r30)
-	mr       r4, r30
-	lfs      f1, lbl_80517860@sda21(r2)
-	addi     r3, r30, 0x5d4
-	stfs     f0, 0x5c4(r30)
-	addi     r5, r5, 0x66703338@l
-	lfs      f0, lbl_80517868@sda21(r2)
-	addi     r6, r31, 0x33c
-	stfs     f1, 0x5cc(r30)
-	stfs     f0, 0x5d0(r30)
-	bl       __ct__8BaseParmFP10ParametersUlPc
-	lis      r3, "__vt__7Parm<f>"@ha
-	lis      r5, 0x69703031@ha
-	addi     r0, r3, "__vt__7Parm<f>"@l
-	lfs      f0, lbl_8051791C@sda21(r2)
-	stw      r0, 0x5d4(r30)
-	mr       r4, r30
-	lfs      f1, lbl_80517860@sda21(r2)
-	addi     r3, r30, 0x5fc
-	stfs     f0, 0x5ec(r30)
-	addi     r5, r5, 0x69703031@l
-	lfs      f0, lbl_80517954@sda21(r2)
-	addi     r6, r31, 0x34c
-	stfs     f1, 0x5f4(r30)
-	stfs     f0, 0x5f8(r30)
-	bl       __ct__8BaseParmFP10ParametersUlPc
-	lis      r3, "__vt__7Parm<i>"@ha
-	lis      r5, 0x69703032@ha
-	addi     r0, r3, "__vt__7Parm<i>"@l
-	li       r3, 3
-	stw      r0, 0x5fc(r30)
-	li       r7, 0
-	li       r0, 0xc8
-	mr       r4, r30
-	stw      r3, 0x614(r30)
-	addi     r3, r30, 0x624
-	addi     r5, r5, 0x69703032@l
-	addi     r6, r31, 0x35c
-	stw      r7, 0x61c(r30)
-	stw      r0, 0x620(r30)
-	bl       __ct__8BaseParmFP10ParametersUlPc
-	lis      r3, "__vt__7Parm<i>"@ha
-	lis      r5, 0x69703033@ha
-	addi     r0, r3, "__vt__7Parm<i>"@l
-	li       r3, 3
-	stw      r0, 0x624(r30)
-	li       r7, 0
-	li       r0, 0x64
-	mr       r4, r30
-	stw      r3, 0x63c(r30)
-	addi     r3, r30, 0x64c
-	addi     r5, r5, 0x69703033@l
-	addi     r6, r31, 0x36c
-	stw      r7, 0x644(r30)
-	stw      r0, 0x648(r30)
-	bl       __ct__8BaseParmFP10ParametersUlPc
-	lis      r3, "__vt__7Parm<i>"@ha
-	lis      r5, 0x69703034@ha
-	addi     r0, r3, "__vt__7Parm<i>"@l
-	li       r3, 8
-	stw      r0, 0x64c(r30)
-	li       r7, 0
-	li       r0, 0xc8
-	mr       r4, r30
-	stw      r3, 0x664(r30)
-	addi     r3, r30, 0x674
-	addi     r5, r5, 0x69703034@l
-	addi     r6, r31, 0x37c
-	stw      r7, 0x66c(r30)
-	stw      r0, 0x670(r30)
-	bl       __ct__8BaseParmFP10ParametersUlPc
-	lis      r3, "__vt__7Parm<i>"@ha
-	lis      r5, 0x69703035@ha
-	addi     r0, r3, "__vt__7Parm<i>"@l
-	li       r3, 5
-	stw      r0, 0x674(r30)
-	li       r7, 0
-	li       r0, 0x64
-	mr       r4, r30
-	stw      r3, 0x68c(r30)
-	addi     r3, r30, 0x69c
-	addi     r5, r5, 0x69703035@l
-	addi     r6, r31, 0x38c
-	stw      r7, 0x694(r30)
-	stw      r0, 0x698(r30)
-	bl       __ct__8BaseParmFP10ParametersUlPc
-	lis      r3, "__vt__7Parm<i>"@ha
-	lis      r5, 0x69703036@ha
-	addi     r0, r3, "__vt__7Parm<i>"@l
-	li       r3, 0xf
-	stw      r0, 0x69c(r30)
-	li       r7, 0
-	li       r0, 0xc8
-	mr       r4, r30
-	stw      r3, 0x6b4(r30)
-	addi     r3, r30, 0x6c4
-	addi     r5, r5, 0x69703036@l
-	addi     r6, r31, 0x39c
-	stw      r7, 0x6bc(r30)
-	stw      r0, 0x6c0(r30)
-	bl       __ct__8BaseParmFP10ParametersUlPc
-	lis      r3, "__vt__7Parm<i>"@ha
-	lis      r5, 0x69703037@ha
-	addi     r0, r3, "__vt__7Parm<i>"@l
-	li       r3, 0xa
-	stw      r0, 0x6c4(r30)
-	li       r7, 0
-	li       r0, 0x64
-	mr       r4, r30
-	stw      r3, 0x6dc(r30)
-	addi     r3, r30, 0x6ec
-	addi     r5, r5, 0x69703037@l
-	addi     r6, r31, 0x3ac
-	stw      r7, 0x6e4(r30)
-	stw      r0, 0x6e8(r30)
-	bl       __ct__8BaseParmFP10ParametersUlPc
-	lis      r3, "__vt__7Parm<i>"@ha
-	li       r5, 0x1e
-	addi     r0, r3, "__vt__7Parm<i>"@l
-	li       r4, 0
-	stw      r0, 0x6ec(r30)
-	li       r0, 0xc8
-	mr       r3, r30
-	stw      r5, 0x704(r30)
-	stw      r4, 0x70c(r30)
-	stw      r0, 0x710(r30)
-	lwz      r31, 0xc(r1)
-	lwz      r30, 8(r1)
-	lwz      r0, 0x14(r1)
-	mtlr     r0
-	addi     r1, r1, 0x10
-	blr
-	*/
-}
+// lbl_801099A0:
+// 	li       r0, 0
+// 	lis      r5, 0x66703030@ha
+// 	stw      r0, 4(r30)
+// 	addi     r0, r31, 0xc4
+// 	mr       r4, r30
+// 	addi     r3, r30, 0xc
+// 	stw      r0, 8(r30)
+// 	addi     r5, r5, 0x66703030@l
+// 	addi     r6, r2, lbl_805178DC@sda21
+// 	bl       __ct__8BaseParmFP10ParametersUlPc
+// 	lis      r3, "__vt__7Parm<f>"@ha
+// 	lis      r5, 0x66703237@ha
+// 	addi     r0, r3, "__vt__7Parm<f>"@l
+// 	lfs      f0, lbl_80517874@sda21(r2)
+// 	stw      r0, 0xc(r30)
+// 	mr       r4, r30
+// 	lfs      f1, lbl_80517860@sda21(r2)
+// 	addi     r3, r30, 0x34
+// 	stfs     f0, 0x24(r30)
+// 	addi     r5, r5, 0x66703237@l
+// 	lfs      f0, lbl_805178E4@sda21(r2)
+// 	addi     r6, r31, 0x15c
+// 	stfs     f1, 0x2c(r30)
+// 	stfs     f0, 0x30(r30)
+// 	bl       __ct__8BaseParmFP10ParametersUlPc
+// 	lis      r3, "__vt__7Parm<f>"@ha
+// 	lis      r5, 0x66703331@ha
+// 	addi     r0, r3, "__vt__7Parm<f>"@l
+// 	lfs      f0, lbl_80517888@sda21(r2)
+// 	stw      r0, 0x34(r30)
+// 	mr       r4, r30
+// 	lfs      f1, lbl_80517860@sda21(r2)
+// 	addi     r3, r30, 0x5c
+// 	stfs     f0, 0x4c(r30)
+// 	addi     r5, r5, 0x66703331@l
+// 	lfs      f0, lbl_805178E8@sda21(r2)
+// 	addi     r6, r31, 0x16c
+// 	stfs     f1, 0x54(r30)
+// 	stfs     f0, 0x58(r30)
+// 	bl       __ct__8BaseParmFP10ParametersUlPc
+// 	lis      r3, "__vt__7Parm<f>"@ha
+// 	lis      r5, 0x66703330@ha
+// 	addi     r0, r3, "__vt__7Parm<f>"@l
+// 	lfs      f0, lbl_805178D4@sda21(r2)
+// 	stw      r0, 0x5c(r30)
+// 	mr       r4, r30
+// 	lfs      f1, lbl_80517860@sda21(r2)
+// 	addi     r3, r30, 0x84
+// 	stfs     f0, 0x74(r30)
+// 	addi     r5, r5, 0x66703330@l
+// 	lfs      f0, lbl_80517868@sda21(r2)
+// 	addi     r6, r31, 0x17c
+// 	stfs     f1, 0x7c(r30)
+// 	stfs     f0, 0x80(r30)
+// 	bl       __ct__8BaseParmFP10ParametersUlPc
+// 	lis      r3, "__vt__7Parm<f>"@ha
+// 	lis      r5, 0x66703031@ha
+// 	addi     r0, r3, "__vt__7Parm<f>"@l
+// 	lfs      f0, lbl_805178EC@sda21(r2)
+// 	stw      r0, 0x84(r30)
+// 	mr       r4, r30
+// 	lfs      f1, lbl_80517860@sda21(r2)
+// 	addi     r3, r30, 0xac
+// 	stfs     f0, 0x9c(r30)
+// 	addi     r5, r5, 0x66703031@l
+// 	lfs      f0, lbl_805178E4@sda21(r2)
+// 	addi     r6, r31, 0x188
+// 	stfs     f1, 0xa4(r30)
+// 	stfs     f0, 0xa8(r30)
+// 	bl       __ct__8BaseParmFP10ParametersUlPc
+// 	lis      r3, "__vt__7Parm<f>"@ha
+// 	lis      r5, 0x66703333@ha
+// 	addi     r0, r3, "__vt__7Parm<f>"@l
+// 	lfs      f0, lbl_805178F0@sda21(r2)
+// 	stw      r0, 0xac(r30)
+// 	mr       r4, r30
+// 	lfs      f1, lbl_80517860@sda21(r2)
+// 	addi     r3, r30, 0xd4
+// 	stfs     f0, 0xc4(r30)
+// 	addi     r5, r5, 0x66703333@l
+// 	lfs      f0, lbl_80517874@sda21(r2)
+// 	addi     r6, r31, 0x198
+// 	stfs     f1, 0xcc(r30)
+// 	stfs     f0, 0xd0(r30)
+// 	bl       __ct__8BaseParmFP10ParametersUlPc
+// 	lis      r3, "__vt__7Parm<f>"@ha
+// 	lis      r5, 0x66703334@ha
+// 	addi     r0, r3, "__vt__7Parm<f>"@l
+// 	lfs      f0, lbl_805178F0@sda21(r2)
+// 	stw      r0, 0xd4(r30)
+// 	mr       r4, r30
+// 	lfs      f1, lbl_80517860@sda21(r2)
+// 	addi     r3, r30, 0xfc
+// 	stfs     f0, 0xec(r30)
+// 	addi     r5, r5, 0x66703334@l
+// 	lfs      f0, lbl_805178F4@sda21(r2)
+// 	addi     r6, r31, 0x1b8
+// 	stfs     f1, 0xf4(r30)
+// 	stfs     f0, 0xf8(r30)
+// 	bl       __ct__8BaseParmFP10ParametersUlPc
+// 	lis      r3, "__vt__7Parm<f>"@ha
+// 	lis      r5, 0x66703332@ha
+// 	addi     r0, r3, "__vt__7Parm<f>"@l
+// 	lfs      f0, lbl_805178F0@sda21(r2)
+// 	stw      r0, 0xfc(r30)
+// 	mr       r4, r30
+// 	lfs      f1, lbl_80517860@sda21(r2)
+// 	addi     r3, r30, 0x124
+// 	stfs     f0, 0x114(r30)
+// 	addi     r5, r5, 0x66703332@l
+// 	lfs      f0, lbl_805178F4@sda21(r2)
+// 	addi     r6, r2, lbl_805178F8@sda21
+// 	stfs     f1, 0x11c(r30)
+// 	stfs     f0, 0x120(r30)
+// 	bl       __ct__8BaseParmFP10ParametersUlPc
+// 	lis      r3, "__vt__7Parm<f>"@ha
+// 	lis      r5, 0x66703032@ha
+// 	addi     r0, r3, "__vt__7Parm<f>"@l
+// 	lfs      f0, lbl_805178F0@sda21(r2)
+// 	stw      r0, 0x124(r30)
+// 	mr       r4, r30
+// 	lfs      f1, lbl_80517860@sda21(r2)
+// 	addi     r3, r30, 0x14c
+// 	stfs     f0, 0x13c(r30)
+// 	addi     r5, r5, 0x66703032@l
+// 	lfs      f0, lbl_805178F4@sda21(r2)
+// 	addi     r6, r31, 0x1cc
+// 	stfs     f1, 0x144(r30)
+// 	stfs     f0, 0x148(r30)
+// 	bl       __ct__8BaseParmFP10ParametersUlPc
+// 	lis      r3, "__vt__7Parm<f>"@ha
+// 	lis      r5, 0x66703033@ha
+// 	addi     r0, r3, "__vt__7Parm<f>"@l
+// 	lfs      f0, lbl_80517900@sda21(r2)
+// 	stw      r0, 0x14c(r30)
+// 	mr       r4, r30
+// 	lfs      f1, lbl_80517860@sda21(r2)
+// 	addi     r3, r30, 0x174
+// 	stfs     f0, 0x164(r30)
+// 	addi     r5, r5, 0x66703033@l
+// 	lfs      f0, lbl_80517868@sda21(r2)
+// 	addi     r6, r31, 0x1e0
+// 	stfs     f1, 0x16c(r30)
+// 	stfs     f0, 0x170(r30)
+// 	bl       __ct__8BaseParmFP10ParametersUlPc
+// 	lis      r3, "__vt__7Parm<f>"@ha
+// 	lis      r5, 0x66703034@ha
+// 	addi     r0, r3, "__vt__7Parm<f>"@l
+// 	lfs      f0, lbl_805178C4@sda21(r2)
+// 	stw      r0, 0x174(r30)
+// 	mr       r4, r30
+// 	lfs      f1, lbl_80517860@sda21(r2)
+// 	addi     r3, r30, 0x19c
+// 	stfs     f0, 0x18c(r30)
+// 	addi     r5, r5, 0x66703034@l
+// 	lfs      f0, lbl_80517868@sda21(r2)
+// 	addi     r6, r31, 0x1f4
+// 	stfs     f1, 0x194(r30)
+// 	stfs     f0, 0x198(r30)
+// 	bl       __ct__8BaseParmFP10ParametersUlPc
+// 	lis      r3, "__vt__7Parm<f>"@ha
+// 	lis      r5, 0x66703035@ha
+// 	addi     r0, r3, "__vt__7Parm<f>"@l
+// 	lfs      f0, lbl_80517904@sda21(r2)
+// 	stw      r0, 0x19c(r30)
+// 	mr       r4, r30
+// 	lfs      f1, lbl_80517860@sda21(r2)
+// 	addi     r3, r30, 0x1c4
+// 	stfs     f0, 0x1b4(r30)
+// 	addi     r5, r5, 0x66703035@l
+// 	lfs      f0, lbl_80517868@sda21(r2)
+// 	addi     r6, r2, lbl_80517908@sda21
+// 	stfs     f1, 0x1bc(r30)
+// 	stfs     f0, 0x1c0(r30)
+// 	bl       __ct__8BaseParmFP10ParametersUlPc
+// 	lis      r3, "__vt__7Parm<f>"@ha
+// 	lis      r5, 0x66703036@ha
+// 	addi     r0, r3, "__vt__7Parm<f>"@l
+// 	lfs      f0, lbl_80517868@sda21(r2)
+// 	stw      r0, 0x1c4(r30)
+// 	mr       r4, r30
+// 	lfs      f1, lbl_80517860@sda21(r2)
+// 	addi     r3, r30, 0x1ec
+// 	stfs     f0, 0x1dc(r30)
+// 	addi     r5, r5, 0x66703036@l
+// 	lfs      f0, lbl_80517874@sda21(r2)
+// 	addi     r6, r2, lbl_80517910@sda21
+// 	stfs     f1, 0x1e4(r30)
+// 	stfs     f0, 0x1e8(r30)
+// 	bl       __ct__8BaseParmFP10ParametersUlPc
+// 	lis      r3, "__vt__7Parm<f>"@ha
+// 	lis      r5, 0x66703038@ha
+// 	addi     r0, r3, "__vt__7Parm<f>"@l
+// 	lfs      f0, lbl_80517918@sda21(r2)
+// 	stw      r0, 0x1ec(r30)
+// 	mr       r4, r30
+// 	lfs      f1, lbl_80517860@sda21(r2)
+// 	addi     r3, r30, 0x214
+// 	stfs     f0, 0x204(r30)
+// 	addi     r5, r5, 0x66703038@l
+// 	lfs      f0, lbl_805178E8@sda21(r2)
+// 	addi     r6, r31, 0x208
+// 	stfs     f1, 0x20c(r30)
+// 	stfs     f0, 0x210(r30)
+// 	bl       __ct__8BaseParmFP10ParametersUlPc
+// 	lis      r3, "__vt__7Parm<f>"@ha
+// 	lis      r5, 0x66703238@ha
+// 	addi     r0, r3, "__vt__7Parm<f>"@l
+// 	lfs      f0, lbl_805178D0@sda21(r2)
+// 	stw      r0, 0x214(r30)
+// 	mr       r4, r30
+// 	lfs      f1, lbl_80517860@sda21(r2)
+// 	addi     r3, r30, 0x23c
+// 	stfs     f0, 0x22c(r30)
+// 	addi     r5, r5, 0x66703238@l
+// 	lfs      f0, lbl_80517868@sda21(r2)
+// 	addi     r6, r31, 0x214
+// 	stfs     f1, 0x234(r30)
+// 	stfs     f0, 0x238(r30)
+// 	bl       __ct__8BaseParmFP10ParametersUlPc
+// 	lis      r3, "__vt__7Parm<f>"@ha
+// 	lis      r5, 0x66703039@ha
+// 	addi     r0, r3, "__vt__7Parm<f>"@l
+// 	lfs      f0, lbl_8051791C@sda21(r2)
+// 	stw      r0, 0x23c(r30)
+// 	mr       r4, r30
+// 	lfs      f1, lbl_80517860@sda21(r2)
+// 	addi     r3, r30, 0x264
+// 	stfs     f0, 0x254(r30)
+// 	addi     r5, r5, 0x66703039@l
+// 	lfs      f0, lbl_80517920@sda21(r2)
+// 	addi     r6, r31, 0x224
+// 	stfs     f1, 0x25c(r30)
+// 	stfs     f0, 0x260(r30)
+// 	bl       __ct__8BaseParmFP10ParametersUlPc
+// 	lis      r3, "__vt__7Parm<f>"@ha
+// 	lis      r5, 0x66703130@ha
+// 	addi     r0, r3, "__vt__7Parm<f>"@l
+// 	lfs      f0, lbl_80517924@sda21(r2)
+// 	stw      r0, 0x264(r30)
+// 	mr       r4, r30
+// 	lfs      f1, lbl_80517868@sda21(r2)
+// 	addi     r3, r30, 0x28c
+// 	stfs     f0, 0x27c(r30)
+// 	addi     r5, r5, 0x66703130@l
+// 	lfs      f0, lbl_805178E8@sda21(r2)
+// 	addi     r6, r31, 0x230
+// 	stfs     f1, 0x284(r30)
+// 	stfs     f0, 0x288(r30)
+// 	bl       __ct__8BaseParmFP10ParametersUlPc
+// 	lis      r3, "__vt__7Parm<f>"@ha
+// 	lis      r5, 0x66703131@ha
+// 	addi     r0, r3, "__vt__7Parm<f>"@l
+// 	lfs      f0, lbl_80517928@sda21(r2)
+// 	stw      r0, 0x28c(r30)
+// 	mr       r4, r30
+// 	lfs      f1, lbl_80517868@sda21(r2)
+// 	addi     r3, r30, 0x2b4
+// 	stfs     f0, 0x2a4(r30)
+// 	addi     r5, r5, 0x66703131@l
+// 	lfs      f0, lbl_805178E8@sda21(r2)
+// 	addi     r6, r31, 0x23c
+// 	stfs     f1, 0x2ac(r30)
+// 	stfs     f0, 0x2b0(r30)
+// 	bl       __ct__8BaseParmFP10ParametersUlPc
+// 	lis      r3, "__vt__7Parm<f>"@ha
+// 	lis      r5, 0x66703132@ha
+// 	addi     r0, r3, "__vt__7Parm<f>"@l
+// 	lfs      f0, lbl_8051792C@sda21(r2)
+// 	stw      r0, 0x2b4(r30)
+// 	mr       r4, r30
+// 	lfs      f1, lbl_80517860@sda21(r2)
+// 	addi     r3, r30, 0x2dc
+// 	stfs     f0, 0x2cc(r30)
+// 	addi     r5, r5, 0x66703132@l
+// 	lfs      f0, lbl_805178E8@sda21(r2)
+// 	addi     r6, r31, 0x250
+// 	stfs     f1, 0x2d4(r30)
+// 	stfs     f0, 0x2d8(r30)
+// 	bl       __ct__8BaseParmFP10ParametersUlPc
+// 	lis      r3, "__vt__7Parm<f>"@ha
+// 	lis      r5, 0x66703235@ha
+// 	addi     r0, r3, "__vt__7Parm<f>"@l
+// 	lfs      f0, lbl_80517924@sda21(r2)
+// 	stw      r0, 0x2dc(r30)
+// 	mr       r4, r30
+// 	lfs      f1, lbl_80517860@sda21(r2)
+// 	addi     r3, r30, 0x304
+// 	stfs     f0, 0x2f4(r30)
+// 	addi     r5, r5, 0x66703235@l
+// 	lfs      f0, lbl_805178E8@sda21(r2)
+// 	addi     r6, r2, lbl_80517930@sda21
+// 	stfs     f1, 0x2fc(r30)
+// 	stfs     f0, 0x300(r30)
+// 	bl       __ct__8BaseParmFP10ParametersUlPc
+// 	lis      r3, "__vt__7Parm<f>"@ha
+// 	lis      r5, 0x66703133@ha
+// 	addi     r0, r3, "__vt__7Parm<f>"@l
+// 	lfs      f0, lbl_80517888@sda21(r2)
+// 	stw      r0, 0x304(r30)
+// 	mr       r4, r30
+// 	lfs      f1, lbl_80517860@sda21(r2)
+// 	addi     r3, r30, 0x32c
+// 	stfs     f0, 0x31c(r30)
+// 	addi     r5, r5, 0x66703133@l
+// 	lfs      f0, lbl_805178E8@sda21(r2)
+// 	addi     r6, r31, 0x25c
+// 	stfs     f1, 0x324(r30)
+// 	stfs     f0, 0x328(r30)
+// 	bl       __ct__8BaseParmFP10ParametersUlPc
+// 	lis      r3, "__vt__7Parm<f>"@ha
+// 	lis      r5, 0x66703134@ha
+// 	addi     r0, r3, "__vt__7Parm<f>"@l
+// 	lfs      f0, lbl_80517938@sda21(r2)
+// 	stw      r0, 0x32c(r30)
+// 	mr       r4, r30
+// 	lfs      f1, lbl_80517860@sda21(r2)
+// 	addi     r3, r30, 0x354
+// 	stfs     f0, 0x344(r30)
+// 	addi     r5, r5, 0x66703134@l
+// 	lfs      f0, lbl_8051793C@sda21(r2)
+// 	addi     r6, r31, 0x268
+// 	stfs     f1, 0x34c(r30)
+// 	stfs     f0, 0x350(r30)
+// 	bl       __ct__8BaseParmFP10ParametersUlPc
+// 	lis      r3, "__vt__7Parm<f>"@ha
+// 	lis      r5, 0x66703236@ha
+// 	addi     r0, r3, "__vt__7Parm<f>"@l
+// 	lfs      f0, lbl_80517924@sda21(r2)
+// 	stw      r0, 0x354(r30)
+// 	mr       r4, r30
+// 	lfs      f1, lbl_80517860@sda21(r2)
+// 	addi     r3, r30, 0x37c
+// 	stfs     f0, 0x36c(r30)
+// 	addi     r5, r5, 0x66703236@l
+// 	lfs      f0, lbl_805178E8@sda21(r2)
+// 	addi     r6, r2, lbl_80517940@sda21
+// 	stfs     f1, 0x374(r30)
+// 	stfs     f0, 0x378(r30)
+// 	bl       __ct__8BaseParmFP10ParametersUlPc
+// 	lis      r3, "__vt__7Parm<f>"@ha
+// 	lis      r5, 0x66703135@ha
+// 	addi     r0, r3, "__vt__7Parm<f>"@l
+// 	lfs      f0, lbl_80517888@sda21(r2)
+// 	stw      r0, 0x37c(r30)
+// 	mr       r4, r30
+// 	lfs      f1, lbl_80517860@sda21(r2)
+// 	addi     r3, r30, 0x3a4
+// 	stfs     f0, 0x394(r30)
+// 	addi     r5, r5, 0x66703135@l
+// 	lfs      f0, lbl_805178E8@sda21(r2)
+// 	addi     r6, r31, 0x274
+// 	stfs     f1, 0x39c(r30)
+// 	stfs     f0, 0x3a0(r30)
+// 	bl       __ct__8BaseParmFP10ParametersUlPc
+// 	lis      r3, "__vt__7Parm<f>"@ha
+// 	lis      r5, 0x66703137@ha
+// 	addi     r0, r3, "__vt__7Parm<f>"@l
+// 	lfs      f0, lbl_805178B8@sda21(r2)
+// 	stw      r0, 0x3a4(r30)
+// 	mr       r4, r30
+// 	lfs      f1, lbl_80517860@sda21(r2)
+// 	addi     r3, r30, 0x3cc
+// 	stfs     f0, 0x3bc(r30)
+// 	addi     r5, r5, 0x66703137@l
+// 	lfs      f0, lbl_8051793C@sda21(r2)
+// 	addi     r6, r31, 0x280
+// 	stfs     f1, 0x3c4(r30)
+// 	stfs     f0, 0x3c8(r30)
+// 	bl       __ct__8BaseParmFP10ParametersUlPc
+// 	lis      r3, "__vt__7Parm<f>"@ha
+// 	lis      r5, 0x66703138@ha
+// 	addi     r0, r3, "__vt__7Parm<f>"@l
+// 	lfs      f0, lbl_805178BC@sda21(r2)
+// 	stw      r0, 0x3cc(r30)
+// 	mr       r4, r30
+// 	lfs      f1, lbl_80517860@sda21(r2)
+// 	addi     r3, r30, 0x3f4
+// 	stfs     f0, 0x3e4(r30)
+// 	addi     r5, r5, 0x66703138@l
+// 	lfs      f0, lbl_805178E8@sda21(r2)
+// 	addi     r6, r31, 0x28c
+// 	stfs     f1, 0x3ec(r30)
+// 	stfs     f0, 0x3f0(r30)
+// 	bl       __ct__8BaseParmFP10ParametersUlPc
+// 	lis      r3, "__vt__7Parm<f>"@ha
+// 	lis      r5, 0x66703139@ha
+// 	addi     r0, r3, "__vt__7Parm<f>"@l
+// 	lfs      f1, lbl_80517860@sda21(r2)
+// 	stw      r0, 0x3f4(r30)
+// 	mr       r4, r30
+// 	lfs      f0, lbl_805178E8@sda21(r2)
+// 	addi     r3, r30, 0x41c
+// 	stfs     f1, 0x40c(r30)
+// 	addi     r5, r5, 0x66703139@l
+// 	addi     r6, r31, 0x2a0
+// 	stfs     f1, 0x414(r30)
+// 	stfs     f0, 0x418(r30)
+// 	bl       __ct__8BaseParmFP10ParametersUlPc
+// 	lis      r3, "__vt__7Parm<f>"@ha
+// 	lis      r5, 0x66703136@ha
+// 	addi     r0, r3, "__vt__7Parm<f>"@l
+// 	lfs      f0, lbl_805178B8@sda21(r2)
+// 	stw      r0, 0x41c(r30)
+// 	mr       r4, r30
+// 	lfs      f1, lbl_80517860@sda21(r2)
+// 	addi     r3, r30, 0x444
+// 	stfs     f0, 0x434(r30)
+// 	addi     r5, r5, 0x66703136@l
+// 	lfs      f0, lbl_805178E8@sda21(r2)
+// 	addi     r6, r31, 0x2b0
+// 	stfs     f1, 0x43c(r30)
+// 	stfs     f0, 0x440(r30)
+// 	bl       __ct__8BaseParmFP10ParametersUlPc
+// 	lis      r3, "__vt__7Parm<f>"@ha
+// 	lis      r5, 0x66703230@ha
+// 	addi     r0, r3, "__vt__7Parm<f>"@l
+// 	lfs      f1, lbl_80517868@sda21(r2)
+// 	stw      r0, 0x444(r30)
+// 	mr       r4, r30
+// 	lfs      f0, lbl_80517860@sda21(r2)
+// 	addi     r3, r30, 0x46c
+// 	stfs     f1, 0x45c(r30)
+// 	addi     r5, r5, 0x66703230@l
+// 	addi     r6, r31, 0x2bc
+// 	stfs     f0, 0x464(r30)
+// 	stfs     f1, 0x468(r30)
+// 	bl       __ct__8BaseParmFP10ParametersUlPc
+// 	lis      r3, "__vt__7Parm<f>"@ha
+// 	lis      r5, 0x66703231@ha
+// 	addi     r0, r3, "__vt__7Parm<f>"@l
+// 	lfs      f0, lbl_8051792C@sda21(r2)
+// 	stw      r0, 0x46c(r30)
+// 	mr       r4, r30
+// 	lfs      f1, lbl_80517860@sda21(r2)
+// 	addi     r3, r30, 0x494
+// 	stfs     f0, 0x484(r30)
+// 	addi     r5, r5, 0x66703231@l
+// 	lfs      f0, lbl_805178E8@sda21(r2)
+// 	addi     r6, r31, 0x2cc
+// 	stfs     f1, 0x48c(r30)
+// 	stfs     f0, 0x490(r30)
+// 	bl       __ct__8BaseParmFP10ParametersUlPc
+// 	lis      r3, "__vt__7Parm<f>"@ha
+// 	lis      r5, 0x66703232@ha
+// 	addi     r0, r3, "__vt__7Parm<f>"@l
+// 	lfs      f0, lbl_80517928@sda21(r2)
+// 	stw      r0, 0x494(r30)
+// 	mr       r4, r30
+// 	lfs      f1, lbl_80517860@sda21(r2)
+// 	addi     r3, r30, 0x4bc
+// 	stfs     f0, 0x4ac(r30)
+// 	addi     r5, r5, 0x66703232@l
+// 	lfs      f0, lbl_8051793C@sda21(r2)
+// 	addi     r6, r31, 0x2dc
+// 	stfs     f1, 0x4b4(r30)
+// 	stfs     f0, 0x4b8(r30)
+// 	bl       __ct__8BaseParmFP10ParametersUlPc
+// 	lis      r3, "__vt__7Parm<f>"@ha
+// 	lis      r5, 0x66703233@ha
+// 	addi     r0, r3, "__vt__7Parm<f>"@l
+// 	lfs      f0, lbl_8051792C@sda21(r2)
+// 	stw      r0, 0x4bc(r30)
+// 	mr       r4, r30
+// 	lfs      f1, lbl_80517860@sda21(r2)
+// 	addi     r3, r30, 0x4e4
+// 	stfs     f0, 0x4d4(r30)
+// 	addi     r5, r5, 0x66703233@l
+// 	lfs      f0, lbl_805178E8@sda21(r2)
+// 	addi     r6, r31, 0x2ec
+// 	stfs     f1, 0x4dc(r30)
+// 	stfs     f0, 0x4e0(r30)
+// 	bl       __ct__8BaseParmFP10ParametersUlPc
+// 	lis      r3, "__vt__7Parm<f>"@ha
+// 	lis      r5, 0x66703234@ha
+// 	addi     r0, r3, "__vt__7Parm<f>"@l
+// 	lfs      f0, lbl_80517928@sda21(r2)
+// 	stw      r0, 0x4e4(r30)
+// 	mr       r4, r30
+// 	lfs      f1, lbl_80517860@sda21(r2)
+// 	addi     r3, r30, 0x50c
+// 	stfs     f0, 0x4fc(r30)
+// 	addi     r5, r5, 0x66703234@l
+// 	lfs      f0, lbl_8051793C@sda21(r2)
+// 	addi     r6, r2, lbl_80517948@sda21
+// 	stfs     f1, 0x504(r30)
+// 	stfs     f0, 0x508(r30)
+// 	bl       __ct__8BaseParmFP10ParametersUlPc
+// 	lis      r3, "__vt__7Parm<f>"@ha
+// 	lis      r5, 0x66703239@ha
+// 	addi     r0, r3, "__vt__7Parm<f>"@l
+// 	lfs      f0, lbl_8051791C@sda21(r2)
+// 	stw      r0, 0x50c(r30)
+// 	mr       r4, r30
+// 	lfs      f1, lbl_80517860@sda21(r2)
+// 	addi     r3, r30, 0x534
+// 	stfs     f0, 0x524(r30)
+// 	addi     r5, r5, 0x66703239@l
+// 	lfs      f0, lbl_805178E8@sda21(r2)
+// 	addi     r6, r31, 0x2fc
+// 	stfs     f1, 0x52c(r30)
+// 	stfs     f0, 0x530(r30)
+// 	bl       __ct__8BaseParmFP10ParametersUlPc
+// 	lis      r3, "__vt__7Parm<f>"@ha
+// 	lis      r5, 0x66703335@ha
+// 	addi     r0, r3, "__vt__7Parm<f>"@l
+// 	lfs      f0, lbl_80517928@sda21(r2)
+// 	stw      r0, 0x534(r30)
+// 	mr       r4, r30
+// 	lfs      f1, lbl_80517860@sda21(r2)
+// 	addi     r3, r30, 0x55c
+// 	stfs     f0, 0x54c(r30)
+// 	addi     r5, r5, 0x66703335@l
+// 	lfs      f0, lbl_80517950@sda21(r2)
+// 	addi     r6, r31, 0x308
+// 	stfs     f1, 0x554(r30)
+// 	stfs     f0, 0x558(r30)
+// 	bl       __ct__8BaseParmFP10ParametersUlPc
+// 	lis      r3, "__vt__7Parm<f>"@ha
+// 	lis      r5, 0x66703336@ha
+// 	addi     r0, r3, "__vt__7Parm<f>"@l
+// 	lfs      f0, lbl_80517868@sda21(r2)
+// 	stw      r0, 0x55c(r30)
+// 	mr       r4, r30
+// 	lfs      f1, lbl_80517860@sda21(r2)
+// 	addi     r3, r30, 0x584
+// 	stfs     f0, 0x574(r30)
+// 	addi     r5, r5, 0x66703336@l
+// 	lfs      f0, lbl_80517954@sda21(r2)
+// 	addi     r6, r31, 0x314
+// 	stfs     f1, 0x57c(r30)
+// 	stfs     f0, 0x580(r30)
+// 	bl       __ct__8BaseParmFP10ParametersUlPc
+// 	lis      r3, "__vt__7Parm<f>"@ha
+// 	lis      r5, 0x66703337@ha
+// 	addi     r0, r3, "__vt__7Parm<f>"@l
+// 	lfs      f0, lbl_8051791C@sda21(r2)
+// 	stw      r0, 0x584(r30)
+// 	mr       r4, r30
+// 	lfs      f1, lbl_80517860@sda21(r2)
+// 	addi     r3, r30, 0x5ac
+// 	stfs     f0, 0x59c(r30)
+// 	addi     r5, r5, 0x66703337@l
+// 	lfs      f0, lbl_805178E8@sda21(r2)
+// 	addi     r6, r31, 0x32c
+// 	stfs     f1, 0x5a4(r30)
+// 	stfs     f0, 0x5a8(r30)
+// 	bl       __ct__8BaseParmFP10ParametersUlPc
+// 	lis      r3, "__vt__7Parm<f>"@ha
+// 	lis      r5, 0x66703338@ha
+// 	addi     r0, r3, "__vt__7Parm<f>"@l
+// 	lfs      f0, lbl_80517958@sda21(r2)
+// 	stw      r0, 0x5ac(r30)
+// 	mr       r4, r30
+// 	lfs      f1, lbl_80517860@sda21(r2)
+// 	addi     r3, r30, 0x5d4
+// 	stfs     f0, 0x5c4(r30)
+// 	addi     r5, r5, 0x66703338@l
+// 	lfs      f0, lbl_80517868@sda21(r2)
+// 	addi     r6, r31, 0x33c
+// 	stfs     f1, 0x5cc(r30)
+// 	stfs     f0, 0x5d0(r30)
+// 	bl       __ct__8BaseParmFP10ParametersUlPc
+// 	lis      r3, "__vt__7Parm<f>"@ha
+// 	lis      r5, 0x69703031@ha
+// 	addi     r0, r3, "__vt__7Parm<f>"@l
+// 	lfs      f0, lbl_8051791C@sda21(r2)
+// 	stw      r0, 0x5d4(r30)
+// 	mr       r4, r30
+// 	lfs      f1, lbl_80517860@sda21(r2)
+// 	addi     r3, r30, 0x5fc
+// 	stfs     f0, 0x5ec(r30)
+// 	addi     r5, r5, 0x69703031@l
+// 	lfs      f0, lbl_80517954@sda21(r2)
+// 	addi     r6, r31, 0x34c
+// 	stfs     f1, 0x5f4(r30)
+// 	stfs     f0, 0x5f8(r30)
+// 	bl       __ct__8BaseParmFP10ParametersUlPc
+// 	lis      r3, "__vt__7Parm<i>"@ha
+// 	lis      r5, 0x69703032@ha
+// 	addi     r0, r3, "__vt__7Parm<i>"@l
+// 	li       r3, 3
+// 	stw      r0, 0x5fc(r30)
+// 	li       r7, 0
+// 	li       r0, 0xc8
+// 	mr       r4, r30
+// 	stw      r3, 0x614(r30)
+// 	addi     r3, r30, 0x624
+// 	addi     r5, r5, 0x69703032@l
+// 	addi     r6, r31, 0x35c
+// 	stw      r7, 0x61c(r30)
+// 	stw      r0, 0x620(r30)
+// 	bl       __ct__8BaseParmFP10ParametersUlPc
+// 	lis      r3, "__vt__7Parm<i>"@ha
+// 	lis      r5, 0x69703033@ha
+// 	addi     r0, r3, "__vt__7Parm<i>"@l
+// 	li       r3, 3
+// 	stw      r0, 0x624(r30)
+// 	li       r7, 0
+// 	li       r0, 0x64
+// 	mr       r4, r30
+// 	stw      r3, 0x63c(r30)
+// 	addi     r3, r30, 0x64c
+// 	addi     r5, r5, 0x69703033@l
+// 	addi     r6, r31, 0x36c
+// 	stw      r7, 0x644(r30)
+// 	stw      r0, 0x648(r30)
+// 	bl       __ct__8BaseParmFP10ParametersUlPc
+// 	lis      r3, "__vt__7Parm<i>"@ha
+// 	lis      r5, 0x69703034@ha
+// 	addi     r0, r3, "__vt__7Parm<i>"@l
+// 	li       r3, 8
+// 	stw      r0, 0x64c(r30)
+// 	li       r7, 0
+// 	li       r0, 0xc8
+// 	mr       r4, r30
+// 	stw      r3, 0x664(r30)
+// 	addi     r3, r30, 0x674
+// 	addi     r5, r5, 0x69703034@l
+// 	addi     r6, r31, 0x37c
+// 	stw      r7, 0x66c(r30)
+// 	stw      r0, 0x670(r30)
+// 	bl       __ct__8BaseParmFP10ParametersUlPc
+// 	lis      r3, "__vt__7Parm<i>"@ha
+// 	lis      r5, 0x69703035@ha
+// 	addi     r0, r3, "__vt__7Parm<i>"@l
+// 	li       r3, 5
+// 	stw      r0, 0x674(r30)
+// 	li       r7, 0
+// 	li       r0, 0x64
+// 	mr       r4, r30
+// 	stw      r3, 0x68c(r30)
+// 	addi     r3, r30, 0x69c
+// 	addi     r5, r5, 0x69703035@l
+// 	addi     r6, r31, 0x38c
+// 	stw      r7, 0x694(r30)
+// 	stw      r0, 0x698(r30)
+// 	bl       __ct__8BaseParmFP10ParametersUlPc
+// 	lis      r3, "__vt__7Parm<i>"@ha
+// 	lis      r5, 0x69703036@ha
+// 	addi     r0, r3, "__vt__7Parm<i>"@l
+// 	li       r3, 0xf
+// 	stw      r0, 0x69c(r30)
+// 	li       r7, 0
+// 	li       r0, 0xc8
+// 	mr       r4, r30
+// 	stw      r3, 0x6b4(r30)
+// 	addi     r3, r30, 0x6c4
+// 	addi     r5, r5, 0x69703036@l
+// 	addi     r6, r31, 0x39c
+// 	stw      r7, 0x6bc(r30)
+// 	stw      r0, 0x6c0(r30)
+// 	bl       __ct__8BaseParmFP10ParametersUlPc
+// 	lis      r3, "__vt__7Parm<i>"@ha
+// 	lis      r5, 0x69703037@ha
+// 	addi     r0, r3, "__vt__7Parm<i>"@l
+// 	li       r3, 0xa
+// 	stw      r0, 0x6c4(r30)
+// 	li       r7, 0
+// 	li       r0, 0x64
+// 	mr       r4, r30
+// 	stw      r3, 0x6dc(r30)
+// 	addi     r3, r30, 0x6ec
+// 	addi     r5, r5, 0x69703037@l
+// 	addi     r6, r31, 0x3ac
+// 	stw      r7, 0x6e4(r30)
+// 	stw      r0, 0x6e8(r30)
+// 	bl       __ct__8BaseParmFP10ParametersUlPc
+// 	lis      r3, "__vt__7Parm<i>"@ha
+// 	li       r5, 0x1e
+// 	addi     r0, r3, "__vt__7Parm<i>"@l
+// 	li       r4, 0
+// 	stw      r0, 0x6ec(r30)
+// 	li       r0, 0xc8
+// 	mr       r3, r30
+// 	stw      r5, 0x704(r30)
+// 	stw      r4, 0x70c(r30)
+// 	stw      r0, 0x710(r30)
+// 	lwz      r31, 0xc(r1)
+// 	lwz      r30, 8(r1)
+// 	lwz      r0, 0x14(r1)
+// 	mtlr     r0
+// 	addi     r1, r1, 0x10
+// 	blr
+// 	*/
+// }
 
 } // namespace Game
 
@@ -3671,104 +3372,51 @@ lbl_801099A0:
  * Address:	8010A450
  * Size:	000010
  */
-void BitFlag<unsigned short>::BitFlag()
-{
-	/*
-	li       r0, 0
-	stb      r0, 0(r3)
-	stb      r0, 1(r3)
-	blr
-	*/
-}
+// BitFlag<unsigned short>::BitFlag()
+// {
+// 	/*
+// 	li       r0, 0
+// 	stb      r0, 0(r3)
+// 	stb      r0, 1(r3)
+// 	blr
+// 	*/
+// }
 
 namespace Game {
 
 /*
+ * birth__Q34Game8Pelplant3MgrFRQ24Game13EnemyBirthArg
  * --INFO--
  * Address:	8010A460
  * Size:	000020
  */
-void Pelplant::Mgr::birth(Game::EnemyBirthArg&)
-{
-	/*
-	stwu     r1, -0x10(r1)
-	mflr     r0
-	stw      r0, 0x14(r1)
-	bl       birth__Q24Game12EnemyMgrBaseFRQ24Game13EnemyBirthArg
-	lwz      r0, 0x14(r1)
-	mtlr     r0
-	addi     r1, r1, 0x10
-	blr
-	*/
-}
+EnemyBase* Pelplant::Mgr::birth(Game::EnemyBirthArg& arg) { return EnemyMgrBase::birth(arg); }
 
 /*
  * --INFO--
  * Address:	8010A480
  * Size:	0000D0
  */
-void Pelplant::Obj::onInit(Game::CreatureInitArg*)
+void Pelplant::Obj::onInit(Game::CreatureInitArg* arg)
 {
-	/*
-	stwu     r1, -0x10(r1)
-	mflr     r0
-	stw      r0, 0x14(r1)
-	stw      r31, 0xc(r1)
-	mr       r31, r3
-	bl       onInit__Q24Game9EnemyBaseFPQ24Game15CreatureInitArg
-	lfs      f0, lbl_80517860@sda21(r2)
-	mr       r3, r31
-	stfs     f0, 0x2c0(r31)
-	bl       setEmotionNone__Q24Game9EnemyBaseFv
-	lbz      r0, 0x2d6(r31)
-	extsb.   r0, r0
-	bne      lbl_8010A4C4
-	lbz      r0, 0x2c8(r31)
-	ori      r0, r0, 1
-	stb      r0, 0x2c8(r31)
-	b        lbl_8010A4D0
-
-lbl_8010A4C4:
-	lbz      r0, 0x2c8(r31)
-	rlwinm   r0, r0, 0, 0x18, 0x1e
-	stb      r0, 0x2c8(r31)
-
-lbl_8010A4D0:
-	mr       r3, r31
-	bl       getStateID__Q24Game9EnemyBaseFv
-	mr       r5, r3
-	cmpwi    r5, -1
-	bne      lbl_8010A4E8
-	li       r5, 0
-
-lbl_8010A4E8:
-	lwz      r3, 0x2bc(r31)
-	mr       r4, r31
-	li       r6, 0
-	lwz      r12, 0(r3)
-	lwz      r12, 0xc(r12)
-	mtctr    r12
-	bctrl
-	lwz      r0, 0x1e0(r31)
-	mr       r3, r31
-	rlwinm   r0, r0, 0, 0x18, 0x16
-	stw      r0, 0x1e0(r31)
-	lwz      r0, 0x1e0(r31)
-	rlwinm   r0, r0, 0, 0x19, 0x17
-	stw      r0, 0x1e0(r31)
-	lwz      r0, 0x1e0(r31)
-	rlwinm   r0, r0, 0, 0x14, 0x12
-	stw      r0, 0x1e0(r31)
-	lwz      r0, 0x1e0(r31)
-	oris     r0, r0, 0x40
-	stw      r0, 0x1e0(r31)
-	bl       hardConstraintOn__Q24Game9EnemyBaseFv
-	lwz      r0, 0x14(r1)
-	lwz      r31, 0xc(r1)
-	mtlr     r0
-	addi     r1, r1, 0x10
-	blr
-	*/
+	EnemyBase::onInit(arg);
+	_2C0 = 0.0f;
+	setEmotionNone();
+	if (m_farmPow == 0) {
+		_2C8 |= 1;
+	} else {
+		_2C8 &= ~1;
+	}
+	int stateID = getStateID();
+	if (stateID == -1) {
+		stateID = 0;
+	}
+	m_fsm->start(this, stateID, nullptr);
+	_1E0->typeView &= ~0x100;
+	_1E0->typeView &= ~0x80;
+	_1E0->typeView &= ~0x1000;
+	_1E0->typeView |= 0x400000;
+	hardConstraintOn();
 }
 
 /*
@@ -3776,31 +3424,16 @@ lbl_8010A4E8:
  * Address:	8010A550
  * Size:	000048
  */
-void Pelplant::Obj::doGetLifeGaugeParam(Game::LifeGaugeParam&)
+void Pelplant::Obj::doGetLifeGaugeParam(Game::LifeGaugeParam& param)
 {
-	/*
-	lwz      r5, 0x2c4(r3)
-	lfs      f1, lbl_80517954@sda21(r2)
-	lfs      f2, 0xc(r5)
-	lfs      f0, lbl_8051791C@sda21(r2)
-	stfs     f2, 0(r4)
-	lfs      f2, 0x1c(r5)
-	stfs     f2, 4(r4)
-	lfs      f2, 0x2c(r5)
-	stfs     f2, 8(r4)
-	lfs      f2, 4(r4)
-	fadds    f1, f2, f1
-	stfs     f1, 4(r4)
-	lfs      f2, 0x200(r3)
-	lfs      f1, 0x204(r3)
-	fdivs    f1, f2, f1
-	stfs     f1, 0xc(r4)
-	stfs     f0, 0x10(r4)
-	blr
-	*/
+	_2C4->getTranslation(param.m_position);
+	param.m_position.y += 60.0f;
+	param.m_healthPercentage = m_health / m_maxHealth;
+	param._10                = 10.0f;
 }
 
 /*
+ * __dt__Q34Game8Pelplant3MgrFv
  * --INFO--
  * Address:	8010A598
  * Size:	0000B0
@@ -3864,44 +3497,17 @@ lbl_8010A62C:
  * Address:	8010A648
  * Size:	000008
  */
-u32 Pelplant::Mgr::getEnemyTypeID() { return 0x0; }
+EnemyTypeID::EEnemyTypeID Pelplant::Mgr::getEnemyTypeID() { return EnemyTypeID::EnemyID_Pelplant; }
 
 /*
  * --INFO--
  * Address:	8010A650
  * Size:	000060
  */
-void Pelplant::Mgr::createObj(int)
-{
-	/*
-	stwu     r1, -0x10(r1)
-	mflr     r0
-	stw      r0, 0x14(r1)
-	stw      r31, 0xc(r1)
-	mr       r31, r4
-	stw      r30, 8(r1)
-	mr       r30, r3
-	mulli    r3, r31, 0x2e8
-	addi     r3, r3, 0x10
-	bl       __nwa__FUl
-	lis      r4, __ct__Q34Game8Pelplant3ObjFv@ha
-	lis      r5, __dt__Q34Game8Pelplant3ObjFv@ha
-	addi     r4, r4, __ct__Q34Game8Pelplant3ObjFv@l
-	mr       r7, r31
-	addi     r5, r5, __dt__Q34Game8Pelplant3ObjFv@l
-	li       r6, 0x2e8
-	bl       __construct_new_array
-	stw      r3, 0x44(r30)
-	lwz      r0, 0x14(r1)
-	lwz      r31, 0xc(r1)
-	lwz      r30, 8(r1)
-	mtlr     r0
-	addi     r1, r1, 0x10
-	blr
-	*/
-}
+void Pelplant::Mgr::createObj(int count) { m_objects = new Obj[count]; }
 
 /*
+ * __dt__Q34Game8Pelplant3ObjFv
  * --INFO--
  * Address:	8010A6B0
  * Size:	0000BC
@@ -3964,19 +3570,12 @@ lbl_8010A750:
 }
 
 /*
+ * getEnemy__Q34Game8Pelplant3MgrFi
  * --INFO--
  * Address:	8010A76C
  * Size:	000010
  */
-void Pelplant::Mgr::getEnemy(int)
-{
-	/*
-	mulli    r0, r4, 0x2e8
-	lwz      r3, 0x44(r3)
-	add      r3, r3, r0
-	blr
-	*/
-}
+EnemyBase* Pelplant::Mgr::getEnemy(int index) { return &m_objects[index]; }
 
 /*
  * --INFO--
@@ -3986,607 +3585,496 @@ void Pelplant::Mgr::getEnemy(int)
 void Pelplant::Mgr::initStoneSetting() { }
 
 /*
+ * get__Q24Game12EnemyMgrBaseFPv
  * --INFO--
  * Address:	8010A780
  * Size:	00002C
  */
-void EnemyMgrBase::get(void*)
-{
-	/*
-	stwu     r1, -0x10(r1)
-	mflr     r0
-	stw      r0, 0x14(r1)
-	lwz      r12, 0(r3)
-	lwz      r12, 0xa4(r12)
-	mtctr    r12
-	bctrl
-	lwz      r0, 0x14(r1)
-	mtlr     r0
-	addi     r1, r1, 0x10
-	blr
-	*/
-}
+// void EnemyMgrBase::get(void*)
+// {
+// }
 
 /*
+ * getJ3DModelData__Q24Game12EnemyMgrBaseCFv
  * --INFO--
  * Address:	8010A7AC
  * Size:	000008
  */
-void EnemyMgrBase::getJ3DModelData() const
-{
-	/*
-	lwz      r3, 0x1c(r3)
-	blr
-	*/
-}
+// J3DModelData* EnemyMgrBase::getJ3DModelData() const
+// {
+// }
 
 /*
+ * getGenerator__Q24Game12EnemyMgrBaseCFv
  * --INFO--
  * Address:	8010A7B4
  * Size:	000008
  */
-void EnemyMgrBase::getGenerator() const
-{
-	/*
-	lwz      r3, 0x38(r3)
-	blr
-	*/
-}
+// EnemyGeneratorBase* EnemyMgrBase::getGenerator() const
+// {
+// }
 
 /*
+ * getMaxObjects__Q24Game12EnemyMgrBaseCFv
  * --INFO--
  * Address:	8010A7BC
  * Size:	000008
  */
-void EnemyMgrBase::getMaxObjects() const
-{
-	/*
-	lwz      r3, 0x2c(r3)
-	blr
-	*/
-}
+// int EnemyMgrBase::getMaxObjects() const
+// {
+// }
 
 } // namespace Game
 
 /*
+ * doSimpleDraw__16GenericObjectMgrFP8Viewport
  * --INFO--
  * Address:	8010A7C4
  * Size:	000004
  */
-void GenericObjectMgr::doSimpleDraw(Viewport*) { }
+// void GenericObjectMgr::doSimpleDraw(Viewport*) { }
 
 /*
+ * loadResources__16GenericObjectMgrFv
  * --INFO--
  * Address:	8010A7C8
  * Size:	000004
  */
-void GenericObjectMgr::loadResources() { }
+// void GenericObjectMgr::loadResources() { }
 
 /*
+ * resetMgr__16GenericObjectMgrFv
  * --INFO--
  * Address:	8010A7CC
  * Size:	000004
  */
-void GenericObjectMgr::resetMgr() { }
+// void GenericObjectMgr::resetMgr() { }
 
 /*
+ * pausable__16GenericObjectMgrFv
  * --INFO--
  * Address:	8010A7D0
  * Size:	000008
  */
-u32 GenericObjectMgr::pausable() { return 0x1; }
+// bool GenericObjectMgr::pausable() { return true; }
 
 /*
+ * frozenable__16GenericObjectMgrFv
  * --INFO--
  * Address:	8010A7D8
  * Size:	000008
  */
-u32 GenericObjectMgr::frozenable() { return 0x1; }
+// bool GenericObjectMgr::frozenable() { return true; }
 
 /*
+ * getMatrixLoadType__16GenericObjectMgrFv
  * --INFO--
  * Address:	8010A7E0
  * Size:	000008
  */
-u32 GenericObjectMgr::getMatrixLoadType() { return 0x0; }
+// u32 GenericObjectMgr::getMatrixLoadType() { return 0x0; }
 
 namespace Game {
 
-/*
+/**
+ * getEnd__Q24Game12EnemyMgrBaseFv
  * --INFO--
  * Address:	8010A7E8
  * Size:	000008
  */
-void EnemyMgrBase::getEnd()
-{
-	/*
-	lwz      r3, 0x2c(r3)
-	blr
-	*/
-}
+// void* EnemyMgrBase::getEnd()
+// {
+// }
 
 /*
+ * getStart__Q24Game12EnemyMgrBaseFv
  * --INFO--
  * Address:	8010A7F0
  * Size:	000030
  */
-void EnemyMgrBase::getStart()
-{
-	/*
-	stwu     r1, -0x10(r1)
-	mflr     r0
-	li       r4, -1
-	stw      r0, 0x14(r1)
-	lwz      r12, 0(r3)
-	lwz      r12, 0x60(r12)
-	mtctr    r12
-	bctrl
-	lwz      r0, 0x14(r1)
-	mtlr     r0
-	addi     r1, r1, 0x10
-	blr
-	*/
-}
+// void* EnemyMgrBase::getStart()
+// {
+// }
 
 /*
+ * getObject__Q24Game12EnemyMgrBaseFPv
  * --INFO--
  * Address:	8010A820
  * Size:	00002C
  */
-void EnemyMgrBase::getObject(void*)
-{
-	/*
-	stwu     r1, -0x10(r1)
-	mflr     r0
-	stw      r0, 0x14(r1)
-	lwz      r12, 0(r3)
-	lwz      r12, 0x98(r12)
-	mtctr    r12
-	bctrl
-	lwz      r0, 0x14(r1)
-	mtlr     r0
-	addi     r1, r1, 0x10
-	blr
-	*/
-}
+// void* EnemyMgrBase::getObject(void* index)
+// {
+// }
 
 /*
+ * read__Q24Game14EnemyParmsBaseFR6Stream
  * --INFO--
  * Address:	8010A84C
  * Size:	000044
  */
-void EnemyParmsBase::read(Stream&)
-{
-	/*
-	stwu     r1, -0x10(r1)
-	mflr     r0
-	stw      r0, 0x14(r1)
-	stw      r31, 0xc(r1)
-	mr       r31, r4
-	stw      r30, 8(r1)
-	mr       r30, r3
-	bl       read__10ParametersFR6Stream
-	mr       r4, r31
-	addi     r3, r30, 0xe0
-	bl       read__10ParametersFR6Stream
-	lwz      r0, 0x14(r1)
-	lwz      r31, 0xc(r1)
-	lwz      r30, 8(r1)
-	mtlr     r0
-	addi     r1, r1, 0x10
-	blr
-	*/
-}
+// void EnemyParmsBase::read(Stream&)
+// {
+// 	/*
+// 	stwu     r1, -0x10(r1)
+// 	mflr     r0
+// 	stw      r0, 0x14(r1)
+// 	stw      r31, 0xc(r1)
+// 	mr       r31, r4
+// 	stw      r30, 8(r1)
+// 	mr       r30, r3
+// 	bl       read__10ParametersFR6Stream
+// 	mr       r4, r31
+// 	addi     r3, r30, 0xe0
+// 	bl       read__10ParametersFR6Stream
+// 	lwz      r0, 0x14(r1)
+// 	lwz      r31, 0xc(r1)
+// 	lwz      r30, 8(r1)
+// 	mtlr     r0
+// 	addi     r1, r1, 0x10
+// 	blr
+// 	*/
+// }
 
 /*
+ * read__Q24Game13CreatureParmsFR6Stream
  * --INFO--
  * Address:	8010A890
  * Size:	000020
  */
-void CreatureParms::read(Stream&)
-{
-	/*
-	stwu     r1, -0x10(r1)
-	mflr     r0
-	stw      r0, 0x14(r1)
-	bl       read__10ParametersFR6Stream
-	lwz      r0, 0x14(r1)
-	mtlr     r0
-	addi     r1, r1, 0x10
-	blr
-	*/
-}
+// void CreatureParms::read(Stream&)
+// {
+// 	/*
+// 	stwu     r1, -0x10(r1)
+// 	mflr     r0
+// 	stw      r0, 0x14(r1)
+// 	bl       read__10ParametersFR6Stream
+// 	lwz      r0, 0x14(r1)
+// 	mtlr     r0
+// 	addi     r1, r1, 0x10
+// 	blr
+// 	*/
+// }
 
 /*
+ * read__Q34Game8Pelplant5ParmsFR6Stream
  * --INFO--
  * Address:	8010A8B0
  * Size:	000050
  */
-void Pelplant::Parms::read(Stream&)
-{
-	/*
-	stwu     r1, -0x10(r1)
-	mflr     r0
-	stw      r0, 0x14(r1)
-	stw      r31, 0xc(r1)
-	mr       r31, r4
-	stw      r30, 8(r1)
-	mr       r30, r3
-	bl       read__10ParametersFR6Stream
-	mr       r4, r31
-	addi     r3, r30, 0xe0
-	bl       read__10ParametersFR6Stream
-	mr       r4, r31
-	addi     r3, r30, 0x7f8
-	bl       read__10ParametersFR6Stream
-	lwz      r0, 0x14(r1)
-	lwz      r31, 0xc(r1)
-	lwz      r30, 8(r1)
-	mtlr     r0
-	addi     r1, r1, 0x10
-	blr
-	*/
-}
+// void Pelplant::Parms::read(Stream& input)
+// {
+// 	EnemyParmsBase::read(input);
+// 	m_pelplantParms.read(input);
+// 	/*
+// 	stwu     r1, -0x10(r1)
+// 	mflr     r0
+// 	stw      r0, 0x14(r1)
+// 	stw      r31, 0xc(r1)
+// 	mr       r31, r4
+// 	stw      r30, 8(r1)
+// 	mr       r30, r3
+// 	bl       read__10ParametersFR6Stream
+// 	mr       r4, r31
+// 	addi     r3, r30, 0xe0
+// 	bl       read__10ParametersFR6Stream
+// 	mr       r4, r31
+// 	addi     r3, r30, 0x7f8
+// 	bl       read__10ParametersFR6Stream
+// 	lwz      r0, 0x14(r1)
+// 	lwz      r31, 0xc(r1)
+// 	lwz      r30, 8(r1)
+// 	mtlr     r0
+// 	addi     r1, r1, 0x10
+// 	blr
+// 	*/
+// }
 
 } // namespace Game
 
 /*
+ * __dt__16GenericContainerFv
  * --INFO--
  * Address:	8010A900
  * Size:	000060
  */
-GenericContainer::~GenericContainer()
-{
-	/*
-	stwu     r1, -0x10(r1)
-	mflr     r0
-	stw      r0, 0x14(r1)
-	stw      r31, 0xc(r1)
-	mr       r31, r4
-	stw      r30, 8(r1)
-	or.      r30, r3, r3
-	beq      lbl_8010A944
-	lis      r5, __vt__16GenericContainer@ha
-	li       r4, 0
-	addi     r0, r5, __vt__16GenericContainer@l
-	stw      r0, 0(r30)
-	bl       __dt__5CNodeFv
-	extsh.   r0, r31
-	ble      lbl_8010A944
-	mr       r3, r30
-	bl       __dl__FPv
-
-lbl_8010A944:
-	lwz      r0, 0x14(r1)
-	mr       r3, r30
-	lwz      r31, 0xc(r1)
-	lwz      r30, 8(r1)
-	mtlr     r0
-	addi     r1, r1, 0x10
-	blr
-	*/
-}
+// GenericContainer::~GenericContainer()
+// {
+// }
 
 namespace Game {
 
 /*
+ * __dt__Q24Game13IEnemyMgrBaseFv
  * --INFO--
  * Address:	8010A960
  * Size:	000080
  */
-IEnemyMgrBase::~IEnemyMgrBase()
-{
-	/*
-	stwu     r1, -0x10(r1)
-	mflr     r0
-	stw      r0, 0x14(r1)
-	stw      r31, 0xc(r1)
-	mr       r31, r4
-	stw      r30, 8(r1)
-	or.      r30, r3, r3
-	beq      lbl_8010A9C4
-	lis      r3, __vt__Q24Game13IEnemyMgrBase@ha
-	addic.   r0, r30, 4
-	addi     r3, r3, __vt__Q24Game13IEnemyMgrBase@l
-	stw      r3, 0(r30)
-	addi     r0, r3, 0x38
-	stw      r0, 4(r30)
-	beq      lbl_8010A9B4
-	lis      r4, __vt__16GenericContainer@ha
-	addi     r3, r30, 4
-	addi     r0, r4, __vt__16GenericContainer@l
-	li       r4, 0
-	stw      r0, 4(r30)
-	bl       __dt__5CNodeFv
-
-lbl_8010A9B4:
-	extsh.   r0, r31
-	ble      lbl_8010A9C4
-	mr       r3, r30
-	bl       __dl__FPv
-
-lbl_8010A9C4:
-	lwz      r0, 0x14(r1)
-	mr       r3, r30
-	lwz      r31, 0xc(r1)
-	lwz      r30, 8(r1)
-	mtlr     r0
-	addi     r1, r1, 0x10
-	blr
-	*/
-}
+// IEnemyMgrBase::~IEnemyMgrBase()
+// {
+// }
 
 /*
+ * __dt__Q34Game8Pelplant14ProperAnimatorFv
  * --INFO--
  * Address:	8010A9E0
  * Size:	00006C
  */
-Pelplant::ProperAnimator::~ProperAnimator()
-{
-	/*
-	stwu     r1, -0x10(r1)
-	mflr     r0
-	stw      r0, 0x14(r1)
-	stw      r31, 0xc(r1)
-	or.      r31, r3, r3
-	beq      lbl_8010AA34
-	lis      r3, __vt__Q34Game8Pelplant14ProperAnimator@ha
-	addi     r0, r3, __vt__Q34Game8Pelplant14ProperAnimator@l
-	stw      r0, 0(r31)
-	beq      lbl_8010AA24
-	lis      r3, __vt__Q24Game22EnemyBlendAnimatorBase@ha
-	addi     r0, r3, __vt__Q24Game22EnemyBlendAnimatorBase@l
-	stw      r0, 0(r31)
-	beq      lbl_8010AA24
-	lis      r3, __vt__Q24Game17EnemyAnimatorBase@ha
-	addi     r0, r3, __vt__Q24Game17EnemyAnimatorBase@l
-	stw      r0, 0(r31)
+// Pelplant::ProperAnimator::~ProperAnimator()
+// {
+// 	/*
+// 	stwu     r1, -0x10(r1)
+// 	mflr     r0
+// 	stw      r0, 0x14(r1)
+// 	stw      r31, 0xc(r1)
+// 	or.      r31, r3, r3
+// 	beq      lbl_8010AA34
+// 	lis      r3, __vt__Q34Game8Pelplant14ProperAnimator@ha
+// 	addi     r0, r3, __vt__Q34Game8Pelplant14ProperAnimator@l
+// 	stw      r0, 0(r31)
+// 	beq      lbl_8010AA24
+// 	lis      r3, __vt__Q24Game22EnemyBlendAnimatorBase@ha
+// 	addi     r0, r3, __vt__Q24Game22EnemyBlendAnimatorBase@l
+// 	stw      r0, 0(r31)
+// 	beq      lbl_8010AA24
+// 	lis      r3, __vt__Q24Game17EnemyAnimatorBase@ha
+// 	addi     r0, r3, __vt__Q24Game17EnemyAnimatorBase@l
+// 	stw      r0, 0(r31)
 
-lbl_8010AA24:
-	extsh.   r0, r4
-	ble      lbl_8010AA34
-	mr       r3, r31
-	bl       __dl__FPv
+// lbl_8010AA24:
+// 	extsh.   r0, r4
+// 	ble      lbl_8010AA34
+// 	mr       r3, r31
+// 	bl       __dl__FPv
 
-lbl_8010AA34:
-	lwz      r0, 0x14(r1)
-	mr       r3, r31
-	lwz      r31, 0xc(r1)
-	mtlr     r0
-	addi     r1, r1, 0x10
-	blr
-	*/
-}
+// lbl_8010AA34:
+// 	lwz      r0, 0x14(r1)
+// 	mr       r3, r31
+// 	lwz      r31, 0xc(r1)
+// 	mtlr     r0
+// 	addi     r1, r1, 0x10
+// 	blr
+// 	*/
+// }
 
 /*
+ * animate__Q24Game22EnemyBlendAnimatorBaseFif
  * --INFO--
  * Address:	8010AA4C
  * Size:	000020
  */
-void EnemyBlendAnimatorBase::animate(int, float)
-{
-	/*
-	stwu     r1, -0x10(r1)
-	mflr     r0
-	stw      r0, 0x14(r1)
-	bl       animate__Q24Game17EnemyAnimatorBaseFif
-	lwz      r0, 0x14(r1)
-	mtlr     r0
-	addi     r1, r1, 0x10
-	blr
-	*/
-}
+// void EnemyBlendAnimatorBase::animate(int, float)
+// {
+// }
 
 /*
+ * getTypeID__Q24Game22EnemyBlendAnimatorBaseFv
  * --INFO--
  * Address:	8010AA6C
  * Size:	00000C
  */
-void EnemyBlendAnimatorBase::getTypeID()
-{
-	/*
-	lis      r3, 0x626C6E64@ha
-	addi     r3, r3, 0x626C6E64@l
-	blr
-	*/
-}
+// void EnemyBlendAnimatorBase::getTypeID()
+// {
+// }
 
 /*
+ * getEnemyTypeID__Q34Game8Pelplant3ObjFv
  * --INFO--
  * Address:	8010AA78
  * Size:	000008
  */
-u32 Pelplant::Obj::getEnemyTypeID() { return 0x0; }
+EnemyTypeID::EEnemyTypeID Pelplant::Obj::getEnemyTypeID() { return EnemyTypeID::EnemyID_Pelplant; }
 
 } // namespace Game
 
 /*
+ * size__7Parm<i>Fv
  * --INFO--
  * Address:	8010AA80
  * Size:	000008
  */
-u32 Parm<int>::size() { return 0x4; }
+// u32 Parm<int>::size() { return 0x4; }
 
 /*
+ * size__7Parm<f>Fv
  * --INFO--
  * Address:	8010AA88
  * Size:	000008
  */
-u32 Parm<float>::size() { return 0x4; }
+// u32 Parm<float>::size() { return 0x4; }
 
-namespace Game {
+// namespace Game {
 
-/*
- * --INFO--
- * Address:	8010AA90
- * Size:	000014
- */
-void EnemyBase::@728 @12 @viewOnPelletKilled()
-{
-	/*
-	li       r11, 0xc
-	lwzx     r11, r3, r11
-	add      r3, r3, r11
-	addi     r3, r3, -728
-	b        viewOnPelletKilled__Q24Game9EnemyBaseFv
-	*/
-}
+// /*
+//  * --INFO--
+//  * Address:	8010AA90
+//  * Size:	000014
+//  */
+// void EnemyBase::@728 @12 @viewOnPelletKilled()
+// {
+// 	/*
+// 	li       r11, 0xc
+// 	lwzx     r11, r3, r11
+// 	add      r3, r3, r11
+// 	addi     r3, r3, -728
+// 	b        viewOnPelletKilled__Q24Game9EnemyBaseFv
+// 	*/
+// }
 
-/*
- * --INFO--
- * Address:	8010AAA4
- * Size:	000014
- */
-void EnemyBase::@728 @12 @viewStartCarryMotion()
-{
-	/*
-	li       r11, 0xc
-	lwzx     r11, r3, r11
-	add      r3, r3, r11
-	addi     r3, r3, -728
-	b        viewStartCarryMotion__Q24Game9EnemyBaseFv
-	*/
-}
+// /*
+//  * --INFO--
+//  * Address:	8010AAA4
+//  * Size:	000014
+//  */
+// void EnemyBase::@728 @12 @viewStartCarryMotion()
+// {
+// 	/*
+// 	li       r11, 0xc
+// 	lwzx     r11, r3, r11
+// 	add      r3, r3, r11
+// 	addi     r3, r3, -728
+// 	b        viewStartCarryMotion__Q24Game9EnemyBaseFv
+// 	*/
+// }
 
-/*
- * --INFO--
- * Address:	8010AAB8
- * Size:	000014
- */
-void EnemyBase::@728 @12 @viewStartPreCarryMotion()
-{
-	/*
-	li       r11, 0xc
-	lwzx     r11, r3, r11
-	add      r3, r3, r11
-	addi     r3, r3, -728
-	b        viewStartPreCarryMotion__Q24Game9EnemyBaseFv
-	*/
-}
+// /*
+//  * --INFO--
+//  * Address:	8010AAB8
+//  * Size:	000014
+//  */
+// void EnemyBase::@728 @12 @viewStartPreCarryMotion()
+// {
+// 	/*
+// 	li       r11, 0xc
+// 	lwzx     r11, r3, r11
+// 	add      r3, r3, r11
+// 	addi     r3, r3, -728
+// 	b        viewStartPreCarryMotion__Q24Game9EnemyBaseFv
+// 	*/
+// }
 
-/*
- * --INFO--
- * Address:	8010AACC
- * Size:	000014
- */
-void EnemyBase::@728 @12 @view_finish_carrymotion()
-{
-	/*
-	li       r11, 0xc
-	lwzx     r11, r3, r11
-	add      r3, r3, r11
-	addi     r3, r3, -728
-	b        view_finish_carrymotion__Q24Game9EnemyBaseFv
-	*/
-}
+// /*
+//  * --INFO--
+//  * Address:	8010AACC
+//  * Size:	000014
+//  */
+// void EnemyBase::@728 @12 @view_finish_carrymotion()
+// {
+// 	/*
+// 	li       r11, 0xc
+// 	lwzx     r11, r3, r11
+// 	add      r3, r3, r11
+// 	addi     r3, r3, -728
+// 	b        view_finish_carrymotion__Q24Game9EnemyBaseFv
+// 	*/
+// }
 
-/*
- * --INFO--
- * Address:	8010AAE0
- * Size:	000014
- */
-void EnemyBase::@728 @12 @view_start_carrymotion()
-{
-	/*
-	li       r11, 0xc
-	lwzx     r11, r3, r11
-	add      r3, r3, r11
-	addi     r3, r3, -728
-	b        view_start_carrymotion__Q24Game9EnemyBaseFv
-	*/
-}
+// /*
+//  * --INFO--
+//  * Address:	8010AAE0
+//  * Size:	000014
+//  */
+// void EnemyBase::@728 @12 @view_start_carrymotion()
+// {
+// 	/*
+// 	li       r11, 0xc
+// 	lwzx     r11, r3, r11
+// 	add      r3, r3, r11
+// 	addi     r3, r3, -728
+// 	b        view_start_carrymotion__Q24Game9EnemyBaseFv
+// 	*/
+// }
 
-/*
- * --INFO--
- * Address:	8010AAF4
- * Size:	000014
- */
-void EnemyBase::@728 @12 @viewGetShape()
-{
-	/*
-	li       r11, 0xc
-	lwzx     r11, r3, r11
-	add      r3, r3, r11
-	addi     r3, r3, -728
-	b        viewGetShape__Q24Game9EnemyBaseFv
-	*/
-}
+// /*
+//  * --INFO--
+//  * Address:	8010AAF4
+//  * Size:	000014
+//  */
+// void EnemyBase::@728 @12 @viewGetShape()
+// {
+// 	/*
+// 	li       r11, 0xc
+// 	lwzx     r11, r3, r11
+// 	add      r3, r3, r11
+// 	addi     r3, r3, -728
+// 	b        viewGetShape__Q24Game9EnemyBaseFv
+// 	*/
+// }
 
-/*
- * --INFO--
- * Address:	8010AB08
- * Size:	000008
- */
-IEnemyMgrBase::@4 @~IEnemyMgrBase()
-{
-	/*
-	addi     r3, r3, -4
-	b        __dt__Q24Game13IEnemyMgrBaseFv
-	*/
-}
+// /*
+//  * --INFO--
+//  * Address:	8010AB08
+//  * Size:	000008
+//  */
+// IEnemyMgrBase::@4 @~IEnemyMgrBase()
+// {
+// 	/*
+// 	addi     r3, r3, -4
+// 	b        __dt__Q24Game13IEnemyMgrBaseFv
+// 	*/
+// }
 
-/*
- * --INFO--
- * Address:	8010AB10
- * Size:	000008
- */
-Pelplant::Mgr::@4 @~Mgr()
-{
-	/*
-	addi     r3, r3, -4
-	b        __dt__Q34Game8Pelplant3MgrFv
-	*/
-}
+// /*
+//  * --INFO--
+//  * Address:	8010AB10
+//  * Size:	000008
+//  */
+// Pelplant::Mgr::@4 @~Mgr()
+// {
+// 	/*
+// 	addi     r3, r3, -4
+// 	b        __dt__Q34Game8Pelplant3MgrFv
+// 	*/
+// }
 
-/*
- * --INFO--
- * Address:	8010AB18
- * Size:	000008
- */
-void EnemyMgrBase::@4 @getEnd()
-{
-	/*
-	addi     r3, r3, -4
-	b        getEnd__Q24Game12EnemyMgrBaseFv
-	*/
-}
+// /*
+//  * --INFO--
+//  * Address:	8010AB18
+//  * Size:	000008
+//  */
+// void EnemyMgrBase::@4 @getEnd()
+// {
+// 	/*
+// 	addi     r3, r3, -4
+// 	b        getEnd__Q24Game12EnemyMgrBaseFv
+// 	*/
+// }
 
-/*
- * --INFO--
- * Address:	8010AB20
- * Size:	000008
- */
-void EnemyMgrBase::@4 @getStart()
-{
-	/*
-	addi     r3, r3, -4
-	b        getStart__Q24Game12EnemyMgrBaseFv
-	*/
-}
+// /*
+//  * --INFO--
+//  * Address:	8010AB20
+//  * Size:	000008
+//  */
+// void EnemyMgrBase::@4 @getStart()
+// {
+// 	/*
+// 	addi     r3, r3, -4
+// 	b        getStart__Q24Game12EnemyMgrBaseFv
+// 	*/
+// }
 
-/*
- * --INFO--
- * Address:	8010AB28
- * Size:	000008
- */
-void EnemyMgrBase::@4 @getNext(void*)
-{
-	/*
-	addi     r3, r3, -4
-	b        getNext__Q24Game12EnemyMgrBaseFPv
-	*/
-}
+// /*
+//  * --INFO--
+//  * Address:	8010AB28
+//  * Size:	000008
+//  */
+// void EnemyMgrBase::@4 @getNext(void*)
+// {
+// 	/*
+// 	addi     r3, r3, -4
+// 	b        getNext__Q24Game12EnemyMgrBaseFPv
+// 	*/
+// }
 
-/*
- * --INFO--
- * Address:	8010AB30
- * Size:	000008
- */
-void EnemyMgrBase::@4 @getObject(void*)
-{
-	/*
-	addi     r3, r3, -4
-	b        getObject__Q24Game12EnemyMgrBaseFPv
-	*/
-}
-} // namespace Game
+// /*
+//  * --INFO--
+//  * Address:	8010AB30
+//  * Size:	000008
+//  */
+// void EnemyMgrBase::@4 @getObject(void*)
+// {
+// 	/*
+// 	addi     r3, r3, -4
+// 	b        getObject__Q24Game12EnemyMgrBaseFPv
+// 	*/
+// }
+// } // namespace Game

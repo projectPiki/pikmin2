@@ -2,7 +2,6 @@
 #define _GAME_ENEMYMGRBASE_H
 
 #include "Container.h"
-#include "enemyInfo.h"
 #include "Game/EnemyPelletInfo.h"
 #include "Game/EnemyStone.h"
 #include "Game/PelletMgr.h"
@@ -39,7 +38,11 @@ struct EnemyBirthArg {
 
 struct IEnemyMgrBase : public GenericObjectMgr, public GenericContainer {
 	// vtable 2 (GenericContainer + self)
-	virtual ~IEnemyMgrBase(); // 18
+	/**
+	 * @reifiedAddress{8010A960}
+	 * @reifiedFile{plugProjectYamashitaU/pelplant.cpp}
+	 */
+	virtual ~IEnemyMgrBase() { } // 18
 };
 struct EnemyMgrBase : public IEnemyMgrBase {
 	EnemyMgrBase(int, u8);
@@ -52,23 +55,63 @@ struct EnemyMgrBase : public IEnemyMgrBase {
 	virtual void doSimulation(float);     // _10
 	virtual void doDirectDraw(Graphics&); // _14
 	// vtable 2 (GenericContainer + IEnemyMgrBase + self)
-	virtual ~EnemyMgrBase();                          // _18
-	virtual void* getObject(void*);                   // _1C
-	virtual int getNext(void*);                       // _20
-	virtual int getStart();                           // _24
-	virtual int getEnd();                             // _28
-	virtual void alloc();                             // _2C
-	virtual EnemyBase* birth(EnemyBirthArg&);         // _30
-	virtual J3DModelData* getJ3DModelData() const;    // _34
-	virtual EnemyGeneratorBase* getGenerator() const; // _38
-	virtual void killAll(CreatureKillArg*);           // _3C
-	virtual void setupSoundViewerAndBas();            // _40
-	virtual void setDebugParm(u32);                   // _44
-	virtual void resetDebugParm(u32);                 // _48
-	virtual int getMaxObjects() const;                // _4C
-	virtual void startMovie();                        // _50
-	virtual void endMovie();                          // _54
-	virtual void get(void*);                          // _58
+	virtual ~EnemyMgrBase(); // _18
+	/**
+	 * @reifiedAddress{8010A820}
+	 * @reifiedFile{plugProjectYamashitaU/pelplant.cpp}
+	 */
+	virtual void* getObject(void* index) { return get(index); }; // _1C
+	virtual void* getNext(void*);                                // _20
+	/**
+	 * @reifiedAddress{8010A7F0}
+	 * @reifiedFile{plugProjectYamashitaU/pelplant.cpp}
+	 */
+	virtual void* getStart() { return getNext((void*)-1); } // _24
+	/**
+	 * @reifiedAddress{8010A7E8}
+	 * @reifiedFile{plugProjectYamashitaU/pelplant.cpp}
+	 */
+	virtual void* getEnd() { return (void*)m_objLimit; } // _28
+	virtual void alloc();                                // _2C
+	virtual EnemyBase* birth(EnemyBirthArg&);            // _30
+	/**
+	 * @reifiedAddress{8010A7AC}
+	 * @reifiedFile{plugProjectYamashitaU/pelplant.cpp}
+	 */
+	virtual J3DModelData* getJ3DModelData() const // _34
+	{
+		return m_modelData;
+	}
+	/**
+	 * @reifiedAddress{8010A7B4}
+	 * @reifiedFile{plugProjectYamashitaU/pelplant.cpp}
+	 */
+	virtual EnemyGeneratorBase* getGenerator() const // _38
+	{
+		return m_generator;
+	}
+	virtual void killAll(CreatureKillArg*); // _3C
+	virtual void setupSoundViewerAndBas();  // _40
+	virtual void setDebugParm(u32);         // _44
+	virtual void resetDebugParm(u32);       // _48
+	/**
+	 * @reifiedAddress{8010A7BC}
+	 * @reifiedFile{plugProjectYamashitaU/pelplant.cpp}
+	 */
+	virtual int getMaxObjects() const // _4C
+	{
+		return m_objLimit;
+	}
+	virtual void startMovie(); // _50
+	virtual void endMovie();   // _54
+	/**
+	 * @reifiedAddress{8010A780}
+	 * @reifiedFile{plugProjectYamashitaU/pelplant.cpp}
+	 */
+	virtual EnemyBase* get(void* index) // _58
+	{
+		return getEnemy((long)index);
+	}
 	/**
 	 * @reifiedAddress{801074BC}
 	 * @reifiedFile{plugProjectYamashitaU/enemyBase.cpp}
@@ -77,8 +120,8 @@ struct EnemyMgrBase : public IEnemyMgrBase {
 	{
 		return false;
 	}
-	virtual void createObj(int)   = 0;                  // _60
-	virtual EnemyBase* getEnemy() = 0;                  // _64
+	virtual void createObj(int)      = 0;               // _60
+	virtual EnemyBase* getEnemy(int) = 0;               // _64
 	virtual void doAlloc();                             // _68
 	virtual EnemyTypeID::EEnemyTypeID getEnemyTypeID(); // _6C
 	virtual SysShape::Model* createModel();             // _70

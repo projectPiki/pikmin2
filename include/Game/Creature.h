@@ -49,10 +49,10 @@ struct Interaction;
 struct PlatEvent;
 
 struct LifeGaugeParam {
-	Vector3f _00; // _00
-	float _0C;    // _0C
-	float _10;    // _10
-	bool _14;     // _14
+	Vector3f m_position;      // _00
+	float m_healthPercentage; // _0C
+	float _10;                // _10
+	bool _14;                 // _14
 };
 
 enum CreatureFlags {

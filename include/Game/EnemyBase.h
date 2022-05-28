@@ -34,8 +34,16 @@ namespace Game {
 struct EnemyAnimatorBase;
 struct EnemyAnimKeyEvent;
 struct EnemyEffectNodeHamon;
-struct EnemyInitialParamBase;
 struct EnemyMgrBase;
+
+/**
+ * @todo Split this into a separate type PelplantInitialParam?
+ */
+struct EnemyInitialParamBase {
+	u8 _00;
+	u8 _01;
+	u8 _02;
+};
 
 namespace EnemyStone {
 struct Obj;
@@ -170,85 +178,85 @@ struct EnemyBase : public Creature, public SysShape::MotionListener, virtual pub
 	virtual char* getCreatureName();                            // _1A0
 	virtual s32 getCreatureID();                                // _1A4
 	// vtable 2 (MotionListener+self)
-	virtual ~EnemyBase();                                           // _1AC
-	virtual void birth(Vector3f&, float);                           // _1B0
-	virtual void SetInitialSetting(EnemyInitialParamBase*) = 0;     // _1B4
-	virtual void update();                                          // _1B8
-	virtual void doUpdate() = 0;                                    // _1BC
-	virtual void doUpdateCommon();                                  // _1C0
-	virtual void doUpdateCarcass();                                 // _1C4
-	virtual void doAnimationUpdateAnimator();                       // _1C8
-	virtual void doAnimationCullingOff();                           // _1CC
-	virtual void doAnimationCullingOn();                            // _1D0
-	virtual void doAnimationStick();                                // _1D4
-	virtual void doSimulationCarcass(float);                        // _1D8
-	virtual void doDebugDraw(Graphics&);                            // _1DC
-	virtual void doSimpleDraw(struct Viewport*);                    // _1E0
-	virtual void doSimulationGround(float);                         // _1E4
-	virtual void doSimulationFlying(float);                         // _1E8
-	virtual void doSimulationStick(float);                          // _1EC
-	virtual void changeMaterial();                                  // _1F0
-	virtual void getCommonEffectPos(Vector3f&);                     // _1F4
-	virtual Vector3f* getFitEffectPos();                            // _1F8
-	virtual SysShape::Model* viewGetShape();                        // _1FC
-	virtual void view_start_carrymotion();                          // _200
-	virtual void view_finish_carrymotion();                         // _204
-	virtual void viewStartPreCarryMotion();                         // _208
-	virtual void viewStartCarryMotion();                            // _20C
-	virtual void viewOnPelletKilled();                              // _210
-	virtual void getOffsetForMapCollision();                        // _214
-	virtual void setParameters();                                   // _218
-	virtual void initMouthSlots();                                  // _21C
-	virtual void initWalkSmokeEffect();                             // _220
-	virtual WalkSmokeEffect::Mgr* getWalkSmokeEffectMgr();          // _224
-	virtual void onKeyEvent(const SysShape::KeyEvent&);             // _228
-	virtual bool injure();                                          // _22C
-	virtual void setCollEvent(CollEvent&);                          // _230
-	virtual void getEfxHamonPos(Vector3f*);                         // _234
-	virtual void createInstanceEfxHamon();                          // _238
-	virtual void updateEfxHamon();                                  // _23C
-	virtual void createEfxHamon();                                  // _240
-	virtual void fadeEfxHamon();                                    // _244
-	virtual EnemyTypeID::EEnemyTypeID getEnemyTypeID() = 0;         // _248
-	virtual MouthSlots* getMouthSlots();                            // _24C
-	virtual void doGetLifeGaugeParam(LifeGaugeParam&);              // _250
-	virtual void throwupItem();                                     // _254
-	virtual void getThrowupItemPosition(Vector3f*);                 // _258
-	virtual void getThrowupItemVelocity(Vector3f*);                 // _25C
-	virtual void throwupItemInDeathProcedure();                     // _260
-	virtual void setLODSphere(Sys::Sphere&);                        // _264
-	virtual bool damageCallBack(Creature*, float, CollPart*);       // _268
-	virtual bool pressCallBack(Creature*, float, CollPart*);        // _26C
-	virtual bool flyCollisionCallBack(Creature*, float, CollPart*); // _270
-	virtual bool hipdropCallBack(Creature*, float, CollPart*);      // _274
-	virtual bool dropCallBack(Creature*);                           // _288
-	virtual bool earthquakeCallBack(Creature*, float);              // _28C
-	virtual bool farmCallBack(Creature*, float);                    // _290
-	virtual bool bombCallBack(Creature*, Vector3f&, float);         // _294
-	virtual bool eatWhitePikminCallBack(Creature*, float);          // _298
-	virtual bool dopeCallBack(Creature*, int);                      // _29C
-	virtual bool doDopeCallBack(Creature*, int);                    // _2A0
-	virtual void doStartStoneState();                               // _2A4
-	virtual void doFinishStoneState();                              // _2A8
-	virtual float getDamageCoeStoneState();                         // _2AC
-	virtual void doStartEarthquakeState(float);                     // _2B0
-	virtual void doFinishEarthquakeState();                         // _2B4
-	virtual void doStartEarthquakeFitState();                       // _2B8
-	virtual void doFinishEarthquakeFitState();                      // _2BC
-	virtual void lifeRecover();                                     // _2C0
-	virtual void startCarcassMotion();                              // _2C4
-	virtual void setCarcassArg(struct PelletViewArg&);              // _2C8
-	virtual float getCarcassArgHeight();                            // _2C4
-	virtual bool doBecomeCarcass();                                 // _2C8
-	virtual void startWaitingBirthTypeDrop();                       // _2CC
-	virtual void finishWaitingBirthTypeDrop();                      // _2D0
-	virtual bool isFinishableWaitingBirthTypeDrop();                // _2D4
-	virtual void doStartWaitingBirthTypeDrop();                     // _2D8
-	virtual void doFinishWaitingBirthTypeDrop();                    // _2DC
-	virtual void wallCallback(const struct MoveInfo&);              // _2E0
-	virtual float getDownSmokeScale();                              // _2E4
-	virtual void doStartMovie();                                    // _2E8
-	virtual void doEndMovie();                                      // _2EC
+	virtual ~EnemyBase();                                           // _004
+	virtual void birth(Vector3f&, float);                           // _008
+	virtual void setInitialSetting(EnemyInitialParamBase*) = 0;     // _00C
+	virtual void update();                                          // _010
+	virtual void doUpdate() = 0;                                    // _014
+	virtual void doUpdateCommon();                                  // _018
+	virtual void doUpdateCarcass();                                 // _01C
+	virtual void doAnimationUpdateAnimator();                       // _020
+	virtual void doAnimationCullingOff();                           // _024
+	virtual void doAnimationCullingOn();                            // _028
+	virtual void doAnimationStick();                                // _02C
+	virtual void doSimulationCarcass(float);                        // _030
+	virtual void doDebugDraw(Graphics&);                            // _034
+	virtual void doSimpleDraw(struct Viewport*);                    // _038
+	virtual void doSimulationGround(float);                         // _03C
+	virtual void doSimulationFlying(float);                         // _040
+	virtual void doSimulationStick(float);                          // _044
+	virtual void changeMaterial();                                  // _048
+	virtual void getCommonEffectPos(Vector3f&);                     // _04C
+	virtual Vector3f* getFitEffectPos();                            // _050
+	virtual SysShape::Model* viewGetShape();                        // _054
+	virtual void view_start_carrymotion();                          // _058
+	virtual void view_finish_carrymotion();                         // _05C
+	virtual void viewStartPreCarryMotion();                         // _060
+	virtual void viewStartCarryMotion();                            // _064
+	virtual void viewOnPelletKilled();                              // _068
+	virtual void getOffsetForMapCollision();                        // _06C
+	virtual void setParameters();                                   // _070
+	virtual void initMouthSlots();                                  // _074
+	virtual void initWalkSmokeEffect();                             // _078
+	virtual WalkSmokeEffect::Mgr* getWalkSmokeEffectMgr();          // _07C
+	virtual void onKeyEvent(const SysShape::KeyEvent&);             // _080
+	virtual bool injure();                                          // _084
+	virtual void setCollEvent(CollEvent&);                          // _088
+	virtual void getEfxHamonPos(Vector3f*);                         // _08C
+	virtual void createInstanceEfxHamon();                          // _090
+	virtual void updateEfxHamon();                                  // _094
+	virtual void createEfxHamon();                                  // _098
+	virtual void fadeEfxHamon();                                    // _09C
+	virtual EnemyTypeID::EEnemyTypeID getEnemyTypeID() = 0;         // _0A0
+	virtual MouthSlots* getMouthSlots();                            // _0A4
+	virtual void doGetLifeGaugeParam(LifeGaugeParam&);              // _0A8
+	virtual void throwupItem();                                     // _0AC
+	virtual void getThrowupItemPosition(Vector3f*);                 // _0B0
+	virtual void getThrowupItemVelocity(Vector3f*);                 // _0B4
+	virtual void throwupItemInDeathProcedure();                     // _0B8
+	virtual void setLODSphere(Sys::Sphere&);                        // _0BC
+	virtual bool damageCallBack(Creature*, float, CollPart*);       // _0C0
+	virtual bool pressCallBack(Creature*, float, CollPart*);        // _0C4
+	virtual bool flyCollisionCallBack(Creature*, float, CollPart*); // _0C8
+	virtual bool hipdropCallBack(Creature*, float, CollPart*);      // _0CC
+	virtual bool dropCallBack(Creature*);                           // _0D0
+	virtual bool earthquakeCallBack(Creature*, float);              // _0D4
+	virtual bool farmCallBack(Creature*, float);                    // _0D8
+	virtual bool bombCallBack(Creature*, Vector3f&, float);         // _0DC
+	virtual bool eatWhitePikminCallBack(Creature*, float);          // _0E0
+	virtual bool dopeCallBack(Creature*, int);                      // _0E4
+	virtual bool doDopeCallBack(Creature*, int);                    // _0E8
+	virtual void doStartStoneState();                               // _0EC
+	virtual void doFinishStoneState();                              // _0F0
+	virtual float getDamageCoeStoneState();                         // _0F4
+	virtual void doStartEarthquakeState(float);                     // _0F8
+	virtual void doFinishEarthquakeState();                         // _0FC
+	virtual void doStartEarthquakeFitState();                       // _100
+	virtual void doFinishEarthquakeFitState();                      // _104
+	virtual void lifeRecover();                                     // _108
+	virtual void startCarcassMotion();                              // _10C
+	virtual void setCarcassArg(struct PelletViewArg&);              // _110
+	virtual float getCarcassArgHeight();                            // _114
+	virtual bool doBecomeCarcass();                                 // _118
+	virtual void startWaitingBirthTypeDrop();                       // _11C
+	virtual void finishWaitingBirthTypeDrop();                      // _120
+	virtual bool isFinishableWaitingBirthTypeDrop();                // _124
+	virtual void doStartWaitingBirthTypeDrop();                     // _128
+	virtual void doFinishWaitingBirthTypeDrop();                    // _12C
+	virtual void wallCallback(const struct MoveInfo&);              // _130
+	virtual float getDownSmokeScale();                              // _134
+	virtual void doStartMovie();                                    // _138
+	virtual void doEndMovie();                                      // _13C
 	// virtual void _2F0() = 0;                                        // _2F0
 	// virtual void _2F4() = 0;                                        // _2F4
 	// vtable 3 (PelletView)
