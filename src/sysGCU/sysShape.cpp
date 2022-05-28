@@ -625,8 +625,16 @@ lbl_8042920C:
  * Address:	80429224
  * Size:	000080
  */
-BlendAnimator::BlendAnimator(void)
+BlendAnimator::BlendAnimator()
+    : BaseAnimator()
+    , m_animators()
+    , m_mtxCalc(nullptr)
+    , _3C(0.0f)
+    , _40(0.0f)
+    , m_motionListener(nullptr)
 {
+	_49 = 0;
+	_48 = 0;
 	/*
 	stwu     r1, -0x10(r1)
 	mflr     r0

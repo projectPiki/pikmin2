@@ -34,8 +34,16 @@ namespace Game {
 struct EnemyAnimatorBase;
 struct EnemyAnimKeyEvent;
 struct EnemyEffectNodeHamon;
-struct EnemyInitialParamBase;
 struct EnemyMgrBase;
+
+/**
+ * @todo Split this into a separate type PelplantInitialParam?
+ */
+struct EnemyInitialParamBase {
+	u8 _00;
+	u8 _01;
+	u8 _02;
+};
 
 namespace EnemyStone {
 struct Obj;
@@ -172,7 +180,7 @@ struct EnemyBase : public Creature, public SysShape::MotionListener, virtual pub
 	// vtable 2 (MotionListener+self)
 	virtual ~EnemyBase();                                           // _004
 	virtual void birth(Vector3f&, float);                           // _008
-	virtual void SetInitialSetting(EnemyInitialParamBase*) = 0;     // _00C
+	virtual void setInitialSetting(EnemyInitialParamBase*) = 0;     // _00C
 	virtual void update();                                          // _010
 	virtual void doUpdate() = 0;                                    // _014
 	virtual void doUpdateCommon();                                  // _018

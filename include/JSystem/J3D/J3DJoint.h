@@ -8,6 +8,9 @@
 struct J3DMaterial;
 struct J3DMtxCalc;
 struct J3DMtxCalcAnmBase;
+struct J3DJoint;
+
+typedef unknown J3DJointCallBack(J3DJoint*, int);
 
 struct J3DJoint {
 	J3DJoint();
@@ -35,7 +38,7 @@ struct J3DJoint {
 	J3DJoint* getChild() { return m_child; }
 
 	u32 _00;                      // _00
-	u32 m_function;               // _04
+	J3DJointCallBack* m_function; // _04
 	u32 _08;                      // _08
 	J3DJoint* m_child;            // _0C
 	J3DJoint* m_parent;           // _10

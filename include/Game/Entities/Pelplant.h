@@ -30,6 +30,13 @@ struct BlendAccelerationFunc : SysShape::BlendFunction {
  * @todo everything
  */
 struct FSM : public EnemyStateMachine {
+	FSM()
+	    : EnemyStateMachine()
+	    , _18(-1)
+	{
+	}
+
+	int _18; // _18
 };
 
 /**
@@ -77,7 +84,7 @@ struct Obj : public EnemyBase {
 	float _2D0;                           // _2D0
 	u8 _2D4;                              // _2D4
 	u8 m_pelletSize;                      // _2D5
-	u8 m_farmPow;                         // _2D6
+	s8 m_farmPow;                         // _2D6
 	// PelletView: 0x2D8 - 0x2E7
 
 	static Obj* sCurrentObj;
@@ -115,8 +122,15 @@ struct Parms : EnemyParmsBase {
 		Parm<float> m_fp03;
 	};
 
-	Parms();
-	virtual void read(Stream&); // _00
+	Parms()
+	    : EnemyParmsBase()
+	    , m_pelplantParms() {};
+
+	virtual void read(Stream& input) // _00
+	{
+		EnemyParmsBase::read(input);
+		m_pelplantParms.read(input);
+	}
 
 	_Parms m_pelplantParms;
 };
@@ -140,6 +154,15 @@ struct Generator : public EnemyGeneratorBase {
 };
 
 struct ProperAnimator : public EnemyBlendAnimatorBase {
+	ProperAnimator()
+	    : EnemyBlendAnimatorBase()
+	{
+	}
+
+	/**
+	 * @reifiedAddress{8010A9E0}
+	 * @reifiedFile{plugProjectYamashitaU/pelplant.cpp}
+	 */
 	virtual ~ProperAnimator() {};                                     // _00
 	virtual void setAnimMgr(SysShape::AnimMgr*);                      // _04
 	virtual SysShape::Animator& getAnimator() { return m_animator; }; // _08
@@ -147,6 +170,9 @@ struct ProperAnimator : public EnemyBlendAnimatorBase {
 
 	SysShape::Animator m_animator; // _10
 };
+
+static float sLODRadius[4];
+
 } // namespace Pelplant
 } // namespace Game
 
