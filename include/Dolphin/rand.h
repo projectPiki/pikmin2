@@ -8,7 +8,7 @@ extern "C" {
 #endif // ifdef __cplusplus
 
 void srand(u32);
-s16 rand();
+int rand();
 
 inline f32 randFloat() { return rand() / 32768.0f; }
 
