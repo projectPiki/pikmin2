@@ -1232,59 +1232,16 @@ void OlimarData::clear()
  * --INFO--
  * Address:	801E5FD0
  * Size:	000098
+ * Matches!
  */
 bool OlimarData::hasItem(int index)
 {
-	bool isValidIndex = false;
-	if (ODII_FIRST_EXPLORATION_KIT_ITEM <= index && index < ODII_FIRST_NON_EXPLORATION_KIT_ITEM) {
-		isValidIndex = true;
-	}
+	bool isValidIndex = index >= ODII_BruteKnuckles && index < ODII_LAST_NON_EXPLORATION_KIT_ITEM;
 	P2ASSERTLINE(588, isValidIndex);
-	return m_flags[index >> 3] & (1 << (index % 8));
-	/*
-	stwu     r1, -0x10(r1)
-	mflr     r0
-	stw      r0, 0x14(r1)
-	li       r0, 0
-	stw      r31, 0xc(r1)
-	or.      r31, r4, r4
-	stw      r30, 8(r1)
-	mr       r30, r3
-	blt      lbl_801E6000
-	cmpwi    r31, 0xc
-	bge      lbl_801E6000
-	li       r0, 1
-
-lbl_801E6000:
-	clrlwi.  r0, r0, 0x18
-	bne      lbl_801E6024
-	lis      r3, lbl_80480E4C@ha
-	lis      r5, lbl_80480E60@ha
-	addi     r3, r3, lbl_80480E4C@l
-	li       r4, 0x24c
-	addi     r5, r5, lbl_80480E60@l
-	crclr    6
-	bl       panic_f__12JUTExceptionFPCciPCce
-
-lbl_801E6024:
-	srawi    r0, r31, 3
-	li       r4, 1
-	slwi     r3, r0, 3
-	subfic   r0, r0, 1
-	subf     r3, r3, r31
-	lbzx     r0, r30, r0
-	slw      r3, r4, r3
-	and      r3, r3, r0
-	neg      r0, r3
-	or       r0, r0, r3
-	srwi     r3, r0, 0x1f
-	lwz      r31, 0xc(r1)
-	lwz      r30, 8(r1)
-	lwz      r0, 0x14(r1)
-	mtlr     r0
-	addi     r1, r1, 0x10
-	blr
-	*/
+	int data_idx = (index >> 3);
+	int rot      = (data_idx << 3);
+	int bits     = 1 << (index - rot);
+	return (m_flags[1 - data_idx] & bits) != false;
 }
 
 /*
