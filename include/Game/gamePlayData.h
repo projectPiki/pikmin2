@@ -95,8 +95,8 @@ struct OlimarData {
 	OlimarData();
 
 	void clear();
-	bool hasItem(ItemIndex);
-	void getItem(ItemIndex);
+	bool hasItem(int);
+	void getItem(int);
 
 	void write(Stream&);
 	void read(Stream&);

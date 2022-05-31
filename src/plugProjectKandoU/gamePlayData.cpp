@@ -1233,7 +1233,7 @@ void OlimarData::clear()
  * Address:	801E5FD0
  * Size:	000098
  */
-bool OlimarData::hasItem(ItemIndex index)
+bool OlimarData::hasItem(int index)
 {
 	bool isValidIndex = false;
 	if (ODII_FIRST_EXPLORATION_KIT_ITEM <= index && index < ODII_FIRST_NON_EXPLORATION_KIT_ITEM) {
@@ -1291,87 +1291,26 @@ lbl_801E6024:
  * --INFO--
  * Address:	801E6068
  * Size:	0000CC
+ * Matches!
  */
-void OlimarData::getItem(ItemIndex index)
+void OlimarData::getItem(int item)
 {
-	bool isValidIndex = false;
-	if (ODII_FIRST_EXPLORATION_KIT_ITEM <= index && index < ODII_FIRST_NON_EXPLORATION_KIT_ITEM) {
-		isValidIndex = true;
+	bool validItem = item >= ODII_BruteKnuckles && item < ODII_LAST_NON_EXPLORATION_KIT_ITEM;
+	P2ASSERTLINE(601, validItem);
+
+	if (item < 16) {
+		int data_idx = (item >> 3);
+		m_flags[1 - data_idx] |= 1 << (item - (data_idx << 3));
 	}
-	P2ASSERTLINE(601, isValidIndex);
-	if (index < 0x10) {
-		m_flags[index % 8] |= (1 << (index - (8 * (index >> 3))));
-	}
-	if (index == ODII_GeographicProjection) {
-		playData->openCourse(2);
-	} else if (index == ODII_SphericalAtlas) {
+
+	switch (item) {
+	case ODII_SphericalAtlas:
 		playData->openCourse(1);
+		return;
+	case ODII_GeographicProjection:
+		playData->openCourse(2);
+		return;
 	}
-	/*
-	stwu     r1, -0x10(r1)
-	mflr     r0
-	stw      r0, 0x14(r1)
-	li       r0, 0
-	stw      r31, 0xc(r1)
-	or.      r31, r4, r4
-	stw      r30, 8(r1)
-	mr       r30, r3
-	blt      lbl_801E6098
-	cmpwi    r31, 0xc
-	bge      lbl_801E6098
-	li       r0, 1
-
-lbl_801E6098:
-	clrlwi.  r0, r0, 0x18
-	bne      lbl_801E60BC
-	lis      r3, lbl_80480E4C@ha
-	lis      r5, lbl_80480E60@ha
-	addi     r3, r3, lbl_80480E4C@l
-	li       r4, 0x259
-	addi     r5, r5, lbl_80480E60@l
-	crclr    6
-	bl       panic_f__12JUTExceptionFPCciPCce
-
-lbl_801E60BC:
-	cmpwi    r31, 0x10
-	bge      lbl_801E60E8
-	srawi    r0, r31, 3
-	li       r3, 1
-	subfic   r5, r0, 1
-	slwi     r0, r0, 3
-	lbzx     r4, r30, r5
-	subf     r0, r0, r31
-	slw      r0, r3, r0
-	or       r0, r4, r0
-	stbx     r0, r30, r5
-
-lbl_801E60E8:
-	cmpwi    r31, 0xb
-	beq      lbl_801E6110
-	bge      lbl_801E611C
-	cmpwi    r31, 0xa
-	bge      lbl_801E6100
-	b        lbl_801E611C
-
-lbl_801E6100:
-	lwz      r3, playData__4Game@sda21(r13)
-	li       r4, 1
-	bl       openCourse__Q24Game8PlayDataFi
-	b        lbl_801E611C
-
-lbl_801E6110:
-	lwz      r3, playData__4Game@sda21(r13)
-	li       r4, 2
-	bl       openCourse__Q24Game8PlayDataFi
-
-lbl_801E611C:
-	lwz      r0, 0x14(r1)
-	lwz      r31, 0xc(r1)
-	lwz      r30, 8(r1)
-	mtlr     r0
-	addi     r1, r1, 0x10
-	blr
-	*/
 }
 
 /*
