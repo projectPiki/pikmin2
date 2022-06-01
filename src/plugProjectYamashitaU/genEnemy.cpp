@@ -20,6 +20,7 @@ GenObject* makeObjectEnemy(void) { return new GenObjectEnemy; }
  * Size:	0000D0
  * Nearly matches; only mismatch is a misordered pair of epilogue instructions.
  * https://decomp.me/scratch/O7lwP
+ * SOLVED: use true instead of 1
  */
 GenObjectEnemy::GenObjectEnemy()
     : GenObject('teki', "object type", "“G‚ðƒZƒbƒg")
@@ -32,10 +33,10 @@ GenObjectEnemy::GenObjectEnemy()
     , m_enemySize(0)
     , m_otakaraItemCode(0)
     , m_enemyGenerator(nullptr)
-    , m_byte_4C(0)
+    , m_byte_4C(false)
 {
 	createEnemyGenerator();
-	m_byte_4C |= 1;
+	m_byte_4C |= true;
 }
 
 /*
