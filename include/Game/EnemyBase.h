@@ -173,7 +173,7 @@ struct EnemyBase : public Creature, public SysShape::MotionListener, virtual pub
 	virtual Vector3f getSuckPos();                              // _18C
 	virtual Vector3f getGoalPos();                              // _190
 	virtual bool isSuckReady();                                 // _194
-	virtual bool isSuckArriveWait();                            // _198
+	virtual BOOL isSuckArriveWait();                            // _198
 	virtual bool stimulate(Interaction&);                       // _19C
 	virtual char* getCreatureName();                            // _1A0
 	virtual s32 getCreatureID();                                // _1A4

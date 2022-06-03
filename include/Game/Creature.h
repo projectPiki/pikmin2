@@ -179,7 +179,7 @@ struct Creature : public CellObject {
 	virtual Vector3f getSuckPos();
 	virtual Vector3f getGoalPos();
 	virtual bool isSuckReady();
-	virtual bool isSuckArriveWait();
+	virtual BOOL isSuckArriveWait();
 	virtual bool stimulate(Interaction&);
 	virtual char* getCreatureName();
 	virtual s32 getCreatureID(); // leave as s32 or matching breaks. unsure why.

@@ -13882,7 +13882,7 @@ bool Creature::isSuckReady() { return true; }
  * Address:	8010810C
  * Size:	000008
  */
-bool Creature::isSuckArriveWait() { return false; }
+BOOL Creature::isSuckArriveWait() { return FALSE; }
 
 /*
  * --INFO--

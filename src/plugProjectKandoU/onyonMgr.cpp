@@ -1,4 +1,5 @@
 #include "types.h"
+#include "Game/Onyon.h"
 
 /*
     Generated from dpostproc
@@ -1794,24 +1795,10 @@ lbl_8017557C:
  * --INFO--
  * Address:	80175590
  * Size:	000028
+ * Matches!
+ * Can either be C-style BOOL or weird if/else with temp and casting.
  */
-void Onyon::isSuckArriveWait(void)
-{
-	/*
-	lhz      r0, 0x22e(r3)
-	cmplwi   r0, 4
-	bne      lbl_801755B0
-	lbz      r0, 0x240(r3)
-	subfic   r0, r0, 4
-	cntlzw   r0, r0
-	rlwinm   r3, r0, 0x1b, 0x18, 0x1f
-	blr
-
-lbl_801755B0:
-	li       r3, 0
-	blr
-	*/
-}
+BOOL Onyon::isSuckArriveWait(void) { return m_onyonType == ONYON_TYPE_SHIP ? m_carcassType == 4 : FALSE; }
 
 /*
  * --INFO--
