@@ -396,7 +396,7 @@ DOLPHIN:=\
 	$(BUILD_DIR)/src/Dolphin/odenotstub.o\
 	$(BUILD_DIR)/asm/Dolphin/OS.o\
 	$(BUILD_DIR)/asm/Dolphin/OSAlarm.o\
-	$(BUILD_DIR)/asm/Dolphin/OSAlloc.o\
+	$(BUILD_DIR)/src/Dolphin/OSAlloc.o\
 	$(BUILD_DIR)/src/Dolphin/OSArena.o\
 	$(BUILD_DIR)/src/Dolphin/OSAudioSystem.o\
 	$(BUILD_DIR)/asm/Dolphin/OSCache.o\

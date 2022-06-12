@@ -44,7 +44,6 @@ BOOL OSReceiveMessage(OSMessageQueue* queue, void* msg, int flags);
 
 // OSArena
 extern void* __OSArenaHi;
-extern int __OSCurrHeap;
 
 void* OSGetArenaHi(void);
 void* OSGetArenaLo(void);
@@ -53,11 +52,19 @@ void OSSetArenaHi(void* addr);
 void OSSetArenaLo(void* addr);
 
 // OSMemory
-extern void* OSInitAlloc(void* arenaStart, void* arenaEnd, int maxHeaps);
+typedef int OSHeapHandle;
 
-extern int OSCreateHeap(void* start, void* end);
-extern int OSSetCurrentHeap(int);
-extern void OSFreeToHeap(int, void*);
+extern volatile OSHeapHandle __OSCurrHeap;
+
+void* OSInitAlloc(void*, void*, int);
+OSHeapHandle OSCreateHeap(void*, void*);
+OSHeapHandle OSSetCurrentHeap(OSHeapHandle);
+void* OSAllocFromHeap(OSHeapHandle, u32);
+long OSCheckHeap(OSHeapHandle);
+void OSFreeToHeap(OSHeapHandle heap, void* ptr);
+
+#define OSAlloc(size) OSAllocFromHeap(__OSCurrHeap, (size))
+#define OSFree(ptr)   OSFreeToHeap(__OSCurrHeap, (ptr))
 
 // OSMutex
 typedef struct OSMutexObject {
