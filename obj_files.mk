@@ -939,6 +939,7 @@ OGAWA:=\
 	$(BUILD_DIR)/asm/plugProjectOgawaU/ogTotalPokoScreen.o\
 	$(BUILD_DIR)/asm/plugProjectOgawaU/ogObjChallengeBase.o\
 	$(BUILD_DIR)/asm/plugProjectOgawaU/ogSceneChallengeBase.o\
+	$(BUILD_DIR)/src/plugProjectOgawaU/ogSceneChallengeBase.o\
 	$(BUILD_DIR)/asm/plugProjectOgawaU/ogCallBackPicture.o\
 	$(BUILD_DIR)/asm/plugProjectOgawaU/ogDrawAfter.o\
 	$(BUILD_DIR)/asm/plugProjectOgawaU/ogOtakaraSensor.o\
