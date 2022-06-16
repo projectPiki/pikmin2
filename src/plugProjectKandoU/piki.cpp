@@ -1,5 +1,7 @@
 #include "Game/Piki.h"
 #include "Game/StateMachine.h"
+#include "System.h"
+#include "SoundID.h"
 #include "types.h"
 
 /*
@@ -4091,16 +4093,7 @@ lbl_80149E1C:
  * Address:	80149E30
  * Size:	000014
  */
-void Piki::extendDopeTime(void)
-{
-	/*
-	lwz      r4, pikiMgr__4Game@sda21(r13)
-	lwz      r4, 0x6c(r4)
-	lfs      f0, 0x1150(r4)
-	stfs     f0, 0x288(r3)
-	blr
-	*/
-}
+void Piki::extendDopeTime(void) { m_dopeTime = pikiMgr->_6C->_1150; }
 
 /*
  * --INFO--
@@ -4488,14 +4481,15 @@ lbl_8014A270:
  */
 bool Piki::isTekiFollowAI(void)
 {
-	/*
-	lwz      r3, 0x294(r3)
-	lwz      r0, 8(r3)
-	subfic   r0, r0, 0xb
-	cntlzw   r0, r0
-	rlwinm   r3, r0, 0x1b, 0x18, 0x1f
-	blr
-	*/
+	return m_brain->m_actionId == 11; // teki follow AI
+	                                  /*
+	                                  lwz      r3, 0x294(r3)
+	                                  lwz      r0, 8(r3)
+	                                  subfic   r0, r0, 0xb
+	                                  cntlzw   r0, r0
+	                                  rlwinm   r3, r0, 0x1b, 0x18, 0x1f
+	                                  blr
+	                                  */
 }
 
 /*
@@ -4689,6 +4683,29 @@ void Piki::startMotion(int, int, SysShape::MotionListener*, SysShape::MotionList
  */
 void Piki::doAnimation(void)
 {
+	FakePiki::doAnimation();
+
+	if (m_isDoped == -1 || m_dopeTime <= 0.0f) {
+		return;
+	}
+
+	m_dopeTime -= sys->m_secondsPerFrame;
+	if (m_dopeTime > 0) {
+		return;
+	}
+
+	m_soundObj->startFreePikiSetSound(PSSE_PK_VC_DOPE_END, 0, 90, 0);
+	if (m_isDoped != -1) {
+		m_isDoped = -1;
+
+		if (pikiMgr->_30 > 0) {
+			pikiMgr->_30--;
+		}
+	}
+
+	m_dopeTime = 0;
+
+	// TPKEFFECT stuff.
 	/*
 	stwu     r1, -0x10(r1)
 	mflr     r0
@@ -4768,20 +4785,14 @@ void Piki::doDirectDraw(Graphics&) { }
  */
 float Piki::getBaseScale(void)
 {
-	/*
-	lbz      r0, 0x2b8(r3)
-	lfs      f1, lbl_80518440@sda21(r2)
-	cmplwi   r0, 3
-	bne      lbl_8014A5B0
-	lfs      f1, lbl_80518470@sda21(r2)
-	blr
-
-lbl_8014A5B0:
-	cmplwi   r0, 4
-	bnelr
-	lfs      f1, lbl_80518474@sda21(r2)
-	blr
-	*/
+	switch (m_pikminType) {
+	case Purple:
+		return 1.2f;
+	case White:
+		return 0.8f;
+	default:
+		return 1.0f;
+	}
 }
 
 /*
@@ -4920,11 +4931,7 @@ lbl_8014A6C0:
  * Address:	8014A770
  * Size:	000008
  */
-void Piki::changeHappa(int a1)
-{
-	// Generated from stb r4, 0x2B9(r3)
-	m_pikminGrowth = a1;
-}
+void Piki::changeHappa(int a1) { m_pikminGrowth = a1; }
 
 /*
  * --INFO--
@@ -5187,17 +5194,13 @@ lbl_8014AA98:
  * Address:	8014AABC
  * Size:	000014
  */
-void Piki::setTekiKillID(int)
+void Piki::setTekiKillID(int id)
 {
-	/*
-	cmpwi    r4, 0x62
-	bne      lbl_8014AAC8
-	li       r4, 0x63
+	if (id == 98) {
+		id = 99;
+	}
 
-lbl_8014AAC8:
-	sth      r4, 0x2a4(r3)
-	blr
-	*/
+	m_tekiKillID = id;
 }
 
 /*
@@ -5212,13 +5215,7 @@ bool Piki::deferPikiCollision() { return true; }
  * Address:	8014AAD8
  * Size:	000008
  */
-char* Piki::getCreatureName(void)
-{
-	/*
-	addi     r3, r2, lbl_8051848C@sda21
-	blr
-	*/
-}
+char* Piki::getCreatureName(void) { return "pikmin"; }
 
 } // namespace Game
 

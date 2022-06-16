@@ -86,15 +86,34 @@
         .4byte lbl_8047C110
 */
 
+#include "Game/EnemyMgrBase.h"
+#include "Game/Entities/KochappyBase.h"
+
 namespace Game {
+
+namespace YellowKochappy {
+struct Mgr : public KochappyBase::Mgr {
+	Mgr(int, u8);
+	virtual ~Mgr();
+
+	virtual void createObj(int);                        // _60
+	virtual EnemyBase* getEnemy(int);                   // _64
+	virtual void doAlloc();                             // _68
+	virtual EnemyTypeID::EEnemyTypeID getEnemyTypeID(); // _6C
+	virtual void loadTexData();                         // _90
+	virtual unkptr getChangeTexture();                  // _A0
+};
+} // namespace YellowKochappy
 
 /*
  * --INFO--
  * Address:	8012D5E4
  * Size:	000050
  */
-YellowKochappy::Mgr::Mgr(int, unsigned char)
+YellowKochappy::Mgr::Mgr(int a1, u8 a2)
+    : Mgr(a1, a2)
 {
+	m_name = "黄コチャッピーマネージャ";
 	/*
 	stwu     r1, -0x10(r1)
 	mflr     r0
@@ -126,6 +145,7 @@ YellowKochappy::Mgr::Mgr(int, unsigned char)
  */
 void YellowKochappy::Mgr::doAlloc()
 {
+	init(new KochappyBase::Parms());
 	/*
 	stwu     r1, -0x10(r1)
 	mflr     r0
