@@ -4229,17 +4229,7 @@ lbl_80149FC8:
  * Address:	80149FE0
  * Size:	000018
  */
-bool Piki::doped()
-{
-	/*
-	lha      r4, 0x284(r3)
-	subfic   r3, r4, -1
-	addi     r0, r4, 1
-	or       r0, r3, r0
-	srwi     r3, r0, 0x1f
-	blr
-	*/
-}
+bool Piki::doped() { return m_isDoped != -1; }
 
 /*
  * --INFO--
