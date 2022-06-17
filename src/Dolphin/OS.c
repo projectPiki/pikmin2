@@ -130,23 +130,6 @@ u32 OSGetConsoleType()
 		return 0x10000002; // default console type
 	}
 	return BootInfo->consoleType;
-	/*
-	.loc_0x0:
-	  lwz       r3, -0x70F0(r13)
-	  cmplwi    r3, 0
-	  beq-      .loc_0x18
-	  lwz       r3, 0x2C(r3)
-	  cmplwi    r3, 0
-	  bne-      .loc_0x24
-
-	.loc_0x18:
-	  lis       r3, 0x1000
-	  addi      r3, r3, 0x2
-	  b         .loc_0x24
-
-	.loc_0x24:
-	  blr
-	*/
 }
 
 /*
