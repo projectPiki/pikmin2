@@ -35,6 +35,30 @@ typedef struct OSMessage {
 	u32 args[3];
 };
 
+typedef struct DVDDiskID DVDDiskID;
+
+struct DVDDiskID {
+	char gameName[4];
+	char company[2];
+	u8 diskNumber;
+	u8 gameVersion;
+	u8 streaming;
+	u8 streamingBufSize; // 0 = default
+	u8 padding[22];      // 0's are stored
+};
+
+typedef struct OSBootInfo_s {
+	DVDDiskID DVDDiskID;
+	u32 magic;
+	u32 version;
+	u32 memorySize;
+	u32 consoleType;
+	void* arenaLo;
+	void* arenaHi;
+	void* FSTLocation;
+	u32 FSTMaxLength;
+} OSBootInfo;
+
 #define OS_MESSAGE_NON_BLOCKING 0
 #define OS_MESSAGE_BLOCKING     1
 

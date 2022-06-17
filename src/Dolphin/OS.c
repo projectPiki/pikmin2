@@ -1,4 +1,11 @@
+#include "types.h"
+#include "Dolphin/os.h"
+#include "Dolphin/PPCArch.h"
 
+static f64 ZeroF;
+static f32 ZeroPS[2];
+
+static OSBootInfo* BootInfo;
 
 /*
  * --INFO--
@@ -15,89 +22,93 @@ void __OSIsDebuggerPresent(void)
  * Address:	800EAFC8
  * Size:	000128
  */
-void __OSFPRInit(void)
+// clang-format off
+asm void __OSFPRInit(void)
 {
-	/*
-	.loc_0x0:
-	  mfmsr     r3
-	  ori       r3, r3, 0x2000
-	  mtmsr     r3
-	  mfspr     r3, 0x398
-	  rlwinm.   r3,r3,3,31,31
-	  beq-      .loc_0xA0
-	  lis       r3, 0x8051
-	  addi      r3, r3, 0x55A8
-	  psq_l     f0,0x0(r3),0,0
-	  ps_mr     f1, f0
-	  ps_mr     f2, f0
-	  ps_mr     f3, f0
-	  ps_mr     f4, f0
-	  ps_mr     f5, f0
-	  ps_mr     f6, f0
-	  ps_mr     f7, f0
-	  ps_mr     f8, f0
-	  ps_mr     f9, f0
-	  ps_mr     f10, f0
-	  ps_mr     f11, f0
-	  ps_mr     f12, f0
-	  ps_mr     f13, f0
-	  ps_mr     f14, f0
-	  ps_mr     f15, f0
-	  ps_mr     f16, f0
-	  ps_mr     f17, f0
-	  ps_mr     f18, f0
-	  ps_mr     f19, f0
-	  ps_mr     f20, f0
-	  ps_mr     f21, f0
-	  ps_mr     f22, f0
-	  ps_mr     f23, f0
-	  ps_mr     f24, f0
-	  ps_mr     f25, f0
-	  ps_mr     f26, f0
-	  ps_mr     f27, f0
-	  ps_mr     f28, f0
-	  ps_mr     f29, f0
-	  ps_mr     f30, f0
-	  ps_mr     f31, f0
+    nofralloc
 
-	.loc_0xA0:
-	  lfd       f0, -0x70E0(r13)
-	  fmr       f1, f0
-	  fmr       f2, f0
-	  fmr       f3, f0
-	  fmr       f4, f0
-	  fmr       f5, f0
-	  fmr       f6, f0
-	  fmr       f7, f0
-	  fmr       f8, f0
-	  fmr       f9, f0
-	  fmr       f10, f0
-	  fmr       f11, f0
-	  fmr       f12, f0
-	  fmr       f13, f0
-	  fmr       f14, f0
-	  fmr       f15, f0
-	  fmr       f16, f0
-	  fmr       f17, f0
-	  fmr       f18, f0
-	  fmr       f19, f0
-	  fmr       f20, f0
-	  fmr       f21, f0
-	  fmr       f22, f0
-	  fmr       f23, f0
-	  fmr       f24, f0
-	  fmr       f25, f0
-	  fmr       f26, f0
-	  fmr       f27, f0
-	  fmr       f28, f0
-	  fmr       f29, f0
-	  fmr       f30, f0
-	  fmr       f31, f0
-	  mtfsf     255, f0
-	  blr
-	*/
+    mfmsr   r3
+    ori     r3, r3, 0x2000
+    mtmsr   r3
+
+    mfspr   r3, 0x398
+    rlwinm. r3, r3, 3, 31, 31
+    beq     SkipPairedSingles
+
+    lis     r3, ZeroPS@ha
+    addi    r3, r3, ZeroPS@l
+    psq_l   fp0, 0(r3), 0, 0
+    ps_mr   fp1, fp0
+    ps_mr   fp2, fp0
+    ps_mr   fp3, fp0
+    ps_mr   fp4, fp0
+    ps_mr   fp5, fp0
+    ps_mr   fp6, fp0
+    ps_mr   fp7, fp0
+    ps_mr   fp8, fp0
+    ps_mr   fp9, fp0
+    ps_mr   fp10, fp0
+    ps_mr   fp11, fp0
+    ps_mr   fp12, fp0
+    ps_mr   fp13, fp0
+    ps_mr   fp14, fp0
+    ps_mr   fp15, fp0
+    ps_mr   fp16, fp0
+    ps_mr   fp17, fp0
+    ps_mr   fp18, fp0
+    ps_mr   fp19, fp0
+    ps_mr   fp20, fp0
+    ps_mr   fp21, fp0
+    ps_mr   fp22, fp0
+    ps_mr   fp23, fp0
+    ps_mr   fp24, fp0
+    ps_mr   fp25, fp0
+    ps_mr   fp26, fp0
+    ps_mr   fp27, fp0
+    ps_mr   fp28, fp0
+    ps_mr   fp29, fp0
+    ps_mr   fp30, fp0
+    ps_mr   fp31, fp0
+
+SkipPairedSingles:
+    lfd     fp0, ZeroF
+    fmr     fp1, fp0
+    fmr     fp2, fp0
+    fmr     fp3, fp0
+    fmr     fp4, fp0
+    fmr     fp5, fp0
+    fmr     fp6, fp0
+    fmr     fp7, fp0
+    fmr     fp8, fp0
+    fmr     fp9, fp0
+    fmr     fp10, fp0
+    fmr     fp11, fp0
+    fmr     fp12, fp0
+    fmr     fp13, fp0
+    fmr     fp14, fp0
+    fmr     fp15, fp0
+    fmr     fp16, fp0
+    fmr     fp17, fp0
+    fmr     fp18, fp0
+    fmr     fp19, fp0
+    fmr     fp20, fp0
+    fmr     fp21, fp0
+    fmr     fp22, fp0
+    fmr     fp23, fp0
+    fmr     fp24, fp0
+    fmr     fp25, fp0
+    fmr     fp26, fp0
+    fmr     fp27, fp0
+    fmr     fp28, fp0
+    fmr     fp29, fp0
+    fmr     fp30, fp0
+    fmr     fp31, fp0
+
+    mtfsf   0xFF, fp0
+
+    blr
 }
-
+// clang-format on
 /*
  * --INFO--
  * Address:	........
@@ -113,8 +124,12 @@ void DisableWriteGatherPipe(void)
  * Address:	800EB0F0
  * Size:	000028
  */
-void OSGetConsoleType(void)
+u32 OSGetConsoleType()
 {
+	if (BootInfo == NULL || BootInfo->consoleType == 0) {
+		return 0x10000002; // default console type
+	}
+	return BootInfo->consoleType;
 	/*
 	.loc_0x0:
 	  lwz       r3, -0x70F0(r13)

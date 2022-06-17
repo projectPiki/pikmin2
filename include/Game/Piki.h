@@ -76,7 +76,8 @@ struct PikiFSM {
 };
 
 struct Piki : public FakePiki, public SysShape::MotionListener {
-	struct InvokeAIFreeArg { };
+	struct InvokeAIFreeArg {
+	};
 
 	Piki();
 
