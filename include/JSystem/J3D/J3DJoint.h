@@ -23,7 +23,7 @@ struct J3DJoint {
 	 * @reifiedAddress{8043EF9C}
 	 * @reifiedFile{sysGCU/sysShapeModel.cpp}
 	 */
-	s16 getJntNo() const { return m_jointIdx; }
+	u16 getJntNo() const { return m_jointIdx; }
 
 	/**
 	 * @reifiedAddress{8043EFA4}
@@ -42,7 +42,7 @@ struct J3DJoint {
 	u32 _08;                      // _08
 	J3DJoint* m_child;            // _0C
 	J3DJoint* m_parent;           // _10
-	s16 m_jointIdx;               // _14
+	u16 m_jointIdx;               // _14
 	s8 _16;                       // _16
 	s8 m_ignoreParentScaling;     // _17
 	Vector3f m_scale;             // _18

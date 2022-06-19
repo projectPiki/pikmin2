@@ -84,7 +84,11 @@ struct Creature : public CellObject {
 
 	Creature();
 
+	virtual void checkCollision(CellObject*);  // _04
 	virtual bool collisionUpdatable();         // _0C
+	virtual bool isPiki();                     // _10
+	virtual bool isNavi();                     // _14
+	virtual char* getTypeName();               // _1C
 	virtual u16 getObjType();                  // _20
 	virtual void constructor();                // _2C
 	virtual void onInit(CreatureInitArg*);     // _30
@@ -185,7 +189,7 @@ struct Creature : public CellObject {
 	virtual s32 getCreatureID(); // leave as s32 or matching breaks. unsure why.
 
 	void applyAirDrag(float, float, float);
-	void calcSphereDistance(Game::Creature*);
+	float calcSphereDistance(Game::Creature*);
 	void checkHell(CheckHellArg&);
 	void checkWater(Game::WaterBox*, Sys::Sphere&);
 	void clearCapture();
@@ -227,7 +231,7 @@ struct Creature : public CellObject {
 	} m_flags;                     // _0BC
 	void* m_parms;                 // _0C0
 	Generator* m_generator;        // _0C4
-	int _0C8;                      // _0C8
+	unkptr _0C8;                   // _0C8
 	Vector3f m_collisionPosition;  // _0CC
 	AILOD m_lod;                   // _0D8
 	int m_cellLayerIndex;          // _0DC

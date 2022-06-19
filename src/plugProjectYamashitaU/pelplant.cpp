@@ -1,13 +1,22 @@
+#include "Dolphin/math.h"
+#include "Game/EnemyBase.h"
 #include "Graphics.h"
 #include "Game/Piki.h"
 #include "Game/enemyInfo.h"
+#include "Vector3.h"
 #include "types.h"
 #include "Game/Entities/Pelplant.h"
+#include "Game/Farm.h"
+#include "Game/GameSystem.h"
 #include "CollInfo.h"
 #include "SysShape/Joint.h"
 #include "SysShape/Model.h"
+#include "System.h"
+#include "SysTimers.h"
 #include "JSystem/JUT/JUTException.h"
 #include "JSystem/J3D/J3DJoint.h"
+#include "JSystem/J3D/J3DMtxBuffer.h"
+#include "JSystem/J3D/J3DMtxCalc.h"
 
 /*
     Generated from dpostproc
@@ -1043,61 +1052,19 @@ lbl_801083A8:
  * Address:	801083B0
  * Size:	0000B4
  */
-void Pelplant::Obj::birth(Vector3f&, float)
+void Pelplant::Obj::birth(Vector3f& position, float faceDir)
 {
-	/*
-	stwu     r1, -0x10(r1)
-	mflr     r0
-	stw      r0, 0x14(r1)
-	stw      r31, 0xc(r1)
-	mr       r31, r3
-	bl       "birth__Q24Game9EnemyBaseFR10Vector3<f>f"
-	li       r0, 0
-	stb      r0, 0x2d6(r31)
-	lwz      r3, farmMgr__Q24Game4Farm@sda21(r13)
-	cmplwi   r3, 0
-	beq      lbl_801083E4
-	mr       r4, r31
-	bl       addPlant__Q34Game4Farm7FarmMgrFPQ24Game8Creature
-
-lbl_801083E4:
-	lwz      r3, gameSystem__4Game@sda21(r13)
-	lwz      r0, 0x44(r3)
-	cmpwi    r0, 1
-	bne      lbl_80108418
-	lwz      r3, 0x2bc(r31)
-	mr       r4, r31
-	li       r5, 4
-	li       r6, 0
-	lwz      r12, 0(r3)
-	lwz      r12, 0xc(r12)
-	mtctr    r12
-	bctrl
-	b        lbl_80108438
-
-lbl_80108418:
-	lwz      r3, 0x2bc(r31)
-	mr       r4, r31
-	li       r5, 0
-	li       r6, 0
-	lwz      r12, 0(r3)
-	lwz      r12, 0xc(r12)
-	mtctr    r12
-	bctrl
-
-lbl_80108438:
-	lis      r4, lbl_8047A6A0@ha
-	lwz      r3, 0x174(r31)
-	addi     r4, r4, lbl_8047A6A0@l
-	bl       getJoint__Q28SysShape5ModelFPc
-	bl       getWorldMatrix__Q28SysShape5JointFv
-	stw      r3, 0x2c4(r31)
-	lwz      r0, 0x14(r1)
-	lwz      r31, 0xc(r1)
-	mtlr     r0
-	addi     r1, r1, 0x10
-	blr
-	*/
+	EnemyBase::birth(position, faceDir);
+	m_farmPow = 0;
+	if (Farm::farmMgr != nullptr) {
+		Farm::farmMgr->addPlant(this);
+	}
+	if (gameSystem->m_mode == GSM_VERSUS_MODE) {
+		m_fsm->start(this, 4, nullptr);
+	} else {
+		m_fsm->start(this, 0, nullptr);
+	}
+	_2C4 = m_model->getJoint("bodyjnt2")->getWorldMatrix();
 }
 
 /*
@@ -1481,8 +1448,11 @@ lbl_80108AF8:
  * Address:	80108B10
  * Size:	0000C0
  */
-void Pelplant::Obj::getShadowParam(Game::ShadowParam&)
+void Pelplant::Obj::getShadowParam(Game::ShadowParam& param)
 {
+	param.m_position = m_position;
+	param.m_position.y += 2.0f;
+	// TODO: Needs _0C8
 	/*
 	lfs      f1, 0x18c(r3)
 	lfs      f0, lbl_80517884@sda21(r2)
@@ -1550,44 +1520,14 @@ lbl_80108BC0:
  */
 void Pelplant::Obj::doAnimationUpdateAnimator()
 {
-	/*
-	stwu     r1, -0x20(r1)
-	mflr     r0
-	lis      r5, __vt__Q28SysShape13BlendFunction@ha
-	lis      r4, __vt__Q34Game8Pelplant21BlendAccelerationFunc@ha
-	stw      r0, 0x24(r1)
-	addi     r0, r5, __vt__Q28SysShape13BlendFunction@l
-	lfs      f1, defaultAnimSpeed__Q24Game17EnemyAnimatorBase@sda21(r2)
-	stw      r31, 0x1c(r1)
-	mr       r31, r3
-	stw      r0, 8(r1)
-	addi     r0, r4, __vt__Q34Game8Pelplant21BlendAccelerationFunc@l
-	lwz      r5, sys@sda21(r13)
-	addi     r4, r1, 8
-	stw      r0, 8(r1)
-	lfs      f0, 0x54(r5)
-	lwz      r3, 0x184(r3)
-	fmuls    f1, f1, f0
-	fmr      f2, f1
-	fmr      f3, f1
-	bl animate__Q24Game22EnemyBlendAnimatorBaseFPQ28SysShape13BlendFunctionfff
-	lwz      r3, 0x184(r31)
-	lwzu     r12, 0x10(r3)
-	lwz      r31, 0x174(r31)
-	lwz      r12, 8(r12)
-	mtctr    r12
-	bctrl
-	lwz      r4, 8(r31)
-	lwz      r4, 4(r4)
-	lwz      r4, 0x28(r4)
-	lwz      r4, 0(r4)
-	stw      r3, 0x54(r4)
-	lwz      r31, 0x1c(r1)
-	lwz      r0, 0x24(r1)
-	mtlr     r0
-	addi     r1, r1, 0x20
-	blr
-	*/
+	BlendAccelerationFunc func;
+	static_cast<EnemyBlendAnimatorBase*>(m_animator)
+	    ->animate(&func, EnemyAnimatorBase::defaultAnimSpeed * sys->m_secondsPerFrame,
+	              EnemyAnimatorBase::defaultAnimSpeed * sys->m_secondsPerFrame,
+	              EnemyAnimatorBase::defaultAnimSpeed * sys->m_secondsPerFrame);
+	SysShape::Model* model = m_model;
+	(*model->m_j3dModel->m_modelData->m_jointTree.m_joints)->m_mtxCalc
+	    = (J3DMtxCalcAnmBase*)(static_cast<EnemyBlendAnimatorBase*>(m_animator)->m_animator.getCalc());
 }
 
 /*
@@ -1615,11 +1555,65 @@ float Pelplant::Obj::getHeadScale()
 
 /*
  * --INFO--
+ * Address:	........
+ * Size:	00009C
+ */
+void Pelplant::Obj::getNeckScale(Vector3f* scale)
+{
+	if (m_pellet) {
+		switch (m_pelletSize) {
+		case 1:
+			scale->x = 1.0f;
+			scale->y = 1.0f;
+			scale->z = 1.0f;
+			return;
+		case 5:
+			scale->x = 1.0f;
+			scale->y = 1.0f;
+			scale->z = 1.0f;
+			return;
+		case 10:
+			scale->x = 0.85f;
+			scale->y = 1.50f;
+			scale->z = 0.85f;
+			return;
+		case 20:
+			scale->x = 0.75f;
+			scale->y = 2.00f;
+			scale->z = 0.75f;
+			return;
+		}
+	} else {
+		scale->x = 1.0f;
+		scale->y = 1.0f;
+		scale->z = 1.0f;
+	}
+}
+
+/*
+ * doAnimation__Q34Game8Pelplant3ObjFv
+ * --INFO--
  * Address:	80108CB8
  * Size:	000198
  */
 void Pelplant::Obj::doAnimation()
 {
+	sys->m_timers->_start("zama", true);
+	float headScale = getHeadScale();
+	sCurrentObj     = this;
+	doAnimation();
+	sCurrentObj = nullptr;
+	// TODO: what's inlined here, if anything?
+	// float neckScale = getNeckScale();
+	Matrixf mtx;
+	Vector3f scale(1.0f / headScale);
+	Vector3f rotation(0.0f, HALF_PI, -HALF_PI);
+	Vector3f translation(12.0f, 0.0f, 0.0f);
+
+	mtx.makeSRT(scale, rotation, translation);
+	updateCapture(mtx);
+	sys->m_timers->_stop("zama");
+
 	/*
 	stwu     r1, -0x90(r1)
 	mflr     r0
@@ -2094,50 +2088,15 @@ lbl_801091C4:
  * Address:	801091E4
  * Size:	000098
  */
-bool Pelplant::Obj::damageCallBack(Game::Creature*, float, CollPart*)
+bool Pelplant::Obj::damageCallBack(Game::Creature* source, float damage, CollPart* part)
 {
-	/*
-	stwu     r1, -0x20(r1)
-	mflr     r0
-	stw      r0, 0x24(r1)
-	stfd     f31, 0x10(r1)
-	psq_st   f31, 24(r1), 0, qr0
-	stw      r31, 0xc(r1)
-	stw      r30, 8(r1)
-	lwz      r12, 0(r3)
-	fmr      f31, f1
-	mr       r30, r3
-	mr       r31, r5
-	lwz      r12, 0xd4(r12)
-	mtctr    r12
-	bctrl
-	clrlwi.  r0, r3, 0x18
-	beq      lbl_80109258
-	fmr      f1, f31
-	lfs      f2, lbl_80517868@sda21(r2)
-	mr       r3, r30
-	bl       addDamage__Q24Game9EnemyBaseFff
-	cmplwi   r31, 0
-	beq      lbl_80109258
-	lbz      r0, 0x47(r31)
-	cmpwi    r0, 0x30
-	bne      lbl_80109258
-	lfs      f1, 0x204(r30)
-	mr       r3, r30
-	lfs      f2, lbl_80517868@sda21(r2)
-	bl       addDamage__Q24Game9EnemyBaseFff
-
-lbl_80109258:
-	li       r3, 1
-	psq_l    f31, 24(r1), 0, qr0
-	lwz      r0, 0x24(r1)
-	lfd      f31, 0x10(r1)
-	lwz      r31, 0xc(r1)
-	lwz      r30, 8(r1)
-	mtlr     r0
-	addi     r1, r1, 0x20
-	blr
-	*/
+	if (isLivingThing()) {
+		addDamage(damage, 1.0f);
+		if (part && part->_3C.getStrID()[3] == '0') {
+			addDamage(m_maxHealth, 1.0f);
+		}
+	}
+	return true;
 }
 
 /*
@@ -2182,89 +2141,18 @@ void Pelplant::Obj::onStickStart(Game::Creature* other)
  * Address:	80109360
  * Size:	0000F0
  */
-unknown Pelplant::Obj::headJointCallBack(J3DJoint*, int)
+unknown Pelplant::Obj::headJointCallBack(J3DJoint* joint, int p2)
 {
-	/*
-	lwz      r5, sCurrentObj__Q34Game8Pelplant3Obj@sda21(r13)
-	cmplwi   r5, 0
-	beq      lbl_80109448
-	cmpwi    r4, 1
-	bne      lbl_80109448
-	lhz      r3, 0x14(r3)
-	lwz      r4, mMtxBuffer__10J3DMtxCalc@sda21(r13)
-	lwz      r0, 0x2cc(r5)
-	mulli    r3, r3, 0x30
-	lwz      r4, 0xc(r4)
-	cmplwi   r0, 0
-	add      r4, r4, r3
-	beq      lbl_801093D8
-	lbz      r0, 0x2d5(r5)
-	cmplwi   r0, 0x14
-	bgt      lbl_801093DC
-	lis      r3, lbl_804AAB08@ha
-	slwi     r0, r0, 2
-	addi     r3, r3, lbl_804AAB08@l
-	lwzx     r0, r3, r0
-	mtctr    r0
-	bctr
-	.global  lbl_801093B8
-
-lbl_801093B8:
-	lfs      f1, lbl_80517868@sda21(r2)
-	b        lbl_801093DC
-	.global  lbl_801093C0
-
-lbl_801093C0:
-	lfs      f1, lbl_80517884@sda21(r2)
-	b        lbl_801093DC
-	.global  lbl_801093C8
-
-lbl_801093C8:
-	lfs      f1, lbl_80517890@sda21(r2)
-	b        lbl_801093DC
-	.global  lbl_801093D0
-
-lbl_801093D0:
-	lfs      f1, lbl_80517894@sda21(r2)
-	b        lbl_801093DC
-
-lbl_801093D8:
-	lfs      f1, lbl_80517868@sda21(r2)
-	.global  lbl_801093DC
-
-lbl_801093DC:
-	lfs      f0, 0(r4)
-	fmuls    f0, f0, f1
-	stfs     f0, 0(r4)
-	lfs      f0, 4(r4)
-	fmuls    f0, f0, f1
-	stfs     f0, 4(r4)
-	lfs      f0, 8(r4)
-	fmuls    f0, f0, f1
-	stfs     f0, 8(r4)
-	lfs      f0, 0x10(r4)
-	fmuls    f0, f0, f1
-	stfs     f0, 0x10(r4)
-	lfs      f0, 0x14(r4)
-	fmuls    f0, f0, f1
-	stfs     f0, 0x14(r4)
-	lfs      f0, 0x18(r4)
-	fmuls    f0, f0, f1
-	stfs     f0, 0x18(r4)
-	lfs      f0, 0x20(r4)
-	fmuls    f0, f0, f1
-	stfs     f0, 0x20(r4)
-	lfs      f0, 0x24(r4)
-	fmuls    f0, f0, f1
-	stfs     f0, 0x24(r4)
-	lfs      f0, 0x28(r4)
-	fmuls    f0, f0, f1
-	stfs     f0, 0x28(r4)
-
-lbl_80109448:
-	li       r3, 0
-	blr
-	*/
+	if (sCurrentObj != nullptr && p2 == 1) {
+		Mtx& mtx    = J3DMtxCalc::mMtxBuffer->m_worldMatrices[joint->getJntNo()];
+		float scale = sCurrentObj->getHeadScale();
+		for (int i = 0; i < 3; i++) {
+			for (int j = 0; j < 3; j++) {
+				mtx[i][j] *= scale;
+			}
+		}
+	}
+	return 0;
 }
 
 /*
@@ -2272,94 +2160,28 @@ lbl_80109448:
  * Address:	80109450
  * Size:	000104
  */
-unknown Pelplant::Obj::neckJointCallBack(J3DJoint*, int)
+unknown Pelplant::Obj::neckJointCallBack(J3DJoint* joint, int p2)
 {
-	/*
-	lwz      r5, sCurrentObj__Q34Game8Pelplant3Obj@sda21(r13)
-	cmplwi   r5, 0
-	beq      lbl_8010954C
-	cmpwi    r4, 1
-	bne      lbl_8010954C
-	lhz      r3, 0x14(r3)
-	lwz      r4, mMtxBuffer__10J3DMtxCalc@sda21(r13)
-	lwz      r0, 0x2cc(r5)
-	mulli    r3, r3, 0x30
-	lwz      r4, 0xc(r4)
-	cmplwi   r0, 0
-	add      r4, r4, r3
-	beq      lbl_801094D8
-	lbz      r0, 0x2d5(r5)
-	cmplwi   r0, 0x14
-	bgt      lbl_801094E0
-	lis      r3, lbl_804AAB5C@ha
-	slwi     r0, r0, 2
-	addi     r3, r3, lbl_804AAB5C@l
-	lwzx     r0, r3, r0
-	mtctr    r0
-	bctr
-	.global  lbl_801094A8
-
-lbl_801094A8:
-	lfs      f2, lbl_80517868@sda21(r2)
-	fmr      f1, f2
-	b        lbl_801094E0
-	.global  lbl_801094B4
-
-lbl_801094B4:
-	lfs      f2, lbl_80517868@sda21(r2)
-	fmr      f1, f2
-	b        lbl_801094E0
-	.global  lbl_801094C0
-
-lbl_801094C0:
-	lfs      f2, lbl_80517898@sda21(r2)
-	lfs      f1, lbl_8051789C@sda21(r2)
-	b        lbl_801094E0
-	.global  lbl_801094CC
-
-lbl_801094CC:
-	lfs      f2, lbl_80517884@sda21(r2)
-	lfs      f1, lbl_805178A0@sda21(r2)
-	b        lbl_801094E0
-
-lbl_801094D8:
-	lfs      f2, lbl_80517868@sda21(r2)
-	fmr      f1, f2
-	.global  lbl_801094E0
-
-lbl_801094E0:
-	lfs      f0, 0(r4)
-	fmuls    f0, f0, f2
-	stfs     f0, 0(r4)
-	lfs      f0, 4(r4)
-	fmuls    f0, f0, f2
-	stfs     f0, 4(r4)
-	lfs      f0, 8(r4)
-	fmuls    f0, f0, f2
-	stfs     f0, 8(r4)
-	lfs      f0, 0x10(r4)
-	fmuls    f0, f0, f1
-	stfs     f0, 0x10(r4)
-	lfs      f0, 0x14(r4)
-	fmuls    f0, f0, f1
-	stfs     f0, 0x14(r4)
-	lfs      f0, 0x18(r4)
-	fmuls    f0, f0, f1
-	stfs     f0, 0x18(r4)
-	lfs      f0, 0x20(r4)
-	fmuls    f0, f0, f2
-	stfs     f0, 0x20(r4)
-	lfs      f0, 0x24(r4)
-	fmuls    f0, f0, f2
-	stfs     f0, 0x24(r4)
-	lfs      f0, 0x28(r4)
-	fmuls    f0, f0, f2
-	stfs     f0, 0x28(r4)
-
-lbl_8010954C:
-	li       r3, 0
-	blr
-	*/
+	if (sCurrentObj != nullptr && p2 == 1) {
+		Mtx& mtx = J3DMtxCalc::mMtxBuffer->m_worldMatrices[joint->getJntNo()];
+		Vector3f scale;
+		sCurrentObj->getNeckScale(&scale);
+		mtx[0][0] *= scale.x;
+		mtx[0][1] *= scale.x;
+		mtx[0][2] *= scale.x;
+		mtx[1][0] *= scale.y;
+		mtx[1][1] *= scale.y;
+		mtx[1][2] *= scale.y;
+		mtx[2][0] *= scale.z;
+		mtx[2][1] *= scale.z;
+		mtx[2][2] *= scale.z;
+		// for (int i = 0; i < 3; i++) {
+		// 	for (int j = 0; j < 3; j++) {
+		// 		mtx[i][j] *= scale.y;
+		// 	}
+		// }
+	}
+	return 0;
 }
 
 /*
@@ -3714,25 +3536,6 @@ namespace Game {
  */
 // void EnemyParmsBase::read(Stream&)
 // {
-// 	/*
-// 	stwu     r1, -0x10(r1)
-// 	mflr     r0
-// 	stw      r0, 0x14(r1)
-// 	stw      r31, 0xc(r1)
-// 	mr       r31, r4
-// 	stw      r30, 8(r1)
-// 	mr       r30, r3
-// 	bl       read__10ParametersFR6Stream
-// 	mr       r4, r31
-// 	addi     r3, r30, 0xe0
-// 	bl       read__10ParametersFR6Stream
-// 	lwz      r0, 0x14(r1)
-// 	lwz      r31, 0xc(r1)
-// 	lwz      r30, 8(r1)
-// 	mtlr     r0
-// 	addi     r1, r1, 0x10
-// 	blr
-// 	*/
 // }
 
 /*
@@ -3743,16 +3546,6 @@ namespace Game {
  */
 // void CreatureParms::read(Stream&)
 // {
-// 	/*
-// 	stwu     r1, -0x10(r1)
-// 	mflr     r0
-// 	stw      r0, 0x14(r1)
-// 	bl       read__10ParametersFR6Stream
-// 	lwz      r0, 0x14(r1)
-// 	mtlr     r0
-// 	addi     r1, r1, 0x10
-// 	blr
-// 	*/
 // }
 
 /*
@@ -3763,30 +3556,6 @@ namespace Game {
  */
 // void Pelplant::Parms::read(Stream& input)
 // {
-// 	EnemyParmsBase::read(input);
-// 	m_pelplantParms.read(input);
-// 	/*
-// 	stwu     r1, -0x10(r1)
-// 	mflr     r0
-// 	stw      r0, 0x14(r1)
-// 	stw      r31, 0xc(r1)
-// 	mr       r31, r4
-// 	stw      r30, 8(r1)
-// 	mr       r30, r3
-// 	bl       read__10ParametersFR6Stream
-// 	mr       r4, r31
-// 	addi     r3, r30, 0xe0
-// 	bl       read__10ParametersFR6Stream
-// 	mr       r4, r31
-// 	addi     r3, r30, 0x7f8
-// 	bl       read__10ParametersFR6Stream
-// 	lwz      r0, 0x14(r1)
-// 	lwz      r31, 0xc(r1)
-// 	lwz      r30, 8(r1)
-// 	mtlr     r0
-// 	addi     r1, r1, 0x10
-// 	blr
-// 	*/
 // }
 
 } // namespace Game

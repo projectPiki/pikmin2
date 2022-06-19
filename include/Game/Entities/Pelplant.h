@@ -76,6 +76,9 @@ struct Obj : public EnemyBase {
 	static unknown headJointCallBack(J3DJoint*, int);
 	static unknown neckJointCallBack(J3DJoint*, int);
 
+	// Inlined:
+	void getNeckScale(Vector3f*);
+
 	FSM* m_fsm;                           // _2BC
 	float _2C0;                           // _2C0
 	Matrixf* _2C4;                        // _2C4
