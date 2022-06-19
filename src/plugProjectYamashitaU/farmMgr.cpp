@@ -1,4 +1,9 @@
+#include "Dolphin/float.h"
+#include "Game/GameSystem.h"
+#include "System.h"
 #include "types.h"
+#include "Game/Farm.h"
+#include "nans.h"
 
 /*
     Generated from dpostproc
@@ -74,64 +79,26 @@
 */
 
 namespace Game {
+namespace Farm {
 
 /*
+ * __ct__Q34Game4Farm7FarmMgrFUl
  * --INFO--
  * Address:	80124018
  * Size:	0000C0
  */
-Farm::FarmMgr::FarmMgr(unsigned long)
+FarmMgr::FarmMgr(unsigned long p1)
+    : GenericObjectMgr()
+    , CNode("農耕マネージャ")
+    , _1C(p1)
+    , m_farmsRootNode("農耕ポイント")
+    , m_directorUpdator(nullptr)
+    , _3C(0)
+    , _3D(0)
 {
-	/*
-	stwu     r1, -0x10(r1)
-	mflr     r0
-	lis      r5, __vt__16GenericObjectMgr@ha
-	li       r8, 0
-	stw      r0, 0x14(r1)
-	addi     r0, r5, __vt__16GenericObjectMgr@l
-	lis      r5, lbl_8047B718@ha
-	stw      r31, 0xc(r1)
-	mr       r31, r3
-	lis      r3, __vt__5CNode@ha
-	addi     r7, r5, lbl_8047B718@l
-	stw      r0, 0(r31)
-	addi     r9, r3, __vt__5CNode@l
-	lis      r3, __vt__Q34Game4Farm7FarmMgr@ha
-	stw      r9, 4(r31)
-	addi     r6, r3, __vt__Q34Game4Farm7FarmMgr@l
-	lis      r3, lbl_8047B728@ha
-	stw      r8, 0x14(r31)
-	addi     r0, r3, lbl_8047B728@l
-	addi     r5, r6, 0x38
-	addi     r3, r31, 4
-	stw      r8, 0x10(r31)
-	stw      r8, 0xc(r31)
-	stw      r8, 8(r31)
-	stw      r7, 0x18(r31)
-	stw      r6, 0(r31)
-	stw      r5, 4(r31)
-	stw      r4, 0x1c(r31)
-	addi     r4, r31, 0x20
-	stw      r9, 0x20(r31)
-	stw      r8, 0x30(r31)
-	stw      r8, 0x2c(r31)
-	stw      r8, 0x28(r31)
-	stw      r8, 0x24(r31)
-	stw      r0, 0x34(r31)
-	stw      r8, 0x38(r31)
-	stb      r8, 0x3c(r31)
-	stb      r8, 0x3d(r31)
-	bl       add__5CNodeFP5CNode
-	li       r0, 0
-	mr       r3, r31
-	stb      r0, 0x3c(r31)
-	stb      r0, 0x3d(r31)
-	lwz      r31, 0xc(r1)
-	lwz      r0, 0x14(r1)
-	mtlr     r0
-	addi     r1, r1, 0x10
-	blr
-	*/
+	add(&m_farmsRootNode);
+	_3C = 0;
+	_3D = 0;
 }
 
 /*
@@ -139,29 +106,12 @@ Farm::FarmMgr::FarmMgr(unsigned long)
  * Address:	801240D8
  * Size:	00002C
  */
-void Farm::FarmMgr::setupSound()
+void FarmMgr::setupSound()
 {
-	/*
-	lwz      r3, 0x30(r3)
-	b        lbl_801240F8
-
-lbl_801240E0:
-	lwz      r4, 0x40(r3)
-	b        lbl_801240EC
-
-lbl_801240E8:
-	lwz      r4, 4(r4)
-
-lbl_801240EC:
-	cmplwi   r4, 0
-	bne      lbl_801240E8
-	lwz      r3, 4(r3)
-
-lbl_801240F8:
-	cmplwi   r3, 0
-	bne      lbl_801240E0
-	blr
-	*/
+	for (Farm* farm = (Farm*)m_farmsRootNode.m_child; farm != nullptr; farm = (Farm*)farm->m_next) {
+		for (Obstacle* obstacle = (Obstacle*)farm->m_obstacleRootNode.m_child; obstacle != nullptr;
+		     obstacle           = (Obstacle*)obstacle->m_next) { }
+	}
 }
 
 /*
@@ -169,7 +119,7 @@ lbl_801240F8:
  * Address:	80124104
  * Size:	000124
  */
-void Farm::FarmMgr::doAnimation()
+void FarmMgr::doAnimation()
 {
 	/*
 	stwu     r1, -0x30(r1)
@@ -266,54 +216,27 @@ lbl_8012420C:
 	*/
 }
 
-/*
- * --INFO--
- * Address:	80124228
- * Size:	000008
- */
-u32 Creature::getJAIObject() { return 0x0; }
+// /*
+//  * --INFO--
+//  * Address:	80124228
+//  * Size:	000008
+//  */
+// JAInter::Object* Creature::getJAIObject() { return nullptr; }
 
 /*
  * --INFO--
  * Address:	80124230
  * Size:	000068
  */
-void Farm::FarmMgr::doEntry()
+void FarmMgr::doEntry()
 {
-	/*
-	stwu     r1, -0x10(r1)
-	mflr     r0
-	li       r4, 9
-	stw      r0, 0x14(r1)
-	stw      r31, 0xc(r1)
-	mr       r31, r3
-	lwz      r3, gameSystem__4Game@sda21(r13)
-	bl       setDrawBuffer__Q24Game10GameSystemFi
-	lwz      r0, 0x30(r31)
-	cmplwi   r0, 0
-	beq      lbl_80124278
-	mr       r31, r0
-	b        lbl_80124270
-
-lbl_80124264:
-	mr       r3, r31
-	bl       doEntry__Q34Game4Farm4FarmFv
-	lwz      r31, 4(r31)
-
-lbl_80124270:
-	cmplwi   r31, 0
-	bne      lbl_80124264
-
-lbl_80124278:
-	lwz      r3, gameSystem__4Game@sda21(r13)
-	li       r4, 0
-	bl       setDrawBuffer__Q24Game10GameSystemFi
-	lwz      r0, 0x14(r1)
-	lwz      r31, 0xc(r1)
-	mtlr     r0
-	addi     r1, r1, 0x10
-	blr
-	*/
+	gameSystem->setDrawBuffer(9);
+	if (m_farmsRootNode.m_child != nullptr) {
+		for (Farm* farm = (Farm*)m_farmsRootNode.m_child; farm != nullptr; farm = (Farm*)farm->m_next) {
+			farm->doEntry();
+		}
+	}
+	gameSystem->setDrawBuffer(0);
 }
 
 /*
@@ -321,39 +244,13 @@ lbl_80124278:
  * Address:	80124298
  * Size:	00005C
  */
-void Farm::FarmMgr::doSetView(int)
+void FarmMgr::doSetView(int p1)
 {
-	/*
-	stwu     r1, -0x10(r1)
-	mflr     r0
-	stw      r0, 0x14(r1)
-	stw      r31, 0xc(r1)
-	stw      r30, 8(r1)
-	lwz      r0, 0x30(r3)
-	cmplwi   r0, 0
-	beq      lbl_801242DC
-	mr       r30, r0
-	mr       r31, r4
-	b        lbl_801242D4
-
-lbl_801242C4:
-	mr       r3, r30
-	mr       r4, r31
-	bl       doSetView__Q34Game4Farm4FarmFUl
-	lwz      r30, 4(r30)
-
-lbl_801242D4:
-	cmplwi   r30, 0
-	bne      lbl_801242C4
-
-lbl_801242DC:
-	lwz      r0, 0x14(r1)
-	lwz      r31, 0xc(r1)
-	lwz      r30, 8(r1)
-	mtlr     r0
-	addi     r1, r1, 0x10
-	blr
-	*/
+	if (m_farmsRootNode.m_child != nullptr) {
+		for (Farm* farm = (Farm*)m_farmsRootNode.m_child; farm != nullptr; farm = (Farm*)farm->m_next) {
+			farm->doSetView(p1);
+		}
+	}
 }
 
 /*
@@ -361,35 +258,13 @@ lbl_801242DC:
  * Address:	801242F4
  * Size:	00004C
  */
-void Farm::FarmMgr::doViewCalc()
+void FarmMgr::doViewCalc()
 {
-	/*
-	stwu     r1, -0x10(r1)
-	mflr     r0
-	stw      r0, 0x14(r1)
-	stw      r31, 0xc(r1)
-	lwz      r0, 0x30(r3)
-	cmplwi   r0, 0
-	beq      lbl_8012432C
-	mr       r31, r0
-	b        lbl_80124324
-
-lbl_80124318:
-	mr       r3, r31
-	bl       doViewCalc__Q34Game4Farm4FarmFv
-	lwz      r31, 4(r31)
-
-lbl_80124324:
-	cmplwi   r31, 0
-	bne      lbl_80124318
-
-lbl_8012432C:
-	lwz      r0, 0x14(r1)
-	lwz      r31, 0xc(r1)
-	mtlr     r0
-	addi     r1, r1, 0x10
-	blr
-	*/
+	if (m_farmsRootNode.m_child != nullptr) {
+		for (Farm* farm = (Farm*)m_farmsRootNode.m_child; farm != nullptr; farm = (Farm*)farm->m_next) {
+			farm->doViewCalc();
+		}
+	}
 }
 
 /*
@@ -397,48 +272,25 @@ lbl_8012432C:
  * Address:	80124340
  * Size:	000004
  */
-void Farm::FarmMgr::doSimulation(float) { }
+void FarmMgr::doSimulation(float) { }
 
 /*
  * --INFO--
  * Address:	80124344
  * Size:	000004
  */
-void Farm::FarmMgr::doDirectDraw(Graphics&) { }
+void FarmMgr::doDirectDraw(Graphics&) { }
 
 /*
  * --INFO--
  * Address:	80124348
  * Size:	000050
  */
-void Farm::FarmMgr::doDebugDraw(Graphics&)
+void FarmMgr::doDebugDraw(Graphics& gfx)
 {
-	/*
-	stwu     r1, -0x10(r1)
-	mflr     r0
-	stw      r0, 0x14(r1)
-	stw      r31, 0xc(r1)
-	stw      r30, 8(r1)
-	mr       r30, r4
-	lwz      r31, 0x30(r3)
-	b        lbl_80124378
-
-lbl_80124368:
-	mr       r3, r31
-	mr       r4, r30
-	bl       doDebugDraw__Q34Game4Farm4FarmFR8Graphics
-	lwz      r31, 4(r31)
-
-lbl_80124378:
-	cmplwi   r31, 0
-	bne      lbl_80124368
-	lwz      r0, 0x14(r1)
-	lwz      r31, 0xc(r1)
-	lwz      r30, 8(r1)
-	mtlr     r0
-	addi     r1, r1, 0x10
-	blr
-	*/
+	for (Farm* farm = (Farm*)m_farmsRootNode.m_child; farm != nullptr; farm = (Farm*)farm->m_next) {
+		farm->doDebugDraw(gfx);
+	}
 }
 
 /*
@@ -446,36 +298,11 @@ lbl_80124378:
  * Address:	80124398
  * Size:	000068
  */
-void Farm::FarmMgr::addFarmBmd(void*)
+void FarmMgr::addFarmBmd(void* bmd)
 {
-	/*
-	stwu     r1, -0x10(r1)
-	mflr     r0
-	lis      r5, lbl_8047B738@ha
-	stw      r0, 0x14(r1)
-	addi     r0, r5, lbl_8047B738@l
-	li       r5, 0
-	stw      r31, 0xc(r1)
-	mr       r31, r4
-	mr       r4, r0
-	stw      r30, 8(r1)
-	mr       r30, r3
-	lwz      r3, sys@sda21(r13)
-	bl       heapStatusStart__6SystemFPcP7JKRHeap
-	mr       r3, r30
-	mr       r4, r31
-	bl       createNewFarm__Q34Game4Farm7FarmMgrFPv
-	lis      r4, lbl_8047B738@ha
-	lwz      r3, sys@sda21(r13)
-	addi     r4, r4, lbl_8047B738@l
-	bl       heapStatusEnd__6SystemFPc
-	lwz      r0, 0x14(r1)
-	lwz      r31, 0xc(r1)
-	lwz      r30, 8(r1)
-	mtlr     r0
-	addi     r1, r1, 0x10
-	blr
-	*/
+	sys->heapStatusStart("FarmMgr Resource", nullptr);
+	createNewFarm(bmd);
+	sys->heapStatusEnd("FarmMgr Resource");
 }
 
 /*
@@ -483,50 +310,50 @@ void Farm::FarmMgr::addFarmBmd(void*)
  * Address:	80124400
  * Size:	000074
  */
-void Farm::FarmMgr::createNewFarm(void*)
+Farm* FarmMgr::createNewFarm(void* bmd)
 {
-	/*
-	stwu     r1, -0x20(r1)
-	mflr     r0
-	stw      r0, 0x24(r1)
-	stw      r31, 0x1c(r1)
-	stw      r30, 0x18(r1)
-	mr       r30, r4
-	stw      r29, 0x14(r1)
-	mr       r29, r3
-	li       r3, 0x60
-	bl       __nw__FUl
-	or.      r31, r3, r3
-	beq      lbl_80124438
-	bl       __ct__Q34Game4Farm4FarmFv
-	mr       r31, r3
+	Farm* farm = new Farm();
+	farm->loadResource(_1C, bmd);
+	m_farmsRootNode.add(farm);
+	return farm;
+}
 
-lbl_80124438:
-	lwz      r4, 0x1c(r29)
-	mr       r3, r31
-	mr       r5, r30
-	bl       loadResource__Q34Game4Farm4FarmFUlPv
-	mr       r4, r31
-	addi     r3, r29, 0x20
-	bl       add__5CNodeFP5CNode
-	lwz      r0, 0x24(r1)
-	mr       r3, r31
-	lwz      r31, 0x1c(r1)
-	lwz      r30, 0x18(r1)
-	lwz      r29, 0x14(r1)
-	mtlr     r0
-	addi     r1, r1, 0x20
-	blr
-	*/
+/*
+ * --INFO--
+ * Address:	........
+ * Size:	000098
+ * @todo needs Vector3f::distance.
+ */
+inline Farm* FarmMgr::getNearestFarm(Vector3f& position)
+{
+	Farm* nearestFarm = nullptr;
+	if (m_farmsRootNode.m_child != nullptr) {
+		float nearestDistance = *__float_max;
+		for (Farm* farm = (Farm*)m_farmsRootNode.m_child; farm != nullptr; farm = (Farm*)farm->m_next) {
+			float distance = farm->m_position.distance(position);
+			if (distance < nearestDistance) {
+				nearestFarm     = farm;
+				nearestDistance = distance;
+			}
+		}
+	}
+	return nearestFarm;
 }
 
 /*
  * --INFO--
  * Address:	80124474
  * Size:	000120
+ * @todo Needs FarmMgr::getNearestFarm
  */
-void Farm::FarmMgr::addObstacle(Game::Creature*, float, float)
+Obstacle* FarmMgr::addObstacle(Game::Creature* creature, float p2, float p3)
 {
+	Vector3f position = creature->getPosition();
+	Farm* farm        = getNearestFarm(position);
+	if (farm != nullptr) {
+		return farm->addObstacle(creature, p2, p3);
+	}
+	return nullptr;
 	/*
 	stwu     r1, -0x40(r1)
 	mflr     r0
@@ -623,9 +450,16 @@ lbl_8012456C:
  * --INFO--
  * Address:	80124594
  * Size:	0000F0
+ * @todo Needs FarmMgr::getNearestFarm
  */
-void Farm::FarmMgr::addPlant(Game::Creature*)
+Plant* FarmMgr::addPlant(Game::Creature* creature)
 {
+	Vector3f position = creature->getPosition();
+	Farm* farm        = getNearestFarm(position);
+	if (farm != nullptr) {
+		return farm->addPlant(creature);
+	}
+	return nullptr;
 	/*
 	stwu     r1, -0x20(r1)
 	mflr     r0
@@ -711,80 +545,23 @@ lbl_8012466C:
  * Address:	80124684
  * Size:	00004C
  */
-void Farm::FarmMgr::initAllFarmObjectNodes()
+void FarmMgr::initAllFarmObjectNodes()
 {
-	/*
-	stwu     r1, -0x10(r1)
-	mflr     r0
-	stw      r0, 0x14(r1)
-	stw      r31, 0xc(r1)
-	lwz      r0, 0x30(r3)
-	cmplwi   r0, 0
-	beq      lbl_801246BC
-	mr       r31, r0
-	b        lbl_801246B4
-
-lbl_801246A8:
-	mr       r3, r31
-	bl       initAllObjectNodes__Q34Game4Farm4FarmFv
-	lwz      r31, 4(r31)
-
-lbl_801246B4:
-	cmplwi   r31, 0
-	bne      lbl_801246A8
-
-lbl_801246BC:
-	lwz      r0, 0x14(r1)
-	lwz      r31, 0xc(r1)
-	mtlr     r0
-	addi     r1, r1, 0x10
-	blr
-	*/
+	if (m_farmsRootNode.m_child != nullptr) {
+		for (Farm* farm = (Farm*)m_farmsRootNode.m_child; farm != nullptr; farm = (Farm*)farm->m_next) {
+			farm->initAllObjectNodes();
+		}
+	}
 }
 
 /*
+ * __dt__Q34Game4Farm7FarmMgrFv
  * --INFO--
  * Address:	801246D0
  * Size:	000078
  */
-Farm::FarmMgr::~FarmMgr()
-{
-	/*
-	stwu     r1, -0x10(r1)
-	mflr     r0
-	stw      r0, 0x14(r1)
-	stw      r31, 0xc(r1)
-	mr       r31, r4
-	stw      r30, 8(r1)
-	or.      r30, r3, r3
-	beq      lbl_8012472C
-	lis      r4, __vt__Q34Game4Farm7FarmMgr@ha
-	addi     r3, r30, 0x20
-	addi     r5, r4, __vt__Q34Game4Farm7FarmMgr@l
-	li       r4, -1
-	stw      r5, 0(r30)
-	addi     r0, r5, 0x38
-	stw      r0, 4(r30)
-	bl       __dt__5CNodeFv
-	addi     r3, r30, 4
-	li       r4, 0
-	bl       __dt__5CNodeFv
-	extsh.   r0, r31
-	ble      lbl_8012472C
-	mr       r3, r30
-	bl       __dl__FPv
-
-lbl_8012472C:
-	lwz      r0, 0x14(r1)
-	mr       r3, r30
-	lwz      r31, 0xc(r1)
-	lwz      r30, 8(r1)
-	mtlr     r0
-	addi     r1, r1, 0x10
-	blr
-	*/
-}
-
+FarmMgr::~FarmMgr() { }
+} // namespace Farm
 } // namespace Game
 
 /*
@@ -792,34 +569,34 @@ lbl_8012472C:
  * Address:	80124748
  * Size:	000028
  */
-void __sinit_farmMgr_cpp(void)
-{
-	/*
-	lis      r4, __float_nan@ha
-	li       r0, -1
-	lfs      f0, __float_nan@l(r4)
-	lis      r3, lbl_804AD9B8@ha
-	stw      r0, lbl_805158A8@sda21(r13)
-	stfsu    f0, lbl_804AD9B8@l(r3)
-	stfs     f0, lbl_805158AC@sda21(r13)
-	stfs     f0, 4(r3)
-	stfs     f0, 8(r3)
-	blr
-	*/
-}
+// void __sinit_farmMgr_cpp(void)
+// {
+// 	/*
+// 	lis      r4, __float_nan@ha
+// 	li       r0, -1
+// 	lfs      f0, __float_nan@l(r4)
+// 	lis      r3, lbl_804AD9B8@ha
+// 	stw      r0, lbl_805158A8@sda21(r13)
+// 	stfsu    f0, lbl_804AD9B8@l(r3)
+// 	stfs     f0, lbl_805158AC@sda21(r13)
+// 	stfs     f0, 4(r3)
+// 	stfs     f0, 8(r3)
+// 	blr
+// 	*/
+// }
 
-namespace Game {
+// namespace Game {
 
-/*
- * --INFO--
- * Address:	80124770
- * Size:	000008
- */
-Farm::FarmMgr::@4 @~FarmMgr()
-{
-	/*
-	addi     r3, r3, -4
-	b        __dt__Q34Game4Farm7FarmMgrFv
-	*/
-}
-} // namespace Game
+// /*
+//  * --INFO--
+//  * Address:	80124770
+//  * Size:	000008
+//  */
+// Farm::FarmMgr::@4 @~FarmMgr()
+// {
+// 	/*
+// 	addi     r3, r3, -4
+// 	b        __dt__Q34Game4Farm7FarmMgrFv
+// 	*/
+// }
+// } // namespace Game

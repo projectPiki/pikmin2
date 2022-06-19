@@ -8,6 +8,7 @@
 #include "GenericObjectMgr.h"
 #include "SysShape/Model.h"
 #include "Vector3.h"
+#include "Game/Creature.h"
 
 namespace PSM {
 struct DirectorUpdator;
@@ -23,6 +24,7 @@ struct Plant;
 
 struct Farm : public CNode {
 	Farm();
+
 	virtual ~Farm(); // _00
 
 	void loadResource(unsigned long, void*);
@@ -51,7 +53,14 @@ struct Farm : public CNode {
  * @size{0x24}
  */
 struct Obstacle : public CNode {
-	Obstacle(Farm*, FieldVtxColorMgr*, Game::Creature*, float, float); // unused/inlined
+	Obstacle(Farm* farm, FieldVtxColorMgr* vtxColorMgr, Game::Creature* creature, float p2, float p3) // unused/inlined
+	    : CNode("")
+	    , m_farm(farm)
+	{
+		Vector3f position = creature->getPosition();
+		m_creature        = creature;
+		m_vtxColorControl = vtxColorMgr->createNewControl(position, p2, p3);
+	}
 
 	virtual ~Obstacle(); // _00
 
@@ -69,7 +78,12 @@ struct Obstacle : public CNode {
  * @size{0x20}
  */
 struct Plant : public CNode {
-	Plant(Game::Creature*);
+	Plant(Game::Creature* creature)
+	    : CNode("")
+	    , m_creature(creature)
+	    , _1C()
+	{
+	}
 
 	virtual ~Plant(); // _00
 
@@ -78,10 +92,12 @@ struct Plant : public CNode {
 	void doDebugDraw(Graphics&);
 
 	Game::Creature* m_creature; // _18
-	u8 _1C[4];                  // _1C
+	unknown _1C;                // _1C
 };
 
 struct FarmMgr : public GenericObjectMgr, public CNode {
+	FarmMgr(unsigned long);
+
 	// vtable 1 (GenericObjectMgr)
 	virtual void doAnimation();           // _00
 	virtual void doEntry();               // _04
@@ -103,7 +119,7 @@ struct FarmMgr : public GenericObjectMgr, public CNode {
 	void initAllFarmObjectNodes();
 
 	// Unused/inlined:
-	Farm* getNearestFarm(Vector3f&);
+	inline Farm* getNearestFarm(Vector3f&);
 
 	u32 _1C;                                 // _1C
 	CNode m_farmsRootNode;                   // _20

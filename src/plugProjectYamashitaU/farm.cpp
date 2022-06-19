@@ -1,4 +1,10 @@
+#include "Game/Creature.h"
+#include "Game/FieldVtxColorMgr.h"
+#include "JSystem/J3D/J3DModel.h"
+#include "System.h"
+#include "Vector3.h"
 #include "types.h"
+#include "Game/Farm.h"
 
 /*
     Generated from dpostproc
@@ -75,13 +81,14 @@
 */
 
 namespace Game {
+namespace Farm {
 
 /*
  * --INFO--
  * Address:	801234F8
  * Size:	000030
  */
-void Farm::Obstacle::setPower(float)
+void Obstacle::setPower(float)
 {
 	/*
 	stwu     r1, -0x10(r1)
@@ -100,61 +107,20 @@ void Farm::Obstacle::setPower(float)
 }
 
 /*
+ * __ct__Q34Game4Farm4FarmFv
  * --INFO--
  * Address:	80123528
  * Size:	0000BC
  */
-Farm::Farm::Farm()
+Farm::Farm()
+    : CNode("農耕")
+    , m_modelData(nullptr)
+    , m_model(nullptr)
+    , m_obstacleRootNode("ObstacleNode")
+    , m_plantRootNode("PlantNode")
 {
-	/*
-	stwu     r1, -0x10(r1)
-	mflr     r0
-	lis      r4, __vt__5CNode@ha
-	lis      r6, __vt__Q34Game4Farm4Farm@ha
-	stw      r0, 0x14(r1)
-	addi     r9, r4, __vt__5CNode@l
-	lis      r5, lbl_8047B6C8@ha
-	lis      r4, lbl_8047B6D8@ha
-	stw      r31, 0xc(r1)
-	li       r8, 0
-	addi     r7, r2, lbl_80517E7C@sda21
-	addi     r6, r6, __vt__Q34Game4Farm4Farm@l
-	stw      r9, 0(r3)
-	addi     r5, r5, lbl_8047B6C8@l
-	addi     r0, r4, lbl_8047B6D8@l
-	mr       r31, r3
-	stw      r8, 0x10(r3)
-	addi     r4, r31, 0x30
-	stw      r8, 0xc(r3)
-	stw      r8, 8(r3)
-	stw      r8, 4(r3)
-	stw      r7, 0x14(r3)
-	stw      r6, 0(r3)
-	stw      r8, 0x24(r3)
-	stw      r8, 0x28(r3)
-	stw      r9, 0x30(r3)
-	stw      r8, 0x40(r3)
-	stw      r8, 0x3c(r3)
-	stw      r8, 0x38(r3)
-	stw      r8, 0x34(r3)
-	stw      r5, 0x44(r3)
-	stw      r9, 0x48(r3)
-	stw      r8, 0x58(r3)
-	stw      r8, 0x54(r3)
-	stw      r8, 0x50(r3)
-	stw      r8, 0x4c(r3)
-	stw      r0, 0x5c(r3)
-	bl       add__5CNodeFP5CNode
-	mr       r3, r31
-	addi     r4, r31, 0x48
-	bl       add__5CNodeFP5CNode
-	lwz      r0, 0x14(r1)
-	mr       r3, r31
-	lwz      r31, 0xc(r1)
-	mtlr     r0
-	addi     r1, r1, 0x10
-	blr
-	*/
+	add(&m_obstacleRootNode);
+	add(&m_plantRootNode);
 }
 
 /*
@@ -162,8 +128,14 @@ Farm::Farm::Farm()
  * Address:	801235E4
  * Size:	000200
  */
-void Farm::Farm::loadResource(unsigned long, void*)
+void Farm::loadResource(unsigned long p1, void* mdlData)
 {
+	sys->heapStatusStart("Farm resource", nullptr);
+	sys->heapStatusStart("mdlData", nullptr);
+	m_modelData = J3DModelLoaderDataBase::load(mdlData, 0x20000000);
+	sys->heapStatusEnd("mdlData");
+	m_position = Vector3f::zero;
+
 	/*
 	stwu     r1, -0x20(r1)
 	mflr     r0
@@ -311,133 +283,48 @@ lbl_80123790:
  * Address:	801237E4
  * Size:	000004
  */
-void Farm::Farm::update() { }
+void Farm::update() { }
 
 /*
  * --INFO--
  * Address:	801237E8
  * Size:	000034
  */
-void Farm::Farm::doAnimation()
-{
-	/*
-	stwu     r1, -0x10(r1)
-	mflr     r0
-	stw      r0, 0x14(r1)
-	lwz      r3, 0x28(r3)
-	lwz      r3, 8(r3)
-	lwz      r12, 0(r3)
-	lwz      r12, 0x10(r12)
-	mtctr    r12
-	bctrl
-	lwz      r0, 0x14(r1)
-	mtlr     r0
-	addi     r1, r1, 0x10
-	blr
-	*/
-}
+void Farm::doAnimation() { m_model->m_j3dModel->calc(); }
 
 /*
  * --INFO--
  * Address:	8012381C
  * Size:	000034
  */
-void Farm::Farm::doEntry()
-{
-	/*
-	stwu     r1, -0x10(r1)
-	mflr     r0
-	stw      r0, 0x14(r1)
-	lwz      r3, 0x28(r3)
-	lwz      r3, 8(r3)
-	lwz      r12, 0(r3)
-	lwz      r12, 0xc(r12)
-	mtctr    r12
-	bctrl
-	lwz      r0, 0x14(r1)
-	mtlr     r0
-	addi     r1, r1, 0x10
-	blr
-	*/
-}
+void Farm::doEntry() { m_model->m_j3dModel->entry(); }
 
 /*
  * --INFO--
  * Address:	80123850
  * Size:	000024
  */
-void Farm::Farm::doSetView(unsigned long)
-{
-	/*
-	stwu     r1, -0x10(r1)
-	mflr     r0
-	stw      r0, 0x14(r1)
-	lwz      r3, 0x28(r3)
-	bl       setCurrentViewNo__Q28SysShape5ModelFUl
-	lwz      r0, 0x14(r1)
-	mtlr     r0
-	addi     r1, r1, 0x10
-	blr
-	*/
-}
+void Farm::doSetView(unsigned long viewNumber) { m_model->setCurrentViewNo(viewNumber); }
 
 /*
  * --INFO--
  * Address:	80123874
  * Size:	000024
  */
-void Farm::Farm::doViewCalc()
-{
-	/*
-	stwu     r1, -0x10(r1)
-	mflr     r0
-	stw      r0, 0x14(r1)
-	lwz      r3, 0x28(r3)
-	bl       viewCalc__Q28SysShape5ModelFv
-	lwz      r0, 0x14(r1)
-	mtlr     r0
-	addi     r1, r1, 0x10
-	blr
-	*/
-}
+void Farm::doViewCalc() { m_model->viewCalc(); }
 
 /*
  * --INFO--
  * Address:	80123898
  * Size:	000070
  */
-void Farm::Farm::addObstacle(Game::Creature*, float, float)
+Obstacle* Farm::addObstacle(Game::Creature* creature, float p2, float p3)
 {
-	/*
-	stwu     r1, -0x10(r1)
-	mflr     r0
-	stw      r0, 0x14(r1)
-	stw      r31, 0xc(r1)
-	mr       r31, r4
-	stw      r30, 8(r1)
-	mr       r30, r3
-	bl       createNewObstacle__Q34Game4Farm4FarmFPQ24Game8Creatureff
-	mr       r0, r3
-	mr       r3, r31
-	lwz      r12, 0(r31)
-	mr       r31, r0
-	lwz      r12, 0x1a8(r12)
-	mtctr    r12
-	bctrl
-	stw      r3, 0x14(r31)
-	lwz      r3, 0x2c(r30)
-	bl       initVtxColor__Q24Game16FieldVtxColorMgrFv
-	mr       r3, r30
-	li       r4, 1
-	bl       updateObjectRelation__Q34Game4Farm4FarmFb
-	lwz      r0, 0x14(r1)
-	mr       r3, r31
-	lwz      r31, 0xc(r1)
-	lwz      r30, 8(r1)
-	mtlr     r0
-	addi     r1, r1, 0x10
-	blr
-	*/
+	Obstacle* obstacle = createNewObstacle(creature, p2, p3);
+	obstacle->setName(creature->getCreatureName());
+	m_vtxColorMgr->initVtxColor();
+	updateObjectRelation(true);
+	return obstacle;
 }
 
 /*
@@ -445,95 +332,25 @@ void Farm::Farm::addObstacle(Game::Creature*, float, float)
  * Address:	80123908
  * Size:	00000C
  */
-void Creature::getCreatureName()
-{
-	/*
-	lis      r3, lbl_8047B70C@ha
-	addi     r3, r3, lbl_8047B70C@l
-	blr
-	*/
-}
+// void Creature::getCreatureName()
+// {
+// 	/*
+// 	lis      r3, lbl_8047B70C@ha
+// 	addi     r3, r3, lbl_8047B70C@l
+// 	blr
+// 	*/
+// }
 
 /*
  * --INFO--
  * Address:	80123914
  * Size:	000114
  */
-void Farm::Farm::createNewObstacle(Game::Creature*, float, float)
+Obstacle* Farm::createNewObstacle(Game::Creature* creature, float p2, float p3)
 {
-	/*
-	stwu     r1, -0x50(r1)
-	mflr     r0
-	stw      r0, 0x54(r1)
-	stfd     f31, 0x40(r1)
-	psq_st   f31, 72(r1), 0, qr0
-	stfd     f30, 0x30(r1)
-	psq_st   f30, 56(r1), 0, qr0
-	stw      r31, 0x2c(r1)
-	stw      r30, 0x28(r1)
-	stw      r29, 0x24(r1)
-	stw      r28, 0x20(r1)
-	fmr      f30, f1
-	mr       r28, r3
-	fmr      f31, f2
-	mr       r29, r4
-	li       r3, 0x24
-	bl       __nw__FUl
-	or.      r31, r3, r3
-	beq      lbl_801239E8
-	lis      r3, __vt__5CNode@ha
-	lwz      r30, 0x2c(r28)
-	addi     r0, r3, __vt__5CNode@l
-	li       r6, 0
-	stw      r0, 0(r31)
-	lis      r3, __vt__Q34Game4Farm8Obstacle@ha
-	addi     r0, r3, __vt__Q34Game4Farm8Obstacle@l
-	addi     r5, r2, lbl_80517E78@sda21
-	stw      r6, 0x10(r31)
-	mr       r4, r29
-	addi     r3, r1, 0x14
-	stw      r6, 0xc(r31)
-	stw      r6, 8(r31)
-	stw      r6, 4(r31)
-	stw      r5, 0x14(r31)
-	stw      r0, 0(r31)
-	stw      r28, 0x18(r31)
-	lwz      r12, 0(r29)
-	lwz      r12, 8(r12)
-	mtctr    r12
-	bctrl
-	lfs      f4, 0x14(r1)
-	fmr      f1, f30
-	lfs      f3, 0x18(r1)
-	fmr      f2, f31
-	lfs      f0, 0x1c(r1)
-	mr       r3, r30
-	stfs     f4, 8(r1)
-	addi     r4, r1, 8
-	stfs     f3, 0xc(r1)
-	stfs     f0, 0x10(r1)
-	stw      r29, 0x1c(r31)
-	bl       "createNewControl__Q24Game16FieldVtxColorMgrFR10Vector3<f>ff"
-	stw      r3, 0x20(r31)
-
-lbl_801239E8:
-	mr       r4, r31
-	addi     r3, r28, 0x30
-	bl       add__5CNodeFP5CNode
-	mr       r3, r31
-	psq_l    f31, 72(r1), 0, qr0
-	lfd      f31, 0x40(r1)
-	psq_l    f30, 56(r1), 0, qr0
-	lfd      f30, 0x30(r1)
-	lwz      r31, 0x2c(r1)
-	lwz      r30, 0x28(r1)
-	lwz      r29, 0x24(r1)
-	lwz      r0, 0x54(r1)
-	lwz      r28, 0x20(r1)
-	mtlr     r0
-	addi     r1, r1, 0x50
-	blr
-	*/
+	Obstacle* obstacle = new Obstacle(this, m_vtxColorMgr, creature, p2, p3);
+	m_obstacleRootNode.add(obstacle);
+	return obstacle;
 }
 
 /*
@@ -541,27 +358,11 @@ lbl_801239E8:
  * Address:	80123A28
  * Size:	000044
  */
-void Farm::Farm::addPlant(Game::Creature*)
+Plant* Farm::addPlant(Game::Creature* creature)
 {
-	/*
-	stwu     r1, -0x10(r1)
-	mflr     r0
-	stw      r0, 0x14(r1)
-	stw      r31, 0xc(r1)
-	mr       r31, r3
-	bl       createNewPlant__Q34Game4Farm4FarmFPQ24Game8Creature
-	mr       r0, r3
-	mr       r3, r31
-	mr       r31, r0
-	li       r4, 1
-	bl       updateObjectRelation__Q34Game4Farm4FarmFb
-	lwz      r0, 0x14(r1)
-	mr       r3, r31
-	lwz      r31, 0xc(r1)
-	mtlr     r0
-	addi     r1, r1, 0x10
-	blr
-	*/
+	Plant* plant = createNewPlant(creature);
+	updateObjectRelation(true);
+	return plant;
 }
 
 /*
@@ -569,56 +370,12 @@ void Farm::Farm::addPlant(Game::Creature*)
  * Address:	80123A6C
  * Size:	0000B0
  */
-void Farm::Farm::createNewPlant(Game::Creature*)
+Plant* Farm::createNewPlant(Game::Creature* creature)
 {
-	/*
-	stwu     r1, -0x20(r1)
-	mflr     r0
-	stw      r0, 0x24(r1)
-	stw      r31, 0x1c(r1)
-	stw      r30, 0x18(r1)
-	mr       r30, r4
-	stw      r29, 0x14(r1)
-	mr       r29, r3
-	li       r3, 0x20
-	bl       __nw__FUl
-	or.      r31, r3, r3
-	beq      lbl_80123AD8
-	lis      r4, __vt__5CNode@ha
-	lis      r3, __vt__Q34Game4Farm5Plant@ha
-	addi     r0, r4, __vt__5CNode@l
-	li       r5, 0
-	stw      r0, 0(r31)
-	addi     r4, r2, lbl_80517E78@sda21
-	addi     r0, r3, __vt__Q34Game4Farm5Plant@l
-	stw      r5, 0x10(r31)
-	stw      r5, 0xc(r31)
-	stw      r5, 8(r31)
-	stw      r5, 4(r31)
-	stw      r4, 0x14(r31)
-	stw      r0, 0(r31)
-	stw      r30, 0x18(r31)
-	stw      r5, 0x1c(r31)
-
-lbl_80123AD8:
-	mr       r3, r30
-	lwz      r12, 0(r30)
-	lwz      r12, 0x1a8(r12)
-	mtctr    r12
-	bctrl
-	stw      r3, 0x14(r31)
-	mr       r4, r31
-	addi     r3, r29, 0x48
-	bl       add__5CNodeFP5CNode
-	lwz      r0, 0x24(r1)
-	mr       r3, r31
-	lwz      r31, 0x1c(r1)
-	lwz      r30, 0x18(r1)
-	lwz      r29, 0x14(r1)
-	mtlr     r0
-	addi     r1, r1, 0x20
-	blr
-	*/
+	Plant* plant = new Plant(creature);
+	plant->setName(creature->getCreatureName());
+	m_plantRootNode.add(plant);
+	return plant;
 }
 
 /*
@@ -626,7 +383,7 @@ lbl_80123AD8:
  * Address:	80123B1C
  * Size:	0001DC
  */
-void Farm::Farm::updateObjectRelation(bool)
+void Farm::updateObjectRelation(bool)
 {
 	/*
 	stwu     r1, -0x90(r1)
@@ -776,7 +533,7 @@ lbl_80123CBC:
  * Address:	80123CF8
  * Size:	000108
  */
-void Farm::Farm::doDebugDraw(Graphics&)
+void Farm::doDebugDraw(Graphics&)
 {
 	/*
 	stwu     r1, -0x30(r1)
@@ -861,8 +618,18 @@ lbl_80123DDC:
  * Address:	80123E00
  * Size:	0000DC
  */
-void Farm::Farm::initAllObjectNodes()
+void Farm::initAllObjectNodes()
 {
+	for (CNode* node = m_obstacleRootNode.m_child; node != nullptr; node = node->m_next) {
+		node->del();
+		delete node;
+	}
+	for (CNode* node = m_plantRootNode.m_child; node != nullptr; node = node->m_next) {
+		node->del();
+		delete node;
+	}
+	m_obstacleRootNode.clearRelations();
+	m_plantRootNode.clearRelations();
 	/*
 	stwu     r1, -0x20(r1)
 	mflr     r0
@@ -935,120 +702,27 @@ lbl_80123E94:
 }
 
 /*
+ * __dt__Q34Game4Farm5PlantFv
  * --INFO--
  * Address:	80123EDC
  * Size:	000060
  */
-Farm::Plant::~Plant()
-{
-	/*
-	stwu     r1, -0x10(r1)
-	mflr     r0
-	stw      r0, 0x14(r1)
-	stw      r31, 0xc(r1)
-	mr       r31, r4
-	stw      r30, 8(r1)
-	or.      r30, r3, r3
-	beq      lbl_80123F20
-	lis      r5, __vt__Q34Game4Farm5Plant@ha
-	li       r4, 0
-	addi     r0, r5, __vt__Q34Game4Farm5Plant@l
-	stw      r0, 0(r30)
-	bl       __dt__5CNodeFv
-	extsh.   r0, r31
-	ble      lbl_80123F20
-	mr       r3, r30
-	bl       __dl__FPv
-
-lbl_80123F20:
-	lwz      r0, 0x14(r1)
-	mr       r3, r30
-	lwz      r31, 0xc(r1)
-	lwz      r30, 8(r1)
-	mtlr     r0
-	addi     r1, r1, 0x10
-	blr
-	*/
-}
+Plant::~Plant() { }
 
 /*
+ * __dt__Q34Game4Farm8ObstacleFv
  * --INFO--
  * Address:	80123F3C
  * Size:	000060
  */
-Farm::Obstacle::~Obstacle()
-{
-	/*
-	stwu     r1, -0x10(r1)
-	mflr     r0
-	stw      r0, 0x14(r1)
-	stw      r31, 0xc(r1)
-	mr       r31, r4
-	stw      r30, 8(r1)
-	or.      r30, r3, r3
-	beq      lbl_80123F80
-	lis      r5, __vt__Q34Game4Farm8Obstacle@ha
-	li       r4, 0
-	addi     r0, r5, __vt__Q34Game4Farm8Obstacle@l
-	stw      r0, 0(r30)
-	bl       __dt__5CNodeFv
-	extsh.   r0, r31
-	ble      lbl_80123F80
-	mr       r3, r30
-	bl       __dl__FPv
-
-lbl_80123F80:
-	lwz      r0, 0x14(r1)
-	mr       r3, r30
-	lwz      r31, 0xc(r1)
-	lwz      r30, 8(r1)
-	mtlr     r0
-	addi     r1, r1, 0x10
-	blr
-	*/
-}
+Obstacle::~Obstacle() { }
 
 /*
+ * __dt__Q34Game4Farm4FarmFv
  * --INFO--
  * Address:	80123F9C
  * Size:	00007C
  */
-Farm::Farm::~Farm()
-{
-	/*
-	stwu     r1, -0x10(r1)
-	mflr     r0
-	stw      r0, 0x14(r1)
-	stw      r31, 0xc(r1)
-	mr       r31, r4
-	stw      r30, 8(r1)
-	or.      r30, r3, r3
-	beq      lbl_80123FFC
-	lis      r4, __vt__Q34Game4Farm4Farm@ha
-	addi     r3, r30, 0x48
-	addi     r0, r4, __vt__Q34Game4Farm4Farm@l
-	li       r4, -1
-	stw      r0, 0(r30)
-	bl       __dt__5CNodeFv
-	addi     r3, r30, 0x30
-	li       r4, -1
-	bl       __dt__5CNodeFv
-	mr       r3, r30
-	li       r4, 0
-	bl       __dt__5CNodeFv
-	extsh.   r0, r31
-	ble      lbl_80123FFC
-	mr       r3, r30
-	bl       __dl__FPv
-
-lbl_80123FFC:
-	lwz      r0, 0x14(r1)
-	mr       r3, r30
-	lwz      r31, 0xc(r1)
-	lwz      r30, 8(r1)
-	mtlr     r0
-	addi     r1, r1, 0x10
-	blr
-	*/
-}
+Farm::~Farm() { }
+} // namespace Farm
 } // namespace Game

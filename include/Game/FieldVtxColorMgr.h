@@ -31,7 +31,7 @@ struct FieldVtxColorMgr : public J3DVtxColorCalc, public CNode {
 	void initVtxColor();
 	void setupFieldVtxColorInfoFromStrip(void*, int, int, int, int);
 	void setupFieldVtxColorInfo(J3DShape*);
-	void createNewControl(Vector3f&, float, float);
+	FieldVtxColorControl* createNewControl(Vector3f&, float, float);
 	void setupFieldVtxColorControl(FieldVtxColorControl*, Vector3f&, float, float);
 
 	// Unused/inlined:

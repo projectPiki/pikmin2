@@ -140,7 +140,11 @@ struct Creature : public CellObject {
 	virtual void bounceCallback(Sys::Triangle*);
 	virtual void collisionCallback(CollEvent&);
 	virtual void platCallback(PlatEvent&);
-	virtual JAInter::Object* getJAIObject();
+	/**
+	 * @reifiedAddress{80124228}
+	 * @reifiedFile{plugProjectYamashitaU/farmMgr.cpp}
+	 */
+	virtual JAInter::Object* getJAIObject() { return nullptr; }
 	virtual PSM::Creature* getPSCreature();
 	virtual AILOD* getSound_AILOD();
 	virtual Vector3f* getSound_PosPtr();
