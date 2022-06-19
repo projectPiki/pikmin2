@@ -132,6 +132,12 @@ u32 OSGetConsoleType()
 	return BootInfo->consoleType;
 }
 
+void* __OSSavedRegionStart;
+void* __OSSavedRegionEnd;
+
+extern u32 BOOT_REGION_START : 0x812FDFF0; //(*(u32 *)0x812fdff0)
+extern u32 BOOT_REGION_END : 0x812FDFEC;   //(*(u32 *)0x812fdfec)
+
 /*
  * --INFO--
  * Address:	800EB118
@@ -139,91 +145,28 @@ u32 OSGetConsoleType()
  */
 void ClearArena(void)
 {
-	/*
-	.loc_0x0:
-	  mflr      r0
-	  stw       r0, 0x4(r1)
-	  stwu      r1, -0x10(r1)
-	  stw       r31, 0xC(r1)
-	  bl        0x5574
-	  subis     r0, r3, 0x8000
-	  cmplwi    r0, 0
-	  beq-      .loc_0x50
-	  li        r0, 0
-	  stw       r0, -0x70C4(r13)
-	  stw       r0, -0x70C8(r13)
-	  bl        0x12E0
-	  mr        r31, r3
-	  bl        0x12E0
-	  sub       r31, r31, r3
-	  bl        0x12D8
-	  mr        r5, r31
-	  li        r4, 0
-	  bl        -0xE60AC
-	  b         .loc_0x114
-
-	.loc_0x50:
-	  lis       r4, 0x8130
-	  lwz       r3, -0x2010(r4)
-	  lwz       r0, -0x2014(r4)
-	  cmplwi    r3, 0
-	  stw       r3, -0x70C4(r13)
-	  stw       r0, -0x70C8(r13)
-	  bne-      .loc_0x90
-	  bl        0x12A0
-	  mr        r31, r3
-	  bl        0x12A0
-	  sub       r31, r31, r3
-	  bl        0x1298
-	  mr        r5, r31
-	  li        r4, 0
-	  bl        -0xE60EC
-	  b         .loc_0x114
-
-	.loc_0x90:
-	  bl        0x1284
-	  lwz       r0, -0x70C4(r13)
-	  cmplw     r3, r0
-	  bge-      .loc_0x114
-	  bl        0x126C
-	  lwz       r0, -0x70C4(r13)
-	  cmplw     r3, r0
-	  bgt-      .loc_0xD4
-	  bl        0x125C
-	  mr        r31, r3
-	  bl        0x125C
-	  sub       r31, r31, r3
-	  bl        0x1254
-	  mr        r5, r31
-	  li        r4, 0
-	  bl        -0xE6130
-	  b         .loc_0x114
-
-	.loc_0xD4:
-	  bl        0x1240
-	  lwz       r0, -0x70C4(r13)
-	  sub       r31, r0, r3
-	  bl        0x1234
-	  mr        r5, r31
-	  li        r4, 0
-	  bl        -0xE6150
-	  bl        0x121C
-	  lwz       r31, -0x70C8(r13)
-	  cmplw     r3, r31
-	  ble-      .loc_0x114
-	  bl        0x120C
-	  sub       r5, r3, r31
-	  mr        r3, r31
-	  li        r4, 0
-	  bl        -0xE6174
-
-	.loc_0x114:
-	  lwz       r0, 0x14(r1)
-	  lwz       r31, 0xC(r1)
-	  addi      r1, r1, 0x10
-	  mtlr      r0
-	  blr
-	*/
+	if ((u32)(OSGetResetCode() + 0x80000000) != 0U) {
+		__OSSavedRegionStart = 0U;
+		__OSSavedRegionEnd   = 0U;
+		memset(OSGetArenaLo(), 0U, (u32)OSGetArenaHi() - (u32)OSGetArenaLo());
+		return;
+	}
+	__OSSavedRegionStart = (void*)BOOT_REGION_START;
+	__OSSavedRegionEnd   = (void*)BOOT_REGION_END;
+	if (BOOT_REGION_START == 0U) {
+		memset(OSGetArenaLo(), 0U, (u32)OSGetArenaHi() - (u32)OSGetArenaLo());
+		return;
+	}
+	if ((u32)OSGetArenaLo() < (u32)__OSSavedRegionStart) {
+		if ((u32)OSGetArenaHi() <= (u32)__OSSavedRegionStart) {
+			memset((u32)OSGetArenaLo(), 0U, (u32)OSGetArenaHi() - (u32)OSGetArenaLo());
+			return;
+		}
+		memset(OSGetArenaLo(), 0U, (u32)__OSSavedRegionStart - (u32)OSGetArenaLo());
+		if ((u32)OSGetArenaHi() > (u32)__OSSavedRegionEnd) {
+			memset((u32)__OSSavedRegionEnd, 0, (u32)OSGetArenaHi() - (u32)__OSSavedRegionEnd);
+		}
+	}
 }
 
 /*
