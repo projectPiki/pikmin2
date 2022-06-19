@@ -534,7 +534,7 @@ KANDO:=\
 	$(BUILD_DIR)/src/plugProjectKandoU/pelletConfig.o\
 	$(BUILD_DIR)/asm/plugProjectKandoU/gameFootmark.o\
 	$(BUILD_DIR)/asm/plugProjectKandoU/gameSystem.o\
-	$(BUILD_DIR)/asm/plugProjectKandoU/aiConstants.o\
+	$(BUILD_DIR)/src/plugProjectKandoU/aiConstants.o\
 	$(BUILD_DIR)/asm/plugProjectKandoU/gameMapParts.o\
 	$(BUILD_DIR)/asm/plugProjectKandoU/vsGameSection.o\
 	$(BUILD_DIR)/src/plugProjectKandoU/gamePlatMgr.o\
