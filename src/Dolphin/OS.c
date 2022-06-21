@@ -5,6 +5,42 @@
 static f64 ZeroF;
 static f32 ZeroPS[2];
 
+#define OS_BASE_CACHED    0x80003000
+#define OS_DVD_DEVICECODE 0x800030E6
+
+typedef struct DVDCommandBlock DVDCommandBlock;
+typedef struct DVDDriveInfo DVDDriveInfo;
+typedef void (*DVDCBCallback)(s32 result, DVDCommandBlock* block);
+struct DVDCommandBlock {
+	DVDCommandBlock* next;
+	DVDCommandBlock* prev;
+	u32 command;
+	s32 state;
+	u32 offset;
+	u32 length;
+	void* addr;
+	u32 currTransferSize;
+	u32 transferredSize;
+	DVDDiskID* id;
+	DVDCBCallback callback;
+	void* userData;
+};
+struct DVDDriveInfo {
+	u16 _00;
+	u16 deviceCode;
+	u32 _04;
+	u32 _08;
+	u32 _0C;
+	u32 _10;
+	u32 _14;
+	u32 _18;
+	u32 _1C;
+};
+
+vu16 __OSDeviceCode : (OS_BASE_CACHED | OS_DVD_DEVICECODE);
+static DVDDriveInfo DriveInfo ATTRIBUTE_ALIGN(32);
+static DVDCommandBlock DriveBlock;
+
 static OSBootInfo* BootInfo;
 
 /*
@@ -174,32 +210,16 @@ void ClearArena(void)
  * Address:	800EB240
  * Size:	00003C
  */
-void InquiryCallback(void)
+static void InquiryCallback(s32 result, DVDCommandBlock* block)
 {
-	/*
-	.loc_0x0:
-	  lwz       r0, 0xC(r4)
-	  cmpwi     r0, 0
-	  beq-      .loc_0x10
-	  b         .loc_0x2C
-
-	.loc_0x10:
-	  lis       r3, 0x804F
-	  addi      r3, r3, 0x6620
-	  lhz       r0, 0x2(r3)
-	  lis       r3, 0x8000
-	  ori       r0, r0, 0x8000
-	  sth       r0, 0x30E6(r3)
-	  b         .loc_0x38
-
-	.loc_0x2C:
-	  li        r0, 0x1
-	  lis       r3, 0x8000
-	  sth       r0, 0x30E6(r3)
-
-	.loc_0x38:
-	  blr
-	*/
+	switch (block->state) {
+	case 0:
+		__OSDeviceCode = (u16)(0x8000 | DriveInfo.deviceCode);
+		break;
+	default:
+		__OSDeviceCode = 1;
+		break;
+	}
 }
 
 /*
