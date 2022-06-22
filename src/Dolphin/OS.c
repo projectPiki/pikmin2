@@ -5,8 +5,60 @@
 static f64 ZeroF;
 static f32 ZeroPS[2];
 
-#define OS_BASE_CACHED    0x80003000
-#define OS_DVD_DEVICECODE 0x800030E6
+__declspec(section ".init") extern char _db_stack_end[];
+
+// memory locations for important stuff
+#define OS_BASE_BEGINNING     0x80000000
+#define OS_BI2_DEBUG_ADDRESS  0x800000F4
+#define OS_BASE_CACHED        0x80003000
+#define OS_DVD_DEVICECODE     0x800030E6
+#define OS_DEBUG_ADDRESS_1    0x800030E8
+#define OS_DEBUG_ADDRESS_2    0x800030E9
+#define RETAIL                0x0
+#define DEVKIT                0x10000000
+#define TDEVKIT               0x20000000
+#define MAC_EMULATOR          0x10000000
+#define PC_EMULATOR           0x10000001
+#define ARTHUR                0x10000002
+#define MINNOW                0x10000003
+#define __OS_INTERRUPT_PI_RSW 0x16
+
+extern u8 __ArenaHi[];
+extern u8 __ArenaLo[];
+extern u32 __DVDLongFileNameFlag;
+extern u32 __PADSpec;
+// OS version
+char* __OSVersion = "<< Dolphin SDK - OS\trelease build: Nov 26 2003 05:18:37 (0x2301) >>";
+
+static BOOL AreWeInitialized = FALSE;
+
+// main workhorse functions
+void ClearArena();
+void DVDInit();
+void DVDInquiryAsync(void*, void*, void*);
+void EXIInit();
+void EnableMetroTRKInterrupts();
+void OSEnableInterrupts();
+void OSExceptionInit();
+void OSInitAlarm();
+void OSRegisterVersion(char*);
+void PPCMtmmcr0(int);
+void PPCMtmmcr1(int);
+void PPCMtpmc1(int);
+void PPCMtpmc2(int);
+void PPCMtpmc3(int);
+void PPCMtpmc4(int);
+void SIInit();
+void __OSContextInit();
+void __OSInitAudioSystem();
+void __OSInitMemoryProtection();
+void __OSInitSram();
+void __OSInitSystemCall();
+void __OSInterruptInit();
+void __OSSetInterruptHandler(int, void*);
+void __OSThreadInit();
+extern s32 __OSIsGcam;
+extern char* __OSResetSWInterruptHandler[];
 
 typedef struct DVDCommandBlock DVDCommandBlock;
 typedef struct DVDDriveInfo DVDDriveInfo;
@@ -40,6 +92,12 @@ struct DVDDriveInfo {
 vu16 __OSDeviceCode : (OS_BASE_CACHED | OS_DVD_DEVICECODE);
 static DVDDriveInfo DriveInfo ATTRIBUTE_ALIGN(32);
 static DVDCommandBlock DriveBlock;
+
+// flags and system info
+BOOL __OSInIPL;
+static volatile u32* BI2DebugFlag;
+static u32* BI2DebugFlagHolder;
+u64 __OSStartTime;
 
 static OSBootInfo* BootInfo;
 
@@ -230,300 +288,171 @@ static void InquiryCallback(s32 result, DVDCommandBlock* block)
 void OSInit(void)
 {
 	/*
-	.loc_0x0:
-	  mflr      r0
-	  stw       r0, 0x4(r1)
-	  stwu      r1, -0x18(r1)
-	  stw       r31, 0x14(r1)
-	  stw       r30, 0x10(r1)
-	  stw       r29, 0xC(r1)
-	  lwz       r0, -0x70D0(r13)
-	  lis       r3, 0x804F
-	  addi      r30, r3, 0x6620
-	  cmpwi     r0, 0
-	  lis       r3, 0x804B
-	  subi      r31, r3, 0x7700
-	  bne-      .loc_0x3BC
-	  li        r0, 0x1
-	  stw       r0, -0x70D0(r13)
-	  bl        0x78F8
-	  stw       r4, -0x70B4(r13)
-	  stw       r3, -0x70B8(r13)
-	  bl        0x3974
-	  li        r3, 0
-	  bl        -0x16D20
-	  li        r3, 0
-	  bl        -0x16D20
-	  li        r3, 0
-	  bl        -0x16D20
-	  li        r3, 0
-	  bl        -0x16D20
-	  li        r3, 0
-	  bl        -0x16D20
-	  li        r3, 0
-	  bl        -0x16D20
-	  bl        -0x16CBC
-	  bl        -0x16C98
-	  li        r0, 0
-	  lis       r4, 0x8000
-	  stw       r0, -0x70EC(r13)
-	  stw       r4, -0x70F0(r13)
-	  stw       r0, -0x71DC(r13)
-	  lwz       r3, 0xF4(r4)
-	  cmplwi    r3, 0
-	  beq-      .loc_0xD4
-	  addi      r0, r3, 0xC
-	  stw       r0, -0x70EC(r13)
-	  lwz       r0, 0x24(r3)
-	  lwz       r3, -0x70EC(r13)
-	  stw       r0, -0x6FE8(r13)
-	  lwz       r0, 0x0(r3)
-	  rlwinm    r0,r0,0,24,31
-	  stb       r0, 0x30E8(r4)
-	  lwz       r0, -0x6FE8(r13)
-	  rlwinm    r0,r0,0,24,31
-	  stb       r0, 0x30E9(r4)
-	  b         .loc_0xF8
-
-	.loc_0xD4:
-	  lwz       r0, 0x34(r4)
-	  cmplwi    r0, 0
-	  beq-      .loc_0xF8
-	  lbz       r3, 0x30E8(r4)
-	  subi      r0, r13, 0x70E8
-	  stw       r3, -0x70E8(r13)
-	  stw       r0, -0x70EC(r13)
-	  lbz       r0, 0x30E9(r4)
-	  stw       r0, -0x6FE8(r13)
-
-	.loc_0xF8:
-	  li        r0, 0x1
-	  lwz       r3, -0x70F0(r13)
-	  stw       r0, -0x71DC(r13)
-	  lwz       r3, 0x30(r3)
-	  cmplwi    r3, 0
-	  bne-      .loc_0x11C
-	  lis       r3, 0x8053
-	  addi      r3, r3, 0x2EE0
-	  b         .loc_0x11C
-
-	.loc_0x11C:
-	  bl        0x10A4
-	  lwz       r3, -0x70F0(r13)
-	  lwz       r0, 0x30(r3)
-	  cmplwi    r0, 0
-	  bne-      .loc_0x15C
-	  lwz       r3, -0x70EC(r13)
-	  cmplwi    r3, 0
-	  beq-      .loc_0x15C
-	  lwz       r0, 0x0(r3)
-	  cmplwi    r0, 0x2
-	  bge-      .loc_0x15C
-	  lis       r3, 0x8053
-	  addi      r3, r3, 0xED8
-	  addi      r0, r3, 0x1F
-	  rlwinm    r3,r0,0,0,26
-	  bl        0x1068
-
-	.loc_0x15C:
-	  lwz       r3, -0x70F0(r13)
-	  lwz       r3, 0x34(r3)
-	  cmplwi    r3, 0
-	  bne-      .loc_0x178
-	  lis       r3, 0x8170
-	  addi      r3, r3, 0
-	  b         .loc_0x178
-
-	.loc_0x178:
-	  bl        0x1040
-	  bl        .loc_0x3D8
-	  bl        0x63F8
-	  bl        0x6B4
-	  bl        0x40A0
-	  bl        0x38AC
-	  lis       r3, 0x800F
-	  addi      r4, r3, 0x6D0
-	  li        r3, 0x16
-	  bl        0x386C
-	  bl        0x215C
-	  bl        0x183C
-	  bl        -0xA688
-	  bl        0xA3C8
-	  bl        0x57C8
-	  bl        0x642C
-	  bl        0x1010
-	  bl        -0x16E14
-	  rlwinm    r3,r3,0,2,0
-	  bl        -0x16E14
-	  lwz       r0, -0x70C0(r13)
-	  cmpwi     r0, 0
-	  bne-      .loc_0x1D8
-	  bl        0x45C8
-
-	.loc_0x1D8:
-	  addi      r3, r31, 0x44
-	  crclr     6, 0x6
-	  bl        0x2290
-	  addi      r3, r31, 0x54
-	  crclr     6, 0x6
-	  addi      r4, r31, 0x6C
-	  addi      r5, r31, 0x78
-	  bl        0x227C
-	  addi      r3, r31, 0x84
-	  crclr     6, 0x6
-	  bl        0x2270
-	  lwz       r3, -0x70F0(r13)
-	  cmplwi    r3, 0
-	  beq-      .loc_0x21C
-	  lwz       r4, 0x2C(r3)
-	  cmplwi    r4, 0
-	  bne-      .loc_0x228
-
-	.loc_0x21C:
-	  lis       r3, 0x1000
-	  addi      r4, r3, 0x2
-	  b         .loc_0x228
-
-	.loc_0x228:
-	  rlwinm    r3,r4,0,0,3
-	  lis       r0, 0x1000
-	  cmpw      r3, r0
-	  beq-      .loc_0x268
-	  bge-      .loc_0x248
-	  cmpwi     r3, 0
-	  beq-      .loc_0x258
-	  b         .loc_0x2FC
-
-	.loc_0x248:
-	  lis       r0, 0x2000
-	  cmpw      r3, r0
-	  beq-      .loc_0x268
-	  b         .loc_0x2FC
-
-	.loc_0x258:
-	  crclr     6, 0x6
-	  addi      r3, r31, 0x94
-	  bl        0x2210
-	  b         .loc_0x308
-
-	.loc_0x268:
-	  lis       r3, 0x1000
-	  rlwinm    r5,r4,0,4,31
-	  addi      r0, r3, 0x2
-	  cmpw      r5, r0
-	  beq-      .loc_0x2C0
-	  bge-      .loc_0x290
-	  cmpw      r5, r3
-	  beq-      .loc_0x2A0
-	  bge-      .loc_0x2B0
-	  b         .loc_0x2E0
-
-	.loc_0x290:
-	  addi      r0, r3, 0x4
-	  cmpw      r5, r0
-	  bge-      .loc_0x2E0
-	  b         .loc_0x2D0
-
-	.loc_0x2A0:
-	  addi      r3, r31, 0xA0
-	  crclr     6, 0x6
-	  bl        0x21C8
-	  b         .loc_0x308
-
-	.loc_0x2B0:
-	  addi      r3, r31, 0xB0
-	  crclr     6, 0x6
-	  bl        0x21B8
-	  b         .loc_0x308
-
-	.loc_0x2C0:
-	  addi      r3, r31, 0xC0
-	  crclr     6, 0x6
-	  bl        0x21A8
-	  b         .loc_0x308
-
-	.loc_0x2D0:
-	  addi      r3, r31, 0xD0
-	  crclr     6, 0x6
-	  bl        0x2198
-	  b         .loc_0x308
-
-	.loc_0x2E0:
-	  rlwinm    r6,r4,0,4,31
-	  crclr     6, 0x6
-	  mr        r5, r4
-	  addi      r3, r31, 0xE0
-	  subi      r4, r6, 0x3
-	  bl        0x217C
-	  b         .loc_0x308
-
-	.loc_0x2FC:
-	  crclr     6, 0x6
-	  subi      r3, r13, 0x7CB4
-	  bl        0x216C
-
-	.loc_0x308:
-	  lwz       r4, -0x70F0(r13)
-	  addi      r3, r31, 0xFC
-	  crclr     6, 0x6
-	  lwz       r0, 0x28(r4)
-	  rlwinm    r4,r0,12,20,31
-	  bl        0x2154
-	  bl        0xE88
-	  mr        r29, r3
-	  bl        0xE88
-	  mr        r4, r3
-	  crclr     6, 0x6
-	  mr        r5, r29
-	  addi      r3, r31, 0x10C
-	  bl        0x2134
-	  lwz       r3, -0x7CB8(r13)
-	  bl        0x4C8
-	  lwz       r3, -0x70EC(r13)
-	  cmplwi    r3, 0
-	  beq-      .loc_0x364
-	  lwz       r0, 0x0(r3)
-	  cmplwi    r0, 0x2
-	  blt-      .loc_0x364
-	  bl        -0x2B1F0
-
-	.loc_0x364:
-	  bl        -0x4C8
-	  bl        0x3668
-	  lwz       r0, -0x70C0(r13)
-	  cmpwi     r0, 0
-	  bne-      .loc_0x3BC
-	  bl        -0xE8C8
-	  lwz       r0, -0x70E4(r13)
-	  cmpwi     r0, 0
-	  beq-      .loc_0x39C
-	  lis       r3, 0x1
-	  subi      r0, r3, 0x7000
-	  lis       r3, 0x8000
-	  sth       r0, 0x30E6(r3)
-	  b         .loc_0x3BC
-
-	.loc_0x39C:
-	  mr        r3, r30
-	  li        r4, 0x20
-	  bl        0x10CC
-	  lis       r3, 0x800F
-	  subi      r5, r3, 0x4DC0
-	  mr        r4, r30
-	  addi      r3, r30, 0x20
-	  bl        -0xC9E4
-
-	.loc_0x3BC:
-	  lwz       r0, 0x1C(r1)
-	  lwz       r31, 0x14(r1)
-	  lwz       r30, 0x10(r1)
-	  lwz       r29, 0xC(r1)
-	  addi      r1, r1, 0x18
-	  mtlr      r0
-	  blr
-
-	.loc_0x3D8:
+	Initializes the Dolphin operating system.
+	    - most of the main operations get farmed out to other functions
+	    - loading debug info and setting up heap bounds largely happen here
+	    - a lot of OS reporting also gets controlled here
 	*/
+	// pretty sure this is the min(/max) amount of pointers etc for the stack to match
+	BI2Debug* DebugInfo;
+	void* debugArenaLo;
+	u32 inputConsoleType;
+	u32 tdev;
+
+	// check if we've already done all this or not
+	if ((BOOL)AreWeInitialized == FALSE) { // fantastic name
+		AreWeInitialized = TRUE;           // flag to make sure we don't have to do this again
+
+		// SYSTEM //
+		__OSStartTime = __OSGetSystemTime();
+		OSDisableInterrupts();
+
+		// set some PPC things
+		PPCMtmmcr0(0);
+		PPCMtmmcr1(0);
+		PPCMtpmc1(0);
+		PPCMtpmc2(0);
+		PPCMtpmc3(0);
+		PPCMtpmc4(0);
+		PPCDisableSpeculation();
+		PPCSetFpNonIEEEMode();
+
+		// DEBUG //
+		// load some DVD stuff
+		BI2DebugFlag = 0;                              // debug flag from the DVD BI2 header
+		BootInfo     = (OSBootInfo*)OS_BASE_BEGINNING; // set pointer to BootInfo
+
+		__DVDLongFileNameFlag = (u32)0; // flag to tell us whether we make it through the debug loading
+
+		// time to grab a bunch of debug info from the DVD
+		// the address for where the BI2 debug info is, is stored at OS_BI2_DEBUG_ADDRESS
+		DebugInfo = (BI2Debug*)*((u32*)OS_BI2_DEBUG_ADDRESS);
+
+		// if the debug info address exists, grab some debug info
+		if (DebugInfo != NULL) {
+			BI2DebugFlag               = &DebugInfo->debugFlag;     // debug flag from DVD BI2
+			__PADSpec                  = (u32)DebugInfo->padSpec;   // some other info from DVD BI2
+			*((u8*)OS_DEBUG_ADDRESS_1) = (u8)*BI2DebugFlag;         // store flag in mem
+			*((u8*)OS_DEBUG_ADDRESS_2) = (u8)__PADSpec;             // store other info in mem
+		} else if (BootInfo->arenaHi) {                             // if the top of the heap is already set
+			BI2DebugFlagHolder = (u32*)*((u8*)OS_DEBUG_ADDRESS_1);  // grab whatever's stored at 0x800030E8
+			BI2DebugFlag       = (u32*)&BI2DebugFlagHolder;         // flag is then address of flag holder
+			__PADSpec          = (u32) * ((u8*)OS_DEBUG_ADDRESS_2); // pad spec is whatever's at 0x800030E9
+		}
+
+		__DVDLongFileNameFlag = 1; // we made it through debug!
+
+		// HEAP //
+		// set up bottom of heap (ArenaLo)
+		// grab address from BootInfo if it exists, otherwise use default __ArenaLo
+		OSSetArenaLo((BootInfo->arenaLo == NULL) ? __ArenaLo : BootInfo->arenaLo);
+
+		// if the input arenaLo is null, and debug flag location exists (and flag is < 2),
+		//     set arenaLo to just past the end of the db stack
+		if ((BootInfo->arenaLo == NULL) && (BI2DebugFlag != 0) && (*BI2DebugFlag < 2)) {
+			debugArenaLo = (char*)(((u32)_db_stack_end + 0x1f) & ~0x1f);
+			OSSetArenaLo(debugArenaLo);
+		}
+
+		// set up top of heap (ArenaHi)
+		// grab address from BootInfo if it exists, otherwise use default __ArenaHi
+		OSSetArenaHi((BootInfo->arenaHi == NULL) ? __ArenaHi : BootInfo->arenaHi);
+
+		// OS INIT AND REPORT //
+		// initialise a whole bunch of OS stuff
+		OSExceptionInit();
+		__OSInitSystemCall();
+		OSInitAlarm();
+		__OSModuleInit();
+		__OSInterruptInit();
+		__OSSetInterruptHandler(__OS_INTERRUPT_PI_RSW, (void*)__OSResetSWInterruptHandler);
+		__OSContextInit();
+		__OSCacheInit();
+		EXIInit();
+		SIInit();
+		__OSInitSram();
+		__OSThreadInit();
+		__OSInitAudioSystem();
+		PPCMthid2(PPCMfhid2() & 0xBFFFFFFF);
+		if ((BOOL)__OSInIPL == FALSE) {
+			__OSInitMemoryProtection();
+		}
+
+		// begin OS reporting
+		OSReport("\nDolphin OS\n");
+		OSReport("Kernel built : %s %s\n", "Nov 26 2003", "05:18:37");
+		OSReport("Console Type : ");
+
+		// this is a function in the same file, but it doesn't seem to match
+		// inputConsoleType = OSGetConsoleType();
+
+		// inputConsoleType = (BootInfo == NULL || (inputConsoleType = BootInfo->consoleType) == 0) ? 0x10000002 : BootInfo->consoleType;
+		if (BootInfo == NULL || (inputConsoleType = BootInfo->consoleType) == 0) {
+			inputConsoleType = ARTHUR; // default console type
+		} else {
+			inputConsoleType = BootInfo->consoleType;
+		}
+
+		// work out what console type this corresponds to and report it
+		// consoleTypeSwitchHi = inputConsoleType & 0xF0000000;
+		switch (inputConsoleType & 0xF0000000) { // check "first" byte
+		case RETAIL:
+			OSReport("Retail %d\n", inputConsoleType);
+			break;
+		case DEVKIT:
+		case TDEVKIT:
+			// consoleTypeSwitchLo = (inputConsoleType & 0x0FFFFFFF);
+			switch (inputConsoleType & 0x0FFFFFFF) { // if "first" byte is 2, check "the rest"
+			case MAC_EMULATOR:
+				OSReport("Mac Emulator\n");
+				break;
+			case PC_EMULATOR:
+				OSReport("PC Emulator\n");
+				break;
+			case ARTHUR:
+				OSReport("EPPC Arthur\n");
+				break;
+			case MINNOW:
+				OSReport("EPPC Minnow\n");
+				break;
+			default: // if none of the above, just report the info we have
+				tdev = (u32)inputConsoleType & 0x0FFFFFFF;
+				OSReport("Development HW%d (%08x)\n", tdev - 3, inputConsoleType);
+				break;
+			}
+			break;
+		default: // if none of the above, just report the info we have
+			OSReport("%08x\n", inputConsoleType);
+			break;
+		}
+
+		// report memory size
+		OSReport("Memory %d MB\n", (u32)BootInfo->memorySize >> 0x14U);
+		// report heap bounds
+		OSReport("Arena : 0x%x - 0x%x\n", OSGetArenaLo(), OSGetArenaHi());
+		// report OS version
+		OSRegisterVersion(__OSVersion);
+
+		// if location of debug flag exists, and flag is >= 2, enable MetroTRKInterrupts
+		if (BI2DebugFlag && ((*BI2DebugFlag) >= 2)) {
+			EnableMetroTRKInterrupts();
+		}
+
+		// free up memory and re-enable things
+		ClearArena();
+		OSEnableInterrupts();
+
+		// check if we can load OS from IPL; if not, grab it from DVD (?)
+		if ((BOOL)__OSInIPL == FALSE) {
+			DVDInit();
+			if ((BOOL)__OSIsGcam) {
+				__OSDeviceCode = 0x9000;
+				return;
+			}
+			DCInvalidateRange(&DriveInfo, sizeof(DriveInfo));
+			DVDInquiryAsync((char*)&DriveBlock, &DriveInfo, InquiryCallback);
+		}
+	}
 }
 
 /*
@@ -944,7 +873,7 @@ void __OSGetDIConfig(void)
  * Address:	800EBA88
  * Size:	00002C
  */
-void OSRegisterVersion(void)
+void OSRegisterVersion(char* version)
 {
 	/*
 	.loc_0x0:

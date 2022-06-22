@@ -48,16 +48,28 @@ struct DVDDiskID {
 };
 
 typedef struct OSBootInfo_s {
-	DVDDiskID DVDDiskID;
-	u32 magic;
-	u32 version;
-	u32 memorySize;
-	u32 consoleType;
-	void* arenaLo;
-	void* arenaHi;
-	void* FSTLocation;
+	DVDDiskID DVDDiskID; // 0x0
+	u32 DVDmagic;        // 0x18 0xc2339f3d for Nintendo Game Disc
+	u32 magic;           // 0x1C
+	u32 version;         // 0x20
+	u32 memorySize;      // 0x24
+	u32 consoleType;     // 0x28
+	void* arenaLo;       // 0x2C
+	void* arenaHi;       // 0x30
+	void* FSTLocation;   // 0x34
 	u32 FSTMaxLength;
 } OSBootInfo;
+typedef struct BI2Debug {
+	s32 debugMonSize;  // 0x0
+	s32 simMemSize;    // 0x4
+	u32 argOffset;     // 0x8
+	u32 debugFlag;     // 0xC
+	int trackLocation; // 0x10
+	int trackSize;     // 0x14
+	u32 countryCode;   // 0x18
+	u8 unk[8];         // 0x1C
+	u32 padSpec;       // 0x24
+} BI2Debug;
 
 #define OS_MESSAGE_NON_BLOCKING 0
 #define OS_MESSAGE_BLOCKING     1
