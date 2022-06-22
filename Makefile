@@ -245,6 +245,20 @@ endif
 # If we need Frank, add the following after the @echo
 # $(QUIET) $(CC_EPI) $(CFLAGS) -c -o $@ $<
 
+### Extremely lazy recipes for generating context ###
+# Example usage: make build/pikmin2.usa/src/plugProjectYamashitaU/farmMgr.h
+$(BUILD_DIR)/%.h: %.c
+	@echo "Compiling and generating context for " $<
+	$(QUIET) $(CC) $(CFLAGS) -E -c -o $@ $<
+
+$(BUILD_DIR)/%.h: %.cp
+	@echo "Compiling and generating context for " $<
+	$(QUIET) $(CC) $(CFLAGS) -E -c -o $@ $<
+	
+$(BUILD_DIR)/%.h: %.cpp
+	@echo "Compiling and generating context for " $<
+	$(QUIET) $(CC) $(CFLAGS) -E -c -o $@ $<
+
 ### Debug Print ###
 
 print-% : ; $(info $* is a $(flavor $*) variable set to [$($*)]) @true
