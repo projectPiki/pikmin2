@@ -141,6 +141,7 @@ $(BUILD_DIR)/src/Dolphin/fstload.o: MWCC_VERSION := 1.2.5
 $(BUILD_DIR)/src/Dolphin/db.o: MWCC_VERSION := 1.2.5
 $(BUILD_DIR)/src/Dolphin/OSAudioSystem.o: MWCC_VERSION := 1.2.5
 $(BUILD_DIR)/src/Dolphin/OSAlloc.o: MWCC_VERSION := 1.2.5
+$(BUILD_DIR)/src/Dolphin/OS.o: MWCC_VERSION := 1.2.5
 
 # Dirty hack to overwrite sdata
 $(BUILD_DIR)/src/Dolphin/main_TRK.o: CFLAGS += -sdata 0
