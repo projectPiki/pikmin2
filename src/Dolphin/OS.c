@@ -97,13 +97,13 @@ struct DVDDriveInfo {
 
 // The exception table.  It points to a location in LoMem.  It is set by
 // OSExceptionInit
-typedef u8 __OSExceptionHandler;
+typedef u32 __OSExceptionHandler;
 #define OS_EXCEPTIONTABLE_ADDR 0x3000
 #define OS_DBJUMPPOINT_ADDR    0x60
 
 vu16 __OSDeviceCode : (OS_BASE_CACHED | OS_DVD_DEVICECODE);
 #define OSPhysicalToCached(paddr) ((void*)((u32)(paddr)-OS_BASE_CACHED))
-void OSDefaultExceptionHandler(__OSExceptionHandler exception, OSContext* context);
+void OSDefaultExceptionHandler(__OSException exception, OSContext* context);
 static DVDDriveInfo DriveInfo ATTRIBUTE_ALIGN(32);
 static DVDCommandBlock DriveBlock;
 

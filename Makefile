@@ -151,6 +151,7 @@ $(BUILD_DIR)/src/Dolphin/SISamplingRate.o: CFLAGS += -str noreadonly
 $(BUILD_DIR)/src/Dolphin/fstload.o: CFLAGS += -str noreadonly
 $(BUILD_DIR)/src/Dolphin/db.o: CFLAGS += -str noreadonly
 $(BUILD_DIR)/src/Dolphin/OS.o: CFLAGS += -str noreadonly
+
 # Enable string pooling
 $(BUILD_DIR)/src/Dolphin/locale.o: CFLAGS += -str pool
 
