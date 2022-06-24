@@ -5,3 +5,4 @@ EPILOGUE_UNSCHEDULED:=\
 	$(EPILOGUE_DIR)/src/Dolphin/fstload.o\
 	$(EPILOGUE_DIR)/src/Dolphin/dvdidutils.o\
 	$(EPILOGUE_DIR)/src/Dolphin/OSAudioSystem.o\
+	$(EPILOGUE_DIR)/src/Dolphin/OS.o\

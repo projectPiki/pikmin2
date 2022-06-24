@@ -120,7 +120,7 @@ ifeq ($(VERBOSE),0)
 # this set of LDFLAGS generates no warnings.
 LDFLAGS := $(MAPGEN) -fp hard -nodefaults -w off
 endif
-CFLAGS   = -Cpp_exceptions off -enum int -inline auto -proc gekko -RTTI off -fp hard -fp_contract on -rostr -O4,p -use_lmw_stmw on -sdata 8 -sdata2 8 -nodefaults $(INCLUDES)
+CFLAGS  := -Cpp_exceptions off -enum int -inline auto -proc gekko -RTTI off -fp hard -fp_contract on -rostr -O4,p -use_lmw_stmw on -sdata 8 -sdata2 8 -nodefaults $(INCLUDES)
 
 ifeq ($(VERBOSE),0)
 # this set of ASFLAGS generates no warnings.
@@ -141,14 +141,17 @@ $(BUILD_DIR)/src/Dolphin/fstload.o: MWCC_VERSION := 1.2.5
 $(BUILD_DIR)/src/Dolphin/db.o: MWCC_VERSION := 1.2.5
 $(BUILD_DIR)/src/Dolphin/OSAudioSystem.o: MWCC_VERSION := 1.2.5
 $(BUILD_DIR)/src/Dolphin/OSAlloc.o: MWCC_VERSION := 1.2.5
+$(BUILD_DIR)/src/Dolphin/OS.o: MWCC_VERSION := 1.2.5
 
 # Dirty hack to overwrite sdata
 $(BUILD_DIR)/src/Dolphin/main_TRK.o: CFLAGS += -sdata 0
 $(BUILD_DIR)/src/Dolphin/target_options.o: CFLAGS += -sdata 0
 # Disable read-only strings
-$(BUILD_DIR)/src/Dolphin/SISamplingRate.o: CFLAGS := -Cpp_exceptions off -enum int -inline auto -proc gekko -RTTI off -fp hard -fp_contract on -O4,p -use_lmw_stmw on -sdata 8 -sdata2 8 -nodefaults $(INCLUDES)
-$(BUILD_DIR)/src/Dolphin/fstload.o: CFLAGS := -Cpp_exceptions off -enum int -inline auto -proc gekko -RTTI off -fp hard -fp_contract on -O4,p -use_lmw_stmw on -sdata 8 -sdata2 8 -nodefaults $(INCLUDES)
-$(BUILD_DIR)/src/Dolphin/db.o: CFLAGS := -Cpp_exceptions off -enum int -inline auto -proc gekko -RTTI off -fp hard -fp_contract on -O4,p -use_lmw_stmw on -sdata 8 -sdata2 8 -nodefaults $(INCLUDES)
+$(BUILD_DIR)/src/Dolphin/SISamplingRate.o: CFLAGS += -str noreadonly
+$(BUILD_DIR)/src/Dolphin/fstload.o: CFLAGS += -str noreadonly
+$(BUILD_DIR)/src/Dolphin/db.o: CFLAGS += -str noreadonly
+$(BUILD_DIR)/src/Dolphin/OS.o: CFLAGS += -str noreadonly
+
 # Enable string pooling
 $(BUILD_DIR)/src/Dolphin/locale.o: CFLAGS += -str pool
 
