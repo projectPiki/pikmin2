@@ -4,7 +4,11 @@
 
 __declspec(section ".init") extern char _db_stack_end[];
 
+typedef u8 __OSException;
+
 // memory locations for important stuff
+#define OS_CACHED_REGION_PREFIX 0x8000
+#define OS_DBINTERFACE_ADDR     0x40
 #define OS_BI2_DEBUG_ADDRESS    0x800000F4
 #define OS_BI2_DEBUGFLAG_OFFSET 0xC
 #define OS_BASE_CACHED          0x80000000
@@ -20,6 +24,9 @@ __declspec(section ".init") extern char _db_stack_end[];
 #define ARTHUR                  0x10000002
 #define MINNOW                  0x10000003
 #define __OS_INTERRUPT_PI_RSW   0x16
+#define DB_EXCEPTIONRET_OFFSET  0xC
+#define DB_EXCEPTIONDEST_OFFSET 0x8
+#define MSR_RI_BIT              0x1E
 
 extern u8 __ArenaHi[];
 extern u8 __ArenaLo[];
@@ -37,7 +44,7 @@ void EnableMetroTRKInterrupts();
 void OSEnableInterrupts();
 void OSExceptionInit();
 void OSInitAlarm();
-void OSRegisterVersion(char*);
+void OSRegisterVersion(const char*);
 void PPCMtmmcr0(int);
 void PPCMtmmcr1(int);
 void PPCMtpmc1(int);
@@ -56,7 +63,7 @@ void __OSThreadInit();
 u64 __OSGetSystemTime();
 void DBPrintf(const char*, ...);
 BOOL __DBIsExceptionMarked(u8);
-extern s32 __OSIsGcam;
+void __OSUnhandledException(__OSException exception, OSContext* context, u32 dsisr, u32 dar);
 extern char* __OSResetSWInterruptHandler[];
 
 typedef struct DVDCommandBlock DVDCommandBlock;
@@ -88,23 +95,23 @@ struct DVDDriveInfo {
 	u32 _1C;
 };
 
-vu16 __OSDeviceCode : (OS_BASE_CACHED | OS_DVD_DEVICECODE);
-#define OSPhysicalToCached(paddr) ((void*)((u32)(paddr)-OS_BASE_CACHED))
-void OSDefaultExceptionHandler(u32 exception, OSContext* context);
-static DVDDriveInfo DriveInfo ATTRIBUTE_ALIGN(32);
-static DVDCommandBlock DriveBlock;
-
 // The exception table.  It points to a location in LoMem.  It is set by
 // OSExceptionInit
 typedef u8 __OSExceptionHandler;
 #define OS_EXCEPTIONTABLE_ADDR 0x3000
-#define OS_DBJUMPPOINT_ADDR 0x60
+#define OS_DBJUMPPOINT_ADDR    0x60
+
+vu16 __OSDeviceCode : (OS_BASE_CACHED | OS_DVD_DEVICECODE);
+#define OSPhysicalToCached(paddr) ((void*)((u32)(paddr)-OS_BASE_CACHED))
+void OSDefaultExceptionHandler(__OSExceptionHandler exception, OSContext* context);
+static DVDDriveInfo DriveInfo ATTRIBUTE_ALIGN(32);
+static DVDCommandBlock DriveBlock;
 
 // flags and system info
 static OSBootInfo* BootInfo;
 static volatile u32* BI2DebugFlag;
 static u32* BI2DebugFlagHolder;
-static s32 __OSIsGcam; // weak object
+BOOL __OSIsGcam; // weak object
 static f64 ZeroF;
 static f32 ZeroPS[2];
 static BOOL AreWeInitialized = FALSE;
@@ -501,7 +508,6 @@ void __OSDBJUMPEND(void);
 #define __OS_EXCEPTION_MAX 15
 
 #define NOP 0x60000000
-typedef u8 __OSException;
 
 __OSExceptionHandler __OSSetExceptionHandler(__OSException exception, __OSExceptionHandler handler);
 
@@ -606,7 +612,7 @@ entry __OSDBINTSTART
     lwz     r3, DB_EXCEPTIONDEST_OFFSET(r5)
     oris    r3, r3, OS_CACHED_REGION_PREFIX
     mtlr    r3
-    li      r3, MSR_IR | MSR_DR     // turn on memory addressing
+    li      r3, 0x30 // MSR_IR | MSR_DR     // turn on memory addressing
     mtmsr   r3
     blr
 entry __OSDBINTEND
@@ -623,8 +629,7 @@ static asm void __OSDBJump ( void )
 entry __OSDBJUMPSTART
     bla     OS_DBJUMPPOINT_ADDR
 entry __OSDBJUMPEND
-}
-// clang-format on
+} // clang-format on
 
 /*
  * --INFO--
@@ -633,16 +638,10 @@ entry __OSDBJUMPEND
  */
 __OSExceptionHandler __OSSetExceptionHandler(__OSException exception, __OSExceptionHandler handler)
 {
-	/*
-	.loc_0x0:
-	  rlwinm    r0,r3,0,24,31
-	  lwz       r3, -0x70CC(r13)
-	  rlwinm    r0,r0,2,0,29
-	  add       r5, r3, r0
-	  lwz       r3, 0x0(r5)
-	  stw       r4, 0x0(r5)
-	  blr
-	*/
+	__OSExceptionHandler oldHandler;
+	oldHandler                  = OSExceptionTable[exception];
+	OSExceptionTable[exception] = handler;
+	return oldHandler;
 }
 
 /*
@@ -650,69 +649,95 @@ __OSExceptionHandler __OSSetExceptionHandler(__OSException exception, __OSExcept
  * Address:	800EB918
  * Size:	000014
  */
-void __OSGetExceptionHandler(void)
-{
-	/*
-	.loc_0x0:
-	  rlwinm    r0,r3,0,24,31
-	  lwz       r3, -0x70CC(r13)
-	  rlwinm    r0,r0,2,0,29
-	  lwzx      r3, r3, r0
-	  blr
-	*/
-}
+__OSExceptionHandler __OSGetExceptionHandler(__OSException exception) { return OSExceptionTable[exception]; }
 
 /*
  * --INFO--
  * Address:	800EB92C
  * Size:	00009C
  */
-void OSExceptionVector(void)
+// clang-format off
+static asm void OSExceptionVector(void)
 {
-	/*
-	.loc_0x0:
-	  mtsprg    0, r4
-	  lwz       r4, 0xC0(r0)
-	  stw       r3, 0xC(r4)
-	  mfsprg    r3, 0
-	  stw       r3, 0x10(r4)
-	  stw       r5, 0x14(r4)
-	  lhz       r3, 0x1A2(r4)
-	  ori       r3, r3, 0x2
-	  sth       r3, 0x1A2(r4)
-	  mfcr      r3
-	  stw       r3, 0x80(r4)
-	  mflr      r3
-	  stw       r3, 0x84(r4)
-	  mfctr     r3
-	  stw       r3, 0x88(r4)
-	  mfxer     r3
-	  stw       r3, 0x8C(r4)
-	  mfsrr0    r3
-	  stw       r3, 0x198(r4)
-	  mfsrr1    r3
-	  stw       r3, 0x19C(r4)
-	  mr        r5, r3
-	  nop
-	  mfmsr     r3
-	  ori       r3, r3, 0x30
-	  mtsrr1    r3
-	  li        r3, 0
-	  lwz       r4, 0xD4(r0)
-	  rlwinm.   r5,r5,0,30,30
-	  bne-      .loc_0x88
-	  lis       r5, 0x800F
-	  subi      r5, r5, 0x4638
-	  mtsrr0    r5
-	  rfi
+    nofralloc
 
-	.loc_0x88:
-	  rlwinm    r5,r3,2,22,29
-	  lwz       r5, 0x3000(r5)
-	  mtsrr0    r5
-	  rfi
-	  nop
-	*/
+entry __OSEVStart
+    // Save r4 into SPRG0
+    mtsprg  0, r4
+
+    // Load current context physical address into r4
+    lwz     r4, OS_CURRENTCONTEXT_PADDR
+
+    // Save r3 - r5 into the current context
+    stw     r3, OS_CONTEXT_R3(r4)
+    mfsprg  r3, 0
+    stw     r3, OS_CONTEXT_R4(r4)
+    stw     r5, OS_CONTEXT_R5(r4)
+
+    lhz     r3, OS_CONTEXT_STATE(r4)
+    ori     r3, r3, OS_CONTEXT_STATE_EXC
+    sth     r3, OS_CONTEXT_STATE(r4)
+
+    // Save misc registers
+    mfcr    r3
+    stw     r3, OS_CONTEXT_CR(r4)
+    mflr    r3
+    stw     r3, OS_CONTEXT_LR(r4)
+    mfctr   r3
+    stw     r3, OS_CONTEXT_CTR(r4)
+    mfxer   r3
+    stw     r3, OS_CONTEXT_XER(r4)
+    mfsrr0  r3
+    stw     r3, OS_CONTEXT_SRR0(r4)
+    mfsrr1  r3
+    stw     r3, OS_CONTEXT_SRR1(r4)
+    mr      r5, r3
+
+entry __DBVECTOR
+    nop
+
+    // Set SRR1[IR|DR] to turn on address
+    // translation at the next RFI
+    mfmsr   r3
+    ori     r3, r3, 0x30
+    mtsrr1  r3
+
+    // This lets us change the exception number based on the
+    // exception we're installing.
+entry __OSEVSetNumber
+    addi    r3, 0, 0x0000
+
+    // Load current context virtual address into r4
+    lwz     r4, 0xD4
+
+    // Check non-recoverable interrupt
+    rlwinm. r5, r5, 0, MSR_RI_BIT, MSR_RI_BIT
+    bne     recoverable
+    addis   r5, 0,  OSDefaultExceptionHandler@ha
+    addi    r5, r5, OSDefaultExceptionHandler@l
+    mtsrr0  r5
+    rfi
+    // NOT REACHED HERE
+
+recoverable:
+    // Locate exception handler.
+    rlwinm  r5, r3, 2, 22, 29               // r5 contains exception*4
+    lwz     r5, OS_EXCEPTIONTABLE_ADDR(r5)
+    mtsrr0  r5
+
+    // Final state
+    // r3 - exception number
+    // r4 - pointer to context
+    // r5 - garbage
+    // srr0 - exception handler
+    // srr1 - address translation enalbed, not yet recoverable
+
+    rfi
+    // NOT REACHED HERE
+    // The handler will restore state
+
+entry __OSEVEnd
+    nop
 }
 
 /*
@@ -720,34 +745,25 @@ void OSExceptionVector(void)
  * Address:	800EB9C8
  * Size:	000058
  */
-void OSDefaultExceptionHandler(unsigned long, struct OSContext*)
+asm void
+OSDefaultExceptionHandler(
+    register __OSException exception,
+    register OSContext*    context
+)
 {
-	/*
-	.loc_0x0:
-	  stw       r0, 0x0(r4)
-	  stw       r1, 0x4(r4)
-	  stw       r2, 0x8(r4)
-	  stmw      r6, 0x18(r4)
-	  mfspr     r0, 0x391
-	  stw       r0, 0x1A8(r4)
-	  mfspr     r0, 0x392
-	  stw       r0, 0x1AC(r4)
-	  mfspr     r0, 0x393
-	  stw       r0, 0x1B0(r4)
-	  mfspr     r0, 0x394
-	  stw       r0, 0x1B4(r4)
-	  mfspr     r0, 0x395
-	  stw       r0, 0x1B8(r4)
-	  mfspr     r0, 0x396
-	  stw       r0, 0x1BC(r4)
-	  mfspr     r0, 0x397
-	  stw       r0, 0x1C0(r4)
-	  mfdsisr   r5
-	  mfdar     r6
-	  stwu      r1, -0x8(r1)
-	  b         0x2094
-	*/
+#pragma unused (exception)
+
+    nofralloc
+    OS_EXCEPTION_SAVE_GPRS(context)
+    // Load DSISR and DAR
+    mfdsisr r5
+    mfdar   r6
+
+    stwu    r1,-8(r1)
+    b       __OSUnhandledException
+    // NOT REACHED HERE
 }
+// clang-format on
 
 /*
  * --INFO--
@@ -756,30 +772,23 @@ void OSDefaultExceptionHandler(unsigned long, struct OSContext*)
  */
 void __OSPSInit(void)
 {
-	/*
-	.loc_0x0:
-	  mflr      r0
-	  stw       r0, 0x4(r1)
-	  stwu      r1, -0x8(r1)
-	  bl        -0x17408
-	  oris      r3, r3, 0xA000
-	  bl        -0x17408
-	  bl        0xDF8
-	  sync
-	  li        r3, 0
-	  mtspr     912, r3
-	  mtspr     913, r3
-	  mtspr     914, r3
-	  mtspr     915, r3
-	  mtspr     916, r3
-	  mtspr     917, r3
-	  mtspr     918, r3
-	  mtspr     919, r3
-	  lwz       r0, 0xC(r1)
-	  addi      r1, r1, 0x8
-	  mtlr      r0
-	  blr
-	*/
+	PPCMthid2(PPCMfhid2() | 0xA000);
+	ICFlashInvalidate();
+	__sync();
+	// clang-format off
+    asm
+    {
+        li      r3, 0
+        mtspr   GQR0, r3
+        mtspr   GQR1, r3
+        mtspr   GQR2, r3
+        mtspr   GQR3, r3
+        mtspr   GQR4, r3
+        mtspr   GQR5, r3
+        mtspr   GQR6, r3
+        mtspr   GQR7, r3
+    }
+	// clang-format on
 }
 
 /*
@@ -787,37 +796,14 @@ void __OSPSInit(void)
  * Address:	800EBA74
  * Size:	000014
  */
-void __OSGetDIConfig(void)
-{
-	/*
-	.loc_0x0:
-	  lis       r3, 0xCC00
-	  addi      r3, r3, 0x6000
-	  lwz       r0, 0x24(r3)
-	  rlwinm    r3,r0,0,24,31
-	  blr
-	*/
-}
+extern volatile u32 __DIRegs[];
+#define DI_CONFIG_IDX         0x9
+#define DI_CONFIG_CONFIG_MASK 0xFF
+u32 __OSGetDIConfig(void) { return (__DIRegs[DI_CONFIG_IDX] & DI_CONFIG_CONFIG_MASK); }
 
 /*
  * --INFO--
  * Address:	800EBA88
  * Size:	00002C
  */
-void OSRegisterVersion(char* version)
-{
-	/*
-	.loc_0x0:
-	  mflr      r0
-	  stw       r0, 0x4(r1)
-	  stwu      r1, -0x8(r1)
-	  mr        r4, r3
-	  crclr     6, 0x6
-	  subi      r3, r13, 0x7CAC
-	  bl        0x1C4C
-	  lwz       r0, 0xC(r1)
-	  addi      r1, r1, 0x8
-	  mtlr      r0
-	  blr
-	*/
-}
+void OSRegisterVersion(const char* id) { OSReport("%s\n", id); }
