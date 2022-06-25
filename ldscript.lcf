@@ -24,7 +24,7 @@ GROUP: {
 	_db_stack_end = _stack_addr;
 	__ArenaLo = (_db_stack_addr + 0x1f) & ~0x1f;
 	__ArenaHi = 0x81700000;
-	__DIRegs = 0xC0006000;
+	__DIRegs = 0xCC006000;
 }
 
 FORCEFILES {
@@ -32,4 +32,5 @@ FORCEFILES {
 	targsupp.o
 	ctors.o
 	dtors.o
+	id32.o
 }

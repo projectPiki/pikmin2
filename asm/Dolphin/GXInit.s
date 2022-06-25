@@ -142,6 +142,14 @@ GXResetFuncInfo:
 	.4byte 0x00000000
 	.4byte 0x00000000
 
+.section .bss  # 0x804EFC20 - 0x8051467C
+.global FifoObj
+FifoObj:
+	.skip 0x80
+.global gxData
+gxData:
+	.skip 0x5B0
+
 .section .sdata, "wa"  # 0x80514680 - 0x80514D80
 .balign 8
 .global __GXVersion

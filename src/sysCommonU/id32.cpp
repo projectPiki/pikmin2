@@ -166,5 +166,33 @@ void ID32::sprint(char* str)
 	str[3] = static_cast<u8>(m_id.intView);
 	str[4] = '\0';
 }
-
-ID32 ID32::eof('_eof');
+extern ID32 eof__4ID32;
+// static initializer
+// ID32 ID32::eof('_eof');
+// the above line is correct, but we do the following to satisfy BSS order
+// bss jank:
+// clang-format off
+extern "C"{
+asm void __sinit_id32_cpp(void)
+{
+	nofralloc
+	
+	lis      r4,24421
+	lis      r3,eof__4ID32@ha
+	addi     r4,r4,28518
+	li       r0,0
+	addi     r7,r3,eof__4ID32@l
+	stw      r4,8(r7)
+	lbz      r6,8(r7)
+	lbz      r5,9(r7)
+	lbz      r4,10(r7)
+	lbz      r3,11(r7)
+	stb      r6,0(r7)
+	stb      r5,1(r7)
+	stb      r4,2(r7)
+	stb      r3,3(r7)
+	stb      r0,4(r7)
+	blr
+}
+}
+// clang-format on

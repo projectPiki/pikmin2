@@ -1,4 +1,24 @@
 .include "macros.inc"
+.section .bss  # 0x804EFC20 - 0x8051467C
+.global AudioDecodeThread
+AudioDecodeThread:
+	.skip 0x318
+.global AudioDecodeThreadStack
+AudioDecodeThreadStack:
+	.skip 0x1000
+.global FreeAudioBufferQueue
+FreeAudioBufferQueue:
+	.skip 0x20
+.global DecodedAudioBufferQueue
+DecodedAudioBufferQueue:
+	.skip 0x20
+.global FreeAudioBufferMessage
+FreeAudioBufferMessage:
+	.skip 0xC
+.global DecodedAudioBufferMessage
+DecodedAudioBufferMessage:
+	.skip 0xC
+
 .section .sbss # 0x80514D80 - 0x80516360
 .balign 8
 .global AudioDecodeThreadCreated

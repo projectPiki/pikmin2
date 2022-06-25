@@ -64,7 +64,6 @@ pikmin2.usa.dol: `sha1: 90d328bf8f190c90472e8c19e7e53c6ad0fe0d1a`
 	- <a href="https://github.com/projectPiki/pikmin2/tree/main/src/sysGCU/simpleMessage.cpp">sysGCU/simpleMessage.cpp</a>
 	- <a href="https://github.com/projectPiki/pikmin2/tree/main/src/sysGCU/THPDraw.c">sysGCU/THPDraw.c</a>
 - sysCommonU
-	- <a href="https://github.com/projectPiki/pikmin2/tree/main/src/sysCommonU/id32.cpp">sysCommonU/id32.cpp</a>
 	- <a href="https://github.com/projectPiki/pikmin2/tree/main/src/sysCommonU/mapCollision.cpp">sysCommonU/mapCollision.cpp</a>
 	- <a href="https://github.com/projectPiki/pikmin2/tree/main/src/sysCommonU/node.cpp">sysCommonU/node.cpp</a>
 	- <a href="https://github.com/projectPiki/pikmin2/tree/main/src/sysCommonU/parameters.cpp">sysCommonU/parameters.cpp</a>
@@ -212,6 +211,7 @@ pikmin2.usa.dol: `sha1: 90d328bf8f190c90472e8c19e7e53c6ad0fe0d1a`
 - sysBootupU
 - sysGCU
 - sysCommonU
+	- <a href="https://github.com/projectPiki/pikmin2/tree/main/src/sysCommonU/id32.cpp" >sysCommonU/id32.cpp</a>
 	- <a href="https://github.com/projectPiki/pikmin2/tree/main/src/sysCommonU/sysMath.cpp" >sysCommonU/sysMath.cpp</a>
 - utilityU
 - plugProjectKonoU

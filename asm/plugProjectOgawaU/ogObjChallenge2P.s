@@ -82,11 +82,6 @@ __vt__Q32og9newScreen14ObjChallenge2P:
 	.4byte doCreateAfter__Q32og9newScreen16ObjChallengeBaseFP10JKRArchivePQ32og6Screen18CallBack_CounterRV
 	.4byte 0
 
-.section .bss  # 0x804EFC20 - 0x8051467C
-.global msVal__Q32og9newScreen14ObjChallenge2P
-msVal__Q32og9newScreen14ObjChallenge2P:
-	.skip 0x90
-
 .section .sdata2, "a"     # 0x80516360 - 0x80520E40
 .balign 8
 .global lbl_8051DC48

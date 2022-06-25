@@ -140,9 +140,10 @@ __vt__Q34Game10GameConfig5Parms:
 	.4byte getChildCount__5CNodeFv
 
 .section .bss  # 0x804EFC20 - 0x8051467C
-.global gGameConfig__4Game
-gGameConfig__4Game:
-	.skip 0x27C
+.balign 8
+.global lbl_804F7C38
+lbl_804F7C38:
+	.skip 0xC
 
 .section .sdata2, "a"     # 0x80516360 - 0x80520E40
 .balign 8

@@ -382,11 +382,6 @@ __vt__Q28Morimura15THiScoreIndPane:
 	.4byte draw__Q28Morimura15THiScoreIndPaneFv
 	.4byte 0
 
-.section .bss  # 0x804EFC20 - 0x8051467C
-.global mScrollParm__Q28Morimura8THiScore
-mScrollParm__Q28Morimura8THiScore:
-	.skip 0x14
-
 .section .sdata, "wa"  # 0x80514680 - 0x80514D80
 .balign 8
 .global mPictureOffsetY__Q28Morimura8THiScore

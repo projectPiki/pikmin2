@@ -33,9 +33,10 @@ lbl_80473688:
 	.4byte 0x65616400
 
 .section .bss  # 0x804EFC20 - 0x8051467C
-.global sDvdAsyncList__12JKRDvdRipper
-sDvdAsyncList__12JKRDvdRipper:
+lbl_804EFF78:
 	.skip 0xC
+decompMutex:
+	.skip 0x1C
 
 .section .sdata, "wa"  # 0x80514680 - 0x80514D80
 .balign 8
@@ -560,16 +561,16 @@ JKRDecompressFromDVD__FP10JKRDvdFilePvUlUlUlUlPUl:
 /* 8001F7D0 0001C710  7C 78 1B 78 */	mr r24, r3
 /* 8001F7D4 0001C714  28 00 00 00 */	cmplwi r0, 0
 /* 8001F7D8 0001C718  40 82 00 18 */	bne lbl_8001F7F0
-/* 8001F7DC 0001C71C  3C 60 80 4F */	lis r3, decompMutex_2@ha
-/* 8001F7E0 0001C720  38 63 FF 84 */	addi r3, r3, decompMutex_2@l
+/* 8001F7DC 0001C71C  3C 60 80 4F */	lis r3, decompMutex@ha
+/* 8001F7E0 0001C720  38 63 FF 84 */	addi r3, r3, decompMutex@l
 /* 8001F7E4 0001C724  48 0D 03 4D */	bl OSInitMutex
 /* 8001F7E8 0001C728  38 00 00 01 */	li r0, 1
 /* 8001F7EC 0001C72C  98 0D 87 F8 */	stb r0, isInitMutex_2@sda21(r13)
 lbl_8001F7F0:
 /* 8001F7F0 0001C730  7F 03 C3 78 */	mr r3, r24
 /* 8001F7F4 0001C734  48 0C F4 6D */	bl OSRestoreInterrupts
-/* 8001F7F8 0001C738  3C 60 80 4F */	lis r3, decompMutex_2@ha
-/* 8001F7FC 0001C73C  38 63 FF 84 */	addi r3, r3, decompMutex_2@l
+/* 8001F7F8 0001C738  3C 60 80 4F */	lis r3, decompMutex@ha
+/* 8001F7FC 0001C73C  38 63 FF 84 */	addi r3, r3, decompMutex@l
 /* 8001F800 0001C740  48 0D 03 69 */	bl OSLockMutex
 /* 8001F804 0001C744  83 0D 80 14 */	lwz r24, sSZSBufferSize__12JKRDvdRipper@sda21(r13)
 /* 8001F808 0001C748  38 A0 FF E0 */	li r5, -32
@@ -636,8 +637,8 @@ lbl_8001F8DC:
 /* 8001F8E0 0001C820  7F 43 D3 78 */	mr r3, r26
 /* 8001F8E4 0001C824  80 84 00 00 */	lwz r4, 0(r4)
 /* 8001F8E8 0001C828  48 0C CE BD */	bl DCStoreRangeNoSync
-/* 8001F8EC 0001C82C  3C 60 80 4F */	lis r3, decompMutex_2@ha
-/* 8001F8F0 0001C830  38 63 FF 84 */	addi r3, r3, decompMutex_2@l
+/* 8001F8EC 0001C82C  3C 60 80 4F */	lis r3, decompMutex@ha
+/* 8001F8F0 0001C830  38 63 FF 84 */	addi r3, r3, decompMutex@l
 /* 8001F8F4 0001C834  48 0D 03 51 */	bl OSUnlockMutex
 /* 8001F8F8 0001C838  7F 03 C3 78 */	mr r3, r24
 /* 8001F8FC 0001C83C  BB 01 00 10 */	lmw r24, 0x10(r1)

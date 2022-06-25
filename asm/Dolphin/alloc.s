@@ -10,6 +10,11 @@ fix_pool_sizes:
 	.4byte 0x00000034
 	.4byte 0x00000044
 
+.section .bss  # 0x804EFC20 - 0x8051467C
+.global protopool$192
+protopool$192:
+	.skip 0x38
+
 .section .sbss # 0x80514D80 - 0x80516360
 .balign 8
 .global init$193

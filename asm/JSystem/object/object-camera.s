@@ -75,9 +75,9 @@ __vt__Q214JStudio_JStage15TAdaptor_camera:
 	.4byte 0
 
 .section .bss  # 0x804EFC20 - 0x8051467C
-.global saoVVOutput___Q214JStudio_JStage15TAdaptor_camera
-saoVVOutput___Q214JStudio_JStage15TAdaptor_camera:
-	.skip 0xA0
+.global lbl_804EFE28
+lbl_804EFE28:
+	.skip 0x40
 
 .section .text, "ax"  # 0x800056C0 - 0x80472F00
 .global __ct__Q214JStudio_JStage15TAdaptor_cameraFPCQ26JStage7TSystemPQ26JStage7TCamera

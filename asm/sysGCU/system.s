@@ -199,6 +199,12 @@ __vt__Q23PSM7Factory:
 	.4byte 0
 	.4byte newSceneMgr__Q23PSM7FactoryFv
 
+.section .bss  # 0x804EFC20 - 0x8051467C
+.balign 8
+.global exCallbackObject_1
+exCallbackObject_1:
+	.skip 0x14
+
 .section .sdata, "wa"  # 0x80514680 - 0x80514D80
 .balign 8
 sUseABXCommand:

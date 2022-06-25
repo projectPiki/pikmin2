@@ -1,4 +1,8 @@
 .include "macros.inc"
+.section .bss  # 0x804EFC20 - 0x8051467C
+.global WaitingQueue
+WaitingQueue:
+	.skip 0x20
 
 .section .text, "ax"  # 0x800056C0 - 0x80472F00
 .global __DVDClearWaitingQueue

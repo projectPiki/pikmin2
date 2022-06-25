@@ -113,6 +113,12 @@ __vt__Q25P2JME23TRenderingProcessorBase:
 	.4byte tagPosition__Q25P2JME23TRenderingProcessorBaseFUsPCvUl
 	.4byte 0
 
+.section .bss  # 0x804EFC20 - 0x8051467C
+.balign 8
+.global sRubyDataBuffer__5P2JME
+sRubyDataBuffer__5P2JME:
+	.skip 0x28
+
 .section .sdata2, "a"     # 0x80516360 - 0x80520E40
 .balign 8
 .global cPageInfoBufferNum__Q25P2JME19TRenderingProcessor

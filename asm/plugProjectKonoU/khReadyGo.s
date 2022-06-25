@@ -136,11 +136,6 @@ __vt__Q32kh6Screen10ObjReadyGo:
 	.4byte doConfirmEndScene__Q26Screen7ObjBaseFRPQ26Screen11EndSceneArg
 	.4byte 0
 
-.section .bss  # 0x804EFC20 - 0x8051467C
-.global msVal__Q32kh6Screen10ObjReadyGo
-msVal__Q32kh6Screen10ObjReadyGo:
-	.skip 0x18
-
 .section .sbss # 0x80514D80 - 0x80516360
 .balign 8
 .global lbl_80516128

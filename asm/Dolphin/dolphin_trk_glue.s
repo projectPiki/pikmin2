@@ -87,6 +87,15 @@ gDBCommTable:
 	.4byte 0x00000000
 	.4byte 0x00000000
 
+.section .bss  # 0x804EFC20 - 0x8051467C
+.balign 8
+.global TRK_Use_BBA
+TRK_Use_BBA:
+	.skip 0x4
+.global _MetroTRK_Has_Framing
+_MetroTRK_Has_Framing:
+	.skip 0x4
+
 .section .text, "ax"  # 0x800056C0 - 0x80472F00
 .global TRKLoadContext
 TRKLoadContext:

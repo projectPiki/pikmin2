@@ -1,4 +1,30 @@
 .include "macros.inc"
+.section .bss  # 0x804EFC20 - 0x8051467C
+.global FreeReadBufferQueue
+FreeReadBufferQueue:
+	.skip 0x20
+.global ReadedBufferQueue
+ReadedBufferQueue:
+	.skip 0x20
+.global ReadedBufferQueue2
+ReadedBufferQueue2:
+	.skip 0x20
+.global FreeReadBufferMessage
+FreeReadBufferMessage:
+	.skip 0x28
+.global ReadedBufferMessage
+ReadedBufferMessage:
+	.skip 0x28
+.global ReadedBufferMessage2
+ReadedBufferMessage2:
+	.skip 0x28
+.global ReadThread
+ReadThread:
+	.skip 0x318
+.global ReadThreadStack
+ReadThreadStack:
+	.skip 0x1000
+
 .section .sbss # 0x80514D80 - 0x80516360
 .balign 8
 .global gTHPReaderDvdAccess

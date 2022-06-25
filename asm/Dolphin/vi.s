@@ -240,6 +240,17 @@ lbl_804A7664:
 	.4byte lbl_800D236C
 	.4byte lbl_800D235C
 
+.section .bss  # 0x804EFC20 - 0x8051467C
+.global regs
+regs:
+	.skip 0x78
+.global shdwRegs
+shdwRegs:
+	.skip 0x78
+.global HorVer
+HorVer:
+	.skip 0x58
+
 .section .sdata, "wa"  # 0x80514680 - 0x80514D80
 .balign 8
 .global __VIVersion

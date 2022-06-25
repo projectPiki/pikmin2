@@ -20,11 +20,6 @@ __vt__Q32og6Screen18CallBack_CounterRV:
 	.4byte setValue__Q32og6Screen18CallBack_CounterRVFbb
 	.4byte setValue__Q32og6Screen18CallBack_CounterRVFv
 
-.section .bss  # 0x804EFC20 - 0x8051467C
-.global msVal__Q32og6Screen18CallBack_CounterRV
-msVal__Q32og6Screen18CallBack_CounterRV:
-	.skip 0xC
-
 .section .sdata2, "a"     # 0x80516360 - 0x80520E40
 .balign 8
 .global lbl_8051D6A0

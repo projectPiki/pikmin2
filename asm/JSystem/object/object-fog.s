@@ -49,9 +49,9 @@ __vt__Q214JStudio_JStage12TAdaptor_fog:
 	.4byte 0
 
 .section .bss  # 0x804EFC20 - 0x8051467C
-.global saoVVOutput___Q214JStudio_JStage12TAdaptor_fog
-saoVVOutput___Q214JStudio_JStage12TAdaptor_fog:
-	.skip 0x60
+.global lbl_804EFE68
+lbl_804EFE68:
+	.skip 0x28
 
 .section .text, "ax"  # 0x800056C0 - 0x80472F00
 .global __ct__Q214JStudio_JStage12TAdaptor_fogFPCQ26JStage7TSystemPQ26JStage4TFog

@@ -1,4 +1,22 @@
 .include "macros.inc"
+.section .bss  # 0x804EFC20 - 0x8051467C
+.balign 8
+.global RunQueue
+RunQueue:
+	.skip 0x100
+.balign 8
+.global IdleThread
+IdleThread:
+	.skip 0x318
+.balign 8
+.global DefaultThread
+DefaultThread:
+	.skip 0x318
+.balign 8
+.global IdleContext
+IdleContext:
+	.skip 0x2C8
+
 .section .sdata, "wa"  # 0x80514680 - 0x80514D80
 .balign 8
 SwitchThreadCallback:

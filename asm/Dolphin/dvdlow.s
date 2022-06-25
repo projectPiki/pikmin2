@@ -1,4 +1,24 @@
 .include "macros.inc"
+.section .bss  # 0x804EFC20 - 0x8051467C
+.global CommandList
+CommandList:
+	.skip 0x40
+.global AlarmForWA
+AlarmForWA:
+	.skip 0x28
+.global AlarmForTimeout
+AlarmForTimeout:
+	.skip 0x28
+.global AlarmForBreak
+AlarmForBreak:
+	.skip 0x28
+.global Prev
+Prev:
+	.skip 0xC
+.global Curr
+Curr:
+	.skip 0xC
+
 .section .sdata, "wa"  # 0x80514680 - 0x80514D80
 .balign 8
 .global FirstRead

@@ -51,6 +51,11 @@ lbl_804A926C:
 	.4byte lbl_800EDD64
 	.4byte lbl_800EDD18
 
+.section .bss  # 0x804EFC20 - 0x8051467C
+.global __OSErrorTable
+__OSErrorTable:
+	.skip 0x44
+
 .section .sdata, "wa"  # 0x80514680 - 0x80514D80
 .balign 8
 .global __OSFpscrEnableBits

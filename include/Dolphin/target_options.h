@@ -3,8 +3,6 @@
 
 #include "types.h"
 
-extern u8 bUseSerialIO;
-
 u8 GetUseSerialIO(void);
 void SetUseSerialIO(u8);
 

@@ -49,14 +49,14 @@ struct DVDDiskID {
 
 typedef struct OSBootInfo_s {
 	DVDDiskID DVDDiskID; // 0x0
-	u32 DVDmagic;        // 0x18 0xc2339f3d for Nintendo Game Disc
-	u32 magic;           // 0x1C
-	u32 version;         // 0x20
-	u32 memorySize;      // 0x24
-	u32 consoleType;     // 0x28
-	void* arenaLo;       // 0x2C
-	void* arenaHi;       // 0x30
-	void* FSTLocation;   // 0x34
+	// u32 DVDmagic;     // 0x18 0xc2339f3d for Nintendo Game Disc
+	u32 magic;         // 0x1C
+	u32 version;       // 0x20
+	u32 memorySize;    // 0x24
+	u32 consoleType;   // 0x28
+	void* arenaLo;     // 0x2C
+	void* arenaHi;     // 0x30
+	void* FSTLocation; // 0x34
 	u32 FSTMaxLength;
 } OSBootInfo;
 typedef struct BI2Debug {

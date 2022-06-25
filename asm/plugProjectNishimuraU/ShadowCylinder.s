@@ -178,6 +178,11 @@ __vt__Q24Game12CylinderBase:
 	.4byte drawCylinder__Q24Game12CylinderBaseFR7Matrixfi
 	.4byte drawFinish__Q24Game12CylinderBaseFv
 
+.section .bss  # 0x804EFC20 - 0x8051467C
+.global sCylinderVertPos__4Game
+sCylinderVertPos__4Game:
+	.skip 0x240
+
 .section .sbss # 0x80514D80 - 0x80516360
 .balign 8
 .global lbl_80515CE8

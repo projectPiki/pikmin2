@@ -49,6 +49,11 @@ history$449:
 	.4byte 0x00000000
 	.4byte 0x00000000
 
+.section .bss  # 0x804EFC20 - 0x8051467C
+.global sDmaDacBuffer__9JASDriver
+sDmaDacBuffer__9JASDriver:
+	.skip 0x18
+
 .section .sdata, "wa"  # 0x80514680 - 0x80514D80
 .balign 8
 .global sDspDacBufferCount__9JASDriver

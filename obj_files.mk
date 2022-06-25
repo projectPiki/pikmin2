@@ -3,7 +3,6 @@
 GROUP_0_FILES:=\
 	$(BUILD_DIR)/asm/ctors.o\
 	$(BUILD_DIR)/asm/dtors.o\
-	$(BUILD_DIR)/asm/bss.o\
 
 JSYSTEM:=\
 	$(BUILD_DIR)/asm/JSystem/object/object-particle.o\
@@ -394,7 +393,7 @@ DOLPHIN:=\
 	$(BUILD_DIR)/asm/Dolphin/mtx44.o\
 	$(BUILD_DIR)/src/Dolphin/vec.o\
 	$(BUILD_DIR)/src/Dolphin/odenotstub.o\
-	$(BUILD_DIR)/asm/Dolphin/OS.o\
+	$(BUILD_DIR)/src/Dolphin/OS.o\
 	$(BUILD_DIR)/asm/Dolphin/OSAlarm.o\
 	$(BUILD_DIR)/src/Dolphin/OSAlloc.o\
 	$(BUILD_DIR)/src/Dolphin/OSArena.o\
@@ -1099,6 +1098,7 @@ COMMON:=\
 	$(BUILD_DIR)/src/sysCommonU/sysMath.o\
 	$(BUILD_DIR)/asm/sysCommonU/sysMath.o\
 	$(BUILD_DIR)/src/sysCommonU/id32.o\
+	$(BUILD_DIR)/asm/sysCommonU/id32.o\
 	$(BUILD_DIR)/src/sysCommonU/parameters.o\
 	$(BUILD_DIR)/asm/sysCommonU/stream.o\
 	$(BUILD_DIR)/asm/sysCommonU/geometry.o\
@@ -1200,3 +1200,6 @@ UTILITY:=\
 	$(BUILD_DIR)/asm/utilityU/PSMainSide_TrackMap.o\
 	$(BUILD_DIR)/asm/utilityU/PSMainSide_CreaturePrm.o\
 	$(BUILD_DIR)/asm/utilityU/PSMainSide_ObjCalc.o\
+
+GLOBAL_BSS:=\
+	$(BUILD_DIR)/asm/bss.o\

@@ -3,6 +3,11 @@
 lbl_constructor:
 .4byte __sinit_J2DBloSaver_cpp
 
+.section .bss  # 0x804EFC20 - 0x8051467C
+.global lbl_804F0408
+lbl_804F0408:
+	.skip 0x10
+
 .section .sbss # 0x80514D80 - 0x80516360
 .balign 8
 .global TextureNameConnect__11J2DBloSaver

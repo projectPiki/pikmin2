@@ -4,9 +4,10 @@ lbl_constructor:
 .4byte __sinit_JKRDvdAramRipper_cpp
 
 .section .bss  # 0x804EFC20 - 0x8051467C
-.global sDvdAramAsyncList__16JKRDvdAramRipper
-sDvdAramAsyncList__16JKRDvdAramRipper:
+lbl_804EFF50:
 	.skip 0xC
+decompMutex:
+	.skip 0x1C
 
 .section .sdata, "wa"  # 0x80514680 - 0x80514D80
 .balign 8
@@ -672,16 +673,16 @@ JKRDecompressFromDVDToAram__FP10JKRDvdFileUlUlUlUlUlPUl:
 /* 8001DF18 0001AE58  7C 78 1B 78 */	mr r24, r3
 /* 8001DF1C 0001AE5C  28 00 00 00 */	cmplwi r0, 0
 /* 8001DF20 0001AE60  40 82 00 18 */	bne lbl_8001DF38
-/* 8001DF24 0001AE64  3C 60 80 4F */	lis r3, decompMutex_1@ha
-/* 8001DF28 0001AE68  38 63 FF 5C */	addi r3, r3, decompMutex_1@l
+/* 8001DF24 0001AE64  3C 60 80 4F */	lis r3, decompMutex@ha
+/* 8001DF28 0001AE68  38 63 FF 5C */	addi r3, r3, decompMutex@l
 /* 8001DF2C 0001AE6C  48 0D 1C 05 */	bl OSInitMutex
 /* 8001DF30 0001AE70  38 00 00 01 */	li r0, 1
 /* 8001DF34 0001AE74  98 0D 87 BC */	stb r0, isInitMutex_1@sda21(r13)
 lbl_8001DF38:
 /* 8001DF38 0001AE78  7F 03 C3 78 */	mr r3, r24
 /* 8001DF3C 0001AE7C  48 0D 0D 25 */	bl OSRestoreInterrupts
-/* 8001DF40 0001AE80  3C 60 80 4F */	lis r3, decompMutex_1@ha
-/* 8001DF44 0001AE84  38 63 FF 5C */	addi r3, r3, decompMutex_1@l
+/* 8001DF40 0001AE80  3C 60 80 4F */	lis r3, decompMutex@ha
+/* 8001DF44 0001AE84  38 63 FF 5C */	addi r3, r3, decompMutex@l
 /* 8001DF48 0001AE88  48 0D 1C 21 */	bl OSLockMutex
 /* 8001DF4C 0001AE8C  83 0D 80 0C */	lwz r24, sSZSBufferSize__16JKRDvdAramRipper@sda21(r13)
 /* 8001DF50 0001AE90  38 A0 00 20 */	li r5, 0x20
@@ -746,8 +747,8 @@ lbl_8001E014:
 /* 8001E02C 0001AF6C  80 6D 87 94 */	lwz r3, dmaBuf@sda21(r13)
 /* 8001E030 0001AF70  38 80 00 00 */	li r4, 0
 /* 8001E034 0001AF74  48 00 56 39 */	bl free__7JKRHeapFPvP7JKRHeap
-/* 8001E038 0001AF78  3C 60 80 4F */	lis r3, decompMutex_1@ha
-/* 8001E03C 0001AF7C  38 63 FF 5C */	addi r3, r3, decompMutex_1@l
+/* 8001E038 0001AF78  3C 60 80 4F */	lis r3, decompMutex@ha
+/* 8001E03C 0001AF7C  38 63 FF 5C */	addi r3, r3, decompMutex@l
 /* 8001E040 0001AF80  48 0D 1C 05 */	bl OSUnlockMutex
 /* 8001E044 0001AF84  7F 23 CB 78 */	mr r3, r25
 /* 8001E048 0001AF88  BB 01 00 10 */	lmw r24, 0x10(r1)

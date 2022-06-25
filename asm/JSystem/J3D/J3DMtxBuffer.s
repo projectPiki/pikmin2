@@ -1,12 +1,4 @@
 .include "macros.inc"
-.section .bss  # 0x804EFC20 - 0x8051467C
-.global sNoUseDrawMtx__12J3DMtxBuffer
-sNoUseDrawMtx__12J3DMtxBuffer:
-	.skip 0x54
-.global sNoUseNrmMtx__12J3DMtxBuffer
-sNoUseNrmMtx__12J3DMtxBuffer:
-	.skip 0x24
-
 .section .sdata, "wa"  # 0x80514680 - 0x80514D80
 .balign 8
 .global sNoUseDrawMtxPtr__12J3DMtxBuffer

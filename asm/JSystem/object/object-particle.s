@@ -65,11 +65,15 @@ __vt__Q27JStudio17TAdaptor_particle:
 	.4byte 0
 	.4byte 0
 
+.section .bss  # 0x804EFC20 - 0x8051467C
+aoData$1232: # should be local to object-particle.cpp
+	.skip 0x90
+
 .section .sbss # 0x80514D80 - 0x80516360
 .balign 8
 .global init$1233
 init$1233:
-	.skip 0x8
+	.skip 0x1
 
 .section .sdata2, "a"     # 0x80516360 - 0x80520E40
 .balign 8

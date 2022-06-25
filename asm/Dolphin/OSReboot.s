@@ -1,4 +1,10 @@
 .include "macros.inc"
+.section .bss  # 0x804EFC20 - 0x8051467C
+.balign 32
+.global Header
+Header:
+	.skip 0x20
+
 .section .sbss # 0x80514D80 - 0x80516360
 .balign 8
 .global SaveStart

@@ -41,7 +41,7 @@ public:
 	inline char* getStrID() { return m_id.strView; }
 	inline u32 getID() { return m_id.intView; }
 
-	static ID32 eof;
+	static ID32 eof; // BSS
 };
 
 #endif

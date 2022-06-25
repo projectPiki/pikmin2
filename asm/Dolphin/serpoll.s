@@ -104,6 +104,11 @@ lbl_80479740:
 	.4byte 0x00000000
 	.4byte 0x00000000
 
+.section .bss  # 0x804EFC20 - 0x8051467C
+.global gTRKFramingState
+gTRKFramingState:
+	.skip 0x18
+
 .section .sbss # 0x80514D80 - 0x80516360
 .balign 8
 .global gTRKInputPendingPtr

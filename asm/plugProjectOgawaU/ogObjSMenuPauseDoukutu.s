@@ -112,11 +112,6 @@ __vt__Q32og9newScreen20ObjSMenuPauseDoukutu:
 	.4byte updateFadeOut__Q32og9newScreen12ObjSMenuBaseFv
 	.4byte commonUpdate__Q32og9newScreen20ObjSMenuPauseDoukutuFv
 
-.section .bss  # 0x804EFC20 - 0x8051467C
-.global msVal__Q32og9newScreen20ObjSMenuPauseDoukutu
-msVal__Q32og9newScreen20ObjSMenuPauseDoukutu:
-	.skip 0xC
-
 .section .sdata2, "a"     # 0x80516360 - 0x80520E40
 .balign 8
 .global lbl_8051DD08

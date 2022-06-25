@@ -1,5 +1,7 @@
 #include "Dolphin/trk.h"
 
+static s32 TRK_mainError;
+
 /*
  * --INFO--
  * Address:	800C040C

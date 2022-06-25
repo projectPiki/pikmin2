@@ -1,5 +1,10 @@
 .include "macros.inc"
 
+.section .bss  # 0x804EFC20 - 0x8051467C
+.global p_name$459
+p_name$459:
+	.skip 0x108
+
 .section .text, "ax"  # 0x800056C0 - 0x80472F00
 
 .global get__13J2DDataManageFP14JSUInputStream

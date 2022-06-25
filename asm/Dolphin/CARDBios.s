@@ -16,6 +16,14 @@ ResetFunctionInfo:
 	.4byte 0x00000000
 	.4byte 0x00000000
 
+.section .bss  # 0x804EFC20 - 0x8051467C
+.global __CARDBlock
+__CARDBlock:
+	.skip 0x220
+.global __CARDDiskNone
+__CARDDiskNone:
+	.skip 0x20
+
 .section .sdata, "wa"  # 0x80514680 - 0x80514D80
 .balign 8
 .global __CARDVersion

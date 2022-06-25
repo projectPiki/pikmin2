@@ -10,6 +10,17 @@ ResetFunctionInfo:
 	.4byte 0x00000000
 	.4byte 0x00000000
 
+.section .bss  # 0x804EFC20 - 0x8051467C
+.global Type_1
+Type_1:
+	.skip 0x10
+.global Origin
+Origin:
+	.skip 0x30
+.global CmdProbeDevice
+CmdProbeDevice:
+	.skip 0x10
+
 .section .sdata, "wa"  # 0x80514680 - 0x80514D80
 .balign 8
 .global __PADVersion

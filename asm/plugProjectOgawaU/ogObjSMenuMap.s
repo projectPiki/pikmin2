@@ -210,11 +210,6 @@ __vt__Q32og9newScreen11ObjSMenuMap:
 	.4byte updateFadeOut__Q32og9newScreen12ObjSMenuBaseFv
 	.4byte commonUpdate__Q32og9newScreen11ObjSMenuMapFv
 
-.section .bss  # 0x804EFC20 - 0x8051467C
-.global msVal__Q32og9newScreen11ObjSMenuMap
-msVal__Q32og9newScreen11ObjSMenuMap:
-	.skip 0x50
-
 .section .sbss # 0x80514D80 - 0x80516360
 .balign 8
 .global lbl_80515E48

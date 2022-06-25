@@ -706,11 +706,6 @@ __vt__Q28Morimura16TVsSelectIndPane:
 	.4byte draw__Q28Morimura16TVsSelectIndPaneFv
 	.4byte 0
 
-.section .bss  # 0x804EFC20 - 0x8051467C
-.global mScrollParm__Q28Morimura9TVsSelect
-mScrollParm__Q28Morimura9TVsSelect:
-	.skip 0x14
-
 .section .sdata, "wa"  # 0x80514680 - 0x80514D80
 .balign 8
 .global mAngRate__Q28Morimura9TVsSelect

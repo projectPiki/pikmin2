@@ -10,6 +10,16 @@ ResetFunctionInfo:
 	.4byte 0x00000000
 	.4byte 0x00000000
 
+.section .bss  # 0x804EFC20 - 0x8051467C
+.balign 32
+.global SecParams
+SecParams:
+	.skip 0x100
+.balign 8
+.global __GBA
+__GBA:
+	.skip 0x400
+
 .section .sdata, "wa"  # 0x80514680 - 0x80514D80
 .balign 8
 .global __GBAVersion

@@ -91,11 +91,6 @@ __vt__Q32og9newScreen5ObjVs:
 	.4byte doConfirmEndScene__Q26Screen7ObjBaseFRPQ26Screen11EndSceneArg
 	.4byte 0
 
-.section .bss  # 0x804EFC20 - 0x8051467C
-.global msVal__Q32og9newScreen5ObjVs
-msVal__Q32og9newScreen5ObjVs:
-	.skip 0x34
-
 .section .sdata2, "a"     # 0x80516360 - 0x80520E40
 .balign 8
 .global lbl_8051DD98

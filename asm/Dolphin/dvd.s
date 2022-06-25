@@ -62,6 +62,20 @@ lbl_804A7DE4:
 	.4byte lbl_800DF2A0
 	.4byte lbl_800DF2A8
 
+.section .bss  # 0x804EFC20 - 0x8051467C
+.global BB2
+BB2:
+	.skip 0x20
+.global CurrDiskID
+CurrDiskID:
+	.skip 0x20
+.global DummyCommandBlock
+DummyCommandBlock:
+	.skip 0x30
+.global ResetAlarm
+ResetAlarm:
+	.skip 0x28
+
 .section .sdata, "wa"  # 0x80514680 - 0x80514D80
 .balign 8
 .global __DVDVersion

@@ -116,10 +116,23 @@ VolumeTable:
 	.4byte 0x7DFE8000
 
 .section .bss  # 0x804EFC20 - 0x8051467C
-.balign 8
-.global ActivePlayer
-ActivePlayer:
-	.skip 0x1D0
+.balign 32
+.global WorkBuffer
+WorkBuffer:
+	.skip 0x40
+.global PrepareReadyQueue
+PrepareReadyQueue:
+	.skip 0x20
+.global UsedTextureSetQueue
+UsedTextureSetQueue:
+	.skip 0x20
+.global UsedTextureSetMessage
+UsedTextureSetMessage:
+	.skip 0xC
+.balign 32
+.global SoundBuffer
+SoundBuffer:
+	.skip 0x1180
 
 .section .sbss # 0x80514D80 - 0x80516360
 .balign 8

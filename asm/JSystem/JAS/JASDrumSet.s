@@ -10,6 +10,11 @@ __vt__10JASDrumSet:
 	.4byte getType__10JASDrumSetCFv
 	.4byte 0
 
+.section .bss  # 0x804EFC20 - 0x8051467C
+.global osc$639
+osc$639:
+	.skip 0x18
+
 .section .sbss # 0x80514D80 - 0x80516360
 .balign 8
 .global oscp$640

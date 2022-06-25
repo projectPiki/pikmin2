@@ -89,11 +89,6 @@ __vt__Q32og9newScreen14ObjChallenge1P:
 	.4byte doConfirmEndScene__Q26Screen7ObjBaseFRPQ26Screen11EndSceneArg
 	.4byte doCreateAfter__Q32og9newScreen16ObjChallengeBaseFP10JKRArchivePQ32og6Screen18CallBack_CounterRV
 
-.section .bss  # 0x804EFC20 - 0x8051467C
-.global msVal__Q32og9newScreen14ObjChallenge1P
-msVal__Q32og9newScreen14ObjChallenge1P:
-	.skip 0x6C
-
 .section .sbss # 0x80514D80 - 0x80516360
 .balign 8
 .global lbl_80515E90

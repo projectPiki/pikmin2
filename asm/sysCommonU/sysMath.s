@@ -11,11 +11,6 @@ lbl_80499648:
 lbl_80499654:
 	.asciz "acosf %f\n"
 
-.section .bss  # 0x804EFC20 - 0x8051467C
-.global "zero__10Vector3<f>"
-"zero__10Vector3<f>":
-	.skip 0xC
-
 .section .sbss # 0x80514D80 - 0x80516360
 .balign 8
 .global "__init__zero__10Vector3<f>"

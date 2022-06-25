@@ -21,12 +21,9 @@ lbl_80473584:
 	.asciz "JKRAramPiece.cpp"
 
 .section .bss  # 0x804EFC20 - 0x8051467C
-.global sAramPieceCommandList__12JKRAramPiece
-sAramPieceCommandList__12JKRAramPiece:
-	.skip 0x24
-.global mMutex__12JKRAramPiece
-mMutex__12JKRAramPiece:
-	.skip 0x18
+.global lbl_804EFF30
+lbl_804EFF30:
+	.skip 0x10
 
 .section .sdata2, "a"     # 0x80516360 - 0x80520E40
 .balign 8

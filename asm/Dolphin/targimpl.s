@@ -71,6 +71,23 @@ gTRKStepStatus:
 	.4byte 0x00000000
 	.4byte 0x00000000
 
+.section .bss  # 0x804EFC20 - 0x8051467C
+.global TRK_saved_exceptionID
+TRK_saved_exceptionID:
+	.skip 0x4
+.global gTRKState
+gTRKState:
+	.skip 0xA4
+.global gTRKCPUState
+gTRKCPUState:
+	.skip 0x430
+.global gTRKSaveState
+gTRKSaveState:
+	.skip 0x94
+.global TRKvalue128_temp
+TRKvalue128_temp:
+	.skip 0x14
+
 .section .text, "ax"  # 0x800056C0 - 0x80472F00
 .global __TRK_get_MSR
 __TRK_get_MSR:

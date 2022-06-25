@@ -1868,6 +1868,17 @@ jdsp:
 	.4byte 0x02BF00EB
 	.4byte 0x02DF0000
 
+.section .bss  # 0x804EFC20 - 0x8051467C
+.global audio_task
+audio_task:
+	.skip 0x60
+.global AUDIO_YIELD_BUFFER
+AUDIO_YIELD_BUFFER:
+	.skip 0x2000
+.global taskwork
+taskwork:
+	.skip 0x80
+
 .section .sbss # 0x80514D80 - 0x80516360
 .balign 8
 taskreadp: # local data

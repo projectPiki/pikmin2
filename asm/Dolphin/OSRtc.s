@@ -1,4 +1,9 @@
 .include "macros.inc"
+.section .bss  # 0x804EFC20 - 0x8051467C
+.balign 32
+.global Scb
+Scb:
+	.skip 0x54
 
 .section .text, "ax"  # 0x800056C0 - 0x80472F00
 WriteSramCallback:

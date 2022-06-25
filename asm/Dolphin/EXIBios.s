@@ -26,6 +26,11 @@ lbl_804A7ED0:
 	.asciz "IS-DOL-VIEWER"
 	.skip 2
 
+.section .bss  # 0x804EFC20 - 0x8051467C
+.global Ecb
+Ecb:
+	.skip 0xC0
+
 .section .sdata, "wa"  # 0x80514680 - 0x80514D80
 .balign 8
 .global __EXIVersion

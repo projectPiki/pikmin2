@@ -140,6 +140,17 @@ C5BASE_PITCHTABLE__9JASDriver:
 	.4byte 0x00000000
 	.4byte 0x00000000
 
+.section .bss  # 0x804EFC20 - 0x8051467C
+.global sDspSyncCallback__9JASDriver
+sDspSyncCallback__9JASDriver:
+	.skip 0x80
+.global sSubFrameCallback__9JASDriver
+sSubFrameCallback__9JASDriver:
+	.skip 0x80
+.global sUpdateDacCallback__9JASDriver
+sUpdateDacCallback__9JASDriver:
+	.skip 0x80
+
 .section .sdata, "wa"  # 0x80514680 - 0x80514D80
 .balign 8
 .global MAX_MIXERLEVEL__9JASDriver

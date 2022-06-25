@@ -1,4 +1,9 @@
 .include "macros.inc"
+.section .bss  # 0x804EFC20 - 0x8051467C
+.global sMutex
+sMutex:
+	.skip 0x18
+
 .section .sbss # 0x80514D80 - 0x80516360
 .balign 8
 .global sBuffer

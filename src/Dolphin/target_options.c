@@ -1,6 +1,6 @@
 #include "Dolphin/target_options.h"
 
-// TODO: figure out BSS
+static u8 bUseSerialIO;
 
 /*
  * --INFO--

@@ -11,11 +11,6 @@ lbl_80483F28:
 lbl_80483F40:
 	.asciz "too many birthbuffer\n"
 
-.section .bss  # 0x804EFC20 - 0x8051467C
-.global sArgs__Q24Game17PelletBirthBuffer
-sArgs__Q24Game17PelletBirthBuffer:
-	.skip 0x1400
-
 .section .sbss # 0x80514D80 - 0x80516360
 .balign 8
 .global sNum__Q24Game17PelletBirthBuffer

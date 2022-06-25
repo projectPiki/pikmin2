@@ -25,9 +25,9 @@ __vt__13JKRFileLoader:
 	.4byte 0
 
 .section .bss  # 0x804EFC20 - 0x8051467C
-.global sVolumeList__13JKRFileLoader
-sVolumeList__13JKRFileLoader:
-	.skip 0xC
+.global lbl_804EFFA0
+lbl_804EFFA0:
+	.skip 0x10
 
 .section .sdata, "wa"  # 0x80514680 - 0x80514D80
 .balign 8

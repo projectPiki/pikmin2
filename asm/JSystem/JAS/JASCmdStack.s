@@ -4,11 +4,11 @@ lbl_constructor:
 .4byte __sinit_JASCmdStack_cpp
 
 .section .bss  # 0x804EFC20 - 0x8051467C
-.global sCommandListOnce__10JASPortCmd
-sCommandListOnce__10JASPortCmd:
-	.skip 0x18
-.global sCommandListStay__10JASPortCmd
-sCommandListStay__10JASPortCmd:
+.global lbl_804F06E8
+lbl_804F06E8:
+	.skip 0xC
+.global lbl_804F06F4
+lbl_804F06F4:
 	.skip 0xC
 
 .section .text, "ax"  # 0x800056C0 - 0x80472F00

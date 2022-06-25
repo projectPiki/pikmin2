@@ -56,12 +56,6 @@ __vt__7J2DPane:
 	.4byte animationPane__7J2DPaneFPC15J2DAnmTransform
 	.4byte 0
 
-.section .bss  # 0x804EFC20 - 0x8051467C
-bss_entry:
-.global static_mBounds__7J2DPane
-static_mBounds__7J2DPane:
-	.skip 0x10
-
 .section .sdata2, "a"     # 0x80516360 - 0x80520E40
 .balign 8
 .global lbl_805167C0

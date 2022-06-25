@@ -1429,11 +1429,6 @@ __vt__Q28Morimura10TZukanBase:
 	.4byte 0
 	.4byte isPanelExist__Q28Morimura10TZukanBaseFv
 
-.section .bss  # 0x804EFC20 - 0x8051467C
-.global mScrollParm__Q28Morimura10TZukanBase
-mScrollParm__Q28Morimura10TZukanBase:
-	.skip 0x14
-
 .section .sdata, "wa"  # 0x80514680 - 0x80514D80
 .balign 8
 .global mRequestTimerMax__Q28Morimura10TZukanBase

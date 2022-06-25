@@ -4,9 +4,9 @@ lbl_constructor:
 .4byte __sinit_JAISystemInterface_cpp
 
 .section .bss  # 0x804EFC20 - 0x8051467C
-.global systemPortCmd__Q27JAInter15SystemInterface
-systemPortCmd__Q27JAInter15SystemInterface:
-	.skip 0x18
+.global lbl_804F2870
+lbl_804F2870:
+	.skip 0x10
 
 .section .sdata2, "a"     # 0x80516360 - 0x80520E40
 .balign 8

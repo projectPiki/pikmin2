@@ -572,11 +572,6 @@ __vt__Q42kh6Screen14khUtilFadePane10khPaneNode:
 	.4byte 0
 	.4byte __dt__Q42kh6Screen14khUtilFadePane10khPaneNodeFv
 
-.section .bss  # 0x804EFC20 - 0x8051467C
-.global msVal__Q32kh6Screen8WorldMap
-msVal__Q32kh6Screen8WorldMap:
-	.skip 0x7C
-
 .section .sdata2, "a"     # 0x80516360 - 0x80520E40
 .balign 8
 lbl_8051FEF0:

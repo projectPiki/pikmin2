@@ -37,6 +37,21 @@ __THPAANScaleFactor: # local object
 THP_VERSION_STRING: # local string
 	.asciz "<< Dolphin SDK - THP\trelease build: Jan  9 2004 13:06:55 (0x2301) >>"
 
+.section .bss  # 0x804EFC20 - 0x8051467C
+.balign 32
+.global __THPIDCTWorkspace
+__THPIDCTWorkspace:
+	.skip 0x100
+.global __THPLCWork512
+__THPLCWork512:
+	.skip 0xC
+.global __THPLCWork672
+__THPLCWork672:
+	.skip 0xC
+.global __THPMCUBuffer
+__THPMCUBuffer:
+	.skip 0x28
+
 .section .sdata, "wa"  # 0x80514680 - 0x80514D80
 .balign 8
 .global __THPVersion

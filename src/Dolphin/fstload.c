@@ -13,8 +13,8 @@ struct bb2struct {
 static u32 status;
 static struct bb2struct* bb2; // pointer?
 static u8* idTmp;             // also pointer
-extern u8 bb2Buf[0x3F];
-extern u8 block_18[0x30];
+static u8 bb2Buf[0x3F];
+static u8 block[0x30];
 
 struct blah {
 	s8 Gamecode[4];
@@ -71,7 +71,7 @@ void __fstLoad(void)
 	idTmp   = (void*)OSRoundUp32B(auStack64);
 	bb2     = (void*)OSRoundUp32B(bb2Buf);
 	DVDReset();
-	DVDReadDiskID(&block_18, idTmp, cb);
+	DVDReadDiskID(&block, idTmp, cb);
 	do {
 		iVar1 = DVDGetDriveStatus();
 	} while (iVar1 != 0);

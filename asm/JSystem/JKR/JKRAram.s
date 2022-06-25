@@ -72,9 +72,12 @@ __vt__7JKRAram:
 	.4byte run__7JKRAramFv
 
 .section .bss  # 0x804EFC20 - 0x8051467C
-.global sAramCommandList__7JKRAram
-sAramCommandList__7JKRAram:
+.global lbl_804EFEF8
+lbl_804EFEF8:
 	.skip 0xC
+.global decompMutex
+decompMutex:
+	.skip 0x1C
 
 .section .sdata, "wa"  # 0x80514680 - 0x80514D80
 .balign 8

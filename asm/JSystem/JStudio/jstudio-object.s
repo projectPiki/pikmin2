@@ -1133,6 +1133,26 @@ lbl_8049F4E8:
 	.4byte "__cl__Q37JStudio28@unnamed@jstudio_object_cpp@54TOutputVariableValue_BOOL_<Q27JStudio14TAdaptor_actor>CFfPQ27JStudio8TAdaptor"
 	.4byte "__dt__Q37JStudio28@unnamed@jstudio_object_cpp@54TOutputVariableValue_BOOL_<Q27JStudio14TAdaptor_actor>Fv"
 
+.section .bss  # 0x804EFC20 - 0x8051467C
+lbl_804EFCB0:
+	.skip 0xC
+"soovv_actor_PARENT_ENABLE___Q27JStudio28@unnamed@jstudio_object_cpp@":
+	.skip 0x1C
+"soovv_actor_RELATION_ENABLE___Q27JStudio28@unnamed@jstudio_object_cpp@":
+	.skip 0x1C
+"soovv_camera_PARENT_ENABLE___Q27JStudio28@unnamed@jstudio_object_cpp@":
+	.skip 0x1C
+"soovv_camera_TARGET_PARENT_ENABLE___Q27JStudio28@unnamed@jstudio_object_cpp@":
+	.skip 0x1C
+"soovv_light_ENABLE___Q27JStudio28@unnamed@jstudio_object_cpp@":
+	.skip 0x1C
+"soovv_particle_PARENT_ENABLE___Q27JStudio28@unnamed@jstudio_object_cpp@":
+	.skip 0x1C
+"soovv_sound_PARENT_ENABLE___Q27JStudio28@unnamed@jstudio_object_cpp@":
+	.skip 0x1C
+"soovv_sound_LOCATED___Q27JStudio28@unnamed@jstudio_object_cpp@":
+	.skip 0x20
+
 .section .sbss # 0x80514D80 - 0x80516360
 .balign 8
 .global soOutput_none___Q27JStudio14TVariableValue

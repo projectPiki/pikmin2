@@ -1,4 +1,9 @@
 .include "macros.inc"
+.section .bss  # 0x804EFC20 - 0x8051467C
+.global __atexit_funcs
+__atexit_funcs:
+	.skip 0x100
+
 .section .sbss # 0x80514D80 - 0x80516360
 .balign 8
 .global __aborting

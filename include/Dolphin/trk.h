@@ -49,8 +49,6 @@ TRKResult TRKTerminateNub(void);
 void TRKNubWelcome(void);
 void TRKNubMainLoop(void);
 
-extern s32 TRK_mainError;
-
 /* EXI2 */
 #define EXI2_Init(inputFlagPtr, mtrCallback) DBInitComm(inputFlagPtr, mtrCallback);
 void UnreserveEXI2Port(void);

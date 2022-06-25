@@ -50,6 +50,42 @@ lbl_804A9FB4:
 lbl_804A9FC0:
 	.asciz "Steering"
 
+.section .bss  # 0x804EFC20 - 0x8051467C
+.balign 8
+.global Packet
+Packet:
+	.skip 0x80
+.balign 8
+.global Alarm
+Alarm:
+	.skip 0xA0
+.balign 8
+.global TypeTime
+TypeTime:
+	.skip 0x20
+.balign 8
+.global XferTime
+XferTime:
+	.skip 0x20
+.global TypeCallback
+TypeCallback:
+	.skip 0x40
+.global RDSTHandler
+RDSTHandler:
+	.skip 0x10
+.global InputBufferValid
+InputBufferValid:
+	.skip 0x10
+.global InputBuffer
+InputBuffer:
+	.skip 0x20
+.global InputBufferVcount
+InputBufferVcount:
+	.skip 0x10
+.global cmdFixDevice$327
+cmdFixDevice$327:
+	.skip 0x10
+
 .section .sdata, "wa"  # 0x80514680 - 0x80514D80
 .balign 8
 .global __SIVersion

@@ -19,11 +19,11 @@ __vt__9JKRThread:
 	.4byte run__9JKRThreadFv
 
 .section .bss  # 0x804EFC20 - 0x8051467C
-.global sThreadList__9JKRThread
-sThreadList__9JKRThread:
-	.skip 0x38
-.global sTaskList__7JKRTask
-sTaskList__7JKRTask:
+.global lbl_804EFFB0
+lbl_804EFFB0:
+	.skip 0xC
+.global lbl_804EFFBC
+lbl_804EFFBC:
 	.skip 0xC
 
 .section .sbss # 0x80514D80 - 0x80516360

@@ -22,6 +22,15 @@ lbl_80479E04:
 lbl_80479E18:
 	.asciz "DONE CALLING EXI2_Init\n"
 
+.section .bss  # 0x804EFC20 - 0x8051467C
+.balign 8
+.global gRecvBuf
+gRecvBuf:
+	.skip 0x800
+.global gRecvCB
+gRecvCB:
+	.skip 0x20
+
 .section .sbss # 0x80514D80 - 0x80516360
 .balign 8
 gIsInitialized:
