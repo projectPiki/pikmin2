@@ -238,7 +238,7 @@ JSYSTEM:=\
 	$(BUILD_DIR)/asm/JSystem/JAU/JAUDataMgr.o\
 
 DOLPHIN:=\
-	$(BUILD_DIR)/asm/Dolphin/mainloop.o\
+	$(BUILD_DIR)/src/Dolphin/mainloop.o\
 	$(BUILD_DIR)/asm/Dolphin/nubevent.o\
 	$(BUILD_DIR)/src/Dolphin/nubinit.o\
 	$(BUILD_DIR)/asm/Dolphin/nubinit.o\

@@ -1,19 +1,18 @@
 #include "Dolphin/trk.h"
-#include "Dolphin/dispatch.h"
 
 /*
  * --INFO--
  * Address:	800BC40C
  * Size:	000170
  */
-u32 TRKDispatchMessage(MessageBuffer* param_1)
+TRKResult TRKDispatchMessage(TRKBuffer* param_1)
 {
 	u32 uVar1;
 
 	uVar1 = 0x500;
 	TRKSetBufferPosition(param_1, 0);
-	MWTRACE(1, "Dispatch command 0x%08x\n", param_1->thing);
-	switch (param_1->thing) {
+	MWTRACE(1, "Dispatch command 0x%08x\n", param_1->m_buffer[0]);
+	switch (param_1->m_buffer[0]) {
 	case 1:
 		uVar1 = TRKDoConnect(param_1);
 		break;

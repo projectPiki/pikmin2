@@ -144,8 +144,11 @@ $(BUILD_DIR)/src/Dolphin/OSAlloc.o: MWCC_VERSION := 1.2.5
 $(BUILD_DIR)/src/Dolphin/OS.o: MWCC_VERSION := 1.2.5
 
 # Dirty hack to overwrite sdata
+# It seems TRK-related files need -sdata 0
 $(BUILD_DIR)/src/Dolphin/main_TRK.o: CFLAGS += -sdata 0
+$(BUILD_DIR)/src/Dolphin/mainloop.o: CFLAGS += -sdata 0
 $(BUILD_DIR)/src/Dolphin/target_options.o: CFLAGS += -sdata 0
+
 # Disable read-only strings
 $(BUILD_DIR)/src/Dolphin/SISamplingRate.o: CFLAGS += -str noreadonly
 $(BUILD_DIR)/src/Dolphin/fstload.o: CFLAGS += -str noreadonly

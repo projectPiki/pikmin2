@@ -32,14 +32,119 @@ typedef struct _TRK_Msg {
 	u32 m_msg;       // _10
 } TRK_Msg;
 
+/**
+ * @size{0xC}
+ */
+typedef struct TRKEvent {
+	int m_eventType;
+	int _04;
+	int m_bufferIndex;
+} TRKEvent;
+
+/**
+ * @size{0x28}
+ */
+typedef struct TRKEventQueue {
+	u8 _00[4];
+	int _04;
+	u32 m_nextSlotToOverwrite;
+	TRKEvent m_events[2];
+	u32 _24; /* max of 0x100? */
+} TRKEventQueue;
+
+/**
+ * @size{0xA4}
+ */
+typedef struct TRKState {
+	u32 _00;
+	u32 _04;
+	u32 _08;
+	u32 _0C;
+	u32 _10;
+	u32 _14;
+	u32 _18;
+	u32 _1C;
+	u32 _20;
+	u32 _24;
+	u32 _28;
+	u32 _2C;
+	u32 _30;
+	u32 _34;
+	u32 _38;
+	u32 _3C;
+	u32 _40;
+	u32 _44;
+	u32 _48;
+	u32 _4C;
+	u32 _50;
+	u32 _54;
+	u32 _58;
+	u32 _5C;
+	u32 _60;
+	u32 _64;
+	u32 _68;
+	u32 _6C;
+	u32 _70;
+	u32 _74;
+	u32 _78;
+	u32 _7C;
+	u32 _80;
+	u32 _84;
+	u32 _88;
+	u32 _8C;
+	u32 _90;
+	u32 _94;
+	BOOL m_isStopped;
+	u32 _9C;
+	u32 _A0;
+	u32 _A4;
+	u32 _A8;
+	u32 _AC;
+} TRKState;
+
+typedef struct TRKBuffer {
+	u8 _00[4];
+	u32 _04;
+	s32 _08;
+	u32 _0C;
+	u32 _10;
+	u8 m_buffer[0x87C]; /* _10 */
+} TRKBuffer;
 typedef int TRKResult;
+
+u32 TRKDoConnect(TRKBuffer*);
+u32 TRKDoDisconnect(TRKBuffer*);
+u32 TRKDoReset(TRKBuffer*);
+u32 TRKDoVersions(TRKBuffer*);
+u32 TRKDoSupportMask(TRKBuffer*);
+u32 TRKDoOverride(TRKBuffer*);
+u32 TRKDoReadMemory(TRKBuffer*);
+u32 TRKDoWriteMemory(TRKBuffer*);
+u32 TRKDoReadRegisters(TRKBuffer*);
+u32 TRKDoWriteRegisters(TRKBuffer*);
+u32 TRKDoSetOption(TRKBuffer*);
+u32 TRKDoContinue(TRKBuffer*);
+u32 TRKDoStep(TRKBuffer*);
+u32 TRKDoStop(TRKBuffer*);
 
 void InitMetroTRK(void);
 void InitMetroTRK_BBA(void);
 void EnableMetroTRKInterrupts(void);
 
+void TRKDestructEvent(TRKEvent*);
+TRKResult TRKDispatchMessage(TRKBuffer*);
+void* TRKGetBuffer(int);
+void TRKGetInput();
+BOOL TRKGetNextEvent(TRKEvent*);
+
 TRKResult TRKTargetContinue(void);
+TRKResult TRKTargetInterrupt(TRKEvent*);
+BOOL TRKTargetStopped();
 void TRKTargetSetStopped(uint);
+TRKResult TRKTargetSupportRequest();
+
+TRKResult TRKAppendBuffer_ui8(TRKBuffer*, u8*, int);
+TRKResult TRKSetBufferPosition(TRKBuffer*, u32);
 
 TRKResult TRKMessageSend(TRK_Msg*);
 void TRKSwapAndGo(void);
