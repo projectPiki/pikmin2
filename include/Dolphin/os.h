@@ -426,7 +426,6 @@ void OSRestoreInterrupts(int);
 BOOL OSGetSoundMode();
 void OSSetSoundMode(uint);
 
-
 typedef struct OSFunctionInfo {
 	void* m_function;
 	uint _04;

@@ -72,6 +72,7 @@ gTRKStepStatus:
 	.4byte 0x00000000
 
 .section .bss  # 0x804EFC20 - 0x8051467C
+.balign 8
 .global TRK_saved_exceptionID
 TRK_saved_exceptionID:
 	.skip 0x4

@@ -107,13 +107,13 @@ lbl_80479740:
 .section .bss  # 0x804EFC20 - 0x8051467C
 .global gTRKFramingState
 gTRKFramingState:
-	.skip 0x18
+	.skip 0x14
 
 .section .sbss # 0x80514D80 - 0x80516360
 .balign 8
 .global gTRKInputPendingPtr
 gTRKInputPendingPtr:
-	.skip 0x8
+	.skip 0x4
 
 .section .text, "ax"  # 0x800056C0 - 0x80472F00
 .global TRKTerminateSerialHandler

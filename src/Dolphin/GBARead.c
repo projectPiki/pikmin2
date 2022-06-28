@@ -27,9 +27,9 @@ int GBAReadAsync(int portIndex, u8* p2, u8* p3)
 	if (gba->m_syncCallback != nullptr) {
 		return 2;
 	}
-	gba->_00[0] = 0x14;
-	gba->_18 = p2;
-	gba->_14 = p3;
+	gba->_00[0]         = 0x14;
+	gba->_18            = p2;
+	gba->_14            = p3;
 	gba->m_syncCallback = __GBASyncCallback;
 	return __GBATransfer(portIndex, 1, 5, ReadProc);
 }

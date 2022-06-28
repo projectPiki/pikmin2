@@ -28,8 +28,8 @@ int GBWriteAsync(int portIndex, u8* p2, u8* p3)
 	}
 	gba->_00[0] = 0x15;
 	memcpy(&gba->_00[1], p2, 4);
-	gba->_18 = p2;
-	gba->_14 = p3;
+	gba->_18            = p2;
+	gba->_14            = p3;
 	gba->m_syncCallback = __GBASyncCallback;
 	return __GBATransfer(portIndex, 5, 1, WriteProc);
 }

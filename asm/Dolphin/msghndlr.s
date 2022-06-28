@@ -69,9 +69,10 @@ lbl_804A6894:
 	.4byte lbl_800BD304
 
 .section .bss  # 0x804EFC20 - 0x8051467C
+.balign 8
 .global IsTRKConnected
 IsTRKConnected:
-	.skip 0x8
+	.skip 0x4
 
 .section .text, "ax"  # 0x800056C0 - 0x80472F00
 .global TRKDoSetOption

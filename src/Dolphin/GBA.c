@@ -2,18 +2,16 @@
 #include "Dolphin/dsp.h"
 #include "Dolphin/os.h"
 
-#define OS_BASE_CACHED          0x80000000
-#define OS_BUS_CLOCK_SPEED_ADDR 0xF8
+#define OS_BASE_CACHED            0x80000000
+#define OS_BUS_CLOCK_SPEED_ADDR   0xF8
 #define OSPhysicalToCached(paddr) ((void*)((u32)(paddr)-OS_BASE_CACHED))
 
 // From this file:
-char* __GBAVersion = "<< Dolphin SDK - GBA\trelease build: Dec  3 2003 18:41:55 (0x2301) >>";
+char* __GBAVersion               = "<< Dolphin SDK - GBA\trelease build: Dec  3 2003 18:41:55 (0x2301) >>";
 OSFunctionInfo ResetFunctionInfo = { OnReset, 0x7E };
 GBA __GBA[4];
 SecParam SecParams[4];
 BOOL __GBAReset;
-
-
 
 // From other files:
 extern BOOL Initialized; // pad.c
@@ -29,7 +27,7 @@ void ShortCommandProc(int portIndex)
 	if (port->_20 != 0) {
 		return;
 	}
-	if ((port->_05 != 0) || (port->_06 != 4))  {
+	if ((port->_05 != 0) || (port->_06 != 4)) {
 		port->_20 = 1;
 		return;
 	}
@@ -48,12 +46,12 @@ void GBAInit(void)
 	SecParam* sp;
 	GBA* gba;
 	if (Initialized == FALSE) {
-		Initialized = TRUE;
+		Initialized   = TRUE;
 		busClockSpeed = *(u32*)0x800000F8 >> 2;
 		OSRegisterVersion(__GBAVersion);
 		for (i = 0; i < 4; i++) {
-			sp = &SecParams[i];
-			gba = &__GBA[i];
+			sp       = &SecParams[i];
+			gba      = &__GBA[i];
 			gba->_34 = (busClockSpeed / 125000) * 60 >> 3;
 			gba->_30 = 0;
 			OSInitThreadQueue(&gba->_24);
@@ -133,8 +131,8 @@ int GBAGetStatusAsync(int portIndex, u8* p2)
 	if (gba->m_syncCallback != nullptr) {
 		return 2;
 	}
-	gba->_00[0] = 0;
-	gba->_14 = p2;
+	gba->_00[0]         = 0;
+	gba->_14            = p2;
 	gba->m_syncCallback = __GBASyncCallback;
 	return __GBATransfer(portIndex, 1, 3, ShortCommandProc);
 }
@@ -162,8 +160,8 @@ int GBAResetAsync(int portIndex, u8* p2)
 	if (gba->m_syncCallback != nullptr) {
 		return 2;
 	}
-	gba->_00[0] = 0xFF;
-	gba->_14 = p2;
+	gba->_00[0]         = 0xFF;
+	gba->_14            = p2;
 	gba->m_syncCallback = __GBASyncCallback;
 	return __GBATransfer(portIndex, 1, 3, ShortCommandProc);
 }
