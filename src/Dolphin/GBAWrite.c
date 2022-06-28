@@ -1,27 +1,17 @@
-
+#include "Dolphin/gba.h"
+#include "Dolphin/stl.h"
 
 /*
  * --INFO--
  * Address:	800FEE64
  * Size:	000030
  */
-void WriteProc(void)
+void WriteProc(int portIndex)
 {
-	/*
-	.loc_0x0:
-	  lis       r4, 0x804F
-	  rlwinm    r3,r3,8,0,23
-	  addi      r0, r4, 0x75C0
-	  add       r3, r0, r3
-	  lwz       r0, 0x20(r3)
-	  cmpwi     r0, 0
-	  bnelr-
-	  lbz       r0, 0x5(r3)
-	  lwz       r3, 0x14(r3)
-	  andi.     r0, r0, 0x3A
-	  stb       r0, 0x0(r3)
-	  blr
-	*/
+	GBA* gba = &__GBA[portIndex];
+	if (gba->_20 == 0) {
+		*gba->_14 = gba->_05 & 0x3A;
+	}
 }
 
 /*
@@ -29,9 +19,19 @@ void WriteProc(void)
  * Address:	........
  * Size:	000094
  */
-void GBAWriteAsync(void)
+int GBWriteAsync(int portIndex, u8* p2, u8* p3)
 {
 	// UNUSED FUNCTION
+	GBA* gba = &__GBA[portIndex];
+	if (gba->m_syncCallback != nullptr) {
+		return 2;
+	}
+	gba->_00[0] = 0x15;
+	memcpy(&gba->_00[1], p2, 4);
+	gba->_18 = p2;
+	gba->_14 = p3;
+	gba->m_syncCallback = __GBASyncCallback;
+	return __GBATransfer(portIndex, 5, 1, WriteProc);
 }
 
 /*
@@ -39,8 +39,11 @@ void GBAWriteAsync(void)
  * Address:	800FEE94
  * Size:	0000C4
  */
-void GBAWrite(void)
+int GBAWrite(int portIndex, u8* p2, u8* p3)
 {
+	int status = GBWriteAsync(portIndex, p2, p3);
+	int _unused;
+	return (status != 0) ? status : __GBASync(portIndex);
 	/*
 	.loc_0x0:
 	  mflr      r0

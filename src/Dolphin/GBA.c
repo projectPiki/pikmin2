@@ -133,7 +133,7 @@ int GBAGetStatusAsync(int portIndex, u8* p2)
 	if (gba->m_syncCallback != nullptr) {
 		return 2;
 	}
-	gba->_00 = 0;
+	gba->_00[0] = 0;
 	gba->_14 = p2;
 	gba->m_syncCallback = __GBASyncCallback;
 	return __GBATransfer(portIndex, 1, 3, ShortCommandProc);
@@ -162,7 +162,7 @@ int GBAResetAsync(int portIndex, u8* p2)
 	if (gba->m_syncCallback != nullptr) {
 		return 2;
 	}
-	gba->_00 = 0xFF;
+	gba->_00[0] = 0xFF;
 	gba->_14 = p2;
 	gba->m_syncCallback = __GBASyncCallback;
 	return __GBATransfer(portIndex, 1, 3, ShortCommandProc);

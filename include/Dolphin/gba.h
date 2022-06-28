@@ -23,8 +23,7 @@ typedef struct SecParam {
  * @size{0x100}
  */
 typedef struct GBA {
-	u8 _00;
-	u32 : 0;
+	u8 _00[4];
 	u8 _04;
 	u8 _05;
 	u8 _06;
