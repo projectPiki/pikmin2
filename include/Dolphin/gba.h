@@ -33,7 +33,7 @@ typedef struct GBA {
 	unknown _0C;
 	unknown _10;
 	u8* _14;
-	unknown _18;
+	u8* _18;
 	GBASyncCallback m_syncCallback; // _1C
 	int _20;
 	OSThreadQueue _24;
@@ -47,6 +47,7 @@ typedef struct GBA {
 } GBA;
 
 extern SecParam SecParams[4];
+extern GBA __GBA[4];
 
 void GBAInit();
 unknown __GBATransfer(int portIndex, unknown, unknown, GBAProcHandler);
