@@ -136,6 +136,7 @@ $(BUILD_DIR)/src/Dolphin/OSLink.o: MWCC_VERSION := 1.2.5
 $(BUILD_DIR)/src/Dolphin/PPCArch.o: MWCC_VERSION := 1.2.5
 $(BUILD_DIR)/src/Dolphin/vec.o: MWCC_VERSION := 1.2.5
 $(BUILD_DIR)/src/Dolphin/GBARead.o: MWCC_VERSION := 1.2.5
+$(BUILD_DIR)/src/Dolphin/GBAWrite.o: MWCC_VERSION := 1.2.5
 $(BUILD_DIR)/src/Dolphin/GDBase.o: MWCC_VERSION := 1.2.5
 $(BUILD_DIR)/src/Dolphin/SISamplingRate.o: MWCC_VERSION := 1.2.5
 $(BUILD_DIR)/src/Dolphin/fstload.o: MWCC_VERSION := 1.2.5

@@ -426,7 +426,7 @@ DOLPHIN:=\
 	$(BUILD_DIR)/asm/Dolphin/THPAudio.o\
 	$(BUILD_DIR)/asm/Dolphin/GBA.o\
 	$(BUILD_DIR)/src/Dolphin/GBARead.o\
-	$(BUILD_DIR)/asm/Dolphin/GBAWrite.o\
+	$(BUILD_DIR)/src/Dolphin/GBAWrite.o\
 	$(BUILD_DIR)/asm/Dolphin/GBAXfer.o
 
 YAMASHITA:=\
