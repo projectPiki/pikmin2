@@ -43,7 +43,6 @@ void EXIInit();
 void EnableMetroTRKInterrupts();
 void OSEnableInterrupts();
 void OSExceptionInit();
-void OSInitAlarm();
 void OSRegisterVersion(const char*);
 void PPCMtmmcr0(int);
 void PPCMtmmcr1(int);

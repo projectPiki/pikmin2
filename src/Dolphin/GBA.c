@@ -1,40 +1,39 @@
+#include "Dolphin/gba.h"
+#include "Dolphin/dsp.h"
+#include "Dolphin/os.h"
 
+#define OS_BASE_CACHED          0x80000000
+#define OS_BUS_CLOCK_SPEED_ADDR 0xF8
+#define OSPhysicalToCached(paddr) ((void*)((u32)(paddr)-OS_BASE_CACHED))
+
+// From this file:
+char* __GBAVersion = "<< Dolphin SDK - GBA\trelease build: Dec  3 2003 18:41:55 (0x2301) >>";
+OSFunctionInfo ResetFunctionInfo = { OnReset, 0x7E };
+GBA __GBA[4];
+SecParam SecParams[4];
+BOOL __GBAReset;
+
+
+
+// From other files:
+extern BOOL Initialized; // pad.c
 
 /*
  * --INFO--
  * Address:	800FEB2C
  * Size:	000054
  */
-void ShortCommandProc(void)
+void ShortCommandProc(int portIndex)
 {
-	/*
-	.loc_0x0:
-	  lis       r4, 0x804F
-	  rlwinm    r3,r3,8,0,23
-	  addi      r0, r4, 0x75C0
-	  add       r3, r0, r3
-	  lwz       r0, 0x20(r3)
-	  cmpwi     r0, 0
-	  bnelr-
-	  lbz       r0, 0x5(r3)
-	  cmplwi    r0, 0
-	  bne-      .loc_0x34
-	  lbz       r0, 0x6(r3)
-	  cmplwi    r0, 0x4
-	  beq-      .loc_0x40
-
-	.loc_0x34:
-	  li        r0, 0x1
-	  stw       r0, 0x20(r3)
-	  blr
-
-	.loc_0x40:
-	  lbz       r0, 0x7(r3)
-	  lwz       r3, 0x14(r3)
-	  andi.     r0, r0, 0x3A
-	  stb       r0, 0x0(r3)
-	  blr
-	*/
+	GBA* port = &__GBA[portIndex];
+	if (port->_20 != 0) {
+		return;
+	}
+	if ((port->_05 != 0) || (port->_06 != 4))  {
+		port->_20 = 1;
+		return;
+	}
+	*port->_14 = port->_07 & 0x3A;
 }
 
 /*
@@ -44,6 +43,27 @@ void ShortCommandProc(void)
  */
 void GBAInit(void)
 {
+	int i;
+	u32 busClockSpeed;
+	SecParam* sp;
+	GBA* gba;
+	if (Initialized == FALSE) {
+		Initialized = TRUE;
+		busClockSpeed = *(u32*)0x800000F8 >> 2;
+		OSRegisterVersion(__GBAVersion);
+		for (i = 0; i < 4; i++) {
+			sp = &SecParams[i];
+			gba = &__GBA[i];
+			gba->_34 = (busClockSpeed / 125000) * 60 >> 3;
+			gba->_30 = 0;
+			OSInitThreadQueue(&gba->_24);
+			gba->m_secParam = sp;
+		}
+		OSInitAlarm();
+		DSPInit();
+		__GBAReset = FALSE;
+		OSRegisterResetFunction(&ResetFunctionInfo);
+	}
 	/*
 	.loc_0x0:
 	  mflr      r0
@@ -106,9 +126,17 @@ void GBAInit(void)
  * Address:	........
  * Size:	000064
  */
-void GBAGetStatusAsync(void)
+int GBAGetStatusAsync(int portIndex, u8* p2)
 {
 	// UNUSED FUNCTION
+	GBA* gba = &__GBA[portIndex];
+	if (gba->m_syncCallback != nullptr) {
+		return 2;
+	}
+	gba->_00 = 0;
+	gba->_14 = p2;
+	gba->m_syncCallback = __GBASyncCallback;
+	return __GBATransfer(portIndex, 1, 3, ShortCommandProc);
 }
 
 /*
@@ -116,55 +144,10 @@ void GBAGetStatusAsync(void)
  * Address:	800FEC40
  * Size:	000090
  */
-void GBAGetStatus(void)
+int GBAGetStatus(int portIndex, u8* p2)
 {
-	/*
-	.loc_0x0:
-	  mflr      r0
-	  stw       r0, 0x4(r1)
-	  stwu      r1, -0x20(r1)
-	  stw       r31, 0x1C(r1)
-	  addi      r31, r3, 0
-	  lis       r3, 0x804F
-	  rlwinm    r5,r31,8,0,23
-	  addi      r0, r3, 0x75C0
-	  add       r7, r0, r5
-	  lwz       r0, 0x1C(r7)
-	  cmplwi    r0, 0
-	  beq-      .loc_0x38
-	  li        r3, 0x2
-	  b         .loc_0x68
-
-	.loc_0x38:
-	  li        r0, 0
-	  stb       r0, 0x0(r7)
-	  lis       r5, 0x8010
-	  subi      r0, r5, 0xFCC
-	  stw       r4, 0x14(r7)
-	  lis       r3, 0x8010
-	  subi      r6, r3, 0x14D4
-	  stw       r0, 0x1C(r7)
-	  addi      r3, r31, 0
-	  li        r4, 0x1
-	  li        r5, 0x3
-	  bl        0x554
-
-	.loc_0x68:
-	  cmpwi     r3, 0
-	  beq-      .loc_0x74
-	  b         .loc_0x7C
-
-	.loc_0x74:
-	  mr        r3, r31
-	  bl        0x3B0
-
-	.loc_0x7C:
-	  lwz       r0, 0x24(r1)
-	  lwz       r31, 0x1C(r1)
-	  addi      r1, r1, 0x20
-	  mtlr      r0
-	  blr
-	*/
+	int status = GBAGetStatusAsync(portIndex, p2);
+	return (status != 0) ? status : __GBASync(portIndex);
 }
 
 /*
@@ -172,9 +155,17 @@ void GBAGetStatus(void)
  * Address:	........
  * Size:	000064
  */
-void GBAResetAsync(void)
+int GBAResetAsync(int portIndex, u8* p2)
 {
 	// UNUSED FUNCTION
+	GBA* gba = &__GBA[portIndex];
+	if (gba->m_syncCallback != nullptr) {
+		return 2;
+	}
+	gba->_00 = 0xFF;
+	gba->_14 = p2;
+	gba->m_syncCallback = __GBASyncCallback;
+	return __GBATransfer(portIndex, 1, 3, ShortCommandProc);
 }
 
 /*
@@ -182,55 +173,10 @@ void GBAResetAsync(void)
  * Address:	800FECD0
  * Size:	000090
  */
-void GBAReset(void)
+int GBAReset(int portIndex, u8* p2)
 {
-	/*
-	.loc_0x0:
-	  mflr      r0
-	  stw       r0, 0x4(r1)
-	  stwu      r1, -0x20(r1)
-	  stw       r31, 0x1C(r1)
-	  addi      r31, r3, 0
-	  lis       r3, 0x804F
-	  rlwinm    r5,r31,8,0,23
-	  addi      r0, r3, 0x75C0
-	  add       r7, r0, r5
-	  lwz       r0, 0x1C(r7)
-	  cmplwi    r0, 0
-	  beq-      .loc_0x38
-	  li        r3, 0x2
-	  b         .loc_0x68
-
-	.loc_0x38:
-	  li        r0, 0xFF
-	  stb       r0, 0x0(r7)
-	  lis       r5, 0x8010
-	  subi      r0, r5, 0xFCC
-	  stw       r4, 0x14(r7)
-	  lis       r3, 0x8010
-	  subi      r6, r3, 0x14D4
-	  stw       r0, 0x1C(r7)
-	  addi      r3, r31, 0
-	  li        r4, 0x1
-	  li        r5, 0x3
-	  bl        0x4C4
-
-	.loc_0x68:
-	  cmpwi     r3, 0
-	  beq-      .loc_0x74
-	  b         .loc_0x7C
-
-	.loc_0x74:
-	  mr        r3, r31
-	  bl        0x320
-
-	.loc_0x7C:
-	  lwz       r0, 0x24(r1)
-	  lwz       r31, 0x1C(r1)
-	  addi      r1, r1, 0x20
-	  mtlr      r0
-	  blr
-	*/
+	int status = GBAResetAsync(portIndex, p2);
+	return (status != 0) ? status : __GBASync(portIndex);
 }
 
 /*
@@ -238,13 +184,8 @@ void GBAReset(void)
  * Address:	800FED60
  * Size:	000010
  */
-void OnReset(void)
+int OnReset(void)
 {
-	/*
-	.loc_0x0:
-	  li        r0, 0x1
-	  stw       r0, -0x6E64(r13)
-	  li        r3, 0x1
-	  blr
-	*/
+	__GBAReset = TRUE;
+	return 1;
 }

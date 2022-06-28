@@ -22,6 +22,8 @@ void OSPanic(const char* file, int line, const char* message, ...);
 #define OSErrorLine(line, ...) OSPanic(__FILE__, line, __VA_ARGS__)
 #endif
 
+void OSRegisterVersion(const char*);
+
 // TODO: fill these structs
 typedef struct OSContext {
 	char filler[708];
@@ -236,6 +238,9 @@ void OSInitMessageQueue(OSMessageQueue* queue, void** msgSlots, int slotCount);
 BOOL OSSendMessage(OSMessageQueue* queue, void* message, int flags);
 BOOL OSReceiveMessage(OSMessageQueue* queue, void* msg, int flags);
 
+// OSAlarm
+void OSInitAlarm();
+
 // OSArena
 extern void* __OSArenaHi;
 
@@ -420,6 +425,15 @@ void OSRestoreInterrupts(int);
 
 BOOL OSGetSoundMode();
 void OSSetSoundMode(uint);
+
+
+typedef struct OSFunctionInfo {
+	void* m_function;
+	uint _04;
+	u8 _08[8];
+} OSFunctionInfo;
+
+void OSRegisterResetFunction(OSFunctionInfo*);
 
 #define HW_REG(reg, type) *(volatile type*)(uintptr_t)(reg) // manually added
 
