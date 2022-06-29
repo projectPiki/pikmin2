@@ -6,15 +6,12 @@
 #define OS_BUS_CLOCK_SPEED_ADDR   0xF8
 #define OSPhysicalToCached(paddr) ((void*)((u32)(paddr)-OS_BASE_CACHED))
 
-// From this file:
-char* __GBAVersion               = "<< Dolphin SDK - GBA\trelease build: Dec  3 2003 18:41:55 (0x2301) >>";
-OSFunctionInfo ResetFunctionInfo = { OnReset, 0x7E };
+char* __GBAVersion                      = "<< Dolphin SDK - GBA\trelease build: Dec  3 2003 18:41:55 (0x2301) >>";
+static OSFunctionInfo ResetFunctionInfo = { OnReset, 0x7E };
+static SecParam SecParams[4];
 GBA __GBA[4];
-SecParam SecParams[4];
+static BOOL Initialized;
 BOOL __GBAReset;
-
-// From other files:
-extern BOOL Initialized; // pad.c
 
 /*
  * --INFO--
@@ -41,82 +38,26 @@ void ShortCommandProc(int portIndex)
  */
 void GBAInit(void)
 {
+	u64 busClockSpeed;
 	int i;
-	u32 busClockSpeed;
-	SecParam* sp;
 	GBA* gba;
+
 	if (Initialized == FALSE) {
-		Initialized   = TRUE;
-		busClockSpeed = *(u32*)0x800000F8 >> 2;
+		Initialized = TRUE;
 		OSRegisterVersion(__GBAVersion);
+		busClockSpeed = (((*(u32*)0x800000F8 / 4) / 125000) * 60) / 8;
 		for (i = 0; i < 4; i++) {
-			sp       = &SecParams[i];
 			gba      = &__GBA[i];
-			gba->_34 = (busClockSpeed / 125000) * 60 >> 3;
+			gba->_34 = busClockSpeed;
 			gba->_30 = 0;
 			OSInitThreadQueue(&gba->_24);
-			gba->m_secParam = sp;
+			gba->m_secParam = &SecParams[i];
 		}
 		OSInitAlarm();
 		DSPInit();
 		__GBAReset = FALSE;
 		OSRegisterResetFunction(&ResetFunctionInfo);
 	}
-	/*
-	.loc_0x0:
-	  mflr      r0
-	  stw       r0, 0x4(r1)
-	  stwu      r1, -0x20(r1)
-	  stmw      r27, 0xC(r1)
-	  lwz       r0, -0x6E68(r13)
-	  cmpwi     r0, 0
-	  bne-      .loc_0xAC
-	  li        r0, 0x1
-	  lwz       r3, -0x7C48(r13)
-	  stw       r0, -0x6E68(r13)
-	  bl        -0x13120
-	  lis       r3, 0x8000
-	  lwz       r0, 0xF8(r3)
-	  lis       r3, 0x431C
-	  lis       r4, 0x804F
-	  rlwinm    r0,r0,30,2,31
-	  subi      r3, r3, 0x217D
-	  mulhwu    r0, r3, r0
-	  rlwinm    r0,r0,17,15,31
-	  mulli     r0, r0, 0x3C
-	  lis       r3, 0x804F
-	  addi      r29, r4, 0x75C0
-	  addi      r28, r3, 0x74C0
-	  rlwinm    r30,r0,29,3,31
-	  li        r27, 0
-	  li        r31, 0
-
-	.loc_0x68:
-	  stw       r30, 0x34(r29)
-	  addi      r3, r29, 0x24
-	  stw       r31, 0x30(r29)
-	  bl        -0xD240
-	  addi      r27, r27, 0x1
-	  stw       r28, 0xF8(r29)
-	  cmpwi     r27, 0x4
-	  addi      r29, r29, 0x100
-	  addi      r28, r28, 0x40
-	  blt+      .loc_0x68
-	  bl        -0x1315C
-	  bl        -0x23ED8
-	  li        r0, 0
-	  lis       r3, 0x804B
-	  stw       r0, -0x6E64(r13)
-	  subi      r3, r3, 0x5EC0
-	  bl        -0xE984
-
-	.loc_0xAC:
-	  lmw       r27, 0xC(r1)
-	  lwz       r0, 0x24(r1)
-	  addi      r1, r1, 0x20
-	  mtlr      r0
-	  blr
-	*/
 }
 
 /*

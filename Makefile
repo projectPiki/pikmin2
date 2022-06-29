@@ -135,6 +135,7 @@ $(BUILD_DIR)/src/Dolphin/__ppc_eabi_init.o: MWCC_VERSION := 1.2.5
 $(BUILD_DIR)/src/Dolphin/OSLink.o: MWCC_VERSION := 1.2.5
 $(BUILD_DIR)/src/Dolphin/PPCArch.o: MWCC_VERSION := 1.2.5
 $(BUILD_DIR)/src/Dolphin/vec.o: MWCC_VERSION := 1.2.5
+$(BUILD_DIR)/src/Dolphin/GBA.o: MWCC_VERSION := 1.2.5
 $(BUILD_DIR)/src/Dolphin/GBARead.o: MWCC_VERSION := 1.2.5
 $(BUILD_DIR)/src/Dolphin/GBAWrite.o: MWCC_VERSION := 1.2.5
 $(BUILD_DIR)/src/Dolphin/GDBase.o: MWCC_VERSION := 1.2.5
@@ -156,6 +157,7 @@ $(BUILD_DIR)/src/Dolphin/SISamplingRate.o: CFLAGS += -str noreadonly
 $(BUILD_DIR)/src/Dolphin/fstload.o: CFLAGS += -str noreadonly
 $(BUILD_DIR)/src/Dolphin/db.o: CFLAGS += -str noreadonly
 $(BUILD_DIR)/src/Dolphin/OS.o: CFLAGS += -str noreadonly
+$(BUILD_DIR)/src/Dolphin/GBA.o: CFLAGS += -str noreadonly
 
 # Enable string pooling
 $(BUILD_DIR)/src/Dolphin/locale.o: CFLAGS += -str pool
