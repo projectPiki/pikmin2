@@ -18,7 +18,7 @@ BOOL __GBAReset;
  * Address:	800FEB2C
  * Size:	000054
  */
-void ShortCommandProc(int portIndex)
+static void ShortCommandProc(int portIndex)
 {
 	GBA* port = &__GBA[portIndex];
 	if (port->_20 != 0) {
@@ -123,7 +123,7 @@ int GBAReset(int portIndex, u8* p2)
  * Address:	800FED60
  * Size:	000010
  */
-int OnReset(void)
+static int OnReset(void)
 {
 	__GBAReset = TRUE;
 	return 1;
