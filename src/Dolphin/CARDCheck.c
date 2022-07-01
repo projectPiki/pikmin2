@@ -1,11 +1,11 @@
-
+#include "Dolphin/card.h"
 
 /*
  * --INFO--
  * Address:	800D73CC
  * Size:	0001B0
  */
-void __CARDCheckSum(void)
+void __CARDCheckSum(u16* dataToChecksum, u32 byteCount, u16* checksum1, u16* checksum2)
 {
 	/*
 	.loc_0x0:
@@ -135,7 +135,7 @@ void __CARDCheckSum(void)
  * Address:	800D757C
  * Size:	000284
  */
-void VerifyID(void)
+int VerifyID(CARDBlock* block)
 {
 	/*
 	.loc_0x0:
@@ -336,7 +336,7 @@ void VerifyID(void)
  * Address:	800D7800
  * Size:	000240
  */
-void VerifyDir(void)
+int VerifyDir(CARDBlock* block, unkptr p2)
 {
 	/*
 	.loc_0x0:
@@ -524,7 +524,7 @@ void VerifyDir(void)
  * Address:	800D7A40
  * Size:	000284
  */
-void VerifyFAT(void)
+int VerifyFAT(CARDBlock* block, unkptr p2)
 {
 	/*
 	.loc_0x0:
@@ -737,7 +737,7 @@ void VerifyFAT(void)
  * Address:	800D7CC4
  * Size:	00008C
  */
-void __CARDVerify(void)
+int __CARDVerify(CARDBlock* block)
 {
 	/*
 	.loc_0x0:
@@ -794,7 +794,7 @@ void __CARDVerify(void)
  * Address:	800D7D50
  * Size:	000590
  */
-void CARDCheckExAsync(void)
+void CARDCheckExAsync(int slotIndex, unknown p2, CARDSyncCallback* p3)
 {
 	/*
 	.loc_0x0:

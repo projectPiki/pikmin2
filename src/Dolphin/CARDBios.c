@@ -1,4 +1,13 @@
+#include "Dolphin/card.h"
+#include "Dolphin/exi.h"
 #include "types.h"
+
+CARDBlock __CARDBlock[2];
+u8 __CARDDiskNone[0x20]; // unknown struct
+
+BOOL OnReset(unknown p1);
+int Retry(int slotIndex);
+void TimeoutHandler(OSAlarm* alarm);
 
 /*
  * --INFO--
@@ -12,8 +21,9 @@ void __CARDDefaultApiCallback(void) { }
  * Address:	800D4670
  * Size:	000034
  */
-void __CARDSyncCallback(void)
+void __CARDSyncCallback(int slotIndex, int p2)
 {
+	OSWakeupThread(&__CARDBlock[slotIndex]._08C);
 	/*
 	.loc_0x0:
 	  mflr      r0
@@ -37,8 +47,29 @@ void __CARDSyncCallback(void)
  * Address:	800D46A4
  * Size:	0000D8
  */
-void __CARDExtHandler(void)
+void __CARDExtHandler(int slotIndex)
 {
+	CARDBlockDoneWriteCallback* doneWriteCallback;
+	CARDBlockC4Callback* c4Callback;
+	CARDBlock* block = &__CARDBlock[slotIndex];
+	if (block->_000 != 0) {
+		block->_000 = 0;
+		EXISetExiCallback(slotIndex, nullptr);
+		OSCancelAlarm(&block->_0E0);
+		doneWriteCallback = block->doneWriteCallback;
+		if (doneWriteCallback != nullptr) {
+			block->doneWriteCallback = nullptr;
+			doneWriteCallback(slotIndex, -3);
+		}
+		if (block->_004 != -1) {
+			block->_004 = -3;
+		}
+		c4Callback = block->_0C4;
+		if (c4Callback != nullptr && 6 < block->_024) {
+			block->_0C4 = nullptr;
+			c4Callback(slotIndex, -3);
+		}
+	}
 	/*
 	.loc_0x0:
 	  mflr      r0
@@ -104,13 +135,59 @@ void __CARDExtHandler(void)
 	*/
 }
 
+inline int __CARDUnknownInline(int slotIndex)
+{
+	u8 status[0xC];
+	int v1;
+}
+
 /*
  * --INFO--
  * Address:	800D477C
  * Size:	000118
  */
-void __CARDExiHandler(void)
+void __CARDExiHandler(int slotIndex)
 {
+	int v1;
+	u8 status[0xC];
+	CARDBlockDoneWriteCallback* cb;
+	CARDBlock* block = &__CARDBlock[slotIndex];
+	OSCancelAlarm(&block->_0E0);
+	if (block->_000 == 0) {
+		return;
+	}
+	if (EXILock(slotIndex, 0, 0) == EXIResultZero) {
+		v1 = -0x80;
+	} else {
+		v1 = __CARDReadStatus(slotIndex, status);
+		if (0 > v1) {
+			goto unlock;
+		}
+		v1 = __CARDClearStatus(slotIndex);
+		if (0 > v1) {
+			goto unlock;
+		}
+		if ((status[0] & 0x18) == 0) {
+			v1 = 0;
+		} else {
+			v1 = -5;
+		}
+		if (v1 == -5 && 0 < --block->_0A8) {
+			v1 = Retry(slotIndex);
+			if (0 > v1) {
+				goto doCallback;
+			}
+			return;
+		}
+	unlock:
+		EXIUnlock(slotIndex);
+	}
+doCallback:
+	cb = block->doneWriteCallback;
+	if (cb != nullptr) {
+		block->doneWriteCallback = nullptr;
+		cb(slotIndex, v1);
+	}
 	/*
 	.loc_0x0:
 	  mflr      r0
@@ -386,7 +463,7 @@ void __CARDEnableInterrupt(void)
  * Address:	800D4A80
  * Size:	0000F0
  */
-void __CARDReadStatus(void)
+int __CARDReadStatus(int slotIndex, u8* buffer)
 {
 	/*
 	.loc_0x0:
@@ -464,7 +541,7 @@ void __CARDReadStatus(void)
  * Address:	800D4B70
  * Size:	0000AC
  */
-void __CARDClearStatus(void)
+int __CARDClearStatus(int slotIndex)
 {
 	/*
 	.loc_0x0:
@@ -545,7 +622,7 @@ void __CARDWakeup(void)
  * Address:	800D4C1C
  * Size:	0000A4
  */
-void TimeoutHandler(void)
+void TimeoutHandler(OSAlarm* alarm)
 {
 	/*
 	.loc_0x0:
@@ -612,7 +689,7 @@ void SetupTimeoutAlarm(void)
  * Address:	800D4CC0
  * Size:	00022C
  */
-void Retry(void)
+int Retry(int slotIndex)
 {
 	/*
 	.loc_0x0:
@@ -879,7 +956,7 @@ void UnlockedCallback(void)
  * Address:	800D4FFC
  * Size:	0001B4
  */
-void __CARDStart(void)
+int __CARDStart(int slotIndex, CARDBlockC8Callback* c8Callback, CARDBlockDoneWriteCallback* doneWriteCallback)
 {
 	/*
 	.loc_0x0:
@@ -1020,7 +1097,7 @@ void __CARDStart(void)
  * Address:	800D51B0
  * Size:	000134
  */
-void __CARDReadSegment(void)
+int __CARDReadSegment(int slotIndex, CARDBlockC8Callback* c8Callback)
 {
 	/*
 	.loc_0x0:
@@ -1117,7 +1194,7 @@ void __CARDReadSegment(void)
  * Address:	800D52E4
  * Size:	00011C
  */
-void __CARDWritePage(void)
+int __CARDWritePage(int slotIndex, CARDBlockDoneWriteCallback* doneWriteCallback)
 {
 	/*
 	.loc_0x0:
@@ -1218,7 +1295,7 @@ void __CARDErase(void)
  * Address:	800D5400
  * Size:	0000E0
  */
-void __CARDEraseSector(void)
+int __CARDEraseSector(int slotIndex, unknown p2, CARDBlockDoneWriteCallback* doneWriteCallback)
 {
 	/*
 	.loc_0x0:
@@ -1294,7 +1371,7 @@ void __CARDEraseSector(void)
  * Address:	800D54E0
  * Size:	0000AC
  */
-void CARDInit(void)
+void CARDInit()
 {
 	/*
 	.loc_0x0:
@@ -1355,7 +1432,7 @@ void CARDInit(void)
  * Address:	800D558C
  * Size:	000008
  */
-void __CARDGetFontEncode(void)
+u16 __CARDGetFontEncode()
 {
 	/*
 	.loc_0x0:
@@ -1379,7 +1456,7 @@ void __CARDSetFontEncode(void)
  * Address:	800D5594
  * Size:	000038
  */
-void __CARDSetDiskID(void)
+void __CARDSetDiskID(u8* diskID)
 {
 	/*
 	.loc_0x0:
@@ -1433,7 +1510,7 @@ void CARDSetDiskID(void)
  * Address:	800D55CC
  * Size:	0000B8
  */
-void __CARDGetControlBlock(void)
+int __CARDGetControlBlock(int slotIndex, CARDBlock** outBlock)
 {
 	/*
 	.loc_0x0:
@@ -1503,7 +1580,7 @@ void __CARDGetControlBlock(void)
  * Address:	800D5684
  * Size:	000064
  */
-void __CARDPutControlBlock(void)
+int __CARDPutControlBlock(CARDBlock* block, unknown p2)
 {
 	/*
 	.loc_0x0:
@@ -1554,7 +1631,7 @@ void CARDGetResultCode(void)
  * Address:	800D56E8
  * Size:	000150
  */
-void CARDFreeBlocks(void)
+int CARDFreeBlocks(int slotIndex, unknown p2, unknown p3)
 {
 	/*
 	.loc_0x0:
@@ -1706,7 +1783,7 @@ void CARDGetSectorSize(void)
  * Address:	800D5838
  * Size:	000098
  */
-void __CARDSync(void)
+int __CARDSync(int slotIndex)
 {
 	/*
 	.loc_0x0:
@@ -1766,7 +1843,7 @@ void __CARDSync(void)
  * Address:	800D58D0
  * Size:	000050
  */
-void OnReset(void)
+BOOL OnReset(unknown p1)
 {
 	/*
 	.loc_0x0:

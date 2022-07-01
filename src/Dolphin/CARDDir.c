@@ -1,12 +1,13 @@
-
+#include "Dolphin/card.h"
 
 /*
  * --INFO--
  * Address:	800D7168
  * Size:	000008
  */
-void __CARDGetDirBlock(void)
+CARDDirectoryBlock* __CARDGetDirBlock(CARDBlock* block)
 {
+	return block->_084;
 	/*
 	.loc_0x0:
 	  lwz       r3, 0x84(r3)
@@ -19,7 +20,7 @@ void __CARDGetDirBlock(void)
  * Address:	800D7170
  * Size:	0000D0
  */
-void WriteCallback(void)
+void WriteCallback(int slotIndex, int p2)
 {
 	/*
 	.loc_0x0:
@@ -91,7 +92,7 @@ void WriteCallback(void)
  * Address:	800D7240
  * Size:	0000C8
  */
-void EraseCallback(void)
+void EraseCallback(int slotIndex, int p2)
 {
 	/*
 	.loc_0x0:
@@ -159,7 +160,7 @@ void EraseCallback(void)
  * Address:	800D7308
  * Size:	0000C4
  */
-void __CARDUpdateDir(void)
+int __CARDUpdateDir(int slotIndex, CARDBlockD8Callback* d8Callback)
 {
 	/*
 	.loc_0x0:

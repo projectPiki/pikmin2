@@ -1,11 +1,11 @@
-
+#include "Dolphin/card.h"
 
 /*
  * --INFO--
  * Address:	800D8E2C
  * Size:	000144
  */
-void FormatCallback(void)
+void FormatCallback(int slotIndex, int p2)
 {
 	/*
 	.loc_0x0:
@@ -106,7 +106,7 @@ void FormatCallback(void)
  * Address:	800D8F70
  * Size:	000658
  */
-void __CARDFormatRegionAsync(void)
+int __CARDFormatRegionAsync(int slotIndex, u16 p2, CARDSyncCallback* syncCallback)
 {
 	/*
 	.loc_0x0:
@@ -574,8 +574,11 @@ void CARDFormatAsync(void)
  * Address:	800D95C8
  * Size:	000054
  */
-void CARDFormat(void)
+void CARDFormat(int slotIndex)
 {
+	if (-1 < __CARDFormatRegionAsync(slotIndex, __CARDGetFontEncode(), __CARDSyncCallback)) {
+		__CARDSync(slotIndex);
+	}
 	/*
 	.loc_0x0:
 	  mflr      r0

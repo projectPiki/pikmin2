@@ -1,11 +1,11 @@
-
+#include "Dolphin/card.h"
 
 /*
  * --INFO--
  * Address:	800DA2BC
  * Size:	000170
  */
-void WriteCallback(void)
+void WriteCallback(int slotIndex, int resultCode)
 {
 	/*
 	.loc_0x0:
@@ -123,7 +123,7 @@ void WriteCallback(void)
  * Address:	800DA42C
  * Size:	0000B0
  */
-void EraseCallback(void)
+void EraseCallback(int slotIndex, int p2)
 {
 	/*
 	.loc_0x0:
@@ -183,7 +183,7 @@ void EraseCallback(void)
  * Address:	800DA4DC
  * Size:	000114
  */
-void CARDWriteAsync(void)
+void CARDWriteAsync(CARDFileInfo* fileInfo, unknown p2, unknown p3, unknown p4, CARDSyncCallback* syncCallback)
 {
 	/*
 	.loc_0x0:
@@ -280,7 +280,7 @@ void CARDWriteAsync(void)
  * Address:	800DA5F0
  * Size:	000048
  */
-void CARDWrite(void)
+void CARDWrite(CARDFileInfo* fileInfo, unknown p2, unknown p3, unknown p4)
 {
 	/*
 	.loc_0x0:

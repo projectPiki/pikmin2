@@ -1,11 +1,11 @@
-
+#include "Dolphin/os.h"
 
 /*
  * --INFO--
  * Address:	800EEC38
  * Size:	000014
  */
-void OSDisableInterrupts(void)
+int OSDisableInterrupts(void)
 {
 	/*
 	.loc_0x0:
@@ -39,7 +39,7 @@ void OSEnableInterrupts(void)
  * Address:	800EEC60
  * Size:	000024
  */
-void OSRestoreInterrupts(void)
+void OSRestoreInterrupts(int)
 {
 	/*
 	.loc_0x0:
@@ -64,7 +64,7 @@ void OSRestoreInterrupts(void)
  * Address:	800EEC84
  * Size:	00001C
  */
-void __OSSetInterruptHandler(void)
+void __OSSetInterruptHandler(int, void*)
 {
 	/*
 	.loc_0x0:
@@ -483,7 +483,7 @@ void __OSMaskInterrupts(void)
  * Address:	800EF088
  * Size:	000088
  */
-void __OSUnmaskInterrupts(void)
+void __OSUnmaskInterrupts(int)
 {
 	/*
 	.loc_0x0:

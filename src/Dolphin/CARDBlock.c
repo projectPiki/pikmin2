@@ -1,12 +1,16 @@
+#include "Dolphin/card.h"
 
+void WriteCallback(int slotIndex, int p2);
+void EraseCallback(int slotIndex, int p2);
 
 /*
  * --INFO--
  * Address:	800D6E00
  * Size:	000008
  */
-void __CARDGetFatBlock(void)
+CARDFatBlock* __CARDGetFatBlock(CARDBlock* block)
 {
+	return block->_088;
 	/*
 	.loc_0x0:
 	  lwz       r3, 0x88(r3)
@@ -19,7 +23,7 @@ void __CARDGetFatBlock(void)
  * Address:	800D6E08
  * Size:	0000D4
  */
-void WriteCallback(void)
+void WriteCallback(int slotIndex, int p2)
 {
 	/*
 	.loc_0x0:
@@ -92,7 +96,7 @@ void WriteCallback(void)
  * Address:	800D6EDC
  * Size:	0000C8
  */
-void EraseCallback(void)
+void EraseCallback(int slotIndex, int p2)
 {
 	/*
 	.loc_0x0:
@@ -264,6 +268,7 @@ void __CARDAllocBlock(void)
  * Address:	........
  * Size:	00009C
  */
+// void __CARDFreeBlock(int slotIndex, CARDFatBlock* fatBlock, CARDBlockD8Callback* d8Callback)
 void __CARDFreeBlock(void)
 {
 	// UNUSED FUNCTION
@@ -274,8 +279,17 @@ void __CARDFreeBlock(void)
  * Address:	800D70BC
  * Size:	0000AC
  */
-void __CARDUpdateFatBlock(void)
+void __CARDUpdateFatBlock(int slotIndex, CARDFatBlock* fatBlock, CARDBlockD8Callback* d8Callback)
 {
+	fatBlock->updateCounter++;
+	// __CARDFreeBlock(slotIndex, fatBlock, d8Callback);
+	// TODO: The rest of the func may go in __CARDFreeBlock?:
+	CARDBlock* block = &__CARDBlock[slotIndex];
+	__CARDCheckSum(&fatBlock->updateCounter, 0x1FFC, &fatBlock->checksum1, &fatBlock->checksum2);
+	DCStoreRange(&fatBlock, 0x2000);
+	block->_0D8 = d8Callback;
+	__CARDEraseSector(slotIndex, ((int)fatBlock - (int)block->_080) >> 0xD, EraseCallback);
+
 	/*
 	.loc_0x0:
 	  mflr      r0

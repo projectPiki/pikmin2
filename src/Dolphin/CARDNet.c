@@ -1,4 +1,4 @@
-
+#include "Dolphin/card.h"
 
 /*
  * --INFO--
@@ -25,7 +25,7 @@ void CARDGetVendorID(void)
  * Address:	800DAB00
  * Size:	0000C4
  */
-void CARDGetSerialNo(void)
+int CARDGetSerialNo(int slotIndex, u64* serialNo)
 {
 	/*
 	.loc_0x0:

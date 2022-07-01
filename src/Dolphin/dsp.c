@@ -1,3 +1,9 @@
+#include "Dolphin/dsp.h"
+#include "Dolphin/os.h"
+#include "types.h"
+
+BOOL __DSP_init_flag;
+char* __DSPVersion = "<< Dolphin SDK - DSP\trelease build: Apr 17 2003 12:34:16";
 
 
 /*
@@ -5,8 +11,10 @@
  * Address:	800DACB0
  * Size:	000010
  */
-void DSPCheckMailToDSP(void)
+u16 DSPCheckMailToDSP(void)
 {
+	u16 result = HW_REG(0xCC005000, u16);
+	return result >> 0xF;
 	/*
 	.loc_0x0:
 	  lis       r3, 0xCC00
@@ -21,8 +29,10 @@ void DSPCheckMailToDSP(void)
  * Address:	800DACC0
  * Size:	000010
  */
-void DSPCheckMailFromDSP(void)
+u16 DSPCheckMailFromDSP(void)
 {
+	u16 result = HW_REG(0xCC005004, u16);
+	return result >> 0xF;
 	/*
 	.loc_0x0:
 	  lis       r3, 0xCC00
@@ -47,8 +57,12 @@ void DSPReadCPUToDSPMbox(void)
  * Address:	800DACD0
  * Size:	000018
  */
-void DSPReadMailFromDSP(void)
+u32 DSPReadMailFromDSP(void)
 {
+	return (HW_REG(__DSPRegs + 2, u16) << 0x10) | HW_REG(__DSPRegs + 3, u16);
+	// u16 a = HW_REG(0xCC005004, u16);
+	// u16 b = HW_REG(0xCC005006, u16);
+	// return (u32)((u32)a << 0x10) | (u32)b;
 	/*
 	.loc_0x0:
 	  lis       r3, 0xCC00
@@ -65,8 +79,10 @@ void DSPReadMailFromDSP(void)
  * Address:	800DACE8
  * Size:	000014
  */
-void DSPSendMailToDSP(void)
+void DSPSendMailToDSP(u32 mail)
 {
+	HW_REG(0xCC005000, u16) = mail >> 0x10;
+	HW_REG(0xCC005002, u16) = mail;
 	/*
 	.loc_0x0:
 	  lis       r4, 0xCC00
@@ -84,6 +100,9 @@ void DSPSendMailToDSP(void)
  */
 void DSPAssertInt(void)
 {
+	int interrupts = OSDisableInterrupts();
+	HW_REG(__DSPRegs + 5, u16) = HW_REG(__DSPRegs + 5, u16) & 0xFF57 | 2;
+	OSRestoreInterrupts(interrupts);
 	/*
 	.loc_0x0:
 	  mflr      r0
@@ -112,6 +131,22 @@ void DSPAssertInt(void)
  */
 void DSPInit(void)
 {
+	int interrupts;
+	__DSP_debug_printf("DSPInit(): Build Date: %s %s\n","Apr 17 2003","12:34:16");
+	if (__DSP_init_flag != TRUE) {
+		OSRegisterVersion(__DSPVersion);
+		interrupts = OSDisableInterrupts();
+		__OSSetInterruptHandler(7, NULL);
+		__OSUnmaskInterrupts(0x1000000);
+		HW_REG(__DSPRegs + 5, u16) &= 0xFF57 | 0x800;
+		HW_REG(__DSPRegs + 5, u16) &= 0xFF53;
+		__DSP_tmp_task = nullptr;
+		__DSP_curr_task = nullptr;
+		__DSP_last_task = nullptr;
+		__DSP_first_task = nullptr;
+		__DSP_init_flag = TRUE;
+		OSRestoreInterrupts(interrupts);
+	}
 	/*
 	.loc_0x0:
 	  mflr      r0

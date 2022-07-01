@@ -1,4 +1,5 @@
-
+#include "Dolphin/card.h"
+#include "Dolphin/dsp.h"
 
 /*
  * --INFO--
@@ -45,7 +46,7 @@ void exnor(void)
  * Address:	800D5920
  * Size:	00016C
  */
-void bitrev(void)
+uint bitrev(uint)
 {
 	/*
 	.loc_0x0:
@@ -174,7 +175,7 @@ void bitrev(void)
  * Address:	800D5A8C
  * Size:	000144
  */
-void ReadArrayUnlock(void)
+void ReadArrayUnlock(int slotIndex, u32 p2, u8* buffer, int byteCount, unknown p5)
 {
 	/*
 	.loc_0x0:
@@ -287,7 +288,7 @@ void GetInitVal(void)
  * Address:	800D5BD0
  * Size:	0000C4
  */
-void DummyLen(void)
+int DummyLen(void)
 {
 	/*
 	.loc_0x0:
@@ -358,7 +359,7 @@ void DummyLen(void)
  * Address:	800D5C94
  * Size:	000B58
  */
-void __CARDUnlock(void)
+int __CARDUnlock(int slotIndex, unkptr p2)
 {
 	/*
 	.loc_0x0:
@@ -1132,7 +1133,7 @@ void __CARDUnlock(void)
  * Address:	800D67EC
  * Size:	000070
  */
-void InitCallback(void)
+void InitCallback(DSPTask* dspTask)
 {
 	/*
 	.loc_0x0:
@@ -1178,7 +1179,7 @@ void InitCallback(void)
  * Address:	800D685C
  * Size:	000324
  */
-void DoneCallback(void)
+void DoneCallback(DSPTask* dspTask)
 {
 	/*
 	.loc_0x0:

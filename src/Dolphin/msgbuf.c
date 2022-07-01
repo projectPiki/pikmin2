@@ -1,11 +1,11 @@
-
+#include "Dolphin/trk.h"
 
 /*
  * --INFO--
  * Address:	........
  * Size:	000150
  */
-void TRKReadBuffer_ui128(void)
+void TRKReadBuffer_ui128(TRKBuffer* buffer, u8* p2, int p3)
 {
 	// UNUSED FUNCTION
 }
@@ -15,7 +15,7 @@ void TRKReadBuffer_ui128(void)
  * Address:	........
  * Size:	000110
  */
-void TRKReadBuffer_ui64(void)
+void TRKReadBuffer_ui64(TRKBuffer* buffer, u8* p2, int p3)
 {
 	// UNUSED FUNCTION
 }
@@ -25,8 +25,34 @@ void TRKReadBuffer_ui64(void)
  * Address:	800BB88C
  * Size:	0000F0
  */
-void TRKReadBuffer_ui32(void)
+TRKResult TRKReadBuffer_ui32(TRKBuffer* buffer, u8* p2, int count)
 {
+	TRKResult result = TRKSuccess;
+	u32 diff;
+	int i;
+	u32 byteCount;
+	u8* p;
+	u8 littleEndianBuffer[4];
+	for (i = 0; (result == TRKSuccess && i < count); i++) {
+		p         = (gTRKBigEndian ? p2 : littleEndianBuffer);
+		result    = TRKSuccess;
+		diff      = buffer->_08 - buffer->_0C;
+		byteCount = 4;
+		if (diff < 4) {
+			result    = TRKError302;
+			byteCount = diff;
+		}
+		TRK_memcpy(p, buffer->m_buffer + (buffer->_0C - 4), byteCount);
+		buffer->_0C += byteCount;
+		if (gTRKBigEndian == FALSE && result == TRKSuccess) {
+			p2[0] = littleEndianBuffer[3];
+			p2[1] = littleEndianBuffer[2];
+			p2[2] = littleEndianBuffer[1];
+			p2[3] = littleEndianBuffer[0];
+		}
+		p2 += 4;
+	}
+	return result;
 	/*
 	.loc_0x0:
 	  stwu      r1, -0x30(r1)
@@ -111,7 +137,7 @@ void TRKReadBuffer_ui32(void)
  * Address:	........
  * Size:	0000E0
  */
-void TRKReadBuffer_ui16(void)
+void TRKReadBuffer_ui16(TRKBuffer* buffer, u8* p2, int p3)
 {
 	// UNUSED FUNCTION
 }
@@ -121,8 +147,24 @@ void TRKReadBuffer_ui16(void)
  * Address:	800BB97C
  * Size:	000098
  */
-void TRKReadBuffer_ui8(void)
+TRKResult TRKReadBuffer_ui8(TRKBuffer* buffer, u8* p2, int count)
 {
+	TRKResult result = TRKSuccess;
+	int i;
+	u32 diff;
+	u32 byteCount;
+	for (i = 0; (result == TRKSuccess && i < count); i++) {
+		result    = TRKSuccess;
+		diff      = buffer->_08 - buffer->_0C;
+		byteCount = 1;
+		if (diff == 0) {
+			result    = TRKError302;
+			byteCount = diff;
+		}
+		TRK_memcpy(p2 + i, buffer->m_buffer + (buffer->_0C - 4), byteCount);
+		buffer->_0C += byteCount;
+	}
+	return result;
 	/*
 	.loc_0x0:
 	  stwu      r1, -0x20(r1)
@@ -179,7 +221,7 @@ void TRKReadBuffer_ui8(void)
  * Address:	........
  * Size:	000128
  */
-void TRKReadBuffer1_ui128(void)
+void TRKReadBuffer1_ui128(TRKBuffer* buffer, u8* p2, int p3)
 {
 	// UNUSED FUNCTION
 }
@@ -189,8 +231,31 @@ void TRKReadBuffer1_ui128(void)
  * Address:	800BBA14
  * Size:	0000E8
  */
-void TRKReadBuffer1_ui64(void)
+TRKResult TRKReadBuffer1_ui64(TRKBuffer* buffer, u8* p2)
 {
+	int i;
+	int j;
+	TRKResult result = TRKSuccess;
+	u32 diff;
+	u32 byteCount;
+	u8* p;
+	u8 littleEndianBuffer[20];
+	p         = (gTRKBigEndian ? p2 : littleEndianBuffer);
+	result    = TRKSuccess;
+	diff      = buffer->_08 - buffer->_0C;
+	byteCount = 8;
+	if (diff < 8) {
+		result    = TRKError302;
+		byteCount = diff;
+	}
+	TRK_memcpy(p, buffer->m_buffer + (buffer->_0C - 4), byteCount);
+	buffer->_0C += byteCount;
+	if (gTRKBigEndian == FALSE && result == TRKSuccess) {
+		for (i = 7, j = 0; j < 8; j++, i--) {
+			p2[j] = littleEndianBuffer[i];
+		}
+	}
+	return result;
 	/*
 	.loc_0x0:
 	  stwu      r1, -0x30(r1)
@@ -418,7 +483,7 @@ void TRKAppendBuffer_ui16(void)
  * Address:	800BBBF8
  * Size:	000068
  */
-void TRKAppendBuffer_ui8(void)
+TRKResult TRKAppendBuffer_ui8(TRKBuffer* buffer, u8* p2, int p3)
 {
 	/*
 	.loc_0x0:
@@ -697,7 +762,7 @@ void TRKAppendBuffer(void)
  * Address:	800BBE8C
  * Size:	000030
  */
-void TRKSetBufferPosition(void)
+TRKResult TRKSetBufferPosition(TRKBuffer* buffer, u32 p2)
 {
 	/*
 	.loc_0x0:
@@ -755,7 +820,7 @@ void TRKResetBuffer(void)
  * Address:	800BBEFC
  * Size:	000064
  */
-void TRKReleaseBuffer(void)
+void TRKReleaseBuffer(int p1)
 {
 	/*
 	.loc_0x0:
@@ -794,7 +859,7 @@ void TRKReleaseBuffer(void)
  * Address:	800BBF60
  * Size:	00002C
  */
-void TRKGetBuffer(void)
+void* TRKGetBuffer(int p1)
 {
 	/*
 	.loc_0x0:
@@ -891,7 +956,7 @@ void TRKGetFreeBuffer(void)
  * Address:	800BC054
  * Size:	000074
  */
-void TRKInitializeMessageBuffers(void)
+TRKResult TRKInitializeMessageBuffers(void)
 {
 	/*
 	.loc_0x0:

@@ -7,6 +7,8 @@
 extern "C" {
 #endif // ifdef __cplusplus
 
+#define OSCachedToPhysical(paddr) ((void*)((u32)(paddr) + 0x80000000))
+
 // __ppc_eabi_init
 extern void __OSPSInit();
 extern void __OSFPRInit();
@@ -26,7 +28,7 @@ void OSRegisterVersion(const char*);
 
 // TODO: fill these structs
 typedef struct OSContext {
-	char filler[708];
+	char filler[712];
 } OSContext;
 
 typedef struct OSMessageQueue {
@@ -35,7 +37,7 @@ typedef struct OSMessageQueue {
 typedef struct OSMessage {
 	void* message;
 	u32 args[3];
-};
+} OSMessage;
 
 typedef struct DVDDiskID DVDDiskID;
 
@@ -234,12 +236,33 @@ typedef struct BI2Debug {
 	mfspr r0, GQR7;                                   \
 	stw r0, OS_CONTEXT_GQR7(context);
 
+void OSClearContext(OSContext*);
+void OSSetCurrentContext(OSContext*);
+
 void OSInitMessageQueue(OSMessageQueue* queue, void** msgSlots, int slotCount);
 BOOL OSSendMessage(OSMessageQueue* queue, void* message, int flags);
 BOOL OSReceiveMessage(OSMessageQueue* queue, void* msg, int flags);
 
 // OSAlarm
+typedef struct OSAlarm OSAlarm;
+struct OSAlarm {
+	unknown _00;        // _00
+	unknown _04;        // _04
+	u32 systemTime[2];  // _08
+	OSAlarm* headwards; // _10
+	OSAlarm* tailwards; // _14
+	u32 _18;            // _18
+	unknown _1C;        // _1C
+	u8 _20[8];          // _20
+};
+
+struct OSAlarmQueue {
+	OSAlarm* head;
+	OSAlarm* tail;
+};
+
 void OSInitAlarm();
+void OSCancelAlarm(OSAlarm* alarm);
 
 // OSArena
 extern void* __OSArenaHi;
@@ -377,7 +400,7 @@ struct OSThread {
 enum OS_THREAD_STATE { OS_THREAD_STATE_READY = 1, OS_THREAD_STATE_RUNNING = 2, OS_THREAD_STATE_WAITING = 4, OS_THREAD_STATE_MORIBUND = 8 };
 
 // Thread priorities
-#define OS_PRIORITY_MIN  0 // highest
+#define OS_PRIORITY_MIN  0  // highest
 #define OS_PRIORITY_MAX  31 // lowest
 #define OS_PRIORITY_IDLE OS_PRIORITY_MAX
 
@@ -386,6 +409,8 @@ enum OS_THREAD_STATE { OS_THREAD_STATE_READY = 1, OS_THREAD_STATE_RUNNING = 2, O
 
 // Stack magic value
 #define OS_THREAD_STACK_MAGIC 0xDEADBABE
+
+void __OSSetInterruptHandler(int, void*);
 
 void OSInitThreadQueue(OSThreadQueue* queue);
 OSThread* OSGetCurrentThread(void);
@@ -420,6 +445,7 @@ void OSSignalCond(OSThreadQueue*);
 void __OSUnlockSramEx(int);
 u8* __OSLockSramEx(void);
 
+void __OSUnmaskInterrupts(int);
 int OSDisableInterrupts(void);
 void OSRestoreInterrupts(int);
 

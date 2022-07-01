@@ -65,4 +65,4 @@ TRKResult TRKDispatchMessage(TRKBuffer* param_1)
  * Address:	800BC57C
  * Size:	000008
  */
-u32 TRKInitializeDispatcher(void) { return 0x0; }
+TRKResult TRKInitializeDispatcher(void) { return TRKSuccess; }

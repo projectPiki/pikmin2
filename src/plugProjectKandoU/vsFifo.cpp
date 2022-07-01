@@ -17,7 +17,7 @@ VSFifo::VSFifo(unsigned long size)
 		m_fifo = (GXFifoObj*)JKRHeap::sCurrentHeap->alloc(m_size + GX_FIFO_OBJ_SIZE, 0x20);
 	}
 
-	m_base = &m_fifo->pad[GX_FIFO_OBJ_SIZE];
+	m_base = &m_fifo->_20[0x60];
 	GXInitFifoBase(m_fifo, m_base, m_size);
 	GXInitFifoPtrs(m_fifo, m_base, m_base);
 }

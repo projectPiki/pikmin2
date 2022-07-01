@@ -1,11 +1,11 @@
-
+#include "Dolphin/card.h"
 
 /*
  * --INFO--
  * Address:	800D9AB0
  * Size:	000130
  */
-void CreateCallbackFat(void)
+void CreateCallbackFat(int slotIndex, int p2)
 {
 	/*
 	.loc_0x0:
@@ -97,7 +97,7 @@ void CreateCallbackFat(void)
  * Address:	800D9BE0
  * Size:	000220
  */
-void CARDCreateAsync(void)
+int CARDCreateAsync(int slotIndex, char* fileName, unknown p3, CARDFileInfo* fileInfo, unkptr callback)
 {
 	/*
 	.loc_0x0:
@@ -273,8 +273,11 @@ void CARDCreateAsync(void)
  * Address:	800D9E00
  * Size:	000048
  */
-void CARDCreate(void)
+void CARDCreate(int slotIndex, char* fileName, unknown p3, CARDFileInfo* fileInfo)
 {
+	if (-1 < CARDCreateAsync(slotIndex, fileName, p3, fileInfo, __CARDSyncCallback)) {
+		__CARDSync(slotIndex);
+	}
 	/*
 	.loc_0x0:
 	  mflr      r0

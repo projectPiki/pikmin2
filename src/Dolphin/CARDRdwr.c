@@ -1,11 +1,11 @@
-
+#include "Dolphin/card.h"
 
 /*
  * --INFO--
  * Address:	800D6B80
  * Size:	0000DC
  */
-void BlockReadCallback(void)
+void BlockReadCallback(int slotIndex, int p2)
 {
 	/*
 	.loc_0x0:
@@ -78,7 +78,7 @@ void BlockReadCallback(void)
  * Address:	800D6C5C
  * Size:	000064
  */
-void __CARDRead(void)
+int __CARDRead(int slotIndex, unknown p2, unknown p3, unknown p4, CARDBlockD4Callback* p5)
 {
 	/*
 	.loc_0x0:
@@ -119,7 +119,7 @@ void __CARDRead(void)
  * Address:	800D6CC0
  * Size:	0000DC
  */
-void BlockWriteCallback(void)
+void BlockWriteCallback(int slotIndex, int p2)
 {
 	/*
 	.loc_0x0:
@@ -192,7 +192,7 @@ void BlockWriteCallback(void)
  * Address:	800D6D9C
  * Size:	000064
  */
-void __CARDWrite(void)
+void __CARDWrite(int slotIndex, unknown p2, unknown p3, unknown p4, CARDBlockD4Callback* p5)
 {
 	/*
 	.loc_0x0:

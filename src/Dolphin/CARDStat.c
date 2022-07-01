@@ -1,11 +1,11 @@
-
+#include "Dolphin/card.h"
 
 /*
  * --INFO--
  * Address:	800DA638
  * Size:	0001F8
  */
-void UpdateIconOffsets(void)
+void UpdateIconOffsets(CARDDirectoryEntry* entry, CARDStat* stat)
 {
 	/*
 	.loc_0x0:
@@ -191,7 +191,7 @@ void UpdateIconOffsets(void)
  * Address:	800DA830
  * Size:	000114
  */
-void CARDGetStatus(void)
+void CARDGetStatus(int slotIndex, int p2, CARDStat* stat)
 {
 	/*
 	.loc_0x0:
@@ -282,7 +282,7 @@ void CARDGetStatus(void)
  * Address:	800DA944
  * Size:	000174
  */
-void CARDSetStatusAsync(void)
+void CARDSetStatusAsync(int slotIndex, int p2, CARDStat* stat, CARDBlockD8Callback* p4)
 {
 	/*
 	.loc_0x0:
@@ -403,7 +403,7 @@ void CARDSetStatusAsync(void)
  * Address:	800DAAB8
  * Size:	000048
  */
-void CARDSetStatus(void)
+void CARDSetStatus(int slotIndex, unknown p2, CARDStat* stat)
 {
 	/*
 	.loc_0x0:

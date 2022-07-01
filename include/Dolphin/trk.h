@@ -10,12 +10,12 @@ extern "C" {
 
 /* TRK */
 
-#define TRK_DISPATCH_CMD_CONNECT        1 /* Connect to the console */
-#define TRK_DISPATCH_CMD_DISCONNECT     2 /* Disconnect from the console */
-#define TRK_DISPATCH_CMD_RESET          3 /* Reset the debugger */
-#define TRK_DISPATCH_CMD_GETVERSION     4 /* Get debugger version */
-#define TRK_DISPATCH_CMD_GETSUPPORTMASK 5 /* Get Support Mask */
-#define TRK_DISPATCH_CMD_OVERRIDE       7 /* Override? */
+#define TRK_DISPATCH_CMD_CONNECT        1  /* Connect to the console */
+#define TRK_DISPATCH_CMD_DISCONNECT     2  /* Disconnect from the console */
+#define TRK_DISPATCH_CMD_RESET          3  /* Reset the debugger */
+#define TRK_DISPATCH_CMD_GETVERSION     4  /* Get debugger version */
+#define TRK_DISPATCH_CMD_GETSUPPORTMASK 5  /* Get Support Mask */
+#define TRK_DISPATCH_CMD_OVERRIDE       7  /* Override? */
 #define TRK_DISPATCH_CMD_READMEM        16 /* Reading from memory */
 #define TRK_DISPATCH_CMD_WRITEMEM       17 /* Writing to memory */
 #define TRK_DISPATCH_CMD_READREGS       18 /* Read a register value */
@@ -47,7 +47,7 @@ typedef struct TRKEvent {
 typedef struct TRKEventQueue {
 	u8 _00[4];
 	int _04;
-	u32 m_nextSlotToOverwrite;
+	int m_nextSlotToOverwrite;
 	TRKEvent m_events[2];
 	u32 _24; /* max of 0x100? */
 } TRKEventQueue;
@@ -110,7 +110,9 @@ typedef struct TRKBuffer {
 	u32 _10;
 	u8 m_buffer[0x87C]; /* _10 */
 } TRKBuffer;
-typedef int TRKResult;
+typedef enum { TRKSuccess = 0, TRKError100 = 0x100, TRKError301 = 0x301, TRKError302 = 0x302 } TRKResult;
+
+extern BOOL gTRKBigEndian;
 
 u32 TRKDoConnect(TRKBuffer*);
 u32 TRKDoDisconnect(TRKBuffer*);
@@ -134,6 +136,7 @@ void EnableMetroTRKInterrupts(void);
 void TRKDestructEvent(TRKEvent*);
 TRKResult TRKDispatchMessage(TRKBuffer*);
 void* TRKGetBuffer(int);
+void TRKReleaseBuffer(int);
 void TRKGetInput();
 BOOL TRKGetNextEvent(TRKEvent*);
 
@@ -153,6 +156,18 @@ TRKResult TRKInitializeNub(void);
 TRKResult TRKTerminateNub(void);
 void TRKNubWelcome(void);
 void TRKNubMainLoop(void);
+
+TRKResult TRKInitializeMutex(void*);
+TRKResult TRKAcquireMutex(void*);
+TRKResult TRKReleaseMutex(void*);
+void* TRK_memcpy(void* dst, const void* src, size_t n);
+
+TRKResult TRKInitializeEventQueue();
+TRKResult TRKInitializeMessageBuffers();
+TRKResult TRKInitializeDispatcher();
+TRKResult InitializeProgramEndTrap();
+TRKResult TRKInitializeSerialHandler();
+TRKResult TRKInitializeTarget();
 
 /* EXI2 */
 #define EXI2_Init(inputFlagPtr, mtrCallback) DBInitComm(inputFlagPtr, mtrCallback);
@@ -193,6 +208,10 @@ typedef enum {
 } UARTBaudRate;
 
 UARTError InitializeUART(UARTBaudRate baudRate);
+TRKResult TRKInitializeIntDrivenUART(unknown, unknown, unknown, unkptr);
+void usr_put_initialize();
+void TRKTargetSetInputPendingPtr(unkptr);
+extern unkptr gTRKInputPendingPtr;
 
 #ifdef __cplusplus
 };

@@ -1,7 +1,6 @@
 #include "types.h"
 #include "Dolphin/trk.h"
 
-extern u8* gTRKInputPendingPtr;
 extern TRKEventQueue gTRKEventQueue;
 extern TRKState gTRKState;
 
@@ -43,7 +42,7 @@ void TRKNubMainLoop(void)
 				break;
 			}
 			TRKDestructEvent(&sp8);
-		} else if ((var_r30 == FALSE) || (*gTRKInputPendingPtr != '\0')) {
+		} else if ((var_r30 == FALSE) || (*(u8*)gTRKInputPendingPtr != '\0')) {
 			var_r30 = TRUE;
 			TRKGetInput();
 		} else {

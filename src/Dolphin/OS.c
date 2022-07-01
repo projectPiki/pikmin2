@@ -57,7 +57,6 @@ void __OSInitMemoryProtection();
 void __OSInitSram();
 void __OSInitSystemCall();
 void __OSInterruptInit();
-void __OSSetInterruptHandler(int, void*);
 void __OSThreadInit();
 u64 __OSGetSystemTime();
 void DBPrintf(const char*, ...);

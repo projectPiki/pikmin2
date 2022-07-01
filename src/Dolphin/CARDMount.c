@@ -1,11 +1,11 @@
-
+#include "Dolphin/card.h"
 
 /*
  * --INFO--
  * Address:	800D8334
  * Size:	0000CC
  */
-void IsCard(void)
+BOOL IsCard(unknown p1)
 {
 	/*
 	.loc_0x0:
@@ -96,7 +96,7 @@ void __CARDDisable(void)
  * Address:	800D8400
  * Size:	000038
  */
-void CARDProbe(void)
+int CARDProbe(int slotIndex)
 {
 	/*
 	.loc_0x0:
@@ -126,7 +126,7 @@ void CARDProbe(void)
  * Address:	800D8438
  * Size:	00017C
  */
-void CARDProbeEx(void)
+int CARDProbeEx(int slotIndex, unknown p2, unknown p3)
 {
 	/*
 	.loc_0x0:
@@ -265,7 +265,7 @@ void CARDProbeEx(void)
  * Address:	800D85B4
  * Size:	000410
  */
-void DoMount(void)
+int DoMount(int slotIndex)
 {
 	/*
 	.loc_0x0:
@@ -577,7 +577,7 @@ void DoMount(void)
  * Address:	800D89C4
  * Size:	000138
  */
-void __CARDMountCallback(void)
+void __CARDMountCallback(int slotIndex, int p2)
 {
 	/*
 	.loc_0x0:
@@ -681,7 +681,7 @@ void __CARDMountCallback(void)
  * Address:	800D8AFC
  * Size:	0001A0
  */
-void CARDMountAsync(void)
+int CARDMountAsync(int slotIndex, CARDMemoryCard* memoryCard, CARDBlockC4Callback* c4Callback, CARDSyncCallback* syncCallback)
 {
 	/*
 	.loc_0x0:
@@ -817,8 +817,11 @@ void CARDMountAsync(void)
  * Address:	800D8C9C
  * Size:	000048
  */
-void CARDMount(void)
+void CARDMount(int slotIndex, CARDMemoryCard* memoryCard, CARDBlockC4Callback* c4Callback)
 {
+	if (-1 < CARDMountAsync(slotIndex, memoryCard, c4Callback, __CARDSyncCallback)) {
+		__CARDSync(slotIndex);
+	}
 	/*
 	.loc_0x0:
 	  mflr      r0
@@ -851,7 +854,7 @@ void CARDMount(void)
  * Address:	800D8CE4
  * Size:	00009C
  */
-void DoUnmount(void)
+void DoUnmount(int slotIndex, int p2)
 {
 	/*
 	.loc_0x0:
@@ -904,7 +907,7 @@ void DoUnmount(void)
  * Address:	800D8D80
  * Size:	0000AC
  */
-void CARDUnmount(void)
+int CARDUnmount(int slotIndex)
 {
 	/*
 	.loc_0x0:

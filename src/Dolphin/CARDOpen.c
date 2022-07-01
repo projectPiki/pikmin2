@@ -1,11 +1,11 @@
-
+#include "Dolphin/card.h"
 
 /*
  * --INFO--
  * Address:	800D961C
  * Size:	000068
  */
-void __CARDCompareFileName(void)
+BOOL __CARDCompareFileName(char* p1, char* p2)
 {
 	/*
 	.loc_0x0:
@@ -51,7 +51,7 @@ void __CARDCompareFileName(void)
  * Address:	800D9684
  * Size:	000094
  */
-void __CARDAccess(void)
+int __CARDAccess(CARDBlock* block, CARDDirectoryEntry* entry)
 {
 	/*
 	.loc_0x0:
@@ -108,7 +108,7 @@ void __CARDAccess(void)
  * Address:	800D9718
  * Size:	000134
  */
-void __CARDIsWritable(void)
+int __CARDIsWritable(CARDBlock* block, CARDDirectoryEntry* entry)
 {
 	/*
 	.loc_0x0:
@@ -211,7 +211,7 @@ void __CARDIsWritable(void)
  * Address:	800D984C
  * Size:	0000F4
  */
-void __CARDIsReadable(void)
+int __CARDIsReadable(CARDBlock* block, CARDDirectoryEntry* entry)
 {
 	/*
 	.loc_0x0:
@@ -312,7 +312,7 @@ void CARDFastOpen(void)
  * Address:	800D9940
  * Size:	00011C
  */
-void CARDOpen(void)
+void CARDOpen(int slotIndex, char* fileName, CARDFileInfo* fileInfo)
 {
 	/*
 	.loc_0x0:
@@ -413,7 +413,7 @@ void CARDOpen(void)
  * Address:	800D9A5C
  * Size:	000054
  */
-void CARDClose(void)
+void CARDClose(CARDFileInfo* fileInfo)
 {
 	/*
 	.loc_0x0:
