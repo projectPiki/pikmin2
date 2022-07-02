@@ -5,7 +5,6 @@
 BOOL __DSP_init_flag;
 char* __DSPVersion = "<< Dolphin SDK - DSP\trelease build: Apr 17 2003 12:34:16";
 
-
 /*
  * --INFO--
  * Address:	800DACB0
@@ -100,7 +99,7 @@ void DSPSendMailToDSP(u32 mail)
  */
 void DSPAssertInt(void)
 {
-	int interrupts = OSDisableInterrupts();
+	int interrupts             = OSDisableInterrupts();
 	HW_REG(__DSPRegs + 5, u16) = HW_REG(__DSPRegs + 5, u16) & 0xFF57 | 2;
 	OSRestoreInterrupts(interrupts);
 	/*
@@ -132,7 +131,7 @@ void DSPAssertInt(void)
 void DSPInit(void)
 {
 	int interrupts;
-	__DSP_debug_printf("DSPInit(): Build Date: %s %s\n","Apr 17 2003","12:34:16");
+	__DSP_debug_printf("DSPInit(): Build Date: %s %s\n", "Apr 17 2003", "12:34:16");
 	if (__DSP_init_flag != TRUE) {
 		OSRegisterVersion(__DSPVersion);
 		interrupts = OSDisableInterrupts();
@@ -140,11 +139,11 @@ void DSPInit(void)
 		__OSUnmaskInterrupts(0x1000000);
 		HW_REG(__DSPRegs + 5, u16) &= 0xFF57 | 0x800;
 		HW_REG(__DSPRegs + 5, u16) &= 0xFF53;
-		__DSP_tmp_task = nullptr;
-		__DSP_curr_task = nullptr;
-		__DSP_last_task = nullptr;
+		__DSP_tmp_task   = nullptr;
+		__DSP_curr_task  = nullptr;
+		__DSP_last_task  = nullptr;
 		__DSP_first_task = nullptr;
-		__DSP_init_flag = TRUE;
+		__DSP_init_flag  = TRUE;
 		OSRestoreInterrupts(interrupts);
 	}
 	/*
