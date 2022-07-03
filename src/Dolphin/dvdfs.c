@@ -1,4 +1,5 @@
 #include "types.h"
+#include "Dolphin/dvd.h"
 
 /*
  * --INFO--
@@ -41,7 +42,7 @@ void isSame(void)
  * Address:	800DC164
  * Size:	0002F4
  */
-void DVDConvertPathToEntrynum(void)
+int DVDConvertPathToEntrynum(char*)
 {
 	/*
 	.loc_0x0:
@@ -320,7 +321,7 @@ void DVDConvertPathToEntrynum(void)
  * Address:	800DC458
  * Size:	000074
  */
-void DVDFastOpen(void)
+BOOL DVDFastOpen(long, struct DVDPlayer*)
 {
 	/*
 	.loc_0x0:
@@ -369,7 +370,7 @@ void DVDFastOpen(void)
  * Address:	800DC4CC
  * Size:	0000C8
  */
-void DVDOpen(void)
+BOOL DVDOpen(const char*, struct DVDPlayer*)
 {
 	/*
 	.loc_0x0:
@@ -441,8 +442,10 @@ void DVDOpen(void)
  * Address:	800DC594
  * Size:	000024
  */
-void DVDClose(void)
+BOOL DVDClose(struct DVDPlayer* player)
 {
+	DVDCancel(player);
+	return TRUE;
 	/*
 	.loc_0x0:
 	  mflr      r0
@@ -596,7 +599,7 @@ void entryToPath(void)
  * Address:	800DC718
  * Size:	000154
  */
-void DVDConvertEntrynumToPath(void)
+BOOL DVDConvertEntrynumToPath(int, char*)
 {
 	/*
 	.loc_0x0:
@@ -790,7 +793,7 @@ void DVDGetCurrentDir(void)
  * Address:	800DC930
  * Size:	000060
  */
-void DVDChangeDir(void)
+int DVDChangeDir(char*)
 {
 	/*
 	.loc_0x0:
@@ -836,7 +839,7 @@ void DVDChangeDir(void)
  * Address:	800DC990
  * Size:	0000C0
  */
-void DVDReadAsyncPrio(void)
+BOOL DVDReadAsyncPrio(struct DVDPlayer*, void*, long, long, DVDDoneReadCallback*, int)
 {
 	/*
 	.loc_0x0:
@@ -1115,7 +1118,7 @@ void DVDFastOpenDir(void)
  * Address:	800DCBBC
  * Size:	0000C0
  */
-void DVDOpenDir(void)
+BOOL DVDOpenDir(char*, OSFstEntry*)
 {
 	/*
 	.loc_0x0:
@@ -1185,7 +1188,7 @@ void DVDOpenDir(void)
  * Address:	800DCC7C
  * Size:	0000A4
  */
-void DVDReadDir(void)
+BOOL DVDReadDir(OSFstEntry*, OSFstEntry*)
 {
 	/*
 	.loc_0x0:
@@ -1254,7 +1257,7 @@ void DVDReadDir(void)
  * Address:	800DCD20
  * Size:	000008
  */
-u32 DVDCloseDir(void) { return 0x1; }
+BOOL DVDCloseDir(OSFstEntry* entry) { return TRUE; }
 
 /*
  * --INFO--

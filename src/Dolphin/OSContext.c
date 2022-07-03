@@ -1,4 +1,4 @@
-
+#include "Dolphin/os.h"
 
 /*
  * --INFO--
@@ -206,7 +206,7 @@ void OSSaveFPUContext(void)
  * Address:	800ECFA4
  * Size:	00005C
  */
-void OSSetCurrentContext(void)
+void OSSetCurrentContext(OSContext* context)
 {
 	/*
 	.loc_0x0:
@@ -408,7 +408,7 @@ void OSSwitchFiber(void)
  * Address:	800ED16C
  * Size:	000024
  */
-void OSClearContext(void)
+void OSClearContext(OSContext* context)
 {
 	/*
 	.loc_0x0:

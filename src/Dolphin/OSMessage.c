@@ -5,7 +5,7 @@
  * Address:	800EF4BC
  * Size:	000060
  */
-void OSInitMessageQueue(void)
+void OSInitMessageQueue(OSMessageQueue* queue, void** msgSlots, int slotCount)
 {
 	/*
 	.loc_0x0:
@@ -46,7 +46,7 @@ void OSInitMessageQueue(void)
  * Address:	800EF51C
  * Size:	0000C8
  */
-void OSSendMessage(OSMessageQueue* msgQueue, OSMessage msg, int shouldBlock)
+BOOL OSSendMessage(OSMessageQueue* msgQueue, void* msg, int shouldBlock)
 {
 	/*
 	.loc_0x0:
@@ -116,7 +116,7 @@ void OSSendMessage(OSMessageQueue* msgQueue, OSMessage msg, int shouldBlock)
  * Address:	800EF5E4
  * Size:	0000DC
  */
-void OSReceiveMessage(void)
+BOOL OSReceiveMessage(OSMessageQueue* queue, void* msg, int flags)
 {
 	/*
 	.loc_0x0:

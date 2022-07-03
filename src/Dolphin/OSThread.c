@@ -1,4 +1,5 @@
 #include "types.h"
+#include "Dolphin/os.h"
 
 /*
  * --INFO--
@@ -128,7 +129,7 @@ void __OSThreadInit(void)
  * Address:	800F19B4
  * Size:	000010
  */
-void OSInitThreadQueue(void)
+void OSInitThreadQueue(OSThreadQueue* threadQueue)
 {
 	/*
 	.loc_0x0:
@@ -144,7 +145,7 @@ void OSInitThreadQueue(void)
  * Address:	800F19C4
  * Size:	00000C
  */
-void OSGetCurrentThread(void)
+OSThread* OSGetCurrentThread()
 {
 	/*
 	.loc_0x0:
@@ -169,7 +170,7 @@ void __OSSwitchThread(void)
  * Address:	........
  * Size:	00001C
  */
-void OSIsThreadSuspended(void)
+BOOL OSIsThreadSuspended(OSThread* thread)
 {
 	// UNUSED FUNCTION
 }
@@ -179,7 +180,7 @@ void OSIsThreadSuspended(void)
  * Address:	800F19D0
  * Size:	000034
  */
-void OSIsThreadTerminated(void)
+BOOL OSIsThreadTerminated(OSThread* thread)
 {
 	/*
 	.loc_0x0:
@@ -208,7 +209,7 @@ void OSIsThreadTerminated(void)
  * Address:	........
  * Size:	000044
  */
-void __OSIsThreadActive(void)
+BOOL __OSIsThreadActive(OSThread* thread)
 {
 	// UNUSED FUNCTION
 }
@@ -218,7 +219,7 @@ void __OSIsThreadActive(void)
  * Address:	800F1A04
  * Size:	000040
  */
-void OSDisableScheduler(void)
+s32 OSDisableScheduler(void)
 {
 	/*
 	.loc_0x0:
@@ -246,7 +247,7 @@ void OSDisableScheduler(void)
  * Address:	800F1A44
  * Size:	000040
  */
-void OSEnableScheduler(void)
+s32 OSEnableScheduler(void)
 {
 	/*
 	.loc_0x0:
@@ -806,7 +807,7 @@ void OSYieldThread(void)
  * Address:	800F1FCC
  * Size:	0001E8
  */
-void OSCreateThread(void)
+BOOL OSCreateThread(OSThread* thread, OSThreadStartFunction func, void* param, void* stack, u32 stackSize, OSPriority priority, u16 attr)
 {
 	/*
 	.loc_0x0:
@@ -954,7 +955,7 @@ void OSCreateThread(void)
  * Address:	800F21B4
  * Size:	0000E4
  */
-void OSExitThread(void)
+void OSExitThread(void* val)
 {
 	/*
 	.loc_0x0:
@@ -1037,7 +1038,7 @@ void OSExitThread(void)
  * Address:	800F2298
  * Size:	0001BC
  */
-void OSCancelThread(void)
+void OSCancelThread(OSThread* thread)
 {
 	/*
 	.loc_0x0:
@@ -1198,7 +1199,7 @@ void OSCancelThread(void)
  * Address:	........
  * Size:	000140
  */
-void OSJoinThread(void)
+BOOL OSJoinThread(OSThread* thread, void** val)
 {
 	// UNUSED FUNCTION
 }
@@ -1208,7 +1209,7 @@ void OSJoinThread(void)
  * Address:	800F2454
  * Size:	0000A0
  */
-void OSDetachThread(void)
+void OSDetachThread(OSThread* thread)
 {
 	/*
 	.loc_0x0:
@@ -1270,7 +1271,7 @@ void OSDetachThread(void)
  * Address:	800F24F4
  * Size:	000288
  */
-void OSResumeThread(void)
+s32 OSResumeThread(OSThread* thread)
 {
 	/*
 	.loc_0x0:
@@ -1496,7 +1497,7 @@ void OSResumeThread(void)
  * Address:	800F277C
  * Size:	000170
  */
-void OSSuspendThread(void)
+s32 OSSuspendThread(OSThread* thread)
 {
 	/*
 	.loc_0x0:
@@ -1626,7 +1627,7 @@ void OSSuspendThread(void)
  * Address:	800F28EC
  * Size:	0000EC
  */
-void OSSleepThread(void)
+void OSSleepThread(OSThreadQueue* threadQueue)
 {
 	/*
 	.loc_0x0:
@@ -1715,7 +1716,7 @@ void OSSleepThread(void)
  * Address:	800F29D8
  * Size:	000104
  */
-void OSWakeupThread(void)
+void OSWakeupThread(OSThreadQueue* threadQueue)
 {
 	/*
 	.loc_0x0:
@@ -1806,7 +1807,7 @@ void OSWakeupThread(void)
  * Address:	........
  * Size:	0000C0
  */
-void OSSetThreadPriority(void)
+BOOL OSSetThreadPriority(OSThread* thread, OSPriority priority)
 {
 	// UNUSED FUNCTION
 }
@@ -1816,7 +1817,7 @@ void OSSetThreadPriority(void)
  * Address:	800F2ADC
  * Size:	000008
  */
-void OSGetThreadPriority(void)
+OSPriority OSGetThreadPriority(OSThread* thread)
 {
 	/*
 	.loc_0x0:
@@ -1860,7 +1861,7 @@ void CheckThreadQueue(void)
  * Address:	........
  * Size:	00002C
  */
-void IsMember(void)
+BOOL IsMember(void)
 {
 	// UNUSED FUNCTION
 }
@@ -1870,7 +1871,7 @@ void IsMember(void)
  * Address:	........
  * Size:	000750
  */
-void OSCheckActiveThreads(void)
+long OSCheckActiveThreads(void)
 {
 	// UNUSED FUNCTION
 }

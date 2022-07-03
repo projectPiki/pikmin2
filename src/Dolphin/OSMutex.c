@@ -1,11 +1,11 @@
-
+#include "Dolphin/os.h"
 
 /*
  * --INFO--
  * Address:	800EFB30
  * Size:	000038
  */
-void OSInitMutex(void)
+void OSInitMutex(OSMutexObject* mutex)
 {
 	/*
 	.loc_0x0:
@@ -31,7 +31,7 @@ void OSInitMutex(void)
  * Address:	800EFB68
  * Size:	0000DC
  */
-void OSLockMutex(void)
+void OSLockMutex(OSMutexObject* mutex)
 {
 	/*
 	.loc_0x0:
@@ -110,7 +110,7 @@ void OSLockMutex(void)
  * Address:	800EFC44
  * Size:	0000C8
  */
-void OSUnlockMutex(void)
+BOOL OSUnlockMutex(OSMutexObject* mutex)
 {
 	/*
 	.loc_0x0:
@@ -184,7 +184,7 @@ void OSUnlockMutex(void)
  * Address:	800EFD0C
  * Size:	000070
  */
-void __OSUnlockAllMutex(void)
+void __OSUnlockAllMutex(OSThread* thread)
 {
 	/*
 	.loc_0x0:
@@ -232,7 +232,7 @@ void __OSUnlockAllMutex(void)
  * Address:	800EFD7C
  * Size:	0000BC
  */
-void OSTryLockMutex(void)
+BOOL OSTryLockMutex(OSMutexObject* mutex)
 {
 	/*
 	.loc_0x0:
@@ -301,7 +301,7 @@ void OSTryLockMutex(void)
  * Address:	800EFE38
  * Size:	000020
  */
-void OSInitCond(void)
+void OSInitCond(OSThreadQueue* threadQueue)
 {
 	/*
 	.loc_0x0:
@@ -321,7 +321,7 @@ void OSInitCond(void)
  * Address:	800EFE58
  * Size:	0000D4
  */
-void OSWaitCond(void)
+u32 OSWaitCond(OSThreadQueue* threadQueue, OSMutexObject* mutex)
 {
 	/*
 	.loc_0x0:
@@ -398,7 +398,7 @@ void OSWaitCond(void)
  * Address:	800EFF2C
  * Size:	000020
  */
-void OSSignalCond(void)
+void OSSignalCond(OSThreadQueue* threadQueue)
 {
 	/*
 	.loc_0x0:

@@ -9,7 +9,7 @@
 extern "C" {
 #endif // ifdef __cplusplus
 
-typedef void (*GBASyncCallback)(int portIndex);
+typedef void (*GBASyncCallback)(int portIndex, int);
 typedef void (*GBAProcHandler)(int portIndex);
 
 /**
@@ -47,11 +47,12 @@ typedef struct GBA {
 
 extern SecParam SecParams[4];
 extern GBA __GBA[4];
+extern BOOL __GBAReset;
 
 void GBAInit();
 unknown __GBATransfer(int portIndex, unknown, unknown, GBAProcHandler);
 int __GBASync(int portIndex);
-void __GBASyncCallback(int portIndex);
+void __GBASyncCallback(int portIndex, int);
 BOOL OnReset();
 void ShortCommandProc(int portIndex);
 void ReadProc(int portIndex);

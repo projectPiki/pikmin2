@@ -1,11 +1,154 @@
+#include "Dolphin/os.h"
 #include "types.h"
+#include "Dolphin/dvd.h"
+#include "mem.h"
+#include "Dolphin/stl.h"
+
+// forward declarations for weak functions in other src files:
+void __DVDInterruptHandler(s16 p1, OSContext* context);
+void __DVDInitWA();
+BOOL DVDLowAudioBufferConfig(unknown, unknown, DVDLowCallback*);
+BOOL DVDLowAudioStream(unknown, unknown, unknown, DVDLowCallback*);
+BOOL DVDLowInquiry(DVDDiskID*, DVDLowCallback*);
+BOOL DVDLowRead(unkptr, unknown, unknown, DVDLowCallback*);
+BOOL DVDLowReadDiskID(DVDDiskID*, DVDLowCallback*);
+BOOL DVDLowRequestAudioStatus(unknown, DVDLowCallback*);
+BOOL DVDLowRequestError(DVDLowCallback*);
+void DVDLowReset();
+BOOL DVDLowSeek(unknown, DVDLowCallback*);
+BOOL DVDLowStopMotor(DVDLowCallback*);
+BOOL DVDLowWaitCoverClose(DVDLowCallback*);
+
+typedef struct _BB2 {
+	u8 _00[4];    // _00
+	unknown _04;  // _04
+	u32 _08;      // _08
+	u8 _0C[0x14]; // _0C
+} _BB2;
+
+typedef enum DVDResumePoint {
+	Resume_00 = 0,
+	Resume_01 = 1,
+	Resume_02 = 2,
+	Resume_03 = 3,
+	Resume_04 = 4,
+	Resume_05 = 5,
+	Resume_06 = 6,
+	Resume_07 = 7
+} DVDResumePoint;
+
+typedef enum DVDCommand {
+	Command_0 = 0,
+	Command_1,
+	Command_2,
+	Command_3,
+	Command_4,
+	Command_5,
+	Command_6,
+	Command_7,
+	Command_8,
+	Command_9,
+	Command_A,
+	Command_B,
+	Command_C,
+	Command_D,
+	Command_E,
+	Command_F
+} DVDCommand;
+
+typedef void OptionalCommandChecker(OSDummyCommandBlock*, DVDLowCallback*);
+// TODO: CancelCB may or may not take any arguments. Assuming based on read usage that it's (int, OSDummyCommandBlock*).
+// CancelCallback is never actually set to a function that uses arguments, so it's hard to tell.
+typedef void CancelCB(int, OSDummyCommandBlock*);
+
+// forward declarations for local functions, as needed:
+void AlarmHandler(unknown p1, OSContext* context);
+void cbForCancelSync(int, OSDummyCommandBlock*);
+void cbForStateBusy(u32 p1);
+void cbForStateCheckID1(u32 p1);
+void cbForStateCheckID2(u32 p1);
+void cbForStateCheckID2a(u32 p1);
+void cbForStateCheckID3(u32 p1);
+void cbForStateCoverClosed(u32 p1);
+void cbForStateMotorStopped(u32 p1);
+void cbForStateReadingFST(u32 p1);
+void cbForStateGettingError(u32 p1);
+void cbForStateGoToRetry(u32 p1);
+void cbForUnrecoveredErrorRetry(u32 p1);
+void defaultOptionalCommandChecker(OSDummyCommandBlock*, DVDLowCallback*);
+void stateBusy(OSDummyCommandBlock*);
+void stateCheckID2(OSDummyCommandBlock*);
+void stateCheckID2a(OSDummyCommandBlock*);
+void stateCheckID3(OSDummyCommandBlock*);
+void stateCoverClosed_CMD(OSDummyCommandBlock*);
+void stateGettingError();
+void stateGoToRetry();
+void stateMotorStopped();
+void stateReady();
+void stateTimeout();
+
+// bss.0:
+_BB2 BB2;
+DVDDiskID CurrDiskID;
+OSDummyCommandBlock DummyCommandBlock;
+OSAlarm ResetAlarm;
+
+// .sbss:
+// dmaCount$347 // omitted function-scope static
+// immCount$345 // omitted function-scope static
+DVDState* LastState;
+BOOL DVDInitialized;
+BOOL FirstTimeInBootrom;
+// unknown ResetCount; // omitted
+// unknown CancelAllSyncComplete; // omitted
+BOOL ResetRequired;
+int NumInternalRetry;
+int LastError;
+u32 CancelLastError;
+// int ResumeFromHere;
+DVDResumePoint ResumeFromHere;
+CancelCB* CancelCallback;
+u32 Canceling;
+DVDCommand CurrCommand;
+BOOL FatalErrorFlag;
+BOOL AutoFinishing;
+BOOL PausingFlag;
+BOOL PauseFlag;
+OSBootInfo* bootInfo;
+DVDDiskID* IDShouldBe;
+OSDummyCommandBlock* executing;
+
+// .sdata: (not exhaustive; DMACommand must be at some point after DVDInit)
+static char* __DVDVersion                           = "<< Dolphin SDK - DVD\trelease build: Sep 16 2003 09:50:54 (0x2301) >>";
+static u32 autoInvalidation                         = 1;
+static OptionalCommandChecker* checkOptionalCommand = defaultOptionalCommandChecker;
+
+#define SOMESYNC() HW_REG(0xCC006004, u32) = HW_REG(0xCC006004, u32)
+
+// #define ADVANCE_LAST_STATE(nextState) \
+// 	LastState = (nextState); \
+// 	(nextState)(executing)
+
+// TODO: This can't be DVDChangeDisk itself; that's too big.
+//       Even then, all of the DVDChangeDisk functions are after the usages of this... maybe it's a macro?
+//       If so, would there be some way to force __LINE__ to the line number of the last usage?
+//       Or maybe it's possible to start inlining from the bottom somehow... hmm...
+
+void UnknownDVDAutoInvalidateInline(struct DVDPlayer* player)
+{
+	if (autoInvalidation != 0) {
+		if (player->_08 == 1 || player->_08 - 4 < 2 || player->_08 == 0xe) {
+			DCInvalidateRange(player->m_inputBuffer, player->m_byteCount);
+		}
+	}
+}
 
 /*
  * --INFO--
  * Address:	800DCD28
  * Size:	000004
  */
-void defaultOptionalCommandChecker(void) { }
+void defaultOptionalCommandChecker(OSDummyCommandBlock*, DVDLowCallback*) { }
 
 /*
  * --INFO--
@@ -24,6 +167,26 @@ void __DVDSetOptionalCommandChecker(void)
  */
 void DVDInit(void)
 {
+	if (DVDInitialized == FALSE) {
+		OSRegisterVersion(__DVDVersion);
+		DVDInitialized = TRUE;
+		__DVDFSInit();
+		__DVDClearWaitingQueue();
+		__DVDInitWA();
+		bootInfo   = (OSBootInfo*)0x80000000;
+		IDShouldBe = &((OSBootInfo*)0x80000000)->DVDDiskID;
+		__OSSetInterruptHandler(0x15, __DVDInterruptHandler);
+		__OSUnmaskInterrupts(0x400);
+		OSInitThreadQueue(&__DVDThreadQueue);
+		HW_REG(0xCC006000, u32) = 0x2A;
+		HW_REG(0xCC006004, u32) = 0;
+		if (bootInfo->magic == 0xE5207C22) {
+			OSReport("load fst\n");
+			__fstLoad();
+		} else if (bootInfo->magic != 0xD15EA5E) {
+			FirstTimeInBootrom = 1;
+		}
+	}
 	/*
 	.loc_0x0:
 	  mflr      r0
@@ -84,13 +247,23 @@ void DVDInit(void)
 	*/
 }
 
+void UnknownDVDChangeDiskInline()
+{
+	if (bootInfo->FSTMaxLength < BB2._08) {
+		OSPanic(__FILE__, 650, "DVDChangeDisk(): FST in the new disc is too big.   ");
+	}
+	DVDLowRead(bootInfo->FSTLocation, OSRoundUp32B(BB2._08), BB2._04, cbForStateReadingFST);
+}
+
 /*
  * --INFO--
  * Address:	800DCDF8
  * Size:	000094
  */
-void stateReadingFST(void)
+void stateReadingFST(OSDummyCommandBlock* cmdBlock)
 {
+	LastState = stateReadingFST;
+	UnknownDVDChangeDiskInline();
 	/*
 	.loc_0x0:
 	  mflr      r0
@@ -140,54 +313,25 @@ void stateReadingFST(void)
  * Address:	800DCE8C
  * Size:	00008C
  */
-void cbForStateReadingFST(void)
+void cbForStateReadingFST(u32 p1)
 {
-	/*
-	.loc_0x0:
-	  mflr      r0
-	  cmplwi    r3, 0x10
-	  stw       r0, 0x4(r1)
-	  stwu      r1, -0x18(r1)
-	  stw       r31, 0x14(r1)
-	  bne-      .loc_0x2C
-	  lwz       r3, -0x71D0(r13)
-	  li        r0, -0x1
-	  stw       r0, 0xC(r3)
-	  bl        0x114
-	  b         .loc_0x78
-
-	.loc_0x2C:
-	  rlwinm.   r0,r3,0,31,31
-	  beq-      .loc_0x74
-	  li        r31, 0
-	  stw       r31, -0x719C(r13)
-	  bl        -0xD9C
-	  lis       r3, 0x804F
-	  lwz       r4, -0x71D0(r13)
-	  addi      r0, r3, 0x5E40
-	  stw       r0, -0x71D0(r13)
-	  stw       r31, 0xC(r4)
-	  lwz       r12, 0x28(r4)
-	  cmplwi    r12, 0
-	  beq-      .loc_0x6C
-	  mtlr      r12
-	  li        r3, 0
-	  blrl
-
-	.loc_0x6C:
-	  bl        0xE94
-	  b         .loc_0x78
-
-	.loc_0x74:
-	  bl        0xF8
-
-	.loc_0x78:
-	  lwz       r0, 0x1C(r1)
-	  lwz       r31, 0x14(r1)
-	  addi      r1, r1, 0x18
-	  mtlr      r0
-	  blr
-	*/
+	OSDummyCommandBlock* cmdBlock;
+	if (p1 == 0x10) {
+		executing->_0C = -1;
+		stateTimeout();
+	} else if ((p1 & 1) != 0) {
+		NumInternalRetry = 0;
+		__DVDFSInit();
+		cmdBlock      = executing;
+		executing     = &DummyCommandBlock;
+		cmdBlock->_0C = 0;
+		if (cmdBlock->_28) {
+			(cmdBlock->_28)(0, cmdBlock);
+		}
+		stateReady();
+	} else {
+		stateGettingError();
+	}
 }
 
 /*
@@ -195,8 +339,28 @@ void cbForStateReadingFST(void)
  * Address:	800DCF18
  * Size:	0000AC
  */
-void cbForStateError(void)
+void cbForStateError(u32 p1)
 {
+	OSDummyCommandBlock* cmdBlock;
+	if (p1 == 0x10) {
+		executing->_0C = -1;
+		stateTimeout();
+	} else {
+		__DVDPrintFatalMessage();
+		cmdBlock       = executing;
+		executing      = &DummyCommandBlock;
+		FatalErrorFlag = TRUE;
+		if (cmdBlock->_28 != nullptr) {
+			(cmdBlock->_28)(-1, cmdBlock);
+		}
+		if (Canceling != FALSE) {
+			Canceling = FALSE;
+			if (CancelCallback != nullptr) {
+				(*CancelCallback)(0, cmdBlock);
+			}
+		}
+		stateReady();
+	}
 	/*
 	.loc_0x0:
 	  mflr      r0
@@ -272,6 +436,9 @@ void stateError(void)
  */
 void stateTimeout(void)
 {
+	__DVDStoreErrorCode(0x1234568);
+	DVDReset();
+	cbForStateError(0);
 	/*
 	.loc_0x0:
 	  mflr      r0
@@ -297,6 +464,7 @@ void stateTimeout(void)
  */
 void stateGettingError(void)
 {
+	DVDLowRequestError(cbForStateGettingError);
 	/*
 	.loc_0x0:
 	  mflr      r0
@@ -317,8 +485,31 @@ void stateGettingError(void)
  * Address:	800DD020
  * Size:	0000B4
  */
-void CategorizeError(void)
+int CategorizeError(u32 p1)
 {
+	if (p1 == 0x20400) {
+		LastError = p1;
+		return 1;
+	}
+	p1 &= 0xFFFFFF;
+	if (p1 == 0x62800 || p1 == 0x23A00 || p1 == 0xB5A01) {
+		return 0;
+	}
+	NumInternalRetry = NumInternalRetry + 1;
+	if (NumInternalRetry == 2) {
+		if (p1 == LastError) {
+			LastError = p1;
+			return 1;
+		}
+		LastError = p1;
+		return 2;
+	}
+	if (p1 != 0x31100 && executing->_08 != 5) {
+		LastError = p1;
+		return 3;
+	}
+	LastError = p1;
+	return 2;
 	/*
 	.loc_0x0:
 	  subis     r0, r3, 0x2
@@ -398,7 +589,7 @@ void CheckCancel(void)
  * Address:	800DD0D4
  * Size:	000294
  */
-void cbForStateGettingError(void)
+void cbForStateGettingError(u32 p1)
 {
 	/*
 	.loc_0x0:
@@ -613,8 +804,18 @@ void cbForStateGettingError(void)
  * Address:	800DD368
  * Size:	000068
  */
-void cbForUnrecoveredError(void)
+void cbForUnrecoveredError(u32 p1)
 {
+	if (p1 == 0x10) {
+		executing->_0C = -1;
+		__DVDStoreErrorCode(0x1234568);
+		DVDReset();
+		cbForStateError(0);
+	} else if ((p1 & 1) != 0) {
+		stateGoToRetry();
+	} else {
+		DVDLowRequestError(cbForUnrecoveredErrorRetry);
+	}
 	/*
 	.loc_0x0:
 	  mflr      r0
@@ -657,8 +858,20 @@ void cbForUnrecoveredError(void)
  * Address:	800DD3D0
  * Size:	000098
  */
-void cbForUnrecoveredErrorRetry(void)
+void cbForUnrecoveredErrorRetry(u32 p1)
 {
+	if (p1 == 0x10) {
+		executing->_0C = -1;
+		__DVDStoreErrorCode(0x1234568);
+		DVDReset();
+		cbForStateError(0);
+	} else if ((p1 & 2) != 0) {
+		__DVDStoreErrorCode(0x1234567);
+		DVDLowStopMotor(cbForStateError);
+	} else {
+		__DVDStoreErrorCode(HW_REG(0xCC006020, u32));
+		DVDLowStopMotor(cbForStateError);
+	}
 	/*
 	.loc_0x0:
 	  mflr      r0
@@ -713,30 +926,53 @@ void cbForUnrecoveredErrorRetry(void)
  * Address:	800DD468
  * Size:	000028
  */
-void stateGoToRetry(void)
-{
-	/*
-	.loc_0x0:
-	  mflr      r0
-	  lis       r3, 0x800E
-	  stw       r0, 0x4(r1)
-	  subi      r3, r3, 0x2B70
-	  stwu      r1, -0x8(r1)
-	  bl        -0x182C
-	  lwz       r0, 0xC(r1)
-	  addi      r1, r1, 0x8
-	  mtlr      r0
-	  blr
-	*/
-}
+void stateGoToRetry(void) { DVDLowStopMotor(cbForStateGoToRetry); }
 
 /*
  * --INFO--
  * Address:	800DD490
  * Size:	000158
  */
-void cbForStateGoToRetry(void)
+void cbForStateGoToRetry(u32 p1)
 {
+	BOOL keepGoing;
+	OSDummyCommandBlock* cmdBlock;
+	if (p1 == 0x10) {
+		executing->_0C = -1;
+		__DVDStoreErrorCode(0x1234568);
+		DVDReset();
+		cbForStateError(0);
+	} else if ((p1 & 2) != 0) {
+		executing->_0C = -1;
+		__DVDStoreErrorCode(0x1234567);
+		DVDLowStopMotor(cbForStateError);
+	} else {
+		NumInternalRetry = 0;
+		if (CurrCommand == Command_4 || CurrCommand == Command_5 || CurrCommand == Command_D || CurrCommand == Command_F) {
+			ResetRequired = TRUE;
+		}
+		if (Canceling != FALSE) {
+			ResumeFromHere = Resume_02;
+			cmdBlock       = executing;
+			executing      = &DummyCommandBlock;
+			Canceling      = FALSE;
+			cmdBlock->_0C  = 0xA;
+			if (cmdBlock->_28) {
+				(cmdBlock->_28)(-3, cmdBlock);
+			}
+			if (CancelCallback) {
+				(*CancelCallback)(0, cmdBlock);
+			}
+			stateReady();
+			keepGoing = TRUE;
+		} else {
+			keepGoing = FALSE;
+		}
+		if (!keepGoing) {
+			executing->_0C = 0xB;
+			stateMotorStopped();
+		}
+	}
 	/*
 	.loc_0x0:
 	  mflr      r0
@@ -853,6 +1089,28 @@ void cbForStateGoToRetry(void)
  */
 void stateCheckID(void)
 {
+	switch (CurrCommand) {
+	case 3:
+		if (DVDCompareDiskID(&CurrDiskID, executing->diskID) != FALSE) {
+			memcpy(IDShouldBe, &CurrDiskID, sizeof(DVDDiskID));
+			executing->_0C = 1;
+			DCInvalidateRange(&BB2, sizeof(_BB2));
+			// ADVANCE_LAST_STATE(stateCheckID2a);
+			LastState = stateCheckID2a;
+			stateCheckID2a(executing);
+		} else {
+			DVDLowStopMotor(cbForStateCheckID1);
+		}
+		break;
+	default:
+		if (memcmp(&CurrDiskID, IDShouldBe, sizeof(DVDDiskID)) != 0) {
+			DVDLowStopMotor(cbForStateCheckID1);
+		} else {
+			LastState = stateCheckID3;
+			stateCheckID3(executing);
+		}
+		break;
+	}
 	/*
 	.loc_0x0:
 	  mflr      r0
@@ -931,98 +1189,33 @@ void stateCheckID(void)
  * Address:	800DD6C8
  * Size:	000034
  */
-void stateCheckID3(void)
-{
-	/*
-	.loc_0x0:
-	  mflr      r0
-	  lis       r3, 0x800E
-	  stw       r0, 0x4(r1)
-	  subi      r5, r3, 0x262C
-	  stwu      r1, -0x8(r1)
-	  lwz       r4, -0x71CC(r13)
-	  lbz       r3, 0x8(r4)
-	  li        r4, 0xA
-	  bl        -0x17C0
-	  lwz       r0, 0xC(r1)
-	  addi      r1, r1, 0x8
-	  mtlr      r0
-	  blr
-	*/
-}
+void stateCheckID3(OSDummyCommandBlock* cmdBlock) { DVDLowAudioBufferConfig(IDShouldBe->streaming, 10, cbForStateCheckID3); }
 
 /*
  * --INFO--
  * Address:	800DD6FC
  * Size:	000034
  */
-void stateCheckID2a(void)
-{
-	/*
-	.loc_0x0:
-	  mflr      r0
-	  lis       r3, 0x800E
-	  stw       r0, 0x4(r1)
-	  subi      r5, r3, 0x28D0
-	  stwu      r1, -0x8(r1)
-	  lwz       r4, -0x71CC(r13)
-	  lbz       r3, 0x8(r4)
-	  li        r4, 0xA
-	  bl        -0x17F4
-	  lwz       r0, 0xC(r1)
-	  addi      r1, r1, 0x8
-	  mtlr      r0
-	  blr
-	*/
-}
+void stateCheckID2a(OSDummyCommandBlock* cmdBlock) { DVDLowAudioBufferConfig(IDShouldBe->streaming, 10, cbForStateCheckID2a); }
 
 /*
  * --INFO--
  * Address:	800DD730
  * Size:	000074
  */
-void cbForStateCheckID2a(void)
+void cbForStateCheckID2a(u32 p1)
 {
-	/*
-	.loc_0x0:
-	  mflr      r0
-	  cmplwi    r3, 0x10
-	  stw       r0, 0x4(r1)
-	  stwu      r1, -0x8(r1)
-	  bne-      .loc_0x3C
-	  lwz       r4, -0x71D0(r13)
-	  li        r0, -0x1
-	  lis       r3, 0x123
-	  stw       r0, 0xC(r4)
-	  addi      r3, r3, 0x4568
-	  bl        0x2018
-	  bl        0x15C4
-	  li        r3, 0
-	  bl        -0x84C
-	  b         .loc_0x64
-
-	.loc_0x3C:
-	  rlwinm.   r0,r3,0,31,31
-	  beq-      .loc_0x58
-	  li        r0, 0
-	  lwz       r3, -0x71D0(r13)
-	  stw       r0, -0x719C(r13)
-	  bl        .loc_0x74
-	  b         .loc_0x64
-
-	.loc_0x58:
-	  lis       r3, 0x800E
-	  subi      r3, r3, 0x2F2C
-	  bl        -0x1AB4
-
-	.loc_0x64:
-	  lwz       r0, 0xC(r1)
-	  addi      r1, r1, 0x8
-	  mtlr      r0
-	  blr
-
-	.loc_0x74:
-	*/
+	if (p1 == 0x10) {
+		executing->_0C = -1;
+		__DVDStoreErrorCode(0x1234568);
+		DVDReset();
+		cbForStateError(0);
+	} else if ((p1 & 1) != 0) {
+		NumInternalRetry = 0;
+		stateCheckID2(executing);
+	} else {
+		DVDLowRequestError(cbForStateGettingError);
+	}
 }
 
 /*
@@ -1030,8 +1223,10 @@ void cbForStateCheckID2a(void)
  * Address:	800DD7A4
  * Size:	000038
  */
-void stateCheckID2(void)
+void stateCheckID2(OSDummyCommandBlock* cmdBlock)
 {
+	// TODO: second param might be `sizeof(_BB2)`
+	DVDLowRead(&BB2, 0x20, 0x420, cbForStateCheckID2);
 	/*
 	.loc_0x0:
 	  mflr      r0
@@ -1056,8 +1251,42 @@ void stateCheckID2(void)
  * Address:	800DD7DC
  * Size:	000114
  */
-void cbForStateCheckID1(void)
+void cbForStateCheckID1(u32 p1)
 {
+	OSDummyCommandBlock* cmdBlock = executing;
+	BOOL isReady;
+	if (p1 == 0x10) {
+		executing->_0C = -1;
+		__DVDStoreErrorCode(0x1234568);
+		DVDReset();
+		cbForStateError(0);
+	} else if ((p1 & 1) != 0) {
+		executing->_0C = -1;
+		__DVDStoreErrorCode(0x1234567);
+		DVDLowStopMotor(cbForStateError);
+	} else {
+		isReady          = FALSE;
+		NumInternalRetry = 0;
+		if (Canceling != FALSE) {
+			ResumeFromHere = 1;
+			Canceling      = FALSE;
+			executing      = &DummyCommandBlock;
+			cmdBlock->_0C  = 10;
+			if (cmdBlock->_28 != nullptr) {
+				(cmdBlock->_28)(-3, cmdBlock);
+			}
+			if (CancelCallback != nullptr) {
+				(*CancelCallback)(0, cmdBlock);
+			}
+			stateReady();
+			isReady = TRUE;
+		}
+		if (!isReady) {
+			executing->_0C = 6;
+			stateMotorStopped();
+		}
+	}
+
 	/*
 	.loc_0x0:
 	  mflr      r0
@@ -1149,8 +1378,20 @@ void cbForStateCheckID1(void)
  * Address:	800DD8F0
  * Size:	0000E4
  */
-void cbForStateCheckID2(void)
+void cbForStateCheckID2(u32 p1)
 {
+	if (p1 == 0x10) {
+		executing->_0C = -1;
+		__DVDStoreErrorCode(0x1234568);
+		DVDReset();
+		cbForStateError(0);
+	} else if ((p1 & 1) != 0) {
+		LastState        = stateReadingFST;
+		NumInternalRetry = 0;
+		UnknownDVDChangeDiskInline();
+	} else {
+		DVDLowRequestError(cbForStateGettingError);
+	}
 	/*
 	.loc_0x0:
 	  mflr      r0
@@ -1221,13 +1462,101 @@ void cbForStateCheckID2(void)
 	*/
 }
 
+void stuffs(int p1, int p2, int p3, int p4)
+{
+	OSDummyCommandBlock* cmdBlock;
+	// BOOL isCancelled = Canceling;
+	// if (FALSE != isCancelled) {
+	// if (FALSE != Canceling) {
+	// BOOL result = FALSE;
+	if (Canceling != FALSE) {
+		ResumeFromHere = 0;
+		Canceling      = FALSE;
+		cmdBlock       = executing;
+		cmdBlock->_0C  = p1;
+		executing      = &DummyCommandBlock;
+		if (cmdBlock->_28 != nullptr) {
+			(cmdBlock->_28)(p2, cmdBlock);
+		}
+		if (CancelCallback != nullptr) {
+			(*CancelCallback)(p3, cmdBlock);
+		}
+		stateReady();
+		// return TRUE;
+		// result = TRUE;
+	} else {
+		executing->_0C = p4;
+		stateBusy(executing);
+	}
+	// return result;
+	// return FALSE;
+}
+
+inline void SetRetryCount(u32 retries) { NumInternalRetry = retries; }
 /*
  * --INFO--
  * Address:	800DD9D4
  * Size:	0000FC
  */
-void cbForStateCheckID3(void)
+void cbForStateCheckID3(u32 p1)
 {
+	// BOOL isReady;
+	// OSDummyCommandBlock* cmdBlock;
+	// int retries = 0;
+	if (p1 == 0x10) {
+		executing->_0C = -1;
+		__DVDStoreErrorCode(0x1234568);
+		DVDReset();
+		cbForStateError(0);
+	} else if ((p1 & 1) != 0) {
+		// SetRetryCount(0);
+		NumInternalRetry = 0;
+		// retries = 0;
+		// NumInternalRetry = retries;
+		// if (FALSE != Cancelling) {
+		// 	ResumeFromHere = 0;
+		// 	Cancelling = FALSE;
+		// 	cmdBlock = executing;
+		// 	cmdBlock->_0C = 10;
+		// 	executing = &DummyCommandBlock;
+		// 	if (cmdBlock->_28 != nullptr) {
+		// 		(cmdBlock->_28)(-3, cmdBlock);
+		// 	}
+		// 	if (CancelCallback != nullptr) {
+		// 		(*CancelCallback)(0, cmdBlock);
+		// 	}
+		// 	stateReady();
+		// 	retries = 1;
+		// }
+		// BOOL isReady = FALSE;
+		// isReady = FALSE;
+		// NumInternalRetry = 0;
+		// if (isReady != Canceling) {
+		// 	ResumeFromHere = 0;
+		// 	Canceling = FALSE;
+		// 	cmdBlock = executing;
+		// 	cmdBlock->_0C = 10;
+		// 	executing = &DummyCommandBlock;
+		// 	if (cmdBlock->_28 != nullptr) {
+		// 		(cmdBlock->_28)(-3, cmdBlock);
+		// 	}
+		// 	if (CancelCallback != nullptr) {
+		// 		(*CancelCallback)(0, cmdBlock);
+		// 	}
+		// 	stateReady();
+		// 	isReady = TRUE;
+		// }
+		// isReady = stuffs(10, -3, 0);
+		// if (!isReady) {
+		// if (!stuffs(10, -3, 0)) {
+		// // if (retries != 0) {
+		// 	executing->_0C = 1;
+		// 	stateBusy(executing);
+		// }
+		stuffs(10, -3, 0, 1);
+	} else {
+		DVDLowRequestError(cbForStateGettingError);
+	}
 	/*
 	.loc_0x0:
 	  mflr      r0
@@ -1313,28 +1642,12 @@ void cbForStateCheckID3(void)
  * Address:	800DDAD0
  * Size:	000044
  */
-void AlarmHandler(void)
+void AlarmHandler(unknown p1, OSContext* context)
 {
-	/*
-	.loc_0x0:
-	  mflr      r0
-	  stw       r0, 0x4(r1)
-	  stwu      r1, -0x8(r1)
-	  bl        0x1244
-	  lis       r3, 0x804F
-	  addi      r3, r3, 0x5E20
-	  li        r4, 0x20
-	  bl        0xEC00
-	  lis       r4, 0x800E
-	  lwz       r3, -0x71D0(r13)
-	  subi      r0, r4, 0x2420
-	  stw       r0, -0x718C(r13)
-	  bl        0xE0
-	  lwz       r0, 0xC(r1)
-	  addi      r1, r1, 0x8
-	  mtlr      r0
-	  blr
-	*/
+	DVDReset();
+	DCInvalidateRange(&CurrDiskID, sizeof(DVDDiskID));
+	LastState = stateCoverClosed_CMD;
+	stateCoverClosed_CMD(executing);
 }
 
 /*
@@ -1344,6 +1657,26 @@ void AlarmHandler(void)
  */
 void stateCoverClosed(void)
 {
+	OSDummyCommandBlock* cmdBlock;
+	switch (CurrCommand) {
+	case 0x4:
+	case 0x5:
+	case 0xD:
+	case 0xF:
+		__DVDClearWaitingQueue();
+		cmdBlock  = executing;
+		executing = &DummyCommandBlock;
+		if (cmdBlock->_28) {
+			(cmdBlock->_28)(-4, cmdBlock);
+		}
+		stateReady();
+		break;
+	default:
+		DVDReset();
+		OSCreateAlarm(&ResetAlarm);
+		OSSetAlarm(&ResetAlarm, 0x10624DD3, 0, (((*(u32*)0x800000F8 / 4) / 1000) * 1150), AlarmHandler);
+		break;
+	}
 	/*
 	.loc_0x0:
 	  mflr      r0
@@ -1415,69 +1748,26 @@ void stateCoverClosed(void)
  * Address:	800DDBE0
  * Size:	000030
  */
-void stateCoverClosed_CMD(void)
-{
-	/*
-	.loc_0x0:
-	  mflr      r0
-	  lis       r3, 0x804F
-	  stw       r0, 0x4(r1)
-	  lis       r4, 0x800E
-	  addi      r3, r3, 0x5E20
-	  stwu      r1, -0x8(r1)
-	  subi      r4, r4, 0x23F0
-	  bl        -0x2050
-	  lwz       r0, 0xC(r1)
-	  addi      r1, r1, 0x8
-	  mtlr      r0
-	  blr
-	*/
-}
+void stateCoverClosed_CMD(OSDummyCommandBlock* cmdBlock) { DVDLowReadDiskID(&CurrDiskID, cbForStateCoverClosed); }
 
 /*
  * --INFO--
  * Address:	800DDC10
  * Size:	000070
  */
-void cbForStateCoverClosed(void)
+void cbForStateCoverClosed(u32 p1)
 {
-	/*
-	.loc_0x0:
-	  mflr      r0
-	  cmplwi    r3, 0x10
-	  stw       r0, 0x4(r1)
-	  stwu      r1, -0x8(r1)
-	  bne-      .loc_0x3C
-	  lwz       r4, -0x71D0(r13)
-	  li        r0, -0x1
-	  lis       r3, 0x123
-	  stw       r0, 0xC(r4)
-	  addi      r3, r3, 0x4568
-	  bl        0x1B38
-	  bl        0x10E4
-	  li        r3, 0
-	  bl        -0xD2C
-	  b         .loc_0x60
-
-	.loc_0x3C:
-	  rlwinm.   r0,r3,0,31,31
-	  beq-      .loc_0x54
-	  li        r0, 0
-	  stw       r0, -0x719C(r13)
-	  bl        -0x674
-	  b         .loc_0x60
-
-	.loc_0x54:
-	  lis       r3, 0x800E
-	  subi      r3, r3, 0x2F2C
-	  bl        -0x1F90
-
-	.loc_0x60:
-	  lwz       r0, 0xC(r1)
-	  addi      r1, r1, 0x8
-	  mtlr      r0
-	  blr
-	*/
+	if (p1 == 0x10) {
+		executing->_0C = -1;
+		__DVDStoreErrorCode(0x1234568);
+		DVDReset();
+		cbForStateError(0);
+	} else if ((p1 & 1) != 0) {
+		NumInternalRetry = 0;
+		stateCheckID();
+	} else {
+		DVDLowRequestError(cbForStateGettingError);
+	}
 }
 
 /*
@@ -1485,30 +1775,18 @@ void cbForStateCoverClosed(void)
  * Address:	800DDC80
  * Size:	000028
  */
-void stateMotorStopped(void)
-{
-	/*
-	.loc_0x0:
-	  mflr      r0
-	  lis       r3, 0x800E
-	  stw       r0, 0x4(r1)
-	  subi      r3, r3, 0x2358
-	  stwu      r1, -0x8(r1)
-	  bl        -0x2114
-	  lwz       r0, 0xC(r1)
-	  addi      r1, r1, 0x8
-	  mtlr      r0
-	  blr
-	*/
-}
+void stateMotorStopped(void) { DVDLowWaitCoverClose(cbForStateMotorStopped); }
 
 /*
  * --INFO--
  * Address:	800DDCA8
  * Size:	0000E4
  */
-void cbForStateMotorStopped(void)
+void cbForStateMotorStopped(u32 p1)
 {
+	SOMESYNC();
+	executing->_0C = 3;
+	stateCoverClosed();
 	/*
 	.loc_0x0:
 	  mflr      r0
@@ -1590,6 +1868,75 @@ void cbForStateMotorStopped(void)
  */
 void stateReady(void)
 {
+	OSDummyCommandBlock* cmdBlock;
+	// u32 resume;
+	if (__DVDCheckWaitingQueue() == FALSE) {
+		executing = nullptr;
+		return;
+	}
+	if (PauseFlag != FALSE) {
+		PausingFlag = TRUE;
+		executing   = nullptr;
+		return;
+	}
+	executing = (OSDummyCommandBlock*)__DVDPopWaitingQueue();
+	if (FatalErrorFlag != 0) {
+		executing->_0C = -1;
+		cmdBlock       = executing;
+		executing      = &DummyCommandBlock;
+		if (cmdBlock->_28) {
+			(cmdBlock->_28)(-1, cmdBlock);
+		}
+		stateReady();
+		return;
+	}
+	CurrCommand = executing->_08;
+	// if (ResumeFromHere == 0) {
+	// 	executing->_0C = 1;
+	// 	stateBusy(executing);
+	// 	return;
+	// }
+	if ((u32)ResumeFromHere != (u32)Resume_00) {
+		switch (ResumeFromHere) {
+		case Resume_02:
+			executing->_0C = 0xB;
+			DVDLowWaitCoverClose(cbForStateMotorStopped);
+			// ResumeFromHere = 0;
+			break;
+		case Resume_03:
+			executing->_0C = 4;
+			DVDLowWaitCoverClose(cbForStateMotorStopped);
+			// ResumeFromHere = 0;
+			break;
+		case Resume_04:
+			executing->_0C = 5;
+			DVDLowWaitCoverClose(cbForStateMotorStopped);
+			// ResumeFromHere = 0;
+			break;
+		// case Resume_00:
+		// 	executing->_0C = 1;
+		// 	stateBusy(executing);
+		// 	return;
+		// 	break;
+		case Resume_01:
+		case Resume_06:
+		case Resume_07:
+			executing->_0C = 3;
+			stateCoverClosed();
+			break;
+		case Resume_05:
+			executing->_0C = -1;
+			__DVDStoreErrorCode(CancelLastError);
+			DVDLowStopMotor(cbForStateError);
+			break;
+		default:
+			break;
+		}
+		ResumeFromHere = Resume_00;
+	} else {
+		executing->_0C = 1;
+		stateBusy(executing);
+	}
 	/*
 	.loc_0x0:
 	  mflr      r0
@@ -1771,13 +2118,96 @@ void stateReady(void)
 	*/
 }
 
+#define MIN(a, b) (((a) < (b)) ? (a) : (b))
+
 /*
  * --INFO--
  * Address:	800DDFBC
  * Size:	000320
  */
-void stateBusy(void)
+void stateBusy(OSDummyCommandBlock* cmdBlock)
 {
+	OSDummyCommandBlock* prev = executing;
+	LastState                 = stateBusy;
+	switch (cmdBlock->_08) {
+	case 0x5:
+		SOMESYNC();
+		cmdBlock->_1C = 0x20;
+		DVDLowReadDiskID(cmdBlock->_18, cbForStateBusy);
+		break;
+	case 0x1:
+	case 0x4:
+		if (cmdBlock->_14 == 0) {
+			executing = &DummyCommandBlock;
+			prev->_0C = 0;
+			if (prev->_28) {
+				(prev->_28)(0, prev);
+			}
+			stateReady();
+		} else {
+			SOMESYNC();
+			cmdBlock->_1C = MIN(0x80000, cmdBlock->_14 - cmdBlock->_20);
+			DVDLowRead(cmdBlock->_18 + cmdBlock->_20, cmdBlock->_1C, cmdBlock->_10 + cmdBlock->_20, cbForStateBusy);
+		}
+		break;
+	case 0x2:
+		SOMESYNC();
+		DVDLowSeek(cmdBlock->_10, cbForStateBusy);
+		break;
+	case 0x3:
+		DVDLowStopMotor(cbForStateBusy);
+		break;
+	case 0xF:
+		DVDLowStopMotor(cbForStateBusy);
+		break;
+	case 0x6:
+		SOMESYNC();
+		if (AutoFinishing != FALSE) {
+			executing->_1C = 0;
+			DVDLowRequestAudioStatus(0, cbForStateBusy);
+		} else {
+			executing->_1C = 1;
+			DVDLowAudioStream(0, cmdBlock->_14, cmdBlock->_10, cbForStateBusy);
+		}
+		break;
+	case 0x7:
+		SOMESYNC();
+		DVDLowAudioStream(0x10000, 0, 0, cbForStateBusy);
+		break;
+	case 0x8:
+		SOMESYNC();
+		AutoFinishing = TRUE;
+		DVDLowAudioStream(0, 0, 0, cbForStateBusy);
+		break;
+	case 0x9:
+		SOMESYNC();
+		DVDLowRequestAudioStatus(0, cbForStateBusy);
+		break;
+	case 0xA:
+		SOMESYNC();
+		DVDLowRequestAudioStatus(0x10000, cbForStateBusy);
+		break;
+	case 0xB:
+		SOMESYNC();
+		DVDLowRequestAudioStatus(0x20000, cbForStateBusy);
+		break;
+	case 0xC:
+		SOMESYNC();
+		DVDLowRequestAudioStatus(0x30000, cbForStateBusy);
+		break;
+	case 0xD:
+		SOMESYNC();
+		DVDLowAudioBufferConfig(cmdBlock->_10, cmdBlock->_14, cbForStateBusy);
+		break;
+	case 0xE:
+		SOMESYNC();
+		cmdBlock->_1C = 0x20;
+		DVDLowInquiry(cmdBlock->_18, cbForStateBusy);
+		break;
+	case 0:
+	default:
+		(checkOptionalCommand)(cmdBlock, cbForStateBusy);
+	}
 	/*
 	.loc_0x0:
 	  mflr      r0
@@ -2037,12 +2467,13 @@ void IsDmaCommand(void)
 	// UNUSED FUNCTION
 }
 
+const s32 DmaCommand = -1;
 /*
  * --INFO--
  * Address:	800DE2DC
  * Size:	000638
  */
-void cbForStateBusy(void)
+void cbForStateBusy(u32 p1)
 {
 	/*
 	.loc_0x0:
@@ -2578,8 +3009,31 @@ void issueCommand(void)
  * Address:	800DE914
  * Size:	0000DC
  */
-void DVDReadAbsAsyncPrio(void)
+BOOL DVDReadAbsAsyncPrio(struct DVDPlayer* player, void* readBuffer, long byteCount, u8* startAddress,
+                         DVDDoneReadCallback* doneReadCallback, int queueIndex)
 {
+	int interrupts;
+	BOOL result;
+	player->_08            = 1;
+	player->m_inputBuffer  = readBuffer;
+	player->m_byteCount    = byteCount;
+	player->m_startAddress = startAddress;
+	player->_20            = 0;
+	player->_28            = doneReadCallback;
+	UnknownDVDAutoInvalidateInline(player);
+	// if (autoInvalidation != 0) {
+	// 	if (player->_08 == 1 || player->_08 - 4 < 2 || player->_08 == 0xe) {
+	// 		DCInvalidateRange(player->m_inputBuffer, player->m_byteCount);
+	// 	}
+	// }
+	interrupts  = OSDisableInterrupts();
+	player->_0C = 2;
+	result      = __DVDPushWaitingQueue(queueIndex, player);
+	if (executing == nullptr && PauseFlag == FALSE) {
+		stateReady();
+	}
+	OSRestoreInterrupts(interrupts);
+	return result;
 	/*
 	.loc_0x0:
 	  mflr      r0
@@ -2661,8 +3115,31 @@ void DVDSeekAbsAsyncPrio(void)
  * Address:	800DE9F0
  * Size:	0000D0
  */
-void DVDReadAbsAsyncForBS(void)
+BOOL DVDReadAbsAsyncForBS(struct DVDPlayer* player, void* readBuffer, long byteCount, u8* startAddress,
+                          DVDDoneReadCallback* doneReadCallback)
 {
+	int interrupts;
+	BOOL result;
+	player->_08            = 4;
+	player->m_inputBuffer  = readBuffer;
+	player->m_byteCount    = byteCount;
+	player->m_startAddress = startAddress;
+	player->_20            = 0;
+	player->_28            = doneReadCallback;
+	UnknownDVDAutoInvalidateInline(player);
+	// if (autoInvalidation != 0) {
+	// 	if (player->_08 == 1 || player->_08 - 4 < 2 || player->_08 == 0xe) {
+	// 		DCInvalidateRange(player->m_inputBuffer, player->m_byteCount);
+	// 	}
+	// }
+	interrupts  = OSDisableInterrupts();
+	player->_0C = 2;
+	result      = __DVDPushWaitingQueue(2, player);
+	if (executing == nullptr && PauseFlag == FALSE) {
+		stateReady();
+	}
+	OSRestoreInterrupts(interrupts);
+	return result;
 	/*
 	.loc_0x0:
 	  mflr      r0
@@ -2731,8 +3208,30 @@ void DVDReadAbsAsyncForBS(void)
  * Address:	800DEAC0
  * Size:	0000D4
  */
-void DVDReadDiskID(void)
+BOOL DVDReadDiskID(struct DVDPlayer* player, DVDDiskID* readBuffer, DVDDoneReadCallback* doneReadCallback)
 {
+	int interrupts;
+	BOOL result;
+	player->_08            = 5;
+	player->m_inputBuffer  = readBuffer;
+	player->m_byteCount    = sizeof(DVDDiskID);
+	player->m_startAddress = 0;
+	player->_20            = 0;
+	player->_28            = doneReadCallback;
+	UnknownDVDAutoInvalidateInline(player);
+	// if (autoInvalidation != 0) {
+	// 	if (player->_08 == 1 || player->_08 - 4 < 2 || player->_08 == 0xe) {
+	// 		DCInvalidateRange(player->m_inputBuffer, player->m_byteCount);
+	// 	}
+	// }
+	interrupts  = OSDisableInterrupts();
+	player->_0C = 2;
+	result      = __DVDPushWaitingQueue(2, player);
+	if (executing == nullptr && PauseFlag == FALSE) {
+		stateReady();
+	}
+	OSRestoreInterrupts(interrupts);
+	return result;
 	/*
 	.loc_0x0:
 	  mflr      r0
@@ -2812,8 +3311,21 @@ void DVDPrepareStreamAbsAsync(void)
  * Address:	800DEB94
  * Size:	0000BC
  */
-void DVDCancelStreamAsync(void)
+BOOL DVDCancelStreamAsync(struct DVDPlayer* player, DVDDoneReadCallback* doneReadCallback)
 {
+	int interrupts;
+	BOOL result;
+	player->_08 = 7;
+	player->_28 = doneReadCallback;
+	UnknownDVDAutoInvalidateInline(player);
+	interrupts  = OSDisableInterrupts();
+	player->_0C = 2;
+	result      = __DVDPushWaitingQueue(1, player);
+	if (executing == nullptr && PauseFlag == FALSE) {
+		stateReady();
+	}
+	OSRestoreInterrupts(interrupts);
+	return result;
 	/*
 	.loc_0x0:
 	  mflr      r0
@@ -3097,8 +3609,30 @@ void cbForChangeDiskSync(void)
  * Address:	800DEC50
  * Size:	0000D0
  */
-void DVDInquiryAsync(void)
+BOOL DVDInquiryAsync(struct DVDPlayer* player, unkptr readBuffer, DVDDoneReadCallback* doneReadCallback)
 {
+	int interrupts;
+	BOOL result;
+	player->_08           = 0xE;
+	player->m_inputBuffer = readBuffer;
+	// TODO: This is probably sizeof whatever type readBuffer actually points to
+	player->m_byteCount = 0x20;
+	player->_20         = 0;
+	player->_28         = doneReadCallback;
+	UnknownDVDAutoInvalidateInline(player);
+	// if (autoInvalidation != 0) {
+	// 	if (player->_08 == 1 || player->_08 - 4 < 2 || player->_08 == 0xe) {
+	// 		DCInvalidateRange(player->m_inputBuffer, player->m_byteCount);
+	// 	}
+	// }
+	interrupts  = OSDisableInterrupts();
+	player->_0C = 2;
+	result      = __DVDPushWaitingQueue(2, player);
+	if (executing == nullptr && PauseFlag == FALSE) {
+		stateReady();
+	}
+	OSRestoreInterrupts(interrupts);
+	return result;
 	/*
 	.loc_0x0:
 	  mflr      r0
@@ -3189,6 +3723,12 @@ void cbForInquirySync(void)
  */
 void DVDReset(void)
 {
+	DVDLowReset();
+	HW_REG(0xCC006000, u32) = 0x2A;
+	SOMESYNC();
+	// HW_REG(0xCC006004, u32) = HW_REG(0xCC006004, u32);
+	ResumeFromHere = 0;
+	ResetRequired  = FALSE;
 	/*
 	.loc_0x0:
 	  mflr      r0
@@ -3225,35 +3765,24 @@ void DVDResetRequired(void)
  * --INFO--
  * Address:	800DED64
  * Size:	00004C
+ * @NeedsFrankLite
  */
-void DVDGetCommandBlockStatus(void)
+int DVDGetCommandBlockStatus(struct DVDPlayer* player)
 {
-	/*
-	.loc_0x0:
-	  mflr      r0
-	  stw       r0, 0x4(r1)
-	  stwu      r1, -0x18(r1)
-	  stw       r31, 0x14(r1)
-	  mr        r31, r3
-	  bl        0xFEC0
-	  lwz       r0, 0xC(r31)
-	  cmpwi     r0, 0x3
-	  bne-      .loc_0x2C
-	  li        r31, 0x1
-	  b         .loc_0x30
-
-	.loc_0x2C:
-	  mr        r31, r0
-
-	.loc_0x30:
-	  bl        0xFECC
-	  mr        r3, r31
-	  lwz       r0, 0x1C(r1)
-	  lwz       r31, 0x14(r1)
-	  addi      r1, r1, 0x18
-	  mtlr      r0
-	  blr
-	*/
+	int interrupts = OSDisableInterrupts();
+	// int result = player->_0C;
+	// if (result == 3) {
+	// 	result = 1;
+	// }
+	int result;
+	// int result = player->_0C;
+	if (player->_0C == 3) {
+		result = 1;
+	} else {
+		result = player->_0C;
+	}
+	OSRestoreInterrupts(interrupts);
+	return result;
 }
 
 /*
@@ -3261,8 +3790,27 @@ void DVDGetCommandBlockStatus(void)
  * Address:	800DEDB0
  * Size:	0000AC
  */
-void DVDGetDriveStatus(void)
+int DVDGetDriveStatus(void)
 {
+	int interrupts = OSDisableInterrupts();
+	int result;
+	if (FatalErrorFlag != FALSE) {
+		result = -1;
+	} else {
+		if (PausingFlag != FALSE) {
+			result = 8;
+		} else {
+			if (executing == nullptr) {
+				result = 0;
+			} else if (executing == &DummyCommandBlock) {
+				result = 0;
+			} else {
+				result = DVDGetCommandBlockStatus((struct DVDPlayer*)executing);
+			}
+		}
+	}
+	OSRestoreInterrupts(interrupts);
+	return result;
 	/*
 	.loc_0x0:
 	  mflr      r0
@@ -3328,15 +3876,11 @@ void DVDGetDriveStatus(void)
  * Address:	800DEE5C
  * Size:	000010
  */
-void DVDSetAutoInvalidation(void)
+int DVDSetAutoInvalidation(int newValue)
 {
-	/*
-	.loc_0x0:
-	  lwz       r0, -0x7D44(r13)
-	  stw       r3, -0x7D44(r13)
-	  mr        r3, r0
-	  blr
-	*/
+	int oldValue     = autoInvalidation;
+	autoInvalidation = newValue;
+	return oldValue;
 }
 
 /*
@@ -3356,6 +3900,13 @@ void DVDPause(void)
  */
 void DVDResume(void)
 {
+	int interrupts = OSDisableInterrupts();
+	PauseFlag      = FALSE;
+	if (PausingFlag != FALSE) {
+		PausingFlag = FALSE;
+		stateReady();
+	}
+	OSRestoreInterrupts(interrupts);
 	/*
 	.loc_0x0:
 	  mflr      r0
@@ -3388,7 +3939,7 @@ void DVDResume(void)
  * Address:	800DEEBC
  * Size:	00027C
  */
-void DVDCancelAsync(void)
+BOOL DVDCancelAsync(struct DVDPlayer* player, CancelCB* callback)
 {
 	/*
 	.loc_0x0:
@@ -3593,8 +4144,20 @@ void DVDCancelAsync(void)
  * Address:	800DF138
  * Size:	0000AC
  */
-void DVDCancel(void)
+int DVDCancel(struct DVDPlayer* player)
 {
+	int interrupts;
+	if (DVDCancelAsync(player, cbForCancelSync) != FALSE) {
+		interrupts = OSDisableInterrupts();
+		while (1 < player->_0C + 1 && player->_0C != 10
+		       && (player->_0C != 3 || (1 < player->_08 - 4 && player->_08 != 0xD && player->_08 != 0xF))) {
+			OSSleepThread(&__DVDThreadQueue);
+		}
+		OSRestoreInterrupts(interrupts);
+		return 0;
+	} else {
+		return -1;
+	}
 	/*
 	.loc_0x0:
 	  mflr      r0
@@ -3658,21 +4221,7 @@ void DVDCancel(void)
  * Address:	800DF1E4
  * Size:	000024
  */
-void cbForCancelSync(void)
-{
-	/*
-	.loc_0x0:
-	  mflr      r0
-	  subi      r3, r13, 0x71D8
-	  stw       r0, 0x4(r1)
-	  stwu      r1, -0x8(r1)
-	  bl        0x137E4
-	  lwz       r0, 0xC(r1)
-	  addi      r1, r1, 0x8
-	  mtlr      r0
-	  blr
-	*/
-}
+void cbForCancelSync(int p1, OSDummyCommandBlock* cmdBlock) { OSWakeupThread(&__DVDThreadQueue); }
 
 /*
  * --INFO--
@@ -3709,8 +4258,9 @@ void cbForCancelAllSync(void)
  * Address:	800DF208
  * Size:	000008
  */
-void DVDGetCurrentDiskID(void)
+DVDDiskID* DVDGetCurrentDiskID(void)
 {
+	return &((OSBootInfo*)0x80000000)->DVDDiskID;
 	/*
 	.loc_0x0:
 	  lis       r3, 0x8000
@@ -3916,8 +4466,9 @@ void __DVDPrepareResetAsync(void)
  * Address:	800DF424
  * Size:	000038
  */
-void __DVDTestAlarm(void)
+BOOL __DVDTestAlarm(OSAlarm* alarm)
 {
+	return (alarm == &ResetAlarm) ? TRUE : __DVDLowTestAlarm(alarm);
 	/*
 	.loc_0x0:
 	  mflr      r0

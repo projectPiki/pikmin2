@@ -1,4 +1,4 @@
-
+#include "Dolphin/os.h"
 
 /*
  * --INFO--
@@ -61,7 +61,7 @@ void OSInitAlarm(void)
  * Address:	800EBB0C
  * Size:	000010
  */
-void OSCreateAlarm(void)
+void OSCreateAlarm(OSAlarm* alarm)
 {
 	/*
 	.loc_0x0:
@@ -259,7 +259,7 @@ void InsertAlarm(void)
  * Address:	800EBD6C
  * Size:	000068
  */
-void OSSetAlarm(void)
+void OSSetAlarm(OSAlarm* alarm, unknown p2, unknown p3, u32 tickRateMaybe, AlarmCallback* handler)
 {
 	/*
 	.loc_0x0:
@@ -317,7 +317,7 @@ void OSSetPeriodicAlarm(void)
  * Address:	800EBDD4
  * Size:	00011C
  */
-void OSCancelAlarm(void)
+void OSCancelAlarm(OSAlarm* alarm)
 {
 	/*
 	.loc_0x0:

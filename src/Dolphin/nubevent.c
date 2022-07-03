@@ -1,42 +1,24 @@
+#include "Dolphin/trk.h"
 
+static TRKEventQueue gTRKEventQueue;
 
 /*
  * --INFO--
  * Address:	800BB488
  * Size:	000024
  */
-void TRKDestructEvent(void)
-{
-	/*
-	.loc_0x0:
-	  stwu      r1, -0x10(r1)
-	  mflr      r0
-	  stw       r0, 0x14(r1)
-	  lwz       r3, 0x8(r3)
-	  bl        0xA64
-	  lwz       r0, 0x14(r1)
-	  mtlr      r0
-	  addi      r1, r1, 0x10
-	  blr
-	*/
-}
+void TRKDestructEvent(TRKEvent* event) { TRKReleaseBuffer(event->m_bufferIndex); }
 
 /*
  * --INFO--
  * Address:	800BB4AC
  * Size:	000018
  */
-void TRKConstructEvent(void)
+void TRKConstructEvent(TRKEvent* event, int eventType)
 {
-	/*
-	.loc_0x0:
-	  stw       r4, 0x0(r3)
-	  li        r4, 0
-	  li        r0, -0x1
-	  stw       r4, 0x4(r3)
-	  stw       r0, 0x8(r3)
-	  blr
-	*/
+	event->m_eventType   = eventType;
+	event->_04           = 0;
+	event->m_bufferIndex = -1;
 }
 
 /*
@@ -44,8 +26,26 @@ void TRKConstructEvent(void)
  * Address:	800BB4C4
  * Size:	0000E0
  */
-void TRKPostEvent(void)
+TRKResult TRKPostEvent(TRKEvent* event)
 {
+	int eventIndex;
+	TRKResult result = TRKSuccess;
+	TRKAcquireMutex(&gTRKEventQueue);
+	if (gTRKEventQueue._04 == 2) {
+		result = 0x100;
+	} else {
+		eventIndex = (gTRKEventQueue.m_nextSlotToOverwrite + gTRKEventQueue._04) >> 0x1F;
+		eventIndex = (gTRKEventQueue.m_nextSlotToOverwrite + gTRKEventQueue._04 & 1 ^ -eventIndex) + eventIndex;
+		TRK_memcpy(&gTRKEventQueue.m_events[eventIndex], event, sizeof(TRKEvent));
+		gTRKEventQueue.m_events[eventIndex]._04 = gTRKEventQueue._24;
+		gTRKEventQueue._24 += 1;
+		if (gTRKEventQueue._24 < 0x100) {
+			gTRKEventQueue._24 = TRKError100;
+		}
+		gTRKEventQueue._04 += 1;
+	}
+	TRKReleaseMutex(&gTRKEventQueue);
+	return result;
 	/*
 	.loc_0x0:
 	  stwu      r1, -0x20(r1)
@@ -118,8 +118,21 @@ void TRKPostEvent(void)
  * Address:	800BB5A4
  * Size:	0000B4
  */
-void TRKGetNextEvent(void)
+BOOL TRKGetNextEvent(TRKEvent* event)
 {
+	BOOL result = FALSE;
+	TRKAcquireMutex(&gTRKEventQueue);
+	if (0 < gTRKEventQueue._04) {
+		TRK_memcpy(event, &gTRKEventQueue.m_events[gTRKEventQueue.m_nextSlotToOverwrite], sizeof(TRKEvent));
+		gTRKEventQueue.m_nextSlotToOverwrite++;
+		gTRKEventQueue._04--;
+		if (gTRKEventQueue.m_nextSlotToOverwrite == 2) {
+			gTRKEventQueue.m_nextSlotToOverwrite = 0;
+		}
+		result = TRUE;
+	}
+	TRKReleaseMutex(&gTRKEventQueue);
+	return result;
 	/*
 	.loc_0x0:
 	  stwu      r1, -0x20(r1)
@@ -189,31 +202,13 @@ void TRKCopyEvent(void)
  * Address:	800BB658
  * Size:	000058
  */
-void TRKInitializeEventQueue(void)
+TRKResult TRKInitializeEventQueue()
 {
-	/*
-	.loc_0x0:
-	  stwu      r1, -0x10(r1)
-	  mflr      r0
-	  lis       r3, 0x804F
-	  stw       r0, 0x14(r1)
-	  addi      r3, r3, 0x2880
-	  bl        0x26AC
-	  lis       r3, 0x804F
-	  addi      r3, r3, 0x2880
-	  bl        0x2698
-	  lis       r3, 0x804F
-	  li        r4, 0
-	  addi      r3, r3, 0x2880
-	  li        r0, 0x100
-	  stw       r4, 0x4(r3)
-	  stw       r4, 0x8(r3)
-	  stw       r0, 0x24(r3)
-	  bl        0x2670
-	  lwz       r0, 0x14(r1)
-	  li        r3, 0
-	  mtlr      r0
-	  addi      r1, r1, 0x10
-	  blr
-	*/
+	TRKInitializeMutex(&gTRKEventQueue);
+	TRKAcquireMutex(&gTRKEventQueue);
+	gTRKEventQueue._04                   = 0;
+	gTRKEventQueue.m_nextSlotToOverwrite = 0;
+	gTRKEventQueue._24                   = 0x100;
+	TRKReleaseMutex(&gTRKEventQueue);
+	return TRKSuccess;
 }

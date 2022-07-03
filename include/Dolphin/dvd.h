@@ -34,15 +34,19 @@ typedef struct {
 } DVDFileInfo;
 
 typedef BOOL DVDDoneReadCallback(long, DVDFileInfo*);
+typedef void DVDState(OSDummyCommandBlock*);
+typedef void DVDLowCallback(u32);
 
 // TODO: Incomplete set of functions.
 BOOL DVDOpen(const char*, struct DVDPlayer*);
 BOOL DVDFastOpen(long, struct DVDPlayer*);
 BOOL DVDClose(struct DVDPlayer*);
 int DVDCancel(struct DVDPlayer*); // Definitely int; returns -1 on failure.
-BOOL DVDResume();
+void DVDResume();
+void DVDReset();
 BOOL DVDReadAsyncPrio(struct DVDPlayer*, void*, long, long, DVDDoneReadCallback*, int);
-BOOL DVDReadAbsAsyncPrio(struct DVDPlayer*, void*, long, u8*, DVDDoneReadCallback*, int);
+BOOL DVDReadAbsAsyncPrio(struct DVDPlayer* player, void* readBuffer, long byteCount, u8* startAddress,
+                         DVDDoneReadCallback* doneReadCallback, int queueIndex);
 
 BOOL DVDConvertEntrynumToPath(int, char*);
 int DVDConvertPathToEntrynum(char*);
@@ -53,14 +57,26 @@ BOOL DVDCloseDir(OSFstEntry*);
 int DVDChangeDir(char*); // this might be a BOOL, but the problem there
                          // is it's treated as 4 bytes...
 
+BOOL DVDCompareDiskID(DVDDiskID*, DVDDiskID*);
+
 int DVDGetDriveStatus();
 int DVDGetCommandBlockStatus(struct DVDPlayer*);
 
-BOOL __DVDLowTestAlarm(struct OSAlarm*);
 BOOL __DVDPushWaitingQueue(int, struct DVDPlayer*);
+struct DVDPlayer* __DVDPopWaitingQueue();
+BOOL __DVDCheckWaitingQueue();
+void __DVDClearWaitingQueue();
+
+BOOL __DVDLowTestAlarm(OSAlarm*);
+void __DVDFSInit();
+void __fstLoad();
 
 u8 ErrorCode2Num(u32);
 void __DVDStoreErrorCode(u32);
+void __DVDPrintFatalMessage();
+
+extern OSThreadQueue __DVDThreadQueue;
+extern DVDState* LastState;
 
 #ifdef __cplusplus
 };

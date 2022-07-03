@@ -1,4 +1,6 @@
+#include "Dolphin/dvd.h"
 
+void __DVDLowSetWAType(unknown, unknown);
 
 /*
  * --INFO--
@@ -7,6 +9,10 @@
  */
 void __DVDInitWA(void)
 {
+	// NextCommandNumber = 0;
+	// CommandList[0][0] = -1;
+	// __DVDLowSetWAType(0, 0);
+	// OSInitAlarm();
 	/*
 	.loc_0x0:
 	  mflr      r0
@@ -1325,7 +1331,7 @@ void DVDLowGetCoverStatus(void)
  * Address:	800DC0B0
  * Size:	000044
  */
-void __DVDLowSetWAType(void)
+void __DVDLowSetWAType(unknown p1, unknown p2)
 {
 	/*
 	.loc_0x0:
@@ -1354,7 +1360,7 @@ void __DVDLowSetWAType(void)
  * Address:	800DC0F4
  * Size:	000038
  */
-void __DVDLowTestAlarm(void)
+BOOL __DVDLowTestAlarm(OSAlarm* alarm)
 {
 	/*
 	.loc_0x0:

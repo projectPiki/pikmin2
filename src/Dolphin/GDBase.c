@@ -54,17 +54,19 @@ void GDOverflowed(void)
  * Address:	........
  * Size:	000008
  */
-// void GDSetOverflowCallback(void)
-//{
-// UNUSED FUNCTION
-//}
+void GDSetOverflowCallback(GDOverflowCallback cb)
+{
+	// UNUSED FUNCTION
+	overflowcb = cb;
+}
 
 /*
  * --INFO--
  * Address:	........
  * Size:	000008
  */
-// void GDGetOverflowCallback(void)
-//{
-// UNUSED FUNCTION
-//}
+GDOverflowCallback GDGetOverflowCallback(void)
+{
+	// UNUSED FUNCTION
+	return overflowcb;
+}

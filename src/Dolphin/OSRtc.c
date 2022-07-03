@@ -1,4 +1,4 @@
-
+#include "Dolphin/os.h"
 
 /*
  * --INFO--
@@ -319,7 +319,7 @@ void __OSLockSram(void)
  * Address:	800F0D8C
  * Size:	00005C
  */
-void __OSLockSramEx(void)
+u8* __OSLockSramEx(void)
 {
 	/*
 	.loc_0x0:
@@ -622,7 +622,7 @@ void __OSUnlockSram(void)
  * Address:	800F1148
  * Size:	000024
  */
-void __OSUnlockSramEx(void)
+void __OSUnlockSramEx(int p1)
 {
 	/*
 	.loc_0x0:
@@ -780,7 +780,7 @@ void __OSReadROMAsync(void)
  * Address:	800F12A0
  * Size:	000080
  */
-void OSGetSoundMode(void)
+uint OSGetSoundMode(void)
 {
 	/*
 	.loc_0x0:
@@ -832,7 +832,7 @@ void OSGetSoundMode(void)
  * Address:	800F1320
  * Size:	0000A4
  */
-void OSSetSoundMode(void)
+void OSSetSoundMode(uint)
 {
 	/*
 	.loc_0x0:

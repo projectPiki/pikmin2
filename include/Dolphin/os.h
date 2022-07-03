@@ -54,14 +54,14 @@ struct DVDDiskID {
 typedef struct OSBootInfo_s {
 	DVDDiskID DVDDiskID; // 0x0
 	// u32 DVDmagic;     // 0x18 0xc2339f3d for Nintendo Game Disc
-	u32 magic;         // 0x1C
-	u32 version;       // 0x20
-	u32 memorySize;    // 0x24
-	u32 consoleType;   // 0x28
-	void* arenaLo;     // 0x2C
-	void* arenaHi;     // 0x30
-	void* FSTLocation; // 0x34
-	u32 FSTMaxLength;
+	u32 magic;         // 0x20
+	u32 version;       // 0x24
+	u32 memorySize;    // 0x28
+	u32 consoleType;   // 0x2C
+	void* arenaLo;     // 0x30
+	void* arenaHi;     // 0x34
+	void* FSTLocation; // 0x38
+	u32 FSTMaxLength;  // 0x3C
 } OSBootInfo;
 typedef struct BI2Debug {
 	s32 debugMonSize;  // 0x0
@@ -74,6 +74,24 @@ typedef struct BI2Debug {
 	u8 unk[8];         // 0x1C
 	u32 padSpec;       // 0x24
 } BI2Debug;
+
+typedef struct OSDummyCommandBlock OSDummyCommandBlock;
+typedef void OSCommandBlockCallback(int, struct OSDummyCommandBlock*);
+
+// TODO: This might be first 0x30 bytes of DVDPlayer?
+struct OSDummyCommandBlock {
+	u8 _00[8];                   // _00
+	u32 _08;                     // _08
+	int _0C;                     // _0C
+	unknown _10;                 // _10
+	unknown _14;                 // _14
+	DVDDiskID* _18;              // _18
+	unknown _1C;                 // _1C
+	unknown _20;                 // _20
+	DVDDiskID* diskID;           // _24
+	OSCommandBlockCallback* _28; // _28
+	u8 _2C[4];                   // _2C
+};
 
 #define OS_MESSAGE_NON_BLOCKING 0
 #define OS_MESSAGE_BLOCKING     1
@@ -261,7 +279,11 @@ struct OSAlarmQueue {
 	OSAlarm* tail;
 };
 
+typedef void AlarmCallback(unknown p1, OSContext* context);
+
 void OSInitAlarm();
+void OSCreateAlarm(OSAlarm* alarm);
+void OSSetAlarm(OSAlarm* alarm, unknown p2, unknown p3, u32 tickRateMaybe, AlarmCallback* handler);
 void OSCancelAlarm(OSAlarm* alarm);
 
 // OSArena
@@ -400,7 +422,7 @@ struct OSThread {
 enum OS_THREAD_STATE { OS_THREAD_STATE_READY = 1, OS_THREAD_STATE_RUNNING = 2, OS_THREAD_STATE_WAITING = 4, OS_THREAD_STATE_MORIBUND = 8 };
 
 // Thread priorities
-#define OS_PRIORITY_MIN  0 // highest
+#define OS_PRIORITY_MIN  0  // highest
 #define OS_PRIORITY_MAX  31 // lowest
 #define OS_PRIORITY_IDLE OS_PRIORITY_MAX
 
@@ -449,7 +471,7 @@ void __OSUnmaskInterrupts(int);
 int OSDisableInterrupts(void);
 void OSRestoreInterrupts(int);
 
-BOOL OSGetSoundMode();
+uint OSGetSoundMode();
 void OSSetSoundMode(uint);
 
 typedef struct OSFunctionInfo {
