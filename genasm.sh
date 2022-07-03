@@ -15,6 +15,10 @@
 # and after branch instructions (e.g. `                ; 0x00000020`).
 # Passing a 3rd argument that isn't 0 to the script disables this feature.
 #
+# There is an optional non-positional flag "-k" (or "--no-strip"), which simply generates the files
+# and only strips branch labels from the ASM disassembly. This can be useful for confirming that data sections
+# are being generated correctly.
+#
 # Example vscode task to invoke on the current selection (when it's something that uniquely matches a mangled name):
 # {
 #			"label": "genasm",
@@ -31,6 +35,35 @@
 # I personally have this as a separate task in that, so I can bring it up if I don't already have it up.
 # code -d ${Ours} ${Theirs}
 
+ShouldStripFiles=1
+
+POSITIONAL=()
+while (( $# > 0 )); do
+	case "${1}" in
+		-k|--no-strip)
+		echo flag: "${1}"
+		shift # shift once since flags have no values
+		ShouldStripFiles=0
+		;;
+		-s|--switch)
+		numOfArgs=1 # number of switch arguments
+		if (( $# < numOfArgs + 1 )); then
+			shift $#
+		else
+			echo "switch: ${1} with value: ${2}"
+			shift $((numOfArgs + 1)) # shift 'numOfArgs + 1' to bypass switch and its value
+		fi
+		;;
+		*) # unknown flag/switch
+		POSITIONAL+=("${1}")
+		shift
+		;;
+	esac
+done
+
+set -- "${POSITIONAL[@]}" # restore positional params
+
+
 # SETTINGS
 # Note: None of the paths should have terminating slashes.
 # The desired location of the output files (relative to compiler). "Ours" is the decomped one.
@@ -44,13 +77,10 @@ BuildASMDir="../../../build/pikmin2.usa/asm"
 SrcDir="../../../src"
 # Includes (headers) folder. Relative to ${CompilerDir} (or absolute).
 IncludeDir="../../../include"
-# Compiler Version
-CompilerVersion="2.6"
-# Compiler folder, relative to current working directory.
-CompilerDir="tools/mwcc_compiler/${CompilerVersion}"
+LibDir="../../../build/pikmin2.usa/lib"
 CompilerExe="mwcceppc.exe"
 # Compiler Options. Make sure to set the include folder!
-Opts="-Cpp_exceptions off -inline auto -proc gekko -RTTI off -fp hard -fp_contract on -rostr -O4,p -use_lmw_stmw on -sdata 8 -sdata2 8 -nodefaults -msgstyle gcc -i ${IncludeDir}/ -c"
+Opts="-Cpp_exceptions off -inline auto -enum int -proc gekko -RTTI off -fp hard -fp_contract on -rostr -O4,p -use_lmw_stmw on -sdata 8 -sdata2 8 -nodefaults -msgstyle gcc -l ${LibDir} -i ${IncludeDir}/ -c"
 
 # Settings are over, now garbage shell script is my new friend!
 
@@ -58,10 +88,40 @@ Opts="-Cpp_exceptions off -inline auto -proc gekko -RTTI off -fp hard -fp_contra
 Temp=${1%.*}
 CodeUnitPath=${Temp#*/}
 Library=${CodeUnitPath%*/}
+CodeUnit=${CodeUnitPath##*/}
 
-echo $Temp
-echo $CodeUnitPath
-echo $Library
+HasLocalFuncs=1
+
+# Compiler Version
+CompilerVersion="2.6"
+if [[ "${Library}" == *"Dolphin"* ]]; then
+	echo "${Library} contains: Dolphin"
+	# if [[ "${CodeUnit}" == *"dvd"* ] -or [ "${CodeUnit}" == *"GBA"* ]]; then
+	# 	echo "${CodeUnit} contains: dvd or GBA"
+	# 	CompilerVersion="1.2.5" # For GBA, DVD
+	# else
+	if [[ "${CodeUnit}" == *"dvd"* ]]; then
+		echo "${CodeUnit} contains: dvd"
+		CompilerVersion="1.2.5"
+		# Opts="-strict off -pragma \"defer_codegen on\" -pragma \"gcc_extensions on\" ${Opts}"
+		# Opts="-strict off -pragma gcc_extensions ${Opts}"
+		# Opts="-gcc_extensions ${Opts}"
+		# Opts="-strict off -pragma defer_codegen -pragma gcc_extensions ${Opts}"
+		HasLocalFuncs=1
+	elif [[ "${CodeUnit}" == *"GBA"* ]]; then
+		echo "${CodeUnit} contains: GBA"
+		CompilerVersion="1.2.5"
+	else
+		CompilerVersion="1.3.2" # For TRK
+	fi
+fi
+
+# Compiler folder, relative to current working directory.
+CompilerDir="tools/mwcc_compiler/${CompilerVersion}"
+
+# echo $Temp
+# echo $CodeUnitPath
+# echo $Library
 # TODO: this and $Library might be useful for opts
 CodeUnitExtension=${1##*.}
 Func=$2
@@ -103,8 +163,17 @@ mkdir -p ${BuildASMDir}/${CodeUnitPath%/*}
 ${Wine}${CompilerExe} ${Opts} -o ${BuildSrcDir}/${CodeUnitPath}.o ${SrcDir}/${CodeUnitPath}.${CodeUnitExtension}
 # ${Wine}${CompilerExe} ${Opts} -inline auto -o ${BuildSrcDir}/${CodeUnitPath}.o ${SrcDir}/${CodeUnitPath}.${CodeUnitExtension}
 # Disasm both object files.
-${Wine}${CompilerExe} -S ${Opts} ${BuildSrcDir}/${CodeUnitPath}.o -o ${Ours}
-${Wine}${CompilerExe} -S ${Opts} ${BuildASMDir}/${CodeUnitPath}.o -o ${Theirs}
+
+if [[ "${Library}" == *"Dolphin"* ]]; then
+	# echo "${Wine}${CompilerExe} -S ${Opts} ${BuildSrcDir}/${CodeUnitPath}.o"
+	${Wine}${CompilerExe} -S ${Opts} ${BuildSrcDir}/${CodeUnitPath}.o || exit 1
+	mv ${CodeUnit%*.}.s ${Ours}
+	${Wine}${CompilerExe} -S ${Opts} ${BuildASMDir}/${CodeUnitPath}.o
+	mv ${CodeUnit%*.}.s ${Theirs}
+else
+	${Wine}${CompilerExe} -S ${Opts} ${BuildSrcDir}/${CodeUnitPath}.o -o ${Ours} || exit 1
+	${Wine}${CompilerExe} -S ${Opts} ${BuildASMDir}/${CodeUnitPath}.o -o ${Theirs}
+fi
 
 # sed -i 's#\s*Hunk:\s+Kind=HUNK_LOCAL_CODE\s+Name="lbl_.*##g' $Theirs
 # Purge all branch labels from the ASM disassembly.
@@ -127,11 +196,19 @@ function stripFile () {
 		# echo "Help?"
 		# wc ${File}
 	else
-		sed -ri "0,/.*+Kind=HUNK_GLOBAL_CODE\\s+Name=\".*${Func}.*/d" ${File}
+		if (( $HasLocalFuncs == 0 )); then
+			sed -ri "0,/.*+Kind=HUNK_GLOBAL_CODE\\s+Name=\".*${Func}.*/d" ${File}
+		else
+			sed -ri "0,/.*+Kind=HUNK_((GLOBAL)|(LOCAL))_CODE\\s+Name=\".*${Func}.*/d" ${File}
+		fi
 	fi
 	# Delete all lines after the target function/section.
 	# This will either be at the start of next hunk...:
-	sed -ri '/\s*Hunk:\s+Kind=HUNK_GLOBAL_CODE\s+Name=\".*/,$d' ${File}
+	if (( $HasLocalFuncs == 0 )); then
+		sed -ri '/\s*Hunk:\s+Kind=HUNK_GLOBAL_CODE\s+Name=\".*/,$d' ${File}
+	else
+		sed -ri '/\s*Hunk:\s+Kind=HUNK_((GLOBAL)|(LOCAL))_CODE\s+Name=\".*/,$d' ${File}
+	fi
 	# ...or start of next section if it's the last function in the file:
 	sed -ri '/==>.*/,$d' ${File}
 
@@ -147,5 +224,7 @@ function stripFile () {
 	fi
 }
 
-stripFile ${Ours}
-stripFile ${Theirs}
+if (( $ShouldStripFiles == 1 )); then
+	stripFile ${Ours}
+	stripFile ${Theirs}
+fi
