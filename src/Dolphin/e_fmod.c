@@ -34,7 +34,8 @@ static double one = 1.0, Zero[] = {
 #ifdef __STDC__
 double __ieee754_fmod(double x, double y)
 #else
-double __ieee754_fmod(x, y) double x, y;
+double __ieee754_fmod(x, y)
+double x, y;
 #endif
 {
 	int n, hx, hy, hz, ix, iy, sx, i;

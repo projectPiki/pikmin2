@@ -70,7 +70,8 @@ static double
 #ifdef __STDC__
 double __ieee754_asin(double x)
 #else
-double __ieee754_asin(x) double x;
+double __ieee754_asin(x)
+double x;
 #endif
 {
 	double t, w, p, q, c, r, s;

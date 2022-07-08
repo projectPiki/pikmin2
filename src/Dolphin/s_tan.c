@@ -46,7 +46,8 @@
 #ifdef __STDC__
 double tan(double x)
 #else
-double tan(x) double x;
+double tan(x)
+double x;
 #endif
 {
 	double y[2], z = 0.0;

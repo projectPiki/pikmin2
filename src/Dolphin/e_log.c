@@ -92,7 +92,8 @@ static double zero = 0.0;
 #ifdef __STDC__
 double __ieee754_log(double x)
 #else
-double __ieee754_log(x) double x;
+double __ieee754_log(x)
+double x;
 #endif
 {
 	double hfsq, f, s, z, R, w, t1, t2, dk;
