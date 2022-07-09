@@ -1,31 +1,17 @@
 #ifndef _GAME_CAVE_RANDMAPMGR_H
 #define _GAME_CAVE_RANDMAPMGR_H
 
-#include "types.h"
-#include "Game/Cave/Node.h"
+#include "JSystem/JUT/JUTTexture.h"
+
 #include "Game/mapParts.h"
 #include "Game/Cave/RandMapUnit.h"
-#include "JSystem/JUT/JUTTexture.h"
-#include "Game/Cave/Info.h"
-
-/*
-    __vt__Q34Game4Cave10RandMapMgr:
-    .4byte 0
-    .4byte 0
-    .4byte __dt__Q34Game4Cave10RandMapMgrFv
-    .4byte getChildCount__5CNodeFv
-*/
 
 namespace Game {
 namespace Cave {
-struct EnemyUnit;
-struct EnemyNode;
-struct GateNode;
-struct ItemNode;
-struct MapNode;
-struct MapUnitGenerator;
-struct BaseGen;
 struct RandEnemyUnit;
+struct RandGateUnit;
+struct RandMapDraw;
+
 struct RandPlantUnit {
 	RandPlantUnit(MapUnitGenerator* generator);
 
@@ -38,21 +24,19 @@ struct RandPlantUnit {
 	int m_currentPlantCount;       // _04
 	int m_desiredPlantCount;       // _08
 };
-struct RandGateUnit;
-struct RandMapScore;
-struct RandMapDraw;
-struct RandMapUnit;
+
 struct RandItemUnit {
 	bool isGroundCapEnemySetDone(MapNode*);
 	bool isFallCapEnemySetDone(MapNode*);
 
-	ItemInfo* m_itemInfo;
-	int m_max;
-	MapUnitGenerator* m_mapUnitGenerator;
-	RandMapScore* m_randMapScore;
-	MapNode** m_mapNode;
-	BaseGen** m_baseGen;
+	ItemInfo* m_itemInfo;                 // _00
+	int m_max;                            // _04
+	MapUnitGenerator* m_mapUnitGenerator; // _08
+	RandMapScore* m_randMapScore;         // _0C
+	MapNode** m_mapNode;                  // _10
+	BaseGen** m_baseGen;                  // _14
 };
+
 struct RandCapEnemyUnit {
 	RandCapEnemyUnit(MapUnitGenerator&);
 
@@ -74,17 +58,19 @@ struct RandMapMgr : public CNode {
 
 	// _00 VTBL
 	MapUnitGenerator* m_mapUnitGenerator; // _18
+
 	RandMapUnit* m_randMapUnit;           // _1C
 	RandEnemyUnit* m_randEnemyUnit;       // _20
 	RandCapEnemyUnit* m_randCapEnemyUnit; // _24
 	RandPlantUnit* m_randPlantUnit;       // _28
 	RandGateUnit* m_randGateUnit;         // _2C
 	RandItemUnit* m_randItemUnit;         // _30
-	RandMapScore* m_randMapScore;         // _34
-	RandMapDraw* m_randMapDraw;           // _38
-	bool m_isCaptureOn;                   // _3C
-	JUTTexture* m_radarMapTexture;        // _40
-	bool m_isVersusHiba;                  // _44
+
+	RandMapScore* m_randMapScore;  // _34
+	RandMapDraw* m_randMapDraw;    // _38
+	bool m_isCaptureOn;            // _3C
+	JUTTexture* m_radarMapTexture; // _40
+	bool m_isVersusHiba;           // _44
 
 	void create(void);
 	int getNumRooms(void);

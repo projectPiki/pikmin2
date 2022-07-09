@@ -16,8 +16,8 @@ struct EnemyUnit {
 	int _08;                  // _08
 	int m_tekiMax;            // _0C
 	// counts and max amounts for enemy types (A = easy, B = hard, C = seam hazards, F = special)
-	int m_typeCount[4];       // _10 (_10 A, _14 B, _18 C, _1C F)
-	int m_typeMax[4];         // _20 (_20 A, _24 B, _28 C, _2C F)
+	int m_typeCount[4]; // _10 (_10 A, _14 B, _18 C, _1C F)
+	int m_typeMax[4];   // _20 (_20 A, _24 B, _28 C, _2C F)
 };
 
 struct Adjust {
@@ -148,7 +148,8 @@ struct EnemyNode : public ObjectLayoutNode {
 	int m_birthDoorIndex;   // _20
 	int m_birthCount;       // _24
 	float m_direction;      // _28
-	Vector3f m_birthPos;    // _2C, _30, _34
+	Vector3f m_birthPos;    // _2C
+	                        // _34
 };
 } // namespace Cave
 } // namespace Game

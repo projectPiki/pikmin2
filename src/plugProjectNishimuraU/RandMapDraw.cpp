@@ -17,47 +17,35 @@ Cave::RandMapDraw::RandMapDraw(Game::Cave::MapUnitGenerator* generator) { m_gene
  * Address:	80245420
  * Size:	0001CC
  */
-void Game::Cave::RandMapDraw::radarMapPartsOpen(Vector3f& vec)
+void Game::Cave::RandMapDraw::radarMapPartsOpen(Vector3f& pos)
 {
-	// get map node currently in and add it to visited map nodes
-
-	// Convert x and z units to map "units"
-	// NB: 3D coord wise we're looking at X and Z,
-	// but map-wise, Z is treated as a 2D "Y"
-	float x_unit = vec.x / 170.0f;
-	float z_unit = vec.z / 170.0f;
+	// Looking down on a position, we don't care about the Y
+	// therefore x, y coords translate to x, z
+	f32 x_pos = pos.x / 170.0f;
+	f32 y_pos = pos.z / 170.0f;
 
 	MapNode* placedMapNodes = m_generator->m_placedMapNodes;
 	MapNode* visitedNodes   = m_generator->m_visitedMapNodes;
-	MapNode* childNode      = (MapNode*)placedMapNodes->m_child;
 
-	// loop through list of placed map nodes
-	for (childNode; childNode; childNode = (MapNode*)childNode->m_next) {
+	MapNode* childNode = (MapNode*)placedMapNodes->m_child;
+	for (; childNode != nullptr; childNode = (MapNode*)childNode->m_next) {
+		// If the x & z fall within the boundaries of the node (a square)
+		if ((x_pos > childNode->getNodeOffsetX()) && (y_pos > childNode->getNodeOffsetY())
+		    && x_pos < (childNode->getNodeOffsetX() + childNode->m_unitInfo->getUnitSizeX())
+		    && y_pos < (childNode->getNodeOffsetY() + childNode->m_unitInfo->getUnitSizeY())) {
 
-		// check we're within the current map node childNode
-		// check if we're as FAR as the map node
-		if ((x_unit > childNode->getNodeOffsetX()) && (z_unit > childNode->getNodeOffsetY())) {
-			// check we're not FURTHER than the map node
-			if (x_unit < (childNode->getNodeOffsetX() + childNode->m_unitInfo->getUnitSizeX())) {     // X
-				if (z_unit < (childNode->getNodeOffsetY() + childNode->m_unitInfo->getUnitSizeY())) { // Z
+			// We're within that section, so we add it to the visited nodes
+			childNode->del();
+			visitedNodes->add(childNode);
 
-					// we're within the map node, so 'move' it to visited
-					childNode->del();
-					visitedNodes->add(childNode);
+			const int doorCount = childNode->getNumDoors();
+			for (int i = 0; i < doorCount; i++) {
+				MapNode* currMapNode = childNode->m_nodeList[i * 3];
 
-					// loop through number of doors of map unit
-					int doorLimit = childNode->getNumDoors();
-					for (int i = 0; i < doorLimit; i++) {
-
-						// check every third map unit in m_nodeList?
-						// I assume this is to do with the structure of m_nodeList
-						MapNode* currMapNode = childNode->m_nodeList[3 * i];
-						// if childNode and currMapNode share a parent, and it's of unit type 0, add it to visited
-						if ((placedMapNodes == currMapNode->m_parent) && (currMapNode->m_unitInfo->getUnitKind() == 0)) {
-							currMapNode->del();
-							visitedNodes->add(currMapNode);
-						}
-					}
+				// If the node has a door that leads to a dead end, we've discovered it too
+				if (placedMapNodes == currMapNode->m_parent && currMapNode->m_unitInfo->getUnitKind() == 0) {
+					currMapNode->del();
+					visitedNodes->add(currMapNode);
 				}
 			}
 		}
@@ -73,12 +61,8 @@ namespace Game {
  */
 void Game::Cave::RandMapDraw::draw(Graphics& gfx, float x, float y, float z)
 {
-	// get all visited map nodes (children of m_visitedMapNodes) and draw them
-
-	// loop through all children of m_visitedMapNodes
 	MapNode* currMapNode = (MapNode*)m_generator->m_visitedMapNodes->m_child;
-	for (currMapNode; currMapNode; currMapNode = (MapNode*)currMapNode->m_next) {
-		// draw map node
+	for (; currMapNode; currMapNode = (MapNode*)currMapNode->m_next) {
 		currMapNode->draw(x, y, z);
 	}
 }
