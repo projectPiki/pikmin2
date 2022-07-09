@@ -86,10 +86,10 @@ struct RandMapMgr : public CNode {
 };
 
 struct RandMapDraw {
-	RandMapDraw(MapUnitGenerator*);
+	RandMapDraw(MapUnitGenerator* generator);
 
-	void radarMapPartsOpen(Vector3f&);
-	void draw(struct Graphics&, float, float, float);
+	void radarMapPartsOpen(Vector3f& vec);
+	void draw(struct Graphics& gfx, float x, float y, float z);
 
 	MapUnitGenerator* m_generator; // _00
 };

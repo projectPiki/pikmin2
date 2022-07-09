@@ -32,7 +32,7 @@ struct MapUnitGenerator {
 	GateNode* m_gateNode;       // _20
 	ItemNode* m_itemNode;       // _24
 	MapNode* m_placedMapNodes;  // _28
-	MapNode* _2C;               // _2C
+	MapNode* m_visitedMapNodes; // _2C
 	EditMapUnit* m_editMapUnit; // _30
 };
 
