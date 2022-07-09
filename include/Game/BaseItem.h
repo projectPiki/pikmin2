@@ -61,32 +61,31 @@ struct BaseItem : public Creature, public SysShape::MotionListener {
 	virtual char* getCreatureName();                           // _1A0
 	virtual s32 getCreatureID();                               // _1A4
 	// vtable 2 (MotionListener + self)
-	// virtual void onKeyEvent(const SysShape::KeyEvent&) = 0; // _1B0
-	virtual void initDependency();                          // _1B4
-	virtual void startSound(u32);                           // _1B8
-	virtual void makeTrMatrix();                            // _1BC
-	virtual void doAI();                                    // _1C0
-	virtual void move(float);                               // _1C4
-	virtual void changeMaterial();                          // _1C8
-	virtual void do_updateLOD();                            // _1CC
-	virtual void do_setLODParm(AILODParm&);                 // _1D0
-	virtual float getMapCollisionRadius();                  // _1D4
-	virtual bool interactAttack(InteractAttack&);           // _1D8
-	virtual bool interactBreakBridge(InteractBreakBridge&); // _1DC
-	virtual bool interactEat(InteractEat&);                 // _1E0
-	virtual bool interactFlockAttack(InteractFlockAttack&); // _1E4
-	virtual bool interactAbsorb(InteractAbsorb&);           // _1E8
-	virtual bool interactFue(InteractFue&);                 // _1EC
-	virtual bool interactFarmKarero(InteractFarmKarero&);   // _1F0
-	virtual bool interactFarmHaero(InteractFarmHaero&);     // _1F4
-	virtual bool interactGotKey(InteractGotKey&);           // _1F8
-	virtual bool getVectorField(Sys::Sphere&, Vector3f&);   // _1FC
-	virtual float getWorkDistance(Sys::Sphere&);            // _200
-	virtual void do_doAnimation();                          // _204
-	virtual void updateBoundSphere();                       // _208
-	virtual void update();                                  // _20C
-	virtual void entryShape();                              // _210
-	virtual void onSetPosition();                           // _214
+	virtual void initDependency();                          // _04
+	virtual void startSound(u32);                           // _08
+	virtual void makeTrMatrix();                            // _0C
+	virtual void doAI();                                    // _10
+	virtual void move(float);                               // _14
+	virtual void changeMaterial();                          // _18
+	virtual void do_updateLOD();                            // _1C
+	virtual void do_setLODParm(AILODParm&);                 // _20
+	virtual float getMapCollisionRadius();                  // _24
+	virtual bool interactAttack(InteractAttack&);           // _28
+	virtual bool interactBreakBridge(InteractBreakBridge&); // _2C
+	virtual bool interactEat(InteractEat&);                 // _30
+	virtual bool interactFlockAttack(InteractFlockAttack&); // _34
+	virtual bool interactAbsorb(InteractAbsorb&);           // _38
+	virtual bool interactFue(InteractFue&);                 // _3C
+	virtual bool interactFarmKarero(InteractFarmKarero&);   // _40
+	virtual bool interactFarmHaero(InteractFarmHaero&);     // _44
+	virtual bool interactGotKey(InteractGotKey&);           // _48
+	virtual bool getVectorField(Sys::Sphere&, Vector3f&);   // _4C
+	virtual float getWorkDistance(Sys::Sphere&);            // _50
+	virtual void do_doAnimation();                          // _54
+	virtual void updateBoundSphere();                       // _58
+	virtual void update();                                  // _5C
+	virtual void entryShape();                              // _60
+	virtual void onSetPosition();                           // _64
 
 	void updateCollTree();
 

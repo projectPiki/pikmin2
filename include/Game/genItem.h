@@ -25,7 +25,7 @@ struct GenItem : public GenObject {
 	virtual J3DModelData* getShape();                      // _20
 	virtual void updateUseList(Generator*, int);           // _24
 	virtual Creature* generate(Generator*);                // _28
-	virtual void birth(GenArg*);                           // _2C
+	virtual Creature* birth(GenArg*);                      // _2C
 	virtual void generatorMakeMatrix(Matrixf&, Vector3f&); // _30
 
 	void initialise();

@@ -6,6 +6,7 @@
 #include "GenericObjectMgr.h"
 
 namespace Game {
+struct Pellet;
 
 struct PelletMgr : public NodeObjectMgr<GenericObjectMgr> {
 	struct OtakaraItemCode {
@@ -32,6 +33,16 @@ struct PelletMgr : public NodeObjectMgr<GenericObjectMgr> {
 	virtual void doSimpleDraw(Viewport*); // _58
 
 	u8 _3C; // _3C
+};
+
+struct PelletIterator {
+	PelletIterator();
+
+	void first();
+	bool isDone();
+	void next();
+	Pellet* operator*();
+	void setFirst();
 };
 
 static PelletMgr* pelletMgr;
