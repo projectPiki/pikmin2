@@ -22,9 +22,23 @@ struct BirthMgr {
 	static void read(Stream&);
 	static void write(Stream&);
 
+	// Unused/inlined:
+	static int get_cave(int);
+	static int get_today(int);
+
 	static u32 mToday[PikiColorCount];
 	static u32 mCave[PikiColorCount];
 	static u32 mTotal[PikiColorCount];
+};
+
+// Entirely unused/inlined:
+struct BirthCounter {
+	inline BirthCounter();
+
+	unknown reset();
+	unknown operator()(int);
+	void read(Stream&);
+	void write(Stream&);
 };
 } // namespace Game
 

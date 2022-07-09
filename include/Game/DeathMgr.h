@@ -18,17 +18,17 @@ struct DeathMgr {
 		COD_All,                  // All causes combined
 		COD_SourceCount = COD_All // Count of individual causes
 	};
-	DeathMgr();
+	inline DeathMgr();
 
 	static void clear();
-	static void inc(CauseOfDeath);
-	static void inc_today(CauseOfDeath);
-	static void inc_cave(CauseOfDeath);
+	static void inc(int);
+	static void inc_today(int);
+	static void inc_cave(int);
 	static void account_cave();
 	static void account_today();
-	static int get_cave(CauseOfDeath);
-	static int get_today(CauseOfDeath);
-	static int get_total(CauseOfDeath);
+	static int get_cave(int);
+	static int get_today(int);
+	static int get_total(int);
 	static void read(Stream&);
 	static void write(Stream&);
 
@@ -39,6 +39,16 @@ struct DeathMgr {
 	static u32 mTotal[COD_SourceCount];
 	static u32 mTotalTotal;
 	static int mSoundDeathCount;
+};
+
+// Entirely unused/inlined:
+struct DeathCounter {
+	inline DeathCounter();
+
+	unknown reset();
+	unknown operator()(int);
+	void read(Stream&);
+	void write(Stream&);
 };
 } // namespace Game
 

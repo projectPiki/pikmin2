@@ -82,7 +82,7 @@ BirthCounter::BirthCounter(void)
  * Address:	........
  * Size:	000024
  */
-void BirthCounter::reset(void)
+unknown BirthCounter::reset(void)
 {
 	// UNUSED FUNCTION
 }
@@ -92,7 +92,7 @@ void BirthCounter::reset(void)
  * Address:	........
  * Size:	000078
  */
-void BirthCounter::operator()(int)
+unknown BirthCounter::operator()(int)
 {
 	// UNUSED FUNCTION
 }
@@ -970,7 +970,7 @@ lbl_802303A4:
  * Address:	........
  * Size:	000070
  */
-void BirthMgr::get_cave(int)
+int BirthMgr::get_cave(int)
 {
 	// UNUSED FUNCTION
 }
@@ -980,7 +980,7 @@ void BirthMgr::get_cave(int)
  * Address:	........
  * Size:	000070
  */
-void BirthMgr::get_today(int)
+int BirthMgr::get_today(int)
 {
 	// UNUSED FUNCTION
 }
@@ -990,7 +990,7 @@ void BirthMgr::get_today(int)
  * Address:	8023042C
  * Size:	000070
  */
-void BirthMgr::get_total(int)
+int BirthMgr::get_total(int)
 {
 	/*
 	cmpwi    r3, 5
@@ -1193,7 +1193,7 @@ lbl_80230638:
  * Address:	........
  * Size:	000030
  */
-DeathCounter::DeathCounter(void)
+DeathCounter::DeathCounter()
 {
 	// UNUSED FUNCTION
 }
@@ -1203,7 +1203,7 @@ DeathCounter::DeathCounter(void)
  * Address:	........
  * Size:	00002C
  */
-void DeathCounter::reset(void)
+unknown DeathCounter::reset()
 {
 	// UNUSED FUNCTION
 }
@@ -1213,7 +1213,7 @@ void DeathCounter::reset(void)
  * Address:	........
  * Size:	000100
  */
-void DeathCounter::operator()(int)
+unknown DeathCounter::operator()(int)
 {
 	// UNUSED FUNCTION
 }
@@ -1243,7 +1243,7 @@ void DeathCounter::write(Stream&)
  * Address:	........
  * Size:	000030
  */
-DeathMgr::DeathMgr(void)
+DeathMgr::DeathMgr()
 {
 	// UNUSED FUNCTION
 }
@@ -1813,7 +1813,7 @@ lbl_80230CFC:
  * Address:	80230D64
  * Size:	0000E8
  */
-void DeathMgr::get_cave(int)
+int DeathMgr::get_cave(int)
 {
 	/*
 	stwu     r1, -0x10(r1)
@@ -1890,7 +1890,7 @@ lbl_80230E34:
  * Address:	80230E4C
  * Size:	0000E8
  */
-void DeathMgr::get_today(int)
+int DeathMgr::get_today(int)
 {
 	/*
 	stwu     r1, -0x10(r1)
@@ -1967,7 +1967,7 @@ lbl_80230F1C:
  * Address:	80230F34
  * Size:	0000E8
  */
-void DeathMgr::get_total(int)
+int DeathMgr::get_total(int)
 {
 	/*
 	stwu     r1, -0x10(r1)
