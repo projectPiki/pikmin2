@@ -1,4 +1,6 @@
 #include "types.h"
+#include "nans.h"
+#include "Game/SingleGame.h"
 
 /*
     Generated from dpostproc

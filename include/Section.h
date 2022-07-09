@@ -2,6 +2,7 @@
 #define _SECTION_H
 
 #include "JSystem/JKR/JKRDisposer.h"
+#include "wipe.h"
 
 struct Graphics;
 struct JFWDisplay;
@@ -50,7 +51,7 @@ struct Section : public ISection {
 	void main();
 	void fadeOut();
 
-	u32 _18;                // _18
+	WipeBase* _18;          // _18
 	JKRHeap* _1C;           // _1C
 	JKRHeap* _20;           // _20
 	JFWDisplay* m_display;  // _24

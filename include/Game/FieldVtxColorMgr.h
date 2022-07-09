@@ -12,6 +12,7 @@
 namespace Game {
 // TODO fields
 struct FieldVtxColorInfo {
+	FieldVtxColorInfo();
 	// Unused/inlined:
 	void setVtxColorIndex(unsigned short);
 };

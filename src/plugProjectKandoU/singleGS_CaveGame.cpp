@@ -1,4 +1,15 @@
+#include "Game/Entities/BlackMan.h"
+#include "Game/GameSystem.h"
+#include "Game/ItemBigFountain.h"
+#include "Game/ItemHole.h"
+#include "Game/MapMgr.h"
+#include "Game/MoviePlayer.h"
+#include "Game/Navi.h"
+#include "Game/mapParts.h"
+#include "Vector3.h"
 #include "types.h"
+#include "nans.h"
+#include "Game/SingleGame.h"
 
 /*
     Generated from dpostproc
@@ -417,7 +428,7 @@ lbl_80217A44:
  * Address:	........
  * Size:	000174
  */
-void SingleGame::CaveState::gameStart(Game::SingleGameSection*)
+unknown SingleGame::CaveState::gameStart(Game::SingleGameSection*)
 {
 	// UNUSED FUNCTION
 }
@@ -1074,8 +1085,27 @@ lbl_802182BC:
  * Address:	802182D0
  * Size:	0000D4
  */
-void SingleGame::CaveState::onOrimaDown(Game::SingleGameSection*, int)
+void SingleGame::CaveState::onOrimaDown(Game::SingleGameSection* section, int naviID)
 {
+	MoviePlayArg arg;
+	arg._0C             = section->_C8;
+	arg.m_courseName    = nullptr;
+	arg.m_movieName     = "s03_orimadown";
+	arg.m_origin        = Vector3f::zero;
+	arg.m_angle         = 0.0f;
+	arg._08             = nullptr;
+	arg.m_streamID      = 0;
+	arg._14             = 0;
+	arg.m_soundPosition = nullptr;
+	arg._10             = section->_CC;
+	arg.m_naviID        = naviID;
+	moviePlayer->_18C   = naviMgr->getAt(naviID);
+	if (naviID == 0) {
+		moviePlayer->_190 = section->_104;
+	} else {
+		moviePlayer->_190 = section->_108;
+	}
+	moviePlayer->play(arg);
 	/*
 	stwu     r1, -0x50(r1)
 	mflr     r0
@@ -1142,8 +1172,28 @@ lbl_80218380:
  * Address:	802183A4
  * Size:	000104
  */
-void SingleGame::CaveState::onFountainReturn(Game::SingleGameSection*, Game::ItemBigFountain::Item*)
+void SingleGame::CaveState::onFountainReturn(Game::SingleGameSection* section, Game::ItemBigFountain::Item* fountain)
 {
+	gameSystem->_3C &= 0xDF;
+	section->loadMainMapSituation();
+	MoviePlayArg arg;
+	arg._0C                     = section->_C8;
+	arg.m_courseName            = nullptr;
+	arg.m_movieName             = "s0C_cv_escape";
+	arg.m_origin                = Vector3f::zero;
+	arg.m_angle                 = 0.0f;
+	arg.m_naviID                = 0;
+	arg._10                     = nullptr;
+	arg._08                     = nullptr;
+	arg.m_streamID              = 0;
+	arg._14                     = 0;
+	arg.m_soundPosition         = nullptr;
+	arg.m_origin                = fountain->getPosition();
+	arg.m_angle                 = fountain->getFaceDir();
+	arg._10                     = section->_CC;
+	moviePlayer->m_targetObject = fountain;
+	fountain->movie_begin(false);
+	moviePlayer->play(arg);
 	/*
 	.loc_0x0:
 	  stwu      r1, -0x50(r1)
@@ -1219,8 +1269,35 @@ void SingleGame::CaveState::onFountainReturn(Game::SingleGameSection*, Game::Ite
  * Address:	802184A8
  * Size:	000144
  */
-void SingleGame::CaveState::onNextFloor(Game::SingleGameSection*, Game::ItemHole::Item*)
+void SingleGame::CaveState::onNextFloor(Game::SingleGameSection* section, Game::ItemHole::Item* hole)
 {
+	BlackMan::Obj* waterwraith = ((RoomMapMgr*)mapMgr)->m_blackmanObjPtr;
+	if (waterwraith != nullptr) {
+		if (waterwraith->isAlive()) {
+			playData->m_caveSaveData.m_waterwraithTimer = waterwraith->getTimer();
+		} else {
+			playData->m_caveSaveData.m_isWaterwraithAlive = false;
+		}
+	}
+	gameSystem->_3C &= 0xDF;
+	section->loadMainMapSituation();
+	MoviePlayArg arg;
+	arg._0C                     = section->_C8;
+	arg.m_movieName             = "s09_holein";
+	arg.m_courseName            = nullptr;
+	arg.m_origin                = Vector3f::zero;
+	arg.m_angle                 = 0.0f;
+	arg.m_naviID                = 0;
+	arg._10                     = nullptr;
+	arg._08                     = nullptr;
+	arg.m_streamID              = 0;
+	arg._14                     = 0;
+	arg.m_soundPosition         = nullptr;
+	arg.m_origin                = hole->getPosition();
+	arg.m_angle                 = hole->getFaceDir();
+	arg._10                     = section->_CC;
+	moviePlayer->m_targetObject = hole;
+	moviePlayer->play(arg);
 	/*
 	.loc_0x0:
 	  stwu      r1, -0x60(r1)
