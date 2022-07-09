@@ -27,6 +27,7 @@ struct ObjectLayoutInfo {
 namespace Cave {
 enum CardinalDirection { CD_UP, CD_RIGHT, CD_DOWN, CD_LEFT };
 struct DoorNode;
+struct BaseGen;
 struct UnitInfo {
 	DoorNode* m_doorNode;            // _00
 	struct AdjustNode* m_adjustNode; // _04
@@ -38,6 +39,9 @@ struct UnitInfo {
 	int getUnitSizeX();
 	int getUnitSizeY();
 	int getUnitKind();
+	int getUnitRotation();
+	BaseGen* getBaseGen();
+	void draw();
 };
 
 struct BaseGen;

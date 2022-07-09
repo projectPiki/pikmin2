@@ -758,7 +758,7 @@ NISHIMURA:=\
 	$(BUILD_DIR)/asm/plugProjectNishimuraU/Koganemushi.o\
 	$(BUILD_DIR)/asm/plugProjectNishimuraU/FtankMgr.o\
 	$(BUILD_DIR)/asm/plugProjectNishimuraU/Ftank.o\
-	$(BUILD_DIR)/asm/plugProjectNishimuraU/RandPlantUnit.o\
+	$(BUILD_DIR)/src/plugProjectNishimuraU/RandPlantUnit.o\
 	$(BUILD_DIR)/asm/plugProjectNishimuraU/HanachirashiState.o\
 	$(BUILD_DIR)/src/plugProjectNishimuraU/HanachirashiAnimator.o\
 	$(BUILD_DIR)/asm/plugProjectNishimuraU/HanachirashiMgr.o\

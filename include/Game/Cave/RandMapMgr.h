@@ -23,13 +23,25 @@ struct EnemyNode;
 struct GateNode;
 struct ItemNode;
 struct MapNode;
+struct MapUnitGenerator;
+struct BaseGen;
 struct RandEnemyUnit;
-struct RandPlantUnit;
+struct RandPlantUnit {
+	RandPlantUnit(MapUnitGenerator* generator);
+
+	void setPlantSlot();
+	MapNode* getPlantSetMapNode(BaseGen**);
+	EnemyUnit* getPlantUnit(BaseGen*);
+	bool isPlantSet(MapNode*, BaseGen*);
+
+	MapUnitGenerator* m_generator; // _00
+	int m_currentPlantCount;       // _04
+	int m_desiredPlantCount;       // _08
+};
 struct RandGateUnit;
 struct RandMapScore;
 struct RandMapDraw;
 struct RandMapUnit;
-struct MapUnitGenerator;
 struct RandItemUnit {
 	bool isGroundCapEnemySetDone(MapNode*);
 	bool isFallCapEnemySetDone(MapNode*);

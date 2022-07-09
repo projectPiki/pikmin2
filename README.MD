@@ -151,6 +151,7 @@ pikmin2.usa.dol: `sha1: 90d328bf8f190c90472e8c19e7e53c6ad0fe0d1a`
 	- <a href="https://github.com/projectPiki/pikmin2/tree/main/src/plugProjectNishimuraU/QurioneAnimator.cpp">plugProjectNishimuraU/QurioneAnimator.cpp</a>
 	- <a href="https://github.com/projectPiki/pikmin2/tree/main/src/plugProjectNishimuraU/RandMapChecker.cpp">plugProjectNishimuraU/RandMapChecker.cpp</a>
 	- <a href="https://github.com/projectPiki/pikmin2/tree/main/src/plugProjectNishimuraU/RandMapDraw.cpp">plugProjectNishimuraU/RandMapDraw.cpp</a>
+	- <a href="https://github.com/projectPiki/pikmin2/tree/main/src/plugProjectNishimuraU/RandPlantUnit.cpp">plugProjectNishimuraU/RandPlantUnit.cpp</a>
 	- <a href="https://github.com/projectPiki/pikmin2/tree/main/src/plugProjectNishimuraU/RockAnimator.cpp">plugProjectNishimuraU/RockAnimator.cpp</a>
 	- <a href="https://github.com/projectPiki/pikmin2/tree/main/src/plugProjectNishimuraU/RumbleData.cpp">plugProjectNishimuraU/RumbleData.cpp</a>
 	- <a href="https://github.com/projectPiki/pikmin2/tree/main/src/plugProjectNishimuraU/SaraiAnimator.cpp">plugProjectNishimuraU/SaraiAnimator.cpp</a>

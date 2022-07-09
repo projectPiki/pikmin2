@@ -1,4 +1,9 @@
 #include "types.h"
+#include "Game/Cave/RandMapMgr.h"
+#include "Game/Cave/RandMapUnit.h"
+#include "Game/Cave/Node.h"
+#include "Game/Cave/Info.h"
+#include "Dolphin/rand.h"
 
 /*
     Generated from dpostproc
@@ -21,39 +26,29 @@ namespace Game {
  * Address:	8029EF0C
  * Size:	00005C
  */
-Cave::RandPlantUnit::RandPlantUnit(Game::Cave::MapUnitGenerator*)
+Game::Cave::RandPlantUnit::RandPlantUnit(Game::Cave::MapUnitGenerator* generator)
 {
-	/*
-	stw      r4, 0(r3)
-	li       r0, 0
-	stw      r0, 4(r3)
-	stw      r0, 8(r3)
-	lwz      r4, 0(r3)
-	lwz      r4, 0x14(r4)
-	lwz      r6, 0x10(r4)
-	b        lbl_8029EF5C
+	// Constructor for RandPlantUnit
+	//     - takes a MapUnitGenerator as input
+	//     - initialises m_currentPlantCount to 0
+	//     - adds up all plant teki weights to get m_desiredPlantCount
 
-lbl_8029EF2C:
-	lwz      r4, 0x18(r6)
-	lwz      r5, 0(r4)
-	cmplwi   r5, 0
-	beq      lbl_8029EF58
-	lwz      r0, 0x20(r5)
-	cmpwi    r0, 6
-	bne      lbl_8029EF58
-	lwz      r4, 8(r3)
-	lwz      r0, 0x1c(r5)
-	add      r0, r4, r0
-	stw      r0, 8(r3)
+	// set base attributes
+	m_generator         = generator;
+	m_currentPlantCount = 0; // initial plant count = 0
+	m_desiredPlantCount = 0; // initial desired plant count = 0
 
-lbl_8029EF58:
-	lwz      r6, 4(r6)
+	// calculate desired plant count from plant weights
 
-lbl_8029EF5C:
-	cmplwi   r6, 0
-	bne      lbl_8029EF2C
-	blr
-	*/
+	// loop through the enemy nodes for the MapUnitGenerator
+	EnemyNode* currEnemyNode = (EnemyNode*)m_generator->m_enemyNodeA->m_child;
+	for (currEnemyNode; currEnemyNode; currEnemyNode = (EnemyNode*)currEnemyNode->m_next) {
+
+		// if TekiInfo exists and the Teki type is 6 (plant), add its weight to desiredPlantCount
+		if ((currEnemyNode->m_enemyUnit->m_tekiInfo) && (currEnemyNode->m_enemyUnit->m_tekiInfo->m_type == 6)) {
+			m_desiredPlantCount += currEnemyNode->m_enemyUnit->m_tekiInfo->m_weight;
+		}
+	}
 }
 
 /*
@@ -61,74 +56,45 @@ lbl_8029EF5C:
  * Address:	8029EF68
  * Size:	0000DC
  */
-void Cave::RandPlantUnit::setPlantSlot()
+void Game::Cave::RandPlantUnit::setPlantSlot()
 {
-	/*
-	stwu     r1, -0x30(r1)
-	mflr     r0
-	stw      r0, 0x34(r1)
-	stmw     r27, 0x1c(r1)
-	mr       r27, r3
-	lwz      r3, 4(r3)
-	lwz      r0, 8(r27)
-	cmpw     r3, r0
-	bge      lbl_8029F030
-	li       r30, 0
+	// make nodes for new plants if there's room for them
 
-lbl_8029EF90:
-	li       r0, 0
-	mr       r3, r27
-	stw      r0, 8(r1)
-	addi     r4, r1, 8
-	bl getPlantSetMapNode__Q34Game4Cave13RandPlantUnitFPPQ34Game4Cave7BaseGen
-	lwz      r4, 8(r1)
-	mr       r29, r3
-	mr       r3, r27
-	bl       getPlantUnit__Q34Game4Cave13RandPlantUnitFPQ34Game4Cave7BaseGen
-	or.      r28, r3, r3
-	beq      lbl_8029F030
-	cmplwi   r29, 0
-	beq      lbl_8029F030
-	li       r3, 0x38
-	bl       __nw__FUl
-	or.      r31, r3, r3
-	beq      lbl_8029EFE8
-	lwz      r5, 8(r1)
-	mr       r4, r28
-	li       r6, 1
-	bl
-__ct__Q34Game4Cave9EnemyNodeFPQ34Game4Cave9EnemyUnitPQ34Game4Cave7BaseGeni mr
-r31, r3
+	// check that we have space for new plants
+	if (m_currentPlantCount < m_desiredPlantCount) {
 
-lbl_8029EFE8:
-	mr       r3, r31
-	mr       r4, r29
-	bl       makeGlobalData__Q34Game4Cave9EnemyNodeFPQ34Game4Cave7MapNode
-	lwz      r3, 0x1c(r29)
-	mr       r4, r31
-	bl       add__5CNodeFP5CNode
-	lwz      r3, 4(r27)
-	addi     r0, r3, 1
-	stw      r0, 4(r27)
-	lwz      r3, 4(r27)
-	lwz      r0, 8(r27)
-	cmpw     r3, r0
-	blt      lbl_8029F024
-	b        lbl_8029F030
-	b        lbl_8029F030
+		// only try to place a max of 100 plants, regardless of desired plant count
+		for (int i = 0; i < 100; i++) {
+			// inintially null basegen pointer
+			BaseGen* currBaseGen = 0;
+			// get an empty plant spot and basegen pointer
+			MapNode* currMapNode = getPlantSetMapNode(&currBaseGen);
+			// get a plant unit/type
+			EnemyUnit* currPlantUnit = getPlantUnit(currBaseGen);
 
-lbl_8029F024:
-	addi     r30, r30, 1
-	cmpwi    r30, 0x64
-	blt      lbl_8029EF90
+			// if mapnode and plant type exist, make a new plant node
+			if (currPlantUnit && currMapNode) {
+				// make plant
+				EnemyNode* newPlant = new EnemyNode(currPlantUnit, currBaseGen, 1);
+				// make data global on map node
+				newPlant->makeGlobalData(currMapNode);
+				// add plant to enemy nodes
+				currMapNode->m_enemyNode->add((EnemyNode*)newPlant);
+				// increment plant count
+				m_currentPlantCount++;
 
-lbl_8029F030:
-	lmw      r27, 0x1c(r1)
-	lwz      r0, 0x34(r1)
-	mtlr     r0
-	addi     r1, r1, 0x30
-	blr
-	*/
+				// check we haven't hit our plant limit
+				if (!(m_currentPlantCount < m_desiredPlantCount)) {
+					return;
+				} else {
+					continue;
+				}
+			}
+			// if plant type doesn't exist or there aren't any empty spots left
+			// don't bother trying again
+			return;
+		}
+	}
 }
 
 /*
@@ -136,104 +102,48 @@ lbl_8029F030:
  * Address:	8029F044
  * Size:	000134
  */
-void Cave::RandPlantUnit::getPlantSetMapNode(Game::Cave::BaseGen**)
+Game::Cave::MapNode* Game::Cave::RandPlantUnit::getPlantSetMapNode(Game::Cave::BaseGen** baseGenOut)
 {
-	/*
-	stwu     r1, -0x1050(r1)
-	mflr     r0
-	stw      r0, 0x1054(r1)
-	stmw     r23, 0x102c(r1)
-	mr       r23, r3
-	mr       r31, r4
-	addi     r28, r1, 0x808
-	addi     r27, r1, 8
-	li       r26, 0
-	lwz      r3, 0(r3)
-	lwz      r3, 0x28(r3)
-	lwz      r25, 0x10(r3)
-	b        lbl_8029F0E8
+	// make list of EMPTY plant spawns and pick one at random
+	// returns mapnode of randomly selected plant spawn and puts pointer to basegen for plant in baseGenOut
 
-lbl_8029F078:
-	lwz      r3, 0x18(r25)
-	bl       getBaseGen__Q34Game4Cave8UnitInfoFv
-	cmplwi   r3, 0
-	beq      lbl_8029F0E4
-	lwz      r24, 0x10(r3)
-	mr       r30, r28
-	mr       r29, r27
-	b        lbl_8029F0DC
+	// set up some arrays to hold the mapnodes and basegen for plants
+	// hopefully we don't have more than 512 of each lol
+	MapNode* mapNodeArr[512];
+	BaseGen* baseGenArr[512];
 
-lbl_8029F098:
-	lwz      r0, 0x18(r24)
-	cmpwi    r0, 6
-	bne      lbl_8029F0D8
-	mr       r3, r23
-	mr       r4, r25
-	mr       r5, r24
-	bl
-isPlantSet__Q34Game4Cave13RandPlantUnitFPQ34Game4Cave7MapNodePQ34Game4Cave7BaseGen
-	clrlwi.  r0, r3, 0x18
-	beq      lbl_8029F0D8
-	stw      r25, 0(r30)
-	addi     r26, r26, 1
-	addi     r30, r30, 4
-	addi     r28, r28, 4
-	stw      r24, 0(r29)
-	addi     r29, r29, 4
-	addi     r27, r27, 4
+	// counter for how many plant spawns we find
+	int count = 0;
 
-lbl_8029F0D8:
-	lwz      r24, 4(r24)
+	// loop through all the map nodes
+	MapNode* currMapNode = (MapNode*)m_generator->m_placedMapNodes->m_child;
+	for (currMapNode; currMapNode; currMapNode = (MapNode*)currMapNode->m_next) {
 
-lbl_8029F0DC:
-	cmplwi   r24, 0
-	bne      lbl_8029F098
+		// get the 'base' base gen for current map node
+		BaseGen* mapBaseGen = currMapNode->m_unitInfo->getBaseGen();
+		if (mapBaseGen) { // if it exists, loop through the base gen for the map node
+			BaseGen* currBaseGen = (BaseGen*)mapBaseGen->m_child;
+			for (currBaseGen; currBaseGen; currBaseGen = (BaseGen*)currBaseGen->m_next) {
 
-lbl_8029F0E4:
-	lwz      r25, 4(r25)
+				// if the spawn type is 6 (plant) and it DOESN'T have a plant, add it to the list
+				if ((currBaseGen->m_spawnType == 6) && (isPlantSet(currMapNode, currBaseGen))) {
+					mapNodeArr[count] = currMapNode;
+					baseGenArr[count] = currBaseGen;
+					count += 1;
+				}
+			}
+		}
+	}
 
-lbl_8029F0E8:
-	cmplwi   r25, 0
-	bne      lbl_8029F078
-	cmpwi    r26, 0
-	beq      lbl_8029F160
-	bl       rand
-	lis      r5, 0x4330
-	xoris    r0, r3, 0x8000
-	stw      r0, 0x100c(r1)
-	xoris    r0, r26, 0x8000
-	lfd      f2, lbl_8051BD00@sda21(r2)
-	addi     r4, r1, 8
-	stw      r5, 0x1008(r1)
-	addi     r3, r1, 0x808
-	lfs      f0, lbl_8051BCF8@sda21(r2)
-	lfd      f1, 0x1008(r1)
-	stw      r0, 0x1014(r1)
-	fsubs    f1, f1, f2
-	stw      r5, 0x1010(r1)
-	fdivs    f1, f1, f0
-	lfd      f0, 0x1010(r1)
-	fsubs    f0, f0, f2
-	fmuls    f0, f0, f1
-	fctiwz   f0, f0
-	stfd     f0, 0x1018(r1)
-	lwz      r0, 0x101c(r1)
-	slwi     r5, r0, 2
-	lwzx     r0, r4, r5
-	lwzx     r3, r3, r5
-	stw      r0, 0(r31)
-	b        lbl_8029F164
-
-lbl_8029F160:
-	li       r3, 0
-
-lbl_8029F164:
-	lmw      r23, 0x102c(r1)
-	lwz      r0, 0x1054(r1)
-	mtlr     r0
-	addi     r1, r1, 0x1050
-	blr
-	*/
+	// assuming we hit a plant spawn, pick one from the list at random
+	// return the map node pointer, and put the basegen pointer into *baseGenOut
+	if (count) {
+		int randBase = (int)(count * randFloat());
+		*baseGenOut  = baseGenArr[randBase];
+		return mapNodeArr[randBase];
+	}
+	// if we didn't hit any empty spawns, return nullptr
+	return 0;
 }
 
 /*
@@ -241,44 +151,31 @@ lbl_8029F164:
  * Address:	8029F178
  * Size:	000068
  */
-void Cave::RandPlantUnit::getPlantUnit(Game::Cave::BaseGen*)
+Game::Cave::EnemyUnit* Game::Cave::RandPlantUnit::getPlantUnit(Game::Cave::BaseGen* plantBaseGen)
 {
-	/*
-	cmplwi   r4, 0
-	li       r6, 0
-	beq      lbl_8029F1D8
-	lwz      r4, 0(r3)
-	lwz      r4, 0x14(r4)
-	lwz      r7, 0x10(r4)
-	b        lbl_8029F1D0
+	// gets the (next) plant unit
 
-lbl_8029F194:
-	lwz      r5, 0x18(r7)
-	lwz      r4, 0(r5)
-	cmplwi   r4, 0
-	beq      lbl_8029F1CC
-	lwz      r0, 0x20(r4)
-	cmpwi    r0, 6
-	bne      lbl_8029F1CC
-	lwz      r4, 0x1c(r4)
-	lwz      r0, 4(r3)
-	add      r6, r6, r4
-	cmpw     r0, r6
-	bge      lbl_8029F1CC
-	mr       r3, r5
-	blr
+	int desiredPlantCount = 0;
 
-lbl_8029F1CC:
-	lwz      r7, 4(r7)
+	// check given BaseGen isn't null
+	if (plantBaseGen) {
 
-lbl_8029F1D0:
-	cmplwi   r7, 0
-	bne      lbl_8029F194
+		// loop through the enemy nodes for the MapUnitGenerator
+		EnemyNode* currEnemyNode = (EnemyNode*)m_generator->m_enemyNodeA->m_child;
+		for (currEnemyNode; currEnemyNode; currEnemyNode = (EnemyNode*)currEnemyNode->m_next) {
+			// if TekiInfo exists and Teki type = 6 (plant), add weight to desiredPlantCount
+			if (currEnemyNode->m_enemyUnit->m_tekiInfo && (currEnemyNode->m_enemyUnit->m_tekiInfo->m_type == 6)) {
+				desiredPlantCount += currEnemyNode->m_enemyUnit->m_tekiInfo->m_weight;
 
-lbl_8029F1D8:
-	li       r3, 0
-	blr
-	*/
+				// if we've gotten further than currentPlantCount, return plant
+				if (m_currentPlantCount < desiredPlantCount) {
+					return currEnemyNode->m_enemyUnit;
+				}
+			}
+		}
+	}
+	// if BaseGen was null, return null ptr
+	return 0;
 }
 
 /*
@@ -286,37 +183,30 @@ lbl_8029F1D8:
  * Address:	8029F1E0
  * Size:	000048
  */
-void Cave::RandPlantUnit::isPlantSet(Game::Cave::MapNode*, Game::Cave::BaseGen*)
+bool Game::Cave::RandPlantUnit::isPlantSet(Game::Cave::MapNode* testMapNode, Game::Cave::BaseGen* testBaseGen)
 {
-	/*
-	cmplwi   r5, 0
-	beq      lbl_8029F218
-	lwz      r3, 0x1c(r4)
-	lwz      r3, 0x10(r3)
-	b        lbl_8029F20C
+	// check if there's no plant
+	// returns 0 if a plant exists in testMapNode with given testBaseGen
+	// returns 1 if not
 
-lbl_8029F1F4:
-	lwz      r0, 0x1c(r3)
-	cmplw    r0, r5
-	bne      lbl_8029F208
-	li       r3, 0
-	blr
+	// check given BaseGen exists
+	if (testBaseGen) {
+		// loop through all the enemy nodes for given map node
+		EnemyNode* currEnemyNode = (EnemyNode*)testMapNode->m_enemyNode->m_child;
+		for (currEnemyNode; currEnemyNode; currEnemyNode = (EnemyNode*)currEnemyNode->m_next) {
 
-lbl_8029F208:
-	lwz      r3, 4(r3)
-
-lbl_8029F20C:
-	cmplwi   r3, 0
-	bne      lbl_8029F1F4
-	b        lbl_8029F220
-
-lbl_8029F218:
-	li       r3, 0
-	blr
-
-lbl_8029F220:
-	li       r3, 1
-	blr
-	*/
+			// if enemy node basegen matches given basegen, plant exists, no free space
+			if (currEnemyNode->m_baseGen == testBaseGen) {
+				return false;
+			}
+		}
+		// no more enemy nodes to check, we have free space, so return true
+		// (this is a stupid control flow but it matches)
+		goto end_section;
+	} else { // given BaseGen doesn't exist, return false
+		return false;
+	}
+end_section: // don't ask
+	return true;
 }
 } // namespace Game
