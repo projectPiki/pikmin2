@@ -72,7 +72,7 @@ struct Game2DMgr : public JKRDisposer {
 	void checkDayEnd(float) const;
 	void check_CaveInMenu();
 	void check_CaveMoreMenu();
-	void check_CaveResult() const;
+	u8 check_CaveResult() const;
 	void check_ChallengeSelect(int&, int&);
 	void check_Contena();
 	void check_DayEndResult() const;
@@ -122,7 +122,7 @@ struct Game2DMgr : public JKRDisposer {
 
 	void open_CaveInMenu(og::Screen::DispMemberAnaDemo&);
 	void open_CaveMoreMenu(og::Screen::DispMemberCaveMore&);
-	void open_CaveResult(kh::Screen::DispCaveResult&);
+	u8 open_CaveResult(kh::Screen::DispCaveResult&);
 	void open_ChallengeKanketuMenu(og::Screen::DispMemberKanketuMenu&);
 	void open_ChallengeSelect(Morimura::DispMemberChallengeSelect&);
 	void open_ChallengeResult(Morimura::DispMemberChallengeResult&);

@@ -31,28 +31,28 @@ struct _BaseItemMgrParent2 {
 struct BaseItemMgr : public GenericObjectMgr, virtual public _BaseItemMgrParent2 {
 	BaseItemMgr();
 
-	virtual void doAnimation();                                          // _00
-	virtual void doEntry();                                              // _04
-	virtual void doSetView(int);                                         // _08
-	virtual void doViewCalc();                                           // _0C
-	virtual void doSimulation(float);                                    // _10
-	virtual void doDirectDraw(Graphics&);                                // _14
-	virtual void loadResources();                                        // _1C
-	virtual void initDependency() = 0;                                   // _30
-	virtual void killAll();                                              // _34
-	virtual void setup(BaseItem*);                                       // _38
-	virtual void setupSoundViewerAndBas();                               // _3C
-	virtual void onLoadResources();                                      // _40
-	virtual void loadEverytime();                                        // _44
-	virtual void updateUseList(GenItemParm*, int);                       // _48
-	virtual void onUpdateUseList(GenItemParm*, int);                     // _4C
-	virtual u32 generatorGetID()                                    = 0; // _50
-	virtual void generatorBirth(Vector3f&, Vector3f&, GenItemParm*) = 0; // _54
-	virtual void generatorWrite(Stream&, GenItemParm*);                  // _58
-	virtual void generatorRead(Stream&, GenItemParm*, u32);              // _5C
-	virtual u32 generatorLocalVersion();                                 // _60
-	virtual J3DModelData* generatorGetShape(GenItemParm*);               // _64
-	virtual GenItemParm* generatorNewItemParm();                         // _68
+	virtual void doAnimation();                                               // _00
+	virtual void doEntry();                                                   // _04
+	virtual void doSetView(int);                                              // _08
+	virtual void doViewCalc();                                                // _0C
+	virtual void doSimulation(float);                                         // _10
+	virtual void doDirectDraw(Graphics&);                                     // _14
+	virtual void loadResources();                                             // _1C
+	virtual void initDependency() = 0;                                        // _30
+	virtual void killAll();                                                   // _34
+	virtual void setup(BaseItem*);                                            // _38
+	virtual void setupSoundViewerAndBas();                                    // _3C
+	virtual void onLoadResources();                                           // _40
+	virtual void loadEverytime();                                             // _44
+	virtual void updateUseList(GenItemParm*, int);                            // _48
+	virtual void onUpdateUseList(GenItemParm*, int);                          // _4C
+	virtual u32 generatorGetID()                                         = 0; // _50
+	virtual BaseItem* generatorBirth(Vector3f&, Vector3f&, GenItemParm*) = 0; // _54
+	virtual void generatorWrite(Stream&, GenItemParm*);                       // _58
+	virtual void generatorRead(Stream&, GenItemParm*, u32);                   // _5C
+	virtual u32 generatorLocalVersion();                                      // _60
+	virtual J3DModelData* generatorGetShape(GenItemParm*);                    // _64
+	virtual GenItemParm* generatorNewItemParm();                              // _68
 
 	J3DModelData* getModelData(int);
 	void setModelSize(int);
