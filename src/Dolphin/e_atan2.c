@@ -56,7 +56,8 @@ static double
 #ifdef __STDC__
 double __ieee754_atan2(double y, double x)
 #else
-double __ieee754_atan2(y, x) double y, x;
+double __ieee754_atan2(y, x)
+double y, x;
 #endif
 {
 	double z;

@@ -58,7 +58,8 @@ static double
 #ifdef __STDC__
 double __kernel_sin(double x, double y, int iy)
 #else
-double __kernel_sin(x, y, iy) double x, y;
+double __kernel_sin(x, y, iy)
+double x, y;
 int iy; /* iy=0 if y is zero */
 #endif
 {

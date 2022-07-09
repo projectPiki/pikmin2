@@ -2,9 +2,11 @@
 #define _GAME_CAVE_RANDMAPMGR_H
 
 #include "types.h"
+#include "Game/Cave/Node.h"
 #include "Game/mapParts.h"
 #include "Game/Cave/RandMapUnit.h"
 #include "JSystem/JUT/JUTTexture.h"
+#include "Game/Cave/Info.h"
 
 /*
     __vt__Q34Game4Cave10RandMapMgr:
@@ -16,13 +18,42 @@
 
 namespace Game {
 namespace Cave {
+struct EnemyUnit;
+struct EnemyNode;
+struct GateNode;
+struct ItemNode;
+struct MapNode;
 struct RandEnemyUnit;
-struct RandCapEnemyUnit;
 struct RandPlantUnit;
 struct RandGateUnit;
-struct RandItemUnit;
 struct RandMapScore;
 struct RandMapDraw;
+struct RandMapUnit;
+struct MapUnitGenerator;
+struct RandItemUnit {
+	bool isGroundCapEnemySetDone(MapNode*);
+	bool isFallCapEnemySetDone(MapNode*);
+
+	ItemInfo* m_itemInfo;
+	int m_max;
+	MapUnitGenerator* m_mapUnitGenerator;
+	RandMapScore* m_randMapScore;
+	MapNode** m_mapNode;
+	BaseGen** m_baseGen;
+};
+struct RandCapEnemyUnit {
+	RandCapEnemyUnit(MapUnitGenerator&);
+
+	void setManageClassPtr(RandItemUnit&);
+	void setCapEnemySlot();
+	void setCapCommonEnemySlot(MapNode, int);
+	void setCapEnemy(MapNode*, EnemyUnit*, int, int);
+
+	MapUnitGenerator* m_mapUnitGenerator; // _00
+	RandItemUnit* m_randItemUnit;         // _04
+	EnemyNode* m_enemyNode[2];            // _08
+	int m_perSpawn[2];                    // _10
+};
 
 struct RandMapMgr : public CNode {
 	RandMapMgr(bool isVersusHiba);
@@ -55,10 +86,10 @@ struct RandMapMgr : public CNode {
 };
 
 struct RandMapDraw {
-	RandMapDraw(MapUnitGenerator*);
+	RandMapDraw(MapUnitGenerator* generator);
 
-	void radarMapPartsOpen(Vector3f&);
-	void draw(struct Graphics&, float, float, float);
+	void radarMapPartsOpen(Vector3f& vec);
+	void draw(struct Graphics& gfx, float x, float y, float z);
 
 	MapUnitGenerator* m_generator; // _00
 };

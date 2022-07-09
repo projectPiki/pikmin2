@@ -40,7 +40,7 @@ static int two_over_pi[] = {
 #ifdef __STDC__
 static const int npio2_hw[] = {
 #else
-static int npio2_hw[] = {
+static int npio2_hw[]    = {
 #endif
 	0x3FF921FB, 0x400921FB, 0x4012D97C, 0x401921FB, 0x401F6A7A, 0x4022D97C, 0x4025FDBB, 0x402921FB, 0x402C463A, 0x402F6A7A, 0x4031475C,
 	0x4032D97C, 0x40346B9C, 0x4035FDBB, 0x40378FDB, 0x403921FB, 0x403AB41B, 0x403C463A, 0x403DD85A, 0x403F6A7A, 0x40407E4C, 0x4041475C,
@@ -77,7 +77,8 @@ static double
 #ifdef __STDC__
 int __ieee754_rem_pio2(double x, double* y)
 #else
-int __ieee754_rem_pio2(x, y) double x, y[];
+int __ieee754_rem_pio2(x, y)
+double x, y[];
 #endif
 {
 	double z, w, t, r, fn;

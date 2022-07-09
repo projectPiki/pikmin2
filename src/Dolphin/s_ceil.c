@@ -31,7 +31,8 @@ static double huge = 1.0e300;
 #ifdef __STDC__
 double ceil(double x)
 #else
-double ceil(x) double x;
+double ceil(x)
+double x;
 #endif
 {
 	int i0, i1, j0;

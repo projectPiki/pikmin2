@@ -4,9 +4,12 @@
 #include "Game/Cave/ObjectLayout.h"
 #include "Game/Cave/Info.h"
 
+#include "Game/Cave/RandMapMgr.h"
+
 namespace Game {
 namespace Cave {
 enum NodeType { Item = 1, Gate };
+struct EnemyUnit;
 
 struct Adjust {
 	s32 _00; // _00
@@ -119,6 +122,24 @@ struct MapNode : public CNode {
 };
 
 struct EnemyNode : public ObjectLayoutNode {
+	EnemyNode();
+	EnemyNode(EnemyUnit*, BaseGen*, int);
+	~EnemyNode() {};
+
+	void makeGlobalData(MapNode*);
+
+	virtual int getObjectId();
+	virtual u32 getObjectType();
+	virtual int getBirthCount();
+	virtual float getDirection();
+	virtual void getBirthPosition(float&, float&);
+
+	EnemyUnit* m_enemyUnit; // _18
+	BaseGen* m_baseGen;     // _1C
+	int m_birthDoorIndex;   // _20
+	int m_birthCount;       // _24
+	float m_direction;      // _28
+	Vector3f m_birthPos;    // _2C, _30, _34
 };
 } // namespace Cave
 } // namespace Game

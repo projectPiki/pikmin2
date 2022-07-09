@@ -1,4 +1,10 @@
 #include "types.h"
+#include "Game/Cave/RandMapMgr.h"
+#include "Game/Cave/RandMapUnit.h"
+#include "Game/Cave/Node.h"
+#include "Game/Cave/Info.h"
+#include "Dolphin/string.h"
+#include "Dolphin/rand.h"
 
 /*
     Generated from dpostproc
@@ -25,21 +31,14 @@ namespace Game {
  * Address:	80300E68
  * Size:	00002C
  */
-Cave::RandCapEnemyUnit::RandCapEnemyUnit(Game::Cave::MapUnitGenerator*)
+Cave::RandCapEnemyUnit::RandCapEnemyUnit(Game::Cave::MapUnitGenerator& mapUnitGenerator)
 {
-	/*
-	stw      r4, 0(r3)
-	li       r0, 0
-	lwz      r4, 0(r3)
-	lwz      r4, 0x18(r4)
-	stw      r4, 8(r3)
-	lwz      r4, 0(r3)
-	lwz      r4, 0x1c(r4)
-	stw      r4, 0xc(r3)
-	stw      r0, 0x10(r3)
-	stw      r0, 0x14(r3)
-	blr
-	*/
+	// Constructor for RandCapEnemyUnit struct
+	m_mapUnitGenerator = &mapUnitGenerator;
+	m_enemyNode[0]     = m_mapUnitGenerator->m_enemyNodeB;
+	m_enemyNode[1]     = m_mapUnitGenerator->m_enemyNodeC;
+	m_perSpawn[0]      = 0;
+	m_perSpawn[1]      = 0;
 }
 
 /*
@@ -47,10 +46,10 @@ Cave::RandCapEnemyUnit::RandCapEnemyUnit(Game::Cave::MapUnitGenerator*)
  * Address:	80300E94
  * Size:	000008
  */
-void Cave::RandCapEnemyUnit::setManageClassPtr(Game::Cave::RandItemUnit* a1)
+void Cave::RandCapEnemyUnit::setManageClassPtr(Game::Cave::RandItemUnit& randItemUnit)
 {
-	// Generated from stw r4, 0x4(r3)
-	_04 = a1;
+	// sets RandItemUnit pointer based on input
+	m_randItemUnit = &randItemUnit;
 }
 
 /*
@@ -60,88 +59,41 @@ void Cave::RandCapEnemyUnit::setManageClassPtr(Game::Cave::RandItemUnit* a1)
  */
 void Cave::RandCapEnemyUnit::setCapEnemySlot()
 {
-	/*
-	stwu     r1, -0x20(r1)
-	mflr     r0
-	stw      r0, 0x24(r1)
-	stw      r31, 0x1c(r1)
-	stw      r30, 0x18(r1)
-	stw      r29, 0x14(r1)
-	mr       r29, r3
-	lwz      r3, 0(r3)
-	lwz      r31, 0x28(r3)
-	lwz      r30, 0x10(r31)
-	b        lbl_80300F1C
+	// checks if tekis are already placed in caps
+	// if not, sets slots for them
+	MapNode* placedMapNode;
+	Game::Cave::MapNode* childNode;
+	Game::Cave::MapNode* childNode_2;
 
-lbl_80300EC8:
-	lwz      r3, 0x18(r30)
-	bl       getUnitKind__Q34Game4Cave8UnitInfoFv
-	cmpwi    r3, 0
-	bne      lbl_80300F18
-	mr       r3, r30
-	bl       getUnitName__Q34Game4Cave7MapNodeFv
-	addi     r4, r2, lbl_8051D4C0@sda21
-	li       r5, 4
-	bl       strncmp
-	cmpwi    r3, 0
-	bne      lbl_80300F18
-	lwz      r3, 4(r29)
-	mr       r4, r30
-	bl isGroundCapEnemySetDone__Q34Game4Cave12RandItemUnitFPQ34Game4Cave7MapNode
-	clrlwi.  r0, r3, 0x18
-	bne      lbl_80300F18
-	mr       r3, r29
-	mr       r4, r30
-	li       r5, 0
-	bl
-setCapCommonEnemySlot__Q34Game4Cave16RandCapEnemyUnitFPQ34Game4Cave7MapNodei
+	placedMapNode = m_mapUnitGenerator->m_placedMapNodes;
+	childNode     = (MapNode*)placedMapNode->m_child;
 
-lbl_80300F18:
-	lwz      r30, 4(r30)
+	// Ground teki check
+	while (childNode) {
+		if (childNode->m_unitInfo->getUnitKind() == 0) { // make sure we're in a cap
+			char* unitName = childNode->getUnitName();
+			// make sure no treasure/hole placed && make sure no ground cap teki already placed
+			if ((strncmp(unitName, "item", 4) == 0) && (m_randItemUnit->isGroundCapEnemySetDone(childNode) == 0)) {
+				// set the enemy slot (0 for ground teki)
+				setCapCommonEnemySlot(childNode, 0);
+			}
+		}
+		childNode = (MapNode*)childNode->m_next;
+	}
+	childNode_2 = (MapNode*)placedMapNode->m_child;
 
-lbl_80300F1C:
-	cmplwi   r30, 0
-	bne      lbl_80300EC8
-	lwz      r30, 0x10(r31)
-	b        lbl_80300F80
-
-lbl_80300F2C:
-	lwz      r3, 0x18(r30)
-	bl       getUnitKind__Q34Game4Cave8UnitInfoFv
-	cmpwi    r3, 0
-	bne      lbl_80300F7C
-	mr       r3, r30
-	bl       getUnitName__Q34Game4Cave7MapNodeFv
-	addi     r4, r2, lbl_8051D4C0@sda21
-	li       r5, 4
-	bl       strncmp
-	cmpwi    r3, 0
-	bne      lbl_80300F7C
-	lwz      r3, 4(r29)
-	mr       r4, r30
-	bl isFallCapEnemySetDone__Q34Game4Cave12RandItemUnitFPQ34Game4Cave7MapNode
-	clrlwi.  r0, r3, 0x18
-	bne      lbl_80300F7C
-	mr       r3, r29
-	mr       r4, r30
-	li       r5, 1
-	bl
-setCapCommonEnemySlot__Q34Game4Cave16RandCapEnemyUnitFPQ34Game4Cave7MapNodei
-
-lbl_80300F7C:
-	lwz      r30, 4(r30)
-
-lbl_80300F80:
-	cmplwi   r30, 0
-	bne      lbl_80300F2C
-	lwz      r0, 0x24(r1)
-	lwz      r31, 0x1c(r1)
-	lwz      r30, 0x18(r1)
-	lwz      r29, 0x14(r1)
-	mtlr     r0
-	addi     r1, r1, 0x20
-	blr
-	*/
+	// Falling teki check
+	while (childNode_2) {
+		if (childNode_2->m_unitInfo->getUnitKind() == 0) { // make sure we're in a cap
+			char* unitName = childNode_2->getUnitName();
+			// make sure no treasure/hole placed && make sure no falling cap teki already placed
+			if ((strncmp(unitName, "item", 4) == 0) && (m_randItemUnit->isFallCapEnemySetDone(childNode_2) == 0)) {
+				// set the enemy slot (1 for falling teki)
+				setCapCommonEnemySlot(childNode_2, 1);
+			}
+		}
+		childNode_2 = (MapNode*)childNode_2->m_next;
+	}
 }
 
 /*
@@ -149,8 +101,65 @@ lbl_80300F80:
  * Address:	80300FA4
  * Size:	0001BC
  */
-void Cave::RandCapEnemyUnit::setCapCommonEnemySlot(Game::Cave::MapNode*, int)
+// NOT YET MATCHING
+// REGSWAP BETWEEN R11 AND R12 STILL
+void Cave::RandCapEnemyUnit::setCapCommonEnemySlot(Game::Cave::MapNode* inputMapNode, int groundOrFalling)
 {
+	//
+	// groundOrFalling = 0 if ground, 1 if falling
+	EnemyNode* node;
+
+	int tekiWeight  = 0;
+	int tekiCount_1 = 0;
+
+	for (node = (EnemyNode*)m_enemyNode[groundOrFalling]->m_child; node; node = (EnemyNode*)node->m_next) {
+		TekiInfo* tekiInfo = node->m_enemyUnit->m_tekiInfo;
+		if (node->m_enemyUnit->m_tekiInfo) {
+			// m_tekiInfo -> r11
+			// m_perSpawn -> r12
+
+			tekiCount_1 += tekiInfo->m_weight / 10; // max number to place
+			tekiWeight += tekiInfo->m_weight % 10;  // weighting
+
+			// check if we have any left to place of that type
+			if (tekiCount_1 > m_perSpawn[groundOrFalling]) {
+				int setCount = 1; // default to 1
+				                  // if teki type is 0 and we have room for another, make it 2
+				if ((tekiInfo->m_type == 0) && ((tekiCount_1 - m_perSpawn[groundOrFalling]) > 1)) {
+					setCount = 2;
+				}
+				// set the cap enemy
+				setCapEnemy(inputMapNode, node->m_enemyUnit, groundOrFalling, setCount);
+				return;
+			}
+		}
+	}
+
+	// calculate random weight based on total tekiWeights
+	int randWeight = tekiWeight * randFloat();
+
+	TekiInfo* tekiInfo;
+	int tekiCount_2 = 0;
+
+	for (EnemyNode* node = (EnemyNode*)m_enemyNode[groundOrFalling]->m_child; node; node = (EnemyNode*)node->m_next) {
+		tekiInfo = node->m_enemyUnit->m_tekiInfo;
+		if (tekiInfo) {
+			tekiCount_2 += tekiInfo->m_weight % 10; // add up the weightings as we go
+
+			// if we've gone past enough weights, time to set a teki
+			if (tekiCount_2 > randWeight) {
+				int setCount = 1; // default to 1
+				                  // if teki type is 0, we can place more, so make it 2
+				if (tekiInfo->m_type == 0) {
+					setCount = 2;
+				}
+				// set the cap enemy
+				setCapEnemy(inputMapNode, node->m_enemyUnit, groundOrFalling, setCount);
+				return;
+			}
+		}
+	}
+
 	/*
 	stwu     r1, -0x40(r1)
 	mflr     r0
@@ -291,54 +300,24 @@ lbl_8030114C:
  * Address:	80301160
  * Size:	000098
  */
-void Cave::RandCapEnemyUnit::setCapEnemy(Game::Cave::MapNode*, Game::Cave::EnemyUnit*, int, int)
+void Cave::RandCapEnemyUnit::setCapEnemy(Game::Cave::MapNode* inputMapNode, Game::Cave::EnemyUnit* inputEnemyUnit, int groundOrFalling,
+                                         int setCount)
 {
-	/*
-	.loc_0x0:
-	  stwu      r1, -0x30(r1)
-	  mflr      r0
-	  rlwinm    r6,r6,2,0,29
-	  stw       r0, 0x34(r1)
-	  stmw      r25, 0x14(r1)
-	  mr        r25, r3
-	  mr        r26, r4
-	  mr        r27, r5
-	  mr        r28, r7
-	  addi      r30, r6, 0x10
-	  li        r29, 0
-	  b         .loc_0x7C
+	// set the cap enemy for a given map node and enemy unit
+	// also keep track of if it's grounded or falling
+	// setCount = how many to place
+	for (int ctr = 0; ctr < setCount; ctr++) {
+		// make a new EnemyNode for the enemy
+		EnemyNode* newNode = new EnemyNode(inputEnemyUnit, nullptr, 1);
 
-	.loc_0x30:
-	  li        r3, 0x38
-	  bl        -0x2DD2F0
-	  mr.       r31, r3
-	  beq-      .loc_0x54
-	  mr        r4, r27
-	  li        r5, 0
-	  li        r6, 0x1
-	  bl        -0xBCFE4
-	  mr        r31, r3
+		// set some data up in the node
+		newNode->makeGlobalData(inputMapNode);
 
-	.loc_0x54:
-	  mr        r3, r31
-	  mr        r4, r26
-	  bl        -0xBCF60
-	  lwz       r3, 0x1C(r26)
-	  mr        r4, r31
-	  bl        0x110240
-	  lwzx      r3, r25, r30
-	  addi      r29, r29, 0x1
-	  addi      r0, r3, 0x1
-	  stwx      r0, r25, r30
+		// add the EnemyNode to the input map enemy node list
+		inputMapNode->m_enemyNode->add(newNode);
 
-	.loc_0x7C:
-	  cmpw      r29, r28
-	  blt+      .loc_0x30
-	  lmw       r25, 0x14(r1)
-	  lwz       r0, 0x34(r1)
-	  mtlr      r0
-	  addi      r1, r1, 0x30
-	  blr
-	*/
+		// increment the amount of ground or falling cap tekis we've placed
+		m_perSpawn[groundOrFalling] += 1;
+	}
 }
 } // namespace Game

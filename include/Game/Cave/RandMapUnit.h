@@ -4,28 +4,35 @@
 #include "types.h"
 #include "Game/Cave/ObjectLayout.h"
 #include "Game/Cave/Node.h"
+#include "Game/Cave/Info.h"
+#include "Game/Cave/RandMapMgr.h"
 
 namespace Game {
 namespace Cave {
 struct EditMapUnit;
+struct EnemyNode;
+struct GateNode;
+struct ItemNode;
+struct MapNode;
 
 struct MapUnitGenerator {
 	bool m_isFinalFloor;
 	bool m_hasEscapeFountain;
 	bool m_versusMode;
+	u8 _03; // _03
 
 	u32 _04; // _04
 
 	FloorInfo* m_floorInfo;     // _08
-	MapNode* dwordC;            // _0C
+	MapNode* m_mapNode;         // _0C
 	MapNode* m_mapNodeArr;      // _10
-	EnemyNode* dword14;         // _14
-	EnemyNode* dword18;         // _18
-	EnemyNode* dword1C;         // _1C
-	GateNode* dword20;          // _20
-	ItemNode* dword24;          // _24
-	MapNode* dword28;           // _28
-	MapNode* dword2C;           // _2C
+	EnemyNode* m_enemyNodeA;    // _14
+	EnemyNode* m_enemyNodeB;    // _18
+	EnemyNode* m_enemyNodeC;    // _1C
+	GateNode* m_gateNode;       // _20
+	ItemNode* m_itemNode;       // _24
+	MapNode* m_placedMapNodes;  // _28
+	MapNode* m_visitedMapNodes; // _2C
 	EditMapUnit* m_editMapUnit; // _30
 };
 
