@@ -9,7 +9,16 @@
 namespace Game {
 namespace Cave {
 enum NodeType { Item = 1, Gate };
-struct EnemyUnit;
+struct RandMapScore;
+
+struct EnemyUnit {
+	TekiInfo* m_tekiInfo;		// _00
+	RandMapScore* m_mapScore;	// _04
+	int _08;					// _08
+	int m_tekiMax;				// _0C
+	int m_typeCount[4]; 		// _10 (10 A, 14 B, 18 C, 1C F)
+	int m_typeMax[4];			// _20 (20 A, 24 B, 28 C, 2C F)
+};
 
 struct Adjust {
 	s32 _00; // _00

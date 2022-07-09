@@ -24,7 +24,13 @@ struct GateNode;
 struct ItemNode;
 struct MapNode;
 struct RandEnemyUnit;
-struct RandPlantUnit;
+struct RandPlantUnit {
+	RandPlantUnit(MapUnitGenerator* generator);
+	
+	MapUnitGenerator* m_generator;  // _00
+	int m_currentPlantCount;		// _04
+	int m_desiredPlantCount;		// _08
+};
 struct RandGateUnit;
 struct RandMapScore;
 struct RandMapDraw;
