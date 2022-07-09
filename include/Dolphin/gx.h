@@ -549,6 +549,55 @@ typedef enum _SDK_GXZFmt16 {
 	GX_ZC_FAR     // Compressed format (12e4) for large far/near ratio.
 } GXZFmt16;
 
+typedef union _ControlRegister {
+	u32 value;
+	struct {
+		u32 bpEnable : 27;
+		u32 gpLinkEnable : 1;
+		u32 fifoUnderflowIRQEnable : 1;
+		u32 fifoOverflowIRQEnable : 1;
+		u32 cpIRQEnable : 1;
+		u32 gpFifoReadEnable : 1;
+		// u32
+		// bpEnable : 1,
+		// gpLinkEnable : 1,
+		// fifoUnderflowIRQEnable : 1,
+		// fifoOverflowIRQEnable : 1,
+		// cpIRQEnable : 1,
+		// gpFifoReadEnable : 1;
+	} bits;
+} ControlRegister;
+
+// typedef struct _ControlRegister {
+// 	u32
+// 	gpFifoReadEnable : 1,
+// 	cpIRQEnable : 1,
+// 	fifoOverflowIRQEnable : 1,
+// 	fifoUnderflowIRQEnable : 1,
+// 	gpLinkEnable : 1,
+// 	bpEnable : 27;
+// } ControlRegister;
+
+// typedef struct _ControlRegister {
+// 	u32
+// 	gpFifoReadEnable : 1,
+// 	cpIRQEnable : 1,
+// 	fifoOverflowIRQEnable : 1,
+// 	fifoUnderflowIRQEnable : 1,
+// 	gpLinkEnable : 1,
+// 	bpEnable : 1;
+// } ControlRegister;
+
+// typedef struct _ControlRegister {
+// 	u32
+// 	bpEnable : 27,
+// 	gpLinkEnable : 1,
+// 	fifoUnderflowIRQEnable : 1,
+// 	fifoOverflowIRQEnable : 1,
+// 	cpIRQEnable : 1,
+// 	gpFifoReadEnable : 1;
+// } ControlRegister;
+
 /**
  * @size{0x5B0}
  */
@@ -556,7 +605,27 @@ typedef struct _GXData {
 	u32 _000;   // _000
 	u8 _004[4]; // _004
 	/* CPControl. Gets written to __cpReg->controlRegister. */
-	u32 controlRegister;
+	// union {
+	// 	u32 value;
+	// 	ControlRegister bits;
+	// 	// struct {
+	// 	// 	u32
+	// 	// 		bpEnable : 1,
+	// 	// 		gpLinkEnable : 1,
+	// 	// 		fifoUnderflowIRQEnable : 1,
+	// 	// 		fifoOverflowIRQEnable : 1,
+	// 	// 		cpIRQEnable : 1,
+	// 	// 		gpFifoReadEnable : 1;
+	// 	// 		// gpFifoReadEnable : 1,
+	// 	// 		// cpIRQEnable : 1,
+	// 	// 		// fifoOverflowIRQEnable : 1,
+	// 	// 		// fifoUnderflowIRQEnable : 1,
+	// 	// 		// gpLinkEnable : 1,
+	// 	// 		// bpEnable : 1;
+	// 	// } bits;
+	// } controlRegister;
+	ControlRegister controlRegister; // _008
+	// u32 controlRegister;
 	/* Probably CPStatus. */
 	u32 _00C;       // _00C
 	u8 _010[0x59C]; // _010

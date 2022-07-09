@@ -1,13 +1,31 @@
+#include "Dolphin/gx.h"
+#include "Dolphin/os.h"
 
+static GXFifoObj* CPUFifo;
+static GXFifoObj* GPFifo;
+static OSThread* __GXCurrentThread;
+static u8 CPGPLinked;
+static BOOL GXOverflowSuspendInProgress;
+static GXBreakpointCallback* BreakPointCB;
+static u32 __GXOverflowCount;
+static u32 __GXCurrentBP; // unused and removed
 
 /*
  * --INFO--
  * Address:	........
  * Size:	000050
  */
-void GXOverflowHandler(void)
+void GXOverflowHandler()
 {
 	// UNUSED FUNCTION
+	// GXData* data = __GXData;
+	// if ((data->controlRegister >> 2 & 1) && (data->_00C >> 0 & 1)) {
+	__GXOverflowCount += 1;
+	__GXWriteFifoIntEnable(0, 1);
+	__GXWriteFifoIntReset(1, 0);
+	GXOverflowSuspendInProgress = TRUE;
+	OSSuspendThread(__GXCurrentThread);
+	// }
 }
 
 /*
@@ -15,9 +33,16 @@ void GXOverflowHandler(void)
  * Address:	........
  * Size:	000044
  */
-void GXUnderflowHandler(void)
+void GXUnderflowHandler()
 {
 	// UNUSED FUNCTION
+	// GXData* data = __GXData;
+	// if ((data->controlRegister >> 3 & 1) && (data->_00C >> 1 & 1)) {
+	OSResumeThread(__GXCurrentThread);
+	GXOverflowSuspendInProgress = FALSE;
+	__GXWriteFifoIntReset(1, 1);
+	__GXWriteFifoIntEnable(1, 0);
+	// }
 }
 
 /*
@@ -25,9 +50,26 @@ void GXUnderflowHandler(void)
  * Address:	........
  * Size:	000080
  */
-void GXBreakPointHandler(void)
+void GXBreakPointHandler(OSContext* context)
 {
 	// UNUSED FUNCTION
+	GXData* data = __GXData;
+	OSContext bpContext;
+	// if (IS_FLAG_SET(data->controlRegister, 5) && IS_FLAG_SET(data->_00C, 4)) {
+	// if ((data->controlRegister & BP_ENABLE) && IS_FLAG_SET(data->_00C, 4)) {
+	__GXData->controlRegister.bits.bpEnable = FALSE;
+	// __cpReg->controlRegister = HW_REG(&__GXData->controlRegister, u16);
+	__cpReg->controlRegister = __GXData->controlRegister.value;
+	// __GXData->controlRegister &= ~BP_ENABLE;
+	// __cpReg->controlRegister = __GXData->controlRegister;
+	if (BreakPointCB != nullptr) {
+		OSClearContext(&bpContext);
+		OSSetCurrentContext(&bpContext);
+		BreakPointCB();
+		OSClearContext(&bpContext);
+		OSSetCurrentContext(context);
+	}
+	// }
 }
 
 /*
@@ -35,8 +77,32 @@ void GXBreakPointHandler(void)
  * Address:	800E3A00
  * Size:	000134
  */
-void GXCPInterruptHandler(void)
+void GXCPInterruptHandler(unknown p1, OSContext* context)
 {
+	GXData* data;
+	// GXData* data = __GXData;
+	__GXData->_00C = __cpReg->statusRegister;
+	// data->_00C = __cpReg->statusRegister;
+	// data = __GXData;
+	if (__GXData->controlRegister.bits.fifoUnderflowIRQEnable && (__GXData->_00C >> 1 & 1)) {
+		// if ((__GXData->controlRegister >> 3 & 1) && (__GXData->_00C >> 1 & 1)) {
+		// if ((data->controlRegister >> 3 & 1) && (data->_00C >> 1 & 1)) {
+		GXUnderflowHandler();
+	}
+	if ((__GXData->controlRegister.bits.fifoOverflowIRQEnable) && (__GXData->_00C >> 0 & 1)) {
+		// if ((__GXData->controlRegister >> 2 & 1) && (__GXData->_00C >> 0 & 1)) {
+		// if ((data->controlRegister >> 2 & 1) && (data->_00C >> 0 & 1)) {
+		GXOverflowHandler();
+	}
+	data = __GXData;
+	// if ((__GXData->controlRegister & BP_ENABLE) && (__GXData->_00C >> 4 & 1)) {
+	// if ((__GXData->controlRegister >> 5 & 1) && (__GXData->_00C >> 4 & 1)) {
+	if ((data->controlRegister.bits.bpEnable) && (data->_00C >> 4 & 1)) {
+		// if ((data->controlRegister >> 5 & 1) && (data->_00C >> 4 & 1)) {
+		// if (IS_FLAG_SET(__GXData->controlRegister, 5) && IS_FLAG_SET(__GXData->_00C, 4)) {
+		// if (IS_FLAG_SET(data->controlRegister, 5) && IS_FLAG_SET(data->_00C, 4)) {
+		GXBreakPointHandler(context);
+	}
 	/*
 	.loc_0x0:
 	  mflr      r0
@@ -130,8 +196,15 @@ void GXCPInterruptHandler(void)
  * Address:	800E3B34
  * Size:	00006C
  */
-void GXInitFifoBase(void)
+void GXInitFifoBase(GXFifoObj* fifo, void* base, u32 size)
 {
+	fifo->base       = base;
+	fifo->end        = (void*)((u32)base + (size - 4));
+	fifo->size       = size;
+	fifo->rwDistance = 0;
+	GXInitFifoLimits(fifo, size - 0x4000, size >> 1 & 0x7FFFFFE0);
+	// GXInitFifoLimits(fifo, size - 0x4000, ALIGN_PREV(size >> 1, 0x20));
+	GXInitFifoPtrs(fifo, base, base);
 	/*
 	.loc_0x0:
 	  mflr      r0
@@ -170,42 +243,18 @@ void GXInitFifoBase(void)
  * --INFO--
  * Address:	800E3BA0
  * Size:	000070
+ * @NeedsFrankLite
  */
-void GXInitFifoPtrs(void)
+void GXInitFifoPtrs(GXFifoObj* fifo, void* readPtr, void* writePtr)
 {
-	/*
-	.loc_0x0:
-	  mflr      r0
-	  stw       r0, 0x4(r1)
-	  stwu      r1, -0x28(r1)
-	  stw       r31, 0x24(r1)
-	  addi      r31, r5, 0
-	  stw       r30, 0x20(r1)
-	  addi      r30, r4, 0
-	  stw       r29, 0x1C(r1)
-	  addi      r29, r3, 0
-	  bl        0xB074
-	  stw       r30, 0x14(r29)
-	  sub       r0, r31, r30
-	  stw       r31, 0x18(r29)
-	  stw       r0, 0x1C(r29)
-	  lwz       r4, 0x1C(r29)
-	  cmpwi     r4, 0
-	  bge-      .loc_0x50
-	  lwz       r0, 0x8(r29)
-	  add       r0, r4, r0
-	  stw       r0, 0x1C(r29)
-
-	.loc_0x50:
-	  bl        0xB070
-	  lwz       r0, 0x2C(r1)
-	  lwz       r31, 0x24(r1)
-	  lwz       r30, 0x20(r1)
-	  lwz       r29, 0x1C(r1)
-	  addi      r1, r1, 0x28
-	  mtlr      r0
-	  blr
-	*/
+	int interrupts   = OSDisableInterrupts();
+	fifo->readPtr    = readPtr;
+	fifo->writePtr   = writePtr;
+	fifo->rwDistance = (int)writePtr - (int)readPtr;
+	if (fifo->rwDistance < 0) {
+		fifo->rwDistance += fifo->size;
+	}
+	OSRestoreInterrupts(interrupts);
 }
 
 /*
@@ -213,14 +262,10 @@ void GXInitFifoPtrs(void)
  * Address:	800E3C10
  * Size:	00000C
  */
-void GXInitFifoLimits(void)
+void GXInitFifoLimits(GXFifoObj* fifo, u32 highWatermark, u32 lowWatermark)
 {
-	/*
-	.loc_0x0:
-	  stw       r4, 0xC(r3)
-	  stw       r5, 0x10(r3)
-	  blr
-	*/
+	fifo->highWatermark = highWatermark;
+	fifo->lowWatermark  = lowWatermark;
 }
 
 /*
@@ -228,7 +273,7 @@ void GXInitFifoLimits(void)
  * Address:	800E3C1C
  * Size:	000128
  */
-void GXSetCPUFifo(void)
+void GXSetCPUFifo(GXFifoObj* fifo)
 {
 	/*
 	.loc_0x0:
@@ -319,110 +364,44 @@ void GXSetCPUFifo(void)
  * --INFO--
  * Address:	800E3D44
  * Size:	000178
+ * @NeedsFrankLite
  */
-void GXSetGPFifo(void)
+void GXSetGPFifo(GXFifoObj* fifo)
 {
-	/*
-	.loc_0x0:
-	  mflr      r0
-	  stw       r0, 0x4(r1)
-	  stwu      r1, -0x18(r1)
-	  stw       r31, 0x14(r1)
-	  stw       r30, 0x10(r1)
-	  mr        r30, r3
-	  bl        0xAEDC
-	  mr        r31, r3
-	  bl        0x358
-	  li        r3, 0
-	  li        r4, 0
-	  bl        0x3A4
-	  stw       r30, -0x7124(r13)
-	  lwz       r3, -0x714C(r13)
-	  lwz       r0, 0x0(r30)
-	  sth       r0, 0x20(r3)
-	  lwz       r0, 0x4(r30)
-	  lwz       r3, -0x714C(r13)
-	  sth       r0, 0x24(r3)
-	  lwz       r0, 0x1C(r30)
-	  lwz       r3, -0x714C(r13)
-	  sth       r0, 0x30(r3)
-	  lwz       r0, 0x18(r30)
-	  lwz       r3, -0x714C(r13)
-	  sth       r0, 0x34(r3)
-	  lwz       r0, 0x14(r30)
-	  lwz       r3, -0x714C(r13)
-	  sth       r0, 0x38(r3)
-	  lwz       r0, 0xC(r30)
-	  lwz       r3, -0x714C(r13)
-	  sth       r0, 0x28(r3)
-	  lwz       r0, 0x10(r30)
-	  lwz       r3, -0x714C(r13)
-	  sth       r0, 0x2C(r3)
-	  lwz       r0, 0x0(r30)
-	  lwz       r3, -0x714C(r13)
-	  rlwinm    r0,r0,16,18,31
-	  sth       r0, 0x22(r3)
-	  lwz       r0, 0x4(r30)
-	  lwz       r3, -0x714C(r13)
-	  rlwinm    r0,r0,16,18,31
-	  sth       r0, 0x26(r3)
-	  lwz       r0, 0x1C(r30)
-	  lwz       r3, -0x714C(r13)
-	  srawi     r0, r0, 0x10
-	  sth       r0, 0x32(r3)
-	  lwz       r0, 0x18(r30)
-	  lwz       r3, -0x714C(r13)
-	  rlwinm    r0,r0,16,18,31
-	  sth       r0, 0x36(r3)
-	  lwz       r0, 0x14(r30)
-	  lwz       r3, -0x714C(r13)
-	  rlwinm    r0,r0,16,18,31
-	  sth       r0, 0x3A(r3)
-	  lwz       r0, 0xC(r30)
-	  lwz       r3, -0x714C(r13)
-	  rlwinm    r0,r0,16,16,31
-	  sth       r0, 0x2A(r3)
-	  lwz       r0, 0x10(r30)
-	  lwz       r3, -0x714C(r13)
-	  rlwinm    r0,r0,16,16,31
-	  sth       r0, 0x2E(r3)
-	  bl        -0xF8AC
-	  lwz       r3, -0x7128(r13)
-	  lwz       r0, -0x7124(r13)
-	  cmplw     r3, r0
-	  bne-      .loc_0x12C
-	  li        r0, 0x1
-	  stb       r0, -0x711C(r13)
-	  li        r3, 0x1
-	  li        r4, 0
-	  bl        0x2B4
-	  li        r3, 0x1
-	  bl        0x278
-	  b         .loc_0x148
+	int interrupts = OSDisableInterrupts();
+	__GXFifoReadDisable();
+	__GXWriteFifoIntEnable(0, 0);
+	GPFifo                         = fifo;
+	__cpReg->cpFIFOBaseLo          = (u16)fifo->base;
+	__cpReg->cpFIFOEndLo           = (u16)fifo->end;
+	__cpReg->cpFIFORWDistanceLo    = (u16)fifo->rwDistance;
+	__cpReg->cpFIFOWritePointerLo  = (u16)fifo->writePtr;
+	__cpReg->cpFIFOReadPointerLo   = (u16)fifo->readPtr;
+	__cpReg->cpFIFOHighWatermarkLo = (u16)fifo->highWatermark;
+	__cpReg->cpFIFOLowWatermarkLo  = (u16)fifo->lowWatermark;
 
-	.loc_0x12C:
-	  li        r0, 0
-	  stb       r0, -0x711C(r13)
-	  li        r3, 0
-	  li        r4, 0
-	  bl        0x294
-	  li        r3, 0
-	  bl        0x258
+	__cpReg->cpFIFOBaseHi          = ((u32)fifo->base >> 0x10) & 0x3FFF;
+	__cpReg->cpFIFOEndHi           = ((u32)fifo->end >> 0x10) & 0x3FFF;
+	__cpReg->cpFIFORWDistanceHi    = fifo->rwDistance >> 0x10;
+	__cpReg->cpFIFOWritePointerHi  = ((u32)fifo->writePtr >> 0x10) & 0x3FFF;
+	__cpReg->cpFIFOReadPointerHi   = ((u32)fifo->readPtr >> 0x10) & 0x3FFF;
+	__cpReg->cpFIFOHighWatermarkHi = fifo->highWatermark >> 0x10;
+	__cpReg->cpFIFOLowWatermarkHi  = fifo->lowWatermark >> 0x10;
 
-	.loc_0x148:
-	  li        r3, 0x1
-	  li        r4, 0x1
-	  bl        0x2B0
-	  bl        0x200
-	  mr        r3, r31
-	  bl        0xADC0
-	  lwz       r0, 0x1C(r1)
-	  lwz       r31, 0x14(r1)
-	  lwz       r30, 0x10(r1)
-	  addi      r1, r1, 0x18
-	  mtlr      r0
-	  blr
-	*/
+	PPCSync();
+
+	if (CPUFifo == GPFifo) {
+		CPGPLinked = 1;
+		__GXWriteFifoIntEnable(1, 0);
+		__GXFifoLink(1);
+	} else {
+		CPGPLinked = 0;
+		__GXWriteFifoIntEnable(0, 0);
+		__GXFifoLink(0);
+	}
+	__GXWriteFifoIntReset(1, 1);
+	__GXFifoReadEnable();
+	OSRestoreInterrupts(interrupts);
 }
 
 /*
@@ -430,26 +409,10 @@ void GXSetGPFifo(void)
  * Address:	800E3EBC
  * Size:	000034
  */
-void GXSaveCPUFifo(void)
+void GXSaveCPUFifo(GXFifoObj* fifo)
 {
-	/*
-	.loc_0x0:
-	  mflr      r0
-	  stw       r0, 0x4(r1)
-	  stwu      r1, -0x18(r1)
-	  stw       r31, 0x14(r1)
-	  mr        r31, r3
-	  bl        0x119C
-	  mr        r3, r31
-	  bl        .loc_0x34
-	  lwz       r0, 0x1C(r1)
-	  lwz       r31, 0x14(r1)
-	  addi      r1, r1, 0x18
-	  mtlr      r0
-	  blr
-
-	.loc_0x34:
-	*/
+	GXFlush();
+	__GXSaveCPUFifoAux(fifo);
 }
 
 /*
@@ -457,8 +420,23 @@ void GXSaveCPUFifo(void)
  * Address:	800E3EF0
  * Size:	0000C8
  */
-void __GXSaveCPUFifoAux(void)
+void __GXSaveCPUFifoAux(GXFifoObj* fifo)
 {
+	int interrupts = OSDisableInterrupts();
+	fifo->base     = OSCachedToPhysical(__piReg->fifoBase);
+	fifo->end      = OSCachedToPhysical(__piReg->fifoEnd);
+	fifo->writePtr = OSCachedToPhysical(__piReg->cpuFIFOCurrentWritePtrMaybe & 0xFBFFFFFF);
+	if (CPGPLinked != 0) {
+		fifo->readPtr = (void*)(((u32)__cpReg->cpFIFOReadPointerLo + ((u32)__cpReg->cpFIFOReadPointerHi << 0x10)) + -0x80000000);
+		// fifo->readPtr = (void*)(((u32)__cpReg->cpFIFOReadPointerLo + (u32)(__cpReg->cpFIFOReadPointerHi << 0x10)) + -0x80000000);
+		fifo->rwDistance = (u32)(((u32)__cpReg->cpFIFORWDistanceHi << 0x10) + __cpReg->cpFIFORWDistanceLo);
+	} else {
+		fifo->rwDistance = (int)fifo->writePtr - (int)fifo->readPtr;
+		if (fifo->rwDistance < 0) {
+			fifo->rwDistance += fifo->size;
+		}
+	}
+	OSRestoreInterrupts(interrupts);
 	/*
 	.loc_0x0:
 	  mflr      r0
@@ -523,7 +501,7 @@ void __GXSaveCPUFifoAux(void)
  * Address:	........
  * Size:	000030
  */
-void GXSaveGPFifo(void)
+void GXSaveGPFifo(GXFifoObj* fifo)
 {
 	// UNUSED FUNCTION
 }
@@ -533,8 +511,16 @@ void GXSaveGPFifo(void)
  * Address:	800E3FB8
  * Size:	000050
  */
-void GXGetGPStatus(void)
+void GXGetGPStatus(GXBool* overhi, GXBool* underlow, GXBool* readIdle, GXBool* cmdIdle, GXBool* brkpt)
 {
+	CPReg* cpReg = __cpReg;
+	GXData* data = __GXData;
+	data->_00C   = cpReg->statusRegister;
+	*overhi      = data->_00C & 1;
+	*underlow    = (data->_00C >> 1) & 1;
+	*readIdle    = (data->_00C >> 2) & 1;
+	*cmdIdle     = (data->_00C >> 3) & 1;
+	*brkpt       = (data->_00C >> 4) & 1;
 	/*
 	.loc_0x0:
 	  lwz       r9, -0x714C(r13)
@@ -615,8 +601,13 @@ void GXGetFifoLimits(void)
  * Address:	800E4008
  * Size:	000044
  */
-void GXSetBreakPtCallback(void)
+GXBreakpointCallback* GXSetBreakPtCallback(GXBreakpointCallback* cb)
 {
+	GXBreakpointCallback* oldCallback = BreakPointCB;
+	int interrupts                    = OSDisableInterrupts();
+	BreakPointCB                      = cb;
+	OSRestoreInterrupts(interrupts);
+	return oldCallback;
 	/*
 	.loc_0x0:
 	  mflr      r0
@@ -666,28 +657,12 @@ void GXDisableBreakPt(void)
  */
 void __GXFifoInit(void)
 {
-	/*
-	.loc_0x0:
-	  mflr      r0
-	  lis       r3, 0x800E
-	  stw       r0, 0x4(r1)
-	  addi      r4, r3, 0x3A00
-	  li        r3, 0x11
-	  stwu      r1, -0x8(r1)
-	  bl        0xAC20
-	  li        r3, 0x4000
-	  bl        0xB01C
-	  bl        0xD954
-	  li        r0, 0
-	  stw       r3, -0x7120(r13)
-	  stw       r0, -0x7118(r13)
-	  stw       r0, -0x7128(r13)
-	  stw       r0, -0x7124(r13)
-	  lwz       r0, 0xC(r1)
-	  addi      r1, r1, 0x8
-	  mtlr      r0
-	  blr
-	*/
+	__OSSetInterruptHandler(0x11, GXCPInterruptHandler);
+	__OSUnmaskInterrupts(0x4000);
+	__GXCurrentThread           = OSGetCurrentThread();
+	GXOverflowSuspendInProgress = 0;
+	CPUFifo                     = nullptr;
+	GPFifo                      = nullptr;
 }
 
 /*
@@ -697,6 +672,11 @@ void __GXFifoInit(void)
  */
 void __GXFifoReadEnable(void)
 {
+	// __GXData->controlRegister.gpFifoReadEnable = TRUE;
+	// __cpReg->controlRegister = HW_REG(&__GXData->controlRegister, u16);
+	// __GXData->controlRegister |= GP_FIFO_READ_ENABLE;
+	// __GXData->controlRegister = __GXData->controlRegister & ~GP_FIFO_READ_ENABLE | GP_FIFO_READ_ENABLE;
+	// __cpReg->controlRegister = __GXData->controlRegister;
 	/*
 	.loc_0x0:
 	  lwz       r4, -0x6D70(r2)
@@ -718,6 +698,8 @@ void __GXFifoReadEnable(void)
  */
 void __GXFifoReadDisable(void)
 {
+	// __GXData->controlRegister = __GXData->controlRegister & ~GP_FIFO_READ_ENABLE;
+	// __cpReg->controlRegister = __GXData->controlRegister;
 	/*
 	.loc_0x0:
 	  lwz       r4, -0x6D70(r2)
@@ -737,8 +719,21 @@ void __GXFifoReadDisable(void)
  * Address:	800E40E0
  * Size:	000034
  */
-void __GXFifoLink(void)
+void __GXFifoLink(u8 link)
 {
+	u32 b;
+	GXData* data;
+	if (link) {
+		b = 1;
+	} else {
+		b = 0;
+	}
+	data                                    = __GXData;
+	data->controlRegister.bits.gpLinkEnable = b;
+	// controlRegister.gpLinkEnable = b;
+	__cpReg->controlRegister = data->controlRegister.value;
+	// __GXData->controlRegister = ((link != 0) << 4) | (__GXData->controlRegister & ~GP_LINK_ENABLE);
+	// __cpReg->controlRegister = __GXData->controlRegister;
 	/*
 	.loc_0x0:
 	  rlwinm.   r0,r3,0,24,31
@@ -766,8 +761,12 @@ void __GXFifoLink(void)
  * Address:	800E4114
  * Size:	000030
  */
-void __GXWriteFifoIntEnable(void)
+void __GXWriteFifoIntEnable(u32 p1, u32 p2)
 {
+	// __GXData->controlRegister = __GXData->controlRegister & ~FIFO_OVERFLOW_IRQ_ENABLE_MAYBE;
+	// __GXData->controlRegister |= (p1 & 1) << 2;
+	// __GXData->controlRegister = __GXData->controlRegister & ~FIFO_UNDERFLOW_IRQ_ENABLE_MAYBE;
+	// __GXData->controlRegister |= (p2 & 1) << 3;
 	/*
 	.loc_0x0:
 	  lwz       r5, -0x6D70(r2)
@@ -790,7 +789,7 @@ void __GXWriteFifoIntEnable(void)
  * Address:	800E4144
  * Size:	000030
  */
-void __GXWriteFifoIntReset(void)
+void __GXWriteFifoIntReset(u32 p1, u32 p2)
 {
 	/*
 	.loc_0x0:
