@@ -27,6 +27,8 @@ struct RandEnemyUnit;
 struct RandPlantUnit {
 	RandPlantUnit(MapUnitGenerator* generator);
 	
+	void setPlantSlot();
+	
 	MapUnitGenerator* m_generator;  // _00
 	int m_currentPlantCount;		// _04
 	int m_desiredPlantCount;		// _08
