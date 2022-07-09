@@ -1,11 +1,11 @@
-
+#include "Dolphin/os.h"
 
 /*
  * --INFO--
  * Address:	800ED6EC
  * Size:	000080
  */
-void OSReport(void)
+void OSReport(const char*, ...)
 {
 	/*
 	.loc_0x0:
@@ -61,7 +61,7 @@ void OSVReport(void)
  * Address:	800ED76C
  * Size:	00012C
  */
-void OSPanic(void)
+void OSPanic(const char* file, int line, const char* message, ...)
 {
 	/*
 	.loc_0x0:

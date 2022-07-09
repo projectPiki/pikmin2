@@ -1,4 +1,4 @@
-
+#include "Dolphin/os.h"
 
 /*
  * --INFO--
