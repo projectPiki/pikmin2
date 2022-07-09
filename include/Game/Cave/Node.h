@@ -15,8 +15,9 @@ struct EnemyUnit {
 	RandMapScore* m_mapScore; // _04
 	int _08;                  // _08
 	int m_tekiMax;            // _0C
-	int m_typeCount[4];       // _10 (10 A, 14 B, 18 C, 1C F)
-	int m_typeMax[4];         // _20 (20 A, 24 B, 28 C, 2C F)
+	// counts and max amounts for enemy types (A = easy, B = hard, C = seam hazards, F = special)
+	int m_typeCount[4];       // _10 (_10 A, _14 B, _18 C, _1C F)
+	int m_typeMax[4];         // _20 (_20 A, _24 B, _28 C, _2C F)
 };
 
 struct Adjust {
