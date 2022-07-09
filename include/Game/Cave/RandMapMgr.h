@@ -10,7 +10,15 @@ namespace Game {
 namespace Cave {
 struct RandEnemyUnit;
 struct RandGateUnit;
+struct RandItemUnit;
+struct RandMapUnit;
+
 struct RandMapDraw;
+struct RandMapScore;
+struct MapUnitGenerator;
+
+struct EnemyNode;
+struct EnemyUnit;
 
 struct RandPlantUnit {
 	RandPlantUnit(MapUnitGenerator* generator);
