@@ -62,9 +62,18 @@
  * --INFO--
  * Address:	80018958
  * Size:	0000B0
+ * __ct
  */
-JKRAramArchive::JKRAramArchive(long, JKRArchive::EMountDirection)
+JKRAramArchive::JKRAramArchive(long p1, JKRArchive::EMountDirection mountDirection)
+    : JKRArchive(p1, EMM_Unk2)
+    , _60(mountDirection)
 {
+	if (open(p1)) {
+		m_magicWord = 'RARC';
+		_28         = _54[*_48->_04];
+		sVolumeList.prepend(&_18);
+		_30 = 1;
+	}
 	/*
 	stwu     r1, -0x20(r1)
 	mflr     r0
@@ -724,7 +733,7 @@ void* JKRAramArchive::fetchResource(void*, unsigned long, JKRArchive::SDIFileEnt
  * Address:	80019108
  * Size:	0000BC
  */
-void JKRAramArchive::fetchResource_subroutine(u32, u32, u8*, u32, int)
+void JKRAramArchive::fetchResource_subroutine(u32, u32, u8*, u32, s32)
 {
 	/*
 	.loc_0x0:
@@ -793,7 +802,7 @@ void JKRAramArchive::fetchResource_subroutine(u32, u32, u8*, u32, int)
  * Address:	800191C4
  * Size:	00014C
  */
-void JKRAramArchive::fetchResource_subroutine(u32, u32, JKRHeap*, int, u8**)
+void JKRAramArchive::fetchResource_subroutine(u32, u32, JKRHeap*, s32, u8**)
 {
 	/*
 	.loc_0x0:
@@ -896,7 +905,7 @@ void JKRAramArchive::fetchResource_subroutine(u32, u32, JKRHeap*, int, u8**)
  * Address:	80019310
  * Size:	000134
  */
-void JKRAramArchive::getExpandedResSize(const void*) const
+long JKRAramArchive::getExpandedResSize(const void*) const
 {
 	/*
 	stwu     r1, -0x60(r1)
