@@ -3,6 +3,7 @@
 
 #include "Game/Creature.h"
 #include "Game/StateMachine.h"
+#include "Game/TSoundEvent.h"
 #include "SysShape/MotionListener.h"
 #include "types.h"
 
@@ -104,13 +105,23 @@ struct BaseItem : public Creature, public SysShape::MotionListener {
 };
 
 struct CFSMItem : public BaseItem {
-	virtual void constructor();                         // _24
-	virtual void bounceCallback(Sys::Triangle*);        // _E0
-	virtual void collisionCallback(CollEvent&);         // _E4
-	virtual void platCallback(PlatEvent&);              // _E8
-	virtual void doAI();                                // _1C0
-	virtual CItemFSM* createFSM() = 0;                  // _218
-	virtual void onKeyEvent(const SysShape::KeyEvent&); // _21C
+	inline CFSMItem(int objTypeID)
+	    : BaseItem(objTypeID)
+	    , m_stateMachine(nullptr)
+	    , m_currState(nullptr)
+	{
+	}
+
+	// vtable 1
+	virtual void constructor();                  // _24
+	virtual void bounceCallback(Sys::Triangle*); // _E0
+	virtual void collisionCallback(CollEvent&);  // _E4
+	virtual void platCallback(PlatEvent&);       // _E8
+
+	// vtable 2
+	virtual void doAI();                                // _10
+	virtual CItemFSM* createFSM() = 0;                  // _68
+	virtual void onKeyEvent(const SysShape::KeyEvent&); // _6C
 
 	void initFSM();
 	void setCurrState(FSMState<CFSMItem>*);
@@ -124,7 +135,18 @@ struct CFSMItem : public BaseItem {
 struct CItemFSM : public StateMachine<CFSMItem> {
 };
 
+template <typename T> struct ItemFSM : public StateMachine<T> {
+};
+
 struct CItemState : public FSMState<CFSMItem> {
+	inline CItemState(int id)
+	    : FSMState(id)
+	{
+	}
+	/**
+	 * @reifiedAddress{801D2B8C}
+	 * @reifiedFile{plugProjectKandoU/itemHole.cpp}
+	 */
 	virtual void onDamage(CFSMItem*, float) {}; // _18
 	/**
 	 * @reifiedAddress{801CCB74}
@@ -147,6 +169,83 @@ struct CItemState : public FSMState<CFSMItem> {
 	 */
 	virtual void onCollision(CFSMItem*, CollEvent&) {}; // _28
 };
+
+template <typename T> struct ItemState : public FSMState<T> {
+	inline ItemState(int id)
+	    : FSMState<T>(id)
+	{
+	}
+
+	virtual void onDamage(T*, float) {};                       // _18
+	virtual void onKeyEvent(T*, const SysShape::KeyEvent&) {}; // _1C
+	virtual void onBounce(T*, Sys::Triangle*) {};              // _20
+	virtual void onPlatCollision(T*, PlatEvent&) {};           // _24
+	virtual void onCollision(T*, CollEvent&) {};               // _28
+};
+
+template <typename ItemClass, typename FSMClass, typename StateClass> struct FSMItem : public BaseItem {
+	inline FSMItem(int objTypeID)
+	    : BaseItem(objTypeID)
+	    , m_stateMachine(nullptr)
+	    , m_currentState(nullptr)
+	{
+		m_stateMachine = new FSMClass();
+		m_stateMachine->init(static_cast<ItemClass*>(this));
+	}
+
+	// vtable 1
+	virtual void bounceCallback(Sys::Triangle* tri) // _E0
+	{
+		StateClass* state = m_currentState;
+		if (state) {
+			static_cast<ItemState<ItemClass>*>(state)->onBounce((ItemClass*)this, tri);
+		}
+	}
+
+	virtual void collisionCallback(CollEvent& event) // _E4
+	{
+		StateClass* state = m_currentState;
+		if (state) {
+			static_cast<ItemState<ItemClass>*>(state)->onCollision((ItemClass*)this, event);
+		}
+	}
+
+	virtual void platCallback(PlatEvent& event) // _E8
+	{
+		StateClass* state = m_currentState;
+		if (state) {
+			static_cast<ItemState<ItemClass>*>(state)->onPlatCollision((ItemClass*)this, event);
+		}
+	}
+
+	// vtable 2
+	virtual void doAI() // _10
+	{
+		static_cast<ItemFSM<ItemClass>*>(m_stateMachine)->exec((ItemClass*)this);
+	}
+
+	virtual void onKeyEvent(const SysShape::KeyEvent& event) // _68 (thunked at _00)
+	{
+		StateClass* state = m_currentState;
+		if (state) {
+			static_cast<ItemState<ItemClass>*>(state)->onKeyEvent((ItemClass*)this, event);
+		}
+	}
+
+	FSMClass* m_stateMachine;   // _1D8
+	StateClass* m_currentState; // _1DC
+};
+
+template <typename ItemClass, typename FSMClass, typename StateClass> struct WorkItem : public FSMItem<ItemClass, FSMClass, StateClass> {
+	inline WorkItem(int objTypeID)
+	    : FSMItem<ItemClass, FSMClass, StateClass>(objTypeID)
+	    , m_soundEvent()
+	{
+	}
+
+	TSoundEvent m_soundEvent; // _1E0
+};
+
 } // namespace Game
 
 #endif
