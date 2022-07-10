@@ -22,12 +22,14 @@
 
 namespace Game {
 
+namespace Cave {
+
 /*
  * --INFO--
  * Address:	802427A8
  * Size:	0000A4
  */
-Cave::MapUnits::MapUnits(JUTTexture* texture)
+MapUnits::MapUnits(JUTTexture* texture)
 {
 	// Constructor for MapUnits struct
 	//     - sets texture and unit sizes based on input texture
@@ -54,7 +56,7 @@ Cave::MapUnits::MapUnits(JUTTexture* texture)
  * Address:	8024284C
  * Size:	000060
  */
-void Cave::MapUnits::setDoorNum(int doorNum)
+void MapUnits::setDoorNum(int doorNum)
 {
 	// Construct new AdjustNode array for number of doors
 	m_doorCounts = new AdjustNode[doorNum];
@@ -65,35 +67,35 @@ void Cave::MapUnits::setDoorNum(int doorNum)
  * Address:	802428AC
  * Size:	000060
  */
-Cave::AdjustNode::~AdjustNode() { }
+AdjustNode::~AdjustNode() { }
 
 /*
  * --INFO--
  * Address:	8024290C
  * Size:	000008
  */
-void Cave::MapUnits::setUnitName(char* name) { m_name = name; }
+void MapUnits::setUnitName(char* name) { m_name = name; }
 
 /*
  * --INFO--
  * Address:	80242914
  * Size:	000008
  */
-void Cave::MapUnits::setUnitIndex(int idx) { m_index = idx; }
+void MapUnits::setUnitIndex(int idx) { m_index = idx; }
 
 /*
  * --INFO--
  * Address:	8024291C
  * Size:	000008
  */
-void Cave::MapUnits::setUnitKind(int kind) { m_kind = kind; }
+void MapUnits::setUnitKind(int kind) { m_kind = kind; }
 
 /*
  * --INFO--
  * Address:	80242924
  * Size:	00000C
  */
-void Cave::MapUnits::setUnitSize(int sizeX, int sizeY)
+void MapUnits::setUnitSize(int sizeX, int sizeY)
 {
 	m_sizeX = sizeX;
 	m_sizeY = sizeY;
@@ -104,94 +106,94 @@ void Cave::MapUnits::setUnitSize(int sizeX, int sizeY)
  * Address:	80242930
  * Size:	000008
  */
-void Cave::MapUnits::setBaseGenPtr(BaseGen* baseGen) { m_baseGen = baseGen; }
+void MapUnits::setBaseGenPtr(BaseGen* baseGen) { m_baseGen = baseGen; }
 
 /*
  * --INFO--
  * Address:	........
  * Size:	000008
  */
-void Cave::MapUnits::setUnitTexture(JUTTexture*)
-{
-	// UNUSED FUNCTION
-}
+// void Cave::MapUnits::setUnitTexture(JUTTexture*)
+// {
+	// // UNUSED FUNCTION
+// }
 
 /*
  * --INFO--
  * Address:	........
  * Size:	000008
  */
-void Cave::MapUnits::getUnitName(void)
-{
-	// UNUSED FUNCTION
-}
+// char* Cave::MapUnits::getUnitName(void)
+// {
+	// // UNUSED FUNCTION
+// }
 
 /*
  * --INFO--
  * Address:	........
  * Size:	000008
  */
-void Cave::MapUnits::getUnitIndex(void)
-{
-	// UNUSED FUNCTION
-}
+// int Cave::MapUnits::getUnitIndex(void)
+// {
+	// // UNUSED FUNCTION
+// }
 
 /*
  * --INFO--
  * Address:	........
  * Size:	000008
  */
-void Cave::MapUnits::getUnitKind(void)
-{
-	// UNUSED FUNCTION
-}
+// int Cave::MapUnits::getUnitKind(void)
+// {
+	// // UNUSED FUNCTION
+// }
 
 /*
  * --INFO--
  * Address:	........
  * Size:	000008
  */
-void Cave::MapUnits::getUnitSizeX(void)
-{
-	// UNUSED FUNCTION
-}
+// int Cave::MapUnits::getUnitSizeX(void)
+// {
+	// // UNUSED FUNCTION
+// }
 
 /*
  * --INFO--
  * Address:	........
  * Size:	000008
  */
-void Cave::MapUnits::getUnitSizeY(void)
-{
-	// UNUSED FUNCTION
-}
+// int Cave::MapUnits::getUnitSizeY(void)
+// {
+	// // UNUSED FUNCTION
+// }
 
 /*
  * --INFO--
  * Address:	........
  * Size:	000008
  */
-void Cave::MapUnits::getBaseGen(void)
-{
-	// UNUSED FUNCTION
-}
+// BaseGen* Cave::MapUnits::getBaseGen(void)
+// {
+	// // UNUSED FUNCTION
+// }
 
 /*
  * --INFO--
  * Address:	........
  * Size:	000008
  */
-void Cave::MapUnits::getUnitTexture(void)
-{
-	// UNUSED FUNCTION
-}
+// JUTTexture* Cave::MapUnits::getUnitTexture(void)
+// {
+	// // UNUSED FUNCTION
+// }
 
 /*
  * --INFO--
  * Address:	80242938
  * Size:	000064
  */
-Cave::UnitInfo::UnitInfo(MapUnits* mapUnits)
+UnitInfo::UnitInfo(MapUnits* mapUnits)
 {
 	// Constructor for UnitInfo struct
 	//    - sets m_mapUnits to input mapUnits
@@ -211,21 +213,21 @@ Cave::UnitInfo::UnitInfo(MapUnits* mapUnits)
  * Address:	8024299C
  * Size:	00000C
  */
-void Cave::UnitInfo::setUnitTexture(JUTTexture* texture) { m_mapUnits->m_texture = texture; }
+void UnitInfo::setUnitTexture(JUTTexture* texture) { m_mapUnits->m_texture = texture; }
 
 /*
  * --INFO--
  * Address:	802429A8
  * Size:	000008
  */
-void Cave::UnitInfo::setUnitRotation(int rot) { m_unitRotation = rot; }
+void UnitInfo::setUnitRotation(int rot) { m_unitRotation = rot; }
 
 /*
  * --INFO--
  * Address:	802429B0
  * Size:	0001BC
  */
-void Cave::UnitInfo::create()
+void UnitInfo::create()
 {
 	// sets up unit sizes + directions based on details in m_mapUnits + current rotation
 
@@ -288,59 +290,59 @@ void Cave::UnitInfo::create()
  * Address:	80242B6C
  * Size:	00000C
  */
-char* Cave::UnitInfo::getUnitName() { return m_mapUnits->m_name; }
+char* UnitInfo::getUnitName() { return m_mapUnits->m_name; }
 
 /*
  * --INFO--
  * Address:	........
  * Size:	00000C
  */
-void Cave::UnitInfo::getUnitIndex(void)
-{
-	// UNUSED FUNCTION
-}
+// int Cave::UnitInfo::getUnitIndex(void)
+// {
+	// // UNUSED FUNCTION
+// }
 
 /*
  * --INFO--
  * Address:	80242B78
  * Size:	00000C
  */
-int Cave::UnitInfo::getUnitKind() { return m_mapUnits->m_kind; }
+int UnitInfo::getUnitKind() { return m_mapUnits->m_kind; }
 
 /*
  * --INFO--
  * Address:	80242B84
  * Size:	000008
  */
-int Cave::UnitInfo::getUnitSizeX() { return m_unitSizeX; }
+int UnitInfo::getUnitSizeX() { return m_unitSizeX; }
 
 /*
  * --INFO--
  * Address:	80242B8C
  * Size:	000008
  */
-int Cave::UnitInfo::getUnitSizeY() { return m_unitSizeY; }
+int UnitInfo::getUnitSizeY() { return m_unitSizeY; }
 
 /*
  * --INFO--
  * Address:	80242B94
  * Size:	000008
  */
-int Cave::UnitInfo::getUnitRotation() { return m_unitRotation; }
+int UnitInfo::getUnitRotation() { return m_unitRotation; }
 
 /*
  * --INFO--
  * Address:	80242B9C
  * Size:	000024
  */
-Cave::DoorNode* Cave::UnitInfo::getDoorNode(int doorNum) { return (DoorNode*)m_doorNode->getChildAt(doorNum); }
+DoorNode* UnitInfo::getDoorNode(int doorNum) { return (DoorNode*)m_doorNode->getChildAt(doorNum); }
 
 /*
  * --INFO--
  * Address:	80242BC0
  * Size:	00000C
  */
-Cave::BaseGen* Cave::UnitInfo::getBaseGen() { return m_mapUnits->m_baseGen; }
+BaseGen* UnitInfo::getBaseGen() { return m_mapUnits->m_baseGen; }
 
 /*
  * --INFO--
@@ -348,7 +350,7 @@ Cave::BaseGen* Cave::UnitInfo::getBaseGen() { return m_mapUnits->m_baseGen; }
  * Size:	00018C
  */
 // shout outs to encounter for adding the GXFifo stuff from SMB
-void Game::Cave::UnitInfo::draw(float p0, float p1, float p2, float p3)
+void UnitInfo::draw(float p0, float p1, float p2, float p3)
 {
 	// Draw texture for UnitInfo based on rotation and
 	// m_mapUnits->m_texture
@@ -414,4 +416,5 @@ void Game::Cave::UnitInfo::draw(float p0, float p1, float p2, float p3)
 		GXTexCoord2s8(u3, v3);
 	}
 }
+} // namespace Cave
 } // namespace Game

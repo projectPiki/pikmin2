@@ -25,7 +25,6 @@ struct AdjustNode : public CNode {
 	AdjustNode();
 	AdjustNode(Adjust*);
 	virtual ~AdjustNode();
-	virtual void getChildCount();
 };
 
 struct Door {
@@ -107,13 +106,13 @@ struct MapUnits {
 	void setUnitTexture(JUTTexture*);
 
 	// unused/inlined:
-	// char* getUnitName();
-	// int getUnitIndex();
-	// int getUnitKind();
-	// int getUnitSizeX();
-	// int getUnitSizeY();
-	// BaseGen* getBaseGen();
-	// JUTTexture* getUnitTexture();
+	char* getUnitName();
+	int getUnitIndex();
+	int getUnitKind();
+	int getUnitSizeX();
+	int getUnitSizeY();
+	BaseGen* getBaseGen();
+	JUTTexture* getUnitTexture();
 
 	DoorNode* m_doorNode;     // _00
 	AdjustNode* m_doorCounts; // _04
