@@ -32,7 +32,7 @@ struct BaseGen;
 struct AdjustNode;
 struct MapUnits;
 struct UnitInfo {
-    UnitInfo(MapUnits* mapUnits);	
+	UnitInfo(MapUnits* mapUnits);
 
 	void setUnitTexture(JUTTexture*);
 	void setUnitRotation(int rot);
@@ -45,13 +45,13 @@ struct UnitInfo {
 	DoorNode* getDoorNode(int doorNum);
 	BaseGen* getBaseGen();
 	void draw(float, float, float, float);
-	
-	DoorNode* m_doorNode;           // _00
-	AdjustNode* m_doorCounts; 		// _04
-	MapUnits* m_mapUnits;     		// _08
-	int m_unitRotation;             // _0C
-	int m_unitSizeX;                // _10
-	int m_unitSizeY;                // _14
+
+	DoorNode* m_doorNode;     // _00
+	AdjustNode* m_doorCounts; // _04
+	MapUnits* m_mapUnits;     // _08
+	int m_unitRotation;       // _0C
+	int m_unitSizeX;          // _10
+	int m_unitSizeY;          // _14
 };
 
 struct BaseGen;

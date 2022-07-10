@@ -1,5 +1,6 @@
 #include "types.h"
 #include "Game/Cave/RandMapMgr.h"
+#include "Dolphin/gx.h"
 
 /*
     Generated from dpostproc
@@ -26,26 +27,26 @@ namespace Game {
  * Address:	802427A8
  * Size:	0000A4
  */
-Cave::MapUnits::MapUnits(JUTTexture* texture) 
+Cave::MapUnits::MapUnits(JUTTexture* texture)
 {
-    // Constructor for MapUnits struct
-    //     - sets texture and unit sizes based on input texture
-    //     - constructs a new DoorNode 
-    //     - sets everything else to 0 or -1 (whichever 'null' should be)
-    m_texture = texture;
-    m_baseGen = 0;
-    m_name = 0;
-    m_index = -1;
-    m_kind = -1;
-    m_sizeX = -1;
-    m_sizeY = -1;
-    if (m_texture) {
-        m_sizeX = ((u32) m_texture->_20->m_sizeX) >> 3;
-        m_sizeY = ((u32) m_texture->_20->m_sizeY) >> 3;
-    }
+	// Constructor for MapUnits struct
+	//     - sets texture and unit sizes based on input texture
+	//     - constructs a new DoorNode
+	//     - sets everything else to 0 or -1 (whichever 'null' should be)
+	m_texture = texture;
+	m_baseGen = 0;
+	m_name    = 0;
+	m_index   = -1;
+	m_kind    = -1;
+	m_sizeX   = -1;
+	m_sizeY   = -1;
+	if (m_texture) {
+		m_sizeX = ((u32)m_texture->_20->m_sizeX) >> 3;
+		m_sizeY = ((u32)m_texture->_20->m_sizeY) >> 3;
+	}
 
-    m_doorNode = new DoorNode();
-    m_doorCounts = 0;
+	m_doorNode   = new DoorNode();
+	m_doorCounts = 0;
 }
 
 /*
@@ -53,10 +54,10 @@ Cave::MapUnits::MapUnits(JUTTexture* texture)
  * Address:	8024284C
  * Size:	000060
  */
-void Cave::MapUnits::setDoorNum(int doorNum) 
+void Cave::MapUnits::setDoorNum(int doorNum)
 {
-    // Construct new AdjustNode array for number of doors
-    m_doorCounts = new AdjustNode [doorNum];
+	// Construct new AdjustNode array for number of doors
+	m_doorCounts = new AdjustNode[doorNum];
 }
 
 /*
@@ -92,10 +93,10 @@ void Cave::MapUnits::setUnitKind(int kind) { m_kind = kind; }
  * Address:	80242924
  * Size:	00000C
  */
-void Cave::MapUnits::setUnitSize(int sizeX, int sizeY) 
+void Cave::MapUnits::setUnitSize(int sizeX, int sizeY)
 {
-    m_sizeX = sizeX;
-    m_sizeY = sizeY;
+	m_sizeX = sizeX;
+	m_sizeY = sizeY;
 }
 
 /*
@@ -190,19 +191,19 @@ void Cave::MapUnits::getUnitTexture(void)
  * Address:	80242938
  * Size:	000064
  */
-Cave::UnitInfo::UnitInfo(MapUnits* mapUnits) 
+Cave::UnitInfo::UnitInfo(MapUnits* mapUnits)
 {
-    // Constructor for UnitInfo struct
-    //    - sets m_mapUnits to input mapUnits
-    //    - creates new DoorNode
-    //    - sets everything else to 'null' (0 or -1 depending)
+	// Constructor for UnitInfo struct
+	//    - sets m_mapUnits to input mapUnits
+	//    - creates new DoorNode
+	//    - sets everything else to 'null' (0 or -1 depending)
 
-    m_mapUnits = mapUnits;
-    m_unitRotation = -1;
-    m_unitSizeX = -1;
-    m_unitSizeY = -1;
-    m_doorNode = new DoorNode;
-    m_doorCounts = 0;
+	m_mapUnits     = mapUnits;
+	m_unitRotation = -1;
+	m_unitSizeX    = -1;
+	m_unitSizeY    = -1;
+	m_doorNode     = new DoorNode;
+	m_doorCounts   = 0;
 }
 
 /*
@@ -226,60 +227,60 @@ void Cave::UnitInfo::setUnitRotation(int rot) { m_unitRotation = rot; }
  */
 void Cave::UnitInfo::create()
 {
-    // sets up unit sizes + directions based on details in m_mapUnits + current rotation
+	// sets up unit sizes + directions based on details in m_mapUnits + current rotation
 
-    // load all door nodes from m_mapUnits into m_doorNode
-    DoorNode* mapDoorNode = (DoorNode*) m_mapUnits->m_doorNode->m_child;
-    for (mapDoorNode; mapDoorNode; mapDoorNode = (DoorNode*) mapDoorNode->m_next) {
-        DoorNode* newDoorNode = new DoorNode();
-        newDoorNode->m_node.m_direction = mapDoorNode->m_node.m_direction;
-        newDoorNode->m_node.m_offset = mapDoorNode->m_node.m_offset;
-        m_doorNode->add(newDoorNode);
-    }
+	// load all door nodes from m_mapUnits into m_doorNode
+	DoorNode* mapDoorNode = (DoorNode*)m_mapUnits->m_doorNode->m_child;
+	for (mapDoorNode; mapDoorNode; mapDoorNode = (DoorNode*)mapDoorNode->m_next) {
+		DoorNode* newDoorNode           = new DoorNode();
+		newDoorNode->m_node.m_direction = mapDoorNode->m_node.m_direction;
+		newDoorNode->m_node.m_offset    = mapDoorNode->m_node.m_offset;
+		m_doorNode->add(newDoorNode);
+	}
 
-    // get AdjustInfo* from m_mapUnits
-    m_doorCounts = m_mapUnits->m_doorCounts;
+	// get AdjustInfo* from m_mapUnits
+	m_doorCounts = m_mapUnits->m_doorCounts;
 
-    // if unit is facing up or down, use X and Y as normal
-    if ((m_unitRotation == 0) || (m_unitRotation == 2)) {
-        m_unitSizeX = m_mapUnits->m_sizeX;
-        m_unitSizeY = m_mapUnits->m_sizeY;
-    } else { // if unit is facing left or right, swap X and Y 
-        m_unitSizeX = m_mapUnits->m_sizeY;
-        m_unitSizeY = m_mapUnits->m_sizeX;
-    }
+	// if unit is facing up or down, use X and Y as normal
+	if ((m_unitRotation == 0) || (m_unitRotation == 2)) {
+		m_unitSizeX = m_mapUnits->m_sizeX;
+		m_unitSizeY = m_mapUnits->m_sizeY;
+	} else { // if unit is facing left or right, swap X and Y
+		m_unitSizeX = m_mapUnits->m_sizeY;
+		m_unitSizeY = m_mapUnits->m_sizeX;
+	}
 
-    // set defaults for door offsets
-    int X = m_mapUnits->m_sizeX - 1;
-    int Y = m_mapUnits->m_sizeY - 1;
+	// set defaults for door offsets
+	int X = m_mapUnits->m_sizeX - 1;
+	int Y = m_mapUnits->m_sizeY - 1;
 
-    // set all door offsets based on their directions
-    DoorNode* unitDoorNode = (DoorNode*) m_doorNode->m_child;
-    for (unitDoorNode; unitDoorNode; unitDoorNode = (DoorNode*) unitDoorNode->m_next) {
-        
-        int doorDir = unitDoorNode->m_node.m_direction; // default direction
-        int newDirection = (doorDir + m_unitRotation) % 4; // rotate with unit
-        
-        unitDoorNode->m_node.m_direction = newDirection; // set as new door direction
-        // set offset based on new direction vs old direction
-        if (doorDir == 0) { // old = up
-            if ((newDirection == 2) || (newDirection == 3)) { // new = down or left
-                unitDoorNode->m_node.m_offset = (X - unitDoorNode->m_node.m_offset);
-            }
-        } else if (doorDir == 1) { // old = right
-            if ((newDirection == 2) || (newDirection == 3)) { // new = down or left
-                unitDoorNode->m_node.m_offset = (Y - unitDoorNode->m_node.m_offset);
-            }            
-        } else if (doorDir == 2) { // old = down
-            if ((newDirection == 0) || (newDirection == 1)) { // new = up or right
-                unitDoorNode->m_node.m_offset = (X - unitDoorNode->m_node.m_offset);
-            }            
-        } else if (doorDir == 3) { // old = left
-            if ((newDirection == 0) || (newDirection == 1)) { // new = up or right
-                unitDoorNode->m_node.m_offset = (Y - unitDoorNode->m_node.m_offset);
-            }
-        }
-    }
+	// set all door offsets based on their directions
+	DoorNode* unitDoorNode = (DoorNode*)m_doorNode->m_child;
+	for (unitDoorNode; unitDoorNode; unitDoorNode = (DoorNode*)unitDoorNode->m_next) {
+
+		int doorDir      = unitDoorNode->m_node.m_direction; // default direction
+		int newDirection = (doorDir + m_unitRotation) % 4;   // rotate with unit
+
+		unitDoorNode->m_node.m_direction = newDirection; // set as new door direction
+		// set offset based on new direction vs old direction
+		if (doorDir == 0) {                                   // old = up
+			if ((newDirection == 2) || (newDirection == 3)) { // new = down or left
+				unitDoorNode->m_node.m_offset = (X - unitDoorNode->m_node.m_offset);
+			}
+		} else if (doorDir == 1) {                            // old = right
+			if ((newDirection == 2) || (newDirection == 3)) { // new = down or left
+				unitDoorNode->m_node.m_offset = (Y - unitDoorNode->m_node.m_offset);
+			}
+		} else if (doorDir == 2) {                            // old = down
+			if ((newDirection == 0) || (newDirection == 1)) { // new = up or right
+				unitDoorNode->m_node.m_offset = (X - unitDoorNode->m_node.m_offset);
+			}
+		} else if (doorDir == 3) {                            // old = left
+			if ((newDirection == 0) || (newDirection == 1)) { // new = up or right
+				unitDoorNode->m_node.m_offset = (Y - unitDoorNode->m_node.m_offset);
+			}
+		}
+	}
 }
 
 /*
@@ -332,10 +333,7 @@ int Cave::UnitInfo::getUnitRotation() { return m_unitRotation; }
  * Address:	80242B9C
  * Size:	000024
  */
-Cave::DoorNode* Cave::UnitInfo::getDoorNode(int doorNum) 
-{
-    return (DoorNode*) m_doorNode->getChildAt(doorNum);
-}
+Cave::DoorNode* Cave::UnitInfo::getDoorNode(int doorNum) { return (DoorNode*)m_doorNode->getChildAt(doorNum); }
 
 /*
  * --INFO--
@@ -349,120 +347,71 @@ Cave::BaseGen* Cave::UnitInfo::getBaseGen() { return m_mapUnits->m_baseGen; }
  * Address:	80242BCC
  * Size:	00018C
  */
-void Cave::UnitInfo::draw(float, float, float, float)
+// shout outs to encounter for adding the GXFifo stuff from SMB
+void Game::Cave::UnitInfo::draw(float p0, float p1, float p2, float p3)
 {
-	/*
-	stwu     r1, -0x70(r1)
-	mflr     r0
-	stw      r0, 0x74(r1)
-	stfd     f31, 0x60(r1)
-	psq_st   f31, 104(r1), 0, qr0
-	stfd     f30, 0x50(r1)
-	psq_st   f30, 88(r1), 0, qr0
-	stfd     f29, 0x40(r1)
-	psq_st   f29, 72(r1), 0, qr0
-	stfd     f28, 0x30(r1)
-	psq_st   f28, 56(r1), 0, qr0
-	stmw     r24, 0x10(r1)
-	lwz      r4, 8(r3)
-	fmr      f28, f1
-	fmr      f29, f2
-	lwz      r4, 8(r4)
-	fmr      f30, f3
-	fmr      f31, f4
-	cmplwi   r4, 0
-	beq      lbl_80242D24
-	lwz      r0, 0xc(r3)
-	li       r31, 0
-	li       r30, 0x10
-	li       r29, 0x10
-	cmpwi    r0, 2
-	li       r28, 0
-	li       r27, 0
-	li       r26, 0
-	li       r25, 0x10
-	li       r24, 0x10
-	beq      lbl_80242C7C
-	bge      lbl_80242C5C
-	cmpwi    r0, 0
-	beq      lbl_80242CB0
-	bge      lbl_80242C68
-	b        lbl_80242CB0
+	// Draw texture for UnitInfo based on rotation and
+	// m_mapUnits->m_texture
+	JUTTexture* texture = m_mapUnits->m_texture;
+	if (texture) {
+		// default first-input GX coords
+		s8 u0 = 0;
+		s8 u1 = 16;
+		s8 u2 = 16;
+		s8 u3 = 0;
 
-lbl_80242C5C:
-	cmpwi    r0, 4
-	bge      lbl_80242CB0
-	b        lbl_80242CA0
+		// default second-input GX coords
+		s8 v0 = 0;
+		s8 v1 = 0;
+		s8 v2 = 16;
+		s8 v3 = 16;
 
-lbl_80242C68:
-	li       r30, 0
-	li       r28, 0x10
-	li       r27, 0x10
-	li       r25, 0
-	b        lbl_80242CB0
+		// modify GX coords based on rotation of unit
+		switch (m_unitRotation) {
+		case 0: // facing up/default, no rotation
+			break;
+		case 1: // facing right
+			u1 = 0;
+			u3 = 16;
 
-lbl_80242C7C:
-	li       r31, 0x10
-	li       r30, 0
-	li       r29, 0
-	li       r28, 0x10
-	li       r27, 0x10
-	li       r26, 0x10
-	li       r25, 0
-	li       r24, 0
-	b        lbl_80242CB0
+			v0 = 16;
+			v2 = 0;
+			break;
+		case 2: // facing down
+			u0 = 16;
+			u1 = 0;
+			u2 = 0;
+			u3 = 16;
 
-lbl_80242CA0:
-	li       r31, 0x10
-	li       r29, 0
-	li       r26, 0x10
-	li       r24, 0
+			v0 = 16;
+			v1 = 16;
+			v2 = 0;
+			v3 = 0;
+			break;
+		case 3: // facing left
+			u0 = 16;
+			u2 = 0;
 
-lbl_80242CB0:
-	mr       r3, r4
-	li       r4, 0
-	bl       load__10JUTTextureF11_GXTexMapID
-	li       r3, 0x80
-	li       r4, 0
-	li       r5, 4
-	bl       GXBegin
-	lis      r3, 0xCC008000@ha
-	lfs      f0, lbl_8051A6D8@sda21(r2)
-	stfs     f28, 0xCC008000@l(r3)
-	stfs     f29, -0x8000(r3)
-	stfs     f0, -0x8000(r3)
-	stb      r31, -0x8000(r3)
-	stb      r27, -0x8000(r3)
-	stfs     f30, -0x8000(r3)
-	stfs     f29, -0x8000(r3)
-	stfs     f0, -0x8000(r3)
-	stb      r30, -0x8000(r3)
-	stb      r26, -0x8000(r3)
-	stfs     f30, -0x8000(r3)
-	stfs     f31, -0x8000(r3)
-	stfs     f0, -0x8000(r3)
-	stb      r29, -0x8000(r3)
-	stb      r25, -0x8000(r3)
-	stfs     f28, -0x8000(r3)
-	stfs     f31, -0x8000(r3)
-	stfs     f0, -0x8000(r3)
-	stb      r28, -0x8000(r3)
-	stb      r24, -0x8000(r3)
+			v1 = 16;
+			v3 = 0;
+			break;
+		}
+		// set GX positions and coords
+		texture->load(GX_TEXMAP0);
 
-lbl_80242D24:
-	psq_l    f31, 104(r1), 0, qr0
-	lfd      f31, 0x60(r1)
-	psq_l    f30, 88(r1), 0, qr0
-	lfd      f30, 0x50(r1)
-	psq_l    f29, 72(r1), 0, qr0
-	lfd      f29, 0x40(r1)
-	psq_l    f28, 56(r1), 0, qr0
-	lfd      f28, 0x30(r1)
-	lmw      r24, 0x10(r1)
-	lwz      r0, 0x74(r1)
-	mtlr     r0
-	addi     r1, r1, 0x70
-	blr
-	*/
+		GXBegin(GX_QUADS, GX_VTXFMT0, 4);
+		float z = 0;
+		GXPosition3f32(p0, p1, z);
+		GXTexCoord2s8(u0, v0);
+
+		GXPosition3f32(p2, p1, z);
+		GXTexCoord2s8(u1, v1);
+
+		GXPosition3f32(p2, p3, z);
+		GXTexCoord2s8(u2, v2);
+
+		GXPosition3f32(p0, p3, z);
+		GXTexCoord2s8(u3, v3);
+	}
 }
 } // namespace Game

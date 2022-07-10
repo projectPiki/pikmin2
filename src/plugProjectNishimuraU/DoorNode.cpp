@@ -66,7 +66,7 @@ DoorNode::DoorNode()
 DoorNode::DoorNode(Door& door)
 {
 	m_node.m_direction = door.m_direction;
-	m_node.m_offset = door.m_offset;
+	m_node.m_offset    = door.m_offset;
 }
 
 /*

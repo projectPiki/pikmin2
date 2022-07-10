@@ -11,7 +11,6 @@ namespace Cave {
 enum NodeType { Item = 1, Gate };
 struct RandMapScore;
 
-
 struct Adjust {
 	s32 _00; // _00
 	s32 _04; // _04
@@ -43,12 +42,12 @@ struct DoorNode : public CNode {
 	inline void reset()
 	{
 		m_node.m_direction = -1;
-		m_node.m_offset = -1;
+		m_node.m_offset    = -1;
 	}
 
 	DoorNode(Door&);
 	bool isDoorAdjust(DoorNode*);
-	
+
 	Door m_node; // _18
 };
 
@@ -98,7 +97,7 @@ struct ItemNode : public ObjectLayoutNode {
 
 struct MapUnits {
 	MapUnits(JUTTexture*);
-	
+
 	void setDoorNum(int doorNum);
 	void setUnitName(char* name);
 	void setUnitIndex(int idx);
@@ -106,7 +105,7 @@ struct MapUnits {
 	void setUnitSize(int sizeX, int sizeY);
 	void setBaseGenPtr(BaseGen* baseGen);
 	void setUnitTexture(JUTTexture*);
-	
+
 	// unused/inlined:
 	// char* getUnitName();
 	// int getUnitIndex();
@@ -115,18 +114,16 @@ struct MapUnits {
 	// int getUnitSizeY();
 	// BaseGen* getBaseGen();
 	// JUTTexture* getUnitTexture();
-	
-	DoorNode* m_doorNode;		// _00
-	AdjustNode* m_doorCounts;	// _04
-	JUTTexture* m_texture;		// _08
-	BaseGen* m_baseGen;			// _0C
-	char* m_name;				// _10
-	int m_index;				// _14
-	int m_kind;					// _18
-	int m_sizeX;				// _1C
-	int m_sizeY;				// _20
-	
-	
+
+	DoorNode* m_doorNode;     // _00
+	AdjustNode* m_doorCounts; // _04
+	JUTTexture* m_texture;    // _08
+	BaseGen* m_baseGen;       // _0C
+	char* m_name;             // _10
+	int m_index;              // _14
+	int m_kind;               // _18
+	int m_sizeX;              // _1C
+	int m_sizeY;              // _20
 };
 
 struct MapNode : public CNode {
@@ -163,8 +160,8 @@ struct EnemyUnit {
 	int _08;                  // _08
 	int m_tekiMax;            // _0C
 	// counts and max amounts for enemy types (A = easy, B = hard, C = seam hazards, F = special)
-	int m_typeCount[4];       // _10 (_10 A, _14 B, _18 C, _1C F)
-	int m_typeMax[4];         // _20 (_20 A, _24 B, _28 C, _2C F)
+	int m_typeCount[4]; // _10 (_10 A, _14 B, _18 C, _1C F)
+	int m_typeMax[4];   // _20 (_20 A, _24 B, _28 C, _2C F)
 };
 
 struct EnemyNode : public ObjectLayoutNode {
