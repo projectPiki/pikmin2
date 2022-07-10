@@ -42,8 +42,8 @@ AdjustNode::AdjustNode(Adjust* node)
  * Size:	000010
  */
 Door::Door()
-    : _00(-1)
-    , _04(-1)
+    : m_direction(-1)
+    , m_offset(-1)
 {
 }
 
@@ -65,8 +65,8 @@ DoorNode::DoorNode()
  */
 DoorNode::DoorNode(Door& door)
 {
-	m_node._00 = door._00;
-	m_node._04 = door._04;
+	m_node.m_direction = door.m_direction;
+	m_node.m_offset = door.m_offset;
 }
 
 /*
@@ -76,8 +76,8 @@ DoorNode::DoorNode(Door& door)
  */
 bool DoorNode::isDoorAdjust(DoorNode* other)
 {
-	s32 x = m_node._00;
-	s32 y = other->m_node._00;
+	s32 x = m_node.m_direction;
+	s32 y = other->m_node.m_direction;
 
 	if (!x && y == 2) {
 		return true;
