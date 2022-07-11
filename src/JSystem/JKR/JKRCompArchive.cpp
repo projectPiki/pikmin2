@@ -1,4 +1,4 @@
-#include "types.h"
+#include "JSystem/JKR/JKRArchive.h"
 
 /*
     Generated from dpostproc
@@ -63,9 +63,18 @@
  * --INFO--
  * Address:	8001BBB8
  * Size:	0000B0
+ * __ct
  */
-JKRCompArchive::JKRCompArchive(long, JKRArchive::EMountDirection)
+JKRCompArchive::JKRCompArchive(long p1, JKRArchive::EMountDirection mountDirection)
+    : JKRArchive(p1, EMM_Unk4)
+    , m_mountDirection(mountDirection)
 {
+	if (open(p1)) {
+		m_magicWord = 'RARC';
+		_28         = _54[*_48->_04];
+		sVolumeList.prepend(&_18);
+		_30 = 1;
+	}
 	/*
 	stwu     r1, -0x20(r1)
 	mflr     r0
@@ -234,7 +243,7 @@ lbl_8001BD94:
  * Address:	8001BDB8
  * Size:	00057C
  */
-void JKRCompArchive::open(long)
+bool JKRCompArchive::open(long)
 {
 	/*
 	stwu     r1, -0x30(r1)
@@ -651,7 +660,7 @@ lbl_8001C320:
  * Address:	8001C334
  * Size:	000190
  */
-void JKRCompArchive::fetchResource(JKRArchive::SDIFileEntry*, unsigned long*)
+u32 JKRCompArchive::fetchResource(JKRArchive::SDIFileEntry*, unsigned long*)
 {
 	/*
 	stwu     r1, -0x30(r1)
@@ -780,7 +789,7 @@ lbl_8001C4A0:
  * Address:	8001C4C4
  * Size:	000194
  */
-void JKRCompArchive::fetchResource(void*, unsigned long, JKRArchive::SDIFileEntry*, unsigned long*)
+void* JKRCompArchive::fetchResource(void*, unsigned long, JKRArchive::SDIFileEntry*, unsigned long*)
 {
 	/*
 	.loc_0x0:
@@ -977,7 +986,7 @@ lbl_8001C6DC:
  * Address:	8001C6FC
  * Size:	000074
  */
-void JKRCompArchive::removeResource(void*)
+bool JKRCompArchive::removeResource(void*)
 {
 	/*
 	stwu     r1, -0x20(r1)
@@ -1023,7 +1032,7 @@ lbl_8001C754:
  * Address:	8001C770
  * Size:	0001C4
  */
-void JKRCompArchive::getExpandedResSize(const void*) const
+long JKRCompArchive::getExpandedResSize(const void*) const
 {
 	/*
 	stwu     r1, -0x60(r1)

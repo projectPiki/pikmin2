@@ -181,7 +181,8 @@ struct EnemyNode : public ObjectLayoutNode {
 	int m_birthDoorIndex;   // _20
 	int m_birthCount;       // _24
 	float m_direction;      // _28
-	Vector3f m_birthPos;    // _2C, _30, _34
+	Vector3f m_birthPos;    // _2C
+	                        // _34
 };
 } // namespace Cave
 } // namespace Game

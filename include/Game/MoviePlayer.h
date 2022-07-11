@@ -1,6 +1,9 @@
 #ifndef _GAME_MOVIEPLAYER_H
 #define _GAME_MOVIEPLAYER_H
 
+#include "Camera.h"
+#include "Controller.h"
+#include "JSystem/JKR/JKRDisposer.h"
 #include "types.h"
 #include "CNode.h"
 #include "DvdThreadCommand.h"
@@ -42,17 +45,29 @@ struct Demo;
 namespace Game {
 
 struct MoviePlayArg {
-	char* m_movieName;                         // _00
-	char* m_courseName;                        // _04
-	char* _08;                                 // _08
-	IDelegate3<MovieConfig*, u32, u32>* _0C;   // _0C
-	IDelegate3<MovieConfig*, void*, u32>* _10; // _10 /* Second type is unknown. */
-	u32 _14;                                   // _14
-	Vector3f m_origin;                         // _18 /* previously called m_itemPosition */
-	float m_angle;                             // _24 /* previously called m_itemFaceDirection */
-	u32 m_naviID;                              // _28
-	u32 m_streamID;                            // _2C
-	Vector3f* m_soundPosition;                 // _30
+	inline MoviePlayArg(); // not in callmap
+	MoviePlayArg(char* p1, char* p2, IDelegate3<MovieConfig*, unsigned long, unsigned long>* p3, u32 p4);
+	// inline MoviePlayArg(char* movieName, char* IDelegate3<MovieConfig*, u32, u32>* p2, IDelegate3<MovieConfig*, void*, u32>* p3)
+	// 	: _0C(p2)
+	// 	, m_movieName(movieName)
+	// 	, m_courseName(nullptr)
+	// 	, m_origin(zero)
+	// 	, m_angle(0.0f)
+	// 	, m_naviID(0)
+	// 	, _10(p3)
+	// 	, _08(nullptr)
+	// 	, streamID(0)
+	char* m_movieName;                                           // _00
+	char* m_courseName;                                          // _04
+	char* _08;                                                   // _08
+	IDelegate3<MovieConfig*, unsigned long, unsigned long>* _0C; // _0C
+	IDelegate3<MovieConfig*, unkptr, unsigned long>* _10;        // _10 /* Second type is unknown. */
+	u32 _14;                                                     // _14
+	Vector3f m_origin;                                           // _18 /* previously called m_itemPosition */
+	float m_angle;                                               // _24 /* previously called m_itemFaceDirection */
+	u32 m_naviID;                                                // _28
+	u32 m_streamID;                                              // _2C
+	Vector3f* m_soundPosition;                                   // _30
 };
 
 // Size: 0x5C
@@ -68,12 +83,40 @@ struct MovieContext : public CNode {
 };
 
 // Size: 0x1F8
-struct MoviePlayer {
+struct MoviePlayer : JKRDisposer {
+	MoviePlayer();
+
 	virtual ~MoviePlayer(); // _00
 
-	// _00 VTBL
-	u8 _004[0x14];
-	int m_demoState;
+	void allocContexts();
+	void allocMovieHeap(unsigned long);
+	void clearContexts();
+	void clearPauseAndDraw();
+	void clearSuspendedDemo();
+	void draw(struct Graphics&);
+	void drawLoading(struct Graphics&);
+	MovieConfig* findConfig(char*, char*);
+	PlayCamera* getActiveGameCamera();
+	Navi* getActiveOrima();
+	MovieContext* getNewContext();
+	bool isPlaying(char*);
+	void loadResource();
+	bool parse(bool);
+	unknown play(MoviePlayArg&);
+	unknown play(MovieConfig*, MoviePlayArg&, bool);
+	void reset();
+	void resetFrame();
+	void setCamera(Camera*);
+	void setContext(MovieContext*, MovieConfig*, MoviePlayArg&);
+	void setPauseAndDraw(MovieConfig*);
+	void setTransform(Vector3f&, float);
+	void skip();
+	unknown start(Camera*);
+	bool stop();
+	void unsuspend(long, bool);
+	unknown update(Controller*, Controller*);
+
+	int m_demoState; // _18
 	DvdThreadCommand m_threadCommand;
 	u8 m_isPaused;
 	// TODO: Is this a quat?
@@ -117,7 +160,8 @@ struct MoviePlayer {
 	P2JME::Movie::TControl* m_movieControl;
 	u32 m_counter;
 	void* m_stbFile;
-	enum { IS_ACTIVE = 1, _1F0_UNKNOWN_2 = 2, _FORCE_INT = 0xFFFFFFFF } m_flags;
+	// TODO: This might be a BitFlag<u32> object
+	enum { IS_ACTIVE = 1, _1F0_UNKNOWN_2 = 2, _FORCE_INT = 0xFFFFFFFF } m_flags; // _1F0
 	// u32 m_isActive : 1, m_1F0_Unknown : 1;
 	JPAResourceManager* m_resourceManager;
 };

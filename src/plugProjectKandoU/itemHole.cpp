@@ -1,4 +1,29 @@
+#include "Game/AILODParm.h"
+#include "Game/BaseItem.h"
+#include "Game/GameSystem.h"
+#include "Game/ItemBarrel.h"
+#include "Game/MapMgr.h"
+#include "Game/MoviePlayer.h"
+#include "Game/Pellet.h"
+#include "Game/itemMgr.h"
+#include "Iterator.h"
+#include "JSystem/J3D/J3DModel.h"
+#include "JSystem/JKR/JKRArchive.h"
+#include "PS.h"
+#include "SysShape/Joint.h"
+#include "SysShape/Model.h"
+#include "System.h"
+#include "Vector3.h"
+#include "efx/Arg.h"
+#include "efx/WarpZone.h"
+#include "id32.h"
+#include "mapCode.h"
+#include "sysMath.h"
 #include "types.h"
+#include "nans.h"
+#include "Game/ItemHole.h"
+#include "SoundID.h"
+#include "PSSystem/SysIF.h"
 
 /*
     Generated from dpostproc
@@ -480,120 +505,22 @@ namespace Game {
  */
 void ItemHole::FSM::init(Game::CFSMItem*)
 {
-	/*
-	stwu     r1, -0x10(r1)
-	mflr     r0
-	li       r4, 3
-	stw      r0, 0x14(r1)
-	stw      r31, 0xc(r1)
-	mr       r31, r3
-	bl       "create__Q24Game30StateMachine<Q24Game8CFSMItem>Fi"
-	li       r3, 0x10
-	bl       __nw__FUl
-	or.      r4, r3, r3
-	beq      lbl_801D17A0
-	lis      r3, "__vt__Q24Game26FSMState<Q24Game8CFSMItem>"@ha
-	lis      r6, __vt__Q24Game10CItemState@ha
-	addi     r0, r3, "__vt__Q24Game26FSMState<Q24Game8CFSMItem>"@l
-	lis      r5, __vt__Q34Game8ItemHole5State@ha
-	stw      r0, 0(r4)
-	li       r7, 0
-	lis      r3, __vt__Q34Game8ItemHole11NormalState@ha
-	addi     r6, r6, __vt__Q24Game10CItemState@l
-	stw      r7, 4(r4)
-	addi     r5, r5, __vt__Q34Game8ItemHole5State@l
-	addi     r0, r3, __vt__Q34Game8ItemHole11NormalState@l
-	stw      r7, 8(r4)
-	stw      r6, 0(r4)
-	stw      r5, 0(r4)
-	stw      r0, 0(r4)
-
-lbl_801D17A0:
-	mr       r3, r31
-	bl
-"registerState__Q24Game30StateMachine<Q24Game8CFSMItem>FPQ24Game26FSMState<Q24Game8CFSMItem>"
-	li       r3, 0x14
-	bl       __nw__FUl
-	or.      r4, r3, r3
-	beq      lbl_801D17F8
-	lis      r3, "__vt__Q24Game26FSMState<Q24Game8CFSMItem>"@ha
-	lis      r6, __vt__Q24Game10CItemState@ha
-	addi     r0, r3, "__vt__Q24Game26FSMState<Q24Game8CFSMItem>"@l
-	lis      r5, __vt__Q34Game8ItemHole5State@ha
-	stw      r0, 0(r4)
-	li       r0, 1
-	lis      r3, __vt__Q34Game8ItemHole11AppearState@ha
-	li       r7, 0
-	stw      r0, 4(r4)
-	addi     r6, r6, __vt__Q24Game10CItemState@l
-	addi     r5, r5, __vt__Q34Game8ItemHole5State@l
-	addi     r0, r3, __vt__Q34Game8ItemHole11AppearState@l
-	stw      r7, 8(r4)
-	stw      r6, 0(r4)
-	stw      r5, 0(r4)
-	stw      r0, 0(r4)
-
-lbl_801D17F8:
-	mr       r3, r31
-	bl
-"registerState__Q24Game30StateMachine<Q24Game8CFSMItem>FPQ24Game26FSMState<Q24Game8CFSMItem>"
-	li       r3, 0x10
-	bl       __nw__FUl
-	or.      r4, r3, r3
-	beq      lbl_801D1850
-	lis      r3, "__vt__Q24Game26FSMState<Q24Game8CFSMItem>"@ha
-	lis      r6, __vt__Q24Game10CItemState@ha
-	addi     r0, r3, "__vt__Q24Game26FSMState<Q24Game8CFSMItem>"@l
-	lis      r5, __vt__Q34Game8ItemHole5State@ha
-	stw      r0, 0(r4)
-	li       r0, 2
-	lis      r3, __vt__Q34Game8ItemHole10CloseState@ha
-	li       r7, 0
-	stw      r0, 4(r4)
-	addi     r6, r6, __vt__Q24Game10CItemState@l
-	addi     r5, r5, __vt__Q34Game8ItemHole5State@l
-	addi     r0, r3, __vt__Q34Game8ItemHole10CloseState@l
-	stw      r7, 8(r4)
-	stw      r6, 0(r4)
-	stw      r5, 0(r4)
-	stw      r0, 0(r4)
-
-lbl_801D1850:
-	mr       r3, r31
-	bl
-"registerState__Q24Game30StateMachine<Q24Game8CFSMItem>FPQ24Game26FSMState<Q24Game8CFSMItem>"
-	lwz      r0, 0x14(r1)
-	lwz      r31, 0xc(r1)
-	mtlr     r0
-	addi     r1, r1, 0x10
-	blr
-	*/
+	create(HOLE_STATE_COUNT);
+	registerState(new NormalState());
+	registerState(new AppearState());
+	registerState(new CloseState());
 }
 
 /*
  * --INFO--
  * Address:	801D186C
  * Size:	00003C
+ * init__Q34Game8ItemHole11NormalStateFPQ24Game8CFSMItemPQ24Game8StateArg
  */
-void ItemHole::NormalState::init(Game::CFSMItem*, Game::StateArg*)
+void ItemHole::NormalState::init(Game::CFSMItem* item, Game::StateArg* arg)
 {
-	/*
-	stwu     r1, -0x10(r1)
-	mflr     r0
-	mr       r3, r4
-	lfs      f0, lbl_80519638@sda21(r2)
-	stw      r0, 0x14(r1)
-	li       r4, 1
-	stfs     f0, 0x1ec(r3)
-	lwz      r12, 0(r3)
-	lwz      r12, 0xac(r12)
-	mtctr    r12
-	bctrl
-	lwz      r0, 0x14(r1)
-	mtlr     r0
-	addi     r1, r1, 0x10
-	blr
-	*/
+	static_cast<Item*>(item)->_1EC = 0.0f;
+	item->setAlive(true);
 }
 
 /*
@@ -614,43 +541,33 @@ void ItemHole::NormalState::cleanup(Game::CFSMItem*) { }
  * --INFO--
  * Address:	801D18B0
  * Size:	00005C
+ * init__Q34Game8ItemHole11AppearStateFPQ24Game8CFSMItemPQ24Game8StateArg
  */
-void ItemHole::AppearState::init(Game::CFSMItem*, Game::StateArg*)
+void ItemHole::AppearState::init(Game::CFSMItem* item, Game::StateArg* arg)
 {
-	/*
-	stwu     r1, -0x10(r1)
-	mflr     r0
-	stw      r0, 0x14(r1)
-	stw      r31, 0xc(r1)
-	mr       r31, r4
-	li       r4, 1
-	stw      r30, 8(r1)
-	mr       r30, r3
-	mr       r3, r31
-	lwz      r12, 0(r31)
-	lwz      r12, 0xac(r12)
-	mtctr    r12
-	bctrl
-	lfs      f1, lbl_8051963C@sda21(r2)
-	lfs      f0, lbl_80519638@sda21(r2)
-	stfs     f1, 0x1ec(r31)
-	stfs     f0, 0x10(r30)
-	lwz      r31, 0xc(r1)
-	lwz      r30, 8(r1)
-	lwz      r0, 0x14(r1)
-	mtlr     r0
-	addi     r1, r1, 0x10
-	blr
-	*/
+	item->setAlive(true);
+	static_cast<Item*>(item)->_1EC = 25.0f;
+	_10                            = 0.0f;
 }
 
 /*
  * --INFO--
  * Address:	801D190C
  * Size:	000118
+ * exec__Q34Game8ItemHole11AppearStateFPQ24Game8CFSMItem
  */
-void ItemHole::AppearState::exec(Game::CFSMItem*)
+void ItemHole::AppearState::exec(Game::CFSMItem* item)
 {
+	_10 += sys->m_secondsPerFrame;
+	float v1 = -(_10 * 0.8333333f - 1.0f);
+	if (v1 <= 0.0f) {
+		efx::Arg arg;
+		arg.m_position = item->getPosition();
+		static_cast<Item*>(item)->_1E0->create(&arg);
+		transit(item, Hole_Normal, nullptr);
+		v1 = 0.0f;
+	}
+	static_cast<Item*>(item)->_1EC = v1 * 25.0f;
 	/*
 	stwu     r1, -0x40(r1)
 	mflr     r0
@@ -732,23 +649,23 @@ lbl_801D19F8:
  * Address:	801D1A24
  * Size:	000030
  */
-void FSMState<Game::CFSMItem>::transit(Game::CFSMItem*, int, Game::StateArg*)
-{
-	/*
-	stwu     r1, -0x10(r1)
-	mflr     r0
-	stw      r0, 0x14(r1)
-	lwz      r3, 8(r3)
-	lwz      r12, 0(r3)
-	lwz      r12, 0x14(r12)
-	mtctr    r12
-	bctrl
-	lwz      r0, 0x14(r1)
-	mtlr     r0
-	addi     r1, r1, 0x10
-	blr
-	*/
-}
+// void FSMState<Game::CFSMItem>::transit(Game::CFSMItem*, int, Game::StateArg*)
+// {
+// 	/*
+// 	stwu     r1, -0x10(r1)
+// 	mflr     r0
+// 	stw      r0, 0x14(r1)
+// 	lwz      r3, 8(r3)
+// 	lwz      r12, 0(r3)
+// 	lwz      r12, 0x14(r12)
+// 	mtctr    r12
+// 	bctrl
+// 	lwz      r0, 0x14(r1)
+// 	mtlr     r0
+// 	addi     r1, r1, 0x10
+// 	blr
+// 	*/
+// }
 
 /*
  * --INFO--
@@ -761,9 +678,12 @@ void ItemHole::AppearState::cleanup(Game::CFSMItem*) { }
  * --INFO--
  * Address:	801D1A58
  * Size:	00003C
+ * init__Q34Game8ItemHole10CloseStateFPQ24Game8CFSMItemPQ24Game8StateArg
  */
-void ItemHole::CloseState::init(Game::CFSMItem*, Game::StateArg*)
+void ItemHole::CloseState::init(Game::CFSMItem* item, Game::StateArg* arg)
 {
+	static_cast<Item*>(item)->_1EC = 25.0f;
+	item->setAlive(false);
 	/*
 	stwu     r1, -0x10(r1)
 	mflr     r0
@@ -787,9 +707,12 @@ void ItemHole::CloseState::init(Game::CFSMItem*, Game::StateArg*)
  * --INFO--
  * Address:	801D1A94
  * Size:	000014
+ * exec__Q34Game8ItemHole10CloseStateFPQ24Game8CFSMItem
  */
-void ItemHole::CloseState::exec(Game::CFSMItem*)
+void ItemHole::CloseState::exec(Game::CFSMItem* item)
 {
+	item->getSound_AILOD()->m_flags
+	    &= AILOD::IsMid | AILOD::IsFar | AILOD::FLAG_UNKNOWN4 | AILOD::VisibleOnViewport2 | AILOD::VisibleOnViewport3;
 	/*
 	lbz      r3, 0xd8(r4)
 	li       r0, -53
@@ -810,9 +733,36 @@ void ItemHole::CloseState::cleanup(Game::CFSMItem*) { }
  * --INFO--
  * Address:	801D1AAC
  * Size:	00025C
+ * movieUserCommand__Q34Game8ItemHole4ItemFUlPQ24Game11MoviePlayer
  */
-void ItemHole::Item::movieUserCommand(unsigned long, Game::MoviePlayer*)
+void ItemHole::Item::movieUserCommand(unsigned long p1, Game::MoviePlayer* player)
 {
+	if (p1 == 100) {
+		PelletIterator iterator;
+		iterator.first();
+		while (!iterator.isDone()) {
+			Pellet* pellet = (Pellet*)(*iterator);
+			if (pellet->isPickable() && pellet->isAlive()) {
+				Vector3f pelletPos = pellet->getPosition();
+				Vector3f holePos   = getPosition();
+				if (qdist2(pelletPos.x, pelletPos.z, holePos.x, holePos.z) - pellet->getBottomRadius() < 60.0f) {
+					pelletPos.y += 120.0f;
+					pellet->setPosition(pelletPos, false);
+				}
+			}
+			iterator.next();
+		}
+		if (player->m_flags & 2) {
+			if (_1EC != 0.0f) {
+				PSSystem::spSysIF->playSystemSe(PSSE_SY_WORK_FINISH, 0);
+			}
+			efx::Arg arg(m_position);
+			_1E0->create(&arg);
+			m_stateMachine->transit(this, Hole_Normal, nullptr);
+		} else {
+			m_stateMachine->transit(this, Hole_Appear, nullptr);
+		}
+	}
 	/*
 	stwu     r1, -0x80(r1)
 	mflr     r0
@@ -991,8 +941,32 @@ lbl_801D1CDC:
  * Address:	801D1D08
  * Size:	000108
  */
-void ItemHole::Item::interactGotKey(Game::InteractGotKey&)
+bool ItemHole::Item::interactGotKey(Game::InteractGotKey& interaction)
 {
+	if (getStateID() == Hole_Close && gameSystem->_3C & 0x20) {
+		MoviePlayArg arg;
+		arg.m_courseName            = nullptr;
+		arg.m_movieName             = "g2F_appear_hole";
+		arg._0C                     = nullptr;
+		arg.m_origin.x              = 0.0f;
+		arg.m_origin.y              = 0.0f;
+		arg.m_origin.z              = 0.0f;
+		arg.m_angle                 = 0.0f;
+		arg.m_naviID                = 0;
+		arg._10                     = nullptr;
+		arg._08                     = nullptr;
+		arg.m_streamID              = 0;
+		arg._14                     = 0;
+		arg.m_soundPosition         = nullptr;
+		arg.m_origin                = getPosition();
+		arg.m_angle                 = getFaceDir();
+		arg._10                     = gameSystem->m_section->_CC;
+		arg._0C                     = gameSystem->m_section->_C8;
+		moviePlayer->m_targetObject = this;
+		moviePlayer->play(arg);
+		return true;
+	}
+	return false;
 	/*
 	stwu     r1, -0x50(r1)
 	mflr     r0
@@ -1072,8 +1046,9 @@ lbl_801D1DFC:
  * Address:	801D1E10
  * Size:	000008
  */
-void ItemHole::Item::getFaceDir()
+float ItemHole::Item::getFaceDir()
 {
+	return m_faceDirection;
 	/*
 	lfs      f1, 0x1e8(r3)
 	blr
@@ -1084,9 +1059,19 @@ void ItemHole::Item::getFaceDir()
  * --INFO--
  * Address:	801D1E18
  * Size:	0000C0
+ * onInit__Q34Game8ItemHole4ItemFPQ24Game15CreatureInitArg
  */
-void ItemHole::Item::onInit(Game::CreatureInitArg*)
+void ItemHole::Item::onInit(Game::CreatureInitArg* arg)
 {
+	m_nodeItemMgr->setup(this);
+	setAlive(true);
+	if (arg) {
+		m_stateMachine->start(this, static_cast<InitArg*>(arg)->m_initialState, nullptr);
+	} else {
+		m_stateMachine->start(this, Hole_Normal, nullptr);
+	}
+	m_barrel        = nullptr;
+	m_faceDirection = 0.0f;
 	/*
 	stwu     r1, -0x10(r1)
 	mflr     r0
@@ -1148,29 +1133,29 @@ lbl_801D1EB0:
  * Address:	801D1ED8
  * Size:	000078
  */
-void StateMachine<Game::CFSMItem>::start(Game::CFSMItem*, int, Game::StateArg*)
-{
-	/*
-	stwu     r1, -0x20(r1)
-	mflr     r0
-	stw      r0, 0x24(r1)
-	stw      r31, 0x1c(r1)
-	mr       r31, r6
-	stw      r30, 0x18(r1)
-	mr       r30, r5
-	stw      r29, 0x14(r1)
-	mr       r29, r4
-	li       r4, 0
-	stw      r28, 0x10(r1)
-	mr       r28, r3
-	mr       r3, r29
-	bl "setCurrState__Q24Game8CFSMItemFPQ24Game26FSMState<Q24Game8CFSMItem>" mr
-	r3, r28 mr       r4, r29 lwz      r12, 0(r28) mr       r5, r30 mr       r6,
-	r31 lwz      r12, 0x14(r12) mtctr    r12 bctrl lwz      r0, 0x24(r1) lwz
-	r31, 0x1c(r1) lwz      r30, 0x18(r1) lwz      r29, 0x14(r1) lwz      r28,
-	0x10(r1) mtlr     r0 addi     r1, r1, 0x20 blr
-	*/
-}
+// void StateMachine<Game::CFSMItem>::start(Game::CFSMItem*, int, Game::StateArg*)
+// {
+// 	/*
+// 	stwu     r1, -0x20(r1)
+// 	mflr     r0
+// 	stw      r0, 0x24(r1)
+// 	stw      r31, 0x1c(r1)
+// 	mr       r31, r6
+// 	stw      r30, 0x18(r1)
+// 	mr       r30, r5
+// 	stw      r29, 0x14(r1)
+// 	mr       r29, r4
+// 	li       r4, 0
+// 	stw      r28, 0x10(r1)
+// 	mr       r28, r3
+// 	mr       r3, r29
+// 	bl "setCurrState__Q24Game8CFSMItemFPQ24Game26FSMState<Q24Game8CFSMItem>" mr
+// 	r3, r28 mr       r4, r29 lwz      r12, 0(r28) mr       r5, r30 mr       r6,
+// 	r31 lwz      r12, 0x14(r12) mtctr    r12 bctrl lwz      r0, 0x24(r1) lwz
+// 	r31, 0x1c(r1) lwz      r30, 0x18(r1) lwz      r29, 0x14(r1) lwz      r28,
+// 	0x10(r1) mtlr     r0 addi     r1, r1, 0x20 blr
+// 	*/
+// }
 
 /*
  * --INFO--
@@ -1179,6 +1164,7 @@ void StateMachine<Game::CFSMItem>::start(Game::CFSMItem*, int, Game::StateArg*)
  */
 void ItemHole::Item::changeMaterial()
 {
+	m_model->jointVisible(false, m_model->getJoint("flag")->m_jointIndex);
 	/*
 	stwu     r1, -0x10(r1)
 	mflr     r0
@@ -1210,6 +1196,38 @@ void ItemHole::Item::changeMaterial()
  */
 void ItemHole::Item::onSetPosition()
 {
+	if (mapMgr) {
+		m_position.y = mapMgr->getMinY(m_position);
+	}
+	Radar::Mgr::entry(this, Radar_Hole, 0);
+	m_boundingSphere.m_position = m_position;
+	m_boundingSphere.m_radius   = 50.0f;
+	_1E0                        = new efx::WarpZone();
+	makeTrMatrix();
+	PSMTXCopy(m_mainMatrix.m_matrix.mtxView, m_model->m_j3dModel->_24);
+	m_model->m_j3dModel->calc();
+	Matrixf* worldMatrix = m_model->m_joints[0]->getWorldMatrix();
+
+	ID32 futa('futa');
+	PlatAddInstanceArg arg1;
+	arg1.m_item     = this;
+	arg1.m_id       = futa;
+	arg1.m_platform = mgr->_88;
+	arg1._1C        = 75.0f;
+	arg1.m_matrix   = worldMatrix;
+	_1F0            = platMgr->addInstance(arg1);
+
+	ID32 side('futa');
+	PlatAddInstanceArg arg2;
+	arg2.m_item     = this;
+	arg2.m_id       = side;
+	arg2.m_platform = mgr->_8C;
+	arg2._1C        = 75.0f;
+	arg2.m_matrix   = worldMatrix;
+	_1F4            = platMgr->addInstance(arg2);
+
+	_1F0->setCollision(true);
+	_1F4->setCollision(true);
 	/*
 	stwu     r1, -0x70(r1)
 	mflr     r0
@@ -1341,9 +1359,30 @@ lbl_801D2040:
  * --INFO--
  * Address:	801D217C
  * Size:	000314
+ * initDependency__Q34Game8ItemHole4ItemFv
  */
 void ItemHole::Item::initDependency()
 {
+	bool result;
+	Iterator<BaseItem> iterator(ItemBarrel::mgr);
+	iterator.first();
+	while (!iterator.isDone()) {
+		BaseItem* item = (*iterator);
+		if (item->isAlive()) {
+			Vector3f holePos   = getPosition();
+			Vector3f barrelPos = item->getPosition();
+			if (qdist2(holePos.x, holePos.z, barrelPos.x, barrelPos.z) < 40.0f) {
+				m_barrel = static_cast<ItemBarrel::Item*>(item);
+				return;
+			}
+		}
+		iterator.next();
+	}
+	if (getStateID() == Hole_Normal) {
+		efx::Arg arg(m_position);
+		_1E0->create(&arg);
+	}
+	m_barrel = nullptr;
 	/*
 	stwu     r1, -0x50(r1)
 	mflr     r0
@@ -1580,6 +1619,9 @@ lbl_801D2478:
  */
 void ItemHole::Item::makeTrMatrix()
 {
+	Vector3f t(0.0f, getFaceDir(), 0.0f);
+	Vector3f r(m_position.x, m_position.y - _1EC, m_position.z);
+	m_mainMatrix.makeTR(t, r);
 	/*
 	stwu     r1, -0x20(r1)
 	mflr     r0
@@ -1615,8 +1657,9 @@ void ItemHole::Item::makeTrMatrix()
  * Address:	801D24F8
  * Size:	000030
  */
-void ItemHole::Item::canRide()
+bool ItemHole::Item::canRide()
 {
+	return static_cast<State*>(getCurrState())->canRide();
 	/*
 	stwu     r1, -0x10(r1)
 	mflr     r0
@@ -1638,15 +1681,17 @@ void ItemHole::Item::canRide()
  * Address:	801D2528
  * Size:	000008
  */
-u32 ItemHole::State::canRide() { return 0x0; }
+// u32 ItemHole::State::canRide() { return 0x0; }
 
 /*
  * --INFO--
  * Address:	801D2530
  * Size:	000014
  */
-void ItemHole::Item::do_setLODParm(Game::AILODParm&)
+void ItemHole::Item::do_setLODParm(Game::AILODParm& parm)
 {
+	parm.m_far   = 0.075f;
+	parm.m_close = 0.0425f;
 	/*
 	lfs      f1, lbl_80519664@sda21(r2)
 	lfs      f0, lbl_80519668@sda21(r2)
@@ -1661,7 +1706,7 @@ void ItemHole::Item::do_setLODParm(Game::AILODParm&)
  * Address:	801D2544
  * Size:	000008
  */
-u32 ItemHole::Item::sound_culling() { return 0x0; }
+bool ItemHole::Item::sound_culling() { return false; }
 
 /*
  * --INFO--
@@ -1670,6 +1715,19 @@ u32 ItemHole::Item::sound_culling() { return 0x0; }
  */
 void ItemHole::Item::doAI()
 {
+	_1E0->setRateLOD(getSound_AILOD()->m_flags & (AILOD::IsFar | AILOD::IsMid), true);
+	CFSMItem::doAI();
+	if (m_barrel) {
+		if (!m_barrel->isAlive()) {
+			m_barrel = nullptr;
+			efx::Arg arg(getPosition());
+			return _1E0->create(&arg);
+		}
+	} else {
+		if (getStateID() != Hole_Close) {
+			return PSPlayCaveHoleSound(m_soundObj);
+		}
+	}
 	/*
 	stwu     r1, -0x20(r1)
 	mflr     r0
@@ -1740,8 +1798,18 @@ lbl_801D261C:
  * Address:	801D2630
  * Size:	0000BC
  */
-void ItemHole::Item::doDirectDraw(Graphics&)
+void ItemHole::Item::doDirectDraw(Graphics& gfx)
 {
+	Matrixf v1;
+	gfx.initPrimDraw(nullptr);
+	PSMTXCopy(m_mainMatrix.m_matrix.mtxView, v1.m_matrix.mtxView);
+	v1.m_matrix.structView.ty += 10.0f;
+	GXSetLineWidth(40, 0);
+	gfx.drawAxis(50.0f, &v1);
+	gfx.initPrimDraw(nullptr);
+	Vector3f infoPos = m_position;
+	infoPos.y += 40.0f;
+	drawLODInfo(gfx, infoPos);
 	/*
 	stwu     r1, -0x50(r1)
 	mflr     r0
@@ -1798,8 +1866,9 @@ void ItemHole::Item::doDirectDraw(Graphics&)
  * Address:	801D26EC
  * Size:	000058
  */
-void ItemHole::Item::createFSM()
+CItemFSM* ItemHole::Item::createFSM()
 {
+	return new FSM();
 	/*
 	stwu     r1, -0x10(r1)
 	mflr     r0
@@ -1834,7 +1903,12 @@ lbl_801D2734:
  * Size:	00007C
  */
 ItemHole::Mgr::Mgr()
+    : TNodeItemMgr()
 {
+	setName("Hole");
+	setModelSize(1);
+	m_objectPathComponent = "user/Kando/objects/dungeon_hole";
+
 	/*
 	stwu     r1, -0x10(r1)
 	mflr     r0
@@ -1879,6 +1953,19 @@ lbl_801D2768:
  */
 void ItemHole::Mgr::onLoadResources()
 {
+	loadArchive("arc.szs");
+	loadBmd("dungeon_hole.bmd", 0, 0x20000);
+	m_modelData[0]->newSharedDisplayList(0x40000);
+	m_modelData[0]->makeSharedDL();
+	JKRArchive* archive = openTextArc("texts.szs");
+	_88                 = loadPlatform(archive, "cap_platform.bin");
+	_88                 = loadPlatform(archive, "side_platform.bin");
+	MapCode::Code code;
+	code.setCode(1, 2, true);
+	_88->setMapCodeAll(code);
+	code.setCode(1, 1, true);
+	_8C->setMapCodeAll(code);
+	closeTextArc(archive);
 	/*
 	stwu     r1, -0x20(r1)
 	mflr     r0
@@ -1952,8 +2039,13 @@ void ItemHole::Mgr::onLoadResources()
  * Address:	801D28C0
  * Size:	0000BC
  */
-void ItemHole::Mgr::setup(Game::BaseItem*)
+void ItemHole::Mgr::setup(Game::BaseItem* item)
 {
+	item->m_model = new SysShape::Model(getModelData(0), 0x20000, 2);
+	item->m_model->m_j3dModel->calc();
+	item->m_model->m_j3dModel->calcMaterial();
+	item->m_model->m_j3dModel->makeDL();
+	item->m_model->m_j3dModel->lock();
 	/*
 	stwu     r1, -0x20(r1)
 	mflr     r0
@@ -2012,8 +2104,12 @@ lbl_801D2914:
  * Address:	801D297C
  * Size:	000054
  */
-void ItemHole::Mgr::generatorBirth(Vector3f&, Vector3f&, Game::GenItemParm*)
+BaseItem* ItemHole::Mgr::generatorBirth(Vector3f& position, Vector3f& p2, Game::GenItemParm* parm)
 {
+	BaseItem* item = birth();
+	item->init(nullptr);
+	item->setPosition(position, false);
+	return item;
 	/*
 	stwu     r1, -0x10(r1)
 	mflr     r0
@@ -2140,8 +2236,10 @@ lbl_801D2AE8:
  * Address:	801D2B04
  * Size:	000074
  */
-void ItemHole::Mgr::doNew()
+BaseItem* ItemHole::Mgr::doNew()
 {
+	// TODO: Make enum for overworld object ID
+	return new Item(0x405);
 	/*
 	stwu     r1, -0x10(r1)
 	mflr     r0
@@ -2182,8 +2280,9 @@ lbl_801D2B60:
  * Address:	801D2B78
  * Size:	00000C
  */
-void ItemHole::Mgr::generatorGetID()
+u32 ItemHole::Mgr::generatorGetID()
 {
+	return 'hole';
 	/*
 	lis      r3, 0x686F6C65@ha
 	addi     r3, r3, 0x686F6C65@l
@@ -2196,8 +2295,9 @@ void ItemHole::Mgr::generatorGetID()
  * Address:	801D2B84
  * Size:	000008
  */
-void ItemHole::Item::getCreatureName()
+char* ItemHole::Item::getCreatureName()
 {
+	return "Hole";
 	/*
 	addi     r3, r2, lbl_80519670@sda21
 	blr
@@ -2209,190 +2309,190 @@ void ItemHole::Item::getCreatureName()
  * Address:	801D2B8C
  * Size:	000004
  */
-void CItemState::onDamage(Game::CFSMItem*, float) { }
+// void CItemState::onDamage(Game::CFSMItem*, float) { }
 
 /*
  * --INFO--
  * Address:	801D2B90
  * Size:	000008
  */
-u32 ItemHole::NormalState::canRide() { return 0x1; }
+// u32 ItemHole::NormalState::canRide() { return 0x1; }
 
 /*
  * --INFO--
  * Address:	801D2B98
  * Size:	000004
  */
-void FSMState<Game::CFSMItem>::init(Game::CFSMItem*, Game::StateArg*) { }
+// void FSMState<Game::CFSMItem>::init(Game::CFSMItem*, Game::StateArg*) { }
 
 /*
  * --INFO--
  * Address:	801D2B9C
  * Size:	000004
  */
-void FSMState<Game::CFSMItem>::cleanup(Game::CFSMItem*) { }
+// void FSMState<Game::CFSMItem>::cleanup(Game::CFSMItem*) { }
 
 /*
  * --INFO--
  * Address:	801D2BA0
  * Size:	000004
  */
-void FSMState<Game::CFSMItem>::resume(Game::CFSMItem*) { }
+// void FSMState<Game::CFSMItem>::resume(Game::CFSMItem*) { }
 
 /*
  * --INFO--
  * Address:	801D2BA4
  * Size:	000004
  */
-void FSMState<Game::CFSMItem>::restart(Game::CFSMItem*) { }
+// void FSMState<Game::CFSMItem>::restart(Game::CFSMItem*) { }
 
 /*
  * --INFO--
  * Address:	801D2BA8
  * Size:	000064
  */
-void StateMachine<Game::CFSMItem>::create(int)
-{
-	/*
-	stwu     r1, -0x10(r1)
-	mflr     r0
-	stw      r0, 0x14(r1)
-	li       r0, 0
-	stw      r31, 0xc(r1)
-	mr       r31, r3
-	stw      r4, 0xc(r3)
-	stw      r0, 8(r3)
-	lwz      r0, 0xc(r3)
-	slwi     r3, r0, 2
-	bl       __nwa__FUl
-	stw      r3, 4(r31)
-	lwz      r0, 0xc(r31)
-	slwi     r3, r0, 2
-	bl       __nwa__FUl
-	stw      r3, 0x10(r31)
-	lwz      r0, 0xc(r31)
-	slwi     r3, r0, 2
-	bl       __nwa__FUl
-	stw      r3, 0x14(r31)
-	lwz      r0, 0x14(r1)
-	lwz      r31, 0xc(r1)
-	mtlr     r0
-	addi     r1, r1, 0x10
-	blr
-	*/
-}
+// void StateMachine<Game::CFSMItem>::create(int)
+// {
+// 	/*
+// 	stwu     r1, -0x10(r1)
+// 	mflr     r0
+// 	stw      r0, 0x14(r1)
+// 	li       r0, 0
+// 	stw      r31, 0xc(r1)
+// 	mr       r31, r3
+// 	stw      r4, 0xc(r3)
+// 	stw      r0, 8(r3)
+// 	lwz      r0, 0xc(r3)
+// 	slwi     r3, r0, 2
+// 	bl       __nwa__FUl
+// 	stw      r3, 4(r31)
+// 	lwz      r0, 0xc(r31)
+// 	slwi     r3, r0, 2
+// 	bl       __nwa__FUl
+// 	stw      r3, 0x10(r31)
+// 	lwz      r0, 0xc(r31)
+// 	slwi     r3, r0, 2
+// 	bl       __nwa__FUl
+// 	stw      r3, 0x14(r31)
+// 	lwz      r0, 0x14(r1)
+// 	lwz      r31, 0xc(r1)
+// 	mtlr     r0
+// 	addi     r1, r1, 0x10
+// 	blr
+// 	*/
+// }
 
 /*
  * --INFO--
  * Address:	801D2C0C
  * Size:	0000AC
  */
-void StateMachine<Game::CFSMItem>::transit(Game::CFSMItem*, int, Game::StateArg*)
-{
-	/*
-	.loc_0x0:
-	  stwu      r1, -0x20(r1)
-	  mflr      r0
-	  stw       r0, 0x24(r1)
-	  rlwinm    r0,r5,2,0,29
-	  stmw      r27, 0xC(r1)
-	  mr        r28, r4
-	  mr        r27, r3
-	  mr        r29, r6
-	  lwz       r4, 0x14(r3)
-	  mr        r3, r28
-	  lwzx      r30, r4, r0
-	  bl        -0x6204
-	  mr.       r31, r3
-	  beq-      .loc_0x54
-	  lwz       r12, 0x0(r3)
-	  mr        r4, r28
-	  lwz       r12, 0x10(r12)
-	  mtctr     r12
-	  bctrl
-	  lwz       r0, 0x4(r31)
-	  stw       r0, 0x18(r27)
+// void StateMachine<Game::CFSMItem>::transit(Game::CFSMItem*, int, Game::StateArg*)
+// {
+// 	/*
+// 	.loc_0x0:
+// 	  stwu      r1, -0x20(r1)
+// 	  mflr      r0
+// 	  stw       r0, 0x24(r1)
+// 	  rlwinm    r0,r5,2,0,29
+// 	  stmw      r27, 0xC(r1)
+// 	  mr        r28, r4
+// 	  mr        r27, r3
+// 	  mr        r29, r6
+// 	  lwz       r4, 0x14(r3)
+// 	  mr        r3, r28
+// 	  lwzx      r30, r4, r0
+// 	  bl        -0x6204
+// 	  mr.       r31, r3
+// 	  beq-      .loc_0x54
+// 	  lwz       r12, 0x0(r3)
+// 	  mr        r4, r28
+// 	  lwz       r12, 0x10(r12)
+// 	  mtctr     r12
+// 	  bctrl
+// 	  lwz       r0, 0x4(r31)
+// 	  stw       r0, 0x18(r27)
 
-	.loc_0x54:
-	  lwz       r0, 0xC(r27)
-	  cmpw      r30, r0
-	  blt-      .loc_0x64
+// 	.loc_0x54:
+// 	  lwz       r0, 0xC(r27)
+// 	  cmpw      r30, r0
+// 	  blt-      .loc_0x64
 
-	.loc_0x60:
-	  b         .loc_0x60
+// 	.loc_0x60:
+// 	  b         .loc_0x60
 
-	.loc_0x64:
-	  lwz       r4, 0x4(r27)
-	  rlwinm    r0,r30,2,0,29
-	  mr        r3, r28
-	  lwzx      r31, r4, r0
-	  mr        r4, r31
-	  bl        -0x6258
-	  mr        r3, r31
-	  mr        r4, r28
-	  lwz       r12, 0x0(r31)
-	  mr        r5, r29
-	  lwz       r12, 0x8(r12)
-	  mtctr     r12
-	  bctrl
-	  lmw       r27, 0xC(r1)
-	  lwz       r0, 0x24(r1)
-	  mtlr      r0
-	  addi      r1, r1, 0x20
-	  blr
-	*/
-}
+// 	.loc_0x64:
+// 	  lwz       r4, 0x4(r27)
+// 	  rlwinm    r0,r30,2,0,29
+// 	  mr        r3, r28
+// 	  lwzx      r31, r4, r0
+// 	  mr        r4, r31
+// 	  bl        -0x6258
+// 	  mr        r3, r31
+// 	  mr        r4, r28
+// 	  lwz       r12, 0x0(r31)
+// 	  mr        r5, r29
+// 	  lwz       r12, 0x8(r12)
+// 	  mtctr     r12
+// 	  bctrl
+// 	  lmw       r27, 0xC(r1)
+// 	  lwz       r0, 0x24(r1)
+// 	  mtlr      r0
+// 	  addi      r1, r1, 0x20
+// 	  blr
+// 	*/
+// }
 
 /*
  * --INFO--
  * Address:	801D2CB8
  * Size:	000084
  */
-void StateMachine<Game::CFSMItem>::registerState(Game::FSMState<Game::CFSMItem>*)
-{
-	/*
-	.loc_0x0:
-	  lwz       r6, 0x8(r3)
-	  lwz       r0, 0xC(r3)
-	  cmpw      r6, r0
-	  bgelr-
-	  lwz       r5, 0x4(r3)
-	  rlwinm    r0,r6,2,0,29
-	  stwx      r4, r5, r0
-	  lwz       r5, 0x4(r4)
-	  cmpwi     r5, 0
-	  blt-      .loc_0x34
-	  lwz       r0, 0xC(r3)
-	  cmpw      r5, r0
-	  blt-      .loc_0x3C
+// void StateMachine<Game::CFSMItem>::registerState(Game::FSMState<Game::CFSMItem>*)
+// {
+// 	/*
+// 	.loc_0x0:
+// 	  lwz       r6, 0x8(r3)
+// 	  lwz       r0, 0xC(r3)
+// 	  cmpw      r6, r0
+// 	  bgelr-
+// 	  lwz       r5, 0x4(r3)
+// 	  rlwinm    r0,r6,2,0,29
+// 	  stwx      r4, r5, r0
+// 	  lwz       r5, 0x4(r4)
+// 	  cmpwi     r5, 0
+// 	  blt-      .loc_0x34
+// 	  lwz       r0, 0xC(r3)
+// 	  cmpw      r5, r0
+// 	  blt-      .loc_0x3C
 
-	.loc_0x34:
-	  li        r0, 0
-	  b         .loc_0x40
+// 	.loc_0x34:
+// 	  li        r0, 0
+// 	  b         .loc_0x40
 
-	.loc_0x3C:
-	  li        r0, 0x1
+// 	.loc_0x3C:
+// 	  li        r0, 0x1
 
-	.loc_0x40:
-	  rlwinm.   r0,r0,0,24,31
-	  beqlr-
-	  stw       r3, 0x8(r4)
-	  lwz       r0, 0x8(r3)
-	  lwz       r6, 0x4(r4)
-	  lwz       r5, 0x10(r3)
-	  rlwinm    r0,r0,2,0,29
-	  stwx      r6, r5, r0
-	  lwz       r0, 0x4(r4)
-	  lwz       r5, 0x8(r3)
-	  lwz       r4, 0x14(r3)
-	  rlwinm    r0,r0,2,0,29
-	  stwx      r5, r4, r0
-	  lwz       r4, 0x8(r3)
-	  addi      r0, r4, 0x1
-	  stw       r0, 0x8(r3)
-	  blr
-	*/
-}
+// 	.loc_0x40:
+// 	  rlwinm.   r0,r0,0,24,31
+// 	  beqlr-
+// 	  stw       r3, 0x8(r4)
+// 	  lwz       r0, 0x8(r3)
+// 	  lwz       r6, 0x4(r4)
+// 	  lwz       r5, 0x10(r3)
+// 	  rlwinm    r0,r0,2,0,29
+// 	  stwx      r6, r5, r0
+// 	  lwz       r0, 0x4(r4)
+// 	  lwz       r5, 0x8(r3)
+// 	  lwz       r4, 0x14(r3)
+// 	  rlwinm    r0,r0,2,0,29
+// 	  stwx      r5, r4, r0
+// 	  lwz       r4, 0x8(r3)
+// 	  addi      r0, r4, 0x1
+// 	  stw       r0, 0x8(r3)
+// 	  blr
+// 	*/
+// }
 
 } // namespace Game
 
@@ -2401,34 +2501,34 @@ void StateMachine<Game::CFSMItem>::registerState(Game::FSMState<Game::CFSMItem>*
  * Address:	801D2D3C
  * Size:	000028
  */
-void __sinit_itemHole_cpp(void)
-{
-	/*
-	lis      r4, __float_nan@ha
-	li       r0, -1
-	lfs      f0, __float_nan@l(r4)
-	lis      r3, lbl_804B7970@ha
-	stw      r0, lbl_80515AC0@sda21(r13)
-	stfsu    f0, lbl_804B7970@l(r3)
-	stfs     f0, lbl_80515AC4@sda21(r13)
-	stfs     f0, 4(r3)
-	stfs     f0, 8(r3)
-	blr
-	*/
-}
+// void __sinit_itemHole_cpp(void)
+// {
+// 	/*
+// 	lis      r4, __float_nan@ha
+// 	li       r0, -1
+// 	lfs      f0, __float_nan@l(r4)
+// 	lis      r3, lbl_804B7970@ha
+// 	stw      r0, lbl_80515AC0@sda21(r13)
+// 	stfsu    f0, lbl_804B7970@l(r3)
+// 	stfs     f0, lbl_80515AC4@sda21(r13)
+// 	stfs     f0, 4(r3)
+// 	stfs     f0, 8(r3)
+// 	blr
+// 	*/
+// }
 
-namespace Game {
+// namespace Game {
 
-/*
- * --INFO--
- * Address:	801D2D64
- * Size:	000008
- */
-ItemHole::Mgr::@48 @~Mgr()
-{
-	/*
-	addi     r3, r3, -48
-	b        __dt__Q34Game8ItemHole3MgrFv
-	*/
-}
-} // namespace Game
+// /*
+//  * --INFO--
+//  * Address:	801D2D64
+//  * Size:	000008
+//  */
+// ItemHole::Mgr::@48 @~Mgr()
+// {
+// 	/*
+// 	addi     r3, r3, -48
+// 	b        __dt__Q34Game8ItemHole3MgrFv
+// 	*/
+// }
+// } // namespace Game

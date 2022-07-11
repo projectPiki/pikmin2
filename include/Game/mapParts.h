@@ -121,15 +121,17 @@ struct PartsView : public CNode {
 	void read(Stream&);
 	void write(Stream&);
 
-	MapUnit* m_mapUnit;           // _018
-	SysShape::Model* m_model;     // _01C
-	Mtx _20;                      // _020
-	u32 _50;                      // _050
-	u32 _54;                      // _054
-	u32 _58;                      // _058
-	u32 _5C;                      // _05C
-	u32 _60;                      // _060
-	u8 _64[8];                    // _064
+	MapUnit* m_mapUnit;       // _018
+	SysShape::Model* m_model; // _01C
+	Mtx _20;                  // _020
+	u32 _50;                  // _050
+	u32 _54;                  // _054
+	u32 _58;                  // _058
+	u32 _5C;                  // _05C
+	u32 _60;                  // _060
+	u8 _64[8];                // _064
+
+	// 0=dead end, 1=room, 2=hallway ??? NOT SURE
 	u16 m_unitKind;               // _06C
 	Vector2<u8> _6E;              // _06E
 	EditorRouteMgr m_routeMgr;    // _070
@@ -234,8 +236,7 @@ struct RoomMapMgr : public MapMgr {
 	JUTTexture* getTexture(char*);
 };
 
-struct CaveVRBox {
-};
+struct CaveVRBox { };
 } // namespace Game
 
 #endif

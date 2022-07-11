@@ -1,11 +1,11 @@
-
+#include "Dolphin/os.h"
 
 /*
  * --INFO--
  * Address:	800F2B90
  * Size:	000018
  */
-void OSGetTime(void)
+u64 OSGetTime(void)
 {
 	/*
 	.loc_0x0:

@@ -1,4 +1,4 @@
-
+#include "Dolphin/os.h"
 
 /*
  * --INFO--
@@ -299,7 +299,7 @@ void GetFontSize(void)
  * Address:	800EE0A8
  * Size:	000058
  */
-void OSGetFontEncode(void)
+u16 OSGetFontEncode(void)
 {
 	/*
 	.loc_0x0:
@@ -925,7 +925,7 @@ void ExpandFontSheet(void)
  * Address:	800EE870
  * Size:	0000E0
  */
-void OSInitFont(void)
+u8 OSInitFont(void)
 {
 	/*
 	.loc_0x0:
@@ -1015,7 +1015,7 @@ void OSInitFont(void)
  * Address:	800EE950
  * Size:	0001A8
  */
-void OSGetFontTexture(void)
+char* OSGetFontTexture(const char* string, void** image, s32* x, s32* y, s32* width)
 {
 	/*
 	.loc_0x0:
@@ -1161,7 +1161,7 @@ void OSGetFontTexture(void)
  * Address:	800EEAF8
  * Size:	000140
  */
-void OSGetFontWidth(void)
+char* OSGetFontWidth(const char* string, s32* width)
 {
 	/*
 	.loc_0x0:

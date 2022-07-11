@@ -5,6 +5,21 @@
 #include "stream.h"
 
 namespace Game {
+
+// BirthCounter is entirely inlined. The data members is used statically.
+struct BirthCounter {
+	inline BirthCounter() { reset(); }
+
+	void reset();
+	int& operator()(int);
+	void read(Stream&);
+	void write(Stream&);
+
+	// u32 m_counts[PikiColorCount]; // _00
+	int m_counts[PikiColorCount - 1];
+	int m_total;
+};
+
 struct BirthMgr {
 	BirthMgr();
 
@@ -22,10 +37,22 @@ struct BirthMgr {
 	static void read(Stream&);
 	static void write(Stream&);
 
-	static u32 mToday[PikiColorCount];
-	static u32 mCave[PikiColorCount];
-	static u32 mTotal[PikiColorCount];
+	// Unused/inlined:
+	static int get_cave(int);
+	static int get_today(int);
+
+	// static u32 mToday[PikiColorCount];
+	// static u32 mCave[PikiColorCount];
+	// static u32 mTotal[PikiColorCount];
+	static union bleh {
+		BirthCounter counter;
+		u32 buffer[48];
+	} mToday;
+	// static BirthCounter mToday;
+	static BirthCounter mCave;
+	static BirthCounter mTotal;
 };
+
 } // namespace Game
 
 #endif

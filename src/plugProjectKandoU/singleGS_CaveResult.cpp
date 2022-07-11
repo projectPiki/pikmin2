@@ -1,4 +1,27 @@
+#include "Game/BirthMgr.h"
+#include "Game/DeathMgr.h"
+#include "Game/GameSystem.h"
+#include "Game/MapMgr.h"
+#include "Game/ResultTexMgr.h"
+#include "Game/StateMachine.h"
+#include "Game/gamePlayData.h"
+#include "Game/gameStages.h"
+#include "Game/generalEnemyMgr.h"
+#include "Game/mapParts.h"
+#include "Graphics.h"
+#include "IDelegate.h"
+#include "JSystem/JKR/JKRHeap.h"
+#include "JSystem/JUT/JUTException.h"
+#include "JSystem/JUT/JUTGamePad.h"
+#include "JSystem/JUT/JUTTexture.h"
+#include "PSGame/SceneInfo.h"
+#include "Screen/Game2DMgr.h"
+#include "System.h"
 #include "types.h"
+#include "TParticle2dMgr.h"
+#include "Game/SingleGame.h"
+#include "Controller.h"
+#include "nans.h"
 
 /*
     Generated from dpostproc
@@ -129,9 +152,17 @@ namespace Game {
  * --INFO--
  * Address:	8021AC20
  * Size:	0000F8
+ * __ct
  */
-SingleGame::CaveResultState::CaveResultState(void)
+SingleGame::CaveResultState::CaveResultState()
+    : State(SGS_CaveResult)
+    , _20()
+    , _80()
 {
+	_1C = new Controller(JUTGamePad::PORT_0);
+	_7C = new Delegate<CaveResultState>(this, &CaveResultState::loadResource);
+	_F4 = nullptr;
+	_F0 = nullptr;
 	/*
 	stwu     r1, -0x20(r1)
 	mflr     r0
@@ -207,8 +238,27 @@ lbl_8021ACF0:
  * Address:	8021AD18
  * Size:	000124
  */
-void SingleGame::CaveResultState::init(Game::SingleGameSection*, Game::StateArg*)
+void SingleGame::CaveResultState::init(Game::SingleGameSection* section, Game::StateArg* arg)
 {
+	playData->_EC = 0;
+	gameSystem->detachObjectMgr(generalEnemyMgr);
+	RoomMapMgr* map = (RoomMapMgr*)mapMgr;
+	// if (map != nullptr) {
+	// map = mapMgr->__vt; //???
+	// }
+	gameSystem->detachObjectMgr(map);
+	gameSystem->setPause(true, "caver-init", 3);
+	Screen::gGame2DMgr->m_screenMgr->reset();
+	Screen::gGame2DMgr->setGamePad(_1C);
+	m_section = section;
+	P2ASSERTLINE(284, arg != nullptr);
+	_10 = *(short*)arg;
+	_70 = nullptr;
+	section->refreshHIO();
+	accountEarnings(section, playData->m_caveCropMemory, true);
+	_12 = 0;
+	_74 = nullptr;
+	PSMCancelToPauseOffMainBgm();
 	/*
 	.loc_0x0:
 	  stwu      r1, -0x20(r1)
@@ -306,8 +356,26 @@ void SingleGame::CaveResultState::initNext(Game::SingleGameSection*)
  * Address:	8021AE3C
  * Size:	000240
  */
-void SingleGame::CaveResultState::loadResource(void)
+void SingleGame::CaveResultState::loadResource()
 {
+	ResultTexMgr::Arg arg;
+	arg._0C                 = 0xFF;
+	arg.m_heap              = _F0;
+	arg.m_otakaraConfigList = PelletItem::mgr->m_configList_08;
+	_74                     = arg.m_heap;
+	_70                     = new ResultTexMgr::Mgr();
+	_70->create(arg);
+	// TODO: It looks like this is a subclass of or thin wrapper around JUTTexture, given how the ctor is called.
+	// It's not an alternative ctor of JUTTexture itself, in any case.
+	JUTTexture* texture = new JUTTexture();
+	texture->_32        = 0;
+	texture->_33        = 0;
+	m_section->_168     = texture;
+	createResultNodes();
+	PSGame::SceneInfo sceneInfo;
+	sceneInfo.m_gameType = 9;
+	sceneInfo._07        = 0;
+	// TODO: PSGame/PSScene inline stuff
 	/*
 	stwu     r1, -0x60(r1)
 	mflr     r0
@@ -479,7 +547,7 @@ lbl_8021B048:
  * Address:	........
  * Size:	000134
  */
-void SingleGame::CaveResultState::open2D(Game::SingleGameSection*)
+unknown SingleGame::CaveResultState::open2D(Game::SingleGameSection*)
 {
 	// UNUSED FUNCTION
 }
@@ -489,8 +557,71 @@ void SingleGame::CaveResultState::open2D(Game::SingleGameSection*)
  * Address:	8021B07C
  * Size:	0002E8
  */
-void SingleGame::CaveResultState::exec(Game::SingleGameSection*)
+void SingleGame::CaveResultState::exec(Game::SingleGameSection* section)
 {
+	switch (_12) {
+	case 0:
+		section->clearHeap();
+		_F4 = JKRHeap::sCurrentHeap;
+		_F0 = JKRExpHeap::create(_F4->getFreeSize(), _F4, true);
+		_F0->becomeCurrentHeap();
+		_12 = 1;
+		sys->dvdLoadUseCallBack(&_80, _7C);
+		return;
+	case 1:
+		if (_80.m_mode != 2) {
+			return;
+		}
+		_18          = 1.0f;
+		_12          = 2;
+		section->_18 = section->m_wipeInFader;
+		section->m_wipeInFader->start(_18);
+		playData->clearCurrentCave();
+		playData->_19          = 2;
+		playData->_1C          = 0;
+		CourseInfo* courseInfo = section->getCurrentCourseInfo();
+		P2ASSERTLINE(381, courseInfo != nullptr);
+		s8 otakaraNum = playData->getOtakaraNum_Course_CaveID(courseInfo->m_courseIndex, *section->m_caveID);
+		s8 otakaraMax = playData->getOtakaraMax_Course_CaveID(courseInfo->m_courseIndex, *section->m_caveID);
+		DispCaveResult disp(&_20, DeathMgr::get_cave(7), otakaraNum, otakaraMax, playData->m_pokoCount, playData->_2F & 1,
+		                    (_F8 != 0 && otakaraMax <= otakaraNum));
+		DeathMgr::account_cave();
+		BirthMgr::account_cave();
+		JUT_ASSERTLINE(408, Screen::gGame2DMgr->open_CaveResult(&disp) == 0, "cannot open caveresult\n");
+		return;
+	case 2:
+		_18 -= sys->m_secondsPerFrame;
+		if (_18 < 0.0f) {
+			_12 = 3;
+		}
+		break;
+	case 3:
+		if (Screen::gGame2DMgr->check_CaveResult() == 1) {
+			LoadState::Arg arg;
+			arg._04 = _10;
+			arg._00 = 0;
+			arg._01 = 1;
+			arg._02 = 0;
+			section->loadMainMapSituation();
+			transit(section, SGS_Load, &arg);
+			return;
+		}
+	case 4:
+		_18 -= sys->m_secondsPerFrame;
+		if (_18 < 0.0f) {
+			LoadState::Arg arg;
+			arg._04 = _10;
+			arg._00 = 0;
+			arg._01 = 0;
+			arg._02 = 0;
+			section->loadMainMapSituation();
+			transit(section, SGS_Load, &arg);
+			return;
+		}
+	}
+	// These might just be part of case 2...
+	Screen::gGame2DMgr->update();
+	particle2dMgr->update();
 	/*
 	stwu     r1, -0x80(r1)
 	mflr     r0
@@ -701,8 +832,16 @@ lbl_8021B350:
  * Address:	8021B364
  * Size:	0000C0
  */
-void SingleGame::CaveResultState::draw(Game::SingleGameSection*, Graphics&)
+void SingleGame::CaveResultState::draw(Game::SingleGameSection* section, Graphics& gfx)
 {
+	gfx.m_orthoGraph.setPort();
+	if (1 < _12) {
+		gfx.m_perspGraph.setPort();
+		particle2dMgr->draw(1, 0);
+		section->draw_Ogawa2D(gfx);
+		gfx.m_perspGraph.setPort();
+		particle2dMgr->draw(0, 0);
+	}
 	/*
 	stwu     r1, -0x20(r1)
 	mflr     r0
@@ -764,6 +903,14 @@ lbl_8021B408:
  */
 void SingleGame::CaveResultState::cleanup(Game::SingleGameSection*)
 {
+	// TODO: Some PSGame inline stuff
+	playData->m_caveCropMemory->clear();
+	_14             = 0;
+	m_section->_168 = nullptr;
+	_F0->freeAll();
+	_F0->destroy();
+	_F0 = nullptr;
+	_F4->becomeCurrentHeap();
 	/*
 	stwu     r1, -0x10(r1)
 	mflr     r0
@@ -1136,41 +1283,41 @@ lbl_8021B8D0:
  * Address:	8021B8F4
  * Size:	000030
  */
-void Delegate<Game::SingleGame::CaveResultState>::invoke()
-{
-	/*
-	stwu     r1, -0x10(r1)
-	mflr     r0
-	mr       r4, r3
-	stw      r0, 0x14(r1)
-	addi     r12, r4, 8
-	lwz      r3, 4(r3)
-	bl       __ptmf_scall
-	nop
-	lwz      r0, 0x14(r1)
-	mtlr     r0
-	addi     r1, r1, 0x10
-	blr
-	*/
-}
+// void Delegate<Game::SingleGame::CaveResultState>::invoke()
+// {
+// 	/*
+// 	stwu     r1, -0x10(r1)
+// 	mflr     r0
+// 	mr       r4, r3
+// 	stw      r0, 0x14(r1)
+// 	addi     r12, r4, 8
+// 	lwz      r3, 4(r3)
+// 	bl       __ptmf_scall
+// 	nop
+// 	lwz      r0, 0x14(r1)
+// 	mtlr     r0
+// 	addi     r1, r1, 0x10
+// 	blr
+// 	*/
+// }
 
 /*
  * --INFO--
  * Address:	8021B924
  * Size:	000028
  */
-void __sinit_singleGS_CaveResult_cpp(void)
-{
-	/*
-	lis      r4, __float_nan@ha
-	li       r0, -1
-	lfs      f0, __float_nan@l(r4)
-	lis      r3, lbl_804C0700@ha
-	stw      r0, lbl_80515C08@sda21(r13)
-	stfsu    f0, lbl_804C0700@l(r3)
-	stfs     f0, lbl_80515C0C@sda21(r13)
-	stfs     f0, 4(r3)
-	stfs     f0, 8(r3)
-	blr
-	*/
-}
+// void __sinit_singleGS_CaveResult_cpp(void)
+// {
+// 	/*
+// 	lis      r4, __float_nan@ha
+// 	li       r0, -1
+// 	lfs      f0, __float_nan@l(r4)
+// 	lis      r3, lbl_804C0700@ha
+// 	stw      r0, lbl_80515C08@sda21(r13)
+// 	stfsu    f0, lbl_804C0700@l(r3)
+// 	stfs     f0, lbl_80515C0C@sda21(r13)
+// 	stfs     f0, 4(r3)
+// 	stfs     f0, 8(r3)
+// 	blr
+// 	*/
+// }

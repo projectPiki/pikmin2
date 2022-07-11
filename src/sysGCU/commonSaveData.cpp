@@ -1,4 +1,5 @@
 #include "Dolphin/os.h"
+#include "Dolphin/vi.h"
 #include "Game/Data.h"
 #include "JSystem/JAI/JAIGlobalParameter.h"
 #include "JSystem/JUT/JUTException.h"
@@ -76,7 +77,7 @@ void Mgr::setDefault(void)
 	_3A            = -1;
 	_3B            = 1;
 	_3C            = 1;
-	_3D            = 1;
+	m_deflicker    = true;
 	m_region       = sys->m_region;
 	_18            = 0;
 	_1C            = 0;
@@ -126,55 +127,20 @@ void CommonSaveData::Mgr::resetCardSerialNo(void)
  * Address:	80446D5C
  * Size:	0000AC
  */
-void CommonSaveData::Mgr::write(Stream&)
+void CommonSaveData::Mgr::write(Stream& output)
 {
-	/*
-	stwu     r1, -0x10(r1)
-	mflr     r0
-	stw      r0, 0x14(r1)
-	stw      r31, 0xc(r1)
-	mr       r31, r4
-	li       r4, 0
-	stw      r30, 8(r1)
-	mr       r30, r3
-	stw      r4, 0xc(r31)
-	lwz      r0, 0xc(r31)
-	cmpwi    r0, 1
-	bne      lbl_80446D90
-	stw      r4, 0x414(r31)
-
-lbl_80446D90:
-	lbz      r4, 0x38(r30)
-	mr       r3, r31
-	bl       writeByte__6StreamFUc
-	lbz      r4, 0x39(r30)
-	mr       r3, r31
-	bl       writeByte__6StreamFUc
-	lbz      r4, 0x3a(r30)
-	mr       r3, r31
-	bl       writeByte__6StreamFUc
-	lbz      r4, 0x3b(r30)
-	mr       r3, r31
-	bl       writeByte__6StreamFUc
-	lbz      r4, 0x3c(r30)
-	mr       r3, r31
-	bl       writeByte__6StreamFUc
-	lbz      r4, 0x3d(r30)
-	mr       r3, r31
-	bl       writeByte__6StreamFUc
-	lbz      r4, 0x3e(r30)
-	mr       r3, r31
-	bl       writeByte__6StreamFUc
-	mr       r3, r30
-	mr       r4, r31
-	bl       write__Q24Game14PlayCommonDataFR6Stream
-	lwz      r0, 0x14(r1)
-	lwz      r31, 0xc(r1)
-	lwz      r30, 8(r1)
-	mtlr     r0
-	addi     r1, r1, 0x10
-	blr
-	*/
+	output.m_mode = STREAM_MODE_BINARY;
+	if (output.m_mode == STREAM_MODE_TEXT) {
+		output.m_tabCount = 0;
+	}
+	output.writeByte(m_soundMode);
+	output.writeByte(_39);
+	output.writeByte(_3A);
+	output.writeByte(_3B);
+	output.writeByte(_3C);
+	output.writeByte(m_deflicker);
+	output.writeByte(m_region);
+	PlayCommonData::write(output);
 }
 
 /*
@@ -193,7 +159,7 @@ void CommonSaveData::Mgr::read(Stream& input)
 	_3A         = input.readByte();
 	_3B         = input.readByte();
 	_3C         = input.readByte();
-	_3D         = input.readByte();
+	m_deflicker = input.readByte();
 	m_region    = input.readByte();
 	PlayCommonData::read(input);
 }
@@ -326,15 +292,17 @@ void CommonSaveData::Mgr::resetPlayer(signed char fileIndex)
  * Address:	80446FC8
  * Size:	000030
  */
-void CommonSaveData::Mgr::setDeflicker() { setDeflicker(_3D); }
+void CommonSaveData::Mgr::setDeflicker() { setDeflicker(m_deflicker); }
 
 /*
  * --INFO--
  * Address:	80446FF8
  * Size:	0000D0
  */
-void CommonSaveData::Mgr::setDeflicker(bool)
+void CommonSaveData::Mgr::setDeflicker(bool deflicker)
 {
+	_GXRenderModeObj* obj = System::getRenderModeObj();
+	m_deflicker           = deflicker;
 	/*
 	stwu     r1, -0x10(r1)
 	mflr     r0

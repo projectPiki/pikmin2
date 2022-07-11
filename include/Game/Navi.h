@@ -2,6 +2,12 @@
 #define _GAME_NAVI_H
 
 #include "Color4.h"
+#include "JSystem/J2D/J2DGrafContext.h"
+#include "JSystem/J3D/J3DModel.h"
+#include "JSystem/JSupport/JSUList.h"
+#include "MonoObjectMgr.h"
+#include "Sys/MatBaseAnimation.h"
+#include "SysShape/Model.h"
 #include "efx/TChaseMtx.h"
 #include "Game/FakePiki.h"
 #include "Game/PelletView.h"
@@ -20,6 +26,7 @@
 struct Controller;
 
 namespace PSM {
+struct DirectorUpdator;
 struct Navi;
 } // namespace PSM
 
@@ -323,15 +330,79 @@ struct NaviFSM : public StateMachine<Navi> {
 	virtual void start(struct Navi*, int, StateArg*);
 };
 
-struct NaviMgr {
-	virtual Navi* birth();
+/**
+ * @size{0xC64}
+ * TODO
+ */
+struct NaviParms {
+	NaviParms();
+};
 
+/**
+ * @fabricatedName
+ */
+struct INaviMgr {
+	virtual void killAll()       = 0; // _00
+	virtual char* getMgrName()   = 0; // _04
+	virtual bool frozenable()    = 0; // _08
+	virtual void loadResources() = 0; // _0C
+};
+
+struct NaviMgr : MonoObjectMgr<Navi> {
+	NaviMgr();
+
+	// vtable 1
+	virtual ~NaviMgr(); // _00
+
+	// vtable 2
+	virtual void doAnimation();          // _30 (thunk at _00)
+	virtual void doEntry();              // _34 (thunk at _04)
+	virtual void doSimulation(float p1); // _40 (thunk at _10)
+	virtual Navi* birth();               // _48
+	virtual void resetMgr();             // _4C (thunk at _20)
+
+	// vtable 3 ("INaviMgr")
+	virtual void killAll();       // _00
+	virtual char* getMgrName();   // _04
+	virtual bool frozenable();    // _08  (thunk at _28 of vt 2)
+	virtual void loadResources(); // _0C (thunk at _1C of vt 2)
+
+	void clearDeadCount();
+	SysShape::Model* createModel(int);
+	void createPSMDirectorUpdator();
+	Navi* getActiveNavi();
+	int getAliveCount();
+	Navi* getAliveOrima(int);
+	Navi* getDeadOrima(int);
+	void informOrimaDead(int);
+	void load();
+	void loadResources_float();
+	void setMovieDraw(bool);
+	void setupSoundViewerAndBas();
 	void setupNavi(Navi*);
 
-	u8 _00[0x54];
-	int naviIndexArray[2]; // _54
-	u8 _5C[0x70];
-	CollPartFactory* _CC;
+	// Unused/inlined:
+	unknown init();
+	Navi* getSurviveNavi();
+	unknown draw2d(J2DGrafContext&);
+
+	// VT 3 pointer is at _30
+	JKRHeap* _34;                   // _34
+	JSUPtrLink _38;                 // _38
+	unknown _48;                    // _48
+	PSM::DirectorUpdator* _4C;      // _4C
+	int m_naviCount;                // _50
+	int naviIndexArray[2];          // _54
+	u8 _5C;                         // _5C
+	Sys::MatTevRegAnimation _60[2]; // _60
+	Sys::MatTevRegAnimation _88[2]; // _88
+	J3DModelData* _B0;              // _B0
+	J3DModelData* _B4;              // _B4
+	J3DModelData* _B8;              // _B8
+	u8 _BC[8];                      // _BC
+	J3DModelData* _C4;              // _C4
+	NaviParms* _C8;                 // _C8
+	CollPartFactory* _CC;           // _CC
 };
 
 extern NaviMgr* naviMgr;

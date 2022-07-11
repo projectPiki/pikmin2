@@ -107,6 +107,7 @@ void Caption::Node::read(Stream& input)
  * --INFO--
  * Address:	8045094C
  * Size:	0000D4
+ * __ct
  */
 Caption::Mgr::Mgr(void)
     : CNode("キャプションマネージャ")
@@ -245,7 +246,7 @@ void Caption::Mgr::read(Stream& input)
 		Node* node = new Node();
 		add(node);
 	}
-	for (Node* node = (Node*)_10; node != nullptr; node = (Node*)node->_04) {
+	for (Node* node = (Node*)m_child; node != nullptr; node = (Node*)node->m_next) {
 		node->read(input);
 	}
 	/*
@@ -337,12 +338,12 @@ lbl_80450B8C:
  */
 void Caption::Mgr::reset(void)
 {
-	for (Node* node = (Node*)_10; node != nullptr; node = (Node*)node->_04) {
+	for (Node* node = (Node*)m_child; node != nullptr; node = (Node*)node->m_next) {
 		node->del();
 	}
 	del();
-	_10    = nullptr;
-	m_node = nullptr;
+	m_child = nullptr;
+	m_node  = nullptr;
 	resetMessageObjs();
 }
 

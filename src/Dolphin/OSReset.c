@@ -1,11 +1,11 @@
-
+#include "Dolphin/os.h"
 
 /*
  * --INFO--
  * Address:	800F02A4
  * Size:	000084
  */
-void OSRegisterResetFunction(void)
+void OSRegisterResetFunction(OSFunctionInfo* info)
 {
 	/*
 	.loc_0x0:

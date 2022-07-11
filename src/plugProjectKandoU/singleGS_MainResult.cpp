@@ -1,4 +1,6 @@
 #include "types.h"
+#include "nans.h"
+#include "Game/SingleGame.h"
 
 /*
     Generated from dpostproc
@@ -406,7 +408,7 @@ void SingleGame::MainResultState::loadResource(void)
  * Address:	........
  * Size:	000148
  */
-void SingleGame::MainResultState::open2D(Game::SingleGameSection*)
+unknown SingleGame::MainResultState::open2D(Game::SingleGameSection*)
 {
 	// UNUSED FUNCTION
 }

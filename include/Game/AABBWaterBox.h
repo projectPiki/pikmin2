@@ -2,6 +2,7 @@
 #define _GAME_AABBWATERBOX_H
 
 #include "BoundBox.h"
+#include "Graphics.h"
 #include "JSystem/J3D/J3DModel.h"
 #include "JSystem/J3D/J3DTexture.h"
 #include "Sys/MatBaseAnimator.h"
@@ -35,19 +36,19 @@ struct WaterBox {
 	{
 		return false;
 	}
-	virtual bool inWater2d(Sys::Sphere&);        // _04
-	virtual float getSeaLevel()      = 0;        // _08
-	virtual float* getSeaHeightPtr() = 0;        // _0C
-	virtual bool update()            = 0;        // _10
-	virtual void startDown(float);               // _14
-	virtual void startUp(float);                 // _18
-	virtual void directDraw(struct Graphics&);   // _1C
-	virtual void doAnimation();                  // _20
-	virtual void doEntry();                      // _24
-	virtual void doSetView(int);                 // _28
-	virtual void doViewCalc();                   // _2C
-	virtual void doSimulation(float);            // _30
-	virtual void doDirectDraw(struct Graphics&); // _34
+	virtual bool inWater2d(Sys::Sphere&); // _04
+	virtual float getSeaLevel()      = 0; // _08
+	virtual float* getSeaHeightPtr() = 0; // _0C
+	virtual bool update()            = 0; // _10
+	virtual void startDown(float);        // _14
+	virtual void startUp(float);          // _18
+	virtual void directDraw(Graphics&);   // _1C
+	virtual void doAnimation();           // _20
+	virtual void doEntry();               // _24
+	virtual void doSetView(int);          // _28
+	virtual void doViewCalc();            // _2C
+	virtual void doSimulation(float);     // _30
+	virtual void doDirectDraw(Graphics&); // _34
 	virtual void attachModel(J3DModelData*, Sys::MatTexAnimation*,
 	                         float); // _38
 	virtual void calcMatrix();       // _3C
@@ -58,18 +59,18 @@ struct WaterBox {
 struct AABBWaterBox : public WaterBox {
 	AABBWaterBox();
 
-	virtual bool inWater(Sys::Sphere&);        // _00
-	virtual bool inWater2d(Sys::Sphere&);      // _04
-	virtual float getSeaLevel();               // _08
-	virtual float* getSeaHeightPtr();          // _0C
-	virtual bool update();                     // _10
-	virtual void startDown(float);             // _14
-	virtual void startUp(float);               // _18
-	virtual void directDraw(struct Graphics&); // _1C
-	virtual void doAnimation();                // _20
-	virtual void doEntry();                    // _24
-	virtual void doSetView(int);               // _28
-	virtual void doViewCalc();                 // _2C
+	virtual bool inWater(Sys::Sphere&);   // _00
+	virtual bool inWater2d(Sys::Sphere&); // _04
+	virtual float getSeaLevel();          // _08
+	virtual float* getSeaHeightPtr();     // _0C
+	virtual bool update();                // _10
+	virtual void startDown(float);        // _14
+	virtual void startUp(float);          // _18
+	virtual void directDraw(Graphics&);   // _1C
+	virtual void doAnimation();           // _20
+	virtual void doEntry();               // _24
+	virtual void doSetView(int);          // _28
+	virtual void doViewCalc();            // _2C
 	virtual void attachModel(J3DModelData*, Sys::MatTexAnimation*,
 	                         float); // _38
 	virtual void calcMatrix();       // _3C

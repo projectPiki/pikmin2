@@ -1,3 +1,4 @@
+#include "Dolphin/os.h"
 #include "JSystem/JKR/JKRDecomp.h"
 #include "JSystem/JKR/Aram.h"
 #include "JSystem/JKR/JKRHeap.h"
@@ -45,7 +46,7 @@ JKRDecomp* JKRDecomp::create(long p1)
 {
 	JKRDecomp* thread = sDecompObject;
 	if (sDecompObject == nullptr) {
-		thread = new JKRDecomp(p1);
+		thread = new (JKRHeap::sSystemHeap, 0) JKRDecomp(p1);
 	}
 	sDecompObject = thread;
 	return sDecompObject;
@@ -85,33 +86,12 @@ lbl_8001C97C:
  * --INFO--
  * Address:	8001C994
  * Size:	000050
+ * __ct
  */
 JKRDecomp::JKRDecomp(long p1)
     : JKRThread(0x4000, 0x10, p1)
 {
-	OSResumeThread(m_osThread);
-	/*
-	stwu     r1, -0x10(r1)
-	mflr     r0
-	mr       r6, r4
-	li       r4, 0x4000
-	stw      r0, 0x14(r1)
-	li       r5, 0x10
-	stw      r31, 0xc(r1)
-	mr       r31, r3
-	bl       __ct__9JKRThreadFUlii
-	lis      r3, __vt__9JKRDecomp@ha
-	addi     r0, r3, __vt__9JKRDecomp@l
-	stw      r0, 0(r31)
-	lwz      r3, 0x2c(r31)
-	bl       OSResumeThread
-	lwz      r0, 0x14(r1)
-	mr       r3, r31
-	lwz      r31, 0xc(r1)
-	mtlr     r0
-	addi     r1, r1, 0x10
-	blr
-	*/
+	OSResumeThread(m_thread);
 }
 
 /*
@@ -597,34 +577,17 @@ void JKRDecomp::decodeSZS(unsigned char*, unsigned char*, unsigned long, unsigne
  * Address:	8001CEF0
  * Size:	000050
  */
-JKRDecomp::CompressionMode JKRDecomp::checkCompressed(u8*)
+JKRDecomp::CompressionMode JKRDecomp::checkCompressed(u8* p1)
 {
-	/*
-	lbz      r0, 0(r3)
-	cmpwi    r0, 0x59
-	bne      lbl_8001CF38
-	lbz      r0, 1(r3)
-	cmpwi    r0, 0x61
-	bne      lbl_8001CF38
-	lbz      r0, 3(r3)
-	cmpwi    r0, 0x30
-	bne      lbl_8001CF38
-	lbz      r0, 2(r3)
-	cmpwi    r0, 0x79
-	bne      lbl_8001CF28
-	li       r3, 1
-	blr
-
-lbl_8001CF28:
-	cmpwi    r0, 0x7a
-	bne      lbl_8001CF38
-	li       r3, 2
-	blr
-
-lbl_8001CF38:
-	li       r3, 0
-	blr
-	*/
+	if (p1[0] == 'Y' && p1[1] == 'a' && p1[3] == '0') {
+		if (p1[2] == 'y') {
+			return YAY0;
+		}
+		if (p1[2] == 'z') {
+			return YAZ0;
+		}
+	}
+	return NOT_COMPRESSED;
 }
 
 /*
@@ -634,6 +597,11 @@ lbl_8001CF38:
  */
 JKRDecompCommand::JKRDecompCommand()
 {
+	OSInitMessageQueue(&_28, m_messageBuffer, 1);
+	m_callback = nullptr;
+	_1C        = nullptr;
+	_18        = nullptr;
+	_20        = 0;
 	/*
 	stwu     r1, -0x10(r1)
 	mflr     r0

@@ -134,7 +134,7 @@ struct Mgr : public PlayCommonData {
 	s8 _3A;             // _3A
 	u8 _3B;             // _3B
 	u8 _3C;             // _3C
-	u8 _3D;             // _3D
+	bool m_deflicker;   // _3D
 	char m_region;      // _3E
 	char _3F;           // _3F
 	u8 _40;             // _40

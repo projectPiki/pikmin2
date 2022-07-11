@@ -1,4 +1,6 @@
 #include "types.h"
+#include "nans.h"
+#include "Game/SingleGame.h"
 
 /*
     Generated from dpostproc
@@ -1018,7 +1020,7 @@ lbl_80213E48:
  * Address:	........
  * Size:	000174
  */
-void SingleGame::GameState::gameStart(Game::SingleGameSection*)
+unknown SingleGame::GameState::gameStart(Game::SingleGameSection*)
 {
 	// UNUSED FUNCTION
 }
@@ -1028,7 +1030,7 @@ void SingleGame::GameState::gameStart(Game::SingleGameSection*)
  * Address:	80213E5C
  * Size:	000288
  */
-void SingleGame::GameState::check_DemoInout(Game::SingleGameSection*)
+bool SingleGame::GameState::check_DemoInout(Game::SingleGameSection*)
 {
 	/*
 	stwu     r1, -0xb0(r1)
@@ -4972,7 +4974,7 @@ lbl_802173F4:
  * Address:	80217410
  * Size:	0000A8
  */
-void SingleGame::GameState::updateRepayDemo(void)
+SingleGame::GameState::RepayDemoState SingleGame::GameState::updateRepayDemo()
 {
 	/*
 	stwu     r1, -0x10(r1)

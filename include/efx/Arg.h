@@ -7,6 +7,11 @@
 
 namespace efx {
 struct Arg {
+	inline Arg()
+	    : m_position(Vector3f::zero)
+	{
+	}
+
 	Arg(const Vector3f& position)
 	    : m_position(position)
 	{

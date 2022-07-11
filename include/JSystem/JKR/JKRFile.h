@@ -83,4 +83,8 @@ struct JKRDvdFile : public JKRFile {
 	static JSUList<JKRDvdFile> sDvdList;
 };
 
+struct JKRFileFinder {
+	virtual ~JKRFileFinder(); // _00
+};
+
 #endif

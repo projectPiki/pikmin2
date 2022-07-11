@@ -9,9 +9,9 @@ struct Tube {
 	inline Tube() {};
 	Tube(Vector3f&, Vector3f&, float, float);
 
-	void getAxisVector(Vector3f&);
+	float getAxisVector(Vector3f&);
 	void collide(Sphere&, Vector3f&, float&);
-	void getPosRatio(const Vector3f&);
+	float getPosRatio(const Vector3f&);
 	Vector3f setPos(float);
 
 	// Unused/inlined:
