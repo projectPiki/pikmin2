@@ -59,4 +59,11 @@ struct JUTException : public JKRThread {
 	}                                                                           \
 	P2ASSERTLINE(line, check##line)
 
+#define P2ASSERTBOUNDSINCLUSIVELINE(line, lowerLimitInclusive, var, upperLimitInclusive) \
+	bool check##line = false;                                                   \
+	if (lowerLimitInclusive <= var && var <= upperLimitInclusive) {              \
+		check##line = true;                                                     \
+	}                                                                           \
+	P2ASSERTLINE(line, check##line)
+
 #endif
