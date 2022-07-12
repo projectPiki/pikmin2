@@ -68,6 +68,12 @@
         .4byte 0x80000000
 */
 
+#include "PikiAI.h"
+
+namespace PikiAI {
+struct ActFree { };
+} // namespace PikiAI
+
 /*
  * --INFO--
  * Address:	8019FF38
