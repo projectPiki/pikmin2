@@ -75,7 +75,7 @@ void PikiAI::ActFree::init(PikiAI::ActionArg* arg)
 
 	PikiAI::ActFreeArg* freeArg = (PikiAI::ActFreeArg*)arg;
 
-	m_currentAction = PIKI_ACT_FREE_DEFAULT;
+	m_state = PIKIAI_FREE_DEFAULT;
 	if (freeArg) {
 		char* name     = arg->getName();
 		bool isFreeArg = strcmp("ActFreeArg", name) == 0;
@@ -83,12 +83,12 @@ void PikiAI::ActFree::init(PikiAI::ActionArg* arg)
 
 		freeArg = (PikiAI::ActFreeArg*)arg;
 		if (freeArg->_04) {
-			m_currentAction = PIKI_ACT_FREE_GATHER;
+			m_state = PIKIAI_FREE_GATHER;
 		}
 	}
 
-	switch (m_currentAction) {
-	case PIKI_ACT_FREE_GATHER:
+	switch (m_state) {
+	case PIKIAI_FREE_GATHER:
 		GatherActionArg gatherArg(freeArg);
 		m_actGather->init(&gatherArg);
 		break;
@@ -112,11 +112,11 @@ void PikiAI::ActFree::init(PikiAI::ActionArg* arg)
  */
 s32 PikiAI::ActFree::exec(void)
 {
-	switch (m_currentAction) {
-	case PIKI_ACT_FREE_GATHER: {
+	switch (m_state) {
+	case PIKIAI_FREE_GATHER: {
 		// If we finished the gather state
 		if (m_actGather->exec() == 0) {
-			m_currentAction = PIKI_ACT_FREE_DEFAULT;
+			m_state = PIKIAI_FREE_DEFAULT;
 
 			// Wait for a bit of time to cool off
 			u16 frameDelay = 30 * randFloat();
@@ -125,7 +125,7 @@ s32 PikiAI::ActFree::exec(void)
 		break;
 	}
 
-	case PIKI_ACT_FREE_BORE: {
+	case PIKIAI_FREE_BORE: {
 		s32 status = m_actBore->exec();
 
 		// Let's try invoke the AI, and finish the boredom if we succeed
@@ -137,8 +137,8 @@ s32 PikiAI::ActFree::exec(void)
 
 		// Assuming we finished or failed being bored, we'll be free again
 		if (status == 0 || status == 2) {
-			m_currentAction = PIKI_ACT_FREE_DEFAULT;
-			m_delayTimer    = 90;
+			m_state      = PIKIAI_FREE_DEFAULT;
+			m_delayTimer = 90;
 		}
 		break;
 	}
@@ -157,7 +157,7 @@ s32 PikiAI::ActFree::exec(void)
 			m_delayTimer--;
 		} else if (randFloat() > 0.5f) {
 			m_actBore->init(nullptr);
-			m_currentAction = PIKI_ACT_FREE_BORE;
+			m_state = PIKIAI_FREE_BORE;
 		}
 
 		break;
@@ -230,7 +230,7 @@ char* PikiAI::GatherActionArg::getName() { return "GatherActionArg"; }
  * Address:	801A04B0
  * Size:	000008
  */
-u32 PikiAI::ActFree::getNextAIType() { return PIKI_ACT_FREE_BORE; }
+u32 PikiAI::ActFree::getNextAIType() { return PIKIAI_FREE_BORE; }
 
 /*
  * --INFO--
