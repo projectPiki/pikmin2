@@ -8,6 +8,7 @@
 
 namespace Game {
 struct ObjectLayoutNode : public CNode {
+
 	virtual int getObjectId()   = 0;
 	virtual u32 getObjectType() = 0;
 	virtual int getBirthCount() = 0;
