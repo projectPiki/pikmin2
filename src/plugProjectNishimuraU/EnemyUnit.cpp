@@ -3,65 +3,9 @@
 #include "Game/Cave/RandMapMgr.h"
 #include "Game/Cave/math.h"
 
-/*
-    Generated from dpostproc
-
-    .section .data, "wa"  # 0x8049E220 - 0x804EFC20
-    .global __vt__Q34Game4Cave9EnemyNode
-    __vt__Q34Game4Cave9EnemyNode:
-        .4byte 0
-        .4byte 0
-        .4byte __dt__Q34Game4Cave9EnemyNodeFv
-        .4byte getChildCount__5CNodeFv
-        .4byte getObjectId__Q34Game4Cave9EnemyNodeFv
-        .4byte getObjectType__Q34Game4Cave9EnemyNodeFv
-        .4byte getBirthCount__Q34Game4Cave9EnemyNodeFv
-        .4byte getDirection__Q34Game4Cave9EnemyNodeFv
-        .4byte getBirthDoorIndex__Q34Game4Cave9EnemyNodeFv
-        .4byte getBirthPosition__Q34Game4Cave9EnemyNodeFRfRf
-        .4byte getExtraCode__Q34Game4Cave9EnemyNodeFv
-        .4byte isFixedBattery__Q24Game16ObjectLayoutNodeFv
-    .global __vt__Q24Game16ObjectLayoutNode
-    __vt__Q24Game16ObjectLayoutNode:
-        .4byte 0
-        .4byte 0
-        .4byte __dt__Q24Game16ObjectLayoutNodeFv
-        .4byte getChildCount__5CNodeFv
-        .4byte 0
-        .4byte 0
-        .4byte 0
-        .4byte getDirection__Q24Game16ObjectLayoutNodeFv
-        .4byte getBirthDoorIndex__Q24Game16ObjectLayoutNodeFv
-        .4byte getBirthPosition__Q24Game16ObjectLayoutNodeFRfRf
-        .4byte getExtraCode__Q24Game16ObjectLayoutNodeFv
-        .4byte isFixedBattery__Q24Game16ObjectLayoutNodeFv
-
-    .section .sdata2, "a"     # 0x80516360 - 0x80520E40
-    .global lbl_8051A708
-    lbl_8051A708:
-        .4byte 0x00000000
-    .global lbl_8051A70C
-    lbl_8051A70C:
-        .4byte 0x47000000
-    .global lbl_8051A710
-    lbl_8051A710:
-        .4byte 0x40C90FDB
-    .global lbl_8051A714
-    lbl_8051A714:
-        .4byte 0xC3A2F983
-    .global lbl_8051A718
-    lbl_8051A718:
-        .4byte 0x43A2F983
-        .4byte 0x00000000
-    .global lbl_8051A720
-    lbl_8051A720:
-        .4byte 0x43300000
-        .4byte 0x80000000
-*/
-
 namespace Game {
-
 namespace Cave {
+
 /*
  * --INFO--
  * Address:	802440F4
@@ -82,15 +26,17 @@ EnemyNode::EnemyNode()
     m_birthPos.x = 0.0f;
 }
 
-} // namespace Cave
-/*
- * --INFO--
- * Address:	80244168
- * Size:	000060
- */
+// } // namespace Cave
+
+// /*
+//  * --INFO--
+//  * Address:	80244168
+//  * Size:	000060
+//  */
+// // in Game/Cave/ObjectLayout.h 
 // ObjectLayoutNode::~ObjectLayoutNode(void) { }
 
-namespace Cave {
+// namespace Cave {
 
 /*
  * --INFO--
@@ -243,6 +189,8 @@ int EnemyNode::getBirthDoorIndex(void) { return m_birthDoorIndex; }
  * Address:	802444B8
  * Size:	000070
  */
+// in Game/Cave/Node.h 
 // EnemyNode::~EnemyNode(void) { }
+
 } // namespace Cave
 } // namespace Game
