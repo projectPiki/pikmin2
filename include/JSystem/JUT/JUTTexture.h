@@ -3,6 +3,7 @@
 
 #include "Dolphin/gx.h"
 #include "types.h"
+#include "JSystem/ResTIMG.h"
 
 struct JUTPalette;
 struct ResTIMG;

@@ -10,15 +10,6 @@ namespace Game {
 namespace Cave {
 enum NodeType { Item = 1, Gate };
 struct RandMapScore;
-struct EnemyUnit {
-	TekiInfo* m_tekiInfo;     // _00
-	RandMapScore* m_mapScore; // _04
-	int _08;                  // _08
-	int m_tekiMax;            // _0C
-	// counts and max amounts for enemy types (A = easy, B = hard, C = seam hazards, F = special)
-	int m_typeCount[4]; // _10 (_10 A, _14 B, _18 C, _1C F)
-	int m_typeMax[4];   // _20 (_20 A, _24 B, _28 C, _2C F)
-};
 
 struct Adjust {
 	s32 _00; // _00
@@ -33,29 +24,30 @@ struct AdjustNode : public CNode {
 
 	AdjustNode();
 	AdjustNode(Adjust*);
+	virtual ~AdjustNode();
 };
 
 struct Door {
-	s32 _00;
-	s32 _04;
+	int m_direction;
+	int m_offset;
 
 	Door();
 };
 
 struct DoorNode : public CNode {
-	Door m_node; // _18
-
 	DoorNode();
 	~DoorNode() {};
 
 	inline void reset()
 	{
-		m_node._00 = -1;
-		m_node._04 = -1;
+		m_node.m_direction = -1;
+		m_node.m_offset    = -1;
 	}
 
 	DoorNode(Door&);
 	bool isDoorAdjust(DoorNode*);
+
+	Door m_node; // _18
 };
 
 struct GateUnit {
@@ -102,6 +94,37 @@ struct ItemNode : public ObjectLayoutNode {
 	Vector3f m_position;  // _28
 };
 
+struct MapUnits {
+	MapUnits(JUTTexture*);
+
+	void setDoorNum(int doorNum);
+	void setUnitName(char* name);
+	void setUnitIndex(int idx);
+	void setUnitKind(int kind);
+	void setUnitSize(int sizeX, int sizeY);
+	void setBaseGenPtr(BaseGen* baseGen);
+	void setUnitTexture(JUTTexture*);
+
+	// unused/inlined:
+	char* getUnitName();
+	int getUnitIndex();
+	int getUnitKind();
+	int getUnitSizeX();
+	int getUnitSizeY();
+	BaseGen* getBaseGen();
+	JUTTexture* getUnitTexture();
+
+	DoorNode* m_doorNode;     // _00
+	AdjustNode* m_doorCounts; // _04
+	JUTTexture* m_texture;    // _08
+	BaseGen* m_baseGen;       // _0C
+	char* m_name;             // _10
+	int m_index;              // _14
+	int m_kind;               // _18
+	int m_sizeX;              // _1C
+	int m_sizeY;              // _20
+};
+
 struct MapNode : public CNode {
 	UnitInfo* m_unitInfo; // _18
 
@@ -128,6 +151,16 @@ struct MapNode : public CNode {
 
 	Vector3f getBaseGenGlobalPosition(BaseGen*);
 	f32 getBaseGenGlobalDirection(BaseGen*);
+};
+
+struct EnemyUnit {
+	TekiInfo* m_tekiInfo;     // _00
+	RandMapScore* m_mapScore; // _04
+	int _08;                  // _08
+	int m_tekiMax;            // _0C
+	// counts and max amounts for enemy types (A = easy, B = hard, C = seam hazards, F = special)
+	int m_typeCount[4]; // _10 (_10 A, _14 B, _18 C, _1C F)
+	int m_typeMax[4];   // _20 (_20 A, _24 B, _28 C, _2C F)
 };
 
 struct EnemyNode : public ObjectLayoutNode {
