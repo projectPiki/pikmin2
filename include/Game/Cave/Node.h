@@ -168,13 +168,17 @@ struct EnemyNode : public ObjectLayoutNode {
 	EnemyNode(EnemyUnit*, BaseGen*, int);
 	~EnemyNode() {};
 
-	void makeGlobalData(MapNode*);
-
 	virtual int getObjectId();
 	virtual u32 getObjectType();
 	virtual int getBirthCount();
 	virtual float getDirection();
+	virtual int getBirthDoorIndex();
 	virtual void getBirthPosition(float&, float&);
+	virtual u32 getExtraCode();
+
+	void makeGlobalData(MapNode*);
+	void setGlobalData(Vector3f&, float);
+	void setBirthDoorIndex(int);
 
 	EnemyUnit* m_enemyUnit; // _18
 	BaseGen* m_baseGen;     // _1C
