@@ -4,6 +4,7 @@
 namespace PSM {
 struct Piki {
 	void becomeFree();
+	void becomeNotFree();
 };
 } // namespace PSM
 
