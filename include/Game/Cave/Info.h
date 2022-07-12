@@ -35,16 +35,14 @@ struct BaseGen : public CNode {
 };
 
 struct TekiInfo : CNode {
-	// enum DropMode { NoDrop = 0x0, DropOnPikminOrLeader = 0x1, DropOnPikmin = 0x2, DropOnLeader = 0x3, DropOnCarryingPikmin = 0x4, DropFromPurpleEarthquake = 0x5 };
-
+	enum DropMode { NoDrop = 0, DropOnPikminOrLeader, DropOnPikmin, DropOnLeader, DropOnCarryingPikmin, DropFromPurpleEarthquake };
 	virtual ~TekiInfo();
 	virtual void read(Stream&);
 
 	EnemyTypeID m_enemyID;                              // _18
 	int m_weight;                                       // _1C
 	BaseGen::Type m_type;                               // _20
-	// DropMode m_dropMode;                                // _24
-	u8 m_dropMode;										// _24
+	DropMode m_dropMode;                                // _24
 	u8 _25;                                             // _25
 	Game::PelletMgr::OtakaraItemCode m_otakaraItemCode; // _26
 };
