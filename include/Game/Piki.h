@@ -1,10 +1,12 @@
 #ifndef _GAME_PIKI_H
 #define _GAME_PIKI_H
 
-#include "Game/FakePiki.h"
 #include "JAInter/Object.h"
 #include "JSystem/JUtility.h"
-#include "types.h"
+
+#include "PSM/Piki.h"
+
+#include "Game/FakePiki.h"
 
 namespace efx {
 struct Context;
@@ -78,6 +80,14 @@ struct PikiFSM {
 
 struct Piki : public FakePiki, public SysShape::MotionListener {
 	struct InvokeAIFreeArg {
+		u8 _00;
+		u8 _01;
+
+		InvokeAIFreeArg(u8 a, u8 b)
+		    : _00(a)
+		    , _01(b)
+		{
+		}
 	};
 
 	Piki();
@@ -151,7 +161,7 @@ struct Piki : public FakePiki, public SysShape::MotionListener {
 	void invokeAI();
 	void invokeAI(Game::CollEvent*, bool);
 	void invokeAI(Game::PlatEvent*);
-	void invokeAIFree(Game::Piki::InvokeAIFreeArg&);
+	bool invokeAIFree(Game::Piki::InvokeAIFreeArg&);
 	bool isMyPikmin(Game::Creature*);
 	bool isTekiFollowAI();
 	bool isThrowable();
