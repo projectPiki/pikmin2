@@ -222,7 +222,7 @@ struct Navi : public FakePiki, virtual public PelletView {
 	void disableController();
 	void enterAllPikis();
 	void findNextThrowPiki();
-	bool formationable();
+	void formationable();
 	void fountainonAllPikis(Vector3f&);
 	int getDopeCount(int);
 	void getLifeRatio();
