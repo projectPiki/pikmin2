@@ -1,6 +1,8 @@
 #ifndef _GAME_THPPLAYER_H
 #define _GAME_THPPLAYER_H
 
+#include "Graphics.h"
+#include "JSystem/JKR/JKRHeap.h"
 #include "types.h"
 #include "CNode.h"
 #include "DvdThreadCommand.h"
@@ -12,8 +14,38 @@ struct Mgr;
 }
 
 namespace Game {
+struct THPPlayerLoadResourceArg {
+	char* m_thpFileName;
+	char* m_captionFileName;
+};
+
 struct THPPlayer : public JKRDisposer, public CNode {
+	enum EMovieIndex {};
 	THPPlayer();
+
+	// vtable 1 (JKRDisposer)
+	virtual ~THPPlayer(); // _00 (thunked at vtable 2 _00)
+
+	// vtable 2 (CNode + self)
+	void update();                                                          // _08
+	virtual void draw(Graphics&);                                           // _0C
+	virtual void draw(Graphics&, long, long, unsigned long, unsigned long); // _10
+	virtual void draw(Graphics&, long, long, float);                        // _14
+
+	void load(EMovieIndex);
+	void load();
+	void loadResource();
+	void loadResource(THPPlayerLoadResourceArg&);
+	void prepare();
+	void init(JKRHeap*);
+	bool play();
+	bool pause();
+	void stop();
+	bool isFinishLoading();
+	bool isFinishPlaying();
+
+	// Unused/inlined:
+	void reset();
 
 	int _30;                          // _30
 	long _34;                         // _34

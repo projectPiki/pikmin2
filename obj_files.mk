@@ -600,7 +600,6 @@ KANDO:=\
 	$(BUILD_DIR)/asm/plugProjectKandoU/cellIterator.o\
 	$(BUILD_DIR)/asm/plugProjectKandoU/vsGS_VSGame.o\
 	$(BUILD_DIR)/src/plugProjectKandoU/gameSoundEvent.o\
-	$(BUILD_DIR)/src/plugProjectKandoU/aiBattle.o\
 	$(BUILD_DIR)/asm/plugProjectKandoU/aiBattle.o\
 	$(BUILD_DIR)/asm/plugProjectKandoU/gameDeathCount.o\
 	$(BUILD_DIR)/asm/plugProjectKandoU/aiBore.o\
@@ -630,11 +629,11 @@ NISHIMURA:=\
 	$(BUILD_DIR)/asm/plugProjectNishimuraU/ShadowCylinder.o\
 	$(BUILD_DIR)/asm/plugProjectNishimuraU/playCamera.o\
 	$(BUILD_DIR)/asm/plugProjectNishimuraU/shadowMgr.o\
-	$(BUILD_DIR)/asm/plugProjectNishimuraU/MapUnit.o\
+	$(BUILD_DIR)/src/plugProjectNishimuraU/MapUnit.o\
 	$(BUILD_DIR)/asm/plugProjectNishimuraU/MapNode.o\
 	$(BUILD_DIR)/asm/plugProjectNishimuraU/EnemyUnit.o\
 	$(BUILD_DIR)/asm/plugProjectNishimuraU/RandMapMgr.o\
-	$(BUILD_DIR)/asm/plugProjectNishimuraU/RandMapDraw.o\
+	$(BUILD_DIR)/src/plugProjectNishimuraU/RandMapDraw.o\
 	$(BUILD_DIR)/src/plugProjectNishimuraU/RandMapChecker.o\
 	$(BUILD_DIR)/asm/plugProjectNishimuraU/RandMapUnit.o\
 	$(BUILD_DIR)/asm/plugProjectNishimuraU/RandEnemyUnit.o\
@@ -758,7 +757,7 @@ NISHIMURA:=\
 	$(BUILD_DIR)/asm/plugProjectNishimuraU/Koganemushi.o\
 	$(BUILD_DIR)/asm/plugProjectNishimuraU/FtankMgr.o\
 	$(BUILD_DIR)/asm/plugProjectNishimuraU/Ftank.o\
-	$(BUILD_DIR)/asm/plugProjectNishimuraU/RandPlantUnit.o\
+	$(BUILD_DIR)/src/plugProjectNishimuraU/RandPlantUnit.o\
 	$(BUILD_DIR)/asm/plugProjectNishimuraU/HanachirashiState.o\
 	$(BUILD_DIR)/src/plugProjectNishimuraU/HanachirashiAnimator.o\
 	$(BUILD_DIR)/asm/plugProjectNishimuraU/HanachirashiMgr.o\

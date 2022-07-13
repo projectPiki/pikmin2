@@ -120,13 +120,13 @@ struct CreatureInitArg {
 	virtual const char* getName() = 0; // _00
 
 	// _00 VTBL
-	Vector3f m_position; // _04
 };
 
 struct GenArg : public CreatureInitArg {
 	virtual const char* getName(); // _00
 
 	// _00 VTBL
+	Vector3f m_position; // _04
 };
 
 struct GenBase : public Parameters {
@@ -189,7 +189,7 @@ struct GenObject : public GenBase {
 	virtual J3DModelData* getShape();                      // _20
 	virtual void updateUseList(Generator*, int);           // _24
 	virtual Creature* generate(Generator*);                // _28
-	virtual Creature* birth(GenArg*);                      // _2C
+	virtual Creature* birth(GenArg*) = 0;                  // _2C
 	virtual void generatorMakeMatrix(Matrixf&, Vector3f&); // _30
 	virtual void getDebugInfo(char*);                      // _34
 };

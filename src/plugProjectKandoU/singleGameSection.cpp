@@ -1,5 +1,12 @@
+#include "Dolphin/string.h"
+#include "Game/BaseGameSection.h"
+#include "Game/GameSystem.h"
+#include "Game/Piki.h"
+#include "Iterator.h"
+#include "Screen/Enums.h"
 #include "types.h"
 #include "Game/SingleGameSection.h"
+#include "Game/SingleGame.h"
 
 /*
     Generated from dpostproc
@@ -794,11 +801,9 @@ namespace PSM {
  * Size:	000008
  */
 bool SceneBase::isGameScene(void) { return false; }
+} // namespace PSM
 
 namespace Game {
-
-} // namespace Game
-
 /*
  * --INFO--
  * Address:	80152284
@@ -1421,24 +1426,24 @@ lbl_80152984:
  * Address:	8015299C
  * Size:	000030
  */
-void transit__Q24Game36FSMState<Game::SingleGameSection> FPQ24Game17SingleGameSectioniPQ24Game8StateArg(void)
-{
-	/*
-	.loc_0x0:
-	  stwu      r1, -0x10(r1)
-	  mflr      r0
-	  stw       r0, 0x14(r1)
-	  lwz       r3, 0x8(r3)
-	  lwz       r12, 0x0(r3)
-	  lwz       r12, 0x14(r12)
-	  mtctr     r12
-	  bctrl
-	  lwz       r0, 0x14(r1)
-	  mtlr      r0
-	  addi      r1, r1, 0x10
-	  blr
-	*/
-}
+// void transit__Q24Game36FSMState<Game::SingleGameSection> FPQ24Game17SingleGameSectioniPQ24Game8StateArg(void)
+// {
+// 	/*
+// 	.loc_0x0:
+// 	  stwu      r1, -0x10(r1)
+// 	  mflr      r0
+// 	  stw       r0, 0x14(r1)
+// 	  lwz       r3, 0x8(r3)
+// 	  lwz       r12, 0x0(r3)
+// 	  lwz       r12, 0x14(r12)
+// 	  mtctr     r12
+// 	  bctrl
+// 	  lwz       r0, 0x14(r1)
+// 	  mtlr      r0
+// 	  addi      r1, r1, 0x10
+// 	  blr
+// 	*/
+// }
 
 /*
  * --INFO--
@@ -1721,25 +1726,25 @@ lbl_80152CB4:
  * Address:	80152CE8
  * Size:	000034
  */
-void start__Q24Game40StateMachine<Game::SingleGameSection> FPQ24Game17SingleGameSectioniPQ24Game8StateArg(void)
-{
-	/*
-	.loc_0x0:
-	  stwu      r1, -0x10(r1)
-	  mflr      r0
-	  stw       r0, 0x14(r1)
-	  li        r0, 0
-	  stw       r0, 0x250(r4)
-	  lwz       r12, 0x0(r3)
-	  lwz       r12, 0x14(r12)
-	  mtctr     r12
-	  bctrl
-	  lwz       r0, 0x14(r1)
-	  mtlr      r0
-	  addi      r1, r1, 0x10
-	  blr
-	*/
-}
+// void start__Q24Game40StateMachine<Game::SingleGameSection> FPQ24Game17SingleGameSectioniPQ24Game8StateArg(void)
+// {
+// 	/*
+// 	.loc_0x0:
+// 	  stwu      r1, -0x10(r1)
+// 	  mflr      r0
+// 	  stw       r0, 0x14(r1)
+// 	  li        r0, 0
+// 	  stw       r0, 0x250(r4)
+// 	  lwz       r12, 0x0(r3)
+// 	  lwz       r12, 0x14(r12)
+// 	  mtctr     r12
+// 	  bctrl
+// 	  lwz       r0, 0x14(r1)
+// 	  mtlr      r0
+// 	  addi      r1, r1, 0x10
+// 	  blr
+// 	*/
+// }
 
 /*
  * --INFO--
@@ -2341,8 +2346,11 @@ void SingleGameSection::onStartHeap(void)
  * Address:	8015341C
  * Size:	000044
  */
-void SingleGameSection::gmOrimaDown(int)
+void SingleGameSection::gmOrimaDown(int naviID)
 {
+	if (m_currentState != nullptr) {
+		m_currentState->onOrimaDown(this, naviID);
+	}
 	/*
 	stwu     r1, -0x10(r1)
 	mflr     r0
@@ -2385,8 +2393,14 @@ void SingleGameSection::gmPikminZero(void) { }
  * Address:	80153468
  * Size:	000020
  */
-void SingleGameSection::enableTimer(float, unsigned long)
+void SingleGameSection::enableTimer(float initialValue, unsigned long timerType)
 {
+	if (timerType != 0) {
+		return;
+	}
+	m_timerType    = timerType;
+	m_timer        = initialValue;
+	m_timerEnabled = true;
 	/*
 	lwz      r0, 0x17c(r3)
 	cmplwi   r0, 0
@@ -2453,8 +2467,11 @@ lbl_801534F4:
  * Address:	80153508
  * Size:	000054
  */
-void SingleGameSection::onMovieStart(Game::MovieConfig*, unsigned long, unsigned long)
+void SingleGameSection::onMovieStart(Game::MovieConfig* config, unsigned long p2, unsigned long p3)
 {
+	if (m_currentState != nullptr) {
+		m_currentState->onMovieStart(this, config, p2, p3);
+	}
 	/*
 	.loc_0x0:
 	  stwu      r1, -0x10(r1)
@@ -2495,8 +2512,12 @@ void SingleGame::State::onMovieStart(Game::SingleGameSection*, Game::MovieConfig
  * Address:	80153560
  * Size:	000064
  */
-void SingleGameSection::onMovieDone(Game::MovieConfig*, unsigned long, unsigned long)
+void SingleGameSection::onMovieDone(Game::MovieConfig* config, unsigned long p2, unsigned long p3)
 {
+	gameSystem->_3C &= 0xF7;
+	if (m_currentState != nullptr) {
+		m_currentState->onMovieDone(this, config, p2, p3);
+	}
 	/*
 	.loc_0x0:
 	  stwu      r1, -0x10(r1)
@@ -2541,8 +2562,12 @@ void SingleGame::State::onMovieDone(Game::SingleGameSection*, Game::MovieConfig*
  * Address:	801535C8
  * Size:	00005C
  */
-void SingleGameSection::onMovieCommand(int)
+void SingleGameSection::onMovieCommand(int p1)
 {
+	BaseGameSection::onMovieCommand(p1);
+	if (m_currentState != nullptr) {
+		m_currentState->onMovieCommand(this, p1);
+	}
 	/*
 	stwu     r1, -0x10(r1)
 	mflr     r0
@@ -3073,8 +3098,25 @@ void SingleGameSection::playMovie_firstexperience(int, Game::Creature*) { }
  * Address:	80153CC8
  * Size:	0002A0
  */
-void SingleGameSection::saveMainMapSituation(bool)
+void SingleGameSection::saveMainMapSituation(bool isSubmergedCastle)
 {
+	if (isSubmergedCastle) {
+		Iterator<Piki> iterator(pikiMgr, 0, nullptr);
+		iterator.first();
+		while (!iterator.isDone()) {
+			Piki* piki = (*iterator);
+			if (piki->isAlive() && piki->m_pikminType != Blue) {
+				playData->m_pikiContainer.getCount(piki->m_pikminType, piki->m_pikminGrowth)++;
+				PikiKillArg killArg(0x10001);
+				piki->kill(&pikiKillArg);
+			}
+			iterator.next();
+		}
+	}
+	pikiMgr->caveSaveFormationPikmins(false);
+	pikiMgr->forceEnterPikmins(1);
+	playData->m_caveSaveData.m_time = gameSystem->m_timeMgr->m_currentTimeOfDay;
+	saveToGeneratorCache(m_currentCourseInfo);
 	/*
 	stwu     r1, -0x30(r1)
 	mflr     r0
@@ -3272,8 +3314,9 @@ lbl_80153F18:
  * Address:	80153F68
  * Size:	000030
  */
-void SingleGameSection::loadMainMapSituation(void)
+void SingleGameSection::loadMainMapSituation()
 {
+	gameSystem->m_timeMgr->setTime(playData->m_caveSaveData.m_time);
 	/*
 	stwu     r1, -0x10(r1)
 	mflr     r0
@@ -3295,8 +3338,12 @@ void SingleGameSection::loadMainMapSituation(void)
  * Address:	80153F98
  * Size:	000018
  */
-void SingleGameSection::clearCaveMenus(void)
+void SingleGameSection::clearCaveMenus()
 {
+	_180          = 0;
+	m_currentCave = nullptr;
+	m_hole        = nullptr;
+	m_fountain    = nullptr;
 	/*
 	li       r0, 0
 	stb      r0, 0x180(r3)
@@ -3609,8 +3656,9 @@ lbl_801543B4:
  * Address:	801543C8
  * Size:	000008
  */
-void SingleGameSection::getCurrentCourseInfo(void)
+CourseInfo* SingleGameSection::getCurrentCourseInfo()
 {
+	return m_currentCourseInfo;
 	/*
 	lwz      r3, 0x22c(r3)
 	blr
@@ -3744,8 +3792,9 @@ lbl_80154550:
  * Address:	8015456C
  * Size:	00002C
  */
-void SingleGameSection::saveCaveMore(void)
+void SingleGameSection::saveCaveMore()
 {
+	pikiMgr->caveSaveAllPikmins(false, false);
 	/*
 	stwu     r1, -0x10(r1)
 	mflr     r0
@@ -4114,8 +4163,10 @@ lbl_80154A04:
  * Address:	80154A1C
  * Size:	000040
  */
-void SingleGameSection::goNextFloor(Game::ItemHole::Item*)
+void SingleGameSection::goNextFloor(Game::ItemHole::Item* hole)
 {
+	_194 = true;
+	m_currentState->onNextFloor(this, hole);
 	/*
 	stwu     r1, -0x10(r1)
 	mflr     r0
@@ -4148,8 +4199,13 @@ void SingleGame::State::onNextFloor(Game::SingleGameSection*, Game::ItemHole::It
  * Address:	80154A60
  * Size:	000074
  */
-void SingleGameSection::goCave(Game::ItemCave::Item*)
+void SingleGameSection::goCave(Game::ItemCave::Item* cave)
 {
+	strcpy(m_caveFilename, cave->m_caveFilename);
+	m_caveID->setID(cave->m_caveID.getID());
+	_194            = true;
+	m_isInCaveMaybe = true;
+	m_currentState->onHoleIn(this, cave);
 	/*
 	stwu     r1, -0x10(r1)
 	mflr     r0
@@ -4195,8 +4251,11 @@ void SingleGame::State::onHoleIn(Game::SingleGameSection*, Game::ItemCave::Item*
  * Address:	80154AD8
  * Size:	000048
  */
-void SingleGameSection::goMainMap(Game::ItemBigFountain::Item*)
+void SingleGameSection::goMainMap(Game::ItemBigFountain::Item* fountain)
 {
+	_194            = true;
+	m_isInCaveMaybe = false;
+	m_currentState->onFountainReturn(this, fountain);
 	/*
 	stwu     r1, -0x10(r1)
 	mflr     r0
@@ -4233,6 +4292,7 @@ void SingleGame::State::onFountainReturn(Game::SingleGameSection*, Game::ItemBig
  */
 void SingleGameSection::setupMainMapGames(void)
 {
+	createFallPikmins();
 	/*
 	stwu     r1, -0x10(r1)
 	mflr     r0
@@ -4252,6 +4312,7 @@ void SingleGameSection::setupMainMapGames(void)
  */
 void SingleGameSection::setupCaveGames(void)
 {
+	createFallPikmins();
 	/*
 	stwu     r1, -0x10(r1)
 	mflr     r0
@@ -5758,8 +5819,9 @@ lbl_80155EC0:
  * Address:	80155F54
  * Size:	000008
  */
-void SingleGameSection::getCurrFloor(void)
+int SingleGameSection::getCurrFloor()
 {
+	return m_currentFloor;
 	/*
 	lwz      r3, 0x248(r3)
 	blr
@@ -5780,6 +5842,13 @@ void SingleGameSection::drawCaveScreen(void) { }
  */
 void SingleGameSection::newCaveOtakaraEarningsAndDrops(void)
 {
+	int otakaraCount = PelletList::Mgr::getCount(PelletList::OTAKARA);
+	int itemCount    = PelletList::Mgr::getCount(PelletList::ITEM);
+	_254.alloc(otakaraCount);
+	_25C.alloc(itemCount);
+	_264.alloc(otakaraCount);
+	_26C.alloc(itemCount);
+	_274 = 0;
 	/*
 	stwu     r1, -0x20(r1)
 	mflr     r0
@@ -5826,6 +5895,11 @@ void SingleGameSection::newCaveOtakaraEarningsAndDrops(void)
  */
 void SingleGameSection::clearCaveOtakaraEarningsAndDrops(void)
 {
+	_254.clear();
+	_25C.clear();
+	_264.clear();
+	_26C.clear();
+	_274 = 0;
 	/*
 	stwu     r1, -0x10(r1)
 	mflr     r0
@@ -5850,7 +5924,7 @@ void SingleGameSection::clearCaveOtakaraEarningsAndDrops(void)
 	*/
 }
 
-} // namespace PSM
+} // namespace Game
 
 namespace og {
 
@@ -5861,15 +5935,16 @@ namespace Screen {
  * Address:	8015603C
  * Size:	000008
  */
-u32 DispMemberCave::getSize(void) { return 0x64; }
+u32 DispMemberCave::getSize(void) { return sizeof(DispMemberCave); }
 
 /*
  * --INFO--
  * Address:	80156044
  * Size:	00000C
  */
-void DispMemberCave::getOwnerID(void)
+ScreenOwnerID DispMemberCave::getOwnerID(void)
 {
+	return OWNER_OGA;
 	/*
 lis      r3, 0x004F4741@ha
 addi     r3, r3, 0x004F4741@l
@@ -5882,8 +5957,9 @@ blr
  * Address:	80156050
  * Size:	000010
  */
-void DispMemberCave::getMemberID(void)
+ScreenMemberID DispMemberCave::getMemberID(void)
 {
+	return MEMBER_CAVE;
 	/*
 lis      r4, 0x43415645@ha
 li       r3, 0
@@ -5904,15 +5980,16 @@ void DispMemberBase::doSetSubMemberAll(void) { }
  * Address:	80156064
  * Size:	000008
  */
-u32 DispMemberHurryUp::getSize(void) { return 0x10; }
+u32 DispMemberHurryUp::getSize(void) { return sizeof(DispMemberHurryUp); }
 
 /*
  * --INFO--
  * Address:	8015606C
  * Size:	00000C
  */
-void DispMemberHurryUp::getOwnerID(void)
+ScreenOwnerID DispMemberHurryUp::getOwnerID(void)
 {
+	return OWNER_MRMR;
 	/*
 lis      r3, 0x4D524D52@ha
 addi     r3, r3, 0x4D524D52@l
@@ -5925,8 +6002,9 @@ blr
  * Address:	80156078
  * Size:	000014
  */
-void DispMemberHurryUp::getMemberID(void)
+ScreenMemberID DispMemberHurryUp::getMemberID(void)
 {
+	return MEMBER_HURRY_UP;
 	/*
 lis      r4, 0x52595550@ha
 lis      r3, 0x00485552@ha
@@ -5941,15 +6019,16 @@ blr
  * Address:	8015608C
  * Size:	000008
  */
-u32 DispMemberDayEndCount::getSize(void) { return 0x10; }
+u32 DispMemberDayEndCount::getSize(void) { return sizeof(DispMemberDayEndCount); }
 
 /*
  * --INFO--
  * Address:	80156094
  * Size:	00000C
  */
-void DispMemberDayEndCount::getOwnerID(void)
+ScreenOwnerID DispMemberDayEndCount::getOwnerID(void)
 {
+	return OWNER_MRMR;
 	/*
 lis      r3, 0x4D524D52@ha
 addi     r3, r3, 0x4D524D52@l
@@ -5962,8 +6041,9 @@ blr
  * Address:	801560A0
  * Size:	000014
  */
-void DispMemberDayEndCount::getMemberID(void)
+ScreenMemberID DispMemberDayEndCount::getMemberID(void)
 {
+	return MEMBER_DAY_END_COUNT;
 	/*
 lis      r4, 0x4E444344@ha
 lis      r3, 0x44415945@ha
@@ -6022,6 +6102,7 @@ namespace Game {
  */
 void PikiInitArg::getName(void)
 {
+	return "PikiInitArg";
 	/*
 	lis      r3, lbl_8047CFB8@ha
 	addi     r3, r3, lbl_8047CFB8@l
@@ -6040,15 +6121,16 @@ namespace Screen {
  * Address:	801560E4
  * Size:	000008
  */
-u32 DispMemberKanketuMenu::getSize(void) { return 0x28; }
+u32 DispMemberKanketuMenu::getSize(void) { return sizeof(DispMemberKanketuMenu); }
 
 /*
  * --INFO--
  * Address:	801560EC
  * Size:	00000C
  */
-void DispMemberKanketuMenu::getOwnerID(void)
+ScreenOwnerID DispMemberKanketuMenu::getOwnerID(void)
 {
+	return OWNER_OGA;
 	/*
 lis      r3, 0x004F4741@ha
 addi     r3, r3, 0x004F4741@l
@@ -6061,7 +6143,7 @@ blr
  * Address:	801560F8
  * Size:	000014
  */
-void DispMemberKanketuMenu::getMemberID(void)
+ScreenMemberID DispMemberKanketuMenu::getMemberID(void)
 {
 	/*
 lis      r4, 0x4B455455@ha

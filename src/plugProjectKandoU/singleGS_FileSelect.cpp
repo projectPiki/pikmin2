@@ -1,4 +1,8 @@
+#include "Game/MoviePlayer.h"
+#include "Screen/Game2DMgr.h"
+#include "System.h"
 #include "types.h"
+#include "Game/SingleGame.h"
 
 /*
     Generated from dpostproc
@@ -172,8 +176,16 @@ lbl_8021C798:
  * Address:	8021C7C0
  * Size:	00009C
  */
-void SingleGame::FileState::init(Game::SingleGameSection*, Game::StateArg*)
+void SingleGame::FileState::init(Game::SingleGameSection* section, Game::StateArg* arg)
 {
+	moviePlayer->reset();
+	_24          = 1;
+	section->_18 = section->m_wipeInFader;
+	section->m_wipeInFader->start(1.0f);
+	section->refreshHIO();
+	Screen::gGame2DMgr->m_screenMgr->reset();
+	sys->setFrameRate(1);
+	playData->_20 = 0;
 	/*
 	stwu     r1, -0x10(r1)
 	mflr     r0
@@ -807,23 +819,23 @@ lbl_8021CF30:
  * Address:	8021CF9C
  * Size:	000030
  */
-void Delegate<Game::SingleGame::FileState>::invoke()
-{
-	/*
-	stwu     r1, -0x10(r1)
-	mflr     r0
-	mr       r4, r3
-	stw      r0, 0x14(r1)
-	addi     r12, r4, 8
-	lwz      r3, 4(r3)
-	bl       __ptmf_scall
-	nop
-	lwz      r0, 0x14(r1)
-	mtlr     r0
-	addi     r1, r1, 0x10
-	blr
-	*/
-}
+// void Delegate<Game::SingleGame::FileState>::invoke()
+// {
+// 	/*
+// 	stwu     r1, -0x10(r1)
+// 	mflr     r0
+// 	mr       r4, r3
+// 	stw      r0, 0x14(r1)
+// 	addi     r12, r4, 8
+// 	lwz      r3, 4(r3)
+// 	bl       __ptmf_scall
+// 	nop
+// 	lwz      r0, 0x14(r1)
+// 	mtlr     r0
+// 	addi     r1, r1, 0x10
+// 	blr
+// 	*/
+// }
 
 /*
  * --INFO--

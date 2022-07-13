@@ -46,7 +46,11 @@ template <typename T> struct JSUList : public JSUPtrList {
 template <typename T> struct JSULink : public JSUPtrLink {
 	inline T* getList() { return m_list; }
 	inline T* getPrev() { return m_prev; }
-	inline T* getNext() { return m_next; };
+	inline T* getNext() { return m_next; }
+	// /**
+	//  * @fabricated
+	//  */
+	// inline T* getValue() { return m_value; }
 	inline JSULink(T* value)
 	    : JSUPtrLink((void*)value)
 	{

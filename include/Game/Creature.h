@@ -84,113 +84,113 @@ struct Creature : public CellObject {
 
 	Creature();
 
-	virtual void checkCollision(CellObject*);  // _04
-	virtual bool collisionUpdatable();         // _0C
-	virtual bool isPiki();                     // _10
-	virtual bool isNavi();                     // _14
-	virtual char* getTypeName();               // _1C
-	virtual u16 getObjType();                  // _20
-	virtual void constructor();                // _2C
-	virtual void onInit(CreatureInitArg*);     // _30
-	virtual void onKill(CreatureKillArg*);     // _34
-	virtual void onInitPost(CreatureInitArg*); // _38
-	virtual void doAnimation();                // _3C
-	virtual void doEntry();                    // _40
-	virtual void doSetView(int);               // _44
-	virtual void doViewCalc();                 // _48
-	virtual void doSimulation(float);          // _4C
-	virtual void doDirectDraw(Graphics&);      // _50
-	virtual float getBodyRadius();             // _54
-	virtual float getCellRadius();             // _58
-	virtual void initPosition(Vector3f&);      // _5C
-	virtual void onInitPosition(Vector3f&);    // _60
-	virtual float getFaceDir()            = 0; // _64
-	virtual void setVelocity(Vector3f&)   = 0; // _68
-	virtual Vector3f getVelocity()        = 0; // _6C
-	virtual void onSetPosition(Vector3f&) = 0; // _70
-	virtual void onSetPositionPost(Vector3f&); // _74
-	virtual void updateTrMatrix() = 0;         // _78
-	virtual bool isTeki();                     // _7C
-	virtual bool isPellet();                   // _80
-	virtual void inWaterCallback(WaterBox*);   // _84
-	virtual void outWaterCallback();           // _88
-	virtual bool inWater();                    // _8C
-	virtual u32 getFlockMgr();                 // _90
-	virtual void onStartCapture();             // _94
-	virtual void onUpdateCapture(Matrixf&);    // _98
-	virtual void onEndCapture();               // _9C
-	virtual bool isAtari();                    // _A0
-	virtual void setAtari(bool);               // _A4
-	virtual bool isAlive();                    // _A8
-	virtual void setAlive(bool);               // _AC
-	virtual bool isCollisionFlick();           // _B0
-	virtual void setCollisionFlick(bool);      // _B4
-	virtual bool isMovieActor();               // _B8
-	virtual bool isMovieExtra();               // _BC
-	virtual bool isMovieMotion();              // _C0
-	virtual void setMovieMotion(bool);         // _C4
-	virtual bool isBuried();                   // _C8
-	virtual bool isFlying();                   // _CC
-	virtual bool isUnderground();              // _D0
-	virtual bool isLivingThing();              // _D4
-	virtual bool isDebugCollision();
-	virtual void setDebugCollision(bool);
-	virtual void doSave(Stream&);
-	virtual void doLoad(Stream&);
-	virtual void bounceCallback(Sys::Triangle*);
-	virtual void collisionCallback(CollEvent&);
-	virtual void platCallback(PlatEvent&);
+	virtual void checkCollision(CellObject*);    // _04
+	virtual bool collisionUpdatable();           // _0C
+	virtual bool isPiki();                       // _10
+	virtual bool isNavi();                       // _14
+	virtual char* getTypeName();                 // _1C
+	virtual u16 getObjType();                    // _20
+	virtual void constructor();                  // _24
+	virtual void onInit(CreatureInitArg*);       // _28
+	virtual void onKill(CreatureKillArg*);       // _2C
+	virtual void onInitPost(CreatureInitArg*);   // _30
+	virtual void doAnimation();                  // _34
+	virtual void doEntry();                      // _38
+	virtual void doSetView(int);                 // _3C
+	virtual void doViewCalc();                   // _40
+	virtual void doSimulation(float);            // _44
+	virtual void doDirectDraw(Graphics&);        // _48
+	virtual float getBodyRadius();               // _4C
+	virtual float getCellRadius();               // _50
+	virtual void initPosition(Vector3f&);        // _54
+	virtual void onInitPosition(Vector3f&);      // _58
+	virtual float getFaceDir()            = 0;   // _5C
+	virtual void setVelocity(Vector3f&)   = 0;   // _60
+	virtual Vector3f getVelocity()        = 0;   // _64
+	virtual void onSetPosition(Vector3f&) = 0;   // _68
+	virtual void onSetPositionPost(Vector3f&);   // _6C
+	virtual void updateTrMatrix() = 0;           // _70
+	virtual bool isTeki();                       // _74
+	virtual bool isPellet();                     // _78
+	virtual void inWaterCallback(WaterBox*);     // _7C
+	virtual void outWaterCallback();             // _80
+	virtual bool inWater();                      // _84
+	virtual u32 getFlockMgr();                   // _88
+	virtual void onStartCapture();               // _8C
+	virtual void onUpdateCapture(Matrixf&);      // _90
+	virtual void onEndCapture();                 // _94
+	virtual bool isAtari();                      // _98
+	virtual void setAtari(bool);                 // _9C
+	virtual bool isAlive();                      // _A0
+	virtual void setAlive(bool);                 // _A4
+	virtual bool isCollisionFlick();             // _A8
+	virtual void setCollisionFlick(bool);        // _AC
+	virtual bool isMovieActor();                 // _B0
+	virtual bool isMovieExtra();                 // _B4
+	virtual bool isMovieMotion();                // _B8
+	virtual void setMovieMotion(bool);           // _BC
+	virtual bool isBuried();                     // _C0
+	virtual bool isFlying();                     // _C4
+	virtual bool isUnderground();                // _C8
+	virtual bool isLivingThing();                // _CC
+	virtual bool isDebugCollision();             // _D0
+	virtual void setDebugCollision(bool);        // _D4
+	virtual void doSave(Stream&);                // _D8
+	virtual void doLoad(Stream&);                // _DC
+	virtual void bounceCallback(Sys::Triangle*); // _E0
+	virtual void collisionCallback(CollEvent&);  // _E4
+	virtual void platCallback(PlatEvent&);       // _E8
 	/**
 	 * @reifiedAddress{80124228}
 	 * @reifiedFile{plugProjectYamashitaU/farmMgr.cpp}
 	 */
-	virtual JAInter::Object* getJAIObject() { return nullptr; }
-	virtual PSM::Creature* getPSCreature();
-	virtual AILOD* getSound_AILOD();
-	virtual Vector3f* getSound_PosPtr();
-	virtual bool sound_culling();
-	virtual float getSound_CurrAnimFrame();
-	virtual float getSound_CurrAnimSpeed();
-	virtual void on_movie_begin(bool);
-	virtual void on_movie_end(bool);
-	virtual void movieStartAnimation(u32);
-	virtual void movieStartDemoAnimation(SysShape::AnimInfo*);
-	virtual void movieSetAnimationLastFrame();
-	virtual void movieSetTranslation(Vector3f&, float);
-	virtual void movieSetFaceDir(float);
-	virtual bool movieGotoPosition(Vector3f&);
-	virtual void movieUserCommand(u32, MoviePlayer*);
-	virtual void getShadowParam(ShadowParam&);
-	virtual bool needShadow();
-	virtual void getLifeGaugeParam(LifeGaugeParam&);
-	virtual void getLODSphere(Sys::Sphere&);
-	virtual void getLODCylinder(Sys::Cylinder&);
-	virtual void startPick();
-	virtual void endPick(bool);
-	virtual u32* getMabiki();
-	virtual Footmarks* getFootmarks();
-	virtual void onStickStart(Creature*);
-	virtual void onStickEnd(Creature*);
-	virtual void onStickStartSelf(Creature*);
-	virtual void onStickEndSelf(Creature*);
-	virtual bool isSlotFree(short);
-	virtual int getFreeStickSlot();
-	virtual int getNearFreeStickSlot(Vector3f&);
-	virtual int getRandomFreeStickSlot();
-	virtual void onSlotStickStart(Creature*, short);
-	virtual void onSlotStickEnd(Creature*, short);
-	virtual void calcStickSlotGlobal(short, Vector3f&);
-	virtual void getVelocityAt(Vector3f&, Vector3f&) = 0;
-	virtual float getAngularEffect(Vector3f&, Vector3f&);
-	virtual void applyImpulse(Vector3f&, Vector3f&);
-	virtual bool ignoreAtari(Creature*);
-	virtual Vector3f getSuckPos();
-	virtual Vector3f getGoalPos();
-	virtual bool isSuckReady();
-	virtual BOOL isSuckArriveWait();
-	virtual bool stimulate(Interaction&);
-	virtual char* getCreatureName();
-	virtual s32 getCreatureID(); // leave as s32 or matching breaks. unsure why.
+	virtual JAInter::Object* getJAIObject() { return nullptr; } // _EC
+	virtual PSM::Creature* getPSCreature();                     // _F0
+	virtual AILOD* getSound_AILOD();                            // _F4
+	virtual Vector3f* getSound_PosPtr();                        // _F8
+	virtual bool sound_culling();                               // _FC
+	virtual float getSound_CurrAnimFrame();                     // _100
+	virtual float getSound_CurrAnimSpeed();                     // _104
+	virtual void on_movie_begin(bool);                          // _108
+	virtual void on_movie_end(bool);                            // _10C
+	virtual void movieStartAnimation(u32);                      // _110
+	virtual void movieStartDemoAnimation(SysShape::AnimInfo*);  // _114
+	virtual void movieSetAnimationLastFrame();                  // _118
+	virtual void movieSetTranslation(Vector3f&, float);         // _11C
+	virtual void movieSetFaceDir(float);                        // _120
+	virtual bool movieGotoPosition(Vector3f&);                  // _124
+	virtual void movieUserCommand(u32, MoviePlayer*);           // _128
+	virtual void getShadowParam(ShadowParam&);                  // _12C
+	virtual bool needShadow();                                  // _130
+	virtual void getLifeGaugeParam(LifeGaugeParam&);            // _134
+	virtual void getLODSphere(Sys::Sphere&);                    // _138
+	virtual void getLODCylinder(Sys::Cylinder&);                // _13C
+	virtual void startPick();                                   // _140
+	virtual void endPick(bool);                                 // _144
+	virtual u32* getMabiki();                                   // _148
+	virtual Footmarks* getFootmarks();                          // _14C
+	virtual void onStickStart(Creature*);                       // _150
+	virtual void onStickEnd(Creature*);                         // _154
+	virtual void onStickStartSelf(Creature*);                   // _158
+	virtual void onStickEndSelf(Creature*);                     // _15C
+	virtual bool isSlotFree(short);                             // _160
+	virtual int getFreeStickSlot();                             // _164
+	virtual int getNearFreeStickSlot(Vector3f&);                // _168
+	virtual int getRandomFreeStickSlot();                       // _16C
+	virtual void onSlotStickStart(Creature*, short);            // _170
+	virtual void onSlotStickEnd(Creature*, short);              // _174
+	virtual void calcStickSlotGlobal(short, Vector3f&);         // _178
+	virtual void getVelocityAt(Vector3f&, Vector3f&) = 0;       // _17C
+	virtual float getAngularEffect(Vector3f&, Vector3f&);       // _180
+	virtual void applyImpulse(Vector3f&, Vector3f&);            // _184
+	virtual bool ignoreAtari(Creature*);                        // _188
+	virtual Vector3f getSuckPos();                              // _18C
+	virtual Vector3f getGoalPos();                              // _190
+	virtual bool isSuckReady();                                 // _194
+	virtual BOOL isSuckArriveWait();                            // _198
+	virtual bool stimulate(Interaction&);                       // _19C
+	virtual char* getCreatureName();                            // _1A0
+	virtual s32 getCreatureID();                                // _1A4 // leave as s32 or matching breaks. unsure why.
 
 	void applyAirDrag(float, float, float);
 	float calcSphereDistance(Game::Creature*);

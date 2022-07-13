@@ -104,6 +104,56 @@ lbl_8051A360:
 	.4byte 0x00000000
 
 .section .text, "ax"  # 0x800056C0 - 0x80472F00
+.global __ct__Q26PikiAI9ActBattleFPQ24Game4Piki
+__ct__Q26PikiAI9ActBattleFPQ24Game4Piki:
+/* 8022ECB4 0022BBF4  94 21 FF F0 */	stwu r1, -0x10(r1)
+/* 8022ECB8 0022BBF8  7C 08 02 A6 */	mflr r0
+/* 8022ECBC 0022BBFC  90 01 00 14 */	stw r0, 0x14(r1)
+/* 8022ECC0 0022BC00  7C 80 07 35 */	extsh. r0, r4
+/* 8022ECC4 0022BC04  93 E1 00 0C */	stw r31, 0xc(r1)
+/* 8022ECC8 0022BC08  7C BF 2B 78 */	mr r31, r5
+/* 8022ECCC 0022BC0C  93 C1 00 08 */	stw r30, 8(r1)
+/* 8022ECD0 0022BC10  7C 7E 1B 78 */	mr r30, r3
+/* 8022ECD4 0022BC14  41 82 00 18 */	beq lbl_8022ECEC
+/* 8022ECD8 0022BC18  38 1E 00 20 */	addi r0, r30, 0x20
+/* 8022ECDC 0022BC1C  3C 60 80 4B */	lis r3, __vt__Q28SysShape14MotionListener@ha
+/* 8022ECE0 0022BC20  90 1E 00 0C */	stw r0, 0xc(r30)
+/* 8022ECE4 0022BC24  38 03 A6 6C */	addi r0, r3, __vt__Q28SysShape14MotionListener@l
+/* 8022ECE8 0022BC28  90 1E 00 20 */	stw r0, 0x20(r30)
+lbl_8022ECEC:
+/* 8022ECEC 0022BC2C  7F C3 F3 78 */	mr r3, r30
+/* 8022ECF0 0022BC30  7F E4 FB 78 */	mr r4, r31
+/* 8022ECF4 0022BC34  4B F6 7D 25 */	bl __ct__Q26PikiAI6ActionFPQ24Game4Piki
+/* 8022ECF8 0022BC38  3C 60 80 4C */	lis r3, __vt__Q26PikiAI9ActBattle@ha
+/* 8022ECFC 0022BC3C  38 BE 00 20 */	addi r5, r30, 0x20
+/* 8022ED00 0022BC40  38 63 11 B8 */	addi r3, r3, __vt__Q26PikiAI9ActBattle@l
+/* 8022ED04 0022BC44  38 80 00 00 */	li r4, 0
+/* 8022ED08 0022BC48  90 7E 00 00 */	stw r3, 0(r30)
+/* 8022ED0C 0022BC4C  38 E3 00 40 */	addi r7, r3, 0x40
+/* 8022ED10 0022BC50  38 02 BF C0 */	addi r0, r2, lbl_8051A320@sda21
+/* 8022ED14 0022BC54  38 60 00 28 */	li r3, 0x28
+/* 8022ED18 0022BC58  80 DE 00 0C */	lwz r6, 0xc(r30)
+/* 8022ED1C 0022BC5C  90 E6 00 00 */	stw r7, 0(r6)
+/* 8022ED20 0022BC60  80 DE 00 0C */	lwz r6, 0xc(r30)
+/* 8022ED24 0022BC64  7C A6 28 50 */	subf r5, r6, r5
+/* 8022ED28 0022BC68  90 A6 00 04 */	stw r5, 4(r6)
+/* 8022ED2C 0022BC6C  98 9E 00 1C */	stb r4, 0x1c(r30)
+/* 8022ED30 0022BC70  90 1E 00 08 */	stw r0, 8(r30)
+/* 8022ED34 0022BC74  4B DF 51 71 */	bl __nw__FUl
+/* 8022ED38 0022BC78  7C 60 1B 79 */	or. r0, r3, r3
+/* 8022ED3C 0022BC7C  41 82 00 10 */	beq lbl_8022ED4C
+/* 8022ED40 0022BC80  7F E4 FB 78 */	mr r4, r31
+/* 8022ED44 0022BC84  4B F6 87 6D */	bl __ct__Q26PikiAI14ActApproachPosFPQ24Game4Piki
+/* 8022ED48 0022BC88  7C 60 1B 78 */	mr r0, r3
+lbl_8022ED4C:
+/* 8022ED4C 0022BC8C  90 1E 00 18 */	stw r0, 0x18(r30)
+/* 8022ED50 0022BC90  7F C3 F3 78 */	mr r3, r30
+/* 8022ED54 0022BC94  80 01 00 14 */	lwz r0, 0x14(r1)
+/* 8022ED58 0022BC98  83 E1 00 0C */	lwz r31, 0xc(r1)
+/* 8022ED5C 0022BC9C  83 C1 00 08 */	lwz r30, 8(r1)
+/* 8022ED60 0022BCA0  7C 08 03 A6 */	mtlr r0
+/* 8022ED64 0022BCA4  38 21 00 10 */	addi r1, r1, 0x10
+/* 8022ED68 0022BCA8  4E 80 00 20 */	blr 
 
 .global emotion_success__Q26PikiAI9ActBattleFv
 emotion_success__Q26PikiAI9ActBattleFv:

@@ -41,6 +41,8 @@ struct JointShadowRootNode : public CNode {
 
 // Size: 0x24
 struct ShadowNode : public CNode {
+	virtual ~ShadowNode(); // _00
+
 	Creature* m_creature; // _18
 	u32 _1C;              // _1C
 	u32 _20;              // _20 /* bitfield */
@@ -79,12 +81,22 @@ struct CylinderBase {
 };
 
 struct ShadowCylinder2 : public CylinderBase {
+	virtual void setFilterTextureID(int);     // _00
+	virtual void drawInit();                  // _04
+	virtual void drawCylinder(Matrixf&, int); // _08
+	virtual void drawFinish();                // _0C
+
 	u8 _54[8]; // _54
 	void* _5C; // _5C
 	int _60;   // _60
 };
 
 struct ShadowCylinder3 : public CylinderBase {
+	virtual void setFilterTextureID(int);     // _00
+	virtual void drawInit();                  // _04
+	virtual void drawCylinder(Matrixf&, int); // _08
+	virtual void drawFinish();                // _0C
+
 	u8 _54[4]; // _54
 };
 

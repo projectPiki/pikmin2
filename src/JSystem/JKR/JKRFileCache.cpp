@@ -1,4 +1,8 @@
-#include "types.h"
+#include "Dolphin/dvd.h"
+#include "Dolphin/os.h"
+#include "JSystem/JKR/JKRFileCache.h"
+#include "JSystem/JKR/JKRFile.h"
+#include "JSystem/JKR/JKRHeap.h"
 
 /*
     Generated from dpostproc
@@ -47,7 +51,7 @@
  * Address:	800219C4
  * Size:	0000F8
  */
-void JKRFileCache::mount(const char*, JKRHeap*, const char*)
+JKRFileCache* JKRFileCache::mount(const char*, JKRHeap*, const char*)
 {
 	/*
 	stwu     r1, -0x20(r1)
@@ -341,7 +345,7 @@ lbl_80021D34:
  * Address:	80021D50
  * Size:	000098
  */
-void JKRFileCache::becomeCurrent(const char*)
+bool JKRFileCache::becomeCurrent(const char*)
 {
 	/*
 	stwu     r1, -0x20(r1)
@@ -394,7 +398,7 @@ lbl_80021DC8:
  * Address:	80021DE8
  * Size:	000118
  */
-void JKRFileCache::getResource(const char*)
+void* JKRFileCache::getResource(const char*)
 {
 	/*
 	stwu     r1, -0x110(r1)
@@ -481,7 +485,7 @@ lbl_80021EC4:
  * Address:	80021F00
  * Size:	000090
  */
-void JKRFileCache::getResource(unsigned long, const char*)
+void* JKRFileCache::getResource(unsigned long, const char*)
 {
 	/*
 	stwu     r1, -0x120(r1)
@@ -532,7 +536,7 @@ lbl_80021F74:
  * Address:	80021F90
  * Size:	0000D4
  */
-void JKRFileCache::readResource(void*, unsigned long, const char*)
+u32 JKRFileCache::readResource(void*, unsigned long, const char*)
 {
 	/*
 	stwu     r1, -0x120(r1)
@@ -604,7 +608,7 @@ lbl_80022034:
  * Address:	80022064
  * Size:	000090
  */
-void JKRFileCache::readResource(void*, unsigned long, unsigned long, const char*)
+u32 JKRFileCache::readResource(void*, unsigned long, unsigned long, const char*)
 {
 	/*
 	.loc_0x0:
@@ -709,8 +713,19 @@ lbl_80022160:
  * Address:	80022184
  * Size:	00009C
  */
-void JKRFileCache::removeResource(void*)
+bool JKRFileCache::removeResource(void* resource)
 {
+	CCacheBlock* link = findCacheBlock(resource);
+	if (link == nullptr) {
+		return false;
+	}
+	link->_10--;
+	if (link->_10 == 0) {
+		JKRHeap::free(resource, _38);
+		m_cacheBlockList.remove(link);
+		delete link;
+	}
+	return true;
 	/*
 	stwu     r1, -0x20(r1)
 	mflr     r0
@@ -767,8 +782,18 @@ lbl_80022204:
  * Address:	80022220
  * Size:	000074
  */
-void JKRFileCache::detachResource(void*)
+bool JKRFileCache::detachResource(void* resource)
 {
+	CCacheBlock* link = findCacheBlock(resource);
+	if (link == nullptr) {
+		return false;
+	}
+	link->_10--;
+	if (link->_10 == 0) {
+		m_cacheBlockList.remove(link);
+		delete link;
+	}
+	return true;
 	/*
 	stwu     r1, -0x10(r1)
 	mflr     r0
@@ -815,27 +840,10 @@ lbl_8002227C:
  * Address:	80022294
  * Size:	000034
  */
-void JKRFileCache::getResSize(const void*) const
+long JKRFileCache::getResSize(const void* resource) const
 {
-	/*
-	stwu     r1, -0x10(r1)
-	mflr     r0
-	stw      r0, 0x14(r1)
-	bl       findCacheBlock__12JKRFileCacheCFPCv
-	cmplwi   r3, 0
-	bne      lbl_800222B4
-	li       r3, -1
-	b        lbl_800222B8
-
-lbl_800222B4:
-	lwz      r3, 0x18(r3)
-
-lbl_800222B8:
-	lwz      r0, 0x14(r1)
-	mtlr     r0
-	addi     r1, r1, 0x10
-	blr
-	*/
+	CCacheBlock* block = findCacheBlock(resource);
+	return (block == nullptr) ? -1 : block->_18;
 }
 
 /*
@@ -843,8 +851,20 @@ lbl_800222B8:
  * Address:	800222C8
  * Size:	00007C
  */
-void JKRFileCache::countFile(const char*) const
+int JKRFileCache::countFile(const char* p1) const
 {
+	OSFstEntry dir;
+	OSFstEntry file;
+	char* path = getDvdPathName(p1);
+	int count;
+	if (DVDOpenDir(path, &dir)) {
+		while (DVDReadDir(&dir, &file)) {
+			count++;
+		}
+		DVDCloseDir(&dir);
+	}
+	JKRHeap::sSystemHeap->free(path);
+	return count;
 	/*
 	stwu     r1, -0x30(r1)
 	mflr     r0
@@ -891,8 +911,16 @@ lbl_8002231C:
  * Address:	80022344
  * Size:	00009C
  */
-void JKRFileCache::getFirstFile(const char*) const
+void* JKRFileCache::getFirstFile(const char* p1) const
 {
+	char* path           = getDvdPathName(p1);
+	JKRDvdFinder* finder = new (JKRHeap::sSystemHeap, 0) JKRDvdFinder(path);
+	JKRHeap::sSystemHeap->free(path);
+	if (finder->_10 != 1) {
+		delete finder;
+		finder = nullptr;
+	}
+	return finder;
 	/*
 	stwu     r1, -0x10(r1)
 	mflr     r0
@@ -980,7 +1008,7 @@ lbl_80022410:
  * Address:	80022428
  * Size:	00002C
  */
-void JKRFileCache::findCacheBlock(const void*) const
+JKRFileCache::CCacheBlock* JKRFileCache::findCacheBlock(const void*) const
 {
 	/*
 	lwz      r5, 0x3c(r3)
@@ -1006,7 +1034,7 @@ lbl_80022444:
  * Address:	80022454
  * Size:	00002C
  */
-void JKRFileCache::findCacheBlock(unsigned long) const
+JKRFileCache::CCacheBlock* JKRFileCache::findCacheBlock(unsigned long) const
 {
 	/*
 	lwz      r5, 0x3c(r3)
@@ -1032,7 +1060,7 @@ lbl_80022470:
  * Address:	80022480
  * Size:	0003E8
  */
-void JKRFileCache::findFile(char*, const char*) const
+bool JKRFileCache::findFile(char*, const char*) const
 {
 	/*
 	stwu     r1, -0xc0(r1)
@@ -1343,7 +1371,7 @@ lbl_80022850:
  * Address:	80022868
  * Size:	000110
  */
-void JKRFileCache::getDvdPathName(const char*) const
+char* JKRFileCache::getDvdPathName(const char*) const
 {
 	/*
 	stwu     r1, -0x20(r1)
@@ -1461,7 +1489,12 @@ lbl_800229A0:
  * Address:	800229C0
  * Size:	00006C
  */
-JKRFileCache::CCacheBlock::CCacheBlock(unsigned long, unsigned long, const void*)
+JKRFileCache::CCacheBlock::CCacheBlock(unsigned long p1, unsigned long dataLength, const void* data)
+    : JSULink(this)
+    , _10(1)
+    , _14(p1)
+    , _18(dataLength)
+    , _1C(data)
 {
 	/*
 	.loc_0x0:
@@ -1500,65 +1533,23 @@ JKRFileCache::CCacheBlock::CCacheBlock(unsigned long, unsigned long, const void*
  * Address:	80022A2C
  * Size:	00002C
  */
-void JKRFileCache::getFsResource(const char*)
-{
-	/*
-	stwu     r1, -0x10(r1)
-	mflr     r0
-	stw      r0, 0x14(r1)
-	lwz      r12, 0(r3)
-	lwz      r12, 0x14(r12)
-	mtctr    r12
-	bctrl
-	lwz      r0, 0x14(r1)
-	mtlr     r0
-	addi     r1, r1, 0x10
-	blr
-	*/
-}
+void* JKRFileCache::getFsResource(const char* path) { return getResource(path); }
 
 /*
  * --INFO--
  * Address:	80022A58
  * Size:	00002C
  */
-void JKRFileCache::getNameResource(unsigned long, const char*)
-{
-	/*
-	stwu     r1, -0x10(r1)
-	mflr     r0
-	stw      r0, 0x14(r1)
-	lwz      r12, 0(r3)
-	lwz      r12, 0x18(r12)
-	mtctr    r12
-	bctrl
-	lwz      r0, 0x14(r1)
-	mtlr     r0
-	addi     r1, r1, 0x10
-	blr
-	*/
-}
+void* JKRFileCache::getNameResource(unsigned long p1, const char* p2) { return getResource(p1, p2); }
 
 /*
  * --INFO--
  * Address:	80022A84
  * Size:	00002C
  */
-void JKRFileCache::readFsResource(void*, unsigned long, const char*)
+long JKRFileCache::readFsResource(void* dataBuffer, unsigned long bufferLength, const char* fileName)
 {
-	/*
-	stwu     r1, -0x10(r1)
-	mflr     r0
-	stw      r0, 0x14(r1)
-	lwz      r12, 0(r3)
-	lwz      r12, 0x1c(r12)
-	mtctr    r12
-	bctrl
-	lwz      r0, 0x14(r1)
-	mtlr     r0
-	addi     r1, r1, 0x10
-	blr
-	*/
+	return readResource(dataBuffer, bufferLength, fileName);
 }
 
 /*
@@ -1566,20 +1557,7 @@ void JKRFileCache::readFsResource(void*, unsigned long, const char*)
  * Address:	80022AB0
  * Size:	00002C
  */
-void JKRFileCache::readNameResource(void*, unsigned long, unsigned long, const char*)
+long JKRFileCache::readNameResource(void* dataBuffer, unsigned long bufferLength, unsigned long p3, const char* p4)
 {
-	/*
-	.loc_0x0:
-	  stwu      r1, -0x10(r1)
-	  mflr      r0
-	  stw       r0, 0x14(r1)
-	  lwz       r12, 0x0(r3)
-	  lwz       r12, 0x20(r12)
-	  mtctr     r12
-	  bctrl
-	  lwz       r0, 0x14(r1)
-	  mtlr      r0
-	  addi      r1, r1, 0x10
-	  blr
-	*/
+	return readResource(dataBuffer, bufferLength, p3, p4);
 }

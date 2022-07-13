@@ -1,4 +1,7 @@
+#include "nans.h"
 #include "types.h"
+#include "Game/IllustratedBook.h"
+#include "Game/SingleGame.h"
 
 /*
     Generated from dpostproc
@@ -649,7 +652,7 @@ namespace Game {
  * Address:	........
  * Size:	000098
  */
-IllustratedBook::DebugParms::DebugParms(void)
+IllustratedBook::DebugParms::DebugParms()
 {
 	// UNUSED FUNCTION
 }
@@ -659,7 +662,7 @@ IllustratedBook::DebugParms::DebugParms(void)
  * Address:	........
  * Size:	000044
  */
-IllustratedBook::EnemyTexMgr::EnemyTexMgr(void)
+IllustratedBook::EnemyTexMgr::EnemyTexMgr()
 {
 	// UNUSED FUNCTION
 }
@@ -669,7 +672,7 @@ IllustratedBook::EnemyTexMgr::EnemyTexMgr(void)
  * Address:	........
  * Size:	0000F0
  */
-void IllustratedBook::EnemyTexMgr::create(void)
+unknown IllustratedBook::EnemyTexMgr::create()
 {
 	// UNUSED FUNCTION
 }
@@ -1138,7 +1141,7 @@ lbl_80221620:
  * Address:	80221634
  * Size:	000274
  */
-void IllustratedBook::Camera::resetControl(void)
+void IllustratedBook::Camera::resetControl()
 {
 	/*
 	stwu     r1, -0x30(r1)
@@ -1309,19 +1312,15 @@ lbl_80221848:
 	*/
 }
 
-} // namespace Game
-
 /*
  * --INFO--
  * Address:	........
  * Size:	00001C
  */
-void setAtOffset__Q34Game15IllustratedBook6CameraFRC10Vector3f(void)
+void IllustratedBook::Camera::setAtOffset(const Vector3f&) const
 {
 	// UNUSED FUNCTION
 }
-
-namespace Game {
 
 /*
  * --INFO--
@@ -1956,7 +1955,7 @@ lbl_802220FC:
  * Address:	802221AC
  * Size:	000204
  */
-void IllustratedBook::Camera::updateCameraShake(void)
+void IllustratedBook::Camera::updateCameraShake()
 {
 	/*
 	stwu     r1, -0x40(r1)
@@ -2100,7 +2099,7 @@ lbl_802222E4:
  * Address:	802223B0
  * Size:	0000E8
  */
-void IllustratedBook::Camera::updateFocus(void)
+void IllustratedBook::Camera::updateFocus()
 {
 	/*
 	lfs      f1, 0x288(r3)
@@ -2177,7 +2176,7 @@ lbl_80222460:
  * Address:	........
  * Size:	000020
  */
-void IllustratedBook::Camera::getFocus(void)
+unknown IllustratedBook::Camera::getFocus(void)
 {
 	// UNUSED FUNCTION
 }
@@ -2223,7 +2222,7 @@ lbl_802224D0:
  * Address:	802224EC
  * Size:	0000EC
  */
-SingleGame::ZukanState::ZukanState(void)
+SingleGame::ZukanState::ZukanState()
 {
 	/*
 	stwu     r1, -0x10(r1)
@@ -2544,7 +2543,7 @@ lbl_8022290C:
  * Address:	........
  * Size:	0000E4
  */
-void SingleGame::ZukanState::startTekiMode(bool)
+unknown SingleGame::ZukanState::startTekiMode(bool)
 {
 	// UNUSED FUNCTION
 }
@@ -2554,7 +2553,7 @@ void SingleGame::ZukanState::startTekiMode(bool)
  * Address:	........
  * Size:	0000E4
  */
-void SingleGame::ZukanState::startPelletMode(bool)
+unknown SingleGame::ZukanState::startPelletMode(bool)
 {
 	// UNUSED FUNCTION
 }
@@ -3132,7 +3131,8 @@ lbl_80223064:
  * Address:	80223084
  * Size:	00016C
  */
-void SingleGame::ZukanState::execModeChange((Game::SingleGameSection*, Game::SingleGame::ZukanState::CMode))
+// void SingleGame::ZukanState::execModeChange((Game::SingleGameSection*, Game::SingleGame::ZukanState::CMode))
+void SingleGame::ZukanState::execModeChange(Game::SingleGameSection*, Game::SingleGame::ZukanState::CMode)
 {
 	/*
 	.loc_0x0:
@@ -3336,7 +3336,7 @@ lbl_802232B8:
  * Address:	802232D0
  * Size:	0005A4
  */
-void SingleGame::ZukanState::execTeki(Game::SingleGameSection*)
+unknown SingleGame::ZukanState::execTeki(Game::SingleGameSection*)
 {
 	/*
 	stwu     r1, -0x130(r1)
@@ -3875,7 +3875,7 @@ lbl_8022399C:
  * Address:	802239B4
  * Size:	0000B4
  */
-void SingleGame::ZukanState::execPellet(Game::SingleGameSection*)
+unknown SingleGame::ZukanState::execPellet(Game::SingleGameSection*)
 {
 	/*
 	stwu     r1, -0x20(r1)
@@ -3937,7 +3937,7 @@ lbl_80223A48:
  * Address:	80223A68
  * Size:	00003C
  */
-void SingleGame::ZukanState::getMaxPelletID(void)
+int SingleGame::ZukanState::getMaxPelletID()
 {
 	/*
 	stwu     r1, -0x10(r1)
@@ -3963,7 +3963,7 @@ void SingleGame::ZukanState::getMaxPelletID(void)
  * Address:	80223AA4
  * Size:	00007C
  */
-void SingleGame::ZukanState::getCurrentPelletConfig(int)
+PelletConfig* SingleGame::ZukanState::getCurrentPelletConfig(int)
 {
 	/*
 	stwu     r1, -0x20(r1)
@@ -4009,7 +4009,7 @@ lbl_80223B08:
  * Address:	80223B20
  * Size:	000080
  */
-void SingleGame::ZukanState::convertPelletID(int&, int)
+PelletList::cKind SingleGame::ZukanState::convertPelletID(int&, int)
 {
 	/*
 	stwu     r1, -0x20(r1)
@@ -5131,7 +5131,7 @@ void SingleGame::ZukanState::drawLightEffect(Game::SingleGameSection*, Graphics&
  * Address:	........
  * Size:	000404
  */
-void SingleGame::ZukanState::debugDraw(Graphics&)
+unknown SingleGame::ZukanState::debugDraw(Graphics&)
 {
 	// UNUSED FUNCTION
 }
@@ -5141,7 +5141,7 @@ void SingleGame::ZukanState::debugDraw(Graphics&)
  * Address:	80224B4C
  * Size:	000994
  */
-void SingleGame::ZukanState::dvdloadA(void)
+unknown SingleGame::ZukanState::dvdloadA(void)
 {
 	/*
 	stwu     r1, -0x700(r1)
@@ -7695,7 +7695,7 @@ lbl_80226D34:
  * Address:	80226D50
  * Size:	0003AC
  */
-void SingleGame::ZukanState::clearHeaps(void)
+unknown SingleGame::ZukanState::clearHeaps()
 {
 	/*
 	stwu     r1, -0x350(r1)
@@ -8033,7 +8033,7 @@ lbl_80227190:
  * Address:	802271A4
  * Size:	000008
  */
-u32 Morimura::DispMemberZukanItem::getSize(void) { return 0x20; }
+u32 Morimura::DispMemberZukanItem::getSize(void) { return sizeof(DispMemberZukanItem); }
 
 /*
  * --INFO--
@@ -8176,7 +8176,7 @@ lbl_802272A0:
  * Address:	802272BC
  * Size:	00001C
  */
-void LookAtCamera::getLookAtPosition_()
+Vector3f LookAtCamera::getLookAtPosition_()
 {
 	/*
 	lfs      f0, 0x180(r4)
@@ -8194,7 +8194,7 @@ void LookAtCamera::getLookAtPosition_()
  * Address:	802272D8
  * Size:	000008
  */
-void LookAtCamera::on_getPositionPtr()
+Vector3f* LookAtCamera::on_getPositionPtr()
 {
 	/*
 	addi     r3, r3, 0x174
@@ -8207,7 +8207,7 @@ void LookAtCamera::on_getPositionPtr()
  * Address:	802272E0
  * Size:	000008
  */
-void Camera::getTargetDistance()
+float Camera::getTargetDistance()
 {
 	/*
 	lfs      f1, lbl_8051A128@sda21(r2)
@@ -8220,7 +8220,7 @@ void Camera::getTargetDistance()
  * Address:	802272E8
  * Size:	000008
  */
-u32 Camera::isSpecialCamera() { return 0x0; }
+bool Camera::isSpecialCamera() { return false; }
 
 namespace Game {
 

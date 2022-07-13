@@ -6,7 +6,11 @@
 #include "stream.h"
 
 namespace Game {
-struct DeathMgr {
+// DeathCounter is entirely inlined. The data members are used statically.
+struct DeathCounter {
+	/**
+	 * @fabricated
+	 */
 	enum CauseOfDeath {
 		COD_Unknown1 = 0,
 		COD_Unknown2,
@@ -18,26 +22,35 @@ struct DeathMgr {
 		COD_All,                  // All causes combined
 		COD_SourceCount = COD_All // Count of individual causes
 	};
-	DeathMgr();
+
+	inline DeathCounter() { reset(); }
+
+	void reset();
+	int& operator()(int);
+	void read(Stream&);
+	void write(Stream&);
+
+	int m_counts[COD_SourceCount + 1]; // _00
+	int m_total;                       // _20
+};
+struct DeathMgr {
+	inline DeathMgr();
 
 	static void clear();
-	static void inc(CauseOfDeath);
-	static void inc_today(CauseOfDeath);
-	static void inc_cave(CauseOfDeath);
+	static void inc(int);
+	static void inc_today(int);
+	static void inc_cave(int);
 	static void account_cave();
 	static void account_today();
-	static int get_cave(CauseOfDeath);
-	static int get_today(CauseOfDeath);
-	static int get_total(CauseOfDeath);
+	static int get_cave(int);
+	static int get_today(int);
+	static int get_total(int);
 	static void read(Stream&);
 	static void write(Stream&);
 
-	static u32 mToday[COD_SourceCount];
-	static u32 mTodayTotal;
-	static u32 mCave[COD_SourceCount];
-	static u32 mCaveTotal;
-	static u32 mTotal[COD_SourceCount];
-	static u32 mTotalTotal;
+	static DeathCounter mToday;
+	static DeathCounter mCave;
+	static DeathCounter mTotal;
 	static int mSoundDeathCount;
 };
 } // namespace Game

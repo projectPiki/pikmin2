@@ -124,32 +124,32 @@
 // }
 
 // TODO: replace with definition in itemUjamushi when we get there.
-inline template <> float Vector3f::normalise()
-{
-	// float f2 = 0.0f;
-	// if ((x*x + y*y + z*z > 0.0f)) {
-	float f2 = ((x * x + y * y + z * z > 0.0f)) ? pikmin2_sqrtf__(z * z + (x * x + y * y)) : 0.0f;
-	// if (f2 = x*x + y*y + z*z, f2 > 0.0f) {
-	// float x2 = x*x;
-	// float z2 = z*z;
-	// float y2 = y*y;
-	// if (x2 + y2 + z2 > 0.0f) {
-	// 	if (f2 = y2 + x2 + z2, f2 > 0.0f) {
-	// float f2 = x*x + y*y + z*z;
-	// if ((f2 > 0.0f) && (f2 > 0.0f)) {
-	// f2 *= (float)SQRT((float)f2);
-	// }
-	// f2 = pikmin2_sqrtf__(z*z + (x*x + y*y));
-	// }
-	if (f2 > 0.0f) {
-		// float f1 = 1.0f / f2;
-		x *= 1.0f / f2;
-		y *= 1.0f / f2;
-		z *= 1.0f / f2;
-		return f2;
-	}
-	return 0.0f;
-}
+// inline template <> float Vector3f::normalise()
+// {
+// 	// float f2 = 0.0f;
+// 	// if ((x*x + y*y + z*z > 0.0f)) {
+// 	float f2 = ((x * x + y * y + z * z > 0.0f)) ? pikmin2_sqrtf__(z * z + (x * x + y * y)) : 0.0f;
+// 	// if (f2 = x*x + y*y + z*z, f2 > 0.0f) {
+// 	// float x2 = x*x;
+// 	// float z2 = z*z;
+// 	// float y2 = y*y;
+// 	// if (x2 + y2 + z2 > 0.0f) {
+// 	// 	if (f2 = y2 + x2 + z2, f2 > 0.0f) {
+// 	// float f2 = x*x + y*y + z*z;
+// 	// if ((f2 > 0.0f) && (f2 > 0.0f)) {
+// 	// f2 *= (float)SQRT((float)f2);
+// 	// }
+// 	// f2 = pikmin2_sqrtf__(z*z + (x*x + y*y));
+// 	// }
+// 	if (f2 > 0.0f) {
+// 		// float f1 = 1.0f / f2;
+// 		x *= 1.0f / f2;
+// 		y *= 1.0f / f2;
+// 		z *= 1.0f / f2;
+// 		return f2;
+// 	}
+// 	return 0.0f;
+// }
 
 /*
     Generated from dpostproc
@@ -713,11 +713,11 @@ void Creature::getShadowParam(Game::ShadowParam& param)
 {
 	param.m_position = getPosition();
 	param.m_position.y += 0.5f;
-	param.m_height = 10.0f;
-	param.m_radius = 4.0f;
-	param._0C      = 0.0f;
-	param._10      = 1.0f;
-	param._14      = 0.0f;
+	param.m_boundingSphere.m_radius     = 10.0f;
+	param._1C                           = 4.0f;
+	param.m_boundingSphere.m_position.x = 0.0f;
+	param.m_boundingSphere.m_position.y = 1.0f;
+	param.m_boundingSphere.m_position.z = 0.0f;
 }
 
 /*
@@ -734,10 +734,10 @@ bool Creature::needShadow() { return m_lod.m_flags & AILOD::FLAG_NEED_SHADOW; }
  */
 void Creature::getLifeGaugeParam(Game::LifeGaugeParam& param)
 {
-	param._00 = getPosition();
-	param._0C = 1.0f;
-	param._10 = 10.0f;
-	param._14 = 1;
+	param.m_position         = getPosition();
+	param.m_healthPercentage = 1.0f;
+	param._10                = 10.0f;
+	param._14                = 1;
 }
 
 /*
@@ -774,8 +774,13 @@ void Creature::load(Stream& input, u8 flags)
  * Address:	8013B6E8
  * Size:	0000BC
  */
-void Creature::calcSphereDistance(Game::Creature*)
+float Creature::calcSphereDistance(Game::Creature* them)
 {
+	Sys::Sphere myBounds;
+	Sys::Sphere theirBounds;
+	them->getBoundingSphere(theirBounds);
+	getBoundingSphere(myBounds);
+	return myBounds.m_position.distance(theirBounds.m_position) - (myBounds.m_radius + theirBounds.m_radius);
 	/*
 	stwu     r1, -0x30(r1)
 	mflr     r0
@@ -1506,7 +1511,7 @@ void Creature::applyImpulse(Vector3f& unused, Vector3f& impulse)
  * Address:	8013BFDC
  * Size:	0002E4
  */
-void Creature::checkCollision(Game::CellObject*)
+void Creature::checkCollision(CellObject*)
 {
 	/*
 	stwu     r1, -0x60(r1)

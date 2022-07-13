@@ -34,6 +34,7 @@ struct JKRAramHeap : public JKRDisposer {
 	JKRAramHeap(u32, u32);
 
 	virtual ~JKRAramHeap(); // _00
+	// virtual void _04() = 0;
 
 	JKRAramBlock* alloc(u32, EAllocMode);
 	JKRAramBlock* allocFromHead(u32);
@@ -75,7 +76,7 @@ struct JKRAramArchive : public JKRArchive {
 	JKRAramArchive(long, EMountDirection);
 
 	virtual ~JKRAramArchive();                                    // _00
-	virtual void getExpandedResSize(const void*) const;           // _34
+	virtual long getExpandedResSize(const void*) const;           // _34
 	virtual u32 fetchResource(SDIFileEntry*, u32*);               // _38
 	virtual void* fetchResource(void*, u32, SDIFileEntry*, u32*); // _3C
 

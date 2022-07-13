@@ -10,7 +10,7 @@ extern "C" {
 void srand(u32);
 int rand();
 
-inline f32 randFloat() { return rand() / 32768.0f; }
+inline f32 randFloat() { return (float)rand() / 32768.0f; }
 
 #ifdef __cplusplus
 };

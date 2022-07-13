@@ -109,4 +109,21 @@ template <typename T> struct Vector3 {
 typedef Vector3<float> Vector3f;
 typedef Vector3<int> Vector3i;
 
+/**
+ * @reifiedAddress{80207BA0}
+ * @reifiedFile{plugProjectKandoU/itemUjamushi.cpp}
+ */
+inline Vector3f operator+(const Vector3f& a, const Vector3f& b) {
+	return Vector3f(a.x + b.x, a.y + b.y, a.z + b.z);
+}
+
+/**
+ * @reifiedAddress{80207E70}
+ * @reifiedFile{plugProjectKandoU/itemUjamushi.cpp}
+ */
+inline Vector3f operator-(const Vector3f& a, const Vector3f& b) {
+	return Vector3f(a.x - b.x, a.y - b.y, a.z - b.z);
+}
+
+
 #endif

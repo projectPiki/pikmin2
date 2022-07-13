@@ -1,4 +1,16 @@
+#include "Controller.h"
+#include "Game/GameSystem.h"
+#include "Game/MoviePlayer.h"
+#include "Game/Navi.h"
+#include "Game/gamePlayData.h"
+#include "Game/gameStages.h"
+#include "JSystem/JKR/JKRHeap.h"
+#include "JSystem/JUT/JUTGamePad.h"
+#include "Screen/Game2DMgr.h"
+#include "System.h"
+#include "nans.h"
 #include "types.h"
+#include "Game/SingleGame.h"
 
 /*
     Generated from dpostproc
@@ -167,8 +179,12 @@ namespace Game {
  * Address:	8021B94C
  * Size:	0000E4
  */
-SingleGame::SelectState::SelectState(void)
+SingleGame::SelectState::SelectState()
+    : State(SGS_Select)
 {
+	_20               = new Controller(JUTGamePad::PORT_0);
+	m_dvdLoadCallback = new Delegate<SelectState>(this, &SelectState::dvdload);
+	_28               = -1;
 	/*
 	stwu     r1, -0x20(r1)
 	mflr     r0
@@ -241,6 +257,18 @@ lbl_8021BA0C:
  */
 void SingleGame::SelectState::init(Game::SingleGameSection*, Game::StateArg*)
 {
+	moviePlayer->reset();
+	_24 = 0;
+	_1C = nullptr;
+	_18 = nullptr;
+	Screen::gGame2DMgr->m_screenMgr->reset();
+	sParentHeapFreeSize_Last = sParentHeapFreeSize;
+	sParentHeapFreeSize      = JKRHeap::sCurrentHeap->getFreeSize();
+	JKRHeap::sCurrentHeap->getFreeSize();
+	JKRHeap::sCurrentHeap->getTotalFreeSize();
+	playData->_20 = 0;
+	naviMgr->clearDeadCount();
+	m_anyFirstTimes = false;
 	/*
 	stwu     r1, -0x10(r1)
 	mflr     r0
@@ -288,8 +316,50 @@ void SingleGame::SelectState::init(Game::SingleGameSection*, Game::StateArg*)
  * Address:	8021BAC8
  * Size:	000260
  */
-void SingleGame::SelectState::initNext(Game::SingleGameSection*)
+void SingleGame::SelectState::initNext(Game::SingleGameSection* section)
 {
+	sys->setFrameRate(1);
+	_24 = 1;
+	_1C = JKRHeap::sCurrentHeap;
+	_1C->getFreeSize();
+	sParentHeapFreeSize = _1C->getFreeSize();
+	_1C->getFreeSize();
+	_1C->getTotalFreeSize();
+	_18 = JKRExpHeap::create(_1C->getFreeSize(), _1C, true);
+	_18->becomeCurrentHeap();
+	if (playData->courseOpen(2) && (playData->_2F & 1) && !playData->courseOpen(3)) {
+		playData->openCourse(3);
+	}
+	if (playData->courseOpen(1)) {
+		playData->setDemoFlag(0x12);
+		playData->setDemoFlag(0x06);
+	}
+	bool anyFirstTimes = false;
+	for (int i = 0; i < 4; i++) {
+		if (playData->courseFirstTime(i)) {
+			anyFirstTimes = true;
+		}
+	}
+	m_anyFirstTimes = anyFirstTimes;
+	_10             = new kh::Screen::WorldMap();
+	Game::WorldMap::InitArg arg;
+	arg.m_currentCourseIndex   = 0;
+	arg.m_hasNewOtakaraEntries = false;
+	arg.m_hasNewTekiEntries    = false;
+	arg._16                    = 0;
+	arg.m_dayCount             = gameSystem->m_timeMgr->m_dayCount + 1;
+	arg.m_stages               = stageList;
+	arg.m_heap                 = _18;
+	arg.m_controller           = _20;
+	arg.m_currentCourseIndex   = (_28 == -1) ? playData->getCurrentCourseIndex() : _28;
+	arg.m_hasNewTekiEntries    = playData->m_tekiStatMgr.whatsNew();
+	arg.m_hasNewOtakaraEntries = playData->hasPelletZukanWhatsNew();
+	arg._16                    = section->_228;
+	_10->init(arg);
+	section->_18 = section->m_wipeInFader;
+	section->refreshHIO();
+	_20->setButtonRepeat(0x3000000, 0x1E, 1);
+	sys->dvdLoadUseCallBack(&section->_1B8, m_dvdLoadCallback);
 	/*
 	stwu     r1, -0x30(r1)
 	mflr     r0

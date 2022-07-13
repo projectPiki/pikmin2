@@ -3,6 +3,7 @@
 
 #include "types.h"
 #include "Vector3.h"
+#include "SysShape/MotionListener.h"
 
 namespace Sys {
 struct Triangle;
@@ -10,7 +11,6 @@ struct Triangle;
 
 namespace SysShape {
 struct KeyEvent;
-struct MotionListener;
 } // namespace SysShape
 
 namespace Game {
@@ -22,7 +22,31 @@ struct PlatEvent;
 struct Graphics;
 
 namespace PikiAI {
-struct ActionArg;
+struct ActionArg {
+	virtual char* getName();
+};
+
+struct Action {
+	Action(Game::Piki*);
+
+	virtual void init(ActionArg*);                                 // _00
+	virtual s32 exec();                                            // _04
+	virtual void cleanup();                                        // _08
+	virtual void emotion_success();                                // _0C
+	virtual void emotion_fail();                                   // _10
+	virtual void applicable();                                     // _14
+	virtual u32 getNextAIType();                                   // _18
+	virtual void bounceCallback(Game::Piki*, Sys::Triangle*);      // _1C
+	virtual void collisionCallback(Game::Piki*, Game::CollEvent&); // _20
+	virtual void platCallback(Game::Piki*, Game::PlatEvent&);      // _24
+	virtual void doDirectDraw(Graphics&);                          // _28
+	virtual void wallCallback(Vector3<float>&);                    // _2C
+	virtual void getInfo(char*);                                   // _30
+
+	// _00 VTBL
+	Game::Piki* m_parent; // _04
+	char* m_info;         // _08
+};
 
 struct ApproachPosActionArg {
 	void getName();
@@ -88,14 +112,18 @@ struct ActBattle {
 	s8 _1D;
 };
 
-struct ActBore {
+struct ActBore : public Action {
 	ActBore(Game::Piki*);
 
-	void cleanup();
-	void exec();
 	void finish();
-	void init(PikiAI::ActionArg*);
-	void startCurrAction();
+
+	virtual void cleanup();
+	virtual s32 exec();
+	virtual void init(PikiAI::ActionArg*);
+	virtual void startCurrAction();
+
+	// _08
+	u8 _0C[0x18]; // _0C
 };
 
 struct ActBreakGateArg {
@@ -238,31 +266,68 @@ struct ActFormation {
 	void wallCallback(Vector3f&);
 };
 
-struct ActFreeArg {
-	void getName();
+struct ActFreeArg : ActionArg {
+	virtual char* getName();
+
+	u8 _04;
+	f32 _08; // _08
+	f32 _0C; // _0C
+	f32 _10; // _10
+	f32 _14; // _14
 };
 
-struct ActFree {
+struct ActGather;
+
+#define PIKI_ACT_FREE_DEFAULT 0
+#define PIKI_ACT_FREE_GATHER  1
+#define PIKI_ACT_FREE_BORE    2
+
+struct ActFree : public Action, virtual SysShape::MotionListener {
 	ActFree(Game::Piki*);
 
-	void cleanup();
-	void collisionCallback(Game::Piki*, Game::CollEvent&);
-	void exec();
-	void getNextAIType();
-	void init(PikiAI::ActionArg*);
-	void onKeyEvent(const SysShape::KeyEvent&);
+	virtual void init(PikiAI::ActionArg*);
+	virtual s32 exec();
+	virtual void cleanup();
+	virtual u32 getNextAIType();
+	virtual void collisionCallback(Game::Piki*, Game::CollEvent&);
+	virtual void onKeyEvent(const SysShape::KeyEvent&);
+
+	u16 m_currentAction;    // _10
+	ActGather* m_actGather; // _14
+	ActBore* m_actBore;     // _18
+	u16 m_delayTimer;       // _1C
 };
 
-struct GatherActionArg {
-	void getName();
+struct GatherActionArg : public ActionArg {
+	GatherActionArg(ActFreeArg* arg)
+	{
+		_04 = arg->_08;
+		_08 = arg->_0C;
+		_0C = arg->_10;
+		_10 = arg->_14;
+	}
+
+	virtual char* getName();
+
+	f32 _04; // _04
+	f32 _08; // _08
+	f32 _0C; // _0C
+	f32 _10; // _10
 };
 
-struct ActGather {
+struct ActGather : public Action {
 	ActGather(Game::Piki*);
 
-	void cleanup();
-	void exec();
-	void init(PikiAI::ActionArg*);
+	virtual void cleanup();
+	virtual s32 exec();
+	virtual void init(PikiAI::ActionArg*);
+
+	// _00 VTBL
+	float _0C;
+	float _10;
+	float _14;
+	float _18;
+	float m_timer; // _1C
 };
 
 struct GotoPosActionArg {
@@ -288,28 +353,6 @@ struct ActGotoSlot {
 	void exec();
 	void init(PikiAI::ActionArg*);
 	void resetTimers();
-	void wallCallback(Vector3f&);
-};
-
-struct ActionArg {
-	void getName();
-};
-
-struct Action {
-	Action(Game::Piki*);
-
-	void applicable();
-	void bounceCallback(Game::Piki*, Sys::Triangle*);
-	void cleanup();
-	void collisionCallback(Game::Piki*, Game::CollEvent&);
-	void doDirectDraw(Graphics&);
-	void emotion_fail();
-	void emotion_success();
-	void exec();
-	void getInfo(char*);
-	void getNextAIType();
-	void init(PikiAI::ActionArg*);
-	void platCallback(Game::Piki*, Game::PlatEvent&);
 	void wallCallback(Vector3f&);
 };
 

@@ -1,10 +1,12 @@
 #ifndef _GAME_PIKI_H
 #define _GAME_PIKI_H
 
-#include "Game/FakePiki.h"
 #include "JAInter/Object.h"
 #include "JSystem/JUtility.h"
-#include "types.h"
+
+#include "PSM/Piki.h"
+
+#include "Game/FakePiki.h"
 
 namespace efx {
 struct Context;
@@ -48,14 +50,15 @@ struct PikiState;
 struct StateArg;
 
 typedef enum EPikiColor {
-	Blue       = 0,
-	Red        = 1,
-	Yellow     = 2,
-	OnyonCount = 2,
-	Purple     = 3,
-	White      = 4,
-	Bulbmin    = 5,
-	Carrot     = 6,
+	Blue                = 0,
+	Red                 = 1,
+	Yellow              = 2,
+	OnyonCount          = 2,
+	Purple              = 3,
+	White               = 4,
+	LastStoredPikiColor = White,
+	Bulbmin             = 5,
+	Carrot              = 6,
 	PikiColorCount,
 } EPikiColor;
 
@@ -77,6 +80,14 @@ struct PikiFSM {
 
 struct Piki : public FakePiki, public SysShape::MotionListener {
 	struct InvokeAIFreeArg {
+		u8 _00;
+		u8 _01;
+
+		InvokeAIFreeArg(u8 a, u8 b)
+		    : _00(a)
+		    , _01(b)
+		{
+		}
 	};
 
 	Piki();
@@ -150,7 +161,7 @@ struct Piki : public FakePiki, public SysShape::MotionListener {
 	void invokeAI();
 	void invokeAI(Game::CollEvent*, bool);
 	void invokeAI(Game::PlatEvent*);
-	void invokeAIFree(Game::Piki::InvokeAIFreeArg&);
+	bool invokeAIFree(Game::Piki::InvokeAIFreeArg&);
 	bool isMyPikmin(Game::Creature*);
 	bool isTekiFollowAI();
 	bool isThrowable();
