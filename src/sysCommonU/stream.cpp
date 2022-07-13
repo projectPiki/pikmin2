@@ -129,9 +129,12 @@ void Stream::differentEndian()
  * Address:	........
  * Size:	000048
  */
-bool Stream::isSpace(char)
+// 'UNUSED FUNCTION'/INLINE
+bool Stream::isSpace(char currByte)
 {
-	// UNUSED FUNCTION
+	// check if current byte is whitespace/newline/hash/brackets
+	return ((currByte == '\r') || (currByte == ' ') || (currByte == '\n') || (currByte == '\t') || (currByte == '#') || (currByte == '{')
+	        || (currByte == '}'));
 }
 
 /*
@@ -139,9 +142,39 @@ bool Stream::isSpace(char)
  * Address:	........
  * Size:	0000EC
  */
-void Stream::skipSpace()
+// 'UNUSED FUNCTION'/INLINE
+char Stream::skipSpace()
 {
-	// UNUSED FUNCTION
+	// return next byte that isn't a 'space' or a comment
+	// if in binary mode (or end of file), return 0
+	char byte;
+	bool isComment = false;
+
+	m_bufferPos = 0;
+	if (m_mode == STREAM_MODE_TEXT) {
+		// check we're not at the end of the file
+		while (!eof()) {
+			char byte = _readByte(); // at 0x8
+			// if we're in a comment line, skip until we hit a new line
+			if (isComment) {
+				if (byte == '\r' || byte == '\n') {
+					isComment = 0;
+				}
+				continue;
+			}
+			// flag if we're starting a comment line
+			if (byte == '#') {
+				isComment = true;
+				continue;
+			}
+			// so long as we don't hit newline/whitespace/hash/{ or }, we have a token!
+			if (!isSpace(byte)) {
+				return byte;
+			}
+		}
+	}
+	// if we reach eof or are in binary mode, return a 0
+	return 0;
 }
 
 /*
@@ -156,9 +189,47 @@ bool Stream::eof() { return false; }
  * Address:	........
  * Size:	000214
  */
+// 'UNUSED FUNCTION'/INLINE
 void Stream::copyToTextBuffer()
 {
-	// UNUSED FUNCTION
+	// copy next token (not starting with a 'space', not in a comment) to buffer
+	// panic if we hit eof
+	char nextByte;
+
+	m_buffer[m_bufferPos++] = skipSpace();
+	while (!eof()) {
+		nextByte = _readByte(); // at 0xA
+		// if we hit a newline, whitespace, hash, { or }, put 0s until we hit something else
+		if (isSpace(nextByte)) {
+			m_buffer[m_bufferPos++] = 0;
+			// check if comment line
+			if (nextByte == '#') {
+				while (!eof()) {
+					nextByte = _readByte(); // at 0x9
+					if ((nextByte != '\r') && (nextByte != '\n')) {
+						// skip through comment line
+						continue;
+					} else {
+						// we hit a new line! we're free from the comment
+						return;
+					}
+				}
+				return;
+			}
+			return;
+		} else { // we hit something else!
+
+			m_buffer[m_bufferPos++] = nextByte;
+
+			// if we hit a 0, exit
+			if (!nextByte) {
+				return;
+			}
+		}
+	}
+// if we reach eof, panic
+#line 98
+	JUT_PANIC("Reached EOF\n");
 }
 
 /*
@@ -168,184 +239,22 @@ void Stream::copyToTextBuffer()
  */
 char* Stream::getNextToken()
 {
-	/*
-	stwu     r1, -0x10(r1)
-	mflr     r0
-	stw      r0, 0x14(r1)
-	stw      r31, 0xc(r1)
-	mr       r31, r3
-	stw      r30, 8(r1)
-	lwz      r0, 0xc(r3)
-	cmpwi    r0, 0
-	bne      lbl_80413E20
-	li       r3, 0
-	b        lbl_80414004
+	// if we're in text mode:
+	//     - writes next (non-comment/whitespace/newline/bracket) token into buffer
+	//     - returns a pointer to start of buffer
+	// if we're in binary mode:
+	//     - returns null pointer
 
-lbl_80413E20:
-	li       r30, 0
-	stw      r30, 0x10(r31)
-	lwz      r0, 0xc(r31)
-	cmpwi    r0, 1
-	bne      lbl_80413EDC
-	b        lbl_80413EC0
+	// if we're in binary mode, exit
+	if (m_mode == STREAM_MODE_BINARY) {
+		return 0;
+	}
 
-lbl_80413E38:
-	mr       r3, r31
-	bl       _readByte__6StreamFv
-	clrlwi.  r0, r30, 0x18
-	extsb    r4, r3
-	beq      lbl_80413E64
-	cmpwi    r4, 0xd
-	beq      lbl_80413E5C
-	cmpwi    r4, 0xa
-	bne      lbl_80413EC0
+	// check next byte(s)
+	copyToTextBuffer();
 
-lbl_80413E5C:
-	li       r30, 0
-	b        lbl_80413EC0
-
-lbl_80413E64:
-	cmpwi    r4, 0x23
-	bne      lbl_80413E74
-	li       r30, 1
-	b        lbl_80413EC0
-
-lbl_80413E74:
-	cmpwi    r4, 0xd
-	li       r0, 0
-	beq      lbl_80413EB0
-	cmpwi    r4, 0x20
-	beq      lbl_80413EB0
-	cmpwi    r4, 0xa
-	beq      lbl_80413EB0
-	cmpwi    r4, 9
-	beq      lbl_80413EB0
-	cmpwi    r4, 0x23
-	beq      lbl_80413EB0
-	cmpwi    r4, 0x7b
-	beq      lbl_80413EB0
-	cmpwi    r4, 0x7d
-	bne      lbl_80413EB4
-
-lbl_80413EB0:
-	li       r0, 1
-
-lbl_80413EB4:
-	clrlwi.  r0, r0, 0x18
-	bne      lbl_80413EC0
-	b        lbl_80413EE0
-
-lbl_80413EC0:
-	mr       r3, r31
-	lwz      r12, 0(r31)
-	lwz      r12, 0x10(r12)
-	mtctr    r12
-	bctrl
-	clrlwi.  r0, r3, 0x18
-	beq      lbl_80413E38
-
-lbl_80413EDC:
-	li       r4, 0
-
-lbl_80413EE0:
-	lwz      r3, 0x10(r31)
-	addi     r0, r3, 1
-	add      r3, r31, r3
-	stw      r0, 0x10(r31)
-	stb      r4, 0x14(r3)
-	b        lbl_80413FC8
-
-lbl_80413EF8:
-	mr       r3, r31
-	bl       _readByte__6StreamFv
-	extsb    r5, r3
-	li       r0, 0
-	cmpwi    r5, 0xd
-	beq      lbl_80413F40
-	cmpwi    r5, 0x20
-	beq      lbl_80413F40
-	cmpwi    r5, 0xa
-	beq      lbl_80413F40
-	cmpwi    r5, 9
-	beq      lbl_80413F40
-	cmpwi    r5, 0x23
-	beq      lbl_80413F40
-	cmpwi    r5, 0x7b
-	beq      lbl_80413F40
-	cmpwi    r5, 0x7d
-	bne      lbl_80413F44
-
-lbl_80413F40:
-	li       r0, 1
-
-lbl_80413F44:
-	clrlwi.  r0, r0, 0x18
-	beq      lbl_80413FAC
-	lwz      r3, 0x10(r31)
-	cmpwi    r5, 0x23
-	li       r4, 0
-	addi     r0, r3, 1
-	add      r3, r31, r3
-	stw      r0, 0x10(r31)
-	stb      r4, 0x14(r3)
-	bne      lbl_80414000
-	b        lbl_80413F8C
-
-lbl_80413F70:
-	mr       r3, r31
-	bl       _readByte__6StreamFv
-	extsb    r0, r3
-	cmpwi    r0, 0xd
-	beq      lbl_80414000
-	cmpwi    r0, 0xa
-	beq      lbl_80414000
-
-lbl_80413F8C:
-	mr       r3, r31
-	lwz      r12, 0(r31)
-	lwz      r12, 0x10(r12)
-	mtctr    r12
-	bctrl
-	clrlwi.  r0, r3, 0x18
-	beq      lbl_80413F70
-	b        lbl_80414000
-
-lbl_80413FAC:
-	lwz      r4, 0x10(r31)
-	extsb.   r0, r5
-	addi     r3, r4, 1
-	addi     r0, r4, 0x14
-	stw      r3, 0x10(r31)
-	stbx     r5, r31, r0
-	beq      lbl_80414000
-
-lbl_80413FC8:
-	mr       r3, r31
-	lwz      r12, 0(r31)
-	lwz      r12, 0x10(r12)
-	mtctr    r12
-	bctrl
-	clrlwi.  r0, r3, 0x18
-	beq      lbl_80413EF8
-	lis      r3, lbl_80499660@ha
-	lis      r5, lbl_8049966C@ha
-	addi     r3, r3, lbl_80499660@l
-	li       r4, 0x62
-	addi     r5, r5, lbl_8049966C@l
-	crclr    6
-	bl       panic_f__12JUTExceptionFPCciPCce
-
-lbl_80414000:
-	addi     r3, r31, 0x14
-
-lbl_80414004:
-	lwz      r0, 0x14(r1)
-	lwz      r31, 0xc(r1)
-	lwz      r30, 8(r1)
-	mtlr     r0
-	addi     r1, r1, 0x10
-	blr
-	*/
+	// return a pointer to beginning of buffer
+	return m_buffer;
 }
 
 /*
@@ -355,7 +264,8 @@ lbl_80414004:
  */
 void Stream::textBeginGroup(char* groupName)
 {
-	if (m_mode) {
+	// if in text mode, write 'beginning' characters
+	if (m_mode != STREAM_MODE_BINARY) {
 		textWriteTab(m_tabCount);
 		textWriteText("# %s\r\n", groupName);
 		textWriteTab(m_tabCount);
@@ -371,7 +281,8 @@ void Stream::textBeginGroup(char* groupName)
  */
 void Stream::textEndGroup()
 {
-	if (m_mode) {
+	// if in text mode, write 'ending' characters
+	if (m_mode != STREAM_MODE_BINARY) {
 		m_tabCount--;
 		textWriteTab(m_tabCount);
 		textWriteText("}\r\n");
@@ -384,6 +295,7 @@ void Stream::textEndGroup()
  * Size:	0000E4
  */
 void Stream::printf(char*, ...)
+// in progress: https://decomp.me/scratch/0UIB3
 {
 	/*
 	stwu     r1, -0x490(r1)
@@ -460,6 +372,7 @@ lbl_804141BC:
  * Size:	0000EC
  */
 void Stream::textWriteText(char*, ...)
+// in progress: https://decomp.me/scratch/hBCOf
 {
 	/*
 	stwu     r1, -0x490(r1)
@@ -539,7 +452,7 @@ lbl_804142A8:
 //  */
 // void Stream::writePadding(u32)
 // {
-// 	// UNUSED FUNCTION
+// 	// UNUSED FUNCTION - in stream.h header
 // }
 
 /*
@@ -557,83 +470,31 @@ void Stream::skipPadding(u32)
  * Address:	804142C8
  * Size:	0000C4
  */
-void Stream::skipReading(u32 byteCount)
+void Stream::skipReading(u32 len)
 {
-	if (m_mode == 1) {
+	// 'skips' whatever is being streamed byte by byte
+	// need to handle differently if in text or binary mode
+	// skips to next line in text mode
+	// this version comes with a length 'len' for binary mode
+
+	// check mode
+	if (m_mode == STREAM_MODE_TEXT) { // we're in text mode
+		// 'skip' through, but need to look out for new lines
 		while (!eof()) {
-			u8 next = _readByte();
-			if (next == '\r' || next == '\n') {
+			s8 currByte = _readByte();
+			if (currByte != '\r' && currByte != '\n') {
+				continue;
+			} else {
 				return;
 			}
 		}
-	} else {
-		for (int i = 0; i < byteCount && !eof(); i++) {
+	} else { // we're in binary mode
+		// loop through the stream up to 'len' and 'skip' it
+		for (int i = 0; i < len && !eof(); i++) {
 			readByte();
 		}
 	}
-	/*
-	stwu     r1, -0x20(r1)
-	mflr     r0
-	stw      r0, 0x24(r1)
-	stw      r31, 0x1c(r1)
-	stw      r30, 0x18(r1)
-	mr       r30, r4
-	stw      r29, 0x14(r1)
-	mr       r29, r3
-	lwz      r0, 0xc(r3)
-	cmpwi    r0, 1
-	bne      lbl_80414338
-	b        lbl_80414318
-
-lbl_804142F8:
-	mr       r3, r29
-	bl       _readByte__6StreamFv
-	extsb    r0, r3
-	cmpwi    r0, 0xd
-	beq      lbl_80414370
-	cmpwi    r0, 0xa
-	bne      lbl_80414318
-	b        lbl_80414370
-
-lbl_80414318:
-	mr       r3, r29
-	lwz      r12, 0(r29)
-	lwz      r12, 0x10(r12)
-	mtctr    r12
-	bctrl
-	clrlwi.  r0, r3, 0x18
-	beq      lbl_804142F8
-	b        lbl_80414370
-
-lbl_80414338:
-	li       r31, 0
-	b        lbl_8041434C
-
-lbl_80414340:
-	mr       r3, r29
-	bl       readByte__6StreamFv
-	addi     r31, r31, 1
-
-lbl_8041434C:
-	cmplw    r31, r30
-	bge      lbl_80414370
-	mr       r3, r29
-	lwz      r12, 0(r29)
-	lwz      r12, 0x10(r12)
-	mtctr    r12
-	bctrl
-	clrlwi.  r0, r3, 0x18
-	beq      lbl_80414340
-
-lbl_80414370:
-	lwz      r0, 0x24(r1)
-	lwz      r31, 0x1c(r1)
-	lwz      r30, 0x18(r1)
-	lwz      r29, 0x14(r1)
-	mtlr     r0
-	addi     r1, r1, 0x20
-	blr
-	*/
+	return;
 }
 
 /*
@@ -643,60 +504,32 @@ lbl_80414370:
  */
 void Stream::skipReadingText()
 {
-	/*
-	stwu     r1, -0x10(r1)
-	mflr     r0
-	stw      r0, 0x14(r1)
-	stw      r31, 0xc(r1)
-	mr       r31, r3
-	lwz      r0, 0xc(r3)
-	cmpwi    r0, 1
-	bne      lbl_80414404
-	b        lbl_804143D0
+	// 'skips' whatever is being streamed byte by byte
+	// need to handle differently if in text or binary mode
+	// skips to next line in text mode
+	// this version doesn't come with a length for binary mode
 
-lbl_804143B0:
-	mr       r3, r31
-	bl       _readByte__6StreamFv
-	extsb    r0, r3
-	cmpwi    r0, 0xd
-	beq      lbl_80414420
-	cmpwi    r0, 0xa
-	bne      lbl_804143D0
-	b        lbl_80414420
-
-lbl_804143D0:
-	mr       r3, r31
-	lwz      r12, 0(r31)
-	lwz      r12, 0x10(r12)
-	mtctr    r12
-	bctrl
-	clrlwi.  r0, r3, 0x18
-	beq      lbl_804143B0
-	b        lbl_80414420
-	b        lbl_80414404
-
-lbl_804143F4:
-	mr       r3, r31
-	bl       readByte__6StreamFv
-	clrlwi.  r0, r3, 0x18
-	beq      lbl_80414420
-
-lbl_80414404:
-	mr       r3, r31
-	lwz      r12, 0(r31)
-	lwz      r12, 0x10(r12)
-	mtctr    r12
-	bctrl
-	clrlwi.  r0, r3, 0x18
-	beq      lbl_804143F4
-
-lbl_80414420:
-	lwz      r0, 0x14(r1)
-	lwz      r31, 0xc(r1)
-	mtlr     r0
-	addi     r1, r1, 0x10
-	blr
-	*/
+	// check mode
+	if (m_mode == STREAM_MODE_TEXT) { // we're in text mode
+		// 'skip' through, but need to look out for 0xD and 0xA markers
+		while (!eof()) {
+			s8 currByte = _readByte();
+			if (currByte != '\r' && currByte != '\n') {
+				continue;
+			} else {
+				return;
+			}
+		}
+	} else { // we're in binary mode
+		// we can just loop through the whole stream and 'skip' it
+		// so long as readByte returns something
+		while (!eof()) {
+			if (!readByte()) {
+				break;
+			}
+		}
+	}
+	return;
 }
 
 /*
@@ -740,210 +573,31 @@ void Stream::textWriteTab(int tabCount)
  */
 u8 Stream::readByte()
 {
-	/*
-	stwu     r1, -0x20(r1)
-	mflr     r0
-	lis      r4, lbl_80499660@ha
-	stw      r0, 0x24(r1)
-	stw      r31, 0x1c(r1)
-	addi     r31, r4, lbl_80499660@l
-	stw      r30, 0x18(r1)
-	mr       r30, r3
-	stw      r29, 0x14(r1)
-	lwz      r0, 0xc(r3)
-	cmpwi    r0, 1
-	bne      lbl_804146F4
-	cmpwi    r0, 0
-	bne      lbl_804144DC
-	li       r30, 0
-	b        lbl_804146B8
+	// if we're in text mode:
+	//     - returns next byte (assuming it's not a comment or special character)
+	// if we're in binary mode:
+	//     - returns next byte with no checks
 
-lbl_804144DC:
-	li       r29, 0
-	stw      r29, 0x10(r30)
-	lwz      r0, 0xc(r30)
-	cmpwi    r0, 1
-	bne      lbl_80414598
-	b        lbl_8041457C
+	int scanOut;
 
-lbl_804144F4:
-	mr       r3, r30
-	bl       _readByte__6StreamFv
-	clrlwi.  r0, r29, 0x18
-	extsb    r4, r3
-	beq      lbl_80414520
-	cmpwi    r4, 0xd
-	beq      lbl_80414518
-	cmpwi    r4, 0xa
-	bne      lbl_8041457C
+	// check if we're in text mode or binary mode
+	if (m_mode == STREAM_MODE_TEXT) { // we're in text mode, need to do more checks
 
-lbl_80414518:
-	li       r29, 0
-	b        lbl_8041457C
+		char* nextToken = getNextToken();
+		// if we have a null pointer, panic
+		if (!nextToken) {
+#line 260
+			JUT_PANIC("readByte:Token Error\n");
+		}
 
-lbl_80414520:
-	cmpwi    r4, 0x23
-	bne      lbl_80414530
-	li       r29, 1
-	b        lbl_8041457C
+		// take byte from nextToken and put it into scanOut
+		sscanf(nextToken, "%d", &scanOut);
+		// return byte
+		return (u8)scanOut;
+	}
 
-lbl_80414530:
-	cmpwi    r4, 0xd
-	li       r0, 0
-	beq      lbl_8041456C
-	cmpwi    r4, 0x20
-	beq      lbl_8041456C
-	cmpwi    r4, 0xa
-	beq      lbl_8041456C
-	cmpwi    r4, 9
-	beq      lbl_8041456C
-	cmpwi    r4, 0x23
-	beq      lbl_8041456C
-	cmpwi    r4, 0x7b
-	beq      lbl_8041456C
-	cmpwi    r4, 0x7d
-	bne      lbl_80414570
-
-lbl_8041456C:
-	li       r0, 1
-
-lbl_80414570:
-	clrlwi.  r0, r0, 0x18
-	bne      lbl_8041457C
-	b        lbl_8041459C
-
-lbl_8041457C:
-	mr       r3, r30
-	lwz      r12, 0(r30)
-	lwz      r12, 0x10(r12)
-	mtctr    r12
-	bctrl
-	clrlwi.  r0, r3, 0x18
-	beq      lbl_804144F4
-
-lbl_80414598:
-	li       r4, 0
-
-lbl_8041459C:
-	lwz      r3, 0x10(r30)
-	addi     r0, r3, 1
-	add      r3, r30, r3
-	stw      r0, 0x10(r30)
-	stb      r4, 0x14(r3)
-	b        lbl_80414684
-
-lbl_804145B4:
-	mr       r3, r30
-	bl       _readByte__6StreamFv
-	extsb    r5, r3
-	li       r0, 0
-	cmpwi    r5, 0xd
-	beq      lbl_804145FC
-	cmpwi    r5, 0x20
-	beq      lbl_804145FC
-	cmpwi    r5, 0xa
-	beq      lbl_804145FC
-	cmpwi    r5, 9
-	beq      lbl_804145FC
-	cmpwi    r5, 0x23
-	beq      lbl_804145FC
-	cmpwi    r5, 0x7b
-	beq      lbl_804145FC
-	cmpwi    r5, 0x7d
-	bne      lbl_80414600
-
-lbl_804145FC:
-	li       r0, 1
-
-lbl_80414600:
-	clrlwi.  r0, r0, 0x18
-	beq      lbl_80414668
-	lwz      r3, 0x10(r30)
-	cmpwi    r5, 0x23
-	li       r4, 0
-	addi     r0, r3, 1
-	add      r3, r30, r3
-	stw      r0, 0x10(r30)
-	stb      r4, 0x14(r3)
-	bne      lbl_804146B4
-	b        lbl_80414648
-
-lbl_8041462C:
-	mr       r3, r30
-	bl       _readByte__6StreamFv
-	extsb    r0, r3
-	cmpwi    r0, 0xd
-	beq      lbl_804146B4
-	cmpwi    r0, 0xa
-	beq      lbl_804146B4
-
-lbl_80414648:
-	mr       r3, r30
-	lwz      r12, 0(r30)
-	lwz      r12, 0x10(r12)
-	mtctr    r12
-	bctrl
-	clrlwi.  r0, r3, 0x18
-	beq      lbl_8041462C
-	b        lbl_804146B4
-
-lbl_80414668:
-	lwz      r4, 0x10(r30)
-	extsb.   r0, r5
-	addi     r3, r4, 1
-	addi     r0, r4, 0x14
-	stw      r3, 0x10(r30)
-	stbx     r5, r30, r0
-	beq      lbl_804146B4
-
-lbl_80414684:
-	mr       r3, r30
-	lwz      r12, 0(r30)
-	lwz      r12, 0x10(r12)
-	mtctr    r12
-	bctrl
-	clrlwi.  r0, r3, 0x18
-	beq      lbl_804145B4
-	addi     r3, r31, 0
-	addi     r5, r31, 0xc
-	li       r4, 0x62
-	crclr    6
-	bl       panic_f__12JUTExceptionFPCciPCce
-
-lbl_804146B4:
-	addi     r30, r30, 0x14
-
-lbl_804146B8:
-	cmplwi   r30, 0
-	bne      lbl_804146D4
-	addi     r3, r31, 0
-	addi     r5, r31, 0x1c
-	li       r4, 0x104
-	crclr    6
-	bl       panic_f__12JUTExceptionFPCciPCce
-
-lbl_804146D4:
-	mr       r3, r30
-	addi     r5, r1, 8
-	addi     r4, r2, lbl_805202F0@sda21
-	crclr    6
-	bl       sscanf
-	lwz      r0, 8(r1)
-	clrlwi   r3, r0, 0x18
-	b        lbl_804146F8
-
-lbl_804146F4:
-	bl       _readByte__6StreamFv
-
-lbl_804146F8:
-	lwz      r0, 0x24(r1)
-	lwz      r31, 0x1c(r1)
-	lwz      r30, 0x18(r1)
-	lwz      r29, 0x14(r1)
-	mtlr     r0
-	addi     r1, r1, 0x20
-	blr
-	*/
+	// we're in binary mode, who needs checks
+	return _readByte();
 }
 
 /*
@@ -953,32 +607,13 @@ lbl_804146F8:
  */
 u8 Stream::_readByte()
 {
-	char buffer[1];
-	read(buffer, 1);
-	m_position++;
-	return buffer[0];
-	/*
-	stwu     r1, -0x20(r1)
-	mflr     r0
-	li       r5, 1
-	stw      r0, 0x24(r1)
-	addi     r4, r1, 8
-	stw      r31, 0x1c(r1)
-	mr       r31, r3
-	lwz      r12, 0(r3)
-	lwz      r12, 8(r12)
-	mtctr    r12
-	bctrl
-	lwz      r3, 8(r31)
-	addi     r0, r3, 1
-	stw      r0, 8(r31)
-	lbz      r3, 8(r1)
-	lwz      r31, 0x1c(r1)
-	lwz      r0, 0x24(r1)
-	mtlr     r0
-	addi     r1, r1, 0x20
-	blr
-	*/
+	// reads in the next byte with no checks
+	// returns byte being read and increments stream position
+
+	u8 currByte;        // place to store byte being read
+	read(&currByte, 1); // read in 1 byte
+	m_position++;       // increment stream position
+	return currByte;
 }
 
 /*
@@ -988,257 +623,40 @@ u8 Stream::_readByte()
  */
 short Stream::readShort()
 {
-	/*
-	stwu     r1, -0x30(r1)
-	mflr     r0
-	lis      r4, lbl_80499660@ha
-	stw      r0, 0x34(r1)
-	stw      r31, 0x2c(r1)
-	addi     r31, r4, lbl_80499660@l
-	stw      r30, 0x28(r1)
-	mr       r30, r3
-	stw      r29, 0x24(r1)
-	lwz      r0, 0xc(r3)
-	cmpwi    r0, 1
-	bne      lbl_80414A30
-	cmpwi    r0, 0
-	bne      lbl_804147A4
-	li       r30, 0
-	b        lbl_804149EC
+	// if we're in text mode:
+	//     - returns next 2 bytes, treated as short (assuming it's not a comment or special character)
+	// if we're in binary mode:
+	//     - returns next 2 bytes with no checks
 
-lbl_804147A4:
-	li       r29, 0
-	stw      r29, 0x10(r30)
-	lwz      r0, 0xc(r30)
-	cmpwi    r0, 1
-	bne      lbl_80414884
-	b        lbl_80414868
+	u16 outVal;
 
-lbl_804147BC:
-	mr       r3, r30
-	addi     r4, r1, 8
-	lwz      r12, 0(r30)
-	li       r5, 1
-	lwz      r12, 8(r12)
-	mtctr    r12
-	bctrl
-	lwz      r3, 8(r30)
-	clrlwi.  r0, r29, 0x18
-	addi     r0, r3, 1
-	stw      r0, 8(r30)
-	lbz      r0, 8(r1)
-	extsb    r4, r0
-	beq      lbl_8041480C
-	cmpwi    r4, 0xd
-	beq      lbl_80414804
-	cmpwi    r4, 0xa
-	bne      lbl_80414868
+	if (m_mode == STREAM_MODE_TEXT) { // we're in text mode, need to do more checks
 
-lbl_80414804:
-	li       r29, 0
-	b        lbl_80414868
+		char* nextToken = getNextToken();
+		// if we have a null pointer, panic
+		if (!nextToken) {
+#line 284
+			JUT_PANIC("readShort:Token Error\n");
+		}
+		int scanOut;
+		// take bytes from nextToken and put it into scanOut
+		sscanf(nextToken, "%d", &scanOut);
+		// return result
+		outVal = scanOut;
+		return outVal;
+	}
 
-lbl_8041480C:
-	cmpwi    r4, 0x23
-	bne      lbl_8041481C
-	li       r29, 1
-	b        lbl_80414868
+	// we're in binary mode, who needs checks
+	read(&outVal, 2);
+	m_position += 2;
+	// swap endian if necessary
+	if (m_endian != STREAM_BIG_ENDIAN) {
+		u32 byte1 = (outVal >> 8) & 0x000000FF;
+		u32 byte2 = (outVal << 8) & 0x0000FF00;
+		outVal    = (byte2 | byte1);
+	}
 
-lbl_8041481C:
-	cmpwi    r4, 0xd
-	li       r0, 0
-	beq      lbl_80414858
-	cmpwi    r4, 0x20
-	beq      lbl_80414858
-	cmpwi    r4, 0xa
-	beq      lbl_80414858
-	cmpwi    r4, 9
-	beq      lbl_80414858
-	cmpwi    r4, 0x23
-	beq      lbl_80414858
-	cmpwi    r4, 0x7b
-	beq      lbl_80414858
-	cmpwi    r4, 0x7d
-	bne      lbl_8041485C
-
-lbl_80414858:
-	li       r0, 1
-
-lbl_8041485C:
-	clrlwi.  r0, r0, 0x18
-	bne      lbl_80414868
-	b        lbl_80414888
-
-lbl_80414868:
-	mr       r3, r30
-	lwz      r12, 0(r30)
-	lwz      r12, 0x10(r12)
-	mtctr    r12
-	bctrl
-	clrlwi.  r0, r3, 0x18
-	beq      lbl_804147BC
-
-lbl_80414884:
-	li       r4, 0
-
-lbl_80414888:
-	lwz      r3, 0x10(r30)
-	addi     r0, r3, 1
-	add      r3, r30, r3
-	stw      r0, 0x10(r30)
-	stb      r4, 0x14(r3)
-	b        lbl_804149B8
-
-lbl_804148A0:
-	mr       r3, r30
-	addi     r4, r1, 0xa
-	lwz      r12, 0(r30)
-	li       r5, 1
-	lwz      r12, 8(r12)
-	mtctr    r12
-	bctrl
-	lwz      r3, 8(r30)
-	li       r0, 0
-	addi     r3, r3, 1
-	stw      r3, 8(r30)
-	lbz      r3, 0xa(r1)
-	extsb    r5, r3
-	cmpwi    r5, 0xd
-	beq      lbl_8041490C
-	cmpwi    r5, 0x20
-	beq      lbl_8041490C
-	cmpwi    r5, 0xa
-	beq      lbl_8041490C
-	cmpwi    r5, 9
-	beq      lbl_8041490C
-	cmpwi    r5, 0x23
-	beq      lbl_8041490C
-	cmpwi    r5, 0x7b
-	beq      lbl_8041490C
-	cmpwi    r5, 0x7d
-	bne      lbl_80414910
-
-lbl_8041490C:
-	li       r0, 1
-
-lbl_80414910:
-	clrlwi.  r0, r0, 0x18
-	beq      lbl_8041499C
-	lwz      r3, 0x10(r30)
-	cmpwi    r5, 0x23
-	li       r4, 0
-	addi     r0, r3, 1
-	add      r3, r30, r3
-	stw      r0, 0x10(r30)
-	stb      r4, 0x14(r3)
-	bne      lbl_804149E8
-	b        lbl_8041497C
-
-lbl_8041493C:
-	mr       r3, r30
-	addi     r4, r1, 9
-	lwz      r12, 0(r30)
-	li       r5, 1
-	lwz      r12, 8(r12)
-	mtctr    r12
-	bctrl
-	lwz      r3, 8(r30)
-	addi     r0, r3, 1
-	stw      r0, 8(r30)
-	lbz      r0, 9(r1)
-	extsb    r0, r0
-	cmpwi    r0, 0xd
-	beq      lbl_804149E8
-	cmpwi    r0, 0xa
-	beq      lbl_804149E8
-
-lbl_8041497C:
-	mr       r3, r30
-	lwz      r12, 0(r30)
-	lwz      r12, 0x10(r12)
-	mtctr    r12
-	bctrl
-	clrlwi.  r0, r3, 0x18
-	beq      lbl_8041493C
-	b        lbl_804149E8
-
-lbl_8041499C:
-	lwz      r4, 0x10(r30)
-	extsb.   r0, r5
-	addi     r3, r4, 1
-	addi     r0, r4, 0x14
-	stw      r3, 0x10(r30)
-	stbx     r5, r30, r0
-	beq      lbl_804149E8
-
-lbl_804149B8:
-	mr       r3, r30
-	lwz      r12, 0(r30)
-	lwz      r12, 0x10(r12)
-	mtctr    r12
-	bctrl
-	clrlwi.  r0, r3, 0x18
-	beq      lbl_804148A0
-	addi     r3, r31, 0
-	addi     r5, r31, 0xc
-	li       r4, 0x62
-	crclr    6
-	bl       panic_f__12JUTExceptionFPCciPCce
-
-lbl_804149E8:
-	addi     r30, r30, 0x14
-
-lbl_804149EC:
-	cmplwi   r30, 0
-	bne      lbl_80414A08
-	addi     r3, r31, 0
-	addi     r5, r31, 0x34
-	li       r4, 0x11c
-	crclr    6
-	bl       panic_f__12JUTExceptionFPCciPCce
-
-lbl_80414A08:
-	mr       r3, r30
-	addi     r5, r1, 0x10
-	addi     r4, r2, lbl_805202F0@sda21
-	crclr    6
-	bl       sscanf
-	lwz      r3, 0x10(r1)
-	clrlwi   r0, r3, 0x10
-	sth      r3, 0xc(r1)
-	extsh    r3, r0
-	b        lbl_80414A74
-
-lbl_80414A30:
-	lwz      r12, 0(r3)
-	addi     r4, r1, 0xc
-	li       r5, 2
-	lwz      r12, 8(r12)
-	mtctr    r12
-	bctrl
-	lwz      r3, 8(r30)
-	addi     r0, r3, 2
-	stw      r0, 8(r30)
-	lwz      r0, 4(r30)
-	cmpwi    r0, 1
-	beq      lbl_80414A6C
-	lhz      r3, 0xc(r1)
-	addi     r0, r1, 0xc
-	sthbrx   r3, 0, r0
-
-lbl_80414A6C:
-	lhz      r0, 0xc(r1)
-	extsh    r3, r0
-
-lbl_80414A74:
-	lwz      r0, 0x34(r1)
-	lwz      r31, 0x2c(r1)
-	lwz      r30, 0x28(r1)
-	lwz      r29, 0x24(r1)
-	mtlr     r0
-	addi     r1, r1, 0x30
-	blr
-	*/
+	return outVal;
 }
 
 /*
@@ -1248,253 +666,42 @@ lbl_80414A74:
  */
 int Stream::readInt()
 {
-	/*
-	stwu     r1, -0x20(r1)
-	mflr     r0
-	lis      r4, lbl_80499660@ha
-	stw      r0, 0x24(r1)
-	stw      r31, 0x1c(r1)
-	addi     r31, r4, lbl_80499660@l
-	stw      r30, 0x18(r1)
-	mr       r30, r3
-	stw      r29, 0x14(r1)
-	lwz      r0, 0xc(r3)
-	cmpwi    r0, 1
-	bne      lbl_80414D50
-	cmpwi    r0, 0
-	bne      lbl_80414AD0
-	li       r30, 0
-	b        lbl_80414D18
+	// if we're in text mode:
+	//     - returns next 4 bytes, treated as int (assuming it's not a comment or special character)
+	// if we're in binary mode:
+	//     - returns next 4 bytes with no checks
 
-lbl_80414AD0:
-	li       r29, 0
-	stw      r29, 0x10(r30)
-	lwz      r0, 0xc(r30)
-	cmpwi    r0, 1
-	bne      lbl_80414BB0
-	b        lbl_80414B94
+	int outVal;
 
-lbl_80414AE8:
-	mr       r3, r30
-	addi     r4, r1, 8
-	lwz      r12, 0(r30)
-	li       r5, 1
-	lwz      r12, 8(r12)
-	mtctr    r12
-	bctrl
-	lwz      r3, 8(r30)
-	clrlwi.  r0, r29, 0x18
-	addi     r0, r3, 1
-	stw      r0, 8(r30)
-	lbz      r0, 8(r1)
-	extsb    r4, r0
-	beq      lbl_80414B38
-	cmpwi    r4, 0xd
-	beq      lbl_80414B30
-	cmpwi    r4, 0xa
-	bne      lbl_80414B94
+	if (m_mode == STREAM_MODE_TEXT) { // we're in text mode, need to do more checks
 
-lbl_80414B30:
-	li       r29, 0
-	b        lbl_80414B94
+		char* nextToken = getNextToken();
 
-lbl_80414B38:
-	cmpwi    r4, 0x23
-	bne      lbl_80414B48
-	li       r29, 1
-	b        lbl_80414B94
+		// if we have a null pointer, panic
+		if (!nextToken) {
+#line 306
+			JUT_PANIC("readInt:Token Error\n");
+		}
 
-lbl_80414B48:
-	cmpwi    r4, 0xd
-	li       r0, 0
-	beq      lbl_80414B84
-	cmpwi    r4, 0x20
-	beq      lbl_80414B84
-	cmpwi    r4, 0xa
-	beq      lbl_80414B84
-	cmpwi    r4, 9
-	beq      lbl_80414B84
-	cmpwi    r4, 0x23
-	beq      lbl_80414B84
-	cmpwi    r4, 0x7b
-	beq      lbl_80414B84
-	cmpwi    r4, 0x7d
-	bne      lbl_80414B88
+		// take bytes from nextToken and put it into outVal
+		sscanf(nextToken, "%d", &outVal);
+		// return result
+		return outVal;
+	}
 
-lbl_80414B84:
-	li       r0, 1
+	// we're in binary mode, who needs checks
+	read(&outVal, 4);
+	m_position += 4;
+	// swap endian if necessary
+	if (m_endian != STREAM_BIG_ENDIAN) {
+		int byte1 = ((u32)outVal >> 24) & 0x000000FF;
+		int byte2 = ((u32)outVal >> 8) & 0x0000FF00;
+		int byte3 = ((u32)outVal << 8) & 0x00FF0000;
+		int byte4 = ((u32)outVal << 24) & 0xFF000000;
+		outVal    = (byte4 | byte3 | byte2 | byte1);
+	}
 
-lbl_80414B88:
-	clrlwi.  r0, r0, 0x18
-	bne      lbl_80414B94
-	b        lbl_80414BB4
-
-lbl_80414B94:
-	mr       r3, r30
-	lwz      r12, 0(r30)
-	lwz      r12, 0x10(r12)
-	mtctr    r12
-	bctrl
-	clrlwi.  r0, r3, 0x18
-	beq      lbl_80414AE8
-
-lbl_80414BB0:
-	li       r4, 0
-
-lbl_80414BB4:
-	lwz      r3, 0x10(r30)
-	addi     r0, r3, 1
-	add      r3, r30, r3
-	stw      r0, 0x10(r30)
-	stb      r4, 0x14(r3)
-	b        lbl_80414CE4
-
-lbl_80414BCC:
-	mr       r3, r30
-	addi     r4, r1, 0xa
-	lwz      r12, 0(r30)
-	li       r5, 1
-	lwz      r12, 8(r12)
-	mtctr    r12
-	bctrl
-	lwz      r3, 8(r30)
-	li       r0, 0
-	addi     r3, r3, 1
-	stw      r3, 8(r30)
-	lbz      r3, 0xa(r1)
-	extsb    r5, r3
-	cmpwi    r5, 0xd
-	beq      lbl_80414C38
-	cmpwi    r5, 0x20
-	beq      lbl_80414C38
-	cmpwi    r5, 0xa
-	beq      lbl_80414C38
-	cmpwi    r5, 9
-	beq      lbl_80414C38
-	cmpwi    r5, 0x23
-	beq      lbl_80414C38
-	cmpwi    r5, 0x7b
-	beq      lbl_80414C38
-	cmpwi    r5, 0x7d
-	bne      lbl_80414C3C
-
-lbl_80414C38:
-	li       r0, 1
-
-lbl_80414C3C:
-	clrlwi.  r0, r0, 0x18
-	beq      lbl_80414CC8
-	lwz      r3, 0x10(r30)
-	cmpwi    r5, 0x23
-	li       r4, 0
-	addi     r0, r3, 1
-	add      r3, r30, r3
-	stw      r0, 0x10(r30)
-	stb      r4, 0x14(r3)
-	bne      lbl_80414D14
-	b        lbl_80414CA8
-
-lbl_80414C68:
-	mr       r3, r30
-	addi     r4, r1, 9
-	lwz      r12, 0(r30)
-	li       r5, 1
-	lwz      r12, 8(r12)
-	mtctr    r12
-	bctrl
-	lwz      r3, 8(r30)
-	addi     r0, r3, 1
-	stw      r0, 8(r30)
-	lbz      r0, 9(r1)
-	extsb    r0, r0
-	cmpwi    r0, 0xd
-	beq      lbl_80414D14
-	cmpwi    r0, 0xa
-	beq      lbl_80414D14
-
-lbl_80414CA8:
-	mr       r3, r30
-	lwz      r12, 0(r30)
-	lwz      r12, 0x10(r12)
-	mtctr    r12
-	bctrl
-	clrlwi.  r0, r3, 0x18
-	beq      lbl_80414C68
-	b        lbl_80414D14
-
-lbl_80414CC8:
-	lwz      r4, 0x10(r30)
-	extsb.   r0, r5
-	addi     r3, r4, 1
-	addi     r0, r4, 0x14
-	stw      r3, 0x10(r30)
-	stbx     r5, r30, r0
-	beq      lbl_80414D14
-
-lbl_80414CE4:
-	mr       r3, r30
-	lwz      r12, 0(r30)
-	lwz      r12, 0x10(r12)
-	mtctr    r12
-	bctrl
-	clrlwi.  r0, r3, 0x18
-	beq      lbl_80414BCC
-	addi     r3, r31, 0
-	addi     r5, r31, 0xc
-	li       r4, 0x62
-	crclr    6
-	bl       panic_f__12JUTExceptionFPCciPCce
-
-lbl_80414D14:
-	addi     r30, r30, 0x14
-
-lbl_80414D18:
-	cmplwi   r30, 0
-	bne      lbl_80414D34
-	addi     r3, r31, 0
-	addi     r5, r31, 0x4c
-	li       r4, 0x132
-	crclr    6
-	bl       panic_f__12JUTExceptionFPCciPCce
-
-lbl_80414D34:
-	mr       r3, r30
-	addi     r5, r1, 0xc
-	addi     r4, r2, lbl_805202F0@sda21
-	crclr    6
-	bl       sscanf
-	lwz      r3, 0xc(r1)
-	b        lbl_80414D90
-
-lbl_80414D50:
-	lwz      r12, 0(r3)
-	addi     r4, r1, 0xc
-	li       r5, 4
-	lwz      r12, 8(r12)
-	mtctr    r12
-	bctrl
-	lwz      r3, 8(r30)
-	addi     r0, r3, 4
-	stw      r0, 8(r30)
-	lwz      r0, 4(r30)
-	cmpwi    r0, 1
-	beq      lbl_80414D8C
-	lwz      r3, 0xc(r1)
-	addi     r0, r1, 0xc
-	stwbrx   r3, 0, r0
-
-lbl_80414D8C:
-	lwz      r3, 0xc(r1)
-
-lbl_80414D90:
-	lwz      r0, 0x24(r1)
-	lwz      r31, 0x1c(r1)
-	lwz      r30, 0x18(r1)
-	lwz      r29, 0x14(r1)
-	mtlr     r0
-	addi     r1, r1, 0x20
-	blr
-	*/
+	return outVal;
 }
 
 /*
@@ -1504,256 +711,43 @@ lbl_80414D90:
  */
 float Stream::readFloat()
 {
-	/*
-	stwu     r1, -0x30(r1)
-	mflr     r0
-	lis      r4, lbl_80499660@ha
-	stw      r0, 0x34(r1)
-	stw      r31, 0x2c(r1)
-	addi     r31, r4, lbl_80499660@l
-	stw      r30, 0x28(r1)
-	mr       r30, r3
-	stw      r29, 0x24(r1)
-	lwz      r0, 0xc(r3)
-	cmpwi    r0, 1
-	bne      lbl_8041506C
-	cmpwi    r0, 0
-	bne      lbl_80414DEC
-	li       r30, 0
-	b        lbl_80415034
+	// if we're in text mode:
+	//     - returns next 4 bytes, treated as float (assuming it's not a comment or special character)
+	// if we're in binary mode:
+	//     - returns next 4 bytes with no checks
+	float outFloat;
+	int outInt;
 
-lbl_80414DEC:
-	li       r29, 0
-	stw      r29, 0x10(r30)
-	lwz      r0, 0xc(r30)
-	cmpwi    r0, 1
-	bne      lbl_80414ECC
-	b        lbl_80414EB0
+	if (m_mode == STREAM_MODE_TEXT) { // we're in text mode, need to do more checks
+		char* nextToken = getNextToken();
 
-lbl_80414E04:
-	mr       r3, r30
-	addi     r4, r1, 8
-	lwz      r12, 0(r30)
-	li       r5, 1
-	lwz      r12, 8(r12)
-	mtctr    r12
-	bctrl
-	lwz      r3, 8(r30)
-	clrlwi.  r0, r29, 0x18
-	addi     r0, r3, 1
-	stw      r0, 8(r30)
-	lbz      r0, 8(r1)
-	extsb    r4, r0
-	beq      lbl_80414E54
-	cmpwi    r4, 0xd
-	beq      lbl_80414E4C
-	cmpwi    r4, 0xa
-	bne      lbl_80414EB0
+		// if we have a null pointer, panic
+		if (!nextToken) {
+#line 324
+			JUT_PANIC("readFloat:Token Error\n");
+		}
 
-lbl_80414E4C:
-	li       r29, 0
-	b        lbl_80414EB0
+		// take bytes from bufferPtr and put it into outFloat
+		sscanf(nextToken, "%d", &outFloat);
+		// return result
+		return outFloat;
+	}
 
-lbl_80414E54:
-	cmpwi    r4, 0x23
-	bne      lbl_80414E64
-	li       r29, 1
-	b        lbl_80414EB0
+	// we're in binary mode, who needs checks
+	read(&outFloat, 4);
+	m_position += 4;
+	// swap endian if necessary
+	if (m_endian != STREAM_BIG_ENDIAN) {
+		int outInt = *(u32*)&outFloat;
+		int byte1  = ((u32)outInt >> 24) & 0x000000FF;
+		int byte2  = ((u32)outInt >> 8) & 0x0000FF00;
+		int byte3  = ((u32)outInt << 8) & 0x00FF0000;
+		int byte4  = ((u32)outInt << 24) & 0xFF000000;
+		outInt     = (byte4 | byte3 | byte2 | byte1);
+		outFloat   = *(f32*)&outInt;
+	}
 
-lbl_80414E64:
-	cmpwi    r4, 0xd
-	li       r0, 0
-	beq      lbl_80414EA0
-	cmpwi    r4, 0x20
-	beq      lbl_80414EA0
-	cmpwi    r4, 0xa
-	beq      lbl_80414EA0
-	cmpwi    r4, 9
-	beq      lbl_80414EA0
-	cmpwi    r4, 0x23
-	beq      lbl_80414EA0
-	cmpwi    r4, 0x7b
-	beq      lbl_80414EA0
-	cmpwi    r4, 0x7d
-	bne      lbl_80414EA4
-
-lbl_80414EA0:
-	li       r0, 1
-
-lbl_80414EA4:
-	clrlwi.  r0, r0, 0x18
-	bne      lbl_80414EB0
-	b        lbl_80414ED0
-
-lbl_80414EB0:
-	mr       r3, r30
-	lwz      r12, 0(r30)
-	lwz      r12, 0x10(r12)
-	mtctr    r12
-	bctrl
-	clrlwi.  r0, r3, 0x18
-	beq      lbl_80414E04
-
-lbl_80414ECC:
-	li       r4, 0
-
-lbl_80414ED0:
-	lwz      r3, 0x10(r30)
-	addi     r0, r3, 1
-	add      r3, r30, r3
-	stw      r0, 0x10(r30)
-	stb      r4, 0x14(r3)
-	b        lbl_80415000
-
-lbl_80414EE8:
-	mr       r3, r30
-	addi     r4, r1, 0xa
-	lwz      r12, 0(r30)
-	li       r5, 1
-	lwz      r12, 8(r12)
-	mtctr    r12
-	bctrl
-	lwz      r3, 8(r30)
-	li       r0, 0
-	addi     r3, r3, 1
-	stw      r3, 8(r30)
-	lbz      r3, 0xa(r1)
-	extsb    r5, r3
-	cmpwi    r5, 0xd
-	beq      lbl_80414F54
-	cmpwi    r5, 0x20
-	beq      lbl_80414F54
-	cmpwi    r5, 0xa
-	beq      lbl_80414F54
-	cmpwi    r5, 9
-	beq      lbl_80414F54
-	cmpwi    r5, 0x23
-	beq      lbl_80414F54
-	cmpwi    r5, 0x7b
-	beq      lbl_80414F54
-	cmpwi    r5, 0x7d
-	bne      lbl_80414F58
-
-lbl_80414F54:
-	li       r0, 1
-
-lbl_80414F58:
-	clrlwi.  r0, r0, 0x18
-	beq      lbl_80414FE4
-	lwz      r3, 0x10(r30)
-	cmpwi    r5, 0x23
-	li       r4, 0
-	addi     r0, r3, 1
-	add      r3, r30, r3
-	stw      r0, 0x10(r30)
-	stb      r4, 0x14(r3)
-	bne      lbl_80415030
-	b        lbl_80414FC4
-
-lbl_80414F84:
-	mr       r3, r30
-	addi     r4, r1, 9
-	lwz      r12, 0(r30)
-	li       r5, 1
-	lwz      r12, 8(r12)
-	mtctr    r12
-	bctrl
-	lwz      r3, 8(r30)
-	addi     r0, r3, 1
-	stw      r0, 8(r30)
-	lbz      r0, 9(r1)
-	extsb    r0, r0
-	cmpwi    r0, 0xd
-	beq      lbl_80415030
-	cmpwi    r0, 0xa
-	beq      lbl_80415030
-
-lbl_80414FC4:
-	mr       r3, r30
-	lwz      r12, 0(r30)
-	lwz      r12, 0x10(r12)
-	mtctr    r12
-	bctrl
-	clrlwi.  r0, r3, 0x18
-	beq      lbl_80414F84
-	b        lbl_80415030
-
-lbl_80414FE4:
-	lwz      r4, 0x10(r30)
-	extsb.   r0, r5
-	addi     r3, r4, 1
-	addi     r0, r4, 0x14
-	stw      r3, 0x10(r30)
-	stbx     r5, r30, r0
-	beq      lbl_80415030
-
-lbl_80415000:
-	mr       r3, r30
-	lwz      r12, 0(r30)
-	lwz      r12, 0x10(r12)
-	mtctr    r12
-	bctrl
-	clrlwi.  r0, r3, 0x18
-	beq      lbl_80414EE8
-	addi     r3, r31, 0
-	addi     r5, r31, 0xc
-	li       r4, 0x62
-	crclr    6
-	bl       panic_f__12JUTExceptionFPCciPCce
-
-lbl_80415030:
-	addi     r30, r30, 0x14
-
-lbl_80415034:
-	cmplwi   r30, 0
-	bne      lbl_80415050
-	addi     r3, r31, 0
-	addi     r5, r31, 0x64
-	li       r4, 0x144
-	crclr    6
-	bl       panic_f__12JUTExceptionFPCciPCce
-
-lbl_80415050:
-	mr       r3, r30
-	addi     r5, r1, 0x10
-	addi     r4, r2, lbl_805202F4@sda21
-	crclr    6
-	bl       sscanf
-	lfs      f1, 0x10(r1)
-	b        lbl_804150B8
-
-lbl_8041506C:
-	lwz      r12, 0(r3)
-	addi     r4, r1, 0x10
-	li       r5, 4
-	lwz      r12, 8(r12)
-	mtctr    r12
-	bctrl
-	lwz      r3, 8(r30)
-	addi     r0, r3, 4
-	stw      r0, 8(r30)
-	lwz      r0, 4(r30)
-	cmpwi    r0, 1
-	beq      lbl_804150B4
-	lwz      r3, 0x10(r1)
-	addi     r0, r1, 0xc
-	stw      r3, 0xc(r1)
-	stwbrx   r3, 0, r0
-	lfs      f0, 0xc(r1)
-	stfs     f0, 0x10(r1)
-
-lbl_804150B4:
-	lfs      f1, 0x10(r1)
-
-lbl_804150B8:
-	lwz      r0, 0x34(r1)
-	lwz      r31, 0x2c(r1)
-	lwz      r30, 0x28(r1)
-	lwz      r29, 0x24(r1)
-	mtlr     r0
-	addi     r1, r1, 0x30
-	blr
-	*/
+	return outFloat;
 }
 
 /*
@@ -1762,6 +756,7 @@ lbl_804150B8:
  * Size:	0004F8
  */
 char* Stream::readString(char*, int)
+// in progress: https://decomp.me/scratch/eGMDM
 {
 	/*
 	stwu     r1, -0x430(r1)
@@ -2174,69 +1169,25 @@ char* Stream::readFixedString()
  * Address:	804155CC
  * Size:	0000A4
  */
-void Stream::writeString(char* string)
+void Stream::writeString(char* inputStr)
 {
-	int length = strlen(string);
-	for (int i = 0; i < length; i++) {
-		_writeByte(*string);
-		string++;
+	// write input string byte by byte
+	// binary output ends with 0, text with " "
+
+	// check length of string then loop over length
+	int len = strlen(inputStr);
+	for (int i = 0; i < len; i++) {
+		// write byte with no checks
+		_writeByte(inputStr[i]);
 	}
-	if (m_mode == 1) {
+
+	if (m_mode == STREAM_MODE_TEXT) {
+		// end text mode output with space
 		printf(" ");
-	} else {
-		_writeByte('\0');
+		return;
 	}
-	/*
-	stwu     r1, -0x20(r1)
-	mflr     r0
-	stw      r0, 0x24(r1)
-	stw      r31, 0x1c(r1)
-	stw      r30, 0x18(r1)
-	stw      r29, 0x14(r1)
-	mr       r29, r4
-	stw      r28, 0x10(r1)
-	mr       r28, r3
-	mr       r3, r29
-	bl       strlen
-	mr       r30, r3
-	mr       r31, r29
-	li       r29, 0
-	b        lbl_8041561C
-
-lbl_80415608:
-	lbz      r4, 0(r31)
-	mr       r3, r28
-	bl       _writeByte__6StreamFUc
-	addi     r29, r29, 1
-	addi     r31, r31, 1
-
-lbl_8041561C:
-	cmpw     r29, r30
-	blt      lbl_80415608
-	lwz      r0, 0xc(r28)
-	cmpwi    r0, 1
-	bne      lbl_80415644
-	mr       r3, r28
-	addi     r4, r2, lbl_805202F8@sda21
-	crclr    6
-	bl       printf__6StreamFPce
-	b        lbl_80415650
-
-lbl_80415644:
-	mr       r3, r28
-	li       r4, 0
-	bl       _writeByte__6StreamFUc
-
-lbl_80415650:
-	lwz      r0, 0x24(r1)
-	lwz      r31, 0x1c(r1)
-	lwz      r30, 0x18(r1)
-	lwz      r29, 0x14(r1)
-	lwz      r28, 0x10(r1)
-	mtlr     r0
-	addi     r1, r1, 0x20
-	blr
-	*/
+	// end binary mode output with 0
+	_writeByte(0);
 }
 
 /*
@@ -2256,6 +1207,8 @@ void Stream::writeFixedString(char*)
  */
 void Stream::writeByte(u8 c)
 {
+	// write next byte + increment position
+	// check if we're in text or binary and write "%d " if in text
 	u8 buffer = c;
 	if (m_mode == 1) {
 		printf("%d ", c);
@@ -2272,6 +1225,8 @@ void Stream::writeByte(u8 c)
  */
 void Stream::_writeByte(u8 c)
 {
+	// write next byte + increment position
+	// no checks for mode type
 	u8 buffer = c;
 	write(&buffer, 1);
 	m_position++;
@@ -2282,8 +1237,32 @@ void Stream::_writeByte(u8 c)
  * Address:	80415730
  * Size:	000090
  */
-void Stream::writeShort(short)
+// ENDIAN CONVERSION DOES NOT MATCH (but is correct I think? just overoptimises it)
+void Stream::writeShort(short inputShort)
 {
+	// write short (s16)
+	// need to handle text and binary mode differently
+
+	// by default, value to write should be inputShort
+	s16 outVal = inputShort;
+	if (m_mode == STREAM_MODE_TEXT) {
+		// in text mode, write with "%d "
+		printf("%d ", inputShort);
+		return;
+	}
+	// make sure stream value is big endian
+	if (m_endian != STREAM_BIG_ENDIAN) {
+		// if it's not big endian, swap bytes to make it big endian
+		// this is oversimplifying to a sthbrx rather than rlwinm/rlwimi
+		s32 byte1 = ((u32)inputShort >> 8) & 0x000000FF;
+		s32 byte2 = ((u32)inputShort << 8) & 0x0000FF00;
+		outVal    = (s16)(byte2 | byte1);
+	}
+
+	// write short (2 bytes) and increment stream position
+	write(&outVal, 2);
+	m_position += 2;
+
 	/*
 	stwu     r1, -0x20(r1)
 	mflr     r0
@@ -2335,50 +1314,30 @@ lbl_804157AC:
  * Address:	804157C0
  * Size:	000088
  */
-void Stream::writeInt(int)
+void Stream::writeInt(int inputInt)
 {
-	/*
-	stwu     r1, -0x20(r1)
-	mflr     r0
-	stw      r0, 0x24(r1)
-	stw      r31, 0x1c(r1)
-	mr       r31, r3
-	stw      r4, 8(r1)
-	lwz      r0, 0xc(r3)
-	cmpwi    r0, 1
-	bne      lbl_804157F8
-	mr       r5, r4
-	addi     r4, r2, lbl_805202FC@sda21
-	crclr    6
-	bl       printf__6StreamFPce
-	b        lbl_80415834
+	// write int (4 bytes)
+	// need to handle text and binary mode differently
 
-lbl_804157F8:
-	lwz      r0, 4(r31)
-	cmpwi    r0, 1
-	beq      lbl_8041580C
-	addi     r0, r1, 8
-	stwbrx   r4, 0, r0
-
-lbl_8041580C:
-	mr       r3, r31
-	addi     r4, r1, 8
-	lwz      r12, 0(r31)
-	li       r5, 4
-	lwz      r12, 0xc(r12)
-	mtctr    r12
-	bctrl
-	lwz      r3, 8(r31)
-	addi     r0, r3, 4
-	stw      r0, 8(r31)
-
-lbl_80415834:
-	lwz      r0, 0x24(r1)
-	lwz      r31, 0x1c(r1)
-	mtlr     r0
-	addi     r1, r1, 0x20
-	blr
-	*/
+	// by default, value to write should be inputInt
+	int outVal = inputInt;
+	if (m_mode == STREAM_MODE_TEXT) {
+		// in text mode, write with "%d "
+		printf("%d ", inputInt);
+		return;
+	}
+	// make sure stream value is big endian
+	if (m_endian != STREAM_BIG_ENDIAN) {
+		// if it's not big endian, swap bytes to make it big endian
+		int byte1 = ((u32)inputInt >> 24) & 0x000000FF;
+		int byte2 = ((u32)inputInt >> 8) & 0x0000FF00;
+		int byte3 = ((u32)inputInt << 8) & 0x00FF0000;
+		int byte4 = ((u32)inputInt << 24) & 0xFF000000;
+		outVal    = (byte4 | byte3 | byte2 | byte1);
+	}
+	// write int (4 bytes) and increment stream position
+	write(&outVal, 4);
+	m_position += 4;
 }
 
 /*
@@ -2386,60 +1345,35 @@ lbl_80415834:
  * Address:	80415848
  * Size:	0000B0
  */
-void Stream::writeFloat(float)
+void Stream::writeFloat(float inputFloat)
 {
-	/*
-	stwu     r1, -0x20(r1)
-	mflr     r0
-	stw      r0, 0x24(r1)
-	stw      r31, 0x1c(r1)
-	mr       r31, r3
-	stfs     f1, 8(r1)
-	lwz      r0, 0xc(r3)
-	cmpwi    r0, 1
-	bne      lbl_80415880
-	frsp     f1, f1
-	addi     r4, r2, lbl_80520300@sda21
-	crset    6
-	bl       printf__6StreamFPce
-	b        lbl_804158E4
+	// write float (4 bytes)
+	// need to handle text and binary mode differently
 
-lbl_80415880:
-	lwz      r0, 4(r31)
-	cmpwi    r0, 1
-	beq      lbl_804158C0
-	lwz      r6, 8(r1)
-	addi     r0, r1, 0xc
-	addi     r4, r1, 0xc
-	li       r5, 4
-	stwbrx   r6, 0, r0
-	lwz      r12, 0(r3)
-	lwz      r12, 0xc(r12)
-	mtctr    r12
-	bctrl
-	lwz      r3, 8(r31)
-	addi     r0, r3, 4
-	stw      r0, 8(r31)
-	b        lbl_804158E4
+	// by default, value to write should be inputFloat
+	if (m_mode == STREAM_MODE_TEXT) {
+		// in text mode, write with "%f "
+		printf("%f ", inputFloat);
+		return;
+	}
+	// check if stream value is big endian
+	if (m_endian != STREAM_BIG_ENDIAN) {
+		// if it's not big endian, swap bytes
+		u32 data   = *(u32*)&inputFloat;
+		int byte1  = (data >> 24) & 0x000000FF;
+		int byte2  = (data >> 8) & 0x0000FF00;
+		int byte3  = (data << 8) & 0x00FF0000;
+		int byte4  = (data << 24) & 0xFF000000;
+		int intVal = (byte4 | byte3 | byte2 | byte1);
+		// write float (4 bytes) and increment stream position
+		write(&intVal, 4);
+		m_position += 4;
+		return;
+	}
 
-lbl_804158C0:
-	lwz      r12, 0(r3)
-	addi     r4, r1, 8
-	li       r5, 4
-	lwz      r12, 0xc(r12)
-	mtctr    r12
-	bctrl
-	lwz      r3, 8(r31)
-	addi     r0, r3, 4
-	stw      r0, 8(r31)
-
-lbl_804158E4:
-	lwz      r0, 0x24(r1)
-	lwz      r31, 0x1c(r1)
-	mtlr     r0
-	addi     r1, r1, 0x20
-	blr
-	*/
+	// write float (4 bytes) and increment stream position
+	write(&inputFloat, 4);
+	m_position += 4;
 }
 
 /*
@@ -2447,8 +1381,21 @@ lbl_804158E4:
  * Address:	804158F8
  * Size:	000050
  */
-RamStream::RamStream(void*, int)
+RamStream::RamStream(void* arg0, int arg1)
+// __vt things need doing
+// in progress: https://decomp.me/scratch/zz5xI
 {
+	// __vt = &__vt;
+	m_endian = STREAM_BIG_ENDIAN;
+
+	m_mode = STREAM_MODE_BINARY;
+	if (m_mode == STREAM_MODE_TEXT) {
+		m_tabCount = 0;
+	}
+	// this->unk0 = &__vt__9RamStream;
+	_418       = arg0;
+	bounds     = arg1;
+	m_position = 0;
 	/*
 	lis      r6, __vt__6Stream@ha
 	li       r0, 1
@@ -2490,8 +1437,19 @@ void RamStream::set(u8*, int)
  * Address:	80415948
  * Size:	000094
  */
-void RamStream::read(void*, int)
+void RamStream::read(void* destMem, int numBytes)
+// memcpy srcMem argument isn't handled correctly just yet
+// in progress: https://decomp.me/scratch/cpYeK
 {
+	if (eof()) { // if we're past the end of the file, panic
+#line 523
+		JUT_PANIC("RamStream::read out of bounds (pos=%d,bound=%d)\n", m_position, bounds);
+	}
+	// read numBytes bytes from _418 + m_position in ram to destMem in mem
+	// this is handled wrong
+	u32* srcMem = &((u32*)_418)[m_position];
+	memcpy(destMem, srcMem, numBytes);
+
 	/*
 	stwu     r1, -0x20(r1)
 	mflr     r0
@@ -2540,8 +1498,18 @@ lbl_804159A8:
  * Address:	804159DC
  * Size:	000094
  */
-void RamStream::write(void*, int)
+void RamStream::write(void* srcMem, int numBytes)
+// memcpy destMem argument isn't handled correctly just yet
+// in progress: https://decomp.me/scratch/Dph0v
 {
+	if (eof()) { // if we're past the end of the file, panic
+#line 534
+		JUT_PANIC("RamStream::write out of bounds (pos=%d,bound=%d)\n", m_position, bounds);
+	}
+	// write numBytes bytes from srcMem to _418 + m_position
+	// this isn't handled correctly
+	memcpy(&((u32*)_418)[m_position], srcMem, numBytes);
+
 	/*
 	stwu     r1, -0x20(r1)
 	mflr     r0
@@ -2592,21 +1560,11 @@ lbl_80415A3C:
  */
 bool RamStream::eof()
 {
-	/*
-	lwz      r5, 0x41c(r3)
-	cmpwi    r5, -1
-	beq      lbl_80415A94
-	lwz      r0, 8(r3)
-	srwi     r3, r5, 0x1f
-	srawi    r4, r0, 0x1f
-	subfc    r0, r5, r0
-	adde     r3, r4, r3
-	blr
-
-lbl_80415A94:
-	li       r3, 0
-	blr
-	*/
+	// check if we're at the end of the 'file'
+	if (bounds != -1) {
+		return (bounds <= m_position);
+	}
+	return 0;
 }
 
 /*
