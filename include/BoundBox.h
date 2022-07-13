@@ -7,15 +7,63 @@ namespace Sys {
 struct Sphere;
 } // namespace Sys
 
+// how struct should be, once I chase down where it's wrongly used
+
+// struct BoundBox {
+// 	// define min big and max small so that 'include' will always 'snap' to point
+// 	BoundBox()
+// 	    : m_min(32768.0f)
+// 	    , m_max(-32768.0f)
+// 	{
+// 	}
+
+// 	BoundBox(float min, float max)
+// 	    : m_min(min)
+// 	    , m_max(max)
+// 	{
+// 	}
+
+// 	void makeBoundSphere(Sys::Sphere&);
+// 	void read(struct Stream&);
+// 	void transform(struct Matrixf&);
+
+// 	/**
+// 	 * @fabricated
+// 	 */
+// 	inline void include(Vector3f& point)
+// 	{
+// 		if (point.x < m_min.x) {
+// 			m_min.x = point.x;
+// 		}
+// 		if (point.y < m_min.y) {
+// 			m_min.y = point.y;
+// 		}
+// 		if (point.z < m_min.z) {
+// 			m_min.z = point.z;
+// 		}
+// 		if (point.x > m_max.x) {
+// 			m_max.x = point.x;
+// 		}
+// 		if (point.y > m_max.y) {
+// 			m_max.y = point.y;
+// 		}
+// 		if (point.z > m_max.z) {
+// 			m_max.z = point.z;
+// 		}
+// 	}
+
+// 	Vector3f m_min;		// _00
+// 	Vector3f m_max;		// _0C
+// };
+
+// this is backwards, need to fix later
 struct BoundBox {
 	BoundBox()
 	    : m_max(32768.0f)
 	    , m_min(-32768.0f)
 	{
 	}
-	/**
-	 * @fabricated
-	 */
+
 	BoundBox(float max, float min)
 	    : m_max(max)
 	    , m_min(min)
@@ -51,8 +99,8 @@ struct BoundBox {
 		}
 	}
 
-	Vector3f m_max;
-	Vector3f m_min;
+	Vector3f m_max;		// _00
+	Vector3f m_min;		// _0C
 };
 
 struct BoundBox2d {

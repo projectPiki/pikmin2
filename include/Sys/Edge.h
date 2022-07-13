@@ -9,8 +9,8 @@ struct Edge {
 	// Unused/inlined:
 	void calcNearestEdgePoint(Vector3f&, Vector3f&);
 
-	Vector3f _00; // _00
-	Vector3f _0C; // _0C
+	Vector3f pos1; // _00
+	Vector3f pos2; // _0C
 };
 } // namespace Sys
 
