@@ -22,36 +22,39 @@ struct Stream {
 	virtual bool eof();
 	virtual u32 getPending();
 
-	void differentEndian();
-	bool isSpace(char);
-	void copyToTextBuffer();
+	void differentEndian();  // unused
+	bool isSpace(char);      // inline
+	char skipSpace();        // inline
+	void copyToTextBuffer(); // inline
+	char* getNextToken();
+	void textBeginGroup(char*);
+	void textEndGroup();
 	void printf(char*, ...);
+	void textWriteText(char*, ...);
+	void skipPadding(u32); // inline
 	void skipReading(u32);
 	void skipReadingText();
-	char skipSpace();
-	void skipPadding(u32);
-	char* getNextToken();
+	void _read(void*, int);  // unused
+	void _write(void*, int); // unused
+	void textWriteTab(int);
+
+	u8 readByte();
+	u8 _readByte();
+	short readShort();
+	int readInt();
+	float readFloat();
+	char* readString(char*, int);
+	char* readFixedString(); // unused
+
+	void writeString(char*);
+	void writeFixedString(char*); // unused
 	void writeByte(u8);
+	void _writeByte(u8);
 	void writeShort(short);
 	void writeInt(int);
 	void writeFloat(float);
-	void writeString(char*);
-	void writeFixedString(char*);
-	u8 readByte();
+
 	u16 readU16() { return readShort(); }
-	float readFloat();
-	int readInt();
-	short readShort();
-	char* readString(char*, int);
-	char* readFixedString();
-	void textBeginGroup(char*);
-	void textEndGroup();
-	void textWriteTab(int);
-	void textWriteText(char*, ...);
-	void _read(void*, int);
-	void _write(void*, int);
-	u8 _readByte();
-	void _writeByte(u8);
 
 	inline void writePadding(u32 mode)
 	{
@@ -77,6 +80,7 @@ struct RamStream : Stream {
 	virtual void read(void*, int);
 	virtual void write(void*, int);
 	virtual bool eof();
+	// virtual void getPending(); // from Stream
 
 	inline void resetPosition(bool a1, int a2)
 	{

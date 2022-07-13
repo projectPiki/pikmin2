@@ -264,7 +264,8 @@ char* Stream::getNextToken()
  */
 void Stream::textBeginGroup(char* groupName)
 {
-	if (m_mode) {
+	// if in text mode, write 'beginning' characters
+	if (m_mode != STREAM_MODE_BINARY) {
 		textWriteTab(m_tabCount);
 		textWriteText("# %s\r\n", groupName);
 		textWriteTab(m_tabCount);
@@ -280,7 +281,8 @@ void Stream::textBeginGroup(char* groupName)
  */
 void Stream::textEndGroup()
 {
-	if (m_mode) {
+	// if in text mode, write 'ending' characters
+	if (m_mode != STREAM_MODE_BINARY) {
 		m_tabCount--;
 		textWriteTab(m_tabCount);
 		textWriteText("}\r\n");
@@ -619,7 +621,7 @@ u8 Stream::_readByte()
  * Address:	80414764
  * Size:	00032C
  */
-s16 Stream::readShort()
+short Stream::readShort()
 {
 	// if we're in text mode:
 	//     - returns next 2 bytes, treated as short (assuming it's not a comment or special character)
@@ -1168,17 +1170,15 @@ char* Stream::readFixedString()
  * Size:	0000A4
  */
 void Stream::writeString(char* inputStr)
-// REGSWAP BETWEEN r30 and r31
 {
 	// write input string byte by byte
 	// binary output ends with 0, text with " "
 
 	// check length of string then loop over length
-	int len      = strlen(inputStr); //
-	char* strPtr = inputStr;         // this is here for the mr at 30
-	for (int i = 0; i < len; i++, strPtr++) {
+	int len = strlen(inputStr);
+	for (int i = 0; i < len; i++) {
 		// write byte with no checks
-		_writeByte(*strPtr);
+		_writeByte(inputStr[i]);
 	}
 
 	if (m_mode == STREAM_MODE_TEXT) {
@@ -1188,58 +1188,6 @@ void Stream::writeString(char* inputStr)
 	}
 	// end binary mode output with 0
 	_writeByte(0);
-
-	/*
-	stwu     r1, -0x20(r1)
-	mflr     r0
-	stw      r0, 0x24(r1)
-	stw      r31, 0x1c(r1)
-	stw      r30, 0x18(r1)
-	stw      r29, 0x14(r1)
-	mr       r29, r4
-	stw      r28, 0x10(r1)
-	mr       r28, r3
-	mr       r3, r29
-	bl       strlen
-	mr       r30, r3
-	mr       r31, r29
-	li       r29, 0
-	b        lbl_8041561C
-
-lbl_80415608:
-	lbz      r4, 0(r31)
-	mr       r3, r28
-	bl       _writeByte__6StreamFUc
-	addi     r29, r29, 1
-	addi     r31, r31, 1
-
-lbl_8041561C:
-	cmpw     r29, r30
-	blt      lbl_80415608
-	lwz      r0, 0xc(r28)
-	cmpwi    r0, 1
-	bne      lbl_80415644
-	mr       r3, r28
-	addi     r4, r2, lbl_805202F8@sda21
-	crclr    6
-	bl       printf__6StreamFPce
-	b        lbl_80415650
-
-lbl_80415644:
-	mr       r3, r28
-	li       r4, 0
-	bl       _writeByte__6StreamFUc
-
-lbl_80415650:
-	lwz      r0, 0x24(r1)
-	lwz      r31, 0x1c(r1)
-	lwz      r30, 0x18(r1)
-	lwz      r29, 0x14(r1)
-	lwz      r28, 0x10(r1)
-	mtlr     r0
-	addi     r1, r1, 0x20
-	blr
-	*/
 }
 
 /*
@@ -1259,6 +1207,8 @@ void Stream::writeFixedString(char*)
  */
 void Stream::writeByte(u8 c)
 {
+	// write next byte + increment position
+	// check if we're in text or binary and write "%d " if in text
 	u8 buffer = c;
 	if (m_mode == 1) {
 		printf("%d ", c);
@@ -1275,6 +1225,8 @@ void Stream::writeByte(u8 c)
  */
 void Stream::_writeByte(u8 c)
 {
+	// write next byte + increment position
+	// no checks for mode type
 	u8 buffer = c;
 	write(&buffer, 1);
 	m_position++;
@@ -1285,7 +1237,7 @@ void Stream::_writeByte(u8 c)
  * Address:	80415730
  * Size:	000090
  */
-// ENDIAN CONVERSION DOES NOT MATCH (but is correct)
+// ENDIAN CONVERSION DOES NOT MATCH (but is correct I think? just overoptimises it)
 void Stream::writeShort(short inputShort)
 {
 	// write short (s16)
@@ -1305,7 +1257,6 @@ void Stream::writeShort(short inputShort)
 		s32 byte1 = ((u32)inputShort >> 8) & 0x000000FF;
 		s32 byte2 = ((u32)inputShort << 8) & 0x0000FF00;
 		outVal    = (s16)(byte2 | byte1);
-		// outVal = ((inputShort << 8) & 0xFF00) | ((inputShort >> 8) & 0x00FF);
 	}
 
 	// write short (2 bytes) and increment stream position
