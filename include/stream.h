@@ -13,9 +13,20 @@
 #define STREAM_LITTLE_ENDIAN 0
 #define STREAM_BIG_ENDIAN    1
 
+static inline u16 bswap16(u16 x) {
+	return ((x << 8) & 0xff00) | ((x >> 8) & 0x00ff);
+}
+
 struct Stream {
-	Stream();
-	Stream(int);
+    Stream() {
+        m_endian = STREAM_BIG_ENDIAN;
+        m_position = 0;
+        m_mode = STREAM_MODE_BINARY;
+        if (m_mode == STREAM_MODE_TEXT) {
+            m_tabCount = 0;
+        }
+    }
+    Stream(int);
 
 	virtual void read(void*, int);
 	virtual void write(void*, int);
@@ -90,8 +101,8 @@ struct RamStream : Stream {
 		}
 	}
 
-	void* _418; // _418
-	int bounds; // _41C
+	void* m_ramBufferStart; // _418
+	int m_bounds; // _41C
 };
 
 #endif

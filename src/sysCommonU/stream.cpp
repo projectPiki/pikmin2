@@ -1237,76 +1237,27 @@ void Stream::_writeByte(u8 c)
  * Address:	80415730
  * Size:	000090
  */
-// ENDIAN CONVERSION DOES NOT MATCH (but is correct I think? just overoptimises it)
-void Stream::writeShort(short inputShort)
+void Stream::writeShort(short inputShort) 
 {
-	// write short (s16)
-	// need to handle text and binary mode differently
+    // write short (s16) 
+    // need to handle text and binary mode differently
 
-	// by default, value to write should be inputShort
-	s16 outVal = inputShort;
-	if (m_mode == STREAM_MODE_TEXT) {
-		// in text mode, write with "%d "
-		printf("%d ", inputShort);
-		return;
-	}
-	// make sure stream value is big endian
-	if (m_endian != STREAM_BIG_ENDIAN) {
-		// if it's not big endian, swap bytes to make it big endian
-		// this is oversimplifying to a sthbrx rather than rlwinm/rlwimi
-		s32 byte1 = ((u32)inputShort >> 8) & 0x000000FF;
-		s32 byte2 = ((u32)inputShort << 8) & 0x0000FF00;
-		outVal    = (s16)(byte2 | byte1);
-	}
-
-	// write short (2 bytes) and increment stream position
-	write(&outVal, 2);
-	m_position += 2;
-
-	/*
-	stwu     r1, -0x20(r1)
-	mflr     r0
-	stw      r0, 0x24(r1)
-	stw      r31, 0x1c(r1)
-	mr       r31, r3
-	sth      r4, 8(r1)
-	lwz      r0, 0xc(r3)
-	cmpwi    r0, 1
-	bne      lbl_80415768
-	extsh    r5, r4
-	addi     r4, r2, lbl_805202FC@sda21
-	crclr    6
-	bl       printf__6StreamFPce
-	b        lbl_804157AC
-
-lbl_80415768:
-	lwz      r0, 4(r31)
-	cmpwi    r0, 1
-	beq      lbl_80415784
-	extsh    r3, r4
-	rlwinm   r0, r3, 0x18, 0x18, 0x1f
-	rlwimi   r0, r3, 8, 0x10, 0x17
-	sth      r0, 8(r1)
-
-lbl_80415784:
-	mr       r3, r31
-	addi     r4, r1, 8
-	lwz      r12, 0(r31)
-	li       r5, 2
-	lwz      r12, 0xc(r12)
-	mtctr    r12
-	bctrl
-	lwz      r3, 8(r31)
-	addi     r0, r3, 2
-	stw      r0, 8(r31)
-
-lbl_804157AC:
-	lwz      r0, 0x24(r1)
-	lwz      r31, 0x1c(r1)
-	mtlr     r0
-	addi     r1, r1, 0x20
-	blr
-	*/
+    // by default, value to write should be inputShort
+    s16 outVal = inputShort;
+    if (m_mode == STREAM_MODE_TEXT) {
+        // in text mode, write with "%d "
+        printf("%d ", inputShort);
+        return;
+    }
+    // make sure stream value is big endian
+    if (m_endian != STREAM_BIG_ENDIAN) {
+        // if it's not big endian, swap bytes to make it big endian
+        outVal = bswap16((s16)inputShort);
+    }
+    
+    // write short (2 bytes) and increment stream position
+    write(&outVal, 2); 
+    m_position += 2;
 }
 
 /*
@@ -1381,45 +1332,11 @@ void Stream::writeFloat(float inputFloat)
  * Address:	804158F8
  * Size:	000050
  */
-RamStream::RamStream(void* arg0, int arg1)
-// __vt things need doing
-// in progress: https://decomp.me/scratch/zz5xI
+RamStream::RamStream(void* RamBufferPtr, int bounds) 
 {
-	// __vt = &__vt;
-	m_endian = STREAM_BIG_ENDIAN;
-
-	m_mode = STREAM_MODE_BINARY;
-	if (m_mode == STREAM_MODE_TEXT) {
-		m_tabCount = 0;
-	}
-	// this->unk0 = &__vt__9RamStream;
-	_418       = arg0;
-	bounds     = arg1;
-	m_position = 0;
-	/*
-	lis      r6, __vt__6Stream@ha
-	li       r0, 1
-	addi     r6, r6, __vt__6Stream@l
-	stw      r6, 0(r3)
-	li       r6, 0
-	stw      r0, 4(r3)
-	stw      r6, 8(r3)
-	stw      r6, 0xc(r3)
-	lwz      r0, 0xc(r3)
-	cmpwi    r0, 1
-	bne      lbl_80415928
-	stw      r6, 0x414(r3)
-
-lbl_80415928:
-	lis      r6, __vt__9RamStream@ha
-	li       r0, 0
-	addi     r6, r6, __vt__9RamStream@l
-	stw      r6, 0(r3)
-	stw      r4, 0x418(r3)
-	stw      r5, 0x41c(r3)
-	stw      r0, 8(r3)
-	blr
-	*/
+    m_ramBufferStart = RamBufferPtr;
+    m_bounds = inputBounds;
+    m_position = 0;
 }
 
 /*
@@ -1437,60 +1354,13 @@ void RamStream::set(u8*, int)
  * Address:	80415948
  * Size:	000094
  */
-void RamStream::read(void* destMem, int numBytes)
-// memcpy srcMem argument isn't handled correctly just yet
-// in progress: https://decomp.me/scratch/cpYeK
+void RamStream::read(void* destMem, int numBytes) 
 {
-	if (eof()) { // if we're past the end of the file, panic
-#line 523
-		JUT_PANIC("RamStream::read out of bounds (pos=%d,bound=%d)\n", m_position, bounds);
-	}
-	// read numBytes bytes from _418 + m_position in ram to destMem in mem
-	// this is handled wrong
-	u32* srcMem = &((u32*)_418)[m_position];
-	memcpy(destMem, srcMem, numBytes);
-
-	/*
-	stwu     r1, -0x20(r1)
-	mflr     r0
-	stw      r0, 0x24(r1)
-	stw      r31, 0x1c(r1)
-	mr       r31, r5
-	stw      r30, 0x18(r1)
-	mr       r30, r4
-	stw      r29, 0x14(r1)
-	mr       r29, r3
-	lwz      r12, 0(r3)
-	lwz      r12, 0x10(r12)
-	mtctr    r12
-	bctrl
-	clrlwi.  r0, r3, 0x18
-	beq      lbl_804159A8
-	lis      r3, lbl_80499660@ha
-	lis      r4, lbl_80499740@ha
-	addi     r5, r4, lbl_80499740@l
-	lwz      r6, 8(r29)
-	lwz      r7, 0x41c(r29)
-	addi     r3, r3, lbl_80499660@l
-	li       r4, 0x20b
-	crclr    6
-	bl       panic_f__12JUTExceptionFPCciPCce
-
-lbl_804159A8:
-	lwz      r4, 0x418(r29)
-	mr       r3, r30
-	lwz      r0, 8(r29)
-	mr       r5, r31
-	add      r4, r4, r0
-	bl       memcpy
-	lwz      r0, 0x24(r1)
-	lwz      r31, 0x1c(r1)
-	lwz      r30, 0x18(r1)
-	lwz      r29, 0x14(r1)
-	mtlr     r0
-	addi     r1, r1, 0x20
-	blr
-	*/
+    if (eof()) { // if we're past the end of the file, panic
+        JUT_PANICLINE(523, "RamStream::read out of bounds (pos=%d,bound=%d)\n", m_position, bounds);
+    }
+    // read numBytes bytes from m_ramBufferStart + m_position to destMem in mem
+    memcpy(destMem, ((u8*) m_ramBufferStart) + m_position, numBytes);
 }
 
 /*
@@ -1498,60 +1368,17 @@ lbl_804159A8:
  * Address:	804159DC
  * Size:	000094
  */
-void RamStream::write(void* srcMem, int numBytes)
-// memcpy destMem argument isn't handled correctly just yet
-// in progress: https://decomp.me/scratch/Dph0v
+
+void RamStream::write(void* srcMem, int numBytes) 
 {
-	if (eof()) { // if we're past the end of the file, panic
-#line 534
-		JUT_PANIC("RamStream::write out of bounds (pos=%d,bound=%d)\n", m_position, bounds);
-	}
-	// write numBytes bytes from srcMem to _418 + m_position
-	// this isn't handled correctly
-	memcpy(&((u32*)_418)[m_position], srcMem, numBytes);
-
-	/*
-	stwu     r1, -0x20(r1)
-	mflr     r0
-	stw      r0, 0x24(r1)
-	stw      r31, 0x1c(r1)
-	mr       r31, r5
-	stw      r30, 0x18(r1)
-	mr       r30, r4
-	stw      r29, 0x14(r1)
-	mr       r29, r3
-	lwz      r12, 0(r3)
-	lwz      r12, 0x10(r12)
-	mtctr    r12
-	bctrl
-	clrlwi.  r0, r3, 0x18
-	beq      lbl_80415A3C
-	lis      r3, lbl_80499660@ha
-	lis      r4, lbl_80499774@ha
-	addi     r5, r4, lbl_80499774@l
-	lwz      r6, 8(r29)
-	lwz      r7, 0x41c(r29)
-	addi     r3, r3, lbl_80499660@l
-	li       r4, 0x216
-	crclr    6
-	bl       panic_f__12JUTExceptionFPCciPCce
-
-lbl_80415A3C:
-	lwz      r3, 0x418(r29)
-	mr       r4, r30
-	lwz      r0, 8(r29)
-	mr       r5, r31
-	add      r3, r3, r0
-	bl       memcpy
-	lwz      r0, 0x24(r1)
-	lwz      r31, 0x1c(r1)
-	lwz      r30, 0x18(r1)
-	lwz      r29, 0x14(r1)
-	mtlr     r0
-	addi     r1, r1, 0x20
-	blr
-	*/
+    if (eof()) { // if we're past the end of the file, panic
+        #line 534
+        JUT_PANIC("RamStream::write out of bounds (pos=%d,bound=%d)\n", m_position, bounds);
+    }
+    // write numBytes bytes from srcMem to m_ramBufferStart + m_position
+    memcpy(((u8*) m_ramBufferStart) + m_position, srcMem, numBytes);
 }
+
 
 /*
  * --INFO--
