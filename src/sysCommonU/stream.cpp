@@ -1,6 +1,8 @@
 #include "types.h"
 #include "stream.h"
 #include "Dolphin/string.h"
+#include "Dolphin/printf.h"
+#include "Dolphin/stdarg.h"
 
 /*
     Generated from dpostproc
@@ -294,76 +296,25 @@ void Stream::textEndGroup()
  * Address:	804140F8
  * Size:	0000E4
  */
-void Stream::printf(char*, ...)
-// in progress: https://decomp.me/scratch/0UIB3
+void Stream::printf(char* format, ...) 
 {
-	/*
-	stwu     r1, -0x490(r1)
-	mflr     r0
-	stw      r0, 0x494(r1)
-	stw      r31, 0x48c(r1)
-	stw      r30, 0x488(r1)
-	stw      r29, 0x484(r1)
-	stw      r28, 0x480(r1)
-	mr       r28, r3
-	bne      cr1, lbl_8041413C
-	stfd     f1, 0x28(r1)
-	stfd     f2, 0x30(r1)
-	stfd     f3, 0x38(r1)
-	stfd     f4, 0x40(r1)
-	stfd     f5, 0x48(r1)
-	stfd     f6, 0x50(r1)
-	stfd     f7, 0x58(r1)
-	stfd     f8, 0x60(r1)
+    // prints text with given format information
+    // doesn't check for text or binary, prints just the same
+    char tempText[0x400];
+    va_list args;
 
-lbl_8041413C:
-	addi     r11, r1, 0x498
-	addi     r0, r1, 8
-	lis      r12, 0x200
-	stw      r3, 8(r1)
-	addi     r31, r1, 0x68
-	addi     r3, r1, 0x74
-	stw      r5, 0x10(r1)
-	mr       r5, r31
-	stw      r4, 0xc(r1)
-	stw      r6, 0x14(r1)
-	stw      r7, 0x18(r1)
-	stw      r8, 0x1c(r1)
-	stw      r9, 0x20(r1)
-	stw      r10, 0x24(r1)
-	stw      r12, 0x68(r1)
-	stw      r11, 0x6c(r1)
-	stw      r0, 0x70(r1)
-	bl       vsprintf
-	addi     r3, r1, 0x74
-	bl       strlen
-	or.      r31, r3, r3
-	ble      lbl_804141BC
-	addi     r30, r1, 0x74
-	li       r29, 0
-	b        lbl_804141B4
-
-lbl_804141A0:
-	lbz      r4, 0(r30)
-	mr       r3, r28
-	bl       _writeByte__6StreamFUc
-	addi     r30, r30, 1
-	addi     r29, r29, 1
-
-lbl_804141B4:
-	cmpw     r29, r31
-	blt      lbl_804141A0
-
-lbl_804141BC:
-	lwz      r0, 0x494(r1)
-	lwz      r31, 0x48c(r1)
-	lwz      r30, 0x488(r1)
-	lwz      r29, 0x484(r1)
-	lwz      r28, 0x480(r1)
-	mtlr     r0
-	addi     r1, r1, 0x490
-	blr
-	*/
+    va_start(args, format);
+    vsprintf(tempText, format, args);
+    int len = strlen(tempText);
+    
+    if (len > 0) {
+        char* textPtr = tempText;
+        
+        for (int i = 0; i < len; i++) {
+            _writeByte(*textPtr);
+            textPtr++;
+        }
+    }
 }
 
 /*
@@ -371,78 +322,27 @@ lbl_804141BC:
  * Address:	804141DC
  * Size:	0000EC
  */
-void Stream::textWriteText(char*, ...)
-// in progress: https://decomp.me/scratch/hBCOf
+void Stream::textWriteText(char* format, ...) 
 {
-	/*
-	stwu     r1, -0x490(r1)
-	mflr     r0
-	stw      r0, 0x494(r1)
-	stw      r31, 0x48c(r1)
-	stw      r30, 0x488(r1)
-	stw      r29, 0x484(r1)
-	stw      r28, 0x480(r1)
-	mr       r28, r3
-	bne      cr1, lbl_80414220
-	stfd     f1, 0x28(r1)
-	stfd     f2, 0x30(r1)
-	stfd     f3, 0x38(r1)
-	stfd     f4, 0x40(r1)
-	stfd     f5, 0x48(r1)
-	stfd     f6, 0x50(r1)
-	stfd     f7, 0x58(r1)
-	stfd     f8, 0x60(r1)
-
-lbl_80414220:
-	stw      r3, 8(r1)
-	stw      r4, 0xc(r1)
-	stw      r5, 0x10(r1)
-	stw      r6, 0x14(r1)
-	stw      r7, 0x18(r1)
-	stw      r8, 0x1c(r1)
-	stw      r9, 0x20(r1)
-	stw      r10, 0x24(r1)
-	lwz      r0, 0xc(r28)
-	cmpwi    r0, 0
-	beq      lbl_804142A8
-	addi     r6, r1, 0x498
-	addi     r0, r1, 8
-	lis      r3, 0x200
-	stw      r6, 0x6c(r1)
-	addi     r5, r1, 0x68
-	stw      r3, 0x68(r1)
-	addi     r3, r1, 0x74
-	stw      r0, 0x70(r1)
-	bl       vsprintf
-	addi     r3, r1, 0x74
-	bl       strlen
-	or.      r31, r3, r3
-	ble      lbl_804142A8
-	addi     r30, r1, 0x74
-	li       r29, 0
-	b        lbl_804142A0
-
-lbl_8041428C:
-	lbz      r4, 0(r30)
-	mr       r3, r28
-	bl       _writeByte__6StreamFUc
-	addi     r30, r30, 1
-	addi     r29, r29, 1
-
-lbl_804142A0:
-	cmpw     r29, r31
-	blt      lbl_8041428C
-
-lbl_804142A8:
-	lwz      r0, 0x494(r1)
-	lwz      r31, 0x48c(r1)
-	lwz      r30, 0x488(r1)
-	lwz      r29, 0x484(r1)
-	lwz      r28, 0x480(r1)
-	mtlr     r0
-	addi     r1, r1, 0x490
-	blr
-	*/
+	// prints text with given format information
+    // only prints text - won't print binary
+    char tempText[0x400];
+    va_list args;
+    
+    if (m_mode != STREAM_MODE_BINARY) {
+        va_start(args, format);
+        vsprintf(tempText, format, args);
+        
+        int len = strlen(tempText);
+        if (len > 0) {
+            char* textPtr = tempText;
+            
+            for (int i = 0; i < len; i++) {
+                _writeByte(*textPtr);
+                textPtr++;
+            }
+        }
+    }
 }
 
 // /*
@@ -610,9 +510,9 @@ u8 Stream::_readByte()
 	// reads in the next byte with no checks
 	// returns byte being read and increments stream position
 
-	u8 currByte;        // place to store byte being read
-	read(&currByte, 1); // read in 1 byte
-	m_position++;       // increment stream position
+	u8 currByte;     
+	read(&currByte, 1); 
+	m_position++;   
 	return currByte;
 }
 
@@ -755,9 +655,71 @@ float Stream::readFloat()
  * Address:	804150D4
  * Size:	0004F8
  */
-char* Stream::readString(char*, int)
-// in progress: https://decomp.me/scratch/eGMDM
+// only final for loop not matching
+char* Stream::readString(char* str, int strLength) 
 {
+    // reads string from stream
+    // if str provided, stores in str text of length strLength
+    // if str 0, returns string to next token
+    
+    char* outStr;
+
+    if (m_mode == STREAM_MODE_TEXT) { // we're in text mode, need to do more checks
+
+        // get text
+        char* nextToken = getNextToken();
+
+        int strSize = strlen(nextToken);
+        if (str) { // str provided, check size compared to text
+            P2ASSERTLINE(352, strLength >= strSize);
+            outStr = str;
+        } else { // no str provided, read in whole nextToken
+            outStr = new char [strSize + 1];
+        }
+
+        // put text byte by byte into outStr
+        for (int readLen = 0; readLen < strSize+1; readLen++) {
+            outStr[readLen] = nextToken[readLen];
+        }
+        
+    } else { // we're in binary mode, free-for-all
+        // read max of 0x400 bytes
+        char tokenStore [0x400];
+        char* nextToken = &tokenStore[0];
+
+        // read up to 0x400 bytes into tokenStore
+        int readLen = 0; 
+        char* tokenPtr = nextToken;
+        for (int i = 0; i < 0x400 || !eof(); i++) {
+            *tokenPtr = _readByte();
+            if (*tokenPtr) {
+                readLen++;
+                tokenPtr++;
+            } else {
+                break;
+            }
+        }
+
+        if (str) { // str provided, check size compared to text
+            P2ASSERTLINE(372, strLength >= readLen);
+            outStr = str;
+        } else { // no str provided, read in whole tokenStore
+            outStr = new char [readLen + 1];
+        }
+
+        // put text byte by byte into outStr
+        int readCount = 0;
+        char* outStrPtr = outStr;
+        for (readCount; readCount < readLen; readCount++) {
+            *outStrPtr = *nextToken;
+            outStrPtr++;
+            nextToken++;
+        }          
+        // set last byte of outStr to 0 because binary
+        *outStrPtr = 0;
+    }
+    
+    return outStr;
 	/*
 	stwu     r1, -0x430(r1)
 	mflr     r0
@@ -1357,7 +1319,7 @@ void RamStream::set(u8*, int)
 void RamStream::read(void* destMem, int numBytes) 
 {
     if (eof()) { // if we're past the end of the file, panic
-        JUT_PANICLINE(523, "RamStream::read out of bounds (pos=%d,bound=%d)\n", m_position, bounds);
+        JUT_PANICLINE(523, "RamStream::read out of bounds (pos=%d,bound=%d)\n", m_position, m_bounds);
     }
     // read numBytes bytes from m_ramBufferStart + m_position to destMem in mem
     memcpy(destMem, ((u8*) m_ramBufferStart) + m_position, numBytes);
@@ -1373,7 +1335,7 @@ void RamStream::write(void* srcMem, int numBytes)
 {
     if (eof()) { // if we're past the end of the file, panic
         #line 534
-        JUT_PANIC("RamStream::write out of bounds (pos=%d,bound=%d)\n", m_position, bounds);
+        JUT_PANIC("RamStream::write out of bounds (pos=%d,bound=%d)\n", m_position, m_bounds);
     }
     // write numBytes bytes from srcMem to m_ramBufferStart + m_position
     memcpy(((u8*) m_ramBufferStart) + m_position, srcMem, numBytes);
@@ -1388,8 +1350,8 @@ void RamStream::write(void* srcMem, int numBytes)
 bool RamStream::eof()
 {
 	// check if we're at the end of the 'file'
-	if (bounds != -1) {
-		return (bounds <= m_position);
+	if (m_bounds != -1) {
+		return (m_bounds <= m_position);
 	}
 	return 0;
 }
