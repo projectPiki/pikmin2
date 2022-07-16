@@ -101,14 +101,14 @@
  * Size:	000034
  */
 // Stream::Stream()
-// 	{
-//         m_endian = STREAM_BIG_ENDIAN;
-//         m_position = 0;
-//         m_mode = STREAM_MODE_BINARY;
-//         if (m_mode == STREAM_MODE_TEXT) {
-//             m_tabCount = 0;
-//         }
-//     }
+// {
+// 	m_endian = STREAM_BIG_ENDIAN;
+// 	m_position = 0;
+// 	m_mode = STREAM_MODE_BINARY;
+// 	if (m_mode == STREAM_MODE_TEXT) {
+// 		m_tabCount = 0;
+// 	}
+// }
 
 /*
  * --INFO--
@@ -135,53 +135,53 @@
  * Address:	........
  * Size:	000048
  */
-// 'UNUSED FUNCTION'/INLINE
-inline bool Stream::isSpace(char currByte)
-{
-	// check if current byte is whitespace/newline/hash/brackets
-	return ((currByte == '\r') || (currByte == ' ') || (currByte == '\n') || (currByte == '\t') || (currByte == '#') || (currByte == '{')
-	        || (currByte == '}'));
-}
+// INLINE
+// inline bool Stream::isSpace(char currByte)
+// {
+// 	// check if current byte is whitespace/newline/hash/brackets
+// 	return ((currByte == '\r') || (currByte == ' ') || (currByte == '\n') || (currByte == '\t') || (currByte == '#') || (currByte == '{')
+// 	        || (currByte == '}'));
+// }
 
 /*
  * --INFO--
  * Address:	........
  * Size:	0000EC
  */
-// 'UNUSED FUNCTION'/INLINE
-inline char Stream::skipSpace()
-{
-	// return next byte that isn't a 'space' or a comment
-	// if in binary mode (or end of file), return 0
-	char byte;
-	bool isComment = false;
+// INLINE
+// inline char Stream::skipSpace()
+// {
+// 	// return next byte that isn't a 'space' or a comment
+// 	// if in binary mode (or end of file), return 0
+// 	char byte;
+// 	bool isComment = false;
 
-	m_bufferPos = 0;
-	if (m_mode == STREAM_MODE_TEXT) {
-		// check we're not at the end of the file
-		while (!eof()) {
-			char byte = _readByte(); // at 0x8
-			// if we're in a comment line, skip until we hit a new line
-			if (isComment) {
-				if (byte == '\r' || byte == '\n') {
-					isComment = 0;
-				}
-				continue;
-			}
-			// flag if we're starting a comment line
-			if (byte == '#') {
-				isComment = true;
-				continue;
-			}
-			// so long as we don't hit newline/whitespace/hash/{ or }, we have a token!
-			if (!isSpace(byte)) {
-				return byte;
-			}
-		}
-	}
-	// if we reach eof or are in binary mode, return a 0
-	return 0;
-}
+// 	m_bufferPos = 0;
+// 	if (m_mode == STREAM_MODE_TEXT) {
+// 		// check we're not at the end of the file
+// 		while (!eof()) {
+// 			char byte = _readByte(); // at 0x8
+// 			// if we're in a comment line, skip until we hit a new line
+// 			if (isComment) {
+// 				if (byte == '\r' || byte == '\n') {
+// 					isComment = 0;
+// 				}
+// 				continue;
+// 			}
+// 			// flag if we're starting a comment line
+// 			if (byte == '#') {
+// 				isComment = true;
+// 				continue;
+// 			}
+// 			// so long as we don't hit newline/whitespace/hash/{ or }, we have a token!
+// 			if (!isSpace(byte)) {
+// 				return byte;
+// 			}
+// 		}
+// 	}
+// 	// if we reach eof or are in binary mode, return a 0
+// 	return 0;
+// }
 
 /*
  * --INFO--
@@ -195,48 +195,47 @@ bool Stream::eof() { return false; }
  * Address:	........
  * Size:	000214
  */
-// 'UNUSED FUNCTION'/INLINE
-inline void Stream::copyToTextBuffer()
-{
-	// copy next token (not starting with a 'space', not in a comment) to buffer
-	// panic if we hit eof
-	char nextByte;
+// INLINE
+// inline void Stream::copyToTextBuffer()
+// {
+// 	// copy next token (not starting with a 'space', not in a comment) to buffer
+// 	// panic if we hit eof
+// 	char nextByte;
 
-	m_buffer[m_bufferPos++] = skipSpace();
-	while (!eof()) {
-		nextByte = _readByte(); // at 0xA
-		// if we hit a newline, whitespace, hash, { or }, put 0s until we hit something else
-		if (isSpace(nextByte)) {
-			m_buffer[m_bufferPos++] = 0;
-			// check if comment line
-			if (nextByte == '#') {
-				while (!eof()) {
-					nextByte = _readByte(); // at 0x9
-					if ((nextByte != '\r') && (nextByte != '\n')) {
-						// skip through comment line
-						continue;
-					} else {
-						// we hit a new line! we're free from the comment
-						return;
-					}
-				}
-				return;
-			}
-			return;
-		} else { // we hit something else!
+// 	m_buffer[m_bufferPos++] = skipSpace();
+// 	while (!eof()) {
+// 		nextByte = _readByte(); // at 0xA
+// 		// if we hit a newline, whitespace, hash, { or }, put 0s until we hit something else
+// 		if (isSpace(nextByte)) {
+// 			m_buffer[m_bufferPos++] = 0;
+// 			// check if comment line
+// 			if (nextByte == '#') {
+// 				while (!eof()) {
+// 					nextByte = _readByte(); // at 0x9
+// 					if ((nextByte != '\r') && (nextByte != '\n')) {
+// 						// skip through comment line
+// 						continue;
+// 					} else {
+// 						// we hit a new line! we're free from the comment
+// 						return;
+// 					}
+// 				}
+// 				return;
+// 			}
+// 			return;
+// 		} else { // we hit something else!
 
-			m_buffer[m_bufferPos++] = nextByte;
+// 			m_buffer[m_bufferPos++] = nextByte;
 
-			// if we hit a 0, exit
-			if (!nextByte) {
-				return;
-			}
-		}
-	}
-// if we reach eof, panic
-#line 98
-	JUT_PANIC("Reached EOF\n");
-}
+// 			// if we hit a 0, exit
+// 			if (!nextByte) {
+// 				return;
+// 			}
+// 		}
+// 	}
+// 	// if we reach eof, panic
+// 	JUT_PANICLINE(98, "Reached EOF\n");
+// }
 
 /*
  * --INFO--
@@ -364,10 +363,10 @@ void Stream::textWriteText(char* format, ...)
  * Address:	........
  * Size:	00006C
  */
-void Stream::skipPadding(u32)
-{
-	// UNUSED FUNCTION
-}
+// void Stream::skipPadding(u32)
+// {
+// 	// UNUSED FUNCTION
+// }
 
 /*
  * --INFO--
@@ -441,20 +440,20 @@ void Stream::skipReadingText()
  * Address:	........
  * Size:	000050
  */
-void Stream::_read(void*, int)
-{
-	// UNUSED FUNCTION
-}
+// void Stream::_read(void*, int)
+// {
+// 	// UNUSED FUNCTION
+// }
 
 /*
  * --INFO--
  * Address:	........
  * Size:	000050
  */
-void Stream::_write(void*, int)
-{
-	// UNUSED FUNCTION
-}
+// void Stream::_write(void*, int)
+// {
+// 	// UNUSED FUNCTION
+// }
 
 /*
  * --INFO--
@@ -490,8 +489,7 @@ u8 Stream::readByte()
 		char* nextToken = getNextToken();
 		// if we have a null pointer, panic
 		if (!nextToken) {
-#line 260
-			JUT_PANIC("readByte:Token Error\n");
+			JUT_PANICLINE(260, "readByte:Token Error\n");
 		}
 
 		// take byte from nextToken and put it into scanOut
@@ -539,8 +537,7 @@ short Stream::readShort()
 		char* nextToken = getNextToken();
 		// if we have a null pointer, panic
 		if (!nextToken) {
-#line 284
-			JUT_PANIC("readShort:Token Error\n");
+			JUT_PANICLINE(284, "readShort:Token Error\n");
 		}
 		int scanOut;
 		// take bytes from nextToken and put it into scanOut
@@ -583,8 +580,7 @@ int Stream::readInt()
 
 		// if we have a null pointer, panic
 		if (!nextToken) {
-#line 306
-			JUT_PANIC("readInt:Token Error\n");
+			JUT_PANICLINE(306, "readInt:Token Error\n");
 		}
 
 		// take bytes from nextToken and put it into outVal
@@ -627,8 +623,7 @@ float Stream::readFloat()
 
 		// if we have a null pointer, panic
 		if (!nextToken) {
-#line 324
-			JUT_PANIC("readFloat:Token Error\n");
+			JUT_PANICLINE(324, "readFloat:Token Error\n");
 		}
 
 		// take bytes from bufferPtr and put it into outFloat
@@ -760,10 +755,10 @@ void Stream::writeString(char* inputStr)
  * Address:	........
  * Size:	0000BC
  */
-void Stream::writeFixedString(char*)
-{
-	// UNUSED FUNCTION
-}
+// void Stream::writeFixedString(char*)
+// {
+// 	// UNUSED FUNCTION
+// }
 
 /*
  * --INFO--
@@ -937,8 +932,7 @@ void RamStream::read(void* destMem, int numBytes)
 void RamStream::write(void* srcMem, int numBytes) 
 {
     if (eof()) { // if we're past the end of the file, panic
-        #line 534
-        JUT_PANIC("RamStream::write out of bounds (pos=%d,bound=%d)\n", m_position, m_bounds);
+        JUT_PANICLINE(534, "RamStream::write out of bounds (pos=%d,bound=%d)\n", m_position, m_bounds);
     }
     // write numBytes bytes from srcMem to m_ramBufferStart + m_position
     memcpy(((u8*) m_ramBufferStart) + m_position, srcMem, numBytes);
