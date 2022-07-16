@@ -34,3 +34,5 @@ Debug/
 .vs/
 
 ctx.c
+out-ok.txt
+out.txt

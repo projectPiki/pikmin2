@@ -35,9 +35,9 @@ struct Stream {
 	virtual u32 getPending();
 
 	void differentEndian();  // unused
-	// bool isSpace(char);      // inline
-	// char skipSpace();        // inline
-	// void copyToTextBuffer(); // inline
+	bool isSpace(char);      // inline
+	char skipSpace();        // inline
+	void copyToTextBuffer(); // inline
 	char* getNextToken();
 	void textBeginGroup(char*);
 	void textEndGroup();
@@ -56,7 +56,7 @@ struct Stream {
 	int readInt();
 	float readFloat();
 	char* readString(char*, int);
-	char* readFixedString(); // unused
+	void readFixedString(); // unused
 
 	void writeString(char*);
 	void writeFixedString(char*); // unused
@@ -76,87 +76,6 @@ struct Stream {
 		}
 	}
 
-	inline bool isSpace(char currByte)
-	{
-		// check if current byte is whitespace/newline/hash/brackets
-		return ((currByte == '\r') || (currByte == ' ') || (currByte == '\n') || (currByte == '\t') || (currByte == '#') || (currByte == '{')
-				|| (currByte == '}'));
-	}
-
-	inline char skipSpace()
-	{
-		// return next byte that isn't a 'space' or a comment
-		// if in binary mode (or end of file), return 0
-		char byte;
-		bool isComment = false;
-
-		m_bufferPos = 0;
-		if (m_mode == STREAM_MODE_TEXT) {
-			// check we're not at the end of the file
-			while (!eof()) {
-				char byte = _readByte(); // at 0x8
-				// if we're in a comment line, skip until we hit a new line
-				if (isComment) {
-					if (byte == '\r' || byte == '\n') {
-						isComment = 0;
-					}
-					continue;
-				}
-				// flag if we're starting a comment line
-				if (byte == '#') {
-					isComment = true;
-					continue;
-				}
-				// so long as we don't hit newline/whitespace/hash/{ or }, we have a token!
-				if (!isSpace(byte)) {
-					return byte;
-				}
-			}
-		}
-		// if we reach eof or are in binary mode, return a 0
-		return 0;
-	}	
-
-	inline void copyToTextBuffer()
-	{
-		// copy next token (not starting with a 'space', not in a comment) to buffer
-		// panic if we hit eof
-		char nextByte;
-
-		m_buffer[m_bufferPos++] = skipSpace();
-		while (!eof()) {
-			nextByte = _readByte(); // at 0xA
-			// if we hit a newline, whitespace, hash, { or }, put 0s until we hit something else
-			if (isSpace(nextByte)) {
-				m_buffer[m_bufferPos++] = 0;
-				// check if comment line
-				if (nextByte == '#') {
-					while (!eof()) {
-						nextByte = _readByte(); // at 0x9
-						if ((nextByte != '\r') && (nextByte != '\n')) {
-							// skip through comment line
-							continue;
-						} else {
-							// we hit a new line! we're free from the comment
-							return;
-						}
-					}
-					return;
-				}
-				return;
-			} else { // we hit something else!
-
-				m_buffer[m_bufferPos++] = nextByte;
-
-				// if we hit a 0, exit
-				if (!nextByte) {
-					return;
-				}
-			}
-		}
-	// if we reach eof, panic
-		JUT_PANICLINE(98, "Reached EOF\n");
-	}	
 
 	int m_endian;        // _04
 	int m_position;      // _08
