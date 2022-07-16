@@ -18,7 +18,8 @@ static inline u16 bswap16(u16 x) {
 }
 
 struct Stream {
-    Stream() {
+    Stream()
+	{
         m_endian = STREAM_BIG_ENDIAN;
         m_position = 0;
         m_mode = STREAM_MODE_BINARY;

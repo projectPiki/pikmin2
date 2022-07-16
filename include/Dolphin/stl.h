@@ -39,6 +39,7 @@ int vprintf(const char*, va_list);
 int sprintf(char*, char*, ...);
 int snprintf(char*, size_t, const char*, ...);
 int vsnprintf(char*, size_t, const char*, va_list);
+int vsprintf(char* s, const char* format, va_list arg);
 
 int rand();
 

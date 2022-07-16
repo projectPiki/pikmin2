@@ -1,8 +1,7 @@
 #include "types.h"
 #include "stream.h"
 #include "Dolphin/string.h"
-#include "Dolphin/printf.h"
-#include "Dolphin/stdarg.h"
+#include "Dolphin/stl.h"
 
 /*
     Generated from dpostproc
@@ -101,30 +100,35 @@
  * Address:	........
  * Size:	000034
  */
-Stream::Stream()
-{
-	// UNUSED FUNCTION
-}
+// Stream::Stream()
+// 	{
+//         m_endian = STREAM_BIG_ENDIAN;
+//         m_position = 0;
+//         m_mode = STREAM_MODE_BINARY;
+//         if (m_mode == STREAM_MODE_TEXT) {
+//             m_tabCount = 0;
+//         }
+//     }
 
 /*
  * --INFO--
  * Address:	........
  * Size:	000030
  */
-Stream::Stream(int)
-{
-	// UNUSED FUNCTION
-}
+// Stream::Stream(int)
+// {
+// 	// UNUSED FUNCTION
+// }
 
 /*
  * --INFO--
  * Address:	........
  * Size:	000018
  */
-void Stream::differentEndian()
-{
-	// UNUSED FUNCTION
-}
+// void Stream::differentEndian()
+// {
+// 	// UNUSED FUNCTION
+// }
 
 /*
  * --INFO--
@@ -132,7 +136,7 @@ void Stream::differentEndian()
  * Size:	000048
  */
 // 'UNUSED FUNCTION'/INLINE
-bool Stream::isSpace(char currByte)
+inline bool Stream::isSpace(char currByte)
 {
 	// check if current byte is whitespace/newline/hash/brackets
 	return ((currByte == '\r') || (currByte == ' ') || (currByte == '\n') || (currByte == '\t') || (currByte == '#') || (currByte == '{')
@@ -145,7 +149,7 @@ bool Stream::isSpace(char currByte)
  * Size:	0000EC
  */
 // 'UNUSED FUNCTION'/INLINE
-char Stream::skipSpace()
+inline char Stream::skipSpace()
 {
 	// return next byte that isn't a 'space' or a comment
 	// if in binary mode (or end of file), return 0
@@ -192,7 +196,7 @@ bool Stream::eof() { return false; }
  * Size:	000214
  */
 // 'UNUSED FUNCTION'/INLINE
-void Stream::copyToTextBuffer()
+inline void Stream::copyToTextBuffer()
 {
 	// copy next token (not starting with a 'space', not in a comment) to buffer
 	// panic if we hit eof
@@ -685,19 +689,14 @@ char* Stream::readString(char* str, int strLength)
     } else { // we're in binary mode, free-for-all
         // read max of 0x400 bytes
         char tokenStore [0x400];
-        char* nextToken = &tokenStore[0];
 
         // read up to 0x400 bytes into tokenStore
         int readLen = 0; 
-        char* tokenPtr = nextToken;
         for (int i = 0; i < 0x400 || !eof(); i++) {
-            *tokenPtr = _readByte();
-            if (*tokenPtr) {
-                readLen++;
-                tokenPtr++;
-            } else {
-                break;
-            }
+            u8 byte = _readByte();
+            tokenStore[i] = byte;
+            if (!(tokenStore[i])) break;
+            readLen++;
         }
 
         if (str) { // str provided, check size compared to text
@@ -708,412 +707,16 @@ char* Stream::readString(char* str, int strLength)
         }
 
         // put text byte by byte into outStr
-        int readCount = 0;
-        char* outStrPtr = outStr;
-        for (readCount; readCount < readLen; readCount++) {
-            *outStrPtr = *nextToken;
+        int i = 0;
+        char* outStrPtr = outStr; 
+        for (i; i < readLen; i++) {
+            *outStrPtr = tokenStore[i];
             outStrPtr++;
-            nextToken++;
-        }          
-        // set last byte of outStr to 0 because binary
+        }
         *outStrPtr = 0;
     }
     
     return outStr;
-	/*
-	stwu     r1, -0x430(r1)
-	mflr     r0
-	stw      r0, 0x434(r1)
-	stmw     r24, 0x410(r1)
-	mr       r26, r3
-	lis      r3, lbl_80499660@ha
-	mr       r27, r4
-	mr       r28, r5
-	addi     r31, r3, lbl_80499660@l
-	lwz      r0, 0xc(r26)
-	cmpwi    r0, 1
-	bne      lbl_80415450
-	cmpwi    r0, 0
-	bne      lbl_80415114
-	li       r30, 0
-	b        lbl_8041535C
-
-lbl_80415114:
-	li       r29, 0
-	stw      r29, 0x10(r26)
-	lwz      r0, 0xc(r26)
-	cmpwi    r0, 1
-	bne      lbl_804151F4
-	b        lbl_804151D8
-
-lbl_8041512C:
-	mr       r3, r26
-	addi     r4, r1, 8
-	lwz      r12, 0(r26)
-	li       r5, 1
-	lwz      r12, 8(r12)
-	mtctr    r12
-	bctrl
-	lwz      r3, 8(r26)
-	clrlwi.  r0, r29, 0x18
-	addi     r0, r3, 1
-	stw      r0, 8(r26)
-	lbz      r0, 8(r1)
-	extsb    r4, r0
-	beq      lbl_8041517C
-	cmpwi    r4, 0xd
-	beq      lbl_80415174
-	cmpwi    r4, 0xa
-	bne      lbl_804151D8
-
-lbl_80415174:
-	li       r29, 0
-	b        lbl_804151D8
-
-lbl_8041517C:
-	cmpwi    r4, 0x23
-	bne      lbl_8041518C
-	li       r29, 1
-	b        lbl_804151D8
-
-lbl_8041518C:
-	cmpwi    r4, 0xd
-	li       r0, 0
-	beq      lbl_804151C8
-	cmpwi    r4, 0x20
-	beq      lbl_804151C8
-	cmpwi    r4, 0xa
-	beq      lbl_804151C8
-	cmpwi    r4, 9
-	beq      lbl_804151C8
-	cmpwi    r4, 0x23
-	beq      lbl_804151C8
-	cmpwi    r4, 0x7b
-	beq      lbl_804151C8
-	cmpwi    r4, 0x7d
-	bne      lbl_804151CC
-
-lbl_804151C8:
-	li       r0, 1
-
-lbl_804151CC:
-	clrlwi.  r0, r0, 0x18
-	bne      lbl_804151D8
-	b        lbl_804151F8
-
-lbl_804151D8:
-	mr       r3, r26
-	lwz      r12, 0(r26)
-	lwz      r12, 0x10(r12)
-	mtctr    r12
-	bctrl
-	clrlwi.  r0, r3, 0x18
-	beq      lbl_8041512C
-
-lbl_804151F4:
-	li       r4, 0
-
-lbl_804151F8:
-	lwz      r3, 0x10(r26)
-	addi     r0, r3, 1
-	add      r3, r26, r3
-	stw      r0, 0x10(r26)
-	stb      r4, 0x14(r3)
-	b        lbl_80415328
-
-lbl_80415210:
-	mr       r3, r26
-	addi     r4, r1, 0xa
-	lwz      r12, 0(r26)
-	li       r5, 1
-	lwz      r12, 8(r12)
-	mtctr    r12
-	bctrl
-	lwz      r3, 8(r26)
-	li       r0, 0
-	addi     r3, r3, 1
-	stw      r3, 8(r26)
-	lbz      r3, 0xa(r1)
-	extsb    r5, r3
-	cmpwi    r5, 0xd
-	beq      lbl_8041527C
-	cmpwi    r5, 0x20
-	beq      lbl_8041527C
-	cmpwi    r5, 0xa
-	beq      lbl_8041527C
-	cmpwi    r5, 9
-	beq      lbl_8041527C
-	cmpwi    r5, 0x23
-	beq      lbl_8041527C
-	cmpwi    r5, 0x7b
-	beq      lbl_8041527C
-	cmpwi    r5, 0x7d
-	bne      lbl_80415280
-
-lbl_8041527C:
-	li       r0, 1
-
-lbl_80415280:
-	clrlwi.  r0, r0, 0x18
-	beq      lbl_8041530C
-	lwz      r3, 0x10(r26)
-	cmpwi    r5, 0x23
-	li       r4, 0
-	addi     r0, r3, 1
-	add      r3, r26, r3
-	stw      r0, 0x10(r26)
-	stb      r4, 0x14(r3)
-	bne      lbl_80415358
-	b        lbl_804152EC
-
-lbl_804152AC:
-	mr       r3, r26
-	addi     r4, r1, 9
-	lwz      r12, 0(r26)
-	li       r5, 1
-	lwz      r12, 8(r12)
-	mtctr    r12
-	bctrl
-	lwz      r3, 8(r26)
-	addi     r0, r3, 1
-	stw      r0, 8(r26)
-	lbz      r0, 9(r1)
-	extsb    r0, r0
-	cmpwi    r0, 0xd
-	beq      lbl_80415358
-	cmpwi    r0, 0xa
-	beq      lbl_80415358
-
-lbl_804152EC:
-	mr       r3, r26
-	lwz      r12, 0(r26)
-	lwz      r12, 0x10(r12)
-	mtctr    r12
-	bctrl
-	clrlwi.  r0, r3, 0x18
-	beq      lbl_804152AC
-	b        lbl_80415358
-
-lbl_8041530C:
-	lwz      r4, 0x10(r26)
-	extsb.   r0, r5
-	addi     r3, r4, 1
-	addi     r0, r4, 0x14
-	stw      r3, 0x10(r26)
-	stbx     r5, r26, r0
-	beq      lbl_80415358
-
-lbl_80415328:
-	mr       r3, r26
-	lwz      r12, 0(r26)
-	lwz      r12, 0x10(r12)
-	mtctr    r12
-	bctrl
-	clrlwi.  r0, r3, 0x18
-	beq      lbl_80415210
-	addi     r3, r31, 0
-	addi     r5, r31, 0xc
-	li       r4, 0x62
-	crclr    6
-	bl       panic_f__12JUTExceptionFPCciPCce
-
-lbl_80415358:
-	addi     r30, r26, 0x14
-
-lbl_8041535C:
-	mr       r3, r30
-	bl       strlen
-	cmplwi   r27, 0
-	mr       r26, r3
-	beq      lbl_80415394
-	cmpw     r28, r26
-	bge      lbl_8041538C
-	addi     r3, r31, 0
-	addi     r5, r31, 0x7c
-	li       r4, 0x160
-	crclr    6
-	bl       panic_f__12JUTExceptionFPCciPCce
-
-lbl_8041538C:
-	mr       r3, r27
-	b        lbl_8041539C
-
-lbl_80415394:
-	addi     r3, r26, 1
-	bl       __nwa__FUl
-
-lbl_8041539C:
-	addic.   r0, r26, 1
-	li       r7, 0
-	ble      lbl_804155B8
-	addi     r0, r26, 1
-	addi     r4, r26, -7
-	cmpwi    r0, 8
-	ble      lbl_8041541C
-	addi     r0, r4, 7
-	srwi     r0, r0, 3
-	mtctr    r0
-	cmpwi    r4, 0
-	ble      lbl_8041541C
-
-lbl_804153CC:
-	add      r4, r30, r7
-	add      r5, r3, r7
-	lbz      r0, 0(r4)
-	addi     r7, r7, 8
-	stb      r0, 0(r5)
-	lbz      r0, 1(r4)
-	stb      r0, 1(r5)
-	lbz      r0, 2(r4)
-	stb      r0, 2(r5)
-	lbz      r0, 3(r4)
-	stb      r0, 3(r5)
-	lbz      r0, 4(r4)
-	stb      r0, 4(r5)
-	lbz      r0, 5(r4)
-	stb      r0, 5(r5)
-	lbz      r0, 6(r4)
-	stb      r0, 6(r5)
-	lbz      r0, 7(r4)
-	stb      r0, 7(r5)
-	bdnz     lbl_804153CC
-
-lbl_8041541C:
-	addi     r6, r26, 1
-	add      r5, r30, r7
-	subf     r0, r7, r6
-	add      r4, r3, r7
-	mtctr    r0
-	cmpw     r7, r6
-	bge      lbl_804155B8
-
-lbl_80415438:
-	lbz      r0, 0(r5)
-	addi     r5, r5, 1
-	stb      r0, 0(r4)
-	addi     r4, r4, 1
-	bdnz     lbl_80415438
-	b        lbl_804155B8
-
-lbl_80415450:
-	addi     r30, r1, 0xc
-	li       r29, 0
-	mr       r25, r30
-	li       r24, 0
-	b        lbl_804154AC
-
-lbl_80415464:
-	mr       r3, r26
-	addi     r4, r1, 0xb
-	lwz      r12, 0(r26)
-	li       r5, 1
-	lwz      r12, 8(r12)
-	mtctr    r12
-	bctrl
-	lwz      r3, 8(r26)
-	addi     r0, r3, 1
-	stw      r0, 8(r26)
-	lbz      r0, 0xb(r1)
-	stb      r0, 0(r25)
-	lbz      r0, 0(r25)
-	extsb.   r0, r0
-	beq      lbl_804154D0
-	addi     r29, r29, 1
-	addi     r25, r25, 1
-	addi     r24, r24, 1
-
-lbl_804154AC:
-	cmpwi    r24, 0x400
-	blt      lbl_80415464
-	mr       r3, r26
-	lwz      r12, 0(r26)
-	lwz      r12, 0x10(r12)
-	mtctr    r12
-	bctrl
-	clrlwi.  r0, r3, 0x18
-	beq      lbl_80415464
-
-lbl_804154D0:
-	cmplwi   r27, 0
-	beq      lbl_804154FC
-	cmpw     r28, r29
-	bge      lbl_804154F4
-	addi     r3, r31, 0
-	addi     r5, r31, 0x7c
-	li       r4, 0x174
-	crclr    6
-	bl       panic_f__12JUTExceptionFPCciPCce
-
-lbl_804154F4:
-	mr       r3, r27
-	b        lbl_80415504
-
-lbl_804154FC:
-	addi     r3, r29, 1
-	bl       __nwa__FUl
-
-lbl_80415504:
-	cmpwi    r29, 0
-	mr       r6, r3
-	li       r5, 0
-	ble      lbl_804155B0
-	cmpwi    r29, 8
-	addi     r4, r29, -8
-	ble      lbl_80415584
-	addi     r0, r4, 7
-	srwi     r0, r0, 3
-	mtctr    r0
-	cmpwi    r4, 0
-	ble      lbl_80415584
-
-lbl_80415534:
-	lbz      r4, 0(r30)
-	addi     r5, r5, 8
-	lbz      r0, 1(r30)
-	stb      r4, 0(r6)
-	lbz      r4, 2(r30)
-	stb      r0, 1(r6)
-	lbz      r0, 3(r30)
-	stb      r4, 2(r6)
-	lbz      r4, 4(r30)
-	stb      r0, 3(r6)
-	lbz      r0, 5(r30)
-	stb      r4, 4(r6)
-	lbz      r4, 6(r30)
-	stb      r0, 5(r6)
-	lbz      r0, 7(r30)
-	addi     r30, r30, 8
-	stb      r4, 6(r6)
-	stb      r0, 7(r6)
-	addi     r6, r6, 8
-	bdnz     lbl_80415534
-
-lbl_80415584:
-	addi     r4, r1, 0xc
-	subf     r0, r5, r29
-	add      r4, r4, r5
-	mtctr    r0
-	cmpw     r5, r29
-	bge      lbl_804155B0
-
-lbl_8041559C:
-	lbz      r0, 0(r4)
-	addi     r4, r4, 1
-	stb      r0, 0(r6)
-	addi     r6, r6, 1
-	bdnz     lbl_8041559C
-
-lbl_804155B0:
-	li       r0, 0
-	stb      r0, 0(r6)
-
-lbl_804155B8:
-	lmw      r24, 0x410(r1)
-	lwz      r0, 0x434(r1)
-	mtlr     r0
-	addi     r1, r1, 0x430
-	blr
-	*/
 }
 
 /*
@@ -1121,10 +724,10 @@ lbl_804155B8:
  * Address:	........
  * Size:	00064C
  */
-char* Stream::readFixedString()
-{
-	// UNUSED FUNCTION
-}
+// char* Stream::readFixedString()
+// {
+// 	// UNUSED FUNCTION
+// }
 
 /*
  * --INFO--
@@ -1297,7 +900,7 @@ void Stream::writeFloat(float inputFloat)
 RamStream::RamStream(void* RamBufferPtr, int bounds) 
 {
     m_ramBufferStart = RamBufferPtr;
-    m_bounds = inputBounds;
+    m_bounds = bounds;
     m_position = 0;
 }
 
@@ -1306,10 +909,10 @@ RamStream::RamStream(void* RamBufferPtr, int bounds)
  * Address:	........
  * Size:	000014
  */
-void RamStream::set(u8*, int)
-{
-	// UNUSED FUNCTION
-}
+// void RamStream::set(u8*, int)
+// {
+// 	// UNUSED FUNCTION
+// }
 
 /*
  * --INFO--
