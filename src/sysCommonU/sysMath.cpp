@@ -277,8 +277,8 @@ asm void CRSplineTangent(float, Vector3f*)
  */
 void BoundBox::read(Stream& stream)
 {
-	m_max.read(stream);
 	m_min.read(stream);
+	m_max.read(stream);
 }
 
 /*

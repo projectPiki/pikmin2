@@ -534,26 +534,25 @@ Vector3f Tube::setPos(float frac)
  */
 bool Sphere::intersect(Sphere& ball) 
 {
-    // // check if a sphere intersects with a second sphere 'ball'
-    // // return 1 if yes, return 0 if no
+    // check if a sphere intersects with a second sphere 'ball'
+    // return true if yes
 
-    // // first, calculate separation vector
-    // Vector3f diff (ball.m_position.x - m_position.x, ball.m_position.y - m_position.y, ball.m_position.z - m_position.z);
+    // calculate center-to-center distance (squared?)
+    Vector3f diff (ball.m_position.x - m_position.x, ball.m_position.y - m_position.y, ball.m_position.z - m_position.z);
+    float sepSqr = diff.x * diff.x + diff.y * diff.y + diff.z * diff.z;
 
-    // // calculate square of distance between them
-    // float sq_dist = diff.x * diff.x + diff.y * diff.y + diff.z * diff.z;
+    // add radii to get total "material" between their centers
+    float sumRadii = ball.m_radius + m_radius;
 
-    // // add radii to get total "material" between their centers
-    // float sep = ball.m_radius + m_radius;
+    // calculate magnitude of repulsion (negative if overlapping)
+    // I think the lack of square roots here is just for speed - same outcome if we took square roots
+    float repulsion = -(sumRadii * sumRadii - sepSqr);
 
-    // // total material ^2 - dist^2 > 0 if no intersection, but flip the sign (??)
-    // float gap = -(sep * sep - sq_dist);
-
-    // // get return values - 1 if they spheres intersect (including touch), 0 if they don't
-    // if (gap <= 0.0f) {
-    //     return 1;
-    // }
-    // return 0;
+    // if there's repulsion, return true
+    if (repulsion <= 0.0f) {
+        return true;
+    }
+    return false;
 }
 
 /*
@@ -561,32 +560,26 @@ bool Sphere::intersect(Sphere& ball)
  * Address:	80415F6C
  * Size:	000120
  */
-bool Sphere::intersect(Sphere& ball, Vector3f& repulsionVec) 
+bool Sys::Sphere::intersect(Sys::Sphere& ball, Vector3f& repulsionVec) 
 {
-    // // calculate whether sphere intersects with another sphere 'ball'
-    // // output 1 if they intersect (or touch), 0 if they don't
-    // // also load into vec the (negative) separation vector between the spheres, scaled by how much they overlap
-    // // i.e. a repulsion vector 
+    // calculate whether sphere intersects with another sphere 'ball'
+    // return true if yes
+    // also load (negative) separation vector scaled by overlap into repulsionVec
 
-    // // get separation vector
-    // repulsionVec = ball.m_position - m_position;
-    // // vec = Vector3f(ball.m_position.x - m_position.x, ball.m_position.y - m_position.y, ball.m_position.z - m_position.z);
-
-    // // get distance between centers
-    // float mag = normalise(&repulsionVec);
+    // calculate center-to-center distance
+    repulsionVec = ball.m_position - m_position;
+    float sep = normalise(&repulsionVec);
     
-    // // (distance between centers) - (total 'material' between centers); positive if there's a gap
-    // float sep = mag - (ball.m_radius + m_radius);
+    // (distance between centers) - (total 'material' between centers); positive if there's a gap
+    float negOverlap = sep - (ball.m_radius + m_radius);
 
-    // // if positive, gap, so no intersection
-    // if (sep > 0.0f) {
-    //     return 0;
-    // }
-    // // if negative, scale the unit separation vector by the (negative) overlap to make it a repulsion vector
-    // repulsionVec = repulsionVec * sep;
-
-    // // yes they intersect
-    // return 1;
+    // if positive, gap, so no intersection
+    if (negOverlap > 0.0f) {
+        return false; // repulsionVec just contains unit separation vector
+    }
+    // if negative, intersection, so scale unit separation vector by negative overlap
+    repulsionVec = repulsionVec * negOverlap;
+    return true;
 }
 
 /*
@@ -594,58 +587,56 @@ bool Sphere::intersect(Sphere& ball, Vector3f& repulsionVec)
  * Address:	8041608C
  * Size:	000204
  */
-bool Sphere::intersect(Edge& edge_in, float& t) 
+bool Sphere::intersect(Edge& edge, float& t) 
 {
-    // // calculate if sphere intersections with edge edge_in
-    // // return 1 if intersecting, 0 if not
-    // // also put a parameter into t that says how far along the edge it's intersecting
-    // // t = 0 if intersecting at pos1; = 1 if at pos2; 0 < t < 1 if in the middle
+    // calculate if sphere intersects with edge edge
+    // return true if intersecting
+    // also put a parameter into t that says how far along the edge it's intersecting
+    // t = 0 if intersecting at start; = 1 if at end; 0 < t < edgeLen if in the middle
 
-    // // check one end point of edge
-    // Vector3f diff_0 (edge_in.pos1.x - m_position.x, edge_in.pos1.y - m_position.y, edge_in.pos1.z - m_position.z);
-    // float dist_0 = lenVec(diff_0);
-    // if (dist_0 <= m_radius) { // one end is already intersecting
-    //     t = 0.0f;
-    //     return 1;
-    // }
+    // check start point of edge
+    Vector3f startSep (edge.m_startPos.x - m_position.x, edge.m_startPos.y - m_position.y, edge.m_startPos.z - m_position.z);
+    float startDist = lenVec(startSep);
+    if (startDist <= m_radius) { // start is intersecting
+        t = 0.0f;
+        return true;
+    }
 
-    // // check other end point of edge
-    // Vector3f diff_1 (edge_in.pos2.x - m_position.x, edge_in.pos2.y - m_position.y, edge_in.pos2.z - m_position.z);
-    // float dist_1 = lenVec(diff_1);
-    // if (dist_1 <= m_radius) { // one end is already intersecting
-    //     t = 1.0f;
-    //     return 1;
-    // }
+    // check end point of edge
+    Vector3f endSep (edge.m_endPos.x - m_position.x, edge.m_endPos.y - m_position.y, edge.m_endPos.z - m_position.z);
+    float endDist = lenVec(endSep);
+    if (endDist <= m_radius) { //  end is intersecting
+        t = 1.0f;
+        return true;
+    }
 
-    // // create edge vector (pointing along edge)
-    // Vector3f vec_edge (edge_in.pos2.x - edge_in.pos1.x, edge_in.pos2.y - edge_in.pos1.y, edge_in.pos2.z - edge_in.pos1.z);
+    // create unit edge vector (pointing along edge) + get length of edge
+    Vector3f edgeVec (edge.m_endPos.x - edge.m_startPos.x, edge.m_endPos.y - edge.m_startPos.y, edge.m_endPos.z - edge.m_startPos.z);
+    float edgeLen = normalise(&edgeVec);
 
-    // // calculate how long the edge is
-    // float len_edge = normalise(&vec_edge);
+    // negative of startSep, will be used to calculate perp dist
+    Vector3f sep (m_position.x - edge.m_startPos.x,  m_position.y - edge.m_startPos.y, m_position.z - edge.m_startPos.z);
 
-    // // negative of diff_0, will be used to calculate perp dist
-    // Vector3f sep (m_position.x - edge_in.pos1.x,  m_position.y - edge_in.pos1.y, m_position.z - edge_in.pos1.z);
+    // set t = scalar projection of sep onto edge
+    t = dot(sep, edgeVec);
 
-    // // set t = dot product between edge vec and sep vec between ball and start point
-    // t = dot(sep, vec_edge);
+    // if we're before edge (t < 0) or past edge (t > edgeLen), no intersection
+    if ((t < 0.0f) || (t > edgeLen)) {
+        return false;
+    }
 
-    // // if dot prod is negative or really big, there's no intersection
-    // if ((t < 0.0f) || (t > len_edge)) {
-    //     return 0;
-    // }
+    // get vector projection of sep onto edge
+    Vector3f projVec = edgeVec * t;
 
-    // // create a weighted edge vector with dot product
-    // Vector3f t_vec = vec_edge * t;
+    // calculate perpendicular distance vector from ball to edge
+    Vector3f perpVec (sep.x - projVec.x, sep.y - projVec.y, sep.z - projVec.z);
 
-    // // vector to closest point of edge from center of sphere
-    // Vector3f weighted_sep (sep.x - t_vec.x, sep.y - t_vec.y, sep.z - t_vec.z);
-
-    // // check if perp distance to edge is less than or equal to radius of sphere
-    // float sep_dist = lenVec(weighted_sep);
-    // if (sep_dist <= m_radius) { // if so, intersects, so return 1; t is then parametrised 'center' of intersection on edge
-    //     return 1;
-    //     }
-    // return 0;
+    // check if perp distance to edge is less than or equal to radius of sphere
+    float perpDist = lenVec(perpVec);
+    if (perpDist <= m_radius) { // if so, intersects
+        return true; // t is then parametrised 'location' of intersection along edge, sort of
+        }
+    return false;
 }
 
 /*
@@ -653,62 +644,64 @@ bool Sphere::intersect(Edge& edge_in, float& t)
  * Address:	80416290
  * Size:	00028C
  */
-bool Sphere::intersect(Edge& edge_in, float& t, Vector3f& intersectPoint)
+bool Sys::Sphere::intersect(Sys::Edge& edge, float& t, Vector3f& intersectPoint)
 {
-    // // check sphere vs starting point of edge
-    // Vector3f diff_0 (edge_in.pos1.x - m_position.x, edge_in.pos1.y - m_position.y, edge_in.pos1.z - m_position.z);
-    // float dist_0 = lenVec(diff_0);
+    // calculate if sphere intersects with edge 'edge'
+    // return true if intersecting
+    // also put a parameter into t that says how far along the edge it's intersecting
+    // t = 0 if intersecting at start; = 1 if at end; 0 < t < edgeLen if in the middle
+    // also put closest edge point to sphere into intersectPoint
     
+    // check start point of edge
+    Vector3f startSep (edge.m_startPos.x - m_position.x, edge.m_startPos.y - m_position.y, edge.m_startPos.z - m_position.z);
+    float startDist = lenVec(startSep);
+    if (startDist <= m_radius) { // start is intersecting
+        t = 0.0f;
+        intersectPoint = edge.m_startPos;
+        return true;
+    }
 
-    // // if within radius, intersects, intersection vector = pos1, return 1
-    // if (dist_0 <= m_radius) {
-    //     t = 0.0f;
-    //     intersectPoint = edge_in.pos1;
-    //     return 1;
-    // }
-
-    // // check sphere vs end point of edge
-    // Vector3f diff_1 (edge_in.pos2.x - m_position.x, edge_in.pos2.y - m_position.y, edge_in.pos2.z - m_position.z);
-    // float dist_1 = lenVec(diff_1);
-
-    // // if within radius, intersects, intersection vector = pos2, return 1
-    // if (dist_1 <= m_radius) {
-    //     t = 1.0f;
-    //     intersectPoint = edge_in.pos2;
-    //     return 1;
-    // }
-
-    // Vector3f vec_edge (edge_in.pos2.x - edge_in.pos1.x, edge_in.pos2.y - edge_in.pos1.y, edge_in.pos2.z - edge_in.pos1.z);
+    // check end point of edge
+    Vector3f endSep (edge.m_endPos.x - m_position.x, edge.m_endPos.y - m_position.y, edge.m_endPos.z - m_position.z);
+    float endDist = lenVec(endSep);
+    if (endDist <= m_radius) { // end is intersecting
+        t = 1.0f;
+        intersectPoint = edge.m_endPos;
+        return true;
+    }
     
-    // float len_factor = _normalise(&vec_edge);
+    // create unit edge vector (pointing along edge) + get length of edge
+    Vector3f edgeVec (edge.m_endPos.x - edge.m_startPos.x, edge.m_endPos.y - edge.m_startPos.y, edge.m_endPos.z - edge.m_startPos.z);
+    float edgeLen = _normalise(&edgeVec);
 
-    // // negative of diff_0, will be used to calculate perp dist
-    // Vector3f sep (intersectPoint.x - edge_in.pos1.x,  intersectPoint.y - edge_in.pos1.y, intersectPoint.z - edge_in.pos1.z);
+    // negative of startSep, will be used to calculate perp dist
+    Vector3f sep (intersectPoint.x - edge.m_startPos.x,  intersectPoint.y - edge.m_startPos.y, intersectPoint.z - edge.m_startPos.z);
 
-    // // set t = dot product between edge vec and sep vec between ball and start point
-	// t = dot(sep, vec_edge);
+    // set t = scalar projection of sep onto edge
+	t = dot(sep, edgeVec);
 
-    // // if dot prod is negative or really big, there's no intersection
-    // if ((t < 0.0f) || (t > len_factor)) {
-    //     return 0;
-    // }
+    // if we're before edge (t < 0) or past edge (t > edgeLen), no intersection
+    if ((t < 0.0f) || (t > edgeLen)) {
+        return false;
+    }
     
-    // // create a weighted edge vector
-    // Vector3f t_vec (vec_edge.x * t, vec_edge.y * t, vec_edge.z * t);
+    // get vector projection of sep onto edge
+    Vector3f projVec (edgeVec.x * t, edgeVec.y * t, edgeVec.z * t);
 
-    // // vector to closest point of edge from center of sphere
-    // Vector3f weighted_sep (sep.x - t_vec.x, sep.y - t_vec.y, sep.z - t_vec.z);
+    // calculate perpendicular distance vector from ball to edge
+    Vector3f perpVec (sep.x - projVec.x, sep.y - projVec.y, sep.z - projVec.z);
 
-    // // check if perp distance to edge is less than or equal to radius of sphere
-    // float sep_dist = lenVec(weighted_sep);
-    // if (sep_dist <= m_radius) {
-    //     float factor = t * len_factor;
-    //     t_vec = Vector3f(vec_edge.x * factor, vec_edge.y * factor, vec_edge.z * factor);
-    //     intersectPoint = Vector3f(edge_in.pos1.x + t_vec.x, edge_in.pos1.y + t_vec.y, edge_in.pos1.z + t_vec.z);
-    //     return 1;
-    // }
+    // check if perp distance to edge is less than or equal to radius of sphere
+    float perpDist = lenVec(perpVec);
+    if (perpDist <= m_radius) { // if so, intersects
+        float edgeDist = t * edgeLen;
+        projVec = Vector3f(edgeVec.x * edgeDist, edgeVec.y * edgeDist, edgeVec.z * edgeDist);
+        // get point that is a frac 't' along edge
+        intersectPoint = Vector3f(edge.m_startPos.x + projVec.x, edge.m_startPos.y + projVec.y, edge.m_startPos.z + projVec.z);
+        return true;
+    }
 
-    // return 0;
+    return false;
 }
 
 
@@ -717,98 +710,92 @@ bool Sphere::intersect(Edge& edge_in, float& t, Vector3f& intersectPoint)
  * Address:	8041651C
  * Size:	0003D4
  */
-bool Sphere::intersect (Edge& edge_in, float& t, Vector3f& vec_out, float& f_out) 
+bool Sys::Sphere::intersect (Sys::Edge& edge, float& t, Vector3f& repulsionVec, float& strength) 
 {
-    // // cakculates whether sphere intersects an edge 'edge_in'
-    // // puts "position" of overlap in t - t = 0 if overlap = start of edge, t = 1 if overlap = end of edge
-    // // vec_out = repulsion vector away from edge
-    // // f_out = amount of overlap between edge and sphere - "strength of overlap"
+    // return true if intersecting
+    // also put a parameter into t that says how far along the edge it's intersecting
+    // repulsionVec = (unit) repulsion vector away from edge
+    // strength = amount of overlap between edge and sphere = strength of repulsion
 
-    // // calculate vector along edge
-    // Vector3f edge_vec (edge_in.pos2.x - edge_in.pos1.x, edge_in.pos2.y - edge_in.pos1.y, edge_in.pos2.z - edge_in.pos1.z);
+    // create unit edge vector (pointing along edge) + get length of edge
+    Vector3f edgeVec (edge.m_endPos.x - edge.m_startPos.x, edge.m_endPos.y - edge.m_startPos.y, edge.m_endPos.z - edge.m_startPos.z);
+    float edgeLen = normalise(&edgeVec);
 
-    // // calculate length of edge
-    // float len_edge = normalise(&edge_vec);
+    // calculate vector from start of edge to sphere
+    Vector3f startSep (m_position.x - edge.m_startPos.x, m_position.y - edge.m_startPos.y, m_position.z - edge.m_startPos.z);
 
-    // // calculate vector from start of edge to sphere
-    // Vector3f diff_0 (m_position.x - edge_in.pos1.x, m_position.y - edge_in.pos1.y, m_position.z - edge_in.pos1.z);
+    // get scalar projection of startSep onto edge
+    t = dot(startSep, edgeVec);
 
-    // // set t to dot product between diff_0 and edge_vec - this is 0 if perpendicular, max if parallel.
-    // t = dot(diff_0, edge_vec);
+    // if we're 'before' edge (t < 0) or 'beyond' edge (t > edgeLen), just check end points
+    if ((t < 0.0f) || (t > edgeLen)) {
 
-    // // if sphere is either on "left" side of edge, or "right" side of edge, check more carefully
-    // if ((t < 0.0f) || (t > len_edge)) {
-        
-    //     // legit just -diff_0 but go with it
-    //     Vector3f sep_1 (edge_in.pos1.x - m_position.x, edge_in.pos1.y - m_position.y, edge_in.pos1.z - m_position.z);
+        // Check start of edge
+        // negative of startSep, will be used to calculate perp dist
+        Vector3f sep_0 (edge.m_startPos.x - m_position.x, edge.m_startPos.y - m_position.y, edge.m_startPos.z - m_position.z);
+        if (lenVec(sep_0) <= m_radius) { // start is intersecting
+            t = 0.0f; // intersection is at start
+            repulsionVec = m_position - edge.m_startPos; // pointing from start to ball
 
-    //     // if the length of sep vector <= radius, we have overlap with start of edge!
-    //     if (lenVec(sep_1) <= m_radius) {
+            // normalise repulsionVec + calculate strength from 'overlap'
+            float sepDist = normalise(&repulsionVec);
+            strength = m_radius - sepDist;
+            
+            // if the length is 0, make sure output vector is 0
+            if (0.0f == sepDist) {
+                repulsionVec = Vector3f(0);
+            }
+            
+            return true; // yes intersection
+        }
 
-    //         // overlap is at start of edge!
-    //         t = 0.0f; 
-    //         // vec_out (initially) = diff_0, i.e. sep vec but pointing away from edge, i.e. repulsion
-    //         vec_out = m_position - edge_in.pos1;
+        // Check end of edge
+        // negative of 'endSep', will be used to calculate perp dist
+        Vector3f sep_1 (edge.m_endPos.x - m_position.x, edge.m_endPos.y - m_position.y, edge.m_endPos.z - m_position.z);
 
-    //         // next, normalise vec_out, and put "strength of overlap" into f_out
-    //         float len_vec = normalise(&vec_out);
+        // if we're too close to end point, need to do some overlap calculations
+        if (lenVec(sep_1) <= m_radius) { // end is intersecting
+            t = 1.0f; // intersection is at end
+            repulsionVec = m_position - edge.m_endPos; // pointing from end to ball
 
-    //         // set f_out to roughly how much overlap there is, i.e. "strength of overlap"
-    //         f_out = m_radius - len_vec;
-    //         // if the length is 0, make sure output vector is 0
-    //         if (0.0f == len_vec) {
-    //             vec_out = Vector3f(0);
-    //         }
-    //         return 1; // yes it overlaps, we're done
-    //     }
+            // normalise repulsionVec + calculate strength from 'overlap'
+            float sepDist = normalise(&repulsionVec);
+            strength = m_radius - sepDist;
+            
+            // if the length is 0, make sure output vector is 0
+            if (0.0f == sepDist) {
+                repulsionVec = Vector3f(0);
+            }
+            
+            return true; // yes intersection
+        }
+        return false; // too far before or after edge, no overlap
+    }
 
-    //     // now we check end point of edge, so calculate vector between sphere and end point
-    //     Vector3f diff_1 (edge_in.pos2.x - m_position.x, edge_in.pos2.y - m_position.y, edge_in.pos2.z - m_position.z);
-
-    //     // if we're too close to end point, need to do some overlap calculations
-    //     if (lenVec(diff_1) <= m_radius) {
-    //         // overlap is at the end of edge!
-    //         t = 1.0f; 
-    //         // vec_out (initially) = -diff_1, i.e. sep vec but pointing away from edge, i.e. repulsion
-    //         vec_out = m_position - edge_in.pos2;
-
-    //         // next, normalise vec_out, and put "strength of overlap" into f_out
-    //         float len_vec = normalise(&vec_out);
-
-    //         // set f_out to roughly how much overlap there is, i.e. "strength of overlap"
-    //         f_out = m_radius - len_vec;
-    //         // if the length is 0, make sure output vector is 0
-    //         if (0.0f == len_vec) {
-    //             vec_out = Vector3f(0);
-    //         }
-    //         return 1; // yes it overlaps, we're done
-    //     }
-    //     return 0; // to "left" or "right" of edge, but not close enough - no overlap, we're done
-    // }
-
-    // // if sphere is "in front" of the edge, need to do some other calculations
-    // // first, weight edge vector by dot product
-    // Vector3f t_vec = edge_vec * t;
+    // if sphere is "next to" edge, need to calculate perp dist
     
-    // // calculate "perp dist" vector
-    // Vector3f sep (diff_0.x - t_vec.x, diff_0.y - t_vec.y, diff_0.z - t_vec.z);
+    // get vector projection of sep onto edge
+    Vector3f projVec = edgeVec * t;
+    
+    // calculate perp distance + unit perp vector from ball to edge
+    Vector3f perpVec (startSep.x - projVec.x, startSep.y - projVec.y, startSep.z - projVec.z);
+    float perpDist = normalise(&perpVec);
 
-    // // calculate distance from edge
-    // float len_sep = normalise(&sep);
-
-    // // check if sphere is too close to the edge
-    // if (len_sep < m_radius) { // yes, it's too close - edge is inside radius
-    //     if (0.0f == len_sep) { // if sphere is centered ON the edge
-    //         vec_out = Vector3f(0);
-    //         f_out = m_radius; // "strength of overlap" is radius
-    //         return 1; // yes it overlaps, we're done
-    //     }
-    //     // sphere not centered on the edge
-    //     f_out = m_radius - len_sep; // reduce "strength of overlap" by how far away it is
-    //     vec_out = sep; // vec_out = repulsion vector directly away from edge
-    //     return 1; // yes it overlaps, we're done
-    // }
-    // return 0; // not close enough to the edge - no overlap, we're done
+    // check if we have overlap
+    if (perpDist < m_radius) { // yes overlap
+        if (0.0f == perpDist) { // if sphere is centered ON the edge
+            repulsionVec = Vector3f(0); // can't really determine repulsion vector if we're ON the edge
+            strength = m_radius; // "whole radius" of overlap
+            return true; // yes intersection
+        }
+        
+        // sphere not centered on edge
+        strength = m_radius - perpDist; // calc strength from overlap
+        repulsionVec = perpVec; // unit vector directly away from edge at closest point to sphere
+        return true; // yes intersection
+    }
+    
+    return false; // not close enough to edge, no intersection
 }
 
 /*

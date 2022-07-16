@@ -63,8 +63,8 @@ void VertexTable::cloneFrom(Matrixf& p1, Sys::VertexTable* other)
 		PSMTXMultVec(p1.m_matrix.mtxView, (Vec*)&other->m_objects[i], (Vec*)&v1);
 		m_objects[i] = v1;
 	}
-	_28.m_max = 32768.0f;
-	_28.m_min = -32768.0f;
+	_28.m_min = 32768.0f;
+	_28.m_max = -32768.0f;
 	for (int i = 0; i < m_limit; i++) {
 		_28.include(m_objects[i]);
 	}
