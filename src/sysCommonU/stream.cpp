@@ -627,7 +627,7 @@ float Stream::readFloat()
 		}
 
 		// take bytes from bufferPtr and put it into outFloat
-		sscanf(nextToken, "%d", &outFloat);
+		sscanf(nextToken, "%f", &outFloat);
 		// return result
 		return outFloat;
 	}
@@ -724,7 +724,7 @@ char* Stream::readString(char* str, int strLength)
 //
 // }
 
-const char* UNUSED_readFixedString = "can not use readFixedString in text mode\n";
+const char UNUSED_readFixedString[] = "can not use readFixedString in text mode\n";
 
 /*
  * --INFO--
@@ -762,7 +762,7 @@ void Stream::writeString(char* inputStr)
 // 	// UNUSED FUNCTION
 // }
 
-const char* UNUSED_writeFixedString = "can not use writeFixedString in text mode\n";
+const char UNUSED_writeFixedString[] = "can not use writeFixedString in text mode\n";
 
 /*
  * --INFO--
