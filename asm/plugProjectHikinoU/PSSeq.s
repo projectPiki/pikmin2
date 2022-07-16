@@ -2115,7 +2115,7 @@ lbl_80332498:
 /* 803324C4 0032F404  4B CF 81 7D */	bl panic_f__12JUTExceptionFPCciPCce
 lbl_803324C8:
 /* 803324C8 0032F408  80 7F 00 70 */	lwz r3, 0x70(r31)
-/* 803324CC 0032F40C  3C 03 3F FF */	subis r0, r3, 0xc001
+/* 803324CC 0032F40C  3C 03 3F FF */	addis r0, r3, 0x3fff # should be subis 0xc001 but the assembler cries
 /* 803324D0 0032F410  28 00 10 1F */	cmplwi r0, 0x101f
 /* 803324D4 0032F414  40 82 00 70 */	bne lbl_80332544
 /* 803324D8 0032F418  7F E3 FB 78 */	mr r3, r31

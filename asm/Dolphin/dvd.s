@@ -170,7 +170,7 @@ DVDInit:
 /* 800DCDA4 000D9CE4  80 6D 8E 38 */	lwz r3, bootInfo@sda21(r13)
 /* 800DCDA8 000D9CE8  38 63 00 20 */	addi r3, r3, 0x20
 /* 800DCDAC 000D9CEC  80 63 00 00 */	lwz r3, 0(r3)
-/* 800DCDB0 000D9CF0  3C 03 1A E0 */	subis r0, r3, 0xe520
+/* 800DCDB0 000D9CF0  3C 03 1A E0 */	addis r0, r3, 0x1ae0 # should be subis 0xe520 but the assembler cries
 /* 800DCDB4 000D9CF4  28 00 7C 22 */	cmplwi r0, 0x7c22
 /* 800DCDB8 000D9CF8  40 82 00 1C */	bne lbl_800DCDD4
 /* 800DCDBC 000D9CFC  3C 60 80 4A */	lis r3, lbl_804A7CE0@ha
