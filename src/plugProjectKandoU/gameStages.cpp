@@ -210,11 +210,19 @@ inline void CaveOtakaraInfo::get_id(ID32&)
  * Address:	........
  * Size:	000080
  */
-inline int CaveOtakaraInfo::getCaveIndex_FromID(ID32&)
-{
-	// UNUSED FUNCTION
-	return 0;
-}
+inline CaveOtakara* CaveOtakaraInfo::getCaveIndex_FromID(ID32& id) {
+	CaveOtakara* caveNode;
+	for (int i = 0; i < m_count; i++) {
+		caveNode = (CaveOtakara*)m_owner.getChildAt(i);
+
+		if ((caveNode->m_id == id.getID())) {
+            return caveNode;
+		} else {
+			continue;
+		}
+	}
+    return 0;
+};
 
 /*
  * --INFO--
@@ -1103,7 +1111,7 @@ lbl_801AE170:
  * Size:	000060
  * AUTOGEN
  */
-MapCollision::~MapCollision() { }
+// MapCollision::~MapCollision() { }
 
 namespace Game {
 
