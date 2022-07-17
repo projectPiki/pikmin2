@@ -600,7 +600,6 @@ KANDO:=\
 	$(BUILD_DIR)/asm/plugProjectKandoU/cellIterator.o\
 	$(BUILD_DIR)/asm/plugProjectKandoU/vsGS_VSGame.o\
 	$(BUILD_DIR)/src/plugProjectKandoU/gameSoundEvent.o\
-	$(BUILD_DIR)/src/plugProjectKandoU/aiBattle.o\
 	$(BUILD_DIR)/asm/plugProjectKandoU/aiBattle.o\
 	$(BUILD_DIR)/asm/plugProjectKandoU/gameDeathCount.o\
 	$(BUILD_DIR)/asm/plugProjectKandoU/aiBore.o\
@@ -630,7 +629,7 @@ NISHIMURA:=\
 	$(BUILD_DIR)/asm/plugProjectNishimuraU/ShadowCylinder.o\
 	$(BUILD_DIR)/asm/plugProjectNishimuraU/playCamera.o\
 	$(BUILD_DIR)/asm/plugProjectNishimuraU/shadowMgr.o\
-	$(BUILD_DIR)/asm/plugProjectNishimuraU/MapUnit.o\
+	$(BUILD_DIR)/src/plugProjectNishimuraU/MapUnit.o\
 	$(BUILD_DIR)/asm/plugProjectNishimuraU/MapNode.o\
 	$(BUILD_DIR)/asm/plugProjectNishimuraU/EnemyUnit.o\
 	$(BUILD_DIR)/asm/plugProjectNishimuraU/RandMapMgr.o\
@@ -1100,7 +1099,7 @@ COMMON:=\
 	$(BUILD_DIR)/src/sysCommonU/id32.o\
 	$(BUILD_DIR)/asm/sysCommonU/id32.o\
 	$(BUILD_DIR)/src/sysCommonU/parameters.o\
-	$(BUILD_DIR)/asm/sysCommonU/stream.o\
+	$(BUILD_DIR)/src/sysCommonU/stream.o\
 	$(BUILD_DIR)/asm/sysCommonU/geometry.o\
 	$(BUILD_DIR)/src/sysCommonU/mapCollision.o\
 	$(BUILD_DIR)/asm/sysCommonU/camera.o\

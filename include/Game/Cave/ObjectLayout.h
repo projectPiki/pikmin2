@@ -4,6 +4,7 @@
 #include "types.h"
 #include "CNode.h"
 #include "Vector3.h"
+#include "JSystem/JUT/JUTTexture.h"
 
 namespace Game {
 struct ObjectLayoutNode : public CNode {
@@ -28,20 +29,29 @@ namespace Cave {
 enum CardinalDirection { CD_UP, CD_RIGHT, CD_DOWN, CD_LEFT };
 struct DoorNode;
 struct BaseGen;
+struct AdjustNode;
+struct MapUnits;
 struct UnitInfo {
-	DoorNode* m_doorNode;            // _00
-	struct AdjustNode* m_adjustNode; // _04
-	struct MapUnits* m_mapUnits;     // _08
-	int m_unitRotation;              // _0C
-	int m_unitSizeX;                 // _10
-	int m_unitSizeY;                 // _14
+	UnitInfo(MapUnits* mapUnits);
 
+	void setUnitTexture(JUTTexture*);
+	void setUnitRotation(int rot);
+	void create();
+	char* getUnitName();
+	int getUnitKind();
 	int getUnitSizeX();
 	int getUnitSizeY();
-	int getUnitKind();
 	int getUnitRotation();
+	DoorNode* getDoorNode(int doorNum);
 	BaseGen* getBaseGen();
-	void draw();
+	void draw(float, float, float, float);
+
+	DoorNode* m_doorNode;     // _00
+	AdjustNode* m_doorCounts; // _04
+	MapUnits* m_mapUnits;     // _08
+	int m_unitRotation;       // _0C
+	int m_unitSizeX;          // _10
+	int m_unitSizeY;          // _14
 };
 
 struct BaseGen;

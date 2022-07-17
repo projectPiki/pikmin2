@@ -41,6 +41,8 @@ struct JointShadowRootNode : public CNode {
 
 // Size: 0x24
 struct ShadowNode : public CNode {
+	virtual ~ShadowNode(); // _00
+
 	Creature* m_creature; // _18
 	u32 _1C;              // _1C
 	u32 _20;              // _20 /* bitfield */

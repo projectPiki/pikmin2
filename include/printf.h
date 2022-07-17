@@ -3,7 +3,6 @@
 
 void sprintf(void);
 void snprintf(void);
-void vsprintf(void);
 void vsnprintf(void);
 void vfprintf(void);
 void vprintf(void);

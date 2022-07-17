@@ -375,11 +375,11 @@ checkSignature__9J2DScreenFP20JSURandomInputStream:
 /* 8003F8A0 0003C7E0  38 81 00 08 */	addi r4, r1, 8
 /* 8003F8A4 0003C7E4  4B FE 6B 31 */	bl read__14JSUInputStreamFPvl
 /* 8003F8A8 0003C7E8  80 61 00 08 */	lwz r3, 8(r1)
-/* 8003F8AC 0003C7EC  3C 03 AC BD */	addis r0, r3, 0xacbd
+/* 8003F8AC 0003C7EC  3C 03 AC BD */	subis r0, r3, 0x5343
 /* 8003F8B0 0003C7F0  28 00 52 4E */	cmplwi r0, 0x524e
 /* 8003F8B4 0003C7F4  40 82 00 1C */	bne lbl_8003F8D0
 /* 8003F8B8 0003C7F8  80 61 00 0C */	lwz r3, 0xc(r1)
-/* 8003F8BC 0003C7FC  3C 03 9D 94 */	addis r0, r3, 0x9d94
+/* 8003F8BC 0003C7FC  3C 03 9D 94 */	subis r0, r3, 0x626c
 /* 8003F8C0 0003C800  28 00 6F 31 */	cmplwi r0, 0x6f31
 /* 8003F8C4 0003C804  41 82 00 14 */	beq lbl_8003F8D8
 /* 8003F8C8 0003C808  28 00 6F 32 */	cmplwi r0, 0x6f32
@@ -409,7 +409,7 @@ getScreenInformation__9J2DScreenFP20JSURandomInputStream:
 /* 8003F910 0003C850  7F E3 FB 78 */	mr r3, r31
 /* 8003F914 0003C854  4B FE 6A C1 */	bl read__14JSUInputStreamFPvl
 /* 8003F918 0003C858  80 61 00 1C */	lwz r3, 0x1c(r1)
-/* 8003F91C 0003C85C  3C 03 B6 B2 */	addis r0, r3, 0xb6b2
+/* 8003F91C 0003C85C  3C 03 B6 B2 */	subis r0, r3, 0x494e
 /* 8003F920 0003C860  28 00 46 31 */	cmplwi r0, 0x4631
 /* 8003F924 0003C864  41 82 00 0C */	beq lbl_8003F930
 /* 8003F928 0003C868  38 60 00 00 */	li r3, 0

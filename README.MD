@@ -45,6 +45,16 @@ pikmin2.usa.dol: `sha1: 90d328bf8f190c90472e8c19e7e53c6ad0fe0d1a`
 * OPTIONAL:
 	- Obtain a clean DOL of Pikmin 2 USA 1.0 and place it in the base working directory and rename it to `baserom.dol`.
 	- To generate a linker map (takes a considerable amount of time), run `make MAPGENFLAG=1 -j`
+	
+### Generating Context for decomp.me Scratches
+(NB: The generator requires **Python 3** to run)
+
+- Stand-alone decompilation packages and tools require information on the functions and structures of the project in order to parse extracted blocks correctly. The easiest way to do this is to pass the tool just the necessary 'context' for the file, i.e. a set of all the headers used by the file that's being worked on.
+- A recursive context processing script is included in the repo (<a href="https://github.com/projectPiki/pikmin2/tree/main/tools/decompctx.py">tools/decompctx.py</a>), which generates a `ctx.c` file in the root directory.
+	- The contents of this can then be copied and pasted into the 'Context' section of a decomp.me scratch or similar.
+- To use, call the generator via the terminal/command line from the root directory (replacing DIRECTORY and FILE as required):
+    ```python3 tools/decompctx.py /src/DIRECTORY/FILE.cpp```
+- Credit to encounter and the [Metroid Prime decomp project](https://github.com/PrimeDecomp/prime) for the script!
 
 ## Project Organisation
 - For each namespace that types and functions are contained within, create a folder. E.g. the structure `Game::GameSystem` will go in include/Game/GameSystem.h.
@@ -141,6 +151,7 @@ pikmin2.usa.dol: `sha1: 90d328bf8f190c90472e8c19e7e53c6ad0fe0d1a`
 	- <a href="https://github.com/projectPiki/pikmin2/tree/main/src/plugProjectNishimuraU/KumaKochappyAnimator.cpp">plugProjectNishimuraU/KumaKochappyAnimator.cpp</a>
 	- <a href="https://github.com/projectPiki/pikmin2/tree/main/src/plugProjectNishimuraU/KurageAnimator.cpp">plugProjectNishimuraU/KurageAnimator.cpp</a>
 	- <a href="https://github.com/projectPiki/pikmin2/tree/main/src/plugProjectNishimuraU/MapCreator.cpp">plugProjectNishimuraU/MapCreator.cpp</a>
+	- <a href="https://github.com/projectPiki/pikmin2/tree/main/src/plugProjectNishimuraU/MapUnit.cpp">plugProjectNishimuraU/MapUnit.cpp</a>
 	- <a href="https://github.com/projectPiki/pikmin2/tree/main/src/plugProjectNishimuraU/MarAnimator.cpp">plugProjectNishimuraU/MarAnimator.cpp</a>
 	- <a href="https://github.com/projectPiki/pikmin2/tree/main/src/plugProjectNishimuraU/MiniHoudaiAnimator.cpp">plugProjectNishimuraU/MiniHoudaiAnimator.cpp</a>
 	- <a href="https://github.com/projectPiki/pikmin2/tree/main/src/plugProjectNishimuraU/ObjectLayout.cpp">plugProjectNishimuraU/ObjectLayout.cpp</a>
@@ -222,7 +233,6 @@ pikmin2.usa.dol: `sha1: 90d328bf8f190c90472e8c19e7e53c6ad0fe0d1a`
 	- <a href="https://github.com/projectPiki/pikmin2/tree/main/src/plugProjectOgawaU/DispMemberBase.cpp" >plugProjectOgawaU/DispMemberBase.cpp</a>
 	- <a href="https://github.com/projectPiki/pikmin2/tree/main/src/plugProjectOgawaU/ogObjAnaDemo.cpp" >plugProjectOgawaU/ogObjAnaDemo.cpp</a>
 - plugProjectKandoU
-	- <a href="https://github.com/projectPiki/pikmin2/tree/main/src/plugProjectKandoU/aiBattle.cpp" >plugProjectKandoU/aiBattle.cpp</a>
 	- <a href="https://github.com/projectPiki/pikmin2/tree/main/src/plugProjectKandoU/gamePlatMgr.cpp" >plugProjectKandoU/gamePlatMgr.cpp</a>
 	- <a href="https://github.com/projectPiki/pikmin2/tree/main/src/plugProjectKandoU/routeMgr.cpp" >plugProjectKandoU/routeMgr.cpp</a>
 	- <a href="https://github.com/projectPiki/pikmin2/tree/main/src/plugProjectKandoU/updateMgr.cpp" >plugProjectKandoU/updateMgr.cpp</a>
