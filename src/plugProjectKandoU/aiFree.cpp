@@ -11,44 +11,7 @@
 
 #include "PikiAI.h"
 
-/*
-    Generated from dpostproc
-    .section .rodata  # 0x804732E0 - 0x8049E220
-    .global lbl_8047F260
-    lbl_8047F260:
-        .asciz "ActFreeArg"
-        .skip 1
-        .asciz "aiFree.cpp"
-        .skip 1
-        .asciz "P2Assert"
-        .skip 3
-        .asciz "ActionArg"
-        .skip 2
-    .global lbl_8047F290
-    lbl_8047F290:
-        .asciz "GatherActionArg"
-    .section .sdata2, "a"     # 0x80516360 - 0x80520E40
-    .global lbl_80519058
-    lbl_80519058:
-        .asciz "Free"
-        .skip 3
-    .global lbl_80519060
-    lbl_80519060:
-        .float 0.0
-    .global lbl_80519064
-    lbl_80519064:
-        .float 32768.0
-    .global lbl_80519068
-    lbl_80519068:
-        .float 30.0
-    .global lbl_8051906C
-    lbl_8051906C:
-        .float 0.5
-    .global lbl_80519070
-    lbl_80519070:
-        .4byte 0x43300000
-        .4byte 0x80000000
-*/
+// TODO: Matching but MotionListener VTBL generates, when that's fixed. Link it.
 
 /*
  * --INFO--
@@ -217,6 +180,8 @@ void PikiAI::ActFree::collisionCallback(Game::Piki* piki, Game::CollEvent& event
 	Game::InteractFue fue(event.m_collidingCreature, 0, 1);
 	piki->stimulate(fue);
 }
+
+const char str_LINK[] = "ActionArg";
 
 /*
  * --INFO--
