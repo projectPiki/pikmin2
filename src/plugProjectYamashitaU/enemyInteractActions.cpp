@@ -1,6 +1,5 @@
 #include "Game/InteractFarmKarero.h"
 #include "Game/InteractFarmHaero.h"
-#include "Game/Interaction.h"
 #include "Game/EnemyBase.h"
 
 namespace Game {
