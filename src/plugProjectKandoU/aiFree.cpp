@@ -1,10 +1,54 @@
-#include "Dolphin/string.h"
 #include "Dolphin/rand.h"
+#include "Dolphin/string.h"
 
 #include "JSystem/JUT/JUTException.h"
 
+#include "Game/Navi.h"
 #include "Game/Piki.h"
+#include "Game/rumble.h"
+#include "Game/CollEvent.h"
+#include "Game/Interaction.h"
+
 #include "PikiAI.h"
+
+/*
+    Generated from dpostproc
+    .section .rodata  # 0x804732E0 - 0x8049E220
+    .global lbl_8047F260
+    lbl_8047F260:
+        .asciz "ActFreeArg"
+        .skip 1
+        .asciz "aiFree.cpp"
+        .skip 1
+        .asciz "P2Assert"
+        .skip 3
+        .asciz "ActionArg"
+        .skip 2
+    .global lbl_8047F290
+    lbl_8047F290:
+        .asciz "GatherActionArg"
+    .section .sdata2, "a"     # 0x80516360 - 0x80520E40
+    .global lbl_80519058
+    lbl_80519058:
+        .asciz "Free"
+        .skip 3
+    .global lbl_80519060
+    lbl_80519060:
+        .float 0.0
+    .global lbl_80519064
+    lbl_80519064:
+        .float 32768.0
+    .global lbl_80519068
+    lbl_80519068:
+        .float 30.0
+    .global lbl_8051906C
+    lbl_8051906C:
+        .float 0.5
+    .global lbl_80519070
+    lbl_80519070:
+        .4byte 0x43300000
+        .4byte 0x80000000
+*/
 
 /*
  * --INFO--
@@ -31,7 +75,7 @@ void PikiAI::ActFree::init(PikiAI::ActionArg* arg)
 
 	PikiAI::ActFreeArg* freeArg = (PikiAI::ActFreeArg*)arg;
 
-	m_currentAction = PIKI_ACT_FREE_DEFAULT;
+	m_state = PIKIAI_FREE_DEFAULT;
 	if (freeArg) {
 		char* name     = arg->getName();
 		bool isFreeArg = strcmp("ActFreeArg", name) == 0;
@@ -39,12 +83,12 @@ void PikiAI::ActFree::init(PikiAI::ActionArg* arg)
 
 		freeArg = (PikiAI::ActFreeArg*)arg;
 		if (freeArg->_04) {
-			m_currentAction = PIKI_ACT_FREE_GATHER;
+			m_state = PIKIAI_FREE_GATHER;
 		}
 	}
 
-	switch (m_currentAction) {
-	case PIKI_ACT_FREE_GATHER:
+	switch (m_state) {
+	case PIKIAI_FREE_GATHER:
 		GatherActionArg gatherArg(freeArg);
 		m_actGather->init(&gatherArg);
 		break;
@@ -68,11 +112,11 @@ void PikiAI::ActFree::init(PikiAI::ActionArg* arg)
  */
 s32 PikiAI::ActFree::exec(void)
 {
-	switch (m_currentAction) {
-	case PIKI_ACT_FREE_GATHER: {
+	switch (m_state) {
+	case PIKIAI_FREE_GATHER: {
 		// If we finished the gather state
 		if (m_actGather->exec() == 0) {
-			m_currentAction = PIKI_ACT_FREE_DEFAULT;
+			m_state = PIKIAI_FREE_DEFAULT;
 
 			// Wait for a bit of time to cool off
 			u16 frameDelay = 30 * randFloat();
@@ -81,7 +125,7 @@ s32 PikiAI::ActFree::exec(void)
 		break;
 	}
 
-	case PIKI_ACT_FREE_BORE: {
+	case PIKIAI_FREE_BORE: {
 		s32 status = m_actBore->exec();
 
 		// Let's try invoke the AI, and finish the boredom if we succeed
@@ -93,8 +137,8 @@ s32 PikiAI::ActFree::exec(void)
 
 		// Assuming we finished or failed being bored, we'll be free again
 		if (status == 0 || status == 2) {
-			m_currentAction = PIKI_ACT_FREE_DEFAULT;
-			m_delayTimer    = 90;
+			m_state      = PIKIAI_FREE_DEFAULT;
+			m_delayTimer = 90;
 		}
 		break;
 	}
@@ -113,7 +157,7 @@ s32 PikiAI::ActFree::exec(void)
 			m_delayTimer--;
 		} else if (randFloat() > 0.5f) {
 			m_actBore->init(nullptr);
-			m_currentAction = PIKI_ACT_FREE_BORE;
+			m_state = PIKIAI_FREE_BORE;
 		}
 
 		break;
@@ -130,27 +174,9 @@ s32 PikiAI::ActFree::exec(void)
  */
 void PikiAI::ActFree::cleanup(void)
 {
-	/*
-	stwu     r1, -0x10(r1)
-	mflr     r0
-	li       r4, 0
-	stw      r0, 0x14(r1)
-	stw      r31, 0xc(r1)
-	mr       r31, r3
-	lwz      r3, 4(r3)
-	bl       setFreeLightEffect__Q24Game4PikiFb
-	lwz      r3, 4(r31)
-	li       r4, 0
-	bl       attachRadar__Q24Game4PikiFb
-	lwz      r3, 4(r31)
-	lwz      r3, 0x250(r3)
-	bl       becomeNotFree__Q23PSM4PikiFv
-	lwz      r0, 0x14(r1)
-	lwz      r31, 0xc(r1)
-	mtlr     r0
-	addi     r1, r1, 0x10
-	blr
-	*/
+	m_parent->setFreeLightEffect(false);
+	m_parent->attachRadar(false);
+	m_parent->m_soundObj->becomeNotFree();
 }
 
 /*
@@ -165,71 +191,31 @@ void PikiAI::ActFree::onKeyEvent(SysShape::KeyEvent const&) { }
  * Address:	801A03B8
  * Size:	0000EC
  */
-void PikiAI::ActFree::collisionCallback(Game::Piki*, Game::CollEvent&)
+void PikiAI::ActFree::collisionCallback(Game::Piki* piki, Game::CollEvent& event)
 {
-	/*
-	stwu     r1, -0x30(r1)
-	mflr     r0
-	stw      r0, 0x34(r1)
-	stw      r31, 0x2c(r1)
-	stw      r30, 0x28(r1)
-	mr       r30, r5
-	stw      r29, 0x24(r1)
-	mr       r29, r4
-	lwz      r3, 0(r5)
-	lwz      r12, 0(r3)
-	lwz      r12, 0x1c(r12)
-	mtctr    r12
-	bctrl
-	clrlwi.  r0, r3, 0x18
-	beq      lbl_801A0488
-	lwz      r31, 0(r30)
-	mr       r3, r31
-	lwz      r12, 0(r31)
-	lwz      r12, 0xa8(r12)
-	mtctr    r12
-	bctrl
-	clrlwi.  r0, r3, 0x18
-	beq      lbl_801A0488
-	lwz      r0, 0x278(r31)
-	cmplwi   r0, 0
-	beq      lbl_801A0488
-	mr       r3, r31
-	bl       formationable__Q24Game4NaviFv
-	clrlwi.  r0, r3, 0x18
-	beq      lbl_801A0488
-	lwz      r3, rumbleMgr__4Game@sda21(r13)
-	li       r4, 2
-	lhz      r5, 0x2dc(r31)
-	bl       startRumble__Q24Game9RumbleMgrFii
-	lwz      r4, 0(r30)
-	lis      r3, __vt__Q24Game11Interaction@ha
-	addi     r0, r3, __vt__Q24Game11Interaction@l
-	lis      r3, __vt__Q24Game11InteractFue@ha
-	stw      r0, 8(r1)
-	addi     r6, r3, __vt__Q24Game11InteractFue@l
-	li       r5, 0
-	li       r0, 1
-	stw      r4, 0xc(r1)
-	mr       r3, r29
-	addi     r4, r1, 8
-	stw      r6, 8(r1)
-	stb      r5, 0x10(r1)
-	stb      r0, 0x11(r1)
-	lwz      r12, 0(r29)
-	lwz      r12, 0x1a4(r12)
-	mtctr    r12
-	bctrl
+	if (!event.m_collidingCreature->isNavi()) {
+		return;
+	}
 
-lbl_801A0488:
-	lwz      r0, 0x34(r1)
-	lwz      r31, 0x2c(r1)
-	lwz      r30, 0x28(r1)
-	lwz      r29, 0x24(r1)
-	mtlr     r0
-	addi     r1, r1, 0x30
-	blr
-	*/
+	Game::Navi* navi = (Game::Navi*)event.m_collidingCreature;
+	if (!navi->isAlive()) {
+		return;
+	}
+
+	// If the Navi who touched us isn't being used right now (by controller)
+	if (!navi->m_padinput) {
+		return;
+	}
+
+	// If the Navi can't call us into formation
+	if (!navi->formationable()) {
+		return;
+	}
+
+	// Assuming the Navi touched us, rumble and call to squad (eventually)
+	Game::rumbleMgr->startRumble(2, navi->m_naviIndex.m_shortView);
+	Game::InteractFue fue(event.m_collidingCreature, 0, 1);
+	piki->stimulate(fue);
 }
 
 /*
@@ -244,7 +230,7 @@ char* PikiAI::GatherActionArg::getName() { return "GatherActionArg"; }
  * Address:	801A04B0
  * Size:	000008
  */
-u32 PikiAI::ActFree::getNextAIType() { return 2; }
+u32 PikiAI::ActFree::getNextAIType() { return PIKIAI_FREE_BORE; }
 
 /*
  * --INFO--
