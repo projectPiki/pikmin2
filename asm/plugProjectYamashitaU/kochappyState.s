@@ -452,7 +452,7 @@ init__Q34Game12KochappyBase9StateWaitFPQ24Game9EnemyBasePQ24Game8StateArg:
 /* 8010FB50 0010CA90  38 80 00 06 */	li r4, 6
 /* 8010FB54 0010CA94  38 A0 00 00 */	li r5, 0
 /* 8010FB58 0010CA98  4B FF 54 AD */	bl startMotion__Q24Game9EnemyBaseFiPQ28SysShape14MotionListener
-/* 8010FB5C 0010CA9C  3C 1F 8D 9F */	addis r0, r31, 0x8d9f
+/* 8010FB5C 0010CA9C  3C 1F 8D 9F */	subis r0, r31, 0x7261
 /* 8010FB60 0010CAA0  38 60 00 00 */	li r3, 0
 /* 8010FB64 0010CAA4  28 00 6E 64 */	cmplwi r0, 0x6e64
 /* 8010FB68 0010CAA8  90 7E 02 30 */	stw r3, 0x230(r30)
