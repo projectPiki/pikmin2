@@ -13,23 +13,21 @@
 #define STREAM_LITTLE_ENDIAN 0
 #define STREAM_BIG_ENDIAN    1
 
-static inline u16 bswap16(u16 x) {
-	return ((x << 8) & 0xff00) | ((x >> 8) & 0x00ff);
-}
+static inline u16 bswap16(u16 x) { return ((x << 8) & 0xff00) | ((x >> 8) & 0x00ff); }
 
 struct Stream {
-    Stream()
+	Stream()
 	{
-        m_endian = STREAM_BIG_ENDIAN;
-        m_position = 0;
-        m_mode = STREAM_MODE_BINARY;
-        if (m_mode == STREAM_MODE_TEXT) {
-            m_tabCount = 0;
-        }
-    }
-    Stream(int);
+		m_endian   = STREAM_BIG_ENDIAN;
+		m_position = 0;
+		m_mode     = STREAM_MODE_BINARY;
+		if (m_mode == STREAM_MODE_TEXT) {
+			m_tabCount = 0;
+		}
+	}
+	Stream(int);
 
-	virtual void read(void*, int) = 0;
+	virtual void read(void*, int)  = 0;
 	virtual void write(void*, int) = 0;
 	virtual bool eof();
 	virtual u32 getPending();
@@ -76,7 +74,6 @@ struct Stream {
 		}
 	}
 
-
 	int m_endian;        // _04
 	int m_position;      // _08
 	int m_mode;          // _0C
@@ -92,7 +89,7 @@ struct RamStream : Stream {
 	virtual void write(void*, int);
 	virtual bool eof();
 	// virtual void getPending(); // from Stream
-	
+
 	void set(u8*, int);
 
 	inline void resetPosition(bool a1, int a2)
@@ -104,7 +101,18 @@ struct RamStream : Stream {
 	}
 
 	void* m_ramBufferStart; // _418
-	int m_bounds; // _41C
+	int m_bounds;           // _41C
 };
+
+template <typename T> inline void loadAndRead(T* thisPtr, char* fname, bool nullCheck = true)
+{
+	void* handle = JKRDvdRipper::loadToMainRAM(fname, 0, Switch_0, 0, 0, JKRDvdRipper::ALLOC_DIR_BOTTOM, 0, 0, 0);
+	if (nullCheck) {
+		RamStream stream(handle, -1);
+		stream.resetPosition(true, 1);
+		thisPtr->read(stream);
+		delete[] handle;
+	}
+}
 
 #endif

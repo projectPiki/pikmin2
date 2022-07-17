@@ -26,8 +26,7 @@ struct WaterBox;
 // };
 
 struct MapMgr : virtual public GenericObjectMgr {
-	struct BeamCollisionArg {
-	};
+	struct BeamCollisionArg { };
 
 	MapMgr();
 
@@ -68,6 +67,22 @@ struct MapMgr : virtual public GenericObjectMgr {
 	u32 _20;                  // _20
 
 	// _24: GenericObjectMgr
+};
+
+struct ShapeMapMgr : public MapMgr {
+	ShapeMapMgr() { }
+
+	virtual void doAnimation();  // _00
+	virtual void doEntry();      // _04
+	virtual void doSetView(int); // _08
+	virtual void doViewCalc();   // _0C
+
+	virtual void getBoundBox2d(BoundBox2d&);             // _10
+	virtual void getBoundBox(BoundBox&);                 // _14
+	virtual void traceMove(MoveInfo&, float);            // _1C
+	virtual float getMinY(Vector3f&);                    // _20
+	virtual void getCurrTri(CurrTriInfo&);               // _24
+	virtual void drawCollision(Graphics&, Sys::Sphere&); // _3C
 };
 
 extern MapMgr* mapMgr;

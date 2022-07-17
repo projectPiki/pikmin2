@@ -1,7 +1,9 @@
-#include "Game/gameStages.h"
-#include "MapCollision.h"
 #include "Dolphin/mtx.h"
-#include "types.h"
+#include "JSystem/JKR/JKRDvdRipper.h"
+
+#include "Game/gameStages.h"
+#include "Game/MapMgr.h"
+#include "MapCollision.h"
 
 /*
     Generated from dpostproc
@@ -207,12 +209,12 @@ inline CaveOtakara* CaveOtakaraInfo::get_id(ID32& id)
 		caveNode = (CaveOtakara*)m_owner.getChildAt(i);
 
 		if ((caveNode->m_id == id.getID())) {
-            return caveNode;
+			return caveNode;
 		} else {
 			continue;
 		}
 	}
-    return 0;
+	return 0;
 };
 
 /*
@@ -220,16 +222,17 @@ inline CaveOtakara* CaveOtakaraInfo::get_id(ID32& id)
  * Address:	........
  * Size:	000080
  */
-inline int CaveOtakaraInfo::getCaveIndex_FromID(ID32& id) {
+inline int CaveOtakaraInfo::getCaveIndex_FromID(ID32& id)
+{
 	CaveOtakara* caveNode;
 	for (int idx = 0; idx < m_count; idx++) {
 		caveNode = (CaveOtakara*)m_owner.getChildAt(idx);
 
 		if ((caveNode->m_id == id.getID())) {
-            return idx;
-		} 
+			return idx;
+		}
 	}
-    return -1;
+	return -1;
 };
 
 /*
@@ -410,8 +413,8 @@ void CourseInfo::read(Stream& stream)
  */
 int CourseInfo::getOtakaraNum(ID32& id)
 {
-    CaveOtakara* caveNode = m_caveOtakaraInfo.get_id(id);
-	
+	CaveOtakara* caveNode = m_caveOtakaraInfo.get_id(id);
+
 	return (caveNode) ? caveNode->m_otakaraCount : -1;
 }
 
@@ -436,20 +439,18 @@ int CourseInfo::getOtakaraNum(int childIdx)
  * Address:	801ADB14
  * Size:	00008C
  */
-int CourseInfo::getCaveIndex_FromID(ID32& id) {
-    return m_caveOtakaraInfo.getCaveIndex_FromID(id);
-}
+int CourseInfo::getCaveIndex_FromID(ID32& id) { return m_caveOtakaraInfo.getCaveIndex_FromID(id); }
 
 /*
  * --INFO--
  * Address:	801ADBA0
  * Size:	00009C
  */
-char* CourseInfo::getCaveinfoFilename_FromID(ID32& id) 
+char* CourseInfo::getCaveinfoFilename_FromID(ID32& id)
 {
-    CaveOtakara* caveNode = m_caveOtakaraInfo.get_id(id);
-    P2ASSERTLINE(282, caveNode);
-    return caveNode->m_filename;
+	CaveOtakara* caveNode = m_caveOtakaraInfo.get_id(id);
+	P2ASSERTLINE(282, caveNode);
+	return caveNode->m_filename;
 }
 
 /*
@@ -457,15 +458,15 @@ char* CourseInfo::getCaveinfoFilename_FromID(ID32& id)
  * Address:	801ADC3C
  * Size:	00003C
  */
-ID32* CourseInfo::getCaveID_FromIndex(int childIdx) 
+ID32* CourseInfo::getCaveID_FromIndex(int childIdx)
 {
-    CaveOtakara* node = (CaveOtakara*)m_caveOtakaraInfo.m_owner.getChildAt(childIdx);
+	CaveOtakara* node = (CaveOtakara*)m_caveOtakaraInfo.m_owner.getChildAt(childIdx);
 
-    if (node) {
-        return (ID32*) node->m_id.getID();
-    }
+	if (node) {
+		return (ID32*)node->m_id.getID();
+	}
 
-    return (ID32*) 'none';
+	return (ID32*)'none';
 }
 
 /*
@@ -480,136 +481,15 @@ int CourseInfo::getCaveNum() { return m_caveOtakaraInfo.m_count; }
  * Address:	801ADC80
  * Size:	0001EC
  */
-Stages::Stages(void)
+Stages::Stages()
 {
-	/*
-	stwu     r1, -0x440(r1)
-	mflr     r0
-	stw      r0, 0x444(r1)
-	stw      r31, 0x43c(r1)
-	stw      r30, 0x438(r1)
-	mr       r30, r3
-	mr       r0, r30
-	stw      r29, 0x434(r1)
-	mr       r31, r0
-	stw      r28, 0x430(r1)
-	bl       __ct__5CNodeFv
-	lis      r3, __vt__Q24Game10CourseInfo@ha
-	addi     r29, r31, 0x50
-	addi     r0, r3, __vt__Q24Game10CourseInfo@l
-	stw      r0, 0(r31)
-	mr       r3, r29
-	bl       __ct__5CNodeFv
-	lis      r3, __vt__Q24Game8LimitGen@ha
-	addi     r28, r31, 0x78
-	addi     r3, r3, __vt__Q24Game8LimitGen@l
-	li       r0, 0
-	stw      r3, 0(r29)
-	mr       r3, r28
-	stw      r0, 0x4c(r31)
-	stw      r0, 0x60(r31)
-	stw      r0, 0x5c(r31)
-	stw      r0, 0x58(r31)
-	stw      r0, 0x54(r31)
-	bl       __ct__5CNodeFv
-	lis      r3, __vt__Q24Game8LimitGen@ha
-	addi     r29, r31, 0xa0
-	addi     r3, r3, __vt__Q24Game8LimitGen@l
-	li       r0, 0
-	stw      r3, 0(r28)
-	mr       r3, r29
-	stw      r0, 0x74(r31)
-	stw      r0, 0x88(r31)
-	stw      r0, 0x84(r31)
-	stw      r0, 0x80(r31)
-	stw      r0, 0x7c(r31)
-	bl       __ct__5CNodeFv
-	lis      r4, __vt__Q24Game11CaveOtakara@ha
-	addi     r3, r29, 0x18
-	addi     r0, r4, __vt__Q24Game11CaveOtakara@l
-	stw      r0, 0(r29)
-	bl       __ct__4ID32Fv
-	li       r0, 0
-	lis      r4, 0x78787878@ha
-	stb      r0, 0x24(r29)
-	addi     r3, r29, 0x18
-	addi     r4, r4, 0x78787878@l
-	bl       setID__4ID32FUl
-	lis      r3, lbl_8047F8B4@ha
-	li       r4, 0
-	addi     r3, r3, lbl_8047F8B4@l
-	addi     r0, r2, lbl_805192C8@sda21
-	stw      r3, 0x28(r29)
-	addi     r3, r31, 0xd0
-	lfs      f0, lbl_805192D0@sda21(r2)
-	stw      r4, 0x9c(r31)
-	stw      r4, 0xb0(r31)
-	stw      r4, 0xac(r31)
-	stw      r4, 0xa8(r31)
-	stw      r4, 0xa4(r31)
-	stw      r0, 0x14(r31)
-	stw      r4, 0x34(r31)
-	stw      r4, 0x30(r31)
-	stw      r4, 0x2c(r31)
-	stw      r4, 0x28(r31)
-	stw      r4, 0x24(r31)
-	stw      r4, 0x20(r31)
-	stw      r4, 0x18(r31)
-	stfs     f0, 0x38(r31)
-	stfs     f0, 0x3c(r31)
-	stfs     f0, 0x40(r31)
-	stfs     f0, 0x44(r31)
-	stw      r4, 0x48(r31)
-	bl       PSMTXIdentity
-	li       r0, 0
-	lis      r3, lbl_8047F914@ha
-	stw      r0, 0xcc(r31)
-	addi     r3, r3, lbl_8047F914@l
-	li       r4, 0
-	li       r5, 0
-	stw      r0, 0x10(r30)
-	li       r6, 0
-	li       r7, 0
-	li       r8, 2
-	stw      r0, 0xc(r30)
-	li       r9, 0
-	li       r10, 0
-	stw      r0, 8(r30)
-	stw      r0, 4(r30)
-	sth      r0, 0x108(r30)
-	stw      r0, 0x104(r30)
-	stb      r0, 0x10a(r30)
-	stw      r0, 8(r1)
-	bl
-loadToMainRAM__12JKRDvdRipperFPCcPUc15JKRExpandSwitchUlP7JKRHeapQ212JKRDvdRipper15EAllocDirectionUlPiPUl
-	mr       r31, r3
-	addi     r3, r1, 0x10
-	li       r5, -1
-	mr       r4, r31
-	bl       __ct__9RamStreamFPvi
-	li       r0, 1
-	cmpwi    r0, 1
-	stw      r0, 0x1c(r1)
-	bne      lbl_801ADE34
-	li       r0, 0
-	stw      r0, 0x424(r1)
+	m_courseInfo.clearRelations();
 
-lbl_801ADE34:
-	mr       r3, r30
-	addi     r4, r1, 0x10
-	bl       read__Q24Game6StagesFR6Stream
-	mr       r3, r31
-	bl       __dla__FPv
-	lwz      r0, 0x444(r1)
-	mr       r3, r30
-	lwz      r31, 0x43c(r1)
-	lwz      r30, 0x438(r1)
-	lwz      r29, 0x434(r1)
-	lwz      r28, 0x430(r1)
-	mtlr     r0
-	addi     r1, r1, 0x440
-	blr
-	*/
+	_108 = 0;
+	_104 = 0;
+	_10A = 0;
+
+	loadAndRead(this, "user/Abe/stages.txt", false);
 }
 
 /*
@@ -650,13 +530,13 @@ CourseInfo* Stages::getCourseInfo(char* name)
  * Address:	801ADFAC
  * Size:	000074
  */
-CourseInfo* Stages::getCourseInfo(int courseNum) 
+CourseInfo* Stages::getCourseInfo(int courseNum)
 {
-    CourseInfo* childInfo = (CourseInfo*) m_courseInfo.m_child;
-    for (int i = 0; i < courseNum; i++) {
-         childInfo = (CourseInfo*) childInfo->m_next;   
-    }
-    return childInfo;
+	CourseInfo* childInfo = (CourseInfo*)m_courseInfo.m_child;
+	for (int i = 0; i < courseNum; i++) {
+		childInfo = (CourseInfo*)childInfo->m_next;
+	}
+	return childInfo;
 }
 
 /*
@@ -674,8 +554,42 @@ void Stages::draw2d(void)
  * Address:	801AE020
  * Size:	000234
  */
-void Stages::createMapMgr(Game::CourseInfo*, Game::RouteMgr*)
+void Stages::createMapMgr(Game::CourseInfo* info, Game::RouteMgr* routeMgr)
 {
+	char modelPathTxt[0x100];
+	if (m_courseInfo.m_modelPath) {
+		sprintf(modelPathTxt, "%s/%s", m_courseInfo.m_folder, m_courseInfo.m_modelPath);
+	}
+
+	char collPathTxt[0x100];
+	if (m_courseInfo.m_collisionPath) {
+		sprintf(collPathTxt, "%s/%s", m_courseInfo.m_folder, m_courseInfo.m_collisionPath);
+	}
+
+	char wboxPathTxt[0x100];
+	if (m_courseInfo.m_waterboxPath) {
+		sprintf(wboxPathTxt, "%s/%s", m_courseInfo.m_folder, m_courseInfo.m_waterboxPath);
+	}
+
+	char codePathTxt[0x100];
+	if (m_courseInfo.m_mapcodePath) {
+		sprintf(codePathTxt, "%s/%s", m_courseInfo.m_folder, m_courseInfo.m_mapcodePath);
+	}
+
+	char farmPathTxt[0x100];
+	if (m_courseInfo.m_farmPath) {
+		sprintf(farmPathTxt, "%s/%s", m_courseInfo.m_folder, m_courseInfo.m_farmPath);
+	}
+
+	char routePathTxt[0x100];
+	if (m_courseInfo.m_routePath) {
+		sprintf(routePathTxt, "%s/%s", m_courseInfo.m_folder, m_courseInfo.m_routePath);
+	}
+
+	mapMgr               = new ShapeMapMgr;
+	mapMgr->m_routeMgr   = routeMgr;
+	mapMgr->m_courseInfo = &m_courseInfo;
+
 	/*
 	stwu     r1, -0x640(r1)
 	mflr     r0
@@ -862,116 +776,18 @@ void Stages::dump(void)
  * Address:	801AE2B4
  * Size:	000194
  */
-void Stages::read(Stream&)
+void Stages::read(Stream& stream)
 {
-	/*
-	stwu     r1, -0x30(r1)
-	mflr     r0
-	stw      r0, 0x34(r1)
-	stmw     r25, 0x14(r1)
-	mr       r28, r4
-	mr       r27, r3
-	mr       r3, r28
-	bl       readShort__6StreamFv
-	sth      r3, 0x100(r27)
-	clrlwi   r30, r3, 0x10
-	li       r29, 0
-	b        lbl_801AE42C
+	s16 courseCount = stream.readShort();
+	m_courseCount   = courseCount;
 
-lbl_801AE2E4:
-	li       r3, 0x100
-	bl       __nw__FUl
-	or.      r31, r3, r3
-	beq      lbl_801AE40C
-	bl       __ct__5CNodeFv
-	lis      r3, __vt__Q24Game10CourseInfo@ha
-	addi     r26, r31, 0x50
-	addi     r0, r3, __vt__Q24Game10CourseInfo@l
-	stw      r0, 0(r31)
-	mr       r3, r26
-	bl       __ct__5CNodeFv
-	lis      r3, __vt__Q24Game8LimitGen@ha
-	addi     r25, r31, 0x78
-	addi     r3, r3, __vt__Q24Game8LimitGen@l
-	li       r0, 0
-	stw      r3, 0(r26)
-	mr       r3, r25
-	stw      r0, 0x4c(r31)
-	stw      r0, 0x60(r31)
-	stw      r0, 0x5c(r31)
-	stw      r0, 0x58(r31)
-	stw      r0, 0x54(r31)
-	bl       __ct__5CNodeFv
-	lis      r3, __vt__Q24Game8LimitGen@ha
-	addi     r26, r31, 0xa0
-	addi     r3, r3, __vt__Q24Game8LimitGen@l
-	li       r0, 0
-	stw      r3, 0(r25)
-	mr       r3, r26
-	stw      r0, 0x74(r31)
-	stw      r0, 0x88(r31)
-	stw      r0, 0x84(r31)
-	stw      r0, 0x80(r31)
-	stw      r0, 0x7c(r31)
-	bl       __ct__5CNodeFv
-	lis      r4, __vt__Q24Game11CaveOtakara@ha
-	addi     r3, r26, 0x18
-	addi     r0, r4, __vt__Q24Game11CaveOtakara@l
-	stw      r0, 0(r26)
-	bl       __ct__4ID32Fv
-	li       r0, 0
-	lis      r4, 0x78787878@ha
-	stb      r0, 0x24(r26)
-	addi     r3, r26, 0x18
-	addi     r4, r4, 0x78787878@l
-	bl       setID__4ID32FUl
-	lis      r3, lbl_8047F8B4@ha
-	li       r4, 0
-	addi     r3, r3, lbl_8047F8B4@l
-	addi     r0, r2, lbl_805192C8@sda21
-	stw      r3, 0x28(r26)
-	addi     r3, r31, 0xd0
-	lfs      f0, lbl_805192D0@sda21(r2)
-	stw      r4, 0x9c(r31)
-	stw      r4, 0xb0(r31)
-	stw      r4, 0xac(r31)
-	stw      r4, 0xa8(r31)
-	stw      r4, 0xa4(r31)
-	stw      r0, 0x14(r31)
-	stw      r4, 0x34(r31)
-	stw      r4, 0x30(r31)
-	stw      r4, 0x2c(r31)
-	stw      r4, 0x28(r31)
-	stw      r4, 0x24(r31)
-	stw      r4, 0x20(r31)
-	stw      r4, 0x18(r31)
-	stfs     f0, 0x38(r31)
-	stfs     f0, 0x3c(r31)
-	stfs     f0, 0x40(r31)
-	stfs     f0, 0x44(r31)
-	stw      r4, 0x48(r31)
-	bl       PSMTXIdentity
-	li       r0, 0
-	stw      r0, 0xcc(r31)
-
-lbl_801AE40C:
-	stw      r29, 0x48(r31)
-	mr       r3, r31
-	mr       r4, r28
-	bl       read__Q24Game10CourseInfoFR6Stream
-	mr       r3, r27
-	mr       r4, r31
-	bl       add__5CNodeFP5CNode
-	addi     r29, r29, 1
-
-lbl_801AE42C:
-	cmpw     r29, r30
-	blt      lbl_801AE2E4
-	lmw      r25, 0x14(r1)
-	lwz      r0, 0x34(r1)
-	mtlr     r0
-	addi     r1, r1, 0x30
-	blr
-	*/
+	// set courseIndex for each child CourseInfo from stream
+	for (int i = 0; i < (u16)courseCount; i++) {
+		CourseInfo* newInfo    = new CourseInfo();
+		newInfo->m_courseIndex = i;
+		newInfo->read(stream);
+		m_courseInfo.add(newInfo);
+	}
 }
+
 } // namespace Game
