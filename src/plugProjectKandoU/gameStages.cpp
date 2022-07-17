@@ -200,17 +200,8 @@ inline int CaveOtakaraInfo::get_index(int)
  * Address:	........
  * Size:	00008C
  */
-inline void CaveOtakaraInfo::get_id(ID32&)
+inline CaveOtakara* CaveOtakaraInfo::get_id(ID32& id)
 {
-	// UNUSED FUNCTION
-}
-
-/*
- * --INFO--
- * Address:	........
- * Size:	000080
- */
-inline CaveOtakara* CaveOtakaraInfo::getCaveIndex_FromID(ID32& id) {
 	CaveOtakara* caveNode;
 	for (int i = 0; i < m_count; i++) {
 		caveNode = (CaveOtakara*)m_owner.getChildAt(i);
@@ -222,6 +213,23 @@ inline CaveOtakara* CaveOtakaraInfo::getCaveIndex_FromID(ID32& id) {
 		}
 	}
     return 0;
+};
+
+/*
+ * --INFO--
+ * Address:	........
+ * Size:	000080
+ */
+inline int CaveOtakaraInfo::getCaveIndex_FromID(ID32& id) {
+	CaveOtakara* caveNode;
+	for (int idx = 0; idx < m_count; idx++) {
+		caveNode = (CaveOtakara*)m_owner.getChildAt(idx);
+
+		if ((caveNode->m_id == id.getID())) {
+            return idx;
+		} 
+	}
+    return -1;
 };
 
 /*
@@ -304,7 +312,7 @@ CourseInfo::CourseInfo()
  * Size:	00006C
  * AUTOGEN
  */
-CaveOtakaraInfo::~CaveOtakaraInfo(void) { }
+CaveOtakaraInfo::~CaveOtakaraInfo() { }
 
 /*
  * --INFO--
@@ -312,7 +320,7 @@ CaveOtakaraInfo::~CaveOtakaraInfo(void) { }
  * Size:	00006C
  * AUTOGEN
  */
-LimitGenInfo::~LimitGenInfo(void) { }
+LimitGenInfo::~LimitGenInfo() { }
 
 /*
  * --INFO--
@@ -399,78 +407,12 @@ void CourseInfo::read(Stream& stream)
  * --INFO--
  * Address:	801ADA54
  * Size:	000088
- * TODO: MATCH IT!
  */
 int CourseInfo::getOtakaraNum(ID32& id)
 {
-	int i             = 0;
-	CaveOtakara& node = m_caveOtakaraInfo.m_owner;
-
-	CaveOtakara* caveNode;
-	while (i < m_caveOtakaraInfo.m_count) {
-		caveNode = (CaveOtakara*)node.getChildAt(i);
-
-		if (caveNode->m_id == id.getID()) {
-			break;
-		} else {
-			i++;
-			caveNode = nullptr;
-		}
-	}
-
-	if (caveNode) {
-		return caveNode->m_otakaraCount;
-	}
-
-	return -1;
-	/*
-	stwu     r1, -0x20(r1)
-	mflr     r0
-	stw      r0, 0x24(r1)
-	stmw     r27, 0xc(r1)
-	mr       r27, r3
-	mr       r28, r4
-	li       r31, 0
-	addi     r29, r27, 0xa0
-	b        lbl_801ADAA4
-
-lbl_801ADA78:
-	mr       r3, r29
-	mr       r4, r31
-	bl       getChildAt__5CNodeFi
-	mr       r30, r3
-	lwz      r4, 8(r28)
-	addi     r3, r30, 0x18
-	bl       __eq__4ID32FUl
-	clrlwi.  r0, r3, 0x18
-	beq      lbl_801ADAA0
-	b        lbl_801ADAB4
-
-lbl_801ADAA0:
-	addi     r31, r31, 1
-
-lbl_801ADAA4:
-	lwz      r0, 0x9c(r27)
-	cmpw     r31, r0
-	blt      lbl_801ADA78
-	li       r30, 0
-
-lbl_801ADAB4:
-	cmplwi   r30, 0
-	beq      lbl_801ADAC4
-	lbz      r3, 0x24(r30)
-	b        lbl_801ADAC8
-
-lbl_801ADAC4:
-	li       r3, -1
-
-lbl_801ADAC8:
-	lmw      r27, 0xc(r1)
-	lwz      r0, 0x24(r1)
-	mtlr     r0
-	addi     r1, r1, 0x20
-	blr
-	*/
+    CaveOtakara* caveNode = m_caveOtakaraInfo.get_id(id);
+	
+	return (caveNode) ? caveNode->m_otakaraCount : -1;
 }
 
 /*
@@ -494,53 +436,8 @@ int CourseInfo::getOtakaraNum(int childIdx)
  * Address:	801ADB14
  * Size:	00008C
  */
-int CourseInfo::getCaveIndex_FromID(ID32&)
-{
-	/*
-	stwu     r1, -0x20(r1)
-	mflr     r0
-	stw      r0, 0x24(r1)
-	stw      r31, 0x1c(r1)
-	li       r31, 0
-	stw      r30, 0x18(r1)
-	stw      r29, 0x14(r1)
-	mr       r29, r4
-	stw      r28, 0x10(r1)
-	mr       r28, r3
-	addi     r30, r28, 0xa0
-	b        lbl_801ADB6C
-
-lbl_801ADB44:
-	mr       r3, r30
-	mr       r4, r31
-	bl       getChildAt__5CNodeFi
-	lwz      r4, 8(r29)
-	addi     r3, r3, 0x18
-	bl       __eq__4ID32FUl
-	clrlwi.  r0, r3, 0x18
-	beq      lbl_801ADB68
-	b        lbl_801ADB7C
-
-lbl_801ADB68:
-	addi     r31, r31, 1
-
-lbl_801ADB6C:
-	lwz      r0, 0x9c(r28)
-	cmpw     r31, r0
-	blt      lbl_801ADB44
-	li       r31, -1
-
-lbl_801ADB7C:
-	lwz      r0, 0x24(r1)
-	mr       r3, r31
-	lwz      r31, 0x1c(r1)
-	lwz      r30, 0x18(r1)
-	lwz      r29, 0x14(r1)
-	lwz      r28, 0x10(r1)
-	mtlr     r0
-	addi     r1, r1, 0x20
-	blr
-	*/
+int CourseInfo::getCaveIndex_FromID(ID32& id) {
+    return m_caveOtakaraInfo.getCaveIndex_FromID(id);
 }
 
 /*
@@ -548,59 +445,11 @@ lbl_801ADB7C:
  * Address:	801ADBA0
  * Size:	00009C
  */
-char* CourseInfo::getCaveinfoFilename_FromID(ID32&)
+char* CourseInfo::getCaveinfoFilename_FromID(ID32& id) 
 {
-	/*
-	stwu     r1, -0x20(r1)
-	mflr     r0
-	stw      r0, 0x24(r1)
-	stmw     r27, 0xc(r1)
-	mr       r27, r3
-	mr       r28, r4
-	li       r31, 0
-	addi     r29, r27, 0xa0
-	b        lbl_801ADBF0
-
-lbl_801ADBC4:
-	mr       r3, r29
-	mr       r4, r31
-	bl       getChildAt__5CNodeFi
-	mr       r30, r3
-	lwz      r4, 8(r28)
-	addi     r3, r30, 0x18
-	bl       __eq__4ID32FUl
-	clrlwi.  r0, r3, 0x18
-	beq      lbl_801ADBEC
-	b        lbl_801ADC00
-
-lbl_801ADBEC:
-	addi     r31, r31, 1
-
-lbl_801ADBF0:
-	lwz      r0, 0x9c(r27)
-	cmpw     r31, r0
-	blt      lbl_801ADBC4
-	li       r30, 0
-
-lbl_801ADC00:
-	cmplwi   r30, 0
-	bne      lbl_801ADC24
-	lis      r3, lbl_8047F8F8@ha
-	lis      r5, lbl_8047F908@ha
-	addi     r3, r3, lbl_8047F8F8@l
-	li       r4, 0x11a
-	addi     r5, r5, lbl_8047F908@l
-	crclr    6
-	bl       panic_f__12JUTExceptionFPCciPCce
-
-lbl_801ADC24:
-	lwz      r3, 0x28(r30)
-	lmw      r27, 0xc(r1)
-	lwz      r0, 0x24(r1)
-	mtlr     r0
-	addi     r1, r1, 0x20
-	blr
-	*/
+    CaveOtakara* caveNode = m_caveOtakaraInfo.get_id(id);
+    P2ASSERTLINE(282, caveNode);
+    return caveNode->m_filename;
 }
 
 /*
@@ -608,29 +457,15 @@ lbl_801ADC24:
  * Address:	801ADC3C
  * Size:	00003C
  */
-ID32* CourseInfo::getCaveID_FromIndex(int)
+ID32* CourseInfo::getCaveID_FromIndex(int childIdx) 
 {
-	/*
-	stwu     r1, -0x10(r1)
-	mflr     r0
-	addi     r3, r3, 0xa0
-	stw      r0, 0x14(r1)
-	bl       getChildAt__5CNodeFi
-	cmplwi   r3, 0
-	beq      lbl_801ADC60
-	lwz      r3, 0x20(r3)
-	b        lbl_801ADC68
+    CaveOtakara* node = (CaveOtakara*)m_caveOtakaraInfo.m_owner.getChildAt(childIdx);
 
-lbl_801ADC60:
-	lis      r3, 0x6E6F6E65@ha
-	addi     r3, r3, 0x6E6F6E65@l
+    if (node) {
+        return (ID32*) node->m_id.getID();
+    }
 
-lbl_801ADC68:
-	lwz      r0, 0x14(r1)
-	mtlr     r0
-	addi     r1, r1, 0x10
-	blr
-	*/
+    return (ID32*) 'none';
 }
 
 /*
@@ -638,13 +473,7 @@ lbl_801ADC68:
  * Address:	801ADC78
  * Size:	000008
  */
-int CourseInfo::getCaveNum()
-{
-	/*
-	lwz      r3, 0x9c(r3)
-	blr
-	*/
-}
+int CourseInfo::getCaveNum() { return m_caveOtakaraInfo.m_count; }
 
 /*
  * --INFO--
@@ -788,78 +617,14 @@ lbl_801ADE34:
  * Address:	801ADE6C
  * Size:	0000D0
  */
-CourseInfo::~CourseInfo(void)
-{
-	/*
-	stwu     r1, -0x10(r1)
-	mflr     r0
-	stw      r0, 0x14(r1)
-	stw      r31, 0xc(r1)
-	mr       r31, r4
-	stw      r30, 8(r1)
-	or.      r30, r3, r3
-	beq      lbl_801ADF20
-	lis      r3, __vt__Q24Game10CourseInfo@ha
-	addic.   r0, r30, 0x9c
-	addi     r0, r3, __vt__Q24Game10CourseInfo@l
-	stw      r0, 0(r30)
-	beq      lbl_801ADEBC
-	addic.   r3, r30, 0xa0
-	beq      lbl_801ADEBC
-	lis      r4, __vt__Q24Game11CaveOtakara@ha
-	addi     r0, r4, __vt__Q24Game11CaveOtakara@l
-	stw      r0, 0xa0(r30)
-	li       r4, 0
-	bl       __dt__5CNodeFv
-
-lbl_801ADEBC:
-	addic.   r0, r30, 0x74
-	beq      lbl_801ADEE0
-	addic.   r3, r30, 0x78
-	beq      lbl_801ADEE0
-	lis      r4, __vt__Q24Game8LimitGen@ha
-	addi     r0, r4, __vt__Q24Game8LimitGen@l
-	stw      r0, 0x78(r30)
-	li       r4, 0
-	bl       __dt__5CNodeFv
-
-lbl_801ADEE0:
-	addic.   r0, r30, 0x4c
-	beq      lbl_801ADF04
-	addic.   r3, r30, 0x50
-	beq      lbl_801ADF04
-	lis      r4, __vt__Q24Game8LimitGen@ha
-	addi     r0, r4, __vt__Q24Game8LimitGen@l
-	stw      r0, 0x50(r30)
-	li       r4, 0
-	bl       __dt__5CNodeFv
-
-lbl_801ADF04:
-	mr       r3, r30
-	li       r4, 0
-	bl       __dt__5CNodeFv
-	extsh.   r0, r31
-	ble      lbl_801ADF20
-	mr       r3, r30
-	bl       __dl__FPv
-
-lbl_801ADF20:
-	lwz      r0, 0x14(r1)
-	mr       r3, r30
-	lwz      r31, 0xc(r1)
-	lwz      r30, 8(r1)
-	mtlr     r0
-	addi     r1, r1, 0x10
-	blr
-	*/
-}
+CourseInfo::~CourseInfo() { }
 
 /*
  * --INFO--
  * Address:	........
  * Size:	000008
  */
-void Stages::update()
+inline void Stages::update()
 {
 	// UNUSED FUNCTION
 }
@@ -885,46 +650,13 @@ CourseInfo* Stages::getCourseInfo(char* name)
  * Address:	801ADFAC
  * Size:	000074
  */
-CourseInfo* Stages::getCourseInfo(int)
+CourseInfo* Stages::getCourseInfo(int courseNum) 
 {
-	// https://decomp.me/scratch/qH6cr
-	/*
-	cmpwi    r4, 0
-	lwz      r3, 0x10(r3)
-	li       r6, 0
-	blelr
-	cmpwi    r4, 8
-	addi     r5, r4, -8
-	ble      lbl_801AE004
-	addi     r0, r5, 7
-	srwi     r0, r0, 3
-	mtctr    r0
-	cmpwi    r5, 0
-	ble      lbl_801AE004
-
-lbl_801ADFDC:
-	lwz      r3, 4(r3)
-	addi     r6, r6, 8
-	lwz      r3, 4(r3)
-	lwz      r3, 4(r3)
-	lwz      r3, 4(r3)
-	lwz      r3, 4(r3)
-	lwz      r3, 4(r3)
-	lwz      r3, 4(r3)
-	lwz      r3, 4(r3)
-	bdnz     lbl_801ADFDC
-
-lbl_801AE004:
-	subf     r0, r6, r4
-	mtctr    r0
-	cmpw     r6, r4
-	bgelr
-
-lbl_801AE014:
-	lwz      r3, 4(r3)
-	bdnz     lbl_801AE014
-	blr
-	*/
+    CourseInfo* childInfo = (CourseInfo*) m_courseInfo.m_child;
+    for (int i = 0; i < courseNum; i++) {
+         childInfo = (CourseInfo*) childInfo->m_next;   
+    }
+    return childInfo;
 }
 
 /*

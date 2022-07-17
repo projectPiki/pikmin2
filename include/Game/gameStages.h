@@ -28,8 +28,8 @@ struct CaveOtakaraInfo {
 	void read(Stream&);
 
 	int get_index(int);
-	void get_id(ID32&);
-	CaveOtakara* getCaveIndex_FromID(ID32&);
+	CaveOtakara* get_id(ID32&);
+	int getCaveIndex_FromID(ID32&);
 	ID32* getCaveID_FromIndex(int);
 
 	int m_count;         // _00
