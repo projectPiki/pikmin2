@@ -29,25 +29,26 @@ struct Stream {
     }
     Stream(int);
 
-	virtual void read(void*, int) = 0;
-	virtual void write(void*, int) = 0;
-	virtual bool eof();
-	virtual u32 getPending();
+	virtual void read(void*, int) = 0;		// _08
+	virtual void write(void*, int) = 0;		// _0C
+	virtual bool eof();						// _10
+	virtual u32 getPending();				// _14
 
-	void differentEndian();  // unused
-	bool isSpace(char);      // inline
-	char skipSpace();        // inline
-	void copyToTextBuffer(); // inline
+	void differentEndian();  		// unused
+	bool isSpace(char);      		// inline
+	char skipSpace();       		// inline
+	void copyToTextBuffer(); 		// inline
 	char* getNextToken();
+	
 	void textBeginGroup(char*);
 	void textEndGroup();
 	void printf(char*, ...);
 	void textWriteText(char*, ...);
-	void skipPadding(u32); // inline
+	void skipPadding(u32); 			// inline
 	void skipReading(u32);
 	void skipReadingText();
-	void _read(void*, int);  // unused
-	void _write(void*, int); // unused
+	void _read(void*, int);  		// unused
+	void _write(void*, int); 		// unused
 	void textWriteTab(int);
 
 	u8 readByte();
@@ -56,10 +57,10 @@ struct Stream {
 	int readInt();
 	float readFloat();
 	char* readString(char*, int);
-	void readFixedString(); // unused
+	void readFixedString(); 		// unused
 
 	void writeString(char*);
-	void writeFixedString(char*); // unused
+	void writeFixedString(char*); 	// unused
 	void writeByte(u8);
 	void _writeByte(u8);
 	void writeShort(short);
@@ -88,10 +89,11 @@ struct Stream {
 struct RamStream : Stream {
 	RamStream(void* RamBufferPtr, int bounds);
 
-	virtual void read(void*, int);
-	virtual void write(void*, int);
-	virtual bool eof();
-	// virtual void getPending(); // from Stream
+	// VTABLE
+	virtual void read(void*, int);				// _08
+	virtual void write(void*, int);				// _0C
+	virtual bool eof();							// _10
+	// virtual void getPending(); 				// _14 - inherited
 	
 	void set(u8*, int);
 
@@ -103,8 +105,8 @@ struct RamStream : Stream {
 		}
 	}
 
-	void* m_ramBufferStart; // _418
-	int m_bounds; // _41C
+	void* m_ramBufferStart; 		// _418
+	int m_bounds; 					// _41C
 };
 
 #endif
