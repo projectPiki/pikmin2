@@ -11,9 +11,11 @@ struct __J3DUTriangle;
 struct Graphics;
 struct BoundBox2d;
 struct Plane;
+
 namespace Sys {
 struct Edge;
 struct VertexTable;
+
 struct Triangle {
 	struct SphereSweep {
 		float _00;    // _00
@@ -43,7 +45,7 @@ struct Triangle {
 	void makePlanes(VertexTable&);
 	bool intersect(VertexTable&, SphereSweep&);
 
-	// Unused/inlined:
+	// Unused:
 	void findNearestPoint(VertexTable&, Vector3f&, Vector3f&);
 	void write(Stream&);
 	void read(Stream&);
@@ -53,11 +55,11 @@ struct Triangle {
 	bool intersect(Edge&, Vector3f&);
 	bool intersectOptimistic(Sphere&, Vector3f&);
 
-	int m_vertices[3];      	// _00, _04, _08
-	Plane m_trianglePlane;		// _0C
-	Plane m_edgePlanes[3];		// _1C, _2C, _3C
-	Sphere m_sphere;          	// _4C
-	MapCode::Code m_code;     	// _5C
+	Vector3i m_vertices;      	// _00, _04, _08 	- addresses of each vertex in vertex table
+	Plane m_trianglePlane;		// _0C				- ax + by + cz + d form of plane triangle lies in
+	Plane m_edgePlanes[3];		// _1C, _2C, _3C 	- plane through each side of triangle (?)
+	Sphere m_sphere;          	// _4C				- bounding sphere of triangle
+	MapCode::Code m_code;     	// _5C				- map code (?)
 
 	// 1 -> 2 -> 3
 	// ^----<----^

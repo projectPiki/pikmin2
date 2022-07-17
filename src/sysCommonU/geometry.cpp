@@ -180,10 +180,10 @@ namespace Sys {
  * Address:	........
  * Size:	000238
  */
-void Edge::calcNearestEdgePoint(Vector3f&, Vector3f&)
-{
-	// UNUSED FUNCTION
-}
+// void Edge::calcNearestEdgePoint(Vector3f&, Vector3f&)
+// {
+// 	// UNUSED FUNCTION
+// }
 
 /*
  * --INFO--
@@ -497,20 +497,20 @@ float Tube::getPosRatio(const Vector3f& point)
  * Address:	........
  * Size:	00001C
  */
-void Tube::getRatioRadius(float)
-{
-	// UNUSED FUNCTION
-}
+// void Tube::getRatioRadius(float)
+// {
+// 	// UNUSED FUNCTION
+// }
 
 /*
  * --INFO--
  * Address:	........
  * Size:	000200
  */
-void Tube::getPosGradient(Vector3f&, float, Vector3f&, Vector3f&)
-{
-	// UNUSED FUNCTION
-}
+// void Tube::getPosGradient(Vector3f&, float, Vector3f&, Vector3f&)
+// {
+// 	// UNUSED FUNCTION
+// }
 
 /*
  * --INFO--
@@ -644,7 +644,7 @@ bool Sphere::intersect(Edge& edge, float& t)
  * Address:	80416290
  * Size:	00028C
  */
-bool Sys::Sphere::intersect(Sys::Edge& edge, float& t, Vector3f& intersectPoint)
+bool Sphere::intersect(Edge& edge, float& t, Vector3f& intersectPoint)
 {
     // calculate if sphere intersects with edge 'edge'
     // return true if intersecting
@@ -710,7 +710,7 @@ bool Sys::Sphere::intersect(Sys::Edge& edge, float& t, Vector3f& intersectPoint)
  * Address:	8041651C
  * Size:	0003D4
  */
-bool Sys::Sphere::intersect (Sys::Edge& edge, float& t, Vector3f& repulsionVec, float& strength) 
+bool Sphere::intersect(Edge& edge, float& t, Vector3f& repulsionVec, float& strength) 
 {
     // return true if intersecting
     // also put a parameter into t that says how far along the edge it's intersecting
@@ -803,10 +803,10 @@ bool Sys::Sphere::intersect (Sys::Edge& edge, float& t, Vector3f& repulsionVec, 
  * Address:	........
  * Size:	0000D8
  */
-bool Sphere::intersectRay(Vector3f&, Vector3f&)
-{
-	// UNUSED FUNCTION
-}
+// bool Sphere::intersectRay(Vector3f&, Vector3f&)
+// {
+// 	// UNUSED FUNCTION
+// }
 
 /*
  * --INFO--
@@ -820,10 +820,10 @@ Triangle::Triangle(void) { m_code.m_contents = (bool) 0; }
  * Address:	........
  * Size:	00027C
  */
-void Triangle::findNearestPoint(VertexTable&, Vector3f&, Vector3f&)
-{
-	// UNUSED FUNCTION
-}
+// void Triangle::findNearestPoint(VertexTable&, Vector3f&, Vector3f&)
+// {
+// 	// UNUSED FUNCTION
+// }
 
 /*
  * --INFO--
@@ -832,24 +832,31 @@ void Triangle::findNearestPoint(VertexTable&, Vector3f&, Vector3f&)
  */
 void Triangle::createSphere(VertexTable& vertTable) 
 {
-    // float new_radius = 0.0f; 
+    // creates sphere centered at center of triangle
+    // radius is large enough to include all vertices of triangle
+    float new_radius = 0.0f; 
+
+    // get vertices of triangle
+    Vector3f vert_3 = vertTable.m_objects[m_vertices.z];    
+    Vector3f vert_2 = vertTable.m_objects[m_vertices.y];
+    Vector3f vert_1 = vertTable.m_objects[m_vertices.x]; 
+
+    // get center of triangle
+    Vector3f center = (vert_1 + vert_2 + vert_3) * (float) 0x3EAAAAAB; // 0x3EAAAAAB = 1/3
+
+    // make sure radius includes all vertices
+    for (int i = 0; i < 3; i++) {
+        int* vertPtr = &m_vertices.x;
+        Vector3f currVtx = (vertTable.m_objects[vertPtr[i]]);
+
+        float vtxDist = lenVec(currVtx - center);
+        if (vtxDist > new_radius) {
+            new_radius = vtxDist;
+        }
+    };
     
-    // Vector3f vert_3 = vertTable.m_objects[m_vertices[2]];    
-    // Vector3f vert_2 = vertTable.m_objects[m_vertices[1]];
-    // Vector3f vert_1 = vertTable.m_objects[m_vertices[0]]; 
-
-    // Vector3f avg = (vert_1 + vert_2 + vert_3) * (float) 0x3EAAAAAB;
-
-    // for (int i = 0; i < 3; i++) {
-    //     Vector3f vert_A = (vertTable.m_objects[m_vertices[i]]);
-
-    //     float len_diff = lenVec(vert_A - avg);
-    //     if (len_diff > new_radius) {
-    //         new_radius = len_diff;
-    //     }
-    // };
-    // m_sphere.m_radius = new_radius;
-    // m_sphere.m_position = avg;
+    m_sphere.m_radius = new_radius;
+    m_sphere.m_position = center;
 }
 
 /*
@@ -859,17 +866,17 @@ void Triangle::createSphere(VertexTable& vertTable)
  */
 bool Triangle::fastIntersect(Sphere& ball) 
 {
-	// // check if "triangle sphere" intersects with sphere 'ball'
-	// // first, calculate separation vector between center of spheres
-    // Vector3f sep = ball.m_position - m_sphere.m_position;
-
-	// // check how far apart they are
-    // float dist = lenVec(sep);
-	// // check how much "stuff" is between them
-    // float radii = ball.m_radius + m_sphere.m_radius;
+	// check if triangle bounding sphere intersects with sphere 'ball'
     
-	// // if separation is less than or equal to amount of material, overlap; if not, no overlap
-    // return (dist <= radii);
+	// get center-to-center distance
+    Vector3f sep = ball.m_position - m_sphere.m_position;
+    float dist = lenVec(sep);
+    
+	// check how much "stuff" is between them
+    float radii = ball.m_radius + m_sphere.m_radius;
+    
+	// if separation is less than or equal to amount of material, intersection; if not, no intersection
+    return (dist <= radii);
 }
 
 /*
@@ -877,84 +884,85 @@ bool Triangle::fastIntersect(Sphere& ball)
  * Address:	........
  * Size:	000088
  */
-void Triangle::write(Stream&)
-{
-	// UNUSED FUNCTION
-}
+// void Triangle::write(Stream&)
+// {
+// 	// UNUSED FUNCTION
+// }
 
 /*
  * --INFO--
  * Address:	........
  * Size:	000088
  */
-void Triangle::read(Stream&)
-{
-	// UNUSED FUNCTION
-}
+// void Triangle::read(Stream&)
+// {
+// 	// UNUSED FUNCTION
+// }
 
 /*
  * --INFO--
  * Address:	........
  * Size:	000038
  */
-void Triangle::constructFromJ3D(Sys::VertexTable&, __J3DUTriangle&)
-{
-	// UNUSED FUNCTION
-}
+// void Triangle::constructFromJ3D(Sys::VertexTable&, __J3DUTriangle&)
+// {
+// 	// UNUSED FUNCTION
+// }
 
 /*
  * --INFO--
  * Address:	........
  * Size:	000004
  */
-void Triangle::draw(Graphics&, Sys::VertexTable&, bool)
-{
-	// UNUSED FUNCTION
-}
+// void Triangle::draw(Graphics&, Sys::VertexTable&, bool)
+// {
+// 	// UNUSED FUNCTION
+// }
 
 /*
  * --INFO--
  * Address:	80416B44
  * Size:	000104
  */
-float Triangle::calcDist(Plane& plane_in, VertexTable& vertTable) 
+float Sys::Triangle::calcDist(Plane& plane, Sys::VertexTable& vertTable) 
 {
-    // // calculate distance to closest vertex of triangle from a given plane
+    // calculate distance to 'closest' vertex of triangle from a given plane
+    // but if triangle is completely 'below' plane, returns furthest point instead
 
-    // // get triangle vertices from VertexTable vertTable
-    // Vector3f vert_1 = vertTable.m_objects[m_vertices[0]];
-    // Vector3f vert_2 = vertTable.m_objects[m_vertices[1]];
-    // Vector3f vert_3 = vertTable.m_objects[m_vertices[2]];
+    // get triangle vertices from VertexTable vertTable
+    Vector3f vert_1 = vertTable.m_objects[m_vertices.x];
+    Vector3f vert_2 = vertTable.m_objects[m_vertices.y];
+    Vector3f vert_3 = vertTable.m_objects[m_vertices.z];
 
-    // // calculate distance from plane to each vertex
-    // float vert_1_sep = planeDist(vert_1, plane_in);
-    // float vert_2_sep = planeDist(vert_2, plane_in);
-    // float vert_3_sep = planeDist(vert_3, plane_in);
+    // calculate distance from plane to each vertex (can be negative)
+    float vertDist_1 = planeDist(vert_1, plane);
+    float vertDist_2 = planeDist(vert_2, plane);
+    float vertDist_3 = planeDist(vert_3, plane);
 
+    float minDist;
 
-    // float shortest_dist;
+    // dist to 'closest' vertex (farthest if below plane)
+    if (vertDist_1 < vertDist_2) {
+        minDist = (vertDist_1 < vertDist_3) ? vertDist_1 : vertDist_3;
+    } else {
+        minDist = (vertDist_2 < vertDist_3) ? vertDist_2 : vertDist_3;
+    }
 
-    // // check what closest point is
-    // if (vert_1_sep < vert_2_sep) {
-    //     shortest_dist = (vert_1_sep < vert_3_sep) ? vert_1_sep : vert_3_sep;
-    // } else {
-    //     shortest_dist = (vert_2_sep < vert_3_sep) ? vert_2_sep : vert_3_sep;
-    // }
+    // dist to 'farthest' vertex (closest if below plane)
+    float maxDist;
+    if (vertDist_1 < vertDist_2) {
+        maxDist = (vertDist_2 < vertDist_3) ? vertDist_3 : vertDist_2;
+    } else {
+        maxDist = (vertDist_1 < vertDist_3) ? vertDist_3 : vertDist_1;
+    } 
 
-    // // check what second closest point is
-    // float second_dist;
-    // if (vert_1_sep < vert_2_sep) {
-    //     second_dist = (vert_2_sep < vert_3_sep) ? vert_3_sep : vert_2_sep;
-    // } else {
-    //     second_dist = (vert_1_sep < vert_3_sep) ? vert_3_sep : vert_1_sep;
-    // } 
-
-    // // make sure math isn't funky or we're not intersecting the plane
-    // float factor = (shortest_dist * second_dist);
-    // if (factor > 0.0f) { // 0.0f
-    //     return shortest_dist; // assuming both distances are positive, we're good, return shortest distance
-    // }
-    // return 0.0f; // if something's negative or one is zero, we're overlapping, so return 0 as distance
+    // check plane isn't intersecting triangle
+    float check = (minDist * maxDist);
+    if (check > 0.0f) { // both points on same side of plane, we're good
+        return minDist;
+    }
+    // negative = points on either side, 0 = one point IN plane, so intersecting
+    return 0.0f; // if something's negative or one is zero, we're overlapping, so return 0 as distance
 }
 
 /*
@@ -962,259 +970,100 @@ float Triangle::calcDist(Plane& plane_in, VertexTable& vertTable)
  * Address:	........
  * Size:	0001EC
  */
-bool Triangle::intersect(Sys::VertexTable&, BoundBox2d&)
-{
-	// UNUSED FUNCTION
-}
+// bool Triangle::intersect(Sys::VertexTable&, BoundBox2d&)
+// {
+// 	// UNUSED FUNCTION
+// }
 
 /*
  * --INFO--
  * Address:	........
  * Size:	0002F0
  */
-bool Triangle::intersect(Sys::Edge&, Vector3f&)
-{
-	// UNUSED FUNCTION
-}
+// bool Triangle::intersect(Sys::Edge&, Vector3f&)
+// {
+// 	// UNUSED FUNCTION
+// }
 
 /*
  * --INFO--
  * Address:	80416C48
  * Size:	000334
  */
-bool Triangle::intersect(Sys::Edge&, float, Vector3f&)
+bool Triangle::intersect(Edge& edge, float cutoff, Vector3f& intersectionPoint) 
 {
-	/*
-	stwu     r1, -0x60(r1)
-	mflr     r0
-	stw      r0, 0x64(r1)
-	stfd     f31, 0x50(r1)
-	psq_st   f31, 88(r1), 0, qr0
-	stfd     f30, 0x40(r1)
-	psq_st   f30, 72(r1), 0, qr0
-	stfd     f29, 0x30(r1)
-	psq_st   f29, 56(r1), 0, qr0
-	stfd     f28, 0x20(r1)
-	psq_st   f28, 40(r1), 0, qr0
-	stw      r31, 0x1c(r1)
-	stw      r30, 0x18(r1)
-	stw      r29, 0x14(r1)
-	mr       r30, r4
-	fmr      f28, f1
-	lfs      f2, 0x10(r4)
-	mr       r29, r3
-	lfs      f0, 4(r4)
-	mr       r31, r5
-	lfs      f1, 0xc(r4)
-	fsubs    f30, f2, f0
-	lfs      f0, 0(r4)
-	lfs      f2, 0x14(r4)
-	fsubs    f31, f1, f0
-	lfs      f1, 8(r4)
-	fmuls    f0, f30, f30
-	fsubs    f29, f2, f1
-	fmadds   f0, f31, f31, f0
-	fmadds   f1, f29, f29, f0
-	bl       pikmin2_sqrtf__Ff
-	lfs      f3, 0x10(r29)
-	lfs      f0, lbl_80520308@sda21(r2)
-	fmuls    f2, f3, f30
-	lfs      f6, 0xc(r29)
-	lfs      f7, 0x14(r29)
-	fcmpu    cr0, f0, f1
-	fmadds   f0, f6, f31, f2
-	fmadds   f4, f7, f29, f0
-	bne      lbl_80416CF0
-	li       r3, 0
-	b        lbl_80416F40
+    // check if edge intersects triangle within a given cutoff length from the start of the edge
+    // output intersection point into intersectionPoint, return true if intersecting
+    
+    // get length of edge and scalar projection of edge onto normal to triangle plane
+    Vector3f edgeVec (edge.m_endPos.x - edge.m_startPos.x, edge.m_endPos.y - edge.m_startPos.y, edge.m_endPos.z - edge.m_startPos.z);
+    float edgeLen = lenVec(edgeVec);
+    
+    Vector3f triPlaneNormal (m_trianglePlane.a, m_trianglePlane.b, m_trianglePlane.c);
+    
+    float scalarProj = dot(triPlaneNormal, edgeVec);
 
-lbl_80416CF0:
-	fdivs    f2, f28, f1
-	lfs      f0, lbl_80520320@sda21(r2)
-	fabs     f1, f4
-	frsp     f1, f1
-	fcmpo    cr0, f1, f0
-	bge      lbl_80416E34
-	lfs      f1, 4(r30)
-	lfs      f4, 0(r30)
-	fmuls    f3, f1, f3
-	lfs      f5, 8(r30)
-	lfs      f1, 0x18(r29)
-	fmadds   f3, f4, f6, f3
-	fmadds   f3, f5, f7, f3
-	fsubs    f1, f3, f1
-	fabs     f1, f1
-	frsp     f1, f1
-	fcmpo    cr0, f1, f28
-	cror     2, 0, 2
-	bne      lbl_80416E24
-	lfs      f3, lbl_8052030C@sda21(r2)
-	fneg     f1, f2
-	li       r0, 3
-	mr       r3, r29
-	fadds    f2, f3, f2
-	mtctr    r0
+    // if edge has no length, cannot intersect
+    if (0.0f == edgeLen) { 
+        return false;
+    }
 
-lbl_80416D54:
-	lfs      f4, 0x20(r3)
-	lfs      f5, 0x1c(r3)
-	fmuls    f3, f4, f30
-	lfs      f6, 0x24(r3)
-	fmadds   f3, f5, f31, f3
-	fmadds   f7, f6, f29, f3
-	fabs     f3, f7
-	frsp     f3, f3
-	fcmpo    cr0, f3, f0
-	ble      lbl_80416E18
-	lfs      f9, 4(r30)
-	lfs      f10, 0(r30)
-	fmuls    f3, f4, f9
-	lfs      f8, 8(r30)
-	lfs      f4, 0x28(r3)
-	fmadds   f3, f5, f10, f3
-	fmadds   f3, f6, f8, f3
-	fsubs    f3, f4, f3
-	fdivs    f3, f3, f7
-	fcmpo    cr0, f3, f1
-	ble      lbl_80416E18
-	fcmpo    cr0, f3, f2
-	bge      lbl_80416E18
-	fmuls    f5, f31, f3
-	fmuls    f4, f30, f3
-	fmuls    f3, f29, f3
-	fadds    f5, f10, f5
-	fadds    f4, f9, f4
-	fadds    f3, f8, f3
-	stfs     f5, 0(r31)
-	stfs     f4, 4(r31)
-	stfs     f3, 8(r31)
-	lfs      f4, 4(r31)
-	lfs      f3, 0x10(r29)
-	lfs      f5, 0(r31)
-	fmuls    f3, f4, f3
-	lfs      f4, 0xc(r29)
-	lfs      f7, 8(r31)
-	lfs      f6, 0x14(r29)
-	fmadds   f4, f5, f4, f3
-	lfs      f3, 0x18(r29)
-	fmadds   f4, f7, f6, f4
-	fsubs    f3, f4, f3
-	fabs     f3, f3
-	frsp     f3, f3
-	fcmpo    cr0, f3, f28
-	bge      lbl_80416E18
-	li       r3, 1
-	b        lbl_80416F40
+    // get ratio along edge...?
+    float ratio = cutoff / edgeLen;
 
-lbl_80416E18:
-	addi     r3, r3, 0x10
-	bdnz     lbl_80416D54
-	b        lbl_80416E2C
+    // if edge is (close to) perpendicular to triangle, need more checks
+    if (FABS(scalarProj) < 0.01f) {
+        // if plane cuts edge below (or at) cutoff
+        if (FABS(planeDist(edge.m_startPos, m_trianglePlane)) <= cutoff) {
+            // check each edge plane of triangle
+            for (int i = 0; i < 3; i++) {
+                // project normal onto edge
+                Vector3f edgePlaneNormal (m_edgePlanes[i].a, m_edgePlanes[i].b, m_edgePlanes[i].c);
+                float edgePlaneProj = dot(edgePlaneNormal, edgeVec);
 
-lbl_80416E24:
-	li       r3, 0
-	b        lbl_80416F40
+                // check that projection isn't vanishingly small
+                if (FABS(edgePlaneProj) > 0.01f) {
+                    // check we have an intersection point
+                    float edgePlaneRatio = (m_edgePlanes[i].d - dot(edgePlaneNormal, edge.m_startPos)) / edgePlaneProj; 
+                    if ((edgePlaneRatio > -ratio) && (edgePlaneRatio < (1 + ratio))) {
+                        // get intersection point
+                        Vector3f projVec = edgeVec * edgePlaneRatio;
+                        intersectionPoint = edge.m_startPos + projVec;
 
-lbl_80416E2C:
-	li       r3, 0
-	b        lbl_80416F40
+                        // check intersection point is within cutoff dist on edge
+                        if (FABS(planeDist(intersectionPoint, m_trianglePlane)) < cutoff) {
+                            return true;
+                        }
+                    }
+                }
+            }
+        } else { // plane cuts edge outside of cutoff
+        return false;
+        }
+    // close to perpendicular but no intersection
+    return false;
+    }
 
-lbl_80416E34:
-	lfs      f8, 4(r30)
-	fneg     f0, f2
-	lfs      f9, 0(r30)
-	fmuls    f1, f3, f8
-	lfs      f5, 8(r30)
-	lfs      f3, 0x18(r29)
-	fmadds   f1, f6, f9, f1
-	fmadds   f1, f7, f5, f1
-	fsubs    f1, f3, f1
-	fdivs    f3, f1, f4
-	fcmpo    cr0, f3, f0
-	blt      lbl_80416E74
-	lfs      f0, lbl_8052030C@sda21(r2)
-	fadds    f0, f0, f2
-	fcmpo    cr0, f3, f0
-	ble      lbl_80416E7C
+    // edge not (close to) perpendicular, can just check triangle plane itself
+    // check if we have an intersection point
+    float triPlaneRatio = (m_trianglePlane.d - dot(triPlaneNormal, edge.m_startPos)) / scalarProj;
+    if ((triPlaneRatio < -ratio) || (triPlaneRatio > (1 + ratio))) { 
+        // we don't
+        return false;
+    }
 
-lbl_80416E74:
-	li       r3, 0
-	b        lbl_80416F40
+    // get intersection point
+    Vector3f projVec = edgeVec * triPlaneRatio;
+    intersectionPoint = edge.m_startPos + projVec;
 
-lbl_80416E7C:
-	fmuls    f2, f31, f3
-	fmuls    f1, f30, f3
-	fmuls    f0, f29, f3
-	fadds    f2, f9, f2
-	fadds    f1, f8, f1
-	fadds    f0, f5, f0
-	stfs     f2, 0(r31)
-	stfs     f1, 4(r31)
-	stfs     f0, 8(r31)
-	lfs      f2, 4(r31)
-	lfs      f0, 0x20(r29)
-	lfs      f4, 0(r31)
-	fmuls    f1, f2, f0
-	lfs      f3, 0x1c(r29)
-	lfs      f6, 8(r31)
-	lfs      f5, 0x24(r29)
-	fmadds   f1, f4, f3, f1
-	lfs      f0, 0x28(r29)
-	fmadds   f1, f6, f5, f1
-	fsubs    f0, f1, f0
-	fcmpo    cr0, f0, f28
-	ble      lbl_80416EDC
-	li       r3, 0
-	b        lbl_80416F40
-
-lbl_80416EDC:
-	lfs      f0, 0x30(r29)
-	lfs      f3, 0x2c(r29)
-	fmuls    f1, f2, f0
-	lfs      f5, 0x34(r29)
-	lfs      f0, 0x38(r29)
-	fmadds   f1, f4, f3, f1
-	fmadds   f1, f6, f5, f1
-	fsubs    f0, f1, f0
-	fcmpo    cr0, f0, f28
-	ble      lbl_80416F0C
-	li       r3, 0
-	b        lbl_80416F40
-
-lbl_80416F0C:
-	lfs      f0, 0x40(r29)
-	lfs      f3, 0x3c(r29)
-	fmuls    f1, f2, f0
-	lfs      f5, 0x44(r29)
-	lfs      f0, 0x48(r29)
-	fmadds   f1, f4, f3, f1
-	fmadds   f1, f6, f5, f1
-	fsubs    f0, f1, f0
-	fcmpo    cr0, f0, f28
-	ble      lbl_80416F3C
-	li       r3, 0
-	b        lbl_80416F40
-
-lbl_80416F3C:
-	li       r3, 1
-
-lbl_80416F40:
-	psq_l    f31, 88(r1), 0, qr0
-	lfd      f31, 0x50(r1)
-	psq_l    f30, 72(r1), 0, qr0
-	lfd      f30, 0x40(r1)
-	psq_l    f29, 56(r1), 0, qr0
-	lfd      f29, 0x30(r1)
-	psq_l    f28, 40(r1), 0, qr0
-	lfd      f28, 0x20(r1)
-	lwz      r31, 0x1c(r1)
-	lwz      r30, 0x18(r1)
-	lwz      r0, 0x64(r1)
-	lwz      r29, 0x14(r1)
-	mtlr     r0
-	addi     r1, r1, 0x60
-	blr
-	*/
+    // double check point isn't outside the triangle
+    for (int i = 0; i < 3; i++) {
+        if (planeDist(intersectionPoint, m_edgePlanes[i]) > cutoff) {
+            return false;
+        }
+    }
+    // intersection point and is inside triangle
+    return true;
 }
 
 /*
@@ -1222,254 +1071,84 @@ lbl_80416F40:
  * Address:	80416F7C
  * Size:	000370
  */
-bool Triangle::intersect(Sys::Edge&, float, Vector3f&, float&)
+bool Sys::Triangle::intersect(Sys::Edge& edge, float cutoff, Vector3f& intersectionPoint, float& distFromCutoff) 
 {
-	/*
-	stwu     r1, -0x60(r1)
-	mflr     r0
-	stw      r0, 0x64(r1)
-	stfd     f31, 0x50(r1)
-	psq_st   f31, 88(r1), 0, qr0
-	stfd     f30, 0x40(r1)
-	psq_st   f30, 72(r1), 0, qr0
-	stfd     f29, 0x30(r1)
-	psq_st   f29, 56(r1), 0, qr0
-	stfd     f28, 0x20(r1)
-	psq_st   f28, 40(r1), 0, qr0
-	stw      r31, 0x1c(r1)
-	stw      r30, 0x18(r1)
-	stw      r29, 0x14(r1)
-	stw      r28, 0x10(r1)
-	mr       r29, r4
-	fmr      f28, f1
-	lfs      f2, 0x10(r4)
-	mr       r28, r3
-	lfs      f0, 4(r4)
-	mr       r30, r5
-	lfs      f1, 0xc(r4)
-	fsubs    f30, f2, f0
-	lfs      f0, 0(r4)
-	lfs      f2, 0x14(r4)
-	mr       r31, r6
-	fsubs    f31, f1, f0
-	lfs      f1, 8(r4)
-	fmuls    f0, f30, f30
-	fsubs    f29, f2, f1
-	fmadds   f0, f31, f31, f0
-	fmadds   f1, f29, f29, f0
-	bl       pikmin2_sqrtf__Ff
-	lfs      f3, 0x10(r28)
-	lfs      f0, lbl_80520308@sda21(r2)
-	fmuls    f2, f3, f30
-	lfs      f6, 0xc(r28)
-	lfs      f7, 0x14(r28)
-	fcmpu    cr0, f0, f1
-	fmadds   f0, f6, f31, f2
-	fmadds   f4, f7, f29, f0
-	bne      lbl_8041702C
-	li       r3, 0
-	b        lbl_804172AC
+    // check if edge intersects triangle within a given cutoff length from the start of the edge
+    // output intersection point into intersectionPoint, return true if intersecting
+    // also put distance from cutoff to intersection point into distFromCutoff
+    
+    // get length of edge and scalar projection of edge onto normal to triangle plane
+    Vector3f edgeVec (edge.m_endPos.x - edge.m_startPos.x, edge.m_endPos.y - edge.m_startPos.y, edge.m_endPos.z - edge.m_startPos.z);
+    float edgeLen = lenVec(edgeVec);
+    
+    Vector3f triPlaneNormal (m_trianglePlane.a, m_trianglePlane.b, m_trianglePlane.c);
+    
+    float scalarProj = dot(triPlaneNormal, edgeVec);
 
-lbl_8041702C:
-	fdivs    f2, f28, f1
-	lfs      f0, lbl_80520320@sda21(r2)
-	fabs     f1, f4
-	frsp     f1, f1
-	fcmpo    cr0, f1, f0
-	bge      lbl_80417178
-	lfs      f1, 4(r29)
-	lfs      f4, 0(r29)
-	fmuls    f3, f1, f3
-	lfs      f5, 8(r29)
-	lfs      f1, 0x18(r28)
-	fmadds   f3, f4, f6, f3
-	fmadds   f3, f5, f7, f3
-	fsubs    f1, f3, f1
-	fabs     f1, f1
-	frsp     f1, f1
-	fcmpo    cr0, f1, f28
-	cror     2, 0, 2
-	bne      lbl_80417168
-	lfs      f3, lbl_8052030C@sda21(r2)
-	fneg     f1, f2
-	li       r0, 3
-	mr       r3, r28
-	fadds    f2, f3, f2
-	mtctr    r0
+    // if edge has no length, cannot intersect
+    if (0.0f == edgeLen) { 
+        return false;
+    }
 
-lbl_80417090:
-	lfs      f4, 0x20(r3)
-	lfs      f5, 0x1c(r3)
-	fmuls    f3, f4, f30
-	lfs      f6, 0x24(r3)
-	fmadds   f3, f5, f31, f3
-	fmadds   f7, f6, f29, f3
-	fabs     f3, f7
-	frsp     f3, f3
-	fcmpo    cr0, f3, f0
-	ble      lbl_8041715C
-	lfs      f9, 4(r29)
-	lfs      f10, 0(r29)
-	fmuls    f3, f4, f9
-	lfs      f8, 8(r29)
-	lfs      f4, 0x28(r3)
-	fmadds   f3, f5, f10, f3
-	fmadds   f3, f6, f8, f3
-	fsubs    f3, f4, f3
-	fdivs    f3, f3, f7
-	fcmpo    cr0, f3, f1
-	ble      lbl_8041715C
-	fcmpo    cr0, f3, f2
-	bge      lbl_8041715C
-	fmuls    f5, f31, f3
-	fmuls    f4, f30, f3
-	fmuls    f3, f29, f3
-	fadds    f5, f10, f5
-	fadds    f4, f9, f4
-	fadds    f3, f8, f3
-	stfs     f5, 0(r30)
-	stfs     f4, 4(r30)
-	stfs     f3, 8(r30)
-	lfs      f4, 4(r30)
-	lfs      f3, 0x10(r28)
-	lfs      f5, 0(r30)
-	fmuls    f3, f4, f3
-	lfs      f4, 0xc(r28)
-	lfs      f7, 8(r30)
-	lfs      f6, 0x14(r28)
-	fmadds   f4, f5, f4, f3
-	lfs      f3, 0x18(r28)
-	fmadds   f4, f7, f6, f4
-	fsubs    f4, f4, f3
-	fabs     f3, f4
-	frsp     f3, f3
-	fcmpo    cr0, f3, f28
-	bge      lbl_8041715C
-	fsubs    f0, f28, f4
-	li       r3, 1
-	stfs     f0, 0(r31)
-	b        lbl_804172AC
+    // get ratio along edge...?
+    float ratio = cutoff / edgeLen;
 
-lbl_8041715C:
-	addi     r3, r3, 0x10
-	bdnz     lbl_80417090
-	b        lbl_80417170
+    // if edge is (close to) perpendicular to triangle, need more checks
+    if (FABS(scalarProj) < 0.01f) {
+        // if plane cuts edge below (or at) cutoff
+        if (FABS(planeDist(edge.m_startPos, m_trianglePlane)) <= cutoff) {
+            // check each edge plane of triangle
+            for (int i = 0; i < 3; i++) {
+                // project normal onto edge
+                Vector3f edgePlaneNormal (m_edgePlanes[i].a, m_edgePlanes[i].b, m_edgePlanes[i].c);
+                float edgePlaneProj = dot(edgePlaneNormal, edgeVec);
 
-lbl_80417168:
-	li       r3, 0
-	b        lbl_804172AC
+                // check that projection isn't vanishingly small
+                if (FABS(edgePlaneProj) > 0.01f) {
+                    // check we have an intersection point
+                    float edgePlaneRatio = (m_edgePlanes[i].d - dot(edgePlaneNormal, edge.m_startPos)) / edgePlaneProj; 
+                    if ((edgePlaneRatio > -ratio) && (edgePlaneRatio < (1 + ratio))) {
+                        // get intersection point
+                        Vector3f projVec = edgeVec * edgePlaneRatio;
+                        intersectionPoint = edge.m_startPos + projVec;
 
-lbl_80417170:
-	li       r3, 0
-	b        lbl_804172AC
+                        // check intersection point is within cutoff dist on edge
+                        float intersectDist = planeDist(intersectionPoint, m_trianglePlane);
+                        if (FABS(intersectDist) < cutoff) {
+                            distFromCutoff = cutoff - intersectDist;
+                            return true;
+                        }
+                    }
+                }
+            }
+        } else { // plane cuts edge outside of cutoff
+        return false;
+        }
+    // close to perpendicular but no intersection
+    return false;
+    }
 
-lbl_80417178:
-	lfs      f8, 4(r29)
-	fneg     f0, f2
-	lfs      f9, 0(r29)
-	fmuls    f1, f3, f8
-	lfs      f5, 8(r29)
-	lfs      f3, 0x18(r28)
-	fmadds   f1, f6, f9, f1
-	fmadds   f1, f7, f5, f1
-	fsubs    f1, f3, f1
-	fdivs    f3, f1, f4
-	fcmpo    cr0, f3, f0
-	blt      lbl_804171B8
-	lfs      f0, lbl_8052030C@sda21(r2)
-	fadds    f0, f0, f2
-	fcmpo    cr0, f3, f0
-	ble      lbl_804171C0
+    // edge not (close to) perpendicular, can just check triangle plane itself
+    // check if we have an intersection point
+    float triPlaneRatio = (m_trianglePlane.d - dot(triPlaneNormal, edge.m_startPos)) / scalarProj;
+    if ((triPlaneRatio < -ratio) || (triPlaneRatio > (1 + ratio))) { 
+        // we don't
+        return false;
+    }
 
-lbl_804171B8:
-	li       r3, 0
-	b        lbl_804172AC
+    // get intersection point
+    Vector3f projVec = edgeVec * triPlaneRatio;
+    intersectionPoint = edge.m_startPos + projVec;
 
-lbl_804171C0:
-	fmuls    f2, f31, f3
-	fmuls    f1, f30, f3
-	fmuls    f0, f29, f3
-	fadds    f2, f9, f2
-	fadds    f1, f8, f1
-	fadds    f0, f5, f0
-	stfs     f2, 0(r30)
-	stfs     f1, 4(r30)
-	stfs     f0, 8(r30)
-	lfs      f3, 4(r30)
-	lfs      f0, 0x20(r28)
-	lfs      f4, 0(r30)
-	fmuls    f1, f3, f0
-	lfs      f2, 0x1c(r28)
-	lfs      f6, 8(r30)
-	lfs      f5, 0x24(r28)
-	fmadds   f1, f4, f2, f1
-	lfs      f0, 0x28(r28)
-	fmadds   f1, f6, f5, f1
-	fsubs    f0, f1, f0
-	fcmpo    cr0, f0, f28
-	ble      lbl_80417220
-	li       r3, 0
-	b        lbl_804172AC
-
-lbl_80417220:
-	lfs      f0, 0x30(r28)
-	lfs      f2, 0x2c(r28)
-	fmuls    f1, f3, f0
-	lfs      f5, 0x34(r28)
-	lfs      f0, 0x38(r28)
-	fmadds   f1, f4, f2, f1
-	fmadds   f1, f6, f5, f1
-	fsubs    f0, f1, f0
-	fcmpo    cr0, f0, f28
-	ble      lbl_80417250
-	li       r3, 0
-	b        lbl_804172AC
-
-lbl_80417250:
-	lfs      f0, 0x40(r28)
-	lfs      f2, 0x3c(r28)
-	fmuls    f1, f3, f0
-	lfs      f5, 0x44(r28)
-	lfs      f0, 0x48(r28)
-	fmadds   f1, f4, f2, f1
-	fmadds   f1, f6, f5, f1
-	fsubs    f0, f1, f0
-	fcmpo    cr0, f0, f28
-	ble      lbl_80417280
-	li       r3, 0
-	b        lbl_804172AC
-
-lbl_80417280:
-	lfs      f0, 0x10(r28)
-	li       r3, 1
-	lfs      f2, 0xc(r28)
-	fmuls    f1, f3, f0
-	lfs      f3, 0x14(r28)
-	lfs      f0, 0x18(r28)
-	fmadds   f1, f4, f2, f1
-	fmadds   f1, f6, f3, f1
-	fsubs    f0, f1, f0
-	fsubs    f0, f28, f0
-	stfs     f0, 0(r31)
-
-lbl_804172AC:
-	psq_l    f31, 88(r1), 0, qr0
-	lfd      f31, 0x50(r1)
-	psq_l    f30, 72(r1), 0, qr0
-	lfd      f30, 0x40(r1)
-	psq_l    f29, 56(r1), 0, qr0
-	lfd      f29, 0x30(r1)
-	psq_l    f28, 40(r1), 0, qr0
-	lfd      f28, 0x20(r1)
-	lwz      r31, 0x1c(r1)
-	lwz      r30, 0x18(r1)
-	lwz      r29, 0x14(r1)
-	lwz      r0, 0x64(r1)
-	lwz      r28, 0x10(r1)
-	mtlr     r0
-	addi     r1, r1, 0x60
-	blr
-	*/
+    // double check point isn't outside the triangle
+    for (int i = 0; i < 3; i++) {
+        if (planeDist(intersectionPoint, m_edgePlanes[i]) > cutoff) {
+            return false;
+        }
+    }
+    // intersection point and is inside triangle
+    distFromCutoff = cutoff - planeDist(intersectionPoint, m_trianglePlane);
+    return true;
 }
 
 /*
