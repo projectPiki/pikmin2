@@ -9,7 +9,7 @@
 #include "Matrixf.h"
 
 struct MapCollision : public CNode {
-	virtual ~MapCollision() { } // _08
+	virtual ~MapCollision(); // _08
 
 	virtual void getBoundBox(BoundBox& boundingBox) { m_divider->getBoundBox(boundingBox); } // _0C
 

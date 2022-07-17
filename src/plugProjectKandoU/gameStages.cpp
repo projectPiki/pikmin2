@@ -1,5 +1,8 @@
 #include "Game/gameStages.h"
+#include "MapCollision.h"
+#include "Dolphin/mtx.h"
 #include "types.h"
+
 /*
     Generated from dpostproc
 
@@ -133,15 +136,16 @@
 */
 
 namespace Game {
-
 /*
  * --INFO--
  * Address:	........
  * Size:	000068
  */
-CaveOtakara::CaveOtakara(void)
+inline CaveOtakara::CaveOtakara()
 {
-	// UNUSED FUNCTION
+	m_otakaraCount = 0;
+	m_id.setID('xxxx');
+	m_filename = "keigo_de_sox.txt";
 }
 
 /*
@@ -149,56 +153,35 @@ CaveOtakara::CaveOtakara(void)
  * Address:	........
  * Size:	000090
  */
-CaveOtakaraInfo::CaveOtakaraInfo(void)
+inline CaveOtakaraInfo::CaveOtakaraInfo()
 {
-	// UNUSED FUNCTION
+	m_count = 0;
+	m_owner.clearRelations();
 }
 
 /*
  * --INFO--
  * Address:	801AD378
  * Size:	000060
+ * AUTOGEN
  */
-CaveOtakara::~CaveOtakara(void)
-{
-	/*
-	stwu     r1, -0x10(r1)
-	mflr     r0
-	stw      r0, 0x14(r1)
-	stw      r31, 0xc(r1)
-	mr       r31, r4
-	stw      r30, 8(r1)
-	or.      r30, r3, r3
-	beq      lbl_801AD3BC
-	lis      r5, __vt__Q24Game11CaveOtakara@ha
-	li       r4, 0
-	addi     r0, r5, __vt__Q24Game11CaveOtakara@l
-	stw      r0, 0(r30)
-	bl       __dt__5CNodeFv
-	extsh.   r0, r31
-	ble      lbl_801AD3BC
-	mr       r3, r30
-	bl       __dl__FPv
-
-lbl_801AD3BC:
-	lwz      r0, 0x14(r1)
-	mr       r3, r30
-	lwz      r31, 0xc(r1)
-	lwz      r30, 8(r1)
-	mtlr     r0
-	addi     r1, r1, 0x10
-	blr
-	*/
-}
+CaveOtakara::~CaveOtakara() { }
 
 /*
  * --INFO--
  * Address:	........
  * Size:	0000EC
  */
-void CaveOtakaraInfo::read(Stream&)
+inline void CaveOtakaraInfo::read(Stream& stream)
 {
-	// UNUSED FUNCTION
+	m_count = stream.readInt();
+	for (int i = 0; i < m_count; i++) {
+		CaveOtakara* currOtakara = new CaveOtakara;
+		currOtakara->m_id.read(stream);
+		currOtakara->m_otakaraCount = stream.readByte();
+		currOtakara->m_filename     = stream.readString(nullptr, 0);
+		m_owner.add(currOtakara);
+	}
 }
 
 /*
@@ -206,9 +189,10 @@ void CaveOtakaraInfo::read(Stream&)
  * Address:	........
  * Size:	000024
  */
-void CaveOtakaraInfo::get_index(int)
+inline int CaveOtakaraInfo::get_index(int)
 {
-	// UNUSED FUNCTION
+	// TODO
+	return 0;
 }
 
 /*
@@ -216,7 +200,7 @@ void CaveOtakaraInfo::get_index(int)
  * Address:	........
  * Size:	00008C
  */
-void CaveOtakaraInfo::get_id(ID32&)
+inline void CaveOtakaraInfo::get_id(ID32&)
 {
 	// UNUSED FUNCTION
 }
@@ -226,9 +210,10 @@ void CaveOtakaraInfo::get_id(ID32&)
  * Address:	........
  * Size:	000080
  */
-void CaveOtakaraInfo::getCaveIndex_FromID(ID32&)
+inline int CaveOtakaraInfo::getCaveIndex_FromID(ID32&)
 {
 	// UNUSED FUNCTION
+	return 0;
 }
 
 /*
@@ -236,8 +221,9 @@ void CaveOtakaraInfo::getCaveIndex_FromID(ID32&)
  * Address:	........
  * Size:	00003C
  */
-void CaveOtakaraInfo::getCaveID_FromIndex(int)
+inline ID32* CaveOtakaraInfo::getCaveID_FromIndex(int)
 {
+	return nullptr;
 	// UNUSED FUNCTION
 }
 
@@ -246,56 +232,36 @@ void CaveOtakaraInfo::getCaveID_FromIndex(int)
  * Address:	........
  * Size:	000064
  */
-LimitGenInfo::LimitGenInfo(void)
+inline LimitGenInfo::LimitGenInfo()
 {
-	// UNUSED FUNCTION
+	m_count = 0;
+	m_owner.clearRelations();
 }
 
 /*
  * --INFO--
  * Address:	801AD3D8
  * Size:	000060
+ * AUTOGEN
  */
-LimitGen::~LimitGen(void)
-{
-	/*
-	stwu     r1, -0x10(r1)
-	mflr     r0
-	stw      r0, 0x14(r1)
-	stw      r31, 0xc(r1)
-	mr       r31, r4
-	stw      r30, 8(r1)
-	or.      r30, r3, r3
-	beq      lbl_801AD41C
-	lis      r5, __vt__Q24Game8LimitGen@ha
-	li       r4, 0
-	addi     r0, r5, __vt__Q24Game8LimitGen@l
-	stw      r0, 0(r30)
-	bl       __dt__5CNodeFv
-	extsh.   r0, r31
-	ble      lbl_801AD41C
-	mr       r3, r30
-	bl       __dl__FPv
-
-lbl_801AD41C:
-	lwz      r0, 0x14(r1)
-	mr       r3, r30
-	lwz      r31, 0xc(r1)
-	lwz      r30, 8(r1)
-	mtlr     r0
-	addi     r1, r1, 0x10
-	blr
-	*/
-}
+LimitGen::~LimitGen() { }
 
 /*
  * --INFO--
  * Address:	........
  * Size:	0000CC
  */
-void LimitGenInfo::read(Stream&)
+inline void LimitGenInfo::read(Stream& stream)
 {
-	// UNUSED FUNCTION
+	m_count = stream.readInt();
+	for (int i = 0; i < m_count; i++) {
+		LimitGen* currLimitGen   = new LimitGen;
+		currLimitGen->m_name     = stream.readString(nullptr, 0);
+		currLimitGen->_18        = stream.readInt();
+		currLimitGen->_1C        = stream.readInt();
+		currLimitGen->m_dayLimit = stream.readInt();
+		m_owner.add(currLimitGen);
+	}
 }
 
 /*
@@ -303,478 +269,122 @@ void LimitGenInfo::read(Stream&)
  * Address:	801AD438
  * Size:	000154
  */
-CourseInfo::CourseInfo(void)
+CourseInfo::CourseInfo()
 {
-	/*
-	stwu     r1, -0x20(r1)
-	mflr     r0
-	stw      r0, 0x24(r1)
-	stw      r31, 0x1c(r1)
-	mr       r31, r3
-	stw      r30, 0x18(r1)
-	stw      r29, 0x14(r1)
-	bl       __ct__5CNodeFv
-	lis      r3, __vt__Q24Game10CourseInfo@ha
-	addi     r30, r31, 0x50
-	addi     r0, r3, __vt__Q24Game10CourseInfo@l
-	stw      r0, 0(r31)
-	mr       r3, r30
-	bl       __ct__5CNodeFv
-	lis      r3, __vt__Q24Game8LimitGen@ha
-	addi     r29, r31, 0x78
-	addi     r3, r3, __vt__Q24Game8LimitGen@l
-	li       r0, 0
-	stw      r3, 0(r30)
-	mr       r3, r29
-	stw      r0, 0x4c(r31)
-	stw      r0, 0x60(r31)
-	stw      r0, 0x5c(r31)
-	stw      r0, 0x58(r31)
-	stw      r0, 0x54(r31)
-	bl       __ct__5CNodeFv
-	lis      r3, __vt__Q24Game8LimitGen@ha
-	addi     r30, r31, 0xa0
-	addi     r3, r3, __vt__Q24Game8LimitGen@l
-	li       r0, 0
-	stw      r3, 0(r29)
-	mr       r3, r30
-	stw      r0, 0x74(r31)
-	stw      r0, 0x88(r31)
-	stw      r0, 0x84(r31)
-	stw      r0, 0x80(r31)
-	stw      r0, 0x7c(r31)
-	bl       __ct__5CNodeFv
-	lis      r4, __vt__Q24Game11CaveOtakara@ha
-	addi     r3, r30, 0x18
-	addi     r0, r4, __vt__Q24Game11CaveOtakara@l
-	stw      r0, 0(r30)
-	bl       __ct__4ID32Fv
-	li       r0, 0
-	lis      r4, 0x78787878@ha
-	stb      r0, 0x24(r30)
-	addi     r3, r30, 0x18
-	addi     r4, r4, 0x78787878@l
-	bl       setID__4ID32FUl
-	lis      r3, lbl_8047F8B4@ha
-	li       r4, 0
-	addi     r3, r3, lbl_8047F8B4@l
-	addi     r0, r2, lbl_805192C8@sda21
-	stw      r3, 0x28(r30)
-	addi     r3, r31, 0xd0
-	lfs      f0, lbl_805192D0@sda21(r2)
-	stw      r4, 0x9c(r31)
-	stw      r4, 0xb0(r31)
-	stw      r4, 0xac(r31)
-	stw      r4, 0xa8(r31)
-	stw      r4, 0xa4(r31)
-	stw      r0, 0x14(r31)
-	stw      r4, 0x34(r31)
-	stw      r4, 0x30(r31)
-	stw      r4, 0x2c(r31)
-	stw      r4, 0x28(r31)
-	stw      r4, 0x24(r31)
-	stw      r4, 0x20(r31)
-	stw      r4, 0x18(r31)
-	stfs     f0, 0x38(r31)
-	stfs     f0, 0x3c(r31)
-	stfs     f0, 0x40(r31)
-	stfs     f0, 0x44(r31)
-	stw      r4, 0x48(r31)
-	bl       PSMTXIdentity
-	li       r0, 0
-	mr       r3, r31
-	stw      r0, 0xcc(r31)
-	lwz      r31, 0x1c(r1)
-	lwz      r30, 0x18(r1)
-	lwz      r29, 0x14(r1)
-	lwz      r0, 0x24(r1)
-	mtlr     r0
-	addi     r1, r1, 0x20
-	blr
-	*/
+	setName("noname");
+
+	m_routePath     = 0;
+	m_farmPath      = 0;
+	m_mapcodePath   = 0;
+	m_waterboxPath  = 0;
+	m_collisionPath = 0;
+	m_modelPath     = 0;
+	m_folder        = 0;
+
+	m_startPosition = 0.0f;
+	m_startAngle    = 0;
+
+	m_courseIndex = 0;
+
+	PSMTXIdentity(_D0.m_matrix.mtxView);
+	m_groundOtakaraMax = 0;
 }
 
 /*
  * --INFO--
  * Address:	........
  * Size:	00006C
+ * AUTOGEN
  */
-CaveOtakaraInfo::~CaveOtakaraInfo(void)
-{
-	// UNUSED FUNCTION
-}
+CaveOtakaraInfo::~CaveOtakaraInfo(void) { }
 
 /*
  * --INFO--
  * Address:	........
  * Size:	00006C
+ * AUTOGEN
  */
-LimitGenInfo::~LimitGenInfo(void)
-{
-	// UNUSED FUNCTION
-}
+LimitGenInfo::~LimitGenInfo(void) { }
 
 /*
  * --INFO--
  * Address:	801AD58C
  * Size:	000004
  */
-void CourseInfo::dump(void) { }
+void CourseInfo::dump() { }
 
 /*
  * --INFO--
  * Address:	801AD590
  * Size:	0004C4
  */
-void CourseInfo::read(Stream&)
+void CourseInfo::read(Stream& stream)
 {
-	/*
-	stwu     r1, -0x30(r1)
-	mflr     r0
-	lis      r5, lbl_8047F8A8@ha
-	stw      r0, 0x34(r1)
-	stmw     r26, 0x18(r1)
-	mr       r30, r4
-	mr       r29, r3
-	addi     r31, r5, lbl_8047F8A8@l
-	li       r4, 0
-	mr       r3, r30
-	li       r5, 0
-	bl       readString__6StreamFPci
-	addi     r4, r2, lbl_805192D4@sda21
-	mr       r26, r3
-	bl       strcmp
-	cmpwi    r3, 0
-	bne      lbl_801AD5FC
-	mr       r3, r30
-	li       r4, 0
-	li       r5, 0
-	bl       readString__6StreamFPci
-	stw      r3, 0x14(r29)
-	mr       r3, r30
-	li       r4, 0
-	li       r5, 0
-	bl       readString__6StreamFPci
-	mr       r26, r3
+	char* currentBytes = stream.readString(nullptr, 0);
+	if (strcmp(currentBytes, "name") == 0) {
+		m_name       = stream.readString(nullptr, 0);
+		currentBytes = stream.readString(nullptr, 0);
+	}
 
-lbl_801AD5FC:
-	mr       r3, r26
-	addi     r4, r2, lbl_805192DC@sda21
-	bl       strcmp
-	cmpwi    r3, 0
-	bne      lbl_801AD638
-	mr       r3, r30
-	li       r4, 0
-	li       r5, 0
-	bl       readString__6StreamFPci
-	stw      r3, 0x18(r29)
-	mr       r3, r30
-	li       r4, 0
-	li       r5, 0
-	bl       readString__6StreamFPci
-	mr       r26, r3
+	if (strcmp(currentBytes, "folder") == 0) {
+		m_folder     = stream.readString(nullptr, 0);
+		currentBytes = stream.readString(nullptr, 0);
+	}
 
-lbl_801AD638:
-	mr       r3, r26
-	addi     r4, r31, 0x20
-	bl       strcmp
-	cmpwi    r3, 0
-	bne      lbl_801AD674
-	mr       r3, r30
-	li       r4, 0
-	li       r5, 0
-	bl       readString__6StreamFPci
-	stw      r3, 0x1c(r29)
-	mr       r3, r30
-	li       r4, 0
-	li       r5, 0
-	bl       readString__6StreamFPci
-	mr       r26, r3
+	if (strcmp(currentBytes, "abe_folder") == 0) {
+		m_abeFolder  = stream.readString(nullptr, 0);
+		currentBytes = stream.readString(nullptr, 0);
+	}
 
-lbl_801AD674:
-	mr       r3, r26
-	addi     r4, r2, lbl_805192E4@sda21
-	bl       strcmp
-	cmpwi    r3, 0
-	bne      lbl_801AD6B0
-	mr       r3, r30
-	li       r4, 0
-	li       r5, 0
-	bl       readString__6StreamFPci
-	stw      r3, 0x20(r29)
-	mr       r3, r30
-	li       r4, 0
-	li       r5, 0
-	bl       readString__6StreamFPci
-	mr       r26, r3
+	if (strcmp(currentBytes, "model") == 0) {
+		m_modelPath  = stream.readString(nullptr, 0);
+		currentBytes = stream.readString(nullptr, 0);
+	}
 
-lbl_801AD6B0:
-	mr       r3, r26
-	addi     r4, r31, 0x2c
-	bl       strcmp
-	cmpwi    r3, 0
-	bne      lbl_801AD6EC
-	mr       r3, r30
-	li       r4, 0
-	li       r5, 0
-	bl       readString__6StreamFPci
-	stw      r3, 0x24(r29)
-	mr       r3, r30
-	li       r4, 0
-	li       r5, 0
-	bl       readString__6StreamFPci
-	mr       r26, r3
+	if (strcmp(currentBytes, "collision") == 0) {
+		m_collisionPath = stream.readString(nullptr, 0);
+		currentBytes    = stream.readString(nullptr, 0);
+	}
 
-lbl_801AD6EC:
-	mr       r3, r26
-	addi     r4, r31, 0x38
-	bl       strcmp
-	cmpwi    r3, 0
-	bne      lbl_801AD728
-	mr       r3, r30
-	li       r4, 0
-	li       r5, 0
-	bl       readString__6StreamFPci
-	stw      r3, 0x28(r29)
-	mr       r3, r30
-	li       r4, 0
-	li       r5, 0
-	bl       readString__6StreamFPci
-	mr       r26, r3
+	if (strcmp(currentBytes, "waterbox") == 0) {
+		m_waterboxPath = stream.readString(nullptr, 0);
+		currentBytes   = stream.readString(nullptr, 0);
+	}
 
-lbl_801AD728:
-	mr       r3, r26
-	addi     r4, r2, lbl_805192EC@sda21
-	bl       strcmp
-	cmpwi    r3, 0
-	bne      lbl_801AD764
-	mr       r3, r30
-	li       r4, 0
-	li       r5, 0
-	bl       readString__6StreamFPci
-	stw      r3, 0x2c(r29)
-	mr       r3, r30
-	li       r4, 0
-	li       r5, 0
-	bl       readString__6StreamFPci
-	mr       r26, r3
+	if (strcmp(currentBytes, "mapcode") == 0) {
+		m_mapcodePath = stream.readString(nullptr, 0);
+		currentBytes  = stream.readString(nullptr, 0);
+	}
 
-lbl_801AD764:
-	mr       r3, r26
-	addi     r4, r2, lbl_805192F4@sda21
-	bl       strcmp
-	cmpwi    r3, 0
-	bne      lbl_801AD7A0
-	mr       r3, r30
-	li       r4, 0
-	li       r5, 0
-	bl       readString__6StreamFPci
-	stw      r3, 0x30(r29)
-	mr       r3, r30
-	li       r4, 0
-	li       r5, 0
-	bl       readString__6StreamFPci
-	mr       r26, r3
+	if (strcmp(currentBytes, "farm") == 0) {
+		m_farmPath   = stream.readString(nullptr, 0);
+		currentBytes = stream.readString(nullptr, 0);
+	}
 
-lbl_801AD7A0:
-	mr       r3, r26
-	addi     r4, r2, lbl_805192FC@sda21
-	bl       strcmp
-	cmpwi    r3, 0
-	bne      lbl_801AD7DC
-	mr       r3, r30
-	li       r4, 0
-	li       r5, 0
-	bl       readString__6StreamFPci
-	stw      r3, 0x34(r29)
-	mr       r3, r30
-	li       r4, 0
-	li       r5, 0
-	bl       readString__6StreamFPci
-	mr       r26, r3
+	if (strcmp(currentBytes, "route") == 0) {
+		m_routePath  = stream.readString(nullptr, 0);
+		currentBytes = stream.readString(nullptr, 0);
+	}
 
-lbl_801AD7DC:
-	mr       r3, r26
-	addi     r4, r2, lbl_80519304@sda21
-	bl       strcmp
-	cmpwi    r3, 0
-	bne      lbl_801AD810
-	mr       r4, r30
-	addi     r3, r29, 0x38
-	bl       "read__10Vector3<f>FR6Stream"
-	mr       r3, r30
-	li       r4, 0
-	li       r5, 0
-	bl       readString__6StreamFPci
-	mr       r26, r3
+	if (strcmp(currentBytes, "start") == 0) {
+		m_startPosition.read(stream);
+		currentBytes = stream.readString(nullptr, 0);
+	}
 
-lbl_801AD810:
-	mr       r3, r26
-	addi     r4, r31, 0x44
-	bl       strcmp
-	cmpwi    r3, 0
-	bne      lbl_801AD874
-	mr       r3, r30
-	bl       readFloat__6StreamFv
-	stfs     f1, 0x44(r29)
-	mr       r3, r30
-	li       r4, 0
-	li       r5, 0
-	bl       readString__6StreamFPci
-	lfs      f2, lbl_80519310@sda21(r2)
-	addi     r3, r29, 0xd0
-	lfs      f1, 0x44(r29)
-	addi     r4, r29, 0x38
-	lfs      f0, lbl_805192D0@sda21(r2)
-	addi     r5, r1, 8
-	fmuls    f1, f2, f1
-	lfs      f2, lbl_8051930C@sda21(r2)
-	stfs     f0, 8(r1)
-	fmuls    f1, f2, f1
-	stfs     f0, 0x10(r1)
-	stfs     f1, 0xc(r1)
-	bl       "makeTR__7MatrixfFR10Vector3<f>R10Vector3<f>"
+	if (strcmp(currentBytes, "startangle") == 0) {
+		m_startAngle = stream.readFloat();
+		stream.readString(nullptr, 0);
 
-lbl_801AD874:
-	mr       r3, r30
-	bl       readInt__6StreamFv
-	stw      r3, 0x4c(r29)
-	addi     r26, r29, 0x50
-	li       r28, 0
-	b        lbl_801AD8F4
+		// Convert angle to radians
+		Vector3f vec(0.0f, PI * m_startAngle * (PI / 180), 0.0f);
+		_D0.makeTR(m_startPosition, vec);
+	}
 
-lbl_801AD88C:
-	li       r3, 0x24
-	bl       __nw__FUl
-	or.      r27, r3, r3
-	beq      lbl_801AD8AC
-	bl       __ct__5CNodeFv
-	lis      r3, __vt__Q24Game8LimitGen@ha
-	addi     r0, r3, __vt__Q24Game8LimitGen@l
-	stw      r0, 0(r27)
+	m_limitGenInfo.read(stream);
+	m_loopGenInfo.read(stream);
+	m_caveOtakaraInfo.read(stream);
 
-lbl_801AD8AC:
-	mr       r3, r30
-	li       r4, 0
-	li       r5, 0
-	bl       readString__6StreamFPci
-	stw      r3, 0x14(r27)
-	mr       r3, r30
-	bl       readInt__6StreamFv
-	stw      r3, 0x18(r27)
-	mr       r3, r30
-	bl       readInt__6StreamFv
-	stw      r3, 0x1c(r27)
-	mr       r3, r30
-	bl       readInt__6StreamFv
-	stw      r3, 0x20(r27)
-	mr       r3, r26
-	mr       r4, r27
-	bl       add__5CNodeFP5CNode
-	addi     r28, r28, 1
-
-lbl_801AD8F4:
-	lwz      r0, 0x4c(r29)
-	cmpw     r28, r0
-	blt      lbl_801AD88C
-	mr       r3, r30
-	bl       readInt__6StreamFv
-	stw      r3, 0x74(r29)
-	addi     r26, r29, 0x78
-	li       r28, 0
-	b        lbl_801AD980
-
-lbl_801AD918:
-	li       r3, 0x24
-	bl       __nw__FUl
-	or.      r27, r3, r3
-	beq      lbl_801AD938
-	bl       __ct__5CNodeFv
-	lis      r3, __vt__Q24Game8LimitGen@ha
-	addi     r0, r3, __vt__Q24Game8LimitGen@l
-	stw      r0, 0(r27)
-
-lbl_801AD938:
-	mr       r3, r30
-	li       r4, 0
-	li       r5, 0
-	bl       readString__6StreamFPci
-	stw      r3, 0x14(r27)
-	mr       r3, r30
-	bl       readInt__6StreamFv
-	stw      r3, 0x18(r27)
-	mr       r3, r30
-	bl       readInt__6StreamFv
-	stw      r3, 0x1c(r27)
-	mr       r3, r30
-	bl       readInt__6StreamFv
-	stw      r3, 0x20(r27)
-	mr       r3, r26
-	mr       r4, r27
-	bl       add__5CNodeFP5CNode
-	addi     r28, r28, 1
-
-lbl_801AD980:
-	lwz      r0, 0x74(r29)
-	cmpw     r28, r0
-	blt      lbl_801AD918
-	mr       r3, r30
-	bl       readInt__6StreamFv
-	stw      r3, 0x9c(r29)
-	addi     r26, r29, 0xa0
-	li       r28, 0
-	b        lbl_801ADA28
-
-lbl_801AD9A4:
-	li       r3, 0x2c
-	bl       __nw__FUl
-	or.      r27, r3, r3
-	beq      lbl_801AD9EC
-	bl       __ct__5CNodeFv
-	lis      r4, __vt__Q24Game11CaveOtakara@ha
-	addi     r3, r27, 0x18
-	addi     r0, r4, __vt__Q24Game11CaveOtakara@l
-	stw      r0, 0(r27)
-	bl       __ct__4ID32Fv
-	li       r0, 0
-	lis      r4, 0x78787878@ha
-	stb      r0, 0x24(r27)
-	addi     r3, r27, 0x18
-	addi     r4, r4, 0x78787878@l
-	bl       setID__4ID32FUl
-	addi     r0, r31, 0xc
-	stw      r0, 0x28(r27)
-
-lbl_801AD9EC:
-	mr       r4, r30
-	addi     r3, r27, 0x18
-	bl       read__4ID32FR6Stream
-	mr       r3, r30
-	bl       readByte__6StreamFv
-	stb      r3, 0x24(r27)
-	mr       r3, r30
-	li       r4, 0
-	li       r5, 0
-	bl       readString__6StreamFPci
-	stw      r3, 0x28(r27)
-	mr       r3, r26
-	mr       r4, r27
-	bl       add__5CNodeFP5CNode
-	addi     r28, r28, 1
-
-lbl_801ADA28:
-	lwz      r0, 0x9c(r29)
-	cmpw     r28, r0
-	blt      lbl_801AD9A4
-	mr       r3, r30
-	bl       readInt__6StreamFv
-	stw      r3, 0xcc(r29)
-	lmw      r26, 0x18(r1)
-	lwz      r0, 0x34(r1)
-	mtlr     r0
-	addi     r1, r1, 0x30
-	blr
-	*/
+	m_groundOtakaraMax = stream.readInt();
 }
 
 /*
@@ -782,8 +392,28 @@ lbl_801ADA28:
  * Address:	801ADA54
  * Size:	000088
  */
-int CourseInfo::getOtakaraNum(ID32&)
+int CourseInfo::getOtakaraNum(ID32& id)
 {
+	int i             = 0;
+	CaveOtakara& node = m_caveOtakaraInfo.m_owner;
+
+	CaveOtakara* caveNode;
+	while (i < m_caveOtakaraInfo.m_count) {
+		caveNode = (CaveOtakara*)node.getChildAt(i);
+
+		if (caveNode->m_id == id.getID()) {
+			break;
+		} else {
+			i++;
+			caveNode = nullptr;
+		}
+	}
+
+	if (caveNode) {
+		return caveNode->m_otakaraCount;
+	}
+
+	return -1;
 	/*
 	stwu     r1, -0x20(r1)
 	mflr     r0
@@ -839,28 +469,15 @@ lbl_801ADAC8:
  * Address:	801ADADC
  * Size:	000038
  */
-int CourseInfo::getOtakaraNum(int)
+int CourseInfo::getOtakaraNum(int childIdx)
 {
-	/*
-	stwu     r1, -0x10(r1)
-	mflr     r0
-	addi     r3, r3, 0xa0
-	stw      r0, 0x14(r1)
-	bl       getChildAt__5CNodeFi
-	cmplwi   r3, 0
-	beq      lbl_801ADB00
-	lbz      r3, 0x24(r3)
-	b        lbl_801ADB04
+	CaveOtakara* node = (CaveOtakara*)m_caveOtakaraInfo.m_owner.getChildAt(childIdx);
 
-lbl_801ADB00:
-	li       r3, -1
+	if (node) {
+		return node->m_otakaraCount;
+	}
 
-lbl_801ADB04:
-	lwz      r0, 0x14(r1)
-	mtlr     r0
-	addi     r1, r1, 0x10
-	blr
-	*/
+	return -1;
 }
 
 /*
@@ -1243,46 +860,15 @@ void Stages::update()
  * Address:	801ADF3C
  * Size:	000070
  */
-CourseInfo* Stages::getCourseInfo(char*)
+CourseInfo* Stages::getCourseInfo(char* name)
 {
-	/*
-	stwu     r1, -0x10(r1)
-	mflr     r0
-	stw      r0, 0x14(r1)
-	stw      r31, 0xc(r1)
-	stw      r30, 8(r1)
-	mr       r30, r4
-	lwz      r31, 0x10(r3)
-	b        lbl_801ADF88
+	for (CNode* node = m_courseInfo.m_child; node; node = node->m_next) {
+		if (!strncmp(name, node->m_name, strlen(name))) {
+			return (CourseInfo*)node;
+		}
+	}
 
-lbl_801ADF5C:
-	mr       r3, r30
-	bl       strlen
-	lwz      r4, 0x14(r31)
-	mr       r5, r3
-	mr       r3, r30
-	bl       strncmp
-	cmpwi    r3, 0
-	bne      lbl_801ADF84
-	mr       r3, r31
-	b        lbl_801ADF94
-
-lbl_801ADF84:
-	lwz      r31, 4(r31)
-
-lbl_801ADF88:
-	cmplwi   r31, 0
-	bne      lbl_801ADF5C
-	li       r3, 0
-
-lbl_801ADF94:
-	lwz      r0, 0x14(r1)
-	lwz      r31, 0xc(r1)
-	lwz      r30, 8(r1)
-	mtlr     r0
-	addi     r1, r1, 0x10
-	blr
-	*/
+	return nullptr;
 }
 
 /*
@@ -1292,6 +878,7 @@ lbl_801ADF94:
  */
 CourseInfo* Stages::getCourseInfo(int)
 {
+	// https://decomp.me/scratch/qH6cr
 	/*
 	cmpwi    r4, 0
 	lwz      r3, 0x10(r3)
@@ -1513,38 +1100,9 @@ lbl_801AE170:
  * --INFO--
  * Address:	801AE254
  * Size:	000060
+ * AUTOGEN
  */
-MapCollision::~MapCollision()
-{
-	/*
-	stwu     r1, -0x10(r1)
-	mflr     r0
-	stw      r0, 0x14(r1)
-	stw      r31, 0xc(r1)
-	mr       r31, r4
-	stw      r30, 8(r1)
-	or.      r30, r3, r3
-	beq      lbl_801AE298
-	lis      r5, __vt__12MapCollision@ha
-	li       r4, 0
-	addi     r0, r5, __vt__12MapCollision@l
-	stw      r0, 0(r30)
-	bl       __dt__5CNodeFv
-	extsh.   r0, r31
-	ble      lbl_801AE298
-	mr       r3, r30
-	bl       __dl__FPv
-
-lbl_801AE298:
-	lwz      r0, 0x14(r1)
-	mr       r3, r30
-	lwz      r31, 0xc(r1)
-	lwz      r30, 8(r1)
-	mtlr     r0
-	addi     r1, r1, 0x10
-	blr
-	*/
-}
+MapCollision::~MapCollision() { }
 
 namespace Game {
 
