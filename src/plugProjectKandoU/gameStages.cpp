@@ -391,6 +391,7 @@ void CourseInfo::read(Stream& stream)
  * --INFO--
  * Address:	801ADA54
  * Size:	000088
+ * TODO: MATCH IT!
  */
 int CourseInfo::getOtakaraNum(ID32& id)
 {
