@@ -76,86 +76,36 @@
         .4byte 0x00000000
 */
 
+#include "Dolphin/rand.h"
+#include "Dolphin/string.h"
+
+#include "JSystem/JUT/JUTException.h"
+
+#include "Game/Navi.h"
+#include "Game/Piki.h"
+#include "Game/rumble.h"
+#include "Game/CollEvent.h"
+#include "Game/Interaction.h"
+#include "Game/GameStats.h"
+
+#include "PikiAI.h"
+
+namespace PikiAI {
 /*
  * --INFO--
  * Address:	80212288
  * Size:	0000FC
  */
-PikiAI::ActBridge::ActBridge(Game::Piki*)
+ActBridge::ActBridge(Game::Piki* parent)
+    : Action(parent)
 {
-	/*
-	stwu     r1, -0x10(r1)
-	mflr     r0
-	stw      r0, 0x14(r1)
-	extsh.   r0, r4
-	stw      r31, 0xc(r1)
-	mr       r31, r5
-	stw      r30, 8(r1)
-	mr       r30, r3
-	beq      lbl_802122C0
-	addi     r0, r30, 0x34
-	lis      r3, __vt__Q28SysShape14MotionListener@ha
-	stw      r0, 0xc(r30)
-	addi     r0, r3, __vt__Q28SysShape14MotionListener@l
-	stw      r0, 0x34(r30)
+	_30 = 0;
 
-lbl_802122C0:
-	mr       r3, r30
-	mr       r4, r31
-	bl       __ct__Q26PikiAI6ActionFPQ24Game4Piki
-	lis      r3, __vt__Q26PikiAI9ActBridge@ha
-	addi     r4, r30, 0x34
-	addi     r3, r3, __vt__Q26PikiAI9ActBridge@l
-	li       r0, 0
-	stw      r3, 0(r30)
-	addi     r6, r3, 0x40
-	li       r3, 0x2c
-	lwz      r5, 0xc(r30)
-	stw      r6, 0(r5)
-	lwz      r5, 0xc(r30)
-	subf     r4, r5, r4
-	stw      r4, 4(r5)
-	stb      r0, 0x30(r30)
-	bl       __nw__FUl
-	or.      r0, r3, r3
-	beq      lbl_8021231C
-	mr       r5, r31
-	li       r4, 1
-	bl       __ct__Q26PikiAI14ActStickAttackFPQ24Game4Piki
-	mr       r0, r3
+	m_stickAttack = new ActStickAttack(parent);
+	m_gotoPos     = new ActGotoPos(parent);
+	m_followField = new ActFollowVectorField(parent);
 
-lbl_8021231C:
-	stw      r0, 0x18(r30)
-	li       r3, 0x1c
-	bl       __nw__FUl
-	or.      r0, r3, r3
-	beq      lbl_8021233C
-	mr       r4, r31
-	bl       __ct__Q26PikiAI10ActGotoPosFPQ24Game4Piki
-	mr       r0, r3
-
-lbl_8021233C:
-	stw      r0, 0x1c(r30)
-	li       r3, 0x10
-	bl       __nw__FUl
-	or.      r0, r3, r3
-	beq      lbl_8021235C
-	mr       r4, r31
-	bl       __ct__Q26PikiAI20ActFollowVectorFieldFPQ24Game4Piki
-	mr       r0, r3
-
-lbl_8021235C:
-	stw      r0, 0x20(r30)
-	addi     r0, r2, lbl_80519F58@sda21
-	mr       r3, r30
-	stw      r0, 8(r30)
-	lwz      r31, 0xc(r1)
-	lwz      r30, 8(r1)
-	lwz      r0, 0x14(r1)
-	mtlr     r0
-	addi     r1, r1, 0x10
-	blr
-	*/
+	m_info = "Bridge";
 }
 
 /*
@@ -163,8 +113,18 @@ lbl_8021235C:
  * Address:	80212384
  * Size:	0000C8
  */
-void PikiAI::ActBridge::init(PikiAI::ActionArg*)
+void ActBridge::init(PikiAI::ActionArg* actionArg)
 {
+	ActBridgeArg* arg = (ActBridgeArg*)actionArg;
+	P2ASSERTLINE(62, (arg) && strcmp("ActBridgeArg", arg->getName()));
+
+	Game::GameStat::workPikis->inc(m_parent);
+
+	_10 = arg->_04;
+	_30 = 0;
+
+	initFollow();
+
 	/*
 	stwu     r1, -0x20(r1)
 	mflr     r0
@@ -228,7 +188,7 @@ lbl_80212404:
  * Address:	8021244C
  * Size:	000068
  */
-void PikiAI::ActBridge::initFollow(void)
+void ActBridge::initFollow(void)
 {
 	/*
 	stwu     r1, -0x20(r1)
@@ -265,7 +225,7 @@ void PikiAI::ActBridge::initFollow(void)
  * Address:	........
  * Size:	00009C
  */
-void PikiAI::ActBridge::initGoto(void)
+void ActBridge::initGoto(void)
 {
 	// UNUSED FUNCTION
 }
@@ -275,7 +235,7 @@ void PikiAI::ActBridge::initGoto(void)
  * Address:	........
  * Size:	0000BC
  */
-void PikiAI::ActBridge::initStickAttack(void)
+void ActBridge::initStickAttack(void)
 {
 	// UNUSED FUNCTION
 }
@@ -285,7 +245,7 @@ void PikiAI::ActBridge::initStickAttack(void)
  * Address:	........
  * Size:	000058
  */
-void PikiAI::ActBridge::calcAttackPos(void)
+void ActBridge::calcAttackPos(void)
 {
 	// UNUSED FUNCTION
 }
@@ -295,8 +255,9 @@ void PikiAI::ActBridge::calcAttackPos(void)
  * Address:	802124B4
  * Size:	00031C
  */
-void PikiAI::ActBridge::exec(void)
+s32 ActBridge::exec(void)
 {
+	return 0;
 	/*
 	stwu     r1, -0x50(r1)
 	mflr     r0
@@ -541,7 +502,7 @@ lbl_802127BC:
  * Address:	802127D0
  * Size:	00005C
  */
-void PikiAI::ActBridge::cleanup(void)
+void ActBridge::cleanup(void)
 {
 	/*
 	stwu     r1, -0x10(r1)
@@ -579,7 +540,7 @@ lbl_80212818:
  * Address:	8021282C
  * Size:	000110
  */
-void PikiAI::ActBridge::platCallback(Game::Piki*, Game::PlatEvent&)
+void ActBridge::platCallback(Game::Piki*, Game::PlatEvent&)
 {
 	/*
 	stwu     r1, -0x30(r1)
@@ -668,34 +629,35 @@ lbl_80212928:
  * Address:	8021293C
  * Size:	000004
  */
-void PikiAI::ActBridge::collisionCallback(Game::Piki*, Game::CollEvent&) { }
+void ActBridge::collisionCallback(Game::Piki*, Game::CollEvent&) { }
 
 /*
  * --INFO--
  * Address:	80212940
  * Size:	000004
  */
-void PikiAI::ActBridge::bounceCallback(Game::Piki*, Sys::Triangle*) { }
+void ActBridge::bounceCallback(Game::Piki*, Sys::Triangle*) { }
 
 /*
  * --INFO--
  * Address:	80212944
  * Size:	000004
  */
-void PikiAI::ActBridge::onKeyEvent(SysShape::KeyEvent const&) { }
+void ActBridge::onKeyEvent(SysShape::KeyEvent const&) { }
 
 /*
  * --INFO--
  * Address:	80212948
  * Size:	000014
  */
-void @52 @4 @PikiAI::ActBridge::onKeyEvent(SysShape::KeyEvent const&)
-{
-	/*
-	li       r11, 4
-	lwzx     r11, r3, r11
-	add      r3, r3, r11
-	addi     r3, r3, -52
-	b        onKeyEvent__Q26PikiAI9ActBridgeFRCQ28SysShape8KeyEvent
-	*/
-}
+// void @52 @4 @PikiAI::ActBridge::onKeyEvent(SysShape::KeyEvent const&)
+// {
+// 	/*
+// 	li       r11, 4
+// 	lwzx     r11, r3, r11
+// 	add      r3, r3, r11
+// 	addi     r3, r3, -52
+// 	b        onKeyEvent__Q26PikiAI9ActBridgeFRCQ28SysShape8KeyEvent
+// 	*/
+// }
+} // namespace PikiAI

@@ -4,6 +4,98 @@
 #include "Dolphin/stl.h"
 
 /*
+    Generated from dpostproc
+
+    .section .rodata  # 0x804732E0 - 0x8049E220
+    .global lbl_80499660
+    lbl_80499660:
+        .asciz "stream.cpp"
+        .skip 0x1
+    .global lbl_8049966C
+    lbl_8049966C:
+        .asciz "Reached EOF\n"
+        .skip 0x3
+    .global readByteTokErr
+    readByteTokErr:
+        .asciz "readByte:Token Error\n"
+        .skip 0x2
+    .global readShortTokErr
+    readShortTokErr:
+        .asciz "readShort:Token Error\n"
+        .skip 0x1
+    .global readIntTokErr
+    readIntTokErr:
+        .asciz "readInt:Token Error\n"
+        .skip 0x3
+    .global readFloatTokErr
+    readFloatTokErr:
+        .asciz "readFloat:Token Error\n"
+        .skip 0x1
+    .global "assert@3391"
+    "assert@3391":
+        .asciz "P2Assert"
+        .skip 0x3
+        .asciz "can not use readFixedString in text mode\n"
+        .skip 0x2
+        .asciz "can not use writeFixedString in text mode\n"
+        .skip 0x1
+    .global lbl_80499740
+    lbl_80499740:
+        .asciz "RamStream::read out of bounds (pos=%d,bound=%d)\n"
+        .skip 0x3
+    .global lbl_80499774
+    lbl_80499774:
+        .asciz "RamStream::write out of bounds (pos=%d,bound=%d)\n"
+        .skip 0x2
+
+    .section .data, "wa"  # 0x8049E220 - 0x804EFC20
+    .global __vt__9RamStream
+    __vt__9RamStream:
+        .4byte 0
+        .4byte 0
+        .4byte read__9RamStreamFPvi
+        .4byte write__9RamStreamFPvi
+        .4byte eof__9RamStreamFv
+        .4byte getPending__6StreamFv
+    .global __vt__6Stream
+    __vt__6Stream:
+        .4byte 0
+        .4byte 0
+        .4byte 0
+        .4byte 0
+        .4byte eof__6StreamFv
+        .4byte getPending__6StreamFv
+
+    .section .sdata2, "a"     # 0x80516360 - 0x80520E40
+    .global lbl_805202E0
+    lbl_805202E0:
+        .4byte 0x23202573
+        .4byte 0x0D0A0000
+    .global lbl_805202E8
+    lbl_805202E8:
+        .4byte 0x7B0D0A00
+    .global lbl_805202EC
+    lbl_805202EC:
+        .4byte 0x7D0D0A00
+    .global lbl_805202F0
+    lbl_805202F0:
+        .4byte 0x25640000
+    .global lbl_805202F4
+    lbl_805202F4:
+        .4byte 0x25660000
+    .global lbl_805202F8
+    lbl_805202F8:
+        .4byte 0x20000000
+    .global lbl_805202FC
+    lbl_805202FC:
+        .4byte 0x25642000
+    .global lbl_80520300
+    lbl_80520300:
+        .4byte 0x25662000
+        .4byte 0x00000000
+*/
+
+/*
  * --INFO--
  * Address:	........
  * Size:	000034

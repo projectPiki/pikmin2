@@ -72,6 +72,7 @@ struct SceneBase {
 	enum StateID { Unknown0 = 0, Unknown1, Unknown2, Unknown3, Unknown4 };
 
 	SceneBase();
+	~SceneBase();
 
 	virtual SceneType getSceneType()     = 0;               // _00
 	virtual ScreenOwnerID getOwnerID()   = 0;               // _04

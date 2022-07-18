@@ -527,7 +527,7 @@ KANDO:=\
 	$(BUILD_DIR)/asm/plugProjectKandoU/genPiki.o\
 	$(BUILD_DIR)/asm/plugProjectKandoU/genNavi.o\
 	$(BUILD_DIR)/asm/plugProjectKandoU/genItem.o\
-	$(BUILD_DIR)/asm/plugProjectKandoU/gameStages.o\
+	$(BUILD_DIR)/src/plugProjectKandoU/gameStages.o\
 	$(BUILD_DIR)/asm/plugProjectKandoU/gameSeaMgr.o\
 	$(BUILD_DIR)/asm/plugProjectKandoU/pikiAI.o\
 	$(BUILD_DIR)/src/plugProjectKandoU/pelletConfig.o\
@@ -629,7 +629,7 @@ NISHIMURA:=\
 	$(BUILD_DIR)/asm/plugProjectNishimuraU/ShadowCylinder.o\
 	$(BUILD_DIR)/asm/plugProjectNishimuraU/playCamera.o\
 	$(BUILD_DIR)/asm/plugProjectNishimuraU/shadowMgr.o\
-	$(BUILD_DIR)/src/plugProjectNishimuraU/MapUnit.o\
+	$(BUILD_DIR)/asm/plugProjectNishimuraU/MapUnit.o\
 	$(BUILD_DIR)/asm/plugProjectNishimuraU/MapNode.o\
 	$(BUILD_DIR)/asm/plugProjectNishimuraU/EnemyUnit.o\
 	$(BUILD_DIR)/asm/plugProjectNishimuraU/RandMapMgr.o\
