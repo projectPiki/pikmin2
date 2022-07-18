@@ -5,14 +5,17 @@
 #include "Vector3.h"
 #include "Sys/Sphere.h"
 #include "mapCode.h"
+#include "Plane.h"
 
 struct __J3DUTriangle;
 struct Graphics;
 struct BoundBox2d;
+struct Plane;
+
 namespace Sys {
 struct Edge;
-struct Plane;
 struct VertexTable;
+
 struct Triangle {
 	struct SphereSweep {
 		float _00;    // _00
@@ -32,7 +35,7 @@ struct Triangle {
 
 	void createSphere(VertexTable&);
 	bool fastIntersect(Sphere&);
-	void calcDist(Plane&, VertexTable&);
+	float calcDist(Plane&, VertexTable&);
 	bool intersect(Edge&, float, Vector3f&);
 	bool intersect(Edge&, float, Vector3f&, float&);
 	bool intersect(VertexTable&, Sphere&);
@@ -42,7 +45,7 @@ struct Triangle {
 	void makePlanes(VertexTable&);
 	bool intersect(VertexTable&, SphereSweep&);
 
-	// Unused/inlined:
+	// Unused:
 	void findNearestPoint(VertexTable&, Vector3f&, Vector3f&);
 	void write(Stream&);
 	void read(Stream&);
@@ -52,17 +55,11 @@ struct Triangle {
 	bool intersect(Edge&, Vector3f&);
 	bool intersectOptimistic(Sphere&, Vector3f&);
 
-	Vector3i m_vertices;      // _00
-	Vector3f m_normalVector;  // _0C
-	float m_distNormal;       // _18
-	Vector3f m_edgeTangent12; // _1C
-	float m_distTan1;         // _28
-	Vector3f m_edgeTangent23; // _2C
-	float m_distTan2;         // _38
-	Vector3f m_edgeTangent31; // _3C
-	float m_distTan3;         // _48
-	Sphere m_sphere;          // _4C
-	MapCode::Code m_code;     // _5C
+	Vector3i m_vertices;      	// _00, _04, _08 	- addresses of each vertex in vertex table
+	Plane m_trianglePlane;		// _0C				- ax + by + cz + d form of plane triangle lies in
+	Plane m_edgePlanes[3];		// _1C, _2C, _3C 	- plane through each side of triangle (?)
+	Sphere m_sphere;          	// _4C				- bounding sphere of triangle
+	MapCode::Code m_code;     	// _5C				- map code (?)
 
 	// 1 -> 2 -> 3
 	// ^----<----^

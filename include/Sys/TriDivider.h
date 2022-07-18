@@ -30,7 +30,7 @@ struct TriDivider : public CNode {
 	virtual void read(Stream&)                       = 0;                 // _10
 	virtual void getCurrTri(Game::CurrTriInfo&)      = 0;                 // _14
 	virtual void createTriangles(CreateTriangleArg*);                     // _18
-	virtual void getBoundBox(BoundBox&) = 0;                              // _1C
+	virtual void getBoundBox(BoundBox&) 			 = 0;                 // _1C
 	virtual TriDivider* clone(Matrixf&);                                  // _20
 	virtual TriDivider* do_clone(Matrixf*, VertexTable*, TriangleTable*); // _24
 

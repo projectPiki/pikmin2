@@ -393,10 +393,10 @@ void AABBWaterBox::attachModel(J3DModelData* modelData, Sys::MatTexAnimation* an
 	_60          = 0;
 	m_model      = new SysShape::Model(modelData, 0, 2);
 	m_model->_04 = 1;
-	_3C          = FABS(m_bounds.m_min.x - m_bounds.m_max.x) / p3;
-	_40          = FABS(m_bounds.m_min.z - m_bounds.m_max.z) / p3;
-	_44.x        = (m_bounds.m_max.x + m_bounds.m_min.x) * 0.5f;
-	_44.z        = (m_bounds.m_max.z + m_bounds.m_min.z) * 0.5f;
+	_3C          = FABS(m_bounds.m_max.x - m_bounds.m_min.x) / p3;
+	_40          = FABS(m_bounds.m_max.z - m_bounds.m_min.z) / p3;
+	_44.x        = (m_bounds.m_min.x + m_bounds.m_max.x) * 0.5f;
+	_44.z        = (m_bounds.m_min.z + m_bounds.m_max.z) * 0.5f;
 	_44.y        = _30 + _0C;
 	m_matAnimator.start(anm);
 	calcMatrix();
@@ -1059,52 +1059,52 @@ void AABBWaterBox::globalise(Game::AABBWaterBox* other, Matrixf& p2)
 	Vec b;
 	Vec* c   = &a.m_matrix.flippedVecView.x;
 	m_bounds = other->m_bounds;
-	// a.m_matrix.flippedVectorView.x = m_bounds.m_max;
-	// a.m_matrix.flippedVectorView.z = m_bounds.m_min;
-	a.m_matrix.flippedVectorView.x.x = m_bounds.m_max.x;
-	a.m_matrix.flippedVectorView.x.y = m_bounds.m_max.y;
-	a.m_matrix.flippedVectorView.x.z = m_bounds.m_max.z;
-	a.m_matrix.flippedVectorView.z.x = m_bounds.m_min.x;
-	a.m_matrix.flippedVectorView.z.y = m_bounds.m_min.y;
-	a.m_matrix.flippedVectorView.z.z = m_bounds.m_min.z;
-	a.m_matrix.flippedVectorView.y.z = m_bounds.m_min.z;
-	a.m_matrix.flippedVectorView.y.y = m_bounds.m_max.y;
-	a.m_matrix.flippedVectorView.y.x = m_bounds.m_max.x;
-	a.m_matrix.flippedVectorView.t.z = m_bounds.m_max.z;
-	a.m_matrix.flippedVectorView.t.y = m_bounds.m_max.y;
-	a.m_matrix.flippedVectorView.t.x = m_bounds.m_min.x;
-	m_bounds.m_max.x                 = 32768.0f;
-	m_bounds.m_max.y                 = 32768.0f;
-	m_bounds.m_max.z                 = 32768.0f;
-	m_bounds.m_min.x                 = -32768.0f;
-	m_bounds.m_min.y                 = -32768.0f;
-	m_bounds.m_min.z                 = -32768.0f;
+	// a.m_matrix.flippedVectorView.x = m_bounds.m_min;
+	// a.m_matrix.flippedVectorView.z = m_bounds.m_max;
+	a.m_matrix.flippedVectorView.x.x = m_bounds.m_min.x;
+	a.m_matrix.flippedVectorView.x.y = m_bounds.m_min.y;
+	a.m_matrix.flippedVectorView.x.z = m_bounds.m_min.z;
+	a.m_matrix.flippedVectorView.z.x = m_bounds.m_max.x;
+	a.m_matrix.flippedVectorView.z.y = m_bounds.m_max.y;
+	a.m_matrix.flippedVectorView.z.z = m_bounds.m_max.z;
+	a.m_matrix.flippedVectorView.y.z = m_bounds.m_max.z;
+	a.m_matrix.flippedVectorView.y.y = m_bounds.m_min.y;
+	a.m_matrix.flippedVectorView.y.x = m_bounds.m_min.x;
+	a.m_matrix.flippedVectorView.t.z = m_bounds.m_min.z;
+	a.m_matrix.flippedVectorView.t.y = m_bounds.m_min.y;
+	a.m_matrix.flippedVectorView.t.x = m_bounds.m_max.x;
+	m_bounds.m_min.x                 = 32768.0f;
+	m_bounds.m_min.y                 = 32768.0f;
+	m_bounds.m_min.z                 = 32768.0f;
+	m_bounds.m_max.x                 = -32768.0f;
+	m_bounds.m_max.y                 = -32768.0f;
+	m_bounds.m_max.z                 = -32768.0f;
 	for (int i = 0; i < 4; i++) {
 		PSMTXMultVec(p2.m_matrix.mtxView, c, &b);
 		*c = b;
-		if (c->x < m_bounds.m_max.x) {
-			m_bounds.m_max.x = c->x;
-		}
-		if (c->y < m_bounds.m_max.y) {
-			m_bounds.m_max.y = c->y;
-		}
-		if (c->z < m_bounds.m_max.z) {
-			m_bounds.m_max.z = c->z;
-		}
-		if (c->x > m_bounds.m_min.x) {
+		if (c->x < m_bounds.m_min.x) {
 			m_bounds.m_min.x = c->x;
 		}
-		if (c->y > m_bounds.m_min.y) {
+		if (c->y < m_bounds.m_min.y) {
 			m_bounds.m_min.y = c->y;
 		}
-		if (c->z > m_bounds.m_min.z) {
+		if (c->z < m_bounds.m_min.z) {
 			m_bounds.m_min.z = c->z;
+		}
+		if (c->x > m_bounds.m_max.x) {
+			m_bounds.m_max.x = c->x;
+		}
+		if (c->y > m_bounds.m_max.y) {
+			m_bounds.m_max.y = c->y;
+		}
+		if (c->z > m_bounds.m_max.z) {
+			m_bounds.m_max.z = c->z;
 		}
 		c++;
 	}
 	_30 = other->_30;
-	m_bounds.m_max.y -= 1000.0f;
-	_30 = m_bounds.m_min.y;
+	m_bounds.m_min.y -= 1000.0f;
+	_30 = m_bounds.m_max.y;
 	_08 = 0;
 	_0C = 0.0f;
 	_14 = 0.0f;
@@ -1597,9 +1597,9 @@ void SeaMgr::read(Stream& input)
 		BoundBox boundBox;
 		boundBox.read(input);
 		AABBWaterBox* wb = new AABBWaterBox();
-		boundBox.m_max.y -= 1000.0f;
+		boundBox.m_min.y -= 1000.0f;
 		wb->m_bounds                      = boundBox;
-		wb->_30                           = boundBox.m_min.y;
+		wb->_30                           = boundBox.m_max.y;
 		wb->_08                           = 0;
 		wb->_0C                           = 0.0f;
 		wb->_14                           = 0.0f;
