@@ -5,7 +5,7 @@
 #include "Game/MapMgr.h"
 #include "MapCollision.h"
 
-char gameStages[] = "gameStages";
+const char gameStages[] = "gameStages";
 
 /*
     Generated from dpostproc
@@ -319,7 +319,7 @@ CourseInfo::CourseInfo()
  * Size:	00006C
  * AUTOGEN
  */
-CaveOtakaraInfo::~CaveOtakaraInfo() { }
+inline CaveOtakaraInfo::~CaveOtakaraInfo() { }
 
 /*
  * --INFO--
@@ -327,7 +327,7 @@ CaveOtakaraInfo::~CaveOtakaraInfo() { }
  * Size:	00006C
  * AUTOGEN
  */
-LimitGenInfo::~LimitGenInfo() { }
+inline LimitGenInfo::~LimitGenInfo() { }
 
 /*
  * --INFO--
@@ -399,7 +399,7 @@ void CourseInfo::read(Stream& stream)
 		stream.readString(nullptr, 0);
 
 		// Convert angle to radians
-		Vector3f vec(0.0f, PI * m_startAngle * (PI / 180), 0.0f);
+		Vector3f vec (0.0f, 3.1415927f * (0.0055555557f * m_startAngle), 0.0f);
 		_D0.makeTR(m_startPosition, vec);
 	}
 
@@ -548,7 +548,7 @@ CourseInfo* Stages::getCourseInfo(int courseNum)
  * Address:	........
  * Size:	0003FC
  */
-void Stages::draw2d(void)
+inline void Stages::draw2d(void)
 {
 	// UNUSED FUNCTION
 }
@@ -614,7 +614,7 @@ void Stages::createMapMgr(Game::CourseInfo* info, Game::RouteMgr* routeMgr)
  * Size:	000060
  * AUTOGEN
  */
-MapCollision::~MapCollision() { }
+// MapCollision::~MapCollision() { }
 
 namespace Game {
 
@@ -623,7 +623,7 @@ namespace Game {
  * Address:	........
  * Size:	000018
  */
-void Stages::dump(void)
+inline void Stages::dump(void)
 {
 	// UNUSED FUNCTION
 }
@@ -646,5 +646,9 @@ void Stages::read(Stream& stream)
 		m_courseInfo.add(newInfo);
 	}
 }
+
+const char selectCourse[] = "Select Course";
+const char caveCount[] = "%s : %d caves\n";
+const char measureThing[] = "[%s] %d/%d";
 
 } // namespace Game

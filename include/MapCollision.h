@@ -10,7 +10,7 @@
 
 struct MapCollision : public CNode {
 	MapCollision() { }
-	virtual ~MapCollision();
+	virtual ~MapCollision() {};
 
 	virtual void getBoundBox(BoundBox& bb) { m_divider->getBoundBox(bb); }
 	virtual void getCurrTri(Game::CurrTriInfo&);
