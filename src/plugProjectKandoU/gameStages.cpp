@@ -557,196 +557,49 @@ void Stages::draw2d(void)
 void Stages::createMapMgr(Game::CourseInfo* info, Game::RouteMgr* routeMgr)
 {
 	char modelPathTxt[0x100];
-	if (m_courseInfo.m_modelPath) {
-		sprintf(modelPathTxt, "%s/%s", m_courseInfo.m_folder, m_courseInfo.m_modelPath);
+	if (info->m_modelPath) {
+		sprintf(modelPathTxt, "%s/%s", info->m_folder, info->m_modelPath);
 	}
 
 	char collPathTxt[0x100];
-	if (m_courseInfo.m_collisionPath) {
-		sprintf(collPathTxt, "%s/%s", m_courseInfo.m_folder, m_courseInfo.m_collisionPath);
+	if (info->m_collisionPath) {
+		sprintf(collPathTxt, "%s/%s", info->m_folder, info->m_collisionPath);
 	}
 
 	char wboxPathTxt[0x100];
-	if (m_courseInfo.m_waterboxPath) {
-		sprintf(wboxPathTxt, "%s/%s", m_courseInfo.m_folder, m_courseInfo.m_waterboxPath);
+	if (info->m_waterboxPath) {
+		sprintf(wboxPathTxt, "%s/%s", info->m_folder, info->m_waterboxPath);
 	}
 
 	char codePathTxt[0x100];
-	if (m_courseInfo.m_mapcodePath) {
-		sprintf(codePathTxt, "%s/%s", m_courseInfo.m_folder, m_courseInfo.m_mapcodePath);
+	if (info->m_mapcodePath) {
+		sprintf(codePathTxt, "%s/%s", info->m_folder, info->m_mapcodePath);
 	}
 
 	char farmPathTxt[0x100];
-	if (m_courseInfo.m_farmPath) {
-		sprintf(farmPathTxt, "%s/%s", m_courseInfo.m_folder, m_courseInfo.m_farmPath);
+	if (info->m_farmPath) {
+		sprintf(farmPathTxt, "%s/%s", info->m_folder, info->m_farmPath);
 	}
 
 	char routePathTxt[0x100];
-	if (m_courseInfo.m_routePath) {
-		sprintf(routePathTxt, "%s/%s", m_courseInfo.m_folder, m_courseInfo.m_routePath);
+	if (info->m_routePath) {
+		sprintf(routePathTxt, "%s/%s", info->m_abeFolder, info->m_routePath);
 	}
 
 	mapMgr               = new ShapeMapMgr;
 	mapMgr->m_routeMgr   = routeMgr;
-	mapMgr->m_courseInfo = &m_courseInfo;
+	mapMgr->m_courseInfo = info;
 
-	/*
-	stwu     r1, -0x640(r1)
-	mflr     r0
-	stw      r0, 0x644(r1)
-	stw      r31, 0x63c(r1)
-	mr       r31, r4
-	stw      r30, 0x638(r1)
-	mr       r30, r3
-	stw      r29, 0x634(r1)
-	stw      r28, 0x630(r1)
-	lwz      r6, 0x20(r3)
-	cmplwi   r6, 0
-	beq      lbl_801AE064
-	lwz      r5, 0x18(r30)
-	addi     r3, r1, 0x528
-	addi     r4, r2, lbl_80519314@sda21
-	crclr    6
-	bl       sprintf
+	ShapeMapMgr::LoadArg loadarg(info->m_modelPath ? modelPathTxt : nullptr, info->m_collisionPath ? collPathTxt : nullptr,
+	                             info->m_routePath ? routePathTxt : nullptr);
 
-lbl_801AE064:
-	lwz      r6, 0x24(r30)
-	cmplwi   r6, 0
-	beq      lbl_801AE084
-	lwz      r5, 0x18(r30)
-	addi     r3, r1, 0x428
-	addi     r4, r2, lbl_80519314@sda21
-	crclr    6
-	bl       sprintf
+	loadarg.m_folder    = info->m_folder;
+	loadarg.m_abeFolder = info->m_abeFolder;
 
-lbl_801AE084:
-	lwz      r6, 0x28(r30)
-	cmplwi   r6, 0
-	beq      lbl_801AE0A4
-	lwz      r5, 0x18(r30)
-	addi     r3, r1, 0x328
-	addi     r4, r2, lbl_80519314@sda21
-	crclr    6
-	bl       sprintf
+	loadarg.m_waterboxPath = info->m_waterboxPath ? wboxPathTxt : nullptr;
+	loadarg.m_mapcodePath  = info->m_mapcodePath ? codePathTxt : nullptr;
 
-lbl_801AE0A4:
-	lwz      r6, 0x2c(r30)
-	cmplwi   r6, 0
-	beq      lbl_801AE0C4
-	lwz      r5, 0x18(r30)
-	addi     r3, r1, 0x228
-	addi     r4, r2, lbl_80519314@sda21
-	crclr    6
-	bl       sprintf
-
-lbl_801AE0C4:
-	lwz      r6, 0x30(r30)
-	cmplwi   r6, 0
-	beq      lbl_801AE0E4
-	lwz      r5, 0x18(r30)
-	addi     r3, r1, 0x128
-	addi     r4, r2, lbl_80519314@sda21
-	crclr    6
-	bl       sprintf
-
-lbl_801AE0E4:
-	lwz      r6, 0x34(r30)
-	cmplwi   r6, 0
-	beq      lbl_801AE104
-	lwz      r5, 0x1c(r30)
-	addi     r3, r1, 0x28
-	addi     r4, r2, lbl_80519314@sda21
-	crclr    6
-	bl       sprintf
-
-lbl_801AE104:
-	li       r3, 0x5c
-	bl       __nw__FUl
-	or.      r29, r3, r3
-	beq      lbl_801AE170
-	addi     r0, r29, 0x54
-	lis      r4, __vt__16GenericObjectMgr@ha
-	stw      r0, 0(r29)
-	addi     r0, r4, __vt__16GenericObjectMgr@l
-	li       r4, 0
-	stw      r0, 0x54(r29)
-	bl       __ct__Q24Game6MapMgrFv
-	lis      r3, __vt__Q24Game11ShapeMapMgr@ha
-	addi     r28, r29, 0x38
-	addi     r3, r3, __vt__Q24Game11ShapeMapMgr@l
-	addi     r0, r29, 0x54
-	stw      r3, 4(r29)
-	addi     r5, r3, 0x60
-	mr       r3, r28
-	lwz      r4, 0(r29)
-	stw      r5, 0(r4)
-	lwz      r4, 0(r29)
-	subf     r0, r4, r0
-	stw      r0, 4(r4)
-	bl       __ct__5CNodeFv
-	lis      r3, __vt__12MapCollision@ha
-	addi     r0, r3, __vt__12MapCollision@l
-	stw      r0, 0(r28)
-
-lbl_801AE170:
-	stw      r29, mapMgr__4Game@sda21(r13)
-	addi     r12, r1, 0x28
-	addi     r9, r1, 0x428
-	addi     r3, r1, 0x528
-	stw      r31, 8(r29)
-	li       r6, 0
-	addi     r5, r1, 0x328
-	addi     r0, r1, 0x228
-	lwz      r7, mapMgr__4Game@sda21(r13)
-	addi     r4, r1, 8
-	stw      r30, 0xc(r7)
-	lwz      r10, 0x34(r30)
-	lwz      r11, 0x24(r30)
-	lwz      r8, 0x20(r30)
-	neg      r7, r10
-	or       r7, r7, r10
-	neg      r10, r11
-	srawi    r31, r7, 0x1f
-	neg      r7, r8
-	or       r10, r10, r11
-	stw      r6, 0x18(r1)
-	srawi    r10, r10, 0x1f
-	or       r7, r7, r8
-	srawi    r7, r7, 0x1f
-	and      r8, r12, r31
-	and      r9, r9, r10
-	stw      r8, 0x24(r1)
-	and      r7, r3, r7
-	lwz      r3, mapMgr__4Game@sda21(r13)
-	stw      r7, 0x10(r1)
-	stw      r9, 0x14(r1)
-	stw      r6, 0x20(r1)
-	lwz      r6, 0x18(r30)
-	stw      r6, 8(r1)
-	lwz      r6, 0x1c(r30)
-	stw      r6, 0xc(r1)
-	lwz      r7, 0x28(r30)
-	neg      r6, r7
-	or       r6, r6, r7
-	srawi    r6, r6, 0x1f
-	and      r5, r5, r6
-	stw      r5, 0x18(r1)
-	lwz      r6, 0x2c(r30)
-	neg      r5, r6
-	or       r5, r5, r6
-	srawi    r5, r5, 0x1f
-	and      r0, r0, r5
-	stw      r0, 0x1c(r1)
-	bl       load__Q24Game11ShapeMapMgrFRQ34Game11ShapeMapMgr7LoadArg
-	lwz      r0, 0x644(r1)
-	lwz      r31, 0x63c(r1)
-	lwz      r30, 0x638(r1)
-	lwz      r29, 0x634(r1)
-	lwz      r28, 0x630(r1)
-	mtlr     r0
-	addi     r1, r1, 0x640
-	blr
-	*/
+	mapMgr->load(loadarg);
 }
 
 } // namespace Game

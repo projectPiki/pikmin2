@@ -101,9 +101,10 @@ struct Stages {
 	CourseInfo* getCourseInfo(char*);
 	CourseInfo* getCourseInfo(int);
 	void draw2d();
-	void createMapMgr(CourseInfo*, RouteMgr*);
 	void dump();
 	void read(Stream&);
+
+	static void createMapMgr(CourseInfo*, RouteMgr*);
 
 	CourseInfo m_courseInfo; // _00
 	u16 m_courseCount;       // _100

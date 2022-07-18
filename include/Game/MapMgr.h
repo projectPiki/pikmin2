@@ -2,6 +2,7 @@
 #define _GAME_MAPMGR_H
 
 #include "GenericObjectMgr.h"
+#include "MapCollision.h"
 #include "types.h"
 #include "Vector3.h"
 
@@ -70,22 +71,52 @@ struct MapMgr : virtual public GenericObjectMgr {
 };
 
 struct ShapeMapMgr : public MapMgr {
+
+	struct LoadArg {
+		LoadArg(char* modelPath, char* collisionPath, char* routePath)
+		{
+			m_routePath     = routePath;
+			m_modelPath     = modelPath;
+			m_collisionPath = collisionPath;
+
+			m_waterboxPath = 0;
+			_18            = 0;
+		}
+
+		char* m_folder;        // _00
+		char* m_abeFolder;     // _04
+		char* m_modelPath;     // _08
+		char* m_collisionPath; // _0C
+		char* m_waterboxPath;  // _10
+		char* m_mapcodePath;   // _14
+		char* _18;             // _18
+		char* m_routePath;     // _1C
+	};
+
 	ShapeMapMgr() { }
+	~ShapeMapMgr();
+	virtual void doAnimation();
+	virtual void doEntry();
+	virtual void doSetView(int);
+	virtual void doViewCalc();
+	virtual void getBoundBox2d(BoundBox2d&);
+	virtual void getBoundBox(BoundBox&);
+	virtual void traceMove(MoveInfo&, float);
+	virtual float getMinY(Vector3f&);
+	virtual void getCurrTri(CurrTriInfo&);
+	virtual void drawCollision(Graphics&, Sys::Sphere&);
 
-	virtual void doAnimation();  // _00
-	virtual void doEntry();      // _04
-	virtual void doSetView(int); // _08
-	virtual void doViewCalc();   // _0C
+	void load(LoadArg&);
 
-	virtual void getBoundBox2d(BoundBox2d&);             // _10
-	virtual void getBoundBox(BoundBox&);                 // _14
-	virtual void traceMove(MoveInfo&, float);            // _1C
-	virtual float getMinY(Vector3f&);                    // _20
-	virtual void getCurrTri(CurrTriInfo&);               // _24
-	virtual void drawCollision(Graphics&, Sys::Sphere&); // _3C
+	u32 m_texAnimCount;               // _24
+	Sys::MatTexAnimation* m_texAnims; // _28
+	Sys::MatTexAnimation* _2C;        // _2C
+	Sys::MatLoopAnimator* _30;        // _30
+	SysShape::Model* m_mapModel;      // _34
+	MapCollision _38;                 // _38
 };
 
-extern MapMgr* mapMgr;
+extern ShapeMapMgr* mapMgr;
 } // namespace Game
 
 #endif
