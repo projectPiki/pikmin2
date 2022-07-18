@@ -841,8 +841,16 @@ lbl_8013B780:
  * Address:	8013B7A4
  * Size:	0000CC
  */
-void Creature::applyAirDrag(float, float, float)
+void Creature::applyAirDrag(float a, float b, float c)
 {
+	Vector3f vel = getVelocity();
+
+	Vector3f finalPos;
+	finalPos.y = ((c * (a * vel.y)) - vel.y);
+	finalPos.x = ((vel.x * (a * b)) - vel.x);
+	finalPos.z = ((vel.z * (a * b)) - vel.z);
+
+	setVelocity(finalPos);
 	/*
 	stwu     r1, -0x60(r1)
 	mflr     r0
@@ -922,8 +930,20 @@ void Creature::doEntry() { }
  * Address:	8013B8B0
  * Size:	000108
  */
-void Creature::doSetView(int)
+void Creature::doSetView(int viewportNo)
 {
+	P2ASSERTBOUNDSLINE(558, 0, viewportNo, 2);
+
+	if (m_model == nullptr) {
+		return;
+	}
+
+	m_model->setCurrentViewNo(viewportNo);
+	if (!Creature::usePacketCulling || m_lod.m_flags & (16 << viewportNo)) {
+		m_model->showPackets();
+	} else {
+		m_model->hidePackets();
+	}
 	/*
 	stwu     r1, -0x10(r1)
 	mflr     r0
@@ -938,7 +958,7 @@ void Creature::doSetView(int)
 	bge      lbl_8013B8E0
 	li       r0, 1
 
-lbl_8013B8E0:
+	lbl_8013B8E0:
 	clrlwi.  r0, r0, 0x18
 	bne      lbl_8013B904
 	lis      r3, lbl_8047C6E8@ha
@@ -949,7 +969,7 @@ lbl_8013B8E0:
 	crclr    6
 	bl       panic_f__12JUTExceptionFPCciPCce
 
-lbl_8013B904:
+	lbl_8013B904:
 	lwz      r0, 0x174(r31)
 	cmplwi   r0, 0
 	beq      lbl_8013B9A0
@@ -962,7 +982,7 @@ lbl_8013B904:
 	crclr    6
 	bl       panic_f__12JUTExceptionFPCciPCce
 
-lbl_8013B930:
+	lbl_8013B930:
 	lwz      r3, 0x174(r31)
 	clrlwi   r4, r30, 0x10
 	bl       setCurrentViewNo__Q28SysShape5ModelFUl
@@ -981,7 +1001,7 @@ lbl_8013B930:
 	bctrl
 	b        lbl_8013B9A0
 
-lbl_8013B974:
+	lbl_8013B974:
 	lwz      r3, 0x174(r31)
 	lwz      r12, 0(r3)
 	lwz      r12, 0x20(r12)
@@ -989,14 +1009,14 @@ lbl_8013B974:
 	bctrl
 	b        lbl_8013B9A0
 
-lbl_8013B98C:
+	lbl_8013B98C:
 	lwz      r3, 0x174(r31)
 	lwz      r12, 0(r3)
 	lwz      r12, 0x24(r12)
 	mtctr    r12
 	bctrl
 
-lbl_8013B9A0:
+	lbl_8013B9A0:
 	lwz      r0, 0x14(r1)
 	lwz      r31, 0xc(r1)
 	lwz      r30, 8(r1)
@@ -1201,8 +1221,14 @@ void Creature::outWaterCallback() { }
  * Address:	8013BC24
  * Size:	000144
  */
-void Creature::checkHell(Creature::CheckHellArg&)
+bool Creature::checkHell(Creature::CheckHellArg& info)
 {
+	Sys::Sphere bSphere;
+	getBoundingSphere(bSphere);
+
+	if (bSphere.m_radius >= -500) {
+		return bSphere.m_radius == -300;
+	}
 	/*
 	stwu     r1, -0x20(r1)
 	mflr     r0

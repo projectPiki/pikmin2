@@ -80,6 +80,7 @@ struct CreatureKillArg {
 
 struct Creature : public CellObject {
 	struct CheckHellArg {
+		bool _00; // _00
 	};
 
 	Creature();
@@ -221,6 +222,8 @@ struct Creature : public CellObject {
 	void updateLOD(Game::AILODParm&);
 	void updateStick(Vector3f&);
 	bool isStickTo();
+
+	static bool usePacketCulling;
 
 	Matrixf* m_captureMatrix; // _0B8
 	union {
