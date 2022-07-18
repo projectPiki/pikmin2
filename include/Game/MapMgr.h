@@ -1,9 +1,12 @@
 #ifndef _GAME_MAPMGR_H
 #define _GAME_MAPMGR_H
 
+#include "Sys/MatBaseAnimation.h"
+#include "Sys/MatBaseAnimator.h"
+#include "SysShape/Model.h"
+
 #include "GenericObjectMgr.h"
 #include "MapCollision.h"
-#include "types.h"
 #include "Vector3.h"
 
 struct BoundBox;

@@ -527,7 +527,7 @@ KANDO:=\
 	$(BUILD_DIR)/asm/plugProjectKandoU/genPiki.o\
 	$(BUILD_DIR)/asm/plugProjectKandoU/genNavi.o\
 	$(BUILD_DIR)/asm/plugProjectKandoU/genItem.o\
-	$(BUILD_DIR)/asm/plugProjectKandoU/gameStages.o\
+	$(BUILD_DIR)/src/plugProjectKandoU/gameStages.o\
 	$(BUILD_DIR)/asm/plugProjectKandoU/gameSeaMgr.o\
 	$(BUILD_DIR)/asm/plugProjectKandoU/pikiAI.o\
 	$(BUILD_DIR)/src/plugProjectKandoU/pelletConfig.o\

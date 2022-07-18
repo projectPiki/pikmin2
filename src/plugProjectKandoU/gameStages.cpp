@@ -5,6 +5,8 @@
 #include "Game/MapMgr.h"
 #include "MapCollision.h"
 
+char gameStages[] = "gameStages";
+
 /*
     Generated from dpostproc
 
@@ -138,6 +140,8 @@
 */
 
 namespace Game {
+Stages* stageList;
+
 /*
  * --INFO--
  * Address:	........
@@ -610,7 +614,7 @@ void Stages::createMapMgr(Game::CourseInfo* info, Game::RouteMgr* routeMgr)
  * Size:	000060
  * AUTOGEN
  */
-// MapCollision::~MapCollision() { }
+MapCollision::~MapCollision() { }
 
 namespace Game {
 
