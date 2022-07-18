@@ -4146,5 +4146,5 @@ void OBBTree::getBoundBox(BoundBox&) { }
  * Address:	8041FFA0
  * Size:	000008
  */
-void TriDivider::do_clone(Matrixf&, Sys::VertexTable*, Sys::TriangleTable*) { return 0x0; }
+TriDivider* TriDivider::do_clone(Matrixf&, Sys::VertexTable*, Sys::TriangleTable*) { return null; }
 } // namespace Sys
