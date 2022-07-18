@@ -1110,7 +1110,6 @@ COMMON:=\
 	$(BUILD_DIR)/asm/sysCommonU/geomOBBTree.o\
 	$(BUILD_DIR)/asm/sysCommonU/geomTraceMove.o\
 	$(BUILD_DIR)/asm/sysCommonU/geomCylinder.o\
-	$(BUILD_DIR)/asm/sysCommonU/geomClone.o\
 	$(BUILD_DIR)/src/sysCommonU/geomClone.o\
 
 GC:=\
