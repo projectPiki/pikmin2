@@ -45,8 +45,8 @@ struct GridDivider : public TriDivider {
 	// Unused/inlined:
 	void write(Stream&); // TODO: I wonder if this was declared virtual and then removed when unused somehow...
 
-	u32 _20;
-	u32 _24;
+	int _20;
+	int _24;
 	TriIndexList* m_triIndexLists;
 	BoundBox m_boundingBox;
 	float _44;

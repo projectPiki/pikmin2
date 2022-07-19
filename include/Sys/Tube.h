@@ -9,8 +9,8 @@ struct Tube {
 	inline Tube() {};
 	Tube(Vector3f&, Vector3f&, float, float);
 
-	float getAxisVector(Vector3f&);
-	void collide(Sphere&, Vector3f&, float&);
+	void getAxisVector(Vector3f&);
+	bool collide(Sphere&, Vector3f&, float&);
 	float getPosRatio(const Vector3f&);
 	Vector3f setPos(float);
 
@@ -19,10 +19,10 @@ struct Tube {
 	void getRatioRadius(float);
 	void getPosGradient(Vector3f&, float, Vector3f&, Vector3f&);
 
-	Vector3f _00; // _00
-	Vector3f _0C; // _0C
-	float _18;    // _18
-	float _1C;    // _1C
+	Vector3f m_startPos; 	// _00 - position of start of tube
+	Vector3f m_endPos; 		// _0C - position of end of tube
+	float m_startRadius;    // _18 - radius of tube at start
+	float m_endRadius;    	// _1C - radius of tube at end
 };
 } // namespace Sys
 

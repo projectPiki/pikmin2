@@ -29,10 +29,10 @@ struct TriDivider : public CNode {
 	virtual TriIndexList* findTriLists(Sys::Sphere&) = 0;                 // _0C
 	virtual void read(Stream&)                       = 0;                 // _10
 	virtual void getCurrTri(Game::CurrTriInfo&)      = 0;                 // _14
-	virtual void createTriangles(CreateTriangleArg*);                     // _18
+	virtual void createTriangles(CreateTriangleArg&) {};                  // _18
 	virtual void getBoundBox(BoundBox&) = 0;                              // _1C
 	virtual TriDivider* clone(Matrixf&);                                  // _20
-	virtual TriDivider* do_clone(Matrixf*, VertexTable*, TriangleTable*); // _24
+	virtual TriDivider* do_clone(Matrixf&, VertexTable*, TriangleTable*); // _24
 
 	void construct(Sys::VertexTable*, Sys::TriangleTable*, int, int);
 	void findRayIntersection(Sys::RayIntersectInfo&, Matrixf&, Matrixf&);

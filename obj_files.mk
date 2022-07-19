@@ -527,7 +527,7 @@ KANDO:=\
 	$(BUILD_DIR)/asm/plugProjectKandoU/genPiki.o\
 	$(BUILD_DIR)/asm/plugProjectKandoU/genNavi.o\
 	$(BUILD_DIR)/asm/plugProjectKandoU/genItem.o\
-	$(BUILD_DIR)/asm/plugProjectKandoU/gameStages.o\
+	$(BUILD_DIR)/src/plugProjectKandoU/gameStages.o\
 	$(BUILD_DIR)/asm/plugProjectKandoU/gameSeaMgr.o\
 	$(BUILD_DIR)/asm/plugProjectKandoU/pikiAI.o\
 	$(BUILD_DIR)/src/plugProjectKandoU/pelletConfig.o\
@@ -936,7 +936,6 @@ OGAWA:=\
 	$(BUILD_DIR)/asm/plugProjectOgawaU/ogSceneWorldMapInfoWindow1.o\
 	$(BUILD_DIR)/asm/plugProjectOgawaU/ogTotalPokoScreen.o\
 	$(BUILD_DIR)/asm/plugProjectOgawaU/ogObjChallengeBase.o\
-	$(BUILD_DIR)/asm/plugProjectOgawaU/ogSceneChallengeBase.o\
 	$(BUILD_DIR)/src/plugProjectOgawaU/ogSceneChallengeBase.o\
 	$(BUILD_DIR)/asm/plugProjectOgawaU/ogCallBackPicture.o\
 	$(BUILD_DIR)/asm/plugProjectOgawaU/ogDrawAfter.o\
@@ -1110,7 +1109,7 @@ COMMON:=\
 	$(BUILD_DIR)/asm/sysCommonU/geomOBBTree.o\
 	$(BUILD_DIR)/asm/sysCommonU/geomTraceMove.o\
 	$(BUILD_DIR)/asm/sysCommonU/geomCylinder.o\
-	$(BUILD_DIR)/asm/sysCommonU/geomClone.o\
+	$(BUILD_DIR)/src/sysCommonU/geomClone.o\
 
 GC:=\
 	$(BUILD_DIR)/asm/sysGCU/system.o\

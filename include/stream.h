@@ -107,12 +107,14 @@ struct RamStream : Stream {
 template <typename T> inline void loadAndRead(T* thisPtr, char* fname, bool nullCheck = true)
 {
 	void* handle = JKRDvdRipper::loadToMainRAM(fname, 0, Switch_0, 0, 0, JKRDvdRipper::ALLOC_DIR_BOTTOM, 0, 0, 0);
-	if (nullCheck) {
-		RamStream stream(handle, -1);
-		stream.resetPosition(true, 1);
-		thisPtr->read(stream);
-		delete[] handle;
+	if (nullCheck && !handle) {
+		return;
 	}
+
+	RamStream stream(handle, -1);
+	stream.resetPosition(true, 1);
+	thisPtr->read(stream);
+	delete[] handle;
 }
 
 #endif
