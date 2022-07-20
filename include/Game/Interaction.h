@@ -112,6 +112,17 @@ struct InteractKill : public Interaction {
 	virtual bool actCommon(Creature*);
 	virtual bool actPiki(Piki*);
 };
+
+struct InteractBomb : public Interaction {
+	virtual bool actPiki(Piki*);
+	virtual bool actNavi(Navi*);
+	virtual bool actEnemy(EnemyBase*);
+
+	// _00 VTBL
+	// _04 Parent
+	float m_damage;      // _08
+	Vector3f m_velocity; // _0C
+};
 } // namespace Game
 
 #endif
