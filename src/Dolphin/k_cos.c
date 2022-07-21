@@ -65,8 +65,7 @@ static double
 #ifdef __STDC__
 double __kernel_cos(double x, double y)
 #else
-double __kernel_cos(x, y)
-double x, y;
+double __kernel_cos(x, y) double x, y;
 #endif
 {
 	double a, hz, z, r, qx;

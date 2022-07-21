@@ -1774,7 +1774,7 @@ ItemBarrel::Mgr::Mgr(void)
 	m_objectPathComponent = "user/Kando/objects/barrel";
 	m_parms               = new BarrelParms();
 	char* resource        = (char*)JKRDvdRipper::loadToMainRAM("user/Abe/item/barrelParms.txt", nullptr, Switch_0, 0, nullptr,
-	                                                           JKRDvdRipper::ALLOC_DIR_BOTTOM, 0, nullptr, nullptr);
+                                                        JKRDvdRipper::ALLOC_DIR_BOTTOM, 0, nullptr, nullptr);
 	if (resource) {
 		RamStream stream(resource, -1);
 		stream.m_mode = STREAM_MODE_TEXT;
