@@ -123,6 +123,21 @@ struct InteractBomb : public Interaction {
 	float m_damage;      // _08
 	Vector3f m_velocity; // _0C
 };
+
+struct InteractBubble : public Interaction {
+	virtual bool actPiki(Piki*);
+	virtual bool actNavi(Navi*);
+
+	// _00 VTBL
+	// _04 Parent
+};
+
+struct InteractHipdrop : public InteractAttack {
+	virtual bool actEnemy(EnemyBase*);
+
+	// _00 VTBL
+	// _04 Parent
+};
 } // namespace Game
 
 #endif

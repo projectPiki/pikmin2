@@ -26,14 +26,9 @@ template <typename T> struct Container : public GenericContainer {
 	{
 		return get(index);
 	}
-	// Gets the next occupied slot index after the given slot index.
-	virtual void* getNext(void*); // _0C
-	// Gets the first occupied slot index.
-	virtual void* getStart(); // _10
-	// Gets the slot count.
-	virtual void* getEnd(); // _14
 	// Gets the object at the given slot index (or null if not occupied).
-	virtual T* get(void*); // _18
+	virtual T* get(void*) = 0; // _18
+
 	// Gets the object at the given slot index (or null if not occupied)
 	// (actually constrained to taking an int argument, instead of void*).
 	virtual T* getAt(int index) // _1C
@@ -85,8 +80,8 @@ template <typename T> struct ArrayContainer : public Container<T> {
 	{
 		return m_limit;
 	}
-	virtual void writeObject(Stream&, T&) {}; // _24
-	virtual void readObject(Stream&, T&) {};  // _28
+	virtual void writeObject(Stream&, T&) { } // _24
+	virtual void readObject(Stream&, T&) { }  // _28
 	virtual void write(Stream& output)        // _2C
 	{
 		output.textBeginGroup(const_cast<char*>(m_name));
