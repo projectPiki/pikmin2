@@ -113,31 +113,18 @@ typedef Vector3<int> Vector3i;
  * @reifiedAddress{80207BA0}
  * @reifiedFile{plugProjectKandoU/itemUjamushi.cpp}
  */
-inline Vector3f operator+(const Vector3f& a, const Vector3f& b) {
-	return Vector3f(a.x + b.x, a.y + b.y, a.z + b.z);
-}
+inline Vector3f operator+(const Vector3f& a, const Vector3f& b) { return Vector3f(a.x + b.x, a.y + b.y, a.z + b.z); }
 
 /**
  * @reifiedAddress{80207E70}
  * @reifiedFile{plugProjectKandoU/itemUjamushi.cpp}
  */
-inline Vector3f operator-(const Vector3f& a, const Vector3f& b) {
-	return Vector3f(a.x - b.x, a.y - b.y, a.z - b.z);
-}
+inline Vector3f operator-(const Vector3f& a, const Vector3f& b) { return Vector3f(a.x - b.x, a.y - b.y, a.z - b.z); }
 
-inline Vector3f operator*(const Vector3f& a, const float b) 
-{
-	return Vector3f(a.x * b, a.y * b, a.z * b);
-}
+inline Vector3f operator*(const Vector3f& a, const float b) { return Vector3f(a.x * b, a.y * b, a.z * b); }
 
-inline Vector3f operator*=(const Vector3f& a, const float b)
-{
-	return Vector3f(a.x * b, a.y * b, a.z * b);
-}
+inline Vector3f operator*=(const Vector3f& a, const float b) { return Vector3f(a.x * b, a.y * b, a.z * b); }
 
-inline float dot(const Vector3f& a, const Vector3f& b)
-{
-    return a.x * b.x + a.y * b.y + a.z * b.z;
-}
+inline float dot(const Vector3f& a, const Vector3f& b) { return a.x * b.x + a.y * b.y + a.z * b.z; }
 
 #endif

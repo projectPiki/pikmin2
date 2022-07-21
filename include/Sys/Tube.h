@@ -19,10 +19,10 @@ struct Tube {
 	void getRatioRadius(float);
 	void getPosGradient(Vector3f&, float, Vector3f&, Vector3f&);
 
-	Vector3f m_startPos; 	// _00 - position of start of tube
-	Vector3f m_endPos; 		// _0C - position of end of tube
-	float m_startRadius;    // _18 - radius of tube at start
-	float m_endRadius;    	// _1C - radius of tube at end
+	Vector3f m_startPos; // _00 - position of start of tube
+	Vector3f m_endPos;   // _0C - position of end of tube
+	float m_startRadius; // _18 - radius of tube at start
+	float m_endRadius;   // _1C - radius of tube at end
 };
 } // namespace Sys
 

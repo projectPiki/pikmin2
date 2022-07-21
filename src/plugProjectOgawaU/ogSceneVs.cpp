@@ -56,7 +56,7 @@ ScreenOwnerID Vs::getOwnerID() { return OWNER_OGA; }
  * Address:	80327D34
  * Size:	00000C
  */
-ScreenMemberID Vs::getMemberID() {return MEMBER_VS; }
+ScreenMemberID Vs::getMemberID() { return MEMBER_VS; }
 
 /*
  * --INFO--

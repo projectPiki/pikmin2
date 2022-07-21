@@ -18,7 +18,7 @@ struct ChallengeBase : public ::Screen::SceneBase {
 	~ChallengeBase();
 	void updateCountDown(f32, Screen::DispMemberDayEndCount*);
 
-	virtual void startCountDown() = 0;                          // _50
+	virtual void startCountDown() = 0; // _50
 
 	// _00 VTBL
 

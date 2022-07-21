@@ -82,22 +82,18 @@
  * Address:	8041C434
  * Size:	00000C
  */
-u8 MapCode::Code::getAttribute(void)
-{
-	// return m_attribute & 0xf;
-	return m_contents & ATTR_MASK;
-}
+u8 MapCode::Code::getAttribute(void) { return m_contents & ATTR_MASK; }
 
 /*
  * --INFO--
  * Address:	........
  * Size:	000018
  */
-char* MapCode::Code::getAttributeName()
-{
-	// UNUSED FUNCTION
-	return nullptr;
-}
+// char* MapCode::Code::getAttributeName()
+// {
+// 	// UNUSED FUNCTION
+// 	return nullptr;
+// }
 
 /*
  * --INFO--
@@ -111,11 +107,11 @@ u8 MapCode::Code::getSlipCode() { return m_contents >> 4 & SLIPCODE_MASK; }
  * Address:	........
  * Size:	000018
  */
-char* MapCode::Code::getSlipCodeName()
-{
-	// UNUSED FUNCTION
-	return nullptr;
-}
+// char* MapCode::Code::getSlipCodeName()
+// {
+// 	// UNUSED FUNCTION
+// 	return nullptr;
+// }
 
 /*
  * --INFO--
@@ -129,22 +125,17 @@ bool MapCode::Code::isBald() { return m_contents >> 6 & 1; }
  * Address:	........
  * Size:	00002C
  */
-void MapCode::Code::write(Stream& output)
-{
-	// UNUSED FUNCTION
-	output.writeByte(m_contents);
-}
+// INLINE
+// bit hacky but it works
+inline void MapCode::Code::write(Stream& output) { output.writeByte((u8)getContents()); }
 
 /*
  * --INFO--
  * Address:	........
  * Size:	000034
  */
-void MapCode::Code::read(Stream& input)
-{
-	// UNUSED FUNCTION
-	m_contents = input.readByte();
-}
+// INLINE
+inline void MapCode::Code::read(Stream& input) { m_contents = input.readByte(); }
 
 /*
  * --INFO--
@@ -153,19 +144,10 @@ void MapCode::Code::read(Stream& input)
  */
 void MapCode::Code::setCode(int attribute, int slipCode, bool isBald)
 {
-	m_contents = (attribute & ATTR_MASK) | (u8)(slipCode << 4) | (u8)(isBald << 6);
-	/*
-	.loc_0x0:
-	  rlwinm    r6,r6,0,24,31
-	  rlwinm    r5,r5,4,0,27
-	  neg       r0, r6
-	  or        r0, r0, r6
-	  rlwimi    r5,r4,0,28,31
-	  rlwinm    r0,r0,7,25,25
-	  or        r0, r5, r0
-	  stb       r0, 0x0(r3)
-	  blr
-	*/
+	bool baldCode = (isBald > 0);
+	baldCode &= SLIPCODE_MASK;
+	int temp   = (attribute & ATTR_MASK) | (slipCode << 4);
+	m_contents = temp | (baldCode << 6);
 }
 
 /*
@@ -332,24 +314,7 @@ void MapCode::Mgr::attachCodes(Sys::TriangleTable* table)
  * Address:	8041C8C0
  * Size:	00002C
  */
-void MapCode::Mgr::CodeArray::writeObject(Stream& output, MapCode::Code& object)
-{
-	object.write(output);
-	/*
-	.loc_0x0:
-	  stwu      r1, -0x10(r1)
-	  mflr      r0
-	  mr        r3, r4
-	  stw       r0, 0x14(r1)
-	  lbz       r0, 0x0(r5)
-	  mr        r4, r0
-	  bl        -0x7268
-	  lwz       r0, 0x14(r1)
-	  mtlr      r0
-	  addi      r1, r1, 0x10
-	  blr
-	*/
-}
+void MapCode::Mgr::CodeArray::writeObject(Stream& output, MapCode::Code& object) { object.write(output); }
 
 /*
  * readObject__Q37MapCode3Mgr9CodeArrayFR6StreamRQ27MapCode4Code

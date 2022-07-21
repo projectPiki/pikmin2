@@ -26,7 +26,7 @@ void KanteiDemo::doUserCallBackFunc(Resource::MgrCommand*) { }
 void KanteiDemo::doCreateObj(JKRArchive* archive)
 {
 	::Screen::ObjBase* obj = new ObjKantei("kantei screen");
-	m_objBase = obj;
+	m_objBase              = obj;
 	registObj(m_objBase, archive);
 }
 

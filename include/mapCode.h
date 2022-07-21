@@ -36,6 +36,8 @@ struct Code {
 	void setCode(int, int, bool);
 	void write(Stream&);
 
+	inline char* getContents() { return (char*)m_contents; }
+
 	// u8 m_attribute;
 	union {
 		u8 m_contents;

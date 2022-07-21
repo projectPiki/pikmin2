@@ -36,11 +36,11 @@ void SpecialItem::doCreateObj(JKRArchive* archive)
  */
 bool SpecialItem::doConfirmSetScene(::Screen::SetSceneArg& arg)
 {
-    bool b = false;
-    if (arg.getSceneType() != SCENE_SPECIAL_ITEM) {
-        b = true;
-    }
-    return b;
+	bool b = false;
+	if (arg.getSceneType() != SCENE_SPECIAL_ITEM) {
+		b = true;
+	}
+	return b;
 }
 
 /*
