@@ -102,14 +102,15 @@ struct CellObject : public TPositionObject {
 		m_cellLegs[3].m_object = this;
 		m_passID               = 0;
 	}
-	virtual void checkCollision(CellObject*);
-	virtual void getBoundingSphere(Sys::Sphere&);
-	virtual bool collisionUpdatable();
-	virtual bool isPiki();
-	virtual bool isNavi();
-	virtual bool deferPikiCollision();
-	virtual char* getTypeName();
-	virtual u16 getObjType();
+	virtual Vector3f getPosition() 					= 0;	// _00
+	virtual void checkCollision(CellObject*);				// _04
+	virtual void getBoundingSphere(Sys::Sphere&) 	= 0;	// _08
+	virtual bool collisionUpdatable() 				= 0;	// _0C
+	virtual bool isPiki();									// _10
+	virtual bool isNavi();									// _14
+	virtual bool deferPikiCollision();						// _18
+	virtual char* getTypeName()						= 0;	// _1C
+	virtual u16 getObjType() 						= 0;	// _20
 
 	void exitCell();
 	float calcCollisionDistance(CellObject*);

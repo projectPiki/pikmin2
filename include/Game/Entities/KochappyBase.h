@@ -5,10 +5,12 @@
 
 #include "Game/EnemyAnimatorBase.h"
 #include "Game/EnemyParmsBase.h"
-#include "Game/CellObject.h"
+#include "Game/cellPyramid.h"
 #include "Game/Creature.h"
+#include "Game/PelletView.h"
 #include "Game/EnemyBase.h"
 #include "Game/shadowMgr.h"
+#include "Game/WalkSmokeEffect.h"
 
 #include "SysShape/Joint.h"
 
@@ -60,12 +62,12 @@ struct Obj : public Creature, virtual EnemyBase {
 		virtual void setEnemyNonStone();                                 // _2FC
 
 		// _00 VTBL
-		FSM* _2BC; 						// _2BC
-	  	MouthSlots m_mouthSlots; 		// _2C0
-		SysShape::Joint* m_shadowJoint; // _2C8
-		float _2CC;						// _2CC
-		Mgr m_walkSmokeEffectMgr; 		// _2D0
-		PelletView m_pelletView; 		// _2D8
+		FSM* _2BC; 										// _2BC
+	  	MouthSlots m_mouthSlots; 						// _2C0
+		SysShape::Joint* m_shadowJoint; 				// _2C8
+		float _2CC;										// _2CC
+		WalkSmokeEffect::Mgr m_walkSmokeEffectMgr; 		// _2D0
+		PelletView m_pelletView; 						// _2D8
   };
 } // namespace KochappyBase
 
