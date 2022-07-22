@@ -13,6 +13,7 @@ struct MouthSlots {
 	MouthSlots();
 
 	void alloc(int);
+	MouthCollPart* getSlot(int);
 	void setup(int, SysShape::Model*, char*);
 	void update();
 

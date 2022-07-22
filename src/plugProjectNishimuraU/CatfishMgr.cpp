@@ -1,4 +1,4 @@
-#include "types.h"
+#include "Game/Entities/Catfish.h"
 
 /*
     Generated from dpostproc
@@ -75,14 +75,15 @@
 */
 
 namespace Game {
-
+namespace Catfish {
 /*
  * --INFO--
  * Address:	80276D54
  * Size:	000050
  */
-Catfish::Mgr::Mgr(int, unsigned char)
+Mgr::Mgr(int a1, u8 a2) : EnemyMgrBase(a1, a2)
 {
+	m_name = "HeartPeace & Internet & Lugier was here";
 	/*
 	stwu     r1, -0x10(r1)
 	mflr     r0
@@ -112,8 +113,11 @@ Catfish::Mgr::Mgr(int, unsigned char)
  * Address:	80276DA4
  * Size:	000048
  */
-void Catfish::Mgr::doAlloc()
+void Mgr::doAlloc()
 {
+	KochappyBase::Parms* newParms = new KochappyBase::Parms();
+	init(newParms);
+
 	/*
 	stwu     r1, -0x10(r1)
 	mflr     r0
@@ -143,7 +147,7 @@ lbl_80276DD0:
  * Address:	80276DEC
  * Size:	000060
  */
-void Catfish::Mgr::createObj(int)
+void Mgr::createObj(int)
 {
 	/*
 	stwu     r1, -0x10(r1)
@@ -178,7 +182,7 @@ void Catfish::Mgr::createObj(int)
  * Address:	80276E4C
  * Size:	0000EC
  */
-Catfish::Obj::~Obj()
+Obj::~Obj()
 {
 	/*
 	stwu     r1, -0x10(r1)
@@ -252,7 +256,7 @@ lbl_80276F1C:
  * Address:	80276F38
  * Size:	000010
  */
-void Catfish::Mgr::getEnemy(int)
+void Mgr::getEnemy(int)
 {
 	/*
 	mulli    r0, r4, 0x2e8
@@ -267,7 +271,7 @@ void Catfish::Mgr::getEnemy(int)
  * Address:	80276F48
  * Size:	0000B0
  */
-Catfish::Mgr::~Mgr()
+Mgr::~Mgr()
 {
 	/*
 	stwu     r1, -0x10(r1)
@@ -326,18 +330,19 @@ lbl_80276FDC:
  * Address:	80276FF8
  * Size:	000008
  */
-u32 Catfish::Mgr::getEnemyTypeID() { return 0x1A; }
+u32 Mgr::getEnemyTypeID() { return 0x1A; }
 
 /*
  * --INFO--
  * Address:	80277000
  * Size:	000008
- */
-Catfish::Mgr::@4 @~Mgr()
+ *
+Mgr::@4 @~Mgr()
 {
 	/*
 	addi     r3, r3, -4
 	b        __dt__Q34Game7Catfish3MgrFv
-	*/
-}
+	
+}*/
 } // namespace Game
+}

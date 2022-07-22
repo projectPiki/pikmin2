@@ -126,7 +126,7 @@ struct MouthSlots {
 	void update();
 	void setup(int, SysShape::Model*, char*);
 
-	int m_max;              // _00
+	int m_count;            // _00
 	MouthCollPart* m_slots; // _04
 };
 
