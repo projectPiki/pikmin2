@@ -7,6 +7,7 @@ namespace Catfish {
  * Address:	80277008
  * Size:	000090
  */
+// WIP: https://decomp.me/scratch/uZs5i - context needs fixing
 Obj::Obj() : KochappyBase::Obj()
 {
 	/*
@@ -56,10 +57,11 @@ lbl_80277044:
  * Address:	80277098
  * Size:	00003C
  */
-void Obj::onInit(Game::CreatureInitArg* arg)
-{
-    Creature::onInit(arg);
-	m_shadowJoint = Creature::m_model->getJoint("kosi");
+// https://decomp.me/scratch/pHcyf - matches
+void Obj::onInit(Game::CreatureInitArg* arg) {
+    KochappyBase::Obj::onInit(arg);
+    m_shadowJoint = m_model->getJoint("kosi");
+
 	/*
 	stwu     r1, -0x10(r1)
 	mflr     r0
@@ -84,13 +86,16 @@ void Obj::onInit(Game::CreatureInitArg* arg)
  * Address:	802770D4
  * Size:	0000C0
  */
-void Obj::getShadowParam(Game::ShadowParam& param)
+// https://decomp.me/scratch/ERQ6g - matches
+void Game::Catfish::Obj::getShadowParam(Game::ShadowParam& param)
 {
     Matrixf* worldMatrix = m_shadowJoint->getWorldMatrix();
-	worldMatrix->setTranslation(param.m_position);
 
-	param.m_boundingSphere.m_position = Vector3f(0.0f, 1.0f, 0.0f);
-	param.m_boundingSphere.m_radius   = param.m_position.y - Creature::m_scale.y;
+    param.m_position = Vector3f(worldMatrix->m_matrix.mtxView[0][3], worldMatrix->m_matrix.mtxView[1][3], worldMatrix->m_matrix.mtxView[2][3]);
+    
+    param.m_position.y -= 10.0f;
+	param.m_boundingSphere.m_position = Vector3f(0.0f, 1.0f, 0.0f); 
+	param.m_boundingSphere.m_radius   = param.m_position.y - m_position.y;
 
     if (m_events[1].typeView & ENEMY_EVENT_REFRESH) {
         param.m_boundingSphere.m_radius += 50.0f;

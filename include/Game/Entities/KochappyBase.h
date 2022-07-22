@@ -35,7 +35,7 @@ struct Parms : public EnemyParmsBase {
 	 // _B40
 };
 
-struct Obj : public Creature, virtual EnemyBase {
+struct Obj : public EnemyBase {
 		virtual void onInit(CreatureInitArg*);                           // _28
 		virtual void doDirectDraw(Graphics&);                            // _48
 		virtual void bounceCallback(Sys::Triangle*);                     // _E0
