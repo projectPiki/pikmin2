@@ -16,7 +16,11 @@ struct KeyEvent;
 namespace Game {
 struct Piki;
 struct CollEvent;
+struct Onyon;
 struct PlatEvent;
+struct Pellet;
+struct PathNode;
+struct WayPoint;
 } // namespace Game
 
 struct Graphics;
@@ -404,27 +408,56 @@ struct PathMoveArg {
 	void getName();
 };
 
-struct ActPathMove {
+struct ActPathMove : public Action {
 	ActPathMove(Game::Piki*);
 
+    virtual void init(PikiAI::ActionArg*);
+    virtual s32 exec();
+    virtual void cleanup();
+    
+
 	void carry(Vector3f&);
-	void cleanup();
 	void contextCheck(int);
-	void crGetPoint(int);
+	Vector3f crGetPoint(int);
 	void crGetRadius(int);
 	void crInit();
 	void crMakeRefs();
 	void crMove();
 	void decideGoal();
-	void exec();
 	void execMove();
 	void execMoveGoal();
 	void execMoveGuru();
 	void execPathfinding();
 	void getWayPoint(int);
-	void init(PikiAI::ActionArg*);
 	void initPathfinding(bool);
 	void isAllBlue();
+
+    void* _0C; 				// _0C	// ghidra: "ActPathMove_Unknown1*"
+    Vector3f _10;			// _10
+    short _1C;				// _1C
+    short _1E;				// _1E
+    u32 _20;				// _20
+    Vector3f _24;			// _24
+    Game::Pellet* m_pellet;	// _30
+    Game::Onyon* m_onyon;	// _34
+    float _38;				// _38
+    u8 _3C;					// _3C
+    u8 _3D;					// _3D
+    u8 _3E[6];				// _3E
+    Game::PathNode* _44;	// _44
+    Game::PathNode* _48;	// _48
+    int _4C;				// _4C
+    int _50;				// _50
+    short _54;				// _54
+    short _56;				// _56
+    Vector3f _58;			// _58
+    Game::WayPoint* _64;	// _64
+    float _68;				// _68
+    u32 _6C;				// _6C
+    int _70;				// _70
+    Vector3f _74[4];		// _74
+    Vector3f _A4;			// _A4
+    Vector3f _B0;			// _B0
 };
 
 struct ActRescue {

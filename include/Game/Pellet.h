@@ -4,6 +4,7 @@
 #include "CarryInfo.h"
 #include "Game/DynCreature.h"
 #include "SysShape/MotionListener.h"
+#include "Game/gameGenerator.h"
 #include "Vector3.h"
 #include "types.h"
 
