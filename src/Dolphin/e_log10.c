@@ -63,8 +63,7 @@ static double zero = 0.0;
 #ifdef __STDC__
 double __ieee754_log10(double x)
 #else
-double __ieee754_log10(x)
-double x;
+double __ieee754_log10(x) double x;
 #endif
 {
 	double y, z;

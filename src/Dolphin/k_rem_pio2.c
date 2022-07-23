@@ -166,7 +166,8 @@ static double
 int __kernel_rem_pio2(double* x, double* y, int e0, int nx, int prec, const int* ipio2) /*- cc 020130 -*/
 #else
 int __kernel_rem_pio2(x, y, e0, nx, prec, ipio2) /*- cc 020130 -*/
-double x[], y[];
+    double x[],
+    y[];
 int e0, nx, prec;
 int ipio2[]; /*- cc 020130 -*/
 #endif

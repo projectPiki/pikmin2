@@ -50,8 +50,8 @@ struct BoundBox {
 		}
 	}
 
-	Vector3f m_min;		// _00
-	Vector3f m_max;		// _0C
+	Vector3f m_min; // _00
+	Vector3f m_max; // _0C
 };
 
 struct BoundBox2d {

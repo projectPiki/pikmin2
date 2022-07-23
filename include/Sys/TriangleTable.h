@@ -22,10 +22,10 @@ struct TriangleTable : public ArrayContainer<Sys::Triangle> {
 	void createTriangleSphere(VertexTable&);
 	void cloneFrom(Matrixf&, TriangleTable*, VertexTable*);
 
-	inline void doClone(Sys::TriangleTable* triTable, Sys::VertexTable* vtxTable, int i) 
+	inline void doClone(Sys::TriangleTable* triTable, Sys::VertexTable* vtxTable, int i)
 	{
 		Triangle* currTriangle = &m_objects[i];
-		Triangle* refTriangle = &triTable->m_objects[i];
+		Triangle* refTriangle  = &triTable->m_objects[i];
 
 		currTriangle->m_vertices = refTriangle->m_vertices;
 		currTriangle->m_code     = refTriangle->m_code;
@@ -56,15 +56,15 @@ struct VertexTable : public ArrayContainer<Vector3f> {
 	void cloneFrom(Matrixf&, VertexTable*);
 	void transform(Matrixf&);
 
-	inline void includeVertices() 
-    {
-        for (int i = 0; i < m_count; i++) {
-		    m_boundBox.include(m_objects[i]);
-	    }
-    }
+	inline void includeVertices()
+	{
+		for (int i = 0; i < m_count; i++) {
+			m_boundBox.include(m_objects[i]);
+		}
+	}
 
-	BoundBox m_boundBox; 		// _28
-	u8 _40[0x10]; 				// _40
+	BoundBox m_boundBox; // _28
+	u8 _40[0x10];        // _40
 };
 } // namespace Sys
 

@@ -34,8 +34,7 @@ static double
 #ifdef __STDC__
 double frexp(double x, int* eptr)
 #else
-double frexp(x, eptr)
-double x;
+double frexp(x, eptr) double x;
 int* eptr;
 #endif
 {

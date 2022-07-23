@@ -32,8 +32,7 @@ static double one = 1.0;
 #ifdef __STDC__
 double modf(double x, double* iptr)
 #else
-double modf(x, iptr)
-double x, *iptr;
+double modf(x, iptr) double x, *iptr;
 #endif
 {
 	int i0, i1, j0;

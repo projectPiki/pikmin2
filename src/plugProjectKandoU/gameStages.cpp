@@ -399,7 +399,7 @@ void CourseInfo::read(Stream& stream)
 		stream.readString(nullptr, 0);
 
 		// Convert angle to radians
-		Vector3f vec (0.0f, 3.1415927f * (0.0055555557f * m_startAngle), 0.0f);
+		Vector3f vec(0.0f, 3.1415927f * (0.0055555557f * m_startAngle), 0.0f);
 		_D0.makeTR(m_startPosition, vec);
 	}
 
@@ -648,7 +648,7 @@ void Stages::read(Stream& stream)
 }
 
 const char selectCourse[] = "Select Course";
-const char caveCount[] = "%s : %d caves\n";
+const char caveCount[]    = "%s : %d caves\n";
 const char measureThing[] = "[%s] %d/%d";
 
 } // namespace Game

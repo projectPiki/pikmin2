@@ -81,7 +81,8 @@ namespace Catfish {
  * Address:	80276D54
  * Size:	000050
  */
-Mgr::Mgr(int a1, u8 a2) : EnemyMgrBase(a1, a2)
+Mgr::Mgr(int a1, u8 a2)
+    : EnemyMgrBase(a1, a2)
 {
 	m_name = "HeartPeace & Internet & Lugier was here";
 	/*
@@ -339,10 +340,10 @@ u32 Mgr::getEnemyTypeID() { return 0x1A; }
  *
 Mgr::@4 @~Mgr()
 {
-	/*
-	addi     r3, r3, -4
-	b        __dt__Q34Game7Catfish3MgrFv
-	
+    /*
+    addi     r3, r3, -4
+    b        __dt__Q34Game7Catfish3MgrFv
+
 }*/
+} // namespace Catfish
 } // namespace Game
-}

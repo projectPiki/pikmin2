@@ -25,7 +25,7 @@ struct PelletView {
 	}
 
 	virtual float viewGetBaseScale();                 // _00
-	virtual SysShape::Model* viewGetShape();      	  // _04
+	virtual SysShape::Model* viewGetShape();          // _04
 	virtual int viewGetCollTreeJointIndex();          // _08
 	virtual Vector3f viewGetCollTreeOffset();         // _0C
 	virtual void view_start_carrymotion();            // _10

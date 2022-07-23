@@ -8,7 +8,8 @@ namespace Catfish {
  * Size:	000090
  */
 // WIP: https://decomp.me/scratch/uZs5i - context needs fixing
-Obj::Obj() : KochappyBase::Obj()
+Obj::Obj()
+    : KochappyBase::Obj()
 {
 	/*
 	stwu     r1, -0x10(r1)
@@ -58,9 +59,10 @@ lbl_80277044:
  * Size:	00003C
  */
 // https://decomp.me/scratch/pHcyf - matches
-void Obj::onInit(Game::CreatureInitArg* arg) {
-    KochappyBase::Obj::onInit(arg);
-    m_shadowJoint = m_model->getJoint("kosi");
+void Obj::onInit(Game::CreatureInitArg* arg)
+{
+	KochappyBase::Obj::onInit(arg);
+	m_shadowJoint = m_model->getJoint("kosi");
 
 	/*
 	stwu     r1, -0x10(r1)
@@ -89,20 +91,20 @@ void Obj::onInit(Game::CreatureInitArg* arg) {
 // https://decomp.me/scratch/ERQ6g - matches
 void Game::Catfish::Obj::getShadowParam(Game::ShadowParam& param)
 {
-    Matrixf* worldMatrix = m_shadowJoint->getWorldMatrix();
+	Matrixf* worldMatrix = m_shadowJoint->getWorldMatrix();
 
-    param.m_position = Vector3f(worldMatrix->m_matrix.mtxView[0][3], worldMatrix->m_matrix.mtxView[1][3], worldMatrix->m_matrix.mtxView[2][3]);
-    
-    param.m_position.y -= 10.0f;
-	param.m_boundingSphere.m_position = Vector3f(0.0f, 1.0f, 0.0f); 
+	param.m_position
+	    = Vector3f(worldMatrix->m_matrix.mtxView[0][3], worldMatrix->m_matrix.mtxView[1][3], worldMatrix->m_matrix.mtxView[2][3]);
+
+	param.m_position.y -= 10.0f;
+	param.m_boundingSphere.m_position = Vector3f(0.0f, 1.0f, 0.0f);
 	param.m_boundingSphere.m_radius   = param.m_position.y - m_position.y;
 
-    if (m_events[1].typeView & ENEMY_EVENT_REFRESH) {
-        param.m_boundingSphere.m_radius += 50.0f;
-    }
-    else {
-        param.m_boundingSphere.m_radius += 15.0f;
-    }
+	if (m_events[1].typeView & ENEMY_EVENT_REFRESH) {
+		param.m_boundingSphere.m_radius += 50.0f;
+	} else {
+		param.m_boundingSphere.m_radius += 15.0f;
+	}
 
 	param._1C = 15.0f;
 
@@ -191,7 +193,7 @@ bool Obj::pressCallBack(Game::Creature*, float damage, CollPart* collPart)
  */
 bool Obj::hipdropCallBack(Game::Creature* creature, float a2, CollPart* collPart)
 {
-    EnemyBase::hipdropCallBack(creature, a2, collPart);
+	EnemyBase::hipdropCallBack(creature, a2, collPart);
 	/*
 	stwu     r1, -0x10(r1)
 	mflr     r0
@@ -211,11 +213,11 @@ bool Obj::hipdropCallBack(Game::Creature* creature, float a2, CollPart* collPart
  */
 void Obj::initMouthSlots()
 {
-    m_mouthSlots.alloc(2);
-    m_mouthSlots.setup(0, Creature::m_model, "kamu1");
-    m_mouthSlots.setup(1, Creature::m_model, "kamu2");
-    
-    for (int i = 0; i < m_mouthSlots.m_count; i++) {
+	m_mouthSlots.alloc(2);
+	m_mouthSlots.setup(0, Creature::m_model, "kamu1");
+	m_mouthSlots.setup(1, Creature::m_model, "kamu2");
+
+	for (int i = 0; i < m_mouthSlots.m_count; i++) {
 		m_mouthSlots.getSlot(i)->_1C = 20.0f;
 	}
 }
@@ -227,11 +229,11 @@ void Obj::initMouthSlots()
  */
 void Obj::resetEnemyNonStone()
 {
-    if (m_events[0].typeView & ENEMY_EVENT_STONE) {
+	if (m_events[0].typeView & ENEMY_EVENT_STONE) {
 		createDownEffect();
 	}
-    
-    m_events[0].typeView &= ~(ENEMY_EVENT_STONE | ENEMY_EVENT_REFRESH);
+
+	m_events[0].typeView &= ~(ENEMY_EVENT_STONE | ENEMY_EVENT_REFRESH);
 
 	/*
 	stwu     r1, -0x10(r1)
@@ -263,7 +265,7 @@ lbl_802772A0:
  */
 void Obj::createDownEffect()
 {
-    EnemyBase::createBounceEffect(m_position, 0.5);
+	EnemyBase::createBounceEffect(m_position, 0.5);
 	/*
 	stwu     r1, -0x10(r1)
 	mflr     r0
@@ -283,7 +285,7 @@ void Obj::createDownEffect()
  * Address:	802772E8
  * Size:	000004
  */
- // WEAK - in header
+// WEAK - in header
 // void Obj::changeMaterial() { }
 
 /*
@@ -291,7 +293,7 @@ void Obj::createDownEffect()
  * Address:	802772EC
  * Size:	000004
  */
- // WEAK - in header
+// WEAK - in header
 // void Obj::inWaterCallback(Game::WaterBox*) { }
 
 /*
@@ -299,7 +301,7 @@ void Obj::createDownEffect()
  * Address:	802772F0
  * Size:	000004
  */
- // WEAK - in header
+// WEAK - in header
 // void Obj::outWaterCallback() { }
 
 /*
@@ -307,7 +309,7 @@ void Obj::createDownEffect()
  * Address:	802772F4
  * Size:	000008
  */
- // WEAK - in header
+// WEAK - in header
 // EnemyTypeID::EEnemyTypeID Obj::getEnemyTypeID() { return EnemyTypeID::EEnemyTypeID::EnemyID_Catfish; }
 
 /*
@@ -315,7 +317,7 @@ void Obj::createDownEffect()
  * Address:	802772FC
  * Size:	000010
  */
- // WEAK - in header
+// WEAK - in header
 // void Obj::setEnemyNonStone()
 // {
 // 	/*

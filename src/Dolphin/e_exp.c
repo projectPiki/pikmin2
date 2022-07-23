@@ -101,7 +101,7 @@ P5   =  4.13813679705723846039e-08; /* 0x3E663769, 0x72BEA4D0 */
 double __ieee754_exp(double x) /* default IEEE double exp */
 #else
 double __ieee754_exp(x) /* default IEEE double exp */
-double x;
+    double x;
 #endif
 {
 	double y, hi, lo, c, t;

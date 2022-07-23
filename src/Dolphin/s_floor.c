@@ -31,8 +31,7 @@ static double huge = 1.0e300;
 #ifdef __STDC__
 double floor(double x)
 #else
-double floor(x)
-double x;
+double floor(x) double x;
 #endif
 {
 	int i0, i1, j0;
