@@ -25,8 +25,7 @@ struct ProperAnimator : public EnemyAnimatorBase {
 	SysShape::Animator m_animator; // _10
 };
 
-struct FSM {
-};
+struct FSM { };
 
 struct Parms : public EnemyParmsBase {
 	Parms();
@@ -42,6 +41,7 @@ struct Obj : public EnemyBase {
 	virtual void bounceCallback(Sys::Triangle*); // _E0
 	virtual void getShadowParam(ShadowParam&);   // _12C
 
+	Obj();
 	virtual ~Obj() { }                                       // _1B4
 	virtual void birth(Vector3<float>&, float);              // _1B8
 	virtual void setInitialSetting(EnemyInitialParamBase*);  // _1BC

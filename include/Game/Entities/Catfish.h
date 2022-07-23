@@ -8,6 +8,8 @@
 namespace Game {
 namespace Catfish {
 struct Obj : public KochappyBase::Obj {
+	Obj();
+
 	virtual void onInit(CreatureInitArg*);                                                                    // _28
 	virtual void inWaterCallback(WaterBox*) { }                                                               // _7C
 	virtual void outWaterCallback() { }                                                                       // _80
