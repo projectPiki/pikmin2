@@ -42,7 +42,7 @@ struct Obj : public EnemyBase {
 	virtual void bounceCallback(Sys::Triangle*); // _E0
 	virtual void getShadowParam(ShadowParam&);   // _12C
 
-	virtual ~Obj();                                          // _1B4
+	virtual ~Obj() { }                                       // _1B4
 	virtual void birth(Vector3<float>&, float);              // _1B8
 	virtual void setInitialSetting(EnemyInitialParamBase*);  // _1BC
 	virtual void doUpdate();                                 // _1C4
@@ -68,7 +68,6 @@ struct Obj : public EnemyBase {
 	SysShape::Joint* m_shadowJoint;            // _2C8
 	float _2CC;                                // _2CC
 	WalkSmokeEffect::Mgr m_walkSmokeEffectMgr; // _2D0
-	PelletView m_pelletView;                   // _2D8
 };
 } // namespace KochappyBase
 
