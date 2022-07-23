@@ -7,9 +7,23 @@
 #include "types.h"
 
 namespace Game {
-struct TimeMgrParms {
+struct TimeMgrParms { 
 	struct Parms : public Parameters {
-		Parms();
+		Parms()
+		: Parameters(nullptr, "TimeMgrParms")
+		, m_dayStartTime(this, 'fp00', "ゲーム開始時刻", 7.0f, 0.0f, 24.0f)
+		, m_dayEndTime(this, 'fp01', "ゲーム終了時刻", 19.0f, 0.0f, 24.0f)
+		, m_dayLengthSeconds(this, 'fp02', "1日の時間<秒）", 1560.f, 0.0f, 3600.0f)
+		, m_morningStartTime(this, 'fp03', "朝開始時刻", 5.25f, 0.0f, 24.0f)
+		, m_midMorningTime(this, 'fp04', "朝中間時刻", 7.0f, 0.0f, 24.0f)
+		, m_morningEndTime(this, 'fp05', "朝終了時刻", 8.0f, 0.0f, 24.0f)
+		, m_eveningStartTime(this, 'fp06', "夕方開始時刻", 15.0f, 0.0f, 24.0f)
+		, m_midEveningStartTime(this, 'fp07', "夕方中間開始時刻", 15.5f, 0.0f, 24.0f)
+		, m_midEveningEndTime(this, 'fp11', "夕方中間終了時刻", 18.5f, 0.0f, 24.0f)
+		, m_eveningEndTime(this, 'fp08', "夕方終了時刻", 19.0f, 0.0f, 24.0f)
+		, m_sundownAlertTime(this, 'fp09', "夜警告時刻", 18.0f, 0.0f, 24.0f)
+		, m_countdownTime(this, 'fp10', "カウントダウン", 18.5f, 0.0f, 24.0f)
+		{ } // WEAK - from timeMgr.cpp
 
 		Parm<float> m_dayStartTime;        // _00C
 		Parm<float> m_dayEndTime;          // _034
@@ -25,7 +39,7 @@ struct TimeMgrParms {
 		Parm<float> m_countdownTime;       // _1C4
 	};
 
-	TimeMgrParms();
+	TimeMgrParms() { } // WEAK - from timeMgr.cpp
 
 	Parms parms; // _00
 };
@@ -33,7 +47,7 @@ struct TimeMgrParms {
 struct TimeMgr : public CNode {
 	TimeMgr();
 
-	virtual ~TimeMgr(); // _00
+	virtual ~TimeMgr() { } // _00 - WEAK - from timeMgr.cpp
 
 	float getRealDayTime();
 	float getSunGaugeRatio();
