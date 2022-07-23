@@ -172,6 +172,7 @@ lbl_80277174:
 bool Obj::pressCallBack(Game::Creature*, float damage, CollPart* collPart)
 {
 	EnemyBase::addDamage(damage, 1.0f);
+	return false;
 	/*
 	stwu     r1, -0x10(r1)
 	mflr     r0
@@ -193,7 +194,7 @@ bool Obj::pressCallBack(Game::Creature*, float damage, CollPart* collPart)
  */
 bool Obj::hipdropCallBack(Game::Creature* creature, float a2, CollPart* collPart)
 {
-	EnemyBase::hipdropCallBack(creature, a2, collPart);
+	return EnemyBase::hipdropCallBack(creature, a2, collPart);
 	/*
 	stwu     r1, -0x10(r1)
 	mflr     r0
