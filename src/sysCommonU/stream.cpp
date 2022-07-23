@@ -299,25 +299,25 @@ void Stream::textEndGroup()
  * Address:	804140F8
  * Size:	0000E4
  */
-void Stream::printf(char* format, ...) 
+void Stream::printf(char* format, ...)
 {
-    // prints text with given format information
-    // doesn't check for text or binary, prints just the same
-    char tempText[0x400];
-    va_list args;
+	// prints text with given format information
+	// doesn't check for text or binary, prints just the same
+	char tempText[0x400];
+	va_list args;
 
-    va_start(args, format);
-    vsprintf(tempText, format, args);
-    int len = strlen(tempText);
-    
-    if (len > 0) {
-        char* textPtr = tempText;
-        
-        for (int i = 0; i < len; i++) {
-            _writeByte(*textPtr);
-            textPtr++;
-        }
-    }
+	va_start(args, format);
+	vsprintf(tempText, format, args);
+	int len = strlen(tempText);
+
+	if (len > 0) {
+		char* textPtr = tempText;
+
+		for (int i = 0; i < len; i++) {
+			_writeByte(*textPtr);
+			textPtr++;
+		}
+	}
 }
 
 /*
@@ -325,27 +325,27 @@ void Stream::printf(char* format, ...)
  * Address:	804141DC
  * Size:	0000EC
  */
-void Stream::textWriteText(char* format, ...) 
+void Stream::textWriteText(char* format, ...)
 {
 	// prints text with given format information
-    // only prints text - won't print binary
-    char tempText[0x400];
-    va_list args;
-    
-    if (m_mode != STREAM_MODE_BINARY) {
-        va_start(args, format);
-        vsprintf(tempText, format, args);
-        
-        int len = strlen(tempText);
-        if (len > 0) {
-            char* textPtr = tempText;
-            
-            for (int i = 0; i < len; i++) {
-                _writeByte(*textPtr);
-                textPtr++;
-            }
-        }
-    }
+	// only prints text - won't print binary
+	char tempText[0x400];
+	va_list args;
+
+	if (m_mode != STREAM_MODE_BINARY) {
+		va_start(args, format);
+		vsprintf(tempText, format, args);
+
+		int len = strlen(tempText);
+		if (len > 0) {
+			char* textPtr = tempText;
+
+			for (int i = 0; i < len; i++) {
+				_writeByte(*textPtr);
+				textPtr++;
+			}
+		}
+	}
 }
 
 // /*
@@ -512,9 +512,9 @@ u8 Stream::_readByte()
 	// reads in the next byte with no checks
 	// returns byte being read and increments stream position
 
-	u8 currByte;     
-	read(&currByte, 1); 
-	m_position++;   
+	u8 currByte;
+	read(&currByte, 1);
+	m_position++;
 	return currByte;
 }
 
@@ -655,63 +655,64 @@ float Stream::readFloat()
  * Size:	0004F8
  */
 // only final for loop not matching
-char* Stream::readString(char* str, int strLength) 
+char* Stream::readString(char* str, int strLength)
 {
-    // reads string from stream
-    // if str provided, stores in str text of length strLength
-    // if str 0, returns string to next token
-    
-    char* outStr;
+	// reads string from stream
+	// if str provided, stores in str text of length strLength
+	// if str 0, returns string to next token
 
-    if (m_mode == STREAM_MODE_TEXT) { // we're in text mode, need to do more checks
+	char* outStr;
 
-        // get text
-        char* nextToken = getNextToken();
+	if (m_mode == STREAM_MODE_TEXT) { // we're in text mode, need to do more checks
 
-        int strSize = strlen(nextToken);
-        if (str) { // str provided, check size compared to text
-            P2ASSERTLINE(352, strLength >= strSize);
-            outStr = str;
-        } else { // no str provided, read in whole nextToken
-            outStr = new char [strSize + 1];
-        }
+		// get text
+		char* nextToken = getNextToken();
 
-        // put text byte by byte into outStr
-        for (int readLen = 0; readLen < strSize+1; readLen++) {
-            outStr[readLen] = nextToken[readLen];
-        }
-        
-    } else { // we're in binary mode, free-for-all
-        // read max of 0x400 bytes
-        char tokenStore [0x400];
+		int strSize = strlen(nextToken);
+		if (str) { // str provided, check size compared to text
+			P2ASSERTLINE(352, strLength >= strSize);
+			outStr = str;
+		} else { // no str provided, read in whole nextToken
+			outStr = new char[strSize + 1];
+		}
 
-        // read up to 0x400 bytes into tokenStore
-        int readLen = 0; 
-        for (int i = 0; i < 0x400 || !eof(); i++) {
-            u8 byte = _readByte();
-            tokenStore[i] = byte;
-            if (!(tokenStore[i])) break;
-            readLen++;
-        }
+		// put text byte by byte into outStr
+		for (int readLen = 0; readLen < strSize + 1; readLen++) {
+			outStr[readLen] = nextToken[readLen];
+		}
 
-        if (str) { // str provided, check size compared to text
-            P2ASSERTLINE(372, strLength >= readLen);
-            outStr = str;
-        } else { // no str provided, read in whole tokenStore
-            outStr = new char [readLen + 1];
-        }
+	} else { // we're in binary mode, free-for-all
+		// read max of 0x400 bytes
+		char tokenStore[0x400];
 
-        // put text byte by byte into outStr
-        int i = 0;
-        char* outStrPtr = outStr; 
-        for (i; i < readLen; i++) {
-            *outStrPtr = tokenStore[i];
-            outStrPtr++;
-        }
-        *outStrPtr = 0;
-    }
-    
-    return outStr;
+		// read up to 0x400 bytes into tokenStore
+		int readLen = 0;
+		for (int i = 0; i < 0x400 || !eof(); i++) {
+			u8 byte       = _readByte();
+			tokenStore[i] = byte;
+			if (!(tokenStore[i]))
+				break;
+			readLen++;
+		}
+
+		if (str) { // str provided, check size compared to text
+			P2ASSERTLINE(372, strLength >= readLen);
+			outStr = str;
+		} else { // no str provided, read in whole tokenStore
+			outStr = new char[readLen + 1];
+		}
+
+		// put text byte by byte into outStr
+		int i           = 0;
+		char* outStrPtr = outStr;
+		for (i; i < readLen; i++) {
+			*outStrPtr = tokenStore[i];
+			outStrPtr++;
+		}
+		*outStrPtr = 0;
+	}
+
+	return outStr;
 }
 
 /*
@@ -801,27 +802,27 @@ void Stream::_writeByte(u8 c)
  * Address:	80415730
  * Size:	000090
  */
-void Stream::writeShort(short inputShort) 
+void Stream::writeShort(short inputShort)
 {
-    // write short (s16) 
-    // need to handle text and binary mode differently
+	// write short (s16)
+	// need to handle text and binary mode differently
 
-    // by default, value to write should be inputShort
-    s16 outVal = inputShort;
-    if (m_mode == STREAM_MODE_TEXT) {
-        // in text mode, write with "%d "
-        printf("%d ", inputShort);
-        return;
-    }
-    // make sure stream value is big endian
-    if (m_endian != STREAM_BIG_ENDIAN) {
-        // if it's not big endian, swap bytes to make it big endian
-        outVal = bswap16((s16)inputShort);
-    }
-    
-    // write short (2 bytes) and increment stream position
-    write(&outVal, 2); 
-    m_position += 2;
+	// by default, value to write should be inputShort
+	s16 outVal = inputShort;
+	if (m_mode == STREAM_MODE_TEXT) {
+		// in text mode, write with "%d "
+		printf("%d ", inputShort);
+		return;
+	}
+	// make sure stream value is big endian
+	if (m_endian != STREAM_BIG_ENDIAN) {
+		// if it's not big endian, swap bytes to make it big endian
+		outVal = bswap16((s16)inputShort);
+	}
+
+	// write short (2 bytes) and increment stream position
+	write(&outVal, 2);
+	m_position += 2;
 }
 
 /*
@@ -896,11 +897,11 @@ void Stream::writeFloat(float inputFloat)
  * Address:	804158F8
  * Size:	000050
  */
-RamStream::RamStream(void* RamBufferPtr, int bounds) 
+RamStream::RamStream(void* RamBufferPtr, int bounds)
 {
-    m_ramBufferStart = RamBufferPtr;
-    m_bounds = bounds;
-    m_position = 0;
+	m_ramBufferStart = RamBufferPtr;
+	m_bounds         = bounds;
+	m_position       = 0;
 }
 
 /*
@@ -918,13 +919,13 @@ RamStream::RamStream(void* RamBufferPtr, int bounds)
  * Address:	80415948
  * Size:	000094
  */
-void RamStream::read(void* destMem, int numBytes) 
+void RamStream::read(void* destMem, int numBytes)
 {
-    if (eof()) { // if we're past the end of the file, panic
-        JUT_PANICLINE(523, "RamStream::read out of bounds (pos=%d,bound=%d)\n", m_position, m_bounds);
-    }
-    // read numBytes bytes from m_ramBufferStart + m_position to destMem in mem
-    memcpy(destMem, ((u8*) m_ramBufferStart) + m_position, numBytes);
+	if (eof()) { // if we're past the end of the file, panic
+		JUT_PANICLINE(523, "RamStream::read out of bounds (pos=%d,bound=%d)\n", m_position, m_bounds);
+	}
+	// read numBytes bytes from m_ramBufferStart + m_position to destMem in mem
+	memcpy(destMem, ((u8*)m_ramBufferStart) + m_position, numBytes);
 }
 
 /*
@@ -933,15 +934,14 @@ void RamStream::read(void* destMem, int numBytes)
  * Size:	000094
  */
 
-void RamStream::write(void* srcMem, int numBytes) 
+void RamStream::write(void* srcMem, int numBytes)
 {
-    if (eof()) { // if we're past the end of the file, panic
-        JUT_PANICLINE(534, "RamStream::write out of bounds (pos=%d,bound=%d)\n", m_position, m_bounds);
-    }
-    // write numBytes bytes from srcMem to m_ramBufferStart + m_position
-    memcpy(((u8*) m_ramBufferStart) + m_position, srcMem, numBytes);
+	if (eof()) { // if we're past the end of the file, panic
+		JUT_PANICLINE(534, "RamStream::write out of bounds (pos=%d,bound=%d)\n", m_position, m_bounds);
+	}
+	// write numBytes bytes from srcMem to m_ramBufferStart + m_position
+	memcpy(((u8*)m_ramBufferStart) + m_position, srcMem, numBytes);
 }
-
 
 /*
  * --INFO--
