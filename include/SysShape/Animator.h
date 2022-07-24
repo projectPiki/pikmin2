@@ -32,8 +32,8 @@ struct Animator : public BaseAnimator {
 		m_animMgr  = nullptr;
 	}
 
-	virtual J3DMtxCalc* getCalc(); // _00
-	virtual void animate(float);   // _04
+	virtual J3DMtxCalc* getCalc(); // _08
+	virtual void animate(float);   // _0C
 
 	bool assertValid(SysShape::Model*);
 	void setCurrFrame(float);

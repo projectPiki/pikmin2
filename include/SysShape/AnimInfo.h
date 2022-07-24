@@ -15,7 +15,7 @@ struct AnimMgr;
  * @size{0x54}
  */
 struct AnimInfo : public CNode {
-	virtual ~AnimInfo(); // _00
+	virtual ~AnimInfo(); // _08
 
 	void attach(struct J3DModelData*, void*);
 	void getAnimKeyByType(unsigned long);

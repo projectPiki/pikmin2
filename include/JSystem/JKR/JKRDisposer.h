@@ -9,7 +9,7 @@ struct JKRHeap;
 // Size: 0x18
 struct JKRDisposer {
 	JKRDisposer();
-	virtual ~JKRDisposer();
+	virtual ~JKRDisposer(); // _08
 
 	// _00 vtbl
 	JKRHeap* m_heap;             // _04

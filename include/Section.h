@@ -22,22 +22,22 @@ struct Section : public ISection {
 
 	Section(JFWDisplay*, JKRHeap*, bool);
 
-	virtual ~Section();                              // _00
-	virtual void run();                              // _04
-	virtual bool update();                           // _08
-	virtual void draw(Graphics&);                    // _0C
-	virtual void init();                             // _10
-	virtual void drawInit(Graphics&);                // _14
-	virtual void drawInit(Graphics&, EDrawInitMode); // _18
-	virtual void doExit();                           // _1C
-	virtual bool forceFinish();                      // _20
-	virtual bool forceReset();                       // _24
-	virtual Section* getCurrentSection();            // _28
-	virtual void doLoadingStart();                   // _2C
-	virtual bool doLoading();                        // _30
-	virtual bool doUpdate()        = 0;              // _34
-	virtual void doDraw(Graphics&) = 0;              // _38
-	virtual bool isFinishable();                     // _3C
+	virtual ~Section();                              // _08
+	virtual void run();                              // _0C
+	virtual bool update();                           // _10
+	virtual void draw(Graphics&);                    // _14
+	virtual void init();                             // _18
+	virtual void drawInit(Graphics&);                // _1C
+	virtual void drawInit(Graphics&, EDrawInitMode); // _20
+	virtual void doExit();                           // _24
+	virtual bool forceFinish();                      // _28
+	virtual bool forceReset();                       // _2C
+	virtual Section* getCurrentSection();            // _30
+	virtual void doLoadingStart();                   // _34
+	virtual bool doLoading();                        // _38
+	virtual bool doUpdate()        = 0;              // _3C
+	virtual void doDraw(Graphics&) = 0;              // _40
+	virtual bool isFinishable();                     // _44
 
 	bool beginFrame();
 	void beginRender();
