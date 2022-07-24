@@ -71,8 +71,8 @@ struct BaseGameSection : public BaseHIOSection {
 	virtual void doDraw(Graphics&);                                              // _40
 	virtual void sendMessage(Game::GameMessage&);                                // _50
 	virtual void pre2dDraw(Graphics&);                                           // _54
-	virtual void getCurrFloor();                                                 // _58
-	virtual void isDevelopSection();                                             // _5C
+	virtual int getCurrFloor();                                                  // _58
+	virtual bool isDevelopSection();                                             // _5C
 	virtual void addChallengeScore(int);                                         // _60
 	virtual void startMainBgm();                                                 // _64
 	virtual void section_fadeout();                                              // _68
@@ -82,9 +82,9 @@ struct BaseGameSection : public BaseHIOSection {
 	virtual u32 getCaveID();                                                     // _78
 	virtual CourseInfo* getCurrentCourseInfo();                                  // _7C
 	virtual void challengeDisablePelplant();                                     // _80
-	virtual void getCaveFilename();                                              // _84
-	virtual void getEditorFilename();                                            // _88
-	virtual void getVsEditNumber();                                              // _8C
+	virtual char* getCaveFilename();                                             // _84
+	virtual char* getEditorFilename();                                           // _88
+	virtual int getVsEditNumber();                                               // _8C
 	virtual bool openContainerWindow();                                          // _90
 	virtual void closeContainerWindow();                                         // _94
 	virtual void playMovie_firstexperience(int, Game::Creature*);                // _98
@@ -92,7 +92,7 @@ struct BaseGameSection : public BaseHIOSection {
 	virtual void playMovie_helloPikmin(Game::Piki*);                             // _A0
 	virtual void enableTimer(float, unsigned long);                              // _A4
 	virtual void disableTimer(unsigned long);                                    // _A8
-	virtual void getTimerType();                                                 // _AC
+	virtual u32 getTimerType();                                                  // _AC
 	virtual void onMovieStart(Game::MovieConfig*, unsigned long, unsigned long); // _B0
 	virtual void onMovieDone(Game::MovieConfig*, unsigned long, unsigned long);  // _B4
 	virtual void onMovieCommand(int);                                            // _B8
