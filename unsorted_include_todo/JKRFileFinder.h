@@ -10,10 +10,8 @@
 */
 
 struct JKRFileFinder {
-	virtual ~JKRFileFinder(); // _08
+	virtual ~JKRFileFinder(); // _08 (inline)
 	virtual void _0C() = 0;   // _0C
-
-	// _00 VTBL
 };
 
 #endif

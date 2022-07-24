@@ -12,8 +12,6 @@
 struct JASInstRand {
 	virtual void getY(int, int) const; // _08
 	virtual void _0C() = 0;            // _0C
-
-	// _00 VTBL
 };
 
 #endif

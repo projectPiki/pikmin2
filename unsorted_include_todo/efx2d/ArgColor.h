@@ -10,9 +10,7 @@
 
 namespace efx2d {
 struct ArgColor {
-	virtual void getName(); // _08
-
-	// _00 VTBL
+	virtual void getName(); // _08 (inline)
 };
 } // namespace efx2d
 

@@ -9,9 +9,7 @@
 */
 
 struct J2DColorBlock {
-	virtual ~J2DColorBlock(); // _08
-
-	// _00 VTBL
+	virtual ~J2DColorBlock(); // _08 (inline)
 };
 
 #endif

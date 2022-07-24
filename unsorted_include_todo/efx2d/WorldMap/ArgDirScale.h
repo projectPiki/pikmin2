@@ -11,9 +11,7 @@
 namespace efx2d {
 namespace WorldMap {
 struct ArgDirScale {
-	virtual void getName(); // _08
-
-	// _00 VTBL
+	virtual void getName(); // _08 (inline)
 };
 } // namespace WorldMap
 } // namespace efx2d

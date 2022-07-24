@@ -11,15 +11,11 @@
 
 struct Splitter {
 	virtual void split2(float);        // _08
-	virtual void split4(float, float); // _0C
-
-	// _00 VTBL
+	virtual void split4(float, float); // _0C (inline)
 };
 
 struct HorizonalSplitter : public Splitter {
 	virtual void split2(float); // _08
-
-	// _00 VTBL
 };
 
 #endif

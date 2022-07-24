@@ -15,22 +15,20 @@
 */
 
 struct CNode {
-	virtual ~CNode();             // _08
+	virtual ~CNode();             // _08 (inline)
 	virtual void getChildCount(); // _0C
-
-	// _00 VTBL
 };
 
 namespace Game {
 struct EnemyGeneratorBase : public CNode {
-	virtual ~EnemyGeneratorBase();            // _08
-	virtual void doWrite(Stream&);            // _10
-	virtual void doRead(Stream&);             // _14
-	virtual void getLatestVersion();          // _18
-	virtual void draw(Graphics&, Generator*); // _1C
-	virtual void getInitialParam();           // _20
+	virtual ~EnemyGeneratorBase();            // _08 (inline)
+	virtual void doWrite(Stream&);            // _10 (inline)
+	virtual void doRead(Stream&);             // _14 (inline)
+	virtual void getLatestVersion();          // _18 (inline)
+	virtual void draw(Graphics&, Generator*); // _1C (inline)
+	virtual void getInitialParam();           // _20 (inline)
 
-	// _00 VTBL
+	EnemyGeneratorBase();
 };
 } // namespace Game
 

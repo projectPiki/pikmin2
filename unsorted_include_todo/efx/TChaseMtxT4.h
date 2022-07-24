@@ -17,13 +17,11 @@ namespace TSyncGroup4 < efx
 {
 	struct TChaseMtxT >
 	{
-		virtual void TSyncGroup4 < create(Arg*);       // _08
-		virtual void TSyncGroup4 < forceKill();        // _0C
-		virtual void TSyncGroup4 < fade();             // _10
-		virtual void TSyncGroup4 < startDemoDrawOff(); // _14
-		virtual void TSyncGroup4 < endDemoDrawOn();    // _18
-
-		// _00 VTBL
+		virtual void TSyncGroup4 < create(Arg*);       // _08 (inline)
+		virtual void TSyncGroup4 < forceKill();        // _0C (inline)
+		virtual void TSyncGroup4 < fade();             // _10 (inline)
+		virtual void TSyncGroup4 < startDemoDrawOff(); // _14 (inline)
+		virtual void TSyncGroup4 < endDemoDrawOn();    // _18 (inline)
 	};
 } // namespace efx
 } // namespace efx
@@ -31,7 +29,8 @@ namespace TSyncGroup4 < efx
 namespace efx {
 struct TChaseMtxT4 : public TChaseMtxT > {
 
-	// _00 VTBL
+	TChaseMtxT4();
+	void setMtxptr(float (*)[4]);
 };
 } // namespace efx
 

@@ -10,8 +10,6 @@
 
 struct JUTGamePad {
 	virtual ~JUTGamePad(); // _08
-
-	// _00 VTBL
 };
 
 #endif

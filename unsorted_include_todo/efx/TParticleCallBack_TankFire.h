@@ -12,20 +12,16 @@
 */
 
 struct JPAParticleCallBack {
-	virtual ~JPAParticleCallBack();                          // _08
+	virtual ~JPAParticleCallBack();                          // _08 (inline)
 	virtual void execute(JPABaseEmitter*, JPABaseParticle*); // _0C
-	virtual void draw(JPABaseEmitter*, JPABaseParticle*);    // _10
-
-	// _00 VTBL
+	virtual void draw(JPABaseEmitter*, JPABaseParticle*);    // _10 (inline)
 };
 
 namespace efx {
 struct TParticleCallBack_TankFire : public JPAParticleCallBack {
-	virtual ~TParticleCallBack_TankFire();                   // _08
+	virtual ~TParticleCallBack_TankFire();                   // _08 (inline)
 	virtual void execute(JPABaseEmitter*, JPABaseParticle*); // _0C
 	virtual void init(JPABaseEmitter*, JPABaseParticle*);    // _14
-
-	// _00 VTBL
 };
 } // namespace efx
 

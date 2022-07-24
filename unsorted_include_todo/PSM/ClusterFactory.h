@@ -13,17 +13,15 @@ namespace PSSystem {
 namespace ClusterSe {
 struct Factory {
 	virtual void constructPart(); // _08
-
-	// _00 VTBL
 };
 } // namespace ClusterSe
 } // namespace PSSystem
 
 namespace PSM {
 struct ClusterFactory : public Factory {
-	virtual void identifyPart(unsigned char); // _0C
+	virtual void identifyPart(unsigned char); // _0C (inline)
 
-	// _00 VTBL
+	void partInit(unsigned char);
 };
 } // namespace PSM
 

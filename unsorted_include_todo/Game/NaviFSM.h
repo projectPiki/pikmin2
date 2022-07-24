@@ -17,10 +17,8 @@ namespace StateMachine < Game
 	struct Navi >
 	{
 		virtual void init(Navi*);                                 // _08
-		virtual void StateMachine < start(Navi*, int, StateArg*); // _0C
-		virtual void StateMachine < exec(Navi*);                  // _10
-
-		// _00 VTBL
+		virtual void StateMachine < start(Navi*, int, StateArg*); // _0C (inline)
+		virtual void StateMachine < exec(Navi*);                  // _10 (inline)
 	};
 } // namespace Game
 } // namespace Game
@@ -29,8 +27,6 @@ namespace Game {
 struct NaviFSM : public Navi > {
 	virtual void init(Navi*);                    // _08
 	virtual void transit(Navi*, int, StateArg*); // _14
-
-	// _00 VTBL
 };
 } // namespace Game
 

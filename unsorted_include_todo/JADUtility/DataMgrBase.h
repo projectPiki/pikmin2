@@ -12,9 +12,9 @@
 namespace JADUtility {
 struct DataMgrBase {
 	virtual ~DataMgrBase(); // _08
-	virtual void init();    // _0C
+	virtual void init();    // _0C (inline)
 
-	// _00 VTBL
+	DataMgrBase();
 };
 } // namespace JADUtility
 

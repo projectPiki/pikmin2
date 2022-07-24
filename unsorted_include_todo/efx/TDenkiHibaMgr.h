@@ -16,7 +16,8 @@ struct TDenkiHibaMgr {
 	virtual void forceKill();  // _0C
 	virtual void fade();       // _10
 
-	// _00 VTBL
+	void createHiba(int);
+	void setRateLOD(int);
 };
 } // namespace efx
 

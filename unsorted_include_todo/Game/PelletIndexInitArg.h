@@ -10,16 +10,14 @@
 
 namespace Game {
 struct PelletInitArg {
-	virtual void getName(); // _08
-
-	// _00 VTBL
+	virtual void getName(); // _08 (inline)
 };
 } // namespace Game
 
 namespace Game {
 struct PelletIndexInitArg : public PelletInitArg {
 
-	// _00 VTBL
+	PelletIndexInitArg();
 };
 } // namespace Game
 

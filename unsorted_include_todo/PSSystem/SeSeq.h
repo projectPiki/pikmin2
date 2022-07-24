@@ -31,13 +31,11 @@ struct SeqBase {
 	virtual void stopSeq(unsigned long); // _18
 	virtual void pauseOn(PauseMode);     // _1C
 	virtual void pauseOff();             // _20
-	virtual void getCastType();          // _24
-	virtual void getSeqType();           // _28
+	virtual void getCastType();          // _24 (inline)
+	virtual void getSeqType();           // _28 (inline)
 	virtual void exec();                 // _2C
 	virtual void onPlayingFrame();       // _30
 	virtual void isPlaying();            // _34
-
-	// _00 VTBL
 };
 } // namespace PSSystem
 
@@ -45,13 +43,11 @@ namespace PSSystem {
 struct SeSeq : public SeqBase {
 	virtual ~SeSeq();                    // _08
 	virtual void stopSeq(unsigned long); // _18
-	virtual void getCastType();          // _24
-	virtual void getSeqType();           // _28
+	virtual void getCastType();          // _24 (inline)
+	virtual void getSeqType();           // _28 (inline)
 	virtual void seqLoadAfter();         // _38
-	virtual void getHandleP();           // _3C
+	virtual void getHandleP();           // _3C (inline)
 	virtual void setConfigVolume();      // _40
-
-	// _00 VTBL
 };
 } // namespace PSSystem
 

@@ -26,8 +26,6 @@ struct J3DMaterial {
 	virtual void loadSharedDL();                     // _1C
 	virtual void patch();                            // _20
 	virtual void diff(unsigned long);                // _24
-
-	// _00 VTBL
 };
 
 struct J3DPatchedMaterial : public J3DMaterial {
@@ -37,8 +35,6 @@ struct J3DPatchedMaterial : public J3DMaterial {
 	virtual void loadSharedDL();          // _1C
 	virtual void reset();                 // _28
 	virtual void change();                // _2C
-
-	// _00 VTBL
 };
 
 #endif

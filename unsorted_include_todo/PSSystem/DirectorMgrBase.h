@@ -11,10 +11,14 @@
 
 namespace PSSystem {
 struct DirectorMgrBase {
-	virtual ~DirectorMgrBase(); // _08
+	virtual ~DirectorMgrBase(); // _08 (inline)
 	virtual void _0C() = 0;     // _0C
 
-	// _00 VTBL
+	DirectorMgrBase();
+	void initAndAdaptToBgm(PSSystem::DirectedBgm&);
+	void playInit(JASTrack*);
+	void exec();
+	void off(PSSystem::DirectedBgm*);
 };
 } // namespace PSSystem
 

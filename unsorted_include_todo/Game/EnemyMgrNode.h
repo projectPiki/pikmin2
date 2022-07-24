@@ -38,61 +38,55 @@
 */
 
 struct CNode {
-    virtual void _08() = 0;       // _08
+    virtual ~CNode();             // _08 (inline)
     virtual void getChildCount(); // _0C
-
-    // _00 VTBL
 };
 
 struct GenericObjectMgr {
-    virtual void _08() = 0;       // _08
-    virtual void _0C() = 0;       // _0C
-    virtual void _10() = 0;       // _10
-    virtual void _14() = 0;       // _14
-    virtual void _18() = 0;       // _18
-    virtual void _1C() = 0;       // _1C
-    virtual void _20() = 0;       // _20
-    virtual void _24() = 0;       // _24
-    virtual void _28() = 0;       // _28
-    virtual void _2C() = 0;       // _2C
-    virtual void _30() = 0;       // _30
-    virtual void loadResources(); // _34
-    virtual void resetMgr();      // _38
-    virtual void pausable();      // _3C
-    virtual void frozenable();    // _40
-
-    // _00 VTBL
+    virtual ~GenericObjectMgr();               // _08 (inline)
+    virtual void _0C() = 0;                    // _0C
+    virtual void _10() = 0;                    // _10
+    virtual void _14() = 0;                    // _14
+    virtual void @24 @doAnimation();           // _18 (inline)
+    virtual void @24 @doEntry();               // _1C (inline)
+    virtual void @24 @doSetView(int);          // _20 (inline)
+    virtual void @24 @doViewCalc();            // _24 (inline)
+    virtual void @24 @doSimulation(float);     // _28 (inline)
+    virtual void @24 @doDirectDraw(Graphics&); // _2C (inline)
+    virtual void @24 @doSimpleDraw(Viewport*); // _30 (inline)
+    virtual void loadResources();              // _34 (inline)
+    virtual void resetMgr();                   // _38 (inline)
+    virtual void pausable();                   // _3C (inline)
+    virtual void frozenable();                 // _40 (inline)
 };
 
 namespace Game {
 struct EnemyMgrNode : public CNode, public GenericObjectMgr {
-    virtual ~EnemyMgrNode();                    // _08
+    virtual ~EnemyMgrNode();                    // _08 (inline)
     virtual void _10() = 0;                     // _10
     virtual void _14() = 0;                     // _14
-    virtual void @24 @doAnimation();            // _18
-    virtual void @24 @doEntry();                // _1C
-    virtual void @24 @doSetView(int);           // _20
-    virtual void @24 @doViewCalc();             // _24
-    virtual void @24 @doSimulation(float);      // _28
-    virtual void @24 @doDirectDraw(Graphics&);  // _2C
-    virtual void @24 @doSimpleDraw(Viewport*);  // _30
-    virtual void @24 @getMatrixLoadType();      // _44
-    virtual void doAnimation();                 // _48
-    virtual void doEntry();                     // _4C
-    virtual void doSetView(int);                // _50
-    virtual void doViewCalc();                  // _54
-    virtual void doSimulation(float);           // _58
-    virtual void doDirectDraw(Graphics&);       // _5C
-    virtual void doSimpleDraw(Viewport*);       // _60
-    virtual void killAll(CreatureKillArg*);     // _64
-    virtual void setupSoundViewerAndBas();      // _68
-    virtual void setDebugParm(unsigned long);   // _6C
-    virtual void resetDebugParm(unsigned long); // _70
-    virtual void startMovie();                  // _74
-    virtual void endMovie();                    // _78
-    virtual void getMatrixLoadType();           // _7C
-
-    // _00 VTBL
+    virtual void @24 @doAnimation();            // _18 (inline)
+    virtual void @24 @doEntry();                // _1C (inline)
+    virtual void @24 @doSetView(int);           // _20 (inline)
+    virtual void @24 @doViewCalc();             // _24 (inline)
+    virtual void @24 @doSimulation(float);      // _28 (inline)
+    virtual void @24 @doDirectDraw(Graphics&);  // _2C (inline)
+    virtual void @24 @doSimpleDraw(Viewport*);  // _30 (inline)
+    virtual void @24 @getMatrixLoadType();      // _44 (inline)
+    virtual void doAnimation();                 // _48 (inline)
+    virtual void doEntry();                     // _4C (inline)
+    virtual void doSetView(int);                // _50 (inline)
+    virtual void doViewCalc();                  // _54 (inline)
+    virtual void doSimulation(float);           // _58 (inline)
+    virtual void doDirectDraw(Graphics&);       // _5C (inline)
+    virtual void doSimpleDraw(Viewport*);       // _60 (inline)
+    virtual void killAll(CreatureKillArg*);     // _64 (inline)
+    virtual void setupSoundViewerAndBas();      // _68 (inline)
+    virtual void setDebugParm(unsigned long);   // _6C (inline)
+    virtual void resetDebugParm(unsigned long); // _70 (inline)
+    virtual void startMovie();                  // _74 (inline)
+    virtual void endMovie();                    // _78 (inline)
+    virtual void getMatrixLoadType();           // _7C (inline)
 };
 } // namespace Game
 

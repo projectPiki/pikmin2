@@ -12,7 +12,8 @@ namespace Game {
 struct OptimiseController {
 	virtual ~OptimiseController(); // _08
 
-	// _00 VTBL
+	void globalInstance();
+	void deleteInstance();
 };
 } // namespace Game
 

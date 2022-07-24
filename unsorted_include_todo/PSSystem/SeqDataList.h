@@ -14,13 +14,14 @@
 
 namespace PSSystem {
 struct SeqDataList {
-    virtual ~SeqDataList();     // _08
-    virtual void read(Stream&); // _0C
+    virtual ~SeqDataList();     // _08 (inline)
+    virtual void read(Stream&); // _0C (inline)
     virtual void _10() = 0;     // _10
     virtual void _14() = 0;     // _14
-    virtual void @28 @__dt();   // _18
+    virtual void @28 @__dt();   // _18 (inline)
 
-    // _00 VTBL
+    SeqDataList();
+    void getSeqVolume(const char*);
 };
 } // namespace PSSystem
 

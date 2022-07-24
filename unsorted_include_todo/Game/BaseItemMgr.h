@@ -35,48 +35,56 @@
 */
 
 struct GenericObjectMgr {
-	virtual void doAnimation();           // _08
-	virtual void doEntry();               // _0C
-	virtual void doSetView(int);          // _10
-	virtual void doViewCalc();            // _14
-	virtual void doSimulation(float);     // _18
-	virtual void doDirectDraw(Graphics&); // _1C
-	virtual void doSimpleDraw(Viewport*); // _20
+	virtual void doAnimation();           // _08 (inline)
+	virtual void doEntry();               // _0C (inline)
+	virtual void doSetView(int);          // _10 (inline)
+	virtual void doViewCalc();            // _14 (inline)
+	virtual void doSimulation(float);     // _18 (inline)
+	virtual void doDirectDraw(Graphics&); // _1C (inline)
+	virtual void doSimpleDraw(Viewport*); // _20 (inline)
 	virtual void loadResources();         // _24
-	virtual void resetMgr();              // _28
-	virtual void pausable();              // _2C
-	virtual void frozenable();            // _30
-	virtual void getMatrixLoadType();     // _34
-
-	// _00 VTBL
+	virtual void resetMgr();              // _28 (inline)
+	virtual void pausable();              // _2C (inline)
+	virtual void frozenable();            // _30 (inline)
+	virtual void getMatrixLoadType();     // _34 (inline)
 };
 
 namespace Game {
 struct BaseItemMgr : public GenericObjectMgr {
-	virtual void doAnimation();                                       // _08
-	virtual void doEntry();                                           // _0C
-	virtual void doSetView(int);                                      // _10
-	virtual void doViewCalc();                                        // _14
-	virtual void doSimulation(float);                                 // _18
-	virtual void doDirectDraw(Graphics&);                             // _1C
+	virtual void doAnimation();                                       // _08 (inline)
+	virtual void doEntry();                                           // _0C (inline)
+	virtual void doSetView(int);                                      // _10 (inline)
+	virtual void doViewCalc();                                        // _14 (inline)
+	virtual void doSimulation(float);                                 // _18 (inline)
+	virtual void doDirectDraw(Graphics&);                             // _1C (inline)
 	virtual void loadResources();                                     // _24
 	virtual void _38() = 0;                                           // _38
-	virtual void killAll();                                           // _3C
-	virtual void setup(BaseItem*);                                    // _40
+	virtual void killAll();                                           // _3C (inline)
+	virtual void setup(BaseItem*);                                    // _40 (inline)
 	virtual void setupSoundViewerAndBas();                            // _44
-	virtual void onLoadResources();                                   // _48
-	virtual void loadEverytime();                                     // _4C
+	virtual void onLoadResources();                                   // _48 (inline)
+	virtual void loadEverytime();                                     // _4C (inline)
 	virtual void updateUseList(GenItemParm*, int);                    // _50
-	virtual void onUpdateUseList(GenItemParm*, int);                  // _54
+	virtual void onUpdateUseList(GenItemParm*, int);                  // _54 (inline)
 	virtual void _58() = 0;                                           // _58
 	virtual void _5C() = 0;                                           // _5C
-	virtual void generatorWrite(Stream&, GenItemParm*);               // _60
-	virtual void generatorRead(Stream&, GenItemParm*, unsigned long); // _64
-	virtual void generatorLocalVersion();                             // _68
+	virtual void generatorWrite(Stream&, GenItemParm*);               // _60 (inline)
+	virtual void generatorRead(Stream&, GenItemParm*, unsigned long); // _64 (inline)
+	virtual void generatorLocalVersion();                             // _68 (inline)
 	virtual void generatorGetShape(GenItemParm*);                     // _6C
 	virtual void generatorNewItemParm();                              // _70
 
-	// _00 VTBL
+	BaseItemMgr();
+	void setModelSize(int);
+	void loadArchive(char*);
+	void loadBmd(char*, int, unsigned long);
+	void loadAnimMgr(JKRFileLoader*, char*);
+	void loadCollision(JKRFileLoader*, char*);
+	void getModelData(int);
+	void openTextArc(char*);
+	void closeTextArc(JKRArchive*);
+	void loadPlatform(JKRFileLoader*, char*);
+	void loadPlatAttacher(JKRFileLoader*, char*);
 };
 } // namespace Game
 

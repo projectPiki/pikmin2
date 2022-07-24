@@ -15,14 +15,19 @@
 
 namespace JStudio {
 struct TFunctionValue_list_parameter {
-	virtual ~TFunctionValue_list_parameter(); // _08
+	virtual ~TFunctionValue_list_parameter(); // _08 (inline)
 	virtual void getType() const;             // _0C
 	virtual void getAttributeSet();           // _10
 	virtual void initialize();                // _14
 	virtual void prepare();                   // _18
 	virtual void getValue(double);            // _1C
 
-	// _00 VTBL
+	TFunctionValue_list_parameter();
+	void data_set(const float*, unsigned long);
+	void update_INTERPOLATE_NONE_(const JStudio::TFunctionValue_list_parameter&, double);
+	void update_INTERPOLATE_LINEAR_(const JStudio::TFunctionValue_list_parameter&, double);
+	void update_INTERPOLATE_PLATEAU_(const JStudio::TFunctionValue_list_parameter&, double);
+	void update_INTERPOLATE_BSPLINE_dataMore3_(const JStudio::TFunctionValue_list_parameter&, double);
 };
 } // namespace JStudio
 

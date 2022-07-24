@@ -17,20 +17,16 @@ struct CNode {
     virtual void getCarryInfoParam(CarryInfoParam&); // _08
     virtual void _0C() = 0;                          // _0C
     virtual void _10() = 0;                          // _10
-    virtual void @4 @__dt();                         // _14
+    virtual void @4 @__dt();                         // _14 (inline)
     virtual void getChildCount();                    // _18
-
-    // _00 VTBL
 };
 
 struct PokoInfoOwner : public CNode {
     virtual void getCarryInfoParam(CarryInfoParam&); // _08
     virtual void _0C() = 0;                          // _0C
     virtual void _10() = 0;                          // _10
-    virtual void @4 @__dt();                         // _14
-    virtual ~PokoInfoOwner();                        // _1C
-
-    // _00 VTBL
+    virtual void @4 @__dt();                         // _14 (inline)
+    virtual ~PokoInfoOwner();                        // _1C (inline)
 };
 
 #endif

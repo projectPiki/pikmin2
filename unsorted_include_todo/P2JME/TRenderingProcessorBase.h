@@ -34,27 +34,25 @@
 
 namespace JMessage {
 struct TProcessor {
-	virtual void _08() = 0;                                                    // _08
+	virtual ~TProcessor();                                                     // _08 (inline)
 	virtual void do_reset();                                                   // _0C
-	virtual void _10() = 0;                                                    // _10
-	virtual void _14() = 0;                                                    // _14
+	virtual void do_character(int);                                            // _10 (inline)
+	virtual void do_tag(unsigned long, const void*, unsigned long);            // _14
 	virtual void do_systemTagCode(unsigned short, const void*, unsigned long); // _18
 	virtual void do_select_begin(unsigned long);                               // _1C
 	virtual void do_select_end();                                              // _20
 	virtual void do_select_separate();                                         // _24
 	virtual void _28() = 0;                                                    // _28
 	virtual void do_setBegin_isReady_() const;                                 // _2C
-
-	// _00 VTBL
 };
 } // namespace JMessage
 
 namespace JMessage {
 struct TRenderingProcessor {
-	virtual void _08() = 0;                                                     // _08
+	virtual ~TRenderingProcessor();                                             // _08 (inline)
 	virtual void _0C() = 0;                                                     // _0C
-	virtual void _10() = 0;                                                     // _10
-	virtual void _14() = 0;                                                     // _14
+	virtual void do_character(int);                                             // _10 (inline)
+	virtual void do_tag(unsigned long, const void*, unsigned long);             // _14
 	virtual void _18() = 0;                                                     // _18
 	virtual void _1C() = 0;                                                     // _1C
 	virtual void _20() = 0;                                                     // _20
@@ -67,27 +65,25 @@ struct TRenderingProcessor {
 	virtual void do_systemTagCode_(unsigned short, const void*, unsigned long); // _3C
 	virtual void do_begin(const void*, const char*);                            // _40
 	virtual void do_end();                                                      // _44
-
-	// _00 VTBL
 };
 } // namespace JMessage
 
 namespace P2JME {
 struct TRenderingProcessorBase : public TProcessor, public TRenderingProcessor {
-	virtual ~TRenderingProcessorBase();                                   // _08
-	virtual void do_character(int);                                       // _10
+	virtual ~TRenderingProcessorBase();                                   // _08 (inline)
+	virtual void do_character(int);                                       // _10 (inline)
 	virtual void do_tag(unsigned long, const void*, unsigned long);       // _14
-	virtual void tagColor(const void*, unsigned long);                    // _48
-	virtual void tagSize(const void*, unsigned long);                     // _4C
-	virtual void tagRuby(const void*, unsigned long);                     // _50
-	virtual void tagFont(const void*, unsigned long);                     // _54
-	virtual void tagImage(unsigned short, const void*, unsigned long);    // _58
-	virtual void tagColorEX(unsigned short, const void*, unsigned long);  // _5C
-	virtual void tagControl(unsigned short, const void*, unsigned long);  // _60
-	virtual void tagPosition(unsigned short, const void*, unsigned long); // _64
+	virtual void tagColor(const void*, unsigned long);                    // _48 (inline)
+	virtual void tagSize(const void*, unsigned long);                     // _4C (inline)
+	virtual void tagRuby(const void*, unsigned long);                     // _50 (inline)
+	virtual void tagFont(const void*, unsigned long);                     // _54 (inline)
+	virtual void tagImage(unsigned short, const void*, unsigned long);    // _58 (inline)
+	virtual void tagColorEX(unsigned short, const void*, unsigned long);  // _5C (inline)
+	virtual void tagControl(unsigned short, const void*, unsigned long);  // _60 (inline)
+	virtual void tagPosition(unsigned short, const void*, unsigned long); // _64 (inline)
 	virtual void _68() = 0;                                               // _68
 
-	// _00 VTBL
+	TRenderingProcessorBase();
 };
 } // namespace P2JME
 

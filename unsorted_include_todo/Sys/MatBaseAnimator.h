@@ -13,10 +13,12 @@
 namespace Sys {
 struct MatBaseAnimator {
 	virtual void start(MatBaseAnimation*); // _08
-	virtual void onStart();                // _0C
-	virtual void do_animate(float);        // _10
+	virtual void onStart();                // _0C (inline)
+	virtual void do_animate(float);        // _10 (inline)
 
-	// _00 VTBL
+	MatBaseAnimator();
+	void setCurrentFrame(float);
+	void animate(float);
 };
 } // namespace Sys
 

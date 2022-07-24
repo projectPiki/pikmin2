@@ -14,10 +14,8 @@
 struct DynamicsParms {
     virtual void _08() = 0;   // _08
     virtual void _0C() = 0;   // _0C
-    virtual void @12 @__dt(); // _10
-    virtual ~DynamicsParms(); // _14
-
-    // _00 VTBL
+    virtual void @12 @__dt(); // _10 (inline)
+    virtual ~DynamicsParms(); // _14 (inline)
 };
 
 #endif

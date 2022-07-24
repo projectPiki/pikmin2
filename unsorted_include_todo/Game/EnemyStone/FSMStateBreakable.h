@@ -22,12 +22,10 @@ namespace FSMState < Game
 	{
 		virtual void init(DrawInfo*, StateArg*);                    // _08
 		virtual void exec(DrawInfo*);                               // _0C
-		virtual void FSMState < cleanup(DrawInfo*);                 // _10
-		virtual void FSMState < resume(DrawInfo*);                  // _14
-		virtual void FSMState < restart(DrawInfo*);                 // _18
-		virtual void FSMState < transit(DrawInfo*, int, StateArg*); // _1C
-
-		// _00 VTBL
+		virtual void FSMState < cleanup(DrawInfo*);                 // _10 (inline)
+		virtual void FSMState < resume(DrawInfo*);                  // _14 (inline)
+		virtual void FSMState < restart(DrawInfo*);                 // _18 (inline)
+		virtual void FSMState < transit(DrawInfo*, int, StateArg*); // _1C (inline)
 	};
 	} // namespace EnemyStone
 } // namespace Game
@@ -39,8 +37,6 @@ struct FSMStateBreakable : public DrawInfo > {
 	virtual void init(DrawInfo*, StateArg*);      // _08
 	virtual void exec(DrawInfo*);                 // _0C
 	virtual void makeMatrix(DrawInfo*, Matrixf*); // _20
-
-	// _00 VTBL
 };
 } // namespace EnemyStone
 } // namespace Game

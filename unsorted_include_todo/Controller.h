@@ -9,9 +9,7 @@
 */
 
 struct Controller {
-	virtual ~Controller(); // _08
-
-	// _00 VTBL
+	virtual ~Controller(); // _08 (inline)
 };
 
 #endif

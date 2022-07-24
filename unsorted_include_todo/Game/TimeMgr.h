@@ -10,17 +10,26 @@
 */
 
 struct CNode {
-	virtual ~CNode();             // _08
+	virtual ~CNode();             // _08 (inline)
 	virtual void getChildCount(); // _0C
-
-	// _00 VTBL
 };
 
 namespace Game {
 struct TimeMgr : public CNode {
-	virtual ~TimeMgr(); // _08
+	virtual ~TimeMgr(); // _08 (inline)
 
-	// _00 VTBL
+	TimeMgr();
+	void init();
+	void setTime(float);
+	void setStartTime();
+	void setEndTime();
+	void updateSlot();
+	void getSunGaugeRatio();
+	void update();
+	void isDayOver();
+	void isDayTime();
+	void getRealDayTime();
+	void loadSettingFile(char*);
 };
 } // namespace Game
 

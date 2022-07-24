@@ -19,11 +19,9 @@ namespace StateMachine < Game
 	struct Item >
 	{
 		virtual void init(Item*);                                   // _08
-		virtual void StateMachine < start(Item*, int, StateArg*);   // _0C
-		virtual void StateMachine < exec(Item*);                    // _10
-		virtual void StateMachine < transit(Item*, int, StateArg*); // _14
-
-		// _00 VTBL
+		virtual void StateMachine < start(Item*, int, StateArg*);   // _0C (inline)
+		virtual void StateMachine < exec(Item*);                    // _10 (inline)
+		virtual void StateMachine < transit(Item*, int, StateArg*); // _14 (inline)
 	};
 	} // namespace ItemBigFountain
 } // namespace Game
@@ -34,8 +32,6 @@ namespace ItemBigFountain {
 struct FSM : public Item > {
 	virtual void init(Item*); // _08
 	virtual void _18() = 0;   // _18
-
-	// _00 VTBL
 };
 } // namespace ItemBigFountain
 } // namespace Game

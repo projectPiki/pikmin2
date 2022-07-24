@@ -24,8 +24,6 @@ struct TScreenBaseInterface {
 	virtual void _18() = 0; // _18
 	virtual void _1C() = 0; // _1C
 	virtual void _20() = 0; // _20
-
-	// _00 VTBL
 };
 } // namespace Screen
 } // namespace ebi

@@ -38,7 +38,7 @@ struct TAdaptor_fog {
 	virtual void _38() = 0;                                                                                        // _38
 	virtual void _3C() = 0;                                                                                        // _3C
 
-	// _00 VTBL
+	TAdaptor_fog();
 };
 } // namespace JStudio_JStage
 

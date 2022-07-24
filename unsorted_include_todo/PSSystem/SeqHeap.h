@@ -14,7 +14,8 @@ struct SeqHeap {
 	virtual ~SeqHeap();                      // _08
 	virtual void loadSeqAsync(TaskChecker*); // _0C
 
-	// _00 VTBL
+	void requestCallback(unsigned long, unsigned short, JAISequence*);
+	void loadedCallback(unsigned long, unsigned long);
 };
 } // namespace PSSystem
 

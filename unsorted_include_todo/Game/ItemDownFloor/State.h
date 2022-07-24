@@ -25,19 +25,17 @@ namespace FSMState < Game
 	namespace ItemDownFloor {
 	struct Item >
 	{
-		virtual void FSMState < init(Item*, StateArg*);              // _08
-		virtual void FSMState < exec(Item*);                         // _0C
-		virtual void FSMState < cleanup(Item*);                      // _10
-		virtual void FSMState < resume(Item*);                       // _14
-		virtual void FSMState < restart(Item*);                      // _18
-		virtual void FSMState < transit(Item*, int, StateArg*);      // _1C
-		virtual void ItemState < onDamage(Item*, float);             // _20
-		virtual void onKeyEvent(Item*, const SysShape::KeyEvent&);   // _24
-		virtual void ItemState < onBounce(Item*, Sys::Triangle*);    // _28
-		virtual void ItemState < onPlatCollision(Item*, PlatEvent&); // _2C
-		virtual void ItemState < onCollision(Item*, CollEvent&);     // _30
-
-		// _00 VTBL
+		virtual void FSMState < init(Item*, StateArg*);              // _08 (inline)
+		virtual void FSMState < exec(Item*);                         // _0C (inline)
+		virtual void FSMState < cleanup(Item*);                      // _10 (inline)
+		virtual void FSMState < resume(Item*);                       // _14 (inline)
+		virtual void FSMState < restart(Item*);                      // _18 (inline)
+		virtual void FSMState < transit(Item*, int, StateArg*);      // _1C (inline)
+		virtual void ItemState < onDamage(Item*, float);             // _20 (inline)
+		virtual void onKeyEvent(Item*, const SysShape::KeyEvent&);   // _24 (inline)
+		virtual void ItemState < onBounce(Item*, Sys::Triangle*);    // _28 (inline)
+		virtual void ItemState < onPlatCollision(Item*, PlatEvent&); // _2C (inline)
+		virtual void ItemState < onCollision(Item*, CollEvent&);     // _30 (inline)
 	};
 	} // namespace ItemDownFloor
 } // namespace Game
@@ -46,10 +44,8 @@ namespace FSMState < Game
 namespace Game {
 namespace ItemDownFloor {
 struct State : public Item > {
-	virtual void onKeyEvent(Item*, const SysShape::KeyEvent&); // _24
-	virtual void onPlat(Item*);                                // _34
-
-	// _00 VTBL
+	virtual void onKeyEvent(Item*, const SysShape::KeyEvent&); // _24 (inline)
+	virtual void onPlat(Item*);                                // _34 (inline)
 };
 } // namespace ItemDownFloor
 } // namespace Game

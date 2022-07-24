@@ -13,7 +13,7 @@ namespace ClusterSe {
 struct Part {
 	virtual void callSe(JAInter::Object*); // _08
 
-	// _00 VTBL
+	Part();
 };
 } // namespace ClusterSe
 } // namespace PSSystem

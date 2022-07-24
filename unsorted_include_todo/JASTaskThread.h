@@ -12,8 +12,6 @@
 struct JASTaskThread {
 	virtual ~JASTaskThread(); // _08
 	virtual void run();       // _0C
-
-	// _00 VTBL
 };
 
 #endif

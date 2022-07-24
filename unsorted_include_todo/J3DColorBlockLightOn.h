@@ -49,31 +49,29 @@ struct J3DColorBlockLightOn {
 	virtual void diffMatColor();                                   // _20
 	virtual void diffLight();                                      // _24
 	virtual void countDLSize();                                    // _28
-	virtual void getType();                                        // _2C
-	virtual void setMatColor(unsigned long, const J3DGXColor*);    // _30
-	virtual void setMatColor(unsigned long, J3DGXColor);           // _34
-	virtual void getMatColor(unsigned long);                       // _38
-	virtual void setAmbColor(unsigned long, const J3DGXColor*);    // _3C
-	virtual void setAmbColor(unsigned long, J3DGXColor);           // _40
-	virtual void getAmbColor(unsigned long);                       // _44
-	virtual void setColorChanNum(unsigned char);                   // _48
-	virtual void setColorChanNum(const unsigned char*);            // _4C
-	virtual void getColorChanNum() const;                          // _50
-	virtual void setColorChan(unsigned long, const J3DColorChan&); // _54
-	virtual void setColorChan(unsigned long, const J3DColorChan*); // _58
-	virtual void getColorChan(unsigned long);                      // _5C
-	virtual void setLight(unsigned long, J3DLightObj*);            // _60
-	virtual void getLight(unsigned long);                          // _64
-	virtual void setCullMode(const unsigned char*);                // _68
-	virtual void setCullMode(unsigned char);                       // _6C
-	virtual void getCullMode() const;                              // _70
-	virtual void getMatColorOffset() const;                        // _74
-	virtual void getColorChanOffset() const;                       // _78
-	virtual void setMatColorOffset(unsigned long);                 // _7C
-	virtual void setColorChanOffset(unsigned long);                // _80
-	virtual ~J3DColorBlockLightOn();                               // _84
-
-	// _00 VTBL
+	virtual void getType();                                        // _2C (inline)
+	virtual void setMatColor(unsigned long, const J3DGXColor*);    // _30 (inline)
+	virtual void setMatColor(unsigned long, J3DGXColor);           // _34 (inline)
+	virtual void getMatColor(unsigned long);                       // _38 (inline)
+	virtual void setAmbColor(unsigned long, const J3DGXColor*);    // _3C (inline)
+	virtual void setAmbColor(unsigned long, J3DGXColor);           // _40 (inline)
+	virtual void getAmbColor(unsigned long);                       // _44 (inline)
+	virtual void setColorChanNum(unsigned char);                   // _48 (inline)
+	virtual void setColorChanNum(const unsigned char*);            // _4C (inline)
+	virtual void getColorChanNum() const;                          // _50 (inline)
+	virtual void setColorChan(unsigned long, const J3DColorChan&); // _54 (inline)
+	virtual void setColorChan(unsigned long, const J3DColorChan*); // _58 (inline)
+	virtual void getColorChan(unsigned long);                      // _5C (inline)
+	virtual void setLight(unsigned long, J3DLightObj*);            // _60 (inline)
+	virtual void getLight(unsigned long);                          // _64 (inline)
+	virtual void setCullMode(const unsigned char*);                // _68 (inline)
+	virtual void setCullMode(unsigned char);                       // _6C (inline)
+	virtual void getCullMode() const;                              // _70 (inline)
+	virtual void getMatColorOffset() const;                        // _74 (inline)
+	virtual void getColorChanOffset() const;                       // _78 (inline)
+	virtual void setMatColorOffset(unsigned long);                 // _7C (inline)
+	virtual void setColorChanOffset(unsigned long);                // _80 (inline)
+	virtual ~J3DColorBlockLightOn();                               // _84 (inline)
 };
 
 #endif

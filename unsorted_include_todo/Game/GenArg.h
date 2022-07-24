@@ -10,9 +10,7 @@
 
 namespace Game {
 struct GenArg {
-	virtual void getName(); // _08
-
-	// _00 VTBL
+	virtual void getName(); // _08 (inline)
 };
 } // namespace Game
 

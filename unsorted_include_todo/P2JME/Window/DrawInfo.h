@@ -11,19 +11,17 @@
 */
 
 struct CNode {
-	virtual ~CNode();             // _08
+	virtual ~CNode();             // _08 (inline)
 	virtual void getChildCount(); // _0C
-
-	// _00 VTBL
 };
 
 namespace P2JME {
 namespace Window {
 struct DrawInfo : public CNode {
-	virtual ~DrawInfo();    // _08
+	virtual ~DrawInfo();    // _08 (inline)
 	virtual void _10() = 0; // _10
 
-	// _00 VTBL
+	DrawInfo();
 };
 } // namespace Window
 } // namespace P2JME

@@ -11,9 +11,7 @@
 namespace Game {
 namespace EnemyFunc {
 struct ConditionPikminNearby {
-	virtual void satisfy(Creature*); // _08
-
-	// _00 VTBL
+	virtual void satisfy(Creature*); // _08 (inline)
 };
 } // namespace EnemyFunc
 } // namespace Game

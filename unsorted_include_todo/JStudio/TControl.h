@@ -12,7 +12,9 @@ namespace JStudio {
 struct TControl {
 	virtual ~TControl(); // _08
 
-	// _00 VTBL
+	TControl();
+	void transformOnSet_setOrigin(const Vec&, float);
+	void transformOnGet_setOrigin(const Vec&, float);
 };
 } // namespace JStudio
 

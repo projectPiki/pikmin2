@@ -11,11 +11,9 @@
 */
 
 struct J3DUMtxCacheBase {
-	virtual ~J3DUMtxCacheBase(); // _08
+	virtual ~J3DUMtxCacheBase(); // _08 (inline)
 	virtual void _0C() = 0;      // _0C
 	virtual void _10() = 0;      // _10
-
-	// _00 VTBL
 };
 
 #endif

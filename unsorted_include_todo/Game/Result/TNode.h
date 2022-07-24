@@ -11,19 +11,20 @@
 
 namespace Game {
 struct DNode {
-	virtual ~DNode();             // _08
+	virtual ~DNode();             // _08 (inline)
 	virtual void getChildCount(); // _0C
-
-	// _00 VTBL
 };
 } // namespace Game
 
 namespace Game {
 namespace Result {
 struct TNode : public DNode {
-	virtual ~TNode(); // _08
+	virtual ~TNode(); // _08 (inline)
 
-	// _00 VTBL
+	TNode();
+	void setTNode(unsigned long long, JUTTexture*, int, int, int);
+	void setTNode(unsigned long long, JUTTexture*, int, int, int, int);
+	void convertByMorimun(int);
 };
 } // namespace Result
 } // namespace Game

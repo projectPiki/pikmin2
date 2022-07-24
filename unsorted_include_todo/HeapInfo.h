@@ -18,17 +18,13 @@ struct Node {
     virtual void update();         // _08
     virtual void draw(Graphics&);  // _0C
     virtual void displayInfo(int); // _10
-
-    // _00 VTBL
 };
 
 struct HeapInfo : public Node {
     virtual void _14() = 0;   // _14
     virtual void _18() = 0;   // _18
-    virtual void @36 @__dt(); // _1C
-    virtual ~HeapInfo();      // _20
-
-    // _00 VTBL
+    virtual void @36 @__dt(); // _1C (inline)
+    virtual ~HeapInfo();      // _20 (inline)
 };
 
 #endif

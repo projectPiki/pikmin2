@@ -10,8 +10,6 @@
 
 struct JUTGraphFifo {
 	virtual ~JUTGraphFifo(); // _08
-
-	// _00 VTBL
 };
 
 #endif

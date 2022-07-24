@@ -10,17 +10,13 @@
 */
 
 struct CNode {
-	virtual ~CNode();             // _08
+	virtual ~CNode();             // _08 (inline)
 	virtual void getChildCount(); // _0C
-
-	// _00 VTBL
 };
 
 namespace Game {
 struct LimitGen : public CNode {
-	virtual ~LimitGen(); // _08
-
-	// _00 VTBL
+	virtual ~LimitGen(); // _08 (inline)
 };
 } // namespace Game
 

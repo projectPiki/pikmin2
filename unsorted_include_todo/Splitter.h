@@ -10,10 +10,8 @@
 */
 
 struct Splitter {
-	virtual void split2(float);        // _08
-	virtual void split4(float, float); // _0C
-
-	// _00 VTBL
+	virtual void split2(float);        // _08 (inline)
+	virtual void split4(float, float); // _0C (inline)
 };
 
 #endif

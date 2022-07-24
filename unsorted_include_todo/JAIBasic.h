@@ -24,8 +24,6 @@ struct JAIBasic {
 	virtual void getMapInfoFxParameter(unsigned long); // _1C
 	virtual void setSeExtParameter(JAISound*);         // _20
 	virtual void setRegisterTrackCallback();           // _24
-
-	// _00 VTBL
 };
 
 #endif

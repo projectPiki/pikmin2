@@ -17,21 +17,17 @@ namespace TSyncGroup2 < efx
 {
 	struct TChasePos >
 	{
-		virtual void TSyncGroup2 < create(Arg*);       // _08
-		virtual void TSyncGroup2 < forceKill();        // _0C
-		virtual void TSyncGroup2 < fade();             // _10
-		virtual void TSyncGroup2 < startDemoDrawOff(); // _14
-		virtual void TSyncGroup2 < endDemoDrawOn();    // _18
-
-		// _00 VTBL
+		virtual void TSyncGroup2 < create(Arg*);       // _08 (inline)
+		virtual void TSyncGroup2 < forceKill();        // _0C (inline)
+		virtual void TSyncGroup2 < fade();             // _10 (inline)
+		virtual void TSyncGroup2 < startDemoDrawOff(); // _14 (inline)
+		virtual void TSyncGroup2 < endDemoDrawOn();    // _18 (inline)
 	};
 } // namespace efx
 } // namespace efx
 
 namespace efx {
 struct TDamaFoot : public TChasePos > {
-
-	// _00 VTBL
 };
 } // namespace efx
 

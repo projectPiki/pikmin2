@@ -11,9 +11,11 @@
 namespace PSM {
 namespace BossBgmFader {
 struct Mgr {
-	virtual ~Mgr(); // _08
+	virtual ~Mgr(); // _08 (inline)
 
-	// _00 VTBL
+	Mgr();
+	void appendTarget(JSULink<PSM::EnemyBoss>*);
+	void exec();
 };
 } // namespace BossBgmFader
 } // namespace PSM

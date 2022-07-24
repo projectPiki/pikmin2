@@ -14,8 +14,6 @@ namespace PSSystem {
 struct SeqTrackBase {
 	virtual void update();        // _08
 	virtual void init(JASTrack*); // _0C
-
-	// _00 VTBL
 };
 } // namespace PSSystem
 
@@ -23,7 +21,11 @@ namespace PSSystem {
 struct SeqTrackChild : public SeqTrackBase {
 	virtual void onStopSeq(); // _10
 
-	// _00 VTBL
+	SeqTrackChild();
+	void muteOffAndFadeIn(float, unsigned long, PSSystem::DirectorBase*);
+	void fadeoutAndMute(unsigned long, PSSystem::DirectorBase*);
+	void fade(float, unsigned long, PSSystem::DirectorBase*);
+	void setIdMask(unsigned char, PSSystem::DirectorBase*);
 };
 } // namespace PSSystem
 

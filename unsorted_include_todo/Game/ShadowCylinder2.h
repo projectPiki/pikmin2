@@ -18,7 +18,10 @@ struct ShadowCylinder2 {
 	virtual void drawCylinder(Matrixf&, int); // _10
 	virtual void drawFinish();                // _14
 
-	// _00 VTBL
+	ShadowCylinder2();
+	void copyShadowTexture();
+	void setupTextureFilterGX();
+	void drawTextureFilter();
 };
 } // namespace Game
 

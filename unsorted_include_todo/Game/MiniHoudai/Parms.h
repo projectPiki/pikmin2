@@ -11,9 +11,9 @@
 namespace Game {
 namespace MiniHoudai {
 struct Parms {
-	virtual void read(Stream&); // _08
+	virtual void read(Stream&); // _08 (inline)
 
-	// _00 VTBL
+	Parms();
 };
 } // namespace MiniHoudai
 } // namespace Game

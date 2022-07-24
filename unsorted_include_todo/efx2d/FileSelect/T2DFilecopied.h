@@ -13,22 +13,18 @@
 
 namespace efx2d {
 struct TSimple1 {
-	virtual void _08() = 0; // _08
-	virtual void kill();    // _0C
-	virtual void fade();    // _10
-
-	// _00 VTBL
+	virtual void create(Arg*); // _08
+	virtual void kill();       // _0C (inline)
+	virtual void fade();       // _10 (inline)
 };
 } // namespace efx2d
 
 namespace efx2d {
 struct TBase {
-	virtual void _08() = 0;               // _08
+	virtual void create(Arg*);            // _08
 	virtual void _0C() = 0;               // _0C
 	virtual void _10() = 0;               // _10
-	virtual void setGroup(unsigned char); // _14
-
-	// _00 VTBL
+	virtual void setGroup(unsigned char); // _14 (inline)
 };
 } // namespace efx2d
 
@@ -36,8 +32,6 @@ namespace efx2d {
 namespace FileSelect {
 struct T2DFilecopied : public TSimple1, public TBase {
 	virtual void create(Arg*); // _08
-
-	// _00 VTBL
 };
 } // namespace FileSelect
 } // namespace efx2d

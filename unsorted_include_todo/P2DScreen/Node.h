@@ -13,20 +13,16 @@
 */
 
 struct CNode {
-	virtual ~CNode();             // _08
+	virtual ~CNode();             // _08 (inline)
 	virtual void getChildCount(); // _0C
-
-	// _00 VTBL
 };
 
 namespace P2DScreen {
 struct Node : public CNode {
-	virtual ~Node();                               // _08
-	virtual void update();                         // _10
-	virtual void draw(Graphics&, J2DGrafContext&); // _14
-	virtual void doInit();                         // _18
-
-	// _00 VTBL
+	virtual ~Node();                               // _08 (inline)
+	virtual void update();                         // _10 (inline)
+	virtual void draw(Graphics&, J2DGrafContext&); // _14 (inline)
+	virtual void doInit();                         // _18 (inline)
 };
 } // namespace P2DScreen
 

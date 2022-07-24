@@ -26,19 +26,17 @@ namespace FSMState < Game
 	namespace ItemPlant {
 	struct Item >
 	{
-		virtual void _08() = 0;                                      // _08
-		virtual void _0C() = 0;                                      // _0C
-		virtual void _10() = 0;                                      // _10
-		virtual void FSMState < resume(Item*);                       // _14
-		virtual void FSMState < restart(Item*);                      // _18
-		virtual void FSMState < transit(Item*, int, StateArg*);      // _1C
-		virtual void _20() = 0;                                      // _20
-		virtual void _24() = 0;                                      // _24
-		virtual void ItemState < onBounce(Item*, Sys::Triangle*);    // _28
-		virtual void ItemState < onPlatCollision(Item*, PlatEvent&); // _2C
-		virtual void ItemState < onCollision(Item*, CollEvent&);     // _30
-
-		// _00 VTBL
+		virtual void init(Item*, StateArg*);                         // _08
+		virtual void exec(Item*);                                    // _0C
+		virtual void cleanup(Item*);                                 // _10
+		virtual void FSMState < resume(Item*);                       // _14 (inline)
+		virtual void FSMState < restart(Item*);                      // _18 (inline)
+		virtual void FSMState < transit(Item*, int, StateArg*);      // _1C (inline)
+		virtual void onDamage(Item*, float);                         // _20
+		virtual void onKeyEvent(Item*, const SysShape::KeyEvent&);   // _24
+		virtual void ItemState < onBounce(Item*, Sys::Triangle*);    // _28 (inline)
+		virtual void ItemState < onPlatCollision(Item*, PlatEvent&); // _2C (inline)
+		virtual void ItemState < onCollision(Item*, CollEvent&);     // _30 (inline)
 	};
 	} // namespace ItemPlant
 } // namespace Game
@@ -47,21 +45,19 @@ namespace FSMState < Game
 namespace Game {
 namespace ItemPlant {
 struct State {
-	virtual void _08() = 0;         // _08
-	virtual void _0C() = 0;         // _0C
-	virtual void _10() = 0;         // _10
-	virtual void _14() = 0;         // _14
-	virtual void _18() = 0;         // _18
-	virtual void _1C() = 0;         // _1C
-	virtual void _20() = 0;         // _20
-	virtual void _24() = 0;         // _24
-	virtual void _28() = 0;         // _28
-	virtual void _2C() = 0;         // _2C
-	virtual void _30() = 0;         // _30
-	virtual void _34() = 0;         // _34
-	virtual void eventHaero(Item*); // _38
-
-	// _00 VTBL
+	virtual void init(Item*, StateArg*);                       // _08
+	virtual void exec(Item*);                                  // _0C
+	virtual void cleanup(Item*);                               // _10
+	virtual void _14() = 0;                                    // _14
+	virtual void _18() = 0;                                    // _18
+	virtual void _1C() = 0;                                    // _1C
+	virtual void onDamage(Item*, float);                       // _20
+	virtual void onKeyEvent(Item*, const SysShape::KeyEvent&); // _24
+	virtual void _28() = 0;                                    // _28
+	virtual void _2C() = 0;                                    // _2C
+	virtual void _30() = 0;                                    // _30
+	virtual void eventKarero(Item*);                           // _34
+	virtual void eventHaero(Item*);                            // _38 (inline)
 };
 } // namespace ItemPlant
 } // namespace Game
@@ -75,8 +71,6 @@ struct DamagedState : public Item >, public State {
 	virtual void onDamage(Item*, float);                       // _20
 	virtual void onKeyEvent(Item*, const SysShape::KeyEvent&); // _24
 	virtual void eventKarero(Item*);                           // _34
-
-	// _00 VTBL
 };
 } // namespace ItemPlant
 } // namespace Game

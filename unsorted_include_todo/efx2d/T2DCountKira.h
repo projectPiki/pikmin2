@@ -21,39 +21,33 @@
 
 namespace efx2d {
 struct TForever {
-    virtual void _08() = 0; // _08
-    virtual void kill();    // _0C
-    virtual void fade();    // _10
-
-    // _00 VTBL
+    virtual void create(Arg*); // _08
+    virtual void kill();       // _0C
+    virtual void fade();       // _10
 };
 } // namespace efx2d
 
 namespace efx2d {
 struct TBase {
-    virtual void _08() = 0;               // _08
+    virtual void create(Arg*);            // _08
     virtual void _0C() = 0;               // _0C
     virtual void _10() = 0;               // _10
-    virtual void setGroup(unsigned char); // _14
-
-    // _00 VTBL
+    virtual void setGroup(unsigned char); // _14 (inline)
 };
 } // namespace efx2d
 
 struct JPAEmitterCallBack {
-    virtual void _08() = 0;                     // _08
+    virtual void create(Arg*);                  // _08
     virtual void _0C() = 0;                     // _0C
     virtual void _10() = 0;                     // _10
     virtual void _14() = 0;                     // _14
     virtual void _18() = 0;                     // _18
     virtual void _1C() = 0;                     // _1C
-    virtual void _20() = 0;                     // _20
-    virtual void execute(JPABaseEmitter*);      // _24
-    virtual void executeAfter(JPABaseEmitter*); // _28
-    virtual void draw(JPABaseEmitter*);         // _2C
-    virtual void drawAfter(JPABaseEmitter*);    // _30
-
-    // _00 VTBL
+    virtual void @8 @__dt();                    // _20 (inline)
+    virtual void execute(JPABaseEmitter*);      // _24 (inline)
+    virtual void executeAfter(JPABaseEmitter*); // _28 (inline)
+    virtual void draw(JPABaseEmitter*);         // _2C (inline)
+    virtual void drawAfter(JPABaseEmitter*);    // _30 (inline)
 };
 
 namespace efx2d {
@@ -61,10 +55,8 @@ struct T2DCountKira : public TForever, public TBase, public JPAEmitterCallBack {
     virtual void create(Arg*); // _08
     virtual void _18() = 0;    // _18
     virtual void _1C() = 0;    // _1C
-    virtual void @8 @__dt();   // _20
-    virtual ~T2DCountKira();   // _34
-
-    // _00 VTBL
+    virtual void @8 @__dt();   // _20 (inline)
+    virtual ~T2DCountKira();   // _34 (inline)
 };
 } // namespace efx2d
 

@@ -11,8 +11,6 @@
 namespace PSSystem {
 struct SimpleWaitTask {
 	virtual void task(JASTrack&); // _08
-
-	// _00 VTBL
 };
 } // namespace PSSystem
 

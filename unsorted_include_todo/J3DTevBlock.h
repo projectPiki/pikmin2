@@ -61,61 +61,59 @@
 */
 
 struct J3DTevBlock {
-	virtual void reset(J3DTevBlock*);                                            // _08
-	virtual void load();                                                         // _0C
+	virtual void reset(J3DTevBlock*);                                            // _08 (inline)
+	virtual void load();                                                         // _0C (inline)
 	virtual void diff(unsigned long);                                            // _10
-	virtual void diffTexNo();                                                    // _14
-	virtual void diffTevReg();                                                   // _18
-	virtual void diffTexCoordScale();                                            // _1C
-	virtual void diffTevStage();                                                 // _20
-	virtual void diffTevStageIndirect();                                         // _24
-	virtual void patch();                                                        // _28
-	virtual void patchTexNo();                                                   // _2C
-	virtual void patchTevReg();                                                  // _30
-	virtual void patchTexNoAndTexCoordScale();                                   // _34
+	virtual void diffTexNo();                                                    // _14 (inline)
+	virtual void diffTevReg();                                                   // _18 (inline)
+	virtual void diffTexCoordScale();                                            // _1C (inline)
+	virtual void diffTevStage();                                                 // _20 (inline)
+	virtual void diffTevStageIndirect();                                         // _24 (inline)
+	virtual void patch();                                                        // _28 (inline)
+	virtual void patchTexNo();                                                   // _2C (inline)
+	virtual void patchTevReg();                                                  // _30 (inline)
+	virtual void patchTexNoAndTexCoordScale();                                   // _34 (inline)
 	virtual void _38() = 0;                                                      // _38
 	virtual void _3C() = 0;                                                      // _3C
 	virtual void _40() = 0;                                                      // _40
-	virtual void countDLSize();                                                  // _44
-	virtual void setTexNo(unsigned long, const unsigned short*);                 // _48
-	virtual void setTexNo(unsigned long, unsigned short);                        // _4C
-	virtual void getTexNo(unsigned long) const;                                  // _50
-	virtual void setTevOrder(unsigned long, const J3DTevOrder*);                 // _54
-	virtual void setTevOrder(unsigned long, J3DTevOrder);                        // _58
-	virtual void getTevOrder(unsigned long);                                     // _5C
-	virtual void setTevColor(unsigned long, const J3DGXColorS10*);               // _60
-	virtual void setTevColor(unsigned long, J3DGXColorS10);                      // _64
-	virtual void getTevColor(unsigned long);                                     // _68
-	virtual void setTevKColor(unsigned long, const J3DGXColor*);                 // _6C
-	virtual void setTevKColor(unsigned long, J3DGXColor);                        // _70
-	virtual void getTevKColor(unsigned long);                                    // _74
-	virtual void setTevKColorSel(unsigned long, const unsigned char*);           // _78
-	virtual void setTevKColorSel(unsigned long, unsigned char);                  // _7C
-	virtual void getTevKColorSel(unsigned long);                                 // _80
-	virtual void setTevKAlphaSel(unsigned long, const unsigned char*);           // _84
-	virtual void setTevKAlphaSel(unsigned long, unsigned char);                  // _88
-	virtual void getTevKAlphaSel(unsigned long);                                 // _8C
-	virtual void setTevStageNum(const unsigned char*);                           // _90
-	virtual void setTevStageNum(unsigned char);                                  // _94
-	virtual void getTevStageNum() const;                                         // _98
-	virtual void setTevStage(unsigned long, const J3DTevStage*);                 // _9C
-	virtual void setTevStage(unsigned long, J3DTevStage);                        // _A0
-	virtual void getTevStage(unsigned long);                                     // _A4
-	virtual void setTevSwapModeInfo(unsigned long, const J3DTevSwapModeInfo*);   // _A8
-	virtual void setTevSwapModeInfo(unsigned long, J3DTevSwapModeInfo);          // _AC
-	virtual void setTevSwapModeTable(unsigned long, const J3DTevSwapModeTable*); // _B0
-	virtual void setTevSwapModeTable(unsigned long, J3DTevSwapModeTable);        // _B4
-	virtual void getTevSwapModeTable(unsigned long);                             // _B8
-	virtual void setIndTevStage(unsigned long, const J3DIndTevStage*);           // _BC
-	virtual void setIndTevStage(unsigned long, J3DIndTevStage);                  // _C0
-	virtual void getIndTevStage(unsigned long);                                  // _C4
-	virtual void getTexNoOffset() const;                                         // _C8
-	virtual void getTevRegOffset() const;                                        // _CC
-	virtual void setTexNoOffset(unsigned long);                                  // _D0
-	virtual void setTevRegOffset(unsigned long);                                 // _D4
-	virtual ~J3DTevBlock();                                                      // _D8
-
-	// _00 VTBL
+	virtual void countDLSize();                                                  // _44 (inline)
+	virtual void setTexNo(unsigned long, const unsigned short*);                 // _48 (inline)
+	virtual void setTexNo(unsigned long, unsigned short);                        // _4C (inline)
+	virtual void getTexNo(unsigned long) const;                                  // _50 (inline)
+	virtual void setTevOrder(unsigned long, const J3DTevOrder*);                 // _54 (inline)
+	virtual void setTevOrder(unsigned long, J3DTevOrder);                        // _58 (inline)
+	virtual void getTevOrder(unsigned long);                                     // _5C (inline)
+	virtual void setTevColor(unsigned long, const J3DGXColorS10*);               // _60 (inline)
+	virtual void setTevColor(unsigned long, J3DGXColorS10);                      // _64 (inline)
+	virtual void getTevColor(unsigned long);                                     // _68 (inline)
+	virtual void setTevKColor(unsigned long, const J3DGXColor*);                 // _6C (inline)
+	virtual void setTevKColor(unsigned long, J3DGXColor);                        // _70 (inline)
+	virtual void getTevKColor(unsigned long);                                    // _74 (inline)
+	virtual void setTevKColorSel(unsigned long, const unsigned char*);           // _78 (inline)
+	virtual void setTevKColorSel(unsigned long, unsigned char);                  // _7C (inline)
+	virtual void getTevKColorSel(unsigned long);                                 // _80 (inline)
+	virtual void setTevKAlphaSel(unsigned long, const unsigned char*);           // _84 (inline)
+	virtual void setTevKAlphaSel(unsigned long, unsigned char);                  // _88 (inline)
+	virtual void getTevKAlphaSel(unsigned long);                                 // _8C (inline)
+	virtual void setTevStageNum(const unsigned char*);                           // _90 (inline)
+	virtual void setTevStageNum(unsigned char);                                  // _94 (inline)
+	virtual void getTevStageNum() const;                                         // _98 (inline)
+	virtual void setTevStage(unsigned long, const J3DTevStage*);                 // _9C (inline)
+	virtual void setTevStage(unsigned long, J3DTevStage);                        // _A0 (inline)
+	virtual void getTevStage(unsigned long);                                     // _A4 (inline)
+	virtual void setTevSwapModeInfo(unsigned long, const J3DTevSwapModeInfo*);   // _A8 (inline)
+	virtual void setTevSwapModeInfo(unsigned long, J3DTevSwapModeInfo);          // _AC (inline)
+	virtual void setTevSwapModeTable(unsigned long, const J3DTevSwapModeTable*); // _B0 (inline)
+	virtual void setTevSwapModeTable(unsigned long, J3DTevSwapModeTable);        // _B4 (inline)
+	virtual void getTevSwapModeTable(unsigned long);                             // _B8 (inline)
+	virtual void setIndTevStage(unsigned long, const J3DIndTevStage*);           // _BC (inline)
+	virtual void setIndTevStage(unsigned long, J3DIndTevStage);                  // _C0 (inline)
+	virtual void getIndTevStage(unsigned long);                                  // _C4 (inline)
+	virtual void getTexNoOffset() const;                                         // _C8 (inline)
+	virtual void getTevRegOffset() const;                                        // _CC (inline)
+	virtual void setTexNoOffset(unsigned long);                                  // _D0 (inline)
+	virtual void setTevRegOffset(unsigned long);                                 // _D4 (inline)
+	virtual ~J3DTevBlock();                                                      // _D8 (inline)
 };
 
 #endif

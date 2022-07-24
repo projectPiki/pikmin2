@@ -12,7 +12,11 @@ namespace SysShape {
 struct BlendAnimator {
 	virtual void getCalc(); // _08
 
-	// _00 VTBL
+	BlendAnimator();
+	void setAnimMgr(SysShape::AnimMgr*);
+	void startBlend(SysShape::BlendFunction*, float, SysShape::MotionListener*);
+	void endBlend();
+	void animate(SysShape::BlendFunction*, float, float, float);
 };
 } // namespace SysShape
 

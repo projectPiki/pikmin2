@@ -10,16 +10,12 @@
 
 namespace PikiAI {
 struct ActionArg {
-	virtual void getName(); // _08
-
-	// _00 VTBL
+	virtual void getName(); // _08 (inline)
 };
 } // namespace PikiAI
 
 namespace PikiAI {
 struct ActOneshotArg : public ActionArg {
-
-	// _00 VTBL
 };
 } // namespace PikiAI
 

@@ -12,10 +12,8 @@
 namespace JStudio {
 namespace fvb {
 struct TObject_composite {
-	virtual ~TObject_composite();                                                 // _08
+	virtual ~TObject_composite();                                                 // _08 (inline)
 	virtual void prepare_data_(const data::TParse_TParagraph::TData&, TControl*); // _0C
-
-	// _00 VTBL
 };
 } // namespace fvb
 } // namespace JStudio

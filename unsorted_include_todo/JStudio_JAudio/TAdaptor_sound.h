@@ -52,8 +52,6 @@ struct TAdaptor {
 	virtual void adaptor_do_end(const JStudio::TObject*);                                                 // _14
 	virtual void adaptor_do_update(const JStudio::TObject*, unsigned long);                               // _18
 	virtual void adaptor_do_data(const TObject*, const void*, unsigned long, const void*, unsigned long); // _1C
-
-	// _00 VTBL
 };
 } // namespace JStudio
 
@@ -95,7 +93,9 @@ struct TAdaptor_sound : public TAdaptor {
 	virtual void _94() = 0;                                                                            // _94
 	virtual void _98() = 0;                                                                            // _98
 
-	// _00 VTBL
+	TAdaptor_sound();
+	void beginSound_fadeIn_(unsigned long);
+	void endSound_fadeOut_(unsigned long);
 };
 } // namespace JStudio_JAudio
 

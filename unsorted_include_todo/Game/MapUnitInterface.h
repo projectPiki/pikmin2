@@ -17,33 +17,31 @@
 */
 
 struct CNode {
-	virtual void _08() = 0;       // _08
+	virtual ~CNode();             // _08 (inline)
 	virtual void getChildCount(); // _0C
-
-	// _00 VTBL
 };
 
 namespace Game {
 struct PartsView {
-	virtual void _08() = 0;               // _08
+	virtual ~PartsView();                 // _08 (inline)
 	virtual void _0C() = 0;               // _0C
-	virtual void constructor();           // _10
+	virtual void constructor();           // _10 (inline)
 	virtual void doAnimation();           // _14
 	virtual void doEntry();               // _18
 	virtual void doSetView(int);          // _1C
 	virtual void doViewCalc();            // _20
-	virtual void doSimulation(float);     // _24
+	virtual void doSimulation(float);     // _24 (inline)
 	virtual void doDirectDraw(Graphics&); // _28
-
-	// _00 VTBL
 };
 } // namespace Game
 
 namespace Game {
 struct MapUnitInterface : public CNode, public PartsView {
-	virtual ~MapUnitInterface(); // _08
+	virtual ~MapUnitInterface(); // _08 (inline)
 
-	// _00 VTBL
+	void getDoor(int);
+	void getCellSize(int&, int&);
+	MapUnitInterface();
 };
 } // namespace Game
 

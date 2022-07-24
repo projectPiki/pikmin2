@@ -40,72 +40,77 @@
 */
 
 struct GenericObjectMgr {
-    virtual void hasHiddenCollision();                        // _08
-    virtual void constraintBoundBox(Sys::Sphere&);            // _0C
+    virtual void hasHiddenCollision();                        // _08 (inline)
+    virtual void constraintBoundBox(Sys::Sphere&);            // _0C (inline)
     virtual void getStartPosition(Vector3<float>&, int);      // _10
     virtual void getDemoMatrix();                             // _14
     virtual void _18() = 0;                                   // _18
     virtual void _1C() = 0;                                   // _1C
-    virtual void findRayIntersection(Sys::RayIntersectInfo&); // _20
+    virtual void findRayIntersection(Sys::RayIntersectInfo&); // _20 (inline)
     virtual void _24() = 0;                                   // _24
     virtual void _28() = 0;                                   // _28
     virtual void _2C() = 0;                                   // _2C
-    virtual void createTriangles(Sys::CreateTriangleArg&);    // _30
-    virtual void setupJUTTextures();                          // _34
-    virtual void frozenable();                                // _38
-    virtual void update();                                    // _3C
-    virtual void do_update();                                 // _40
+    virtual void createTriangles(Sys::CreateTriangleArg&);    // _30 (inline)
+    virtual void setupJUTTextures();                          // _34 (inline)
+    virtual void frozenable();                                // _38 (inline)
+    virtual void update();                                    // _3C (inline)
+    virtual void do_update();                                 // _40 (inline)
     virtual void _44() = 0;                                   // _44
-    virtual void doSimulation(float);                         // _48
-    virtual void doDirectDraw(Graphics&);                     // _4C
+    virtual void doSimulation(float);                         // _48 (inline)
+    virtual void doDirectDraw(Graphics&);                     // _4C (inline)
     virtual void _50() = 0;                                   // _50
     virtual void _54() = 0;                                   // _54
     virtual void _58() = 0;                                   // _58
-    virtual void doEntry();                                   // _5C
+    virtual void doEntry();                                   // _5C (inline)
     virtual void _60() = 0;                                   // _60
     virtual void _64() = 0;                                   // _64
-    virtual void @36 @4 @doSimulation(float);                 // _68
-    virtual void @36 @4 @doDirectDraw(Graphics&);             // _6C
-    virtual void doSimpleDraw(Viewport*);                     // _70
-    virtual void loadResources();                             // _74
-    virtual void resetMgr();                                  // _78
-    virtual void pausable();                                  // _7C
-    virtual void @36 @4 @frozenable();                        // _80
-    virtual void getMatrixLoadType();                         // _84
-
-    // _00 VTBL
+    virtual void @36 @4 @doSimulation(float);                 // _68 (inline)
+    virtual void @36 @4 @doDirectDraw(Graphics&);             // _6C (inline)
+    virtual void doSimpleDraw(Viewport*);                     // _70 (inline)
+    virtual void loadResources();                             // _74 (inline)
+    virtual void resetMgr();                                  // _78 (inline)
+    virtual void pausable();                                  // _7C (inline)
+    virtual void @36 @4 @frozenable();                        // _80 (inline)
+    virtual void getMatrixLoadType();                         // _84 (inline)
 };
 
 namespace Game {
 struct MapMgr : public GenericObjectMgr {
-    virtual void hasHiddenCollision();                        // _08
-    virtual void constraintBoundBox(Sys::Sphere&);            // _0C
+    virtual void hasHiddenCollision();                        // _08 (inline)
+    virtual void constraintBoundBox(Sys::Sphere&);            // _0C (inline)
     virtual void getStartPosition(Vector3<float>&, int);      // _10
     virtual void getDemoMatrix();                             // _14
     virtual void _18() = 0;                                   // _18
     virtual void _1C() = 0;                                   // _1C
-    virtual void findRayIntersection(Sys::RayIntersectInfo&); // _20
+    virtual void findRayIntersection(Sys::RayIntersectInfo&); // _20 (inline)
     virtual void _24() = 0;                                   // _24
     virtual void _28() = 0;                                   // _28
     virtual void _2C() = 0;                                   // _2C
-    virtual void createTriangles(Sys::CreateTriangleArg&);    // _30
-    virtual void setupJUTTextures();                          // _34
-    virtual void frozenable();                                // _38
-    virtual void update();                                    // _3C
-    virtual void do_update();                                 // _40
+    virtual void createTriangles(Sys::CreateTriangleArg&);    // _30 (inline)
+    virtual void setupJUTTextures();                          // _34 (inline)
+    virtual void frozenable();                                // _38 (inline)
+    virtual void update();                                    // _3C (inline)
+    virtual void do_update();                                 // _40 (inline)
     virtual void _44() = 0;                                   // _44
-    virtual void doSimulation(float);                         // _48
-    virtual void doDirectDraw(Graphics&);                     // _4C
+    virtual void doSimulation(float);                         // _48 (inline)
+    virtual void doDirectDraw(Graphics&);                     // _4C (inline)
     virtual void _50() = 0;                                   // _50
     virtual void _54() = 0;                                   // _54
     virtual void _58() = 0;                                   // _58
     virtual void _60() = 0;                                   // _60
     virtual void _64() = 0;                                   // _64
-    virtual void @36 @4 @doSimulation(float);                 // _68
-    virtual void @36 @4 @doDirectDraw(Graphics&);             // _6C
-    virtual void @36 @4 @frozenable();                        // _80
+    virtual void @36 @4 @doSimulation(float);                 // _68 (inline)
+    virtual void @36 @4 @doDirectDraw(Graphics&);             // _6C (inline)
+    virtual void @36 @4 @frozenable();                        // _80 (inline)
 
-    // _00 VTBL
+    MapMgr();
+    void getMapRotation();
+    void getBestAngle(Vector3<float>&, float, float);
+    void checkBeamCollision(Game::MapMgr::BeamCollisionArg&);
+    void findWater(Sys::Sphere&);
+    void clearPerfMonitor();
+    void traceMove(MapCollision&, Game::MoveInfo&, float);
+    void traceMove_test1203_cylinder(MapCollision&, Game::MoveInfo&, float);
 };
 } // namespace Game
 

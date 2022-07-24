@@ -12,19 +12,15 @@
 */
 
 struct CNode {
-	virtual ~CNode();             // _08
+	virtual ~CNode();             // _08 (inline)
 	virtual void getChildCount(); // _0C
-
-	// _00 VTBL
 };
 
 namespace Morimura {
 struct TVsSelectIndPane : public CNode {
-	virtual ~TVsSelectIndPane(); // _08
+	virtual ~TVsSelectIndPane(); // _08 (inline)
 	virtual void draw();         // _10
 	virtual void _14() = 0;      // _14
-
-	// _00 VTBL
 };
 } // namespace Morimura
 

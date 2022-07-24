@@ -12,12 +12,10 @@
 */
 
 struct ISection {
-	virtual ~ISection();    // _08
+	virtual ~ISection();    // _08 (inline)
 	virtual void _0C() = 0; // _0C
 	virtual void _10() = 0; // _10
 	virtual void _14() = 0; // _14
-
-	// _00 VTBL
 };
 
 #endif

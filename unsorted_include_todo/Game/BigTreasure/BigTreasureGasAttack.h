@@ -10,18 +10,16 @@
 */
 
 struct CNode {
-	virtual ~CNode();             // _08
+	virtual ~CNode();             // _08 (inline)
 	virtual void getChildCount(); // _0C
-
-	// _00 VTBL
 };
 
 namespace Game {
 namespace BigTreasure {
 struct BigTreasureGasAttack : public CNode {
-	virtual ~BigTreasureGasAttack(); // _08
+	virtual ~BigTreasureGasAttack(); // _08 (inline)
 
-	// _00 VTBL
+	void update();
 };
 } // namespace BigTreasure
 } // namespace Game

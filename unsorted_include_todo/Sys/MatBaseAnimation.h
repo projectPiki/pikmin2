@@ -20,7 +20,8 @@ struct MatBaseAnimation {
 	virtual void _14() = 0; // _14
 	virtual void _18() = 0; // _18
 
-	// _00 VTBL
+	void attachResource(void*, J3DModelData*);
+	void getFrameMax();
 };
 } // namespace Sys
 

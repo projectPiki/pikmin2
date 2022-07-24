@@ -16,7 +16,16 @@ struct TZukanWindow {
 	virtual void update();                           // _0C
 	virtual void draw(Graphics&, J2DPerspGraph*);    // _10
 
-	// _00 VTBL
+	TZukanWindow();
+	void windowOpen();
+	void windowClose();
+	void msgScroll(float);
+	void getPosRate();
+	void setWindowColor(J2DGXColorS10&);
+	void setIconColor(J2DGXColorS10&, J2DGXColorS10&);
+	void onIcon(int);
+	void moveIcon(float);
+	void changeIconTexture(int, ResTIMG*);
 };
 } // namespace Morimura
 

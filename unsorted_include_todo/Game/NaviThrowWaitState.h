@@ -34,38 +34,34 @@ namespace FSMState < Game
 {
     struct Navi >
     {
-        virtual void _08() = 0;                                 // _08
-        virtual void _0C() = 0;                                 // _0C
-        virtual void _10() = 0;                                 // _10
-        virtual void _14() = 0;                                 // _14
-        virtual void _18() = 0;                                 // _18
-        virtual void FSMState < transit(Navi*, int, StateArg*); // _1C
-
-        // _00 VTBL
+        virtual void init(Navi*, StateArg*);                    // _08
+        virtual void exec(Navi*);                               // _0C
+        virtual void cleanup(Navi*);                            // _10
+        virtual void resume(Navi*);                             // _14
+        virtual void restart(Navi*);                            // _18
+        virtual void FSMState < transit(Navi*, int, StateArg*); // _1C (inline)
     };
 } // namespace FSMState<Game
 } // namespace Game
 
 namespace Game {
 struct NaviState {
-    virtual void _08() = 0;                                    // _08
-    virtual void _0C() = 0;                                    // _0C
-    virtual void _10() = 0;                                    // _10
-    virtual void _14() = 0;                                    // _14
-    virtual void _18() = 0;                                    // _18
+    virtual void init(Navi*, StateArg*);                       // _08
+    virtual void exec(Navi*);                                  // _0C
+    virtual void cleanup(Navi*);                               // _10
+    virtual void resume(Navi*);                                // _14
+    virtual void restart(Navi*);                               // _18
     virtual void _1C() = 0;                                    // _1C
-    virtual void invincible();                                 // _20
-    virtual void onKeyEvent(Navi*, const SysShape::KeyEvent&); // _24
-    virtual void collisionCallback(Navi*, CollEvent&);         // _28
-    virtual void wallCallback(Navi*, Vector3<float>&);         // _2C
-    virtual void bounceCallback(Navi*, Sys::Triangle*);        // _30
-    virtual void pressable();                                  // _34
-    virtual void callable();                                   // _38
-    virtual void ignoreAtari(Creature*);                       // _3C
-    virtual void needYChangeMotion();                          // _40
-    virtual void vsUsableY();                                  // _44
-
-    // _00 VTBL
+    virtual void invincible();                                 // _20 (inline)
+    virtual void onKeyEvent(Navi*, const SysShape::KeyEvent&); // _24 (inline)
+    virtual void collisionCallback(Navi*, CollEvent&);         // _28 (inline)
+    virtual void wallCallback(Navi*, Vector3<float>&);         // _2C (inline)
+    virtual void bounceCallback(Navi*, Sys::Triangle*);        // _30 (inline)
+    virtual void pressable();                                  // _34 (inline)
+    virtual void callable();                                   // _38 (inline)
+    virtual void ignoreAtari(Creature*);                       // _3C (inline)
+    virtual void needYChangeMotion();                          // _40 (inline)
+    virtual void vsUsableY();                                  // _44 (inline)
 };
 } // namespace Game
 
@@ -77,12 +73,16 @@ struct NaviThrowWaitState : public Navi >, public NaviState {
     virtual void resume(Navi*);                                 // _14
     virtual void restart(Navi*);                                // _18
     virtual void draw2d(J2DGrafContext&, int&);                 // _48
-    virtual void onKeyEvent(const SysShape::KeyEvent&);         // _4C
+    virtual void onKeyEvent(const SysShape::KeyEvent&);         // _4C (inline)
     virtual void _50() = 0;                                     // _50
     virtual void _54() = 0;                                     // _54
-    virtual void @60 @4 @onKeyEvent(const SysShape::KeyEvent&); // _58
+    virtual void @60 @4 @onKeyEvent(const SysShape::KeyEvent&); // _58 (inline)
 
-    // _00 VTBL
+    NaviThrowWaitState();
+    void doAnimCallback();
+    void lockHangPiki(Game::Navi*);
+    void findNearestColorPiki(Game::Navi*, int);
+    void sortPikis(Game::Navi*);
 };
 } // namespace Game
 

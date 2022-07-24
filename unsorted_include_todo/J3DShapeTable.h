@@ -9,9 +9,7 @@
 */
 
 struct J3DShapeTable {
-	virtual ~J3DShapeTable(); // _08
-
-	// _00 VTBL
+	virtual ~J3DShapeTable(); // _08 (inline)
 };
 
 #endif

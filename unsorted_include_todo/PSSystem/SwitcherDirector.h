@@ -21,31 +21,27 @@
 
 namespace PSSystem {
 struct DirectorBase {
-	virtual ~DirectorBase();            // _08
+	virtual ~DirectorBase();            // _08 (inline)
 	virtual void exec();                // _0C
 	virtual void directOn();            // _10
 	virtual void directOff();           // _14
-	virtual void underDirection();      // _18
-	virtual void execInner();           // _1C
+	virtual void underDirection();      // _18 (inline)
+	virtual void execInner();           // _1C (inline)
 	virtual void _20() = 0;             // _20
 	virtual void _24() = 0;             // _24
 	virtual void doUpdateRequest();     // _28
-	virtual void onPlayInit(JASTrack*); // _2C
-	virtual void onDirectOn();          // _30
-	virtual void onDirectOff();         // _34
-
-	// _00 VTBL
+	virtual void onPlayInit(JASTrack*); // _2C (inline)
+	virtual void onDirectOn();          // _30 (inline)
+	virtual void onDirectOff();         // _34 (inline)
 };
 } // namespace PSSystem
 
 namespace PSSystem {
 struct SwitcherDirector : public DirectorBase {
-	virtual ~SwitcherDirector();    // _08
+	virtual ~SwitcherDirector();    // _08 (inline)
 	virtual void _20() = 0;         // _20
 	virtual void _24() = 0;         // _24
 	virtual void doUpdateRequest(); // _28
-
-	// _00 VTBL
 };
 } // namespace PSSystem
 

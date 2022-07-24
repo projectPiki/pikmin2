@@ -10,18 +10,18 @@
 */
 
 struct CNode {
-	virtual ~CNode();             // _08
+	virtual ~CNode();             // _08 (inline)
 	virtual void getChildCount(); // _0C
-
-	// _00 VTBL
 };
 
 namespace Game {
 namespace VsGame {
 struct StageList : public CNode {
-	virtual Vs ~StageList(); // _08
+	virtual Vs ~StageList(); // _08 (inline)
 
-	// _00 VTBL
+	StageList();
+	void read(Stream&);
+	void getStageData(int);
 };
 } // namespace VsGame
 } // namespace Game

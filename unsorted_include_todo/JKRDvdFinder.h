@@ -12,8 +12,6 @@
 struct JKRDvdFinder {
 	virtual ~JKRDvdFinder();     // _08
 	virtual void findNextFile(); // _0C
-
-	// _00 VTBL
 };
 
 #endif

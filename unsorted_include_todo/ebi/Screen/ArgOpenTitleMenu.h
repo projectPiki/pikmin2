@@ -11,9 +11,7 @@
 namespace ebi {
 namespace Screen {
 struct ArgOpen {
-	virtual void getName(); // _08
-
-	// _00 VTBL
+	virtual void getName(); // _08 (inline)
 };
 } // namespace Screen
 } // namespace ebi
@@ -21,8 +19,6 @@ struct ArgOpen {
 namespace ebi {
 namespace Screen {
 struct ArgOpenTitleMenu : public ArgOpen {
-
-	// _00 VTBL
 };
 } // namespace Screen
 } // namespace ebi

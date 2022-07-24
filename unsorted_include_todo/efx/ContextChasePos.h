@@ -10,17 +10,15 @@
 */
 
 struct CNode {
-	virtual ~CNode();             // _08
+	virtual ~CNode();             // _08 (inline)
 	virtual void getChildCount(); // _0C
-
-	// _00 VTBL
 };
 
 namespace efx {
 struct ContextChasePos : public CNode {
-	virtual ~ContextChasePos(); // _08
+	virtual ~ContextChasePos(); // _08 (inline)
 
-	// _00 VTBL
+	ContextChasePos();
 };
 } // namespace efx
 

@@ -14,26 +14,20 @@
 namespace PSSystem {
 struct ModParamWithTableTask {
 	virtual void task(JASTrack&); // _08
-
-	// _00 VTBL
 };
 } // namespace PSSystem
 
 namespace PSSystem {
 struct TriangleTableModTask {
 	virtual void _08() = 0;                      // _08
-	virtual void getTgtWithTable(unsigned char); // _0C
-	virtual void getTableIdxNum();               // _10
-
-	// _00 VTBL
+	virtual void getTgtWithTable(unsigned char); // _0C (inline)
+	virtual void getTableIdxNum();               // _10 (inline)
 };
 } // namespace PSSystem
 
 namespace PSSystem {
 struct PitchModTask : public ModParamWithTableTask, public TriangleTableModTask {
 	virtual void tableTask(JASTrack&, float); // _14
-
-	// _00 VTBL
 };
 } // namespace PSSystem
 

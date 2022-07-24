@@ -17,10 +17,8 @@ namespace StateMachine < Game
 	struct VsGameSection >
 	{
 		virtual void Vsinit(VsGameSection*);                               // _08
-		virtual void StateMachine < start(VsGameSection*, int, StateArg*); // _0C
-		virtual void StateMachine < exec(VsGameSection*);                  // _10
-
-		// _00 VTBL
+		virtual void StateMachine < start(VsGameSection*, int, StateArg*); // _0C (inline)
+		virtual void StateMachine < exec(VsGameSection*);                  // _10 (inline)
 	};
 } // namespace Game
 } // namespace Game
@@ -30,8 +28,6 @@ namespace VsGame {
 struct FSM : public VsGameSection > {
 	virtual void Vsinit(VsGameSection*);                    // _08
 	virtual void Vstransit(VsGameSection*, int, StateArg*); // _14
-
-	// _00 VTBL
 };
 } // namespace VsGame
 } // namespace Game

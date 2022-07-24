@@ -11,19 +11,37 @@
 */
 
 struct CNode {
-	virtual ~CNode();             // _08
+	virtual ~CNode();             // _08 (inline)
 	virtual void getChildCount(); // _0C
-
-	// _00 VTBL
 };
 
 namespace Game {
 namespace Cave {
 struct FloorInfo : public CNode {
-	virtual ~FloorInfo();       // _08
+	virtual ~FloorInfo();       // _08 (inline)
 	virtual void read(Stream&); // _10
 
-	// _00 VTBL
+	FloorInfo();
+	void hasHiddenCollision();
+	void getTekiMax();
+	void getTekiInfoNum();
+	void getTekiInfo(int);
+	void getTekiWeightSum();
+	void getItemMax();
+	void getItemInfoNum();
+	void getItemInfo(int);
+	void getItemWeightSum();
+	void getGateMax();
+	void getGateInfoNum();
+	void getGateInfo(int);
+	void getGateWeightSum();
+	void getCapMax();
+	void getCapInfoNum();
+	void getCapInfo(int);
+	void getRoomNum();
+	void getRouteRatio();
+	void hasEscapeFountain(int);
+	void useKaidanBarrel();
 };
 } // namespace Cave
 } // namespace Game

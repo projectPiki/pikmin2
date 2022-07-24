@@ -13,10 +13,11 @@
 namespace efx {
 struct TEnemyHamon {
 	virtual void create(Arg*); // _08
-	virtual void forceKill();  // _0C
-	virtual void fade();       // _10
+	virtual void forceKill();  // _0C (inline)
+	virtual void fade();       // _10 (inline)
 
-	// _00 VTBL
+	void update(Vector3<float>&);
+	void getLimitDepth_();
 };
 } // namespace efx
 

@@ -25,34 +25,30 @@
 */
 
 struct J3DIndBlock {
-	virtual void reset(J3DIndBlock*);                                            // _08
-	virtual void diff(unsigned long);                                            // _0C
-	virtual void load();                                                         // _10
-	virtual void countDLSize();                                                  // _14
-	virtual void getType();                                                      // _18
-	virtual void setIndTexStageNum(unsigned char);                               // _1C
-	virtual void getIndTexStageNum() const;                                      // _20
-	virtual void setIndTexOrder(unsigned long, J3DIndTexOrder);                  // _24
-	virtual void setIndTexOrder(unsigned long, const J3DIndTexOrder*);           // _28
-	virtual void getIndTexOrder(unsigned long);                                  // _2C
-	virtual void setIndTexMtx(unsigned long, const J3DIndTexMtx*);               // _30
-	virtual void setIndTexMtx(unsigned long, J3DIndTexMtx);                      // _34
-	virtual void getIndTexMtx(unsigned long);                                    // _38
-	virtual void setIndTexCoordScale(unsigned long, const J3DIndTexCoordScale*); // _3C
-	virtual void setIndTexCoordScale(unsigned long, J3DIndTexCoordScale);        // _40
-	virtual void getIndTexCoordScale(unsigned long);                             // _44
-
-	// _00 VTBL
+	virtual void reset(J3DIndBlock*);                                            // _08 (inline)
+	virtual void diff(unsigned long);                                            // _0C (inline)
+	virtual void load();                                                         // _10 (inline)
+	virtual void countDLSize();                                                  // _14 (inline)
+	virtual void getType();                                                      // _18 (inline)
+	virtual void setIndTexStageNum(unsigned char);                               // _1C (inline)
+	virtual void getIndTexStageNum() const;                                      // _20 (inline)
+	virtual void setIndTexOrder(unsigned long, J3DIndTexOrder);                  // _24 (inline)
+	virtual void setIndTexOrder(unsigned long, const J3DIndTexOrder*);           // _28 (inline)
+	virtual void getIndTexOrder(unsigned long);                                  // _2C (inline)
+	virtual void setIndTexMtx(unsigned long, const J3DIndTexMtx*);               // _30 (inline)
+	virtual void setIndTexMtx(unsigned long, J3DIndTexMtx);                      // _34 (inline)
+	virtual void getIndTexMtx(unsigned long);                                    // _38 (inline)
+	virtual void setIndTexCoordScale(unsigned long, const J3DIndTexCoordScale*); // _3C (inline)
+	virtual void setIndTexCoordScale(unsigned long, J3DIndTexCoordScale);        // _40 (inline)
+	virtual void getIndTexCoordScale(unsigned long);                             // _44 (inline)
 };
 
 struct J3DIndBlockNull : public J3DIndBlock {
-	virtual void reset(J3DIndBlock*); // _08
-	virtual void diff(unsigned long); // _0C
-	virtual void load();              // _10
-	virtual void getType();           // _18
-	virtual ~J3DIndBlockNull();       // _48
-
-	// _00 VTBL
+	virtual void reset(J3DIndBlock*); // _08 (inline)
+	virtual void diff(unsigned long); // _0C (inline)
+	virtual void load();              // _10 (inline)
+	virtual void getType();           // _18 (inline)
+	virtual ~J3DIndBlockNull();       // _48 (inline)
 };
 
 #endif

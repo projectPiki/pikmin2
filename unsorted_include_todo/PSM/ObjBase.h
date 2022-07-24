@@ -17,12 +17,10 @@ namespace PSM {
 struct ObjBase {
     virtual void _08() = 0;   // _08
     virtual void _0C() = 0;   // _0C
-    virtual void @16 @__dt(); // _10
-    virtual ~ObjBase();       // _14
+    virtual void @16 @__dt(); // _10 (inline)
+    virtual ~ObjBase();       // _14 (inline)
     virtual void _18() = 0;   // _18
     virtual void _1C() = 0;   // _1C
-
-    // _00 VTBL
 };
 } // namespace PSM
 

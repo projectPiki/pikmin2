@@ -9,9 +9,7 @@
 */
 
 struct SweepCallback {
-	virtual void invoke(SweepPrune::Object*, SweepPrune::Object*); // _08
-
-	// _00 VTBL
+	virtual void invoke(SweepPrune::Object*, SweepPrune::Object*); // _08 (inline)
 };
 
 #endif

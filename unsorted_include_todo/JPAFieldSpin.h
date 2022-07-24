@@ -11,11 +11,9 @@
 */
 
 struct JPAFieldSpin {
-	virtual ~JPAFieldSpin();                                                  // _08
+	virtual ~JPAFieldSpin();                                                  // _08 (inline)
 	virtual void prepare(JPAEmitterWorkData*, JPAFieldBlock*);                // _0C
 	virtual void calc(JPAEmitterWorkData*, JPAFieldBlock*, JPABaseParticle*); // _10
-
-	// _00 VTBL
 };
 
 #endif

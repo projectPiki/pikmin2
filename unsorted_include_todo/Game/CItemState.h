@@ -23,27 +23,23 @@ namespace FSMState < Game
 {
 	struct CFSMItem >
 	{
-		virtual void FSMState < init(CFSMItem*, StateArg*);         // _08
-		virtual void FSMState < exec(CFSMItem*);                    // _0C
-		virtual void FSMState < cleanup(CFSMItem*);                 // _10
-		virtual void FSMState < resume(CFSMItem*);                  // _14
-		virtual void FSMState < restart(CFSMItem*);                 // _18
-		virtual void FSMState < transit(CFSMItem*, int, StateArg*); // _1C
-
-		// _00 VTBL
+		virtual void FSMState < init(CFSMItem*, StateArg*);         // _08 (inline)
+		virtual void FSMState < exec(CFSMItem*);                    // _0C (inline)
+		virtual void FSMState < cleanup(CFSMItem*);                 // _10 (inline)
+		virtual void FSMState < resume(CFSMItem*);                  // _14 (inline)
+		virtual void FSMState < restart(CFSMItem*);                 // _18 (inline)
+		virtual void FSMState < transit(CFSMItem*, int, StateArg*); // _1C (inline)
 	};
 } // namespace Game
 } // namespace Game
 
 namespace Game {
 struct CItemState : public CFSMItem > {
-	virtual void onDamage(CFSMItem*, float);                       // _20
-	virtual void onKeyEvent(CFSMItem*, const SysShape::KeyEvent&); // _24
-	virtual void onBounce(CFSMItem*, Sys::Triangle*);              // _28
-	virtual void onPlatCollision(CFSMItem*, PlatEvent&);           // _2C
-	virtual void onCollision(CFSMItem*, CollEvent&);               // _30
-
-	// _00 VTBL
+	virtual void onDamage(CFSMItem*, float);                       // _20 (inline)
+	virtual void onKeyEvent(CFSMItem*, const SysShape::KeyEvent&); // _24 (inline)
+	virtual void onBounce(CFSMItem*, Sys::Triangle*);              // _28 (inline)
+	virtual void onPlatCollision(CFSMItem*, PlatEvent&);           // _2C (inline)
+	virtual void onCollision(CFSMItem*, CollEvent&);               // _30 (inline)
 };
 } // namespace Game
 

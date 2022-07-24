@@ -26,16 +26,14 @@ namespace FSMState < Game
 		virtual void init(ItemGate*, StateArg*);                         // _08
 		virtual void exec(ItemGate*);                                    // _0C
 		virtual void cleanup(ItemGate*);                                 // _10
-		virtual void FSMState < resume(ItemGate*);                       // _14
-		virtual void FSMState < restart(ItemGate*);                      // _18
-		virtual void FSMState < transit(ItemGate*, int, StateArg*);      // _1C
+		virtual void FSMState < resume(ItemGate*);                       // _14 (inline)
+		virtual void FSMState < restart(ItemGate*);                      // _18 (inline)
+		virtual void FSMState < transit(ItemGate*, int, StateArg*);      // _1C (inline)
 		virtual void onDamage(ItemGate*, float);                         // _20
 		virtual void onKeyEvent(ItemGate*, const SysShape::KeyEvent&);   // _24
-		virtual void ItemState < onBounce(ItemGate*, Sys::Triangle*);    // _28
-		virtual void ItemState < onPlatCollision(ItemGate*, PlatEvent&); // _2C
-		virtual void ItemState < onCollision(ItemGate*, CollEvent&);     // _30
-
-		// _00 VTBL
+		virtual void ItemState < onBounce(ItemGate*, Sys::Triangle*);    // _28 (inline)
+		virtual void ItemState < onPlatCollision(ItemGate*, PlatEvent&); // _2C (inline)
+		virtual void ItemState < onCollision(ItemGate*, CollEvent&);     // _30 (inline)
 	};
 } // namespace Game
 } // namespace Game
@@ -47,8 +45,6 @@ struct GateWaitState : public ItemGate > {
 	virtual void cleanup(ItemGate*);                               // _10
 	virtual void onDamage(ItemGate*, float);                       // _20
 	virtual void onKeyEvent(ItemGate*, const SysShape::KeyEvent&); // _24
-
-	// _00 VTBL
 };
 } // namespace Game
 

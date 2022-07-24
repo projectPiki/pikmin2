@@ -38,25 +38,23 @@
 */
 
 struct CNode {
-	virtual void _08() = 0;       // _08
+	virtual ~CNode();             // _08 (inline)
 	virtual void getChildCount(); // _0C
-
-	// _00 VTBL
 };
 
 namespace Container < Game
 {
 	struct WaterBox >
 	{
-		virtual void _08() = 0;               // _08
+		virtual ~WaterBox > ();               // _08 (inline)
 		virtual void _0C() = 0;               // _0C
-		virtual void getObject(void*);        // _10
-		virtual void getNext(void*);          // _14
-		virtual void getStart();              // _18
-		virtual void getEnd();                // _1C
-		virtual void get(void*);              // _20
-		virtual void getAt(int);              // _24
-		virtual void getTo();                 // _28
+		virtual void getObject(void*);        // _10 (inline)
+		virtual void getNext(void*);          // _14 (inline)
+		virtual void getStart();              // _18 (inline)
+		virtual void getEnd();                // _1C (inline)
+		virtual void get(void*);              // _20 (inline)
+		virtual void getAt(int);              // _24 (inline)
+		virtual void getTo();                 // _28 (inline)
 		virtual void _2C() = 0;               // _2C
 		virtual void _30() = 0;               // _30
 		virtual void _34() = 0;               // _34
@@ -71,20 +69,18 @@ namespace Container < Game
 		virtual void _58() = 0;               // _58
 		virtual void _5C() = 0;               // _5C
 		virtual void _60() = 0;               // _60
-		virtual void doAnimation();           // _64
-		virtual void doEntry();               // _68
-		virtual void doSetView(int);          // _6C
-		virtual void doViewCalc();            // _70
-		virtual void doSimulation(float);     // _74
-		virtual void doDirectDraw(Graphics&); // _78
-		virtual void resetMgr();              // _7C
-
-		// _00 VTBL
+		virtual void doAnimation();           // _64 (inline)
+		virtual void doEntry();               // _68 (inline)
+		virtual void doSetView(int);          // _6C (inline)
+		virtual void doViewCalc();            // _70 (inline)
+		virtual void doSimulation(float);     // _74 (inline)
+		virtual void doDirectDraw(Graphics&); // _78 (inline)
+		virtual void resetMgr();              // _7C (inline)
 	};
 } // namespace Game
 
 struct GenericObjectMgr {
-	virtual void _08() = 0;               // _08
+	virtual ~GenericObjectMgr();          // _08 (inline)
 	virtual void _0C() = 0;               // _0C
 	virtual void _10() = 0;               // _10
 	virtual void _14() = 0;               // _14
@@ -101,23 +97,26 @@ struct GenericObjectMgr {
 	virtual void _40() = 0;               // _40
 	virtual void _44() = 0;               // _44
 	virtual void _48() = 0;               // _48
-	virtual void doSimpleDraw(Viewport*); // _4C
-	virtual void loadResources();         // _50
+	virtual void doSimpleDraw(Viewport*); // _4C (inline)
+	virtual void loadResources();         // _50 (inline)
 	virtual void _54() = 0;               // _54
-	virtual void pausable();              // _58
-	virtual void frozenable();            // _5C
-	virtual void getMatrixLoadType();     // _60
-
-	// _00 VTBL
+	virtual void pausable();              // _58 (inline)
+	virtual void frozenable();            // _5C (inline)
+	virtual void getMatrixLoadType();     // _60 (inline)
 };
 
 namespace Game {
 struct SeaMgr : public CNode, public WaterBox >, public GenericObjectMgr {
-	virtual ~SeaMgr();      // _08
+	virtual ~SeaMgr();      // _08 (inline)
 	virtual void _2C() = 0; // _2C
 	virtual void _30() = 0; // _30
 
-	// _00 VTBL
+	void update();
+	SeaMgr();
+	void findWater(Sys::Sphere&);
+	void findWater2d(Sys::Sphere&);
+	void read(Stream&);
+	void addSeaMgr(Game::SeaMgr*, Matrixf&);
 };
 } // namespace Game
 

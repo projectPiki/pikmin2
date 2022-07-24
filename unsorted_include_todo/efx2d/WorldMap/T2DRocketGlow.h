@@ -28,15 +28,13 @@ struct TChasePosDir {
     virtual void _14() = 0;                // _14
     virtual void _18() = 0;                // _18
     virtual void _1C() = 0;                // _1C
-    virtual void _20() = 0;                // _20
+    virtual void @8 @__dt();               // _20 (inline)
     virtual void _24() = 0;                // _24
     virtual void _28() = 0;                // _28
     virtual void _2C() = 0;                // _2C
     virtual void _30() = 0;                // _30
-    virtual void _34() = 0;                // _34
-    virtual void execute(JPABaseEmitter*); // _38
-
-    // _00 VTBL
+    virtual ~TChasePosDir();               // _34 (inline)
+    virtual void execute(JPABaseEmitter*); // _38 (inline)
 };
 } // namespace efx2d
 
@@ -45,8 +43,6 @@ struct TForever {
     virtual void _08() = 0; // _08
     virtual void kill();    // _0C
     virtual void fade();    // _10
-
-    // _00 VTBL
 };
 } // namespace efx2d
 
@@ -55,9 +51,7 @@ struct TBase {
     virtual void _08() = 0;               // _08
     virtual void _0C() = 0;               // _0C
     virtual void _10() = 0;               // _10
-    virtual void setGroup(unsigned char); // _14
-
-    // _00 VTBL
+    virtual void setGroup(unsigned char); // _14 (inline)
 };
 } // namespace efx2d
 
@@ -68,13 +62,11 @@ struct JPAEmitterCallBack {
     virtual void _14() = 0;                     // _14
     virtual void _18() = 0;                     // _18
     virtual void _1C() = 0;                     // _1C
-    virtual void _20() = 0;                     // _20
+    virtual void @8 @__dt();                    // _20 (inline)
     virtual void _24() = 0;                     // _24
-    virtual void executeAfter(JPABaseEmitter*); // _28
-    virtual void draw(JPABaseEmitter*);         // _2C
-    virtual void drawAfter(JPABaseEmitter*);    // _30
-
-    // _00 VTBL
+    virtual void executeAfter(JPABaseEmitter*); // _28 (inline)
+    virtual void draw(JPABaseEmitter*);         // _2C (inline)
+    virtual void drawAfter(JPABaseEmitter*);    // _30 (inline)
 };
 
 namespace efx2d {
@@ -85,10 +77,10 @@ namespace WorldMap {
                            public JPAEmitterCallBack {
         virtual void _18() = 0;   // _18
         virtual void _1C() = 0;   // _1C
-        virtual void @8 @__dt();  // _20
-        virtual ~T2DRocketGlow(); // _34
+        virtual void @8 @__dt();  // _20 (inline)
+        virtual ~T2DRocketGlow(); // _34 (inline)
 
-        // _00 VTBL
+        void setGlobalParticleScale(float);
     };
 } // namespace WorldMap
 } // namespace efx2d

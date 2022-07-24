@@ -35,15 +35,13 @@ struct TScreenBase {
 	virtual void draw();                    // _1C
 	virtual void isFinishScreen();          // _20
 	virtual void doSetArchive(JKRArchive*); // _24
-	virtual void doOpenScreen(ArgOpen*);    // _28
-	virtual void doCloseScreen(ArgClose*);  // _2C
-	virtual void doKillScreen();            // _30
-	virtual void doInitWaitState();         // _34
-	virtual void doUpdateStateOpen();       // _38
+	virtual void doOpenScreen(ArgOpen*);    // _28 (inline)
+	virtual void doCloseScreen(ArgClose*);  // _2C (inline)
+	virtual void doKillScreen();            // _30 (inline)
+	virtual void doInitWaitState();         // _34 (inline)
+	virtual void doUpdateStateOpen();       // _38 (inline)
 	virtual void doUpdateStateWait();       // _3C
-	virtual void doUpdateStateClose();      // _40
-
-	// _00 VTBL
+	virtual void doUpdateStateClose();      // _40 (inline)
 };
 } // namespace Screen
 } // namespace ebi
@@ -54,9 +52,7 @@ struct TNintendoLogo : public TScreenBase {
 	virtual void doSetArchive(JKRArchive*); // _24
 	virtual void doUpdateStateWait();       // _3C
 	virtual void doDraw();                  // _44
-	virtual void getName();                 // _48
-
-	// _00 VTBL
+	virtual void getName();                 // _48 (inline)
 };
 } // namespace Screen
 } // namespace ebi

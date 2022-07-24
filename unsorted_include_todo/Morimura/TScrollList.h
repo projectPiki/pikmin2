@@ -49,54 +49,50 @@
 */
 
 struct CNode {
-    virtual void _08() = 0;       // _08
+    virtual ~CNode();             // _08 (inline)
     virtual void getChildCount(); // _0C
-
-    // _00 VTBL
 };
 
 namespace Screen {
 struct ObjBase {
-    virtual void _08() = 0;                           // _08
+    virtual ~ObjBase();                               // _08 (inline)
     virtual void _0C() = 0;                           // _0C
     virtual void _10() = 0;                           // _10
     virtual void _14() = 0;                           // _14
-    virtual void _18() = 0;                           // _18
+    virtual void @24 @__dt();                         // _18 (inline)
     virtual void update();                            // _1C
     virtual void draw(Graphics&);                     // _20
     virtual void start(const StartSceneArg*);         // _24
     virtual void end(const EndSceneArg*);             // _28
-    virtual void setOwner(SceneBase*);                // _2C
-    virtual void getOwner() const;                    // _30
+    virtual void setOwner(SceneBase*);                // _2C (inline)
+    virtual void getOwner() const;                    // _30 (inline)
     virtual void create(JKRArchive*);                 // _34
     virtual void confirmSetScene(SetSceneArg&);       // _38
     virtual void confirmStartScene(StartSceneArg*);   // _3C
     virtual void confirmEndScene(EndSceneArg*);       // _40
     virtual void _44() = 0;                           // _44
     virtual void _48() = 0;                           // _48
-    virtual void doCreate(JKRArchive*);               // _4C
+    virtual void doCreate(JKRArchive*);               // _4C (inline)
     virtual void _50() = 0;                           // _50
     virtual void _54() = 0;                           // _54
-    virtual void doUpdate();                          // _58
+    virtual void doUpdate();                          // _58 (inline)
     virtual void _5C() = 0;                           // _5C
     virtual void _60() = 0;                           // _60
-    virtual void doUpdateFadeoutFinish();             // _64
+    virtual void doUpdateFadeoutFinish();             // _64 (inline)
     virtual void doDraw(Graphics&);                   // _68
-    virtual void doConfirmSetScene(SetSceneArg&);     // _6C
-    virtual void doConfirmStartScene(StartSceneArg*); // _70
-    virtual void doConfirmEndScene(EndSceneArg*&);    // _74
-
-    // _00 VTBL
+    virtual void doConfirmSetScene(SetSceneArg&);     // _6C (inline)
+    virtual void doConfirmStartScene(StartSceneArg*); // _70 (inline)
+    virtual void doConfirmEndScene(EndSceneArg*&);    // _74 (inline)
 };
 } // namespace Screen
 
 namespace Morimura {
 struct TTestBase {
-    virtual void _08() = 0;                             // _08
+    virtual ~TTestBase();                               // _08 (inline)
     virtual void _0C() = 0;                             // _0C
     virtual void _10() = 0;                             // _10
     virtual void _14() = 0;                             // _14
-    virtual void _18() = 0;                             // _18
+    virtual void @24 @__dt();                           // _18 (inline)
     virtual void _1C() = 0;                             // _1C
     virtual void _20() = 0;                             // _20
     virtual void _24() = 0;                             // _24
@@ -111,36 +107,36 @@ struct TTestBase {
     virtual void doEnd(const Screen::EndSceneArg*);     // _48
     virtual void _4C() = 0;                             // _4C
     virtual void doUpdateFadein();                      // _50
-    virtual void doUpdateFadeinFinish();                // _54
+    virtual void doUpdateFadeinFinish();                // _54 (inline)
     virtual void _58() = 0;                             // _58
     virtual void doUpdateFinish();                      // _5C
     virtual void doUpdateFadeout();                     // _60
-
-    // _00 VTBL
 };
 } // namespace Morimura
 
 namespace Morimura {
 struct TScrollList : public CNode, public ObjBase, public TTestBase {
-    virtual ~TScrollList();                       // _08
+    virtual ~TScrollList();                       // _08 (inline)
     virtual void _10() = 0;                       // _10
     virtual void _14() = 0;                       // _14
-    virtual void @24 @__dt();                     // _18
+    virtual void @24 @__dt();                     // _18 (inline)
     virtual void _78() = 0;                       // _78
-    virtual void isListShow(int);                 // _7C
+    virtual void isListShow(int);                 // _7C (inline)
     virtual void _80() = 0;                       // _80
     virtual void _84() = 0;                       // _84
     virtual void _88() = 0;                       // _88
     virtual void _8C() = 0;                       // _8C
     virtual void getUpdateIndex(int&, bool);      // _90
-    virtual void setShortenIndex(int, int, bool); // _94
-    virtual void doUpdateIn();                    // _98
-    virtual void doUpdateOut();                   // _9C
-    virtual void changeTextTevBlock(int);         // _A0
+    virtual void setShortenIndex(int, int, bool); // _94 (inline)
+    virtual void doUpdateIn();                    // _98 (inline)
+    virtual void doUpdateOut();                   // _9C (inline)
+    virtual void changeTextTevBlock(int);         // _A0 (inline)
     virtual void updateIndex(bool);               // _A4
-    virtual void setPaneCharacter(int);           // _A8
+    virtual void setPaneCharacter(int);           // _A8 (inline)
 
-    // _00 VTBL
+    TScrollList();
+    void updateList();
+    void changeIndex();
 };
 } // namespace Morimura
 

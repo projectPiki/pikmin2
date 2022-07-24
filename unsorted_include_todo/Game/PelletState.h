@@ -21,25 +21,21 @@ namespace FSMState < Game
 {
 	struct Pellet >
 	{
-		virtual void FSMState < init(Pellet*, StateArg*);         // _08
-		virtual void FSMState < exec(Pellet*);                    // _0C
-		virtual void FSMState < cleanup(Pellet*);                 // _10
-		virtual void FSMState < resume(Pellet*);                  // _14
-		virtual void FSMState < restart(Pellet*);                 // _18
-		virtual void FSMState < transit(Pellet*, int, StateArg*); // _1C
-
-		// _00 VTBL
+		virtual void FSMState < init(Pellet*, StateArg*);         // _08 (inline)
+		virtual void FSMState < exec(Pellet*);                    // _0C (inline)
+		virtual void FSMState < cleanup(Pellet*);                 // _10 (inline)
+		virtual void FSMState < resume(Pellet*);                  // _14 (inline)
+		virtual void FSMState < restart(Pellet*);                 // _18 (inline)
+		virtual void FSMState < transit(Pellet*, int, StateArg*); // _1C (inline)
 	};
 } // namespace Game
 } // namespace Game
 
 namespace Game {
 struct PelletState : public Pellet > {
-	virtual void isBuried();   // _20
-	virtual void appeared();   // _24
-	virtual void isPickable(); // _28
-
-	// _00 VTBL
+	virtual void isBuried();   // _20 (inline)
+	virtual void appeared();   // _24 (inline)
+	virtual void isPickable(); // _28 (inline)
 };
 } // namespace Game
 

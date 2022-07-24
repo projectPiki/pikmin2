@@ -18,12 +18,10 @@ namespace TSyncGroup3 < efx
 	struct TChasePosYRot >
 	{
 		virtual void create(Arg*);                     // _08
-		virtual void TSyncGroup3 < forceKill();        // _0C
-		virtual void TSyncGroup3 < fade();             // _10
-		virtual void TSyncGroup3 < startDemoDrawOff(); // _14
-		virtual void TSyncGroup3 < endDemoDrawOn();    // _18
-
-		// _00 VTBL
+		virtual void TSyncGroup3 < forceKill();        // _0C (inline)
+		virtual void TSyncGroup3 < fade();             // _10 (inline)
+		virtual void TSyncGroup3 < startDemoDrawOff(); // _14 (inline)
+		virtual void TSyncGroup3 < endDemoDrawOn();    // _18 (inline)
 	};
 } // namespace efx
 } // namespace efx
@@ -31,8 +29,6 @@ namespace TSyncGroup3 < efx
 namespace efx {
 struct TJgmAttackW : public TChasePosYRot > {
 	virtual void create(Arg*); // _08
-
-	// _00 VTBL
 };
 } // namespace efx
 

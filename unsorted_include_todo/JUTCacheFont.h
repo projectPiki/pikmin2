@@ -30,19 +30,17 @@ struct JUTResFont {
 	virtual void setGX();                                               // _0C
 	virtual void setGX(JUtility::TColor, JUtility::TColor);             // _10
 	virtual void drawChar_scale(float, float, float, float, int, bool); // _14
-	virtual void getLeading() const;                                    // _18
-	virtual void getAscent() const;                                     // _1C
-	virtual void getDescent() const;                                    // _20
-	virtual void getHeight() const;                                     // _24
-	virtual void getWidth() const;                                      // _28
+	virtual void getLeading() const;                                    // _18 (inline)
+	virtual void getAscent() const;                                     // _1C (inline)
+	virtual void getDescent() const;                                    // _20 (inline)
+	virtual void getHeight() const;                                     // _24 (inline)
+	virtual void getWidth() const;                                      // _28 (inline)
 	virtual void getWidthEntry(int, JUTFont::TWidth*) const;            // _2C
 	virtual void getCellWidth() const;                                  // _30
 	virtual void getCellHeight() const;                                 // _34
-	virtual void getFontType() const;                                   // _38
-	virtual void getResFont() const;                                    // _3C
+	virtual void getFontType() const;                                   // _38 (inline)
+	virtual void getResFont() const;                                    // _3C (inline)
 	virtual void isLeadByte(int) const;                                 // _40
-
-	// _00 VTBL
 };
 
 struct JUTCacheFont : public JUTResFont {
@@ -50,8 +48,6 @@ struct JUTCacheFont : public JUTResFont {
 	virtual void loadImage(int, _GXTexMapID); // _44
 	virtual void setBlock();                  // _48
 	virtual void _4C() = 0;                   // _4C
-
-	// _00 VTBL
 };
 
 #endif

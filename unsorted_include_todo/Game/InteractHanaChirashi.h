@@ -16,33 +16,27 @@
 
 namespace Game {
 struct Interaction {
-	virtual void actCommon(Creature*); // _08
-	virtual void _0C() = 0;            // _0C
+	virtual void actCommon(Creature*); // _08 (inline)
+	virtual void actPiki(Piki*);       // _0C
 	virtual void _10() = 0;            // _10
-	virtual void actEnemy(EnemyBase*); // _14
-	virtual void actPellet(Pellet*);   // _18
-	virtual void actOnyon(Onyon*);     // _1C
-	virtual void actItem(BaseItem*);   // _20
-
-	// _00 VTBL
+	virtual void actEnemy(EnemyBase*); // _14 (inline)
+	virtual void actPellet(Pellet*);   // _18 (inline)
+	virtual void actOnyon(Onyon*);     // _1C (inline)
+	virtual void actItem(BaseItem*);   // _20 (inline)
 };
 } // namespace Game
 
 namespace Game {
 struct InteractWind {
 	virtual void _08() = 0;      // _08
-	virtual void _0C() = 0;      // _0C
+	virtual void actPiki(Piki*); // _0C
 	virtual void actNavi(Navi*); // _10
-
-	// _00 VTBL
 };
 } // namespace Game
 
 namespace Game {
 struct InteractHanaChirashi : public Interaction, public InteractWind {
 	virtual void actPiki(Piki*); // _0C
-
-	// _00 VTBL
 };
 } // namespace Game
 

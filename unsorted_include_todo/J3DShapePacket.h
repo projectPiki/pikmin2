@@ -12,15 +12,11 @@
 
 struct J3DPacket {
 	virtual void entry(J3DDrawBuffer*); // _08
-
-	// _00 VTBL
 };
 
 struct J3DShapePacket : public J3DPacket {
 	virtual void draw();       // _0C
 	virtual ~J3DShapePacket(); // _10
-
-	// _00 VTBL
 };
 
 #endif

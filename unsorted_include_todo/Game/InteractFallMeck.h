@@ -16,15 +16,13 @@
 
 namespace Game {
 struct Interaction {
-	virtual void actCommon(Creature*); // _08
+	virtual void actCommon(Creature*); // _08 (inline)
 	virtual void actPiki(Piki*);       // _0C
 	virtual void actNavi(Navi*);       // _10
-	virtual void actEnemy(EnemyBase*); // _14
-	virtual void actPellet(Pellet*);   // _18
-	virtual void actOnyon(Onyon*);     // _1C
-	virtual void actItem(BaseItem*);   // _20
-
-	// _00 VTBL
+	virtual void actEnemy(EnemyBase*); // _14 (inline)
+	virtual void actPellet(Pellet*);   // _18 (inline)
+	virtual void actOnyon(Onyon*);     // _1C (inline)
+	virtual void actItem(BaseItem*);   // _20 (inline)
 };
 } // namespace Game
 
@@ -32,8 +30,6 @@ namespace Game {
 struct InteractFallMeck : public Interaction {
 	virtual void actPiki(Piki*); // _0C
 	virtual void actNavi(Navi*); // _10
-
-	// _00 VTBL
 };
 } // namespace Game
 

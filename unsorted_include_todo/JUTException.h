@@ -10,10 +10,8 @@
 */
 
 struct JUTException {
-	virtual ~JUTException(); // _08
+	virtual ~JUTException(); // _08 (inline)
 	virtual void run();      // _0C
-
-	// _00 VTBL
 };
 
 #endif

@@ -18,11 +18,9 @@ namespace StateMachine < ebi
 	struct TMgr >
 	{
 		virtual void init(TMgr*);                         // _08
-		virtual void start(ebi::TMgr*, int, StateArg*);   // _0C
-		virtual void exec(ebi::TMgr*);                    // _10
-		virtual void transit(ebi::TMgr*, int, StateArg*); // _14
-
-		// _00 VTBL
+		virtual void start(ebi::TMgr*, int, StateArg*);   // _0C (inline)
+		virtual void exec(ebi::TMgr*);                    // _10 (inline)
+		virtual void transit(ebi::TMgr*, int, StateArg*); // _14 (inline)
 	};
 	} // namespace FileSelect
 } // namespace ebi
@@ -32,8 +30,6 @@ namespace ebi {
 namespace FileSelect {
 struct FSMStateMachine : public TMgr > {
 	virtual void init(TMgr*); // _08
-
-	// _00 VTBL
 };
 } // namespace FileSelect
 } // namespace ebi

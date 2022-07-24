@@ -17,7 +17,7 @@ struct TCResource {
 	virtual void Do_create();            // _0C
 	virtual void Do_destroy(TResource*); // _10
 
-	// _00 VTBL
+	void Get_groupID(unsigned short);
 };
 } // namespace TResourceContainer
 } // namespace JMessage

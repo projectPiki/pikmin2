@@ -74,8 +74,8 @@ struct JAISound {
 	virtual void _38() = 0;                                                                                               // _38
 	virtual void _3C() = 0;                                                                                               // _3C
 	virtual void _40() = 0;                                                                                               // _40
-	virtual void setTempoProportion(float, unsigned long);                                                                // _44
-	virtual void getTempoProportion();                                                                                    // _48
+	virtual void setTempoProportion(float, unsigned long);                                                                // _44 (inline)
+	virtual void getTempoProportion();                                                                                    // _48 (inline)
 	virtual void _4C() = 0;                                                                                               // _4C
 	virtual void _50() = 0;                                                                                               // _50
 	virtual void _54() = 0;                                                                                               // _54
@@ -84,34 +84,32 @@ struct JAISound {
 	virtual void _60() = 0;                                                                                               // _60
 	virtual void _64() = 0;                                                                                               // _64
 	virtual void _68() = 0;                                                                                               // _68
-	virtual void setDirectVolume(float, unsigned long);                                                                   // _6C
-	virtual void setDirectPan(float, unsigned long);                                                                      // _70
-	virtual void setDirectPitch(float, unsigned long);                                                                    // _74
-	virtual void setDirectFxmix(float, unsigned long);                                                                    // _78
-	virtual void setDirectDolby(float, unsigned long);                                                                    // _7C
-	virtual void setDemoVolume(float, unsigned long);                                                                     // _80
-	virtual void setDemoPan(float, unsigned long);                                                                        // _84
-	virtual void setDemoPitch(float, unsigned long);                                                                      // _88
-	virtual void setDemoFxmix(float, unsigned long);                                                                      // _8C
-	virtual void setDemoDolby(float, unsigned long);                                                                      // _90
-	virtual void setDemoVolumeU7(unsigned char, unsigned long);                                                           // _94
-	virtual void setDemoPanU7(unsigned char, unsigned long);                                                              // _98
-	virtual void setDemoFxmixU7(unsigned char, unsigned long);                                                            // _9C
-	virtual void setDemoDolbyU7(unsigned char, unsigned long);                                                            // _A0
+	virtual void setDirectVolume(float, unsigned long);                                                                   // _6C (inline)
+	virtual void setDirectPan(float, unsigned long);                                                                      // _70 (inline)
+	virtual void setDirectPitch(float, unsigned long);                                                                    // _74 (inline)
+	virtual void setDirectFxmix(float, unsigned long);                                                                    // _78 (inline)
+	virtual void setDirectDolby(float, unsigned long);                                                                    // _7C (inline)
+	virtual void setDemoVolume(float, unsigned long);                                                                     // _80 (inline)
+	virtual void setDemoPan(float, unsigned long);                                                                        // _84 (inline)
+	virtual void setDemoPitch(float, unsigned long);                                                                      // _88 (inline)
+	virtual void setDemoFxmix(float, unsigned long);                                                                      // _8C (inline)
+	virtual void setDemoDolby(float, unsigned long);                                                                      // _90 (inline)
+	virtual void setDemoVolumeU7(unsigned char, unsigned long);                                                           // _94 (inline)
+	virtual void setDemoPanU7(unsigned char, unsigned long);                                                              // _98 (inline)
+	virtual void setDemoFxmixU7(unsigned char, unsigned long);                                                            // _9C (inline)
+	virtual void setDemoDolbyU7(unsigned char, unsigned long);                                                            // _A0 (inline)
 	virtual void _A4() = 0;                                                                                               // _A4
 	virtual void setPrepareFlag(unsigned char);                                                                           // _A8
 	virtual void checkReady();                                                                                            // _AC
-	virtual void setDistanceParameterMoveTime(unsigned char);                                                             // _B0
-	virtual void setAdjustPriority(short);                                                                                // _B4
+	virtual void setDistanceParameterMoveTime(unsigned char);                                                             // _B0 (inline)
+	virtual void setAdjustPriority(short);                                                                                // _B4 (inline)
 	virtual void setPositionDopplarCommon(unsigned long);                                                                 // _B8
 	virtual void setDistanceVolumeCommon(float, unsigned char);                                                           // _BC
 	virtual void setDistancePanCommon();                                                                                  // _C0
 	virtual void setDistanceDolbyCommon();                                                                                // _C4
 	virtual void initParameter(void*, JAInter::Actor*, unsigned long, unsigned long, unsigned char, JAInter::SoundInfo*); // _C8
-	virtual void onGet();                                                                                                 // _CC
-	virtual void onRelease();                                                                                             // _D0
-
-	// _00 VTBL
+	virtual void onGet();                                                                                                 // _CC (inline)
+	virtual void onRelease();                                                                                             // _D0 (inline)
 };
 
 #endif

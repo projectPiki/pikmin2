@@ -17,29 +17,30 @@
 
 namespace Game {
 struct EnemyAnimatorBase {
-	virtual ~EnemyAnimatorBase();                // _08
+	virtual ~EnemyAnimatorBase();                // _08 (inline)
 	virtual void setAnimMgr(SysShape::AnimMgr*); // _0C
 	virtual void getAnimator();                  // _10
 	virtual void getAnimator(int);               // _14
 	virtual void animate(float);                 // _18
-	virtual void animate(int, float);            // _1C
-	virtual void resetAnimSpeed();               // _20
-
-	// _00 VTBL
+	virtual void animate(int, float);            // _1C (inline)
+	virtual void resetAnimSpeed();               // _20 (inline)
 };
 } // namespace Game
 
 namespace Game {
 struct EnemyBlendAnimatorBase : public EnemyAnimatorBase {
-	virtual ~EnemyBlendAnimatorBase();           // _08
+	virtual ~EnemyBlendAnimatorBase();           // _08 (inline)
 	virtual void setAnimMgr(SysShape::AnimMgr*); // _0C
 	virtual void getAnimator();                  // _10
 	virtual void getAnimator(int);               // _14
 	virtual void animate(float);                 // _18
-	virtual void animate(int, float);            // _1C
-	virtual void getTypeID();                    // _24
+	virtual void animate(int, float);            // _1C (inline)
+	virtual void getTypeID();                    // _24 (inline)
 
-	// _00 VTBL
+	EnemyBlendAnimatorBase();
+	void startBlend(int, int, SysShape::BlendFunction*, float, SysShape::MotionListener*);
+	void endBlend();
+	void animate(SysShape::BlendFunction*, float, float, float);
 };
 } // namespace Game
 

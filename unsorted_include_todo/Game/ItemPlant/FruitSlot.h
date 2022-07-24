@@ -10,18 +10,20 @@
 */
 
 struct CNode {
-	virtual ~CNode();             // _08
+	virtual ~CNode();             // _08 (inline)
 	virtual void getChildCount(); // _0C
-
-	// _00 VTBL
 };
 
 namespace Game {
 namespace ItemPlant {
 struct FruitSlot : public CNode {
-	virtual ~FruitSlot(); // _08
+	virtual ~FruitSlot(); // _08 (inline)
 
-	// _00 VTBL
+	FruitSlot();
+	void setFruit(Game::Pellet*, Matrixf*, Matrixf&);
+	void dropFruit();
+	void killFruit();
+	void update();
 };
 } // namespace ItemPlant
 } // namespace Game

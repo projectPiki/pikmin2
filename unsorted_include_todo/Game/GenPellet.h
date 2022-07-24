@@ -28,11 +28,9 @@ struct GenObject {
 	virtual void ramLoadParameters(Stream&);    // _10
 	virtual void doEvent(unsigned long);        // _14
 	virtual void doRead(Stream&);               // _18
-	virtual void update(Generator*);            // _1C
-	virtual void render(Graphics&, Generator*); // _20
+	virtual void update(Generator*);            // _1C (inline)
+	virtual void render(Graphics&, Generator*); // _20 (inline)
 	virtual void getLatestVersion();            // _24
-
-	// _00 VTBL
 };
 } // namespace Game
 
@@ -50,7 +48,7 @@ struct GenPellet : public GenObject {
 	virtual void generatorMakeMatrix(Matrixf&, Vector3<float>&); // _38
 	virtual void getDebugInfo(char*);                            // _3C
 
-	// _00 VTBL
+	void initialise();
 };
 } // namespace Game
 

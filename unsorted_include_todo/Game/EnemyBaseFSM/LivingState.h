@@ -23,15 +23,13 @@
 
 namespace Game {
 struct EnemyFSMState {
-	virtual void init(EnemyBase*, StateArg*);         // _08
-	virtual void exec(EnemyBase*);                    // _0C
-	virtual void cleanup(EnemyBase*);                 // _10
-	virtual void resume(EnemyBase*);                  // _14
-	virtual void restart(EnemyBase*);                 // _18
+	virtual void init(EnemyBase*, StateArg*);         // _08 (inline)
+	virtual void exec(EnemyBase*);                    // _0C (inline)
+	virtual void cleanup(EnemyBase*);                 // _10 (inline)
+	virtual void resume(EnemyBase*);                  // _14 (inline)
+	virtual void restart(EnemyBase*);                 // _18 (inline)
 	virtual void transit(EnemyBase*, int, StateArg*); // _1C
-	virtual void doDirectDraw(EnemyBase*, Graphics&); // _20
-
-	// _00 VTBL
+	virtual void doDirectDraw(EnemyBase*, Graphics&); // _20 (inline)
 };
 } // namespace Game
 
@@ -45,13 +43,11 @@ struct State {
 	virtual void _18() = 0;                                   // _18
 	virtual void _1C() = 0;                                   // _1C
 	virtual void _20() = 0;                                   // _20
-	virtual void _24() = 0;                                   // _24
-	virtual void _28() = 0;                                   // _28
-	virtual void _2C() = 0;                                   // _2C
-	virtual void bounceProcedure(EnemyBase*, Sys::Triangle*); // _30
+	virtual void update(EnemyBase*);                          // _24
+	virtual void entry(EnemyBase*);                           // _28
+	virtual void simulation(EnemyBase*, float);               // _2C
+	virtual void bounceProcedure(EnemyBase*, Sys::Triangle*); // _30 (inline)
 	virtual void animation(EnemyBase*);                       // _34
-
-	// _00 VTBL
 };
 } // namespace EnemyBaseFSM
 } // namespace Game
@@ -64,8 +60,6 @@ struct LivingState : public EnemyFSMState, public State {
 	virtual void simulation(EnemyBase*, float); // _2C
 	virtual void updateCullingOff(EnemyBase*);  // _38
 	virtual void updateAlways(EnemyBase*);      // _3C
-
-	// _00 VTBL
 };
 } // namespace EnemyBaseFSM
 } // namespace Game

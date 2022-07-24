@@ -17,14 +17,12 @@
 namespace Game {
 struct TFlock {
 	virtual void _08() = 0;      // _08
-	virtual void isVisible();    // _0C
-	virtual void isWeed();       // _10
-	virtual void fear();         // _14
-	virtual void getRadius();    // _18
-	virtual void damaged(float); // _1C
-	virtual void constructor();  // _20
-
-	// _00 VTBL
+	virtual void isVisible();    // _0C (inline)
+	virtual void isWeed();       // _10 (inline)
+	virtual void fear();         // _14 (inline)
+	virtual void getRadius();    // _18 (inline)
+	virtual void damaged(float); // _1C (inline)
+	virtual void constructor();  // _20 (inline)
 };
 } // namespace Game
 

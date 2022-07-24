@@ -14,8 +14,6 @@ struct J3DAnmFullLoader_v15 {
 	virtual void load(const void*);                     // _08
 	virtual void setResource(J3DAnmBase*, const void*); // _0C
 	virtual ~J3DAnmFullLoader_v15();                    // _10
-
-	// _00 VTBL
 };
 
 #endif

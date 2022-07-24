@@ -17,7 +17,7 @@
 
 namespace PSSystem {
 struct Scene {
-	virtual void init();                      // _08
+	virtual void init();                      // _08 (inline)
 	virtual ~Scene();                         // _0C
 	virtual void scene1st(TaskChecker*);      // _10
 	virtual void scene1stLoadSync();          // _14
@@ -26,7 +26,13 @@ struct Scene {
 	virtual void stopMainSeq(unsigned long);  // _20
 	virtual void stopAllSound(unsigned long); // _24
 
-	// _00 VTBL
+	Scene();
+	void adaptChildScene(PSSystem::Scene*);
+	void adaptTo(PSSystem::Scene**);
+	void detach();
+	void appendSeq(PSSystem::SeqBase*);
+	void getSeqMgr();
+	void getChildScene();
 };
 } // namespace PSSystem
 

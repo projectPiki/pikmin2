@@ -10,19 +10,19 @@
 */
 
 struct CNode {
-	virtual ~CNode();             // _08
+	virtual ~CNode();             // _08 (inline)
 	virtual void getChildCount(); // _0C
-
-	// _00 VTBL
 };
 
 namespace ebi {
 namespace title {
 namespace Kogane {
 struct TMgr : public CNode {
-	virtual ~TMgr(); // _08
+	virtual ~TMgr(); // _08 (inline)
 
-	// _00 VTBL
+	TMgr();
+	void setArchive(JKRArchive*);
+	void initUnit();
 };
 } // namespace Kogane
 } // namespace title

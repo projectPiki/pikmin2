@@ -11,15 +11,13 @@
 namespace Resource {
 struct Mgr {
 	virtual void drawDump(Graphics&, int, int); // _08
-
-	// _00 VTBL
 };
 } // namespace Resource
 
 namespace Resource {
 struct Mgr2D : public Mgr {
 
-	// _00 VTBL
+	void init(JKRHeap*);
 };
 } // namespace Resource
 

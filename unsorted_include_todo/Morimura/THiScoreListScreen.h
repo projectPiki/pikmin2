@@ -13,19 +13,15 @@
 namespace Morimura {
 struct TScreenBase {
 	virtual void create(const char*, unsigned long); // _08
-	virtual void update();                           // _0C
+	virtual void update();                           // _0C (inline)
 	virtual void draw(Graphics&, J2DPerspGraph*);    // _10
-
-	// _00 VTBL
 };
 } // namespace Morimura
 
 namespace Morimura {
 struct THiScoreListScreen : public TScreenBase {
 	virtual void create(const char*, unsigned long); // _08
-	virtual void update();                           // _0C
-
-	// _00 VTBL
+	virtual void update();                           // _0C (inline)
 };
 } // namespace Morimura
 

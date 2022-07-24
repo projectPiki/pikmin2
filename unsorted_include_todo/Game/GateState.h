@@ -23,29 +23,25 @@ namespace FSMState < Game
 {
 	struct ItemGate >
 	{
-		virtual void FSMState < init(ItemGate*, StateArg*);              // _08
-		virtual void FSMState < exec(ItemGate*);                         // _0C
-		virtual void FSMState < cleanup(ItemGate*);                      // _10
-		virtual void FSMState < resume(ItemGate*);                       // _14
-		virtual void FSMState < restart(ItemGate*);                      // _18
-		virtual void FSMState < transit(ItemGate*, int, StateArg*);      // _1C
-		virtual void onDamage(ItemGate*, float);                         // _20
-		virtual void onKeyEvent(ItemGate*, const SysShape::KeyEvent&);   // _24
-		virtual void ItemState < onBounce(ItemGate*, Sys::Triangle*);    // _28
-		virtual void ItemState < onPlatCollision(ItemGate*, PlatEvent&); // _2C
-		virtual void ItemState < onCollision(ItemGate*, CollEvent&);     // _30
-
-		// _00 VTBL
+		virtual void FSMState < init(ItemGate*, StateArg*);              // _08 (inline)
+		virtual void FSMState < exec(ItemGate*);                         // _0C (inline)
+		virtual void FSMState < cleanup(ItemGate*);                      // _10 (inline)
+		virtual void FSMState < resume(ItemGate*);                       // _14 (inline)
+		virtual void FSMState < restart(ItemGate*);                      // _18 (inline)
+		virtual void FSMState < transit(ItemGate*, int, StateArg*);      // _1C (inline)
+		virtual void onDamage(ItemGate*, float);                         // _20 (inline)
+		virtual void onKeyEvent(ItemGate*, const SysShape::KeyEvent&);   // _24 (inline)
+		virtual void ItemState < onBounce(ItemGate*, Sys::Triangle*);    // _28 (inline)
+		virtual void ItemState < onPlatCollision(ItemGate*, PlatEvent&); // _2C (inline)
+		virtual void ItemState < onCollision(ItemGate*, CollEvent&);     // _30 (inline)
 	};
 } // namespace Game
 } // namespace Game
 
 namespace Game {
 struct GateState : public ItemGate > {
-	virtual void onDamage(ItemGate*, float);                       // _20
-	virtual void onKeyEvent(ItemGate*, const SysShape::KeyEvent&); // _24
-
-	// _00 VTBL
+	virtual void onDamage(ItemGate*, float);                       // _20 (inline)
+	virtual void onKeyEvent(ItemGate*, const SysShape::KeyEvent&); // _24 (inline)
 };
 } // namespace Game
 

@@ -17,26 +17,31 @@
 */
 
 struct JAIBasic {
-	virtual void makeSequence();                       // _08
+	virtual void makeSequence();                       // _08 (inline)
 	virtual void makeSe();                             // _0C
-	virtual void makeStream();                         // _10
+	virtual void makeStream();                         // _10 (inline)
 	virtual void getMapInfoFxline(unsigned long);      // _14
 	virtual void getMapInfoGround(unsigned long);      // _18
 	virtual void getMapInfoFxParameter(unsigned long); // _1C
 	virtual void setSeExtParameter(JAISound*);         // _20
 	virtual void setRegisterTrackCallback();           // _24
-
-	// _00 VTBL
 };
 
 namespace PSSystem {
 struct SysIF : public JAIBasic {
-	virtual void makeSequence();          // _08
+	virtual void makeSequence();          // _08 (inline)
 	virtual void makeSe();                // _0C
-	virtual void makeStream();            // _10
+	virtual void makeStream();            // _10 (inline)
 	virtual void initIF(const SetupArg&); // _28
 
-	// _00 VTBL
+	SysIF();
+	void stopSoundSystem();
+	void playSystemSe(unsigned long, unsigned long);
+	void playSystemSe(unsigned long, JAISound**, unsigned long);
+	void mainLoop();
+	void setConfigVol_Se(float);
+	void setConfigVol_Bgm(float);
+	void start1stSeq();
 };
 } // namespace PSSystem
 

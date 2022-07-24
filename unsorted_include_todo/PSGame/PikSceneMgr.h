@@ -17,9 +17,7 @@
 
 namespace PSSystem {
 struct SceneMgr {
-	virtual void exec(); // _08
-
-	// _00 VTBL
+	virtual void exec(); // _08 (inline)
 };
 } // namespace PSSystem
 
@@ -30,10 +28,14 @@ struct PikSceneMgr : public SceneMgr {
 	virtual void _14() = 0;                         // _14
 	virtual void _18() = 0;                         // _18
 	virtual void _1C() = 0;                         // _1C
-	virtual void curSceneIsBigBossFloor();          // _20
+	virtual void curSceneIsBigBossFloor();          // _20 (inline)
 	virtual void _24() = 0;                         // _24
 
-	// _00 VTBL
+	void newBgmSeq(const char*, JAInter::SoundInfo&);
+	void newStreamBgm(unsigned long, JAInter::SoundInfo&);
+	void initBossBgm(PSGame::SceneInfo&, unsigned char*);
+	void initAdditionalBgm(PSGame::SceneInfo&, PSSystem::Scene*);
+	void initMainBgm(PSGame::SceneInfo&, unsigned char*);
 };
 } // namespace PSGame
 

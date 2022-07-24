@@ -13,10 +13,17 @@ namespace ebi {
 namespace title {
 namespace Kogane {
 struct TUnit {
-	virtual void getCreatureType(); // _08
+	virtual void getCreatureType(); // _08 (inline)
 	virtual void isCalc();          // _0C
 
-	// _00 VTBL
+	void setController(Controller*);
+	void init(ebi::title::Kogane::TMgr*);
+	void startZigzagWalk(Vector2<float>&, Vector2<float>&);
+	void goHome();
+	void outOfCalc();
+	void isController();
+	void startState(ebi::title::Kogane::TUnit::enumState);
+	void update();
 };
 } // namespace Kogane
 } // namespace title

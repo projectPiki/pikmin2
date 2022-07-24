@@ -20,10 +20,8 @@
 namespace ebi {
 namespace FS {
 struct FSMState {
-	virtual void init(TMgr*, Game::StateArg*); // _08
-	virtual void exec(TMgr*);                  // _0C
-
-	// _00 VTBL
+	virtual void init(TMgr*, Game::StateArg*); // _08 (inline)
+	virtual void exec(TMgr*);                  // _0C (inline)
 };
 } // namespace FS
 } // namespace ebi
@@ -36,12 +34,10 @@ namespace FSMState < ebi
 	{
 		virtual void _08() = 0;                           // _08
 		virtual void _0C() = 0;                           // _0C
-		virtual void cleanup(ebi::TMgr*);                 // _10
-		virtual void resume(ebi::TMgr*);                  // _14
-		virtual void restart(ebi::TMgr*);                 // _18
-		virtual void transit(ebi::TMgr*, int, StateArg*); // _1C
-
-		// _00 VTBL
+		virtual void cleanup(ebi::TMgr*);                 // _10 (inline)
+		virtual void resume(ebi::TMgr*);                  // _14 (inline)
+		virtual void restart(ebi::TMgr*);                 // _18 (inline)
+		virtual void transit(ebi::TMgr*, int, StateArg*); // _1C (inline)
 	};
 	} // namespace FS
 } // namespace ebi
@@ -54,8 +50,6 @@ struct FSMState_Warning : public FSMState, public TMgr > {
 	virtual void do_exec(TMgr*);                  // _24
 	virtual void _28() = 0;                       // _28
 	virtual void _2C() = 0;                       // _2C
-
-	// _00 VTBL
 };
 } // namespace FS
 } // namespace ebi

@@ -9,9 +9,7 @@
 */
 
 struct J3DMtxBuffer {
-	virtual ~J3DMtxBuffer(); // _08
-
-	// _00 VTBL
+	virtual ~J3DMtxBuffer(); // _08 (inline)
 };
 
 #endif

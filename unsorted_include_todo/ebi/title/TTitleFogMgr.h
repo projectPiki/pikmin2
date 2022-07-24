@@ -10,18 +10,17 @@
 */
 
 struct CNode {
-	virtual ~CNode();             // _08
+	virtual ~CNode();             // _08 (inline)
 	virtual void getChildCount(); // _0C
-
-	// _00 VTBL
 };
 
 namespace ebi {
 namespace title {
 struct TTitleFogMgr : public CNode {
-	virtual ~TTitleFogMgr(); // _08
+	virtual ~TTitleFogMgr(); // _08 (inline)
 
-	// _00 VTBL
+	void setGX(Camera&);
+	void loadSettingFile(JKRArchive*, char*);
 };
 } // namespace title
 } // namespace ebi

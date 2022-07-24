@@ -10,18 +10,19 @@
 */
 
 struct CNode {
-	virtual ~CNode();             // _08
+	virtual ~CNode();             // _08 (inline)
 	virtual void getChildCount(); // _0C
-
-	// _00 VTBL
 };
 
 namespace ebi {
 namespace title {
 struct TCoordMgr : public CNode {
-	virtual ~TCoordMgr(); // _08
+	virtual ~TCoordMgr(); // _08 (inline)
 
-	// _00 VTBL
+	TCoordMgr();
+	void copyCoordinate(Vector2<float>*);
+	void readCoordinate(JKRArchive*, char*);
+	void readCoordinate(Stream&);
 };
 } // namespace title
 } // namespace ebi

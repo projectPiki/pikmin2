@@ -13,12 +13,10 @@
 
 namespace Screen {
 struct MgrBase {
-	virtual ~MgrBase();     // _08
+	virtual ~MgrBase();     // _08 (inline)
 	virtual void _0C() = 0; // _0C
 	virtual void _10() = 0; // _10
 	virtual void _14() = 0; // _14
-
-	// _00 VTBL
 };
 } // namespace Screen
 

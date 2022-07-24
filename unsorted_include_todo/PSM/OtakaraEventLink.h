@@ -19,8 +19,6 @@ struct DirectorLink {
 	virtual void eventStart();           // _0C
 	virtual void eventRestart();         // _10
 	virtual void eventStop();            // _14
-
-	// _00 VTBL
 };
 } // namespace PSM
 
@@ -28,9 +26,7 @@ namespace PSM {
 struct OtakaraEventLink : public DirectorLink {
 	virtual void getListDirectorActor(); // _08
 	virtual void eventFinish();          // _18
-	virtual void is2PBattle();           // _1C
-
-	// _00 VTBL
+	virtual void is2PBattle();           // _1C (inline)
 };
 } // namespace PSM
 

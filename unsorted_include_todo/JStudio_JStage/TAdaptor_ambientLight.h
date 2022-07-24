@@ -22,7 +22,7 @@ struct TAdaptor_ambientLight {
 	virtual void adaptor_do_update(const JStudio::TObject*, unsigned long);                                        // _18
 	virtual void adaptor_do_data(const JStudio::TObject*, const void*, unsigned long, const void*, unsigned long); // _1C
 
-	// _00 VTBL
+	TAdaptor_ambientLight();
 };
 } // namespace JStudio_JStage
 

@@ -10,8 +10,6 @@
 
 struct J2DMaterial {
 	virtual ~J2DMaterial(); // _08
-
-	// _00 VTBL
 };
 
 #endif

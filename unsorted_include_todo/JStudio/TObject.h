@@ -21,8 +21,6 @@ struct TObject {
 	virtual void _14() = 0;                                                       // _14
 	virtual void do_wait(unsigned long);                                          // _18
 	virtual void do_data(const void*, unsigned long, const void*, unsigned long); // _1C
-
-	// _00 VTBL
 };
 } // namespace JStudio
 

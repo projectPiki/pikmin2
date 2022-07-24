@@ -11,9 +11,9 @@
 namespace Game {
 namespace ItemBigFountain {
 struct FountainParms {
-	virtual void read(Stream&); // _08
+	virtual void read(Stream&); // _08 (inline)
 
-	// _00 VTBL
+	FountainParms();
 };
 } // namespace ItemBigFountain
 } // namespace Game

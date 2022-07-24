@@ -15,7 +15,8 @@ struct AnimPane {
 	virtual void start();    // _08
 	virtual void moveAnim(); // _0C
 
-	// _00 VTBL
+	AnimPane();
+	void init(JKRArchive*, J2DScreen*, unsigned long long, char*);
 };
 } // namespace Screen
 } // namespace og

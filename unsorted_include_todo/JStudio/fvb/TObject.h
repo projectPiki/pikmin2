@@ -15,7 +15,7 @@ struct TObject {
 	virtual void _08() = 0; // _08
 	virtual void _0C() = 0; // _0C
 
-	// _00 VTBL
+	void prepare(const JStudio::fvb::data::TParse_TBlock&, JStudio::fvb::TControl*);
 };
 } // namespace fvb
 } // namespace JStudio

@@ -29,14 +29,12 @@ namespace FSMState < Game
 {
 	struct VsGameSection >
 	{
-		virtual void FSMState < init(VsGameSection*, StateArg*);         // _08
-		virtual void FSMState < exec(VsGameSection*);                    // _0C
-		virtual void FSMState < cleanup(VsGameSection*);                 // _10
-		virtual void FSMState < resume(VsGameSection*);                  // _14
-		virtual void FSMState < restart(VsGameSection*);                 // _18
-		virtual void FSMState < transit(VsGameSection*, int, StateArg*); // _1C
-
-		// _00 VTBL
+		virtual void FSMState < init(VsGameSection*, StateArg*);         // _08 (inline)
+		virtual void FSMState < exec(VsGameSection*);                    // _0C (inline)
+		virtual void FSMState < cleanup(VsGameSection*);                 // _10 (inline)
+		virtual void FSMState < resume(VsGameSection*);                  // _14 (inline)
+		virtual void FSMState < restart(VsGameSection*);                 // _18 (inline)
+		virtual void FSMState < transit(VsGameSection*, int, StateArg*); // _1C (inline)
 	};
 } // namespace Game
 } // namespace Game
@@ -44,19 +42,17 @@ namespace FSMState < Game
 namespace Game {
 namespace VsGame {
 struct State : public VsGameSection > {
-	virtual void Vsdraw(VsGameSection*, Graphics&);                                          // _20
-	virtual void Vspre2dDraw(Graphics&, VsGameSection*);                                     // _24
-	virtual void VsonOrimaDown(VsGameSection*, int);                                         // _28
-	virtual void VsonMovieStart(VsGameSection*, MovieConfig*, unsigned long, unsigned long); // _2C
-	virtual void VsonMovieDone(VsGameSection*, MovieConfig*, unsigned long, unsigned long);  // _30
-	virtual void VsonNextFloor(VsGameSection*, ItemHole::Item*);                             // _34
-	virtual void Vson_section_fadeout(VsGameSection*);                                       // _38
-	virtual void VsgoingToCave(VsGameSection*);                                              // _3C
-	virtual void VsonBattleFinished(VsGameSection*, int, bool);                              // _40
-	virtual void VsonRedOrBlueSuckStart(VsGameSection*, int, bool);                          // _44
-	virtual void VsisCardUsable(VsGameSection*);                                             // _48
-
-	// _00 VTBL
+	virtual void Vsdraw(VsGameSection*, Graphics&);                                          // _20 (inline)
+	virtual void Vspre2dDraw(Graphics&, VsGameSection*);                                     // _24 (inline)
+	virtual void VsonOrimaDown(VsGameSection*, int);                                         // _28 (inline)
+	virtual void VsonMovieStart(VsGameSection*, MovieConfig*, unsigned long, unsigned long); // _2C (inline)
+	virtual void VsonMovieDone(VsGameSection*, MovieConfig*, unsigned long, unsigned long);  // _30 (inline)
+	virtual void VsonNextFloor(VsGameSection*, ItemHole::Item*);                             // _34 (inline)
+	virtual void Vson_section_fadeout(VsGameSection*);                                       // _38 (inline)
+	virtual void VsgoingToCave(VsGameSection*);                                              // _3C (inline)
+	virtual void VsonBattleFinished(VsGameSection*, int, bool);                              // _40 (inline)
+	virtual void VsonRedOrBlueSuckStart(VsGameSection*, int, bool);                          // _44 (inline)
+	virtual void VsisCardUsable(VsGameSection*);                                             // _48 (inline)
 };
 } // namespace VsGame
 } // namespace Game

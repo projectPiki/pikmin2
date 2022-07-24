@@ -23,33 +23,29 @@
 
 namespace Game {
 struct GenBase {
-	virtual void _08() = 0;              // _08
-	virtual void _0C() = 0;              // _0C
-	virtual void _10() = 0;              // _10
-	virtual void doEvent(unsigned long); // _14
-
-	// _00 VTBL
+	virtual void doWrite(Stream&);           // _08
+	virtual void ramSaveParameters(Stream&); // _0C
+	virtual void ramLoadParameters(Stream&); // _10
+	virtual void doEvent(unsigned long);     // _14 (inline)
 };
 } // namespace Game
 
 namespace Game {
 struct GenObject {
-	virtual void _08() = 0;                                      // _08
-	virtual void _0C() = 0;                                      // _0C
-	virtual void _10() = 0;                                      // _10
+	virtual void doWrite(Stream&);                               // _08
+	virtual void ramSaveParameters(Stream&);                     // _0C
+	virtual void ramLoadParameters(Stream&);                     // _10
 	virtual void _14() = 0;                                      // _14
-	virtual void _18() = 0;                                      // _18
-	virtual void update(Generator*);                             // _1C
-	virtual void _20() = 0;                                      // _20
+	virtual void doRead(Stream&);                                // _18
+	virtual void update(Generator*);                             // _1C (inline)
+	virtual void render(Graphics&, Generator*);                  // _20
 	virtual void getLatestVersion();                             // _24
-	virtual void _28() = 0;                                      // _28
-	virtual void _2C() = 0;                                      // _2C
-	virtual void _30() = 0;                                      // _30
-	virtual void _34() = 0;                                      // _34
-	virtual void generatorMakeMatrix(Matrixf&, Vector3<float>&); // _38
-	virtual void getDebugInfo(char*);                            // _3C
-
-	// _00 VTBL
+	virtual void getShape();                                     // _28
+	virtual void updateUseList(Generator*, int);                 // _2C
+	virtual void generate(Generator*);                           // _30
+	virtual void birth(GenArg*);                                 // _34
+	virtual void generatorMakeMatrix(Matrixf&, Vector3<float>&); // _38 (inline)
+	virtual void getDebugInfo(char*);                            // _3C (inline)
 };
 } // namespace Game
 
@@ -65,7 +61,10 @@ struct GenObjectEnemy : public GenBase, public GenObject {
 	virtual void generate(Generator*);           // _30
 	virtual void birth(GenArg*);                 // _34
 
-	// _00 VTBL
+	GenObjectEnemy();
+	void initialise();
+	void doReadOldVersion(Stream&);
+	void createEnemyGenerator();
 };
 } // namespace Game
 

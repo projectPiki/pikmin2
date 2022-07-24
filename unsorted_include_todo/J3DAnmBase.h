@@ -10,10 +10,8 @@
 */
 
 struct J3DAnmBase {
-	virtual ~J3DAnmBase();  // _08
+	virtual ~J3DAnmBase();  // _08 (inline)
 	virtual void _0C() = 0; // _0C
-
-	// _00 VTBL
 };
 
 #endif

@@ -13,7 +13,9 @@ namespace stb {
 struct TControl {
 	virtual ~TControl(); // _08
 
-	// _00 VTBL
+	TControl();
+	void getObject(const void*, unsigned long);
+	void forward(unsigned long);
 };
 } // namespace stb
 } // namespace JStudio

@@ -9,9 +9,7 @@
 */
 
 struct J3DTexture {
-	virtual ~J3DTexture(); // _08
-
-	// _00 VTBL
+	virtual ~J3DTexture(); // _08 (inline)
 };
 
 #endif

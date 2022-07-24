@@ -31,23 +31,19 @@ struct J3DModelLoader {
 	virtual void calcLoadBinaryDisplayListSize(const void*, unsigned long);         // _1C
 	virtual void countMaterialNum(const void*);                                     // _20
 	virtual void setupBBoardInfo();                                                 // _24
-	virtual ~J3DModelLoader();                                                      // _28
-	virtual void readMaterial(const J3DMaterialBlock*, unsigned long);              // _2C
+	virtual ~J3DModelLoader();                                                      // _28 (inline)
+	virtual void readMaterial(const J3DMaterialBlock*, unsigned long);              // _2C (inline)
 	virtual void readMaterial_v21(const J3DMaterialBlock_v21*, unsigned long);      // _30
-	virtual void readMaterialTable(const J3DMaterialBlock*, unsigned long);         // _34
+	virtual void readMaterialTable(const J3DMaterialBlock*, unsigned long);         // _34 (inline)
 	virtual void readMaterialTable_v21(const J3DMaterialBlock_v21*, unsigned long); // _38
-	virtual void calcSizeMaterial(const J3DMaterialBlock*, unsigned long);          // _3C
-	virtual void calcSizeMaterialTable(const J3DMaterialBlock*, unsigned long);     // _40
-
-	// _00 VTBL
+	virtual void calcSizeMaterial(const J3DMaterialBlock*, unsigned long);          // _3C (inline)
+	virtual void calcSizeMaterialTable(const J3DMaterialBlock*, unsigned long);     // _40 (inline)
 };
 
 struct J3DModelLoader_v21 : public J3DModelLoader {
-	virtual ~J3DModelLoader_v21();                                                  // _28
+	virtual ~J3DModelLoader_v21();                                                  // _28 (inline)
 	virtual void readMaterial_v21(const J3DMaterialBlock_v21*, unsigned long);      // _30
 	virtual void readMaterialTable_v21(const J3DMaterialBlock_v21*, unsigned long); // _38
-
-	// _00 VTBL
 };
 
 #endif

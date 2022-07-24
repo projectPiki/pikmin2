@@ -15,14 +15,14 @@
 
 namespace JStudio {
 struct TFunctionValue_constant {
-	virtual ~TFunctionValue_constant(); // _08
+	virtual ~TFunctionValue_constant(); // _08 (inline)
 	virtual void getType() const;       // _0C
 	virtual void getAttributeSet();     // _10
 	virtual void initialize();          // _14
 	virtual void prepare();             // _18
 	virtual void getValue(double);      // _1C
 
-	// _00 VTBL
+	TFunctionValue_constant();
 };
 } // namespace JStudio
 

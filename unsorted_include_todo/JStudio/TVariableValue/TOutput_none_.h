@@ -14,8 +14,6 @@ namespace TVariableValue {
 struct TOutput_none_ {
 	virtual void operator()(float, TAdaptor*) const; // _08
 	virtual ~TOutput_none_();                        // _0C
-
-	// _00 VTBL
 };
 } // namespace TVariableValue
 } // namespace JStudio

@@ -28,8 +28,6 @@
 struct JKRFileLoader {
 	virtual ~JKRFileLoader(); // _08
 	virtual void unmount();   // _0C
-
-	// _00 VTBL
 };
 
 struct JKRFileCache : public JKRFileLoader {
@@ -45,13 +43,11 @@ struct JKRFileCache : public JKRFileLoader {
 	virtual void getResSize(const void*) const;                                      // _30
 	virtual void countFile(const char*) const;                                       // _34
 	virtual void getFirstFile(const char*) const;                                    // _38
-	virtual void getFsResource(const char*);                                         // _3C
-	virtual void getNameResource(unsigned long, const char*);                        // _40
-	virtual void readFsResource(void*, unsigned long, const char*);                  // _44
-	virtual void readNameResource(void*, unsigned long, unsigned long, const char*); // _48
+	virtual void getFsResource(const char*);                                         // _3C (inline)
+	virtual void getNameResource(unsigned long, const char*);                        // _40 (inline)
+	virtual void readFsResource(void*, unsigned long, const char*);                  // _44 (inline)
+	virtual void readNameResource(void*, unsigned long, unsigned long, const char*); // _48 (inline)
 	virtual void _4C() = 0;                                                          // _4C
-
-	// _00 VTBL
 };
 
 #endif

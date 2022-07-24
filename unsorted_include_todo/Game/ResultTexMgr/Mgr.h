@@ -15,7 +15,12 @@ struct Mgr {
 	virtual ~Mgr();         // _08
 	virtual void _0C() = 0; // _0C
 
-	// _00 VTBL
+	Mgr();
+	void create(Game::ResultTexMgr::Arg&);
+	void getOtakaraItemTexture(int);
+	void getOtakaraTexture(int);
+	void getItemTexture(int);
+	void getCarcassTexture();
 };
 } // namespace ResultTexMgr
 } // namespace Game

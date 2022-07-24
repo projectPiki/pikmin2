@@ -37,9 +37,7 @@ struct TScreenBase {
 	virtual void doSetArchive(JKRArchive*); // _24
 	virtual void doOpenScreen(ArgOpen*);    // _28
 	virtual void doCloseScreen(ArgClose*);  // _2C
-	virtual void doKillScreen();            // _30
-
-	// _00 VTBL
+	virtual void doKillScreen();            // _30 (inline)
 };
 } // namespace Screen
 } // namespace ebi
@@ -55,9 +53,15 @@ struct TOmake : public TScreenBase {
 	virtual void doUpdateStateWait();       // _3C
 	virtual void doUpdateStateClose();      // _40
 	virtual void doDraw();                  // _44
-	virtual void getName();                 // _48
+	virtual void getName();                 // _48 (inline)
 
-	// _00 VTBL
+	TOmake();
+	void setController(Controller*);
+	void showPanes_();
+	void hidePanes_();
+	void openFromMovie_();
+	void openFromCardE_();
+	~TOmake();
 };
 } // namespace Screen
 } // namespace ebi

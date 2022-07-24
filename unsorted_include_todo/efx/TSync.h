@@ -30,13 +30,11 @@ struct JPAEmitterCallBack {
     virtual void fade();                            // _10
     virtual void _14() = 0;                         // _14
     virtual void _18() = 0;                         // _18
-    virtual void @4 @__dt();                        // _1C
-    virtual void @4 @execute(JPABaseEmitter*);      // _20
-    virtual void @4 @executeAfter(JPABaseEmitter*); // _24
-    virtual void draw(JPABaseEmitter*);             // _28
-    virtual void drawAfter(JPABaseEmitter*);        // _2C
-
-    // _00 VTBL
+    virtual void @4 @__dt();                        // _1C (inline)
+    virtual void @4 @execute(JPABaseEmitter*);      // _20 (inline)
+    virtual void @4 @executeAfter(JPABaseEmitter*); // _24 (inline)
+    virtual void draw(JPABaseEmitter*);             // _28 (inline)
+    virtual void drawAfter(JPABaseEmitter*);        // _2C (inline)
 };
 
 namespace efx {
@@ -46,18 +44,16 @@ struct TSync : public JPAEmitterCallBack {
     virtual void fade();                            // _10
     virtual void _14() = 0;                         // _14
     virtual void _18() = 0;                         // _18
-    virtual void @4 @__dt();                        // _1C
-    virtual void @4 @execute(JPABaseEmitter*);      // _20
-    virtual void @4 @executeAfter(JPABaseEmitter*); // _24
-    virtual void execute(JPABaseEmitter*);          // _30
-    virtual void executeAfter(JPABaseEmitter*);     // _34
+    virtual void @4 @__dt();                        // _1C (inline)
+    virtual void @4 @execute(JPABaseEmitter*);      // _20 (inline)
+    virtual void @4 @executeAfter(JPABaseEmitter*); // _24 (inline)
+    virtual void execute(JPABaseEmitter*);          // _30 (inline)
+    virtual void executeAfter(JPABaseEmitter*);     // _34 (inline)
     virtual void _38() = 0;                         // _38
-    virtual void doExecuteAfter(JPABaseEmitter*);   // _3C
-    virtual void startDemoDrawOff();                // _40
-    virtual void endDemoDrawOn();                   // _44
-    virtual ~TSync();                               // _48
-
-    // _00 VTBL
+    virtual void doExecuteAfter(JPABaseEmitter*);   // _3C (inline)
+    virtual void startDemoDrawOff();                // _40 (inline)
+    virtual void endDemoDrawOn();                   // _44 (inline)
+    virtual ~TSync();                               // _48 (inline)
 };
 } // namespace efx
 

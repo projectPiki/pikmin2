@@ -10,18 +10,29 @@
 */
 
 struct CNode {
-	virtual ~CNode();             // _08
+	virtual ~CNode();             // _08 (inline)
 	virtual void getChildCount(); // _0C
-
-	// _00 VTBL
 };
 
 namespace Game {
 namespace Farm {
 struct Farm : public CNode {
-	virtual ~Farm(); // _08
+	virtual ~Farm(); // _08 (inline)
 
-	// _00 VTBL
+	Farm();
+	void loadResource(unsigned long, void*);
+	void update();
+	void doAnimation();
+	void doEntry();
+	void doSetView(unsigned long);
+	void doViewCalc();
+	void addObstacle(Game::Creature*, float, float);
+	void createNewObstacle(Game::Creature*, float, float);
+	void addPlant(Game::Creature*);
+	void createNewPlant(Game::Creature*);
+	void updateObjectRelation(bool);
+	void doDebugDraw(Graphics&);
+	void initAllObjectNodes();
 };
 } // namespace Farm
 } // namespace Game

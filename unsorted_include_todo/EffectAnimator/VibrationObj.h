@@ -11,18 +11,14 @@
 */
 
 struct CNode {
-	virtual ~CNode();             // _08
+	virtual ~CNode();             // _08 (inline)
 	virtual void getChildCount(); // _0C
-
-	// _00 VTBL
 };
 
 namespace EffectAnimator {
 struct VibrationObj : public CNode {
-	virtual ~VibrationObj();                         // _08
-	virtual void update(efx::TKechappyTest*, float); // _10
-
-	// _00 VTBL
+	virtual ~VibrationObj();                         // _08 (inline)
+	virtual void update(efx::TKechappyTest*, float); // _10 (inline)
 };
 } // namespace EffectAnimator
 

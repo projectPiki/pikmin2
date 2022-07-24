@@ -15,16 +15,12 @@ struct TScreenBase {
 	virtual void create(const char*, unsigned long); // _08
 	virtual void update();                           // _0C
 	virtual void draw(Graphics&, J2DPerspGraph*);    // _10
-
-	// _00 VTBL
 };
 } // namespace Morimura
 
 namespace Morimura {
 struct TListScreen : public TScreenBase {
 	virtual void create(const char*, unsigned long); // _08
-
-	// _00 VTBL
 };
 } // namespace Morimura
 

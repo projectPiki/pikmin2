@@ -16,8 +16,6 @@ struct TSelectExplanationWindow {
 	virtual void create(const char*, unsigned long); // _08
 	virtual void update();                           // _0C
 	virtual void draw(Graphics&, J2DPerspGraph*);    // _10
-
-	// _00 VTBL
 };
 } // namespace Morimura
 
@@ -25,8 +23,6 @@ namespace Morimura {
 struct TChallengeSelectExplanationWindow : public TSelectExplanationWindow {
 	virtual void create(const char*, unsigned long); // _08
 	virtual void screenScaleUp();                    // _14
-
-	// _00 VTBL
 };
 } // namespace Morimura
 

@@ -13,9 +13,7 @@
 struct J3DAnmLoader {
 	virtual void _08() = 0;  // _08
 	virtual void _0C() = 0;  // _0C
-	virtual ~J3DAnmLoader(); // _10
-
-	// _00 VTBL
+	virtual ~J3DAnmLoader(); // _10 (inline)
 };
 
 #endif

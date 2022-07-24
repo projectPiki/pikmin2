@@ -16,8 +16,6 @@
 struct CNode {
 	virtual ~CNode();             // _08
 	virtual void getChildCount(); // _0C
-
-	// _00 VTBL
 };
 
 namespace Game {
@@ -28,7 +26,17 @@ struct Generator : public CNode {
 	virtual void doSetView(int); // _18
 	virtual void doViewCalc();   // _1C
 
-	// _00 VTBL
+	void initialiseSystem();
+	Generator();
+	void updateUseList();
+	void isExpired();
+	void loadCreature(Stream&);
+	void need_saveCreature();
+	void saveCreature(Stream&);
+	void generate();
+	void informDeath(Game::Creature*);
+	void read(Stream&);
+	void write(Stream&);
 };
 } // namespace Game
 

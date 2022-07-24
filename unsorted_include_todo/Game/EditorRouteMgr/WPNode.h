@@ -10,18 +10,14 @@
 */
 
 struct CNode {
-	virtual ~CNode();             // _08
+	virtual ~CNode();             // _08 (inline)
 	virtual void getChildCount(); // _0C
-
-	// _00 VTBL
 };
 
 namespace Game {
 namespace EditorRouteMgr {
 struct WPNode : public CNode {
-	virtual ~WPNode(); // _08
-
-	// _00 VTBL
+	virtual ~WPNode(); // _08 (inline)
 };
 } // namespace EditorRouteMgr
 } // namespace Game

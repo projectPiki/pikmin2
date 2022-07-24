@@ -11,19 +11,22 @@
 */
 
 struct CNode {
-	virtual ~CNode();             // _08
+	virtual ~CNode();             // _08 (inline)
 	virtual void getChildCount(); // _0C
-
-	// _00 VTBL
 };
 
 namespace Game {
 namespace EnemyStone {
 struct Obj : public CNode {
-	virtual ~Obj();         // _08
+	virtual ~Obj();         // _08 (inline)
 	virtual void _10() = 0; // _10
 
-	// _00 VTBL
+	Obj();
+	void start();
+	void shake();
+	void update();
+	void checkDrawInfoState(int);
+	void dead();
 };
 } // namespace EnemyStone
 } // namespace Game

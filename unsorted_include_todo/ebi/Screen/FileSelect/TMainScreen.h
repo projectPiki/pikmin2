@@ -34,8 +34,6 @@ struct TScreenBase {
 	virtual void update();                // _18
 	virtual void draw();                  // _1C
 	virtual void isFinishScreen();        // _20
-
-	// _00 VTBL
 };
 } // namespace Screen
 } // namespace ebi
@@ -53,9 +51,47 @@ struct TMainScreen : public TScreenBase {
 	virtual void TMaindoUpdateStateWait();       // _3C
 	virtual void TMaindoUpdateStateClose();      // _40
 	virtual void TMaindoDraw();                  // _44
-	virtual void TMaingetName();                 // _48
+	virtual void TMaingetName();                 // _48 (inline)
 
-	// _00 VTBL
+	TMainScreen();
+	void loadResource();
+	void inDataBall(long);
+	void outDataBall(long);
+	void decideDataBall(long);
+	void createFiledecide(long);
+	void isFinishOutDataBall(long);
+	void isFinishDecideDataBall(long);
+	void createCopyCursor(long);
+	void fadeCopyCursor();
+	void moveLeftCopyCursor();
+	void moveRightCopyCursor();
+	void createFilecopyEffect(long, long);
+	void fadeFilecopyEffect();
+	void createFiledeletingEffect(long);
+	void fadeFiledeletingEffect();
+	void openDataWindow(long);
+	void closeDataWindow();
+	void decideDataWindow();
+	void isFinishCloseDataWindow();
+	void openMSG(long);
+	void closeMSG();
+	void isFinishCloseMSG();
+	void setYesNo(bool);
+	void updateMsg_();
+	void setMsgID_(unsigned long long, unsigned long long, unsigned long long);
+	void inCopyErase();
+	void outCopyErase();
+	void inYesNo_();
+	void outYesNo_();
+	void setDataBallCopyResult(long, long);
+	void setDataBallNew(long);
+	void setDataBallBroken(long);
+	void initDataBalls_();
+	void setColorTimgDataBall_(long);
+	void getDataBallColor_(long);
+	void calcDataBallColor_(unsigned long, unsigned long, unsigned long, unsigned long, unsigned long);
+	void setIconColorAlpha_(unsigned char);
+	~TMainScreen();
 };
 } // namespace FileSelect
 } // namespace Screen

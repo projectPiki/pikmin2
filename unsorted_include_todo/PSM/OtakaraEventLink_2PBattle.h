@@ -20,9 +20,9 @@ struct OtakaraEventLink_2PBattle {
 	virtual void eventRestart();         // _10
 	virtual void eventStop();            // _14
 	virtual void eventFinish();          // _18
-	virtual void is2PBattle();           // _1C
+	virtual void is2PBattle();           // _1C (inline)
 
-	// _00 VTBL
+	void getTargetDirector();
 };
 } // namespace PSM
 

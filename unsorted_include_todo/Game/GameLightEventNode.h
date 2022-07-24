@@ -10,17 +10,18 @@
 */
 
 struct CNode {
-	virtual ~CNode();             // _08
+	virtual ~CNode();             // _08 (inline)
 	virtual void getChildCount(); // _0C
-
-	// _00 VTBL
 };
 
 namespace Game {
 struct GameLightEventNode : public CNode {
-	virtual ~GameLightEventNode(); // _08
+	virtual ~GameLightEventNode(); // _08 (inline)
 
-	// _00 VTBL
+	void update(Game::GameLightMgr*);
+	void updateCommon(Game::GameLightMgr*, bool);
+	void calcColor(Color4*);
+	GameLightEventNode();
 };
 } // namespace Game
 

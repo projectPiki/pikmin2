@@ -10,16 +10,12 @@
 */
 
 struct CNode {
-	virtual ~CNode();             // _08
+	virtual ~CNode();             // _08 (inline)
 	virtual void getChildCount(); // _0C
-
-	// _00 VTBL
 };
 
 struct HIORootNode : public CNode {
-	virtual ~HIORootNode(); // _08
-
-	// _00 VTBL
+	virtual ~HIORootNode(); // _08 (inline)
 };
 
 #endif

@@ -17,28 +17,37 @@
 */
 
 struct CNode {
-    virtual ~CNode();             // _08
+    virtual ~CNode();             // _08 (inline)
     virtual void _0C() = 0;       // _0C
     virtual void _10() = 0;       // _10
-    virtual void @24 @__dt();     // _14
+    virtual void @24 @__dt();     // _14 (inline)
     virtual void getChildCount(); // _18
-
-    // _00 VTBL
 };
 
 namespace Game {
 struct THPPlayer : public CNode {
-    virtual ~THPPlayer();         // _08
+    virtual ~THPPlayer();         // _08 (inline)
     virtual void _0C() = 0;       // _0C
     virtual void _10() = 0;       // _10
-    virtual void @24 @__dt();     // _14
+    virtual void @24 @__dt();     // _14 (inline)
     virtual void update();        // _1C
     virtual void draw(Graphics&); // _20
     virtual void draw(Graphics&, long, long, unsigned long,
                       unsigned long);                // _24
     virtual void draw(Graphics&, long, long, float); // _28
 
-    // _00 VTBL
+    THPPlayer();
+    void load(Game::THPPlayer::EMovieIndex);
+    void load();
+    void loadResource();
+    void loadResource(const Game::THPPlayerLoadResourceArg&);
+    void prepare();
+    void init(JKRHeap*);
+    void play();
+    void pause();
+    void stop();
+    void isFinishLoading();
+    void isFinishPlaying();
 };
 } // namespace Game
 

@@ -58,72 +58,68 @@
 */
 
 struct J2DWindow {
-	virtual void _08() = 0;              // _08
-	virtual void getTypeID() const;      // _0C
-	virtual void _10() = 0;              // _10
-	virtual void _14() = 0;              // _14
-	virtual void resize(float, float);   // _18
-	virtual void _1C() = 0;              // _1C
-	virtual void _20() = 0;              // _20
-	virtual void _24() = 0;              // _24
-	virtual void _28() = 0;              // _28
-	virtual void _2C() = 0;              // _2C
-	virtual void _30() = 0;              // _30
-	virtual void drawSelf(float, float); // _34
-
-	// _00 VTBL
+	virtual ~J2DWindow();                  // _08
+	virtual void getTypeID() const;        // _0C (inline)
+	virtual void _10() = 0;                // _10
+	virtual void _14() = 0;                // _14
+	virtual void resize(float, float);     // _18
+	virtual void setCullBack(bool);        // _1C (inline)
+	virtual void setCullBack(_GXCullMode); // _20
+	virtual void setAlpha(unsigned char);  // _24
+	virtual void _28() = 0;                // _28
+	virtual void _2C() = 0;                // _2C
+	virtual void _30() = 0;                // _30
+	virtual void drawSelf(float, float);   // _34
 };
 
 struct J2DPane {
-	virtual void _08() = 0;                                   // _08
+	virtual ~J2DPane();                                       // _08
 	virtual void _0C() = 0;                                   // _0C
 	virtual void move(float, float);                          // _10
 	virtual void add(float, float);                           // _14
 	virtual void _18() = 0;                                   // _18
-	virtual void _1C() = 0;                                   // _1C
-	virtual void _20() = 0;                                   // _20
-	virtual void _24() = 0;                                   // _24
-	virtual void setConnectParent(bool);                      // _28
-	virtual void calcMtx();                                   // _2C
-	virtual void update();                                    // _30
+	virtual void setCullBack(bool);                           // _1C (inline)
+	virtual void setCullBack(_GXCullMode);                    // _20
+	virtual void setAlpha(unsigned char);                     // _24
+	virtual void setConnectParent(bool);                      // _28 (inline)
+	virtual void calcMtx();                                   // _2C (inline)
+	virtual void update();                                    // _30 (inline)
 	virtual void _34() = 0;                                   // _34
-	virtual void _38() = 0;                                   // _38
+	virtual void drawSelf(float, float, float (*)[3][4]);     // _38
 	virtual void search(unsigned long long);                  // _3C
 	virtual void searchUserInfo(unsigned long long);          // _40
-	virtual void makeMatrix(float, float);                    // _44
+	virtual void makeMatrix(float, float);                    // _44 (inline)
 	virtual void makeMatrix(float, float, float, float);      // _48
-	virtual void _4C() = 0;                                   // _4C
-	virtual void _50() = 0;                                   // _50
+	virtual void isUsed(const ResTIMG*);                      // _4C
+	virtual void isUsed(const ResFONT*);                      // _50 (inline)
 	virtual void clearAnmTransform();                         // _54
-	virtual void _58() = 0;                                   // _58
-	virtual void _5C() = 0;                                   // _5C
-	virtual void _60() = 0;                                   // _60
-	virtual void _64() = 0;                                   // _64
-	virtual void _68() = 0;                                   // _68
-	virtual void _6C() = 0;                                   // _6C
-	virtual void _70() = 0;                                   // _70
-	virtual void _74() = 0;                                   // _74
-	virtual void _78() = 0;                                   // _78
+	virtual void rewriteAlpha();                              // _58
+	virtual void setAnimation(J2DAnmBase*);                   // _5C (inline)
+	virtual void setAnimation(J2DAnmTransform*);              // _60 (inline)
+	virtual void setAnimation(J2DAnmColor*);                  // _64
+	virtual void setAnimation(J2DAnmTexPattern*);             // _68
+	virtual void setAnimation(J2DAnmTextureSRTKey*);          // _6C
+	virtual void setAnimation(J2DAnmTevRegKey*);              // _70
+	virtual void setAnimation(J2DAnmVisibilityFull*);         // _74
+	virtual void setAnimation(J2DAnmVtxColor*);               // _78
 	virtual void animationTransform(const J2DAnmTransform*);  // _7C
 	virtual void setVisibileAnimation(J2DAnmVisibilityFull*); // _80
-	virtual void setAnimationVF(J2DAnmVisibilityFull*);       // _84
+	virtual void setAnimationVF(J2DAnmVisibilityFull*);       // _84 (inline)
 	virtual void setVtxColorAnimation(J2DAnmVtxColor*);       // _88
-	virtual void setAnimationVC(J2DAnmVtxColor*);             // _8C
-
-	// _00 VTBL
+	virtual void setAnimationVC(J2DAnmVtxColor*);             // _8C (inline)
 };
 
 struct J2DWindowEx : public J2DWindow, public J2DPane {
 	virtual ~J2DWindowEx();                                                            // _08
-	virtual void setCullBack(bool);                                                    // _1C
+	virtual void setCullBack(bool);                                                    // _1C (inline)
 	virtual void setCullBack(_GXCullMode);                                             // _20
 	virtual void setAlpha(unsigned char);                                              // _24
 	virtual void drawSelf(float, float, float (*)[3][4]);                              // _38
 	virtual void isUsed(const ResTIMG*);                                               // _4C
-	virtual void isUsed(const ResFONT*);                                               // _50
+	virtual void isUsed(const ResFONT*);                                               // _50 (inline)
 	virtual void rewriteAlpha();                                                       // _58
-	virtual void setAnimation(J2DAnmBase*);                                            // _5C
-	virtual void setAnimation(J2DAnmTransform*);                                       // _60
+	virtual void setAnimation(J2DAnmBase*);                                            // _5C (inline)
+	virtual void setAnimation(J2DAnmTransform*);                                       // _60 (inline)
 	virtual void setAnimation(J2DAnmColor*);                                           // _64
 	virtual void setAnimation(J2DAnmTexPattern*);                                      // _68
 	virtual void setAnimation(J2DAnmTextureSRTKey*);                                   // _6C
@@ -133,7 +129,7 @@ struct J2DWindowEx : public J2DWindow, public J2DPane {
 	virtual void animationPane(const J2DAnmTransform*);                                // _90
 	virtual void draw(const JGeometry::TBox2<float>&);                                 // _94
 	virtual void draw(const JGeometry::TBox2<float>&, const JGeometry::TBox2<float>&); // _98
-	virtual void draw(float, float, float, float);                                     // _9C
+	virtual void draw(float, float, float, float);                                     // _9C (inline)
 	virtual void setBlack(JUtility::TColor);                                           // _A0
 	virtual void setWhite(JUtility::TColor);                                           // _A4
 	virtual void setBlackWhite(JUtility::TColor, JUtility::TColor);                    // _A8
@@ -141,13 +137,11 @@ struct J2DWindowEx : public J2DWindow, public J2DPane {
 	virtual void getWhite() const;                                                     // _B0
 	virtual void getFrameTexture(unsigned char, unsigned char) const;                  // _B4
 	virtual void getContentsTexture(unsigned char) const;                              // _B8
-	virtual void getMaterial(J2DWindow::TMaterial&) const;                             // _BC
-	virtual void getFrameMaterial(unsigned char) const;                                // _C0
-	virtual void getContentsMaterial() const;                                          // _C4
+	virtual void getMaterial(J2DWindow::TMaterial&) const;                             // _BC (inline)
+	virtual void getFrameMaterial(unsigned char) const;                                // _C0 (inline)
+	virtual void getContentsMaterial() const;                                          // _C4 (inline)
 	virtual void drawContents(const JGeometry::TBox2<float>&);                         // _C8
 	virtual void _CC() = 0;                                                            // _CC
-
-	// _00 VTBL
 };
 
 #endif

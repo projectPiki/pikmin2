@@ -11,10 +11,10 @@
 
 namespace Game {
 struct NaviParms {
-	virtual void read(Stream&); // _08
+	virtual void read(Stream&); // _08 (inline)
 	virtual void _0C() = 0;     // _0C
 
-	// _00 VTBL
+	NaviParms();
 };
 } // namespace Game
 

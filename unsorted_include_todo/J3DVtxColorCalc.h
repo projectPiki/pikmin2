@@ -11,9 +11,7 @@
 
 struct J3DVtxColorCalc {
 	virtual void calc(J3DVertexBuffer*); // _08
-	virtual ~J3DVtxColorCalc();          // _0C
-
-	// _00 VTBL
+	virtual ~J3DVtxColorCalc();          // _0C (inline)
 };
 
 #endif

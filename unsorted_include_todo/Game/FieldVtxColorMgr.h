@@ -15,24 +15,29 @@
 
 struct CNode {
     virtual void calc(J3DVertexBuffer*); // _08
-    virtual ~CNode();                    // _0C
+    virtual ~CNode();                    // _0C (inline)
     virtual void _10() = 0;              // _10
     virtual void _14() = 0;              // _14
-    virtual void @12 @__dt();            // _18
+    virtual void @12 @__dt();            // _18 (inline)
     virtual void getChildCount();        // _1C
-
-    // _00 VTBL
 };
 
 namespace Game {
 struct FieldVtxColorMgr : public CNode {
     virtual void calc(J3DVertexBuffer*); // _08
-    virtual ~FieldVtxColorMgr();         // _0C
+    virtual ~FieldVtxColorMgr();         // _0C (inline)
     virtual void _10() = 0;              // _10
     virtual void _14() = 0;              // _14
-    virtual void @12 @__dt();            // _18
+    virtual void @12 @__dt();            // _18 (inline)
 
-    // _00 VTBL
+    FieldVtxColorMgr();
+    void createFieldVtxColorInfo();
+    void initVtxColor();
+    void setupFieldVtxColorInfoFromStrip(void*, int, int, int, int);
+    void setupFieldVtxColorInfo(J3DShape*);
+    void createNewControl(Vector3<float>&, float, float);
+    void setupFieldVtxColorControl(Game::FieldVtxColorControl*, Vector3<float>&,
+                                   float, float);
 };
 } // namespace Game
 

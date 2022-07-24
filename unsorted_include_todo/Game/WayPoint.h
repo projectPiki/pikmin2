@@ -16,7 +16,11 @@ struct WayPoint {
 	virtual void directDraw(Graphics&);        // _0C
 	virtual void directDraw_Simple(Graphics&); // _10
 
-	// _00 VTBL
+	WayPoint();
+	void reset();
+	void setOpen(bool);
+	void setWater(bool);
+	void setBridge(bool);
 };
 } // namespace Game
 

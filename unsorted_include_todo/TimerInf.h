@@ -10,8 +10,6 @@
 
 struct TimerInf {
 	virtual ~TimerInf(); // _08
-
-	// _00 VTBL
 };
 
 #endif

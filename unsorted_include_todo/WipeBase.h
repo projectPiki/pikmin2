@@ -17,23 +17,19 @@
 */
 
 struct CNode {
-	virtual ~CNode();             // _08
+	virtual ~CNode();             // _08 (inline)
 	virtual void getChildCount(); // _0C
-
-	// _00 VTBL
 };
 
 struct WipeBase : public CNode {
-	virtual ~WipeBase();         // _08
+	virtual ~WipeBase();         // _08 (inline)
 	virtual void update();       // _10
 	virtual void draw();         // _14
-	virtual void isWhite();      // _18
-	virtual void isBlack();      // _1C
-	virtual void on_start();     // _20
-	virtual void do_draw(float); // _24
+	virtual void isWhite();      // _18 (inline)
+	virtual void isBlack();      // _1C (inline)
+	virtual void on_start();     // _20 (inline)
+	virtual void do_draw(float); // _24 (inline)
 	virtual void _28() = 0;      // _28
-
-	// _00 VTBL
 };
 
 #endif

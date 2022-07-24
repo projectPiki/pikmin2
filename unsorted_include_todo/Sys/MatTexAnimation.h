@@ -14,11 +14,11 @@
 namespace Sys {
 struct MatTexAnimation {
 	virtual void onAttachResource(void*); // _08
-	virtual void getAnmBase();            // _0C
+	virtual void getAnmBase();            // _0C (inline)
 	virtual void set();                   // _10
 	virtual void remove();                // _14
 
-	// _00 VTBL
+	MatTexAnimation();
 };
 } // namespace Sys
 

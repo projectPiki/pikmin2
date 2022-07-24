@@ -26,8 +26,6 @@ struct EnemyStateMachine {
 	virtual void exec(EnemyBase*);                    // _10
 	virtual void transit(EnemyBase*, int, StateArg*); // _14
 	virtual void doDirectDraw(EnemyBase*, Graphics&); // _18
-
-	// _00 VTBL
 };
 } // namespace Game
 
@@ -35,15 +33,13 @@ namespace Game {
 namespace EnemyBaseFSM {
 struct StateMachine : public EnemyStateMachine {
 	virtual void init(EnemyBase*);                            // _08
-	virtual void getCurrState(EnemyBase*);                    // _1C
-	virtual void setCurrState(EnemyBase*, EnemyFSMState*);    // _20
+	virtual void getCurrState(EnemyBase*);                    // _1C (inline)
+	virtual void setCurrState(EnemyBase*, EnemyFSMState*);    // _20 (inline)
 	virtual void update(EnemyBase*);                          // _24
 	virtual void entry(EnemyBase*);                           // _28
 	virtual void simulation(EnemyBase*, float);               // _2C
-	virtual void animation(EnemyBase*);                       // _30
-	virtual void bounceProcedure(EnemyBase*, Sys::Triangle*); // _34
-
-	// _00 VTBL
+	virtual void animation(EnemyBase*);                       // _30 (inline)
+	virtual void bounceProcedure(EnemyBase*, Sys::Triangle*); // _34 (inline)
 };
 } // namespace EnemyBaseFSM
 } // namespace Game

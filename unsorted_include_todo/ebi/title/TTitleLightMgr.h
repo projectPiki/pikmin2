@@ -15,31 +15,30 @@
 */
 
 struct CNode {
-	virtual void _08() = 0;       // _08
+	virtual ~CNode();             // _08 (inline)
 	virtual void getChildCount(); // _0C
-
-	// _00 VTBL
 };
 
 struct LightMgr {
-	virtual void _08() = 0;                // _08
+	virtual ~LightMgr();                   // _08 (inline)
 	virtual void _0C() = 0;                // _0C
-	virtual void _10() = 0;                // _10
+	virtual void update();                 // _10
 	virtual void set(Graphics&);           // _14
 	virtual void set(Matrixf&);            // _18
 	virtual void drawDebugInfo(Graphics&); // _1C
-
-	// _00 VTBL
 };
 
 namespace ebi {
 namespace title {
 struct TTitleLightMgr : public CNode, public LightMgr {
-	virtual ~TTitleLightMgr(); // _08
+	virtual ~TTitleLightMgr(); // _08 (inline)
 	virtual void update();     // _10
 	virtual void _20() = 0;    // _20
 
-	// _00 VTBL
+	TTitleLightMgr();
+	void loadSettingFile(JKRArchive*, char*);
+	void setParam_();
+	void setCameraMtx(float (*)[4]);
 };
 } // namespace title
 } // namespace ebi

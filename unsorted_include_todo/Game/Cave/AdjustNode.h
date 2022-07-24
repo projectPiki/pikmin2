@@ -10,18 +10,17 @@
 */
 
 struct CNode {
-	virtual ~CNode();             // _08
+	virtual ~CNode();             // _08 (inline)
 	virtual void getChildCount(); // _0C
-
-	// _00 VTBL
 };
 
 namespace Game {
 namespace Cave {
 struct AdjustNode : public CNode {
-	virtual ~AdjustNode(); // _08
+	virtual ~AdjustNode(); // _08 (inline)
 
-	// _00 VTBL
+	AdjustNode();
+	AdjustNode();
 };
 } // namespace Cave
 } // namespace Game

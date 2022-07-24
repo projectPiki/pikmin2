@@ -21,10 +21,8 @@
 namespace efx {
 struct TSimple1 {
 	virtual void create(Arg*); // _08
-	virtual void forceKill();  // _0C
-	virtual void fade();       // _10
-
-	// _00 VTBL
+	virtual void forceKill();  // _0C (inline)
+	virtual void fade();       // _10 (inline)
 };
 } // namespace efx
 
@@ -38,8 +36,6 @@ struct TOrimapunch : public TSimple1 {
 	virtual void _28() = 0; // _28
 	virtual void _2C() = 0; // _2C
 	virtual void _30() = 0; // _30
-
-	// _00 VTBL
 };
 } // namespace efx
 

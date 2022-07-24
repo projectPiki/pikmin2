@@ -10,9 +10,9 @@
 
 namespace PSAutoBgm {
 struct MeloArrMgr {
-	virtual ~MeloArrMgr(); // _08
+	virtual ~MeloArrMgr(); // _08 (inline)
 
-	// _00 VTBL
+	void isToAvoid(PSAutoBgm::MeloArrArg&);
 };
 } // namespace PSAutoBgm
 

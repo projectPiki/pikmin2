@@ -9,9 +9,7 @@
 */
 
 struct J3DFrameCtrl {
-	virtual ~J3DFrameCtrl(); // _08
-
-	// _00 VTBL
+	virtual ~J3DFrameCtrl(); // _08 (inline)
 };
 
 #endif

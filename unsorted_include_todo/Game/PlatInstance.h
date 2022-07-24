@@ -27,35 +27,35 @@
 namespace Game {
 struct CellObject {
 	virtual void getPosition();                   // _08
-	virtual void checkCollision(CellObject*);     // _0C
+	virtual void checkCollision(CellObject*);     // _0C (inline)
 	virtual void getBoundingSphere(Sys::Sphere&); // _10
-	virtual void collisionUpdatable();            // _14
-	virtual void isPiki();                        // _18
-	virtual void isNavi();                        // _1C
-	virtual void deferPikiCollision();            // _20
-
-	// _00 VTBL
+	virtual void collisionUpdatable();            // _14 (inline)
+	virtual void isPiki();                        // _18 (inline)
+	virtual void isNavi();                        // _1C (inline)
+	virtual void deferPikiCollision();            // _20 (inline)
 };
 } // namespace Game
 
 namespace Game {
 struct PlatInstance : public CellObject {
 	virtual void getPosition();                   // _08
-	virtual void checkCollision(CellObject*);     // _0C
+	virtual void checkCollision(CellObject*);     // _0C (inline)
 	virtual void getBoundingSphere(Sys::Sphere&); // _10
-	virtual void collisionUpdatable();            // _14
-	virtual void getTypeName();                   // _24
-	virtual void getObjType();                    // _28
-	virtual void constructor();                   // _2C
-	virtual void doAnimation();                   // _30
-	virtual void doEntry();                       // _34
-	virtual void doSetView(int);                  // _38
-	virtual void doViewCalc();                    // _3C
-	virtual void doSimulation(float);             // _40
-	virtual void doDirectDraw(Graphics&);         // _44
+	virtual void collisionUpdatable();            // _14 (inline)
+	virtual void getTypeName();                   // _24 (inline)
+	virtual void getObjType();                    // _28 (inline)
+	virtual void constructor();                   // _2C (inline)
+	virtual void doAnimation();                   // _30 (inline)
+	virtual void doEntry();                       // _34 (inline)
+	virtual void doSetView(int);                  // _38 (inline)
+	virtual void doViewCalc();                    // _3C (inline)
+	virtual void doSimulation(float);             // _40 (inline)
+	virtual void doDirectDraw(Graphics&);         // _44 (inline)
 	virtual void _48() = 0;                       // _48
 
-	// _00 VTBL
+	void setCollision(bool);
+	void getCurrTri(Game::CurrTriInfo&);
+	void traceMove(Game::MoveInfo&, float);
 };
 } // namespace Game
 

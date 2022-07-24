@@ -13,7 +13,17 @@ namespace Save {
 struct TMgr {
 	virtual ~TMgr(); // _08
 
-	// _00 VTBL
+	void createInstance();
+	void onDvdErrorOccured();
+	void onDvdErrorRecovered();
+	TMgr();
+	void start();
+	void forceQuit();
+	void isFinish();
+	void goEnd_(ebi::Save::TMgr::enumEnd);
+	void update();
+	void draw();
+	void getStateID();
 };
 } // namespace Save
 } // namespace ebi

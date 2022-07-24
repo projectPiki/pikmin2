@@ -31,12 +31,10 @@ struct BirthTypeDropState {
 	virtual void _1C() = 0;                     // _1C
 	virtual void _20() = 0;                     // _20
 	virtual void update(EnemyBase*);            // _24
-	virtual void entry(EnemyBase*);             // _28
-	virtual void simulation(EnemyBase*, float); // _2C
+	virtual void entry(EnemyBase*);             // _28 (inline)
+	virtual void simulation(EnemyBase*, float); // _2C (inline)
 	virtual void _30() = 0;                     // _30
-	virtual void animation(EnemyBase*);         // _34
-
-	// _00 VTBL
+	virtual void animation(EnemyBase*);         // _34 (inline)
 };
 } // namespace EnemyBaseFSM
 } // namespace Game
@@ -44,14 +42,12 @@ struct BirthTypeDropState {
 namespace Game {
 struct EnemyFSMState {
 	virtual void _08() = 0;                           // _08
-	virtual void exec(EnemyBase*);                    // _0C
+	virtual void exec(EnemyBase*);                    // _0C (inline)
 	virtual void _10() = 0;                           // _10
-	virtual void resume(EnemyBase*);                  // _14
-	virtual void restart(EnemyBase*);                 // _18
+	virtual void resume(EnemyBase*);                  // _14 (inline)
+	virtual void restart(EnemyBase*);                 // _18 (inline)
 	virtual void transit(EnemyBase*, int, StateArg*); // _1C
-	virtual void doDirectDraw(EnemyBase*, Graphics&); // _20
-
-	// _00 VTBL
+	virtual void doDirectDraw(EnemyBase*, Graphics&); // _20 (inline)
 };
 } // namespace Game
 
@@ -68,9 +64,7 @@ struct State {
 	virtual void _24() = 0;                                   // _24
 	virtual void _28() = 0;                                   // _28
 	virtual void _2C() = 0;                                   // _2C
-	virtual void bounceProcedure(EnemyBase*, Sys::Triangle*); // _30
-
-	// _00 VTBL
+	virtual void bounceProcedure(EnemyBase*, Sys::Triangle*); // _30 (inline)
 };
 } // namespace EnemyBaseFSM
 } // namespace Game
@@ -79,8 +73,6 @@ namespace Game {
 namespace EnemyBaseFSM {
 struct BirthTypeDropTreasureState : public BirthTypeDropState, public EnemyFSMState, public State {
 	virtual void isFinishableWaitingBirthTypeDrop(EnemyBase*); // _38
-
-	// _00 VTBL
 };
 } // namespace EnemyBaseFSM
 } // namespace Game

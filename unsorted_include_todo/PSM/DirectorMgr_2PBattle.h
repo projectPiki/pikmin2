@@ -13,13 +13,13 @@
 
 namespace PSM {
 struct DirectorMgr_2PBattle {
-    virtual ~DirectorMgr_2PBattle();                                 // _08
+    virtual ~DirectorMgr_2PBattle(); // _08 (inline)
     virtual void newDirector(unsigned char, PSSystem::DirectedBgm&); // _0C
     virtual void _10() = 0;                                          // _10
     virtual void _14() = 0;                                          // _14
-    virtual void @12 @__dt();                                        // _18
+    virtual void @12 @__dt(); // _18 (inline)
 
-    // _00 VTBL
+    DirectorMgr_2PBattle();
 };
 } // namespace PSM
 

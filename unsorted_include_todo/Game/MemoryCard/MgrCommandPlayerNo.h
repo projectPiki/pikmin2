@@ -11,9 +11,7 @@
 namespace Game {
 namespace MemoryCard {
 struct MgrCommandPlayerNo {
-	virtual void getClassSize(); // _08
-
-	// _00 VTBL
+	virtual void getClassSize(); // _08 (inline)
 };
 } // namespace MemoryCard
 } // namespace Game

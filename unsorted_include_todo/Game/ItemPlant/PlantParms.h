@@ -11,9 +11,9 @@
 namespace Game {
 namespace ItemPlant {
 struct PlantParms {
-	virtual void read(Stream&); // _08
+	virtual void read(Stream&); // _08 (inline)
 
-	// _00 VTBL
+	PlantParms();
 };
 } // namespace ItemPlant
 } // namespace Game

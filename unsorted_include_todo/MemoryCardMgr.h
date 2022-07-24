@@ -17,17 +17,15 @@
 */
 
 struct MemoryCardMgr {
-	virtual ~MemoryCardMgr();                              // _08
+	virtual ~MemoryCardMgr();                              // _08 (inline)
 	virtual void update();                                 // _0C
-	virtual void doInit();                                 // _10
-	virtual void doCardProc(void*, MemoryCardMgrCommand*); // _14
-	virtual void getHeaderSize();                          // _18
+	virtual void doInit();                                 // _10 (inline)
+	virtual void doCardProc(void*, MemoryCardMgrCommand*); // _14 (inline)
+	virtual void getHeaderSize();                          // _18 (inline)
 	virtual void doMakeHeader(unsigned char*);             // _1C
 	virtual void doSetCardStat(CARDStat*);                 // _20
 	virtual void doCheckCardStat(CARDStat*);               // _24
 	virtual void isErrorOccured();                         // _28
-
-	// _00 VTBL
 };
 
 #endif

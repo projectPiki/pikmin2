@@ -13,7 +13,14 @@ namespace PelletList {
 struct Mgr {
 	virtual ~Mgr(); // _08
 
-	// _00 VTBL
+	void getConfigList(Game::PelletList::cKind);
+	void getCount(Game::PelletList::cKind);
+	void getConfigAndKind(char*, Game::PelletList::cKind&);
+	void loadResource();
+	void getDictionaryNum();
+	void getConfigFromDictionaryNo(int);
+	void getOffsetFromDictionaryNo(int);
+	void globalInstance();
 };
 } // namespace PelletList
 } // namespace Game

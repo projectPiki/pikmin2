@@ -10,19 +10,15 @@
 */
 
 struct CNode {
-	virtual ~CNode();             // _08
+	virtual ~CNode();             // _08 (inline)
 	virtual void getChildCount(); // _0C
-
-	// _00 VTBL
 };
 
 namespace ebi {
 namespace title {
 namespace Pikmin {
 struct TBoidParamMgr : public CNode {
-	virtual ~TBoidParamMgr(); // _08
-
-	// _00 VTBL
+	virtual ~TBoidParamMgr(); // _08 (inline)
 };
 } // namespace Pikmin
 } // namespace title

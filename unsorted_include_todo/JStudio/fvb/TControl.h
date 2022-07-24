@@ -13,7 +13,9 @@ namespace fvb {
 struct TControl {
 	virtual ~TControl(); // _08
 
-	// _00 VTBL
+	TControl();
+	void getObject(const void*, unsigned long);
+	void getObject_index(unsigned long);
 };
 } // namespace fvb
 } // namespace JStudio

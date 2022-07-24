@@ -22,7 +22,8 @@ struct TFunctionValue {
 	virtual void _18() = 0; // _18
 	virtual void _1C() = 0; // _1C
 
-	// _00 VTBL
+	void toFunction_outside(int);
+	~TFunctionValue();
 };
 } // namespace JStudio
 

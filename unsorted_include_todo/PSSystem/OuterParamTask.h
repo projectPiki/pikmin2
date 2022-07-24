@@ -13,8 +13,6 @@
 namespace PSSystem {
 struct ModParamWithFade {
 	virtual void task(JASTrack&); // _08
-
-	// _00 VTBL
 };
 } // namespace PSSystem
 
@@ -22,8 +20,6 @@ namespace PSSystem {
 struct OuterParamTask : public ModParamWithFade {
 	virtual void getPreParam(JASTrack&);     // _0C
 	virtual void timeTask(JASTrack&, float); // _10
-
-	// _00 VTBL
 };
 } // namespace PSSystem
 

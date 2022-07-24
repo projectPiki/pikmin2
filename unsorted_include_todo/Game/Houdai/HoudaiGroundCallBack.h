@@ -16,8 +16,6 @@ struct HoudaiGroundCallBack {
 	virtual void invokeOnGround(int, WaterBox*);  // _08
 	virtual void invokeOffGround(int, WaterBox*); // _0C
 	virtual void _10() = 0;                       // _10
-
-	// _00 VTBL
 };
 } // namespace Houdai
 } // namespace Game

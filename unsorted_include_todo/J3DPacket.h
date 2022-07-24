@@ -12,10 +12,8 @@
 
 struct J3DPacket {
 	virtual void entry(J3DDrawBuffer*); // _08
-	virtual void draw();                // _0C
-	virtual ~J3DPacket();               // _10
-
-	// _00 VTBL
+	virtual void draw();                // _0C (inline)
+	virtual ~J3DPacket();               // _10 (inline)
 };
 
 #endif

@@ -18,7 +18,12 @@ struct CylinderBase {
 	virtual void drawCylinder(Matrixf&, int); // _10
 	virtual void drawFinish();                // _14
 
-	// _00 VTBL
+	CylinderBase();
+	void setColor(Color4*);
+	void setShadowRect(Rect<float>&);
+	void setCameraParms(Camera*, int);
+	void makeSRT(Matrixf&, Game::ShadowParam&);
+	void getCylinderType(Game::ShadowParam&, int);
 };
 } // namespace Game
 

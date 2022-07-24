@@ -13,10 +13,12 @@
 namespace efx {
 struct TCursor {
 	virtual void create(Arg*); // _08
-	virtual void forceKill();  // _0C
-	virtual void fade();       // _10
+	virtual void forceKill();  // _0C (inline)
+	virtual void fade();       // _10 (inline)
 
-	// _00 VTBL
+	void init(long, long);
+	void update(efx::Arg*);
+	void calcPos_(Vector3<float>*, float, long);
 };
 } // namespace efx
 

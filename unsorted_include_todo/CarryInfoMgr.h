@@ -18,10 +18,8 @@ struct CarryInfoMgr {
 	virtual void loadResource();           // _0C
 	virtual void update();                 // _10
 	virtual void draw(Graphics&);          // _14
-	virtual void regist(CarryInfoOwner*);  // _18
-	virtual void scratch(CarryInfoOwner*); // _1C
-
-	// _00 VTBL
+	virtual void regist(CarryInfoOwner*);  // _18 (inline)
+	virtual void scratch(CarryInfoOwner*); // _1C (inline)
 };
 
 #endif

@@ -20,10 +20,8 @@
 namespace ebi {
 namespace CardError {
 struct FSMState {
-	virtual void init(TMgr*, Game::StateArg*); // _08
-	virtual void exec(TMgr*);                  // _0C
-
-	// _00 VTBL
+	virtual void init(TMgr*, Game::StateArg*); // _08 (inline)
+	virtual void exec(TMgr*);                  // _0C (inline)
 };
 } // namespace CardError
 } // namespace ebi
@@ -36,12 +34,10 @@ namespace FSMState < ebi
 	{
 		virtual void _08() = 0;                           // _08
 		virtual void _0C() = 0;                           // _0C
-		virtual void cleanup(ebi::TMgr*);                 // _10
-		virtual void resume(ebi::TMgr*);                  // _14
-		virtual void restart(ebi::TMgr*);                 // _18
-		virtual void transit(ebi::TMgr*, int, StateArg*); // _1C
-
-		// _00 VTBL
+		virtual void cleanup(ebi::TMgr*);                 // _10 (inline)
+		virtual void resume(ebi::TMgr*);                  // _14 (inline)
+		virtual void restart(ebi::TMgr*);                 // _18 (inline)
+		virtual void transit(ebi::TMgr*, int, StateArg*); // _1C (inline)
 	};
 	} // namespace CardError
 } // namespace ebi
@@ -58,8 +54,6 @@ struct FSMState_Warning {
 	virtual void _1C() = 0;                       // _1C
 	virtual void do_init(TMgr*, Game::StateArg*); // _20
 	virtual void do_exec(TMgr*);                  // _24
-
-	// _00 VTBL
 };
 } // namespace CardError
 } // namespace ebi
@@ -69,8 +63,6 @@ namespace CardError {
 struct FSMState_W06_CardNotUsable : public FSMState, public TMgr >, public FSMState_Warning {
 	virtual void do_open(TMgr*);    // _28
 	virtual void do_transit(TMgr*); // _2C
-
-	// _00 VTBL
 };
 } // namespace CardError
 } // namespace ebi

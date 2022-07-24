@@ -12,8 +12,6 @@ namespace Game {
 namespace Pelplant {
 struct BlendAccelerationFunc {
 	virtual void getValue(float); // _08
-
-	// _00 VTBL
 };
 } // namespace Pelplant
 } // namespace Game

@@ -10,17 +10,20 @@
 */
 
 struct CNode {
-	virtual ~CNode();             // _08
+	virtual ~CNode();             // _08 (inline)
 	virtual void getChildCount(); // _0C
-
-	// _00 VTBL
 };
 
 namespace SysShape {
 struct AnimInfo : public CNode {
-	virtual ~AnimInfo(); // _08
+	virtual ~AnimInfo(); // _08 (inline)
 
-	// _00 VTBL
+	void getLowestAnimKey(float);
+	void getLastLoopStart(SysShape::KeyEvent*);
+	void getAnimKeyByType(unsigned long);
+	void read(Stream&);
+	void readEditor(Stream&);
+	void attach(J3DModelData*, void*);
 };
 } // namespace SysShape
 

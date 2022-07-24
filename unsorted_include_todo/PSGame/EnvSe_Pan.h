@@ -15,17 +15,13 @@ namespace PSSystem {
 struct EnvSeBase {
 	virtual void exec();        // _08
 	virtual void play();        // _0C
-	virtual void getCastType(); // _10
-
-	// _00 VTBL
+	virtual void getCastType(); // _10 (inline)
 };
 } // namespace PSSystem
 
 namespace PSGame {
 struct EnvSe_Pan : public EnvSeBase {
 	virtual void setPanAndDolby(JAISound*); // _14
-
-	// _00 VTBL
 };
 } // namespace PSGame
 

@@ -16,24 +16,20 @@
 */
 
 struct J3DShapeMtx {
-	virtual ~J3DShapeMtx();                                                  // _08
-	virtual void getType() const;                                            // _0C
-	virtual void getUseMtxNum() const;                                       // _10
-	virtual void getUseMtxIndex(unsigned short) const;                       // _14
+	virtual ~J3DShapeMtx();                                                  // _08 (inline)
+	virtual void getType() const;                                            // _0C (inline)
+	virtual void getUseMtxNum() const;                                       // _10 (inline)
+	virtual void getUseMtxIndex(unsigned short) const;                       // _14 (inline)
 	virtual void load() const;                                               // _18
 	virtual void calcNBTScale(const Vec&, float (*)[3][3], float (*)[3][3]); // _1C
-
-	// _00 VTBL
 };
 
 struct J3DShapeMtxConcatView : public J3DShapeMtx {
-	virtual ~J3DShapeMtxConcatView();                                 // _08
-	virtual void getType() const;                                     // _0C
+	virtual ~J3DShapeMtxConcatView();                                 // _08 (inline)
+	virtual void getType() const;                                     // _0C (inline)
 	virtual void load() const;                                        // _18
-	virtual void loadNrmMtx(int, unsigned short) const;               // _20
+	virtual void loadNrmMtx(int, unsigned short) const;               // _20 (inline)
 	virtual void loadNrmMtx(int, unsigned short, float (*)[4]) const; // _24
-
-	// _00 VTBL
 };
 
 #endif

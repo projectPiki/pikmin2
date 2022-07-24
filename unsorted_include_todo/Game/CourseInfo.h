@@ -10,17 +10,23 @@
 */
 
 struct CNode {
-	virtual ~CNode();             // _08
+	virtual ~CNode();             // _08 (inline)
 	virtual void getChildCount(); // _0C
-
-	// _00 VTBL
 };
 
 namespace Game {
 struct CourseInfo : public CNode {
-	virtual ~CourseInfo(); // _08
+	virtual ~CourseInfo(); // _08 (inline)
 
-	// _00 VTBL
+	CourseInfo();
+	void dump();
+	void read(Stream&);
+	void getOtakaraNum(ID32&);
+	void getOtakaraNum(int);
+	void getCaveIndex_FromID(ID32&);
+	void getCaveinfoFilename_FromID(ID32&);
+	void getCaveID_FromIndex(int);
+	void getCaveNum();
 };
 } // namespace Game
 

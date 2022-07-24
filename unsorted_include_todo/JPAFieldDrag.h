@@ -11,17 +11,13 @@
 */
 
 struct JPAFieldBase {
-	virtual ~JPAFieldBase();                                   // _08
-	virtual void prepare(JPAEmitterWorkData*, JPAFieldBlock*); // _0C
-
-	// _00 VTBL
+	virtual ~JPAFieldBase();                                   // _08 (inline)
+	virtual void prepare(JPAEmitterWorkData*, JPAFieldBlock*); // _0C (inline)
 };
 
 struct JPAFieldDrag : public JPAFieldBase {
-	virtual ~JPAFieldDrag();                                                  // _08
+	virtual ~JPAFieldDrag();                                                  // _08 (inline)
 	virtual void calc(JPAEmitterWorkData*, JPAFieldBlock*, JPABaseParticle*); // _10
-
-	// _00 VTBL
 };
 
 #endif

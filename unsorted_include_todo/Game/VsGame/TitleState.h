@@ -29,14 +29,12 @@ namespace FSMState < Game
 {
 	struct VsGameSection >
 	{
-		virtual void _08() = 0;                                          // _08
-		virtual void _0C() = 0;                                          // _0C
-		virtual void _10() = 0;                                          // _10
-		virtual void FSMState < resume(VsGameSection*);                  // _14
-		virtual void FSMState < restart(VsGameSection*);                 // _18
-		virtual void FSMState < transit(VsGameSection*, int, StateArg*); // _1C
-
-		// _00 VTBL
+		virtual void Vsinit(VsGameSection*, StateArg*);                  // _08
+		virtual void Vsexec(VsGameSection*);                             // _0C
+		virtual void Vscleanup(VsGameSection*);                          // _10
+		virtual void FSMState < resume(VsGameSection*);                  // _14 (inline)
+		virtual void FSMState < restart(VsGameSection*);                 // _18 (inline)
+		virtual void FSMState < transit(VsGameSection*, int, StateArg*); // _1C (inline)
 	};
 } // namespace Game
 } // namespace Game
@@ -44,25 +42,23 @@ namespace FSMState < Game
 namespace Game {
 namespace VsGame {
 struct State {
-	virtual void _08() = 0;                                                                  // _08
-	virtual void _0C() = 0;                                                                  // _0C
-	virtual void _10() = 0;                                                                  // _10
+	virtual void Vsinit(VsGameSection*, StateArg*);                                          // _08
+	virtual void Vsexec(VsGameSection*);                                                     // _0C
+	virtual void Vscleanup(VsGameSection*);                                                  // _10
 	virtual void _14() = 0;                                                                  // _14
 	virtual void _18() = 0;                                                                  // _18
 	virtual void _1C() = 0;                                                                  // _1C
-	virtual void _20() = 0;                                                                  // _20
-	virtual void Vspre2dDraw(Graphics&, VsGameSection*);                                     // _24
-	virtual void VsonOrimaDown(VsGameSection*, int);                                         // _28
-	virtual void VsonMovieStart(VsGameSection*, MovieConfig*, unsigned long, unsigned long); // _2C
-	virtual void VsonMovieDone(VsGameSection*, MovieConfig*, unsigned long, unsigned long);  // _30
-	virtual void VsonNextFloor(VsGameSection*, ItemHole::Item*);                             // _34
-	virtual void Vson_section_fadeout(VsGameSection*);                                       // _38
-	virtual void VsgoingToCave(VsGameSection*);                                              // _3C
-	virtual void VsonBattleFinished(VsGameSection*, int, bool);                              // _40
-	virtual void VsonRedOrBlueSuckStart(VsGameSection*, int, bool);                          // _44
-	virtual void VsisCardUsable(VsGameSection*);                                             // _48
-
-	// _00 VTBL
+	virtual void Vsdraw(VsGameSection*, Graphics&);                                          // _20
+	virtual void Vspre2dDraw(Graphics&, VsGameSection*);                                     // _24 (inline)
+	virtual void VsonOrimaDown(VsGameSection*, int);                                         // _28 (inline)
+	virtual void VsonMovieStart(VsGameSection*, MovieConfig*, unsigned long, unsigned long); // _2C (inline)
+	virtual void VsonMovieDone(VsGameSection*, MovieConfig*, unsigned long, unsigned long);  // _30 (inline)
+	virtual void VsonNextFloor(VsGameSection*, ItemHole::Item*);                             // _34 (inline)
+	virtual void Vson_section_fadeout(VsGameSection*);                                       // _38 (inline)
+	virtual void VsgoingToCave(VsGameSection*);                                              // _3C (inline)
+	virtual void VsonBattleFinished(VsGameSection*, int, bool);                              // _40 (inline)
+	virtual void VsonRedOrBlueSuckStart(VsGameSection*, int, bool);                          // _44 (inline)
+	virtual void VsisCardUsable(VsGameSection*);                                             // _48 (inline)
 };
 } // namespace VsGame
 } // namespace Game
@@ -75,7 +71,10 @@ struct TitleState : public VsGameSection >, public State {
 	virtual void Vscleanup(VsGameSection*);         // _10
 	virtual void Vsdraw(VsGameSection*, Graphics&); // _20
 
-	// _00 VTBL
+	TitleState();
+	void dvdload();
+	void execChallenge(Game::VsGameSection*);
+	void execVs(Game::VsGameSection*);
 };
 } // namespace VsGame
 } // namespace Game

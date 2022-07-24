@@ -12,11 +12,9 @@
 
 namespace JADUtility {
 struct PrmBase {
-	virtual ~PrmBase();                        // _08
-	virtual void save(JSUMemoryOutputStream&); // _0C
-	virtual void load(JSUMemoryInputStream&);  // _10
-
-	// _00 VTBL
+	virtual ~PrmBase();                        // _08 (inline)
+	virtual void save(JSUMemoryOutputStream&); // _0C (inline)
+	virtual void load(JSUMemoryInputStream&);  // _10 (inline)
 };
 } // namespace JADUtility
 

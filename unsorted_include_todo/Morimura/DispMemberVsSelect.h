@@ -14,23 +14,19 @@
 namespace og {
 namespace Screen {
 struct DispMemberBase {
-	virtual void getSize();           // _08
-	virtual void getOwnerID();        // _0C
-	virtual void getMemberID();       // _10
-	virtual void doSetSubMemberAll(); // _14
-
-	// _00 VTBL
+	virtual void getSize();           // _08 (inline)
+	virtual void getOwnerID();        // _0C (inline)
+	virtual void getMemberID();       // _10 (inline)
+	virtual void doSetSubMemberAll(); // _14 (inline)
 };
 } // namespace Screen
 } // namespace og
 
 namespace Morimura {
 struct DispMemberVsSelect : public DispMemberBase {
-	virtual void getSize();     // _08
-	virtual void getOwnerID();  // _0C
-	virtual void getMemberID(); // _10
-
-	// _00 VTBL
+	virtual void getSize();     // _08 (inline)
+	virtual void getOwnerID();  // _0C (inline)
+	virtual void getMemberID(); // _10 (inline)
 };
 } // namespace Morimura
 

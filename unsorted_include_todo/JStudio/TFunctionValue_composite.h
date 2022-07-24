@@ -15,14 +15,26 @@
 
 namespace JStudio {
 struct TFunctionValue_composite {
-	virtual ~TFunctionValue_composite(); // _08
+	virtual ~TFunctionValue_composite(); // _08 (inline)
 	virtual void getType() const;        // _0C
 	virtual void getAttributeSet();      // _10
 	virtual void initialize();           // _14
 	virtual void prepare();              // _18
 	virtual void getValue(double);       // _1C
 
-	// _00 VTBL
+	TFunctionValue_composite();
+	void composite_raw(const JGadget::TVector_pointer<JStudio::TFunctionValue*>&, const JStudio::TFunctionValue_composite::TData&, double);
+	void composite_index(const JGadget::TVector_pointer<JStudio::TFunctionValue*>&, const JStudio::TFunctionValue_composite::TData&,
+	                     double);
+	void composite_parameter(const JGadget::TVector_pointer<JStudio::TFunctionValue*>&, const JStudio::TFunctionValue_composite::TData&,
+	                         double);
+	void composite_add(const JGadget::TVector_pointer<JStudio::TFunctionValue*>&, const JStudio::TFunctionValue_composite::TData&, double);
+	void composite_subtract(const JGadget::TVector_pointer<JStudio::TFunctionValue*>&, const JStudio::TFunctionValue_composite::TData&,
+	                        double);
+	void composite_multiply(const JGadget::TVector_pointer<JStudio::TFunctionValue*>&, const JStudio::TFunctionValue_composite::TData&,
+	                        double);
+	void composite_divide(const JGadget::TVector_pointer<JStudio::TFunctionValue*>&, const JStudio::TFunctionValue_composite::TData&,
+	                      double);
 };
 } // namespace JStudio
 

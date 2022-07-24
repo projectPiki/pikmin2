@@ -16,7 +16,7 @@
 
 namespace Game {
 struct EnemyStateMachine {
-	virtual void init(EnemyBase*);                         // _08
+	virtual void init(EnemyBase*);                         // _08 (inline)
 	virtual void start(EnemyBase*, int, StateArg*);        // _0C
 	virtual void exec(EnemyBase*);                         // _10
 	virtual void transit(EnemyBase*, int, StateArg*);      // _14
@@ -24,7 +24,10 @@ struct EnemyStateMachine {
 	virtual void getCurrState(EnemyBase*);                 // _1C
 	virtual void setCurrState(EnemyBase*, EnemyFSMState*); // _20
 
-	// _00 VTBL
+	void create(int);
+	void registerState(Game::EnemyFSMState*);
+	void getCurrID(Game::EnemyBase*);
+	void getCurrName(Game::EnemyBase*);
 };
 } // namespace Game
 

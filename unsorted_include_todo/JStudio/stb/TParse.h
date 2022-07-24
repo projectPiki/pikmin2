@@ -23,7 +23,7 @@ struct TParse {
 	virtual void parseBlock_block(const data::TParse_TBlock&, unsigned long);         // _18
 	virtual void parseBlock_object(const data::TParse_TBlock_object&, unsigned long); // _1C
 
-	// _00 VTBL
+	TParse();
 };
 } // namespace stb
 } // namespace JStudio

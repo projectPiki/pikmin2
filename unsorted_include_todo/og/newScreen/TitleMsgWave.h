@@ -21,7 +21,7 @@ struct TitleMsgWave {
 	virtual void end();                                // _14
 	virtual void setParam(float, float, float, float); // _18
 
-	// _00 VTBL
+	TitleMsgWave();
 };
 } // namespace newScreen
 } // namespace og

@@ -27,8 +27,8 @@ namespace Game {
 struct WaterBox {
 	virtual void inWater(Sys::Sphere&);   // _08
 	virtual void inWater2d(Sys::Sphere&); // _0C
-	virtual void getSeaLevel();           // _10
-	virtual void getSeaHeightPtr();       // _14
+	virtual void getSeaLevel();           // _10 (inline)
+	virtual void getSeaHeightPtr();       // _14 (inline)
 	virtual void update();                // _18
 	virtual void startDown(float);        // _1C
 	virtual void startUp(float);          // _20
@@ -37,10 +37,8 @@ struct WaterBox {
 	virtual void doEntry();               // _2C
 	virtual void doSetView(int);          // _30
 	virtual void doViewCalc();            // _34
-	virtual void doSimulation(float);     // _38
-	virtual void doDirectDraw(Graphics&); // _3C
-
-	// _00 VTBL
+	virtual void doSimulation(float);     // _38 (inline)
+	virtual void doDirectDraw(Graphics&); // _3C (inline)
 };
 } // namespace Game
 
@@ -48,8 +46,8 @@ namespace Game {
 struct AABBWaterBox : public WaterBox {
 	virtual void inWater(Sys::Sphere&);                                    // _08
 	virtual void inWater2d(Sys::Sphere&);                                  // _0C
-	virtual void getSeaLevel();                                            // _10
-	virtual void getSeaHeightPtr();                                        // _14
+	virtual void getSeaLevel();                                            // _10 (inline)
+	virtual void getSeaHeightPtr();                                        // _14 (inline)
 	virtual void update();                                                 // _18
 	virtual void startDown(float);                                         // _1C
 	virtual void startUp(float);                                           // _20
@@ -61,7 +59,7 @@ struct AABBWaterBox : public WaterBox {
 	virtual void attachModel(J3DModelData*, Sys::MatTexAnimation*, float); // _40
 	virtual void calcMatrix();                                             // _44
 
-	// _00 VTBL
+	void globalise(Game::AABBWaterBox*, Matrixf&);
 };
 } // namespace Game
 

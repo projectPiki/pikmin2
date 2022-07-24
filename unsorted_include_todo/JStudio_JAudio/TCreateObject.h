@@ -13,8 +13,6 @@ namespace JStudio_JAudio {
 struct TCreateObject {
 	virtual ~TCreateObject();                                                                 // _08
 	virtual void create(JStudio::TObject**, const JStudio::stb::data::TParse_TBlock_object&); // _0C
-
-	// _00 VTBL
 };
 } // namespace JStudio_JAudio
 

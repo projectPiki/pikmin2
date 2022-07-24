@@ -13,21 +13,46 @@
 */
 
 struct CNode {
-    virtual ~CNode();             // _08
+    virtual ~CNode();             // _08 (inline)
     virtual void getChildCount(); // _0C
-
-    // _00 VTBL
 };
 
 namespace ebi {
 namespace title {
     struct TTitleMgr : public CNode {
-        virtual ~TTitleMgr();     // _08
+        virtual ~TTitleMgr();     // _08 (inline)
         virtual void _10() = 0;   // _10
         virtual void _14() = 0;   // _14
-        virtual void @24 @__dt(); // _18
+        virtual void @24 @__dt(); // _18 (inline)
 
-        // _00 VTBL
+        TTitleMgr();
+        void globalInstance();
+        void Instance();
+        void deleteInstance();
+        void init();
+        void setLogo();
+        void loadResource();
+        void initAfterLoadRes();
+        void setController(Controller*);
+        void inField(ebi::title::TObjBase*);
+        void inViewField(ebi::title::TObjBase*);
+        void isInViewField(ebi::title::TObjBase*);
+        void isOutViewField(Vector2<float>&, float);
+        void isOutViewField(ebi::title::TObjBase*);
+        void getPosOutOfViewField();
+        void start();
+        void breakup();
+        void startKogane();
+        void startChappy();
+        void boidToAssemble(long);
+        void isControllerOK();
+        void isPressStart();
+        void startState(ebi::title::TTitleMgr::enumState);
+        void update();
+        void updateState();
+        void checkEncounter_();
+        void draw();
+        void readTitleParam(JKRArchive*, char*);
     };
 } // namespace title
 } // namespace ebi

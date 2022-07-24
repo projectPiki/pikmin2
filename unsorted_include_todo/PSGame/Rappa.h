@@ -12,7 +12,12 @@ namespace PSGame {
 struct Rappa {
 	virtual ~Rappa(); // _08
 
-	// _00 VTBL
+	Rappa();
+	void init(unsigned short);
+	void setId(unsigned long);
+	void playRappa(bool, float, float, JAInter::Object*);
+	void syncCpu_WaitChk(JASTrack*);
+	void syncCpu_TblNo(JASTrack*);
 };
 } // namespace PSGame
 

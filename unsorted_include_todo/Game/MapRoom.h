@@ -25,26 +25,24 @@
 
 namespace Game {
 struct CellObject {
-	virtual void getPosition();                   // _08
-	virtual void checkCollision(CellObject*);     // _0C
-	virtual void getBoundingSphere(Sys::Sphere&); // _10
-	virtual void collisionUpdatable();            // _14
-	virtual void isPiki();                        // _18
-	virtual void isNavi();                        // _1C
-	virtual void deferPikiCollision();            // _20
-
-	// _00 VTBL
+	virtual void getPosition();                   // _08 (inline)
+	virtual void checkCollision(CellObject*);     // _0C (inline)
+	virtual void getBoundingSphere(Sys::Sphere&); // _10 (inline)
+	virtual void collisionUpdatable();            // _14 (inline)
+	virtual void isPiki();                        // _18 (inline)
+	virtual void isNavi();                        // _1C (inline)
+	virtual void deferPikiCollision();            // _20 (inline)
 };
 } // namespace Game
 
 namespace Game {
 struct MapRoom : public CellObject {
-	virtual void getPosition();                   // _08
-	virtual void getBoundingSphere(Sys::Sphere&); // _10
-	virtual void collisionUpdatable();            // _14
-	virtual void getTypeName();                   // _24
-	virtual void getObjType();                    // _28
-	virtual void constructor();                   // _2C
+	virtual void getPosition();                   // _08 (inline)
+	virtual void getBoundingSphere(Sys::Sphere&); // _10 (inline)
+	virtual void collisionUpdatable();            // _14 (inline)
+	virtual void getTypeName();                   // _24 (inline)
+	virtual void getObjType();                    // _28 (inline)
+	virtual void constructor();                   // _2C (inline)
 	virtual void doAnimation();                   // _30
 	virtual void doEntry();                       // _34
 	virtual void doSetView(int);                  // _38
@@ -52,7 +50,8 @@ struct MapRoom : public CellObject {
 	virtual void doSimulation(float);             // _40
 	virtual void doDirectDraw(Graphics&);         // _44
 
-	// _00 VTBL
+	MapRoom();
+	void placeObjects(Game::Cave::FloorInfo*, bool);
 };
 } // namespace Game
 

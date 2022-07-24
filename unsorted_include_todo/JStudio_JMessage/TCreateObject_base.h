@@ -15,8 +15,6 @@ struct TCreateObject_base {
 	virtual void _08() = 0;                                                                   // _08
 	virtual void create(JStudio::TObject**, const JStudio::stb::data::TParse_TBlock_object&); // _0C
 	virtual void _10() = 0;                                                                   // _10
-
-	// _00 VTBL
 };
 } // namespace JStudio_JMessage
 

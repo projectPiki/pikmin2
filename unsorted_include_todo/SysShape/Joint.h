@@ -10,17 +10,17 @@
 */
 
 struct CNode {
-	virtual ~CNode();             // _08
+	virtual ~CNode();             // _08 (inline)
 	virtual void getChildCount(); // _0C
-
-	// _00 VTBL
 };
 
 namespace SysShape {
 struct Joint : public CNode {
-	virtual ~Joint(); // _08
+	virtual ~Joint(); // _08 (inline)
 
-	// _00 VTBL
+	void init(unsigned short, SysShape::Model*, J3DJoint*);
+	void getWorldMatrix();
+	Joint();
 };
 } // namespace SysShape
 

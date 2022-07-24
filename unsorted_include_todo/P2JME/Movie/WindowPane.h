@@ -14,32 +14,29 @@
 */
 
 struct CNode {
-	virtual void _08() = 0;       // _08
+	virtual ~CNode();             // _08 (inline)
 	virtual void getChildCount(); // _0C
-
-	// _00 VTBL
 };
 
 namespace P2DScreen {
 struct Node {
-	virtual void _08() = 0;                        // _08
+	virtual ~Node();                               // _08 (inline)
 	virtual void _0C() = 0;                        // _0C
-	virtual void _10() = 0;                        // _10
-	virtual void draw(Graphics&, J2DGrafContext&); // _14
-
-	// _00 VTBL
+	virtual void update();                         // _10
+	virtual void draw(Graphics&, J2DGrafContext&); // _14 (inline)
 };
 } // namespace P2DScreen
 
 namespace P2JME {
 namespace Movie {
 struct WindowPane : public CNode, public Node {
-	virtual ~WindowPane();  // _08
+	virtual ~WindowPane();  // _08 (inline)
 	virtual void update();  // _10
 	virtual void doInit();  // _18
 	virtual void _1C() = 0; // _1C
 
-	// _00 VTBL
+	void moveWindow(bool);
+	void open(float);
 };
 } // namespace Movie
 } // namespace P2JME

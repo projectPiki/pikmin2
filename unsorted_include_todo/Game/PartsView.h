@@ -18,25 +18,24 @@
 */
 
 struct CNode {
-	virtual ~CNode();             // _08
+	virtual ~CNode();             // _08 (inline)
 	virtual void getChildCount(); // _0C
-
-	// _00 VTBL
 };
 
 namespace Game {
 struct PartsView : public CNode {
-	virtual ~PartsView();                 // _08
-	virtual void constructor();           // _10
+	virtual ~PartsView();                 // _08 (inline)
+	virtual void constructor();           // _10 (inline)
 	virtual void doAnimation();           // _14
 	virtual void doEntry();               // _18
 	virtual void doSetView(int);          // _1C
 	virtual void doViewCalc();            // _20
-	virtual void doSimulation(float);     // _24
+	virtual void doSimulation(float);     // _24 (inline)
 	virtual void doDirectDraw(Graphics&); // _28
 	virtual void _2C() = 0;               // _2C
 
-	// _00 VTBL
+	PartsView();
+	void read(Stream&);
 };
 } // namespace Game
 

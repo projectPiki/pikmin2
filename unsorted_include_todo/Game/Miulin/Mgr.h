@@ -77,34 +77,34 @@ struct EnemyMgrBase {
     virtual void _34() = 0;                     // _34
     virtual void _38() = 0;                     // _38
     virtual void _3C() = 0;                     // _3C
-    virtual void _40() = 0;                     // _40
+    virtual void @4 @__dt();                    // _40 (inline)
     virtual void _44() = 0;                     // _44
     virtual void _48() = 0;                     // _48
     virtual void _4C() = 0;                     // _4C
     virtual void _50() = 0;                     // _50
     virtual void _54() = 0;                     // _54
-    virtual void _58() = 0;                     // _58
-    virtual void getObject(void*);              // _5C
-    virtual void getNext(void*);                // _60
-    virtual void getStart();                    // _64
-    virtual void getEnd();                      // _68
+    virtual ~EnemyMgrBase();                    // _58 (inline)
+    virtual void getObject(void*);              // _5C (inline)
+    virtual void getNext(void*);                // _60 (inline)
+    virtual void getStart();                    // _64 (inline)
+    virtual void getEnd();                      // _68 (inline)
     virtual void alloc();                       // _6C
-    virtual void _70() = 0;                     // _70
-    virtual void getJ3DModelData() const;       // _74
-    virtual void getGenerator() const;          // _78
+    virtual void birth(EnemyBirthArg&);         // _70
+    virtual void getJ3DModelData() const;       // _74 (inline)
+    virtual void getGenerator() const;          // _78 (inline)
     virtual void killAll(CreatureKillArg*);     // _7C
     virtual void setupSoundViewerAndBas();      // _80
     virtual void setDebugParm(unsigned long);   // _84
     virtual void resetDebugParm(unsigned long); // _88
-    virtual void getMaxObjects() const;         // _8C
+    virtual void getMaxObjects() const;         // _8C (inline)
     virtual void startMovie();                  // _90
     virtual void endMovie();                    // _94
-    virtual void get(void*);                    // _98
-    virtual void isAlwaysMovieActor();          // _9C
-    virtual void _A0() = 0;                     // _A0
-    virtual void _A4() = 0;                     // _A4
-    virtual void _A8() = 0;                     // _A8
-    virtual void _AC() = 0;                     // _AC
+    virtual void get(void*);                    // _98 (inline)
+    virtual void isAlwaysMovieActor();          // _9C (inline)
+    virtual void createObj(int);                // _A0 (inline)
+    virtual void getEnemy(int);                 // _A4 (inline)
+    virtual void doAlloc();                     // _A8
+    virtual void getEnemyTypeID();              // _AC (inline)
     virtual void createModel();                 // _B0
     virtual void initParms();                   // _B4
     virtual void loadResource();                // _B8
@@ -117,8 +117,6 @@ struct EnemyMgrBase {
     virtual void doLoadBmd(void*);              // _D4
     virtual void doLoadBdl(void*);              // _D8
     virtual void initGenerator();               // _DC
-
-    // _00 VTBL
 };
 } // namespace Game
 
@@ -129,14 +127,12 @@ struct GenericObjectMgr {
     virtual void _14() = 0;               // _14
     virtual void _18() = 0;               // _18
     virtual void _1C() = 0;               // _1C
-    virtual void doSimpleDraw(Viewport*); // _20
-    virtual void loadResources();         // _24
-    virtual void resetMgr();              // _28
-    virtual void pausable();              // _2C
-    virtual void frozenable();            // _30
-    virtual void getMatrixLoadType();     // _34
-
-    // _00 VTBL
+    virtual void doSimpleDraw(Viewport*); // _20 (inline)
+    virtual void loadResources();         // _24 (inline)
+    virtual void resetMgr();              // _28 (inline)
+    virtual void pausable();              // _2C (inline)
+    virtual void frozenable();            // _30 (inline)
+    virtual void getMatrixLoadType();     // _34 (inline)
 };
 
 struct CNode {
@@ -154,10 +150,8 @@ struct CNode {
     virtual void _34() = 0;       // _34
     virtual void _38() = 0;       // _38
     virtual void _3C() = 0;       // _3C
-    virtual void _40() = 0;       // _40
+    virtual void @4 @__dt();      // _40 (inline)
     virtual void getChildCount(); // _44
-
-    // _00 VTBL
 };
 
 namespace Game {
@@ -165,15 +159,15 @@ namespace Miulin {
     struct Mgr : public EnemyMgrBase, public GenericObjectMgr, public CNode {
         virtual void _38() = 0;             // _38
         virtual void _3C() = 0;             // _3C
-        virtual void @4 @__dt();            // _40
-        virtual ~Mgr();                     // _58
+        virtual void @4 @__dt();            // _40 (inline)
+        virtual ~Mgr();                     // _58 (inline)
         virtual void birth(EnemyBirthArg&); // _70
-        virtual void createObj(int);        // _A0
-        virtual void getEnemy(int);         // _A4
+        virtual void createObj(int);        // _A0 (inline)
+        virtual void getEnemy(int);         // _A4 (inline)
         virtual void doAlloc();             // _A8
-        virtual void getEnemyTypeID();      // _AC
+        virtual void getEnemyTypeID();      // _AC (inline)
 
-        // _00 VTBL
+        Mgr();
     };
 } // namespace Miulin
 } // namespace Game

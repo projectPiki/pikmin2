@@ -16,8 +16,6 @@ struct TFactory {
 	virtual ~TFactory();                             // _08
 	virtual void create(const data::TParse_TBlock&); // _0C
 	virtual void destroy(TObject*);                  // _10
-
-	// _00 VTBL
 };
 } // namespace fvb
 } // namespace JStudio

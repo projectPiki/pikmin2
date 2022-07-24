@@ -13,7 +13,7 @@ namespace IllustratedBook {
 struct CameraParms {
 	virtual void read(Stream&); // _08
 
-	// _00 VTBL
+	CameraParms();
 };
 } // namespace IllustratedBook
 } // namespace Game

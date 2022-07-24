@@ -11,18 +11,20 @@
 */
 
 struct CNode {
-	virtual ~CNode();             // _08
+	virtual ~CNode();             // _08 (inline)
 	virtual void getChildCount(); // _0C
-
-	// _00 VTBL
 };
 
 namespace Game {
 struct MovieConfig : public CNode {
-	virtual ~MovieConfig(); // _08
+	virtual ~MovieConfig(); // _08 (inline)
 	virtual void _10() = 0; // _10
 
-	// _00 VTBL
+	void dump();
+	void isSkippable();
+	void isNeverSkippable();
+	void is(char*);
+	void read(Stream&);
 };
 } // namespace Game
 

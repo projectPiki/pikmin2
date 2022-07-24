@@ -13,20 +13,19 @@
 */
 
 struct CNode {
-	virtual ~CNode();             // _08
+	virtual ~CNode();             // _08 (inline)
 	virtual void getChildCount(); // _0C
-
-	// _00 VTBL
 };
 
 namespace Game {
 struct EnemyEffectNodeHamon : public CNode {
-	virtual ~EnemyEffectNodeHamon();    // _08
+	virtual ~EnemyEffectNodeHamon();    // _08 (inline)
 	virtual void create(EnemyBase*);    // _10
 	virtual void fade(EnemyBase*);      // _14
 	virtual void forceKill(EnemyBase*); // _18
 
-	// _00 VTBL
+	EnemyEffectNodeHamon();
+	void update(Game::EnemyBase*);
 };
 } // namespace Game
 

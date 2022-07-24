@@ -12,8 +12,6 @@
 struct ResetManager {
 	virtual void draw();                // _08
 	virtual void updateStatusEffects(); // _0C
-
-	// _00 VTBL
 };
 
 #endif

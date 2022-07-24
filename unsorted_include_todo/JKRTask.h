@@ -12,8 +12,6 @@
 struct JKRTask {
 	virtual ~JKRTask(); // _08
 	virtual void run(); // _0C
-
-	// _00 VTBL
 };
 
 #endif

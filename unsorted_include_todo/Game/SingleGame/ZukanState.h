@@ -54,14 +54,12 @@ namespace FSMState < Game
 {
 	struct SingleGameSection >
 	{
-		virtual void _08() = 0;                                              // _08
-		virtual void _0C() = 0;                                              // _0C
-		virtual void _10() = 0;                                              // _10
-		virtual void FSMState < resume(SingleGameSection*);                  // _14
-		virtual void FSMState < restart(SingleGameSection*);                 // _18
-		virtual void FSMState < transit(SingleGameSection*, int, StateArg*); // _1C
-
-		// _00 VTBL
+		virtual void Singleinit(SingleGameSection*, StateArg*);              // _08
+		virtual void Singleexec(SingleGameSection*);                         // _0C
+		virtual void Singlecleanup(SingleGameSection*);                      // _10
+		virtual void FSMState < resume(SingleGameSection*);                  // _14 (inline)
+		virtual void FSMState < restart(SingleGameSection*);                 // _18 (inline)
+		virtual void FSMState < transit(SingleGameSection*, int, StateArg*); // _1C (inline)
 	};
 } // namespace Game
 } // namespace Game
@@ -69,24 +67,22 @@ namespace FSMState < Game
 namespace Game {
 namespace SingleGame {
 struct State {
-	virtual void _08() = 0;                                                                          // _08
-	virtual void _0C() = 0;                                                                          // _0C
-	virtual void _10() = 0;                                                                          // _10
+	virtual void Singleinit(SingleGameSection*, StateArg*);                                          // _08
+	virtual void Singleexec(SingleGameSection*);                                                     // _0C
+	virtual void Singlecleanup(SingleGameSection*);                                                  // _10
 	virtual void _14() = 0;                                                                          // _14
 	virtual void _18() = 0;                                                                          // _18
 	virtual void _1C() = 0;                                                                          // _1C
-	virtual void _20() = 0;                                                                          // _20
-	virtual void SingleonOrimaDown(SingleGameSection*, int);                                         // _24
-	virtual void SingleonMovieStart(SingleGameSection*, MovieConfig*, unsigned long, unsigned long); // _28
-	virtual void SingleonMovieDone(SingleGameSection*, MovieConfig*, unsigned long, unsigned long);  // _2C
-	virtual void SingleonMovieCommand(SingleGameSection*, int);                                      // _30
-	virtual void SingleonHoleIn(SingleGameSection*, ItemCave::Item*);                                // _34
-	virtual void SingleonNextFloor(SingleGameSection*, ItemHole::Item*);                             // _38
-	virtual void SingleonFountainReturn(SingleGameSection*, ItemBigFountain::Item*);                 // _3C
-	virtual void Singleon_section_fadeout(SingleGameSection*);                                       // _40
-	virtual void Singleon_demo_timer(SingleGameSection*, unsigned long);                             // _44
-
-	// _00 VTBL
+	virtual void Singledraw(SingleGameSection*, Graphics&);                                          // _20
+	virtual void SingleonOrimaDown(SingleGameSection*, int);                                         // _24 (inline)
+	virtual void SingleonMovieStart(SingleGameSection*, MovieConfig*, unsigned long, unsigned long); // _28 (inline)
+	virtual void SingleonMovieDone(SingleGameSection*, MovieConfig*, unsigned long, unsigned long);  // _2C (inline)
+	virtual void SingleonMovieCommand(SingleGameSection*, int);                                      // _30 (inline)
+	virtual void SingleonHoleIn(SingleGameSection*, ItemCave::Item*);                                // _34 (inline)
+	virtual void SingleonNextFloor(SingleGameSection*, ItemHole::Item*);                             // _38 (inline)
+	virtual void SingleonFountainReturn(SingleGameSection*, ItemBigFountain::Item*);                 // _3C (inline)
+	virtual void Singleon_section_fadeout(SingleGameSection*);                                       // _40 (inline)
+	virtual void Singleon_demo_timer(SingleGameSection*, unsigned long);                             // _44 (inline)
 };
 } // namespace SingleGame
 } // namespace Game
@@ -125,7 +121,29 @@ struct ZukanState : public SingleGameSection >, public State {
 	virtual void _A8() = 0;                                 // _A8
 	virtual void _AC() = 0;                                 // _AC
 
-	// _00 VTBL
+	ZukanState();
+	void setMode(Game::SingleGame::ZukanState::CMode);
+	void execModeChange(Game::SingleGameSection*, Game::SingleGame::ZukanState::CMode);
+	void execChangeTeki(Game::SingleGameSection*);
+	void execTeki(Game::SingleGameSection*);
+	void startWipe(float);
+	void createEnemy(int);
+	void execChangePellet(Game::SingleGameSection*);
+	void execPellet(Game::SingleGameSection*);
+	void getMaxPelletID();
+	void getCurrentPelletConfig(int);
+	void convertPelletID(int&, int);
+	void drawGradationEffect(Game::SingleGameSection*, Graphics&);
+	void drawLightEffect(Game::SingleGameSection*, Graphics&);
+	void dvdloadA();
+	void createTeki(int);
+	void createPellet(int);
+	void dvdloadB_teki();
+	void dvdloadB_pellet();
+	void clearHeapB_common();
+	void clearHeapB_teki();
+	void clearHeapB_pellet();
+	void clearHeaps();
 };
 } // namespace SingleGame
 } // namespace Game

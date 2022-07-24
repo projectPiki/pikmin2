@@ -10,9 +10,12 @@
 
 namespace Game {
 struct EnemyParmsBase {
-	virtual void read(Stream&); // _08
+	virtual void read(Stream&); // _08 (inline)
 
-	// _00 VTBL
+	EnemyParmsBase();
+	void loadSettingFile(JKRArchive*, char*);
+	void setDebugParm(unsigned long);
+	void resetDebugParm(unsigned long);
 };
 } // namespace Game
 

@@ -59,70 +59,66 @@
 
 struct J2DPane {
 	virtual ~J2DPane();                                       // _08
-	virtual void getTypeID() const;                           // _0C
+	virtual void getTypeID() const;                           // _0C (inline)
 	virtual void move(float, float);                          // _10
 	virtual void add(float, float);                           // _14
 	virtual void resize(float, float);                        // _18
-	virtual void setCullBack(bool);                           // _1C
+	virtual void setCullBack(bool);                           // _1C (inline)
 	virtual void setCullBack(_GXCullMode);                    // _20
-	virtual void setAlpha(unsigned char);                     // _24
-	virtual void setConnectParent(bool);                      // _28
-	virtual void calcMtx();                                   // _2C
-	virtual void update();                                    // _30
+	virtual void setAlpha(unsigned char);                     // _24 (inline)
+	virtual void setConnectParent(bool);                      // _28 (inline)
+	virtual void calcMtx();                                   // _2C (inline)
+	virtual void update();                                    // _30 (inline)
 	virtual void drawSelf(float, float);                      // _34
 	virtual void drawSelf(float, float, float (*)[3][4]);     // _38
 	virtual void search(unsigned long long);                  // _3C
 	virtual void searchUserInfo(unsigned long long);          // _40
-	virtual void makeMatrix(float, float);                    // _44
+	virtual void makeMatrix(float, float);                    // _44 (inline)
 	virtual void makeMatrix(float, float, float, float);      // _48
 	virtual void isUsed(const ResTIMG*);                      // _4C
-	virtual void isUsed(const ResFONT*);                      // _50
+	virtual void isUsed(const ResFONT*);                      // _50 (inline)
 	virtual void clearAnmTransform();                         // _54
-	virtual void rewriteAlpha();                              // _58
+	virtual void rewriteAlpha();                              // _58 (inline)
 	virtual void setAnimation(J2DAnmBase*);                   // _5C
 	virtual void setAnimation(J2DAnmTransform*);              // _60
-	virtual void setAnimation(J2DAnmColor*);                  // _64
-	virtual void setAnimation(J2DAnmTexPattern*);             // _68
-	virtual void setAnimation(J2DAnmTextureSRTKey*);          // _6C
-	virtual void setAnimation(J2DAnmTevRegKey*);              // _70
-	virtual void setAnimation(J2DAnmVisibilityFull*);         // _74
-	virtual void setAnimation(J2DAnmVtxColor*);               // _78
+	virtual void setAnimation(J2DAnmColor*);                  // _64 (inline)
+	virtual void setAnimation(J2DAnmTexPattern*);             // _68 (inline)
+	virtual void setAnimation(J2DAnmTextureSRTKey*);          // _6C (inline)
+	virtual void setAnimation(J2DAnmTevRegKey*);              // _70 (inline)
+	virtual void setAnimation(J2DAnmVisibilityFull*);         // _74 (inline)
+	virtual void setAnimation(J2DAnmVtxColor*);               // _78 (inline)
 	virtual void animationTransform(const J2DAnmTransform*);  // _7C
 	virtual void setVisibileAnimation(J2DAnmVisibilityFull*); // _80
-	virtual void setAnimationVF(J2DAnmVisibilityFull*);       // _84
+	virtual void setAnimationVF(J2DAnmVisibilityFull*);       // _84 (inline)
 	virtual void setVtxColorAnimation(J2DAnmVtxColor*);       // _88
-	virtual void setAnimationVC(J2DAnmVtxColor*);             // _8C
+	virtual void setAnimationVC(J2DAnmVtxColor*);             // _8C (inline)
 	virtual void animationPane(const J2DAnmTransform*);       // _90
-
-	// _00 VTBL
 };
 
 struct J2DWindow : public J2DPane {
 	virtual ~J2DWindow();                                                              // _08
-	virtual void getTypeID() const;                                                    // _0C
+	virtual void getTypeID() const;                                                    // _0C (inline)
 	virtual void resize(float, float);                                                 // _18
 	virtual void drawSelf(float, float);                                               // _34
 	virtual void drawSelf(float, float, float (*)[3][4]);                              // _38
 	virtual void isUsed(const ResTIMG*);                                               // _4C
-	virtual void isUsed(const ResFONT*);                                               // _50
-	virtual void rewriteAlpha();                                                       // _58
+	virtual void isUsed(const ResFONT*);                                               // _50 (inline)
+	virtual void rewriteAlpha();                                                       // _58 (inline)
 	virtual void draw(const JGeometry::TBox2<float>&);                                 // _94
 	virtual void draw(const JGeometry::TBox2<float>&, const JGeometry::TBox2<float>&); // _98
-	virtual void draw(float, float, float, float);                                     // _9C
-	virtual void setBlack(JUtility::TColor);                                           // _A0
-	virtual void setWhite(JUtility::TColor);                                           // _A4
-	virtual void setBlackWhite(JUtility::TColor, JUtility::TColor);                    // _A8
-	virtual void getBlack() const;                                                     // _AC
-	virtual void getWhite() const;                                                     // _B0
+	virtual void draw(float, float, float, float);                                     // _9C (inline)
+	virtual void setBlack(JUtility::TColor);                                           // _A0 (inline)
+	virtual void setWhite(JUtility::TColor);                                           // _A4 (inline)
+	virtual void setBlackWhite(JUtility::TColor, JUtility::TColor);                    // _A8 (inline)
+	virtual void getBlack() const;                                                     // _AC (inline)
+	virtual void getWhite() const;                                                     // _B0 (inline)
 	virtual void getFrameTexture(unsigned char, unsigned char) const;                  // _B4
-	virtual void getContentsTexture(unsigned char) const;                              // _B8
-	virtual void getMaterial(TMaterial&) const;                                        // _BC
-	virtual void getFrameMaterial(unsigned char) const;                                // _C0
-	virtual void getContentsMaterial() const;                                          // _C4
+	virtual void getContentsTexture(unsigned char) const;                              // _B8 (inline)
+	virtual void getMaterial(TMaterial&) const;                                        // _BC (inline)
+	virtual void getFrameMaterial(unsigned char) const;                                // _C0 (inline)
+	virtual void getContentsMaterial() const;                                          // _C4 (inline)
 	virtual void drawContents(const JGeometry::TBox2<float>&);                         // _C8
 	virtual void _CC() = 0;                                                            // _CC
-
-	// _00 VTBL
 };
 
 #endif

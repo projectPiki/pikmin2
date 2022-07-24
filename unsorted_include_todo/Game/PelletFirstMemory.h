@@ -17,8 +17,6 @@ namespace Game {
 struct PelletCropMemory {
 	virtual void read(Stream&);  // _08
 	virtual void write(Stream&); // _0C
-
-	// _00 VTBL
 };
 } // namespace Game
 
@@ -28,8 +26,6 @@ struct PelletFirstMemory : public PelletCropMemory {
 	virtual void obtainPellet(BasePelletMgr*, int); // _14
 	virtual void losePellet(BasePelletMgr*, int);   // _18
 	virtual void _1C() = 0;                         // _1C
-
-	// _00 VTBL
 };
 } // namespace Game
 

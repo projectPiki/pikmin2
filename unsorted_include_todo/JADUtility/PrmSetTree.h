@@ -17,20 +17,16 @@ namespace NodeTree < JADUtility
 {
 	struct PrmSetBase >
 	{
-		virtual void NodeTree < beforeRemovingChild(PrmSetBase*);                  // _08
-		virtual void NodeTree < beforeRemovingThis(PrmSetBase*);                   // _0C
-		virtual void NodeTree < afterRemovingChildButton(PrmSetBase*);             // _10
-		virtual void NodeTree < afterRemovingThisButton(PrmSetBase*, PrmSetBase*); // _14
-
-		// _00 VTBL
+		virtual void NodeTree < beforeRemovingChild(PrmSetBase*);                  // _08 (inline)
+		virtual void NodeTree < beforeRemovingThis(PrmSetBase*);                   // _0C (inline)
+		virtual void NodeTree < afterRemovingChildButton(PrmSetBase*);             // _10 (inline)
+		virtual void NodeTree < afterRemovingThisButton(PrmSetBase*, PrmSetBase*); // _14 (inline)
 	};
 } // namespace JADUtility
 } // namespace JADUtility
 
 namespace JADUtility {
 struct PrmSetTree : public PrmSetBase > {
-
-	// _00 VTBL
 };
 } // namespace JADUtility
 

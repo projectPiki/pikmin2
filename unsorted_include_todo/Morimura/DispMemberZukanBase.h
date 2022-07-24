@@ -23,9 +23,7 @@ struct DispMemberBase {
 	virtual void _08() = 0;           // _08
 	virtual void _0C() = 0;           // _0C
 	virtual void _10() = 0;           // _10
-	virtual void doSetSubMemberAll(); // _14
-
-	// _00 VTBL
+	virtual void doSetSubMemberAll(); // _14 (inline)
 };
 } // namespace Screen
 } // namespace og
@@ -41,8 +39,6 @@ struct DispMemberZukanBase : public DispMemberBase {
 	virtual void _24() = 0; // _24
 	virtual void _28() = 0; // _28
 	virtual void _2C() = 0; // _2C
-
-	// _00 VTBL
 };
 } // namespace Morimura
 

@@ -14,12 +14,10 @@
 namespace kh {
 namespace Screen {
 struct DispDayEndResult {
-	virtual void getSize();           // _08
-	virtual void getOwnerID();        // _0C
-	virtual void getMemberID();       // _10
-	virtual void doSetSubMemberAll(); // _14
-
-	// _00 VTBL
+	virtual void getSize();           // _08 (inline)
+	virtual void getOwnerID();        // _0C (inline)
+	virtual void getMemberID();       // _10 (inline)
+	virtual void doSetSubMemberAll(); // _14 (inline)
 };
 } // namespace Screen
 } // namespace kh

@@ -11,8 +11,6 @@
 namespace PSSystem {
 struct WaveLoader {
 	virtual void loadWave(TaskChecker*, WaveScene::AreaArg); // _08
-
-	// _00 VTBL
 };
 } // namespace PSSystem
 

@@ -33,7 +33,7 @@
 */
 
 struct J3DTexGenBlock {
-	virtual void reset(J3DTexGenBlock*);                         // _08
+	virtual void reset(J3DTexGenBlock*);                         // _08 (inline)
 	virtual void _0C() = 0;                                      // _0C
 	virtual void _10() = 0;                                      // _10
 	virtual void _14() = 0;                                      // _14
@@ -43,23 +43,21 @@ struct J3DTexGenBlock {
 	virtual void _24() = 0;                                      // _24
 	virtual void _28() = 0;                                      // _28
 	virtual void _2C() = 0;                                      // _2C
-	virtual void countDLSize();                                  // _30
+	virtual void countDLSize();                                  // _30 (inline)
 	virtual void _34() = 0;                                      // _34
-	virtual void setTexGenNum(const unsigned long*);             // _38
-	virtual void setTexGenNum(unsigned long);                    // _3C
-	virtual void getTexGenNum() const;                           // _40
-	virtual void setTexCoord(unsigned long, const J3DTexCoord*); // _44
-	virtual void getTexCoord(unsigned long);                     // _48
-	virtual void setTexMtx(unsigned long, J3DTexMtx*);           // _4C
-	virtual void getTexMtx(unsigned long);                       // _50
-	virtual void setNBTScale(const J3DNBTScale*);                // _54
-	virtual void setNBTScale(J3DNBTScale);                       // _58
-	virtual void getNBTScale();                                  // _5C
-	virtual void getTexMtxOffset() const;                        // _60
-	virtual void setTexMtxOffset(unsigned long);                 // _64
-	virtual ~J3DTexGenBlock();                                   // _68
-
-	// _00 VTBL
+	virtual void setTexGenNum(const unsigned long*);             // _38 (inline)
+	virtual void setTexGenNum(unsigned long);                    // _3C (inline)
+	virtual void getTexGenNum() const;                           // _40 (inline)
+	virtual void setTexCoord(unsigned long, const J3DTexCoord*); // _44 (inline)
+	virtual void getTexCoord(unsigned long);                     // _48 (inline)
+	virtual void setTexMtx(unsigned long, J3DTexMtx*);           // _4C (inline)
+	virtual void getTexMtx(unsigned long);                       // _50 (inline)
+	virtual void setNBTScale(const J3DNBTScale*);                // _54 (inline)
+	virtual void setNBTScale(J3DNBTScale);                       // _58 (inline)
+	virtual void getNBTScale();                                  // _5C (inline)
+	virtual void getTexMtxOffset() const;                        // _60 (inline)
+	virtual void setTexMtxOffset(unsigned long);                 // _64 (inline)
+	virtual ~J3DTexGenBlock();                                   // _68 (inline)
 };
 
 #endif

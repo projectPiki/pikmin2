@@ -10,17 +10,27 @@
 */
 
 struct CNode {
-	virtual ~CNode();             // _08
+	virtual ~CNode();             // _08 (inline)
 	virtual void getChildCount(); // _0C
-
-	// _00 VTBL
 };
 
 namespace Game {
 struct RumbleMgr : public CNode {
-	virtual ~RumbleMgr(); // _08
+	virtual ~RumbleMgr(); // _08 (inline)
 
-	// _00 VTBL
+	RumbleMgr();
+	void loadResource();
+	void init();
+	void update();
+	void startRumble(int, Vector3<float>&, int);
+	void startRumble(int, int);
+	void stopRumble(int, int);
+	void stopRumble(int);
+	void isRumbleUpdateOn();
+	void setZukanRumble(Controller*, Vector3<float>*);
+	void isStartAndEnd(int*, int);
+	void readRumbleParms(char*);
+	void readRumbleData(char*);
 };
 } // namespace Game
 

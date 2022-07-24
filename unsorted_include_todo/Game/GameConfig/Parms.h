@@ -10,18 +10,16 @@
 */
 
 struct CNode {
-	virtual ~CNode();             // _08
+	virtual ~CNode();             // _08 (inline)
 	virtual void getChildCount(); // _0C
-
-	// _00 VTBL
 };
 
 namespace Game {
 namespace GameConfig {
 struct Parms : public CNode {
-	virtual ~Parms(); // _08
+	virtual ~Parms(); // _08 (inline)
 
-	// _00 VTBL
+	Parms();
 };
 } // namespace GameConfig
 } // namespace Game

@@ -17,27 +17,23 @@
 
 namespace PSM {
 struct DirectorMgr_Scene {
-    virtual ~DirectorMgr_Scene();                                    // _08
+    virtual ~DirectorMgr_Scene(); // _08 (inline)
     virtual void newDirector(unsigned char, PSSystem::DirectedBgm&); // _0C
     virtual void _10() = 0;                                          // _10
     virtual void _14() = 0;                                          // _14
-    virtual void @12 @__dt();                                        // _18
-    virtual void isSlave();                                          // _1C
-
-    // _00 VTBL
+    virtual void @12 @__dt(); // _18 (inline)
+    virtual void isSlave();   // _1C (inline)
 };
 } // namespace PSM
 
 namespace PSM {
 struct DirectorMgr_Scene_AutoBgm : public DirectorMgr_Scene {
-    virtual ~DirectorMgr_Scene_AutoBgm(); // _08
+    virtual ~DirectorMgr_Scene_AutoBgm(); // _08 (inline)
     virtual void _10() = 0;               // _10
     virtual void _14() = 0;               // _14
-    virtual void @12 @__dt();             // _18
+    virtual void @12 @__dt();             // _18 (inline)
     virtual void newPikminNumberDirector(int, unsigned char,
                                          PSSystem::DirectedBgm&); // _20
-
-    // _00 VTBL
 };
 } // namespace PSM
 

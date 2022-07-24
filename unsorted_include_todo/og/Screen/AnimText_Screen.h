@@ -14,45 +14,45 @@
 */
 
 struct CNode {
-	virtual void _08() = 0;       // _08
+	virtual ~CNode();             // _08 (inline)
 	virtual void getChildCount(); // _0C
-
-	// _00 VTBL
 };
 
 namespace og {
 namespace Screen {
 struct CallBack_Screen {
-	virtual void _08() = 0;                                 // _08
+	virtual ~CallBack_Screen();                             // _08 (inline)
 	virtual void _0C() = 0;                                 // _0C
-	virtual void _10() = 0;                                 // _10
+	virtual void AnimText_update();                         // _10
 	virtual void CallBack_draw(Graphics&, J2DGrafContext&); // _14
-
-	// _00 VTBL
 };
 } // namespace Screen
 } // namespace og
 
 namespace P2DScreen {
 struct Node {
-	virtual void _08() = 0; // _08
-	virtual void _0C() = 0; // _0C
-	virtual void _10() = 0; // _10
-	virtual void _14() = 0; // _14
-	virtual void doInit();  // _18
-
-	// _00 VTBL
+	virtual ~Node();                // _08 (inline)
+	virtual void _0C() = 0;         // _0C
+	virtual void AnimText_update(); // _10
+	virtual void _14() = 0;         // _14
+	virtual void doInit();          // _18 (inline)
 };
 } // namespace P2DScreen
 
 namespace og {
 namespace Screen {
 struct AnimText_Screen : public CNode, public CallBack_Screen, public Node {
-	virtual AnimText_ ~AnimText_Screen(); // _08
+	virtual AnimText_ ~AnimText_Screen(); // _08 (inline)
 	virtual void AnimText_update();       // _10
 	virtual void _1C() = 0;               // _1C
 
-	// _00 VTBL
+	AnimText_Screen();
+	void setAnimScreen(og::Screen::AnimScreen*);
+	void setText(unsigned long long);
+	void stop();
+	void open(float);
+	void close();
+	void blink(float, float);
 };
 } // namespace Screen
 } // namespace og

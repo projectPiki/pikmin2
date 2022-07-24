@@ -44,30 +44,28 @@
 */
 
 struct GenericObjectMgr {
-	virtual void doAnimation();           // _08
-	virtual void doEntry();               // _0C
-	virtual void doSetView(int);          // _10
-	virtual void doViewCalc();            // _14
-	virtual void doSimulation(float);     // _18
-	virtual void doDirectDraw(Graphics&); // _1C
-	virtual void doSimpleDraw(Viewport*); // _20
-	virtual void loadResources();         // _24
+	virtual void doAnimation();           // _08 (inline)
+	virtual void doEntry();               // _0C (inline)
+	virtual void doSetView(int);          // _10 (inline)
+	virtual void doViewCalc();            // _14 (inline)
+	virtual void doSimulation(float);     // _18 (inline)
+	virtual void doDirectDraw(Graphics&); // _1C (inline)
+	virtual void doSimpleDraw(Viewport*); // _20 (inline)
+	virtual void loadResources();         // _24 (inline)
 	virtual void _28() = 0;               // _28
-	virtual void pausable();              // _2C
-	virtual void frozenable();            // _30
-	virtual void getMatrixLoadType();     // _34
-
-	// _00 VTBL
+	virtual void pausable();              // _2C (inline)
+	virtual void frozenable();            // _30 (inline)
+	virtual void getMatrixLoadType();     // _34 (inline)
 };
 
 namespace Game {
 struct BasePelletMgr : public GenericObjectMgr {
-	virtual void doAnimation();                                                    // _08
-	virtual void doEntry();                                                        // _0C
-	virtual void doSetView(int);                                                   // _10
-	virtual void doViewCalc();                                                     // _14
-	virtual void doSimulation(float);                                              // _18
-	virtual void doDirectDraw(Graphics&);                                          // _1C
+	virtual void doAnimation();                                                    // _08 (inline)
+	virtual void doEntry();                                                        // _0C (inline)
+	virtual void doSetView(int);                                                   // _10 (inline)
+	virtual void doViewCalc();                                                     // _14 (inline)
+	virtual void doSimulation(float);                                              // _18 (inline)
+	virtual void doDirectDraw(Graphics&);                                          // _1C (inline)
 	virtual void _28() = 0;                                                        // _28
 	virtual void _38() = 0;                                                        // _38
 	virtual void _3C() = 0;                                                        // _3C
@@ -76,17 +74,17 @@ struct BasePelletMgr : public GenericObjectMgr {
 	virtual void _48() = 0;                                                        // _48
 	virtual void _4C() = 0;                                                        // _4C
 	virtual void _50() = 0;                                                        // _50
-	virtual void onCreateModel(SysShape::Model*);                                  // _54
+	virtual void onCreateModel(SysShape::Model*);                                  // _54 (inline)
 	virtual void _58() = 0;                                                        // _58
 	virtual void _5C() = 0;                                                        // _5C
 	virtual void _60() = 0;                                                        // _60
 	virtual void _64() = 0;                                                        // _64
 	virtual void _68() = 0;                                                        // _68
 	virtual void createShape(int, int);                                            // _6C
-	virtual void generatorBirth(Vector3<float>&, Vector3<float>&, GenPelletParm*); // _70
-	virtual void generatorWrite(Stream&, GenPelletParm*);                          // _74
-	virtual void generatorRead(Stream&, GenPelletParm*, unsigned long);            // _78
-	virtual void generatorLocalVersion();                                          // _7C
+	virtual void generatorBirth(Vector3<float>&, Vector3<float>&, GenPelletParm*); // _70 (inline)
+	virtual void generatorWrite(Stream&, GenPelletParm*);                          // _74 (inline)
+	virtual void generatorRead(Stream&, GenPelletParm*, unsigned long);            // _78 (inline)
+	virtual void generatorLocalVersion();                                          // _7C (inline)
 	virtual void generatorGetShape(GenPelletParm*);                                // _80
 	virtual void generatorNewPelletParm();                                         // _84
 	virtual void _88() = 0;                                                        // _88
@@ -94,7 +92,16 @@ struct BasePelletMgr : public GenericObjectMgr {
 	virtual void _90() = 0;                                                        // _90
 	virtual void _94() = 0;                                                        // _94
 
-	// _00 VTBL
+	BasePelletMgr();
+	void getPelletConfig(int);
+	void setUse(int);
+	void load();
+	void load_texArc(char*);
+	void openTextArc(char*);
+	void closeTextArc(JKRArchive*);
+	void useModelMgr(int, unsigned long);
+	void createModelCallback(SysShape::Model*);
+	void setCollTree(Game::Pellet*, int);
 };
 } // namespace Game
 

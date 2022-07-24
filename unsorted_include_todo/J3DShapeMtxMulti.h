@@ -14,14 +14,12 @@
 */
 
 struct J3DShapeMtxMulti {
-	virtual ~J3DShapeMtxMulti();                                             // _08
-	virtual void getType() const;                                            // _0C
-	virtual void getUseMtxNum() const;                                       // _10
-	virtual void getUseMtxIndex(unsigned short) const;                       // _14
+	virtual ~J3DShapeMtxMulti();                                             // _08 (inline)
+	virtual void getType() const;                                            // _0C (inline)
+	virtual void getUseMtxNum() const;                                       // _10 (inline)
+	virtual void getUseMtxIndex(unsigned short) const;                       // _14 (inline)
 	virtual void load() const;                                               // _18
 	virtual void calcNBTScale(const Vec&, float (*)[3][3], float (*)[3][3]); // _1C
-
-	// _00 VTBL
 };
 
 #endif

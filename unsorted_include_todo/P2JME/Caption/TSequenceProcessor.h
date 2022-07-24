@@ -37,7 +37,7 @@
 
 namespace JMessage {
 struct TProcessor {
-	virtual ~TProcessor();                                                     // _08
+	virtual ~TProcessor();                                                     // _08 (inline)
 	virtual void do_reset();                                                   // _0C
 	virtual void do_character(int);                                            // _10
 	virtual void do_tag(unsigned long, const void*, unsigned long);            // _14
@@ -45,15 +45,13 @@ struct TProcessor {
 	virtual void do_select_begin(unsigned long);                               // _1C
 	virtual void do_select_end();                                              // _20
 	virtual void do_select_separate();                                         // _24
-
-	// _00 VTBL
 };
 } // namespace JMessage
 
 namespace P2JME {
 namespace Caption {
 struct TSequenceProcessor : public TProcessor {
-	virtual ~TSequenceProcessor();                                              // _08
+	virtual ~TSequenceProcessor();                                              // _08 (inline)
 	virtual void do_character(int);                                             // _10
 	virtual void do_tag(unsigned long, const void*, unsigned long);             // _14
 	virtual void do_systemTagCode(unsigned short, const void*, unsigned long);  // _18
@@ -65,20 +63,18 @@ struct TSequenceProcessor : public TProcessor {
 	virtual void do_systemTagCode_(unsigned short, const void*, unsigned long); // _3C
 	virtual void do_begin(const void*, const char*);                            // _40
 	virtual void do_end();                                                      // _44
-	virtual void do_isReady();                                                  // _48
+	virtual void do_isReady();                                                  // _48 (inline)
 	virtual void do_jump_isReady();                                             // _4C
 	virtual void do_jump(const void*, const char*);                             // _50
 	virtual void do_branch_query(unsigned short);                               // _54
 	virtual void do_branch_queryResult();                                       // _58
 	virtual void do_branch(const void*, const char*);                           // _5C
-	virtual void doResetAbtnWaitSE();                                           // _60
-	virtual void doCharacterSEStart();                                          // _64
-	virtual void doCharacterSE(int);                                            // _68
-	virtual void doCharacterSEEnd();                                            // _6C
+	virtual void doResetAbtnWaitSE();                                           // _60 (inline)
+	virtual void doCharacterSEStart();                                          // _64 (inline)
+	virtual void doCharacterSE(int);                                            // _68 (inline)
+	virtual void doCharacterSEEnd();                                            // _6C (inline)
 	virtual void doFastForwardSE();                                             // _70
 	virtual void reset();                                                       // _74
-
-	// _00 VTBL
 };
 } // namespace Caption
 } // namespace P2JME

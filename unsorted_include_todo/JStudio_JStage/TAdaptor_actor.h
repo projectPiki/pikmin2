@@ -86,7 +86,10 @@ struct TAdaptor_actor {
 	virtual void _98() = 0;                                                                                        // _98
 	virtual void _9C() = 0;                                                                                        // _9C
 
-	// _00 VTBL
+	TAdaptor_actor();
+	void setJSG_ID_(JStage::TActor, void(const void*, void*, unsigned long), JStudio::data::TEOperationData, const void*, unsigned long);
+	void setJSG_SRT_(const JStudio::TControl*);
+	void getJSG_SRT_(const JStudio::TControl*);
 };
 } // namespace JStudio_JStage
 

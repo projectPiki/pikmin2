@@ -24,45 +24,39 @@
 */
 
 struct CNode {
-	virtual void _08() = 0;       // _08
+	virtual ~CNode();             // _08 (inline)
 	virtual void getChildCount(); // _0C
-
-	// _00 VTBL
 };
 
 namespace Container < MapCode
 {
 	struct Code >
 	{
-		virtual void _08() = 0;                     // _08
+		virtual ~Code > ();                         // _08 (inline)
 		virtual void _0C() = 0;                     // _0C
-		virtual void getObject(void*);              // _10
-		virtual void getNext(void*);                // _14
-		virtual void getStart();                    // _18
-		virtual void getEnd();                      // _1C
-		virtual void get(void*);                    // _20
-		virtual void getAt(int);                    // _24
-		virtual void getTo();                       // _28
-		virtual void _2C() = 0;                     // _2C
-		virtual void _30() = 0;                     // _30
-		virtual void write(Stream&);                // _34
-		virtual void read(Stream&);                 // _38
-		virtual void alloc(int);                    // _3C
-		virtual void addOne(MapCode::Code&);        // _40
-		virtual void setArray(MapCode::Code*, int); // _44
-
-		// _00 VTBL
+		virtual void getObject(void*);              // _10 (inline)
+		virtual void getNext(void*);                // _14 (inline)
+		virtual void getStart();                    // _18 (inline)
+		virtual void getEnd();                      // _1C (inline)
+		virtual void get(void*);                    // _20 (inline)
+		virtual void getAt(int);                    // _24 (inline)
+		virtual void getTo();                       // _28 (inline)
+		virtual void writeObject(Stream&, Code&);   // _2C
+		virtual void readObject(Stream&, Code&);    // _30
+		virtual void write(Stream&);                // _34 (inline)
+		virtual void read(Stream&);                 // _38 (inline)
+		virtual void alloc(int);                    // _3C (inline)
+		virtual void addOne(MapCode::Code&);        // _40 (inline)
+		virtual void setArray(MapCode::Code*, int); // _44 (inline)
 	};
 } // namespace MapCode
 
 namespace MapCode {
 namespace Mgr {
 struct CodeArray : public CNode, public Code > {
-	virtual ~CodeArray();                     // _08
+	virtual ~CodeArray();                     // _08 (inline)
 	virtual void writeObject(Stream&, Code&); // _2C
 	virtual void readObject(Stream&, Code&);  // _30
-
-	// _00 VTBL
 };
 } // namespace Mgr
 } // namespace MapCode

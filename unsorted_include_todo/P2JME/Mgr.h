@@ -14,7 +14,16 @@ struct Mgr {
 	virtual ~Mgr();         // _08
 	virtual void _0C() = 0; // _0C
 
-	// _00 VTBL
+	void create(JKRExpHeap*);
+	Mgr();
+	void setupMessage();
+	void setupTex();
+	void setupFont(const char*, JKRExpHeap*);
+	void createImage(P2JME::ImageGroup::EID, int);
+	void setImage(P2JME::ImageGroup::EID, int, JUTTexture*);
+	void getImage(P2JME::ImageGroup::EID, int);
+	void setupMessageResource(JKRArchive*, const char*);
+	void setupColor(JKRArchive*, const char*);
 };
 } // namespace P2JME
 

@@ -14,8 +14,6 @@ namespace BigTreasure {
 struct BigTreasureGroundCallBack {
 	virtual void invokeOnGround(int, WaterBox*);  // _08
 	virtual void invokeOffGround(int, WaterBox*); // _0C
-
-	// _00 VTBL
 };
 } // namespace BigTreasure
 } // namespace Game

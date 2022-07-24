@@ -12,10 +12,15 @@
 namespace Game {
 namespace GameStat {
 struct PikiCounter {
-	virtual void __opi();         // _08
-	virtual void operator()(int); // _0C
+	virtual void __opi();         // _08 (inline)
+	virtual void operator()(int); // _0C (inline)
 
-	// _00 VTBL
+	PikiCounter();
+	void clear();
+	void inc(Game::Piki*);
+	void dec(Game::Piki*);
+	void inc(int);
+	void dec(int);
 };
 } // namespace GameStat
 } // namespace Game

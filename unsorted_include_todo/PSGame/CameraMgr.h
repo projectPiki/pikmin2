@@ -12,7 +12,11 @@ namespace PSGame {
 struct CameraMgr {
 	virtual ~CameraMgr(); // _08
 
-	// _00 VTBL
+	CameraMgr();
+	void getBgmCamVol(unsigned char);
+	void update(unsigned char, float);
+	void getCurrentCamDistVol(unsigned char);
+	void getVol_DistBetweenCamAndLookat(float);
 };
 } // namespace PSGame
 

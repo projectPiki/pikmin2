@@ -11,10 +11,18 @@
 
 namespace Pikmin2ARAM {
 struct Mgr {
-	virtual ~Mgr();         // _08
+	virtual ~Mgr();         // _08 (inline)
 	virtual void _0C() = 0; // _0C
 
-	// _00 VTBL
+	void init();
+	Mgr();
+	void setLoadPermission(bool);
+	void load();
+	void dump();
+	void loadEnemy();
+	void load2D();
+	void loadDemo();
+	void loadItem();
 };
 } // namespace Pikmin2ARAM
 

@@ -11,9 +11,7 @@
 
 struct GameFlow {
 	virtual void run();               // _08
-	virtual void getCurrentSection(); // _0C
-
-	// _00 VTBL
+	virtual void getCurrentSection(); // _0C (inline)
 };
 
 #endif

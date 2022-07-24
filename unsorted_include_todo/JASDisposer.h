@@ -9,9 +9,7 @@
 */
 
 struct JASDisposer {
-	virtual void onDispose(); // _08
-
-	// _00 VTBL
+	virtual void onDispose(); // _08 (inline)
 };
 
 #endif

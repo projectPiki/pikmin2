@@ -10,19 +10,34 @@
 */
 
 struct CNode {
-	virtual ~CNode();             // _08
+	virtual ~CNode();             // _08 (inline)
 	virtual void getChildCount(); // _0C
-
-	// _00 VTBL
 };
 
 namespace ebi {
 namespace title {
 namespace Pikmin {
 struct TMgr : public CNode {
-	virtual ~TMgr(); // _08
+	virtual ~TMgr(); // _08 (inline)
 
-	// _00 VTBL
+	TMgr();
+	void setArchive(JKRArchive*);
+	void initUnit();
+	void update();
+	void setStartPos(Vector2<float>*);
+	void setDestPos(Vector2<float>*);
+	void forceArriveDest();
+	void assemble();
+	void quickAssemble();
+	void startBoid1(float);
+	void startBoid2(float);
+	void startBoid3(float);
+	void startWindBlow(ebi::EGEBox2f&);
+	void startDemo();
+	void enemyPushOut(ebi::title::TObjBase*);
+	void updateCalcBoid_();
+	void isAssemble();
+	void getUnit(long);
 };
 } // namespace Pikmin
 } // namespace title

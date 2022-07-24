@@ -27,13 +27,11 @@ struct JPAEmitterCallBack {
     virtual void fade();                            // _10
     virtual void _14() = 0;                         // _14
     virtual void _18() = 0;                         // _18
-    virtual void @4 @__dt();                        // _1C
-    virtual void execute(JPABaseEmitter*);          // _20
-    virtual void @4 @executeAfter(JPABaseEmitter*); // _24
-    virtual void draw(JPABaseEmitter*);             // _28
-    virtual void drawAfter(JPABaseEmitter*);        // _2C
-
-    // _00 VTBL
+    virtual void @4 @__dt();                        // _1C (inline)
+    virtual void execute(JPABaseEmitter*);          // _20 (inline)
+    virtual void @4 @executeAfter(JPABaseEmitter*); // _24 (inline)
+    virtual void draw(JPABaseEmitter*);             // _28 (inline)
+    virtual void drawAfter(JPABaseEmitter*);        // _2C (inline)
 };
 
 namespace efx {
@@ -43,14 +41,14 @@ struct TOneEmitter : public JPAEmitterCallBack {
     virtual void fade();                            // _10
     virtual void _14() = 0;                         // _14
     virtual void _18() = 0;                         // _18
-    virtual void @4 @__dt();                        // _1C
-    virtual void @4 @executeAfter(JPABaseEmitter*); // _24
-    virtual void executeAfter(JPABaseEmitter*);     // _30
-    virtual void startDemoDrawOff();                // _34
-    virtual void endDemoDrawOn();                   // _38
-    virtual ~TOneEmitter();                         // _3C
+    virtual void @4 @__dt();                        // _1C (inline)
+    virtual void @4 @executeAfter(JPABaseEmitter*); // _24 (inline)
+    virtual void executeAfter(JPABaseEmitter*);     // _30 (inline)
+    virtual void startDemoDrawOff();                // _34 (inline)
+    virtual void endDemoDrawOn();                   // _38 (inline)
+    virtual ~TOneEmitter();                         // _3C (inline)
 
-    // _00 VTBL
+    void add(efx::Context*);
 };
 } // namespace efx
 

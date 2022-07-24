@@ -17,15 +17,13 @@
 
 namespace JADUtility {
 struct PrmSetBase {
-	virtual void _08() = 0;                             // _08
-	virtual void appendAfter();                         // _0C
+	virtual ~PrmSetBase();                              // _08
+	virtual void appendAfter();                         // _0C (inline)
 	virtual void _10() = 0;                             // _10
-	virtual void afterRemovingChildButton(PrmSetBase*); // _14
-	virtual void afterRemovingThisButton(PrmSetBase*);  // _18
-	virtual void _1C() = 0;                             // _1C
-	virtual void afterGetFromFree();                    // _20
-
-	// _00 VTBL
+	virtual void afterRemovingChildButton(PrmSetBase*); // _14 (inline)
+	virtual void afterRemovingThisButton(PrmSetBase*);  // _18 (inline)
+	virtual void getEraseLink();                        // _1C (inline)
+	virtual void afterGetFromFree();                    // _20 (inline)
 };
 } // namespace JADUtility
 
@@ -34,16 +32,14 @@ namespace PrmSetRc < PSAutoBgm
 {
 	struct Track >
 	{
-		virtual void _08() = 0;                   // _08
+		virtual ~Track > ();                      // _08
 		virtual void _0C() = 0;                   // _0C
-		virtual void load(JSUMemoryInputStream&); // _10
+		virtual void load(JSUMemoryInputStream&); // _10 (inline)
 		virtual void _14() = 0;                   // _14
 		virtual void _18() = 0;                   // _18
-		virtual void _1C() = 0;                   // _1C
+		virtual void getEraseLink();              // _1C (inline)
 		virtual void _20() = 0;                   // _20
-		virtual void getPrmObjHeap();             // _24
-
-		// _00 VTBL
+		virtual void getPrmObjHeap();             // _24 (inline)
 	};
 } // namespace PSAutoBgm
 } // namespace JADUtility
@@ -51,9 +47,11 @@ namespace PrmSetRc < PSAutoBgm
 namespace PSAutoBgm {
 struct Conductor : public PrmSetBase, public Track > {
 	virtual ~Conductor();        // _08
-	virtual void getEraseLink(); // _1C
+	virtual void getEraseLink(); // _1C (inline)
 
-	// _00 VTBL
+	void removeCallback(unsigned char, void*);
+	void seqCpuSync_AutoBgm(JASTrack*, unsigned short, unsigned long, JASTrack*);
+	void createTables(JASTrack*);
 };
 } // namespace PSAutoBgm
 

@@ -58,7 +58,7 @@
 
 namespace JStage {
 struct TActor {
-    virtual void _08() = 0;                              // _08
+    virtual ~TActor();                                   // _08 (inline)
     virtual void JSGFGetType() const;                    // _0C
     virtual void _10() = 0;                              // _10
     virtual void _14() = 0;                              // _14
@@ -80,7 +80,7 @@ struct TActor {
     virtual void _54() = 0;                              // _54
     virtual void _58() = 0;                              // _58
     virtual void _5C() = 0;                              // _5C
-    virtual void _60() = 0;                              // _60
+    virtual void JSGSetAnimation(unsigned long);         // _60
     virtual void _64() = 0;                              // _64
     virtual void _68() = 0;                              // _68
     virtual void _6C() = 0;                              // _6C
@@ -91,15 +91,13 @@ struct TActor {
     virtual void JSGGetTextureAnimationFrame() const;    // _80
     virtual void JSGSetTextureAnimationFrame(float);     // _84
     virtual void JSGGetTextureAnimationFrameMax() const; // _88
-
-    // _00 VTBL
 };
 } // namespace JStage
 
 namespace Game {
 namespace P2JST {
     struct ObjectActor {
-        virtual void _08() = 0;                 // _08
+        virtual ~ObjectActor();                 // _08 (inline)
         virtual void _0C() = 0;                 // _0C
         virtual void JSGGetName() const;        // _10
         virtual void _14() = 0;                 // _14
@@ -123,7 +121,7 @@ namespace P2JST {
         virtual void JSGGetShape() const;                          // _54
         virtual void JSGSetShape(unsigned long);                   // _58
         virtual void JSGGetAnimation() const;                      // _5C
-        virtual void _60() = 0;                                    // _60
+        virtual void JSGSetAnimation(unsigned long);               // _60
         virtual void JSGGetAnimationFrame() const;                 // _64
         virtual void JSGSetAnimationFrame(float);                  // _68
         virtual void JSGGetAnimationFrameMax() const;              // _6C
@@ -136,40 +134,37 @@ namespace P2JST {
         virtual void _88() = 0;                                    // _88
         virtual void _8C() = 0;                                    // _8C
         virtual void _90() = 0;                                    // _90
-        virtual void _94() = 0;                                    // _94
-        virtual void _98() = 0;                                    // _98
-        virtual void _9C() = 0;                                    // _9C
-        virtual void _A0() = 0;                                    // _A0
-        virtual void _A4() = 0;                                    // _A4
-        virtual void _A8() = 0;                                    // _A8
-        virtual void _AC() = 0;                                    // _AC
-        virtual void entry();                                      // _B0
-        virtual void start();                                      // _B4
-        virtual void _B8() = 0;                                    // _B8
-        virtual void setShape();                                   // _BC
-        virtual void setAnim();                                    // _C0
-        virtual void mountArchive();                               // _C4
-
-        // _00 VTBL
+        virtual void @4 @reset();  // _94 (inline)
+        virtual void @4 @update(); // _98 (inline)
+        virtual void _9C() = 0;    // _9C
+        virtual void @4 @stop();   // _A0 (inline)
+        virtual void @4
+            @parseUserData_(unsigned long, const void*); // _A4 (inline)
+        virtual void reset();                            // _A8 (inline)
+        virtual void update();                           // _AC (inline)
+        virtual void entry();                            // _B0
+        virtual void start();                            // _B4 (inline)
+        virtual void stop();                             // _B8 (inline)
+        virtual void setShape();                         // _BC
+        virtual void setAnim();                          // _C0
+        virtual void mountArchive();                     // _C4
     };
 } // namespace P2JST
 } // namespace Game
 
 namespace JStage {
 struct TObject {
-    virtual void _08() = 0;                                             // _08
-    virtual void _0C() = 0;                                             // _0C
-    virtual void _10() = 0;                                             // _10
-    virtual void JSGUpdate();                                           // _14
-    virtual void _18() = 0;                                             // _18
-    virtual void _1C() = 0;                                             // _1C
+    virtual ~TObject();       // _08 (inline)
+    virtual void _0C() = 0;   // _0C
+    virtual void _10() = 0;   // _10
+    virtual void JSGUpdate(); // _14
+    virtual void _18() = 0;   // _18
+    virtual void _1C() = 0;   // _1C
     virtual void JSGGetData(unsigned long, void*, unsigned long) const; // _20
     virtual void _24() = 0;                                             // _24
     virtual void JSGGetParent(TObject**, unsigned long*) const;         // _28
     virtual void JSGSetParent(TObject*, unsigned long);                 // _2C
     virtual void JSGSetRelation(bool, TObject*, unsigned long);         // _30
-
-    // _00 VTBL
 };
 } // namespace JStage
 
@@ -178,20 +173,21 @@ namespace P2JST {
     struct ObjectSpecialActor : public TActor,
                                 public ObjectActor,
                                 public TObject {
-        virtual ~ObjectSpecialActor();                               // _08
-        virtual void JSGSetAnimation(unsigned long);                 // _60
-        virtual void _8C() = 0;                                      // _8C
-        virtual void _90() = 0;                                      // _90
-        virtual void @4 @reset();                                    // _94
-        virtual void @4 @update();                                   // _98
-        virtual void @4 @stop();                                     // _A0
-        virtual void @4 @parseUserData_(unsigned long, const void*); // _A4
-        virtual void reset();                                        // _A8
-        virtual void update();                                       // _AC
-        virtual void stop();                                         // _B8
-        virtual void parseUserData_(unsigned long, const void*);     // _C8
+        virtual ~ObjectSpecialActor();               // _08 (inline)
+        virtual void JSGSetAnimation(unsigned long); // _60
+        virtual void _8C() = 0;                      // _8C
+        virtual void _90() = 0;                      // _90
+        virtual void @4 @reset();                    // _94 (inline)
+        virtual void @4 @update();                   // _98 (inline)
+        virtual void @4 @stop();                     // _A0 (inline)
+        virtual void @4
+            @parseUserData_(unsigned long, const void*);         // _A4 (inline)
+        virtual void reset();                                    // _A8 (inline)
+        virtual void update();                                   // _AC (inline)
+        virtual void stop();                                     // _B8 (inline)
+        virtual void parseUserData_(unsigned long, const void*); // _C8 (inline)
 
-        // _00 VTBL
+        ObjectSpecialActor();
     };
 } // namespace P2JST
 } // namespace Game

@@ -19,13 +19,11 @@
 namespace Game {
 namespace WorldMap {
 struct Base {
-	virtual ~Base();                       // _08
+	virtual ~Base();                       // _08 (inline)
 	virtual void loadResource();           // _0C
 	virtual void init(Game::InitArg&);     // _10
 	virtual void update(Game::UpdateArg&); // _14
-	virtual void draw(Graphics&);          // _18
-
-	// _00 VTBL
+	virtual void draw(Graphics&);          // _18 (inline)
 };
 } // namespace WorldMap
 } // namespace Game
@@ -33,7 +31,7 @@ struct Base {
 namespace kh {
 namespace Screen {
 struct WorldMap : public Base {
-	virtual ~WorldMap();                   // _08
+	virtual ~WorldMap();                   // _08 (inline)
 	virtual void loadResource();           // _0C
 	virtual void init(Game::InitArg&);     // _10
 	virtual void update(Game::UpdateArg&); // _14
@@ -42,7 +40,20 @@ struct WorldMap : public Base {
 	virtual void draw3rd(Graphics&);       // _24
 	virtual void draw4th(Graphics&);       // _28
 
-	// _00 VTBL
+	WorldMap();
+	void rocketMove(J2DPane*, bool);
+	void rocketUpdate(J2DPane*);
+	void onyonMove();
+	void onyonUpdate();
+	void postureControl(J2DPane*);
+	void changeState();
+	void tag2num(unsigned long long);
+	void finish();
+	void newMapOpen();
+	void getTarget();
+	void getRotDir(const JGeometry::TVec2<float>&, float);
+	void changeInfo();
+	void effectFirstTime();
 };
 } // namespace Screen
 } // namespace kh

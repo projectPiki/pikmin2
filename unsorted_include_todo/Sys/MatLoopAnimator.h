@@ -13,9 +13,7 @@
 namespace Sys {
 struct MatBaseAnimator {
 	virtual void start(MatBaseAnimation*); // _08
-	virtual void onStart();                // _0C
-
-	// _00 VTBL
+	virtual void onStart();                // _0C (inline)
 };
 } // namespace Sys
 
@@ -23,7 +21,7 @@ namespace Sys {
 struct MatLoopAnimator : public MatBaseAnimator {
 	virtual void do_animate(float); // _10
 
-	// _00 VTBL
+	MatLoopAnimator();
 };
 } // namespace Sys
 

@@ -16,15 +16,15 @@
 
 namespace JADUtility {
 struct PrmSetBase {
-	virtual ~PrmSetBase();                              // _08
-	virtual void appendAfter();                         // _0C
+	virtual ~PrmSetBase();                              // _08 (inline)
+	virtual void appendAfter();                         // _0C (inline)
 	virtual void load(JSUMemoryInputStream&);           // _10
-	virtual void afterRemovingChildButton(PrmSetBase*); // _14
-	virtual void afterRemovingThisButton(PrmSetBase*);  // _18
-	virtual void getEraseLink();                        // _1C
-	virtual void afterGetFromFree();                    // _20
+	virtual void afterRemovingChildButton(PrmSetBase*); // _14 (inline)
+	virtual void afterRemovingThisButton(PrmSetBase*);  // _18 (inline)
+	virtual void getEraseLink();                        // _1C (inline)
+	virtual void afterGetFromFree();                    // _20 (inline)
 
-	// _00 VTBL
+	PrmSetBase();
 };
 } // namespace JADUtility
 

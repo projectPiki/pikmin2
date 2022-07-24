@@ -18,7 +18,13 @@ struct Demo {
 	virtual void initiate(DemoArg, unsigned char*);       // _10
 	virtual void initDemoScene(DemoArg&, Scene_Demo*);    // _14
 
-	// _00 VTBL
+	Demo();
+	void demo1stLoadSync();
+	void onDemoTop();
+	void becomeSceneCamera();
+	void onDemoFadeoutStart(unsigned long);
+	void onDemoEnd();
+	void onMessageEnd(int);
 };
 } // namespace PSM
 

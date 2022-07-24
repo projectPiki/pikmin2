@@ -13,8 +13,6 @@
 namespace Sys {
 struct MatBaseAnimator {
 	virtual void start(MatBaseAnimation*); // _08
-
-	// _00 VTBL
 };
 } // namespace Sys
 
@@ -22,8 +20,6 @@ namespace Sys {
 struct MatRepeatAnimator : public MatBaseAnimator {
 	virtual void onStart();         // _0C
 	virtual void do_animate(float); // _10
-
-	// _00 VTBL
 };
 } // namespace Sys
 

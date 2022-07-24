@@ -10,9 +10,13 @@
 
 namespace PSSystem {
 struct SceneMgr {
-	virtual void exec(); // _08
+	virtual void exec(); // _08 (inline)
 
-	// _00 VTBL
+	void refreshCurEndScene();
+	void findSeq(JASTrack*);
+	void getPlayingSeq(JASTrack*);
+	void deleteScene(PSSystem::Scene*);
+	void deleteCurrentScene();
 };
 } // namespace PSSystem
 

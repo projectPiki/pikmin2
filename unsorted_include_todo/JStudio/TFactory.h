@@ -16,7 +16,7 @@ struct TFactory {
 	virtual void create(const stb::data::TParse_TBlock_object&); // _0C
 	virtual void destroy(TObject*);                              // _10
 
-	// _00 VTBL
+	void appendCreateObject(JStudio::TCreateObject*);
 };
 } // namespace JStudio
 

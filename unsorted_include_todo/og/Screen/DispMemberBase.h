@@ -17,9 +17,13 @@ struct DispMemberBase {
 	virtual void _08() = 0;           // _08
 	virtual void _0C() = 0;           // _0C
 	virtual void _10() = 0;           // _10
-	virtual void doSetSubMemberAll(); // _14
+	virtual void doSetSubMemberAll(); // _14 (inline)
 
-	// _00 VTBL
+	void isID(unsigned long, unsigned long long);
+	void getMemberName(char*);
+	void setSubMember(og::Screen::DispMemberBase*);
+	void getSubMember(unsigned long, unsigned long long);
+	void setSubMemberAll();
 };
 } // namespace Screen
 } // namespace og

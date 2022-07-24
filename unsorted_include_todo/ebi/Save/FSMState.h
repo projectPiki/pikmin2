@@ -21,14 +21,12 @@ namespace FSMState < ebi
 	namespace Save {
 	struct TMgr >
 	{
-		virtual void init(TMgr*, Game::StateArg*);        // _08
-		virtual void exec(TMgr*);                         // _0C
-		virtual void cleanup(ebi::TMgr*);                 // _10
-		virtual void resume(ebi::TMgr*);                  // _14
-		virtual void restart(ebi::TMgr*);                 // _18
-		virtual void transit(ebi::TMgr*, int, StateArg*); // _1C
-
-		// _00 VTBL
+		virtual void init(TMgr*, Game::StateArg*);        // _08 (inline)
+		virtual void exec(TMgr*);                         // _0C (inline)
+		virtual void cleanup(ebi::TMgr*);                 // _10 (inline)
+		virtual void resume(ebi::TMgr*);                  // _14 (inline)
+		virtual void restart(ebi::TMgr*);                 // _18 (inline)
+		virtual void transit(ebi::TMgr*, int, StateArg*); // _1C (inline)
 	};
 	} // namespace Save
 } // namespace ebi
@@ -37,12 +35,10 @@ namespace FSMState < ebi
 namespace ebi {
 namespace Save {
 struct FSMState : public TMgr > {
-	virtual void init(TMgr*, Game::StateArg*);    // _08
-	virtual void exec(TMgr*);                     // _0C
-	virtual void do_init(TMgr*, Game::StateArg*); // _20
-	virtual void do_exec(TMgr*);                  // _24
-
-	// _00 VTBL
+	virtual void init(TMgr*, Game::StateArg*);    // _08 (inline)
+	virtual void exec(TMgr*);                     // _0C (inline)
+	virtual void do_init(TMgr*, Game::StateArg*); // _20 (inline)
+	virtual void do_exec(TMgr*);                  // _24 (inline)
 };
 } // namespace Save
 } // namespace ebi

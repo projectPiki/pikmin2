@@ -38,43 +38,37 @@
 */
 
 struct CNode {
-	virtual void _08() = 0;       // _08
+	virtual ~CNode();             // _08 (inline)
 	virtual void getChildCount(); // _0C
-
-	// _00 VTBL
 };
 
 struct Container<Plane> {
-	virtual void _08() = 0;        // _08
+	virtual ~Container<Plane>();   // _08 (inline)
 	virtual void _0C() = 0;        // _0C
-	virtual void getObject(void*); // _10
-
-	// _00 VTBL
+	virtual void getObject(void*); // _10 (inline)
 };
 
 struct ArrayContainer<Plane> {
-	virtual void _08() = 0;             // _08
+	virtual ~ArrayContainer<Plane>();   // _08 (inline)
 	virtual void _0C() = 0;             // _0C
 	virtual void _10() = 0;             // _10
-	virtual void getNext(void*);        // _14
-	virtual void getStart();            // _18
-	virtual void getEnd();              // _1C
-	virtual void get(void*);            // _20
-	virtual void getAt(int);            // _24
-	virtual void getTo();               // _28
+	virtual void getNext(void*);        // _14 (inline)
+	virtual void getStart();            // _18 (inline)
+	virtual void getEnd();              // _1C (inline)
+	virtual void get(void*);            // _20 (inline)
+	virtual void getAt(int);            // _24 (inline)
+	virtual void getTo();               // _28 (inline)
 	virtual void _2C() = 0;             // _2C
 	virtual void _30() = 0;             // _30
-	virtual void write(Stream&);        // _34
-	virtual void read(Stream&);         // _38
-	virtual void alloc(int);            // _3C
-	virtual void addOne(Plane&);        // _40
-	virtual void setArray(Plane*, int); // _44
-
-	// _00 VTBL
+	virtual void write(Stream&);        // _34 (inline)
+	virtual void read(Stream&);         // _38 (inline)
+	virtual void alloc(int);            // _3C (inline)
+	virtual void addOne(Plane&);        // _40 (inline)
+	virtual void setArray(Plane*, int); // _44 (inline)
 };
 
 struct CullPlane {
-	virtual void _08() = 0;                    // _08
+	virtual ~CullPlane();                      // _08 (inline)
 	virtual void _0C() = 0;                    // _0C
 	virtual void _10() = 0;                    // _10
 	virtual void _14() = 0;                    // _14
@@ -83,14 +77,12 @@ struct CullPlane {
 	virtual void _20() = 0;                    // _20
 	virtual void _24() = 0;                    // _24
 	virtual void _28() = 0;                    // _28
-	virtual void writeObject(Stream&, Plane&); // _2C
-	virtual void readObject(Stream&, Plane&);  // _30
-
-	// _00 VTBL
+	virtual void writeObject(Stream&, Plane&); // _2C (inline)
+	virtual void readObject(Stream&, Plane&);  // _30 (inline)
 };
 
 struct Camera {
-	virtual void _08() = 0;               // _08
+	virtual ~Camera();                    // _08 (inline)
 	virtual void _0C() = 0;               // _0C
 	virtual void _10() = 0;               // _10
 	virtual void _14() = 0;               // _14
@@ -111,18 +103,16 @@ struct Camera {
 	virtual void updatePlanes();          // _50
 	virtual void updateScreenConstants(); // _54
 	virtual void _58() = 0;               // _58
-	virtual void getTargetDistance();     // _5C
-	virtual void getPositionPtr();        // _60
+	virtual void getTargetDistance();     // _5C (inline)
+	virtual void getPositionPtr();        // _60 (inline)
 	virtual void _64() = 0;               // _64
-	virtual void getSoundPositionPtr();   // _68
-	virtual void getSoundMatrixPtr();     // _6C
-	virtual void isSpecialCamera();       // _70
-
-	// _00 VTBL
+	virtual void getSoundPositionPtr();   // _68 (inline)
+	virtual void getSoundMatrixPtr();     // _6C (inline)
+	virtual void isSpecialCamera();       // _70 (inline)
 };
 
 struct LookAtCamera {
-	virtual void _08() = 0;            // _08
+	virtual ~LookAtCamera();           // _08 (inline)
 	virtual void _0C() = 0;            // _0C
 	virtual void _10() = 0;            // _10
 	virtual void _14() = 0;            // _14
@@ -142,18 +132,16 @@ struct LookAtCamera {
 	virtual void _4C() = 0;            // _4C
 	virtual void _50() = 0;            // _50
 	virtual void _54() = 0;            // _54
-	virtual void getLookAtPosition_(); // _58
+	virtual void getLookAtPosition_(); // _58 (inline)
 	virtual void _5C() = 0;            // _5C
 	virtual void _60() = 0;            // _60
-	virtual void on_getPositionPtr();  // _64
+	virtual void on_getPositionPtr();  // _64 (inline)
 	virtual void _68() = 0;            // _68
 	virtual void _6C() = 0;            // _6C
 	virtual void _70() = 0;            // _70
 	virtual void updateMatrix();       // _74
-	virtual void _78() = 0;            // _78
-	virtual void startVibration(int);  // _7C
-
-	// _00 VTBL
+	virtual void doUpdate();           // _78
+	virtual void startVibration(int);  // _7C (inline)
 };
 
 namespace Game {
@@ -164,10 +152,11 @@ struct ZoomCamera : public CNode,
                     public CullPlane,
                     public Camera,
                     public LookAtCamera {
-	virtual ~ZoomCamera();   // _08
+	virtual ~ZoomCamera();   // _08 (inline)
 	virtual void doUpdate(); // _78
 
-	// _00 VTBL
+	void init(float, float, Vector3<float>&, Controller*);
+	void makeLookAt();
 };
 } // namespace BaseGameSection
 } // namespace Game

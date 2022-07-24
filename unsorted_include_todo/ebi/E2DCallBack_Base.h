@@ -15,33 +15,27 @@
 */
 
 struct CNode {
-	virtual void _08() = 0;       // _08
+	virtual ~CNode();             // _08 (inline)
 	virtual void getChildCount(); // _0C
-
-	// _00 VTBL
 };
 
 namespace P2DScreen {
 struct Node {
-	virtual void _08() = 0; // _08
-	virtual void _0C() = 0; // _0C
-	virtual void _10() = 0; // _10
-	virtual void _14() = 0; // _14
-	virtual void doInit();  // _18
-
-	// _00 VTBL
+	virtual ~Node();                               // _08 (inline)
+	virtual void _0C() = 0;                        // _0C
+	virtual void update();                         // _10 (inline)
+	virtual void draw(Graphics&, J2DGrafContext&); // _14 (inline)
+	virtual void doInit();                         // _18 (inline)
 };
 } // namespace P2DScreen
 
 namespace ebi {
 struct E2DCallBack_Base : public CNode, public Node {
-	virtual ~E2DCallBack_Base();                      // _08
-	virtual void update();                            // _10
-	virtual void draw(Graphics&, J2DGrafContext&);    // _14
-	virtual void do_update();                         // _1C
-	virtual void do_draw(Graphics&, J2DGrafContext&); // _20
-
-	// _00 VTBL
+	virtual ~E2DCallBack_Base();                      // _08 (inline)
+	virtual void update();                            // _10 (inline)
+	virtual void draw(Graphics&, J2DGrafContext&);    // _14 (inline)
+	virtual void do_update();                         // _1C (inline)
+	virtual void do_draw(Graphics&, J2DGrafContext&); // _20 (inline)
 };
 } // namespace ebi
 

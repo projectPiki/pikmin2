@@ -16,8 +16,6 @@ struct JFWDisplay {
 	virtual void endRender();   // _0C
 	virtual void endFrame();    // _10
 	virtual ~JFWDisplay();      // _14
-
-	// _00 VTBL
 };
 
 #endif

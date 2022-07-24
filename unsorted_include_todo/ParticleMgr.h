@@ -18,8 +18,6 @@
 struct CNode {
 	virtual ~CNode();             // _08
 	virtual void getChildCount(); // _0C
-
-	// _00 VTBL
 };
 
 struct ParticleMgr : public CNode {
@@ -30,8 +28,6 @@ struct ParticleMgr : public CNode {
 	virtual void doSetView(int);                 // _1C
 	virtual void doViewCalc();                   // _20
 	virtual void draw(Viewport*, unsigned char); // _24
-
-	// _00 VTBL
 };
 
 #endif

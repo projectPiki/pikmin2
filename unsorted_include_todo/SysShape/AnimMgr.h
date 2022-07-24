@@ -10,17 +10,21 @@
 */
 
 struct CNode {
-	virtual ~CNode();             // _08
+	virtual ~CNode();             // _08 (inline)
 	virtual void getChildCount(); // _0C
-
-	// _00 VTBL
 };
 
 namespace SysShape {
 struct AnimMgr : public CNode {
-	virtual ~AnimMgr(); // _08
+	virtual ~AnimMgr(); // _08 (inline)
 
-	// _00 VTBL
+	void load(char*, J3DModelData*, JKRFileLoader*);
+	void dump();
+	void load(JKRFileLoader*, char*, J3DModelData*, JKRFileLoader*, char*);
+	void load(Stream&, J3DModelData*, JKRFileLoader*, char*);
+	void read(Stream&);
+	void connectBasArc(char*, char*, JKRFileLoader*);
+	void registerSoundViewer(PSGame::SoundCreatureMgr*);
 };
 } // namespace SysShape
 

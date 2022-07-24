@@ -14,28 +14,22 @@
 namespace PSSystem {
 struct EnvSeBase {
 	virtual void exec(); // _08
-
-	// _00 VTBL
 };
 } // namespace PSSystem
 
 namespace PSGame {
 struct EnvSe_AutoPan {
 	virtual void _08() = 0;                 // _08
-	virtual void _0C() = 0;                 // _0C
-	virtual void _10() = 0;                 // _10
+	virtual void play();                    // _0C
+	virtual void getCastType();             // _10 (inline)
 	virtual void setPanAndDolby(JAISound*); // _14
-
-	// _00 VTBL
 };
 } // namespace PSGame
 
 namespace PSM {
 struct Env_Pollutin : public EnvSeBase, public EnvSe_AutoPan {
 	virtual void play();        // _0C
-	virtual void getCastType(); // _10
-
-	// _00 VTBL
+	virtual void getCastType(); // _10 (inline)
 };
 } // namespace PSM
 

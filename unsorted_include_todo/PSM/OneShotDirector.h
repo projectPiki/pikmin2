@@ -21,31 +21,27 @@
 
 namespace PSSystem {
 struct DirectorBase {
-	virtual ~DirectorBase();                    // _08
+	virtual ~DirectorBase();                    // _08 (inline)
 	virtual void exec();                        // _0C
 	virtual void directOn();                    // _10
 	virtual void directOff();                   // _14
-	virtual void underDirection();              // _18
-	virtual void execInner();                   // _1C
+	virtual void underDirection();              // _18 (inline)
+	virtual void execInner();                   // _1C (inline)
 	virtual void _20() = 0;                     // _20
-	virtual void directOffTrack(SeqTrackBase&); // _24
+	virtual void directOffTrack(SeqTrackBase&); // _24 (inline)
 	virtual void doUpdateRequest();             // _28
-	virtual void onPlayInit(JASTrack*);         // _2C
-	virtual void onDirectOn();                  // _30
-	virtual void onDirectOff();                 // _34
-
-	// _00 VTBL
+	virtual void onPlayInit(JASTrack*);         // _2C (inline)
+	virtual void onDirectOn();                  // _30 (inline)
+	virtual void onDirectOff();                 // _34 (inline)
 };
 } // namespace PSSystem
 
 namespace PSM {
 struct OneShotDirector : public DirectorBase {
-	virtual ~OneShotDirector();                 // _08
+	virtual ~OneShotDirector();                 // _08 (inline)
 	virtual void exec();                        // _0C
 	virtual void _20() = 0;                     // _20
-	virtual void directOffTrack(SeqTrackBase&); // _24
-
-	// _00 VTBL
+	virtual void directOffTrack(SeqTrackBase&); // _24 (inline)
 };
 } // namespace PSM
 

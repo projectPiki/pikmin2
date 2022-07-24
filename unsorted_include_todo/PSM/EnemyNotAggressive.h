@@ -65,46 +65,46 @@
 
 namespace PSM {
 struct CreatureAnime {
-    virtual void _08() = 0;                                               // _08
-    virtual void _0C() = 0;                                               // _0C
-    virtual void _10() = 0;                                               // _10
-    virtual void _14() = 0;                                               // _14
-    virtual void frameEnd_onPlaySe();                                     // _18
-    virtual void _1C() = 0;                                               // _1C
-    virtual void exec();                                                  // _20
-    virtual void getJAIObject();                                          // _24
-    virtual void _28() = 0;                                               // _28
-    virtual void _2C() = 0;                                               // _2C
-    virtual void _30() = 0;                                               // _30
-    virtual void _34() = 0;                                               // _34
-    virtual void _38() = 0;                                               // _38
-    virtual void getHandleArea(unsigned char);                            // _3C
-    virtual void _40() = 0;                                               // _40
-    virtual void _44() = 0;                                               // _44
-    virtual void _48() = 0;                                               // _48
-    virtual void _4C() = 0;                                               // _4C
-    virtual void _50() = 0;                                               // _50
-    virtual void _54() = 0;                                               // _54
-    virtual void _58() = 0;                                               // _58
-    virtual void _5C() = 0;                                               // _5C
-    virtual void _60() = 0;                                               // _60
-    virtual void _64() = 0;                                               // _64
-    virtual void _68() = 0;                                               // _68
-    virtual void _6C() = 0;                                               // _6C
-    virtual void _70() = 0;                                               // _70
-    virtual void _74() = 0;                                               // _74
-    virtual void _78() = 0;                                               // _78
-    virtual void _7C() = 0;                                               // _7C
-    virtual void _80() = 0;                                               // _80
-    virtual void _84() = 0;                                               // _84
-    virtual void startSound(unsigned long, unsigned long);                // _88
-    virtual void startSound(unsigned char, unsigned long, unsigned long); // _8C
-    virtual void startSound(JAISound**, unsigned long, unsigned long);    // _90
-    virtual void _94() = 0;                                               // _94
+    virtual void _08() = 0;                                // _08
+    virtual void _0C() = 0;                                // _0C
+    virtual void @16 @__dt();                              // _10 (inline)
+    virtual ~CreatureAnime();                              // _14 (inline)
+    virtual void frameEnd_onPlaySe();                      // _18
+    virtual void getCastType();                            // _1C (inline)
+    virtual void exec();                                   // _20
+    virtual void getJAIObject();                           // _24 (inline)
+    virtual void _28() = 0;                                // _28
+    virtual void _2C() = 0;                                // _2C
+    virtual void _30() = 0;                                // _30
+    virtual void _34() = 0;                                // _34
+    virtual void _38() = 0;                                // _38
+    virtual void getHandleArea(unsigned char);             // _3C (inline)
+    virtual void _40() = 0;                                // _40
+    virtual void _44() = 0;                                // _44
+    virtual void @48 @__dt();                              // _48 (inline)
+    virtual void _4C() = 0;                                // _4C
+    virtual void _50() = 0;                                // _50
+    virtual void _54() = 0;                                // _54
+    virtual void _58() = 0;                                // _58
+    virtual void _5C() = 0;                                // _5C
+    virtual void _60() = 0;                                // _60
+    virtual void _64() = 0;                                // _64
+    virtual void _68() = 0;                                // _68
+    virtual void _6C() = 0;                                // _6C
+    virtual void _70() = 0;                                // _70
+    virtual void _74() = 0;                                // _74
+    virtual void _78() = 0;                                // _78
+    virtual void _7C() = 0;                                // _7C
+    virtual void _80() = 0;                                // _80
+    virtual void _84() = 0;                                // _84
+    virtual void startSound(unsigned long, unsigned long); // _88 (inline)
+    virtual void startSound(unsigned char, unsigned long,
+                            unsigned long); // _8C (inline)
+    virtual void startSound(JAISound**, unsigned long,
+                            unsigned long); // _90 (inline)
+    virtual void _94() = 0;                 // _94
     virtual void playActorAnimSound(JAInter::Actor*, float,
-                                    unsigned char); // _98
-
-    // _00 VTBL
+                                    unsigned char); // _98 (inline)
 };
 } // namespace PSM
 
@@ -112,10 +112,10 @@ namespace PSM {
 struct EnemyBase {
     virtual void _08() = 0;                       // _08
     virtual void _0C() = 0;                       // _0C
-    virtual void _10() = 0;                       // _10
-    virtual void _14() = 0;                       // _14
+    virtual void @16 @__dt();                     // _10 (inline)
+    virtual ~EnemyBase();                         // _14 (inline)
     virtual void _18() = 0;                       // _18
-    virtual void _1C() = 0;                       // _1C
+    virtual void getCastType();                   // _1C (inline)
     virtual void _20() = 0;                       // _20
     virtual void _24() = 0;                       // _24
     virtual void onCalcOn();                      // _28
@@ -127,7 +127,7 @@ struct EnemyBase {
     virtual void _3C() = 0;                  // _3C
     virtual void _40() = 0;                  // _40
     virtual void _44() = 0;                  // _44
-    virtual void _48() = 0;                  // _48
+    virtual void @48 @__dt();                // _48 (inline)
     virtual void _4C() = 0;                  // _4C
     virtual void _50() = 0;                  // _50
     virtual void _54() = 0;                  // _54
@@ -147,22 +147,20 @@ struct EnemyBase {
     virtual void _8C() = 0;                  // _8C
     virtual void _90() = 0;                  // _90
     virtual void startAnimSound(unsigned long, JAISound**, JAInter::Actor*,
-                                unsigned char); // _94
+                                unsigned char); // _94 (inline)
     virtual void _98() = 0;                     // _98
     virtual void onCalcTurnOn();                // _9C
     virtual void onCalcTurnOff();               // _A0
     virtual void _A4() = 0;                     // _A4
     virtual void _A8() = 0;                     // _A8
-    virtual void _AC() = 0;                     // _AC
-    virtual void _B0() = 0;                     // _B0
+    virtual void @184 @battleOn();              // _AC (inline)
+    virtual void @184 @battleOff();             // _B0 (inline)
     virtual void _B4() = 0;                     // _B4
     virtual void _B8() = 0;                     // _B8
-    virtual void _BC() = 0;                     // _BC
-    virtual void _C0() = 0;                     // _C0
-    virtual void _C4() = 0;                     // _C4
-    virtual void setKilled();                   // _C8
-
-    // _00 VTBL
+    virtual void @204 @kehaiOn();               // _BC (inline)
+    virtual void @204 @kehaiOff();              // _C0 (inline)
+    virtual void battleOff();                   // _C4 (inline)
+    virtual void setKilled();                   // _C8 (inline)
 };
 } // namespace PSM
 
@@ -170,10 +168,10 @@ namespace PSM {
 struct Creature {
     virtual void _08() = 0;                             // _08
     virtual void _0C() = 0;                             // _0C
-    virtual void _10() = 0;                             // _10
-    virtual void _14() = 0;                             // _14
+    virtual void @16 @__dt();                           // _10 (inline)
+    virtual ~Creature();                                // _14 (inline)
     virtual void _18() = 0;                             // _18
-    virtual void _1C() = 0;                             // _1C
+    virtual void getCastType();                         // _1C (inline)
     virtual void _20() = 0;                             // _20
     virtual void _24() = 0;                             // _24
     virtual void _28() = 0;                             // _28
@@ -181,8 +179,6 @@ struct Creature {
     virtual void _30() = 0;                             // _30
     virtual void _34() = 0;                             // _34
     virtual void onPlayingSe(unsigned long, JAISound*); // _38
-
-    // _00 VTBL
 };
 } // namespace PSM
 
@@ -190,10 +186,10 @@ namespace JAInter {
 struct ObjectBase {
     virtual void _08() = 0;                               // _08
     virtual void _0C() = 0;                               // _0C
-    virtual void _10() = 0;                               // _10
-    virtual void _14() = 0;                               // _14
+    virtual void @16 @__dt();                             // _10 (inline)
+    virtual ~ObjectBase();                                // _14 (inline)
     virtual void _18() = 0;                               // _18
-    virtual void _1C() = 0;                               // _1C
+    virtual void getCastType();                           // _1C (inline)
     virtual void _20() = 0;                               // _20
     virtual void _24() = 0;                               // _24
     virtual void _28() = 0;                               // _28
@@ -204,65 +200,61 @@ struct ObjectBase {
     virtual void _3C() = 0;                               // _3C
     virtual void _40() = 0;                               // _40
     virtual void _44() = 0;                               // _44
-    virtual void _48() = 0;                               // _48
+    virtual void @48 @__dt();                             // _48 (inline)
     virtual void _4C() = 0;                               // _4C
     virtual void _50() = 0;                               // _50
     virtual void _54() = 0;                               // _54
     virtual void stopAllSound();                          // _58
     virtual void stopSound(unsigned long, unsigned long); // _5C
-    virtual void enable();                                // _60
+    virtual void enable();                                // _60 (inline)
     virtual void _64() = 0;                               // _64
     virtual void dispose();                               // _68
     virtual void getFreeSoundHandlePointer();             // _6C
     virtual void getUseSoundHandlePointer(unsigned long); // _70
-
-    // _00 VTBL
 };
 } // namespace JAInter
 
 namespace JAInter {
 struct Object {
-    virtual void _08() = 0; // _08
-    virtual void _0C() = 0; // _0C
-    virtual void _10() = 0; // _10
-    virtual void _14() = 0; // _14
-    virtual void _18() = 0; // _18
-    virtual void _1C() = 0; // _1C
-    virtual void _20() = 0; // _20
-    virtual void _24() = 0; // _24
-    virtual void _28() = 0; // _28
-    virtual void _2C() = 0; // _2C
-    virtual void _30() = 0; // _30
-    virtual void _34() = 0; // _34
-    virtual void _38() = 0; // _38
-    virtual void _3C() = 0; // _3C
-    virtual void _40() = 0; // _40
-    virtual void _44() = 0; // _44
-    virtual void _48() = 0; // _48
-    virtual void _4C() = 0; // _4C
-    virtual void _50() = 0; // _50
-    virtual void _54() = 0; // _54
-    virtual void _58() = 0; // _58
-    virtual void _5C() = 0; // _5C
-    virtual void _60() = 0; // _60
-    virtual void disable(); // _64
-    virtual void _68() = 0; // _68
-    virtual void _6C() = 0; // _6C
-    virtual void _70() = 0; // _70
-    virtual void _74() = 0; // _74
-    virtual void loop();    // _78
-
-    // _00 VTBL
+    virtual void _08() = 0;     // _08
+    virtual void _0C() = 0;     // _0C
+    virtual void @16 @__dt();   // _10 (inline)
+    virtual ~Object();          // _14 (inline)
+    virtual void _18() = 0;     // _18
+    virtual void getCastType(); // _1C (inline)
+    virtual void _20() = 0;     // _20
+    virtual void _24() = 0;     // _24
+    virtual void _28() = 0;     // _28
+    virtual void _2C() = 0;     // _2C
+    virtual void _30() = 0;     // _30
+    virtual void _34() = 0;     // _34
+    virtual void _38() = 0;     // _38
+    virtual void _3C() = 0;     // _3C
+    virtual void _40() = 0;     // _40
+    virtual void _44() = 0;     // _44
+    virtual void @48 @__dt();   // _48 (inline)
+    virtual void _4C() = 0;     // _4C
+    virtual void _50() = 0;     // _50
+    virtual void _54() = 0;     // _54
+    virtual void _58() = 0;     // _58
+    virtual void _5C() = 0;     // _5C
+    virtual void _60() = 0;     // _60
+    virtual void disable();     // _64
+    virtual void _68() = 0;     // _68
+    virtual void _6C() = 0;     // _6C
+    virtual void _70() = 0;     // _70
+    virtual void _74() = 0;     // _74
+    virtual void loop();        // _78
 };
 } // namespace JAInter
 
 struct JAIAnimeSound {
     virtual void _08() = 0;                                // _08
     virtual void _0C() = 0;                                // _0C
-    virtual void _10() = 0;                                // _10
-    virtual void _14() = 0;                                // _14
+    virtual void @16 @__dt();                              // _10 (inline)
+    virtual ~JAIAnimeSound();                              // _14 (inline)
     virtual void _18() = 0;                                // _18
-    virtual void _1C() = 0;                                // _1C
+    virtual void getCastType();                            // _1C (inline)
     virtual void _20() = 0;                                // _20
     virtual void _24() = 0;                                // _24
     virtual void _28() = 0;                                // _28
@@ -273,7 +265,7 @@ struct JAIAnimeSound {
     virtual void _3C() = 0;                                // _3C
     virtual void _40() = 0;                                // _40
     virtual void _44() = 0;                                // _44
-    virtual void _48() = 0;                                // _48
+    virtual void @48 @__dt();                              // _48 (inline)
     virtual void _4C() = 0;                                // _4C
     virtual void _50() = 0;                                // _50
     virtual void _54() = 0;                                // _54
@@ -290,8 +282,6 @@ struct JAIAnimeSound {
     virtual void _80() = 0;                                // _80
     virtual void setSpeedModifySound(JAISound*, JAIAnimeFrameSoundData*,
                                      float); // _84
-
-    // _00 VTBL
 };
 
 namespace PSM {
@@ -303,28 +293,28 @@ struct EnemyNotAggressive : public CreatureAnime,
                             public JAIAnimeSound {
     virtual void _08() = 0;         // _08
     virtual void _0C() = 0;         // _0C
-    virtual void @16 @__dt();       // _10
-    virtual ~EnemyNotAggressive();  // _14
-    virtual void getCastType();     // _1C
+    virtual void @16 @__dt();       // _10 (inline)
+    virtual ~EnemyNotAggressive();  // _14 (inline)
+    virtual void getCastType();     // _1C (inline)
     virtual void _40() = 0;         // _40
     virtual void _44() = 0;         // _44
-    virtual void @48 @__dt();       // _48
+    virtual void @48 @__dt();       // _48 (inline)
     virtual void _A4() = 0;         // _A4
     virtual void _A8() = 0;         // _A8
-    virtual void @184 @battleOn();  // _AC
-    virtual void @184 @battleOff(); // _B0
+    virtual void @184 @battleOn();  // _AC (inline)
+    virtual void @184 @battleOff(); // _B0 (inline)
     virtual void _B4() = 0;         // _B4
     virtual void _B8() = 0;         // _B8
-    virtual void @204 @kehaiOn();   // _BC
-    virtual void @204 @kehaiOff();  // _C0
-    virtual void battleOff();       // _C4
-    virtual void updateKehai();     // _CC
-    virtual void updateBattle();    // _D0
-    virtual void kehaiOn();         // _D4
-    virtual void kehaiOff();        // _D8
-    virtual void battleOn();        // _DC
+    virtual void @204 @kehaiOn();   // _BC (inline)
+    virtual void @204 @kehaiOff();  // _C0 (inline)
+    virtual void battleOff();       // _C4 (inline)
+    virtual void updateKehai();     // _CC (inline)
+    virtual void updateBattle();    // _D0 (inline)
+    virtual void kehaiOn();         // _D4 (inline)
+    virtual void kehaiOff();        // _D8 (inline)
+    virtual void battleOn();        // _DC (inline)
 
-    // _00 VTBL
+    EnemyNotAggressive();
 };
 } // namespace PSM
 

@@ -13,20 +13,16 @@
 */
 
 struct CNode {
-    virtual ~CNode();             // _08
+    virtual ~CNode();             // _08 (inline)
     virtual void getChildCount(); // _0C
-
-    // _00 VTBL
 };
 
 namespace Resource {
 struct Node : public CNode {
-    virtual ~Node();          // _08
+    virtual ~Node();          // _08 (inline)
     virtual void _10() = 0;   // _10
     virtual void _14() = 0;   // _14
-    virtual void @24 @__dt(); // _18
-
-    // _00 VTBL
+    virtual void @24 @__dt(); // _18 (inline)
 };
 } // namespace Resource
 

@@ -13,8 +13,6 @@ namespace PSM {
 struct BattleLink {
 	virtual void battleOn();  // _08
 	virtual void battleOff(); // _0C
-
-	// _00 VTBL
 };
 } // namespace PSM
 

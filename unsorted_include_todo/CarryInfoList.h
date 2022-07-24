@@ -13,13 +13,11 @@
 */
 
 struct CarryInfoList {
-	virtual ~CarryInfoList();     // _08
+	virtual ~CarryInfoList();     // _08 (inline)
 	virtual void init();          // _0C
 	virtual void update();        // _10
 	virtual void draw(Graphics&); // _14
-	virtual void isFinish();      // _18
-
-	// _00 VTBL
+	virtual void isFinish();      // _18 (inline)
 };
 
 #endif

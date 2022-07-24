@@ -10,9 +10,7 @@
 
 namespace PSSystem {
 struct MuteTask {
-	virtual void task(JASTrack&); // _08
-
-	// _00 VTBL
+	virtual void task(JASTrack&); // _08 (inline)
 };
 } // namespace PSSystem
 

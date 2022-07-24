@@ -10,9 +10,7 @@
 
 namespace efx {
 struct OnyonSpotArg {
-	virtual void getID(); // _08
-
-	// _00 VTBL
+	virtual void getID(); // _08 (inline)
 };
 } // namespace efx
 

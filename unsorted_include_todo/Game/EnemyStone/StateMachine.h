@@ -20,11 +20,9 @@ namespace StateMachine < Game
 	struct DrawInfo >
 	{
 		virtual void init(DrawInfo*);                                   // _08
-		virtual void StateMachine < start(DrawInfo*, int, StateArg*);   // _0C
-		virtual void StateMachine < exec(DrawInfo*);                    // _10
-		virtual void StateMachine < transit(DrawInfo*, int, StateArg*); // _14
-
-		// _00 VTBL
+		virtual void StateMachine < start(DrawInfo*, int, StateArg*);   // _0C (inline)
+		virtual void StateMachine < exec(DrawInfo*);                    // _10 (inline)
+		virtual void StateMachine < transit(DrawInfo*, int, StateArg*); // _14 (inline)
 	};
 	} // namespace EnemyStone
 } // namespace Game
@@ -36,8 +34,6 @@ struct StateMachine : public DrawInfo > {
 	virtual void init(DrawInfo*);                 // _08
 	virtual void makeMatrix(DrawInfo*, Matrixf*); // _18
 	virtual void _1C() = 0;                       // _1C
-
-	// _00 VTBL
 };
 } // namespace EnemyStone
 } // namespace Game

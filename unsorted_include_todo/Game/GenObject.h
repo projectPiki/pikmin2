@@ -23,32 +23,28 @@
 
 namespace Game {
 struct GenBase {
-	virtual void doWrite(Stream&);              // _08
+	virtual void doWrite(Stream&);              // _08 (inline)
 	virtual void ramSaveParameters(Stream&);    // _0C
 	virtual void ramLoadParameters(Stream&);    // _10
-	virtual void doEvent(unsigned long);        // _14
-	virtual void doRead(Stream&);               // _18
-	virtual void update(Generator*);            // _1C
-	virtual void render(Graphics&, Generator*); // _20
+	virtual void doEvent(unsigned long);        // _14 (inline)
+	virtual void doRead(Stream&);               // _18 (inline)
+	virtual void update(Generator*);            // _1C (inline)
+	virtual void render(Graphics&, Generator*); // _20 (inline)
 	virtual void getLatestVersion();            // _24
-	virtual void getShape();                    // _28
-
-	// _00 VTBL
+	virtual void getShape();                    // _28 (inline)
 };
 } // namespace Game
 
 namespace Game {
 struct GenObject : public GenBase {
-	virtual void update(Generator*);                             // _1C
-	virtual void render(Graphics&, Generator*);                  // _20
+	virtual void update(Generator*);                             // _1C (inline)
+	virtual void render(Graphics&, Generator*);                  // _20 (inline)
 	virtual void getLatestVersion();                             // _24
-	virtual void updateUseList(Generator*, int);                 // _2C
-	virtual void generate(Generator*);                           // _30
+	virtual void updateUseList(Generator*, int);                 // _2C (inline)
+	virtual void generate(Generator*);                           // _30 (inline)
 	virtual void _34() = 0;                                      // _34
-	virtual void generatorMakeMatrix(Matrixf&, Vector3<float>&); // _38
-	virtual void getDebugInfo(char*);                            // _3C
-
-	// _00 VTBL
+	virtual void generatorMakeMatrix(Matrixf&, Vector3<float>&); // _38 (inline)
+	virtual void getDebugInfo(char*);                            // _3C (inline)
 };
 } // namespace Game
 

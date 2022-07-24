@@ -14,12 +14,15 @@
 namespace og {
 namespace newScreen {
 struct TitleMsg {
-	virtual void init();   // _08
-	virtual void update(); // _0C
-	virtual void start();  // _10
-	virtual void end();    // _14
+	virtual void init();   // _08 (inline)
+	virtual void update(); // _0C (inline)
+	virtual void start();  // _10 (inline)
+	virtual void end();    // _14 (inline)
 
-	// _00 VTBL
+	TitleMsg();
+	void setFontPane(J2DPictureEx*, int);
+	void setCentering(og::newScreen::TitleMsg::EnumCentering);
+	void setColor(JUtility::TColor&, JUtility::TColor&);
 };
 } // namespace newScreen
 } // namespace og

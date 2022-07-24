@@ -14,13 +14,16 @@
 
 namespace PSSystem {
 struct SeqTrackRoot {
-	virtual void update();        // _08
+	virtual void update();        // _08 (inline)
 	virtual void init(JASTrack*); // _0C
 	virtual void onStopSeq();     // _10
 	virtual void beatUpdate();    // _14
-	virtual void onBeatTop();     // _18
+	virtual void onBeatTop();     // _18 (inline)
 
-	// _00 VTBL
+	SeqTrackRoot();
+	void initSwingRatio();
+	void pitchModulation(float, float, unsigned long, PSSystem::DirectorBase*);
+	void tempoChange(float, unsigned long, PSSystem::DirectorBase*);
 };
 } // namespace PSSystem
 

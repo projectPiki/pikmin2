@@ -39,43 +39,39 @@ namespace FSMState < Game
 {
 	struct Piki >
 	{
-		virtual void FSMState < init(Piki*, StateArg*);         // _08
-		virtual void FSMState < exec(Piki*);                    // _0C
-		virtual void FSMState < cleanup(Piki*);                 // _10
-		virtual void FSMState < resume(Piki*);                  // _14
-		virtual void FSMState < restart(Piki*);                 // _18
-		virtual void FSMState < transit(Piki*, int, StateArg*); // _1C
-
-		// _00 VTBL
+		virtual void FSMState < init(Piki*, StateArg*);         // _08 (inline)
+		virtual void FSMState < exec(Piki*);                    // _0C (inline)
+		virtual void FSMState < cleanup(Piki*);                 // _10 (inline)
+		virtual void FSMState < resume(Piki*);                  // _14 (inline)
+		virtual void FSMState < restart(Piki*);                 // _18 (inline)
+		virtual void FSMState < transit(Piki*, int, StateArg*); // _1C (inline)
 	};
 } // namespace Game
 } // namespace Game
 
 namespace Game {
 struct PikiState : public Piki > {
-	virtual void ignoreAtari(Piki*, Creature*);                // _20
-	virtual void bounceCallback(Piki*, Sys::Triangle*);        // _24
-	virtual void collisionCallback(Piki*, CollEvent&);         // _28
-	virtual void platCallback(Piki*, PlatEvent&);              // _2C
-	virtual void onKeyEvent(Piki*, const SysShape::KeyEvent&); // _30
+	virtual void ignoreAtari(Piki*, Creature*);                // _20 (inline)
+	virtual void bounceCallback(Piki*, Sys::Triangle*);        // _24 (inline)
+	virtual void collisionCallback(Piki*, CollEvent&);         // _28 (inline)
+	virtual void platCallback(Piki*, PlatEvent&);              // _2C (inline)
+	virtual void onKeyEvent(Piki*, const SysShape::KeyEvent&); // _30 (inline)
 	virtual void getInfo(char*);                               // _34
-	virtual void outWaterCallback(Piki*);                      // _38
-	virtual void wallCallback(Piki*, Vector3<float>&);         // _3C
-	virtual void invincible(Piki*);                            // _40
-	virtual void callable();                                   // _44
-	virtual void aiActive();                                   // _48
-	virtual void dopable();                                    // _4C
-	virtual void releasable();                                 // _50
-	virtual void throwable();                                  // _54
-	virtual void dead();                                       // _58
-	virtual void battleOK();                                   // _5C
-	virtual void pressable();                                  // _60
-	virtual void transittable(int);                            // _64
-	virtual void soft_transittable(int);                       // _68
-	virtual void onFlute(Piki*, Navi*);                        // _6C
+	virtual void outWaterCallback(Piki*);                      // _38 (inline)
+	virtual void wallCallback(Piki*, Vector3<float>&);         // _3C (inline)
+	virtual void invincible(Piki*);                            // _40 (inline)
+	virtual void callable();                                   // _44 (inline)
+	virtual void aiActive();                                   // _48 (inline)
+	virtual void dopable();                                    // _4C (inline)
+	virtual void releasable();                                 // _50 (inline)
+	virtual void throwable();                                  // _54 (inline)
+	virtual void dead();                                       // _58 (inline)
+	virtual void battleOK();                                   // _5C (inline)
+	virtual void pressable();                                  // _60 (inline)
+	virtual void transittable(int);                            // _64 (inline)
+	virtual void soft_transittable(int);                       // _68 (inline)
+	virtual void onFlute(Piki*, Navi*);                        // _6C (inline)
 	virtual void dump();                                       // _70
-
-	// _00 VTBL
 };
 } // namespace Game
 

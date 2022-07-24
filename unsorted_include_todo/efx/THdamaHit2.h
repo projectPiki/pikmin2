@@ -13,17 +13,13 @@
 namespace efx {
 struct TSimple4 {
 	virtual void create(Arg*); // _08
-	virtual void forceKill();  // _0C
-	virtual void fade();       // _10
-
-	// _00 VTBL
+	virtual void forceKill();  // _0C (inline)
+	virtual void fade();       // _10 (inline)
 };
 } // namespace efx
 
 namespace efx {
 struct THdamaHit2 : public TSimple4 {
-
-	// _00 VTBL
 };
 } // namespace efx
 

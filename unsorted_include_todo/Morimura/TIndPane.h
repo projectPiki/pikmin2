@@ -11,18 +11,18 @@
 */
 
 struct CNode {
-	virtual ~CNode();             // _08
+	virtual ~CNode();             // _08 (inline)
 	virtual void getChildCount(); // _0C
-
-	// _00 VTBL
 };
 
 namespace Morimura {
 struct TIndPane : public CNode {
-	virtual ~TIndPane(); // _08
+	virtual ~TIndPane(); // _08 (inline)
 	virtual void draw(); // _10
 
-	// _00 VTBL
+	TIndPane();
+	void createIndTexture(const char*);
+	void createCaptureTexture(_GXTexFmt);
 };
 } // namespace Morimura
 

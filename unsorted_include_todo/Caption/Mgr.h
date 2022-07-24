@@ -11,18 +11,21 @@
 */
 
 struct CNode {
-	virtual ~CNode();             // _08
+	virtual ~CNode();             // _08 (inline)
 	virtual void getChildCount(); // _0C
-
-	// _00 VTBL
 };
 
 namespace Caption {
 struct Mgr : public CNode {
-	virtual ~Mgr();             // _08
+	virtual ~Mgr();             // _08 (inline)
 	virtual void read(Stream&); // _10
 
-	// _00 VTBL
+	Mgr();
+	void reset();
+	void resetMessageObjs();
+	void update(long);
+	void draw(Graphics&);
+	void getFreeMessage();
 };
 } // namespace Caption
 

@@ -15,10 +15,8 @@ namespace PSSystem {
 struct EnvSeBase {
 	virtual void exec();                    // _08
 	virtual void play();                    // _0C
-	virtual void getCastType();             // _10
-	virtual void setPanAndDolby(JAISound*); // _14
-
-	// _00 VTBL
+	virtual void getCastType();             // _10 (inline)
+	virtual void setPanAndDolby(JAISound*); // _14 (inline)
 };
 } // namespace PSSystem
 
@@ -26,7 +24,7 @@ namespace PSGame {
 struct EnvSe_Perspective : public EnvSeBase {
 	virtual void play(); // _0C
 
-	// _00 VTBL
+	EnvSe_Perspective();
 };
 } // namespace PSGame
 

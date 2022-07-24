@@ -17,39 +17,48 @@
 */
 
 struct CNode {
-	virtual void _08() = 0;       // _08
+	virtual ~CNode();             // _08 (inline)
 	virtual void getChildCount(); // _0C
-
-	// _00 VTBL
 };
 
 namespace Container < Game
 {
 	struct Creature >
 	{
-		virtual void _08() = 0;        // _08
+		virtual ~Creature > ();        // _08 (inline)
 		virtual void _0C() = 0;        // _0C
-		virtual void getObject(void*); // _10
-		virtual void _14() = 0;        // _14
-		virtual void _18() = 0;        // _18
-		virtual void _1C() = 0;        // _1C
-		virtual void _20() = 0;        // _20
-		virtual void getAt(int);       // _24
-		virtual void getTo();          // _28
-
-		// _00 VTBL
+		virtual void getObject(void*); // _10 (inline)
+		virtual void getNext(void*);   // _14
+		virtual void getStart();       // _18
+		virtual void getEnd();         // _1C
+		virtual void get(void*);       // _20
+		virtual void getAt(int);       // _24 (inline)
+		virtual void getTo();          // _28 (inline)
 	};
 } // namespace Game
 
 namespace Game {
 struct CPlate : public CNode, public Creature > {
-	virtual ~CPlate();           // _08
+	virtual ~CPlate();           // _08 (inline)
 	virtual void getNext(void*); // _14
 	virtual void getStart();     // _18
 	virtual void getEnd();       // _1C
 	virtual void get(void*);     // _20
 
-	// _00 VTBL
+	void shrink();
+	CPlate();
+	void setPos(Vector3<float>&, float, Vector3<float>&, float);
+	void setPosGray(Vector3<float>&, float, Vector3<float>&, float);
+	void getSlot(Game::Creature*, Game::SlotChangeListener*, bool);
+	void changeFlower(Game::Creature*);
+	void releaseSlot(Game::Creature*, int);
+	void validSlot(int);
+	void sortByColor(Game::Creature*, int);
+	void rearrangeSlot(Vector3<float>&, float, Vector3<float>&);
+	void getSlotPosition(int, Vector3<float>&);
+	void refresh(int, float);
+	void refreshSlot(float);
+	void update();
 };
 } // namespace Game
 

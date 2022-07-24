@@ -33,44 +33,44 @@
 
 namespace PikiAI {
 struct Action {
-    virtual void init(ActionArg*);                                 // _08
-    virtual void exec();                                           // _0C
-    virtual void cleanup();                                        // _10
-    virtual void emotion_success();                                // _14
-    virtual void emotion_fail();                                   // _18
-    virtual void applicable();                                     // _1C
-    virtual void getNextAIType();                                  // _20
-    virtual void bounceCallback(Game::Piki*, Sys::Triangle*);      // _24
+    virtual void init(ActionArg*);                            // _08
+    virtual void exec();                                      // _0C
+    virtual void cleanup();                                   // _10
+    virtual void emotion_success();                           // _14 (inline)
+    virtual void emotion_fail();                              // _18 (inline)
+    virtual void applicable();                                // _1C (inline)
+    virtual void getNextAIType();                             // _20 (inline)
+    virtual void bounceCallback(Game::Piki*, Sys::Triangle*); // _24 (inline)
     virtual void collisionCallback(Game::Piki*, Game::CollEvent&); // _28
     virtual void platCallback(Game::Piki*, Game::PlatEvent&);      // _2C
-    virtual void doDirectDraw(Graphics&);                          // _30
-    virtual void wallCallback(Vector3<float>&);                    // _34
-    virtual void getInfo(char*);                                   // _38
-
-    // _00 VTBL
+    virtual void doDirectDraw(Graphics&);       // _30 (inline)
+    virtual void wallCallback(Vector3<float>&); // _34
+    virtual void getInfo(char*);                // _38
 };
 } // namespace PikiAI
 
 namespace PikiAI {
 struct ActFormation : public Action {
-    virtual void init(ActionArg*);                                 // _08
-    virtual void exec();                                           // _0C
-    virtual void cleanup();                                        // _10
-    virtual void getNextAIType();                                  // _20
+    virtual void init(ActionArg*); // _08
+    virtual void exec();           // _0C
+    virtual void cleanup();        // _10
+    virtual void getNextAIType();  // _20 (inline)
     virtual void collisionCallback(Game::Piki*, Game::CollEvent&); // _28
     virtual void platCallback(Game::Piki*, Game::PlatEvent&);      // _2C
     virtual void wallCallback(Vector3<float>&);                    // _34
-    virtual void resumable();                                      // _3C
-    virtual void inform(int);                                      // _40
-    virtual void onKeyEvent(const SysShape::KeyEvent&);            // _44
-    virtual void _48() = 0;                                        // _48
-    virtual void _4C() = 0;                                        // _4C
-    virtual void @100 @4 @inform(int);                             // _50
-    virtual void _54() = 0;                                        // _54
-    virtual void _58() = 0;                                        // _58
-    virtual void @108 @4 @onKeyEvent(const SysShape::KeyEvent&);   // _5C
+    virtual void resumable();                                    // _3C (inline)
+    virtual void inform(int);                                    // _40 (inline)
+    virtual void onKeyEvent(const SysShape::KeyEvent&);          // _44 (inline)
+    virtual void _48() = 0;                                      // _48
+    virtual void _4C() = 0;                                      // _4C
+    virtual void @100 @4 @inform(int);                           // _50 (inline)
+    virtual void _54() = 0;                                      // _54
+    virtual void _58() = 0;                                      // _58
+    virtual void @108 @4 @onKeyEvent(const SysShape::KeyEvent&); // _5C (inline)
 
-    // _00 VTBL
+    ActFormation();
+    void startSort();
+    void setFormed();
 };
 } // namespace PikiAI
 

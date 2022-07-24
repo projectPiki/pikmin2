@@ -41,14 +41,12 @@ struct GameState {
 	virtual void VsonMovieStart(VsGameSection*, MovieConfig*, unsigned long, unsigned long); // _2C
 	virtual void VsonMovieDone(VsGameSection*, MovieConfig*, unsigned long, unsigned long);  // _30
 	virtual void VsonNextFloor(VsGameSection*, ItemHole::Item*);                             // _34
-	virtual void Vson_section_fadeout(VsGameSection*);                                       // _38
+	virtual void Vson_section_fadeout(VsGameSection*);                                       // _38 (inline)
 	virtual void VsgoingToCave(VsGameSection*);                                              // _3C
 	virtual void VsonBattleFinished(VsGameSection*, int, bool);                              // _40
 	virtual void VsonRedOrBlueSuckStart(VsGameSection*, int, bool);                          // _44
 	virtual void VsisCardUsable(VsGameSection*);                                             // _48
 	virtual void VsdrawStatus(Graphics&, VsGameSection*);                                    // _4C
-
-	// _00 VTBL
 };
 } // namespace VsGame
 } // namespace Game
@@ -61,11 +59,9 @@ namespace FSMState < Game
 		virtual void _08() = 0;                                          // _08
 		virtual void _0C() = 0;                                          // _0C
 		virtual void _10() = 0;                                          // _10
-		virtual void FSMState < resume(VsGameSection*);                  // _14
-		virtual void FSMState < restart(VsGameSection*);                 // _18
-		virtual void FSMState < transit(VsGameSection*, int, StateArg*); // _1C
-
-		// _00 VTBL
+		virtual void FSMState < resume(VsGameSection*);                  // _14 (inline)
+		virtual void FSMState < restart(VsGameSection*);                 // _18 (inline)
+		virtual void FSMState < transit(VsGameSection*, int, StateArg*); // _1C (inline)
 	};
 } // namespace Game
 } // namespace Game
@@ -75,7 +71,7 @@ namespace VsGame {
 struct VSState : public GameState, public VsGameSection > {
 	virtual void Vsdo_init(VsGameSection*); // _50
 
-	// _00 VTBL
+	VSState();
 };
 } // namespace VsGame
 } // namespace Game

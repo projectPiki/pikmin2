@@ -26,45 +26,39 @@ namespace FSMState < Game
 {
 	struct CFSMItem >
 	{
-		virtual void FSMState < init(CFSMItem*, StateArg*);         // _08
-		virtual void FSMState < exec(CFSMItem*);                    // _0C
-		virtual void FSMState < cleanup(CFSMItem*);                 // _10
-		virtual void FSMState < resume(CFSMItem*);                  // _14
-		virtual void FSMState < restart(CFSMItem*);                 // _18
-		virtual void FSMState < transit(CFSMItem*, int, StateArg*); // _1C
-
-		// _00 VTBL
+		virtual void FSMState < init(CFSMItem*, StateArg*);         // _08 (inline)
+		virtual void FSMState < exec(CFSMItem*);                    // _0C (inline)
+		virtual void FSMState < cleanup(CFSMItem*);                 // _10 (inline)
+		virtual void FSMState < resume(CFSMItem*);                  // _14 (inline)
+		virtual void FSMState < restart(CFSMItem*);                 // _18 (inline)
+		virtual void FSMState < transit(CFSMItem*, int, StateArg*); // _1C (inline)
 	};
 } // namespace Game
 } // namespace Game
 
 namespace Game {
 struct CItemState {
-	virtual void _08() = 0;                              // _08
-	virtual void _0C() = 0;                              // _0C
-	virtual void _10() = 0;                              // _10
-	virtual void _14() = 0;                              // _14
-	virtual void _18() = 0;                              // _18
-	virtual void _1C() = 0;                              // _1C
-	virtual void onDamage(CFSMItem*, float);             // _20
-	virtual void _24() = 0;                              // _24
-	virtual void onBounce(CFSMItem*, Sys::Triangle*);    // _28
-	virtual void onPlatCollision(CFSMItem*, PlatEvent&); // _2C
-	virtual void onCollision(CFSMItem*, CollEvent&);     // _30
-
-	// _00 VTBL
+	virtual void _08() = 0;                                        // _08
+	virtual void _0C() = 0;                                        // _0C
+	virtual void _10() = 0;                                        // _10
+	virtual void _14() = 0;                                        // _14
+	virtual void _18() = 0;                                        // _18
+	virtual void _1C() = 0;                                        // _1C
+	virtual void onDamage(CFSMItem*, float);                       // _20 (inline)
+	virtual void onKeyEvent(CFSMItem*, const SysShape::KeyEvent&); // _24 (inline)
+	virtual void onBounce(CFSMItem*, Sys::Triangle*);              // _28 (inline)
+	virtual void onPlatCollision(CFSMItem*, PlatEvent&);           // _2C (inline)
+	virtual void onCollision(CFSMItem*, CollEvent&);               // _30 (inline)
 };
 } // namespace Game
 
 namespace Game {
 namespace ItemHoney {
 struct State : public CFSMItem >, public CItemState {
-	virtual void onKeyEvent(CFSMItem*, const SysShape::KeyEvent&); // _24
-	virtual void collisionCallback(CFSMItem*, CollEvent&);         // _34
-	virtual void interactAbsorb(CFSMItem*, InteractAbsorb&);       // _38
-	virtual void absorbable();                                     // _3C
-
-	// _00 VTBL
+	virtual void onKeyEvent(CFSMItem*, const SysShape::KeyEvent&); // _24 (inline)
+	virtual void collisionCallback(CFSMItem*, CollEvent&);         // _34 (inline)
+	virtual void interactAbsorb(CFSMItem*, InteractAbsorb&);       // _38 (inline)
+	virtual void absorbable();                                     // _3C (inline)
 };
 } // namespace ItemHoney
 } // namespace Game

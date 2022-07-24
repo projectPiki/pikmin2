@@ -12,15 +12,16 @@
 struct CNode {
 	virtual ~CNode();             // _08
 	virtual void getChildCount(); // _0C
-
-	// _00 VTBL
 };
 
 namespace Sys {
 struct DrawBuffers : public CNode {
 	virtual ~DrawBuffers(); // _08
 
-	// _00 VTBL
+	DrawBuffers();
+	void allocate(int);
+	void get(int);
+	void frameInitAll();
 };
 } // namespace Sys
 

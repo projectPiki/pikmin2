@@ -16,15 +16,16 @@
 
 namespace Game {
 struct MapUnit {
-	virtual void constructor();           // _08
-	virtual void doAnimation();           // _0C
-	virtual void doEntry();               // _10
-	virtual void doSetView(int);          // _14
-	virtual void doViewCalc();            // _18
-	virtual void doSimulation(float);     // _1C
-	virtual void doDirectDraw(Graphics&); // _20
+	virtual void constructor();           // _08 (inline)
+	virtual void doAnimation();           // _0C (inline)
+	virtual void doEntry();               // _10 (inline)
+	virtual void doSetView(int);          // _14 (inline)
+	virtual void doViewCalc();            // _18 (inline)
+	virtual void doSimulation(float);     // _1C (inline)
+	virtual void doDirectDraw(Graphics&); // _20 (inline)
 
-	// _00 VTBL
+	MapUnit();
+	void load(Stream&);
 };
 } // namespace Game
 

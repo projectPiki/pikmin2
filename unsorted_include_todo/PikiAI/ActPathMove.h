@@ -25,18 +25,16 @@ struct Action {
 	virtual void init(ActionArg*);                                 // _08
 	virtual void exec();                                           // _0C
 	virtual void cleanup();                                        // _10
-	virtual void emotion_success();                                // _14
-	virtual void emotion_fail();                                   // _18
-	virtual void applicable();                                     // _1C
-	virtual void getNextAIType();                                  // _20
-	virtual void bounceCallback(Game::Piki*, Sys::Triangle*);      // _24
-	virtual void collisionCallback(Game::Piki*, Game::CollEvent&); // _28
-	virtual void platCallback(Game::Piki*, Game::PlatEvent&);      // _2C
-	virtual void doDirectDraw(Graphics&);                          // _30
-	virtual void wallCallback(Vector3<float>&);                    // _34
+	virtual void emotion_success();                                // _14 (inline)
+	virtual void emotion_fail();                                   // _18 (inline)
+	virtual void applicable();                                     // _1C (inline)
+	virtual void getNextAIType();                                  // _20 (inline)
+	virtual void bounceCallback(Game::Piki*, Sys::Triangle*);      // _24 (inline)
+	virtual void collisionCallback(Game::Piki*, Game::CollEvent&); // _28 (inline)
+	virtual void platCallback(Game::Piki*, Game::PlatEvent&);      // _2C (inline)
+	virtual void doDirectDraw(Graphics&);                          // _30 (inline)
+	virtual void wallCallback(Vector3<float>&);                    // _34 (inline)
 	virtual void getInfo(char*);                                   // _38
-
-	// _00 VTBL
 };
 } // namespace PikiAI
 
@@ -46,7 +44,22 @@ struct ActPathMove : public Action {
 	virtual void exec();           // _0C
 	virtual void cleanup();        // _10
 
-	// _00 VTBL
+	ActPathMove();
+	void initPathfinding(bool);
+	void decideGoal();
+	void execPathfinding();
+	void execMoveGoal();
+	void isAllBlue();
+	void carry(Vector3<float>&);
+	void execMove();
+	void execMoveGuru();
+	void getWayPoint(int);
+	void crGetPoint(int);
+	void contextCheck(int);
+	void crGetRadius(int);
+	void crInit();
+	void crMakeRefs();
+	void crMove();
 };
 } // namespace PikiAI
 

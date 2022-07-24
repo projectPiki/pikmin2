@@ -18,40 +18,43 @@
 */
 
 struct CNode {
-	virtual void _08() = 0;       // _08
+	virtual ~CNode();             // _08 (inline)
 	virtual void getChildCount(); // _0C
-
-	// _00 VTBL
 };
 
 namespace Sys {
 struct TriDivider {
-	virtual void _08() = 0;                                        // _08
+	virtual ~TriDivider();                                         // _08 (inline)
 	virtual void _0C() = 0;                                        // _0C
-	virtual void _10() = 0;                                        // _10
-	virtual void _14() = 0;                                        // _14
-	virtual void _18() = 0;                                        // _18
-	virtual void _1C() = 0;                                        // _1C
-	virtual void createTriangles(CreateTriangleArg&);              // _20
-	virtual void _24() = 0;                                        // _24
-	virtual void _28() = 0;                                        // _28
-	virtual void do_clone(Matrixf&, VertexTable*, TriangleTable*); // _2C
-
-	// _00 VTBL
+	virtual void getMinY(Vector3<float>&);                         // _10
+	virtual void findTriLists(Sphere&);                            // _14 (inline)
+	virtual void read(Stream&);                                    // _18
+	virtual void getCurrTri(Game::CurrTriInfo&);                   // _1C
+	virtual void createTriangles(CreateTriangleArg&);              // _20 (inline)
+	virtual void getBoundBox(BoundBox&);                           // _24 (inline)
+	virtual void clone(Matrixf&);                                  // _28
+	virtual void do_clone(Matrixf&, VertexTable*, TriangleTable*); // _2C (inline)
 };
 } // namespace Sys
 
 namespace Sys {
 struct OBBTree : public CNode, public TriDivider {
-	virtual ~OBBTree();                          // _08
+	virtual ~OBBTree();                          // _08 (inline)
 	virtual void getMinY(Vector3<float>&);       // _10
-	virtual void findTriLists(Sphere&);          // _14
+	virtual void findTriLists(Sphere&);          // _14 (inline)
 	virtual void read(Stream&);                  // _18
 	virtual void getCurrTri(Game::CurrTriInfo&); // _1C
-	virtual void getBoundBox(BoundBox&);         // _24
+	virtual void getBoundBox(BoundBox&);         // _24 (inline)
 	virtual void clone(Matrixf&);                // _28
 
-	// _00 VTBL
+	OBBTree();
+	void construct(Sys::VertexTable*, Sys::TriangleTable*, int, int);
+	void readWithoutVerts(Stream&, Sys::VertexTable&);
+	void traceMove(Matrixf&, Matrixf&, Game::MoveInfo&, float);
+	void traceMove_global(Game::MoveInfo&, float);
+	void findRayIntersection(Sys::RayIntersectInfo&, Matrixf&, Matrixf&);
+	void traceMove_new(Matrixf&, Matrixf&, Game::MoveInfo&, float);
+	void traceMove_new_global(Game::MoveInfo&, float);
 };
 } // namespace Sys
 

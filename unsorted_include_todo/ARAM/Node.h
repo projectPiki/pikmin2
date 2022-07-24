@@ -10,17 +10,13 @@
 */
 
 struct CNode {
-	virtual ~CNode();             // _08
+	virtual ~CNode();             // _08 (inline)
 	virtual void getChildCount(); // _0C
-
-	// _00 VTBL
 };
 
 namespace ARAM {
 struct Node : public CNode {
-	virtual ~Node(); // _08
-
-	// _00 VTBL
+	virtual ~Node(); // _08 (inline)
 };
 } // namespace ARAM
 

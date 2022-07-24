@@ -17,15 +17,11 @@ struct TForeverN {
 	virtual void kill();                  // _0C
 	virtual void fade();                  // _10
 	virtual void setGroup(unsigned char); // _14
-
-	// _00 VTBL
 };
 } // namespace efx2d
 
 namespace efx2d {
 struct T2DOtakantei : public TForeverN {
-
-	// _00 VTBL
 };
 } // namespace efx2d
 

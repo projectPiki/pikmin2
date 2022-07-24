@@ -10,9 +10,11 @@
 
 namespace PSGame {
 struct SeMgr {
-	virtual ~SeMgr(); // _08
+	virtual ~SeMgr(); // _08 (inline)
 
-	// _00 VTBL
+	SeMgr();
+	void playMessageVoice(unsigned long, bool);
+	void stopMessageVoice();
 };
 } // namespace PSGame
 

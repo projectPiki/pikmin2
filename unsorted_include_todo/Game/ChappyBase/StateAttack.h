@@ -19,11 +19,9 @@ struct EnemyFSMState {
 	virtual void init(EnemyBase*, StateArg*);         // _08
 	virtual void exec(EnemyBase*);                    // _0C
 	virtual void cleanup(EnemyBase*);                 // _10
-	virtual void resume(EnemyBase*);                  // _14
-	virtual void restart(EnemyBase*);                 // _18
+	virtual void resume(EnemyBase*);                  // _14 (inline)
+	virtual void restart(EnemyBase*);                 // _18 (inline)
 	virtual void transit(EnemyBase*, int, StateArg*); // _1C
-
-	// _00 VTBL
 };
 } // namespace Game
 
@@ -35,7 +33,8 @@ struct StateAttack : public EnemyFSMState {
 	virtual void cleanup(EnemyBase*);                 // _10
 	virtual void doDirectDraw(EnemyBase*, Graphics&); // _20
 
-	// _00 VTBL
+	StateAttack();
+	void transitState(Game::EnemyBase*);
 };
 } // namespace ChappyBase
 } // namespace Game

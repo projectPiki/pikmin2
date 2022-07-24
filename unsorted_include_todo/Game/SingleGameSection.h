@@ -83,108 +83,104 @@
 */
 
 struct Section {
-	virtual void _08() = 0;           // _08
+	virtual ~Section();               // _08
 	virtual void run();               // _0C
 	virtual void update();            // _10
 	virtual void draw(Graphics&);     // _14
 	virtual void _18() = 0;           // _18
-	virtual void drawInit(Graphics&); // _1C
+	virtual void drawInit(Graphics&); // _1C (inline)
 	virtual void _20() = 0;           // _20
-	virtual void doExit();            // _24
+	virtual void doExit();            // _24 (inline)
 	virtual void _28() = 0;           // _28
-	virtual void forceReset();        // _2C
-	virtual void getCurrentSection(); // _30
-	virtual void doLoadingStart();    // _34
-	virtual void doLoading();         // _38
-	virtual void _3C() = 0;           // _3C
-	virtual void _40() = 0;           // _40
-	virtual void isFinishable();      // _44
-
-	// _00 VTBL
+	virtual void forceReset();        // _2C (inline)
+	virtual void getCurrentSection(); // _30 (inline)
+	virtual void doLoadingStart();    // _34 (inline)
+	virtual void doLoading();         // _38 (inline)
+	virtual void doUpdate();          // _3C
+	virtual void doDraw(Graphics&);   // _40
+	virtual void isFinishable();      // _44 (inline)
 };
 
 namespace Game {
 struct BaseGameSection {
-	virtual void _08() = 0;                                   // _08
-	virtual void _0C() = 0;                                   // _0C
-	virtual void _10() = 0;                                   // _10
-	virtual void _14() = 0;                                   // _14
-	virtual void init();                                      // _18
-	virtual void _1C() = 0;                                   // _1C
-	virtual void drawInit(Graphics&, Section::EDrawInitMode); // _20
-	virtual void _24() = 0;                                   // _24
-	virtual void forceFinish();                               // _28
-	virtual void _2C() = 0;                                   // _2C
-	virtual void _30() = 0;                                   // _30
-	virtual void _34() = 0;                                   // _34
-	virtual void _38() = 0;                                   // _38
-	virtual void _3C() = 0;                                   // _3C
-	virtual void _40() = 0;                                   // _40
-	virtual void _44() = 0;                                   // _44
-	virtual void _48() = 0;                                   // _48
-	virtual void _4C() = 0;                                   // _4C
-	virtual void sendMessage(GameMessage&);                   // _50
-	virtual void pre2dDraw(Graphics&);                        // _54
-	virtual void _58() = 0;                                   // _58
-	virtual void _5C() = 0;                                   // _5C
-	virtual void addChallengeScore(int);                      // _60
-	virtual void _64() = 0;                                   // _64
-	virtual void _68() = 0;                                   // _68
-	virtual void _6C() = 0;                                   // _6C
-	virtual void _70() = 0;                                   // _70
-	virtual void _74() = 0;                                   // _74
-	virtual void _78() = 0;                                   // _78
-	virtual void _7C() = 0;                                   // _7C
-	virtual void challengeDisablePelplant();                  // _80
-	virtual void _84() = 0;                                   // _84
-	virtual void getEditorFilename();                         // _88
-	virtual void getVsEditNumber();                           // _8C
-	virtual void openContainerWindow();                       // _90
-	virtual void closeContainerWindow();                      // _94
-	virtual void _98() = 0;                                   // _98
-	virtual void _9C() = 0;                                   // _9C
-	virtual void _A0() = 0;                                   // _A0
-	virtual void _A4() = 0;                                   // _A4
-	virtual void _A8() = 0;                                   // _A8
-	virtual void _AC() = 0;                                   // _AC
-	virtual void _B0() = 0;                                   // _B0
-	virtual void _B4() = 0;                                   // _B4
-	virtual void _B8() = 0;                                   // _B8
-	virtual void startFadeout(float);                         // _BC
-	virtual void startFadein(float);                          // _C0
-	virtual void startFadeoutin(float);                       // _C4
-	virtual void startFadeblack();                            // _C8
-	virtual void startFadewhite();                            // _CC
-	virtual void _D0() = 0;                                   // _D0
-	virtual void _D4() = 0;                                   // _D4
-	virtual void _D8() = 0;                                   // _D8
-	virtual void _DC() = 0;                                   // _DC
-	virtual void _E0() = 0;                                   // _E0
-	virtual void _E4() = 0;                                   // _E4
-	virtual void onTogglePlayer();                            // _E8
-	virtual void onPlayerJoin();                              // _EC
-	virtual void _F0() = 0;                                   // _F0
-	virtual void onUpdate();                                  // _F4
-	virtual void initJ3D();                                   // _F8
-	virtual void initViewports(Graphics&);                    // _FC
-	virtual void initResources();                             // _100
-	virtual void initGenerators();                            // _104
-	virtual void initLights();                                // _108
-	virtual void draw3D(Graphics&);                           // _10C
-	virtual void draw2D(Graphics&);                           // _110
-	virtual void drawParticle(Graphics&, int);                // _114
-	virtual void draw_Ogawa2D(Graphics&);                     // _118
-	virtual void do_drawOtakaraWindow(Graphics&);             // _11C
-	virtual void _120() = 0;                                  // _120
-	virtual void postSetupFloatMemory();                      // _124
-
-	// _00 VTBL
+	virtual ~BaseGameSection();                                            // _08
+	virtual void _0C() = 0;                                                // _0C
+	virtual void _10() = 0;                                                // _10
+	virtual void _14() = 0;                                                // _14
+	virtual void init();                                                   // _18
+	virtual void _1C() = 0;                                                // _1C
+	virtual void drawInit(Graphics&, Section::EDrawInitMode);              // _20
+	virtual void _24() = 0;                                                // _24
+	virtual void forceFinish();                                            // _28 (inline)
+	virtual void _2C() = 0;                                                // _2C
+	virtual void _30() = 0;                                                // _30
+	virtual void _34() = 0;                                                // _34
+	virtual void _38() = 0;                                                // _38
+	virtual void doUpdate();                                               // _3C
+	virtual void doDraw(Graphics&);                                        // _40
+	virtual void _44() = 0;                                                // _44
+	virtual void _48() = 0;                                                // _48
+	virtual void _4C() = 0;                                                // _4C
+	virtual void sendMessage(GameMessage&);                                // _50 (inline)
+	virtual void pre2dDraw(Graphics&);                                     // _54 (inline)
+	virtual void getCurrFloor();                                           // _58 (inline)
+	virtual void isDevelopSection();                                       // _5C (inline)
+	virtual void addChallengeScore(int);                                   // _60 (inline)
+	virtual void startMainBgm();                                           // _64
+	virtual void section_fadeout();                                        // _68
+	virtual void goNextFloor(ItemHole::Item*);                             // _6C
+	virtual void goCave(ItemCave::Item*);                                  // _70
+	virtual void goMainMap(ItemBigFountain::Item*);                        // _74
+	virtual void getCaveID();                                              // _78 (inline)
+	virtual void getCurrentCourseInfo();                                   // _7C (inline)
+	virtual void challengeDisablePelplant();                               // _80 (inline)
+	virtual void getCaveFilename();                                        // _84 (inline)
+	virtual void getEditorFilename();                                      // _88 (inline)
+	virtual void getVsEditNumber();                                        // _8C (inline)
+	virtual void openContainerWindow();                                    // _90 (inline)
+	virtual void closeContainerWindow();                                   // _94 (inline)
+	virtual void playMovie_firstexperience(int, Creature*);                // _98
+	virtual void playMovie_bootup(Onyon*);                                 // _9C
+	virtual void playMovie_helloPikmin(Piki*);                             // _A0
+	virtual void enableTimer(float, unsigned long);                        // _A4
+	virtual void disableTimer(unsigned long);                              // _A8
+	virtual void getTimerType();                                           // _AC (inline)
+	virtual void onMovieStart(MovieConfig*, unsigned long, unsigned long); // _B0
+	virtual void onMovieDone(MovieConfig*, unsigned long, unsigned long);  // _B4
+	virtual void onMovieCommand(int);                                      // _B8
+	virtual void startFadeout(float);                                      // _BC
+	virtual void startFadein(float);                                       // _C0
+	virtual void startFadeoutin(float);                                    // _C4
+	virtual void startFadeblack();                                         // _C8
+	virtual void startFadewhite();                                         // _CC
+	virtual void gmOrimaDown(int);                                         // _D0
+	virtual void gmPikminZero();                                           // _D4
+	virtual void openCaveInMenu(ItemCave::Item*, int);                     // _D8
+	virtual void openCaveMoreMenu(ItemHole::Item*, Controller*);           // _DC
+	virtual void openKanketuMenu(ItemBigFountain::Item*, Controller*);     // _E0
+	virtual void on_setCamController(int);                                 // _E4
+	virtual void onTogglePlayer();                                         // _E8 (inline)
+	virtual void onPlayerJoin();                                           // _EC (inline)
+	virtual void onInit();                                                 // _F0
+	virtual void onUpdate();                                               // _F4 (inline)
+	virtual void initJ3D();                                                // _F8
+	virtual void initViewports(Graphics&);                                 // _FC
+	virtual void initResources();                                          // _100
+	virtual void initGenerators();                                         // _104
+	virtual void initLights();                                             // _108
+	virtual void draw3D(Graphics&);                                        // _10C
+	virtual void draw2D(Graphics&);                                        // _110
+	virtual void drawParticle(Graphics&, int);                             // _114
+	virtual void draw_Ogawa2D(Graphics&);                                  // _118
+	virtual void do_drawOtakaraWindow(Graphics&);                          // _11C
+	virtual void onSetupFloatMemory();                                     // _120
+	virtual void postSetupFloatMemory();                                   // _124
 };
 } // namespace Game
 
 namespace Game {
 struct BaseHIOSection {
-	virtual void _08() = 0;             // _08
+	virtual ~BaseHIOSection();          // _08
 	virtual void _0C() = 0;             // _0C
 	virtual void _10() = 0;             // _10
 	virtual void _14() = 0;             // _14
@@ -197,13 +193,11 @@ struct BaseHIOSection {
 	virtual void _30() = 0;             // _30
 	virtual void _34() = 0;             // _34
 	virtual void _38() = 0;             // _38
-	virtual void _3C() = 0;             // _3C
-	virtual void _40() = 0;             // _40
+	virtual void doUpdate();            // _3C
+	virtual void doDraw(Graphics&);     // _40
 	virtual void _44() = 0;             // _44
 	virtual void initHIO(HIORootNode*); // _48
 	virtual void refreshHIO();          // _4C
-
-	// _00 VTBL
 };
 } // namespace Game
 
@@ -212,22 +206,22 @@ struct SingleGameSection : public Section, public BaseGameSection, public BaseHI
 	virtual ~SingleGameSection();                                          // _08
 	virtual void doUpdate();                                               // _3C
 	virtual void doDraw(Graphics&);                                        // _40
-	virtual void getCurrFloor();                                           // _58
-	virtual void isDevelopSection();                                       // _5C
+	virtual void getCurrFloor();                                           // _58 (inline)
+	virtual void isDevelopSection();                                       // _5C (inline)
 	virtual void startMainBgm();                                           // _64
 	virtual void section_fadeout();                                        // _68
 	virtual void goNextFloor(ItemHole::Item*);                             // _6C
 	virtual void goCave(ItemCave::Item*);                                  // _70
 	virtual void goMainMap(ItemBigFountain::Item*);                        // _74
-	virtual void getCaveID();                                              // _78
-	virtual void getCurrentCourseInfo();                                   // _7C
-	virtual void getCaveFilename();                                        // _84
+	virtual void getCaveID();                                              // _78 (inline)
+	virtual void getCurrentCourseInfo();                                   // _7C (inline)
+	virtual void getCaveFilename();                                        // _84 (inline)
 	virtual void playMovie_firstexperience(int, Creature*);                // _98
 	virtual void playMovie_bootup(Onyon*);                                 // _9C
 	virtual void playMovie_helloPikmin(Piki*);                             // _A0
 	virtual void enableTimer(float, unsigned long);                        // _A4
 	virtual void disableTimer(unsigned long);                              // _A8
-	virtual void getTimerType();                                           // _AC
+	virtual void getTimerType();                                           // _AC (inline)
 	virtual void onMovieStart(MovieConfig*, unsigned long, unsigned long); // _B0
 	virtual void onMovieDone(MovieConfig*, unsigned long, unsigned long);  // _B4
 	virtual void onMovieCommand(int);                                      // _B8
@@ -243,7 +237,23 @@ struct SingleGameSection : public Section, public BaseGameSection, public BaseHI
 	virtual void onStartHeap();                                            // _12C
 	virtual void onClearHeap();                                            // _130
 
-	// _00 VTBL
+	SingleGameSection();
+	void flow_goto_title();
+	void saveMainMapSituation(bool);
+	void loadMainMapSituation();
+	void clearCaveMenus();
+	void saveCaveMore();
+	void updateCaveMenus();
+	void setupMainMapGames();
+	void setupCaveGames();
+	void createFallPikmins();
+	void setDispMemberSMenu(og::Screen::DispMemberSMenuAll&);
+	void updateMainMapScreen();
+	void drawMainMapScreen();
+	void updateCaveScreen();
+	void drawCaveScreen();
+	void newCaveOtakaraEarningsAndDrops();
+	void clearCaveOtakaraEarningsAndDrops();
 };
 } // namespace Game
 

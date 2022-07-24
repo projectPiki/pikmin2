@@ -12,8 +12,6 @@
 
 struct JASWaveArc {
 	virtual void onDispose(); // _08
-
-	// _00 VTBL
 };
 
 namespace JASBasicWaveBank {
@@ -21,7 +19,11 @@ struct TWaveGroup : public JASWaveArc {
 	virtual void onLoadDone();  // _0C
 	virtual void onEraseDone(); // _10
 
-	// _00 VTBL
+	TWaveGroup();
+	~TWaveGroup();
+	void setWaveCount(unsigned long);
+	void setWaveInfo(int, unsigned long, const JASWaveInfo&);
+	void getWaveID(int) const;
 };
 } // namespace JASBasicWaveBank
 

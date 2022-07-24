@@ -20,18 +20,16 @@
 namespace og {
 namespace Screen {
 struct DispMemberUfoGroup {
-	virtual void getSize();           // _08
-	virtual void getOwnerID();        // _0C
-	virtual void getMemberID();       // _10
-	virtual void doSetSubMemberAll(); // _14
+	virtual void getSize();           // _08 (inline)
+	virtual void getOwnerID();        // _0C (inline)
+	virtual void getMemberID();       // _10 (inline)
+	virtual void doSetSubMemberAll(); // _14 (inline)
 	virtual void _18() = 0;           // _18
 	virtual void _1C() = 0;           // _1C
 	virtual void _20() = 0;           // _20
 	virtual void _24() = 0;           // _24
 	virtual void _28() = 0;           // _28
 	virtual void _2C() = 0;           // _2C
-
-	// _00 VTBL
 };
 } // namespace Screen
 } // namespace og

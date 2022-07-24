@@ -14,30 +14,33 @@
 */
 
 struct CNode {
-	virtual void _08() = 0;       // _08
+	virtual ~CNode();             // _08 (inline)
 	virtual void getChildCount(); // _0C
-
-	// _00 VTBL
 };
 
 struct LightMgr {
-	virtual void _08() = 0;                // _08
+	virtual ~LightMgr();                   // _08 (inline)
 	virtual void _0C() = 0;                // _0C
-	virtual void _10() = 0;                // _10
-	virtual void _14() = 0;                // _14
+	virtual void update();                 // _10
+	virtual void set(Graphics&);           // _14
 	virtual void set(Matrixf&);            // _18
 	virtual void drawDebugInfo(Graphics&); // _1C
-
-	// _00 VTBL
 };
 
 namespace Game {
 struct GameLightMgr : public CNode, public LightMgr {
-	virtual ~GameLightMgr();     // _08
+	virtual ~GameLightMgr();     // _08 (inline)
 	virtual void update();       // _10
 	virtual void set(Graphics&); // _14
 
-	// _00 VTBL
+	GameLightMgr();
+	void start();
+	void createEventLight(Game::GameLightEventArg&);
+	void loadParm(Stream&);
+	void calcSetting(Game::GameLightTimeSetting*, Game::GameLightTimeSetting*, Game::GameLightTimeSetting*);
+	void updateSunType();
+	void updateSpotType();
+	void updatePosition(Viewport*);
 };
 } // namespace Game
 

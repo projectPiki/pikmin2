@@ -27,50 +27,46 @@
 
 namespace Screen {
 struct SceneBase {
-	virtual void _08() = 0;                           // _08
-	virtual void _0C() = 0;                           // _0C
-	virtual void _10() = 0;                           // _10
-	virtual void _14() = 0;                           // _14
-	virtual void isDrawInDemo() const;                // _18
-	virtual void _1C() = 0;                           // _1C
-	virtual void _20() = 0;                           // _20
-	virtual void _24() = 0;                           // _24
-	virtual void setPort(Graphics&);                  // _28
-	virtual void _2C() = 0;                           // _2C
-	virtual void _30() = 0;                           // _30
-	virtual void doConfirmStartScene(StartSceneArg*); // _34
-	virtual void doConfirmEndScene(EndSceneArg*&);    // _38
-	virtual void doStart(StartSceneArg*);             // _3C
-	virtual void doEnd(EndSceneArg*);                 // _40
-	virtual void setDefaultDispMember();              // _44
-
-	// _00 VTBL
+	virtual void getSceneType();                            // _08 (inline)
+	virtual void getOwnerID();                              // _0C (inline)
+	virtual void getMemberID();                             // _10 (inline)
+	virtual void isUseBackupSceneInfo();                    // _14 (inline)
+	virtual void isDrawInDemo() const;                      // _18 (inline)
+	virtual void getResName() const;                        // _1C (inline)
+	virtual void doCreateObj(JKRArchive*);                  // _20
+	virtual void doUserCallBackFunc(Resource::MgrCommand*); // _24
+	virtual void setPort(Graphics&);                        // _28 (inline)
+	virtual void doUpdateActive();                          // _2C
+	virtual void doConfirmSetScene(Screen::SetSceneArg&);   // _30
+	virtual void doConfirmStartScene(StartSceneArg*);       // _34 (inline)
+	virtual void doConfirmEndScene(EndSceneArg*&);          // _38 (inline)
+	virtual void doStart(StartSceneArg*);                   // _3C
+	virtual void doEnd(EndSceneArg*);                       // _40
+	virtual void setDefaultDispMember();                    // _44 (inline)
 };
 } // namespace Screen
 
 namespace og {
 namespace newScreen {
 struct SceneSMenuBase {
-	virtual void _08() = 0;          // _08
-	virtual void _0C() = 0;          // _0C
-	virtual void _10() = 0;          // _10
-	virtual void _14() = 0;          // _14
-	virtual void _18() = 0;          // _18
-	virtual void _1C() = 0;          // _1C
-	virtual void _20() = 0;          // _20
-	virtual void _24() = 0;          // _24
-	virtual void _28() = 0;          // _28
-	virtual void _2C() = 0;          // _2C
-	virtual void _30() = 0;          // _30
-	virtual void _34() = 0;          // _34
-	virtual void _38() = 0;          // _38
-	virtual void _3C() = 0;          // _3C
-	virtual void _40() = 0;          // _40
-	virtual void _44() = 0;          // _44
-	virtual void _48() = 0;          // _48
-	virtual void doGetFinishState(); // _4C
-
-	// _00 VTBL
+	virtual void getSceneType();                            // _08 (inline)
+	virtual void getOwnerID();                              // _0C (inline)
+	virtual void getMemberID();                             // _10 (inline)
+	virtual void isUseBackupSceneInfo();                    // _14 (inline)
+	virtual void _18() = 0;                                 // _18
+	virtual void getResName() const;                        // _1C (inline)
+	virtual void doCreateObj(JKRArchive*);                  // _20
+	virtual void doUserCallBackFunc(Resource::MgrCommand*); // _24
+	virtual void _28() = 0;                                 // _28
+	virtual void doUpdateActive();                          // _2C
+	virtual void doConfirmSetScene(Screen::SetSceneArg&);   // _30
+	virtual void _34() = 0;                                 // _34
+	virtual void _38() = 0;                                 // _38
+	virtual void _3C() = 0;                                 // _3C
+	virtual void _40() = 0;                                 // _40
+	virtual void _44() = 0;                                 // _44
+	virtual void doSetBackupScene(Screen::SetSceneArg&);    // _48
+	virtual void doGetFinishState();                        // _4C (inline)
 };
 } // namespace newScreen
 } // namespace og
@@ -78,18 +74,18 @@ struct SceneSMenuBase {
 namespace og {
 namespace newScreen {
 struct SMenuItem : public SceneBase, public SceneSMenuBase {
-	virtual void getSceneType();                            // _08
-	virtual void getOwnerID();                              // _0C
-	virtual void getMemberID();                             // _10
-	virtual void isUseBackupSceneInfo();                    // _14
-	virtual void getResName() const;                        // _1C
+	virtual void getSceneType();                            // _08 (inline)
+	virtual void getOwnerID();                              // _0C (inline)
+	virtual void getMemberID();                             // _10 (inline)
+	virtual void isUseBackupSceneInfo();                    // _14 (inline)
+	virtual void getResName() const;                        // _1C (inline)
 	virtual void doCreateObj(JKRArchive*);                  // _20
 	virtual void doUserCallBackFunc(Resource::MgrCommand*); // _24
 	virtual void doUpdateActive();                          // _2C
 	virtual void doConfirmSetScene(Screen::SetSceneArg&);   // _30
 	virtual void doSetBackupScene(Screen::SetSceneArg&);    // _48
 
-	// _00 VTBL
+	SMenuItem();
 };
 } // namespace newScreen
 } // namespace og

@@ -20,27 +20,23 @@
 */
 
 struct J2DIndBlock {
-	virtual void initialize();                                            // _08
-	virtual void setGX();                                                 // _0C
-	virtual void getType();                                               // _10
-	virtual void setIndTexStageNum(unsigned char);                        // _14
-	virtual void getIndTexStageNum() const;                               // _18
-	virtual void setIndTexOrder(unsigned long, J2DIndTexOrder);           // _1C
-	virtual void getIndTexOrder(unsigned long);                           // _20
-	virtual void setIndTexMtx(unsigned long, J2DIndTexMtx);               // _24
-	virtual void getIndTexMtx(unsigned long);                             // _28
-	virtual void setIndTexCoordScale(unsigned long, J2DIndTexCoordScale); // _2C
-	virtual void getIndTexCoordScale(unsigned long);                      // _30
-
-	// _00 VTBL
+	virtual void initialize();                                            // _08 (inline)
+	virtual void setGX();                                                 // _0C (inline)
+	virtual void getType();                                               // _10 (inline)
+	virtual void setIndTexStageNum(unsigned char);                        // _14 (inline)
+	virtual void getIndTexStageNum() const;                               // _18 (inline)
+	virtual void setIndTexOrder(unsigned long, J2DIndTexOrder);           // _1C (inline)
+	virtual void getIndTexOrder(unsigned long);                           // _20 (inline)
+	virtual void setIndTexMtx(unsigned long, J2DIndTexMtx);               // _24 (inline)
+	virtual void getIndTexMtx(unsigned long);                             // _28 (inline)
+	virtual void setIndTexCoordScale(unsigned long, J2DIndTexCoordScale); // _2C (inline)
+	virtual void getIndTexCoordScale(unsigned long);                      // _30 (inline)
 };
 
 struct J2DIndBlockNull : public J2DIndBlock {
-	virtual void setGX();       // _0C
-	virtual void getType();     // _10
-	virtual ~J2DIndBlockNull(); // _34
-
-	// _00 VTBL
+	virtual void setGX();       // _0C (inline)
+	virtual void getType();     // _10 (inline)
+	virtual ~J2DIndBlockNull(); // _34 (inline)
 };
 
 #endif

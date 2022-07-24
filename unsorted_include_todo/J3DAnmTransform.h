@@ -12,12 +12,10 @@
 */
 
 struct J3DAnmTransform {
-	virtual ~J3DAnmTransform();   // _08
-	virtual void getKind() const; // _0C
+	virtual ~J3DAnmTransform();   // _08 (inline)
+	virtual void getKind() const; // _0C (inline)
 	virtual void _10() = 0;       // _10
 	virtual void _14() = 0;       // _14
-
-	// _00 VTBL
 };
 
 #endif

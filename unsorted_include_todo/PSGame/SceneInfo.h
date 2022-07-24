@@ -10,9 +10,12 @@
 
 namespace PSGame {
 struct SceneInfo {
-	virtual void isCaveFloor(); // _08
+	virtual void isCaveFloor(); // _08 (inline)
 
-	// _00 VTBL
+	SceneInfo();
+	void setStageFlag(PSGame::SceneInfo::FlagDef, PSGame::SceneInfo::FlagBitShift);
+	void getFlag(PSGame::SceneInfo::FlagBitShift) const;
+	void setStageCamera() const;
 };
 } // namespace PSGame
 

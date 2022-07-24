@@ -23,8 +23,6 @@ struct EnemyStateMachine {
 	virtual void doDirectDraw(EnemyBase*, Graphics&);      // _18
 	virtual void getCurrState(EnemyBase*);                 // _1C
 	virtual void setCurrState(EnemyBase*, EnemyFSMState*); // _20
-
-	// _00 VTBL
 };
 } // namespace Game
 
@@ -32,8 +30,6 @@ namespace Game {
 namespace MiniHoudai {
 struct FSM : public EnemyStateMachine {
 	virtual void init(EnemyBase*); // _08
-
-	// _00 VTBL
 };
 } // namespace MiniHoudai
 } // namespace Game

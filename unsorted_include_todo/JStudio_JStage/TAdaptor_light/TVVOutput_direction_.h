@@ -13,9 +13,7 @@ namespace JStudio_JStage {
 namespace TAdaptor_light {
 struct TVVOutput_direction_ {
 	virtual void operator()(float, JStudio::TAdaptor*) const; // _08
-	virtual ~TVVOutput_direction_();                          // _0C
-
-	// _00 VTBL
+	virtual ~TVVOutput_direction_();                          // _0C (inline)
 };
 } // namespace TAdaptor_light
 } // namespace JStudio_JStage

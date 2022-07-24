@@ -35,39 +35,35 @@ namespace FSMState < Game
 {
 	struct Navi >
 	{
-		virtual void _08() = 0;                                 // _08
-		virtual void _0C() = 0;                                 // _0C
-		virtual void _10() = 0;                                 // _10
-		virtual void FSMState < resume(Navi*);                  // _14
-		virtual void FSMState < restart(Navi*);                 // _18
-		virtual void FSMState < transit(Navi*, int, StateArg*); // _1C
-
-		// _00 VTBL
+		virtual void init(Navi*, StateArg*);                    // _08
+		virtual void exec(Navi*);                               // _0C
+		virtual void cleanup(Navi*);                            // _10
+		virtual void FSMState < resume(Navi*);                  // _14 (inline)
+		virtual void FSMState < restart(Navi*);                 // _18 (inline)
+		virtual void FSMState < transit(Navi*, int, StateArg*); // _1C (inline)
 	};
 } // namespace Game
 } // namespace Game
 
 namespace Game {
 struct NaviState {
-	virtual void _08() = 0;                                    // _08
-	virtual void _0C() = 0;                                    // _0C
-	virtual void _10() = 0;                                    // _10
+	virtual void init(Navi*, StateArg*);                       // _08
+	virtual void exec(Navi*);                                  // _0C
+	virtual void cleanup(Navi*);                               // _10
 	virtual void _14() = 0;                                    // _14
 	virtual void _18() = 0;                                    // _18
 	virtual void _1C() = 0;                                    // _1C
-	virtual void _20() = 0;                                    // _20
-	virtual void onKeyEvent(Navi*, const SysShape::KeyEvent&); // _24
-	virtual void collisionCallback(Navi*, CollEvent&);         // _28
-	virtual void wallCallback(Navi*, Vector3<float>&);         // _2C
-	virtual void bounceCallback(Navi*, Sys::Triangle*);        // _30
-	virtual void _34() = 0;                                    // _34
-	virtual void callable();                                   // _38
-	virtual void ignoreAtari(Creature*);                       // _3C
-	virtual void needYChangeMotion();                          // _40
-	virtual void _44() = 0;                                    // _44
+	virtual void invincible();                                 // _20 (inline)
+	virtual void onKeyEvent(Navi*, const SysShape::KeyEvent&); // _24 (inline)
+	virtual void collisionCallback(Navi*, CollEvent&);         // _28 (inline)
+	virtual void wallCallback(Navi*, Vector3<float>&);         // _2C (inline)
+	virtual void bounceCallback(Navi*, Sys::Triangle*);        // _30 (inline)
+	virtual void pressable();                                  // _34 (inline)
+	virtual void callable();                                   // _38 (inline)
+	virtual void ignoreAtari(Creature*);                       // _3C (inline)
+	virtual void needYChangeMotion();                          // _40 (inline)
+	virtual void vsUsableY();                                  // _44 (inline)
 	virtual void draw2d(J2DGrafContext&, int&);                // _48
-
-	// _00 VTBL
 };
 } // namespace Game
 
@@ -76,17 +72,15 @@ struct NaviPressedState : public Navi >, public NaviState {
 	virtual void init(Navi*, StateArg*); // _08
 	virtual void exec(Navi*);            // _0C
 	virtual void cleanup(Navi*);         // _10
-	virtual void invincible();           // _20
-	virtual void pressable();            // _34
-	virtual void vsUsableY();            // _44
+	virtual void invincible();           // _20 (inline)
+	virtual void pressable();            // _34 (inline)
+	virtual void vsUsableY();            // _44 (inline)
 	virtual void _4C() = 0;              // _4C
 	virtual void _50() = 0;              // _50
 	virtual void _54() = 0;              // _54
 	virtual void _58() = 0;              // _58
 	virtual void _5C() = 0;              // _5C
 	virtual void _60() = 0;              // _60
-
-	// _00 VTBL
 };
 } // namespace Game
 

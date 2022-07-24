@@ -16,8 +16,6 @@ struct J3DShape {
 	virtual void drawFast() const;        // _0C
 	virtual void simpleDraw() const;      // _10
 	virtual void simpleDrawCache() const; // _14
-
-	// _00 VTBL
 };
 
 #endif

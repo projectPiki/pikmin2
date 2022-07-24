@@ -12,19 +12,15 @@
 
 namespace JADUtility {
 struct StrPrm {
-	virtual ~StrPrm();                         // _08
-	virtual void save(JSUMemoryOutputStream&); // _0C
-	virtual void load(JSUMemoryInputStream&);  // _10
-
-	// _00 VTBL
+	virtual ~StrPrm();                         // _08 (inline)
+	virtual void save(JSUMemoryOutputStream&); // _0C (inline)
+	virtual void load(JSUMemoryInputStream&);  // _10 (inline)
 };
 } // namespace JADUtility
 
 namespace JADUtility {
 struct StrEditBox : public StrPrm {
-	virtual ~StrEditBox(); // _08
-
-	// _00 VTBL
+	virtual ~StrEditBox(); // _08 (inline)
 };
 } // namespace JADUtility
 

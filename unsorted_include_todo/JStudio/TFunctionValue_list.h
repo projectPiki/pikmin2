@@ -15,14 +15,18 @@
 
 namespace JStudio {
 struct TFunctionValue_list {
-	virtual ~TFunctionValue_list(); // _08
+	virtual ~TFunctionValue_list(); // _08 (inline)
 	virtual void getType() const;   // _0C
 	virtual void getAttributeSet(); // _10
 	virtual void initialize();      // _14
 	virtual void prepare();         // _18
 	virtual void getValue(double);  // _1C
 
-	// _00 VTBL
+	TFunctionValue_list();
+	void update_INTERPOLATE_NONE_(const JStudio::TFunctionValue_list&, const JStudio::TFunctionValue_list::TIndexData_&);
+	void update_INTERPOLATE_LINEAR_(const JStudio::TFunctionValue_list&, const JStudio::TFunctionValue_list::TIndexData_&);
+	void update_INTERPOLATE_PLATEAU_(const JStudio::TFunctionValue_list&, const JStudio::TFunctionValue_list::TIndexData_&);
+	void update_INTERPOLATE_BSPLINE_dataMore3_(const JStudio::TFunctionValue_list&, const JStudio::TFunctionValue_list::TIndexData_&);
 };
 } // namespace JStudio
 

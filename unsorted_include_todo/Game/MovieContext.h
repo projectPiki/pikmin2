@@ -12,19 +12,17 @@
 */
 
 struct CNode {
-	virtual ~CNode();             // _08
+	virtual ~CNode();             // _08 (inline)
 	virtual void getChildCount(); // _0C
-
-	// _00 VTBL
 };
 
 namespace Game {
 struct MovieContext : public CNode {
-	virtual ~MovieContext(); // _08
-	virtual void getChild(); // _10
-	virtual void getNext();  // _14
+	virtual ~MovieContext(); // _08 (inline)
+	virtual void getChild(); // _10 (inline)
+	virtual void getNext();  // _14 (inline)
 
-	// _00 VTBL
+	MovieContext();
 };
 } // namespace Game
 

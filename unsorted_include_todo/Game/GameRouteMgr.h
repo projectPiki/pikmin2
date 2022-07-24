@@ -20,46 +20,40 @@
 */
 
 struct CNode {
-	virtual void _08() = 0;       // _08
+	virtual ~CNode();             // _08
 	virtual void getChildCount(); // _0C
-
-	// _00 VTBL
 };
 
 namespace Container < Game
 {
 	struct WayPoint >
 	{
-		virtual void _08() = 0;        // _08
+		virtual ~WayPoint > ();        // _08
 		virtual void _0C() = 0;        // _0C
-		virtual void getObject(void*); // _10
-		virtual void _14() = 0;        // _14
-		virtual void _18() = 0;        // _18
-		virtual void _1C() = 0;        // _1C
-		virtual void _20() = 0;        // _20
-		virtual void getAt(int);       // _24
-		virtual void getTo();          // _28
-
-		// _00 VTBL
+		virtual void getObject(void*); // _10 (inline)
+		virtual void getNext(void*);   // _14
+		virtual void getStart();       // _18
+		virtual void getEnd();         // _1C
+		virtual void get(void*);       // _20
+		virtual void getAt(int);       // _24 (inline)
+		virtual void getTo();          // _28 (inline)
 	};
 } // namespace Game
 
 namespace Game {
 struct RouteMgr {
-	virtual void _08() = 0;      // _08
-	virtual void _0C() = 0;      // _0C
-	virtual void _10() = 0;      // _10
-	virtual void _14() = 0;      // _14
-	virtual void _18() = 0;      // _18
-	virtual void _1C() = 0;      // _1C
-	virtual void _20() = 0;      // _20
-	virtual void _24() = 0;      // _24
-	virtual void _28() = 0;      // _28
-	virtual void _2C() = 0;      // _2C
-	virtual void _30() = 0;      // _30
-	virtual void write(Stream&); // _34
-
-	// _00 VTBL
+	virtual ~RouteMgr();             // _08
+	virtual void _0C() = 0;          // _0C
+	virtual void _10() = 0;          // _10
+	virtual void getNext(void*);     // _14
+	virtual void getStart();         // _18
+	virtual void getEnd();           // _1C
+	virtual void get(void*);         // _20
+	virtual void _24() = 0;          // _24
+	virtual void _28() = 0;          // _28
+	virtual void getWayPoint(short); // _2C
+	virtual void read(Stream&);      // _30
+	virtual void write(Stream&);     // _34
 };
 } // namespace Game
 
@@ -73,7 +67,7 @@ struct GameRouteMgr : public CNode, public WayPoint >, public RouteMgr {
 	virtual void getWayPoint(short); // _2C
 	virtual void read(Stream&);      // _30
 
-	// _00 VTBL
+	GameRouteMgr();
 };
 } // namespace Game
 

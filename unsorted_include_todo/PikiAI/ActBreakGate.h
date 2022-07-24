@@ -27,21 +27,19 @@
 
 namespace PikiAI {
 struct Action {
-    virtual void init(ActionArg*);                                 // _08
-    virtual void exec();                                           // _0C
-    virtual void cleanup();                                        // _10
-    virtual void emotion_success();                                // _14
-    virtual void emotion_fail();                                   // _18
-    virtual void applicable();                                     // _1C
-    virtual void getNextAIType();                                  // _20
-    virtual void bounceCallback(Game::Piki*, Sys::Triangle*);      // _24
+    virtual void init(ActionArg*);                            // _08
+    virtual void exec();                                      // _0C
+    virtual void cleanup();                                   // _10
+    virtual void emotion_success();                           // _14
+    virtual void emotion_fail();                              // _18 (inline)
+    virtual void applicable();                                // _1C (inline)
+    virtual void getNextAIType();                             // _20 (inline)
+    virtual void bounceCallback(Game::Piki*, Sys::Triangle*); // _24
     virtual void collisionCallback(Game::Piki*, Game::CollEvent&); // _28
     virtual void platCallback(Game::Piki*, Game::PlatEvent&);      // _2C
-    virtual void doDirectDraw(Graphics&);                          // _30
-    virtual void wallCallback(Vector3<float>&);                    // _34
-    virtual void getInfo(char*);                                   // _38
-
-    // _00 VTBL
+    virtual void doDirectDraw(Graphics&);       // _30 (inline)
+    virtual void wallCallback(Vector3<float>&); // _34 (inline)
+    virtual void getInfo(char*);                // _38
 };
 } // namespace PikiAI
 
@@ -54,12 +52,13 @@ struct ActBreakGate : public Action {
     virtual void bounceCallback(Game::Piki*, Sys::Triangle*);      // _24
     virtual void collisionCallback(Game::Piki*, Game::CollEvent&); // _28
     virtual void platCallback(Game::Piki*, Game::PlatEvent&);      // _2C
-    virtual void onKeyEvent(const SysShape::KeyEvent&);            // _3C
-    virtual void _40() = 0;                                        // _40
-    virtual void _44() = 0;                                        // _44
-    virtual void @52 @4 @onKeyEvent(const SysShape::KeyEvent&);    // _48
+    virtual void onKeyEvent(const SysShape::KeyEvent&);         // _3C (inline)
+    virtual void _40() = 0;                                     // _40
+    virtual void _44() = 0;                                     // _44
+    virtual void @52 @4 @onKeyEvent(const SysShape::KeyEvent&); // _48 (inline)
 
-    // _00 VTBL
+    ActBreakGate();
+    void initFollow();
 };
 } // namespace PikiAI
 

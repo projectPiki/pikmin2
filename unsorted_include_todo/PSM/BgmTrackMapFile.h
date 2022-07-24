@@ -15,14 +15,15 @@
 
 namespace PSM {
 struct BgmTrackMapFile {
-    virtual ~BgmTrackMapFile(); // _08
+    virtual ~BgmTrackMapFile(); // _08 (inline)
     virtual void read(Stream&); // _0C
     virtual void _10() = 0;     // _10
     virtual void _14() = 0;     // _14
-    virtual void @28 @__dt();   // _18
+    virtual void @28 @__dt();   // _18 (inline)
     virtual void _1C() = 0;     // _1C
 
-    // _00 VTBL
+    BgmTrackMapFile();
+    void readTrackMap(const char*);
 };
 } // namespace PSM
 

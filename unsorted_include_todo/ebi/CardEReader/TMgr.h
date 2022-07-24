@@ -13,7 +13,16 @@ namespace CardEReader {
 struct TMgr {
 	virtual ~TMgr(); // _08
 
-	// _00 VTBL
+	void globalInstance();
+	void loadResource();
+	void init();
+	void uploadToGBA(long);
+	void probeAGB();
+	void update();
+	void isFinish();
+	void threadProc(void*);
+	void tryUploadToGBA_();
+	void goEnd_(ebi::CardEReader::TMgr::enumErr);
 };
 } // namespace CardEReader
 } // namespace ebi

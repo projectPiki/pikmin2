@@ -16,16 +16,14 @@
 */
 
 struct Graphics {
-	virtual void doJ3DDrawInit();   // _08
-	virtual void doJ3DDraw(int);    // _0C
-	virtual void doJ3DFrameInit();  // _10
-	virtual void doJ3DAnimation();  // _14
-	virtual void doJ3DUpdateInit(); // _18
-	virtual void doJ3DSetView(int); // _1C
-	virtual void doJ3DViewCalc();   // _20
+	virtual void doJ3DDrawInit();   // _08 (inline)
+	virtual void doJ3DDraw(int);    // _0C (inline)
+	virtual void doJ3DFrameInit();  // _10 (inline)
+	virtual void doJ3DAnimation();  // _14 (inline)
+	virtual void doJ3DUpdateInit(); // _18 (inline)
+	virtual void doJ3DSetView(int); // _1C (inline)
+	virtual void doJ3DViewCalc();   // _20 (inline)
 	virtual void _24() = 0;         // _24
-
-	// _00 VTBL
 };
 
 #endif

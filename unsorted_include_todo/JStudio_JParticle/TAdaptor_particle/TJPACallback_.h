@@ -13,22 +13,18 @@
 */
 
 struct JPAEmitterCallBack {
-	virtual ~JPAEmitterCallBack();              // _08
+	virtual ~JPAEmitterCallBack();              // _08 (inline)
 	virtual void execute(JPABaseEmitter*);      // _0C
-	virtual void executeAfter(JPABaseEmitter*); // _10
-	virtual void draw(JPABaseEmitter*);         // _14
-	virtual void drawAfter(JPABaseEmitter*);    // _18
-
-	// _00 VTBL
+	virtual void executeAfter(JPABaseEmitter*); // _10 (inline)
+	virtual void draw(JPABaseEmitter*);         // _14 (inline)
+	virtual void drawAfter(JPABaseEmitter*);    // _18 (inline)
 };
 
 namespace JStudio_JParticle {
 namespace TAdaptor_particle {
 struct TJPACallback_ : public JPAEmitterCallBack {
-	virtual ~TJPACallback_();              // _08
+	virtual ~TJPACallback_();              // _08 (inline)
 	virtual void execute(JPABaseEmitter*); // _0C
-
-	// _00 VTBL
 };
 } // namespace TAdaptor_particle
 } // namespace JStudio_JParticle

@@ -14,8 +14,6 @@ namespace MemoryCard {
 struct Resource {
 	virtual ~Resource();    // _08
 	virtual void _0C() = 0; // _0C
-
-	// _00 VTBL
 };
 } // namespace MemoryCard
 } // namespace Game

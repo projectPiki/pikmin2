@@ -11,19 +11,18 @@
 */
 
 struct CNode {
-	virtual ~CNode();             // _08
+	virtual ~CNode();             // _08 (inline)
 	virtual void getChildCount(); // _0C
-
-	// _00 VTBL
 };
 
 namespace Game {
 namespace IllustratedBook {
 struct Parms : public CNode {
-	virtual ~Parms();           // _08
+	virtual ~Parms();           // _08 (inline)
 	virtual void read(Stream&); // _10
 
-	// _00 VTBL
+	Parms();
+	void loadFile(JKRArchive*);
 };
 } // namespace IllustratedBook
 } // namespace Game

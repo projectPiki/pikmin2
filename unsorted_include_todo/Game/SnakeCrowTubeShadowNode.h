@@ -10,17 +10,15 @@
 */
 
 struct CNode {
-	virtual ~CNode();             // _08
+	virtual ~CNode();             // _08 (inline)
 	virtual void getChildCount(); // _0C
-
-	// _00 VTBL
 };
 
 namespace Game {
 struct SnakeCrowTubeShadowNode : public CNode {
-	virtual ~SnakeCrowTubeShadowNode(); // _08
+	virtual ~SnakeCrowTubeShadowNode(); // _08 (inline)
 
-	// _00 VTBL
+	void makeShadowSRT(Game::JointShadowParm&, Vector3<float>&, Vector3<float>&);
 };
 } // namespace Game
 

@@ -17,13 +17,11 @@ namespace TSyncGroup2 < efx
 {
 	struct TForever >
 	{
-		virtual void TSyncGroup2 < create(Arg*);       // _08
-		virtual void TSyncGroup2 < forceKill();        // _0C
-		virtual void TSyncGroup2 < fade();             // _10
-		virtual void TSyncGroup2 < startDemoDrawOff(); // _14
-		virtual void TSyncGroup2 < endDemoDrawOn();    // _18
-
-		// _00 VTBL
+		virtual void TSyncGroup2 < create(Arg*);       // _08 (inline)
+		virtual void TSyncGroup2 < forceKill();        // _0C (inline)
+		virtual void TSyncGroup2 < fade();             // _10 (inline)
+		virtual void TSyncGroup2 < startDemoDrawOff(); // _14 (inline)
+		virtual void TSyncGroup2 < endDemoDrawOn();    // _18 (inline)
 	};
 } // namespace efx
 } // namespace efx
@@ -31,7 +29,7 @@ namespace TSyncGroup2 < efx
 namespace efx {
 struct TForever2 : public TForever > {
 
-	// _00 VTBL
+	TForever2();
 };
 } // namespace efx
 

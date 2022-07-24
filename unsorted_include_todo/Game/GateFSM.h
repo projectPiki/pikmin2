@@ -18,11 +18,9 @@ namespace StateMachine < Game
 	struct ItemGate >
 	{
 		virtual void init(ItemGate*);                                   // _08
-		virtual void StateMachine < start(ItemGate*, int, StateArg*);   // _0C
-		virtual void StateMachine < exec(ItemGate*);                    // _10
-		virtual void StateMachine < transit(ItemGate*, int, StateArg*); // _14
-
-		// _00 VTBL
+		virtual void StateMachine < start(ItemGate*, int, StateArg*);   // _0C (inline)
+		virtual void StateMachine < exec(ItemGate*);                    // _10 (inline)
+		virtual void StateMachine < transit(ItemGate*, int, StateArg*); // _14 (inline)
 	};
 } // namespace Game
 } // namespace Game
@@ -31,8 +29,6 @@ namespace Game {
 struct GateFSM : public ItemGate > {
 	virtual void init(ItemGate*); // _08
 	virtual void _18() = 0;       // _18
-
-	// _00 VTBL
 };
 } // namespace Game
 

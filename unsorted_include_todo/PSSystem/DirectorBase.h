@@ -21,20 +21,25 @@
 
 namespace PSSystem {
 struct DirectorBase {
-	virtual ~DirectorBase();            // _08
+	virtual ~DirectorBase();            // _08 (inline)
 	virtual void exec();                // _0C
 	virtual void directOn();            // _10
 	virtual void directOff();           // _14
-	virtual void underDirection();      // _18
-	virtual void execInner();           // _1C
+	virtual void underDirection();      // _18 (inline)
+	virtual void execInner();           // _1C (inline)
 	virtual void _20() = 0;             // _20
 	virtual void _24() = 0;             // _24
 	virtual void doUpdateRequest();     // _28
-	virtual void onPlayInit(JASTrack*); // _2C
-	virtual void onDirectOn();          // _30
-	virtual void onDirectOff();         // _34
+	virtual void onPlayInit(JASTrack*); // _2C (inline)
+	virtual void onDirectOn();          // _30 (inline)
+	virtual void onDirectOff();         // _34 (inline)
 
-	// _00 VTBL
+	DirectorBase();
+	void isUnderDirection();
+	void setTrack(unsigned char, PSSystem::SeqTrackBase*);
+	void directOnInner();
+	void directOffInner();
+	void powerOn();
 };
 } // namespace PSSystem
 

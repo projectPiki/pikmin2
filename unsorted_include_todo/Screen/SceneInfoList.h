@@ -11,18 +11,16 @@
 */
 
 struct CNode {
-	virtual ~CNode();             // _08
+	virtual ~CNode();             // _08 (inline)
 	virtual void getChildCount(); // _0C
-
-	// _00 VTBL
 };
 
 namespace Screen {
 struct SceneInfoList : public CNode {
-	virtual ~SceneInfoList(); // _08
+	virtual ~SceneInfoList(); // _08 (inline)
 	virtual void _10() = 0;   // _10
 
-	// _00 VTBL
+	SceneInfoList();
 };
 } // namespace Screen
 

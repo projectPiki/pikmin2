@@ -12,7 +12,9 @@ namespace PSM {
 struct WorldMapRocket {
 	virtual ~WorldMapRocket(); // _08
 
-	// _00 VTBL
+	WorldMapRocket();
+	void startRocketSE(float, float);
+	void stateChange(PSM::WorldMapRocket::rocketState);
 };
 } // namespace PSM
 

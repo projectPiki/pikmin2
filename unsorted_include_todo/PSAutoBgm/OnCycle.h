@@ -13,10 +13,12 @@
 namespace PSAutoBgm {
 struct OnCycle {
 	virtual void play(JASTrack*); // _08
-	virtual void getCycleType();  // _0C
+	virtual void getCycleType();  // _0C (inline)
 	virtual void avoidCheck();    // _10
 
-	// _00 VTBL
+	OnCycle();
+	void setTip(JASTrack*);
+	void historiesAreSameAll();
 };
 } // namespace PSAutoBgm
 

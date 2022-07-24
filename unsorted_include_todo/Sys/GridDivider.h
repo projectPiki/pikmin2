@@ -19,41 +19,37 @@
 */
 
 struct CNode {
-	virtual void _08() = 0;       // _08
+	virtual ~CNode();             // _08 (inline)
 	virtual void getChildCount(); // _0C
-
-	// _00 VTBL
 };
 
 namespace Sys {
 struct TriDivider {
-	virtual void _08() = 0;       // _08
-	virtual void _0C() = 0;       // _0C
-	virtual void _10() = 0;       // _10
-	virtual void _14() = 0;       // _14
-	virtual void _18() = 0;       // _18
-	virtual void _1C() = 0;       // _1C
-	virtual void _20() = 0;       // _20
-	virtual void _24() = 0;       // _24
-	virtual void clone(Matrixf&); // _28
-
-	// _00 VTBL
+	virtual ~TriDivider();                            // _08 (inline)
+	virtual void _0C() = 0;                           // _0C
+	virtual void getMinY(Vector3<float>&);            // _10
+	virtual void findTriLists(Sphere&);               // _14
+	virtual void read(Stream&);                       // _18
+	virtual void getCurrTri(Game::CurrTriInfo&);      // _1C
+	virtual void createTriangles(CreateTriangleArg&); // _20
+	virtual void getBoundBox(BoundBox&);              // _24 (inline)
+	virtual void clone(Matrixf&);                     // _28 (inline)
 };
 } // namespace Sys
 
 namespace Sys {
 struct GridDivider : public CNode, public TriDivider {
-	virtual ~GridDivider();                                        // _08
+	virtual ~GridDivider();                                        // _08 (inline)
 	virtual void getMinY(Vector3<float>&);                         // _10
 	virtual void findTriLists(Sphere&);                            // _14
 	virtual void read(Stream&);                                    // _18
 	virtual void getCurrTri(Game::CurrTriInfo&);                   // _1C
 	virtual void createTriangles(CreateTriangleArg&);              // _20
-	virtual void getBoundBox(BoundBox&);                           // _24
+	virtual void getBoundBox(BoundBox&);                           // _24 (inline)
 	virtual void do_clone(Matrixf&, VertexTable*, TriangleTable*); // _2C
 	virtual void _30() = 0;                                        // _30
 
-	// _00 VTBL
+	void create(BoundBox&, int, int, Sys::VertexTable*, Sys::TriangleTable*);
 };
 } // namespace Sys
 

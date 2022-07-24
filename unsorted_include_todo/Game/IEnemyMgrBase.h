@@ -50,14 +50,12 @@ struct GenericObjectMgr {
     virtual void _14() = 0;               // _14
     virtual void _18() = 0;               // _18
     virtual void _1C() = 0;               // _1C
-    virtual void doSimpleDraw(Viewport*); // _20
-    virtual void loadResources();         // _24
-    virtual void resetMgr();              // _28
-    virtual void pausable();              // _2C
-    virtual void frozenable();            // _30
-    virtual void getMatrixLoadType();     // _34
-
-    // _00 VTBL
+    virtual void doSimpleDraw(Viewport*); // _20 (inline)
+    virtual void loadResources();         // _24 (inline)
+    virtual void resetMgr();              // _28 (inline)
+    virtual void pausable();              // _2C (inline)
+    virtual void frozenable();            // _30 (inline)
+    virtual void getMatrixLoadType();     // _34 (inline)
 };
 
 struct CNode {
@@ -75,10 +73,8 @@ struct CNode {
     virtual void _34() = 0;       // _34
     virtual void _38() = 0;       // _38
     virtual void _3C() = 0;       // _3C
-    virtual void _40() = 0;       // _40
+    virtual void @4 @__dt();      // _40 (inline)
     virtual void getChildCount(); // _44
-
-    // _00 VTBL
 };
 
 namespace Game {
@@ -91,12 +87,12 @@ struct IEnemyMgrBase : public GenericObjectMgr, public CNode {
     virtual void _1C() = 0;   // _1C
     virtual void _38() = 0;   // _38
     virtual void _3C() = 0;   // _3C
-    virtual void @4 @__dt();  // _40
+    virtual void @4 @__dt();  // _40 (inline)
     virtual void _48() = 0;   // _48
     virtual void _4C() = 0;   // _4C
     virtual void _50() = 0;   // _50
     virtual void _54() = 0;   // _54
-    virtual ~IEnemyMgrBase(); // _58
+    virtual ~IEnemyMgrBase(); // _58 (inline)
     virtual void _5C() = 0;   // _5C
     virtual void _60() = 0;   // _60
     virtual void _64() = 0;   // _64
@@ -112,8 +108,6 @@ struct IEnemyMgrBase : public GenericObjectMgr, public CNode {
     virtual void _8C() = 0;   // _8C
     virtual void _90() = 0;   // _90
     virtual void _94() = 0;   // _94
-
-    // _00 VTBL
 };
 } // namespace Game
 

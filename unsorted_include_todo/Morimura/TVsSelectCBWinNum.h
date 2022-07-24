@@ -32,59 +32,51 @@
 */
 
 struct CNode {
-	virtual void _08() = 0;       // _08
+	virtual ~CNode();             // _08 (inline)
 	virtual void getChildCount(); // _0C
-
-	// _00 VTBL
 };
 
 namespace og {
 namespace Screen {
 struct CallBack_CounterRV {
-	virtual void _08() = 0;                        // _08
+	virtual ~CallBack_CounterRV();                 // _08 (inline)
 	virtual void _0C() = 0;                        // _0C
-	virtual void _10() = 0;                        // _10
+	virtual void update();                         // _10
 	virtual void draw(Graphics&, J2DGrafContext&); // _14
-
-	// _00 VTBL
 };
 } // namespace Screen
 } // namespace og
 
 namespace P2DScreen {
 struct Node {
-	virtual void _08() = 0; // _08
+	virtual ~Node();        // _08 (inline)
 	virtual void _0C() = 0; // _0C
-	virtual void _10() = 0; // _10
+	virtual void update();  // _10
 	virtual void _14() = 0; // _14
-	virtual void doInit();  // _18
-
-	// _00 VTBL
+	virtual void doInit();  // _18 (inline)
 };
 } // namespace P2DScreen
 
 namespace og {
 namespace Screen {
 struct CallBack_CounterDay {
-	virtual void _08() = 0;                                                                                          // _08
+	virtual ~CallBack_CounterDay();                                                                                  // _08 (inline)
 	virtual void _0C() = 0;                                                                                          // _0C
-	virtual void _10() = 0;                                                                                          // _10
+	virtual void update();                                                                                           // _10
 	virtual void _14() = 0;                                                                                          // _14
 	virtual void _18() = 0;                                                                                          // _18
 	virtual void init(J2DScreen*, unsigned long long, unsigned long long, unsigned long long, unsigned long*, bool); // _1C
 	virtual void show();                                                                                             // _20
 	virtual void hide();                                                                                             // _24
-	virtual void _28() = 0;                                                                                          // _28
+	virtual void setValue(bool, bool);                                                                               // _28
 	virtual void setValue();                                                                                         // _2C
-
-	// _00 VTBL
 };
 } // namespace Screen
 } // namespace og
 
 namespace Morimura {
 struct TVsSelectCBWinNum : public CNode, public CallBack_CounterRV, public Node, public CallBack_CounterDay {
-	virtual ~TVsSelectCBWinNum();      // _08
+	virtual ~TVsSelectCBWinNum();      // _08 (inline)
 	virtual void update();             // _10
 	virtual void setValue(bool, bool); // _28
 	virtual void _30() = 0;            // _30
@@ -101,8 +93,6 @@ struct TVsSelectCBWinNum : public CNode, public CallBack_CounterRV, public Node,
 	virtual void _5C() = 0;            // _5C
 	virtual void _60() = 0;            // _60
 	virtual void _64() = 0;            // _64
-
-	// _00 VTBL
 };
 } // namespace Morimura
 

@@ -35,8 +35,6 @@ struct TProcessor {
 	virtual void do_select_separate();                                         // _24
 	virtual void do_reset_(const char*);                                       // _28
 	virtual void do_setBegin_isReady_() const;                                 // _2C
-
-	// _00 VTBL
 };
 } // namespace JMessage
 
@@ -51,7 +49,8 @@ struct TRenderingProcessor : public TProcessor {
 	virtual void do_begin(const void*, const char*);                            // _40
 	virtual void do_end();                                                      // _44
 
-	// _00 VTBL
+	TRenderingProcessor();
+	void process(const char*);
 };
 } // namespace JMessage
 

@@ -10,19 +10,17 @@
 */
 
 struct CNode {
-	virtual ~CNode();             // _08
+	virtual ~CNode();             // _08 (inline)
 	virtual void getChildCount(); // _0C
-
-	// _00 VTBL
 };
 
 namespace Game {
 namespace ItemUjamushi {
 namespace BoidParameter {
 struct TNode : public CNode {
-	virtual ~TNode(); // _08
+	virtual ~TNode(); // _08 (inline)
 
-	// _00 VTBL
+	TNode();
 };
 } // namespace BoidParameter
 } // namespace ItemUjamushi

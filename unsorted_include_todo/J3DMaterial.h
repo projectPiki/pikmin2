@@ -28,8 +28,6 @@ struct J3DMaterial {
 	virtual void diff(unsigned long);                // _24
 	virtual void reset();                            // _28
 	virtual void change();                           // _2C
-
-	// _00 VTBL
 };
 
 #endif

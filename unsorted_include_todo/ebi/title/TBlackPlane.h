@@ -12,10 +12,8 @@
 namespace ebi {
 namespace title {
 struct TObjBase {
-	virtual void getCreatureType(); // _08
-	virtual void isCalc();          // _0C
-
-	// _00 VTBL
+	virtual void getCreatureType(); // _08 (inline)
+	virtual void isCalc();          // _0C (inline)
 };
 } // namespace title
 } // namespace ebi
@@ -24,7 +22,12 @@ namespace ebi {
 namespace title {
 struct TBlackPlane : public TObjBase {
 
-	// _00 VTBL
+	void setArchive(JKRArchive*);
+	void start();
+	void updateBeforeCamera();
+	void updateAfterCamera();
+	void setLogo();
+	void getCameraPos();
 };
 } // namespace title
 } // namespace ebi

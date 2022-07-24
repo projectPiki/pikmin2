@@ -21,28 +21,24 @@
 
 namespace Game {
 struct EnemyFSMState {
-	virtual void init(EnemyBase*, StateArg*);         // _08
-	virtual void exec(EnemyBase*);                    // _0C
-	virtual void cleanup(EnemyBase*);                 // _10
-	virtual void resume(EnemyBase*);                  // _14
-	virtual void restart(EnemyBase*);                 // _18
+	virtual void init(EnemyBase*, StateArg*);         // _08 (inline)
+	virtual void exec(EnemyBase*);                    // _0C (inline)
+	virtual void cleanup(EnemyBase*);                 // _10 (inline)
+	virtual void resume(EnemyBase*);                  // _14 (inline)
+	virtual void restart(EnemyBase*);                 // _18 (inline)
 	virtual void transit(EnemyBase*, int, StateArg*); // _1C
-	virtual void doDirectDraw(EnemyBase*, Graphics&); // _20
-
-	// _00 VTBL
+	virtual void doDirectDraw(EnemyBase*, Graphics&); // _20 (inline)
 };
 } // namespace Game
 
 namespace Game {
 namespace EnemyBaseFSM {
 struct State : public EnemyFSMState {
-	virtual void update(EnemyBase*);                          // _24
-	virtual void entry(EnemyBase*);                           // _28
-	virtual void simulation(EnemyBase*, float);               // _2C
-	virtual void bounceProcedure(EnemyBase*, Sys::Triangle*); // _30
+	virtual void update(EnemyBase*);                          // _24 (inline)
+	virtual void entry(EnemyBase*);                           // _28 (inline)
+	virtual void simulation(EnemyBase*, float);               // _2C (inline)
+	virtual void bounceProcedure(EnemyBase*, Sys::Triangle*); // _30 (inline)
 	virtual void animation(EnemyBase*);                       // _34
-
-	// _00 VTBL
 };
 } // namespace EnemyBaseFSM
 } // namespace Game

@@ -15,46 +15,38 @@
 */
 
 struct CNode {
-	virtual void _08() = 0;       // _08
+	virtual ~CNode();             // _08 (inline)
 	virtual void getChildCount(); // _0C
-
-	// _00 VTBL
 };
 
 namespace kh {
 namespace Screen {
 struct khUtilFadePane {
-	virtual void _08() = 0;       // _08
+	virtual ~khUtilFadePane();    // _08 (inline)
 	virtual void _0C() = 0;       // _0C
 	virtual void update();        // _10
 	virtual void _14() = 0;       // _14
 	virtual void _18() = 0;       // _18
-	virtual void fadein_finish(); // _1C
-
-	// _00 VTBL
+	virtual void fadein_finish(); // _1C (inline)
 };
 } // namespace Screen
 } // namespace kh
 
 namespace P2DScreen {
 struct Node {
-	virtual void _08() = 0;                        // _08
+	virtual ~Node();                               // _08 (inline)
 	virtual void _0C() = 0;                        // _0C
 	virtual void _10() = 0;                        // _10
-	virtual void draw(Graphics&, J2DGrafContext&); // _14
-	virtual void doInit();                         // _18
-
-	// _00 VTBL
+	virtual void draw(Graphics&, J2DGrafContext&); // _14 (inline)
+	virtual void doInit();                         // _18 (inline)
 };
 } // namespace P2DScreen
 
 namespace kh {
 namespace Screen {
 struct khUtilFadePaneWM : public CNode, public khUtilFadePane, public Node {
-	virtual ~khUtilFadePaneWM();   // _08
+	virtual ~khUtilFadePaneWM();   // _08 (inline)
 	virtual void fadeout_finish(); // _20
-
-	// _00 VTBL
 };
 } // namespace Screen
 } // namespace kh

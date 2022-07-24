@@ -11,10 +11,8 @@
 
 namespace Game {
 struct Lowscore {
-	virtual void do_higher(int, int); // _08
+	virtual void do_higher(int, int); // _08 (inline)
 	virtual void _0C() = 0;           // _0C
-
-	// _00 VTBL
 };
 } // namespace Game
 

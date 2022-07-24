@@ -15,10 +15,8 @@ namespace StartSceneArgTemplate < og
 	namespace newScreen {
 	struct StartSceneArgSMenu >
 	{
-		virtual void getSceneType() const; // _08
-		virtual void newgetClassSize();    // _0C
-
-		// _00 VTBL
+		virtual void getSceneType() const; // _08 (inline)
+		virtual void newgetClassSize();    // _0C (inline)
 	};
 	} // namespace newScreen
 } // namespace og
@@ -27,9 +25,7 @@ namespace StartSceneArgTemplate < og
 namespace og {
 namespace newScreen {
 struct StartSceneArgSMenu : public StartSceneArgSMenu > {
-	virtual void getSceneType() const; // _08
-
-	// _00 VTBL
+	virtual void getSceneType() const; // _08 (inline)
 };
 } // namespace newScreen
 } // namespace og

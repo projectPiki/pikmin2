@@ -12,8 +12,6 @@
 struct J2DPrint {
 	virtual ~J2DPrint();    // _08
 	virtual void _0C() = 0; // _0C
-
-	// _00 VTBL
 };
 
 #endif

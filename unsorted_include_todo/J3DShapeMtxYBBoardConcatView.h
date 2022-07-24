@@ -16,35 +16,29 @@
 */
 
 struct J3DShapeMtx {
-	virtual void _08() = 0;                                                  // _08
-	virtual void _0C() = 0;                                                  // _0C
-	virtual void getUseMtxNum() const;                                       // _10
-	virtual void getUseMtxIndex(unsigned short) const;                       // _14
-	virtual void _18() = 0;                                                  // _18
+	virtual ~J3DShapeMtx();                                                  // _08 (inline)
+	virtual void getType() const;                                            // _0C (inline)
+	virtual void getUseMtxNum() const;                                       // _10 (inline)
+	virtual void getUseMtxIndex(unsigned short) const;                       // _14 (inline)
+	virtual void load() const;                                               // _18
 	virtual void calcNBTScale(const Vec&, float (*)[3][3], float (*)[3][3]); // _1C
-
-	// _00 VTBL
 };
 
 struct J3DShapeMtxConcatView {
-	virtual void _08() = 0;                                           // _08
-	virtual void _0C() = 0;                                           // _0C
+	virtual ~J3DShapeMtxConcatView();                                 // _08 (inline)
+	virtual void getType() const;                                     // _0C (inline)
 	virtual void _10() = 0;                                           // _10
 	virtual void _14() = 0;                                           // _14
-	virtual void _18() = 0;                                           // _18
+	virtual void load() const;                                        // _18
 	virtual void _1C() = 0;                                           // _1C
-	virtual void loadNrmMtx(int, unsigned short) const;               // _20
+	virtual void loadNrmMtx(int, unsigned short) const;               // _20 (inline)
 	virtual void loadNrmMtx(int, unsigned short, float (*)[4]) const; // _24
-
-	// _00 VTBL
 };
 
 struct J3DShapeMtxYBBoardConcatView : public J3DShapeMtx, public J3DShapeMtxConcatView {
-	virtual ~J3DShapeMtxYBBoardConcatView(); // _08
-	virtual void getType() const;            // _0C
+	virtual ~J3DShapeMtxYBBoardConcatView(); // _08 (inline)
+	virtual void getType() const;            // _0C (inline)
 	virtual void load() const;               // _18
-
-	// _00 VTBL
 };
 
 #endif

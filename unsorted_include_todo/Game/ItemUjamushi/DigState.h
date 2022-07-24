@@ -27,16 +27,14 @@ namespace FSMState < Game
 		virtual void init(Item*, StateArg*);                                   // _08
 		virtual void exec(Item*);                                              // _0C
 		virtual void cleanup(Item*);                                           // _10
-		virtual void FSMState < resume(Item*);                                 // _14
-		virtual void FSMState < restart(Item*);                                // _18
-		virtual void FSMState < transit(Item*, int, StateArg*);                // _1C
-		virtual void ItemState < onDamage(Item*, float);                       // _20
-		virtual void ItemState < onKeyEvent(Item*, const SysShape::KeyEvent&); // _24
-		virtual void ItemState < onBounce(Item*, Sys::Triangle*);              // _28
-		virtual void ItemState < onPlatCollision(Item*, PlatEvent&);           // _2C
-		virtual void ItemState < onCollision(Item*, CollEvent&);               // _30
-
-		// _00 VTBL
+		virtual void FSMState < resume(Item*);                                 // _14 (inline)
+		virtual void FSMState < restart(Item*);                                // _18 (inline)
+		virtual void FSMState < transit(Item*, int, StateArg*);                // _1C (inline)
+		virtual void ItemState < onDamage(Item*, float);                       // _20 (inline)
+		virtual void ItemState < onKeyEvent(Item*, const SysShape::KeyEvent&); // _24 (inline)
+		virtual void ItemState < onBounce(Item*, Sys::Triangle*);              // _28 (inline)
+		virtual void ItemState < onPlatCollision(Item*, PlatEvent&);           // _2C (inline)
+		virtual void ItemState < onCollision(Item*, CollEvent&);               // _30 (inline)
 	};
 	} // namespace ItemUjamushi
 } // namespace Game
@@ -48,8 +46,6 @@ struct DigState : public Item > {
 	virtual void init(Item*, StateArg*); // _08
 	virtual void exec(Item*);            // _0C
 	virtual void cleanup(Item*);         // _10
-
-	// _00 VTBL
 };
 } // namespace ItemUjamushi
 } // namespace Game

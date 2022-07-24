@@ -13,10 +13,17 @@ namespace ebi {
 namespace title {
 namespace Chappy {
 struct TUnit {
-	virtual void getCreatureType(); // _08
+	virtual void getCreatureType(); // _08 (inline)
 	virtual void isCalc();          // _0C
 
-	// _00 VTBL
+	void setController(Controller*);
+	void init(ebi::title::Chappy::TMgr*);
+	void startZigzagWalk(Vector2<float>&, Vector2<float>&);
+	void goHome();
+	void outOfCalc();
+	void isController();
+	void startAIState_(ebi::title::Chappy::TUnit::enumAIState);
+	void update();
 };
 } // namespace Chappy
 } // namespace title

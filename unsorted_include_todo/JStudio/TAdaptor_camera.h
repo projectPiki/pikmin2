@@ -28,8 +28,6 @@ struct TAdaptor {
 	virtual void adaptor_do_end(const TObject*);                                                          // _14
 	virtual void adaptor_do_update(const TObject*, unsigned long);                                        // _18
 	virtual void adaptor_do_data(const TObject*, const void*, unsigned long, const void*, unsigned long); // _1C
-
-	// _00 VTBL
 };
 } // namespace JStudio
 
@@ -44,7 +42,7 @@ struct TAdaptor_camera : public TAdaptor {
 	virtual void _34() = 0; // _34
 	virtual void _38() = 0; // _38
 
-	// _00 VTBL
+	~TAdaptor_camera();
 };
 } // namespace JStudio
 

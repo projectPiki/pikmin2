@@ -31,20 +31,18 @@
 
 namespace JStudio {
 struct TObject {
-	virtual ~TObject();                                                           // _08
+	virtual ~TObject();                                                           // _08 (inline)
 	virtual void do_begin();                                                      // _0C
 	virtual void do_end();                                                        // _10
 	virtual void do_paragraph(unsigned long, const void*, unsigned long);         // _14
 	virtual void do_wait(unsigned long);                                          // _18
 	virtual void do_data(const void*, unsigned long, const void*, unsigned long); // _1C
-
-	// _00 VTBL
 };
 } // namespace JStudio
 
 namespace JStudio {
 struct TObject_particle : public TObject {
-	virtual ~TObject_particle();                                          // _08
+	virtual ~TObject_particle();                                          // _08 (inline)
 	virtual void do_paragraph(unsigned long, const void*, unsigned long); // _14
 	virtual void _20() = 0;                                               // _20
 	virtual void _24() = 0;                                               // _24
@@ -63,7 +61,7 @@ struct TObject_particle : public TObject {
 	virtual void _58() = 0;                                               // _58
 	virtual void _5C() = 0;                                               // _5C
 
-	// _00 VTBL
+	TObject_particle();
 };
 } // namespace JStudio
 

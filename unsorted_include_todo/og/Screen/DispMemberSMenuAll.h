@@ -14,12 +14,12 @@
 namespace og {
 namespace Screen {
 struct DispMemberSMenuAll {
-	virtual void getSize();           // _08
-	virtual void getOwnerID();        // _0C
-	virtual void getMemberID();       // _10
-	virtual void doSetSubMemberAll(); // _14
+	virtual void getSize();           // _08 (inline)
+	virtual void getOwnerID();        // _0C (inline)
+	virtual void getMemberID();       // _10 (inline)
+	virtual void doSetSubMemberAll(); // _14 (inline)
 
-	// _00 VTBL
+	DispMemberSMenuAll();
 };
 } // namespace Screen
 } // namespace og

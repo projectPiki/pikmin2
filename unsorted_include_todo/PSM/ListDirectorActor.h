@@ -14,17 +14,13 @@ namespace PSSystem {
 struct DirectorCopyActor {
 	virtual void exec(DirectorBase*);   // _08
 	virtual void onUpdateFromMasterD(); // _0C
-	virtual void onUpdateFromSlaveD();  // _10
-
-	// _00 VTBL
+	virtual void onUpdateFromSlaveD();  // _10 (inline)
 };
 } // namespace PSSystem
 
 namespace PSM {
 struct ListDirectorActor : public DirectorCopyActor {
 	virtual void onUpdateFromMasterD(); // _0C
-
-	// _00 VTBL
 };
 } // namespace PSM
 

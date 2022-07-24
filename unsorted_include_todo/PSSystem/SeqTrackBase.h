@@ -16,7 +16,7 @@ struct SeqTrackBase {
 	virtual void init(JASTrack*); // _0C
 	virtual void _10() = 0;       // _10
 
-	// _00 VTBL
+	void getTaskEntryList();
 };
 } // namespace PSSystem
 

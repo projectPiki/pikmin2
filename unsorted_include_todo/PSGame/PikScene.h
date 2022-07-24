@@ -17,7 +17,7 @@
 
 namespace PSSystem {
 struct Scene {
-	virtual void init();                      // _08
+	virtual void init();                      // _08 (inline)
 	virtual ~Scene();                         // _0C
 	virtual void scene1st(TaskChecker*);      // _10
 	virtual void scene1stLoadSync();          // _14
@@ -25,8 +25,6 @@ struct Scene {
 	virtual void startMainSeq();              // _1C
 	virtual void stopMainSeq(unsigned long);  // _20
 	virtual void stopAllSound(unsigned long); // _24
-
-	// _00 VTBL
 };
 } // namespace PSSystem
 
@@ -34,7 +32,8 @@ namespace PSGame {
 struct PikScene : public Scene {
 	virtual ~PikScene(); // _0C
 
-	// _00 VTBL
+	PikScene();
+	void getMiddleBossBgm();
 };
 } // namespace PSGame
 

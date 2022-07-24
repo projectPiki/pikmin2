@@ -38,7 +38,21 @@ struct TProcessor {
 	virtual void _38() = 0;                                                    // _38
 	virtual void _3C() = 0;                                                    // _3C
 
-	// _00 VTBL
+	void setBegin_messageCode(unsigned short, unsigned short);
+	void setBegin_messageID(unsigned long, unsigned long, bool*);
+	void setBegin_messageCode(unsigned long);
+	void getResource_groupID(unsigned short) const;
+	void toMessageCode_messageID(unsigned long, unsigned long, bool*) const;
+	void reset_(const char*);
+	void do_tag_(unsigned long, const void*, unsigned long);
+	void on_message_limited(unsigned short) const;
+	void do_systemTagCode_(unsigned short, const void*, unsigned long);
+	void on_message(unsigned long) const;
+	void getMessageText_messageCode(unsigned long) const;
+	void process_onCharacterEnd_normal_(JMessage::TProcessor*);
+	void process_onCharacterEnd_select_(JMessage::TProcessor*);
+	void process_onSelect_limited_(JMessage::TProcessor*);
+	void process_onSelect_(JMessage::TProcessor*);
 };
 } // namespace JMessage
 

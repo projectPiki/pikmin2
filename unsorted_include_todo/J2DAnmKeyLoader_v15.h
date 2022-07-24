@@ -14,8 +14,6 @@ struct J2DAnmKeyLoader_v15 {
 	virtual void load(const void*);                     // _08
 	virtual void setResource(J2DAnmBase*, const void*); // _0C
 	virtual ~J2DAnmKeyLoader_v15();                     // _10
-
-	// _00 VTBL
 };
 
 #endif

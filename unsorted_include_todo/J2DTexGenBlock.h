@@ -10,8 +10,6 @@
 
 struct J2DTexGenBlock {
 	virtual ~J2DTexGenBlock(); // _08
-
-	// _00 VTBL
 };
 
 #endif

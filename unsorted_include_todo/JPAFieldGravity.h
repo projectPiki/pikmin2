@@ -11,11 +11,9 @@
 */
 
 struct JPAFieldGravity {
-	virtual ~JPAFieldGravity();                                               // _08
+	virtual ~JPAFieldGravity();                                               // _08 (inline)
 	virtual void prepare(JPAEmitterWorkData*, JPAFieldBlock*);                // _0C
 	virtual void calc(JPAEmitterWorkData*, JPAFieldBlock*, JPABaseParticle*); // _10
-
-	// _00 VTBL
 };
 
 #endif

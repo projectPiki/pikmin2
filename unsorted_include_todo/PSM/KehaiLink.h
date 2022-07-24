@@ -13,8 +13,6 @@ namespace PSM {
 struct KehaiLink {
 	virtual void kehaiOn();  // _08
 	virtual void kehaiOff(); // _0C
-
-	// _00 VTBL
 };
 } // namespace PSM
 

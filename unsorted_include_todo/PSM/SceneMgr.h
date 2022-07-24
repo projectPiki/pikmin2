@@ -17,17 +17,15 @@
 
 namespace PSGame {
 struct PikSceneMgr {
-	virtual void exec();                            // _08
+	virtual void exec();                            // _08 (inline)
 	virtual void newAndSetCurrentScene(SceneInfo&); // _0C
 	virtual void newAndSetGlobalScene();            // _10
-
-	// _00 VTBL
 };
 } // namespace PSGame
 
 namespace PSM {
 struct SceneMgr : public PikSceneMgr {
-	virtual void exec();                                           // _08
+	virtual void exec();                                           // _08 (inline)
 	virtual void newMainBgm(const char*, JAInter::SoundInfo&);     // _14
 	virtual void newDirectedBgm(const char*, JAInter::SoundInfo&); // _18
 	virtual void newAutoBgm(const char*, const char*, JAInter::SoundInfo&, JADUtility::AccessMode, PSGame::SceneInfo&,
@@ -35,7 +33,8 @@ struct SceneMgr : public PikSceneMgr {
 	virtual void curSceneIsBigBossFloor();                        // _20
 	virtual void newGameScene(unsigned char, PSGame::SceneInfo*); // _24
 
-	// _00 VTBL
+	SceneMgr();
+	void initEnvironmentSe(PSM::Scene_Game*);
 };
 } // namespace PSM
 

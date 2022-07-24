@@ -11,9 +11,12 @@
 namespace PSSystem {
 namespace WaveScene {
 struct WaveArea {
-	virtual ~WaveArea(); // _08
+	virtual ~WaveArea(); // _08 (inline)
 
-	// _00 VTBL
+	WaveArea();
+	void loadWave(unsigned short, unsigned short, PSSystem::TaskChecker*);
+	void deleteWave();
+	void waveLoadCallback(unsigned long);
 };
 } // namespace WaveScene
 } // namespace PSSystem

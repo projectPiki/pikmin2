@@ -11,10 +11,16 @@
 
 namespace SysShape {
 struct Animator {
-	virtual void getCalc();      // _08
+	virtual void getCalc();      // _08 (inline)
 	virtual void animate(float); // _0C
 
-	// _00 VTBL
+	Animator();
+	void startAnim(int, SysShape::MotionListener*);
+	void startExAnim(SysShape::AnimInfo*);
+	void assertValid(SysShape::Model*);
+	void setCurrFrame(float);
+	void setFrameByKeyType(unsigned long);
+	void setLastFrame();
 };
 } // namespace SysShape
 

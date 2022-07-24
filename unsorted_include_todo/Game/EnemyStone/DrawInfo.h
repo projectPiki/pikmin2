@@ -10,18 +10,27 @@
 */
 
 struct CNode {
-	virtual ~CNode();             // _08
+	virtual ~CNode();             // _08 (inline)
 	virtual void getChildCount(); // _0C
-
-	// _00 VTBL
 };
 
 namespace Game {
 namespace EnemyStone {
 struct DrawInfo : public CNode {
-	virtual ~DrawInfo(); // _08
+	virtual ~DrawInfo(); // _08 (inline)
 
-	// _00 VTBL
+	void __defctor();
+	DrawInfo();
+	void reset();
+	void update(Game::EnemyBase*);
+	void makeMatrix(Matrixf*, bool);
+	void getStateID();
+	void getPosAndScale(Vector3<float>*, float*);
+	void appear(Game::EnemyBase*, float);
+	void fit(Game::EnemyBase*);
+	void shake(Game::EnemyBase*, float);
+	void disappear(Game::EnemyBase*);
+	void dead(Game::EnemyBase*);
 };
 } // namespace EnemyStone
 } // namespace Game

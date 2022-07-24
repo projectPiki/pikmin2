@@ -10,9 +10,17 @@
 
 namespace PSSystem {
 struct BankMgr {
-	virtual ~BankMgr(); // _08
+	virtual ~BankMgr(); // _08 (inline)
 
-	// _00 VTBL
+	void createInstance();
+	BankMgr();
+	void preInit();
+	void init();
+	void secondLoadS();
+	void firstLoadS();
+	void initS();
+	void setWsDataS(unsigned long*);
+	void setBankDataS(unsigned long*);
 };
 } // namespace PSSystem
 

@@ -14,21 +14,27 @@
 */
 
 struct CNode {
-	virtual ~CNode();             // _08
+	virtual ~CNode();             // _08 (inline)
 	virtual void getChildCount(); // _0C
-
-	// _00 VTBL
 };
 
 namespace Game {
 struct GeneratorMgr : public CNode {
-	virtual ~GeneratorMgr();     // _08
+	virtual ~GeneratorMgr();     // _08 (inline)
 	virtual void doAnimation();  // _10
 	virtual void doEntry();      // _14
 	virtual void doSetView(int); // _18
 	virtual void doViewCalc();   // _1C
 
-	// _00 VTBL
+	GeneratorMgr();
+	void addMgr(Game::GeneratorMgr*);
+	void generate();
+	void setDayLimit(int);
+	void updateUseList();
+	void getNext();
+	void getChild();
+	void updateCursorPos(Vector3<float>&);
+	void read(Stream&, bool);
 };
 } // namespace Game
 

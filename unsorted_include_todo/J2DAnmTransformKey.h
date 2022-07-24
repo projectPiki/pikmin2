@@ -12,18 +12,14 @@
 */
 
 struct J2DAnmBase {
-	virtual ~J2DAnmBase();                           // _08
-	virtual void searchUpdateMaterialID(J2DScreen*); // _0C
-
-	// _00 VTBL
+	virtual ~J2DAnmBase();                           // _08 (inline)
+	virtual void searchUpdateMaterialID(J2DScreen*); // _0C (inline)
 };
 
 struct J2DAnmTransformKey : public J2DAnmBase {
-	virtual ~J2DAnmTransformKey();                                              // _08
-	virtual void getTransform(unsigned short, J3DTransformInfo*) const;         // _10
+	virtual ~J2DAnmTransformKey();                                              // _08 (inline)
+	virtual void getTransform(unsigned short, J3DTransformInfo*) const;         // _10 (inline)
 	virtual void calcTransform(float, unsigned short, J3DTransformInfo*) const; // _14
-
-	// _00 VTBL
 };
 
 #endif

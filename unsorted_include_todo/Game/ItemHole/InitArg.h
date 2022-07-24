@@ -11,9 +11,7 @@
 namespace Game {
 namespace ItemHole {
 struct InitArg {
-	virtual void getName(); // _08
-
-	// _00 VTBL
+	virtual void getName(); // _08 (inline)
 };
 } // namespace ItemHole
 } // namespace Game

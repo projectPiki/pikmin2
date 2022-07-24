@@ -25,26 +25,22 @@
 
 namespace JADUtility {
 struct DataLoadMgrNode {
-    virtual void _08() = 0;         // _08
-    virtual void isTempBuffaMode(); // _0C
-
-    // _00 VTBL
+    virtual ~DataLoadMgrNode();     // _08 (inline)
+    virtual void isTempBuffaMode(); // _0C (inline)
 };
 } // namespace JADUtility
 
 namespace JADUtility {
 struct DataMgrNode {
-    virtual void _08() = 0;      // _08
+    virtual ~DataMgrNode();      // _08 (inline)
     virtual void _0C() = 0;      // _0C
-    virtual void init();         // _10
-    virtual void _14() = 0;      // _14
-    virtual void _18() = 0;      // _18
+    virtual void init();         // _10 (inline)
+    virtual void getObjHeap();   // _14 (inline)
+    virtual void getDataHeap();  // _18 (inline)
     virtual void _1C() = 0;      // _1C
     virtual void _20() = 0;      // _20
-    virtual void getPath();      // _24
-    virtual void setPath(char*); // _28
-
-    // _00 VTBL
+    virtual void getPath();      // _24 (inline)
+    virtual void setPath(char*); // _28 (inline)
 };
 } // namespace JADUtility
 
@@ -55,15 +51,13 @@ namespace PrmDataMgrNode < PSAutoBgm
     {
         struct AutoBgm >
         {
-            virtual void _08() = 0;                 // _08
+            virtual ~AutoBgm > ();                  // _08 (inline)
             virtual void _0C() = 0;                 // _0C
             virtual void _10() = 0;                 // _10
-            virtual void _14() = 0;                 // _14
-            virtual void _18() = 0;                 // _18
-            virtual void initInstance(void*, long); // _1C
-            virtual void initInstance();            // _20
-
-            // _00 VTBL
+            virtual void getObjHeap();              // _14 (inline)
+            virtual void getDataHeap();             // _18 (inline)
+            virtual void initInstance(void*, long); // _1C (inline)
+            virtual void initInstance();            // _20 (inline)
         };
     } // namespace Conductor, PSAutoBgm
 } // namespace PrmDataMgrNode<PSAutoBgm
@@ -73,15 +67,13 @@ namespace PSAutoBgm {
 struct ConductorMgr : public DataLoadMgrNode,
                       public DataMgrNode,
                       public AutoBgm > {
-    virtual ~ConductorMgr();        // _08
-    virtual void getObjHeap();      // _14
-    virtual void getDataHeap();     // _18
-    virtual void getSaveTempHeap(); // _2C
+    virtual ~ConductorMgr();        // _08 (inline)
+    virtual void getObjHeap();      // _14 (inline)
+    virtual void getDataHeap();     // _18 (inline)
+    virtual void getSaveTempHeap(); // _2C (inline)
     virtual void _30() = 0;         // _30
     virtual void _34() = 0;         // _34
-    virtual void @600 @28 @__dt();  // _38
-
-    // _00 VTBL
+    virtual void @600 @28 @__dt();  // _38 (inline)
 };
 } // namespace PSAutoBgm
 

@@ -17,7 +17,8 @@ struct TParse_header_block {
 	virtual void _0C() = 0; // _0C
 	virtual void _10() = 0; // _10
 
-	// _00 VTBL
+	~TParse_header_block();
+	void parse_next(const void**, unsigned long);
 };
 } // namespace binary
 } // namespace JGadget

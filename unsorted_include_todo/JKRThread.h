@@ -11,9 +11,7 @@
 
 struct JKRThread {
 	virtual ~JKRThread(); // _08
-	virtual void run();   // _0C
-
-	// _00 VTBL
+	virtual void run();   // _0C (inline)
 };
 
 #endif

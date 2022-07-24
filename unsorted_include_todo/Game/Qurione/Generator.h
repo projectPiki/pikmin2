@@ -15,35 +15,33 @@
 */
 
 struct CNode {
-	virtual void _08() = 0;       // _08
+	virtual ~CNode();             // _08 (inline)
 	virtual void getChildCount(); // _0C
-
-	// _00 VTBL
 };
 
 namespace Game {
 struct EnemyGeneratorBase {
-	virtual void _08() = 0;                   // _08
+	virtual ~EnemyGeneratorBase();            // _08 (inline)
 	virtual void _0C() = 0;                   // _0C
-	virtual void _10() = 0;                   // _10
-	virtual void _14() = 0;                   // _14
-	virtual void _18() = 0;                   // _18
-	virtual void draw(Graphics&, Generator*); // _1C
-
-	// _00 VTBL
+	virtual void doWrite(Stream&);            // _10
+	virtual void doRead(Stream&);             // _14
+	virtual void getLatestVersion();          // _18
+	virtual void draw(Graphics&, Generator*); // _1C (inline)
 };
 } // namespace Game
 
 namespace Game {
 namespace Qurione {
 struct Generator : public CNode, public EnemyGeneratorBase {
-	virtual ~Generator();            // _08
+	virtual ~Generator();            // _08 (inline)
 	virtual void doWrite(Stream&);   // _10
 	virtual void doRead(Stream&);    // _14
 	virtual void getLatestVersion(); // _18
-	virtual void getInitialParam();  // _20
+	virtual void getInitialParam();  // _20 (inline)
 
-	// _00 VTBL
+	Generator();
+	void doReadLatestVersion(Stream&);
+	void doReadOldVersion(Stream&);
 };
 } // namespace Qurione
 } // namespace Game

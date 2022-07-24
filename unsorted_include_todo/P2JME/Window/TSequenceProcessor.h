@@ -37,7 +37,7 @@
 
 namespace JMessage {
 struct TProcessor {
-	virtual ~TProcessor();                                                     // _08
+	virtual ~TProcessor();                                                     // _08 (inline)
 	virtual void do_reset();                                                   // _0C
 	virtual void do_character(int);                                            // _10
 	virtual void do_tag(unsigned long, const void*, unsigned long);            // _14
@@ -45,15 +45,13 @@ struct TProcessor {
 	virtual void do_select_begin(unsigned long);                               // _1C
 	virtual void do_select_end();                                              // _20
 	virtual void do_select_separate();                                         // _24
-
-	// _00 VTBL
 };
 } // namespace JMessage
 
 namespace P2JME {
 namespace Window {
 struct TSequenceProcessor : public TProcessor {
-	virtual ~TSequenceProcessor();                                              // _08
+	virtual ~TSequenceProcessor();                                              // _08 (inline)
 	virtual void do_character(int);                                             // _10
 	virtual void do_tag(unsigned long, const void*, unsigned long);             // _14
 	virtual void do_systemTagCode(unsigned short, const void*, unsigned long);  // _18
@@ -78,7 +76,7 @@ struct TSequenceProcessor : public TProcessor {
 	virtual void doFastForwardSE();                                             // _70
 	virtual void reset();                                                       // _74
 
-	// _00 VTBL
+	TSequenceProcessor();
 };
 } // namespace Window
 } // namespace P2JME

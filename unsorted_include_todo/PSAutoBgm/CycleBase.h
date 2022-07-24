@@ -13,10 +13,11 @@
 namespace PSAutoBgm {
 struct CycleBase {
 	virtual void play(JASTrack*); // _08
-	virtual void getCycleType();  // _0C
-	virtual void avoidCheck();    // _10
+	virtual void getCycleType();  // _0C (inline)
+	virtual void avoidCheck();    // _10 (inline)
 
-	// _00 VTBL
+	void cycleTop(JASTrack*);
+	void checkCloser(JASTrack*);
 };
 } // namespace PSAutoBgm
 

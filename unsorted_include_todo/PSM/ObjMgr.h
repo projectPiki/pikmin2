@@ -18,13 +18,13 @@ namespace PSM {
 struct ObjMgr {
     virtual void _08() = 0;   // _08
     virtual void _0C() = 0;   // _0C
-    virtual void @12 @__dt(); // _10
+    virtual void @12 @__dt(); // _10 (inline)
     virtual void _14() = 0;   // _14
     virtual void _18() = 0;   // _18
-    virtual void @16 @__dt(); // _1C
-    virtual ~ObjMgr();        // _20
+    virtual void @16 @__dt(); // _1C (inline)
+    virtual ~ObjMgr();        // _20 (inline)
 
-    // _00 VTBL
+    void frameEnd_onPlaySe();
 };
 } // namespace PSM
 

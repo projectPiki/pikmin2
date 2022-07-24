@@ -18,7 +18,8 @@ struct TForeverN {
 	virtual void fade();                  // _10
 	virtual void setGroup(unsigned char); // _14
 
-	// _00 VTBL
+	TForeverN();
+	void setGlobalAlpha(unsigned char);
 };
 } // namespace efx2d
 

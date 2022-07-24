@@ -26,7 +26,7 @@ struct TAdaptor_light {
 	virtual void adaptor_do_ENABLE(JStudio::data::TEOperationData, const void*, unsigned long);                    // _20
 	virtual void adaptor_do_FACULTY(JStudio::data::TEOperationData, const void*, unsigned long);                   // _24
 
-	// _00 VTBL
+	TAdaptor_light();
 };
 } // namespace JStudio_JStage
 

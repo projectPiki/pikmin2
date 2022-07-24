@@ -17,14 +17,12 @@
 namespace Game {
 struct EnemyFSMState {
 	virtual void init(EnemyBase*, StateArg*);         // _08
-	virtual void exec(EnemyBase*);                    // _0C
-	virtual void cleanup(EnemyBase*);                 // _10
-	virtual void resume(EnemyBase*);                  // _14
-	virtual void restart(EnemyBase*);                 // _18
+	virtual void exec(EnemyBase*);                    // _0C (inline)
+	virtual void cleanup(EnemyBase*);                 // _10 (inline)
+	virtual void resume(EnemyBase*);                  // _14 (inline)
+	virtual void restart(EnemyBase*);                 // _18 (inline)
 	virtual void transit(EnemyBase*, int, StateArg*); // _1C
-	virtual void doDirectDraw(EnemyBase*, Graphics&); // _20
-
-	// _00 VTBL
+	virtual void doDirectDraw(EnemyBase*, Graphics&); // _20 (inline)
 };
 } // namespace Game
 
@@ -33,7 +31,7 @@ namespace KochappyBase {
 struct StateDemo : public EnemyFSMState {
 	virtual void init(EnemyBase*, StateArg*); // _08
 
-	// _00 VTBL
+	StateDemo();
 };
 } // namespace KochappyBase
 } // namespace Game

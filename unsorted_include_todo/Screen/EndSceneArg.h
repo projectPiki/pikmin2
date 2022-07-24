@@ -11,17 +11,13 @@
 
 namespace Screen {
 struct SceneArgBase {
-	virtual void getSceneType() const; // _08
-
-	// _00 VTBL
+	virtual void getSceneType() const; // _08 (inline)
 };
 } // namespace Screen
 
 namespace Screen {
 struct EndSceneArg : public SceneArgBase {
-	virtual void getClassSize(); // _0C
-
-	// _00 VTBL
+	virtual void getClassSize(); // _0C (inline)
 };
 } // namespace Screen
 

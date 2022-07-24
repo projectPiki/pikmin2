@@ -40,7 +40,7 @@
 
 namespace JMessage {
 struct TProcessor {
-	virtual ~TProcessor();                                                     // _08
+	virtual ~TProcessor();                                                     // _08 (inline)
 	virtual void do_reset();                                                   // _0C
 	virtual void do_character(int);                                            // _10
 	virtual void do_tag(unsigned long, const void*, unsigned long);            // _14
@@ -50,14 +50,12 @@ struct TProcessor {
 	virtual void do_select_separate();                                         // _24
 	virtual void do_reset_(const char*);                                       // _28
 	virtual void do_setBegin_isReady_() const;                                 // _2C
-
-	// _00 VTBL
 };
 } // namespace JMessage
 
 namespace P2JME {
 struct TRenderingProcessor : public TProcessor {
-	virtual ~TRenderingProcessor();                                             // _08
+	virtual ~TRenderingProcessor();                                             // _08 (inline)
 	virtual void do_character(int);                                             // _10
 	virtual void do_tag(unsigned long, const void*, unsigned long);             // _14
 	virtual void do_systemTagCode(unsigned short, const void*, unsigned long);  // _18
@@ -79,15 +77,32 @@ struct TRenderingProcessor : public TProcessor {
 	virtual void tagColorEX(unsigned short, const void*, unsigned long);        // _5C
 	virtual void tagControl(unsigned short, const void*, unsigned long);        // _60
 	virtual void tagPosition(unsigned short, const void*, unsigned long);       // _64
-	virtual void update();                                                      // _68
+	virtual void update();                                                      // _68 (inline)
 	virtual void reset();                                                       // _6C
 	virtual void newParagraph();                                                // _70
 	virtual void doDrawImage(JUTTexture*, float, float, float, float);          // _74
 	virtual void doDrawRuby(float, float, float, float, int, bool);             // _78
 	virtual void doDrawLetter(float, float, float, float, int, bool);           // _7C
-	virtual void doTagControlAbtnWait();                                        // _80
+	virtual void doTagControlAbtnWait();                                        // _80 (inline)
 
-	// _00 VTBL
+	TRenderingProcessor();
+	void setDrawLocate();
+	void initRuby();
+	void drawRuby();
+	void setImageGX();
+	void drawImage(JUTTexture*, float, float, float, float);
+	void calcWidth(JUTFont*, int, float, bool);
+	void setLineWidth();
+	void resetLineWidth();
+	void setOnePageLine();
+	void resetOnePageLine();
+	void setPageInfo();
+	void preProcCode(unsigned int);
+	void preProcID(unsigned int, unsigned int);
+	void preProcCenteringCode(unsigned int);
+	void preProcCenteringID(unsigned int, unsigned int);
+	void setFont(JUTFont*);
+	void setTextBoxInfo(J2DPane*);
 };
 } // namespace P2JME
 

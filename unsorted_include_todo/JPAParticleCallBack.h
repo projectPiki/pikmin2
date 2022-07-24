@@ -12,10 +12,8 @@
 
 struct JPAParticleCallBack {
 	virtual void _08() = 0;                                  // _08
-	virtual void execute(JPABaseEmitter*, JPABaseParticle*); // _0C
-	virtual void draw(JPABaseEmitter*, JPABaseParticle*);    // _10
-
-	// _00 VTBL
+	virtual void execute(JPABaseEmitter*, JPABaseParticle*); // _0C (inline)
+	virtual void draw(JPABaseEmitter*, JPABaseParticle*);    // _10 (inline)
 };
 
 #endif

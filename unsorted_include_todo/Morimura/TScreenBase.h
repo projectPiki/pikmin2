@@ -16,7 +16,8 @@ struct TScreenBase {
 	virtual void update();                           // _0C
 	virtual void draw(Graphics&, J2DPerspGraph*);    // _10
 
-	// _00 VTBL
+	TScreenBase();
+	void addAnim(char*);
 };
 } // namespace Morimura
 

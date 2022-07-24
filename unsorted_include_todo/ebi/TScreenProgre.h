@@ -14,7 +14,15 @@ struct TScreenProgre {
 	virtual void setArchive(JKRArchive*); // _08
 	virtual void _0C() = 0;               // _0C
 
-	// _00 VTBL
+	void loadResource();
+	void startScreen(long, unsigned long);
+	void fadeout(unsigned long);
+	void isFinish();
+	void startState(ebi::TScreenProgre::enumState, unsigned long);
+	void update();
+	void draw();
+	void setDecide();
+	TScreenProgre();
 };
 } // namespace ebi
 

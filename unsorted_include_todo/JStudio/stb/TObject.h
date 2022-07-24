@@ -23,7 +23,10 @@ struct TObject {
 	virtual void do_wait(unsigned long);                                          // _18
 	virtual void do_data(const void*, unsigned long, const void*, unsigned long); // _1C
 
-	// _00 VTBL
+	TObject();
+	void forward(unsigned long);
+	void process_sequence_();
+	void process_paragraph_reserved_(unsigned long, const void*, unsigned long);
 };
 } // namespace stb
 } // namespace JStudio

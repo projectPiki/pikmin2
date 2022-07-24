@@ -15,7 +15,8 @@ struct AnimScreen {
 	virtual void Animstart();    // _08
 	virtual void AnimmoveAnim(); // _0C
 
-	// _00 VTBL
+	AnimScreen();
+	void init(JKRArchive*, J2DScreen*, char*);
 };
 } // namespace Screen
 } // namespace og

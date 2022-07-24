@@ -11,9 +11,9 @@
 namespace Game {
 namespace Sarai {
 struct Parms {
-	virtual void read(Stream&); // _08
+	virtual void read(Stream&); // _08 (inline)
 
-	// _00 VTBL
+	Parms();
 };
 } // namespace Sarai
 } // namespace Game

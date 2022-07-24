@@ -18,27 +18,23 @@
 */
 
 struct CNode {
-	virtual void _08() = 0;       // _08
+	virtual ~CNode();             // _08
 	virtual void getChildCount(); // _0C
-
-	// _00 VTBL
 };
 
 namespace Container < Game
 {
 	struct Creature >
 	{
-		virtual void _08() = 0;        // _08
+		virtual ~Creature > ();        // _08
 		virtual void _0C() = 0;        // _0C
-		virtual void getObject(void*); // _10
-		virtual void _14() = 0;        // _14
-		virtual void _18() = 0;        // _18
-		virtual void _1C() = 0;        // _1C
-		virtual void _20() = 0;        // _20
-		virtual void getAt(int);       // _24
-		virtual void getTo();          // _28
-
-		// _00 VTBL
+		virtual void getObject(void*); // _10 (inline)
+		virtual void getNext(void*);   // _14
+		virtual void getStart();       // _18
+		virtual void getEnd();         // _1C
+		virtual void get(void*);       // _20
+		virtual void getAt(int);       // _24 (inline)
+		virtual void getTo();          // _28 (inline)
 	};
 } // namespace Game
 
@@ -51,7 +47,8 @@ struct Stickers : public CNode, public Creature > {
 	virtual void get(void*);     // _20
 	virtual void _2C() = 0;      // _2C
 
-	// _00 VTBL
+	void initialise();
+	Stickers();
 };
 } // namespace Game
 

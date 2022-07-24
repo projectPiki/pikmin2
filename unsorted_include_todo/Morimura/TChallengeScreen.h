@@ -18,8 +18,6 @@ struct TScreenBase {
 	virtual void create(const char*, unsigned long); // _08
 	virtual void update();                           // _0C
 	virtual void draw(Graphics&, J2DPerspGraph*);    // _10
-
-	// _00 VTBL
 };
 } // namespace Morimura
 
@@ -31,7 +29,8 @@ struct TChallengeScreen : public TScreenBase {
 	virtual void updateBckPane();                    // _18
 	virtual void _1C() = 0;                          // _1C
 
-	// _00 VTBL
+	TChallengeScreen();
+	void isRandAnimStart();
 };
 } // namespace Morimura
 

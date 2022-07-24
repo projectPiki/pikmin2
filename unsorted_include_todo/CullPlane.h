@@ -24,47 +24,39 @@
 */
 
 struct CNode {
-	virtual void _08() = 0;       // _08
+	virtual ~CNode();             // _08 (inline)
 	virtual void getChildCount(); // _0C
-
-	// _00 VTBL
 };
 
 struct Container<Plane> {
-	virtual void _08() = 0;        // _08
+	virtual ~Container<Plane>();   // _08 (inline)
 	virtual void _0C() = 0;        // _0C
-	virtual void getObject(void*); // _10
-
-	// _00 VTBL
+	virtual void getObject(void*); // _10 (inline)
 };
 
 struct ArrayContainer<Plane> {
-	virtual void _08() = 0;             // _08
-	virtual void _0C() = 0;             // _0C
-	virtual void _10() = 0;             // _10
-	virtual void getNext(void*);        // _14
-	virtual void getStart();            // _18
-	virtual void getEnd();              // _1C
-	virtual void get(void*);            // _20
-	virtual void getAt(int);            // _24
-	virtual void getTo();               // _28
-	virtual void _2C() = 0;             // _2C
-	virtual void _30() = 0;             // _30
-	virtual void write(Stream&);        // _34
-	virtual void read(Stream&);         // _38
-	virtual void alloc(int);            // _3C
-	virtual void addOne(Plane&);        // _40
-	virtual void setArray(Plane*, int); // _44
-
-	// _00 VTBL
+	virtual ~ArrayContainer<Plane>();          // _08 (inline)
+	virtual void _0C() = 0;                    // _0C
+	virtual void _10() = 0;                    // _10
+	virtual void getNext(void*);               // _14 (inline)
+	virtual void getStart();                   // _18 (inline)
+	virtual void getEnd();                     // _1C (inline)
+	virtual void get(void*);                   // _20 (inline)
+	virtual void getAt(int);                   // _24 (inline)
+	virtual void getTo();                      // _28 (inline)
+	virtual void writeObject(Stream&, Plane&); // _2C (inline)
+	virtual void readObject(Stream&, Plane&);  // _30 (inline)
+	virtual void write(Stream&);               // _34 (inline)
+	virtual void read(Stream&);                // _38 (inline)
+	virtual void alloc(int);                   // _3C (inline)
+	virtual void addOne(Plane&);               // _40 (inline)
+	virtual void setArray(Plane*, int);        // _44 (inline)
 };
 
 struct CullPlane : public CNode, public Container<Plane>, public ArrayContainer<Plane> {
-	virtual ~CullPlane();                      // _08
-	virtual void writeObject(Stream&, Plane&); // _2C
-	virtual void readObject(Stream&, Plane&);  // _30
-
-	// _00 VTBL
+	virtual ~CullPlane();                      // _08 (inline)
+	virtual void writeObject(Stream&, Plane&); // _2C (inline)
+	virtual void readObject(Stream&, Plane&);  // _30 (inline)
 };
 
 #endif

@@ -19,26 +19,22 @@
 */
 
 struct CollPart {
-	virtual ~CollPart();                   // _08
-	virtual void getChildCount();          // _0C
-	virtual void isMouth();                // _10
+	virtual ~CollPart();                   // _08 (inline)
+	virtual void getChildCount();          // _0C (inline)
+	virtual void isMouth();                // _10 (inline)
 	virtual void draw(Graphics&);          // _14
-	virtual void constructor();            // _18
-	virtual void doAnimation();            // _1C
-	virtual void doEntry();                // _20
-	virtual void doSetView(unsigned long); // _24
-	virtual void doViewCalc();             // _28
-	virtual void doSimulation(float);      // _2C
-	virtual void doDirectDraw(Graphics&);  // _30
-
-	// _00 VTBL
+	virtual void constructor();            // _18 (inline)
+	virtual void doAnimation();            // _1C (inline)
+	virtual void doEntry();                // _20 (inline)
+	virtual void doSetView(unsigned long); // _24 (inline)
+	virtual void doViewCalc();             // _28 (inline)
+	virtual void doSimulation(float);      // _2C (inline)
+	virtual void doDirectDraw(Graphics&);  // _30 (inline)
 };
 
 struct AgeCollPart : public CollPart {
-	virtual ~AgeCollPart();       // _08
+	virtual ~AgeCollPart();       // _08 (inline)
 	virtual void draw(Graphics&); // _14
-
-	// _00 VTBL
 };
 
 #endif

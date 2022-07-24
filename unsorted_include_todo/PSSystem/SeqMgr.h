@@ -12,7 +12,19 @@ namespace PSSystem {
 struct SeqMgr {
 	virtual ~SeqMgr(); // _08
 
-	// _00 VTBL
+	void isPlaying();
+	void pauseOnAllSeq(PSSystem::SeqBase::PauseMode);
+	void pauseOffAllSeq();
+	void reservePauseOffAllSeq();
+	void cancelPauseOffAllSeq();
+	void exec();
+	void stopAllSound(unsigned long);
+	void scene1st(PSSystem::TaskChecker*);
+	void findSeq(JASTrack*);
+	void getPlayingSeq(JASTrack*);
+	void getFirstSeq();
+	void getFirstSeqA();
+	void getSeq(unsigned long);
 };
 } // namespace PSSystem
 

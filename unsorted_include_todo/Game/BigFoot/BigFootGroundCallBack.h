@@ -14,8 +14,6 @@ namespace BigFoot {
 struct BigFootGroundCallBack {
 	virtual void invokeOnGround(int, WaterBox*);  // _08
 	virtual void invokeOffGround(int, WaterBox*); // _0C
-
-	// _00 VTBL
 };
 } // namespace BigFoot
 } // namespace Game

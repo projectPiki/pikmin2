@@ -18,40 +18,34 @@
 */
 
 struct CNode {
-	virtual void _08() = 0;       // _08
+	virtual ~CNode();             // _08 (inline)
 	virtual void getChildCount(); // _0C
-
-	// _00 VTBL
 };
 
 namespace Game {
 struct ObjectLayoutNode {
-	virtual void _08() = 0;           // _08
-	virtual void _0C() = 0;           // _0C
-	virtual void _10() = 0;           // _10
-	virtual void _14() = 0;           // _14
-	virtual void _18() = 0;           // _18
-	virtual void _1C() = 0;           // _1C
-	virtual void getBirthDoorIndex(); // _20
-	virtual void _24() = 0;           // _24
-	virtual void getExtraCode();      // _28
-	virtual void isFixedBattery();    // _2C
-
-	// _00 VTBL
+	virtual ~ObjectLayoutNode();                   // _08 (inline)
+	virtual void _0C() = 0;                        // _0C
+	virtual void getObjectId();                    // _10 (inline)
+	virtual void getObjectType();                  // _14 (inline)
+	virtual void getBirthCount();                  // _18 (inline)
+	virtual void getDirection();                   // _1C (inline)
+	virtual void getBirthDoorIndex();              // _20 (inline)
+	virtual void getBirthPosition(float&, float&); // _24 (inline)
+	virtual void getExtraCode();                   // _28 (inline)
+	virtual void isFixedBattery();                 // _2C (inline)
 };
 } // namespace Game
 
 namespace Game {
 namespace Cave {
 struct FixObjNode : public CNode, public ObjectLayoutNode {
-	virtual ~FixObjNode();                         // _08
-	virtual void getObjectId();                    // _10
-	virtual void getObjectType();                  // _14
-	virtual void getBirthCount();                  // _18
-	virtual void getDirection();                   // _1C
-	virtual void getBirthPosition(float&, float&); // _24
-
-	// _00 VTBL
+	virtual ~FixObjNode();                         // _08 (inline)
+	virtual void getObjectId();                    // _10 (inline)
+	virtual void getObjectType();                  // _14 (inline)
+	virtual void getBirthCount();                  // _18 (inline)
+	virtual void getDirection();                   // _1C (inline)
+	virtual void getBirthPosition(float&, float&); // _24 (inline)
 };
 } // namespace Cave
 } // namespace Game

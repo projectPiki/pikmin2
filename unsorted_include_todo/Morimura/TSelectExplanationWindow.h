@@ -14,8 +14,6 @@
 namespace Morimura {
 struct TScreenBase {
 	virtual void create(const char*, unsigned long); // _08
-
-	// _00 VTBL
 };
 } // namespace Morimura
 
@@ -25,7 +23,9 @@ struct TSelectExplanationWindow : public TScreenBase {
 	virtual void draw(Graphics&, J2DPerspGraph*); // _10
 	virtual void _14() = 0;                       // _14
 
-	// _00 VTBL
+	TSelectExplanationWindow();
+	void openWindow();
+	void closeWindow();
 };
 } // namespace Morimura
 

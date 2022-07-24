@@ -39,8 +39,6 @@ struct TProcessor {
 	virtual void do_select_begin(unsigned long);                               // _1C
 	virtual void do_select_end();                                              // _20
 	virtual void do_select_separate();                                         // _24
-
-	// _00 VTBL
 };
 } // namespace JMessage
 
@@ -62,7 +60,17 @@ struct TSequenceProcessor : public TProcessor {
 	virtual void do_branch_queryResult();                                       // _58
 	virtual void do_branch(const void*, const char*);                           // _5C
 
-	// _00 VTBL
+	TSequenceProcessor();
+	void process(const char*);
+	void on_isReady();
+	void on_jump_isReady();
+	void on_jump(const void*, const char*);
+	void on_branch_queryResult();
+	void on_branch(const void*, const char*);
+	void process_onJump_limited_(const JMessage::TSequenceProcessor*);
+	void process_onJump_(const JMessage::TSequenceProcessor*);
+	void process_onBranch_limited_(const JMessage::TSequenceProcessor*, unsigned long);
+	void process_onBranch_(const JMessage::TSequenceProcessor*, unsigned long);
 };
 } // namespace JMessage
 

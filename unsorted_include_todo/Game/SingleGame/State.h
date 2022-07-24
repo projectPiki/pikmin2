@@ -28,14 +28,12 @@ namespace FSMState < Game
 {
 	struct SingleGameSection >
 	{
-		virtual void FSMState < init(SingleGameSection*, StateArg*);         // _08
-		virtual void FSMState < exec(SingleGameSection*);                    // _0C
-		virtual void FSMState < cleanup(SingleGameSection*);                 // _10
-		virtual void FSMState < resume(SingleGameSection*);                  // _14
-		virtual void FSMState < restart(SingleGameSection*);                 // _18
-		virtual void FSMState < transit(SingleGameSection*, int, StateArg*); // _1C
-
-		// _00 VTBL
+		virtual void FSMState < init(SingleGameSection*, StateArg*);         // _08 (inline)
+		virtual void FSMState < exec(SingleGameSection*);                    // _0C (inline)
+		virtual void FSMState < cleanup(SingleGameSection*);                 // _10 (inline)
+		virtual void FSMState < resume(SingleGameSection*);                  // _14 (inline)
+		virtual void FSMState < restart(SingleGameSection*);                 // _18 (inline)
+		virtual void FSMState < transit(SingleGameSection*, int, StateArg*); // _1C (inline)
 	};
 } // namespace Game
 } // namespace Game
@@ -43,18 +41,18 @@ namespace FSMState < Game
 namespace Game {
 namespace SingleGame {
 struct State : public SingleGameSection > {
-	virtual void Singledraw(SingleGameSection*, Graphics&);                                          // _20
-	virtual void SingleonOrimaDown(SingleGameSection*, int);                                         // _24
-	virtual void SingleonMovieStart(SingleGameSection*, MovieConfig*, unsigned long, unsigned long); // _28
-	virtual void SingleonMovieDone(SingleGameSection*, MovieConfig*, unsigned long, unsigned long);  // _2C
-	virtual void SingleonMovieCommand(SingleGameSection*, int);                                      // _30
-	virtual void SingleonHoleIn(SingleGameSection*, ItemCave::Item*);                                // _34
-	virtual void SingleonNextFloor(SingleGameSection*, ItemHole::Item*);                             // _38
-	virtual void SingleonFountainReturn(SingleGameSection*, ItemBigFountain::Item*);                 // _3C
-	virtual void Singleon_section_fadeout(SingleGameSection*);                                       // _40
-	virtual void Singleon_demo_timer(SingleGameSection*, unsigned long);                             // _44
+	virtual void Singledraw(SingleGameSection*, Graphics&);                                          // _20 (inline)
+	virtual void SingleonOrimaDown(SingleGameSection*, int);                                         // _24 (inline)
+	virtual void SingleonMovieStart(SingleGameSection*, MovieConfig*, unsigned long, unsigned long); // _28 (inline)
+	virtual void SingleonMovieDone(SingleGameSection*, MovieConfig*, unsigned long, unsigned long);  // _2C (inline)
+	virtual void SingleonMovieCommand(SingleGameSection*, int);                                      // _30 (inline)
+	virtual void SingleonHoleIn(SingleGameSection*, ItemCave::Item*);                                // _34 (inline)
+	virtual void SingleonNextFloor(SingleGameSection*, ItemHole::Item*);                             // _38 (inline)
+	virtual void SingleonFountainReturn(SingleGameSection*, ItemBigFountain::Item*);                 // _3C (inline)
+	virtual void Singleon_section_fadeout(SingleGameSection*);                                       // _40 (inline)
+	virtual void Singleon_demo_timer(SingleGameSection*, unsigned long);                             // _44 (inline)
 
-	// _00 VTBL
+	void accountEarnings(Game::SingleGameSection*, Game::PelletCropMemory*, bool);
 };
 } // namespace SingleGame
 } // namespace Game

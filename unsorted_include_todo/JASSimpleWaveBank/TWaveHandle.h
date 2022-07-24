@@ -12,11 +12,11 @@
 
 namespace JASSimpleWaveBank {
 struct TWaveHandle {
-	virtual ~TWaveHandle();           // _08
-	virtual void getWaveInfo() const; // _0C
-	virtual void getWavePtr() const;  // _10
+	virtual ~TWaveHandle();           // _08 (inline)
+	virtual void getWaveInfo() const; // _0C (inline)
+	virtual void getWavePtr() const;  // _10 (inline)
 
-	// _00 VTBL
+	TWaveHandle();
 };
 } // namespace JASSimpleWaveBank
 

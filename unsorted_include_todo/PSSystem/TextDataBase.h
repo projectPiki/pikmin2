@@ -14,7 +14,9 @@ struct TextDataBase {
 	virtual ~TextDataBase(); // _08
 	virtual void _0C() = 0;  // _0C
 
-	// _00 VTBL
+	TextDataBase();
+	void load(const char*, JKRDvdRipper::EAllocDirection);
+	void onlyLoad(const char*, JKRDvdRipper::EAllocDirection);
 };
 } // namespace PSSystem
 

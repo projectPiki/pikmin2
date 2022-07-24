@@ -13,7 +13,17 @@ namespace FileSelect {
 struct TMgr {
 	virtual ~TMgr(); // _08
 
-	// _00 VTBL
+	void createInstance();
+	void onDvdErrorOccured();
+	void onDvdErrorRecovered();
+	void start();
+	void forceQuit();
+	void update();
+	void draw();
+	void showInfo();
+	void isFinish();
+	void goEnd_(ebi::FileSelect::TMgr::enumEnd);
+	void getStateID();
 };
 } // namespace FileSelect
 } // namespace ebi

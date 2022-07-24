@@ -16,22 +16,18 @@
 
 namespace Game {
 struct Interaction {
-	virtual void actCommon(Creature*); // _08
-	virtual void actPiki(Piki*);       // _0C
-	virtual void actNavi(Navi*);       // _10
-	virtual void actEnemy(EnemyBase*); // _14
-	virtual void actPellet(Pellet*);   // _18
-	virtual void actOnyon(Onyon*);     // _1C
-
-	// _00 VTBL
+	virtual void actCommon(Creature*); // _08 (inline)
+	virtual void actPiki(Piki*);       // _0C (inline)
+	virtual void actNavi(Navi*);       // _10 (inline)
+	virtual void actEnemy(EnemyBase*); // _14 (inline)
+	virtual void actPellet(Pellet*);   // _18 (inline)
+	virtual void actOnyon(Onyon*);     // _1C (inline)
 };
 } // namespace Game
 
 namespace Game {
 struct InteractBreakBridge : public Interaction {
 	virtual void actItem(BaseItem*); // _20
-
-	// _00 VTBL
 };
 } // namespace Game
 

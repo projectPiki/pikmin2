@@ -26,24 +26,26 @@
 namespace P2JME {
 namespace Caption {
 struct TControl {
-	virtual ~TControl();                                         // _08
+	virtual ~TControl();                                         // _08 (inline)
 	virtual void reset();                                        // _0C
 	virtual void update();                                       // _10
 	virtual void update(Controller*, Controller*);               // _14
 	virtual void draw(Graphics&);                                // _18
-	virtual void draw(float (*)[4], float (*)[4]);               // _1C
+	virtual void draw(float (*)[4], float (*)[4]);               // _1C (inline)
 	virtual void setMessageID(unsigned long, unsigned long);     // _20
 	virtual void setMessageID(char*);                            // _24
-	virtual void setMessageID(unsigned long long);               // _28
+	virtual void setMessageID(unsigned long long);               // _28 (inline)
 	virtual void setMessageCode(unsigned short, unsigned short); // _2C
 	virtual void setMessageCode(unsigned long);                  // _30
 	virtual void onInit();                                       // _34
-	virtual void createReference();                              // _38
-	virtual void createResourceContainer();                      // _3C
-	virtual void createSequenceProcessor();                      // _40
-	virtual void createRenderingProcessor();                     // _44
+	virtual void createReference();                              // _38 (inline)
+	virtual void createResourceContainer();                      // _3C (inline)
+	virtual void createSequenceProcessor();                      // _40 (inline)
+	virtual void createRenderingProcessor();                     // _44 (inline)
 
-	// _00 VTBL
+	TControl();
+	void updateSetFrame(long);
+	void start(char*, long, long);
 };
 } // namespace Caption
 } // namespace P2JME

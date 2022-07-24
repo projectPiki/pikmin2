@@ -11,11 +11,9 @@
 */
 
 struct J3DAnmCluster {
-	virtual ~J3DAnmCluster();                     // _08
-	virtual void getKind() const;                 // _0C
-	virtual void getWeight(unsigned short) const; // _10
-
-	// _00 VTBL
+	virtual ~J3DAnmCluster();                     // _08 (inline)
+	virtual void getKind() const;                 // _0C (inline)
+	virtual void getWeight(unsigned short) const; // _10 (inline)
 };
 
 #endif

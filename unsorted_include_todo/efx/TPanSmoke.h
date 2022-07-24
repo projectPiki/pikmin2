@@ -26,50 +26,46 @@
 
 namespace efx {
 struct TSync {
-    virtual void _08() = 0;                       // _08
+    virtual void create(Arg*);                    // _08
     virtual void forceKill();                     // _0C
     virtual void fade();                          // _10
     virtual void _14() = 0;                       // _14
     virtual void _18() = 0;                       // _18
-    virtual void _1C() = 0;                       // _1C
+    virtual void @4 @__dt();                      // _1C (inline)
     virtual void _20() = 0;                       // _20
     virtual void _24() = 0;                       // _24
     virtual void _28() = 0;                       // _28
     virtual void _2C() = 0;                       // _2C
-    virtual void execute(JPABaseEmitter*);        // _30
-    virtual void executeAfter(JPABaseEmitter*);   // _34
+    virtual void execute(JPABaseEmitter*);        // _30 (inline)
+    virtual void executeAfter(JPABaseEmitter*);   // _34 (inline)
     virtual void _38() = 0;                       // _38
-    virtual void doExecuteAfter(JPABaseEmitter*); // _3C
-    virtual void startDemoDrawOff();              // _40
-    virtual void endDemoDrawOn();                 // _44
-
-    // _00 VTBL
+    virtual void doExecuteAfter(JPABaseEmitter*); // _3C (inline)
+    virtual void startDemoDrawOff();              // _40 (inline)
+    virtual void endDemoDrawOn();                 // _44 (inline)
 };
 } // namespace efx
 
 struct JPAEmitterCallBack {
-    virtual void _08() = 0;                  // _08
+    virtual void create(Arg*);               // _08
     virtual void _0C() = 0;                  // _0C
     virtual void _10() = 0;                  // _10
     virtual void _14() = 0;                  // _14
     virtual void _18() = 0;                  // _18
-    virtual void _1C() = 0;                  // _1C
+    virtual void @4 @__dt();                 // _1C (inline)
     virtual void _20() = 0;                  // _20
     virtual void _24() = 0;                  // _24
-    virtual void draw(JPABaseEmitter*);      // _28
-    virtual void drawAfter(JPABaseEmitter*); // _2C
-
-    // _00 VTBL
+    virtual void draw(JPABaseEmitter*);      // _28 (inline)
+    virtual void drawAfter(JPABaseEmitter*); // _2C (inline)
 };
 
 namespace efx {
 struct TChasePos {
-    virtual void _08() = 0;                                  // _08
+    virtual void create(Arg*);                               // _08
     virtual void _0C() = 0;                                  // _0C
     virtual void _10() = 0;                                  // _10
     virtual void _14() = 0;                                  // _14
     virtual void _18() = 0;                                  // _18
-    virtual void _1C() = 0;                                  // _1C
+    virtual void @4 @__dt();                                 // _1C (inline)
     virtual void _20() = 0;                                  // _20
     virtual void _24() = 0;                                  // _24
     virtual void _28() = 0;                                  // _28
@@ -77,8 +73,6 @@ struct TChasePos {
     virtual void _30() = 0;                                  // _30
     virtual void _34() = 0;                                  // _34
     virtual void doExecuteEmitterOperation(JPABaseEmitter*); // _38
-
-    // _00 VTBL
 };
 } // namespace efx
 
@@ -87,10 +81,8 @@ struct TPanSmoke : public TSync, public JPAEmitterCallBack, public TChasePos {
     virtual void create(Arg*); // _08
     virtual void _14() = 0;    // _14
     virtual void _18() = 0;    // _18
-    virtual void @4 @__dt();   // _1C
-    virtual ~TPanSmoke();      // _48
-
-    // _00 VTBL
+    virtual void @4 @__dt();   // _1C (inline)
+    virtual ~TPanSmoke();      // _48 (inline)
 };
 } // namespace efx
 

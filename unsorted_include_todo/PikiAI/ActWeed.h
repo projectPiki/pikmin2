@@ -25,17 +25,15 @@ struct Action {
 	virtual void init(ActionArg*);                                 // _08
 	virtual void exec();                                           // _0C
 	virtual void cleanup();                                        // _10
-	virtual void emotion_success();                                // _14
-	virtual void emotion_fail();                                   // _18
-	virtual void applicable();                                     // _1C
-	virtual void getNextAIType();                                  // _20
-	virtual void bounceCallback(Game::Piki*, Sys::Triangle*);      // _24
+	virtual void emotion_success();                                // _14 (inline)
+	virtual void emotion_fail();                                   // _18 (inline)
+	virtual void applicable();                                     // _1C (inline)
+	virtual void getNextAIType();                                  // _20 (inline)
+	virtual void bounceCallback(Game::Piki*, Sys::Triangle*);      // _24 (inline)
 	virtual void collisionCallback(Game::Piki*, Game::CollEvent&); // _28
-	virtual void platCallback(Game::Piki*, Game::PlatEvent&);      // _2C
-	virtual void doDirectDraw(Graphics&);                          // _30
-	virtual void wallCallback(Vector3<float>&);                    // _34
-
-	// _00 VTBL
+	virtual void platCallback(Game::Piki*, Game::PlatEvent&);      // _2C (inline)
+	virtual void doDirectDraw(Graphics&);                          // _30 (inline)
+	virtual void wallCallback(Vector3<float>&);                    // _34 (inline)
 };
 } // namespace PikiAI
 
@@ -47,7 +45,10 @@ struct ActWeed : public Action {
 	virtual void collisionCallback(Game::Piki*, Game::CollEvent&); // _28
 	virtual void getInfo(char*);                                   // _38
 
-	// _00 VTBL
+	ActWeed();
+	void decideTarget();
+	void initAdjust();
+	void calcAttackPos();
 };
 } // namespace PikiAI
 

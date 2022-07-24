@@ -33,12 +33,12 @@ struct BaseHIOSection {
 	virtual void update();                           // _10
 	virtual void draw(Graphics&);                    // _14
 	virtual void init();                             // _18
-	virtual void drawInit(Graphics&);                // _1C
-	virtual void drawInit(Graphics&, EDrawInitMode); // _20
+	virtual void drawInit(Graphics&);                // _1C (inline)
+	virtual void drawInit(Graphics&, EDrawInitMode); // _20 (inline)
 	virtual void doExit();                           // _24
-	virtual void forceFinish();                      // _28
-	virtual void forceReset();                       // _2C
-	virtual void getCurrentSection();                // _30
+	virtual void forceFinish();                      // _28 (inline)
+	virtual void forceReset();                       // _2C (inline)
+	virtual void getCurrentSection();                // _30 (inline)
 	virtual void doLoadingStart();                   // _34
 	virtual void doLoading();                        // _38
 	virtual void doUpdate();                         // _3C
@@ -46,8 +46,6 @@ struct BaseHIOSection {
 	virtual void isFinishable();                     // _44
 	virtual void initHIO(HIORootNode*);              // _48
 	virtual void refreshHIO();                       // _4C
-
-	// _00 VTBL
 };
 } // namespace Game
 
@@ -58,12 +56,12 @@ struct Section : public BaseHIOSection {
 	virtual void update();                           // _10
 	virtual void draw(Graphics&);                    // _14
 	virtual void init();                             // _18
-	virtual void drawInit(Graphics&);                // _1C
-	virtual void drawInit(Graphics&, EDrawInitMode); // _20
+	virtual void drawInit(Graphics&);                // _1C (inline)
+	virtual void drawInit(Graphics&, EDrawInitMode); // _20 (inline)
 	virtual void doExit();                           // _24
-	virtual void forceFinish();                      // _28
-	virtual void forceReset();                       // _2C
-	virtual void getCurrentSection();                // _30
+	virtual void forceFinish();                      // _28 (inline)
+	virtual void forceReset();                       // _2C (inline)
+	virtual void getCurrentSection();                // _30 (inline)
 	virtual void doLoadingStart();                   // _34
 	virtual void doLoading();                        // _38
 	virtual void doUpdate();                         // _3C
@@ -71,7 +69,12 @@ struct Section : public BaseHIOSection {
 	virtual void isFinishable();                     // _44
 	virtual void loadResource();                     // _50
 
-	// _00 VTBL
+	Section();
+	void loadResident();
+	void menuCancel(Menu&);
+	void menuSelect(Menu&);
+	void doUpdateMainTitle();
+	void doUpdateOmake();
 };
 } // namespace Title
 

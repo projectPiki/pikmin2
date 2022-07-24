@@ -15,14 +15,15 @@
 
 namespace JStudio {
 struct TFunctionValue_hermite {
-	virtual ~TFunctionValue_hermite(); // _08
+	virtual ~TFunctionValue_hermite(); // _08 (inline)
 	virtual void getType() const;      // _0C
 	virtual void getAttributeSet();    // _10
 	virtual void initialize();         // _14
 	virtual void prepare();            // _18
 	virtual void getValue(double);     // _1C
 
-	// _00 VTBL
+	TFunctionValue_hermite();
+	void data_set(const float*, unsigned long, unsigned long);
 };
 } // namespace JStudio
 

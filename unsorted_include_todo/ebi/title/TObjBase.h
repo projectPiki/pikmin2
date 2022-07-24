@@ -12,10 +12,11 @@
 namespace ebi {
 namespace title {
 struct TObjBase {
-	virtual void getCreatureType(); // _08
-	virtual void isCalc();          // _0C
+	virtual void getCreatureType(); // _08 (inline)
+	virtual void isCalc();          // _0C (inline)
 
-	// _00 VTBL
+	void calcModelBaseMtx_();
+	void pushOut(ebi::title::TObjBase*);
 };
 } // namespace title
 } // namespace ebi

@@ -19,16 +19,12 @@ struct DirectorLink {
 	virtual void eventRestart();         // _10
 	virtual void eventStop();            // _14
 	virtual void eventFinish();          // _18
-
-	// _00 VTBL
 };
 } // namespace PSM
 
 namespace PSM {
 struct EventLink : public DirectorLink {
 	virtual void getListDirectorActor(); // _08
-
-	// _00 VTBL
 };
 } // namespace PSM
 

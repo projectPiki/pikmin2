@@ -29,8 +29,6 @@ struct TAdaptor {
 	virtual void adaptor_do_end(const JStudio::TObject*);                                                 // _14
 	virtual void adaptor_do_update(const JStudio::TObject*, unsigned long);                               // _18
 	virtual void adaptor_do_data(const TObject*, const void*, unsigned long, const void*, unsigned long); // _1C
-
-	// _00 VTBL
 };
 } // namespace JStudio
 
@@ -49,7 +47,9 @@ struct TAdaptor_particle : public TAdaptor {
 	virtual void adaptor_do_PARENT_NODE(JStudio::data::TEOperationData, const void*, unsigned long);   // _38
 	virtual void adaptor_do_PARENT_ENABLE(JStudio::data::TEOperationData, const void*, unsigned long); // _3C
 
-	// _00 VTBL
+	TAdaptor_particle();
+	void beginParticle_fadeIn_(unsigned long);
+	void endParticle_fadeOut_(unsigned long);
 };
 } // namespace JStudio_JParticle
 

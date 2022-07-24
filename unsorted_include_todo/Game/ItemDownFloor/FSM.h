@@ -18,11 +18,9 @@ namespace StateMachine < Game
 	struct Item >
 	{
 		virtual void init(Item*);                                   // _08
-		virtual void StateMachine < start(Item*, int, StateArg*);   // _0C
-		virtual void StateMachine < exec(Item*);                    // _10
-		virtual void StateMachine < transit(Item*, int, StateArg*); // _14
-
-		// _00 VTBL
+		virtual void StateMachine < start(Item*, int, StateArg*);   // _0C (inline)
+		virtual void StateMachine < exec(Item*);                    // _10 (inline)
+		virtual void StateMachine < transit(Item*, int, StateArg*); // _14 (inline)
 	};
 	} // namespace ItemDownFloor
 } // namespace Game
@@ -32,8 +30,6 @@ namespace Game {
 namespace ItemDownFloor {
 struct FSM : public Item > {
 	virtual void init(Item*); // _08
-
-	// _00 VTBL
 };
 } // namespace ItemDownFloor
 } // namespace Game

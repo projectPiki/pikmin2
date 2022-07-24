@@ -22,33 +22,29 @@
 
 struct JPAEmitterCallBack {
     virtual void create(Arg*);                      // _08
-    virtual void forceKill();                       // _0C
-    virtual void fade();                            // _10
+    virtual void forceKill();                       // _0C (inline)
+    virtual void fade();                            // _10 (inline)
     virtual void _14() = 0;                         // _14
     virtual void _18() = 0;                         // _18
-    virtual void @4 @__dt();                        // _1C
-    virtual void execute(JPABaseEmitter*);          // _20
-    virtual void @4 @executeAfter(JPABaseEmitter*); // _24
-    virtual void draw(JPABaseEmitter*);             // _28
-    virtual void drawAfter(JPABaseEmitter*);        // _2C
-
-    // _00 VTBL
+    virtual void @4 @__dt();                        // _1C (inline)
+    virtual void execute(JPABaseEmitter*);          // _20 (inline)
+    virtual void @4 @executeAfter(JPABaseEmitter*); // _24 (inline)
+    virtual void draw(JPABaseEmitter*);             // _28 (inline)
+    virtual void drawAfter(JPABaseEmitter*);        // _2C (inline)
 };
 
 namespace efx {
 struct TPkOneEmitterSimple : public JPAEmitterCallBack {
     virtual void create(Arg*);                      // _08
-    virtual void forceKill();                       // _0C
-    virtual void fade();                            // _10
+    virtual void forceKill();                       // _0C (inline)
+    virtual void fade();                            // _10 (inline)
     virtual void _14() = 0;                         // _14
     virtual void _18() = 0;                         // _18
-    virtual void @4 @__dt();                        // _1C
-    virtual void @4 @executeAfter(JPABaseEmitter*); // _24
-    virtual void executeAfter(JPABaseEmitter*);     // _30
-    virtual ~TPkOneEmitterSimple();                 // _34
+    virtual void @4 @__dt();                        // _1C (inline)
+    virtual void @4 @executeAfter(JPABaseEmitter*); // _24 (inline)
+    virtual void executeAfter(JPABaseEmitter*);     // _30 (inline)
+    virtual ~TPkOneEmitterSimple();                 // _34 (inline)
     virtual void _38() = 0;                         // _38
-
-    // _00 VTBL
 };
 } // namespace efx
 

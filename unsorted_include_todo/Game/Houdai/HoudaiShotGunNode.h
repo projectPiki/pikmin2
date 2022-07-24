@@ -10,18 +10,16 @@
 */
 
 struct CNode {
-	virtual ~CNode();             // _08
+	virtual ~CNode();             // _08 (inline)
 	virtual void getChildCount(); // _0C
-
-	// _00 VTBL
 };
 
 namespace Game {
 namespace Houdai {
 struct HoudaiShotGunNode : public CNode {
-	virtual ~HoudaiShotGunNode(); // _08
+	virtual ~HoudaiShotGunNode(); // _08 (inline)
 
-	// _00 VTBL
+	void update();
 };
 } // namespace Houdai
 } // namespace Game

@@ -10,17 +10,19 @@
 */
 
 struct CNode {
-	virtual ~CNode();             // _08
+	virtual ~CNode();             // _08 (inline)
 	virtual void getChildCount(); // _0C
-
-	// _00 VTBL
 };
 
 namespace Game {
 struct CourseCache : public CNode {
-	virtual ~CourseCache(); // _08
+	virtual ~CourseCache(); // _08 (inline)
 
-	// _00 VTBL
+	void getColorMePikmins(unsigned char*, int);
+	CourseCache();
+	void beginSave(int);
+	void write(Stream&);
+	void read(Stream&);
 };
 } // namespace Game
 

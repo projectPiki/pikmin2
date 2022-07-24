@@ -31,10 +31,8 @@
 namespace ebi {
 namespace Save {
 struct FSMState {
-	virtual void init(TMgr*, Game::StateArg*); // _08
-	virtual void exec(TMgr*);                  // _0C
-
-	// _00 VTBL
+	virtual void init(TMgr*, Game::StateArg*); // _08 (inline)
+	virtual void exec(TMgr*);                  // _0C (inline)
 };
 } // namespace Save
 } // namespace ebi
@@ -47,12 +45,10 @@ namespace FSMState < ebi
 	{
 		virtual void _08() = 0;                           // _08
 		virtual void _0C() = 0;                           // _0C
-		virtual void cleanup(ebi::TMgr*);                 // _10
-		virtual void resume(ebi::TMgr*);                  // _14
-		virtual void restart(ebi::TMgr*);                 // _18
-		virtual void transit(ebi::TMgr*, int, StateArg*); // _1C
-
-		// _00 VTBL
+		virtual void cleanup(ebi::TMgr*);                 // _10 (inline)
+		virtual void resume(ebi::TMgr*);                  // _14 (inline)
+		virtual void restart(ebi::TMgr*);                 // _18 (inline)
+		virtual void transit(ebi::TMgr*, int, StateArg*); // _1C (inline)
 	};
 	} // namespace Save
 } // namespace ebi
@@ -61,29 +57,27 @@ namespace FSMState < ebi
 namespace ebi {
 namespace Save {
 struct FSMState_CardRequest {
-	virtual void _08() = 0;                             // _08
-	virtual void _0C() = 0;                             // _0C
-	virtual void _10() = 0;                             // _10
-	virtual void _14() = 0;                             // _14
-	virtual void _18() = 0;                             // _18
-	virtual void _1C() = 0;                             // _1C
-	virtual void do_init(TMgr*, Game::StateArg*);       // _20
-	virtual void do_exec(TMgr*);                        // _24
-	virtual void _28() = 0;                             // _28
-	virtual void _2C() = 0;                             // _2C
-	virtual void do_transitCardNoCard(TMgr*);           // _30
-	virtual void do_transitCardIOError(TMgr*);          // _34
-	virtual void do_transitCardWrongDevice(TMgr*);      // _38
-	virtual void do_transitCardWrongSector(TMgr*);      // _3C
-	virtual void do_transitCardBroken(TMgr*);           // _40
-	virtual void do_transitCardEncoding(TMgr*);         // _44
-	virtual void do_transitCardNoFileSpace(TMgr*);      // _48
-	virtual void do_transitCardNoFileEntry(TMgr*);      // _4C
-	virtual void do_transitCardFileOpenError(TMgr*);    // _50
-	virtual void do_transitCardSerialNoError(TMgr*);    // _54
-	virtual void do_transitCardPlayerDataBroken(TMgr*); // _58
-
-	// _00 VTBL
+	virtual void _08() = 0;                                      // _08
+	virtual void _0C() = 0;                                      // _0C
+	virtual void _10() = 0;                                      // _10
+	virtual void _14() = 0;                                      // _14
+	virtual void _18() = 0;                                      // _18
+	virtual void _1C() = 0;                                      // _1C
+	virtual void do_init(TMgr*, Game::StateArg*);                // _20
+	virtual void do_exec(TMgr*);                                 // _24
+	virtual void FSMState_CheckBeforedo_cardRequest(TMgr*);      // _28
+	virtual void FSMState_CheckBeforedo_transitCardReady(TMgr*); // _2C
+	virtual void do_transitCardNoCard(TMgr*);                    // _30
+	virtual void do_transitCardIOError(TMgr*);                   // _34
+	virtual void do_transitCardWrongDevice(TMgr*);               // _38
+	virtual void do_transitCardWrongSector(TMgr*);               // _3C
+	virtual void do_transitCardBroken(TMgr*);                    // _40
+	virtual void do_transitCardEncoding(TMgr*);                  // _44
+	virtual void do_transitCardNoFileSpace(TMgr*);               // _48
+	virtual void do_transitCardNoFileEntry(TMgr*);               // _4C
+	virtual void do_transitCardFileOpenError(TMgr*);             // _50
+	virtual void do_transitCardSerialNoError(TMgr*);             // _54
+	virtual void do_transitCardPlayerDataBroken(TMgr*);          // _58
 };
 } // namespace Save
 } // namespace ebi
@@ -93,8 +87,6 @@ namespace Save {
 struct FSMState_CheckBeforeSave : public FSMState, public TMgr >, public FSMState_CardRequest {
 	virtual void FSMState_CheckBeforedo_cardRequest(TMgr*);      // _28
 	virtual void FSMState_CheckBeforedo_transitCardReady(TMgr*); // _2C
-
-	// _00 VTBL
 };
 } // namespace Save
 } // namespace ebi

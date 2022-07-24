@@ -36,8 +36,6 @@ struct JKRFileLoader {
 	virtual void _34() = 0;   // _34
 	virtual void _38() = 0;   // _38
 	virtual void _3C() = 0;   // _3C
-
-	// _00 VTBL
 };
 
 #endif

@@ -12,12 +12,10 @@
 */
 
 struct JASDrumSet {
-	virtual ~JASDrumSet();                                // _08
+	virtual ~JASDrumSet();                                // _08 (inline)
 	virtual void getParam(int, int, JASInstParam*) const; // _0C
-	virtual void getType() const;                         // _10
+	virtual void getType() const;                         // _10 (inline)
 	virtual void _14() = 0;                               // _14
-
-	// _00 VTBL
 };
 
 #endif

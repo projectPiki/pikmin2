@@ -10,16 +10,12 @@
 
 namespace Game {
 struct CreatureKillArg {
-	virtual void getName(); // _08
-
-	// _00 VTBL
+	virtual void getName(); // _08 (inline)
 };
 } // namespace Game
 
 namespace Game {
 struct PelletKillArg : public CreatureKillArg {
-
-	// _00 VTBL
 };
 } // namespace Game
 

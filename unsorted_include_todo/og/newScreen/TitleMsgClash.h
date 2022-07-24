@@ -16,9 +16,7 @@ namespace newScreen {
 struct TitleMsg {
 	virtual void init();   // _08
 	virtual void update(); // _0C
-	virtual void start();  // _10
-
-	// _00 VTBL
+	virtual void start();  // _10 (inline)
 };
 } // namespace newScreen
 } // namespace og
@@ -30,7 +28,7 @@ struct TitleMsgClash : public TitleMsg {
 	virtual void update(); // _0C
 	virtual void end();    // _14
 
-	// _00 VTBL
+	TitleMsgClash();
 };
 } // namespace newScreen
 } // namespace og

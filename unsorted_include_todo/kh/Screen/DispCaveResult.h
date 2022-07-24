@@ -14,12 +14,10 @@
 namespace og {
 namespace Screen {
 struct DispMemberBase {
-	virtual void getSize();           // _08
-	virtual void getOwnerID();        // _0C
-	virtual void getMemberID();       // _10
-	virtual void doSetSubMemberAll(); // _14
-
-	// _00 VTBL
+	virtual void getSize();           // _08 (inline)
+	virtual void getOwnerID();        // _0C (inline)
+	virtual void getMemberID();       // _10 (inline)
+	virtual void doSetSubMemberAll(); // _14 (inline)
 };
 } // namespace Screen
 } // namespace og
@@ -27,11 +25,12 @@ struct DispMemberBase {
 namespace kh {
 namespace Screen {
 struct DispCaveResult : public DispMemberBase {
-	virtual void getSize();     // _08
-	virtual void getOwnerID();  // _0C
-	virtual void getMemberID(); // _10
+	virtual void getSize();     // _08 (inline)
+	virtual void getOwnerID();  // _0C (inline)
+	virtual void getMemberID(); // _10 (inline)
 
-	// _00 VTBL
+	DispCaveResult();
+	void init(Game::Result::TNode*, unsigned long, bool);
 };
 } // namespace Screen
 } // namespace kh

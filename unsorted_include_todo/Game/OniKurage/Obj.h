@@ -211,9 +211,9 @@
 
 namespace Game {
 struct EnemyBase {
-	virtual void getPosition();                                     // _08
+	virtual void getPosition();                                     // _08 (inline)
 	virtual void _0C() = 0;                                         // _0C
-	virtual void getBoundingSphere(Sys::Sphere&);                   // _10
+	virtual void getBoundingSphere(Sys::Sphere&);                   // _10 (inline)
 	virtual void _14() = 0;                                         // _14
 	virtual void _18() = 0;                                         // _18
 	virtual void _1C() = 0;                                         // _1C
@@ -221,30 +221,30 @@ struct EnemyBase {
 	virtual void _24() = 0;                                         // _24
 	virtual void _28() = 0;                                         // _28
 	virtual void constructor();                                     // _2C
-	virtual void _30() = 0;                                         // _30
-	virtual void _34() = 0;                                         // _34
+	virtual void onInit(CreatureInitArg*);                          // _30
+	virtual void onKill(CreatureKillArg*);                          // _34
 	virtual void onInitPost(CreatureInitArg*);                      // _38
 	virtual void doAnimation();                                     // _3C
 	virtual void doEntry();                                         // _40
 	virtual void doSetView(int);                                    // _44
 	virtual void doViewCalc();                                      // _48
 	virtual void doSimulation(float);                               // _4C
-	virtual void _50() = 0;                                         // _50
-	virtual void getBodyRadius();                                   // _54
-	virtual void getCellRadius();                                   // _58
+	virtual void doDirectDraw(Graphics&);                           // _50
+	virtual void getBodyRadius();                                   // _54 (inline)
+	virtual void getCellRadius();                                   // _58 (inline)
 	virtual void _5C() = 0;                                         // _5C
 	virtual void _60() = 0;                                         // _60
-	virtual void getFaceDir();                                      // _64
-	virtual void setVelocity(Vector3<float>&);                      // _68
-	virtual void getVelocity();                                     // _6C
-	virtual void onSetPosition(Vector3<float>&);                    // _70
-	virtual void onSetPositionPost(Vector3<float>&);                // _74
+	virtual void getFaceDir();                                      // _64 (inline)
+	virtual void setVelocity(Vector3<float>&);                      // _68 (inline)
+	virtual void getVelocity();                                     // _6C (inline)
+	virtual void onSetPosition(Vector3<float>&);                    // _70 (inline)
+	virtual void onSetPositionPost(Vector3<float>&);                // _74 (inline)
 	virtual void updateTrMatrix();                                  // _78
-	virtual void isTeki();                                          // _7C
+	virtual void isTeki();                                          // _7C (inline)
 	virtual void _80() = 0;                                         // _80
-	virtual void _84() = 0;                                         // _84
-	virtual void _88() = 0;                                         // _88
-	virtual void inWater();                                         // _8C
+	virtual void inWaterCallback(WaterBox*);                        // _84 (inline)
+	virtual void outWaterCallback();                                // _88 (inline)
+	virtual void inWater();                                         // _8C (inline)
 	virtual void _90() = 0;                                         // _90
 	virtual void _94() = 0;                                         // _94
 	virtual void _98() = 0;                                         // _98
@@ -260,7 +260,7 @@ struct EnemyBase {
 	virtual void _C0() = 0;                                         // _C0
 	virtual void _C4() = 0;                                         // _C4
 	virtual void _C8() = 0;                                         // _C8
-	virtual void isFlying();                                        // _CC
+	virtual void isFlying();                                        // _CC (inline)
 	virtual void _D0() = 0;                                         // _D0
 	virtual void _D4() = 0;                                         // _D4
 	virtual void _D8() = 0;                                         // _D8
@@ -273,10 +273,10 @@ struct EnemyBase {
 	virtual void getJAIObject();                                    // _F4
 	virtual void getPSCreature();                                   // _F8
 	virtual void _FC() = 0;                                         // _FC
-	virtual void getSound_PosPtr();                                 // _100
-	virtual void sound_culling();                                   // _104
-	virtual void getSound_CurrAnimFrame();                          // _108
-	virtual void getSound_CurrAnimSpeed();                          // _10C
+	virtual void getSound_PosPtr();                                 // _100 (inline)
+	virtual void sound_culling();                                   // _104 (inline)
+	virtual void getSound_CurrAnimFrame();                          // _108 (inline)
+	virtual void getSound_CurrAnimSpeed();                          // _10C (inline)
 	virtual void _110() = 0;                                        // _110
 	virtual void _114() = 0;                                        // _114
 	virtual void _118() = 0;                                        // _118
@@ -286,10 +286,10 @@ struct EnemyBase {
 	virtual void _128() = 0;                                        // _128
 	virtual void _12C() = 0;                                        // _12C
 	virtual void _130() = 0;                                        // _130
-	virtual void _134() = 0;                                        // _134
+	virtual void getShadowParam(ShadowParam&);                      // _134
 	virtual void needShadow();                                      // _138
 	virtual void getLifeGaugeParam(LifeGaugeParam&);                // _13C
-	virtual void getLODSphere(Sys::Sphere&);                        // _140
+	virtual void getLODSphere(Sys::Sphere&);                        // _140 (inline)
 	virtual void _144() = 0;                                        // _144
 	virtual void _148() = 0;                                        // _148
 	virtual void _14C() = 0;                                        // _14C
@@ -306,7 +306,7 @@ struct EnemyBase {
 	virtual void _178() = 0;                                        // _178
 	virtual void _17C() = 0;                                        // _17C
 	virtual void _180() = 0;                                        // _180
-	virtual void getVelocityAt(Vector3<float>&, Vector3<float>&);   // _184
+	virtual void getVelocityAt(Vector3<float>&, Vector3<float>&);   // _184 (inline)
 	virtual void _188() = 0;                                        // _188
 	virtual void _18C() = 0;                                        // _18C
 	virtual void _190() = 0;                                        // _190
@@ -315,59 +315,59 @@ struct EnemyBase {
 	virtual void _19C() = 0;                                        // _19C
 	virtual void _1A0() = 0;                                        // _1A0
 	virtual void stimulate(Interaction&);                           // _1A4
-	virtual void getCreatureName();                                 // _1A8
-	virtual void getCreatureID();                                   // _1AC
+	virtual void getCreatureName();                                 // _1A8 (inline)
+	virtual void getCreatureID();                                   // _1AC (inline)
 	virtual void _1B0() = 0;                                        // _1B0
 	virtual void _1B4() = 0;                                        // _1B4
 	virtual void _1B8() = 0;                                        // _1B8
-	virtual void _1BC() = 0;                                        // _1BC
+	virtual ~EnemyBase();                                           // _1BC (inline)
 	virtual void birth(Vector3<float>&, float);                     // _1C0
-	virtual void _1C4() = 0;                                        // _1C4
+	virtual void setInitialSetting(EnemyInitialParamBase*);         // _1C4
 	virtual void update();                                          // _1C8
-	virtual void _1CC() = 0;                                        // _1CC
-	virtual void _1D0() = 0;                                        // _1D0
+	virtual void doUpdate();                                        // _1CC
+	virtual void doUpdateCommon();                                  // _1D0
 	virtual void doUpdateCarcass();                                 // _1D4
 	virtual void doAnimationUpdateAnimator();                       // _1D8
 	virtual void doAnimationCullingOff();                           // _1DC
 	virtual void doAnimationCullingOn();                            // _1E0
 	virtual void doAnimationStick();                                // _1E4
 	virtual void doSimulationCarcass(float);                        // _1E8
-	virtual void _1EC() = 0;                                        // _1EC
-	virtual void doSimpleDraw(Viewport*);                           // _1F0
+	virtual void doDebugDraw(Graphics&);                            // _1EC
+	virtual void doSimpleDraw(Viewport*);                           // _1F0 (inline)
 	virtual void doSimulationGround(float);                         // _1F4
 	virtual void doSimulationFlying(float);                         // _1F8
 	virtual void doSimulationStick(float);                          // _1FC
 	virtual void changeMaterial();                                  // _200
 	virtual void getCommonEffectPos(Vector3<float>&);               // _204
 	virtual void getFitEffectPos();                                 // _208
-	virtual void viewGetShape();                                    // _20C
-	virtual void view_start_carrymotion();                          // _210
-	virtual void view_finish_carrymotion();                         // _214
-	virtual void viewStartPreCarryMotion();                         // _218
-	virtual void viewStartCarryMotion();                            // _21C
-	virtual void viewOnPelletKilled();                              // _220
-	virtual void getOffsetForMapCollision();                        // _224
+	virtual void viewGetShape();                                    // _20C (inline)
+	virtual void view_start_carrymotion();                          // _210 (inline)
+	virtual void view_finish_carrymotion();                         // _214 (inline)
+	virtual void viewStartPreCarryMotion();                         // _218 (inline)
+	virtual void viewStartCarryMotion();                            // _21C (inline)
+	virtual void viewOnPelletKilled();                              // _220 (inline)
+	virtual void getOffsetForMapCollision();                        // _224 (inline)
 	virtual void setParameters();                                   // _228
-	virtual void _22C() = 0;                                        // _22C
-	virtual void initWalkSmokeEffect();                             // _230
-	virtual void getWalkSmokeEffectMgr();                           // _234
-	virtual void onKeyEvent(const SysShape::KeyEvent&);             // _238
+	virtual void initMouthSlots();                                  // _22C
+	virtual void initWalkSmokeEffect();                             // _230 (inline)
+	virtual void getWalkSmokeEffectMgr();                           // _234 (inline)
+	virtual void onKeyEvent(const SysShape::KeyEvent&);             // _238 (inline)
 	virtual void injure();                                          // _23C
 	virtual void setCollEvent(CollEvent&);                          // _240
-	virtual void getEfxHamonPos(Vector3<float>*);                   // _244
+	virtual void getEfxHamonPos(Vector3<float>*);                   // _244 (inline)
 	virtual void createInstanceEfxHamon();                          // _248
 	virtual void updateEfxHamon();                                  // _24C
 	virtual void createEfxHamon();                                  // _250
 	virtual void fadeEfxHamon();                                    // _254
-	virtual void _258() = 0;                                        // _258
-	virtual void _25C() = 0;                                        // _25C
+	virtual void getEnemyTypeID();                                  // _258 (inline)
+	virtual void getMouthSlots();                                   // _25C (inline)
 	virtual void doGetLifeGaugeParam(LifeGaugeParam&);              // _260
 	virtual void throwupItem();                                     // _264
 	virtual void getThrowupItemPosition(Vector3<float>*);           // _268
 	virtual void getThrowupItemVelocity(Vector3<float>*);           // _26C
-	virtual void throwupItemInDeathProcedure();                     // _270
-	virtual void setLODSphere(Sys::Sphere&);                        // _274
-	virtual void _278() = 0;                                        // _278
+	virtual void throwupItemInDeathProcedure();                     // _270 (inline)
+	virtual void setLODSphere(Sys::Sphere&);                        // _274 (inline)
+	virtual void damageCallBack(Creature*, float, CollPart*);       // _278
 	virtual void pressCallBack(Creature*, float, CollPart*);        // _27C
 	virtual void flyCollisionCallBack(Creature*, float, CollPart*); // _280
 	virtual void hipdropCallBack(Creature*, float, CollPart*);      // _284
@@ -377,27 +377,25 @@ struct EnemyBase {
 	virtual void bombCallBack(Creature*, Vector3<float>&, float);   // _294
 	virtual void eatWhitePikminCallBack(Creature*, float);          // _298
 	virtual void dopeCallBack(Creature*, int);                      // _29C
-	virtual void doDopeCallBack(Creature*, int);                    // _2A0
-	virtual void _2A4() = 0;                                        // _2A4
-	virtual void _2A8() = 0;                                        // _2A8
-	virtual void getDamageCoeStoneState();                          // _2AC
+	virtual void doDopeCallBack(Creature*, int);                    // _2A0 (inline)
+	virtual void doStartStoneState();                               // _2A4
+	virtual void doFinishStoneState();                              // _2A8
+	virtual void getDamageCoeStoneState();                          // _2AC (inline)
 	virtual void doStartEarthquakeState(float);                     // _2B0
 	virtual void doFinishEarthquakeState();                         // _2B4
 	virtual void doStartEarthquakeFitState();                       // _2B8
 	virtual void doFinishEarthquakeFitState();                      // _2BC
 	virtual void lifeRecover();                                     // _2C0
-	virtual void startCarcassMotion();                              // _2C4
+	virtual void startCarcassMotion();                              // _2C4 (inline)
 	virtual void setCarcassArg(PelletViewArg&);                     // _2C8
-	virtual void getCarcassArgHeight();                             // _2CC
+	virtual void getCarcassArgHeight();                             // _2CC (inline)
 	virtual void doBecomeCarcass();                                 // _2D0
 	virtual void startWaitingBirthTypeDrop();                       // _2D4
 	virtual void finishWaitingBirthTypeDrop();                      // _2D8
 	virtual void isFinishableWaitingBirthTypeDrop();                // _2DC
-	virtual void _2E0() = 0;                                        // _2E0
-	virtual void _2E4() = 0;                                        // _2E4
-	virtual void wallCallback(const MoveInfo&);                     // _2E8
-
-	// _00 VTBL
+	virtual void doStartWaitingBirthTypeDrop();                     // _2E0
+	virtual void doFinishWaitingBirthTypeDrop();                    // _2E4
+	virtual void wallCallback(const MoveInfo&);                     // _2E8 (inline)
 };
 } // namespace Game
 
@@ -406,26 +404,26 @@ struct Creature {
 	virtual void _08() = 0;                                          // _08
 	virtual void checkCollision(CellObject*);                        // _0C
 	virtual void _10() = 0;                                          // _10
-	virtual void collisionUpdatable();                               // _14
+	virtual void collisionUpdatable();                               // _14 (inline)
 	virtual void isPiki();                                           // _18
 	virtual void isNavi();                                           // _1C
 	virtual void _20() = 0;                                          // _20
 	virtual void getTypeName();                                      // _24
-	virtual void getObjType();                                       // _28
+	virtual void getObjType();                                       // _28 (inline)
 	virtual void _2C() = 0;                                          // _2C
-	virtual void _30() = 0;                                          // _30
-	virtual void _34() = 0;                                          // _34
+	virtual void onInit(CreatureInitArg*);                           // _30
+	virtual void onKill(CreatureKillArg*);                           // _34
 	virtual void _38() = 0;                                          // _38
 	virtual void _3C() = 0;                                          // _3C
 	virtual void _40() = 0;                                          // _40
 	virtual void _44() = 0;                                          // _44
 	virtual void _48() = 0;                                          // _48
 	virtual void _4C() = 0;                                          // _4C
-	virtual void _50() = 0;                                          // _50
+	virtual void doDirectDraw(Graphics&);                            // _50
 	virtual void _54() = 0;                                          // _54
 	virtual void _58() = 0;                                          // _58
 	virtual void initPosition(Vector3<float>&);                      // _5C
-	virtual void onInitPosition(Vector3<float>&);                    // _60
+	virtual void onInitPosition(Vector3<float>&);                    // _60 (inline)
 	virtual void _64() = 0;                                          // _64
 	virtual void _68() = 0;                                          // _68
 	virtual void _6C() = 0;                                          // _6C
@@ -434,80 +432,78 @@ struct Creature {
 	virtual void _78() = 0;                                          // _78
 	virtual void _7C() = 0;                                          // _7C
 	virtual void isPellet();                                         // _80
-	virtual void _84() = 0;                                          // _84
-	virtual void _88() = 0;                                          // _88
+	virtual void inWaterCallback(WaterBox*);                         // _84 (inline)
+	virtual void outWaterCallback();                                 // _88 (inline)
 	virtual void _8C() = 0;                                          // _8C
-	virtual void getFlockMgr();                                      // _90
-	virtual void onStartCapture();                                   // _94
-	virtual void onUpdateCapture(Matrixf&);                          // _98
-	virtual void onEndCapture();                                     // _9C
-	virtual void isAtari();                                          // _A0
-	virtual void setAtari(bool);                                     // _A4
-	virtual void isAlive();                                          // _A8
-	virtual void setAlive(bool);                                     // _AC
-	virtual void isCollisionFlick();                                 // _B0
-	virtual void setCollisionFlick(bool);                            // _B4
-	virtual void isMovieActor();                                     // _B8
-	virtual void isMovieExtra();                                     // _BC
-	virtual void isMovieMotion();                                    // _C0
-	virtual void setMovieMotion(bool);                               // _C4
-	virtual void isBuried();                                         // _C8
+	virtual void getFlockMgr();                                      // _90 (inline)
+	virtual void onStartCapture();                                   // _94 (inline)
+	virtual void onUpdateCapture(Matrixf&);                          // _98 (inline)
+	virtual void onEndCapture();                                     // _9C (inline)
+	virtual void isAtari();                                          // _A0 (inline)
+	virtual void setAtari(bool);                                     // _A4 (inline)
+	virtual void isAlive();                                          // _A8 (inline)
+	virtual void setAlive(bool);                                     // _AC (inline)
+	virtual void isCollisionFlick();                                 // _B0 (inline)
+	virtual void setCollisionFlick(bool);                            // _B4 (inline)
+	virtual void isMovieActor();                                     // _B8 (inline)
+	virtual void isMovieExtra();                                     // _BC (inline)
+	virtual void isMovieMotion();                                    // _C0 (inline)
+	virtual void setMovieMotion(bool);                               // _C4 (inline)
+	virtual void isBuried();                                         // _C8 (inline)
 	virtual void _CC() = 0;                                          // _CC
-	virtual void isUnderground();                                    // _D0
-	virtual void isLivingThing();                                    // _D4
-	virtual void isDebugCollision();                                 // _D8
-	virtual void setDebugCollision(bool);                            // _DC
-	virtual void doSave(Stream&);                                    // _E0
-	virtual void doLoad(Stream&);                                    // _E4
-	virtual void bounceCallback(Sys::Triangle*);                     // _E8
+	virtual void isUnderground();                                    // _D0 (inline)
+	virtual void isLivingThing();                                    // _D4 (inline)
+	virtual void isDebugCollision();                                 // _D8 (inline)
+	virtual void setDebugCollision(bool);                            // _DC (inline)
+	virtual void doSave(Stream&);                                    // _E0 (inline)
+	virtual void doLoad(Stream&);                                    // _E4 (inline)
+	virtual void bounceCallback(Sys::Triangle*);                     // _E8 (inline)
 	virtual void _EC() = 0;                                          // _EC
-	virtual void platCallback(PlatEvent&);                           // _F0
+	virtual void platCallback(PlatEvent&);                           // _F0 (inline)
 	virtual void _F4() = 0;                                          // _F4
 	virtual void _F8() = 0;                                          // _F8
-	virtual void getSound_AILOD();                                   // _FC
+	virtual void getSound_AILOD();                                   // _FC (inline)
 	virtual void _100() = 0;                                         // _100
 	virtual void _104() = 0;                                         // _104
 	virtual void _108() = 0;                                         // _108
 	virtual void _10C() = 0;                                         // _10C
-	virtual void on_movie_begin(bool);                               // _110
-	virtual void on_movie_end(bool);                                 // _114
-	virtual void movieStartAnimation(unsigned long);                 // _118
-	virtual void movieStartDemoAnimation(SysShape::AnimInfo*);       // _11C
-	virtual void movieSetAnimationLastFrame();                       // _120
-	virtual void movieSetTranslation(Vector3<float>&, float);        // _124
-	virtual void movieSetFaceDir(float);                             // _128
-	virtual void movieGotoPosition(Vector3<float>&);                 // _12C
-	virtual void movieUserCommand(unsigned long, MoviePlayer*);      // _130
-	virtual void _134() = 0;                                         // _134
+	virtual void on_movie_begin(bool);                               // _110 (inline)
+	virtual void on_movie_end(bool);                                 // _114 (inline)
+	virtual void movieStartAnimation(unsigned long);                 // _118 (inline)
+	virtual void movieStartDemoAnimation(SysShape::AnimInfo*);       // _11C (inline)
+	virtual void movieSetAnimationLastFrame();                       // _120 (inline)
+	virtual void movieSetTranslation(Vector3<float>&, float);        // _124 (inline)
+	virtual void movieSetFaceDir(float);                             // _128 (inline)
+	virtual void movieGotoPosition(Vector3<float>&);                 // _12C (inline)
+	virtual void movieUserCommand(unsigned long, MoviePlayer*);      // _130 (inline)
+	virtual void getShadowParam(ShadowParam&);                       // _134
 	virtual void _138() = 0;                                         // _138
 	virtual void _13C() = 0;                                         // _13C
 	virtual void _140() = 0;                                         // _140
-	virtual void getLODCylinder(Sys::Cylinder&);                     // _144
-	virtual void startPick();                                        // _148
-	virtual void endPick(bool);                                      // _14C
-	virtual void getMabiki();                                        // _150
-	virtual void getFootmarks();                                     // _154
+	virtual void getLODCylinder(Sys::Cylinder&);                     // _144 (inline)
+	virtual void startPick();                                        // _148 (inline)
+	virtual void endPick(bool);                                      // _14C (inline)
+	virtual void getMabiki();                                        // _150 (inline)
+	virtual void getFootmarks();                                     // _154 (inline)
 	virtual void _158() = 0;                                         // _158
 	virtual void _15C() = 0;                                         // _15C
-	virtual void onStickStartSelf(Creature*);                        // _160
-	virtual void onStickEndSelf(Creature*);                          // _164
-	virtual void isSlotFree(short);                                  // _168
-	virtual void getFreeStickSlot();                                 // _16C
-	virtual void getNearFreeStickSlot(Vector3<float>&);              // _170
-	virtual void getRandomFreeStickSlot();                           // _174
-	virtual void onSlotStickStart(Creature*, short);                 // _178
-	virtual void onSlotStickEnd(Creature*, short);                   // _17C
-	virtual void calcStickSlotGlobal(short, Vector3<float>&);        // _180
+	virtual void onStickStartSelf(Creature*);                        // _160 (inline)
+	virtual void onStickEndSelf(Creature*);                          // _164 (inline)
+	virtual void isSlotFree(short);                                  // _168 (inline)
+	virtual void getFreeStickSlot();                                 // _16C (inline)
+	virtual void getNearFreeStickSlot(Vector3<float>&);              // _170 (inline)
+	virtual void getRandomFreeStickSlot();                           // _174 (inline)
+	virtual void onSlotStickStart(Creature*, short);                 // _178 (inline)
+	virtual void onSlotStickEnd(Creature*, short);                   // _17C (inline)
+	virtual void calcStickSlotGlobal(short, Vector3<float>&);        // _180 (inline)
 	virtual void _184() = 0;                                         // _184
-	virtual void getAngularEffect(Vector3<float>&, Vector3<float>&); // _188
+	virtual void getAngularEffect(Vector3<float>&, Vector3<float>&); // _188 (inline)
 	virtual void applyImpulse(Vector3<float>&, Vector3<float>&);     // _18C
-	virtual void ignoreAtari(Creature*);                             // _190
-	virtual void getSuckPos();                                       // _194
-	virtual void getGoalPos();                                       // _198
-	virtual void isSuckReady();                                      // _19C
-	virtual void isSuckArriveWait();                                 // _1A0
-
-	// _00 VTBL
+	virtual void ignoreAtari(Creature*);                             // _190 (inline)
+	virtual void getSuckPos();                                       // _194 (inline)
+	virtual void getGoalPos();                                       // _198 (inline)
+	virtual void isSuckReady();                                      // _19C (inline)
+	virtual void isSuckArriveWait();                                 // _1A0 (inline)
 };
 } // namespace Game
 
@@ -519,217 +515,213 @@ struct CellObject {
 	virtual void _14() = 0;            // _14
 	virtual void _18() = 0;            // _18
 	virtual void _1C() = 0;            // _1C
-	virtual void deferPikiCollision(); // _20
-
-	// _00 VTBL
+	virtual void deferPikiCollision(); // _20 (inline)
 };
 } // namespace Game
 
 namespace Game {
 struct PelletView {
-	virtual void _08()  = 0;                                // _08
-	virtual void _0C()  = 0;                                // _0C
-	virtual void _10()  = 0;                                // _10
-	virtual void _14()  = 0;                                // _14
-	virtual void _18()  = 0;                                // _18
-	virtual void _1C()  = 0;                                // _1C
-	virtual void _20()  = 0;                                // _20
-	virtual void _24()  = 0;                                // _24
-	virtual void _28()  = 0;                                // _28
-	virtual void _2C()  = 0;                                // _2C
-	virtual void _30()  = 0;                                // _30
-	virtual void _34()  = 0;                                // _34
-	virtual void _38()  = 0;                                // _38
-	virtual void _3C()  = 0;                                // _3C
-	virtual void _40()  = 0;                                // _40
-	virtual void _44()  = 0;                                // _44
-	virtual void _48()  = 0;                                // _48
-	virtual void _4C()  = 0;                                // _4C
-	virtual void _50()  = 0;                                // _50
-	virtual void _54()  = 0;                                // _54
-	virtual void _58()  = 0;                                // _58
-	virtual void _5C()  = 0;                                // _5C
-	virtual void _60()  = 0;                                // _60
-	virtual void _64()  = 0;                                // _64
-	virtual void _68()  = 0;                                // _68
-	virtual void _6C()  = 0;                                // _6C
-	virtual void _70()  = 0;                                // _70
-	virtual void _74()  = 0;                                // _74
-	virtual void _78()  = 0;                                // _78
-	virtual void _7C()  = 0;                                // _7C
-	virtual void _80()  = 0;                                // _80
-	virtual void _84()  = 0;                                // _84
-	virtual void _88()  = 0;                                // _88
-	virtual void _8C()  = 0;                                // _8C
-	virtual void _90()  = 0;                                // _90
-	virtual void _94()  = 0;                                // _94
-	virtual void _98()  = 0;                                // _98
-	virtual void _9C()  = 0;                                // _9C
-	virtual void _A0()  = 0;                                // _A0
-	virtual void _A4()  = 0;                                // _A4
-	virtual void _A8()  = 0;                                // _A8
-	virtual void _AC()  = 0;                                // _AC
-	virtual void _B0()  = 0;                                // _B0
-	virtual void _B4()  = 0;                                // _B4
-	virtual void _B8()  = 0;                                // _B8
-	virtual void _BC()  = 0;                                // _BC
-	virtual void _C0()  = 0;                                // _C0
-	virtual void _C4()  = 0;                                // _C4
-	virtual void _C8()  = 0;                                // _C8
-	virtual void _CC()  = 0;                                // _CC
-	virtual void _D0()  = 0;                                // _D0
-	virtual void _D4()  = 0;                                // _D4
-	virtual void _D8()  = 0;                                // _D8
-	virtual void _DC()  = 0;                                // _DC
-	virtual void _E0()  = 0;                                // _E0
-	virtual void _E4()  = 0;                                // _E4
-	virtual void _E8()  = 0;                                // _E8
-	virtual void _EC()  = 0;                                // _EC
-	virtual void _F0()  = 0;                                // _F0
-	virtual void _F4()  = 0;                                // _F4
-	virtual void _F8()  = 0;                                // _F8
-	virtual void _FC()  = 0;                                // _FC
-	virtual void _100() = 0;                                // _100
-	virtual void _104() = 0;                                // _104
-	virtual void _108() = 0;                                // _108
-	virtual void _10C() = 0;                                // _10C
-	virtual void _110() = 0;                                // _110
-	virtual void _114() = 0;                                // _114
-	virtual void _118() = 0;                                // _118
-	virtual void _11C() = 0;                                // _11C
-	virtual void _120() = 0;                                // _120
-	virtual void _124() = 0;                                // _124
-	virtual void _128() = 0;                                // _128
-	virtual void _12C() = 0;                                // _12C
-	virtual void _130() = 0;                                // _130
-	virtual void _134() = 0;                                // _134
-	virtual void _138() = 0;                                // _138
-	virtual void _13C() = 0;                                // _13C
-	virtual void _140() = 0;                                // _140
-	virtual void _144() = 0;                                // _144
-	virtual void _148() = 0;                                // _148
-	virtual void _14C() = 0;                                // _14C
-	virtual void _150() = 0;                                // _150
-	virtual void _154() = 0;                                // _154
-	virtual void _158() = 0;                                // _158
-	virtual void _15C() = 0;                                // _15C
-	virtual void _160() = 0;                                // _160
-	virtual void _164() = 0;                                // _164
-	virtual void _168() = 0;                                // _168
-	virtual void _16C() = 0;                                // _16C
-	virtual void _170() = 0;                                // _170
-	virtual void _174() = 0;                                // _174
-	virtual void _178() = 0;                                // _178
-	virtual void _17C() = 0;                                // _17C
-	virtual void _180() = 0;                                // _180
-	virtual void _184() = 0;                                // _184
-	virtual void _188() = 0;                                // _188
-	virtual void _18C() = 0;                                // _18C
-	virtual void _190() = 0;                                // _190
-	virtual void _194() = 0;                                // _194
-	virtual void _198() = 0;                                // _198
-	virtual void _19C() = 0;                                // _19C
-	virtual void _1A0() = 0;                                // _1A0
-	virtual void _1A4() = 0;                                // _1A4
-	virtual void _1A8() = 0;                                // _1A8
-	virtual void _1AC() = 0;                                // _1AC
-	virtual void _1B0() = 0;                                // _1B0
-	virtual void _1B4() = 0;                                // _1B4
-	virtual void _1B8() = 0;                                // _1B8
-	virtual void _1BC() = 0;                                // _1BC
-	virtual void _1C0() = 0;                                // _1C0
-	virtual void _1C4() = 0;                                // _1C4
-	virtual void _1C8() = 0;                                // _1C8
-	virtual void _1CC() = 0;                                // _1CC
-	virtual void _1D0() = 0;                                // _1D0
-	virtual void _1D4() = 0;                                // _1D4
-	virtual void _1D8() = 0;                                // _1D8
-	virtual void _1DC() = 0;                                // _1DC
-	virtual void _1E0() = 0;                                // _1E0
-	virtual void _1E4() = 0;                                // _1E4
-	virtual void _1E8() = 0;                                // _1E8
-	virtual void _1EC() = 0;                                // _1EC
-	virtual void _1F0() = 0;                                // _1F0
-	virtual void _1F4() = 0;                                // _1F4
-	virtual void _1F8() = 0;                                // _1F8
-	virtual void _1FC() = 0;                                // _1FC
-	virtual void _200() = 0;                                // _200
-	virtual void _204() = 0;                                // _204
-	virtual void _208() = 0;                                // _208
-	virtual void _20C() = 0;                                // _20C
-	virtual void _210() = 0;                                // _210
-	virtual void _214() = 0;                                // _214
-	virtual void _218() = 0;                                // _218
-	virtual void _21C() = 0;                                // _21C
-	virtual void _220() = 0;                                // _220
-	virtual void _224() = 0;                                // _224
-	virtual void _228() = 0;                                // _228
-	virtual void _22C() = 0;                                // _22C
-	virtual void _230() = 0;                                // _230
-	virtual void _234() = 0;                                // _234
-	virtual void _238() = 0;                                // _238
-	virtual void _23C() = 0;                                // _23C
-	virtual void _240() = 0;                                // _240
-	virtual void _244() = 0;                                // _244
-	virtual void _248() = 0;                                // _248
-	virtual void _24C() = 0;                                // _24C
-	virtual void _250() = 0;                                // _250
-	virtual void _254() = 0;                                // _254
-	virtual void _258() = 0;                                // _258
-	virtual void _25C() = 0;                                // _25C
-	virtual void _260() = 0;                                // _260
-	virtual void _264() = 0;                                // _264
-	virtual void _268() = 0;                                // _268
-	virtual void _26C() = 0;                                // _26C
-	virtual void _270() = 0;                                // _270
-	virtual void _274() = 0;                                // _274
-	virtual void _278() = 0;                                // _278
-	virtual void _27C() = 0;                                // _27C
-	virtual void _280() = 0;                                // _280
-	virtual void _284() = 0;                                // _284
-	virtual void _288() = 0;                                // _288
-	virtual void _28C() = 0;                                // _28C
-	virtual void _290() = 0;                                // _290
-	virtual void _294() = 0;                                // _294
-	virtual void _298() = 0;                                // _298
-	virtual void _29C() = 0;                                // _29C
-	virtual void _2A0() = 0;                                // _2A0
-	virtual void _2A4() = 0;                                // _2A4
-	virtual void _2A8() = 0;                                // _2A8
-	virtual void _2AC() = 0;                                // _2AC
-	virtual void _2B0() = 0;                                // _2B0
-	virtual void _2B4() = 0;                                // _2B4
-	virtual void _2B8() = 0;                                // _2B8
-	virtual void _2BC() = 0;                                // _2BC
-	virtual void _2C0() = 0;                                // _2C0
-	virtual void _2C4() = 0;                                // _2C4
-	virtual void _2C8() = 0;                                // _2C8
-	virtual void _2CC() = 0;                                // _2CC
-	virtual void _2D0() = 0;                                // _2D0
-	virtual void _2D4() = 0;                                // _2D4
-	virtual void _2D8() = 0;                                // _2D8
-	virtual void _2DC() = 0;                                // _2DC
-	virtual void _2E0() = 0;                                // _2E0
-	virtual void _2E4() = 0;                                // _2E4
-	virtual void _2E8() = 0;                                // _2E8
-	virtual void _2EC() = 0;                                // _2EC
-	virtual void _2F0() = 0;                                // _2F0
-	virtual void _2F4() = 0;                                // _2F4
-	virtual void _2F8() = 0;                                // _2F8
-	virtual void _2FC() = 0;                                // _2FC
-	virtual void _300() = 0;                                // _300
-	virtual void viewGetBaseScale();                        // _304
-	virtual void _308() = 0;                                // _308
-	virtual void viewGetCollTreeJointIndex();               // _30C
-	virtual void viewGetCollTreeOffset();                   // _310
-	virtual void _314() = 0;                                // _314
-	virtual void _318() = 0;                                // _318
-	virtual void _31C() = 0;                                // _31C
-	virtual void _320() = 0;                                // _320
-	virtual void _324() = 0;                                // _324
-	virtual void viewEntryShape(Matrixf&, Vector3<float>&); // _328
-
-	// _00 VTBL
+	virtual void _08() = 0;                                   // _08
+	virtual void _0C() = 0;                                   // _0C
+	virtual void _10() = 0;                                   // _10
+	virtual void _14() = 0;                                   // _14
+	virtual void _18() = 0;                                   // _18
+	virtual void _1C() = 0;                                   // _1C
+	virtual void _20() = 0;                                   // _20
+	virtual void _24() = 0;                                   // _24
+	virtual void _28() = 0;                                   // _28
+	virtual void _2C() = 0;                                   // _2C
+	virtual void onInit(CreatureInitArg*);                    // _30
+	virtual void onKill(CreatureKillArg*);                    // _34
+	virtual void _38() = 0;                                   // _38
+	virtual void _3C() = 0;                                   // _3C
+	virtual void _40() = 0;                                   // _40
+	virtual void _44() = 0;                                   // _44
+	virtual void _48() = 0;                                   // _48
+	virtual void _4C() = 0;                                   // _4C
+	virtual void doDirectDraw(Graphics&);                     // _50
+	virtual void _54() = 0;                                   // _54
+	virtual void _58() = 0;                                   // _58
+	virtual void _5C() = 0;                                   // _5C
+	virtual void _60() = 0;                                   // _60
+	virtual void _64() = 0;                                   // _64
+	virtual void _68() = 0;                                   // _68
+	virtual void _6C() = 0;                                   // _6C
+	virtual void _70() = 0;                                   // _70
+	virtual void _74() = 0;                                   // _74
+	virtual void _78() = 0;                                   // _78
+	virtual void _7C() = 0;                                   // _7C
+	virtual void _80() = 0;                                   // _80
+	virtual void inWaterCallback(WaterBox*);                  // _84 (inline)
+	virtual void outWaterCallback();                          // _88 (inline)
+	virtual void _8C()  = 0;                                  // _8C
+	virtual void _90()  = 0;                                  // _90
+	virtual void _94()  = 0;                                  // _94
+	virtual void _98()  = 0;                                  // _98
+	virtual void _9C()  = 0;                                  // _9C
+	virtual void _A0()  = 0;                                  // _A0
+	virtual void _A4()  = 0;                                  // _A4
+	virtual void _A8()  = 0;                                  // _A8
+	virtual void _AC()  = 0;                                  // _AC
+	virtual void _B0()  = 0;                                  // _B0
+	virtual void _B4()  = 0;                                  // _B4
+	virtual void _B8()  = 0;                                  // _B8
+	virtual void _BC()  = 0;                                  // _BC
+	virtual void _C0()  = 0;                                  // _C0
+	virtual void _C4()  = 0;                                  // _C4
+	virtual void _C8()  = 0;                                  // _C8
+	virtual void _CC()  = 0;                                  // _CC
+	virtual void _D0()  = 0;                                  // _D0
+	virtual void _D4()  = 0;                                  // _D4
+	virtual void _D8()  = 0;                                  // _D8
+	virtual void _DC()  = 0;                                  // _DC
+	virtual void _E0()  = 0;                                  // _E0
+	virtual void _E4()  = 0;                                  // _E4
+	virtual void _E8()  = 0;                                  // _E8
+	virtual void _EC()  = 0;                                  // _EC
+	virtual void _F0()  = 0;                                  // _F0
+	virtual void _F4()  = 0;                                  // _F4
+	virtual void _F8()  = 0;                                  // _F8
+	virtual void _FC()  = 0;                                  // _FC
+	virtual void _100() = 0;                                  // _100
+	virtual void _104() = 0;                                  // _104
+	virtual void _108() = 0;                                  // _108
+	virtual void _10C() = 0;                                  // _10C
+	virtual void _110() = 0;                                  // _110
+	virtual void _114() = 0;                                  // _114
+	virtual void _118() = 0;                                  // _118
+	virtual void _11C() = 0;                                  // _11C
+	virtual void _120() = 0;                                  // _120
+	virtual void _124() = 0;                                  // _124
+	virtual void _128() = 0;                                  // _128
+	virtual void _12C() = 0;                                  // _12C
+	virtual void _130() = 0;                                  // _130
+	virtual void getShadowParam(ShadowParam&);                // _134
+	virtual void _138() = 0;                                  // _138
+	virtual void _13C() = 0;                                  // _13C
+	virtual void _140() = 0;                                  // _140
+	virtual void _144() = 0;                                  // _144
+	virtual void _148() = 0;                                  // _148
+	virtual void _14C() = 0;                                  // _14C
+	virtual void _150() = 0;                                  // _150
+	virtual void _154() = 0;                                  // _154
+	virtual void _158() = 0;                                  // _158
+	virtual void _15C() = 0;                                  // _15C
+	virtual void _160() = 0;                                  // _160
+	virtual void _164() = 0;                                  // _164
+	virtual void _168() = 0;                                  // _168
+	virtual void _16C() = 0;                                  // _16C
+	virtual void _170() = 0;                                  // _170
+	virtual void _174() = 0;                                  // _174
+	virtual void _178() = 0;                                  // _178
+	virtual void _17C() = 0;                                  // _17C
+	virtual void _180() = 0;                                  // _180
+	virtual void _184() = 0;                                  // _184
+	virtual void _188() = 0;                                  // _188
+	virtual void _18C() = 0;                                  // _18C
+	virtual void _190() = 0;                                  // _190
+	virtual void _194() = 0;                                  // _194
+	virtual void _198() = 0;                                  // _198
+	virtual void _19C() = 0;                                  // _19C
+	virtual void _1A0() = 0;                                  // _1A0
+	virtual void _1A4() = 0;                                  // _1A4
+	virtual void _1A8() = 0;                                  // _1A8
+	virtual void _1AC() = 0;                                  // _1AC
+	virtual void _1B0() = 0;                                  // _1B0
+	virtual void _1B4() = 0;                                  // _1B4
+	virtual void _1B8() = 0;                                  // _1B8
+	virtual ~PelletView();                                    // _1BC (inline)
+	virtual void _1C0() = 0;                                  // _1C0
+	virtual void setInitialSetting(EnemyInitialParamBase*);   // _1C4
+	virtual void _1C8() = 0;                                  // _1C8
+	virtual void doUpdate();                                  // _1CC
+	virtual void doUpdateCommon();                            // _1D0
+	virtual void _1D4() = 0;                                  // _1D4
+	virtual void _1D8() = 0;                                  // _1D8
+	virtual void _1DC() = 0;                                  // _1DC
+	virtual void _1E0() = 0;                                  // _1E0
+	virtual void _1E4() = 0;                                  // _1E4
+	virtual void _1E8() = 0;                                  // _1E8
+	virtual void doDebugDraw(Graphics&);                      // _1EC
+	virtual void _1F0() = 0;                                  // _1F0
+	virtual void _1F4() = 0;                                  // _1F4
+	virtual void _1F8() = 0;                                  // _1F8
+	virtual void _1FC() = 0;                                  // _1FC
+	virtual void _200() = 0;                                  // _200
+	virtual void _204() = 0;                                  // _204
+	virtual void _208() = 0;                                  // _208
+	virtual void _20C() = 0;                                  // _20C
+	virtual void _210() = 0;                                  // _210
+	virtual void _214() = 0;                                  // _214
+	virtual void _218() = 0;                                  // _218
+	virtual void _21C() = 0;                                  // _21C
+	virtual void _220() = 0;                                  // _220
+	virtual void _224() = 0;                                  // _224
+	virtual void _228() = 0;                                  // _228
+	virtual void initMouthSlots();                            // _22C
+	virtual void _230() = 0;                                  // _230
+	virtual void _234() = 0;                                  // _234
+	virtual void _238() = 0;                                  // _238
+	virtual void _23C() = 0;                                  // _23C
+	virtual void _240() = 0;                                  // _240
+	virtual void _244() = 0;                                  // _244
+	virtual void _248() = 0;                                  // _248
+	virtual void _24C() = 0;                                  // _24C
+	virtual void _250() = 0;                                  // _250
+	virtual void _254() = 0;                                  // _254
+	virtual void getEnemyTypeID();                            // _258 (inline)
+	virtual void getMouthSlots();                             // _25C (inline)
+	virtual void _260() = 0;                                  // _260
+	virtual void _264() = 0;                                  // _264
+	virtual void _268() = 0;                                  // _268
+	virtual void _26C() = 0;                                  // _26C
+	virtual void _270() = 0;                                  // _270
+	virtual void _274() = 0;                                  // _274
+	virtual void damageCallBack(Creature*, float, CollPart*); // _278
+	virtual void _27C() = 0;                                  // _27C
+	virtual void _280() = 0;                                  // _280
+	virtual void _284() = 0;                                  // _284
+	virtual void _288() = 0;                                  // _288
+	virtual void _28C() = 0;                                  // _28C
+	virtual void _290() = 0;                                  // _290
+	virtual void _294() = 0;                                  // _294
+	virtual void _298() = 0;                                  // _298
+	virtual void _29C() = 0;                                  // _29C
+	virtual void _2A0() = 0;                                  // _2A0
+	virtual void doStartStoneState();                         // _2A4
+	virtual void doFinishStoneState();                        // _2A8
+	virtual void _2AC() = 0;                                  // _2AC
+	virtual void _2B0() = 0;                                  // _2B0
+	virtual void _2B4() = 0;                                  // _2B4
+	virtual void _2B8() = 0;                                  // _2B8
+	virtual void _2BC() = 0;                                  // _2BC
+	virtual void _2C0() = 0;                                  // _2C0
+	virtual void _2C4() = 0;                                  // _2C4
+	virtual void _2C8() = 0;                                  // _2C8
+	virtual void _2CC() = 0;                                  // _2CC
+	virtual void _2D0() = 0;                                  // _2D0
+	virtual void _2D4() = 0;                                  // _2D4
+	virtual void _2D8() = 0;                                  // _2D8
+	virtual void _2DC() = 0;                                  // _2DC
+	virtual void doStartWaitingBirthTypeDrop();               // _2E0
+	virtual void doFinishWaitingBirthTypeDrop();              // _2E4
+	virtual void _2E8() = 0;                                  // _2E8
+	virtual void getDownSmokeScale();                         // _2EC (inline)
+	virtual void doStartMovie();                              // _2F0
+	virtual void doEndMovie();                                // _2F4
+	virtual void setFSM(FSM*);                                // _2F8
+	virtual void _2FC() = 0;                                  // _2FC
+	virtual void _300() = 0;                                  // _300
+	virtual void viewGetBaseScale();                          // _304 (inline)
+	virtual void _308() = 0;                                  // _308
+	virtual void viewGetCollTreeJointIndex();                 // _30C (inline)
+	virtual void viewGetCollTreeOffset();                     // _310 (inline)
+	virtual void _314() = 0;                                  // _314
+	virtual void _318() = 0;                                  // _318
+	virtual void _31C() = 0;                                  // _31C
+	virtual void _320() = 0;                                  // _320
+	virtual void _324() = 0;                                  // _324
+	virtual void viewEntryShape(Matrixf&, Vector3<float>&);   // _328 (inline)
 };
 } // namespace Game
 
@@ -739,25 +731,25 @@ struct Obj : public EnemyBase, public Creature, public CellObject, public Pellet
 	virtual void onInit(CreatureInitArg*);                    // _30
 	virtual void onKill(CreatureKillArg*);                    // _34
 	virtual void doDirectDraw(Graphics&);                     // _50
-	virtual void inWaterCallback(WaterBox*);                  // _84
-	virtual void outWaterCallback();                          // _88
+	virtual void inWaterCallback(WaterBox*);                  // _84 (inline)
+	virtual void outWaterCallback();                          // _88 (inline)
 	virtual void getShadowParam(ShadowParam&);                // _134
 	virtual void _1B0() = 0;                                  // _1B0
 	virtual void _1B4() = 0;                                  // _1B4
-	virtual ~Obj();                                           // _1BC
+	virtual ~Obj();                                           // _1BC (inline)
 	virtual void setInitialSetting(EnemyInitialParamBase*);   // _1C4
 	virtual void doUpdate();                                  // _1CC
 	virtual void doUpdateCommon();                            // _1D0
 	virtual void doDebugDraw(Graphics&);                      // _1EC
 	virtual void initMouthSlots();                            // _22C
-	virtual void getEnemyTypeID();                            // _258
-	virtual void getMouthSlots();                             // _25C
+	virtual void getEnemyTypeID();                            // _258 (inline)
+	virtual void getMouthSlots();                             // _25C (inline)
 	virtual void damageCallBack(Creature*, float, CollPart*); // _278
 	virtual void doStartStoneState();                         // _2A4
 	virtual void doFinishStoneState();                        // _2A8
 	virtual void doStartWaitingBirthTypeDrop();               // _2E0
 	virtual void doFinishWaitingBirthTypeDrop();              // _2E4
-	virtual void getDownSmokeScale();                         // _2EC
+	virtual void getDownSmokeScale();                         // _2EC (inline)
 	virtual void doStartMovie();                              // _2F0
 	virtual void doEndMovie();                                // _2F4
 	virtual void setFSM(FSM*);                                // _2F8
@@ -765,7 +757,39 @@ struct Obj : public EnemyBase, public Creature, public CellObject, public Pellet
 	virtual void _300() = 0;                                  // _300
 	virtual void _32C() = 0;                                  // _32C
 
-	// _00 VTBL
+	Obj();
+	void setHeightVelocity(float, float);
+	void setRandTarget();
+	void getMovePitchOffset();
+	void getAttackPitchOffset();
+	void getFlickPitchOffset();
+	void getTakeOffPitchOffset();
+	void getFallPitchOffset(float);
+	void updateFallTimer();
+	void getFlyingNextState();
+	void getSearchedTarget(float);
+	void isSuck(float, Game::Creature*);
+	void suckPikmin(float);
+	void suckNavi(float);
+	void updateCollPartOffset();
+	void isFinishNaviSuck();
+	void isNaviSucked();
+	void flickStickNavi(bool);
+	void escapeCheckNavi();
+	void createEffect();
+	void setupEffect();
+	void startEyeHireBodyEffect();
+	void finishEyeBodyEffect();
+	void setHireEffectLife(short);
+	void finishHireEffect();
+	void startSuckEffect(Vector3<float>&);
+	void updateSuckEffect(Vector3<float>&);
+	void finishSuckEffect();
+	void createFlickNaviEffect();
+	void createBodyBombEffect();
+	void createDownEffect();
+	void effectDrawOn();
+	void effectDrawOff();
 };
 } // namespace OniKurage
 } // namespace Game

@@ -12,7 +12,10 @@ namespace PSGame {
 struct SysFactory {
 	virtual void _08() = 0; // _08
 
-	// _00 VTBL
+	SysFactory();
+	void newSoundSystem();
+	void preInitJAI();
+	void postInitJAI();
 };
 } // namespace PSGame
 

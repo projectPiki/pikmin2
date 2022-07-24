@@ -17,10 +17,8 @@ namespace StateMachine < Game
 	struct Piki >
 	{
 		virtual void init(Piki*);                                 // _08
-		virtual void StateMachine < start(Piki*, int, StateArg*); // _0C
-		virtual void StateMachine < exec(Piki*);                  // _10
-
-		// _00 VTBL
+		virtual void StateMachine < start(Piki*, int, StateArg*); // _0C (inline)
+		virtual void StateMachine < exec(Piki*);                  // _10 (inline)
 	};
 } // namespace Game
 } // namespace Game
@@ -30,7 +28,7 @@ struct PikiFSM : public Piki > {
 	virtual void init(Piki*);                    // _08
 	virtual void transit(Piki*, int, StateArg*); // _14
 
-	// _00 VTBL
+	void transitForce(Game::Piki*, int, Game::StateArg*);
 };
 } // namespace Game
 

@@ -11,8 +11,6 @@
 namespace PSSystem {
 struct SeqPauseOffReservator {
 	virtual void reservatorTask(); // _08
-
-	// _00 VTBL
 };
 } // namespace PSSystem
 

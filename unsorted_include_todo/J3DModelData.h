@@ -9,9 +9,7 @@
 */
 
 struct J3DModelData {
-	virtual ~J3DModelData(); // _08
-
-	// _00 VTBL
+	virtual ~J3DModelData(); // _08 (inline)
 };
 
 #endif

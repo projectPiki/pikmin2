@@ -25,8 +25,8 @@ namespace PSM {
 struct Creature {
     virtual void _08() = 0;                       // _08
     virtual void _0C() = 0;                       // _0C
-    virtual void @16 @__dt();                     // _10
-    virtual ~Creature();                          // _14
+    virtual void @16 @__dt();                     // _10 (inline)
+    virtual ~Creature();                          // _14 (inline)
     virtual void _18() = 0;                       // _18
     virtual void _1C() = 0;                       // _1C
     virtual void exec();                          // _20
@@ -39,7 +39,8 @@ struct Creature {
     virtual void onPlayingSe(unsigned long, JAISound*); // _38
     virtual void _3C() = 0;                             // _3C
 
-    // _00 VTBL
+    void isNear(Game::Creature*, float);
+    void getPlayingHandleNum();
 };
 } // namespace PSM
 

@@ -28,51 +28,45 @@
 
 namespace PSSystem {
 struct Scene {
-	virtual void init();                      // _08
-	virtual void _0C() = 0;                   // _0C
+	virtual void init();                      // _08 (inline)
+	virtual ~Scene();                         // _0C (inline)
 	virtual void scene1st(TaskChecker*);      // _10
 	virtual void scene1stLoadSync();          // _14
 	virtual void exec();                      // _18
 	virtual void startMainSeq();              // _1C
 	virtual void stopMainSeq(unsigned long);  // _20
 	virtual void stopAllSound(unsigned long); // _24
-
-	// _00 VTBL
 };
 } // namespace PSSystem
 
 namespace PSM {
 struct SceneBase {
 	virtual void _08() = 0;                                // _08
-	virtual void _0C() = 0;                                // _0C
+	virtual ~SceneBase();                                  // _0C (inline)
 	virtual void _10() = 0;                                // _10
 	virtual void _14() = 0;                                // _14
 	virtual void _18() = 0;                                // _18
 	virtual void _1C() = 0;                                // _1C
 	virtual void _20() = 0;                                // _20
 	virtual void _24() = 0;                                // _24
-	virtual void _28() = 0;                                // _28
-	virtual void getEnvSe();                               // _2C
+	virtual void getCamDistVol(unsigned char);             // _28
+	virtual void getEnvSe();                               // _2C (inline)
 	virtual void getSceneFx();                             // _30
-	virtual void isDemoScene();                            // _34
-	virtual void getSeSceneGate(ObjBase*, unsigned long);  // _38
+	virtual void isDemoScene();                            // _34 (inline)
+	virtual void getSeSceneGate(ObjBase*, unsigned long);  // _38 (inline)
 	virtual void becomeSceneCamera();                      // _3C
-	virtual void isGameScene();                            // _40
+	virtual void isGameScene();                            // _40 (inline)
 	virtual void pauseOn_2D(unsigned char, unsigned char); // _44
 	virtual void pauseOff_2D();                            // _48
 	virtual void pauseOn_Demo();                           // _4C
 	virtual void pauseOff_Demo();                          // _50
-
-	// _00 VTBL
 };
 } // namespace PSM
 
 namespace PSM {
 struct Scene_NoObjects : public Scene, public SceneBase {
-	virtual ~Scene_NoObjects();                // _0C
+	virtual ~Scene_NoObjects();                // _0C (inline)
 	virtual void getCamDistVol(unsigned char); // _28
-
-	// _00 VTBL
 };
 } // namespace PSM
 

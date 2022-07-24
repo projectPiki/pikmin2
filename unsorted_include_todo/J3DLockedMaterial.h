@@ -20,8 +20,6 @@
 struct J3DMaterial {
 	virtual void calc(const float (*)[4]);           // _08
 	virtual void calcDiffTexMtx(const float (*)[4]); // _0C
-
-	// _00 VTBL
 };
 
 struct J3DLockedMaterial : public J3DMaterial {
@@ -34,8 +32,6 @@ struct J3DLockedMaterial : public J3DMaterial {
 	virtual void diff(unsigned long);      // _24
 	virtual void reset();                  // _28
 	virtual void change();                 // _2C
-
-	// _00 VTBL
 };
 
 #endif

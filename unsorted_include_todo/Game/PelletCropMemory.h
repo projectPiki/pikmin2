@@ -14,7 +14,11 @@ struct PelletCropMemory {
 	virtual void read(Stream&);  // _08
 	virtual void write(Stream&); // _0C
 
-	// _00 VTBL
+	void createClone();
+	void addTo(Game::PelletCropMemory*);
+	void clear();
+	void calcEarnKinds();
+	void completeAll();
 };
 } // namespace Game
 

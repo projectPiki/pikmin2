@@ -12,7 +12,14 @@ namespace Resource {
 struct Mgr {
 	virtual void drawDump(Graphics&, int, int); // _08
 
-	// _00 VTBL
+	Mgr();
+	void createNewNode(const char*);
+	void loadResource(Resource::MgrCommand*, const char*, bool);
+	void destroy(Resource::MgrCommand*);
+	void destroyAll();
+	void sync(Resource::MgrCommand*, bool);
+	void delFinishCommand();
+	void searchCommand(Resource::MgrCommand*);
 };
 } // namespace Resource
 

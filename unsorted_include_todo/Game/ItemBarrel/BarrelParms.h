@@ -11,9 +11,9 @@
 namespace Game {
 namespace ItemBarrel {
 struct BarrelParms {
-	virtual void read(Stream&); // _08
+	virtual void read(Stream&); // _08 (inline)
 
-	// _00 VTBL
+	BarrelParms();
 };
 } // namespace ItemBarrel
 } // namespace Game
