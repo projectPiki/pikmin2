@@ -8,14 +8,13 @@
 #include "Vector3.h"
 #include "Rect.h"
 
-// NOTE, EVERYTHING UP UNTIL THE ACTUAL "STRUCT"
-// DECLARATION ARE JUST FORWARD DECLARATIONS!
 struct BlackFader;
 struct BlendCamera;
 struct HorizonalSplitter;
 struct WipeInFader;
 struct WipeOutFader;
 struct WipeOutInFader;
+
 namespace PSGame {
 struct SceneInfo;
 } // namespace PSGame
@@ -29,12 +28,15 @@ struct Mgr;
 } // namespace TreasureLight
 
 namespace Game {
+
 namespace ItemCave {
 struct Item;
 } // namespace ItemCave
+
 namespace ItemBigFountain {
 struct Item;
 } // namespace ItemBigFountain
+
 namespace ItemHole {
 struct Item;
 } // namespace ItemHole
@@ -60,61 +62,91 @@ struct BaseGameSection : public BaseHIOSection {
 	};
 
 	BaseGameSection(struct JKRHeap*);
-	~BaseGameSection();
 
-	void addChallengeScore(int);
+	virtual ~BaseGameSection();                                                  // _08
+	virtual void init();                                                         // _18
+	virtual void drawInit(Graphics&, Section::EDrawInitMode);                    // _20
+	virtual bool forceFinish();                                                  // _28
+	virtual bool doUpdate();                                                     // _3C
+	virtual void doDraw(Graphics&);                                              // _40
+	virtual void sendMessage(Game::GameMessage&);                                // _50
+	virtual void pre2dDraw(Graphics&);                                           // _54
+	virtual void getCurrFloor();                                                 // _58
+	virtual void isDevelopSection();                                             // _5C
+	virtual void addChallengeScore(int);                                         // _60
+	virtual void startMainBgm();                                                 // _64
+	virtual void section_fadeout();                                              // _68
+	virtual void goNextFloor(Game::ItemHole::Item*);                             // _6C
+	virtual void goCave(Game::ItemCave::Item*);                                  // _70
+	virtual void goMainMap(Game::ItemBigFountain::Item*);                        // _74
+	virtual u32 getCaveID();                                                     // _78
+	virtual CourseInfo* getCurrentCourseInfo();                                  // _7C
+	virtual void challengeDisablePelplant();                                     // _80
+	virtual void getCaveFilename();                                              // _84
+	virtual void getEditorFilename();                                            // _88
+	virtual void getVsEditNumber();                                              // _8C
+	virtual bool openContainerWindow();                                          // _90
+	virtual void closeContainerWindow();                                         // _94
+	virtual void playMovie_firstexperience(int, Game::Creature*);                // _98
+	virtual void playMovie_bootup(Game::Onyon*);                                 // _9C
+	virtual void playMovie_helloPikmin(Game::Piki*);                             // _A0
+	virtual void enableTimer(float, unsigned long);                              // _A4
+	virtual void disableTimer(unsigned long);                                    // _A8
+	virtual void getTimerType();                                                 // _AC
+	virtual void onMovieStart(Game::MovieConfig*, unsigned long, unsigned long); // _B0
+	virtual void onMovieDone(Game::MovieConfig*, unsigned long, unsigned long);  // _B4
+	virtual void onMovieCommand(int);                                            // _B8
+	virtual void startFadeout(float);                                            // _BC
+	virtual void startFadein(float);                                             // _C0
+	virtual void startFadeoutin(float);                                          // _C4
+	virtual void startFadeblack();                                               // _C8
+	virtual void startFadewhite();                                               // _CC
+	virtual void gmOrimaDown(int);                                               // _D0
+	virtual void gmPikminZero();                                                 // _D4
+	virtual void openCaveInMenu(Game::ItemCave::Item*, int);                     // _D8
+	virtual void openCaveMoreMenu(Game::ItemHole::Item*, Controller*);           // _DC
+	virtual void openKanketuMenu(Game::ItemBigFountain::Item*, Controller*);     // _E0
+	virtual void on_setCamController(int);                                       // _E4
+	virtual void onTogglePlayer();                                               // _E8
+	virtual void onPlayerJoin();                                                 // _EC
+	virtual void onInit();                                                       // _F0
+	virtual void onUpdate();                                                     // _F4
+	virtual void initJ3D();                                                      // _F8
+	virtual void initViewports(Graphics&);                                       // _FC
+	virtual void initResources();                                                // _100
+	virtual void initGenerators();                                               // _104
+	virtual void initLights();                                                   // _108
+	virtual void draw3D(Graphics&);                                              // _10C
+	virtual void draw2D(Graphics&);                                              // _110
+	virtual void draw_Ogawa2D(Graphics&);                                        // _114
+	virtual void do_drawOtakaraWindow(Graphics&);                                // _118
+	virtual void onSetupFloatMemory();                                           // _11C
+	virtual void postSetupFloatMemory();                                         // _120
+	virtual void onSetSoundScene();                                              // _124
+	virtual void onStartHeap();                                                  // _128
+	virtual void onClearHeap();                                                  // _12C
+
 	void advanceDayCount();
 	void captureRadarmap(struct Graphics&);
-	void challengeDisablePelplant();
 	void changeGeneratorCursor(Vector3f&);
 	void clearHeap();
-	void closeContainerWindow();
 	void closeZoomWindow();
 	void createFallPikminSound();
 	void directDraw(Graphics&, struct Viewport*);
 	void directDrawPost(Graphics&, Viewport*);
 	bool disableAllocHalt();
-	void disableTimer(unsigned long);
-	void do_drawOtakaraWindow(Graphics&);
 	void doAnimation();
 	void doDirectDraw(Graphics&, Viewport*);
 	void doDirectDrawPost(Graphics&, Viewport*);
-	void doDraw(Graphics&);
 	void doEntry();
 	void doSetView(int);
 	void doSimpleDraw(Viewport*);
 	void doSimulation(float);
-	virtual bool doUpdate();
 	void doViewCalc();
-	void draw_Ogawa2D(Graphics&);
-	void draw2D(Graphics&);
-	void draw3D(Graphics&);
-	void drawInit(Graphics&, Section::EDrawInitMode);
 	void drawOtakaraWindow(Graphics&);
 	void drawParticle(Graphics&, int);
 	void dvdloadGameSystem();
 	bool enableAllocHalt();
-	void enableTimer(float, unsigned long);
-	virtual bool forceFinish();
-	void getCaveFilename();
-	u32 getCaveID();
-	CourseInfo* getCurrentCourseInfo();
-	void getCurrFloor();
-	void getEditorFilename();
-	void getTimerType();
-	void getVsEditNumber();
-	void gmOrimaDown(int);
-	void gmPikminZero();
-	void goCave(Game::ItemCave::Item*);
-	void goMainMap(Game::ItemBigFountain::Item*);
-	void goNextFloor(Game::ItemHole::Item*);
-	void init();
-	void initGenerators();
-	void initJ3D();
-	void initLights();
-	void initResources();
-	void initViewports(Graphics&);
-	void isDevelopSection();
 	void j3dSetView(Viewport*, bool);
 	void loadSync(struct IDelegate*, bool);
 	void movieDone(Game::MovieConfig*, unsigned long, unsigned long);
@@ -124,36 +156,13 @@ struct BaseGameSection : public BaseHIOSection {
 	void newdraw_drawParticle(Graphics&);
 	void newdraw_drawPostShadow(Viewport*);
 	void newdraw_drawPreShadow(Viewport*);
-	void on_setCamController(int);
 	void onCameraBlendFinished(Game::CameraArg*);
-	void onClearHeap();
-	void onInit();
 	void onKanteiDone(Rectf&);
-	void onMovieCommand(int);
-	void onMovieDone(Game::MovieConfig*, unsigned long, unsigned long);
-	void onMovieStart(Game::MovieConfig*, unsigned long, unsigned long);
-	void onPlayerJoin();
-	void onSetSoundScene();
-	void onSetupFloatMemory();
-	void onStartHeap();
-	void onTogglePlayer();
-	void onUpdate();
-	void openCaveInMenu(Game::ItemCave::Item*, int);
-	void openCaveMoreMenu(Game::ItemHole::Item*, Controller*);
-	bool openContainerWindow();
-	void openKanketuMenu(Game::ItemBigFountain::Item*, Controller*);
-	void playMovie_bootup(Game::Onyon*);
-	void playMovie_firstexperience(int, Game::Creature*);
-	void playMovie_helloPikmin(Game::Piki*);
 	void pmTogglePlayer();
-	void postSetupFloatMemory();
-	void pre2dDraw(Graphics&);
 	void prepareFountainOn(Vector3f&);
 	void prepareHoleIn(Vector3f&, bool);
 	void restoreFBTexture();
 	void saveToGeneratorCache(Game::CourseInfo*);
-	void section_fadeout();
-	void sendMessage(Game::GameMessage&);
 	void setCamController();
 	void setDefaultPSSceneInfo(PSGame::SceneInfo&);
 	void setDraw2DCreature(Game::Creature*);
@@ -164,13 +173,7 @@ struct BaseGameSection : public BaseHIOSection {
 	void setupFixMemory_dvdload();
 	void setupFixMemory();
 	void setupFloatMemory();
-	void startFadeblack();
-	void startFadein(float);
-	void startFadeout(float);
-	void startFadeoutin(float);
-	void startFadewhite();
 	void startKantei2D();
-	void startMainBgm();
 	void startZoomWindow();
 	void test_draw_treasure_detector();
 	void updateBlendCamera();
