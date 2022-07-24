@@ -17,13 +17,13 @@ struct EnemyFSMState;
  * Is this a case of Pikmin 1 legacy code? :thinking:
  */
 struct EnemyStateMachine {
-	virtual void init(EnemyBase*);                         // _00
-	virtual void start(EnemyBase*, int, StateArg*);        // _04
-	virtual void exec(EnemyBase*);                         // _08
-	virtual void transit(EnemyBase*, int, StateArg*);      // _0C
-	virtual void doDirectDraw(EnemyBase*, Graphics&);      // _10
-	virtual EnemyFSMState* getCurrState(EnemyBase*);       // _14
-	virtual void setCurrState(EnemyBase*, EnemyFSMState*); // _18
+	virtual void init(EnemyBase*);                         // _08
+	virtual void start(EnemyBase*, int, StateArg*);        // _0C
+	virtual void exec(EnemyBase*);                         // _10
+	virtual void transit(EnemyBase*, int, StateArg*);      // _14
+	virtual void doDirectDraw(EnemyBase*, Graphics&);      // _18
+	virtual EnemyFSMState* getCurrState(EnemyBase*);       // _1C
+	virtual void setCurrState(EnemyBase*, EnemyFSMState*); // _20
 
 	void create(int);
 	int getCurrID(EnemyBase*);
