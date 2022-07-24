@@ -10,7 +10,7 @@
 
 namespace PSSystem {
 struct SceneMgr {
-	virtual void exec(); // _00
+	virtual void exec(); // _08
 
 	// _00 VTBL
 };

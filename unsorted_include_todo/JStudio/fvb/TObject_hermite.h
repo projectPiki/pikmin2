@@ -6,19 +6,17 @@
     .4byte 0
     .4byte 0
     .4byte __dt__Q37JStudio3fvb15TObject_hermiteFv
-    .4byte
-   prepare_data___Q37JStudio3fvb15TObject_hermiteFRCQ57JStudio3fvb4data17TParse_TParagraph5TDataPQ37JStudio3fvb8TControl
+    .4byte prepare_data___Q37JStudio3fvb15TObject_hermiteFRCQ57JStudio3fvb4data17TParse_TParagraph5TDataPQ37JStudio3fvb8TControl
 */
 
 namespace JStudio {
 namespace fvb {
-	struct TObject_hermite {
-		virtual ~TObject_hermite(); // _00
-		virtual void prepare_data_(const data::TParse_TParagraph::TData&,
-		                           TControl*); // _04
+struct TObject_hermite {
+	virtual ~TObject_hermite();                                                   // _08
+	virtual void prepare_data_(const data::TParse_TParagraph::TData&, TControl*); // _0C
 
-		// _00 VTBL
-	};
+	// _00 VTBL
+};
 } // namespace fvb
 } // namespace JStudio
 

@@ -10,7 +10,7 @@
 
 namespace PSGame {
 struct SeMgr {
-	virtual ~SeMgr(); // _00
+	virtual ~SeMgr(); // _08
 
 	// _00 VTBL
 };

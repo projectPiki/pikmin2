@@ -14,11 +14,11 @@
 
 namespace PSM {
 struct ObjCalcBase {
-	virtual ~ObjCalcBase();              // _00
-	virtual void getPlayerNo(Creature*); // _04
-	virtual void getPlayerNo(Vec&);      // _08
-	virtual void setMode(Mode);          // _0C
-	virtual void is1PGame();             // _10
+	virtual ~ObjCalcBase();              // _08
+	virtual void getPlayerNo(Creature*); // _0C
+	virtual void getPlayerNo(Vec&);      // _10
+	virtual void setMode(Mode);          // _14
+	virtual void is1PGame();             // _18
 
 	// _00 VTBL
 };
@@ -26,11 +26,9 @@ struct ObjCalcBase {
 
 namespace PSM {
 struct ObjCalc_SingleGame : public ObjCalcBase {
-	virtual ~ObjCalc_SingleGame();       // _00
-	virtual void getPlayerNo(Creature*); // _04
-	virtual void getPlayerNo(Vec&);      // _08
-	virtual void setMode(Mode);          // _0C
-	virtual void is1PGame();             // _10
+	virtual ~ObjCalc_SingleGame();       // _08
+	virtual void getPlayerNo(Creature*); // _0C
+	virtual void getPlayerNo(Vec&);      // _10
 
 	// _00 VTBL
 };

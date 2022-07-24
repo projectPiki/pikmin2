@@ -11,17 +11,15 @@
 */
 
 struct J2DAnmBase {
-	virtual ~J2DAnmBase();                           // _00
-	virtual void searchUpdateMaterialID(J2DScreen*); // _04
+	virtual ~J2DAnmBase();                           // _08
+	virtual void searchUpdateMaterialID(J2DScreen*); // _0C
 
 	// _00 VTBL
 };
 
 struct J2DAnmVtxColor : public J2DAnmBase {
-	virtual ~J2DAnmVtxColor();                       // _00
-	virtual void searchUpdateMaterialID(J2DScreen*); // _04
-	virtual void getColor(unsigned char, unsigned short,
-	                      _GXColor*) const; // _08
+	virtual ~J2DAnmVtxColor();                                             // _08
+	virtual void getColor(unsigned char, unsigned short, _GXColor*) const; // _10
 
 	// _00 VTBL
 };

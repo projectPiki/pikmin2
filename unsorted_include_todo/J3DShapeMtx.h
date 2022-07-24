@@ -15,14 +15,13 @@
 */
 
 struct J3DShapeMtx {
-	virtual ~J3DShapeMtx();                            // _00
-	virtual void getType() const;                      // _04
-	virtual void getUseMtxNum() const;                 // _08
-	virtual void getUseMtxIndex(unsigned short) const; // _0C
-	virtual void load() const;                         // _10
-	virtual void calcNBTScale(const Vec&, float (*)[3][3],
-	                          float (*)[3][3]); // _14
-	virtual void _18() = 0;                     // _18
+	virtual ~J3DShapeMtx();                                                  // _08
+	virtual void getType() const;                                            // _0C
+	virtual void getUseMtxNum() const;                                       // _10
+	virtual void getUseMtxIndex(unsigned short) const;                       // _14
+	virtual void load() const;                                               // _18
+	virtual void calcNBTScale(const Vec&, float (*)[3][3], float (*)[3][3]); // _1C
+	virtual void _20() = 0;                                                  // _20
 
 	// _00 VTBL
 };

@@ -10,8 +10,8 @@
 */
 
 struct DvdThread {
-	virtual ~DvdThread(); // _00
-	virtual void run();   // _04
+	virtual ~DvdThread(); // _08
+	virtual void run();   // _0C
 
 	// _00 VTBL
 };

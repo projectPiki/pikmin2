@@ -12,8 +12,8 @@
 
 namespace PSSystem {
 struct SeqTrackBase {
-	virtual void update();        // _00
-	virtual void init(JASTrack*); // _04
+	virtual void update();        // _08
+	virtual void init(JASTrack*); // _0C
 
 	// _00 VTBL
 };
@@ -21,9 +21,7 @@ struct SeqTrackBase {
 
 namespace PSSystem {
 struct SeqTrackChild : public SeqTrackBase {
-	virtual void update();        // _00
-	virtual void init(JASTrack*); // _04
-	virtual void onStopSeq();     // _08
+	virtual void onStopSeq(); // _10
 
 	// _00 VTBL
 };

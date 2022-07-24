@@ -11,14 +11,14 @@
 
 namespace ebi {
 namespace title {
-	namespace Kogane {
-		struct TUnit {
-			virtual void getCreatureType(); // _00
-			virtual void isCalc();          // _04
+namespace Kogane {
+struct TUnit {
+	virtual void getCreatureType(); // _08
+	virtual void isCalc();          // _0C
 
-			// _00 VTBL
-		};
-	} // namespace Kogane
+	// _00 VTBL
+};
+} // namespace Kogane
 } // namespace title
 } // namespace ebi
 

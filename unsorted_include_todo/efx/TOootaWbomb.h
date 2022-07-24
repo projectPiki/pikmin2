@@ -17,11 +17,11 @@ namespace TSyncGroup4 < efx
 {
 	struct TChasePos >
 	{
-		virtual void TSyncGroup4 < create(Arg*);       // _00
-		virtual void TSyncGroup4 < forceKill();        // _04
-		virtual void TSyncGroup4 < fade();             // _08
-		virtual void TSyncGroup4 < startDemoDrawOff(); // _0C
-		virtual void TSyncGroup4 < endDemoDrawOn();    // _10
+		virtual void TSyncGroup4 < create(Arg*);       // _08
+		virtual void TSyncGroup4 < forceKill();        // _0C
+		virtual void TSyncGroup4 < fade();             // _10
+		virtual void TSyncGroup4 < startDemoDrawOff(); // _14
+		virtual void TSyncGroup4 < endDemoDrawOn();    // _18
 
 		// _00 VTBL
 	};
@@ -30,11 +30,6 @@ namespace TSyncGroup4 < efx
 
 namespace efx {
 struct TOootaWbomb : public TChasePos > {
-	virtual void TSyncGroup4 < create(Arg*);       // _00
-	virtual void TSyncGroup4 < forceKill();        // _04
-	virtual void TSyncGroup4 < fade();             // _08
-	virtual void TSyncGroup4 < startDemoDrawOff(); // _0C
-	virtual void TSyncGroup4 < endDemoDrawOn();    // _10
 
 	// _00 VTBL
 };

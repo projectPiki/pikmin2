@@ -14,15 +14,15 @@
 
 namespace og {
 namespace newScreen {
-	struct TitleMsgWave {
-		virtual void init();                               // _00
-		virtual void update();                             // _04
-		virtual void start();                              // _08
-		virtual void end();                                // _0C
-		virtual void setParam(float, float, float, float); // _10
+struct TitleMsgWave {
+	virtual void init();                               // _08
+	virtual void update();                             // _0C
+	virtual void start();                              // _10
+	virtual void end();                                // _14
+	virtual void setParam(float, float, float, float); // _18
 
-		// _00 VTBL
-	};
+	// _00 VTBL
+};
 } // namespace newScreen
 } // namespace og
 

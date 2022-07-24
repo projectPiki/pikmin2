@@ -10,7 +10,7 @@
 
 namespace PSSystem {
 struct BankMgr {
-	virtual ~BankMgr(); // _00
+	virtual ~BankMgr(); // _08
 
 	// _00 VTBL
 };

@@ -17,11 +17,11 @@ namespace TSyncGroup3 < efx
 {
 	struct TChasePosYRot >
 	{
-		virtual void TSyncGroup3 < create(Arg*);       // _00
-		virtual void TSyncGroup3 < forceKill();        // _04
-		virtual void TSyncGroup3 < fade();             // _08
-		virtual void TSyncGroup3 < startDemoDrawOff(); // _0C
-		virtual void TSyncGroup3 < endDemoDrawOn();    // _10
+		virtual void TSyncGroup3 < create(Arg*);       // _08
+		virtual void TSyncGroup3 < forceKill();        // _0C
+		virtual void TSyncGroup3 < fade();             // _10
+		virtual void TSyncGroup3 < startDemoDrawOff(); // _14
+		virtual void TSyncGroup3 < endDemoDrawOn();    // _18
 
 		// _00 VTBL
 	};
@@ -30,11 +30,6 @@ namespace TSyncGroup3 < efx
 
 namespace efx {
 struct TKchDiveWat : public TChasePosYRot > {
-	virtual void TSyncGroup3 < create(Arg*);       // _00
-	virtual void TSyncGroup3 < forceKill();        // _04
-	virtual void TSyncGroup3 < fade();             // _08
-	virtual void TSyncGroup3 < startDemoDrawOff(); // _0C
-	virtual void TSyncGroup3 < endDemoDrawOn();    // _10
 
 	// _00 VTBL
 };

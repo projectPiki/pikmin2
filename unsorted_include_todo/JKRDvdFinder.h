@@ -10,8 +10,8 @@
 */
 
 struct JKRDvdFinder {
-	virtual ~JKRDvdFinder();     // _00
-	virtual void findNextFile(); // _04
+	virtual ~JKRDvdFinder();     // _08
+	virtual void findNextFile(); // _0C
 
 	// _00 VTBL
 };

@@ -16,25 +16,21 @@
 */
 
 struct J2DGrafContext {
-	virtual ~J2DGrafContext();                          // _00
-	virtual void place(const JGeometry::TBox2<float>&); // _04
-	virtual void place(float, float, float, float);     // _08
-	virtual void setPort();                             // _0C
-	virtual void setup2D();                             // _10
-	virtual void setScissor();                          // _14
+	virtual ~J2DGrafContext();                          // _08
+	virtual void place(const JGeometry::TBox2<float>&); // _0C
+	virtual void place(float, float, float, float);     // _10
+	virtual void setPort();                             // _14
+	virtual void setup2D();                             // _18
+	virtual void setScissor();                          // _1C
 
 	// _00 VTBL
 };
 
 struct J2DPerspGraph : public J2DGrafContext {
-	virtual ~J2DPerspGraph();                           // _00
-	virtual void place(const JGeometry::TBox2<float>&); // _04
-	virtual void place(float, float, float, float);     // _08
-	virtual void setPort();                             // _0C
-	virtual void setup2D();                             // _10
-	virtual void setScissor();                          // _14
-	virtual void getGrafType() const;                   // _18
-	virtual void setLookat();                           // _1C
+	virtual ~J2DPerspGraph();         // _08
+	virtual void setPort();           // _14
+	virtual void getGrafType() const; // _20
+	virtual void setLookat();         // _24
 
 	// _00 VTBL
 };

@@ -10,11 +10,11 @@
 
 namespace Game {
 namespace EnemyFunc {
-	struct EatPikminDefaultCondition {
-		virtual void satisfy(Piki*); // _00
+struct EatPikminDefaultCondition {
+	virtual void satisfy(Piki*); // _08
 
-		// _00 VTBL
-	};
+	// _00 VTBL
+};
 } // namespace EnemyFunc
 } // namespace Game
 

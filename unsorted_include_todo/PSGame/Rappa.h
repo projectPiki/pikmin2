@@ -10,7 +10,7 @@
 
 namespace PSGame {
 struct Rappa {
-	virtual ~Rappa(); // _00
+	virtual ~Rappa(); // _08
 
 	// _00 VTBL
 };

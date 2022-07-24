@@ -12,8 +12,8 @@
 
 namespace Game {
 struct GameMessage {
-	virtual void actCommon(BaseGameSection*);   // _00
-	virtual void actSingle(SingleGameSection*); // _04
+	virtual void actCommon(BaseGameSection*);   // _08
+	virtual void actSingle(SingleGameSection*); // _0C
 
 	// _00 VTBL
 };
@@ -21,9 +21,7 @@ struct GameMessage {
 
 namespace Game {
 struct GameMessageVsBattleFinished : public GameMessage {
-	virtual void actCommon(BaseGameSection*);   // _00
-	virtual void actSingle(SingleGameSection*); // _04
-	virtual void actVs(VsGameSection*);         // _08
+	virtual void actVs(VsGameSection*); // _10
 
 	// _00 VTBL
 };

@@ -10,7 +10,7 @@
 
 namespace PSSystem {
 struct SeqMgr {
-	virtual ~SeqMgr(); // _00
+	virtual ~SeqMgr(); // _08
 
 	// _00 VTBL
 };

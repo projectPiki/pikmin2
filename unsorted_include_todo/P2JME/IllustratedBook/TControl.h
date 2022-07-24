@@ -25,26 +25,26 @@
 
 namespace P2JME {
 namespace IllustratedBook {
-	struct TControl {
-		virtual ~TControl();                                         // _00
-		virtual void reset();                                        // _04
-		virtual void update();                                       // _08
-		virtual void update(Controller*, Controller*);               // _0C
-		virtual void draw(Graphics&);                                // _10
-		virtual void draw(float (*)[4], float (*)[4]);               // _14
-		virtual void setMessageID(unsigned long, unsigned long);     // _18
-		virtual void setMessageID(char*);                            // _1C
-		virtual void setMessageID(unsigned long long);               // _20
-		virtual void setMessageCode(unsigned short, unsigned short); // _24
-		virtual void setMessageCode(unsigned long);                  // _28
-		virtual void onInit();                                       // _2C
-		virtual void createReference();                              // _30
-		virtual void createResourceContainer();                      // _34
-		virtual void createSequenceProcessor();                      // _38
-		virtual void createRenderingProcessor();                     // _3C
+struct TControl {
+	virtual ~TControl();                                         // _08
+	virtual void reset();                                        // _0C
+	virtual void update();                                       // _10
+	virtual void update(Controller*, Controller*);               // _14
+	virtual void draw(Graphics&);                                // _18
+	virtual void draw(float (*)[4], float (*)[4]);               // _1C
+	virtual void setMessageID(unsigned long, unsigned long);     // _20
+	virtual void setMessageID(char*);                            // _24
+	virtual void setMessageID(unsigned long long);               // _28
+	virtual void setMessageCode(unsigned short, unsigned short); // _2C
+	virtual void setMessageCode(unsigned long);                  // _30
+	virtual void onInit();                                       // _34
+	virtual void createReference();                              // _38
+	virtual void createResourceContainer();                      // _3C
+	virtual void createSequenceProcessor();                      // _40
+	virtual void createRenderingProcessor();                     // _44
 
-		// _00 VTBL
-	};
+	// _00 VTBL
+};
 } // namespace IllustratedBook
 } // namespace P2JME
 

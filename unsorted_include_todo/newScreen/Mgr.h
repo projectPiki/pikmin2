@@ -19,16 +19,16 @@
 
 namespace newScreen {
 struct Mgr {
-	virtual ~Mgr();                             // _00
-	virtual void setScene(SetSceneArg&);        // _04
-	virtual void startScene(StartSceneArg*);    // _08
-	virtual void endScene(EndSceneArg*);        // _0C
-	virtual void reset();                       // _10
-	virtual void setColorBG(JUtility::TColor&); // _14
-	virtual void setBGMode(int);                // _18
-	virtual void doGetSceneBase(long);          // _1C
-	virtual void drawBG(Graphics&);             // _20
-	virtual void drawWipe(Graphics&);           // _24
+	virtual ~Mgr();                             // _08
+	virtual void setScene(SetSceneArg&);        // _0C
+	virtual void startScene(StartSceneArg*);    // _10
+	virtual void endScene(EndSceneArg*);        // _14
+	virtual void reset();                       // _18
+	virtual void setColorBG(JUtility::TColor&); // _1C
+	virtual void setBGMode(int);                // _20
+	virtual void doGetSceneBase(long);          // _24
+	virtual void drawBG(Graphics&);             // _28
+	virtual void drawWipe(Graphics&);           // _2C
 
 	// _00 VTBL
 };

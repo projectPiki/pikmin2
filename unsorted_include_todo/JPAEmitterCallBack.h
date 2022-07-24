@@ -13,11 +13,11 @@
 */
 
 struct JPAEmitterCallBack {
-	virtual void _00() = 0;                     // _00
-	virtual void execute(JPABaseEmitter*);      // _04
-	virtual void executeAfter(JPABaseEmitter*); // _08
-	virtual void draw(JPABaseEmitter*);         // _0C
-	virtual void drawAfter(JPABaseEmitter*);    // _10
+	virtual void _08() = 0;                     // _08
+	virtual void execute(JPABaseEmitter*);      // _0C
+	virtual void executeAfter(JPABaseEmitter*); // _10
+	virtual void draw(JPABaseEmitter*);         // _14
+	virtual void drawAfter(JPABaseEmitter*);    // _18
 
 	// _00 VTBL
 };

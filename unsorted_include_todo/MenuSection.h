@@ -26,45 +26,34 @@
 */
 
 struct Section {
-	virtual ~Section();                              // _00
-	virtual void run();                              // _04
-	virtual void update();                           // _08
-	virtual void draw(Graphics&);                    // _0C
-	virtual void init();                             // _10
-	virtual void drawInit(Graphics&);                // _14
-	virtual void drawInit(Graphics&, EDrawInitMode); // _18
-	virtual void doExit();                           // _1C
-	virtual void forceFinish();                      // _20
-	virtual void forceReset();                       // _24
-	virtual void getCurrentSection();                // _28
-	virtual void doLoadingStart();                   // _2C
-	virtual void doLoading();                        // _30
-	virtual void _34() = 0;                          // _34
-	virtual void _38() = 0;                          // _38
-	virtual void isFinishable();                     // _3C
+	virtual ~Section();                              // _08
+	virtual void run();                              // _0C
+	virtual void update();                           // _10
+	virtual void draw(Graphics&);                    // _14
+	virtual void init();                             // _18
+	virtual void drawInit(Graphics&);                // _1C
+	virtual void drawInit(Graphics&, EDrawInitMode); // _20
+	virtual void doExit();                           // _24
+	virtual void forceFinish();                      // _28
+	virtual void forceReset();                       // _2C
+	virtual void getCurrentSection();                // _30
+	virtual void doLoadingStart();                   // _34
+	virtual void doLoading();                        // _38
+	virtual void _3C() = 0;                          // _3C
+	virtual void _40() = 0;                          // _40
+	virtual void isFinishable();                     // _44
 
 	// _00 VTBL
 };
 
 struct MenuSection : public Section {
-	virtual ~MenuSection();                          // _00
-	virtual void run();                              // _04
-	virtual void update();                           // _08
-	virtual void draw(Graphics&);                    // _0C
-	virtual void init();                             // _10
-	virtual void drawInit(Graphics&);                // _14
-	virtual void drawInit(Graphics&, EDrawInitMode); // _18
-	virtual void doExit();                           // _1C
-	virtual void forceFinish();                      // _20
-	virtual void forceReset();                       // _24
-	virtual void getCurrentSection();                // _28
-	virtual void doLoadingStart();                   // _2C
-	virtual void doLoading();                        // _30
-	virtual void _34() = 0;                          // _34
-	virtual void _38() = 0;                          // _38
-	virtual void isFinishable();                     // _3C
-	virtual void _40() = 0;                          // _40
-	virtual void _44() = 0;                          // _44
+	virtual ~MenuSection();           // _08
+	virtual void run();               // _0C
+	virtual void getCurrentSection(); // _30
+	virtual void _3C() = 0;           // _3C
+	virtual void _40() = 0;           // _40
+	virtual void _48() = 0;           // _48
+	virtual void _4C() = 0;           // _4C
 
 	// _00 VTBL
 };

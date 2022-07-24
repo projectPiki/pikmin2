@@ -5,14 +5,11 @@
     __vt__Q23efx13TOootaDeadLeg:
     .4byte 0
     .4byte 0
-    .4byte
-   "create__Q23efx44TSyncGroup3<Q23efx23TChasePosPosLocalYScale>FPQ23efx3Arg"
+    .4byte "create__Q23efx44TSyncGroup3<Q23efx23TChasePosPosLocalYScale>FPQ23efx3Arg"
     .4byte "forceKill__Q23efx44TSyncGroup3<Q23efx23TChasePosPosLocalYScale>Fv"
     .4byte "fade__Q23efx44TSyncGroup3<Q23efx23TChasePosPosLocalYScale>Fv"
-    .4byte
-   "startDemoDrawOff__Q23efx44TSyncGroup3<Q23efx23TChasePosPosLocalYScale>Fv"
-    .4byte
-   "endDemoDrawOn__Q23efx44TSyncGroup3<Q23efx23TChasePosPosLocalYScale>Fv"
+    .4byte "startDemoDrawOff__Q23efx44TSyncGroup3<Q23efx23TChasePosPosLocalYScale>Fv"
+    .4byte "endDemoDrawOn__Q23efx44TSyncGroup3<Q23efx23TChasePosPosLocalYScale>Fv"
 */
 
 namespace efx {
@@ -20,11 +17,11 @@ namespace TSyncGroup3 < efx
 {
 	struct TChasePosPosLocalYScale >
 	{
-		virtual void TSyncGroup3 < create(Arg*);       // _00
-		virtual void TSyncGroup3 < forceKill();        // _04
-		virtual void TSyncGroup3 < fade();             // _08
-		virtual void TSyncGroup3 < startDemoDrawOff(); // _0C
-		virtual void TSyncGroup3 < endDemoDrawOn();    // _10
+		virtual void TSyncGroup3 < create(Arg*);       // _08
+		virtual void TSyncGroup3 < forceKill();        // _0C
+		virtual void TSyncGroup3 < fade();             // _10
+		virtual void TSyncGroup3 < startDemoDrawOff(); // _14
+		virtual void TSyncGroup3 < endDemoDrawOn();    // _18
 
 		// _00 VTBL
 	};
@@ -33,11 +30,6 @@ namespace TSyncGroup3 < efx
 
 namespace efx {
 struct TOootaDeadLeg : public TChasePosPosLocalYScale > {
-	virtual void TSyncGroup3 < create(Arg*);       // _00
-	virtual void TSyncGroup3 < forceKill();        // _04
-	virtual void TSyncGroup3 < fade();             // _08
-	virtual void TSyncGroup3 < startDemoDrawOff(); // _0C
-	virtual void TSyncGroup3 < endDemoDrawOn();    // _10
 
 	// _00 VTBL
 };

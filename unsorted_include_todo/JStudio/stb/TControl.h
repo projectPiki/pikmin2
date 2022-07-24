@@ -10,11 +10,11 @@
 
 namespace JStudio {
 namespace stb {
-	struct TControl {
-		virtual ~TControl(); // _00
+struct TControl {
+	virtual ~TControl(); // _08
 
-		// _00 VTBL
-	};
+	// _00 VTBL
+};
 } // namespace stb
 } // namespace JStudio
 

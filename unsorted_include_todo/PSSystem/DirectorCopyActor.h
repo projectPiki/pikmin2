@@ -12,9 +12,9 @@
 
 namespace PSSystem {
 struct DirectorCopyActor {
-	virtual void exec(DirectorBase*);   // _00
-	virtual void onUpdateFromMasterD(); // _04
-	virtual void onUpdateFromSlaveD();  // _08
+	virtual void exec(DirectorBase*);   // _08
+	virtual void onUpdateFromMasterD(); // _0C
+	virtual void onUpdateFromSlaveD();  // _10
 
 	// _00 VTBL
 };

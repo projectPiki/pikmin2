@@ -11,17 +11,16 @@
 */
 
 struct CNode {
-	virtual ~CNode();             // _00
-	virtual void getChildCount(); // _04
+	virtual ~CNode();             // _08
+	virtual void getChildCount(); // _0C
 
 	// _00 VTBL
 };
 
 namespace Morimura {
 struct TIndPane : public CNode {
-	virtual ~TIndPane();          // _00
-	virtual void getChildCount(); // _04
-	virtual void draw();          // _08
+	virtual ~TIndPane(); // _08
+	virtual void draw(); // _10
 
 	// _00 VTBL
 };

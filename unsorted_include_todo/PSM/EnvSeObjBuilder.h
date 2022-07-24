@@ -12,9 +12,9 @@
 
 namespace PSM {
 struct EnvSeObjBuilder {
-	virtual ~EnvSeObjBuilder();                       // _00
-	virtual void onBuild(PSSystem::EnvSeBase*);       // _04
-	virtual void newSeObj(unsigned long, float, Vec); // _08
+	virtual ~EnvSeObjBuilder();                       // _08
+	virtual void onBuild(PSSystem::EnvSeBase*);       // _0C
+	virtual void newSeObj(unsigned long, float, Vec); // _10
 
 	// _00 VTBL
 };

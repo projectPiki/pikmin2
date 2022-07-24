@@ -17,11 +17,11 @@ namespace TSyncGroup2 < efx
 {
 	struct TChaseMtx >
 	{
-		virtual void create(Arg*);                     // _00
-		virtual void TSyncGroup2 < forceKill();        // _04
-		virtual void TSyncGroup2 < fade();             // _08
-		virtual void TSyncGroup2 < startDemoDrawOff(); // _0C
-		virtual void TSyncGroup2 < endDemoDrawOn();    // _10
+		virtual void create(Arg*);                     // _08
+		virtual void TSyncGroup2 < forceKill();        // _0C
+		virtual void TSyncGroup2 < fade();             // _10
+		virtual void TSyncGroup2 < startDemoDrawOff(); // _14
+		virtual void TSyncGroup2 < endDemoDrawOn();    // _18
 
 		// _00 VTBL
 	};
@@ -30,11 +30,7 @@ namespace TSyncGroup2 < efx
 
 namespace efx {
 struct TOrimaLight : public TChaseMtx > {
-	virtual void create(Arg*);                     // _00
-	virtual void TSyncGroup2 < forceKill();        // _04
-	virtual void TSyncGroup2 < fade();             // _08
-	virtual void TSyncGroup2 < startDemoDrawOff(); // _0C
-	virtual void TSyncGroup2 < endDemoDrawOn();    // _10
+	virtual void create(Arg*); // _08
 
 	// _00 VTBL
 };

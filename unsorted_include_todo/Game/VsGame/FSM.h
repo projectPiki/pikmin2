@@ -6,10 +6,8 @@
     .4byte 0
     .4byte 0
     .4byte init__Q34Game6VsGame3FSMFPQ24Game13VsGameSection
-    .4byte
-   "start__Q24Game36StateMachine<Q24Game13VsGameSection>FPQ24Game13VsGameSectioniPQ24Game8StateArg"
-    .4byte
-   "exec__Q24Game36StateMachine<Q24Game13VsGameSection>FPQ24Game13VsGameSection"
+    .4byte "start__Q24Game36StateMachine<Q24Game13VsGameSection>FPQ24Game13VsGameSectioniPQ24Game8StateArg"
+    .4byte "exec__Q24Game36StateMachine<Q24Game13VsGameSection>FPQ24Game13VsGameSection"
     .4byte transit__Q34Game6VsGame3FSMFPQ24Game13VsGameSectioniPQ24Game8StateArg
 */
 
@@ -18,10 +16,9 @@ namespace StateMachine < Game
 {
 	struct VsGameSection >
 	{
-		virtual void Vsinit(VsGameSection*); // _00
-		virtual void StateMachine
-		    < start(VsGameSection*, int, StateArg*);      // _04
-		virtual void StateMachine < exec(VsGameSection*); // _08
+		virtual void Vsinit(VsGameSection*);                               // _08
+		virtual void StateMachine < start(VsGameSection*, int, StateArg*); // _0C
+		virtual void StateMachine < exec(VsGameSection*);                  // _10
 
 		// _00 VTBL
 	};
@@ -30,15 +27,12 @@ namespace StateMachine < Game
 
 namespace Game {
 namespace VsGame {
-	struct FSM : public VsGameSection > {
-		virtual void Vsinit(VsGameSection*); // _00
-		virtual void StateMachine
-		    < start(VsGameSection*, int, StateArg*);            // _04
-		virtual void StateMachine < exec(VsGameSection*);       // _08
-		virtual void Vstransit(VsGameSection*, int, StateArg*); // _0C
+struct FSM : public VsGameSection > {
+	virtual void Vsinit(VsGameSection*);                    // _08
+	virtual void Vstransit(VsGameSection*, int, StateArg*); // _14
 
-		// _00 VTBL
-	};
+	// _00 VTBL
+};
 } // namespace VsGame
 } // namespace Game
 

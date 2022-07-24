@@ -9,7 +9,7 @@
 */
 
 struct MemoryCardMgrCommand {
-	virtual void getClassSize(); // _00
+	virtual void getClassSize(); // _08
 
 	// _00 VTBL
 };

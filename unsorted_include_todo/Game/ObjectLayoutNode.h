@@ -18,24 +18,23 @@
 */
 
 struct CNode {
-	virtual ~CNode();             // _00
-	virtual void getChildCount(); // _04
+	virtual ~CNode();             // _08
+	virtual void getChildCount(); // _0C
 
 	// _00 VTBL
 };
 
 namespace Game {
 struct ObjectLayoutNode : public CNode {
-	virtual ~ObjectLayoutNode();                   // _00
-	virtual void getChildCount();                  // _04
-	virtual void _08() = 0;                        // _08
-	virtual void _0C() = 0;                        // _0C
+	virtual ~ObjectLayoutNode();                   // _08
 	virtual void _10() = 0;                        // _10
-	virtual void getDirection();                   // _14
-	virtual void getBirthDoorIndex();              // _18
-	virtual void getBirthPosition(float&, float&); // _1C
-	virtual void getExtraCode();                   // _20
-	virtual void isFixedBattery();                 // _24
+	virtual void _14() = 0;                        // _14
+	virtual void _18() = 0;                        // _18
+	virtual void getDirection();                   // _1C
+	virtual void getBirthDoorIndex();              // _20
+	virtual void getBirthPosition(float&, float&); // _24
+	virtual void getExtraCode();                   // _28
+	virtual void isFixedBattery();                 // _2C
 
 	// _00 VTBL
 };

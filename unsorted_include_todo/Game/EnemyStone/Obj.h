@@ -11,21 +11,20 @@
 */
 
 struct CNode {
-	virtual ~CNode();             // _00
-	virtual void getChildCount(); // _04
+	virtual ~CNode();             // _08
+	virtual void getChildCount(); // _0C
 
 	// _00 VTBL
 };
 
 namespace Game {
 namespace EnemyStone {
-	struct Obj : public CNode {
-		virtual ~Obj();               // _00
-		virtual void getChildCount(); // _04
-		virtual void _08() = 0;       // _08
+struct Obj : public CNode {
+	virtual ~Obj();         // _08
+	virtual void _10() = 0; // _10
 
-		// _00 VTBL
-	};
+	// _00 VTBL
+};
 } // namespace EnemyStone
 } // namespace Game
 

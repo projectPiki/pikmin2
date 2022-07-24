@@ -6,33 +6,31 @@
     .4byte 0
     .4byte 0
     .4byte getSceneType__Q32og9newScreen18StartSceneArgSMenuCFv
-    .4byte
-   "getClassSize__Q26Screen58StartSceneArgTemplate<Q32og9newScreen18StartSceneArgSMenu>Fv"
+    .4byte "getClassSize__Q26Screen58StartSceneArgTemplate<Q32og9newScreen18StartSceneArgSMenu>Fv"
 */
 
 namespace Screen {
 namespace StartSceneArgTemplate < og
 {
 	namespace newScreen {
-		struct StartSceneArgSMenu >
-		{
-			virtual void getSceneType() const; // _00
-			virtual void newgetClassSize();    // _04
+	struct StartSceneArgSMenu >
+	{
+		virtual void getSceneType() const; // _08
+		virtual void newgetClassSize();    // _0C
 
-			// _00 VTBL
-		};
+		// _00 VTBL
+	};
 	} // namespace newScreen
 } // namespace og
 } // namespace Screen
 
 namespace og {
 namespace newScreen {
-	struct StartSceneArgSMenu : public StartSceneArgSMenu > {
-		virtual void getSceneType() const; // _00
-		virtual void newgetClassSize();    // _04
+struct StartSceneArgSMenu : public StartSceneArgSMenu > {
+	virtual void getSceneType() const; // _08
 
-		// _00 VTBL
-	};
+	// _00 VTBL
+};
 } // namespace newScreen
 } // namespace og
 

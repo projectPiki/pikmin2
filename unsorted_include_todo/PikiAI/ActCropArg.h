@@ -10,7 +10,7 @@
 
 namespace PikiAI {
 struct ActCropArg {
-	virtual void getName(); // _00
+	virtual void getName(); // _08
 
 	// _00 VTBL
 };

@@ -10,11 +10,11 @@
 
 namespace Game {
 namespace ItemBridge {
-	struct BridgeParms {
-		virtual void read(Stream&); // _00
+struct BridgeParms {
+	virtual void read(Stream&); // _08
 
-		// _00 VTBL
-	};
+	// _00 VTBL
+};
 } // namespace ItemBridge
 } // namespace Game
 

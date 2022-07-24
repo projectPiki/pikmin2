@@ -48,7 +48,7 @@
 
 namespace PikiAI {
 struct CreatureActionArg {
-	virtual void getName(); // _00
+	virtual void getName(); // _08
 
 	// _00 VTBL
 };
@@ -56,9 +56,6 @@ struct CreatureActionArg {
 
 namespace PikiAI {
 struct ActFormationInitArg : public CreatureActionArg {
-	virtual void getName(); // _00
-	virtual void _04() = 0; // _04
-	virtual void _08() = 0; // _08
 	virtual void _0C() = 0; // _0C
 	virtual void _10() = 0; // _10
 	virtual void _14() = 0; // _14
@@ -95,6 +92,8 @@ struct ActFormationInitArg : public CreatureActionArg {
 	virtual void _90() = 0; // _90
 	virtual void _94() = 0; // _94
 	virtual void _98() = 0; // _98
+	virtual void _9C() = 0; // _9C
+	virtual void _A0() = 0; // _A0
 
 	// _00 VTBL
 };

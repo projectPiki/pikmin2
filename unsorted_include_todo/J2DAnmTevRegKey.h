@@ -10,8 +10,8 @@
 */
 
 struct J2DAnmTevRegKey {
-	virtual ~J2DAnmTevRegKey();                      // _00
-	virtual void searchUpdateMaterialID(J2DScreen*); // _04
+	virtual ~J2DAnmTevRegKey();                      // _08
+	virtual void searchUpdateMaterialID(J2DScreen*); // _0C
 
 	// _00 VTBL
 };

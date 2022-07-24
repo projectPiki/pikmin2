@@ -10,11 +10,11 @@
 
 namespace Game {
 namespace Qurione {
-	struct Parms {
-		virtual void read(Stream&); // _00
+struct Parms {
+	virtual void read(Stream&); // _08
 
-		// _00 VTBL
-	};
+	// _00 VTBL
+};
 } // namespace Qurione
 } // namespace Game
 

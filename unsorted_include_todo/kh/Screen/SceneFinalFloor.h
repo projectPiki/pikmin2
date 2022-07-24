@@ -15,8 +15,7 @@
     .4byte doUserCallBackFunc__Q26Screen9SceneBaseFPQ28Resource10MgrCommand
     .4byte setPort__Q26Screen9SceneBaseFR8Graphics
     .4byte doUpdateActive__Q26Screen9SceneBaseFv
-    .4byte
-   doConfirmSetScene__Q32kh6Screen15SceneFinalFloorFRQ26Screen11SetSceneArg
+    .4byte doConfirmSetScene__Q32kh6Screen15SceneFinalFloorFRQ26Screen11SetSceneArg
     .4byte doConfirmStartScene__Q26Screen9SceneBaseFPQ26Screen13StartSceneArg
     .4byte doConfirmEndScene__Q26Screen9SceneBaseFRPQ26Screen11EndSceneArg
     .4byte doStart__Q26Screen9SceneBaseFPQ26Screen13StartSceneArg
@@ -28,24 +27,24 @@
 
 namespace Screen {
 struct SceneBase {
-	virtual void getSceneType();                            // _00
-	virtual void getOwnerID();                              // _04
-	virtual void getMemberID();                             // _08
-	virtual void isUseBackupSceneInfo();                    // _0C
-	virtual void isDrawInDemo() const;                      // _10
-	virtual void getResName() const;                        // _14
-	virtual void doCreateObj(JKRArchive*);                  // _18
-	virtual void doUserCallBackFunc(Resource::MgrCommand*); // _1C
-	virtual void setPort(Graphics&);                        // _20
-	virtual void doUpdateActive();                          // _24
-	virtual void doConfirmSetScene(SetSceneArg&);           // _28
-	virtual void doConfirmStartScene(StartSceneArg*);       // _2C
-	virtual void doConfirmEndScene(EndSceneArg*&);          // _30
-	virtual void doStart(StartSceneArg*);                   // _34
-	virtual void doEnd(EndSceneArg*);                       // _38
-	virtual void setDefaultDispMember();                    // _3C
-	virtual void doSetBackupScene(SetSceneArg&);            // _40
-	virtual void doGetFinishState();                        // _44
+	virtual void getSceneType();                            // _08
+	virtual void getOwnerID();                              // _0C
+	virtual void getMemberID();                             // _10
+	virtual void isUseBackupSceneInfo();                    // _14
+	virtual void isDrawInDemo() const;                      // _18
+	virtual void getResName() const;                        // _1C
+	virtual void doCreateObj(JKRArchive*);                  // _20
+	virtual void doUserCallBackFunc(Resource::MgrCommand*); // _24
+	virtual void setPort(Graphics&);                        // _28
+	virtual void doUpdateActive();                          // _2C
+	virtual void doConfirmSetScene(SetSceneArg&);           // _30
+	virtual void doConfirmStartScene(StartSceneArg*);       // _34
+	virtual void doConfirmEndScene(EndSceneArg*&);          // _38
+	virtual void doStart(StartSceneArg*);                   // _3C
+	virtual void doEnd(EndSceneArg*);                       // _40
+	virtual void setDefaultDispMember();                    // _44
+	virtual void doSetBackupScene(SetSceneArg&);            // _48
+	virtual void doGetFinishState();                        // _4C
 
 	// _00 VTBL
 };
@@ -53,28 +52,17 @@ struct SceneBase {
 
 namespace kh {
 namespace Screen {
-	struct SceneFinalFloor : public SceneBase {
-		virtual void getSceneType();                            // _00
-		virtual void getOwnerID();                              // _04
-		virtual void getMemberID();                             // _08
-		virtual void isUseBackupSceneInfo();                    // _0C
-		virtual void isDrawInDemo() const;                      // _10
-		virtual void getResName() const;                        // _14
-		virtual void doCreateObj(JKRArchive*);                  // _18
-		virtual void doUserCallBackFunc(Resource::MgrCommand*); // _1C
-		virtual void setPort(Graphics&);                        // _20
-		virtual void doUpdateActive();                          // _24
-		virtual void doConfirmSetScene(SetSceneArg&);           // _28
-		virtual void doConfirmStartScene(StartSceneArg*);       // _2C
-		virtual void doConfirmEndScene(EndSceneArg*&);          // _30
-		virtual void doStart(StartSceneArg*);                   // _34
-		virtual void doEnd(EndSceneArg*);                       // _38
-		virtual void setDefaultDispMember();                    // _3C
-		virtual void doSetBackupScene(SetSceneArg&);            // _40
-		virtual void doGetFinishState();                        // _44
+struct SceneFinalFloor : public SceneBase {
+	virtual void getSceneType();                  // _08
+	virtual void getOwnerID();                    // _0C
+	virtual void getMemberID();                   // _10
+	virtual void isUseBackupSceneInfo();          // _14
+	virtual void getResName() const;              // _1C
+	virtual void doCreateObj(JKRArchive*);        // _20
+	virtual void doConfirmSetScene(SetSceneArg&); // _30
 
-		// _00 VTBL
-	};
+	// _00 VTBL
+};
 } // namespace Screen
 } // namespace kh
 

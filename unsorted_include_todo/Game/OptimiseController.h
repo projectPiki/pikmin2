@@ -10,7 +10,7 @@
 
 namespace Game {
 struct OptimiseController {
-	virtual ~OptimiseController(); // _00
+	virtual ~OptimiseController(); // _08
 
 	// _00 VTBL
 };

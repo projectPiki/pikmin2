@@ -12,9 +12,9 @@
 
 namespace JASBasicWaveBank {
 struct TWaveHandle {
-	virtual ~TWaveHandle();           // _00
-	virtual void getWaveInfo() const; // _04
-	virtual void getWavePtr() const;  // _08
+	virtual ~TWaveHandle();           // _08
+	virtual void getWaveInfo() const; // _0C
+	virtual void getWavePtr() const;  // _10
 
 	// _00 VTBL
 };

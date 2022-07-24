@@ -10,16 +10,15 @@
 */
 
 struct CNode {
-	virtual ~CNode();             // _00
-	virtual void getChildCount(); // _04
+	virtual ~CNode();             // _08
+	virtual void getChildCount(); // _0C
 
 	// _00 VTBL
 };
 
 namespace Screen {
 struct MgrCommand : public CNode {
-	virtual ~MgrCommand();        // _00
-	virtual void getChildCount(); // _04
+	virtual ~MgrCommand(); // _08
 
 	// _00 VTBL
 };

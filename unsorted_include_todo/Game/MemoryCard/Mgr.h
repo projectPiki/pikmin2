@@ -17,28 +17,27 @@
 */
 
 struct MemoryCardMgr {
-	virtual ~MemoryCardMgr(); // _00
-	virtual void update();    // _04
-	virtual void doInit();    // _08
+	virtual ~MemoryCardMgr(); // _08
+	virtual void update();    // _0C
+	virtual void doInit();    // _10
 
 	// _00 VTBL
 };
 
 namespace Game {
 namespace MemoryCard {
-	struct Mgr : public MemoryCardMgr {
-		virtual ~Mgr();                                        // _00
-		virtual void update();                                 // _04
-		virtual void doInit();                                 // _08
-		virtual void doCardProc(void*, MemoryCardMgrCommand*); // _0C
-		virtual void getHeaderSize();                          // _10
-		virtual void doMakeHeader(unsigned char*);             // _14
-		virtual void doSetCardStat(CARDStat*);                 // _18
-		virtual void doCheckCardStat(CARDStat*);               // _1C
-		virtual void isErrorOccured();                         // _20
+struct Mgr : public MemoryCardMgr {
+	virtual ~Mgr();                                        // _08
+	virtual void update();                                 // _0C
+	virtual void doCardProc(void*, MemoryCardMgrCommand*); // _14
+	virtual void getHeaderSize();                          // _18
+	virtual void doMakeHeader(unsigned char*);             // _1C
+	virtual void doSetCardStat(CARDStat*);                 // _20
+	virtual void doCheckCardStat(CARDStat*);               // _24
+	virtual void isErrorOccured();                         // _28
 
-		// _00 VTBL
-	};
+	// _00 VTBL
+};
 } // namespace MemoryCard
 } // namespace Game
 

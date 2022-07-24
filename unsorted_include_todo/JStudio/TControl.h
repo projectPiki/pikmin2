@@ -10,7 +10,7 @@
 
 namespace JStudio {
 struct TControl {
-	virtual ~TControl(); // _00
+	virtual ~TControl(); // _08
 
 	// _00 VTBL
 };

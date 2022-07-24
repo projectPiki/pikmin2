@@ -10,7 +10,7 @@
 
 namespace PSM {
 struct CreaturePrm {
-	virtual ~CreaturePrm(); // _00
+	virtual ~CreaturePrm(); // _08
 
 	// _00 VTBL
 };

@@ -10,15 +10,14 @@
 */
 
 struct J2DAnmBase {
-	virtual ~J2DAnmBase();                           // _00
-	virtual void searchUpdateMaterialID(J2DScreen*); // _04
+	virtual ~J2DAnmBase();                           // _08
+	virtual void searchUpdateMaterialID(J2DScreen*); // _0C
 
 	// _00 VTBL
 };
 
 struct J2DAnmVisibilityFull : public J2DAnmBase {
-	virtual ~J2DAnmVisibilityFull();                 // _00
-	virtual void searchUpdateMaterialID(J2DScreen*); // _04
+	virtual ~J2DAnmVisibilityFull(); // _08
 
 	// _00 VTBL
 };

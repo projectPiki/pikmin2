@@ -11,9 +11,9 @@
 */
 
 struct JASBasicWaveBank {
-	virtual ~JASBasicWaveBank();                     // _00
-	virtual void getWaveHandle(unsigned long) const; // _04
-	virtual void getWaveArc(int);                    // _08
+	virtual ~JASBasicWaveBank();                     // _08
+	virtual void getWaveHandle(unsigned long) const; // _0C
+	virtual void getWaveArc(int);                    // _10
 
 	// _00 VTBL
 };

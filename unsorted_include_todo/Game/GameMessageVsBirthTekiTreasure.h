@@ -7,14 +7,13 @@
     .4byte 0
     .4byte actCommon__Q24Game11GameMessageFPQ24Game15BaseGameSection
     .4byte actSingle__Q24Game11GameMessageFPQ24Game17SingleGameSection
-    .4byte
-   actVs__Q24Game30GameMessageVsBirthTekiTreasureFPQ24Game13VsGameSection
+    .4byte actVs__Q24Game30GameMessageVsBirthTekiTreasureFPQ24Game13VsGameSection
 */
 
 namespace Game {
 struct GameMessage {
-	virtual void actCommon(BaseGameSection*);   // _00
-	virtual void actSingle(SingleGameSection*); // _04
+	virtual void actCommon(BaseGameSection*);   // _08
+	virtual void actSingle(SingleGameSection*); // _0C
 
 	// _00 VTBL
 };
@@ -22,9 +21,7 @@ struct GameMessage {
 
 namespace Game {
 struct GameMessageVsBirthTekiTreasure : public GameMessage {
-	virtual void actCommon(BaseGameSection*);   // _00
-	virtual void actSingle(SingleGameSection*); // _04
-	virtual void actVs(VsGameSection*);         // _08
+	virtual void actVs(VsGameSection*); // _10
 
 	// _00 VTBL
 };

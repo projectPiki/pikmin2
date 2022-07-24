@@ -12,15 +12,15 @@
 
 namespace ebi {
 namespace title {
-	namespace Pikmin {
-		struct TUnit {
-			virtual void getCreatureType(); // _00
-			virtual void isCalc();          // _04
-			virtual void _08() = 0;         // _08
+namespace Pikmin {
+struct TUnit {
+	virtual void getCreatureType(); // _08
+	virtual void isCalc();          // _0C
+	virtual void _10() = 0;         // _10
 
-			// _00 VTBL
-		};
-	} // namespace Pikmin
+	// _00 VTBL
+};
+} // namespace Pikmin
 } // namespace title
 } // namespace ebi
 

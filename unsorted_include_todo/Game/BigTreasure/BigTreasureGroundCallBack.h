@@ -5,22 +5,18 @@
     __vt__Q34Game11BigTreasure25BigTreasureGroundCallBack:
     .4byte 0
     .4byte 0
-    .4byte
-   invokeOnGround__Q34Game11BigTreasure25BigTreasureGroundCallBackFiPQ24Game8WaterBox
-    .4byte
-   invokeOffGround__Q34Game11BigTreasure25BigTreasureGroundCallBackFiPQ24Game8WaterBox
-    .4byte 0
+    .4byte invokeOnGround__Q34Game11BigTreasure25BigTreasureGroundCallBackFiPQ24Game8WaterBox
+    .4byte invokeOffGround__Q34Game11BigTreasure25BigTreasureGroundCallBackFiPQ24Game8WaterBox
 */
 
 namespace Game {
 namespace BigTreasure {
-	struct BigTreasureGroundCallBack {
-		virtual void invokeOnGround(int, WaterBox*);  // _00
-		virtual void invokeOffGround(int, WaterBox*); // _04
-		virtual void _08() = 0;                       // _08
+struct BigTreasureGroundCallBack {
+	virtual void invokeOnGround(int, WaterBox*);  // _08
+	virtual void invokeOffGround(int, WaterBox*); // _0C
 
-		// _00 VTBL
-	};
+	// _00 VTBL
+};
 } // namespace BigTreasure
 } // namespace Game
 

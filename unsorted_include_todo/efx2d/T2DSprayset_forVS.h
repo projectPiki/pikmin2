@@ -13,9 +13,9 @@
 
 namespace efx2d {
 struct TSimple2 {
-	virtual void _00() = 0; // _00
-	virtual void kill();    // _04
-	virtual void fade();    // _08
+	virtual void _08() = 0; // _08
+	virtual void kill();    // _0C
+	virtual void fade();    // _10
 
 	// _00 VTBL
 };
@@ -23,10 +23,10 @@ struct TSimple2 {
 
 namespace efx2d {
 struct TBase {
-	virtual void _00() = 0;               // _00
-	virtual void _04() = 0;               // _04
 	virtual void _08() = 0;               // _08
-	virtual void setGroup(unsigned char); // _0C
+	virtual void _0C() = 0;               // _0C
+	virtual void _10() = 0;               // _10
+	virtual void setGroup(unsigned char); // _14
 
 	// _00 VTBL
 };
@@ -34,10 +34,7 @@ struct TBase {
 
 namespace efx2d {
 struct T2DSprayset_forVS : public TSimple2, public TBase {
-	virtual void create(Arg*);            // _00
-	virtual void kill();                  // _04
-	virtual void fade();                  // _08
-	virtual void setGroup(unsigned char); // _0C
+	virtual void create(Arg*); // _08
 
 	// _00 VTBL
 };

@@ -6,12 +6,11 @@
     .4byte 0
     .4byte 0
     .4byte drawDump__Q28Resource3MgrFR8Graphicsii
-    .4byte 0
 */
 
 namespace Resource {
 struct Mgr {
-	virtual void drawDump(Graphics&, int, int); // _00
+	virtual void drawDump(Graphics&, int, int); // _08
 
 	// _00 VTBL
 };
@@ -19,8 +18,6 @@ struct Mgr {
 
 namespace Resource {
 struct Mgr2D : public Mgr {
-	virtual void drawDump(Graphics&, int, int); // _00
-	virtual void _04() = 0;                     // _04
 
 	// _00 VTBL
 };

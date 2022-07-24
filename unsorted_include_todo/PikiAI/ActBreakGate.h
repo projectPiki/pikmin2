@@ -27,19 +27,19 @@
 
 namespace PikiAI {
 struct Action {
-    virtual void init(ActionArg*);                                 // _00
-    virtual void exec();                                           // _04
-    virtual void cleanup();                                        // _08
-    virtual void emotion_success();                                // _0C
-    virtual void emotion_fail();                                   // _10
-    virtual void applicable();                                     // _14
-    virtual void getNextAIType();                                  // _18
-    virtual void bounceCallback(Game::Piki*, Sys::Triangle*);      // _1C
-    virtual void collisionCallback(Game::Piki*, Game::CollEvent&); // _20
-    virtual void platCallback(Game::Piki*, Game::PlatEvent&);      // _24
-    virtual void doDirectDraw(Graphics&);                          // _28
-    virtual void wallCallback(Vector3<float>&);                    // _2C
-    virtual void getInfo(char*);                                   // _30
+    virtual void init(ActionArg*);                                 // _08
+    virtual void exec();                                           // _0C
+    virtual void cleanup();                                        // _10
+    virtual void emotion_success();                                // _14
+    virtual void emotion_fail();                                   // _18
+    virtual void applicable();                                     // _1C
+    virtual void getNextAIType();                                  // _20
+    virtual void bounceCallback(Game::Piki*, Sys::Triangle*);      // _24
+    virtual void collisionCallback(Game::Piki*, Game::CollEvent&); // _28
+    virtual void platCallback(Game::Piki*, Game::PlatEvent&);      // _2C
+    virtual void doDirectDraw(Graphics&);                          // _30
+    virtual void wallCallback(Vector3<float>&);                    // _34
+    virtual void getInfo(char*);                                   // _38
 
     // _00 VTBL
 };
@@ -47,23 +47,17 @@ struct Action {
 
 namespace PikiAI {
 struct ActBreakGate : public Action {
-    virtual void init(ActionArg*);                                 // _00
-    virtual void exec();                                           // _04
-    virtual void cleanup();                                        // _08
-    virtual void emotion_success();                                // _0C
-    virtual void emotion_fail();                                   // _10
-    virtual void applicable();                                     // _14
-    virtual void getNextAIType();                                  // _18
-    virtual void bounceCallback(Game::Piki*, Sys::Triangle*);      // _1C
-    virtual void collisionCallback(Game::Piki*, Game::CollEvent&); // _20
-    virtual void platCallback(Game::Piki*, Game::PlatEvent&);      // _24
-    virtual void doDirectDraw(Graphics&);                          // _28
-    virtual void wallCallback(Vector3<float>&);                    // _2C
-    virtual void getInfo(char*);                                   // _30
-    virtual void onKeyEvent(const SysShape::KeyEvent&);            // _34
-    virtual void _38() = 0;                                        // _38
-    virtual void _3C() = 0;                                        // _3C
-    virtual void @52 @4 @onKeyEvent(const SysShape::KeyEvent&);    // _40
+    virtual void init(ActionArg*);                                 // _08
+    virtual void exec();                                           // _0C
+    virtual void cleanup();                                        // _10
+    virtual void emotion_success();                                // _14
+    virtual void bounceCallback(Game::Piki*, Sys::Triangle*);      // _24
+    virtual void collisionCallback(Game::Piki*, Game::CollEvent&); // _28
+    virtual void platCallback(Game::Piki*, Game::PlatEvent&);      // _2C
+    virtual void onKeyEvent(const SysShape::KeyEvent&);            // _3C
+    virtual void _40() = 0;                                        // _40
+    virtual void _44() = 0;                                        // _44
+    virtual void @52 @4 @onKeyEvent(const SysShape::KeyEvent&);    // _48
 
     // _00 VTBL
 };

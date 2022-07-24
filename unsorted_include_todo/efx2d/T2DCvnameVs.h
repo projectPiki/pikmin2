@@ -13,10 +13,10 @@
 
 namespace efx2d {
 struct TForeverN {
-	virtual void create(Arg*);            // _00
-	virtual void kill();                  // _04
-	virtual void fade();                  // _08
-	virtual void setGroup(unsigned char); // _0C
+	virtual void create(Arg*);            // _08
+	virtual void kill();                  // _0C
+	virtual void fade();                  // _10
+	virtual void setGroup(unsigned char); // _14
 
 	// _00 VTBL
 };
@@ -24,10 +24,6 @@ struct TForeverN {
 
 namespace efx2d {
 struct T2DCvnameVs : public TForeverN {
-	virtual void create(Arg*);            // _00
-	virtual void kill();                  // _04
-	virtual void fade();                  // _08
-	virtual void setGroup(unsigned char); // _0C
 
 	// _00 VTBL
 };

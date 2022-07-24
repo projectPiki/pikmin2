@@ -5,19 +5,18 @@
     __vt__Q314JStudio_JStage14TAdaptor_light20TVVOutput_direction_:
     .4byte 0
     .4byte 0
-    .4byte
-   __cl__Q314JStudio_JStage14TAdaptor_light20TVVOutput_direction_CFfPQ27JStudio8TAdaptor
+    .4byte __cl__Q314JStudio_JStage14TAdaptor_light20TVVOutput_direction_CFfPQ27JStudio8TAdaptor
     .4byte __dt__Q314JStudio_JStage14TAdaptor_light20TVVOutput_direction_Fv
 */
 
 namespace JStudio_JStage {
 namespace TAdaptor_light {
-	struct TVVOutput_direction_ {
-		virtual void operator()(float, JStudio::TAdaptor*) const; // _00
-		virtual ~TVVOutput_direction_();                          // _04
+struct TVVOutput_direction_ {
+	virtual void operator()(float, JStudio::TAdaptor*) const; // _08
+	virtual ~TVVOutput_direction_();                          // _0C
 
-		// _00 VTBL
-	};
+	// _00 VTBL
+};
 } // namespace TAdaptor_light
 } // namespace JStudio_JStage
 

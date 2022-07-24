@@ -10,11 +10,11 @@
 
 namespace Game {
 namespace ItemBigFountain {
-	struct FountainParms {
-		virtual void read(Stream&); // _00
+struct FountainParms {
+	virtual void read(Stream&); // _08
 
-		// _00 VTBL
-	};
+	// _00 VTBL
+};
 } // namespace ItemBigFountain
 } // namespace Game
 

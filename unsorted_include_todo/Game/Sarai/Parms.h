@@ -10,11 +10,11 @@
 
 namespace Game {
 namespace Sarai {
-	struct Parms {
-		virtual void read(Stream&); // _00
+struct Parms {
+	virtual void read(Stream&); // _08
 
-		// _00 VTBL
-	};
+	// _00 VTBL
+};
 } // namespace Sarai
 } // namespace Game
 

@@ -18,15 +18,15 @@
 
 namespace PSAutoBgm {
 struct MeloArrBase {
-    virtual void _00() = 0;         // _00
-    virtual void _04() = 0;         // _04
-    virtual void @16 @__dt();       // _08
-    virtual void directOn(Track*);  // _0C
-    virtual void directOff(Track*); // _10
-    virtual void pre(MeloArrArg&);  // _14
-    virtual void post(MeloArrArg&); // _18
-    virtual void _1C() = 0;         // _1C
-    virtual ~MeloArrBase();         // _20
+    virtual void _08() = 0;         // _08
+    virtual void _0C() = 0;         // _0C
+    virtual void @16 @__dt();       // _10
+    virtual void directOn(Track*);  // _14
+    virtual void directOff(Track*); // _18
+    virtual void pre(MeloArrArg&);  // _1C
+    virtual void post(MeloArrArg&); // _20
+    virtual void _24() = 0;         // _24
+    virtual ~MeloArrBase();         // _28
 
     // _00 VTBL
 };

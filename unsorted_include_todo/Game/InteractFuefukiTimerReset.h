@@ -16,13 +16,13 @@
 
 namespace Game {
 struct Interaction {
-	virtual void actCommon(Creature*); // _00
-	virtual void actPiki(Piki*);       // _04
-	virtual void actNavi(Navi*);       // _08
-	virtual void actEnemy(EnemyBase*); // _0C
-	virtual void actPellet(Pellet*);   // _10
-	virtual void actOnyon(Onyon*);     // _14
-	virtual void actItem(BaseItem*);   // _18
+	virtual void actCommon(Creature*); // _08
+	virtual void actPiki(Piki*);       // _0C
+	virtual void actNavi(Navi*);       // _10
+	virtual void actEnemy(EnemyBase*); // _14
+	virtual void actPellet(Pellet*);   // _18
+	virtual void actOnyon(Onyon*);     // _1C
+	virtual void actItem(BaseItem*);   // _20
 
 	// _00 VTBL
 };
@@ -30,13 +30,7 @@ struct Interaction {
 
 namespace Game {
 struct InteractFuefukiTimerReset : public Interaction {
-	virtual void actCommon(Creature*); // _00
-	virtual void actPiki(Piki*);       // _04
-	virtual void actNavi(Navi*);       // _08
-	virtual void actEnemy(EnemyBase*); // _0C
-	virtual void actPellet(Pellet*);   // _10
-	virtual void actOnyon(Onyon*);     // _14
-	virtual void actItem(BaseItem*);   // _18
+	virtual void actEnemy(EnemyBase*); // _14
 
 	// _00 VTBL
 };

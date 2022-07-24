@@ -10,14 +10,13 @@
 
 namespace Game {
 struct GenItemParm {
-	virtual void getShapeID(); // _00
+	virtual void getShapeID(); // _08
 
 	// _00 VTBL
 };
 } // namespace Game
 
 struct GenOnyonParm : public GenItemParm {
-	virtual void getShapeID(); // _00
 
 	// _00 VTBL
 };

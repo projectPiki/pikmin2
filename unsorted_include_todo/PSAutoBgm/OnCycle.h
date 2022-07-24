@@ -12,9 +12,9 @@
 
 namespace PSAutoBgm {
 struct OnCycle {
-	virtual void play(JASTrack*); // _00
-	virtual void getCycleType();  // _04
-	virtual void avoidCheck();    // _08
+	virtual void play(JASTrack*); // _08
+	virtual void getCycleType();  // _0C
+	virtual void avoidCheck();    // _10
 
 	// _00 VTBL
 };

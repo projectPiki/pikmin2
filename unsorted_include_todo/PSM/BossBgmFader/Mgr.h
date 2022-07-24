@@ -10,11 +10,11 @@
 
 namespace PSM {
 namespace BossBgmFader {
-	struct Mgr {
-		virtual ~Mgr(); // _00
+struct Mgr {
+	virtual ~Mgr(); // _08
 
-		// _00 VTBL
-	};
+	// _00 VTBL
+};
 } // namespace BossBgmFader
 } // namespace PSM
 

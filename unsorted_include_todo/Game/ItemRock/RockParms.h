@@ -10,11 +10,11 @@
 
 namespace Game {
 namespace ItemRock {
-	struct RockParms {
-		virtual void read(Stream&); // _00
+struct RockParms {
+	virtual void read(Stream&); // _08
 
-		// _00 VTBL
-	};
+	// _00 VTBL
+};
 } // namespace ItemRock
 } // namespace Game
 

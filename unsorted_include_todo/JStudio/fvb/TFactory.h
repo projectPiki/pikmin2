@@ -12,13 +12,13 @@
 
 namespace JStudio {
 namespace fvb {
-	struct TFactory {
-		virtual ~TFactory();                             // _00
-		virtual void create(const data::TParse_TBlock&); // _04
-		virtual void destroy(TObject*);                  // _08
+struct TFactory {
+	virtual ~TFactory();                             // _08
+	virtual void create(const data::TParse_TBlock&); // _0C
+	virtual void destroy(TObject*);                  // _10
 
-		// _00 VTBL
-	};
+	// _00 VTBL
+};
 } // namespace fvb
 } // namespace JStudio
 

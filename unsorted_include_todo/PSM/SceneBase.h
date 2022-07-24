@@ -28,14 +28,14 @@
 
 namespace PSSystem {
 struct Scene {
-	virtual void init();                      // _00
-	virtual ~Scene();                         // _04
-	virtual void scene1st(TaskChecker*);      // _08
-	virtual void scene1stLoadSync();          // _0C
-	virtual void exec();                      // _10
-	virtual void startMainSeq();              // _14
-	virtual void stopMainSeq(unsigned long);  // _18
-	virtual void stopAllSound(unsigned long); // _1C
+	virtual void init();                      // _08
+	virtual ~Scene();                         // _0C
+	virtual void scene1st(TaskChecker*);      // _10
+	virtual void scene1stLoadSync();          // _14
+	virtual void exec();                      // _18
+	virtual void startMainSeq();              // _1C
+	virtual void stopMainSeq(unsigned long);  // _20
+	virtual void stopAllSound(unsigned long); // _24
 
 	// _00 VTBL
 };
@@ -43,25 +43,18 @@ struct Scene {
 
 namespace PSM {
 struct SceneBase : public Scene {
-	virtual void init();                                   // _00
-	virtual ~SceneBase();                                  // _04
-	virtual void scene1st(TaskChecker*);                   // _08
-	virtual void scene1stLoadSync();                       // _0C
-	virtual void exec();                                   // _10
-	virtual void startMainSeq();                           // _14
-	virtual void stopMainSeq(unsigned long);               // _18
-	virtual void stopAllSound(unsigned long);              // _1C
-	virtual void _20() = 0;                                // _20
-	virtual void getEnvSe();                               // _24
-	virtual void getSceneFx();                             // _28
-	virtual void isDemoScene();                            // _2C
-	virtual void getSeSceneGate(ObjBase*, unsigned long);  // _30
-	virtual void becomeSceneCamera();                      // _34
-	virtual void isGameScene();                            // _38
-	virtual void pauseOn_2D(unsigned char, unsigned char); // _3C
-	virtual void pauseOff_2D();                            // _40
-	virtual void pauseOn_Demo();                           // _44
-	virtual void pauseOff_Demo();                          // _48
+	virtual ~SceneBase();                                  // _0C
+	virtual void _28() = 0;                                // _28
+	virtual void getEnvSe();                               // _2C
+	virtual void getSceneFx();                             // _30
+	virtual void isDemoScene();                            // _34
+	virtual void getSeSceneGate(ObjBase*, unsigned long);  // _38
+	virtual void becomeSceneCamera();                      // _3C
+	virtual void isGameScene();                            // _40
+	virtual void pauseOn_2D(unsigned char, unsigned char); // _44
+	virtual void pauseOff_2D();                            // _48
+	virtual void pauseOn_Demo();                           // _4C
+	virtual void pauseOff_Demo();                          // _50
 
 	// _00 VTBL
 };

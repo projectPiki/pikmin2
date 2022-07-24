@@ -10,22 +10,21 @@
 */
 
 struct CNode {
-	virtual ~CNode();             // _00
-	virtual void getChildCount(); // _04
+	virtual ~CNode();             // _08
+	virtual void getChildCount(); // _0C
 
 	// _00 VTBL
 };
 
 namespace ebi {
 namespace title {
-	namespace Pikmin {
-		struct TBoidParamMgr : public CNode {
-			virtual ~TBoidParamMgr();     // _00
-			virtual void getChildCount(); // _04
+namespace Pikmin {
+struct TBoidParamMgr : public CNode {
+	virtual ~TBoidParamMgr(); // _08
 
-			// _00 VTBL
-		};
-	} // namespace Pikmin
+	// _00 VTBL
+};
+} // namespace Pikmin
 } // namespace title
 } // namespace ebi
 

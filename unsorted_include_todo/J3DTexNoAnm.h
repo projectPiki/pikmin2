@@ -10,8 +10,8 @@
 */
 
 struct J3DTexNoAnm {
-	virtual void calc(unsigned short*) const; // _00
-	virtual void _04() = 0;                   // _04
+	virtual void calc(unsigned short*) const; // _08
+	virtual void _0C() = 0;                   // _0C
 
 	// _00 VTBL
 };

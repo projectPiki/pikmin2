@@ -17,13 +17,13 @@
 
 namespace Game {
 struct EnemyAnimatorBase {
-	virtual ~EnemyAnimatorBase();                // _00
-	virtual void setAnimMgr(SysShape::AnimMgr*); // _04
-	virtual void getAnimator();                  // _08
-	virtual void getAnimator(int);               // _0C
-	virtual void animate(float);                 // _10
-	virtual void animate(int, float);            // _14
-	virtual void resetAnimSpeed();               // _18
+	virtual ~EnemyAnimatorBase();                // _08
+	virtual void setAnimMgr(SysShape::AnimMgr*); // _0C
+	virtual void getAnimator();                  // _10
+	virtual void getAnimator(int);               // _14
+	virtual void animate(float);                 // _18
+	virtual void animate(int, float);            // _1C
+	virtual void resetAnimSpeed();               // _20
 
 	// _00 VTBL
 };
@@ -31,14 +31,13 @@ struct EnemyAnimatorBase {
 
 namespace Game {
 struct EnemyBlendAnimatorBase : public EnemyAnimatorBase {
-	virtual ~EnemyBlendAnimatorBase();           // _00
-	virtual void setAnimMgr(SysShape::AnimMgr*); // _04
-	virtual void getAnimator();                  // _08
-	virtual void getAnimator(int);               // _0C
-	virtual void animate(float);                 // _10
-	virtual void animate(int, float);            // _14
-	virtual void resetAnimSpeed();               // _18
-	virtual void getTypeID();                    // _1C
+	virtual ~EnemyBlendAnimatorBase();           // _08
+	virtual void setAnimMgr(SysShape::AnimMgr*); // _0C
+	virtual void getAnimator();                  // _10
+	virtual void getAnimator(int);               // _14
+	virtual void animate(float);                 // _18
+	virtual void animate(int, float);            // _1C
+	virtual void getTypeID();                    // _24
 
 	// _00 VTBL
 };

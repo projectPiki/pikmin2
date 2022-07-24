@@ -11,9 +11,9 @@
 */
 
 struct J2DAnmFullLoader_v15 {
-	virtual void load(const void*);                     // _00
-	virtual void setResource(J2DAnmBase*, const void*); // _04
-	virtual ~J2DAnmFullLoader_v15();                    // _08
+	virtual void load(const void*);                     // _08
+	virtual void setResource(J2DAnmBase*, const void*); // _0C
+	virtual ~J2DAnmFullLoader_v15();                    // _10
 
 	// _00 VTBL
 };

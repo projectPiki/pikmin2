@@ -11,18 +11,17 @@
 
 namespace PSSystem {
 namespace ClusterSe {
-	struct Factory {
-		virtual void constructPart(); // _00
+struct Factory {
+	virtual void constructPart(); // _08
 
-		// _00 VTBL
-	};
+	// _00 VTBL
+};
 } // namespace ClusterSe
 } // namespace PSSystem
 
 namespace PSM {
 struct ClusterFactory : public Factory {
-	virtual void constructPart();             // _00
-	virtual void identifyPart(unsigned char); // _04
+	virtual void identifyPart(unsigned char); // _0C
 
 	// _00 VTBL
 };

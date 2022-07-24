@@ -17,28 +17,25 @@
 */
 
 struct JASWaveArc {
-	virtual ~JASWaveArc();                           // _00
-	virtual void getWaveHandle(unsigned long) const; // _04
-	virtual void getWaveArc(int);                    // _08
-	virtual void _0C() = 0;                          // _0C
-	virtual void _10() = 0;                          // _10
-	virtual void onDispose();                        // _14
-	virtual void onLoadDone();                       // _18
-	virtual void onEraseDone();                      // _1C
+	virtual ~JASWaveArc();                           // _08
+	virtual void getWaveHandle(unsigned long) const; // _0C
+	virtual void getWaveArc(int);                    // _10
+	virtual void _14() = 0;                          // _14
+	virtual void _18() = 0;                          // _18
+	virtual void onDispose();                        // _1C
+	virtual void onLoadDone();                       // _20
+	virtual void onEraseDone();                      // _24
 
 	// _00 VTBL
 };
 
 struct JASSimpleWaveBank : public JASWaveArc {
-	virtual ~JASSimpleWaveBank();                    // _00
-	virtual void getWaveHandle(unsigned long) const; // _04
-	virtual void getWaveArc(int);                    // _08
-	virtual void _0C() = 0;                          // _0C
-	virtual void _10() = 0;                          // _10
-	virtual void onDispose();                        // _14
-	virtual void onLoadDone();                       // _18
-	virtual void onEraseDone();                      // _1C
-	virtual void _20() = 0;                          // _20
+	virtual ~JASSimpleWaveBank();                    // _08
+	virtual void getWaveHandle(unsigned long) const; // _0C
+	virtual void getWaveArc(int);                    // _10
+	virtual void _14() = 0;                          // _14
+	virtual void _18() = 0;                          // _18
+	virtual void _28() = 0;                          // _28
 
 	// _00 VTBL
 };

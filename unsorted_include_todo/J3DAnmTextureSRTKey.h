@@ -10,8 +10,8 @@
 */
 
 struct J3DAnmTextureSRTKey {
-	virtual ~J3DAnmTextureSRTKey(); // _00
-	virtual void getKind() const;   // _04
+	virtual ~J3DAnmTextureSRTKey(); // _08
+	virtual void getKind() const;   // _0C
 
 	// _00 VTBL
 };

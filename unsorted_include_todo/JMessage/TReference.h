@@ -11,8 +11,8 @@
 
 namespace JMessage {
 struct TReference {
-	virtual ~TReference();                     // _00
-	virtual void do_word(unsigned long) const; // _04
+	virtual ~TReference();                     // _08
+	virtual void do_word(unsigned long) const; // _0C
 
 	// _00 VTBL
 };

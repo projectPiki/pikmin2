@@ -10,7 +10,7 @@
 
 namespace Resource {
 struct Mgr {
-	virtual void drawDump(Graphics&, int, int); // _00
+	virtual void drawDump(Graphics&, int, int); // _08
 
 	// _00 VTBL
 };

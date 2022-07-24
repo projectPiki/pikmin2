@@ -16,14 +16,14 @@
 */
 
 struct JAIBasic {
-	virtual void makeSequence();                       // _00
-	virtual void makeSe();                             // _04
-	virtual void makeStream();                         // _08
-	virtual void getMapInfoFxline(unsigned long);      // _0C
-	virtual void getMapInfoGround(unsigned long);      // _10
-	virtual void getMapInfoFxParameter(unsigned long); // _14
-	virtual void setSeExtParameter(JAISound*);         // _18
-	virtual void setRegisterTrackCallback();           // _1C
+	virtual void makeSequence();                       // _08
+	virtual void makeSe();                             // _0C
+	virtual void makeStream();                         // _10
+	virtual void getMapInfoFxline(unsigned long);      // _14
+	virtual void getMapInfoGround(unsigned long);      // _18
+	virtual void getMapInfoFxParameter(unsigned long); // _1C
+	virtual void setSeExtParameter(JAISound*);         // _20
+	virtual void setRegisterTrackCallback();           // _24
 
 	// _00 VTBL
 };

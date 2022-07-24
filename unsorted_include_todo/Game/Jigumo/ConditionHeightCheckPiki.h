@@ -10,11 +10,11 @@
 
 namespace Game {
 namespace Jigumo {
-	struct ConditionHeightCheckPiki {
-		virtual void satisfy(Piki*); // _00
+struct ConditionHeightCheckPiki {
+	virtual void satisfy(Piki*); // _08
 
-		// _00 VTBL
-	};
+	// _00 VTBL
+};
 } // namespace Jigumo
 } // namespace Game
 

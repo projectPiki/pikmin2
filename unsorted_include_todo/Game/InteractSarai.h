@@ -16,8 +16,8 @@
 
 namespace Game {
 struct InteractSwallow {
-	virtual void actCommon(Creature*); // _00
-	virtual void actPiki(Piki*);       // _04
+	virtual void actCommon(Creature*); // _08
+	virtual void actPiki(Piki*);       // _0C
 
 	// _00 VTBL
 };
@@ -25,13 +25,13 @@ struct InteractSwallow {
 
 namespace Game {
 struct InteractAttack {
-	virtual void _00() = 0;            // _00
-	virtual void _04() = 0;            // _04
 	virtual void _08() = 0;            // _08
-	virtual void actEnemy(EnemyBase*); // _0C
+	virtual void _0C() = 0;            // _0C
 	virtual void _10() = 0;            // _10
-	virtual void _14() = 0;            // _14
-	virtual void actItem(BaseItem*);   // _18
+	virtual void actEnemy(EnemyBase*); // _14
+	virtual void _18() = 0;            // _18
+	virtual void _1C() = 0;            // _1C
+	virtual void actItem(BaseItem*);   // _20
 
 	// _00 VTBL
 };
@@ -39,28 +39,20 @@ struct InteractAttack {
 
 namespace Game {
 struct Interaction {
-	virtual void _00() = 0;          // _00
-	virtual void _04() = 0;          // _04
 	virtual void _08() = 0;          // _08
 	virtual void _0C() = 0;          // _0C
-	virtual void actPellet(Pellet*); // _10
-	virtual void actOnyon(Onyon*);   // _14
+	virtual void _10() = 0;          // _10
+	virtual void _14() = 0;          // _14
+	virtual void actPellet(Pellet*); // _18
+	virtual void actOnyon(Onyon*);   // _1C
 
 	// _00 VTBL
 };
 } // namespace Game
 
 namespace Game {
-struct InteractSarai : public InteractSwallow,
-                       public InteractAttack,
-                       public Interaction {
-	virtual void actCommon(Creature*); // _00
-	virtual void actPiki(Piki*);       // _04
-	virtual void actNavi(Navi*);       // _08
-	virtual void actEnemy(EnemyBase*); // _0C
-	virtual void actPellet(Pellet*);   // _10
-	virtual void actOnyon(Onyon*);     // _14
-	virtual void actItem(BaseItem*);   // _18
+struct InteractSarai : public InteractSwallow, public InteractAttack, public Interaction {
+	virtual void actNavi(Navi*); // _10
 
 	// _00 VTBL
 };

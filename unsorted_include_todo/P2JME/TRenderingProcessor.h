@@ -40,17 +40,16 @@
 
 namespace JMessage {
 struct TProcessor {
-	virtual ~TProcessor();                                          // _00
-	virtual void do_reset();                                        // _04
-	virtual void do_character(int);                                 // _08
-	virtual void do_tag(unsigned long, const void*, unsigned long); // _0C
-	virtual void do_systemTagCode(unsigned short, const void*,
-	                              unsigned long); // _10
-	virtual void do_select_begin(unsigned long);  // _14
-	virtual void do_select_end();                 // _18
-	virtual void do_select_separate();            // _1C
-	virtual void do_reset_(const char*);          // _20
-	virtual void do_setBegin_isReady_() const;    // _24
+	virtual ~TProcessor();                                                     // _08
+	virtual void do_reset();                                                   // _0C
+	virtual void do_character(int);                                            // _10
+	virtual void do_tag(unsigned long, const void*, unsigned long);            // _14
+	virtual void do_systemTagCode(unsigned short, const void*, unsigned long); // _18
+	virtual void do_select_begin(unsigned long);                               // _1C
+	virtual void do_select_end();                                              // _20
+	virtual void do_select_separate();                                         // _24
+	virtual void do_reset_(const char*);                                       // _28
+	virtual void do_setBegin_isReady_() const;                                 // _2C
 
 	// _00 VTBL
 };
@@ -58,39 +57,35 @@ struct TProcessor {
 
 namespace P2JME {
 struct TRenderingProcessor : public TProcessor {
-	virtual ~TRenderingProcessor();                                 // _00
-	virtual void do_reset();                                        // _04
-	virtual void do_character(int);                                 // _08
-	virtual void do_tag(unsigned long, const void*, unsigned long); // _0C
-	virtual void do_systemTagCode(unsigned short, const void*,
-	                              unsigned long);                    // _10
-	virtual void do_select_begin(unsigned long);                     // _14
-	virtual void do_select_end();                                    // _18
-	virtual void do_select_separate();                               // _1C
-	virtual void do_reset_(const char*);                             // _20
-	virtual void do_setBegin_isReady_() const;                       // _24
-	virtual void do_begin_(const void*, const char*);                // _28
-	virtual void do_end_();                                          // _2C
-	virtual void do_tag_(unsigned long, const void*, unsigned long); // _30
-	virtual void do_systemTagCode_(unsigned short, const void*,
-	                               unsigned long);                        // _34
-	virtual void do_begin(const void*, const char*);                      // _38
-	virtual void do_end();                                                // _3C
-	virtual void tagColor(const void*, unsigned long);                    // _40
-	virtual void tagSize(const void*, unsigned long);                     // _44
-	virtual void tagRuby(const void*, unsigned long);                     // _48
-	virtual void tagFont(const void*, unsigned long);                     // _4C
-	virtual void tagImage(unsigned short, const void*, unsigned long);    // _50
-	virtual void tagColorEX(unsigned short, const void*, unsigned long);  // _54
-	virtual void tagControl(unsigned short, const void*, unsigned long);  // _58
-	virtual void tagPosition(unsigned short, const void*, unsigned long); // _5C
-	virtual void update();                                                // _60
-	virtual void reset();                                                 // _64
-	virtual void newParagraph();                                          // _68
-	virtual void doDrawImage(JUTTexture*, float, float, float, float);    // _6C
-	virtual void doDrawRuby(float, float, float, float, int, bool);       // _70
-	virtual void doDrawLetter(float, float, float, float, int, bool);     // _74
-	virtual void doTagControlAbtnWait();                                  // _78
+	virtual ~TRenderingProcessor();                                             // _08
+	virtual void do_character(int);                                             // _10
+	virtual void do_tag(unsigned long, const void*, unsigned long);             // _14
+	virtual void do_systemTagCode(unsigned short, const void*, unsigned long);  // _18
+	virtual void do_select_begin(unsigned long);                                // _1C
+	virtual void do_select_end();                                               // _20
+	virtual void do_select_separate();                                          // _24
+	virtual void do_reset_(const char*);                                        // _28
+	virtual void do_begin_(const void*, const char*);                           // _30
+	virtual void do_end_();                                                     // _34
+	virtual void do_tag_(unsigned long, const void*, unsigned long);            // _38
+	virtual void do_systemTagCode_(unsigned short, const void*, unsigned long); // _3C
+	virtual void do_begin(const void*, const char*);                            // _40
+	virtual void do_end();                                                      // _44
+	virtual void tagColor(const void*, unsigned long);                          // _48
+	virtual void tagSize(const void*, unsigned long);                           // _4C
+	virtual void tagRuby(const void*, unsigned long);                           // _50
+	virtual void tagFont(const void*, unsigned long);                           // _54
+	virtual void tagImage(unsigned short, const void*, unsigned long);          // _58
+	virtual void tagColorEX(unsigned short, const void*, unsigned long);        // _5C
+	virtual void tagControl(unsigned short, const void*, unsigned long);        // _60
+	virtual void tagPosition(unsigned short, const void*, unsigned long);       // _64
+	virtual void update();                                                      // _68
+	virtual void reset();                                                       // _6C
+	virtual void newParagraph();                                                // _70
+	virtual void doDrawImage(JUTTexture*, float, float, float, float);          // _74
+	virtual void doDrawRuby(float, float, float, float, int, bool);             // _78
+	virtual void doDrawLetter(float, float, float, float, int, bool);           // _7C
+	virtual void doTagControlAbtnWait();                                        // _80
 
 	// _00 VTBL
 };

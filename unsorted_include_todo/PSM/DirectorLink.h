@@ -14,11 +14,11 @@
 
 namespace PSM {
 struct DirectorLink {
-	virtual void _00() = 0;      // _00
-	virtual void eventStart();   // _04
-	virtual void eventRestart(); // _08
-	virtual void eventStop();    // _0C
-	virtual void eventFinish();  // _10
+	virtual void _08() = 0;      // _08
+	virtual void eventStart();   // _0C
+	virtual void eventRestart(); // _10
+	virtual void eventStop();    // _14
+	virtual void eventFinish();  // _18
 
 	// _00 VTBL
 };

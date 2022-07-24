@@ -11,12 +11,12 @@
 
 namespace Game {
 namespace ResultTexMgr {
-	struct Mgr {
-		virtual ~Mgr();         // _00
-		virtual void _04() = 0; // _04
+struct Mgr {
+	virtual ~Mgr();         // _08
+	virtual void _0C() = 0; // _0C
 
-		// _00 VTBL
-	};
+	// _00 VTBL
+};
 } // namespace ResultTexMgr
 } // namespace Game
 

@@ -9,7 +9,7 @@
 */
 
 struct FindCondition {
-	virtual void satisfy(CollPart*); // _00
+	virtual void satisfy(CollPart*); // _08
 
 	// _00 VTBL
 };

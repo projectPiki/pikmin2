@@ -13,26 +13,25 @@
 
 namespace og {
 namespace newScreen {
-	struct TitleMsg {
-		virtual void init();   // _00
-		virtual void update(); // _04
-		virtual void start();  // _08
+struct TitleMsg {
+	virtual void init();   // _08
+	virtual void update(); // _0C
+	virtual void start();  // _10
 
-		// _00 VTBL
-	};
+	// _00 VTBL
+};
 } // namespace newScreen
 } // namespace og
 
 namespace og {
 namespace newScreen {
-	struct TitleMsgDrop : public TitleMsg {
-		virtual void init();   // _00
-		virtual void update(); // _04
-		virtual void start();  // _08
-		virtual void end();    // _0C
+struct TitleMsgDrop : public TitleMsg {
+	virtual void init();   // _08
+	virtual void update(); // _0C
+	virtual void end();    // _14
 
-		// _00 VTBL
-	};
+	// _00 VTBL
+};
 } // namespace newScreen
 } // namespace og
 

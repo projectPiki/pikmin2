@@ -28,24 +28,24 @@
 
 namespace Game {
 struct BaseHIOSection {
-	virtual ~BaseHIOSection();                       // _00
-	virtual void run();                              // _04
-	virtual void update();                           // _08
-	virtual void draw(Graphics&);                    // _0C
-	virtual void init();                             // _10
-	virtual void drawInit(Graphics&);                // _14
-	virtual void drawInit(Graphics&, EDrawInitMode); // _18
-	virtual void doExit();                           // _1C
-	virtual void forceFinish();                      // _20
-	virtual void forceReset();                       // _24
-	virtual void getCurrentSection();                // _28
-	virtual void doLoadingStart();                   // _2C
-	virtual void doLoading();                        // _30
-	virtual void doUpdate();                         // _34
-	virtual void doDraw(Graphics&);                  // _38
-	virtual void isFinishable();                     // _3C
-	virtual void initHIO(HIORootNode*);              // _40
-	virtual void refreshHIO();                       // _44
+	virtual ~BaseHIOSection();                       // _08
+	virtual void run();                              // _0C
+	virtual void update();                           // _10
+	virtual void draw(Graphics&);                    // _14
+	virtual void init();                             // _18
+	virtual void drawInit(Graphics&);                // _1C
+	virtual void drawInit(Graphics&, EDrawInitMode); // _20
+	virtual void doExit();                           // _24
+	virtual void forceFinish();                      // _28
+	virtual void forceReset();                       // _2C
+	virtual void getCurrentSection();                // _30
+	virtual void doLoadingStart();                   // _34
+	virtual void doLoading();                        // _38
+	virtual void doUpdate();                         // _3C
+	virtual void doDraw(Graphics&);                  // _40
+	virtual void isFinishable();                     // _44
+	virtual void initHIO(HIORootNode*);              // _48
+	virtual void refreshHIO();                       // _4C
 
 	// _00 VTBL
 };
@@ -53,25 +53,23 @@ struct BaseHIOSection {
 
 namespace Title {
 struct Section : public BaseHIOSection {
-	virtual ~Section();                              // _00
-	virtual void run();                              // _04
-	virtual void update();                           // _08
-	virtual void draw(Graphics&);                    // _0C
-	virtual void init();                             // _10
-	virtual void drawInit(Graphics&);                // _14
-	virtual void drawInit(Graphics&, EDrawInitMode); // _18
-	virtual void doExit();                           // _1C
-	virtual void forceFinish();                      // _20
-	virtual void forceReset();                       // _24
-	virtual void getCurrentSection();                // _28
-	virtual void doLoadingStart();                   // _2C
-	virtual void doLoading();                        // _30
-	virtual void doUpdate();                         // _34
-	virtual void doDraw(Graphics&);                  // _38
-	virtual void isFinishable();                     // _3C
-	virtual void initHIO(HIORootNode*);              // _40
-	virtual void refreshHIO();                       // _44
-	virtual void loadResource();                     // _48
+	virtual ~Section();                              // _08
+	virtual void run();                              // _0C
+	virtual void update();                           // _10
+	virtual void draw(Graphics&);                    // _14
+	virtual void init();                             // _18
+	virtual void drawInit(Graphics&);                // _1C
+	virtual void drawInit(Graphics&, EDrawInitMode); // _20
+	virtual void doExit();                           // _24
+	virtual void forceFinish();                      // _28
+	virtual void forceReset();                       // _2C
+	virtual void getCurrentSection();                // _30
+	virtual void doLoadingStart();                   // _34
+	virtual void doLoading();                        // _38
+	virtual void doUpdate();                         // _3C
+	virtual void doDraw(Graphics&);                  // _40
+	virtual void isFinishable();                     // _44
+	virtual void loadResource();                     // _50
 
 	// _00 VTBL
 };

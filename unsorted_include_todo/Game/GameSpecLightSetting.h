@@ -10,7 +10,7 @@
 
 namespace Game {
 struct GameLightSettingBase {
-	virtual void read(Stream&); // _00
+	virtual void read(Stream&); // _08
 
 	// _00 VTBL
 };
@@ -18,7 +18,6 @@ struct GameLightSettingBase {
 
 namespace Game {
 struct GameSpecLightSetting : public GameLightSettingBase {
-	virtual void read(Stream&); // _00
 
 	// _00 VTBL
 };

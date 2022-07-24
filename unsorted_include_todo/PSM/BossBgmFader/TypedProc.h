@@ -10,11 +10,11 @@
 
 namespace PSM {
 namespace BossBgmFader {
-	struct TypedProc {
-		virtual void update(); // _00
+struct TypedProc {
+	virtual void update(); // _08
 
-		// _00 VTBL
-	};
+	// _00 VTBL
+};
 } // namespace BossBgmFader
 } // namespace PSM
 

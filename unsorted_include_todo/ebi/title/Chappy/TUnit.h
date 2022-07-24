@@ -11,14 +11,14 @@
 
 namespace ebi {
 namespace title {
-	namespace Chappy {
-		struct TUnit {
-			virtual void getCreatureType(); // _00
-			virtual void isCalc();          // _04
+namespace Chappy {
+struct TUnit {
+	virtual void getCreatureType(); // _08
+	virtual void isCalc();          // _0C
 
-			// _00 VTBL
-		};
-	} // namespace Chappy
+	// _00 VTBL
+};
+} // namespace Chappy
 } // namespace title
 } // namespace ebi
 

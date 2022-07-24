@@ -9,7 +9,7 @@
 */
 
 struct LifeGaugeList {
-	virtual ~LifeGaugeList(); // _00
+	virtual ~LifeGaugeList(); // _08
 
 	// _00 VTBL
 };

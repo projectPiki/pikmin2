@@ -10,7 +10,7 @@
 
 namespace Game {
 struct CreatureKillArg {
-	virtual void getName(); // _00
+	virtual void getName(); // _08
 
 	// _00 VTBL
 };
@@ -18,7 +18,6 @@ struct CreatureKillArg {
 
 namespace Game {
 struct PelletKillArg : public CreatureKillArg {
-	virtual void getName(); // _00
 
 	// _00 VTBL
 };

@@ -15,35 +15,26 @@
 
 namespace JStudio {
 namespace stb {
-	struct TObject {
-		virtual ~TObject();      // _00
-		virtual void do_begin(); // _04
-		virtual void do_end();   // _08
-		virtual void do_paragraph(unsigned long, const void*,
-		                          unsigned long); // _0C
-		virtual void do_wait(unsigned long);      // _10
-		virtual void do_data(const void*, unsigned long, const void*,
-		                     unsigned long); // _14
+struct TObject {
+	virtual ~TObject();                                                           // _08
+	virtual void do_begin();                                                      // _0C
+	virtual void do_end();                                                        // _10
+	virtual void do_paragraph(unsigned long, const void*, unsigned long);         // _14
+	virtual void do_wait(unsigned long);                                          // _18
+	virtual void do_data(const void*, unsigned long, const void*, unsigned long); // _1C
 
-		// _00 VTBL
-	};
+	// _00 VTBL
+};
 } // namespace stb
 } // namespace JStudio
 
 namespace JStudio {
 namespace stb {
-	struct TObject_control : public TObject {
-		virtual ~TObject_control(); // _00
-		virtual void do_begin();    // _04
-		virtual void do_end();      // _08
-		virtual void do_paragraph(unsigned long, const void*,
-		                          unsigned long); // _0C
-		virtual void do_wait(unsigned long);      // _10
-		virtual void do_data(const void*, unsigned long, const void*,
-		                     unsigned long); // _14
+struct TObject_control : public TObject {
+	virtual ~TObject_control(); // _08
 
-		// _00 VTBL
-	};
+	// _00 VTBL
+};
 } // namespace stb
 } // namespace JStudio
 

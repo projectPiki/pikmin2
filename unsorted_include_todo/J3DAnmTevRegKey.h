@@ -10,8 +10,8 @@
 */
 
 struct J3DAnmTevRegKey {
-	virtual ~J3DAnmTevRegKey();   // _00
-	virtual void getKind() const; // _04
+	virtual ~J3DAnmTevRegKey();   // _08
+	virtual void getKind() const; // _0C
 
 	// _00 VTBL
 };

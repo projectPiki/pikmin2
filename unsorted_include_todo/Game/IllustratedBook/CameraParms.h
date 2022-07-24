@@ -10,11 +10,11 @@
 
 namespace Game {
 namespace IllustratedBook {
-	struct CameraParms {
-		virtual void read(Stream&); // _00
+struct CameraParms {
+	virtual void read(Stream&); // _08
 
-		// _00 VTBL
-	};
+	// _00 VTBL
+};
 } // namespace IllustratedBook
 } // namespace Game
 

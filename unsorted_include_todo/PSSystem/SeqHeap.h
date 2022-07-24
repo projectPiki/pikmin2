@@ -11,8 +11,8 @@
 
 namespace PSSystem {
 struct SeqHeap {
-	virtual ~SeqHeap();                      // _00
-	virtual void loadSeqAsync(TaskChecker*); // _04
+	virtual ~SeqHeap();                      // _08
+	virtual void loadSeqAsync(TaskChecker*); // _0C
 
 	// _00 VTBL
 };

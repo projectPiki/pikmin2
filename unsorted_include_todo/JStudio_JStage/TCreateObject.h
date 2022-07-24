@@ -6,15 +6,13 @@
     .4byte 0
     .4byte 0
     .4byte __dt__Q214JStudio_JStage13TCreateObjectFv
-    .4byte
-   create__Q214JStudio_JStage13TCreateObjectFPPQ27JStudio7TObjectRCQ47JStudio3stb4data20TParse_TBlock_object
+    .4byte create__Q214JStudio_JStage13TCreateObjectFPPQ27JStudio7TObjectRCQ47JStudio3stb4data20TParse_TBlock_object
 */
 
 namespace JStudio_JStage {
 struct TCreateObject {
-	virtual ~TCreateObject(); // _00
-	virtual void create(JStudio::TObject**,
-	                    const JStudio::stb::data::TParse_TBlock_object&); // _04
+	virtual ~TCreateObject();                                                                 // _08
+	virtual void create(JStudio::TObject**, const JStudio::stb::data::TParse_TBlock_object&); // _0C
 
 	// _00 VTBL
 };

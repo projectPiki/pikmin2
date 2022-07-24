@@ -14,11 +14,11 @@
 
 namespace efx {
 struct TTankFireABC {
-	virtual void create(Arg*);       // _00
-	virtual void forceKill();        // _04
-	virtual void fade();             // _08
-	virtual void startDemoDrawOff(); // _0C
-	virtual void endDemoDrawOn();    // _10
+	virtual void create(Arg*);       // _08
+	virtual void forceKill();        // _0C
+	virtual void fade();             // _10
+	virtual void startDemoDrawOff(); // _14
+	virtual void endDemoDrawOn();    // _18
 
 	// _00 VTBL
 };

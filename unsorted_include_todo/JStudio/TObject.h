@@ -15,13 +15,12 @@
 
 namespace JStudio {
 struct TObject {
-	virtual void _00() = 0;              // _00
-	virtual void do_begin();             // _04
-	virtual void do_end();               // _08
-	virtual void _0C() = 0;              // _0C
-	virtual void do_wait(unsigned long); // _10
-	virtual void do_data(const void*, unsigned long, const void*,
-	                     unsigned long); // _14
+	virtual void _08() = 0;                                                       // _08
+	virtual void do_begin();                                                      // _0C
+	virtual void do_end();                                                        // _10
+	virtual void _14() = 0;                                                       // _14
+	virtual void do_wait(unsigned long);                                          // _18
+	virtual void do_data(const void*, unsigned long, const void*, unsigned long); // _1C
 
 	// _00 VTBL
 };

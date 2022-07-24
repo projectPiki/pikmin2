@@ -10,8 +10,8 @@
 */
 
 struct J3DAnmVisibilityFull {
-	virtual ~J3DAnmVisibilityFull(); // _00
-	virtual void getKind() const;    // _04
+	virtual ~J3DAnmVisibilityFull(); // _08
+	virtual void getKind() const;    // _0C
 
 	// _00 VTBL
 };

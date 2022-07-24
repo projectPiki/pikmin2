@@ -11,23 +11,21 @@
 
 namespace ebi {
 namespace title {
-	struct TObjBase {
-		virtual void getCreatureType(); // _00
-		virtual void isCalc();          // _04
+struct TObjBase {
+	virtual void getCreatureType(); // _08
+	virtual void isCalc();          // _0C
 
-		// _00 VTBL
-	};
+	// _00 VTBL
+};
 } // namespace title
 } // namespace ebi
 
 namespace ebi {
 namespace title {
-	struct TBlackPlane : public TObjBase {
-		virtual void getCreatureType(); // _00
-		virtual void isCalc();          // _04
+struct TBlackPlane : public TObjBase {
 
-		// _00 VTBL
-	};
+	// _00 VTBL
+};
 } // namespace title
 } // namespace ebi
 

@@ -10,16 +10,15 @@
 */
 
 struct CNode {
-	virtual ~CNode();             // _00
-	virtual void getChildCount(); // _04
+	virtual ~CNode();             // _08
+	virtual void getChildCount(); // _0C
 
 	// _00 VTBL
 };
 
 namespace Game {
 struct SnakeCrowTubeShadowNode : public CNode {
-	virtual ~SnakeCrowTubeShadowNode(); // _00
-	virtual void getChildCount();       // _04
+	virtual ~SnakeCrowTubeShadowNode(); // _08
 
 	// _00 VTBL
 };

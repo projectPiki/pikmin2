@@ -13,7 +13,7 @@
 
 namespace PSSystem {
 struct EnvSeBase {
-	virtual void exec(); // _00
+	virtual void exec(); // _08
 
 	// _00 VTBL
 };
@@ -21,10 +21,10 @@ struct EnvSeBase {
 
 namespace PSGame {
 struct EnvSe_AutoPan {
-	virtual void _00() = 0;                 // _00
-	virtual void _04() = 0;                 // _04
 	virtual void _08() = 0;                 // _08
-	virtual void setPanAndDolby(JAISound*); // _0C
+	virtual void _0C() = 0;                 // _0C
+	virtual void _10() = 0;                 // _10
+	virtual void setPanAndDolby(JAISound*); // _14
 
 	// _00 VTBL
 };
@@ -32,10 +32,8 @@ struct EnvSe_AutoPan {
 
 namespace PSM {
 struct Env_Pollutin : public EnvSeBase, public EnvSe_AutoPan {
-	virtual void exec();                    // _00
-	virtual void play();                    // _04
-	virtual void getCastType();             // _08
-	virtual void setPanAndDolby(JAISound*); // _0C
+	virtual void play();        // _0C
+	virtual void getCastType(); // _10
 
 	// _00 VTBL
 };

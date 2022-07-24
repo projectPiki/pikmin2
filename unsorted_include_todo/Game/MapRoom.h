@@ -25,13 +25,13 @@
 
 namespace Game {
 struct CellObject {
-	virtual void getPosition();                   // _00
-	virtual void checkCollision(CellObject*);     // _04
-	virtual void getBoundingSphere(Sys::Sphere&); // _08
-	virtual void collisionUpdatable();            // _0C
-	virtual void isPiki();                        // _10
-	virtual void isNavi();                        // _14
-	virtual void deferPikiCollision();            // _18
+	virtual void getPosition();                   // _08
+	virtual void checkCollision(CellObject*);     // _0C
+	virtual void getBoundingSphere(Sys::Sphere&); // _10
+	virtual void collisionUpdatable();            // _14
+	virtual void isPiki();                        // _18
+	virtual void isNavi();                        // _1C
+	virtual void deferPikiCollision();            // _20
 
 	// _00 VTBL
 };
@@ -39,22 +39,18 @@ struct CellObject {
 
 namespace Game {
 struct MapRoom : public CellObject {
-	virtual void getPosition();                   // _00
-	virtual void checkCollision(CellObject*);     // _04
-	virtual void getBoundingSphere(Sys::Sphere&); // _08
-	virtual void collisionUpdatable();            // _0C
-	virtual void isPiki();                        // _10
-	virtual void isNavi();                        // _14
-	virtual void deferPikiCollision();            // _18
-	virtual void getTypeName();                   // _1C
-	virtual void getObjType();                    // _20
-	virtual void constructor();                   // _24
-	virtual void doAnimation();                   // _28
-	virtual void doEntry();                       // _2C
-	virtual void doSetView(int);                  // _30
-	virtual void doViewCalc();                    // _34
-	virtual void doSimulation(float);             // _38
-	virtual void doDirectDraw(Graphics&);         // _3C
+	virtual void getPosition();                   // _08
+	virtual void getBoundingSphere(Sys::Sphere&); // _10
+	virtual void collisionUpdatable();            // _14
+	virtual void getTypeName();                   // _24
+	virtual void getObjType();                    // _28
+	virtual void constructor();                   // _2C
+	virtual void doAnimation();                   // _30
+	virtual void doEntry();                       // _34
+	virtual void doSetView(int);                  // _38
+	virtual void doViewCalc();                    // _3C
+	virtual void doSimulation(float);             // _40
+	virtual void doDirectDraw(Graphics&);         // _44
 
 	// _00 VTBL
 };

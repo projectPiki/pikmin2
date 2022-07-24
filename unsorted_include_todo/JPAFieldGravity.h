@@ -7,17 +7,13 @@
     .4byte 0
     .4byte __dt__15JPAFieldGravityFv
     .4byte prepare__15JPAFieldGravityFP18JPAEmitterWorkDataP13JPAFieldBlock
-    .4byte
-   calc__15JPAFieldGravityFP18JPAEmitterWorkDataP13JPAFieldBlockP15JPABaseParticle
-    .4byte 0
+    .4byte calc__15JPAFieldGravityFP18JPAEmitterWorkDataP13JPAFieldBlockP15JPABaseParticle
 */
 
 struct JPAFieldGravity {
-	virtual ~JPAFieldGravity();                                // _00
-	virtual void prepare(JPAEmitterWorkData*, JPAFieldBlock*); // _04
-	virtual void calc(JPAEmitterWorkData*, JPAFieldBlock*,
-	                  JPABaseParticle*); // _08
-	virtual void _0C() = 0;              // _0C
+	virtual ~JPAFieldGravity();                                               // _08
+	virtual void prepare(JPAEmitterWorkData*, JPAFieldBlock*);                // _0C
+	virtual void calc(JPAEmitterWorkData*, JPAFieldBlock*, JPABaseParticle*); // _10
 
 	// _00 VTBL
 };

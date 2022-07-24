@@ -11,8 +11,8 @@
 
 namespace PSSystem {
 struct DirectorMgrBase {
-	virtual ~DirectorMgrBase(); // _00
-	virtual void _04() = 0;     // _04
+	virtual ~DirectorMgrBase(); // _08
+	virtual void _0C() = 0;     // _0C
 
 	// _00 VTBL
 };

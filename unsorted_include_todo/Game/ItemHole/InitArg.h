@@ -10,11 +10,11 @@
 
 namespace Game {
 namespace ItemHole {
-	struct InitArg {
-		virtual void getName(); // _00
+struct InitArg {
+	virtual void getName(); // _08
 
-		// _00 VTBL
-	};
+	// _00 VTBL
+};
 } // namespace ItemHole
 } // namespace Game
 

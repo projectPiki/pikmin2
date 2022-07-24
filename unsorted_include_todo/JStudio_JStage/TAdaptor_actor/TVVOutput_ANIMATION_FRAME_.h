@@ -5,20 +5,18 @@
     __vt__Q314JStudio_JStage14TAdaptor_actor26TVVOutput_ANIMATION_FRAME_:
     .4byte 0
     .4byte 0
-    .4byte
-   __cl__Q314JStudio_JStage14TAdaptor_actor26TVVOutput_ANIMATION_FRAME_CFfPQ27JStudio8TAdaptor
-    .4byte
-   __dt__Q314JStudio_JStage14TAdaptor_actor26TVVOutput_ANIMATION_FRAME_Fv
+    .4byte __cl__Q314JStudio_JStage14TAdaptor_actor26TVVOutput_ANIMATION_FRAME_CFfPQ27JStudio8TAdaptor
+    .4byte __dt__Q314JStudio_JStage14TAdaptor_actor26TVVOutput_ANIMATION_FRAME_Fv
 */
 
 namespace JStudio_JStage {
 namespace TAdaptor_actor {
-	struct TVVOutput_ANIMATION_FRAME_ {
-		virtual void operator()(float, JStudio::TAdaptor*) const; // _00
-		virtual ~TVVOutput_ANIMATION_FRAME_();                    // _04
+struct TVVOutput_ANIMATION_FRAME_ {
+	virtual void operator()(float, JStudio::TAdaptor*) const; // _08
+	virtual ~TVVOutput_ANIMATION_FRAME_();                    // _0C
 
-		// _00 VTBL
-	};
+	// _00 VTBL
+};
 } // namespace TAdaptor_actor
 } // namespace JStudio_JStage
 

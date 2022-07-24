@@ -18,23 +18,22 @@
     .4byte doDirectDraw__Q26PikiAI6ActionFR8Graphics
     .4byte "wallCallback__Q26PikiAI6ActionFR10Vector3<f>"
     .4byte getInfo__Q26PikiAI7ActWeedFPc
-    .4byte 0
 */
 
 namespace PikiAI {
 struct Action {
-	virtual void init(ActionArg*);                                 // _00
-	virtual void exec();                                           // _04
-	virtual void cleanup();                                        // _08
-	virtual void emotion_success();                                // _0C
-	virtual void emotion_fail();                                   // _10
-	virtual void applicable();                                     // _14
-	virtual void getNextAIType();                                  // _18
-	virtual void bounceCallback(Game::Piki*, Sys::Triangle*);      // _1C
-	virtual void collisionCallback(Game::Piki*, Game::CollEvent&); // _20
-	virtual void platCallback(Game::Piki*, Game::PlatEvent&);      // _24
-	virtual void doDirectDraw(Graphics&);                          // _28
-	virtual void wallCallback(Vector3<float>&);                    // _2C
+	virtual void init(ActionArg*);                                 // _08
+	virtual void exec();                                           // _0C
+	virtual void cleanup();                                        // _10
+	virtual void emotion_success();                                // _14
+	virtual void emotion_fail();                                   // _18
+	virtual void applicable();                                     // _1C
+	virtual void getNextAIType();                                  // _20
+	virtual void bounceCallback(Game::Piki*, Sys::Triangle*);      // _24
+	virtual void collisionCallback(Game::Piki*, Game::CollEvent&); // _28
+	virtual void platCallback(Game::Piki*, Game::PlatEvent&);      // _2C
+	virtual void doDirectDraw(Graphics&);                          // _30
+	virtual void wallCallback(Vector3<float>&);                    // _34
 
 	// _00 VTBL
 };
@@ -42,20 +41,11 @@ struct Action {
 
 namespace PikiAI {
 struct ActWeed : public Action {
-	virtual void init(ActionArg*);                                 // _00
-	virtual void exec();                                           // _04
-	virtual void cleanup();                                        // _08
-	virtual void emotion_success();                                // _0C
-	virtual void emotion_fail();                                   // _10
-	virtual void applicable();                                     // _14
-	virtual void getNextAIType();                                  // _18
-	virtual void bounceCallback(Game::Piki*, Sys::Triangle*);      // _1C
-	virtual void collisionCallback(Game::Piki*, Game::CollEvent&); // _20
-	virtual void platCallback(Game::Piki*, Game::PlatEvent&);      // _24
-	virtual void doDirectDraw(Graphics&);                          // _28
-	virtual void wallCallback(Vector3<float>&);                    // _2C
-	virtual void getInfo(char*);                                   // _30
-	virtual void _34() = 0;                                        // _34
+	virtual void init(ActionArg*);                                 // _08
+	virtual void exec();                                           // _0C
+	virtual void cleanup();                                        // _10
+	virtual void collisionCallback(Game::Piki*, Game::CollEvent&); // _28
+	virtual void getInfo(char*);                                   // _38
 
 	// _00 VTBL
 };

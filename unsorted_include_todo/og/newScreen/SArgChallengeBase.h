@@ -11,7 +11,7 @@
 
 namespace Screen {
 struct SceneArgBase {
-	virtual void getSceneType() const; // _00
+	virtual void getSceneType() const; // _08
 
 	// _00 VTBL
 };
@@ -19,12 +19,11 @@ struct SceneArgBase {
 
 namespace og {
 namespace newScreen {
-	struct SArgChallengeBase : public SceneArgBase {
-		virtual void getSceneType() const; // _00
-		virtual void _04() = 0;            // _04
+struct SArgChallengeBase : public SceneArgBase {
+	virtual void _0C() = 0; // _0C
 
-		// _00 VTBL
-	};
+	// _00 VTBL
+};
 } // namespace newScreen
 } // namespace og
 

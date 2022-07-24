@@ -10,11 +10,11 @@
 
 namespace Game {
 namespace MemoryCard {
-	struct MgrCommandPlayerNo {
-		virtual void getClassSize(); // _00
+struct MgrCommandPlayerNo {
+	virtual void getClassSize(); // _08
 
-		// _00 VTBL
-	};
+	// _00 VTBL
+};
 } // namespace MemoryCard
 } // namespace Game
 

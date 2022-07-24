@@ -20,18 +20,18 @@
 */
 
 struct GenericObjectMgr {
-	virtual void _00() = 0;               // _00
-	virtual void doEntry();               // _04
 	virtual void _08() = 0;               // _08
-	virtual void _0C() = 0;               // _0C
+	virtual void doEntry();               // _0C
 	virtual void _10() = 0;               // _10
 	virtual void _14() = 0;               // _14
-	virtual void doSimpleDraw(Viewport*); // _18
-	virtual void loadResources();         // _1C
-	virtual void resetMgr();              // _20
-	virtual void pausable();              // _24
-	virtual void frozenable();            // _28
-	virtual void getMatrixLoadType();     // _2C
+	virtual void _18() = 0;               // _18
+	virtual void _1C() = 0;               // _1C
+	virtual void doSimpleDraw(Viewport*); // _20
+	virtual void loadResources();         // _24
+	virtual void resetMgr();              // _28
+	virtual void pausable();              // _2C
+	virtual void frozenable();            // _30
+	virtual void getMatrixLoadType();     // _34
 
 	// _00 VTBL
 };

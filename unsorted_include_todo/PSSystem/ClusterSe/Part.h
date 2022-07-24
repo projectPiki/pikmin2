@@ -10,11 +10,11 @@
 
 namespace PSSystem {
 namespace ClusterSe {
-	struct Part {
-		virtual void callSe(JAInter::Object*); // _00
+struct Part {
+	virtual void callSe(JAInter::Object*); // _08
 
-		// _00 VTBL
-	};
+	// _00 VTBL
+};
 } // namespace ClusterSe
 } // namespace PSSystem
 

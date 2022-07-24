@@ -10,13 +10,13 @@
 
 namespace ebi {
 namespace title {
-	namespace Chappy {
-		struct TAnimFolder {
-			virtual void getAnimRes(long); // _00
+namespace Chappy {
+struct TAnimFolder {
+	virtual void getAnimRes(long); // _08
 
-			// _00 VTBL
-		};
-	} // namespace Chappy
+	// _00 VTBL
+};
+} // namespace Chappy
 } // namespace title
 } // namespace ebi
 

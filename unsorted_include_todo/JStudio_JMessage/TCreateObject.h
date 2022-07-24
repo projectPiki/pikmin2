@@ -6,17 +6,14 @@
     .4byte 0
     .4byte 0
     .4byte __dt__Q216JStudio_JMessage13TCreateObjectFv
-    .4byte
-   create__Q216JStudio_JMessage18TCreateObject_baseFPPQ27JStudio7TObjectRCQ47JStudio3stb4data20TParse_TBlock_object
-    .4byte
-   find__Q216JStudio_JMessage13TCreateObjectFRCQ47JStudio3stb4data20TParse_TBlock_object
+    .4byte create__Q216JStudio_JMessage18TCreateObject_baseFPPQ27JStudio7TObjectRCQ47JStudio3stb4data20TParse_TBlock_object
+    .4byte find__Q216JStudio_JMessage13TCreateObjectFRCQ47JStudio3stb4data20TParse_TBlock_object
 */
 
 namespace JStudio_JMessage {
 struct TCreateObject_base {
-	virtual ~TCreateObject_base(); // _00
-	virtual void create(JStudio::TObject**,
-	                    const JStudio::stb::data::TParse_TBlock_object&); // _04
+	virtual ~TCreateObject_base();                                                            // _08
+	virtual void create(JStudio::TObject**, const JStudio::stb::data::TParse_TBlock_object&); // _0C
 
 	// _00 VTBL
 };
@@ -24,10 +21,8 @@ struct TCreateObject_base {
 
 namespace JStudio_JMessage {
 struct TCreateObject : public TCreateObject_base {
-	virtual ~TCreateObject(); // _00
-	virtual void create(JStudio::TObject**,
-	                    const JStudio::stb::data::TParse_TBlock_object&); // _04
-	virtual void find(const JStudio::stb::data::TParse_TBlock_object&);   // _08
+	virtual ~TCreateObject();                                           // _08
+	virtual void find(const JStudio::stb::data::TParse_TBlock_object&); // _10
 
 	// _00 VTBL
 };

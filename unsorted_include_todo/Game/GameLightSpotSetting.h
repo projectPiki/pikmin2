@@ -10,16 +10,15 @@
 */
 
 struct CNode {
-	virtual ~CNode();             // _00
-	virtual void getChildCount(); // _04
+	virtual ~CNode();             // _08
+	virtual void getChildCount(); // _0C
 
 	// _00 VTBL
 };
 
 namespace Game {
 struct GameLightSpotSetting : public CNode {
-	virtual ~GameLightSpotSetting(); // _00
-	virtual void getChildCount();    // _04
+	virtual ~GameLightSpotSetting(); // _08
 
 	// _00 VTBL
 };

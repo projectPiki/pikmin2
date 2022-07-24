@@ -11,12 +11,12 @@
 
 namespace og {
 namespace newScreen {
-	struct SArgChallenge2P {
-		virtual void getSceneType() const; // _00
-		virtual void getClassSize();       // _04
+struct SArgChallenge2P {
+	virtual void getSceneType() const; // _08
+	virtual void getClassSize();       // _0C
 
-		// _00 VTBL
-	};
+	// _00 VTBL
+};
 } // namespace newScreen
 } // namespace og
 

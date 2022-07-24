@@ -10,11 +10,11 @@
 
 namespace SweepPrune {
 namespace World {
-	struct Callback {
-		virtual void _00() = 0; // _00
+struct Callback {
+	virtual void _08() = 0; // _08
 
-		// _00 VTBL
-	};
+	// _00 VTBL
+};
 } // namespace World
 } // namespace SweepPrune
 

@@ -12,11 +12,9 @@
 
 namespace JMessage {
 struct TParse {
-	virtual ~TParse(); // _00
-	virtual void parseHeader_next(const void**, unsigned long*,
-	                              unsigned long); // _04
-	virtual void parseBlock_next(const void**, unsigned long*,
-	                             unsigned long); // _08
+	virtual ~TParse();                                                          // _08
+	virtual void parseHeader_next(const void**, unsigned long*, unsigned long); // _0C
+	virtual void parseBlock_next(const void**, unsigned long*, unsigned long);  // _10
 
 	// _00 VTBL
 };

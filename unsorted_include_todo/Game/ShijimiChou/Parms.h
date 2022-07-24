@@ -6,17 +6,15 @@
     .4byte 0
     .4byte 0
     .4byte read__Q34Game11ShijimiChou5ParmsFR6Stream
-    .4byte 0
 */
 
 namespace Game {
 namespace ShijimiChou {
-	struct Parms {
-		virtual void read(Stream&); // _00
-		virtual void _04() = 0;     // _04
+struct Parms {
+	virtual void read(Stream&); // _08
 
-		// _00 VTBL
-	};
+	// _00 VTBL
+};
 } // namespace ShijimiChou
 } // namespace Game
 

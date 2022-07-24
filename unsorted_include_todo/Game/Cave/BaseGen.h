@@ -13,23 +13,22 @@
 */
 
 struct CNode {
-	virtual ~CNode();             // _00
-	virtual void getChildCount(); // _04
+	virtual ~CNode();             // _08
+	virtual void getChildCount(); // _0C
 
 	// _00 VTBL
 };
 
 namespace Game {
 namespace Cave {
-	struct BaseGen : public CNode {
-		virtual ~BaseGen();                     // _00
-		virtual void getChildCount();           // _04
-		virtual void read(Stream&);             // _08
-		virtual void draw(Graphics&, Matrixf*); // _0C
-		virtual void _10() = 0;                 // _10
+struct BaseGen : public CNode {
+	virtual ~BaseGen();                     // _08
+	virtual void read(Stream&);             // _10
+	virtual void draw(Graphics&, Matrixf*); // _14
+	virtual void _18() = 0;                 // _18
 
-		// _00 VTBL
-	};
+	// _00 VTBL
+};
 } // namespace Cave
 } // namespace Game
 

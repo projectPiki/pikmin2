@@ -12,9 +12,9 @@
 
 namespace efx {
 struct TSimple5 {
-	virtual void create(Arg*); // _00
-	virtual void forceKill();  // _04
-	virtual void fade();       // _08
+	virtual void create(Arg*); // _08
+	virtual void forceKill();  // _0C
+	virtual void fade();       // _10
 
 	// _00 VTBL
 };
@@ -22,9 +22,6 @@ struct TSimple5 {
 
 namespace efx {
 struct TOtaFire : public TSimple5 {
-	virtual void create(Arg*); // _00
-	virtual void forceKill();  // _04
-	virtual void fade();       // _08
 
 	// _00 VTBL
 };

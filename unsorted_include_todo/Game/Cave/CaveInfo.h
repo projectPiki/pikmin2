@@ -11,21 +11,20 @@
 */
 
 struct CNode {
-	virtual ~CNode();             // _00
-	virtual void getChildCount(); // _04
+	virtual ~CNode();             // _08
+	virtual void getChildCount(); // _0C
 
 	// _00 VTBL
 };
 
 namespace Game {
 namespace Cave {
-	struct CaveInfo : public CNode {
-		virtual ~CaveInfo();          // _00
-		virtual void getChildCount(); // _04
-		virtual void read(Stream&);   // _08
+struct CaveInfo : public CNode {
+	virtual ~CaveInfo();        // _08
+	virtual void read(Stream&); // _10
 
-		// _00 VTBL
-	};
+	// _00 VTBL
+};
 } // namespace Cave
 } // namespace Game
 

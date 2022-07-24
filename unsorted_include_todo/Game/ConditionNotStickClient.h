@@ -10,7 +10,7 @@
 
 namespace Game {
 struct ConditionNotStickClient {
-	virtual void satisfy(Piki*); // _00
+	virtual void satisfy(Piki*); // _08
 
 	// _00 VTBL
 };

@@ -22,18 +22,18 @@
 
 namespace JAInter {
 struct ObjectBase {
-	virtual ~ObjectBase();                                                // _00
-	virtual void startSound(unsigned long, unsigned long);                // _04
-	virtual void startSound(unsigned char, unsigned long, unsigned long); // _08
-	virtual void startSound(JAISound**, unsigned long, unsigned long);    // _0C
-	virtual void stopAllSound();                                          // _10
-	virtual void stopSound(unsigned long, unsigned long);                 // _14
-	virtual void enable();                                                // _18
-	virtual void disable();                                               // _1C
-	virtual void dispose();                                               // _20
-	virtual void getFreeSoundHandlePointer();                             // _24
-	virtual void getUseSoundHandlePointer(unsigned long);                 // _28
-	virtual void handleStop(unsigned char, unsigned long);                // _2C
+	virtual ~ObjectBase();                                                // _08
+	virtual void startSound(unsigned long, unsigned long);                // _0C
+	virtual void startSound(unsigned char, unsigned long, unsigned long); // _10
+	virtual void startSound(JAISound**, unsigned long, unsigned long);    // _14
+	virtual void stopAllSound();                                          // _18
+	virtual void stopSound(unsigned long, unsigned long);                 // _1C
+	virtual void enable();                                                // _20
+	virtual void disable();                                               // _24
+	virtual void dispose();                                               // _28
+	virtual void getFreeSoundHandlePointer();                             // _2C
+	virtual void getUseSoundHandlePointer(unsigned long);                 // _30
+	virtual void handleStop(unsigned char, unsigned long);                // _34
 
 	// _00 VTBL
 };
@@ -41,19 +41,10 @@ struct ObjectBase {
 
 namespace JAInter {
 struct Object : public ObjectBase {
-	virtual ~Object();                                                    // _00
-	virtual void startSound(unsigned long, unsigned long);                // _04
-	virtual void startSound(unsigned char, unsigned long, unsigned long); // _08
-	virtual void startSound(JAISound**, unsigned long, unsigned long);    // _0C
-	virtual void stopAllSound();                                          // _10
-	virtual void stopSound(unsigned long, unsigned long);                 // _14
-	virtual void enable();                                                // _18
-	virtual void disable();                                               // _1C
-	virtual void dispose();                                               // _20
-	virtual void getFreeSoundHandlePointer();                             // _24
-	virtual void getUseSoundHandlePointer(unsigned long);                 // _28
-	virtual void handleStop(unsigned char, unsigned long);                // _2C
-	virtual void loop();                                                  // _30
+	virtual ~Object();                                     // _08
+	virtual void startSound(unsigned long, unsigned long); // _0C
+	virtual void disable();                                // _24
+	virtual void loop();                                   // _38
 
 	// _00 VTBL
 };

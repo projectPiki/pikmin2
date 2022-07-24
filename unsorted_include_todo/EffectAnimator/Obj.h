@@ -11,17 +11,16 @@
 */
 
 struct CNode {
-	virtual ~CNode();             // _00
-	virtual void getChildCount(); // _04
+	virtual ~CNode();             // _08
+	virtual void getChildCount(); // _0C
 
 	// _00 VTBL
 };
 
 namespace EffectAnimator {
 struct Obj : public CNode {
-	virtual ~Obj();                                  // _00
-	virtual void getChildCount();                    // _04
-	virtual void update(efx::TKechappyTest*, float); // _08
+	virtual ~Obj();                                  // _08
+	virtual void update(efx::TKechappyTest*, float); // _10
 
 	// _00 VTBL
 };

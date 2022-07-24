@@ -10,11 +10,11 @@
 
 namespace efx2d {
 namespace FileSelect {
-	struct ArgFilecopy {
-		virtual void getName(); // _00
+struct ArgFilecopy {
+	virtual void getName(); // _08
 
-		// _00 VTBL
-	};
+	// _00 VTBL
+};
 } // namespace FileSelect
 } // namespace efx2d
 

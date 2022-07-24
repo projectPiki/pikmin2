@@ -10,15 +10,14 @@
 */
 
 struct CNode {
-	virtual ~CNode();             // _00
-	virtual void getChildCount(); // _04
+	virtual ~CNode();             // _08
+	virtual void getChildCount(); // _0C
 
 	// _00 VTBL
 };
 
 struct Viewport : public CNode {
-	virtual ~Viewport();          // _00
-	virtual void getChildCount(); // _04
+	virtual ~Viewport(); // _08
 
 	// _00 VTBL
 };

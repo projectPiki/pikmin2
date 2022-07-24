@@ -10,7 +10,7 @@
 
 namespace PSM {
 struct Factory {
-	virtual void newSceneMgr(); // _00
+	virtual void newSceneMgr(); // _08
 
 	// _00 VTBL
 };

@@ -24,19 +24,19 @@
 
 namespace PSSystem {
 struct SeqBase {
-	virtual ~SeqBase();                  // _00
-	virtual void init();                 // _04
-	virtual void scene1st(TaskChecker*); // _08
-	virtual void startSeq();             // _0C
-	virtual void stopSeq(unsigned long); // _10
-	virtual void pauseOn(PauseMode);     // _14
-	virtual void pauseOff();             // _18
-	virtual void getCastType();          // _1C
-	virtual void getSeqType();           // _20
-	virtual void exec();                 // _24
-	virtual void onPlayingFrame();       // _28
-	virtual void isPlaying();            // _2C
-	virtual void seqLoadAfter();         // _30
+	virtual ~SeqBase();                  // _08
+	virtual void init();                 // _0C
+	virtual void scene1st(TaskChecker*); // _10
+	virtual void startSeq();             // _14
+	virtual void stopSeq(unsigned long); // _18
+	virtual void pauseOn(PauseMode);     // _1C
+	virtual void pauseOff();             // _20
+	virtual void getCastType();          // _24
+	virtual void getSeqType();           // _28
+	virtual void exec();                 // _2C
+	virtual void onPlayingFrame();       // _30
+	virtual void isPlaying();            // _34
+	virtual void seqLoadAfter();         // _38
 
 	// _00 VTBL
 };
@@ -44,21 +44,15 @@ struct SeqBase {
 
 namespace PSSystem {
 struct StreamBgm : public SeqBase {
-	virtual ~StreamBgm();                // _00
-	virtual void init();                 // _04
-	virtual void scene1st(TaskChecker*); // _08
-	virtual void startSeq();             // _0C
-	virtual void stopSeq(unsigned long); // _10
-	virtual void pauseOn(PauseMode);     // _14
-	virtual void pauseOff();             // _18
-	virtual void getCastType();          // _1C
-	virtual void getSeqType();           // _20
-	virtual void exec();                 // _24
-	virtual void onPlayingFrame();       // _28
-	virtual void isPlaying();            // _2C
-	virtual void seqLoadAfter();         // _30
-	virtual void getHandleP();           // _34
-	virtual void setConfigVolume();      // _38
+	virtual ~StreamBgm();                // _08
+	virtual void init();                 // _0C
+	virtual void scene1st(TaskChecker*); // _10
+	virtual void startSeq();             // _14
+	virtual void getCastType();          // _24
+	virtual void getSeqType();           // _28
+	virtual void isPlaying();            // _34
+	virtual void getHandleP();           // _3C
+	virtual void setConfigVolume();      // _40
 
 	// _00 VTBL
 };

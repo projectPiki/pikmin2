@@ -37,35 +37,35 @@
 */
 
 struct J3DPEBlockFull {
-	virtual void reset(J3DPEBlock*);                // _00
-	virtual void load();                            // _04
-	virtual void patch();                           // _08
-	virtual void diff(unsigned long);               // _0C
-	virtual void diffFog();                         // _10
-	virtual void diffBlend();                       // _14
-	virtual void countDLSize();                     // _18
-	virtual void getType();                         // _1C
-	virtual void setFog(J3DFog);                    // _20
-	virtual void setFog(J3DFog*);                   // _24
-	virtual void getFog();                          // _28
-	virtual void setAlphaComp(const J3DAlphaComp*); // _2C
-	virtual void setAlphaComp(const J3DAlphaComp&); // _30
-	virtual void getAlphaComp();                    // _34
-	virtual void setBlend(const J3DBlend*);         // _38
-	virtual void setBlend(const J3DBlend&);         // _3C
-	virtual void getBlend();                        // _40
-	virtual void setZMode(const J3DZMode*);         // _44
-	virtual void setZMode(J3DZMode);                // _48
-	virtual void getZMode();                        // _4C
-	virtual void setZCompLoc(const unsigned char*); // _50
-	virtual void setZCompLoc(unsigned char);        // _54
-	virtual void getZCompLoc() const;               // _58
-	virtual void setDither(const unsigned char*);   // _5C
-	virtual void setDither(unsigned char);          // _60
-	virtual void getDither() const;                 // _64
-	virtual void getFogOffset() const;              // _68
-	virtual void setFogOffset(unsigned long);       // _6C
-	virtual ~J3DPEBlockFull();                      // _70
+	virtual void reset(J3DPEBlock*);                // _08
+	virtual void load();                            // _0C
+	virtual void patch();                           // _10
+	virtual void diff(unsigned long);               // _14
+	virtual void diffFog();                         // _18
+	virtual void diffBlend();                       // _1C
+	virtual void countDLSize();                     // _20
+	virtual void getType();                         // _24
+	virtual void setFog(J3DFog);                    // _28
+	virtual void setFog(J3DFog*);                   // _2C
+	virtual void getFog();                          // _30
+	virtual void setAlphaComp(const J3DAlphaComp*); // _34
+	virtual void setAlphaComp(const J3DAlphaComp&); // _38
+	virtual void getAlphaComp();                    // _3C
+	virtual void setBlend(const J3DBlend*);         // _40
+	virtual void setBlend(const J3DBlend&);         // _44
+	virtual void getBlend();                        // _48
+	virtual void setZMode(const J3DZMode*);         // _4C
+	virtual void setZMode(J3DZMode);                // _50
+	virtual void getZMode();                        // _54
+	virtual void setZCompLoc(const unsigned char*); // _58
+	virtual void setZCompLoc(unsigned char);        // _5C
+	virtual void getZCompLoc() const;               // _60
+	virtual void setDither(const unsigned char*);   // _64
+	virtual void setDither(unsigned char);          // _68
+	virtual void getDither() const;                 // _6C
+	virtual void getFogOffset() const;              // _70
+	virtual void setFogOffset(unsigned long);       // _74
+	virtual ~J3DPEBlockFull();                      // _78
 
 	// _00 VTBL
 };

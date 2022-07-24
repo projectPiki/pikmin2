@@ -10,8 +10,8 @@
 */
 
 struct JKRThread {
-	virtual ~JKRThread(); // _00
-	virtual void run();   // _04
+	virtual ~JKRThread(); // _08
+	virtual void run();   // _0C
 
 	// _00 VTBL
 };

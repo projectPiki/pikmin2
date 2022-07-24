@@ -14,20 +14,19 @@
 */
 
 struct CNode {
-    virtual ~CNode();             // _00
-    virtual void getChildCount(); // _04
+    virtual ~CNode();             // _08
+    virtual void getChildCount(); // _0C
 
     // _00 VTBL
 };
 
 namespace LoadResource {
 struct Node : public CNode {
-    virtual ~Node();              // _00
-    virtual void getChildCount(); // _04
-    virtual void _08() = 0;       // _08
-    virtual void _0C() = 0;       // _0C
-    virtual void @24 @__dt();     // _10
-    virtual void _14() = 0;       // _14
+    virtual ~Node();          // _08
+    virtual void _10() = 0;   // _10
+    virtual void _14() = 0;   // _14
+    virtual void @24 @__dt(); // _18
+    virtual void _1C() = 0;   // _1C
 
     // _00 VTBL
 };

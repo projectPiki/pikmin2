@@ -5,19 +5,18 @@
     __vt__Q314JStudio_JAudio14TAdaptor_sound13TVVOSetValue_:
     .4byte 0
     .4byte 0
-    .4byte
-   __cl__Q314JStudio_JAudio14TAdaptor_sound13TVVOSetValue_CFfPQ27JStudio8TAdaptor
+    .4byte __cl__Q314JStudio_JAudio14TAdaptor_sound13TVVOSetValue_CFfPQ27JStudio8TAdaptor
     .4byte __dt__Q314JStudio_JAudio14TAdaptor_sound13TVVOSetValue_Fv
 */
 
 namespace JStudio_JAudio {
 namespace TAdaptor_sound {
-	struct TVVOSetValue_ {
-		virtual void operator()(float, JStudio::TAdaptor*) const; // _00
-		virtual ~TVVOSetValue_();                                 // _04
+struct TVVOSetValue_ {
+	virtual void operator()(float, JStudio::TAdaptor*) const; // _08
+	virtual ~TVVOSetValue_();                                 // _0C
 
-		// _00 VTBL
-	};
+	// _00 VTBL
+};
 } // namespace TAdaptor_sound
 } // namespace JStudio_JAudio
 

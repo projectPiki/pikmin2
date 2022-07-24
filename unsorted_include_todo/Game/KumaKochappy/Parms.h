@@ -10,11 +10,11 @@
 
 namespace Game {
 namespace KumaKochappy {
-	struct Parms {
-		virtual void read(Stream&); // _00
+struct Parms {
+	virtual void read(Stream&); // _08
 
-		// _00 VTBL
-	};
+	// _00 VTBL
+};
 } // namespace KumaKochappy
 } // namespace Game
 

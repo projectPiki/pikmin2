@@ -15,9 +15,9 @@
 
 namespace Morimura {
 struct TScreenBase {
-	virtual void create(const char*, unsigned long); // _00
-	virtual void update();                           // _04
-	virtual void draw(Graphics&, J2DPerspGraph*);    // _08
+	virtual void create(const char*, unsigned long); // _08
+	virtual void update();                           // _0C
+	virtual void draw(Graphics&, J2DPerspGraph*);    // _10
 
 	// _00 VTBL
 };
@@ -25,12 +25,11 @@ struct TScreenBase {
 
 namespace Morimura {
 struct TChallengeScreen : public TScreenBase {
-	virtual void create(const char*, unsigned long); // _00
-	virtual void update();                           // _04
-	virtual void draw(Graphics&, J2DPerspGraph*);    // _08
-	virtual void createAnimPane(char*);              // _0C
-	virtual void updateBckPane();                    // _10
-	virtual void _14() = 0;                          // _14
+	virtual void create(const char*, unsigned long); // _08
+	virtual void update();                           // _0C
+	virtual void createAnimPane(char*);              // _14
+	virtual void updateBckPane();                    // _18
+	virtual void _1C() = 0;                          // _1C
 
 	// _00 VTBL
 };

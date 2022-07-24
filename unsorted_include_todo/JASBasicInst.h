@@ -12,10 +12,10 @@
 */
 
 struct JASBasicInst {
-	virtual ~JASBasicInst();                              // _00
-	virtual void getParam(int, int, JASInstParam*) const; // _04
-	virtual void getType() const;                         // _08
-	virtual void getKeymapIndex(int) const;               // _0C
+	virtual ~JASBasicInst();                              // _08
+	virtual void getParam(int, int, JASInstParam*) const; // _0C
+	virtual void getType() const;                         // _10
+	virtual void getKeymapIndex(int) const;               // _14
 
 	// _00 VTBL
 };

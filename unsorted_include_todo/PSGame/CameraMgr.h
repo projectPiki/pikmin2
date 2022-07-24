@@ -10,7 +10,7 @@
 
 namespace PSGame {
 struct CameraMgr {
-	virtual ~CameraMgr(); // _00
+	virtual ~CameraMgr(); // _08
 
 	// _00 VTBL
 };

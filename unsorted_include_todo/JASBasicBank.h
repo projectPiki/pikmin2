@@ -11,9 +11,9 @@
 */
 
 struct JASBasicBank {
-	virtual ~JASBasicBank();         // _00
-	virtual void getInst(int) const; // _04
-	virtual void getType() const;    // _08
+	virtual ~JASBasicBank();         // _08
+	virtual void getInst(int) const; // _0C
+	virtual void getType() const;    // _10
 
 	// _00 VTBL
 };

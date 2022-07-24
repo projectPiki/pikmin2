@@ -10,8 +10,8 @@
 */
 
 struct J3DAnmTexPattern {
-	virtual ~J3DAnmTexPattern();  // _00
-	virtual void getKind() const; // _04
+	virtual ~J3DAnmTexPattern();  // _08
+	virtual void getKind() const; // _0C
 
 	// _00 VTBL
 };

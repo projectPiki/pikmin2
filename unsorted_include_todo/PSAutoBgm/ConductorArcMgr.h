@@ -10,7 +10,7 @@
 
 namespace PSAutoBgm {
 struct ConductorArcMgr {
-	virtual ~ConductorArcMgr(); // _00
+	virtual ~ConductorArcMgr(); // _08
 
 	// _00 VTBL
 };

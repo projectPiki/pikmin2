@@ -11,9 +11,9 @@
 */
 
 struct J3DAnmKeyLoader_v15 {
-	virtual void load(const void*);                     // _00
-	virtual void setResource(J3DAnmBase*, const void*); // _04
-	virtual ~J3DAnmKeyLoader_v15();                     // _08
+	virtual void load(const void*);                     // _08
+	virtual void setResource(J3DAnmBase*, const void*); // _0C
+	virtual ~J3DAnmKeyLoader_v15();                     // _10
 
 	// _00 VTBL
 };

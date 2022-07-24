@@ -10,11 +10,11 @@
 
 namespace Game {
 namespace ItemBridge {
-	struct BridgeInitArg {
-		virtual void getName(); // _00
+struct BridgeInitArg {
+	virtual void getName(); // _08
 
-		// _00 VTBL
-	};
+	// _00 VTBL
+};
 } // namespace ItemBridge
 } // namespace Game
 

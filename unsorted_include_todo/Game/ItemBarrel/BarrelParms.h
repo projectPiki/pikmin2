@@ -10,11 +10,11 @@
 
 namespace Game {
 namespace ItemBarrel {
-	struct BarrelParms {
-		virtual void read(Stream&); // _00
+struct BarrelParms {
+	virtual void read(Stream&); // _08
 
-		// _00 VTBL
-	};
+	// _00 VTBL
+};
 } // namespace ItemBarrel
 } // namespace Game
 

@@ -16,22 +16,21 @@
 */
 
 struct CNode {
-    virtual ~CNode();             // _00
-    virtual void getChildCount(); // _04
+    virtual ~CNode();             // _08
+    virtual void getChildCount(); // _0C
 
     // _00 VTBL
 };
 
 namespace Resource {
 struct MgrCommand : public CNode {
-    virtual ~MgrCommand();               // _00
-    virtual void getChildCount();        // _04
-    virtual void _08() = 0;              // _08
-    virtual void _0C() = 0;              // _0C
-    virtual void @24 @__dt();            // _10
-    virtual void memoryCallBackFunc();   // _14
-    virtual void dvdLoadCallBackFunc();  // _18
-    virtual void aramLoadCallBackFunc(); // _1C
+    virtual ~MgrCommand();               // _08
+    virtual void _10() = 0;              // _10
+    virtual void _14() = 0;              // _14
+    virtual void @24 @__dt();            // _18
+    virtual void memoryCallBackFunc();   // _1C
+    virtual void dvdLoadCallBackFunc();  // _20
+    virtual void aramLoadCallBackFunc(); // _24
 
     // _00 VTBL
 };

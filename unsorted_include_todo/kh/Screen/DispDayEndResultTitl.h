@@ -13,27 +13,26 @@
 
 namespace og {
 namespace Screen {
-	struct DispMemberBase {
-		virtual void getSize();           // _00
-		virtual void getOwnerID();        // _04
-		virtual void getMemberID();       // _08
-		virtual void doSetSubMemberAll(); // _0C
+struct DispMemberBase {
+	virtual void getSize();           // _08
+	virtual void getOwnerID();        // _0C
+	virtual void getMemberID();       // _10
+	virtual void doSetSubMemberAll(); // _14
 
-		// _00 VTBL
-	};
+	// _00 VTBL
+};
 } // namespace Screen
 } // namespace og
 
 namespace kh {
 namespace Screen {
-	struct DispDayEndResultTitl : public DispMemberBase {
-		virtual void getSize();           // _00
-		virtual void getOwnerID();        // _04
-		virtual void getMemberID();       // _08
-		virtual void doSetSubMemberAll(); // _0C
+struct DispDayEndResultTitl : public DispMemberBase {
+	virtual void getSize();     // _08
+	virtual void getOwnerID();  // _0C
+	virtual void getMemberID(); // _10
 
-		// _00 VTBL
-	};
+	// _00 VTBL
+};
 } // namespace Screen
 } // namespace kh
 

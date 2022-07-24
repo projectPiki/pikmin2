@@ -10,20 +10,19 @@
 */
 
 struct CNode {
-	virtual ~CNode();             // _00
-	virtual void getChildCount(); // _04
+	virtual ~CNode();             // _08
+	virtual void getChildCount(); // _0C
 
 	// _00 VTBL
 };
 
 namespace Game {
 namespace GameConfig {
-	struct Parms : public CNode {
-		virtual ~Parms();             // _00
-		virtual void getChildCount(); // _04
+struct Parms : public CNode {
+	virtual ~Parms(); // _08
 
-		// _00 VTBL
-	};
+	// _00 VTBL
+};
 } // namespace GameConfig
 } // namespace Game
 

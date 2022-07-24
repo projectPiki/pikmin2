@@ -10,11 +10,11 @@
 
 namespace Game {
 namespace ItemUjamushi {
-	struct InitArg {
-		virtual void getName(); // _00
+struct InitArg {
+	virtual void getName(); // _08
 
-		// _00 VTBL
-	};
+	// _00 VTBL
+};
 } // namespace ItemUjamushi
 } // namespace Game
 

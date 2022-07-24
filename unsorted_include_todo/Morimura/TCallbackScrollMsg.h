@@ -13,19 +13,18 @@
 */
 
 struct CNode {
-	virtual ~CNode();             // _00
-	virtual void getChildCount(); // _04
+	virtual ~CNode();             // _08
+	virtual void getChildCount(); // _0C
 
 	// _00 VTBL
 };
 
 namespace Morimura {
 struct TCallbackScrollMsg : public CNode {
-	virtual ~TCallbackScrollMsg();                 // _00
-	virtual void getChildCount();                  // _04
-	virtual void update();                         // _08
-	virtual void draw(Graphics&, J2DGrafContext&); // _0C
-	virtual void doInit();                         // _10
+	virtual ~TCallbackScrollMsg();                 // _08
+	virtual void update();                         // _10
+	virtual void draw(Graphics&, J2DGrafContext&); // _14
+	virtual void doInit();                         // _18
 
 	// _00 VTBL
 };

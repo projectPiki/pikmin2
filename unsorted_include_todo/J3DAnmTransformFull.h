@@ -11,9 +11,9 @@
 */
 
 struct J3DAnmTransformFull {
-	virtual ~J3DAnmTransformFull();                                     // _00
-	virtual void getKind() const;                                       // _04
-	virtual void getTransform(unsigned short, J3DTransformInfo*) const; // _08
+	virtual ~J3DAnmTransformFull();                                     // _08
+	virtual void getKind() const;                                       // _0C
+	virtual void getTransform(unsigned short, J3DTransformInfo*) const; // _10
 
 	// _00 VTBL
 };

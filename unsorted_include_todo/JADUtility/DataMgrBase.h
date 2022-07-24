@@ -11,8 +11,8 @@
 
 namespace JADUtility {
 struct DataMgrBase {
-	virtual ~DataMgrBase(); // _00
-	virtual void init();    // _04
+	virtual ~DataMgrBase(); // _08
+	virtual void init();    // _0C
 
 	// _00 VTBL
 };

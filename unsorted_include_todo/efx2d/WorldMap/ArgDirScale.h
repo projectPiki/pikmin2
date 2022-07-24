@@ -10,11 +10,11 @@
 
 namespace efx2d {
 namespace WorldMap {
-	struct ArgDirScale {
-		virtual void getName(); // _00
+struct ArgDirScale {
+	virtual void getName(); // _08
 
-		// _00 VTBL
-	};
+	// _00 VTBL
+};
 } // namespace WorldMap
 } // namespace efx2d
 

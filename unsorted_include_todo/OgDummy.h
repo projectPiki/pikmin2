@@ -9,7 +9,7 @@
 */
 
 struct OgDummy {
-	virtual void getPosition(); // _00
+	virtual void getPosition(); // _08
 
 	// _00 VTBL
 };

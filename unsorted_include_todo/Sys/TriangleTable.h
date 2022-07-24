@@ -24,8 +24,8 @@
 */
 
 struct CNode {
-	virtual void _00() = 0;       // _00
-	virtual void getChildCount(); // _04
+	virtual void _08() = 0;       // _08
+	virtual void getChildCount(); // _0C
 
 	// _00 VTBL
 };
@@ -34,22 +34,22 @@ namespace Container < Sys
 {
 	struct Triangle >
 	{
-		virtual void _00() = 0;                     // _00
-		virtual void _04() = 0;                     // _04
-		virtual void getObject(void*);              // _08
-		virtual void getNext(void*);                // _0C
-		virtual void getStart();                    // _10
-		virtual void getEnd();                      // _14
-		virtual void get(void*);                    // _18
-		virtual void getAt(int);                    // _1C
-		virtual void getTo();                       // _20
-		virtual void _24() = 0;                     // _24
-		virtual void _28() = 0;                     // _28
-		virtual void write(Stream&);                // _2C
-		virtual void read(Stream&);                 // _30
-		virtual void alloc(int);                    // _34
-		virtual void addOne(Sys::Triangle&);        // _38
-		virtual void setArray(Sys::Triangle*, int); // _3C
+		virtual void _08() = 0;                     // _08
+		virtual void _0C() = 0;                     // _0C
+		virtual void getObject(void*);              // _10
+		virtual void getNext(void*);                // _14
+		virtual void getStart();                    // _18
+		virtual void getEnd();                      // _1C
+		virtual void get(void*);                    // _20
+		virtual void getAt(int);                    // _24
+		virtual void getTo();                       // _28
+		virtual void _2C() = 0;                     // _2C
+		virtual void _30() = 0;                     // _30
+		virtual void write(Stream&);                // _34
+		virtual void read(Stream&);                 // _38
+		virtual void alloc(int);                    // _3C
+		virtual void addOne(Sys::Triangle&);        // _40
+		virtual void setArray(Sys::Triangle*, int); // _44
 
 		// _00 VTBL
 	};
@@ -57,22 +57,9 @@ namespace Container < Sys
 
 namespace Sys {
 struct TriangleTable : public CNode, public Triangle > {
-	virtual ~TriangleTable();                     // _00
-	virtual void getChildCount();                 // _04
-	virtual void getObject(void*);                // _08
-	virtual void getNext(void*);                  // _0C
-	virtual void getStart();                      // _10
-	virtual void getEnd();                        // _14
-	virtual void get(void*);                      // _18
-	virtual void getAt(int);                      // _1C
-	virtual void getTo();                         // _20
-	virtual void writeObject(Stream&, Triangle&); // _24
-	virtual void readObject(Stream&, Triangle&);  // _28
-	virtual void write(Stream&);                  // _2C
-	virtual void read(Stream&);                   // _30
-	virtual void alloc(int);                      // _34
-	virtual void addOne(Sys::Triangle&);          // _38
-	virtual void setArray(Sys::Triangle*, int);   // _3C
+	virtual ~TriangleTable();                     // _08
+	virtual void writeObject(Stream&, Triangle&); // _2C
+	virtual void readObject(Stream&, Triangle&);  // _30
 
 	// _00 VTBL
 };

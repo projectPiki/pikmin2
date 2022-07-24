@@ -11,19 +11,17 @@
 
 namespace og {
 namespace Screen {
-	struct AnimScreen {
-		virtual void Animstart();    // _00
-		virtual void AnimmoveAnim(); // _04
+struct AnimScreen {
+	virtual void Animstart();    // _08
+	virtual void AnimmoveAnim(); // _0C
 
-		// _00 VTBL
-	};
+	// _00 VTBL
+};
 } // namespace Screen
 } // namespace og
 
 namespace Morimura {
 struct TTestAnimScreen : public AnimScreen {
-	virtual void Animstart();    // _00
-	virtual void AnimmoveAnim(); // _04
 
 	// _00 VTBL
 };

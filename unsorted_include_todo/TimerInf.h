@@ -9,7 +9,7 @@
 */
 
 struct TimerInf {
-	virtual ~TimerInf(); // _00
+	virtual ~TimerInf(); // _08
 
 	// _00 VTBL
 };

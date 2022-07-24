@@ -10,11 +10,11 @@
 
 namespace Game {
 namespace IllustratedBook {
-	struct EnemyTexMgr {
-		virtual ~EnemyTexMgr(); // _00
+struct EnemyTexMgr {
+	virtual ~EnemyTexMgr(); // _08
 
-		// _00 VTBL
-	};
+	// _00 VTBL
+};
 } // namespace IllustratedBook
 } // namespace Game
 

@@ -14,10 +14,10 @@
 
 namespace PSSystem {
 struct SeqTrackRoot {
-	virtual void update();        // _00
-	virtual void init(JASTrack*); // _04
-	virtual void onStopSeq();     // _08
-	virtual void beatUpdate();    // _0C
+	virtual void update();        // _08
+	virtual void init(JASTrack*); // _0C
+	virtual void onStopSeq();     // _10
+	virtual void beatUpdate();    // _14
 
 	// _00 VTBL
 };
@@ -25,11 +25,7 @@ struct SeqTrackRoot {
 
 namespace PSSystem {
 struct SeqTrackRoot_JumpBgm : public SeqTrackRoot {
-	virtual void update();        // _00
-	virtual void init(JASTrack*); // _04
-	virtual void onStopSeq();     // _08
-	virtual void beatUpdate();    // _0C
-	virtual void onBeatTop();     // _10
+	virtual void onBeatTop(); // _18
 
 	// _00 VTBL
 };

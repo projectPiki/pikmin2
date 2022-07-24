@@ -12,26 +12,21 @@
         .4byte 0
         .4byte "@36@__dt__8HeapInfoFv"
         .4byte __dt__8HeapInfoFv
-        .4byte 0
 */
 
 struct Node {
-    virtual void update();         // _00
-    virtual void draw(Graphics&);  // _04
-    virtual void displayInfo(int); // _08
+    virtual void update();         // _08
+    virtual void draw(Graphics&);  // _0C
+    virtual void displayInfo(int); // _10
 
     // _00 VTBL
 };
 
 struct HeapInfo : public Node {
-    virtual void update();         // _00
-    virtual void draw(Graphics&);  // _04
-    virtual void displayInfo(int); // _08
-    virtual void _0C() = 0;        // _0C
-    virtual void _10() = 0;        // _10
-    virtual void @36 @__dt();      // _14
-    virtual ~HeapInfo();           // _18
-    virtual void _1C() = 0;        // _1C
+    virtual void _14() = 0;   // _14
+    virtual void _18() = 0;   // _18
+    virtual void @36 @__dt(); // _1C
+    virtual ~HeapInfo();      // _20
 
     // _00 VTBL
 };

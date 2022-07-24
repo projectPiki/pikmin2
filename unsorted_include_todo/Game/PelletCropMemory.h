@@ -11,8 +11,8 @@
 
 namespace Game {
 struct PelletCropMemory {
-	virtual void read(Stream&);  // _00
-	virtual void write(Stream&); // _04
+	virtual void read(Stream&);  // _08
+	virtual void write(Stream&); // _0C
 
 	// _00 VTBL
 };

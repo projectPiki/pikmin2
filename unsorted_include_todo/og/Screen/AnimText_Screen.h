@@ -14,32 +14,32 @@
 */
 
 struct CNode {
-	virtual void _00() = 0;       // _00
-	virtual void getChildCount(); // _04
+	virtual void _08() = 0;       // _08
+	virtual void getChildCount(); // _0C
 
 	// _00 VTBL
 };
 
 namespace og {
 namespace Screen {
-	struct CallBack_Screen {
-		virtual void _00() = 0;                                 // _00
-		virtual void _04() = 0;                                 // _04
-		virtual void _08() = 0;                                 // _08
-		virtual void CallBack_draw(Graphics&, J2DGrafContext&); // _0C
+struct CallBack_Screen {
+	virtual void _08() = 0;                                 // _08
+	virtual void _0C() = 0;                                 // _0C
+	virtual void _10() = 0;                                 // _10
+	virtual void CallBack_draw(Graphics&, J2DGrafContext&); // _14
 
-		// _00 VTBL
-	};
+	// _00 VTBL
+};
 } // namespace Screen
 } // namespace og
 
 namespace P2DScreen {
 struct Node {
-	virtual void _00() = 0; // _00
-	virtual void _04() = 0; // _04
 	virtual void _08() = 0; // _08
 	virtual void _0C() = 0; // _0C
-	virtual void doInit();  // _10
+	virtual void _10() = 0; // _10
+	virtual void _14() = 0; // _14
+	virtual void doInit();  // _18
 
 	// _00 VTBL
 };
@@ -47,16 +47,13 @@ struct Node {
 
 namespace og {
 namespace Screen {
-	struct AnimText_Screen : public CNode, public CallBack_Screen, public Node {
-		virtual AnimText_ ~AnimText_Screen();                   // _00
-		virtual void getChildCount();                           // _04
-		virtual void AnimText_update();                         // _08
-		virtual void CallBack_draw(Graphics&, J2DGrafContext&); // _0C
-		virtual void doInit();                                  // _10
-		virtual void _14() = 0;                                 // _14
+struct AnimText_Screen : public CNode, public CallBack_Screen, public Node {
+	virtual AnimText_ ~AnimText_Screen(); // _08
+	virtual void AnimText_update();       // _10
+	virtual void _1C() = 0;               // _1C
 
-		// _00 VTBL
-	};
+	// _00 VTBL
+};
 } // namespace Screen
 } // namespace og
 

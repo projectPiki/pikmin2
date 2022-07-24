@@ -12,7 +12,7 @@
 
 namespace efx {
 struct TSimpleMtx2 {
-	virtual void create(Arg*); // _00
+	virtual void create(Arg*); // _08
 
 	// _00 VTBL
 };
@@ -20,9 +20,9 @@ struct TSimpleMtx2 {
 
 namespace efx {
 struct TSimple2 {
-	virtual void _00() = 0;   // _00
-	virtual void forceKill(); // _04
-	virtual void fade();      // _08
+	virtual void _08() = 0;   // _08
+	virtual void forceKill(); // _0C
+	virtual void fade();      // _10
 
 	// _00 VTBL
 };
@@ -30,9 +30,6 @@ struct TSimple2 {
 
 namespace efx {
 struct TTamagoAp : public TSimpleMtx2, public TSimple2 {
-	virtual void create(Arg*); // _00
-	virtual void forceKill();  // _04
-	virtual void fade();       // _08
 
 	// _00 VTBL
 };

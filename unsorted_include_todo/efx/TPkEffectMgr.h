@@ -10,7 +10,7 @@
 
 namespace efx {
 struct TPkEffectMgr {
-	virtual ~TPkEffectMgr(); // _00
+	virtual ~TPkEffectMgr(); // _08
 
 	// _00 VTBL
 };

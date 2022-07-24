@@ -12,10 +12,10 @@
 */
 
 struct DynamicsParms {
-    virtual void _00() = 0;   // _00
-    virtual void _04() = 0;   // _04
-    virtual void @12 @__dt(); // _08
-    virtual ~DynamicsParms(); // _0C
+    virtual void _08() = 0;   // _08
+    virtual void _0C() = 0;   // _0C
+    virtual void @12 @__dt(); // _10
+    virtual ~DynamicsParms(); // _14
 
     // _00 VTBL
 };

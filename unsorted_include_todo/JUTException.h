@@ -7,13 +7,11 @@
     .4byte 0
     .4byte __dt__12JUTExceptionFv
     .4byte run__12JUTExceptionFv
-    .4byte 0
 */
 
 struct JUTException {
-	virtual ~JUTException(); // _00
-	virtual void run();      // _04
-	virtual void _08() = 0;  // _08
+	virtual ~JUTException(); // _08
+	virtual void run();      // _0C
 
 	// _00 VTBL
 };

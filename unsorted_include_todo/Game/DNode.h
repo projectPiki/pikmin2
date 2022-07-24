@@ -11,8 +11,8 @@
 
 namespace Game {
 struct DNode {
-	virtual ~DNode();             // _00
-	virtual void getChildCount(); // _04
+	virtual ~DNode();             // _08
+	virtual void getChildCount(); // _0C
 
 	// _00 VTBL
 };

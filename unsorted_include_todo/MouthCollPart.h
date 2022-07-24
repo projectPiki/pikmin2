@@ -19,33 +19,24 @@
 */
 
 struct CollPart {
-	virtual ~CollPart();                   // _00
-	virtual void getChildCount();          // _04
-	virtual void isMouth();                // _08
-	virtual void draw(Graphics&);          // _0C
-	virtual void constructor();            // _10
-	virtual void doAnimation();            // _14
-	virtual void doEntry();                // _18
-	virtual void doSetView(unsigned long); // _1C
-	virtual void doViewCalc();             // _20
-	virtual void doSimulation(float);      // _24
-	virtual void doDirectDraw(Graphics&);  // _28
+	virtual ~CollPart();                   // _08
+	virtual void getChildCount();          // _0C
+	virtual void isMouth();                // _10
+	virtual void draw(Graphics&);          // _14
+	virtual void constructor();            // _18
+	virtual void doAnimation();            // _1C
+	virtual void doEntry();                // _20
+	virtual void doSetView(unsigned long); // _24
+	virtual void doViewCalc();             // _28
+	virtual void doSimulation(float);      // _2C
+	virtual void doDirectDraw(Graphics&);  // _30
 
 	// _00 VTBL
 };
 
 struct MouthCollPart : public CollPart {
-	virtual ~MouthCollPart();              // _00
-	virtual void getChildCount();          // _04
-	virtual void isMouth();                // _08
-	virtual void draw(Graphics&);          // _0C
-	virtual void constructor();            // _10
-	virtual void doAnimation();            // _14
-	virtual void doEntry();                // _18
-	virtual void doSetView(unsigned long); // _1C
-	virtual void doViewCalc();             // _20
-	virtual void doSimulation(float);      // _24
-	virtual void doDirectDraw(Graphics&);  // _28
+	virtual ~MouthCollPart(); // _08
+	virtual void isMouth();   // _10
 
 	// _00 VTBL
 };

@@ -10,20 +10,19 @@
 */
 
 struct CNode {
-	virtual ~CNode();             // _00
-	virtual void getChildCount(); // _04
+	virtual ~CNode();             // _08
+	virtual void getChildCount(); // _0C
 
 	// _00 VTBL
 };
 
 namespace Game {
 namespace ElecHiba {
-	struct TeamList : public CNode {
-		virtual ~TeamList();          // _00
-		virtual void getChildCount(); // _04
+struct TeamList : public CNode {
+	virtual ~TeamList(); // _08
 
-		// _00 VTBL
-	};
+	// _00 VTBL
+};
 } // namespace ElecHiba
 } // namespace Game
 

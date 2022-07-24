@@ -11,10 +11,9 @@
 */
 
 struct J3DAnmVtxColorFull {
-	virtual ~J3DAnmVtxColorFull(); // _00
-	virtual void getKind() const;  // _04
-	virtual void getColor(unsigned char, unsigned short,
-	                      _GXColor*) const; // _08
+	virtual ~J3DAnmVtxColorFull();                                         // _08
+	virtual void getKind() const;                                          // _0C
+	virtual void getColor(unsigned char, unsigned short, _GXColor*) const; // _10
 
 	// _00 VTBL
 };

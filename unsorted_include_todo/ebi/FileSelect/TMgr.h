@@ -10,11 +10,11 @@
 
 namespace ebi {
 namespace FileSelect {
-	struct TMgr {
-		virtual ~TMgr(); // _00
+struct TMgr {
+	virtual ~TMgr(); // _08
 
-		// _00 VTBL
-	};
+	// _00 VTBL
+};
 } // namespace FileSelect
 } // namespace ebi
 

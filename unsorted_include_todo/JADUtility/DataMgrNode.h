@@ -22,8 +22,8 @@
 
 namespace JADUtility {
 struct DataLoadMgrNode {
-    virtual ~DataLoadMgrNode();     // _00
-    virtual void isTempBuffaMode(); // _04
+    virtual ~DataLoadMgrNode();     // _08
+    virtual void isTempBuffaMode(); // _0C
 
     // _00 VTBL
 };
@@ -31,19 +31,18 @@ struct DataLoadMgrNode {
 
 namespace JADUtility {
 struct DataMgrNode : public DataLoadMgrNode {
-    virtual ~DataMgrNode();         // _00
-    virtual void isTempBuffaMode(); // _04
-    virtual void init();            // _08
-    virtual void _0C() = 0;         // _0C
-    virtual void _10() = 0;         // _10
-    virtual void _14() = 0;         // _14
-    virtual void _18() = 0;         // _18
-    virtual void getPath();         // _1C
-    virtual void setPath(char*);    // _20
-    virtual void _24() = 0;         // _24
-    virtual void _28() = 0;         // _28
-    virtual void @592 @28 @__dt();  // _2C
-    virtual void @592 @28 @init();  // _30
+    virtual ~DataMgrNode();        // _08
+    virtual void init();           // _10
+    virtual void _14() = 0;        // _14
+    virtual void _18() = 0;        // _18
+    virtual void _1C() = 0;        // _1C
+    virtual void _20() = 0;        // _20
+    virtual void getPath();        // _24
+    virtual void setPath(char*);   // _28
+    virtual void _2C() = 0;        // _2C
+    virtual void _30() = 0;        // _30
+    virtual void @592 @28 @__dt(); // _34
+    virtual void @592 @28 @init(); // _38
 
     // _00 VTBL
 };

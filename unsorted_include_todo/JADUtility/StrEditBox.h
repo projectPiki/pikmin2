@@ -12,9 +12,9 @@
 
 namespace JADUtility {
 struct StrPrm {
-	virtual ~StrPrm();                         // _00
-	virtual void save(JSUMemoryOutputStream&); // _04
-	virtual void load(JSUMemoryInputStream&);  // _08
+	virtual ~StrPrm();                         // _08
+	virtual void save(JSUMemoryOutputStream&); // _0C
+	virtual void load(JSUMemoryInputStream&);  // _10
 
 	// _00 VTBL
 };
@@ -22,9 +22,7 @@ struct StrPrm {
 
 namespace JADUtility {
 struct StrEditBox : public StrPrm {
-	virtual ~StrEditBox();                     // _00
-	virtual void save(JSUMemoryOutputStream&); // _04
-	virtual void load(JSUMemoryInputStream&);  // _08
+	virtual ~StrEditBox(); // _08
 
 	// _00 VTBL
 };

@@ -10,7 +10,7 @@
 
 namespace PSSystem {
 struct WaveScene {
-	virtual ~WaveScene(); // _00
+	virtual ~WaveScene(); // _08
 
 	// _00 VTBL
 };

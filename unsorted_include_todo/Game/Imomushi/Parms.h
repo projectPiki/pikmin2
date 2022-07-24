@@ -10,11 +10,11 @@
 
 namespace Game {
 namespace Imomushi {
-	struct Parms {
-		virtual void read(Stream&); // _00
+struct Parms {
+	virtual void read(Stream&); // _08
 
-		// _00 VTBL
-	};
+	// _00 VTBL
+};
 } // namespace Imomushi
 } // namespace Game
 

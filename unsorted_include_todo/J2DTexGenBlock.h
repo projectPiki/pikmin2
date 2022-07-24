@@ -6,12 +6,10 @@
     .4byte 0
     .4byte 0
     .4byte __dt__14J2DTexGenBlockFv
-    .4byte 0
 */
 
 struct J2DTexGenBlock {
-	virtual ~J2DTexGenBlock(); // _00
-	virtual void _04() = 0;    // _04
+	virtual ~J2DTexGenBlock(); // _08
 
 	// _00 VTBL
 };

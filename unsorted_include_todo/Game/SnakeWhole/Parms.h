@@ -11,12 +11,12 @@
 
 namespace Game {
 namespace SnakeWhole {
-	struct Parms {
-		virtual void read(Stream&); // _00
-		virtual void _04() = 0;     // _04
+struct Parms {
+	virtual void read(Stream&); // _08
+	virtual void _0C() = 0;     // _0C
 
-		// _00 VTBL
-	};
+	// _00 VTBL
+};
 } // namespace SnakeWhole
 } // namespace Game
 

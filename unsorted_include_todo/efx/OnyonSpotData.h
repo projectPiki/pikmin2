@@ -13,19 +13,18 @@
 */
 
 struct CNode {
-	virtual ~CNode();             // _00
-	virtual void getChildCount(); // _04
+	virtual ~CNode();             // _08
+	virtual void getChildCount(); // _0C
 
 	// _00 VTBL
 };
 
 namespace efx {
 struct OnyonSpotData : public CNode {
-	virtual ~OnyonSpotData();                     // _00
-	virtual void getChildCount();                 // _04
-	virtual void loadResources();                 // _08
-	virtual void getID();                         // _0C
-	virtual void onCreate(ModelEffectCreateArg*); // _10
+	virtual ~OnyonSpotData();                     // _08
+	virtual void loadResources();                 // _10
+	virtual void getID();                         // _14
+	virtual void onCreate(ModelEffectCreateArg*); // _18
 
 	// _00 VTBL
 };

@@ -11,8 +11,8 @@
 
 namespace Screen {
 struct Game2DMgr {
-	virtual ~Game2DMgr();   // _00
-	virtual void _04() = 0; // _04
+	virtual ~Game2DMgr();   // _08
+	virtual void _0C() = 0; // _0C
 
 	// _00 VTBL
 };

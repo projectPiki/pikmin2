@@ -10,8 +10,8 @@
 */
 
 struct JASTaskThread {
-	virtual ~JASTaskThread(); // _00
-	virtual void run();       // _04
+	virtual ~JASTaskThread(); // _08
+	virtual void run();       // _0C
 
 	// _00 VTBL
 };

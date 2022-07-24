@@ -10,7 +10,7 @@
 
 namespace PSM {
 struct WorldMapRocket {
-	virtual ~WorldMapRocket(); // _00
+	virtual ~WorldMapRocket(); // _08
 
 	// _00 VTBL
 };
