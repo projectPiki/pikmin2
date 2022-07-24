@@ -109,9 +109,9 @@ struct ProperAnimator : public EnemyAnimatorBase {
 	SysShape::Animator m_animator; // _10
 };
 
-struct Parms : public EnemyParmsBase {
-	virtual void read(Stream&); // _08
-};
+// struct Parms : public EnemyParmsBase {
+// 	virtual void read(Stream&); // _08
+// };
 
 struct Obj : public EnemyBase {
 	Obj();
