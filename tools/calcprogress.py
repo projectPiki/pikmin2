@@ -25,6 +25,7 @@ import struct
 import re
 import math
 import csv
+from datetime import datetime
 
 ###############################################
 #                                             #
@@ -74,7 +75,8 @@ DATA_FRAC = 201          # total data "item" amount
 CODE_ITEM = "Pokos"      # code flavor item
 DATA_ITEM = "treasures"  # data flavor item
 
-CSV_FILE_NAME = './tools/progress.csv'
+CSV_FILE_NAME = 'progress.csv'
+CSV_FILE_PATH = f'./tools/{CSV_FILE_NAME}'
 
 ###############################################
 #                                             #
@@ -201,26 +203,45 @@ if __name__ == "__main__":
     print(sentence)
 
     # Create/append to CSV
-    if not os.path.exists(CSV_FILE_NAME):
-        with open(CSV_FILE_NAME, 'w') as file:
-            writer = csv.writer(file)
-            writer.writerow([
-                f"code_count_in_{CODE_ITEM.lower()}",
-                "code_completion_in_bytes", 
-                "code_completion_in_percentage",
-                f"data_count_in_{DATA_ITEM.lower()}",
-                "data_completion_in_bytes",
-                "data_completion_in_percentage",
-                "sentence",
-            ])
-    with open(CSV_FILE_NAME, 'a') as file:
-        writer = csv.writer(file)
-        writer.writerow([
-            codeCount,
-            decomp_code_size,
-            codeCompletionPcnt,
-            dataCount,
-            decomp_data_size,
-            dataCompletionPcnt,
-            sentence,
-        ])
+    col_one = f"code_count_in_{CODE_ITEM.lower()}"
+    col_two = "code_completion_in_bytes"
+    col_three = "code_completion_in_percentage"
+    col_four = f"data_count_in_{DATA_ITEM.lower()}"
+    col_five = "data_completion_in_bytes"
+    col_six = "data_completion_in_percentage"
+    col_seven = "sentence"
+    col_eight = "created_at"
+    headers = [
+        col_one,
+        col_two,
+        col_three,
+        col_four,
+        col_five,
+        col_six,
+        col_seven,
+        col_eight,
+    ]
+
+    does_file_exist = False
+
+    try:
+        with open(CSV_FILE_PATH, 'r') as file:
+            reader = csv.reader(file)
+            does_file_exist = True
+    except:
+        print('CSV file does not exist!')
+
+    with open(CSV_FILE_PATH, 'a', newline='') as file:
+        writer = csv.DictWriter(file, fieldnames=headers)
+        if not does_file_exist:
+            writer.writeheader()
+        writer.writerow({
+            col_one: codeCount,
+            col_two: decomp_code_size,
+            col_three: codeCompletionPcnt,
+            col_four: dataCount,
+            col_five: decomp_data_size,
+            col_six: dataCompletionPcnt,
+            col_seven: sentence,
+            col_eight: datetime.now(),
+        })
