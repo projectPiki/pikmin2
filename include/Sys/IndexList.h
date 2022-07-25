@@ -10,10 +10,9 @@ struct IndexList : public ArrayContainer<int> {
 	 * @reifiedAddress{801397AC}
 	 * @reifiedFile{plugProjectKandoU/collinfo.cpp}
 	 */
-	virtual ~IndexList() { } // _00
-
-	void readObject(Stream&, int&);
-	void writeObject(Stream&, int&);
+	virtual ~IndexList() { }                 // _00
+	virtual void writeObject(Stream&, int&); // _2C (weak)
+	virtual void readObject(Stream&, int&);  // _30 (weak)
 };
 } // namespace Sys
 

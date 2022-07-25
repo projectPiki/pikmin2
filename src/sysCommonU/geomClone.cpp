@@ -92,10 +92,10 @@ void TriangleTable::cloneFrom(Matrixf& p1, TriangleTable* triTable, VertexTable*
  * Address:	80421E00
  * Size:	0000C4
  */
-TriDivider* GridDivider::do_clone(Matrixf& p1, VertexTable* vtxTable, TriangleTable* triTable)
+GridDivider* GridDivider::do_clone(Matrixf& p1, VertexTable* vtxTable, TriangleTable* triTable)
 {
 	GridDivider* copy = new GridDivider();
-	copy->create(vtxTable->m_boundBox, _20, _24, vtxTable, triTable);
+	copy->create(vtxTable->m_boundBox, m_maxX, m_maxZ, vtxTable, triTable);
 	return copy;
 }
 } // namespace Sys

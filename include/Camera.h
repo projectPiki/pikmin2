@@ -22,9 +22,9 @@ struct Cylinder;
 struct CullPlane : public ArrayContainer<Plane> {
 	CullPlane(int);
 
-	virtual ~CullPlane() { } 						// _08 (weak)
-	virtual void writeObject(Stream&, Plane&) { };	// _2C (weak)
-	virtual void readObject(Stream&, Plane&) { };	// _30 (weak)
+	virtual ~CullPlane() { }                      // _08 (weak)
+	virtual void writeObject(Stream&, Plane&) {}; // _2C (weak)
+	virtual void readObject(Stream&, Plane&) {};  // _30 (weak)
 
 	bool isPointVisible(Vector3f&, float);
 	bool isVisible(Sys::Sphere&);
@@ -35,10 +35,10 @@ struct CullPlane : public ArrayContainer<Plane> {
 struct CullFrustum : public CullPlane {
 	CullFrustum(int);
 
-	virtual ~CullFrustum();               		// _08
-	virtual Matrixf* getViewMatrix(bool); 		// _48 (weak)
-	virtual Vector3f getPosition();       		// _4C
-	virtual void updatePlanes();          		// _50
+	virtual ~CullFrustum();               // _08
+	virtual Matrixf* getViewMatrix(bool); // _48 (weak)
+	virtual Vector3f getPosition();       // _4C
+	virtual void updatePlanes();          // _50
 
 	Vector3f getSideVector();
 	Vector3f getUpVector();
@@ -54,26 +54,26 @@ struct CullFrustum : public CullPlane {
 struct Camera : public CullFrustum {
 	Camera();
 
-	virtual ~Camera() { }                  					// _08 (weak)
-	virtual Matrixf* getViewMatrix(bool);					// _48
-	virtual Vector3f getPosition();							// _4C
-	virtual void updatePlanes();							// _50
-	virtual void updateScreenConstants();  					// _54
-	virtual Vector3f getLookAtPosition_(); 					// _58 (weak)
-	virtual float getTargetDistance();     					// _5C (weak)
-	virtual Vector3f* getPositionPtr();    					// _60 (weak)
-	virtual Vector3f* on_getPositionPtr(); 					// _64 (weak)
-	virtual Vector3f* getSoundPositionPtr()					// _68 (weak)
+	virtual ~Camera() { }                   // _08 (weak)
+	virtual Matrixf* getViewMatrix(bool);   // _48
+	virtual Vector3f getPosition();         // _4C
+	virtual void updatePlanes();            // _50
+	virtual void updateScreenConstants();   // _54
+	virtual Vector3f getLookAtPosition_();  // _58 (weak)
+	virtual float getTargetDistance();      // _5C (weak)
+	virtual Vector3f* getPositionPtr();     // _60 (weak)
+	virtual Vector3f* on_getPositionPtr();  // _64 (weak)
+	virtual Vector3f* getSoundPositionPtr() // _68 (weak)
 	{
 		return &m_soundPosition;
 	}
-	virtual Matrixf* getSoundMatrixPtr()					// _6C (weak)
-	{ 
+	virtual Matrixf* getSoundMatrixPtr() // _6C (weak)
+	{
 		return &m_soundMatrix;
 	}
-	virtual bool isSpecialCamera(); 						// _70 (weak)
-	virtual void updateMatrix();    						// _74 (weak)
-	virtual void doUpdate();        						// _78 (weak)
+	virtual bool isSpecialCamera(); // _70 (weak)
+	virtual void updateMatrix();    // _74 (weak)
+	virtual void doUpdate();        // _78 (weak)
 
 	void calcProperDistance(float, float);
 	float calcScreenSize(Sys::Sphere&);
@@ -106,11 +106,11 @@ struct Camera : public CullFrustum {
 
 struct LookAtCamera : public Camera {
 	LookAtCamera();
-	virtual ~LookAtCamera() { }            	// _08 (weak)
-	virtual Vector3f getLookAtPosition_(); 	// _58 (weak)
-	virtual Vector3f* on_getPositionPtr(); 	// _64 (weak)
-	virtual void updateMatrix();           	// _74
-	virtual void startVibration(int);      	// _7C (weak)
+	virtual ~LookAtCamera() { }            // _08 (weak)
+	virtual Vector3f getLookAtPosition_(); // _58 (weak)
+	virtual Vector3f* on_getPositionPtr(); // _64 (weak)
+	virtual void updateMatrix();           // _74
+	virtual void startVibration(int);      // _7C (weak)
 
 	// Camera _00 - _144
 	Matrixf _144;              // _144
@@ -122,8 +122,8 @@ struct LookAtCamera : public Camera {
 struct BlendCamera : public Camera {
 	BlendCamera(int, struct Camera**);
 
-	virtual ~BlendCamera();  				// _08 (weak)
-	virtual void doUpdate(); 				// _78
+	virtual ~BlendCamera();  // _08 (weak)
+	virtual void doUpdate(); // _78
 
 	void setBlendFactor(float);
 	void setCameras(Camera**);

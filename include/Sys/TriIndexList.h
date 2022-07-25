@@ -19,10 +19,8 @@ struct TriIndexList : public IndexList {
 	 * @reifiedAddress{80133E64}
 	 * @reifiedFile{plugProjectKandoU/collinfo.cpp}
 	 */
-	virtual ~TriIndexList() { } // _00
+	virtual ~TriIndexList() { } // _08 (weak)
 
-	void readObject(Stream&, int&);
-	void writeObject(Stream&, int&);
 	void constructClone(TriangleTable&);
 	void getMinMax(VertexTable&, TriangleTable&, Vector3f&, Vector3f&, float&, float&);
 	void makeCovarianceMatrix(VertexTable&, TriangleTable&, Matrix3f&, Vector3f&);

@@ -18,17 +18,21 @@ struct RayIntersectInfo;
 struct OBBTree : TriDivider {
 	OBBTree();
 
-	virtual ~OBBTree();                               // _00
-	virtual float getMinY(Vector3f&);                 // _08
-	virtual TriIndexList* findTriLists(Sys::Sphere&); // _0C
-	virtual void read(Stream&);                       // _10
-	virtual void getCurrTri(Game::CurrTriInfo&);      // _14
-	virtual void getBoundBox(BoundBox&);              // _1C
-	virtual TriDivider* clone(Matrixf&);              // _20
+	virtual ~OBBTree();                               // _08 (weak)
+	virtual float getMinY(Vector3f&);                 // _10
+	virtual TriIndexList* findTriLists(Sys::Sphere&); // _14 (weak)
+	virtual void read(Stream&);                       // _18
+	virtual void getCurrTri(Game::CurrTriInfo&);      // _1C
+	virtual void getBoundBox(BoundBox&);              // _24 (weak)
+	virtual OBBTree* clone(Matrixf&);                 // _28
 
+	void construct(Sys::VertexTable*, Sys::TriangleTable*, int, int);
+	void readWithoutVerts(Stream&, Sys::VertexTable&);
+	void traceMove(Matrixf&, Matrixf&, Game::MoveInfo&, float);
+	void traceMove_global(Game::MoveInfo&, float);
+	void findRayIntersection(Sys::RayIntersectInfo&, Matrixf&, Matrixf&);
 	void traceMove_new(Matrixf&, Matrixf&, Game::MoveInfo&, float);
 	void traceMove_new_global(Game::MoveInfo&, float);
-	void readWithoutVerts(Stream&, Sys::VertexTable&);
 
 	VertexTable* m_vertexTable;     // _18
 	TriangleTable* m_triangleTable; // _1C

@@ -15,9 +15,9 @@ struct VertexTable;
 struct TriangleTable : public ArrayContainer<Sys::Triangle> {
 	TriangleTable();
 
-	virtual ~TriangleTable();                     // _00
-	virtual void writeObject(Stream&, Triangle&); // _24
-	virtual void readObject(Stream&, Triangle&);  // _28
+	virtual ~TriangleTable();                     // _08 (weak)
+	virtual void writeObject(Stream&, Triangle&); // _2C (weak)
+	virtual void readObject(Stream&, Triangle&);  // _30 (weak)
 
 	void createTriangleSphere(VertexTable&);
 	void cloneFrom(Matrixf&, TriangleTable*, VertexTable*);
@@ -47,14 +47,14 @@ struct VertexTable : public ArrayContainer<Vector3f> {
 	{
 	}
 
-	virtual ~VertexTable();                       // _00
-	virtual void writeObject(Stream&, Vector3f&); // _24
-	virtual void readObject(Stream&, Vector3f&);  // _28
-	virtual void write(Stream&);                  // _2C
-	virtual void addOne(Vector3f&);               // _38
+	virtual ~VertexTable();                       // _08 (weak)
+	virtual void writeObject(Stream&, Vector3f&); // _2C
+	virtual void readObject(Stream&, Vector3f&);  // _30 (weak)
+	virtual void write(Stream&);                  // _34
+	virtual void addOne(Vector3f&);               // _40 (weak)
 
-	void cloneFrom(Matrixf&, VertexTable*);
 	void transform(Matrixf&);
+	void cloneFrom(Matrixf&, VertexTable*);
 
 	inline void includeVertices()
 	{
