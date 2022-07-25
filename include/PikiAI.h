@@ -26,8 +26,34 @@ struct WayPoint;
 struct Graphics;
 
 namespace PikiAI {
+struct ActAttack;
+struct ActBattle;
+struct ActBore;
+struct ActBreakGate;
+struct ActBreakRock;
+struct ActBridge;
+struct ActClimb;
+struct ActCrop;
+struct ActEnter;
+struct ActExit;
+struct ActFlockAttack;
+struct ActFollowVectorField;
+struct ActFormation;
+struct ActFree;
+struct ActGather;
+struct ActGotoPos;
+struct ActGotoSlot;
+struct ActOneshot;
+struct ActPathMove;
+struct ActRescue;
+struct ActRest;
+struct ActStickAttack;
+struct ActTeki;
+struct ActTransport;
+struct ActWeed;
+
 struct ActionArg {
-	virtual char* getName();
+	virtual char* getName() = 0; // _08
 };
 
 struct Action {
@@ -52,100 +78,122 @@ struct Action {
 	char* m_info;         // _08
 };
 
-struct ApproachPosActionArg {
-	void getName();
+struct ApproachPosActionArg : public ActionArg {
+	virtual char* getName(); // _08 (weak)
 };
 
-struct ActApproachPos {
+struct ActApproachPos : public Action {
+	virtual void init(ActionArg*); // _08
+	virtual s32 exec();            // _0C
+	virtual void cleanup();        // _10
+
 	ActApproachPos(Game::Piki*);
-
-	void cleanup();
-	void exec();
-	void init(PikiAI::ActionArg*);
 };
 
-struct ActAttackArg {
-	void getName();
+struct ActAttackArg : public ActionArg {
+	virtual char* getName(); // _08 (weak)
 };
 
-struct ActAttack {
+struct ActAttack : public Action, public virtual SysShape::MotionListener {
+	virtual void init(ActionArg*);                                 // _08
+	virtual s32 exec();                                            // _0C
+	virtual void cleanup();                                        // _10
+	virtual void emotion_success();                                // _14
+	virtual void applicable();                                     // _1C
+	virtual u32 getNextAIType();                                   // _20 (weak)
+	virtual void bounceCallback(Game::Piki*, Sys::Triangle*);      // _24
+	virtual void collisionCallback(Game::Piki*, Game::CollEvent&); // _28
+	virtual void getInfo(char*);                                   // _38
+
+	virtual void onKeyEvent(const SysShape::KeyEvent&); // _3C (weak)
+
 	ActAttack(Game::Piki*);
-
-	void applicable();
-	void bounceCallback(Game::Piki*, Sys::Triangle*);
-	void calcAttackPos();
-	void cleanup();
-	void collisionCallback(Game::Piki*, Game::CollEvent&);
-	void emotion_success();
-	void exec();
-	void getInfo(char*);
-	void getNextAIType();
-	void init(PikiAI::ActionArg*);
+	void initStickAttack();
 	void initAdjust();
 	void initJumpAdjust();
-	void initStickAttack();
-	void onKeyEvent(const SysShape::KeyEvent&);
+	void calcAttackPos();
+
+	// UNSURE!
+	// Game::Piki* m_vsBattlePiki;    // _14
+	// u16 m_state;                   // _18
+	// ActStickAttack* m_stickAttack; // _1C
+	// ActApproachPos* m_approachPos; // _20
+	// Vector3f m_targetPos;          // _24
+	// f32 _30;                       // _30
 };
 
-struct ActBattleArg {
-	void getName();
+struct ActBattleArg : public ActionArg {
+	virtual char* getName(); // _08 (weak)
+
+	Game::Piki* m_aggressor; // _04
+	bool m_startAttack;      // _08, guessed name
 };
 
-struct ActBattle {
+// Pikmin hitting eachother, like in VS mode
+struct ActBattle : public Action, public virtual SysShape::MotionListener {
 	ActBattle(Game::Piki*);
 
-	void cleanup();
-	void collisionCallback(Game::Piki*, Game::CollEvent&);
-	void emotion_success();
-	void exec();
+	virtual void init(ActionArg*);                                 // _08
+	virtual s32 exec();                                            // _0C
+	virtual void cleanup();                                        // _10
+	virtual void emotion_success();                                // _14
+	virtual void collisionCallback(Game::Piki*, Game::CollEvent&); // _28
+	virtual void onKeyEvent(const SysShape::KeyEvent&);            // _3C (weak)
+
+	void initApproach();
 	void execApproach();
+	void initBattle();
 	void execBattle();
 	void execDamage();
-	void init(PikiAI::ActionArg*);
-	void initApproach();
-	void initBattle();
-	void onKeyEvent(const SysShape::KeyEvent&);
 
-	Game::Piki* m_piki;
-	char* m_name;
-	SysShape::MotionListener* m_listener;
-	Game::Piki* m_vsBattlePiki;
-	s8 _14;
-	ActApproachPos* m_approachPos;
-	s8 _1C;
-	s8 _1D;
+	Game::Piki* m_otherPiki;       // _10, vs battle piki attack
+	s8 m_state;                    // _14
+	ActApproachPos* m_approachPos; // _18
+	s8 _1C;                        // _1C
+	s8 _1D;                        // _1D
 };
 
-struct ActBore : public Action {
-	ActBore(Game::Piki*);
+struct ActBoreBase : public Action, public virtual SysShape::MotionListener { };
 
+struct ActBore : public Action {
+	virtual void init(ActionArg*); // _08
+	virtual s32 exec();            // _0C
+	virtual void cleanup();        // _10
+
+	ActBore(Game::Piki*);
+	void startCurrAction();
 	void finish();
 
-	virtual void cleanup();
-	virtual s32 exec();
-	virtual void init(PikiAI::ActionArg*);
-	virtual void startCurrAction();
-
-	// _08
-	u8 _0C[0x18]; // _0C
+	u8 _0C;                   // _0C
+	u32 _10;                  // _10
+	u32 _14;                  // _14
+	u8 _18;                   // _18
+	ActRest* m_actRest;       // _1C
+	ActOneshot* m_actOneshot; // _20
 };
 
 struct ActBreakGateArg {
 	void getName();
 };
 
-struct ActBreakGate {
-	ActBreakGate(Game::Piki*);
+struct ActBreakGate : public Action, public virtual SysShape::MotionListener {
+	virtual void init(ActionArg*);                                 // _08
+	virtual s32 exec();                                            // _0C
+	virtual void cleanup();                                        // _10
+	virtual void emotion_success();                                // _14
+	virtual void bounceCallback(Game::Piki*, Sys::Triangle*);      // _24
+	virtual void collisionCallback(Game::Piki*, Game::CollEvent&); // _28
+	virtual void platCallback(Game::Piki*, Game::PlatEvent&);      // _2C
+	virtual void onKeyEvent(const SysShape::KeyEvent&);            // _3C (weak)
 
-	void bounceCallback(Game::Piki*, Sys::Triangle*);
-	void cleanup();
-	void collisionCallback(Game::Piki*, Game::CollEvent&);
-	void emotion_success();
-	void exec();
-	void init(PikiAI::ActionArg*);
+	ActBreakGate(Game::Piki*);
 	void initFollow();
-	void onKeyEvent(const SysShape::KeyEvent&);
-	void platCallback(Game::Piki*, Game::PlatEvent&);
+
+	u16 _10;                             // _10
+	u32 _14;                             // _14
+	ActStickAttack* m_stickAttack;       // _18
+	ActGotoPos* m_gotoPos;               // _1C
+	ActFollowVectorField* m_followField; // _20
 };
 
 struct ActBreakRockArg {
@@ -165,7 +213,7 @@ struct ActBreakRock {
 	void platCallback(Game::Piki*, Game::PlatEvent&);
 };
 
-struct ActBridgeArg : ActionArg {
+struct ActBridgeArg : public ActionArg {
 	virtual char* getName();
 
 	u32* _04; // _04
@@ -253,8 +301,8 @@ struct ActExit {
 	void init(PikiAI::ActionArg*);
 };
 
-struct FlockAttackActionArg {
-	void getName();
+struct FlockAttackActionArg : public ActionArg {
+	virtual char* getName(); // _08 (weak)
 };
 
 struct ActFlockAttack {
@@ -266,8 +314,8 @@ struct ActFlockAttack {
 	void onKeyEvent(const SysShape::KeyEvent&);
 };
 
-struct FollowVectorFieldActionArg {
-	void getName();
+struct FollowVectorFieldActionArg : public ActionArg {
+	virtual char* getName(); // _08 (weak)
 };
 
 struct ActFollowVectorField : public Action {
@@ -298,8 +346,8 @@ struct ActFormation {
 	void wallCallback(Vector3f&);
 };
 
-struct ActFreeArg : ActionArg {
-	virtual char* getName();
+struct ActFreeArg : public ActionArg {
+	virtual char* getName(); // _08 (weak)
 
 	u8 _04;
 	f32 _08; // _08
@@ -339,7 +387,7 @@ struct GatherActionArg : public ActionArg {
 		_10 = arg->_14;
 	}
 
-	virtual char* getName();
+	virtual char* getName(); // _08 (weak)
 
 	f32 _04; // _04
 	f32 _08; // _08
@@ -362,8 +410,8 @@ struct ActGather : public Action {
 	float m_timer; // _1C
 };
 
-struct GotoPosActionArg {
-	void getName();
+struct GotoPosActionArg : public ActionArg {
+	virtual char* getName(); // _08 (weak)
 };
 
 struct ActGotoPos : public Action {
@@ -489,8 +537,8 @@ struct ActRest {
 	void sitDown();
 };
 
-struct StickAttackActionArg {
-	void getName();
+struct StickAttackActionArg : public ActionArg {
+	virtual char* getName(); // _08 (weak)
 };
 
 struct ActStickAttack : public Action, virtual SysShape::MotionListener {
@@ -563,12 +611,12 @@ struct ActWeed {
 	void initAdjust();
 };
 
-struct ClimbActionArg {
-	void getName();
+struct ClimbActionArg : public ActionArg {
+	virtual char* getName(); // _08 (weak)
 };
 
-struct CreatureActionArg {
-	void getName();
+struct CreatureActionArg : public ActionArg {
+	virtual char* getName(); // _08 (weak)
 };
 
 struct Brain {
