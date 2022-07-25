@@ -9,7 +9,7 @@
 namespace ARAM {
 struct Node : CNode {
 	inline Node();
-	~Node();
+	virtual ~Node() { } // _08
 
 	inline int dvdToAram(char const*, bool);
 	void* aramToMainRam(unsigned char*, unsigned long, unsigned long, JKRExpandSwitch, unsigned long, JKRHeap*,

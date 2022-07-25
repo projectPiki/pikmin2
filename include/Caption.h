@@ -19,8 +19,8 @@ namespace Caption {
 struct Node : public CNode {
 	Node();
 
-	virtual ~Node();            // _00
-	virtual void read(Stream&); // _08
+	virtual ~Node() { }         // _08
+	virtual void read(Stream&); // _10
 
 	u32 m_startFrame; // _18
 	u32 m_endFrame;   // _1C

@@ -13,7 +13,7 @@ struct TBaseIF {
 	virtual void setGroup(u8) = 0; // _0C
 };
 
-struct TBase {
+struct TBase : public TBaseIF {
 	virtual void setGroup(u8); // _0C
 
 	u8 _04;

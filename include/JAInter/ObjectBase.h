@@ -9,19 +9,20 @@ struct JAISound;
 
 namespace JAInter {
 struct ObjectBase : public JKRDisposer {
-	virtual ~ObjectBase();                         // _00
-	virtual void startSound(u32, u32);             // _04
-	virtual void startSound(u8, u32, u32);         // _08
-	virtual void startSound(JAISound**, u32, u32); // _0C
-	virtual void stopAllSound();                   // _10
-	virtual void stopSound(u32, u32);              // _14
-	virtual void enable();                         // _18
-	virtual void disable();                        // _1C
-	virtual void dispose();                        // _20
-	virtual void getFreeSoundHandlePointer();      // _24
-	virtual void getUseSoundHandlePointer(u32);    // _28
-	virtual void handleStop(u8, u32);              // _2C
-	virtual void loop() = 0;                       // _30
+	virtual ~ObjectBase();                         // _08
+	virtual void startSound(u32, u32);             // _0C
+	virtual void startSound(u8, u32, u32);         // _10
+	virtual void startSound(JAISound**, u32, u32); // _14
+	virtual void stopAllSound();                   // _18
+	virtual void stopSound(u32, u32);              // _1C
+	virtual void enable();                         // _20 (weak)
+	virtual void disable();                        // _24
+	virtual void dispose();                        // _28
+	virtual void getFreeSoundHandlePointer();      // _2C
+	virtual void getUseSoundHandlePointer(u32);    // _30
+	virtual void handleStop(u8, u32);              // _34
+
+	void getUseSoundHandleNo(u32);
 
 	u8 _18;
 	u8 m_handleCount;

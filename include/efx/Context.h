@@ -8,13 +8,13 @@ namespace efx {
 struct Context : public CNode {
 	Context();
 
-	virtual ~Context(); // _00
+	virtual ~Context(); // _08
 
 	Vector3f _18; // _18
 };
 
 struct ContextChasePos : public CNode {
-	virtual ~ContextChasePos(); // _00
+	virtual ~ContextChasePos(); // _08
 
 	Vector3f* m_position; // _18
 };

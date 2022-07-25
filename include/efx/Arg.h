@@ -21,7 +21,7 @@ struct Arg {
 	 * @reifiedAddress{80108200}
 	 * @reifiedFile{plugProjectYamashitaU/enemyBase.cpp}
 	 */
-	virtual const char* getName() // _00
+	virtual const char* getName() // _08
 	{
 		return "Arg";
 	}
@@ -68,6 +68,174 @@ struct ArgScale : public Arg {
 	}
 
 	float m_scale; // _10
+};
+
+struct ArgChou : public Arg {
+	ArgChou(Vector3f& position)
+	    : Arg(position)
+	{
+	}
+
+	virtual const char* getName() // _08
+	{
+		return "ArgChou";
+	}
+};
+
+struct ArgCursor : public Arg {
+	ArgCursor(Vector3f& position)
+	    : Arg(position)
+	{
+	}
+
+	virtual const char* getName() // _08
+	{
+		return "ArgCursor";
+	}
+};
+
+struct ArgDir : public Arg {
+	ArgDir(Vector3f& position)
+	    : Arg(position)
+	{
+	}
+
+	virtual const char* getName() // _08
+	{
+		return "ArgDir";
+	}
+};
+
+struct ArgDopingSmoke : public Arg {
+	ArgDopingSmoke(Vector3f& position)
+	    : Arg(position)
+	{
+	}
+
+	virtual const char* getName() // _08
+	{
+		return "ArgDopingSmoke";
+	}
+};
+
+struct ArgGasuHiba : public Arg {
+	ArgGasuHiba(Vector3f& position)
+	    : Arg(position)
+	{
+	}
+
+	virtual const char* getName() // _08
+	{
+		return "ArgGasuHiba";
+	}
+};
+
+struct ArgImoEat : public Arg {
+	ArgImoEat(Vector3f& position)
+	    : Arg(position)
+	{
+	}
+
+	virtual const char* getName() // _08
+	{
+		return "ArgImoEat";
+	}
+};
+
+struct ArgKchYodare : public Arg {
+	ArgKchYodare(Vector3f& position)
+	    : Arg(position)
+	{
+	}
+
+	virtual const char* getName() // _08
+	{
+		return "ArgKchYodare";
+	}
+};
+
+struct ArgKouhai : public Arg {
+	ArgKouhai(Vector3f& position)
+	    : Arg(position)
+	{
+	}
+
+	virtual const char* getName() // _08
+	{
+		return "ArgKouhai";
+	}
+};
+
+struct ArgPelType : public Arg {
+	ArgPelType(Vector3f& position)
+	    : Arg(position)
+	{
+	}
+
+	virtual const char* getName() // _08
+	{
+		return "ArgPelType";
+	}
+};
+
+struct ArgPosPos : public Arg {
+	ArgPosPos(Vector3f& position)
+	    : Arg(position)
+	{
+	}
+
+	virtual const char* getName() // _08
+	{
+		return "ArgPosPos";
+	}
+};
+
+struct ArgPrmColor : public Arg {
+	ArgPrmColor(Vector3f& position)
+	    : Arg(position)
+	{
+	}
+
+	virtual const char* getName() // _08
+	{
+		return "ArgPrmColor";
+	}
+};
+
+struct ArgRotY : public Arg {
+	ArgRotY(Vector3f& position)
+	    : Arg(position)
+	{
+	}
+
+	virtual const char* getName() // _08
+	{
+		return "ArgRotY";
+	}
+};
+
+struct ArgRotYScale : public Arg {
+	ArgRotYScale(Vector3f& position)
+	    : Arg(position)
+	{
+	}
+
+	virtual const char* getName() // _08
+	{
+		return "ArgRotYScale";
+	}
+};
+
+struct ArgType : public Arg {
+	ArgType(Vector3f& position)
+	    : Arg(position)
+	{
+	}
+
+	virtual const char* getName() // _08
+	{
+		return "ArgType";
+	}
 };
 } // namespace efx
 

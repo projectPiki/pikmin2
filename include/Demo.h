@@ -19,23 +19,21 @@ struct HIORootNode : public Game::HIORootNode {
 		m_name = "THPセクション";
 	}
 
-	virtual ~HIORootNode(); // _00
+	virtual ~HIORootNode() { } // _00
 };
 
 // Size: 0x1B0
 struct Section : public Game::BaseHIOSection {
+	virtual ~Section() { }          // _08
+	virtual void init();            // _18
+	virtual void doExit();          // _24
+	virtual bool forceReset();      // _2C (weak)
+	virtual void doLoadingStart();  // _34
+	virtual bool doLoading();       // _38
+	virtual bool doUpdate();        // _3C
+	virtual void doDraw(Graphics&); // _40
+
 	Section(JKRHeap*);
-
-	virtual ~Section();             // _00
-	virtual void init();            // _10
-	virtual void doExit();          // _1C
-	virtual bool forceReset();      // _24
-	virtual void doLoadingStart();  // _2C
-	virtual bool doLoading();       // _30
-	virtual bool doUpdate();        // _34
-	virtual void doDraw(Graphics&); // _38
-	virtual bool isFinishable();    // _3C
-
 	void loadResource();
 
 	DvdThreadCommand m_threadCommand; // _048

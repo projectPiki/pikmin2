@@ -18,7 +18,7 @@ struct Arg : Vector2f {
 	 * @reifiedAddress{80238E80}
 	 * @reifiedFile{plugProjectKandoU/vsCardMgr.cpp}
 	 */
-	virtual const char* getName() // _00
+	virtual const char* getName() // _08
 	{
 		return "Arg";
 	}
@@ -31,7 +31,7 @@ struct ArgColor : public Arg {
 	 * @reifiedAddress{803D9BFC}
 	 * @reifiedFile{plugProjectEbisawaU/ebiScreenFileSelect.cpp}
 	 */
-	virtual const char* getName() // _00
+	virtual const char* getName() // _08
 	{
 		return "ArgColor";
 	}
@@ -44,7 +44,7 @@ struct ArgScale : public Arg {
 	 * @reifiedAddress{80327BDC}
 	 * @reifiedFile{plugProjectOgawaU/ogObjVs.cpp}
 	 */
-	virtual const char* getName() // _00
+	virtual const char* getName() // _08
 	{
 		return "ArgScale";
 	}
@@ -57,7 +57,7 @@ struct ArgScaleColorColor : public Arg {
 	 * @reifiedAddress{80238E74}
 	 * @reifiedFile{plugProjectKandoU/vsCardMgr.cpp}
 	 */
-	virtual const char* getName() // _00
+	virtual const char* getName() // _08
 	{
 		return "ArgScaleColorColor";
 	}
