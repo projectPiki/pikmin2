@@ -12,36 +12,35 @@ namespace Game {
 namespace BlackMan {
 /////////////////////////////////////////////////////////////////
 // STATE MACHINE DEFINITIONS
-struct State : public EnemyFSMState {
-};
+struct State : public EnemyFSMState { };
 
 struct StateBend : public State {
 	virtual void init(EnemyBase*, StateArg*); // _08
 	virtual void exec(EnemyBase*);            // _0C
 	virtual void cleanup(EnemyBase*);         // _10
 
-	StateBend();
+	StateBend(int);
 };
 
 struct StateDead : public State {
 	virtual void init(EnemyBase*, StateArg*); // _08
 	virtual void exec(EnemyBase*);            // _0C
 
-	StateDead();
+	StateDead(int);
 };
 
 struct StateEscape : public State {
 	virtual void init(EnemyBase*, StateArg*); // _08
 	virtual void exec(EnemyBase*);            // _0C
 
-	StateEscape();
+	StateEscape(int);
 };
 
 struct StateFall : public State {
 	virtual void init(EnemyBase*, StateArg*); // _08
 	virtual void exec(EnemyBase*);            // _0C
 
-	StateFall();
+	StateFall(int);
 };
 
 struct StateFlick : public State {
@@ -49,7 +48,7 @@ struct StateFlick : public State {
 	virtual void exec(EnemyBase*);            // _0C
 	virtual void cleanup(EnemyBase*);         // _10
 
-	StateFlick();
+	StateFlick(int);
 };
 
 struct StateFreeze : public State {
@@ -57,21 +56,21 @@ struct StateFreeze : public State {
 	virtual void exec(EnemyBase*);            // _0C
 	virtual void cleanup(EnemyBase*);         // _10
 
-	StateFreeze();
+	StateFreeze(int);
 };
 
 struct StateRecover : public State {
 	virtual void init(EnemyBase*, StateArg*); // _08
 	virtual void exec(EnemyBase*);            // _0C
 
-	StateRecover();
+	StateRecover(int);
 };
 
 struct StateTired : public State {
 	virtual void init(EnemyBase*, StateArg*); // _08
 	virtual void exec(EnemyBase*);            // _0C
 
-	StateTired();
+	StateTired(int);
 };
 
 struct StateWalk : public State {
@@ -79,7 +78,7 @@ struct StateWalk : public State {
 	virtual void exec(EnemyBase*);            // _0C
 	virtual void cleanup(EnemyBase*);         // _10
 
-	StateWalk();
+	StateWalk(int);
 };
 
 struct FSM : public EnemyStateMachine {
@@ -182,7 +181,7 @@ struct Mgr : public EnemyMgrBase {
 	virtual void loadTexData();                         // _D0
 	virtual void doLoadBmd(void*);                      // _D4
 
-	Mgr();
+	Mgr(int, unsigned char);
 };
 } // namespace BlackMan
 } // namespace Game

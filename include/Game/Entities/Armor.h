@@ -11,8 +11,7 @@ namespace Game {
 namespace Armor {
 /////////////////////////////////////////////////////////////////
 // STATE MACHINE DEFINITIONS
-struct State : public EnemyFSMState {
-};
+struct State : public EnemyFSMState { };
 
 struct StateAppear : public State {
 	virtual void init(EnemyBase*, StateArg*); // _08
@@ -166,12 +165,13 @@ struct Obj : public EnemyBase {
 };
 
 struct Mgr : public EnemyMgrBase {
-	Mgr();
 	virtual ~Mgr();                                     // _58
 	virtual void createObj(int);                        // _A0
 	virtual EnemyBase* getEnemy(int);                   // _A4
 	virtual void doAlloc();                             // _A8
 	virtual EnemyTypeID::EEnemyTypeID getEnemyTypeID(); // _AC
+
+	Mgr(int, unsigned char);
 
 	// _00 VTBL
 };
