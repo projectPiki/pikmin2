@@ -186,24 +186,25 @@ struct ObjBase : public IObjBase {
 };
 
 struct MgrBase : public JKRDisposer {
-	virtual ~MgrBase();                          // _00
-	virtual bool setScene(SetSceneArg&)     = 0; // _04
-	virtual bool startScene(StartSceneArg*) = 0; // _08
-	virtual void endScene(EndSceneArg*)     = 0; // _0C
+	virtual ~MgrBase();                          // _08
+	virtual bool setScene(SetSceneArg&)     = 0; // _0C
+	virtual bool startScene(StartSceneArg*) = 0; // _10
+	virtual void endScene(EndSceneArg*)     = 0; // _14
 };
+
 struct Mgr : public MgrBase {
 	Mgr();
 
-	virtual ~Mgr();                             // _00
-	virtual bool setScene(SetSceneArg&);        // _04
-	virtual bool startScene(StartSceneArg*);    // _08
-	virtual void endScene(EndSceneArg*);        // _0C
-	virtual void reset();                       // _10
-	virtual void setColorBG(JUtility::TColor&); // _14
-	virtual void setBGMode(int);                // _18
-	virtual void doGetSceneBase(long);          // _1C
-	virtual void drawBG(Graphics&);             // _20
-	virtual void drawWipe(Graphics&);           // _24
+	virtual ~Mgr() { }                          // _08 (weak)
+	virtual bool setScene(SetSceneArg&);        // _0C
+	virtual bool startScene(StartSceneArg*);    // _10
+	virtual void endScene(EndSceneArg*);        // _14
+	virtual void reset();                       // _18
+	virtual void setColorBG(JUtility::TColor&); // _1C (weak)
+	virtual void setBGMode(int);                // _20 (weak)
+	virtual void doGetSceneBase(long);          // _24
+	virtual void drawBG(Graphics&);             // _28
+	virtual void drawWipe(Graphics&);           // _2C (weak)
 
 	u8 _18;                     // _18
 	u8 _19;                     // _19
@@ -243,5 +244,19 @@ struct ObjMgrBase {
 	CNode _00;
 };
 } // namespace Screen
+
+namespace newScreen {
+struct Mgr : public Screen::Mgr {
+	virtual ~Mgr();                             // _08 (weak)
+	virtual void reset();                       // _18
+	virtual void setColorBG(JUtility::TColor&); // _1C (weak)
+	virtual void setBGMode(int);                // _20 (weak)
+	virtual void doGetSceneBase(long);          // _24
+	virtual void drawBG(Graphics&);             // _28
+
+	void create();
+};
+
+} // namespace newScreen
 
 #endif
