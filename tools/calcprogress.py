@@ -203,6 +203,15 @@ if __name__ == "__main__":
     print(sentence)
 
     # Create/append to CSV
+    does_file_exist = False
+
+    try:
+        with open(CSV_FILE_PATH, 'r') as file:
+            reader = csv.reader(file)
+            does_file_exist = True
+    except:
+        print('CSV file does not exist!')
+
     col_one = f"code_count_in_{CODE_ITEM.lower()}"
     col_two = "code_completion_in_bytes"
     col_three = "code_completion_in_percentage"
@@ -221,15 +230,6 @@ if __name__ == "__main__":
         col_seven,
         col_eight,
     ]
-
-    does_file_exist = False
-
-    try:
-        with open(CSV_FILE_PATH, 'r') as file:
-            reader = csv.reader(file)
-            does_file_exist = True
-    except:
-        print('CSV file does not exist!')
 
     with open(CSV_FILE_PATH, 'a', newline='') as file:
         writer = csv.DictWriter(file, fieldnames=headers)
