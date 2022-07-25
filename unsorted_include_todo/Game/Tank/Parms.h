@@ -11,7 +11,7 @@
 namespace Game {
 namespace Tank {
 struct Parms {
-	virtual void read(Stream&); // _08 (inline)
+	virtual void read(Stream&); // _08 (weak)
 
 	Parms();
 };

@@ -143,17 +143,17 @@
 
 namespace Game {
 struct Pellet {
-	virtual void getPosition();                               // _08 (inline)
+	virtual void getPosition();                               // _08 (weak)
 	virtual void _0C() = 0;                                   // _0C
 	virtual void getBoundingSphere(Sys::Sphere&);             // _10
 	virtual void _14() = 0;                                   // _14
 	virtual void _18() = 0;                                   // _18
 	virtual void _1C() = 0;                                   // _1C
-	virtual void deferPikiCollision();                        // _20 (inline)
+	virtual void deferPikiCollision();                        // _20 (weak)
 	virtual void _24() = 0;                                   // _24
 	virtual void _28() = 0;                                   // _28
 	virtual void constructor();                               // _2C
-	virtual void onInit(CreatureInitArg*);                    // _30 (inline)
+	virtual void onInit(CreatureInitArg*);                    // _30 (weak)
 	virtual void onKill(CreatureKillArg*);                    // _34
 	virtual void _38() = 0;                                   // _38
 	virtual void doAnimation();                               // _3C
@@ -166,17 +166,17 @@ struct Pellet {
 	virtual void _58() = 0;                                   // _58
 	virtual void _5C() = 0;                                   // _5C
 	virtual void _60() = 0;                                   // _60
-	virtual void getFaceDir();                                // _64 (inline)
+	virtual void getFaceDir();                                // _64 (weak)
 	virtual void setVelocity(Vector3<float>&);                // _68
 	virtual void getVelocity();                               // _6C
-	virtual void onSetPosition(Vector3<float>&);              // _70 (inline)
+	virtual void onSetPosition(Vector3<float>&);              // _70 (weak)
 	virtual void _74() = 0;                                   // _74
 	virtual void updateTrMatrix();                            // _78
 	virtual void _7C() = 0;                                   // _7C
 	virtual void _80() = 0;                                   // _80
 	virtual void _84() = 0;                                   // _84
 	virtual void _88() = 0;                                   // _88
-	virtual void inWater();                                   // _8C (inline)
+	virtual void inWater();                                   // _8C (weak)
 	virtual void _90() = 0;                                   // _90
 	virtual void onStartCapture();                            // _94
 	virtual void onUpdateCapture(Matrixf&);                   // _98
@@ -205,7 +205,7 @@ struct Pellet {
 	virtual void getJAIObject();                              // _F4
 	virtual void getPSCreature();                             // _F8
 	virtual void _FC() = 0;                                   // _FC
-	virtual void getSound_PosPtr();                           // _100 (inline)
+	virtual void getSound_PosPtr();                           // _100 (weak)
 	virtual void _104() = 0;                                  // _104
 	virtual void _108() = 0;                                  // _108
 	virtual void _10C() = 0;                                  // _10C
@@ -259,19 +259,19 @@ struct Pellet {
 	virtual void do_onInit(CreatureInitArg*);                 // _1CC
 	virtual void onCreateShape();                             // _1D0
 	virtual void theEntry();                                  // _1D4
-	virtual void onBounce();                                  // _1D8 (inline)
+	virtual void onBounce();                                  // _1D8 (weak)
 	virtual void shadowOn();                                  // _1DC
 	virtual void shadowOff();                                 // _1E0
 	virtual void isPickable();                                // _1E4
-	virtual void getBedamaColor();                            // _1E8 (inline)
-	virtual void do_update();                                 // _1EC (inline)
-	virtual void onKeyEvent(const SysShape::KeyEvent&);       // _1F0 (inline)
-	virtual void getKind();                                   // _1F4 (inline)
+	virtual void getBedamaColor();                            // _1E8 (weak)
+	virtual void do_update();                                 // _1EC (weak)
+	virtual void onKeyEvent(const SysShape::KeyEvent&);       // _1F0 (weak)
+	virtual void getKind();                                   // _1F4 (weak)
 	virtual void changeMaterial();                            // _1F8
-	virtual void createKiraEffect(Vector3<float>&);           // _1FC (inline)
-	virtual void getCarryInfoParam(CarryInfoParam&);          // _200 (inline)
+	virtual void createKiraEffect(Vector3<float>&);           // _1FC (weak)
+	virtual void getCarryInfoParam(CarryInfoParam&);          // _200 (weak)
 	virtual void isCarried();                                 // _204
-	virtual void isPicked();                                  // _208 (inline)
+	virtual void isPicked();                                  // _208 (weak)
 };
 } // namespace Game
 
@@ -280,16 +280,16 @@ struct Creature {
 	virtual void _08() = 0;                                     // _08
 	virtual void checkCollision(CellObject*);                   // _0C
 	virtual void _10() = 0;                                     // _10
-	virtual void collisionUpdatable();                          // _14 (inline)
+	virtual void collisionUpdatable();                          // _14 (weak)
 	virtual void isPiki();                                      // _18
 	virtual void isNavi();                                      // _1C
 	virtual void _20() = 0;                                     // _20
 	virtual void getTypeName();                                 // _24
-	virtual void getObjType();                                  // _28 (inline)
+	virtual void getObjType();                                  // _28 (weak)
 	virtual void constructor();                                 // _2C
 	virtual void _30() = 0;                                     // _30
 	virtual void _34() = 0;                                     // _34
-	virtual void onInitPost(CreatureInitArg*);                  // _38 (inline)
+	virtual void onInitPost(CreatureInitArg*);                  // _38 (weak)
 	virtual void _3C() = 0;                                     // _3C
 	virtual void _40() = 0;                                     // _40
 	virtual void _44() = 0;                                     // _44
@@ -299,72 +299,72 @@ struct Creature {
 	virtual void getBodyRadius();                               // _54
 	virtual void getCellRadius();                               // _58
 	virtual void initPosition(Vector3<float>&);                 // _5C
-	virtual void onInitPosition(Vector3<float>&);               // _60 (inline)
+	virtual void onInitPosition(Vector3<float>&);               // _60 (weak)
 	virtual void _64() = 0;                                     // _64
 	virtual void _68() = 0;                                     // _68
 	virtual void _6C() = 0;                                     // _6C
 	virtual void _70() = 0;                                     // _70
-	virtual void onSetPositionPost(Vector3<float>&);            // _74 (inline)
+	virtual void onSetPositionPost(Vector3<float>&);            // _74 (weak)
 	virtual void _78() = 0;                                     // _78
 	virtual void isTeki();                                      // _7C
 	virtual void isPellet();                                    // _80
-	virtual void inWaterCallback(WaterBox*);                    // _84 (inline)
-	virtual void outWaterCallback();                            // _88 (inline)
+	virtual void inWaterCallback(WaterBox*);                    // _84 (weak)
+	virtual void outWaterCallback();                            // _88 (weak)
 	virtual void _8C() = 0;                                     // _8C
-	virtual void getFlockMgr();                                 // _90 (inline)
+	virtual void getFlockMgr();                                 // _90 (weak)
 	virtual void _94() = 0;                                     // _94
 	virtual void _98() = 0;                                     // _98
 	virtual void _9C() = 0;                                     // _9C
-	virtual void isAtari();                                     // _A0 (inline)
-	virtual void setAtari(bool);                                // _A4 (inline)
-	virtual void isAlive();                                     // _A8 (inline)
-	virtual void setAlive(bool);                                // _AC (inline)
-	virtual void isCollisionFlick();                            // _B0 (inline)
-	virtual void setCollisionFlick(bool);                       // _B4 (inline)
-	virtual void isMovieActor();                                // _B8 (inline)
-	virtual void isMovieExtra();                                // _BC (inline)
-	virtual void isMovieMotion();                               // _C0 (inline)
-	virtual void setMovieMotion(bool);                          // _C4 (inline)
-	virtual void isBuried();                                    // _C8 (inline)
-	virtual void isFlying();                                    // _CC (inline)
-	virtual void isUnderground();                               // _D0 (inline)
-	virtual void isLivingThing();                               // _D4 (inline)
-	virtual void isDebugCollision();                            // _D8 (inline)
-	virtual void setDebugCollision(bool);                       // _DC (inline)
+	virtual void isAtari();                                     // _A0 (weak)
+	virtual void setAtari(bool);                                // _A4 (weak)
+	virtual void isAlive();                                     // _A8 (weak)
+	virtual void setAlive(bool);                                // _AC (weak)
+	virtual void isCollisionFlick();                            // _B0 (weak)
+	virtual void setCollisionFlick(bool);                       // _B4 (weak)
+	virtual void isMovieActor();                                // _B8 (weak)
+	virtual void isMovieExtra();                                // _BC (weak)
+	virtual void isMovieMotion();                               // _C0 (weak)
+	virtual void setMovieMotion(bool);                          // _C4 (weak)
+	virtual void isBuried();                                    // _C8 (weak)
+	virtual void isFlying();                                    // _CC (weak)
+	virtual void isUnderground();                               // _D0 (weak)
+	virtual void isLivingThing();                               // _D4 (weak)
+	virtual void isDebugCollision();                            // _D8 (weak)
+	virtual void setDebugCollision(bool);                       // _DC (weak)
 	virtual void _E0() = 0;                                     // _E0
 	virtual void _E4() = 0;                                     // _E4
 	virtual void _E8() = 0;                                     // _E8
-	virtual void collisionCallback(CollEvent&);                 // _EC (inline)
-	virtual void platCallback(PlatEvent&);                      // _F0 (inline)
+	virtual void collisionCallback(CollEvent&);                 // _EC (weak)
+	virtual void platCallback(PlatEvent&);                      // _F0 (weak)
 	virtual void _F4() = 0;                                     // _F4
 	virtual void _F8() = 0;                                     // _F8
-	virtual void getSound_AILOD();                              // _FC (inline)
+	virtual void getSound_AILOD();                              // _FC (weak)
 	virtual void _100() = 0;                                    // _100
 	virtual void sound_culling();                               // _104
-	virtual void getSound_CurrAnimFrame();                      // _108 (inline)
-	virtual void getSound_CurrAnimSpeed();                      // _10C (inline)
-	virtual void on_movie_begin(bool);                          // _110 (inline)
-	virtual void on_movie_end(bool);                            // _114 (inline)
-	virtual void movieStartAnimation(unsigned long);            // _118 (inline)
-	virtual void movieStartDemoAnimation(SysShape::AnimInfo*);  // _11C (inline)
-	virtual void movieSetAnimationLastFrame();                  // _120 (inline)
-	virtual void movieSetTranslation(Vector3<float>&, float);   // _124 (inline)
-	virtual void movieSetFaceDir(float);                        // _128 (inline)
-	virtual void movieGotoPosition(Vector3<float>&);            // _12C (inline)
-	virtual void movieUserCommand(unsigned long, MoviePlayer*); // _130 (inline)
+	virtual void getSound_CurrAnimFrame();                      // _108 (weak)
+	virtual void getSound_CurrAnimSpeed();                      // _10C (weak)
+	virtual void on_movie_begin(bool);                          // _110 (weak)
+	virtual void on_movie_end(bool);                            // _114 (weak)
+	virtual void movieStartAnimation(unsigned long);            // _118 (weak)
+	virtual void movieStartDemoAnimation(SysShape::AnimInfo*);  // _11C (weak)
+	virtual void movieSetAnimationLastFrame();                  // _120 (weak)
+	virtual void movieSetTranslation(Vector3<float>&, float);   // _124 (weak)
+	virtual void movieSetFaceDir(float);                        // _128 (weak)
+	virtual void movieGotoPosition(Vector3<float>&);            // _12C (weak)
+	virtual void movieUserCommand(unsigned long, MoviePlayer*); // _130 (weak)
 	virtual void getShadowParam(ShadowParam&);                  // _134
 	virtual void _138() = 0;                                    // _138
 	virtual void getLifeGaugeParam(LifeGaugeParam&);            // _13C
 	virtual void _140() = 0;                                    // _140
-	virtual void getLODCylinder(Sys::Cylinder&);                // _144 (inline)
+	virtual void getLODCylinder(Sys::Cylinder&);                // _144 (weak)
 	virtual void _148() = 0;                                    // _148
 	virtual void _14C() = 0;                                    // _14C
-	virtual void getMabiki();                                   // _150 (inline)
-	virtual void getFootmarks();                                // _154 (inline)
-	virtual void onStickStart(Creature*);                       // _158 (inline)
-	virtual void onStickEnd(Creature*);                         // _15C (inline)
-	virtual void onStickStartSelf(Creature*);                   // _160 (inline)
-	virtual void onStickEndSelf(Creature*);                     // _164 (inline)
+	virtual void getMabiki();                                   // _150 (weak)
+	virtual void getFootmarks();                                // _154 (weak)
+	virtual void onStickStart(Creature*);                       // _158 (weak)
+	virtual void onStickEnd(Creature*);                         // _15C (weak)
+	virtual void onStickStartSelf(Creature*);                   // _160 (weak)
+	virtual void onStickEndSelf(Creature*);                     // _164 (weak)
 	virtual void _168() = 0;                                    // _168
 	virtual void _16C() = 0;                                    // _16C
 	virtual void _170() = 0;                                    // _170
@@ -375,11 +375,11 @@ struct Creature {
 	virtual void _184() = 0;                                    // _184
 	virtual void _188() = 0;                                    // _188
 	virtual void _18C() = 0;                                    // _18C
-	virtual void ignoreAtari(Creature*);                        // _190 (inline)
-	virtual void getSuckPos();                                  // _194 (inline)
-	virtual void getGoalPos();                                  // _198 (inline)
-	virtual void isSuckReady();                                 // _19C (inline)
-	virtual void isSuckArriveWait();                            // _1A0 (inline)
+	virtual void ignoreAtari(Creature*);                        // _190 (weak)
+	virtual void getSuckPos();                                  // _194 (weak)
+	virtual void getGoalPos();                                  // _198 (weak)
+	virtual void isSuckReady();                                 // _19C (weak)
+	virtual void isSuckArriveWait();                            // _1A0 (weak)
 };
 } // namespace Game
 
@@ -498,8 +498,8 @@ struct Object : public Pellet, public Creature, public DynCreature {
 	virtual void do_onInit(CreatureInitArg*);  // _1CC
 	virtual void onCreateShape();              // _1D0
 	virtual void theEntry();                   // _1D4
-	virtual void getBedamaColor();             // _1E8 (inline)
-	virtual void getKind();                    // _1F4 (inline)
+	virtual void getBedamaColor();             // _1E8 (weak)
+	virtual void getKind();                    // _1F4 (weak)
 	virtual void changeMaterial();             // _1F8
 	virtual void sound_otakaraEventStart();    // _20C
 	virtual void sound_otakaraEventRestart();  // _210

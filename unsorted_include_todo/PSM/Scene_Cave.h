@@ -37,7 +37,7 @@
 namespace PSSystem {
 struct Scene {
 	virtual void init();                 // _08
-	virtual ~Scene();                    // _0C (inline)
+	virtual ~Scene();                    // _0C (weak)
 	virtual void scene1st(TaskChecker*); // _10
 	virtual void scene1stLoadSync();     // _14
 };
@@ -46,7 +46,7 @@ struct Scene {
 namespace PSM {
 struct Scene_Game {
 	virtual void init();                                   // _08
-	virtual ~Scene_Game();                                 // _0C (inline)
+	virtual ~Scene_Game();                                 // _0C (weak)
 	virtual void _10() = 0;                                // _10
 	virtual void _14() = 0;                                // _14
 	virtual void exec();                                   // _18
@@ -56,10 +56,10 @@ struct Scene_Game {
 	virtual void _28() = 0;                                // _28
 	virtual void getEnvSe();                               // _2C
 	virtual void getSceneFx();                             // _30
-	virtual void isDemoScene();                            // _34 (inline)
+	virtual void isDemoScene();                            // _34 (weak)
 	virtual void _38() = 0;                                // _38
 	virtual void _3C() = 0;                                // _3C
-	virtual void isGameScene();                            // _40 (inline)
+	virtual void isGameScene();                            // _40 (weak)
 	virtual void pauseOn_2D(unsigned char, unsigned char); // _44
 	virtual void pauseOff_2D();                            // _48
 	virtual void pauseOn_Demo();                           // _4C
@@ -70,7 +70,7 @@ struct Scene_Game {
 namespace PSM {
 struct Scene_Objects {
 	virtual void init();                                  // _08
-	virtual ~Scene_Objects();                             // _0C (inline)
+	virtual ~Scene_Objects();                             // _0C (weak)
 	virtual void _10() = 0;                               // _10
 	virtual void _14() = 0;                               // _14
 	virtual void exec();                                  // _18
@@ -95,7 +95,7 @@ struct Scene_Objects {
 namespace PSM {
 struct SceneBase {
 	virtual void init();              // _08
-	virtual ~SceneBase();             // _0C (inline)
+	virtual ~SceneBase();             // _0C (weak)
 	virtual void _10() = 0;           // _10
 	virtual void _14() = 0;           // _14
 	virtual void exec();              // _18
@@ -114,17 +114,17 @@ struct SceneBase {
 namespace PSM {
 struct Scene_Cave : public Scene, public Scene_Game, public Scene_Objects, public SceneBase {
 	virtual void init();                                 // _08
-	virtual ~Scene_Cave();                               // _0C (inline)
+	virtual ~Scene_Cave();                               // _0C (weak)
 	virtual void exec();                                 // _18
 	virtual void startMainSeq();                         // _1C
 	virtual void getSceneFx();                           // _30
-	virtual void isCave();                               // _58 (inline)
+	virtual void isCave();                               // _58 (weak)
 	virtual void bossAppear(EnemyBoss*, unsigned short); // _5C
 	virtual void bossKilled(EnemyBoss*);                 // _60
 	virtual void isBossFloor();                          // _64
 	virtual void akubiOK();                              // _68
-	virtual void isPollutUp();                           // _6C (inline)
-	virtual void getPollutUpTimer() const;               // _70 (inline)
+	virtual void isPollutUp();                           // _6C (weak)
+	virtual void getPollutUpTimer() const;               // _70 (weak)
 
 	Scene_Cave(unsigned char, PSGame::SceneInfo*);
 	void stopPollutionSe();

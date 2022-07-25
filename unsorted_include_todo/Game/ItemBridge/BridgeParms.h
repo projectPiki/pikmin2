@@ -11,7 +11,7 @@
 namespace Game {
 namespace ItemBridge {
 struct BridgeParms {
-	virtual void read(Stream&); // _08 (inline)
+	virtual void read(Stream&); // _08 (weak)
 
 	BridgeParms();
 };

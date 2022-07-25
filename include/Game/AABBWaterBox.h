@@ -61,8 +61,8 @@ struct AABBWaterBox : public WaterBox {
 
 	virtual bool inWater(Sys::Sphere&);                                    // _08
 	virtual bool inWater2d(Sys::Sphere&);                                  // _0C
-	virtual float getSeaLevel();                                           // _10 (inline)
-	virtual float* getSeaHeightPtr();                                      // _14 (inline)
+	virtual float getSeaLevel();                                           // _10 (weak)
+	virtual float* getSeaHeightPtr();                                      // _14 (weak)
 	virtual bool update();                                                 // _18
 	virtual void startDown(float);                                         // _1C
 	virtual void startUp(float);                                           // _20

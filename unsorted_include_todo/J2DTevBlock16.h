@@ -56,32 +56,32 @@ struct J2DTevBlock16 {
 	virtual void initialize();                                              // _08
 	virtual void setGX();                                                   // _0C
 	virtual void loadTexture(_GXTexMapID, unsigned long);                   // _10
-	virtual void getType();                                                 // _14 (inline)
-	virtual void getMaxStage();                                             // _18 (inline)
-	virtual void setTexNo(unsigned long, unsigned short);                   // _1C (inline)
-	virtual void getTexNo(unsigned long) const;                             // _20 (inline)
-	virtual void setFontNo(unsigned short);                                 // _24 (inline)
-	virtual void getFontNo() const;                                         // _28 (inline)
-	virtual void setTevOrder(unsigned long, J2DTevOrder);                   // _2C (inline)
-	virtual void getTevOrder(unsigned long);                                // _30 (inline)
-	virtual void setTevColor(unsigned long, J2DGXColorS10);                 // _34 (inline)
-	virtual void getTevColor(unsigned long);                                // _38 (inline)
-	virtual void setTevKColor(unsigned long, JUtility::TColor);             // _3C (inline)
-	virtual void getTevKColor(unsigned long);                               // _40 (inline)
-	virtual void setTevKColorSel(unsigned long, unsigned char);             // _44 (inline)
-	virtual void getTevKColorSel(unsigned long);                            // _48 (inline)
-	virtual void setTevKAlphaSel(unsigned long, unsigned char);             // _4C (inline)
-	virtual void getTevKAlphaSel(unsigned long);                            // _50 (inline)
-	virtual void setTevStageNum(unsigned char);                             // _54 (inline)
-	virtual void getTevStageNum() const;                                    // _58 (inline)
-	virtual void setTevStage(unsigned long, J2DTevStage);                   // _5C (inline)
-	virtual void getTevStage(unsigned long);                                // _60 (inline)
-	virtual void setTevSwapModeInfo(unsigned long, J2DTevSwapModeInfo);     // _64 (inline)
-	virtual void setTevSwapModeTable(unsigned long, J2DTevSwapModeTable);   // _68 (inline)
-	virtual void getTevSwapModeTable(unsigned long);                        // _6C (inline)
-	virtual void setIndTevStage(unsigned long, J2DIndTevStage);             // _70 (inline)
-	virtual void getIndTevStage(unsigned long);                             // _74 (inline)
-	virtual void insertTexture(unsigned long, const ResTIMG*);              // _78 (inline)
+	virtual void getType();                                                 // _14 (weak)
+	virtual void getMaxStage();                                             // _18 (weak)
+	virtual void setTexNo(unsigned long, unsigned short);                   // _1C (weak)
+	virtual void getTexNo(unsigned long) const;                             // _20 (weak)
+	virtual void setFontNo(unsigned short);                                 // _24 (weak)
+	virtual void getFontNo() const;                                         // _28 (weak)
+	virtual void setTevOrder(unsigned long, J2DTevOrder);                   // _2C (weak)
+	virtual void getTevOrder(unsigned long);                                // _30 (weak)
+	virtual void setTevColor(unsigned long, J2DGXColorS10);                 // _34 (weak)
+	virtual void getTevColor(unsigned long);                                // _38 (weak)
+	virtual void setTevKColor(unsigned long, JUtility::TColor);             // _3C (weak)
+	virtual void getTevKColor(unsigned long);                               // _40 (weak)
+	virtual void setTevKColorSel(unsigned long, unsigned char);             // _44 (weak)
+	virtual void getTevKColorSel(unsigned long);                            // _48 (weak)
+	virtual void setTevKAlphaSel(unsigned long, unsigned char);             // _4C (weak)
+	virtual void getTevKAlphaSel(unsigned long);                            // _50 (weak)
+	virtual void setTevStageNum(unsigned char);                             // _54 (weak)
+	virtual void getTevStageNum() const;                                    // _58 (weak)
+	virtual void setTevStage(unsigned long, J2DTevStage);                   // _5C (weak)
+	virtual void getTevStage(unsigned long);                                // _60 (weak)
+	virtual void setTevSwapModeInfo(unsigned long, J2DTevSwapModeInfo);     // _64 (weak)
+	virtual void setTevSwapModeTable(unsigned long, J2DTevSwapModeTable);   // _68 (weak)
+	virtual void getTevSwapModeTable(unsigned long);                        // _6C (weak)
+	virtual void setIndTevStage(unsigned long, J2DIndTevStage);             // _70 (weak)
+	virtual void getIndTevStage(unsigned long);                             // _74 (weak)
+	virtual void insertTexture(unsigned long, const ResTIMG*);              // _78 (weak)
 	virtual void insertTexture(unsigned long, const ResTIMG*, JUTPalette*); // _7C
 	virtual void insertTexture(unsigned long, JUTTexture*);                 // _80
 	virtual void setTexture(unsigned long, const ResTIMG*);                 // _84
@@ -91,12 +91,12 @@ struct J2DTevBlock16 {
 	virtual void setFont(JUTFont*);                                         // _94
 	virtual void setPalette(unsigned long, const ResTLUT*);                 // _98
 	virtual void prepareTexture(unsigned char);                             // _9C
-	virtual void getTexture(unsigned long);                                 // _A0 (inline)
-	virtual void getPalette(unsigned long);                                 // _A4 (inline)
-	virtual void getFont();                                                 // _A8 (inline)
+	virtual void getTexture(unsigned long);                                 // _A0 (weak)
+	virtual void getPalette(unsigned long);                                 // _A4 (weak)
+	virtual void getFont();                                                 // _A8 (weak)
 	virtual void shiftDeleteFlag(unsigned char, bool);                      // _AC
-	virtual void setUndeleteFlag(unsigned char);                            // _B0 (inline)
-	virtual void setFontUndeleteFlag();                                     // _B4 (inline)
+	virtual void setUndeleteFlag(unsigned char);                            // _B0 (weak)
+	virtual void setFontUndeleteFlag();                                     // _B4 (weak)
 	virtual ~J2DTevBlock16();                                               // _B8
 };
 

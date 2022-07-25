@@ -12,9 +12,9 @@
 
 namespace Game {
 struct GameMessage {
-	virtual void actCommon(BaseGameSection*);   // _08 (inline)
-	virtual void actSingle(SingleGameSection*); // _0C (inline)
-	virtual void actVs(VsGameSection*);         // _10 (inline)
+	virtual void actCommon(BaseGameSection*);   // _08 (weak)
+	virtual void actSingle(SingleGameSection*); // _0C (weak)
+	virtual void actVs(VsGameSection*);         // _10 (weak)
 };
 } // namespace Game
 

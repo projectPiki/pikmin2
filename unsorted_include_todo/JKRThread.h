@@ -11,7 +11,7 @@
 
 struct JKRThread {
 	virtual ~JKRThread(); // _08
-	virtual void run();   // _0C (inline)
+	virtual void run();   // _0C (weak)
 };
 
 #endif

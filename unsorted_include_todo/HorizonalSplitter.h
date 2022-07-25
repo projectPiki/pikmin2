@@ -11,7 +11,7 @@
 
 struct Splitter {
 	virtual void split2(float);        // _08
-	virtual void split4(float, float); // _0C (inline)
+	virtual void split4(float, float); // _0C (weak)
 };
 
 struct HorizonalSplitter : public Splitter {

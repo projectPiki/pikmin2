@@ -10,14 +10,14 @@
 */
 
 struct CNode {
-	virtual ~CNode();             // _08 (inline)
+	virtual ~CNode();             // _08 (weak)
 	virtual void getChildCount(); // _0C
 };
 
 namespace Game {
 namespace Houdai {
 struct HoudaiShotGunNode : public CNode {
-	virtual ~HoudaiShotGunNode(); // _08 (inline)
+	virtual ~HoudaiShotGunNode(); // _08 (weak)
 
 	void update();
 };

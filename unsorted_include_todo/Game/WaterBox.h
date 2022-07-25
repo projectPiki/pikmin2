@@ -26,22 +26,22 @@
 
 namespace Game {
 struct WaterBox {
-	virtual void inWater(Sys::Sphere&);                                    // _08 (inline)
-	virtual void inWater2d(Sys::Sphere&);                                  // _0C (inline)
+	virtual void inWater(Sys::Sphere&);                                    // _08 (weak)
+	virtual void inWater2d(Sys::Sphere&);                                  // _0C (weak)
 	virtual void _10() = 0;                                                // _10
 	virtual void _14() = 0;                                                // _14
 	virtual void _18() = 0;                                                // _18
-	virtual void startDown(float);                                         // _1C (inline)
-	virtual void startUp(float);                                           // _20 (inline)
-	virtual void directDraw(Graphics&);                                    // _24 (inline)
-	virtual void doAnimation();                                            // _28 (inline)
-	virtual void doEntry();                                                // _2C (inline)
-	virtual void doSetView(int);                                           // _30 (inline)
-	virtual void doViewCalc();                                             // _34 (inline)
-	virtual void doSimulation(float);                                      // _38 (inline)
-	virtual void doDirectDraw(Graphics&);                                  // _3C (inline)
-	virtual void attachModel(J3DModelData*, Sys::MatTexAnimation*, float); // _40 (inline)
-	virtual void calcMatrix();                                             // _44 (inline)
+	virtual void startDown(float);                                         // _1C (weak)
+	virtual void startUp(float);                                           // _20 (weak)
+	virtual void directDraw(Graphics&);                                    // _24 (weak)
+	virtual void doAnimation();                                            // _28 (weak)
+	virtual void doEntry();                                                // _2C (weak)
+	virtual void doSetView(int);                                           // _30 (weak)
+	virtual void doViewCalc();                                             // _34 (weak)
+	virtual void doSimulation(float);                                      // _38 (weak)
+	virtual void doDirectDraw(Graphics&);                                  // _3C (weak)
+	virtual void attachModel(J3DModelData*, Sys::MatTexAnimation*, float); // _40 (weak)
+	virtual void calcMatrix();                                             // _44 (weak)
 	virtual void _48() = 0;                                                // _48
 };
 } // namespace Game

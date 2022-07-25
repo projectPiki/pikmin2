@@ -9,7 +9,7 @@
 */
 
 struct LifeGaugeList {
-	virtual ~LifeGaugeList(); // _08 (inline)
+	virtual ~LifeGaugeList(); // _08 (weak)
 };
 
 #endif

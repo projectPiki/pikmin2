@@ -11,7 +11,7 @@
 namespace Game {
 namespace ItemWeed {
 struct InitArg {
-	virtual void getName(); // _08 (inline)
+	virtual void getName(); // _08 (weak)
 };
 } // namespace ItemWeed
 } // namespace Game

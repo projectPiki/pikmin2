@@ -11,7 +11,7 @@
 namespace Game {
 namespace IllustratedBook {
 struct EnemyTexMgr {
-	virtual ~EnemyTexMgr(); // _08 (inline)
+	virtual ~EnemyTexMgr(); // _08 (weak)
 };
 } // namespace IllustratedBook
 } // namespace Game

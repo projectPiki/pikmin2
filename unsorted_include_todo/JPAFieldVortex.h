@@ -11,7 +11,7 @@
 */
 
 struct JPAFieldVortex {
-	virtual ~JPAFieldVortex();                                                // _08 (inline)
+	virtual ~JPAFieldVortex();                                                // _08 (weak)
 	virtual void prepare(JPAEmitterWorkData*, JPAFieldBlock*);                // _0C
 	virtual void calc(JPAEmitterWorkData*, JPAFieldBlock*, JPABaseParticle*); // _10
 };

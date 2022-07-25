@@ -74,26 +74,26 @@ struct Obj : public EnemyBase {
 	virtual void onInit(CreatureInitArg*);      // _30
 	virtual void onKill(CreatureKillArg*);      // _34
 	virtual void doDirectDraw(Graphics&);       // _50
-	virtual void inWaterCallback(WaterBox*);    // _84 (inline)
-	virtual void outWaterCallback();            // _88 (inline)
+	virtual void inWaterCallback(WaterBox*);    // _84 (weak)
+	virtual void outWaterCallback();            // _88 (weak)
 	virtual void collisionCallback(CollEvent&); // _EC
 	virtual void getShadowParam(ShadowParam&);  // _134
 	virtual bool needShadow();                  // _138
 
-	virtual ~Obj();                                           // _1BC (inline)
+	virtual ~Obj();                                           // _1BC (weak)
 	virtual void setInitialSetting(EnemyInitialParamBase*);   // _1C4
 	virtual void doUpdate();                                  // _1CC
 	virtual void doUpdateCommon();                            // _1D0
 	virtual void doAnimationCullingOff();                     // _1DC
 	virtual void doDebugDraw(Graphics&);                      // _1EC
-	virtual EnemyTypeID::EEnemyTypeID getEnemyTypeID();       // _258 (inline)
+	virtual EnemyTypeID::EEnemyTypeID getEnemyTypeID();       // _258 (weak)
 	virtual void getThrowupItemPosition(Vector3<float>*);     // _268
 	virtual void getThrowupItemVelocity(Vector3<float>*);     // _26C
-	virtual void throwupItemInDeathProcedure();               // _270 (inline)
+	virtual void throwupItemInDeathProcedure();               // _270 (weak)
 	virtual bool damageCallBack(Creature*, float, CollPart*); // _278
 	virtual void doStartStoneState();                         // _2A4
 	virtual void doFinishStoneState();                        // _2A8
-	virtual float getDamageCoeStoneState();                   // _2AC (inline)
+	virtual float getDamageCoeStoneState();                   // _2AC (weak)
 	virtual void doStartMovie();                              // _2F0
 	virtual void doEndMovie();                                // _2F4
 	virtual void setFSM(FSM*);                                // _2F8
@@ -160,7 +160,7 @@ struct Mgr : public EnemyMgrBase {
 	virtual SysShape::Model* createModel(); // _B0
 	virtual void loadModelData();           // _C8
 	virtual void loadTexData();             // _D0
-	virtual void doLoadBmd(void*);          // _D4 (inline)
+	virtual void doLoadBmd(void*);          // _D4 (weak)
 
 	Mgr(int, unsigned char);
 };

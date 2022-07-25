@@ -31,10 +31,10 @@ struct BirthTypeDropState {
 	virtual void _1C() = 0;                     // _1C
 	virtual void _20() = 0;                     // _20
 	virtual void update(EnemyBase*);            // _24
-	virtual void entry(EnemyBase*);             // _28 (inline)
-	virtual void simulation(EnemyBase*, float); // _2C (inline)
+	virtual void entry(EnemyBase*);             // _28 (weak)
+	virtual void simulation(EnemyBase*, float); // _2C (weak)
 	virtual void _30() = 0;                     // _30
-	virtual void animation(EnemyBase*);         // _34 (inline)
+	virtual void animation(EnemyBase*);         // _34 (weak)
 };
 } // namespace EnemyBaseFSM
 } // namespace Game
@@ -42,12 +42,12 @@ struct BirthTypeDropState {
 namespace Game {
 struct EnemyFSMState {
 	virtual void _08() = 0;                           // _08
-	virtual void exec(EnemyBase*);                    // _0C (inline)
+	virtual void exec(EnemyBase*);                    // _0C (weak)
 	virtual void _10() = 0;                           // _10
-	virtual void resume(EnemyBase*);                  // _14 (inline)
-	virtual void restart(EnemyBase*);                 // _18 (inline)
+	virtual void resume(EnemyBase*);                  // _14 (weak)
+	virtual void restart(EnemyBase*);                 // _18 (weak)
 	virtual void transit(EnemyBase*, int, StateArg*); // _1C
-	virtual void doDirectDraw(EnemyBase*, Graphics&); // _20 (inline)
+	virtual void doDirectDraw(EnemyBase*, Graphics&); // _20 (weak)
 };
 } // namespace Game
 
@@ -64,7 +64,7 @@ struct State {
 	virtual void _24() = 0;                                   // _24
 	virtual void _28() = 0;                                   // _28
 	virtual void _2C() = 0;                                   // _2C
-	virtual void bounceProcedure(EnemyBase*, Sys::Triangle*); // _30 (inline)
+	virtual void bounceProcedure(EnemyBase*, Sys::Triangle*); // _30 (weak)
 };
 } // namespace EnemyBaseFSM
 } // namespace Game

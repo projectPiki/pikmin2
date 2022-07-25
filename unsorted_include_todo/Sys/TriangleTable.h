@@ -24,7 +24,7 @@
 */
 
 struct CNode {
-	virtual ~CNode();             // _08 (inline)
+	virtual ~CNode();             // _08 (weak)
 	virtual void getChildCount(); // _0C
 };
 
@@ -32,30 +32,30 @@ namespace Container < Sys
 {
 	struct Triangle >
 	{
-		virtual ~Triangle > ();                       // _08 (inline)
+		virtual ~Triangle > ();                       // _08 (weak)
 		virtual void _0C() = 0;                       // _0C
-		virtual void getObject(void*);                // _10 (inline)
-		virtual void getNext(void*);                  // _14 (inline)
-		virtual void getStart();                      // _18 (inline)
-		virtual void getEnd();                        // _1C (inline)
-		virtual void get(void*);                      // _20 (inline)
-		virtual void getAt(int);                      // _24 (inline)
-		virtual void getTo();                         // _28 (inline)
-		virtual void writeObject(Stream&, Triangle&); // _2C (inline)
-		virtual void readObject(Stream&, Triangle&);  // _30 (inline)
-		virtual void write(Stream&);                  // _34 (inline)
-		virtual void read(Stream&);                   // _38 (inline)
-		virtual void alloc(int);                      // _3C (inline)
-		virtual void addOne(Sys::Triangle&);          // _40 (inline)
-		virtual void setArray(Sys::Triangle*, int);   // _44 (inline)
+		virtual void getObject(void*);                // _10 (weak)
+		virtual void getNext(void*);                  // _14 (weak)
+		virtual void getStart();                      // _18 (weak)
+		virtual void getEnd();                        // _1C (weak)
+		virtual void get(void*);                      // _20 (weak)
+		virtual void getAt(int);                      // _24 (weak)
+		virtual void getTo();                         // _28 (weak)
+		virtual void writeObject(Stream&, Triangle&); // _2C (weak)
+		virtual void readObject(Stream&, Triangle&);  // _30 (weak)
+		virtual void write(Stream&);                  // _34 (weak)
+		virtual void read(Stream&);                   // _38 (weak)
+		virtual void alloc(int);                      // _3C (weak)
+		virtual void addOne(Sys::Triangle&);          // _40 (weak)
+		virtual void setArray(Sys::Triangle*, int);   // _44 (weak)
 	};
 } // namespace Sys
 
 namespace Sys {
 struct TriangleTable : public CNode, public Triangle > {
-	virtual ~TriangleTable();                     // _08 (inline)
-	virtual void writeObject(Stream&, Triangle&); // _2C (inline)
-	virtual void readObject(Stream&, Triangle&);  // _30 (inline)
+	virtual ~TriangleTable();                     // _08 (weak)
+	virtual void writeObject(Stream&, Triangle&); // _2C (weak)
+	virtual void readObject(Stream&, Triangle&);  // _30 (weak)
 
 	void createTriangleSphere(Sys::VertexTable&);
 	TriangleTable();

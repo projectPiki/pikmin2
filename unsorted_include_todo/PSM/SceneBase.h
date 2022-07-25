@@ -28,8 +28,8 @@
 
 namespace PSSystem {
 struct Scene {
-	virtual void init();                      // _08 (inline)
-	virtual ~Scene();                         // _0C (inline)
+	virtual void init();                      // _08 (weak)
+	virtual ~Scene();                         // _0C (weak)
 	virtual void scene1st(TaskChecker*);      // _10
 	virtual void scene1stLoadSync();          // _14
 	virtual void exec();                      // _18
@@ -41,14 +41,14 @@ struct Scene {
 
 namespace PSM {
 struct SceneBase : public Scene {
-	virtual ~SceneBase();                                  // _0C (inline)
+	virtual ~SceneBase();                                  // _0C (weak)
 	virtual void _28() = 0;                                // _28
-	virtual void getEnvSe();                               // _2C (inline)
+	virtual void getEnvSe();                               // _2C (weak)
 	virtual void getSceneFx();                             // _30
-	virtual void isDemoScene();                            // _34 (inline)
-	virtual void getSeSceneGate(ObjBase*, unsigned long);  // _38 (inline)
+	virtual void isDemoScene();                            // _34 (weak)
+	virtual void getSeSceneGate(ObjBase*, unsigned long);  // _38 (weak)
 	virtual void becomeSceneCamera();                      // _3C
-	virtual void isGameScene();                            // _40 (inline)
+	virtual void isGameScene();                            // _40 (weak)
 	virtual void pauseOn_2D(unsigned char, unsigned char); // _44
 	virtual void pauseOff_2D();                            // _48
 	virtual void pauseOn_Demo();                           // _4C

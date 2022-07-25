@@ -10,7 +10,7 @@
 */
 
 struct CNode {
-	virtual ~CNode();             // _08 (inline)
+	virtual ~CNode();             // _08 (weak)
 	virtual void getChildCount(); // _0C
 };
 
@@ -18,7 +18,7 @@ namespace ebi {
 namespace title {
 namespace Pikmin {
 struct TBoidParamMgr : public CNode {
-	virtual ~TBoidParamMgr(); // _08 (inline)
+	virtual ~TBoidParamMgr(); // _08 (weak)
 };
 } // namespace Pikmin
 } // namespace title

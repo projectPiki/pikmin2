@@ -10,7 +10,7 @@
 
 namespace efx {
 struct ArgKchYodare {
-	virtual void getName(); // _08 (inline)
+	virtual void getName(); // _08 (weak)
 };
 } // namespace efx
 

@@ -14,17 +14,17 @@
 
 namespace PSSystem {
 struct SeqTrackRoot {
-	virtual void update();        // _08 (inline)
+	virtual void update();        // _08 (weak)
 	virtual void init(JASTrack*); // _0C
 	virtual void onStopSeq();     // _10
-	virtual void beatUpdate();    // _14 (inline)
-	virtual void onBeatTop();     // _18 (inline)
+	virtual void beatUpdate();    // _14 (weak)
+	virtual void onBeatTop();     // _18 (weak)
 };
 } // namespace PSSystem
 
 namespace PSAutoBgm {
 struct AutoBgmSeqTrackRoot : public SeqTrackRoot {
-	virtual void beatUpdate(); // _14 (inline)
+	virtual void beatUpdate(); // _14 (weak)
 };
 } // namespace PSAutoBgm
 

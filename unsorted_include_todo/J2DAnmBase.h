@@ -10,8 +10,8 @@
 */
 
 struct J2DAnmBase {
-	virtual ~J2DAnmBase();                           // _08 (inline)
-	virtual void searchUpdateMaterialID(J2DScreen*); // _0C (inline)
+	virtual ~J2DAnmBase();                           // _08 (weak)
+	virtual void searchUpdateMaterialID(J2DScreen*); // _0C (weak)
 };
 
 #endif

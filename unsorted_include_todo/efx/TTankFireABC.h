@@ -15,10 +15,10 @@
 namespace efx {
 struct TTankFireABC {
 	virtual void create(Arg*);       // _08
-	virtual void forceKill();        // _0C (inline)
-	virtual void fade();             // _10 (inline)
-	virtual void startDemoDrawOff(); // _14 (inline)
-	virtual void endDemoDrawOn();    // _18 (inline)
+	virtual void forceKill();        // _0C (weak)
+	virtual void fade();             // _10 (weak)
+	virtual void startDemoDrawOff(); // _14 (weak)
+	virtual void endDemoDrawOn();    // _18 (weak)
 };
 } // namespace efx
 

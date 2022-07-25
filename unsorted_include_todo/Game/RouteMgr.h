@@ -30,13 +30,13 @@ namespace Container < Game
 	{
 		virtual ~WayPoint > ();        // _08
 		virtual void _0C() = 0;        // _0C
-		virtual void getObject(void*); // _10 (inline)
+		virtual void getObject(void*); // _10 (weak)
 		virtual void _14() = 0;        // _14
 		virtual void _18() = 0;        // _18
 		virtual void _1C() = 0;        // _1C
 		virtual void _20() = 0;        // _20
-		virtual void getAt(int);       // _24 (inline)
-		virtual void getTo();          // _28 (inline)
+		virtual void getAt(int);       // _24 (weak)
+		virtual void getTo();          // _28 (weak)
 	};
 } // namespace Game
 

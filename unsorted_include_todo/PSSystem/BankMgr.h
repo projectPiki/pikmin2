@@ -10,7 +10,7 @@
 
 namespace PSSystem {
 struct BankMgr {
-	virtual ~BankMgr(); // _08 (inline)
+	virtual ~BankMgr(); // _08 (weak)
 
 	void createInstance();
 	BankMgr();

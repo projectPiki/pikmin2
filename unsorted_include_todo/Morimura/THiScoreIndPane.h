@@ -12,13 +12,13 @@
 */
 
 struct CNode {
-	virtual ~CNode();             // _08 (inline)
+	virtual ~CNode();             // _08 (weak)
 	virtual void getChildCount(); // _0C
 };
 
 namespace Morimura {
 struct THiScoreIndPane : public CNode {
-	virtual ~THiScoreIndPane(); // _08 (inline)
+	virtual ~THiScoreIndPane(); // _08 (weak)
 	virtual void draw();        // _10
 	virtual void _14() = 0;     // _14
 };

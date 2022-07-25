@@ -28,14 +28,14 @@ namespace FSMState < Game
 		virtual void init(Item*, StateArg*);                                   // _08
 		virtual void exec(Item*);                                              // _0C
 		virtual void cleanup(Item*);                                           // _10
-		virtual void FSMState < resume(Item*);                                 // _14 (inline)
-		virtual void FSMState < restart(Item*);                                // _18 (inline)
-		virtual void FSMState < transit(Item*, int, StateArg*);                // _1C (inline)
+		virtual void FSMState < resume(Item*);                                 // _14 (weak)
+		virtual void FSMState < restart(Item*);                                // _18 (weak)
+		virtual void FSMState < transit(Item*, int, StateArg*);                // _1C (weak)
 		virtual void _20() = 0;                                                // _20
-		virtual void ItemState < onKeyEvent(Item*, const SysShape::KeyEvent&); // _24 (inline)
-		virtual void ItemState < onBounce(Item*, Sys::Triangle*);              // _28 (inline)
-		virtual void ItemState < onPlatCollision(Item*, PlatEvent&);           // _2C (inline)
-		virtual void ItemState < onCollision(Item*, CollEvent&);               // _30 (inline)
+		virtual void ItemState < onKeyEvent(Item*, const SysShape::KeyEvent&); // _24 (weak)
+		virtual void ItemState < onBounce(Item*, Sys::Triangle*);              // _28 (weak)
+		virtual void ItemState < onPlatCollision(Item*, PlatEvent&);           // _2C (weak)
+		virtual void ItemState < onCollision(Item*, CollEvent&);               // _30 (weak)
 	};
 	} // namespace ItemBigFountain
 } // namespace Game
@@ -50,7 +50,7 @@ struct State {
 	virtual void _14() = 0;              // _14
 	virtual void _18() = 0;              // _18
 	virtual void _1C() = 0;              // _1C
-	virtual void onDamage(Item*, float); // _20 (inline)
+	virtual void onDamage(Item*, float); // _20 (weak)
 };
 } // namespace ItemBigFountain
 } // namespace Game
@@ -61,7 +61,7 @@ struct OutState : public Item >, public State {
 	virtual void init(Item*, StateArg*); // _08
 	virtual void exec(Item*);            // _0C
 	virtual void cleanup(Item*);         // _10
-	virtual void canRide();              // _34 (inline)
+	virtual void canRide();              // _34 (weak)
 };
 } // namespace ItemBigFountain
 } // namespace Game

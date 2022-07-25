@@ -31,9 +31,9 @@ namespace FSMState < Game
 		virtual void Singleinit(SingleGameSection*, StateArg*);              // _08
 		virtual void Singleexec(SingleGameSection*);                         // _0C
 		virtual void Singlecleanup(SingleGameSection*);                      // _10
-		virtual void FSMState < resume(SingleGameSection*);                  // _14 (inline)
-		virtual void FSMState < restart(SingleGameSection*);                 // _18 (inline)
-		virtual void FSMState < transit(SingleGameSection*, int, StateArg*); // _1C (inline)
+		virtual void FSMState < resume(SingleGameSection*);                  // _14 (weak)
+		virtual void FSMState < restart(SingleGameSection*);                 // _18 (weak)
+		virtual void FSMState < transit(SingleGameSection*, int, StateArg*); // _1C (weak)
 	};
 } // namespace Game
 } // namespace Game
@@ -48,15 +48,15 @@ struct State {
 	virtual void _18() = 0;                                                                          // _18
 	virtual void _1C() = 0;                                                                          // _1C
 	virtual void Singledraw(SingleGameSection*, Graphics&);                                          // _20
-	virtual void SingleonOrimaDown(SingleGameSection*, int);                                         // _24 (inline)
-	virtual void SingleonMovieStart(SingleGameSection*, MovieConfig*, unsigned long, unsigned long); // _28 (inline)
-	virtual void SingleonMovieDone(SingleGameSection*, MovieConfig*, unsigned long, unsigned long);  // _2C (inline)
-	virtual void SingleonMovieCommand(SingleGameSection*, int);                                      // _30 (inline)
-	virtual void SingleonHoleIn(SingleGameSection*, ItemCave::Item*);                                // _34 (inline)
-	virtual void SingleonNextFloor(SingleGameSection*, ItemHole::Item*);                             // _38 (inline)
-	virtual void SingleonFountainReturn(SingleGameSection*, ItemBigFountain::Item*);                 // _3C (inline)
-	virtual void Singleon_section_fadeout(SingleGameSection*);                                       // _40 (inline)
-	virtual void Singleon_demo_timer(SingleGameSection*, unsigned long);                             // _44 (inline)
+	virtual void SingleonOrimaDown(SingleGameSection*, int);                                         // _24 (weak)
+	virtual void SingleonMovieStart(SingleGameSection*, MovieConfig*, unsigned long, unsigned long); // _28 (weak)
+	virtual void SingleonMovieDone(SingleGameSection*, MovieConfig*, unsigned long, unsigned long);  // _2C (weak)
+	virtual void SingleonMovieCommand(SingleGameSection*, int);                                      // _30 (weak)
+	virtual void SingleonHoleIn(SingleGameSection*, ItemCave::Item*);                                // _34 (weak)
+	virtual void SingleonNextFloor(SingleGameSection*, ItemHole::Item*);                             // _38 (weak)
+	virtual void SingleonFountainReturn(SingleGameSection*, ItemBigFountain::Item*);                 // _3C (weak)
+	virtual void Singleon_section_fadeout(SingleGameSection*);                                       // _40 (weak)
+	virtual void Singleon_demo_timer(SingleGameSection*, unsigned long);                             // _44 (weak)
 };
 } // namespace SingleGame
 } // namespace Game

@@ -9,7 +9,7 @@
 */
 
 struct WPFindCond {
-	virtual void satisfy(Game::WayPoint*); // _08 (inline)
+	virtual void satisfy(Game::WayPoint*); // _08 (weak)
 };
 
 #endif

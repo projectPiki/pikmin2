@@ -29,8 +29,8 @@
 
 namespace PSSystem {
 struct Scene {
-	virtual void init();                      // _08 (inline)
-	virtual ~Scene();                         // _0C (inline)
+	virtual void init();                      // _08 (weak)
+	virtual ~Scene();                         // _0C (weak)
 	virtual void scene1st(TaskChecker*);      // _10
 	virtual void scene1stLoadSync();          // _14
 	virtual void _18() = 0;                   // _18
@@ -43,7 +43,7 @@ struct Scene {
 namespace PSM {
 struct Scene_Objects {
 	virtual void _08() = 0;                               // _08
-	virtual ~Scene_Objects();                             // _0C (inline)
+	virtual ~Scene_Objects();                             // _0C (weak)
 	virtual void _10() = 0;                               // _10
 	virtual void _14() = 0;                               // _14
 	virtual void exec();                                  // _18
@@ -68,7 +68,7 @@ struct Scene_Objects {
 namespace PSM {
 struct SceneBase {
 	virtual void _08() = 0;                                // _08
-	virtual ~SceneBase();                                  // _0C (inline)
+	virtual ~SceneBase();                                  // _0C (weak)
 	virtual void _10() = 0;                                // _10
 	virtual void _14() = 0;                                // _14
 	virtual void _18() = 0;                                // _18
@@ -76,12 +76,12 @@ struct SceneBase {
 	virtual void _20() = 0;                                // _20
 	virtual void _24() = 0;                                // _24
 	virtual void getCamDistVol(unsigned char);             // _28
-	virtual void getEnvSe();                               // _2C (inline)
+	virtual void getEnvSe();                               // _2C (weak)
 	virtual void getSceneFx();                             // _30
-	virtual void isDemoScene();                            // _34 (inline)
+	virtual void isDemoScene();                            // _34 (weak)
 	virtual void getSeSceneGate(ObjBase*, unsigned long);  // _38
 	virtual void becomeSceneCamera();                      // _3C
-	virtual void isGameScene();                            // _40 (inline)
+	virtual void isGameScene();                            // _40 (weak)
 	virtual void pauseOn_2D(unsigned char, unsigned char); // _44
 	virtual void pauseOff_2D();                            // _48
 	virtual void pauseOn_Demo();                           // _4C
@@ -91,7 +91,7 @@ struct SceneBase {
 
 namespace PSM {
 struct Scene_Zukan : public Scene, public Scene_Objects, public SceneBase {
-	virtual ~Scene_Zukan();                               // _0C (inline)
+	virtual ~Scene_Zukan();                               // _0C (weak)
 	virtual void getCamDistVol(unsigned char);            // _28
 	virtual void getSeSceneGate(ObjBase*, unsigned long); // _38
 };

@@ -26,18 +26,18 @@
 
 namespace PikiAI {
 struct Action {
-	virtual void init(ActionArg*);                                 // _08 (inline)
-	virtual void exec();                                           // _0C (inline)
-	virtual void cleanup();                                        // _10 (inline)
-	virtual void emotion_success();                                // _14 (inline)
-	virtual void emotion_fail();                                   // _18 (inline)
-	virtual void applicable();                                     // _1C (inline)
-	virtual void getNextAIType();                                  // _20 (inline)
-	virtual void bounceCallback(Game::Piki*, Sys::Triangle*);      // _24 (inline)
-	virtual void collisionCallback(Game::Piki*, Game::CollEvent&); // _28 (inline)
-	virtual void platCallback(Game::Piki*, Game::PlatEvent&);      // _2C (inline)
-	virtual void doDirectDraw(Graphics&);                          // _30 (inline)
-	virtual void wallCallback(Vector3<float>&);                    // _34 (inline)
+	virtual void init(ActionArg*);                                 // _08 (weak)
+	virtual void exec();                                           // _0C (weak)
+	virtual void cleanup();                                        // _10 (weak)
+	virtual void emotion_success();                                // _14 (weak)
+	virtual void emotion_fail();                                   // _18 (weak)
+	virtual void applicable();                                     // _1C (weak)
+	virtual void getNextAIType();                                  // _20 (weak)
+	virtual void bounceCallback(Game::Piki*, Sys::Triangle*);      // _24 (weak)
+	virtual void collisionCallback(Game::Piki*, Game::CollEvent&); // _28 (weak)
+	virtual void platCallback(Game::Piki*, Game::PlatEvent&);      // _2C (weak)
+	virtual void doDirectDraw(Graphics&);                          // _30 (weak)
+	virtual void wallCallback(Vector3<float>&);                    // _34 (weak)
 	virtual void getInfo(char*);                                   // _38
 };
 } // namespace PikiAI

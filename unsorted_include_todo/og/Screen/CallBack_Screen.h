@@ -13,24 +13,24 @@
 */
 
 struct CNode {
-	virtual ~CNode();             // _08 (inline)
+	virtual ~CNode();             // _08 (weak)
 	virtual void getChildCount(); // _0C
 };
 
 namespace P2DScreen {
 struct Node {
-	virtual ~Node();                                        // _08 (inline)
+	virtual ~Node();                                        // _08 (weak)
 	virtual void _0C() = 0;                                 // _0C
 	virtual void CallBack_update();                         // _10
 	virtual void CallBack_draw(Graphics&, J2DGrafContext&); // _14
-	virtual void doInit();                                  // _18 (inline)
+	virtual void doInit();                                  // _18 (weak)
 };
 } // namespace P2DScreen
 
 namespace og {
 namespace Screen {
 struct CallBack_Screen : public CNode, public Node {
-	virtual CallBack_ ~CallBack_Screen();                   // _08 (inline)
+	virtual CallBack_ ~CallBack_Screen();                   // _08 (weak)
 	virtual void CallBack_update();                         // _10
 	virtual void CallBack_draw(Graphics&, J2DGrafContext&); // _14
 

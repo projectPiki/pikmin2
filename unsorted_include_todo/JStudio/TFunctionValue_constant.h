@@ -15,7 +15,7 @@
 
 namespace JStudio {
 struct TFunctionValue_constant {
-	virtual ~TFunctionValue_constant(); // _08 (inline)
+	virtual ~TFunctionValue_constant(); // _08 (weak)
 	virtual void getType() const;       // _0C
 	virtual void getAttributeSet();     // _10
 	virtual void initialize();          // _14

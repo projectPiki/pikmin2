@@ -10,12 +10,12 @@
 */
 
 struct JKRThread {
-	virtual ~JKRThread(); // _08 (inline)
-	virtual void run();   // _0C (inline)
+	virtual ~JKRThread(); // _08 (weak)
+	virtual void run();   // _0C (weak)
 };
 
 struct AppThread : public JKRThread {
-	virtual ~AppThread(); // _08 (inline)
+	virtual ~AppThread(); // _08 (weak)
 };
 
 #endif

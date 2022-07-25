@@ -14,7 +14,7 @@
 namespace Sys {
 struct MatTevRegAnimation {
 	virtual void onAttachResource(void*); // _08
-	virtual void getAnmBase();            // _0C (inline)
+	virtual void getAnmBase();            // _0C (weak)
 	virtual void set();                   // _10
 	virtual void remove();                // _14
 

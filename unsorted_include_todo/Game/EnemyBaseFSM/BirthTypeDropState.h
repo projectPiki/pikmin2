@@ -23,12 +23,12 @@
 namespace Game {
 struct EnemyFSMState {
 	virtual void init(EnemyBase*, StateArg*);         // _08
-	virtual void exec(EnemyBase*);                    // _0C (inline)
+	virtual void exec(EnemyBase*);                    // _0C (weak)
 	virtual void cleanup(EnemyBase*);                 // _10
-	virtual void resume(EnemyBase*);                  // _14 (inline)
-	virtual void restart(EnemyBase*);                 // _18 (inline)
+	virtual void resume(EnemyBase*);                  // _14 (weak)
+	virtual void restart(EnemyBase*);                 // _18 (weak)
 	virtual void transit(EnemyBase*, int, StateArg*); // _1C
-	virtual void doDirectDraw(EnemyBase*, Graphics&); // _20 (inline)
+	virtual void doDirectDraw(EnemyBase*, Graphics&); // _20 (weak)
 };
 } // namespace Game
 
@@ -43,9 +43,9 @@ struct State {
 	virtual void _1C() = 0;                                   // _1C
 	virtual void _20() = 0;                                   // _20
 	virtual void update(EnemyBase*);                          // _24
-	virtual void entry(EnemyBase*);                           // _28 (inline)
-	virtual void simulation(EnemyBase*, float);               // _2C (inline)
-	virtual void bounceProcedure(EnemyBase*, Sys::Triangle*); // _30 (inline)
+	virtual void entry(EnemyBase*);                           // _28 (weak)
+	virtual void simulation(EnemyBase*, float);               // _2C (weak)
+	virtual void bounceProcedure(EnemyBase*, Sys::Triangle*); // _30 (weak)
 };
 } // namespace EnemyBaseFSM
 } // namespace Game
@@ -56,9 +56,9 @@ struct BirthTypeDropState : public EnemyFSMState, public State {
 	virtual void init(EnemyBase*, StateArg*);                  // _08
 	virtual void cleanup(EnemyBase*);                          // _10
 	virtual void update(EnemyBase*);                           // _24
-	virtual void entry(EnemyBase*);                            // _28 (inline)
-	virtual void simulation(EnemyBase*, float);                // _2C (inline)
-	virtual void animation(EnemyBase*);                        // _34 (inline)
+	virtual void entry(EnemyBase*);                            // _28 (weak)
+	virtual void simulation(EnemyBase*, float);                // _2C (weak)
+	virtual void animation(EnemyBase*);                        // _34 (weak)
 	virtual void isFinishableWaitingBirthTypeDrop(EnemyBase*); // _38
 };
 } // namespace EnemyBaseFSM

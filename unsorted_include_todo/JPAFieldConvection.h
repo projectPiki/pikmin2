@@ -11,7 +11,7 @@
 */
 
 struct JPAFieldConvection {
-	virtual ~JPAFieldConvection();                                            // _08 (inline)
+	virtual ~JPAFieldConvection();                                            // _08 (weak)
 	virtual void prepare(JPAEmitterWorkData*, JPAFieldBlock*);                // _0C
 	virtual void calc(JPAEmitterWorkData*, JPAFieldBlock*, JPABaseParticle*); // _10
 };

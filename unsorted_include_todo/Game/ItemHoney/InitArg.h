@@ -11,7 +11,7 @@
 namespace Game {
 namespace ItemHoney {
 struct InitArg {
-	virtual void getName(); // _08 (inline)
+	virtual void getName(); // _08 (weak)
 };
 } // namespace ItemHoney
 } // namespace Game

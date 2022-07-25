@@ -13,7 +13,7 @@
 namespace PSAutoBgm {
 struct OnCycle {
 	virtual void play(JASTrack*); // _08
-	virtual void getCycleType();  // _0C (inline)
+	virtual void getCycleType();  // _0C (weak)
 	virtual void avoidCheck();    // _10
 
 	OnCycle(PSAutoBgm::Module*);

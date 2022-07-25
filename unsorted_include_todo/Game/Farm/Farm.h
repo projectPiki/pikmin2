@@ -10,14 +10,14 @@
 */
 
 struct CNode {
-	virtual ~CNode();             // _08 (inline)
+	virtual ~CNode();             // _08 (weak)
 	virtual void getChildCount(); // _0C
 };
 
 namespace Game {
 namespace Farm {
 struct Farm : public CNode {
-	virtual ~Farm(); // _08 (inline)
+	virtual ~Farm(); // _08 (weak)
 
 	Farm();
 	void loadResource(unsigned long, void*);

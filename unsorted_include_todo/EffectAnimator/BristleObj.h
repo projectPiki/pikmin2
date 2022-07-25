@@ -11,14 +11,14 @@
 */
 
 struct CNode {
-	virtual ~CNode();             // _08 (inline)
+	virtual ~CNode();             // _08 (weak)
 	virtual void getChildCount(); // _0C
 };
 
 namespace EffectAnimator {
 struct BristleObj : public CNode {
-	virtual ~BristleObj();                           // _08 (inline)
-	virtual void update(efx::TKechappyTest*, float); // _10 (inline)
+	virtual ~BristleObj();                           // _08 (weak)
+	virtual void update(efx::TKechappyTest*, float); // _10 (weak)
 };
 } // namespace EffectAnimator
 

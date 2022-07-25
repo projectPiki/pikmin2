@@ -14,34 +14,34 @@
 */
 
 struct CNode {
-	virtual ~CNode();             // _08 (inline)
+	virtual ~CNode();             // _08 (weak)
 	virtual void getChildCount(); // _0C
 };
 
 namespace kh {
 namespace Screen {
 struct khUtilColorAnm {
-	virtual ~khUtilColorAnm(); // _08 (inline)
+	virtual ~khUtilColorAnm(); // _08 (weak)
 	virtual void _0C() = 0;    // _0C
-	virtual void update();     // _10 (inline)
+	virtual void update();     // _10 (weak)
 };
 } // namespace Screen
 } // namespace kh
 
 namespace P2DScreen {
 struct Node {
-	virtual ~Node();                               // _08 (inline)
+	virtual ~Node();                               // _08 (weak)
 	virtual void _0C() = 0;                        // _0C
 	virtual void _10() = 0;                        // _10
-	virtual void draw(Graphics&, J2DGrafContext&); // _14 (inline)
-	virtual void doInit();                         // _18 (inline)
+	virtual void draw(Graphics&, J2DGrafContext&); // _14 (weak)
+	virtual void doInit();                         // _18 (weak)
 };
 } // namespace P2DScreen
 
 namespace kh {
 namespace Screen {
 struct khUtilColorAnmWM : public CNode, public khUtilColorAnm, public Node {
-	virtual ~khUtilColorAnmWM(); // _08 (inline)
+	virtual ~khUtilColorAnmWM(); // _08 (weak)
 	virtual void do_update();    // _1C
 };
 } // namespace Screen

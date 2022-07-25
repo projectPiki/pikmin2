@@ -26,7 +26,7 @@ struct GenBase {
 	virtual void doWrite(Stream&);           // _08
 	virtual void ramSaveParameters(Stream&); // _0C
 	virtual void ramLoadParameters(Stream&); // _10
-	virtual void doEvent(unsigned long);     // _14 (inline)
+	virtual void doEvent(unsigned long);     // _14 (weak)
 };
 } // namespace Game
 
@@ -37,15 +37,15 @@ struct GenObject {
 	virtual void ramLoadParameters(Stream&);                     // _10
 	virtual void _14() = 0;                                      // _14
 	virtual void doRead(Stream&);                                // _18
-	virtual void update(Generator*);                             // _1C (inline)
+	virtual void update(Generator*);                             // _1C (weak)
 	virtual void render(Graphics&, Generator*);                  // _20
 	virtual void getLatestVersion();                             // _24
 	virtual void getShape();                                     // _28
 	virtual void updateUseList(Generator*, int);                 // _2C
 	virtual void generate(Generator*);                           // _30
 	virtual void birth(GenArg*);                                 // _34
-	virtual void generatorMakeMatrix(Matrixf&, Vector3<float>&); // _38 (inline)
-	virtual void getDebugInfo(char*);                            // _3C (inline)
+	virtual void generatorMakeMatrix(Matrixf&, Vector3<float>&); // _38 (weak)
+	virtual void getDebugInfo(char*);                            // _3C (weak)
 };
 } // namespace Game
 

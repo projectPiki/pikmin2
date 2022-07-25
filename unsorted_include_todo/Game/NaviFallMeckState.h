@@ -32,9 +32,9 @@ namespace FSMState < Game
 		virtual void init(Navi*, StateArg*);                    // _08
 		virtual void exec(Navi*);                               // _0C
 		virtual void cleanup(Navi*);                            // _10
-		virtual void FSMState < resume(Navi*);                  // _14 (inline)
-		virtual void FSMState < restart(Navi*);                 // _18 (inline)
-		virtual void FSMState < transit(Navi*, int, StateArg*); // _1C (inline)
+		virtual void FSMState < resume(Navi*);                  // _14 (weak)
+		virtual void FSMState < restart(Navi*);                 // _18 (weak)
+		virtual void FSMState < transit(Navi*, int, StateArg*); // _1C (weak)
 	};
 } // namespace Game
 } // namespace Game
@@ -47,16 +47,16 @@ struct NaviState {
 	virtual void _14() = 0;                                    // _14
 	virtual void _18() = 0;                                    // _18
 	virtual void _1C() = 0;                                    // _1C
-	virtual void invincible();                                 // _20 (inline)
+	virtual void invincible();                                 // _20 (weak)
 	virtual void onKeyEvent(Navi*, const SysShape::KeyEvent&); // _24
-	virtual void collisionCallback(Navi*, CollEvent&);         // _28 (inline)
-	virtual void wallCallback(Navi*, Vector3<float>&);         // _2C (inline)
+	virtual void collisionCallback(Navi*, CollEvent&);         // _28 (weak)
+	virtual void wallCallback(Navi*, Vector3<float>&);         // _2C (weak)
 	virtual void bounceCallback(Navi*, Sys::Triangle*);        // _30
-	virtual void pressable();                                  // _34 (inline)
-	virtual void callable();                                   // _38 (inline)
-	virtual void ignoreAtari(Creature*);                       // _3C (inline)
-	virtual void needYChangeMotion();                          // _40 (inline)
-	virtual void vsUsableY();                                  // _44 (inline)
+	virtual void pressable();                                  // _34 (weak)
+	virtual void callable();                                   // _38 (weak)
+	virtual void ignoreAtari(Creature*);                       // _3C (weak)
+	virtual void needYChangeMotion();                          // _40 (weak)
+	virtual void vsUsableY();                                  // _44 (weak)
 	virtual void draw2d(J2DGrafContext&, int&);                // _48
 };
 } // namespace Game
@@ -68,7 +68,7 @@ struct NaviFallMeckState : public Navi >, public NaviState {
 	virtual void cleanup(Navi*);                               // _10
 	virtual void onKeyEvent(Navi*, const SysShape::KeyEvent&); // _24
 	virtual void bounceCallback(Navi*, Sys::Triangle*);        // _30
-	virtual void pressable();                                  // _34 (inline)
+	virtual void pressable();                                  // _34 (weak)
 };
 } // namespace Game
 

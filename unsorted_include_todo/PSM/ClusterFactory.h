@@ -19,7 +19,7 @@ struct Factory {
 
 namespace PSM {
 struct ClusterFactory : public Factory {
-	virtual void identifyPart(unsigned char); // _0C (inline)
+	virtual void identifyPart(unsigned char); // _0C (weak)
 
 	void partInit(unsigned char);
 };

@@ -49,28 +49,28 @@ struct J3DColorBlockLightOff {
 	virtual void diffMatColor();                                   // _20
 	virtual void diffLight();                                      // _24
 	virtual void countDLSize();                                    // _28
-	virtual void getType();                                        // _2C (inline)
-	virtual void setMatColor(unsigned long, const J3DGXColor*);    // _30 (inline)
-	virtual void setMatColor(unsigned long, J3DGXColor);           // _34 (inline)
-	virtual void getMatColor(unsigned long);                       // _38 (inline)
-	virtual void setAmbColor(unsigned long, const J3DGXColor*);    // _3C (inline)
-	virtual void setAmbColor(unsigned long, J3DGXColor);           // _40 (inline)
-	virtual void getAmbColor(unsigned long);                       // _44 (inline)
-	virtual void setColorChanNum(unsigned char);                   // _48 (inline)
-	virtual void setColorChanNum(const unsigned char*);            // _4C (inline)
-	virtual void getColorChanNum() const;                          // _50 (inline)
-	virtual void setColorChan(unsigned long, const J3DColorChan&); // _54 (inline)
-	virtual void setColorChan(unsigned long, const J3DColorChan*); // _58 (inline)
-	virtual void getColorChan(unsigned long);                      // _5C (inline)
+	virtual void getType();                                        // _2C (weak)
+	virtual void setMatColor(unsigned long, const J3DGXColor*);    // _30 (weak)
+	virtual void setMatColor(unsigned long, J3DGXColor);           // _34 (weak)
+	virtual void getMatColor(unsigned long);                       // _38 (weak)
+	virtual void setAmbColor(unsigned long, const J3DGXColor*);    // _3C (weak)
+	virtual void setAmbColor(unsigned long, J3DGXColor);           // _40 (weak)
+	virtual void getAmbColor(unsigned long);                       // _44 (weak)
+	virtual void setColorChanNum(unsigned char);                   // _48 (weak)
+	virtual void setColorChanNum(const unsigned char*);            // _4C (weak)
+	virtual void getColorChanNum() const;                          // _50 (weak)
+	virtual void setColorChan(unsigned long, const J3DColorChan&); // _54 (weak)
+	virtual void setColorChan(unsigned long, const J3DColorChan*); // _58 (weak)
+	virtual void getColorChan(unsigned long);                      // _5C (weak)
 	virtual void _60() = 0;                                        // _60
 	virtual void _64() = 0;                                        // _64
-	virtual void setCullMode(const unsigned char*);                // _68 (inline)
-	virtual void setCullMode(unsigned char);                       // _6C (inline)
-	virtual void getCullMode() const;                              // _70 (inline)
-	virtual void getMatColorOffset() const;                        // _74 (inline)
-	virtual void getColorChanOffset() const;                       // _78 (inline)
-	virtual void setMatColorOffset(unsigned long);                 // _7C (inline)
-	virtual void setColorChanOffset(unsigned long);                // _80 (inline)
+	virtual void setCullMode(const unsigned char*);                // _68 (weak)
+	virtual void setCullMode(unsigned char);                       // _6C (weak)
+	virtual void getCullMode() const;                              // _70 (weak)
+	virtual void getMatColorOffset() const;                        // _74 (weak)
+	virtual void getColorChanOffset() const;                       // _78 (weak)
+	virtual void setMatColorOffset(unsigned long);                 // _7C (weak)
+	virtual void setColorChanOffset(unsigned long);                // _80 (weak)
 };
 
 struct J3DColorBlock {
@@ -83,32 +83,32 @@ struct J3DColorBlock {
 	virtual void _20() = 0;                                     // _20
 	virtual void _24() = 0;                                     // _24
 	virtual void countDLSize();                                 // _28
-	virtual void getType();                                     // _2C (inline)
+	virtual void getType();                                     // _2C (weak)
 	virtual void _30() = 0;                                     // _30
 	virtual void _34() = 0;                                     // _34
 	virtual void _38() = 0;                                     // _38
-	virtual void setAmbColor(unsigned long, const J3DGXColor*); // _3C (inline)
-	virtual void setAmbColor(unsigned long, J3DGXColor);        // _40 (inline)
-	virtual void getAmbColor(unsigned long);                    // _44 (inline)
+	virtual void setAmbColor(unsigned long, const J3DGXColor*); // _3C (weak)
+	virtual void setAmbColor(unsigned long, J3DGXColor);        // _40 (weak)
+	virtual void getAmbColor(unsigned long);                    // _44 (weak)
 	virtual void _48() = 0;                                     // _48
 	virtual void _4C() = 0;                                     // _4C
 	virtual void _50() = 0;                                     // _50
 	virtual void _54() = 0;                                     // _54
 	virtual void _58() = 0;                                     // _58
 	virtual void _5C() = 0;                                     // _5C
-	virtual void setLight(unsigned long, J3DLightObj*);         // _60 (inline)
-	virtual void getLight(unsigned long);                       // _64 (inline)
+	virtual void setLight(unsigned long, J3DLightObj*);         // _60 (weak)
+	virtual void getLight(unsigned long);                       // _64 (weak)
 };
 
 struct J3DColorBlockAmbientOn : public J3DColorBlockLightOff, public J3DColorBlock {
 	virtual void load();                                        // _08
 	virtual void reset(J3DColorBlock*);                         // _0C
 	virtual void countDLSize();                                 // _28
-	virtual void getType();                                     // _2C (inline)
-	virtual void setAmbColor(unsigned long, const J3DGXColor*); // _3C (inline)
-	virtual void setAmbColor(unsigned long, J3DGXColor);        // _40 (inline)
-	virtual void getAmbColor(unsigned long);                    // _44 (inline)
-	virtual ~J3DColorBlockAmbientOn();                          // _84 (inline)
+	virtual void getType();                                     // _2C (weak)
+	virtual void setAmbColor(unsigned long, const J3DGXColor*); // _3C (weak)
+	virtual void setAmbColor(unsigned long, J3DGXColor);        // _40 (weak)
+	virtual void getAmbColor(unsigned long);                    // _44 (weak)
+	virtual ~J3DColorBlockAmbientOn();                          // _84 (weak)
 };
 
 #endif

@@ -10,7 +10,7 @@
 */
 
 struct CNode {
-	virtual ~CNode();             // _08 (inline)
+	virtual ~CNode();             // _08 (weak)
 	virtual void getChildCount(); // _0C
 };
 
@@ -18,7 +18,7 @@ namespace ebi {
 namespace title {
 namespace Chappy {
 struct TMgr : public CNode {
-	virtual ~TMgr(); // _08 (inline)
+	virtual ~TMgr(); // _08 (weak)
 
 	TMgr();
 	void setArchive(JKRArchive*);

@@ -31,9 +31,9 @@ namespace FSMState < Game
 		virtual void Singleinit(SingleGameSection*, StateArg*);              // _08
 		virtual void Singleexec(SingleGameSection*);                         // _0C
 		virtual void Singlecleanup(SingleGameSection*);                      // _10
-		virtual void FSMState < resume(SingleGameSection*);                  // _14 (inline)
-		virtual void FSMState < restart(SingleGameSection*);                 // _18 (inline)
-		virtual void FSMState < transit(SingleGameSection*, int, StateArg*); // _1C (inline)
+		virtual void FSMState < resume(SingleGameSection*);                  // _14 (weak)
+		virtual void FSMState < restart(SingleGameSection*);                 // _18 (weak)
+		virtual void FSMState < transit(SingleGameSection*, int, StateArg*); // _1C (weak)
 	};
 } // namespace Game
 } // namespace Game
@@ -53,8 +53,8 @@ struct State {
 	virtual void SingleonMovieDone(SingleGameSection*, MovieConfig*, unsigned long, unsigned long);  // _2C
 	virtual void SingleonMovieCommand(SingleGameSection*, int);                                      // _30
 	virtual void SingleonHoleIn(SingleGameSection*, ItemCave::Item*);                                // _34
-	virtual void SingleonNextFloor(SingleGameSection*, ItemHole::Item*);                             // _38 (inline)
-	virtual void SingleonFountainReturn(SingleGameSection*, ItemBigFountain::Item*);                 // _3C (inline)
+	virtual void SingleonNextFloor(SingleGameSection*, ItemHole::Item*);                             // _38 (weak)
+	virtual void SingleonFountainReturn(SingleGameSection*, ItemBigFountain::Item*);                 // _3C (weak)
 };
 } // namespace SingleGame
 } // namespace Game

@@ -35,42 +35,42 @@
 */
 
 struct GenericObjectMgr {
-	virtual void doAnimation();           // _08 (inline)
-	virtual void doEntry();               // _0C (inline)
-	virtual void doSetView(int);          // _10 (inline)
-	virtual void doViewCalc();            // _14 (inline)
-	virtual void doSimulation(float);     // _18 (inline)
-	virtual void doDirectDraw(Graphics&); // _1C (inline)
-	virtual void doSimpleDraw(Viewport*); // _20 (inline)
+	virtual void doAnimation();           // _08 (weak)
+	virtual void doEntry();               // _0C (weak)
+	virtual void doSetView(int);          // _10 (weak)
+	virtual void doViewCalc();            // _14 (weak)
+	virtual void doSimulation(float);     // _18 (weak)
+	virtual void doDirectDraw(Graphics&); // _1C (weak)
+	virtual void doSimpleDraw(Viewport*); // _20 (weak)
 	virtual void loadResources();         // _24
-	virtual void resetMgr();              // _28 (inline)
-	virtual void pausable();              // _2C (inline)
-	virtual void frozenable();            // _30 (inline)
-	virtual void getMatrixLoadType();     // _34 (inline)
+	virtual void resetMgr();              // _28 (weak)
+	virtual void pausable();              // _2C (weak)
+	virtual void frozenable();            // _30 (weak)
+	virtual void getMatrixLoadType();     // _34 (weak)
 };
 
 namespace Game {
 struct BaseItemMgr : public GenericObjectMgr {
-	virtual void doAnimation();                                       // _08 (inline)
-	virtual void doEntry();                                           // _0C (inline)
-	virtual void doSetView(int);                                      // _10 (inline)
-	virtual void doViewCalc();                                        // _14 (inline)
-	virtual void doSimulation(float);                                 // _18 (inline)
-	virtual void doDirectDraw(Graphics&);                             // _1C (inline)
+	virtual void doAnimation();                                       // _08 (weak)
+	virtual void doEntry();                                           // _0C (weak)
+	virtual void doSetView(int);                                      // _10 (weak)
+	virtual void doViewCalc();                                        // _14 (weak)
+	virtual void doSimulation(float);                                 // _18 (weak)
+	virtual void doDirectDraw(Graphics&);                             // _1C (weak)
 	virtual void loadResources();                                     // _24
 	virtual void _38() = 0;                                           // _38
-	virtual void killAll();                                           // _3C (inline)
-	virtual void setup(BaseItem*);                                    // _40 (inline)
+	virtual void killAll();                                           // _3C (weak)
+	virtual void setup(BaseItem*);                                    // _40 (weak)
 	virtual void setupSoundViewerAndBas();                            // _44
-	virtual void onLoadResources();                                   // _48 (inline)
-	virtual void loadEverytime();                                     // _4C (inline)
+	virtual void onLoadResources();                                   // _48 (weak)
+	virtual void loadEverytime();                                     // _4C (weak)
 	virtual void updateUseList(GenItemParm*, int);                    // _50
-	virtual void onUpdateUseList(GenItemParm*, int);                  // _54 (inline)
+	virtual void onUpdateUseList(GenItemParm*, int);                  // _54 (weak)
 	virtual void _58() = 0;                                           // _58
 	virtual void _5C() = 0;                                           // _5C
-	virtual void generatorWrite(Stream&, GenItemParm*);               // _60 (inline)
-	virtual void generatorRead(Stream&, GenItemParm*, unsigned long); // _64 (inline)
-	virtual void generatorLocalVersion();                             // _68 (inline)
+	virtual void generatorWrite(Stream&, GenItemParm*);               // _60 (weak)
+	virtual void generatorRead(Stream&, GenItemParm*, unsigned long); // _64 (weak)
+	virtual void generatorLocalVersion();                             // _68 (weak)
 	virtual void generatorGetShape(GenItemParm*);                     // _6C
 	virtual void generatorNewItemParm();                              // _70
 

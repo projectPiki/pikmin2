@@ -18,12 +18,12 @@
 namespace JADUtility {
 struct PrmSetBase {
 	virtual ~PrmSetBase();                              // _08
-	virtual void appendAfter();                         // _0C (inline)
+	virtual void appendAfter();                         // _0C (weak)
 	virtual void _10() = 0;                             // _10
-	virtual void afterRemovingChildButton(PrmSetBase*); // _14 (inline)
-	virtual void afterRemovingThisButton(PrmSetBase*);  // _18 (inline)
-	virtual void getEraseLink();                        // _1C (inline)
-	virtual void afterGetFromFree();                    // _20 (inline)
+	virtual void afterRemovingChildButton(PrmSetBase*); // _14 (weak)
+	virtual void afterRemovingThisButton(PrmSetBase*);  // _18 (weak)
+	virtual void getEraseLink();                        // _1C (weak)
+	virtual void afterGetFromFree();                    // _20 (weak)
 };
 } // namespace JADUtility
 
@@ -34,12 +34,12 @@ namespace PrmSetRc < PSAutoBgm
 	{
 		virtual ~Track > ();                      // _08
 		virtual void _0C() = 0;                   // _0C
-		virtual void load(JSUMemoryInputStream&); // _10 (inline)
+		virtual void load(JSUMemoryInputStream&); // _10 (weak)
 		virtual void _14() = 0;                   // _14
 		virtual void _18() = 0;                   // _18
-		virtual void getEraseLink();              // _1C (inline)
+		virtual void getEraseLink();              // _1C (weak)
 		virtual void _20() = 0;                   // _20
-		virtual void getPrmObjHeap();             // _24 (inline)
+		virtual void getPrmObjHeap();             // _24 (weak)
 	};
 } // namespace PSAutoBgm
 } // namespace JADUtility
@@ -47,7 +47,7 @@ namespace PrmSetRc < PSAutoBgm
 namespace PSAutoBgm {
 struct Conductor : public PrmSetBase, public Track > {
 	virtual ~Conductor();        // _08
-	virtual void getEraseLink(); // _1C (inline)
+	virtual void getEraseLink(); // _1C (weak)
 
 	void removeCallback(unsigned char, void*);
 	void seqCpuSync_AutoBgm(JASTrack*, unsigned short, unsigned long, JASTrack*);

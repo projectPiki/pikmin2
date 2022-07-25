@@ -9,7 +9,7 @@
 */
 
 struct OgDummy {
-	virtual void getPosition(); // _08 (inline)
+	virtual void getPosition(); // _08 (weak)
 };
 
 #endif

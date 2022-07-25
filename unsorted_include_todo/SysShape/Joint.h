@@ -10,13 +10,13 @@
 */
 
 struct CNode {
-	virtual ~CNode();             // _08 (inline)
+	virtual ~CNode();             // _08 (weak)
 	virtual void getChildCount(); // _0C
 };
 
 namespace SysShape {
 struct Joint : public CNode {
-	virtual ~Joint(); // _08 (inline)
+	virtual ~Joint(); // _08 (weak)
 
 	void init(unsigned short, SysShape::Model*, J3DJoint*);
 	void getWorldMatrix();

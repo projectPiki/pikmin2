@@ -9,7 +9,7 @@
 */
 
 struct J3DModelData {
-	virtual ~J3DModelData(); // _08 (inline)
+	virtual ~J3DModelData(); // _08 (weak)
 };
 
 #endif

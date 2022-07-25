@@ -10,14 +10,14 @@
 */
 
 struct CNode {
-	virtual ~CNode();             // _08 (inline)
+	virtual ~CNode();             // _08 (weak)
 	virtual void getChildCount(); // _0C
 };
 
 namespace ebi {
 namespace title {
 struct TTitleFogMgr : public CNode {
-	virtual ~TTitleFogMgr(); // _08 (inline)
+	virtual ~TTitleFogMgr(); // _08 (weak)
 
 	void setGX(Camera&);
 	void loadSettingFile(JKRArchive*, char*);

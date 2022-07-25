@@ -11,7 +11,7 @@
 namespace PSM {
 namespace BossBgmFader {
 struct Mgr {
-	virtual ~Mgr(); // _08 (inline)
+	virtual ~Mgr(); // _08 (weak)
 
 	Mgr();
 	void appendTarget(JSULink<PSM::EnemyBoss>*);

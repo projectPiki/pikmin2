@@ -17,33 +17,33 @@
 
 namespace Game {
 struct EnemyBlendAnimatorBase {
-	virtual ~EnemyBlendAnimatorBase();           // _08 (inline)
+	virtual ~EnemyBlendAnimatorBase();           // _08 (weak)
 	virtual void setAnimMgr(SysShape::AnimMgr*); // _0C
 	virtual void getAnimator();                  // _10
 	virtual void getAnimator(int);               // _14
 	virtual void animate(float);                 // _18
-	virtual void animate(int, float);            // _1C (inline)
+	virtual void animate(int, float);            // _1C (weak)
 	virtual void _20() = 0;                      // _20
-	virtual void getTypeID();                    // _24 (inline)
+	virtual void getTypeID();                    // _24 (weak)
 };
 } // namespace Game
 
 namespace Game {
 struct EnemyAnimatorBase {
-	virtual ~EnemyAnimatorBase();  // _08 (inline)
+	virtual ~EnemyAnimatorBase();  // _08 (weak)
 	virtual void _0C() = 0;        // _0C
 	virtual void _10() = 0;        // _10
 	virtual void _14() = 0;        // _14
 	virtual void _18() = 0;        // _18
 	virtual void _1C() = 0;        // _1C
-	virtual void resetAnimSpeed(); // _20 (inline)
+	virtual void resetAnimSpeed(); // _20 (weak)
 };
 } // namespace Game
 
 namespace Game {
 namespace Pelplant {
 struct ProperAnimator : public EnemyBlendAnimatorBase, public EnemyAnimatorBase {
-	virtual ~ProperAnimator(); // _08 (inline)
+	virtual ~ProperAnimator(); // _08 (weak)
 };
 } // namespace Pelplant
 } // namespace Game

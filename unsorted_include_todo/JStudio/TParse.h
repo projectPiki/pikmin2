@@ -14,6 +14,7 @@
 */
 
 namespace JStudio {
+namespace stb {
 struct TParse {
 	virtual ~TParse();                                                                // _08
 	virtual void parseHeader_next(const void**, unsigned long*, unsigned long);       // _0C
@@ -21,6 +22,15 @@ struct TParse {
 	virtual void parseHeader(const stb::data::TParse_THeader&, unsigned long);        // _14
 	virtual void parseBlock_block(const stb::data::TParse_TBlock&, unsigned long);    // _18
 	virtual void parseBlock_object(const data::TParse_TBlock_object&, unsigned long); // _1C
+};
+} // namespace stb
+} // namespace JStudio
+
+namespace JStudio {
+struct TParse : public TParse {
+	virtual ~TParse();                                                             // _08
+	virtual void parseHeader(const stb::data::TParse_THeader&, unsigned long);     // _14
+	virtual void parseBlock_block(const stb::data::TParse_TBlock&, unsigned long); // _18
 
 	TParse(JStudio::TControl*);
 	void parseBlock_block_fvb_(const JStudio::stb::data::TParse_TBlock&, unsigned long);

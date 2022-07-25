@@ -24,24 +24,34 @@
 */
 
 namespace P2JME {
-namespace Movie {
 struct TControl {
-	virtual ~TControl();                                         // _08 (inline)
+	virtual ~TControl();                                         // _08 (weak)
 	virtual void reset();                                        // _0C
 	virtual void update();                                       // _10
 	virtual void update(Controller*, Controller*);               // _14
 	virtual void draw(Graphics&);                                // _18
-	virtual void draw(float (*)[4], float (*)[4]);               // _1C (inline)
+	virtual void draw(float (*)[4], float (*)[4]);               // _1C (weak)
 	virtual void setMessageID(unsigned long, unsigned long);     // _20
 	virtual void setMessageID(char*);                            // _24
-	virtual void setMessageID(unsigned long long);               // _28 (inline)
+	virtual void setMessageID(unsigned long long);               // _28 (weak)
 	virtual void setMessageCode(unsigned short, unsigned short); // _2C
 	virtual void setMessageCode(unsigned long);                  // _30
 	virtual void onInit();                                       // _34
-	virtual void createReference();                              // _38 (inline)
-	virtual void createResourceContainer();                      // _3C (inline)
-	virtual void createSequenceProcessor();                      // _40 (inline)
-	virtual void createRenderingProcessor();                     // _44 (inline)
+	virtual void createReference();                              // _38 (weak)
+	virtual void createResourceContainer();                      // _3C (weak)
+	virtual void createSequenceProcessor();                      // _40 (weak)
+	virtual void createRenderingProcessor();                     // _44 (weak)
+};
+} // namespace P2JME
+
+namespace P2JME {
+namespace Movie {
+struct TControl : public TControl {
+	virtual ~TControl();                           // _08 (weak)
+	virtual void reset();                          // _0C
+	virtual void update(Controller*, Controller*); // _14
+	virtual void draw(Graphics&);                  // _18
+	virtual void onInit();                         // _34
 
 	TControl();
 	void setMode(P2JME::Movie::TControl::EModeFlag);

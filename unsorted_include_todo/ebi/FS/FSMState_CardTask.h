@@ -27,12 +27,12 @@ namespace FSMState < ebi
 	namespace FS {
 	struct TMgr >
 	{
-		virtual void init(TMgr*, Game::StateArg*);        // _08 (inline)
+		virtual void init(TMgr*, Game::StateArg*);        // _08 (weak)
 		virtual void exec(TMgr*);                         // _0C
-		virtual void cleanup(ebi::TMgr*);                 // _10 (inline)
-		virtual void resume(ebi::TMgr*);                  // _14 (inline)
-		virtual void restart(ebi::TMgr*);                 // _18 (inline)
-		virtual void transit(ebi::TMgr*, int, StateArg*); // _1C (inline)
+		virtual void cleanup(ebi::TMgr*);                 // _10 (weak)
+		virtual void resume(ebi::TMgr*);                  // _14 (weak)
+		virtual void restart(ebi::TMgr*);                 // _18 (weak)
+		virtual void transit(ebi::TMgr*, int, StateArg*); // _1C (weak)
 	};
 	} // namespace FS
 } // namespace ebi
@@ -41,14 +41,14 @@ namespace FSMState < ebi
 namespace ebi {
 namespace FS {
 struct FSMState {
-	virtual void init(TMgr*, Game::StateArg*);    // _08 (inline)
+	virtual void init(TMgr*, Game::StateArg*);    // _08 (weak)
 	virtual void exec(TMgr*);                     // _0C
 	virtual void _10() = 0;                       // _10
 	virtual void _14() = 0;                       // _14
 	virtual void _18() = 0;                       // _18
 	virtual void _1C() = 0;                       // _1C
-	virtual void do_init(TMgr*, Game::StateArg*); // _20 (inline)
-	virtual void do_exec(TMgr*);                  // _24 (inline)
+	virtual void do_init(TMgr*, Game::StateArg*); // _20 (weak)
+	virtual void do_exec(TMgr*);                  // _24 (weak)
 };
 } // namespace FS
 } // namespace ebi
@@ -56,15 +56,15 @@ struct FSMState {
 namespace ebi {
 namespace FS {
 struct FSMState_CardTask : public TMgr >, public FSMState {
-	virtual void init(TMgr*, Game::StateArg*);          // _08 (inline)
+	virtual void init(TMgr*, Game::StateArg*);          // _08 (weak)
 	virtual void exec(TMgr*);                           // _0C
-	virtual void do_init(TMgr*, Game::StateArg*);       // _20 (inline)
+	virtual void do_init(TMgr*, Game::StateArg*);       // _20 (weak)
 	virtual void _28() = 0;                             // _28
 	virtual void _2C() = 0;                             // _2C
 	virtual void _30() = 0;                             // _30
 	virtual void _34() = 0;                             // _34
 	virtual void do_transitCardPlayerDataBroken(TMgr*); // _38
-	virtual void do_close(TMgr*);                       // _3C (inline)
+	virtual void do_close(TMgr*);                       // _3C (weak)
 };
 } // namespace FS
 } // namespace ebi

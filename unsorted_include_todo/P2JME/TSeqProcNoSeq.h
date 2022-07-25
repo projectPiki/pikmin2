@@ -37,7 +37,7 @@
 
 namespace JMessage {
 struct TProcessor {
-	virtual ~TProcessor();                       // _08 (inline)
+	virtual ~TProcessor();                       // _08 (weak)
 	virtual void do_reset();                     // _0C
 	virtual void _10() = 0;                      // _10
 	virtual void _14() = 0;                      // _14
@@ -50,7 +50,7 @@ struct TProcessor {
 
 namespace P2JME {
 struct TSequenceProcessor {
-	virtual ~TSequenceProcessor();                                              // _08 (inline)
+	virtual ~TSequenceProcessor();                                              // _08 (weak)
 	virtual void _0C() = 0;                                                     // _0C
 	virtual void do_character(int);                                             // _10
 	virtual void do_tag(unsigned long, const void*, unsigned long);             // _14
@@ -66,25 +66,25 @@ struct TSequenceProcessor {
 	virtual void do_systemTagCode_(unsigned short, const void*, unsigned long); // _3C
 	virtual void do_begin(const void*, const char*);                            // _40
 	virtual void do_end();                                                      // _44
-	virtual void do_isReady();                                                  // _48 (inline)
+	virtual void do_isReady();                                                  // _48 (weak)
 	virtual void do_jump_isReady();                                             // _4C
 	virtual void do_jump(const void*, const char*);                             // _50
 	virtual void do_branch_query(unsigned short);                               // _54
 	virtual void do_branch_queryResult();                                       // _58
 	virtual void do_branch(const void*, const char*);                           // _5C
 	virtual void doResetAbtnWaitSE();                                           // _60
-	virtual void doCharacterSEStart();                                          // _64 (inline)
-	virtual void doCharacterSE(int);                                            // _68 (inline)
-	virtual void doCharacterSEEnd();                                            // _6C (inline)
-	virtual void doFastForwardSE();                                             // _70 (inline)
+	virtual void doCharacterSEStart();                                          // _64 (weak)
+	virtual void doCharacterSE(int);                                            // _68 (weak)
+	virtual void doCharacterSEEnd();                                            // _6C (weak)
+	virtual void doFastForwardSE();                                             // _70 (weak)
 	virtual void reset();                                                       // _74
 };
 } // namespace P2JME
 
 namespace P2JME {
 struct TSeqProcNoSeq : public TProcessor, public TSequenceProcessor {
-	virtual ~TSeqProcNoSeq();  // _08 (inline)
-	virtual void do_isReady(); // _48 (inline)
+	virtual ~TSeqProcNoSeq();  // _08 (weak)
+	virtual void do_isReady(); // _48 (weak)
 };
 } // namespace P2JME
 

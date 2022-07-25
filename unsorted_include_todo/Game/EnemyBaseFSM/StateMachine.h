@@ -33,13 +33,13 @@ namespace Game {
 namespace EnemyBaseFSM {
 struct StateMachine : public EnemyStateMachine {
 	virtual void init(EnemyBase*);                            // _08
-	virtual void getCurrState(EnemyBase*);                    // _1C (inline)
-	virtual void setCurrState(EnemyBase*, EnemyFSMState*);    // _20 (inline)
+	virtual void getCurrState(EnemyBase*);                    // _1C (weak)
+	virtual void setCurrState(EnemyBase*, EnemyFSMState*);    // _20 (weak)
 	virtual void update(EnemyBase*);                          // _24
 	virtual void entry(EnemyBase*);                           // _28
 	virtual void simulation(EnemyBase*, float);               // _2C
-	virtual void animation(EnemyBase*);                       // _30 (inline)
-	virtual void bounceProcedure(EnemyBase*, Sys::Triangle*); // _34 (inline)
+	virtual void animation(EnemyBase*);                       // _30 (weak)
+	virtual void bounceProcedure(EnemyBase*, Sys::Triangle*); // _34 (weak)
 };
 } // namespace EnemyBaseFSM
 } // namespace Game

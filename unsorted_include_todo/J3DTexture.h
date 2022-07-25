@@ -9,7 +9,7 @@
 */
 
 struct J3DTexture {
-	virtual ~J3DTexture(); // _08 (inline)
+	virtual ~J3DTexture(); // _08 (weak)
 };
 
 #endif

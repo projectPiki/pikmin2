@@ -10,7 +10,7 @@
 
 namespace Game {
 struct ConditionNotStickClient {
-	virtual void satisfy(Piki*); // _08 (inline)
+	virtual void satisfy(Piki*); // _08 (weak)
 };
 } // namespace Game
 

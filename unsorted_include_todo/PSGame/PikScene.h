@@ -17,7 +17,7 @@
 
 namespace PSSystem {
 struct Scene {
-	virtual void init();                      // _08 (inline)
+	virtual void init();                      // _08 (weak)
 	virtual ~Scene();                         // _0C
 	virtual void scene1st(TaskChecker*);      // _10
 	virtual void scene1stLoadSync();          // _14

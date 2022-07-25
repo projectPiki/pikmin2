@@ -15,29 +15,29 @@
 */
 
 struct CNode {
-	virtual ~CNode();             // _08 (inline)
+	virtual ~CNode();             // _08 (weak)
 	virtual void getChildCount(); // _0C
 };
 
 namespace Game {
 struct EnemyGeneratorBase {
-	virtual ~EnemyGeneratorBase();            // _08 (inline)
+	virtual ~EnemyGeneratorBase();            // _08 (weak)
 	virtual void _0C() = 0;                   // _0C
 	virtual void doWrite(Stream&);            // _10
 	virtual void doRead(Stream&);             // _14
 	virtual void getLatestVersion();          // _18
-	virtual void draw(Graphics&, Generator*); // _1C (inline)
+	virtual void draw(Graphics&, Generator*); // _1C (weak)
 };
 } // namespace Game
 
 namespace Game {
 namespace Qurione {
 struct Generator : public CNode, public EnemyGeneratorBase {
-	virtual ~Generator();            // _08 (inline)
+	virtual ~Generator();            // _08 (weak)
 	virtual void doWrite(Stream&);   // _10
 	virtual void doRead(Stream&);    // _14
 	virtual void getLatestVersion(); // _18
-	virtual void getInitialParam();  // _20 (inline)
+	virtual void getInitialParam();  // _20 (weak)
 
 	Generator();
 	void doReadLatestVersion(Stream&);

@@ -11,7 +11,7 @@
 
 namespace Screen {
 struct SceneArgBase {
-	virtual void getSceneType() const; // _08 (inline)
+	virtual void getSceneType() const; // _08 (weak)
 };
 } // namespace Screen
 

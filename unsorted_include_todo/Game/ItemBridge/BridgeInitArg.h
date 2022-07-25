@@ -11,7 +11,7 @@
 namespace Game {
 namespace ItemBridge {
 struct BridgeInitArg {
-	virtual void getName(); // _08 (inline)
+	virtual void getName(); // _08 (weak)
 };
 } // namespace ItemBridge
 } // namespace Game

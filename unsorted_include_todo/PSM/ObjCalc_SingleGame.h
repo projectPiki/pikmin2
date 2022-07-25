@@ -14,17 +14,17 @@
 
 namespace PSM {
 struct ObjCalcBase {
-	virtual ~ObjCalcBase();              // _08 (inline)
+	virtual ~ObjCalcBase();              // _08 (weak)
 	virtual void getPlayerNo(Creature*); // _0C
 	virtual void getPlayerNo(Vec&);      // _10
-	virtual void setMode(Mode);          // _14 (inline)
-	virtual void is1PGame();             // _18 (inline)
+	virtual void setMode(Mode);          // _14 (weak)
+	virtual void is1PGame();             // _18 (weak)
 };
 } // namespace PSM
 
 namespace PSM {
 struct ObjCalc_SingleGame : public ObjCalcBase {
-	virtual ~ObjCalc_SingleGame();       // _08 (inline)
+	virtual ~ObjCalc_SingleGame();       // _08 (weak)
 	virtual void getPlayerNo(Creature*); // _0C
 	virtual void getPlayerNo(Vec&);      // _10
 

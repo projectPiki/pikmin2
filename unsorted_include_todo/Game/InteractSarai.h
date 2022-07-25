@@ -39,8 +39,8 @@ struct Interaction {
 	virtual void _0C() = 0;          // _0C
 	virtual void actNavi(Navi*);     // _10
 	virtual void _14() = 0;          // _14
-	virtual void actPellet(Pellet*); // _18 (inline)
-	virtual void actOnyon(Onyon*);   // _1C (inline)
+	virtual void actPellet(Pellet*); // _18 (weak)
+	virtual void actOnyon(Onyon*);   // _1C (weak)
 };
 } // namespace Game
 

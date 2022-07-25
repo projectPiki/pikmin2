@@ -11,7 +11,7 @@
 
 namespace SysShape {
 struct Animator {
-	virtual void getCalc();      // _08 (inline)
+	virtual void getCalc();      // _08 (weak)
 	virtual void animate(float); // _0C
 
 	Animator();

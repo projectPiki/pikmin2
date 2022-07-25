@@ -10,7 +10,7 @@
 
 namespace PSSystem {
 struct SceneMgr {
-	virtual void exec(); // _08 (inline)
+	virtual void exec(); // _08 (weak)
 
 	void refreshCurEndScene();
 	void findSeq(JASTrack*);

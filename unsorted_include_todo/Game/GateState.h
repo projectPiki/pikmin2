@@ -23,25 +23,25 @@ namespace FSMState < Game
 {
 	struct ItemGate >
 	{
-		virtual void FSMState < init(ItemGate*, StateArg*);              // _08 (inline)
-		virtual void FSMState < exec(ItemGate*);                         // _0C (inline)
-		virtual void FSMState < cleanup(ItemGate*);                      // _10 (inline)
-		virtual void FSMState < resume(ItemGate*);                       // _14 (inline)
-		virtual void FSMState < restart(ItemGate*);                      // _18 (inline)
-		virtual void FSMState < transit(ItemGate*, int, StateArg*);      // _1C (inline)
-		virtual void onDamage(ItemGate*, float);                         // _20 (inline)
-		virtual void onKeyEvent(ItemGate*, const SysShape::KeyEvent&);   // _24 (inline)
-		virtual void ItemState < onBounce(ItemGate*, Sys::Triangle*);    // _28 (inline)
-		virtual void ItemState < onPlatCollision(ItemGate*, PlatEvent&); // _2C (inline)
-		virtual void ItemState < onCollision(ItemGate*, CollEvent&);     // _30 (inline)
+		virtual void FSMState < init(ItemGate*, StateArg*);              // _08 (weak)
+		virtual void FSMState < exec(ItemGate*);                         // _0C (weak)
+		virtual void FSMState < cleanup(ItemGate*);                      // _10 (weak)
+		virtual void FSMState < resume(ItemGate*);                       // _14 (weak)
+		virtual void FSMState < restart(ItemGate*);                      // _18 (weak)
+		virtual void FSMState < transit(ItemGate*, int, StateArg*);      // _1C (weak)
+		virtual void onDamage(ItemGate*, float);                         // _20 (weak)
+		virtual void onKeyEvent(ItemGate*, const SysShape::KeyEvent&);   // _24 (weak)
+		virtual void ItemState < onBounce(ItemGate*, Sys::Triangle*);    // _28 (weak)
+		virtual void ItemState < onPlatCollision(ItemGate*, PlatEvent&); // _2C (weak)
+		virtual void ItemState < onCollision(ItemGate*, CollEvent&);     // _30 (weak)
 	};
 } // namespace Game
 } // namespace Game
 
 namespace Game {
 struct GateState : public ItemGate > {
-	virtual void onDamage(ItemGate*, float);                       // _20 (inline)
-	virtual void onKeyEvent(ItemGate*, const SysShape::KeyEvent&); // _24 (inline)
+	virtual void onDamage(ItemGate*, float);                       // _20 (weak)
+	virtual void onKeyEvent(ItemGate*, const SysShape::KeyEvent&); // _24 (weak)
 };
 } // namespace Game
 

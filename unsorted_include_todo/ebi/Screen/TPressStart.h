@@ -37,9 +37,9 @@ struct TScreenBase {
 	virtual void doSetArchive(JKRArchive*); // _24
 	virtual void doOpenScreen(ArgOpen*);    // _28
 	virtual void doCloseScreen(ArgClose*);  // _2C
-	virtual void doKillScreen();            // _30 (inline)
-	virtual void doInitWaitState();         // _34 (inline)
-	virtual void doUpdateStateOpen();       // _38 (inline)
+	virtual void doKillScreen();            // _30 (weak)
+	virtual void doInitWaitState();         // _34 (weak)
+	virtual void doUpdateStateOpen();       // _38 (weak)
 };
 } // namespace Screen
 } // namespace ebi
@@ -53,7 +53,7 @@ struct TPressStart : public TScreenBase {
 	virtual void doUpdateStateWait();       // _3C
 	virtual void doUpdateStateClose();      // _40
 	virtual void doDraw();                  // _44
-	virtual void getName();                 // _48 (inline)
+	virtual void getName();                 // _48 (weak)
 
 	void startLoop_();
 };

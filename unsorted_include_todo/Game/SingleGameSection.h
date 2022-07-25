@@ -88,17 +88,17 @@ struct Section {
 	virtual void update();            // _10
 	virtual void draw(Graphics&);     // _14
 	virtual void _18() = 0;           // _18
-	virtual void drawInit(Graphics&); // _1C (inline)
+	virtual void drawInit(Graphics&); // _1C (weak)
 	virtual void _20() = 0;           // _20
-	virtual void doExit();            // _24 (inline)
+	virtual void doExit();            // _24 (weak)
 	virtual void _28() = 0;           // _28
-	virtual void forceReset();        // _2C (inline)
-	virtual void getCurrentSection(); // _30 (inline)
-	virtual void doLoadingStart();    // _34 (inline)
-	virtual void doLoading();         // _38 (inline)
+	virtual void forceReset();        // _2C (weak)
+	virtual void getCurrentSection(); // _30 (weak)
+	virtual void doLoadingStart();    // _34 (weak)
+	virtual void doLoading();         // _38 (weak)
 	virtual void doUpdate();          // _3C
 	virtual void doDraw(Graphics&);   // _40
-	virtual void isFinishable();      // _44 (inline)
+	virtual void isFinishable();      // _44 (weak)
 };
 
 namespace Game {
@@ -111,7 +111,7 @@ struct BaseGameSection {
 	virtual void _1C() = 0;                                                // _1C
 	virtual void drawInit(Graphics&, Section::EDrawInitMode);              // _20
 	virtual void _24() = 0;                                                // _24
-	virtual void forceFinish();                                            // _28 (inline)
+	virtual void forceFinish();                                            // _28 (weak)
 	virtual void _2C() = 0;                                                // _2C
 	virtual void _30() = 0;                                                // _30
 	virtual void _34() = 0;                                                // _34
@@ -121,30 +121,30 @@ struct BaseGameSection {
 	virtual void _44() = 0;                                                // _44
 	virtual void _48() = 0;                                                // _48
 	virtual void _4C() = 0;                                                // _4C
-	virtual void sendMessage(GameMessage&);                                // _50 (inline)
-	virtual void pre2dDraw(Graphics&);                                     // _54 (inline)
-	virtual void getCurrFloor();                                           // _58 (inline)
-	virtual void isDevelopSection();                                       // _5C (inline)
-	virtual void addChallengeScore(int);                                   // _60 (inline)
+	virtual void sendMessage(GameMessage&);                                // _50 (weak)
+	virtual void pre2dDraw(Graphics&);                                     // _54 (weak)
+	virtual void getCurrFloor();                                           // _58 (weak)
+	virtual void isDevelopSection();                                       // _5C (weak)
+	virtual void addChallengeScore(int);                                   // _60 (weak)
 	virtual void startMainBgm();                                           // _64
 	virtual void section_fadeout();                                        // _68
 	virtual void goNextFloor(ItemHole::Item*);                             // _6C
 	virtual void goCave(ItemCave::Item*);                                  // _70
 	virtual void goMainMap(ItemBigFountain::Item*);                        // _74
-	virtual void getCaveID();                                              // _78 (inline)
-	virtual void getCurrentCourseInfo();                                   // _7C (inline)
-	virtual void challengeDisablePelplant();                               // _80 (inline)
-	virtual void getCaveFilename();                                        // _84 (inline)
-	virtual void getEditorFilename();                                      // _88 (inline)
-	virtual void getVsEditNumber();                                        // _8C (inline)
-	virtual void openContainerWindow();                                    // _90 (inline)
-	virtual void closeContainerWindow();                                   // _94 (inline)
+	virtual void getCaveID();                                              // _78 (weak)
+	virtual void getCurrentCourseInfo();                                   // _7C (weak)
+	virtual void challengeDisablePelplant();                               // _80 (weak)
+	virtual void getCaveFilename();                                        // _84 (weak)
+	virtual void getEditorFilename();                                      // _88 (weak)
+	virtual void getVsEditNumber();                                        // _8C (weak)
+	virtual void openContainerWindow();                                    // _90 (weak)
+	virtual void closeContainerWindow();                                   // _94 (weak)
 	virtual void playMovie_firstexperience(int, Creature*);                // _98
 	virtual void playMovie_bootup(Onyon*);                                 // _9C
 	virtual void playMovie_helloPikmin(Piki*);                             // _A0
 	virtual void enableTimer(float, unsigned long);                        // _A4
 	virtual void disableTimer(unsigned long);                              // _A8
-	virtual void getTimerType();                                           // _AC (inline)
+	virtual void getTimerType();                                           // _AC (weak)
 	virtual void onMovieStart(MovieConfig*, unsigned long, unsigned long); // _B0
 	virtual void onMovieDone(MovieConfig*, unsigned long, unsigned long);  // _B4
 	virtual void onMovieCommand(int);                                      // _B8
@@ -159,10 +159,10 @@ struct BaseGameSection {
 	virtual void openCaveMoreMenu(ItemHole::Item*, Controller*);           // _DC
 	virtual void openKanketuMenu(ItemBigFountain::Item*, Controller*);     // _E0
 	virtual void on_setCamController(int);                                 // _E4
-	virtual void onTogglePlayer();                                         // _E8 (inline)
-	virtual void onPlayerJoin();                                           // _EC (inline)
+	virtual void onTogglePlayer();                                         // _E8 (weak)
+	virtual void onPlayerJoin();                                           // _EC (weak)
 	virtual void onInit();                                                 // _F0
-	virtual void onUpdate();                                               // _F4 (inline)
+	virtual void onUpdate();                                               // _F4 (weak)
 	virtual void initJ3D();                                                // _F8
 	virtual void initViewports(Graphics&);                                 // _FC
 	virtual void initResources();                                          // _100
@@ -206,22 +206,22 @@ struct SingleGameSection : public Section, public BaseGameSection, public BaseHI
 	virtual ~SingleGameSection();                                          // _08
 	virtual void doUpdate();                                               // _3C
 	virtual void doDraw(Graphics&);                                        // _40
-	virtual void getCurrFloor();                                           // _58 (inline)
-	virtual void isDevelopSection();                                       // _5C (inline)
+	virtual void getCurrFloor();                                           // _58 (weak)
+	virtual void isDevelopSection();                                       // _5C (weak)
 	virtual void startMainBgm();                                           // _64
 	virtual void section_fadeout();                                        // _68
 	virtual void goNextFloor(ItemHole::Item*);                             // _6C
 	virtual void goCave(ItemCave::Item*);                                  // _70
 	virtual void goMainMap(ItemBigFountain::Item*);                        // _74
-	virtual void getCaveID();                                              // _78 (inline)
-	virtual void getCurrentCourseInfo();                                   // _7C (inline)
-	virtual void getCaveFilename();                                        // _84 (inline)
+	virtual void getCaveID();                                              // _78 (weak)
+	virtual void getCurrentCourseInfo();                                   // _7C (weak)
+	virtual void getCaveFilename();                                        // _84 (weak)
 	virtual void playMovie_firstexperience(int, Creature*);                // _98
 	virtual void playMovie_bootup(Onyon*);                                 // _9C
 	virtual void playMovie_helloPikmin(Piki*);                             // _A0
 	virtual void enableTimer(float, unsigned long);                        // _A4
 	virtual void disableTimer(unsigned long);                              // _A8
-	virtual void getTimerType();                                           // _AC (inline)
+	virtual void getTimerType();                                           // _AC (weak)
 	virtual void onMovieStart(MovieConfig*, unsigned long, unsigned long); // _B0
 	virtual void onMovieDone(MovieConfig*, unsigned long, unsigned long);  // _B4
 	virtual void onMovieCommand(int);                                      // _B8

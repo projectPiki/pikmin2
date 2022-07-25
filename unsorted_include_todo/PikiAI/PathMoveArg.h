@@ -10,7 +10,7 @@
 
 namespace PikiAI {
 struct PathMoveArg {
-	virtual void getName(); // _08 (inline)
+	virtual void getName(); // _08 (weak)
 };
 } // namespace PikiAI
 

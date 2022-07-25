@@ -10,7 +10,7 @@
 
 namespace PikiAI {
 struct ActCropArg {
-	virtual void getName(); // _08 (inline)
+	virtual void getName(); // _08 (weak)
 };
 } // namespace PikiAI
 

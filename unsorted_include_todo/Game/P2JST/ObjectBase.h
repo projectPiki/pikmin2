@@ -20,7 +20,7 @@ struct ObjectBase {
 	virtual void _0C() = 0;                                  // _0C
 	virtual void _10() = 0;                                  // _10
 	virtual void _14() = 0;                                  // _14
-	virtual void parseUserData_(unsigned long, const void*); // _18 (inline)
+	virtual void parseUserData_(unsigned long, const void*); // _18 (weak)
 	virtual void _1C() = 0;                                  // _1C
 };
 } // namespace P2JST

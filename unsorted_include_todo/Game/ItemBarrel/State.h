@@ -24,17 +24,17 @@ namespace FSMState < Game
 	namespace ItemBarrel {
 	struct Item >
 	{
-		virtual void FSMState < init(Item*, StateArg*);                        // _08 (inline)
-		virtual void FSMState < exec(Item*);                                   // _0C (inline)
-		virtual void FSMState < cleanup(Item*);                                // _10 (inline)
-		virtual void FSMState < resume(Item*);                                 // _14 (inline)
-		virtual void FSMState < restart(Item*);                                // _18 (inline)
-		virtual void FSMState < transit(Item*, int, StateArg*);                // _1C (inline)
-		virtual void onDamage(Item*, float);                                   // _20 (inline)
-		virtual void ItemState < onKeyEvent(Item*, const SysShape::KeyEvent&); // _24 (inline)
-		virtual void ItemState < onBounce(Item*, Sys::Triangle*);              // _28 (inline)
-		virtual void ItemState < onPlatCollision(Item*, PlatEvent&);           // _2C (inline)
-		virtual void ItemState < onCollision(Item*, CollEvent&);               // _30 (inline)
+		virtual void FSMState < init(Item*, StateArg*);                        // _08 (weak)
+		virtual void FSMState < exec(Item*);                                   // _0C (weak)
+		virtual void FSMState < cleanup(Item*);                                // _10 (weak)
+		virtual void FSMState < resume(Item*);                                 // _14 (weak)
+		virtual void FSMState < restart(Item*);                                // _18 (weak)
+		virtual void FSMState < transit(Item*, int, StateArg*);                // _1C (weak)
+		virtual void onDamage(Item*, float);                                   // _20 (weak)
+		virtual void ItemState < onKeyEvent(Item*, const SysShape::KeyEvent&); // _24 (weak)
+		virtual void ItemState < onBounce(Item*, Sys::Triangle*);              // _28 (weak)
+		virtual void ItemState < onPlatCollision(Item*, PlatEvent&);           // _2C (weak)
+		virtual void ItemState < onCollision(Item*, CollEvent&);               // _30 (weak)
 	};
 	} // namespace ItemBarrel
 } // namespace Game
@@ -43,7 +43,7 @@ namespace FSMState < Game
 namespace Game {
 namespace ItemBarrel {
 struct State : public Item > {
-	virtual void onDamage(Item*, float); // _20 (inline)
+	virtual void onDamage(Item*, float); // _20 (weak)
 };
 } // namespace ItemBarrel
 } // namespace Game

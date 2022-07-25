@@ -15,17 +15,22 @@
    curSceneIsBigBossFloor__Q23PSM8SceneMgrFv .4byte newGameScene__Q23PSM8SceneMgrFUcPQ26PSGame9SceneInfo
 */
 
+namespace PSSystem {
+struct SceneMgr {
+	virtual void exec(); // _08 (weak)
+};
+} // namespace PSSystem
+
 namespace PSGame {
 struct PikSceneMgr {
-	virtual void exec();                            // _08 (inline)
+	virtual void _08() = 0;                         // _08
 	virtual void newAndSetCurrentScene(SceneInfo&); // _0C
 	virtual void newAndSetGlobalScene();            // _10
 };
 } // namespace PSGame
 
 namespace PSM {
-struct SceneMgr : public PikSceneMgr {
-	virtual void exec();                                           // _08 (inline)
+struct SceneMgr : public SceneMgr, public PikSceneMgr {
 	virtual void newMainBgm(const char*, JAInter::SoundInfo&);     // _14
 	virtual void newDirectedBgm(const char*, JAInter::SoundInfo&); // _18
 	virtual void newAutoBgm(const char*, const char*, JAInter::SoundInfo&, JADUtility::AccessMode, PSGame::SceneInfo&,

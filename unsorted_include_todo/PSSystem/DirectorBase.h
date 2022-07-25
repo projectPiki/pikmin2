@@ -21,18 +21,18 @@
 
 namespace PSSystem {
 struct DirectorBase {
-	virtual ~DirectorBase();            // _08 (inline)
+	virtual ~DirectorBase();            // _08 (weak)
 	virtual void exec();                // _0C
 	virtual void directOn();            // _10
 	virtual void directOff();           // _14
-	virtual void underDirection();      // _18 (inline)
-	virtual void execInner();           // _1C (inline)
+	virtual void underDirection();      // _18 (weak)
+	virtual void execInner();           // _1C (weak)
 	virtual void _20() = 0;             // _20
 	virtual void _24() = 0;             // _24
 	virtual void doUpdateRequest();     // _28
-	virtual void onPlayInit(JASTrack*); // _2C (inline)
-	virtual void onDirectOn();          // _30 (inline)
-	virtual void onDirectOff();         // _34 (inline)
+	virtual void onPlayInit(JASTrack*); // _2C (weak)
+	virtual void onDirectOn();          // _30 (weak)
+	virtual void onDirectOff();         // _34 (weak)
 
 	DirectorBase(int, const char*);
 	void isUnderDirection();

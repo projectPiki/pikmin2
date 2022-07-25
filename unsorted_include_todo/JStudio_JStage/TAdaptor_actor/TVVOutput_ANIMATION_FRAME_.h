@@ -13,7 +13,7 @@ namespace JStudio_JStage {
 namespace TAdaptor_actor {
 struct TVVOutput_ANIMATION_FRAME_ {
 	virtual void operator()(float, JStudio::TAdaptor*) const; // _08
-	virtual ~TVVOutput_ANIMATION_FRAME_();                    // _0C (inline)
+	virtual ~TVVOutput_ANIMATION_FRAME_();                    // _0C (weak)
 };
 } // namespace TAdaptor_actor
 } // namespace JStudio_JStage

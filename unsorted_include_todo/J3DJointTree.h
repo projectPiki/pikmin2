@@ -12,7 +12,7 @@
 
 struct J3DJointTree {
 	virtual void calc(J3DMtxBuffer*, const Vec&, const float (&)[3][4]); // _08
-	virtual ~J3DJointTree();                                             // _0C (inline)
+	virtual ~J3DJointTree();                                             // _0C (weak)
 	virtual void _10() = 0;                                              // _10
 };
 

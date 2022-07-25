@@ -44,28 +44,28 @@
 */
 
 struct GenericObjectMgr {
-	virtual void doAnimation();           // _08 (inline)
-	virtual void doEntry();               // _0C (inline)
-	virtual void doSetView(int);          // _10 (inline)
-	virtual void doViewCalc();            // _14 (inline)
-	virtual void doSimulation(float);     // _18 (inline)
-	virtual void doDirectDraw(Graphics&); // _1C (inline)
-	virtual void doSimpleDraw(Viewport*); // _20 (inline)
-	virtual void loadResources();         // _24 (inline)
+	virtual void doAnimation();           // _08 (weak)
+	virtual void doEntry();               // _0C (weak)
+	virtual void doSetView(int);          // _10 (weak)
+	virtual void doViewCalc();            // _14 (weak)
+	virtual void doSimulation(float);     // _18 (weak)
+	virtual void doDirectDraw(Graphics&); // _1C (weak)
+	virtual void doSimpleDraw(Viewport*); // _20 (weak)
+	virtual void loadResources();         // _24 (weak)
 	virtual void _28() = 0;               // _28
-	virtual void pausable();              // _2C (inline)
-	virtual void frozenable();            // _30 (inline)
-	virtual void getMatrixLoadType();     // _34 (inline)
+	virtual void pausable();              // _2C (weak)
+	virtual void frozenable();            // _30 (weak)
+	virtual void getMatrixLoadType();     // _34 (weak)
 };
 
 namespace Game {
 struct BasePelletMgr : public GenericObjectMgr {
-	virtual void doAnimation();                                                    // _08 (inline)
-	virtual void doEntry();                                                        // _0C (inline)
-	virtual void doSetView(int);                                                   // _10 (inline)
-	virtual void doViewCalc();                                                     // _14 (inline)
-	virtual void doSimulation(float);                                              // _18 (inline)
-	virtual void doDirectDraw(Graphics&);                                          // _1C (inline)
+	virtual void doAnimation();                                                    // _08 (weak)
+	virtual void doEntry();                                                        // _0C (weak)
+	virtual void doSetView(int);                                                   // _10 (weak)
+	virtual void doViewCalc();                                                     // _14 (weak)
+	virtual void doSimulation(float);                                              // _18 (weak)
+	virtual void doDirectDraw(Graphics&);                                          // _1C (weak)
 	virtual void _28() = 0;                                                        // _28
 	virtual void _38() = 0;                                                        // _38
 	virtual void _3C() = 0;                                                        // _3C
@@ -74,17 +74,17 @@ struct BasePelletMgr : public GenericObjectMgr {
 	virtual void _48() = 0;                                                        // _48
 	virtual void _4C() = 0;                                                        // _4C
 	virtual void _50() = 0;                                                        // _50
-	virtual void onCreateModel(SysShape::Model*);                                  // _54 (inline)
+	virtual void onCreateModel(SysShape::Model*);                                  // _54 (weak)
 	virtual void _58() = 0;                                                        // _58
 	virtual void _5C() = 0;                                                        // _5C
 	virtual void _60() = 0;                                                        // _60
 	virtual void _64() = 0;                                                        // _64
 	virtual void _68() = 0;                                                        // _68
 	virtual void createShape(int, int);                                            // _6C
-	virtual void generatorBirth(Vector3<float>&, Vector3<float>&, GenPelletParm*); // _70 (inline)
-	virtual void generatorWrite(Stream&, GenPelletParm*);                          // _74 (inline)
-	virtual void generatorRead(Stream&, GenPelletParm*, unsigned long);            // _78 (inline)
-	virtual void generatorLocalVersion();                                          // _7C (inline)
+	virtual void generatorBirth(Vector3<float>&, Vector3<float>&, GenPelletParm*); // _70 (weak)
+	virtual void generatorWrite(Stream&, GenPelletParm*);                          // _74 (weak)
+	virtual void generatorRead(Stream&, GenPelletParm*, unsigned long);            // _78 (weak)
+	virtual void generatorLocalVersion();                                          // _7C (weak)
 	virtual void generatorGetShape(GenPelletParm*);                                // _80
 	virtual void generatorNewPelletParm();                                         // _84
 	virtual void _88() = 0;                                                        // _88

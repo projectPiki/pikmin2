@@ -13,7 +13,7 @@ namespace ebi {
 namespace title {
 namespace Kogane {
 struct TUnit {
-	virtual void getCreatureType(); // _08 (inline)
+	virtual void getCreatureType(); // _08 (weak)
 	virtual void isCalc();          // _0C
 
 	void setController(Controller*);

@@ -31,13 +31,13 @@ struct SeqBase {
 	virtual void stopSeq(unsigned long); // _18
 	virtual void pauseOn(PauseMode);     // _1C
 	virtual void pauseOff();             // _20
-	virtual void getCastType();          // _24 (inline)
-	virtual void getSeqType();           // _28 (inline)
+	virtual void getCastType();          // _24 (weak)
+	virtual void getSeqType();           // _28 (weak)
 	virtual void exec();                 // _2C
 	virtual void onPlayingFrame();       // _30
 	virtual void isPlaying();            // _34
-	virtual void seqLoadAfter();         // _38 (inline)
-	virtual void getHandleP();           // _3C (inline)
+	virtual void seqLoadAfter();         // _38 (weak)
+	virtual void getHandleP();           // _3C (weak)
 	virtual void setConfigVolume();      // _40
 };
 } // namespace PSSystem
@@ -45,9 +45,9 @@ struct SeqBase {
 namespace PSSystem {
 struct BgmSeq : public SeqBase {
 	virtual ~BgmSeq();          // _08
-	virtual void getCastType(); // _24 (inline)
-	virtual void getSeqType();  // _28 (inline)
-	virtual void getHandleP();  // _3C (inline)
+	virtual void getCastType(); // _24 (weak)
+	virtual void getSeqType();  // _28 (weak)
+	virtual void getHandleP();  // _3C (weak)
 
 	BgmSeq(const char*, const JAInter::SoundInfo&);
 };

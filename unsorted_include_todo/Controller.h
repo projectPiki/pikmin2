@@ -9,7 +9,7 @@
 */
 
 struct Controller {
-	virtual ~Controller(); // _08 (inline)
+	virtual ~Controller(); // _08 (weak)
 };
 
 #endif

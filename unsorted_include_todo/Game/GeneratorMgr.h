@@ -14,13 +14,13 @@
 */
 
 struct CNode {
-	virtual ~CNode();             // _08 (inline)
+	virtual ~CNode();             // _08 (weak)
 	virtual void getChildCount(); // _0C
 };
 
 namespace Game {
 struct GeneratorMgr : public CNode {
-	virtual ~GeneratorMgr();     // _08 (inline)
+	virtual ~GeneratorMgr();     // _08 (weak)
 	virtual void doAnimation();  // _10
 	virtual void doEntry();      // _14
 	virtual void doSetView(int); // _18

@@ -36,7 +36,7 @@ struct SeqBase {
 	virtual void exec();                 // _2C
 	virtual void onPlayingFrame();       // _30
 	virtual void isPlaying();            // _34
-	virtual void seqLoadAfter();         // _38 (inline)
+	virtual void seqLoadAfter();         // _38 (weak)
 	virtual void _3C() = 0;              // _3C
 	virtual void setConfigVolume();      // _40
 

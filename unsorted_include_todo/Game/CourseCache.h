@@ -10,13 +10,13 @@
 */
 
 struct CNode {
-	virtual ~CNode();             // _08 (inline)
+	virtual ~CNode();             // _08 (weak)
 	virtual void getChildCount(); // _0C
 };
 
 namespace Game {
 struct CourseCache : public CNode {
-	virtual ~CourseCache(); // _08 (inline)
+	virtual ~CourseCache(); // _08 (weak)
 
 	void getColorMePikmins(unsigned char*, int);
 	CourseCache(int);

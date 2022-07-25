@@ -17,12 +17,12 @@
 namespace Game {
 struct TFlock {
 	virtual void makeMatrix();   // _08
-	virtual void isVisible();    // _0C (inline)
-	virtual void isWeed();       // _10 (inline)
-	virtual void fear();         // _14 (inline)
-	virtual void getRadius();    // _18 (inline)
+	virtual void isVisible();    // _0C (weak)
+	virtual void isWeed();       // _10 (weak)
+	virtual void fear();         // _14 (weak)
+	virtual void getRadius();    // _18 (weak)
 	virtual void damaged(float); // _1C
-	virtual void constructor();  // _20 (inline)
+	virtual void constructor();  // _20 (weak)
 };
 } // namespace Game
 
@@ -30,7 +30,7 @@ namespace Game {
 namespace ItemUjamushi {
 struct Uja : public TFlock {
 	virtual void makeMatrix();   // _08
-	virtual void isVisible();    // _0C (inline)
+	virtual void isVisible();    // _0C (weak)
 	virtual void damaged(float); // _1C
 
 	Uja();

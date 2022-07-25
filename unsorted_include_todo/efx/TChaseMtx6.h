@@ -17,11 +17,11 @@ namespace TSyncGroup6 < efx
 {
 	struct TChaseMtx >
 	{
-		virtual void TSyncGroup6 < create(Arg*);       // _08 (inline)
-		virtual void TSyncGroup6 < forceKill();        // _0C (inline)
-		virtual void TSyncGroup6 < fade();             // _10 (inline)
-		virtual void TSyncGroup6 < startDemoDrawOff(); // _14 (inline)
-		virtual void TSyncGroup6 < endDemoDrawOn();    // _18 (inline)
+		virtual void TSyncGroup6 < create(Arg*);       // _08 (weak)
+		virtual void TSyncGroup6 < forceKill();        // _0C (weak)
+		virtual void TSyncGroup6 < fade();             // _10 (weak)
+		virtual void TSyncGroup6 < startDemoDrawOff(); // _14 (weak)
+		virtual void TSyncGroup6 < endDemoDrawOn();    // _18 (weak)
 	};
 } // namespace efx
 } // namespace efx

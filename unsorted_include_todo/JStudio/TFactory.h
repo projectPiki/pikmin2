@@ -11,10 +11,19 @@
 */
 
 namespace JStudio {
+namespace stb {
 struct TFactory {
 	virtual ~TFactory();                                         // _08
 	virtual void create(const stb::data::TParse_TBlock_object&); // _0C
 	virtual void destroy(TObject*);                              // _10
+};
+} // namespace stb
+} // namespace JStudio
+
+namespace JStudio {
+struct TFactory : public TFactory {
+	virtual ~TFactory();                                         // _08
+	virtual void create(const stb::data::TParse_TBlock_object&); // _0C
 
 	void appendCreateObject(JStudio::TCreateObject*);
 };

@@ -12,8 +12,8 @@
 namespace kh {
 namespace Screen {
 struct SArgDayEndResultMail {
-	virtual void getSceneType() const; // _08 (inline)
-	virtual void getClassSize();       // _0C (inline)
+	virtual void getSceneType() const; // _08 (weak)
+	virtual void getClassSize();       // _0C (weak)
 };
 } // namespace Screen
 } // namespace kh

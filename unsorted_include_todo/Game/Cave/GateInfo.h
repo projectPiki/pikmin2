@@ -11,14 +11,14 @@
 */
 
 struct CNode {
-	virtual ~CNode();             // _08 (inline)
+	virtual ~CNode();             // _08 (weak)
 	virtual void getChildCount(); // _0C
 };
 
 namespace Game {
 namespace Cave {
 struct GateInfo : public CNode {
-	virtual ~GateInfo();        // _08 (inline)
+	virtual ~GateInfo();        // _08 (weak)
 	virtual void read(Stream&); // _10
 };
 } // namespace Cave

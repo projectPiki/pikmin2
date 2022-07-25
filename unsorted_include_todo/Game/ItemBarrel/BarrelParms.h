@@ -11,7 +11,7 @@
 namespace Game {
 namespace ItemBarrel {
 struct BarrelParms {
-	virtual void read(Stream&); // _08 (inline)
+	virtual void read(Stream&); // _08 (weak)
 
 	BarrelParms();
 };

@@ -12,9 +12,9 @@
 
 namespace JADUtility {
 struct StrPrm {
-	virtual ~StrPrm();                         // _08 (inline)
-	virtual void save(JSUMemoryOutputStream&); // _0C (inline)
-	virtual void load(JSUMemoryInputStream&);  // _10 (inline)
+	virtual ~StrPrm();                         // _08 (weak)
+	virtual void save(JSUMemoryOutputStream&); // _0C (weak)
+	virtual void load(JSUMemoryInputStream&);  // _10 (weak)
 };
 } // namespace JADUtility
 

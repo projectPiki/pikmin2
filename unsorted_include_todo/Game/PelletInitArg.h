@@ -10,7 +10,7 @@
 
 namespace Game {
 struct PelletInitArg {
-	virtual void getName(); // _08 (inline)
+	virtual void getName(); // _08 (weak)
 
 	PelletInitArg();
 };

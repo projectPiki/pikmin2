@@ -11,7 +11,7 @@
 namespace ebi {
 namespace Screen {
 struct ArgOpenOmake {
-	virtual void getName(); // _08 (inline)
+	virtual void getName(); // _08 (weak)
 };
 } // namespace Screen
 } // namespace ebi

@@ -10,13 +10,13 @@
 */
 
 struct CNode {
-	virtual ~CNode();             // _08 (inline)
+	virtual ~CNode();             // _08 (weak)
 	virtual void getChildCount(); // _0C
 };
 
 namespace Game {
 struct SnakeCrowSphereShadowNode : public CNode {
-	virtual ~SnakeCrowSphereShadowNode(); // _08 (inline)
+	virtual ~SnakeCrowSphereShadowNode(); // _08 (weak)
 
 	void makeShadowSRT(Game::JointShadowParm&, Vector3<float>&);
 };

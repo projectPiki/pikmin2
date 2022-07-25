@@ -18,14 +18,14 @@
 */
 
 struct CNode {
-	virtual ~CNode();             // _08 (inline)
+	virtual ~CNode();             // _08 (weak)
 	virtual void getChildCount(); // _0C
 };
 
 namespace og {
 namespace Screen {
 struct CallBack_CounterRV {
-	virtual ~CallBack_CounterRV();                                                                                   // _08 (inline)
+	virtual ~CallBack_CounterRV();                                                                                   // _08 (weak)
 	virtual void _0C() = 0;                                                                                          // _0C
 	virtual void update();                                                                                           // _10
 	virtual void draw(Graphics&, J2DGrafContext&);                                                                   // _14
@@ -40,18 +40,18 @@ struct CallBack_CounterRV {
 
 namespace P2DScreen {
 struct Node {
-	virtual ~Node();        // _08 (inline)
+	virtual ~Node();        // _08 (weak)
 	virtual void _0C() = 0; // _0C
 	virtual void update();  // _10
 	virtual void _14() = 0; // _14
-	virtual void doInit();  // _18 (inline)
+	virtual void doInit();  // _18 (weak)
 };
 } // namespace P2DScreen
 
 namespace og {
 namespace Screen {
 struct CallBack_CounterDay : public CNode, public CallBack_CounterRV, public Node {
-	virtual ~CallBack_CounterDay();                                                                                  // _08 (inline)
+	virtual ~CallBack_CounterDay();                                                                                  // _08 (weak)
 	virtual void update();                                                                                           // _10
 	virtual void init(J2DScreen*, unsigned long long, unsigned long long, unsigned long long, unsigned long*, bool); // _1C
 	virtual void show();                                                                                             // _20

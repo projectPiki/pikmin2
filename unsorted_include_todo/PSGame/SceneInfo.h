@@ -10,7 +10,7 @@
 
 namespace PSGame {
 struct SceneInfo {
-	virtual void isCaveFloor(); // _08 (inline)
+	virtual void isCaveFloor(); // _08 (weak)
 
 	SceneInfo();
 	void setStageFlag(PSGame::SceneInfo::FlagDef, PSGame::SceneInfo::FlagBitShift);

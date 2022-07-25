@@ -19,15 +19,15 @@
 namespace Game {
 namespace WorldMap {
 struct Base {
-	virtual ~Base();                 // _08 (inline)
-	virtual void loadResource();     // _0C (inline)
-	virtual void init(InitArg&);     // _10 (inline)
-	virtual void update(UpdateArg&); // _14 (inline)
-	virtual void draw(Graphics&);    // _18 (inline)
-	virtual void draw1st(Graphics&); // _1C (inline)
-	virtual void draw2nd(Graphics&); // _20 (inline)
-	virtual void draw3rd(Graphics&); // _24 (inline)
-	virtual void draw4th(Graphics&); // _28 (inline)
+	virtual ~Base();                 // _08 (weak)
+	virtual void loadResource();     // _0C (weak)
+	virtual void init(InitArg&);     // _10 (weak)
+	virtual void update(UpdateArg&); // _14 (weak)
+	virtual void draw(Graphics&);    // _18 (weak)
+	virtual void draw1st(Graphics&); // _1C (weak)
+	virtual void draw2nd(Graphics&); // _20 (weak)
+	virtual void draw3rd(Graphics&); // _24 (weak)
+	virtual void draw4th(Graphics&); // _28 (weak)
 };
 } // namespace WorldMap
 } // namespace Game

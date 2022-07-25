@@ -13,7 +13,7 @@
 struct JASBasicBank {
 	virtual ~JASBasicBank();         // _08
 	virtual void getInst(int) const; // _0C
-	virtual void getType() const;    // _10 (inline)
+	virtual void getType() const;    // _10 (weak)
 };
 
 #endif

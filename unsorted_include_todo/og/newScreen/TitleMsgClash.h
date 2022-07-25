@@ -16,7 +16,7 @@ namespace newScreen {
 struct TitleMsg {
 	virtual void init();   // _08
 	virtual void update(); // _0C
-	virtual void start();  // _10 (inline)
+	virtual void start();  // _10 (weak)
 };
 } // namespace newScreen
 } // namespace og

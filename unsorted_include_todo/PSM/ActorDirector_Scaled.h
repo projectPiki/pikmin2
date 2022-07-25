@@ -23,7 +23,7 @@
 
 namespace PSSystem {
 struct DirectorBase {
-	virtual ~DirectorBase();    // _08 (inline)
+	virtual ~DirectorBase();    // _08 (weak)
 	virtual void exec();        // _0C
 	virtual void directOn();    // _10
 	virtual void directOff();   // _14
@@ -33,14 +33,14 @@ struct DirectorBase {
 	virtual void _24() = 0;     // _24
 	virtual void _28() = 0;     // _28
 	virtual void _2C() = 0;     // _2C
-	virtual void onDirectOn();  // _30 (inline)
-	virtual void onDirectOff(); // _34 (inline)
+	virtual void onDirectOn();  // _30 (weak)
+	virtual void onDirectOff(); // _34 (weak)
 };
 } // namespace PSSystem
 
 namespace PSM {
 struct TrackOnDirector_Scaled {
-	virtual ~TrackOnDirector_Scaled(); // _08 (inline)
+	virtual ~TrackOnDirector_Scaled(); // _08 (weak)
 	virtual void _0C() = 0;            // _0C
 	virtual void _10() = 0;            // _10
 	virtual void _14() = 0;            // _14
@@ -50,7 +50,7 @@ struct TrackOnDirector_Scaled {
 
 namespace PSM {
 struct TrackOnDirectorBase {
-	virtual ~TrackOnDirectorBase();                       // _08 (inline)
+	virtual ~TrackOnDirectorBase();                       // _08 (weak)
 	virtual void _0C() = 0;                               // _0C
 	virtual void _10() = 0;                               // _10
 	virtual void _14() = 0;                               // _14
@@ -65,7 +65,7 @@ struct TrackOnDirectorBase {
 
 namespace PSSystem {
 struct SwitcherDirector {
-	virtual ~SwitcherDirector();    // _08 (inline)
+	virtual ~SwitcherDirector();    // _08 (weak)
 	virtual void _0C() = 0;         // _0C
 	virtual void _10() = 0;         // _10
 	virtual void _14() = 0;         // _14
@@ -79,10 +79,10 @@ struct SwitcherDirector {
 
 namespace PSM {
 struct ActorDirector_Scaled : public DirectorBase, public TrackOnDirector_Scaled, public TrackOnDirectorBase, public SwitcherDirector {
-	virtual ~ActorDirector_Scaled();               // _08 (inline)
+	virtual ~ActorDirector_Scaled();               // _08 (weak)
 	virtual void execInner();                      // _1C
 	virtual void getNearestDistance();             // _38
-	virtual void onSetMinDistObj(Game::Creature*); // _3C (inline)
+	virtual void onSetMinDistObj(Game::Creature*); // _3C (weak)
 
 	ActorDirector_Scaled(const char*, int, float, float, long, long, unsigned long);
 };

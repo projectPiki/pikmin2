@@ -18,13 +18,13 @@
 */
 
 struct CNode {
-	virtual ~CNode();             // _08 (inline)
+	virtual ~CNode();             // _08 (weak)
 	virtual void getChildCount(); // _0C
 };
 
 namespace Game {
 struct ObjectLayoutNode {
-	virtual ~ObjectLayoutNode();                   // _08 (inline)
+	virtual ~ObjectLayoutNode();                   // _08 (weak)
 	virtual void _0C() = 0;                        // _0C
 	virtual void getObjectId();                    // _10
 	virtual void getObjectType();                  // _14
@@ -33,14 +33,14 @@ struct ObjectLayoutNode {
 	virtual void getBirthDoorIndex();              // _20
 	virtual void getBirthPosition(float&, float&); // _24
 	virtual void getExtraCode();                   // _28
-	virtual void isFixedBattery();                 // _2C (inline)
+	virtual void isFixedBattery();                 // _2C (weak)
 };
 } // namespace Game
 
 namespace Game {
 namespace Cave {
 struct EnemyNode : public CNode, public ObjectLayoutNode {
-	virtual ~EnemyNode();                          // _08 (inline)
+	virtual ~EnemyNode();                          // _08 (weak)
 	virtual void getObjectId();                    // _10
 	virtual void getObjectType();                  // _14
 	virtual void getBirthCount();                  // _18

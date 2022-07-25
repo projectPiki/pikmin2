@@ -19,12 +19,12 @@
 namespace Game {
 struct CellObject {
 	virtual void _08() = 0;                   // _08
-	virtual void checkCollision(CellObject*); // _0C (inline)
+	virtual void checkCollision(CellObject*); // _0C (weak)
 	virtual void _10() = 0;                   // _10
 	virtual void _14() = 0;                   // _14
-	virtual void isPiki();                    // _18 (inline)
-	virtual void isNavi();                    // _1C (inline)
-	virtual void deferPikiCollision();        // _20 (inline)
+	virtual void isPiki();                    // _18 (weak)
+	virtual void isNavi();                    // _1C (weak)
+	virtual void deferPikiCollision();        // _20 (weak)
 	virtual void _24() = 0;                   // _24
 	virtual void _28() = 0;                   // _28
 

@@ -14,11 +14,11 @@
 
 namespace PSM {
 struct ObjCalcBase {
-	virtual ~ObjCalcBase();     // _08 (inline)
+	virtual ~ObjCalcBase();     // _08 (weak)
 	virtual void _0C() = 0;     // _0C
 	virtual void _10() = 0;     // _10
-	virtual void setMode(Mode); // _14 (inline)
-	virtual void is1PGame();    // _18 (inline)
+	virtual void setMode(Mode); // _14 (weak)
+	virtual void is1PGame();    // _18 (weak)
 };
 } // namespace PSM
 

@@ -43,7 +43,7 @@ struct JKRArchive : public JKRFileLoader {
 	virtual void getResSize(const void*) const;                                  // _30
 	virtual void countFile(const char*) const;                                   // _34
 	virtual void getFirstFile(const char*) const;                                // _38
-	virtual void getExpandedResSize(const void*) const;                          // _3C (inline)
+	virtual void getExpandedResSize(const void*) const;                          // _3C (weak)
 	virtual void _40() = 0;                                                      // _40
 	virtual void _44() = 0;                                                      // _44
 	virtual void setExpandSize(SDIFileEntry*, unsigned long);                    // _48

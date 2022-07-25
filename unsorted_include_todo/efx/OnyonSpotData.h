@@ -13,15 +13,15 @@
 */
 
 struct CNode {
-	virtual ~CNode();             // _08 (inline)
+	virtual ~CNode();             // _08 (weak)
 	virtual void getChildCount(); // _0C
 };
 
 namespace efx {
 struct OnyonSpotData : public CNode {
-	virtual ~OnyonSpotData();                     // _08 (inline)
+	virtual ~OnyonSpotData();                     // _08 (weak)
 	virtual void loadResources();                 // _10
-	virtual void getID();                         // _14 (inline)
+	virtual void getID();                         // _14 (weak)
 	virtual void onCreate(ModelEffectCreateArg*); // _18
 };
 } // namespace efx

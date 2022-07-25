@@ -10,7 +10,7 @@
 
 namespace Game {
 struct GenItemParm {
-	virtual void getShapeID(); // _08 (inline)
+	virtual void getShapeID(); // _08 (weak)
 };
 } // namespace Game
 

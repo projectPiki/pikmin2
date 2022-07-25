@@ -48,8 +48,8 @@
 */
 
 struct J2DScreen {
-	virtual ~J2DScreen();                                                                                            // _08 (inline)
-	virtual void getTypeID() const;                                                                                  // _0C (inline)
+	virtual ~J2DScreen();                                                                                            // _08 (weak)
+	virtual void getTypeID() const;                                                                                  // _0C (weak)
 	virtual void _10() = 0;                                                                                          // _10
 	virtual void _14() = 0;                                                                                          // _14
 	virtual void _18() = 0;                                                                                          // _18
@@ -57,7 +57,7 @@ struct J2DScreen {
 	virtual void _20() = 0;                                                                                          // _20
 	virtual void _24() = 0;                                                                                          // _24
 	virtual void _28() = 0;                                                                                          // _28
-	virtual void calcMtx();                                                                                          // _2C (inline)
+	virtual void calcMtx();                                                                                          // _2C (weak)
 	virtual void update();                                                                                           // _30
 	virtual void _34() = 0;                                                                                          // _34
 	virtual void drawSelf(float, float, float (*)[3][4]);                                                            // _38
@@ -67,10 +67,10 @@ struct J2DScreen {
 	virtual void _48() = 0;                                                                                          // _48
 	virtual void isUsed(const ResTIMG*);                                                                             // _4C
 	virtual void isUsed(const ResFONT*);                                                                             // _50
-	virtual void clearAnmTransform();                                                                                // _54 (inline)
+	virtual void clearAnmTransform();                                                                                // _54 (weak)
 	virtual void _58() = 0;                                                                                          // _58
-	virtual void setAnimation(J2DAnmBase*);                                                                          // _5C (inline)
-	virtual void setAnimation(J2DAnmTransform*);                                                                     // _60 (inline)
+	virtual void setAnimation(J2DAnmBase*);                                                                          // _5C (weak)
+	virtual void setAnimation(J2DAnmTransform*);                                                                     // _60 (weak)
 	virtual void setAnimation(J2DAnmColor*);                                                                         // _64
 	virtual void setAnimation(J2DAnmTexPattern*);                                                                    // _68
 	virtual void setAnimation(J2DAnmTextureSRTKey*);                                                                 // _6C
@@ -79,36 +79,36 @@ struct J2DScreen {
 	virtual void setAnimation(J2DAnmVtxColor*);                                                                      // _78
 	virtual void _7C() = 0;                                                                                          // _7C
 	virtual void _80() = 0;                                                                                          // _80
-	virtual void setAnimationVF(J2DAnmVisibilityFull*);                                                              // _84 (inline)
+	virtual void setAnimationVF(J2DAnmVisibilityFull*);                                                              // _84 (weak)
 	virtual void _88() = 0;                                                                                          // _88
-	virtual void setAnimationVC(J2DAnmVtxColor*);                                                                    // _8C (inline)
+	virtual void setAnimationVC(J2DAnmVtxColor*);                                                                    // _8C (weak)
 	virtual void _90() = 0;                                                                                          // _90
-	virtual void createPane(const J2DScrnBlockHeader&, JSURandomInputStream*, J2DPane*, unsigned long);              // _94 (inline)
+	virtual void createPane(const J2DScrnBlockHeader&, JSURandomInputStream*, J2DPane*, unsigned long);              // _94 (weak)
 	virtual void createPane(const J2DScrnBlockHeader&, JSURandomInputStream*, J2DPane*, unsigned long, JKRArchive*); // _98
 };
 
 struct J2DPane {
-	virtual ~J2DPane();                                       // _08 (inline)
+	virtual ~J2DPane();                                       // _08 (weak)
 	virtual void _0C() = 0;                                   // _0C
 	virtual void move(float, float);                          // _10
 	virtual void add(float, float);                           // _14
 	virtual void resize(float, float);                        // _18
-	virtual void setCullBack(bool);                           // _1C (inline)
+	virtual void setCullBack(bool);                           // _1C (weak)
 	virtual void setCullBack(_GXCullMode);                    // _20
-	virtual void setAlpha(unsigned char);                     // _24 (inline)
-	virtual void setConnectParent(bool);                      // _28 (inline)
+	virtual void setAlpha(unsigned char);                     // _24 (weak)
+	virtual void setConnectParent(bool);                      // _28 (weak)
 	virtual void _2C() = 0;                                   // _2C
 	virtual void update();                                    // _30
-	virtual void drawSelf(float, float);                      // _34 (inline)
+	virtual void drawSelf(float, float);                      // _34 (weak)
 	virtual void _38() = 0;                                   // _38
 	virtual void _3C() = 0;                                   // _3C
 	virtual void _40() = 0;                                   // _40
-	virtual void makeMatrix(float, float);                    // _44 (inline)
+	virtual void makeMatrix(float, float);                    // _44 (weak)
 	virtual void makeMatrix(float, float, float, float);      // _48
 	virtual void _4C() = 0;                                   // _4C
 	virtual void _50() = 0;                                   // _50
 	virtual void _54() = 0;                                   // _54
-	virtual void rewriteAlpha();                              // _58 (inline)
+	virtual void rewriteAlpha();                              // _58 (weak)
 	virtual void _5C() = 0;                                   // _5C
 	virtual void _60() = 0;                                   // _60
 	virtual void _64() = 0;                                   // _64
@@ -127,7 +127,7 @@ struct J2DPane {
 
 namespace P2DScreen {
 struct Mgr_tuning {
-	virtual ~Mgr_tuning();                         // _08 (inline)
+	virtual ~Mgr_tuning();                         // _08 (weak)
 	virtual void _0C() = 0;                        // _0C
 	virtual void _10() = 0;                        // _10
 	virtual void _14() = 0;                        // _14
@@ -171,7 +171,7 @@ struct Mgr_tuning {
 namespace og {
 namespace Screen {
 struct PikminCounter : public J2DScreen, public J2DPane, public Mgr_tuning {
-	virtual ~PikminCounter();              // _08 (inline)
+	virtual ~PikminCounter();              // _08 (weak)
 	virtual void update();                 // _30
 	virtual void setCallBack(JKRArchive*); // _A0
 	virtual void _A4() = 0;                // _A4

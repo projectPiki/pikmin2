@@ -12,8 +12,8 @@
 
 struct JASWaveArc {
 	virtual void onDispose();   // _08
-	virtual void onLoadDone();  // _0C (inline)
-	virtual void onEraseDone(); // _10 (inline)
+	virtual void onLoadDone();  // _0C (weak)
+	virtual void onEraseDone(); // _10 (weak)
 };
 
 #endif

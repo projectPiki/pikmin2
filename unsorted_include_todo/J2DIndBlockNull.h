@@ -20,23 +20,23 @@
 */
 
 struct J2DIndBlock {
-	virtual void initialize();                                            // _08 (inline)
-	virtual void setGX();                                                 // _0C (inline)
-	virtual void getType();                                               // _10 (inline)
-	virtual void setIndTexStageNum(unsigned char);                        // _14 (inline)
-	virtual void getIndTexStageNum() const;                               // _18 (inline)
-	virtual void setIndTexOrder(unsigned long, J2DIndTexOrder);           // _1C (inline)
-	virtual void getIndTexOrder(unsigned long);                           // _20 (inline)
-	virtual void setIndTexMtx(unsigned long, J2DIndTexMtx);               // _24 (inline)
-	virtual void getIndTexMtx(unsigned long);                             // _28 (inline)
-	virtual void setIndTexCoordScale(unsigned long, J2DIndTexCoordScale); // _2C (inline)
-	virtual void getIndTexCoordScale(unsigned long);                      // _30 (inline)
+	virtual void initialize();                                            // _08 (weak)
+	virtual void setGX();                                                 // _0C (weak)
+	virtual void getType();                                               // _10 (weak)
+	virtual void setIndTexStageNum(unsigned char);                        // _14 (weak)
+	virtual void getIndTexStageNum() const;                               // _18 (weak)
+	virtual void setIndTexOrder(unsigned long, J2DIndTexOrder);           // _1C (weak)
+	virtual void getIndTexOrder(unsigned long);                           // _20 (weak)
+	virtual void setIndTexMtx(unsigned long, J2DIndTexMtx);               // _24 (weak)
+	virtual void getIndTexMtx(unsigned long);                             // _28 (weak)
+	virtual void setIndTexCoordScale(unsigned long, J2DIndTexCoordScale); // _2C (weak)
+	virtual void getIndTexCoordScale(unsigned long);                      // _30 (weak)
 };
 
 struct J2DIndBlockNull : public J2DIndBlock {
-	virtual void setGX();       // _0C (inline)
-	virtual void getType();     // _10 (inline)
-	virtual ~J2DIndBlockNull(); // _34 (inline)
+	virtual void setGX();       // _0C (weak)
+	virtual void getType();     // _10 (weak)
+	virtual ~J2DIndBlockNull(); // _34 (weak)
 };
 
 #endif

@@ -25,24 +25,24 @@
 
 namespace Game {
 struct CellObject {
-	virtual void getPosition();                   // _08 (inline)
-	virtual void checkCollision(CellObject*);     // _0C (inline)
-	virtual void getBoundingSphere(Sys::Sphere&); // _10 (inline)
-	virtual void collisionUpdatable();            // _14 (inline)
-	virtual void isPiki();                        // _18 (inline)
-	virtual void isNavi();                        // _1C (inline)
-	virtual void deferPikiCollision();            // _20 (inline)
+	virtual void getPosition();                   // _08 (weak)
+	virtual void checkCollision(CellObject*);     // _0C (weak)
+	virtual void getBoundingSphere(Sys::Sphere&); // _10 (weak)
+	virtual void collisionUpdatable();            // _14 (weak)
+	virtual void isPiki();                        // _18 (weak)
+	virtual void isNavi();                        // _1C (weak)
+	virtual void deferPikiCollision();            // _20 (weak)
 };
 } // namespace Game
 
 namespace Game {
 struct MapRoom : public CellObject {
-	virtual void getPosition();                   // _08 (inline)
-	virtual void getBoundingSphere(Sys::Sphere&); // _10 (inline)
-	virtual void collisionUpdatable();            // _14 (inline)
-	virtual void getTypeName();                   // _24 (inline)
-	virtual void getObjType();                    // _28 (inline)
-	virtual void constructor();                   // _2C (inline)
+	virtual void getPosition();                   // _08 (weak)
+	virtual void getBoundingSphere(Sys::Sphere&); // _10 (weak)
+	virtual void collisionUpdatable();            // _14 (weak)
+	virtual void getTypeName();                   // _24 (weak)
+	virtual void getObjType();                    // _28 (weak)
+	virtual void constructor();                   // _2C (weak)
 	virtual void doAnimation();                   // _30
 	virtual void doEntry();                       // _34
 	virtual void doSetView(int);                  // _38

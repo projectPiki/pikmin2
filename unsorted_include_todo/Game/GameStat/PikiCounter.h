@@ -12,8 +12,8 @@
 namespace Game {
 namespace GameStat {
 struct PikiCounter {
-	virtual void __opi();         // _08 (inline)
-	virtual void operator()(int); // _0C (inline)
+	virtual void __opi();         // _08 (weak)
+	virtual void operator()(int); // _0C (weak)
 
 	PikiCounter();
 	void clear();

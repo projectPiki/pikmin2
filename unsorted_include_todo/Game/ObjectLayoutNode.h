@@ -18,21 +18,21 @@
 */
 
 struct CNode {
-	virtual ~CNode();             // _08 (inline)
+	virtual ~CNode();             // _08 (weak)
 	virtual void getChildCount(); // _0C
 };
 
 namespace Game {
 struct ObjectLayoutNode : public CNode {
-	virtual ~ObjectLayoutNode();                   // _08 (inline)
+	virtual ~ObjectLayoutNode();                   // _08 (weak)
 	virtual void _10() = 0;                        // _10
 	virtual void _14() = 0;                        // _14
 	virtual void _18() = 0;                        // _18
-	virtual void getDirection();                   // _1C (inline)
-	virtual void getBirthDoorIndex();              // _20 (inline)
-	virtual void getBirthPosition(float&, float&); // _24 (inline)
-	virtual void getExtraCode();                   // _28 (inline)
-	virtual void isFixedBattery();                 // _2C (inline)
+	virtual void getDirection();                   // _1C (weak)
+	virtual void getBirthDoorIndex();              // _20 (weak)
+	virtual void getBirthPosition(float&, float&); // _24 (weak)
+	virtual void getExtraCode();                   // _28 (weak)
+	virtual void isFixedBattery();                 // _2C (weak)
 };
 } // namespace Game
 

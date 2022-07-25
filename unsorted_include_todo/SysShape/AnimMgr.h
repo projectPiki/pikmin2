@@ -10,13 +10,13 @@
 */
 
 struct CNode {
-	virtual ~CNode();             // _08 (inline)
+	virtual ~CNode();             // _08 (weak)
 	virtual void getChildCount(); // _0C
 };
 
 namespace SysShape {
 struct AnimMgr : public CNode {
-	virtual ~AnimMgr(); // _08 (inline)
+	virtual ~AnimMgr(); // _08 (weak)
 
 	void load(char*, J3DModelData*, JKRFileLoader*);
 	void dump();

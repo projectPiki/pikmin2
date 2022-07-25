@@ -23,8 +23,8 @@ struct JASWaveArc {
 	virtual void _14() = 0;                          // _14
 	virtual void _18() = 0;                          // _18
 	virtual void onDispose();                        // _1C
-	virtual void onLoadDone();                       // _20 (inline)
-	virtual void onEraseDone();                      // _24 (inline)
+	virtual void onLoadDone();                       // _20 (weak)
+	virtual void onEraseDone();                      // _24 (weak)
 };
 
 struct JASSimpleWaveBank : public JASWaveArc {

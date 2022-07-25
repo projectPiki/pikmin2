@@ -91,93 +91,93 @@
 
 struct J2DPane {
 	virtual ~J2DPane();                                       // _08
-	virtual void getTypeID() const;                           // _0C (inline)
+	virtual void getTypeID() const;                           // _0C (weak)
 	virtual void move(float, float);                          // _10
 	virtual void add(float, float);                           // _14
 	virtual void resize(float, float);                        // _18
-	virtual void setCullBack(bool);                           // _1C (inline)
+	virtual void setCullBack(bool);                           // _1C (weak)
 	virtual void setCullBack(_GXCullMode);                    // _20
-	virtual void setAlpha(unsigned char);                     // _24 (inline)
-	virtual void setConnectParent(bool);                      // _28 (inline)
-	virtual void calcMtx();                                   // _2C (inline)
-	virtual void update();                                    // _30 (inline)
+	virtual void setAlpha(unsigned char);                     // _24 (weak)
+	virtual void setConnectParent(bool);                      // _28 (weak)
+	virtual void calcMtx();                                   // _2C (weak)
+	virtual void update();                                    // _30 (weak)
 	virtual void drawSelf(float, float);                      // _34
 	virtual void drawSelf(float, float, float (*)[3][4]);     // _38
 	virtual void search(unsigned long long);                  // _3C
 	virtual void searchUserInfo(unsigned long long);          // _40
-	virtual void makeMatrix(float, float);                    // _44 (inline)
+	virtual void makeMatrix(float, float);                    // _44 (weak)
 	virtual void makeMatrix(float, float, float, float);      // _48
 	virtual void isUsed(const ResTIMG*);                      // _4C
-	virtual void isUsed(const ResFONT*);                      // _50 (inline)
+	virtual void isUsed(const ResFONT*);                      // _50 (weak)
 	virtual void clearAnmTransform();                         // _54
-	virtual void rewriteAlpha();                              // _58 (inline)
+	virtual void rewriteAlpha();                              // _58 (weak)
 	virtual void setAnimation(J2DAnmBase*);                   // _5C
 	virtual void setAnimation(J2DAnmTransform*);              // _60
-	virtual void setAnimation(J2DAnmColor*);                  // _64 (inline)
-	virtual void setAnimation(J2DAnmTexPattern*);             // _68 (inline)
-	virtual void setAnimation(J2DAnmTextureSRTKey*);          // _6C (inline)
-	virtual void setAnimation(J2DAnmTevRegKey*);              // _70 (inline)
-	virtual void setAnimation(J2DAnmVisibilityFull*);         // _74 (inline)
-	virtual void setAnimation(J2DAnmVtxColor*);               // _78 (inline)
+	virtual void setAnimation(J2DAnmColor*);                  // _64 (weak)
+	virtual void setAnimation(J2DAnmTexPattern*);             // _68 (weak)
+	virtual void setAnimation(J2DAnmTextureSRTKey*);          // _6C (weak)
+	virtual void setAnimation(J2DAnmTevRegKey*);              // _70 (weak)
+	virtual void setAnimation(J2DAnmVisibilityFull*);         // _74 (weak)
+	virtual void setAnimation(J2DAnmVtxColor*);               // _78 (weak)
 	virtual void animationTransform(const J2DAnmTransform*);  // _7C
 	virtual void setVisibileAnimation(J2DAnmVisibilityFull*); // _80
-	virtual void setAnimationVF(J2DAnmVisibilityFull*);       // _84 (inline)
+	virtual void setAnimationVF(J2DAnmVisibilityFull*);       // _84 (weak)
 	virtual void setVtxColorAnimation(J2DAnmVtxColor*);       // _88
-	virtual void setAnimationVC(J2DAnmVtxColor*);             // _8C (inline)
+	virtual void setAnimationVC(J2DAnmVtxColor*);             // _8C (weak)
 	virtual void animationPane(const J2DAnmTransform*);       // _90
 };
 
 struct J2DPicture : public J2DPane {
 	virtual ~J2DPicture();                                                                   // _08
-	virtual void getTypeID() const;                                                          // _0C (inline)
+	virtual void getTypeID() const;                                                          // _0C (weak)
 	virtual void drawSelf(float, float);                                                     // _34
 	virtual void drawSelf(float, float, float (*)[3][4]);                                    // _38
 	virtual void isUsed(const ResTIMG*);                                                     // _4C
-	virtual void isUsed(const ResFONT*);                                                     // _50 (inline)
-	virtual void rewriteAlpha();                                                             // _58 (inline)
+	virtual void isUsed(const ResFONT*);                                                     // _50 (weak)
+	virtual void rewriteAlpha();                                                             // _58 (weak)
 	virtual void initiate(const ResTIMG*, const ResTLUT*);                                   // _94
 	virtual void prepareTexture(unsigned char);                                              // _98
-	virtual void append(const ResTIMG*, float);                                              // _9C (inline)
-	virtual void append(const ResTIMG*, JUTPalette*, float);                                 // _A0 (inline)
-	virtual void append(const char*, float);                                                 // _A4 (inline)
-	virtual void append(const char*, JUTPalette*, float);                                    // _A8 (inline)
-	virtual void append(JUTTexture*, float);                                                 // _AC (inline)
-	virtual void prepend(const ResTIMG*, float);                                             // _B0 (inline)
-	virtual void prepend(const ResTIMG*, JUTPalette*, float);                                // _B4 (inline)
-	virtual void prepend(const char*, float);                                                // _B8 (inline)
-	virtual void prepend(const char*, JUTPalette*, float);                                   // _BC (inline)
-	virtual void prepend(JUTTexture*, float);                                                // _C0 (inline)
-	virtual void insert(const ResTIMG*, unsigned char, float);                               // _C4 (inline)
+	virtual void append(const ResTIMG*, float);                                              // _9C (weak)
+	virtual void append(const ResTIMG*, JUTPalette*, float);                                 // _A0 (weak)
+	virtual void append(const char*, float);                                                 // _A4 (weak)
+	virtual void append(const char*, JUTPalette*, float);                                    // _A8 (weak)
+	virtual void append(JUTTexture*, float);                                                 // _AC (weak)
+	virtual void prepend(const ResTIMG*, float);                                             // _B0 (weak)
+	virtual void prepend(const ResTIMG*, JUTPalette*, float);                                // _B4 (weak)
+	virtual void prepend(const char*, float);                                                // _B8 (weak)
+	virtual void prepend(const char*, JUTPalette*, float);                                   // _BC (weak)
+	virtual void prepend(JUTTexture*, float);                                                // _C0 (weak)
+	virtual void insert(const ResTIMG*, unsigned char, float);                               // _C4 (weak)
 	virtual void insert(const ResTIMG*, JUTPalette*, unsigned char, float);                  // _C8
-	virtual void insert(const char*, unsigned char, float);                                  // _CC (inline)
+	virtual void insert(const char*, unsigned char, float);                                  // _CC (weak)
 	virtual void insert(const char*, JUTPalette*, unsigned char, float);                     // _D0
 	virtual void insert(JUTTexture*, unsigned char, float);                                  // _D4
 	virtual void remove(unsigned char);                                                      // _D8
-	virtual void remove();                                                                   // _DC (inline)
+	virtual void remove();                                                                   // _DC (weak)
 	virtual void remove(JUTTexture*);                                                        // _E0
-	virtual void draw(float, float, bool, bool, bool);                                       // _E4 (inline)
-	virtual void draw(float, float, unsigned char, bool, bool, bool);                        // _E8 (inline)
+	virtual void draw(float, float, bool, bool, bool);                                       // _E4 (weak)
+	virtual void draw(float, float, unsigned char, bool, bool, bool);                        // _E8 (weak)
 	virtual void draw(float, float, float, float, bool, bool, bool);                         // _EC
-	virtual void drawOut(float, float, float, float, float, float);                          // _F0 (inline)
-	virtual void drawOut(float, float, float, float, float, float, float, float);            // _F4 (inline)
+	virtual void drawOut(float, float, float, float, float, float);                          // _F0 (weak)
+	virtual void drawOut(float, float, float, float, float, float, float, float);            // _F4 (weak)
 	virtual void drawOut(const JGeometry::TBox2<float>&, const JGeometry::TBox2<float>&);    // _F8
-	virtual void load(_GXTexMapID, unsigned char);                                           // _FC (inline)
-	virtual void load(unsigned char);                                                        // _100 (inline)
-	virtual void setBlendRatio(float, float, float, float, float, float, float, float);      // _104 (inline)
+	virtual void load(_GXTexMapID, unsigned char);                                           // _FC (weak)
+	virtual void load(unsigned char);                                                        // _100 (weak)
+	virtual void setBlendRatio(float, float, float, float, float, float, float, float);      // _104 (weak)
 	virtual void setBlendColorRatio(float, float, float, float, float, float, float, float); // _108
 	virtual void setBlendAlphaRatio(float, float, float, float, float, float, float, float); // _10C
 	virtual void changeTexture(const ResTIMG*, unsigned char);                               // _110
 	virtual void changeTexture(const char*, unsigned char);                                  // _114
 	virtual void changeTexture(const ResTIMG*, unsigned char, JUTPalette*);                  // _118
 	virtual void changeTexture(const char*, unsigned char, JUTPalette*);                     // _11C
-	virtual void getTexture(unsigned char) const;                                            // _120 (inline)
-	virtual void getTextureCount() const;                                                    // _124 (inline)
-	virtual void setBlack(JUtility::TColor);                                                 // _128 (inline)
-	virtual void setWhite(JUtility::TColor);                                                 // _12C (inline)
-	virtual void setBlackWhite(JUtility::TColor, JUtility::TColor);                          // _130 (inline)
-	virtual void getBlack() const;                                                           // _134 (inline)
-	virtual void getWhite() const;                                                           // _138 (inline)
-	virtual void getMaterial() const;                                                        // _13C (inline)
+	virtual void getTexture(unsigned char) const;                                            // _120 (weak)
+	virtual void getTextureCount() const;                                                    // _124 (weak)
+	virtual void setBlack(JUtility::TColor);                                                 // _128 (weak)
+	virtual void setWhite(JUtility::TColor);                                                 // _12C (weak)
+	virtual void setBlackWhite(JUtility::TColor, JUtility::TColor);                          // _130 (weak)
+	virtual void getBlack() const;                                                           // _134 (weak)
+	virtual void getWhite() const;                                                           // _138 (weak)
+	virtual void getMaterial() const;                                                        // _13C (weak)
 	virtual void drawFullSet(float, float, float, float, float (*)[3][4]);                   // _140
 	virtual void drawTexCoord(float, float, float, float, short, short, short, short, short, short, short, short, float (*)[3][4]); // _144
 	virtual void getUsableTlut(unsigned char);                                                                                      // _148

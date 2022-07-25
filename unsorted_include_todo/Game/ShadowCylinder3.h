@@ -13,7 +13,7 @@
 
 namespace Game {
 struct ShadowCylinder3 {
-	virtual void setFilterTextureID(int);     // _08 (inline)
+	virtual void setFilterTextureID(int);     // _08 (weak)
 	virtual void drawInit();                  // _0C
 	virtual void drawCylinder(Matrixf&, int); // _10
 	virtual void drawFinish();                // _14

@@ -12,7 +12,7 @@ namespace ebi {
 namespace title {
 namespace Kogane {
 struct TAnimFolder {
-	virtual void getAnimRes(long); // _08 (inline)
+	virtual void getAnimRes(long); // _08 (weak)
 };
 } // namespace Kogane
 } // namespace title

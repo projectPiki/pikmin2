@@ -16,14 +16,14 @@
 */
 
 struct J2DGrafContext {
-	virtual ~J2DGrafContext();                          // _08 (inline)
+	virtual ~J2DGrafContext();                          // _08 (weak)
 	virtual void place(const JGeometry::TBox2<float>&); // _0C
-	virtual void place(float, float, float, float);     // _10 (inline)
+	virtual void place(float, float, float, float);     // _10 (weak)
 	virtual void setPort();                             // _14
 	virtual void setup2D();                             // _18
 	virtual void setScissor();                          // _1C
-	virtual void getGrafType() const;                   // _20 (inline)
-	virtual void setLookat();                           // _24 (inline)
+	virtual void getGrafType() const;                   // _20 (weak)
+	virtual void setLookat();                           // _24 (weak)
 };
 
 #endif

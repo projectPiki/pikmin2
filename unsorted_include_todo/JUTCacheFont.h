@@ -30,16 +30,16 @@ struct JUTResFont {
 	virtual void setGX();                                               // _0C
 	virtual void setGX(JUtility::TColor, JUtility::TColor);             // _10
 	virtual void drawChar_scale(float, float, float, float, int, bool); // _14
-	virtual void getLeading() const;                                    // _18 (inline)
-	virtual void getAscent() const;                                     // _1C (inline)
-	virtual void getDescent() const;                                    // _20 (inline)
-	virtual void getHeight() const;                                     // _24 (inline)
-	virtual void getWidth() const;                                      // _28 (inline)
+	virtual void getLeading() const;                                    // _18 (weak)
+	virtual void getAscent() const;                                     // _1C (weak)
+	virtual void getDescent() const;                                    // _20 (weak)
+	virtual void getHeight() const;                                     // _24 (weak)
+	virtual void getWidth() const;                                      // _28 (weak)
 	virtual void getWidthEntry(int, JUTFont::TWidth*) const;            // _2C
 	virtual void getCellWidth() const;                                  // _30
 	virtual void getCellHeight() const;                                 // _34
-	virtual void getFontType() const;                                   // _38 (inline)
-	virtual void getResFont() const;                                    // _3C (inline)
+	virtual void getFontType() const;                                   // _38 (weak)
+	virtual void getResFont() const;                                    // _3C (weak)
 	virtual void isLeadByte(int) const;                                 // _40
 };
 

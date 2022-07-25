@@ -21,12 +21,12 @@ namespace FSMState < ebi
 	namespace Omake {
 	struct TMgr >
 	{
-		virtual void init(TMgr*, Game::StateArg*);        // _08 (inline)
-		virtual void exec(TMgr*);                         // _0C (inline)
-		virtual void cleanup(ebi::TMgr*);                 // _10 (inline)
-		virtual void resume(ebi::TMgr*);                  // _14 (inline)
-		virtual void restart(ebi::TMgr*);                 // _18 (inline)
-		virtual void transit(ebi::TMgr*, int, StateArg*); // _1C (inline)
+		virtual void init(TMgr*, Game::StateArg*);        // _08 (weak)
+		virtual void exec(TMgr*);                         // _0C (weak)
+		virtual void cleanup(ebi::TMgr*);                 // _10 (weak)
+		virtual void resume(ebi::TMgr*);                  // _14 (weak)
+		virtual void restart(ebi::TMgr*);                 // _18 (weak)
+		virtual void transit(ebi::TMgr*, int, StateArg*); // _1C (weak)
 	};
 	} // namespace Omake
 } // namespace ebi
@@ -35,10 +35,10 @@ namespace FSMState < ebi
 namespace ebi {
 namespace Omake {
 struct FSMState : public TMgr > {
-	virtual void init(TMgr*, Game::StateArg*);    // _08 (inline)
-	virtual void exec(TMgr*);                     // _0C (inline)
-	virtual void do_init(TMgr*, Game::StateArg*); // _20 (inline)
-	virtual void do_exec(TMgr*);                  // _24 (inline)
+	virtual void init(TMgr*, Game::StateArg*);    // _08 (weak)
+	virtual void exec(TMgr*);                     // _0C (weak)
+	virtual void do_init(TMgr*, Game::StateArg*); // _20 (weak)
+	virtual void do_exec(TMgr*);                  // _24 (weak)
 };
 } // namespace Omake
 } // namespace ebi

@@ -26,7 +26,7 @@ namespace PSM {
 struct OtakaraEventLink : public DirectorLink {
 	virtual void getListDirectorActor(); // _08
 	virtual void eventFinish();          // _18
-	virtual void is2PBattle();           // _1C (inline)
+	virtual void is2PBattle();           // _1C (weak)
 };
 } // namespace PSM
 

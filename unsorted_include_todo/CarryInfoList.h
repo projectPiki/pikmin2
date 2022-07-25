@@ -13,11 +13,11 @@
 */
 
 struct CarryInfoList {
-	virtual ~CarryInfoList();     // _08 (inline)
+	virtual ~CarryInfoList();     // _08 (weak)
 	virtual void init();          // _0C
 	virtual void update();        // _10
 	virtual void draw(Graphics&); // _14
-	virtual void isFinish();      // _18 (inline)
+	virtual void isFinish();      // _18 (weak)
 };
 
 #endif

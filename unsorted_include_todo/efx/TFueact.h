@@ -12,9 +12,9 @@
 
 namespace efx {
 struct TFueact {
-	virtual void create(Arg*); // _08 (inline)
-	virtual void forceKill();  // _0C (inline)
-	virtual void fade();       // _10 (inline)
+	virtual void create(Arg*); // _08 (weak)
+	virtual void forceKill();  // _0C (weak)
+	virtual void fade();       // _10 (weak)
 };
 } // namespace efx
 

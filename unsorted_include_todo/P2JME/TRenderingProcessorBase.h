@@ -34,9 +34,9 @@
 
 namespace JMessage {
 struct TProcessor {
-	virtual ~TProcessor();                                                     // _08 (inline)
+	virtual ~TProcessor();                                                     // _08 (weak)
 	virtual void do_reset();                                                   // _0C
-	virtual void do_character(int);                                            // _10 (inline)
+	virtual void do_character(int);                                            // _10 (weak)
 	virtual void do_tag(unsigned long, const void*, unsigned long);            // _14
 	virtual void do_systemTagCode(unsigned short, const void*, unsigned long); // _18
 	virtual void do_select_begin(unsigned long);                               // _1C
@@ -49,9 +49,9 @@ struct TProcessor {
 
 namespace JMessage {
 struct TRenderingProcessor {
-	virtual ~TRenderingProcessor();                                             // _08 (inline)
+	virtual ~TRenderingProcessor();                                             // _08 (weak)
 	virtual void _0C() = 0;                                                     // _0C
-	virtual void do_character(int);                                             // _10 (inline)
+	virtual void do_character(int);                                             // _10 (weak)
 	virtual void do_tag(unsigned long, const void*, unsigned long);             // _14
 	virtual void _18() = 0;                                                     // _18
 	virtual void _1C() = 0;                                                     // _1C
@@ -70,17 +70,17 @@ struct TRenderingProcessor {
 
 namespace P2JME {
 struct TRenderingProcessorBase : public TProcessor, public TRenderingProcessor {
-	virtual ~TRenderingProcessorBase();                                   // _08 (inline)
-	virtual void do_character(int);                                       // _10 (inline)
+	virtual ~TRenderingProcessorBase();                                   // _08 (weak)
+	virtual void do_character(int);                                       // _10 (weak)
 	virtual void do_tag(unsigned long, const void*, unsigned long);       // _14
-	virtual void tagColor(const void*, unsigned long);                    // _48 (inline)
-	virtual void tagSize(const void*, unsigned long);                     // _4C (inline)
-	virtual void tagRuby(const void*, unsigned long);                     // _50 (inline)
-	virtual void tagFont(const void*, unsigned long);                     // _54 (inline)
-	virtual void tagImage(unsigned short, const void*, unsigned long);    // _58 (inline)
-	virtual void tagColorEX(unsigned short, const void*, unsigned long);  // _5C (inline)
-	virtual void tagControl(unsigned short, const void*, unsigned long);  // _60 (inline)
-	virtual void tagPosition(unsigned short, const void*, unsigned long); // _64 (inline)
+	virtual void tagColor(const void*, unsigned long);                    // _48 (weak)
+	virtual void tagSize(const void*, unsigned long);                     // _4C (weak)
+	virtual void tagRuby(const void*, unsigned long);                     // _50 (weak)
+	virtual void tagFont(const void*, unsigned long);                     // _54 (weak)
+	virtual void tagImage(unsigned short, const void*, unsigned long);    // _58 (weak)
+	virtual void tagColorEX(unsigned short, const void*, unsigned long);  // _5C (weak)
+	virtual void tagControl(unsigned short, const void*, unsigned long);  // _60 (weak)
+	virtual void tagPosition(unsigned short, const void*, unsigned long); // _64 (weak)
 	virtual void _68() = 0;                                               // _68
 
 	TRenderingProcessorBase(const JMessage::TReference*);

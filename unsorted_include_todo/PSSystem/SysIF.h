@@ -17,9 +17,9 @@
 */
 
 struct JAIBasic {
-	virtual void makeSequence();                       // _08 (inline)
+	virtual void makeSequence();                       // _08 (weak)
 	virtual void makeSe();                             // _0C
-	virtual void makeStream();                         // _10 (inline)
+	virtual void makeStream();                         // _10 (weak)
 	virtual void getMapInfoFxline(unsigned long);      // _14
 	virtual void getMapInfoGround(unsigned long);      // _18
 	virtual void getMapInfoFxParameter(unsigned long); // _1C
@@ -29,9 +29,9 @@ struct JAIBasic {
 
 namespace PSSystem {
 struct SysIF : public JAIBasic {
-	virtual void makeSequence();          // _08 (inline)
+	virtual void makeSequence();          // _08 (weak)
 	virtual void makeSe();                // _0C
-	virtual void makeStream();            // _10 (inline)
+	virtual void makeStream();            // _10 (weak)
 	virtual void initIF(const SetupArg&); // _28
 
 	SysIF(const PSSystem::SetupArg&);

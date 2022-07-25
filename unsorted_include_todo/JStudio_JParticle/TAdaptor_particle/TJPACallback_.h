@@ -13,17 +13,17 @@
 */
 
 struct JPAEmitterCallBack {
-	virtual ~JPAEmitterCallBack();              // _08 (inline)
+	virtual ~JPAEmitterCallBack();              // _08 (weak)
 	virtual void execute(JPABaseEmitter*);      // _0C
-	virtual void executeAfter(JPABaseEmitter*); // _10 (inline)
-	virtual void draw(JPABaseEmitter*);         // _14 (inline)
-	virtual void drawAfter(JPABaseEmitter*);    // _18 (inline)
+	virtual void executeAfter(JPABaseEmitter*); // _10 (weak)
+	virtual void draw(JPABaseEmitter*);         // _14 (weak)
+	virtual void drawAfter(JPABaseEmitter*);    // _18 (weak)
 };
 
 namespace JStudio_JParticle {
 namespace TAdaptor_particle {
 struct TJPACallback_ : public JPAEmitterCallBack {
-	virtual ~TJPACallback_();              // _08 (inline)
+	virtual ~TJPACallback_();              // _08 (weak)
 	virtual void execute(JPABaseEmitter*); // _0C
 };
 } // namespace TAdaptor_particle

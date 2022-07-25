@@ -11,7 +11,7 @@
 */
 
 struct JASWaveHandle {
-	virtual ~JASWaveHandle(); // _08 (inline)
+	virtual ~JASWaveHandle(); // _08 (weak)
 	virtual void _0C() = 0;   // _0C
 	virtual void _10() = 0;   // _10
 };

@@ -14,17 +14,17 @@
 namespace efx2d {
 struct TBase {
 	virtual void create(Arg*);            // _08
-	virtual void kill();                  // _0C (inline)
-	virtual void fade();                  // _10 (inline)
-	virtual void setGroup(unsigned char); // _14 (inline)
+	virtual void kill();                  // _0C (weak)
+	virtual void fade();                  // _10 (weak)
+	virtual void setGroup(unsigned char); // _14 (weak)
 };
 } // namespace efx2d
 
 namespace efx2d {
 struct TSimple2 : public TBase {
 	virtual void create(Arg*); // _08
-	virtual void kill();       // _0C (inline)
-	virtual void fade();       // _10 (inline)
+	virtual void kill();       // _0C (weak)
+	virtual void fade();       // _10 (weak)
 };
 } // namespace efx2d
 

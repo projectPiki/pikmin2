@@ -19,11 +19,11 @@
 namespace Game {
 namespace WorldMap {
 struct Base {
-	virtual ~Base();                       // _08 (inline)
+	virtual ~Base();                       // _08 (weak)
 	virtual void loadResource();           // _0C
 	virtual void init(Game::InitArg&);     // _10
 	virtual void update(Game::UpdateArg&); // _14
-	virtual void draw(Graphics&);          // _18 (inline)
+	virtual void draw(Graphics&);          // _18 (weak)
 };
 } // namespace WorldMap
 } // namespace Game
@@ -31,7 +31,7 @@ struct Base {
 namespace kh {
 namespace Screen {
 struct WorldMap : public Base {
-	virtual ~WorldMap();                   // _08 (inline)
+	virtual ~WorldMap();                   // _08 (weak)
 	virtual void loadResource();           // _0C
 	virtual void init(Game::InitArg&);     // _10
 	virtual void update(Game::UpdateArg&); // _14

@@ -12,9 +12,9 @@
 
 namespace PSGame {
 struct CaveFloorInfo {
-	virtual void isCaveFloor();  // _08 (inline)
-	virtual void isBossFloor();  // _0C (inline)
-	virtual void isRelaxFloor(); // _10 (inline)
+	virtual void isCaveFloor();  // _08 (weak)
+	virtual void isBossFloor();  // _0C (weak)
+	virtual void isRelaxFloor(); // _10 (weak)
 
 	void getCaveNoFromID();
 };

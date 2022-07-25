@@ -10,7 +10,7 @@
 
 namespace efx {
 struct ArgDenkiHiba {
-	virtual void getName(); // _08 (inline)
+	virtual void getName(); // _08 (weak)
 };
 } // namespace efx
 

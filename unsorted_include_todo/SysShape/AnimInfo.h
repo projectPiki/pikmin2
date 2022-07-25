@@ -10,13 +10,13 @@
 */
 
 struct CNode {
-	virtual ~CNode();             // _08 (inline)
+	virtual ~CNode();             // _08 (weak)
 	virtual void getChildCount(); // _0C
 };
 
 namespace SysShape {
 struct AnimInfo : public CNode {
-	virtual ~AnimInfo(); // _08 (inline)
+	virtual ~AnimInfo(); // _08 (weak)
 
 	void getLowestAnimKey(float);
 	void getLastLoopStart(SysShape::KeyEvent*);

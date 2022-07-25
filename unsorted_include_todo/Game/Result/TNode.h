@@ -11,7 +11,7 @@
 
 namespace Game {
 struct DNode {
-	virtual ~DNode();             // _08 (inline)
+	virtual ~DNode();             // _08 (weak)
 	virtual void getChildCount(); // _0C
 };
 } // namespace Game
@@ -19,7 +19,7 @@ struct DNode {
 namespace Game {
 namespace Result {
 struct TNode : public DNode {
-	virtual ~TNode(); // _08 (inline)
+	virtual ~TNode(); // _08 (weak)
 
 	TNode();
 	void setTNode(unsigned long long, JUTTexture*, int, int, int);

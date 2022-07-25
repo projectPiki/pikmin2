@@ -39,7 +39,7 @@ struct TScreenBase {
 	virtual void doOpenScreen(ArgOpen*);    // _28
 	virtual void doCloseScreen(ArgClose*);  // _2C
 	virtual void doKillScreen();            // _30
-	virtual void doInitWaitState();         // _34 (inline)
+	virtual void doInitWaitState();         // _34 (weak)
 };
 } // namespace Screen
 } // namespace ebi
@@ -55,7 +55,7 @@ struct TSaveMenu : public TScreenBase {
 	virtual void doUpdateStateWait();       // _3C
 	virtual void doUpdateStateClose();      // _40
 	virtual void doDraw();                  // _44
-	virtual void getName();                 // _48 (inline)
+	virtual void getName();                 // _48 (weak)
 	virtual void _4C() = 0;                 // _4C
 
 	TSaveMenu();

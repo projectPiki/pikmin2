@@ -15,7 +15,7 @@ namespace PSSystem {
 struct EnvSeBase {
 	virtual void exec();        // _08
 	virtual void play();        // _0C
-	virtual void getCastType(); // _10 (inline)
+	virtual void getCastType(); // _10 (weak)
 };
 } // namespace PSSystem
 

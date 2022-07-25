@@ -10,14 +10,14 @@
 */
 
 struct CNode {
-	virtual ~CNode();             // _08 (inline)
+	virtual ~CNode();             // _08 (weak)
 	virtual void getChildCount(); // _0C
 };
 
 namespace Game {
 namespace Cave {
 struct RandMapMgr : public CNode {
-	virtual ~RandMapMgr(); // _08 (inline)
+	virtual ~RandMapMgr(); // _08 (weak)
 
 	RandMapMgr(bool);
 	void loadResource(Game::MapUnitInterface*, int, Game::Cave::FloorInfo*, bool, Game::Cave::EditMapUnit*);

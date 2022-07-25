@@ -11,7 +11,7 @@
 namespace Game {
 namespace ItemRock {
 struct RockParms {
-	virtual void read(Stream&); // _08 (inline)
+	virtual void read(Stream&); // _08 (weak)
 
 	RockParms();
 };

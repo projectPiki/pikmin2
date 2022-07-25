@@ -20,8 +20,8 @@
 namespace ebi {
 namespace FS {
 struct FSMState {
-	virtual void init(TMgr*, Game::StateArg*); // _08 (inline)
-	virtual void exec(TMgr*);                  // _0C (inline)
+	virtual void init(TMgr*, Game::StateArg*); // _08 (weak)
+	virtual void exec(TMgr*);                  // _0C (weak)
 };
 } // namespace FS
 } // namespace ebi
@@ -34,10 +34,10 @@ namespace FSMState < ebi
 	{
 		virtual void _08() = 0;                           // _08
 		virtual void _0C() = 0;                           // _0C
-		virtual void cleanup(ebi::TMgr*);                 // _10 (inline)
-		virtual void resume(ebi::TMgr*);                  // _14 (inline)
-		virtual void restart(ebi::TMgr*);                 // _18 (inline)
-		virtual void transit(ebi::TMgr*, int, StateArg*); // _1C (inline)
+		virtual void cleanup(ebi::TMgr*);                 // _10 (weak)
+		virtual void resume(ebi::TMgr*);                  // _14 (weak)
+		virtual void restart(ebi::TMgr*);                 // _18 (weak)
+		virtual void transit(ebi::TMgr*, int, StateArg*); // _1C (weak)
 	};
 	} // namespace FS
 } // namespace ebi
@@ -49,7 +49,7 @@ struct FSMState_SelectYesNo : public FSMState, public TMgr > {
 	virtual void do_init(TMgr*, Game::StateArg*); // _20
 	virtual void do_exec(TMgr*);                  // _24
 	virtual void _28() = 0;                       // _28
-	virtual void do_decide(TMgr*);                // _2C (inline)
+	virtual void do_decide(TMgr*);                // _2C (weak)
 };
 } // namespace FS
 } // namespace ebi

@@ -19,16 +19,16 @@
 
 namespace Game {
 struct PelletView {
-	virtual void viewGetBaseScale();                        // _08 (inline)
+	virtual void viewGetBaseScale();                        // _08 (weak)
 	virtual void _0C() = 0;                                 // _0C
-	virtual void viewGetCollTreeJointIndex();               // _10 (inline)
-	virtual void viewGetCollTreeOffset();                   // _14 (inline)
-	virtual void view_start_carrymotion();                  // _18 (inline)
-	virtual void view_finish_carrymotion();                 // _1C (inline)
-	virtual void viewStartPreCarryMotion();                 // _20 (inline)
-	virtual void viewStartCarryMotion();                    // _24 (inline)
-	virtual void viewOnPelletKilled();                      // _28 (inline)
-	virtual void viewEntryShape(Matrixf&, Vector3<float>&); // _2C (inline)
+	virtual void viewGetCollTreeJointIndex();               // _10 (weak)
+	virtual void viewGetCollTreeOffset();                   // _14 (weak)
+	virtual void view_start_carrymotion();                  // _18 (weak)
+	virtual void view_finish_carrymotion();                 // _1C (weak)
+	virtual void viewStartPreCarryMotion();                 // _20 (weak)
+	virtual void viewStartCarryMotion();                    // _24 (weak)
+	virtual void viewOnPelletKilled();                      // _28 (weak)
+	virtual void viewEntryShape(Matrixf&, Vector3<float>&); // _2C (weak)
 
 	void becomePellet(Game::PelletViewArg*);
 	void viewMakeMatrix(Matrixf&);

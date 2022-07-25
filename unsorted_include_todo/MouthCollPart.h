@@ -19,22 +19,22 @@
 */
 
 struct CollPart {
-	virtual ~CollPart();                   // _08 (inline)
-	virtual void getChildCount();          // _0C (inline)
-	virtual void isMouth();                // _10 (inline)
+	virtual ~CollPart();                   // _08 (weak)
+	virtual void getChildCount();          // _0C (weak)
+	virtual void isMouth();                // _10 (weak)
 	virtual void draw(Graphics&);          // _14
-	virtual void constructor();            // _18 (inline)
-	virtual void doAnimation();            // _1C (inline)
-	virtual void doEntry();                // _20 (inline)
-	virtual void doSetView(unsigned long); // _24 (inline)
-	virtual void doViewCalc();             // _28 (inline)
-	virtual void doSimulation(float);      // _2C (inline)
-	virtual void doDirectDraw(Graphics&);  // _30 (inline)
+	virtual void constructor();            // _18 (weak)
+	virtual void doAnimation();            // _1C (weak)
+	virtual void doEntry();                // _20 (weak)
+	virtual void doSetView(unsigned long); // _24 (weak)
+	virtual void doViewCalc();             // _28 (weak)
+	virtual void doSimulation(float);      // _2C (weak)
+	virtual void doDirectDraw(Graphics&);  // _30 (weak)
 };
 
 struct MouthCollPart : public CollPart {
-	virtual ~MouthCollPart(); // _08 (inline)
-	virtual void isMouth();   // _10 (inline)
+	virtual ~MouthCollPart(); // _08 (weak)
+	virtual void isMouth();   // _10 (weak)
 };
 
 #endif

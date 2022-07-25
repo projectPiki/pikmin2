@@ -10,13 +10,13 @@
 */
 
 struct CNode {
-	virtual ~CNode();             // _08 (inline)
+	virtual ~CNode();             // _08 (weak)
 	virtual void getChildCount(); // _0C
 };
 
 namespace Game {
 struct JointShadowNode : public CNode {
-	virtual ~JointShadowNode(); // _08 (inline)
+	virtual ~JointShadowNode(); // _08 (weak)
 
 	JointShadowNode(int);
 	void init(int);

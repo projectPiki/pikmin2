@@ -14,10 +14,10 @@
 namespace og {
 namespace newScreen {
 struct TitleMsg {
-	virtual void init();   // _08 (inline)
-	virtual void update(); // _0C (inline)
-	virtual void start();  // _10 (inline)
-	virtual void end();    // _14 (inline)
+	virtual void init();   // _08 (weak)
+	virtual void update(); // _0C (weak)
+	virtual void start();  // _10 (weak)
+	virtual void end();    // _14 (weak)
 
 	TitleMsg(J2DScreen*, J2DPane*, char*);
 	void setFontPane(J2DPictureEx*, int);

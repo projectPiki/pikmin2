@@ -24,38 +24,38 @@
 */
 
 struct CNode {
-	virtual ~CNode();             // _08 (inline)
+	virtual ~CNode();             // _08 (weak)
 	virtual void getChildCount(); // _0C
 };
 
 struct Container<int> {
-	virtual ~Container<int>();     // _08 (inline)
+	virtual ~Container<int>();     // _08 (weak)
 	virtual void _0C() = 0;        // _0C
-	virtual void getObject(void*); // _10 (inline)
+	virtual void getObject(void*); // _10 (weak)
 };
 
 struct ArrayContainer<int> {
-	virtual ~ArrayContainer<int>();   // _08 (inline)
+	virtual ~ArrayContainer<int>();   // _08 (weak)
 	virtual void _0C() = 0;           // _0C
 	virtual void _10() = 0;           // _10
-	virtual void getNext(void*);      // _14 (inline)
-	virtual void getStart();          // _18 (inline)
-	virtual void getEnd();            // _1C (inline)
-	virtual void get(void*);          // _20 (inline)
-	virtual void getAt(int);          // _24 (inline)
-	virtual void getTo();             // _28 (inline)
+	virtual void getNext(void*);      // _14 (weak)
+	virtual void getStart();          // _18 (weak)
+	virtual void getEnd();            // _1C (weak)
+	virtual void get(void*);          // _20 (weak)
+	virtual void getAt(int);          // _24 (weak)
+	virtual void getTo();             // _28 (weak)
 	virtual void _2C() = 0;           // _2C
 	virtual void _30() = 0;           // _30
-	virtual void write(Stream&);      // _34 (inline)
-	virtual void read(Stream&);       // _38 (inline)
-	virtual void alloc(int);          // _3C (inline)
-	virtual void addOne(int&);        // _40 (inline)
-	virtual void setArray(int*, int); // _44 (inline)
+	virtual void write(Stream&);      // _34 (weak)
+	virtual void read(Stream&);       // _38 (weak)
+	virtual void alloc(int);          // _3C (weak)
+	virtual void addOne(int&);        // _40 (weak)
+	virtual void setArray(int*, int); // _44 (weak)
 };
 
 namespace Sys {
 struct IndexList {
-	virtual ~IndexList();                    // _08 (inline)
+	virtual ~IndexList();                    // _08 (weak)
 	virtual void _0C() = 0;                  // _0C
 	virtual void _10() = 0;                  // _10
 	virtual void _14() = 0;                  // _14
@@ -64,14 +64,14 @@ struct IndexList {
 	virtual void _20() = 0;                  // _20
 	virtual void _24() = 0;                  // _24
 	virtual void _28() = 0;                  // _28
-	virtual void writeObject(Stream&, int&); // _2C (inline)
-	virtual void readObject(Stream&, int&);  // _30 (inline)
+	virtual void writeObject(Stream&, int&); // _2C (weak)
+	virtual void readObject(Stream&, int&);  // _30 (weak)
 };
 } // namespace Sys
 
 namespace Sys {
 struct TriIndexList : public CNode, public Container<int>, public ArrayContainer<int>, public IndexList {
-	virtual ~TriIndexList(); // _08 (inline)
+	virtual ~TriIndexList(); // _08 (weak)
 
 	TriIndexList();
 	void constructClone(Sys::TriangleTable&);

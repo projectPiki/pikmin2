@@ -10,7 +10,7 @@
 
 namespace Game {
 struct MoviePlayer {
-	virtual ~MoviePlayer(); // _08 (inline)
+	virtual ~MoviePlayer(); // _08 (weak)
 
 	MoviePlayer();
 	void reset();

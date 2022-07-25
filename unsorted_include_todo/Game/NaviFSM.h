@@ -17,8 +17,8 @@ namespace StateMachine < Game
 	struct Navi >
 	{
 		virtual void init(Navi*);                                 // _08
-		virtual void StateMachine < start(Navi*, int, StateArg*); // _0C (inline)
-		virtual void StateMachine < exec(Navi*);                  // _10 (inline)
+		virtual void StateMachine < start(Navi*, int, StateArg*); // _0C (weak)
+		virtual void StateMachine < exec(Navi*);                  // _10 (weak)
 	};
 } // namespace Game
 } // namespace Game

@@ -28,7 +28,7 @@ struct JointGroundCallBack {
 */
 
 struct JointShadowNode : public CNode {
-	virtual ~JointShadowNode(); // _08 (inline)
+	virtual ~JointShadowNode(); // _08 (weak)
 
 	JointShadowNode();
 	void init(int);
@@ -43,7 +43,7 @@ struct JointShadowNode : public CNode {
 */
 
 struct JointShadowRootNode : public CNode {
-	virtual ~JointShadowRootNode(); // _08 (inline)
+	virtual ~JointShadowRootNode(); // _08 (weak)
 
 	JointShadowRootNode();
 };

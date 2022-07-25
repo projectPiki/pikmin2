@@ -15,18 +15,18 @@
 */
 
 struct CNode {
-	virtual ~CNode();             // _08 (inline)
+	virtual ~CNode();             // _08 (weak)
 	virtual void getChildCount(); // _0C
 };
 
 namespace Game {
 struct EnemyGeneratorBase : public CNode {
-	virtual ~EnemyGeneratorBase();            // _08 (inline)
-	virtual void doWrite(Stream&);            // _10 (inline)
-	virtual void doRead(Stream&);             // _14 (inline)
-	virtual void getLatestVersion();          // _18 (inline)
-	virtual void draw(Graphics&, Generator*); // _1C (inline)
-	virtual void getInitialParam();           // _20 (inline)
+	virtual ~EnemyGeneratorBase();            // _08 (weak)
+	virtual void doWrite(Stream&);            // _10 (weak)
+	virtual void doRead(Stream&);             // _14 (weak)
+	virtual void getLatestVersion();          // _18 (weak)
+	virtual void draw(Graphics&, Generator*); // _1C (weak)
+	virtual void getInitialParam();           // _20 (weak)
 
 	EnemyGeneratorBase(char*);
 };

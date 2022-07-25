@@ -15,7 +15,7 @@
 
 namespace JStudio {
 struct TFunctionValue_composite {
-	virtual ~TFunctionValue_composite(); // _08 (inline)
+	virtual ~TFunctionValue_composite(); // _08 (weak)
 	virtual void getType() const;        // _0C
 	virtual void getAttributeSet();      // _10
 	virtual void initialize();           // _14

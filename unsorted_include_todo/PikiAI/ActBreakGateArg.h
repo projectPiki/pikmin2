@@ -10,7 +10,7 @@
 
 namespace PikiAI {
 struct ActBreakGateArg {
-	virtual void getName(); // _08 (inline)
+	virtual void getName(); // _08 (weak)
 };
 } // namespace PikiAI
 

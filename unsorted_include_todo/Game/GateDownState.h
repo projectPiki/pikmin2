@@ -26,14 +26,14 @@ namespace FSMState < Game
 		virtual void init(ItemGate*, StateArg*);                         // _08
 		virtual void exec(ItemGate*);                                    // _0C
 		virtual void cleanup(ItemGate*);                                 // _10
-		virtual void FSMState < resume(ItemGate*);                       // _14 (inline)
-		virtual void FSMState < restart(ItemGate*);                      // _18 (inline)
-		virtual void FSMState < transit(ItemGate*, int, StateArg*);      // _1C (inline)
+		virtual void FSMState < resume(ItemGate*);                       // _14 (weak)
+		virtual void FSMState < restart(ItemGate*);                      // _18 (weak)
+		virtual void FSMState < transit(ItemGate*, int, StateArg*);      // _1C (weak)
 		virtual void onDamage(ItemGate*, float);                         // _20
 		virtual void onKeyEvent(ItemGate*, const SysShape::KeyEvent&);   // _24
-		virtual void ItemState < onBounce(ItemGate*, Sys::Triangle*);    // _28 (inline)
-		virtual void ItemState < onPlatCollision(ItemGate*, PlatEvent&); // _2C (inline)
-		virtual void ItemState < onCollision(ItemGate*, CollEvent&);     // _30 (inline)
+		virtual void ItemState < onBounce(ItemGate*, Sys::Triangle*);    // _28 (weak)
+		virtual void ItemState < onPlatCollision(ItemGate*, PlatEvent&); // _2C (weak)
+		virtual void ItemState < onCollision(ItemGate*, CollEvent&);     // _30 (weak)
 	};
 } // namespace Game
 } // namespace Game

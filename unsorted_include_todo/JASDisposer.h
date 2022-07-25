@@ -9,7 +9,7 @@
 */
 
 struct JASDisposer {
-	virtual void onDispose(); // _08 (inline)
+	virtual void onDispose(); // _08 (weak)
 };
 
 #endif

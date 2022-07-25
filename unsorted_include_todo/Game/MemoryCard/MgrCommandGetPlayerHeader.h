@@ -11,7 +11,7 @@
 namespace Game {
 namespace MemoryCard {
 struct MgrCommandGetPlayerHeader {
-	virtual void getClassSize(); // _08 (inline)
+	virtual void getClassSize(); // _08 (weak)
 };
 } // namespace MemoryCard
 } // namespace Game

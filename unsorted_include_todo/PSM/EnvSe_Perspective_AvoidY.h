@@ -15,15 +15,15 @@ namespace PSSystem {
 struct EnvSeBase {
 	virtual void exec();                    // _08
 	virtual void play();                    // _0C
-	virtual void getCastType();             // _10 (inline)
-	virtual void setPanAndDolby(JAISound*); // _14 (inline)
+	virtual void getCastType();             // _10 (weak)
+	virtual void setPanAndDolby(JAISound*); // _14 (weak)
 };
 } // namespace PSSystem
 
 namespace PSM {
 struct EnvSe_Perspective_AvoidY : public EnvSeBase {
 	virtual void play();        // _0C
-	virtual void getCastType(); // _10 (inline)
+	virtual void getCastType(); // _10 (weak)
 };
 } // namespace PSM
 

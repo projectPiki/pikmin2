@@ -10,12 +10,12 @@
 */
 
 struct CNode {
-	virtual ~CNode();             // _08 (inline)
+	virtual ~CNode();             // _08 (weak)
 	virtual void getChildCount(); // _0C
 };
 
 struct FogMgr : public CNode {
-	virtual ~FogMgr(); // _08 (inline)
+	virtual ~FogMgr(); // _08 (weak)
 };
 
 #endif

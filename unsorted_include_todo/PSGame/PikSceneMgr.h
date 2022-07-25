@@ -17,7 +17,7 @@
 
 namespace PSSystem {
 struct SceneMgr {
-	virtual void exec(); // _08 (inline)
+	virtual void exec(); // _08 (weak)
 };
 } // namespace PSSystem
 
@@ -28,7 +28,7 @@ struct PikSceneMgr : public SceneMgr {
 	virtual void _14() = 0;                         // _14
 	virtual void _18() = 0;                         // _18
 	virtual void _1C() = 0;                         // _1C
-	virtual void curSceneIsBigBossFloor();          // _20 (inline)
+	virtual void curSceneIsBigBossFloor();          // _20 (weak)
 	virtual void _24() = 0;                         // _24
 
 	void newBgmSeq(const char*, JAInter::SoundInfo&);

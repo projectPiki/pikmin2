@@ -21,24 +21,24 @@
 
 namespace PSSystem {
 struct DirectorBase {
-	virtual ~DirectorBase();                              // _08 (inline)
+	virtual ~DirectorBase();                              // _08 (weak)
 	virtual void exec();                                  // _0C
 	virtual void directOn();                              // _10
 	virtual void directOff();                             // _14
-	virtual void underDirection();                        // _18 (inline)
+	virtual void underDirection();                        // _18 (weak)
 	virtual void _1C() = 0;                               // _1C
 	virtual void directOnTrack(PSSystem::SeqTrackBase&);  // _20
 	virtual void directOffTrack(PSSystem::SeqTrackBase&); // _24
 	virtual void _28() = 0;                               // _28
-	virtual void onPlayInit(JASTrack*);                   // _2C (inline)
-	virtual void onDirectOn();                            // _30 (inline)
-	virtual void onDirectOff();                           // _34 (inline)
+	virtual void onPlayInit(JASTrack*);                   // _2C (weak)
+	virtual void onDirectOn();                            // _30 (weak)
+	virtual void onDirectOff();                           // _34 (weak)
 };
 } // namespace PSSystem
 
 namespace PSM {
 struct PikminNumberDirector {
-	virtual ~PikminNumberDirector(); // _08 (inline)
+	virtual ~PikminNumberDirector(); // _08 (weak)
 	virtual void _0C() = 0;          // _0C
 	virtual void _10() = 0;          // _10
 	virtual void _14() = 0;          // _14
@@ -49,7 +49,7 @@ struct PikminNumberDirector {
 
 namespace PSSystem {
 struct SwitcherDirector {
-	virtual ~SwitcherDirector();                          // _08 (inline)
+	virtual ~SwitcherDirector();                          // _08 (weak)
 	virtual void _0C() = 0;                               // _0C
 	virtual void _10() = 0;                               // _10
 	virtual void _14() = 0;                               // _14
@@ -63,7 +63,7 @@ struct SwitcherDirector {
 
 namespace PSM {
 struct PikminNumberDirector_AutoBgm : public DirectorBase, public PikminNumberDirector, public SwitcherDirector {
-	virtual ~PikminNumberDirector_AutoBgm();              // _08 (inline)
+	virtual ~PikminNumberDirector_AutoBgm();              // _08 (weak)
 	virtual void directOnTrack(PSSystem::SeqTrackBase&);  // _20
 	virtual void directOffTrack(PSSystem::SeqTrackBase&); // _24
 

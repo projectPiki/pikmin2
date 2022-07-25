@@ -17,9 +17,9 @@ namespace StateMachine < Game
 	struct Pellet >
 	{
 		virtual void init(Pellet*);                                   // _08
-		virtual void StateMachine < start(Pellet*, int, StateArg*);   // _0C (inline)
-		virtual void StateMachine < exec(Pellet*);                    // _10 (inline)
-		virtual void StateMachine < transit(Pellet*, int, StateArg*); // _14 (inline)
+		virtual void StateMachine < start(Pellet*, int, StateArg*);   // _0C (weak)
+		virtual void StateMachine < exec(Pellet*);                    // _10 (weak)
+		virtual void StateMachine < transit(Pellet*, int, StateArg*); // _14 (weak)
 	};
 } // namespace Game
 } // namespace Game

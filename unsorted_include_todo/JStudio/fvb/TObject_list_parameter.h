@@ -12,7 +12,7 @@
 namespace JStudio {
 namespace fvb {
 struct TObject_list_parameter {
-	virtual ~TObject_list_parameter();                                            // _08 (inline)
+	virtual ~TObject_list_parameter();                                            // _08 (weak)
 	virtual void prepare_data_(const data::TParse_TParagraph::TData&, TControl*); // _0C
 };
 } // namespace fvb

@@ -51,7 +51,7 @@ struct TMainScreen : public TScreenBase {
 	virtual void TMaindoUpdateStateWait();       // _3C
 	virtual void TMaindoUpdateStateClose();      // _40
 	virtual void TMaindoDraw();                  // _44
-	virtual void TMaingetName();                 // _48 (inline)
+	virtual void TMaingetName();                 // _48 (weak)
 
 	TMainScreen();
 	void loadResource();

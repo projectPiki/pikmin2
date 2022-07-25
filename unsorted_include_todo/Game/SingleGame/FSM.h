@@ -17,8 +17,8 @@ namespace StateMachine < Game
 	struct SingleGameSection >
 	{
 		virtual void Singleinit(SingleGameSection*);                           // _08
-		virtual void StateMachine < start(SingleGameSection*, int, StateArg*); // _0C (inline)
-		virtual void StateMachine < exec(SingleGameSection*);                  // _10 (inline)
+		virtual void StateMachine < start(SingleGameSection*, int, StateArg*); // _0C (weak)
+		virtual void StateMachine < exec(SingleGameSection*);                  // _10 (weak)
 	};
 } // namespace Game
 } // namespace Game

@@ -10,13 +10,13 @@
 */
 
 struct CNode {
-	virtual ~CNode();             // _08 (inline)
+	virtual ~CNode();             // _08 (weak)
 	virtual void getChildCount(); // _0C
 };
 
 namespace Sys {
 struct OBB : public CNode {
-	virtual ~OBB(); // _08 (inline)
+	virtual ~OBB(); // _08 (weak)
 
 	void create2(Sys::VertexTable&, Sys::TriangleTable&, Matrix3f&, Matrix3f&, Vector3<float>&);
 	void autoDivide(Sys::VertexTable&, Sys::TriangleTable&, int, int);

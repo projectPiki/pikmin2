@@ -18,34 +18,34 @@
 */
 
 struct CNode {
-	virtual ~CNode();             // _08 (inline)
+	virtual ~CNode();             // _08 (weak)
 	virtual void getChildCount(); // _0C
 };
 
 namespace Game {
 struct ObjectLayoutNode {
-	virtual ~ObjectLayoutNode();                   // _08 (inline)
+	virtual ~ObjectLayoutNode();                   // _08 (weak)
 	virtual void _0C() = 0;                        // _0C
-	virtual void getObjectId();                    // _10 (inline)
-	virtual void getObjectType();                  // _14 (inline)
-	virtual void getBirthCount();                  // _18 (inline)
-	virtual void getDirection();                   // _1C (inline)
-	virtual void getBirthDoorIndex();              // _20 (inline)
-	virtual void getBirthPosition(float&, float&); // _24 (inline)
-	virtual void getExtraCode();                   // _28 (inline)
-	virtual void isFixedBattery();                 // _2C (inline)
+	virtual void getObjectId();                    // _10 (weak)
+	virtual void getObjectType();                  // _14 (weak)
+	virtual void getBirthCount();                  // _18 (weak)
+	virtual void getDirection();                   // _1C (weak)
+	virtual void getBirthDoorIndex();              // _20 (weak)
+	virtual void getBirthPosition(float&, float&); // _24 (weak)
+	virtual void getExtraCode();                   // _28 (weak)
+	virtual void isFixedBattery();                 // _2C (weak)
 };
 } // namespace Game
 
 namespace Game {
 namespace Cave {
 struct FixObjNode : public CNode, public ObjectLayoutNode {
-	virtual ~FixObjNode();                         // _08 (inline)
-	virtual void getObjectId();                    // _10 (inline)
-	virtual void getObjectType();                  // _14 (inline)
-	virtual void getBirthCount();                  // _18 (inline)
-	virtual void getDirection();                   // _1C (inline)
-	virtual void getBirthPosition(float&, float&); // _24 (inline)
+	virtual ~FixObjNode();                         // _08 (weak)
+	virtual void getObjectId();                    // _10 (weak)
+	virtual void getObjectType();                  // _14 (weak)
+	virtual void getBirthCount();                  // _18 (weak)
+	virtual void getDirection();                   // _1C (weak)
+	virtual void getBirthPosition(float&, float&); // _24 (weak)
 };
 } // namespace Cave
 } // namespace Game

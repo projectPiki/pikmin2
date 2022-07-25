@@ -16,27 +16,27 @@
 */
 
 struct CNode {
-	virtual ~CNode();             // _08 (inline)
+	virtual ~CNode();             // _08 (weak)
 	virtual void getChildCount(); // _0C
 };
 
 namespace P2DScreen {
 struct Node {
-	virtual ~Node();                               // _08 (inline)
+	virtual ~Node();                               // _08 (weak)
 	virtual void _0C() = 0;                        // _0C
 	virtual void update();                         // _10
-	virtual void draw(Graphics&, J2DGrafContext&); // _14 (inline)
-	virtual void doInit();                         // _18 (inline)
+	virtual void draw(Graphics&, J2DGrafContext&); // _14 (weak)
+	virtual void doInit();                         // _18 (weak)
 };
 } // namespace P2DScreen
 
 namespace kh {
 namespace Screen {
 struct khUtilFadePane : public CNode, public Node {
-	virtual ~khUtilFadePane();     // _08 (inline)
+	virtual ~khUtilFadePane();     // _08 (weak)
 	virtual void update();         // _10
-	virtual void fadein_finish();  // _1C (inline)
-	virtual void fadeout_finish(); // _20 (inline)
+	virtual void fadein_finish();  // _1C (weak)
+	virtual void fadeout_finish(); // _20 (weak)
 	virtual void _24() = 0;        // _24
 
 	void create(P2DScreen::Mgr*, unsigned long long, unsigned char);

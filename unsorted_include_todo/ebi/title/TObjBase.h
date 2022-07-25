@@ -12,8 +12,8 @@
 namespace ebi {
 namespace title {
 struct TObjBase {
-	virtual void getCreatureType(); // _08 (inline)
-	virtual void isCalc();          // _0C (inline)
+	virtual void getCreatureType(); // _08 (weak)
+	virtual void isCalc();          // _0C (weak)
 
 	void calcModelBaseMtx_();
 	void pushOut(ebi::title::TObjBase*);

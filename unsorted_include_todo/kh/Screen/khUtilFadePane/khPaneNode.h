@@ -12,7 +12,7 @@ namespace kh {
 namespace Screen {
 namespace khUtilFadePane {
 struct khPaneNode {
-	virtual ~khPaneNode(); // _08 (inline)
+	virtual ~khPaneNode(); // _08 (weak)
 };
 } // namespace khUtilFadePane
 } // namespace Screen

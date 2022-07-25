@@ -16,10 +16,10 @@ namespace StateMachine < Game
 {
 	struct CFSMItem >
 	{
-		virtual void StateMachine < init(CFSMItem*);                    // _08 (inline)
-		virtual void StateMachine < start(CFSMItem*, int, StateArg*);   // _0C (inline)
-		virtual void StateMachine < exec(CFSMItem*);                    // _10 (inline)
-		virtual void StateMachine < transit(CFSMItem*, int, StateArg*); // _14 (inline)
+		virtual void StateMachine < init(CFSMItem*);                    // _08 (weak)
+		virtual void StateMachine < start(CFSMItem*, int, StateArg*);   // _0C (weak)
+		virtual void StateMachine < exec(CFSMItem*);                    // _10 (weak)
+		virtual void StateMachine < transit(CFSMItem*, int, StateArg*); // _14 (weak)
 	};
 } // namespace Game
 } // namespace Game

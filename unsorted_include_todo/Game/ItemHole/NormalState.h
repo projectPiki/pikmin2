@@ -27,9 +27,9 @@ namespace FSMState < Game
 		virtual void init(CFSMItem*, StateArg*);                    // _08
 		virtual void exec(CFSMItem*);                               // _0C
 		virtual void cleanup(CFSMItem*);                            // _10
-		virtual void FSMState < resume(CFSMItem*);                  // _14 (inline)
-		virtual void FSMState < restart(CFSMItem*);                 // _18 (inline)
-		virtual void FSMState < transit(CFSMItem*, int, StateArg*); // _1C (inline)
+		virtual void FSMState < resume(CFSMItem*);                  // _14 (weak)
+		virtual void FSMState < restart(CFSMItem*);                 // _18 (weak)
+		virtual void FSMState < transit(CFSMItem*, int, StateArg*); // _1C (weak)
 	};
 } // namespace Game
 } // namespace Game
@@ -42,11 +42,11 @@ struct CItemState {
 	virtual void _14() = 0;                                        // _14
 	virtual void _18() = 0;                                        // _18
 	virtual void _1C() = 0;                                        // _1C
-	virtual void onDamage(CFSMItem*, float);                       // _20 (inline)
-	virtual void onKeyEvent(CFSMItem*, const SysShape::KeyEvent&); // _24 (inline)
-	virtual void onBounce(CFSMItem*, Sys::Triangle*);              // _28 (inline)
-	virtual void onPlatCollision(CFSMItem*, PlatEvent&);           // _2C (inline)
-	virtual void onCollision(CFSMItem*, CollEvent&);               // _30 (inline)
+	virtual void onDamage(CFSMItem*, float);                       // _20 (weak)
+	virtual void onKeyEvent(CFSMItem*, const SysShape::KeyEvent&); // _24 (weak)
+	virtual void onBounce(CFSMItem*, Sys::Triangle*);              // _28 (weak)
+	virtual void onPlatCollision(CFSMItem*, PlatEvent&);           // _2C (weak)
+	virtual void onCollision(CFSMItem*, CollEvent&);               // _30 (weak)
 };
 } // namespace Game
 
@@ -56,7 +56,7 @@ struct NormalState : public CFSMItem >, public CItemState {
 	virtual void init(CFSMItem*, StateArg*); // _08
 	virtual void exec(CFSMItem*);            // _0C
 	virtual void cleanup(CFSMItem*);         // _10
-	virtual void canRide();                  // _34 (inline)
+	virtual void canRide();                  // _34 (weak)
 };
 } // namespace ItemHole
 } // namespace Game

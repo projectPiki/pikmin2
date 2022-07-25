@@ -18,9 +18,9 @@ namespace StateMachine < Game
 	struct Item >
 	{
 		virtual void init(Item*);                                   // _08
-		virtual void StateMachine < start(Item*, int, StateArg*);   // _0C (inline)
-		virtual void StateMachine < exec(Item*);                    // _10 (inline)
-		virtual void StateMachine < transit(Item*, int, StateArg*); // _14 (inline)
+		virtual void StateMachine < start(Item*, int, StateArg*);   // _0C (weak)
+		virtual void StateMachine < exec(Item*);                    // _10 (weak)
+		virtual void StateMachine < transit(Item*, int, StateArg*); // _14 (weak)
 	};
 	} // namespace ItemWeed
 } // namespace Game

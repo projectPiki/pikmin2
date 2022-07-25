@@ -12,7 +12,7 @@
 */
 
 struct JUTFader {
-	virtual ~JUTFader();            // _08 (inline)
+	virtual ~JUTFader();            // _08 (weak)
 	virtual void startFadeIn(int);  // _0C
 	virtual void startFadeOut(int); // _10
 	virtual void draw();            // _14

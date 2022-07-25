@@ -10,7 +10,7 @@
 */
 
 struct J2DAnmTexPattern {
-	virtual ~J2DAnmTexPattern();                     // _08 (inline)
+	virtual ~J2DAnmTexPattern();                     // _08 (weak)
 	virtual void searchUpdateMaterialID(J2DScreen*); // _0C
 };
 

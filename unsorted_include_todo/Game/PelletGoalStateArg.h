@@ -10,7 +10,7 @@
 
 namespace Game {
 struct PelletGoalStateArg {
-	virtual void getName(); // _08 (inline)
+	virtual void getName(); // _08 (weak)
 };
 } // namespace Game
 

@@ -15,7 +15,7 @@
 
 namespace JStudio {
 struct TObject {
-	virtual ~TObject();                                                           // _08 (inline)
+	virtual ~TObject();                                                           // _08 (weak)
 	virtual void do_begin();                                                      // _0C
 	virtual void do_end();                                                        // _10
 	virtual void do_paragraph(unsigned long, const void*, unsigned long);         // _14
@@ -26,7 +26,7 @@ struct TObject {
 
 namespace JStudio {
 struct TObject_camera : public TObject {
-	virtual ~TObject_camera();                                            // _08 (inline)
+	virtual ~TObject_camera();                                            // _08 (weak)
 	virtual void do_paragraph(unsigned long, const void*, unsigned long); // _14
 
 	TObject_camera(const JStudio::stb::data::TParse_TBlock_object&, JStudio::TAdaptor_camera*);

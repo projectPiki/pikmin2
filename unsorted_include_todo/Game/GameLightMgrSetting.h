@@ -11,13 +11,13 @@
 */
 
 struct CNode {
-	virtual ~CNode();             // _08 (inline)
+	virtual ~CNode();             // _08 (weak)
 	virtual void getChildCount(); // _0C
 };
 
 namespace Game {
 struct GameLightMgrSetting : public CNode {
-	virtual ~GameLightMgrSetting(); // _08 (inline)
+	virtual ~GameLightMgrSetting(); // _08 (weak)
 	virtual void read(Stream&);     // _10
 
 	GameLightMgrSetting();

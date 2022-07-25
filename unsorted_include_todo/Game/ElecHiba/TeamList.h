@@ -10,14 +10,14 @@
 */
 
 struct CNode {
-	virtual ~CNode();             // _08 (inline)
+	virtual ~CNode();             // _08 (weak)
 	virtual void getChildCount(); // _0C
 };
 
 namespace Game {
 namespace ElecHiba {
 struct TeamList : public CNode {
-	virtual ~TeamList(); // _08 (inline)
+	virtual ~TeamList(); // _08 (weak)
 };
 } // namespace ElecHiba
 } // namespace Game

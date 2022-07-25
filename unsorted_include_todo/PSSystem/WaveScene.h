@@ -10,7 +10,7 @@
 
 namespace PSSystem {
 struct WaveScene {
-	virtual ~WaveScene(); // _08 (inline)
+	virtual ~WaveScene(); // _08 (weak)
 
 	void load(unsigned short, unsigned short, PSSystem::WaveScene::AreaArg, PSSystem::TaskChecker*);
 };

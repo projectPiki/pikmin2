@@ -14,7 +14,7 @@ namespace ebi {
 namespace title {
 namespace Pikmin {
 struct TUnit {
-	virtual void getCreatureType(); // _08 (inline)
+	virtual void getCreatureType(); // _08 (weak)
 	virtual void isCalc();          // _0C
 	virtual void _10() = 0;         // _10
 

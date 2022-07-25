@@ -17,18 +17,18 @@
 */
 
 struct CNode {
-	virtual ~CNode();             // _08 (inline)
+	virtual ~CNode();             // _08 (weak)
 	virtual void getChildCount(); // _0C
 };
 
 struct WipeBase : public CNode {
-	virtual ~WipeBase();         // _08 (inline)
+	virtual ~WipeBase();         // _08 (weak)
 	virtual void update();       // _10
 	virtual void draw();         // _14
-	virtual void isWhite();      // _18 (inline)
-	virtual void isBlack();      // _1C (inline)
-	virtual void on_start();     // _20 (inline)
-	virtual void do_draw(float); // _24 (inline)
+	virtual void isWhite();      // _18 (weak)
+	virtual void isBlack();      // _1C (weak)
+	virtual void on_start();     // _20 (weak)
+	virtual void do_draw(float); // _24 (weak)
 	virtual void _28() = 0;      // _28
 };
 

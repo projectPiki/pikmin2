@@ -27,30 +27,30 @@
 namespace Game {
 struct CellObject {
 	virtual void getPosition();                   // _08
-	virtual void checkCollision(CellObject*);     // _0C (inline)
+	virtual void checkCollision(CellObject*);     // _0C (weak)
 	virtual void getBoundingSphere(Sys::Sphere&); // _10
-	virtual void collisionUpdatable();            // _14 (inline)
-	virtual void isPiki();                        // _18 (inline)
-	virtual void isNavi();                        // _1C (inline)
-	virtual void deferPikiCollision();            // _20 (inline)
+	virtual void collisionUpdatable();            // _14 (weak)
+	virtual void isPiki();                        // _18 (weak)
+	virtual void isNavi();                        // _1C (weak)
+	virtual void deferPikiCollision();            // _20 (weak)
 };
 } // namespace Game
 
 namespace Game {
 struct PlatInstance : public CellObject {
 	virtual void getPosition();                   // _08
-	virtual void checkCollision(CellObject*);     // _0C (inline)
+	virtual void checkCollision(CellObject*);     // _0C (weak)
 	virtual void getBoundingSphere(Sys::Sphere&); // _10
-	virtual void collisionUpdatable();            // _14 (inline)
-	virtual void getTypeName();                   // _24 (inline)
-	virtual void getObjType();                    // _28 (inline)
-	virtual void constructor();                   // _2C (inline)
-	virtual void doAnimation();                   // _30 (inline)
-	virtual void doEntry();                       // _34 (inline)
-	virtual void doSetView(int);                  // _38 (inline)
-	virtual void doViewCalc();                    // _3C (inline)
-	virtual void doSimulation(float);             // _40 (inline)
-	virtual void doDirectDraw(Graphics&);         // _44 (inline)
+	virtual void collisionUpdatable();            // _14 (weak)
+	virtual void getTypeName();                   // _24 (weak)
+	virtual void getObjType();                    // _28 (weak)
+	virtual void constructor();                   // _2C (weak)
+	virtual void doAnimation();                   // _30 (weak)
+	virtual void doEntry();                       // _34 (weak)
+	virtual void doSetView(int);                  // _38 (weak)
+	virtual void doViewCalc();                    // _3C (weak)
+	virtual void doSimulation(float);             // _40 (weak)
+	virtual void doDirectDraw(Graphics&);         // _44 (weak)
 	virtual void _48() = 0;                       // _48
 
 	void setCollision(bool);

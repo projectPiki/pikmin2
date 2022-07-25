@@ -10,7 +10,7 @@
 
 namespace PSSystem {
 struct PitchResetTask {
-	virtual void task(JASTrack&); // _08 (inline)
+	virtual void task(JASTrack&); // _08 (weak)
 };
 } // namespace PSSystem
 

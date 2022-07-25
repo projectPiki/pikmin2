@@ -18,8 +18,8 @@ struct ModParamWithFade {
 
 namespace PSSystem {
 struct BankRandTask : public ModParamWithFade {
-	virtual void getPreParam(JASTrack&);     // _0C (inline)
-	virtual void timeTask(JASTrack&, float); // _10 (inline)
+	virtual void getPreParam(JASTrack&);     // _0C (weak)
+	virtual void timeTask(JASTrack&, float); // _10 (weak)
 };
 } // namespace PSSystem
 

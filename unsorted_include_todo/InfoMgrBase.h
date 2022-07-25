@@ -12,7 +12,7 @@
 */
 
 struct InfoMgrBase {
-	virtual ~InfoMgrBase(); // _08 (inline)
+	virtual ~InfoMgrBase(); // _08 (weak)
 	virtual void _0C() = 0; // _0C
 	virtual void _10() = 0; // _10
 	virtual void _14() = 0; // _14

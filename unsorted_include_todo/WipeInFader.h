@@ -16,22 +16,22 @@
 */
 
 struct CNode {
-	virtual ~CNode();             // _08 (inline)
+	virtual ~CNode();             // _08 (weak)
 	virtual void getChildCount(); // _0C
 };
 
 struct WipeBase {
-	virtual ~WipeBase();     // _08 (inline)
+	virtual ~WipeBase();     // _08 (weak)
 	virtual void _0C() = 0;  // _0C
 	virtual void update();   // _10
 	virtual void draw();     // _14
 	virtual void isWhite();  // _18
 	virtual void isBlack();  // _1C
-	virtual void on_start(); // _20 (inline)
+	virtual void on_start(); // _20 (weak)
 };
 
 struct WipeInFader : public CNode, public WipeBase {
-	virtual ~WipeInFader();      // _08 (inline)
+	virtual ~WipeInFader();      // _08 (weak)
 	virtual void isWhite();      // _18
 	virtual void isBlack();      // _1C
 	virtual void do_draw(float); // _24

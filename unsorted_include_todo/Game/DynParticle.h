@@ -16,13 +16,13 @@
 
 namespace Game {
 struct DynParticle {
-	virtual void constructor();            // _08 (inline)
-	virtual void doAnimation();            // _0C (inline)
-	virtual void doEntry();                // _10 (inline)
-	virtual void doSetView(unsigned long); // _14 (inline)
-	virtual void doViewCalc();             // _18 (inline)
-	virtual void doSimulation(float);      // _1C (inline)
-	virtual void doDirectDraw(Graphics&);  // _20 (inline)
+	virtual void constructor();            // _08 (weak)
+	virtual void doAnimation();            // _0C (weak)
+	virtual void doEntry();                // _10 (weak)
+	virtual void doSetView(unsigned long); // _14 (weak)
+	virtual void doViewCalc();             // _18 (weak)
+	virtual void doSimulation(float);      // _1C (weak)
+	virtual void doDirectDraw(Graphics&);  // _20 (weak)
 
 	void getAt(int);
 	DynParticle();

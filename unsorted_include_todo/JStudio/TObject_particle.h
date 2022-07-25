@@ -31,7 +31,7 @@
 
 namespace JStudio {
 struct TObject {
-	virtual ~TObject();                                                           // _08 (inline)
+	virtual ~TObject();                                                           // _08 (weak)
 	virtual void do_begin();                                                      // _0C
 	virtual void do_end();                                                        // _10
 	virtual void do_paragraph(unsigned long, const void*, unsigned long);         // _14
@@ -42,7 +42,7 @@ struct TObject {
 
 namespace JStudio {
 struct TObject_particle : public TObject {
-	virtual ~TObject_particle();                                          // _08 (inline)
+	virtual ~TObject_particle();                                          // _08 (weak)
 	virtual void do_paragraph(unsigned long, const void*, unsigned long); // _14
 	virtual void _20() = 0;                                               // _20
 	virtual void _24() = 0;                                               // _24

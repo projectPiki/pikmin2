@@ -10,12 +10,12 @@
 */
 
 struct J2DAnmBase {
-	virtual ~J2DAnmBase();                           // _08 (inline)
-	virtual void searchUpdateMaterialID(J2DScreen*); // _0C (inline)
+	virtual ~J2DAnmBase();                           // _08 (weak)
+	virtual void searchUpdateMaterialID(J2DScreen*); // _0C (weak)
 };
 
 struct J2DAnmVisibilityFull : public J2DAnmBase {
-	virtual ~J2DAnmVisibilityFull(); // _08 (inline)
+	virtual ~J2DAnmVisibilityFull(); // _08 (weak)
 };
 
 #endif

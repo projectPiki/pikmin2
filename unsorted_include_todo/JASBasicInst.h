@@ -14,7 +14,7 @@
 struct JASBasicInst {
 	virtual ~JASBasicInst();                              // _08
 	virtual void getParam(int, int, JASInstParam*) const; // _0C
-	virtual void getType() const;                         // _10 (inline)
+	virtual void getType() const;                         // _10 (weak)
 	virtual void getKeymapIndex(int) const;               // _14
 };
 

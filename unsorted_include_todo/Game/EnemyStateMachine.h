@@ -16,7 +16,7 @@
 
 namespace Game {
 struct EnemyStateMachine {
-	virtual void init(EnemyBase*);                         // _08 (inline)
+	virtual void init(EnemyBase*);                         // _08 (weak)
 	virtual void start(EnemyBase*, int, StateArg*);        // _0C
 	virtual void exec(EnemyBase*);                         // _10
 	virtual void transit(EnemyBase*, int, StateArg*);      // _14

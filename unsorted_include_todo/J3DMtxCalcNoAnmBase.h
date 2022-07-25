@@ -17,17 +17,17 @@
 */
 
 struct J3DMtxCalc {
-	virtual ~J3DMtxCalc();                                         // _08 (inline)
-	virtual void setAnmTransform(J3DAnmTransform*);                // _0C (inline)
-	virtual void getAnmTransform();                                // _10 (inline)
-	virtual void setAnmTransform(unsigned char, J3DAnmTransform*); // _14 (inline)
-	virtual void getAnmTransform(unsigned char);                   // _18 (inline)
-	virtual void setWeight(unsigned char, float);                  // _1C (inline)
-	virtual void getWeight(unsigned char) const;                   // _20 (inline)
+	virtual ~J3DMtxCalc();                                         // _08 (weak)
+	virtual void setAnmTransform(J3DAnmTransform*);                // _0C (weak)
+	virtual void getAnmTransform();                                // _10 (weak)
+	virtual void setAnmTransform(unsigned char, J3DAnmTransform*); // _14 (weak)
+	virtual void getAnmTransform(unsigned char);                   // _18 (weak)
+	virtual void setWeight(unsigned char, float);                  // _1C (weak)
+	virtual void getWeight(unsigned char) const;                   // _20 (weak)
 };
 
 struct J3DMtxCalcNoAnmBase : public J3DMtxCalc {
-	virtual ~J3DMtxCalcNoAnmBase(); // _08 (inline)
+	virtual ~J3DMtxCalcNoAnmBase(); // _08 (weak)
 	virtual void _24() = 0;         // _24
 	virtual void _28() = 0;         // _28
 };

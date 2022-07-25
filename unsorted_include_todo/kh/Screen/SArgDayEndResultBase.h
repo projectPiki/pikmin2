@@ -11,14 +11,14 @@
 
 namespace Screen {
 struct SceneArgBase {
-	virtual void getSceneType() const; // _08 (inline)
+	virtual void getSceneType() const; // _08 (weak)
 };
 } // namespace Screen
 
 namespace kh {
 namespace Screen {
 struct SArgDayEndResultBase : public SceneArgBase {
-	virtual void getClassSize(); // _0C (inline)
+	virtual void getClassSize(); // _0C (weak)
 };
 } // namespace Screen
 } // namespace kh

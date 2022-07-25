@@ -10,13 +10,13 @@
 */
 
 struct CNode {
-	virtual ~CNode();             // _08 (inline)
+	virtual ~CNode();             // _08 (weak)
 	virtual void getChildCount(); // _0C
 };
 
 namespace Radar {
 struct Point : public CNode {
-	virtual ~Point(); // _08 (inline)
+	virtual ~Point(); // _08 (weak)
 
 	void getPosition();
 	Point();

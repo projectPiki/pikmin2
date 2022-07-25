@@ -10,14 +10,14 @@
 */
 
 struct CNode {
-	virtual ~CNode();             // _08 (inline)
+	virtual ~CNode();             // _08 (weak)
 	virtual void getChildCount(); // _0C
 };
 
 namespace Game {
 namespace Cave {
 struct AdjustNode : public CNode {
-	virtual ~AdjustNode(); // _08 (inline)
+	virtual ~AdjustNode(); // _08 (weak)
 
 	AdjustNode();
 	AdjustNode(Game::Cave::Adjust*);

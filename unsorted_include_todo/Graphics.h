@@ -16,13 +16,13 @@
 */
 
 struct Graphics {
-	virtual void doJ3DDrawInit();   // _08 (inline)
-	virtual void doJ3DDraw(int);    // _0C (inline)
-	virtual void doJ3DFrameInit();  // _10 (inline)
-	virtual void doJ3DAnimation();  // _14 (inline)
-	virtual void doJ3DUpdateInit(); // _18 (inline)
-	virtual void doJ3DSetView(int); // _1C (inline)
-	virtual void doJ3DViewCalc();   // _20 (inline)
+	virtual void doJ3DDrawInit();   // _08 (weak)
+	virtual void doJ3DDraw(int);    // _0C (weak)
+	virtual void doJ3DFrameInit();  // _10 (weak)
+	virtual void doJ3DAnimation();  // _14 (weak)
+	virtual void doJ3DUpdateInit(); // _18 (weak)
+	virtual void doJ3DSetView(int); // _1C (weak)
+	virtual void doJ3DViewCalc();   // _20 (weak)
 	virtual void _24() = 0;         // _24
 };
 

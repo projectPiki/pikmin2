@@ -10,7 +10,7 @@
 
 namespace PSM {
 struct Factory {
-	virtual void newSceneMgr(); // _08 (inline)
+	virtual void newSceneMgr(); // _08 (weak)
 };
 } // namespace PSM
 

@@ -11,7 +11,7 @@
 namespace PSGame {
 namespace SoundTable {
 struct CategoryMgr {
-	virtual ~CategoryMgr(); // _08 (inline)
+	virtual ~CategoryMgr(); // _08 (weak)
 
 	CategoryMgr();
 	void initiate(unsigned char);

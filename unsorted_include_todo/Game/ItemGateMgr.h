@@ -37,28 +37,28 @@
 */
 
 struct GenericObjectMgr {
-	virtual void doAnimation();           // _08 (inline)
-	virtual void doEntry();               // _0C (inline)
-	virtual void doSetView(int);          // _10 (inline)
-	virtual void doViewCalc();            // _14 (inline)
-	virtual void doSimulation(float);     // _18 (inline)
-	virtual void doDirectDraw(Graphics&); // _1C (inline)
-	virtual void doSimpleDraw(Viewport*); // _20 (inline)
+	virtual void doAnimation();           // _08 (weak)
+	virtual void doEntry();               // _0C (weak)
+	virtual void doSetView(int);          // _10 (weak)
+	virtual void doViewCalc();            // _14 (weak)
+	virtual void doSimulation(float);     // _18 (weak)
+	virtual void doDirectDraw(Graphics&); // _1C (weak)
+	virtual void doSimpleDraw(Viewport*); // _20 (weak)
 	virtual void _24() = 0;               // _24
-	virtual void resetMgr();              // _28 (inline)
-	virtual void pausable();              // _2C (inline)
-	virtual void frozenable();            // _30 (inline)
-	virtual void getMatrixLoadType();     // _34 (inline)
+	virtual void resetMgr();              // _28 (weak)
+	virtual void pausable();              // _2C (weak)
+	virtual void frozenable();            // _30 (weak)
+	virtual void getMatrixLoadType();     // _34 (weak)
 };
 
 namespace Game {
 struct BaseItemMgr {
-	virtual void doAnimation();                                                  // _08 (inline)
-	virtual void doEntry();                                                      // _0C (inline)
-	virtual void doSetView(int);                                                 // _10 (inline)
-	virtual void doViewCalc();                                                   // _14 (inline)
-	virtual void doSimulation(float);                                            // _18 (inline)
-	virtual void doDirectDraw(Graphics&);                                        // _1C (inline)
+	virtual void doAnimation();                                                  // _08 (weak)
+	virtual void doEntry();                                                      // _0C (weak)
+	virtual void doSetView(int);                                                 // _10 (weak)
+	virtual void doViewCalc();                                                   // _14 (weak)
+	virtual void doSimulation(float);                                            // _18 (weak)
+	virtual void doDirectDraw(Graphics&);                                        // _1C (weak)
 	virtual void _20() = 0;                                                      // _20
 	virtual void loadResources();                                                // _24
 	virtual void _28() = 0;                                                      // _28
@@ -66,36 +66,36 @@ struct BaseItemMgr {
 	virtual void _30() = 0;                                                      // _30
 	virtual void _34() = 0;                                                      // _34
 	virtual void initDependency();                                               // _38
-	virtual void killAll();                                                      // _3C (inline)
-	virtual void setup(BaseItem*);                                               // _40 (inline)
+	virtual void killAll();                                                      // _3C (weak)
+	virtual void setup(BaseItem*);                                               // _40 (weak)
 	virtual void setupSoundViewerAndBas();                                       // _44
-	virtual void onLoadResources();                                              // _48 (inline)
-	virtual void loadEverytime();                                                // _4C (inline)
+	virtual void onLoadResources();                                              // _48 (weak)
+	virtual void loadEverytime();                                                // _4C (weak)
 	virtual void updateUseList(GenItemParm*, int);                               // _50
-	virtual void onUpdateUseList(GenItemParm*, int);                             // _54 (inline)
-	virtual void generatorGetID();                                               // _58 (inline)
+	virtual void onUpdateUseList(GenItemParm*, int);                             // _54 (weak)
+	virtual void generatorGetID();                                               // _58 (weak)
 	virtual void generatorBirth(Vector3<float>&, Vector3<float>&, GenItemParm*); // _5C
 	virtual void generatorWrite(Stream&, GenItemParm*);                          // _60
 	virtual void generatorRead(Stream&, GenItemParm*, unsigned long);            // _64
-	virtual void generatorLocalVersion();                                        // _68 (inline)
+	virtual void generatorLocalVersion();                                        // _68 (weak)
 	virtual void generatorGetShape(GenItemParm*);                                // _6C
 };
 } // namespace Game
 
 namespace Game {
 struct ItemGateMgr : public GenericObjectMgr, public BaseItemMgr {
-	virtual void doAnimation();                                                  // _08 (inline)
-	virtual void doEntry();                                                      // _0C (inline)
-	virtual void doSetView(int);                                                 // _10 (inline)
-	virtual void doViewCalc();                                                   // _14 (inline)
-	virtual void doSimulation(float);                                            // _18 (inline)
-	virtual void doDirectDraw(Graphics&);                                        // _1C (inline)
+	virtual void doAnimation();                                                  // _08 (weak)
+	virtual void doEntry();                                                      // _0C (weak)
+	virtual void doSetView(int);                                                 // _10 (weak)
+	virtual void doViewCalc();                                                   // _14 (weak)
+	virtual void doSimulation(float);                                            // _18 (weak)
+	virtual void doDirectDraw(Graphics&);                                        // _1C (weak)
 	virtual void initDependency();                                               // _38
-	virtual void generatorGetID();                                               // _58 (inline)
+	virtual void generatorGetID();                                               // _58 (weak)
 	virtual void generatorBirth(Vector3<float>&, Vector3<float>&, GenItemParm*); // _5C
 	virtual void generatorWrite(Stream&, GenItemParm*);                          // _60
 	virtual void generatorRead(Stream&, GenItemParm*, unsigned long);            // _64
-	virtual void generatorLocalVersion();                                        // _68 (inline)
+	virtual void generatorLocalVersion();                                        // _68 (weak)
 	virtual void generatorNewItemParm();                                         // _70
 	virtual void getCaveName(int);                                               // _74
 	virtual void getCaveID(char*);                                               // _78

@@ -11,14 +11,14 @@
 */
 
 struct CNode {
-	virtual ~CNode();             // _08 (inline)
+	virtual ~CNode();             // _08 (weak)
 	virtual void getChildCount(); // _0C
 };
 
 namespace Game {
 namespace EnemyStone {
 struct Obj : public CNode {
-	virtual ~Obj();         // _08 (inline)
+	virtual ~Obj();         // _08 (weak)
 	virtual void _10() = 0; // _10
 
 	Obj(Game::EnemyBase*, Game::EnemyStone::Info*);

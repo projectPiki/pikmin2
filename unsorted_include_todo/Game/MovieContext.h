@@ -12,15 +12,15 @@
 */
 
 struct CNode {
-	virtual ~CNode();             // _08 (inline)
+	virtual ~CNode();             // _08 (weak)
 	virtual void getChildCount(); // _0C
 };
 
 namespace Game {
 struct MovieContext : public CNode {
-	virtual ~MovieContext(); // _08 (inline)
-	virtual void getChild(); // _10 (inline)
-	virtual void getNext();  // _14 (inline)
+	virtual ~MovieContext(); // _08 (weak)
+	virtual void getChild(); // _10 (weak)
+	virtual void getNext();  // _14 (weak)
 
 	MovieContext();
 };

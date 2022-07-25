@@ -10,7 +10,7 @@
 */
 
 struct JUTException {
-	virtual ~JUTException(); // _08 (inline)
+	virtual ~JUTException(); // _08 (weak)
 	virtual void run();      // _0C
 };
 

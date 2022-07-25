@@ -10,7 +10,7 @@
 
 namespace PSM {
 struct CreaturePrm {
-	virtual ~CreaturePrm(); // _08 (inline)
+	virtual ~CreaturePrm(); // _08 (weak)
 };
 } // namespace PSM
 

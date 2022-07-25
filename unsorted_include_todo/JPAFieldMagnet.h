@@ -11,7 +11,7 @@
 */
 
 struct JPAFieldMagnet {
-	virtual ~JPAFieldMagnet();                                                // _08 (inline)
+	virtual ~JPAFieldMagnet();                                                // _08 (weak)
 	virtual void prepare(JPAEmitterWorkData*, JPAFieldBlock*);                // _0C
 	virtual void calc(JPAEmitterWorkData*, JPAFieldBlock*, JPABaseParticle*); // _10
 };

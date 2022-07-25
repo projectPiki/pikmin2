@@ -15,7 +15,7 @@
 
 namespace JStudio {
 struct TFunctionValue_transition {
-	virtual ~TFunctionValue_transition(); // _08 (inline)
+	virtual ~TFunctionValue_transition(); // _08 (weak)
 	virtual void getType() const;         // _0C
 	virtual void getAttributeSet();       // _10
 	virtual void initialize();            // _14

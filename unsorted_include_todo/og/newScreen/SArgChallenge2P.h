@@ -12,8 +12,8 @@
 namespace og {
 namespace newScreen {
 struct SArgChallenge2P {
-	virtual void getSceneType() const; // _08 (inline)
-	virtual void getClassSize();       // _0C (inline)
+	virtual void getSceneType() const; // _08 (weak)
+	virtual void getClassSize();       // _0C (weak)
 };
 } // namespace newScreen
 } // namespace og

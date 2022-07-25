@@ -18,9 +18,9 @@ namespace StateMachine < ebi
 	struct TMgr >
 	{
 		virtual void init(TMgr*);                         // _08
-		virtual void start(ebi::TMgr*, int, StateArg*);   // _0C (inline)
-		virtual void exec(ebi::TMgr*);                    // _10 (inline)
-		virtual void transit(ebi::TMgr*, int, StateArg*); // _14 (inline)
+		virtual void start(ebi::TMgr*, int, StateArg*);   // _0C (weak)
+		virtual void exec(ebi::TMgr*);                    // _10 (weak)
+		virtual void transit(ebi::TMgr*, int, StateArg*); // _14 (weak)
 	};
 	} // namespace FS
 } // namespace ebi

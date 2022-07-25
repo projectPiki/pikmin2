@@ -16,12 +16,12 @@
 
 namespace Game {
 struct Interaction {
-	virtual void actCommon(Creature*); // _08 (inline)
+	virtual void actCommon(Creature*); // _08 (weak)
 	virtual void actPiki(Piki*);       // _0C
 	virtual void actNavi(Navi*);       // _10
-	virtual void actEnemy(EnemyBase*); // _14 (inline)
-	virtual void actPellet(Pellet*);   // _18 (inline)
-	virtual void actOnyon(Onyon*);     // _1C (inline)
+	virtual void actEnemy(EnemyBase*); // _14 (weak)
+	virtual void actPellet(Pellet*);   // _18 (weak)
+	virtual void actOnyon(Onyon*);     // _1C (weak)
 };
 } // namespace Game
 

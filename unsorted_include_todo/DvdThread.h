@@ -10,7 +10,7 @@
 */
 
 struct DvdThread {
-	virtual ~DvdThread(); // _08 (inline)
+	virtual ~DvdThread(); // _08 (weak)
 	virtual void run();   // _0C
 };
 

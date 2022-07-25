@@ -19,16 +19,16 @@
 
 namespace Screen {
 struct Mgr {
-	virtual ~Mgr();                             // _08 (inline)
+	virtual ~Mgr();                             // _08 (weak)
 	virtual void setScene(SetSceneArg&);        // _0C
 	virtual void startScene(StartSceneArg*);    // _10
 	virtual void endScene(EndSceneArg*);        // _14
 	virtual void reset();                       // _18
-	virtual void setColorBG(JUtility::TColor&); // _1C (inline)
-	virtual void setBGMode(int);                // _20 (inline)
+	virtual void setColorBG(JUtility::TColor&); // _1C (weak)
+	virtual void setBGMode(int);                // _20 (weak)
 	virtual void doGetSceneBase(long);          // _24
-	virtual void drawBG(Graphics&);             // _28 (inline)
-	virtual void drawWipe(Graphics&);           // _2C (inline)
+	virtual void drawBG(Graphics&);             // _28 (weak)
+	virtual void drawWipe(Graphics&);           // _2C (weak)
 
 	Mgr();
 	void init();

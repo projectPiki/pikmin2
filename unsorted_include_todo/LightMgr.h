@@ -14,13 +14,13 @@
 */
 
 struct CNode {
-	virtual ~CNode();             // _08 (inline)
+	virtual ~CNode();             // _08 (weak)
 	virtual void getChildCount(); // _0C
 };
 
 struct LightMgr : public CNode {
-	virtual ~LightMgr();                   // _08 (inline)
-	virtual void update();                 // _10 (inline)
+	virtual ~LightMgr();                   // _08 (weak)
+	virtual void update();                 // _10 (weak)
 	virtual void set(Graphics&);           // _14
 	virtual void set(Matrixf&);            // _18
 	virtual void drawDebugInfo(Graphics&); // _1C

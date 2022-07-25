@@ -10,7 +10,7 @@
 */
 
 struct J2DAnmTextureSRTKey {
-	virtual ~J2DAnmTextureSRTKey();                  // _08 (inline)
+	virtual ~J2DAnmTextureSRTKey();                  // _08 (weak)
 	virtual void searchUpdateMaterialID(J2DScreen*); // _0C
 };
 

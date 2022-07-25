@@ -21,7 +21,7 @@ struct JKRDvdFile {
 	virtual void close();                            // _10
 	virtual void readData(void*, long, long);        // _14
 	virtual void writeData(const void*, long, long); // _18
-	virtual void getFileSize() const;                // _1C (inline)
+	virtual void getFileSize() const;                // _1C (weak)
 	virtual void open(long);                         // _20
 	virtual void _24() = 0;                          // _24
 };

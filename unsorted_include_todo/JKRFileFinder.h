@@ -10,7 +10,7 @@
 */
 
 struct JKRFileFinder {
-	virtual ~JKRFileFinder(); // _08 (inline)
+	virtual ~JKRFileFinder(); // _08 (weak)
 	virtual void _0C() = 0;   // _0C
 };
 

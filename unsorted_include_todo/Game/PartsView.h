@@ -18,19 +18,19 @@
 */
 
 struct CNode {
-	virtual ~CNode();             // _08 (inline)
+	virtual ~CNode();             // _08 (weak)
 	virtual void getChildCount(); // _0C
 };
 
 namespace Game {
 struct PartsView : public CNode {
-	virtual ~PartsView();                 // _08 (inline)
-	virtual void constructor();           // _10 (inline)
+	virtual ~PartsView();                 // _08 (weak)
+	virtual void constructor();           // _10 (weak)
 	virtual void doAnimation();           // _14
 	virtual void doEntry();               // _18
 	virtual void doSetView(int);          // _1C
 	virtual void doViewCalc();            // _20
-	virtual void doSimulation(float);     // _24 (inline)
+	virtual void doSimulation(float);     // _24 (weak)
 	virtual void doDirectDraw(Graphics&); // _28
 	virtual void _2C() = 0;               // _2C
 

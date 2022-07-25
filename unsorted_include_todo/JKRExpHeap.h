@@ -32,7 +32,7 @@
 struct JKRHeap {
 	virtual ~JKRHeap();                                                               // _08
 	virtual void callAllDisposer();                                                   // _0C
-	virtual void getHeapType();                                                       // _10 (inline)
+	virtual void getHeapType();                                                       // _10 (weak)
 	virtual void check();                                                             // _14
 	virtual void dump_sort();                                                         // _18
 	virtual void dump();                                                              // _1C
@@ -48,7 +48,7 @@ struct JKRHeap {
 	virtual void do_getMaxFreeBlock();                                                // _44
 	virtual void do_getTotalFreeSize();                                               // _48
 	virtual void do_changeGroupID(unsigned char);                                     // _4C
-	virtual void do_getCurrentGroupId();                                              // _50 (inline)
+	virtual void do_getCurrentGroupId();                                              // _50 (weak)
 	virtual void state_register(JKRHeap::TState*, unsigned long) const;               // _54
 	virtual void state_compare(const JKRHeap::TState&, const JKRHeap::TState&) const; // _58
 	virtual void state_dump(const TState&) const;                                     // _5C
@@ -56,7 +56,7 @@ struct JKRHeap {
 
 struct JKRExpHeap : public JKRHeap {
 	virtual ~JKRExpHeap();                                                            // _08
-	virtual void getHeapType();                                                       // _10 (inline)
+	virtual void getHeapType();                                                       // _10 (weak)
 	virtual void check();                                                             // _14
 	virtual void dump_sort();                                                         // _18
 	virtual void dump();                                                              // _1C
@@ -72,7 +72,7 @@ struct JKRExpHeap : public JKRHeap {
 	virtual void do_getMaxFreeBlock();                                                // _44
 	virtual void do_getTotalFreeSize();                                               // _48
 	virtual void do_changeGroupID(unsigned char);                                     // _4C
-	virtual void do_getCurrentGroupId();                                              // _50 (inline)
+	virtual void do_getCurrentGroupId();                                              // _50 (weak)
 	virtual void state_register(JKRHeap::TState*, unsigned long) const;               // _54
 	virtual void state_compare(const JKRHeap::TState&, const JKRHeap::TState&) const; // _58
 };

@@ -38,7 +38,7 @@
 */
 
 struct CNode {
-	virtual ~CNode();             // _08 (inline)
+	virtual ~CNode();             // _08 (weak)
 	virtual void getChildCount(); // _0C
 };
 
@@ -46,15 +46,15 @@ namespace Container < Game
 {
 	struct MapUnit >
 	{
-		virtual ~MapUnit > ();                // _08 (inline)
+		virtual ~MapUnit > ();                // _08 (weak)
 		virtual void _0C() = 0;               // _0C
-		virtual void getObject(void*);        // _10 (inline)
-		virtual void getNext(void*);          // _14 (inline)
-		virtual void getStart();              // _18 (inline)
-		virtual void getEnd();                // _1C (inline)
-		virtual void get(void*);              // _20 (inline)
+		virtual void getObject(void*);        // _10 (weak)
+		virtual void getNext(void*);          // _14 (weak)
+		virtual void getStart();              // _18 (weak)
+		virtual void getEnd();                // _1C (weak)
+		virtual void get(void*);              // _20 (weak)
 		virtual void getAt(int);              // _24
-		virtual void getTo();                 // _28 (inline)
+		virtual void getTo();                 // _28 (weak)
 		virtual void _2C() = 0;               // _2C
 		virtual void _30() = 0;               // _30
 		virtual void _34() = 0;               // _34
@@ -69,18 +69,18 @@ namespace Container < Game
 		virtual void _58() = 0;               // _58
 		virtual void _5C() = 0;               // _5C
 		virtual void _60() = 0;               // _60
-		virtual void doAnimation();           // _64 (inline)
-		virtual void doEntry();               // _68 (inline)
-		virtual void doSetView(int);          // _6C (inline)
-		virtual void doViewCalc();            // _70 (inline)
-		virtual void doSimulation(float);     // _74 (inline)
-		virtual void doDirectDraw(Graphics&); // _78 (inline)
-		virtual void resetMgr();              // _7C (inline)
+		virtual void doAnimation();           // _64 (weak)
+		virtual void doEntry();               // _68 (weak)
+		virtual void doSetView(int);          // _6C (weak)
+		virtual void doViewCalc();            // _70 (weak)
+		virtual void doSimulation(float);     // _74 (weak)
+		virtual void doDirectDraw(Graphics&); // _78 (weak)
+		virtual void resetMgr();              // _7C (weak)
 	};
 } // namespace Game
 
 struct GenericObjectMgr {
-	virtual ~GenericObjectMgr();          // _08 (inline)
+	virtual ~GenericObjectMgr();          // _08 (weak)
 	virtual void _0C() = 0;               // _0C
 	virtual void _10() = 0;               // _10
 	virtual void _14() = 0;               // _14
@@ -97,17 +97,17 @@ struct GenericObjectMgr {
 	virtual void _40() = 0;               // _40
 	virtual void _44() = 0;               // _44
 	virtual void _48() = 0;               // _48
-	virtual void doSimpleDraw(Viewport*); // _4C (inline)
-	virtual void loadResources();         // _50 (inline)
+	virtual void doSimpleDraw(Viewport*); // _4C (weak)
+	virtual void loadResources();         // _50 (weak)
 	virtual void _54() = 0;               // _54
-	virtual void pausable();              // _58 (inline)
-	virtual void frozenable();            // _5C (inline)
-	virtual void getMatrixLoadType();     // _60 (inline)
+	virtual void pausable();              // _58 (weak)
+	virtual void frozenable();            // _5C (weak)
+	virtual void getMatrixLoadType();     // _60 (weak)
 };
 
 namespace Game {
 struct MapUnitMgr : public CNode, public MapUnit >, public GenericObjectMgr {
-	virtual ~MapUnitMgr();   // _08 (inline)
+	virtual ~MapUnitMgr();   // _08 (weak)
 	virtual void getAt(int); // _24
 	virtual void _2C() = 0;  // _2C
 	virtual void _30() = 0;  // _30

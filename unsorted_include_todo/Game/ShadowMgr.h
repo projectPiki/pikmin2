@@ -18,13 +18,13 @@
 */
 
 struct CNode {
-	virtual ~CNode();             // _08 (inline)
+	virtual ~CNode();             // _08 (weak)
 	virtual void getChildCount(); // _0C
 };
 
 namespace Game {
 struct ShadowMgr : public CNode {
-	virtual ~ShadowMgr();          // _08 (inline)
+	virtual ~ShadowMgr();          // _08 (weak)
 	virtual void getSize();        // _10
 	virtual void getMax();         // _14
 	virtual void getCreature(int); // _18

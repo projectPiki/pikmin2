@@ -56,10 +56,10 @@ struct Scene_Objects {
 	virtual void getCamDistVol(unsigned char);             // _28
 	virtual void getEnvSe();                               // _2C
 	virtual void _30() = 0;                                // _30
-	virtual void isDemoScene();                            // _34 (inline)
+	virtual void isDemoScene();                            // _34 (weak)
 	virtual void getSeSceneGate(ObjBase*, unsigned long);  // _38
 	virtual void _3C() = 0;                                // _3C
-	virtual void isGameScene();                            // _40 (inline)
+	virtual void isGameScene();                            // _40 (weak)
 	virtual void pauseOn_2D(unsigned char, unsigned char); // _44
 	virtual void pauseOff_2D();                            // _48
 	virtual void pauseOn_Demo();                           // _4C
@@ -81,7 +81,7 @@ struct SceneBase {
 	virtual void _28() = 0;                   // _28
 	virtual void getEnvSe();                  // _2C
 	virtual void getSceneFx();                // _30
-	virtual void isDemoScene();               // _34 (inline)
+	virtual void isDemoScene();               // _34 (weak)
 	virtual void _38() = 0;                   // _38
 	virtual void becomeSceneCamera();         // _3C
 };
@@ -96,19 +96,19 @@ struct Scene_Game : public Scene, public Scene_Objects, public SceneBase {
 	virtual void stopMainSeq(unsigned long);               // _20
 	virtual void stopAllSound(unsigned long);              // _24
 	virtual void getEnvSe();                               // _2C
-	virtual void isDemoScene();                            // _34 (inline)
-	virtual void isGameScene();                            // _40 (inline)
+	virtual void isDemoScene();                            // _34 (weak)
+	virtual void isGameScene();                            // _40 (weak)
 	virtual void pauseOn_2D(unsigned char, unsigned char); // _44
 	virtual void pauseOff_2D();                            // _48
 	virtual void pauseOn_Demo();                           // _4C
 	virtual void pauseOff_Demo();                          // _50
-	virtual void isCave();                                 // _58 (inline)
+	virtual void isCave();                                 // _58 (weak)
 	virtual void bossAppear(EnemyBoss*, unsigned short);   // _5C
 	virtual void bossKilled(EnemyBoss*);                   // _60
-	virtual void isBossFloor();                            // _64 (inline)
+	virtual void isBossFloor();                            // _64 (weak)
 	virtual void akubiOK();                                // _68
-	virtual void isPollutUp();                             // _6C (inline)
-	virtual void getPollutUpTimer() const;                 // _70 (inline)
+	virtual void isPollutUp();                             // _6C (weak)
+	virtual void getPollutUpTimer() const;                 // _70 (weak)
 
 	void attachBossFaderMgr();
 	void adaptEnvSe(PSSystem::EnvSeMgr*);

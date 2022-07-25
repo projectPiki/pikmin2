@@ -11,14 +11,14 @@
 */
 
 struct CNode {
-	virtual ~CNode();             // _08 (inline)
+	virtual ~CNode();             // _08 (weak)
 	virtual void getChildCount(); // _0C
 };
 
 namespace Game {
 namespace IllustratedBook {
 struct ColorSetting : public CNode {
-	virtual ~ColorSetting();    // _08 (inline)
+	virtual ~ColorSetting();    // _08 (weak)
 	virtual void read(Stream&); // _10
 
 	ColorSetting();

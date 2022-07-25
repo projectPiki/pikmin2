@@ -9,7 +9,7 @@
 */
 
 struct J3DShapeTable {
-	virtual ~J3DShapeTable(); // _08 (inline)
+	virtual ~J3DShapeTable(); // _08 (weak)
 };
 
 #endif

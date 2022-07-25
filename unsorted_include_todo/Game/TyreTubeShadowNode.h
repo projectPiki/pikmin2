@@ -10,13 +10,13 @@
 */
 
 struct CNode {
-	virtual ~CNode();             // _08 (inline)
+	virtual ~CNode();             // _08 (weak)
 	virtual void getChildCount(); // _0C
 };
 
 namespace Game {
 struct TyreTubeShadowNode : public CNode {
-	virtual ~TyreTubeShadowNode(); // _08 (inline)
+	virtual ~TyreTubeShadowNode(); // _08 (weak)
 
 	void makeShadowSRT(Game::JointShadowParm&, Matrixf*);
 };

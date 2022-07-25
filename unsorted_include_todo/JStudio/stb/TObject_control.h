@@ -16,7 +16,7 @@
 namespace JStudio {
 namespace stb {
 struct TObject {
-	virtual ~TObject();                                                           // _08 (inline)
+	virtual ~TObject();                                                           // _08 (weak)
 	virtual void do_begin();                                                      // _0C
 	virtual void do_end();                                                        // _10
 	virtual void do_paragraph(unsigned long, const void*, unsigned long);         // _14
@@ -29,7 +29,7 @@ struct TObject {
 namespace JStudio {
 namespace stb {
 struct TObject_control : public TObject {
-	virtual ~TObject_control(); // _08 (inline)
+	virtual ~TObject_control(); // _08 (weak)
 };
 } // namespace stb
 } // namespace JStudio

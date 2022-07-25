@@ -10,14 +10,14 @@
 */
 
 struct CNode {
-	virtual ~CNode();             // _08 (inline)
+	virtual ~CNode();             // _08 (weak)
 	virtual void getChildCount(); // _0C
 };
 
 namespace ebi {
 namespace title {
 struct TCoordMgr : public CNode {
-	virtual ~TCoordMgr(); // _08 (inline)
+	virtual ~TCoordMgr(); // _08 (weak)
 
 	TCoordMgr();
 	void copyCoordinate(Vector2<float>*);

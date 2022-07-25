@@ -11,7 +11,7 @@
 */
 
 struct J3DMatPacket {
-	virtual void entry(J3DDrawBuffer*); // _08 (inline)
+	virtual void entry(J3DDrawBuffer*); // _08 (weak)
 	virtual void draw();                // _0C
 	virtual ~J3DMatPacket();            // _10
 };

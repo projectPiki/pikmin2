@@ -20,8 +20,8 @@ struct ModParamWithTableTask {
 namespace PSSystem {
 struct TriangleTableModTask {
 	virtual void _08() = 0;                      // _08
-	virtual void getTgtWithTable(unsigned char); // _0C (inline)
-	virtual void getTableIdxNum();               // _10 (inline)
+	virtual void getTgtWithTable(unsigned char); // _0C (weak)
+	virtual void getTableIdxNum();               // _10 (weak)
 };
 } // namespace PSSystem
 

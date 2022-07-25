@@ -13,8 +13,8 @@
 namespace Sys {
 struct MatBaseAnimator {
 	virtual void start(MatBaseAnimation*); // _08
-	virtual void onStart();                // _0C (inline)
-	virtual void do_animate(float);        // _10 (inline)
+	virtual void onStart();                // _0C (weak)
+	virtual void do_animate(float);        // _10 (weak)
 
 	MatBaseAnimator();
 	void setCurrentFrame(float);

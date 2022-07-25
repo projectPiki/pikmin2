@@ -21,7 +21,7 @@ namespace PSGame {
 struct EnvSe_AutoPan {
 	virtual void _08() = 0;                 // _08
 	virtual void play();                    // _0C
-	virtual void getCastType();             // _10 (inline)
+	virtual void getCastType();             // _10 (weak)
 	virtual void setPanAndDolby(JAISound*); // _14
 };
 } // namespace PSGame
@@ -29,7 +29,7 @@ struct EnvSe_AutoPan {
 namespace PSM {
 struct Env_Pollutin : public EnvSeBase, public EnvSe_AutoPan {
 	virtual void play();        // _0C
-	virtual void getCastType(); // _10 (inline)
+	virtual void getCastType(); // _10 (weak)
 };
 } // namespace PSM
 

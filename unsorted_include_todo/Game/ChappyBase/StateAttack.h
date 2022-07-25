@@ -19,8 +19,8 @@ struct EnemyFSMState {
 	virtual void init(EnemyBase*, StateArg*);         // _08
 	virtual void exec(EnemyBase*);                    // _0C
 	virtual void cleanup(EnemyBase*);                 // _10
-	virtual void resume(EnemyBase*);                  // _14 (inline)
-	virtual void restart(EnemyBase*);                 // _18 (inline)
+	virtual void resume(EnemyBase*);                  // _14 (weak)
+	virtual void restart(EnemyBase*);                 // _18 (weak)
 	virtual void transit(EnemyBase*, int, StateArg*); // _1C
 };
 } // namespace Game

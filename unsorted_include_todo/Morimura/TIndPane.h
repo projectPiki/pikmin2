@@ -11,13 +11,13 @@
 */
 
 struct CNode {
-	virtual ~CNode();             // _08 (inline)
+	virtual ~CNode();             // _08 (weak)
 	virtual void getChildCount(); // _0C
 };
 
 namespace Morimura {
 struct TIndPane : public CNode {
-	virtual ~TIndPane(); // _08 (inline)
+	virtual ~TIndPane(); // _08 (weak)
 	virtual void draw(); // _10
 
 	TIndPane(const char*, float, float);

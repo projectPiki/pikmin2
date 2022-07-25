@@ -11,7 +11,7 @@
 
 namespace PSSystem {
 struct DirectorMgrBase {
-	virtual ~DirectorMgrBase(); // _08 (inline)
+	virtual ~DirectorMgrBase(); // _08 (weak)
 	virtual void _0C() = 0;     // _0C
 
 	DirectorMgrBase(unsigned char);

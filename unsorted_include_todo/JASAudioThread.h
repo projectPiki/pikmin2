@@ -10,7 +10,7 @@
 */
 
 struct JASAudioThread {
-	virtual ~JASAudioThread(); // _08 (inline)
+	virtual ~JASAudioThread(); // _08 (weak)
 	virtual void run();        // _0C
 };
 

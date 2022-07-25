@@ -11,7 +11,7 @@
 
 namespace Game {
 struct NaviParms {
-	virtual void read(Stream&); // _08 (inline)
+	virtual void read(Stream&); // _08 (weak)
 	virtual void _0C() = 0;     // _0C
 
 	NaviParms();

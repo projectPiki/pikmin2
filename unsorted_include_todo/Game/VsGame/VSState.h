@@ -41,7 +41,7 @@ struct GameState {
 	virtual void VsonMovieStart(VsGameSection*, MovieConfig*, unsigned long, unsigned long); // _2C
 	virtual void VsonMovieDone(VsGameSection*, MovieConfig*, unsigned long, unsigned long);  // _30
 	virtual void VsonNextFloor(VsGameSection*, ItemHole::Item*);                             // _34
-	virtual void Vson_section_fadeout(VsGameSection*);                                       // _38 (inline)
+	virtual void Vson_section_fadeout(VsGameSection*);                                       // _38 (weak)
 	virtual void VsgoingToCave(VsGameSection*);                                              // _3C
 	virtual void VsonBattleFinished(VsGameSection*, int, bool);                              // _40
 	virtual void VsonRedOrBlueSuckStart(VsGameSection*, int, bool);                          // _44
@@ -59,9 +59,9 @@ namespace FSMState < Game
 		virtual void _08() = 0;                                          // _08
 		virtual void _0C() = 0;                                          // _0C
 		virtual void _10() = 0;                                          // _10
-		virtual void FSMState < resume(VsGameSection*);                  // _14 (inline)
-		virtual void FSMState < restart(VsGameSection*);                 // _18 (inline)
-		virtual void FSMState < transit(VsGameSection*, int, StateArg*); // _1C (inline)
+		virtual void FSMState < resume(VsGameSection*);                  // _14 (weak)
+		virtual void FSMState < restart(VsGameSection*);                 // _18 (weak)
+		virtual void FSMState < transit(VsGameSection*, int, StateArg*); // _1C (weak)
 	};
 } // namespace Game
 } // namespace Game

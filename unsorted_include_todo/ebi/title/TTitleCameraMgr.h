@@ -38,37 +38,37 @@
 */
 
 struct CNode {
-	virtual ~CNode();             // _08 (inline)
+	virtual ~CNode();             // _08 (weak)
 	virtual void getChildCount(); // _0C
 };
 
 struct Container<Plane> {
-	virtual ~Container<Plane>();   // _08 (inline)
+	virtual ~Container<Plane>();   // _08 (weak)
 	virtual void _0C() = 0;        // _0C
-	virtual void getObject(void*); // _10 (inline)
+	virtual void getObject(void*); // _10 (weak)
 };
 
 struct ArrayContainer<Plane> {
-	virtual ~ArrayContainer<Plane>();   // _08 (inline)
+	virtual ~ArrayContainer<Plane>();   // _08 (weak)
 	virtual void _0C() = 0;             // _0C
 	virtual void _10() = 0;             // _10
-	virtual void getNext(void*);        // _14 (inline)
-	virtual void getStart();            // _18 (inline)
-	virtual void getEnd();              // _1C (inline)
-	virtual void get(void*);            // _20 (inline)
-	virtual void getAt(int);            // _24 (inline)
-	virtual void getTo();               // _28 (inline)
+	virtual void getNext(void*);        // _14 (weak)
+	virtual void getStart();            // _18 (weak)
+	virtual void getEnd();              // _1C (weak)
+	virtual void get(void*);            // _20 (weak)
+	virtual void getAt(int);            // _24 (weak)
+	virtual void getTo();               // _28 (weak)
 	virtual void _2C() = 0;             // _2C
 	virtual void _30() = 0;             // _30
-	virtual void write(Stream&);        // _34 (inline)
-	virtual void read(Stream&);         // _38 (inline)
-	virtual void alloc(int);            // _3C (inline)
-	virtual void addOne(Plane&);        // _40 (inline)
-	virtual void setArray(Plane*, int); // _44 (inline)
+	virtual void write(Stream&);        // _34 (weak)
+	virtual void read(Stream&);         // _38 (weak)
+	virtual void alloc(int);            // _3C (weak)
+	virtual void addOne(Plane&);        // _40 (weak)
+	virtual void setArray(Plane*, int); // _44 (weak)
 };
 
 struct CullPlane {
-	virtual ~CullPlane();                      // _08 (inline)
+	virtual ~CullPlane();                      // _08 (weak)
 	virtual void _0C() = 0;                    // _0C
 	virtual void _10() = 0;                    // _10
 	virtual void _14() = 0;                    // _14
@@ -77,12 +77,12 @@ struct CullPlane {
 	virtual void _20() = 0;                    // _20
 	virtual void _24() = 0;                    // _24
 	virtual void _28() = 0;                    // _28
-	virtual void writeObject(Stream&, Plane&); // _2C (inline)
-	virtual void readObject(Stream&, Plane&);  // _30 (inline)
+	virtual void writeObject(Stream&, Plane&); // _2C (weak)
+	virtual void readObject(Stream&, Plane&);  // _30 (weak)
 };
 
 struct Camera {
-	virtual ~Camera();                    // _08 (inline)
+	virtual ~Camera();                    // _08 (weak)
 	virtual void _0C() = 0;               // _0C
 	virtual void _10() = 0;               // _10
 	virtual void _14() = 0;               // _14
@@ -94,7 +94,7 @@ struct Camera {
 	virtual void _2C() = 0;               // _2C
 	virtual void _30() = 0;               // _30
 	virtual void _34() = 0;               // _34
-	virtual void read(Stream&);           // _38 (inline)
+	virtual void read(Stream&);           // _38 (weak)
 	virtual void _3C() = 0;               // _3C
 	virtual void _40() = 0;               // _40
 	virtual void _44() = 0;               // _44
@@ -103,18 +103,18 @@ struct Camera {
 	virtual void updatePlanes();          // _50
 	virtual void updateScreenConstants(); // _54
 	virtual void _58() = 0;               // _58
-	virtual void getTargetDistance();     // _5C (inline)
-	virtual void getPositionPtr();        // _60 (inline)
+	virtual void getTargetDistance();     // _5C (weak)
+	virtual void getPositionPtr();        // _60 (weak)
 	virtual void _64() = 0;               // _64
-	virtual void getSoundPositionPtr();   // _68 (inline)
-	virtual void getSoundMatrixPtr();     // _6C (inline)
-	virtual void isSpecialCamera();       // _70 (inline)
+	virtual void getSoundPositionPtr();   // _68 (weak)
+	virtual void getSoundMatrixPtr();     // _6C (weak)
+	virtual void isSpecialCamera();       // _70 (weak)
 	virtual void _74() = 0;               // _74
-	virtual void doUpdate();              // _78 (inline)
+	virtual void doUpdate();              // _78 (weak)
 };
 
 struct LookAtCamera {
-	virtual ~LookAtCamera();           // _08 (inline)
+	virtual ~LookAtCamera();           // _08 (weak)
 	virtual void _0C() = 0;            // _0C
 	virtual void _10() = 0;            // _10
 	virtual void _14() = 0;            // _14
@@ -126,7 +126,7 @@ struct LookAtCamera {
 	virtual void _2C() = 0;            // _2C
 	virtual void _30() = 0;            // _30
 	virtual void _34() = 0;            // _34
-	virtual void read(Stream&);        // _38 (inline)
+	virtual void read(Stream&);        // _38 (weak)
 	virtual void _3C() = 0;            // _3C
 	virtual void _40() = 0;            // _40
 	virtual void _44() = 0;            // _44
@@ -134,16 +134,16 @@ struct LookAtCamera {
 	virtual void _4C() = 0;            // _4C
 	virtual void _50() = 0;            // _50
 	virtual void _54() = 0;            // _54
-	virtual void getLookAtPosition_(); // _58 (inline)
+	virtual void getLookAtPosition_(); // _58 (weak)
 	virtual void _5C() = 0;            // _5C
 	virtual void _60() = 0;            // _60
-	virtual void on_getPositionPtr();  // _64 (inline)
+	virtual void on_getPositionPtr();  // _64 (weak)
 	virtual void _68() = 0;            // _68
 	virtual void _6C() = 0;            // _6C
 	virtual void _70() = 0;            // _70
 	virtual void updateMatrix();       // _74
 	virtual void _78() = 0;            // _78
-	virtual void startVibration(int);  // _7C (inline)
+	virtual void startVibration(int);  // _7C (weak)
 };
 
 namespace ebi {
@@ -154,8 +154,8 @@ struct TTitleCameraMgr : public CNode,
                          public CullPlane,
                          public Camera,
                          public LookAtCamera {
-	virtual ~TTitleCameraMgr(); // _08 (inline)
-	virtual void read(Stream&); // _38 (inline)
+	virtual ~TTitleCameraMgr(); // _08 (weak)
+	virtual void read(Stream&); // _38 (weak)
 
 	void update();
 };

@@ -29,11 +29,11 @@ struct InteractAttack {
 namespace Game {
 struct Interaction {
 	virtual void _08() = 0;            // _08
-	virtual void actPiki(Piki*);       // _0C (inline)
+	virtual void actPiki(Piki*);       // _0C (weak)
 	virtual void _10() = 0;            // _10
 	virtual void actEnemy(EnemyBase*); // _14
-	virtual void actPellet(Pellet*);   // _18 (inline)
-	virtual void actOnyon(Onyon*);     // _1C (inline)
+	virtual void actPellet(Pellet*);   // _18 (weak)
+	virtual void actOnyon(Onyon*);     // _1C (weak)
 };
 } // namespace Game
 

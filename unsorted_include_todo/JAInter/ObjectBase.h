@@ -27,7 +27,7 @@ struct ObjectBase {
 	virtual void startSound(JAISound**, unsigned long, unsigned long);    // _14
 	virtual void stopAllSound();                                          // _18
 	virtual void stopSound(unsigned long, unsigned long);                 // _1C
-	virtual void enable();                                                // _20 (inline)
+	virtual void enable();                                                // _20 (weak)
 	virtual void disable();                                               // _24
 	virtual void dispose();                                               // _28
 	virtual void getFreeSoundHandlePointer();                             // _2C

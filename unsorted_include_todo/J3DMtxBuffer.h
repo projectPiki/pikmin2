@@ -9,7 +9,7 @@
 */
 
 struct J3DMtxBuffer {
-	virtual ~J3DMtxBuffer(); // _08 (inline)
+	virtual ~J3DMtxBuffer(); // _08 (weak)
 };
 
 #endif

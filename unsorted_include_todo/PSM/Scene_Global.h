@@ -28,7 +28,7 @@
 
 namespace PSSystem {
 struct Scene {
-	virtual void init();                      // _08 (inline)
+	virtual void init();                      // _08 (weak)
 	virtual ~Scene();                         // _0C
 	virtual void scene1st(TaskChecker*);      // _10
 	virtual void scene1stLoadSync();          // _14
@@ -50,12 +50,12 @@ struct SceneBase {
 	virtual void _20() = 0;                                // _20
 	virtual void _24() = 0;                                // _24
 	virtual void getCamDistVol(unsigned char);             // _28
-	virtual void getEnvSe();                               // _2C (inline)
+	virtual void getEnvSe();                               // _2C (weak)
 	virtual void getSceneFx();                             // _30
-	virtual void isDemoScene();                            // _34 (inline)
-	virtual void getSeSceneGate(ObjBase*, unsigned long);  // _38 (inline)
+	virtual void isDemoScene();                            // _34 (weak)
+	virtual void getSeSceneGate(ObjBase*, unsigned long);  // _38 (weak)
 	virtual void becomeSceneCamera();                      // _3C
-	virtual void isGameScene();                            // _40 (inline)
+	virtual void isGameScene();                            // _40 (weak)
 	virtual void pauseOn_2D(unsigned char, unsigned char); // _44
 	virtual void pauseOff_2D();                            // _48
 	virtual void pauseOn_Demo();                           // _4C
@@ -67,7 +67,7 @@ namespace PSM {
 struct Scene_Global : public Scene, public SceneBase {
 	virtual ~Scene_Global();                              // _0C
 	virtual void getCamDistVol(unsigned char);            // _28
-	virtual void getSeSceneGate(ObjBase*, unsigned long); // _38 (inline)
+	virtual void getSeSceneGate(ObjBase*, unsigned long); // _38 (weak)
 
 	Scene_Global(unsigned char, PSGame::SceneInfo*);
 	void getGlobalStream();

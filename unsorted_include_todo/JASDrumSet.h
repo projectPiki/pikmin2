@@ -12,9 +12,9 @@
 */
 
 struct JASDrumSet {
-	virtual ~JASDrumSet();                                // _08 (inline)
+	virtual ~JASDrumSet();                                // _08 (weak)
 	virtual void getParam(int, int, JASInstParam*) const; // _0C
-	virtual void getType() const;                         // _10 (inline)
+	virtual void getType() const;                         // _10 (weak)
 	virtual void _14() = 0;                               // _14
 };
 

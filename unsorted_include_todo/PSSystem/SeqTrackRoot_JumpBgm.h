@@ -14,7 +14,7 @@
 
 namespace PSSystem {
 struct SeqTrackRoot {
-	virtual void update();        // _08 (inline)
+	virtual void update();        // _08 (weak)
 	virtual void init(JASTrack*); // _0C
 	virtual void onStopSeq();     // _10
 	virtual void beatUpdate();    // _14

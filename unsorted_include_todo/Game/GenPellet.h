@@ -28,8 +28,8 @@ struct GenObject {
 	virtual void ramLoadParameters(Stream&);    // _10
 	virtual void doEvent(unsigned long);        // _14
 	virtual void doRead(Stream&);               // _18
-	virtual void update(Generator*);            // _1C (inline)
-	virtual void render(Graphics&, Generator*); // _20 (inline)
+	virtual void update(Generator*);            // _1C (weak)
+	virtual void render(Graphics&, Generator*); // _20 (weak)
 	virtual void getLatestVersion();            // _24
 };
 } // namespace Game

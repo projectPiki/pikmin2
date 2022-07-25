@@ -18,15 +18,15 @@
 
 namespace Game {
 struct GenBase {
-	virtual void doWrite(Stream&);              // _08 (inline)
+	virtual void doWrite(Stream&);              // _08 (weak)
 	virtual void ramSaveParameters(Stream&);    // _0C
 	virtual void ramLoadParameters(Stream&);    // _10
-	virtual void doEvent(unsigned long);        // _14 (inline)
-	virtual void doRead(Stream&);               // _18 (inline)
-	virtual void update(Generator*);            // _1C (inline)
-	virtual void render(Graphics&, Generator*); // _20 (inline)
-	virtual void getLatestVersion();            // _24 (inline)
-	virtual void getShape();                    // _28 (inline)
+	virtual void doEvent(unsigned long);        // _14 (weak)
+	virtual void doRead(Stream&);               // _18 (weak)
+	virtual void update(Generator*);            // _1C (weak)
+	virtual void render(Graphics&, Generator*); // _20 (weak)
+	virtual void getLatestVersion();            // _24 (weak)
+	virtual void getShape();                    // _28 (weak)
 
 	GenBase(unsigned long, char*, char*);
 };

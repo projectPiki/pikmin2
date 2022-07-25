@@ -10,14 +10,14 @@
 */
 
 struct CNode {
-	virtual ~CNode();             // _08 (inline)
+	virtual ~CNode();             // _08 (weak)
 	virtual void getChildCount(); // _0C
 };
 
 namespace Game {
 namespace GameConfig {
 struct Parms : public CNode {
-	virtual ~Parms(); // _08 (inline)
+	virtual ~Parms(); // _08 (weak)
 
 	Parms();
 };

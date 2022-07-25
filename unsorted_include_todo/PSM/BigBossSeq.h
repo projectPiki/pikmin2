@@ -33,7 +33,7 @@
 
 namespace PSSystem {
 struct DirectedBgm {
-	virtual ~DirectedBgm();                                      // _08 (inline)
+	virtual ~DirectedBgm();                                      // _08 (weak)
 	virtual void init();                                         // _0C
 	virtual void _10() = 0;                                      // _10
 	virtual void _14() = 0;                                      // _14
@@ -55,7 +55,7 @@ struct DirectedBgm {
 
 namespace PSSystem {
 struct SeqBase {
-	virtual ~SeqBase();                  // _08 (inline)
+	virtual ~SeqBase();                  // _08 (weak)
 	virtual void _0C() = 0;              // _0C
 	virtual void scene1st(TaskChecker*); // _10
 	virtual void _14() = 0;              // _14
@@ -67,7 +67,7 @@ struct SeqBase {
 	virtual void _2C() = 0;              // _2C
 	virtual void _30() = 0;              // _30
 	virtual void isPlaying();            // _34
-	virtual void seqLoadAfter();         // _38 (inline)
+	virtual void seqLoadAfter();         // _38 (weak)
 	virtual void _3C() = 0;              // _3C
 	virtual void setConfigVolume();      // _40
 };
@@ -75,14 +75,14 @@ struct SeqBase {
 
 namespace PSSystem {
 struct JumpBgmSeq {
-	virtual ~JumpBgmSeq();            // _08 (inline)
+	virtual ~JumpBgmSeq();            // _08 (weak)
 	virtual void _0C() = 0;           // _0C
 	virtual void _10() = 0;           // _10
 	virtual void startSeq();          // _14
 	virtual void _18() = 0;           // _18
 	virtual void _1C() = 0;           // _1C
 	virtual void _20() = 0;           // _20
-	virtual void getCastType();       // _24 (inline)
+	virtual void getCastType();       // _24 (weak)
 	virtual void _28() = 0;           // _28
 	virtual void _2C() = 0;           // _2C
 	virtual void onPlayingFrame();    // _30
@@ -102,7 +102,7 @@ struct JumpBgmSeq {
 
 namespace PSSystem {
 struct BgmSeq {
-	virtual ~BgmSeq();         // _08 (inline)
+	virtual ~BgmSeq();         // _08 (weak)
 	virtual void _0C() = 0;    // _0C
 	virtual void _10() = 0;    // _10
 	virtual void _14() = 0;    // _14
@@ -110,18 +110,18 @@ struct BgmSeq {
 	virtual void _1C() = 0;    // _1C
 	virtual void _20() = 0;    // _20
 	virtual void _24() = 0;    // _24
-	virtual void getSeqType(); // _28 (inline)
+	virtual void getSeqType(); // _28 (weak)
 	virtual void _2C() = 0;    // _2C
 	virtual void _30() = 0;    // _30
 	virtual void _34() = 0;    // _34
 	virtual void _38() = 0;    // _38
-	virtual void getHandleP(); // _3C (inline)
+	virtual void getHandleP(); // _3C (weak)
 };
 } // namespace PSSystem
 
 namespace PSM {
 struct MiddleBossSeq {
-	virtual ~MiddleBossSeq();                             // _08 (inline)
+	virtual ~MiddleBossSeq();                             // _08 (weak)
 	virtual void _0C() = 0;                               // _0C
 	virtual void _10() = 0;                               // _10
 	virtual void _14() = 0;                               // _14
@@ -147,7 +147,7 @@ struct MiddleBossSeq {
 
 namespace PSM {
 struct BigBossSeq : public DirectedBgm, public SeqBase, public JumpBgmSeq, public BgmSeq, public MiddleBossSeq {
-	virtual ~BigBossSeq();                  // _08 (inline)
+	virtual ~BigBossSeq();                  // _08 (weak)
 	virtual void onJump(unsigned short);    // _60
 	virtual void jumpCheck(unsigned short); // _64
 

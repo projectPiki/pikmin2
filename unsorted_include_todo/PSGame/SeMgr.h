@@ -10,7 +10,7 @@
 
 namespace PSGame {
 struct SeMgr {
-	virtual ~SeMgr(); // _08 (inline)
+	virtual ~SeMgr(); // _08 (weak)
 
 	SeMgr();
 	void playMessageVoice(unsigned long, bool);

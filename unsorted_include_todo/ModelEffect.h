@@ -19,17 +19,17 @@
 */
 
 struct ModelEffect {
-	virtual void constructor();                  // _08 (inline)
+	virtual void constructor();                  // _08 (weak)
 	virtual void doAnimation();                  // _0C
 	virtual void doEntry();                      // _10
 	virtual void doSetView(int);                 // _14
 	virtual void doViewCalc();                   // _18
-	virtual void changeMaterial();               // _1C (inline)
+	virtual void changeMaterial();               // _1C (weak)
 	virtual void _20() = 0;                      // _20
-	virtual void useCylinderLOD();               // _24 (inline)
-	virtual void getLODCylinder(Sys::Cylinder&); // _28 (inline)
-	virtual void doSimulation(float);            // _2C (inline)
-	virtual void doDirectDraw(Graphics&);        // _30 (inline)
+	virtual void useCylinderLOD();               // _24 (weak)
+	virtual void getLODCylinder(Sys::Cylinder&); // _28 (weak)
+	virtual void doSimulation(float);            // _2C (weak)
+	virtual void doDirectDraw(Graphics&);        // _30 (weak)
 };
 
 #endif

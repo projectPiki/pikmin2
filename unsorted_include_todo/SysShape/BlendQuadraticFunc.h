@@ -10,7 +10,7 @@
 
 namespace SysShape {
 struct BlendQuadraticFunc {
-	virtual void getValue(float); // _08 (inline)
+	virtual void getValue(float); // _08 (weak)
 };
 } // namespace SysShape
 

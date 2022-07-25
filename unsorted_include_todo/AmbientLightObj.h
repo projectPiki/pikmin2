@@ -10,12 +10,12 @@
 */
 
 struct CNode {
-	virtual ~CNode();             // _08 (inline)
+	virtual ~CNode();             // _08 (weak)
 	virtual void getChildCount(); // _0C
 };
 
 struct AmbientLightObj : public CNode {
-	virtual ~AmbientLightObj(); // _08 (inline)
+	virtual ~AmbientLightObj(); // _08 (weak)
 };
 
 #endif

@@ -21,7 +21,7 @@ struct J3DModel {
 	virtual void calcMaterial();   // _14
 	virtual void calcDiffTexMtx(); // _18
 	virtual void viewCalc();       // _1C
-	virtual ~J3DModel();           // _20 (inline)
+	virtual ~J3DModel();           // _20 (weak)
 };
 
 #endif

@@ -52,12 +52,12 @@ struct DoorNode : public CNode {
 };
 
 struct FixObjNode : public CNode, public ObjectLayoutNode {
-	virtual ~FixObjNode() { }                      // _08 (inline)
-	virtual int getObjectId();                     // _10 (inline)
-	virtual u32 getObjectType();                   // _14 (inline)
-	virtual int getBirthCount();                   // _18 (inline)
-	virtual float getDirection();                  // _1C (inline)
-	virtual void getBirthPosition(float&, float&); // _24 (inline)
+	virtual ~FixObjNode() { }                      // _08 (weak)
+	virtual int getObjectId();                     // _10 (weak)
+	virtual u32 getObjectType();                   // _14 (weak)
+	virtual int getBirthCount();                   // _18 (weak)
+	virtual float getDirection();                  // _1C (weak)
+	virtual void getBirthPosition(float&, float&); // _24 (weak)
 };
 
 struct GateUnit {
@@ -136,7 +136,7 @@ struct MapUnits {
 };
 
 struct MapNode : public CNode {
-	virtual ~MapNode(); // _08 (inline)
+	virtual ~MapNode(); // _08 (weak)
 	MapNode(UnitInfo* info = nullptr);
 
 	void setOffset(int, int);
@@ -201,7 +201,7 @@ struct EnemyNode : public ObjectLayoutNode {
 	EnemyNode();
 	EnemyNode(EnemyUnit*, BaseGen*, int);
 
-	virtual ~EnemyNode() { }                       // _08 (inline)
+	virtual ~EnemyNode() { }                       // _08 (weak)
 	virtual int getObjectId();                     // _10
 	virtual u32 getObjectType();                   // _14
 	virtual int getBirthCount();                   // _18

@@ -17,7 +17,7 @@ struct DispMemberBase {
 	virtual void _08() = 0;           // _08
 	virtual void _0C() = 0;           // _0C
 	virtual void _10() = 0;           // _10
-	virtual void doSetSubMemberAll(); // _14 (inline)
+	virtual void doSetSubMemberAll(); // _14 (weak)
 
 	void isID(unsigned long, unsigned long long);
 	void getMemberName(char*);

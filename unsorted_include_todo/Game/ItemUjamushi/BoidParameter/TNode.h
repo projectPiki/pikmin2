@@ -10,7 +10,7 @@
 */
 
 struct CNode {
-	virtual ~CNode();             // _08 (inline)
+	virtual ~CNode();             // _08 (weak)
 	virtual void getChildCount(); // _0C
 };
 
@@ -18,7 +18,7 @@ namespace Game {
 namespace ItemUjamushi {
 namespace BoidParameter {
 struct TNode : public CNode {
-	virtual ~TNode(); // _08 (inline)
+	virtual ~TNode(); // _08 (weak)
 
 	TNode();
 };

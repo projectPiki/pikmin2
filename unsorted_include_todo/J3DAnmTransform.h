@@ -12,8 +12,8 @@
 */
 
 struct J3DAnmTransform {
-	virtual ~J3DAnmTransform();   // _08 (inline)
-	virtual void getKind() const; // _0C (inline)
+	virtual ~J3DAnmTransform();   // _08 (weak)
+	virtual void getKind() const; // _0C (weak)
 	virtual void _10() = 0;       // _10
 	virtual void _14() = 0;       // _14
 };

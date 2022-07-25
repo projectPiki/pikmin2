@@ -10,8 +10,8 @@
 */
 
 struct J3DAnmTexPattern {
-	virtual ~J3DAnmTexPattern();  // _08 (inline)
-	virtual void getKind() const; // _0C (inline)
+	virtual ~J3DAnmTexPattern();  // _08 (weak)
+	virtual void getKind() const; // _0C (weak)
 };
 
 #endif

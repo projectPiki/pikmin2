@@ -12,7 +12,7 @@
 namespace JStudio {
 namespace fvb {
 struct TObject_constant {
-	virtual ~TObject_constant();                                                  // _08 (inline)
+	virtual ~TObject_constant();                                                  // _08 (weak)
 	virtual void prepare_data_(const data::TParse_TParagraph::TData&, TControl*); // _0C
 };
 } // namespace fvb

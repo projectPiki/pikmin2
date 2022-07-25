@@ -31,17 +31,17 @@ struct Section {
 	virtual void update();                           // _10
 	virtual void draw(Graphics&);                    // _14
 	virtual void init();                             // _18
-	virtual void drawInit(Graphics&);                // _1C (inline)
-	virtual void drawInit(Graphics&, EDrawInitMode); // _20 (inline)
-	virtual void doExit();                           // _24 (inline)
-	virtual void forceFinish();                      // _28 (inline)
-	virtual void forceReset();                       // _2C (inline)
-	virtual void getCurrentSection();                // _30 (inline)
-	virtual void doLoadingStart();                   // _34 (inline)
-	virtual void doLoading();                        // _38 (inline)
+	virtual void drawInit(Graphics&);                // _1C (weak)
+	virtual void drawInit(Graphics&, EDrawInitMode); // _20 (weak)
+	virtual void doExit();                           // _24 (weak)
+	virtual void forceFinish();                      // _28 (weak)
+	virtual void forceReset();                       // _2C (weak)
+	virtual void getCurrentSection();                // _30 (weak)
+	virtual void doLoadingStart();                   // _34 (weak)
+	virtual void doLoading();                        // _38 (weak)
 	virtual void doUpdate();                         // _3C
 	virtual void doDraw(Graphics&);                  // _40
-	virtual void isFinishable();                     // _44 (inline)
+	virtual void isFinishable();                     // _44 (weak)
 };
 
 namespace Game {
@@ -55,7 +55,7 @@ struct BaseHIOSection {
 	virtual void _20() = 0;             // _20
 	virtual void _24() = 0;             // _24
 	virtual void _28() = 0;             // _28
-	virtual void forceReset();          // _2C (inline)
+	virtual void forceReset();          // _2C (weak)
 	virtual void _30() = 0;             // _30
 	virtual void _34() = 0;             // _34
 	virtual void _38() = 0;             // _38
@@ -71,7 +71,7 @@ struct BootSection : public Section, public BaseHIOSection {
 	virtual ~BootSection();         // _08
 	virtual void run();             // _0C
 	virtual void init();            // _18
-	virtual void forceReset();      // _2C (inline)
+	virtual void forceReset();      // _2C (weak)
 	virtual void doUpdate();        // _3C
 	virtual void doDraw(Graphics&); // _40
 };

@@ -21,11 +21,11 @@ namespace FSMState < Game
 	struct DrawInfo >
 	{
 		virtual void init(DrawInfo*, StateArg*);                    // _08
-		virtual void FSMState < exec(DrawInfo*);                    // _0C (inline)
-		virtual void FSMState < cleanup(DrawInfo*);                 // _10 (inline)
-		virtual void FSMState < resume(DrawInfo*);                  // _14 (inline)
-		virtual void FSMState < restart(DrawInfo*);                 // _18 (inline)
-		virtual void FSMState < transit(DrawInfo*, int, StateArg*); // _1C (inline)
+		virtual void FSMState < exec(DrawInfo*);                    // _0C (weak)
+		virtual void FSMState < cleanup(DrawInfo*);                 // _10 (weak)
+		virtual void FSMState < resume(DrawInfo*);                  // _14 (weak)
+		virtual void FSMState < restart(DrawInfo*);                 // _18 (weak)
+		virtual void FSMState < transit(DrawInfo*, int, StateArg*); // _1C (weak)
 	};
 	} // namespace EnemyStone
 } // namespace Game

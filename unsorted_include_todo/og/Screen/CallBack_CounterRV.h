@@ -18,31 +18,31 @@
 */
 
 struct CNode {
-	virtual ~CNode();             // _08 (inline)
+	virtual ~CNode();             // _08 (weak)
 	virtual void getChildCount(); // _0C
 };
 
 namespace P2DScreen {
 struct Node {
-	virtual ~Node();                               // _08 (inline)
+	virtual ~Node();                               // _08 (weak)
 	virtual void _0C() = 0;                        // _0C
 	virtual void update();                         // _10
 	virtual void draw(Graphics&, J2DGrafContext&); // _14
-	virtual void doInit();                         // _18 (inline)
+	virtual void doInit();                         // _18 (weak)
 };
 } // namespace P2DScreen
 
 namespace og {
 namespace Screen {
 struct CallBack_CounterRV : public CNode, public Node {
-	virtual ~CallBack_CounterRV();                                                                                   // _08 (inline)
+	virtual ~CallBack_CounterRV();                                                                                   // _08 (weak)
 	virtual void update();                                                                                           // _10
 	virtual void draw(Graphics&, J2DGrafContext&);                                                                   // _14
 	virtual void init(J2DScreen*, unsigned long long, unsigned long long, unsigned long long, unsigned long*, bool); // _1C
 	virtual void show();                                                                                             // _20
 	virtual void hide();                                                                                             // _24
 	virtual void setValue(bool, bool);                                                                               // _28
-	virtual void setValue();                                                                                         // _2C (inline)
+	virtual void setValue();                                                                                         // _2C (weak)
 
 	CallBack_CounterRV(char**, unsigned short, unsigned short, JKRArchive*);
 	void getMotherPane();

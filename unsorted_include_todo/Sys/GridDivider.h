@@ -19,33 +19,33 @@
 */
 
 struct CNode {
-	virtual ~CNode();             // _08 (inline)
+	virtual ~CNode();             // _08 (weak)
 	virtual void getChildCount(); // _0C
 };
 
 namespace Sys {
 struct TriDivider {
-	virtual ~TriDivider();                            // _08 (inline)
+	virtual ~TriDivider();                            // _08 (weak)
 	virtual void _0C() = 0;                           // _0C
 	virtual void getMinY(Vector3<float>&);            // _10
 	virtual void findTriLists(Sphere&);               // _14
 	virtual void read(Stream&);                       // _18
 	virtual void getCurrTri(Game::CurrTriInfo&);      // _1C
 	virtual void createTriangles(CreateTriangleArg&); // _20
-	virtual void getBoundBox(BoundBox&);              // _24 (inline)
-	virtual void clone(Matrixf&);                     // _28 (inline)
+	virtual void getBoundBox(BoundBox&);              // _24 (weak)
+	virtual void clone(Matrixf&);                     // _28 (weak)
 };
 } // namespace Sys
 
 namespace Sys {
 struct GridDivider : public CNode, public TriDivider {
-	virtual ~GridDivider();                                        // _08 (inline)
+	virtual ~GridDivider();                                        // _08 (weak)
 	virtual void getMinY(Vector3<float>&);                         // _10
 	virtual void findTriLists(Sphere&);                            // _14
 	virtual void read(Stream&);                                    // _18
 	virtual void getCurrTri(Game::CurrTriInfo&);                   // _1C
 	virtual void createTriangles(CreateTriangleArg&);              // _20
-	virtual void getBoundBox(BoundBox&);                           // _24 (inline)
+	virtual void getBoundBox(BoundBox&);                           // _24 (weak)
 	virtual void do_clone(Matrixf&, VertexTable*, TriangleTable*); // _2C
 	virtual void _30() = 0;                                        // _30
 

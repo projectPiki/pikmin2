@@ -24,12 +24,12 @@
 namespace Game {
 struct EnemyFSMState {
 	virtual void init(EnemyBase*, StateArg*);         // _08
-	virtual void exec(EnemyBase*);                    // _0C (inline)
+	virtual void exec(EnemyBase*);                    // _0C (weak)
 	virtual void cleanup(EnemyBase*);                 // _10
-	virtual void resume(EnemyBase*);                  // _14 (inline)
-	virtual void restart(EnemyBase*);                 // _18 (inline)
+	virtual void resume(EnemyBase*);                  // _14 (weak)
+	virtual void restart(EnemyBase*);                 // _18 (weak)
 	virtual void transit(EnemyBase*, int, StateArg*); // _1C
-	virtual void doDirectDraw(EnemyBase*, Graphics&); // _20 (inline)
+	virtual void doDirectDraw(EnemyBase*, Graphics&); // _20 (weak)
 };
 } // namespace Game
 
@@ -63,7 +63,7 @@ struct State {
 	virtual void _24() = 0;                                   // _24
 	virtual void _28() = 0;                                   // _28
 	virtual void _2C() = 0;                                   // _2C
-	virtual void bounceProcedure(EnemyBase*, Sys::Triangle*); // _30 (inline)
+	virtual void bounceProcedure(EnemyBase*, Sys::Triangle*); // _30 (weak)
 	virtual void animation(EnemyBase*);                       // _34
 };
 } // namespace EnemyBaseFSM

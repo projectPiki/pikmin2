@@ -13,7 +13,7 @@ namespace JStudio_JAudio {
 namespace TAdaptor_sound {
 struct TVVOSetValue_ {
 	virtual void operator()(float, JStudio::TAdaptor*) const; // _08
-	virtual ~TVVOSetValue_();                                 // _0C (inline)
+	virtual ~TVVOSetValue_();                                 // _0C (weak)
 };
 } // namespace TAdaptor_sound
 } // namespace JStudio_JAudio

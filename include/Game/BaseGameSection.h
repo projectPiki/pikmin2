@@ -55,7 +55,7 @@ struct PlayCamera;
 
 struct BaseGameSection : public BaseHIOSection {
 	struct ZoomCamera : public LookAtCamera {
-		virtual ~ZoomCamera() { } // _08 (inline)
+		virtual ~ZoomCamera() { } // _08 (weak)
 		virtual void doUpdate();  // _78
 
 		void init(float, float, Vector3<float>&, Controller*);

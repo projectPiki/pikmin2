@@ -20,10 +20,10 @@
 namespace og {
 namespace Screen {
 struct DispMemberUfoGroup {
-	virtual void getSize();           // _08 (inline)
-	virtual void getOwnerID();        // _0C (inline)
-	virtual void getMemberID();       // _10 (inline)
-	virtual void doSetSubMemberAll(); // _14 (inline)
+	virtual void getSize();           // _08 (weak)
+	virtual void getOwnerID();        // _0C (weak)
+	virtual void getMemberID();       // _10 (weak)
+	virtual void doSetSubMemberAll(); // _14 (weak)
 	virtual void _18() = 0;           // _18
 	virtual void _1C() = 0;           // _1C
 	virtual void _20() = 0;           // _20

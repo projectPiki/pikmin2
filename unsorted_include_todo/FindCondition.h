@@ -9,7 +9,7 @@
 */
 
 struct FindCondition {
-	virtual void satisfy(CollPart*); // _08 (inline)
+	virtual void satisfy(CollPart*); // _08 (weak)
 };
 
 #endif

@@ -11,7 +11,7 @@
 namespace Game {
 namespace ItemBigFountain {
 struct FountainParms {
-	virtual void read(Stream&); // _08 (inline)
+	virtual void read(Stream&); // _08 (weak)
 
 	FountainParms();
 };

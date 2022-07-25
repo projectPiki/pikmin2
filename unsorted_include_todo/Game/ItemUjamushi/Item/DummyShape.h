@@ -11,8 +11,8 @@
 
 namespace SysShape {
 struct MtxObject {
-	virtual void getMatrix(int); // _08 (inline)
-	virtual void isModel();      // _0C (inline)
+	virtual void getMatrix(int); // _08 (weak)
+	virtual void isModel();      // _0C (weak)
 };
 } // namespace SysShape
 
@@ -20,7 +20,7 @@ namespace Game {
 namespace ItemUjamushi {
 namespace Item {
 struct DummyShape : public MtxObject {
-	virtual void getMatrix(int); // _08 (inline)
+	virtual void getMatrix(int); // _08 (weak)
 };
 } // namespace Item
 } // namespace ItemUjamushi

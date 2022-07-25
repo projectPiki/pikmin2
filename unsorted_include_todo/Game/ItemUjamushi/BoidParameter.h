@@ -10,14 +10,14 @@
 */
 
 struct CNode {
-	virtual ~CNode();             // _08 (inline)
+	virtual ~CNode();             // _08 (weak)
 	virtual void getChildCount(); // _0C
 };
 
 namespace Game {
 namespace ItemUjamushi {
 struct BoidParameter : public CNode {
-	virtual ~BoidParameter(); // _08 (inline)
+	virtual ~BoidParameter(); // _08 (weak)
 
 	BoidParameter();
 	void getParms(int, int, float, Game::ItemUjamushi::BoidParms&);

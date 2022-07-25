@@ -43,23 +43,23 @@
 
 namespace JMessage {
 struct TProcessor {
-	virtual ~TProcessor();                                                     // _08 (inline)
-	virtual void do_reset();                                                   // _0C
-	virtual void do_character(int);                                            // _10
-	virtual void do_tag(unsigned long, const void*, unsigned long);            // _14
-	virtual void do_systemTagCode(unsigned short, const void*, unsigned long); // _18
-	virtual void do_select_begin(unsigned long);                               // _1C
-	virtual void do_select_end();                                              // _20
-	virtual void do_select_separate();                                         // _24
-	virtual void do_reset_(const char*);                                       // _28
-	virtual void do_setBegin_isReady_() const;                                 // _2C
+	virtual ~TProcessor();                     // _08 (weak)
+	virtual void do_reset();                   // _0C
+	virtual void _10() = 0;                    // _10
+	virtual void _14() = 0;                    // _14
+	virtual void _18() = 0;                    // _18
+	virtual void _1C() = 0;                    // _1C
+	virtual void _20() = 0;                    // _20
+	virtual void _24() = 0;                    // _24
+	virtual void _28() = 0;                    // _28
+	virtual void do_setBegin_isReady_() const; // _2C
 };
 } // namespace JMessage
 
 namespace P2JME {
-namespace IllustratedBook {
-struct TRenderingProcessor : public TProcessor {
-	virtual ~TRenderingProcessor();                                              // _08 (inline)
+struct TRenderingProcessor {
+	virtual ~TRenderingProcessor();                                              // _08 (weak)
+	virtual void _0C() = 0;                                                      // _0C
 	virtual void do_character(int);                                              // _10
 	virtual void do_tag(unsigned long, const void*, unsigned long);              // _14
 	virtual void do_systemTagCode(unsigned short, const void*, unsigned long);   // _18
@@ -67,6 +67,7 @@ struct TRenderingProcessor : public TProcessor {
 	virtual void do_select_end();                                                // _20
 	virtual void do_select_separate();                                           // _24
 	virtual void do_reset_(const char*);                                         // _28
+	virtual void _2C() = 0;                                                      // _2C
 	virtual void do_begin_(const void*, const char*);                            // _30
 	virtual void do_end_();                                                      // _34
 	virtual void do_tag_(unsigned long, const void*, unsigned long);             // _38
@@ -87,10 +88,19 @@ struct TRenderingProcessor : public TProcessor {
 	virtual void doDrawImage(JUTTexture*, float, float, float, float);           // _74
 	virtual void doDrawRuby(float, float, float, float, int, bool);              // _78
 	virtual void doDrawLetter(float, float, float, float, int, bool);            // _7C
-	virtual void doTagControlAbtnWait();                                         // _80 (inline)
+	virtual void doTagControlAbtnWait();                                         // _80 (weak)
 	virtual void doDrawCommon(float, float, Matrixf*, Matrixf*);                 // _84
 	virtual void makeMatrix(Matrixf*, Window::DrawInfo*, float, Vector3<float>); // _88
-	virtual void doGetDrawInfo(DrawInfo*);                                       // _8C (inline)
+	virtual void doGetDrawInfo(DrawInfo*);                                       // _8C (weak)
+};
+} // namespace P2JME
+
+namespace P2JME {
+namespace IllustratedBook {
+struct TRenderingProcessor : public TProcessor, public TRenderingProcessor {
+	virtual ~TRenderingProcessor();                                              // _08 (weak)
+	virtual void doTagControlAbtnWait();                                         // _80 (weak)
+	virtual void makeMatrix(Matrixf*, Window::DrawInfo*, float, Vector3<float>); // _88
 };
 } // namespace IllustratedBook
 } // namespace P2JME

@@ -10,13 +10,13 @@
 */
 
 struct CNode {
-	virtual ~CNode();             // _08 (inline)
+	virtual ~CNode();             // _08 (weak)
 	virtual void getChildCount(); // _0C
 };
 
 namespace efx {
 struct Context : public CNode {
-	virtual ~Context(); // _08 (inline)
+	virtual ~Context(); // _08 (weak)
 
 	Context();
 };

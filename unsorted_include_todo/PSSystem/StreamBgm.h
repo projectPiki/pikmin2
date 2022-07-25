@@ -26,17 +26,17 @@ namespace PSSystem {
 struct SeqBase {
 	virtual ~SeqBase();                  // _08
 	virtual void init();                 // _0C
-	virtual void scene1st(TaskChecker*); // _10 (inline)
+	virtual void scene1st(TaskChecker*); // _10 (weak)
 	virtual void startSeq();             // _14
 	virtual void stopSeq(unsigned long); // _18
 	virtual void pauseOn(PauseMode);     // _1C
 	virtual void pauseOff();             // _20
-	virtual void getCastType();          // _24 (inline)
-	virtual void getSeqType();           // _28 (inline)
+	virtual void getCastType();          // _24 (weak)
+	virtual void getSeqType();           // _28 (weak)
 	virtual void exec();                 // _2C
 	virtual void onPlayingFrame();       // _30
 	virtual void isPlaying();            // _34
-	virtual void seqLoadAfter();         // _38 (inline)
+	virtual void seqLoadAfter();         // _38 (weak)
 };
 } // namespace PSSystem
 
@@ -44,12 +44,12 @@ namespace PSSystem {
 struct StreamBgm : public SeqBase {
 	virtual ~StreamBgm();                // _08
 	virtual void init();                 // _0C
-	virtual void scene1st(TaskChecker*); // _10 (inline)
+	virtual void scene1st(TaskChecker*); // _10 (weak)
 	virtual void startSeq();             // _14
-	virtual void getCastType();          // _24 (inline)
-	virtual void getSeqType();           // _28 (inline)
+	virtual void getCastType();          // _24 (weak)
+	virtual void getSeqType();           // _28 (weak)
 	virtual void isPlaying();            // _34
-	virtual void getHandleP();           // _3C (inline)
+	virtual void getHandleP();           // _3C (weak)
 	virtual void setConfigVolume();      // _40
 
 	StreamBgm(unsigned long, const JAInter::SoundInfo&);

@@ -15,7 +15,7 @@
 
 namespace JStudio {
 struct TFunctionValue_list {
-	virtual ~TFunctionValue_list(); // _08 (inline)
+	virtual ~TFunctionValue_list(); // _08 (weak)
 	virtual void getType() const;   // _0C
 	virtual void getAttributeSet(); // _10
 	virtual void initialize();      // _14

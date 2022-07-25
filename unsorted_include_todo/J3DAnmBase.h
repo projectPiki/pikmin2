@@ -10,7 +10,7 @@
 */
 
 struct J3DAnmBase {
-	virtual ~J3DAnmBase();  // _08 (inline)
+	virtual ~J3DAnmBase();  // _08 (weak)
 	virtual void _0C() = 0; // _0C
 };
 

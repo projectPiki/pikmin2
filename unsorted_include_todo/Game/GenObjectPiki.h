@@ -24,15 +24,15 @@
 
 namespace Game {
 struct GenBase {
-	virtual void doWrite(Stream&);           // _08 (inline)
+	virtual void doWrite(Stream&);           // _08 (weak)
 	virtual void ramSaveParameters(Stream&); // _0C
 	virtual void ramLoadParameters(Stream&); // _10
-	virtual void doEvent(unsigned long);     // _14 (inline)
-	virtual void doRead(Stream&);            // _18 (inline)
+	virtual void doEvent(unsigned long);     // _14 (weak)
+	virtual void doRead(Stream&);            // _18 (weak)
 	virtual void _1C() = 0;                  // _1C
 	virtual void _20() = 0;                  // _20
 	virtual void _24() = 0;                  // _24
-	virtual void getShape();                 // _28 (inline)
+	virtual void getShape();                 // _28 (weak)
 };
 } // namespace Game
 
@@ -43,15 +43,15 @@ struct GenObject {
 	virtual void ramLoadParameters(Stream&);                     // _10
 	virtual void _14() = 0;                                      // _14
 	virtual void _18() = 0;                                      // _18
-	virtual void update(Generator*);                             // _1C (inline)
-	virtual void render(Graphics&, Generator*);                  // _20 (inline)
+	virtual void update(Generator*);                             // _1C (weak)
+	virtual void render(Graphics&, Generator*);                  // _20 (weak)
 	virtual void getLatestVersion();                             // _24
 	virtual void _28() = 0;                                      // _28
-	virtual void updateUseList(Generator*, int);                 // _2C (inline)
+	virtual void updateUseList(Generator*, int);                 // _2C (weak)
 	virtual void generate(Generator*);                           // _30
 	virtual void birth(GenArg*);                                 // _34
-	virtual void generatorMakeMatrix(Matrixf&, Vector3<float>&); // _38 (inline)
-	virtual void getDebugInfo(char*);                            // _3C (inline)
+	virtual void generatorMakeMatrix(Matrixf&, Vector3<float>&); // _38 (weak)
+	virtual void getDebugInfo(char*);                            // _3C (weak)
 };
 } // namespace Game
 

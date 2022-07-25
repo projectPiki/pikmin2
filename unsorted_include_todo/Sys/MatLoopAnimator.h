@@ -13,7 +13,7 @@
 namespace Sys {
 struct MatBaseAnimator {
 	virtual void start(MatBaseAnimation*); // _08
-	virtual void onStart();                // _0C (inline)
+	virtual void onStart();                // _0C (weak)
 };
 } // namespace Sys
 

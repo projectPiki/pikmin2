@@ -30,21 +30,21 @@ struct SceneBase {
 	virtual void _08() = 0;                                 // _08
 	virtual void _0C() = 0;                                 // _0C
 	virtual void _10() = 0;                                 // _10
-	virtual void isUseBackupSceneInfo();                    // _14 (inline)
-	virtual void isDrawInDemo() const;                      // _18 (inline)
+	virtual void isUseBackupSceneInfo();                    // _14 (weak)
+	virtual void isDrawInDemo() const;                      // _18 (weak)
 	virtual void _1C() = 0;                                 // _1C
 	virtual void _20() = 0;                                 // _20
-	virtual void doUserCallBackFunc(Resource::MgrCommand*); // _24 (inline)
-	virtual void setPort(Graphics&);                        // _28 (inline)
+	virtual void doUserCallBackFunc(Resource::MgrCommand*); // _24 (weak)
+	virtual void setPort(Graphics&);                        // _28 (weak)
 	virtual void doUpdateActive();                          // _2C
-	virtual void doConfirmSetScene(SetSceneArg&);           // _30 (inline)
-	virtual void doConfirmStartScene(StartSceneArg*);       // _34 (inline)
-	virtual void doConfirmEndScene(EndSceneArg*&);          // _38 (inline)
+	virtual void doConfirmSetScene(SetSceneArg&);           // _30 (weak)
+	virtual void doConfirmStartScene(StartSceneArg*);       // _34 (weak)
+	virtual void doConfirmEndScene(EndSceneArg*&);          // _38 (weak)
 	virtual void doStart(StartSceneArg*);                   // _3C
 	virtual void doEnd(EndSceneArg*);                       // _40
-	virtual void setDefaultDispMember();                    // _44 (inline)
-	virtual void doSetBackupScene(SetSceneArg&);            // _48 (inline)
-	virtual void doGetFinishState();                        // _4C (inline)
+	virtual void setDefaultDispMember();                    // _44 (weak)
+	virtual void doSetBackupScene(SetSceneArg&);            // _48 (weak)
+	virtual void doGetFinishState();                        // _4C (weak)
 
 	SceneBase();
 	void searchObj(char*);

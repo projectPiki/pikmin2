@@ -21,23 +21,23 @@
 
 namespace Game {
 struct EnemyFSMState {
-	virtual void init(EnemyBase*, StateArg*);         // _08 (inline)
-	virtual void exec(EnemyBase*);                    // _0C (inline)
-	virtual void cleanup(EnemyBase*);                 // _10 (inline)
-	virtual void resume(EnemyBase*);                  // _14 (inline)
-	virtual void restart(EnemyBase*);                 // _18 (inline)
+	virtual void init(EnemyBase*, StateArg*);         // _08 (weak)
+	virtual void exec(EnemyBase*);                    // _0C (weak)
+	virtual void cleanup(EnemyBase*);                 // _10 (weak)
+	virtual void resume(EnemyBase*);                  // _14 (weak)
+	virtual void restart(EnemyBase*);                 // _18 (weak)
 	virtual void transit(EnemyBase*, int, StateArg*); // _1C
-	virtual void doDirectDraw(EnemyBase*, Graphics&); // _20 (inline)
+	virtual void doDirectDraw(EnemyBase*, Graphics&); // _20 (weak)
 };
 } // namespace Game
 
 namespace Game {
 namespace EnemyBaseFSM {
 struct State : public EnemyFSMState {
-	virtual void update(EnemyBase*);                          // _24 (inline)
-	virtual void entry(EnemyBase*);                           // _28 (inline)
-	virtual void simulation(EnemyBase*, float);               // _2C (inline)
-	virtual void bounceProcedure(EnemyBase*, Sys::Triangle*); // _30 (inline)
+	virtual void update(EnemyBase*);                          // _24 (weak)
+	virtual void entry(EnemyBase*);                           // _28 (weak)
+	virtual void simulation(EnemyBase*, float);               // _2C (weak)
+	virtual void bounceProcedure(EnemyBase*, Sys::Triangle*); // _30 (weak)
 	virtual void animation(EnemyBase*);                       // _34
 };
 } // namespace EnemyBaseFSM

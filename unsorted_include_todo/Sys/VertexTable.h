@@ -24,42 +24,42 @@
 */
 
 struct CNode {
-	virtual ~CNode();             // _08 (inline)
+	virtual ~CNode();             // _08 (weak)
 	virtual void getChildCount(); // _0C
 };
 
 struct Container<Vector3<float>> {
-	virtual ~Container<Vector3<float>>(); // _08 (inline)
+	virtual ~Container<Vector3<float>>(); // _08 (weak)
 	virtual void _0C() = 0;               // _0C
-	virtual void getObject(void*);        // _10 (inline)
+	virtual void getObject(void*);        // _10 (weak)
 };
 
 struct ArrayContainer<Vector3<float>> {
-	virtual ~ArrayContainer<Vector3<float>>();          // _08 (inline)
+	virtual ~ArrayContainer<Vector3<float>>();          // _08 (weak)
 	virtual void _0C() = 0;                             // _0C
 	virtual void _10() = 0;                             // _10
-	virtual void getNext(void*);                        // _14 (inline)
-	virtual void getStart();                            // _18 (inline)
-	virtual void getEnd();                              // _1C (inline)
-	virtual void get(void*);                            // _20 (inline)
-	virtual void getAt(int);                            // _24 (inline)
-	virtual void getTo();                               // _28 (inline)
+	virtual void getNext(void*);                        // _14 (weak)
+	virtual void getStart();                            // _18 (weak)
+	virtual void getEnd();                              // _1C (weak)
+	virtual void get(void*);                            // _20 (weak)
+	virtual void getAt(int);                            // _24 (weak)
+	virtual void getTo();                               // _28 (weak)
 	virtual void writeObject(Stream&, Vector3<float>&); // _2C
-	virtual void readObject(Stream&, Vector3<float>&);  // _30 (inline)
+	virtual void readObject(Stream&, Vector3<float>&);  // _30 (weak)
 	virtual void write(Stream&);                        // _34
-	virtual void read(Stream&);                         // _38 (inline)
-	virtual void alloc(int);                            // _3C (inline)
-	virtual void addOne(Vector3<float>&);               // _40 (inline)
-	virtual void setArray(Vector3<float>*, int);        // _44 (inline)
+	virtual void read(Stream&);                         // _38 (weak)
+	virtual void alloc(int);                            // _3C (weak)
+	virtual void addOne(Vector3<float>&);               // _40 (weak)
+	virtual void setArray(Vector3<float>*, int);        // _44 (weak)
 };
 
 namespace Sys {
 struct VertexTable : public CNode, public Container<Vector3<float>>, public ArrayContainer<Vector3<float>> {
-	virtual ~VertexTable();                             // _08 (inline)
+	virtual ~VertexTable();                             // _08 (weak)
 	virtual void writeObject(Stream&, Vector3<float>&); // _2C
-	virtual void readObject(Stream&, Vector3<float>&);  // _30 (inline)
+	virtual void readObject(Stream&, Vector3<float>&);  // _30 (weak)
 	virtual void write(Stream&);                        // _34
-	virtual void addOne(Vector3<float>&);               // _40 (inline)
+	virtual void addOne(Vector3<float>&);               // _40 (weak)
 
 	void transform(Matrixf&);
 	void cloneFrom(Matrixf&, Sys::VertexTable*);

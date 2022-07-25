@@ -11,8 +11,8 @@
 */
 
 struct JPAFieldBase {
-	virtual ~JPAFieldBase();                                   // _08 (inline)
-	virtual void prepare(JPAEmitterWorkData*, JPAFieldBlock*); // _0C (inline)
+	virtual ~JPAFieldBase();                                   // _08 (weak)
+	virtual void prepare(JPAEmitterWorkData*, JPAFieldBlock*); // _0C (weak)
 	virtual void _10() = 0;                                    // _10
 };
 

@@ -11,7 +11,7 @@
 namespace Game {
 namespace ItemPikihead {
 struct InitArg {
-	virtual void getName(); // _08 (inline)
+	virtual void getName(); // _08 (weak)
 };
 } // namespace ItemPikihead
 } // namespace Game

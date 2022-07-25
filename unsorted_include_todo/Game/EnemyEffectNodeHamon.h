@@ -13,13 +13,13 @@
 */
 
 struct CNode {
-	virtual ~CNode();             // _08 (inline)
+	virtual ~CNode();             // _08 (weak)
 	virtual void getChildCount(); // _0C
 };
 
 namespace Game {
 struct EnemyEffectNodeHamon : public CNode {
-	virtual ~EnemyEffectNodeHamon();    // _08 (inline)
+	virtual ~EnemyEffectNodeHamon();    // _08 (weak)
 	virtual void create(EnemyBase*);    // _10
 	virtual void fade(EnemyBase*);      // _14
 	virtual void forceKill(EnemyBase*); // _18

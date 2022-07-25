@@ -21,15 +21,15 @@
 namespace SysShape {
 struct Model {
 	virtual void getMatrix(int);             // _08
-	virtual void isModel();                  // _0C (inline)
+	virtual void isModel();                  // _0C (weak)
 	virtual void isVisible(Sys::Sphere&);    // _10
-	virtual void isVisible();                // _14 (inline)
+	virtual void isVisible();                // _14 (weak)
 	virtual void hide();                     // _18
 	virtual void show();                     // _1C
 	virtual void hidePackets();              // _20
 	virtual void showPackets();              // _24
 	virtual void jointVisible(bool, int);    // _28
-	virtual void jointVisible(bool, Joint*); // _2C (inline)
+	virtual void jointVisible(bool, Joint*); // _2C (weak)
 	virtual void _30() = 0;                  // _30
 
 	void clearAnimatorAll();

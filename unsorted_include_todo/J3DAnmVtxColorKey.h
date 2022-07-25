@@ -11,8 +11,8 @@
 */
 
 struct J3DAnmVtxColorKey {
-	virtual ~J3DAnmVtxColorKey();                                          // _08 (inline)
-	virtual void getKind() const;                                          // _0C (inline)
+	virtual ~J3DAnmVtxColorKey();                                          // _08 (weak)
+	virtual void getKind() const;                                          // _0C (weak)
 	virtual void getColor(unsigned char, unsigned short, _GXColor*) const; // _10
 };
 

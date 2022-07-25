@@ -38,23 +38,23 @@ struct J3DTexGenBlock {
 	virtual void calcWithoutViewMtx(const float (*)[4]);           // _10
 	virtual void calcPostTexMtx(const float (*)[4]);               // _14
 	virtual void calcPostTexMtxWithoutViewMtx(const float (*)[4]); // _18
-	virtual void load();                                           // _1C (inline)
+	virtual void load();                                           // _1C (weak)
 	virtual void patch();                                          // _20
 	virtual void diff(unsigned long);                              // _24
 	virtual void diffTexMtx();                                     // _28
 	virtual void diffTexGen();                                     // _2C
 	virtual void countDLSize();                                    // _30
-	virtual void getType();                                        // _34 (inline)
-	virtual void setTexGenNum(const unsigned long*);               // _38 (inline)
-	virtual void setTexGenNum(unsigned long);                      // _3C (inline)
-	virtual void getTexGenNum() const;                             // _40 (inline)
-	virtual void setTexCoord(unsigned long, const J3DTexCoord*);   // _44 (inline)
-	virtual void getTexCoord(unsigned long);                       // _48 (inline)
-	virtual void setTexMtx(unsigned long, J3DTexMtx*);             // _4C (inline)
-	virtual void getTexMtx(unsigned long);                         // _50 (inline)
-	virtual void setNBTScale(const J3DNBTScale*);                  // _54 (inline)
-	virtual void setNBTScale(J3DNBTScale);                         // _58 (inline)
-	virtual void getNBTScale();                                    // _5C (inline)
+	virtual void getType();                                        // _34 (weak)
+	virtual void setTexGenNum(const unsigned long*);               // _38 (weak)
+	virtual void setTexGenNum(unsigned long);                      // _3C (weak)
+	virtual void getTexGenNum() const;                             // _40 (weak)
+	virtual void setTexCoord(unsigned long, const J3DTexCoord*);   // _44 (weak)
+	virtual void getTexCoord(unsigned long);                       // _48 (weak)
+	virtual void setTexMtx(unsigned long, J3DTexMtx*);             // _4C (weak)
+	virtual void getTexMtx(unsigned long);                         // _50 (weak)
+	virtual void setNBTScale(const J3DNBTScale*);                  // _54 (weak)
+	virtual void setNBTScale(J3DNBTScale);                         // _58 (weak)
+	virtual void getNBTScale();                                    // _5C (weak)
 };
 
 struct J3DTexGenBlockPatched : public J3DTexGenBlock {
@@ -63,23 +63,23 @@ struct J3DTexGenBlockPatched : public J3DTexGenBlock {
 	virtual void calcWithoutViewMtx(const float (*)[4]);           // _10
 	virtual void calcPostTexMtx(const float (*)[4]);               // _14
 	virtual void calcPostTexMtxWithoutViewMtx(const float (*)[4]); // _18
-	virtual void load();                                           // _1C (inline)
+	virtual void load();                                           // _1C (weak)
 	virtual void patch();                                          // _20
 	virtual void diff(unsigned long);                              // _24
 	virtual void diffTexMtx();                                     // _28
 	virtual void diffTexGen();                                     // _2C
 	virtual void countDLSize();                                    // _30
-	virtual void getType();                                        // _34 (inline)
-	virtual void setTexGenNum(const unsigned long*);               // _38 (inline)
-	virtual void setTexGenNum(unsigned long);                      // _3C (inline)
-	virtual void getTexGenNum() const;                             // _40 (inline)
-	virtual void setTexCoord(unsigned long, const J3DTexCoord*);   // _44 (inline)
-	virtual void getTexCoord(unsigned long);                       // _48 (inline)
-	virtual void setTexMtx(unsigned long, J3DTexMtx*);             // _4C (inline)
-	virtual void getTexMtx(unsigned long);                         // _50 (inline)
-	virtual void getTexMtxOffset() const;                          // _60 (inline)
-	virtual void setTexMtxOffset(unsigned long);                   // _64 (inline)
-	virtual ~J3DTexGenBlockPatched();                              // _68 (inline)
+	virtual void getType();                                        // _34 (weak)
+	virtual void setTexGenNum(const unsigned long*);               // _38 (weak)
+	virtual void setTexGenNum(unsigned long);                      // _3C (weak)
+	virtual void getTexGenNum() const;                             // _40 (weak)
+	virtual void setTexCoord(unsigned long, const J3DTexCoord*);   // _44 (weak)
+	virtual void getTexCoord(unsigned long);                       // _48 (weak)
+	virtual void setTexMtx(unsigned long, J3DTexMtx*);             // _4C (weak)
+	virtual void getTexMtx(unsigned long);                         // _50 (weak)
+	virtual void getTexMtxOffset() const;                          // _60 (weak)
+	virtual void setTexMtxOffset(unsigned long);                   // _64 (weak)
+	virtual ~J3DTexGenBlockPatched();                              // _68 (weak)
 };
 
 #endif

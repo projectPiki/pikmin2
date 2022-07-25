@@ -14,12 +14,12 @@
 */
 
 struct CNode {
-	virtual ~CNode();             // _08 (inline)
+	virtual ~CNode();             // _08 (weak)
 	virtual void getChildCount(); // _0C
 };
 
 struct LightMgr {
-	virtual ~LightMgr();                   // _08 (inline)
+	virtual ~LightMgr();                   // _08 (weak)
 	virtual void _0C() = 0;                // _0C
 	virtual void update();                 // _10
 	virtual void set(Graphics&);           // _14
@@ -29,7 +29,7 @@ struct LightMgr {
 
 namespace Game {
 struct GameLightMgr : public CNode, public LightMgr {
-	virtual ~GameLightMgr();     // _08 (inline)
+	virtual ~GameLightMgr();     // _08 (weak)
 	virtual void update();       // _10
 	virtual void set(Graphics&); // _14
 

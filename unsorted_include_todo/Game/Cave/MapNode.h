@@ -10,14 +10,14 @@
 */
 
 struct CNode {
-	virtual ~CNode();             // _08 (inline)
+	virtual ~CNode();             // _08 (weak)
 	virtual void getChildCount(); // _0C
 };
 
 namespace Game {
 namespace Cave {
 struct MapNode : public CNode {
-	virtual ~MapNode(); // _08 (inline)
+	virtual ~MapNode(); // _08 (weak)
 
 	MapNode(Game::Cave::UnitInfo*);
 	void setOffset(int, int);

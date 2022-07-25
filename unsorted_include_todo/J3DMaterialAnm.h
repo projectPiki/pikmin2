@@ -10,7 +10,7 @@
 */
 
 struct J3DMaterialAnm {
-	virtual ~J3DMaterialAnm();             // _08 (inline)
+	virtual ~J3DMaterialAnm();             // _08 (weak)
 	virtual void calc(J3DMaterial*) const; // _0C
 };
 

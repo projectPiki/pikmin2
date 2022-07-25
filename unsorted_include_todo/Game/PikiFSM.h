@@ -17,8 +17,8 @@ namespace StateMachine < Game
 	struct Piki >
 	{
 		virtual void init(Piki*);                                 // _08
-		virtual void StateMachine < start(Piki*, int, StateArg*); // _0C (inline)
-		virtual void StateMachine < exec(Piki*);                  // _10 (inline)
+		virtual void StateMachine < start(Piki*, int, StateArg*); // _0C (weak)
+		virtual void StateMachine < exec(Piki*);                  // _10 (weak)
 	};
 } // namespace Game
 } // namespace Game

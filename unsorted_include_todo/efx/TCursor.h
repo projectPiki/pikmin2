@@ -13,8 +13,8 @@
 namespace efx {
 struct TCursor {
 	virtual void create(Arg*); // _08
-	virtual void forceKill();  // _0C (inline)
-	virtual void fade();       // _10 (inline)
+	virtual void forceKill();  // _0C (weak)
+	virtual void fade();       // _10 (weak)
 
 	void init(long, long);
 	void update(efx::Arg*);

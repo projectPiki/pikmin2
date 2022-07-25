@@ -11,7 +11,7 @@
 namespace Game {
 namespace EnemyFunc {
 struct EatPikminDefaultCondition {
-	virtual void satisfy(Piki*); // _08 (inline)
+	virtual void satisfy(Piki*); // _08 (weak)
 };
 } // namespace EnemyFunc
 } // namespace Game

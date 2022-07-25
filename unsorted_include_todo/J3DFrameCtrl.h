@@ -9,7 +9,7 @@
 */
 
 struct J3DFrameCtrl {
-	virtual ~J3DFrameCtrl(); // _08 (inline)
+	virtual ~J3DFrameCtrl(); // _08 (weak)
 };
 
 #endif

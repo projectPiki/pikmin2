@@ -11,7 +11,7 @@
 
 struct J3DVtxColorCalc {
 	virtual void calc(J3DVertexBuffer*); // _08
-	virtual ~J3DVtxColorCalc();          // _0C (inline)
+	virtual ~J3DVtxColorCalc();          // _0C (weak)
 };
 
 #endif

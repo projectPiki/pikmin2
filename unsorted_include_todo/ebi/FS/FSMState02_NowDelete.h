@@ -24,7 +24,7 @@
 namespace ebi {
 namespace FS {
 struct FSMState_CardTask {
-	virtual void init(TMgr*, Game::StateArg*);          // _08 (inline)
+	virtual void init(TMgr*, Game::StateArg*);          // _08 (weak)
 	virtual void exec(TMgr*);                           // _0C
 	virtual void cleanup(TMgr*);                        // _10
 	virtual void _14() = 0;                             // _14
@@ -50,9 +50,9 @@ namespace FSMState < ebi
 		virtual void _08() = 0;                           // _08
 		virtual void _0C() = 0;                           // _0C
 		virtual void cleanup(TMgr*);                      // _10
-		virtual void resume(ebi::TMgr*);                  // _14 (inline)
-		virtual void restart(ebi::TMgr*);                 // _18 (inline)
-		virtual void transit(ebi::TMgr*, int, StateArg*); // _1C (inline)
+		virtual void resume(ebi::TMgr*);                  // _14 (weak)
+		virtual void restart(ebi::TMgr*);                 // _18 (weak)
+		virtual void transit(ebi::TMgr*, int, StateArg*); // _1C (weak)
 	};
 	} // namespace FS
 } // namespace ebi
@@ -68,7 +68,7 @@ struct FSMState {
 	virtual void _18() = 0;                       // _18
 	virtual void _1C() = 0;                       // _1C
 	virtual void do_init(TMgr*, Game::StateArg*); // _20
-	virtual void do_exec(TMgr*);                  // _24 (inline)
+	virtual void do_exec(TMgr*);                  // _24 (weak)
 };
 } // namespace FS
 } // namespace ebi

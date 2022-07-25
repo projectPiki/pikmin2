@@ -13,23 +13,23 @@
 */
 
 struct CNode {
-	virtual ~CNode();             // _08 (inline)
+	virtual ~CNode();             // _08 (weak)
 	virtual void getChildCount(); // _0C
 };
 
 namespace P2DScreen {
 struct Node {
-	virtual ~Node();                               // _08 (inline)
+	virtual ~Node();                               // _08 (weak)
 	virtual void _0C() = 0;                        // _0C
 	virtual void update();                         // _10
-	virtual void draw(Graphics&, J2DGrafContext&); // _14 (inline)
+	virtual void draw(Graphics&, J2DGrafContext&); // _14 (weak)
 };
 } // namespace P2DScreen
 
 namespace P2JME {
 namespace Movie {
 struct AbtnPane : public CNode, public Node {
-	virtual ~AbtnPane();   // _08 (inline)
+	virtual ~AbtnPane();   // _08 (weak)
 	virtual void update(); // _10
 	virtual void doInit(); // _18
 };

@@ -25,7 +25,7 @@
 
 namespace JAInter {
 struct Object {
-	virtual ~Object();                                     // _08 (inline)
+	virtual ~Object();                                     // _08 (weak)
 	virtual void startSound(unsigned long, unsigned long); // _0C
 	virtual void _10() = 0;                                // _10
 	virtual void _14() = 0;                                // _14
@@ -43,13 +43,13 @@ struct Object {
 
 namespace JAInter {
 struct ObjectBase {
-	virtual ~ObjectBase();                                                // _08 (inline)
+	virtual ~ObjectBase();                                                // _08 (weak)
 	virtual void _0C() = 0;                                               // _0C
 	virtual void startSound(unsigned char, unsigned long, unsigned long); // _10
 	virtual void startSound(JAISound**, unsigned long, unsigned long);    // _14
 	virtual void stopAllSound();                                          // _18
 	virtual void stopSound(unsigned long, unsigned long);                 // _1C
-	virtual void enable();                                                // _20 (inline)
+	virtual void enable();                                                // _20 (weak)
 	virtual void _24() = 0;                                               // _24
 	virtual void dispose();                                               // _28
 	virtual void getFreeSoundHandlePointer();                             // _2C
@@ -58,7 +58,7 @@ struct ObjectBase {
 } // namespace JAInter
 
 struct JAIAnimeSound : public Object, public ObjectBase {
-	virtual ~JAIAnimeSound();                                                               // _08 (inline)
+	virtual ~JAIAnimeSound();                                                               // _08 (weak)
 	virtual void handleStop(unsigned char, unsigned long);                                  // _34
 	virtual void playActorAnimSound(JAInter::Actor*, float, unsigned char);                 // _3C
 	virtual void startAnimSound(unsigned long, JAISound**, JAInter::Actor*, unsigned char); // _40

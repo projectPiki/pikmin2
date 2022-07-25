@@ -10,13 +10,13 @@
 */
 
 struct CNode {
-	virtual ~CNode();             // _08 (inline)
+	virtual ~CNode();             // _08 (weak)
 	virtual void getChildCount(); // _0C
 };
 
 namespace SysShape {
 struct KeyEvent : public CNode {
-	virtual ~KeyEvent(); // _08 (inline)
+	virtual ~KeyEvent(); // _08 (weak)
 };
 } // namespace SysShape
 

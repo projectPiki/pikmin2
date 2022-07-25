@@ -13,15 +13,15 @@
 */
 
 struct CNode {
-	virtual ~CNode();             // _08 (inline)
+	virtual ~CNode();             // _08 (weak)
 	virtual void getChildCount(); // _0C
 };
 
 struct ModelEffectDataRoot : public CNode {
-	virtual ~ModelEffectDataRoot();               // _08 (inline)
-	virtual void loadResources();                 // _10 (inline)
-	virtual void getID();                         // _14 (inline)
-	virtual void onCreate(ModelEffectCreateArg*); // _18 (inline)
+	virtual ~ModelEffectDataRoot();               // _08 (weak)
+	virtual void loadResources();                 // _10 (weak)
+	virtual void getID();                         // _14 (weak)
+	virtual void onCreate(ModelEffectCreateArg*); // _18 (weak)
 };
 
 #endif
