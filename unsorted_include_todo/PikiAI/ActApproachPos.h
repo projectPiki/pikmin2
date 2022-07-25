@@ -44,7 +44,7 @@ struct ActApproachPos : public Action {
 	virtual void exec();           // _0C
 	virtual void cleanup();        // _10
 
-	ActApproachPos();
+	ActApproachPos(Game::Piki*);
 };
 } // namespace PikiAI
 

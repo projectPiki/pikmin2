@@ -167,7 +167,7 @@ namespace newScreen {
         virtual void out_menu_1();                          // _B0
         virtual void getResult();                           // _B4 (inline)
 
-        ObjSMenuPauseVS();
+        ObjSMenuPauseVS(const char*);
         void blink_Menu(int);
         void menu();
     };

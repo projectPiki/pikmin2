@@ -21,7 +21,7 @@ struct Obj : public CNode {
 	virtual ~Obj();         // _08 (inline)
 	virtual void _10() = 0; // _10
 
-	Obj();
+	Obj(Game::EnemyBase*, Game::EnemyStone::Info*);
 	void start();
 	void shake();
 	void update();

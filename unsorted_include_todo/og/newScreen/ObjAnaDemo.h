@@ -91,7 +91,7 @@ namespace newScreen {
         virtual void doUpdateFadeoutFinish();               // _64
         virtual void doDraw(Graphics&);                     // _68
 
-        ObjAnaDemo();
+        ObjAnaDemo(const char*);
         void setBlinkMenu();
         void commonUpdate();
     };

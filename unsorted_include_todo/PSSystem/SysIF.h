@@ -34,7 +34,7 @@ struct SysIF : public JAIBasic {
 	virtual void makeStream();            // _10 (inline)
 	virtual void initIF(const SetupArg&); // _28
 
-	SysIF();
+	SysIF(const PSSystem::SetupArg&);
 	void stopSoundSystem();
 	void playSystemSe(unsigned long, unsigned long);
 	void playSystemSe(unsigned long, JAISound**, unsigned long);

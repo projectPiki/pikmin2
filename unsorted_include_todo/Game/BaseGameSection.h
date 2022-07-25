@@ -190,7 +190,7 @@ struct BaseGameSection : public Section, public BaseHIOSection {
 	virtual void onStartHeap();                                            // _12C (inline)
 	virtual void onClearHeap();                                            // _130 (inline)
 
-	BaseGameSection();
+	BaseGameSection(JKRHeap*);
 	void useSpecificFBTexture(JUTTexture*);
 	void restoreFBTexture();
 	void loadSync(IDelegate*, bool);

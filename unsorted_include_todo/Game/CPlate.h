@@ -46,7 +46,7 @@ struct CPlate : public CNode, public Creature > {
 	virtual void get(void*);     // _20
 
 	void shrink();
-	CPlate();
+	CPlate(int);
 	void setPos(Vector3<float>&, float, Vector3<float>&, float);
 	void setPosGray(Vector3<float>&, float, Vector3<float>&, float);
 	void getSlot(Game::Creature*, Game::SlotChangeListener*, bool);

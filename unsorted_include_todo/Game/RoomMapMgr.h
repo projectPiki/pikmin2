@@ -138,7 +138,7 @@ struct RoomMapMgr : public MapMgr, public GenericObjectMgr {
     virtual void @280 @4 @doSimulation(float);                // _80 (inline)
     virtual void @280 @4 @doDirectDraw(Graphics&);            // _84 (inline)
 
-    RoomMapMgr();
+    RoomMapMgr(Game::Cave::CaveInfo*);
     void getMapRoom(short);
     void createRandomMap(int, Game::Cave::EditMapUnit*);
     void completeUnitData();

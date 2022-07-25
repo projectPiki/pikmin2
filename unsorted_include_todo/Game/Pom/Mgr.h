@@ -168,7 +168,7 @@ namespace Pom {
         virtual void getEnemyTypeID();      // _AC (inline)
         virtual void createModel();         // _B0
 
-        Mgr();
+        Mgr(int, unsigned char);
     };
 } // namespace Pom
 } // namespace Game

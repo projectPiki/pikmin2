@@ -35,7 +35,7 @@ struct khUtilColorAnm : public CNode, public Node {
 	virtual void update();     // _10 (inline)
 	virtual void do_update();  // _1C (inline)
 
-	khUtilColorAnm();
+	khUtilColorAnm(P2DScreen::Mgr*, unsigned long long, int, int);
 };
 } // namespace Screen
 } // namespace kh

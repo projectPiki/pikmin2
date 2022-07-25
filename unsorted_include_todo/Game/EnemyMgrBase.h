@@ -145,7 +145,7 @@ struct EnemyMgrBase : public GenericObjectMgr, public CNode {
     virtual void doLoadBdl(void*);              // _D8
     virtual void initGenerator();               // _DC
 
-    EnemyMgrBase();
+    EnemyMgrBase(int, unsigned char);
     void kill(Game::EnemyBase*);
     void isValidEnemyTypeID();
     void init(Game::EnemyParmsBase*);

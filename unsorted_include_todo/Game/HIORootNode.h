@@ -18,7 +18,7 @@ namespace Game {
 struct HIORootNode : public CNode {
 	virtual ~HIORootNode(); // _08 (inline)
 
-	HIORootNode();
+	HIORootNode(Section*);
 };
 } // namespace Game
 

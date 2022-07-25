@@ -29,7 +29,7 @@ struct DispFinalResult : public DispMemberBase {
 	virtual void getOwnerID();  // _0C (inline)
 	virtual void getMemberID(); // _10 (inline)
 
-	DispFinalResult();
+	DispFinalResult(kh::Screen::TotalResultData*, kh::Screen::DispFinalResult::ResultType, JKRHeap*);
 };
 } // namespace Screen
 } // namespace kh

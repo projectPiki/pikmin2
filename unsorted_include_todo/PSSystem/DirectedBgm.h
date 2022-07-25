@@ -74,7 +74,7 @@ struct DirectedBgm : public SeqBase, public BgmSeq {
 	virtual void newSeqTrackRoot();                              // _44
 	virtual void newSeqTrackChild(unsigned char, SeqTrackRoot&); // _48
 
-	DirectedBgm();
+	DirectedBgm(const char*, const JAInter::SoundInfo&, PSSystem::DirectorMgrBase*);
 	void initRootTrack_onPlaying(JASTrack*);
 	void initChildTrack_onPlaying(JASTrack*, unsigned char);
 	void getDirectorP(unsigned char);

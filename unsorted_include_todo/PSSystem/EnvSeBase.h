@@ -18,7 +18,7 @@ struct EnvSeBase {
 	virtual void getCastType();             // _10 (inline)
 	virtual void setPanAndDolby(JAISound*); // _14 (inline)
 
-	EnvSeBase();
+	EnvSeBase(unsigned long, float);
 };
 } // namespace PSSystem
 

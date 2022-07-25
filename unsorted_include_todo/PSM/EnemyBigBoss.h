@@ -534,7 +534,7 @@ struct EnemyBigBoss : public CreatureAnime,
     virtual void onDeathMotionTop();          // _E0
     virtual void onAppear1st();               // _E8
 
-    EnemyBigBoss();
+    EnemyBigBoss(Game::EnemyBase*);
 };
 } // namespace PSM
 

@@ -28,7 +28,7 @@ struct DirectorMgr_Scene {
                                          PSSystem::DirectedBgm&); // _20
     virtual void _24() = 0;                                       // _24
 
-    DirectorMgr_Scene();
+    DirectorMgr_Scene(PSM::DirectorMgr_Scene*, unsigned char);
     void initTrackMap(PSSystem::DirectedBgm&);
     void adaptDirectorActor(PSSystem::DirectorBase*, unsigned char);
 };

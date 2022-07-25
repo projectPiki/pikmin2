@@ -224,7 +224,7 @@ struct PelletItem : public CreatureObj,
     virtual void _44() = 0;     // _44
     virtual void @48 @__dt();   // _48 (inline)
 
-    PelletItem();
+    PelletItem(Game::PelletItem::Object*);
 };
 } // namespace PSM
 

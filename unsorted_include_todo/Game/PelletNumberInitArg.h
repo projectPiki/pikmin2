@@ -17,7 +17,7 @@ struct PelletInitArg {
 namespace Game {
 struct PelletNumberInitArg : public PelletInitArg {
 
-	PelletNumberInitArg();
+	PelletNumberInitArg(int, int);
 };
 } // namespace Game
 

@@ -28,7 +28,7 @@ struct TitleMsgClash : public TitleMsg {
 	virtual void update(); // _0C
 	virtual void end();    // _14
 
-	TitleMsgClash();
+	TitleMsgClash(J2DScreen*, J2DPane*, char*);
 };
 } // namespace newScreen
 } // namespace og

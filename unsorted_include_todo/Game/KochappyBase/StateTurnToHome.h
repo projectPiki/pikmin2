@@ -33,7 +33,7 @@ struct StateTurnToHome : public EnemyFSMState {
 	virtual void exec(EnemyBase*);            // _0C
 	virtual void cleanup(EnemyBase*);         // _10
 
-	StateTurnToHome();
+	StateTurnToHome(int);
 };
 } // namespace KochappyBase
 } // namespace Game

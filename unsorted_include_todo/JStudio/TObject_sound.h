@@ -29,7 +29,7 @@ struct TObject_sound : public TObject {
 	virtual ~TObject_sound();                                             // _08 (inline)
 	virtual void do_paragraph(unsigned long, const void*, unsigned long); // _14
 
-	TObject_sound();
+	TObject_sound(const JStudio::stb::data::TParse_TBlock_object&, JStudio::TAdaptor_sound*);
 };
 } // namespace JStudio
 

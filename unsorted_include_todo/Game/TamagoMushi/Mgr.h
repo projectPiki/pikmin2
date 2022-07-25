@@ -167,7 +167,7 @@ namespace TamagoMushi {
         virtual void doAlloc();             // _A8
         virtual void getEnemyTypeID();      // _AC (inline)
 
-        Mgr();
+        Mgr(int, unsigned char);
         void fetch(J3DModel*, float);
         void createGroup(Game::EnemyBirthArg&, int, Vector3<float>&);
         void createGroupByBigFoot(Game::EnemyBirthArg&, int, Vector3<float>&,

@@ -153,7 +153,7 @@ struct PlayCamera : public CNode,
 	virtual void startVibration(int);  // _7C (inline)
 	virtual void init();               // _80
 
-	PlayCamera();
+	PlayCamera(Game::Navi*);
 	void setCameraParms(Game::CameraParms*);
 	void setVibrationParms(Game::VibrationParms*);
 	void setCameraAngle(float);

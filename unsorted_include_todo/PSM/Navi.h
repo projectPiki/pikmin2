@@ -180,7 +180,7 @@ struct Navi : public CreatureObj,
     virtual void @48 @startSound(unsigned long, unsigned long); // _4C (inline)
     virtual void startSound(unsigned long, unsigned long);      // _7C (inline)
 
-    Navi();
+    Navi(Game::Navi*);
     void init(unsigned short);
     void setShacho();
     void stopWaitVoice();

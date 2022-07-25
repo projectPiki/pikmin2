@@ -16,7 +16,7 @@ struct OnCycle {
 	virtual void getCycleType();  // _0C (inline)
 	virtual void avoidCheck();    // _10
 
-	OnCycle();
+	OnCycle(PSAutoBgm::Module*);
 	void setTip(JASTrack*);
 	void historiesAreSameAll();
 };

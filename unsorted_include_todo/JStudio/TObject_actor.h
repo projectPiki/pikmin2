@@ -29,7 +29,7 @@ struct TObject_actor : public TObject {
 	virtual ~TObject_actor();                                             // _08 (inline)
 	virtual void do_paragraph(unsigned long, const void*, unsigned long); // _14
 
-	TObject_actor();
+	TObject_actor(const JStudio::stb::data::TParse_TBlock_object&, JStudio::TAdaptor_actor*);
 };
 } // namespace JStudio
 

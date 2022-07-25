@@ -168,7 +168,7 @@ namespace Pelplant {
         virtual void getEnemyTypeID();      // _AC (inline)
         virtual void initStoneSetting();    // _C0 (inline)
 
-        Mgr();
+        Mgr(int, unsigned char);
     };
 } // namespace Pelplant
 } // namespace Game

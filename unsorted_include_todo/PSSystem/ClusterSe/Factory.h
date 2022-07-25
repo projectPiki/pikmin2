@@ -15,7 +15,7 @@ struct Factory {
 	virtual void constructPart(); // _08
 	virtual void _0C() = 0;       // _0C
 
-	Factory();
+	Factory(unsigned char);
 };
 } // namespace ClusterSe
 } // namespace PSSystem

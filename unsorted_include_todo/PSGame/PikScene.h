@@ -32,7 +32,7 @@ namespace PSGame {
 struct PikScene : public Scene {
 	virtual ~PikScene(); // _0C
 
-	PikScene();
+	PikScene(unsigned char);
 	void getMiddleBossBgm();
 };
 } // namespace PSGame

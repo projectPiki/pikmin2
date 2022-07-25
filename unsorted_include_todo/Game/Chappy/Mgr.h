@@ -174,7 +174,7 @@ namespace Chappy {
         virtual void getChangeTexture0(); // _E0 (inline)
         virtual void getChangeTexture1(); // _E4 (inline)
 
-        Mgr();
+        Mgr(int, unsigned char);
     };
 } // namespace Chappy
 } // namespace Game

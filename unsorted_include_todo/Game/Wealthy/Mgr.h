@@ -173,7 +173,7 @@ namespace Wealthy {
         virtual void doLoadBmd(void*);   // _D4 (inline)
         virtual void getChangeTexture(); // _E0 (inline)
 
-        Mgr();
+        Mgr(int, unsigned char);
     };
 } // namespace Wealthy
 } // namespace Game

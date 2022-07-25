@@ -34,7 +34,7 @@ struct DirectorBase {
 	virtual void onDirectOn();          // _30 (inline)
 	virtual void onDirectOff();         // _34 (inline)
 
-	DirectorBase();
+	DirectorBase(int, const char*);
 	void isUnderDirection();
 	void setTrack(unsigned char, PSSystem::SeqTrackBase*);
 	void directOnInner();

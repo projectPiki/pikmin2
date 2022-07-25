@@ -155,7 +155,7 @@ namespace newScreen {
         virtual void doUpdateLAction();                     // _98
         virtual void commonUpdate();                        // _A4
 
-        ObjSMenuMap();
+        ObjSMenuMap(const char*);
         void setMapTexture();
         void tuningIcon();
         void initMapIcon(JKRArchive*);

@@ -91,7 +91,7 @@ namespace newScreen {
         virtual void doUpdateFadeoutFinish();               // _64
         virtual void doDraw(Graphics&);                     // _68
 
-        ObjSave();
+        ObjSave(const char*);
     };
 } // namespace newScreen
 } // namespace og

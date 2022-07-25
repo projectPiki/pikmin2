@@ -214,7 +214,7 @@ namespace Ooinu_l {
         virtual void getEnemyTypeID();      // _AC (inline)
         virtual void doLoadBmd(void*);      // _D4 (inline)
 
-        Mgr();
+        Mgr(int, unsigned char);
     };
 } // namespace Ooinu_l
 } // namespace Game

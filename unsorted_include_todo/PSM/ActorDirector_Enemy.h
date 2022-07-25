@@ -95,7 +95,7 @@ struct ActorDirector_Enemy : public DirectorBase, public ActorDirector_Scaled, p
 	virtual void _40() = 0;                        // _40
 	virtual void _44() = 0;                        // _44
 
-	ActorDirector_Enemy();
+	ActorDirector_Enemy(const char*, int, long, long, unsigned long);
 };
 } // namespace PSM
 

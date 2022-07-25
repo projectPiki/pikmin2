@@ -19,7 +19,7 @@ namespace Cave {
 struct MapNode : public CNode {
 	virtual ~MapNode(); // _08 (inline)
 
-	MapNode();
+	MapNode(Game::Cave::UnitInfo*);
 	void setOffset(int, int);
 	void getDoorDirect(int);
 	void getDoorOffset(int, int&, int&);

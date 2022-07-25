@@ -19,7 +19,7 @@ struct CourseCache : public CNode {
 	virtual ~CourseCache(); // _08 (inline)
 
 	void getColorMePikmins(unsigned char*, int);
-	CourseCache();
+	CourseCache(int);
 	void beginSave(int);
 	void write(Stream&);
 	void read(Stream&);

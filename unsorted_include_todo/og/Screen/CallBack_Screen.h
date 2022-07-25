@@ -34,7 +34,7 @@ struct CallBack_Screen : public CNode, public Node {
 	virtual void CallBack_update();                         // _10
 	virtual void CallBack_draw(Graphics&, J2DGrafContext&); // _14
 
-	CallBack_Screen();
+	CallBack_Screen(P2DScreen::Mgr*, unsigned long long);
 	void getPartsScreen();
 };
 } // namespace Screen

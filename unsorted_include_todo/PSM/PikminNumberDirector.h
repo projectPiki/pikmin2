@@ -57,7 +57,7 @@ struct PikminNumberDirector : public DirectorBase, public SwitcherDirector {
 	virtual void directOnTrack(PSSystem::SeqTrackBase&);  // _20
 	virtual void directOffTrack(PSSystem::SeqTrackBase&); // _24
 
-	PikminNumberDirector();
+	PikminNumberDirector(int, unsigned char, PSSystem::DirectedBgm&);
 };
 } // namespace PSM
 

@@ -29,7 +29,7 @@ namespace TSyncGroup3 < efx
 namespace efx {
 struct TChasePos3 : public TChasePos > {
 
-	TChasePos3();
+	TChasePos3(Vector3<float>*, unsigned short, unsigned short, unsigned short);
 };
 } // namespace efx
 

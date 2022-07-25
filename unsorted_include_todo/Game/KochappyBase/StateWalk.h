@@ -33,7 +33,7 @@ struct StateWalk : public EnemyFSMState {
 	virtual void exec(EnemyBase*);            // _0C
 	virtual void cleanup(EnemyBase*);         // _10
 
-	StateWalk();
+	StateWalk(int);
 };
 } // namespace KochappyBase
 } // namespace Game

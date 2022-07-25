@@ -32,7 +32,7 @@ struct StateFall : public EnemyFSMState {
 	virtual void init(EnemyBase*, StateArg*); // _08
 	virtual void exec(EnemyBase*);            // _0C
 
-	StateFall();
+	StateFall(int);
 };
 } // namespace ShijimiChou
 } // namespace Game

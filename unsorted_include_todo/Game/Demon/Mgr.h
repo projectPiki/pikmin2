@@ -168,7 +168,7 @@ namespace Demon {
         virtual void loadModelData();  // _C8
         virtual void doLoadBmd(void*); // _D4 (inline)
 
-        Mgr();
+        Mgr(int, unsigned char);
     };
 } // namespace Demon
 } // namespace Game

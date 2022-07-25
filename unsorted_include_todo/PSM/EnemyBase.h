@@ -374,7 +374,7 @@ struct EnemyBase : public CreatureAnime,
     virtual void updateKehai();                 // _CC
     virtual void updateBattle();                // _D0
 
-    EnemyBase();
+    EnemyBase(Game::EnemyBase*, unsigned char);
     void calcKehai();
 };
 } // namespace PSM

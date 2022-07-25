@@ -50,7 +50,7 @@ struct EnemyNode : public CNode, public ObjectLayoutNode {
 	virtual void getExtraCode();                   // _28
 
 	EnemyNode();
-	EnemyNode();
+	EnemyNode(Game::Cave::EnemyUnit*, Game::Cave::BaseGen*, int);
 	void makeGlobalData(Game::Cave::MapNode*);
 	void setGlobalData(Vector3<float>&, float);
 	void setBirthDoorIndex(int);

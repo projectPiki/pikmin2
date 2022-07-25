@@ -33,7 +33,7 @@ struct StateAttack : public EnemyFSMState {
 	virtual void cleanup(EnemyBase*);                 // _10
 	virtual void doDirectDraw(EnemyBase*, Graphics&); // _20
 
-	StateAttack();
+	StateAttack(int);
 	void transitState(Game::EnemyBase*);
 };
 } // namespace ChappyBase

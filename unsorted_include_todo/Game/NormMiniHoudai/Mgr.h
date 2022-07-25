@@ -169,7 +169,7 @@ namespace NormMiniHoudai {
         virtual void loadAnimData();   // _CC
         virtual void doLoadBmd(void*); // _D4 (inline)
 
-        Mgr();
+        Mgr(int, unsigned char);
     };
 } // namespace NormMiniHoudai
 } // namespace Game

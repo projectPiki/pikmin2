@@ -187,7 +187,7 @@ namespace Screen {
 struct MapCounter : public J2DScreen, public J2DPane, public Mgr, public Mgr_tuning {
 	virtual ~MapCounter(); // _08 (inline)
 
-	MapCounter();
+	MapCounter(og::Screen::DataMap*);
 	void dispRed(bool);
 	void dispYellow(bool);
 	void dispBlue(bool);

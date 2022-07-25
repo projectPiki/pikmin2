@@ -32,7 +32,7 @@ struct StateSearch : public EnemyFSMState {
 	virtual void init(EnemyBase*, StateArg*); // _08
 	virtual void exec(EnemyBase*);            // _0C
 
-	StateSearch();
+	StateSearch(int);
 };
 } // namespace UmiMushi
 } // namespace Game

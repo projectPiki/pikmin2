@@ -20,7 +20,7 @@ struct DrawInfo : public CNode {
 	virtual ~DrawInfo(); // _08 (inline)
 
 	void __defctor();
-	DrawInfo();
+	DrawInfo(bool);
 	void reset();
 	void update(Game::EnemyBase*);
 	void makeMatrix(Matrixf*, bool);

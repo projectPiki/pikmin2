@@ -74,7 +74,7 @@ struct BaseItemMgr : public GenericObjectMgr {
 	virtual void generatorGetShape(GenItemParm*);                     // _6C
 	virtual void generatorNewItemParm();                              // _70
 
-	BaseItemMgr();
+	BaseItemMgr(int);
 	void setModelSize(int);
 	void loadArchive(char*);
 	void loadBmd(char*, int, unsigned long);

@@ -32,7 +32,7 @@ struct StateAppear : public EnemyFSMState {
 	virtual void init(EnemyBase*, StateArg*); // _08
 	virtual void exec(EnemyBase*);            // _0C
 
-	StateAppear();
+	StateAppear(int);
 };
 } // namespace TamagoMushi
 } // namespace Game

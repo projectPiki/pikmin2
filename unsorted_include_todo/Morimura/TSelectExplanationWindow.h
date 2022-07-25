@@ -23,7 +23,7 @@ struct TSelectExplanationWindow : public TScreenBase {
 	virtual void draw(Graphics&, J2DPerspGraph*); // _10
 	virtual void _14() = 0;                       // _14
 
-	TSelectExplanationWindow();
+	TSelectExplanationWindow(JKRArchive*, int);
 	void openWindow();
 	void closeWindow();
 };

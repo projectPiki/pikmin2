@@ -16,7 +16,7 @@ struct TChallengePlayModeScreen {
 	virtual void update();                           // _0C
 	virtual void draw(Graphics&, J2DPerspGraph*);    // _10
 
-	TChallengePlayModeScreen();
+	TChallengePlayModeScreen(JKRArchive*, int);
 };
 } // namespace Morimura
 

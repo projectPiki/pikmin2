@@ -21,7 +21,7 @@ struct CycleBase {
 namespace PSAutoBgm {
 struct OffCycle : public CycleBase {
 
-	OffCycle();
+	OffCycle(PSAutoBgm::Module*);
 };
 } // namespace PSAutoBgm
 

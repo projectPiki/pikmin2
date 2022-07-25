@@ -33,7 +33,7 @@ struct StateSAttack : public EnemyFSMState {
 	virtual void exec(EnemyBase*);            // _0C
 	virtual void cleanup(EnemyBase*);         // _10
 
-	StateSAttack();
+	StateSAttack(int);
 };
 } // namespace Jigumo
 } // namespace Game

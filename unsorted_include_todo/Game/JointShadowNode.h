@@ -18,7 +18,7 @@ namespace Game {
 struct JointShadowNode : public CNode {
 	virtual ~JointShadowNode(); // _08 (inline)
 
-	JointShadowNode();
+	JointShadowNode(int);
 	void init(int);
 };
 } // namespace Game

@@ -33,7 +33,7 @@ struct StateFreeze : public EnemyFSMState {
 	virtual void exec(EnemyBase*);            // _0C
 	virtual void cleanup(EnemyBase*);         // _10
 
-	StateFreeze();
+	StateFreeze(int);
 };
 } // namespace BlackMan
 } // namespace Game

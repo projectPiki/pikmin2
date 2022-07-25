@@ -126,7 +126,7 @@ struct Scene_Cave : public Scene, public Scene_Game, public Scene_Objects, publi
 	virtual void isPollutUp();                           // _6C (inline)
 	virtual void getPollutUpTimer() const;               // _70 (inline)
 
-	Scene_Cave();
+	Scene_Cave(unsigned char, PSGame::SceneInfo*);
 	void stopPollutionSe();
 	void startPollutUpSe();
 };

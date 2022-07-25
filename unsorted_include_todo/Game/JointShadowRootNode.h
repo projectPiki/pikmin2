@@ -20,7 +20,7 @@ struct JointShadowRootNode : public CNode {
 	virtual ~JointShadowRootNode(); // _08 (inline)
 	virtual void _10() = 0;         // _10
 
-	JointShadowRootNode();
+	JointShadowRootNode(Game::Creature*);
 };
 } // namespace Game
 

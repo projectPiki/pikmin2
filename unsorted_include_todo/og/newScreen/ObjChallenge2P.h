@@ -133,7 +133,7 @@ namespace newScreen {
         virtual void doDraw(Graphics&);                     // _68
         virtual void _7C() = 0;                             // _7C
 
-        ObjChallenge2P();
+        ObjChallenge2P(const char*);
         void commonUpdate();
     };
 } // namespace newScreen

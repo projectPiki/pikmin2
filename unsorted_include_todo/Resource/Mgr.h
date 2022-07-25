@@ -12,7 +12,7 @@ namespace Resource {
 struct Mgr {
 	virtual void drawDump(Graphics&, int, int); // _08
 
-	Mgr();
+	Mgr(JKRHeap*, unsigned long);
 	void createNewNode(const char*);
 	void loadResource(Resource::MgrCommand*, const char*, bool);
 	void destroy(Resource::MgrCommand*);

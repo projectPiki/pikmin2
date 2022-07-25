@@ -92,7 +92,7 @@ struct TRenderingProcessor : public TProcessor {
 	virtual void makeMatrix(Matrixf*, DrawInfo*, float, Vector3<float>);        // _88
 	virtual void doGetDrawInfo(DrawInfo*);                                      // _8C (inline)
 
-	TRenderingProcessor();
+	TRenderingProcessor(JMessage::TReference*);
 };
 } // namespace Window
 } // namespace P2JME

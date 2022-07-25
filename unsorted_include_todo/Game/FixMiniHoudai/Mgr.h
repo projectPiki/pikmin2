@@ -171,7 +171,7 @@ namespace FixMiniHoudai {
         virtual void doLoadBmd(void*); // _D4 (inline)
         virtual void _E0() = 0;        // _E0
 
-        Mgr();
+        Mgr(int, unsigned char);
     };
 } // namespace FixMiniHoudai
 } // namespace Game

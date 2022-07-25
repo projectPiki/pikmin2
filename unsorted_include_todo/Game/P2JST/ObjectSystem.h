@@ -140,7 +140,7 @@ namespace P2JST {
         virtual void stop();                                // _7C (inline)
         virtual void _80() = 0;                             // _80
 
-        ObjectSystem();
+        ObjectSystem(const char*, Game::MoviePlayer*);
         void destroyObjectAll();
         void findObject(const char*, JStage::TEObject) const;
         void findCreature(const char*) const;

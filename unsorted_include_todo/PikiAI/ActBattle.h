@@ -55,7 +55,7 @@ struct ActBattle : public Action {
     virtual void @32 @4 @onKeyEvent(const SysShape::KeyEvent&); // _48 (inline)
     virtual void _4C() = 0;                                     // _4C
 
-    ActBattle();
+    ActBattle(Game::Piki*);
     void initApproach();
     void execApproach();
     void initBattle();

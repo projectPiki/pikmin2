@@ -53,7 +53,7 @@ struct ActOneshot : public Action {
     virtual void _48() = 0;                                     // _48
     virtual void @28 @4 @onKeyEvent(const SysShape::KeyEvent&); // _4C (inline)
 
-    ActOneshot();
+    ActOneshot(Game::Piki*);
 };
 } // namespace PikiAI
 

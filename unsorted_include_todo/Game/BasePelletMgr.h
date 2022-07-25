@@ -92,7 +92,7 @@ struct BasePelletMgr : public GenericObjectMgr {
 	virtual void _90() = 0;                                                        // _90
 	virtual void _94() = 0;                                                        // _94
 
-	BasePelletMgr();
+	BasePelletMgr(Game::PelletList::cKind);
 	void getPelletConfig(int);
 	void setUse(int);
 	void load();

@@ -28,7 +28,7 @@ struct GenBase {
 	virtual void getLatestVersion();            // _24 (inline)
 	virtual void getShape();                    // _28 (inline)
 
-	GenBase();
+	GenBase(unsigned long, char*, char*);
 };
 } // namespace Game
 

@@ -129,7 +129,7 @@ struct MiddleBossSeq : public DirectedBgm, public SeqBase, public JumpBgmSeq, pu
 	virtual void onJump(unsigned short);                  // _60
 	virtual void jumpCheck(unsigned short);               // _64
 
-	MiddleBossSeq();
+	MiddleBossSeq(const char*, const JAInter::SoundInfo&, PSSystem::DirectorMgrBase*);
 };
 } // namespace PSM
 

@@ -83,7 +83,7 @@ struct TRenderingProcessorBase : public TProcessor, public TRenderingProcessor {
 	virtual void tagPosition(unsigned short, const void*, unsigned long); // _64 (inline)
 	virtual void _68() = 0;                                               // _68
 
-	TRenderingProcessorBase();
+	TRenderingProcessorBase(const JMessage::TReference*);
 };
 } // namespace P2JME
 

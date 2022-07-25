@@ -19,7 +19,7 @@ struct TWaveGroup : public JASWaveArc {
 	virtual void onLoadDone();  // _0C
 	virtual void onEraseDone(); // _10
 
-	TWaveGroup();
+	TWaveGroup(JASBasicWaveBank*);
 	~TWaveGroup();
 	void setWaveCount(unsigned long);
 	void setWaveInfo(int, unsigned long, const JASWaveInfo&);

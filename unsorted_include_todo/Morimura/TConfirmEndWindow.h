@@ -248,7 +248,7 @@ struct TConfirmEndWindow : public CNode,
     virtual void doUpdateFadeoutFinish();               // _64
     virtual void doDraw(Graphics&);                     // _68
 
-    TConfirmEndWindow();
+    TConfirmEndWindow(const char*);
     void setRetireMsg(unsigned long long);
 };
 } // namespace Morimura

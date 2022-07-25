@@ -81,7 +81,7 @@ namespace PSM {
 struct Scene_WorldMap : public Scene, public Scene_NoObjects, public SceneBase {
 	virtual ~Scene_WorldMap(); // _0C (inline)
 
-	Scene_WorldMap();
+	Scene_WorldMap(unsigned char, PSGame::SceneInfo*);
 };
 } // namespace PSM
 

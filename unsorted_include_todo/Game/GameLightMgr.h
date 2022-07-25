@@ -33,7 +33,7 @@ struct GameLightMgr : public CNode, public LightMgr {
 	virtual void update();       // _10
 	virtual void set(Graphics&); // _14
 
-	GameLightMgr();
+	GameLightMgr(char*);
 	void start();
 	void createEventLight(Game::GameLightEventArg&);
 	void loadParm(Stream&);

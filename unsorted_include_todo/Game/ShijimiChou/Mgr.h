@@ -170,7 +170,7 @@ namespace ShijimiChou {
         virtual void createModel();         // _B0
         virtual void loadModelData();       // _C8
 
-        Mgr();
+        Mgr(int, unsigned char);
         void fetch(J3DModel*, float);
         void createGroup(Game::ShijimiChou::Obj*, int);
         void createGroupByBigFoot(Game::EnemyBirthArg&, int);

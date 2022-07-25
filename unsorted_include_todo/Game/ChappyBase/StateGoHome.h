@@ -33,7 +33,7 @@ struct StateGoHome : public EnemyFSMState {
 	virtual void exec(EnemyBase*);            // _0C
 	virtual void cleanup(EnemyBase*);         // _10
 
-	StateGoHome();
+	StateGoHome(int);
 };
 } // namespace ChappyBase
 } // namespace Game

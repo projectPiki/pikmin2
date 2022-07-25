@@ -32,7 +32,7 @@ struct StateEat : public EnemyFSMState {
 	virtual void init(EnemyBase*, StateArg*); // _08
 	virtual void exec(EnemyBase*);            // _0C
 
-	StateEat();
+	StateEat(int);
 };
 } // namespace KingChappy
 } // namespace Game

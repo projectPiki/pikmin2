@@ -56,7 +56,7 @@ struct ActTransport : public Action {
     virtual void @60 @4 @onKeyEvent(const SysShape::KeyEvent&); // _48 (inline)
     virtual void _4C() = 0;                                     // _4C
 
-    ActTransport();
+    ActTransport(Game::Piki*);
     void isStickLeader();
     void initLift();
     void execLift();

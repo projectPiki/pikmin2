@@ -32,7 +32,7 @@ struct StateLost : public EnemyFSMState {
 	virtual void init(EnemyBase*, StateArg*); // _08
 	virtual void exec(EnemyBase*);            // _0C
 
-	StateLost();
+	StateLost(int);
 };
 } // namespace UmiMushi
 } // namespace Game

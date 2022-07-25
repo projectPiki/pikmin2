@@ -29,7 +29,7 @@ struct TObject_fog : public TObject {
 	virtual ~TObject_fog();                                               // _08 (inline)
 	virtual void do_paragraph(unsigned long, const void*, unsigned long); // _14
 
-	TObject_fog();
+	TObject_fog(const JStudio::stb::data::TParse_TBlock_object&, JStudio::TAdaptor_fog*);
 };
 } // namespace JStudio
 

@@ -175,7 +175,7 @@ namespace FixKabuto {
         virtual void getChangeTexture(); // _E0 (inline)
         virtual void _E4() = 0;          // _E4
 
-        Mgr();
+        Mgr(int, unsigned char);
     };
 } // namespace FixKabuto
 } // namespace Game

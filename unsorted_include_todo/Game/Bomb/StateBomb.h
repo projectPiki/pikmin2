@@ -32,7 +32,7 @@ struct StateBomb : public EnemyFSMState {
 	virtual void Stateinit(EnemyBase*, StateArg*); // _08
 	virtual void Stateexec(EnemyBase*);            // _0C
 
-	StateBomb();
+	StateBomb(int);
 };
 } // namespace Bomb
 } // namespace Game

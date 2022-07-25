@@ -32,7 +32,7 @@ struct StatePress : public EnemyFSMState {
 	virtual void init(EnemyBase*, StateArg*); // _08
 	virtual void exec(EnemyBase*);            // _0C
 
-	StatePress();
+	StatePress(int);
 };
 } // namespace KochappyBase
 } // namespace Game

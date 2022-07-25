@@ -32,7 +32,7 @@ struct StateCaution : public EnemyFSMState {
 	virtual void init(EnemyBase*, StateArg*); // _08
 	virtual void exec(EnemyBase*);            // _0C
 
-	StateCaution();
+	StateCaution(int);
 };
 } // namespace KingChappy
 } // namespace Game

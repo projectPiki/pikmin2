@@ -29,7 +29,7 @@ struct DispDayEndResultItem : public DispMemberBase {
 	virtual void getOwnerID();  // _0C (inline)
 	virtual void getMemberID(); // _10 (inline)
 
-	DispDayEndResultItem();
+	DispDayEndResultItem(Game::Result::TNode*, int, int, bool);
 };
 } // namespace Screen
 } // namespace kh

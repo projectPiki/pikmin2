@@ -168,7 +168,7 @@ namespace KingChappy {
         virtual void getEnemyTypeID();      // _AC (inline)
         virtual void createModel();         // _B0
 
-        Mgr();
+        Mgr(int, unsigned char);
         void requestState(Game::KingChappy::Obj*, int);
     };
 } // namespace KingChappy

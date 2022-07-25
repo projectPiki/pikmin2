@@ -32,7 +32,7 @@ struct StateAttackStart : public EnemyFSMState {
 	virtual void init(EnemyBase*, StateArg*); // _08
 	virtual void exec(EnemyBase*);            // _0C
 
-	StateAttackStart();
+	StateAttackStart(int);
 };
 } // namespace Miulin
 } // namespace Game

@@ -237,7 +237,7 @@ struct SingleGameSection : public Section, public BaseGameSection, public BaseHI
 	virtual void onStartHeap();                                            // _12C
 	virtual void onClearHeap();                                            // _130
 
-	SingleGameSection();
+	SingleGameSection(JKRHeap*);
 	void flow_goto_title();
 	void saveMainMapSituation(bool);
 	void loadMainMapSituation();

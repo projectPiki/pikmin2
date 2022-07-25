@@ -29,7 +29,7 @@ struct TChallengeScreen : public TScreenBase {
 	virtual void updateBckPane();                    // _18
 	virtual void _1C() = 0;                          // _1C
 
-	TChallengeScreen();
+	TChallengeScreen(JKRArchive*, int);
 	void isRandAnimStart();
 };
 } // namespace Morimura

@@ -317,7 +317,7 @@ struct BaseItem : public Creature, public CellObject {
 	virtual void entryShape();                                    // _218
 	virtual void onSetPosition();                                 // _21C (inline)
 
-	BaseItem();
+	BaseItem(int);
 	void updateCollTree();
 };
 } // namespace Game

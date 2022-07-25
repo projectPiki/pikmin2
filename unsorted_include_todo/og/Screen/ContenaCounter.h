@@ -187,7 +187,7 @@ namespace Screen {
 struct ContenaCounter : public J2DScreen, public J2DPane, public Mgr, public Mgr_tuning {
 	virtual ~ContenaCounter(); // _08 (inline)
 
-	ContenaCounter();
+	ContenaCounter(og::Screen::DispMemberContena*);
 	void setblo(char*, JKRArchive*);
 };
 } // namespace Screen

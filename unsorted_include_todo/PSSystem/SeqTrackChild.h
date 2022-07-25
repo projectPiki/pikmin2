@@ -21,7 +21,7 @@ namespace PSSystem {
 struct SeqTrackChild : public SeqTrackBase {
 	virtual void onStopSeq(); // _10
 
-	SeqTrackChild();
+	SeqTrackChild(const PSSystem::SeqTrackRoot&);
 	void muteOffAndFadeIn(float, unsigned long, PSSystem::DirectorBase*);
 	void fadeoutAndMute(unsigned long, PSSystem::DirectorBase*);
 	void fade(float, unsigned long, PSSystem::DirectorBase*);

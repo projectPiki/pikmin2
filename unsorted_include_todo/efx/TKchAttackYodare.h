@@ -105,7 +105,7 @@ struct TKchAttackYodare : public TKchYodareBaseChaseMtx,
     virtual void @4 @__dt();     // _1C (inline)
     virtual ~TKchAttackYodare(); // _48 (inline)
 
-    TKchAttackYodare();
+    TKchAttackYodare(float (*)[4]);
 };
 } // namespace efx
 

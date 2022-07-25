@@ -29,7 +29,7 @@ namespace TSyncGroup3 < efx
 namespace efx {
 struct TChasePosPosLocalZScale3 : public TChasePosPosLocalZScale > {
 
-	TChasePosPosLocalZScale3();
+	TChasePosPosLocalZScale3(Vector3<float>*, Vector3<float>*, float, unsigned short, unsigned short, unsigned short);
 	void setPosptr(Vector3<float>*, Vector3<float>*);
 };
 } // namespace efx

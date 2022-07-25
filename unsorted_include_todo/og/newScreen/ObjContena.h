@@ -91,7 +91,7 @@ namespace newScreen {
         virtual void doUpdateFadeoutFinish();               // _64
         virtual void doDraw(Graphics&);                     // _68
 
-        ObjContena();
+        ObjContena(const char*);
         void putinPiki(bool);
         void takeoutPiki(bool);
         void moveContena();

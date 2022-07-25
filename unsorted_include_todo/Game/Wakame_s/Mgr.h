@@ -214,7 +214,7 @@ namespace Wakame_s {
         virtual void getEnemyTypeID();      // _AC (inline)
         virtual void doLoadBmd(void*);      // _D4 (inline)
 
-        Mgr();
+        Mgr(int, unsigned char);
     };
 } // namespace Wakame_s
 } // namespace Game

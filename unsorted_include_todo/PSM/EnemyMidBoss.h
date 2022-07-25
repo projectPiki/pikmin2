@@ -476,7 +476,7 @@ struct EnemyMidBoss : public CreatureAnime,
     virtual void postPikiAttack(bool);        // _D8
     virtual void onAppear1st();               // _E8
 
-    EnemyMidBoss();
+    EnemyMidBoss(Game::EnemyBase*);
 };
 } // namespace PSM
 

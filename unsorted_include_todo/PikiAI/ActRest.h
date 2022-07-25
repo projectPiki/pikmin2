@@ -53,7 +53,7 @@ struct ActRest : public Action {
     virtual void _48() = 0;                                     // _48
     virtual void @28 @4 @onKeyEvent(const SysShape::KeyEvent&); // _4C (inline)
 
-    ActRest();
+    ActRest(Game::Piki*);
     void sitDown();
 };
 } // namespace PikiAI

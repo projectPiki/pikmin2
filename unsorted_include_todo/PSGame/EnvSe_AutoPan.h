@@ -23,7 +23,7 @@ namespace PSGame {
 struct EnvSe_AutoPan : public EnvSeBase {
 	virtual void setPanAndDolby(JAISound*); // _14
 
-	EnvSe_AutoPan();
+	EnvSe_AutoPan(unsigned long, float, float, float, float, float);
 	void setDirection(bool, bool);
 };
 } // namespace PSGame

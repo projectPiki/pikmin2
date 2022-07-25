@@ -33,7 +33,7 @@ struct StateFlick : public EnemyFSMState {
 	virtual void exec(EnemyBase*);            // _0C
 	virtual void cleanup(EnemyBase*);         // _10
 
-	StateFlick();
+	StateFlick(int);
 };
 } // namespace KingChappy
 } // namespace Game

@@ -44,7 +44,7 @@ struct CallBack_CounterRV : public CNode, public Node {
 	virtual void setValue(bool, bool);                                                                               // _28
 	virtual void setValue();                                                                                         // _2C (inline)
 
-	CallBack_CounterRV();
+	CallBack_CounterRV(char**, unsigned short, unsigned short, JKRArchive*);
 	void getMotherPane();
 	void setPuyoAnim(bool);
 	void setPuyoAnimZero(bool);

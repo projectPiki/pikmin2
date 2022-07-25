@@ -46,7 +46,7 @@ struct ActBore : public Action {
 	virtual void cleanup();        // _10
 	virtual void _3C() = 0;        // _3C
 
-	ActBore();
+	ActBore(Game::Piki*);
 	void startCurrAction();
 	void finish();
 };

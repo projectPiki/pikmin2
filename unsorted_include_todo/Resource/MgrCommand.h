@@ -30,7 +30,7 @@ struct MgrCommand : public CNode {
     virtual void dvdLoadCallBackFunc();  // _20
     virtual void aramLoadCallBackFunc(); // _24
 
-    MgrCommand();
+    MgrCommand(char*);
     void becomeCurrentHeap();
     void releaseCurrentHeap();
     void getResource();

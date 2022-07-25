@@ -29,7 +29,7 @@ struct TObject_ambientLight : public TObject {
 	virtual ~TObject_ambientLight();                                      // _08 (inline)
 	virtual void do_paragraph(unsigned long, const void*, unsigned long); // _14
 
-	TObject_ambientLight();
+	TObject_ambientLight(const JStudio::stb::data::TParse_TBlock_object&, JStudio::TAdaptor_ambientLight*);
 };
 } // namespace JStudio
 

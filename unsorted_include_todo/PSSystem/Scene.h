@@ -26,7 +26,7 @@ struct Scene {
 	virtual void stopMainSeq(unsigned long);  // _20
 	virtual void stopAllSound(unsigned long); // _24
 
-	Scene();
+	Scene(unsigned char);
 	void adaptChildScene(PSSystem::Scene*);
 	void adaptTo(PSSystem::Scene**);
 	void detach();

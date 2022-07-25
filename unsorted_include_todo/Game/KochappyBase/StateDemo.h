@@ -31,7 +31,7 @@ namespace KochappyBase {
 struct StateDemo : public EnemyFSMState {
 	virtual void init(EnemyBase*, StateArg*); // _08
 
-	StateDemo();
+	StateDemo(int);
 };
 } // namespace KochappyBase
 } // namespace Game

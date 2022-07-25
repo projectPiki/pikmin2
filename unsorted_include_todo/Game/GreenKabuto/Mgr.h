@@ -173,7 +173,7 @@ namespace GreenKabuto {
         virtual void doLoadBmd(void*);   // _D4 (inline)
         virtual void getChangeTexture(); // _E0 (inline)
 
-        Mgr();
+        Mgr(int, unsigned char);
     };
 } // namespace GreenKabuto
 } // namespace Game

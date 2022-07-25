@@ -36,7 +36,7 @@ struct Action {
 	virtual void wallCallback(Vector3<float>&);                    // _34 (inline)
 	virtual void getInfo(char*);                                   // _38
 
-	Action();
+	Action(Game::Piki*);
 };
 } // namespace PikiAI
 

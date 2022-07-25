@@ -44,7 +44,7 @@ struct ActExit : public Action {
 	virtual void exec();           // _0C
 	virtual void cleanup();        // _10
 
-	ActExit();
+	ActExit(Game::Piki*);
 };
 } // namespace PikiAI
 

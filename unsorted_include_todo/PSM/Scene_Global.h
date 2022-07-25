@@ -69,7 +69,7 @@ struct Scene_Global : public Scene, public SceneBase {
 	virtual void getCamDistVol(unsigned char);            // _28
 	virtual void getSeSceneGate(ObjBase*, unsigned long); // _38 (inline)
 
-	Scene_Global();
+	Scene_Global(unsigned char, PSGame::SceneInfo*);
 	void getGlobalStream();
 	void startGlobalStream(unsigned long);
 };

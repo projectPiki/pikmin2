@@ -151,7 +151,7 @@ struct BigBossSeq : public DirectedBgm, public SeqBase, public JumpBgmSeq, publi
 	virtual void onJump(unsigned short);    // _60
 	virtual void jumpCheck(unsigned short); // _64
 
-	BigBossSeq();
+	BigBossSeq(const char*, const JAInter::SoundInfo&, PSSystem::DirectorMgrBase*);
 };
 } // namespace PSM
 

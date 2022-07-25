@@ -15,7 +15,7 @@ struct Mgr {
 	virtual void _0C() = 0; // _0C
 
 	void create(JKRExpHeap*);
-	Mgr();
+	Mgr(JKRExpHeap*);
 	void setupMessage();
 	void setupTex();
 	void setupFont(const char*, JKRExpHeap*);

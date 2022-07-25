@@ -95,7 +95,7 @@ struct AutoBgm : public DirectedBgm, public BgmSeq, public SeqBase {
 	virtual void getCastType();                         // _24 (inline)
 	virtual void newSeqTrackRoot();                     // _44 (inline)
 
-	AutoBgm();
+	AutoBgm(const char*, const char*, const JAInter::SoundInfo&, JADUtility::AccessMode, PSSystem::DirectorMgrBase*);
 	void loadConductor(PSSystem::TaskChecker*);
 	void loadedCallback(unsigned long, unsigned long);
 };

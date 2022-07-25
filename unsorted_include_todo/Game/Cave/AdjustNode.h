@@ -20,7 +20,7 @@ struct AdjustNode : public CNode {
 	virtual ~AdjustNode(); // _08 (inline)
 
 	AdjustNode();
-	AdjustNode();
+	AdjustNode(Game::Cave::Adjust*);
 };
 } // namespace Cave
 } // namespace Game

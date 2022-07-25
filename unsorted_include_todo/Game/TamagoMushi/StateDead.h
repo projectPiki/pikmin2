@@ -32,7 +32,7 @@ struct StateDead : public EnemyFSMState {
 	virtual void init(EnemyBase*, StateArg*); // _08
 	virtual void exec(EnemyBase*);            // _0C
 
-	StateDead();
+	StateDead(int);
 };
 } // namespace TamagoMushi
 } // namespace Game

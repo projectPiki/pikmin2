@@ -69,7 +69,7 @@ struct Section : public BaseHIOSection {
 	virtual void isFinishable();                     // _44
 	virtual void loadResource();                     // _50
 
-	Section();
+	Section(JKRHeap*);
 	void loadResident();
 	void menuCancel(Menu&);
 	void menuSelect(Menu&);

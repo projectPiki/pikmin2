@@ -14,7 +14,7 @@ struct DirectorMgrBase {
 	virtual ~DirectorMgrBase(); // _08 (inline)
 	virtual void _0C() = 0;     // _0C
 
-	DirectorMgrBase();
+	DirectorMgrBase(unsigned char);
 	void initAndAdaptToBgm(PSSystem::DirectedBgm&);
 	void playInit(JASTrack*);
 	void exec();

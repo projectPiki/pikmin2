@@ -67,7 +67,7 @@ struct PikminNumberDirector_AutoBgm : public DirectorBase, public PikminNumberDi
 	virtual void directOnTrack(PSSystem::SeqTrackBase&);  // _20
 	virtual void directOffTrack(PSSystem::SeqTrackBase&); // _24
 
-	PikminNumberDirector_AutoBgm();
+	PikminNumberDirector_AutoBgm(int, unsigned char, PSSystem::DirectedBgm&);
 	void getTrack(PSSystem::SeqTrackBase&);
 };
 } // namespace PSM

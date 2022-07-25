@@ -214,7 +214,7 @@ namespace KareOoinu_l {
         virtual void getEnemyTypeID();      // _AC (inline)
         virtual void doLoadBmd(void*);      // _D4 (inline)
 
-        Mgr();
+        Mgr(int, unsigned char);
     };
 } // namespace KareOoinu_l
 } // namespace Game

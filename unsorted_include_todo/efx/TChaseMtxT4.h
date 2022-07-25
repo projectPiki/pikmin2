@@ -29,7 +29,7 @@ namespace TSyncGroup4 < efx
 namespace efx {
 struct TChaseMtxT4 : public TChaseMtxT > {
 
-	TChaseMtxT4();
+	TChaseMtxT4(float (*)[4], unsigned short, unsigned short, unsigned short, unsigned short);
 	void setMtxptr(float (*)[4]);
 };
 } // namespace efx

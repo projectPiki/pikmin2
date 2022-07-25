@@ -150,7 +150,7 @@ struct Scene_Challenge : public Scene, public Scene_Cave, public Scene_Game, pub
 	virtual void startMainSeq(); // _1C
 	virtual void akubiOK();      // _68
 
-	Scene_Challenge();
+	Scene_Challenge(unsigned char, PSGame::SceneInfo*);
 };
 } // namespace PSM
 

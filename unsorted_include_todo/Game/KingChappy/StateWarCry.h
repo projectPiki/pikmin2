@@ -33,7 +33,7 @@ struct StateWarCry : public EnemyFSMState {
 	virtual void exec(EnemyBase*);            // _0C
 	virtual void cleanup(EnemyBase*);         // _10
 
-	StateWarCry();
+	StateWarCry(int);
 };
 } // namespace KingChappy
 } // namespace Game

@@ -168,7 +168,7 @@ namespace Hanachirashi {
         virtual void createModel();    // _B0
         virtual void loadTexData();    // _D0
 
-        Mgr();
+        Mgr(int, unsigned char);
     };
 } // namespace Hanachirashi
 } // namespace Game

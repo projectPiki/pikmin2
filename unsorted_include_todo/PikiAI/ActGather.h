@@ -44,7 +44,7 @@ struct ActGather : public Action {
 	virtual void exec();           // _0C
 	virtual void cleanup();        // _10
 
-	ActGather();
+	ActGather(Game::Piki*);
 };
 } // namespace PikiAI
 

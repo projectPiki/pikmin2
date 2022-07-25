@@ -124,7 +124,7 @@ struct Scene_Ground : public Scene_Game, public Scene, public Scene_Objects, pub
 	virtual void isPollutUp();             // _6C (inline)
 	virtual void getPollutUpTimer() const; // _70 (inline)
 
-	Scene_Ground();
+	Scene_Ground(unsigned char, PSGame::SceneInfo*);
 	void setPollutUp();
 	void fadeMainBgm(float, unsigned long, PSM::Scene_Ground::Time);
 	void jumpMainBgm(unsigned char);

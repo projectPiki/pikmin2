@@ -70,7 +70,7 @@ struct Scene_Demo : public Scene, public SceneBase {
 	virtual void isDemoScene();                           // _34 (inline)
 	virtual void getSeSceneGate(ObjBase*, unsigned long); // _38
 
-	Scene_Demo();
+	Scene_Demo(unsigned char, PSGame::SceneInfo*);
 };
 } // namespace PSM
 

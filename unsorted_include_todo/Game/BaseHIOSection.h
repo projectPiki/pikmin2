@@ -52,7 +52,7 @@ struct BaseHIOSection : public Section {
 	virtual void initHIO(HIORootNode*); // _48
 	virtual void refreshHIO();          // _4C
 
-	BaseHIOSection();
+	BaseHIOSection(JKRHeap*);
 	void setDisplay(JFWDisplay*, int);
 	void createScreenRootNode();
 	void addGenNode(CNode*);

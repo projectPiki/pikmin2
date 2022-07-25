@@ -57,7 +57,7 @@ struct TrackOnDirectorBase : public DirectorBase, public SwitcherDirector {
 	virtual void directOffTrack(PSSystem::SeqTrackBase&); // _24
 	virtual void onPlayInit(JASTrack*);                   // _2C
 
-	TrackOnDirectorBase();
+	TrackOnDirectorBase(int, const char*, long, long);
 };
 } // namespace PSM
 

@@ -168,7 +168,7 @@ namespace Frog {
         virtual void getEnemyTypeID(); // _AC (inline)
         virtual void _E0() = 0;        // _E0
 
-        Mgr();
+        Mgr(int, unsigned char);
     };
 } // namespace Frog
 } // namespace Game

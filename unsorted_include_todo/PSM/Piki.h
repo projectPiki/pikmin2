@@ -179,7 +179,7 @@ struct Piki : public CreatureObj,
     virtual void _44() = 0;     // _44
     virtual void @48 @__dt();   // _48 (inline)
 
-    Piki();
+    Piki(Game::Piki*);
     void becomeFree();
     void becomeNotFree();
     void startFreePikiSound(unsigned long, unsigned long, unsigned long);

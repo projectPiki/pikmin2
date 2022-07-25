@@ -29,7 +29,7 @@ struct TObject_message : public TObject {
 	virtual ~TObject_message();                                           // _08 (inline)
 	virtual void do_paragraph(unsigned long, const void*, unsigned long); // _14
 
-	TObject_message();
+	TObject_message(const JStudio::stb::data::TParse_TBlock_object&, JStudio::TAdaptor_message*);
 };
 } // namespace JStudio
 

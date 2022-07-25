@@ -264,7 +264,7 @@ namespace P2JST {
         virtual void @112 @executeAfter(JPABaseEmitter*);        // _DC (inline)
         virtual void executeAfter(JPABaseEmitter*);              // _E8 (inline)
 
-        ObjectParticleActor();
+        ObjectParticleActor(const char*, Game::MoviePlayer*, Game::Creature*);
         void emit();
         void killEmitter();
     };

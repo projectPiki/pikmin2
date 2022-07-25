@@ -233,7 +233,7 @@ struct VsGameSection : public Section, public BaseGameSection, public BaseHIOSec
 	virtual void onClearHeap();                                            // _130
 	virtual void player2enabled();                                         // _134 (inline)
 
-	VsGameSection();
+	VsGameSection(JKRHeap*, bool);
 	void initPlayData();
 	void loadChallengeStageList();
 	void loadVsStageList();

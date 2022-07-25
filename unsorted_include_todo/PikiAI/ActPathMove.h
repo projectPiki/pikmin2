@@ -44,7 +44,7 @@ struct ActPathMove : public Action {
 	virtual void exec();           // _0C
 	virtual void cleanup();        // _10
 
-	ActPathMove();
+	ActPathMove(Game::Piki*);
 	void initPathfinding(bool);
 	void decideGoal();
 	void execPathfinding();

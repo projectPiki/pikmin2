@@ -91,7 +91,7 @@ namespace newScreen {
         virtual void doUpdateFadeoutFinish();               // _64
         virtual void doDraw(Graphics&);                     // _68
 
-        ObjFloor();
+        ObjFloor(const char*);
         void setCaveMsgID(unsigned long, char*);
         void commonUpdate();
         void drawBG(Graphics&);

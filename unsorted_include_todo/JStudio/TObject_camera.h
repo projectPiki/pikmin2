@@ -29,7 +29,7 @@ struct TObject_camera : public TObject {
 	virtual ~TObject_camera();                                            // _08 (inline)
 	virtual void do_paragraph(unsigned long, const void*, unsigned long); // _14
 
-	TObject_camera();
+	TObject_camera(const JStudio::stb::data::TParse_TBlock_object&, JStudio::TAdaptor_camera*);
 };
 } // namespace JStudio
 

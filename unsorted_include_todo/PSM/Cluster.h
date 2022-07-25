@@ -177,7 +177,7 @@ struct Cluster : public CreatureObj,
     virtual void _44() = 0;   // _44
     virtual void @48 @__dt(); // _48 (inline)
 
-    Cluster();
+    Cluster(Game::Creature*, PSSystem::ClusterSe::Factory&);
     void startClusterSound(unsigned char);
 };
 } // namespace PSM

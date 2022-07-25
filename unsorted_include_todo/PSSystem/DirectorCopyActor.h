@@ -16,7 +16,7 @@ struct DirectorCopyActor {
 	virtual void onUpdateFromMasterD(); // _0C (inline)
 	virtual void onUpdateFromSlaveD();  // _10 (inline)
 
-	DirectorCopyActor();
+	DirectorCopyActor(PSSystem::DirectorBase*, PSSystem::DirectorBase*);
 };
 } // namespace PSSystem
 

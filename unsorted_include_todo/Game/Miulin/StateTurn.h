@@ -32,7 +32,7 @@ struct StateTurn : public EnemyFSMState {
 	virtual void init(EnemyBase*, StateArg*); // _08
 	virtual void exec(EnemyBase*);            // _0C
 
-	StateTurn();
+	StateTurn(int);
 };
 } // namespace Miulin
 } // namespace Game

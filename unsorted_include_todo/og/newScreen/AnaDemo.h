@@ -59,7 +59,7 @@ struct AnaDemo : public SceneBase {
 	virtual void doCreateObj(JKRArchive*);                  // _20
 	virtual void doUserCallBackFunc(Resource::MgrCommand*); // _24
 
-	AnaDemo();
+	AnaDemo(long);
 };
 } // namespace newScreen
 } // namespace og

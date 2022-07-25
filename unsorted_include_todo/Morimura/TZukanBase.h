@@ -215,7 +215,7 @@ struct TZukanBase : public CNode,
     virtual void _E4() = 0;                        // _E4
     virtual void isPanelExist();                   // _E8
 
-    TZukanBase();
+    TZukanBase(char*);
     void changeName();
     void doPushXButton();
     void doPushYButton();

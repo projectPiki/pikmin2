@@ -33,7 +33,7 @@ struct StateBend : public EnemyFSMState {
 	virtual void exec(EnemyBase*);            // _0C
 	virtual void cleanup(EnemyBase*);         // _10
 
-	StateBend();
+	StateBend(int);
 };
 } // namespace BlackMan
 } // namespace Game

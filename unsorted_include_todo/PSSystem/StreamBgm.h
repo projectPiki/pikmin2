@@ -52,7 +52,7 @@ struct StreamBgm : public SeqBase {
 	virtual void getHandleP();           // _3C (inline)
 	virtual void setConfigVolume();      // _40
 
-	StreamBgm();
+	StreamBgm(unsigned long, const JAInter::SoundInfo&);
 	void setId(unsigned long);
 };
 } // namespace PSSystem

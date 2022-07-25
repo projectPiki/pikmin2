@@ -44,7 +44,7 @@ struct ActClimb : public Action {
 	virtual void exec();           // _0C
 	virtual void cleanup();        // _10
 
-	ActClimb();
+	ActClimb(Game::Piki*);
 };
 } // namespace PikiAI
 

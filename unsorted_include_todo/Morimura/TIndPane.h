@@ -20,7 +20,7 @@ struct TIndPane : public CNode {
 	virtual ~TIndPane(); // _08 (inline)
 	virtual void draw(); // _10
 
-	TIndPane();
+	TIndPane(const char*, float, float);
 	void createIndTexture(const char*);
 	void createCaptureTexture(_GXTexFmt);
 };

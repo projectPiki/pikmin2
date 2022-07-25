@@ -61,7 +61,7 @@ struct TObject_particle : public TObject {
 	virtual void _58() = 0;                                               // _58
 	virtual void _5C() = 0;                                               // _5C
 
-	TObject_particle();
+	TObject_particle(const JStudio::stb::data::TParse_TBlock_object&, JStudio::TAdaptor_particle*);
 };
 } // namespace JStudio
 

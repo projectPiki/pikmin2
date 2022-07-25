@@ -44,7 +44,7 @@ struct ActFollowVectorField : public Action {
 	virtual void exec();           // _0C
 	virtual void cleanup();        // _10
 
-	ActFollowVectorField();
+	ActFollowVectorField(Game::Piki*);
 };
 } // namespace PikiAI
 

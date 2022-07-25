@@ -200,7 +200,7 @@ namespace P2JST {
         virtual void stop();                               // _CC (inline)
         virtual void _D0() = 0;                            // _D0
 
-        ObjectCamera();
+        ObjectCamera(const char*, Game::MoviePlayer*);
         void setCamera(Camera*);
     };
 } // namespace P2JST

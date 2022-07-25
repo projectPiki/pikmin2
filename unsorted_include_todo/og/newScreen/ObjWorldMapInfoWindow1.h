@@ -200,7 +200,7 @@ namespace newScreen {
         virtual void out_menu_1();                          // _B0
         virtual void getResult();                           // _B4 (inline)
 
-        ObjWorldMapInfoWindow1();
+        ObjWorldMapInfoWindow1(const char*);
     };
 } // namespace newScreen
 } // namespace og

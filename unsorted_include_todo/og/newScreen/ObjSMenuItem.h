@@ -155,7 +155,7 @@ namespace newScreen {
         virtual void doUpdateLAction();                     // _98
         virtual void commonUpdate();                        // _A4
 
-        ObjSMenuItem();
+        ObjSMenuItem(const char*);
     };
 } // namespace newScreen
 } // namespace og

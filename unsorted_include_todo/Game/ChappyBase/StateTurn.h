@@ -33,7 +33,7 @@ struct StateTurn : public EnemyFSMState {
 	virtual void exec(EnemyBase*);            // _0C
 	virtual void cleanup(EnemyBase*);         // _10
 
-	StateTurn();
+	StateTurn(int);
 };
 } // namespace ChappyBase
 } // namespace Game

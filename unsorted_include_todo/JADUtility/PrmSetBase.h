@@ -24,7 +24,7 @@ struct PrmSetBase {
 	virtual void getEraseLink();                        // _1C (inline)
 	virtual void afterGetFromFree();                    // _20 (inline)
 
-	PrmSetBase();
+	PrmSetBase(bool);
 };
 } // namespace JADUtility
 

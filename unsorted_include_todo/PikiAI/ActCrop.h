@@ -54,7 +54,7 @@ struct ActCrop : public Action {
     virtual void @64 @4 @onKeyEvent(const SysShape::KeyEvent&); // _48 (inline)
     virtual void _4C() = 0;                                     // _4C
 
-    ActCrop();
+    ActCrop(Game::Piki*);
     void execClimb();
     void initGoto();
     void initAttack();

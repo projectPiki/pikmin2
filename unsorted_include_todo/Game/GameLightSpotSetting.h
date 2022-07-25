@@ -18,7 +18,7 @@ namespace Game {
 struct GameLightSpotSetting : public CNode {
 	virtual ~GameLightSpotSetting(); // _08 (inline)
 
-	GameLightSpotSetting();
+	GameLightSpotSetting(char*);
 };
 } // namespace Game
 

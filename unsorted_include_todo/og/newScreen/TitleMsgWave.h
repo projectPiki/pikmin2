@@ -21,7 +21,7 @@ struct TitleMsgWave {
 	virtual void end();                                // _14
 	virtual void setParam(float, float, float, float); // _18
 
-	TitleMsgWave();
+	TitleMsgWave(J2DScreen*, J2DPane*, char*);
 };
 } // namespace newScreen
 } // namespace og

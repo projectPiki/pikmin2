@@ -69,7 +69,7 @@ namespace PSM {
 struct ExiteDirector : public DirectorBase, public TrackOnDirectorBase, public SwitcherDirector {
 	virtual ~ExiteDirector(); // _08 (inline)
 
-	ExiteDirector();
+	ExiteDirector(int);
 };
 } // namespace PSM
 

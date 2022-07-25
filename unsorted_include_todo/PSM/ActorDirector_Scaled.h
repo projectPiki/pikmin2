@@ -84,7 +84,7 @@ struct ActorDirector_Scaled : public DirectorBase, public TrackOnDirector_Scaled
 	virtual void getNearestDistance();             // _38
 	virtual void onSetMinDistObj(Game::Creature*); // _3C (inline)
 
-	ActorDirector_Scaled();
+	ActorDirector_Scaled(const char*, int, float, float, long, long, unsigned long);
 };
 } // namespace PSM
 

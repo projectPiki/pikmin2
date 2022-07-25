@@ -157,7 +157,7 @@ namespace newScreen {
         virtual void doUpdateLAction();                     // _98
         virtual void commonUpdate();                        // _A4
 
-        ObjSMenuPause();
+        ObjSMenuPause(const char*);
         void blink_TopMenu(int);
         void menu_pause();
         void menu_yuugata();

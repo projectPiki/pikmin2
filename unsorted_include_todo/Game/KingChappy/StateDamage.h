@@ -33,7 +33,7 @@ struct StateDamage : public EnemyFSMState {
 	virtual void exec(EnemyBase*);            // _0C
 	virtual void cleanup(EnemyBase*);         // _10
 
-	StateDamage();
+	StateDamage(int);
 };
 } // namespace KingChappy
 } // namespace Game

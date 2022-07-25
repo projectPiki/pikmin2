@@ -85,7 +85,7 @@ struct TRenderingProcessor : public TProcessor {
 	virtual void doDrawLetter(float, float, float, float, int, bool);           // _7C
 	virtual void doTagControlAbtnWait();                                        // _80 (inline)
 
-	TRenderingProcessor();
+	TRenderingProcessor(const JMessage::TReference*);
 	void setDrawLocate();
 	void initRuby();
 	void drawRuby();

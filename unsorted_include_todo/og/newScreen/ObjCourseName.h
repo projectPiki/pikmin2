@@ -92,7 +92,7 @@ namespace newScreen {
         virtual void doUpdateFadeoutFinish();               // _64
         virtual void doDraw(Graphics&);                     // _68
 
-        ObjCourseName();
+        ObjCourseName(const char*);
         void drawBG(Graphics&);
     };
 } // namespace newScreen

@@ -16,7 +16,7 @@ struct Builder_EvnSe_Perspective {
 	virtual void onBuild(PSSystem::EnvSeBase*);       // _0C (inline)
 	virtual void newSeObj(unsigned long, float, Vec); // _10
 
-	Builder_EvnSe_Perspective();
+	Builder_EvnSe_Perspective(JGeometry::TBox3<float>);
 	void build(float, PSSystem::EnvSeMgr*);
 };
 } // namespace PSGame

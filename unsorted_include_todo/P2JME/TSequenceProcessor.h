@@ -75,7 +75,7 @@ struct TSequenceProcessor : public TProcessor {
 	virtual void doFastForwardSE();                                             // _70 (inline)
 	virtual void reset();                                                       // _74
 
-	TSequenceProcessor();
+	TSequenceProcessor(const JMessage::TReference*, JMessage::TControl*);
 	void tagControl(unsigned short, const void*, unsigned long);
 	void setAbtnWait();
 	void resetAbtnWait();

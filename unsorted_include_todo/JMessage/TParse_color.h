@@ -16,7 +16,7 @@ struct TParse_color {
 	virtual void parseHeader_next(const void**, unsigned long*, unsigned long); // _0C
 	virtual void parseBlock_next(const void**, unsigned long*, unsigned long);  // _10
 
-	TParse_color();
+	TParse_color(JMessage::TResourceContainer*);
 };
 } // namespace JMessage
 

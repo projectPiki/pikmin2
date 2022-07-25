@@ -154,7 +154,7 @@ struct CreatureObj : public Creature, public ObjectBase, public Object {
     virtual void startSound(JAISound**, unsigned long,
                             unsigned long); // _84 (inline)
 
-    CreatureObj();
+    CreatureObj(Game::Creature*, unsigned char);
 };
 } // namespace PSM
 

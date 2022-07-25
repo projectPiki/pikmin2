@@ -46,7 +46,7 @@ struct ActGotoPos : public Action {
 	virtual void cleanup();        // _10
 	virtual void _3C() = 0;        // _3C
 
-	ActGotoPos();
+	ActGotoPos(Game::Piki*);
 };
 } // namespace PikiAI
 

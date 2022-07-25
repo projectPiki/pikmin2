@@ -58,7 +58,7 @@ struct ActAttack : public Action {
     virtual void @56 @4 @onKeyEvent(const SysShape::KeyEvent&); // _48 (inline)
     virtual void _4C() = 0;                                     // _4C
 
-    ActAttack();
+    ActAttack(Game::Piki*);
     void initStickAttack();
     void initAdjust();
     void initJumpAdjust();

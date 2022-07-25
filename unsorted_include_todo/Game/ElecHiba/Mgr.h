@@ -213,7 +213,7 @@ namespace ElecHiba {
         virtual void doAlloc();             // _A8
         virtual void getEnemyTypeID();      // _AC (inline)
 
-        Mgr();
+        Mgr(int, unsigned char);
     };
 } // namespace ElecHiba
 } // namespace Game

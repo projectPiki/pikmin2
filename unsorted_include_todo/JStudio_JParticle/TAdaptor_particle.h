@@ -47,7 +47,7 @@ struct TAdaptor_particle : public TAdaptor {
 	virtual void adaptor_do_PARENT_NODE(JStudio::data::TEOperationData, const void*, unsigned long);   // _38
 	virtual void adaptor_do_PARENT_ENABLE(JStudio::data::TEOperationData, const void*, unsigned long); // _3C
 
-	TAdaptor_particle();
+	TAdaptor_particle(JPAEmitterManager*, const JStage::TSystem*);
 	void beginParticle_fadeIn_(unsigned long);
 	void endParticle_fadeOut_(unsigned long);
 };

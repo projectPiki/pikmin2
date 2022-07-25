@@ -33,7 +33,7 @@ struct StateMove : public EnemyFSMState {
 	virtual void exec(EnemyBase*);            // _0C
 	virtual void cleanup(EnemyBase*);         // _10
 
-	StateMove();
+	StateMove(int);
 };
 } // namespace Tyre
 } // namespace Game

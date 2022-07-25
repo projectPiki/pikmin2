@@ -23,7 +23,7 @@ struct TObject {
 	virtual void do_wait(unsigned long);                                          // _18
 	virtual void do_data(const void*, unsigned long, const void*, unsigned long); // _1C
 
-	TObject();
+	TObject(const JStudio::stb::data::TParse_TBlock_object&);
 	void forward(unsigned long);
 	void process_sequence_();
 	void process_paragraph_reserved_(unsigned long, const void*, unsigned long);

@@ -29,7 +29,7 @@ namespace TSyncGroup2 < efx
 namespace efx {
 struct TForever2 : public TForever > {
 
-	TForever2();
+	TForever2(unsigned short, unsigned short);
 };
 } // namespace efx
 

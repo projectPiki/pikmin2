@@ -134,7 +134,7 @@ struct TScrollList : public CNode, public ObjBase, public TTestBase {
     virtual void updateIndex(bool);               // _A4
     virtual void setPaneCharacter(int);           // _A8 (inline)
 
-    TScrollList();
+    TScrollList(char*);
     void updateList();
     void changeIndex();
 };

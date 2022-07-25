@@ -105,7 +105,7 @@ struct JumpBgmSeq : public DirectedBgm, public SeqBase, public BgmSeq {
 	virtual void outputJumpRequest();                     // _5C
 	virtual void onJump(unsigned short);                  // _60 (inline)
 
-	JumpBgmSeq();
+	JumpBgmSeq(const char*, const JAInter::SoundInfo&, PSSystem::DirectorMgrBase*);
 	void startSeq(unsigned short);
 	void setAvoidJumpTimer_Checked(unsigned long);
 };

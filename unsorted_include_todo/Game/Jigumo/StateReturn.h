@@ -33,7 +33,7 @@ struct StateReturn : public EnemyFSMState {
 	virtual void exec(EnemyBase*);            // _0C
 	virtual void cleanup(EnemyBase*);         // _10
 
-	StateReturn();
+	StateReturn(int);
 };
 } // namespace Jigumo
 } // namespace Game

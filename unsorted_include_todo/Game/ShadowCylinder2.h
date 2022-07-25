@@ -18,7 +18,7 @@ struct ShadowCylinder2 {
 	virtual void drawCylinder(Matrixf&, int); // _10
 	virtual void drawFinish();                // _14
 
-	ShadowCylinder2();
+	ShadowCylinder2(Game::ShadowParms*, Color4*);
 	void copyShadowTexture();
 	void setupTextureFilterGX();
 	void drawTextureFilter();

@@ -69,7 +69,7 @@ namespace PSM {
 struct PikAttackDirector : public DirectorBase, public TrackOnDirectorBase, public SwitcherDirector {
 	virtual ~PikAttackDirector(); // _08 (inline)
 
-	PikAttackDirector();
+	PikAttackDirector(int);
 };
 } // namespace PSM
 

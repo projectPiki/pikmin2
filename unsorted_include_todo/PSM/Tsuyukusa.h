@@ -177,7 +177,7 @@ struct Tsuyukusa : public CreatureObj,
     virtual void _44() = 0;   // _44
     virtual void @48 @__dt(); // _48 (inline)
 
-    Tsuyukusa();
+    Tsuyukusa(Game::Creature*);
     void noukouFrameWork(bool);
 };
 } // namespace PSM

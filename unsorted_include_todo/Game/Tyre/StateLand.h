@@ -32,7 +32,7 @@ struct StateLand : public EnemyFSMState {
 	virtual void init(EnemyBase*, StateArg*); // _08
 	virtual void exec(EnemyBase*);            // _0C
 
-	StateLand();
+	StateLand(int);
 };
 } // namespace Tyre
 } // namespace Game

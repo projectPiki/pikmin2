@@ -33,7 +33,7 @@ struct Model {
 	virtual void _30() = 0;                  // _30
 
 	void clearAnimatorAll();
-	Model();
+	Model(J3DModelData*, unsigned long, unsigned long);
 	void enableMaterialAnim(J3DModelData*, int);
 	void enableMaterialAnim(int);
 	void getRoughBoundingRadius();

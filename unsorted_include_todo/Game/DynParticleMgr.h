@@ -121,7 +121,7 @@ struct DynParticleMgr : public CNode,
     virtual void @28 @resetMgr(); // _54 (inline)
     virtual void resetMgr();      // _80 (inline)
 
-    DynParticleMgr();
+    DynParticleMgr(int);
 };
 } // namespace Game
 

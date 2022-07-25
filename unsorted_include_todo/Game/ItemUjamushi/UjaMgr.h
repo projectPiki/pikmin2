@@ -112,7 +112,7 @@ namespace ItemUjamushi {
         virtual void @32 @__dt();             // _38 (inline)
         virtual ~UjaMgr();                    // _6C (inline)
 
-        UjaMgr();
+        UjaMgr(int);
         void init(Game::ItemUjamushi::UjaMgrInitArg&);
         void test_createUjas();
         void astonishPikmins();

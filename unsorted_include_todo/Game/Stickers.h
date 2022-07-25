@@ -48,7 +48,7 @@ struct Stickers : public CNode, public Creature > {
 	virtual void _2C() = 0;      // _2C
 
 	void initialise();
-	Stickers();
+	Stickers(Game::Creature*);
 };
 } // namespace Game
 

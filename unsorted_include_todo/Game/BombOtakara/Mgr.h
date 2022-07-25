@@ -172,7 +172,7 @@ namespace BombOtakara {
         virtual void loadTexData();      // _D0
         virtual void getChangeTexture(); // _E0 (inline)
 
-        Mgr();
+        Mgr(int, unsigned char);
     };
 } // namespace BombOtakara
 } // namespace Game

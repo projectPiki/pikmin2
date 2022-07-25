@@ -29,7 +29,7 @@ struct DispDayEndResultIncP : public DispMemberBase {
 	virtual void getOwnerID();  // _0C (inline)
 	virtual void getMemberID(); // _10 (inline)
 
-	DispDayEndResultIncP();
+	DispDayEndResultIncP(const kh::Screen::IncP*);
 };
 } // namespace Screen
 } // namespace kh

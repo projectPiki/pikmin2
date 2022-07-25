@@ -30,7 +30,7 @@ struct TAdaptor_message : public TAdaptor {
 	virtual ~TAdaptor_message();                                                                 // _08
 	virtual void adaptor_do_MESSAGE(JStudio::data::TEOperationData, const void*, unsigned long); // _20
 
-	TAdaptor_message();
+	TAdaptor_message(JMessage::TControl*);
 };
 } // namespace JStudio_JMessage
 

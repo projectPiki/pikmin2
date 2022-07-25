@@ -33,7 +33,7 @@ struct StateDead : public EnemyFSMState {
 	virtual void exec(EnemyBase*);            // _0C
 	virtual void cleanup(EnemyBase*);         // _10
 
-	StateDead();
+	StateDead(int, int);
 };
 } // namespace Pelplant
 } // namespace Game

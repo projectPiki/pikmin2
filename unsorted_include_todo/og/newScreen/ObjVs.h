@@ -93,7 +93,7 @@ namespace newScreen {
         virtual void doDraw(Graphics&);                     // _68
         virtual void _78() = 0;                             // _78
 
-        ObjVs();
+        ObjVs(const char*);
         void setOnOffBdama(bool);
         void checkObake();
         void doUpdateCommon();

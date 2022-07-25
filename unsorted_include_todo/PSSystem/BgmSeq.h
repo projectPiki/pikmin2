@@ -49,7 +49,7 @@ struct BgmSeq : public SeqBase {
 	virtual void getSeqType();  // _28 (inline)
 	virtual void getHandleP();  // _3C (inline)
 
-	BgmSeq();
+	BgmSeq(const char*, const JAInter::SoundInfo&);
 };
 } // namespace PSSystem
 

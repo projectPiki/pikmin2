@@ -55,7 +55,7 @@ struct ActTeki : public Action {
     virtual void _44() = 0;                                     // _44
     virtual void @72 @4 @onKeyEvent(const SysShape::KeyEvent&); // _48 (inline)
 
-    ActTeki();
+    ActTeki(Game::Piki*);
     void makeTarget();
     void test_0();
     void setTimer();

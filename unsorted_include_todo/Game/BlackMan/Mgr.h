@@ -171,7 +171,7 @@ namespace BlackMan {
         virtual void loadTexData();         // _D0
         virtual void doLoadBmd(void*);      // _D4
 
-        Mgr();
+        Mgr(int, unsigned char);
     };
 } // namespace BlackMan
 } // namespace Game

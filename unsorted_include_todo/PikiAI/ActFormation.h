@@ -68,7 +68,7 @@ struct ActFormation : public Action {
     virtual void _58() = 0;                                      // _58
     virtual void @108 @4 @onKeyEvent(const SysShape::KeyEvent&); // _5C (inline)
 
-    ActFormation();
+    ActFormation(Game::Piki*);
     void startSort();
     void setFormed();
 };

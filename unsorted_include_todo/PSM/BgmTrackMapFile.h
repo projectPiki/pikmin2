@@ -22,7 +22,7 @@ struct BgmTrackMapFile {
     virtual void @28 @__dt();   // _18 (inline)
     virtual void _1C() = 0;     // _1C
 
-    BgmTrackMapFile();
+    BgmTrackMapFile(bool);
     void readTrackMap(const char*);
 };
 } // namespace PSM

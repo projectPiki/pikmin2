@@ -89,7 +89,7 @@ struct Analyzer : public TProcessor, public TRenderingProcessorBase, public TRen
 	virtual void tagControl(unsigned short, const void*, unsigned long);  // _60 (inline)
 	virtual void tagPosition(unsigned short, const void*, unsigned long); // _64 (inline)
 
-	Analyzer();
+	Analyzer(const JMessage::TReference*);
 	void exec(char*);
 };
 } // namespace P2JME

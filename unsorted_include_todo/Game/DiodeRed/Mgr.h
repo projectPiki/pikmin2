@@ -215,7 +215,7 @@ namespace DiodeRed {
         virtual void loadModelData();       // _C8 (inline)
         virtual void doLoadBmd(void*);      // _D4 (inline)
 
-        Mgr();
+        Mgr(int, unsigned char);
     };
 } // namespace DiodeRed
 } // namespace Game

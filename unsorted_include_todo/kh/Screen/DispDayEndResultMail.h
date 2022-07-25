@@ -29,7 +29,7 @@ struct DispDayEndResultMail : public DispMemberBase {
 	virtual void getOwnerID();  // _0C (inline)
 	virtual void getMemberID(); // _10 (inline)
 
-	DispDayEndResultMail();
+	DispDayEndResultMail(JKRHeap*, kh::Screen::MailCategory);
 };
 } // namespace Screen
 } // namespace kh

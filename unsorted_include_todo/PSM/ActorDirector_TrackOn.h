@@ -70,7 +70,7 @@ struct ActorDirector_TrackOn : public DirectorBase, public TrackOnDirectorBase, 
 	virtual ~ActorDirector_TrackOn(); // _08 (inline)
 	virtual void execInner();         // _1C
 
-	ActorDirector_TrackOn();
+	ActorDirector_TrackOn(const char*, int, long, long);
 };
 } // namespace PSM
 

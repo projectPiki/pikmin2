@@ -45,7 +45,7 @@ struct ActGotoSlot : public Action {
 	virtual void cleanup();                     // _10
 	virtual void wallCallback(Vector3<float>&); // _34
 
-	ActGotoSlot();
+	ActGotoSlot(Game::Piki*);
 	void resetTimers();
 };
 } // namespace PikiAI

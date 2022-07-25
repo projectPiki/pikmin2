@@ -18,7 +18,7 @@ struct ShadowCylinder3 {
 	virtual void drawCylinder(Matrixf&, int); // _10
 	virtual void drawFinish();                // _14
 
-	ShadowCylinder3();
+	ShadowCylinder3(Game::ShadowParms*, Color4*);
 	void drawScreenFilter();
 };
 } // namespace Game

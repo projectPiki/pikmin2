@@ -74,7 +74,7 @@ namespace Farm {
         virtual void doDebugDraw(Graphics&);  // _48
         virtual ~FarmMgr();                   // _4C (inline)
 
-        FarmMgr();
+        FarmMgr(unsigned long);
         void setupSound();
         void addFarmBmd(void*);
         void createNewFarm(void*);

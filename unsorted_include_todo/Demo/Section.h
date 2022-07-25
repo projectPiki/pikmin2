@@ -67,7 +67,7 @@ struct Section : public BaseHIOSection {
 	virtual void doDraw(Graphics&);                  // _40
 	virtual void isFinishable();                     // _44 (inline)
 
-	Section();
+	Section(JKRHeap*);
 	void loadResource();
 };
 } // namespace Demo

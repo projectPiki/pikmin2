@@ -33,7 +33,7 @@ struct StateCarry : public EnemyFSMState {
 	virtual void exec(EnemyBase*);            // _0C
 	virtual void cleanup(EnemyBase*);         // _10
 
-	StateCarry();
+	StateCarry(int);
 };
 } // namespace Jigumo
 } // namespace Game

@@ -29,7 +29,7 @@ struct DispPayDept : public DispMemberBase {
 	virtual void getOwnerID();  // _0C (inline)
 	virtual void getMemberID(); // _10 (inline)
 
-	DispPayDept();
+	DispPayDept(kh::Screen::DispPayDept::PayDeptType, int);
 };
 } // namespace Screen
 } // namespace kh

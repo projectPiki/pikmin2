@@ -40,7 +40,7 @@ struct khUtilFadePane : public CNode, public Node {
 	virtual void _24() = 0;        // _24
 
 	void create(P2DScreen::Mgr*, unsigned long long, unsigned char);
-	khUtilFadePane();
+	khUtilFadePane(unsigned char);
 	void add(J2DPane*);
 	void fadein();
 	void fadeout();

@@ -66,7 +66,7 @@ struct TAdaptor_camera {
 	virtual void _70() = 0;                                                                                        // _70
 	virtual void _74() = 0;                                                                                        // _74
 
-	TAdaptor_camera();
+	TAdaptor_camera(const JStage::TSystem*, JStage::TCamera*);
 	void setJSG_position_(const JStudio::TControl*);
 	void getJSG_position_(const JStudio::TControl*);
 	void setJSG_targetPosition_(const JStudio::TControl*);

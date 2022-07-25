@@ -32,7 +32,7 @@ struct StateHide : public EnemyFSMState {
 	virtual void init(EnemyBase*, StateArg*); // _08
 	virtual void exec(EnemyBase*);            // _0C
 
-	StateHide();
+	StateHide(int);
 };
 } // namespace PanModokiBase
 } // namespace Game

@@ -52,7 +52,7 @@ struct ActFlockAttack : public Action {
     virtual void _44() = 0;                                     // _44
     virtual void @40 @4 @onKeyEvent(const SysShape::KeyEvent&); // _48 (inline)
 
-    ActFlockAttack();
+    ActFlockAttack(Game::Piki*);
 };
 } // namespace PikiAI
 

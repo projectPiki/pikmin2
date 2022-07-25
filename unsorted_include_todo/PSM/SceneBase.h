@@ -54,7 +54,7 @@ struct SceneBase : public Scene {
 	virtual void pauseOn_Demo();                           // _4C
 	virtual void pauseOff_Demo();                          // _50
 
-	SceneBase();
+	SceneBase(unsigned char, PSGame::SceneInfo*);
 	void getSceneInfoA();
 };
 } // namespace PSM

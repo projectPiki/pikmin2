@@ -114,7 +114,7 @@ struct TGameOverBase : public CNode, public ObjBase, public TTestBase {
     virtual void getDispMemberBase(); // _78 (inline)
     virtual void _7C() = 0;           // _7C
 
-    TGameOverBase();
+    TGameOverBase(char*);
 };
 } // namespace Morimura
 

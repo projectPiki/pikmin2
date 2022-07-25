@@ -167,7 +167,7 @@ namespace Qurione {
         virtual void getEnemyTypeID(); // _AC (inline)
         virtual void doLoadBmd(void*); // _D4 (inline)
 
-        Mgr();
+        Mgr(int, unsigned char);
     };
 } // namespace Qurione
 } // namespace Game

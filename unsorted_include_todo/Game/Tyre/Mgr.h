@@ -169,7 +169,7 @@ namespace Tyre {
         virtual void loadModelData();       // _C8
         virtual void doLoadBmd(void*);      // _D4
 
-        Mgr();
+        Mgr(int, unsigned char);
     };
 } // namespace Tyre
 } // namespace Game

@@ -28,7 +28,7 @@ struct EnemyGeneratorBase : public CNode {
 	virtual void draw(Graphics&, Generator*); // _1C (inline)
 	virtual void getInitialParam();           // _20 (inline)
 
-	EnemyGeneratorBase();
+	EnemyGeneratorBase(char*);
 };
 } // namespace Game
 

@@ -29,7 +29,7 @@ struct DispCaveResult : public DispMemberBase {
 	virtual void getOwnerID();  // _0C (inline)
 	virtual void getMemberID(); // _10 (inline)
 
-	DispCaveResult();
+	DispCaveResult(Game::Result::TNode*, unsigned long, unsigned long, unsigned long, unsigned long, bool, JKRHeap*, bool);
 	void init(Game::Result::TNode*, unsigned long, bool);
 };
 } // namespace Screen

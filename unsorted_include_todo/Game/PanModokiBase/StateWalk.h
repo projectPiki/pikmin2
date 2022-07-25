@@ -32,7 +32,7 @@ struct StateWalk : public EnemyFSMState {
 	virtual void init(EnemyBase*, StateArg*); // _08
 	virtual void exec(EnemyBase*);            // _0C
 
-	StateWalk();
+	StateWalk(int);
 };
 } // namespace PanModokiBase
 } // namespace Game

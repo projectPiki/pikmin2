@@ -314,7 +314,7 @@ struct EnemyNotAggressive : public CreatureAnime,
     virtual void kehaiOff();        // _D8 (inline)
     virtual void battleOn();        // _DC (inline)
 
-    EnemyNotAggressive();
+    EnemyNotAggressive(Game::EnemyBase*, unsigned char);
 };
 } // namespace PSM
 

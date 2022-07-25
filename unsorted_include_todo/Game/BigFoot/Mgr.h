@@ -170,7 +170,7 @@ namespace BigFoot {
         virtual void loadTexData();    // _D0
         virtual void doLoadBmd(void*); // _D4 (inline)
 
-        Mgr();
+        Mgr(int, unsigned char);
     };
 } // namespace BigFoot
 } // namespace Game

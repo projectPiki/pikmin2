@@ -33,7 +33,7 @@ struct StateWither : public EnemyFSMState {
 	virtual void exec(EnemyBase*);            // _0C
 	virtual void cleanup(EnemyBase*);         // _10
 
-	StateWither();
+	StateWither(int, int, int, int);
 };
 } // namespace Pelplant
 } // namespace Game

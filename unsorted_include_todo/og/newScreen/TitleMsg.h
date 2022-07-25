@@ -19,7 +19,7 @@ struct TitleMsg {
 	virtual void start();  // _10 (inline)
 	virtual void end();    // _14 (inline)
 
-	TitleMsg();
+	TitleMsg(J2DScreen*, J2DPane*, char*);
 	void setFontPane(J2DPictureEx*, int);
 	void setCentering(og::newScreen::TitleMsg::EnumCentering);
 	void setColor(JUtility::TColor&, JUtility::TColor&);

@@ -214,7 +214,7 @@ namespace Zenmai {
         virtual void getEnemyTypeID();      // _AC (inline)
         virtual void doLoadBmd(void*);      // _D4 (inline)
 
-        Mgr();
+        Mgr(int, unsigned char);
     };
 } // namespace Zenmai
 } // namespace Game

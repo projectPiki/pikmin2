@@ -34,7 +34,7 @@ struct ShadowMgr : public CNode {
 	virtual void write(Stream&);   // _28
 	virtual void read(Stream&);    // _2C
 
-	ShadowMgr();
+	ShadowMgr(int);
 	void loadResource();
 	void init();
 	void setViewport(Viewport*, int);

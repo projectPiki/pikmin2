@@ -93,7 +93,7 @@ struct TAdaptor_sound : public TAdaptor {
 	virtual void _94() = 0;                                                                            // _94
 	virtual void _98() = 0;                                                                            // _98
 
-	TAdaptor_sound();
+	TAdaptor_sound(JAIBasic*, const JStage::TSystem*);
 	void beginSound_fadeIn_(unsigned long);
 	void endSound_fadeOut_(unsigned long);
 };

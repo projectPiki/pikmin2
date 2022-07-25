@@ -16,7 +16,7 @@ struct TZukanWindow {
 	virtual void update();                           // _0C
 	virtual void draw(Graphics&, J2DPerspGraph*);    // _10
 
-	TZukanWindow();
+	TZukanWindow(JKRArchive*, int);
 	void windowOpen();
 	void windowClose();
 	void msgScroll(float);

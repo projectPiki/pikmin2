@@ -58,7 +58,7 @@ struct CallBack_CounterDay : public CNode, public CallBack_CounterRV, public Nod
 	virtual void hide();                                                                                             // _24
 	virtual void setValue();                                                                                         // _2C
 
-	CallBack_CounterDay();
+	CallBack_CounterDay(char**, unsigned short, JKRArchive*);
 };
 } // namespace Screen
 } // namespace og

@@ -17,7 +17,7 @@ struct EnvSeObjBuilder {
 	virtual void newSeObj(unsigned long, float, Vec); // _10
 
 	void setInfo(PSM::PersEnvInfo);
-	EnvSeObjBuilder();
+	EnvSeObjBuilder(JGeometry::TBox3<float>);
 };
 } // namespace PSM
 

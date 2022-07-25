@@ -32,7 +32,7 @@ struct StateMiss : public EnemyFSMState {
 	virtual void init(EnemyBase*, StateArg*); // _08
 	virtual void exec(EnemyBase*);            // _0C
 
-	StateMiss();
+	StateMiss(int);
 };
 } // namespace Jigumo
 } // namespace Game

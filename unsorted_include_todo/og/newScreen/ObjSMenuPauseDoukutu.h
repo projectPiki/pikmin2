@@ -160,7 +160,7 @@ namespace newScreen {
         virtual void doUpdateLAction();                     // _98
         virtual void commonUpdate();                        // _A4
 
-        ObjSMenuPauseDoukutu();
+        ObjSMenuPauseDoukutu(const char*);
         void menu_pause();
         void menu_giveup();
         void finishPause();

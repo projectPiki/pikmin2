@@ -187,7 +187,7 @@ namespace P2JST {
         virtual void stop();                                     // _B8 (inline)
         virtual void parseUserData_(unsigned long, const void*); // _C8 (inline)
 
-        ObjectSpecialActor();
+        ObjectSpecialActor(const char*, Game::MoviePlayer*);
     };
 } // namespace P2JST
 } // namespace Game

@@ -73,7 +73,7 @@ struct Scene_Objects : public Scene, public SceneBase {
 	virtual void getSeSceneGate(ObjBase*, unsigned long); // _38
 	virtual void onStartMainSeq();                        // _54
 
-	Scene_Objects();
+	Scene_Objects(unsigned char, PSGame::SceneInfo*);
 	void adaptObjMgr();
 	void detachObjMgr();
 };

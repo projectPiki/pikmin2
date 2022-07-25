@@ -55,7 +55,7 @@ struct TCounterRV : public CNode, public CallBack_CounterRV, public Node {
 	virtual void update();             // _10
 	virtual void setValue(bool, bool); // _28
 
-	TCounterRV();
+	TCounterRV(char**, unsigned short, unsigned short, JKRArchive*);
 };
 } // namespace Morimura
 

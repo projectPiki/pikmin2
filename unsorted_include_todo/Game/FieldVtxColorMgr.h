@@ -30,7 +30,7 @@ struct FieldVtxColorMgr : public CNode {
     virtual void _14() = 0;              // _14
     virtual void @12 @__dt();            // _18 (inline)
 
-    FieldVtxColorMgr();
+    FieldVtxColorMgr(J3DModelData*);
     void createFieldVtxColorInfo();
     void initVtxColor();
     void setupFieldVtxColorInfoFromStrip(void*, int, int, int, int);

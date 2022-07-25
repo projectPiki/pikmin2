@@ -60,7 +60,7 @@ struct TSequenceProcessor : public TProcessor {
 	virtual void do_branch_queryResult();                                       // _58
 	virtual void do_branch(const void*, const char*);                           // _5C
 
-	TSequenceProcessor();
+	TSequenceProcessor(const JMessage::TReference*, JMessage::TControl*);
 	void process(const char*);
 	void on_isReady();
 	void on_jump_isReady();

@@ -91,7 +91,7 @@ namespace newScreen {
         virtual void doUpdateFadeoutFinish();               // _64
         virtual void doDraw(Graphics&);                     // _68
 
-        ObjFinalMsg();
+        ObjFinalMsg(const char*);
         void blink_Menu(int);
         void menu();
         void wait();

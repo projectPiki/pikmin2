@@ -186,7 +186,7 @@ struct WorkItem : public CreatureObj,
     virtual void eventStop();    // _90
     virtual void eventFinish();  // _94
 
-    WorkItem();
+    WorkItem(Game::BaseItem*);
 };
 } // namespace PSM
 

@@ -46,7 +46,7 @@ struct AnimText_Screen : public CNode, public CallBack_Screen, public Node {
 	virtual void AnimText_update();       // _10
 	virtual void _1C() = 0;               // _1C
 
-	AnimText_Screen();
+	AnimText_Screen(P2DScreen::Mgr*, unsigned long long);
 	void setAnimScreen(og::Screen::AnimScreen*);
 	void setText(unsigned long long);
 	void stop();

@@ -172,7 +172,7 @@ namespace KochappyBase {
         virtual void _E0() = 0;        // _E0
         virtual void _E4() = 0;        // _E4
 
-        Mgr();
+        Mgr(int, unsigned char);
     };
 } // namespace KochappyBase
 } // namespace Game

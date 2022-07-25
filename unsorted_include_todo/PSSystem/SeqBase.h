@@ -40,7 +40,7 @@ struct SeqBase {
 	virtual void _3C() = 0;              // _3C
 	virtual void setConfigVolume();      // _40
 
-	SeqBase();
+	SeqBase(const char*, const JAInter::SoundInfo&);
 	void getFileEntry();
 };
 } // namespace PSSystem

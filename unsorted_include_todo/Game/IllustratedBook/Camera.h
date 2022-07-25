@@ -238,7 +238,7 @@ struct Camera : public CNode, public Container<Plane>, public ArrayContainer<Pla
 	virtual void _154() = 0;              // _154
 	virtual void _158() = 0;              // _158
 
-	Camera();
+	Camera(Controller*);
 	void move(const Vector3<float>&);
 	void setTarget(Game::Creature*);
 	void resetControl();

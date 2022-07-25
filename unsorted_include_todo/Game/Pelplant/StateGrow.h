@@ -33,7 +33,7 @@ struct StateGrow : public EnemyFSMState {
 	virtual void exec(EnemyBase*);            // _0C
 	virtual void cleanup(EnemyBase*);         // _10
 
-	StateGrow();
+	StateGrow(int, int, int);
 };
 } // namespace Pelplant
 } // namespace Game

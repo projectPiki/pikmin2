@@ -155,7 +155,7 @@ struct GameSystem : public CNode,
     virtual void startFadewhite();             // _A0
     virtual void _A4() = 0;                    // _A4
 
-    GameSystem();
+    GameSystem(Game::BaseGameSection*);
     void init();
     void calcFrameDist(int);
     void setMoviePause(bool, char*);

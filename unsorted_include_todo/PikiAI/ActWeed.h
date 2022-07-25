@@ -45,7 +45,7 @@ struct ActWeed : public Action {
 	virtual void collisionCallback(Game::Piki*, Game::CollEvent&); // _28
 	virtual void getInfo(char*);                                   // _38
 
-	ActWeed();
+	ActWeed(Game::Piki*);
 	void decideTarget();
 	void initAdjust();
 	void calcAttackPos();

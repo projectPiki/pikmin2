@@ -171,7 +171,7 @@ namespace Nest {
         virtual void loadModelData(JKRArchive*); // _C4
         virtual void loadAnimData();             // _CC (inline)
 
-        Mgr();
+        Mgr(int, unsigned char);
     };
 } // namespace Nest
 } // namespace Game

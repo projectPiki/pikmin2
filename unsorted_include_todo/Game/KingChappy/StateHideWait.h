@@ -33,7 +33,7 @@ struct StateHideWait : public EnemyFSMState {
 	virtual void exec(EnemyBase*);            // _0C
 	virtual void cleanup(EnemyBase*);         // _10
 
-	StateHideWait();
+	StateHideWait(int);
 };
 } // namespace KingChappy
 } // namespace Game

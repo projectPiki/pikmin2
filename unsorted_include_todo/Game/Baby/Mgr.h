@@ -166,7 +166,7 @@ namespace Baby {
         virtual void doAlloc();        // _A8
         virtual void getEnemyTypeID(); // _AC (inline)
 
-        Mgr();
+        Mgr(int, unsigned char);
     };
 } // namespace Baby
 } // namespace Game

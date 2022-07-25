@@ -44,7 +44,7 @@ struct Object : public ObjectBase {
 	virtual void disable();                                // _24
 	virtual void loop();                                   // _38
 
-	Object();
+	Object(Vec*, JKRHeap*, unsigned char);
 };
 } // namespace JAInter
 

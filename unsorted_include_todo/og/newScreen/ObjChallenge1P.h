@@ -131,7 +131,7 @@ namespace newScreen {
         virtual void doUpdateFadeoutFinish();               // _64
         virtual void doDraw(Graphics&);                     // _68
 
-        ObjChallenge1P();
+        ObjChallenge1P(const char*);
     };
 } // namespace newScreen
 } // namespace og

@@ -24,7 +24,7 @@ namespace PSGame {
 struct EnvSe_Perspective : public EnvSeBase {
 	virtual void play(); // _0C
 
-	EnvSe_Perspective();
+	EnvSe_Perspective(unsigned long, float, Vec);
 };
 } // namespace PSGame
 

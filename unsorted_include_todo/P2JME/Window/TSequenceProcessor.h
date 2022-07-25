@@ -76,7 +76,7 @@ struct TSequenceProcessor : public TProcessor {
 	virtual void doFastForwardSE();                                             // _70
 	virtual void reset();                                                       // _74
 
-	TSequenceProcessor();
+	TSequenceProcessor(JMessage::TReference*, JMessage::TControl*);
 };
 } // namespace Window
 } // namespace P2JME

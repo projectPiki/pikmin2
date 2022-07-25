@@ -49,7 +49,7 @@ struct TRenderingProcessor : public TProcessor {
 	virtual void do_begin(const void*, const char*);                            // _40
 	virtual void do_end();                                                      // _44
 
-	TRenderingProcessor();
+	TRenderingProcessor(const JMessage::TReference*);
 	void process(const char*);
 };
 } // namespace JMessage

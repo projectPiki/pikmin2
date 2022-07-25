@@ -19,7 +19,7 @@ namespace Cave {
 struct RandMapMgr : public CNode {
 	virtual ~RandMapMgr(); // _08 (inline)
 
-	RandMapMgr();
+	RandMapMgr(bool);
 	void loadResource(Game::MapUnitInterface*, int, Game::Cave::FloorInfo*, bool, Game::Cave::EditMapUnit*);
 	void create();
 	void getNumRooms();
