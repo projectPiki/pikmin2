@@ -209,8 +209,9 @@ if __name__ == "__main__":
         with open(CSV_FILE_PATH, 'r') as file:
             reader = csv.reader(file)
             does_file_exist = True
+            print(f"Successfully read {CSV_FILE_PATH}!")
     except:
-        print('CSV file does not exist!')
+        print(f'Failed to read {CSV_FILE_PATH}!')
 
     col_one = f"code_count_in_{CODE_ITEM.lower()}"
     col_two = "code_completion_in_bytes"
@@ -231,17 +232,23 @@ if __name__ == "__main__":
         col_eight,
     ]
 
-    with open(CSV_FILE_PATH, 'a', newline='') as file:
-        writer = csv.DictWriter(file, fieldnames=headers)
-        if not does_file_exist:
-            writer.writeheader()
-        writer.writerow({
-            col_one: codeCount,
-            col_two: decomp_code_size,
-            col_three: codeCompletionPcnt,
-            col_four: dataCount,
-            col_five: decomp_data_size,
-            col_six: dataCompletionPcnt,
-            col_seven: sentence,
-            col_eight: datetime.now(),
-        })
+    try:
+        with open(CSV_FILE_PATH, 'a', newline='') as file:
+            writer = csv.DictWriter(file, fieldnames=headers)
+            if not does_file_exist:
+                writer.writeheader()
+            writer.writerow({
+                col_one: codeCount,
+                col_two: decomp_code_size,
+                col_three: codeCompletionPcnt,
+                col_four: dataCount,
+                col_five: decomp_data_size,
+                col_six: dataCompletionPcnt,
+                col_seven: sentence,
+                col_eight: datetime.now(),
+            })
+        print(f"Successfully wrote to {CSV_FILE_PATH}!")
+    except:
+        print(f"Failed to write to {CSV_FILE_PATH}!")
+
+    
