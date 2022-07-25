@@ -24,6 +24,7 @@ import sys
 import struct
 import re
 import math
+import csv
 
 ###############################################
 #                                             #
@@ -68,10 +69,12 @@ SECTION_TEXT = 0
 SECTION_DATA = 1
 
 # Progress flavor
-codeFrac = 10000        # total code "item" amount
-dataFrac = 201          # total data "item" amount
-codeItem = "Pokos"      # code flavor item
-dataItem = "treasures"  # data flavor item
+CODE_FRAC = 10000        # total code "item" amount
+DATA_FRAC = 201          # total data "item" amount
+CODE_ITEM = "Pokos"      # code flavor item
+DATA_ITEM = "treasures"  # data flavor item
+
+CSV_FILE_NAME = './tools/progress.csv'
 
 ###############################################
 #                                             #
@@ -184,8 +187,8 @@ if __name__ == "__main__":
     # Calculate percentages
     codeCompletionPcnt = (decomp_code_size / dol_code_size) # code completion percent
     dataCompletionPcnt = (decomp_data_size / dol_data_size) # data completion percent
-    bytesPerCodeItem = dol_code_size / codeFrac # bytes per code item
-    bytesPerDataItem = dol_data_size / dataFrac # bytes per data item
+    bytesPerCodeItem = dol_code_size / CODE_FRAC # bytes per code item
+    bytesPerDataItem = dol_data_size / DATA_FRAC # bytes per data item
     
     codeCount = math.floor(decomp_code_size / bytesPerCodeItem)
     dataCount = math.floor(decomp_data_size / bytesPerDataItem)
@@ -193,4 +196,31 @@ if __name__ == "__main__":
     print("Progress:")
     print(f"\tCode sections: {decomp_code_size} / {dol_code_size}\tbytes in src ({codeCompletionPcnt:%})")
     print(f"\tData sections: {decomp_data_size} / {dol_data_size}\tbytes in src ({dataCompletionPcnt:%})")
-    print("\nYou have {} out of {} {} and {} out of {} {}.".format(codeCount, codeFrac, codeItem, dataCount, dataFrac, dataItem))
+    
+    sentence = f"\nYou have {codeCount} out of {CODE_FRAC} {CODE_ITEM} and {dataCount} out of {DATA_FRAC} {DATA_ITEM}."
+    print(sentence)
+
+    # Create/append to CSV
+    if not os.path.exists(CSV_FILE_NAME):
+        with open(CSV_FILE_NAME, 'w') as file:
+            writer = csv.writer(file)
+            writer.writerow([
+                f"code_count_in_{CODE_ITEM.lower()}",
+                "code_completion_in_bytes", 
+                "code_completion_in_percentage",
+                f"data_count_in_{DATA_ITEM.lower()}",
+                "data_completion_in_bytes",
+                "data_completion_in_percentage",
+                "sentence",
+            ])
+    with open(CSV_FILE_NAME, 'a') as file:
+        writer = csv.writer(file)
+        writer.writerow([
+            codeCount,
+            decomp_code_size,
+            codeCompletionPcnt,
+            dataCount,
+            decomp_data_size,
+            dataCompletionPcnt,
+            sentence,
+        ])
