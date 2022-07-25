@@ -59,24 +59,24 @@ struct WaterBox {
 struct AABBWaterBox : public WaterBox {
 	AABBWaterBox();
 
-	virtual bool inWater(Sys::Sphere&);   // _00
-	virtual bool inWater2d(Sys::Sphere&); // _04
-	virtual float getSeaLevel();          // _08
-	virtual float* getSeaHeightPtr();     // _0C
-	virtual bool update();                // _10
-	virtual void startDown(float);        // _14
-	virtual void startUp(float);          // _18
-	virtual void directDraw(Graphics&);   // _1C
-	virtual void doAnimation();           // _20
-	virtual void doEntry();               // _24
-	virtual void doSetView(int);          // _28
-	virtual void doViewCalc();            // _2C
-	virtual void attachModel(J3DModelData*, Sys::MatTexAnimation*,
-	                         float); // _38
-	virtual void calcMatrix();       // _3C
+	virtual bool inWater(Sys::Sphere&);                                    // _08
+	virtual bool inWater2d(Sys::Sphere&);                                  // _0C
+	virtual float getSeaLevel();                                           // _10 (inline)
+	virtual float* getSeaHeightPtr();                                      // _14 (inline)
+	virtual bool update();                                                 // _18
+	virtual void startDown(float);                                         // _1C
+	virtual void startUp(float);                                           // _20
+	virtual void directDraw(Graphics&);                                    // _24
+	virtual void doAnimation();                                            // _28
+	virtual void doEntry();                                                // _2C
+	virtual void doSetView(int);                                           // _30
+	virtual void doViewCalc();                                             // _34
+	virtual void attachModel(J3DModelData*, Sys::MatTexAnimation*, float); // _40
+	virtual void calcMatrix();                                             // _44
+
+	void globalise(Game::AABBWaterBox*, Matrixf&);
 
 	void create(Vector3f&, Vector3f&);
-	void globalise(Game::AABBWaterBox*, Matrixf&);
 
 	u16 _08;                            // _08
 	float _0C;                          // _0C

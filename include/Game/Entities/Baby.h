@@ -11,7 +11,8 @@ namespace Game {
 namespace Baby {
 /////////////////////////////////////////////////////////////////
 // STATE MACHINE DEFINITIONS
-struct State : public EnemyFSMState { };
+struct State : public EnemyFSMState {
+};
 
 struct StatePress : public EnemyFSMState {
 	virtual void init(EnemyBase*, StateArg*); // _08

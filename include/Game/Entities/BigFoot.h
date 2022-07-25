@@ -12,7 +12,8 @@ namespace Game {
 namespace BigFoot {
 /////////////////////////////////////////////////////////////////
 // STATE MACHINE DEFINITIONS
-struct State : public EnemyFSMState { };
+struct State : public EnemyFSMState {
+};
 
 struct StateDead : public State {
 	virtual void init(EnemyBase*, StateArg*); // _08

@@ -23,6 +23,9 @@ struct BaseFlockMgr {
 	virtual void fear(int);                                    // _2C
 
 	void update();
+	void getNearestFlock(Vector3f&);
+	void attackFlock(int, float);
+	void resolveCollision(float);
 
 	// _00 VTBL
 	u32 _04;         // _04
