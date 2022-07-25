@@ -1,9 +1,10 @@
 #ifndef _GAME_BASEGAMESECTION_H
 #define _GAME_BASEGAMESECTION_H
 
-#include "DvdThreadCommand.h"
 #include "Game/BaseHIOSection.h"
 #include "Game/PikiContainer.h"
+#include "Camera.h"
+#include "DvdThreadCommand.h"
 #include "IDelegate.h"
 #include "Vector3.h"
 #include "Rect.h"
@@ -53,11 +54,11 @@ struct Pellet;
 struct PlayCamera;
 
 struct BaseGameSection : public BaseHIOSection {
-	struct ZoomCamera {
-		~ZoomCamera();
+	struct ZoomCamera : public LookAtCamera {
+		virtual ~ZoomCamera() { } // _08 (inline)
+		virtual void doUpdate();  // _78
 
-		void doUpdate();
-		void init(float, float, Vector3f&, struct Controller*);
+		void init(float, float, Vector3<float>&, Controller*);
 		void makeLookAt();
 	};
 

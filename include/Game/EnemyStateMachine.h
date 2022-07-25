@@ -77,9 +77,9 @@ struct EnemyFSMState {
 	virtual void doDirectDraw(EnemyBase*, Graphics&); // _18
 
 	// _00 VTBL
-	int m_stateID;
-	EnemyStateMachine* m_stateMachine;
-	const char* m_name;
+	int m_stateID;                     // _04
+	EnemyStateMachine* m_stateMachine; // _08
+	const char* m_name;                // _0C
 };
 } // namespace Game
 

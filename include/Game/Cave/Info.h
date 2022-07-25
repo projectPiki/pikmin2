@@ -21,10 +21,11 @@ struct BaseGen : public CNode {
 	 * Game::Cave::RandMapMgr::getStartPosition)
 	 */
 	enum Type { TekiA__Easy = 0, TekiB__Hard, Treasure__Item, Unused3, HoleOrGeyser, Seam__Door, Plant, Start, TekiF__Special, Alcove };
+
 	BaseGen();
-	virtual ~BaseGen();
-	virtual void read(Stream&);
-	void draw(Graphics&, Matrixf*);
+	virtual ~BaseGen() { }                  // _08
+	virtual void read(Stream&);             // _10
+	virtual void draw(Graphics&, Matrixf*); // _14
 
 	Type m_spawnType;    // _18
 	Vector3f m_position; // _1C
@@ -36,8 +37,9 @@ struct BaseGen : public CNode {
 
 struct TekiInfo : CNode {
 	enum DropMode { NoDrop = 0, DropOnPikminOrLeader, DropOnPikmin, DropOnLeader, DropOnCarryingPikmin, DropFromPurpleEarthquake };
-	virtual ~TekiInfo();
-	virtual void read(Stream&);
+
+	virtual ~TekiInfo() { }     // _08
+	virtual void read(Stream&); // _10
 
 	EnemyTypeID m_enemyID;                              // _18
 	int m_weight;                                       // _1C
@@ -48,16 +50,16 @@ struct TekiInfo : CNode {
 };
 
 struct ItemInfo : CNode {
-	virtual ~ItemInfo();
-	virtual void read(Stream&);
+	virtual ~ItemInfo() { }     // _08
+	virtual void read(Stream&); // _10
 
 	int m_caveID; // _18
 	int m_weight; // _1C
 };
 
 struct GateInfo : CNode {
-	virtual ~GateInfo();
-	virtual void read(Stream&);
+	virtual ~GateInfo() { }     // _08
+	virtual void read(Stream&); // _10
 
 	int m_caveID; // _18
 	float m_life; // _1C
@@ -65,13 +67,13 @@ struct GateInfo : CNode {
 };
 
 struct CapInfo : CNode {
-	TekiInfo* getTekiInfo();
-	virtual ~CapInfo();
-	virtual void read(Stream&);
+	virtual ~CapInfo() { }      // _08
+	virtual void read(Stream&); // _10
 
-	bool m_doesNotHaveTeki; // _18  /* Always false? */
-	u8 _19[3];              // _19
-	TekiInfo* m_tekiInfo;   // _1C
+	TekiInfo* getTekiInfo();
+
+	bool m_tekiEmpty;     // _18, AKA does not have a teki
+	TekiInfo* m_tekiInfo; // _1C
 };
 
 struct FloorInfo : CNode {

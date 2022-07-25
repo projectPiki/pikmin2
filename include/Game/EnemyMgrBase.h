@@ -150,6 +150,7 @@ struct EnemyMgrBase : public IEnemyMgrBase {
 	EnemyGeneratorBase* m_generator;    // _38
 	EnemyStone::Info m_stoneInfo;       // _3C
 };
+
 extern JKRArchive* gParmArc;
 } // namespace Game
 

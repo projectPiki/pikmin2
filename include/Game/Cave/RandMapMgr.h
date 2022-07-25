@@ -61,34 +61,41 @@ struct RandCapEnemyUnit {
 
 struct RandMapMgr : public CNode {
 	RandMapMgr(bool isVersusHiba);
-	virtual ~RandMapMgr();       // _00
-	virtual int getChildCount(); // _04
+	virtual ~RandMapMgr() { } // _00
 
-	// _00 VTBL
+	void loadResource(Game::MapUnitInterface*, int, Game::Cave::FloorInfo*, bool, Game::Cave::EditMapUnit*);
+	void create();
+	int getNumRooms();
+	char* getUseUnitName(int);
+	char* getRoomData(int, float&, float&, int&);
+	RoomLink* makeRoomLink(int);
+	ObjectLayoutInfo* makeObjectLayoutInfo(int);
+	void getStartPosition(Vector3f&, int);
+	void getItemDropPosition(Vector3f&, float, float);
+	void getItemDropPosition(Vector3f*, int, float, float);
+	void setUnitTexture(int, JUTTexture*);
+	void setCaptureOn();
+	void captureRadarMap(Graphics&);
+	void isLastFloor();
+	void isVersusHiba();
+	void getRadarMapTexture();
+	void radarMapPartsOpen(Vector3f&);
+	void getPositionOnTex(Vector3f&, float&, float&);
+	void getBaseGenData(Vector3f*, float*);
+	void drawFrameBuffer(Graphics&);
+
 	MapUnitGenerator* m_mapUnitGenerator; // _18
-
 	RandMapUnit* m_randMapUnit;           // _1C
 	RandEnemyUnit* m_randEnemyUnit;       // _20
 	RandCapEnemyUnit* m_randCapEnemyUnit; // _24
 	RandPlantUnit* m_randPlantUnit;       // _28
 	RandGateUnit* m_randGateUnit;         // _2C
 	RandItemUnit* m_randItemUnit;         // _30
-
-	RandMapScore* m_randMapScore;  // _34
-	RandMapDraw* m_randMapDraw;    // _38
-	bool m_isCaptureOn;            // _3C
-	JUTTexture* m_radarMapTexture; // _40
-	bool m_isVersusHiba;           // _44
-
-	void create(void);
-	int getNumRooms(void);
-	char* getUseUnitName(int);
-	void loadResource(Game::MapUnitInterface*, int, Game::Cave::FloorInfo*, bool, Game::Cave::EditMapUnit*);
-	char* getRoomData(int index, float& centreX, float& centreY, int& direction);
-	RoomLink* makeRoomLink(int);
-	ObjectLayoutInfo* makeObjectLayoutInfo(int);
-	void getStartPosition(Vector3f&, int);
-	void setUnitTexture(int, JUTTexture*);
+	RandMapScore* m_randMapScore;         // _34
+	RandMapDraw* m_randMapDraw;           // _38
+	bool m_isCaptureOn;                   // _3C
+	JUTTexture* m_radarMapTexture;        // _40
+	bool m_isVersusHiba;                  // _44
 };
 
 struct RandMapDraw {

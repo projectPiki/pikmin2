@@ -20,11 +20,12 @@ struct Adjust {
 };
 
 struct AdjustNode : public CNode {
-	Adjust* m_node; // _18
+	virtual ~AdjustNode() { } // _08
 
 	AdjustNode();
 	AdjustNode(Adjust*);
-	virtual ~AdjustNode();
+
+	Adjust* m_node; // _18
 };
 
 struct Door {
@@ -48,6 +49,15 @@ struct DoorNode : public CNode {
 	bool isDoorAdjust(DoorNode*);
 
 	Door m_node; // _18
+};
+
+struct FixObjNode : public CNode, public ObjectLayoutNode {
+	virtual ~FixObjNode() { }                      // _08 (inline)
+	virtual int getObjectId();                     // _10 (inline)
+	virtual u32 getObjectType();                   // _14 (inline)
+	virtual int getBirthCount();                   // _18 (inline)
+	virtual float getDirection();                  // _1C (inline)
+	virtual void getBirthPosition(float&, float&); // _24 (inline)
 };
 
 struct GateUnit {
@@ -126,6 +136,42 @@ struct MapUnits {
 };
 
 struct MapNode : public CNode {
+	virtual ~MapNode(); // _08 (inline)
+	MapNode(UnitInfo* info = nullptr);
+
+	void setOffset(int, int);
+	CardinalDirection getDoorDirect(int);
+	int getDoorOffset(int, int&, int&);
+	void isDoorSet(Game::Cave::DoorNode*, int, int, int);
+	void setDoorClose(int, Game::Cave::MapNode*, int);
+	void detachDoorClose();
+	bool isDoorClose(int);
+	void resetDoorScore();
+	void setDoorScore(int, int);
+	void isDoorScoreSetDone(int);
+	DoorNode* getDoorNode(int);
+	void getAdjustNode(int);
+	void isGateSetDoor(int);
+	void getGateScore(int);
+	void setEnemyScore();
+	void setNodeScore(int);
+	void copyNodeScoreToVersusScore();
+	void subNodeScoreToVersusScore();
+	void draw(float, float, float);
+	int getNodeOffsetX();
+	int getNodeOffsetY();
+	void getEnemyScore();
+	void getNodeScore();
+	void getVersusScore();
+	void getUnitName();
+	void getNodeCentreOffset(float&, float&);
+	void getDirection();
+	Vector3f getBaseGenGlobalPosition(BaseGen*);
+	void getDoorGlobalPosition(int);
+	f32 getBaseGenGlobalDirection(BaseGen*);
+	void getDoorGlobalDirection(int);
+	int getNumDoors();
+
 	UnitInfo* m_unitInfo; // _18
 
 	// Types are EnemyNode, GateNode and ItemNode respectively
@@ -139,18 +185,6 @@ struct MapNode : public CNode {
 	s32 m_enemyScore;     // _34
 	s32 m_nodeScore;      // _38
 	s32 m_vsScore;        // _3C
-
-	int getNodeOffsetX();
-	int getNodeOffsetY();
-	int getNumDoors();
-	int getDoorOffset(int, int&, int&);
-	CardinalDirection getDoorDirect(int);
-	bool isDoorClose(int);
-	DoorNode* getDoorNode(int);
-	void draw(float, float, float);
-
-	Vector3f getBaseGenGlobalPosition(BaseGen*);
-	f32 getBaseGenGlobalDirection(BaseGen*);
 };
 
 struct EnemyUnit {
@@ -166,15 +200,19 @@ struct EnemyUnit {
 struct EnemyNode : public ObjectLayoutNode {
 	EnemyNode();
 	EnemyNode(EnemyUnit*, BaseGen*, int);
-	~EnemyNode() {};
 
-	void makeGlobalData(MapNode*);
+	virtual ~EnemyNode() { }                       // _08 (inline)
+	virtual int getObjectId();                     // _10
+	virtual u32 getObjectType();                   // _14
+	virtual int getBirthCount();                   // _18
+	virtual float getDirection();                  // _1C
+	virtual int getBirthDoorIndex();               // _20
+	virtual void getBirthPosition(float&, float&); // _24
+	virtual u32 getExtraCode();                    // _28
 
-	virtual int getObjectId();
-	virtual u32 getObjectType();
-	virtual int getBirthCount();
-	virtual float getDirection();
-	virtual void getBirthPosition(float&, float&);
+	void makeGlobalData(Game::Cave::MapNode*);
+	void setGlobalData(Vector3f&, float);
+	void setBirthDoorIndex(int);
 
 	EnemyUnit* m_enemyUnit; // _18
 	BaseGen* m_baseGen;     // _1C

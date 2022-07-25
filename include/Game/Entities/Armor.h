@@ -1,9 +1,11 @@
 #ifndef _GAME_ENTITIES_ARMOR_H
 #define _GAME_ENTITIES_ARMOR_H
 
+#include "Game/EnemyStateMachine.h"
 #include "Game/EnemyAnimatorBase.h"
-#include "Game/EnemyBase.h"
+#include "Game/EnemyParmsBase.h"
 #include "Game/EnemyMgrBase.h"
+#include "Game/EnemyBase.h"
 
 namespace Game {
 namespace Armor {
@@ -101,7 +103,7 @@ struct FSM : public EnemyStateMachine {
 /////////////////////////////////////////////////////////////////
 
 struct ProperAnimator : public EnemyAnimatorBase {
-	virtual ~ProperAnimator() {};                                     // _00
+	virtual ~ProperAnimator() { }                                     // _00
 	virtual void setAnimMgr(SysShape::AnimMgr*);                      // _04
 	virtual SysShape::Animator& getAnimator() { return m_animator; }; // _08
 	virtual SysShape::Animator& getAnimator(int);                     // _0C
@@ -109,13 +111,13 @@ struct ProperAnimator : public EnemyAnimatorBase {
 	SysShape::Animator m_animator; // _10
 };
 
-// struct Parms : public EnemyParmsBase {
-// 	virtual void read(Stream&); // _08
-// };
+struct Parms : public EnemyParmsBase {
+	Parms();
+
+	virtual void read(Stream&); // _08
+};
 
 struct Obj : public EnemyBase {
-	Obj();
-
 	virtual void onInit(CreatureInitArg*);     // _30
 	virtual void doDirectDraw(Graphics&);      // _50
 	virtual void getShadowParam(ShadowParam&); // _134
@@ -137,13 +139,11 @@ struct Obj : public EnemyBase {
 	virtual void doEndMovie();                                 // _2F4
 	virtual void setFSM(FSM*);                                 // _2F8
 
-	void createDownEffect();
+	Obj();
 	void lifeIncrement();
 	void attackPikmin();
-
 	void getSlotPikiNum();
 	void killSlotPiki();
-
 	void resetBridgeSearch();
 	void setBridgeSearch();
 	void setNearestBridge();
@@ -154,7 +154,6 @@ struct Obj : public EnemyBase {
 	void moveBridgeCentre();
 	void moveBridgeTop();
 	void breakTargetBridge();
-
 	void createEffect();
 	void setupEffect();
 	void createAttackEffect();
@@ -166,6 +165,7 @@ struct Obj : public EnemyBase {
 };
 
 struct Mgr : public EnemyMgrBase {
+	Mgr();
 	virtual ~Mgr();                                     // _58
 	virtual void createObj(int);                        // _A0
 	virtual EnemyBase* getEnemy(int);                   // _A4
