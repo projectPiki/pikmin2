@@ -11,6 +11,7 @@ namespace Cave {
 enum NodeType { Item = 1, Gate };
 struct RandMapScore;
 
+// size: 0xC
 struct Adjust {
 	s32 _00; // _00
 	s32 _04; // _04
@@ -19,8 +20,9 @@ struct Adjust {
 	Adjust();
 };
 
+// size: 0x24
 struct AdjustNode : public CNode {
-	virtual ~AdjustNode() { } // _08
+	virtual ~AdjustNode() { } // _08 (weak)
 
 	AdjustNode();
 	AdjustNode(Adjust*);
@@ -28,6 +30,7 @@ struct AdjustNode : public CNode {
 	Adjust* m_node; // _18
 };
 
+// size: 0x8
 struct Door {
 	int m_direction;
 	int m_offset;
@@ -35,6 +38,7 @@ struct Door {
 	Door();
 };
 
+// size: 0x20
 struct DoorNode : public CNode {
 	DoorNode();
 	~DoorNode() {};
@@ -51,7 +55,8 @@ struct DoorNode : public CNode {
 	Door m_node; // _18
 };
 
-struct FixObjNode : public CNode, public ObjectLayoutNode {
+// size: 0x18
+struct FixObjNode : public ObjectLayoutNode {
 	virtual ~FixObjNode() { }                      // _08 (weak)
 	virtual int getObjectId();                     // _10 (weak)
 	virtual u32 getObjectType();                   // _14 (weak)
@@ -60,10 +65,12 @@ struct FixObjNode : public CNode, public ObjectLayoutNode {
 	virtual void getBirthPosition(float&, float&); // _24 (weak)
 };
 
+// size: 0x4
 struct GateUnit {
 	GateInfo* m_info; // _00
 };
 
+// size: 0x24
 struct GateNode : public ObjectLayoutNode {
 	GateNode();
 	GateNode(GateUnit* unit, int index, int dir); // for dir, use cardinal direction
@@ -135,9 +142,12 @@ struct MapUnits {
 	int m_sizeY;              // _20
 };
 
+struct EnemyNode;
+
 struct MapNode : public CNode {
-	virtual ~MapNode(); // _08 (weak)
 	MapNode(UnitInfo* info = nullptr);
+
+	virtual ~MapNode(); // _08 (weak)
 
 	void setOffset(int, int);
 	CardinalDirection getDoorDirect(int);
@@ -174,7 +184,7 @@ struct MapNode : public CNode {
 
 	UnitInfo* m_unitInfo; // _18
 
-	// Types are EnemyNode, GateNode and ItemNode respectively
+	// types are EnemyNode, GateNode, ItemNode;
 	ObjectLayoutNode* m_enemyNode; // _1C
 	ObjectLayoutNode* m_gateNode;  // _20
 	ObjectLayoutNode* m_itemNode;  // _24
@@ -192,11 +202,13 @@ struct EnemyUnit {
 	RandMapScore* m_mapScore; // _04
 	int _08;                  // _08
 	int m_tekiMax;            // _0C
+
 	// counts and max amounts for enemy types (A = easy, B = hard, C = seam hazards, F = special)
 	int m_typeCount[4]; // _10 (_10 A, _14 B, _18 C, _1C F)
 	int m_typeMax[4];   // _20 (_20 A, _24 B, _28 C, _2C F)
 };
 
+// size: 0x38
 struct EnemyNode : public ObjectLayoutNode {
 	EnemyNode();
 	EnemyNode(EnemyUnit*, BaseGen*, int);
@@ -220,7 +232,6 @@ struct EnemyNode : public ObjectLayoutNode {
 	int m_birthCount;       // _24
 	float m_direction;      // _28
 	Vector3f m_birthPos;    // _2C
-	                        // _34
 };
 } // namespace Cave
 } // namespace Game

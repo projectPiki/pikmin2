@@ -14,6 +14,7 @@
 namespace Game {
 namespace Cave {
 
+// size: 0x38
 struct BaseGen : public CNode {
 	/**
 	 * Spawn type used by BaseGen (caves).
@@ -23,9 +24,10 @@ struct BaseGen : public CNode {
 	enum Type { TekiA__Easy = 0, TekiB__Hard, Treasure__Item, Unused3, HoleOrGeyser, Seam__Door, Plant, Start, TekiF__Special, Alcove };
 
 	BaseGen();
-	virtual ~BaseGen() { }                  // _08
+	virtual ~BaseGen() { }                  // _08 (weak)
 	virtual void read(Stream&);             // _10
 	virtual void draw(Graphics&, Matrixf*); // _14
+	// virtual void _18() = 0; 				  // _18 - need to work out what this is
 
 	Type m_spawnType;    // _18
 	Vector3f m_position; // _1C
@@ -35,10 +37,11 @@ struct BaseGen : public CNode {
 	int m_maximum;       // _34
 };
 
+// size: 0x28
 struct TekiInfo : CNode {
 	enum DropMode { NoDrop = 0, DropOnPikminOrLeader, DropOnPikmin, DropOnLeader, DropOnCarryingPikmin, DropFromPurpleEarthquake };
 
-	virtual ~TekiInfo() { }     // _08
+	virtual ~TekiInfo() { }     // _08 (weak)
 	virtual void read(Stream&); // _10
 
 	EnemyTypeID m_enemyID;                              // _18
@@ -49,16 +52,18 @@ struct TekiInfo : CNode {
 	Game::PelletMgr::OtakaraItemCode m_otakaraItemCode; // _26
 };
 
+// size: 0x20
 struct ItemInfo : CNode {
-	virtual ~ItemInfo() { }     // _08
+	virtual ~ItemInfo() { }     // _08 (weak)
 	virtual void read(Stream&); // _10
 
 	int m_caveID; // _18
 	int m_weight; // _1C
 };
 
+// size: 0x24
 struct GateInfo : CNode {
-	virtual ~GateInfo() { }     // _08
+	virtual ~GateInfo() { }     // _08 (weak)
 	virtual void read(Stream&); // _10
 
 	int m_caveID; // _18
@@ -66,8 +71,9 @@ struct GateInfo : CNode {
 	int m_weight; // _20
 };
 
+// size: 0x20
 struct CapInfo : CNode {
-	virtual ~CapInfo() { }      // _08
+	virtual ~CapInfo() { }      // _08 (weak)
 	virtual void read(Stream&); // _10
 
 	TekiInfo* getTekiInfo();
@@ -76,6 +82,7 @@ struct CapInfo : CNode {
 	TekiInfo* m_tekiInfo; // _1C
 };
 
+// size: 0x388
 struct FloorInfo : CNode {
 	struct Parms : Parameters {
 		Parms();
@@ -106,8 +113,9 @@ struct FloorInfo : CNode {
 	};
 
 	FloorInfo();
-	virtual ~FloorInfo();
-	virtual void read(Stream&);
+
+	virtual ~FloorInfo();       // _08 (weak)
+	virtual void read(Stream&); // _10
 
 	int getTekiMax();
 	int getTekiInfoNum();
@@ -141,6 +149,7 @@ struct FloorInfo : CNode {
 	CapInfo m_capInfo;   // _368
 };
 
+// size: 0x3D8
 struct CaveInfo : CNode {
 	/* Erased? */
 	struct Parms : Parameters {
@@ -150,8 +159,8 @@ struct CaveInfo : CNode {
 	};
 
 	CaveInfo();
-	virtual ~CaveInfo();
-	virtual void read(Stream&);
+	virtual ~CaveInfo();        // _08 (weak)
+	virtual void read(Stream&); // _10
 
 	void disablePelplant();
 	int getFloorMax();

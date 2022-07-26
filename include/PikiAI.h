@@ -152,7 +152,8 @@ struct ActBattle : public Action, public virtual SysShape::MotionListener {
 	s8 _1D;                        // _1D
 };
 
-struct ActBoreBase : public Action, public virtual SysShape::MotionListener { };
+struct ActBoreBase : public Action, public virtual SysShape::MotionListener {
+};
 
 struct ActBore : public Action {
 	virtual void init(ActionArg*); // _08
@@ -469,7 +470,8 @@ struct ActGotoSlot : public Action {
 	// _0C
 };
 
-struct ArgOneshotArg : public ActionArg { };
+struct ArgOneshotArg : public ActionArg {
+};
 
 struct ActOneshot : public Action, virtual SysShape::MotionListener {
 	virtual void init(ActionArg*);                      // _08

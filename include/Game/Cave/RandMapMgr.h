@@ -20,6 +20,7 @@ struct MapUnitGenerator;
 struct EnemyNode;
 struct EnemyUnit;
 
+// size: 0xC
 struct RandPlantUnit {
 	RandPlantUnit(MapUnitGenerator* generator);
 
@@ -33,6 +34,7 @@ struct RandPlantUnit {
 	int m_desiredPlantCount;       // _08
 };
 
+// size: 0x18
 struct RandItemUnit {
 	bool isGroundCapEnemySetDone(MapNode*);
 	bool isFallCapEnemySetDone(MapNode*);
@@ -45,6 +47,7 @@ struct RandItemUnit {
 	BaseGen** m_baseGen;                  // _14
 };
 
+// size: 0x18
 struct RandCapEnemyUnit {
 	RandCapEnemyUnit(MapUnitGenerator&);
 
@@ -59,9 +62,11 @@ struct RandCapEnemyUnit {
 	int m_perSpawn[2];                    // _10
 };
 
+// size: 0x48
 struct RandMapMgr : public CNode {
 	RandMapMgr(bool isVersusHiba);
-	virtual ~RandMapMgr() { } // _00
+
+	virtual ~RandMapMgr() { } // _08 (weak)
 
 	void loadResource(Game::MapUnitInterface*, int, Game::Cave::FloorInfo*, bool, Game::Cave::EditMapUnit*);
 	void create();
@@ -85,19 +90,22 @@ struct RandMapMgr : public CNode {
 	void drawFrameBuffer(Graphics&);
 
 	MapUnitGenerator* m_mapUnitGenerator; // _18
+
 	RandMapUnit* m_randMapUnit;           // _1C
 	RandEnemyUnit* m_randEnemyUnit;       // _20
 	RandCapEnemyUnit* m_randCapEnemyUnit; // _24
 	RandPlantUnit* m_randPlantUnit;       // _28
 	RandGateUnit* m_randGateUnit;         // _2C
 	RandItemUnit* m_randItemUnit;         // _30
-	RandMapScore* m_randMapScore;         // _34
-	RandMapDraw* m_randMapDraw;           // _38
-	bool m_isCaptureOn;                   // _3C
-	JUTTexture* m_radarMapTexture;        // _40
-	bool m_isVersusHiba;                  // _44
+
+	RandMapScore* m_randMapScore;  // _34
+	RandMapDraw* m_randMapDraw;    // _38
+	bool m_isCaptureOn;            // _3C
+	JUTTexture* m_radarMapTexture; // _40
+	bool m_isVersusHiba;           // _44
 };
 
+// size: 0x4
 struct RandMapDraw {
 	RandMapDraw(MapUnitGenerator* generator);
 
@@ -106,6 +114,7 @@ struct RandMapDraw {
 
 	MapUnitGenerator* m_generator; // _00
 };
+
 } // namespace Cave
 } // namespace Game
 

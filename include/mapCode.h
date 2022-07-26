@@ -51,9 +51,10 @@ struct Mgr {
 		    : ArrayContainer<MapCode::Code>()
 		{
 		}
-		virtual ~CodeArray() { }                  // _00
-		virtual void writeObject(Stream&, Code&); // _24
-		virtual void readObject(Stream&, Code&);  // _28
+
+		virtual ~CodeArray() { }                  // _08 (weak)
+		virtual void writeObject(Stream&, Code&); // _2C
+		virtual void readObject(Stream&, Code&);  // _30
 	};
 
 	Mgr();
