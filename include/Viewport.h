@@ -4,14 +4,17 @@
 #include "Rect.h"
 #include "types.h"
 
+
 struct Camera;
 struct J2DGrafContext;
 struct J2DOrthoGraph;
 struct Matrixf;
+struct CNode;
 
-struct Viewport {
+struct Viewport : CNode {
 	Viewport();
-	~Viewport();
+	
+	virtual ~Viewport();		// _08 (weak)
 
 	void draw2dframe(J2DGrafContext&);
 	void getAspect();
@@ -25,12 +28,6 @@ struct Viewport {
 	void updateCameraAspect();
 	bool viewable();
 
-	Viewport* m_list;   // _00
-	int* _04;           // _04
-	int* _08;           // _08
-	int* _0C;           // _0C
-	int* _10;           // _10
-	char* _14;          // _14
 	u16 m_vpId;         // _18
 	u8 _1A;             // _1A
 	u8 _1B;             // _1B

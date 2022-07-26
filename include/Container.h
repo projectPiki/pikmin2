@@ -9,40 +9,46 @@ struct GenericContainer : public CNode {
 	 * @reifiedAddress{8010A900}
 	 * @reifiedFile{plugProjectYamashitaU/pelplant.cpp}
 	 */
-	virtual ~GenericContainer() {};     // _00
-	virtual void* getObject(void*) = 0; // _08
-	virtual void* getNext(void*)   = 0; // _0C
-	virtual void* getStart()       = 0; // _10
-	virtual void* getEnd()         = 0; // _14
+	virtual ~GenericContainer() { }     	// _08 (weak)
+	virtual void* getObject(void*) = 0; 	// _10
+	virtual void* getNext(void*)   = 0; 	// _14
+	virtual void* getStart()       = 0; 	// _18
+	virtual void* getEnd()         = 0; 	// _1C
 };
 
 template <typename T> struct Container : public GenericContainer {
 	inline Container() { _18 = 0; }
 
-	virtual ~Container() { } 	// _00
+	/////////////////// VTABLE
+	virtual ~Container() { } 						// _08 (weak)
 
 	// Wrapper for ::get().
-	virtual void* getObject(void* index) // _08
+	virtual void* getObject(void* index) 			// _10 (weak)
 	{
 		return get(index);
 	}
-	// Gets the object at the given slot index (or null if not occupied).
-	virtual T* get(void*) = 0; // _18
+
+	virtual void* getNext(void*) 	= 0;			// _14
+	virtual void* getStart()		= 0;			// _18
+	virtual void* getEnd()			= 0;			// _1C
+	virtual T* get(void*) 			= 0; 			// _20
 
 	// Gets the object at the given slot index (or null if not occupied)
 	// (actually constrained to taking an int argument, instead of void*).
-	virtual T* getAt(int index) // _1C
+	virtual T* getAt(int index) 					// _24 (weak)
 	{
 		return nullptr;
 	}
 	// Gets the slot count.
-	virtual int getTo() // _20
+	virtual int getTo() 							// _28 (weak)
 	{
 		return 0;
 	}
+	/////////////////// END VTABLE
+
 
 	u8 _18; // _18
-	        // u8 _19[3]; // _19
+
 };
 
 template <typename T> struct ArrayContainer : public Container<T> {
@@ -54,35 +60,43 @@ template <typename T> struct ArrayContainer : public Container<T> {
 		m_objects = nullptr;
 	}
 
-	virtual ~ArrayContainer() { } // _00
+	/////////////////// VTABLE
+	virtual ~ArrayContainer() { } 				// _08 (weak)
 
-	virtual T* get(void* index) // _18
-	{
-		return &m_objects[(s32)index];
-	}
-	virtual void* getNext(void* index) // _0C
+	virtual void* getNext(void* index) 			// _14 (weak)
 	{
 		return (void*)((s32)index + 1);
 	}
-	virtual void* getStart() // _10
+
+	virtual void* getStart() 					// _18 (weak)
 	{
 		return 0;
 	}
-	virtual void* getEnd() // _14
+	
+	virtual void* getEnd() 						// _1C (weak)
 	{
 		return (void*)m_count;
 	}
-	virtual T* getAt(int index) // _1C
+
+	virtual T* get(void* index) 				// _20 (weak)
+	{
+		return &m_objects[(s32)index];
+	}
+
+	virtual T* getAt(int index) 				// _24 (weak)
 	{
 		return &m_objects[index];
 	}
-	virtual int getTo() // _20
+
+	virtual int getTo() 						// _28 (weak)
 	{
 		return m_limit;
 	}
-	virtual void writeObject(Stream&, T&) { } // _24
-	virtual void readObject(Stream&, T&) { }  // _28
-	virtual void write(Stream& output)        // _2C
+
+	virtual void writeObject(Stream&, T&) { } 	// _2C (weak)
+	virtual void readObject(Stream&, T&) { }  	// _30 (weak)
+
+	virtual void write(Stream& output)        	// _34 (weak)
 	{
 		output.textBeginGroup(const_cast<char*>(m_name));
 		output.textWriteTab(output.m_tabCount);
@@ -95,7 +109,8 @@ template <typename T> struct ArrayContainer : public Container<T> {
 		}
 		output.textEndGroup();
 	}
-	virtual void read(Stream& output) // _30
+
+	virtual void read(Stream& output) 			// _38 (weak)
 	{
 		m_limit = output.readInt();
 		alloc(m_limit);
@@ -104,13 +119,15 @@ template <typename T> struct ArrayContainer : public Container<T> {
 			readObject(output, m_objects[i]);
 		}
 	}
-	virtual void alloc(int limit) // _34
+
+	virtual void alloc(int limit) 				// _3C (weak)
 	{
 		m_objects = new T[limit];
 		m_limit   = limit;
 		m_count   = 0;
 	}
-	virtual void addOne(T& object) // _38
+
+	virtual void addOne(T& object) 				// _40 (weak)
 	{
 		int index = m_count;
 		if (index >= m_limit) {
@@ -120,12 +137,15 @@ template <typename T> struct ArrayContainer : public Container<T> {
 		m_count++;
 		arrayObject = object;
 	}
-	virtual void setArray(T* objects, int count) // _3C
+
+	virtual void setArray(T* objects, int count) // _44 (weak)
 	{
 		m_objects = objects;
 		m_limit   = count;
 		m_count   = count;
 	}
+	/////////////////// END VTABLE
+
 
 	// The number of used objects.
 	int m_count; // _1C
@@ -135,12 +155,7 @@ template <typename T> struct ArrayContainer : public Container<T> {
 
 	// Pointer to the array of objects.
 	T* m_objects; // _24
-};
 
-// template <> struct ArrayContainer<int> {
-// 	virtual ~ArrayContainer();
-// 	virtual void alloc(int);
-// 	virtual void write()
-// }
+};
 
 #endif
