@@ -52,14 +52,15 @@ struct _GraphicsParent {
 // Size: 0x2A0
 struct Graphics : public _GraphicsParent {
 	Graphics();
-	virtual void doJ3DDrawInit();   // _00
-	virtual void doJ3DDraw(int);    // _04
-	virtual void doJ3DFrameInit();  // _08
-	virtual void doJ3DAnimation();  // _0C
-	virtual void doJ3DUpdateInit(); // _10
-	virtual void doJ3DSetView(int); // _14
-	virtual void doJ3DViewCalc();   // _18
-	virtual void _1C() = 0;         // _1C
+
+	virtual void doJ3DDrawInit();   // _08 (weak)
+	virtual void doJ3DDraw(int);    // _0C (weak)
+	virtual void doJ3DFrameInit();  // _10 (weak)
+	virtual void doJ3DAnimation();  // _14 (weak)
+	virtual void doJ3DUpdateInit(); // _18 (weak)
+	virtual void doJ3DSetView(int); // _1C (weak)
+	virtual void doJ3DViewCalc();   // _20 (weak)
+	// virtual void _24() = 0;         // _24 - might be fake
 
 	void allocateViewports(int);
 	void addViewport(Viewport*);

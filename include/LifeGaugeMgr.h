@@ -32,7 +32,7 @@ struct LifeGauge {
  * @size{0x48}
  */
 struct LifeGaugeList : public JKRDisposer {
-	virtual ~LifeGaugeList(); // _00
+	virtual ~LifeGaugeList(); // _08 (weak)
 
 	void draw(Graphics&);
 

@@ -10,11 +10,11 @@ struct JKRHeap;
 struct JUTFader;
 
 struct ISection : public JKRDisposer {
-	virtual ~ISection();              // _00
-	virtual void run()           = 0; // _04
-	virtual bool update()        = 0; // _08
-	virtual void draw(Graphics&) = 0; // _0C
-	virtual void init()          = 0; // _10
+	virtual ~ISection();              // _08 (weak)
+	virtual void run()           = 0; // _0C
+	virtual bool update()        = 0; // _10
+	virtual void draw(Graphics&) = 0; // _14
+	virtual void init()          = 0; // _18
 };
 
 struct Section : public ISection {
@@ -27,17 +27,17 @@ struct Section : public ISection {
 	virtual bool update();                           // _10
 	virtual void draw(Graphics&);                    // _14
 	virtual void init();                             // _18
-	virtual void drawInit(Graphics&);                // _1C
-	virtual void drawInit(Graphics&, EDrawInitMode); // _20
-	virtual void doExit();                           // _24
-	virtual bool forceFinish();                      // _28
-	virtual bool forceReset();                       // _2C
-	virtual Section* getCurrentSection();            // _30
-	virtual void doLoadingStart();                   // _34
-	virtual bool doLoading();                        // _38
+	virtual void drawInit(Graphics&);                // _1C (weak)
+	virtual void drawInit(Graphics&, EDrawInitMode); // _20 (weak)
+	virtual void doExit();                           // _24 (weak)
+	virtual bool forceFinish();                      // _28 (weak)
+	virtual bool forceReset();                       // _2C (weak)
+	virtual Section* getCurrentSection();            // _30 (weak)
+	virtual void doLoadingStart();                   // _34 (weak)
+	virtual bool doLoading();                        // _38 (weak)
 	virtual bool doUpdate()        = 0;              // _3C
 	virtual void doDraw(Graphics&) = 0;              // _40
-	virtual bool isFinishable();                     // _44
+	virtual bool isFinishable();                     // _44 (weak)
 
 	bool beginFrame();
 	void beginRender();

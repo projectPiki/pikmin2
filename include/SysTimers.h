@@ -9,7 +9,7 @@
  * @size{0x3C}
  */
 struct TimerInf : public JKRDisposer {
-	virtual ~TimerInf(); // _00
+	virtual ~TimerInf(); // _08 (weak)
 
 	char* m_name; // _18
 	u8 _1C[4];    // _1C
@@ -27,6 +27,9 @@ struct TimerInf : public JKRDisposer {
  */
 struct SysTimers : public CNode {
 	SysTimers();
+
+	virtual ~SysTimers(); // _08 (weak)
+
 	TimerInf* get(int);
 	void reset();
 	void newFrame();

@@ -15,8 +15,8 @@ enum ELightTypeFlag {
 };
 
 struct AmbientLightObj : public CNode {
-	virtual ~AmbientLightObj() {}; // _08
-	                               // virtual void getChildCount(); // _10
+	virtual ~AmbientLightObj() { } // _08 (weak)
+	                               // virtual void getChildCount(); 	// _0C - from CNode
 
 	// _00 VTBL
 
@@ -32,9 +32,9 @@ struct AmbientLightObj : public CNode {
 struct LightObj : public CNode {
 	LightObj(char*, _GXLightID, ELightTypeFlag, JUtility::TColor);
 
-	virtual ~LightObj(); // _08
-	// virtual void getChildCount();            // _0C
-	virtual void update();                     // _10
+	virtual ~LightObj(); // _08 (weak)
+	// virtual void getChildCount();            // _0C - from CNode
+	virtual void update();                     // _10 (weak)
 	virtual void set(Matrixf&);                // _14
 	virtual void drawPos(Graphics&);           // _18
 	virtual void drawPos(Graphics&, Matrixf&); // _1C
@@ -62,9 +62,9 @@ struct LightMgr : public CNode {
 	LightMgr(char*);
 	void registLightObj(LightObj*);
 
-	virtual ~LightMgr() {}; // _08
-	// virtual void getChildCount();        // _0C
-	virtual void update();                 // _10
+	virtual ~LightMgr() { } // _08 (weak)
+	// virtual void getChildCount();        // _0C - from CNode
+	virtual void update();                 // _10 (weak)
 	virtual void set(Graphics&);           // _14
 	virtual void set(Matrixf&);            // _18
 	virtual void drawDebugInfo(Graphics&); // _1C
@@ -82,7 +82,7 @@ struct Mgr : public LightMgr {
 	Mgr();
 	void setCommonProc();
 
-	virtual ~Mgr() {}; // _08
+	virtual ~Mgr() { } // _08
 	// virtual void getChildCount();        // _0C
 	virtual void update();                 // _10
 	virtual void set(Graphics&);           // _14

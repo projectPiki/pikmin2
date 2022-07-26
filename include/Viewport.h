@@ -4,7 +4,6 @@
 #include "Rect.h"
 #include "types.h"
 
-
 struct Camera;
 struct J2DGrafContext;
 struct J2DOrthoGraph;
@@ -13,8 +12,8 @@ struct CNode;
 
 struct Viewport : CNode {
 	Viewport();
-	
-	virtual ~Viewport();		// _08 (weak)
+
+	virtual ~Viewport(); // _08 (weak)
 
 	void draw2dframe(J2DGrafContext&);
 	void getAspect();
