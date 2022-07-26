@@ -5,16 +5,21 @@
 #include "JSystem/J3D/J3DModel.h"
 #include "JSystem/J3D/J3DTevColorAnm.h"
 
+struct J3DModelData;
+
 namespace Sys {
+
+/**
+ * @size{0x8}
+ */
 struct MatBaseAnimation {
-	virtual void onAttachResource(void*) = 0; // _00
-	virtual J3DAnmBase* getAnmBase()     = 0; // _04
-	virtual void set()                   = 0; // _08
-	virtual bool remove()                = 0; // _0C
+	virtual void onAttachResource(void*) = 0; // _08
+	virtual J3DAnmBase* getAnmBase()     = 0; // _0C
+	virtual void set()                   = 0; // _10
+	virtual bool remove()                = 0; // _14
+	// virtual void _10() 				 = 0; // _18 - need to work out what this is
 
-	// virtual void _10() = 0; // _10
-
-	void attachResource(void*, struct J3DModelData*);
+	void attachResource(void*, J3DModelData*);
 	void getFrameMax();
 
 	// VTBL _00
@@ -22,15 +27,15 @@ struct MatBaseAnimation {
 };
 
 /**
- * @size{0x14}
+ * @size{0x18}
  */
 struct MatTevRegAnimation : MatBaseAnimation {
 	MatTevRegAnimation();
 
-	virtual void onAttachResource(void*); // _00
-	virtual J3DAnmBase* getAnmBase();     // _04
-	virtual void set();                   // _08
-	virtual bool remove();                // _0C
+	virtual void onAttachResource(void*); // _08
+	virtual J3DAnmBase* getAnmBase();     // _0C (weak)
+	virtual void set();                   // _10
+	virtual bool remove();                // _14
 
 	J3DAnmTevRegKey* m_anmTevRegKey; // _08
 	J3DTevColorAnm* m_tevColorAnm;   // _10
@@ -43,14 +48,15 @@ struct MatTevRegAnimation : MatBaseAnimation {
 struct MatTexAnimation : MatBaseAnimation {
 	MatTexAnimation();
 
-	virtual void onAttachResource(void*); // _00
-	virtual J3DAnmBase* getAnmBase();     // _04
-	virtual void set();                   // _08
-	virtual bool remove();                // _0C
+	virtual void onAttachResource(void*); // _08
+	virtual J3DAnmBase* getAnmBase();     // _0C (weak)
+	virtual void set();                   // _10
+	virtual bool remove();                // _14
 
 	J3DAnmTextureSRTKey* _08; // _08
-	u32 _0C;
+	u32 _0C;                  // _0C
 };
+
 } // namespace Sys
 
 #endif

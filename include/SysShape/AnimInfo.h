@@ -6,7 +6,9 @@
 
 struct J3DAnmBase;
 struct J3DMtxCalc;
+struct J3DModelData;
 struct JAIAnimeFrameSoundData;
+struct Stream;
 
 namespace SysShape {
 struct AnimMgr;
@@ -15,15 +17,14 @@ struct AnimMgr;
  * @size{0x54}
  */
 struct AnimInfo : public CNode {
-	virtual ~AnimInfo(); // _08
+	virtual ~AnimInfo(); // _08 (weak)
 
-	void attach(struct J3DModelData*, void*);
-	void getAnimKeyByType(unsigned long);
-	void getLastLoopStart(KeyEvent*);
 	void getLowestAnimKey(float);
-
-	void read(struct Stream&);
+	void getLastLoopStart(KeyEvent*);
+	void getAnimKeyByType(unsigned long);
+	void read(Stream&);
 	void readEditor(Stream&);
+	void attach(J3DModelData*, void*);
 
 	J3DAnmBase* m_anm;  // _18
 	J3DMtxCalc* m_calc; // _1C

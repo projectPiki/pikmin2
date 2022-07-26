@@ -3,10 +3,12 @@
 
 struct Matrixf;
 namespace SysShape {
+
 struct MtxObject {
-	virtual Matrixf* getMatrix(int) = 0; // _00
-	virtual bool isModel();              // _04
+	virtual Matrixf* getMatrix(int) = 0; // _08
+	virtual bool isModel();              // _0C (weak)
 };
+
 } // namespace SysShape
 
 #endif

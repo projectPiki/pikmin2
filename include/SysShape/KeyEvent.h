@@ -4,12 +4,17 @@
 #include "CNode.h"
 
 namespace SysShape {
+
+/**
+ * @size{0x20}
+ */
 struct KeyEvent : public CNode {
-	virtual ~KeyEvent();
+	virtual ~KeyEvent(); // _08 (weak)
 
 	f32 m_frame; // _18
 	u32 m_type;  // _1C
 };
+
 } // namespace SysShape
 
 #endif

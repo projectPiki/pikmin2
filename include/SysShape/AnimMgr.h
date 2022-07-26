@@ -17,20 +17,23 @@ struct Model;
  * @size{0x74}
  */
 struct AnimMgr : public CNode {
-	virtual ~AnimMgr(); // _00
+	virtual ~AnimMgr(); // _08 (weak)
 
-	void connectBasArc(char*, char*, JKRFileLoader*);
-	void dump();
 	static AnimMgr* load(char*, J3DModelData*, JKRFileLoader*);
-	static AnimMgr* load(JKRFileLoader*, char*, J3DModelData*, JKRFileLoader*, char*);
+	void dump();
+
 	void load(Stream&, J3DModelData*, JKRFileLoader*, char*);
+	static AnimMgr* load(JKRFileLoader*, char*, J3DModelData*, JKRFileLoader*, char*);
+
 	void read(Stream&);
+	void connectBasArc(char*, char*, JKRFileLoader*);
 	void registerSoundViewer(PSGame::SoundCreatureMgr*);
 
 	Model* m_model;      // _18
 	AnimInfo m_animInfo; // _1C
 	u16 m_count;         // _70
 };
+
 } // namespace SysShape
 
 #endif

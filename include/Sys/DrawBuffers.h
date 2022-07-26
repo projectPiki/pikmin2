@@ -23,10 +23,10 @@ struct DrawBuffer : public CNode {
 
 	DrawBuffer();
 
-	virtual ~DrawBuffer(); // _00
+	virtual ~DrawBuffer(); // _08
 
-	void draw();
 	void create(CreateArg&);
+	void draw();
 	void frameInit();
 
 	BitFlag<unsigned short> _18; // _18
@@ -42,11 +42,11 @@ struct DrawBuffer : public CNode {
 struct DrawBuffers : public CNode {
 	DrawBuffers();
 
-	virtual ~DrawBuffers(); // _00
+	virtual ~DrawBuffers(); // _08
 
 	void allocate(int);
-	void frameInitAll();
 	DrawBuffer* get(int);
+	void frameInitAll();
 
 	DrawBuffer* m_buffers; // _18
 	int m_count;           // _1C

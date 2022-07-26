@@ -5,15 +5,18 @@
 namespace Sys {
 struct MatBaseAnimation;
 
+/**
+ * @size{0xC}
+ */
 struct MatBaseAnimator {
 	MatBaseAnimator();
 
-	virtual void start(Sys::MatBaseAnimation*); // _00
-	virtual void onStart();                     // _04
-	virtual void do_animate(float);             // _08
+	virtual void start(Sys::MatBaseAnimation*); // _08
+	virtual void onStart();                     // _0C (weak)
+	virtual void do_animate(float);             // _10 (weak)
 
-	void animate(float);
 	void setCurrentFrame(float);
+	void animate(float);
 
 	// VTBL _00
 	MatBaseAnimation* m_animation; // _04
@@ -30,18 +33,19 @@ struct MatLoopAnimator : MatBaseAnimator {
 	 */
 	MatLoopAnimator() {};
 
-	virtual void do_animate(float); // _08
+	virtual void do_animate(float); // _10
 };
 
 /**
  * @size{0x10}
  */
 struct MatRepeatAnimator : MatBaseAnimator {
-	virtual void onStart();         // _04
-	virtual void do_animate(float); // _08
+	virtual void onStart();         // _0C
+	virtual void do_animate(float); // _10
 
 	u8 _0C; // _0C
 };
+
 } // namespace Sys
 
 #endif
