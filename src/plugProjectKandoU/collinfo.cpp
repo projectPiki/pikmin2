@@ -319,7 +319,7 @@ Platform::Platform()
  * Address:	........
  * Size:	000008
  */
-void Platform::setTriDivider(Sys::TriDivider* triDivider)
+inline void Platform::setTriDivider(Sys::TriDivider* triDivider)
 {
 	// UNUSED FUNCTION
 	m_triDivider = (Sys::OBBTree*)triDivider;
@@ -338,7 +338,7 @@ Sys::TriDivider* Platform::getTriDivider() { return m_triDivider; }
  * Address:	........
  * Size:	000068
  */
-void Platform::read(Stream& input)
+inline void Platform::read(Stream& input)
 {
 	// UNUSED FUNCTION
 	setTriDivider(new Sys::OBBTree());
@@ -376,10 +376,10 @@ Platform* Platform::clone(Matrixf& matrix)
  * Address:	........
  * Size:	0000E0
  */
-void Platform::load(char* path)
-{
-	// UNUSED FUNCTION
-}
+// void Platform::load(char* path)
+// {
+// 	// UNUSED FUNCTION
+// }
 
 /*
  * load__8PlatformFP13JKRFileLoaderPc
@@ -478,10 +478,10 @@ void PlatAttacher::setMapCodeAll(MapCode::Code& code)
  * Address:	........
  * Size:	000178
  */
-void PlatAttacher::alloc(int, unsigned short*)
-{
-	// UNUSED FUNCTION
-}
+// void PlatAttacher::alloc(int, unsigned short*)
+// {
+// 	// UNUSED FUNCTION
+// }
 
 /*
  * __dt__8PlatformFv
@@ -489,7 +489,8 @@ void PlatAttacher::alloc(int, unsigned short*)
  * Address:	801338D8
  * Size:	000060
  */
-Platform::~Platform() { }
+// WEAK - in Platform.h header
+// Platform::~Platform() { }
 
 /*
  * write__12PlatAttacherFR6Stream
@@ -497,10 +498,10 @@ Platform::~Platform() { }
  * Address:	........
  * Size:	0000D8
  */
-void PlatAttacher::write(Stream& output)
-{
-	// UNUSED FUNCTION
-}
+// void PlatAttacher::write(Stream& output)
+// {
+// 	// UNUSED FUNCTION
+// }
 
 /*
  * read__12PlatAttacherFR6Stream
@@ -605,10 +606,10 @@ Platform* PlatAttacher::getPlatform(int i)
  * Address:	........
  * Size:	000004
  */
-void PlatAttacher::draw(Graphics& gfx, int p2)
-{
-	// UNUSED FUNCTION
-}
+// void PlatAttacher::draw(Graphics& gfx, int p2)
+// {
+// 	// UNUSED FUNCTION
+// }
 
 /*
  * __ct__11AgePlatformFv
@@ -747,7 +748,7 @@ lbl_80133E48:
  * Address:	80133F64
  * Size:	0000F8
  */
-OBBTree::~OBBTree() { }
+// OBBTree::~OBBTree() { }
 
 } // namespace Sys
 
@@ -4328,7 +4329,7 @@ MouthCollPart::MouthCollPart()
  * Address:	80138468
  * Size:	000060
  */
-CollPart::~CollPart() { }
+// CollPart::~CollPart() { }
 
 /*
  * getPosition__13MouthCollPartFR10Vector3<f>
@@ -4375,7 +4376,7 @@ void MouthSlots::alloc(int count)
  * Address:	801385BC
  * Size:	000070
  */
-MouthCollPart::~MouthCollPart() { }
+// MouthCollPart::~MouthCollPart() { }
 
 /*
  * update__10MouthSlotsFv
@@ -4926,6 +4927,7 @@ lbl_80138DC0:
  * Address:	80138DE0
  * Size:	000020
  */
+// WEAK
 int CollPart::getChildCount()
 {
 	/*
@@ -5145,56 +5147,56 @@ lbl_801393D4:
  * Address:	801393F0
  * Size:	000008
  */
-bool CollPart::isMouth() { return false; }
+// bool CollPart::isMouth() { return false; }
 
 /*
  * --INFO--
  * Address:	801393F8
  * Size:	000004
  */
-void CollPart::constructor() { }
+// void CollPart::constructor() { }
 
 /*
  * --INFO--
  * Address:	801393FC
  * Size:	000004
  */
-void CollPart::doAnimation() { }
+// void CollPart::doAnimation() { }
 
 /*
  * --INFO--
  * Address:	80139400
  * Size:	000004
  */
-void CollPart::doEntry() { }
+// void CollPart::doEntry() { }
 
 /*
  * --INFO--
  * Address:	80139404
  * Size:	000004
  */
-void CollPart::doSetView(unsigned long) { }
+// void CollPart::doSetView(unsigned long) { }
 
 /*
  * --INFO--
  * Address:	80139408
  * Size:	000004
  */
-void CollPart::doViewCalc() { }
+// void CollPart::doViewCalc() { }
 
 /*
  * --INFO--
  * Address:	8013940C
  * Size:	000004
  */
-void CollPart::doSimulation(float) { }
+// void CollPart::doSimulation(float) { }
 
 /*
  * --INFO--
  * Address:	80139410
  * Size:	000004
  */
-void CollPart::doDirectDraw(Graphics&) { }
+// void CollPart::doDirectDraw(Graphics&) { }
 
 /*
  * __dt__15CollPartFactoryFv
@@ -5202,14 +5204,14 @@ void CollPart::doDirectDraw(Graphics&) { }
  * Address:	80139414
  * Size:	000070
  */
-CollPartFactory::~CollPartFactory() { }
+// CollPartFactory::~CollPartFactory() { }
 
 /*
  * --INFO--
  * Address:	80139484
  * Size:	000008
  */
-bool MouthCollPart::isMouth() { return true; }
+// bool MouthCollPart::isMouth() { return true; }
 
 namespace Sys {
 

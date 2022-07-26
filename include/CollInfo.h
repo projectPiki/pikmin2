@@ -19,17 +19,22 @@ struct CollPart : public CNode {
 	CollPart();
 	CollPart(SysShape::MtxObject*);
 
-	virtual ~CollPart();                  // _00
-	virtual int getChildCount();          // _04
-	virtual bool isMouth();               // _08
-	virtual void draw(Graphics&);         // _0C
-	virtual void constructor();           // _10
-	virtual void doAnimation();           // _14
-	virtual void doEntry();               // _18
-	virtual void doSetView(u32);          // _1C
-	virtual void doViewCalc();            // _20
-	virtual void doSimulation(float);     // _24
-	virtual void doDirectDraw(Graphics&); // _28
+	////////////// VTABLE
+	virtual ~CollPart() { }               		// _08 (weak)
+	virtual int getChildCount();          		// _0C (weak)
+	virtual bool isMouth() 				  		// _10 (weak)
+	{ 
+		return false; 
+	}               
+	virtual void draw(Graphics&);         		// _14
+	virtual void constructor() { }        		// _18 (weak)
+	virtual void doAnimation() { }        		// _1C (weak)
+	virtual void doEntry() { }            		// _20 (weak)
+	virtual void doSetView(u32) { }       		// _24 (weak)
+	virtual void doViewCalc() { }         		// _28 (weak)
+	virtual void doSimulation(float) { }  		// _2C (weak)
+	virtual void doDirectDraw(Graphics&) { } 	// _30 (weak)
+	////////////// END VTABLE
 
 	void init(SysShape::MtxObject*);
 	/**
@@ -102,14 +107,22 @@ struct CollPart : public CNode {
 };
 
 struct CollPartMgr : public MonoObjectMgr<CollPart> {
+
+	virtual ~CollPartMgr();			// _08 (weak)
+	// virtual void _2C() = 0;		  // _2C - need to work out
+	// virtual void _30() = 0; 		  // _30 - need to work out
+
 	CollPart* createOne(SysShape::MtxObject*);
 };
 
 struct MouthCollPart : public CollPart {
 	MouthCollPart();
 
-	virtual ~MouthCollPart(); // _00
-	virtual bool isMouth();   // _08
+	virtual ~MouthCollPart() { } 		// _08 (weak)
+	virtual bool isMouth() 				// _10 (weak)
+	{ 
+		return true; 
+	}   			
 
 	void copyMatrixTo(Matrixf&);
 	void getPosition(Vector3f&);
@@ -133,8 +146,8 @@ struct MouthSlots {
 struct AgeCollPart : public CollPart {
 	AgeCollPart(SysShape::Model*);
 
-	virtual ~AgeCollPart();       // _00
-	virtual void draw(Graphics&); // _0C
+	virtual ~AgeCollPart();       // _08 (weak)
+	virtual void draw(Graphics&); // _14
 
 	u8 _64; // _64
 };
@@ -146,7 +159,7 @@ struct CollPartFactory : CollPart {
 		read(input, false);
 	}
 
-	virtual ~CollPartFactory(); // _00
+	virtual ~CollPartFactory() { } 		// _08 (weak)
 
 	static CollPartFactory* load(char*);
 	static CollPartFactory* load(JKRFileLoader*, char*);

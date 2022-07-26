@@ -11,7 +11,7 @@
 
 struct Platform : CNode {
 	Platform();
-	virtual ~Platform();
+	virtual ~Platform() { } 	// _08 (weak)
 
 	Sys::TriDivider* getTriDivider();
 	void setMapCodeAll(MapCode::Code&);

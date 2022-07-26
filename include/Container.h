@@ -19,7 +19,7 @@ struct GenericContainer : public CNode {
 template <typename T> struct Container : public GenericContainer {
 	inline Container() { _18 = 0; }
 
-	virtual ~Container() {}; // _00
+	virtual ~Container() { } 	// _00
 
 	// Wrapper for ::get().
 	virtual void* getObject(void* index) // _08

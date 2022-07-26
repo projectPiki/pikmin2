@@ -24,7 +24,7 @@ struct TriDivider : public CNode {
 	 * @reifiedAddress{80133F04}
 	 * @reifiedFile{plugProjectKandoU/collinfo.cpp}
 	 */
-	virtual ~TriDivider() {};                                             // _08 (weak)
+	virtual ~TriDivider() { }                                             // _08 (weak)
 	virtual float getMinY(Vector3f&)                 = 0;                 // _10
 	virtual TriIndexList* findTriLists(Sys::Sphere&) = 0;                 // _14
 	virtual void read(Stream&)                       = 0;                 // _18

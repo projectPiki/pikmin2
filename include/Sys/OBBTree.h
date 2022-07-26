@@ -18,7 +18,7 @@ struct RayIntersectInfo;
 struct OBBTree : TriDivider {
 	OBBTree();
 
-	virtual ~OBBTree();                               // _08 (weak)
+	virtual ~OBBTree() { }                            // _08 (weak)
 	virtual float getMinY(Vector3f&);                 // _10
 	virtual TriIndexList* findTriLists(Sys::Sphere&); // _14 (weak)
 	virtual void read(Stream&);                       // _18
