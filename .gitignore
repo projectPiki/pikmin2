@@ -36,3 +36,4 @@ Debug/
 ctx.c
 out-ok.txt
 out.txt
+.DS_Store
