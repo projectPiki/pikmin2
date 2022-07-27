@@ -250,5 +250,3 @@ if __name__ == "__main__":
         print(f"Successfully wrote to {CSV_FILE_PATH}!")
     except:
         print(f"Failed to write to {CSV_FILE_PATH}!")
-
-    
