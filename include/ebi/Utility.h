@@ -1,13 +1,8 @@
 #ifndef _EBI_UTILITY_H
 #define _EBI_UTILITY_H
 
-#include "types.h"
-
-struct Controller;
-
-namespace JUtility {
-struct TColor;
-}
+#include "Controller.h"
+#include "JSystem/JUtility.h"
 
 namespace ebi {
 struct EUTPadInterface_countNum {
