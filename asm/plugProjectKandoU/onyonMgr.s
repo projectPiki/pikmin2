@@ -5095,8 +5095,8 @@ lbl_801785AC:
 /* 801785D0 00175510  80 6D 94 90 */	lwz r3, playData__4Game@sda21(r13)
 /* 801785D4 00175514  38 80 00 07 */	li r4, 7
 /* 801785D8 00175518  48 06 ED CD */	bl setDemoFlag__Q24Game8PlayDataFi
-/* 801785DC 0017551C  3C 60 80 51 */	lis r3, 0x8051
-/* 801785E0 00175520  85 83 26 2C */	lwzu r12, 0x262c(r3)
+/* 801785DC 0017551C  3C 60 80 51 */	lis r3, zikatuPikis__Q24Game8GameStat@ha
+/* 801785E0 00175520  85 83 26 2C */	lwzu r12, zikatuPikis__Q24Game8GameStat@l(r3)
 /* 801785E4 00175524  81 8C 00 08 */	lwz r12, 8(r12)
 /* 801785E8 00175528  7D 89 03 A6 */	mtctr r12
 /* 801785EC 0017552C  4E 80 04 21 */	bctrl 
