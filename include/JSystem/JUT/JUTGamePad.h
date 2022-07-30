@@ -1,74 +1,90 @@
 #ifndef _JSYSTEM_JUT_JUTGAMEPAD_H
 #define _JSYSTEM_JUT_JUTGAMEPAD_H
 
-#include "BitFlag.h"
 #include "JSystem/JKR/JKRDisposer.h"
-
-struct CButton {
-	#define PRESS_DPAD_LEFT (0x1)
-	#define PRESS_DPAD_RIGHT (0x2)
-	#define PRESS_DPAD_DOWN (0x4)
-	#define PRESS_DPAD_UP (0x8)
-	#define PRESS_Z (0x10)
-	#define PRESS_R (0x20)
-	#define PRESS_L (0x40)
-	#define PRESS_A (0x100)
-	#define PRESS_B (0x200)
-	#define PRESS_X (0x400)
-	#define PRESS_Y (0x800)
-	#define PRESS_START (0x1000)
-
-	BitFlag<u32> m_buttons;
-	BitFlag<u32> m_press;
-	unknown m_input;
-	unknown _0C;
-	float m_analogL;
-	unknown _14;
-	unknown _18;
-	unknown _1C;
-	unknown _20;
-	unknown _24;
-	unknown _28;
-	unknown _2C;
-};
-
-struct CStick {
-	float x;          // _00
-	float z;          // _04
-	float deflection; // _08
-	unknown _0C;      // _0C
-};
-
-struct CRumble {
-	unknown _00; // _00
-	unknown _04; // _04
-	unknown _08; // _08
-	unknown _0C; // _0C
-	unknown _10; // _10
-};
+#include "JSystem/JSupport/JSUList.h"
+#include "Dolphin/pad.h"
 
 struct JUTGamePad : public JKRDisposer {
 	enum EPadPort { PORT_0 = 0, PORT_1, PORT_2, PORT_3, PORT_INVALID = 0xFFFFFFFF };
+	enum EStickMode { MODE_0 = 0, MODE_1 };
+	enum EWhichStick { STICK_0 = 0, STICK_1 };
+
+	struct CButton {
+		void clear();
+		void setRepeat(u32, u32, u32);
+		void update(PADStatus const*, u32);
+
+		u32 m_mask;       // _00
+		u32 m_buttonDown; // _04
+		u32 m_buttonUp;   // _08
+		u8 _0C;           // _0C
+		u8 _0D;           // _0D
+		u8 _0E;           // _0E
+		u8 _0F;           // _0F
+		f32 _10;          // _10
+		f32 _14;          // _14
+		u32 _18;          // _18
+		u32 _1C;          // _1C
+		u32 _20;          // _20
+		u32 _24;          // _24
+		u32 _28;          // _28
+		u32 _2C;          // _2C
+	};
+
+	struct CRumble {
+		void clear(JUTGamePad*);
+		void setEnabled(u32);
+		void stopMotor(int, bool);
+		void update(short);
+
+		u32 _00; // _00
+		u32 _04; // _04
+		u32 _08; // _08
+		u32 _0C; // _0C
+		u32 _10; // _10
+	};
+
+	struct CStick {
+		void clear();
+		void getButton(u32);
+		void update(s8, s8, EStickMode, EWhichStick, u32);
+
+		f32 m_xPos;     // _00
+		f32 m_yPos;     // _04
+		f32 m_stickMag; // _08
+		u16 _0C;        // _0C
+		u8 _0E;         // _0E
+		u8 _0F;         // _0F
+	};
+
+	static JSUPtrList mPadList;
+	static CButton mPadButton[PAD_MAX_CONTROLLERS];
+	static CButton mPadMStick[PAD_MAX_CONTROLLERS];
+	static CButton mPadSStick[PAD_MAX_CONTROLLERS];
+
+	// Tells us how many pads are connected to X port? (mPadAssign[x])
+	static u32* mPadAssign;
+
+	static BOOL sRumbleSupported;
+	static PADStatus mPadStatus[PAD_MAX_CONTROLLERS];
 
 	JUTGamePad(EPadPort);
+	virtual ~JUTGamePad(); // _08
 
-	virtual ~JUTGamePad(); // _00
-
-	CButton m_buttons;    // _18
-	CStick m_analogStick; // _48
-	CStick m_cStick;      // _58
-	CRumble m_rumble;     // _68
-	u16 m_port;           // _7C
-	u16 _7E;              // _7E
-	JSUPtrLink m_ptrLink; // _80
-	unknown _90;          // _90
-	unkptr _94;           // _94
-	unknown _98;          // _98
-	unknown _9C;          // _9C
-	unknown _A0;          // _A0
-	unknown _A4;          // _A4
-	unknown _A8;          // _A8
-	unknown _AC;          // _AC	
+	// _00 VTBL
+	JUTGamePad::CButton m_padButton; // _18
+	JUTGamePad::CStick m_padMStick;  // _48
+	JUTGamePad::CStick m_padSStick;  // _58
+	JUTGamePad::CRumble m_padRumble; // _68
+	u16 m_portNum;                   // _7C, -1 for INVALID
+	u8 m_padError;                   // _7E
+	JSUPtrLink m_padListLink;        // _80
+	u32 _90;                         // _90
+	u32 _94;                         // _94
+	u8 m_toReset;                    // _98
+	u64 m_osResetTime;               // _A0
+	u8 _A8;                          // _A8
 };
 
 #endif
