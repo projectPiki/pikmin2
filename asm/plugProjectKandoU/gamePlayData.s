@@ -1,79 +1,55 @@
 .include "macros.inc"
 .section .rodata  # 0x804732E0 - 0x8049E220
 .balign 8
-.global lbl_80480E40
 lbl_80480E40:
-	.4byte 0x506C6179
-	.4byte 0x44617461
-	.4byte 0x00000000
-.global lbl_80480E4C
+	.asciz "PlayData"
+.balign 4
 lbl_80480E4C:
-	.4byte 0x67616D65
-	.4byte 0x506C6179
-	.4byte 0x44617461
-	.4byte 0x2E637070
-	.4byte 0x00000000
-.global lbl_80480E60
+	.asciz "gamePlayData.cpp"
+.balign 4
 lbl_80480E60:
 	.asciz "P2Assert"
-	.skip 3
-	.4byte 0x706C6179
-	.4byte 0x44617461
-	.4byte 0x00000000
-	.4byte 0x67656E65
-	.4byte 0x7261746F
-	.4byte 0x72436163
-	.4byte 0x68650000
-	.4byte 0x6F74616B
-	.4byte 0x61726120
-	.4byte 0x6F722069
-	.4byte 0x74656D20
-	.4byte 0x21000000
-	.4byte 0x6E6F2074
-	.4byte 0x656B696E
-	.4byte 0x616D6520
-	.4byte 0x666F7220
-	.4byte 0x25640A00
-.global lbl_80480EB0
+.balign 4
+lbl_80480E6C:
+	.asciz "playData"
+.balign 4
+lbl_80480E78:
+	.asciz "generatorCache"
+.balign 4
+lbl_80480E88:
+	.asciz "otakara or item !"
+.balign 4
+lbl_80480E9C:
+	.asciz "no tekiname for %d\n"
+.balign 4
 lbl_80480EB0:
-	.4byte 0x6E6F2063
-	.4byte 0x61766520
-	.4byte 0x696E666F
-	.4byte 0x203A2063
-	.4byte 0x6F757273
-	.4byte 0x65282564
-	.4byte 0x293A5B25
-	.4byte 0x735D0A00
-.global lbl_80480ED0
+	.asciz "no cave info : course(%d):[%s]\n"
+.balign 4
 lbl_80480ED0:
-	.4byte 0x636F7572
-	.4byte 0x73652069
-	.4byte 0x6E646578
-	.4byte 0x20657272
-	.4byte 0x6F723A25
-	.4byte 0x64202867
-	.4byte 0x65744F74
-	.4byte 0x616B6172
-	.4byte 0x614E756D
-	.4byte 0x5F2A290A
-	.4byte 0x00000000
-.global lbl_80480EFC
-lbl_80480EFC:
+	.asciz "course index error:%d (getOtakaraNum_*)\n"
+.balign 4
+lbl_80480EFC: # Shift-JIS
 	.4byte 0x819693B4
 	.4byte 0x8C418FEE
 	.4byte 0x95F18196
-	.4byte 0x00000000
+	.byte 0x00
+.balign 4
+lbl_80480F0C: # Shift-JIS
 	.4byte 0x23206361
 	.4byte 0x76659094
 	.4byte 0x0D0A0000
+.balign 4
+lbl_80480F18: # Shift-JIS
 	.4byte 0x23208CC2
 	.4byte 0x90940D0A
-	.4byte 0x00000000
+	.byte 0x00
+.balign 4
+lbl_80480F24: # Shift-JIS
 	.4byte 0x23208FF3
 	.4byte 0x91D40D0A
-	.4byte 0x00000000
-.global lbl_80480F30
-lbl_80480F30:
+	.byte 0x00
+.balign 4
+lbl_80480F30: # Shift-JIS
 	.4byte 0x835A815B
 	.4byte 0x837582B5
 	.4byte 0x82BD82C6
@@ -83,25 +59,27 @@ lbl_80480F30:
 	.4byte 0x82AA82A0
 	.4byte 0x82A282DC
 	.4byte 0x82B982F1
-	.4byte 0x0A000000
+	.2byte 0x0A00
+.balign 4
 .global "repay_levs__26@unnamed@gamePlayData_cpp@"
 "repay_levs__26@unnamed@gamePlayData_cpp@":
-	.4byte 0x41200000
-	.4byte 0x41A00000
-	.4byte 0x41F00000
-	.4byte 0x42200000
-	.4byte 0x42480000
-	.4byte 0x42700000
-	.4byte 0x428C0000
-	.4byte 0x42A00000
-	.4byte 0x42B40000
-	.4byte 0x42C80000
+	.float 10.0
+	.float 20.0
+	.float 30.0
+	.float 40.0
+	.float 50.0
+	.float 60.0
+	.float 70.0
+	.float 80.0
+	.float 90.0
+	.float 100.0
+.balign 4
+lbl_80480F80: # Shift-JIS
 	.4byte 0x819693B4
 	.4byte 0x8C418FEE
 	.4byte 0x95F1284F
 	.4byte 0x6C642981
-	.4byte 0x96000000
-	.4byte 0x00000000
+	.2byte 0x9600
 
 .section .data, "wa"  # 0x8049E220 - 0x804EFC20
 .balign 8
@@ -120,23 +98,20 @@ __vt__Q24Game17PelletFirstMemory:
 	.4byte firstCarryPellet__Q24Game17PelletFirstMemoryFPQ24Game6Pellet
 	.4byte obtainPellet__Q24Game17PelletFirstMemoryFPQ24Game13BasePelletMgri
 	.4byte losePellet__Q24Game17PelletFirstMemoryFPQ24Game13BasePelletMgri
-	.4byte 0
 
 .section .sbss # 0x80514D80 - 0x80516360
 .balign 8
 .global playData__4Game
 playData__4Game:
-	.skip 0x8
+	.skip 0x4
 
 .section .sdata2, "a"     # 0x80516360 - 0x80520E40
 .balign 8
-.global lbl_805199D0
 lbl_805199D0:
-	.4byte 0x00000000
-.global lbl_805199D4
+	.float 0.0
 lbl_805199D4:
-	.4byte 0x42C80000
-.global lbl_805199D8
+	.float 100.0
+.balign 8
 lbl_805199D8:
 	.4byte 0x43300000
 	.4byte 0x80000000
