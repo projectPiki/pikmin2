@@ -12,6 +12,10 @@
 struct J3DAnmTevRegKey {
 	virtual ~J3DAnmTevRegKey();   // _08 (weak)
 	virtual void getKind() const; // _0C (weak)
+
+	void getTevColorReg(unsigned short, _GXColorS10*) const;
+	void getTevKonstReg(unsigned short, _GXColor*) const;
+	void searchUpdateMaterialID(J3DModelData*);
 };
 
 #endif

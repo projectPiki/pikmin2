@@ -24,6 +24,37 @@ struct JAIBasic {
 	virtual void getMapInfoFxParameter(unsigned long); // _1C
 	virtual void setSeExtParameter(JAISound*);         // _20
 	virtual void setRegisterTrackCallback();           // _24
+
+	void prepareSoundVecT<JAISound>(unsigned long, JAISound**, Vec*, unsigned long, unsigned long, unsigned char);
+	void startSoundVecT<JAISound>(unsigned long, JAISound**, Vec*, unsigned long, unsigned long, unsigned char);
+	void startSoundActorT<JAISound>(unsigned long, JAISound**, JAInter::Actor*, unsigned long, unsigned char);
+	JAIBasic();
+	void initDriver(JKRSolidHeap*, unsigned long, unsigned char);
+	void initInterface(unsigned char);
+	void initInterfaceMain();
+	void initHeap();
+	void initArchive();
+	void initResourcePath();
+	void setCameraInfo(Vec*, Vec*, float (*)[4], unsigned long);
+	void initAudioThread(JKRSolidHeap*, unsigned long, unsigned char);
+	void initCamera();
+	void setInitFileLoadSwitch(unsigned char);
+	void initReadFile();
+	void processFrameWork();
+	void startSoundBasic(unsigned long, JAISound**, JAInter::Actor*, unsigned long, unsigned char, JAInter::SoundInfo*);
+	void startSoundBasic(unsigned long, JAISequence**, JAInter::Actor*, unsigned long, unsigned char, JAInter::SoundInfo*);
+	void startSoundBasic(unsigned long, JAISe**, JAInter::Actor*, unsigned long, unsigned char, JAInter::SoundInfo*);
+	void startSoundBasic(unsigned long, JAIStream**, JAInter::Actor*, unsigned long, unsigned char, JAInter::SoundInfo*);
+	void stopSoundHandle(JAISound*, unsigned long);
+	void stopAllSe(unsigned char);
+	void getSoundOffsetNumberFromID(unsigned long);
+	void setParameterSeqSync(JASTrack*, unsigned short);
+	void stopAudio(unsigned long, bool);
+	void checkAudioStopStatus();
+	void stopCallBack(void*);
+	void startSoundActorReturnHandleT<JAISe>(JAISe**, unsigned long, JAInter::Actor*, unsigned long, unsigned char);
+	void startSoundActorT<JAISe>(unsigned long, JAISe**, JAInter::Actor*, unsigned long, unsigned char);
+	void startSoundVecReturnHandleT<JAISound>(JAISound**, unsigned long, Vec*, unsigned long, unsigned long, unsigned char);
 };
 
 #endif

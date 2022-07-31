@@ -12,20 +12,16 @@
 */
 
 namespace Game {
-namespace StateMachine < Game
-{
-	struct CFSMItem >
-	{
-		virtual void StateMachine < init(CFSMItem*);                    // _08 (weak)
-		virtual void StateMachine < start(CFSMItem*, int, StateArg*);   // _0C (weak)
-		virtual void StateMachine < exec(CFSMItem*);                    // _10 (weak)
-		virtual void StateMachine < transit(CFSMItem*, int, StateArg*); // _14 (weak)
-	};
-} // namespace Game
+struct StateMachine<Game::CFSMItem> {
+	virtual void StateMachine<CFSMItem>::init(CFSMItem*);                    // _08 (weak)
+	virtual void StateMachine<CFSMItem>::start(CFSMItem*, int, StateArg*);   // _0C (weak)
+	virtual void StateMachine<CFSMItem>::exec(CFSMItem*);                    // _10 (weak)
+	virtual void StateMachine<CFSMItem>::transit(CFSMItem*, int, StateArg*); // _14 (weak)
+};
 } // namespace Game
 
 namespace Game {
-struct CItemFSM : public CFSMItem > {
+struct CItemFSM : public StateMachine<Game::CFSMItem> {
 };
 } // namespace Game
 

@@ -72,6 +72,12 @@ struct JKRSolidHeap : public JKRHeap {
 	virtual void do_getTotalFreeSize();                                               // _48 (weak)
 	virtual void state_register(JKRHeap::TState*, unsigned long) const;               // _54
 	virtual void state_compare(const JKRHeap::TState&, const JKRHeap::TState&) const; // _58
+
+	void create(unsigned long, JKRHeap*, bool);
+	JKRSolidHeap(void*, unsigned long, JKRHeap*, bool);
+	void adjustSize();
+	void allocFromHead(unsigned long, int);
+	void allocFromTail(unsigned long, int);
 };
 
 #endif

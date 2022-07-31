@@ -21,24 +21,20 @@ struct CNode {
 	virtual void getChildCount(); // _0C
 };
 
-namespace Container < Game
-{
-	struct Creature >
-	{
-		virtual ~Creature > ();        // _08 (weak)
-		virtual void _0C() = 0;        // _0C
-		virtual void getObject(void*); // _10 (weak)
-		virtual void getNext(void*);   // _14
-		virtual void getStart();       // _18
-		virtual void getEnd();         // _1C
-		virtual void get(void*);       // _20
-		virtual void getAt(int);       // _24 (weak)
-		virtual void getTo();          // _28 (weak)
-	};
-} // namespace Game
+struct Container<Game::Creature> {
+	virtual ~Container<Creature>(); // _08 (weak)
+	virtual void _0C() = 0;         // _0C
+	virtual void getObject(void*);  // _10 (weak)
+	virtual void getNext(void*);    // _14
+	virtual void getStart();        // _18
+	virtual void getEnd();          // _1C
+	virtual void get(void*);        // _20
+	virtual void getAt(int);        // _24 (weak)
+	virtual void getTo();           // _28 (weak)
+};
 
 namespace Game {
-struct CPlate : public CNode, public Creature > {
+struct CPlate : public CNode, public Container<Game::Creature> {
 	virtual ~CPlate();           // _08 (weak)
 	virtual void getNext(void*); // _14
 	virtual void getStart();     // _18

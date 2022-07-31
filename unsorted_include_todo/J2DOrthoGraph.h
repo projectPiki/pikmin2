@@ -29,6 +29,11 @@ struct J2DOrthoGraph : public J2DGrafContext {
 	virtual void setPort();           // _14
 	virtual void getGrafType() const; // _20 (weak)
 	virtual void setLookat();         // _24
+
+	J2DOrthoGraph();
+	J2DOrthoGraph(float, float, float, float, float, float);
+	void setOrtho(const JGeometry::TBox2<float>&, float, float);
+	void scissorBounds(JGeometry::TBox2<float>*, const JGeometry::TBox2<float>*);
 };
 
 #endif

@@ -21,25 +21,30 @@
 */
 
 namespace Game {
-namespace FSMState < Game
-{
-	namespace ItemPlant {
-	struct Item >
-	{
-		virtual void init(Item*, StateArg*);                         // _08
-		virtual void exec(Item*);                                    // _0C
-		virtual void cleanup(Item*);                                 // _10
-		virtual void FSMState < resume(Item*);                       // _14 (weak)
-		virtual void FSMState < restart(Item*);                      // _18 (weak)
-		virtual void FSMState < transit(Item*, int, StateArg*);      // _1C (weak)
-		virtual void onDamage(Item*, float);                         // _20
-		virtual void onKeyEvent(Item*, const SysShape::KeyEvent&);   // _24
-		virtual void ItemState < onBounce(Item*, Sys::Triangle*);    // _28 (weak)
-		virtual void ItemState < onPlatCollision(Item*, PlatEvent&); // _2C (weak)
-		virtual void ItemState < onCollision(Item*, CollEvent&);     // _30 (weak)
-	};
-	} // namespace ItemPlant
+struct FSMState<Game::ItemPlant::Item> {
+	virtual void init(Item*, StateArg*);                                               // _08
+	virtual void exec(Item*);                                                          // _0C
+	virtual void cleanup(Item*);                                                       // _10
+	virtual void FSMState<ItemPlant::Item>::resume(ItemPlant::Item*);                  // _14 (weak)
+	virtual void FSMState<ItemPlant::Item>::restart(ItemPlant::Item*);                 // _18 (weak)
+	virtual void FSMState<ItemPlant::Item>::transit(ItemPlant::Item*, int, StateArg*); // _1C (weak)
+};
 } // namespace Game
+
+namespace Game {
+struct ItemState<Game::ItemPlant::Item> {
+	virtual void init(Item*, StateArg*);                                                    // _08
+	virtual void exec(Item*);                                                               // _0C
+	virtual void cleanup(Item*);                                                            // _10
+	virtual void _14() = 0;                                                                 // _14
+	virtual void _18() = 0;                                                                 // _18
+	virtual void _1C() = 0;                                                                 // _1C
+	virtual void onDamage(Item*, float);                                                    // _20
+	virtual void onKeyEvent(Item*, const SysShape::KeyEvent&);                              // _24
+	virtual void ItemState<ItemPlant::Item>::onBounce(ItemPlant::Item*, Sys::Triangle*);    // _28 (weak)
+	virtual void ItemState<ItemPlant::Item>::onPlatCollision(ItemPlant::Item*, PlatEvent&); // _2C (weak)
+	virtual void ItemState<ItemPlant::Item>::onCollision(ItemPlant::Item*, CollEvent&);     // _30 (weak)
+};
 } // namespace Game
 
 namespace Game {
@@ -63,7 +68,7 @@ struct State {
 
 namespace Game {
 namespace ItemPlant {
-struct KareruState : public Item >, public State {
+struct KareruState : public FSMState<Game::ItemPlant::Item>, public ItemState<Game::ItemPlant::Item>, public State {
 	virtual void init(Item*, StateArg*);                       // _08
 	virtual void exec(Item*);                                  // _0C
 	virtual void cleanup(Item*);                               // _10

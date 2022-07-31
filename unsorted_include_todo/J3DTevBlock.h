@@ -114,6 +114,8 @@ struct J3DTevBlock {
 	virtual void setTexNoOffset(unsigned long);                                  // _D0 (weak)
 	virtual void setTevRegOffset(unsigned long);                                 // _D4 (weak)
 	virtual ~J3DTevBlock();                                                      // _D8 (weak)
+
+	void indexToPtr_private(unsigned long);
 };
 
 #endif

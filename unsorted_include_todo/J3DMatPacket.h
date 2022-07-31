@@ -14,6 +14,12 @@ struct J3DMatPacket {
 	virtual void entry(J3DDrawBuffer*); // _08 (weak)
 	virtual void draw();                // _0C
 	virtual ~J3DMatPacket();            // _10
+
+	J3DMatPacket();
+	void addShapePacket(J3DShapePacket*);
+	void beginDiff();
+	void endDiff();
+	void isSame(J3DMatPacket*) const;
 };
 
 #endif

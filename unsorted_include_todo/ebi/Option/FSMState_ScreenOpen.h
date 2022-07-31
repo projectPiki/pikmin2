@@ -25,25 +25,19 @@ struct FSMState {
 } // namespace ebi
 
 namespace Game {
-namespace FSMState < ebi
-{
-	namespace Option {
-	struct TMgr >
-	{
-		virtual void _08() = 0;                           // _08
-		virtual void _0C() = 0;                           // _0C
-		virtual void cleanup(ebi::TMgr*);                 // _10 (weak)
-		virtual void resume(ebi::TMgr*);                  // _14 (weak)
-		virtual void restart(ebi::TMgr*);                 // _18 (weak)
-		virtual void transit(ebi::TMgr*, int, StateArg*); // _1C (weak)
-	};
-	} // namespace Option
-} // namespace ebi
+struct FSMState<ebi::Option::TMgr> {
+	virtual void _08() = 0;                                   // _08
+	virtual void _0C() = 0;                                   // _0C
+	virtual void cleanup(ebi::Option::TMgr*);                 // _10 (weak)
+	virtual void resume(ebi::Option::TMgr*);                  // _14 (weak)
+	virtual void restart(ebi::Option::TMgr*);                 // _18 (weak)
+	virtual void transit(ebi::Option::TMgr*, int, StateArg*); // _1C (weak)
+};
 } // namespace Game
 
 namespace ebi {
 namespace Option {
-struct FSMState_ScreenOpen : public FSMState, public TMgr > {
+struct FSMState_ScreenOpen : public FSMState, public FSMState<ebi::Option::TMgr> {
 	virtual void do_init(TMgr*, Game::StateArg*); // _20
 	virtual void do_exec(TMgr*);                  // _24
 };

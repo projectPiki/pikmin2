@@ -54,59 +54,53 @@
 */
 
 namespace Game {
-namespace FixedSizeItemMgr < Game
-{
-	namespace ItemHoney {
-	struct Item >
-	{
-		virtual void FixedSizeItemMgr < doAnimation();                               // _08 (weak)
-		virtual void FixedSizeItemMgr < doEntry();                                   // _0C (weak)
-		virtual void FixedSizeItemMgr < doSetView(int);                              // _10 (weak)
-		virtual void FixedSizeItemMgr < doViewCalc();                                // _14 (weak)
-		virtual void FixedSizeItemMgr < doSimulation(float);                         // _18 (weak)
-		virtual void FixedSizeItemMgr < doDirectDraw(Graphics&);                     // _1C (weak)
-		virtual void _20() = 0;                                                      // _20
-		virtual void _24() = 0;                                                      // _24
-		virtual void _28() = 0;                                                      // _28
-		virtual void _2C() = 0;                                                      // _2C
-		virtual void _30() = 0;                                                      // _30
-		virtual void _34() = 0;                                                      // _34
-		virtual void FixedSizeItemMgr < initDependency();                            // _38 (weak)
-		virtual void FixedSizeItemMgr < killAll();                                   // _3C (weak)
-		virtual void _40() = 0;                                                      // _40
-		virtual void _44() = 0;                                                      // _44
-		virtual void onLoadResources();                                              // _48
-		virtual void _4C() = 0;                                                      // _4C
-		virtual void _50() = 0;                                                      // _50
-		virtual void _54() = 0;                                                      // _54
-		virtual void generatorGetID();                                               // _58 (weak)
-		virtual void generatorBirth(Vector3<float>&, Vector3<float>&, GenItemParm*); // _5C
-		virtual void _60() = 0;                                                      // _60
-		virtual void _64() = 0;                                                      // _64
-		virtual void _68() = 0;                                                      // _68
-		virtual void _6C() = 0;                                                      // _6C
-		virtual void _70() = 0;                                                      // _70
-		virtual void _74() = 0;                                                      // _74
-		virtual void _78() = 0;                                                      // _78
-		virtual void _7C() = 0;                                                      // _7C
-		virtual void _80() = 0;                                                      // _80
-		virtual void getObject(void*);                                               // _84 (weak)
-		virtual void _88() = 0;                                                      // _88
-		virtual void _8C() = 0;                                                      // _8C
-		virtual void _90() = 0;                                                      // _90
-		virtual void _94() = 0;                                                      // _94
-		virtual void getAt(int);                                                     // _98 (weak)
-		virtual void getTo();                                                        // _9C (weak)
-		virtual void onCreateModel(SysShape::Model*);                                // _A0
-		virtual void birth();                                                        // _A4
-		virtual void FixedSizeItemMgr < kill(Item*);                                 // _A8 (weak)
-		virtual void FixedSizeItemMgr < get(void*);                                  // _AC (weak)
-		virtual void FixedSizeItemMgr < getNext(void*);                              // _B0 (weak)
-		virtual void FixedSizeItemMgr < getStart();                                  // _B4 (weak)
-		virtual void FixedSizeItemMgr < getEnd();                                    // _B8 (weak)
-	};
-	} // namespace ItemHoney
-} // namespace Game
+struct FixedSizeItemMgr<Game::ItemHoney::Item> {
+	virtual void FixedSizeItemMgr<ItemHoney::Item>::doAnimation();               // _08 (weak)
+	virtual void FixedSizeItemMgr<ItemHoney::Item>::doEntry();                   // _0C (weak)
+	virtual void FixedSizeItemMgr<ItemHoney::Item>::doSetView(int);              // _10 (weak)
+	virtual void FixedSizeItemMgr<ItemHoney::Item>::doViewCalc();                // _14 (weak)
+	virtual void FixedSizeItemMgr<ItemHoney::Item>::doSimulation(float);         // _18 (weak)
+	virtual void FixedSizeItemMgr<ItemHoney::Item>::doDirectDraw(Graphics&);     // _1C (weak)
+	virtual void _20() = 0;                                                      // _20
+	virtual void _24() = 0;                                                      // _24
+	virtual void _28() = 0;                                                      // _28
+	virtual void _2C() = 0;                                                      // _2C
+	virtual void _30() = 0;                                                      // _30
+	virtual void _34() = 0;                                                      // _34
+	virtual void FixedSizeItemMgr<ItemHoney::Item>::initDependency();            // _38 (weak)
+	virtual void FixedSizeItemMgr<ItemHoney::Item>::killAll();                   // _3C (weak)
+	virtual void _40() = 0;                                                      // _40
+	virtual void _44() = 0;                                                      // _44
+	virtual void onLoadResources();                                              // _48
+	virtual void _4C() = 0;                                                      // _4C
+	virtual void _50() = 0;                                                      // _50
+	virtual void _54() = 0;                                                      // _54
+	virtual void generatorGetID();                                               // _58 (weak)
+	virtual void generatorBirth(Vector3<float>&, Vector3<float>&, GenItemParm*); // _5C
+	virtual void _60() = 0;                                                      // _60
+	virtual void _64() = 0;                                                      // _64
+	virtual void _68() = 0;                                                      // _68
+	virtual void _6C() = 0;                                                      // _6C
+	virtual void _70() = 0;                                                      // _70
+	virtual void _74() = 0;                                                      // _74
+	virtual void _78() = 0;                                                      // _78
+	virtual void _7C() = 0;                                                      // _7C
+	virtual void _80() = 0;                                                      // _80
+	virtual void _84() = 0;                                                      // _84
+	virtual void _88() = 0;                                                      // _88
+	virtual void _8C() = 0;                                                      // _8C
+	virtual void _90() = 0;                                                      // _90
+	virtual void _94() = 0;                                                      // _94
+	virtual void _98() = 0;                                                      // _98
+	virtual void _9C() = 0;                                                      // _9C
+	virtual void onCreateModel(SysShape::Model*);                                // _A0
+	virtual void birth();                                                        // _A4
+	virtual void FixedSizeItemMgr<ItemHoney::Item>::kill(ItemHoney::Item*);      // _A8 (weak)
+	virtual void FixedSizeItemMgr<ItemHoney::Item>::get(void*);                  // _AC (weak)
+	virtual void FixedSizeItemMgr<ItemHoney::Item>::getNext(void*);              // _B0 (weak)
+	virtual void FixedSizeItemMgr<ItemHoney::Item>::getStart();                  // _B4 (weak)
+	virtual void FixedSizeItemMgr<ItemHoney::Item>::getEnd();                    // _B8 (weak)
+};
 } // namespace Game
 
 struct GenericObjectMgr {
@@ -190,9 +184,54 @@ struct CNode {
 	virtual void getChildCount();                                                // _80
 };
 
+struct Container<Game::ItemHoney::Item> {
+	virtual void _08() = 0;                                                      // _08
+	virtual void _0C() = 0;                                                      // _0C
+	virtual void _10() = 0;                                                      // _10
+	virtual void _14() = 0;                                                      // _14
+	virtual void _18() = 0;                                                      // _18
+	virtual void _1C() = 0;                                                      // _1C
+	virtual void _20() = 0;                                                      // _20
+	virtual void _24() = 0;                                                      // _24
+	virtual void _28() = 0;                                                      // _28
+	virtual void _2C() = 0;                                                      // _2C
+	virtual void _30() = 0;                                                      // _30
+	virtual void _34() = 0;                                                      // _34
+	virtual void _38() = 0;                                                      // _38
+	virtual void _3C() = 0;                                                      // _3C
+	virtual void _40() = 0;                                                      // _40
+	virtual void _44() = 0;                                                      // _44
+	virtual void onLoadResources();                                              // _48
+	virtual void _4C() = 0;                                                      // _4C
+	virtual void _50() = 0;                                                      // _50
+	virtual void _54() = 0;                                                      // _54
+	virtual void generatorGetID();                                               // _58 (weak)
+	virtual void generatorBirth(Vector3<float>&, Vector3<float>&, GenItemParm*); // _5C
+	virtual void _60() = 0;                                                      // _60
+	virtual void _64() = 0;                                                      // _64
+	virtual void _68() = 0;                                                      // _68
+	virtual void _6C() = 0;                                                      // _6C
+	virtual void _70() = 0;                                                      // _70
+	virtual void _74() = 0;                                                      // _74
+	virtual void _78() = 0;                                                      // _78
+	virtual void _7C() = 0;                                                      // _7C
+	virtual void _80() = 0;                                                      // _80
+	virtual void getObject(void*);                                               // _84 (weak)
+	virtual void _88() = 0;                                                      // _88
+	virtual void _8C() = 0;                                                      // _8C
+	virtual void _90() = 0;                                                      // _90
+	virtual void _94() = 0;                                                      // _94
+	virtual void getAt(int);                                                     // _98 (weak)
+	virtual void getTo();                                                        // _9C (weak)
+};
+
 namespace Game {
 namespace ItemHoney {
-struct Mgr : public Item >, public GenericObjectMgr, public BaseItemMgr, public CNode {
+struct Mgr : public FixedSizeItemMgr<Game::ItemHoney::Item>,
+             public GenericObjectMgr,
+             public BaseItemMgr,
+             public CNode,
+             public Container<Game::ItemHoney::Item> {
 	virtual void onLoadResources();                                              // _48
 	virtual void generatorGetID();                                               // _58 (weak)
 	virtual void generatorBirth(Vector3<float>&, Vector3<float>&, GenItemParm*); // _5C

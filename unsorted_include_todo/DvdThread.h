@@ -12,6 +12,13 @@
 struct DvdThread {
 	virtual ~DvdThread(); // _08 (weak)
 	virtual void run();   // _0C
+
+	DvdThread(unsigned long, int, int);
+	void loadArchive(DvdThreadCommand*);
+	void loadFile(DvdThreadCommand*);
+	void sendCommand(DvdThreadCommand*);
+	void sync(DvdThreadCommand*, DvdThread::ESyncBlockFlag);
+	void syncAll(DvdThread::ESyncBlockFlag);
 };
 
 #endif

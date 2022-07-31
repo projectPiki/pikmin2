@@ -36,6 +36,12 @@ struct JKRFileLoader {
 	virtual void _34() = 0;   // _34
 	virtual void _38() = 0;   // _38
 	virtual void _3C() = 0;   // _3C
+
+	JKRFileLoader();
+	void getGlbResource(const char*);
+	void getGlbResource(const char*, JKRFileLoader*);
+	void findVolume(const char**);
+	void fetchVolumeName(char*, long, const char*);
 };
 
 #endif

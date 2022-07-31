@@ -12,6 +12,10 @@
 struct JASTaskThread {
 	virtual ~JASTaskThread(); // _08
 	virtual void run();       // _0C
+
+	JASTaskThread(int, int, unsigned long);
+	void sendCmdMsg(void (*)(void*), const void*, unsigned long);
+	void sendCmdMsg(void (*)(void*), void*);
 };
 
 #endif

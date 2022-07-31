@@ -12,6 +12,15 @@
 struct JKRDecomp {
 	virtual ~JKRDecomp(); // _08
 	virtual void run();   // _0C
+
+	void create(long);
+	JKRDecomp(long);
+	void sendCommand(JKRDecompCommand*);
+	void orderSync(unsigned char*, unsigned char*, unsigned long, unsigned long);
+	void decode(unsigned char*, unsigned char*, unsigned long, unsigned long);
+	void decodeSZP(unsigned char*, unsigned char*, unsigned long, unsigned long);
+	void decodeSZS(unsigned char*, unsigned char*, unsigned long, unsigned long);
+	void checkCompressed(unsigned char*);
 };
 
 #endif

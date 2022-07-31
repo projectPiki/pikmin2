@@ -15,6 +15,8 @@ struct GenItemParm {
 } // namespace Game
 
 struct GenCaveParm : public GenItemParm {
+
+	GenCaveParm();
 };
 
 #endif

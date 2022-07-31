@@ -24,6 +24,8 @@ struct HeapInfo : public Node {
 	virtual void _14() = 0; // _14
 	virtual void _18() = 0; // _18
 	virtual ~HeapInfo();    // _20 (weak)
+
+	void search(HeapInfo*);
 };
 
 #endif

@@ -13,21 +13,17 @@
 */
 
 namespace efx {
-namespace TSyncGroup3 < efx
-{
-	struct TChasePosPosLocalZScale >
-	{
-		virtual void TSyncGroup3 < create(Arg*);       // _08 (weak)
-		virtual void TSyncGroup3 < forceKill();        // _0C (weak)
-		virtual void TSyncGroup3 < fade();             // _10 (weak)
-		virtual void TSyncGroup3 < startDemoDrawOff(); // _14 (weak)
-		virtual void TSyncGroup3 < endDemoDrawOn();    // _18 (weak)
-	};
-} // namespace efx
+struct TSyncGroup3<efx::TChasePosPosLocalZScale> {
+	virtual void TSyncGroup3<TChasePosPosLocalZScale>::create(Arg*);       // _08 (weak)
+	virtual void TSyncGroup3<TChasePosPosLocalZScale>::forceKill();        // _0C (weak)
+	virtual void TSyncGroup3<TChasePosPosLocalZScale>::fade();             // _10 (weak)
+	virtual void TSyncGroup3<TChasePosPosLocalZScale>::startDemoDrawOff(); // _14 (weak)
+	virtual void TSyncGroup3<TChasePosPosLocalZScale>::endDemoDrawOn();    // _18 (weak)
+};
 } // namespace efx
 
 namespace efx {
-struct TChasePosPosLocalZScale3 : public TChasePosPosLocalZScale > {
+struct TChasePosPosLocalZScale3 : public TSyncGroup3<efx::TChasePosPosLocalZScale> {
 
 	TChasePosPosLocalZScale3(Vector3<float>*, Vector3<float>*, float, unsigned short, unsigned short, unsigned short);
 	void setPosptr(Vector3<float>*, Vector3<float>*);

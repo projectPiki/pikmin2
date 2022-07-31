@@ -151,6 +151,12 @@ struct JAISe : public JAISound {
 	virtual void setSeDistanceFir(unsigned char);                          // _E8
 	virtual void setSeDistanceDolby(unsigned char);                        // _EC
 	virtual void setSePositionDopplar();                                   // _F0
+
+	JAISe();
+	void getSeCategoryNumber();
+	void setSeInterVolume(unsigned char, float, unsigned long, unsigned char);
+	void setSeInterPan(unsigned char, float, unsigned long, unsigned char);
+	void setSeInterDolby(unsigned char, float, unsigned long, unsigned char);
 };
 
 #endif

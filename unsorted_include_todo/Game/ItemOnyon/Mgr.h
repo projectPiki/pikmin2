@@ -124,54 +124,50 @@ struct CNode {
 	virtual void getChildCount();                                                // _80
 };
 
-namespace Container < Game
-{
-	struct Onyon >
-	{
-		virtual void doAnimation();                                                  // _08 (weak)
-		virtual void doEntry();                                                      // _0C (weak)
-		virtual void doSetView(int);                                                 // _10 (weak)
-		virtual void doViewCalc();                                                   // _14 (weak)
-		virtual void doSimulation(float);                                            // _18 (weak)
-		virtual void doDirectDraw(Graphics&);                                        // _1C (weak)
-		virtual void _20() = 0;                                                      // _20
-		virtual void _24() = 0;                                                      // _24
-		virtual void _28() = 0;                                                      // _28
-		virtual void _2C() = 0;                                                      // _2C
-		virtual void _30() = 0;                                                      // _30
-		virtual void _34() = 0;                                                      // _34
-		virtual void initDependency();                                               // _38
-		virtual void _3C() = 0;                                                      // _3C
-		virtual void _40() = 0;                                                      // _40
-		virtual void setupSoundViewerAndBas();                                       // _44
-		virtual void _48() = 0;                                                      // _48
-		virtual void _4C() = 0;                                                      // _4C
-		virtual void _50() = 0;                                                      // _50
-		virtual void _54() = 0;                                                      // _54
-		virtual void generatorGetID();                                               // _58 (weak)
-		virtual void generatorBirth(Vector3<float>&, Vector3<float>&, GenItemParm*); // _5C
-		virtual void generatorWrite(Stream&, GenItemParm*);                          // _60
-		virtual void generatorRead(Stream&, GenItemParm*, unsigned long);            // _64
-		virtual void generatorLocalVersion();                                        // _68 (weak)
-		virtual void generatorGetShape(GenItemParm*);                                // _6C
-		virtual void generatorNewItemParm();                                         // _70
-		virtual void _74() = 0;                                                      // _74
-		virtual void _78() = 0;                                                      // _78
-		virtual void _7C() = 0;                                                      // _7C
-		virtual void _80() = 0;                                                      // _80
-		virtual void getObject(void*);                                               // _84 (weak)
-		virtual void _88() = 0;                                                      // _88
-		virtual void _8C() = 0;                                                      // _8C
-		virtual void _90() = 0;                                                      // _90
-		virtual void _94() = 0;                                                      // _94
-		virtual void getAt(int);                                                     // _98 (weak)
-		virtual void getTo();                                                        // _9C (weak)
-	};
-} // namespace Game
+struct Container<Game::Onyon> {
+	virtual void doAnimation();                                                  // _08 (weak)
+	virtual void doEntry();                                                      // _0C (weak)
+	virtual void doSetView(int);                                                 // _10 (weak)
+	virtual void doViewCalc();                                                   // _14 (weak)
+	virtual void doSimulation(float);                                            // _18 (weak)
+	virtual void doDirectDraw(Graphics&);                                        // _1C (weak)
+	virtual void _20() = 0;                                                      // _20
+	virtual void _24() = 0;                                                      // _24
+	virtual void _28() = 0;                                                      // _28
+	virtual void _2C() = 0;                                                      // _2C
+	virtual void _30() = 0;                                                      // _30
+	virtual void _34() = 0;                                                      // _34
+	virtual void initDependency();                                               // _38
+	virtual void _3C() = 0;                                                      // _3C
+	virtual void _40() = 0;                                                      // _40
+	virtual void setupSoundViewerAndBas();                                       // _44
+	virtual void _48() = 0;                                                      // _48
+	virtual void _4C() = 0;                                                      // _4C
+	virtual void _50() = 0;                                                      // _50
+	virtual void _54() = 0;                                                      // _54
+	virtual void generatorGetID();                                               // _58 (weak)
+	virtual void generatorBirth(Vector3<float>&, Vector3<float>&, GenItemParm*); // _5C
+	virtual void generatorWrite(Stream&, GenItemParm*);                          // _60
+	virtual void generatorRead(Stream&, GenItemParm*, unsigned long);            // _64
+	virtual void generatorLocalVersion();                                        // _68 (weak)
+	virtual void generatorGetShape(GenItemParm*);                                // _6C
+	virtual void generatorNewItemParm();                                         // _70
+	virtual void _74() = 0;                                                      // _74
+	virtual void _78() = 0;                                                      // _78
+	virtual void _7C() = 0;                                                      // _7C
+	virtual void _80() = 0;                                                      // _80
+	virtual void getObject(void*);                                               // _84 (weak)
+	virtual void _88() = 0;                                                      // _88
+	virtual void _8C() = 0;                                                      // _8C
+	virtual void _90() = 0;                                                      // _90
+	virtual void _94() = 0;                                                      // _94
+	virtual void getAt(int);                                                     // _98 (weak)
+	virtual void getTo();                                                        // _9C (weak)
+};
 
 namespace Game {
 namespace ItemOnyon {
-struct Mgr : public GenericObjectMgr, public BaseItemMgr, public CNode, public Onyon > {
+struct Mgr : public GenericObjectMgr, public BaseItemMgr, public CNode, public Container<Game::Onyon> {
 	virtual void doAnimation();                                                  // _08 (weak)
 	virtual void doEntry();                                                      // _0C (weak)
 	virtual void doSetView(int);                                                 // _10 (weak)

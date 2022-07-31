@@ -16,6 +16,8 @@ struct JASDrumSet {
 	virtual void getParam(int, int, JASInstParam*) const; // _0C
 	virtual void getType() const;                         // _10 (weak)
 	virtual void _14() = 0;                               // _14
+
+	void getPerc(int);
 };
 
 #endif

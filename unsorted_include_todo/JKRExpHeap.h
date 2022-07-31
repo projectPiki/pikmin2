@@ -75,6 +75,20 @@ struct JKRExpHeap : public JKRHeap {
 	virtual void do_getCurrentGroupId();                                              // _50 (weak)
 	virtual void state_register(JKRHeap::TState*, unsigned long) const;               // _54
 	virtual void state_compare(const JKRHeap::TState&, const JKRHeap::TState&) const; // _58
+
+	void createRoot(int, bool);
+	void create(unsigned long, JKRHeap*, bool);
+	JKRExpHeap(void*, unsigned long, JKRHeap*, bool);
+	void allocFromHead(unsigned long, int);
+	void allocFromHead(unsigned long);
+	void allocFromTail(unsigned long, int);
+	void allocFromTail(unsigned long);
+	void freeGroup(unsigned char);
+	void appendUsedList(JKRExpHeap::CMemBlock*);
+	void setFreeBlock(JKRExpHeap::CMemBlock*, JKRExpHeap::CMemBlock*, JKRExpHeap::CMemBlock*);
+	void removeFreeBlock(JKRExpHeap::CMemBlock*);
+	void recycleFreeBlock(JKRExpHeap::CMemBlock*);
+	void joinTwoBlocks(JKRExpHeap::CMemBlock*);
 };
 
 #endif

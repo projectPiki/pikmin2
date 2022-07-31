@@ -17,6 +17,12 @@ struct J3DPacket {
 struct J3DShapePacket : public J3DPacket {
 	virtual void draw();       // _0C
 	virtual ~J3DShapePacket(); // _10
+
+	J3DShapePacket();
+	void calcDifferedBufferSize(unsigned long);
+	void newDifferedDisplayList(unsigned long);
+	void newDifferedTexMtx(J3DTexDiffFlag);
+	void drawFast();
 };
 
 #endif

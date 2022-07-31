@@ -27,23 +27,19 @@
 */
 
 namespace Game {
-namespace FSMState < Game
-{
-	struct VsGameSection >
-	{
-		virtual void Vsinit(VsGameSection*, StateArg*);                  // _08
-		virtual void Vsexec(VsGameSection*);                             // _0C
-		virtual void Vscleanup(VsGameSection*);                          // _10
-		virtual void FSMState < resume(VsGameSection*);                  // _14 (weak)
-		virtual void FSMState < restart(VsGameSection*);                 // _18 (weak)
-		virtual void FSMState < transit(VsGameSection*, int, StateArg*); // _1C (weak)
-	};
-} // namespace Game
+struct FSMState<Game::VsGameSection> {
+	virtual void Vsinit(VsGameSection*, StateArg*);                                // _08
+	virtual void Vsexec(VsGameSection*);                                           // _0C
+	virtual void Vscleanup(VsGameSection*);                                        // _10
+	virtual void FSMState<VsGameSection>::resume(VsGameSection*);                  // _14 (weak)
+	virtual void FSMState<VsGameSection>::restart(VsGameSection*);                 // _18 (weak)
+	virtual void FSMState<VsGameSection>::transit(VsGameSection*, int, StateArg*); // _1C (weak)
+};
 } // namespace Game
 
 namespace Game {
 namespace VsGame {
-struct GameState : public VsGameSection > {
+struct GameState : public FSMState<Game::VsGameSection> {
 	virtual void Vsinit(VsGameSection*, StateArg*);                                          // _08
 	virtual void Vsexec(VsGameSection*);                                                     // _0C
 	virtual void Vscleanup(VsGameSection*);                                                  // _10

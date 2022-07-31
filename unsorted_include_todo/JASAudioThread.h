@@ -12,6 +12,11 @@
 struct JASAudioThread {
 	virtual ~JASAudioThread(); // _08 (weak)
 	virtual void run();        // _0C
+
+	void create(long);
+	void stop();
+	void DMACallback();
+	void DSPCallback(void*);
 };
 
 #endif

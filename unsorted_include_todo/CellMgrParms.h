@@ -15,6 +15,9 @@ struct CellMgrParms {
 	virtual void _08() = 0;  // _08
 	virtual void _0C() = 0;  // _0C
 	virtual ~CellMgrParms(); // _14 (weak)
+
+	void getInstance();
+	void globalInstance();
 };
 
 #endif

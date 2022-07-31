@@ -26,6 +26,8 @@ struct J3DMtxCalc {
 	virtual void getWeight(unsigned char) const;                   // _20 (weak)
 	virtual void _24() = 0;                                        // _24
 	virtual void _28() = 0;                                        // _28
+
+	void setMtxBuffer(J3DMtxBuffer*);
 };
 
 #endif

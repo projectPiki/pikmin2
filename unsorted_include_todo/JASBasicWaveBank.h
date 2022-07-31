@@ -14,6 +14,11 @@ struct JASBasicWaveBank {
 	virtual ~JASBasicWaveBank();                     // _08
 	virtual void getWaveHandle(unsigned long) const; // _0C
 	virtual void getWaveArc(int);                    // _10 (weak)
+
+	JASBasicWaveBank();
+	void getWaveGroup(int);
+	void setGroupCount(unsigned long);
+	void setWaveTableSize(unsigned long);
 };
 
 #endif

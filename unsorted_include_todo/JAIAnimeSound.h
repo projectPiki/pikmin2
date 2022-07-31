@@ -63,6 +63,12 @@ struct JAIAnimeSound : public Object, public ObjectBase {
 	virtual void playActorAnimSound(JAInter::Actor*, float, unsigned char);                 // _3C
 	virtual void startAnimSound(unsigned long, JAISound**, JAInter::Actor*, unsigned char); // _40
 	virtual void setSpeedModifySound(JAISound*, JAIAnimeFrameSoundData*, float);            // _44
+
+	JAIAnimeSound(Vec*, JKRHeap*, unsigned char);
+	void initActorAnimSound(JAIAnimeSoundData*, unsigned long, float, float);
+	void checkLoopStartCount(float);
+	void checkLoopEndCount(float);
+	void setAnimSoundActor(JAInter::Actor*, float, float, unsigned char);
 };
 
 #endif

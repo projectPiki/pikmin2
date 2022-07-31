@@ -35,22 +35,18 @@
 */
 
 namespace Game {
-namespace FSMState < Game
-{
-	struct Piki >
-	{
-		virtual void FSMState < init(Piki*, StateArg*);         // _08 (weak)
-		virtual void FSMState < exec(Piki*);                    // _0C (weak)
-		virtual void FSMState < cleanup(Piki*);                 // _10 (weak)
-		virtual void FSMState < resume(Piki*);                  // _14 (weak)
-		virtual void FSMState < restart(Piki*);                 // _18 (weak)
-		virtual void FSMState < transit(Piki*, int, StateArg*); // _1C (weak)
-	};
-} // namespace Game
+struct FSMState<Game::Piki> {
+	virtual void FSMState<Piki>::init(Piki*, StateArg*);         // _08 (weak)
+	virtual void FSMState<Piki>::exec(Piki*);                    // _0C (weak)
+	virtual void FSMState<Piki>::cleanup(Piki*);                 // _10 (weak)
+	virtual void FSMState<Piki>::resume(Piki*);                  // _14 (weak)
+	virtual void FSMState<Piki>::restart(Piki*);                 // _18 (weak)
+	virtual void FSMState<Piki>::transit(Piki*, int, StateArg*); // _1C (weak)
+};
 } // namespace Game
 
 namespace Game {
-struct PikiState : public Piki > {
+struct PikiState : public FSMState<Game::Piki> {
 	virtual void ignoreAtari(Piki*, Creature*);                // _20 (weak)
 	virtual void bounceCallback(Piki*, Sys::Triangle*);        // _24 (weak)
 	virtual void collisionCallback(Piki*, CollEvent&);         // _28 (weak)

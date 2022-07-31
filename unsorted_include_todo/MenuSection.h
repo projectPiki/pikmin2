@@ -52,6 +52,9 @@ struct MenuSection : public Section {
 	virtual void _40() = 0;           // _40
 	virtual void _48() = 0;           // _48
 	virtual void _4C() = 0;           // _4C
+
+	MenuSection(JFWDisplay*, JKRHeap*, bool);
+	void runChildSection();
 };
 
 #endif

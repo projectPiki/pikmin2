@@ -13,21 +13,17 @@
 */
 
 namespace efx {
-namespace TSyncGroup2 < efx
-{
-	struct TChasePosYRot >
-	{
-		virtual void TSyncGroup2 < create(Arg*);       // _08 (weak)
-		virtual void TSyncGroup2 < forceKill();        // _0C (weak)
-		virtual void TSyncGroup2 < fade();             // _10 (weak)
-		virtual void TSyncGroup2 < startDemoDrawOff(); // _14 (weak)
-		virtual void TSyncGroup2 < endDemoDrawOn();    // _18 (weak)
-	};
-} // namespace efx
+struct TSyncGroup2<efx::TChasePosYRot> {
+	virtual void TSyncGroup2<TChasePosYRot>::create(Arg*);       // _08 (weak)
+	virtual void TSyncGroup2<TChasePosYRot>::forceKill();        // _0C (weak)
+	virtual void TSyncGroup2<TChasePosYRot>::fade();             // _10 (weak)
+	virtual void TSyncGroup2<TChasePosYRot>::startDemoDrawOff(); // _14 (weak)
+	virtual void TSyncGroup2<TChasePosYRot>::endDemoDrawOn();    // _18 (weak)
+};
 } // namespace efx
 
 namespace efx {
-struct TFusenhAirhit : public TChasePosYRot > {
+struct TFusenhAirhit : public TSyncGroup2<efx::TChasePosYRot> {
 };
 } // namespace efx
 

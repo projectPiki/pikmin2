@@ -12,23 +12,17 @@
 */
 
 namespace Game {
-namespace StateMachine < ebi
-{
-	namespace Omake {
-	struct TMgr >
-	{
-		virtual void init(TMgr*);                         // _08
-		virtual void start(ebi::TMgr*, int, StateArg*);   // _0C (weak)
-		virtual void exec(ebi::TMgr*);                    // _10 (weak)
-		virtual void transit(ebi::TMgr*, int, StateArg*); // _14 (weak)
-	};
-	} // namespace Omake
-} // namespace ebi
+struct StateMachine<ebi::Omake::TMgr> {
+	virtual void init(TMgr*);                                // _08
+	virtual void start(ebi::Omake::TMgr*, int, StateArg*);   // _0C (weak)
+	virtual void exec(ebi::Omake::TMgr*);                    // _10 (weak)
+	virtual void transit(ebi::Omake::TMgr*, int, StateArg*); // _14 (weak)
+};
 } // namespace Game
 
 namespace ebi {
 namespace Omake {
-struct FSMStateMachine : public TMgr > {
+struct FSMStateMachine : public StateMachine<ebi::Omake::TMgr> {
 	virtual void init(TMgr*); // _08
 };
 } // namespace Omake

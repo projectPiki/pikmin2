@@ -42,6 +42,8 @@ struct J3DIndBlockFull {
 	virtual void setIndTexCoordScale(unsigned long, J3DIndTexCoordScale);        // _40 (weak)
 	virtual void getIndTexCoordScale(unsigned long);                             // _44 (weak)
 	virtual ~J3DIndBlockFull();                                                  // _48 (weak)
+
+	void initialize();
 };
 
 #endif

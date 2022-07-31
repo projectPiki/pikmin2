@@ -14,6 +14,8 @@ struct J3DPacket {
 	virtual void entry(J3DDrawBuffer*); // _08
 	virtual void draw();                // _0C (weak)
 	virtual ~J3DPacket();               // _10 (weak)
+
+	void addChildPacket(J3DPacket*);
 };
 
 #endif

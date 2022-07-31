@@ -16,25 +16,19 @@
 */
 
 namespace Game {
-namespace FSMState < ebi
-{
-	namespace CardError {
-	struct TMgr >
-	{
-		virtual void init(TMgr*, Game::StateArg*);        // _08 (weak)
-		virtual void exec(TMgr*);                         // _0C (weak)
-		virtual void cleanup(ebi::TMgr*);                 // _10 (weak)
-		virtual void resume(ebi::TMgr*);                  // _14 (weak)
-		virtual void restart(ebi::TMgr*);                 // _18 (weak)
-		virtual void transit(ebi::TMgr*, int, StateArg*); // _1C (weak)
-	};
-	} // namespace CardError
-} // namespace ebi
+struct FSMState<ebi::CardError::TMgr> {
+	virtual void init(TMgr*, Game::StateArg*);                   // _08 (weak)
+	virtual void exec(TMgr*);                                    // _0C (weak)
+	virtual void cleanup(ebi::CardError::TMgr*);                 // _10 (weak)
+	virtual void resume(ebi::CardError::TMgr*);                  // _14 (weak)
+	virtual void restart(ebi::CardError::TMgr*);                 // _18 (weak)
+	virtual void transit(ebi::CardError::TMgr*, int, StateArg*); // _1C (weak)
+};
 } // namespace Game
 
 namespace ebi {
 namespace CardError {
-struct FSMState : public TMgr > {
+struct FSMState : public FSMState<ebi::CardError::TMgr> {
 	virtual void init(TMgr*, Game::StateArg*);    // _08 (weak)
 	virtual void exec(TMgr*);                     // _0C (weak)
 	virtual void do_init(TMgr*, Game::StateArg*); // _20 (weak)

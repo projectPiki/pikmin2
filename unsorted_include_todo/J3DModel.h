@@ -22,6 +22,22 @@ struct J3DModel {
 	virtual void calcDiffTexMtx(); // _18
 	virtual void viewCalc();       // _1C
 	virtual ~J3DModel();           // _20 (weak)
+
+	void initialize();
+	void entryModelData(J3DModelData*, unsigned long, unsigned long);
+	void createShapePacket(J3DModelData*);
+	void createMatPacket(J3DModelData*, unsigned long);
+	void newDifferedDisplayList(unsigned long);
+	void newDifferedTexMtx(J3DTexDiffFlag);
+	void lock();
+	void makeDL();
+	void diff();
+	void setVtxColorCalc(J3DVtxColorCalc*, J3DDeformAttachFlag);
+	void calcWeightEnvelopeMtx();
+	void calcNrmMtx();
+	void calcBumpMtx();
+	void calcBBoardMtx();
+	void prepareShapePackets();
 };
 
 #endif

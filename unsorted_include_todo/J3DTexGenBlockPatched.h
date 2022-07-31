@@ -80,6 +80,8 @@ struct J3DTexGenBlockPatched : public J3DTexGenBlock {
 	virtual void getTexMtxOffset() const;                          // _60 (weak)
 	virtual void setTexMtxOffset(unsigned long);                   // _64 (weak)
 	virtual ~J3DTexGenBlockPatched();                              // _68 (weak)
+
+	void initialize();
 };
 
 #endif

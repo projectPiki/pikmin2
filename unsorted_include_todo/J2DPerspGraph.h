@@ -29,6 +29,11 @@ struct J2DPerspGraph : public J2DGrafContext {
 	virtual void setPort();           // _14
 	virtual void getGrafType() const; // _20 (weak)
 	virtual void setLookat();         // _24
+
+	J2DPerspGraph();
+	void set(float, float, float);
+	void setFovy(float);
+	void makeLookat();
 };
 
 #endif

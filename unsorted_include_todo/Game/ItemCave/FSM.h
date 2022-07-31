@@ -12,23 +12,17 @@
 */
 
 namespace Game {
-namespace StateMachine < Game
-{
-	namespace ItemCave {
-	struct Item >
-	{
-		virtual void init(Item*);                                   // _08
-		virtual void StateMachine < start(Item*, int, StateArg*);   // _0C (weak)
-		virtual void StateMachine < exec(Item*);                    // _10 (weak)
-		virtual void StateMachine < transit(Item*, int, StateArg*); // _14 (weak)
-	};
-	} // namespace ItemCave
-} // namespace Game
+struct StateMachine<Game::ItemCave::Item> {
+	virtual void init(Item*);                                                            // _08
+	virtual void StateMachine<ItemCave::Item>::start(ItemCave::Item*, int, StateArg*);   // _0C (weak)
+	virtual void StateMachine<ItemCave::Item>::exec(ItemCave::Item*);                    // _10 (weak)
+	virtual void StateMachine<ItemCave::Item>::transit(ItemCave::Item*, int, StateArg*); // _14 (weak)
+};
 } // namespace Game
 
 namespace Game {
 namespace ItemCave {
-struct FSM : public Item > {
+struct FSM : public StateMachine<Game::ItemCave::Item> {
 	virtual void init(Item*); // _08
 };
 } // namespace ItemCave

@@ -13,21 +13,17 @@
 */
 
 namespace efx {
-namespace TSyncGroup3 < efx
-{
-	struct TForever >
-	{
-		virtual void TSyncGroup3 < create(Arg*);       // _08 (weak)
-		virtual void TSyncGroup3 < forceKill();        // _0C (weak)
-		virtual void TSyncGroup3 < fade();             // _10 (weak)
-		virtual void TSyncGroup3 < startDemoDrawOff(); // _14 (weak)
-		virtual void TSyncGroup3 < endDemoDrawOn();    // _18 (weak)
-	};
-} // namespace efx
+struct TSyncGroup3<efx::TForever> {
+	virtual void TSyncGroup3<TForever>::create(Arg*);       // _08 (weak)
+	virtual void TSyncGroup3<TForever>::forceKill();        // _0C (weak)
+	virtual void TSyncGroup3<TForever>::fade();             // _10 (weak)
+	virtual void TSyncGroup3<TForever>::startDemoDrawOff(); // _14 (weak)
+	virtual void TSyncGroup3<TForever>::endDemoDrawOn();    // _18 (weak)
+};
 } // namespace efx
 
 namespace efx {
-struct TGeyserAct : public TForever > {
+struct TGeyserAct : public TSyncGroup3<efx::TForever> {
 };
 } // namespace efx
 

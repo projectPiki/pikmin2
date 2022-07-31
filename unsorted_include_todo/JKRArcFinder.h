@@ -12,6 +12,8 @@
 struct JKRArcFinder {
 	virtual ~JKRArcFinder();     // _08 (weak)
 	virtual void findNextFile(); // _0C
+
+	JKRArcFinder(JKRArchive*, long, long);
 };
 
 #endif

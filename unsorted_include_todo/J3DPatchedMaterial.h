@@ -35,6 +35,8 @@ struct J3DPatchedMaterial : public J3DMaterial {
 	virtual void loadSharedDL();          // _1C
 	virtual void reset();                 // _28
 	virtual void change();                // _2C
+
+	void initialize();
 };
 
 #endif

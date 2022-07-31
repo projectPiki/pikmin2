@@ -401,164 +401,151 @@ struct CellObject {
 } // namespace Game
 
 namespace Game {
-namespace FSMItem < Game
-{
-	namespace ItemCave {
-	namespace Item, Game
-	{
-		namespace ItemCave {
-		namespace FSM, Game
-		{
-			namespace ItemCave {
-			struct State >
-			{
-				virtual void _08() = 0;                                                  // _08
-				virtual void _0C() = 0;                                                  // _0C
-				virtual void _10() = 0;                                                  // _10
-				virtual void _14() = 0;                                                  // _14
-				virtual void _18() = 0;                                                  // _18
-				virtual void _1C() = 0;                                                  // _1C
-				virtual void _20() = 0;                                                  // _20
-				virtual void _24() = 0;                                                  // _24
-				virtual void _28() = 0;                                                  // _28
-				virtual void _2C() = 0;                                                  // _2C
-				virtual void onInit(CreatureInitArg*);                                   // _30
-				virtual void _34() = 0;                                                  // _34
-				virtual void _38() = 0;                                                  // _38
-				virtual void _3C() = 0;                                                  // _3C
-				virtual void _40() = 0;                                                  // _40
-				virtual void _44() = 0;                                                  // _44
-				virtual void _48() = 0;                                                  // _48
-				virtual void _4C() = 0;                                                  // _4C
-				virtual void doDirectDraw(Graphics&);                                    // _50
-				virtual void _54() = 0;                                                  // _54
-				virtual void _58() = 0;                                                  // _58
-				virtual void _5C() = 0;                                                  // _5C
-				virtual void _60() = 0;                                                  // _60
-				virtual void getFaceDir();                                               // _64 (weak)
-				virtual void _68() = 0;                                                  // _68
-				virtual void _6C() = 0;                                                  // _6C
-				virtual void _70() = 0;                                                  // _70
-				virtual void _74() = 0;                                                  // _74
-				virtual void _78() = 0;                                                  // _78
-				virtual void _7C() = 0;                                                  // _7C
-				virtual void _80() = 0;                                                  // _80
-				virtual void _84() = 0;                                                  // _84
-				virtual void _88() = 0;                                                  // _88
-				virtual void _8C() = 0;                                                  // _8C
-				virtual void _90() = 0;                                                  // _90
-				virtual void _94() = 0;                                                  // _94
-				virtual void _98() = 0;                                                  // _98
-				virtual void _9C() = 0;                                                  // _9C
-				virtual void _A0() = 0;                                                  // _A0
-				virtual void _A4() = 0;                                                  // _A4
-				virtual void _A8() = 0;                                                  // _A8
-				virtual void _AC() = 0;                                                  // _AC
-				virtual void _B0() = 0;                                                  // _B0
-				virtual void _B4() = 0;                                                  // _B4
-				virtual void _B8() = 0;                                                  // _B8
-				virtual void _BC() = 0;                                                  // _BC
-				virtual void _C0() = 0;                                                  // _C0
-				virtual void _C4() = 0;                                                  // _C4
-				virtual void _C8() = 0;                                                  // _C8
-				virtual void _CC() = 0;                                                  // _CC
-				virtual void _D0() = 0;                                                  // _D0
-				virtual void _D4() = 0;                                                  // _D4
-				virtual void _D8() = 0;                                                  // _D8
-				virtual void _DC() = 0;                                                  // _DC
-				virtual void _E0() = 0;                                                  // _E0
-				virtual void _E4() = 0;                                                  // _E4
-				virtual void FSMItem < Item, FSM, bounceCallback(Sys::Triangle*);        // _E8 (weak)
-				virtual void FSMItem < Item, FSM, collisionCallback(CollEvent&);         // _EC (weak)
-				virtual void FSMItem < Item, FSM, platCallback(PlatEvent&);              // _F0 (weak)
-				virtual void _F4()  = 0;                                                 // _F4
-				virtual void _F8()  = 0;                                                 // _F8
-				virtual void _FC()  = 0;                                                 // _FC
-				virtual void _100() = 0;                                                 // _100
-				virtual void sound_culling();                                            // _104
-				virtual void _108() = 0;                                                 // _108
-				virtual void _10C() = 0;                                                 // _10C
-				virtual void _110() = 0;                                                 // _110
-				virtual void _114() = 0;                                                 // _114
-				virtual void _118() = 0;                                                 // _118
-				virtual void _11C() = 0;                                                 // _11C
-				virtual void _120() = 0;                                                 // _120
-				virtual void _124() = 0;                                                 // _124
-				virtual void _128() = 0;                                                 // _128
-				virtual void _12C() = 0;                                                 // _12C
-				virtual void _130() = 0;                                                 // _130
-				virtual void _134() = 0;                                                 // _134
-				virtual void _138() = 0;                                                 // _138
-				virtual void _13C() = 0;                                                 // _13C
-				virtual void _140() = 0;                                                 // _140
-				virtual void _144() = 0;                                                 // _144
-				virtual void _148() = 0;                                                 // _148
-				virtual void _14C() = 0;                                                 // _14C
-				virtual void _150() = 0;                                                 // _150
-				virtual void _154() = 0;                                                 // _154
-				virtual void _158() = 0;                                                 // _158
-				virtual void _15C() = 0;                                                 // _15C
-				virtual void _160() = 0;                                                 // _160
-				virtual void _164() = 0;                                                 // _164
-				virtual void _168() = 0;                                                 // _168
-				virtual void _16C() = 0;                                                 // _16C
-				virtual void _170() = 0;                                                 // _170
-				virtual void _174() = 0;                                                 // _174
-				virtual void _178() = 0;                                                 // _178
-				virtual void _17C() = 0;                                                 // _17C
-				virtual void _180() = 0;                                                 // _180
-				virtual void _184() = 0;                                                 // _184
-				virtual void _188() = 0;                                                 // _188
-				virtual void _18C() = 0;                                                 // _18C
-				virtual void _190() = 0;                                                 // _190
-				virtual void _194() = 0;                                                 // _194
-				virtual void _198() = 0;                                                 // _198
-				virtual void _19C() = 0;                                                 // _19C
-				virtual void _1A0() = 0;                                                 // _1A0
-				virtual void _1A4() = 0;                                                 // _1A4
-				virtual void getCreatureName();                                          // _1A8 (weak)
-				virtual void _1AC() = 0;                                                 // _1AC
-				virtual void _1B0() = 0;                                                 // _1B0
-				virtual void _1B4() = 0;                                                 // _1B4
-				virtual void _1B8() = 0;                                                 // _1B8
-				virtual void initDependency();                                           // _1BC
-				virtual void _1C0() = 0;                                                 // _1C0
-				virtual void makeTrMatrix();                                             // _1C4
-				virtual void doAI();                                                     // _1C8
-				virtual void _1CC() = 0;                                                 // _1CC
-				virtual void changeMaterial();                                           // _1D0
-				virtual void _1D4() = 0;                                                 // _1D4
-				virtual void do_setLODParm(AILODParm&);                                  // _1D8
-				virtual void _1DC() = 0;                                                 // _1DC
-				virtual void _1E0() = 0;                                                 // _1E0
-				virtual void _1E4() = 0;                                                 // _1E4
-				virtual void _1E8() = 0;                                                 // _1E8
-				virtual void _1EC() = 0;                                                 // _1EC
-				virtual void _1F0() = 0;                                                 // _1F0
-				virtual void _1F4() = 0;                                                 // _1F4
-				virtual void _1F8() = 0;                                                 // _1F8
-				virtual void _1FC() = 0;                                                 // _1FC
-				virtual void _200() = 0;                                                 // _200
-				virtual void _204() = 0;                                                 // _204
-				virtual void _208() = 0;                                                 // _208
-				virtual void _20C() = 0;                                                 // _20C
-				virtual void _210() = 0;                                                 // _210
-				virtual void _214() = 0;                                                 // _214
-				virtual void _218() = 0;                                                 // _218
-				virtual void onSetPosition();                                            // _21C
-				virtual void FSMItem < Item, FSM, onKeyEvent(const SysShape::KeyEvent&); // _220 (weak)
-			};
-			} // namespace ItemCave
-		}     // namespace Game
-		}     // namespace ItemCave
-	}         // namespace Game
-	}         // namespace ItemCave
-} // namespace Game
+struct FSMItem<Game::ItemCave::Item, Game::ItemCave::FSM, Game::ItemCave::State> {
+	virtual void _08() = 0;                                                                                      // _08
+	virtual void _0C() = 0;                                                                                      // _0C
+	virtual void _10() = 0;                                                                                      // _10
+	virtual void _14() = 0;                                                                                      // _14
+	virtual void _18() = 0;                                                                                      // _18
+	virtual void _1C() = 0;                                                                                      // _1C
+	virtual void _20() = 0;                                                                                      // _20
+	virtual void _24() = 0;                                                                                      // _24
+	virtual void _28() = 0;                                                                                      // _28
+	virtual void _2C() = 0;                                                                                      // _2C
+	virtual void onInit(CreatureInitArg*);                                                                       // _30
+	virtual void _34() = 0;                                                                                      // _34
+	virtual void _38() = 0;                                                                                      // _38
+	virtual void _3C() = 0;                                                                                      // _3C
+	virtual void _40() = 0;                                                                                      // _40
+	virtual void _44() = 0;                                                                                      // _44
+	virtual void _48() = 0;                                                                                      // _48
+	virtual void _4C() = 0;                                                                                      // _4C
+	virtual void doDirectDraw(Graphics&);                                                                        // _50
+	virtual void _54() = 0;                                                                                      // _54
+	virtual void _58() = 0;                                                                                      // _58
+	virtual void _5C() = 0;                                                                                      // _5C
+	virtual void _60() = 0;                                                                                      // _60
+	virtual void getFaceDir();                                                                                   // _64 (weak)
+	virtual void _68() = 0;                                                                                      // _68
+	virtual void _6C() = 0;                                                                                      // _6C
+	virtual void _70() = 0;                                                                                      // _70
+	virtual void _74() = 0;                                                                                      // _74
+	virtual void _78() = 0;                                                                                      // _78
+	virtual void _7C() = 0;                                                                                      // _7C
+	virtual void _80() = 0;                                                                                      // _80
+	virtual void _84() = 0;                                                                                      // _84
+	virtual void _88() = 0;                                                                                      // _88
+	virtual void _8C() = 0;                                                                                      // _8C
+	virtual void _90() = 0;                                                                                      // _90
+	virtual void _94() = 0;                                                                                      // _94
+	virtual void _98() = 0;                                                                                      // _98
+	virtual void _9C() = 0;                                                                                      // _9C
+	virtual void _A0() = 0;                                                                                      // _A0
+	virtual void _A4() = 0;                                                                                      // _A4
+	virtual void _A8() = 0;                                                                                      // _A8
+	virtual void _AC() = 0;                                                                                      // _AC
+	virtual void _B0() = 0;                                                                                      // _B0
+	virtual void _B4() = 0;                                                                                      // _B4
+	virtual void _B8() = 0;                                                                                      // _B8
+	virtual void _BC() = 0;                                                                                      // _BC
+	virtual void _C0() = 0;                                                                                      // _C0
+	virtual void _C4() = 0;                                                                                      // _C4
+	virtual void _C8() = 0;                                                                                      // _C8
+	virtual void _CC() = 0;                                                                                      // _CC
+	virtual void _D0() = 0;                                                                                      // _D0
+	virtual void _D4() = 0;                                                                                      // _D4
+	virtual void _D8() = 0;                                                                                      // _D8
+	virtual void _DC() = 0;                                                                                      // _DC
+	virtual void _E0() = 0;                                                                                      // _E0
+	virtual void _E4() = 0;                                                                                      // _E4
+	virtual void FSMItem<ItemCave::Item, ItemCave::FSM, ItemCave::State>::bounceCallback(Sys::Triangle*);        // _E8 (weak)
+	virtual void FSMItem<ItemCave::Item, ItemCave::FSM, ItemCave::State>::collisionCallback(CollEvent&);         // _EC (weak)
+	virtual void FSMItem<ItemCave::Item, ItemCave::FSM, ItemCave::State>::platCallback(PlatEvent&);              // _F0 (weak)
+	virtual void _F4()  = 0;                                                                                     // _F4
+	virtual void _F8()  = 0;                                                                                     // _F8
+	virtual void _FC()  = 0;                                                                                     // _FC
+	virtual void _100() = 0;                                                                                     // _100
+	virtual void sound_culling();                                                                                // _104
+	virtual void _108() = 0;                                                                                     // _108
+	virtual void _10C() = 0;                                                                                     // _10C
+	virtual void _110() = 0;                                                                                     // _110
+	virtual void _114() = 0;                                                                                     // _114
+	virtual void _118() = 0;                                                                                     // _118
+	virtual void _11C() = 0;                                                                                     // _11C
+	virtual void _120() = 0;                                                                                     // _120
+	virtual void _124() = 0;                                                                                     // _124
+	virtual void _128() = 0;                                                                                     // _128
+	virtual void _12C() = 0;                                                                                     // _12C
+	virtual void _130() = 0;                                                                                     // _130
+	virtual void _134() = 0;                                                                                     // _134
+	virtual void _138() = 0;                                                                                     // _138
+	virtual void _13C() = 0;                                                                                     // _13C
+	virtual void _140() = 0;                                                                                     // _140
+	virtual void _144() = 0;                                                                                     // _144
+	virtual void _148() = 0;                                                                                     // _148
+	virtual void _14C() = 0;                                                                                     // _14C
+	virtual void _150() = 0;                                                                                     // _150
+	virtual void _154() = 0;                                                                                     // _154
+	virtual void _158() = 0;                                                                                     // _158
+	virtual void _15C() = 0;                                                                                     // _15C
+	virtual void _160() = 0;                                                                                     // _160
+	virtual void _164() = 0;                                                                                     // _164
+	virtual void _168() = 0;                                                                                     // _168
+	virtual void _16C() = 0;                                                                                     // _16C
+	virtual void _170() = 0;                                                                                     // _170
+	virtual void _174() = 0;                                                                                     // _174
+	virtual void _178() = 0;                                                                                     // _178
+	virtual void _17C() = 0;                                                                                     // _17C
+	virtual void _180() = 0;                                                                                     // _180
+	virtual void _184() = 0;                                                                                     // _184
+	virtual void _188() = 0;                                                                                     // _188
+	virtual void _18C() = 0;                                                                                     // _18C
+	virtual void _190() = 0;                                                                                     // _190
+	virtual void _194() = 0;                                                                                     // _194
+	virtual void _198() = 0;                                                                                     // _198
+	virtual void _19C() = 0;                                                                                     // _19C
+	virtual void _1A0() = 0;                                                                                     // _1A0
+	virtual void _1A4() = 0;                                                                                     // _1A4
+	virtual void getCreatureName();                                                                              // _1A8 (weak)
+	virtual void _1AC() = 0;                                                                                     // _1AC
+	virtual void _1B0() = 0;                                                                                     // _1B0
+	virtual void _1B4() = 0;                                                                                     // _1B4
+	virtual void _1B8() = 0;                                                                                     // _1B8
+	virtual void initDependency();                                                                               // _1BC
+	virtual void _1C0() = 0;                                                                                     // _1C0
+	virtual void makeTrMatrix();                                                                                 // _1C4
+	virtual void doAI();                                                                                         // _1C8
+	virtual void _1CC() = 0;                                                                                     // _1CC
+	virtual void changeMaterial();                                                                               // _1D0
+	virtual void _1D4() = 0;                                                                                     // _1D4
+	virtual void do_setLODParm(AILODParm&);                                                                      // _1D8
+	virtual void _1DC() = 0;                                                                                     // _1DC
+	virtual void _1E0() = 0;                                                                                     // _1E0
+	virtual void _1E4() = 0;                                                                                     // _1E4
+	virtual void _1E8() = 0;                                                                                     // _1E8
+	virtual void _1EC() = 0;                                                                                     // _1EC
+	virtual void _1F0() = 0;                                                                                     // _1F0
+	virtual void _1F4() = 0;                                                                                     // _1F4
+	virtual void _1F8() = 0;                                                                                     // _1F8
+	virtual void _1FC() = 0;                                                                                     // _1FC
+	virtual void _200() = 0;                                                                                     // _200
+	virtual void _204() = 0;                                                                                     // _204
+	virtual void _208() = 0;                                                                                     // _208
+	virtual void _20C() = 0;                                                                                     // _20C
+	virtual void _210() = 0;                                                                                     // _210
+	virtual void _214() = 0;                                                                                     // _214
+	virtual void _218() = 0;                                                                                     // _218
+	virtual void onSetPosition();                                                                                // _21C
+	virtual void FSMItem<ItemCave::Item, ItemCave::FSM, ItemCave::State>::onKeyEvent(const SysShape::KeyEvent&); // _220 (weak)
+};
 } // namespace Game
 
 namespace Game {
 namespace ItemCave {
-struct Item : public BaseItem, public Creature, public CellObject, public State > {
+struct Item : public BaseItem,
+              public Creature,
+              public CellObject,
+              public FSMItem<Game::ItemCave::Item, Game::ItemCave::FSM, Game::ItemCave::State> {
 	virtual void onInit(CreatureInitArg*);  // _30
 	virtual void doDirectDraw(Graphics&);   // _50
 	virtual void getFaceDir();              // _64 (weak)

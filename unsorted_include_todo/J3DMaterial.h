@@ -28,6 +28,25 @@ struct J3DMaterial {
 	virtual void diff(unsigned long);                // _24
 	virtual void reset();                            // _28
 	virtual void change();                           // _2C
+
+	void createColorBlock(unsigned long);
+	void createTexGenBlock(unsigned long);
+	void createTevBlock(int);
+	void createIndBlock(int);
+	void createPEBlock(unsigned long, unsigned long);
+	void calcSizeColorBlock(unsigned long);
+	void calcSizeTexGenBlock(unsigned long);
+	void calcSizeTevBlock(int);
+	void calcSizeIndBlock(int);
+	void calcSizePEBlock(unsigned long, unsigned long);
+	void initialize();
+	void countDLSize();
+	void setCurrentMtx();
+	void calcCurrentMtx();
+	void newSharedDisplayList(unsigned long);
+	void newSingleSharedDisplayList(unsigned long);
+	~J3DMaterial();
+	J3DMaterial();
 };
 
 #endif

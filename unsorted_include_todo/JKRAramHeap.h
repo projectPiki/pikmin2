@@ -12,6 +12,12 @@
 struct JKRAramHeap {
 	virtual ~JKRAramHeap(); // _08
 	virtual void _0C() = 0; // _0C
+
+	JKRAramHeap(unsigned long, unsigned long);
+	void alloc(unsigned long, JKRAramHeap::EAllocMode);
+	void allocFromHead(unsigned long);
+	void allocFromTail(unsigned long);
+	void getFreeSize();
 };
 
 #endif

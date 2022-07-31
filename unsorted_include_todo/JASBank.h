@@ -14,6 +14,8 @@ struct JASBank {
 	virtual ~JASBank();     // _08 (weak)
 	virtual void _0C() = 0; // _0C
 	virtual void _10() = 0; // _10
+
+	void getCurrentHeap();
 };
 
 #endif

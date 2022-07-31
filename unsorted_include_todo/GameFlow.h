@@ -12,6 +12,11 @@
 struct GameFlow {
 	virtual void run();               // _08
 	virtual void getCurrentSection(); // _0C (weak)
+
+	GameFlow();
+	void setSection();
+	void getSectionInfo(int);
+	void createSection(JKRHeap*);
 };
 
 #endif

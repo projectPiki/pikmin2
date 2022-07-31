@@ -16,6 +16,8 @@ struct J2DAnmBase {
 
 struct J2DAnmVisibilityFull : public J2DAnmBase {
 	virtual ~J2DAnmVisibilityFull(); // _08 (weak)
+
+	void getVisibility(unsigned short, unsigned char*) const;
 };
 
 #endif

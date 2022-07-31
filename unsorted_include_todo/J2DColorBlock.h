@@ -10,6 +10,9 @@
 
 struct J2DColorBlock {
 	virtual ~J2DColorBlock(); // _08 (weak)
+
+	void initialize();
+	void setGX();
 };
 
 #endif

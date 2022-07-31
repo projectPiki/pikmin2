@@ -10,6 +10,14 @@
 
 struct J3DModelData {
 	virtual ~J3DModelData(); // _08 (weak)
+
+	void clear();
+	J3DModelData();
+	void newSharedDisplayList(unsigned long);
+	void indexToPtr();
+	void makeSharedDL();
+	void simpleCalcMaterial(unsigned short, float (*)[4]);
+	void syncJ3DSysFlags() const;
 };
 
 #endif

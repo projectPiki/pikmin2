@@ -21,6 +21,24 @@ struct TParticle2dMgr : public CNode {
 	virtual ~TParticle2dMgr(); // _08 (weak)
 	virtual void _10() = 0;    // _10
 	virtual void _14() = 0;    // _14
+
+	void globalInstance();
+	void Instance();
+	void deleteInstance();
+	TParticle2dMgr();
+	void createHeap(unsigned long);
+	void createMgr(char*, unsigned long, unsigned long, unsigned long);
+	void setSceneEmitterAndResourceManager(JPAEmitterManager*, JPAResourceManager*);
+	void clearSceneEmitterAndResourceManager();
+	void setSceneResourceManager(JPAResourceManager*);
+	void clearSceneResourceManager();
+	void update();
+	void draw(unsigned char, unsigned short);
+	void create(unsigned short, Vector2<float>&, unsigned char, unsigned char);
+	void kill(JPABaseEmitter*);
+	void fade(JPABaseEmitter*);
+	void killAll();
+	void killGroup(unsigned char);
 };
 
 #endif

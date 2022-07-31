@@ -16,6 +16,8 @@ struct JKRThread {
 
 struct AppThread : public JKRThread {
 	virtual ~AppThread(); // _08 (weak)
+
+	AppThread(unsigned long, int, int);
 };
 
 #endif

@@ -112,6 +112,15 @@ struct J2DTextBox : public J2DPane {
 	virtual void getWhite() const;                                  // _B4 (weak)
 	virtual void getMaterial() const;                               // _B8 (weak)
 	virtual void _BC() = 0;                                         // _BC
+
+	J2DTextBox();
+	J2DTextBox(J2DPane*, JSURandomInputStream*, JKRArchive*);
+	J2DTextBox(J2DPane*, JSURandomInputStream*, unsigned long, J2DMaterial*);
+	J2DTextBox(unsigned long long, const JGeometry::TBox2<float>&, const ResFONT*, const char*, short, J2DTextBoxHBinding,
+	           J2DTextBoxVBinding);
+	void initiate(const ResFONT*, const char*, short, J2DTextBoxHBinding, J2DTextBoxVBinding);
+	void private_readStream(J2DPane*, JSURandomInputStream*, JKRArchive*);
+	void setString(const char*, ...);
 };
 
 #endif

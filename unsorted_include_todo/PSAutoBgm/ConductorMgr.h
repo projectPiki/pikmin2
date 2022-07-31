@@ -43,26 +43,19 @@ struct DataMgrNode {
 } // namespace JADUtility
 
 namespace JADUtility {
-namespace PrmDataMgrNode < PSAutoBgm
-{
-	namespace Conductor, PSAutoBgm
-	{
-		struct AutoBgm >
-		{
-			virtual ~AutoBgm > ();                  // _08 (weak)
-			virtual void _0C() = 0;                 // _0C
-			virtual void _10() = 0;                 // _10
-			virtual void getObjHeap();              // _14 (weak)
-			virtual void getDataHeap();             // _18 (weak)
-			virtual void initInstance(void*, long); // _1C (weak)
-			virtual void initInstance();            // _20 (weak)
-		};
-	} // namespace PSAutoBgm
-} // namespace PSAutoBgm
+struct PrmDataMgrNode<PSAutoBgm::Conductor, PSAutoBgm::AutoBgm> {
+	virtual ~PrmDataMgrNode<Conductor, AutoBgm>(); // _08 (weak)
+	virtual void _0C() = 0;                        // _0C
+	virtual void _10() = 0;                        // _10
+	virtual void getObjHeap();                     // _14 (weak)
+	virtual void getDataHeap();                    // _18 (weak)
+	virtual void initInstance(void*, long);        // _1C (weak)
+	virtual void initInstance();                   // _20 (weak)
+};
 } // namespace JADUtility
 
 namespace PSAutoBgm {
-struct ConductorMgr : public DataLoadMgrNode, public DataMgrNode, public AutoBgm > {
+struct ConductorMgr : public DataLoadMgrNode, public DataMgrNode, public PrmDataMgrNode<PSAutoBgm::Conductor, PSAutoBgm::AutoBgm> {
 	virtual ~ConductorMgr();        // _08 (weak)
 	virtual void getObjHeap();      // _14 (weak)
 	virtual void getDataHeap();     // _18 (weak)

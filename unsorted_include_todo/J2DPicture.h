@@ -182,6 +182,26 @@ struct J2DPicture : public J2DPane {
 	virtual void drawTexCoord(float, float, float, float, short, short, short, short, short, short, short, short, float (*)[3][4]); // _144
 	virtual void getUsableTlut(unsigned char);                                                                                      // _148
 	virtual void _14C() = 0;                                                                                                        // _14C
+
+	J2DPicture();
+	J2DPicture(J2DPane*, JSURandomInputStream*, JKRArchive*);
+	J2DPicture(J2DPane*, JSURandomInputStream*, J2DMaterial*);
+	J2DPicture(const ResTIMG*);
+	J2DPicture(const char*);
+	J2DPicture(JUTTexture*);
+	J2DPicture(unsigned long long, const JGeometry::TBox2<float>&);
+	void private_readStream(J2DPane*, JSURandomInputStream*, JKRArchive*);
+	void private_initiate(const ResTIMG*, const ResTLUT*);
+	void initinfo();
+	void setTevMode();
+	void setBlendKonstColor();
+	void setBlendKonstAlpha();
+	void getNewColor(JUtility::TColor*);
+	void setTexCoord(const JGeometry::TVec2<short>*);
+	void setTexCoord(const JUTTexture*, J2DBinding, J2DMirror, bool);
+	void setTexCoord(JGeometry::TVec2<short>*, const JUTTexture*, J2DBinding, J2DMirror, bool);
+	void getTlutID(const ResTIMG*, unsigned char);
+	void operator=(const J2DPicture&);
 };
 
 #endif

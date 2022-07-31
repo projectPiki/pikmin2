@@ -57,62 +57,56 @@
 */
 
 namespace Game {
-namespace FixedSizePelletMgr < Game
-{
-	namespace PelletCarcass {
-	struct Object >
-	{
-		virtual void FixedSizePelletMgr < doAnimation();                   // _08 (weak)
-		virtual void FixedSizePelletMgr < doEntry();                       // _0C (weak)
-		virtual void FixedSizePelletMgr < doSetView(int);                  // _10 (weak)
-		virtual void FixedSizePelletMgr < doViewCalc();                    // _14 (weak)
-		virtual void FixedSizePelletMgr < doSimulation(float);             // _18 (weak)
-		virtual void FixedSizePelletMgr < doDirectDraw(Graphics&);         // _1C (weak)
-		virtual void _20() = 0;                                            // _20
-		virtual void _24() = 0;                                            // _24
-		virtual void FixedSizePelletMgr < resetMgr();                      // _28 (weak)
-		virtual void _2C() = 0;                                            // _2C
-		virtual void _30() = 0;                                            // _30
-		virtual void _34() = 0;                                            // _34
-		virtual void FixedSizePelletMgr < resetMgrAndResources();          // _38 (weak)
-		virtual void FixedSizePelletMgr < birth();                         // _3C (weak)
-		virtual void FixedSizePelletMgr < kill(Pellet*);                   // _40 (weak)
-		virtual void setupResources();                                     // _44
-		virtual void FixedSizePelletMgr < birthFromTeki(PelletConfig*);    // _48 (weak)
-		virtual void FixedSizePelletMgr < setComeAlive(int);               // _4C (weak)
-		virtual void FixedSizePelletMgr < setComeAlive(Pellet*);           // _50 (weak)
-		virtual void FixedSizePelletMgr < onCreateModel(SysShape::Model*); // _54 (weak)
-		virtual void getMgrName();                                         // _58 (weak)
-		virtual void getMgrID();                                           // _5C (weak)
-		virtual void FixedSizePelletMgr < setRevival(Pellet*);             // _60 (weak)
-		virtual void FixedSizePelletMgr < setFromTeki(Pellet*);            // _64 (weak)
-		virtual void FixedSizePelletMgr < getFlag(Pellet*);                // _68 (weak)
-		virtual void createShape(int, int);                                // _6C (weak)
-		virtual void _70() = 0;                                            // _70
-		virtual void _74() = 0;                                            // _74
-		virtual void _78() = 0;                                            // _78
-		virtual void _7C() = 0;                                            // _7C
-		virtual void _80() = 0;                                            // _80
-		virtual void _84() = 0;                                            // _84
-		virtual void FixedSizePelletMgr < getObjectPtr(void*);             // _88 (weak)
-		virtual void FixedSizePelletMgr < getNext(void*);                  // _8C (weak)
-		virtual void FixedSizePelletMgr < getStart();                      // _90 (weak)
-		virtual void FixedSizePelletMgr < getEnd();                        // _94 (weak)
-		virtual void _98() = 0;                                            // _98
-		virtual void _9C() = 0;                                            // _9C
-		virtual void _A0() = 0;                                            // _A0
-		virtual void _A4() = 0;                                            // _A4
-		virtual void getObject(void*);                                     // _A8 (weak)
-		virtual void _AC() = 0;                                            // _AC
-		virtual void _B0() = 0;                                            // _B0
-		virtual void _B4() = 0;                                            // _B4
-		virtual void _B8() = 0;                                            // _B8
-		virtual void getAt(int);                                           // _BC (weak)
-		virtual void getTo();                                              // _C0 (weak)
-		virtual void FixedSizePelletMgr < get(void*);                      // _C4 (weak)
-	};
-	} // namespace PelletCarcass
-} // namespace Game
+struct FixedSizePelletMgr<Game::PelletCarcass::Object> {
+	virtual void FixedSizePelletMgr<PelletCarcass::Object>::doAnimation();                   // _08 (weak)
+	virtual void FixedSizePelletMgr<PelletCarcass::Object>::doEntry();                       // _0C (weak)
+	virtual void FixedSizePelletMgr<PelletCarcass::Object>::doSetView(int);                  // _10 (weak)
+	virtual void FixedSizePelletMgr<PelletCarcass::Object>::doViewCalc();                    // _14 (weak)
+	virtual void FixedSizePelletMgr<PelletCarcass::Object>::doSimulation(float);             // _18 (weak)
+	virtual void FixedSizePelletMgr<PelletCarcass::Object>::doDirectDraw(Graphics&);         // _1C (weak)
+	virtual void _20() = 0;                                                                  // _20
+	virtual void _24() = 0;                                                                  // _24
+	virtual void FixedSizePelletMgr<PelletCarcass::Object>::resetMgr();                      // _28 (weak)
+	virtual void _2C() = 0;                                                                  // _2C
+	virtual void _30() = 0;                                                                  // _30
+	virtual void _34() = 0;                                                                  // _34
+	virtual void FixedSizePelletMgr<PelletCarcass::Object>::resetMgrAndResources();          // _38 (weak)
+	virtual void FixedSizePelletMgr<PelletCarcass::Object>::birth();                         // _3C (weak)
+	virtual void FixedSizePelletMgr<PelletCarcass::Object>::kill(Pellet*);                   // _40 (weak)
+	virtual void setupResources();                                                           // _44
+	virtual void FixedSizePelletMgr<PelletCarcass::Object>::birthFromTeki(PelletConfig*);    // _48 (weak)
+	virtual void FixedSizePelletMgr<PelletCarcass::Object>::setComeAlive(int);               // _4C (weak)
+	virtual void FixedSizePelletMgr<PelletCarcass::Object>::setComeAlive(Pellet*);           // _50 (weak)
+	virtual void FixedSizePelletMgr<PelletCarcass::Object>::onCreateModel(SysShape::Model*); // _54 (weak)
+	virtual void getMgrName();                                                               // _58 (weak)
+	virtual void getMgrID();                                                                 // _5C (weak)
+	virtual void FixedSizePelletMgr<PelletCarcass::Object>::setRevival(Pellet*);             // _60 (weak)
+	virtual void FixedSizePelletMgr<PelletCarcass::Object>::setFromTeki(Pellet*);            // _64 (weak)
+	virtual void FixedSizePelletMgr<PelletCarcass::Object>::getFlag(Pellet*);                // _68 (weak)
+	virtual void createShape(int, int);                                                      // _6C (weak)
+	virtual void _70() = 0;                                                                  // _70
+	virtual void _74() = 0;                                                                  // _74
+	virtual void _78() = 0;                                                                  // _78
+	virtual void _7C() = 0;                                                                  // _7C
+	virtual void _80() = 0;                                                                  // _80
+	virtual void _84() = 0;                                                                  // _84
+	virtual void FixedSizePelletMgr<PelletCarcass::Object>::getObjectPtr(void*);             // _88 (weak)
+	virtual void FixedSizePelletMgr<PelletCarcass::Object>::getNext(void*);                  // _8C (weak)
+	virtual void FixedSizePelletMgr<PelletCarcass::Object>::getStart();                      // _90 (weak)
+	virtual void FixedSizePelletMgr<PelletCarcass::Object>::getEnd();                        // _94 (weak)
+	virtual void _98() = 0;                                                                  // _98
+	virtual void _9C() = 0;                                                                  // _9C
+	virtual void _A0() = 0;                                                                  // _A0
+	virtual void _A4() = 0;                                                                  // _A4
+	virtual void _A8() = 0;                                                                  // _A8
+	virtual void _AC() = 0;                                                                  // _AC
+	virtual void _B0() = 0;                                                                  // _B0
+	virtual void _B4() = 0;                                                                  // _B4
+	virtual void _B8() = 0;                                                                  // _B8
+	virtual void _BC() = 0;                                                                  // _BC
+	virtual void _C0() = 0;                                                                  // _C0
+	virtual void FixedSizePelletMgr<PelletCarcass::Object>::get(void*);                      // _C4 (weak)
+};
 } // namespace Game
 
 struct GenericObjectMgr {
@@ -210,9 +204,63 @@ struct CNode {
 	virtual void getChildCount();       // _A4
 };
 
+struct Container<Game::PelletCarcass::Object> {
+	virtual void _08() = 0;             // _08
+	virtual void _0C() = 0;             // _0C
+	virtual void _10() = 0;             // _10
+	virtual void _14() = 0;             // _14
+	virtual void _18() = 0;             // _18
+	virtual void _1C() = 0;             // _1C
+	virtual void _20() = 0;             // _20
+	virtual void _24() = 0;             // _24
+	virtual void _28() = 0;             // _28
+	virtual void _2C() = 0;             // _2C
+	virtual void _30() = 0;             // _30
+	virtual void _34() = 0;             // _34
+	virtual void _38() = 0;             // _38
+	virtual void _3C() = 0;             // _3C
+	virtual void _40() = 0;             // _40
+	virtual void setupResources();      // _44
+	virtual void _48() = 0;             // _48
+	virtual void _4C() = 0;             // _4C
+	virtual void _50() = 0;             // _50
+	virtual void _54() = 0;             // _54
+	virtual void getMgrName();          // _58 (weak)
+	virtual void getMgrID();            // _5C (weak)
+	virtual void _60() = 0;             // _60
+	virtual void _64() = 0;             // _64
+	virtual void _68() = 0;             // _68
+	virtual void createShape(int, int); // _6C (weak)
+	virtual void _70() = 0;             // _70
+	virtual void _74() = 0;             // _74
+	virtual void _78() = 0;             // _78
+	virtual void _7C() = 0;             // _7C
+	virtual void _80() = 0;             // _80
+	virtual void _84() = 0;             // _84
+	virtual void _88() = 0;             // _88
+	virtual void _8C() = 0;             // _8C
+	virtual void _90() = 0;             // _90
+	virtual void _94() = 0;             // _94
+	virtual void _98() = 0;             // _98
+	virtual void _9C() = 0;             // _9C
+	virtual void _A0() = 0;             // _A0
+	virtual void _A4() = 0;             // _A4
+	virtual void getObject(void*);      // _A8 (weak)
+	virtual void _AC() = 0;             // _AC
+	virtual void _B0() = 0;             // _B0
+	virtual void _B4() = 0;             // _B4
+	virtual void _B8() = 0;             // _B8
+	virtual void getAt(int);            // _BC (weak)
+	virtual void getTo();               // _C0 (weak)
+};
+
 namespace Game {
 namespace PelletCarcass {
-struct Mgr : public Object >, public GenericObjectMgr, public BasePelletMgr, public CNode {
+struct Mgr : public FixedSizePelletMgr<Game::PelletCarcass::Object>,
+             public GenericObjectMgr,
+             public BasePelletMgr,
+             public CNode,
+             public Container<Game::PelletCarcass::Object> {
 	virtual void setupResources();      // _44
 	virtual void getMgrName();          // _58 (weak)
 	virtual void getMgrID();            // _5C (weak)

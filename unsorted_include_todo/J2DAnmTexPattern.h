@@ -12,6 +12,10 @@
 struct J2DAnmTexPattern {
 	virtual ~J2DAnmTexPattern();                     // _08 (weak)
 	virtual void searchUpdateMaterialID(J2DScreen*); // _0C
+
+	void getTexNo(unsigned short, unsigned short*) const;
+	void getResTIMG(unsigned short) const;
+	void getPalette(unsigned short) const;
 };
 
 #endif

@@ -10,6 +10,9 @@
 
 struct J3DFrameCtrl {
 	virtual ~J3DFrameCtrl(); // _08 (weak)
+
+	void init(short);
+	void update();
 };
 
 #endif

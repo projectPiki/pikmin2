@@ -16,25 +16,19 @@
 */
 
 namespace Game {
-namespace FSMState < ebi
-{
-	namespace Omake {
-	struct TMgr >
-	{
-		virtual void init(TMgr*, Game::StateArg*);        // _08 (weak)
-		virtual void exec(TMgr*);                         // _0C (weak)
-		virtual void cleanup(ebi::TMgr*);                 // _10 (weak)
-		virtual void resume(ebi::TMgr*);                  // _14 (weak)
-		virtual void restart(ebi::TMgr*);                 // _18 (weak)
-		virtual void transit(ebi::TMgr*, int, StateArg*); // _1C (weak)
-	};
-	} // namespace Omake
-} // namespace ebi
+struct FSMState<ebi::Omake::TMgr> {
+	virtual void init(TMgr*, Game::StateArg*);               // _08 (weak)
+	virtual void exec(TMgr*);                                // _0C (weak)
+	virtual void cleanup(ebi::Omake::TMgr*);                 // _10 (weak)
+	virtual void resume(ebi::Omake::TMgr*);                  // _14 (weak)
+	virtual void restart(ebi::Omake::TMgr*);                 // _18 (weak)
+	virtual void transit(ebi::Omake::TMgr*, int, StateArg*); // _1C (weak)
+};
 } // namespace Game
 
 namespace ebi {
 namespace Omake {
-struct FSMState : public TMgr > {
+struct FSMState : public FSMState<ebi::Omake::TMgr> {
 	virtual void init(TMgr*, Game::StateArg*);    // _08 (weak)
 	virtual void exec(TMgr*);                     // _0C (weak)
 	virtual void do_init(TMgr*, Game::StateArg*); // _20 (weak)

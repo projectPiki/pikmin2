@@ -38,20 +38,14 @@ struct FSMState {
 } // namespace ebi
 
 namespace Game {
-namespace FSMState < ebi
-{
-	namespace FileSelect {
-	struct TMgr >
-	{
-		virtual void _08() = 0;                           // _08
-		virtual void _0C() = 0;                           // _0C
-		virtual void cleanup(ebi::TMgr*);                 // _10 (weak)
-		virtual void resume(ebi::TMgr*);                  // _14 (weak)
-		virtual void restart(ebi::TMgr*);                 // _18 (weak)
-		virtual void transit(ebi::TMgr*, int, StateArg*); // _1C (weak)
-	};
-	} // namespace FileSelect
-} // namespace ebi
+struct FSMState<ebi::FileSelect::TMgr> {
+	virtual void _08() = 0;                                       // _08
+	virtual void _0C() = 0;                                       // _0C
+	virtual void cleanup(ebi::FileSelect::TMgr*);                 // _10 (weak)
+	virtual void resume(ebi::FileSelect::TMgr*);                  // _14 (weak)
+	virtual void restart(ebi::FileSelect::TMgr*);                 // _18 (weak)
+	virtual void transit(ebi::FileSelect::TMgr*, int, StateArg*); // _1C (weak)
+};
 } // namespace Game
 
 namespace ebi {
@@ -84,7 +78,7 @@ struct FSMState_CardRequest {
 
 namespace ebi {
 namespace FileSelect {
-struct FSMState_GetPlayerHeader : public FSMState, public TMgr >, public FSMState_CardRequest {
+struct FSMState_GetPlayerHeader : public FSMState, public FSMState<ebi::FileSelect::TMgr>, public FSMState_CardRequest {
 	virtual void do_cardRequest(TMgr*);              // _28
 	virtual void do_transitCardReady(TMgr*);         // _2C
 	virtual void do_transitCardSerialNoError(TMgr*); // _54

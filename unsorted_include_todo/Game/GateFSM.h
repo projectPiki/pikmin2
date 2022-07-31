@@ -13,20 +13,16 @@
 */
 
 namespace Game {
-namespace StateMachine < Game
-{
-	struct ItemGate >
-	{
-		virtual void init(ItemGate*);                                   // _08
-		virtual void StateMachine < start(ItemGate*, int, StateArg*);   // _0C (weak)
-		virtual void StateMachine < exec(ItemGate*);                    // _10 (weak)
-		virtual void StateMachine < transit(ItemGate*, int, StateArg*); // _14 (weak)
-	};
-} // namespace Game
+struct StateMachine<Game::ItemGate> {
+	virtual void init(ItemGate*);                                            // _08
+	virtual void StateMachine<ItemGate>::start(ItemGate*, int, StateArg*);   // _0C (weak)
+	virtual void StateMachine<ItemGate>::exec(ItemGate*);                    // _10 (weak)
+	virtual void StateMachine<ItemGate>::transit(ItemGate*, int, StateArg*); // _14 (weak)
+};
 } // namespace Game
 
 namespace Game {
-struct GateFSM : public ItemGate > {
+struct GateFSM : public StateMachine<Game::ItemGate> {
 	virtual void init(ItemGate*); // _08
 	virtual void _18() = 0;       // _18
 };

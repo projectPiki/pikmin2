@@ -74,6 +74,26 @@ struct BootSection : public Section, public BaseHIOSection {
 	virtual void forceReset();      // _2C (weak)
 	virtual void doUpdate();        // _3C
 	virtual void doDraw(Graphics&); // _40
+
+	BootSection(JKRHeap*);
+	void loadBootResource();
+	void load2DResource();
+	void loadResident();
+	void drawProgressive(Graphics&);
+	void drawSetProgressive(Graphics&);
+	void drawSetInterlace(Graphics&);
+	void drawNintendoLogo(Graphics&);
+	void drawDolbyLogo(Graphics&);
+	void drawEpilepsy(Graphics&);
+	void updateLoadResourceFirst();
+	void updateLoadMemoryCard();
+	void updateNintendoLogo();
+	void updateProgressive();
+	void updateWaitProgressive();
+	void runWait(BootSection, bool(const void*, void*));
+	void waitLoadResource();
+	void setMode(int);
+	void setModeEpilepsy();
 };
 
 #endif

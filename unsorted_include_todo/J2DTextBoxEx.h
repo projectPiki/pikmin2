@@ -134,6 +134,12 @@ struct J2DTextBoxEx : public J2DTextBox, public J2DPane {
 	virtual void getWhite() const;                                  // _B4
 	virtual void getMaterial() const;                               // _B8 (weak)
 	virtual void _BC() = 0;                                         // _BC
+
+	J2DTextBoxEx(J2DPane*, JSURandomInputStream*, unsigned long, J2DMaterial*);
+	void setTevStage(bool);
+	void setStage(J2DTevStage*, J2DTextBoxEx::stage_enum);
+	void getBlackWhite(JUtility::TColor*, JUtility::TColor*) const;
+	void isSetBlackWhite(JUtility::TColor, JUtility::TColor) const;
 };
 
 #endif

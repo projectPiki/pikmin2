@@ -12,20 +12,16 @@
 */
 
 namespace Game {
-namespace StateMachine < Game
-{
-	struct SingleGameSection >
-	{
-		virtual void Singleinit(SingleGameSection*);                           // _08
-		virtual void StateMachine < start(SingleGameSection*, int, StateArg*); // _0C (weak)
-		virtual void StateMachine < exec(SingleGameSection*);                  // _10 (weak)
-	};
-} // namespace Game
+struct StateMachine<Game::SingleGameSection> {
+	virtual void Singleinit(SingleGameSection*);                                             // _08
+	virtual void StateMachine<SingleGameSection>::start(SingleGameSection*, int, StateArg*); // _0C (weak)
+	virtual void StateMachine<SingleGameSection>::exec(SingleGameSection*);                  // _10 (weak)
+};
 } // namespace Game
 
 namespace Game {
 namespace SingleGame {
-struct FSM : public SingleGameSection > {
+struct FSM : public StateMachine<Game::SingleGameSection> {
 	virtual void Singleinit(SingleGameSection*);                    // _08
 	virtual void Singletransit(SingleGameSection*, int, StateArg*); // _14
 

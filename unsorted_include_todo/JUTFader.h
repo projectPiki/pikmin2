@@ -16,6 +16,9 @@ struct JUTFader {
 	virtual void startFadeIn(int);  // _0C
 	virtual void startFadeOut(int); // _10
 	virtual void draw();            // _14
+
+	JUTFader(int, int, int, int, JUtility::TColor);
+	void control();
 };
 
 #endif

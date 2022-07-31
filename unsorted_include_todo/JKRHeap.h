@@ -52,6 +52,32 @@ struct JKRHeap {
 	virtual void state_register(TState*, unsigned long) const;      // _54
 	virtual void state_compare(const TState&, const TState&) const; // _58
 	virtual void state_dump(const TState&) const;                   // _5C
+
+	JKRHeap(void*, unsigned long, JKRHeap*, bool);
+	void initArena(char**, unsigned long*, int);
+	void becomeSystemHeap();
+	void becomeCurrentHeap();
+	void destroy();
+	void alloc(unsigned long, int, JKRHeap*);
+	void alloc(unsigned long, int);
+	void free(void*, JKRHeap*);
+	void free(void*);
+	void freeAll();
+	void freeTail();
+	void resize(void*, unsigned long);
+	void getFreeSize();
+	void getTotalFreeSize();
+	void changeGroupID(unsigned char);
+	void getCurrentGroupId();
+	void getMaxAllocatableSize(int);
+	void findFromRoot(void*);
+	void find(void*) const;
+	void dispose(void*, unsigned long);
+	void dispose(void*, void*);
+	void dispose();
+	void copyMemory(void*, void*, unsigned long);
+	void setErrorHandler(void (*)(void*, unsigned long, int));
+	void state_dumpDifference(const JKRHeap::TState&, const JKRHeap::TState&);
 };
 
 #endif

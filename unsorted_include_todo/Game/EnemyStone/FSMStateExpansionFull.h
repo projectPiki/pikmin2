@@ -15,25 +15,19 @@
 */
 
 namespace Game {
-namespace FSMState < Game
-{
-	namespace EnemyStone {
-	struct DrawInfo >
-	{
-		virtual void FSMState < init(DrawInfo*, StateArg*);         // _08 (weak)
-		virtual void FSMState < exec(DrawInfo*);                    // _0C (weak)
-		virtual void FSMState < cleanup(DrawInfo*);                 // _10 (weak)
-		virtual void FSMState < resume(DrawInfo*);                  // _14 (weak)
-		virtual void FSMState < restart(DrawInfo*);                 // _18 (weak)
-		virtual void FSMState < transit(DrawInfo*, int, StateArg*); // _1C (weak)
-	};
-	} // namespace EnemyStone
-} // namespace Game
+struct FSMState<Game::EnemyStone::DrawInfo> {
+	virtual void FSMState<EnemyStone::DrawInfo>::init(EnemyStone::DrawInfo*, StateArg*);         // _08 (weak)
+	virtual void FSMState<EnemyStone::DrawInfo>::exec(EnemyStone::DrawInfo*);                    // _0C (weak)
+	virtual void FSMState<EnemyStone::DrawInfo>::cleanup(EnemyStone::DrawInfo*);                 // _10 (weak)
+	virtual void FSMState<EnemyStone::DrawInfo>::resume(EnemyStone::DrawInfo*);                  // _14 (weak)
+	virtual void FSMState<EnemyStone::DrawInfo>::restart(EnemyStone::DrawInfo*);                 // _18 (weak)
+	virtual void FSMState<EnemyStone::DrawInfo>::transit(EnemyStone::DrawInfo*, int, StateArg*); // _1C (weak)
+};
 } // namespace Game
 
 namespace Game {
 namespace EnemyStone {
-struct FSMStateExpansionFull : public DrawInfo > {
+struct FSMStateExpansionFull : public FSMState<Game::EnemyStone::DrawInfo> {
 	virtual void makeMatrix(DrawInfo*, Matrixf*); // _20
 };
 } // namespace EnemyStone

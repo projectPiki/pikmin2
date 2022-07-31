@@ -121,6 +121,8 @@ struct J3DTevBlockNull : public J3DTevBlock {
 	virtual void indexToPtr();        // _3C (weak)
 	virtual void getType();           // _40 (weak)
 	virtual ~J3DTevBlockNull();       // _D8 (weak)
+
+	void initialize();
 };
 
 #endif

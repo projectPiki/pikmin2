@@ -13,21 +13,17 @@
 */
 
 namespace efx {
-namespace TSyncGroup4 < efx
-{
-	struct TForever >
-	{
-		virtual void TSyncGroup4 < create(Arg*);       // _08 (weak)
-		virtual void TSyncGroup4 < forceKill();        // _0C (weak)
-		virtual void TSyncGroup4 < fade();             // _10 (weak)
-		virtual void TSyncGroup4 < startDemoDrawOff(); // _14 (weak)
-		virtual void TSyncGroup4 < endDemoDrawOn();    // _18 (weak)
-	};
-} // namespace efx
+struct TSyncGroup4<efx::TForever> {
+	virtual void TSyncGroup4<TForever>::create(Arg*);       // _08 (weak)
+	virtual void TSyncGroup4<TForever>::forceKill();        // _0C (weak)
+	virtual void TSyncGroup4<TForever>::fade();             // _10 (weak)
+	virtual void TSyncGroup4<TForever>::startDemoDrawOff(); // _14 (weak)
+	virtual void TSyncGroup4<TForever>::endDemoDrawOn();    // _18 (weak)
+};
 } // namespace efx
 
 namespace efx {
-struct THibaFire : public TForever > {
+struct THibaFire : public TSyncGroup4<efx::TForever> {
 
 	void setRateLOD(int);
 };

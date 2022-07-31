@@ -12,6 +12,8 @@
 struct JASInstSense {
 	virtual void getY(int, int) const; // _08
 	virtual void _0C() = 0;            // _0C
+
+	void setParams(int, int, float, float);
 };
 
 #endif

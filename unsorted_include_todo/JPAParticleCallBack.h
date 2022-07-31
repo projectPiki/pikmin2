@@ -14,6 +14,8 @@ struct JPAParticleCallBack {
 	virtual void _08() = 0;                                  // _08
 	virtual void execute(JPABaseEmitter*, JPABaseParticle*); // _0C (weak)
 	virtual void draw(JPABaseEmitter*, JPABaseParticle*);    // _10 (weak)
+
+	~JPAParticleCallBack();
 };
 
 #endif

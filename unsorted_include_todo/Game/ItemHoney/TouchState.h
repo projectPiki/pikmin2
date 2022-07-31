@@ -22,18 +22,14 @@
 */
 
 namespace Game {
-namespace FSMState < Game
-{
-	struct CFSMItem >
-	{
-		virtual void init(CFSMItem*, StateArg*);                    // _08
-		virtual void exec(CFSMItem*);                               // _0C
-		virtual void cleanup(CFSMItem*);                            // _10
-		virtual void FSMState < resume(CFSMItem*);                  // _14 (weak)
-		virtual void FSMState < restart(CFSMItem*);                 // _18 (weak)
-		virtual void FSMState < transit(CFSMItem*, int, StateArg*); // _1C (weak)
-	};
-} // namespace Game
+struct FSMState<Game::CFSMItem> {
+	virtual void init(CFSMItem*, StateArg*);                             // _08
+	virtual void exec(CFSMItem*);                                        // _0C
+	virtual void cleanup(CFSMItem*);                                     // _10
+	virtual void FSMState<CFSMItem>::resume(CFSMItem*);                  // _14 (weak)
+	virtual void FSMState<CFSMItem>::restart(CFSMItem*);                 // _18 (weak)
+	virtual void FSMState<CFSMItem>::transit(CFSMItem*, int, StateArg*); // _1C (weak)
+};
 } // namespace Game
 
 namespace Game {
@@ -54,7 +50,7 @@ struct CItemState {
 
 namespace Game {
 namespace ItemHoney {
-struct TouchState : public CFSMItem >, public CItemState {
+struct TouchState : public FSMState<Game::CFSMItem>, public CItemState {
 	virtual void init(CFSMItem*, StateArg*);                       // _08
 	virtual void exec(CFSMItem*);                                  // _0C
 	virtual void cleanup(CFSMItem*);                               // _10

@@ -38,20 +38,14 @@ struct FSMState {
 } // namespace ebi
 
 namespace Game {
-namespace FSMState < ebi
-{
-	namespace CardError {
-	struct TMgr >
-	{
-		virtual void _08() = 0;                           // _08
-		virtual void _0C() = 0;                           // _0C
-		virtual void cleanup(ebi::TMgr*);                 // _10 (weak)
-		virtual void resume(ebi::TMgr*);                  // _14 (weak)
-		virtual void restart(ebi::TMgr*);                 // _18 (weak)
-		virtual void transit(ebi::TMgr*, int, StateArg*); // _1C (weak)
-	};
-	} // namespace CardError
-} // namespace ebi
+struct FSMState<ebi::CardError::TMgr> {
+	virtual void _08() = 0;                                      // _08
+	virtual void _0C() = 0;                                      // _0C
+	virtual void cleanup(ebi::CardError::TMgr*);                 // _10 (weak)
+	virtual void resume(ebi::CardError::TMgr*);                  // _14 (weak)
+	virtual void restart(ebi::CardError::TMgr*);                 // _18 (weak)
+	virtual void transit(ebi::CardError::TMgr*, int, StateArg*); // _1C (weak)
+};
 } // namespace Game
 
 namespace ebi {
@@ -84,7 +78,7 @@ struct FSMState_CardRequest {
 
 namespace ebi {
 namespace CardError {
-struct FSMState_WN0_NowFormat : public FSMState, public TMgr >, public FSMState_CardRequest {
+struct FSMState_WN0_NowFormat : public FSMState, public FSMState<ebi::CardError::TMgr>, public FSMState_CardRequest {
 	virtual void do_open(TMgr*);               // _28
 	virtual void do_cardRequest();             // _2C
 	virtual void do_transitCardReady(TMgr*);   // _30

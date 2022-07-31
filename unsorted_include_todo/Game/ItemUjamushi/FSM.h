@@ -12,23 +12,17 @@
 */
 
 namespace Game {
-namespace StateMachine < Game
-{
-	namespace ItemUjamushi {
-	struct Item >
-	{
-		virtual void init(Item*);                                   // _08
-		virtual void StateMachine < start(Item*, int, StateArg*);   // _0C (weak)
-		virtual void StateMachine < exec(Item*);                    // _10 (weak)
-		virtual void StateMachine < transit(Item*, int, StateArg*); // _14 (weak)
-	};
-	} // namespace ItemUjamushi
-} // namespace Game
+struct StateMachine<Game::ItemUjamushi::Item> {
+	virtual void init(Item*);                                                                    // _08
+	virtual void StateMachine<ItemUjamushi::Item>::start(ItemUjamushi::Item*, int, StateArg*);   // _0C (weak)
+	virtual void StateMachine<ItemUjamushi::Item>::exec(ItemUjamushi::Item*);                    // _10 (weak)
+	virtual void StateMachine<ItemUjamushi::Item>::transit(ItemUjamushi::Item*, int, StateArg*); // _14 (weak)
+};
 } // namespace Game
 
 namespace Game {
 namespace ItemUjamushi {
-struct FSM : public Item > {
+struct FSM : public StateMachine<Game::ItemUjamushi::Item> {
 	virtual void init(Item*); // _08
 };
 } // namespace ItemUjamushi

@@ -24,6 +24,14 @@ struct J2DGrafContext {
 	virtual void setScissor();                          // _1C
 	virtual void getGrafType() const;                   // _20 (weak)
 	virtual void setLookat();                           // _24 (weak)
+
+	J2DGrafContext(float, float, float, float);
+	void scissor(const JGeometry::TBox2<float>&);
+	void setColor(JUtility::TColor, JUtility::TColor, JUtility::TColor, JUtility::TColor);
+	void setLineWidth(unsigned char);
+	void fillBox(const JGeometry::TBox2<float>&);
+	void drawFrame(const JGeometry::TBox2<float>&);
+	void lineTo(JGeometry::TVec2<float>);
 };
 
 #endif

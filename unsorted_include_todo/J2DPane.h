@@ -80,6 +80,44 @@ struct J2DPane {
 	virtual void setAnimationVC(J2DAnmVtxColor*);             // _8C (weak)
 	virtual void animationPane(const J2DAnmTransform*);       // _90
 	virtual void _94() = 0;                                   // _94
+
+	J2DPane();
+	void initiate();
+	J2DPane(J2DPane*, bool, unsigned long long, const JGeometry::TBox2<float>&);
+	void initialize(J2DPane*, bool, unsigned long long, const JGeometry::TBox2<float>&);
+	J2DPane(unsigned long long, const JGeometry::TBox2<float>&);
+	void initialize(unsigned long long, const JGeometry::TBox2<float>&);
+	J2DPane(J2DPane*, JSURandomInputStream*, unsigned char);
+	void makePaneStream(J2DPane*, JSURandomInputStream*);
+	void changeUseTrans(J2DPane*);
+	void appendChild(J2DPane*);
+	void prependChild(J2DPane*);
+	void removeChild(J2DPane*);
+	void draw(float, float, const J2DGrafContext*, bool, bool);
+	void place(const JGeometry::TBox2<float>&);
+	void getBounds();
+	void rotate(float, float, J2DRotateAxis, float);
+	void rotate(float);
+	void clip(const JGeometry::TBox2<float>&);
+	void gather(J2DPane**, unsigned long long, unsigned long long, int, int&);
+	void setBasePosition(J2DBasePosition);
+	void setInfluencedAlpha(bool, bool);
+	void getGlbVtx(unsigned char) const;
+	void getFirstChildPane();
+	void getNextChildPane();
+	void getParentPane();
+	void makePaneExStream(J2DPane*, JSURandomInputStream*);
+	void J2DCast_F32_to_S16(float, unsigned char);
+	void getPointer(JSURandomInputStream*, unsigned long, JKRArchive*);
+	void animationTransform();
+	void updateTransform(const J2DAnmTransform*);
+	void getPaneTree();
+	void getTagName() const;
+	void isVisible() const;
+	void getUserInfo() const;
+	void operator=(const J2DPane&);
+	void show();
+	void hide();
 };
 
 #endif

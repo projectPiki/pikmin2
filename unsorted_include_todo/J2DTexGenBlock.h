@@ -10,6 +10,11 @@
 
 struct J2DTexGenBlock {
 	virtual ~J2DTexGenBlock(); // _08
+
+	void initialize();
+	void setGX();
+	void setTexMtx(unsigned long, J2DTexMtx&);
+	void getTexMtx(unsigned long, J2DTexMtx&);
 };
 
 #endif

@@ -148,6 +148,8 @@ struct J3DTevBlock1 : public J3DTevBlock {
 	virtual void getIndTevStage(unsigned long);                        // _C4 (weak)
 	virtual void getTexNoOffset() const;                               // _C8 (weak)
 	virtual ~J3DTevBlock1();                                           // _D8 (weak)
+
+	void initialize();
 };
 
 #endif

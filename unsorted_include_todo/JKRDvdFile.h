@@ -24,6 +24,13 @@ struct JKRDvdFile {
 	virtual void getFileSize() const;                // _1C (weak)
 	virtual void open(long);                         // _20
 	virtual void _24() = 0;                          // _24
+
+	JKRDvdFile();
+	JKRDvdFile(const char*);
+	JKRDvdFile(long);
+	void initiate();
+	void sync();
+	void doneProcess(long, DVDFileInfo*);
 };
 
 #endif

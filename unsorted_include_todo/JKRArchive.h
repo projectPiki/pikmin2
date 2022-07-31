@@ -48,6 +48,23 @@ struct JKRArchive : public JKRFileLoader {
 	virtual void _44() = 0;                                                      // _44
 	virtual void setExpandSize(SDIFileEntry*, unsigned long);                    // _48
 	virtual void getExpandSize(SDIFileEntry*) const;                             // _4C
+
+	JKRArchive(long, JKRArchive::EMountMode);
+	void isSameName(JKRArchive::CArcName&, unsigned long, unsigned short) const;
+	void findDirectory(const char*, unsigned long) const;
+	void findTypeResource(unsigned long, const char*) const;
+	void findFsResource(const char*, unsigned long) const;
+	void findIdxResource(unsigned long) const;
+	void findNameResource(const char*) const;
+	void findPtrResource(const void*) const;
+	void findIdResource(unsigned short) const;
+	void mount(const char*, JKRArchive::EMountMode, JKRHeap*, JKRArchive::EMountDirection);
+	void mount(void*, JKRHeap*, JKRArchive::EMountDirection);
+	void mount(long, JKRArchive::EMountMode, JKRHeap*, JKRArchive::EMountDirection);
+	void getDirEntry(JKRArchive::SDirEntry*, unsigned long) const;
+	void getGlbResource(unsigned long, const char*, JKRArchive*);
+	void getIdxResource(unsigned long);
+	void readResource(void*, unsigned long, unsigned short);
 };
 
 #endif

@@ -10,6 +10,9 @@
 
 struct J3DShapeTable {
 	virtual ~J3DShapeTable(); // _08 (weak)
+
+	void initShapeNodes(J3DDrawMtxData*, J3DVertexData*);
+	void sortVcdVatCmd();
 };
 
 #endif

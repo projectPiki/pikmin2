@@ -16,6 +16,12 @@ struct CNode {
 
 struct FogMgr : public CNode {
 	virtual ~FogMgr(); // _08 (weak)
+
+	FogMgr();
+	void off(Graphics&);
+	void set(Graphics&);
+	void setColor(Color4&);
+	void getColor(Color4&);
 };
 
 #endif

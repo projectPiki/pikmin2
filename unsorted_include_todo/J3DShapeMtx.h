@@ -22,6 +22,12 @@ struct J3DShapeMtx {
 	virtual void load() const;                                               // _18
 	virtual void calcNBTScale(const Vec&, float (*)[3][3], float (*)[3][3]); // _1C
 	virtual void _20() = 0;                                                  // _20
+
+	void resetMtxLoadCache();
+	void loadMtxIndx_PNGP(int, unsigned short) const;
+	void loadMtxIndx_PCPU(int, unsigned short) const;
+	void loadMtxIndx_NCPU(int, unsigned short) const;
+	void loadMtxIndx_PNCPU(int, unsigned short) const;
 };
 
 #endif

@@ -13,21 +13,17 @@
 */
 
 namespace efx {
-namespace TSyncGroup3 < efx
-{
-	struct TChasePos >
-	{
-		virtual void TSyncGroup3 < create(Arg*);       // _08 (weak)
-		virtual void TSyncGroup3 < forceKill();        // _0C (weak)
-		virtual void TSyncGroup3 < fade();             // _10 (weak)
-		virtual void TSyncGroup3 < startDemoDrawOff(); // _14 (weak)
-		virtual void TSyncGroup3 < endDemoDrawOn();    // _18 (weak)
-	};
-} // namespace efx
+struct TSyncGroup3<efx::TChasePos> {
+	virtual void TSyncGroup3<TChasePos>::create(Arg*);       // _08 (weak)
+	virtual void TSyncGroup3<TChasePos>::forceKill();        // _0C (weak)
+	virtual void TSyncGroup3<TChasePos>::fade();             // _10 (weak)
+	virtual void TSyncGroup3<TChasePos>::startDemoDrawOff(); // _14 (weak)
+	virtual void TSyncGroup3<TChasePos>::endDemoDrawOn();    // _18 (weak)
+};
 } // namespace efx
 
 namespace efx {
-struct TChasePos3 : public TChasePos > {
+struct TChasePos3 : public TSyncGroup3<efx::TChasePos> {
 
 	TChasePos3(Vector3<float>*, unsigned short, unsigned short, unsigned short);
 };

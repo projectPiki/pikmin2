@@ -17,6 +17,9 @@ struct J3DPacket {
 struct J3DDrawPacket : public J3DPacket {
 	virtual void draw();      // _0C
 	virtual ~J3DDrawPacket(); // _10
+
+	void newDisplayList(unsigned long);
+	void newSingleDisplayList(unsigned long);
 };
 
 #endif

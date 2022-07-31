@@ -69,6 +69,8 @@ struct J3DTexGenBlock4 : public J3DTexGenBlockPatched {
 	virtual void setNBTScale(J3DNBTScale);        // _58 (weak)
 	virtual void getNBTScale();                   // _5C (weak)
 	virtual ~J3DTexGenBlock4();                   // _68 (weak)
+
+	void initialize();
 };
 
 #endif

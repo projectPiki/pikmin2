@@ -13,20 +13,16 @@
 */
 
 namespace JADUtility {
-namespace NodeTree < JADUtility
-{
-	struct PrmSetBase >
-	{
-		virtual void NodeTree < beforeRemovingChild(PrmSetBase*);                  // _08 (weak)
-		virtual void NodeTree < beforeRemovingThis(PrmSetBase*);                   // _0C (weak)
-		virtual void NodeTree < afterRemovingChildButton(PrmSetBase*);             // _10 (weak)
-		virtual void NodeTree < afterRemovingThisButton(PrmSetBase*, PrmSetBase*); // _14 (weak)
-	};
-} // namespace JADUtility
+struct NodeTree<JADUtility::PrmSetBase> {
+	virtual void NodeTree<PrmSetBase>::beforeRemovingChild(PrmSetBase*);                  // _08 (weak)
+	virtual void NodeTree<PrmSetBase>::beforeRemovingThis(PrmSetBase*);                   // _0C (weak)
+	virtual void NodeTree<PrmSetBase>::afterRemovingChildButton(PrmSetBase*);             // _10 (weak)
+	virtual void NodeTree<PrmSetBase>::afterRemovingThisButton(PrmSetBase*, PrmSetBase*); // _14 (weak)
+};
 } // namespace JADUtility
 
 namespace JADUtility {
-struct PrmSetTree : public PrmSetBase > {
+struct PrmSetTree : public NodeTree<JADUtility::PrmSetBase> {
 };
 } // namespace JADUtility
 

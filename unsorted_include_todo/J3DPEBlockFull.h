@@ -66,6 +66,8 @@ struct J3DPEBlockFull {
 	virtual void getFogOffset() const;              // _70 (weak)
 	virtual void setFogOffset(unsigned long);       // _74 (weak)
 	virtual ~J3DPEBlockFull();                      // _78 (weak)
+
+	void initialize();
 };
 
 #endif

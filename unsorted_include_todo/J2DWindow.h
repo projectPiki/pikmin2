@@ -119,6 +119,18 @@ struct J2DWindow : public J2DPane {
 	virtual void getContentsMaterial() const;                                          // _C4 (weak)
 	virtual void drawContents(const JGeometry::TBox2<float>&);                         // _C8
 	virtual void _CC() = 0;                                                            // _CC
+
+	J2DWindow();
+	J2DWindow(J2DPane*, JSURandomInputStream*, JKRArchive*);
+	J2DWindow(J2DPane*, JSURandomInputStream*, J2DMaterial*);
+	void private_readStream(J2DPane*, JSURandomInputStream*, JKRArchive*);
+	void initinfo2();
+	void draw_private(const JGeometry::TBox2<float>&, const JGeometry::TBox2<float>&);
+	void setContentsColor(JUtility::TColor, JUtility::TColor, JUtility::TColor, JUtility::TColor);
+	void drawFrameTexture(JUTTexture*, float, float, float, float, unsigned short, unsigned short, unsigned short, unsigned short, bool);
+	void drawFrameTexture(JUTTexture*, float, float, bool, bool, bool);
+	void drawContentsTexture(float, float, float, float);
+	void setTevMode(JUTTexture*, JUtility::TColor, JUtility::TColor);
 };
 
 #endif

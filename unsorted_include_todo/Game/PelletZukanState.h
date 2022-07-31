@@ -17,18 +17,14 @@
 */
 
 namespace Game {
-namespace FSMState < Game
-{
-	struct Pellet >
-	{
-		virtual void init(Pellet*, StateArg*);                    // _08
-		virtual void exec(Pellet*);                               // _0C
-		virtual void cleanup(Pellet*);                            // _10
-		virtual void FSMState < resume(Pellet*);                  // _14 (weak)
-		virtual void FSMState < restart(Pellet*);                 // _18 (weak)
-		virtual void FSMState < transit(Pellet*, int, StateArg*); // _1C (weak)
-	};
-} // namespace Game
+struct FSMState<Game::Pellet> {
+	virtual void init(Pellet*, StateArg*);                           // _08
+	virtual void exec(Pellet*);                                      // _0C
+	virtual void cleanup(Pellet*);                                   // _10
+	virtual void FSMState<Pellet>::resume(Pellet*);                  // _14 (weak)
+	virtual void FSMState<Pellet>::restart(Pellet*);                 // _18 (weak)
+	virtual void FSMState<Pellet>::transit(Pellet*, int, StateArg*); // _1C (weak)
+};
 } // namespace Game
 
 namespace Game {
@@ -46,7 +42,7 @@ struct PelletState {
 } // namespace Game
 
 namespace Game {
-struct PelletZukanState : public Pellet >, public PelletState {
+struct PelletZukanState : public FSMState<Game::Pellet>, public PelletState {
 	virtual void init(Pellet*, StateArg*); // _08
 	virtual void exec(Pellet*);            // _0C
 	virtual void cleanup(Pellet*);         // _10

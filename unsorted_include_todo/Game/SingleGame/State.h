@@ -24,23 +24,19 @@
 */
 
 namespace Game {
-namespace FSMState < Game
-{
-	struct SingleGameSection >
-	{
-		virtual void FSMState < init(SingleGameSection*, StateArg*);         // _08 (weak)
-		virtual void FSMState < exec(SingleGameSection*);                    // _0C (weak)
-		virtual void FSMState < cleanup(SingleGameSection*);                 // _10 (weak)
-		virtual void FSMState < resume(SingleGameSection*);                  // _14 (weak)
-		virtual void FSMState < restart(SingleGameSection*);                 // _18 (weak)
-		virtual void FSMState < transit(SingleGameSection*, int, StateArg*); // _1C (weak)
-	};
-} // namespace Game
+struct FSMState<Game::SingleGameSection> {
+	virtual void FSMState<SingleGameSection>::init(SingleGameSection*, StateArg*);         // _08 (weak)
+	virtual void FSMState<SingleGameSection>::exec(SingleGameSection*);                    // _0C (weak)
+	virtual void FSMState<SingleGameSection>::cleanup(SingleGameSection*);                 // _10 (weak)
+	virtual void FSMState<SingleGameSection>::resume(SingleGameSection*);                  // _14 (weak)
+	virtual void FSMState<SingleGameSection>::restart(SingleGameSection*);                 // _18 (weak)
+	virtual void FSMState<SingleGameSection>::transit(SingleGameSection*, int, StateArg*); // _1C (weak)
+};
 } // namespace Game
 
 namespace Game {
 namespace SingleGame {
-struct State : public SingleGameSection > {
+struct State : public FSMState<Game::SingleGameSection> {
 	virtual void Singledraw(SingleGameSection*, Graphics&);                                          // _20 (weak)
 	virtual void SingleonOrimaDown(SingleGameSection*, int);                                         // _24 (weak)
 	virtual void SingleonMovieStart(SingleGameSection*, MovieConfig*, unsigned long, unsigned long); // _28 (weak)

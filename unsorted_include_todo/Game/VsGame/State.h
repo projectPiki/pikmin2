@@ -25,23 +25,19 @@
 */
 
 namespace Game {
-namespace FSMState < Game
-{
-	struct VsGameSection >
-	{
-		virtual void FSMState < init(VsGameSection*, StateArg*);         // _08 (weak)
-		virtual void FSMState < exec(VsGameSection*);                    // _0C (weak)
-		virtual void FSMState < cleanup(VsGameSection*);                 // _10 (weak)
-		virtual void FSMState < resume(VsGameSection*);                  // _14 (weak)
-		virtual void FSMState < restart(VsGameSection*);                 // _18 (weak)
-		virtual void FSMState < transit(VsGameSection*, int, StateArg*); // _1C (weak)
-	};
-} // namespace Game
+struct FSMState<Game::VsGameSection> {
+	virtual void FSMState<VsGameSection>::init(VsGameSection*, StateArg*);         // _08 (weak)
+	virtual void FSMState<VsGameSection>::exec(VsGameSection*);                    // _0C (weak)
+	virtual void FSMState<VsGameSection>::cleanup(VsGameSection*);                 // _10 (weak)
+	virtual void FSMState<VsGameSection>::resume(VsGameSection*);                  // _14 (weak)
+	virtual void FSMState<VsGameSection>::restart(VsGameSection*);                 // _18 (weak)
+	virtual void FSMState<VsGameSection>::transit(VsGameSection*, int, StateArg*); // _1C (weak)
+};
 } // namespace Game
 
 namespace Game {
 namespace VsGame {
-struct State : public VsGameSection > {
+struct State : public FSMState<Game::VsGameSection> {
 	virtual void Vsdraw(VsGameSection*, Graphics&);                                          // _20 (weak)
 	virtual void Vspre2dDraw(Graphics&, VsGameSection*);                                     // _24 (weak)
 	virtual void VsonOrimaDown(VsGameSection*, int);                                         // _28 (weak)

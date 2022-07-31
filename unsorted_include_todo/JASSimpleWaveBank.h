@@ -34,6 +34,10 @@ struct JASSimpleWaveBank : public JASWaveArc {
 	virtual void _14() = 0;                          // _14
 	virtual void _18() = 0;                          // _18
 	virtual void _28() = 0;                          // _28
+
+	JASSimpleWaveBank();
+	void setWaveTableSize(unsigned long);
+	void setWaveInfo(unsigned long, const JASWaveInfo&);
 };
 
 #endif

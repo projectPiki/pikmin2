@@ -56,6 +56,11 @@ struct JKRAramArchive : public JKRFileLoader, public JKRArchive {
 	virtual void getExpandedResSize(const void*) const;                                          // _3C
 	virtual void fetchResource(JKRArchive::SDIFileEntry*, unsigned long*);                       // _40
 	virtual void fetchResource(void*, unsigned long, JKRArchive::SDIFileEntry*, unsigned long*); // _44
+
+	JKRAramArchive(long, JKRArchive::EMountDirection);
+	void open(long);
+	void fetchResource_subroutine(unsigned long, unsigned long, unsigned char*, unsigned long, int);
+	void fetchResource_subroutine(unsigned long, unsigned long, JKRHeap*, int, unsigned char**);
 };
 
 #endif

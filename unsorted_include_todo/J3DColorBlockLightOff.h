@@ -96,6 +96,8 @@ struct J3DColorBlockLightOff : public J3DColorBlock {
 	virtual void setColorChanOffset(unsigned long);                // _80 (weak)
 	virtual ~J3DColorBlockLightOff();                              // _84 (weak)
 	virtual void _88() = 0;                                        // _88
+
+	void initialize();
 };
 
 #endif

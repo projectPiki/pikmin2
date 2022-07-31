@@ -166,6 +166,8 @@ struct J3DTevBlock2 : public J3DTevBlock {
 	virtual void getTevRegOffset() const;                                        // _CC (weak)
 	virtual void setTevRegOffset(unsigned long);                                 // _D4 (weak)
 	virtual ~J3DTevBlock2();                                                     // _D8 (weak)
+
+	void initialize();
 };
 
 #endif

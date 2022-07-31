@@ -19,22 +19,18 @@
 */
 
 namespace Game {
-namespace FSMState < Game
-{
-	struct CFSMItem >
-	{
-		virtual void FSMState < init(CFSMItem*, StateArg*);         // _08 (weak)
-		virtual void FSMState < exec(CFSMItem*);                    // _0C (weak)
-		virtual void FSMState < cleanup(CFSMItem*);                 // _10 (weak)
-		virtual void FSMState < resume(CFSMItem*);                  // _14 (weak)
-		virtual void FSMState < restart(CFSMItem*);                 // _18 (weak)
-		virtual void FSMState < transit(CFSMItem*, int, StateArg*); // _1C (weak)
-	};
-} // namespace Game
+struct FSMState<Game::CFSMItem> {
+	virtual void FSMState<CFSMItem>::init(CFSMItem*, StateArg*);         // _08 (weak)
+	virtual void FSMState<CFSMItem>::exec(CFSMItem*);                    // _0C (weak)
+	virtual void FSMState<CFSMItem>::cleanup(CFSMItem*);                 // _10 (weak)
+	virtual void FSMState<CFSMItem>::resume(CFSMItem*);                  // _14 (weak)
+	virtual void FSMState<CFSMItem>::restart(CFSMItem*);                 // _18 (weak)
+	virtual void FSMState<CFSMItem>::transit(CFSMItem*, int, StateArg*); // _1C (weak)
+};
 } // namespace Game
 
 namespace Game {
-struct CItemState : public CFSMItem > {
+struct CItemState : public FSMState<Game::CFSMItem> {
 	virtual void onDamage(CFSMItem*, float);                       // _20 (weak)
 	virtual void onKeyEvent(CFSMItem*, const SysShape::KeyEvent&); // _24 (weak)
 	virtual void onBounce(CFSMItem*, Sys::Triangle*);              // _28 (weak)

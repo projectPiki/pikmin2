@@ -12,6 +12,9 @@
 struct J3DAnmTextureSRTKey {
 	virtual ~J3DAnmTextureSRTKey(); // _08 (weak)
 	virtual void getKind() const;   // _0C (weak)
+
+	void calcTransform(float, unsigned short, J3DTextureSRTInfo*) const;
+	void searchUpdateMaterialID(J3DModelData*);
 };
 
 #endif

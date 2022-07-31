@@ -48,6 +48,14 @@ struct JKRFileCache : public JKRFileLoader {
 	virtual void readFsResource(void*, unsigned long, const char*);                  // _44 (weak)
 	virtual void readNameResource(void*, unsigned long, unsigned long, const char*); // _48 (weak)
 	virtual void _4C() = 0;                                                          // _4C
+
+	void mount(const char*, JKRHeap*, const char*);
+	JKRFileCache(const char*, const char*);
+	void findCacheBlock(const void*) const;
+	void findCacheBlock(unsigned long) const;
+	void findFile(char*, const char*) const;
+	void getDvdPathName(const char*) const;
+	void convStrLower(char*) const;
 };
 
 #endif

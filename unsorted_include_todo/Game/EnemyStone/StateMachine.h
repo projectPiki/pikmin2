@@ -14,23 +14,17 @@
 */
 
 namespace Game {
-namespace StateMachine < Game
-{
-	namespace EnemyStone {
-	struct DrawInfo >
-	{
-		virtual void init(DrawInfo*);                                   // _08
-		virtual void StateMachine < start(DrawInfo*, int, StateArg*);   // _0C (weak)
-		virtual void StateMachine < exec(DrawInfo*);                    // _10 (weak)
-		virtual void StateMachine < transit(DrawInfo*, int, StateArg*); // _14 (weak)
-	};
-	} // namespace EnemyStone
-} // namespace Game
+struct StateMachine<Game::EnemyStone::DrawInfo> {
+	virtual void init(DrawInfo*);                                                                    // _08
+	virtual void StateMachine<EnemyStone::DrawInfo>::start(EnemyStone::DrawInfo*, int, StateArg*);   // _0C (weak)
+	virtual void StateMachine<EnemyStone::DrawInfo>::exec(EnemyStone::DrawInfo*);                    // _10 (weak)
+	virtual void StateMachine<EnemyStone::DrawInfo>::transit(EnemyStone::DrawInfo*, int, StateArg*); // _14 (weak)
+};
 } // namespace Game
 
 namespace Game {
 namespace EnemyStone {
-struct StateMachine : public DrawInfo > {
+struct StateMachine : public StateMachine<Game::EnemyStone::DrawInfo> {
 	virtual void init(DrawInfo*);                 // _08
 	virtual void makeMatrix(DrawInfo*, Matrixf*); // _18
 	virtual void _1C() = 0;                       // _1C

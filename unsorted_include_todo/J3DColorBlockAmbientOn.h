@@ -109,6 +109,8 @@ struct J3DColorBlockAmbientOn : public J3DColorBlockLightOff, public J3DColorBlo
 	virtual void setAmbColor(unsigned long, J3DGXColor);        // _40 (weak)
 	virtual void getAmbColor(unsigned long);                    // _44 (weak)
 	virtual ~J3DColorBlockAmbientOn();                          // _84 (weak)
+
+	void initialize();
 };
 
 #endif

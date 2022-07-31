@@ -16,6 +16,8 @@ struct Splitter {
 
 struct HorizonalSplitter : public Splitter {
 	virtual void split2(float); // _08
+
+	HorizonalSplitter(Graphics*);
 };
 
 #endif

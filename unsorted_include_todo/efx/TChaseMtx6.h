@@ -13,21 +13,17 @@
 */
 
 namespace efx {
-namespace TSyncGroup6 < efx
-{
-	struct TChaseMtx >
-	{
-		virtual void TSyncGroup6 < create(Arg*);       // _08 (weak)
-		virtual void TSyncGroup6 < forceKill();        // _0C (weak)
-		virtual void TSyncGroup6 < fade();             // _10 (weak)
-		virtual void TSyncGroup6 < startDemoDrawOff(); // _14 (weak)
-		virtual void TSyncGroup6 < endDemoDrawOn();    // _18 (weak)
-	};
-} // namespace efx
+struct TSyncGroup6<efx::TChaseMtx> {
+	virtual void TSyncGroup6<TChaseMtx>::create(Arg*);       // _08 (weak)
+	virtual void TSyncGroup6<TChaseMtx>::forceKill();        // _0C (weak)
+	virtual void TSyncGroup6<TChaseMtx>::fade();             // _10 (weak)
+	virtual void TSyncGroup6<TChaseMtx>::startDemoDrawOff(); // _14 (weak)
+	virtual void TSyncGroup6<TChaseMtx>::endDemoDrawOn();    // _18 (weak)
+};
 } // namespace efx
 
 namespace efx {
-struct TChaseMtx6 : public TChaseMtx > {
+struct TChaseMtx6 : public TSyncGroup6<efx::TChaseMtx> {
 
 	TChaseMtx6(float (*)[4], unsigned short, unsigned short, unsigned short, unsigned short, unsigned short, unsigned short);
 	void setMtxptr(float (*)[4]);

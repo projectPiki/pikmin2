@@ -106,6 +106,22 @@ struct J2DScreen : public J2DPane {
 	virtual void createPane(const J2DScrnBlockHeader&, JSURandomInputStream*, J2DPane*, unsigned long);              // _94 (weak)
 	virtual void createPane(const J2DScrnBlockHeader&, JSURandomInputStream*, J2DPane*, unsigned long, JKRArchive*); // _98
 	virtual void _9C() = 0;                                                                                          // _9C
+
+	J2DScreen();
+	void clean();
+	void set(const char*, unsigned long, JKRArchive*);
+	void set(JSURandomInputStream*, unsigned long);
+	void private_set(JSURandomInputStream*, unsigned long, JKRArchive*);
+	void checkSignature(JSURandomInputStream*);
+	void getScreenInformation(JSURandomInputStream*);
+	void makeHierarchyPanes(J2DPane*, JSURandomInputStream*, unsigned long, JKRArchive*);
+	void draw(float, float, const J2DGrafContext*);
+	void gather(J2DPane**, unsigned long long, unsigned long long, int);
+	void getResReference(JSURandomInputStream*, unsigned long);
+	void createMaterial(JSURandomInputStream*, unsigned long, JKRArchive*);
+	void getMaterial(unsigned short);
+	void getNameResource(const char*);
+	void animation();
 };
 
 #endif

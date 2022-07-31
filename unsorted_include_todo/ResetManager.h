@@ -12,6 +12,11 @@
 struct ResetManager {
 	virtual void draw();                // _08
 	virtual void updateStatusEffects(); // _0C
+
+	ResetManager(float);
+	void update();
+	void isWritingMemoryCard();
+	void isSoundSystemStopped();
 };
 
 #endif

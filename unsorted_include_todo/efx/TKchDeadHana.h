@@ -13,21 +13,17 @@
 */
 
 namespace efx {
-namespace TSyncGroup2 < efx
-{
-	struct TChaseMtx >
-	{
-		virtual void TSyncGroup2 < create(Arg*);       // _08 (weak)
-		virtual void TSyncGroup2 < forceKill();        // _0C (weak)
-		virtual void TSyncGroup2 < fade();             // _10 (weak)
-		virtual void TSyncGroup2 < startDemoDrawOff(); // _14 (weak)
-		virtual void TSyncGroup2 < endDemoDrawOn();    // _18 (weak)
-	};
-} // namespace efx
+struct TSyncGroup2<efx::TChaseMtx> {
+	virtual void TSyncGroup2<TChaseMtx>::create(Arg*);       // _08 (weak)
+	virtual void TSyncGroup2<TChaseMtx>::forceKill();        // _0C (weak)
+	virtual void TSyncGroup2<TChaseMtx>::fade();             // _10 (weak)
+	virtual void TSyncGroup2<TChaseMtx>::startDemoDrawOff(); // _14 (weak)
+	virtual void TSyncGroup2<TChaseMtx>::endDemoDrawOn();    // _18 (weak)
+};
 } // namespace efx
 
 namespace efx {
-struct TKchDeadHana : public TChaseMtx > {
+struct TKchDeadHana : public TSyncGroup2<efx::TChaseMtx> {
 
 	void setGlobalScale(float);
 };

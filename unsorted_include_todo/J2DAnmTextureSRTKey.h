@@ -12,6 +12,8 @@
 struct J2DAnmTextureSRTKey {
 	virtual ~J2DAnmTextureSRTKey();                  // _08 (weak)
 	virtual void searchUpdateMaterialID(J2DScreen*); // _0C
+
+	void calcTransform(float, unsigned short, J3DTextureSRTInfo*) const;
 };
 
 #endif

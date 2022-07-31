@@ -20,6 +20,8 @@ struct JKRFile {
 	virtual void _14() = 0; // _14
 	virtual void _18() = 0; // _18
 	virtual void _1C() = 0; // _1C
+
+	void read(void*, long, long);
 };
 
 #endif

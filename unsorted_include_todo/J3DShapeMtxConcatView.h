@@ -30,6 +30,12 @@ struct J3DShapeMtxConcatView : public J3DShapeMtx {
 	virtual void load() const;                                        // _18
 	virtual void loadNrmMtx(int, unsigned short) const;               // _20 (weak)
 	virtual void loadNrmMtx(int, unsigned short, float (*)[4]) const; // _24
+
+	void loadMtxConcatView_PNGP(int, unsigned short) const;
+	void loadMtxConcatView_PCPU(int, unsigned short) const;
+	void loadMtxConcatView_NCPU(int, unsigned short) const;
+	void loadMtxConcatView_PNCPU(int, unsigned short) const;
+	void loadMtxConcatView_PNGP_LOD(int, unsigned short) const;
 };
 
 #endif

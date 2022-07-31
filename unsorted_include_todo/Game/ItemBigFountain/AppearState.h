@@ -20,25 +20,14 @@
 */
 
 namespace Game {
-namespace FSMState < Game
-{
-	namespace ItemBigFountain {
-	struct Item >
-	{
-		virtual void init(Item*, StateArg*);                                   // _08
-		virtual void exec(Item*);                                              // _0C
-		virtual void cleanup(Item*);                                           // _10
-		virtual void FSMState < resume(Item*);                                 // _14 (weak)
-		virtual void FSMState < restart(Item*);                                // _18 (weak)
-		virtual void FSMState < transit(Item*, int, StateArg*);                // _1C (weak)
-		virtual void _20() = 0;                                                // _20
-		virtual void ItemState < onKeyEvent(Item*, const SysShape::KeyEvent&); // _24 (weak)
-		virtual void ItemState < onBounce(Item*, Sys::Triangle*);              // _28 (weak)
-		virtual void ItemState < onPlatCollision(Item*, PlatEvent&);           // _2C (weak)
-		virtual void ItemState < onCollision(Item*, CollEvent&);               // _30 (weak)
-	};
-	} // namespace ItemBigFountain
-} // namespace Game
+struct FSMState<Game::ItemBigFountain::Item> {
+	virtual void init(Item*, StateArg*);                                                           // _08
+	virtual void exec(Item*);                                                                      // _0C
+	virtual void cleanup(Item*);                                                                   // _10
+	virtual void FSMState<ItemBigFountain::Item>::resume(ItemBigFountain::Item*);                  // _14 (weak)
+	virtual void FSMState<ItemBigFountain::Item>::restart(ItemBigFountain::Item*);                 // _18 (weak)
+	virtual void FSMState<ItemBigFountain::Item>::transit(ItemBigFountain::Item*, int, StateArg*); // _1C (weak)
+};
 } // namespace Game
 
 namespace Game {
@@ -61,8 +50,24 @@ struct State {
 } // namespace Game
 
 namespace Game {
+struct ItemState<Game::ItemBigFountain::Item> {
+	virtual void init(Item*, StateArg*);                                                                          // _08
+	virtual void exec(Item*);                                                                                     // _0C
+	virtual void cleanup(Item*);                                                                                  // _10
+	virtual void _14() = 0;                                                                                       // _14
+	virtual void _18() = 0;                                                                                       // _18
+	virtual void _1C() = 0;                                                                                       // _1C
+	virtual void _20() = 0;                                                                                       // _20
+	virtual void ItemState<ItemBigFountain::Item>::onKeyEvent(ItemBigFountain::Item*, const SysShape::KeyEvent&); // _24 (weak)
+	virtual void ItemState<ItemBigFountain::Item>::onBounce(ItemBigFountain::Item*, Sys::Triangle*);              // _28 (weak)
+	virtual void ItemState<ItemBigFountain::Item>::onPlatCollision(ItemBigFountain::Item*, PlatEvent&);           // _2C (weak)
+	virtual void ItemState<ItemBigFountain::Item>::onCollision(ItemBigFountain::Item*, CollEvent&);               // _30 (weak)
+};
+} // namespace Game
+
+namespace Game {
 namespace ItemBigFountain {
-struct AppearState : public Item >, public State {
+struct AppearState : public FSMState<Game::ItemBigFountain::Item>, public State, public ItemState<Game::ItemBigFountain::Item> {
 	virtual void init(Item*, StateArg*); // _08
 	virtual void exec(Item*);            // _0C
 	virtual void cleanup(Item*);         // _10

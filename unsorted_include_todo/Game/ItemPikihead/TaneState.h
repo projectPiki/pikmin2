@@ -19,30 +19,35 @@
 */
 
 namespace Game {
-namespace FSMState < Game
-{
-	namespace ItemPikihead {
-	struct Item >
-	{
-		virtual void init(Item*, StateArg*);                         // _08
-		virtual void exec(Item*);                                    // _0C
-		virtual void cleanup(Item*);                                 // _10
-		virtual void FSMState < resume(Item*);                       // _14 (weak)
-		virtual void FSMState < restart(Item*);                      // _18 (weak)
-		virtual void FSMState < transit(Item*, int, StateArg*);      // _1C (weak)
-		virtual void ItemState < onDamage(Item*, float);             // _20 (weak)
-		virtual void onKeyEvent(Item*, const SysShape::KeyEvent&);   // _24
-		virtual void ItemState < onBounce(Item*, Sys::Triangle*);    // _28 (weak)
-		virtual void ItemState < onPlatCollision(Item*, PlatEvent&); // _2C (weak)
-		virtual void ItemState < onCollision(Item*, CollEvent&);     // _30 (weak)
-	};
-	} // namespace ItemPikihead
+struct FSMState<Game::ItemPikihead::Item> {
+	virtual void init(Item*, StateArg*);                                                     // _08
+	virtual void exec(Item*);                                                                // _0C
+	virtual void cleanup(Item*);                                                             // _10
+	virtual void FSMState<ItemPikihead::Item>::resume(ItemPikihead::Item*);                  // _14 (weak)
+	virtual void FSMState<ItemPikihead::Item>::restart(ItemPikihead::Item*);                 // _18 (weak)
+	virtual void FSMState<ItemPikihead::Item>::transit(ItemPikihead::Item*, int, StateArg*); // _1C (weak)
+};
 } // namespace Game
+
+namespace Game {
+struct ItemState<Game::ItemPikihead::Item> {
+	virtual void init(Item*, StateArg*);                                                          // _08
+	virtual void exec(Item*);                                                                     // _0C
+	virtual void cleanup(Item*);                                                                  // _10
+	virtual void _14() = 0;                                                                       // _14
+	virtual void _18() = 0;                                                                       // _18
+	virtual void _1C() = 0;                                                                       // _1C
+	virtual void ItemState<ItemPikihead::Item>::onDamage(ItemPikihead::Item*, float);             // _20 (weak)
+	virtual void onKeyEvent(Item*, const SysShape::KeyEvent&);                                    // _24
+	virtual void ItemState<ItemPikihead::Item>::onBounce(ItemPikihead::Item*, Sys::Triangle*);    // _28 (weak)
+	virtual void ItemState<ItemPikihead::Item>::onPlatCollision(ItemPikihead::Item*, PlatEvent&); // _2C (weak)
+	virtual void ItemState<ItemPikihead::Item>::onCollision(ItemPikihead::Item*, CollEvent&);     // _30 (weak)
+};
 } // namespace Game
 
 namespace Game {
 namespace ItemPikihead {
-struct TaneState : public Item > {
+struct TaneState : public FSMState<Game::ItemPikihead::Item>, public ItemState<Game::ItemPikihead::Item> {
 	virtual void init(Item*, StateArg*);                       // _08
 	virtual void exec(Item*);                                  // _0C
 	virtual void cleanup(Item*);                               // _10

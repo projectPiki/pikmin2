@@ -10,21 +10,15 @@
 */
 
 namespace Screen {
-namespace StartSceneArgTemplate < og
-{
-	namespace newScreen {
-	struct StartSceneArgSMenu >
-	{
-		virtual void getSceneType() const; // _08 (weak)
-		virtual void newgetClassSize();    // _0C (weak)
-	};
-	} // namespace newScreen
-} // namespace og
+struct StartSceneArgTemplate<og::newScreen::StartSceneArgSMenu> {
+	virtual void getSceneType() const;                                             // _08 (weak)
+	virtual void StartSceneArgTemplate<og::newStartSceneArgSMenu>::getClassSize(); // _0C (weak)
+};
 } // namespace Screen
 
 namespace og {
 namespace newScreen {
-struct StartSceneArgSMenu : public StartSceneArgSMenu > {
+struct StartSceneArgSMenu : public StartSceneArgTemplate<og::newScreen::StartSceneArgSMenu> {
 	virtual void getSceneType() const; // _08 (weak)
 };
 } // namespace newScreen

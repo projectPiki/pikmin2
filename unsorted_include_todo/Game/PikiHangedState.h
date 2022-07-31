@@ -39,18 +39,14 @@
 */
 
 namespace Game {
-namespace FSMState < Game
-{
-	struct Piki >
-	{
-		virtual void init(Piki*, StateArg*);                    // _08
-		virtual void exec(Piki*);                               // _0C
-		virtual void cleanup(Piki*);                            // _10
-		virtual void FSMState < resume(Piki*);                  // _14 (weak)
-		virtual void FSMState < restart(Piki*);                 // _18 (weak)
-		virtual void FSMState < transit(Piki*, int, StateArg*); // _1C (weak)
-	};
-} // namespace Game
+struct FSMState<Game::Piki> {
+	virtual void init(Piki*, StateArg*);                         // _08
+	virtual void exec(Piki*);                                    // _0C
+	virtual void cleanup(Piki*);                                 // _10
+	virtual void FSMState<Piki>::resume(Piki*);                  // _14 (weak)
+	virtual void FSMState<Piki>::restart(Piki*);                 // _18 (weak)
+	virtual void FSMState<Piki>::transit(Piki*, int, StateArg*); // _1C (weak)
+};
 } // namespace Game
 
 namespace Game {
@@ -86,7 +82,7 @@ struct PikiState {
 } // namespace Game
 
 namespace Game {
-struct PikiHangedState : public Piki >, public PikiState {
+struct PikiHangedState : public FSMState<Game::Piki>, public PikiState {
 	virtual void init(Piki*, StateArg*);                // _08
 	virtual void exec(Piki*);                           // _0C
 	virtual void cleanup(Piki*);                        // _10

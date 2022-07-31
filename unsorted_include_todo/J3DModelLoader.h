@@ -38,6 +38,27 @@ struct J3DModelLoader {
 	virtual void readMaterialTable_v21(const J3DMaterialBlock_v21*, unsigned long); // _38 (weak)
 	virtual void calcSizeMaterial(const J3DMaterialBlock*, unsigned long);          // _3C (weak)
 	virtual void calcSizeMaterialTable(const J3DMaterialBlock*, unsigned long);     // _40 (weak)
+
+	void readInformation(const J3DModelInfoBlock*, unsigned long);
+	void readVertex(const J3DVertexBlock*);
+	void readEnvelop(const J3DEnvelopeBlock*);
+	void readDraw(const J3DDrawBlock*);
+	void readJoint(const J3DJointBlock*);
+	void readShape(const J3DShapeBlock*, unsigned long);
+	void readTexture(const J3DTextureBlock*);
+	void readTextureTable(const J3DTextureBlock*);
+	void readPatchedMaterial(const J3DMaterialBlock*, unsigned long);
+	void readMaterialDL(const J3DMaterialDLBlock*, unsigned long);
+	void modifyMaterial(unsigned long);
+	void calcSizeInformation(const J3DModelInfoBlock*, unsigned long);
+	void calcSizeJoint(const J3DJointBlock*);
+	void calcSizeEnvelope(const J3DEnvelopeBlock*);
+	void calcSizeDraw(const J3DDrawBlock*);
+	void calcSizeShape(const J3DShapeBlock*, unsigned long);
+	void calcSizeTexture(const J3DTextureBlock*);
+	void calcSizeTextureTable(const J3DTextureBlock*);
+	void calcSizePatchedMaterial(const J3DMaterialBlock*, unsigned long);
+	void calcSizeMaterialDL(const J3DMaterialDLBlock*, unsigned long);
 };
 
 #endif

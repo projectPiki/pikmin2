@@ -25,22 +25,18 @@
 */
 
 namespace Game {
-namespace FSMState < Game
-{
-	struct Navi >
-	{
-		virtual void FSMState < init(Navi*, StateArg*);         // _08 (weak)
-		virtual void FSMState < exec(Navi*);                    // _0C (weak)
-		virtual void FSMState < cleanup(Navi*);                 // _10 (weak)
-		virtual void FSMState < resume(Navi*);                  // _14 (weak)
-		virtual void FSMState < restart(Navi*);                 // _18 (weak)
-		virtual void FSMState < transit(Navi*, int, StateArg*); // _1C (weak)
-	};
-} // namespace Game
+struct FSMState<Game::Navi> {
+	virtual void FSMState<Navi>::init(Navi*, StateArg*);         // _08 (weak)
+	virtual void FSMState<Navi>::exec(Navi*);                    // _0C (weak)
+	virtual void FSMState<Navi>::cleanup(Navi*);                 // _10 (weak)
+	virtual void FSMState<Navi>::resume(Navi*);                  // _14 (weak)
+	virtual void FSMState<Navi>::restart(Navi*);                 // _18 (weak)
+	virtual void FSMState<Navi>::transit(Navi*, int, StateArg*); // _1C (weak)
+};
 } // namespace Game
 
 namespace Game {
-struct NaviState : public Navi > {
+struct NaviState : public FSMState<Game::Navi> {
 	virtual void invincible();                                 // _20 (weak)
 	virtual void onKeyEvent(Navi*, const SysShape::KeyEvent&); // _24 (weak)
 	virtual void collisionCallback(Navi*, CollEvent&);         // _28 (weak)

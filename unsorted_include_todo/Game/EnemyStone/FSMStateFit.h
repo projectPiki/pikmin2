@@ -15,25 +15,19 @@
 */
 
 namespace Game {
-namespace FSMState < Game
-{
-	namespace EnemyStone {
-	struct DrawInfo >
-	{
-		virtual void init(DrawInfo*, StateArg*);                    // _08
-		virtual void exec(DrawInfo*);                               // _0C
-		virtual void cleanup(DrawInfo*);                            // _10
-		virtual void FSMState < resume(DrawInfo*);                  // _14 (weak)
-		virtual void FSMState < restart(DrawInfo*);                 // _18 (weak)
-		virtual void FSMState < transit(DrawInfo*, int, StateArg*); // _1C (weak)
-	};
-	} // namespace EnemyStone
-} // namespace Game
+struct FSMState<Game::EnemyStone::DrawInfo> {
+	virtual void init(DrawInfo*, StateArg*);                                                     // _08
+	virtual void exec(DrawInfo*);                                                                // _0C
+	virtual void cleanup(DrawInfo*);                                                             // _10
+	virtual void FSMState<EnemyStone::DrawInfo>::resume(EnemyStone::DrawInfo*);                  // _14 (weak)
+	virtual void FSMState<EnemyStone::DrawInfo>::restart(EnemyStone::DrawInfo*);                 // _18 (weak)
+	virtual void FSMState<EnemyStone::DrawInfo>::transit(EnemyStone::DrawInfo*, int, StateArg*); // _1C (weak)
+};
 } // namespace Game
 
 namespace Game {
 namespace EnemyStone {
-struct FSMStateFit : public DrawInfo > {
+struct FSMStateFit : public FSMState<Game::EnemyStone::DrawInfo> {
 	virtual void init(DrawInfo*, StateArg*);      // _08
 	virtual void exec(DrawInfo*);                 // _0C
 	virtual void cleanup(DrawInfo*);              // _10

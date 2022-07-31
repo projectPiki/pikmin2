@@ -48,6 +48,21 @@ struct JUTCacheFont : public JUTResFont {
 	virtual void loadImage(int, _GXTexMapID); // _44
 	virtual void setBlock();                  // _48
 	virtual void _4C() = 0;                   // _4C
+
+	JUTCacheFont(const ResFONT*, unsigned long, JKRHeap*);
+	void deleteMemBlocks_CacheFont();
+	void initialize_state();
+	void getMemorySize(const ResFONT*, unsigned short*, unsigned long*, unsigned short*, unsigned long*, unsigned short*, unsigned long*,
+	                   unsigned long*);
+	void initiate(const ResFONT*, void*, unsigned long, JKRHeap*);
+	void internal_initiate(const ResFONT*, void*, unsigned long, JKRHeap*);
+	void allocArea(void*, unsigned long, JKRHeap*);
+	void allocArray(JKRHeap*);
+	void loadCache_char_subroutine(int*, bool);
+	void loadCache_string(const char*, bool);
+	void invalidiateAllCache();
+	void unlink(JUTCacheFont::TGlyphCacheInfo*);
+	void prepend(JUTCacheFont::TGlyphCacheInfo*);
 };
 
 #endif

@@ -18,6 +18,8 @@ struct JPAEmitterCallBack {
 	virtual void executeAfter(JPABaseEmitter*); // _10 (weak)
 	virtual void draw(JPABaseEmitter*);         // _14 (weak)
 	virtual void drawAfter(JPABaseEmitter*);    // _18 (weak)
+
+	~JPAEmitterCallBack();
 };
 
 #endif

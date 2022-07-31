@@ -16,25 +16,19 @@
 */
 
 namespace Game {
-namespace FSMState < ebi
-{
-	namespace FileSelect {
-	struct TMgr >
-	{
-		virtual void init(TMgr*, Game::StateArg*);        // _08 (weak)
-		virtual void exec(TMgr*);                         // _0C (weak)
-		virtual void cleanup(ebi::TMgr*);                 // _10 (weak)
-		virtual void resume(ebi::TMgr*);                  // _14 (weak)
-		virtual void restart(ebi::TMgr*);                 // _18 (weak)
-		virtual void transit(ebi::TMgr*, int, StateArg*); // _1C (weak)
-	};
-	} // namespace FileSelect
-} // namespace ebi
+struct FSMState<ebi::FileSelect::TMgr> {
+	virtual void init(TMgr*, Game::StateArg*);                    // _08 (weak)
+	virtual void exec(TMgr*);                                     // _0C (weak)
+	virtual void cleanup(ebi::FileSelect::TMgr*);                 // _10 (weak)
+	virtual void resume(ebi::FileSelect::TMgr*);                  // _14 (weak)
+	virtual void restart(ebi::FileSelect::TMgr*);                 // _18 (weak)
+	virtual void transit(ebi::FileSelect::TMgr*, int, StateArg*); // _1C (weak)
+};
 } // namespace Game
 
 namespace ebi {
 namespace FileSelect {
-struct FSMState : public TMgr > {
+struct FSMState : public FSMState<ebi::FileSelect::TMgr> {
 	virtual void init(TMgr*, Game::StateArg*);    // _08 (weak)
 	virtual void exec(TMgr*);                     // _0C (weak)
 	virtual void do_init(TMgr*, Game::StateArg*); // _20 (weak)

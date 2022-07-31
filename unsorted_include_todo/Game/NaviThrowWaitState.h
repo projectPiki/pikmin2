@@ -29,18 +29,14 @@
 */
 
 namespace Game {
-namespace FSMState < Game
-{
-	struct Navi >
-	{
-		virtual void init(Navi*, StateArg*);                    // _08
-		virtual void exec(Navi*);                               // _0C
-		virtual void cleanup(Navi*);                            // _10
-		virtual void resume(Navi*);                             // _14
-		virtual void restart(Navi*);                            // _18
-		virtual void FSMState < transit(Navi*, int, StateArg*); // _1C (weak)
-	};
-} // namespace Game
+struct FSMState<Game::Navi> {
+	virtual void init(Navi*, StateArg*);                         // _08
+	virtual void exec(Navi*);                                    // _0C
+	virtual void cleanup(Navi*);                                 // _10
+	virtual void resume(Navi*);                                  // _14
+	virtual void restart(Navi*);                                 // _18
+	virtual void FSMState<Navi>::transit(Navi*, int, StateArg*); // _1C (weak)
+};
 } // namespace Game
 
 namespace Game {
@@ -65,7 +61,7 @@ struct NaviState {
 } // namespace Game
 
 namespace Game {
-struct NaviThrowWaitState : public Navi >, public NaviState {
+struct NaviThrowWaitState : public FSMState<Game::Navi>, public NaviState {
 	virtual void init(Navi*, StateArg*);                // _08
 	virtual void exec(Navi*);                           // _0C
 	virtual void cleanup(Navi*);                        // _10

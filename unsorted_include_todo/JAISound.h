@@ -110,6 +110,14 @@ struct JAISound {
 	virtual void initParameter(void*, JAInter::Actor*, unsigned long, unsigned long, unsigned char, JAInter::SoundInfo*); // _C8
 	virtual void onGet();                                                                                                 // _CC (weak)
 	virtual void onRelease();                                                                                             // _D0 (weak)
+
+	void getSwBit();
+	void checkSwBit(unsigned long);
+	void getInfoPriority();
+	void clearMainSoundPPointer();
+	void setPauseMode(unsigned char, unsigned char);
+	void getTrackPortRoute(unsigned char, unsigned char);
+	void checkSoundHandle(unsigned long, void*);
 };
 
 #endif

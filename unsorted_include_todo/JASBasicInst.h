@@ -16,6 +16,14 @@ struct JASBasicInst {
 	virtual void getParam(int, int, JASInstParam*) const; // _0C
 	virtual void getType() const;                         // _10 (weak)
 	virtual void getKeymapIndex(int) const;               // _14
+
+	JASBasicInst();
+	void setKeyRegionCount(unsigned long);
+	void setEffectCount(unsigned long);
+	void setEffect(int, JASInstEffect*);
+	void setOscCount(unsigned long);
+	void setOsc(int, JASOscillator::Data*);
+	void getKeyRegion(int);
 };
 
 #endif

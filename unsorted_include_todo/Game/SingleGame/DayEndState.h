@@ -25,18 +25,14 @@
 */
 
 namespace Game {
-namespace FSMState < Game
-{
-	struct SingleGameSection >
-	{
-		virtual void Singleinit(SingleGameSection*, StateArg*);              // _08
-		virtual void Singleexec(SingleGameSection*);                         // _0C
-		virtual void Singlecleanup(SingleGameSection*);                      // _10
-		virtual void FSMState < resume(SingleGameSection*);                  // _14 (weak)
-		virtual void FSMState < restart(SingleGameSection*);                 // _18 (weak)
-		virtual void FSMState < transit(SingleGameSection*, int, StateArg*); // _1C (weak)
-	};
-} // namespace Game
+struct FSMState<Game::SingleGameSection> {
+	virtual void Singleinit(SingleGameSection*, StateArg*);                                // _08
+	virtual void Singleexec(SingleGameSection*);                                           // _0C
+	virtual void Singlecleanup(SingleGameSection*);                                        // _10
+	virtual void FSMState<SingleGameSection>::resume(SingleGameSection*);                  // _14 (weak)
+	virtual void FSMState<SingleGameSection>::restart(SingleGameSection*);                 // _18 (weak)
+	virtual void FSMState<SingleGameSection>::transit(SingleGameSection*, int, StateArg*); // _1C (weak)
+};
 } // namespace Game
 
 namespace Game {
@@ -64,7 +60,7 @@ struct State {
 
 namespace Game {
 namespace SingleGame {
-struct DayEndState : public SingleGameSection >, public State {
+struct DayEndState : public FSMState<Game::SingleGameSection>, public State {
 	virtual void Singleinit(SingleGameSection*, StateArg*);                                          // _08
 	virtual void Singleexec(SingleGameSection*);                                                     // _0C
 	virtual void Singlecleanup(SingleGameSection*);                                                  // _10

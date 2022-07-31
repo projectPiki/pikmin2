@@ -28,24 +28,20 @@ struct PrmSetBase {
 } // namespace JADUtility
 
 namespace JADUtility {
-namespace PrmSetRc < PSAutoBgm
-{
-	struct Track >
-	{
-		virtual ~Track > ();                      // _08
-		virtual void _0C() = 0;                   // _0C
-		virtual void load(JSUMemoryInputStream&); // _10 (weak)
-		virtual void _14() = 0;                   // _14
-		virtual void _18() = 0;                   // _18
-		virtual void getEraseLink();              // _1C (weak)
-		virtual void _20() = 0;                   // _20
-		virtual void getPrmObjHeap();             // _24 (weak)
-	};
-} // namespace PSAutoBgm
+struct PrmSetRc<PSAutoBgm::Track> {
+	virtual ~PrmSetRc<Track>();               // _08
+	virtual void _0C() = 0;                   // _0C
+	virtual void load(JSUMemoryInputStream&); // _10 (weak)
+	virtual void _14() = 0;                   // _14
+	virtual void _18() = 0;                   // _18
+	virtual void getEraseLink();              // _1C (weak)
+	virtual void _20() = 0;                   // _20
+	virtual void getPrmObjHeap();             // _24 (weak)
+};
 } // namespace JADUtility
 
 namespace PSAutoBgm {
-struct Conductor : public PrmSetBase, public Track > {
+struct Conductor : public PrmSetBase, public PrmSetRc<PSAutoBgm::Track> {
 	virtual ~Conductor();        // _08
 	virtual void getEraseLink(); // _1C (weak)
 

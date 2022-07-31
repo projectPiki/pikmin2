@@ -90,6 +90,8 @@ struct J3DPEBlockFogOff : public J3DPEBlock {
 	virtual void setDither(unsigned char);          // _68 (weak)
 	virtual void getDither() const;                 // _6C (weak)
 	virtual ~J3DPEBlockFogOff();                    // _78 (weak)
+
+	void initialize();
 };
 
 #endif

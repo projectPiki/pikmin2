@@ -139,6 +139,17 @@ struct JAISequence : public JAISound {
 	virtual void getFadeCounter();                                         // _A4
 	virtual void setPrepareFlag(unsigned char);                            // _A8 (weak)
 	virtual void checkReady();                                             // _AC (weak)
+
+	JAISequence();
+	void setSeqInterVolume(unsigned char, float, unsigned long);
+	void setSeqInterPan(unsigned char, float, unsigned long);
+	void setSeqInterPitch(unsigned char, float, unsigned long);
+	void setTrackInterruptSwitch(unsigned char, unsigned char);
+	void setTrackFxmix(unsigned char, float, unsigned long);
+	void setTrackPortData(unsigned char, unsigned char, unsigned short);
+	void setSeqPrepareFlag(unsigned char);
+	void checkSeqReady();
+	void getSeqInterVolume(unsigned char);
 };
 
 #endif

@@ -12,6 +12,8 @@
 struct J3DAnmTexPattern {
 	virtual ~J3DAnmTexPattern();  // _08 (weak)
 	virtual void getKind() const; // _0C (weak)
+
+	void getTexNo(unsigned short, unsigned short*) const;
 };
 
 #endif

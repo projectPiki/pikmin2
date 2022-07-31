@@ -19,27 +19,34 @@
 */
 
 namespace Game {
-namespace FSMState < Game
-{
-	struct ItemGate >
-	{
-		virtual void init(ItemGate*, StateArg*);                         // _08
-		virtual void exec(ItemGate*);                                    // _0C
-		virtual void cleanup(ItemGate*);                                 // _10
-		virtual void FSMState < resume(ItemGate*);                       // _14 (weak)
-		virtual void FSMState < restart(ItemGate*);                      // _18 (weak)
-		virtual void FSMState < transit(ItemGate*, int, StateArg*);      // _1C (weak)
-		virtual void onDamage(ItemGate*, float);                         // _20
-		virtual void onKeyEvent(ItemGate*, const SysShape::KeyEvent&);   // _24
-		virtual void ItemState < onBounce(ItemGate*, Sys::Triangle*);    // _28 (weak)
-		virtual void ItemState < onPlatCollision(ItemGate*, PlatEvent&); // _2C (weak)
-		virtual void ItemState < onCollision(ItemGate*, CollEvent&);     // _30 (weak)
-	};
-} // namespace Game
+struct FSMState<Game::ItemGate> {
+	virtual void init(ItemGate*, StateArg*);                             // _08
+	virtual void exec(ItemGate*);                                        // _0C
+	virtual void cleanup(ItemGate*);                                     // _10
+	virtual void FSMState<ItemGate>::resume(ItemGate*);                  // _14 (weak)
+	virtual void FSMState<ItemGate>::restart(ItemGate*);                 // _18 (weak)
+	virtual void FSMState<ItemGate>::transit(ItemGate*, int, StateArg*); // _1C (weak)
+};
 } // namespace Game
 
 namespace Game {
-struct GateWaitState : public ItemGate > {
+struct ItemState<Game::ItemGate> {
+	virtual void init(ItemGate*, StateArg*);                                  // _08
+	virtual void exec(ItemGate*);                                             // _0C
+	virtual void cleanup(ItemGate*);                                          // _10
+	virtual void _14() = 0;                                                   // _14
+	virtual void _18() = 0;                                                   // _18
+	virtual void _1C() = 0;                                                   // _1C
+	virtual void onDamage(ItemGate*, float);                                  // _20
+	virtual void onKeyEvent(ItemGate*, const SysShape::KeyEvent&);            // _24
+	virtual void ItemState<ItemGate>::onBounce(ItemGate*, Sys::Triangle*);    // _28 (weak)
+	virtual void ItemState<ItemGate>::onPlatCollision(ItemGate*, PlatEvent&); // _2C (weak)
+	virtual void ItemState<ItemGate>::onCollision(ItemGate*, CollEvent&);     // _30 (weak)
+};
+} // namespace Game
+
+namespace Game {
+struct GateWaitState : public FSMState<Game::ItemGate>, public ItemState<Game::ItemGate> {
 	virtual void init(ItemGate*, StateArg*);                       // _08
 	virtual void exec(ItemGate*);                                  // _0C
 	virtual void cleanup(ItemGate*);                               // _10

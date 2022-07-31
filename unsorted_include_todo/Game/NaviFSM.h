@@ -12,19 +12,15 @@
 */
 
 namespace Game {
-namespace StateMachine < Game
-{
-	struct Navi >
-	{
-		virtual void init(Navi*);                                 // _08
-		virtual void StateMachine < start(Navi*, int, StateArg*); // _0C (weak)
-		virtual void StateMachine < exec(Navi*);                  // _10 (weak)
-	};
-} // namespace Game
+struct StateMachine<Game::Navi> {
+	virtual void init(Navi*);                                      // _08
+	virtual void StateMachine<Navi>::start(Navi*, int, StateArg*); // _0C (weak)
+	virtual void StateMachine<Navi>::exec(Navi*);                  // _10 (weak)
+};
 } // namespace Game
 
 namespace Game {
-struct NaviFSM : public Navi > {
+struct NaviFSM : public StateMachine<Game::Navi> {
 	virtual void init(Navi*);                    // _08
 	virtual void transit(Navi*, int, StateArg*); // _14
 };

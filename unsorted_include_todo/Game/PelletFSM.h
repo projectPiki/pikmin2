@@ -12,20 +12,16 @@
 */
 
 namespace Game {
-namespace StateMachine < Game
-{
-	struct Pellet >
-	{
-		virtual void init(Pellet*);                                   // _08
-		virtual void StateMachine < start(Pellet*, int, StateArg*);   // _0C (weak)
-		virtual void StateMachine < exec(Pellet*);                    // _10 (weak)
-		virtual void StateMachine < transit(Pellet*, int, StateArg*); // _14 (weak)
-	};
-} // namespace Game
+struct StateMachine<Game::Pellet> {
+	virtual void init(Pellet*);                                          // _08
+	virtual void StateMachine<Pellet>::start(Pellet*, int, StateArg*);   // _0C (weak)
+	virtual void StateMachine<Pellet>::exec(Pellet*);                    // _10 (weak)
+	virtual void StateMachine<Pellet>::transit(Pellet*, int, StateArg*); // _14 (weak)
+};
 } // namespace Game
 
 namespace Game {
-struct PelletFSM : public Pellet > {
+struct PelletFSM : public StateMachine<Game::Pellet> {
 	virtual void init(Pellet*); // _08
 };
 } // namespace Game

@@ -117,6 +117,8 @@ struct CollPartMgr : public CNode, public Container<CollPart>, public MonoObject
 	virtual ~CollPartMgr(); // _08 (weak)
 	virtual void _2C() = 0; // _2C
 	virtual void _30() = 0; // _30
+
+	void createOne(SysShape::MtxObject*);
 };
 
 #endif

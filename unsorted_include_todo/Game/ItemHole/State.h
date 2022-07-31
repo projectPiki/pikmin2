@@ -20,18 +20,14 @@
 */
 
 namespace Game {
-namespace FSMState < Game
-{
-	struct CFSMItem >
-	{
-		virtual void FSMState < init(CFSMItem*, StateArg*);         // _08 (weak)
-		virtual void FSMState < exec(CFSMItem*);                    // _0C (weak)
-		virtual void FSMState < cleanup(CFSMItem*);                 // _10 (weak)
-		virtual void FSMState < resume(CFSMItem*);                  // _14 (weak)
-		virtual void FSMState < restart(CFSMItem*);                 // _18 (weak)
-		virtual void FSMState < transit(CFSMItem*, int, StateArg*); // _1C (weak)
-	};
-} // namespace Game
+struct FSMState<Game::CFSMItem> {
+	virtual void FSMState<CFSMItem>::init(CFSMItem*, StateArg*);         // _08 (weak)
+	virtual void FSMState<CFSMItem>::exec(CFSMItem*);                    // _0C (weak)
+	virtual void FSMState<CFSMItem>::cleanup(CFSMItem*);                 // _10 (weak)
+	virtual void FSMState<CFSMItem>::resume(CFSMItem*);                  // _14 (weak)
+	virtual void FSMState<CFSMItem>::restart(CFSMItem*);                 // _18 (weak)
+	virtual void FSMState<CFSMItem>::transit(CFSMItem*, int, StateArg*); // _1C (weak)
+};
 } // namespace Game
 
 namespace Game {
@@ -52,7 +48,7 @@ struct CItemState {
 
 namespace Game {
 namespace ItemHole {
-struct State : public CFSMItem >, public CItemState {
+struct State : public FSMState<Game::CFSMItem>, public CItemState {
 	virtual void canRide(); // _34 (weak)
 };
 } // namespace ItemHole

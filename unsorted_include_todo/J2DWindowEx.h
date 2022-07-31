@@ -142,6 +142,16 @@ struct J2DWindowEx : public J2DWindow, public J2DPane {
 	virtual void getContentsMaterial() const;                                          // _C4 (weak)
 	virtual void drawContents(const JGeometry::TBox2<float>&);                         // _C8
 	virtual void _CC() = 0;                                                            // _CC
+
+	J2DWindowEx(J2DPane*, JSURandomInputStream*, unsigned long, J2DMaterial*);
+	void setMinSize();
+	void draw_private(const JGeometry::TBox2<float>&, const JGeometry::TBox2<float>&);
+	void drawFrameTexture(float, float, float, float, unsigned short, unsigned short, unsigned short, unsigned short, J2DMaterial*, bool);
+	void setTevStage(bool);
+	void setStage(J2DTevStage*, J2DWindowEx::stage_enum);
+	void getBlackWhite(JUtility::TColor*, JUtility::TColor*) const;
+	void isSetBlackWhite(JUtility::TColor, JUtility::TColor) const;
+	void isNeedSetAnm(unsigned char);
 };
 
 #endif

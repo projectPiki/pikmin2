@@ -12,23 +12,17 @@
 */
 
 namespace Game {
-namespace StateMachine < ebi
-{
-	namespace Option {
-	struct TMgr >
-	{
-		virtual void init(TMgr*);                         // _08
-		virtual void start(ebi::TMgr*, int, StateArg*);   // _0C (weak)
-		virtual void exec(ebi::TMgr*);                    // _10 (weak)
-		virtual void transit(ebi::TMgr*, int, StateArg*); // _14 (weak)
-	};
-	} // namespace Option
-} // namespace ebi
+struct StateMachine<ebi::Option::TMgr> {
+	virtual void init(TMgr*);                                 // _08
+	virtual void start(ebi::Option::TMgr*, int, StateArg*);   // _0C (weak)
+	virtual void exec(ebi::Option::TMgr*);                    // _10 (weak)
+	virtual void transit(ebi::Option::TMgr*, int, StateArg*); // _14 (weak)
+};
 } // namespace Game
 
 namespace ebi {
 namespace Option {
-struct FSMStateMachine : public TMgr > {
+struct FSMStateMachine : public StateMachine<ebi::Option::TMgr> {
 	virtual void init(TMgr*); // _08
 };
 } // namespace Option

@@ -257,6 +257,25 @@ struct J2DPictureEx : public J2DPicture, public J2DPane {
 	virtual void drawTexCoord(float, float, float, float, short, short, short, short, short, short, short, short, float (*)[3][4]); // _144
 	virtual void getUsableTlut(unsigned char);                                                                                      // _148
 	virtual void _14C() = 0;                                                                                                        // _14C
+
+	J2DPictureEx();
+	J2DPictureEx(const ResTIMG*, unsigned long);
+	void initialize(unsigned long);
+	J2DPictureEx(J2DPane*, JSURandomInputStream*, unsigned long, J2DMaterial*);
+	J2DPictureEx(unsigned long long, const JGeometry::TBox2<float>&, const ResTIMG*, unsigned long);
+	J2DPictureEx(unsigned long long, const JGeometry::TBox2<float>&, const char*, unsigned long);
+	void insertCommon(unsigned char, float);
+	void isInsert(unsigned char) const;
+	void isRemove(unsigned char) const;
+	void setTevOrder(unsigned char, unsigned char, bool);
+	void setTevStage(unsigned char, unsigned char, bool);
+	void setStage(J2DTevStage*, J2DPictureEx::stage_enum);
+	void setTevKColor(unsigned char);
+	void setTevKColorSel(unsigned char);
+	void setTevKAlphaSel(unsigned char);
+	void shiftSetBlendRatio(unsigned char, float, bool, bool);
+	void getBlackWhite(JUtility::TColor*, JUtility::TColor*) const;
+	void isSetBlackWhite(JUtility::TColor, JUtility::TColor) const;
 };
 
 #endif

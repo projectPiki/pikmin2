@@ -98,6 +98,8 @@ struct J2DTevBlock16 {
 	virtual void setUndeleteFlag(unsigned char);                            // _B0 (weak)
 	virtual void setFontUndeleteFlag();                                     // _B4 (weak)
 	virtual ~J2DTevBlock16();                                               // _B8
+
+	J2DTevBlock16();
 };
 
 #endif

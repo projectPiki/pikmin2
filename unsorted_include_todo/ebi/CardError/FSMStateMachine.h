@@ -12,23 +12,17 @@
 */
 
 namespace Game {
-namespace StateMachine < ebi
-{
-	namespace CardError {
-	struct TMgr >
-	{
-		virtual void init(TMgr*);                         // _08
-		virtual void start(ebi::TMgr*, int, StateArg*);   // _0C (weak)
-		virtual void exec(ebi::TMgr*);                    // _10 (weak)
-		virtual void transit(ebi::TMgr*, int, StateArg*); // _14 (weak)
-	};
-	} // namespace CardError
-} // namespace ebi
+struct StateMachine<ebi::CardError::TMgr> {
+	virtual void init(TMgr*);                                    // _08
+	virtual void start(ebi::CardError::TMgr*, int, StateArg*);   // _0C (weak)
+	virtual void exec(ebi::CardError::TMgr*);                    // _10 (weak)
+	virtual void transit(ebi::CardError::TMgr*, int, StateArg*); // _14 (weak)
+};
 } // namespace Game
 
 namespace ebi {
 namespace CardError {
-struct FSMStateMachine : public TMgr > {
+struct FSMStateMachine : public StateMachine<ebi::CardError::TMgr> {
 	virtual void init(TMgr*); // _08
 };
 } // namespace CardError

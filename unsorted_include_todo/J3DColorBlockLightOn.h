@@ -72,6 +72,8 @@ struct J3DColorBlockLightOn {
 	virtual void setMatColorOffset(unsigned long);                 // _7C (weak)
 	virtual void setColorChanOffset(unsigned long);                // _80 (weak)
 	virtual ~J3DColorBlockLightOn();                               // _84 (weak)
+
+	void initialize();
 };
 
 #endif

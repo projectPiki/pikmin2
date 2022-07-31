@@ -137,6 +137,12 @@ struct JAIStream : public JAISound {
 	virtual void getFadeCounter();                                         // _A4
 	virtual void setPrepareFlag(unsigned char);                            // _A8 (weak)
 	virtual void checkReady();                                             // _AC (weak)
+
+	JAIStream();
+	void setStreamPrepareFlag(unsigned char);
+	void checkStreamReady();
+	void setChannelVolume(unsigned char, float, unsigned long);
+	void setChannelPan(unsigned char, float, unsigned long);
 };
 
 #endif

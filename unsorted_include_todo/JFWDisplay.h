@@ -16,6 +16,16 @@ struct JFWDisplay {
 	virtual void endRender();   // _0C
 	virtual void endFrame();    // _10
 	virtual ~JFWDisplay();      // _14
+
+	void createManager(const _GXRenderModeObj*, JKRHeap*, JUTXfb::EXfbNumber, bool);
+	void destroyManager();
+	void waitBlanking(int);
+	void threadSleep(long long);
+	void clearEfb_init();
+	void clearEfb(_GXColor);
+	void clearEfb(int, int, int, int, _GXColor);
+	void calcCombinationRatio();
+	void setForOSResetSystem();
 };
 
 #endif
