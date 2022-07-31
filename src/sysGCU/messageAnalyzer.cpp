@@ -1,4 +1,7 @@
+
 #include "types.h"
+#include "P2JME/Analyzer.h"
+#include "P2JME/P2JME.h"
 
 /*
     Generated from dpostproc
@@ -41,25 +44,9 @@ namespace P2JME {
  * Address:	804560C8
  * Size:	00003C
  */
-Analyzer::Analyzer(JMessage::TReference const*)
+Analyzer::Analyzer(JMessage::TReference const* ref)
+    : TRenderingProcessorBase(ref)
 {
-	/*
-	stwu     r1, -0x10(r1)
-	mflr     r0
-	stw      r0, 0x14(r1)
-	stw      r31, 0xc(r1)
-	mr       r31, r3
-	bl       __ct__Q25P2JME23TRenderingProcessorBaseFPCQ28JMessage10TReference
-	lis      r4, __vt__Q25P2JME8Analyzer@ha
-	mr       r3, r31
-	addi     r0, r4, __vt__Q25P2JME8Analyzer@l
-	stw      r0, 0(r31)
-	lwz      r31, 0xc(r1)
-	lwz      r0, 0x14(r1)
-	mtlr     r0
-	addi     r1, r1, 0x10
-	blr
-	*/
 }
 
 /*
@@ -74,41 +61,18 @@ void Analyzer::do_character(int) { }
  * Address:	80456108
  * Size:	00007C
  */
-void Analyzer::exec(char*)
+void Analyzer::exec(char* msg)
 {
-	/*
-	stwu     r1, -0x20(r1)
-	mflr     r0
-	stw      r0, 0x24(r1)
-	addi     r5, r1, 8
-	stw      r31, 0x1c(r1)
-	stw      r30, 0x18(r1)
-	stw      r29, 0x14(r1)
-	mr       r29, r3
-	mr       r3, r4
-	addi     r4, r1, 0xc
-	bl       convertCharToMessageID__5P2JMEFPcPUlPUl
-	lwz      r30, 8(r1)
-	mr       r3, r29
-	lwz      r31, 0xc(r1)
-	li       r4, 0
-	bl       reset___Q28JMessage10TProcessorFPCc
-	mr       r3, r29
-	mr       r4, r31
-	mr       r5, r30
-	li       r6, 0
-	bl       setBegin_messageID__Q28JMessage10TProcessorFUlUlPb
-	mr       r3, r29
-	li       r4, 0
-	bl       process__Q28JMessage19TRenderingProcessorFPCc
-	lwz      r0, 0x24(r1)
-	lwz      r31, 0x1c(r1)
-	lwz      r30, 0x18(r1)
-	lwz      r29, 0x14(r1)
-	mtlr     r0
-	addi     r1, r1, 0x20
-	blr
-	*/
+	u32 msgID1;
+	u32 msgID2;
+	u32 beginID1;
+	u32 beginID2;
+
+	convertCharToMessageID(msg, &msgID1, &msgID2);
+	setIDs(msgID1, msgID2, &beginID1, &beginID2);
+	reset_(0);
+	setBegin_messageID(beginID1, beginID2, 0);
+	process(0);
 }
 
 /*
@@ -116,18 +80,18 @@ void Analyzer::exec(char*)
  * Address:	........
  * Size:	000064
  */
-void Analyzer::exec(unsigned short, unsigned short)
-{
-	// UNUSED FUNCTION
-}
+// void Analyzer::exec(unsigned short, unsigned short)
+// {
+// 	// UNUSED FUNCTION
+// }
 
 /*
  * --INFO--
  * Address:	........
  * Size:	000058
  */
-void Analyzer::exec(unsigned long)
-{
-	// UNUSED FUNCTION
-}
+// void Analyzer::exec(unsigned long)
+// {
+// 	// UNUSED FUNCTION
+// }
 } // namespace P2JME

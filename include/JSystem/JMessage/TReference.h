@@ -3,8 +3,8 @@
 
 namespace JMessage {
 struct TReference {
-	virtual ~TReference();
-	virtual void do_word(unsigned long) const;
+	virtual ~TReference();                      // _08
+	virtual char* do_word(unsigned long) const; // _0C
 };
 } // namespace JMessage
 
