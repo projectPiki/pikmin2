@@ -1,10 +1,11 @@
-#ifndef _JSYSTEM_JMESSAGE_TREFERENCE_H
-#define _JSYSTEM_JMESSAGE_TREFERENCE_H
+#ifndef _JSYSTEM_JMESSAGE_TRESOURCE_H
+#define _JSYSTEM_JMESSAGE_TRESOURCE_H
 
+#include "JSystem/JGadget/linklist.h"
 #include "types.h"
 
 namespace JMessage {
-struct TReference {
+struct TResource {
 	virtual ~TReference();                      // _08
 	virtual char* do_word(unsigned long) const; // _0C
 
