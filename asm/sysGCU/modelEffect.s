@@ -5,25 +5,18 @@ lbl_constructor:
 
 .section .rodata  # 0x804732E0 - 0x8049E220
 .balign 8
-.global lbl_8049AC20
 lbl_8049AC20:
-	.4byte 0x6D6F6465
-	.4byte 0x6C456666
-	.4byte 0x6563742E
-	.4byte 0x63707000
-.global lbl_8049AC30
+	.asciz "modelEffect.cpp"
+.balign 4
 lbl_8049AC30:
 	.asciz "P2Assert"
-	.skip 3
-	.4byte 0x00000000
 
 .section .data, "wa"  # 0x8049E220 - 0x804EFC20
 .balign 8
-.global lbl_804ECBA0
-lbl_804ECBA0:
-	.4byte 0x00000000
-	.4byte 0x00000000
-	.4byte 0x00000000
+govNAN___Q24Game5P2JST:
+	.float 0.0
+	.float 0.0
+	.float 0.0
 .global __vt__11ModelEffect
 __vt__11ModelEffect:
 	.4byte 0
@@ -42,11 +35,9 @@ __vt__11ModelEffect:
 
 .section .sbss # 0x80514D80 - 0x80516360
 .balign 8
-.global lbl_80516260
-lbl_80516260:
+gu32NAN___Q24Game5P2JST:
 	.skip 0x4
-.global lbl_80516264
-lbl_80516264:
+gfNAN___Q24Game5P2JST:
 	.skip 0x4
 
 .section .text, "ax"  # 0x800056C0 - 0x80472F00
@@ -529,15 +520,14 @@ doViewCalc__11ParticleMgrFv:
 /* 8043DAE8 0043AA28  38 21 00 10 */	addi r1, r1, 0x10
 /* 8043DAEC 0043AA2C  4E 80 00 20 */	blr 
 
-.global __sinit_modelEffect_cpp
-__sinit_modelEffect_cpp:
+__sinit_modelEffect_cpp: # static initializer
 /* 8043DAF0 0043AA30  3C 80 80 51 */	lis r4, __float_nan@ha
 /* 8043DAF4 0043AA34  38 00 FF FF */	li r0, -1
 /* 8043DAF8 0043AA38  C0 04 48 B0 */	lfs f0, __float_nan@l(r4)
-/* 8043DAFC 0043AA3C  3C 60 80 4F */	lis r3, lbl_804ECBA0@ha
-/* 8043DB00 0043AA40  90 0D 9B E0 */	stw r0, lbl_80516260@sda21(r13)
-/* 8043DB04 0043AA44  D4 03 CB A0 */	stfsu f0, lbl_804ECBA0@l(r3)
-/* 8043DB08 0043AA48  D0 0D 9B E4 */	stfs f0, lbl_80516264@sda21(r13)
+/* 8043DAFC 0043AA3C  3C 60 80 4F */	lis r3, govNAN___Q24Game5P2JST@ha
+/* 8043DB00 0043AA40  90 0D 9B E0 */	stw r0, gu32NAN___Q24Game5P2JST@sda21(r13)
+/* 8043DB04 0043AA44  D4 03 CB A0 */	stfsu f0, govNAN___Q24Game5P2JST@l(r3)
+/* 8043DB08 0043AA48  D0 0D 9B E4 */	stfs f0, gfNAN___Q24Game5P2JST@sda21(r13)
 /* 8043DB0C 0043AA4C  D0 03 00 04 */	stfs f0, 4(r3)
 /* 8043DB10 0043AA50  D0 03 00 08 */	stfs f0, 8(r3)
 /* 8043DB14 0043AA54  4E 80 00 20 */	blr 

@@ -5,113 +5,62 @@ lbl_constructor:
 
 .section .rodata  # 0x804732E0 - 0x8049E220
 .balign 8
-.global lbl_8049A6E0
 lbl_8049A6E0:
 	.4byte 0x00000000
 	.4byte 0x00000000
 	.4byte 0x00000000
-	.4byte 0x6D6F7669
-	.4byte 0x654D6573
-	.4byte 0x73616765
-	.4byte 0x00000000
-	.4byte 0x6D6F7669
-	.4byte 0x654D6573
-	.4byte 0x73616765
-	.4byte 0x2E637070
-	.4byte 0x00000000
-.global lbl_8049A710
+.balign 4
+lbl_8049A6EC:
+	.asciz "movieMessage"
+.balign 4
+lbl_8049A6FC:
+	.asciz "movieMessage.cpp"
+.balign 4
 lbl_8049A710:
 	.asciz "P2Assert"
-	.skip 3
-	.4byte 0x616E696D
-	.4byte 0x2F706F64
-	.4byte 0x2E627470
-	.4byte 0x00000000
-	.4byte 0x616E696D
-	.4byte 0x2F706F64
-	.4byte 0x2E62636B
-	.4byte 0x00000000
-	.4byte 0x616E696D
-	.4byte 0x2F706F64
-	.4byte 0x2E62706B
-	.4byte 0x00000000
-	.4byte 0x6D675F77
-	.4byte 0x696E646F
-	.4byte 0x772E626C
-	.4byte 0x6F000000
-	.4byte 0x50324A4D
-	.4byte 0x453A3A4D
-	.4byte 0x6F766965
-	.4byte 0x3A3A5443
-	.4byte 0x6F6E7472
-	.4byte 0x6F6C3A3A
-	.4byte 0x6F6E496E
-	.4byte 0x69740000
-	.4byte 0x504D545F
-	.4byte 0x6F6E496E
-	.4byte 0x69745F61
-	.4byte 0x72630000
-	.4byte 0x6E65775F
-	.4byte 0x73637265
-	.4byte 0x656E2F63
-	.4byte 0x6D6E2F6D
-	.4byte 0x65737361
-	.4byte 0x67655F77
-	.4byte 0x696E646F
-	.4byte 0x772E737A
-	.4byte 0x73000000
-	.4byte 0x6E65775F
-	.4byte 0x73637265
-	.4byte 0x656E2F63
-	.4byte 0x6D6E2F67
-	.4byte 0x6F6C645F
-	.4byte 0x706F645F
-	.4byte 0x666F725F
-	.4byte 0x6D657373
-	.4byte 0x6167655F
-	.4byte 0x77696E64
-	.4byte 0x6F772E73
-	.4byte 0x7A730000
-	.4byte 0x6E65775F
-	.4byte 0x73637265
-	.4byte 0x656E2F63
-	.4byte 0x6D6E2F70
-	.4byte 0x6F645F66
-	.4byte 0x6F725F6D
-	.4byte 0x65737361
-	.4byte 0x67655F77
-	.4byte 0x696E646F
-	.4byte 0x772E737A
-	.4byte 0x73000000
-	.4byte 0x25732069
-	.4byte 0x73206E6F
-	.4byte 0x7420666F
-	.4byte 0x756E642E
-	.4byte 0x0A000000
-	.4byte 0x504D545F
-	.4byte 0x6F6E496E
-	.4byte 0x69745F69
-	.4byte 0x6E697452
-	.4byte 0x656E6465
-	.4byte 0x72696E67
-	.4byte 0x50726F63
-	.4byte 0x6573736F
-	.4byte 0x72000000
-.global lbl_8049A844
+.balign 4
+lbl_8049A71C:
+	.asciz "anim/pod.btp"
+.balign 4
+lbl_8049A72C:
+	.asciz "anim/pod.bck"
+.balign 4
+lbl_8049A73C:
+	.asciz "anim/pod.bpk"
+.balign 4
+lbl_8049A74C:
+	.asciz "mg_window.blo"
+.balign 4
+lbl_8049A75C:
+	.asciz "P2JME::Movie::TControl::onInit"
+.balign 4
+lbl_8049A77C:
+	.asciz "PMT_onInit_arc"
+.balign 4
+lbl_8049A78C:
+	.asciz "new_screen/cmn/message_window.szs"
+.balign 4
+lbl_8049A7B0:
+	.asciz "new_screen/cmn/gold_pod_for_message_window.szs"
+.balign 4
+lbl_8049A7E0:
+	.asciz "new_screen/cmn/pod_for_message_window.szs"
+.balign 4
+lbl_8049A80C:
+	.asciz "%s is not found.\n"
+.balign 4
+lbl_8049A820:
+	.asciz "PMT_onInit_initRenderingProcessor"
+.balign 4
 lbl_8049A844:
-	.4byte 0x6D657373
-	.4byte 0x6167654F
-	.4byte 0x626A2E68
-	.4byte 0x00000000
-	.4byte 0x00000000
+	.asciz "messageObj.h"
 
 .section .data, "wa"  # 0x8049E220 - 0x804EFC20
 .balign 8
-.global lbl_804EC640
-lbl_804EC640:
-	.4byte 0x00000000
-	.4byte 0x00000000
-	.4byte 0x00000000
+govNAN___Q24Game5P2JST:
+	.float 0.0
+	.float 0.0
+	.float 0.0
 .global __vt__Q35P2JME5Movie8TControl
 __vt__Q35P2JME5Movie8TControl:
 	.4byte 0
@@ -234,131 +183,95 @@ __vt__Q35P2JME5Movie10WindowPane:
 	.4byte update__Q35P2JME5Movie10WindowPaneFv
 	.4byte draw__Q29P2DScreen4NodeFR8GraphicsR14J2DGrafContext
 	.4byte doInit__Q35P2JME5Movie10WindowPaneFv
-	.4byte 0
 
 .section .sbss # 0x80514D80 - 0x80516360
 .balign 8
-.global lbl_80516238
-lbl_80516238:
+gu32NAN___Q24Game5P2JST:
 	.skip 0x4
-.global lbl_8051623C
-lbl_8051623C:
+gfNAN___Q24Game5P2JST:
 	.skip 0x4
 
 .section .sdata2, "a"     # 0x80516360 - 0x80520E40
 .balign 8
-.global lbl_805207B8
 lbl_805207B8:
-	.4byte 0x00000000
-.global lbl_805207BC
+	.float 0.0
 lbl_805207BC:
-	.4byte 0x41200000
-.global lbl_805207C0
+	.float 10.0
 lbl_805207C0:
-	.4byte 0x42B40000
-.global lbl_805207C4
+	.float 90.0
 lbl_805207C4:
-	.4byte 0x43340000
-.global lbl_805207C8
+	.float 180.0
 lbl_805207C8:
 	.float 1.0
-.global lbl_805207CC
 lbl_805207CC:
-	.4byte 0x43FA0000
-.global lbl_805207D0
-lbl_805207D0:
-	.4byte 0x40490FDB
-.global lbl_805207D4
+	.float 500.0
+lbl_805207D0: # pi
+	.float 3.1415927
 lbl_805207D4:
-	.4byte 0x3BB60B61
-.global lbl_805207D8
+	.float 0.0055555557
 lbl_805207D8:
-	.4byte 0x43A2F983
-.global lbl_805207DC
+	.float 325.9493
 lbl_805207DC:
-	.4byte 0xC3A2F983
-.global lbl_805207E0
+	.float -325.9493
 lbl_805207E0:
-	.4byte 0x3E4CCCCD
-.global lbl_805207E4
+	.float 0.2
 lbl_805207E4:
-	.4byte 0x3F3851EC
-.global lbl_805207E8
+	.float 0.72
 lbl_805207E8:
-	.4byte 0x43870000
-.global lbl_805207EC
+	.float 270.0
 lbl_805207EC:
-	.4byte 0x42652EE0
-.global lbl_805207F0
+	.float 57.295776
 lbl_805207F0:
-	.4byte 0x437F0000
-	.4byte 0x00000000
-.global lbl_805207F8
+	.float 255.0
+.balign 8
 lbl_805207F8:
 	.4byte 0x43300000
 	.4byte 0x00000000
-.global lbl_80520800
-lbl_80520800:
-	.4byte 0x40C90FDB
-.global lbl_80520804
+.balign 4
+lbl_80520800: # tau
+	.float 6.2831855
 lbl_80520804:
 	.float 0.5
-.global lbl_80520808
 lbl_80520808:
-	.4byte 0x40000000
-.global lbl_8052080C
+	.float 2.0
 lbl_8052080C:
-	.4byte 0x3F400000
-.global lbl_80520810
+	.float 0.75
 lbl_80520810:
-	.4byte 0x42C80000
-.global lbl_80520814
+	.float 100.0
 lbl_80520814:
-	.4byte 0x41C80000
-.global lbl_80520818
+	.float 25.0
 lbl_80520818:
-	.4byte 0x437A0000
-.global lbl_8052081C
+	.float 250.0
 lbl_8052081C:
-	.4byte 0x47000000
-.global lbl_80520820
+	.float 32768.0
+.balign 8
 lbl_80520820:
 	.4byte 0x43300000
 	.4byte 0x80000000
-.global lbl_80520828
 lbl_80520828:
 	.float 0.3
-.global lbl_8052082C
 lbl_8052082C:
-	.4byte 0x3FA00000
-.global lbl_80520830
+	.float 1.25
 lbl_80520830:
-	.4byte 0x3F266666
-.global lbl_80520834
+	.float 0.65
+.balign 4
 lbl_80520834:
-	.4byte 0x706F642E
-	.4byte 0x626C6F00
-.global lbl_8052083C
+	.asciz "pod.blo"
+.balign 4
 lbl_8052083C:
-	.4byte 0x38D1B717
-.global lbl_80520840
+	.float 0.0001
 lbl_80520840:
-	.4byte 0x3EB33333
-.global lbl_80520844
+	.float 0.35
 lbl_80520844:
-	.4byte 0x41A00000
-.global lbl_80520848
+	.float 20.0
 lbl_80520848:
-	.4byte 0x80000000
-.global lbl_8052084C
+	.float -0.0
+.balign 4
 lbl_8052084C:
-	.4byte 0x706F6449
-	.4byte 0x636F6E00
-.global lbl_80520854
+	.asciz "podIcon"
+.balign 4
 lbl_80520854:
-	.4byte 0x6D657373
-	.4byte 0x61676500
-	.4byte 0x00000000
+	.asciz "message"
 
 .section .text, "ax"  # 0x800056C0 - 0x80472F00
 .global doInit__Q35P2JME5Movie10WindowPaneFv
@@ -2558,15 +2471,14 @@ lbl_80436E8C:
 /* 80436EA0 00433DE0  38 21 00 10 */	addi r1, r1, 0x10
 /* 80436EA4 00433DE4  4E 80 00 20 */	blr 
 
-.global __sinit_movieMessage_cpp
-__sinit_movieMessage_cpp:
+__sinit_movieMessage_cpp: # static initializer
 /* 80436EA8 00433DE8  3C 80 80 51 */	lis r4, __float_nan@ha
 /* 80436EAC 00433DEC  38 00 FF FF */	li r0, -1
 /* 80436EB0 00433DF0  C0 04 48 B0 */	lfs f0, __float_nan@l(r4)
-/* 80436EB4 00433DF4  3C 60 80 4F */	lis r3, lbl_804EC640@ha
-/* 80436EB8 00433DF8  90 0D 9B B8 */	stw r0, lbl_80516238@sda21(r13)
-/* 80436EBC 00433DFC  D4 03 C6 40 */	stfsu f0, lbl_804EC640@l(r3)
-/* 80436EC0 00433E00  D0 0D 9B BC */	stfs f0, lbl_8051623C@sda21(r13)
+/* 80436EB4 00433DF4  3C 60 80 4F */	lis r3, govNAN___Q24Game5P2JST@ha
+/* 80436EB8 00433DF8  90 0D 9B B8 */	stw r0, gu32NAN___Q24Game5P2JST@sda21(r13)
+/* 80436EBC 00433DFC  D4 03 C6 40 */	stfsu f0, govNAN___Q24Game5P2JST@l(r3)
+/* 80436EC0 00433E00  D0 0D 9B BC */	stfs f0, gfNAN___Q24Game5P2JST@sda21(r13)
 /* 80436EC4 00433E04  D0 03 00 04 */	stfs f0, 4(r3)
 /* 80436EC8 00433E08  D0 03 00 08 */	stfs f0, 8(r3)
 /* 80436ECC 00433E0C  4E 80 00 20 */	blr 

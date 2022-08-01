@@ -1,44 +1,27 @@
 .include "macros.inc"
 .section .rodata  # 0x804732E0 - 0x8049E220
 .balign 8
-.global lbl_8049B470
 lbl_8049B470:
-	.4byte 0x54485050
-	.4byte 0x6C617965
-	.4byte 0x722E6300
-	.4byte 0x43726561
-	.4byte 0x74655669
-	.4byte 0x64656F44
-	.4byte 0x65636F64
-	.4byte 0x65546872
-	.4byte 0x65616420
-	.4byte 0x6661696C
-	.4byte 0x7572652E
-	.4byte 0x0A000000
-	.4byte 0x43726561
-	.4byte 0x74654175
-	.4byte 0x64696F44
-	.4byte 0x65636F64
-	.4byte 0x65546872
-	.4byte 0x65616420
-	.4byte 0x6661696C
-	.4byte 0x7572652E
-	.4byte 0x0A000000
-	.4byte 0x43726561
-	.4byte 0x74655265
-	.4byte 0x61645468
-	.4byte 0x72656164
-	.4byte 0x20666169
-	.4byte 0x6C757265
-	.4byte 0x2E0A0000
+	.asciz "THPPlayer.c"
+.balign 4
+lbl_8049B47C:
+	.asciz "CreateVideoDecodeThread failure.\n"
+.balign 4
+lbl_8049B4A0:
+	.asciz "CreateAudioDecodeThread failure.\n"
+.balign 4
+lbl_8049B4C4:
+	.asciz "CreateReadThread failure.\n"
+.balign 4
+lbl_8049B4E0: # Shift-JIS
 	.4byte 0x54485050
 	.4byte 0x6C617965
 	.4byte 0x72507265
 	.4byte 0x70617265
 	.4byte 0x28298F49
 	.4byte 0x97B90A00
-.global lbl_8049B4F8
-lbl_8049B4F8:
+.balign 4
+lbl_8049B4F8: # Shift-JIS
 	.4byte 0x8349815B
 	.4byte 0x83668342
 	.4byte 0x83498AD6
@@ -117,20 +100,23 @@ VolumeTable:
 
 .section .bss  # 0x804EFC20 - 0x8051467C
 .balign 32
-.global WorkBuffer
+# local object
 WorkBuffer:
 	.skip 0x40
-.global PrepareReadyQueue
+.balign 4
+# local object
 PrepareReadyQueue:
 	.skip 0x20
-.global UsedTextureSetQueue
+.balign 4
+# local object
 UsedTextureSetQueue:
 	.skip 0x20
-.global UsedTextureSetMessage
+.balign 4
+# local object
 UsedTextureSetMessage:
 	.skip 0xC
 .balign 32
-.global SoundBuffer
+# local object
 SoundBuffer:
 	.skip 0x1180
 
@@ -157,19 +143,16 @@ CurAudioBuffer:
 
 .section .sdata2, "a"     # 0x80516360 - 0x80520E40
 .balign 8
-.global lbl_80520AF8
 lbl_80520AF8:
-	.4byte 0x54485000
-.global lbl_80520AFC
+	.asciz "THP"
+.balign 4
 lbl_80520AFC:
-	.4byte 0x42FE0000
-.global lbl_80520B00
+	.float 127.0
 lbl_80520B00:
-	.4byte 0x42C80000
-.global lbl_80520B04
+	.float 100.0
 lbl_80520B04:
-	.4byte 0x47000000
-.global lbl_80520B08
+	.float 32768.0
+.balign 8
 lbl_80520B08:
 	.4byte 0x43300000
 	.4byte 0x80000000

@@ -1,17 +1,11 @@
 .include "macros.inc"
 .section .rodata  # 0x804732E0 - 0x8049E220
 .balign 8
-.global lbl_8049A8B0
 lbl_8049A8B0:
-	.4byte 0x6D657373
-	.4byte 0x61676553
-	.4byte 0x65717565
-	.4byte 0x6E63652E
-	.4byte 0x63707000
-.global lbl_8049A8C4
+	.asciz "messageSequence.cpp"
+.balign 4
 lbl_8049A8C4:
 	.asciz "P2Assert"
-	.skip 3
 
 .section .data, "wa"  # 0x8049E220 - 0x804EFC20
 .balign 8
@@ -50,32 +44,25 @@ __vt__Q25P2JME18TSequenceProcessor:
 
 .section .sdata2, "a"     # 0x80516360 - 0x80520E40
 .balign 8
-.global lbl_80520868
 lbl_80520868:
-	.4byte 0x00000000
-.global lbl_8052086C
+	.float 0.0
 lbl_8052086C:
-	.4byte 0x3DE147AE
-.global lbl_80520870
+	.float 0.11
 lbl_80520870:
 	.float 1.0
-.global lbl_80520874
 lbl_80520874:
-	.4byte 0x41200000
-.global lbl_80520878
+	.float 10.0
 lbl_80520878:
-	.4byte 0x40200000
-.global lbl_8052087C
+	.float 2.5
 lbl_8052087C:
-	.4byte 0x42C80000
-.global lbl_80520880
+	.float 100.0
+.balign 8
 lbl_80520880:
 	.4byte 0x43300000
 	.4byte 0x00000000
-.global lbl_80520888
+.balign 4
 lbl_80520888:
 	.float 0.5
-	.4byte 0x00000000
 
 .section .text, "ax"  # 0x800056C0 - 0x80472F00
 .global __ct__Q25P2JME18TSequenceProcessorFPCQ28JMessage10TReferencePQ28JMessage8TControl

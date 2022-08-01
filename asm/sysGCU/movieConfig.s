@@ -5,48 +5,38 @@ lbl_constructor:
 
 .section .rodata  # 0x804732E0 - 0x8049E220
 .balign 8
-.global lbl_8049A3B0
 lbl_8049A3B0:
 	.4byte 0x00000000
 	.4byte 0x00000000
 	.4byte 0x00000000
-	.4byte 0x6D6F7669
-	.4byte 0x65436F6E
-	.4byte 0x66696700
-.global lbl_8049A3C8
+.balign 4
+lbl_8049A3BC:
+	.asciz "movieConfig"
+.balign 4
 lbl_8049A3C8:
-	.4byte 0x4D6F7669
-	.4byte 0x65436F6E
-	.4byte 0x66696754
-	.4byte 0x61670000
-.global lbl_8049A3D8
+	.asciz "MovieConfigTag"
+.balign 4
 lbl_8049A3D8:
-	.4byte 0x64656D6F
-	.4byte 0x5F6E616D
-	.4byte 0x65000000
-	.4byte 0x4D6F7669
-	.4byte 0x654C6973
-	.4byte 0x74000000
-	.4byte 0x75736572
-	.4byte 0x2F4D756B
-	.4byte 0x6B692F6D
-	.4byte 0x6F766965
-	.4byte 0x2F64656D
-	.4byte 0x6F732E74
-	.4byte 0x78740000
-	.4byte 0x6D6F7669
-	.4byte 0x65436F6E
-	.4byte 0x6669672E
-	.4byte 0x63707000
+	.asciz "demo_name"
+.balign 4
+lbl_8049A3E4:
+	.asciz "MovieList"
+.balign 4
+lbl_8049A3F0:
+	.asciz "user/Mukki/movie/demos.txt"
+.balign 4
+lbl_8049A40C:
+	.asciz "movieConfig.cpp"
+.balign 4
+lbl_8049A41C:
 	.asciz "P2Assert"
 
 .section .data, "wa"  # 0x8049E220 - 0x804EFC20
 .balign 8
-.global lbl_804EC368
-lbl_804EC368:
-	.4byte 0x00000000
-	.4byte 0x00000000
-	.4byte 0x00000000
+govNAN___Q24Game5P2JST:
+	.float 0.0
+	.float 0.0
+	.float 0.0
 .global __vt__Q24Game9MovieList
 __vt__Q24Game9MovieList:
 	.4byte 0
@@ -65,34 +55,27 @@ __vt__Q24Game11MovieConfig:
 	.4byte 0
 	.4byte __dt__Q24Game11MovieConfigFv
 	.4byte getChildCount__5CNodeFv
-	.4byte 0
 
 .section .sbss # 0x80514D80 - 0x80516360
 .balign 8
-.global lbl_80516210
-lbl_80516210:
+gu32NAN___Q24Game5P2JST:
 	.skip 0x4
-.global lbl_80516214
-lbl_80516214:
+gfNAN___Q24Game5P2JST:
 	.skip 0x4
 .global movieList__4Game
 movieList__4Game:
-	.skip 0x8
+	.skip 0x4
 
 .section .sdata2, "a"     # 0x80516360 - 0x80520E40
 .balign 8
-.global lbl_805206F8
 lbl_805206F8:
-	.4byte 0x666F6C64
-	.4byte 0x65720000
-.global lbl_80520700
+	.asciz "folder"
+.balign 4
 lbl_80520700:
-	.4byte 0x00000000
-.global lbl_80520704
+	.float 0.0
+.balign 4
 lbl_80520704:
-	.4byte 0x6E6F6D61
-	.4byte 0x70000000
-	.4byte 0x00000000
+	.asciz "nomap"
 
 .section .text, "ax"  # 0x800056C0 - 0x80472F00
 .global __dt__Q34Game11MovieConfig6TParmsFv
@@ -693,7 +676,7 @@ lbl_80432078:
 /* 80432090 0042EFD0  4E 80 00 20 */	blr 
 
 .global __dt__Q24Game9MovieListFv
-__dt__Q24Game9MovieListFv:
+__dt__Q24Game9MovieListFv: # weak function
 /* 80432094 0042EFD4  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 80432098 0042EFD8  7C 08 02 A6 */	mflr r0
 /* 8043209C 0042EFDC  90 01 00 14 */	stw r0, 0x14(r1)
@@ -743,15 +726,14 @@ lbl_8043212C:
 /* 80432140 0042F080  38 21 00 10 */	addi r1, r1, 0x10
 /* 80432144 0042F084  4E 80 00 20 */	blr 
 
-.global __sinit_movieConfig_cpp
-__sinit_movieConfig_cpp:
+__sinit_movieConfig_cpp: # static initializer
 /* 80432148 0042F088  3C 80 80 51 */	lis r4, __float_nan@ha
 /* 8043214C 0042F08C  38 00 FF FF */	li r0, -1
 /* 80432150 0042F090  C0 04 48 B0 */	lfs f0, __float_nan@l(r4)
-/* 80432154 0042F094  3C 60 80 4F */	lis r3, lbl_804EC368@ha
-/* 80432158 0042F098  90 0D 9B 90 */	stw r0, lbl_80516210@sda21(r13)
-/* 8043215C 0042F09C  D4 03 C3 68 */	stfsu f0, lbl_804EC368@l(r3)
-/* 80432160 0042F0A0  D0 0D 9B 94 */	stfs f0, lbl_80516214@sda21(r13)
+/* 80432154 0042F094  3C 60 80 4F */	lis r3, govNAN___Q24Game5P2JST@ha
+/* 80432158 0042F098  90 0D 9B 90 */	stw r0, gu32NAN___Q24Game5P2JST@sda21(r13)
+/* 8043215C 0042F09C  D4 03 C3 68 */	stfsu f0, govNAN___Q24Game5P2JST@l(r3)
+/* 80432160 0042F0A0  D0 0D 9B 94 */	stfs f0, gfNAN___Q24Game5P2JST@sda21(r13)
 /* 80432164 0042F0A4  D0 03 00 04 */	stfs f0, 4(r3)
 /* 80432168 0042F0A8  D0 03 00 08 */	stfs f0, 8(r3)
 /* 8043216C 0042F0AC  4E 80 00 20 */	blr 
