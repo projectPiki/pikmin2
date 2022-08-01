@@ -4,13 +4,27 @@
 #include "JSystem/JGadget/linklist.h"
 #include "types.h"
 
-namespace JMessage {
-struct TResource {
-	virtual ~TReference();                      // _08
-	virtual char* do_word(unsigned long) const; // _0C
+namespace JGadget {
+struct TLinkListNode;
+}
 
-	void* _04;		// _04 - TResourceContainer* maybe
+namespace JMessage {
+struct JMessageHeader;
+
+struct TResource : public JGadget::TLinkListNode {
+    void* _08;      // _08 - "INF1Block*"
+    void* _0C;      // _0C - "pDAT1Data"
+    void* _10;      // _10 - "pSTR1Data"
+    void* _14;      // _14 - "MID1Block*"
 };
+
+// struct TResourceContainer {
+//     struct TCResource {
+
+//     };
+
+// };
+
 } // namespace JMessage
 
 #endif
