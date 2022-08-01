@@ -7,54 +7,52 @@ namespace JGadget {
 struct TLinkListNode {
 	TLinkListNode()
 	{
-		mNext = nullptr;
-		mPrev = nullptr;
+		m_next = nullptr;
+		m_prev = nullptr;
 	}
 
-	TLinkListNode* mNext;
-	TLinkListNode* mPrev;
+	TLinkListNode* m_next;
+	TLinkListNode* m_prev;
 };
 
 struct TNodeLinkList {
 	struct iterator {
-		iterator(TLinkListNode* pNode) { node = pNode; }
+		iterator(TLinkListNode* pNode) { m_node = pNode; }
 		iterator(const iterator& iter) { *this = iter; }
 
-		TLinkListNode* node;
+		TLinkListNode* m_node;
 	};
 
 	struct TPRIsEqual_pointer_ {
-		TLinkListNode* node;
+		TLinkListNode* m_node;
 	};
 
 	TNodeLinkList()
-	    : ocObject_()
+	    : m_linkListNode()
 	{
 		Initialize_();
 	}
 	void Initialize_()
 	{
-		ptr             = nullptr;
-		ocObject_.mNext = &ocObject_;
-		ocObject_.mPrev = &ocObject_;
+		m_count            	  = 0;
+		m_linkListNode.m_next = &m_linkListNode;
+		m_linkListNode.m_prev = &m_linkListNode;
 	}
 
 	iterator end()
 	{
-		iterator iter(&ocObject_);
+		iterator iter(&m_linkListNode);
 		return iter;
 	}
 
 	~TNodeLinkList();
-	void Erase(TLinkListNode*);
 	void Insert(TNodeLinkList::iterator, TLinkListNode*);
+	void Erase(TLinkListNode*);
 	void Remove(TLinkListNode*);
 	void remove_if(TPRIsEqual_pointer_);
 
-	TNodeLinkList* ptr;
-	TLinkListNode ocObject_;
-	int _10; // this probably shouldnt be here but idk the TLinkList from TP
-	         // doesnt match what i see here
+	int m_count; 					// _00
+	TLinkListNode m_linkListNode;	// _04
 };
 
 template <typename T, int I> struct TLinkList : public TNodeLinkList {
@@ -70,7 +68,7 @@ template <typename T, int I> struct TLinkList : public TNodeLinkList {
 		}
 	};
 
-	TLinkListNode* Element_toNode(T* element) const { return &element->ocObject_; }
+	TLinkListNode* Element_toNode(T* element) const { return &element->m_linkListNode; }
 
 	void Insert(TLinkList::iterator iter, T* element)
 	{

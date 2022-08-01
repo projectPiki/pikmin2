@@ -1,4 +1,5 @@
 #include "types.h"
+#include "JSystem/JGadget/linklist.h"
 
 /*
     Generated from dpostproc

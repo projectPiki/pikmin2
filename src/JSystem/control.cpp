@@ -1,4 +1,7 @@
 #include "types.h"
+#include "JSystem/JMessage/TProcessor.h"
+#include "JSystem/JMessage/TResource.h"
+#include "JSystem/JMessage/TControl.h"
 
 /*
     Generated from dpostproc
@@ -280,7 +283,7 @@ lbl_8000865C:
  * Address:	8000867C
  * Size:	0000DC
  */
-void JMessage::TControl::setMessageCode(unsigned short, unsigned short)
+void JMessage::TControl::setMessageCode(u16, u16)
 {
 	/*
 	stwu     r1, -0x20(r1)
@@ -359,7 +362,7 @@ lbl_80008738:
  * Address:	80008758
  * Size:	0000FC
  */
-void JMessage::TControl::setMessageID(unsigned long, unsigned long, bool*)
+void JMessage::TControl::setMessageID(u32, u32, bool*)
 {
 	/*
 	stwu     r1, -0x20(r1)
@@ -448,7 +451,7 @@ lbl_80008834:
  * Address:	80008854
  * Size:	0000E8
  */
-void JMessage::TControl::setMessageCode_inSequence_((JMessage::TProcessor const*, unsigned short, unsigned short))
+void JMessage::TControl::setMessageCode_inSequence_(JMessage::TProcessor const*, unsigned short, unsigned short)
 {
 	/*
 	.loc_0x0:

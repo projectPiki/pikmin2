@@ -5,42 +5,46 @@
     Generated from dpostproc
 */
 
+namespace JGadget {
+namespace binary {
+
+
 /*
  * --INFO--
  * Address:	........
  * Size:	000054
  */
-void JGadget::binary::parseVariableUInt_16_32(void const**, JGadget::binary::TEBit*)
-{
-	// UNUSED FUNCTION
-}
+// void JGadget::binary::parseVariableUInt_16_32(void const**, JGadget::binary::TEBit*)
+// {
+// 	// UNUSED FUNCTION
+// }
 
 /*
  * --INFO--
  * Address:	........
  * Size:	000084
  */
-void JGadget::binary::parseVariableUInt_8_16_32(void const**, JGadget::binary::TEBit*)
-{
-	// UNUSED FUNCTION
-}
+// void JGadget::binary::parseVariableUInt_8_16_32(void const**, JGadget::binary::TEBit*)
+// {
+// 	// UNUSED FUNCTION
+// }
 
 /*
  * --INFO--
  * Address:	........
  * Size:	000054
  */
-void JGadget::binary::parseVariableUInt_8_16(void const**, JGadget::binary::TEBit*)
-{
-	// UNUSED FUNCTION
-}
+// void JGadget::binary::parseVariableUInt_8_16(void const**, JGadget::binary::TEBit*)
+// {
+// 	// UNUSED FUNCTION
+// }
 
 /*
  * --INFO--
  * Address:	80027128
  * Size:	000068
  */
-void JGadget::binary::parseVariableUInt_16_32_following(void const*, unsigned long*, unsigned long*, JGadget::binary::TEBit*)
+u16* parseVariableUInt_16_32_following(void const*, u32*, u32*, JGadget::binary::TEBit*)
 {
 	/*
 	.loc_0x0:
@@ -84,38 +88,14 @@ void JGadget::binary::parseVariableUInt_16_32_following(void const*, unsigned lo
  * Address:	80027190
  * Size:	000048
  */
-JGadget::binary::TParse_header_block::~TParse_header_block(void)
-{
-	/*
-	stwu     r1, -0x10(r1)
-	mflr     r0
-	stw      r0, 0x14(r1)
-	stw      r31, 0xc(r1)
-	or.      r31, r3, r3
-	beq      lbl_800271C0
-	lis      r5, __vt__Q37JGadget6binary19TParse_header_block@ha
-	extsh.   r0, r4
-	addi     r0, r5, __vt__Q37JGadget6binary19TParse_header_block@l
-	stw      r0, 0(r31)
-	ble      lbl_800271C0
-	bl       __dl__FPv
-
-lbl_800271C0:
-	lwz      r0, 0x14(r1)
-	mr       r3, r31
-	lwz      r31, 0xc(r1)
-	mtlr     r0
-	addi     r1, r1, 0x10
-	blr
-	*/
-}
+TParse_header_block::~TParse_header_block() { }
 
 /*
  * --INFO--
  * Address:	800271D8
  * Size:	00010C
  */
-void JGadget::binary::TParse_header_block::parse_next(void const**, unsigned long)
+void TParse_header_block::parse_next(void const**, u32)
 {
 	/*
 	.loc_0x0:
@@ -206,3 +186,6 @@ void JGadget::binary::TParse_header_block::parse_next(void const**, unsigned lon
 	  blr
 	*/
 }
+
+} // namespace binary
+} // namespace JGadget
