@@ -1146,7 +1146,7 @@ GC:=\
 	$(BUILD_DIR)/asm/sysGCU/movieMessage.o\
 	$(BUILD_DIR)/asm/sysGCU/moviePlayerPauseAndDraw.o\
 	$(BUILD_DIR)/asm/sysGCU/JSTObjectSpecialActor.o\
-	$(BUILD_DIR)/asm/sysGCU/messageSequence.o\
+	$(BUILD_DIR)/src/sysGCU/messageSequence.o\
 	$(BUILD_DIR)/asm/sysGCU/messageMgr.o\
 	$(BUILD_DIR)/asm/sysGCU/messageObj.o\
 	$(BUILD_DIR)/asm/sysGCU/messageRendering.o\
