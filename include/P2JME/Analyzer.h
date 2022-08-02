@@ -7,7 +7,9 @@
 namespace P2JME {
 
 struct Analyzer : public TRenderingProcessorBase {
-	virtual ~Analyzer();                                                  // _08 (weak)
+	Analyzer(const JMessage::TReference*);
+
+	virtual ~Analyzer() { }                                               // _08 (weak)
 	virtual void do_character(int);                                       // _10
 	virtual void tagColor(const void*, unsigned long);                    // _48 (weak)
 	virtual void tagSize(const void*, unsigned long);                     // _4C (weak)
@@ -18,7 +20,6 @@ struct Analyzer : public TRenderingProcessorBase {
 	virtual void tagControl(unsigned short, const void*, unsigned long);  // _60 (weak)
 	virtual void tagPosition(unsigned short, const void*, unsigned long); // _64 (weak)
 
-	Analyzer(const JMessage::TReference*);
 	void exec(char*);
 
 	inline void setIDs(u32 in1, u32 in2, u32* out1, u32* out2)
