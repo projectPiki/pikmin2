@@ -1417,6 +1417,78 @@ lbl_801EC8F8:
 /* 801EC91C 001E985C  38 21 00 70 */	addi r1, r1, 0x70
 /* 801EC920 001E9860  4E 80 00 20 */	blr 
 
+.if version == 1
+.global interactGotKey__Q34Game15ItemBigFountain4ItemFRQ24Game14InteractGotKey
+interactGotKey__Q34Game15ItemBigFountain4ItemFRQ24Game14InteractGotKey:
+/* 801EC924 001E9864  94 21 FF B0 */	stwu r1, -0x50(r1)
+/* 801EC928 001E9868  7C 08 02 A6 */	mflr r0
+/* 801EC92C 001E986C  90 01 00 54 */	stw r0, 0x54(r1)
+/* 801EC930 001E9870  93 E1 00 4C */	stw r31, 0x4c(r1)
+/* 801EC934 001E9874  7C 7F 1B 78 */	mr r31, r3
+/* 801EC938 001E9878  48 00 15 15 */	bl "getStateID__Q24Game98FSMItem<Q34Game15ItemBigFountain4Item,Q34Game15ItemBigFountain3FSM,Q34Game15ItemBigFountain5State>Fv"
+/* 801EC93C 001E987C  2C 03 00 03 */	cmpwi r3, 3
+/* 801EC940 001E9880  40 82 00 D4 */	bne lbl_801ECA14
+/* 801EC944 001E9884  80 6D 93 E8 */	lwz r3, gameSystem__4Game@sda21(r13)
+/* 801EC948 001E9888  88 03 00 3C */	lbz r0, 0x3c(r3)
+/* 801EC94C 001E988C  54 00 06 B5 */	rlwinm. r0, r0, 0, 0x1a, 0x1a
+/* 801EC950 001E9890  41 82 00 C4 */	beq lbl_801ECA14
+/* 801EC954 001E9894  C0 02 B7 3C */	lfs f0, lbl_80519A9C@sda21(r2)
+/* 801EC958 001E9898  3C 60 80 48 */	lis r3, lbl_804810DC@ha
+/* 801EC95C 001E989C  38 00 00 00 */	li r0, 0
+/* 801EC960 001E98A0  7F E4 FB 78 */	mr r4, r31
+/* 801EC964 001E98A4  38 A3 10 DC */	addi r5, r3, lbl_804810DC@l
+/* 801EC968 001E98A8  90 01 00 18 */	stw r0, 0x18(r1)
+/* 801EC96C 001E98AC  38 61 00 08 */	addi r3, r1, 8
+/* 801EC970 001E98B0  90 A1 00 14 */	stw r5, 0x14(r1)
+/* 801EC974 001E98B4  90 01 00 20 */	stw r0, 0x20(r1)
+/* 801EC978 001E98B8  D0 01 00 2C */	stfs f0, 0x2c(r1)
+/* 801EC97C 001E98BC  D0 01 00 30 */	stfs f0, 0x30(r1)
+/* 801EC980 001E98C0  D0 01 00 34 */	stfs f0, 0x34(r1)
+/* 801EC984 001E98C4  D0 01 00 38 */	stfs f0, 0x38(r1)
+/* 801EC988 001E98C8  90 01 00 3C */	stw r0, 0x3c(r1)
+/* 801EC98C 001E98CC  90 01 00 24 */	stw r0, 0x24(r1)
+/* 801EC990 001E98D0  90 01 00 1C */	stw r0, 0x1c(r1)
+/* 801EC994 001E98D4  90 01 00 40 */	stw r0, 0x40(r1)
+/* 801EC998 001E98D8  90 01 00 28 */	stw r0, 0x28(r1)
+/* 801EC99C 001E98DC  90 01 00 44 */	stw r0, 0x44(r1)
+/* 801EC9A0 001E98E0  81 9F 00 00 */	lwz r12, 0(r31)
+/* 801EC9A4 001E98E4  81 8C 00 08 */	lwz r12, 8(r12)
+/* 801EC9A8 001E98E8  7D 89 03 A6 */	mtctr r12
+/* 801EC9AC 001E98EC  4E 80 04 21 */	bctrl 
+/* 801EC9B0 001E98F0  C0 41 00 08 */	lfs f2, 8(r1)
+/* 801EC9B4 001E98F4  7F E3 FB 78 */	mr r3, r31
+/* 801EC9B8 001E98F8  C0 21 00 0C */	lfs f1, 0xc(r1)
+/* 801EC9BC 001E98FC  C0 01 00 10 */	lfs f0, 0x10(r1)
+/* 801EC9C0 001E9900  D0 41 00 2C */	stfs f2, 0x2c(r1)
+/* 801EC9C4 001E9904  D0 21 00 30 */	stfs f1, 0x30(r1)
+/* 801EC9C8 001E9908  D0 01 00 34 */	stfs f0, 0x34(r1)
+/* 801EC9CC 001E990C  81 9F 00 00 */	lwz r12, 0(r31)
+/* 801EC9D0 001E9910  81 8C 00 64 */	lwz r12, 0x64(r12)
+/* 801EC9D4 001E9914  7D 89 03 A6 */	mtctr r12
+/* 801EC9D8 001E9918  4E 80 04 21 */	bctrl 
+/* 801EC9DC 001E991C  D0 21 00 38 */	stfs f1, 0x38(r1)
+/* 801EC9E0 001E9920  38 81 00 14 */	addi r4, r1, 0x14
+/* 801EC9E4 001E9924  80 AD 93 E8 */	lwz r5, gameSystem__4Game@sda21(r13)
+/* 801EC9E8 001E9928  80 6D 9B 54 */	lwz r3, moviePlayer__4Game@sda21(r13)
+/* 801EC9EC 001E992C  80 A5 00 58 */	lwz r5, 0x58(r5)
+/* 801EC9F0 001E9930  80 05 00 CC */	lwz r0, 0xec(r5)
+/* 801EC9F4 001E9934  90 01 00 24 */	stw r0, 0x24(r1)
+/* 801EC9F8 001E9938  80 05 00 C8 */	lwz r0, 0xe8(r5)
+/* 801EC9FC 001E993C  90 01 00 20 */	stw r0, 0x20(r1)
+/* 801ECA00 001E9940  93 E3 01 94 */	stw r31, 0x194(r3)
+/* 801ECA04 001E9944  80 6D 9B 54 */	lwz r3, moviePlayer__4Game@sda21(r13)
+/* 801ECA08 001E9948  48 23 FF C9 */	bl play__Q24Game11MoviePlayerFRQ24Game12MoviePlayArg
+/* 801ECA0C 001E994C  38 60 00 01 */	li r3, 1
+/* 801ECA10 001E9950  48 00 00 08 */	b lbl_801ECA18
+lbl_801ECA14:
+/* 801ECA14 001E9954  38 60 00 00 */	li r3, 0
+lbl_801ECA18:
+/* 801ECA18 001E9958  80 01 00 54 */	lwz r0, 0x54(r1)
+/* 801ECA1C 001E995C  83 E1 00 4C */	lwz r31, 0x4c(r1)
+/* 801ECA20 001E9960  7C 08 03 A6 */	mtlr r0
+/* 801ECA24 001E9964  38 21 00 50 */	addi r1, r1, 0x50
+/* 801ECA28 001E9968  4E 80 00 20 */	blr 
+.else
 .global interactGotKey__Q34Game15ItemBigFountain4ItemFRQ24Game14InteractGotKey
 interactGotKey__Q34Game15ItemBigFountain4ItemFRQ24Game14InteractGotKey:
 /* 801EC924 001E9864  94 21 FF B0 */	stwu r1, -0x50(r1)
@@ -1487,6 +1559,7 @@ lbl_801ECA18:
 /* 801ECA20 001E9960  7C 08 03 A6 */	mtlr r0
 /* 801ECA24 001E9964  38 21 00 50 */	addi r1, r1, 0x50
 /* 801ECA28 001E9968  4E 80 00 20 */	blr 
+.endif
 
 .global constructor__Q34Game15ItemBigFountain4ItemFv
 constructor__Q34Game15ItemBigFountain4ItemFv:

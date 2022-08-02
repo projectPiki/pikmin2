@@ -841,6 +841,58 @@ lbl_80200444:
 /* 80200454 001FD394  38 21 00 10 */	addi r1, r1, 0x10
 /* 80200458 001FD398  4E 80 00 20 */	blr 
 
+.if version == 1
+.global theEntry__Q34Game13PelletOtakara6ObjectFv
+theEntry__Q34Game13PelletOtakara6ObjectFv:
+/* 8020045C 001FD39C  94 21 FF F0 */	stwu r1, -0x10(r1)
+/* 80200460 001FD3A0  7C 08 02 A6 */	mflr r0
+/* 80200464 001FD3A4  90 01 00 14 */	stw r0, 0x14(r1)
+/* 80200468 001FD3A8  93 E1 00 0C */	stw r31, 0xc(r1)
+/* 8020046C 001FD3AC  93 C1 00 08 */	stw r30, 8(r1)
+/* 80200470 001FD3B0  7C 7E 1B 78 */	mr r30, r3
+/* 80200474 001FD3B4  80 8D 93 E8 */	lwz r4, gameSystem__4Game@sda21(r13)
+/* 80200478 001FD3B8  83 E4 00 58 */	lwz r31, 0x58(r4)
+/* 8020047C 001FD3BC  80 1F 01 3C */	lwz r0, 0x15c(r31)
+/* 80200480 001FD3C0  7C 00 F0 40 */	cmplw r0, r30
+/* 80200484 001FD3C4  41 82 00 48 */	beq lbl_802004CC
+/* 80200488 001FD3C8  80 7E 03 5C */	lwz r3, 0x35c(r30)
+/* 8020048C 001FD3CC  88 03 02 5A */	lbz r0, 0x25a(r3)
+/* 80200490 001FD3D0  28 00 00 02 */	cmplwi r0, 2
+/* 80200494 001FD3D4  40 82 00 38 */	bne lbl_802004CC
+/* 80200498 001FD3D8  7F E3 FB 78 */	mr r3, r31
+/* 8020049C 001FD3DC  38 80 00 08 */	li r4, 8
+/* 802004A0 001FD3E0  4B F5 0F BD */	bl setDrawBuffer__Q24Game15BaseGameSectionFi
+/* 802004A4 001FD3E4  80 7E 01 74 */	lwz r3, 0x174(r30)
+/* 802004A8 001FD3E8  80 63 00 08 */	lwz r3, 8(r3)
+/* 802004AC 001FD3EC  81 83 00 00 */	lwz r12, 0(r3)
+/* 802004B0 001FD3F0  81 8C 00 0C */	lwz r12, 0xc(r12)
+/* 802004B4 001FD3F4  7D 89 03 A6 */	mtctr r12
+/* 802004B8 001FD3F8  4E 80 04 21 */	bctrl 
+/* 802004BC 001FD3FC  7F E3 FB 78 */	mr r3, r31
+/* 802004C0 001FD400  38 80 00 00 */	li r4, 0
+/* 802004C4 001FD404  4B F5 0F 99 */	bl setDrawBuffer__Q24Game15BaseGameSectionFi
+/* 802004C8 001FD408  48 00 00 1C */	b lbl_802004E4
+lbl_802004CC:
+/* 802004CC 001FD40C  80 7E 01 74 */	lwz r3, 0x174(r30)
+/* 802004D0 001FD410  80 63 00 08 */	lwz r3, 8(r3)
+/* 802004D4 001FD414  81 83 00 00 */	lwz r12, 0(r3)
+/* 802004D8 001FD418  81 8C 00 0C */	lwz r12, 0xc(r12)
+/* 802004DC 001FD41C  7D 89 03 A6 */	mtctr r12
+/* 802004E0 001FD420  4E 80 04 21 */	bctrl 
+lbl_802004E4:
+/* 802004E4 001FD424  80 7E 01 74 */	lwz r3, 0x174(r30)
+/* 802004E8 001FD428  80 63 00 08 */	lwz r3, 8(r3)
+/* 802004EC 001FD42C  81 83 00 00 */	lwz r12, 0(r3)
+/* 802004F0 001FD430  81 8C 00 18 */	lwz r12, 0x18(r12)
+/* 802004F4 001FD434  7D 89 03 A6 */	mtctr r12
+/* 802004F8 001FD438  4E 80 04 21 */	bctrl 
+/* 802004FC 001FD43C  80 01 00 14 */	lwz r0, 0x14(r1)
+/* 80200500 001FD440  83 E1 00 0C */	lwz r31, 0xc(r1)
+/* 80200504 001FD444  83 C1 00 08 */	lwz r30, 8(r1)
+/* 80200508 001FD448  7C 08 03 A6 */	mtlr r0
+/* 8020050C 001FD44C  38 21 00 10 */	addi r1, r1, 0x10
+/* 80200510 001FD450  4E 80 00 20 */	blr 
+.else
 .global theEntry__Q34Game13PelletOtakara6ObjectFv
 theEntry__Q34Game13PelletOtakara6ObjectFv:
 /* 8020045C 001FD39C  94 21 FF F0 */	stwu r1, -0x10(r1)
@@ -891,6 +943,7 @@ lbl_802004E4:
 /* 80200508 001FD448  7C 08 03 A6 */	mtlr r0
 /* 8020050C 001FD44C  38 21 00 10 */	addi r1, r1, 0x10
 /* 80200510 001FD450  4E 80 00 20 */	blr 
+.endif
 
 .global changeMaterial__Q34Game13PelletOtakara6ObjectFv
 changeMaterial__Q34Game13PelletOtakara6ObjectFv:

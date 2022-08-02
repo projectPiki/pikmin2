@@ -669,7 +669,7 @@ setCentering__Q32og9newScreen8TitleMsgFQ42og9newScreen8TitleMsg13EnumCentering:
 /* 8032F154 0032C094  7C 08 02 A6 */	mflr r0
 /* 8032F158 0032C098  90 01 00 64 */	stw r0, 0xa4(r1)
 /* 8032F15C 0032C09C  DB E1 00 50 */	stfd f31, 0x90(r1)
-/* 8032F160 0032C0A0  F3 E1 00 58 */	psq_st f31, 98(r1), 0, qr0
+/* 8032F160 0032C0A0  F3 E1 00 58 */	psq_st f31, 0x98(r1), 0, qr0
 /* 8032F164 0032C0A4  DB C1 00 40 */	stfd f30, 0x80(r1)
 /* 8032F168 0032C0A8  F3 C1 00 48 */	psq_st f30, 0x88(r1), 0, qr0
 /* 8032F16C 0032C0AC  DB A1 00 30 */	stfd f29, 0x70(r1)
@@ -760,7 +760,7 @@ lbl_8032F268:
 /* 8032F268 0032C1A8  80 1D 05 40 */	lwz r0, 0x540(r29)
 /* 8032F26C 0032C1AC  7C 1E 00 40 */	cmplw r30, r0
 /* 8032F270 0032C1B0  41 80 FF A4 */	blt lbl_8032F214
-/* 8032F274 0032C1B4  D3 BD 07 E0 */	stfs f29, 0x7e0(r29)
+/* 8032F274 0032C1B4  D3 BD 07 E0 */	stfs f26, 0x7e0(r29)
 /* 8032F278 0032C1B8  E3 E1 00 58 */	psq_l f31, 0x98(r1), 0, qr0
 /* 8032F27C 0032C1BC  CB E1 00 50 */	lfd f31, 0x90(r1)
 /* 8032F280 0032C1C0  E3 C1 00 48 */	psq_l f30, 0x88(r1), 0, qr0

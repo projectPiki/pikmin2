@@ -869,6 +869,78 @@ lbl_801D1CDC:
 /* 801D1D00 001CEC40  38 21 00 80 */	addi r1, r1, 0x80
 /* 801D1D04 001CEC44  4E 80 00 20 */	blr 
 
+.if version == 1
+.global interactGotKey__Q34Game8ItemHole4ItemFRQ24Game14InteractGotKey
+interactGotKey__Q34Game8ItemHole4ItemFRQ24Game14InteractGotKey:
+/* 801D1D08 001CEC48  94 21 FF B0 */	stwu r1, -0x50(r1)
+/* 801D1D0C 001CEC4C  7C 08 02 A6 */	mflr r0
+/* 801D1D10 001CEC50  90 01 00 54 */	stw r0, 0x54(r1)
+/* 801D1D14 001CEC54  93 E1 00 4C */	stw r31, 0x4c(r1)
+/* 801D1D18 001CEC58  7C 7F 1B 78 */	mr r31, r3
+/* 801D1D1C 001CEC5C  4B FF AD 21 */	bl getStateID__Q24Game8CFSMItemFv
+/* 801D1D20 001CEC60  2C 03 00 02 */	cmpwi r3, 2
+/* 801D1D24 001CEC64  40 82 00 D4 */	bne lbl_801D1DF8
+/* 801D1D28 001CEC68  80 6D 93 E8 */	lwz r3, gameSystem__4Game@sda21(r13)
+/* 801D1D2C 001CEC6C  88 03 00 3C */	lbz r0, 0x3c(r3)
+/* 801D1D30 001CEC70  54 00 06 B5 */	rlwinm. r0, r0, 0, 0x1a, 0x1a
+/* 801D1D34 001CEC74  41 82 00 C4 */	beq lbl_801D1DF8
+/* 801D1D38 001CEC78  C0 02 B2 D8 */	lfs f0, lbl_80519638@sda21(r2)
+/* 801D1D3C 001CEC7C  3C 60 80 48 */	lis r3, lbl_80480538@ha
+/* 801D1D40 001CEC80  38 00 00 00 */	li r0, 0
+/* 801D1D44 001CEC84  7F E4 FB 78 */	mr r4, r31
+/* 801D1D48 001CEC88  38 A3 05 38 */	addi r5, r3, lbl_80480538@l
+/* 801D1D4C 001CEC8C  90 01 00 18 */	stw r0, 0x18(r1)
+/* 801D1D50 001CEC90  38 61 00 08 */	addi r3, r1, 8
+/* 801D1D54 001CEC94  90 A1 00 14 */	stw r5, 0x14(r1)
+/* 801D1D58 001CEC98  90 01 00 20 */	stw r0, 0x20(r1)
+/* 801D1D5C 001CEC9C  D0 01 00 2C */	stfs f0, 0x2c(r1)
+/* 801D1D60 001CECA0  D0 01 00 30 */	stfs f0, 0x30(r1)
+/* 801D1D64 001CECA4  D0 01 00 34 */	stfs f0, 0x34(r1)
+/* 801D1D68 001CECA8  D0 01 00 38 */	stfs f0, 0x38(r1)
+/* 801D1D6C 001CECAC  90 01 00 3C */	stw r0, 0x3c(r1)
+/* 801D1D70 001CECB0  90 01 00 24 */	stw r0, 0x24(r1)
+/* 801D1D74 001CECB4  90 01 00 1C */	stw r0, 0x1c(r1)
+/* 801D1D78 001CECB8  90 01 00 40 */	stw r0, 0x40(r1)
+/* 801D1D7C 001CECBC  90 01 00 28 */	stw r0, 0x28(r1)
+/* 801D1D80 001CECC0  90 01 00 44 */	stw r0, 0x44(r1)
+/* 801D1D84 001CECC4  81 9F 00 00 */	lwz r12, 0(r31)
+/* 801D1D88 001CECC8  81 8C 00 08 */	lwz r12, 8(r12)
+/* 801D1D8C 001CECCC  7D 89 03 A6 */	mtctr r12
+/* 801D1D90 001CECD0  4E 80 04 21 */	bctrl 
+/* 801D1D94 001CECD4  C0 41 00 08 */	lfs f2, 8(r1)
+/* 801D1D98 001CECD8  7F E3 FB 78 */	mr r3, r31
+/* 801D1D9C 001CECDC  C0 21 00 0C */	lfs f1, 0xc(r1)
+/* 801D1DA0 001CECE0  C0 01 00 10 */	lfs f0, 0x10(r1)
+/* 801D1DA4 001CECE4  D0 41 00 2C */	stfs f2, 0x2c(r1)
+/* 801D1DA8 001CECE8  D0 21 00 30 */	stfs f1, 0x30(r1)
+/* 801D1DAC 001CECEC  D0 01 00 34 */	stfs f0, 0x34(r1)
+/* 801D1DB0 001CECF0  81 9F 00 00 */	lwz r12, 0(r31)
+/* 801D1DB4 001CECF4  81 8C 00 64 */	lwz r12, 0x64(r12)
+/* 801D1DB8 001CECF8  7D 89 03 A6 */	mtctr r12
+/* 801D1DBC 001CECFC  4E 80 04 21 */	bctrl 
+/* 801D1DC0 001CED00  D0 21 00 38 */	stfs f1, 0x38(r1)
+/* 801D1DC4 001CED04  38 81 00 14 */	addi r4, r1, 0x14
+/* 801D1DC8 001CED08  80 AD 93 E8 */	lwz r5, gameSystem__4Game@sda21(r13)
+/* 801D1DCC 001CED0C  80 6D 9B 54 */	lwz r3, moviePlayer__4Game@sda21(r13)
+/* 801D1DD0 001CED10  80 A5 00 58 */	lwz r5, 0x58(r5)
+/* 801D1DD4 001CED14  80 05 00 CC */	lwz r0, 0xec(r5)
+/* 801D1DD8 001CED18  90 01 00 24 */	stw r0, 0x24(r1)
+/* 801D1DDC 001CED1C  80 05 00 C8 */	lwz r0, 0xe8(r5)
+/* 801D1DE0 001CED20  90 01 00 20 */	stw r0, 0x20(r1)
+/* 801D1DE4 001CED24  93 E3 01 94 */	stw r31, 0x194(r3)
+/* 801D1DE8 001CED28  80 6D 9B 54 */	lwz r3, moviePlayer__4Game@sda21(r13)
+/* 801D1DEC 001CED2C  48 25 AB E5 */	bl play__Q24Game11MoviePlayerFRQ24Game12MoviePlayArg
+/* 801D1DF0 001CED30  38 60 00 01 */	li r3, 1
+/* 801D1DF4 001CED34  48 00 00 08 */	b lbl_801D1DFC
+lbl_801D1DF8:
+/* 801D1DF8 001CED38  38 60 00 00 */	li r3, 0
+lbl_801D1DFC:
+/* 801D1DFC 001CED3C  80 01 00 54 */	lwz r0, 0x54(r1)
+/* 801D1E00 001CED40  83 E1 00 4C */	lwz r31, 0x4c(r1)
+/* 801D1E04 001CED44  7C 08 03 A6 */	mtlr r0
+/* 801D1E08 001CED48  38 21 00 50 */	addi r1, r1, 0x50
+/* 801D1E0C 001CED4C  4E 80 00 20 */	blr 
+.else
 .global interactGotKey__Q34Game8ItemHole4ItemFRQ24Game14InteractGotKey
 interactGotKey__Q34Game8ItemHole4ItemFRQ24Game14InteractGotKey:
 /* 801D1D08 001CEC48  94 21 FF B0 */	stwu r1, -0x50(r1)
@@ -939,6 +1011,7 @@ lbl_801D1DFC:
 /* 801D1E04 001CED44  7C 08 03 A6 */	mtlr r0
 /* 801D1E08 001CED48  38 21 00 50 */	addi r1, r1, 0x50
 /* 801D1E0C 001CED4C  4E 80 00 20 */	blr 
+.endif
 
 .global getFaceDir__Q34Game8ItemHole4ItemFv
 getFaceDir__Q34Game8ItemHole4ItemFv:
