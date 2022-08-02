@@ -34,7 +34,7 @@ struct TNodeLinkList {
 	}
 	void Initialize_()
 	{
-		m_count            	  = 0;
+		m_count               = 0;
 		m_linkListNode.m_next = &m_linkListNode;
 		m_linkListNode.m_prev = &m_linkListNode;
 	}
@@ -51,8 +51,8 @@ struct TNodeLinkList {
 	void Remove(TLinkListNode*);
 	void remove_if(TPRIsEqual_pointer_);
 
-	int m_count; 					// _00
-	TLinkListNode m_linkListNode;	// _04
+	int m_count;                  // _00
+	TLinkListNode m_linkListNode; // _04
 };
 
 template <typename T, int I> struct TLinkList : public TNodeLinkList {

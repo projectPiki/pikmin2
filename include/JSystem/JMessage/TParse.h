@@ -12,15 +12,15 @@ struct TParse_header_block;
 
 namespace JMessage {
 struct TParse : public JGadget::binary::TParse_header_block {
-    virtual ~TParse();                                                          // _08
-    virtual bool parseHeader_next(const void**, unsigned long*, unsigned long); // _0C
-    virtual bool parseBlock_next(const void**, unsigned long*, unsigned long);  // _10
+	virtual ~TParse();                                                          // _08
+	virtual bool parseHeader_next(const void**, unsigned long*, unsigned long); // _0C
+	virtual bool parseBlock_next(const void**, unsigned long*, unsigned long);  // _10
 };
 
 struct TParse_color : public JGadget::binary::TParse_header_block {
-    virtual ~TParse_color();                                                    // _08
-    virtual bool parseHeader_next(const void**, unsigned long*, unsigned long); // _0C
-    virtual bool parseBlock_next(const void**, unsigned long*, unsigned long);  // _10
+	virtual ~TParse_color();                                                    // _08
+	virtual bool parseHeader_next(const void**, unsigned long*, unsigned long); // _0C
+	virtual bool parseBlock_next(const void**, unsigned long*, unsigned long);  // _10
 };
 } // namespace JMessage
 

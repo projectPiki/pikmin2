@@ -6,13 +6,13 @@
 namespace JGadget {
 namespace binary {
 struct TEBit {
-    u32 _00;    // _00
+	u32 _00; // _00
 };
 
 struct TParse_header_block {
-	virtual ~TParse_header_block() 												= 0;	// _08
-    virtual bool parseHeader_next(const void**, unsigned long*, unsigned long) 	= 0; 	// _0C
-    virtual bool parseBlock_next(const void**, unsigned long*, unsigned long) 	= 0; 	// _10
+	virtual ~TParse_header_block()                                             = 0; // _08
+	virtual bool parseHeader_next(const void**, unsigned long*, unsigned long) = 0; // _0C
+	virtual bool parseBlock_next(const void**, unsigned long*, unsigned long)  = 0; // _10
 
 	bool parse_next(void const**, u32);
 };

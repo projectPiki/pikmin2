@@ -8,7 +8,6 @@
 namespace JGadget {
 namespace binary {
 
-
 /*
  * --INFO--
  * Address:	........

@@ -15,32 +15,25 @@
         .4byte 0
 */
 
+namespace JMessage {
+
 /*
  * --INFO--
  * Address:	800083A4
  * Size:	000044
  */
-JMessage::TControl::TControl(void)
+TControl::TControl()
 {
-	/*
-	lis      r5, __vt__Q28JMessage8TControl@ha
-	lis      r4, 0x0000FFFF@ha
-	addi     r0, r5, __vt__Q28JMessage8TControl@l
-	li       r5, 0
-	stw      r0, 0(r3)
-	addi     r0, r4, 0x0000FFFF@l
-	stw      r5, 4(r3)
-	stw      r5, 8(r3)
-	sth      r0, 0xc(r3)
-	sth      r0, 0xe(r3)
-	stw      r5, 0x10(r3)
-	stw      r5, 0x14(r3)
-	stw      r5, 0x18(r3)
-	stw      r5, 0x1c(r3)
-	stw      r5, 0x20(r3)
-	stw      r5, 0x24(r3)
-	blr
-	*/
+	_04 = 0;
+	_08 = 0;
+	_0C = 0xFFFF;
+	_0E = 0xFFFF;
+	_10 = 0;
+	_14 = 0;
+	_18 = 0;
+	_1C = 0;
+	_20 = 0;
+	_24 = 0;
 }
 
 /*
@@ -48,71 +41,28 @@ JMessage::TControl::TControl(void)
  * Address:	800083E8
  * Size:	000048
  */
-JMessage::TControl::~TControl(void)
-{
-	/*
-	stwu     r1, -0x10(r1)
-	mflr     r0
-	stw      r0, 0x14(r1)
-	stw      r31, 0xc(r1)
-	or.      r31, r3, r3
-	beq      lbl_80008418
-	lis      r5, __vt__Q28JMessage8TControl@ha
-	extsh.   r0, r4
-	addi     r0, r5, __vt__Q28JMessage8TControl@l
-	stw      r0, 0(r31)
-	ble      lbl_80008418
-	bl       __dl__FPv
-
-lbl_80008418:
-	lwz      r0, 0x14(r1)
-	mr       r3, r31
-	lwz      r31, 0xc(r1)
-	mtlr     r0
-	addi     r1, r1, 0x10
-	blr
-	*/
-}
+TControl::~TControl() { }
 
 /*
  * --INFO--
  * Address:	80008430
  * Size:	000068
  */
-void JMessage::TControl::reset(void)
+void TControl::reset()
 {
-	/*
-	stwu     r1, -0x10(r1)
-	mflr     r0
-	stw      r0, 0x14(r1)
-	li       r0, 0
-	stw      r31, 0xc(r1)
-	mr       r31, r3
-	stw      r0, 0x14(r3)
-	stw      r0, 0x18(r3)
-	stw      r0, 0x1c(r3)
-	stw      r0, 0x20(r3)
-	stw      r0, 0x24(r3)
-	lwz      r3, 4(r3)
-	cmplwi   r3, 0
-	beq      lbl_80008470
-	li       r4, 0
-	bl       reset___Q28JMessage10TProcessorFPCc
+	_14 = 0;
+	_18 = 0;
+	_1C = 0;
+	_20 = 0;
+	_24 = 0;
 
-lbl_80008470:
-	lwz      r3, 8(r31)
-	cmplwi   r3, 0
-	beq      lbl_80008484
-	li       r4, 0
-	bl       reset___Q28JMessage10TProcessorFPCc
+	if (_04) {
+		_04->reset_(0);
+	}
 
-lbl_80008484:
-	lwz      r0, 0x14(r1)
-	lwz      r31, 0xc(r1)
-	mtlr     r0
-	addi     r1, r1, 0x10
-	blr
-	*/
+	if (_08) {
+		_08->reset_(0);
+	}
 }
 
 /*
@@ -120,52 +70,21 @@ lbl_80008484:
  * Address:	80008498
  * Size:	000088
  */
-void JMessage::TControl::update(void)
+bool TControl::update()
 {
-	/*
-	stwu     r1, -0x10(r1)
-	mflr     r0
-	stw      r0, 0x14(r1)
-	stw      r31, 0xc(r1)
-	mr       r31, r3
-	li       r3, 0
-	lwz      r0, 0x18(r31)
-	cmplwi   r0, 0
-	beq      lbl_800084CC
-	lwz      r0, 4(r31)
-	cmplwi   r0, 0
-	beq      lbl_800084CC
-	li       r3, 1
+	bool checkVars = (_18 && _04);
 
-lbl_800084CC:
-	clrlwi.  r0, r3, 0x18
-	bne      lbl_800084DC
-	li       r3, 0
-	b        lbl_8000850C
+	if (!checkVars) {
+		return false;
+	}
 
-lbl_800084DC:
-	lwz      r3, 4(r31)
-	li       r4, 0
-	bl       process__Q28JMessage18TSequenceProcessorFPCc
-	stw      r3, 0x1c(r31)
-	lwz      r0, 0x1c(r31)
-	cmplwi   r0, 0
-	bne      lbl_80008508
-	li       r0, 0
-	li       r3, 0
-	stw      r0, 0x18(r31)
-	b        lbl_8000850C
+	_1C = ((TSequenceProcessor*)_04)->process(0);
 
-lbl_80008508:
-	li       r3, 1
-
-lbl_8000850C:
-	lwz      r0, 0x14(r1)
-	lwz      r31, 0xc(r1)
-	mtlr     r0
-	addi     r1, r1, 0x10
-	blr
-	*/
+	if (_1C == 0) {
+		_18 = 0;
+		return false;
+	}
+	return true;
 }
 
 /*
@@ -173,7 +92,7 @@ lbl_8000850C:
  * Address:	80008520
  * Size:	00015C
  */
-void JMessage::TControl::render(void)
+void TControl::render(void)
 {
 	/*
 	stwu     r1, -0x20(r1)
@@ -283,78 +202,29 @@ lbl_8000865C:
  * Address:	8000867C
  * Size:	0000DC
  */
-void JMessage::TControl::setMessageCode(u16, u16)
+bool TControl::setMessageCode(u16 idx1, u16 idx2)
 {
-	/*
-	stwu     r1, -0x20(r1)
-	mflr     r0
-	mr       r6, r5
-	stw      r0, 0x24(r1)
-	mr       r0, r4
-	stw      r31, 0x1c(r1)
-	stw      r30, 0x18(r1)
-	stw      r29, 0x14(r1)
-	stw      r28, 0x10(r1)
-	mr       r28, r3
-	lwz      r4, 4(r3)
-	cmplwi   r4, 0
-	beq      lbl_800086B4
-	b        lbl_800086B8
+	TProcessor* proc1;
+	void* voidPtr;
 
-lbl_800086B4:
-	lwz      r4, 8(r28)
+	TProcessor* processor = (_04) ? _04 : _08;
 
-lbl_800086B8:
-	mr       r3, r28
-	mr       r5, r0
-	bl
-setMessageCode_inSequence___Q28JMessage8TControlFPCQ28JMessage10TProcessorUsUs
-	clrlwi.  r0, r3, 0x18
-	bne      lbl_800086D4
-	li       r3, 0
-	b        lbl_80008738
+	if (!setMessageCode_inSequence_(processor, idx1, idx2)) {
+		return false;
+	}
 
-lbl_800086D4:
-	lwz      r29, 0x18(r28)
-	li       r3, 0
-	cmplwi   r29, 0
-	beq      lbl_800086F4
-	lwz      r0, 4(r28)
-	cmplwi   r0, 0
-	beq      lbl_800086F4
-	li       r3, 1
+	char* ptr      = _18;
+	bool checkVars = (ptr && _04);
 
-lbl_800086F4:
-	clrlwi.  r0, r3, 0x18
-	beq      lbl_80008734
-	lwz      r31, 4(r28)
-	mr       r4, r29
-	lwz      r30, 0x14(r28)
-	lwz      r0, 0x10(r28)
-	mr       r3, r31
-	stw      r0, 8(r31)
-	bl       reset___Q28JMessage10TProcessorFPCc
-	mr       r3, r31
-	mr       r4, r30
-	lwz      r12, 0(r31)
-	mr       r5, r29
-	lwz      r12, 0x30(r12)
-	mtctr    r12
-	bctrl
+	if (checkVars) {
+		proc1      = _04;
+		voidPtr    = _14;
+		proc1->_08 = _10;
+		proc1->reset_(ptr);
+		proc1->do_begin_(voidPtr, ptr);
+	}
 
-lbl_80008734:
-	li       r3, 1
-
-lbl_80008738:
-	lwz      r0, 0x24(r1)
-	lwz      r31, 0x1c(r1)
-	lwz      r30, 0x18(r1)
-	lwz      r29, 0x14(r1)
-	lwz      r28, 0x10(r1)
-	mtlr     r0
-	addi     r1, r1, 0x20
-	blr
-	*/
+	return true;
 }
 
 /*
@@ -362,7 +232,7 @@ lbl_80008738:
  * Address:	80008758
  * Size:	0000FC
  */
-void JMessage::TControl::setMessageID(u32, u32, bool*)
+bool TControl::setMessageID(u32, u32, bool*)
 {
 	/*
 	stwu     r1, -0x20(r1)
@@ -451,7 +321,7 @@ lbl_80008834:
  * Address:	80008854
  * Size:	0000E8
  */
-void JMessage::TControl::setMessageCode_inSequence_(JMessage::TProcessor const*, unsigned short, unsigned short)
+bool TControl::setMessageCode_inSequence_(TProcessor const*, unsigned short, unsigned short)
 {
 	/*
 	.loc_0x0:
@@ -525,3 +395,5 @@ void JMessage::TControl::setMessageCode_inSequence_(JMessage::TProcessor const*,
 	  blr
 	*/
 }
+
+} // namespace JMessage

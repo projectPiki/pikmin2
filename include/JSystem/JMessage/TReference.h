@@ -4,11 +4,13 @@
 #include "types.h"
 
 namespace JMessage {
+struct TResourceContainer;
+
 struct TReference {
 	virtual ~TReference();                      // _08
 	virtual char* do_word(unsigned long) const; // _0C
 
-	void* _04;		// _04 - TResourceContainer* maybe
+	TResourceContainer* _04; // _04
 };
 } // namespace JMessage
 
