@@ -66,7 +66,7 @@ struct TSequenceProcessor : public TProcessor {
 	virtual bool do_jump_isReady();                                             // _4C
 	virtual void do_jump(const void*, const char*);                             // _50
 	virtual void do_branch_query(unsigned short);                               // _54
-	virtual void do_branch_queryResult();                                       // _58
+	virtual int do_branch_queryResult();                                        // _58
 	virtual void do_branch(const void*, const char*);                           // _5C
 
 	char* process(const char*);
