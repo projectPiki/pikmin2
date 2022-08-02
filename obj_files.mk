@@ -1182,7 +1182,7 @@ GC:=\
 	$(BUILD_DIR)/asm/sysGCU/sysDrawBuffer.o\
 	$(BUILD_DIR)/src/sysGCU/dvdErrorMessage.o\
 	$(BUILD_DIR)/asm/sysGCU/pikmin2AramMgr.o\
-	$(BUILD_DIR)/asm/sysGCU/messageAnalyzer.o\
+	$(BUILD_DIR)/src/sysGCU/messageAnalyzer.o\
 
 UTILITY:=\
 	$(BUILD_DIR)/asm/utilityU/menu.o\

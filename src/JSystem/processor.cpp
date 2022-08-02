@@ -1,3 +1,5 @@
+#include "JSystem/JMessage/TReference.h"
+#include "JSystem/JMessage/TProcessor.h"
 #include "types.h"
 
 /*
@@ -81,69 +83,21 @@
  * Address:	80006D0C
  * Size:	000048
  */
-JMessage::TReference::~TReference()
-{
-	/*
-	stwu     r1, -0x10(r1)
-	mflr     r0
-	stw      r0, 0x14(r1)
-	stw      r31, 0xc(r1)
-	or.      r31, r3, r3
-	beq      lbl_80006D3C
-	lis      r5, __vt__Q28JMessage10TReference@ha
-	extsh.   r0, r4
-	addi     r0, r5, __vt__Q28JMessage10TReference@l
-	stw      r0, 0(r31)
-	ble      lbl_80006D3C
-	bl       __dl__FPv
-
-lbl_80006D3C:
-	lwz      r0, 0x14(r1)
-	mr       r3, r31
-	lwz      r31, 0xc(r1)
-	mtlr     r0
-	addi     r1, r1, 0x10
-	blr
-	*/
-}
+JMessage::TReference::~TReference() { }
 
 /*
  * --INFO--
  * Address:	80006D54
  * Size:	000008
  */
-u32 JMessage::TReference::do_word(unsigned long) const { return 0x0; }
+char* JMessage::TReference::do_word(unsigned long) const { return 0x0; }
 
 /*
  * --INFO--
  * Address:	80006D5C
  * Size:	000048
  */
-JMessage::TProcessor::~TProcessor()
-{
-	/*
-	stwu     r1, -0x10(r1)
-	mflr     r0
-	stw      r0, 0x14(r1)
-	stw      r31, 0xc(r1)
-	or.      r31, r3, r3
-	beq      lbl_80006D8C
-	lis      r5, __vt__Q28JMessage10TProcessor@ha
-	extsh.   r0, r4
-	addi     r0, r5, __vt__Q28JMessage10TProcessor@l
-	stw      r0, 0(r31)
-	ble      lbl_80006D8C
-	bl       __dl__FPv
-
-lbl_80006D8C:
-	lwz      r0, 0x14(r1)
-	mr       r3, r31
-	lwz      r31, 0xc(r1)
-	mtlr     r0
-	addi     r1, r1, 0x10
-	blr
-	*/
-}
+JMessage::TProcessor::~TProcessor() { }
 
 /*
  * --INFO--
