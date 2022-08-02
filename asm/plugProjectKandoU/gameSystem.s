@@ -566,11 +566,19 @@ lbl_801B505C:
 /* 801B5064 001B1FA4  38 21 00 10 */	addi r1, r1, 0x10
 /* 801B5068 001B1FA8  4E 80 00 20 */	blr 
 
+.if version == 1
+.global getLightMgr__Q24Game10GameSystemFv
+getLightMgr__Q24Game10GameSystemFv:
+/* 801B506C 001B1FAC  80 63 00 58 */	lwz r3, 0x58(r3)
+/* 801B5070 001B1FB0  80 63 01 28 */	lwz r3, 0x148(r3)
+/* 801B5074 001B1FB4  4E 80 00 20 */	blr 
+.else
 .global getLightMgr__Q24Game10GameSystemFv
 getLightMgr__Q24Game10GameSystemFv:
 /* 801B506C 001B1FAC  80 63 00 58 */	lwz r3, 0x58(r3)
 /* 801B5070 001B1FB0  80 63 01 28 */	lwz r3, 0x128(r3)
 /* 801B5074 001B1FB4  4E 80 00 20 */	blr 
+.endif
 
 .global doAnimation__Q24Game10GameSystemFv
 doAnimation__Q24Game10GameSystemFv:

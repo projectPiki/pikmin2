@@ -8747,6 +8747,70 @@ closeTextArc__Q24Game13BasePelletMgrFP10JKRArchive:
 /* 8016C5E4 00169524  38 21 00 10 */	addi r1, r1, 0x10
 /* 8016C5E8 00169528  4E 80 00 20 */	blr 
 
+.if version == 1
+.global useModelMgr__Q24Game13BasePelletMgrFiUl
+useModelMgr__Q24Game13BasePelletMgrFiUl:
+/* 8016C5EC 0016952C  94 21 FF D0 */	stwu r1, -0x30(r1)
+/* 8016C5F0 00169530  7C 08 02 A6 */	mflr r0
+/* 8016C5F4 00169534  90 01 00 34 */	stw r0, 0x34(r1)
+/* 8016C5F8 00169538  BF 61 00 1C */	stmw r27, 0x1c(r1)
+/* 8016C5FC 0016953C  7C 7C 1B 78 */	mr r28, r3
+/* 8016C600 00169540  7C 9D 23 78 */	mr r29, r4
+/* 8016C604 00169544  7C BE 2B 78 */	mr r30, r5
+/* 8016C608 00169548  3B E0 00 02 */	li r31, 2
+/* 8016C60C 0016954C  80 CD 93 E8 */	lwz r6, gameSystem__4Game@sda21(r13)
+/* 8016C610 00169550  28 06 00 00 */	cmplwi r6, 0
+/* 8016C614 00169554  41 82 00 18 */	beq lbl_8016C62C
+/* 8016C618 00169558  80 66 00 58 */	lwz r3, 0x58(r6)
+/* 8016C61C 0016955C  80 03 01 14 */	lwz r0, 0x134(r3)
+/* 8016C620 00169560  2C 00 00 01 */	cmpwi r0, 1
+/* 8016C624 00169564  40 82 00 08 */	bne lbl_8016C62C
+/* 8016C628 00169568  3B E0 00 01 */	li r31, 1
+lbl_8016C62C:
+/* 8016C62C 0016956C  38 60 00 1C */	li r3, 0x1c
+/* 8016C630 00169570  4B EB 78 75 */	bl __nw__FUl
+/* 8016C634 00169574  7C 7B 1B 79 */	or. r27, r3, r3
+/* 8016C638 00169578  41 82 00 80 */	beq lbl_8016C6B8
+/* 8016C63C 0016957C  38 60 00 14 */	li r3, 0x14
+/* 8016C640 00169580  4B EB 78 65 */	bl __nw__FUl
+/* 8016C644 00169584  7C 69 1B 79 */	or. r9, r3, r3
+/* 8016C648 00169588  41 82 00 4C */	beq lbl_8016C694
+/* 8016C64C 0016958C  3C 60 80 4B */	lis r3, lbl_804B1AC0@ha
+/* 8016C650 00169590  3C 80 80 4B */	lis r4, "__vt__30IDelegate1<PQ28SysShape5Model>"@ha
+/* 8016C654 00169594  38 E3 1A C0 */	addi r7, r3, lbl_804B1AC0@l
+/* 8016C658 00169598  3C 60 80 4B */	lis r3, "__vt__52Delegate1<Q24Game13BasePelletMgr,PQ28SysShape5Model>"@ha
+/* 8016C65C 0016959C  80 C7 00 00 */	lwz r6, 0(r7)
+/* 8016C660 001695A0  38 84 16 BC */	addi r4, r4, "__vt__30IDelegate1<PQ28SysShape5Model>"@l
+/* 8016C664 001695A4  80 A7 00 04 */	lwz r5, 4(r7)
+/* 8016C668 001695A8  38 03 1D 74 */	addi r0, r3, "__vt__52Delegate1<Q24Game13BasePelletMgr,PQ28SysShape5Model>"@l
+/* 8016C66C 001695AC  80 67 00 08 */	lwz r3, 8(r7)
+/* 8016C670 001695B0  90 C1 00 08 */	stw r6, 8(r1)
+/* 8016C674 001695B4  90 89 00 00 */	stw r4, 0(r9)
+/* 8016C678 001695B8  90 09 00 00 */	stw r0, 0(r9)
+/* 8016C67C 001695BC  93 89 00 04 */	stw r28, 4(r9)
+/* 8016C680 001695C0  90 C9 00 08 */	stw r6, 8(r9)
+/* 8016C684 001695C4  90 A9 00 0C */	stw r5, 0xc(r9)
+/* 8016C688 001695C8  90 A1 00 0C */	stw r5, 0xc(r1)
+/* 8016C68C 001695CC  90 61 00 10 */	stw r3, 0x10(r1)
+/* 8016C690 001695D0  90 69 00 10 */	stw r3, 0x10(r9)
+lbl_8016C694:
+/* 8016C694 001695D4  80 9C 00 08 */	lwz r4, 8(r28)
+/* 8016C698 001695D8  7F 63 DB 78 */	mr r3, r27
+/* 8016C69C 001695DC  80 BC 00 0C */	lwz r5, 0xc(r28)
+/* 8016C6A0 001695E0  7F A6 EB 78 */	mr r6, r29
+/* 8016C6A4 001695E4  80 84 00 18 */	lwz r4, 0x18(r4)
+/* 8016C6A8 001695E8  7F C7 F3 78 */	mr r7, r30
+/* 8016C6AC 001695EC  7F E8 FB 78 */	mr r8, r31
+/* 8016C6B0 001695F0  48 2B E4 51 */	bl "__ct__Q28SysShape8ModelMgrFiPP12J3DModelDataiUlUlP30IDelegate1<PQ28SysShape5Model>"
+/* 8016C6B4 001695F4  7C 7B 1B 78 */	mr r27, r3
+lbl_8016C6B8:
+/* 8016C6B8 001695F8  93 7C 00 48 */	stw r27, 0x48(r28)
+/* 8016C6BC 001695FC  BB 61 00 1C */	lmw r27, 0x1c(r1)
+/* 8016C6C0 00169600  80 01 00 34 */	lwz r0, 0x34(r1)
+/* 8016C6C4 00169604  7C 08 03 A6 */	mtlr r0
+/* 8016C6C8 00169608  38 21 00 30 */	addi r1, r1, 0x30
+/* 8016C6CC 0016960C  4E 80 00 20 */	blr 
+.else
 .global useModelMgr__Q24Game13BasePelletMgrFiUl
 useModelMgr__Q24Game13BasePelletMgrFiUl:
 /* 8016C5EC 0016952C  94 21 FF D0 */	stwu r1, -0x30(r1)
@@ -8809,6 +8873,7 @@ lbl_8016C6B8:
 /* 8016C6C4 00169604  7C 08 03 A6 */	mtlr r0
 /* 8016C6C8 00169608  38 21 00 30 */	addi r1, r1, 0x30
 /* 8016C6CC 0016960C  4E 80 00 20 */	blr 
+.endif
 
 .global createModelCallback__Q24Game13BasePelletMgrFPQ28SysShape5Model
 createModelCallback__Q24Game13BasePelletMgrFPQ28SysShape5Model:
@@ -8828,6 +8893,72 @@ createModelCallback__Q24Game13BasePelletMgrFPQ28SysShape5Model:
 onCreateModel__Q24Game13BasePelletMgrFPQ28SysShape5Model:
 /* 8016C6FC 0016963C  4E 80 00 20 */	blr 
 
+.if version == 1
+.global createShape__Q24Game13BasePelletMgrFii
+createShape__Q24Game13BasePelletMgrFii:
+/* 8016C700 00169640  94 21 FF E0 */	stwu r1, -0x20(r1)
+/* 8016C704 00169644  7C 08 02 A6 */	mflr r0
+/* 8016C708 00169648  90 01 00 24 */	stw r0, 0x24(r1)
+/* 8016C70C 0016964C  93 E1 00 1C */	stw r31, 0x1c(r1)
+/* 8016C710 00169650  93 C1 00 18 */	stw r30, 0x18(r1)
+/* 8016C714 00169654  3B C0 00 02 */	li r30, 2
+/* 8016C718 00169658  93 A1 00 14 */	stw r29, 0x14(r1)
+/* 8016C71C 0016965C  7C 7D 1B 78 */	mr r29, r3
+/* 8016C720 00169660  80 CD 93 E8 */	lwz r6, gameSystem__4Game@sda21(r13)
+/* 8016C724 00169664  28 06 00 00 */	cmplwi r6, 0
+/* 8016C728 00169668  41 82 00 18 */	beq lbl_8016C740
+/* 8016C72C 0016966C  80 66 00 58 */	lwz r3, 0x58(r6)
+/* 8016C730 00169670  80 03 01 14 */	lwz r0, 0x134(r3)
+/* 8016C734 00169674  2C 00 00 01 */	cmpwi r0, 1
+/* 8016C738 00169678  40 82 00 08 */	bne lbl_8016C740
+/* 8016C73C 0016967C  3B C0 00 01 */	li r30, 1
+lbl_8016C740:
+/* 8016C740 00169680  80 7D 00 48 */	lwz r3, 0x48(r29)
+/* 8016C744 00169684  28 03 00 00 */	cmplwi r3, 0
+/* 8016C748 00169688  41 82 00 10 */	beq lbl_8016C758
+/* 8016C74C 0016968C  48 2B E6 B1 */	bl createModel__Q28SysShape8ModelMgrFii
+/* 8016C750 00169690  7C 7E 1B 78 */	mr r30, r3
+/* 8016C754 00169694  48 00 00 70 */	b lbl_8016C7C4
+lbl_8016C758:
+/* 8016C758 00169698  80 7D 00 0C */	lwz r3, 0xc(r29)
+/* 8016C75C 0016969C  54 9F 10 3A */	slwi r31, r4, 2
+/* 8016C760 001696A0  7C 03 F8 2E */	lwzx r0, r3, r31
+/* 8016C764 001696A4  28 00 00 00 */	cmplwi r0, 0
+/* 8016C768 001696A8  40 82 00 24 */	bne lbl_8016C78C
+/* 8016C76C 001696AC  3C 60 80 48 */	lis r3, lbl_8047E344@ha
+/* 8016C770 001696B0  3C A0 80 48 */	lis r5, lbl_8047E47C@ha
+/* 8016C774 001696B4  7C 86 23 78 */	mr r6, r4
+/* 8016C778 001696B8  38 80 13 C5 */	li r4, 0x13c5
+/* 8016C77C 001696BC  38 63 E3 44 */	addi r3, r3, lbl_8047E344@l
+/* 8016C780 001696C0  38 A5 E4 7C */	addi r5, r5, lbl_8047E47C@l
+/* 8016C784 001696C4  4C C6 31 82 */	crclr 6
+/* 8016C788 001696C8  4B EB DE B9 */	bl panic_f__12JUTExceptionFPCciPCce
+lbl_8016C78C:
+/* 8016C78C 001696CC  38 60 00 14 */	li r3, 0x14
+/* 8016C790 001696D0  4B EB 77 15 */	bl __nw__FUl
+/* 8016C794 001696D4  7C 64 1B 79 */	or. r4, r3, r3
+/* 8016C798 001696D8  41 82 00 1C */	beq lbl_8016C7B4
+/* 8016C79C 001696DC  80 9D 00 0C */	lwz r4, 0xc(r29)
+/* 8016C7A0 001696E0  7F C6 F3 78 */	mr r6, r30
+/* 8016C7A4 001696E4  38 A0 00 00 */	li r5, 0
+/* 8016C7A8 001696E8  7C 84 F8 2E */	lwzx r4, r4, r31
+/* 8016C7AC 001696EC  48 2D 1A 2D */	bl __ct__Q28SysShape5ModelFP12J3DModelDataUlUl
+/* 8016C7B0 001696F0  7C 64 1B 78 */	mr r4, r3
+lbl_8016C7B4:
+/* 8016C7B4 001696F4  80 64 00 08 */	lwz r3, 8(r4)
+/* 8016C7B8 001696F8  7C 9E 23 78 */	mr r30, r4
+/* 8016C7BC 001696FC  38 80 00 00 */	li r4, 0
+/* 8016C7C0 00169700  4B EF 9F A9 */	bl newDifferedTexMtx__8J3DModelF14J3DTexDiffFlag
+lbl_8016C7C4:
+/* 8016C7C4 00169704  80 01 00 24 */	lwz r0, 0x24(r1)
+/* 8016C7C8 00169708  7F C3 F3 78 */	mr r3, r30
+/* 8016C7CC 0016970C  83 E1 00 1C */	lwz r31, 0x1c(r1)
+/* 8016C7D0 00169710  83 C1 00 18 */	lwz r30, 0x18(r1)
+/* 8016C7D4 00169714  83 A1 00 14 */	lwz r29, 0x14(r1)
+/* 8016C7D8 00169718  7C 08 03 A6 */	mtlr r0
+/* 8016C7DC 0016971C  38 21 00 20 */	addi r1, r1, 0x20
+/* 8016C7E0 00169720  4E 80 00 20 */	blr 
+.else
 .global createShape__Q24Game13BasePelletMgrFii
 createShape__Q24Game13BasePelletMgrFii:
 /* 8016C700 00169640  94 21 FF E0 */	stwu r1, -0x20(r1)
@@ -8892,6 +9023,7 @@ lbl_8016C7C4:
 /* 8016C7D8 00169718  7C 08 03 A6 */	mtlr r0
 /* 8016C7DC 0016971C  38 21 00 20 */	addi r1, r1, 0x20
 /* 8016C7E0 00169720  4E 80 00 20 */	blr 
+.endif
 
 .global setCollTree__Q24Game13BasePelletMgrFPQ24Game6Pelleti
 setCollTree__Q24Game13BasePelletMgrFPQ24Game6Pelleti:
