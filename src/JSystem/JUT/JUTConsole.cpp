@@ -2,6 +2,8 @@
 #include "JSystem/JUT/JUTConsole.h"
 #include "JSystem/JUT/JUTVideo.h"
 #include "JSystem/J2D/J2DGrafContext.h"
+#include "JSystem/JUT/JUTDirectPrint.h"
+#include "Dolphin/string.h"
 
 /*
     Generated from dpostproc
@@ -95,10 +97,10 @@ JUTConsole* JUTConsole::create(unsigned int param_0, void* param_1, u32 param_2)
  * Address:	........
  * Size:	00005C
  */
-void JUTConsole::destroy(JUTConsole*)
-{
-	// UNUSED FUNCTION
-}
+// void JUTConsole::destroy(JUTConsole*)
+// {
+// 	// UNUSED FUNCTION
+// }
 
 /*
  * --INFO--
@@ -176,385 +178,99 @@ void JUTConsole::clear()
  * Address:	800283E8
  * Size:	00055C
  */
-void JUTConsole::doDraw(JUTConsole::EConsoleType) const
+void JUTConsole::doDraw(JUTConsole::EConsoleType inputType) const
 {
-	/*
-	stwu     r1, -0x2b0(r1)
-	mflr     r0
-	stw      r0, 0x2b4(r1)
-	stfd     f31, 0x2a0(r1)
-	psq_st   f31, 680(r1), 0, qr0
-	stfd     f30, 0x290(r1)
-	psq_st   f30, 664(r1), 0, qr0
-	stfd     f29, 0x280(r1)
-	psq_st   f29, 648(r1), 0, qr0
-	stfd     f28, 0x270(r1)
-	psq_st   f28, 632(r1), 0, qr0
-	stfd     f27, 0x260(r1)
-	psq_st   f27, 616(r1), 0, qr0
-	stmw     r20, 0x230(r1)
-	mr       r25, r3
-	mr       r26, r4
-	lbz      r0, 0x68(r3)
-	cmplwi   r0, 0
-	beq      lbl_80028908
-	lwz      r0, 0x4c(r25)
-	cmplwi   r0, 0
-	bne      lbl_80028448
-	cmpwi    r26, 2
-	bne      lbl_80028908
+	f32 fontYOffset;
+	s32 changeLine_1;
+	s32 changeLine_2;
 
-lbl_80028448:
-	lwz      r4, 0x48(r25)
-	cmplwi   r4, 0
-	beq      lbl_80028908
-	lfs      f1, lbl_80516568@sda21(r2)
-	cntlzw   r0, r26
-	lfs      f0, 0x54(r25)
-	cmpwi    r26, 2
-	srwi     r30, r0, 5
-	fadds    f31, f1, f0
-	beq      lbl_8002873C
-	lwz      r3, sManager__8JUTVideo@sda21(r13)
-	cmplwi   r3, 0
-	bne      lbl_800284C0
-	lfs      f1, lbl_8051656C@sda21(r2)
-	addi     r3, r1, 0x108
-	lfs      f3, lbl_80516570@sda21(r2)
-	fmr      f2, f1
-	lfs      f4, lbl_80516574@sda21(r2)
-	lfs      f5, lbl_80516578@sda21(r2)
-	lfs      f6, lbl_8051657C@sda21(r2)
-	bl       __ct__13J2DOrthoGraphFffffff
-	addi     r3, r1, 0x108
-	bl       setPort__13J2DOrthoGraphFv
-	lis      r4, __vt__13J2DOrthoGraph@ha
-	lis      r3, __vt__14J2DGrafContext@ha
-	addi     r0, r4, __vt__13J2DOrthoGraph@l
-	stw      r0, 0x108(r1)
-	addi     r0, r3, __vt__14J2DGrafContext@l
-	stw      r0, 0x108(r1)
-	b        lbl_8002852C
+	if ((mVisible != false) && ((mFont != nullptr) || (inputType == 2))) {
+		if (mHeight != 0) {
+			bool testVal = (inputType == 0);
+			fontYOffset  = 2.0f + mFontSizeY;
 
-lbl_800284C0:
-	lwz      r4, 4(r3)
-	lis      r0, 0x4330
-	lfs      f1, lbl_8051656C@sda21(r2)
-	addi     r3, r1, 0x34
-	lhz      r5, 6(r4)
-	lhz      r4, 4(r4)
-	fmr      f2, f1
-	stw      r0, 0x1e0(r1)
-	lfd      f4, lbl_80516588@sda21(r2)
-	stw      r4, 0x1e4(r1)
-	lfs      f5, lbl_80516578@sda21(r2)
-	lfd      f0, 0x1e0(r1)
-	stw      r5, 0x1ec(r1)
-	fsubs    f3, f0, f4
-	lfs      f6, lbl_8051657C@sda21(r2)
-	stw      r0, 0x1e8(r1)
-	lfd      f0, 0x1e8(r1)
-	fsubs    f4, f0, f4
-	bl       __ct__13J2DOrthoGraphFffffff
-	addi     r3, r1, 0x34
-	bl       setPort__13J2DOrthoGraphFv
-	lis      r4, __vt__13J2DOrthoGraph@ha
-	lis      r3, __vt__14J2DGrafContext@ha
-	addi     r0, r4, __vt__13J2DOrthoGraph@l
-	stw      r0, 0x34(r1)
-	addi     r0, r3, __vt__14J2DGrafContext@l
-	stw      r0, 0x34(r1)
+			if (inputType != 2) {
+				if (JUTVideo::getManager() == nullptr) {
+					J2DOrthoGraph ortho(0.0f, 0.0f, 640.0f, 480.0f, -1.0f, 1.0f);
+					ortho.setPort();
 
-lbl_8002852C:
-	clrlwi.  r0, r30, 0x18
-	beq      lbl_8002853C
-	addi     r7, r25, 0x60
-	b        lbl_80028540
+				} else {
+					J2DOrthoGraph ortho(0.0f, 0.0f, (f32)JUTVideo::getManager()->getFbWidth(), (f32)JUTVideo::getManager()->getEfbHeight(),
+					                    -1.0f, 1.0f);
+					ortho.setPort();
+				}
+				const JUtility::TColor* TColorChoice;
 
-lbl_8002853C:
-	addi     r7, r25, 0x5c
+				if (testVal) {
+					TColorChoice = &this->field_0x60;
+				} else {
+					TColorChoice = &this->field_0x5c;
+				}
 
-lbl_80028540:
-	lwz      r5, 0x44(r25)
-	lis      r6, 0x4330
-	lwz      r4, 0x20(r25)
-	addi     r3, r1, 0x30
-	lwz      r0, 0x48(r25)
-	xoris    r5, r5, 0x8000
-	stw      r5, 0x1e4(r1)
-	lwz      r5, 0x40(r25)
-	stw      r6, 0x1e0(r1)
-	lfd      f6, lbl_80516590@sda21(r2)
-	addi     r5, r5, -2
-	lfd      f0, 0x1e0(r1)
-	xoris    r5, r5, 0x8000
-	stw      r4, 0x204(r1)
-	fsubs    f1, f0, f6
-	lfd      f3, lbl_80516588@sda21(r2)
-	stw      r6, 0x200(r1)
-	lfs      f4, 0x50(r25)
-	lfd      f0, 0x200(r1)
-	fsubs    f5, f1, f31
-	stw      r0, 0x21c(r1)
-	fsubs    f2, f0, f3
-	lfs      f1, lbl_80516580@sda21(r2)
-	stw      r6, 0x218(r1)
-	fctiwz   f5, f5
-	lwz      r7, 0(r7)
-	lfd      f0, 0x218(r1)
-	fmadds   f1, f4, f2, f1
-	stfd     f5, 0x1f0(r1)
-	fsubs    f0, f0, f3
-	lwz      r0, 0x1f4(r1)
-	fctiwz   f1, f1
-	stw      r5, 0x1ec(r1)
-	fmuls    f0, f31, f0
-	xoris    r5, r0, 0x8000
-	stw      r6, 0x1e8(r1)
-	fctiwz   f0, f0
-	stfd     f1, 0x208(r1)
-	lfd      f1, 0x1e8(r1)
-	lwz      r0, 0x20c(r1)
-	stfd     f0, 0x220(r1)
-	fsubs    f1, f1, f6
-	xoris    r4, r0, 0x8000
-	lwz      r0, 0x224(r1)
-	stw      r5, 0x1fc(r1)
-	xoris    r0, r0, 0x8000
-	stw      r6, 0x1f8(r1)
-	lfd      f0, 0x1f8(r1)
-	stw      r4, 0x214(r1)
-	fsubs    f2, f0, f6
-	stw      r6, 0x210(r1)
-	lfd      f0, 0x210(r1)
-	stw      r0, 0x22c(r1)
-	fsubs    f3, f0, f6
-	stw      r6, 0x228(r1)
-	lfd      f0, 0x228(r1)
-	stw      r7, 0x30(r1)
-	fsubs    f4, f0, f6
-	bl       J2DFillBox__FffffQ28JUtility6TColor
-	lwz      r3, 0x4c(r25)
-	lwz      r12, 0(r3)
-	lwz      r12, 0xc(r12)
-	mtctr    r12
-	bctrl
-	clrlwi.  r0, r30, 0x18
-	beq      lbl_8002870C
-	lwz      r5, 0x30(r25)
-	lwz      r0, 0x38(r25)
-	lwz      r3, 0x48(r25)
-	subf.    r4, r5, r0
-	blt      lbl_80028660
-	b        lbl_80028668
+				J2DFillBox((f32)(mPositionX - 2), (f32)(s32)((f32)mPositionY - fontYOffset),
+				           (f32)(s32)((mFontSizeX * (f32)field_0x20) + 4.0f), (f32)(s32)(fontYOffset * (f32)mHeight),
+				           (JUtility::TColor)*TColorChoice);
 
-lbl_80028660:
-	lwz      r0, 0x24(r25)
-	add      r4, r4, r0
+				mFont->setGX();
+				if (testVal) {
+					int colordiff = field_0x38;
+					int colorf30  = field_0x30;
 
-lbl_80028668:
-	subf     r3, r3, r4
-	addic.   r0, r3, 1
-	bgt      lbl_800286A0
-	li       r0, 0xff
-	lwz      r3, 0x4c(r25)
-	stb      r0, 0x28(r1)
-	addi     r4, r1, 0x2c
-	stb      r0, 0x29(r1)
-	stb      r0, 0x2a(r1)
-	stb      r0, 0x2b(r1)
-	lwz      r0, 0x28(r1)
-	stw      r0, 0x2c(r1)
-	bl       setCharColor__7JUTFontFQ28JUtility6TColor
-	b        lbl_800287B4
+					s32 s = colorCheck(diffIndex(colorf30, colordiff), mHeight);
+					if (s <= 0) {
+						mFont->setCharColor(JUtility::TColor(0xFF, 0xFF, 0xFF, 0xFF));
 
-lbl_800286A0:
-	lwz      r0, 0x34(r25)
-	cmpw     r5, r0
-	bne      lbl_800286DC
-	li       r5, 0xff
-	li       r0, 0xe6
-	stb      r5, 0x20(r1)
-	addi     r4, r1, 0x24
-	lwz      r3, 0x4c(r25)
-	stb      r0, 0x21(r1)
-	stb      r0, 0x22(r1)
-	stb      r5, 0x23(r1)
-	lwz      r0, 0x20(r1)
-	stw      r0, 0x24(r1)
-	bl       setCharColor__7JUTFontFQ28JUtility6TColor
-	b        lbl_800287B4
+					} else if (colorf30 == (s32)field_0x34) {
+						mFont->setCharColor(JUtility::TColor(0xFF, 0xE6, 0xE6, 0xFF));
 
-lbl_800286DC:
-	li       r5, 0xe6
-	li       r0, 0xff
-	stb      r5, 0x18(r1)
-	addi     r4, r1, 0x1c
-	lwz      r3, 0x4c(r25)
-	stb      r5, 0x19(r1)
-	stb      r0, 0x1a(r1)
-	stb      r0, 0x1b(r1)
-	lwz      r0, 0x18(r1)
-	stw      r0, 0x1c(r1)
-	bl       setCharColor__7JUTFontFQ28JUtility6TColor
-	b        lbl_800287B4
+					} else {
+						mFont->setCharColor(JUtility::TColor(0xE6, 0xE6, 0xFF, 0xFF));
+					}
+				} else {
+					mFont->setCharColor(JUtility::TColor(0xE6, 0xE6, 0xE6, 0xFF));
+				}
+			} else {
+				JUTDirectPrint::sDirectPrint->erase(mPositionX - 3, mPositionY - 2, (field_0x20 * 6) + 6,
+				                                    (s32)(fontYOffset * (f32)mHeight) + 4);
+				JUTDirectPrint::sDirectPrint->setCharColor(JUtility::TColor(0xFF, 0xFF, 0xFF, 0xFF));
+			}
 
-lbl_8002870C:
-	li       r5, 0xe6
-	li       r0, 0xff
-	stb      r5, 0x10(r1)
-	addi     r4, r1, 0x14
-	lwz      r3, 0x4c(r25)
-	stb      r5, 0x11(r1)
-	stb      r5, 0x12(r1)
-	stb      r0, 0x13(r1)
-	lwz      r0, 0x10(r1)
-	stw      r0, 0x14(r1)
-	bl       setCharColor__7JUTFontFQ28JUtility6TColor
-	b        lbl_800287B4
+			char* linePtr;
+			s32 currLine = field_0x30;
+			s32 yFactor  = 0;
 
-lbl_8002873C:
-	lis      r0, 0x4330
-	lwz      r3, 0x20(r25)
-	stw      r4, 0x22c(r1)
-	mulli    r3, r3, 6
-	lwz      r4, 0x40(r25)
-	stw      r0, 0x228(r1)
-	lfd      f1, lbl_80516588@sda21(r2)
-	addi     r4, r4, -3
-	lfd      f0, 0x228(r1)
-	lwz      r5, 0x44(r25)
-	addi     r6, r3, 6
-	fsubs    f0, f0, f1
-	lwz      r3, sDirectPrint__14JUTDirectPrint@sda21(r13)
-	addi     r5, r5, -2
-	fmuls    f0, f31, f0
-	fctiwz   f0, f0
-	stfd     f0, 0x220(r1)
-	lwz      r7, 0x224(r1)
-	addi     r7, r7, 4
-	bl       erase__14JUTDirectPrintFiiii
-	li       r0, 0xff
-	lwz      r3, sDirectPrint__14JUTDirectPrint@sda21(r13)
-	stb      r0, 8(r1)
-	addi     r4, r1, 0xc
-	stb      r0, 9(r1)
-	stb      r0, 0xa(r1)
-	stb      r0, 0xb(r1)
-	lwz      r0, 8(r1)
-	stw      r0, 0xc(r1)
-	bl       setCharColor__14JUTDirectPrintFQ28JUtility6TColor
+			do {
+				linePtr = (char*)getLinePtr(currLine); // getLinePtr was fixed, it was adding to the array index not to the address
+				if ((u8)linePtr[-1] != nullptr) {
 
-lbl_800287B4:
-	lwz      r21, 0x24(r25)
-	li       r27, 0
-	lwz      r3, 0x20(r25)
-	lwz      r28, 0x30(r25)
-	xoris    r22, r21, 0x8000
-	lwz      r23, 0x48(r25)
-	addi     r31, r3, 2
-	lwz      r24, 0x34(r25)
-	lwz      r30, 0x28(r25)
+					if (inputType != 2) {
+						f32 f1, f2, f3, f4;
+						f2             = (((f32)yFactor * fontYOffset) + (f32)mPositionY);
+						f4             = mFontSizeY;
+						f1             = mPositionX;
+						f3             = mFontSizeX;
+						JUTFont* pFont = mFont;
+						u32 lineLength = strlen((char*)linePtr); // this is getting called too early still
+						bool inputBool = true;
 
-lbl_800287D8:
-	mullw    r3, r31, r28
-	addi     r29, r3, 1
-	add      r29, r30, r29
-	lbz      r0, -1(r29)
-	cmplwi   r0, 0
-	beq      lbl_80028908
-	cmpwi    r26, 2
-	beq      lbl_80028884
-	lwz      r3, 0x44(r25)
-	lis      r5, 0x4330
-	xoris    r6, r27, 0x8000
-	lwz      r0, 0x40(r25)
-	xoris    r4, r3, 0x8000
-	stw      r6, 0x22c(r1)
-	xoris    r0, r0, 0x8000
-	lfd      f3, lbl_80516590@sda21(r2)
-	stw      r5, 0x228(r1)
-	mr       r3, r29
-	lfs      f27, 0x54(r25)
-	lfd      f0, 0x228(r1)
-	stw      r4, 0x224(r1)
-	fsubs    f2, f0, f3
-	lfs      f28, 0x50(r25)
-	stw      r5, 0x220(r1)
-	lwz      r20, 0x4c(r25)
-	lfd      f0, 0x220(r1)
-	stw      r0, 0x21c(r1)
-	fsubs    f1, f0, f3
-	stw      r5, 0x218(r1)
-	lfd      f0, 0x218(r1)
-	fmadds   f29, f2, f31, f1
-	fsubs    f30, f0, f3
-	bl       strlen
-	fmr      f1, f30
-	mr       r5, r3
-	fmr      f2, f29
-	mr       r3, r20
-	fmr      f3, f28
-	mr       r4, r29
-	fmr      f4, f27
-	li       r6, 1
-	bl       drawString_size_scale__7JUTFontFffffPCcUlb
-	b        lbl_800288DC
+						pFont->drawString_size_scale(f1, f2, f3, f4, linePtr, lineLength, inputBool);
 
-lbl_80028884:
-	lwz      r0, 0x44(r25)
-	lis      r5, 0x4330
-	xoris    r3, r27, 0x8000
-	lwz      r4, 0x40(r25)
-	xoris    r0, r0, 0x8000
-	stw      r3, 0x22c(r1)
-	lfd      f2, lbl_80516590@sda21(r2)
-	mr       r6, r29
-	stw      r5, 0x228(r1)
-	clrlwi   r4, r4, 0x10
-	lwz      r3, sDirectPrint__14JUTDirectPrint@sda21(r13)
-	lfd      f0, 0x228(r1)
-	stw      r0, 0x224(r1)
-	fsubs    f1, f0, f2
-	stw      r5, 0x220(r1)
-	lfd      f0, 0x220(r1)
-	fsubs    f0, f0, f2
-	fmadds   f0, f1, f31, f0
-	fctiwz   f0, f0
-	stfd     f0, 0x218(r1)
-	lwz      r5, 0x21c(r1)
-	bl       drawString__14JUTDirectPrintFUsUsPc
+					} else {
 
-lbl_800288DC:
-	addi     r3, r28, 1
-	addi     r27, r27, 1
-	subf     r0, r21, r3
-	addc     r0, r0, r22
-	cmplw    r27, r23
-	subfe    r0, r0, r0
-	andc     r0, r3, r0
-	mr       r28, r0
-	bge      lbl_80028908
-	cmpw     r0, r24
-	bne      lbl_800287D8
+						JUTDirectPrint::sDirectPrint->drawString((u16)mPositionX, (((f32)yFactor * fontYOffset) + (f32)mPositionY),
+						                                         linePtr);
+					}
 
-lbl_80028908:
-	psq_l    f31, 680(r1), 0, qr0
-	lfd      f31, 0x2a0(r1)
-	psq_l    f30, 664(r1), 0, qr0
-	lfd      f30, 0x290(r1)
-	psq_l    f29, 648(r1), 0, qr0
-	lfd      f29, 0x280(r1)
-	psq_l    f28, 632(r1), 0, qr0
-	lfd      f28, 0x270(r1)
-	psq_l    f27, 616(r1), 0, qr0
-	lfd      f27, 0x260(r1)
-	lmw      r20, 0x230(r1)
-	lwz      r0, 0x2b4(r1)
-	mtlr     r0
-	addi     r1, r1, 0x2b0
-	blr
-	*/
+					changeLine_1 = currLine + 1;
+					yFactor += 1;
+					changeLine_2 = changeLine_1 & ~(-((s32)field_0x24 <= (s32)changeLine_1));
+					currLine     = changeLine_2;
+				} else {
+					break;
+				}
+			} while ((yFactor < mHeight) && (changeLine_2 != field_0x34));
+		}
+	}
 }
 
 /*
@@ -562,38 +278,8 @@ lbl_80028908:
  * Address:	80028944
  * Size:	00005C
  */
-J2DOrthoGraph::~J2DOrthoGraph()
-{
-	/*
-	stwu     r1, -0x10(r1)
-	mflr     r0
-	stw      r0, 0x14(r1)
-	stw      r31, 0xc(r1)
-	or.      r31, r3, r3
-	beq      lbl_80028988
-	lis      r3, __vt__13J2DOrthoGraph@ha
-	addi     r0, r3, __vt__13J2DOrthoGraph@l
-	stw      r0, 0(r31)
-	beq      lbl_80028978
-	lis      r3, __vt__14J2DGrafContext@ha
-	addi     r0, r3, __vt__14J2DGrafContext@l
-	stw      r0, 0(r31)
-
-lbl_80028978:
-	extsh.   r0, r4
-	ble      lbl_80028988
-	mr       r3, r31
-	bl       __dl__FPv
-
-lbl_80028988:
-	lwz      r0, 0x14(r1)
-	mr       r3, r31
-	lwz      r31, 0xc(r1)
-	mtlr     r0
-	addi     r1, r1, 0x10
-	blr
-	*/
-}
+// WEAK - in header
+// J2DOrthoGraph::~J2DOrthoGraph() { }
 
 /*
  * --INFO--

@@ -19,6 +19,10 @@ struct JUTVideo {
 
 	static JUTVideo* createManager(const _GXRenderModeObj*);
 	static void destroyManager();
+	static JUTVideo* getManager() { return sManager; }
+
+	u16 getEfbHeight() const { return m_renderModeObj->efbHeight; }
+	u16 getFbWidth() const { return m_renderModeObj->fbWidth; }
 	void preRetraceProc(unsigned long);
 	void drawDoneStart();
 	void dummyNoDrawWait();
