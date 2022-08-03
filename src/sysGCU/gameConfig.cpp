@@ -202,23 +202,25 @@
         .4byte 0x73706100
 */
 
-Game::GameConfig Game::gGameConfig;
+
 
 // TODO: How is this string actually (not) used?
 // DEFINE__PRINT("gameConfig");
-void fakeMatch_printGameConfig() { printf("gameConfig"); }
+// void fakeMatch_printGameConfig() { printf("gameConfig"); }
 
 namespace Game {
+
+extern GameConfig gGameConfig;
 
 /*
  * --INFO--
  * Address:	........
  * Size:	000078
  */
-void GameConfig::setConstSetting()
-{
-	// UNUSED FUNCTION
-}
+// void GameConfig::setConstSetting()
+// {
+// 	// UNUSED FUNCTION
+// }
 
 /*
  * __ct__Q24Game10GameConfigFv
@@ -301,7 +303,8 @@ GameConfig::GameConfig()
  * Address:	804322A0
  * Size:	000070
  */
-GameConfig::Parms::~Parms() { }
+// WEAK - in header.
+// GameConfig::Parms::~Parms() { }
 
 /*
  * __ct__Q34Game10GameConfig5ParmsFv
@@ -309,48 +312,49 @@ GameConfig::Parms::~Parms() { }
  * Address:	80432310
  * Size:	000460
  */
-GameConfig::Parms::Parms()
-    : TagParameters("GameConfig")
-    , m_gamePrint(this, "gamePrint")
-    , m_Print(this, "Print")
-    , m_ogawaPrint(this, "ogawaPrint")
-    , m_shimizuPrint(this, "shimizuPrint")
-    , m_yamashitaPrint(this, "yamashitaPrint")
-    , m_kandoPrint(this, "kandoPrint")
-    , m_nishimuraPrint(this, "nishimuraPrint")
-    , m_ebisawaPrint(this, "ebisawaPrint")
-    , m_morimuraPrint(this, "morimuraPrint")
-    , m_konoPrint(this, "konoPrint")
-    , m_fujinoPrint(this, "fujinoPrint")
-    , m_psoundPrint(this, "psoundPrint")
-    , m_shortCutUp(this, "shortCutUp")
-    , m_shortCutDown(this, "shortCutDown")
-    , m_shortCutLeft(this, "shortCutLeft")
-    , m_shortCutRight(this, "shortCutRight")
-    , m_allocAllEnemy(this, "allocAllEnemy")
-    , m_mapparts_path(this, "mapparts_path")
-    , m_publicity(this, "publicity")
-    , m_pelletMultiLang(this, "pelletMultiLang")
-    , m_AI(this, "AI")
-    , m_timers(this, "timers")
-    , m_vsTest(this, "vsTest")
-    , m_vsDeathType(this, "vsDeathType")
-    , m_vsHiba(this, "vsHiba")
-    , m_vsY(this, "vsY")
-    , m_E3version(this, "E3version")
-    , m_mukki_cherry(this, "mukki_cherry")
-    , m_marioClubDevelop(this, "marioClubDevelop")
-    , m_heapStatusPrint(this, "heapStatusPrint")
-    , m_heapFreeSize(this, "heapFreeSize")
-    , m_baseGameNewCheck(this, "baseGameNewCheck")
-    , m_KFesVersion(this, "KFesVersion")
-    , m_nintendoVersion(this, "nintendoVersion")
-    , m_language(this, "language")
-    , m_autosaveOff(this, "autosaveOff")
-    , m_vsDebugSelectPattern(this, "vsDebugSelectPattern")
-    , m_vsFifo(this, "vsFifo")
-{
-}
+// WEAK - in header.
+// GameConfig::Parms::Parms()
+//     : TagParameters("GameConfig")
+//     , m_gamePrint(this, "gamePrint")
+//     , m_Print(this, "Print")
+//     , m_ogawaPrint(this, "ogawaPrint")
+//     , m_shimizuPrint(this, "shimizuPrint")
+//     , m_yamashitaPrint(this, "yamashitaPrint")
+//     , m_kandoPrint(this, "kandoPrint")
+//     , m_nishimuraPrint(this, "nishimuraPrint")
+//     , m_ebisawaPrint(this, "ebisawaPrint")
+//     , m_morimuraPrint(this, "morimuraPrint")
+//     , m_konoPrint(this, "konoPrint")
+//     , m_fujinoPrint(this, "fujinoPrint")
+//     , m_psoundPrint(this, "psoundPrint")
+//     , m_shortCutUp(this, "shortCutUp")
+//     , m_shortCutDown(this, "shortCutDown")
+//     , m_shortCutLeft(this, "shortCutLeft")
+//     , m_shortCutRight(this, "shortCutRight")
+//     , m_allocAllEnemy(this, "allocAllEnemy")
+//     , m_mapparts_path(this, "mapparts_path")
+//     , m_publicity(this, "publicity")
+//     , m_pelletMultiLang(this, "pelletMultiLang")
+//     , m_AI(this, "AI")
+//     , m_timers(this, "timers")
+//     , m_vsTest(this, "vsTest")
+//     , m_vsDeathType(this, "vsDeathType")
+//     , m_vsHiba(this, "vsHiba")
+//     , m_vsY(this, "vsY")
+//     , m_E3version(this, "E3version")
+//     , m_mukki_cherry(this, "mukki_cherry")
+//     , m_marioClubDevelop(this, "marioClubDevelop")
+//     , m_heapStatusPrint(this, "heapStatusPrint")
+//     , m_heapFreeSize(this, "heapFreeSize")
+//     , m_baseGameNewCheck(this, "baseGameNewCheck")
+//     , m_KFesVersion(this, "KFesVersion")
+//     , m_nintendoVersion(this, "nintendoVersion")
+//     , m_language(this, "language")
+//     , m_autosaveOff(this, "autosaveOff")
+//     , m_vsDebugSelectPattern(this, "vsDebugSelectPattern")
+//     , m_vsFifo(this, "vsFifo")
+// {
+// }
 
 /*
  * --INFO--
