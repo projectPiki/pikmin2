@@ -60,7 +60,7 @@ def main():
 
     output = import_c_file(args.c_file)
 
-    with open(os.path.join(root_dir, "ctx.c"), "w", encoding="UTF-8") as f:
+    with open(os.path.join(root_dir, "ctx.c"), "w", encoding="shift-jis") as f:
         f.write(output)
 
 
