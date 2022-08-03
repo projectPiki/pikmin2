@@ -73,6 +73,7 @@ pikmin2.usa.dol: `sha1: 90d328bf8f190c90472e8c19e7e53c6ad0fe0d1a`
 	- <a href="https://github.com/projectPiki/pikmin2/tree/main/src/sysGCU/messageReference.cpp">sysGCU/messageReference.cpp</a>
 	- <a href="https://github.com/projectPiki/pikmin2/tree/main/src/sysGCU/messageSequence.cpp">sysGCU/messageSequence.cpp</a>
 	- <a href="https://github.com/projectPiki/pikmin2/tree/main/src/sysGCU/modelMgr.cpp">sysGCU/modelMgr.cpp</a>
+	- <a href="https://github.com/projectPiki/pikmin2/tree/main/src/sysGCU/resourceMgr2D.cpp">sysGCU/resourceMgr2D.cpp</a>
 	- <a href="https://github.com/projectPiki/pikmin2/tree/main/src/sysGCU/rootMenuSection.cpp">sysGCU/rootMenuSection.cpp</a>
 	- <a href="https://github.com/projectPiki/pikmin2/tree/main/src/sysGCU/simpleMessage.cpp">sysGCU/simpleMessage.cpp</a>
 	- <a href="https://github.com/projectPiki/pikmin2/tree/main/src/sysGCU/THPDraw.c">sysGCU/THPDraw.c</a>

@@ -26,12 +26,13 @@ namespace Resource {
  * Address:	........
  * Size:	0000A0
  */
+// INLINE
 inline Mgr2D::Mgr2D(JKRHeap* heap)
     : Mgr(heap, 0xD4800)
 {
-	// UNUSED FUNCTION
 	P2ASSERTLINE(34, heap != nullptr);
 	P2ASSERTLINE(36, gResMgr2D == nullptr);
+	gResMgr2D = this;
 }
 
 /*
@@ -39,15 +40,13 @@ inline Mgr2D::Mgr2D(JKRHeap* heap)
  * Address:	........
  * Size:	000070
  */
-inline Resource::Mgr::~Mgr(void)
-{
-	// UNUSED FUNCTION
-}
+// INLINE
+inline Resource::Mgr::~Mgr() { }
 
 /*
  * --INFO--
  * Address:	80433F70
  * Size:	0000B0
  */
-void Mgr2D::init(JKRHeap* heap) { gResMgr2D = new Mgr2D(heap); }
+void Mgr2D::init(JKRHeap* heap) { new Mgr2D(heap); }
 } // namespace Resource
