@@ -48,7 +48,7 @@ struct TimeMgrParms {
 struct TimeMgr : public CNode {
 	TimeMgr();
 
-	virtual ~TimeMgr() { } // _00 - WEAK - from timeMgr.cpp
+	virtual ~TimeMgr() { } // _08 - WEAK - from timeMgr.cpp
 
 	float getRealDayTime();
 	float getSunGaugeRatio();

@@ -453,7 +453,7 @@ YAMASHITA:=\
 	$(BUILD_DIR)/asm/plugProjectYamashitaU/farm.o\
 	$(BUILD_DIR)/asm/plugProjectYamashitaU/farmMgr.o\
 	$(BUILD_DIR)/asm/plugProjectYamashitaU/genEnemy.o\
-	$(BUILD_DIR)/asm/plugProjectYamashitaU/timeMgr.o\
+	$(BUILD_DIR)/src/plugProjectYamashitaU/timeMgr.o\
 	$(BUILD_DIR)/src/plugProjectYamashitaU/pelplantGenerator.o\
 	$(BUILD_DIR)/src/plugProjectYamashitaU/enemyInteractActions.o\
 	$(BUILD_DIR)/src/plugProjectYamashitaU/enemyAnimatorBase.o\

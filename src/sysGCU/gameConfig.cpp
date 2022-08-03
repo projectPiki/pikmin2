@@ -202,8 +202,6 @@
         .4byte 0x73706100
 */
 
-
-
 // TODO: How is this string actually (not) used?
 // DEFINE__PRINT("gameConfig");
 // void fakeMatch_printGameConfig() { printf("gameConfig"); }

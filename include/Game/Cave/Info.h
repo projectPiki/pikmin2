@@ -48,7 +48,7 @@ struct TekiInfo : CNode {
 	EnemyTypeID::EEnemyTypeID m_enemyID;                // _18
 	int m_weight;                                       // _1C
 	BaseGen::Type m_type;                               // _20
-	u8 m_dropMode;                                		// _24 - should really be DropMode enum eventually
+	u8 m_dropMode;                                      // _24 - should really be DropMode enum eventually
 	u8 _25;                                             // _25
 	Game::PelletMgr::OtakaraItemCode m_otakaraItemCode; // _26
 };

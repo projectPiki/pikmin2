@@ -8,15 +8,15 @@
 
 namespace Game {
 struct ObjectLayoutNode : public CNode {
-	virtual ~ObjectLayoutNode() { }                				// _08 (weak)
-	virtual int getObjectId()   = 0;               				// _10
-	virtual u32 getObjectType() = 0;               				// _14
-	virtual int getBirthCount() = 0;               				// _18
-	virtual float getDirection() { return 0.0f; }  				// _1C (weak)
-	virtual int getBirthDoorIndex() { return -1; }              // _20 (weak)
-	virtual void getBirthPosition(float&, float&) { } 			// _24 (weak)
-	virtual u32 getExtraCode() { return 0; }       				// _28 (weak)
-	virtual bool isFixedBattery() { return false; }    			// _2C (weak)
+	virtual ~ObjectLayoutNode() { }                   // _08 (weak)
+	virtual int getObjectId()   = 0;                  // _10
+	virtual u32 getObjectType() = 0;                  // _14
+	virtual int getBirthCount() = 0;                  // _18
+	virtual float getDirection() { return 0.0f; }     // _1C (weak)
+	virtual int getBirthDoorIndex() { return -1; }    // _20 (weak)
+	virtual void getBirthPosition(float&, float&) { } // _24 (weak)
+	virtual u32 getExtraCode() { return 0; }          // _28 (weak)
+	virtual bool isFixedBattery() { return false; }   // _2C (weak)
 };
 
 struct ObjectLayoutInfo {

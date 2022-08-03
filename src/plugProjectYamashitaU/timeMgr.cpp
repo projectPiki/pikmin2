@@ -182,7 +182,7 @@ float TimeMgr::getSunGaugeRatio()
 	f32 var_f3 = m_currentTimeOfDay;
 
 	if (m_currentTimeOfDay < m_parms.parms.m_dayStartTime.m_value) {
-		var_f3 += 1.0f;
+		var_f3 += 24.0f;
 	}
 
 	return 1.0f - ((var_f3 - m_parms.parms.m_dayEndTime.m_value) / m_sunRatio);

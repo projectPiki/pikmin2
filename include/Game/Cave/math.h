@@ -10,10 +10,10 @@
 
 inline float pikmin2_sinf(float x)
 {
-    if (x < 0.0f) {
-		return -JMath::sincosTable_.m_table[((int)(x *= -325.9493f ) & 0x7ffU)].first;
+	if (x < 0.0f) {
+		return -JMath::sincosTable_.m_table[((int)(x *= -325.9493f) & 0x7ffU)].first;
 	}
-	return JMath::sincosTable_.m_table[((int)(x *= 325.9493f ) & 0x7ffU)].first;
+	return JMath::sincosTable_.m_table[((int)(x *= 325.9493f) & 0x7ffU)].first;
 }
 
 inline float pikmin2_cosf(float x)
@@ -21,7 +21,7 @@ inline float pikmin2_cosf(float x)
 	if (x < 0.0f) {
 		x = -x;
 	}
-	return JMath::sincosTable_.m_table[((int)(x *= 325.9493f ) & 0x7ffU)].second;
+	return JMath::sincosTable_.m_table[((int)(x *= 325.9493f) & 0x7ffU)].second;
 }
 
 #endif
