@@ -1096,7 +1096,6 @@ COMMON:=\
 	$(BUILD_DIR)/src/sysCommonU/sysMath.o\
 	$(BUILD_DIR)/asm/sysCommonU/sysMath.o\
 	$(BUILD_DIR)/src/sysCommonU/id32.o\
-	$(BUILD_DIR)/asm/sysCommonU/id32.o\
 	$(BUILD_DIR)/src/sysCommonU/parameters.o\
 	$(BUILD_DIR)/src/sysCommonU/stream.o\
 	$(BUILD_DIR)/asm/sysCommonU/geometry.o\
@@ -1198,6 +1197,3 @@ UTILITY:=\
 	$(BUILD_DIR)/asm/utilityU/PSMainSide_TrackMap.o\
 	$(BUILD_DIR)/asm/utilityU/PSMainSide_CreaturePrm.o\
 	$(BUILD_DIR)/asm/utilityU/PSMainSide_ObjCalc.o\
-
-GLOBAL_BSS:=\
-	$(BUILD_DIR)/asm/bss.o\

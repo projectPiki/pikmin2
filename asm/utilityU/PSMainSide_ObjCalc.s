@@ -48,11 +48,8 @@ __vt__Q23PSM18ObjCalc_SingleGame:
 
 .section .sdata2, "a"     # 0x80516360 - 0x80520E40
 .balign 8
-.global lbl_80520E28
 lbl_80520E28:
 	.float 100000.0
-.global lbl_80520E2C
-lbl_80520E2C:
 	.float 1000000.0
 
 .section .text, "ax"  # 0x800056C0 - 0x80472F00
@@ -143,7 +140,7 @@ lbl_804729A8:
 lbl_804729B0:
 /* 804729B0 0046F8F0  38 00 00 00 */	li r0, 0
 /* 804729B4 0046F8F4  80 C2 2A C8 */	lwz r6, lbl_80520E28@sda21(r2)
-/* 804729B8 0046F8F8  80 A2 2A CC */	lwz r5, lbl_80520E2C@sda21(r2)
+/* 804729B8 0046F8F8  80 A2 2A CC */	lwz r5, (lbl_80520E28+4)@sda21(r2)
 /* 804729BC 0046F8FC  3C 80 80 4B */	lis r4, "__vt__22Iterator<Q24Game4Navi>"@ha
 /* 804729C0 0046F900  80 6D 92 E0 */	lwz r3, naviMgr__4Game@sda21(r13)
 /* 804729C4 0046F904  38 84 BC B4 */	addi r4, r4, "__vt__22Iterator<Q24Game4Navi>"@l

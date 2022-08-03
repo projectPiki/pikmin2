@@ -5,46 +5,17 @@ lbl_constructor:
 
 .section .rodata  # 0x804732E0 - 0x8049E220
 .balign 8
-.global lbl_80473480
 lbl_80473480:
-	.4byte 0x4A4B5241
-	.4byte 0x72616D2E
-	.4byte 0x63707000
-.global lbl_8047348C
+	.asciz "JKRAram.cpp"
+.balign 4
 lbl_8047348C:
-	.4byte 0x3A3A3A61
-	.4byte 0x64647265
-	.4byte 0x7373206E
-	.4byte 0x6F742033
-	.4byte 0x32427974
-	.4byte 0x6520616C
-	.4byte 0x69676E65
-	.4byte 0x642E0000
-	.4byte 0x3A3A3A42
-	.4byte 0x61642041
-	.4byte 0x72616D20
-	.4byte 0x426C6F63
-	.4byte 0x6B207370
-	.4byte 0x65636966
-	.4byte 0x6965642E
-	.4byte 0x0A000000
-	.4byte 0x2D2D2D2D
-	.4byte 0x2D2D2D2D
-	.4byte 0x2D2D2D2D
-	.4byte 0x2D2D2D2D
-	.4byte 0x20424144
-	.4byte 0x2053594E
-	.4byte 0x432E2079
-	.4byte 0x6F752764
-	.4byte 0x20736574
-	.4byte 0x2063616C
-	.4byte 0x6C626163
-	.4byte 0x6B2C2062
-	.4byte 0x7574206E
-	.4byte 0x6F772063
-	.4byte 0x616C6C20
-	.4byte 0x73796E63
-	.4byte 0x2E0A0000
+	.asciz ":::address not 32Byte aligned."
+.balign 4
+lbl_804734AC:
+	.asciz ":::Bad Aram Block specified.\n"
+.balign 4
+lbl_804734CC:
+	.asciz "---------------- BAD SYNC. you'd set callback, but now call sync.\n"
 
 .section .data, "wa"  # 0x8049E220 - 0x804EFC20
 .balign 8
@@ -72,12 +43,10 @@ __vt__7JKRAram:
 	.4byte run__7JKRAramFv
 
 .section .bss  # 0x804EFC20 - 0x8051467C
-.global lbl_804EFEF8
-lbl_804EFEF8:
-	.skip 0xC
-.global decompMutex
-decompMutex:
-	.skip 0x1C
+.lcomm lbl_804EFEF8, 0xC, 4
+.lcomm decompMutex, 0x18, 4
+# JKRAram.cpp
+.comm sAramCommandList__7JKRAram, 0xC, 4
 
 .section .sdata, "wa"  # 0x80514680 - 0x80514D80
 .balign 8
@@ -90,58 +59,42 @@ sSZSBufferSize__7JKRAram:
 .global sAramObject__7JKRAram
 sAramObject__7JKRAram:
 	.skip 0x4
-.global szpBuf
 szpBuf:
 	.skip 0x4
-.global szpEnd
 szpEnd:
 	.skip 0x4
-.global refBuf
 refBuf:
 	.skip 0x4
-.global refEnd
 refEnd:
 	.skip 0x4
-.global refCurrent
 refCurrent:
 	.skip 0x4
-.global srcOffset
 srcOffset:
 	.skip 0x4
-.global transLeft
 transLeft:
 	.skip 0x4
-.global srcLimit
 srcLimit:
 	.skip 0x4
-.global srcAddress
 srcAddress:
 	.skip 0x4
-.global fileOffset
 fileOffset:
 	.skip 0x4
-.global readCount
 readCount:
 	.skip 0x4
-.global maxDest
 maxDest:
 	.skip 0x4
-.global isInitMutex
 isInitMutex:
-	.skip 0x4
-.global tsPtr
+	.skip 0x1
+.balign 4
 tsPtr:
 	.skip 0x4
-.global tsArea
 tsArea:
 	.skip 0x4
 
 .section .sdata2, "a"     # 0x80516360 - 0x80520E40
 .balign 8
-.global lbl_805164D0
 lbl_805164D0:
-	.4byte 0x25730000
-	.4byte 0x00000000
+	.asciz "%s"
 
 .section .text, "ax"  # 0x800056C0 - 0x80472F00
 .global create__7JKRAramFUlUllll
@@ -912,8 +865,7 @@ lbl_80018468:
 /* 80018494 000153D4  38 21 00 30 */	addi r1, r1, 0x30
 /* 80018498 000153D8  4E 80 00 20 */	blr 
 
-.global decompSZS_subroutine__FPUcPUc
-decompSZS_subroutine__FPUcPUc:
+decompSZS_subroutine__FPUcPUc: # local function
 /* 8001849C 000153DC  94 21 FF E0 */	stwu r1, -0x20(r1)
 /* 800184A0 000153E0  7C 08 02 A6 */	mflr r0
 /* 800184A4 000153E4  90 01 00 24 */	stw r0, 0x24(r1)
@@ -1215,8 +1167,7 @@ lbl_8001889C:
 /* 800188B8 000157F8  38 21 00 20 */	addi r1, r1, 0x20
 /* 800188BC 000157FC  4E 80 00 20 */	blr 
 
-.global __sinit_JKRAram_cpp
-__sinit_JKRAram_cpp:
+__sinit_JKRAram_cpp: # static initializer
 /* 800188C0 00015800  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 800188C4 00015804  7C 08 02 A6 */	mflr r0
 /* 800188C8 00015808  3C 60 80 50 */	lis r3, sAramCommandList__7JKRAram@ha

@@ -1,20 +1,17 @@
 .include "macros.inc"
 .section .rodata  # 0x804732E0 - 0x8049E220
 .balign 8
-.global lbl_8049ABE8
 lbl_8049ABE8:
 	.asciz "messageRendering.cpp"
-	.skip 3
-.global lbl_8049AC00
+.balign 4
 lbl_8049AC00:
 	.asciz "P2Assert"
-	.skip 3
+.balign 4
+lbl_8049AC0C:
 	.asciz "messageRendering.h"
-	.skip 1
 
 .section .data, "wa"  # 0x8049E220 - 0x804EFC20
 .balign 8
-.global "cBtnIconColor__Q25P2JME30@unnamed@messageRendering_cpp@"
 "cBtnIconColor__Q25P2JME30@unnamed@messageRendering_cpp@":
 	.4byte 0xFFFFFFFF
 	.4byte 0x00A60000
@@ -38,7 +35,6 @@ lbl_8049AC00:
 	.4byte 0x888888FF
 	.4byte 0xE1E1E1FF
 	.4byte 0x888888FF
-.global lbl_804ECA90
 lbl_804ECA90:
 	.4byte lbl_8043A50C
 	.4byte lbl_8043A518
@@ -111,46 +107,36 @@ __vt__Q25P2JME23TRenderingProcessorBase:
 	.4byte tagColorEX__Q25P2JME23TRenderingProcessorBaseFUsPCvUl
 	.4byte tagControl__Q25P2JME23TRenderingProcessorBaseFUsPCvUl
 	.4byte tagPosition__Q25P2JME23TRenderingProcessorBaseFUsPCvUl
-	.4byte 0
 
 .section .bss  # 0x804EFC20 - 0x8051467C
 .balign 8
-.global sRubyDataBuffer__5P2JME
-sRubyDataBuffer__5P2JME:
-	.skip 0x28
+.lcomm sRubyDataBuffer__5P2JME, 0x21, 4
 
 .section .sdata2, "a"     # 0x80516360 - 0x80520E40
 .balign 8
 .global cPageInfoBufferNum__Q25P2JME19TRenderingProcessor
 cPageInfoBufferNum__Q25P2JME19TRenderingProcessor:
 	.4byte 10
-.global lbl_805208BC
 lbl_805208BC:
 	.float 100.0
-.global lbl_805208C0
 lbl_805208C0:
 	.float 0.0
-.global lbl_805208C4
 lbl_805208C4:
 	.float 1.0
-.global lbl_805208C8
 lbl_805208C8:
 	.float 42.0
-.global lbl_805208CC
 lbl_805208CC:
 	.float 0.5
-.global lbl_805208D0
+.balign 8
 lbl_805208D0:
 	.4byte 0x43300000
 	.4byte 0x80000000
-.global lbl_805208D8
+.balign 8
 lbl_805208D8:
 	.4byte 0x43300000
 	.4byte 0x00000000
-.global lbl_805208E0
 lbl_805208E0:
 	.float 32.0
-.global lbl_805208E4
 lbl_805208E4:
 	.float 255.0
 

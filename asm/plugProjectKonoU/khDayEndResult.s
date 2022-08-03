@@ -602,6 +602,10 @@ __vt__Q32kh6Screen20DispDayEndResultItem:
 	.4byte getMemberID__Q32kh6Screen20DispDayEndResultItemFv
 	.4byte doSetSubMemberAll__Q32og6Screen14DispMemberBaseFv
 
+.section .bss  # 0x804EFC20 - 0x8051467C
+# khDayEndResult.cpp
+.comm msVal__Q32kh6Screen19ObjDayEndResultBase, 0x54, 4
+
 .section .sbss # 0x80514D80 - 0x80516360
 .balign 8
 .global msVal__Q32kh6Screen19ObjDayEndResultTitl

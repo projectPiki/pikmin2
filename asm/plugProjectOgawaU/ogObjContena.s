@@ -93,7 +93,6 @@ lbl_8048EFE0:
 	.4byte 0x656E4F62
 	.4byte 0x6A2E6800
 	.asciz "P2Assert"
-	.skip 3
 
 .section .data, "wa"  # 0x8049E220 - 0x804EFC20
 .balign 8
@@ -130,14 +129,16 @@ __vt__Q32og9newScreen10ObjContena:
 	.4byte doConfirmStartScene__Q26Screen7ObjBaseFPQ26Screen13StartSceneArg
 	.4byte doConfirmEndScene__Q26Screen7ObjBaseFRPQ26Screen11EndSceneArg
 
+.section .bss  # 0x804EFC20 - 0x8051467C
+# ogObjContena.cpp
+.comm msVal__Q32og9newScreen10ObjContena, 0x44, 4
+
 .section .sbss # 0x80514D80 - 0x80516360
 .balign 8
-.global angle$4147
 angle$4147:
 	.skip 0x4
-.global init$4148
 init$4148:
-	.skip 0x4
+	.skip 0x1
 
 .section .sdata2, "a"     # 0x80516360 - 0x80520E40
 .balign 8
@@ -2386,8 +2387,7 @@ lbl_80321E2C:
 /* 80321E50 0031ED90  38 21 00 30 */	addi r1, r1, 0x30
 /* 80321E54 0031ED94  4E 80 00 20 */	blr 
 
-.global __sinit_ogObjContena_cpp
-__sinit_ogObjContena_cpp:
+__sinit_ogObjContena_cpp: # static initializer
 /* 80321E58 0031ED98  94 21 FF E0 */	stwu r1, -0x20(r1)
 /* 80321E5C 0031ED9C  DB E1 00 10 */	stfd f31, 0x10(r1)
 /* 80321E60 0031EDA0  F3 E1 00 18 */	psq_st f31, 24(r1), 0, qr0

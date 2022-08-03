@@ -143,7 +143,10 @@ __vt__Q32og9newScreen9ObjKantei:
 	.4byte doConfirmSetScene__Q26Screen7ObjBaseFRQ26Screen11SetSceneArg
 	.4byte doConfirmStartScene__Q26Screen7ObjBaseFPQ26Screen13StartSceneArg
 	.4byte doConfirmEndScene__Q26Screen7ObjBaseFRPQ26Screen11EndSceneArg
-	.4byte 0
+
+.section .bss  # 0x804EFC20 - 0x8051467C
+# ogObjKantei.cpp
+.comm msVal__Q32og9newScreen9ObjKantei, 0x40, 4
 
 .section .sdata2, "a"     # 0x80516360 - 0x80520E40
 .balign 8

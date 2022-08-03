@@ -5,16 +5,11 @@ lbl_constructor:
 
 .section .rodata  # 0x804732E0 - 0x8049E220
 .balign 8
-.global lbl_80480500
 lbl_80480500:
-	.4byte 0x67616D65
-	.4byte 0x53746174
-	.4byte 0x2E637070
-	.4byte 0x00000000
-.global lbl_80480510
+	.asciz "gameStat.cpp"
+.balign 4
 lbl_80480510:
 	.asciz "P2Assert"
-	.skip 3
 
 .section .data, "wa"  # 0x8049E220 - 0x804EFC20
 .balign 8
@@ -24,6 +19,14 @@ __vt__Q34Game8GameStat11PikiCounter:
 	.4byte 0
 	.4byte __opi__Q34Game8GameStat11PikiCounterFv
 	.4byte __cl__Q34Game8GameStat11PikiCounterFi
+
+.section .bss  # 0x804EFC20 - 0x8051467C
+# gameStat.cpp
+.comm formationPikis__Q24Game8GameStat, 0x220, 4
+.comm workPikis__Q24Game8GameStat, 0xE0, 4
+.comm alivePikis__Q24Game8GameStat, 0x20, 4
+.comm mePikis__Q24Game8GameStat, 0x20, 4
+.comm zikatuPikis__Q24Game8GameStat, 0x20, 4
 
 .section .text, "ax"  # 0x800056C0 - 0x80472F00
 .global clear__Q24Game8GameStatFv
@@ -544,8 +547,7 @@ lbl_801D1488:
 /* 801D14B8 001CE3F8  38 21 00 20 */	addi r1, r1, 0x20
 /* 801D14BC 001CE3FC  4E 80 00 20 */	blr 
 
-.global __sinit_gameStat_cpp
-__sinit_gameStat_cpp:
+__sinit_gameStat_cpp: # static initializer
 /* 801D14C0 001CE400  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 801D14C4 001CE404  7C 08 02 A6 */	mflr r0
 /* 801D14C8 001CE408  3C 60 80 51 */	lis r3, formationPikis__Q24Game8GameStat@ha

@@ -179,17 +179,14 @@ __vt__Q24Game12CylinderBase:
 	.4byte drawFinish__Q24Game12CylinderBaseFv
 
 .section .bss  # 0x804EFC20 - 0x8051467C
-.global sCylinderVertPos__4Game
-sCylinderVertPos__4Game:
-	.skip 0x240
+.balign 8
+.lcomm sCylinderVertPos__4Game, 0x240, 4
 
 .section .sbss # 0x80514D80 - 0x80516360
 .balign 8
-.global lbl_80515CE8
-lbl_80515CE8:
+gu32NAN___Q24Game5P2JST:
 	.skip 0x4
-.global lbl_80515CEC
-lbl_80515CEC:
+gfNAN___Q24Game5P2JST:
 	.skip 0x4
 
 .section .sdata2, "a"     # 0x80516360 - 0x80520E40
@@ -2000,9 +1997,9 @@ __sinit_ShadowCylinder_cpp: # static initializer
 /* 8023F3CC 0023C30C  38 00 FF FF */	li r0, -1
 /* 8023F3D0 0023C310  C0 04 48 B0 */	lfs f0, __float_nan@l(r4)
 /* 8023F3D4 0023C314  3C 60 80 4C */	lis r3, lbl_804C1780@ha
-/* 8023F3D8 0023C318  90 0D 96 68 */	stw r0, lbl_80515CE8@sda21(r13)
+/* 8023F3D8 0023C318  90 0D 96 68 */	stw r0, gu32NAN___Q24Game5P2JST@sda21(r13)
 /* 8023F3DC 0023C31C  D4 03 17 80 */	stfsu f0, lbl_804C1780@l(r3)
-/* 8023F3E0 0023C320  D0 0D 96 6C */	stfs f0, lbl_80515CEC@sda21(r13)
+/* 8023F3E0 0023C320  D0 0D 96 6C */	stfs f0, gfNAN___Q24Game5P2JST@sda21(r13)
 /* 8023F3E4 0023C324  D0 03 00 04 */	stfs f0, 4(r3)
 /* 8023F3E8 0023C328  D0 03 00 08 */	stfs f0, 8(r3)
 /* 8023F3EC 0023C32C  4E 80 00 20 */	blr 

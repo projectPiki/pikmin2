@@ -171,6 +171,13 @@ lbl_804A1900:
 	.4byte lbl_80065150
 	.4byte lbl_80065048
 
+.section .bss  # 0x804EFC20 - 0x8051467C
+# J3DTevs.cpp
+.comm j3dTexCoordTable, 0x2528, 4
+.comm j3dTevSwapTableTable, 0x400, 4
+.comm j3dAlphaCmpTable, 0x300, 4
+.comm j3dZModeTable, 0x60, 4
+
 .section .sdata2, "a"     # 0x80516360 - 0x80520E40
 .balign 8
 .global lbl_805169B0

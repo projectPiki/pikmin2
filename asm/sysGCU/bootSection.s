@@ -220,6 +220,10 @@ __vt__11BootSection:
 	.4byte "invoke__23Delegate<11BootSection>Fv"
 	.skip 0xC #padding for alignment?
 
+.section .bss  # 0x804EFC20 - 0x8051467C
+# bootSection.cpp
+.comm sPikminTex__13TinyPikminMgr, 0x14, 4
+
 .section .sdata, "wa"  # 0x80514680 - 0x80514D80
 .balign 8
 .global sTinyPikminNum__13TinyPikminMgr

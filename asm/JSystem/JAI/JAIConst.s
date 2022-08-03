@@ -3,6 +3,14 @@
 lbl_constructor:
 .4byte __sinit_JAIConst_cpp
 
+.section .bss  # 0x804EFC20 - 0x8051467C
+# JAIConst.cpp
+.comm nullCamera__Q27JAInter5Const, 0x68, 4
+.comm nullActor__Q27JAInter5Const, 0x14, 4
+.comm camMtx__Q27JAInter5Const, 0x30, 4
+.comm camTrans__Q27JAInter5Const, 0xC, 4
+.comm camPreTrans__Q27JAInter5Const, 0xC, 4
+
 .section .sbss # 0x80514D80 - 0x80516360
 .balign 8
 .global random__Q27JAInter5Const
@@ -10,7 +18,7 @@ random__Q27JAInter5Const:
 	.skip 0x4
 
 .section .text, "ax"  # 0x800056C0 - 0x80472F00
-__sinit_JAIConst_cpp: # local func
+__sinit_JAIConst_cpp: # static initializer
 /* 800AD40C 000AA34C  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 800AD410 000AA350  7C 08 02 A6 */	mflr r0
 /* 800AD414 000AA354  3C E0 80 51 */	lis r7, camTrans__Q27JAInter5Const@ha

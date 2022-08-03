@@ -5,53 +5,32 @@ lbl_constructor:
 
 .section .rodata  # 0x804732E0 - 0x8049E220
 .balign 8
-.global lbl_8048E5A8
 lbl_8048E5A8:
-	.4byte 0x6F674F62
-	.4byte 0x6A534D65
-	.4byte 0x6E755061
-	.4byte 0x7573652E
-	.4byte 0x63707000
-	.4byte 0x735F6D65
-	.4byte 0x6E755F70
-	.4byte 0x61757365
-	.4byte 0x5F6C2E62
-	.4byte 0x6C6F0000
-	.4byte 0x735F6D65
-	.4byte 0x6E755F70
-	.4byte 0x61757365
-	.4byte 0x5F6C2E62
-	.4byte 0x746B0000
-	.4byte 0x735F6D65
-	.4byte 0x6E755F70
-	.4byte 0x61757365
-	.4byte 0x5F6C5F30
-	.4byte 0x322E6274
-	.4byte 0x6B000000
-	.4byte 0x735F6D65
-	.4byte 0x6E755F70
-	.4byte 0x61757365
-	.4byte 0x5F6C5F30
-	.4byte 0x332E6274
-	.4byte 0x6B000000
-	.4byte 0x735F6D65
-	.4byte 0x6E755F70
-	.4byte 0x61757365
-	.4byte 0x5F6C5F30
-	.4byte 0x342E6274
-	.4byte 0x6B000000
-.global lbl_8048E62C
+	.asciz "ogObjSMenuPause.cpp"
+.balign 4
+lbl_8048E5BC:
+	.asciz "s_menu_pause_l.blo"
+.balign 4
+lbl_8048E5D0:
+	.asciz "s_menu_pause_l.btk"
+.balign 4
+lbl_8048E5E4:
+	.asciz "s_menu_pause_l_02.btk"
+.balign 4
+lbl_8048E5FC:
+	.asciz "s_menu_pause_l_03.btk"
+.balign 4
+lbl_8048E614:
+	.asciz "s_menu_pause_l_04.btk"
+.balign 4
 lbl_8048E62C:
-	.4byte 0x75706461
-	.4byte 0x74654669
-	.4byte 0x6E697368
-	.4byte 0x20455252
-	.4byte 0x210A0000
-	.4byte 0x73637265
-	.4byte 0x656E4F62
-	.4byte 0x6A2E6800
+	.asciz "updateFinish ERR!\n"
+.balign 4
+lbl_8048E640:
+	.asciz "screenObj.h"
+.balign 4
+lbl_8048E64C:
 	.asciz "P2Assert"
-	.skip 3
 
 .section .data, "wa"  # 0x8049E220 - 0x804EFC20
 .balign 8
@@ -100,36 +79,30 @@ __vt__Q32og9newScreen13ObjSMenuPause:
 	.4byte updateFadeOut__Q32og9newScreen12ObjSMenuBaseFv
 	.4byte commonUpdate__Q32og9newScreen13ObjSMenuPauseFv
 
+.section .bss  # 0x804EFC20 - 0x8051467C
+# ogObjSMenuPause.cpp
+.comm msVal__Q32og9newScreen13ObjSMenuPause, 0x44, 4
+
 .section .sdata2, "a"     # 0x80516360 - 0x80520E40
 .balign 8
-.global lbl_8051D858
 lbl_8051D858:
-	.4byte 0x00000000
-.global lbl_8051D85C
+	.float 0.0
 lbl_8051D85C:
 	.float 0.1
-.global lbl_8051D860
 lbl_8051D860:
-	.4byte 0x3E4CCCCD
-.global lbl_8051D864
+	.float 0.2
 lbl_8051D864:
 	.float 0.5
-.global lbl_8051D868
 lbl_8051D868:
-	.4byte 0x3F19999A
-.global lbl_8051D86C
+	.float 0.6
 lbl_8051D86C:
 	.float 0.7
-.global lbl_8051D870
 lbl_8051D870:
 	.float 1.0
-.global lbl_8051D874
 lbl_8051D874:
-	.4byte 0x41700000
-.global lbl_8051D878
+	.float 15.0
 lbl_8051D878:
 	.float 0.3
-	.4byte 0x00000000
 
 .section .text, "ax"  # 0x800056C0 - 0x80472F00
 .global getMenuColor__Q42og9newScreen13ObjSMenuPause9ObjHIOValFPQ28JUtility6TColorPQ28JUtility6TColorPQ28JUtility6TColorPQ28JUtility6TColorPQ28JUtility6TColorPQ28JUtility6TColorPQ28JUtility6TColorPQ28JUtility6TColorPQ28JUtility6TColorPQ28JUtility6TColorPQ28JUtility6TColorPQ28JUtility6TColorPQ28JUtility6TColorPQ28JUtility6TColor
@@ -2236,8 +2209,7 @@ out_R__Q32og9newScreen13ObjSMenuPauseFv:
 /* 80316054 00312F94  38 21 00 10 */	addi r1, r1, 0x10
 /* 80316058 00312F98  4E 80 00 20 */	blr 
 
-.global __sinit_ogObjSMenuPause_cpp
-__sinit_ogObjSMenuPause_cpp:
+__sinit_ogObjSMenuPause_cpp: # static initializer
 /* 8031605C 00312F9C  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 80316060 00312FA0  7C 08 02 A6 */	mflr r0
 /* 80316064 00312FA4  3C 60 80 51 */	lis r3, msVal__Q32og9newScreen13ObjSMenuPause@ha

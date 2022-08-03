@@ -1,21 +1,15 @@
 .include "macros.inc"
 .section .bss  # 0x804EFC20 - 0x8051467C
-.global sMutex
-sMutex:
-	.skip 0x18
+.lcomm sMutex, 0x18, 4
 
 .section .sbss # 0x80514D80 - 0x80516360
 .balign 8
-.global sBuffer
 sBuffer:
 	.skip 0x4
-.global sLineMax
 sLineMax:
 	.skip 0x4
-.global sLineCount
 sLineCount:
 	.skip 0x4
-.global sTop
 sTop:
 	.skip 0x4
 

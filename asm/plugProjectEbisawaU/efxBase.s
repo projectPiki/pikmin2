@@ -5,15 +5,11 @@ lbl_constructor:
 
 .section .rodata  # 0x804732E0 - 0x8049E220
 .balign 8
-.global lbl_80495880
 lbl_80495880:
-	.4byte 0x65667842
-	.4byte 0x6173652E
-	.4byte 0x63707000
-.global lbl_8049588C
+	.asciz "efxBase.cpp"
+.balign 4
 lbl_8049588C:
 	.asciz "P2Assert"
-	.skip 3
 
 .section .data, "wa"  # 0x8049E220 - 0x804EFC20
 .balign 8
@@ -313,25 +309,21 @@ __vt__Q23efx24TCallBack_StaticClipping:
 	.4byte drawAfter__18JPAEmitterCallBackFP14JPABaseEmitter
 
 .section .bss  # 0x804EFC20 - 0x8051467C
-.global lbl_804F7C10
-lbl_804F7C10:
-	.skip 0xC
+.balign 8
+.lcomm lbl_804F7C10, 0xC, 4
 
 .section .sbss # 0x80514D80 - 0x80516360
 .balign 8
 .global mCallBack_StaticClipping__Q23efx5TBase
 mCallBack_StaticClipping__Q23efx5TBase:
-	.skip 0x8
+	.skip 0x4
 
 .section .sdata2, "a"     # 0x80516360 - 0x80520E40
 .balign 8
-.global lbl_8051F610
 lbl_8051F610:
 	.float 0.5
-.global lbl_8051F614
 lbl_8051F614:
-	.4byte 0x00000000
-.global lbl_8051F618
+	.float 0.0
 lbl_8051F618:
 	.float 1.0
 
@@ -5388,8 +5380,7 @@ lbl_803B2C94:
 /* 803B2CC8 003AFC08  38 21 00 10 */	addi r1, r1, 0x10
 /* 803B2CCC 003AFC0C  4E 80 00 20 */	blr 
 
-.global __sinit_efxBase_cpp
-__sinit_efxBase_cpp:
+__sinit_efxBase_cpp: # static initializer
 /* 803B2CD0 003AFC10  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 803B2CD4 003AFC14  7C 08 02 A6 */	mflr r0
 /* 803B2CD8 003AFC18  3C 80 80 4A */	lis r4, __vt__18JPAEmitterCallBack@ha

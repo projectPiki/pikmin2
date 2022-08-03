@@ -46,7 +46,6 @@ lbl_8048F428:
 	.4byte 0x656E4F62
 	.4byte 0x6A2E6800
 	.asciz "P2Assert"
-	.skip 3
 
 .section .data, "wa"  # 0x8049E220 - 0x804EFC20
 .balign 8
@@ -88,6 +87,10 @@ __vt__Q32og9newScreen14ObjChallenge1P:
 	.4byte doConfirmStartScene__Q26Screen7ObjBaseFPQ26Screen13StartSceneArg
 	.4byte doConfirmEndScene__Q26Screen7ObjBaseFRPQ26Screen11EndSceneArg
 	.4byte doCreateAfter__Q32og9newScreen16ObjChallengeBaseFP10JKRArchivePQ32og6Screen18CallBack_CounterRV
+
+.section .bss  # 0x804EFC20 - 0x8051467C
+# ogObjChallenge1P.cpp
+.comm msVal__Q32og9newScreen14ObjChallenge1P, 0x6C, 4
 
 .section .sbss # 0x80514D80 - 0x80516360
 .balign 8

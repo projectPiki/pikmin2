@@ -303,6 +303,10 @@ __vt__Q32kh6Screen15DispFinalResult:
 	.4byte getMemberID__Q32kh6Screen15DispFinalResultFv
 	.4byte doSetSubMemberAll__Q32og6Screen14DispMemberBaseFv
 
+.section .bss  # 0x804EFC20 - 0x8051467C
+# khFinalResult.cpp
+.comm msVal__Q32kh6Screen14ObjFinalResult, 0x24, 4
+
 .section .sdata2, "a"     # 0x80516360 - 0x80520E40
 .balign 8
 .global lbl_80520198

@@ -141,9 +141,9 @@ __vt__Q34Game10GameConfig5Parms:
 
 .section .bss  # 0x804EFC20 - 0x8051467C
 .balign 8
-.global lbl_804F7C38
-lbl_804F7C38:
-	.skip 0xC
+.lcomm lbl_804F7C38, 0xC, 4
+# gameConfig.cpp
+.comm gGameConfig__4Game, 0x27C, 4
 
 .section .sdata2, "a"     # 0x80516360 - 0x80520E40
 .balign 8

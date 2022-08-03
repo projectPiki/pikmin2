@@ -99,31 +99,18 @@ VolumeTable:
 	.4byte 0x7DFE8000
 
 .section .bss  # 0x804EFC20 - 0x8051467C
-.balign 32
-# local object
-WorkBuffer:
-	.skip 0x40
-.balign 4
-# local object
-PrepareReadyQueue:
-	.skip 0x20
-.balign 4
-# local object
-UsedTextureSetQueue:
-	.skip 0x20
-.balign 4
-# local object
-UsedTextureSetMessage:
-	.skip 0xC
-.balign 32
-# local object
-SoundBuffer:
-	.skip 0x1180
+.lcomm WorkBuffer, 0x40, 32
+.lcomm PrepareReadyQueue, 0x20, 4
+.lcomm UsedTextureSetQueue, 0x20, 4
+.lcomm UsedTextureSetMessage, 0xC, 4
+.lcomm SoundBuffer, 0x1180, 32
+
+# THPPlayer.c
+.comm ActivePlayer, 0x1D0, 8
 
 .section .sbss # 0x80514D80 - 0x80516360
 .balign 8
-.global Initialized_2
-Initialized_2:
+Initialized:
 	.skip 0x4
 .global PrepareReadyMessage
 PrepareReadyMessage:
@@ -215,7 +202,7 @@ THPPlayerInit:
 /* 8044DEF0 0044AE30  93 E1 00 0C */	stw r31, 0xc(r1)
 /* 8044DEF4 0044AE34  3B E3 31 00 */	addi r31, r3, WorkBuffer@l
 /* 8044DEF8 0044AE38  93 C1 00 08 */	stw r30, 8(r1)
-/* 8044DEFC 0044AE3C  80 0D 9C 38 */	lwz r0, Initialized_2@sda21(r13)
+/* 8044DEFC 0044AE3C  80 0D 9C 38 */	lwz r0, Initialized@sda21(r13)
 /* 8044DF00 0044AE40  2C 00 00 00 */	cmpwi r0, 0
 /* 8044DF04 0044AE44  40 82 00 98 */	bne lbl_8044DF9C
 /* 8044DF08 0044AE48  3C 60 80 51 */	lis r3, ActivePlayer@ha
@@ -255,7 +242,7 @@ lbl_8044DF44:
 /* 8044DF8C 0044AECC  38 80 11 80 */	li r4, 0x1180
 /* 8044DF90 0044AED0  4B C9 E7 89 */	bl DCFlushRange
 /* 8044DF94 0044AED4  38 00 00 01 */	li r0, 1
-/* 8044DF98 0044AED8  90 0D 9C 38 */	stw r0, Initialized_2@sda21(r13)
+/* 8044DF98 0044AED8  90 0D 9C 38 */	stw r0, Initialized@sda21(r13)
 lbl_8044DF9C:
 /* 8044DF9C 0044AEDC  38 60 00 01 */	li r3, 1
 lbl_8044DFA0:
@@ -276,7 +263,7 @@ THPPlayerQuit:
 /* 8044DFCC 0044AF0C  38 80 00 00 */	li r4, 0
 /* 8044DFD0 0044AF10  4B C5 A2 15 */	bl registerMixCallback__9JASDriverFPFl_Ps10JASMixMode
 /* 8044DFD4 0044AF14  38 00 00 00 */	li r0, 0
-/* 8044DFD8 0044AF18  90 0D 9C 38 */	stw r0, Initialized_2@sda21(r13)
+/* 8044DFD8 0044AF18  90 0D 9C 38 */	stw r0, Initialized@sda21(r13)
 /* 8044DFDC 0044AF1C  80 01 00 14 */	lwz r0, 0x14(r1)
 /* 8044DFE0 0044AF20  7C 08 03 A6 */	mtlr r0
 /* 8044DFE4 0044AF24  38 21 00 10 */	addi r1, r1, 0x10
@@ -290,7 +277,7 @@ THPPlayerOpen:
 /* 8044DFF8 0044AF38  BE E1 00 0C */	stmw r23, 0xc(r1)
 /* 8044DFFC 0044AF3C  7C 77 1B 78 */	mr r23, r3
 /* 8044E000 0044AF40  7C 9F 23 78 */	mr r31, r4
-/* 8044E004 0044AF44  80 0D 9C 38 */	lwz r0, Initialized_2@sda21(r13)
+/* 8044E004 0044AF44  80 0D 9C 38 */	lwz r0, Initialized@sda21(r13)
 /* 8044E008 0044AF48  2C 00 00 00 */	cmpwi r0, 0
 /* 8044E00C 0044AF4C  40 82 00 0C */	bne lbl_8044E018
 /* 8044E010 0044AF50  38 60 00 00 */	li r3, 0
@@ -1565,7 +1552,7 @@ THPPlayerDrawDone:
 /* 8044F1AC 0044C0EC  90 01 00 24 */	stw r0, 0x24(r1)
 /* 8044F1B0 0044C0F0  93 E1 00 1C */	stw r31, 0x1c(r1)
 /* 8044F1B4 0044C0F4  4B C9 63 89 */	bl GXDrawDone
-/* 8044F1B8 0044C0F8  80 0D 9C 38 */	lwz r0, Initialized_2@sda21(r13)
+/* 8044F1B8 0044C0F8  80 0D 9C 38 */	lwz r0, Initialized@sda21(r13)
 /* 8044F1BC 0044C0FC  2C 00 00 00 */	cmpwi r0, 0
 /* 8044F1C0 0044C100  41 82 00 40 */	beq lbl_8044F200
 /* 8044F1C4 0044C104  3C 60 80 50 */	lis r3, UsedTextureSetQueue@ha

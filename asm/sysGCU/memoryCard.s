@@ -176,13 +176,9 @@ __vt__24MemoryCardMgrCommandBase:
 	.4byte 0
 	.4byte 0
 	.4byte 0
-	.4byte 0
 
 .section .bss  # 0x804EFC20 - 0x8051467C
-.balign 32
-.global sCardWorkArea
-sCardWorkArea:
-	.skip 0xA000
+.lcomm sCardWorkArea, 0xA000, 32
 
 .section .text, "ax"  # 0x800056C0 - 0x80472F00
 .global __ct__13MemoryCardMgrFv

@@ -22,32 +22,28 @@ __vt__13JKRFileLoader:
 	.4byte 0
 	.4byte 0
 	.4byte 0
-	.4byte 0
 
 .section .bss  # 0x804EFC20 - 0x8051467C
-.global lbl_804EFFA0
-lbl_804EFFA0:
-	.skip 0x10
+.balign 8
+.lcomm lbl_804EFFA0, 0xC, 4
+# JKRFileLoader.cpp
+.comm sVolumeList__13JKRFileLoader, 0xC, 4
 
 .section .sdata, "wa"  # 0x80514680 - 0x80514D80
 .balign 8
-.global rootPath$2747
 rootPath$2747:
-	.byte 0x2f
-	.skip 0x3
+	.asciz "/"
 
 .section .sbss # 0x80514D80 - 0x80516360
 .balign 8
 .global sCurrentVolume__13JKRFileLoader
 sCurrentVolume__13JKRFileLoader:
-	.skip 0x8
+	.skip 0x4
 
 .section .sdata2, "a"     # 0x80516360 - 0x80520E40
 .balign 8
-.global lbl_80516528
 lbl_80516528:
-	.4byte 0x2F000000
-	.4byte 0x00000000
+	.asciz "/"
 
 .section .text, "ax"  # 0x800056C0 - 0x80472F00
 .global __ct__13JKRFileLoaderFv
@@ -320,8 +316,7 @@ lbl_80023200:
 /* 80023214 00020154  38 21 00 20 */	addi r1, r1, 0x20
 /* 80023218 00020158  4E 80 00 20 */	blr 
 
-.global __sinit_JKRFileLoader_cpp
-__sinit_JKRFileLoader_cpp:
+__sinit_JKRFileLoader_cpp: # static initializer
 /* 8002321C 0002015C  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 80023220 00020160  7C 08 02 A6 */	mflr r0
 /* 80023224 00020164  3C 60 80 50 */	lis r3, sVolumeList__13JKRFileLoader@ha

@@ -10,12 +10,12 @@ __vt__11JKRAramHeap:
 	.4byte 0
 	.4byte 0
 	.4byte __dt__11JKRAramHeapFv
-	.4byte 0
 
 .section .bss  # 0x804EFC20 - 0x8051467C
-.global lbl_804EFF20
-lbl_804EFF20:
-	.skip 0x10
+.balign 8
+.lcomm lbl_804EFF20, 0xC, 4
+# JKRAramHeap.cpp
+.comm sAramList__11JKRAramHeap, 0xC, 4
 
 .section .text, "ax"  # 0x800056C0 - 0x80472F00
 .global __ct__11JKRAramHeapFUlUl
@@ -279,8 +279,7 @@ lbl_80019A14:
 /* 80019A38 00016978  38 21 00 10 */	addi r1, r1, 0x10
 /* 80019A3C 0001697C  4E 80 00 20 */	blr 
 
-.global __sinit_JKRAramHeap_cpp
-__sinit_JKRAramHeap_cpp:
+__sinit_JKRAramHeap_cpp: # static initializer
 /* 80019A40 00016980  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 80019A44 00016984  7C 08 02 A6 */	mflr r0
 /* 80019A48 00016988  3C 60 80 50 */	lis r3, sAramList__11JKRAramHeap@ha

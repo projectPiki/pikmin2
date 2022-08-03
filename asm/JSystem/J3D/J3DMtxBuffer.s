@@ -1,4 +1,10 @@
 .include "macros.inc"
+
+.section .bss  # 0x804EFC20 - 0x8051467C
+# J3DMtxBuffer.cpp
+.comm sNoUseDrawMtx__12J3DMtxBuffer, 0x54, 4
+.comm sNoUseNrmMtx__12J3DMtxBuffer, 0x24, 4
+
 .section .sdata, "wa"  # 0x80514680 - 0x80514D80
 .balign 8
 .global sNoUseDrawMtxPtr__12J3DMtxBuffer
@@ -14,12 +20,10 @@ J3DUnit01:
 
 .section .sdata2, "a"     # 0x80516360 - 0x80520E40
 .balign 8
-.global lbl_80516AF8
 lbl_80516AF8:
 	.float 1.0
-.global lbl_80516AFC
 lbl_80516AFC:
-	.4byte 0x00000000
+	.float 0.0
 
 .section .text, "ax"  # 0x800056C0 - 0x80472F00
 .global initialize__12J3DMtxBufferFv
