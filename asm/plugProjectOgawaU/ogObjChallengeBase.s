@@ -44,6 +44,10 @@ __vt__Q32og9newScreen16ObjChallengeBase:
 	.4byte doConfirmEndScene__Q26Screen7ObjBaseFRPQ26Screen11EndSceneArg
 	.4byte doCreateAfter__Q32og9newScreen16ObjChallengeBaseFP10JKRArchivePQ32og6Screen18CallBack_CounterRV
 
+.section .bss  # 0x804EFC20 - 0x8051467C
+# ogObjChallengeBase.cpp
+.comm msBaseVal__Q32og9newScreen16ObjChallengeBase, 0x1C, 4
+
 .section .sbss # 0x80514D80 - 0x80516360
 .balign 8
 .global lbl_80515EB0

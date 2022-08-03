@@ -1,9 +1,7 @@
 .include "macros.inc"
 .section .rodata  # 0x804732E0 - 0x8049E220
 .balign 8
-.global lbl_804732E0
-lbl_804732E0:
-	.4byte 0x00000000
+lbl_804732E0: # first rodata entry of the DOL
 	.4byte 0x00000000
 	.4byte 0x00000000
 	.4byte 0x00000000
@@ -66,44 +64,34 @@ __vt__Q27JStudio17TAdaptor_particle:
 	.4byte 0
 
 .section .bss  # 0x804EFC20 - 0x8051467C
-aoData$1232: # should be local to object-particle.cpp
-	.skip 0x90
+.lcomm aoData$1232, 0x90, 4
 
 .section .sbss # 0x80514D80 - 0x80516360
 .balign 8
-.global init$1233
 init$1233:
 	.skip 0x1
 
 .section .sdata2, "a"     # 0x80516360 - 0x80520E40
 .balign 8
-.global lbl_80516360
 lbl_80516360:
-	.4byte 0x00000000
-.global lbl_80516364
+	.float 0.0
 lbl_80516364:
 	.float 1.0
-.global lbl_80516368
 lbl_80516368:
-	.4byte 0x437F0000
-	.4byte 0x00000000
-.global lbl_80516370
+	.float 255.0
+.balign 8
 lbl_80516370:
-	.4byte 0x3FF00000
-	.4byte 0x00000000
-.global lbl_80516378
+	.double 1.0
+.balign 8
 lbl_80516378:
-	.4byte 0x40F00000
-	.4byte 0x00000000
-.global lbl_80516380
+	.double 65536.0
+.balign 8
 lbl_80516380:
-	.4byte 0x40768000
-	.4byte 0x00000000
-.global lbl_80516388
+	.double 360.0
+.balign 8
 lbl_80516388:
-	.4byte 0x406FE000
-	.4byte 0x00000000
-.global lbl_80516390
+	.double 255.0
+.balign 8
 lbl_80516390:
 	.4byte 0x43300000
 	.4byte 0x00000000

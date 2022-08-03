@@ -252,18 +252,15 @@ cCenterRad__Q23PSM7SeSound:
 
 .section .sbss # 0x80514D80 - 0x80516360
 .balign 8
-.global lbl_80516330
-lbl_80516330:
+gu32NAN___Q24Game5P2JST:
 	.skip 0x4
-.global lbl_80516334
-lbl_80516334:
+gfNAN___Q24Game5P2JST:
 	.skip 0x4
-.global panRatio$3853
 panRatio$3853:
 	.skip 0x4
-.global init$3854_1
-init$3854_1:
-	.skip 0x4
+.global init$3854
+init$3854:
+	.skip 0x1
 
 .section .sdata2, "a"     # 0x80516360 - 0x80520E40
 .balign 8
@@ -858,13 +855,13 @@ lbl_804716BC:
 /* 804716C4 0046E604  38 63 DC 3C */	addi r3, r3, smACosPrm__Q23PSM7SeSound@l
 /* 804716C8 0046E608  7C 43 04 2E */	lfsx f2, r3, r0
 lbl_804716CC:
-/* 804716CC 0046E60C  88 0D 9C BC */	lbz r0, init$3854_1@sda21(r13)
+/* 804716CC 0046E60C  88 0D 9C BC */	lbz r0, init$3854@sda21(r13)
 /* 804716D0 0046E610  7C 00 07 75 */	extsb. r0, r0
 /* 804716D4 0046E614  40 82 00 1C */	bne lbl_804716F0
 /* 804716D8 0046E618  C0 2D 86 E4 */	lfs f1, cPan_MaxAmp__Q23PSM7SeSound@sda21(r13)
 /* 804716DC 0046E61C  38 00 00 01 */	li r0, 1
 /* 804716E0 0046E620  C0 02 2A 4C */	lfs f0, lbl_80520DAC@sda21(r2)
-/* 804716E4 0046E624  98 0D 9C BC */	stb r0, init$3854_1@sda21(r13)
+/* 804716E4 0046E624  98 0D 9C BC */	stb r0, init$3854@sda21(r13)
 /* 804716E8 0046E628  EC 01 00 24 */	fdivs f0, f1, f0
 /* 804716EC 0046E62C  D0 0D 9C B8 */	stfs f0, panRatio$3853@sda21(r13)
 lbl_804716F0:
@@ -1000,15 +997,14 @@ lbl_804718A0:
 /* 804718A0 0046E7E0  38 21 00 10 */	addi r1, r1, 0x10
 /* 804718A4 0046E7E4  4E 80 00 20 */	blr 
 
-.global __sinit_PSMainSide_Sound_cpp
-__sinit_PSMainSide_Sound_cpp:
+__sinit_PSMainSide_Sound_cpp: # static initializer
 /* 804718A8 0046E7E8  3C 80 80 51 */	lis r4, __float_nan@ha
 /* 804718AC 0046E7EC  38 00 FF FF */	li r0, -1
 /* 804718B0 0046E7F0  C0 04 48 B0 */	lfs f0, __float_nan@l(r4)
 /* 804718B4 0046E7F4  3C 60 80 4F */	lis r3, lbl_804EF9A8@ha
-/* 804718B8 0046E7F8  90 0D 9C B0 */	stw r0, lbl_80516330@sda21(r13)
+/* 804718B8 0046E7F8  90 0D 9C B0 */	stw r0, gu32NAN___Q24Game5P2JST@sda21(r13)
 /* 804718BC 0046E7FC  D4 03 F9 A8 */	stfsu f0, lbl_804EF9A8@l(r3)
-/* 804718C0 0046E800  D0 0D 9C B4 */	stfs f0, lbl_80516334@sda21(r13)
+/* 804718C0 0046E800  D0 0D 9C B4 */	stfs f0, gfNAN___Q24Game5P2JST@sda21(r13)
 /* 804718C4 0046E804  D0 03 00 04 */	stfs f0, 4(r3)
 /* 804718C8 0046E808  D0 03 00 08 */	stfs f0, 8(r3)
 /* 804718CC 0046E80C  4E 80 00 20 */	blr 

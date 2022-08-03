@@ -5,8 +5,7 @@ lbl_constructor:
 
 .section .rodata  # 0x804732E0 - 0x8049E220
 .balign 8
-.global C5BASE_PITCHTABLE__9JASDriver
-C5BASE_PITCHTABLE__9JASDriver:
+C5BASE_PITCHTABLE__9JASDriver: # local object
 	.float 0.03125
 	.float 0.033108
 	.float 0.035077
@@ -141,15 +140,9 @@ C5BASE_PITCHTABLE__9JASDriver:
 	.4byte 0x00000000
 
 .section .bss  # 0x804EFC20 - 0x8051467C
-.global sDspSyncCallback__9JASDriver
-sDspSyncCallback__9JASDriver:
-	.skip 0x80
-.global sSubFrameCallback__9JASDriver
-sSubFrameCallback__9JASDriver:
-	.skip 0x80
-.global sUpdateDacCallback__9JASDriver
-sUpdateDacCallback__9JASDriver:
-	.skip 0x80
+.lcomm sDspSyncCallback__9JASDriver, 0x80, 4
+.lcomm sSubFrameCallback__9JASDriver, 0x80, 4
+.lcomm sUpdateDacCallback__9JASDriver, 0x80, 4
 
 .section .sdata, "wa"  # 0x80514680 - 0x80514D80
 .balign 8
@@ -165,11 +158,9 @@ JAS_SYSTEM_OUTPUT_MODE__9JASDriver:
 
 .section .sdata2, "a"     # 0x80516360 - 0x80520E40
 .balign 8
-.global lbl_80516E50
 lbl_80516E50:
-	.4byte 0x467FFE00
-	.4byte 0x00000000
-.global lbl_80516E58
+	.float 16383.5
+.balign 8
 lbl_80516E58:
 	.4byte 0x43300000
 	.4byte 0x00000000
@@ -412,8 +403,7 @@ updateDacCallback__9JASDriverFv:
 /* 800A4AB0 000A19F0  38 21 00 10 */	addi r1, r1, 0x10
 /* 800A4AB4 000A19F4  4E 80 00 20 */	blr 
 
-.global __sinit_JASDriverIF_cpp
-__sinit_JASDriverIF_cpp:
+__sinit_JASDriverIF_cpp: # static initializer
 /* 800A4AB8 000A19F8  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 800A4ABC 000A19FC  7C 08 02 A6 */	mflr r0
 /* 800A4AC0 000A1A00  3C 80 80 4F */	lis r4, sDspSyncCallback__9JASDriver@ha

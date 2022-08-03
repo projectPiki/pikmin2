@@ -11,8 +11,7 @@ sChannelMask__Q210JUTGamePad7CRumble:
 	.4byte 0x40000000
 	.4byte 0x20000000
 	.4byte 0x10000000
-.global channel_mask
-channel_mask:
+channel_mask: # local object
 	.4byte 0x80000000
 	.4byte 0x40000000
 	.4byte 0x20000000
@@ -24,12 +23,15 @@ __vt__10JUTGamePad:
 	.4byte __dt__10JUTGamePadFv
 
 .section .bss  # 0x804EFC20 - 0x8051467C
-.global lbl_804F03F0
-lbl_804F03F0:
-	.skip 0xC
-.global lbl_804F03FC
-lbl_804F03FC:
-	.skip 0xC
+.lcomm lbl_804F03F0, 0xC, 4
+.lcomm lbl_804F03FC, 0xC, 4
+# JUTGamePad.cpp
+.comm mPadList__10JUTGamePad, 0x188, 4
+.comm mPadStatus__10JUTGamePad, 0x30, 4
+.comm mPadButton__10JUTGamePad, 0xC0, 4
+.comm mPadMStick__10JUTGamePad, 0x40, 4
+.comm mPadSStick__10JUTGamePad, 0x40, 4
+.comm sPatternList__19JUTGamePadLongPress, 0xC, 4
 
 .section .sdata, "wa"  # 0x80514680 - 0x80514D80
 .balign 8

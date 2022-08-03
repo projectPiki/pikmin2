@@ -1,5 +1,6 @@
 .include "macros.inc"
 .section .bss  # 0x804EFC20 - 0x8051467C
+.balign 8
 .global gTRKEventQueue
 gTRKEventQueue:
 	.skip 0x28

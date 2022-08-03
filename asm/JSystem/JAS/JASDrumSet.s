@@ -8,38 +8,29 @@ __vt__10JASDrumSet:
 	.4byte __dt__10JASDrumSetFv
 	.4byte getParam__10JASDrumSetCFiiP12JASInstParam
 	.4byte getType__10JASDrumSetCFv
-	.4byte 0
 
 .section .bss  # 0x804EFC20 - 0x8051467C
-.global osc$639
-osc$639:
-	.skip 0x18
+.balign 8
+.lcomm osc$639, 0x18, 4
 
 .section .sbss # 0x80514D80 - 0x80516360
 .balign 8
-.global oscp$640
 oscp$640:
 	.skip 0x4
-.global init$641
 init$641:
-	.skip 0x4
+	.skip 0x1
 
 .section .sdata2, "a"     # 0x80516360 - 0x80520E40
 .balign 8
-.global lbl_80516CD8
 lbl_80516CD8:
 	.float 1.0
-.global lbl_80516CDC
 lbl_80516CDC:
-	.4byte 0x00000000
-.global lbl_80516CE0
+	.float 0.0
+.balign 8
 lbl_80516CE0:
-	.4byte 0x3FE00000
-	.4byte 0x00000000
-.global lbl_80516CE8
+	.double 0.5
 lbl_80516CE8:
 	.float 0.5
-	.4byte 0x00000000
 
 .section .text, "ax"  # 0x800056C0 - 0x80472F00
 .global getParam__10JASDrumSetCFiiP12JASInstParam

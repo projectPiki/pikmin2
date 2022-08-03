@@ -1,11 +1,8 @@
 .include "macros.inc"
 .section .bss  # 0x804EFC20 - 0x8051467C
-.global "sMessageFileLine__Q212JUTAssertion23@unnamed@JUTAssert_cpp@"
-"sMessageFileLine__Q212JUTAssertion23@unnamed@JUTAssert_cpp@":
-	.skip 0x40
-.global "sMessageString__Q212JUTAssertion23@unnamed@JUTAssert_cpp@"
-"sMessageString__Q212JUTAssertion23@unnamed@JUTAssert_cpp@":
-	.skip 0x100
+.balign 8
+.lcomm "sMessageFileLine__Q212JUTAssertion23@unnamed@JUTAssert_cpp@", 0x40, 4
+.lcomm "sMessageString__Q212JUTAssertion23@unnamed@JUTAssert_cpp@", 0x100, 4
 
 .section .sdata, "wa"  # 0x80514680 - 0x80514D80
 .balign 8

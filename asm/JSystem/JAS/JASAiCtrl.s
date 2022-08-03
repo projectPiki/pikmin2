@@ -36,7 +36,6 @@ lbl_80479630:
 
 .section .data, "wa"  # 0x8049E220 - 0x804EFC20
 .balign 8
-.global history$449
 history$449:
 	.4byte 0x000F4240
 	.4byte 0x00000000
@@ -50,9 +49,7 @@ history$449:
 	.4byte 0x00000000
 
 .section .bss  # 0x804EFC20 - 0x8051467C
-.global sDmaDacBuffer__9JASDriver
-sDmaDacBuffer__9JASDriver:
-	.skip 0x18
+.lcomm sDmaDacBuffer__9JASDriver, 0xC, 4
 
 .section .sdata, "wa"  # 0x80514680 - 0x80514D80
 .balign 8

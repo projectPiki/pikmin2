@@ -1,8 +1,7 @@
 .include "macros.inc"
 .section .bss  # 0x804EFC20 - 0x8051467C
-.global sync_stack
-sync_stack:
-	.skip 0x10
+.balign 8
+.lcomm sync_stack, 0xC, 4
 
 .section .sbss # 0x80514D80 - 0x80516360
 .balign 8

@@ -6,23 +6,19 @@ __vt__11JASInstRand:
 	.4byte 0
 	.4byte 0
 	.4byte getY__11JASInstRandCFii
-	.4byte 0
 
 .section .sbss # 0x80514D80 - 0x80516360
 .balign 8
-.global init$644
 init$644:
-	.skip 0x4
-.global oRandom$643
+	.skip 0x1
+.balign 4
 oRandom$643:
 	.skip 0x4
 
 .section .sdata2, "a"     # 0x80516360 - 0x80520E40
 .balign 8
-.global lbl_80516CF0
 lbl_80516CF0:
-	.4byte 0x40000000
-.global lbl_80516CF4
+	.float 2.0
 lbl_80516CF4:
 	.float 1.0
 

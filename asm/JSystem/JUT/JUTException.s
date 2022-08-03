@@ -215,15 +215,11 @@ __vt__12JUTException:
 	.4byte run__12JUTExceptionFv
 
 .section .bss  # 0x804EFC20 - 0x8051467C
-.global exCallbackObject
-exCallbackObject:
-	.skip 0x14
-.global lbl_804F011C
-lbl_804F011C:
-	.skip 0xC
-.global context$2483
-context$2483:
-	.skip 0x2C8
+.lcomm exCallbackObject, 0x14, 4
+.lcomm lbl_804F011C, 0xC, 4
+.lcomm context$2483, 0x2C8, 8
+# JUTException.cpp
+.comm sMapFileList__12JUTException, 0xC, 4
 
 .section .sdata, "wa"  # 0x80514680 - 0x80514D80
 .balign 8

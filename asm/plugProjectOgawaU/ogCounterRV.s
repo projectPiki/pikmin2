@@ -20,42 +20,35 @@ __vt__Q32og6Screen18CallBack_CounterRV:
 	.4byte setValue__Q32og6Screen18CallBack_CounterRVFbb
 	.4byte setValue__Q32og6Screen18CallBack_CounterRVFv
 
+.section .bss  # 0x804EFC20 - 0x8051467C
+# ogCounterRV.cpp
+.comm msVal__Q32og6Screen18CallBack_CounterRV, 0xC, 4
+
 .section .sdata2, "a"     # 0x80516360 - 0x80520E40
 .balign 8
-.global lbl_8051D6A0
 lbl_8051D6A0:
-	.4byte 0x00000000
-.global lbl_8051D6A4
+	.float 0.0
 lbl_8051D6A4:
-	.4byte 0x3CCCCCCD
-.global lbl_8051D6A8
+	.float 0.025
+.balign 8
 lbl_8051D6A8:
 	.4byte 0x43300000
 	.4byte 0x80000000
-.global lbl_8051D6B0
 lbl_8051D6B0:
 	.float 1.0
-	.4byte 0x00000000
-.global lbl_8051D6B8
+.balign 8
 lbl_8051D6B8:
-	.4byte 0x40240000
-	.4byte 0x00000000
-.global lbl_8051D6C0
+	.double 10.0
 lbl_8051D6C0:
-	.4byte 0x47000000
-.global lbl_8051D6C4
+	.float 32768.0
 lbl_8051D6C4:
-	.4byte 0x41100000
-.global lbl_8051D6C8
+	.float 9.0
 lbl_8051D6C8:
 	.float 0.5
-.global lbl_8051D6CC
 lbl_8051D6CC:
-	.4byte 0x41F00000
-.global lbl_8051D6D0
+	.float 30.0
 lbl_8051D6D0:
-	.4byte 0x3F4CCCCD
-	.4byte 0x00000000
+	.float 0.8
 
 .section .text, "ax"  # 0x800056C0 - 0x80472F00
 .global __ct__Q32og6Screen18CallBack_CounterRVFPPcUsUsP10JKRArchive
@@ -1502,8 +1495,7 @@ lbl_8030C974:
 /* 8030C988 003098C8  38 21 00 10 */	addi r1, r1, 0x10
 /* 8030C98C 003098CC  4E 80 00 20 */	blr 
 
-.global __sinit_ogCounterRV_cpp
-__sinit_ogCounterRV_cpp:
+__sinit_ogCounterRV_cpp: # static initializer
 /* 8030C990 003098D0  C0 42 F3 68 */	lfs f2, lbl_8051D6C8@sda21(r2)
 /* 8030C994 003098D4  3C 60 80 51 */	lis r3, msVal__Q32og6Screen18CallBack_CounterRV@ha
 /* 8030C998 003098D8  C0 22 F3 6C */	lfs f1, lbl_8051D6CC@sda21(r2)

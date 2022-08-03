@@ -1,37 +1,13 @@
 .include "macros.inc"
 .section .bss  # 0x804EFC20 - 0x8051467C
-# local object
-.balign 4
-FreeReadBufferQueue:
-	.skip 0x20
-# local object
-.balign 4
-ReadedBufferQueue:
-	.skip 0x20
-# local object
-.balign 4
-ReadedBufferQueue2:
-	.skip 0x20
-# local object
-.balign 4
-FreeReadBufferMessage:
-	.skip 0x28
-# local object
-.balign 4
-ReadedBufferMessage:
-	.skip 0x28
-# local object
-.balign 4
-ReadedBufferMessage2:
-	.skip 0x28
-# local object
-.balign 8
-ReadThread:
-	.skip 0x318
-# local object
-.balign 4
-ReadThreadStack:
-	.skip 0x1000
+.lcomm FreeReadBufferQueue, 0x20, 4
+.lcomm ReadedBufferQueue, 0x20, 4
+.lcomm ReadedBufferQueue2, 0x20, 4
+.lcomm FreeReadBufferMessage, 0x28, 4
+.lcomm ReadedBufferMessage, 0x28, 4
+.lcomm ReadedBufferMessage2, 0x28, 4
+.lcomm ReadThread, 0x318, 8
+.lcomm ReadThreadStack, 0x1000, 4
 
 .section .sbss # 0x80514D80 - 0x80516360
 .balign 8

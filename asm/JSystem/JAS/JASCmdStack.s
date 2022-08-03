@@ -4,12 +4,11 @@ lbl_constructor:
 .4byte __sinit_JASCmdStack_cpp
 
 .section .bss  # 0x804EFC20 - 0x8051467C
-.global lbl_804F06E8
-lbl_804F06E8:
-	.skip 0xC
-.global lbl_804F06F4
-lbl_804F06F4:
-	.skip 0xC
+.lcomm lbl_804F06E8, 0xC, 4
+.lcomm lbl_804F06F4, 0xC, 4
+# JASCmdStack.cpp
+.comm sCommandListOnce__10JASPortCmd, 0x18, 4
+.comm sCommandListStay__10JASPortCmd, 0xC, 4
 
 .section .text, "ax"  # 0x800056C0 - 0x80472F00
 .global addPortCmdOnce__10JASPortCmdFv
@@ -137,8 +136,7 @@ lbl_800A68A0:
 /* 800A68C0 000A3800  38 21 00 10 */	addi r1, r1, 0x10
 /* 800A68C4 000A3804  4E 80 00 20 */	blr 
 
-.global __sinit_JASCmdStack_cpp
-__sinit_JASCmdStack_cpp:
+__sinit_JASCmdStack_cpp: # static initializer
 /* 800A68C8 000A3808  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 800A68CC 000A380C  7C 08 02 A6 */	mflr r0
 /* 800A68D0 000A3810  3C 60 80 51 */	lis r3, sCommandListOnce__10JASPortCmd@ha

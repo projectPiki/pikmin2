@@ -19,12 +19,12 @@ __vt__9JKRThread:
 	.4byte run__9JKRThreadFv
 
 .section .bss  # 0x804EFC20 - 0x8051467C
-.global lbl_804EFFB0
-lbl_804EFFB0:
-	.skip 0xC
-.global lbl_804EFFBC
-lbl_804EFFBC:
-	.skip 0xC
+.balign 8
+.lcomm lbl_804EFFB0, 0xC, 4
+.lcomm lbl_804EFFBC, 0xC, 4
+# JKRThread.cpp
+.comm sThreadList__9JKRThread, 0x38, 4
+.comm sTaskList__7JKRTask, 0xC, 4
 
 .section .sbss # 0x80514D80 - 0x80516360
 .balign 8
@@ -34,12 +34,10 @@ sManager__15JKRThreadSwitch:
 .global sTotalCount__15JKRThreadSwitch
 sTotalCount__15JKRThreadSwitch:
 	.skip 0x4
+.balign 8
 .global sTotalStart__15JKRThreadSwitch
 sTotalStart__15JKRThreadSwitch:
-	.skip 0x4
-.global lbl_80514EE4
-lbl_80514EE4:
-	.skip 0x4
+	.skip 0x8
 
 .section .text, "ax"  # 0x800056C0 - 0x80472F00
 .global __ct__9JKRThreadFUlii
@@ -374,7 +372,7 @@ lbl_80025ACC:
 /* 80025ACC 00022A0C  38 00 00 00 */	li r0, 0
 /* 80025AD0 00022A10  90 1F 00 0C */	stw r0, 0xc(r31)
 /* 80025AD4 00022A14  83 AD 88 60 */	lwz r29, sTotalStart__15JKRThreadSwitch@sda21(r13)
-/* 80025AD8 00022A18  83 8D 88 64 */	lwz r28, lbl_80514EE4@sda21(r13)
+/* 80025AD8 00022A18  83 8D 88 64 */	lwz r28, (sTotalStart__15JKRThreadSwitch+4)@sda21(r13)
 /* 80025ADC 00022A1C  48 0C D0 B5 */	bl OSGetTime
 /* 80025AE0 00022A20  7C 1C 20 10 */	subfc r0, r28, r4
 /* 80025AE4 00022A24  28 1E 00 00 */	cmplwi r30, 0
@@ -424,7 +422,7 @@ lbl_80025B74:
 /* 80025B80 00022AC0  90 0D 88 5C */	stw r0, sTotalCount__15JKRThreadSwitch@sda21(r13)
 /* 80025B84 00022AC4  48 0C D0 0D */	bl OSGetTime
 /* 80025B88 00022AC8  28 1E 00 00 */	cmplwi r30, 0
-/* 80025B8C 00022ACC  90 8D 88 64 */	stw r4, lbl_80514EE4@sda21(r13)
+/* 80025B8C 00022ACC  90 8D 88 64 */	stw r4, (sTotalStart__15JKRThreadSwitch+4)@sda21(r13)
 /* 80025B90 00022AD0  90 6D 88 60 */	stw r3, sTotalStart__15JKRThreadSwitch@sda21(r13)
 /* 80025B94 00022AD4  41 82 00 0C */	beq lbl_80025BA0
 /* 80025B98 00022AD8  48 0C D0 11 */	bl OSGetTick

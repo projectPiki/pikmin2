@@ -5,49 +5,45 @@ lbl_constructor:
 
 .section .rodata  # 0x804732E0 - 0x8049E220
 .balign 8
-.global lbl_80478700
 lbl_80478700:
 	.4byte 0x00008000
 	.4byte 0x00020000
 	.4byte 0x00080000
 	.4byte 0x00000000
+lbl_80478710:
 	.4byte 0x00000008
 	.4byte 0x00000004
 	.4byte 0x00000001
 	.4byte 0x00000000
+lbl_80478720:
 	.float 0.5
 	.float 0.0
 	.float 0.0
 	.float 0.0
 	.float 0.5
 	.float 0.0
-.global lbl_80478738
 lbl_80478738:
 	.asciz "Success\n"
-	.skip 3
-.global lbl_80478744
+.balign 4
 lbl_80478744:
 	.asciz "J3DErrType : Material has No Material Animation\n"
-	.skip 3
-.global lbl_80478778
+.balign 4
 lbl_80478778:
 	.asciz "J3DErrType : Model Data is Locked\n"
-	.skip 1
-.global lbl_8047879C
+.balign 4
 lbl_8047879C:
 	.asciz "J3DErrType : Binary Resource is Null\n"
-	.skip 2
-.global lbl_804787C4
+.balign 4
 lbl_804787C4:
 	.asciz "J3DErrType : Out Of Memory\n"
-.global lbl_804787E0
+.balign 4
 lbl_804787E0:
 	.asciz "J3DErrType : Argument is Invalid\n"
-	.skip 2
-.global lbl_80478804
+.balign 4
 lbl_80478804:
 	.asciz "J3DErrType : Data is Invalid\n"
-	.skip 2
+.balign 4
+lbl_80478824:
 	.4byte lbl_80478738
 	.4byte lbl_80478744
 	.4byte lbl_80478778
@@ -87,12 +83,21 @@ IndMtx:
 	.float 0.5
 	.4byte 0x00000000
 
+.section .bss  # 0x804EFC20 - 0x8051467C
+# J3DSys.cpp
+.comm j3dSys, 0x1A4, 4
+.comm mCurrentMtx__6J3DSys, 0x30, 4
+.comm mCurrentS__6J3DSys, 0xC, 4
+.comm mParentS__6J3DSys, 0xC, 4
+.comm sTexCoordScaleTable__6J3DSys, 0x40, 4
+# J3DPacket.cpp
+# temporarily moved to J3DSys.s for the sake of alignment
+.comm sGDLObj__17J3DDisplayListObj, 0x10, 4
+
 .section .sdata, "wa"  # 0x80514680 - 0x80514D80
 .balign 8
-.global ColorBlack
 ColorBlack:
 	.4byte 0
-.global ColorWhite
 ColorWhite:
 	.4byte 0xffffffff
 
@@ -1245,8 +1250,7 @@ reinitPixelProc__6J3DSysFv:
 ErrorReport__6J3DSysCF10J3DErrType:
 /* 8005EB54 0005BA94  4E 80 00 20 */	blr 
 
-.global __sinit_J3DSys_cpp
-__sinit_J3DSys_cpp:
+__sinit_J3DSys_cpp: # static initializer
 /* 8005EB58 0005BA98  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 8005EB5C 0005BA9C  7C 08 02 A6 */	mflr r0
 /* 8005EB60 0005BAA0  3C 60 80 51 */	lis r3, j3dSys@ha

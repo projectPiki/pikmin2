@@ -5,20 +5,11 @@ lbl_constructor:
 
 .section .rodata  # 0x804732E0 - 0x8049E220
 .balign 8
-.global lbl_80473608
 lbl_80473608:
-	.4byte 0x4A4B5244
-	.4byte 0x76644669
-	.4byte 0x6C652E63
-	.4byte 0x70700000
-.global lbl_80473618
+	.asciz "JKRDvdFile.cpp"
+.balign 4
 lbl_80473618:
-	.4byte 0x63616E6E
-	.4byte 0x6F742063
-	.4byte 0x6C6F7365
-	.4byte 0x20445644
-	.4byte 0x2066696C
-	.4byte 0x650A0000
+	.asciz "cannot close DVD file\n"
 
 .section .data, "wa"  # 0x8049E220 - 0x804EFC20
 .balign 8
@@ -33,12 +24,12 @@ __vt__10JKRDvdFile:
 	.4byte writeData__10JKRDvdFileFPCvll
 	.4byte getFileSize__10JKRDvdFileCFv
 	.4byte open__10JKRDvdFileFl
-	.4byte 0
 
 .section .bss  # 0x804EFC20 - 0x8051467C
-.global lbl_804EFF40
-lbl_804EFF40:
-	.skip 0x10
+.balign 8
+.lcomm lbl_804EFF40, 0xC, 4
+# JKRDvdFile.cpp
+.comm sDvdList__10JKRDvdFile, 0xC, 4
 
 .section .text, "ax"  # 0x800056C0 - 0x80472F00
 .global __ct__10JKRDvdFileFv
@@ -454,8 +445,7 @@ getFileSize__10JKRDvdFileCFv:
 /* 8001D650 0001A590  80 63 00 90 */	lwz r3, 0x90(r3)
 /* 8001D654 0001A594  4E 80 00 20 */	blr 
 
-.global __sinit_JKRDvdFile_cpp
-__sinit_JKRDvdFile_cpp:
+__sinit_JKRDvdFile_cpp: # static initializer
 /* 8001D658 0001A598  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 8001D65C 0001A59C  7C 08 02 A6 */	mflr r0
 /* 8001D660 0001A5A0  3C 60 80 50 */	lis r3, sDvdList__10JKRDvdFile@ha

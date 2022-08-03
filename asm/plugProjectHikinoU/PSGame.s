@@ -380,6 +380,10 @@ __vt__Q26PSGame13ConductorList:
 	.4byte 0
 	.4byte "__dt__Q28PSSystem39SingletonBase<Q26PSGame13ConductorList>Fv"
 
+.section .bss  # 0x804EFC20 - 0x8051467C
+# PSGame.cpp
+.comm newSeqName__6PSGame, 0x20, 4
+
 .section .sbss # 0x80514D80 - 0x80516360
 .balign 8
 .global sToolMode__Q26PSGame13ConductorList

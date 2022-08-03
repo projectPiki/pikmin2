@@ -102,6 +102,10 @@ __vt__Q26Screen13StartSceneArg:
 	.4byte getSceneType__Q26Screen12SceneArgBaseCFv
 	.4byte 0
 
+.section .bss  # 0x804EFC20 - 0x8051467C
+# ogObjSMenuBase.cpp
+.comm msBaseVal__Q32og9newScreen12ObjSMenuBase, 0x1C, 4
+
 .section .sbss # 0x80514D80 - 0x80516360
 .balign 8
 angle$3853:

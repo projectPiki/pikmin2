@@ -5,77 +5,53 @@ lbl_constructor:
 
 .section .rodata  # 0x804732E0 - 0x8049E220
 .balign 8
-.global lbl_8047C880
 lbl_8047C880:
 	.4byte 0x00000000
 	.4byte 0x00000000
 	.4byte 0x00000000
-.global lbl_8047C88C
+.balign 4
 lbl_8047C88C:
-	.4byte 0x54506B45
-	.4byte 0x66666563
-	.4byte 0x74000000
-.global lbl_8047C898
+	.asciz "TPkEffect"
+.balign 4
 lbl_8047C898:
-	.4byte 0x68617070
-	.4byte 0x616A6E74
-	.4byte 0x33000000
-.global lbl_8047C8A4
+	.asciz "happajnt3"
+.balign 4
 lbl_8047C8A4:
-	.4byte 0x68617070
-	.4byte 0x616A6E74
-	.4byte 0x31000000
-.global lbl_8047C8B0
+	.asciz "happajnt1"
+.balign 4
 lbl_8047C8B0:
-	.4byte 0x70696B69
-	.4byte 0x2E637070
-	.4byte 0x00000000
-	.4byte 0x68617070
-	.4byte 0x616A6E74
-	.4byte 0x33206E6F
-	.4byte 0x7420666F
-	.4byte 0x756E6421
-	.4byte 0x0A000000
-	.4byte 0x68617070
-	.4byte 0x616A6E74
-	.4byte 0x31206E6F
-	.4byte 0x7420666F
-	.4byte 0x756E6421
-	.4byte 0x0A000000
-	.4byte 0x70696B69
-	.4byte 0x206F6E49
-	.4byte 0x6E697400
-	.4byte 0x2A2A2050
-	.4byte 0x494B4920
-	.4byte 0x4F4E494E
-	.4byte 0x49542A2A
-	.4byte 0x00000000
-.global lbl_8047C90C
+	.asciz "piki.cpp"
+.balign 4
+lbl_8047C8BC:
+	.asciz "happajnt3 not found!\n"
+.balign 4
+lbl_8047C8D4:
+	.asciz "happajnt1 not found!\n"
+.balign 4
+lbl_8047C8EC:
+	.asciz "piki onInit"
+.balign 4
+lbl_8047C8F8:
+	.asciz "** PIKI ONINIT**"
+.balign 4
 lbl_8047C90C:
 	.asciz "P2Assert"
-	.skip 3
-.global lbl_8047C918
+.balign 4
 lbl_8047C918:
-	.4byte 0x6731415F
-	.4byte 0x7265645F
-	.4byte 0x646F7069
-	.4byte 0x6E670000
-	.4byte 0x43726561
-	.4byte 0x74757265
-	.4byte 0x41637469
-	.4byte 0x6F6E4172
-	.4byte 0x67000000
-	.4byte 0x41637469
-	.4byte 0x6F6E4172
-	.4byte 0x67000000
+	.asciz "g1A_red_doping"
+.balign 4
+lbl_8047C928:
+	.asciz "CreatureActionArg"
+.balign 4
+lbl_8047C93C:
+	.asciz "ActionArg"
 
 .section .data, "wa"  # 0x8049E220 - 0x804EFC20
 .balign 8
-.global lbl_804B0990
-lbl_804B0990:
-	.4byte 0x00000000
-	.4byte 0x00000000
-	.4byte 0x00000000
+govNAN___Q24Game5P2JST:
+	.float 0.0
+	.float 0.0
+	.float 0.0
 .global __vt__Q24Game4Piki
 __vt__Q24Game4Piki:
 	.4byte 0
@@ -264,105 +240,83 @@ __vt__Q23efx7TPkMoeA:
 	.4byte "start__Q24Game26StateMachine<Q24Game4Piki>FPQ24Game4PikiiPQ24Game8StateArg"
 	.4byte "exec__Q24Game26StateMachine<Q24Game4Piki>FPQ24Game4Piki"
 	.4byte "transit__Q24Game26StateMachine<Q24Game4Piki>FPQ24Game4PikiiPQ24Game8StateArg"
-	.4byte 0
+
+.section .bss  # 0x804EFC20 - 0x8051467C
+# piki.cpp
+.comm pikiColors__Q24Game4Piki, 0x40, 4
+.comm pikiColorsCursor__Q24Game4Piki, 0x20, 4
 
 .section .sbss # 0x80514D80 - 0x80516360
 .balign 8
-.global lbl_80515920
-lbl_80515920:
+gu32NAN___Q24Game5P2JST:
 	.skip 0x4
-.global lbl_80515924
-lbl_80515924:
+gfNAN___Q24Game5P2JST:
 	.skip 0x4
 
 .section .sdata2, "a"     # 0x80516360 - 0x80520E40
 .balign 8
-.global lbl_80518410
 lbl_80518410:
-	.4byte 0x40800000
-.global lbl_80518414
+	.float 4.0
+.balign 4
 lbl_80518414:
-	.4byte 0x50535069
-	.4byte 0x6B690000
-.global lbl_8051841C
+	.asciz "PSPiki"
+.balign 4
 lbl_8051841C:
-	.4byte 0x00000000
-.global lbl_80518420
+	.float 0.0
 lbl_80518420:
-	.4byte 0x41A00000
-.global lbl_80518424
-lbl_80518424:
-	.4byte 0x41700000
-.global lbl_80518428
+	.float 20.0
+lbl_80518424: # used for Piki LOD Sphere Radius
+	.float 15.0
+.balign 4
 lbl_80518428:
-	.4byte 0x70752D31
-	.4byte 0x00000000
-.global lbl_80518430
+	.asciz "pu-1"
+.balign 4
 lbl_80518430:
-	.4byte 0x70752D34
-	.4byte 0x00000000
-.global lbl_80518438
+	.asciz "pu-4"
+.balign 4
 lbl_80518438:
 	.float 0.1
-.global lbl_8051843C
 lbl_8051843C:
-	.4byte 0x42C80000
-.global lbl_80518440
+	.float 100.0
 lbl_80518440:
 	.float 1.0
-.global lbl_80518444
 lbl_80518444:
-	.4byte 0x47FA0000
-.global lbl_80518448
+	.float 128000.0
 lbl_80518448:
-	.4byte 0xC7FA0000
-.global lbl_8051844C
+	.float -128000.0
 lbl_8051844C:
 	.float 0.5
-.global lbl_80518450
 lbl_80518450:
-	.4byte 0x41200000
-.global lbl_80518454
+	.float 10.0
 lbl_80518454:
-	.4byte 0x40000000
-.global lbl_80518458
+	.float 2.0
 lbl_80518458:
-	.4byte 0x40A00000
-.global lbl_8051845C
+	.float 5.0
 lbl_8051845C:
-	.4byte 0x47000000
-.global lbl_80518460
+	.float 32768.0
 lbl_80518460:
-	.4byte 0x3E4CCCCD
-	.4byte 0x00000000
-.global lbl_80518468
+	.float 0.2
+.balign 8
 lbl_80518468:
 	.4byte 0x43300000
 	.4byte 0x80000000
-.global lbl_80518470
 lbl_80518470:
-	.4byte 0x3F99999A
-.global lbl_80518474
+	.float 1.2
 lbl_80518474:
-	.4byte 0x3F4CCCCD
-.global lbl_80518478
+	.float 0.8
 lbl_80518478:
-	.4byte 0x40E00000
-.global lbl_8051847C
+	.float 7.0
+.balign 4
 lbl_8051847C:
-	.4byte 0x68656164
-	.4byte 0x6A6E7400
-.global lbl_80518484
+	.asciz "headjnt"
+.balign 4
 lbl_80518484:
-	.4byte 0x43480000
-.global lbl_80518488
+	.float 200.0
 lbl_80518488:
-	.4byte 0x40400000
-.global lbl_8051848C
+	.float 3.0
+.balign 4
 lbl_8051848C:
-	.4byte 0x70696B6D
-	.4byte 0x696E0000
-	.4byte 0x00000000
+	.asciz "pikmin"
 
 .section .text, "ax"  # 0x800056C0 - 0x80472F00
 .global __ct__Q24Game4PikiFv
@@ -4305,11 +4259,10 @@ lbl_8014AC04:
 "exec__Q24Game22FSMState<Q24Game4Piki>FPQ24Game4Piki":
 /* 8014AC14 00147B54  4E 80 00 20 */	blr 
 
-.global __sinit_piki_cpp
-__sinit_piki_cpp:
+__sinit_piki_cpp: # static initializer
 /* 8014AC18 00147B58  94 21 FF E0 */	stwu r1, -0x20(r1)
 /* 8014AC1C 00147B5C  3C 60 80 51 */	lis r3, __float_nan@ha
-/* 8014AC20 00147B60  3C A0 80 4B */	lis r5, lbl_804B0990@ha
+/* 8014AC20 00147B60  3C A0 80 4B */	lis r5, govNAN___Q24Game5P2JST@ha
 /* 8014AC24 00147B64  3C 80 80 51 */	lis r4, pikiColors__Q24Game4Piki@ha
 /* 8014AC28 00147B68  93 E1 00 1C */	stw r31, 0x1c(r1)
 /* 8014AC2C 00147B6C  3B E4 22 8C */	addi r31, r4, pikiColors__Q24Game4Piki@l
@@ -4320,7 +4273,7 @@ __sinit_piki_cpp:
 /* 8014AC40 00147B80  39 40 00 1E */	li r10, 0x1e
 /* 8014AC44 00147B84  39 20 00 D2 */	li r9, 0xd2
 /* 8014AC48 00147B88  93 A1 00 14 */	stw r29, 0x14(r1)
-/* 8014AC4C 00147B8C  3B A5 09 90 */	addi r29, r5, lbl_804B0990@l
+/* 8014AC4C 00147B8C  3B A5 09 90 */	addi r29, r5, govNAN___Q24Game5P2JST@l
 /* 8014AC50 00147B90  38 C0 00 E6 */	li r6, 0xe6
 /* 8014AC54 00147B94  38 A0 00 8C */	li r5, 0x8c
 /* 8014AC58 00147B98  93 81 00 10 */	stw r28, 0x10(r1)
@@ -4389,9 +4342,9 @@ __sinit_piki_cpp:
 /* 8014AD54 00147C94  99 64 00 1A */	stb r11, 0x1a(r4)
 /* 8014AD58 00147C98  9B C4 00 1B */	stb r30, 0x1b(r4)
 /* 8014AD5C 00147C9C  83 E1 00 1C */	lwz r31, 0x1c(r1)
-/* 8014AD60 00147CA0  93 8D 92 A0 */	stw r28, lbl_80515920@sda21(r13)
+/* 8014AD60 00147CA0  93 8D 92 A0 */	stw r28, gu32NAN___Q24Game5P2JST@sda21(r13)
 /* 8014AD64 00147CA4  83 C1 00 18 */	lwz r30, 0x18(r1)
-/* 8014AD68 00147CA8  D0 0D 92 A4 */	stfs f0, lbl_80515924@sda21(r13)
+/* 8014AD68 00147CA8  D0 0D 92 A4 */	stfs f0, gfNAN___Q24Game5P2JST@sda21(r13)
 /* 8014AD6C 00147CAC  D0 1D 00 00 */	stfs f0, 0(r29)
 /* 8014AD70 00147CB0  D0 1D 00 04 */	stfs f0, 4(r29)
 /* 8014AD74 00147CB4  D0 1D 00 08 */	stfs f0, 8(r29)

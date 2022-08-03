@@ -1,4 +1,8 @@
 .include "macros.inc"
+.section .bss  # 0x804EFC20 - 0x8051467C
+# khFinalFloor.cpp
+.comm msVal__Q32kh6Screen13ObjFinalFloor, 0xC, 4
+
 .section .text, "ax"  # 0x800056C0 - 0x80472F00
 .global doCreate__Q32kh6Screen13ObjFinalFloorFP10JKRArchive
 doCreate__Q32kh6Screen13ObjFinalFloorFP10JKRArchive:
