@@ -39,15 +39,16 @@ struct BaseGen : public CNode {
 
 // size: 0x28
 struct TekiInfo : CNode {
-	enum DropMode { NoDrop = 0, DropOnPikminOrLeader, DropOnPikmin, DropOnLeader, DropOnCarryingPikmin, DropFromPurpleEarthquake };
+	// needs to be byte sized, isn't atm
+	// enum DropMode { NoDrop = 0, DropOnPikminOrLeader, DropOnPikmin, DropOnLeader, DropOnCarryingPikmin, DropFromPurpleEarthquake };
 
 	virtual ~TekiInfo() { }     // _08 (weak)
 	virtual void read(Stream&); // _10
 
-	EnemyTypeID m_enemyID;                              // _18
+	EnemyTypeID::EEnemyTypeID m_enemyID;                // _18
 	int m_weight;                                       // _1C
 	BaseGen::Type m_type;                               // _20
-	DropMode m_dropMode;                                // _24
+	u8 m_dropMode;                                		// _24 - should really be DropMode enum eventually
 	u8 _25;                                             // _25
 	Game::PelletMgr::OtakaraItemCode m_otakaraItemCode; // _26
 };

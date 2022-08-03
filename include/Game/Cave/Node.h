@@ -74,13 +74,13 @@ struct GateUnit {
 struct GateNode : public ObjectLayoutNode {
 	GateNode();
 	GateNode(GateUnit* unit, int index, int dir); // for dir, use cardinal direction
-	~GateNode() {};
 
-	virtual int getObjectId();
-	virtual u32 getObjectType();
-	virtual int getBirthCount();
-	virtual float getDirection();
-	virtual int getBirthDoorIndex();
+	virtual ~GateNode() { }				// _08 (weak)
+	virtual int getObjectId();			// _10
+	virtual u32 getObjectType();		// _14
+	virtual int getBirthCount();		// _18
+	virtual float getDirection();		// _1C
+	virtual int getBirthDoorIndex();	// _20
 
 	GateUnit* m_unit; // _18
 	f32 m_direction;  // _1C
@@ -94,15 +94,15 @@ struct ItemUnit {
 struct ItemNode : public ObjectLayoutNode {
 	ItemNode();
 	ItemNode(ItemUnit*, BaseGen*, int);
-	~ItemNode() {};
+
+	virtual ~ItemNode() { }							// _08 (weak)
+	virtual int getObjectId();						// _10
+	virtual u32 getObjectType();					// _14
+	virtual int getBirthCount();					// _18
+	virtual float getDirection();					// _1C
+	virtual void getBirthPosition(float&, float&);	// _24
 
 	void makeGlobalData(MapNode*);
-
-	virtual int getObjectId();
-	virtual u32 getObjectType();
-	virtual int getBirthCount();
-	virtual float getDirection();
-	virtual void getBirthPosition(float&, float&);
 
 	ItemUnit* m_unit;     // _18
 	BaseGen* m_generator; // _1C

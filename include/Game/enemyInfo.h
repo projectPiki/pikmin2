@@ -141,6 +141,7 @@ enum EEnemyTypeID {//ID      Common Name
     EnemyID_UmiMushiBase   = 100, // Bloyster base (crashes)
     EnemyID_UmiMushiBlind  = 101, // Toady Bloyster
 };
+EEnemyTypeID m_enemyID; // _00
 };
 // clang-format on
 
