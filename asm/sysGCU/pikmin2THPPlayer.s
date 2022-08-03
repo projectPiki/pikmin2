@@ -1,96 +1,73 @@
 .include "macros.inc"
 .section .rodata  # 0x804732E0 - 0x8049E220
 .balign 8
-.global lbl_8049B510
 lbl_8049B510:
 	.asciz "/thp/opening1.thp"
-	.skip 2
-.global lbl_8049B524
+.balign 4
 lbl_8049B524:
 	.asciz "/thp/opening1.ini"
-	.skip 2
-.global lbl_8049B538
+.balign 4
 lbl_8049B538:
 	.asciz "/thp/opening2.thp"
-	.skip 2
-.global lbl_8049B54C
+.balign 4
 lbl_8049B54C:
 	.asciz "/thp/opening2.ini"
-	.skip 2
-.global lbl_8049B560
+.balign 4
 lbl_8049B560:
 	.asciz "/thp/ending1.thp"
-	.skip 3
-.global lbl_8049B574
+.balign 4
 lbl_8049B574:
 	.asciz "/thp/ending1.ini"
-	.skip 3
-.global lbl_8049B588
+.balign 4
 lbl_8049B588:
 	.asciz "/thp/ending2.thp"
-	.skip 3
-.global lbl_8049B59C
+.balign 4
 lbl_8049B59C:
 	.asciz "/thp/staffroll.thp"
-	.skip 1
+.balign 4
 .if version == 1
-.global lbl_8049B5B0
 lbl_8049B5B0:
 	.asciz "/thp/play1.thp"
-	.skip 1
-.global lbl_8049B5C0
+.balign 4
 lbl_8049B5C0:
 	.asciz "/thp/play1.ini"
-	.skip 1
-.global lbl_8049B5D0
+.balign 4
 lbl_8049B5D0:
 	.asciz "/thp/play2.thp"
-	.skip 1
-.global lbl_8049B5E0
+.balign 4
 lbl_8049B5E0:
 	.asciz "/thp/play2.ini"
-	.skip 1
-.global lbl_8049B5F0
+.balign 4
 lbl_8049B5F0:
 	.asciz "/thp/play3.thp"
-	.skip 1
-.global lbl_8049B600
+.balign 4
 lbl_8049B600:
 	.asciz "/thp/play3.ini"
-	.skip 1
-.global lbl_8049B610
+.balign 4
 lbl_8049B610:
 	.asciz "/thp/play4.thp"
-	.skip 1
-.global lbl_8049B620
+.balign 4
 lbl_8049B620:
 	.asciz "/thp/play4.ini"
-	.skip 1
-.global lbl_demoPlay5thp
+.balign 4
 lbl_demoPlay5thp:
 	.asciz "/thp/play5.thp"
-	.skip 1
-.global lbl_demoPlay5ini
+.balign 4
 lbl_demoPlay5ini:
 	.asciz "/thp/play5.ini"
-	.skip 1
-.global lbl_demoPlay6thp
+.balign 4
 lbl_demoPlay6thp:
 	.asciz "/thp/play6.thp"
-	.skip 1
-.global lbl_demoPlay6ini
+.balign 4
 lbl_demoPlay6ini:
 	.asciz "/thp/play6.ini"
-	.skip 1
-.global lbl_demoCrimethp
+.balign 4
 lbl_demoCrimethp:
 	.asciz "/thp/crime.thp"
-	.skip 1
-.global lbl_demoCrimeini
+.balign 4
 lbl_demoCrimeini:
 	.asciz "/thp/crime.ini"
-	.skip 1
-.global "sTHPFileSettingTable__Q24Game30@unnamed@pikmin2THPPlayer_cpp@"
+.balign 4
 "sTHPFileSettingTable__Q24Game30@unnamed@pikmin2THPPlayer_cpp@":
 	.4byte lbl_8049B510
 	.4byte lbl_8049B524
@@ -141,39 +118,30 @@ lbl_demoCrimeini:
 	.4byte 0x00000000
 	.4byte 0x0000000B
 .else
-.global lbl_8049B5B0
 lbl_8049B5B0:
 	.asciz "/thp/play1.thp"
-	.skip 1
-.global lbl_8049B5C0
+.balign 4
 lbl_8049B5C0:
 	.asciz "/thp/play2.thp"
-	.skip 1
-.global lbl_8049B5D0
+.balign 4
 lbl_8049B5D0:
 	.asciz "/thp/play3.thp"
-	.skip 1
-.global lbl_8049B5E0
+.balign 4
 lbl_8049B5E0:
 	.asciz "/thp/play4.thp"
-	.skip 1
-.global lbl_8049B5F0
+.balign 4
 lbl_8049B5F0:
 	.asciz "/thp/play5.thp"
-	.skip 1
-.global lbl_8049B600
+.balign 4
 lbl_8049B600:
 	.asciz "/thp/play6.thp"
-	.skip 1
-.global lbl_8049B610
+.balign 4
 lbl_8049B610:
 	.asciz "/thp/crime.thp"
-	.skip 1
-.global lbl_8049B620
+.balign 4
 lbl_8049B620:
 	.asciz "/thp/crime.ini"
-	.skip 1
-.global "sTHPFileSettingTable__Q24Game30@unnamed@pikmin2THPPlayer_cpp@"
+.balign 4
 "sTHPFileSettingTable__Q24Game30@unnamed@pikmin2THPPlayer_cpp@":
 	.4byte lbl_8049B510
 	.4byte lbl_8049B524
@@ -224,53 +192,56 @@ lbl_8049B620:
 	.4byte 0x00000000
 	.4byte 0x0000000B
 .endif
-.global lbl_8049B6F0
 lbl_8049B6F0:
 	.asciz "THPPlayer"
-	.skip 2
-.global lbl_8049B6FC
+.balign 4
 lbl_8049B6FC:
 	.asciz "pikmin2THPPlayer.cpp"
-	.skip 3
-.global lbl_8049B714
+.balign 4
 lbl_8049B714:
 	.asciz "P2Assert"
-	.skip 3
-.global lbl_8049B720
+.balign 4
 lbl_8049B720:
 	.asciz "THPPlayerInit failure."
-	.skip 1
+.balign 4
+lbl_8049B738:
 	.asciz "THPPlayer::loadResource"
+.balign 4
+lbl_8049B750:
 	.asciz "THPPlayer_Resource"
-	.skip 1
+.balign 4
+lbl_8049B764:
 	.asciz "THPPlayr_caption"
-	.skip 3
+.balign 4
+lbl_8049B778:
 	.asciz "fail to open the caption file\n[%s]\n"
+.balign 4
+lbl_8049B79C:
 	.asciz "THPPlayerOpen"
-	.skip 2
+.balign 4
+lbl_8049B7AC:
 	.asciz "Fail to open the thp file\n[%s]\n"
+.balign 4
+lbl_8049B7CC:
 	.asciz "THPPlayer_prepare"
-	.skip 2
+.balign 4
+lbl_8049B7E0:
 	.asciz "THPPlayer_work"
-	.skip 1
+.balign 4
+lbl_8049B7F0:
 	.asciz "Can't allocate the memory"
-	.skip 2
+.balign 4
+lbl_8049B80C:
 	.asciz "Fail to prepare\n"
-	.skip 3
-.global lbl_8049B820
+.balign 4
 lbl_8049B820:
 	.asciz "PSSystemIF.h"
-	.skip 3
-.global lbl_8049B830
+.balign 4
 lbl_8049B830:
 	.asciz "Unknown State : %d \n"
-.if version == 2
-	.skip 3
-.endif
 
 .section .data, "wa"	# 0x8049E220 - 0x804EFC20
 .balign 8
-.global lbl_804ED4C0
 lbl_804ED4C0:
 	.4byte 0x00000000
 	.4byte 0xFFFFFFFF
@@ -293,17 +264,15 @@ __vt__Q24Game9THPPlayer:
 	.4byte 0
 	.4byte 0
 	.4byte "invoke__27Delegate<Q24Game9THPPlayer>Fv"
-	.4byte 0
 
 .section .sdata2, "a"     # 0x80516360 - 0x80520E40
 .balign 8
-.global lbl_80520B10
 lbl_80520B10:
-	.4byte 0x00000000
-.global lbl_80520B14
+	.asciz ""
+.balign 4
 lbl_80520B14:
 	.float 127.0
-.global lbl_80520B18
+.balign 8
 lbl_80520B18:
 	.4byte 0x43300000
 	.4byte 0x00000000
@@ -1490,6 +1459,6 @@ isFinishPlaying__Q24Game9THPPlayerFv:
 /* 804508DC 0044D81C  4E 80 00 20 */	blr 
 
 .global "@24@__dt__Q24Game9THPPlayerFv"
-"@24@__dt__Q24Game9THPPlayerFv":
+"@24@__dt__Q24Game9THPPlayerFv": # weak function
 /* 804508E0 0044D820  38 63 FF E8 */	addi r3, r3, -24
 /* 804508E4 0044D824  4B FF F6 24 */	b __dt__Q24Game9THPPlayerFv
