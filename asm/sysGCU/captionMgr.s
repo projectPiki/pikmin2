@@ -1,24 +1,22 @@
 .include "macros.inc"
 .section .rodata  # 0x804732E0 - 0x8049E220
 .balign 8
-.global lbl_8049B848
-lbl_8049B848:
+lbl_8049B848: # Shift-JIS
 	.4byte 0x834C8383
 	.4byte 0x83768356
 	.4byte 0x83878393
 	.4byte 0x837D836C
 	.4byte 0x815B8357
 	.4byte 0x83830000
-.global lbl_8049B860
+.balign 4
 lbl_8049B860:
 	.4byte 0x63617074
 	.4byte 0x696F6E4D
 	.4byte 0x67722E63
 	.4byte 0x70700000
-.global lbl_8049B870
+.balign 4
 lbl_8049B870:
 	.asciz "P2Assert"
-	.skip 3
 
 .section .data, "wa"	# 0x8049E220 - 0x804EFC20
 .balign 8
@@ -39,14 +37,11 @@ __vt__Q27Caption4Node:
 
 .section .sdata2, "a"     # 0x80516360 - 0x80520E40
 .balign 8
-.global lbl_80520B20
 lbl_80520B20:
-	.4byte 0x00000000
-.global lbl_80520B24
+	.asciz ""
+.balign 4
 lbl_80520B24:
-	.4byte 0x2D2D2D2D
-	.4byte 0x5F2D2D00
-	.4byte 0x00000000
+	.asciz "----_--"
 
 .section .text, "ax"  # 0x800056C0 - 0x80472F00
 .global read__Q27Caption4NodeFR6Stream

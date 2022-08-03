@@ -1,17 +1,11 @@
 .include "macros.inc"
 .section .rodata  # 0x804732E0 - 0x8049E220
 .balign 8
-.global lbl_8049B880
 lbl_8049B880:
-	.4byte 0x6D657373
-	.4byte 0x6167654F
-	.4byte 0x626A2E68
-	.4byte 0x00000000
-.global lbl_8049B890
+	.asciz "messageObj.h"
+.balign 4
 lbl_8049B890:
 	.asciz "P2Assert"
-	.skip 3
-	.4byte 0x00000000
 
 .section .data, "wa"	# 0x8049E220 - 0x804EFC20
 .balign 8
@@ -108,46 +102,34 @@ __vt__Q35P2JME7Caption19TRenderingProcessor:
 
 .section .sdata2, "a"     # 0x80516360 - 0x80520E40
 .balign 8
-.global lbl_80520B30
 lbl_80520B30:
 	.float 1.0
-.global lbl_80520B34
 lbl_80520B34:
-	.4byte 0x3E888889
-.global lbl_80520B38
+	.float 0.26666668
 lbl_80520B38:
-	.4byte 0x437F0000
-.global lbl_80520B3C
+	.float 255.0
 lbl_80520B3C:
-	.4byte 0x00000000
-.global lbl_80520B40
+	.float 0.0
 lbl_80520B40:
-	.4byte 0x41200000
-.global lbl_80520B44
+	.float 10.0
 lbl_80520B44:
-	.4byte 0x40A00000
-.global lbl_80520B48
+	.float 5.0
 lbl_80520B48:
 	.float 0.5
-.global lbl_80520B4C
 lbl_80520B4C:
-	.4byte 0x40400000
-.global lbl_80520B50
+	.float 3.0
 lbl_80520B50:
-	.4byte 0x43480000
-	.4byte 0x00000000
-.global lbl_80520B58
+	.float 200.0
+.balign 8
 lbl_80520B58:
 	.4byte 0x43300000
 	.4byte 0x00000000
-.global lbl_80520B60
+.balign 8
 lbl_80520B60:
 	.4byte 0x43300000
 	.4byte 0x80000000
-.global lbl_80520B68
 lbl_80520B68:
-	.4byte 0x43910000
-	.4byte 0x00000000
+	.float 290.0
 
 .section .text, "ax"  # 0x800056C0 - 0x80472F00
 .global doGetDrawInfo__Q35P2JME7Caption19TRenderingProcessorFPQ35P2JME6Window8DrawInfo
@@ -653,7 +635,7 @@ lbl_804516A4:
 /* 804516BC 0044E5FC  4E 80 00 20 */	blr 
 
 .global do_isReady__Q35P2JME7Caption18TSequenceProcessorFv
-do_isReady__Q35P2JME7Caption18TSequenceProcessorFv:
+do_isReady__Q35P2JME7Caption18TSequenceProcessorFv: # weak function
 /* 804516C0 0044E600  38 60 00 01 */	li r3, 1
 /* 804516C4 0044E604  4E 80 00 20 */	blr 
 
@@ -674,7 +656,7 @@ doCharacterSEEnd__Q35P2JME7Caption18TSequenceProcessorFv:
 /* 804516D4 0044E614  4E 80 00 20 */	blr 
 
 .global __dt__Q35P2JME7Caption19TRenderingProcessorFv
-__dt__Q35P2JME7Caption19TRenderingProcessorFv:
+__dt__Q35P2JME7Caption19TRenderingProcessorFv: # weak function
 /* 804516D8 0044E618  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 804516DC 0044E61C  7C 08 02 A6 */	mflr r0
 /* 804516E0 0044E620  90 01 00 14 */	stw r0, 0x14(r1)

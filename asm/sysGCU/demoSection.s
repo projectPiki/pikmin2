@@ -1,33 +1,38 @@
 .include "macros.inc"
 .section .rodata  # 0x804732E0 - 0x8049E220
 .balign 8
-.global lbl_8049B3C0
 lbl_8049B3C0:
 	.asciz "demoSection.cpp"
+.balign 4
+lbl_8049B3D0:
 	.asciz "TitleSection::init"
-	.skip 1
+.balign 4
+lbl_8049B3E4:
 	.asciz "JMANewSinTable"
-	.skip 1
+.balign 4
+lbl_8049B3F4: # Shift-JIS
 	.4byte 0x54485083 # "THPƒZƒNƒVƒ‡ƒ“"
 	.4byte 0x5A834E83
 	.4byte 0x56838783
-	.4byte 0x93000000
+	.2byte 0x9300
+.balign 4
+lbl_8049B404:
 	.asciz "frameBuffer"
-.global lbl_8049B410
+.balign 4
 lbl_8049B410:
 	.asciz "PSGame.h"
-	.skip 3
-.global lbl_8049B41C
+.balign 4
 lbl_8049B41C:
 	.asciz "P2Assert"
-	.skip 3
+.balign 4
+lbl_8049B428:
 	.asciz "/user/yamashita/arc/demoMovieLogo_us.szs"
-	.skip 3
+.balign 4
+lbl_8049B454:
 	.asciz "/data/timg/pikmin2_logo.bti"
 
 .section .data, "wa"	# 0x8049E220 - 0x804EFC20
 .balign 8
-.global "sLogoLocate__Q24Demo25@unnamed@demoSection_cpp@"
 "sLogoLocate__Q24Demo25@unnamed@demoSection_cpp@":
 	.4byte 0x0172000F
 	.4byte 0x0172000F
@@ -37,7 +42,6 @@ lbl_8049B41C:
 	.4byte 0x0172000F
 	.4byte 0x0172000F
 	.4byte 0x01720028
-.global lbl_804ED348
 lbl_804ED348:
 	.4byte 0x00000000
 	.4byte 0xFFFFFFFF
@@ -78,7 +82,6 @@ __vt__Q24Demo7Section:
 
 .section .sdata, "wa"  # 0x80514680 - 0x80514D80
 .balign 8
-.global "sMovieIndexTable__Q24Demo25@unnamed@demoSection_cpp@"
 "sMovieIndexTable__Q24Demo25@unnamed@demoSection_cpp@":
 	.byte 0x05
 	.byte 0x06
@@ -88,7 +91,6 @@ __vt__Q24Demo7Section:
 	.byte 0x09
 	.byte 0x0A
 	.byte 0x00
-.global "sMovieIndex__Q24Demo25@unnamed@demoSection_cpp@"
 "sMovieIndex__Q24Demo25@unnamed@demoSection_cpp@":
 	.byte 0xFF
 	.byte 0x00
@@ -97,23 +99,19 @@ __vt__Q24Demo7Section:
 
 .section .sdata2, "a"     # 0x80516360 - 0x80520E40
 .balign 8
-.global lbl_80520AB0
 lbl_80520AB0:
 	.float 0.0
-.global lbl_80520AB4
 lbl_80520AB4:
 	.float 0.5
-.global lbl_80520AB8
 lbl_80520AB8:
 	.float 32768.0
-.global lbl_80520ABC
 lbl_80520ABC:
 	.float 8.0
-.global lbl_80520AC0
+.balign 8
 lbl_80520AC0:
 	.4byte 0x43300000
 	.4byte 0x80000000
-.global lbl_80520AC8
+.balign 8
 lbl_80520AC8:
 	.4byte 0x43300000
 	.4byte 0x00000000

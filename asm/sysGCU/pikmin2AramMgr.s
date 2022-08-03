@@ -1,204 +1,218 @@
 .include "macros.inc"
 .section .rodata  # 0x804732E0 - 0x8049E220
 .balign 8
-.global lbl_8049C410
 lbl_8049C410:
 	.asciz "pikmin2AramMgr.cpp"
-	.skip 0x1
+.balign 4
 str_resground:
 	.asciz "res_ground.szs"
-	.skip 0x1
+.balign 4
 str_rescave:
 	.asciz "res_cave.szs"
-	.skip 0x3
+.balign 4
 str_res_SMenuMap:
 	.asciz "res_s_menu_map.szs"
-	.skip 0x1
+.balign 4
 str_res_SMenuPause:
 	.asciz "res_s_menu_pause.szs"
-	.skip 0x3
+.balign 4
 str_res_SMenuItem:
 	.asciz "res_s_menu_item.szs"
+.balign 4
 str_res_Ch1P:
 	.asciz "res_challenge_1p.szs"
-	.skip 0x3
+.balign 4
 str_res_Ch2P:
 	.asciz "res_challenge_2p.szs"
-	.skip 0x3
+.balign 4
 str_res_VS:
 	.asciz "res_vs.szs"
-	.skip 0x1
+.balign 4
 str_res_SMenuPauseDoukutu:
 	.asciz "res_s_menu_pause_doukutu.szs"
-	.skip 0x3
+.balign 4
 str_res_SMenuPauseVS:
 	.asciz "res_s_menu_pause_VS.szs"
+.balign 4
 str_res_AnaDemo:
 	.asciz "res_ana_demo.szs"
-	.skip 0x3
+.balign 4
 str_res_Contena:
 	.asciz "res_contena.szs"
+.balign 4
 str_res_Ufo:
 	.asciz "res_ufo.szs"
+.balign 4
 str_mIMG_tutorial:
 	.asciz "/new_screen/cmn/res_map_image_tutorial.szs"
-	.skip 0x1
+.balign 4
 str_mIMG_forest:
 	.asciz "/new_screen/cmn/res_map_image_forest.szs"
-	.skip 0x3
+.balign 4
 str_mIMG_yakushima:
 	.asciz "/new_screen/cmn/res_map_image_yakushima.szs"
+.balign 4
 str_mIMG_last:
 	.asciz "/new_screen/cmn/res_map_image_last.szs"
-	.skip 0x1
+.balign 4
 str_m_s00:
 	.asciz "/user/Mukki/movie/s00_coursein/demo.szs"
+.balign 4
 str_m_s0B:
 	.asciz "/user/Mukki/movie/s0B_cv_coursein/demo.szs"
-	.skip 0x1
+.balign 4
 str_m_s09:
 	.asciz "/user/Mukki/movie/s09_holein/demo.szs"
-	.skip 0x2
+.balign 4
 str_m_g2F:
 	.asciz "/user/Mukki/movie/g2F_appear_hole/demo.szs"
-	.skip 0x1
+.balign 4
 str_m_g30:
 	.asciz "/user/Mukki/movie/g30_appear_fountain/demo.szs"
-	.skip 0x1
+.balign 4
 str_m_s10:
 	.asciz "/user/Mukki/movie/s10_suck_treasure/demo.szs"
-	.skip 0x3
+.balign 4
 str_m_s17:
 	.asciz "/user/Mukki/movie/s17_suck_equipment/demo.szs"
-	.skip 0x2
+.balign 4
 str_m_s22_e:
 	.asciz "/user/Mukki/movie/s22_cv_suck_equipment/demo.szs"
-	.skip 0x3
+.balign 4
 str_m_s22_t:
 	.asciz "/user/Mukki/movie/s22_cv_suck_treasure/demo.szs"
+.balign 4
 str_m_s01:
 	.asciz "/user/Mukki/movie/s01_dayend/demo.szs"
-	.skip 0x2
+.balign 4
 str_m_s02:
 	.asciz "/user/Mukki/movie/s02_dayend_result/demo.szs"
-	.skip 0x3
+.balign 4
 str_m_s03:
 	.asciz "/user/Mukki/movie/s03_orimadown/demo.szs"
-	.skip 0x3
+.balign 4
 str_m_s04:
 	.asciz "/user/Mukki/movie/s04_dayend_orimadown/demo.szs"
+.balign 4
 str_m_s05:
 	.asciz "/user/Mukki/movie/s05_pikminzero/demo.szs"
-	.skip 0x2
+.balign 4
 str_m_s06:
 	.asciz "/user/Mukki/movie/s06_dayend_pikminzero/demo.szs"
-	.skip 0x3
+.balign 4
 str_m_s0C:
 	.asciz "/user/Mukki/movie/s0C_cv_escape/demo.szs"
-	.skip 0x3
+.balign 4
 str_m_s0E:
 	.asciz "/user/Mukki/movie/s0E_return_cave/demo.szs"
-	.skip 0x1
+.balign 4
 str_m_s12:
 	.asciz "/user/Mukki/movie/s12_cv_giveup/demo.szs"
-	.skip 0x3
+.balign 4
 str_m_s21:
 	.asciz "/user/Mukki/movie/s21_dayend_takeoff/demo.szs"
-	.skip 0x2
+.balign 4
 str_k_onyon_A:
 	.asciz "user/Kando/onyon/arc.szs"
-	.skip 0x3
+.balign 4
 str_k_onyon_T:
 	.asciz "user/Kando/onyon/texts.szs"
-	.skip 0x1
+.balign 4
 str_k_pod_A:
 	.asciz "user/Kando/pod/arc.szs"
-	.skip 0x1
+.balign 4
 str_k_pod_T:
 	.asciz "user/Kando/pod/texts.szs"
-	.skip 0x3
+.balign 4
 str_k_pod_gold_A:
 	.asciz "user/Kando/pod_gold/arc.szs"
+.balign 4
 str_k_pod_gold_T:
 	.asciz "user/Kando/pod_gold/texts.szs"
-	.skip 0x2
+.balign 4
 str_k_ufo_A:
 	.asciz "user/Kando/ufo/arc.szs"
-	.skip 0x1
+.balign 4
 str_k_ufo_T:
 	.asciz "user/Kando/ufo/texts.szs"
-	.skip 0x3
+.balign 4
 str_k_ufo_gold_A:
 	.asciz "user/Kando/ufo_gold/arc.szs"
+.balign 4
 str_k_ufo_gold_T:
 	.asciz "user/Kando/ufo_gold/texts.szs"
-	.skip 0x2
+.balign 4
 str_k_gate_A:
 	.asciz "user/Kando/objects/gates/gate-arc.szs"
-	.skip 0x2
+.balign 4
 str_k_gate_T:
 	.asciz "user/Kando/objects/gates/gate-texts.szs"
+.balign 4
 str_k_egate_A:
 	.asciz "user/Kando/objects/gates/e-gate-arc.szs"
+.balign 4
 str_k_egate_T:
 	.asciz "user/Kando/objects/gates/e-gate-texts.szs"
-	.skip 0x2
+.balign 4
 str_k_dhole_A:
 	.asciz "user/Kando/objects/dungeon_hole/arc.szs"
+.balign 4
 str_k_dhole_T:
 	.asciz "user/Kando/objects/dungeon_hole/texts.szs"
-	.skip 0x2
+.balign 4
 str_k_pikihead_A:
 	.asciz "user/Kando/objects/pikihead/arc.szs"
+.balign 4
 str_k_pikihead_T:
 	.asciz "user/Kando/objects/pikihead/texts.szs"
-	.skip 0x2
+.balign 4
 str_k_sBridge_A:
 	.asciz "user/Kando/bridge/s_bridge/arc.szs"
-	.skip 0x1
+.balign 4
 str_k_sBridge_T:
 	.asciz "user/Kando/bridge/s_bridge/texts.szs"
-	.skip 0x3
+.balign 4
 str_k_slopeU_A:
 	.asciz "user/Kando/bridge/slope_u/arc.szs"
-	.skip 0x2
+.balign 4
 str_k_slopeU_T:
 	.asciz "user/Kando/bridge/slope_u/texts.szs"
+.balign 4
 str_k_lBridge_A:
 	.asciz "user/Kando/bridge/l_bridge/arc.szs"
-	.skip 0x1
+.balign 4
 str_k_lBridge_T:
 	.asciz "user/Kando/bridge/l_bridge/texts.szs"
-	.skip 0x3
+.balign 4
 str_queenchappy_btk:
 	.asciz "/enemy/data/Queen/queenchappy_model.btk"
+.balign 4
 str_queen_model:
 	.asciz "/enemy/data/Queen/model.szs"
+.balign 4
 str_queen_anim:
 	.asciz "/enemy/data/Queen/anim.szs"
-	.skip 0x1
+.balign 4
 str_bigtreasure_model:
 	.asciz "/enemy/data/BigTreasure/model.szs"
-	.skip 0x2
+.balign 4
 str_bigtreasure_anim:
 	.asciz "/enemy/data/BigTreasure/anim.szs"
-	.skip 0x3
+.balign 4
 str_baby_model:
 	.asciz "/enemy/data/Baby/model.szs"
-	.skip 0x1
+.balign 4
 str_baby_anim:
 	.asciz "/enemy/data/Baby/anim.szs"
-	.skip 0x2
-.global lbl_8049CD54
+.balign 4
 lbl_8049CD54:
 	.asciz "P2Assert"
-	.skip 0x3
+.balign 4
 str_enemyResList:
 	.asciz "/enemy/enemyResList.txt"
 
 .section .data, "wa"  # 0x8049E220 - 0x804EFC20
 .balign 8
-.global "sAramResName2D__Q211Pikmin2ARAM28@unnamed@pikmin2AramMgr_cpp@"
 "sAramResName2D__Q211Pikmin2ARAM28@unnamed@pikmin2AramMgr_cpp@":
 	.4byte str_resground
 	.4byte str_rescave
@@ -213,13 +227,11 @@ str_enemyResList:
 	.4byte str_res_AnaDemo
 	.4byte str_res_Contena
 	.4byte str_res_Ufo
-.global "sAramResName2DCmn__Q211Pikmin2ARAM28@unnamed@pikmin2AramMgr_cpp@"
 "sAramResName2DCmn__Q211Pikmin2ARAM28@unnamed@pikmin2AramMgr_cpp@":
 	.4byte str_mIMG_tutorial
 	.4byte str_mIMG_forest
 	.4byte str_mIMG_yakushima
 	.4byte str_mIMG_last
-.global "sAramResDemo__Q211Pikmin2ARAM28@unnamed@pikmin2AramMgr_cpp@"
 "sAramResDemo__Q211Pikmin2ARAM28@unnamed@pikmin2AramMgr_cpp@":
 	.4byte str_m_s00
 	.4byte str_m_s0B
@@ -240,7 +252,6 @@ str_enemyResList:
 	.4byte str_m_s0E
 	.4byte str_m_s12
 	.4byte str_m_s21
-.global "sAramResItem__Q211Pikmin2ARAM28@unnamed@pikmin2AramMgr_cpp@"
 "sAramResItem__Q211Pikmin2ARAM28@unnamed@pikmin2AramMgr_cpp@":
 	.4byte str_k_onyon_A
 	.4byte str_k_onyon_T
@@ -271,17 +282,15 @@ __vt__Q211Pikmin2ARAM3Mgr:
 	.4byte 0
 	.4byte 0
 	.4byte __dt__Q211Pikmin2ARAM3MgrFv
-	.4byte 0
 
 .section .sbss # 0x80514D80 - 0x80516360
 .balign 8
 .global gPikmin2AramMgr
 gPikmin2AramMgr:
-	.skip 0x8
+	.skip 0x4
 
 .section .sdata2, "a"     # 0x80516360 - 0x80520E40
 .balign 8
-.global lbl_80520BE0
 lbl_80520BE0:
 	.asciz "EOF"
 
@@ -602,7 +611,7 @@ lbl_8045603C:
 /* 8045607C 00452FBC  4E 80 00 20 */	blr 
 
 .global __dt__Q211Pikmin2ARAM3MgrFv
-__dt__Q211Pikmin2ARAM3MgrFv:
+__dt__Q211Pikmin2ARAM3MgrFv: # weak function
 /* 80456080 00452FC0  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 80456084 00452FC4  7C 08 02 A6 */	mflr r0
 /* 80456088 00452FC8  90 01 00 14 */	stw r0, 0x14(r1)

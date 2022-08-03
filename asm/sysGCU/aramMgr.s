@@ -1,15 +1,11 @@
 .include "macros.inc"
 .section .rodata  # 0x804732E0 - 0x8049E220
 .balign 8
-.global lbl_8049A628
 lbl_8049A628:
-	.4byte 0x6172616D
-	.4byte 0x4D67722E
-	.4byte 0x63707000
-.global lbl_8049A634
+	.asciz "aramMgr.cpp"
+.balign 4
 lbl_8049A634:
 	.asciz "P2Assert"
-	.skip 3
 
 .section .data, "wa"  # 0x8049E220 - 0x804EFC20
 .balign 8
@@ -24,18 +20,15 @@ __vt__Q24ARAM4Node:
 .balign 8
 .global gAramMgr
 gAramMgr:
-	.skip 0x8
+	.skip 0x4
 
 .section .sdata2, "a"     # 0x80516360 - 0x80520E40
 .balign 8
-.global lbl_80520770
 lbl_80520770:
-	.4byte 0x00000000
-.global lbl_80520774
+	.asciz ""
+.balign 4
 lbl_80520774:
-	.4byte 0x726F6F74
-	.4byte 0x00000000
-	.4byte 0x00000000
+	.asciz "root"
 
 .section .text, "ax"  # 0x800056C0 - 0x80472F00
 .global init__Q24ARAM3MgrFv

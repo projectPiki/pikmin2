@@ -1,35 +1,30 @@
 .include "macros.inc"
 .section .rodata  # 0x804732E0 - 0x8049E220
 .balign 8
-.global lbl_8049AEC0
 lbl_8049AEC0:
 	.asciz "commonSaveData.cpp"
-	.skip 1
-.global lbl_8049AED4
+.balign 4
 lbl_8049AED4:
 	.asciz "Unknown sound mode:%d \n"
+.balign 4
+lbl_8049AEEC:
 	.asciz "P2Assert"
-	.skip 3
+.balign 4
+lbl_8049AEF8:
 	.asciz "PSSystemIF.h"
-	.skip 3
 
 .section .sdata2, "a"     # 0x80516360 - 0x80520E40
 .balign 8
-.global lbl_80520980
 lbl_80520980:
 	.float 255.0
-	.skip 4
-.global lbl_80520988
+.balign 8
 lbl_80520988:
 	.4byte 0x43300000
 	.4byte 0x00000000
-.global lbl_80520990
 lbl_80520990:
 	.float 0.0
-.global lbl_80520994
 lbl_80520994:
 	.float 1.0
-.global lbl_80520998
 lbl_80520998:
 	.float 0.5
 
