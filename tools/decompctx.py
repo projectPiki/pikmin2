@@ -29,7 +29,7 @@ def import_c_file(in_file) -> str:
     in_file = os.path.relpath(in_file, root_dir)
     out_text = ''
 
-    with open(in_file) as file:
+    with open(in_file, encoding="shift-jis") as file:
       for idx, line in enumerate(file):
         guard_match = guard_pattern.match(line.strip())
         if idx == 0:
