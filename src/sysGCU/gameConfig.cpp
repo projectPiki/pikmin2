@@ -210,7 +210,7 @@
 
 namespace Game {
 
-extern GameConfig gGameConfig;
+GameConfig gGameConfig;
 
 /*
  * --INFO--
