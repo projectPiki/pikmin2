@@ -1,42 +1,35 @@
 #include "types.h"
+#include "Dolphin/gx.h"
 
 /*
  * --INFO--
  * Address:	800E7F40
  * Size:	00006C
  */
-void GXSetTevIndirect(void)
+// modified from Open_RVL
+void GXSetTevIndirect(GXTevStageID tevStage, GXIndTexStageID texStage,
+                      GXIndTexFormat texFmt, GXIndTexBiasSel biasSel,
+                      GXIndTexMtxID mtxId, GXIndTexWrap wrapS,
+                      GXIndTexWrap wrapT, u8 addPrev, u8 utcLod,
+                      GXIndTexAlphaSel alphaSel) 
 {
-	/*
-	.loc_0x0:
-	  stwu      r1, -0x30(r1)
-	  li        r0, 0
-	  rlwimi    r0,r4,0,30,31
-	  stw       r31, 0x2C(r1)
-	  mr        r11, r0
-	  rlwimi    r11,r5,2,28,29
-	  lwz       r12, 0x3C(r1)
-	  lbz       r31, 0x3B(r1)
-	  rlwimi    r11,r6,4,25,27
-	  lwz       r4, -0x6D70(r2)
-	  rlwimi    r11,r12,7,23,24
-	  rlwimi    r11,r7,9,19,22
-	  rlwimi    r11,r8,13,16,18
-	  rlwimi    r11,r9,16,13,15
-	  rlwimi    r11,r31,19,12,12
-	  li        r0, 0x61
-	  lis       r5, 0xCC01
-	  stb       r0, -0x8000(r5)
-	  addi      r0, r3, 0x10
-	  rlwimi    r11,r10,20,11,11
-	  rlwimi    r11,r0,24,0,7
-	  stw       r11, -0x8000(r5)
-	  li        r0, 0
-	  sth       r0, 0x2(r4)
-	  lwz       r31, 0x2C(r1)
-	  addi      r1, r1, 0x30
-	  blr
-	*/
+    u32 field = 0;
+    const u32 stage = tevStage + 0x10;
+
+    GX_BITFIELD_SET(field, 30, 2, texStage);
+    GX_BITFIELD_SET(field, 28, 2, texFmt);
+    GX_BITFIELD_SET(field, 25, 3, biasSel);
+    GX_BITFIELD_SET(field, 23, 2, alphaSel);
+    GX_BITFIELD_SET(field, 19, 4, mtxId);
+    GX_BITFIELD_SET(field, 16, 3, wrapS);
+    GX_BITFIELD_SET(field, 13, 3, wrapT);
+    GX_BITFIELD_SET(field, 12, 1, utcLod);
+    GX_BITFIELD_SET(field, 11, 1, addPrev);
+    GX_BITFIELD_SET(field, 0, 8, stage);
+
+    GXWGFifo.u8 = 0x61;
+    GXWGFifo.s32 = field;
+    __GXData->_000[1] = 0;
 }
 
 /*
@@ -44,6 +37,7 @@ void GXSetTevIndirect(void)
  * Address:	800E7FAC
  * Size:	000178
  */
+// WIP: https://decomp.me/scratch/dsTgU 
 void GXSetIndTexMtx(void)
 {
 	/*
@@ -162,104 +156,47 @@ void GXSetIndTexMtx(void)
  * Address:	800E8124
  * Size:	000144
  */
-void GXSetIndTexCoordScale(void)
+// modified from Open_RVL
+void GXSetIndTexCoordScale(GXIndTexStageID stage, GXIndTexScale scaleS,
+                           GXIndTexScale scaleT) 
 {
-	/*
-	.loc_0x0:
-	  cmpwi     r3, 0x2
-	  beq-      .loc_0xB0
-	  bge-      .loc_0x1C
-	  cmpwi     r3, 0
-	  beq-      .loc_0x28
-	  bge-      .loc_0x6C
-	  b         .loc_0x134
+    GXData* data;
+    switch (stage) {
+    case GX_IND_TEX_STAGE_ID_0:
+        data = __GXData;
+        GX_BITFIELD_SET(data->_128, 28, 4, scaleS);
+        GX_BITFIELD_SET(data->_128, 24, 4, scaleT);
+        GX_BITFIELD_SET(data->_128, 0, 8, 0x25);
+        GXWGFifo.u8 = 0x61;
+        GXWGFifo.s32 = data->_128;
+        break;
+    case GX_IND_TEX_STAGE_ID_1:
+        data = __GXData;
+        GX_BITFIELD_SET(data->_128, 20, 4, scaleS);
+        GX_BITFIELD_SET(data->_128, 16, 4, scaleT);
+        GX_BITFIELD_SET(data->_128, 0, 8, 0x25);
+        GXWGFifo.u8 = 0x61;
+        GXWGFifo.s32 = data->_128;
+        break;
+    case GX_IND_TEX_STAGE_ID_2:
+        data = __GXData;
+        GX_BITFIELD_SET(data->_12C, 28, 4, scaleS);
+        GX_BITFIELD_SET(data->_12C, 24, 4, scaleT);
+        GX_BITFIELD_SET(data->_12C, 0, 8, 0x26);
+        GXWGFifo.u8 = 0x61;
+        GXWGFifo.s32 = data->_12C;
+        break;
+    case GX_IND_TEX_STAGE_ID_3:
+        data = __GXData;
+        GX_BITFIELD_SET(data->_12C, 20, 4, scaleS);
+        GX_BITFIELD_SET(data->_12C, 16, 4, scaleT);
+        GX_BITFIELD_SET(data->_12C, 0, 8, 0x26);
+        GXWGFifo.u8 = 0x61;
+        GXWGFifo.s32 = data->_12C;
+        break;
+    }
 
-	.loc_0x1C:
-	  cmpwi     r3, 0x4
-	  bge-      .loc_0x134
-	  b         .loc_0xF4
-
-	.loc_0x28:
-	  lwz       r8, -0x6D70(r2)
-	  li        r6, 0x25
-	  li        r0, 0x61
-	  lwz       r7, 0x128(r8)
-	  rlwimi    r7,r4,0,28,31
-	  lis       r3, 0xCC01
-	  stw       r7, 0x128(r8)
-	  lwz       r4, 0x128(r8)
-	  rlwimi    r4,r5,4,24,27
-	  stw       r4, 0x128(r8)
-	  lwz       r4, 0x128(r8)
-	  rlwimi    r4,r6,24,0,7
-	  stw       r4, 0x128(r8)
-	  stb       r0, -0x8000(r3)
-	  lwz       r0, 0x128(r8)
-	  stw       r0, -0x8000(r3)
-	  b         .loc_0x134
-
-	.loc_0x6C:
-	  lwz       r8, -0x6D70(r2)
-	  li        r6, 0x25
-	  li        r0, 0x61
-	  lwz       r7, 0x128(r8)
-	  rlwimi    r7,r4,8,20,23
-	  lis       r3, 0xCC01
-	  stw       r7, 0x128(r8)
-	  lwz       r4, 0x128(r8)
-	  rlwimi    r4,r5,12,16,19
-	  stw       r4, 0x128(r8)
-	  lwz       r4, 0x128(r8)
-	  rlwimi    r4,r6,24,0,7
-	  stw       r4, 0x128(r8)
-	  stb       r0, -0x8000(r3)
-	  lwz       r0, 0x128(r8)
-	  stw       r0, -0x8000(r3)
-	  b         .loc_0x134
-
-	.loc_0xB0:
-	  lwz       r8, -0x6D70(r2)
-	  li        r6, 0x26
-	  li        r0, 0x61
-	  lwz       r7, 0x12C(r8)
-	  rlwimi    r7,r4,0,28,31
-	  lis       r3, 0xCC01
-	  stw       r7, 0x12C(r8)
-	  lwz       r4, 0x12C(r8)
-	  rlwimi    r4,r5,4,24,27
-	  stw       r4, 0x12C(r8)
-	  lwz       r4, 0x12C(r8)
-	  rlwimi    r4,r6,24,0,7
-	  stw       r4, 0x12C(r8)
-	  stb       r0, -0x8000(r3)
-	  lwz       r0, 0x12C(r8)
-	  stw       r0, -0x8000(r3)
-	  b         .loc_0x134
-
-	.loc_0xF4:
-	  lwz       r8, -0x6D70(r2)
-	  li        r6, 0x26
-	  li        r0, 0x61
-	  lwz       r7, 0x12C(r8)
-	  rlwimi    r7,r4,8,20,23
-	  lis       r3, 0xCC01
-	  stw       r7, 0x12C(r8)
-	  lwz       r4, 0x12C(r8)
-	  rlwimi    r4,r5,12,16,19
-	  stw       r4, 0x12C(r8)
-	  lwz       r4, 0x12C(r8)
-	  rlwimi    r4,r6,24,0,7
-	  stw       r4, 0x12C(r8)
-	  stb       r0, -0x8000(r3)
-	  lwz       r0, 0x12C(r8)
-	  stw       r0, -0x8000(r3)
-
-	.loc_0x134:
-	  lwz       r3, -0x6D70(r2)
-	  li        r0, 0
-	  sth       r0, 0x2(r3)
-	  blr
-	*/
+    __GXData->_000[1] = 0;
 }
 
 /*
@@ -267,6 +204,7 @@ void GXSetIndTexCoordScale(void)
  * Address:	800E8268
  * Size:	0000EC
  */
+// WIP: https://decomp.me/scratch/m4XhD 
 void GXSetIndTexOrder(void)
 {
 	/*
@@ -354,20 +292,11 @@ void GXSetIndTexOrder(void)
  * Address:	800E8354
  * Size:	000024
  */
-void GXSetNumIndStages(void)
-{
-	/*
-	.loc_0x0:
-	  lwz       r4, -0x6D70(r2)
-	  rlwinm    r0,r3,0,24,31
-	  lwz       r3, 0x204(r4)
-	  rlwimi    r3,r0,16,13,15
-	  stw       r3, 0x204(r4)
-	  lwz       r0, 0x5AC(r4)
-	  ori       r0, r0, 0x6
-	  stw       r0, 0x5AC(r4)
-	  blr
-	*/
+// modified from Open_RVL
+void GXSetNumIndStages(u8 num) {
+    GXData* data = __GXData;
+    GX_BITFIELD_SET(data->_204, 13, 3, num);
+    data->_5AC |= 0x6;
 }
 
 /*
@@ -375,29 +304,12 @@ void GXSetNumIndStages(void)
  * Address:	800E8378
  * Size:	000048
  */
-void GXSetTevDirect(void)
-{
-	/*
-	.loc_0x0:
-	  mflr      r0
-	  li        r4, 0
-	  stw       r0, 0x4(r1)
-	  li        r0, 0
-	  li        r5, 0
-	  stwu      r1, -0x18(r1)
-	  li        r6, 0
-	  li        r7, 0
-	  stw       r0, 0x8(r1)
-	  li        r8, 0
-	  li        r9, 0
-	  stw       r0, 0xC(r1)
-	  li        r10, 0
-	  bl        -0x46C
-	  lwz       r0, 0x1C(r1)
-	  addi      r1, r1, 0x18
-	  mtlr      r0
-	  blr
-	*/
+// modified from Open_RVL
+void GXSetTevDirect(GXTevStageID stage) {
+    GXSetTevIndirect(stage, GX_IND_TEX_STAGE_ID_0, GX_IND_TEX_FMT_0,
+                     GX_IND_TEX_BIAS_SEL_0, GX_IND_TEX_MTX_ID_0,
+                     GX_IND_TEX_WRAP_0, GX_IND_TEX_WRAP_0, FALSE, FALSE,
+                     GX_IND_TEX_ALPHA_SEL_0);
 }
 
 /*
@@ -405,6 +317,7 @@ void GXSetTevDirect(void)
  * Address:	800E83C0
  * Size:	000064
  */
+// WIP: https://decomp.me/scratch/7r4LH 
 void GXSetTevIndWarp(void)
 {
 	/*
@@ -450,89 +363,72 @@ void GXSetTevIndWarp(void)
  * Address:	........
  * Size:	0001AC
  */
-void GXSetTevIndTile(void)
-{
-	// UNUSED FUNCTION
-}
+// void GXSetTevIndTile(void)
+// {
+// 	// UNUSED FUNCTION
+// }
 
 /*
  * --INFO--
  * Address:	........
  * Size:	00010C
  */
-void GXSetTevIndBumpST(void)
-{
-	// UNUSED FUNCTION
-}
+// void GXSetTevIndBumpST(void)
+// {
+// 	// UNUSED FUNCTION
+// }
 
 /*
  * --INFO--
  * Address:	........
  * Size:	000044
  */
-void GXSetTevIndBumpXYZ(void)
-{
-	// UNUSED FUNCTION
-}
+// void GXSetTevIndBumpXYZ(void)
+// {
+// 	// UNUSED FUNCTION
+// }
 
 /*
  * --INFO--
  * Address:	........
  * Size:	000048
  */
-void GXSetTevIndRepeat(void)
-{
-	// UNUSED FUNCTION
-}
+// void GXSetTevIndRepeat(void)
+// {
+// 	// UNUSED FUNCTION
+// }
 
 /*
  * --INFO--
  * Address:	800E8424
  * Size:	000004
  */
-void __GXUpdateBPMask(void) { }
+void __GXUpdateBPMask() { }
 
 /*
  * --INFO--
  * Address:	800E8428
  * Size:	000030
  */
-void __GXSetIndirectMask(void)
+// modified from Open_RVL
+void __GXSetIndirectMask(u32 mask) 
 {
-	/*
-	.loc_0x0:
-	  lwz       r7, -0x6D70(r2)
-	  li        r5, 0x61
-	  lis       r4, 0xCC01
-	  lwz       r6, 0x124(r7)
-	  rlwimi    r6,r3,0,24,31
-	  li        r0, 0
-	  stw       r6, 0x124(r7)
-	  stb       r5, -0x8000(r4)
-	  lwz       r3, 0x124(r7)
-	  stw       r3, -0x8000(r4)
-	  sth       r0, 0x2(r7)
-	  blr
-	*/
+    GXData* data = __GXData;
+    GX_BITFIELD_SET(data->_124, 24, 8, mask);
+    GXWGFifo.u8 = 0x61;
+    GXWGFifo.s32 = data->_124;
+    data->_000[1] = 0;
 }
+
 
 /*
  * --INFO--
  * Address:	800E8458
  * Size:	000024
  */
-void __GXFlushTextureState(void)
+void __GXFlushTextureState() 
 {
-	/*
-	.loc_0x0:
-	  li        r0, 0x61
-	  lwz       r4, -0x6D70(r2)
-	  lis       r5, 0xCC01
-	  stb       r0, -0x8000(r5)
-	  li        r0, 0
-	  lwz       r3, 0x124(r4)
-	  stw       r3, -0x8000(r5)
-	  sth       r0, 0x2(r4)
-	  blr
-	*/
+    GXWGFifo.u8 = 0x61;
+    GXWGFifo.s32 = __GXData->_124;
+    __GXData->_000[1] = 0;
 }

@@ -21,6 +21,11 @@ typedef u8 GXBool;
 #define GX_ENABLE  ((GXBool)1)
 #define GX_DISABLE ((GXBool)0)
 
+// Pack value into bitfield
+#define GX_BITFIELD_SET(field, pos, size, value)                               \
+    (field) = __rlwimi((field), (value), 31 - (pos) - (size) + 1, (pos),       \
+                       (pos) + (size)-1)
+
 typedef enum _GXCullMode {
 	GX_CULL_NONE,
 	GX_CULL_FRONT,
@@ -90,6 +95,53 @@ typedef enum _GXAnisotropy {
 	GX_ANISO_2,
 	GX_ANISO_4,
 } GXAnisotropy;
+
+// GXIndTex enums from OpenRVL
+
+typedef enum _GXIndTexAlphaSel {
+    GX_IND_TEX_ALPHA_SEL_0,
+} GXIndTexAlphaSel;
+
+typedef enum _GXIndTexBiasSel {
+    GX_IND_TEX_BIAS_SEL_0,
+} GXIndTexBiasSel;
+
+typedef enum _GXIndTexFormat {
+    GX_IND_TEX_FMT_0,
+} GXIndTexFormat;
+
+typedef enum _GXIndTexMtxID {
+    GX_IND_TEX_MTX_ID_0,
+    GX_IND_TEX_MTX_ID_1,
+    GX_IND_TEX_MTX_ID_2,
+    GX_IND_TEX_MTX_ID_3,
+    GX_IND_TEX_MTX_ID_4,
+    GX_IND_TEX_MTX_ID_5,
+    GX_IND_TEX_MTX_ID_6,
+    GX_IND_TEX_MTX_ID_7,
+    GX_IND_TEX_MTX_ID_8,
+    GX_IND_TEX_MTX_ID_9,
+    GX_IND_TEX_MTX_ID_10,
+    GX_IND_TEX_MTX_ID_11,
+} GXIndTexMtxID;
+
+typedef enum _GXIndTexScale {
+    GX_IND_TEX_SCALE_0,
+} GXIndTexScale;
+
+typedef enum _GXIndTexStageID {
+    GX_IND_TEX_STAGE_ID_0,
+    GX_IND_TEX_STAGE_ID_1,
+    GX_IND_TEX_STAGE_ID_2,
+    GX_IND_TEX_STAGE_ID_3
+} GXIndTexStageID;
+
+typedef enum _GXIndTexWrap {
+    GX_IND_TEX_WRAP_0,
+} GXIndTexWrap;
+
+
+
 
 /*
  * RGB, RGBA, Intensity, Intensity/Alpha, Compressed, and Z texture format
@@ -609,7 +661,7 @@ typedef union _ControlRegister {
  * @size{0x5B0}
  */
 typedef struct _GXData {
-	u32 _000;   // _000
+	u16 _000[2];   // _000
 	u8 _004[4]; // _004
 	/* CPControl. Gets written to __cpReg->controlRegister. */
 	// union {
@@ -634,9 +686,36 @@ typedef struct _GXData {
 	ControlRegister controlRegister; // _008
 	// u32 controlRegister;
 	/* Probably CPStatus. */
-	u32 _00C;       // _00C
-	u8 _010[0x59C]; // _010
-	u32 _5AC;       // _5AC
+	u32 _00C;       	// _00C
+	u8 _010[0x6C];  	// _010
+	u32 _07C;			// _07C
+	u8 _080[0x28];		// _080
+	GXColor _0A8[2];	// _0A8
+	GXColor _0B0[2];	// _0B0
+	u32 _0B8[2];		// _0B8
+	u32 _0C0;			// _0C0
+	u32 _0C4;			// _0C4
+	u32 _0C8[2];		// _0C8
+	u8 _0D0[0x18];		// _0D0
+	u32 _0E8[2];		// _0E8
+	u8 _0F0[0x18];		// _0F0
+	u32 _108[2];		// _108
+	u8 _110[0x10];		// _110
+	u32 _120;			// _120
+	u32 _124;			// _124
+	u32 _128;			// _128
+	u32 _12C;			// _12C
+	u8 _130[0x40];		// _130
+	u32 _170;			// _170
+	u32 _174;			// _174
+	u32 _178;			// _178
+	u32 _17C;			// _17C
+	u8 _180[0x84];		// _180
+	u32 _204;			// _204
+	u8 _208[0x4C];		// _208
+	u32 _254;			// _254
+	u8 _258[0x354];		// _258
+	u32 _5AC;       	// _5AC
 } GXData;
 extern GXData* __GXData;
 

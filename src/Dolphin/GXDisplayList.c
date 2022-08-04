@@ -31,7 +31,7 @@ void GXCallDisplayList(void* dl, u32 byteCnt)
 	if (__GXData->_5AC != 0) {
 		__GXSetDirtyState();
 	}
-	if (__GXData->_000 == 0) {
+	if (__GXData->_000[0] == 0) {
 		__GXSendFlushPrim();
 	}
 	HW_REG(0xCC008000, u8)    = 0x40;
