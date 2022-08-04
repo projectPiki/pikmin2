@@ -15,7 +15,7 @@ struct Node : public CNode {
 		_18 = nullptr;
 	}
 
-	virtual ~Node();                               // _00
+	virtual ~Node() { }                            // _00
 	virtual void update();                         // _08
 	virtual void draw(Graphics&, J2DGrafContext&); // _0C
 	virtual void doInit();                         // _10
@@ -40,7 +40,7 @@ struct CallBackNode : public Node {
 struct Mgr : public J2DScreen {
 	Mgr();
 
-	virtual ~Mgr();                                // _00
+	virtual ~Mgr() { }                             // _00
 	virtual void update();                         // _28
 	virtual void draw(Graphics&, J2DGrafContext&); // _94
 
@@ -55,7 +55,7 @@ struct Mgr : public J2DScreen {
 struct Mgr_tuning : public Mgr {
 	Mgr_tuning();
 
-	virtual ~Mgr_tuning();                         // _00
+	virtual ~Mgr_tuning() { }                      // _00
 	virtual void draw(Graphics&, J2DGrafContext&); // _94
 
 	float m_widthMaybe;  // _138

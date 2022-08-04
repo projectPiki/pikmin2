@@ -21,8 +21,16 @@ typedef u8 GXBool;
 #define GX_ENABLE  ((GXBool)1)
 #define GX_DISABLE ((GXBool)0)
 
-// TODO: Replace(?) this block of typedefs. They're just placeholders for now.
-typedef u32 GXCullMode;
+typedef enum _GXCullMode
+{
+    GX_CULL_NONE,
+    GX_CULL_FRONT,
+    GX_CULL_BACK,
+    GX_CULL_ALL
+
+} GXCullMode;
+
+// TODO: Placeholder
 typedef u32 _GXVtxAttrFmtList;
 
 typedef enum _GXPrimitive {

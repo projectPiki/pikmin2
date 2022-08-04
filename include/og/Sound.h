@@ -48,7 +48,7 @@ struct Sound {
 	void setVsDraw();
 	void setWarning();
 };
-extern Sound ogSound;
+extern Sound* ogSound;
 } // namespace og
 
 #endif

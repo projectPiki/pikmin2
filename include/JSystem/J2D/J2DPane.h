@@ -209,7 +209,7 @@ struct J2DPane {
 	float _0C0;                      // _0C0
 	JGeometry::TVec2f m_anchorPoint; // _0C4
 	JGeometry::TVec2f m_scale;       // _0CC
-	float _0D4[2];                   // _0D4 /* offset X,Y? */
+	JGeometry::TVec2f _0D4;          // _0D4 /* offset X,Y? */
 	JSUTree<J2DPane> m_tree;         // _0DC
 	J2DAnmTransform* m_transform;    // _0F8
 	u8 _0FC[4];                      // _0FC
