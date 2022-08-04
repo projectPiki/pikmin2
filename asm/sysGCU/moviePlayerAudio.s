@@ -5,26 +5,22 @@ lbl_constructor:
 
 .section .data, "wa"  # 0x8049E220 - 0x804EFC20
 .balign 8
-.global lbl_804ED8C8
-lbl_804ED8C8:
-	.4byte 0x00000000
-	.4byte 0x00000000
-	.4byte 0x00000000
+govNAN___Q24Game5P2JST:
+	.float 0.0
+	.float 0.0
+	.float 0.0
 .global __vt__27Pikmin_TCreateObject_JAudio
 __vt__27Pikmin_TCreateObject_JAudio:
 	.4byte 0
 	.4byte 0
 	.4byte __dt__27Pikmin_TCreateObject_JAudioFv
 	.4byte create__27Pikmin_TCreateObject_JAudioFPPQ27JStudio7TObjectRCQ47JStudio3stb4data20TParse_TBlock_object
-	.4byte 0
 
 .section .sbss # 0x80514D80 - 0x80516360
 .balign 8
-.global lbl_805162F8
-lbl_805162F8:
+gu32NAN___Q24Game5P2JST:
 	.skip 0x4
-.global lbl_805162FC
-lbl_805162FC:
+gfNAN___Q24Game5P2JST:
 	.skip 0x4
 
 .section .text, "ax"  # 0x800056C0 - 0x80472F00
@@ -162,7 +158,7 @@ lbl_80454EE0:
 /* 80454EFC 00451E3C  4E 80 00 20 */	blr 
 
 .global __dt__27Pikmin_TCreateObject_JAudioFv
-__dt__27Pikmin_TCreateObject_JAudioFv:
+__dt__27Pikmin_TCreateObject_JAudioFv: # weak function
 /* 80454F00 00451E40  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 80454F04 00451E44  7C 08 02 A6 */	mflr r0
 /* 80454F08 00451E48  90 01 00 14 */	stw r0, 0x14(r1)
@@ -189,15 +185,14 @@ lbl_80454F44:
 /* 80454F58 00451E98  38 21 00 10 */	addi r1, r1, 0x10
 /* 80454F5C 00451E9C  4E 80 00 20 */	blr 
 
-.global __sinit_moviePlayerAudio_cpp
-__sinit_moviePlayerAudio_cpp:
+__sinit_moviePlayerAudio_cpp: # static initializer
 /* 80454F60 00451EA0  3C 80 80 51 */	lis r4, __float_nan@ha
 /* 80454F64 00451EA4  38 00 FF FF */	li r0, -1
 /* 80454F68 00451EA8  C0 04 48 B0 */	lfs f0, __float_nan@l(r4)
-/* 80454F6C 00451EAC  3C 60 80 4F */	lis r3, lbl_804ED8C8@ha
-/* 80454F70 00451EB0  90 0D 9C 78 */	stw r0, lbl_805162F8@sda21(r13)
-/* 80454F74 00451EB4  D4 03 D8 C8 */	stfsu f0, lbl_804ED8C8@l(r3)
-/* 80454F78 00451EB8  D0 0D 9C 7C */	stfs f0, lbl_805162FC@sda21(r13)
+/* 80454F6C 00451EAC  3C 60 80 4F */	lis r3, govNAN___Q24Game5P2JST@ha
+/* 80454F70 00451EB0  90 0D 9C 78 */	stw r0, gu32NAN___Q24Game5P2JST@sda21(r13)
+/* 80454F74 00451EB4  D4 03 D8 C8 */	stfsu f0, govNAN___Q24Game5P2JST@l(r3)
+/* 80454F78 00451EB8  D0 0D 9C 7C */	stfs f0, gfNAN___Q24Game5P2JST@sda21(r13)
 /* 80454F7C 00451EBC  D0 03 00 04 */	stfs f0, 4(r3)
 /* 80454F80 00451EC0  D0 03 00 08 */	stfs f0, 8(r3)
 /* 80454F84 00451EC4  4E 80 00 20 */	blr 

@@ -5,24 +5,21 @@ lbl_constructor:
 
 .section .rodata  # 0x804732E0 - 0x8049E220
 .balign 8
-.global lbl_80499F10
 lbl_80499F10:
 	.4byte 0x00000000
 	.4byte 0x00000000
 	.4byte 0x00000000
-	.4byte 0x6D6F7669
-	.4byte 0x65506C61
-	.4byte 0x79657200
-.global lbl_80499F28
+.balign 4
+lbl_80499F1C:
+	.asciz "moviePlayer"
+.balign 4
 lbl_80499F28:
-	.4byte 0x6D6F7669
-	.4byte 0x65506C61
-	.4byte 0x7965722E
-	.4byte 0x63707000
-.global lbl_80499F38
+	.asciz "moviePlayer.cpp"
+.balign 4
 lbl_80499F38:
 	.asciz "P2Assert"
-	.skip 3
+.balign 4
+lbl_80499F44: # Shift-JIS
 	.4byte 0x2A2A2A2A
 	.4byte 0x2A2A2A20
 	.4byte 0x819A834C
@@ -33,35 +30,23 @@ lbl_80499F38:
 	.4byte 0x82F182E6
 	.4byte 0x81608149
 	.4byte 0x81490A00
-	.4byte 0x2F757365
-	.4byte 0x722F4D75
-	.4byte 0x6B6B692F
-	.4byte 0x6D6F7669
-	.4byte 0x652F2573
-	.4byte 0x2F64656D
-	.4byte 0x6F2E7374
-	.4byte 0x62000000
-	.4byte 0x2F757365
-	.4byte 0x722F4D75
-	.4byte 0x6B6B692F
-	.4byte 0x6D6F7669
-	.4byte 0x652F2573
-	.4byte 0x2F64656D
-	.4byte 0x6F2E737A
-	.4byte 0x73000000
-	.4byte 0x6D6F7669
-	.4byte 0x65506C3A
-	.4byte 0x706C6179
-	.4byte 0x00000000
-	.4byte 0x54686520
-	.4byte 0x42696B6B
-	.4byte 0x7572690A
-	.4byte 0x00000000
-	.4byte 0x5B515545
-	.4byte 0x5F464149
-	.4byte 0x4C45445D
-	.4byte 0x2025730A
-	.4byte 0x00000000
+.balign 4
+lbl_80499F6C:
+	.asciz "/user/Mukki/movie/%s/demo.stb"
+.balign 4
+lbl_80499F8C:
+	.asciz "/user/Mukki/movie/%s/demo.szs"
+.balign 4
+lbl_80499FAC:
+	.asciz "moviePl:play"
+.balign 4
+lbl_80499FBC:
+	.asciz "The Bikkuri\n"
+.balign 4
+lbl_80499FCC:
+	.asciz "[QUE_FAILED] %s\n"
+.balign 4
+lbl_80499FE0: # Shift-JIS
 	.4byte 0x20834C83
 	.4byte 0x85815B82
 	.4byte 0xC982C882
@@ -70,20 +55,22 @@ lbl_80499F38:
 	.4byte 0xBC815B81
 	.4byte 0x5B28545E
 	.4byte 0x54290A00
-	.4byte 0x4F626A65
-	.4byte 0x63745379
-	.4byte 0x7374656D
-	.4byte 0x00000000
-	.4byte 0x6D6F7669
-	.4byte 0x65526573
-	.4byte 0x6F757263
-	.4byte 0x65000000
-	.4byte 0x64656D6F
-	.4byte 0x2E737462
-	.4byte 0x00000000
+.balign 4
+lbl_8049A000:
+	.asciz "ObjectSystem"
+.balign 4
+lbl_8049A010:
+	.asciz "movieResource"
+.balign 4
+lbl_8049A020:
+	.asciz "demo.stb"
+.balign 4
+lbl_8049A02C: # Shift-JIS
 	.4byte 0x82DC82C0
 	.4byte 0x82A98297
 	.4byte 0x0A000000
+.balign 4
+lbl_8049A038: # Shift-JIS
 	.4byte 0x64656D6F
 	.4byte 0x2E737A73
 	.4byte 0x2082AA82
@@ -92,18 +79,14 @@ lbl_80499F38:
 	.4byte 0xDF82BE82
 	.4byte 0xE682970A
 	.4byte 0x00000000
-	.4byte 0x7265736F
-	.4byte 0x75726365
-	.4byte 0x206F7065
-	.4byte 0x6E206661
-	.4byte 0x696C6564
-	.4byte 0x210A0000
-	.4byte 0x4A537475
-	.4byte 0x64696F3A
-	.4byte 0x3A545061
-	.4byte 0x72736500
-.global lbl_8049A080
-lbl_8049A080:
+.balign 4
+lbl_8049A058:
+	.asciz "resource open failed!\n"
+.balign 4
+lbl_8049A070:
+	.asciz "JStudio::TParse"
+.balign 4
+lbl_8049A080: # Shift-JIS
 	.4byte 0x8366815B
 	.4byte 0x835E82F0
 	.4byte 0x89F08EDF
@@ -111,75 +94,50 @@ lbl_8049A080:
 	.4byte 0x82DC82B5
 	.4byte 0x82A582F1
 	.4byte 0x0A000000
-	.4byte 0x6D6F7669
-	.4byte 0x65506C3A
-	.4byte 0x6C6F6164
-	.4byte 0x646F6E65
-	.4byte 0x00000000
-	.4byte 0x6D6F7669
-	.4byte 0x65506C3A
-	.4byte 0x646F6E65
-	.4byte 0x63616C6C
-	.4byte 0x00000000
-.global lbl_8049A0C4
+.balign 4
+lbl_8049A09C:
+	.asciz "moviePl:loaddone"
+.balign 4
+lbl_8049A0B0:
+	.asciz "moviePl:donecall"
+.balign 4
 lbl_8049A0C4:
-	.4byte 0x63757272
-	.4byte 0x3D256420
-	.4byte 0x696E6974
-	.4byte 0x3D256420
-	.4byte 0x66726565
-	.4byte 0x20696E76
-	.4byte 0x616C6964
-	.4byte 0x0A000000
-	.4byte 0x4D794361
-	.4byte 0x6D657261
-	.4byte 0x00000000
-.global lbl_8049A0F0
+	.asciz "curr=%d init=%d free invalid\n"
+.balign 4
+lbl_8049A0E4:
+	.asciz "MyCamera"
+.balign 4
 lbl_8049A0F0:
-	.4byte 0x6D6F7669
-	.4byte 0x65506C3A
-	.4byte 0x756E7375
-	.4byte 0x7370656E
-	.4byte 0x64000000
-.global lbl_8049A104
+	.asciz "moviePl:unsuspend"
+.balign 4
 lbl_8049A104:
-	.4byte 0x6D6F7669
-	.4byte 0x65506C3A
-	.4byte 0x6733332F
-	.4byte 0x73757370
-	.4byte 0x00000000
-.global lbl_8049A118
+	.asciz "moviePl:g33/susp"
+.balign 4
 lbl_8049A118:
-	.4byte 0x6D6F7669
-	.4byte 0x65506C3A
-	.4byte 0x736B6970
-	.4byte 0x00000000
-	.4byte 0x3C737573
-	.4byte 0x70656E64
-	.4byte 0x3E000000
-	.4byte 0x6672616D
-	.4byte 0x65202534
-	.4byte 0x64000000
-	.4byte 0x75736520
-	.4byte 0x20252E31
-	.4byte 0x664B0000
-	.4byte 0x68656170
-	.4byte 0x20252E31
-	.4byte 0x664B0000
+	.asciz "moviePl:skip"
+.balign 4
+lbl_8049A128:
+	.asciz "<suspend>"
+.balign 4
+lbl_8049A134:
+	.asciz "frame %4d"
+.balign 4
+lbl_8049A140:
+	.asciz "use  %.1fK"
+.balign 4
+lbl_8049A14C:
+	.asciz "heap %.1fK"
 
 .section .data, "wa"  # 0x8049E220 - 0x804EFC20
 .balign 8
-.global lbl_804EBFB0
-lbl_804EBFB0:
-	.4byte 0x00000000
-	.4byte 0x00000000
-	.4byte 0x00000000
-.global lbl_804EBFBC
+govNAN___Q24Game5P2JST:
+	.float 0.0
+	.float 0.0
+	.float 0.0
 lbl_804EBFBC:
 	.4byte 0x00000000
 	.4byte 0xFFFFFFFF
 	.4byte loadResource__Q24Game11MoviePlayerFv
-.global lbl_804EBFC8
 lbl_804EBFC8:
 	.4byte lbl_8042D6B0
 	.4byte lbl_8042D6B8
@@ -210,11 +168,9 @@ __vt__Q24Game11MoviePlayer:
 
 .section .sbss # 0x80514D80 - 0x80516360
 .balign 8
-.global lbl_805161C8
-lbl_805161C8:
+gu32NAN___Q24Game5P2JST:
 	.skip 0x4
-.global lbl_805161CC
-lbl_805161CC:
+gfNAN___Q24Game5P2JST:
 	.skip 0x4
 .global mArchive__Q24Game11MoviePlayer
 mArchive__Q24Game11MoviePlayer:
@@ -225,67 +181,52 @@ moviePlayer__4Game:
 
 .section .sdata2, "a"     # 0x80516360 - 0x80520E40
 .balign 8
-.global lbl_80520610
 lbl_80520610:
-	.4byte 0x00000000
-.global lbl_80520614
+	.float 0.0
 lbl_80520614:
-	.4byte 0x42652EE0
-.global lbl_80520618
+	.float 57.295776
 lbl_80520618:
-	.4byte 0x437A0000
-.global lbl_8052061C
+	.float 250.0
 lbl_8052061C:
-	.4byte 0x3EDF66F4
-.global lbl_80520620
+	.float 0.43633235
 lbl_80520620:
 	.float 0.5
-	.4byte 0x00000000
-.global lbl_80520628
+.balign 8
 lbl_80520628:
-	.4byte 0x3FA11111
-	.4byte 0x20000000
-.global lbl_80520630
+	.double 0.03333333507180214
+.balign 4
 lbl_80520630:
-	.4byte 0x61726300
-.global lbl_80520634
+	.asciz "arc"
+.balign 4
 lbl_80520634:
-	.4byte 0x6D657373
-	.4byte 0x61676500
-.global lbl_8052063C
+	.asciz "message"
+.balign 4
 lbl_8052063C:
-	.4byte 0x6566782E
-	.4byte 0x6A706300
-.global lbl_80520644
+	.asciz "efx.jpc"
+.balign 4
 lbl_80520644:
-	.4byte 0x73746200
-.global lbl_80520648
+	.asciz "stb"
+.balign 4
 lbl_80520648:
-	.4byte 0x3F8CCCCD
-.global lbl_8052064C
+	.float 1.1
 lbl_8052064C:
 	.float 1.0
-.global lbl_80520650
 lbl_80520650:
-	.4byte 0x41200000
-.global lbl_80520654
+	.float 10.0
 lbl_80520654:
-	.4byte 0x40000000
-.global lbl_80520658
+	.float 2.0
+.balign 4
 lbl_80520658:
-	.4byte 0x63616D65
-	.4byte 0x72610000
-.global lbl_80520660
+	.asciz "camera"
+.balign 4
 lbl_80520660:
-	.4byte 0x76696577
-	.4byte 0x6D617400
-.global lbl_80520668
-lbl_80520668:
-	.4byte 0x40490FDB
-.global lbl_8052066C
+	.asciz "viewmat"
+.balign 4
+lbl_80520668: # pi
+	.float 3.1415927
 lbl_8052066C:
-	.4byte 0x3BB60B61
-.global lbl_80520670
+	.float 0.0055555557
+.balign 8
 lbl_80520670:
 	.4byte 0x43300000
 	.4byte 0x00000000
@@ -2661,12 +2602,12 @@ lbl_8042E7FC:
 /* 8042E838 0042B778  4E 80 00 20 */	blr 
 
 .global getNext__Q24Game12MovieContextFv
-getNext__Q24Game12MovieContextFv:
+getNext__Q24Game12MovieContextFv: # weak function
 /* 8042E83C 0042B77C  80 63 00 04 */	lwz r3, 4(r3)
 /* 8042E840 0042B780  4E 80 00 20 */	blr 
 
 .global __dt__Q24Game11MoviePlayerFv
-__dt__Q24Game11MoviePlayerFv:
+__dt__Q24Game11MoviePlayerFv: # weak function
 /* 8042E844 0042B784  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 8042E848 0042B788  7C 08 02 A6 */	mflr r0
 /* 8042E84C 0042B78C  90 01 00 14 */	stw r0, 0x14(r1)
@@ -2736,15 +2677,14 @@ lbl_8042E8EC:
 /* 8042E930 0042B870  38 21 00 10 */	addi r1, r1, 0x10
 /* 8042E934 0042B874  4E 80 00 20 */	blr 
 
-.global __sinit_moviePlayer_cpp
-__sinit_moviePlayer_cpp:
+__sinit_moviePlayer_cpp: # static initializer
 /* 8042E938 0042B878  3C 80 80 51 */	lis r4, __float_nan@ha
 /* 8042E93C 0042B87C  38 00 FF FF */	li r0, -1
 /* 8042E940 0042B880  C0 04 48 B0 */	lfs f0, __float_nan@l(r4)
-/* 8042E944 0042B884  3C 60 80 4F */	lis r3, lbl_804EBFB0@ha
-/* 8042E948 0042B888  90 0D 9B 48 */	stw r0, lbl_805161C8@sda21(r13)
-/* 8042E94C 0042B88C  D4 03 BF B0 */	stfsu f0, lbl_804EBFB0@l(r3)
-/* 8042E950 0042B890  D0 0D 9B 4C */	stfs f0, lbl_805161CC@sda21(r13)
+/* 8042E944 0042B884  3C 60 80 4F */	lis r3, govNAN___Q24Game5P2JST@ha
+/* 8042E948 0042B888  90 0D 9B 48 */	stw r0, gu32NAN___Q24Game5P2JST@sda21(r13)
+/* 8042E94C 0042B88C  D4 03 BF B0 */	stfsu f0, govNAN___Q24Game5P2JST@l(r3)
+/* 8042E950 0042B890  D0 0D 9B 4C */	stfs f0, gfNAN___Q24Game5P2JST@sda21(r13)
 /* 8042E954 0042B894  D0 03 00 04 */	stfs f0, 4(r3)
 /* 8042E958 0042B898  D0 03 00 08 */	stfs f0, 8(r3)
 /* 8042E95C 0042B89C  4E 80 00 20 */	blr 
