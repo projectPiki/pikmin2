@@ -89,7 +89,11 @@ GameConfig::GameConfig()
 	m_parms.m_vsTest.m_data               = 0;
 	m_parms.m_heapFreeSize.m_data         = 1;
 	m_parms.m_KFesVersion.m_data          = 0;
+#if BUILDTARGET == USAFINAL
 	m_parms.m_nintendoVersion.m_data      = 0;
+#elif BUILDTARGET == USADEMO1
+	m_parms.m_nintendoVersion.m_data      = 1;
+#endif
 	m_parms.m_vsDeathType.m_data          = 1;
 	m_parms.m_vsHiba.m_data               = 0;
 	m_parms.m_vsY.m_data                  = 0;
