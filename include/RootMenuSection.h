@@ -12,6 +12,10 @@ struct MenuSection : public Section {
 
 	bool runChildSection();
 
+#if BUILDTARGET == USADEMO1
+	// There is an extra unaccounted for space of data 0x1C long
+	u8 _39[0x1C]; // _39
+#endif
 	bool _3C;                  // _3C
 	u8 _3D;                    // _3D
 	u8 _3E;                    // _3E
