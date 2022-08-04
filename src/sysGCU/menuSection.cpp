@@ -33,14 +33,14 @@ void MenuSection::run()
  * Address:	80424668
  * Size:	000148
  */
-u32 MenuSection::runChildSection()
+bool MenuSection::runChildSection()
 {
 	JKRHeap::sCurrentHeap->getFreeSize();
 
 	JKRExpHeap* expHeap  = JKRExpHeap::create(_1C->getFreeSize(), _1C, true);
 	JKRHeap* currentHeap = expHeap->becomeCurrentHeap();
 
-	m_currentSection = static_cast<Section*>(static_cast<RootMenuSection*>(this)->setChildSection(expHeap));
+	m_currentSection = (Section*)setChildSection(expHeap);
 
 	if (m_currentSection != nullptr) {
 		sys->heapStatusStart("ChildSection::init", nullptr);
@@ -59,5 +59,5 @@ u32 MenuSection::runChildSection()
 	currentHeap->becomeCurrentHeap();
 	JKRHeap::sCurrentHeap->getFreeSize();
 
-	return (-(u32)m_currentSection | (u32)m_currentSection) >> 0x1F;
+	return (m_currentSection != 0);
 }

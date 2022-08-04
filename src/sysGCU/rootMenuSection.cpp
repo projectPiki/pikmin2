@@ -24,7 +24,7 @@ RootMenuSection::~RootMenuSection() { }
  * Address:	8044CB84
  * Size:	000024
  */
-void RootMenuSection::setChildSection(JKRHeap* heap) { GameFlow::createSection(heap); }
+ISection* RootMenuSection::setChildSection(JKRHeap* heap) { return GameFlow::createSection(heap); }
 
 /*
  * --INFO--
@@ -38,11 +38,13 @@ void RootMenuSection::drawInit(Graphics&) { }
  * Address:	8044CBAC
  * Size:	000008
  */
-bool RootMenuSection::doUpdate() { return false; }
+// WEAK  - in header
+// bool RootMenuSection::doUpdate() { return false; }
 
 /*
  * --INFO--
  * Address:	8044CBB4
  * Size:	000004
  */
-void RootMenuSection::doDraw(Graphics&) { }
+// WEAK  - in header
+// void RootMenuSection::doDraw(Graphics&) { }

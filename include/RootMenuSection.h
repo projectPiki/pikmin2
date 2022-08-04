@@ -8,8 +8,9 @@ struct MenuSection : public Section {
 	virtual ~MenuSection() { }                                        // _08 (weak)
 	virtual void run();                                               // _0C
 	virtual Section* getCurrentSection() { return m_currentSection; } // _30 (weak)
+	virtual ISection* setChildSection(JKRHeap*) = 0;                  // _48
 
-	u32 runChildSection();
+	bool runChildSection();
 
 	bool _3C;                  // _3C
 	u8 _3D;                    // _3D
@@ -20,11 +21,11 @@ struct MenuSection : public Section {
 
 struct RootMenuSection : public MenuSection {
 	RootMenuSection(struct JKRHeap*);
-	virtual ~RootMenuSection();              // _08
-	virtual void drawInit(struct Graphics&); // _1C
-	virtual bool doUpdate();                 // _3C
-	virtual void doDraw(Graphics&);          // _40
-	virtual void setChildSection(JKRHeap*);  // _48
+	virtual ~RootMenuSection();                  // _08
+	virtual void drawInit(struct Graphics&);     // _1C
+	virtual bool doUpdate() { return false; }    // _3C
+	virtual void doDraw(Graphics&) { }           // _40
+	virtual ISection* setChildSection(JKRHeap*); // _48
 };
 
 #endif
