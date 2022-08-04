@@ -58,7 +58,7 @@ struct Section : public ISection {
 	JUTFader* m_fader;      // _28
 	Graphics* m_graphics;   // _2C
 	float _30;              // _30
-	u8 _34;                 // _34
+	bool _34;               // _34
 	u8 _35;                 // _35
 	u8 _36;                 // _36
 	bool m_isFinishedMaybe; // _37
