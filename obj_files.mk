@@ -1096,7 +1096,6 @@ COMMON:=\
 	$(BUILD_DIR)/src/sysCommonU/sysMath.o\
 	$(BUILD_DIR)/asm/sysCommonU/sysMath.o\
 	$(BUILD_DIR)/src/sysCommonU/id32.o\
-	$(BUILD_DIR)/asm/sysCommonU/id32.o\
 	$(BUILD_DIR)/src/sysCommonU/parameters.o\
 	$(BUILD_DIR)/src/sysCommonU/stream.o\
 	$(BUILD_DIR)/asm/sysCommonU/geometry.o\
@@ -1136,7 +1135,7 @@ GC:=\
 	$(BUILD_DIR)/asm/sysGCU/JSTObjectSystem.o\
 	$(BUILD_DIR)/asm/sysGCU/JSTFindCreature.o\
 	$(BUILD_DIR)/asm/sysGCU/movieConfig.o\
-	$(BUILD_DIR)/asm/sysGCU/gameConfig.o\
+	$(BUILD_DIR)/src/sysGCU/gameConfig.o\
 	$(BUILD_DIR)/src/sysGCU/fogMgr.o\
 	$(BUILD_DIR)/asm/sysGCU/aramMgr.o\
 	$(BUILD_DIR)/asm/sysGCU/resourceMgr.o\
@@ -1198,6 +1197,3 @@ UTILITY:=\
 	$(BUILD_DIR)/asm/utilityU/PSMainSide_TrackMap.o\
 	$(BUILD_DIR)/asm/utilityU/PSMainSide_CreaturePrm.o\
 	$(BUILD_DIR)/asm/utilityU/PSMainSide_ObjCalc.o\
-
-GLOBAL_BSS:=\
-	$(BUILD_DIR)/asm/bss.o\

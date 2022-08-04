@@ -5,42 +5,37 @@ lbl_constructor:
 
 .section .rodata  # 0x804732E0 - 0x8049E220
 .balign 8
-.global lbl_804838F0
 lbl_804838F0:
-	.4byte 0x42697274
-	.4byte 0x68436F75
-	.4byte 0x746E6572
-	.4byte 0x00000000
-.global lbl_80483900
+	.asciz "BirthCoutner"
+.balign 4
 lbl_80483900:
-	.4byte 0x67616D65
-	.4byte 0x44656174
-	.4byte 0x68436F75
-	.4byte 0x6E742E63
-	.4byte 0x70700000
-.global lbl_80483914
+	.asciz "gameDeathCount.cpp"
+.balign 4
 lbl_80483914:
 	.asciz "P2Assert"
-	.skip 3
-.global lbl_80483920
+.balign 4
 lbl_80483920:
-	.4byte 0x44656174
-	.4byte 0x68436F75
-	.4byte 0x746E6572
-	.4byte 0x00000000
+	.asciz "DeathCoutner"
+
+.section .bss  # 0x804EFC20 - 0x8051467C
+# gameDeathCount.cpp
+.comm mToday__Q24Game8BirthMgr, 0xC0, 4
+.comm mCave__Q24Game8BirthMgr, 0x1C, 4
+.comm mTotal__Q24Game8BirthMgr, 0x1C, 4
+.comm mToday__Q24Game8DeathMgr, 0x24, 4
+.comm mCave__Q24Game8DeathMgr, 0x24, 4
+.comm mTotal__Q24Game8DeathMgr, 0x24, 4
 
 .section .sbss # 0x80514D80 - 0x80516360
 .balign 8
 .global mSoundDeathCount__Q24Game8DeathMgr
 mSoundDeathCount__Q24Game8DeathMgr:
-	.skip 0x8
+	.skip 0x4
 
 .section .sdata2, "a"     # 0x80516360 - 0x80520E40
 .balign 8
-.global lbl_8051A368
 lbl_8051A368:
-	.4byte 0x0D0A0000
-	.4byte 0x00000000
+	.asciz "\r\n"
 
 .section .text, "ax"  # 0x800056C0 - 0x80472F00
 .global clear__Q24Game8BirthMgrFv
@@ -1750,8 +1745,7 @@ lbl_802311B8:
 /* 8023120C 0022E14C  38 21 00 20 */	addi r1, r1, 0x20
 /* 80231210 0022E150  4E 80 00 20 */	blr 
 
-.global __sinit_gameDeathCount_cpp
-__sinit_gameDeathCount_cpp:
+__sinit_gameDeathCount_cpp: # static initializer
 /* 80231214 0022E154  38 00 00 00 */	li r0, 0
 /* 80231218 0022E158  3D 00 80 51 */	lis r8, mToday__Q24Game8BirthMgr@ha
 /* 8023121C 0022E15C  94 08 26 4C */	stwu r0, mToday__Q24Game8BirthMgr@l(r8)

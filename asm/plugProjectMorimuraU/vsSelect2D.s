@@ -704,7 +704,10 @@ __vt__Q28Morimura16TVsSelectIndPane:
 	.4byte __dt__Q28Morimura16TVsSelectIndPaneFv
 	.4byte getChildCount__5CNodeFv
 	.4byte draw__Q28Morimura16TVsSelectIndPaneFv
-	.4byte 0
+
+.section .bss  # 0x804EFC20 - 0x8051467C
+# vsSelect2D.cpp
+.comm mScrollParm__Q28Morimura9TVsSelect, 0x14, 4
 
 .section .sdata, "wa"  # 0x80514680 - 0x80514D80
 .balign 8

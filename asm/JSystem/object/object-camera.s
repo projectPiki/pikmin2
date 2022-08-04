@@ -5,29 +5,35 @@ lbl_constructor:
 
 .section .data, "wa"  # 0x8049E220 - 0x804EFC20
 .balign 8
-.global lbl_8049F728
 lbl_8049F728:
 	.4byte 0x00000000
 	.4byte 0x00000090
 	.4byte 0x00000000
+lbl_8049F734:
 	.4byte 0x00000000
 	.4byte 0x0000008C
 	.4byte 0x00000000
+lbl_8049F740:
 	.4byte 0x00000000
 	.4byte 0x00000058
 	.4byte 0x00000000
+lbl_8049F74C:
 	.4byte 0x00000000
 	.4byte 0x00000054
 	.4byte 0x00000000
+lbl_8049F758:
 	.4byte 0x00000000
 	.4byte 0x00000048
 	.4byte 0x00000000
+lbl_8049F764:
 	.4byte 0x00000000
 	.4byte 0x00000044
 	.4byte 0x00000000
+lbl_8049F770:
 	.4byte 0x00000000
 	.4byte 0x00000050
 	.4byte 0x00000000
+lbl_8049F77C:
 	.4byte 0x00000000
 	.4byte 0x0000004C
 	.4byte 0x00000000
@@ -48,6 +54,7 @@ __vt__Q214JStudio_JStage15TAdaptor_camera:
 	.4byte adaptor_do_TARGET_PARENT__Q214JStudio_JStage15TAdaptor_cameraFQ37JStudio4data15TEOperationDataPCvUl
 	.4byte adaptor_do_TARGET_PARENT_NODE__Q214JStudio_JStage15TAdaptor_cameraFQ37JStudio4data15TEOperationDataPCvUl
 	.4byte adaptor_do_TARGET_PARENT_ENABLE__Q214JStudio_JStage15TAdaptor_cameraFQ37JStudio4data15TEOperationDataPCvUl
+# these following null bytes are not part of the vtable.
 	.4byte 0
 	.4byte 0
 	.4byte 0
@@ -69,15 +76,21 @@ __vt__Q214JStudio_JStage15TAdaptor_camera:
 	.4byte 0
 	.4byte "__cl__Q214JStudio_JStage83TVariableValueOutput_object_<Q214JStudio_JStage15TAdaptor_camera,Q26JStage7TCamera>CFfPQ27JStudio8TAdaptor"
 	.4byte "__dt__Q214JStudio_JStage83TVariableValueOutput_object_<Q214JStudio_JStage15TAdaptor_camera,Q26JStage7TCamera>Fv"
+# these following null bytes are not part of the vtable.
 	.4byte 0
 	.4byte 0
 	.4byte 0
 	.4byte 0
 
 .section .bss  # 0x804EFC20 - 0x8051467C
-.global lbl_804EFE28
-lbl_804EFE28:
-	.skip 0x40
+.balign 8
+.lcomm lbl_804EFE28, 0xC, 4
+.lcomm lbl_804EFE34, 0xC, 4
+.lcomm lbl_804EFE40, 0xC, 4
+.lcomm lbl_804EFE4C, 0xC, 4
+.lcomm lbl_804EFE58, 0xC, 4
+# object-camera.cpp
+.comm saoVVOutput___Q214JStudio_JStage15TAdaptor_camera, 0xA0, 4
 
 .section .text, "ax"  # 0x800056C0 - 0x80472F00
 .global __ct__Q214JStudio_JStage15TAdaptor_cameraFPCQ26JStage7TSystemPQ26JStage7TCamera
@@ -764,8 +777,7 @@ lbl_80013D1C:
 /* 80013D2C 00010C6C  38 21 00 60 */	addi r1, r1, 0x60
 /* 80013D30 00010C70  4E 80 00 20 */	blr 
 
-.global "__sinit_object-camera_cpp"
-"__sinit_object-camera_cpp":
+"__sinit_object-camera_cpp": # static initializer
 /* 80013D34 00010C74  94 21 FF 40 */	stwu r1, -0xc0(r1)
 /* 80013D38 00010C78  7C 08 02 A6 */	mflr r0
 /* 80013D3C 00010C7C  3C 60 80 4A */	lis r3, lbl_8049F728@ha

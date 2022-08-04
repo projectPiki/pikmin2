@@ -143,6 +143,10 @@ __vt__Q32kh6Screen14DispCaveResult:
 	.4byte getMemberID__Q32kh6Screen14DispCaveResultFv
 	.4byte doSetSubMemberAll__Q32og6Screen14DispMemberBaseFv
 
+.section .bss  # 0x804EFC20 - 0x8051467C
+# khCaveResult.cpp
+.comm msVal__Q32kh6Screen13ObjCaveResult, 0x3C, 4
+
 .section .sdata2, "a"     # 0x80516360 - 0x80520E40
 .balign 8
 lbl_8051FFA8:

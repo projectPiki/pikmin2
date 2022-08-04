@@ -4,25 +4,18 @@ lbl_constructor:
 .4byte __sinit_JASHeapCtrl_cpp
 
 .section .bss  # 0x804EFC20 - 0x8051467C
-.global lbl_804F0700
-lbl_804F0700:
-	.skip 0xC
-.global audioAramHeap__9JASKernel
-audioAramHeap__9JASKernel:
-	.skip 0x44
+.lcomm lbl_804F0700, 0xC, 4
+.lcomm audioAramHeap__9JASKernel, 0x44, 4
 
 .section .sbss # 0x80514D80 - 0x80516360
 .balign 8
 .global JASDram
 JASDram:
 	.skip 0x4
-.global sAramBase__9JASKernel
 sAramBase__9JASKernel:
 	.skip 0x4
-.global sSystemHeap__9JASKernel
 sSystemHeap__9JASKernel:
 	.skip 0x4
-.global sCommandHeap__9JASKernel
 sCommandHeap__9JASKernel:
 	.skip 0x4
 
@@ -756,8 +749,7 @@ getAramHeap__9JASKernelFv:
 /* 800A744C 000A438C  38 63 07 0C */	addi r3, r3, audioAramHeap__9JASKernel@l
 /* 800A7450 000A4390  4E 80 00 20 */	blr 
 
-.global __sinit_JASHeapCtrl_cpp
-__sinit_JASHeapCtrl_cpp:
+__sinit_JASHeapCtrl_cpp: # static initializer
 /* 800A7454 000A4394  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 800A7458 000A4398  7C 08 02 A6 */	mflr r0
 /* 800A745C 000A439C  3C 60 80 4F */	lis r3, audioAramHeap__9JASKernel@ha

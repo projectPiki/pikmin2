@@ -5,77 +5,61 @@ lbl_constructor:
 
 .section .rodata  # 0x804732E0 - 0x8049E220
 .balign 8
-.global lbl_80482C20
 lbl_80482C20:
 	.asciz "Opening Movie"
-	.skip 2
-.global lbl_80482C30
+.balign 4
 lbl_80482C30:
 	.asciz "-- Director --"
-	.skip 1
-.global lbl_80482C40
+.balign 4
 lbl_80482C40:
 	.asciz "Geshifumi Hino"
-	.skip 1
-.global lbl_80482C50
+.balign 4
 lbl_80482C50:
 	.asciz "Mamamichi Abe"
-	.skip 2
-.global lbl_80482C60
+.balign 4
 lbl_80482C60:
 	.asciz "-- Main Programmer --"
-	.skip 2
-.global lbl_80482C78
+.balign 4
 lbl_80482C78:
 	.asciz "Tepen-kei"
-	.skip 2
-.global lbl_80482C84
+.balign 4
 lbl_80482C84:
 	.asciz "(C) Nintendo"
-	.skip 3
-.global lbl_80482C94
+.balign 4
 lbl_80482C94:
 	.asciz "Ending Movie"
-	.skip 3
-.global lbl_80482CA4
+.balign 4
 lbl_80482CA4:
 	.asciz "(C) Ninteno"
-.global lbl_80482CB0
+.balign 4
 lbl_80482CB0:
 	.asciz "Ending(Complete) Movie"
-	.skip 1
-.global lbl_80482CC8
+.balign 4
 lbl_80482CC8:
 	.asciz "* Director"
-	.skip 1
-.global lbl_80482CD4
+.balign 4
 lbl_80482CD4:
 	.asciz "* Otakara Design"
-	.skip 3
-.global lbl_80482CE8
+.balign 4
 lbl_80482CE8:
 	.asciz "Hideo Ota"
-	.skip 2
-.global lbl_80482CF4
+.balign 4
 lbl_80482CF4:
 	.asciz "Mezase Complete Movie"
-	.skip 2
-.global lbl_80482D0C
+.balign 4
 lbl_80482D0C:
 	.asciz "singleGS_Movie.cpp"
-	.skip 1
-.global lbl_80482D20
+.balign 4
 lbl_80482D20:
 	.asciz "P2Assert"
-	.skip 3
 
 .section .data, "wa"  # 0x8049E220 - 0x804EFC20
 .balign 8
-.global lbl_804C0880
-lbl_804C0880:
-	.4byte 0x00000000
-	.4byte 0x00000000
-	.4byte 0x00000000
+govNAN___Q24Game5P2JST:
+	.float 0.0
+	.float 0.0
+	.float 0.0
+# not sure what's up with these sixteen bytes
 	.4byte 0x00000001
 	.4byte 0x00000002
 	.4byte 0x00000003
@@ -161,6 +145,7 @@ __vt__Q34Game10SingleGame10MovieState:
 	.4byte onFountainReturn__Q34Game10SingleGame5StateFPQ24Game17SingleGameSectionPQ34Game15ItemBigFountain4Item
 	.4byte on_section_fadeout__Q34Game10SingleGame5StateFPQ24Game17SingleGameSection
 	.4byte on_demo_timer__Q34Game10SingleGame5StateFPQ24Game17SingleGameSectionUl
+# the following null bytes are not part of the above virtual table
 	.4byte 0
 	.4byte 0
 	.4byte 0
@@ -189,31 +174,26 @@ __vt__Q34Game10SingleGame10MovieState:
 	.4byte 0
 
 .section .bss  # 0x804EFC20 - 0x8051467C
-.global dummyPlayer
-dummyPlayer:
-	.skip 0x10
+.balign 8
+.lcomm dummyPlayer, 0xC, 4
 
 .section .sbss # 0x80514D80 - 0x80516360
 .balign 8
-.global lbl_80515C38
-lbl_80515C38:
+gu32NAN___Q24Game5P2JST:
 	.skip 0x4
-.global lbl_80515C3C
-lbl_80515C3C:
+gfNAN___Q24Game5P2JST:
 	.skip 0x4
 
 .section .sdata2, "a"     # 0x80516360 - 0x80520E40
 .balign 8
-.global lbl_8051A0C0
 lbl_8051A0C0:
-	.4byte 0x00000000
-.global lbl_8051A0C4
+	.asciz ""
+.balign 4
 lbl_8051A0C4:
 	.asciz "Pikmin2"
-.global lbl_8051A0CC
+.balign 4
 lbl_8051A0CC:
 	.float 4.0
-.global lbl_8051A0D0
 lbl_8051A0D0:
 	.float 480.0
 
@@ -270,8 +250,8 @@ init__Q34Game10SingleGame10MovieStateFPQ24Game17SingleGameSectionPQ24Game8StateA
 /* 8021EF84 0021BEC4  93 81 00 10 */	stw r28, 0x10(r1)
 /* 8021EF88 0021BEC8  7C 7C 1B 78 */	mr r28, r3
 /* 8021EF8C 0021BECC  90 03 00 1C */	stw r0, 0x1c(r3)
-/* 8021EF90 0021BED0  3C 60 80 4C */	lis r3, lbl_804C0880@ha
-/* 8021EF94 0021BED4  3B E3 08 80 */	addi r31, r3, lbl_804C0880@l
+/* 8021EF90 0021BED0  3C 60 80 4C */	lis r3, govNAN___Q24Game5P2JST@ha
+/* 8021EF94 0021BED4  3B E3 08 80 */	addi r31, r3, govNAN___Q24Game5P2JST@l
 /* 8021EF98 0021BED8  90 1C 00 18 */	stw r0, 0x18(r28)
 /* 8021EF9C 0021BEDC  80 0D 88 2C */	lwz r0, sCurrentHeap__7JKRHeap@sda21(r13)
 /* 8021EFA0 0021BEE0  90 1C 00 18 */	stw r0, 0x18(r28)
@@ -638,20 +618,19 @@ cleanup__Q34Game10SingleGame10MovieStateFPQ24Game17SingleGameSection:
 /* 8021F388 0021C2C8  38 21 00 10 */	addi r1, r1, 0x10
 /* 8021F38C 0021C2CC  4E 80 00 20 */	blr 
 
-.global __sinit_singleGS_Movie_cpp
-__sinit_singleGS_Movie_cpp:
+__sinit_singleGS_Movie_cpp: # static initializer
 /* 8021F390 0021C2D0  3C 60 80 51 */	lis r3, __float_nan@ha
 /* 8021F394 0021C2D4  38 00 00 00 */	li r0, 0
 /* 8021F398 0021C2D8  38 A3 48 B0 */	addi r5, r3, __float_nan@l
-/* 8021F39C 0021C2DC  3C 80 80 4C */	lis r4, lbl_804C0880@ha
+/* 8021F39C 0021C2DC  3C 80 80 4C */	lis r4, govNAN___Q24Game5P2JST@ha
 /* 8021F3A0 0021C2E0  C0 25 00 00 */	lfs f1, 0(r5)
 /* 8021F3A4 0021C2E4  3C 60 80 4F */	lis r3, dummyPlayer@ha
 /* 8021F3A8 0021C2E8  38 A0 FF FF */	li r5, -1
 /* 8021F3AC 0021C2EC  C0 02 BD 70 */	lfs f0, lbl_8051A0D0@sda21(r2)
-/* 8021F3B0 0021C2F0  D4 24 08 80 */	stfsu f1, lbl_804C0880@l(r4)
+/* 8021F3B0 0021C2F0  D4 24 08 80 */	stfsu f1, govNAN___Q24Game5P2JST@l(r4)
 /* 8021F3B4 0021C2F4  94 03 79 C0 */	stwu r0, dummyPlayer@l(r3)
-/* 8021F3B8 0021C2F8  90 AD 95 B8 */	stw r5, lbl_80515C38@sda21(r13)
-/* 8021F3BC 0021C2FC  D0 2D 95 BC */	stfs f1, lbl_80515C3C@sda21(r13)
+/* 8021F3B8 0021C2F8  90 AD 95 B8 */	stw r5, gu32NAN___Q24Game5P2JST@sda21(r13)
+/* 8021F3BC 0021C2FC  D0 2D 95 BC */	stfs f1, gfNAN___Q24Game5P2JST@sda21(r13)
 /* 8021F3C0 0021C300  D0 24 00 04 */	stfs f1, 4(r4)
 /* 8021F3C4 0021C304  D0 24 00 08 */	stfs f1, 8(r4)
 /* 8021F3C8 0021C308  D0 03 00 04 */	stfs f0, 4(r3)

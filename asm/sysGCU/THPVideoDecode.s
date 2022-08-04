@@ -1,23 +1,11 @@
 .include "macros.inc"
 .section .bss  # 0x804EFC20 - 0x8051467C
-.global VideoDecodeThread
-VideoDecodeThread:
-	.skip 0x318
-.global VideoDecodeThreadStack
-VideoDecodeThreadStack:
-	.skip 0x1000
-.global FreeTextureSetQueue
-FreeTextureSetQueue:
-	.skip 0x20
-.global DecodedTextureSetQueue
-DecodedTextureSetQueue:
-	.skip 0x20
-.global FreeTextureSetMessage
-FreeTextureSetMessage:
-	.skip 0xC
-.global DecodedTextureSetMessage
-DecodedTextureSetMessage:
-	.skip 0xC
+.lcomm VideoDecodeThread, 0x318, 8
+.lcomm VideoDecodeThreadStack, 0x1000, 4
+.lcomm FreeTextureSetQueue, 0x20, 4
+.lcomm DecodedTextureSetQueue, 0x20, 4
+.lcomm FreeTextureSetMessage, 0xC, 4
+.lcomm DecodedTextureSetMessage, 0xC, 4
 
 .section .sbss # 0x80514D80 - 0x80516360
 .balign 8

@@ -134,7 +134,10 @@ __vt__Q32kh6Screen10ObjReadyGo:
 	.4byte doConfirmSetScene__Q26Screen7ObjBaseFRQ26Screen11SetSceneArg
 	.4byte doConfirmStartScene__Q26Screen7ObjBaseFPQ26Screen13StartSceneArg
 	.4byte doConfirmEndScene__Q26Screen7ObjBaseFRPQ26Screen11EndSceneArg
-	.4byte 0
+
+.section .bss  # 0x804EFC20 - 0x8051467C
+# khReadyGo.cpp
+.comm msVal__Q32kh6Screen10ObjReadyGo, 0x18, 4
 
 .section .sbss # 0x80514D80 - 0x80516360
 .balign 8

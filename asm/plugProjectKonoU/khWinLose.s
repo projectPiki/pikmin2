@@ -131,6 +131,10 @@ __vt__Q32kh6Screen10ObjWinLose:
 	.4byte doConfirmStartScene__Q26Screen7ObjBaseFPQ26Screen13StartSceneArg
 	.4byte doConfirmEndScene__Q26Screen7ObjBaseFRPQ26Screen11EndSceneArg
 
+.section .bss  # 0x804EFC20 - 0x8051467C
+# khWinLose.cpp
+.comm msVal__Q32kh6Screen10ObjWinLose, 0x1C, 4
+
 .section .sdata2, "a"     # 0x80516360 - 0x80520E40
 .balign 8
 lbl_80520208:

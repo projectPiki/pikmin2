@@ -5,20 +5,23 @@ lbl_constructor:
 
 .section .data, "wa"  # 0x8049E220 - 0x804EFC20
 .balign 8
-.global lbl_8049F910
 lbl_8049F910:
 	.4byte 0x00000000
 	.4byte 0x00000080
 	.4byte 0x00000010
+lbl_8049F91C:
 	.4byte 0x00000000
 	.4byte 0x00000084
 	.4byte 0x00000010
+lbl_8049F928:
 	.4byte 0x00000000
 	.4byte 0x00000088
 	.4byte 0x00000010
+lbl_8049F934:
 	.4byte 0x00000000
 	.4byte 0x00000044
 	.4byte 0x00000010
+lbl_8049F940:
 	.4byte 0x00000000
 	.4byte 0x0000008C
 	.4byte 0x00000010
@@ -47,6 +50,7 @@ __vt__Q214JStudio_JAudio14TAdaptor_sound:
 	.4byte adaptor_do_PARENT_NODE__Q214JStudio_JAudio14TAdaptor_soundFQ37JStudio4data15TEOperationDataPCvUl
 	.4byte adaptor_do_PARENT_ENABLE__Q214JStudio_JAudio14TAdaptor_soundFQ37JStudio4data15TEOperationDataPCvUl
 	.4byte adaptor_do_LOCATED__Q214JStudio_JAudio14TAdaptor_soundFQ37JStudio4data15TEOperationDataPCvUl
+# not part of the vtable. not sure what causes these null bytes.
 	.4byte 0
 	.4byte 0
 	.4byte 0
@@ -71,22 +75,26 @@ __vt__Q214JStudio_JAudio14TAdaptor_sound:
 	.4byte 0
 
 .section .bss  # 0x804EFC20 - 0x8051467C
-.global aoData$1256
-aoData$1256:
-	.skip 0x68
+.balign 8
+.lcomm aoData$1256, 0x20, 4
+.lcomm lbl_804EFEB0, 0xC, 4
+.lcomm lbl_804EFEBC, 0xC, 4
+.lcomm lbl_804EFEC8, 0xC, 4
+.lcomm lbl_804EFED4, 0xC, 4
+.lcomm lbl_804EFEE0, 0xC, 4
+.lcomm lbl_804EFEEC, 0xC, 4
+# object-sound.cpp
+.comm saoVVOSetValue___Q214JStudio_JAudio14TAdaptor_sound, 0x78, 4
 
 .section .sbss # 0x80514D80 - 0x80516360
 .balign 8
-.global init$1257
 init$1257:
-	.skip 0x8
+	.skip 0x1
 
 .section .sdata2, "a"     # 0x80516360 - 0x80520E40
 .balign 8
-.global lbl_805164B0
 lbl_805164B0:
-	.4byte 0x00000000
-	.4byte 0x00000000
+	.float 0.0
 
 .section .text, "ax"  # 0x800056C0 - 0x80472F00
 .global __ct__Q214JStudio_JAudio14TAdaptor_soundFP8JAIBasicPCQ26JStage7TSystem
@@ -795,8 +803,7 @@ lbl_80015920:
 /* 8001592C 0001286C  38 21 00 20 */	addi r1, r1, 0x20
 /* 80015930 00012870  4E 80 00 20 */	blr 
 
-.global "__sinit_object-sound_cpp"
-"__sinit_object-sound_cpp":
+"__sinit_object-sound_cpp": # static initializer
 /* 80015934 00012874  94 21 FF 70 */	stwu r1, -0x90(r1)
 /* 80015938 00012878  7C 08 02 A6 */	mflr r0
 /* 8001593C 0001287C  3C 80 80 4A */	lis r4, __vt__Q37JStudio14TVariableValue7TOutput@ha

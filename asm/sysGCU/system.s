@@ -201,9 +201,7 @@ __vt__Q23PSM7Factory:
 
 .section .bss  # 0x804EFC20 - 0x8051467C
 .balign 8
-.global exCallbackObject_1
-exCallbackObject_1:
-	.skip 0x14
+.lcomm exCallbackObject, 0x14, 4
 
 .section .sdata, "wa"  # 0x80514680 - 0x80514D80
 .balign 8
@@ -353,12 +351,12 @@ lbl_8042201C:
 /* 8042202C 0041EF6C  7F 64 DB 78 */	mr r4, r27
 /* 80422030 0041EF70  4B BE 31 6D */	bl memcpy
 /* 80422034 0041EF74  80 01 01 7C */	lwz r0, 0x17c(r1)
-/* 80422038 0041EF78  3C 80 80 4F */	lis r4, exCallbackObject_1@ha
+/* 80422038 0041EF78  3C 80 80 4F */	lis r4, exCallbackObject@ha
 /* 8042203C 0041EF7C  28 1F 00 00 */	cmplwi r31, 0
 /* 80422040 0041EF80  38 60 00 FF */	li r3, 0xff
 /* 80422044 0041EF84  90 1A 00 A0 */	stw r0, 0xa0(r26)
 /* 80422048 0041EF88  38 00 00 00 */	li r0, 0
-/* 8042204C 0041EF8C  97 84 7C 20 */	stwu r28, exCallbackObject_1@l(r4)
+/* 8042204C 0041EF8C  97 84 7C 20 */	stwu r28, exCallbackObject@l(r4)
 /* 80422050 0041EF90  B0 64 00 04 */	sth r3, 4(r4)
 /* 80422054 0041EF94  93 64 00 08 */	stw r27, 8(r4)
 /* 80422058 0041EF98  90 04 00 0C */	stw r0, 0xc(r4)
@@ -389,10 +387,10 @@ lbl_80422090:
 /* 804220B4 0041EFF4  4B C0 68 ED */	bl print_f__10JUTConsoleFPCce
 lbl_804220B8:
 /* 804220B8 0041EFF8  3C 60 80 4A */	lis r3, sMessageQueue__12JUTException@ha
-/* 804220BC 0041EFFC  3C 80 80 4F */	lis r4, exCallbackObject_1@ha
+/* 804220BC 0041EFFC  3C 80 80 4F */	lis r4, exCallbackObject@ha
 /* 804220C0 0041F000  38 63 03 A8 */	addi r3, r3, sMessageQueue__12JUTException@l
 /* 804220C4 0041F004  38 A0 00 01 */	li r5, 1
-/* 804220C8 0041F008  38 84 7C 20 */	addi r4, r4, exCallbackObject_1@l
+/* 804220C8 0041F008  38 84 7C 20 */	addi r4, r4, exCallbackObject@l
 /* 804220CC 0041F00C  4B CC D4 51 */	bl OSSendMessage
 /* 804220D0 0041F010  4B CC F8 F5 */	bl OSGetCurrentThread
 /* 804220D4 0041F014  4B CD 06 A9 */	bl OSSuspendThread

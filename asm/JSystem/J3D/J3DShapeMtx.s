@@ -216,7 +216,10 @@ __vt__11J3DShapeMtx:
 	.4byte getUseMtxIndex__11J3DShapeMtxCFUs
 	.4byte load__11J3DShapeMtxCFv
 	.4byte calcNBTScale__11J3DShapeMtxFRC3VecPA3_A3_fPA3_A3_f
-	.4byte 0
+
+.section .bss  # 0x804EFC20 - 0x8051467C
+# J3DShapeMtx.cpp
+.comm sMtxLoadCache__11J3DShapeMtx, 0x14, 4
 
 .section .sbss # 0x80514D80 - 0x80516360
 .balign 8
@@ -1895,8 +1898,7 @@ getType__21J3DShapeMtxConcatViewCFv:
 /* 80087750 00084690  38 63 43 56 */	addi r3, r3, 0x534D4356@l
 /* 80087754 00084694  4E 80 00 20 */	blr 
 
-.global __sinit_J3DShapeMtx_cpp
-__sinit_J3DShapeMtx_cpp:
+__sinit_J3DShapeMtx_cpp: # static initializer
 /* 80087758 00084698  94 21 FF 80 */	stwu r1, -0x80(r1)
 /* 8008775C 0008469C  BD C1 00 38 */	stmw r14, 0x38(r1)
 /* 80087760 000846A0  3C 60 80 4A */	lis r3, lbl_804A2C98@ha

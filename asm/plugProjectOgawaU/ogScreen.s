@@ -1,103 +1,84 @@
 .include "macros.inc"
 .section .rodata  # 0x804732E0 - 0x8049E220
 .balign 8
-.global lbl_8048DCC0
 lbl_8048DCC0:
 	.asciz "ogScreen"
-	.skip 3
-.global lbl_8048DCCC
+.balign 4
 lbl_8048DCCC:
 	.asciz "ogScreen.cpp"
-	.skip 3
-.global lbl_8048DCDC
+.balign 4
 lbl_8048DCDC:
 	.asciz "picture pane overflow!!\n"
-	.skip 3
-.global lbl_8048DCF8
+.balign 4
 lbl_8048DCF8:
 	.asciz "num is overflow!\n"
-	.skip 2
-.global lbl_8048DD0C
+.balign 4
 lbl_8048DD0C:
 	.asciz "toumei_piki.bti"
-.global lbl_8048DD1C
+.balign 4
 lbl_8048DD1C:
 	.asciz "bp_l64.bti"
-	.skip 1
-.global lbl_8048DD28
+.balign 4
 lbl_8048DD28:
 	.asciz "bp_b64.bti"
-	.skip 1
-.global lbl_8048DD34
+.balign 4
 lbl_8048DD34:
 	.asciz "bp_f64.bti"
-	.skip 1
-.global lbl_8048DD40
+.balign 4
 lbl_8048DD40:
 	.asciz "rp_l64.bti"
-	.skip 1
-.global lbl_8048DD4C
+.balign 4
 lbl_8048DD4C:
 	.asciz "rp_b64.bti"
-	.skip 1
-.global lbl_8048DD58
+.balign 4
 lbl_8048DD58:
 	.asciz "rp_f64.bti"
-	.skip 1
-.global lbl_8048DD64
+.balign 4
 lbl_8048DD64:
 	.asciz "yp_l64.bti"
-	.skip 1
-.global lbl_8048DD70
+.balign 4
 lbl_8048DD70:
 	.asciz "yp_b64.bti"
-	.skip 1
-.global lbl_8048DD7C
+.balign 4
 lbl_8048DD7C:
 	.asciz "yp_f64.bti"
-	.skip 1
-.global lbl_8048DD88
+.balign 4
 lbl_8048DD88:
 	.asciz "blp_l64.bti"
-.global lbl_8048DD94
+.balign 4
 lbl_8048DD94:
 	.asciz "blp_b64.bti"
-.global lbl_8048DDA0
+.balign 4
 lbl_8048DDA0:
 	.asciz "blp_f64.bti"
-.global lbl_8048DDAC
+.balign 4
 lbl_8048DDAC:
 	.asciz "wp_l64.bti"
-	.skip 1
-.global lbl_8048DDB8
+.balign 4
 lbl_8048DDB8:
 	.asciz "wp_b64.bti"
-	.skip 1
-.global lbl_8048DDC4
+.balign 4
 lbl_8048DDC4:
 	.asciz "wp_f64.bti"
-	.skip 1
-.global lbl_8048DDD0
+.balign 4
 lbl_8048DDD0:
 	.asciz "cha_l.bti"
-	.skip 2
-.global lbl_8048DDDC
+.balign 4
 lbl_8048DDDC:
 	.asciz "cha_b.bti"
-	.skip 2
-.global lbl_8048DDE8
+.balign 4
 lbl_8048DDE8:
 	.asciz "cha_f.bti"
-	.skip 2
+.balign 4
+lbl_8048DDF4:
 	.asciz "MojiToNum ERR!(keta) [%s]\n"
-	.skip 1
+.balign 4
+lbl_8048DE10:
 	.asciz "MojiToNum ERR! [%s]\n"
-	.skip 3
-.global lbl_8048DE28
+.balign 4
 lbl_8048DE28:
 	.asciz "x%02x%02x"
-	.skip 2
-.global lbl_8048DE34
+.balign 4
 lbl_8048DE34:
 	.asciz "tag[%s] is not exist!!\n"
 
@@ -134,81 +115,68 @@ __vt__Q29P2DScreen4Node:
 	.4byte draw__Q29P2DScreen4NodeFR8GraphicsR14J2DGrafContext
 	.4byte doInit__Q29P2DScreen4NodeFv
 
+.section .bss  # 0x804EFC20 - 0x8051467C
+# ogScreen.cpp
+.comm PikiIconTextureResTIMG__Q22og6Screen, 0x4C, 4
+# ogLifeGauge.cpp
+# temporarily moved to ogScreen.s for the sake of alignment
+.comm msVal__Q32og6Screen18CallBack_LifeGauge, 0x10, 4
+
 .section .sbss # 0x80514D80 - 0x80516360
 .balign 8
-.global wkPtr$3542
 wkPtr$3542:
 	.skip 0x4
-.global init$3543
 init$3543:
-	.skip 0x4
-.global Max$3545
+	.skip 0x1
+.balign 4
 Max$3545:
 	.skip 0x4
-.global init$3546
 init$3546:
-	.skip 0x4
-.global wkMax$3548
+	.skip 0x1
+.balign 4
 wkMax$3548:
 	.skip 0x4
-.global init$3549
 init$3549:
-	.skip 0x4
+	.skip 0x1
 
 .section .sdata2, "a"     # 0x80516360 - 0x80520E40
 .balign 8
-.global lbl_8051D508
 lbl_8051D508:
-	.4byte 0x41F00000
-.global lbl_8051D50C
-lbl_8051D50C:
-	.4byte 0x40C90FDB
-.global lbl_8051D510
+	.float 30.0
+lbl_8051D50C: # tau
+	.float 6.2831855
 lbl_8051D510:
 	.float 1.0
-.global lbl_8051D514
 lbl_8051D514:
-	.4byte 0xC3A2F983
-.global lbl_8051D518
+	.float -325.9493
 lbl_8051D518:
-	.4byte 0x43A2F983
-.global lbl_8051D51C
+	.float 325.9493
 lbl_8051D51C:
-	.4byte 0x00000000
-.global lbl_8051D520
+	.float 0.0
 lbl_8051D520:
 	.float 0.5
-	.4byte 0x00000000
-.global lbl_8051D528
+.balign 8
 lbl_8051D528:
 	.4byte 0x43300000
 	.4byte 0x00000000
-.global lbl_8051D530
 lbl_8051D530:
-	.4byte 0x3F4CCCCD
-	.4byte 0x00000000
-.global lbl_8051D538
+	.float 0.8
+.balign 8
 lbl_8051D538:
-	.4byte 0x3FF00000
-	.4byte 0x00000000
-.global lbl_8051D540
-lbl_8051D540:
-	.4byte 0x3FC90FDB
-.global lbl_8051D544
+	.double 1.0
+lbl_8051D540: # pi/2
+	.float 1.5707964
 lbl_8051D544:
-	.4byte 0x3E4CCCCC
-.global lbl_8051D548
+	.float 0.19999999
+.balign 8
 lbl_8051D548:
-	.4byte 0x40240000
-	.4byte 0x00000000
-.global lbl_8051D550
+	.double 10.0
+.balign 8
 lbl_8051D550:
 	.4byte 0x43300000
 	.4byte 0x80000000
-.global lbl_8051D558
 lbl_8051D558:
-	.4byte 0x437F0000
-	.4byte 0x00000000
+	.float 255.0
 
 .section .text, "ax"  # 0x800056C0 - 0x80472F00
 .global setSpeed__Q32og6Screen15ArrowAlphaBlinkFf
@@ -1869,7 +1837,7 @@ doInit__Q29P2DScreen4NodeFv:
 /* 803035A8 003004E8  4E 80 00 20 */	blr 
 
 .global __dt__Q29P2DScreen4NodeFv
-__dt__Q29P2DScreen4NodeFv:
+__dt__Q29P2DScreen4NodeFv: # weak function
 /* 803035AC 003004EC  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 803035B0 003004F0  7C 08 02 A6 */	mflr r0
 /* 803035B4 003004F4  90 01 00 14 */	stw r0, 0x14(r1)

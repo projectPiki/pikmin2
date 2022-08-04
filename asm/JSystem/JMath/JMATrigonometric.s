@@ -3,6 +3,12 @@
 lbl_constructor:
 .4byte __sinit_JMATrigonometric_cpp
 
+.section .bss  # 0x804EFC20 - 0x8051467C
+# JMATrigonometric.cpp
+.comm sincosTable___5JMath, 0x6040, 32
+.comm atanTable___5JMath, 0x1020, 32
+.comm asinAcosTable___5JMath, 0x1020, 32
+
 .section .sdata2, "a"     # 0x80516360 - 0x80520E40
 .balign 8
 lbl_80516738:

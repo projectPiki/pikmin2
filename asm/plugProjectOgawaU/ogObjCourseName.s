@@ -5,22 +5,17 @@ lbl_constructor:
 
 .section .rodata  # 0x804732E0 - 0x8049E220
 .balign 8
-.global lbl_8048E700
 lbl_8048E700:
-	.4byte 0x6F674F62
-	.4byte 0x6A436F75
-	.4byte 0x7273654E
-	.4byte 0x616D652E
-	.4byte 0x63707000
-	.4byte 0x00000000
-	.4byte 0x6E756B69
-	.4byte 0x5F746578
-	.4byte 0x65666563
-	.4byte 0x745F3030
-	.4byte 0x65666563
-	.4byte 0x745F3031
+	.asciz "ogObjCourseName.cpp"
+.balign 8
+lbl_8048E718:
+	.ascii "nuki_tex"
+	.ascii "efect_00"
+	.ascii "efect_01"
 	.4byte 0x00000000
 	.4byte 0x00000000
+# the above are an array of four ID64 elements
+lbl_8048E738: # Shift-JIS
 	.4byte 0x45525221
 	.4byte 0x20696E20
 	.4byte 0x4F626A43
@@ -30,10 +25,11 @@ lbl_8048E700:
 	.4byte 0x65617465
 	.4byte 0x8EB89473
 	.4byte 0x81490A00
-	.4byte 0x73637265
-	.4byte 0x656E4F62
-	.4byte 0x6A2E6800
 .balign 4
+lbl_8048E75C:
+	.asciz "screenObj.h"
+.balign 4
+lbl_8048E768:
 	.asciz "P2Assert"
 
 .section .data, "wa"  # 0x8049E220 - 0x804EFC20
@@ -71,32 +67,28 @@ __vt__Q32og9newScreen13ObjCourseName:
 	.4byte doConfirmStartScene__Q26Screen7ObjBaseFPQ26Screen13StartSceneArg
 	.4byte doConfirmEndScene__Q26Screen7ObjBaseFRPQ26Screen11EndSceneArg
 
+.section .bss  # 0x804EFC20 - 0x8051467C
+# ogObjCourseName.cpp
+.comm msVal__Q32og9newScreen13ObjCourseName, 0x10, 4
+
 .section .sdata2, "a"     # 0x80516360 - 0x80520E40
 .balign 8
-.global lbl_8051D8D0
 lbl_8051D8D0:
-	.4byte 0x00000000
-.global lbl_8051D8D4
+	.float 0.0
 lbl_8051D8D4:
 	.float 1.0
-.global lbl_8051D8D8
 lbl_8051D8D8:
-	.4byte 0x437F0000
-	.4byte 0x00000000
-.global lbl_8051D8E0
+	.float 255.0
+.balign 8
 lbl_8051D8E0:
 	.4byte 0x43300000
 	.4byte 0x00000000
-.global lbl_8051D8E8
 lbl_8051D8E8:
 	.float 0.3
-.global lbl_8051D8EC
 lbl_8051D8EC:
-	.4byte 0x3E4CCCCD
-.global lbl_8051D8F0
+	.float 0.2
 lbl_8051D8F0:
-	.4byte 0x40400000
-	.4byte 0x00000000
+	.float 3.0
 
 .section .text, "ax"  # 0x800056C0 - 0x80472F00
 .global __ct__Q32og9newScreen13ObjCourseNameFPCc
@@ -861,8 +853,7 @@ lbl_80317ED8:
 /* 80317EF0 00314E30  38 21 00 50 */	addi r1, r1, 0x50
 /* 80317EF4 00314E34  4E 80 00 20 */	blr 
 
-.global __sinit_ogObjCourseName_cpp
-__sinit_ogObjCourseName_cpp:
+__sinit_ogObjCourseName_cpp: # static initializer
 /* 80317EF8 00314E38  C0 62 F5 88 */	lfs f3, lbl_8051D8E8@sda21(r2)
 /* 80317EFC 00314E3C  3C 60 80 51 */	lis r3, msVal__Q32og9newScreen13ObjCourseName@ha
 /* 80317F00 00314E40  C0 42 F5 74 */	lfs f2, lbl_8051D8D4@sda21(r2)

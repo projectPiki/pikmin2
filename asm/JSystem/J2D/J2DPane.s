@@ -5,7 +5,6 @@ lbl_constructor:
 
 .section .data, "wa"  # 0x8049E220 - 0x804EFC20
 .balign 8
-.global lbl_804A0678
 lbl_804A0678:
 	.4byte lbl_80039544
 	.4byte lbl_80039558
@@ -54,40 +53,35 @@ __vt__7J2DPane:
 	.4byte setVtxColorAnimation__7J2DPaneFP14J2DAnmVtxColor
 	.4byte setAnimationVC__7J2DPaneFP14J2DAnmVtxColor
 	.4byte animationPane__7J2DPaneFPC15J2DAnmTransform
-	.4byte 0
+
+.section .bss  # 0x804EFC20 - 0x8051467C
+# J2DPane.cpp
+.comm static_mBounds__7J2DPane, 0x10, 4
 
 .section .sdata2, "a"     # 0x80516360 - 0x80520E40
 .balign 8
-.global lbl_805167C0
 lbl_805167C0:
-	.4byte 0x00000000
-.global lbl_805167C4
+	.float 0.0
 lbl_805167C4:
 	.float 1.0
-.global lbl_805167C8
+.balign 8
 lbl_805167C8:
 	.4byte 0x43300000
 	.4byte 0x80000000
-.global lbl_805167D0
+.balign 8
 lbl_805167D0:
 	.4byte 0x43300000
 	.4byte 0x00000000
-.global lbl_805167D8
 lbl_805167D8:
 	.float 0.5
-.global lbl_805167DC
 lbl_805167DC:
-	.4byte 0x3C8EFA35
-.global lbl_805167E0
+	.float 0.017453292
 lbl_805167E0:
-	.4byte 0x437F0000
-.global lbl_805167E4
+	.float 255.0
 lbl_805167E4:
-	.4byte 0x43B40000
-.global lbl_805167E8
+	.float 360.0
 lbl_805167E8:
-	.4byte 0x477FFF00
-	.4byte 0x00000000
+	.float 65535.0
 
 .section .text, "ax"  # 0x800056C0 - 0x80472F00
 .global __ct__7J2DPaneFv
@@ -3564,8 +3558,7 @@ update__7J2DPaneFv:
 drawSelf__7J2DPaneFff:
 /* 80039ABC 000369FC  4E 80 00 20 */	blr 
 
-.global __sinit_J2DPane_cpp
-__sinit_J2DPane_cpp:
+__sinit_J2DPane_cpp: # static initializer
 /* 80039AC0 00036A00  C0 02 84 60 */	lfs f0, lbl_805167C0@sda21(r2)
 /* 80039AC4 00036A04  3C 60 80 51 */	lis r3, static_mBounds__7J2DPane@ha
 /* 80039AC8 00036A08  D4 03 F2 20 */	stfsu f0, static_mBounds__7J2DPane@l(r3)

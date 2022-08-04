@@ -5,17 +5,19 @@ lbl_constructor:
 
 .section .data, "wa"  # 0x8049E220 - 0x804EFC20
 .balign 8
-.global lbl_8049F820
 lbl_8049F820:
 	.4byte 0x00000000
 	.4byte 0x00000048
 	.4byte 0x00000000
+lbl_8049F82C:
 	.4byte 0x00000000
 	.4byte 0x00000044
 	.4byte 0x00000000
+lbl_8049F838:
 	.4byte 0x00000000
 	.4byte 0x00000050
 	.4byte 0x00000000
+lbl_8049F844:
 	.4byte 0x00000000
 	.4byte 0x0000004C
 	.4byte 0x00000000
@@ -29,6 +31,7 @@ __vt__Q214JStudio_JStage12TAdaptor_fog:
 	.4byte adaptor_do_end__Q214JStudio_JStage12TAdaptor_fogFPCQ27JStudio7TObject
 	.4byte adaptor_do_update__Q214JStudio_JStage12TAdaptor_fogFPCQ27JStudio7TObjectUl
 	.4byte adaptor_do_data__Q214JStudio_JStage12TAdaptor_fogFPCQ27JStudio7TObjectPCvUlPCvUl
+# these following null bytes are not part of the vtable.
 	.4byte 0
 	.4byte 0
 	.4byte 0
@@ -43,15 +46,19 @@ __vt__Q214JStudio_JStage12TAdaptor_fog:
 	.4byte 0
 	.4byte "__cl__Q214JStudio_JStage77TVariableValueOutput_object_<Q214JStudio_JStage12TAdaptor_fog,Q26JStage4TFog>CFfPQ27JStudio8TAdaptor"
 	.4byte "__dt__Q214JStudio_JStage77TVariableValueOutput_object_<Q214JStudio_JStage12TAdaptor_fog,Q26JStage4TFog>Fv"
+# these following null bytes are not part of the vtable.
 	.4byte 0
 	.4byte 0
 	.4byte 0
 	.4byte 0
 
 .section .bss  # 0x804EFC20 - 0x8051467C
-.global lbl_804EFE68
-lbl_804EFE68:
-	.skip 0x28
+.balign 8
+.lcomm lbl_804EFE68, 0xC, 4
+.lcomm lbl_804EFE74, 0xC, 4
+.lcomm lbl_804EFE80, 0xC, 4
+# object-fog.cpp
+.comm saoVVOutput___Q214JStudio_JStage12TAdaptor_fog, 0x60, 4
 
 .section .text, "ax"  # 0x800056C0 - 0x80472F00
 .global __ct__Q214JStudio_JStage12TAdaptor_fogFPCQ26JStage7TSystemPQ26JStage4TFog
@@ -292,8 +299,7 @@ adaptor_do_data__Q214JStudio_JStage12TAdaptor_fogFPCQ27JStudio7TObjectPCvUlPCvUl
 /* 80014474 000113B4  38 21 00 10 */	addi r1, r1, 0x10
 /* 80014478 000113B8  4E 80 00 20 */	blr 
 
-.global "__sinit_object-fog_cpp"
-"__sinit_object-fog_cpp":
+"__sinit_object-fog_cpp": # static initializer
 /* 8001447C 000113BC  94 21 FF 80 */	stwu r1, -0x80(r1)
 /* 80014480 000113C0  7C 08 02 A6 */	mflr r0
 /* 80014484 000113C4  3C 60 80 4A */	lis r3, lbl_8049F820@ha

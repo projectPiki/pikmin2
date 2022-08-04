@@ -5,42 +5,47 @@ lbl_constructor:
 
 .section .data, "wa"  # 0x8049E220 - 0x804EFC20
 .balign 8
-.global lbl_8049F5B0
 lbl_8049F5B0:
 	.4byte 0x00000000
 	.4byte 0x00000058
 	.4byte 0x00000000
-.global lbl_8049F5BC
 lbl_8049F5BC:
 	.4byte 0x00000000
 	.4byte 0x00000060
 	.4byte 0x00000000
-.global lbl_8049F5C8
 lbl_8049F5C8:
 	.4byte 0x00000000
 	.4byte 0x0000007C
 	.4byte 0x00000000
+lbl_8049F5D4:
 	.4byte 0x00000000
 	.4byte 0x00000074
 	.4byte 0x00000000
+lbl_8049F5E0:
 	.4byte 0x00000000
 	.4byte 0x00000070
 	.4byte 0x00000000
+lbl_8049F5EC:
 	.4byte 0x00000000
 	.4byte 0x00000068
 	.4byte 0x00000000
+lbl_8049F5F8:
 	.4byte 0x00000000
 	.4byte 0x00000064
 	.4byte 0x00000000
+lbl_8049F604:
 	.4byte 0x00000000
 	.4byte 0x0000006C
 	.4byte 0x00000000
+lbl_8049F610:
 	.4byte 0x00000000
 	.4byte 0x00000084
 	.4byte 0x00000000
+lbl_8049F61C:
 	.4byte 0x00000000
 	.4byte 0x00000080
 	.4byte 0x00000000
+lbl_8049F628:
 	.4byte 0x00000000
 	.4byte 0x00000088
 	.4byte 0x00000000
@@ -72,6 +77,7 @@ __vt__Q214JStudio_JStage14TAdaptor_actor:
 	.4byte adaptor_do_ANIMATION_MODE__Q214JStudio_JStage14TAdaptor_actorFQ37JStudio4data15TEOperationDataPCvUl
 	.4byte adaptor_do_TEXTURE_ANIMATION__Q214JStudio_JStage14TAdaptor_actorFQ37JStudio4data15TEOperationDataPCvUl
 	.4byte adaptor_do_TEXTURE_ANIMATION_MODE__Q214JStudio_JStage14TAdaptor_actorFQ37JStudio4data15TEOperationDataPCvUl
+# these following null bytes are not part of the vtable.
 	.4byte 0
 	.4byte 0
 	.4byte 0
@@ -98,6 +104,7 @@ __vt__Q214JStudio_JStage14TAdaptor_actor:
 	.4byte 0
 	.4byte "__cl__Q214JStudio_JStage81TVariableValueOutput_object_<Q214JStudio_JStage14TAdaptor_actor,Q26JStage6TActor>CFfPQ27JStudio8TAdaptor"
 	.4byte "__dt__Q214JStudio_JStage81TVariableValueOutput_object_<Q214JStudio_JStage14TAdaptor_actor,Q26JStage6TActor>Fv"
+# these following null bytes are not part of the vtable.
 	.4byte 0
 	.4byte 0
 	.4byte 0
@@ -105,16 +112,19 @@ __vt__Q214JStudio_JStage14TAdaptor_actor:
 	.4byte 0
 
 .section .bss  # 0x804EFC20 - 0x8051467C
-.global lbl_804EFDE8
-lbl_804EFDE8:
-	.skip 0x40
+.lcomm lbl_804EFDE8, 0xC, 4
+.lcomm lbl_804EFDF4, 0xC, 4
+.lcomm lbl_804EFE00, 0xC, 4
+.lcomm lbl_804EFE0C, 0xC, 4
+.lcomm lbl_804EFE18, 0xC, 4
+# object-actor.cpp
+.comm saoVVOutput___Q214JStudio_JStage14TAdaptor_actor, 0xD0, 4
+.comm saoVVOutput_ANIMATION_FRAME___Q214JStudio_JStage14TAdaptor_actor, 0x90, 4
 
 .section .sdata2, "a"     # 0x80516360 - 0x80520E40
 .balign 8
-.global lbl_805164A8
 lbl_805164A8:
-	.4byte 0x00000000
-	.4byte 0x00000000
+	.float 0.0
 
 .section .text, "ax"  # 0x800056C0 - 0x80472F00
 .global __ct__Q214JStudio_JStage14TAdaptor_actorFPCQ26JStage7TSystemPQ26JStage6TActor
@@ -981,8 +991,7 @@ lbl_80012D10:
 /* 80012D24 0000FC64  38 21 00 10 */	addi r1, r1, 0x10
 /* 80012D28 0000FC68  4E 80 00 20 */	blr 
 
-.global "__sinit_object-actor_cpp"
-"__sinit_object-actor_cpp":
+"__sinit_object-actor_cpp": # static initializer
 /* 80012D2C 0000FC6C  94 21 FE F0 */	stwu r1, -0x110(r1)
 /* 80012D30 0000FC70  7C 08 02 A6 */	mflr r0
 /* 80012D34 0000FC74  3C 60 80 4A */	lis r3, lbl_8049F5B0@ha

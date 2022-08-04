@@ -74,6 +74,11 @@ __vt__Q29P2DScreen12CallBackNode:
 	.4byte draw__Q29P2DScreen4NodeFR8GraphicsR14J2DGrafContext
 	.4byte doInit__Q29P2DScreen4NodeFv
 
+#.section .bss  # 0x804EFC20 - 0x8051467C
+# ogLifeGauge.cpp
+# temporarily moved to ogScreen.s for the sake of alignment
+#.comm msVal__Q32og6Screen18CallBack_LifeGauge, 0x10, 4
+
 .section .sdata2, "a"     # 0x80516360 - 0x80520E40
 .balign 8
 lbl_8051D5B0:

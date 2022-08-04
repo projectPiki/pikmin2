@@ -4,16 +4,15 @@ lbl_constructor:
 .4byte __sinit_JAISystemInterface_cpp
 
 .section .bss  # 0x804EFC20 - 0x8051467C
-.global lbl_804F2870
-lbl_804F2870:
-	.skip 0x10
+.balign 8
+.lcomm lbl_804F2870, 0xC, 4
+# JAISystemInterface.cpp
+.comm systemPortCmd__Q27JAInter15SystemInterface, 0x18, 4
 
 .section .sdata2, "a"     # 0x80516360 - 0x80520E40
 .balign 8
-.global lbl_80517050
 lbl_80517050:
-	.4byte 0x00000000
-	.4byte 0x00000000
+	.float 0.0
 
 .section .text, "ax"  # 0x800056C0 - 0x80472F00
 .global checkFileExsistence__Q27JAInter15SystemInterfaceFPc
@@ -506,8 +505,7 @@ lbl_800B9588:
 /* 800B95A0 000B64E0  38 21 00 20 */	addi r1, r1, 0x20
 /* 800B95A4 000B64E4  4E 80 00 20 */	blr 
 
-.global __sinit_JAISystemInterface_cpp
-__sinit_JAISystemInterface_cpp:
+__sinit_JAISystemInterface_cpp: # static initializer
 /* 800B95A8 000B64E8  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 800B95AC 000B64EC  7C 08 02 A6 */	mflr r0
 /* 800B95B0 000B64F0  3C 60 80 51 */	lis r3, systemPortCmd__Q27JAInter15SystemInterface@ha

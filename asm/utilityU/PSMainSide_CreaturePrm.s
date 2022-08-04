@@ -5,26 +5,21 @@ lbl_constructor:
 	
 .section .rodata  # 0x804732E0 - 0x8049E220
 .balign 8
-.global lbl_8049E0F0
 lbl_8049E0F0:
 	.asciz "Opening1"
-	.skip 3
-.global lbl_8049E0FC
+.balign 4
 lbl_8049E0FC:
 	.asciz "Opening2"
-	.skip 3
-.global lbl_8049E108
+.balign 4
 lbl_8049E108:
 	.asciz "Staffroll"
-	.skip 2
-.global lbl_8049E114
+.balign 4
 lbl_8049E114:
 	.asciz "PSMainSide_CreaturePrm.cpp"
-	.skip 1
-.global lbl_8049E130
+.balign 4
 lbl_8049E130:
 	.asciz "P2Assert"
-	.skip 3
+.balign 4
 .global cVolMaxDist_Kehai__Q23PSM11CreaturePrm
 cVolMaxDist_Kehai__Q23PSM11CreaturePrm:
 	.float 150.0
@@ -159,9 +154,9 @@ __vt__Q23PSM11CreaturePrm:
 	.4byte "__dt__Q28PSSystem34SingletonBase<Q23PSM11CreaturePrm>Fv"
 
 .section .bss  # 0x804EFC20 - 0x8051467C
-.global lbl_80506A80
-lbl_80506A80:
-	.skip 0xC
+.lcomm lbl_80506A80, 0xC, 4
+# PSMainSide_CreaturePrm.cpp
+.comm sInsReal__3PSM, 0x1C, 4
 
 .section .sdata, "wa"  # 0x80514680 - 0x80514D80
 .balign 8
@@ -501,8 +496,7 @@ lbl_804727EC:
 /* 804727FC 0046F73C  38 21 00 10 */	addi r1, r1, 0x10
 /* 80472800 0046F740  4E 80 00 20 */	blr 
 
-.global __sinit_PSMainSide_CreaturePrm_cpp
-__sinit_PSMainSide_CreaturePrm_cpp:
+__sinit_PSMainSide_CreaturePrm_cpp: # static initializer
 /* 80472804 0046F744  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 80472808 0046F748  7C 08 02 A6 */	mflr r0
 /* 8047280C 0046F74C  3C 60 80 4F */	lis r3, "__vt__Q28PSSystem34SingletonBase<Q23PSM11CreaturePrm>"@ha

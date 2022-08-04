@@ -70,12 +70,11 @@ __vt__10JFWDisplay:
 	.4byte __dt__10JFWDisplayFv
 
 .section .bss  # 0x804EFC20 - 0x8051467C
-.global lbl_804F0520
-lbl_804F0520:
-	.skip 0xC
-.global clear_z_tobj
-clear_z_tobj:
-	.skip 0x24
+.balign 8
+.lcomm lbl_804F0520, 0xC, 4
+.lcomm clear_z_tobj, 0x20, 4
+# JFWDisplay.cpp
+.comm sList__8JFWAlarm, 0xC, 4
 
 .section .sbss # 0x80514D80 - 0x80516360
 .balign 8

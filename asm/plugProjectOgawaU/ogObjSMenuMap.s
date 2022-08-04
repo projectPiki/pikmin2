@@ -97,7 +97,6 @@ lbl_8048E278:
 	.4byte 0x656E4F62
 	.4byte 0x6A2E6800
 	.asciz "P2Assert"
-	.skip 3
 
 .section .data, "wa"  # 0x8049E220 - 0x804EFC20
 .balign 8
@@ -209,6 +208,10 @@ __vt__Q32og9newScreen11ObjSMenuMap:
 	.4byte updateFadeIn__Q32og9newScreen12ObjSMenuBaseFv
 	.4byte updateFadeOut__Q32og9newScreen12ObjSMenuBaseFv
 	.4byte commonUpdate__Q32og9newScreen11ObjSMenuMapFv
+
+.section .bss  # 0x804EFC20 - 0x8051467C
+# ogObjSMenuMap.cpp
+.comm msVal__Q32og9newScreen11ObjSMenuMap, 0x50, 4
 
 .section .sbss # 0x80514D80 - 0x80516360
 .balign 8
