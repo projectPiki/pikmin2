@@ -6,8 +6,8 @@
 #define LOCALIZED true
 #define MATCHING  true
 
-#define USADEMO1    1
-#define USAFINAL    2
+#define USADEMO1 1
+#define USAFINAL 2
 
 #if VERNUM == 2
 #define BUILDTARGET USAFINAL
