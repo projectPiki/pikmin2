@@ -20,11 +20,11 @@ struct MenuSection : public Section {
 
 struct RootMenuSection : public MenuSection {
 	RootMenuSection(struct JKRHeap*);
-	virtual ~RootMenuSection();					// _08
-	virtual void drawInit(struct Graphics&);	// _1C
-	virtual bool doUpdate();					// _3C
-	virtual void doDraw(Graphics&);				// _40
-	virtual void setChildSection(JKRHeap*);     // _48
+	virtual ~RootMenuSection();              // _08
+	virtual void drawInit(struct Graphics&); // _1C
+	virtual bool doUpdate();                 // _3C
+	virtual void doDraw(Graphics&);          // _40
+	virtual void setChildSection(JKRHeap*);  // _48
 };
 
 #endif

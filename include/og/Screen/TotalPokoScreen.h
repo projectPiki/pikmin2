@@ -17,13 +17,13 @@ struct TotalPokoScreen : public P2DScreen::Mgr_tuning {
 	void closeTotalPoko();
 	void hideTotalPoko();
 
-	u32 m_currentPokoCount;  // _148
-	u32 m_previousPokoCount; // _14C
-	u32 _150;                     // _150
-	bool m_isOpen;                  // _154
-	u8 _155;                      // _155
-	u8 _156;                      // _156
-	u8 _157;                      // _157
+	u32 m_currentPokoCount;                  // _148
+	u32 m_previousPokoCount;                 // _14C
+	u32 _150;                                // _150
+	bool m_isOpen;                           // _154
+	u8 _155;                                 // _155
+	u8 _156;                                 // _156
+	u8 _157;                                 // _157
 	CallBack_CounterRV* m_callBackCounterRV; // _158
 	J2DPane* m_pane;                         // _15C
 	float _160;

@@ -21,12 +21,11 @@ typedef u8 GXBool;
 #define GX_ENABLE  ((GXBool)1)
 #define GX_DISABLE ((GXBool)0)
 
-typedef enum _GXCullMode
-{
-    GX_CULL_NONE,
-    GX_CULL_FRONT,
-    GX_CULL_BACK,
-    GX_CULL_ALL
+typedef enum _GXCullMode {
+	GX_CULL_NONE,
+	GX_CULL_FRONT,
+	GX_CULL_BACK,
+	GX_CULL_ALL
 
 } GXCullMode;
 
