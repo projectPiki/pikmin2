@@ -104,9 +104,18 @@ struct RamStream : Stream {
 	int m_bounds;           // _41C
 };
 
-template <typename T> inline void loadAndRead(T* thisPtr, char* fname, bool nullCheck = true)
+/**
+ * @brief A wrapper for loading and reading files using RamStream, which is commonly used and recognised in almost every config context.
+ *
+ * @tparam T				The class containing the read function
+ * @param thisPtr		A pointer to the class containing the read function
+ * @param fname			The file name we intend to read from
+ * @param heap			The heap used in the loading process
+ * @param nullCheck	Should we check if the file was successfully mounted to RAM or not?
+ */
+template <typename T> inline void loadAndRead(T* thisPtr, char* fname, JKRHeap* heap = nullptr, bool nullCheck = true)
 {
-	void* handle = JKRDvdRipper::loadToMainRAM(fname, 0, Switch_0, 0, 0, JKRDvdRipper::ALLOC_DIR_BOTTOM, 0, 0, 0);
+	void* handle = JKRDvdRipper::loadToMainRAM(fname, 0, Switch_0, 0, heap, JKRDvdRipper::ALLOC_DIR_BOTTOM, 0, 0, 0);
 	if (nullCheck && !handle) {
 		return;
 	}
