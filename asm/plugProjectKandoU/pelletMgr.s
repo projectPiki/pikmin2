@@ -5,182 +5,115 @@ lbl_constructor:
 
 .section .rodata  # 0x804732E0 - 0x8049E220
 .balign 8
-.global lbl_8047E318
 lbl_8047E318:
 	.4byte 0x00000000
 	.4byte 0x00000000
 	.4byte 0x00000000
-	.4byte 0x70656C6C
-	.4byte 0x65744D67
-	.4byte 0x72000000
-.global lbl_8047E330
+.balign 4
+lbl_8047E324:
+	.asciz "pelletMgr"
+.balign 4
 lbl_8047E330:
-	.4byte 0x6E6F2063
-	.4byte 0x6F6E6669
-	.4byte 0x67207065
-	.4byte 0x6C6C6574
-	.4byte 0x00000000
-.global lbl_8047E344
+	.asciz "no config pellet"
+.balign 4
 lbl_8047E344:
-	.4byte 0x70656C6C
-	.4byte 0x65744D67
-	.4byte 0x722E6370
-	.4byte 0x70000000
-.global lbl_8047E354
+	.asciz "pelletMgr.cpp"
+.balign 4
 lbl_8047E354:
 	.asciz "P2Assert"
-	.skip 3
+.balign 4
+lbl_8047E360: # bury radius array of five words
 	.4byte 0x00000000
 	.4byte 0x00000000
 	.4byte 0x00000000
 	.4byte 0x00000000
 	.4byte 0x00000000
-.global lbl_8047E374
 lbl_8047E374:
-	.4byte 0x6E756D62
-	.4byte 0x65723130
-	.4byte 0x00000000
-.global lbl_8047E380
+	.asciz "number10"
+.balign 4
 lbl_8047E380:
-	.4byte 0x6E756D62
-	.4byte 0x65723230
-	.4byte 0x00000000
-.global lbl_8047E38C
-lbl_8047E38C:
+	.asciz "number20"
+.balign 4
+lbl_8047E38C: # Shift-JIS
 	.4byte 0x82AA82C1
 	.4byte 0x82A982E8
-	.4byte 0x0A000000
-	.4byte 0x50534761
-	.4byte 0x6D652E68
-	.4byte 0x00000000
-	.4byte 0x50535363
-	.4byte 0x656E652E
-	.4byte 0x68000000
-	.4byte 0x67657420
-	.4byte 0x736F756E
-	.4byte 0x64207363
-	.4byte 0x656E6520
-	.4byte 0x61740A69
-	.4byte 0x6E76616C
-	.4byte 0x69642074
-	.4byte 0x696D6D69
-	.4byte 0x6E670A00
-	.4byte 0x50534D61
-	.4byte 0x696E5369
-	.4byte 0x64655F53
-	.4byte 0x63656E65
-	.4byte 0x2E680000
-	.4byte 0x6F6E536C
-	.4byte 0x6F745374
-	.4byte 0x69636B45
-	.4byte 0x6E640A00
-.global lbl_8047E3F8
+	.2byte 0x0A00
+.balign 4
+lbl_8047E398:
+	.asciz "PSGame.h"
+.balign 4
+lbl_8047E3A4:
+	.asciz "PSScene.h"
+.balign 4
+lbl_8047E3B0:
+	.asciz "get sound scene at\ninvalid timming\n"
+.balign 4
+lbl_8047E3D4:
+	.asciz "PSMainSide_Scene.h"
+.balign 4
+lbl_8047E3E8:
+	.asciz "onSlotStickEnd\n"
+.balign 4
 lbl_8047E3F8:
-	.4byte 0x2F757365
-	.4byte 0x722F4162
-	.4byte 0x652F5065
-	.4byte 0x6C6C6574
-	.4byte 0x2F25732F
-	.4byte 0x00000000
-.global lbl_8047E410
+	.asciz "/user/Abe/Pellet/%s/"
+.balign 4
 lbl_8047E410:
-	.4byte 0x75736572
-	.4byte 0x2F4B616E
-	.4byte 0x646F2F70
-	.4byte 0x656C6C65
-	.4byte 0x742F0000
-	.4byte 0x6D65636B
-	.4byte 0x202A2A20
-	.4byte 0x2573203A
-	.4byte 0x20697320
-	.4byte 0x6E6F7420
-	.4byte 0x666F756E
-	.4byte 0x20210A00
-	.4byte 0x25733A20
-	.4byte 0x6E6F7420
-	.4byte 0x666F756E
-	.4byte 0x6420210A
-	.4byte 0x00000000
-	.4byte 0x61726368
-	.4byte 0x69766520
-	.4byte 0x6E6F7420
-	.4byte 0x666F756E
-	.4byte 0x640A0000
-	.4byte 0x2573203A
-	.4byte 0x20697320
-	.4byte 0x6E6F7420
-	.4byte 0x666F756E
-	.4byte 0x20210A00
-.global lbl_8047E47C
+	.asciz "user/Kando/pellet/"
+.balign 4
+lbl_8047E424:
+	.asciz "meck ** %s : is not foun !\n"
+.balign 4
+lbl_8047E440:
+	.asciz "%s: not found !\n"
+.balign 4
+lbl_8047E454:
+	.asciz "archive not found\n"
+.balign 4
+lbl_8047E468:
+	.asciz "%s : is not foun !\n"
+.balign 4
 lbl_8047E47C:
-	.4byte 0x62706D67
-	.4byte 0x723A6E6F
-	.4byte 0x206D6F64
-	.4byte 0x656C4461
-	.4byte 0x74612125
-	.4byte 0x640A0000
-.global lbl_8047E494
-lbl_8047E494:
+	.asciz "bpmgr:no modelData!%d\n"
+.balign 4
+lbl_8047E494: # Shift-JIS
 	.4byte 0x8379838C
 	.4byte 0x83628367
 	.4byte 0x837D836C
 	.4byte 0x815B8357
 	.4byte 0x83830000
-	.4byte 0x696C6C65
-	.4byte 0x67616C20
-	.4byte 0x636F6465
-	.4byte 0x20282578
-	.4byte 0x290A0000
-	.4byte 0x696C6C65
-	.4byte 0x67616C20
-	.4byte 0x636F6465
-	.4byte 0x206E6F20
-	.4byte 0x636F6E66
-	.4byte 0x69672066
-	.4byte 0x6F756E64
-	.4byte 0x20282578
-	.4byte 0x2920696E
-	.4byte 0x64657820
-	.4byte 0x25640A00
-.global lbl_8047E4E8
+.balign 4
+lbl_8047E4A8:
+	.asciz "illegal code (%x)\n"
+.balign 4
+lbl_8047E4BC:
+	.asciz "illegal code no config found (%x) index %d\n"
+.balign 4
 lbl_8047E4E8:
-	.4byte 0x6E6F2063
-	.4byte 0x6F6E6669
-	.4byte 0x6720666F
-	.4byte 0x756E6428
-	.4byte 0x2573290A
-	.4byte 0x00000000
-.global lbl_8047E500
-lbl_8047E500:
+	.asciz "no config found(%s)\n"
+.balign 4
+lbl_8047E500: # Shift-JIS
 	.4byte 0x232082A8
 	.4byte 0x95F38341
 	.4byte 0x83438365
 	.4byte 0x83808352
 	.4byte 0x815B8368
 	.4byte 0x0D0A0000
-	.4byte 0x41726753
-	.4byte 0x63616C65
-	.4byte 0x00000000
-	.4byte 0x50656C6C
-	.4byte 0x6574496E
-	.4byte 0x69744172
-	.4byte 0x67000000
-.global lbl_8047E534
+.balign 4
+lbl_8047E518:
+	.asciz "ArgScale"
+.balign 4
+lbl_8047E524:
+	.asciz "PelletInitArg"
+.balign 4
 lbl_8047E534:
-	.4byte 0x50656C6C
-	.4byte 0x6574476F
-	.4byte 0x616C5374
-	.4byte 0x61746541
-	.4byte 0x72670000
+	.asciz "PelletGoalStateArg"
 
 .section .data, "wa"  # 0x8049E220 - 0x804EFC20
 .balign 8
-.global lbl_804B1A60
-lbl_804B1A60:
-	.4byte 0x00000000
-	.4byte 0x00000000
-	.4byte 0x00000000
-.global lbl_804B1A6C
+govNAN___Q24Game5P2JST:
+	.float 0.0
+	.float 0.0
+	.float 0.0
 lbl_804B1A6C:
 	.4byte lbl_80166C44
 	.4byte lbl_80166BF4
@@ -203,7 +136,6 @@ lbl_804B1A6C:
 	.4byte lbl_80166C44
 	.4byte lbl_80166C44
 	.4byte lbl_80166C2C
-.global lbl_804B1AC0
 lbl_804B1AC0:
 	.4byte 0x00000000
 	.4byte 0xFFFFFFFF
@@ -526,10 +458,10 @@ __vt__13WPExcludeSpot:
 	.4byte 0
 	.4byte 0
 	.4byte satisfy__13WPExcludeSpotFPQ24Game8WayPoint
-.global lbl_804B1F4C
-lbl_804B1F4C:
-	.4byte 0x00000000
-	.4byte 0x00000000
+.global "__vt__Q223@unnamed@pelletMgr_cpp@6NotOff"
+"__vt__Q223@unnamed@pelletMgr_cpp@6NotOff": # weak object
+	.4byte 0
+	.4byte 0
 	.4byte "satisfy__Q223@unnamed@pelletMgr_cpp@6NotOffFPQ24Game8WayPoint"
 .global __vt__Q24Game11WPCondition
 __vt__Q24Game11WPCondition:
@@ -792,21 +724,18 @@ __vt__Q24Game15InteractMattuan:
 	.4byte "next__19Iterator<8CollPart>Fv"
 	.4byte "isDone__19Iterator<8CollPart>Fv"
 	.4byte "__ml__19Iterator<8CollPart>Fv"
-	.4byte 0
 
 .section .sdata, "wa"  # 0x80514680 - 0x80514D80
 .balign 8
 .global sFromTekiEnable__Q24Game6Pellet
 sFromTekiEnable__Q24Game6Pellet:
-	.4byte 0x01000000
+	.byte 0x01
 
 .section .sbss # 0x80514D80 - 0x80516360
 .balign 8
-.global lbl_80515998
-lbl_80515998:
+gu32NAN___Q24Game5P2JST:
 	.skip 0x4
-.global lbl_8051599C
-lbl_8051599C:
+gfNAN___Q24Game5P2JST:
 	.skip 0x4
 .global pelletMgr__4Game
 pelletMgr__4Game:
@@ -816,164 +745,128 @@ mDebug__Q24Game9PelletMgr:
 	.skip 0x1
 .global disableDynamics__Q24Game9PelletMgr
 disableDynamics__Q24Game9PelletMgr:
-	.skip 0x3
+	.skip 0x1
 
 .section .sdata2, "a"     # 0x80516360 - 0x80520E40
 .balign 8
-.global lbl_80518910
 lbl_80518910:
 	.float 1.0
-.global lbl_80518914
 lbl_80518914:
-	.4byte 0x00000000
-.global lbl_80518918
+	.float 0.0
 lbl_80518918:
 	.float 0.5
-.global lbl_8051891C
 lbl_8051891C:
-	.4byte 0x3E4CCCCD
-.global lbl_80518920
+	.float 0.2
 lbl_80518920:
-	.4byte 0x42B40000
-.global lbl_80518924
+	.float 90.0
 lbl_80518924:
-	.4byte 0xBF000000
-.global lbl_80518928
+	.float -0.5
 lbl_80518928:
-	.4byte 0x41F00000
-	.4byte 0x00000000
-.global lbl_80518930
+	.float 30.0
+.balign 8
 lbl_80518930:
 	.4byte 0x43300000
 	.4byte 0x80000000
-.global lbl_80518938
 lbl_80518938:
-	.4byte 0x40800000
-.global lbl_8051893C
+	.float 4.0
 lbl_8051893C:
 	.float 0.25
-.global lbl_80518940
 lbl_80518940:
-	.4byte 0x47000000
-.global lbl_80518944
+	.float 32768.0
 lbl_80518944:
-	.4byte 0x40400000
-.global lbl_80518948
+	.float 3.0
+.balign 4
 lbl_80518948:
-	.4byte 0x6E756D62
-	.4byte 0x65723100
-.global lbl_80518950
+	.asciz "number1"
+.balign 4
 lbl_80518950:
-	.4byte 0x6E756D62
-	.4byte 0x65723500
-.global lbl_80518958
+	.asciz "number5"
+.balign 4
 lbl_80518958:
-	.4byte 0x47FA0000
-.global lbl_8051895C
+	.float 128000.0
 lbl_8051895C:
-	.4byte 0x3C23D70A
-.global lbl_80518960
+	.float 0.01
+.balign 4
 lbl_80518960:
-	.4byte 0x6C6F6F7A
-	.4byte 0x79000000
-.global lbl_80518968
+	.asciz "loozy"
+.balign 4
 lbl_80518968:
-	.4byte 0x6F72696D
-	.4byte 0x61000000
-.global lbl_80518970
+	.asciz "orima"
+.balign 4
 lbl_80518970:
-	.4byte 0x40000000
-.global lbl_80518974
+	.float 2.0
+.balign 4
 lbl_80518974:
-	.4byte 0x6E657665
-	.4byte 0x72000000
-.global lbl_8051897C
+	.asciz "never"
+.balign 4
 lbl_8051897C:
-	.4byte 0x6C6F6400
-.global lbl_80518980
+	.asciz "lod"
+.balign 4
 lbl_80518980:
-	.4byte 0x73696D70
-	.4byte 0x6C650000
-.global lbl_80518988
-lbl_80518988:
-	.4byte 0x40C90FDB
-.global lbl_8051898C
+	.asciz "simple"
+.balign 4
+lbl_80518988: # tau
+	.float 6.2831855
 lbl_8051898C:
-	.4byte 0x43A2F983
-.global lbl_80518990
+	.float 325.9493
 lbl_80518990:
-	.4byte 0xC3A2F983
-.global lbl_80518994
+	.float -325.9493
 lbl_80518994:
-	.4byte 0x41200000
-.global lbl_80518998
+	.float 10.0
 lbl_80518998:
 	.float 0.1
-.global lbl_8051899C
 lbl_8051899C:
-	.4byte 0x41400000
-.global lbl_805189A0
+	.float 12.0
 lbl_805189A0:
 	.float -1.0
-.global lbl_805189A4
-lbl_805189A4:
-	.4byte 0x40490FDB
-.global lbl_805189A8
+lbl_805189A4: # pi
+	.float 3.1415927
 lbl_805189A8:
-	.4byte 0x447FE000
-.global lbl_805189AC
-lbl_805189AC:
-	.4byte 0x3FC90FDB
-.global lbl_805189B0
+	.float 1023.5
+lbl_805189AC: # pi/2
+	.float 1.5707964
 lbl_805189B0:
-	.4byte 0x3F19999A
-.global lbl_805189B4
+	.float 0.6
 lbl_805189B4:
-	.4byte 0x42C80000
-.global lbl_805189B8
+	.float 100.0
+.balign 4
 lbl_805189B8:
-	.4byte 0x706D6F74
-	.4byte 0x696F6E00
-.global lbl_805189C0
+	.asciz "pmotion"
+.balign 4
 lbl_805189C0:
-	.4byte 0x46480000
-.global lbl_805189C4
+	.float 12800.0
 lbl_805189C4:
-	.4byte 0x80000000
-.global lbl_805189C8
+	.float -0.0
+.balign 4
 lbl_805189C8:
-	.4byte 0x6A706E00
-.global lbl_805189CC
+	.asciz "jpn"
+.balign 4
 lbl_805189CC:
-	.4byte 0x75730000
-.global lbl_805189D0
+	.asciz "us"
+.balign 4
 lbl_805189D0:
-	.4byte 0x70616C00
-.global lbl_805189D4
+	.asciz "pal"
+.balign 4
 lbl_805189D4:
-	.4byte 0x6E756C6C
-	.4byte 0x00000000
-.global lbl_805189DC
+	.asciz "null"
+.balign 4
 lbl_805189DC:
-	.4byte 0x25732573
-	.4byte 0x00000000
-.global lbl_805189E4
+	.asciz "%s%s"
+.balign 4
 lbl_805189E4:
-	.4byte 0x25730000
-.global lbl_805189E8
+	.asciz "%s"
+.balign 4
 lbl_805189E8:
-	.4byte 0x25732F25
-	.4byte 0x73000000
-.global lbl_805189F0
+	.asciz "%s/%s"
+.balign 4
 lbl_805189F0:
-	.4byte 0x6D616E64
-	.4byte 0x61210A00
-.global lbl_805189F8
+	.asciz "manda!\n"
+.balign 4
 lbl_805189F8:
-	.4byte 0x79657300
-.global lbl_805189FC
+	.asciz "yes"
+.balign 4
 lbl_805189FC:
-	.4byte 0x428C0000
+	.float 70.0
 
 .section .text, "ax"  # 0x800056C0 - 0x80472F00
 .global getCreatureName__Q24Game6PelletFv
@@ -2335,19 +2228,16 @@ __ct__Q24Game19PelletNumberInitArgFii:
 /* 80166BE8 00163B28  7C 04 00 2E */	lwzx r0, r4, r0
 /* 80166BEC 00163B2C  7C 09 03 A6 */	mtctr r0
 /* 80166BF0 00163B30  4E 80 04 20 */	bctr 
-.global lbl_80166BF4
 lbl_80166BF4:
 /* 80166BF4 00163B34  38 02 A5 E8 */	addi r0, r2, lbl_80518948@sda21
 /* 80166BF8 00163B38  90 03 00 08 */	stw r0, 8(r3)
 /* 80166BFC 00163B3C  91 43 00 10 */	stw r10, 0x10(r3)
 /* 80166C00 00163B40  48 00 00 54 */	b lbl_80166C54
-.global lbl_80166C04
 lbl_80166C04:
 /* 80166C04 00163B44  38 02 A5 F0 */	addi r0, r2, lbl_80518950@sda21
 /* 80166C08 00163B48  90 03 00 08 */	stw r0, 8(r3)
 /* 80166C0C 00163B4C  91 03 00 10 */	stw r8, 0x10(r3)
 /* 80166C10 00163B50  48 00 00 44 */	b lbl_80166C54
-.global lbl_80166C14
 lbl_80166C14:
 /* 80166C14 00163B54  3C 80 80 48 */	lis r4, lbl_8047E374@ha
 /* 80166C18 00163B58  38 00 00 02 */	li r0, 2
@@ -2355,7 +2245,6 @@ lbl_80166C14:
 /* 80166C20 00163B60  90 83 00 08 */	stw r4, 8(r3)
 /* 80166C24 00163B64  90 03 00 10 */	stw r0, 0x10(r3)
 /* 80166C28 00163B68  48 00 00 2C */	b lbl_80166C54
-.global lbl_80166C2C
 lbl_80166C2C:
 /* 80166C2C 00163B6C  3C 80 80 48 */	lis r4, lbl_8047E380@ha
 /* 80166C30 00163B70  38 00 00 03 */	li r0, 3
@@ -2363,7 +2252,6 @@ lbl_80166C2C:
 /* 80166C38 00163B78  90 83 00 08 */	stw r4, 8(r3)
 /* 80166C3C 00163B7C  90 03 00 10 */	stw r0, 0x10(r3)
 /* 80166C40 00163B80  48 00 00 14 */	b lbl_80166C54
-.global lbl_80166C44
 lbl_80166C44:
 /* 80166C44 00163B84  38 82 A5 E8 */	addi r4, r2, lbl_80518948@sda21
 /* 80166C48 00163B88  38 00 00 00 */	li r0, 0
@@ -5593,13 +5481,13 @@ doSimulation__Q24Game6PelletFf:
 /* 80169A4C 0016698C  90 01 00 0C */	stw r0, 0xc(r1)
 /* 80169A50 00166990  38 83 1F 58 */	addi r4, r3, __vt__Q24Game11WPCondition@l
 /* 80169A54 00166994  C0 22 A5 B4 */	lfs f1, lbl_80518914@sda21(r2)
-/* 80169A58 00166998  3C 60 80 4B */	lis r3, lbl_804B1F4C@ha
+/* 80169A58 00166998  3C 60 80 4B */	lis r3, "__vt__Q223@unnamed@pelletMgr_cpp@6NotOff"@ha
 /* 80169A5C 0016699C  D0 01 00 20 */	stfs f0, 0x20(r1)
 /* 80169A60 001669A0  38 A1 00 0C */	addi r5, r1, 0xc
 /* 80169A64 001669A4  C0 02 A6 34 */	lfs f0, lbl_80518994@sda21(r2)
 /* 80169A68 001669A8  38 00 00 00 */	li r0, 0
 /* 80169A6C 001669AC  90 81 00 0C */	stw r4, 0xc(r1)
-/* 80169A70 001669B0  38 C3 1F 4C */	addi r6, r3, lbl_804B1F4C@l
+/* 80169A70 001669B0  38 C3 1F 4C */	addi r6, r3, "__vt__Q223@unnamed@pelletMgr_cpp@6NotOff"@l
 /* 80169A74 001669B4  80 6D 93 08 */	lwz r3, mapMgr__4Game@sda21(r13)
 /* 80169A78 001669B8  38 81 00 28 */	addi r4, r1, 0x28
 /* 80169A7C 001669BC  D0 61 00 1C */	stfs f3, 0x1c(r1)
@@ -15745,15 +15633,14 @@ lbl_801723A4:
 /* 801723E0 0016F320  90 03 00 2C */	stw r0, 0x2c(r3)
 /* 801723E4 0016F324  4E 80 00 20 */	blr 
 
-.global __sinit_pelletMgr_cpp
-__sinit_pelletMgr_cpp:
+__sinit_pelletMgr_cpp: # static initializer
 /* 801723E8 0016F328  3C 80 80 51 */	lis r4, __float_nan@ha
 /* 801723EC 0016F32C  38 00 FF FF */	li r0, -1
 /* 801723F0 0016F330  C0 04 48 B0 */	lfs f0, __float_nan@l(r4)
-/* 801723F4 0016F334  3C 60 80 4B */	lis r3, lbl_804B1A60@ha
-/* 801723F8 0016F338  90 0D 93 18 */	stw r0, lbl_80515998@sda21(r13)
-/* 801723FC 0016F33C  D4 03 1A 60 */	stfsu f0, lbl_804B1A60@l(r3)
-/* 80172400 0016F340  D0 0D 93 1C */	stfs f0, lbl_8051599C@sda21(r13)
+/* 801723F4 0016F334  3C 60 80 4B */	lis r3, govNAN___Q24Game5P2JST@ha
+/* 801723F8 0016F338  90 0D 93 18 */	stw r0, gu32NAN___Q24Game5P2JST@sda21(r13)
+/* 801723FC 0016F33C  D4 03 1A 60 */	stfsu f0, govNAN___Q24Game5P2JST@l(r3)
+/* 80172400 0016F340  D0 0D 93 1C */	stfs f0, gfNAN___Q24Game5P2JST@sda21(r13)
 /* 80172404 0016F344  D0 03 00 04 */	stfs f0, 4(r3)
 /* 80172408 0016F348  D0 03 00 08 */	stfs f0, 8(r3)
 /* 8017240C 0016F34C  4E 80 00 20 */	blr 

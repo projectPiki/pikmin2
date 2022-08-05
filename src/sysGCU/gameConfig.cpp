@@ -58,9 +58,8 @@ GameConfig::GameConfig()
 	m_parms.m_mapparts_path.m_data    = "";
 	m_parms.m_pelletMultiLang.m_data  = 1;
 	m_parms.m_vsTest.m_data           = 0;
-	m_parms.m_autosaveOff.m_data      = 0;
 #endif
-
+	m_parms.m_autosaveOff.m_data      = 0;
 	m_parms.m_gamePrint.m_data        = 0;
 	m_parms.m_Print.m_data            = 0;
 	m_parms.m_ogawaPrint.m_data       = 0;
