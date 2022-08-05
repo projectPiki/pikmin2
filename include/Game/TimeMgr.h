@@ -45,6 +45,8 @@ struct TimeMgrParms {
 	Parms parms; // _00
 };
 
+#define TIMEMGR_FLAG_STOPPED 1
+
 struct TimeMgr : public CNode {
 	TimeMgr();
 
@@ -62,22 +64,25 @@ struct TimeMgr : public CNode {
 	void updateSlot();
 	void update();
 
-	TimeMgrParms m_parms;       // _018
-	float m_currentHour;        // _208
-	float m_currentTimeOfDay;   // _20C
-	u32 _210;                   // _210
-	float _214;                 // _214
-	u32 m_dayCount;             // _218
-	float m_speedFactor;        // _21C
+	TimeMgrParms m_parms;     // _018
+	float m_currentHour;      // _208
+	float m_currentTimeOfDay; // _20C
+	u32 m_slotPosition;       // _210
+	float _214;               // _214
+	u32 m_dayCount;           // _218
+	float m_speedFactor;      // _21C
+
 	float _220;                 // _220
 	float m_earlyMorningLength; // _224
 	float m_midMorningLength;   // _228
 	float m_middayLength;       // _22C
 	float m_earlyEveningLength; // _230
 	float m_lateEveningLength;  // _234
-	float m_dayLengthHours;     // _238
-	float m_sunRatio;           // _23C
-	u32 m_flags;                // _240
+
+	float m_dayLengthHours; // _238
+	float m_sunRatio;       // _23C
+
+	u32 m_flags; // _240
 };
 } // namespace Game
 

@@ -493,7 +493,7 @@ Stages::Stages()
 	_104 = 0;
 	_10A = 0;
 
-	loadAndRead(this, "user/Abe/stages.txt", false);
+	loadAndRead(this, "user/Abe/stages.txt", nullptr, false);
 }
 
 /*

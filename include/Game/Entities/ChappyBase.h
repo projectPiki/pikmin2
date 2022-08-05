@@ -32,7 +32,8 @@ struct ProperAnimator : public EnemyAnimatorBase {
 	SysShape::Animator m_animator; // _10
 };
 
-struct Obj : public EnemyBase { };
+struct Obj : public EnemyBase {
+};
 } // namespace ChappyBase
 } // namespace Game
 

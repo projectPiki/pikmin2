@@ -26,32 +26,17 @@ TimeMgr::TimeMgr()
  * --INFO--
  * Address:	80126C90
  * Size:	000034
+ * WEAK
  */
-// WEAK
-// TimeMgrParms::TimeMgrParms() { }
+// TimeMgrParms::TimeMgrParms()
 
 /*
  * --INFO--
  * Address:	80126CC4
  * Size:	00032C
+ * WEAK
  */
-// WEAK
 // TimeMgrParms::Parms::Parms()
-//     : Parameters(nullptr, "TimeMgrParms")
-//     , m_dayStartTime(this, 'fp00', "ゲーム開始時刻", 7.0f, 0.0f, 24.0f)
-//     , m_dayEndTime(this, 'fp01', "ゲーム終了時刻", 19.0f, 0.0f, 24.0f)
-//     , m_dayLengthSeconds(this, 'fp02', "1日の時間<秒）", 1560.f, 0.0f, 3600.0f)
-//     , m_morningStartTime(this, 'fp03', "朝開始時刻", 5.25f, 0.0f, 24.0f)
-//     , m_midMorningTime(this, 'fp04', "朝中間時刻", 7.0f, 0.0f, 24.0f)
-//     , m_morningEndTime(this, 'fp05', "朝終了時刻", 8.0f, 0.0f, 24.0f)
-//     , m_eveningStartTime(this, 'fp06', "夕方開始時刻", 15.0f, 0.0f, 24.0f)
-//     , m_midEveningStartTime(this, 'fp07', "夕方中間開始時刻", 15.5f, 0.0f, 24.0f)
-//     , m_midEveningEndTime(this, 'fp11', "夕方中間終了時刻", 18.5f, 0.0f, 24.0f)
-//     , m_eveningEndTime(this, 'fp08', "夕方終了時刻", 19.0f, 0.0f, 24.0f)
-//     , m_sundownAlertTime(this, 'fp09', "夜警告時刻", 18.0f, 0.0f, 24.0f)
-//     , m_countdownTime(this, 'fp10', "カウントダウン", 18.5f, 0.0f, 24.0f)
-// {
-// }
 
 /*
  * --INFO--
@@ -121,19 +106,19 @@ void TimeMgr::setEndTime()
 void TimeMgr::updateSlot()
 {
 	if ((m_currentTimeOfDay < m_parms.parms.m_morningStartTime.m_value) || m_currentTimeOfDay >= m_parms.parms.m_eveningEndTime.m_value) {
-		_210       = 0;
-		f32 var_f2 = m_currentTimeOfDay;
+		m_slotPosition = 0;
 
+		f32 time = m_currentTimeOfDay;
 		if (m_currentTimeOfDay < m_parms.parms.m_morningStartTime.m_value) {
-			var_f2 += 24.0f;
+			time += 24.0f;
 		}
 
-		_214 = (var_f2 - m_parms.parms.m_eveningEndTime.m_value) / _220;
+		_214 = (time - m_parms.parms.m_eveningEndTime.m_value) / _220;
 		return;
 	}
 
 	if (m_currentTimeOfDay < m_parms.parms.m_morningEndTime.m_value) {
-		_210 = 1;
+		m_slotPosition = 1;
 
 		if (m_currentTimeOfDay < m_parms.parms.m_midMorningTime.m_value) {
 			_214 = (0.5f * (m_currentTimeOfDay - m_parms.parms.m_morningStartTime.m_value)) / m_earlyMorningLength;
@@ -145,13 +130,13 @@ void TimeMgr::updateSlot()
 	}
 
 	if (m_currentTimeOfDay < m_parms.parms.m_eveningStartTime.m_value) {
-		_210 = 2;
-		_214 = (m_currentTimeOfDay - m_parms.parms.m_morningEndTime.m_value) / m_middayLength;
+		m_slotPosition = 2;
+		_214           = (m_currentTimeOfDay - m_parms.parms.m_morningEndTime.m_value) / m_middayLength;
 		return;
 	}
 
 	if (m_currentTimeOfDay < m_parms.parms.m_eveningEndTime.m_value) {
-		_210 = 3;
+		m_slotPosition = 3;
 
 		if (m_currentTimeOfDay < m_parms.parms.m_midEveningStartTime.m_value) {
 			_214 = (0.5f * (m_currentTimeOfDay - m_parms.parms.m_eveningStartTime.m_value)) / m_earlyEveningLength;
@@ -179,13 +164,12 @@ float TimeMgr::getSunGaugeRatio()
 		return (m_currentTimeOfDay - m_parms.parms.m_dayStartTime.m_value) / m_dayLengthHours;
 	}
 
-	f32 var_f3 = m_currentTimeOfDay;
-
+	f32 time = m_currentTimeOfDay;
 	if (m_currentTimeOfDay < m_parms.parms.m_dayStartTime.m_value) {
-		var_f3 += 24.0f;
+		time += 24.0f;
 	}
 
-	return 1.0f - ((var_f3 - m_parms.parms.m_dayEndTime.m_value) / m_sunRatio);
+	return 1.0f - ((time - m_parms.parms.m_dayEndTime.m_value) / m_sunRatio);
 }
 
 /*
@@ -195,7 +179,7 @@ float TimeMgr::getSunGaugeRatio()
  */
 void TimeMgr::update()
 {
-	if (!(m_flags & 1)) {
+	if (!(m_flags & TIMEMGR_FLAG_STOPPED)) {
 		m_currentHour += m_speedFactor * sys->m_secondsPerFrame;
 
 		if (m_currentHour > m_parms.parms.m_dayLengthSeconds.m_value) {
@@ -242,15 +226,7 @@ float TimeMgr::getRealDayTime()
  */
 void TimeMgr::loadSettingFile(char* filename)
 {
-	void* data = JKRDvdRipper::loadToMainRAM(filename, nullptr, Switch_0, 0, JKRHeap::sSystemHeap, JKRDvdRipper::ALLOC_DIR_BOTTOM, 0,
-	                                         nullptr, nullptr);
-
-	if (data != nullptr) {
-		RamStream input(data, -1);
-		input.resetPosition(true, 1);
-		m_parms.parms.read(input);
-		delete[] data;
-	}
+	loadAndRead(&m_parms.parms, filename, JKRHeap::sSystemHeap);
 
 	_220                 = 24.0f - m_parms.parms.m_eveningEndTime.m_value + m_parms.parms.m_morningStartTime.m_value;
 	m_earlyMorningLength = m_parms.parms.m_midMorningTime.m_value - m_parms.parms.m_morningStartTime.m_value;
