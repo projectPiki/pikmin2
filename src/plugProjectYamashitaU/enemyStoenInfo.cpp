@@ -24,9 +24,9 @@ void Info::setup(Stream& stream)
 
 		Vector3f rotation;
 		rotation.read(stream);
-		rotation.x = PI * ((1.0f / 180) * rotation.x);
-		rotation.y = PI * ((1.0f / 180) * rotation.y);
-		rotation.z = PI * ((1.0f / 180) * rotation.z);
+		rotation.x = PI * (DEG2RAD * rotation.x);
+		rotation.y = PI * (DEG2RAD * rotation.y);
+		rotation.z = PI * (DEG2RAD * rotation.z);
 
 		Vector3f scale;
 		scale.read(stream);
