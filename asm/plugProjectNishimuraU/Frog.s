@@ -5,11 +5,10 @@ lbl_constructor:
 
 .section .data, "wa"  # 0x8049E220 - 0x804EFC20
 .balign 8
-.global lbl_804C2450
-lbl_804C2450:
-	.4byte 0x00000000
-	.4byte 0x00000000
-	.4byte 0x00000000
+govNAN___Q24Game5P2JST:
+	.float 0.0
+	.float 0.0
+	.float 0.0
 .global __vt__Q23efx9TFrogPota
 __vt__Q23efx9TFrogPota:
 	.4byte 0
@@ -252,77 +251,54 @@ __vt__Q34Game4Frog3Obj:
 	.4byte "@736@12@viewStartCarryMotion__Q24Game9EnemyBaseFv"
 	.4byte "@736@12@viewOnPelletKilled__Q24Game9EnemyBaseFv"
 	.4byte "viewEntryShape__Q24Game10PelletViewFR7MatrixfR10Vector3<f>"
-	.4byte 0
 
 .section .sbss # 0x80514D80 - 0x80516360
 .balign 8
-.global lbl_80515D38
-lbl_80515D38:
+gu32NAN___Q24Game5P2JST:
 	.skip 0x4
-.global lbl_80515D3C
-lbl_80515D3C:
+gfNAN___Q24Game5P2JST:
 	.skip 0x4
 
 .section .sdata2, "a"     # 0x80516360 - 0x80520E40
 .balign 8
-.global lbl_8051AAC8
 lbl_8051AAC8:
-	.4byte 0x43000000
-.global lbl_8051AACC
+	.float 128.0
 lbl_8051AACC:
-	.4byte 0x00000000
-.global lbl_8051AAD0
+	.float 0.0
 lbl_8051AAD0:
-	.4byte 0x40000000
-.global lbl_8051AAD4
-lbl_8051AAD4:
-	.4byte 0x40490FDB
-.global lbl_8051AAD8
+	.float 2.0
+lbl_8051AAD4: # pi
+	.float 3.1415927
 lbl_8051AAD8:
-	.4byte 0x3BB60B61
-.global lbl_8051AADC
+	.float 0.0055555557
 lbl_8051AADC:
-	.4byte 0x40A00000
-.global lbl_8051AAE0
+	.float 5.0
 lbl_8051AAE0:
-	.4byte 0x42960000
-.global lbl_8051AAE4
+	.float 75.0
 lbl_8051AAE4:
-	.4byte 0x42480000
-.global lbl_8051AAE8
+	.float 50.0
 lbl_8051AAE8:
-	.4byte 0x418C0000
-.global lbl_8051AAEC
+	.float 17.5
 lbl_8051AAEC:
-	.4byte 0x3F400000
-.global lbl_8051AAF0
+	.float 0.75
 lbl_8051AAF0:
-	.4byte 0x41B40000
-.global lbl_8051AAF4
+	.float 22.5
 lbl_8051AAF4:
 	.float 1.0
-.global lbl_8051AAF8
 lbl_8051AAF8:
-	.4byte 0x41A00000
-.global lbl_8051AAFC
+	.float 20.0
 lbl_8051AAFC:
-	.4byte 0xC1700000
-.global lbl_8051AB00
+	.float -15.0
 lbl_8051AB00:
-	.4byte 0x43340000
-.global lbl_8051AB04
+	.float 180.0
 lbl_8051AB04:
 	.float 0.5
-.global lbl_8051AB08
 lbl_8051AB08:
-	.4byte 0xC3A2F983
-.global lbl_8051AB0C
+	.float -325.9493
 lbl_8051AB0C:
-	.4byte 0x43A2F983
-.global lbl_8051AB10
+	.float 325.9493
 lbl_8051AB10:
-	.4byte 0xC47A0000
-	.4byte 0x00000000
+	.float -1000.0
 
 .section .text, "ax"  # 0x800056C0 - 0x80472F00
 .global __ct__Q34Game4Frog3ObjFv
@@ -1617,15 +1593,14 @@ getEnemyTypeID__Q34Game4Frog3ObjFv:
 /* 802596D8 00256618  38 60 00 11 */	li r3, 0x11
 /* 802596DC 0025661C  4E 80 00 20 */	blr 
 
-.global __sinit_Frog_cpp
-__sinit_Frog_cpp:
+__sinit_Frog_cpp: # static initializer
 /* 802596E0 00256620  3C 80 80 51 */	lis r4, __float_nan@ha
 /* 802596E4 00256624  38 00 FF FF */	li r0, -1
 /* 802596E8 00256628  C0 04 48 B0 */	lfs f0, __float_nan@l(r4)
-/* 802596EC 0025662C  3C 60 80 4C */	lis r3, lbl_804C2450@ha
-/* 802596F0 00256630  90 0D 96 B8 */	stw r0, lbl_80515D38@sda21(r13)
-/* 802596F4 00256634  D4 03 24 50 */	stfsu f0, lbl_804C2450@l(r3)
-/* 802596F8 00256638  D0 0D 96 BC */	stfs f0, lbl_80515D3C@sda21(r13)
+/* 802596EC 0025662C  3C 60 80 4C */	lis r3, govNAN___Q24Game5P2JST@ha
+/* 802596F0 00256630  90 0D 96 B8 */	stw r0, gu32NAN___Q24Game5P2JST@sda21(r13)
+/* 802596F4 00256634  D4 03 24 50 */	stfsu f0, govNAN___Q24Game5P2JST@l(r3)
+/* 802596F8 00256638  D0 0D 96 BC */	stfs f0, gfNAN___Q24Game5P2JST@sda21(r13)
 /* 802596FC 0025663C  D0 03 00 04 */	stfs f0, 4(r3)
 /* 80259700 00256640  D0 03 00 08 */	stfs f0, 8(r3)
 /* 80259704 00256644  4E 80 00 20 */	blr 
