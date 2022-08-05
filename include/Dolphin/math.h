@@ -20,11 +20,14 @@ extern "C" {
 
 #define SQUARE(v) ((v) * (v))
 
-#define TAU     6.2831855f
-#define PI      3.1415927f
-#define HALF_PI 1.5707964f
+#define VECTOR_SQUARE_MAG(v) (SQUARE(v.x) + SQUARE(v.y) + SQUARE(v.z))
 
 #define LONG_TAU 6.2831854820251465
+#define TAU      6.2831855f
+#define PI       3.1415927f
+#define HALF_PI  1.5707964f
+
+#define DEG2RAD (1.0f / 180.0f)
 
 double cos(double);
 float cosf(float);

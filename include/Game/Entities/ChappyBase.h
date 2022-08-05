@@ -9,6 +9,20 @@
 
 namespace Game {
 namespace ChappyBase {
+struct FSM : public EnemyStateMachine {
+	virtual void init(EnemyBase*); // _08
+};
+
+struct Mgr : public EnemyMgrBase {
+	virtual ~Mgr() { }                                  // _58 (weak)
+	virtual EnemyTypeID::EEnemyTypeID getEnemyTypeID(); // _AC (weak)
+	virtual SysShape::Model* createModel();             // _B0
+	virtual void loadModelData();                       // _C8
+	virtual void loadAnimData();                        // _CC
+
+	Mgr(int, unsigned char);
+};
+
 struct ProperAnimator : public EnemyAnimatorBase {
 	virtual ~ProperAnimator() {};
 	virtual void setAnimMgr(SysShape::AnimMgr*);
@@ -18,8 +32,7 @@ struct ProperAnimator : public EnemyAnimatorBase {
 	SysShape::Animator m_animator; // _10
 };
 
-struct Obj : public EnemyBase {
-};
+struct Obj : public EnemyBase { };
 } // namespace ChappyBase
 } // namespace Game
 

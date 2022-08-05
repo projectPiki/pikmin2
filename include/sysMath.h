@@ -2,6 +2,7 @@
 #define _SYSMATH_H
 
 #include "JSystem/JMath.h"
+#include "Dolphin/math.h"
 
 float pikmin2_sinf(float x);
 float pikmin2_cosf(float x);

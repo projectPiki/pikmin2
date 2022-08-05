@@ -69,6 +69,9 @@
         .4byte 0x65746300
 */
 
+#include "Game/BaseGameSection.h"
+#include "Sys/DrawBuffers.h"
+
 namespace Game {
 
 /*
@@ -116,8 +119,12 @@ void BaseGameSection::newdraw_drawParticle(Graphics&)
  * Address:	802398D8
  * Size:	0001F4
  */
-void BaseGameSection::newdraw_draw3D_all(Graphics&)
+void BaseGameSection::newdraw_draw3D_all(Graphics& gfx)
 {
+	Delegate1<BaseGameSection, Viewport*> vpDelegate(this, &BaseGameSection::newdraw_drawAll);
+	gfx.mapViewport(&vpDelegate);
+
+	_12C->frameInitAll();
 	/*
 	stwu     r1, -0x30(r1)
 	mflr     r0
