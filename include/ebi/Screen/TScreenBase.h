@@ -20,6 +20,7 @@ struct ArgOpenTitleMenu : public ArgOpen {
 };
 
 struct ArgOpenTMBack : public ArgOpen {
+	float _04; // _04
 };
 
 struct ArgClose {
