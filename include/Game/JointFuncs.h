@@ -23,8 +23,8 @@ struct JointShadowRootNode : public CNode {
 
 	JointShadowRootNode();
 
-	Creature* m_creature; // _18
-	u8 _1C;               // _1C
+	struct Creature* m_creature; // _18
+	u8 _1C;                      // _1C
 };
 } // namespace Game
 
