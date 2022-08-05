@@ -13,22 +13,22 @@ extern RandMapMgr* randMapMgr;
  * --INFO--
  * Address:	8024C5E4
  * Size:	0000F0
- * Matches!
  */
 void RoomMapMgr::nishimuraCreateRandomMap(MapUnitInterface* muiArray, int p2, Cave::FloorInfo* floorInfo, bool lastFloor,
                                           Cave::EditMapUnit* unit)
 {
-	// p2 and p4 could stand to have more descriptive parameter names
 	bool isVersusHiba = false;
-	if (gameSystem != nullptr && gameSystem->m_mode == GSM_VERSUS_MODE && gGameConfig.m_parms.m_vsHiba.m_data != 0) {
+	if (gameSystem && gameSystem->m_mode == GSM_VERSUS_MODE && gGameConfig.m_parms.m_vsHiba.m_data) {
 		isVersusHiba = true;
-	} // maybe a ternary or inline?
+	}
+
 	Cave::randMapMgr = new Cave::RandMapMgr(isVersusHiba);
 	Cave::randMapMgr->loadResource(muiArray, p2, floorInfo, lastFloor, unit);
 	Cave::randMapMgr->create();
-	int numRooms = Cave::randMapMgr->getNumRooms();
-	for (int roomIndex = 0; roomIndex < numRooms; roomIndex++) {
-		char* name = Cave::randMapMgr->getUseUnitName(roomIndex);
+
+	const int numRooms = Cave::randMapMgr->getNumRooms();
+	for (int i = 0; i < numRooms; i++) {
+		char* name = Cave::randMapMgr->getUseUnitName(i);
 		useUnit(name);
 	}
 }
@@ -37,21 +37,21 @@ void RoomMapMgr::nishimuraCreateRandomMap(MapUnitInterface* muiArray, int p2, Ca
  * --INFO--
  * Address:	8024C6D4
  * Size:	00011C
- * Matches!
  */
 void RoomMapMgr::nishimuraPlaceRooms(void)
 {
-	float centreX; // declaration order matters
-	float centreY; // declaration order matters
-	int direction; // declaration order matters
-
-	int numRooms = Cave::randMapMgr->getNumRooms();
+	const int numRooms = Cave::randMapMgr->getNumRooms();
 	allocRooms(numRooms);
 
 	for (int index = 0; index < numRooms; index++) {
+		float centreX;
+		float centreY;
+		int direction;
+
 		char* unitName         = Cave::randMapMgr->getRoomData(index, centreX, centreY, direction); // sets centreX, centreY, and direction
 		RoomLink* pRoomLink    = Cave::randMapMgr->makeRoomLink(index);
 		ObjectLayoutInfo* pOLI = Cave::randMapMgr->makeObjectLayoutInfo(index);
+
 		makeRoom(unitName, centreX, centreY, direction, index, pRoomLink, pOLI);
 	}
 
@@ -69,15 +69,14 @@ void RoomMapMgr::nishimuraPlaceRooms(void)
  * --INFO--
  * Address:	8024C7F0
  * Size:	000088
- * Matches!
  */
 void RoomMapMgr::nishimuraSetTexture(void)
 {
-	int numRooms = Cave::randMapMgr->getNumRooms();
-	for (int unitIndex = 0; unitIndex < numRooms; unitIndex++) {
-		char* unitName      = Cave::randMapMgr->getUseUnitName(unitIndex);
+	const int numRooms = Cave::randMapMgr->getNumRooms();
+	for (int i = 0; i < numRooms; i++) {
+		char* unitName      = Cave::randMapMgr->getUseUnitName(i);
 		JUTTexture* texture = getTexture(unitName);
-		Cave::randMapMgr->setUnitTexture(unitIndex, texture);
+		Cave::randMapMgr->setUnitTexture(i, texture);
 	}
 }
 } // namespace Game

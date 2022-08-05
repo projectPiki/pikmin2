@@ -18,6 +18,7 @@ struct Viewport;
 
 namespace Game {
 struct Creature;
+struct JointShadowRootNode;
 
 // Size: 0x20
 struct ShadowParam {
@@ -31,12 +32,6 @@ struct ShadowParms : public Parameters {
 	Parm<float> m_lodNear; // _0C
 	Parm<float> m_lodFar;  // _34
 	void* m_end;           // _5C
-};
-
-// Size: 0x20
-struct JointShadowRootNode : public CNode {
-	Creature* m_creature; // _18
-	u8 _1C;               // _1C
 };
 
 // Size: 0x24

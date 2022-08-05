@@ -12,8 +12,7 @@ namespace Game {
 namespace BlackMan {
 /////////////////////////////////////////////////////////////////
 // STATE MACHINE DEFINITIONS
-struct State : public EnemyFSMState {
-};
+struct State : public EnemyFSMState { };
 
 struct StateBend : public State {
 	virtual void init(EnemyBase*, StateArg*); // _08
@@ -107,7 +106,7 @@ struct Obj : public EnemyBase {
 	virtual void doEntry();                     // _40
 	virtual void doSimulation(float);           // _4C
 	virtual void doDirectDraw(Graphics&);       // _50
-	virtual void isUnderground();               // _D0
+	virtual bool isUnderground();               // _D0
 	virtual void collisionCallback(CollEvent&); // _EC
 	virtual void getShadowParam(ShadowParam&);  // _134
 
@@ -120,16 +119,16 @@ struct Obj : public EnemyBase {
 	virtual void changeMaterial();                                // _200
 	virtual void setParameters();                                 // _228
 	virtual void initWalkSmokeEffect();                           // _230
-	virtual void getWalkSmokeEffectMgr();                         // _234
+	virtual WalkSmokeEffect::Mgr* getWalkSmokeEffectMgr();        // _234
 	virtual void updateEfxHamon();                                // _24C (weak)
 	virtual void createEfxHamon();                                // _250 (weak)
-	virtual void getEnemyTypeID();                                // _258 (weak)
+	virtual Game::EnemyTypeID::EEnemyTypeID getEnemyTypeID();     // _258 (weak)
 	virtual void doGetLifeGaugeParam(LifeGaugeParam&);            // _260
 	virtual void throwupItemInDeathProcedure();                   // _270 (weak)
-	virtual void damageCallBack(Creature*, float, CollPart*);     // _278
-	virtual void hipdropCallBack(Creature*, float, CollPart*);    // _284
-	virtual void earthquakeCallBack(Creature*, float);            // _28C
-	virtual void bombCallBack(Creature*, Vector3<float>&, float); // _294 (weak)
+	virtual bool damageCallBack(Creature*, float, CollPart*);     // _278
+	virtual bool hipdropCallBack(Creature*, float, CollPart*);    // _284
+	virtual bool earthquakeCallBack(Creature*, float);            // _28C
+	virtual bool bombCallBack(Creature*, Vector3<float>&, float); // _294 (weak)
 	virtual void doStartStoneState();                             // _2A4
 	virtual void doFinishStoneState();                            // _2A8
 	virtual void setFSM(FSM*);                                    // _2F8 (weak)
@@ -172,12 +171,12 @@ struct Obj : public EnemyBase {
 
 struct Mgr : public EnemyMgrBase {
 	virtual ~Mgr();                                     // _58 (weak)
-	virtual void birth(EnemyBirthArg&);                 // _70
+	virtual EnemyBase* birth(EnemyBirthArg&);           // _70
 	virtual void createObj(int);                        // _A0 (weak)
 	virtual EnemyBase* getEnemy(int);                   // _A4 (weak)
 	virtual void doAlloc();                             // _A8
 	virtual EnemyTypeID::EEnemyTypeID getEnemyTypeID(); // _AC (weak)
-	virtual void createModel();                         // _B0
+	virtual SysShape::Model* createModel();             // _B0
 	virtual void loadModelData();                       // _C8
 	virtual void loadTexData();                         // _D0
 	virtual void doLoadBmd(void*);                      // _D4

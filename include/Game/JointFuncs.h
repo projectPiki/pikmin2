@@ -3,14 +3,6 @@
 
 #include "CNode.h"
 
-/*
-    __vt__Q24Game19JointGroundCallBack:
-    .4byte 0
-    .4byte 0
-    .4byte 0
-    .4byte 0
-*/
-
 struct WaterBox;
 
 namespace Game {
@@ -19,14 +11,6 @@ struct JointGroundCallBack {
 	virtual void invokeOffGround(int, WaterBox*); // _0C
 };
 
-/*
-    __vt__Q24Game15JointShadowNode:
-    .4byte 0
-    .4byte 0
-    .4byte __dt__Q24Game15JointShadowNodeFv
-    .4byte getChildCount__5CNodeFv
-*/
-
 struct JointShadowNode : public CNode {
 	virtual ~JointShadowNode(); // _08 (weak)
 
@@ -34,18 +18,13 @@ struct JointShadowNode : public CNode {
 	void init(int);
 };
 
-/*
-    __vt__Q24Game19JointShadowRootNode:
-    .4byte 0
-    .4byte 0
-    .4byte __dt__Q24Game19JointShadowRootNodeFv
-    .4byte getChildCount__5CNodeFv
-*/
-
 struct JointShadowRootNode : public CNode {
-	virtual ~JointShadowRootNode(); // _08 (weak)
+	virtual ~JointShadowRootNode() { } // _08 (weak)
 
 	JointShadowRootNode();
+
+	Creature* m_creature; // _18
+	u8 _1C;               // _1C
 };
 } // namespace Game
 
