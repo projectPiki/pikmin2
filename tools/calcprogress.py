@@ -101,15 +101,19 @@ def update_csv(
             reader = csv.reader(file)
             does_file_exist = True
             
-            latest_code_count = int(list(reader)[-1][0])
-            are_there_changes = not code_count == latest_code_count
+            latest_row = list(reader)[-1]
+            latest_code_size = int(latest_row[1]) # code_completion_in_bytes
+            latest_data_size = int(latest_row[4]) # data_completion_in_bytes
+            are_there_changes = not (
+                decomp_code_size == latest_code_size and decomp_data_size == latest_data_size
+            )
             
             print(f"Successfully read {CSV_FILE_PATH}!")
     except:
         print(f'Failed to read {CSV_FILE_PATH}!')
 
     if not are_there_changes:
-        print("No changes have been made so exiting!")
+        print("No changes detected. Exiting...")
         return
     
     col_one = f"code_count_in_{CODE_ITEM.lower()}"
