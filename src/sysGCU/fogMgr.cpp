@@ -44,14 +44,14 @@ void FogMgr::off(Graphics&)
 void FogMgr::set(Graphics& graphics)
 {
 	GXFogAdjTable table;
-	Camera* cam = graphics._25C->m_camera;
+	Camera* activeCam = graphics.m_currentViewport->m_camera;
 
 	u32 fogColor;
 	fogColor = m_color.u32View;
-	GXSetFog(m_type, &fogColor, m_nearZ, m_farZ, cam->getNear(), cam->getFar());
+	GXSetFog(m_type, &fogColor, m_nearZ, m_farZ, activeCam->getNear(), activeCam->getFar());
 
 	u16 width = System::getRenderModeObj()->fbWidth;
-	GXInitFogAdjTable(&table, width, cam->_B4);
+	GXInitFogAdjTable(&table, width, activeCam->m_projectionMtx);
 
 	width = System::getRenderModeObj()->fbWidth;
 	GXSetFogRangeAdj(TRUE, width / 2, &table);

@@ -116,7 +116,7 @@ struct Camera : public CullFrustum {
 	float m_projectionFarMaybe;             // _074
 	Vector3f m_soundPosition;               // _078
 	Matrixf m_soundMatrix;                  // _084
-	float _B4[4][4];                        // _0B4
+	Mtx44 m_projectionMtx;                  // _0B4
 	float _F4[4][4];                        // _0F4
 	float _134;                             // _134
 	float _138;                             // _138

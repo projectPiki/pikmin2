@@ -122,8 +122,8 @@ struct ShadowMgr : public CNode {
 	void setViewport(Viewport*, int);
 	void drawShadowOn();
 	void drawShadowOff();
-	void draw(Graphics&);
-	void draw(Graphics&, int);
+	void draw(Graphics& gfx);
+	void draw(Graphics& gfx, int vpIndex);
 
 	void killAll();
 

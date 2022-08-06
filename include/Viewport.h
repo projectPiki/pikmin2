@@ -10,6 +10,10 @@ struct J2DOrthoGraph;
 struct Matrixf;
 struct CNode;
 
+namespace SysShape {
+struct Model;
+} // namespace SysShape
+
 struct Viewport : CNode {
 	Viewport();
 
@@ -19,7 +23,7 @@ struct Viewport : CNode {
 	void getAspect();
 	Matrixf* getMatrix(bool);
 	void refresh();
-	void setJ3DViewMtx(bool);
+	SysShape::Model* setJ3DViewMtx(bool);
 	void setOrthoGraph2d(J2DOrthoGraph&);
 	void setProjection();
 	void setRect(Rectf&);

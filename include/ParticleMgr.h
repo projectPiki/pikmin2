@@ -19,21 +19,20 @@ struct GameLightMgr;
 } // namespace Game
 
 struct ParticleMgr : public CNode {
-	ParticleMgr();
-
-	virtual ~ParticleMgr();                      // _00
-	virtual void update();                       // _08
-	virtual void doAnimation();                  // _0C
-	virtual void doEntry();                      // _10
-	virtual void doSetView(int);                 // _14
-	virtual void doViewCalc();                   // _18
-	virtual void draw(Viewport*, unsigned char); // _1C
+	virtual ~ParticleMgr();                      // _08
+	virtual void update();                       // _10
+	virtual void doAnimation();                  // _14
+	virtual void doEntry();                      // _18
+	virtual void doSetView(int);                 // _1C
+	virtual void doViewCalc();                   // _20
+	virtual void draw(Viewport*, unsigned char); // _24
 
 	static void globalInstance();
 	static void deleteInstance();
 	static void Instance_TPkEffectMgr();
 	static void deleteInstance_TPkEffectMgr();
 
+	ParticleMgr();
 	void createHeap(unsigned long);
 	void createMgr(char*, unsigned long, unsigned long, unsigned long);
 	void beginEntryModelEffect();
@@ -41,16 +40,16 @@ struct ParticleMgr : public CNode {
 	void start();
 	void reset();
 	void killAll();
-	void setXfb(ResTIMG*);
-	JPABaseEmitter* create(unsigned short, Vector3f&, unsigned char);
-	JPABaseEmitter* createDemo(unsigned short, Vector3f&, unsigned char, unsigned char);
+	void setXfb(const ResTIMG*);
+	JPABaseEmitter* create(unsigned short, Vector3<float>&, unsigned char);
+	JPABaseEmitter* createDemo(unsigned short, Vector3<float>&, unsigned char, unsigned char);
 	void setGlobalColor(JPABaseEmitter*);
 	void forceKill(JPABaseEmitter*);
 	void fade(JPABaseEmitter*);
 	void setDemoResourceManager(JPAResourceManager*);
 	void clearDemoResourceManager();
 	void setViewport(Graphics&);
-	bool cullByResFlg(Vector3f&, unsigned short);
+	bool cullByResFlg(Vector3<float>&, unsigned short);
 	bool cullByResFlg(JPABaseEmitter*);
 	void entryModelEffect(ModelEffectData*);
 	void createModelEffect(ModelEffectCreateArg*);

@@ -33,20 +33,20 @@ struct PerspPrintfInfo {
 };
 
 struct _GraphicsParent {
-	u16 m_primitiveDrawCount;   // _000
-	char* m_tokens[0x20];       // _004
-	u8 _084;                    // _084
-	u8 _085;                    // _085
-	u8 _086;                    // _086
-	u8 _087;                    // _087
-	u8 _088[4];                 // _088
-	Matrixf _08C;               // _08C
-	J2DOrthoGraph m_orthoGraph; // _0BC
-	J2DPerspGraph m_perspGraph; // _190
-	Viewport* _25C;             // _25C
-	u8 _260[4];                 // _260
-	int m_viewportCount;        // _264
-	Viewport** m_viewports;     // _268
+	u16 m_primitiveDrawCount;    // _000
+	char* m_tokens[0x20];        // _004
+	u8 _084;                     // _084
+	u8 _085;                     // _085
+	u8 _086;                     // _086
+	u8 _087;                     // _087
+	u8 _088[4];                  // _088
+	Matrixf _08C;                // _08C
+	J2DOrthoGraph m_orthoGraph;  // _0BC
+	J2DPerspGraph m_perspGraph;  // _190
+	Viewport* m_currentViewport; // _25C
+	u8 _260[4];                  // _260
+	int m_viewportCount;         // _264
+	Viewport* m_viewports[2];    // _268
 };
 
 // Size: 0x2A0
@@ -62,11 +62,11 @@ struct Graphics : public _GraphicsParent {
 	virtual void doJ3DViewCalc();   // _20 (weak)
 	// virtual void _24() = 0;         // _24 - might be fake
 
-	void allocateViewports(int);
-	void addViewport(Viewport*);
+	void allocateViewports(int count);
+	void addViewport(Viewport* newVp);
 	void deleteViewports();
 	int getNumActiveViewports();
-	Viewport* getViewport(int);
+	Viewport* getViewport(int vpIndex);
 	void mapViewport(IDelegate1<Viewport*>*);
 	void mapViewport(IDelegate2<Graphics&, Viewport*>*);
 
@@ -127,7 +127,7 @@ struct Graphics : public _GraphicsParent {
 
 	// _GraphicsParent _000
 	// VTBL _26C
-	u8 _270[0x30]; // _270
+	u8 _270[0x30 - 0xC]; // _270
 };
 
 #endif
