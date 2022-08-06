@@ -46,11 +46,11 @@ struct CullFrustum : public CullPlane {
 	inline CullFrustum(int a)
 	    : CullPlane(a)
 	{
-		_28        = 60.0f;
-		u16 height = sys->getRenderModeObj()->efbHeight;
-		u16 width  = sys->getRenderModeObj()->fbWidth;
+		m_viewAngle = 60.0f;
+		u16 height  = sys->getRenderModeObj()->efbHeight;
+		u16 width   = sys->getRenderModeObj()->fbWidth;
 
-		_2C = width / height;
+		m_aspectRatio = width / height;
 	}
 
 	virtual ~CullFrustum() { }                                    // _08
@@ -63,8 +63,8 @@ struct CullFrustum : public CullPlane {
 	Vector3f getViewVector();
 
 	// CullPlane _00 - _24
-	float _28;             // _28
-	float _2C;             // _2C - aspect ratio? see ctor
+	float m_viewAngle;     // _28
+	float m_aspectRatio;   // _2C
 	Matrixf* m_viewMatrix; // _30
 };
 
@@ -72,16 +72,16 @@ struct CullFrustum : public CullPlane {
 struct Camera : public CullFrustum {
 	Camera();
 
-	virtual ~Camera() { }                   // _08 (weak)
-	virtual Matrixf* getViewMatrix(bool);   // _48
-	virtual Vector3f getPosition();         // _4C
-	virtual void updatePlanes();            // _50
-	virtual void updateScreenConstants();   // _54
-	virtual Vector3f getLookAtPosition_();  // _58 (weak)
-	virtual float getTargetDistance();      // _5C (weak)
-	virtual Vector3f* getPositionPtr();     // _60 (weak)
-	virtual Vector3f* on_getPositionPtr();  // _64 (weak)
-	virtual Vector3f* getSoundPositionPtr() // _68 (weak)
+	virtual ~Camera() { }                                     // _08 (weak)
+	virtual Matrixf* getViewMatrix(bool);                     // _48
+	virtual Vector3f getPosition();                           // _4C
+	virtual void updatePlanes();                              // _50
+	virtual void updateScreenConstants();                     // _54
+	virtual Vector3f getLookAtPosition_();                    // _58 (weak)
+	virtual float getTargetDistance();                        // _5C (weak)
+	virtual Vector3f* getPositionPtr();                       // _60
+	virtual Vector3f* on_getPositionPtr() { return nullptr; } // _64 (weak)
+	virtual Vector3f* getSoundPositionPtr()                   // _68 (weak)
 	{
 		return &m_soundPosition;
 	}
@@ -90,7 +90,7 @@ struct Camera : public CullFrustum {
 		return &m_soundMatrix;
 	}
 	virtual bool isSpecialCamera(); // _70 (weak)
-	virtual void updateMatrix();    // _74 (weak)
+	virtual void updateMatrix() { } // _74 (weak)
 	virtual void doUpdate();        // _78 (weak)
 
 	void calcProperDistance(float, float);
@@ -109,15 +109,15 @@ struct Camera : public CullFrustum {
 
 	// CullFrustum _00 - _34
 	Matrixf _34;                            // _034
-	float m_nearMaybe;                      // _064
-	float m_farMaybe;                       // _068
-	bool _6C;                               // _06C
-	float m_projectionNearMaybe;            // _070
-	float m_projectionFarMaybe;             // _074
+	float m_near;                           // _064 - distance to 'near' plane
+	float m_far;                            // _068 - distance to 'far' plane
+	bool isFixed;                           // _06C
+	float m_projectionNear;                 // _070 - projected distance to 'near' plane when not in fixed camera
+	float m_projectionFar;                  // _074 - projected distance to 'far' plane when not in fixed camera
 	Vector3f m_soundPosition;               // _078
 	Matrixf m_soundMatrix;                  // _084
 	Mtx44 m_projectionMtx;                  // _0B4
-	float _F4[4][4];                        // _0F4
+	Mtx44 _F4;                              // _0F4
 	float _134;                             // _134
 	float _138;                             // _138
 	float _13C;                             // _13C
@@ -126,6 +126,7 @@ struct Camera : public CullFrustum {
 
 struct LookAtCamera : public Camera {
 	LookAtCamera();
+
 	virtual ~LookAtCamera() { }            // _08 (weak)
 	virtual Vector3f getLookAtPosition_(); // _58 (weak)
 	virtual Vector3f* on_getPositionPtr(); // _64 (weak)
@@ -142,8 +143,8 @@ struct LookAtCamera : public Camera {
 struct BlendCamera : public Camera {
 	BlendCamera(int, struct Camera**);
 
-	virtual ~BlendCamera();  // _08 (weak)
-	virtual void doUpdate(); // _78
+	virtual ~BlendCamera() { } // _08 (weak)
+	virtual void doUpdate();   // _78
 
 	void setBlendFactor(float);
 	void setCameras(Camera**);
@@ -154,5 +155,9 @@ struct BlendCamera : public Camera {
 	float m_blendFactor; // _14C
 	Matrixf _150;        // _150
 };
+
+namespace PSM {
+extern float sCamFov;
+}
 
 #endif

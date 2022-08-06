@@ -4,6 +4,8 @@
 #include "Sys/Sphere.h"
 #include "Sys/Cylinder.h"
 #include "System.h"
+#include "trig.h"
+#include "Quat.h"
 
 /*
     Generated from dpostproc
@@ -546,17 +548,17 @@ void CullFrustum::updatePlanes()
 Camera::Camera()
     : CullFrustum(0)
 {
-	m_jstObject           = 0;
-	m_projectionNearMaybe = 1.0f;
-	m_projectionFarMaybe  = 128000.0f;
-	_134                  = 1.0f;
-	_138                  = 1.0f;
-	_13C                  = 1.0f;
-	m_soundPosition       = 0;
+	m_jstObject      = 0;
+	m_projectionNear = 1.0f;
+	m_projectionFar  = 128000.0f;
+	_134             = 1.0f;
+	_138             = 1.0f;
+	_13C             = 1.0f;
+	m_soundPosition  = 0;
 	PSMTXIdentity(_34.m_matrix.mtxView);
-	_6C         = false;
-	m_farMaybe  = 0.0f;
-	m_nearMaybe = 0.0f;
+	m_isFixed = false;
+	m_far     = 0.0f;
+	m_near    = 0.0f;
 }
 
 /*
@@ -574,10 +576,10 @@ Camera::Camera()
  */
 void Camera::setFixNearFar(bool fixed, float near, float far)
 {
-	_6C = fixed;
+	m_isFixed = fixed;
 	if (fixed) {
-		m_nearMaybe = near;
-		m_farMaybe  = far;
+		m_near = near;
+		m_far  = far;
 	}
 }
 
@@ -588,8 +590,8 @@ void Camera::setFixNearFar(bool fixed, float near, float far)
  */
 void Camera::copyFrom(Camera* camera)
 {
-	m_projectionNearMaybe = camera->m_projectionNearMaybe;
-	m_projectionFarMaybe  = camera->m_projectionFarMaybe;
+	m_projectionNear = camera->m_projectionNear;
+	m_projectionFar  = camera->m_projectionFar;
 
 	_134 = camera->_134;
 	_138 = camera->_138;
@@ -597,9 +599,9 @@ void Camera::copyFrom(Camera* camera)
 
 	m_jstObject = camera->m_jstObject;
 
-	m_viewMatrix = camera->m_viewMatrix;
-	_28          = camera->_28;
-	_2C          = camera->_2C;
+	m_viewMatrix  = camera->m_viewMatrix;
+	m_viewAngle   = camera->m_viewAngle;
+	m_aspectRatio = camera->m_aspectRatio;
 
 	for (int i = 0; i < m_count; i++) {
 		m_objects[i].setVec(camera->m_objects[i]);
@@ -612,6 +614,7 @@ void Camera::copyFrom(Camera* camera)
  * Address:	8041A900
  * Size:	000198
  */
+// WIP: https://decomp.me/scratch/wPmZm
 void Camera::updatePlanes()
 {
 	/*
@@ -757,81 +760,16 @@ Vector3f Camera::getLookAtPosition_() { return Vector3f::zero; }
  */
 Vector3f Camera::getPosition()
 {
-	/*
-	stwu     r1, -0x20(r1)
-	mflr     r0
-	stw      r0, 0x24(r1)
-	stw      r31, 0x1c(r1)
-	li       r31, 0
-	stw      r30, 0x18(r1)
-	mr       r30, r4
-	stw      r29, 0x14(r1)
-	mr       r29, r3
-	lwz      r3, 0x140(r4)
-	cmplwi   r3, 0
-	beq      lbl_8041ABBC
-	lwz      r12, 0(r3)
-	lwz      r12, 0xbc(r12)
-	mtctr    r12
-	bctrl
-	clrlwi.  r0, r3, 0x18
-	beq      lbl_8041ABBC
-	li       r31, 1
+	if (isRunning() && m_jstObject) {
+		return m_jstObject->m_viewPos;
+	}
 
-lbl_8041ABBC:
-	clrlwi.  r0, r31, 0x18
-	beq      lbl_8041ABEC
-	lwz      r3, 0x140(r30)
-	cmplwi   r3, 0
-	beq      lbl_8041ABEC
-	lfs      f0, 0x90(r3)
-	stfs     f0, 0(r29)
-	lfs      f0, 0x94(r3)
-	stfs     f0, 4(r29)
-	lfs      f0, 0x98(r3)
-	stfs     f0, 8(r29)
-	b        lbl_8041AC5C
+	Vector3f vec;
+	vec.x = -m_viewMatrix->m_matrix.structView.tx;
+	vec.y = -m_viewMatrix->m_matrix.structView.ty;
+	vec.z = -m_viewMatrix->m_matrix.structView.tz;
 
-lbl_8041ABEC:
-	lwz      r3, 0x30(r30)
-	lfs      f0, 0x1c(r3)
-	lfs      f1, 0xc(r3)
-	fneg     f6, f0
-	lfs      f0, 0x10(r3)
-	lfs      f2, 0x14(r3)
-	fneg     f7, f1
-	lfs      f3, 0x2c(r3)
-	fmuls    f0, f6, f0
-	lfs      f1, 0(r3)
-	fmuls    f4, f6, f2
-	lfs      f2, 0x18(r3)
-	fneg     f8, f3
-	lfs      f5, 4(r3)
-	fmadds   f0, f7, f1, f0
-	lfs      f1, 0x20(r3)
-	fmuls    f2, f6, f2
-	lfs      f3, 8(r3)
-	fmadds   f5, f7, f5, f4
-	lfs      f6, 0x24(r3)
-	fmadds   f0, f8, f1, f0
-	lfs      f4, 0x28(r3)
-	fmadds   f1, f7, f3, f2
-	fmadds   f2, f8, f6, f5
-	stfs     f0, 0(r29)
-	fmadds   f0, f8, f4, f1
-	stfs     f2, 4(r29)
-	stfs     f0, 8(r29)
-
-lbl_8041AC5C:
-	lwz      r0, 0x24(r1)
-	lwz      r31, 0x1c(r1)
-	lwz      r30, 0x18(r1)
-	lwz      r29, 0x14(r1)
-	mtlr     r0
-	addi     r1, r1, 0x20
-	blr
-
-	*/
+	return m_viewMatrix->multTranspose(vec);
 }
 
 /*
@@ -841,50 +779,11 @@ lbl_8041AC5C:
  */
 Vector3f* Camera::getPositionPtr()
 {
-	/*
-	stwu     r1, -0x10(r1)
-	mflr     r0
-	stw      r0, 0x14(r1)
-	stw      r31, 0xc(r1)
-	li       r31, 0
-	stw      r30, 8(r1)
-	mr       r30, r3
-	lwz      r3, 0x140(r3)
-	cmplwi   r3, 0
-	beq      lbl_8041ACBC
-	lwz      r12, 0(r3)
-	lwz      r12, 0xbc(r12)
-	mtctr    r12
-	bctrl
-	clrlwi.  r0, r3, 0x18
-	beq      lbl_8041ACBC
-	li       r31, 1
-
-lbl_8041ACBC:
-	clrlwi.  r0, r31, 0x18
-	beq      lbl_8041ACD8
-	lwz      r3, 0x140(r30)
-	cmplwi   r3, 0
-	beq      lbl_8041ACD8
-	addi     r3, r3, 0x90
-	b        lbl_8041ACEC
-
-lbl_8041ACD8:
-	mr       r3, r30
-	lwz      r12, 0(r30)
-	lwz      r12, 0x64(r12)
-	mtctr    r12
-	bctrl
-
-lbl_8041ACEC:
-	lwz      r0, 0x14(r1)
-	lwz      r31, 0xc(r1)
-	lwz      r30, 8(r1)
-	mtlr     r0
-	addi     r1, r1, 0x10
-	blr
-
-	*/
+	if (isRunning() && m_jstObject) {
+		return &m_jstObject->m_viewPos;
+	} else {
+		return on_getPositionPtr();
+	}
 }
 
 /*
@@ -892,7 +791,8 @@ lbl_8041ACEC:
  * Address:	8041AD04
  * Size:	000008
  */
-u32 Camera::on_getPositionPtr() { return 0x0; }
+// WEAK - in header
+// Vector3f* Camera::on_getPositionPtr() { return nullptr; }
 
 /*
  * --INFO--
@@ -901,18 +801,10 @@ u32 Camera::on_getPositionPtr() { return 0x0; }
  */
 float Camera::getNear()
 {
-	/*
-	lbz      r0, 0x6c(r3)
-	cmplwi   r0, 0
-	beq      lbl_8041AD20
-	lfs      f1, 0x64(r3)
-	blr
-
-lbl_8041AD20:
-	lfs      f1, 0x70(r3)
-	blr
-
-	*/
+	if (m_isFixed) {
+		return m_near;
+	}
+	return m_projectionNear;
 }
 
 /*
@@ -922,18 +814,10 @@ lbl_8041AD20:
  */
 float Camera::getFar()
 {
-	/*
-	lbz      r0, 0x6c(r3)
-	cmplwi   r0, 0
-	beq      lbl_8041AD3C
-	lfs      f1, 0x68(r3)
-	blr
-
-lbl_8041AD3C:
-	lfs      f1, 0x74(r3)
-	blr
-
-	*/
+	if (m_isFixed) {
+		return m_far;
+	}
+	return m_projectionFar;
 }
 
 /*
@@ -943,45 +827,12 @@ lbl_8041AD3C:
  */
 void Camera::setProjection()
 {
-	/*
-	stwu     r1, -0x10(r1)
-	mflr     r0
-	stw      r0, 0x14(r1)
-	stw      r31, 0xc(r1)
-	mr       r31, r3
-	lbz      r0, 0x6c(r3)
-	cmplwi   r0, 0
-	beq      lbl_8041AD6C
-	lfs      f4, 0x68(r31)
-	b        lbl_8041AD70
+	float far     = getFar();
+	Mtx44* matrix = &_B4;
+	float near    = getNear();
 
-lbl_8041AD6C:
-	lfs      f4, 0x74(r31)
-
-lbl_8041AD70:
-	cmplwi   r0, 0
-	lfs      f1, 0x28(r31)
-	lfs      f2, 0x2c(r31)
-	addi     r3, r31, 0xb4
-	beq      lbl_8041AD8C
-	lfs      f3, 0x64(r31)
-	b        lbl_8041AD90
-
-lbl_8041AD8C:
-	lfs      f3, 0x70(r31)
-
-lbl_8041AD90:
-	bl       C_MTXPerspective
-	addi     r3, r31, 0xb4
-	li       r4, 0
-	bl       GXSetProjection
-	lwz      r0, 0x14(r1)
-	lwz      r31, 0xc(r1)
-	mtlr     r0
-	addi     r1, r1, 0x10
-	blr
-
-	*/
+	C_MTXPerspective(m_viewAngle, m_aspectRatio, near, far, *matrix);
+	GXSetProjection(_B4, GX_PERSPECTIVE);
 }
 
 /*
@@ -991,89 +842,20 @@ lbl_8041AD90:
  */
 void Camera::update()
 {
-	/*
-	stwu     r1, -0x10(r1)
-	mflr     r0
-	stw      r0, 0x14(r1)
-	stw      r31, 0xc(r1)
-	stw      r30, 8(r1)
-	mr       r30, r3
-	addi     r3, r30, 0xb4
-	addi     r4, r30, 0xf4
-	bl       PSMTX44Copy
-	mr       r3, r30
-	li       r4, 0
-	lwz      r12, 0(r30)
-	lwz      r12, 0x48(r12)
-	mtctr    r12
-	bctrl
-	addi     r4, r30, 0x34
-	bl       PSMTXCopy
-	lwz      r3, 0x140(r30)
-	li       r31, 0
-	cmplwi   r3, 0
-	beq      lbl_8041AE24
-	lwz      r12, 0(r3)
-	lwz      r12, 0xbc(r12)
-	mtctr    r12
-	bctrl
-	clrlwi.  r0, r3, 0x18
-	beq      lbl_8041AE24
-	li       r31, 1
-
-lbl_8041AE24:
-	clrlwi.  r0, r31, 0x18
-	beq      lbl_8041AE60
-	lwz      r3, 0x140(r30)
-	lwz      r12, 0(r3)
-	lwz      r12, 0xb0(r12)
-	mtctr    r12
-	bctrl
-	lfs      f1, lbl_80520370@sda21(r2)
-	mr       r3, r30
-	lfs      f0, sCamFov__3PSM@sda21(r13)
-	lfs      f2, lbl_8052037C@sda21(r2)
-	fmuls    f0, f1, f0
-	fmuls    f1, f2, f0
-	bl       updateSoundCamera__6CameraFf
-	b        lbl_8041AE9C
-
-lbl_8041AE60:
-	mr       r3, r30
-	lwz      r12, 0(r30)
-	lwz      r12, 0x78(r12)
-	mtctr    r12
-	bctrl
-	mr       r3, r30
-	lwz      r12, 0(r30)
-	lwz      r12, 0x74(r12)
-	mtctr    r12
-	bctrl
-	lfs      f1, lbl_80520370@sda21(r2)
-	mr       r3, r30
-	lfs      f0, sCamFov__3PSM@sda21(r13)
-	fmuls    f1, f1, f0
-	bl       updateSoundCamera__6CameraFf
-
-lbl_8041AE9C:
-	mr       r3, r30
-	lwz      r12, 0(r30)
-	lwz      r12, 0x54(r12)
-	mtctr    r12
-	bctrl
-	mr       r3, r30
-	lwz      r12, 0(r30)
-	lwz      r12, 0x50(r12)
-	mtctr    r12
-	bctrl
-	lwz      r0, 0x14(r1)
-	lwz      r31, 0xc(r1)
-	lwz      r30, 8(r1)
-	mtlr     r0
-	addi     r1, r1, 0x10
-	blr
-
-	*/
+	PSMTX44Copy(_B4, _F4);
+	Matrixf* viewMatrix = getViewMatrix(0);
+	PSMTXCopy(viewMatrix->m_matrix.mtxView, _34.m_matrix.mtxView);
+	// temp_r3 = this->unk140;
+	if (isRunning()) {
+		m_jstObject->updateCamera();
+		updateSoundCamera(0.7f * (PI * PSM::sCamFov));
+	} else {
+		doUpdate();
+		updateMatrix();
+		updateSoundCamera(PI * PSM::sCamFov);
+	}
+	updateScreenConstants();
+	updatePlanes();
 }
 
 /*
@@ -1081,26 +863,20 @@ lbl_8041AE9C:
  * Address:	8041AEDC
  * Size:	000004
  */
-void Camera::updateMatrix() { }
+// WEAK - in header
+// void Camera::updateMatrix() { }
 
 /*
  * --INFO--
  * Address:	8041AEE0
  * Size:	000018
  */
-void Camera::getViewMatrix(bool)
+Matrixf* Camera::getViewMatrix(bool b)
 {
-	/*
-	clrlwi.  r0, r4, 0x18
-	beq      lbl_8041AEF0
-	addi     r3, r3, 0x34
-	blr
-
-lbl_8041AEF0:
-	lwz      r3, 0x30(r3)
-	blr
-
-	*/
+	if (b) {
+		return &_34;
+	}
+	return m_viewMatrix;
 }
 
 /*
@@ -1108,6 +884,7 @@ lbl_8041AEF0:
  * Address:	8041AEF8
  * Size:	000120
  */
+// WIP: https://decomp.me/scratch/Lrkv8
 void Camera::calcProperDistance(float, float)
 {
 	/*
@@ -1206,71 +983,13 @@ lbl_8041B010:
  */
 void Camera::updateScreenConstants()
 {
-	/*
-	stwu     r1, -0x20(r1)
-	lfs      f2, lbl_80520388@sda21(r2)
-	lfs      f0, 0x28(r3)
-	lfs      f1, lbl_8052038C@sda21(r2)
-	fmuls    f2, f2, f0
-	lfs      f3, lbl_80520370@sda21(r2)
-	lfs      f0, lbl_80520358@sda21(r2)
-	fdivs    f1, f2, f1
-	fmuls    f1, f3, f1
-	stfs     f1, 0x134(r3)
-	lfs      f3, 0x134(r3)
-	fmr      f1, f3
-	fcmpo    cr0, f3, f0
-	bge      lbl_8041B054
-	fneg     f1, f3
+	_134      = ((m_viewAngle * 0.5f) / 180.0f) * PI;
+	float cos = pikmin2_cosf(_134);
+	float sin = pikmin2_sinf(_134);
 
-lbl_8041B054:
-	lfs      f2, lbl_80520390@sda21(r2)
-	lis      r4, sincosTable___5JMath@ha
-	lfs      f0, lbl_80520358@sda21(r2)
-	addi     r5, r4, sincosTable___5JMath@l
-	fmuls    f1, f1, f2
-	fcmpo    cr0, f3, f0
-	fctiwz   f0, f1
-	stfd     f0, 8(r1)
-	lwz      r0, 0xc(r1)
-	rlwinm   r0, r0, 3, 0x12, 0x1c
-	add      r4, r5, r0
-	lfs      f1, 4(r4)
-	bge      lbl_8041B0AC
-	lfs      f0, lbl_80520394@sda21(r2)
-	fmuls    f0, f3, f0
-	fctiwz   f0, f0
-	stfd     f0, 0x10(r1)
-	lwz      r0, 0x14(r1)
-	rlwinm   r0, r0, 3, 0x12, 0x1c
-	lfsx     f0, r5, r0
-	fneg     f0, f0
-	b        lbl_8041B0C4
+	_138 = cos / sin;
 
-lbl_8041B0AC:
-	fmuls    f0, f3, f2
-	fctiwz   f0, f0
-	stfd     f0, 0x18(r1)
-	lwz      r0, 0x1c(r1)
-	rlwinm   r0, r0, 3, 0x12, 0x1c
-	lfsx     f0, r5, r0
-
-lbl_8041B0C4:
-	fdivs    f1, f1, f0
-	lfs      f0, lbl_80520398@sda21(r2)
-	stfs     f1, 0x138(r3)
-	lfs      f1, 0x74(r3)
-	lfs      f2, 0x70(r3)
-	fmuls    f0, f0, f1
-	fsubs    f1, f1, f2
-	fmuls    f0, f0, f2
-	fneg     f1, f1
-	fdivs    f0, f1, f0
-	stfs     f0, 0x13c(r3)
-	addi     r1, r1, 0x20
-	blr
-
-	*/
+	_13C = -(m_projectionFar - m_projectionNear) / (m_projectionFar * 2.0f * m_projectionNear);
 }
 
 /*
@@ -1278,6 +997,7 @@ lbl_8041B0C4:
  * Address:	8041B0F8
  * Size:	0000B8
  */
+// WIP: https://decomp.me/scratch/iovxv
 float Camera::calcScreenSize(Sys::Sphere&)
 {
 	/*
@@ -1336,16 +1056,17 @@ float Camera::calcScreenSize(Sys::Sphere&)
  * Address:	........
  * Size:	0000E0
  */
-void Camera::calcScreenSize(Sys::Sphere&, float&, float&, Vector3f&)
-{
-	// UNUSED FUNCTION
-}
+// void Camera::calcScreenSize(Sys::Sphere&, float&, float&, Vector3f&)
+// {
+// 	// UNUSED FUNCTION
+// }
 
 /*
  * --INFO--
  * Address:	8041B1B0
  * Size:	0002E8
  */
+// WIP: https://decomp.me/scratch/4nLm6
 void Camera::updateSoundCamera(float)
 {
 	/*
@@ -1562,116 +1283,11 @@ lbl_8041B36C:
  */
 LookAtCamera::LookAtCamera()
 {
-	/*
-	stwu     r1, -0x20(r1)
-	mflr     r0
-	stw      r0, 0x24(r1)
-	stw      r31, 0x1c(r1)
-	stw      r30, 0x18(r1)
-	stw      r29, 0x14(r1)
-	mr       r29, r3
-	stw      r28, 0x10(r1)
-	mr       r28, r29
-	mr       r30, r28
-	mr       r31, r28
-	bl       __ct__5CNodeFv
-	lis      r4, __vt__16GenericContainer@ha
-	lis      r3, "__vt__17Container<5Plane>"@ha
-	addi     r0, r4, __vt__16GenericContainer@l
-	lis      r4, "__vt__22ArrayContainer<5Plane>"@ha
-	stw      r0, 0(r28)
-	addi     r0, r3, "__vt__17Container<5Plane>"@l
-	lis      r3, __vt__9CullPlane@ha
-	li       r7, 0
-	stw      r0, 0(r28)
-	addi     r6, r4, "__vt__22ArrayContainer<5Plane>"@l
-	li       r5, 1
-	addi     r0, r3, __vt__9CullPlane@l
-	stb      r7, 0x18(r28)
-	mr       r3, r28
-	li       r4, 6
-	stw      r6, 0(r28)
-	stb      r5, 0x18(r28)
-	stw      r7, 0x20(r28)
-	stw      r7, 0x1c(r28)
-	stw      r7, 0x24(r28)
-	stw      r0, 0(r28)
-	lwz      r12, 0(r28)
-	lwz      r12, 0x3c(r12)
-	mtctr    r12
-	bctrl
-	li       r0, 6
-	lis      r3, __vt__11CullFrustum@ha
-	stw      r0, 0x1c(r28)
-	addi     r0, r3, __vt__11CullFrustum@l
-	lfs      f0, lbl_80520360@sda21(r2)
-	stw      r0, 0(r31)
-	stfs     f0, 0x28(r31)
-	bl       getRenderModeObj__6SystemFv
-	lhz      r28, 6(r3)
-	bl       getRenderModeObj__6SystemFv
-	lhz      r4, 4(r3)
-	lis      r0, 0x4330
-	lis      r3, __vt__6Camera@ha
-	stw      r0, 8(r1)
-	divw     r5, r4, r28
-	lfd      f4, lbl_80520368@sda21(r2)
-	addi     r4, r3, __vt__6Camera@l
-	lfs      f2, lbl_8052035C@sda21(r2)
-	li       r0, 0
-	lfs      f1, lbl_80520378@sda21(r2)
-	xoris    r3, r5, 0x8000
-	lfs      f0, lbl_80520358@sda21(r2)
-	stw      r3, 0xc(r1)
-	addi     r3, r30, 0x34
-	lfd      f3, 8(r1)
-	fsubs    f3, f3, f4
-	stfs     f3, 0x2c(r31)
-	stw      r4, 0(r30)
-	stw      r0, 0x140(r30)
-	stfs     f2, 0x70(r30)
-	stfs     f1, 0x74(r30)
-	stfs     f2, 0x134(r30)
-	stfs     f2, 0x138(r30)
-	stfs     f2, 0x13c(r30)
-	stfs     f0, 0x78(r30)
-	stfs     f0, 0x7c(r30)
-	stfs     f0, 0x80(r30)
-	bl       PSMTXIdentity
-	li       r0, 0
-	lis      r3, __vt__12LookAtCamera@ha
-	stb      r0, 0x6c(r30)
-	addi     r0, r3, __vt__12LookAtCamera@l
-	lfs      f2, lbl_80520358@sda21(r2)
-	addi     r3, r29, 0x144
-	lfs      f1, lbl_8052039C@sda21(r2)
-	stfs     f2, 0x68(r30)
-	lfs      f0, lbl_8052035C@sda21(r2)
-	stfs     f2, 0x64(r30)
-	stw      r0, 0(r29)
-	stfs     f2, 0x174(r29)
-	stfs     f2, 0x178(r29)
-	stfs     f1, 0x17c(r29)
-	stfs     f2, 0x180(r29)
-	stfs     f2, 0x184(r29)
-	stfs     f2, 0x188(r29)
-	stfs     f2, 0x18c(r29)
-	stfs     f0, 0x190(r29)
-	stfs     f2, 0x194(r29)
-	bl       PSMTXIdentity
-	addi     r0, r29, 0x144
-	mr       r3, r29
-	stw      r0, 0x30(r29)
-	lwz      r31, 0x1c(r1)
-	lwz      r30, 0x18(r1)
-	lwz      r29, 0x14(r1)
-	lwz      r28, 0x10(r1)
-	lwz      r0, 0x24(r1)
-	mtlr     r0
-	addi     r1, r1, 0x20
-	blr
-
-	*/
+	_174             = Vector3f(0.0f, 0.0f, 1000.0f);
+	m_lookAtPosition = 0.0f;
+	_18C             = Vector3f(0.0f, 1.0f, 0.0f);
+	PSMTXIdentity(_144.m_matrix.mtxView);
+	m_viewMatrix = &_144;
 }
 
 /*
@@ -1679,192 +1295,26 @@ LookAtCamera::LookAtCamera()
  * Address:	8041B644
  * Size:	0000B0
  */
-Camera::~Camera()
-{
-	/*
-	stwu     r1, -0x10(r1)
-	mflr     r0
-	stw      r0, 0x14(r1)
-	stw      r31, 0xc(r1)
-	mr       r31, r4
-	stw      r30, 8(r1)
-	or.      r30, r3, r3
-	beq      lbl_8041B6D8
-	lis      r4, __vt__6Camera@ha
-	addi     r0, r4, __vt__6Camera@l
-	stw      r0, 0(r30)
-	beq      lbl_8041B6C8
-	lis      r4, __vt__11CullFrustum@ha
-	addi     r0, r4, __vt__11CullFrustum@l
-	stw      r0, 0(r30)
-	beq      lbl_8041B6C8
-	lis      r4, __vt__9CullPlane@ha
-	addi     r0, r4, __vt__9CullPlane@l
-	stw      r0, 0(r30)
-	beq      lbl_8041B6C8
-	lis      r4, "__vt__22ArrayContainer<5Plane>"@ha
-	addi     r0, r4, "__vt__22ArrayContainer<5Plane>"@l
-	stw      r0, 0(r30)
-	beq      lbl_8041B6C8
-	lis      r4, "__vt__17Container<5Plane>"@ha
-	addi     r0, r4, "__vt__17Container<5Plane>"@l
-	stw      r0, 0(r30)
-	beq      lbl_8041B6C8
-	lis      r5, __vt__16GenericContainer@ha
-	li       r4, 0
-	addi     r0, r5, __vt__16GenericContainer@l
-	stw      r0, 0(r30)
-	bl       __dt__5CNodeFv
-
-lbl_8041B6C8:
-	extsh.   r0, r31
-	ble      lbl_8041B6D8
-	mr       r3, r30
-	bl       __dl__FPv
-
-lbl_8041B6D8:
-	lwz      r0, 0x14(r1)
-	mr       r3, r30
-	lwz      r31, 0xc(r1)
-	lwz      r30, 8(r1)
-	mtlr     r0
-	addi     r1, r1, 0x10
-	blr
-
-	*/
-}
+// WEAK - in header
+// Camera::~Camera() { }
 
 /*
  * --INFO--
  * Address:	8041B6F4
  * Size:	000034
  */
-void LookAtCamera::updateMatrix()
-{
-	/*
-	stwu     r1, -0x10(r1)
-	mflr     r0
-	mr       r6, r3
-	stw      r0, 0x14(r1)
-	addi     r3, r6, 0x144
-	addi     r4, r6, 0x174
-	addi     r5, r6, 0x18c
-	addi     r6, r6, 0x180
-	bl       C_MTXLookAt
-	lwz      r0, 0x14(r1)
-	mtlr     r0
-	addi     r1, r1, 0x10
-	blr
-
-	*/
-}
+void LookAtCamera::updateMatrix() { C_MTXLookAt(_144.m_matrix.mtxView, (Vec*)&_174, (Vec*)&_18C, (Vec*)&m_lookAtPosition); }
 
 /*
  * --INFO--
  * Address:	8041B728
  * Size:	000180
  */
-BlendCamera::BlendCamera(int, Camera**)
+BlendCamera::BlendCamera(int cameraCount, Camera** cameras)
 {
-	/*
-	stwu     r1, -0x30(r1)
-	mflr     r0
-	stw      r0, 0x34(r1)
-	stmw     r26, 0x18(r1)
-	mr       r26, r3
-	mr       r30, r4
-	mr       r31, r5
-	mr       r27, r26
-	mr       r28, r26
-	mr       r29, r26
-	bl       __ct__5CNodeFv
-	lis      r4, __vt__16GenericContainer@ha
-	lis      r3, "__vt__17Container<5Plane>"@ha
-	addi     r0, r4, __vt__16GenericContainer@l
-	lis      r4, "__vt__22ArrayContainer<5Plane>"@ha
-	stw      r0, 0(r26)
-	addi     r0, r3, "__vt__17Container<5Plane>"@l
-	lis      r3, __vt__9CullPlane@ha
-	li       r7, 0
-	stw      r0, 0(r26)
-	addi     r6, r4, "__vt__22ArrayContainer<5Plane>"@l
-	li       r5, 1
-	addi     r0, r3, __vt__9CullPlane@l
-	stb      r7, 0x18(r26)
-	mr       r3, r29
-	li       r4, 6
-	stw      r6, 0(r26)
-	stb      r5, 0x18(r26)
-	stw      r7, 0x20(r26)
-	stw      r7, 0x1c(r26)
-	stw      r7, 0x24(r26)
-	stw      r0, 0(r29)
-	lwz      r12, 0(r29)
-	lwz      r12, 0x3c(r12)
-	mtctr    r12
-	bctrl
-	li       r0, 6
-	lis      r3, __vt__11CullFrustum@ha
-	stw      r0, 0x1c(r29)
-	addi     r0, r3, __vt__11CullFrustum@l
-	lfs      f0, lbl_80520360@sda21(r2)
-	stw      r0, 0(r28)
-	stfs     f0, 0x28(r28)
-	bl       getRenderModeObj__6SystemFv
-	lhz      r29, 6(r3)
-	bl       getRenderModeObj__6SystemFv
-	lhz      r4, 4(r3)
-	lis      r0, 0x4330
-	lis      r3, __vt__6Camera@ha
-	stw      r0, 8(r1)
-	divw     r5, r4, r29
-	lfd      f4, lbl_80520368@sda21(r2)
-	addi     r4, r3, __vt__6Camera@l
-	lfs      f2, lbl_8052035C@sda21(r2)
-	li       r0, 0
-	lfs      f1, lbl_80520378@sda21(r2)
-	xoris    r3, r5, 0x8000
-	lfs      f0, lbl_80520358@sda21(r2)
-	stw      r3, 0xc(r1)
-	addi     r3, r27, 0x34
-	lfd      f3, 8(r1)
-	fsubs    f3, f3, f4
-	stfs     f3, 0x2c(r28)
-	stw      r4, 0(r27)
-	stw      r0, 0x140(r27)
-	stfs     f2, 0x70(r27)
-	stfs     f1, 0x74(r27)
-	stfs     f2, 0x134(r27)
-	stfs     f2, 0x138(r27)
-	stfs     f2, 0x13c(r27)
-	stfs     f0, 0x78(r27)
-	stfs     f0, 0x7c(r27)
-	stfs     f0, 0x80(r27)
-	bl       PSMTXIdentity
-	li       r0, 0
-	lis      r3, __vt__11BlendCamera@ha
-	stb      r0, 0x6c(r27)
-	addi     r0, r3, __vt__11BlendCamera@l
-	lfs      f0, lbl_80520358@sda21(r2)
-	stfs     f0, 0x68(r27)
-	stfs     f0, 0x64(r27)
-	stw      r0, 0(r26)
-	stw      r30, 0x144(r26)
-	lwz      r0, 0x144(r26)
-	slwi     r3, r0, 2
-	bl       __nwa__FUl
-	stw      r3, 0x148(r26)
-	mr       r3, r26
-	mr       r4, r31
-	bl       setCameras__11BlendCameraFPP6Camera
-	mr       r3, r26
-	lmw      r26, 0x18(r1)
-	lwz      r0, 0x34(r1)
-	mtlr     r0
-	addi     r1, r1, 0x30
-	blr
-
-	*/
+	m_cameraCount = cameraCount;
+	m_cameras     = new Camera*[m_cameraCount];
+	setCameras(cameras);
 }
 
 /*
@@ -1872,50 +1322,16 @@ BlendCamera::BlendCamera(int, Camera**)
  * Address:	8041B8A8
  * Size:	00008C
  */
-void BlendCamera::setCameras(Camera**)
+void BlendCamera::setCameras(Camera** camList)
 {
-	/*
-	stwu     r1, -0x10(r1)
-	mflr     r0
-	mr       r7, r4
-	li       r6, 0
-	stw      r0, 0x14(r1)
-	li       r5, 0
-	stw      r31, 0xc(r1)
-	mr       r31, r3
-	b        lbl_8041B8E4
+	for (int i = 0; i < m_cameraCount; i++) {
+		m_cameras[i] = camList[i];
+	}
 
-lbl_8041B8CC:
-	lwz      r0, 0(r4)
-	addi     r4, r4, 4
-	lwz      r3, 0x148(r31)
-	addi     r6, r6, 1
-	stwx     r0, r3, r5
-	addi     r5, r5, 4
+	m_blendFactor = 0.0f;
 
-lbl_8041B8E4:
-	lwz      r0, 0x144(r31)
-	cmpw     r6, r0
-	blt      lbl_8041B8CC
-	lfs      f0, lbl_80520358@sda21(r2)
-	li       r4, 0
-	stfs     f0, 0x14c(r31)
-	lwz      r3, 0(r7)
-	lwz      r12, 0(r3)
-	lwz      r12, 0x48(r12)
-	mtctr    r12
-	bctrl
-	addi     r4, r31, 0x150
-	bl       PSMTXCopy
-	addi     r0, r31, 0x150
-	stw      r0, 0x30(r31)
-	lwz      r0, 0x14(r1)
-	lwz      r31, 0xc(r1)
-	mtlr     r0
-	addi     r1, r1, 0x10
-	blr
-
-	*/
+	PSMTXCopy(camList[0]->getViewMatrix(false)->m_matrix.mtxView, _150.m_matrix.mtxView);
+	m_viewMatrix = &_150;
 }
 
 /*
@@ -1923,39 +1339,16 @@ lbl_8041B8E4:
  * Address:	8041B934
  * Size:	000060
  */
-void BlendCamera::setBlendFactor(float)
+void BlendCamera::setBlendFactor(float factor)
 {
-	/*
-	lfs      f0, lbl_80520358@sda21(r2)
-	stwu     r1, -0x10(r1)
-	fcmpo    cr0, f1, f0
-	bge      lbl_8041B94C
-	fmr      f1, f0
-	b        lbl_8041B988
+	float blendfactor = factor;
+	if (blendfactor < 0.0f) {
+		blendfactor = 0.0f;
+	} else if (blendfactor > m_cameraCount - 1) {
+		blendfactor = m_cameraCount - 1;
+	}
 
-lbl_8041B94C:
-	lwz      r4, 0x144(r3)
-	lis      r0, 0x4330
-	stw      r0, 8(r1)
-	addi     r4, r4, -1
-	lfd      f2, lbl_80520368@sda21(r2)
-	xoris    r4, r4, 0x8000
-	stw      r4, 0xc(r1)
-	lfd      f0, 8(r1)
-	fsubs    f0, f0, f2
-	fcmpo    cr0, f1, f0
-	ble      lbl_8041B988
-	stw      r4, 0xc(r1)
-	stw      r0, 8(r1)
-	lfd      f0, 8(r1)
-	fsubs    f1, f0, f2
-
-lbl_8041B988:
-	stfs     f1, 0x14c(r3)
-	addi     r1, r1, 0x10
-	blr
-
-	*/
+	m_blendFactor = blendfactor;
 }
 
 /*
@@ -1963,6 +1356,7 @@ lbl_8041B988:
  * Address:	8041B994
  * Size:	0002A8
  */
+// WIP: https://decomp.me/scratch/JbYac
 void BlendCamera::doUpdate()
 {
 	/*
@@ -2197,64 +1591,8 @@ lbl_8041BA14:
  * Address:	8041BC3C
  * Size:	0000C0
  */
-BlendCamera::~BlendCamera()
-{
-	/*
-	stwu     r1, -0x10(r1)
-	mflr     r0
-	stw      r0, 0x14(r1)
-	stw      r31, 0xc(r1)
-	mr       r31, r4
-	stw      r30, 8(r1)
-	or.      r30, r3, r3
-	beq      lbl_8041BCE0
-	lis      r4, __vt__11BlendCamera@ha
-	addi     r0, r4, __vt__11BlendCamera@l
-	stw      r0, 0(r30)
-	beq      lbl_8041BCD0
-	lis      r4, __vt__6Camera@ha
-	addi     r0, r4, __vt__6Camera@l
-	stw      r0, 0(r30)
-	beq      lbl_8041BCD0
-	lis      r4, __vt__11CullFrustum@ha
-	addi     r0, r4, __vt__11CullFrustum@l
-	stw      r0, 0(r30)
-	beq      lbl_8041BCD0
-	lis      r4, __vt__9CullPlane@ha
-	addi     r0, r4, __vt__9CullPlane@l
-	stw      r0, 0(r30)
-	beq      lbl_8041BCD0
-	lis      r4, "__vt__22ArrayContainer<5Plane>"@ha
-	addi     r0, r4, "__vt__22ArrayContainer<5Plane>"@l
-	stw      r0, 0(r30)
-	beq      lbl_8041BCD0
-	lis      r4, "__vt__17Container<5Plane>"@ha
-	addi     r0, r4, "__vt__17Container<5Plane>"@l
-	stw      r0, 0(r30)
-	beq      lbl_8041BCD0
-	lis      r5, __vt__16GenericContainer@ha
-	li       r4, 0
-	addi     r0, r5, __vt__16GenericContainer@l
-	stw      r0, 0(r30)
-	bl       __dt__5CNodeFv
-
-lbl_8041BCD0:
-	extsh.   r0, r31
-	ble      lbl_8041BCE0
-	mr       r3, r30
-	bl       __dl__FPv
-
-lbl_8041BCE0:
-	lwz      r0, 0x14(r1)
-	mr       r3, r30
-	lwz      r31, 0xc(r1)
-	lwz      r30, 8(r1)
-	mtlr     r0
-	addi     r1, r1, 0x10
-	blr
-
-	*/
-}
+// WEAK - in header
+// BlendCamera::~BlendCamera() { }
 
 /*
  * --INFO--
