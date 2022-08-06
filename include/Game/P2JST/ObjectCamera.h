@@ -58,26 +58,26 @@ struct ObjectCamera : public JStage::TCamera, ObjectBase {
 
 	// _00 - VTABLE (JStage::TCamera)
 	// _04 - VTABLE2 (ObjectBase)
-	Game::MoviePlayer* _08; // _08
-	char* m_name;           // _0C
-	u32 _10;                // _10 - flags?
-	int _14;                // _14
-	void* _18;              // _18 - pointer to something?
-	u32 _1C;                // _1C
-	u8 _20[0x34];           // _20 - unknown
-	u32 _54;                // _54 - unknown
-	u8 _58[0x8];            // _58 - unknown
-	Matrixf _60;            // _60
-	Vec _90;                // _90 - view position?
-	Vec _9C;                // _9C - view target position?
-	float _A8;              // _A8 - view roll?
-	float _AC;              // _AC - projectionNear?
-	float _B0;              // _B0 - projectionFar?
-	float _B4;              // _B4 - projectionFovy?
-	float _BC;              // _BC - projectionAspect?
-	Camera* _C0;            // _C0 - owner?
-	Camera* _C4;            // _C4 - camera obj?
-	bool m_isRunning;       // _C8
+	Game::MoviePlayer* _08;   // _08
+	char* m_name;             // _0C
+	u32 _10;                  // _10 - flags?
+	int _14;                  // _14
+	void* _18;                // _18 - pointer to something?
+	u32 _1C;                  // _1C
+	u8 _20[0x34];             // _20 - unknown
+	u32 _54;                  // _54 - unknown
+	u8 _58[0x8];              // _58 - unknown
+	Matrixf _60;              // _60
+	Vector3f m_viewPos;       // _90 - view position?
+	Vector3f m_viewTargetPos; // _9C - view target position?
+	float m_viewRoll;         // _A8 - view roll?
+	float m_projectionNear;   // _AC - projectionNear?
+	float m_projectionFar;    // _B0 - projectionFar?
+	float m_projectionFovy;   // _B4 - projectionFovy?
+	float m_projectionAspect; // _BC - projectionAspect?
+	Camera* _C0;              // _C0 - owner?
+	Camera* _C4;              // _C4 - camera obj?
+	bool m_isRunning;         // _C8
 };
 
 } // namespace P2JST

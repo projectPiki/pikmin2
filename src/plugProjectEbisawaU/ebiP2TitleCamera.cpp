@@ -18,7 +18,7 @@ void TTitleCameraMgr::update()
 	_18C.z           = -1.0f;
 	m_lookAtPosition = _174;
 	m_lookAtPosition.y -= 1.0f;
-	_28 = m_parms.m_cam2.m_value;
+	m_viewAngle = m_parms.m_cam2.m_value;
 	Camera::update();
 }
 
