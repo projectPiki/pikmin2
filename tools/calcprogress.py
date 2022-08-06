@@ -84,6 +84,73 @@ CSV_FILE_PATH = f'./tools/{CSV_FILE_NAME}'
 #                                             #
 ###############################################
 
+def update_csv(
+    code_count,
+    decomp_code_size,
+    code_completion_percentage,
+    data_count,
+    decomp_data_size,
+    data_completion_percentage,
+    sentence,
+):
+    does_file_exist = False
+    are_there_changes = True
+
+    try:
+        with open(CSV_FILE_PATH, 'r') as file:
+            reader = csv.reader(file)
+            does_file_exist = True
+            
+            latest_code_count = int(list(reader)[-1][0])
+            are_there_changes = not code_count == latest_code_count
+            
+            print(f"Successfully read {CSV_FILE_PATH}!")
+    except:
+        print(f'Failed to read {CSV_FILE_PATH}!')
+
+    if not are_there_changes:
+        print("No changes have been made so exiting!")
+        return
+    
+    col_one = f"code_count_in_{CODE_ITEM.lower()}"
+    col_two = "code_completion_in_bytes"
+    col_three = "code_completion_in_percentage"
+    col_four = f"data_count_in_{DATA_ITEM.lower()}"
+    col_five = "data_completion_in_bytes"
+    col_six = "data_completion_in_percentage"
+    col_seven = "sentence"
+    col_eight = "created_at"
+    headers = [
+        col_one,
+        col_two,
+        col_three,
+        col_four,
+        col_five,
+        col_six,
+        col_seven,
+        col_eight,
+    ]
+
+    try:
+        with open(CSV_FILE_PATH, 'a', newline='') as file:
+            writer = csv.DictWriter(file, fieldnames=headers)
+            # only add headers if this is the first iteration of the file
+            if not does_file_exist:
+                writer.writeheader()
+            writer.writerow({
+                col_one: code_count,
+                col_two: decomp_code_size,
+                col_three: code_completion_percentage,
+                col_four: data_count,
+                col_five: decomp_data_size,
+                col_six: data_completion_percentage,
+                col_seven: sentence,
+                col_eight: datetime.now(),
+            })
+        print(f"Successfully wrote to {CSV_FILE_PATH}!")
+    except:
+        print(f"Failed to write to {CSV_FILE_PATH}!")
+
 if __name__ == "__main__":
     # Sum up DOL section sizes
     dol_handle = open(sys.argv[1], "rb")
@@ -202,51 +269,12 @@ if __name__ == "__main__":
     sentence = f"\nYou have {codeCount} out of {CODE_FRAC} {CODE_ITEM} and {dataCount} out of {DATA_FRAC} {DATA_ITEM}."
     print(sentence)
 
-    # Create/append to CSV
-    does_file_exist = False
-
-    try:
-        with open(CSV_FILE_PATH, 'r') as file:
-            reader = csv.reader(file)
-            does_file_exist = True
-            print(f"Successfully read {CSV_FILE_PATH}!")
-    except:
-        print(f'Failed to read {CSV_FILE_PATH}!')
-
-    col_one = f"code_count_in_{CODE_ITEM.lower()}"
-    col_two = "code_completion_in_bytes"
-    col_three = "code_completion_in_percentage"
-    col_four = f"data_count_in_{DATA_ITEM.lower()}"
-    col_five = "data_completion_in_bytes"
-    col_six = "data_completion_in_percentage"
-    col_seven = "sentence"
-    col_eight = "created_at"
-    headers = [
-        col_one,
-        col_two,
-        col_three,
-        col_four,
-        col_five,
-        col_six,
-        col_seven,
-        col_eight,
-    ]
-
-    try:
-        with open(CSV_FILE_PATH, 'a', newline='') as file:
-            writer = csv.DictWriter(file, fieldnames=headers)
-            if not does_file_exist:
-                writer.writeheader()
-            writer.writerow({
-                col_one: codeCount,
-                col_two: decomp_code_size,
-                col_three: codeCompletionPcnt,
-                col_four: dataCount,
-                col_five: decomp_data_size,
-                col_six: dataCompletionPcnt,
-                col_seven: sentence,
-                col_eight: datetime.now(),
-            })
-        print(f"Successfully wrote to {CSV_FILE_PATH}!")
-    except:
-        print(f"Failed to write to {CSV_FILE_PATH}!")
+    update_csv(
+        code_count=codeCount,
+        decomp_code_size=decomp_code_size,
+        code_completion_percentage=codeCompletionPcnt,
+        data_count=dataCount,
+        decomp_data_size=decomp_data_size,
+        data_completion_percentage=dataCompletionPcnt,
+        sentence=sentence
+    )
