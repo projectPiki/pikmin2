@@ -5,6 +5,7 @@
 #include "Sys/Cylinder.h"
 #include "System.h"
 #include "trig.h"
+#include "Quat.h"
 
 /*
     Generated from dpostproc
