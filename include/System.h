@@ -3,9 +3,11 @@
 
 #include "types.h"
 #include "DvdThreadCommand.h"
+#include "Dolphin/gx.h"
 
 struct Graphics;
 struct OSContext;
+struct _GXRenderModeObj;
 
 void Pikmin2DefaultMemoryErrorRoutine(void*, u32, s32);
 void kando_panic_f(bool, const char*, s32, const char*, ...);
@@ -29,7 +31,7 @@ struct System {
 	System();
 	~System();
 
-	static struct _GXRenderModeObj* getRenderModeObj();
+	static _GXRenderModeObj* getRenderModeObj();
 	static void assert_fragmentation(char*);
 	static void createSoundSystem();
 	static void loadSoundResource();

@@ -1,6 +1,9 @@
 #include "Camera.h"
 #include "types.h"
 #include "Vector3.h"
+#include "Sys/Sphere.h"
+#include "Sys/Cylinder.h"
+#include "System.h"
 
 /*
     Generated from dpostproc
@@ -204,10 +207,11 @@
  * Address:	........
  * Size:	0000B0
  */
-CullPlane::CullPlane(int)
-{
-	// UNUSED FUNCTION
-}
+// inlined in Camera.h header
+// CullPlane::CullPlane(int)
+// {
+// 	// UNUSED FUNCTION
+// }
 
 /*
  * --INFO--
@@ -224,45 +228,17 @@ bool CullPlane::isPointVisible(Vector3f&, float)
  * Address:	8041A190
  * Size:	000070
  */
-bool CullPlane::isVisible(Sys::Sphere&)
+bool CullPlane::isVisible(Sys::Sphere& ball) 
 {
-	/*
-	lfs      f0, 0xc(r4)
-	li       r6, 0
-	lwz      r0, 0x1c(r3)
-	fneg     f6, f0
-	mtctr    r0
-	cmpwi    r0, 0
-	ble      lbl_8041A1F8
+    float rad = ball.m_radius;
 
-lbl_8041A1AC:
-	lwz      r0, 0x24(r3)
-	lfs      f1, 4(r4)
-	add      r5, r0, r6
-	lfs      f3, 0(r4)
-	lfs      f0, 4(r5)
-	lfs      f2, 0(r5)
-	fmuls    f1, f1, f0
-	lfs      f5, 8(r4)
-	lfs      f4, 8(r5)
-	lfs      f0, 0xc(r5)
-	fmadds   f1, f3, f2, f1
-	fmadds   f1, f5, f4, f1
-	fsubs    f0, f1, f0
-	fcmpo    cr0, f0, f6
-	bge      lbl_8041A1F0
-	li       r3, 0
-	blr
-
-lbl_8041A1F0:
-	addi     r6, r6, 0x10
-	bdnz     lbl_8041A1AC
-
-lbl_8041A1F8:
-	li       r3, 1
-	blr
-
-	*/
+    for (int i = 0; i < m_count; i++) {
+        Plane currPlane = m_objects[i];
+        if (currPlane.calcDist(ball.m_position) < -rad) {
+            return false;
+        }
+    }
+    return true;
 }
 
 /*
@@ -270,53 +246,14 @@ lbl_8041A1F8:
  * Address:	8041A200
  * Size:	000088
  */
-bool CullPlane::isCylinderVisible(Sys::Cylinder&)
+bool CullPlane::isCylinderVisible(Sys::Cylinder& cylinder) 
 {
-	/*
-	stwu     r1, -0x20(r1)
-	mflr     r0
-	stw      r0, 0x24(r1)
-	stw      r31, 0x1c(r1)
-	li       r31, 0
-	stw      r30, 0x18(r1)
-	li       r30, 0
-	stw      r29, 0x14(r1)
-	mr       r29, r4
-	stw      r28, 0x10(r1)
-	mr       r28, r3
-	b        lbl_8041A258
-
-lbl_8041A230:
-	lwz      r0, 0x24(r28)
-	mr       r3, r29
-	add      r4, r0, r31
-	bl       culled__Q23Sys8CylinderFRC5Plane
-	clrlwi.  r0, r3, 0x18
-	beq      lbl_8041A250
-	li       r3, 0
-	b        lbl_8041A268
-
-lbl_8041A250:
-	addi     r31, r31, 0x10
-	addi     r30, r30, 1
-
-lbl_8041A258:
-	lwz      r0, 0x1c(r28)
-	cmpw     r30, r0
-	blt      lbl_8041A230
-	li       r3, 1
-
-lbl_8041A268:
-	lwz      r0, 0x24(r1)
-	lwz      r31, 0x1c(r1)
-	lwz      r30, 0x18(r1)
-	lwz      r29, 0x14(r1)
-	lwz      r28, 0x10(r1)
-	mtlr     r0
-	addi     r1, r1, 0x20
-	blr
-
-	*/
+    for (int i = 0; i < m_count; i++) {
+        if (cylinder.culled(m_objects[i])) {
+            return false;
+        }
+    }
+    return true;
 }
 
 /*
@@ -324,30 +261,25 @@ lbl_8041A268:
  * Address:	........
  * Size:	0000F8
  */
-CullFrustum::CullFrustum(int a)
-    : CullPlane(a)
-{
-	// UNUSED FUNCTION
-}
+// inlined in Camera.h header
+// CullFrustum::CullFrustum(int a)
+//     : CullPlane(a)
+// {
+// 	// UNUSED FUNCTION
+// }
 
 /*
  * --INFO--
  * Address:	8041A288
  * Size:	000020
  */
-Vector3f CullFrustum::getUpVector()
+Vector3f CullFrustum::getUpVector() 
 {
-	/*
-	lwz      r4, 0x30(r4)
-	lfs      f1, 0x14(r4)
-	lfs      f2, 0x18(r4)
-	lfs      f0, 0x10(r4)
-	stfs     f0, 0(r3)
-	stfs     f1, 4(r3)
-	stfs     f2, 8(r3)
-	blr
-
-	*/
+    Vector3f upVec;
+    upVec.x = m_viewMatrix->m_matrix.vecView.y[0];
+    upVec.y = m_viewMatrix->m_matrix.vecView.y[1];
+    upVec.z = m_viewMatrix->m_matrix.vecView.y[2];
+    return upVec;
 }
 
 /*
@@ -355,22 +287,13 @@ Vector3f CullFrustum::getUpVector()
  * Address:	8041A2A8
  * Size:	00002C
  */
-Vector3f CullFrustum::getSideVector()
+Vector3f CullFrustum::getSideVector() 
 {
-	/*
-	lwz      r4, 0x30(r4)
-	lfs      f0, 0(r4)
-	lfs      f2, 4(r4)
-	fneg     f0, f0
-	lfs      f1, 8(r4)
-	fneg     f2, f2
-	fneg     f1, f1
-	stfs     f0, 0(r3)
-	stfs     f2, 4(r3)
-	stfs     f1, 8(r3)
-	blr
-
-	*/
+    Vector3f sideVec;
+    sideVec.x = -m_viewMatrix->m_matrix.vecView.x[0];
+    sideVec.y = -m_viewMatrix->m_matrix.vecView.x[1];
+    sideVec.z = -m_viewMatrix->m_matrix.vecView.x[2];
+    return sideVec;
 }
 
 /*
@@ -378,22 +301,13 @@ Vector3f CullFrustum::getSideVector()
  * Address:	8041A2D4
  * Size:	00002C
  */
-Vector3f CullFrustum::getViewVector()
+Vector3f CullFrustum::getViewVector() 
 {
-	/*
-	lwz      r4, 0x30(r4)
-	lfs      f0, 0x20(r4)
-	lfs      f2, 0x24(r4)
-	fneg     f0, f0
-	lfs      f1, 0x28(r4)
-	fneg     f2, f2
-	fneg     f1, f1
-	stfs     f0, 0(r3)
-	stfs     f2, 4(r3)
-	stfs     f1, 8(r3)
-	blr
-
-	*/
+    Vector3f viewVec;
+    viewVec.x = -m_viewMatrix->m_matrix.vecView.z[0];
+    viewVec.y = -m_viewMatrix->m_matrix.vecView.z[1];
+    viewVec.z = -m_viewMatrix->m_matrix.vecView.z[2];
+    return viewVec;
 }
 
 /*
@@ -401,40 +315,33 @@ Vector3f CullFrustum::getViewVector()
  * Address:	8041A300
  * Size:	000074
  */
-Vector3f CullFrustum::getPosition()
+Vector3f CullFrustum::getPosition() 
 {
-	/*
-	lwz      r4, 0x30(r4)
-	lfs      f0, 0x1c(r4)
-	lfs      f1, 0xc(r4)
-	fneg     f6, f0
-	lfs      f0, 0x10(r4)
-	lfs      f2, 0x14(r4)
-	fneg     f7, f1
-	lfs      f3, 0x2c(r4)
-	fmuls    f0, f6, f0
-	lfs      f1, 0(r4)
-	fmuls    f4, f6, f2
-	lfs      f2, 0x18(r4)
-	fneg     f8, f3
-	lfs      f5, 4(r4)
-	fmadds   f0, f7, f1, f0
-	lfs      f1, 0x20(r4)
-	fmuls    f2, f6, f2
-	lfs      f3, 8(r4)
-	fmadds   f5, f7, f5, f4
-	lfs      f6, 0x24(r4)
-	fmadds   f0, f8, f1, f0
-	lfs      f4, 0x28(r4)
-	fmadds   f1, f7, f3, f2
-	fmadds   f2, f8, f6, f5
-	stfs     f0, 0(r3)
-	fmadds   f0, f8, f4, f1
-	stfs     f2, 4(r3)
-	stfs     f0, 8(r3)
-	blr
+    Vector3f tVec;
+    tVec.x = -m_viewMatrix->m_matrix.vecView.x[3]; 
+    tVec.y = -m_viewMatrix->m_matrix.vecView.y[3]; 
+    tVec.z = -m_viewMatrix->m_matrix.vecView.z[3]; 
 
-	*/
+    Vector3f xVec;
+    xVec.x = m_viewMatrix->m_matrix.vecView.x[0]; 
+    xVec.y = m_viewMatrix->m_matrix.vecView.y[0]; 
+    xVec.z = m_viewMatrix->m_matrix.vecView.z[0]; 
+
+    Vector3f yVec;
+    yVec.x = m_viewMatrix->m_matrix.vecView.x[1]; 
+    yVec.y = m_viewMatrix->m_matrix.vecView.y[1]; 
+    yVec.z = m_viewMatrix->m_matrix.vecView.z[1]; 
+    
+    Vector3f zVec;
+    zVec.x = m_viewMatrix->m_matrix.vecView.x[2]; 
+    zVec.y = m_viewMatrix->m_matrix.vecView.y[2];
+    zVec.z = m_viewMatrix->m_matrix.vecView.z[2]; 
+
+    Vector3f position;
+    position.x = dot(tVec, xVec);
+    position.y = dot(tVec, yVec);
+    position.z = dot(tVec, zVec);
+    return position;
 }
 
 /*
@@ -442,6 +349,7 @@ Vector3f CullFrustum::getPosition()
  * Address:	8041A374
  * Size:	0002D4
  */
+// WIP: https://decomp.me/scratch/Dm64d
 void CullFrustum::updatePlanes()
 {
 	/*
@@ -635,97 +543,19 @@ void CullFrustum::updatePlanes()
  * Address:	8041A648
  * Size:	000158
  */
-Camera::Camera()
+Camera::Camera() : CullFrustum(0)
 {
-	/*
-	stwu     r1, -0x20(r1)
-	mflr     r0
-	stw      r0, 0x24(r1)
-	stw      r31, 0x1c(r1)
-	stw      r30, 0x18(r1)
-	mr       r30, r3
-	stw      r29, 0x14(r1)
-	mr       r29, r30
-	mr       r31, r29
-	bl       __ct__5CNodeFv
-	lis      r4, __vt__16GenericContainer@ha
-	lis      r3, "__vt__17Container<5Plane>"@ha
-	addi     r0, r4, __vt__16GenericContainer@l
-	lis      r4, "__vt__22ArrayContainer<5Plane>"@ha
-	stw      r0, 0(r29)
-	addi     r0, r3, "__vt__17Container<5Plane>"@l
-	lis      r3, __vt__9CullPlane@ha
-	li       r7, 0
-	stw      r0, 0(r29)
-	addi     r6, r4, "__vt__22ArrayContainer<5Plane>"@l
-	li       r5, 1
-	addi     r0, r3, __vt__9CullPlane@l
-	stb      r7, 0x18(r29)
-	mr       r3, r29
-	li       r4, 6
-	stw      r6, 0(r29)
-	stb      r5, 0x18(r29)
-	stw      r7, 0x20(r29)
-	stw      r7, 0x1c(r29)
-	stw      r7, 0x24(r29)
-	stw      r0, 0(r29)
-	lwz      r12, 0(r29)
-	lwz      r12, 0x3c(r12)
-	mtctr    r12
-	bctrl
-	li       r0, 6
-	lis      r3, __vt__11CullFrustum@ha
-	stw      r0, 0x1c(r29)
-	addi     r0, r3, __vt__11CullFrustum@l
-	lfs      f0, lbl_80520360@sda21(r2)
-	stw      r0, 0(r31)
-	stfs     f0, 0x28(r31)
-	bl       getRenderModeObj__6SystemFv
-	lhz      r29, 6(r3)
-	bl       getRenderModeObj__6SystemFv
-	lhz      r4, 4(r3)
-	lis      r0, 0x4330
-	lis      r3, __vt__6Camera@ha
-	stw      r0, 8(r1)
-	divw     r5, r4, r29
-	lfd      f4, lbl_80520368@sda21(r2)
-	addi     r4, r3, __vt__6Camera@l
-	lfs      f2, lbl_8052035C@sda21(r2)
-	li       r0, 0
-	lfs      f1, lbl_80520378@sda21(r2)
-	xoris    r3, r5, 0x8000
-	lfs      f0, lbl_80520358@sda21(r2)
-	stw      r3, 0xc(r1)
-	addi     r3, r30, 0x34
-	lfd      f3, 8(r1)
-	fsubs    f3, f3, f4
-	stfs     f3, 0x2c(r31)
-	stw      r4, 0(r30)
-	stw      r0, 0x140(r30)
-	stfs     f2, 0x70(r30)
-	stfs     f1, 0x74(r30)
-	stfs     f2, 0x134(r30)
-	stfs     f2, 0x138(r30)
-	stfs     f2, 0x13c(r30)
-	stfs     f0, 0x78(r30)
-	stfs     f0, 0x7c(r30)
-	stfs     f0, 0x80(r30)
-	bl       PSMTXIdentity
-	li       r0, 0
-	lfs      f0, lbl_80520358@sda21(r2)
-	stb      r0, 0x6c(r30)
-	mr       r3, r30
-	stfs     f0, 0x68(r30)
-	stfs     f0, 0x64(r30)
-	lwz      r31, 0x1c(r1)
-	lwz      r30, 0x18(r1)
-	lwz      r29, 0x14(r1)
-	lwz      r0, 0x24(r1)
-	mtlr     r0
-	addi     r1, r1, 0x20
-	blr
-
-	*/
+    m_jstObject = 0;
+    m_projectionNearMaybe = 1.0f;
+    m_projectionFarMaybe = 128000.0f;
+    _134 = 1.0f;
+    _138 = 1.0f;
+    _13C = 1.0f;
+    m_soundPosition = 0;
+    PSMTXIdentity(_34.m_matrix.mtxView);
+    _6C = false;
+    m_farMaybe = 0.0f;
+    m_nearMaybe = 0.0f;
 }
 
 /*
@@ -733,73 +563,21 @@ Camera::Camera()
  * Address:	8041A7A0
  * Size:	0000A0
  */
-CullFrustum::~CullFrustum()
-{
-	/*
-	stwu     r1, -0x10(r1)
-	mflr     r0
-	stw      r0, 0x14(r1)
-	stw      r31, 0xc(r1)
-	mr       r31, r4
-	stw      r30, 8(r1)
-	or.      r30, r3, r3
-	beq      lbl_8041A824
-	lis      r4, __vt__11CullFrustum@ha
-	addi     r0, r4, __vt__11CullFrustum@l
-	stw      r0, 0(r30)
-	beq      lbl_8041A814
-	lis      r4, __vt__9CullPlane@ha
-	addi     r0, r4, __vt__9CullPlane@l
-	stw      r0, 0(r30)
-	beq      lbl_8041A814
-	lis      r4, "__vt__22ArrayContainer<5Plane>"@ha
-	addi     r0, r4, "__vt__22ArrayContainer<5Plane>"@l
-	stw      r0, 0(r30)
-	beq      lbl_8041A814
-	lis      r4, "__vt__17Container<5Plane>"@ha
-	addi     r0, r4, "__vt__17Container<5Plane>"@l
-	stw      r0, 0(r30)
-	beq      lbl_8041A814
-	lis      r5, __vt__16GenericContainer@ha
-	li       r4, 0
-	addi     r0, r5, __vt__16GenericContainer@l
-	stw      r0, 0(r30)
-	bl       __dt__5CNodeFv
-
-lbl_8041A814:
-	extsh.   r0, r31
-	ble      lbl_8041A824
-	mr       r3, r30
-	bl       __dl__FPv
-
-lbl_8041A824:
-	lwz      r0, 0x14(r1)
-	mr       r3, r30
-	lwz      r31, 0xc(r1)
-	lwz      r30, 8(r1)
-	mtlr     r0
-	addi     r1, r1, 0x10
-	blr
-
-	*/
-}
+// WEAK - in header
+// CullFrustum::~CullFrustum() { }
 
 /*
  * --INFO--
  * Address:	8041A840
  * Size:	000018
  */
-void Camera::setFixNearFar(bool, float, float)
+void Camera::setFixNearFar(bool fixed, float near, float far) 
 {
-	/*
-	clrlwi.  r0, r4, 0x18
-	stb      r4, 0x6c(r3)
-	beqlr
-	stfs     f1, 0x64(r3)
-	stfs     f2, 0x68(r3)
-	blr
-
-	*/
+    _6C = fixed;
+    if (fixed) {
+        m_nearMaybe = near;
+        m_farMaybe = far;
+    }
 }
 
 /*
@@ -807,6 +585,7 @@ void Camera::setFixNearFar(bool, float, float)
  * Address:	8041A858
  * Size:	0000A8
  */
+// WIP: https://decomp.me/scratch/kQoJg
 void Camera::copyFrom(Camera*)
 {
 	/*
@@ -1041,21 +820,7 @@ lbl_8041AB2C:
  * Address:	8041AB48
  * Size:	000020
  */
-Vector3f Camera::getLookAtPosition_()
-{
-	Vector3f result = Vector3f::zero;
-	return result;
-	/*
-	lis      r4, "zero__10Vector3<f>"@ha
-	lfsu     f0, "zero__10Vector3<f>"@l(r4)
-	stfs     f0, 0(r3)
-	lfs      f0, 4(r4)
-	stfs     f0, 4(r3)
-	lfs      f0, 8(r4)
-	stfs     f0, 8(r3)
-	blr
-	*/
-}
+Vector3f Camera::getLookAtPosition_() { return Vector3f::zero; }
 
 namespace Game {
 
@@ -2472,50 +2237,50 @@ lbl_8041BA14:
  * Address:	........
  * Size:	0001C8
  */
-EditorCamera::EditorCamera()
-{
-	// UNUSED FUNCTION
-}
+// EditorCamera::EditorCamera()
+// {
+// 	// UNUSED FUNCTION
+// }
 
 /*
  * --INFO--
  * Address:	........
  * Size:	000078
  */
-void EditorCamera::init(Controller*, Vector3f&, float)
-{
-	// UNUSED FUNCTION
-}
+// void EditorCamera::init(Controller*, Vector3f&, float)
+// {
+// 	// UNUSED FUNCTION
+// }
 
 /*
  * --INFO--
  * Address:	........
  * Size:	0001CC
  */
-void EditorCamera::makeLookAt()
-{
-	// UNUSED FUNCTION
-}
+// void EditorCamera::makeLookAt()
+// {
+// 	// UNUSED FUNCTION
+// }
 
 /*
  * --INFO--
  * Address:	........
  * Size:	000474
  */
-void EditorCamera::doUpdate()
-{
-	// UNUSED FUNCTION
-}
+// void EditorCamera::doUpdate()
+// {
+// 	// UNUSED FUNCTION
+// }
 
 /*
  * --INFO--
  * Address:	........
  * Size:	0000D0
  */
-EditorCamera::~EditorCamera()
-{
-	// UNUSED FUNCTION
-}
+// EditorCamera::~EditorCamera()
+// {
+// 	// UNUSED FUNCTION
+// }
 
 /*
  * --INFO--
@@ -2586,14 +2351,8 @@ lbl_8041BCE0:
  * Address:	8041BCFC
  * Size:	000008
  */
-void CullFrustum::getViewMatrix(bool)
-{
-	/*
-	lwz      r3, 0x30(r3)
-	blr
-
-	*/
-}
+// WEAK - in header
+// Matrixf* CullFrustum::getViewMatrix(bool) { return m_viewMatrix; }
 
 /*
  * --INFO--

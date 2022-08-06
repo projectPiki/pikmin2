@@ -43,31 +43,28 @@
 
 namespace JStage {
 struct TActor : public TObject {
-	virtual int JSGFGetType() const;                    // _04
-	virtual void JSGGetTranslation(Vec*) const;         // _34
-	virtual void JSGSetTranslation(const Vec&);         // _38
-	virtual void JSGGetScaling(Vec*) const;             // _3C
-	virtual void JSGSetScaling(const Vec&);             // _40
-	virtual void JSGGetRotation(Vec*) const;            // _44
-	virtual void JSGSetRotation(const Vec&);            // _48
-	virtual int JSGGetShape() const;                    // _4C
-	virtual void JSGSetShape(unsigned long);            // _50
-	virtual int JSGGetAnimation() const;                // _54
-	virtual void JSGSetAnimation(unsigned long);        // _58
-	virtual f32 JSGGetAnimationFrame() const;           // _5C
-	virtual void JSGSetAnimationFrame(float);           // _60
-	virtual f32 JSGGetAnimationFrameMax() const;        // _64
-	virtual f32 JSGGetAnimationTransition() const;      // _68
-	virtual void JSGSetAnimationTransition(float);      // _6C
-	virtual int JSGGetTextureAnimation() const;         // _70
-	virtual void JSGSetTextureAnimation(unsigned long); // _74
-	virtual f32 JSGGetTextureAnimationFrame() const;    // _78
-	virtual void JSGSetTextureAnimationFrame(float);    // _7C
-	virtual f32 JSGGetTextureAnimationFrameMax() const; // _80
-	virtual void _84() = 0;                             // _84
-
-	// _00 VTBL
-	~TActor();
+    virtual ~TActor() = 0;                              // _08
+	virtual int JSGFGetType() const;                    // _0C
+	virtual void JSGGetTranslation(Vec*) const;         // _3C
+	virtual void JSGSetTranslation(const Vec&);         // _40
+	virtual void JSGGetScaling(Vec*) const;             // _44
+	virtual void JSGSetScaling(const Vec&);             // _48
+	virtual void JSGGetRotation(Vec*) const;            // _4C
+	virtual void JSGSetRotation(const Vec&);            // _50
+	virtual int JSGGetShape() const;                    // _54
+	virtual void JSGSetShape(unsigned long);            // _58
+	virtual int JSGGetAnimation() const;                // _5C
+	virtual void JSGSetAnimation(unsigned long);        // _60
+	virtual f32 JSGGetAnimationFrame() const;           // _64
+	virtual void JSGSetAnimationFrame(float);           // _68
+	virtual f32 JSGGetAnimationFrameMax() const;        // _6C
+	virtual f32 JSGGetAnimationTransition() const;      // _70
+	virtual void JSGSetAnimationTransition(float);      // _74
+	virtual int JSGGetTextureAnimation() const;         // _78
+	virtual void JSGSetTextureAnimation(unsigned long); // _7C
+	virtual f32 JSGGetTextureAnimationFrame() const;    // _80
+	virtual void JSGSetTextureAnimationFrame(float);    // _84
+	virtual f32 JSGGetTextureAnimationFrameMax() const; // _88
 };
 } // namespace JStage
 

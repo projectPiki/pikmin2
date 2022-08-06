@@ -35,16 +35,17 @@ struct Container<Game::Creature> {
 };
 
 namespace Game {
-struct Stickers : public CNode, public Container<Game::Creature> {
+struct Stickers : public Container<Game::Creature> {
+	Stickers(Game::Creature*);
+	
 	virtual ~Stickers();         // _08
 	virtual void getNext(void*); // _14
 	virtual void getStart();     // _18
 	virtual void getEnd();       // _1C
 	virtual void get(void*);     // _20
-	virtual void _2C() = 0;      // _2C
 
 	void initialise();
-	Stickers(Game::Creature*);
+
 };
 } // namespace Game
 

@@ -6,6 +6,8 @@
 #include "types.h"
 #include "Container.h"
 #include "Plane.h"
+#include "System.h"
+#include "Game/P2JST/ObjectCamera.h"
 
 namespace Game {
 namespace P2JST {
@@ -20,7 +22,12 @@ struct Cylinder;
 
 // Size: 0x28
 struct CullPlane : public ArrayContainer<Plane> {
-	CullPlane(int);
+
+	// needed for Camera ctor
+	inline CullPlane(int a) {
+		alloc(6);
+        m_count = 6;
+	}
 
 	virtual ~CullPlane() { }                      // _08 (weak)
 	virtual void writeObject(Stream&, Plane&) {}; // _2C (weak)
@@ -33,12 +40,21 @@ struct CullPlane : public ArrayContainer<Plane> {
 
 // Size: 0x34
 struct CullFrustum : public CullPlane {
-	CullFrustum(int);
+	
+	// needed for Camera ctor
+	inline CullFrustum(int a)
+    : CullPlane(a) { 
+		_28 = 60.0f;
+        u16 height = sys->getRenderModeObj()->efbHeight;
+        u16 width = sys->getRenderModeObj()->fbWidth;
 
-	virtual ~CullFrustum();               // _08
-	virtual Matrixf* getViewMatrix(bool); // _48 (weak)
-	virtual Vector3f getPosition();       // _4C
-	virtual void updatePlanes();          // _50
+        _2C = width / height;
+	} 
+
+	virtual ~CullFrustum() { }            							// _08
+	virtual Matrixf* getViewMatrix(bool) { return m_viewMatrix; } 	// _48 (weak)
+	virtual Vector3f getPosition();       							// _4C
+	virtual void updatePlanes();          							// _50
 
 	Vector3f getSideVector();
 	Vector3f getUpVector();
@@ -46,7 +62,7 @@ struct CullFrustum : public CullPlane {
 
 	// CullPlane _00 - _24
 	float _28;             // _28
-	float _2C;             // _2C
+	float _2C;             // _2C - aspect ratio? see ctor
 	Matrixf* m_viewMatrix; // _30
 };
 
