@@ -218,27 +218,27 @@
  * Address:	........
  * Size:	00006C
  */
-bool CullPlane::isPointVisible(Vector3f&, float)
-{
-	// UNUSED FUNCTION
-}
+// bool CullPlane::isPointVisible(Vector3f&, float)
+// {
+// 	// UNUSED FUNCTION
+// }
 
 /*
  * --INFO--
  * Address:	8041A190
  * Size:	000070
  */
-bool CullPlane::isVisible(Sys::Sphere& ball) 
+bool CullPlane::isVisible(Sys::Sphere& ball)
 {
-    float rad = ball.m_radius;
+	float rad = ball.m_radius;
 
-    for (int i = 0; i < m_count; i++) {
-        Plane currPlane = m_objects[i];
-        if (currPlane.calcDist(ball.m_position) < -rad) {
-            return false;
-        }
-    }
-    return true;
+	for (int i = 0; i < m_count; i++) {
+		Plane currPlane = m_objects[i];
+		if (currPlane.calcDist(ball.m_position) < -rad) {
+			return false;
+		}
+	}
+	return true;
 }
 
 /*
@@ -246,14 +246,14 @@ bool CullPlane::isVisible(Sys::Sphere& ball)
  * Address:	8041A200
  * Size:	000088
  */
-bool CullPlane::isCylinderVisible(Sys::Cylinder& cylinder) 
+bool CullPlane::isCylinderVisible(Sys::Cylinder& cylinder)
 {
-    for (int i = 0; i < m_count; i++) {
-        if (cylinder.culled(m_objects[i])) {
-            return false;
-        }
-    }
-    return true;
+	for (int i = 0; i < m_count; i++) {
+		if (cylinder.culled(m_objects[i])) {
+			return false;
+		}
+	}
+	return true;
 }
 
 /*
@@ -273,13 +273,13 @@ bool CullPlane::isCylinderVisible(Sys::Cylinder& cylinder)
  * Address:	8041A288
  * Size:	000020
  */
-Vector3f CullFrustum::getUpVector() 
+Vector3f CullFrustum::getUpVector()
 {
-    Vector3f upVec;
-    upVec.x = m_viewMatrix->m_matrix.vecView.y[0];
-    upVec.y = m_viewMatrix->m_matrix.vecView.y[1];
-    upVec.z = m_viewMatrix->m_matrix.vecView.y[2];
-    return upVec;
+	Vector3f upVec;
+	upVec.x = m_viewMatrix->m_matrix.vecView.y[0];
+	upVec.y = m_viewMatrix->m_matrix.vecView.y[1];
+	upVec.z = m_viewMatrix->m_matrix.vecView.y[2];
+	return upVec;
 }
 
 /*
@@ -287,13 +287,13 @@ Vector3f CullFrustum::getUpVector()
  * Address:	8041A2A8
  * Size:	00002C
  */
-Vector3f CullFrustum::getSideVector() 
+Vector3f CullFrustum::getSideVector()
 {
-    Vector3f sideVec;
-    sideVec.x = -m_viewMatrix->m_matrix.vecView.x[0];
-    sideVec.y = -m_viewMatrix->m_matrix.vecView.x[1];
-    sideVec.z = -m_viewMatrix->m_matrix.vecView.x[2];
-    return sideVec;
+	Vector3f sideVec;
+	sideVec.x = -m_viewMatrix->m_matrix.vecView.x[0];
+	sideVec.y = -m_viewMatrix->m_matrix.vecView.x[1];
+	sideVec.z = -m_viewMatrix->m_matrix.vecView.x[2];
+	return sideVec;
 }
 
 /*
@@ -301,13 +301,13 @@ Vector3f CullFrustum::getSideVector()
  * Address:	8041A2D4
  * Size:	00002C
  */
-Vector3f CullFrustum::getViewVector() 
+Vector3f CullFrustum::getViewVector()
 {
-    Vector3f viewVec;
-    viewVec.x = -m_viewMatrix->m_matrix.vecView.z[0];
-    viewVec.y = -m_viewMatrix->m_matrix.vecView.z[1];
-    viewVec.z = -m_viewMatrix->m_matrix.vecView.z[2];
-    return viewVec;
+	Vector3f viewVec;
+	viewVec.x = -m_viewMatrix->m_matrix.vecView.z[0];
+	viewVec.y = -m_viewMatrix->m_matrix.vecView.z[1];
+	viewVec.z = -m_viewMatrix->m_matrix.vecView.z[2];
+	return viewVec;
 }
 
 /*
@@ -315,33 +315,33 @@ Vector3f CullFrustum::getViewVector()
  * Address:	8041A300
  * Size:	000074
  */
-Vector3f CullFrustum::getPosition() 
+Vector3f CullFrustum::getPosition()
 {
-    Vector3f tVec;
-    tVec.x = -m_viewMatrix->m_matrix.vecView.x[3]; 
-    tVec.y = -m_viewMatrix->m_matrix.vecView.y[3]; 
-    tVec.z = -m_viewMatrix->m_matrix.vecView.z[3]; 
+	Vector3f tVec;
+	tVec.x = -m_viewMatrix->m_matrix.vecView.x[3];
+	tVec.y = -m_viewMatrix->m_matrix.vecView.y[3];
+	tVec.z = -m_viewMatrix->m_matrix.vecView.z[3];
 
-    Vector3f xVec;
-    xVec.x = m_viewMatrix->m_matrix.vecView.x[0]; 
-    xVec.y = m_viewMatrix->m_matrix.vecView.y[0]; 
-    xVec.z = m_viewMatrix->m_matrix.vecView.z[0]; 
+	Vector3f xVec;
+	xVec.x = m_viewMatrix->m_matrix.vecView.x[0];
+	xVec.y = m_viewMatrix->m_matrix.vecView.y[0];
+	xVec.z = m_viewMatrix->m_matrix.vecView.z[0];
 
-    Vector3f yVec;
-    yVec.x = m_viewMatrix->m_matrix.vecView.x[1]; 
-    yVec.y = m_viewMatrix->m_matrix.vecView.y[1]; 
-    yVec.z = m_viewMatrix->m_matrix.vecView.z[1]; 
-    
-    Vector3f zVec;
-    zVec.x = m_viewMatrix->m_matrix.vecView.x[2]; 
-    zVec.y = m_viewMatrix->m_matrix.vecView.y[2];
-    zVec.z = m_viewMatrix->m_matrix.vecView.z[2]; 
+	Vector3f yVec;
+	yVec.x = m_viewMatrix->m_matrix.vecView.x[1];
+	yVec.y = m_viewMatrix->m_matrix.vecView.y[1];
+	yVec.z = m_viewMatrix->m_matrix.vecView.z[1];
 
-    Vector3f position;
-    position.x = dot(tVec, xVec);
-    position.y = dot(tVec, yVec);
-    position.z = dot(tVec, zVec);
-    return position;
+	Vector3f zVec;
+	zVec.x = m_viewMatrix->m_matrix.vecView.x[2];
+	zVec.y = m_viewMatrix->m_matrix.vecView.y[2];
+	zVec.z = m_viewMatrix->m_matrix.vecView.z[2];
+
+	Vector3f position;
+	position.x = dot(tVec, xVec);
+	position.y = dot(tVec, yVec);
+	position.z = dot(tVec, zVec);
+	return position;
 }
 
 /*
@@ -543,19 +543,20 @@ void CullFrustum::updatePlanes()
  * Address:	8041A648
  * Size:	000158
  */
-Camera::Camera() : CullFrustum(0)
+Camera::Camera()
+    : CullFrustum(0)
 {
-    m_jstObject = 0;
-    m_projectionNearMaybe = 1.0f;
-    m_projectionFarMaybe = 128000.0f;
-    _134 = 1.0f;
-    _138 = 1.0f;
-    _13C = 1.0f;
-    m_soundPosition = 0;
-    PSMTXIdentity(_34.m_matrix.mtxView);
-    _6C = false;
-    m_farMaybe = 0.0f;
-    m_nearMaybe = 0.0f;
+	m_jstObject           = 0;
+	m_projectionNearMaybe = 1.0f;
+	m_projectionFarMaybe  = 128000.0f;
+	_134                  = 1.0f;
+	_138                  = 1.0f;
+	_13C                  = 1.0f;
+	m_soundPosition       = 0;
+	PSMTXIdentity(_34.m_matrix.mtxView);
+	_6C         = false;
+	m_farMaybe  = 0.0f;
+	m_nearMaybe = 0.0f;
 }
 
 /*
@@ -571,13 +572,13 @@ Camera::Camera() : CullFrustum(0)
  * Address:	8041A840
  * Size:	000018
  */
-void Camera::setFixNearFar(bool fixed, float near, float far) 
+void Camera::setFixNearFar(bool fixed, float near, float far)
 {
-    _6C = fixed;
-    if (fixed) {
-        m_nearMaybe = near;
-        m_farMaybe = far;
-    }
+	_6C = fixed;
+	if (fixed) {
+		m_nearMaybe = near;
+		m_farMaybe  = far;
+	}
 }
 
 /*
@@ -585,58 +586,25 @@ void Camera::setFixNearFar(bool fixed, float near, float far)
  * Address:	8041A858
  * Size:	0000A8
  */
-// WIP: https://decomp.me/scratch/kQoJg
-void Camera::copyFrom(Camera*)
+void Camera::copyFrom(Camera* camera)
 {
-	/*
-	lfs      f0, 0x70(r4)
-	li       r8, 0
-	li       r7, 0
-	stfs     f0, 0x70(r3)
-	lfs      f0, 0x74(r4)
-	stfs     f0, 0x74(r3)
-	lfs      f0, 0x134(r4)
-	stfs     f0, 0x134(r3)
-	lfs      f0, 0x138(r4)
-	stfs     f0, 0x138(r3)
-	lfs      f0, 0x13c(r4)
-	stfs     f0, 0x13c(r3)
-	lwz      r0, 0x140(r4)
-	stw      r0, 0x140(r3)
-	lwz      r0, 0x30(r4)
-	stw      r0, 0x30(r3)
-	lfs      f0, 0x28(r4)
-	stfs     f0, 0x28(r3)
-	lfs      f0, 0x2c(r4)
-	stfs     f0, 0x2c(r3)
-	b        lbl_8041A8F0
+	m_projectionNearMaybe = camera->m_projectionNearMaybe;
+	m_projectionFarMaybe  = camera->m_projectionFarMaybe;
 
-lbl_8041A8AC:
-	lwz      r6, 0x24(r4)
-	addi     r0, r7, 0xc
-	lwz      r5, 0x24(r3)
-	addi     r8, r8, 1
-	add      r6, r6, r7
-	lfs      f0, 0(r6)
-	add      r5, r5, r7
-	addi     r7, r7, 0x10
-	stfs     f0, 0(r5)
-	lfs      f0, 4(r6)
-	stfs     f0, 4(r5)
-	lfs      f0, 8(r6)
-	stfs     f0, 8(r5)
-	lwz      r6, 0x24(r4)
-	lwz      r5, 0x24(r3)
-	lfsx     f0, r6, r0
-	stfsx    f0, r5, r0
+	_134 = camera->_134;
+	_138 = camera->_138;
+	_13C = camera->_13C;
 
-lbl_8041A8F0:
-	lwz      r0, 0x1c(r3)
-	cmpw     r8, r0
-	blt      lbl_8041A8AC
-	blr
+	m_jstObject = camera->m_jstObject;
 
-	*/
+	m_viewMatrix = camera->m_viewMatrix;
+	_28          = camera->_28;
+	_2C          = camera->_2C;
+
+	for (int i = 0; i < m_count; i++) {
+		m_objects[i].setVec(camera->m_objects[i]);
+		m_objects[i].setDist(camera->m_objects[i]);
+	}
 }
 
 /*
@@ -760,59 +728,11 @@ void Camera::updatePlanes()
  */
 Vector3f Camera::getLookAtPosition()
 {
-	/*
-	stwu     r1, -0x20(r1)
-	mflr     r0
-	stw      r0, 0x24(r1)
-	stw      r31, 0x1c(r1)
-	li       r31, 0
-	stw      r30, 0x18(r1)
-	mr       r30, r4
-	stw      r29, 0x14(r1)
-	mr       r29, r3
-	lwz      r3, 0x140(r4)
-	cmplwi   r3, 0
-	beq      lbl_8041AAE4
-	lwz      r12, 0(r3)
-	lwz      r12, 0xbc(r12)
-	mtctr    r12
-	bctrl
-	clrlwi.  r0, r3, 0x18
-	beq      lbl_8041AAE4
-	li       r31, 1
-
-lbl_8041AAE4:
-	clrlwi.  r0, r31, 0x18
-	beq      lbl_8041AB14
-	lwz      r3, 0x140(r30)
-	cmplwi   r3, 0
-	beq      lbl_8041AB14
-	lfs      f0, 0x9c(r3)
-	stfs     f0, 0(r29)
-	lfs      f0, 0xa0(r3)
-	stfs     f0, 4(r29)
-	lfs      f0, 0xa4(r3)
-	stfs     f0, 8(r29)
-	b        lbl_8041AB2C
-
-lbl_8041AB14:
-	mr       r4, r30
-	mr       r3, r29
-	lwz      r12, 0(r30)
-	lwz      r12, 0x58(r12)
-	mtctr    r12
-	bctrl
-
-lbl_8041AB2C:
-	lwz      r0, 0x24(r1)
-	lwz      r31, 0x1c(r1)
-	lwz      r30, 0x18(r1)
-	lwz      r29, 0x14(r1)
-	mtlr     r0
-	addi     r1, r1, 0x20
-	blr
-
-	*/
+	if (isRunning() && m_jstObject) {
+		return m_jstObject->_9C;
+	} else {
+		return getLookAtPosition_();
+	}
 }
 
 /*
@@ -822,23 +742,13 @@ lbl_8041AB2C:
  */
 Vector3f Camera::getLookAtPosition_() { return Vector3f::zero; }
 
-namespace Game {
-
 /*
  * --INFO--
  * Address:	8041AB68
  * Size:	000008
  */
-void P2JST::ObjectCamera::isRunning(void)
-{
-	/*
-	lbz      r3, 0xc4(r3)
-	blr
-
-	*/
-}
-
-} // namespace Game
+// WEAK - in header
+// void Game::P2JST::ObjectCamera::isRunning(void) { return m_isRunning; }
 
 /*
  * --INFO--

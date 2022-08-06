@@ -36,6 +36,16 @@ struct Matrixf {
 	 * @reifiedFile{plugProjectKandoU/collinfo.cpp}
 	 */
 	float& operator()(int p1, int p2) { return m_matrix.mtxView[p1][p2]; }
+
+	Vector3f operator*(Vector3f& vec)
+	{
+		Vector3f outVec;
+		outVec.x = (*this)(0, 0) * vec.x + (*this)(0, 1) * vec.y + (*this)(0, 2) * vec.z;
+		outVec.y = (*this)(1, 0) * vec.x + (*this)(1, 1) * vec.y + (*this)(1, 2) * vec.z;
+		outVec.z = (*this)(2, 0) * vec.x + (*this)(2, 1) * vec.y + (*this)(2, 2) * vec.z;
+		return outVec;
+	}
+
 	/**
 	 * @reifiedAddress{801372DC}
 	 * @reifiedFile{plugProjectKandoU/collinfo.cpp}
@@ -80,6 +90,15 @@ struct Matrixf {
 	// Unused/inlined:
 	void makeSQT(Vector3f&, Quat&, Vector3f&);
 	void makeNaturalPosture(Vector3f&);
+
+	inline Vector3f multTranspose(Vector3f& vec)
+	{
+		Vector3f outVec;
+		outVec.x = vec.x * (*this)(0, 0) + vec.y * (*this)(1, 0) + vec.z * (*this)(2, 0);
+		outVec.y = vec.x * (*this)(0, 1) + vec.y * (*this)(1, 1) + vec.z * (*this)(2, 1);
+		outVec.z = vec.x * (*this)(0, 2) + vec.y * (*this)(1, 2) + vec.z * (*this)(2, 2);
+		return outVec;
+	}
 
 	union {
 		Mtx mtxView;

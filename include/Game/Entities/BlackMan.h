@@ -12,7 +12,8 @@ namespace Game {
 namespace BlackMan {
 /////////////////////////////////////////////////////////////////
 // STATE MACHINE DEFINITIONS
-struct State : public EnemyFSMState { };
+struct State : public EnemyFSMState {
+};
 
 struct StateBend : public State {
 	virtual void init(EnemyBase*, StateArg*); // _08

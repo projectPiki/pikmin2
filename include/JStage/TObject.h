@@ -22,19 +22,19 @@
 
 namespace JStage {
 struct TObject {
-	virtual ~TObject()         = 0;                                           // _08
-	virtual int JSGFGetType() const = 0;                                      // _0C
-	virtual char* JSGGetName() const;                                         // _10
-	virtual void JSGUpdate();                                                 // _14
-	virtual int JSGGetFlag() const;                                           // _18
-	virtual void JSGSetFlag(u32);                                             // _1C
-	virtual void* JSGGetData(u32, void*, u32) const;                          // _20
-	virtual void JSGSetData(u32, const void*, u32);                           // _24
-	virtual void JSGGetParent(TObject**, u32*) const;                         // _28
-	virtual void JSGSetParent(TObject*, u32);                                 // _2C
-	virtual void JSGSetRelation(bool, TObject*, u32);                         // _30
-	virtual int JSGFindNodeID(const char*) const;                             // _34
-	virtual bool JSGGetNodeTransformation(u32, float (*)[4]) const;           // _38
+	virtual ~TObject()              = 0;                            // _08
+	virtual int JSGFGetType() const = 0;                            // _0C
+	virtual char* JSGGetName() const;                               // _10
+	virtual void JSGUpdate();                                       // _14
+	virtual int JSGGetFlag() const;                                 // _18
+	virtual void JSGSetFlag(u32);                                   // _1C
+	virtual void* JSGGetData(u32, void*, u32) const;                // _20
+	virtual void JSGSetData(u32, const void*, u32);                 // _24
+	virtual void JSGGetParent(TObject**, u32*) const;               // _28
+	virtual void JSGSetParent(TObject*, u32);                       // _2C
+	virtual void JSGSetRelation(bool, TObject*, u32);               // _30
+	virtual int JSGFindNodeID(const char*) const;                   // _34
+	virtual bool JSGGetNodeTransformation(u32, float (*)[4]) const; // _38
 
 	// _00 VTBL
 };

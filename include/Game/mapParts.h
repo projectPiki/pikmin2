@@ -236,7 +236,8 @@ struct RoomMapMgr : public MapMgr {
 	JUTTexture* getTexture(char*);
 };
 
-struct CaveVRBox { };
+struct CaveVRBox {
+};
 } // namespace Game
 
 #endif

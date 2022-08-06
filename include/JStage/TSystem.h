@@ -6,7 +6,7 @@
 namespace JStage {
 typedef struct TEObject;
 struct TSystem : public TObject {
-	virtual ~TSystem() = 0;	                                           // _08
+	virtual ~TSystem() = 0;                                            // _08
 	virtual int JSGFGetType() const;                                   // _0C
 	virtual int JSGFindObject(TObject**, const char*, TEObject) const; // _3C
 	virtual int JSGCreateObject(const char*, TEObject, unsigned long); // _40

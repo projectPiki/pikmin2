@@ -16,6 +16,15 @@ struct Plane {
 	void write(Stream&);
 	void calcDist(const Vector3f&) const;
 
+	inline void setVec(Plane& plane)
+	{
+		a = plane.a;
+		b = plane.b;
+		c = plane.c;
+	}
+
+	inline void setDist(Plane& plane) { d = plane.d; }
+
 	f32 a;
 	f32 b;
 	f32 c;

@@ -24,9 +24,10 @@ struct Cylinder;
 struct CullPlane : public ArrayContainer<Plane> {
 
 	// needed for Camera ctor
-	inline CullPlane(int a) {
+	inline CullPlane(int a)
+	{
 		alloc(6);
-        m_count = 6;
+		m_count = 6;
 	}
 
 	virtual ~CullPlane() { }                      // _08 (weak)
@@ -40,21 +41,22 @@ struct CullPlane : public ArrayContainer<Plane> {
 
 // Size: 0x34
 struct CullFrustum : public CullPlane {
-	
+
 	// needed for Camera ctor
 	inline CullFrustum(int a)
-    : CullPlane(a) { 
-		_28 = 60.0f;
-        u16 height = sys->getRenderModeObj()->efbHeight;
-        u16 width = sys->getRenderModeObj()->fbWidth;
+	    : CullPlane(a)
+	{
+		_28        = 60.0f;
+		u16 height = sys->getRenderModeObj()->efbHeight;
+		u16 width  = sys->getRenderModeObj()->fbWidth;
 
-        _2C = width / height;
-	} 
+		_2C = width / height;
+	}
 
-	virtual ~CullFrustum() { }            							// _08
-	virtual Matrixf* getViewMatrix(bool) { return m_viewMatrix; } 	// _48 (weak)
-	virtual Vector3f getPosition();       							// _4C
-	virtual void updatePlanes();          							// _50
+	virtual ~CullFrustum() { }                                    // _08
+	virtual Matrixf* getViewMatrix(bool) { return m_viewMatrix; } // _48 (weak)
+	virtual Vector3f getPosition();                               // _4C
+	virtual void updatePlanes();                                  // _50
 
 	Vector3f getSideVector();
 	Vector3f getUpVector();
@@ -102,6 +104,8 @@ struct Camera : public CullFrustum {
 	void update();
 	// void updatePlanes();
 	void updateSoundCamera(float);
+
+	inline bool isRunning() { return (m_jstObject && m_jstObject->isRunning()); }
 
 	// CullFrustum _00 - _34
 	Matrixf _34;                            // _034

@@ -8,7 +8,7 @@ namespace JStage {
 typedef struct TECameraProjection;
 typedef struct TECameraView;
 struct TCamera : public TObject {
-	virtual ~TCamera() = 0;								   // _08
+	virtual ~TCamera() = 0;                                // _08
 	virtual int JSGFGetType() const;                       // _0C
 	virtual int JSGGetProjectionType() const;              // _3C
 	virtual void JSGSetProjectionType(TECameraProjection); // _40
