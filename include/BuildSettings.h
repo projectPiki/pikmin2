@@ -9,9 +9,9 @@
 #define USADEMO1 1
 #define USAFINAL 2
 
-#if VERNUM == 2
+#if VERNUM == USAFINAL
 #define BUILDTARGET USAFINAL
-#elif VERNUM == 1
+#elif VERNUM == USADEMO1
 #define BUILDTARGET USADEMO1
 #endif
 
