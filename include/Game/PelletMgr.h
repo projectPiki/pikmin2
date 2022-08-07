@@ -6,7 +6,9 @@
 #include "GenericObjectMgr.h"
 
 namespace Game {
+struct BasePelletMgr;
 struct Pellet;
+struct PelletInitArg;
 
 struct PelletMgr : public NodeObjectMgr<GenericObjectMgr> {
 	struct OtakaraItemCode {
@@ -16,21 +18,35 @@ struct PelletMgr : public NodeObjectMgr<GenericObjectMgr> {
 		}
 		s16 m_value; // _00
 	};
-	void makeOtakaraItemCode(char*, OtakaraItemCode&);
 
 	// vtable 1
-	virtual ~PelletMgr(); // _00
-	// vtable 2
-	virtual void doAnimation();           // _00
-	virtual void doEntry();               // _04
-	virtual void doSetView(int);          // _08
-	virtual void doViewCalc();            // _0C
-	virtual void doSimulation(float);     // _10
-	virtual void doDirectDraw(Graphics&); // _14
-	virtual char* getMgrName();           // _4C
-	virtual char* getCaveName(int);       // _50
-	int getCaveID(char*);                 // _54
-	virtual void doSimpleDraw(Viewport*); // _58
+	virtual void doAnimation();           // _64 (weak)
+	virtual void doEntry();               // _68 (weak)
+	virtual void doSetView(int);          // _6C (weak)
+	virtual void doViewCalc();            // _70 (weak)
+	virtual void doSimulation(float);     // _74 (weak)
+	virtual void doDirectDraw(Graphics&); // _78 (weak)
+	virtual void getMgrName();            // _80 (weak)
+	virtual void getCaveName(int);        // _84
+	virtual void getCaveID(char*);        // _88
+	virtual void doSimpleDraw(Viewport*); // _8C (weak)
+
+	void setMovieDraw(bool);
+	PelletMgr();
+	void createManagers(unsigned long);
+	void resetMgrs();
+	void setupResources();
+	void birth(Game::PelletInitArg*);
+	void setUse(Game::PelletInitArg*);
+	void makePelletInitArg(Game::PelletInitArg&, char*);
+	void makeVsCarryMinMax(Game::PelletInitArg&, char*);
+	void makePelletInitArg(Game::PelletInitArg&, Game::PelletMgr::OtakaraItemCode&);
+	void makeOtakaraItemCode(char*, Game::PelletMgr::OtakaraItemCode&);
+	void addMgr(Game::BasePelletMgr*);
+	void setupSoundViewerAndBas();
+	void decode(long, unsigned char&, int&);
+	void encode(unsigned char, int);
+	void getMgrByID(unsigned char);
 
 	u8 _3C; // _3C
 };

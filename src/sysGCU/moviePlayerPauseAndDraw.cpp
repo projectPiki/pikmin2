@@ -1,28 +1,11 @@
-#include "types.h"
+#include "Game/MoviePlayer.h"
+#include "Game/PelletMgr.h"
+#include "Game/generalEnemyMgr.h"
+#include "Game/PikiMgr.h"
+#include "Game/EnemyBase.h"
+#include "Game/Navi.h"
+#include "Iterator.h"
 #include "nans.h"
-
-/*
-    Generated from dpostproc
-
-    .section .ctors, "wa"  # 0x80472F00 - 0x804732C0
-        .4byte __sinit_moviePlayerPauseAndDraw_cpp
-
-    .section .data, "wa"  # 0x8049E220 - 0x804EFC20
-    .global lbl_804EC810
-    lbl_804EC810:
-        .4byte 0x00000000
-        .4byte 0x00000000
-        .4byte 0x00000000
-        .4byte 0x00000000
-
-    .section .sbss # 0x80514D80 - 0x80516360
-    .global lbl_80516240
-    lbl_80516240:
-        .skip 0x4
-    .global lbl_80516244
-    lbl_80516244:
-        .skip 0x4
-*/
 
 namespace Game {
 
@@ -31,40 +14,15 @@ namespace Game {
  * Address:	80436ED0
  * Size:	000070
  */
-void MoviePlayer::setPauseAndDraw(Game::MovieConfig*)
+void MoviePlayer::setPauseAndDraw(Game::MovieConfig* config)
 {
-	/*
-	stwu     r1, -0x10(r1)
-	mflr     r0
-	stw      r0, 0x14(r1)
-	stw      r31, 0xc(r1)
-	mr       r31, r4
-	lhz      r0, 0xbe(r4)
-	lwz      r3, pikiMgr__4Game@sda21(r13)
-	clrlwi   r4, r0, 0x1f
-	bl       setMovieDraw__Q24Game7PikiMgrFb
-	lhz      r0, 0xbe(r31)
-	lwz      r3, naviMgr__4Game@sda21(r13)
-	rlwinm   r4, r0, 0x1d, 0x1f, 0x1f
-	bl       setMovieDraw__Q24Game7NaviMgrFb
-	lhz      r0, 0xbe(r31)
-	lwz      r3, pelletMgr__4Game@sda21(r13)
-	rlwinm   r4, r0, 0x1e, 0x1f, 0x1f
-	bl       setMovieDraw__Q24Game9PelletMgrFb
-	lwz      r3, generalEnemyMgr__4Game@sda21(r13)
-	cmplwi   r3, 0
-	beq      lbl_80436F2C
-	lhz      r0, 0xbe(r31)
-	rlwinm   r4, r0, 0x1f, 0x1f, 0x1f
-	bl       setMovieDraw__Q24Game15GeneralEnemyMgrFb
+	pikiMgr->setMovieDraw(config->m_drawFlags & 1);
+	naviMgr->setMovieDraw((config->m_drawFlags >> 3) & 1);
+	pelletMgr->setMovieDraw((config->m_drawFlags & 4) != 0);
 
-lbl_80436F2C:
-	lwz      r0, 0x14(r1)
-	lwz      r31, 0xc(r1)
-	mtlr     r0
-	addi     r1, r1, 0x10
-	blr
-	*/
+	if (generalEnemyMgr) {
+		generalEnemyMgr->setMovieDraw((config->m_drawFlags & 2) != 0);
+	}
 }
 
 /*
@@ -74,6 +32,37 @@ lbl_80436F2C:
  */
 void MoviePlayer::clearPauseAndDraw(void)
 {
+	pikiMgr->setMovieDraw(true);
+	naviMgr->setMovieDraw(true);
+	pelletMgr->setMovieDraw(true);
+
+	if (generalEnemyMgr) {
+		generalEnemyMgr->setMovieDraw(true);
+	}
+
+	Iterator<Piki> iter(pikiMgr, 0, 0);
+	for (iter.first(); iter.isDone(); iter.next()) {
+		(*iter)->movie_end(false);
+	}
+
+	if (generalEnemyMgr) {
+		GeneralMgrIterator<EnemyBase> git((Container<EnemyBase>*)&generalEnemyMgr->_04, 0, 0);
+
+		EnemyBase* base = nullptr;
+		git.first();
+		while (base) {
+			(*git)->movie_end(false);
+			git.next();
+		}
+	}
+
+	if (pelletMgr) {
+		PelletIterator it;
+		for (it.first(); it.isDone(); it.next()) {
+			((Creature*)*it)->movie_end(false);
+		}
+	}
+
 	/*
 	stwu     r1, -0x50(r1)
 	mflr     r0
@@ -425,24 +414,3 @@ lbl_804373C8:
 }
 
 } // namespace Game
-
-/*
- * --INFO--
- * Address:	804373D8
- * Size:	000028
- */
-void __sinit_moviePlayerPauseAndDraw_cpp(void)
-{
-	/*
-	lis      r4, __float_nan@ha
-	li       r0, -1
-	lfs      f0, __float_nan@l(r4)
-	lis      r3, lbl_804EC810@ha
-	stw      r0, lbl_80516240@sda21(r13)
-	stfsu    f0, lbl_804EC810@l(r3)
-	stfs     f0, lbl_80516244@sda21(r13)
-	stfs     f0, 4(r3)
-	stfs     f0, 8(r3)
-	blr
-	*/
-}

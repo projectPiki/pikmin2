@@ -9,15 +9,14 @@ template <typename T> struct ObjectMgr : public Container<T>, GenericObjectMgr {
 	    : Container<T>()
 	{
 	}
-	// first VTBL:
-	virtual ~ObjectMgr(); // _00
-	// second VTBL:
-	virtual void doAnimation();           // _00
-	virtual void doEntry();               // _04
-	virtual void doSetView(int);          // _08
-	virtual void doViewCalc();            // _0C
-	virtual void doSimulation(float);     // _10
-	virtual void doDirectDraw(Graphics&); // _14
+
+	virtual ~ObjectMgr();                 // _08
+	virtual void doAnimation();           // _34
+	virtual void doEntry();               // _38
+	virtual void doSetView(int);          // _3C
+	virtual void doViewCalc();            // _40
+	virtual void doSimulation(float);     // _44
+	virtual void doDirectDraw(Graphics&); // _48
 };
 
 template <typename T> struct TObjectNode : public CNode {

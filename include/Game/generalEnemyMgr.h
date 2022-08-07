@@ -31,9 +31,38 @@ struct EnemyMgrNode : public CNode, GenericObjectMgr {
 	struct EnemyMgrBase* m_mgr;          // _20
 };
 
+struct EnemyBirthArg;
+struct GenObjectEnemy;
+
 struct GeneralEnemyMgr : public GenericObjectMgr {
-	EnemyTypeID::EEnemyTypeID getEnemyID(char*, int);
-	char* getEnemyName(int, int);
+	virtual void doAnimation();           // _08
+	virtual void doEntry();               // _0C
+	virtual void doSetView(int);          // _10
+	virtual void doViewCalc();            // _14
+	virtual void doSimulation(float);     // _18
+	virtual void doDirectDraw(Graphics&); // _1C
+	virtual void doSimpleDraw(Viewport*); // _20
+	virtual ~GeneralEnemyMgr();           // _48 (weak)
+
+	void createEnemyMgr(unsigned char, int, int);
+
+	GeneralEnemyMgr();
+	void killAll();
+	void setupSoundViewerAndBas();
+	void getJ3DModelData(int);
+	void birth(int, Game::EnemyBirthArg&);
+	void getEnemyName(int, int);
+	void getEnemyID(char*, int);
+	void getIEnemyMgrBase(int);
+	void allocateEnemys(unsigned char, int);
+	void resetEnemyNum();
+	void addEnemyNum(int, unsigned char, Game::GenObjectEnemy*);
+	void getEnemyNum(int, bool);
+	void useHeap();
+	void getEnemyMgr(int);
+	void setMovieDraw(bool);
+	void prepareDayendEnemies();
+	void createDayendEnemies(Sys::Sphere&);
 
 	CNode _04;                                 // _04
 	u8 _1C;                                    // _1C

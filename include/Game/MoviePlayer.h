@@ -43,6 +43,20 @@ struct Demo;
 }
 
 namespace Game {
+struct MovieConfig : public CNode {
+	virtual ~MovieConfig() { } // _08 (weak)
+
+	MovieConfig() { }
+
+	void dump();
+	void isSkippable();
+	void isNeverSkippable();
+	void is(char*);
+	void read(Stream&);
+
+	u8 _18[0xBE - 0x18]; // _18
+	u16 m_drawFlags;     // _BE
+};
 
 struct MoviePlayArg {
 	inline MoviePlayArg(); // not in callmap

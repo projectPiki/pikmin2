@@ -85,6 +85,8 @@ struct PikiMgr : public MonoObjectMgr<Game::Piki> {
 	UpdateMgr* m_updateMgr2;        // _78, unsure of type
 	JKRArchive* m_modelArchive;     // _7C
 };
+
+extern PikiMgr* pikiMgr;
 } // namespace Game
 
 #endif
