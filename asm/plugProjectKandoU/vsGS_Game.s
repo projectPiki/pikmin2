@@ -5,141 +5,107 @@ lbl_constructor:
 
 .section .rodata  # 0x804732E0 - 0x8049E220
 .balign 8
-.global lbl_80483550
 lbl_80483550:
 	.4byte 0x00000000
 	.4byte 0x00000000
 	.4byte 0x00000000
-	.4byte 0x76734753
-	.4byte 0x5F47616D
-	.4byte 0x65000000
-	.4byte 0x7330425F
-	.4byte 0x63765F63
-	.4byte 0x6F757273
-	.4byte 0x65696E00
-	.4byte 0x76732D72
-	.4byte 0x65616479
-	.4byte 0x676F0000
-	.4byte 0x76732072
-	.4byte 0x65616479
-	.4byte 0x676F0000
-	.4byte 0x76732D72
-	.4byte 0x672D6172
-	.4byte 0x72000000
-	.4byte 0x636D6F72
-	.4byte 0x652D7965
-	.4byte 0x73000000
-	.4byte 0x636D6F72
-	.4byte 0x652D6E6F
-	.4byte 0x00000000
-	.4byte 0x636D6F72
-	.4byte 0x652D7A65
-	.4byte 0x6E6B0000
-	.4byte 0x76734753
-	.4byte 0x5F47616D
-	.4byte 0x652E6370
-	.4byte 0x70000000
+.balign 4
+lbl_8048355C:
+	.asciz "vsGS_Game"
+.balign 4
+lbl_80483568:
+	.asciz "s0B_cv_coursein"
+.balign 4
+lbl_80483578:
+	.asciz "vs-readygo"
+.balign 4
+lbl_80483584:
+	.asciz "vs readygo"
+.balign 4
+lbl_80483590:
+	.asciz "vs-rg-arr"
+.balign 4
+lbl_8048359C:
+	.asciz "cmore-yes"
+.balign 4
+lbl_804835A8:
+	.asciz "cmore-no"
+.balign 4
+lbl_804835B4:
+	.asciz "cmore-zenk"
+.balign 4
+lbl_804835C0:
+	.asciz "vsGS_Game.cpp"
+.balign 4
+lbl_804835D0:
 	.asciz "P2Assert"
-	.skip 3
-.global lbl_804835DC
+.balign 4
 lbl_804835DC:
-	.4byte 0x7331365F
-	.4byte 0x66696E64
-	.4byte 0x5F6B6579
-	.4byte 0x00000000
+	.asciz "s16_find_key"
+.balign 4
+lbl_804835EC: # Shift-JIS
 	.4byte 0x82A082E8
 	.4byte 0x82A682C8
 	.4byte 0x82A282C1
 	.4byte 0x82B70A00
-	.4byte 0x7331325F
-	.4byte 0x63765F67
-	.4byte 0x69766575
-	.4byte 0x70000000
-	.4byte 0x6E6F2070
-	.4byte 0x6F642064
-	.4byte 0x656D6F20
-	.4byte 0x31320000
-.global lbl_8048361C
+.balign 4
+lbl_804835FC:
+	.asciz "s12_cv_giveup"
+.balign 4
+lbl_8048360C:
+	.asciz "no pod demo 12"
+.balign 4
 lbl_8048361C:
-	.4byte 0x76736773
-	.4byte 0x5F67616D
-	.4byte 0x653A636C
-	.4byte 0x65616E00
-.global lbl_8048362C
+	.asciz "vsgs_game:clean"
+.balign 4
 lbl_8048362C:
-	.4byte 0x7831395F
-	.4byte 0x76735F62
-	.4byte 0x6564616D
-	.4byte 0x61000000
-.global lbl_8048363C
+	.asciz "x19_vs_bedama"
+.balign 4
 lbl_8048363C:
-	.4byte 0x7330355F
-	.4byte 0x70696B6D
-	.4byte 0x696E7A65
-	.4byte 0x726F0000
-	.4byte 0x6732465F
-	.4byte 0x61707065
-	.4byte 0x61725F68
-	.4byte 0x6F6C6500
-	.4byte 0x6733305F
-	.4byte 0x61707065
-	.4byte 0x61725F66
-	.4byte 0x6F756E74
-	.4byte 0x61696E00
-	.4byte 0x7330335F
-	.4byte 0x6F72696D
-	.4byte 0x61646F77
-	.4byte 0x6E000000
-.global lbl_80483680
+	.asciz "s05_pikminzero"
+.balign 4
+lbl_8048364C:
+	.asciz "g2F_appear_hole"
+.balign 4
+lbl_8048365C:
+	.asciz "g30_appear_fountain"
+.balign 4
+lbl_80483670:
+	.asciz "s03_orimadown"
+.balign 4
 lbl_80483680:
-	.4byte 0x7330395F
-	.4byte 0x686F6C65
-	.4byte 0x696E0000
-	.4byte 0x7330435F
-	.4byte 0x63765F65
-	.4byte 0x73636170
-	.4byte 0x65000000
-	.4byte 0x50534761
-	.4byte 0x6D652E68
-	.4byte 0x00000000
-	.4byte 0x50535363
-	.4byte 0x656E652E
-	.4byte 0x68000000
-	.4byte 0x67657420
-	.4byte 0x736F756E
-	.4byte 0x64207363
-	.4byte 0x656E6520
-	.4byte 0x61740A69
-	.4byte 0x6E76616C
-	.4byte 0x69642074
-	.4byte 0x696D6D69
-	.4byte 0x6E670A00
-	.4byte 0x50534D61
-	.4byte 0x696E5369
-	.4byte 0x64655F53
-	.4byte 0x63656E65
-	.4byte 0x2E680000
-	.4byte 0x6530305F
-	.4byte 0x45335F63
-	.4byte 0x61766573
-	.4byte 0x74617274
-	.4byte 0x00000000
-	.4byte 0x72656164
-	.4byte 0x79676F32
-	.4byte 0x00000000
-	.4byte 0x63616E6E
-	.4byte 0x6F742068
-	.4byte 0x61707065
-	.4byte 0x6E20210A
-	.4byte 0x00000000
+	.asciz "s09_holein"
+.balign 4
+lbl_8048368C:
+	.asciz "s0C_cv_escape"
+.balign 4
+lbl_8048369C:
+	.asciz "PSGame.h"
+.balign 4
+lbl_804836A8:
+	.asciz "PSScene.h"
+.balign 4
+lbl_804836B4:
+	.asciz "get sound scene at\ninvalid timming\n"
+.balign 4
+lbl_804836D8:
+	.asciz "PSMainSide_Scene.h"
+.balign 4
+lbl_804836EC:
+	.asciz "e00_E3_cavestart"
+.balign 4
+lbl_80483700:
+	.asciz "readygo2"
+.balign 4
+lbl_8048370C:
+	.asciz "cannot happen !\n"
 
 .section .data, "wa"  # 0x8049E220 - 0x804EFC20
 .balign 8
-.global lbl_804C0F08
-lbl_804C0F08:
-	.4byte 0x00000000
-	.4byte 0x00000000
-	.4byte 0x00000000
+govNAN___Q24Game5P2JST:
+	.float 0.0
+	.float 0.0
+	.float 0.0
 .global __vt__Q32og6Screen12DispMemberVs
 __vt__Q32og6Screen12DispMemberVs:
 	.4byte 0
@@ -206,67 +172,52 @@ __vt__Q34Game6VsGame9GameState:
 
 .section .sbss # 0x80514D80 - 0x80516360
 .balign 8
-.global lbl_80515C68
-lbl_80515C68:
+gu32NAN___Q24Game5P2JST:
 	.skip 0x4
-.global lbl_80515C6C
-lbl_80515C6C:
+gfNAN___Q24Game5P2JST:
 	.skip 0x4
 
 .section .sdata2, "a"     # 0x80516360 - 0x80520E40
 .balign 8
-.global lbl_8051A268
 lbl_8051A268:
 	.float 1.0
-.global lbl_8051A26C
 lbl_8051A26C:
-	.4byte 0x46480000
-.global lbl_8051A270
+	.float 12800.0
 lbl_8051A270:
 	.float 0.25
-.global lbl_8051A274
 lbl_8051A274:
-	.4byte 0x00000000
-.global lbl_8051A278
+	.float 0.0
 lbl_8051A278:
 	.float 0.5
-.global lbl_8051A27C
+.balign 4
 lbl_8051A27C:
-	.4byte 0x74696D65
-	.4byte 0x75700000
-.global lbl_8051A284
+	.asciz "timeup"
+.balign 4
 lbl_8051A284:
-	.4byte 0x42C80000
-.global lbl_8051A288
+	.float 100.0
+.balign 4
 lbl_8051A288:
-	.4byte 0x736D2D63
-	.4byte 0x616E6300
-.global lbl_8051A290
-lbl_8051A290:
+	.asciz "sm-canc"
+.balign 4
+lbl_8051A290: # Shift-JIS
 	.4byte 0x82C882A2
 	.4byte 0x0A000000
-.global lbl_8051A298
+.balign 4
 lbl_8051A298:
-	.4byte 0x736D2D71
-	.4byte 0x75697400
-.global lbl_8051A2A0
+	.asciz "sm-quit"
+.balign 4
 lbl_8051A2A0:
-	.4byte 0x6F70656E
-	.4byte 0x2D736D00
-.global lbl_8051A2A8
+	.asciz "open-sm"
+.balign 4
 lbl_8051A2A8:
-	.4byte 0x72656164
-	.4byte 0x79676F00
-.global lbl_8051A2B0
+	.asciz "readygo"
+.balign 4
 lbl_8051A2B0:
-	.4byte 0x3F666666
-.global lbl_8051A2B4
+	.float 0.9
 lbl_8051A2B4:
-	.4byte 0x451A5000
-.global lbl_8051A2B8
+	.float 2469.0
 lbl_8051A2B8:
-	.4byte 0x47C34F80
-	.4byte 0x00000000
+	.float 99999.0
 
 .section .text, "ax"  # 0x800056C0 - 0x80472F00
 .global __ct__Q34Game6VsGame9GameStateFv
@@ -7290,15 +7241,14 @@ on_section_fadeout__Q34Game6VsGame9GameStateFPQ24Game13VsGameSection:
 /* 8022C7C4 00229704  B0 03 00 14 */	sth r0, 0x14(r3)
 /* 8022C7C8 00229708  4E 80 00 20 */	blr 
 
-.global __sinit_vsGS_Game_cpp
-__sinit_vsGS_Game_cpp:
+__sinit_vsGS_Game_cpp: # static initializer
 /* 8022C7CC 0022970C  3C 80 80 51 */	lis r4, __float_nan@ha
 /* 8022C7D0 00229710  38 00 FF FF */	li r0, -1
 /* 8022C7D4 00229714  C0 04 48 B0 */	lfs f0, __float_nan@l(r4)
-/* 8022C7D8 00229718  3C 60 80 4C */	lis r3, lbl_804C0F08@ha
-/* 8022C7DC 0022971C  90 0D 95 E8 */	stw r0, lbl_80515C68@sda21(r13)
-/* 8022C7E0 00229720  D4 03 0F 08 */	stfsu f0, lbl_804C0F08@l(r3)
-/* 8022C7E4 00229724  D0 0D 95 EC */	stfs f0, lbl_80515C6C@sda21(r13)
+/* 8022C7D8 00229718  3C 60 80 4C */	lis r3, govNAN___Q24Game5P2JST@ha
+/* 8022C7DC 0022971C  90 0D 95 E8 */	stw r0, gu32NAN___Q24Game5P2JST@sda21(r13)
+/* 8022C7E0 00229720  D4 03 0F 08 */	stfsu f0, govNAN___Q24Game5P2JST@l(r3)
+/* 8022C7E4 00229724  D0 0D 95 EC */	stfs f0, gfNAN___Q24Game5P2JST@sda21(r13)
 /* 8022C7E8 00229728  D0 03 00 04 */	stfs f0, 4(r3)
 /* 8022C7EC 0022972C  D0 03 00 08 */	stfs f0, 8(r3)
 /* 8022C7F0 00229730  4E 80 00 20 */	blr 

@@ -1,29 +1,17 @@
 .include "macros.inc"
 .section .rodata  # 0x804732E0 - 0x8049E220
 .balign 8
-.global lbl_8047F3C0
 lbl_8047F3C0:
-	.4byte 0x6169456E
-	.4byte 0x7465722E
-	.4byte 0x63707000
-.global lbl_8047F3CC
+	.asciz "aiEnter.cpp"
+.balign 4
 lbl_8047F3CC:
 	.asciz "P2Assert"
-	.skip 3
-.global lbl_8047F3D8
+.balign 4
 lbl_8047F3D8:
-	.4byte 0x436C696D
-	.4byte 0x62416374
-	.4byte 0x696F6E41
-	.4byte 0x72670000
-.global lbl_8047F3E8
+	.asciz "ClimbActionArg"
+.balign 4
 lbl_8047F3E8:
-	.4byte 0x476F746F
-	.4byte 0x506F7341
-	.4byte 0x6374696F
-	.4byte 0x6E417267
-	.4byte 0x00000000
-	.4byte 0x00000000
+	.asciz "GotoPosActionArg"
 
 .section .data, "wa"  # 0x8049E220 - 0x804EFC20
 .balign 8
@@ -78,74 +66,53 @@ __vt__Q26PikiAI8ActEnter:
 
 .section .sdata2, "a"     # 0x80516360 - 0x80520E40
 .balign 8
-.global lbl_80519110
 lbl_80519110:
-	.4byte 0x456E7465
-	.4byte 0x72000000
-.global lbl_80519118
+	.asciz "Enter"
+.balign 4
 lbl_80519118:
-	.4byte 0x00000000
-.global lbl_8051911C
+	.float 0.0
 lbl_8051911C:
-	.4byte 0x47000000
-.global lbl_80519120
+	.float 32768.0
 lbl_80519120:
-	.4byte 0x42080000
-.global lbl_80519124
-lbl_80519124:
-	.4byte 0x40C90FDB
-.global lbl_80519128
+	.float 34.0
+lbl_80519124: # tau
+	.float 6.2831855
 lbl_80519128:
-	.4byte 0x43A2F983
-.global lbl_8051912C
+	.float 325.9493
 lbl_8051912C:
-	.4byte 0xC3A2F983
-.global lbl_80519130
+	.float -325.9493
 lbl_80519130:
-	.4byte 0x41A00000
-.global lbl_80519134
+	.float 20.0
 lbl_80519134:
-	.4byte 0x40400000
-.global lbl_80519138
+	.float 3.0
 lbl_80519138:
-	.4byte 0x41200000
-	.4byte 0x00000000
-.global lbl_80519140
+	.float 10.0
+.balign 8
 lbl_80519140:
 	.4byte 0x43300000
 	.4byte 0x80000000
-.global lbl_80519148
 lbl_80519148:
-	.4byte 0x42480000
-.global lbl_8051914C
+	.float 50.0
 lbl_8051914C:
 	.float 0.25
-.global lbl_80519150
 lbl_80519150:
-	.4byte 0x3FA66666
-.global lbl_80519154
+	.float 1.3
 lbl_80519154:
 	.float 1.0
-.global lbl_80519158
 lbl_80519158:
-	.4byte 0x42DC0000
-.global lbl_8051915C
+	.float 110.0
 lbl_8051915C:
 	.float 0.05
-.global lbl_80519160
+.balign 4
 lbl_80519160:
-	.4byte 0x45786974
-	.4byte 0x00000000
-.global lbl_80519168
+	.asciz "Exit"
+.balign 4
 lbl_80519168:
-	.4byte 0x42C80000
-.global lbl_8051916C
+	.float 100.0
 lbl_8051916C:
-	.4byte 0x43700000
-.global lbl_80519170
+	.float 240.0
 lbl_80519170:
-	.4byte 0x42700000
-	.4byte 0x00000000
+	.float 60.0
 
 .section .text, "ax"  # 0x800056C0 - 0x80472F00
 .global __ct__Q26PikiAI8ActEnterFPQ24Game4Piki

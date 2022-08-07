@@ -45,7 +45,6 @@ __vt__Q26PikiAI7ActCrop:
 	.4byte 0
 	.4byte 0
 	.4byte "@64@4@onKeyEvent__Q26PikiAI7ActCropFRCQ28SysShape8KeyEvent"
-	.4byte 0
 
 .section .sdata2, "a"     # 0x80516360 - 0x80520E40
 .balign 8

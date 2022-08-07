@@ -1,43 +1,33 @@
 .include "macros.inc"
 .section .rodata  # 0x804732E0 - 0x8049E220
 .balign 8
-.global lbl_80483930
-lbl_80483930:
-	.4byte 0x00000000
+lbl_80483930: # Choice
+	.4byte 0
 	.float 0.05
-	.4byte 0x00000003
-	.4byte 0x3EB33333
-	.4byte 0x00000036
-	.4byte 0x3ECCCCCD
-	.4byte 0x00000015
+	.4byte 3
+	.float 0.35
+	.4byte 54
+	.float 0.4
+	.4byte 21
 	.float 0.1
-.global lbl_80483950
+.balign 4
 lbl_80483950:
-	.4byte 0x6169426F
-	.4byte 0x72652E63
-	.4byte 0x70700000
-.global lbl_8048395C
+	.asciz "aiBore.cpp"
+.balign 4
 lbl_8048395C:
 	.asciz "P2Assert"
-	.skip 3
-	.4byte 0x50534761
-	.4byte 0x6D652E68
-	.4byte 0x00000000
-	.4byte 0x50535363
-	.4byte 0x656E652E
-	.4byte 0x68000000
-	.4byte 0x67657420
-	.4byte 0x736F756E
-	.4byte 0x64207363
-	.4byte 0x656E6520
-	.4byte 0x61740A69
-	.4byte 0x6E76616C
-	.4byte 0x69642074
-	.4byte 0x696D6D69
-	.4byte 0x6E670A00
-	.4byte 0x41637469
-	.4byte 0x6F6E4172
-	.4byte 0x67000000
+.balign 4
+lbl_80483968:
+	.asciz "PSGame.h"
+.balign 4
+lbl_80483974:
+	.asciz "PSScene.h"
+.balign 4
+lbl_80483980:
+	.asciz "get sound scene at\ninvalid timming\n"
+.balign 4
+lbl_804839A4:
+	.asciz "ActionArg"
 
 .section .data, "wa"  # 0x8049E220 - 0x804EFC20
 .balign 8
@@ -128,46 +118,33 @@ __vt__Q26PikiAI7ActBore:
 	.4byte doDirectDraw__Q26PikiAI6ActionFR8Graphics
 	.4byte "wallCallback__Q26PikiAI6ActionFR10Vector3<f>"
 	.4byte getInfo__Q26PikiAI6ActionFPc
-	.4byte 0
 
 .section .sdata2, "a"     # 0x80516360 - 0x80520E40
 .balign 8
-.global lbl_8051A370
 lbl_8051A370:
-	.4byte 0x47000000
-.global lbl_8051A374
+	.float 32768.0
 lbl_8051A374:
-	.4byte 0x40000000
-.global lbl_8051A378
+	.float 2.0
 lbl_8051A378:
-	.4byte 0x00000000
-	.4byte 0x00000000
-.global lbl_8051A380
+	.float 0.0
+.balign 8
 lbl_8051A380:
 	.4byte 0x43300000
 	.4byte 0x80000000
-.global lbl_8051A388
 lbl_8051A388:
-	.4byte 0x40C00000
-.global lbl_8051A38C
+	.float 6.0
 lbl_8051A38C:
-	.4byte 0x42700000
-.global lbl_8051A390
+	.float 60.0
 lbl_8051A390:
-	.4byte 0x40A00000
-.global lbl_8051A394
+	.float 5.0
 lbl_8051A394:
-	.4byte 0x40800000
-.global lbl_8051A398
+	.float 4.0
 lbl_8051A398:
-	.4byte 0x41F00000
-.global lbl_8051A39C
+	.float 30.0
 lbl_8051A39C:
 	.float 0.5
-.global lbl_8051A3A0
 lbl_8051A3A0:
-	.4byte 0x40400000
-	.4byte 0x00000000
+	.float 3.0
 
 .section .text, "ax"  # 0x800056C0 - 0x80472F00
 .global __ct__Q26PikiAI7ActBoreFPQ24Game4Piki

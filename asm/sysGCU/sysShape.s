@@ -5,42 +5,39 @@ lbl_constructor:
 
 .section .rodata  # 0x804732E0 - 0x8049E220
 .balign 8
-.global lbl_80499C58
 lbl_80499C58:
 	.skip 0xC
+.balign 4
+lbl_80499C64:
 	.asciz "sysShape"
-	.skip 3
-.global lbl_80499C70
+.balign 4
 lbl_80499C70:
 	.asciz "sysShape.cpp"
-	.skip 3
-.global lbl_80499C80
+.balign 4
 lbl_80499C80:
 	.asciz "go to hell !\n"
-	.skip 2
-.global lbl_80499C90
+.balign 4
 lbl_80499C90:
 	.asciz "ExMotionErr::setFrameByKeyType(%d)\n"
-.global lbl_80499CB4
+.balign 4
 lbl_80499CB4:
 	.asciz "mismatch LOOP_START - LOOP_END\n"
+.balign 4
+lbl_80499CD4:
 	.asciz "BlendAnimator : at least 1 motion is required!\n"
-.global lbl_80499D04
+.balign 4
 lbl_80499D04:
 	.asciz "P2Assert"
-	.skip 3
-.global lbl_80499D10
+.balign 4
 lbl_80499D10:
 	.asciz "reached eof\n"
-	.skip 3
 
 .section .data, "wa"  # 0x8049E220 - 0x804EFC20
 .balign 8
-.global lbl_804EBDC8
-lbl_804EBDC8:
-	.4byte 0x00000000
-	.4byte 0x00000000
-	.4byte 0x00000000
+govNAN___Q24Game5P2JST:
+	.float 0.0
+	.float 0.0
+	.float 0.0
 .global __vt__Q28SysShape8AnimInfo
 __vt__Q28SysShape8AnimInfo:
 	.4byte 0
@@ -67,36 +64,30 @@ __vt__Q28SysShape8Animator:
 
 .section .sbss # 0x80514D80 - 0x80516360
 .balign 8
-.global lbl_805161A0
-lbl_805161A0:
-	.skip 0x4
-.global lbl_805161A4
-lbl_805161A4:
-	.skip 0x4
+gu32NAN___Q24Game5P2JST:
+	.skip 4
+gfNAN___Q24Game5P2JST:
+	.skip 4
 .global verbose__Q28SysShape8Animator
 verbose__Q28SysShape8Animator:
-	.skip 0x8
+	.skip 1
 
 .section .sdata2, "a"     # 0x80516360 - 0x80520E40
 .balign 8
-.global lbl_80520528
 lbl_80520528:
-	.4byte 0x00000000
-.global lbl_8052052C
+	.float 0.0
+.balign 4
 lbl_8052052C:
-	.4byte 0x4F4B4F4B
-	.4byte 0x0A000000
-.global lbl_80520534
+	.asciz "OKOK\n"
+.balign 4
 lbl_80520534:
 	.float 1.0
-.global lbl_80520538
+.balign 8
 lbl_80520538:
 	.4byte 0x43300000
 	.4byte 0x80000000
-.global lbl_80520540
 lbl_80520540:
-	.4byte 0x47FA0000
-	.4byte 0x00000000
+	.float 128000.0
 
 .section .text, "ax"  # 0x800056C0 - 0x80472F00
 .global clearAnimatorAll__Q28SysShape5ModelFv
@@ -1355,15 +1346,14 @@ lbl_80429D6C:
 /* 80429D80 00426CC0  38 21 00 10 */	addi r1, r1, 0x10
 /* 80429D84 00426CC4  4E 80 00 20 */	blr 
 
-.global __sinit_sysShape_cpp
-__sinit_sysShape_cpp:
+__sinit_sysShape_cpp: # static initializer
 /* 80429D88 00426CC8  3C 80 80 51 */	lis r4, __float_nan@ha
 /* 80429D8C 00426CCC  38 00 FF FF */	li r0, -1
 /* 80429D90 00426CD0  C0 04 48 B0 */	lfs f0, __float_nan@l(r4)
-/* 80429D94 00426CD4  3C 60 80 4F */	lis r3, lbl_804EBDC8@ha
-/* 80429D98 00426CD8  90 0D 9B 20 */	stw r0, lbl_805161A0@sda21(r13)
-/* 80429D9C 00426CDC  D4 03 BD C8 */	stfsu f0, lbl_804EBDC8@l(r3)
-/* 80429DA0 00426CE0  D0 0D 9B 24 */	stfs f0, lbl_805161A4@sda21(r13)
+/* 80429D94 00426CD4  3C 60 80 4F */	lis r3, govNAN___Q24Game5P2JST@ha
+/* 80429D98 00426CD8  90 0D 9B 20 */	stw r0, gu32NAN___Q24Game5P2JST@sda21(r13)
+/* 80429D9C 00426CDC  D4 03 BD C8 */	stfsu f0, govNAN___Q24Game5P2JST@l(r3)
+/* 80429DA0 00426CE0  D0 0D 9B 24 */	stfs f0, gfNAN___Q24Game5P2JST@sda21(r13)
 /* 80429DA4 00426CE4  D0 03 00 04 */	stfs f0, 4(r3)
 /* 80429DA8 00426CE8  D0 03 00 08 */	stfs f0, 8(r3)
 /* 80429DAC 00426CEC  4E 80 00 20 */	blr 

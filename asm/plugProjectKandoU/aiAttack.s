@@ -1,51 +1,36 @@
 .include "macros.inc"
 .section .rodata  # 0x804732E0 - 0x8049E220
 .balign 8
-.global lbl_8047F2A0
 lbl_8047F2A0:
 	.asciz "actAttack"
-	.skip 2
+.balign 4
 lbl_8047F2AC:
 	.4byte lbl_80519078
 	.4byte lbl_8051907C
 	.4byte lbl_80519080
 	.4byte lbl_80519084
 	.4byte lbl_80519088
-.global lbl_8047F2C0
+.balign 4
 lbl_8047F2C0:
-	.4byte 0x61747461
-	.4byte 0x636B2025
-	.4byte 0x73000000
-	.4byte 0x41637441
-	.4byte 0x74746163
-	.4byte 0x6B417267
-	.4byte 0x00000000
-	.4byte 0x61694174
-	.4byte 0x7461636B
-	.4byte 0x2E637070
-	.4byte 0x00000000
+	.asciz "attack %s"
+.balign 4
+lbl_8047F2CC:
+	.asciz "ActAttackArg"
+.balign 4
+lbl_8047F2DC:
+	.asciz "aiAttack.cpp"
+.balign 4
+lbl_8047F2EC:
 	.asciz "P2Assert"
-	.skip 3
-	.4byte 0x41637469
-	.4byte 0x6F6E4172
-	.4byte 0x67000000
-.global lbl_8047F304
+.balign 4
+lbl_8047F2F8:
+	.asciz "ActionArg"
+.balign 4
 lbl_8047F304:
-	.4byte 0x41707072
-	.4byte 0x6F616368
-	.4byte 0x506F7341
-	.4byte 0x6374696F
-	.4byte 0x6E417267
-	.4byte 0x00000000
-.global lbl_8047F31C
+	.asciz "ApproachPosActionArg"
+.balign 4
 lbl_8047F31C:
-	.4byte 0x53746963
-	.4byte 0x6B417474
-	.4byte 0x61636B41
-	.4byte 0x6374696F
-	.4byte 0x6E417267
-	.4byte 0x00000000
-	.4byte 0x00000000
+	.asciz "StickAttackActionArg"
 
 .section .data, "wa"  # 0x8049E220 - 0x804EFC20
 .balign 8
@@ -90,70 +75,51 @@ __vt__Q26PikiAI9ActAttack:
 	.4byte 0
 	.4byte 0
 	.4byte "@56@4@onKeyEvent__Q26PikiAI9ActAttackFRCQ28SysShape8KeyEvent"
-	.4byte 0
 
 .section .sdata2, "a"     # 0x80516360 - 0x80520E40
 .balign 8
-.global lbl_80519078
 lbl_80519078:
 	.asciz "SA"
-	.skip 1
-.global lbl_8051907C
+.balign 4
 lbl_8051907C:
 	.asciz "AJ"
-	.skip 1
-.global lbl_80519080
+.balign 4
 lbl_80519080:
 	.asciz "JA"
-	.skip 1
-.global lbl_80519084
+.balign 4
 lbl_80519084:
 	.asciz "JP"
-	.skip 1
-.global lbl_80519088
+.balign 4
 lbl_80519088:
 	.asciz "LT"
-	.skip 1
-.global lbl_8051908C
+.balign 4
 lbl_8051908C:
 	.asciz "Attack"
-	.skip 1
-.global lbl_80519094
+.balign 4
 lbl_80519094:
 	.float 32768.0
-.global lbl_80519098
 lbl_80519098:
 	.float 0.8
-	.skip 4
-.global lbl_805190A0
+.balign 8
 lbl_805190A0:
 	.4byte 0x43300000
 	.4byte 0x80000000
-.global lbl_805190A8
 lbl_805190A8:
-	.4byte 0x41200000
-.global lbl_805190AC
+	.float 10.0
 lbl_805190AC:
 	.float -1.0
-.global lbl_805190B0
 lbl_805190B0:
-	.4byte 0x40000000
-.global lbl_805190B4
+	.float 2.0
 lbl_805190B4:
-	.4byte 0x41A00000
-.global lbl_805190B8
+	.float 20.0
 lbl_805190B8:
-	.4byte 0x00000000
-.global lbl_805190BC
+	.float 0.0
 lbl_805190BC:
 	.float 1.0
-.global lbl_805190C0
 lbl_805190C0:
-	.4byte 0x42C80000
-.global lbl_805190C4
+	.float 100.0
 lbl_805190C4:
-	.4byte 0x43480000
-.global lbl_805190C8
+	.float 200.0
 lbl_805190C8:
 	.float 0.5
 

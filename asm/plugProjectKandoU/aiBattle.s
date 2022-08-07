@@ -1,31 +1,23 @@
 .include "macros.inc"
 .section .rodata  # 0x804732E0 - 0x8049E220
 .balign 8
-.global lbl_80483890
 lbl_80483890:
-	.4byte 0x61694261
-	.4byte 0x74746C65
-	.4byte 0x00000000
-	.4byte 0x41637442
-	.4byte 0x6174746C
-	.4byte 0x65417267
-	.4byte 0x00000000
-	.4byte 0x61694261
-	.4byte 0x74746C65
-	.4byte 0x2E637070
-	.4byte 0x00000000
+	.asciz "aiBattle"
+.balign 4
+lbl_8048389C:
+	.asciz "ActBattleArg"
+.balign 4
+lbl_804838AC:
+	.asciz "aiBattle.cpp"
+.balign 4
+lbl_804838BC:
 	.asciz "P2Assert"
-	.skip 3
-	.4byte 0x41637469
-	.4byte 0x6F6E4172
-	.4byte 0x67000000
-	.4byte 0x41707072
-	.4byte 0x6F616368
-	.4byte 0x506F7341
-	.4byte 0x6374696F
-	.4byte 0x6E417267
-	.4byte 0x00000000
-	.4byte 0x00000000
+.balign 4
+lbl_804838C8:
+	.asciz "ActionArg"
+.balign 4
+lbl_804838D4:
+	.asciz "ApproachPosActionArg"
 
 .section .data, "wa"  # 0x8049E220 - 0x804EFC20
 .balign 8
@@ -50,58 +42,42 @@ __vt__Q26PikiAI9ActBattle:
 	.4byte 0
 	.4byte 0
 	.4byte "@32@4@onKeyEvent__Q26PikiAI9ActBattleFRCQ28SysShape8KeyEvent"
-	.4byte 0
 
 .section .sdata2, "a"     # 0x80516360 - 0x80520E40
 .balign 8
-.global lbl_8051A320
 lbl_8051A320:
-	.4byte 0x42617474
-	.4byte 0x6C650000
-.global lbl_8051A328
+	.asciz "Battle"
+.balign 4
 lbl_8051A328:
-	.4byte 0x47000000
-.global lbl_8051A32C
+	.float 32768.0
 lbl_8051A32C:
 	.float 0.5
-.global lbl_8051A330
 lbl_8051A330:
-	.4byte 0x3F666666
-.global lbl_8051A334
+	.float 0.9
 lbl_8051A334:
-	.4byte 0x42700000
-.global lbl_8051A338
+	.float 60.0
 lbl_8051A338:
-	.4byte 0x00000000
-.global lbl_8051A33C
+	.float 0.0
 lbl_8051A33C:
-	.4byte 0xC47A0000
-.global lbl_8051A340
+	.float -1000.0
+.balign 8
 lbl_8051A340:
 	.4byte 0x43300000
 	.4byte 0x80000000
-.global lbl_8051A348
 lbl_8051A348:
-	.4byte 0x41200000
-.global lbl_8051A34C
+	.float 10.0
 lbl_8051A34C:
 	.float 1.0
-.global lbl_8051A350
 lbl_8051A350:
-	.4byte 0x42480000
-.global lbl_8051A354
+	.float 50.0
 lbl_8051A354:
-	.4byte 0x42C80000
-.global lbl_8051A358
+	.float 100.0
 lbl_8051A358:
-	.4byte 0x400CCCCD
-.global lbl_8051A35C
+	.float 2.2
 lbl_8051A35C:
-	.4byte 0x40200000
-.global lbl_8051A360
+	.float 2.5
 lbl_8051A360:
-	.4byte 0xBF800000
-	.4byte 0x00000000
+	.float -1.0
 
 .section .text, "ax"  # 0x800056C0 - 0x80472F00
 .global __ct__Q26PikiAI9ActBattleFPQ24Game4Piki

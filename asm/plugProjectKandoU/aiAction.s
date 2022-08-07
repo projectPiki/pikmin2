@@ -835,8 +835,7 @@ lbl_80197278:
 doDirectDraw__Q26PikiAI6ActionFR8Graphics:
 /* 801972B0 001941F0  4E 80 00 20 */	blr 
 
-.global __sinit_aiAction_cpp
-__sinit_aiAction_cpp:
+__sinit_aiAction_cpp: # static initializer
 /* 801972B4 001941F4  3C 80 80 51 */	lis r4, __float_nan@ha
 /* 801972B8 001941F8  38 00 FF FF */	li r0, -1
 /* 801972BC 001941FC  C0 04 48 B0 */	lfs f0, __float_nan@l(r4)

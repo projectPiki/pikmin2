@@ -5,155 +5,96 @@ lbl_constructor:
 
 .section .rodata  # 0x804732E0 - 0x8049E220
 .balign 8
-.global lbl_8047FF98
 lbl_8047FF98:
 	.4byte 0x00000000
 	.4byte 0x00000000
 	.4byte 0x00000000
-	.4byte 0x56734761
-	.4byte 0x6D655365
-	.4byte 0x6374696F
-	.4byte 0x6E000000
-	.4byte 0x50534761
-	.4byte 0x6D652E68
-	.4byte 0x00000000
-.global lbl_8047FFC0
+.balign 4
+lbl_8047FFA4:
+	.asciz "VsGameSection"
+.balign 4
+lbl_8047FFB4:
+	.asciz "PSGame.h"
+.balign 4
 lbl_8047FFC0:
 	.asciz "P2Assert"
-	.skip 3
-	.4byte 0x50535363
-	.4byte 0x656E652E
-	.4byte 0x68000000
-.global lbl_8047FFD8
+.balign 4
+lbl_8047FFCC:
+	.asciz "PSScene.h"
+.balign 4
 lbl_8047FFD8:
-	.4byte 0x63617665
-	.4byte 0x696E666F
-	.4byte 0x2E747874
+	.asciz "caveinfo.txt"
+.balign 4
+lbl_8047FFE8: # array of three words
 	.4byte 0x00000000
 	.4byte 0x00000000
 	.4byte 0x00000000
-	.4byte 0x00000000
-.global lbl_8047FFF4
 lbl_8047FFF4:
-	.4byte 0x76734761
-	.4byte 0x6D655365
-	.4byte 0x6374696F
-	.4byte 0x6E2E6370
-	.4byte 0x70000000
-.global lbl_80480008
+	.asciz "vsGameSection.cpp"
+.balign 4
 lbl_80480008:
-	.4byte 0x7A616E6E
-	.4byte 0x656E6E0A
-	.4byte 0x00000000
-.global lbl_80480014
+	.asciz "zannenn\n"
+.balign 4
 lbl_80480014:
-	.4byte 0x2F757365
-	.4byte 0x722F4D61
-	.4byte 0x746F6261
-	.4byte 0x2F636861
-	.4byte 0x6C6C656E
-	.4byte 0x67652F6B
-	.4byte 0x6665732D
-	.4byte 0x73746167
-	.4byte 0x65732E74
-	.4byte 0x78740000
-.global lbl_8048003C
+	.asciz "/user/Matoba/challenge/kfes-stages.txt"
+.balign 4
 lbl_8048003C:
-	.4byte 0x2F757365
-	.4byte 0x722F4D61
-	.4byte 0x746F6261
-	.4byte 0x2F636861
-	.4byte 0x6C6C656E
-	.4byte 0x67652F73
-	.4byte 0x74616765
-	.4byte 0x732E7478
-	.4byte 0x74000000
-.global lbl_80480060
+	.asciz "/user/Matoba/challenge/stages.txt"
+.balign 4
 lbl_80480060:
-	.4byte 0x2F757365
-	.4byte 0x722F6162
-	.4byte 0x652F7673
-	.4byte 0x2F737461
-	.4byte 0x6765732E
-	.4byte 0x74787400
-.global lbl_80480078
+	.asciz "/user/abe/vs/stages.txt"
+.balign 4
 lbl_80480078:
-	.4byte 0x6F702D63
-	.4byte 0x2D6D6F72
-	.4byte 0x65000000
-	.4byte 0x6D6F7265
-	.4byte 0x2D796573
-	.4byte 0x00000000
-	.4byte 0x6D6F7265
-	.4byte 0x2D7A656E
-	.4byte 0x6B616900
-	.4byte 0x7330435F
-	.4byte 0x63765F65
-	.4byte 0x73636170
-	.4byte 0x65000000
-.global lbl_804800AC
+	.asciz "op-c-more"
+.balign 4
+lbl_80480084:
+	.asciz "more-yes"
+.balign 4
+lbl_80480090:
+	.asciz "more-zenkai"
+.balign 4
+lbl_8048009C:
+	.asciz "s0C_cv_escape"
+.balign 4
 lbl_804800AC:
-	.4byte 0x7330335F
-	.4byte 0x6F72696D
-	.4byte 0x61646F77
-	.4byte 0x6E000000
-.global lbl_804800BC
+	.asciz "s03_orimadown"
+.balign 4
 lbl_804800BC:
-	.4byte 0x63726561
-	.4byte 0x74654661
-	.4byte 0x6C6C5069
-	.4byte 0x6B6D696E
-	.4byte 0x73000000
-.global lbl_804800D0
+	.asciz "createFallPikmins"
+.balign 4
 lbl_804800D0:
-	.4byte 0x6E6F2073
-	.4byte 0x70616365
-	.4byte 0x20666F72
-	.4byte 0x206E6577
-	.4byte 0x2079656C
-	.4byte 0x6C6F770A
-	.4byte 0x00000000
-.global lbl_804800EC
+	.asciz "no space for new yellow\n"
+.balign 4
 lbl_804800EC:
-	.4byte 0x6E6F2065
-	.4byte 0x6E747279
-	.4byte 0x20666F72
-	.4byte 0x2070656C
-	.4byte 0x6C65740A
-	.4byte 0x00000000
-	.4byte 0x62697274
-	.4byte 0x68206661
-	.4byte 0x696C6564
-	.4byte 0x20210A00
-	.4byte 0x6F6F7375
-	.4byte 0x67692025
-	.4byte 0x640A0000
-	.4byte 0x25642070
-	.4byte 0x6C617965
-	.4byte 0x7249440A
-	.4byte 0x00000000
-	.4byte 0x25642074
-	.4byte 0x79706549
-	.4byte 0x440A0000
-	.4byte 0x41726745
-	.4byte 0x6E656D79
-	.4byte 0x54797065
-	.4byte 0x00000000
-	.4byte 0x50696B69
-	.4byte 0x496E6974
-	.4byte 0x41726700
-	.4byte 0x50656C6C
-	.4byte 0x6574496E
-	.4byte 0x69744172
-	.4byte 0x67000000
+	.asciz "no entry for pellet\n"
+.balign 4
+lbl_80480104:
+	.asciz "birth failed !\n"
+.balign 4
+lbl_80480114:
+	.asciz "oosugi %d\n"
+.balign 4
+lbl_80480120:
+	.asciz "%d playerID\n"
+.balign 4
+lbl_80480130:
+	.asciz "%d typeID\n"
+.balign 4
+lbl_8048013C:
+	.asciz "ArgEnemyType"
+.balign 4
+lbl_8048014C:
+	.asciz "PikiInitArg"
+.balign 4
+lbl_80480158:
+	.asciz "PelletInitArg"
 
 .section .data, "wa"  # 0x8049E220 - 0x804EFC20
 .balign 8
-.global lbl_804B60E8
-lbl_804B60E8:
-	.4byte 0x00000000
-	.4byte 0x00000000
-	.4byte 0x00000000
+govNAN___Q24Game5P2JST:
+	.float 0.0
+	.float 0.0
+	.float 0.0
 .global __vt__Q24Game20GameMessageVsUseCard
 __vt__Q24Game20GameMessageVsUseCard:
 	.4byte 0
@@ -330,11 +271,9 @@ __vt__Q34Game6VsGame3FSM:
 
 .section .sbss # 0x80514D80 - 0x80516360
 .balign 8
-.global lbl_80515A88
-lbl_80515A88:
+gu32NAN___Q24Game5P2JST:
 	.skip 0x4
-.global lbl_80515A8C
-lbl_80515A8C:
+gfNAN___Q24Game5P2JST:
 	.skip 0x4
 .global mRedWinCount__Q24Game13VsGameSection
 mRedWinCount__Q24Game13VsGameSection:
@@ -344,176 +283,121 @@ mBlueWinCount__Q24Game13VsGameSection:
 	.skip 0x4
 .global mDrawCount__Q24Game13VsGameSection
 mDrawCount__Q24Game13VsGameSection:
-	.skip 0x8
+	.skip 0x4
 
 .section .sdata2, "a"     # 0x80516360 - 0x80520E40
 .balign 8
-.global lbl_805194A8
 lbl_805194A8:
-	.4byte 0x00000000
-.global lbl_805194AC
+	.float 0.0
 lbl_805194AC:
 	.float 0.5
-.global lbl_805194B0
+.balign 4
 lbl_805194B0:
-	.4byte 0x72616E64
-	.4byte 0x6F6D0000
-.global lbl_805194B8
+	.asciz "random"
+.balign 4
 lbl_805194B8:
 	.float 1.0
-	.4byte 0x00000000
-.global lbl_805194C0
+.balign 8
 lbl_805194C0:
-	.4byte 0x40490000
-	.4byte 0x00000000
-.global lbl_805194C8
+	.double 50.0
+.balign 8
 lbl_805194C8:
 	.4byte 0x43300000
 	.4byte 0x80000000
-.global lbl_805194D0
+.balign 4
 lbl_805194D0:
-	.4byte 0x6F702D6B
-	.4byte 0x6B000000
-.global lbl_805194D8
+	.asciz "op-kk"
+.balign 4
 lbl_805194D8:
-	.4byte 0x6D6F7265
-	.4byte 0x2D6E6F00
-.global lbl_805194E0
+	.asciz "more-no"
+.balign 4
 lbl_805194E0:
-	.4byte 0x6B6B2D79
-	.4byte 0x65730000
-.global lbl_805194E8
+	.asciz "kk-yes"
+.balign 4
 lbl_805194E8:
-	.4byte 0x6B6B2D6E
-	.4byte 0x6F000000
-.global lbl_805194F0
+	.asciz "kk-no"
+.balign 4
 lbl_805194F0:
-	.4byte 0x47000000
-.global lbl_805194F4
+	.float 32768.0
 lbl_805194F4:
-	.4byte 0x41700000
-.global lbl_805194F8
+	.float 15.0
 lbl_805194F8:
-	.4byte 0x41F00000
-.global lbl_805194FC
-lbl_805194FC:
-	.4byte 0x40C90FDB
-.global lbl_80519500
+	.float 30.0
+lbl_805194FC: # tau
+	.float 6.2831855
 lbl_80519500:
-	.4byte 0x44408000
-.global lbl_80519504
+	.float 770.0
 lbl_80519504:
-	.4byte 0x44548000
-.global lbl_80519508
+	.float 850.0
 lbl_80519508:
-	.4byte 0x42F00000
-.global lbl_8051950C
+	.float 120.0
 lbl_8051950C:
-	.4byte 0x43A2F983
-.global lbl_80519510
+	.float 325.9493
 lbl_80519510:
-	.4byte 0xC3A2F983
-.global lbl_80519514
+	.float -325.9493
 lbl_80519514:
-	.4byte 0x4528C000
-.global lbl_80519518
+	.float 2700.0
 lbl_80519518:
-	.4byte 0x43160000
-.global lbl_8051951C
+	.float 150.0
 lbl_8051951C:
-	.4byte 0x41200000
-.global lbl_80519520
+	.float 10.0
 lbl_80519520:
-	.4byte 0x41A00000
-.global lbl_80519524
+	.float 20.0
 lbl_80519524:
-	.4byte 0x3E4CCCCD
-.global lbl_80519528
+	.float 0.2
 lbl_80519528:
-	.4byte 0x3F4CCCCD
-.global lbl_8051952C
+	.float 0.8
 lbl_8051952C:
 	.float 0.1
-.global lbl_80519530
 lbl_80519530:
-	.4byte 0xBDCCCCCD
-.global lbl_80519534
+	.float -0.1
 lbl_80519534:
-	.4byte 0xBF000000
-.global lbl_80519538
+	.float -0.5
 lbl_80519538:
-	.4byte 0xBF4CCCCD
-.global lbl_8051953C
+	.float -0.8
 lbl_8051953C:
-	.4byte 0x3D50E560
-.global lbl_80519540
+	.float 0.051
 lbl_80519540:
-	.4byte 0x3C23D70A
-.global lbl_80519544
+	.float 0.01
 lbl_80519544:
-	.4byte 0x41C80000
-.global lbl_80519548
+	.float 25.0
 lbl_80519548:
-	.4byte 0x3ECCCCCD
-.global lbl_8051954C
+	.float 0.4
 lbl_8051954C:
-	.4byte 0x3F19999A
-.global lbl_80519550
+	.float 0.6
 lbl_80519550:
 	.float 0.3
-.global lbl_80519554
 lbl_80519554:
-	.4byte 0x3F0CCCCD
-.global lbl_80519558
+	.float 0.55
 lbl_80519558:
-	.4byte 0x3F666666
-.global lbl_8051955C
+	.float 0.9
 lbl_8051955C:
-	.4byte 0x40000000
-.global lbl_80519560
+	.float 2.0
 lbl_80519560:
-	.4byte 0x40400000
-	.4byte 0x00000000
-.global lbl_80519568
+	.float 3.0
+.balign 8
 lbl_80519568:
 	.4byte 0x43300000
 	.4byte 0x00000000
-.global lbl_80519570
+.balign 4
 lbl_80519570:
-	.4byte 0x430C0000
-.global lbl_80519574
+	.float 140.0
 lbl_80519574:
-	.4byte 0xC1200000
-.global lbl_80519578
+	.float -10.0
 lbl_80519578:
-	.4byte 0xBF800000
-.global lbl_8051957C
+	.float -1.0
 lbl_8051957C:
-	.4byte 0x40800000
-.global lbl_80519580
+	.float 4.0
 lbl_80519580:
 	.float 0.25
-	.4byte 0x00000000
 
 .section .sbss2, "", @nobits # 0x80520E40 - 0x80520ED8
-.global lbl_80520E68
 lbl_80520E68:
-	.skip 0x4
-.global lbl_80520E6C
-lbl_80520E6C:
-	.skip 0x4
-.global lbl_80520E70
+	.skip 0x8
 lbl_80520E70:
-	.skip 0x4
-.global lbl_80520E74
-lbl_80520E74:
-	.skip 0x4
-.global lbl_80520E78
+	.skip 0x8
 lbl_80520E78:
-	.skip 0x4
-.global lbl_80520E7C
-lbl_80520E7C:
-	.skip 0x4
+	.skip 0x8
 
 .section .text, "ax"  # 0x800056C0 - 0x80472F00
 .global init__Q34Game6VsGame3FSMFPQ24Game13VsGameSection
@@ -4115,7 +3999,7 @@ lbl_801C2BD4:
 /* 801C2BDC 001BFB1C  41 80 FE 04 */	blt lbl_801C29E0
 /* 801C2BE0 001BFB20  80 62 2B 08 */	lwz r3, lbl_80520E68@sda21(r2)
 /* 801C2BE4 001BFB24  3B 41 00 08 */	addi r26, r1, 8
-/* 801C2BE8 001BFB28  80 02 2B 0C */	lwz r0, lbl_80520E6C@sda21(r2)
+/* 801C2BE8 001BFB28  80 02 2B 0C */	lwz r0, (lbl_80520E68+4)@sda21(r2)
 /* 801C2BEC 001BFB2C  3B 00 00 00 */	li r24, 0
 /* 801C2BF0 001BFB30  90 61 00 08 */	stw r3, 8(r1)
 /* 801C2BF4 001BFB34  80 6D 84 80 */	lwz r3, cBedamaRed__13VsOtakaraName@sda21(r13)
@@ -4480,7 +4364,7 @@ lbl_801C2BD4:
 /* 801C2BDC 001BFB1C  41 80 FE 04 */	blt lbl_801C29E0
 /* 801C2BE0 001BFB20  80 62 2B 08 */	lwz r3, lbl_80520E68@sda21(r2)
 /* 801C2BE4 001BFB24  3B 41 00 08 */	addi r26, r1, 8
-/* 801C2BE8 001BFB28  80 02 2B 0C */	lwz r0, lbl_80520E6C@sda21(r2)
+/* 801C2BE8 001BFB28  80 02 2B 0C */	lwz r0, (lbl_80520E68+4)@sda21(r2)
 /* 801C2BEC 001BFB2C  3B 00 00 00 */	li r24, 0
 /* 801C2BF0 001BFB30  90 61 00 08 */	stw r3, 8(r1)
 /* 801C2BF4 001BFB34  80 6D 84 80 */	lwz r3, cBedamaRed__13VsOtakaraName@sda21(r13)
@@ -7129,7 +7013,7 @@ lbl_801C3F4C:
 /* 801C3F7C 001C0EBC  3B C5 A2 F4 */	addi r30, r5, __vt__Q24Game15CreatureInitArg@l
 /* 801C3F80 001C0EC0  3B 60 00 00 */	li r27, 0
 /* 801C3F84 001C0EC4  80 82 2B 10 */	lwz r4, lbl_80520E70@sda21(r2)
-/* 801C3F88 001C0EC8  80 02 2B 14 */	lwz r0, lbl_80520E74@sda21(r2)
+/* 801C3F88 001C0EC8  80 02 2B 14 */	lwz r0, (lbl_80520E70+4)@sda21(r2)
 /* 801C3F8C 001C0ECC  90 81 00 0C */	stw r4, 0xc(r1)
 /* 801C3F90 001C0ED0  3C 80 80 4B */	lis r4, __vt__Q24Game13PelletInitArg@ha
 /* 801C3F94 001C0ED4  80 CD 84 80 */	lwz r6, cBedamaRed__13VsOtakaraName@sda21(r13)
@@ -7217,7 +7101,7 @@ lbl_801C4020:
 /* 801C3F7C 001C0EBC  3B C5 A2 F4 */	addi r30, r5, __vt__Q24Game15CreatureInitArg@l
 /* 801C3F80 001C0EC0  3B 60 00 00 */	li r27, 0
 /* 801C3F84 001C0EC4  80 82 2B 10 */	lwz r4, lbl_80520E70@sda21(r2)
-/* 801C3F88 001C0EC8  80 02 2B 14 */	lwz r0, lbl_80520E74@sda21(r2)
+/* 801C3F88 001C0EC8  80 02 2B 14 */	lwz r0, (lbl_80520E70+4)@sda21(r2)
 /* 801C3F8C 001C0ECC  90 81 00 0C */	stw r4, 0xc(r1)
 /* 801C3F90 001C0ED0  3C 80 80 4B */	lis r4, __vt__Q24Game13PelletInitArg@ha
 /* 801C3F94 001C0ED4  80 CD 84 80 */	lwz r6, cBedamaRed__13VsOtakaraName@sda21(r13)
@@ -7526,7 +7410,7 @@ lbl_801C43C8:
 /* 801C43E8 001C1328  41 80 FF 64 */	blt lbl_801C434C
 /* 801C43EC 001C132C  80 62 2B 18 */	lwz r3, lbl_80520E78@sda21(r2)
 /* 801C43F0 001C1330  7F B9 EB 78 */	mr r25, r29
-/* 801C43F4 001C1334  80 02 2B 1C */	lwz r0, lbl_80520E7C@sda21(r2)
+/* 801C43F4 001C1334  80 02 2B 1C */	lwz r0, (lbl_80520E78+4)@sda21(r2)
 /* 801C43F8 001C1338  3B 41 00 18 */	addi r26, r1, 0x18
 /* 801C43FC 001C133C  90 61 00 08 */	stw r3, 8(r1)
 /* 801C4400 001C1340  3B 61 00 08 */	addi r27, r1, 8
@@ -8093,7 +7977,7 @@ lbl_801C43C8:
 /* 801C43E8 001C1328  41 80 FF 64 */	blt lbl_801C434C
 /* 801C43EC 001C132C  80 62 2B 18 */	lwz r3, lbl_80520E78@sda21(r2)
 /* 801C43F0 001C1330  7F B9 EB 78 */	mr r25, r29
-/* 801C43F4 001C1334  80 02 2B 1C */	lwz r0, lbl_80520E7C@sda21(r2)
+/* 801C43F4 001C1334  80 02 2B 1C */	lwz r0, (lbl_80520E78+4)@sda21(r2)
 /* 801C43F8 001C1338  3B 41 00 18 */	addi r26, r1, 0x18
 /* 801C43FC 001C133C  90 61 00 08 */	stw r3, 8(r1)
 /* 801C4400 001C1340  3B 61 00 08 */	addi r27, r1, 8
@@ -8845,15 +8729,14 @@ lbl_801C4B98:
 "exec__Q24Game32FSMState<Q24Game13VsGameSection>FPQ24Game13VsGameSection":
 /* 801C4BA8 001C1AE8  4E 80 00 20 */	blr 
 
-.global __sinit_vsGameSection_cpp
-__sinit_vsGameSection_cpp:
+__sinit_vsGameSection_cpp: # static initializer
 /* 801C4BAC 001C1AEC  3C 80 80 51 */	lis r4, __float_nan@ha
 /* 801C4BB0 001C1AF0  38 00 FF FF */	li r0, -1
 /* 801C4BB4 001C1AF4  C0 04 48 B0 */	lfs f0, __float_nan@l(r4)
-/* 801C4BB8 001C1AF8  3C 60 80 4B */	lis r3, lbl_804B60E8@ha
-/* 801C4BBC 001C1AFC  90 0D 94 08 */	stw r0, lbl_80515A88@sda21(r13)
-/* 801C4BC0 001C1B00  D4 03 60 E8 */	stfsu f0, lbl_804B60E8@l(r3)
-/* 801C4BC4 001C1B04  D0 0D 94 0C */	stfs f0, lbl_80515A8C@sda21(r13)
+/* 801C4BB8 001C1AF8  3C 60 80 4B */	lis r3, govNAN___Q24Game5P2JST@ha
+/* 801C4BBC 001C1AFC  90 0D 94 08 */	stw r0, gu32NAN___Q24Game5P2JST@sda21(r13)
+/* 801C4BC0 001C1B00  D4 03 60 E8 */	stfsu f0, govNAN___Q24Game5P2JST@l(r3)
+/* 801C4BC4 001C1B04  D0 0D 94 0C */	stfs f0, gfNAN___Q24Game5P2JST@sda21(r13)
 /* 801C4BC8 001C1B08  D0 03 00 04 */	stfs f0, 4(r3)
 /* 801C4BCC 001C1B0C  D0 03 00 08 */	stfs f0, 8(r3)
 /* 801C4BD0 001C1B10  4E 80 00 20 */	blr 

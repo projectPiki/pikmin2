@@ -5,12 +5,10 @@ lbl_constructor:
 
 .section .data, "wa"  # 0x8049E220 - 0x804EFC20
 .balign 8
-.global lbl_804C1068
-lbl_804C1068:
-	.4byte 0x00000000
-	.4byte 0x00000000
-	.4byte 0x00000000
-.global lbl_804C1074
+govNAN___Q24Game5P2JST:
+	.float 0.0
+	.float 0.0
+	.float 0.0
 lbl_804C1074:
 	.4byte 0x00000000
 	.4byte 0xFFFFFFFF
@@ -52,29 +50,24 @@ __vt__Q34Game6VsGame9LoadState:
 
 .section .sbss # 0x80514D80 - 0x80516360
 .balign 8
-.global lbl_80515C78
-lbl_80515C78:
+gu32NAN___Q24Game5P2JST:
 	.skip 0x4
-.global lbl_80515C7C
-lbl_80515C7C:
+gfNAN___Q24Game5P2JST:
 	.skip 0x4
 
 .section .sdata2, "a"     # 0x80516360 - 0x80520E40
 .balign 8
-.global lbl_8051A2C8
 lbl_8051A2C8:
-	.4byte 0x41700000
-.global lbl_8051A2CC
+	.float 15.0
+.balign 4
 lbl_8051A2CC:
-	.4byte 0x635F2530
-	.4byte 0x32640000
-.global lbl_8051A2D4
+	.asciz "c_%02d"
+.balign 4
 lbl_8051A2D4:
-	.4byte 0x76732530
-	.4byte 0x32640000
-.global lbl_8051A2DC
+	.asciz "vs%02d"
+.balign 4
 lbl_8051A2DC:
-	.4byte 0x00000000
+	.float 0.0
 
 .section .text, "ax"  # 0x800056C0 - 0x80472F00
 .global __ct__Q34Game6VsGame9LoadStateFv
@@ -729,15 +722,14 @@ getMemberID__Q32og6Screen15DispMemberFloorFv:
 /* 8022D65C 0022A59C  38 21 00 10 */	addi r1, r1, 0x10
 /* 8022D660 0022A5A0  4E 80 00 20 */	blr 
 
-.global __sinit_vsGS_Load_cpp
-__sinit_vsGS_Load_cpp:
+__sinit_vsGS_Load_cpp: # static initializer
 /* 8022D664 0022A5A4  3C 80 80 51 */	lis r4, __float_nan@ha
 /* 8022D668 0022A5A8  38 00 FF FF */	li r0, -1
 /* 8022D66C 0022A5AC  C0 04 48 B0 */	lfs f0, __float_nan@l(r4)
-/* 8022D670 0022A5B0  3C 60 80 4C */	lis r3, lbl_804C1068@ha
-/* 8022D674 0022A5B4  90 0D 95 F8 */	stw r0, lbl_80515C78@sda21(r13)
-/* 8022D678 0022A5B8  D4 03 10 68 */	stfsu f0, lbl_804C1068@l(r3)
-/* 8022D67C 0022A5BC  D0 0D 95 FC */	stfs f0, lbl_80515C7C@sda21(r13)
+/* 8022D670 0022A5B0  3C 60 80 4C */	lis r3, govNAN___Q24Game5P2JST@ha
+/* 8022D674 0022A5B4  90 0D 95 F8 */	stw r0, gu32NAN___Q24Game5P2JST@sda21(r13)
+/* 8022D678 0022A5B8  D4 03 10 68 */	stfsu f0, govNAN___Q24Game5P2JST@l(r3)
+/* 8022D67C 0022A5BC  D0 0D 95 FC */	stfs f0, gfNAN___Q24Game5P2JST@sda21(r13)
 /* 8022D680 0022A5C0  D0 03 00 04 */	stfs f0, 4(r3)
 /* 8022D684 0022A5C4  D0 03 00 08 */	stfs f0, 8(r3)
 /* 8022D688 0022A5C8  4E 80 00 20 */	blr 

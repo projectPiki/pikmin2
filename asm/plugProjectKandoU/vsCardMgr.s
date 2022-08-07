@@ -44,7 +44,6 @@ lbl_80483B80:
 lbl_80483B90:
 	.asciz "teki_tank.bti"
 .balign 4
-.global "cardData__Q34Game6VsGame23@unnamed@vsCardMgr_cpp@"
 "cardData__Q34Game6VsGame23@unnamed@vsCardMgr_cpp@":
 	.4byte lbl_80483AE8
 	.4byte 0x00000001
@@ -234,7 +233,7 @@ lbl_8051A440:
 	.float 50.0
 lbl_8051A444:
 	.float 100.0
-lbl_8051A448:
+lbl_8051A448: # tau
 	.float 6.2831855
 lbl_8051A44C:
 	.float 325.9493
@@ -260,7 +259,7 @@ lbl_8051A474:
 	.float 4.0
 lbl_8051A478:
 	.float 1.2566371
-lbl_8051A47C:
+lbl_8051A47C: # -tau
 	.float -6.2831855
 lbl_8051A480:
 	.float 0.07
@@ -310,7 +309,7 @@ lbl_8051A4D8:
 	.float 16.0
 lbl_8051A4DC:
 	.float 10.0
-lbl_8051A4E0:
+lbl_8051A4E0: # pi
 	.float 3.1415927
 lbl_8051A4E4:
 	.float 0.0055555557
@@ -3589,7 +3588,6 @@ update__Q44Game6VsGame7CardMgr11SlotMachineFv:
 /* 802370A4 00233FE4  7C 03 00 2E */	lwzx r0, r3, r0
 /* 802370A8 00233FE8  7C 09 03 A6 */	mtctr r0
 /* 802370AC 00233FEC  4E 80 04 20 */	bctr 
-.global lbl_802370B0
 lbl_802370B0:
 /* 802370B0 00233FF0  C0 22 C1 1C */	lfs f1, lbl_8051A47C@sda21(r2)
 /* 802370B4 00233FF4  C0 02 C0 78 */	lfs f0, lbl_8051A3D8@sda21(r2)
@@ -3602,7 +3600,6 @@ lbl_802370B0:
 /* 802370D0 00234010  90 1F 00 20 */	stw r0, 0x20(r31)
 /* 802370D4 00234014  D0 1F 00 54 */	stfs f0, 0x54(r31)
 /* 802370D8 00234018  48 00 06 3C */	b lbl_80237714
-.global lbl_802370DC
 lbl_802370DC:
 /* 802370DC 0023401C  80 1F 00 1C */	lwz r0, 0x1c(r31)
 /* 802370E0 00234020  2C 00 00 01 */	cmpwi r0, 1
@@ -3674,7 +3671,6 @@ lbl_80237198:
 /* 802371D8 00234118  EC 01 00 BA */	fmadds f0, f1, f2, f0
 /* 802371DC 0023411C  D0 1F 00 54 */	stfs f0, 0x54(r31)
 /* 802371E0 00234120  48 00 05 34 */	b lbl_80237714
-.global lbl_802371E4
 lbl_802371E4:
 /* 802371E4 00234124  C0 02 C1 24 */	lfs f0, lbl_8051A484@sda21(r2)
 /* 802371E8 00234128  C0 22 C0 78 */	lfs f1, lbl_8051A3D8@sda21(r2)
@@ -3705,7 +3701,6 @@ lbl_802371E4:
 /* 8023724C 0023418C  90 1F 00 20 */	stw r0, 0x20(r31)
 /* 80237250 00234190  D0 1F 00 14 */	stfs f0, 0x14(r31)
 /* 80237254 00234194  48 00 04 C0 */	b lbl_80237714
-.global lbl_80237258
 lbl_80237258:
 /* 80237258 00234198  C0 02 C0 E8 */	lfs f0, lbl_8051A448@sda21(r2)
 /* 8023725C 0023419C  D0 1F 00 14 */	stfs f0, 0x14(r31)
@@ -3733,7 +3728,6 @@ lbl_80237294:
 /* 802372B0 002341F0  90 1F 00 20 */	stw r0, 0x20(r31)
 /* 802372B4 002341F4  D0 1F 00 2C */	stfs f0, 0x2c(r31)
 /* 802372B8 002341F8  48 00 04 5C */	b lbl_80237714
-.global lbl_802372BC
 lbl_802372BC:
 /* 802372BC 002341FC  C0 3F 00 2C */	lfs f1, 0x2c(r31)
 /* 802372C0 00234200  C0 02 C1 28 */	lfs f0, lbl_8051A488@sda21(r2)
@@ -3853,7 +3847,6 @@ lbl_80237438:
 /* 8023747C 002343BC  38 A0 00 00 */	li r5, 0
 /* 80237480 002343C0  48 10 11 B1 */	bl playSystemSe__Q28PSSystem5SysIFFUlUl
 /* 80237484 002343C4  48 00 02 90 */	b lbl_80237714
-.global lbl_80237488
 lbl_80237488:
 /* 80237488 002343C8  C0 3F 00 54 */	lfs f1, 0x54(r31)
 /* 8023748C 002343CC  C0 02 C0 78 */	lfs f0, lbl_8051A3D8@sda21(r2)
@@ -3869,7 +3862,6 @@ lbl_80237488:
 /* 802374B4 002343F4  D0 1F 00 14 */	stfs f0, 0x14(r31)
 /* 802374B8 002343F8  90 1F 00 20 */	stw r0, 0x20(r31)
 /* 802374BC 002343FC  48 00 02 58 */	b lbl_80237714
-.global lbl_802374C0
 lbl_802374C0:
 /* 802374C0 00234400  80 9F 00 24 */	lwz r4, 0x24(r31)
 /* 802374C4 00234404  3C 00 43 30 */	lis r0, 0x4330
@@ -3927,7 +3919,6 @@ lbl_80237568:
 /* 8023758C 002344CC  80 6D 98 58 */	lwz r3, spSysIF__8PSSystem@sda21(r13)
 /* 80237590 002344D0  48 10 10 A1 */	bl playSystemSe__Q28PSSystem5SysIFFUlUl
 /* 80237594 002344D4  48 00 01 80 */	b lbl_80237714
-.global lbl_80237598
 lbl_80237598:
 /* 80237598 002344D8  C0 3F 00 54 */	lfs f1, 0x54(r31)
 /* 8023759C 002344DC  C0 02 C0 78 */	lfs f0, lbl_8051A3D8@sda21(r2)
@@ -3943,7 +3934,6 @@ lbl_80237598:
 /* 802375C4 00234504  D0 1F 00 14 */	stfs f0, 0x14(r31)
 /* 802375C8 00234508  90 1F 00 20 */	stw r0, 0x20(r31)
 /* 802375CC 0023450C  48 00 01 48 */	b lbl_80237714
-.global lbl_802375D0
 lbl_802375D0:
 /* 802375D0 00234510  80 9F 00 24 */	lwz r4, 0x24(r31)
 /* 802375D4 00234514  3C 00 43 30 */	lis r0, 0x4330
@@ -4003,7 +3993,6 @@ lbl_80237678:
 /* 802376A4 002345E4  80 6D 98 58 */	lwz r3, spSysIF__8PSSystem@sda21(r13)
 /* 802376A8 002345E8  48 10 0F 89 */	bl playSystemSe__Q28PSSystem5SysIFFUlUl
 /* 802376AC 002345EC  48 00 00 68 */	b lbl_80237714
-.global lbl_802376B0
 lbl_802376B0:
 /* 802376B0 002345F0  38 00 00 01 */	li r0, 1
 /* 802376B4 002345F4  3C 60 80 51 */	lis r3, gGameConfig__4Game@ha
@@ -4030,7 +4019,6 @@ lbl_802376B0:
 /* 80237708 00234648  38 A0 00 00 */	li r5, 0
 /* 8023770C 0023464C  80 9F 00 5C */	lwz r4, 0x5c(r31)
 /* 80237710 00234650  4B FF E3 71 */	bl usePlayerCard__Q34Game6VsGame7CardMgrFiPQ34Game6VsGame7TekiMgr
-.global lbl_80237714
 lbl_80237714:
 /* 80237714 00234654  C0 5F 00 10 */	lfs f2, 0x10(r31)
 /* 80237718 00234658  C0 3F 00 00 */	lfs f1, 0(r31)
@@ -5358,7 +5346,7 @@ lbl_80238980:
 /* 80238B04 00235A44  4E 80 00 20 */	blr 
 
 .global update__8LightObjFv
-update__8LightObjFv:
+update__8LightObjFv: # weak function
 /* 80238B08 00235A48  4E 80 00 20 */	blr 
 
 .global startZoomIn__Q44Game6VsGame7CardMgr11SlotMachineFv
@@ -5602,23 +5590,22 @@ lbl_80238E18:
 /* 80238E68 00235DA8  4E 80 00 20 */	blr 
 
 .global setGroup__Q25efx2d5TBaseFUc
-setGroup__Q25efx2d5TBaseFUc:
+setGroup__Q25efx2d5TBaseFUc: # weak function
 /* 80238E6C 00235DAC  98 83 00 05 */	stb r4, 5(r3)
 /* 80238E70 00235DB0  4E 80 00 20 */	blr 
 
 .global getName__Q25efx2d18ArgScaleColorColorFv
-getName__Q25efx2d18ArgScaleColorColorFv:
+getName__Q25efx2d18ArgScaleColorColorFv: # weak function
 /* 80238E74 00235DB4  3C 60 80 48 */	lis r3, lbl_80483CBC@ha
 /* 80238E78 00235DB8  38 63 3C BC */	addi r3, r3, lbl_80483CBC@l
 /* 80238E7C 00235DBC  4E 80 00 20 */	blr 
 
 .global getName__Q25efx2d3ArgFv
-getName__Q25efx2d3ArgFv:
+getName__Q25efx2d3ArgFv: # weak function
 /* 80238E80 00235DC0  38 62 C1 8C */	addi r3, r2, lbl_8051A4EC@sda21
 /* 80238E84 00235DC4  4E 80 00 20 */	blr 
 
-.global __sinit_vsCardMgr_cpp
-__sinit_vsCardMgr_cpp:
+__sinit_vsCardMgr_cpp: # static initializer
 /* 80238E88 00235DC8  3C 80 80 51 */	lis r4, __float_nan@ha
 /* 80238E8C 00235DCC  38 00 FF FF */	li r0, -1
 /* 80238E90 00235DD0  C0 04 48 B0 */	lfs f0, __float_nan@l(r4)
