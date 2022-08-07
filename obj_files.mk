@@ -1122,7 +1122,7 @@ GC:=\
 	$(BUILD_DIR)/asm/sysGCU/matMath.o\
 	$(BUILD_DIR)/asm/sysGCU/sysShape.o\
 	$(BUILD_DIR)/asm/sysGCU/reset.o\
-	$(BUILD_DIR)/asm/sysGCU/dvdStatus.o\
+	$(BUILD_DIR)/src/sysGCU/dvdStatus.o\
 	$(BUILD_DIR)/asm/sysGCU/sysTimers.o\
 	$(BUILD_DIR)/src/sysGCU/modelMgr.o\
 	$(BUILD_DIR)/asm/sysGCU/heapStatus.o\

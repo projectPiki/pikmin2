@@ -108,7 +108,7 @@ struct System {
 	struct Game::CommonSaveData::Mgr* m_playData; // _60
 	float m_fpsFactor;                            // _64
 	DvdThreadCommand m_threadCommand;             // _68
-	int m_region;                                 // _D4
+	LanguageID m_region;                          // _D4
 	u32 m_flags;                                  // _D8
 	struct JUTRomFont* m_romFont;                 // _DC
 };

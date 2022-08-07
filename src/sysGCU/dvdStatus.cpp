@@ -5,13 +5,14 @@
 #include "JSystem/JFW/JFWDisplay.h"
 #include "System.h"
 #include "types.h"
+#include "Graphics.h"
+#include "JSystem/JUT/JUTVideo.h"
+#include "JSystem/J2D/J2DPrint.h"
+#include "P2JME/P2JME.h"
 
-extern "C" {
-void onDvdErrorOccured__Q33ebi4Save4TMgrFv();
-void onDvdErrorRecovered__Q33ebi4Save4TMgrFv();
-void onDvdErrorOccured__Q33ebi10FileSelect4TMgrFv();
-void onDvdErrorRecovered__Q33ebi10FileSelect4TMgrFv();
-}
+extern P2JME::Mgr* gP2JMEMgr;
+
+enum LanguageID { LANG_ENGLISH = 0, LANG_FRENCH, LANG_GERMAN, LANG_HOL_UNUSED, LANG_ITALIAN, LANG_JAPANESE, LANG_SPANISH };
 
 /*
     Generated from dpostproc
@@ -126,10 +127,9 @@ bool DvdStatus::update()
 			PADControlMotor(2, 2);
 			PADControlMotor(3, 2);
 			_08 = sys->disableCPULockDetector();
-			// ebi::FileSelect::TMgr::onDvdErrorOccured();
-			onDvdErrorOccured__Q33ebi10FileSelect4TMgrFv();
-			// ebi::Save::TMgr::onDvdErrorOccured();
-			onDvdErrorOccured__Q33ebi4Save4TMgrFv();
+			// these probably need to be called by some global instance eventually
+			ebi::FileSelect::TMgr::onDvdErrorOccured();
+			ebi::Save::TMgr::onDvdErrorOccured();
 		}
 	} else {
 		if (_00 == -1) {
@@ -142,10 +142,9 @@ bool DvdStatus::update()
 				JUT_PANICLINE(204, "no display.\n");
 			}
 			sys->enableCPULockDetector(_08);
-			// ebi::FileSelect::TMgr::onDvdErrorRecovered();
-			onDvdErrorRecovered__Q33ebi10FileSelect4TMgrFv();
-			// ebi::Save::TMgr::onDvdErrorRecovered();
-			onDvdErrorRecovered__Q33ebi4Save4TMgrFv();
+			// these probably need to be called by some global instance eventually
+			ebi::FileSelect::TMgr::onDvdErrorRecovered();
+			ebi::Save::TMgr::onDvdErrorRecovered();
 		}
 	}
 	return m_fader != nullptr;
@@ -156,210 +155,56 @@ bool DvdStatus::update()
  * Address:	8042A544
  * Size:	0002B8
  */
-void DvdStatus::draw()
+void DvdStatus::draw(void)
 {
-	/*
-	stwu     r1, -0xa0(r1)
-	mflr     r0
-	li       r4, 0
-	stw      r0, 0xa4(r1)
-	stw      r31, 0x9c(r1)
-	stw      r30, 0x98(r1)
-	stw      r29, 0x94(r1)
-	mr       r29, r3
-	lis      r3, lbl_80499DA8@ha
-	lwz      r0, 4(r29)
-	addi     r31, r3, lbl_80499DA8@l
-	cmplwi   r0, 0
-	beq      lbl_8042A590
-	lwz      r3, sys@sda21(r13)
-	lwz      r3, 0x5c(r3)
-	lwz      r0, 0xe4(r3)
-	clrlwi.  r0, r0, 0x1f
-	bne      lbl_8042A590
-	li       r4, 1
+	if (isErrorOccured()) {
+		sys->m_gfx->setupJ2DOrthoGraphDefault();
+		sys->m_gfx->m_orthoGraph.setPort();
 
-lbl_8042A590:
-	clrlwi.  r0, r4, 0x18
-	beq      lbl_8042A7E0
-	lwz      r3, sys@sda21(r13)
-	lwz      r3, 0x24(r3)
-	bl       setupJ2DOrthoGraphDefault__8GraphicsFv
-	lwz      r3, sys@sda21(r13)
-	lwz      r3, 0x24(r3)
-	lwzu     r12, 0xbc(r3)
-	lwz      r12, 0x14(r12)
-	mtctr    r12
-	bctrl
-	li       r3, 0
-	li       r6, 0x80
-	li       r5, 0xff
-	stb      r3, 0x18(r1)
-	lis      r0, 0x4330
-	lfs      f1, lbl_80520570@sda21(r2)
-	stb      r3, 0x19(r1)
-	addi     r3, r1, 0x1c
-	lwz      r4, sManager__8JUTVideo@sda21(r13)
-	fmr      f2, f1
-	stb      r6, 0x1a(r1)
-	lfd      f4, lbl_80520580@sda21(r2)
-	stb      r5, 0x1b(r1)
-	lwz      r5, 0x18(r1)
-	stw      r0, 0x80(r1)
-	stw      r5, 0x1c(r1)
-	lwz      r5, 4(r4)
-	stw      r0, 0x88(r1)
-	lhz      r4, 4(r5)
-	lhz      r0, 6(r5)
-	stw      r4, 0x84(r1)
-	stw      r0, 0x8c(r1)
-	lfd      f3, 0x80(r1)
-	lfd      f0, 0x88(r1)
-	fsubs    f3, f3, f4
-	fsubs    f4, f0, f4
-	bl       J2DFillBox__FffffQ28JUtility6TColor
-	lfs      f1, lbl_80520570@sda21(r2)
-	addi     r3, r1, 0x20
-	li       r4, 0
-	bl       __ct__8J2DPrintFP7JUTFontf
-	lwz      r3, gP2JMEMgr@sda21(r13)
-	cmplwi   r3, 0
-	beq      lbl_8042A660
-	lbz      r0, 0x28(r3)
-	cmplwi   r0, 0
-	beq      lbl_8042A660
-	lwz      r4, 0x18(r3)
-	addi     r3, r1, 0x20
-	bl       setFont__8J2DPrintFP7JUTFont
-	b        lbl_8042A690
+		J2DFillBox(0.0f, 0.0f, JUTVideo::sManager->m_renderModeObj->fbWidth, JUTVideo::sManager->m_renderModeObj->efbHeight,
+		           JUtility::TColor(0, 0, 0x80, 0xFF));
+		J2DPrint JStack128(nullptr, 0.0f);
 
-lbl_8042A660:
-	lwz      r3, sys@sda21(r13)
-	lwz      r4, 0xdc(r3)
-	cmplwi   r4, 0
-	beq      lbl_8042A67C
-	addi     r3, r1, 0x20
-	bl       setFont__8J2DPrintFP7JUTFont
-	b        lbl_8042A690
+		if (gP2JMEMgr && gP2JMEMgr->_28) {
+			JStack128.setFont((JUTFont*)gP2JMEMgr->m_font);
+		} else if (sys->m_romFont != nullptr) {
+			JStack128.setFont((JUTFont*)sys->m_romFont);
+		} else {
+			JUT_ASSERTLINE(279, false, "no ROM font\n");
+		}
 
-lbl_8042A67C:
-	addi     r3, r31, 0xc
-	addi     r5, r31, 0x40
-	li       r4, 0x117
-	crclr    6
-	bl       panic_f__12JUTExceptionFPCciPCce
+		char** errorMsgSet;
+		if (JStack128.font) {
+			switch (sys->m_region) {
+			case LANG_ENGLISH:
+				errorMsgSet = DvdError::gMessage_eng;
+				break;
+			case LANG_FRENCH:
+				errorMsgSet = DvdError::gMessage_fra;
+				break;
+			case LANG_GERMAN:
+				errorMsgSet = DvdError::gMessage_ger;
+				break;
+			case LANG_ITALIAN:
+				errorMsgSet = DvdError::gMessage_ita;
+				break;
+			case LANG_JAPANESE:
+				errorMsgSet = DvdError::gMessage_jpn;
+				break;
+			case LANG_SPANISH:
+				errorMsgSet = DvdError::gMessage_spa;
+				break;
+			default:
+				JUT_PANICLINE(294, "unknown language. %d", sys->m_region);
+				break;
+			}
 
-lbl_8042A690:
-	lwz      r0, 0x24(r1)
-	cmplwi   r0, 0
-	beq      lbl_8042A7D4
-	lwz      r3, sys@sda21(r13)
-	lwz      r6, 0xd4(r3)
-	cmplwi   r6, 6
-	bgt      lbl_8042A724
-	lis      r3, lbl_804EBE20@ha
-	slwi     r0, r6, 2
-	addi     r3, r3, lbl_804EBE20@l
-	lwzx     r0, r3, r0
-	mtctr    r0
-	bctr
+			JStack128.initiate();
 
-lbl_8042A6C4:
-	lis      r3, gMessage_eng__8DvdError@ha
-	addi     r0, r3, gMessage_eng__8DvdError@l
-	mr       r30, r0
-	b        lbl_8042A738
+			JStack128.color_0x40 = whiteset();
+			JStack128.color_0x44 = whiteset();
 
-lbl_8042A6D4:
-	lis      r3, gMessage_fra__8DvdError@ha
-	addi     r0, r3, gMessage_fra__8DvdError@l
-	mr       r30, r0
-	b        lbl_8042A738
-
-lbl_8042A6E4:
-	lis      r3, gMessage_ger__8DvdError@ha
-	addi     r0, r3, gMessage_ger__8DvdError@l
-	mr       r30, r0
-	b        lbl_8042A738
-
-lbl_8042A6F4:
-	lis      r3, gMessage_ita__8DvdError@ha
-	addi     r0, r3, gMessage_ita__8DvdError@l
-	mr       r30, r0
-	b        lbl_8042A738
-
-lbl_8042A704:
-	lis      r3, gMessage_jpn__8DvdError@ha
-	addi     r0, r3, gMessage_jpn__8DvdError@l
-	mr       r30, r0
-	b        lbl_8042A738
-
-lbl_8042A714:
-	lis      r3, gMessage_spa__8DvdError@ha
-	addi     r0, r3, gMessage_spa__8DvdError@l
-	mr       r30, r0
-	b        lbl_8042A738
-
-lbl_8042A724:
-	addi     r3, r31, 0xc
-	addi     r5, r31, 0x50
-	li       r4, 0x126
-	crclr    6
-	bl       panic_f__12JUTExceptionFPCciPCce
-
-lbl_8042A738:
-	addi     r3, r1, 0x20
-	bl       initiate__8J2DPrintFv
-	li       r5, 0xff
-	lfs      f1, lbl_80520574@sda21(r2)
-	stb      r5, 0x10(r1)
-	addi     r3, r1, 0x20
-	lfs      f2, lbl_80520578@sda21(r2)
-	stb      r5, 0x11(r1)
-	stb      r5, 0x12(r1)
-	stb      r5, 0x13(r1)
-	lwz      r0, 0x10(r1)
-	stb      r5, 8(r1)
-	stw      r0, 0x14(r1)
-	lbz      r4, 0x14(r1)
-	lbz      r9, 0x15(r1)
-	lbz      r8, 0x16(r1)
-	lbz      r7, 0x17(r1)
-	stb      r5, 9(r1)
-	stb      r5, 0xa(r1)
-	stb      r5, 0xb(r1)
-	lwz      r0, 8(r1)
-	stb      r4, 0x60(r1)
-	stw      r0, 0xc(r1)
-	lbz      r6, 0xc(r1)
-	lbz      r5, 0xd(r1)
-	lbz      r4, 0xe(r1)
-	lbz      r0, 0xf(r1)
-	stb      r9, 0x61(r1)
-	stb      r8, 0x62(r1)
-	stb      r7, 0x63(r1)
-	stb      r6, 0x64(r1)
-	stb      r5, 0x65(r1)
-	stb      r4, 0x66(r1)
-	stb      r0, 0x67(r1)
-	lwz      r0, 0(r29)
-	slwi     r0, r0, 2
-	lwzx     r4, r30, r0
-	crset    6
-	bl       print__8J2DPrintFffPCce
-
-lbl_8042A7D4:
-	addi     r3, r1, 0x20
-	li       r4, -1
-	bl       __dt__8J2DPrintFv
-
-lbl_8042A7E0:
-	lwz      r0, 0xa4(r1)
-	lwz      r31, 0x9c(r1)
-	lwz      r30, 0x98(r1)
-	lwz      r29, 0x94(r1)
-	mtlr     r0
-	addi     r1, r1, 0xa0
-	blr
-	*/
+			JStack128.print(40.0f, 200.0f, errorMsgSet[_00]);
+		}
+	}
 }

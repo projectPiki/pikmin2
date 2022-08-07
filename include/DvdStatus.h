@@ -3,8 +3,32 @@
 
 #include "types.h"
 #include "Game/MemoryCard/Mgr.h"
+#include "JSystem/JUtility.h"
 
 struct JUTFader;
+
+// these are legit just for DvdStatus::draw - TMgr is probably a struct
+// with some global instance of it that it's calling but idk what yet, for either
+// Save or FileSelect.
+// ... will need to fix in sysGCU/dvdStatus.cpp eventually ...
+namespace ebi {
+namespace Save {
+namespace TMgr {
+void onDvdErrorOccured();
+void onDvdErrorRecovered();
+} // namespace TMgr
+} // namespace Save
+
+namespace FileSelect {
+namespace TMgr {
+void onDvdErrorOccured();
+void onDvdErrorRecovered();
+} // namespace TMgr
+} // namespace FileSelect
+} // namespace ebi
+
+// used in DvdStatus::draw
+inline JUtility::TColor whiteset(void) { return JUtility::TColor(0xFF, 0xFF, 0xFF, 0xFF); };
 
 namespace DvdError {
 extern char* gMessage_eng[];
