@@ -1,0 +1,10 @@
+avoidChk__Q29PSAutoBgm19MeloArr_RandomAvoidFRQ29PSAutoBgm10MeloArrArg	MeloArr_RandomAvoid::avoidChk(PSAutoBgm::MeloArrArg&)	Global	3C	60
+isToAvoid__Q29PSAutoBgm10MeloArrMgrFRQ29PSAutoBgm10MeloArrArg	MeloArrMgr::isToAvoid(PSAutoBgm::MeloArrArg&)	Global	138	312
+post__Q29PSAutoBgm11MeloArrBaseFRQ29PSAutoBgm10MeloArrArg	MeloArrBase::post(PSAutoBgm::MeloArrArg&)	Weak	4	4
+pre__Q29PSAutoBgm11MeloArrBaseFRQ29PSAutoBgm10MeloArrArg	MeloArrBase::pre(PSAutoBgm::MeloArrArg&)	Weak	4	4
+directOn__Q29PSAutoBgm11MeloArrBaseFPQ29PSAutoBgm5Track	MeloArrBase::directOn(PSAutoBgm::Track*)	Weak	C	12
+directOff__Q29PSAutoBgm11MeloArrBaseFPQ29PSAutoBgm5Track	MeloArrBase::directOff(PSAutoBgm::Track*)	Weak	C	12
+__dt__Q29PSAutoBgm11MeloArrBaseFv	MeloArrBase::~MeloArrBase()	Weak	80	128
+__dt__Q29PSAutoBgm19MeloArr_RandomAvoidFv	MeloArr_RandomAvoid::~MeloArr_RandomAvoid()	Weak	98	152
+@16@__dt__Q29PSAutoBgm19MeloArr_RandomAvoidFv	MeloArr_RandomAvoid::@16@__dt()	Weak	8	8
+@16@__dt__Q29PSAutoBgm11MeloArrBaseFv	MeloArrBase::@16@__dt()	Weak	8	8

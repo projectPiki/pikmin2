@@ -10,14 +10,14 @@ struct Camera;
 }
 
 struct JAIBasic {
-	virtual void makeSequence();               // _00
-	virtual void makeSe();                     // _04
-	virtual void makeStream();                 // _08
-	virtual void getMapInfoFxline(u32);        // _0C
-	virtual void getMapInfoGround(u32);        // _10
-	virtual void getMapInfoFxParameter(u32);   // _14
-	virtual void setSeExtParameter(JAISound*); // _18
-	virtual void setRegisterTrackCallback();   // _1C
+	virtual void makeSequence();               // _08 (weak)
+	virtual void makeSe();                     // _0C
+	virtual void makeStream();                 // _10 (weak)
+	virtual void getMapInfoFxline(u32);        // _14
+	virtual void getMapInfoGround(u32);        // _18
+	virtual void getMapInfoFxParameter(u32);   // _1C
+	virtual void setSeExtParameter(JAISound*); // _20
+	virtual void setRegisterTrackCallback();   // _24
 
 	// VT _00
 	JAInter::Camera* m_cameras; // _04

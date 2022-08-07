@@ -2,6 +2,9 @@
 #define _PSSYSTEM_PSGAME_H
 
 #include "JSystem/JUT/JUTException.h"
+#include "PSSystem/PSScene.h"
+
+struct JASTrack;
 
 namespace PSSystem {
 struct SceneMgr_04_04 {
@@ -19,7 +22,14 @@ struct SceneMgr_04 {
 };
 
 struct SceneMgr {
-	u32 _00;
+	virtual void exec(); // _08 (weak)
+
+	void refreshCurEndScene();
+	void findSeq(JASTrack*);
+	void getPlayingSeq(JASTrack*);
+	void deleteScene(Scene*);
+	void deleteCurrentScene();
+
 	SceneMgr_04* _04;
 };
 

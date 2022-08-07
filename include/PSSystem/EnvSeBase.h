@@ -12,10 +12,10 @@ namespace PSSystem {
 struct EnvSeBase : JSULink<EnvSeBase> {
 	EnvSeBase(unsigned long, float);
 
-	virtual void exec();                    // _00
-	virtual void play();                    // _04
-	virtual u32 getCastType();              // _08
-	virtual void setPanAndDolby(JAISound*); // _0C
+	virtual void exec();                    // _08
+	virtual void play();                    // _0C
+	virtual u32 getCastType();              // _10 (weak)
+	virtual void setPanAndDolby(JAISound*); // _14 (weak)
 
 	// _00 - _10: JSULink
 	// VTBL _10
