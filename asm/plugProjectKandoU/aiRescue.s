@@ -1,24 +1,23 @@
 .include "macros.inc"
 .section .rodata  # 0x804732E0 - 0x8049E220
 .balign 8
-.global lbl_80483CD0
 lbl_80483CD0:
 	.asciz "actRescue"
-	.skip 2
-.global lbl_80483CDC
+.balign 4
 lbl_80483CDC:
 	.asciz "aiRescue.cpp"
-	.skip 3
-.global lbl_80483CEC
+.balign 4
 lbl_80483CEC:
 	.asciz "P2Assert"
-	.skip 3
+.balign 4
+lbl_80483CF8:
 	.asciz "rhandjnt"
-	.skip 3
+.balign 4
+lbl_80483D04:
 	.asciz "ApproachPosActionArg"
-	.skip 3
+.balign 4
+lbl_80483D1C:
 	.asciz "ActionArg"
-	.skip 2
 
 .section .data, "wa"  # 0x8049E220 - 0x804EFC20
 .balign 8
@@ -51,40 +50,29 @@ __vt__Q26PikiAI9ActRescue:
 
 .section .sdata2, "a"     # 0x80516360 - 0x80520E40
 .balign 8
-.global lbl_8051A4F0
 lbl_8051A4F0:
-	.4byte 0x52657363
-	.4byte 0x75650000
-.global lbl_8051A4F8
+	.asciz "Rescue"
+.balign 4
 lbl_8051A4F8:
-	.4byte 0x41200000
-.global lbl_8051A4FC
+	.float 10.0
 lbl_8051A4FC:
-	.4byte 0xBF800000
-.global lbl_8051A500
+	.float -1.0
 lbl_8051A500:
-	.4byte 0x437A0000
-.global lbl_8051A504
+	.float 250.0
 lbl_8051A504:
-	.4byte 0x40400000
-.global lbl_8051A508
+	.float 3.0
 lbl_8051A508:
-	.4byte 0x00000000
-.global lbl_8051A50C
+	.float 0.0
 lbl_8051A50C:
 	.float 0.5
-.global lbl_8051A510
 lbl_8051A510:
-	.4byte 0x42480000
-.global lbl_8051A514
+	.float 50.0
 lbl_8051A514:
-	.4byte 0x40000000
-.global lbl_8051A518
+	.float 2.0
 lbl_8051A518:
-	.4byte 0x43A2F983
-.global lbl_8051A51C
+	.float 325.9493
 lbl_8051A51C:
-	.4byte 0xC3A2F983
+	.float -325.9493
 
 .section .text, "ax"  # 0x800056C0 - 0x80472F00
 .global __ct__Q26PikiAI9ActRescueFPQ24Game4Piki

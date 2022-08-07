@@ -1940,8 +1940,7 @@ getMemberID__Q32og6Screen16DispMemberKanteiFv:
 /* 8023C580 002394C0  38 84 45 49 */	addi r4, r4, 0x4E544549@l
 /* 8023C584 002394C4  4E 80 00 20 */	blr 
 
-.global __sinit_baseGameSectionKantei_cpp
-__sinit_baseGameSectionKantei_cpp:
+__sinit_baseGameSectionKantei_cpp: # static initializer
 /* 8023C588 002394C8  3C 80 80 51 */	lis r4, __float_nan@ha
 /* 8023C58C 002394CC  38 00 FF FF */	li r0, -1
 /* 8023C590 002394D0  C0 04 48 B0 */	lfs f0, __float_nan@l(r4)

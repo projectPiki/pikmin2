@@ -1,24 +1,24 @@
 .include "macros.inc"
 .section .rodata  # 0x804732E0 - 0x8049E220
 .balign 8
-.global lbl_804837E8
 lbl_804837E8:
-	.4byte 0x43656C6C
-	.4byte 0x4D677250
-	.4byte 0x61726D73
-	.4byte 0x00000000
+	.asciz "CellMgrParms"
+.balign 4
+lbl_804837F8: # Shift-JIS
 	.4byte 0x836F8362
 	.4byte 0x83748340
 	.4byte 0x82F08E67
 	.4byte 0x82A40000
+.balign 4
+lbl_80483808: # Shift-JIS
 	.4byte 0x837D8357
 	.4byte 0x8362834E
 	.4byte 0x83698393
 	.4byte 0x836F815B
 	.4byte 0x00000000
-	.4byte 0x55706461
-	.4byte 0x74654D67
-	.4byte 0x72000000
+.balign 4
+lbl_8048381C: # Shift-JIS
+	.asciz "UpdateMgr"
 
 .section .data, "wa"  # 0x8049E220 - 0x804EFC20
 .balign 8
@@ -35,18 +35,15 @@ __vt__12CellMgrParms:
 .balign 8
 .global mInstance__12CellMgrParms
 mInstance__12CellMgrParms:
-	.skip 0x8
+	.skip 0x4
 
 .section .sdata2, "a"     # 0x80516360 - 0x80520E40
 .balign 8
-.global lbl_8051A2F0
 lbl_8051A2F0:
-	.4byte 0x43656C6C
-	.4byte 0x4D677200
-.global lbl_8051A2F8
+	.asciz "CellMgr"
+.balign 4
 lbl_8051A2F8:
-	.4byte 0x472D4861
-	.4byte 0x6C660000
+	.asciz "G-Half"
 
 .section .text, "ax"  # 0x800056C0 - 0x80472F00
 .global __dt__12CellMgrParmsFv

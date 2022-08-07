@@ -1,49 +1,36 @@
 .include "macros.inc"
 .section .rodata  # 0x804732E0 - 0x8049E220
 .balign 8
-.global lbl_8047F338
 lbl_8047F338:
-	.4byte 0x61637454
-	.4byte 0x72616E73
-	.4byte 0x706F7274
-	.4byte 0x00000000
-.global lbl_8047F348
+	.asciz "actTransport"
+.balign 4
 lbl_8047F348:
 	.4byte lbl_805190D0
 	.4byte lbl_805190D8
 	.4byte lbl_805190E0
-.global lbl_8047F354
 lbl_8047F354:
-	.4byte 0x43415252
-	.4byte 0x59202573
-	.4byte 0x00000000
-	.4byte 0x41637454
-	.4byte 0x72616E73
-	.4byte 0x706F7274
-	.4byte 0x41726700
-	.4byte 0x61695472
-	.4byte 0x616E7370
-	.4byte 0x6F72742E
-	.4byte 0x63707000
+	.asciz "CARRY %s"
+.balign 4
+lbl_8047F360:
+	.asciz "ActTransportArg"
+.balign 4
+lbl_8047F370:
+	.asciz "aiTransport.cpp"
+.balign 4
+lbl_8047F380:
 	.asciz "P2Assert"
-	.skip 3
-	.4byte 0x41637469
-	.4byte 0x6F6E4172
-	.4byte 0x67000000
-	.4byte 0x43726561
-	.4byte 0x74757265
-	.4byte 0x00000000
-.global lbl_8047F3A4
+.balign 4
+lbl_8047F38C:
+	.asciz "ActionArg"
+.balign 4
+lbl_8047F398:
+	.asciz "Creature"
+.balign 4
 lbl_8047F3A4:
-	.4byte 0x50617468
-	.4byte 0x4D6F7665
-	.4byte 0x41726700
-.global lbl_8047F3B0
+	.asciz "PathMoveArg"
+.balign 4
 lbl_8047F3B0:
-	.4byte 0x476F746F
-	.4byte 0x536C6F74
-	.4byte 0x41726700
-	.4byte 0x00000000
+	.asciz "GotoSlotArg"
 
 .section .data, "wa"  # 0x8049E220 - 0x804EFC20
 .balign 8
@@ -78,43 +65,33 @@ __vt__Q26PikiAI12ActTransport:
 	.4byte 0
 	.4byte 0
 	.4byte "@60@4@onKeyEvent__Q26PikiAI12ActTransportFRCQ28SysShape8KeyEvent"
-	.4byte 0
 
 .section .sdata2, "a"     # 0x80516360 - 0x80520E40
 .balign 8
-.global lbl_805190D0
 lbl_805190D0:
-	.ascii "SLOT"
-	.skip 4
-.global lbl_805190D8
+	.asciz "SLOT"
+.balign 4
 lbl_805190D8:
-	.ascii "LIFT"
-	.skip 4
-.global lbl_805190E0
+	.asciz "LIFT"
+.balign 4
 lbl_805190E0:
-	.ascii "MOVE"
-	.skip 4
-.global lbl_805190E8
+	.asciz "MOVE"
+.balign 4
 lbl_805190E8:
 	.asciz "Carry"
-	.skip 2
-.global lbl_805190F0
+.balign 4
 lbl_805190F0:
 	.float 0.0
-.global lbl_805190F4
 lbl_805190F4:
 	.float 32768.0
-.global lbl_805190F8
 lbl_805190F8:
 	.float 5.0
-.global lbl_805190FC
 lbl_805190FC:
 	.float 3.0
-.global lbl_80519100
+.balign 8
 lbl_80519100:
 	.4byte 0x43300000
 	.4byte 0x80000000
-.global lbl_80519108
 lbl_80519108:
 	.float 11.0
 

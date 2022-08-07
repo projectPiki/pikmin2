@@ -573,7 +573,7 @@ forceFinish__7SectionFv: # weak function
 /* 80165058 00161F98  38 60 00 00 */	li r3, 0
 /* 8016505C 00161F9C  4E 80 00 20 */	blr 
 
-__sinit_baseHIOSection_cpp:
+__sinit_baseHIOSection_cpp: # static initializer
 /* 80165060 00161FA0  3C 80 80 51 */	lis r4, __float_nan@ha
 /* 80165064 00161FA4  38 00 FF FF */	li r0, -1
 /* 80165068 00161FA8  C0 04 48 B0 */	lfs f0, __float_nan@l(r4)

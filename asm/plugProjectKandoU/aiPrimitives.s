@@ -5,82 +5,62 @@ lbl_constructor:
 
 .section .rodata  # 0x804732E0 - 0x8049E220
 .balign 8
-.global lbl_8047F070
 lbl_8047F070:
 	.4byte 0x00000000
 	.4byte 0x00000000
 	.4byte 0x00000000
-	.4byte 0x61695072
-	.4byte 0x696D6974
-	.4byte 0x69766573
-	.4byte 0x00000000
-	.4byte 0x41707072
-	.4byte 0x6F616368
-	.4byte 0x506F7341
-	.4byte 0x6374696F
-	.4byte 0x6E417267
-	.4byte 0x00000000
-.global lbl_8047F0A4
+.balign 4
+lbl_8047F07C:
+	.asciz "aiPrimitives"
+.balign 4
+lbl_8047F08C:
+	.asciz "ApproachPosActionArg"
+.balign 4
 lbl_8047F0A4:
-	.4byte 0x61695072
-	.4byte 0x696D6974
-	.4byte 0x69766573
-	.4byte 0x2E637070
-	.4byte 0x00000000
-.global lbl_8047F0B8
+	.asciz "aiPrimitives.cpp"
+.balign 4
 lbl_8047F0B8:
 	.asciz "P2Assert"
-	.skip 3
-	.4byte 0x41637469
-	.4byte 0x6F6E4172
-	.4byte 0x67000000
-	.4byte 0x476F746F
-	.4byte 0x536C6F74
-	.4byte 0x41726700
-	.4byte 0x50617468
-	.4byte 0x4D6F7665
-	.4byte 0x41726700
-	.4byte 0x7A616E6E
-	.4byte 0x656E2021
-	.4byte 0x0A000000
-	.4byte 0x73746172
-	.4byte 0x743D3D30
-	.4byte 0x00000000
-	.4byte 0x6E657767
-	.4byte 0x6F616C20
-	.4byte 0x3D3D2030
-	.4byte 0x00000000
-	.4byte 0x25642D3E
-	.4byte 0x25642D3E
-	.4byte 0x2E2E2E2D
-	.4byte 0x3E256400
-	.4byte 0x6E6F2068
-	.4byte 0x616E646C
-	.4byte 0x65202564
-	.4byte 0x0A000000
-	.4byte 0x6D617820
-	.4byte 0x69732030
-	.4byte 0x205B2573
-	.4byte 0x5D0A0000
-	.4byte 0x53746963
-	.4byte 0x6B417474
-	.4byte 0x61636B41
-	.4byte 0x6374696F
-	.4byte 0x6E417267
-	.4byte 0x00000000
-	.4byte 0x47617468
-	.4byte 0x65724163
-	.4byte 0x74696F6E
-	.4byte 0x41726700
+.balign 4
+lbl_8047F0C4:
+	.asciz "ActionArg"
+.balign 4
+lbl_8047F0D0:
+	.asciz "GotoSlotArg"
+.balign 4
+lbl_8047F0DC:
+	.asciz "PathMoveArg"
+.balign 4
+lbl_8047F0E8:
+	.asciz "zannen !\n"
+.balign 4
+lbl_8047F0F4:
+	.asciz "start==0"
+.balign 4
+lbl_8047F100:
+	.asciz "newgoal == 0"
+.balign 4
+lbl_8047F110:
+	.asciz "%d->%d->...->%d"
+.balign 4
+lbl_8047F120:
+	.asciz "no handle %d\n"
+.balign 4
+lbl_8047F130:
+	.asciz "max is 0 [%s]\n"
+.balign 4
+lbl_8047F140:
+	.asciz "StickAttackActionArg"
+.balign 4
+lbl_8047F158:
+	.asciz "GatherActionArg"
 
 .section .data, "wa"  # 0x8049E220 - 0x804EFC20
 .balign 8
-.global lbl_804B4AA8
-lbl_804B4AA8:
-	.4byte 0x00000000
-	.4byte 0x00000000
-	.4byte 0x00000000
-.global lbl_804B4AB4
+govNAN___Q24Game5P2JST:
+	.float 0.0
+	.float 0.0
+	.float 0.0
 lbl_804B4AB4:
 	.4byte lbl_8019C100
 	.4byte lbl_8019C42C
@@ -244,115 +224,81 @@ __vt__Q26PikiAI10ActGotoPos:
 	.4byte doDirectDraw__Q26PikiAI6ActionFR8Graphics
 	.4byte "wallCallback__Q26PikiAI6ActionFR10Vector3<f>"
 	.4byte getInfo__Q26PikiAI6ActionFPc
-	.4byte 0
 
 .section .sbss # 0x80514D80 - 0x80516360
 .balign 8
-.global lbl_805159E0
-lbl_805159E0:
+gu32NAN___Q24Game5P2JST:
 	.skip 0x4
-.global lbl_805159E4
-lbl_805159E4:
+gfNAN___Q24Game5P2JST:
 	.skip 0x4
 
 .section .sdata2, "a"     # 0x80516360 - 0x80520E40
 .balign 8
-.global lbl_80518F60
 lbl_80518F60:
-	.4byte 0x00000000
-.global lbl_80518F64
+	.float 0.0
 lbl_80518F64:
 	.float 1.0
-.global lbl_80518F68
 lbl_80518F68:
-	.4byte 0x41A00000
-.global lbl_80518F6C
+	.float 20.0
 lbl_80518F6C:
-	.4byte 0xBF000000
-.global lbl_80518F70
+	.float -0.5
 lbl_80518F70:
-	.4byte 0x40C00000
-.global lbl_80518F74
+	.float 6.0
 lbl_80518F74:
-	.4byte 0x3C23D70A
-.global lbl_80518F78
+	.float 0.01
 lbl_80518F78:
 	.float 0.5
-.global lbl_80518F7C
-lbl_80518F7C:
-	.4byte 0x3EA0D97C
-.global lbl_80518F80
+lbl_80518F7C: # pi/10
+	.float 0.31415927
 lbl_80518F80:
-	.4byte 0x41200000
-.global lbl_80518F84
+	.float 10.0
 lbl_80518F84:
-	.4byte 0x3E4CCCCD
-.global lbl_80518F88
+	.float 0.2
 lbl_80518F88:
-	.4byte 0x40400000
-.global lbl_80518F8C
+	.float 3.0
 lbl_80518F8C:
-	.4byte 0x42200000
-.global lbl_80518F90
+	.float 40.0
 lbl_80518F90:
 	.float -1.0
-.global lbl_80518F94
-lbl_80518F94:
-	.4byte 0x40490FDB
-.global lbl_80518F98
+lbl_80518F94: # pi
+	.float 3.1415927
 lbl_80518F98:
-	.4byte 0x447FE000
-.global lbl_80518F9C
-lbl_80518F9C:
-	.4byte 0x3FC90FDB
-.global lbl_80518FA0
+	.float 1023.5
+lbl_80518F9C: # pi/2
+	.float 1.5707964
 lbl_80518FA0:
-	.4byte 0x42C80000
-	.4byte 0x00000000
-.global lbl_80518FA8
+	.float 100.0
+.balign 8
 lbl_80518FA8:
 	.4byte 0x43300000
 	.4byte 0x80000000
-.global lbl_80518FB0
+.balign 4
 lbl_80518FB0:
-	.4byte 0x2E2E2E00
-.global lbl_80518FB4
+	.asciz "..."
 lbl_80518FB4:
-	.4byte 0x43200000
-.global lbl_80518FB8
-lbl_80518FB8:
-	.4byte 0x40C90FDB
-.global lbl_80518FBC
+	.float 160.0
+lbl_80518FB8: # tau
+	.float 6.2831855
 lbl_80518FBC:
-	.4byte 0x43A2F983
-.global lbl_80518FC0
+	.float 325.9493
 lbl_80518FC0:
-	.4byte 0xC3A2F983
-.global lbl_80518FC4
+	.float -325.9493
 lbl_80518FC4:
-	.4byte 0x442F0000
-.global lbl_80518FC8
+	.float 700.0
 lbl_80518FC8:
-	.4byte 0x42480000
-.global lbl_80518FCC
+	.float 50.0
 lbl_80518FCC:
 	.float 0.3
-.global lbl_80518FD0
 lbl_80518FD0:
-	.4byte 0x40000000
-.global lbl_80518FD4
+	.float 2.0
 lbl_80518FD4:
-	.4byte 0x43020000
-.global lbl_80518FD8
+	.float 130.0
 lbl_80518FD8:
-	.4byte 0x47000000
-.global lbl_80518FDC
+	.float 32768.0
 lbl_80518FDC:
-	.4byte 0x40A00000
-.global lbl_80518FE0
+	.float 5.0
 lbl_80518FE0:
-	.4byte 0x3F19999A
-	.4byte 0x00000000
+	.float 0.6
 
 .section .text, "ax"  # 0x800056C0 - 0x80472F00
 .global __ct__Q26PikiAI10ActGotoPosFPQ24Game4Piki
@@ -5876,7 +5822,6 @@ lbl_8019C0DC:
 /* 8019C0F4 00199034  7C 03 00 2E */	lwzx r0, r3, r0
 /* 8019C0F8 00199038  7C 09 03 A6 */	mtctr r0
 /* 8019C0FC 0019903C  4E 80 04 20 */	bctr 
-.global lbl_8019C100
 lbl_8019C100:
 /* 8019C100 00199040  28 04 00 07 */	cmplwi r4, 7
 /* 8019C104 00199044  41 82 01 28 */	beq lbl_8019C22C
@@ -5961,7 +5906,6 @@ lbl_8019C22C:
 /* 8019C238 00199178  38 C0 00 01 */	li r6, 1
 /* 8019C23C 0019917C  4B FA C7 19 */	bl startSound__Q24Game4PikiFPQ24Game8CreatureUlb
 /* 8019C240 00199180  48 00 04 78 */	b lbl_8019C6B8
-.global lbl_8019C244
 lbl_8019C244:
 /* 8019C244 00199184  80 7F 00 04 */	lwz r3, 4(r31)
 /* 8019C248 00199188  88 0D 84 6B */	lbz r0, sMabikiEfx__Q24Game12BaseHIOParms@sda21(r13)
@@ -6025,7 +5969,6 @@ lbl_8019C32C:
 /* 8019C32C 0019926C  38 61 00 38 */	addi r3, r1, 0x38
 /* 8019C330 00199270  48 21 B7 C1 */	bl "createSimpleBridgeAttack__3efxFR10Vector3<f>"
 /* 8019C334 00199274  48 00 03 84 */	b lbl_8019C6B8
-.global lbl_8019C338
 lbl_8019C338:
 /* 8019C338 00199278  80 7F 00 04 */	lwz r3, 4(r31)
 /* 8019C33C 0019927C  88 0D 84 6B */	lbz r0, sMabikiEfx__Q24Game12BaseHIOParms@sda21(r13)
@@ -6089,7 +6032,6 @@ lbl_8019C420:
 /* 8019C420 00199360  38 61 00 2C */	addi r3, r1, 0x2c
 /* 8019C424 00199364  48 21 B6 41 */	bl "createSimpleGate2Attack__3efxFR10Vector3<f>"
 /* 8019C428 00199368  48 00 02 90 */	b lbl_8019C6B8
-.global lbl_8019C42C
 lbl_8019C42C:
 /* 8019C42C 0019936C  80 7F 00 04 */	lwz r3, 4(r31)
 /* 8019C430 00199370  88 0D 84 6B */	lbz r0, sMabikiEfx__Q24Game12BaseHIOParms@sda21(r13)
@@ -6153,7 +6095,6 @@ lbl_8019C514:
 /* 8019C514 00199454  38 61 00 20 */	addi r3, r1, 0x20
 /* 8019C518 00199458  48 21 B2 09 */	bl "createSimpleGate1Attack__3efxFR10Vector3<f>"
 /* 8019C51C 0019945C  48 00 01 9C */	b lbl_8019C6B8
-.global lbl_8019C520
 lbl_8019C520:
 /* 8019C520 00199460  80 7F 00 04 */	lwz r3, 4(r31)
 /* 8019C524 00199464  88 0D 84 6B */	lbz r0, sMabikiEfx__Q24Game12BaseHIOParms@sda21(r13)
@@ -6217,7 +6158,6 @@ lbl_8019C608:
 /* 8019C608 00199548  38 61 00 14 */	addi r3, r1, 0x14
 /* 8019C60C 0019954C  48 21 B7 29 */	bl "createSimpleGate3Attack__3efxFR10Vector3<f>"
 /* 8019C610 00199550  48 00 00 A8 */	b lbl_8019C6B8
-.global lbl_8019C614
 lbl_8019C614:
 /* 8019C614 00199554  80 9F 00 04 */	lwz r4, 4(r31)
 /* 8019C618 00199558  38 61 00 08 */	addi r3, r1, 8
@@ -6253,7 +6193,6 @@ lbl_8019C678:
 /* 8019C688 001995C8  38 C0 00 02 */	li r6, 2
 /* 8019C68C 001995CC  4B FA C3 39 */	bl startSound__Q24Game4PikiFPQ24Game8CreatureUlQ36PSGame5SeMgr7SetSeId
 /* 8019C690 001995D0  48 00 00 28 */	b lbl_8019C6B8
-.global lbl_8019C694
 lbl_8019C694:
 /* 8019C694 001995D4  80 7F 00 04 */	lwz r3, 4(r31)
 /* 8019C698 001995D8  80 63 02 58 */	lwz r3, 0x258(r3)
@@ -6745,15 +6684,14 @@ lbl_8019CD1C:
 cleanup__Q26PikiAI20ActFollowVectorFieldFv:
 /* 8019CD30 00199C70  4E 80 00 20 */	blr 
 
-.global __sinit_aiPrimitives_cpp
-__sinit_aiPrimitives_cpp:
+__sinit_aiPrimitives_cpp: # static initializer
 /* 8019CD34 00199C74  3C 80 80 51 */	lis r4, __float_nan@ha
 /* 8019CD38 00199C78  38 00 FF FF */	li r0, -1
 /* 8019CD3C 00199C7C  C0 04 48 B0 */	lfs f0, __float_nan@l(r4)
-/* 8019CD40 00199C80  3C 60 80 4B */	lis r3, lbl_804B4AA8@ha
-/* 8019CD44 00199C84  90 0D 93 60 */	stw r0, lbl_805159E0@sda21(r13)
-/* 8019CD48 00199C88  D4 03 4A A8 */	stfsu f0, lbl_804B4AA8@l(r3)
-/* 8019CD4C 00199C8C  D0 0D 93 64 */	stfs f0, lbl_805159E4@sda21(r13)
+/* 8019CD40 00199C80  3C 60 80 4B */	lis r3, govNAN___Q24Game5P2JST@ha
+/* 8019CD44 00199C84  90 0D 93 60 */	stw r0, gu32NAN___Q24Game5P2JST@sda21(r13)
+/* 8019CD48 00199C88  D4 03 4A A8 */	stfsu f0, govNAN___Q24Game5P2JST@l(r3)
+/* 8019CD4C 00199C8C  D0 0D 93 64 */	stfs f0, gfNAN___Q24Game5P2JST@sda21(r13)
 /* 8019CD50 00199C90  D0 03 00 04 */	stfs f0, 4(r3)
 /* 8019CD54 00199C94  D0 03 00 08 */	stfs f0, 8(r3)
 /* 8019CD58 00199C98  4E 80 00 20 */	blr 

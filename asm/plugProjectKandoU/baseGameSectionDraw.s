@@ -5,27 +5,21 @@ lbl_constructor:
 
 .section .rodata  # 0x804732E0 - 0x8049E220
 .balign 8
-.global lbl_80483D28
 lbl_80483D28:
 	.asciz "drct-post"
-	.skip 2
-.global lbl_80483D34
+.balign 4
 lbl_80483D34:
 	.asciz "part-draw"
-	.skip 2
-.global lbl_80483D40
+.balign 4
 lbl_80483D40:
 	.asciz "draw_calc"
-	.skip 2
 
 .section .data, "wa"  # 0x8049E220 - 0x804EFC20
 .balign 8
-.global lbl_804C1590
 lbl_804C1590:
 	.4byte 0x00000000
 	.4byte 0x00000000
 	.4byte 0x00000000
-.global lbl_804C159C
 lbl_804C159C:
 	.4byte 0x00000000
 	.4byte 0xFFFFFFFF
@@ -43,27 +37,21 @@ lbl_804C159C:
 
 .section .sbss # 0x80514D80 - 0x80516360
 .balign 8
-.global lbl_80515CB0
-lbl_80515CB0:
+gu32NAN___Q24Game5P2JST:
 	.skip 0x4
-.global lbl_80515CB4
-lbl_80515CB4:
+gfNAN___Q24Game5P2JST:
 	.skip 0x4
 
 .section .sdata2, "a"     # 0x80516360 - 0x80520E40
 .balign 8
-.global lbl_8051A520
 lbl_8051A520:
-	.4byte 0x6A647261
-	.4byte 0x77000000
-.global lbl_8051A528
+	.asciz "jdraw"
+.balign 4
 lbl_8051A528:
-	.4byte 0x64697265
-	.4byte 0x63740000
-.global lbl_8051A530
+	.asciz "direct"
+.balign 4
 lbl_8051A530:
-	.4byte 0x6A33642D
-	.4byte 0x65746300
+	.asciz "j3d-etc"
 
 .section .text, "ax"  # 0x800056C0 - 0x80472F00
 .if version == 1
@@ -791,15 +779,14 @@ lbl_80239D44:
 /* 80239E54 00236D94  38 21 00 10 */	addi r1, r1, 0x10
 /* 80239E58 00236D98  4E 80 00 20 */	blr 
 
-.global __sinit_baseGameSectionDraw_cpp
-__sinit_baseGameSectionDraw_cpp:
+__sinit_baseGameSectionDraw_cpp: # static initializer
 /* 80239E5C 00236D9C  3C 80 80 51 */	lis r4, __float_nan@ha
 /* 80239E60 00236DA0  38 00 FF FF */	li r0, -1
 /* 80239E64 00236DA4  C0 04 48 B0 */	lfs f0, __float_nan@l(r4)
 /* 80239E68 00236DA8  3C 60 80 4C */	lis r3, lbl_804C1590@ha
-/* 80239E6C 00236DAC  90 0D 96 30 */	stw r0, lbl_80515CB0@sda21(r13)
+/* 80239E6C 00236DAC  90 0D 96 30 */	stw r0, gu32NAN___Q24Game5P2JST@sda21(r13)
 /* 80239E70 00236DB0  D4 03 15 90 */	stfsu f0, lbl_804C1590@l(r3)
-/* 80239E74 00236DB4  D0 0D 96 34 */	stfs f0, lbl_80515CB4@sda21(r13)
+/* 80239E74 00236DB4  D0 0D 96 34 */	stfs f0, gfNAN___Q24Game5P2JST@sda21(r13)
 /* 80239E78 00236DB8  D0 03 00 04 */	stfs f0, 4(r3)
 /* 80239E7C 00236DBC  D0 03 00 08 */	stfs f0, 8(r3)
 /* 80239E80 00236DC0  4E 80 00 20 */	blr 
