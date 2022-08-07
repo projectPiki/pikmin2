@@ -4,6 +4,7 @@
 #include "types.h"
 #include "JSystem/JAD/JADUtility.h"
 #include "PSAutoBgm/Cycle.h"
+#include "JSystem/JAD/JADStr.h"
 
 struct JASTrack;
 

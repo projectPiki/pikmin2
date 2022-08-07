@@ -14,7 +14,8 @@ enum CurveSign {
 float linearTransform(float, float, float, float, float, bool);
 float getParamByExp(float, float, float, float, float, float, CurveSign);
 float getRandom(float, float, float);
-// float getRandom_0_1() {
+float getRandom_0_1();
+// {
 // 	static JMath::TRandom_fast_ oRandom(0);
 // 	u32 next = (oRandom.next() >> 9) | 0x3F800000;
 // 	return *(float*)(void*)&next - 1.0f;

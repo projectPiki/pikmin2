@@ -10,6 +10,7 @@ struct JASTrack;
 
 namespace PSAutoBgm {
 
+struct Module;
 /**
  * @size = 0x3D
  */
@@ -40,9 +41,9 @@ struct CycleBase {
 struct OnCycle : public CycleBase {
 	OnCycle(Module*);
 
-	virtual play(JASTrack*);     // _08
-	virtual void getCycleType(); // _0C (weak)
-	virtual void avoidCheck();   // _10
+	virtual void play(JASTrack*); // _08
+	virtual void getCycleType();  // _0C (weak)
+	virtual void avoidCheck();    // _10
 
 	void setTip(JASTrack*);
 	void historiesAreSameAll();

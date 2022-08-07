@@ -15,35 +15,39 @@ struct MeloArrArg {
 };
 
 // this has some funky inheritance going on I think?
-struct MeloArrBase : public JADHioNode, JSUPtrLink {
+struct MeloArrBase : public JSUPtrLink, JADHioNode {
 	// JADHioNode vtable:
 	// virtual void ~MeloArrBase() = 0;     // _08
 	// virtual void _0C() = 0;              // _0C - might just be gap
 	// _10 is a thunk of ~MeloArrBase()
 
 	// MeloArrBase vtable:
-	virtual void directOn(Track*);          // _14 (weak)
-	virtual void directOff(Track*);         // _18 (weak)
-	virtual void pre(MeloArrArg&);          // _1C (weak)
-	virtual void post(MeloArrArg&);         // _20 (weak)
-	virtual void avoidChk(MeloArrArg&) = 0; // _24
-	virtual ~MeloArrBase();                 // _28 (weak)
+	virtual void directOn(Track*) { _19 = true; }   // _14 (weak)
+	virtual void directOff(Track*) { _19 = false; } // _18 (weak)
+	virtual void pre(MeloArrArg&) { }               // _1C (weak)
+	virtual void post(MeloArrArg&) { }              // _20 (weak)
+	virtual bool avoidChk(MeloArrArg&) = 0;         // _24
+	virtual ~MeloArrBase() { }                      // _28 (weak)
 
 	// _00-_10  = JSUPtrLink
-	// _10      = JADHioNode vtable
+	// _10 		= JADHioNode vtable
 	// _14      = MeloArrBase vtable
+	u8 _18;   // _18
+	bool _19; // _19
 };
 
 /**
  * @size = 0x10
  */
 struct MeloArrMgr : public JADHioNode {
-	virtual ~MeloArrBase(); // _08 (weak)
+	virtual ~MeloArrMgr(); // _08 (weak)
 
-	void isToAvoid(MeloArrArg&);
+	bool isToAvoid(MeloArrArg&);
 
 	// _00 = VTABLE
-	JSUPtrList _04; // _04
+	JSUPtrList m_list; // _04
+	u16 _10;           // _10
+	u8 _12;            // _12
 };
 
 /**
@@ -56,13 +60,10 @@ struct MeloArr_RandomAvoid : public MeloArrBase {
 	// _10 is a thunk of ~MeloArr_RandomAvoid()
 
 	// MeloArrBase vtable:
-	virtual void avoidChk(MeloArrArg&); // _24
-	virtual ~MeloArr_RandomAvoid();     // _28 (weak)
+	virtual bool avoidChk(MeloArrArg&); // _24
+	virtual ~MeloArr_RandomAvoid() { }  // _28 (weak)
 
-	u8 _18;      // _18
-	u8 _19;      // _19
-	u8 _1A[0x2]; // _1A - possibly padding
-	float _1C;   // _1C
+	float _1C; // _1C
 };
 
 } // namespace PSAutoBgm
