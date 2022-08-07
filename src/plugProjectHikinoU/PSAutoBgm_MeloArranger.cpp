@@ -1,4 +1,7 @@
 #include "types.h"
+#include "PSAutoBgm/MeloArr.h"
+#include "JSystem/JAL/JALCalc.h"
+#include "JSystem/JUT/JUTException.h"
 
 /*
     Generated from dpostproc
@@ -48,30 +51,18 @@
    __dt__Q29PSAutoBgm19MeloArr_RandomAvoidFv
 */
 
+namespace PSAutoBgm {
+
 /*
  * --INFO--
  * Address:	8033EE9C
  * Size:	00003C
  */
-void PSAutoBgm::MeloArr_RandomAvoid::avoidChk(PSAutoBgm::MeloArrArg&)
+bool MeloArr_RandomAvoid::avoidChk(MeloArrArg& meloArg)
 {
-	/*
-	stwu     r1, -0x10(r1)
-	mflr     r0
-	stw      r0, 0x14(r1)
-	stw      r31, 0xc(r1)
-	mr       r31, r3
-	bl       getRandom_0_1__7JALCalcFv
-	lfs      f0, 0x1c(r31)
-	fcmpo    cr0, f1, f0
-	mfcr     r0
-	lwz      r31, 0xc(r1)
-	srwi     r3, r0, 0x1f
-	lwz      r0, 0x14(r1)
-	mtlr     r0
-	addi     r1, r1, 0x10
-	blr
-	*/
+	float randDec = JALCalc::getRandom_0_1();
+	u8 out        = (randDec < _1C);
+	return out;
 }
 
 /*
@@ -79,8 +70,37 @@ void PSAutoBgm::MeloArr_RandomAvoid::avoidChk(PSAutoBgm::MeloArrArg&)
  * Address:	8033EED8
  * Size:	000138
  */
-void PSAutoBgm::MeloArrMgr::isToAvoid(PSAutoBgm::MeloArrArg&)
+// WIP: https://decomp.me/scratch/Q4yv7
+bool MeloArrMgr::isToAvoid(MeloArrArg& meloArg)
 {
+	P2ASSERTLINE(89, meloArg._00 < 0x10);
+	P2ASSERTLINE(90, meloArg._01 != 0xFF);
+	if (_12 == 0) {
+		return false;
+	}
+	bool check = false;
+	if ((_10 >> meloArg._00) & 1) {
+		MeloArrBase* currLink = (MeloArrBase*)m_list.m_head;
+		for (currLink; currLink; currLink = (MeloArrBase*)currLink->m_next) {
+			MeloArr_RandomAvoid* randAvoid = (MeloArr_RandomAvoid*)currLink->m_value;
+			randAvoid->pre(meloArg);
+			if (check == false) {
+				randAvoid = (MeloArr_RandomAvoid*)currLink->m_value;
+				bool interCheck;
+				if (randAvoid->_19 == true) {
+					interCheck = randAvoid->avoidChk(meloArg);
+				} else {
+					interCheck = false;
+				}
+				check = interCheck;
+			}
+
+			randAvoid = (MeloArr_RandomAvoid*)currLink->m_value;
+			randAvoid->post(meloArg);
+		}
+	}
+	return check;
+
 	/*
 	stwu     r1, -0x20(r1)
 	mflr     r0
@@ -188,159 +208,73 @@ lbl_8033EFF4:
  * Address:	8033F010
  * Size:	000004
  */
-void PSAutoBgm::MeloArrBase::post(PSAutoBgm::MeloArrArg&) { }
+// WEAK - in header
+// void MeloArrBase::post(PSAutoBgm::MeloArrArg&) { }
 
 /*
  * --INFO--
  * Address:	8033F014
  * Size:	000004
  */
-void PSAutoBgm::MeloArrBase::pre(PSAutoBgm::MeloArrArg&) { }
+// WEAK - in header
+// void MeloArrBase::pre(PSAutoBgm::MeloArrArg&) { }
 
 /*
  * --INFO--
  * Address:	8033F018
  * Size:	00000C
  */
-void PSAutoBgm::MeloArrBase::directOn(PSAutoBgm::Track*)
-{
-	// Generated from stb r0, 0x19(r3)
-	_19 = 1;
-}
+// WEAK - in header
+// void MeloArrBase::directOn(PSAutoBgm::Track*) { _19 = true; }
 
 /*
  * --INFO--
  * Address:	8033F024
  * Size:	00000C
  */
-void PSAutoBgm::MeloArrBase::directOff(PSAutoBgm::Track*)
-{
-	// Generated from stb r0, 0x19(r3)
-	_19 = 0;
-}
+// WEAK - in header
+// void MeloArrBase::directOff(PSAutoBgm::Track*) { _19 = false; }
 
 /*
  * --INFO--
  * Address:	8033F030
  * Size:	000080
  */
-PSAutoBgm::MeloArrBase::~MeloArrBase()
-{
-	/*
-	stwu     r1, -0x10(r1)
-	mflr     r0
-	stw      r0, 0x14(r1)
-	stw      r31, 0xc(r1)
-	mr       r31, r4
-	stw      r30, 8(r1)
-	or.      r30, r3, r3
-	beq      lbl_8033F094
-	lis      r4, __vt__Q29PSAutoBgm11MeloArrBase@ha
-	addi     r3, r30, 0x10
-	addi     r5, r4, __vt__Q29PSAutoBgm11MeloArrBase@l
-	li       r4, 0
-	stw      r5, 0x14(r30)
-	addi     r0, r5, 8
-	stw      r0, 0x10(r30)
-	bl       __dt__10JADHioNodeFv
-	cmplwi   r30, 0
-	beq      lbl_8033F084
-	mr       r3, r30
-	li       r4, 0
-	bl       __dt__10JSUPtrLinkFv
-
-lbl_8033F084:
-	extsh.   r0, r31
-	ble      lbl_8033F094
-	mr       r3, r30
-	bl       __dl__FPv
-
-lbl_8033F094:
-	lwz      r0, 0x14(r1)
-	mr       r3, r30
-	lwz      r31, 0xc(r1)
-	lwz      r30, 8(r1)
-	mtlr     r0
-	addi     r1, r1, 0x10
-	blr
-	*/
-}
+// WEAK - in header
+// MeloArrBase::~MeloArrBase() { }
 
 /*
  * --INFO--
  * Address:	8033F0B0
  * Size:	000098
  */
-PSAutoBgm::MeloArr_RandomAvoid::~MeloArr_RandomAvoid()
-{
-	/*
-	stwu     r1, -0x10(r1)
-	mflr     r0
-	stw      r0, 0x14(r1)
-	stw      r31, 0xc(r1)
-	mr       r31, r4
-	stw      r30, 8(r1)
-	or.      r30, r3, r3
-	beq      lbl_8033F12C
-	lis      r3, __vt__Q29PSAutoBgm19MeloArr_RandomAvoid@ha
-	addi     r3, r3, __vt__Q29PSAutoBgm19MeloArr_RandomAvoid@l
-	stw      r3, 0x14(r30)
-	addi     r0, r3, 8
-	stw      r0, 0x10(r30)
-	beq      lbl_8033F11C
-	lis      r4, __vt__Q29PSAutoBgm11MeloArrBase@ha
-	addi     r3, r30, 0x10
-	addi     r5, r4, __vt__Q29PSAutoBgm11MeloArrBase@l
-	li       r4, 0
-	stw      r5, 0x14(r30)
-	addi     r0, r5, 8
-	stw      r0, 0x10(r30)
-	bl       __dt__10JADHioNodeFv
-	cmplwi   r30, 0
-	beq      lbl_8033F11C
-	mr       r3, r30
-	li       r4, 0
-	bl       __dt__10JSUPtrLinkFv
-
-lbl_8033F11C:
-	extsh.   r0, r31
-	ble      lbl_8033F12C
-	mr       r3, r30
-	bl       __dl__FPv
-
-lbl_8033F12C:
-	lwz      r0, 0x14(r1)
-	mr       r3, r30
-	lwz      r31, 0xc(r1)
-	lwz      r30, 8(r1)
-	mtlr     r0
-	addi     r1, r1, 0x10
-	blr
-	*/
-}
+// WEAK - in header
+// MeloArr_RandomAvoid::~MeloArr_RandomAvoid() { }
 
 /*
  * --INFO--
  * Address:	8033F148
  * Size:	000008
  */
-PSAutoBgm::MeloArr_RandomAvoid::@16 @~MeloArr_RandomAvoid()
-{
-	/*
-	addi     r3, r3, -16
-	b        __dt__Q29PSAutoBgm19MeloArr_RandomAvoidFv
-	*/
-}
+// PSAutoBgm::MeloArr_RandomAvoid::@16 @~MeloArr_RandomAvoid()
+// {
+// 	/*
+// 	addi     r3, r3, -16
+// 	b        __dt__Q29PSAutoBgm19MeloArr_RandomAvoidFv
+// 	*/
+// }
 
 /*
  * --INFO--
  * Address:	8033F150
  * Size:	000008
  */
-PSAutoBgm::MeloArrBase::@16 @~MeloArrBase()
-{
-	/*
-	addi     r3, r3, -16
-	b        __dt__Q29PSAutoBgm11MeloArrBaseFv
-	*/
-}
+// MeloArrBase::@16 @~MeloArrBase()
+// {
+// 	/*
+// 	addi     r3, r3, -16
+// 	b        __dt__Q29PSAutoBgm11MeloArrBaseFv
+// 	*/
+// }
+
+} // namespace PSAutoBgm

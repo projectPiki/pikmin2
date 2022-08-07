@@ -79,4 +79,7 @@ struct JSUOutputStream : public JSUIosBase {
 	void write(const char*);
 };
 
+// TODO: this.
+struct JSUMemoryOutputStream;
+
 #endif
