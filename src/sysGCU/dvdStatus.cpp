@@ -174,7 +174,7 @@ void DvdStatus::draw(void)
 		}
 
 		char** errorMsgSet;
-		if (JStack128.font) {
+		if (JStack128.m_font) {
 			switch (sys->m_region) {
 			case LANG_ENGLISH:
 				errorMsgSet = DvdError::gMessage_eng;
@@ -201,8 +201,8 @@ void DvdStatus::draw(void)
 
 			JStack128.initiate();
 
-			JStack128.color_0x40 = whiteset();
-			JStack128.color_0x44 = whiteset();
+			JStack128._40 = whiteset();
+			JStack128._44 = whiteset();
 
 			JStack128.print(40.0f, 200.0f, errorMsgSet[_00]);
 		}

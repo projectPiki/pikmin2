@@ -49,6 +49,9 @@ struct DirectedBgm : public BgmSeq {
 	void initChildTrack_onPlaying(JASTrack*, u8);
 	void getDirectorP(u8);
 
+	// _00-_10  = JSULink<SeqBase>
+	// _10      = VTABLE
+	// _14-_6C  = BgmSeq
 	DirectorMgrBase* _6C;   // _6C
 	SeqTrackRoot* _70;      // _70
 	SeqTrackChild* _74[16]; // _74
