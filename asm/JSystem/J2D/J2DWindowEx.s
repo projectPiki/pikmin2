@@ -1,56 +1,66 @@
 .include "macros.inc"
 .section .rodata  # 0x804732E0 - 0x8049E220
 .balign 8
-.global lbl_804784E0
 lbl_804784E0:
 	.4byte 0x00000000
 	.4byte 0x00000000
 	.4byte 0x00000000
 	.4byte 0x00000000
+lbl_804784F0:
 	.4byte 0x00000000
 	.4byte 0x00000000
 	.4byte 0x00000000
 	.4byte 0x00000000
+lbl_80478500:
 	.4byte 0x00000000
 	.4byte 0x00000000
 	.4byte 0x00000000
 	.4byte 0x00000000
+lbl_80478510:
 	.4byte 0x00000000
 	.4byte 0x00000000
 	.4byte 0x00000000
 	.4byte 0x00000000
+lbl_80478520:
 	.4byte 0x00000000
 	.4byte 0x00000000
 	.4byte 0x00000000
 	.4byte 0x00000000
+lbl_80478530:
 	.4byte 0x00000000
 	.4byte 0x00000000
 	.4byte 0x00000000
 	.4byte 0x00000000
+lbl_80478540:
 	.4byte 0x00000000
 	.4byte 0x00000000
 	.4byte 0x00000000
 	.4byte 0x00000000
+lbl_80478550:
 	.4byte 0x00000000
 	.4byte 0x00000000
 	.4byte 0x00000000
 	.4byte 0x00000000
+lbl_80478560:
 	.4byte 0x00000000
 	.4byte 0x00000000
 	.4byte 0x00000000
 	.4byte 0x00000000
+lbl_80478570:
 	.4byte 0x0F080A0F
 	.4byte 0x0F080A0F
 	.4byte 0x0F0A000F
 	.4byte 0x0204080F
 	.4byte 0x0204080F
 	.4byte 0x0F0F0F0A
+lbl_80478588:
 	.4byte 0x07040507
 	.4byte 0x05070707
 	.4byte 0x07050007
 	.4byte 0x01020407
 	.4byte 0x07070702
 	.4byte 0x07070705
+lbl_804785A0:
 	.4byte 0x00000001
 	.4byte 0x00000000
 	.4byte 0x01000000
@@ -59,7 +69,6 @@ lbl_804784E0:
 	.4byte 0x00000001
 	.4byte 0x00000000
 	.4byte 0x01000000
-.global lbl_804785C0
 lbl_804785C0:
 	.4byte 0x00000000
 	.4byte 0x00000000
@@ -121,28 +130,22 @@ __vt__11J2DWindowEx:
 	.4byte getFrameMaterial__11J2DWindowExCFUc
 	.4byte getContentsMaterial__11J2DWindowExCFv
 	.4byte "drawContents__11J2DWindowExFRCQ29JGeometry8TBox2<f>"
-	.4byte 0
 
 .section .sdata2, "a"     # 0x80516360 - 0x80520E40
 .balign 8
-.global lbl_805168A0
 lbl_805168A0:
 	.4byte 0x43300000
 	.4byte 0x80000000
-.global lbl_805168A8
+.balign 8
 lbl_805168A8:
 	.4byte 0x43300000
 	.4byte 0x00000000
-.global lbl_805168B0
 lbl_805168B0:
-	.4byte 0x00000000
-.global lbl_805168B4
+	.float 0.0
 lbl_805168B4:
 	.float 1.0
-.global lbl_805168B8
 lbl_805168B8:
 	.float 0.5
-	.4byte 0x00000000
 
 .section .text, "ax"  # 0x800056C0 - 0x80472F00
 .global __ct__11J2DWindowExFP7J2DPaneP20JSURandomInputStreamUlP11J2DMaterial

@@ -1,14 +1,9 @@
 .include "macros.inc"
 .section .rodata  # 0x804732E0 - 0x8049E220
 .balign 8
-.global lbl_80494720
 lbl_80494720:
-	.4byte 0x6368616C
-	.4byte 0x6C656E67
-	.4byte 0x65526573
-	.4byte 0x756C7432
-	.4byte 0x44000000
-.global cRandArray__8Morimura
+	.asciz "challengeResult2D"
+.balign 4
 cRandArray__8Morimura:
 	.4byte 0x00000000
 	.4byte 0x00000001
@@ -28,8 +23,7 @@ cRandArray__8Morimura:
 	.4byte 0x00000002
 	.4byte 0x00000000
 	.4byte 0x00000001
-	.4byte 0x00000000
-.global lbl_80494780
+.balign 8
 lbl_80494780:
 	.4byte 0x00004E68
 	.4byte 0x6C5F3030
@@ -69,200 +63,114 @@ lbl_80494780:
 	.4byte 0x6E303037
 	.4byte 0x506D7365
 	.4byte 0x6E303039
-.global lbl_80494818
+.balign 4
 lbl_80494818:
-	.4byte 0x6368616C
-	.4byte 0x6C656E67
-	.4byte 0x655F6D6F
-	.4byte 0x646F5F72
-	.4byte 0x6573756C
-	.4byte 0x745F6465
-	.4byte 0x6D6F2E62
-	.4byte 0x636B0000
-	.4byte 0x54726962
-	.4byte 0x6F6E3030
-	.4byte 0x54726962
-	.4byte 0x6F6E3031
-	.4byte 0x54726962
-	.4byte 0x6F6E3032
-.global lbl_80494850
+	.asciz "challenge_modo_result_demo.bck"
+.balign 8
+lbl_80494838: # array of three char[8]
+	.ascii "Tribon00"
+	.ascii "Tribon01"
+	.ascii "Tribon02"
+.balign 4
 lbl_80494850:
-	.4byte 0x6368616C
-	.4byte 0x6C656E67
-	.4byte 0x65526573
-	.4byte 0x756C7432
-	.4byte 0x442E6370
-	.4byte 0x70000000
-.global lbl_80494868
+	.asciz "challengeResult2D.cpp"
+.balign 4
 lbl_80494868:
 	.asciz "P2Assert"
-	.skip 3
-.global lbl_80494874
+.balign 4
 lbl_80494874:
-	.4byte 0x6E6F2073
-	.4byte 0x7469636B
-	.4byte 0x2070616E
-	.4byte 0x650A0000
-.global lbl_80494884
+	.asciz "no stick pane\n"
+.balign 4
 lbl_80494884:
-	.4byte 0x6368616C
-	.4byte 0x6C656E67
-	.4byte 0x65526573
-	.4byte 0x756C7400
-	.4byte 0x00000000
+	.asciz "challengeResult"
+.balign 8
+lbl_80494898:
 	.4byte 0x00343930
 	.4byte 0x315F3030
 	.4byte 0x00343931
 	.4byte 0x305F3030
-	.4byte 0x73657420
-	.4byte 0x44656275
-	.4byte 0x67486561
-	.4byte 0x70506172
-	.4byte 0x656E742E
-	.4byte 0x206D6169
-	.4byte 0x6C20746F
-	.4byte 0x206D6F72
-	.4byte 0x696D756E
-	.4byte 0x2E0A0000
-	.4byte 0x2F757365
-	.4byte 0x722F4D61
-	.4byte 0x746F6261
-	.4byte 0x2F636861
-	.4byte 0x6C6C656E
-	.4byte 0x67652F73
-	.4byte 0x74616765
-	.4byte 0x732E7478
-	.4byte 0x74000000
-	.4byte 0x74696D67
-	.4byte 0x2F6C6561
-	.4byte 0x665F6963
-	.4byte 0x6F6E2E62
-	.4byte 0x74690000
-	.4byte 0x74696D67
-	.4byte 0x2F666C6F
-	.4byte 0x7765725F
-	.4byte 0x69636F6E
-	.4byte 0x2E627469
-	.4byte 0x00000000
-	.4byte 0x74696D67
-	.4byte 0x2F666C6F
-	.4byte 0x7765725F
-	.4byte 0x705F6963
-	.4byte 0x6F6E2E62
-	.4byte 0x74690000
-	.4byte 0x6368616C
-	.4byte 0x6C656E67
-	.4byte 0x655F6D6F
-	.4byte 0x646F5F72
-	.4byte 0x6573756C
-	.4byte 0x742E626C
-	.4byte 0x6F000000
-	.4byte 0x6368616C
-	.4byte 0x6C656E67
-	.4byte 0x655F6D6F
-	.4byte 0x646F5F72
-	.4byte 0x6573756C
-	.4byte 0x742E6263
-	.4byte 0x6B000000
-	.4byte 0x6368616C
-	.4byte 0x6C656E67
-	.4byte 0x655F6D6F
-	.4byte 0x646F5F72
-	.4byte 0x6573756C
-	.4byte 0x742E6270
-	.4byte 0x6B000000
-	.4byte 0x6368616C
-	.4byte 0x6C656E67
-	.4byte 0x655F6D6F
-	.4byte 0x646F5F72
-	.4byte 0x6573756C
-	.4byte 0x742E6274
-	.4byte 0x70000000
-	.4byte 0x6368616C
-	.4byte 0x6C656E67
-	.4byte 0x655F6D6F
-	.4byte 0x646F5F72
-	.4byte 0x6573756C
-	.4byte 0x742E6272
-	.4byte 0x6B000000
-	.4byte 0x6368616C
-	.4byte 0x6C656E67
-	.4byte 0x655F6D6F
-	.4byte 0x646F5F72
-	.4byte 0x6573756C
-	.4byte 0x742E6274
-	.4byte 0x6B000000
-	.4byte 0x6368616C
-	.4byte 0x6C656E67
-	.4byte 0x655F6D6F
-	.4byte 0x646F5F72
-	.4byte 0x6573756C
-	.4byte 0x745F3032
-	.4byte 0x2E62746B
-	.4byte 0x00000000
-	.4byte 0x6368616C
-	.4byte 0x6C656E67
-	.4byte 0x655F6D6F
-	.4byte 0x646F5F72
-	.4byte 0x6573756C
-	.4byte 0x745F3033
-	.4byte 0x2E62746B
-	.4byte 0x00000000
-	.4byte 0x6368616C
-	.4byte 0x6C656E67
-	.4byte 0x65526573
-	.4byte 0x756C7432
-	.4byte 0x642E6800
-	.4byte 0x6368616C
-	.4byte 0x6C656E67
-	.4byte 0x655F6D6F
-	.4byte 0x646F5F72
-	.4byte 0x6573756C
-	.4byte 0x745F6465
-	.4byte 0x6D6F2E62
-	.4byte 0x6C6F0000
-	.4byte 0x6368616C
-	.4byte 0x6C656E67
-	.4byte 0x655F6D6F
-	.4byte 0x646F5F72
-	.4byte 0x6573756C
-	.4byte 0x745F6465
-	.4byte 0x6D6F2E62
-	.4byte 0x76610000
-.global lbl_80494A74
+.balign 4
+lbl_804948A8:
+	.asciz "set DebugHeapParent. mail to morimun.\n"
+.balign 4
+lbl_804948D0:
+	.asciz "/user/Matoba/challenge/stages.txt"
+.balign 4
+lbl_804948F4:
+	.asciz "timg/leaf_icon.bti"
+.balign 4
+lbl_80494908:
+	.asciz "timg/flower_icon.bti"
+.balign 4
+lbl_80494920:
+	.asciz "timg/flower_p_icon.bti"
+.balign 4
+lbl_80494938:
+	.asciz "challenge_modo_result.blo"
+.balign 4
+lbl_80494954:
+	.asciz "challenge_modo_result.bck"
+.balign 4
+lbl_80494970:
+	.asciz "challenge_modo_result.bpk"
+.balign 4
+lbl_8049498C:
+	.asciz "challenge_modo_result.btp"
+.balign 4
+lbl_804949A8:
+	.asciz "challenge_modo_result.brk"
+.balign 4
+lbl_804949C4:
+	.asciz "challenge_modo_result.btk"
+.balign 4
+lbl_804949E0:
+	.asciz "challenge_modo_result_02.btk"
+.balign 4
+lbl_80494A00:
+	.asciz "challenge_modo_result_03.btk"
+.balign 4
+lbl_80494A20:
+	.asciz "challengeResult2d.h"
+.balign 4
+lbl_80494A34:
+	.asciz "challenge_modo_result_demo.blo"
+.balign 4
+lbl_80494A54:
+	.asciz "challenge_modo_result_demo.bva"
+.balign 4
 lbl_80494A74:
-	.4byte 0x6D725574
-	.4byte 0x696C2E68
-	.4byte 0x00000000
-	.4byte 0x68697363
-	.4byte 0x6F726530
-	.4byte 0x203D2025
-	.4byte 0x640A0000
-	.4byte 0x68697363
-	.4byte 0x6F726531
-	.4byte 0x203D2025
-	.4byte 0x640A0000
-	.4byte 0x68697363
-	.4byte 0x6F726532
-	.4byte 0x203D2025
-	.4byte 0x640A0000
-	.4byte 0x746F7461
-	.4byte 0x6C203D20
-	.4byte 0x25640A00
-	.4byte 0x74696D65
-	.4byte 0x626F6E75
-	.4byte 0x73203D20
-	.4byte 0x25640A00
-	.4byte 0x6D6F6E65
-	.4byte 0x79203D20
-	.4byte 0x25640A00
-	.4byte 0x70696B69
-	.4byte 0x203D2025
-	.4byte 0x640A0000
+	.asciz "mrUtil.h"
+.balign 4
+lbl_80494A80:
+	.asciz "hiscore0 = %d\n"
+.balign 4
+lbl_80494A90:
+	.asciz "hiscore1 = %d\n"
+.balign 4
+lbl_80494AA0:
+	.asciz "hiscore2 = %d\n"
+.balign 4
+lbl_80494AB0:
+	.asciz "total = %d\n"
+.balign 4
+lbl_80494ABC:
+	.asciz "timebonus = %d\n"
+.balign 4
+lbl_80494ACC:
+	.asciz "money = %d\n"
+.balign 4
+lbl_80494AD8:
+	.asciz "piki = %d\n"
+.balign 4
+lbl_80494AE4:
 	.float 1.0
 	.float 0.9
 	.float 0.8
+.balign 4
+lbl_80494AF0:
 	.asciz "res_challengeResult.szs"
+.balign 4
+lbl_80494B08:
 	.asciz "screenObj.h"
 
 .section .data, "wa"  # 0x8049E220 - 0x804EFC20
@@ -376,7 +284,6 @@ __vt__Q28Morimura22TChallengeResultScreen:
 	.4byte draw__Q28Morimura11TScreenBaseFR8GraphicsP13J2DPerspGraph
 	.4byte createAnimPane__Q28Morimura22TChallengeResultScreenFPc
 	.4byte updateBckPane__Q28Morimura22TChallengeResultScreenFv
-	.4byte 0
 
 .section .sdata, "wa"  # 0x80514680 - 0x80514D80
 .balign 8
@@ -421,7 +328,8 @@ mForceDemoStart__Q28Morimura16TChallengeResult:
 	.skip 0x1
 .global mTestStageId__Q28Morimura16TChallengeResult
 mTestStageId__Q28Morimura16TChallengeResult:
-	.skip 0x3
+	.skip 0x1
+.balign 4
 .global mDebugHeapParent__Q28Morimura16TChallengeResult
 mDebugHeapParent__Q28Morimura16TChallengeResult:
 	.skip 0x4
@@ -440,176 +348,122 @@ mRedFlowerTexture__Q28Morimura16TChallengeResult:
 
 .section .sdata2, "a"     # 0x80516360 - 0x80520E40
 .balign 8
-.global lbl_8051F080
 lbl_8051F080:
-	.4byte 0x42F00000
-.global lbl_8051F084
+	.float 120.0
 lbl_8051F084:
-	.4byte 0x00000000
-.global lbl_8051F088
+	.float 0.0
 lbl_8051F088:
-	.4byte 0x41A00000
-.global lbl_8051F08C
-lbl_8051F08C:
-	.4byte 0x40C90FDB
-.global lbl_8051F090
+	.float 20.0
+lbl_8051F08C: # tau
+	.float 6.2831855
 lbl_8051F090:
-	.4byte 0x43B40000
-.global lbl_8051F094
+	.float 360.0
 lbl_8051F094:
-	.4byte 0xC3A2F983
-.global lbl_8051F098
+	.float -325.9493
 lbl_8051F098:
-	.4byte 0x43A2F983
-.global lbl_8051F09C
-lbl_8051F09C:
-	.4byte 0x40490FDB
-.global lbl_8051F0A0
+	.float 325.9493
+lbl_8051F09C: # pi
+	.float 3.1415927
 lbl_8051F0A0:
-	.4byte 0x3BB60B61
-.global lbl_8051F0A4
+	.float 0.0055555557
 lbl_8051F0A4:
 	.float 0.1
-.global lbl_8051F0A8
 lbl_8051F0A8:
 	.float 0.05
-.global lbl_8051F0AC
 lbl_8051F0AC:
-	.4byte 0x42C80000
-.global lbl_8051F0B0
+	.float 100.0
 lbl_8051F0B0:
-	.4byte 0x3C23D70A
-.global lbl_8051F0B4
+	.float 0.01
 lbl_8051F0B4:
 	.float 0.5
-.global lbl_8051F0B8
 lbl_8051F0B8:
-	.4byte 0x44160000
-.global lbl_8051F0BC
+	.float 600.0
 lbl_8051F0BC:
 	.float 1.0
-.global lbl_8051F0C0
 lbl_8051F0C0:
-	.4byte 0x3ECCCCCD
-.global lbl_8051F0C4
+	.float 0.4
 lbl_8051F0C4:
-	.4byte 0x42480000
-.global lbl_8051F0C8
+	.float 50.0
 lbl_8051F0C8:
-	.4byte 0x3F4CCCCD
-	.4byte 0x00000000
-.global lbl_8051F0D0
+	.float 0.8
+.balign 8
 lbl_8051F0D0:
 	.4byte 0x43300000
 	.4byte 0x80000000
-.global lbl_8051F0D8
+.balign 8
 lbl_8051F0D8:
-	.4byte 0x40240000
-	.4byte 0x00000000
-.global lbl_8051F0E0
+	.double 10.0
 lbl_8051F0E0:
-	.4byte 0x47000000
-.global lbl_8051F0E4
+	.float 32768.0
 lbl_8051F0E4:
-	.4byte 0x41100000
-.global lbl_8051F0E8
+	.float 9.0
+.balign 8
 lbl_8051F0E8:
 	.4byte 0x43300000
 	.4byte 0x00000000
-.global lbl_8051F0F0
 lbl_8051F0F0:
-	.4byte 0x43610000
-.global lbl_8051F0F4
+	.float 225.0
 lbl_8051F0F4:
-	.4byte 0x437A0000
-.global lbl_8051F0F8
+	.float 250.0
 lbl_8051F0F8:
-	.4byte 0x42200000
-.global lbl_8051F0FC
+	.float 40.0
 lbl_8051F0FC:
-	.4byte 0x43CA8000
-.global lbl_8051F100
+	.float 405.0
 lbl_8051F100:
-	.4byte 0x43700000
-.global lbl_8051F104
+	.float 240.0
 lbl_8051F104:
-	.4byte 0x44124000
-.global lbl_8051F108
+	.float 585.0
 lbl_8051F108:
-	.4byte 0x43D70000
-.global lbl_8051F10C
+	.float 430.0
 lbl_8051F10C:
-	.4byte 0x43DC0000
-.global lbl_8051F110
+	.float 440.0
 lbl_8051F110:
-	.4byte 0x432A0000
-.global lbl_8051F114
+	.float 170.0
 lbl_8051F114:
-	.4byte 0x43480000
-.global lbl_8051F118
+	.float 200.0
 lbl_8051F118:
-	.4byte 0x428C0000
-.global lbl_8051F11C
+	.float 70.0
 lbl_8051F11C:
-	.4byte 0x41F00000
-.global lbl_8051F120
+	.float 30.0
 lbl_8051F120:
-	.4byte 0xC2E60000
-.global lbl_8051F124
+	.float -115.0
 lbl_8051F124:
-	.4byte 0x44200000
-.global lbl_8051F128
+	.float 640.0
 lbl_8051F128:
-	.4byte 0x43F00000
-.global lbl_8051F12C
+	.float 480.0
 lbl_8051F12C:
-	.4byte 0x40A00000
-.global lbl_8051F130
+	.float 5.0
 lbl_8051F130:
-	.4byte 0x437F0000
-.global lbl_8051F134
+	.float 255.0
 lbl_8051F134:
-	.4byte 0x40C00000
-.global lbl_8051F138
+	.float 6.0
 lbl_8051F138:
-	.4byte 0x447A0000
-.global lbl_8051F13C
+	.float 1000.0
 lbl_8051F13C:
-	.4byte 0x47AFC800
-.global lbl_8051F140
+	.float 90000.0
 lbl_8051F140:
-	.4byte 0x460CA000
-.global lbl_8051F144
+	.float 9000.0
 lbl_8051F144:
-	.4byte 0x41200000
-.global lbl_8051F148
+	.float 10.0
 lbl_8051F148:
-	.4byte 0x44610000
-.global lbl_8051F14C
+	.float 900.0
 lbl_8051F14C:
-	.4byte 0x461C3C00
-.global lbl_8051F150
+	.float 9999.0
 lbl_8051F150:
-	.4byte 0x3E4CCCCD
-.global lbl_8051F154
+	.float 0.2
 lbl_8051F154:
-	.4byte 0x42700000
-.global lbl_8051F158
+	.float 60.0
 lbl_8051F158:
-	.4byte 0x43960000
-.global lbl_8051F15C
+	.float 300.0
 lbl_8051F15C:
-	.4byte 0x44098000
-.global lbl_8051F160
+	.float 550.0
 lbl_8051F160:
-	.4byte 0x430C0000
-.global lbl_8051F164
+	.float 140.0
 lbl_8051F164:
-	.4byte 0x43C80000
-.global lbl_8051F168
+	.float 400.0
+.balign 4
 lbl_8051F168:
-	.4byte 0x00000000
-	.4byte 0x00000000
+	.asciz ""
 
 .section .text, "ax"  # 0x800056C0 - 0x80472F00
 .global create__Q28Morimura22TChallengeResultScreenFPCcUl

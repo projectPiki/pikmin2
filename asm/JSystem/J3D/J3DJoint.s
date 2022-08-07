@@ -1,26 +1,22 @@
 .include "macros.inc"
 .section .rodata  # 0x804732E0 - 0x8049E220
 .balign 8
-.global lbl_804789B0
 lbl_804789B0:
 	.float 1.0
 	.float 1.0
 	.float 1.0
-.global lbl_804789BC
 lbl_804789BC:
 	.float 1.0
 	.float 1.0
 	.float 1.0
-.global lbl_804789C8
 lbl_804789C8:
-	.4byte 0x00000000
-	.4byte 0x00000000
-	.4byte 0x00000000
-.global lbl_804789D4
+	.float 0.0
+	.float 0.0
+	.float 0.0
 lbl_804789D4:
-	.4byte 0x00000000
-	.4byte 0x00000000
-	.4byte 0x00000000
+	.float 0.0
+	.float 0.0
+	.float 0.0
 
 .section .data, "wa"  # 0x8049E220 - 0x804EFC20
 .balign 8
@@ -87,16 +83,14 @@ mJoint__10J3DMtxCalc:
 	.skip 0x4
 .global mCurrentMtxCalc__8J3DJoint
 mCurrentMtxCalc__8J3DJoint:
-	.skip 0x8
+	.skip 0x4
 
 .section .sdata2, "a"     # 0x80516360 - 0x80520E40
 .balign 8
-.global lbl_80516A78
 lbl_80516A78:
 	.float 1.0
-.global lbl_80516A7C
 lbl_80516A7C:
-	.4byte 0x00000000
+	.float 0.0
 
 .section .text, "ax"  # 0x800056C0 - 0x80472F00
 .global init__25J3DMtxCalcJ3DSysInitBasicFRC3VecRA3_A4_Cf

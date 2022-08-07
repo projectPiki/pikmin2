@@ -1,7 +1,6 @@
 .include "macros.inc"
 .section .data, "wa"  # 0x8049E220 - 0x804EFC20
 .balign 8
-.global lbl_804A0880
 lbl_804A0880:
 	.4byte lbl_8003EB18
 	.4byte lbl_8003EB34
@@ -32,7 +31,6 @@ __vt__8J2DPrint:
 	.4byte 0
 	.4byte 0
 	.4byte __dt__8J2DPrintFv
-	.4byte 0
 
 .section .sbss # 0x80514D80 - 0x80516360
 .balign 8
@@ -41,38 +39,33 @@ mStrBuff__8J2DPrint:
 	.skip 0x4
 .global mHeapFlag__8J2DPrint
 mHeapFlag__8J2DPrint:
-	.skip 0x4
+	.skip 0x1
+.balign 4
 .global mStrBuffSize__8J2DPrint
 mStrBuffSize__8J2DPrint:
 	.skip 0x4
 .global mBufferNotEnough__8J2DPrint
 mBufferNotEnough__8J2DPrint:
-	.skip 0x4
+	.skip 0x1
 
 .section .sdata2, "a"     # 0x80516360 - 0x80520E40
 .balign 8
-.global lbl_80516818
 lbl_80516818:
-	.4byte 0x00000000
-.global lbl_8051681C
+	.float 0.0
 lbl_8051681C:
-	.4byte 0x42000000
-.global lbl_80516820
+	.float 32.0
+.balign 8
 lbl_80516820:
 	.4byte 0x43300000
 	.4byte 0x80000000
-.global lbl_80516828
 lbl_80516828:
 	.float 0.5
-	.4byte 0x00000000
-.global lbl_80516830
+.balign 8
 lbl_80516830:
 	.4byte 0x43300000
 	.4byte 0x00000000
-.global lbl_80516838
 lbl_80516838:
-	.4byte 0x461C4000
-.global lbl_8051683C
+	.float 10000.0
 lbl_8051683C:
 	.float 1.0
 
@@ -1457,7 +1450,6 @@ doCtrlCode__8J2DPrintFi:
 /* 8003EB0C 0003BA4C  7C 04 00 2E */	lwzx r0, r4, r0
 /* 8003EB10 0003BA50  7C 09 03 A6 */	mtctr r0
 /* 8003EB14 0003BA54  4E 80 04 20 */	bctr 
-.global lbl_8003EB18
 lbl_8003EB18:
 /* 8003EB18 0003BA58  C0 43 00 2C */	lfs f2, 0x2c(r3)
 /* 8003EB1C 0003BA5C  C0 23 00 34 */	lfs f1, 0x34(r3)
@@ -1466,7 +1458,6 @@ lbl_8003EB18:
 /* 8003EB28 0003BA68  D0 23 00 2C */	stfs f1, 0x2c(r3)
 /* 8003EB2C 0003BA6C  D0 03 00 34 */	stfs f0, 0x34(r3)
 /* 8003EB30 0003BA70  48 00 00 E0 */	b lbl_8003EC10
-.global lbl_8003EB34
 lbl_8003EB34:
 /* 8003EB34 0003BA74  A8 83 00 20 */	lha r4, 0x20(r3)
 /* 8003EB38 0003BA78  7C 80 07 35 */	extsh. r0, r4
@@ -1490,7 +1481,6 @@ lbl_8003EB34:
 /* 8003EB80 0003BAC0  EC 00 10 28 */	fsubs f0, f0, f2
 /* 8003EB84 0003BAC4  D0 03 00 34 */	stfs f0, 0x34(r3)
 /* 8003EB88 0003BAC8  48 00 00 88 */	b lbl_8003EC10
-.global lbl_8003EB8C
 lbl_8003EB8C:
 /* 8003EB8C 0003BACC  C0 02 84 B8 */	lfs f0, lbl_80516818@sda21(r2)
 /* 8003EB90 0003BAD0  D0 03 00 34 */	stfs f0, 0x34(r3)
@@ -1501,41 +1491,35 @@ lbl_8003EB8C:
 /* 8003EBA4 0003BAE4  EC 01 00 2A */	fadds f0, f1, f0
 /* 8003EBA8 0003BAE8  D0 03 00 30 */	stfs f0, 0x30(r3)
 /* 8003EBAC 0003BAEC  48 00 00 64 */	b lbl_8003EC10
-.global lbl_8003EBB0
 lbl_8003EBB0:
 /* 8003EBB0 0003BAF0  C0 02 84 B8 */	lfs f0, lbl_80516818@sda21(r2)
 /* 8003EBB4 0003BAF4  D0 03 00 34 */	stfs f0, 0x34(r3)
 /* 8003EBB8 0003BAF8  C0 03 00 24 */	lfs f0, 0x24(r3)
 /* 8003EBBC 0003BAFC  D0 03 00 2C */	stfs f0, 0x2c(r3)
 /* 8003EBC0 0003BB00  48 00 00 50 */	b lbl_8003EC10
-.global lbl_8003EBC4
 lbl_8003EBC4:
 /* 8003EBC4 0003BB04  C0 23 00 2C */	lfs f1, 0x2c(r3)
 /* 8003EBC8 0003BB08  C0 02 84 DC */	lfs f0, lbl_8051683C@sda21(r2)
 /* 8003EBCC 0003BB0C  EC 01 00 2A */	fadds f0, f1, f0
 /* 8003EBD0 0003BB10  D0 03 00 2C */	stfs f0, 0x2c(r3)
 /* 8003EBD4 0003BB14  48 00 00 3C */	b lbl_8003EC10
-.global lbl_8003EBD8
 lbl_8003EBD8:
 /* 8003EBD8 0003BB18  C0 23 00 2C */	lfs f1, 0x2c(r3)
 /* 8003EBDC 0003BB1C  C0 02 84 DC */	lfs f0, lbl_8051683C@sda21(r2)
 /* 8003EBE0 0003BB20  EC 01 00 28 */	fsubs f0, f1, f0
 /* 8003EBE4 0003BB24  D0 03 00 2C */	stfs f0, 0x2c(r3)
 /* 8003EBE8 0003BB28  48 00 00 28 */	b lbl_8003EC10
-.global lbl_8003EBEC
 lbl_8003EBEC:
 /* 8003EBEC 0003BB2C  C0 23 00 30 */	lfs f1, 0x30(r3)
 /* 8003EBF0 0003BB30  C0 02 84 DC */	lfs f0, lbl_8051683C@sda21(r2)
 /* 8003EBF4 0003BB34  EC 01 00 28 */	fsubs f0, f1, f0
 /* 8003EBF8 0003BB38  D0 03 00 30 */	stfs f0, 0x30(r3)
 /* 8003EBFC 0003BB3C  48 00 00 14 */	b lbl_8003EC10
-.global lbl_8003EC00
 lbl_8003EC00:
 /* 8003EC00 0003BB40  C0 23 00 30 */	lfs f1, 0x30(r3)
 /* 8003EC04 0003BB44  C0 02 84 DC */	lfs f0, lbl_8051683C@sda21(r2)
 /* 8003EC08 0003BB48  EC 01 00 2A */	fadds f0, f1, f0
 /* 8003EC0C 0003BB4C  D0 03 00 30 */	stfs f0, 0x30(r3)
-.global lbl_8003EC10
 lbl_8003EC10:
 /* 8003EC10 0003BB50  38 21 00 20 */	addi r1, r1, 0x20
 /* 8003EC14 0003BB54  4E 80 00 20 */	blr 

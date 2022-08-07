@@ -156,28 +156,19 @@ __vt__17J3DColorBlockNull:
 	.4byte setMatColorOffset__13J3DColorBlockFUl
 	.4byte setColorChanOffset__13J3DColorBlockFUl
 	.4byte __dt__17J3DColorBlockNullFv
-	.4byte 0
 
 .section .sdata2, "a"     # 0x80516360 - 0x80520E40
 .balign 8
-.global lbl_80516A80
 lbl_80516A80:
 	.4byte 0xFFFFFFFF
-.global lbl_80516A84
 lbl_80516A84:
 	.4byte 0x32323232
-.global lbl_80516A88
 lbl_80516A88:
 	.4byte 0xFFFFFFFF
-	.4byte 0x00000000
 
 .section .sbss2, "", @nobits # 0x80520E40 - 0x80520ED8
-.global lbl_80520E48
 lbl_80520E48:
-	.skip 0x4
-.global lbl_80520E4C
-lbl_80520E4C:
-	.skip 0x4
+	.skip 0x8
 
 .section .text, "ax"  # 0x800056C0 - 0x80472F00
 .global __ct__18J3DMaterialFactoryFRC16J3DMaterialBlock
@@ -2883,7 +2874,7 @@ newTevColor__18J3DMaterialFactoryCFii:
 /* 8006E978 0006B8B8  54 A5 08 3C */	slwi r5, r5, 1
 /* 8006E97C 0006B8BC  81 02 2A E8 */	lwz r8, lbl_80520E48@sda21(r2)
 /* 8006E980 0006B8C0  7C A7 2A 2E */	lhzx r5, r7, r5
-/* 8006E984 0006B8C4  80 E2 2A EC */	lwz r7, lbl_80520E4C@sda21(r2)
+/* 8006E984 0006B8C4  80 E2 2A EC */	lwz r7, (lbl_80520E48+4)@sda21(r2)
 /* 8006E988 0006B8C8  1C A5 01 4C */	mulli r5, r5, 0x14c
 /* 8006E98C 0006B8CC  80 C4 00 04 */	lwz r6, 4(r4)
 /* 8006E990 0006B8D0  91 01 00 08 */	stw r8, 8(r1)

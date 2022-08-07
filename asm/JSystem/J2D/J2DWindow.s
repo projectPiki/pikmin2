@@ -1,27 +1,22 @@
 .include "macros.inc"
 .section .rodata  # 0x804732E0 - 0x8049E220
 .balign 8
-.global lbl_80478498
 lbl_80478498:
 	.4byte 0x00000000
 	.4byte 0x00000000
 	.4byte 0x00000000
 	.4byte 0x00000000
-.global lbl_804784A8
 lbl_804784A8:
 	.4byte 0x00000000
 	.4byte 0x00000000
 	.4byte 0x00000000
 	.4byte 0x00000000
-.global lbl_804784B8
 lbl_804784B8:
 	.4byte 0x00000000
 	.4byte 0x00000000
 	.4byte 0x00000000
 	.4byte 0x00000000
-.global lbl_804784C8
 lbl_804784C8:
-	.4byte 0x00000000
 	.4byte 0x00000000
 	.4byte 0x00000000
 	.4byte 0x00000000
@@ -83,28 +78,22 @@ __vt__9J2DWindow:
 	.4byte getFrameMaterial__9J2DWindowCFUc
 	.4byte getContentsMaterial__9J2DWindowCFv
 	.4byte "drawContents__9J2DWindowFRCQ29JGeometry8TBox2<f>"
-	.4byte 0
 
 .section .sdata2, "a"     # 0x80516360 - 0x80520E40
 .balign 8
-.global lbl_80516880
 lbl_80516880:
 	.4byte 0x43300000
 	.4byte 0x80000000
-.global lbl_80516888
+.balign 8
 lbl_80516888:
 	.4byte 0x43300000
 	.4byte 0x00000000
-.global lbl_80516890
 lbl_80516890:
-	.4byte 0x00000000
-.global lbl_80516894
+	.float 0.0
 lbl_80516894:
 	.float 1.0
-.global lbl_80516898
 lbl_80516898:
 	.float 0.5
-	.4byte 0x00000000
 
 .section .text, "ax"  # 0x800056C0 - 0x80472F00
 .global __ct__9J2DWindowFv

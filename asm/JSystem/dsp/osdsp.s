@@ -1,7 +1,6 @@
 .include "macros.inc"
 .section .rodata  # 0x804732E0 - 0x8049E220
 .balign 8
-.global lbl_80479668
 lbl_80479668:
 	.asciz "Already inited prior DSP task\n"
 

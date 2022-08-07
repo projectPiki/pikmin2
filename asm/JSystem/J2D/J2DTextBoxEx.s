@@ -1,18 +1,20 @@
 .include "macros.inc"
 .section .rodata  # 0x804732E0 - 0x8049E220
 .balign 8
-.global lbl_804786C8
 lbl_804786C8:
 	.4byte 0x0F080A0F
 	.4byte 0x0204080F
 	.4byte 0x0F0A000F
+lbl_804786D4:
 	.4byte 0x07040507
 	.4byte 0x01020407
 	.4byte 0x07050007
+lbl_804786E0:
 	.4byte 0x00000001
 	.4byte 0x00000000
 	.4byte 0x01000000
 	.4byte 0x00010000
+lbl_804786F0:
 	.4byte 0x00000001
 	.4byte 0x00000000
 	.4byte 0x01000000
@@ -69,28 +71,23 @@ __vt__12J2DTextBoxEx:
 	.4byte getBlack__12J2DTextBoxExCFv
 	.4byte getWhite__12J2DTextBoxExCFv
 	.4byte getMaterial__12J2DTextBoxExCFv
-	.4byte 0
 
 .section .sdata2, "a"     # 0x80516360 - 0x80520E40
 .balign 8
-.global lbl_80516940
 lbl_80516940:
-	.4byte 0x00000000
-	.4byte 0x00000000
-.global lbl_80516948
+	.float 0.0
+.balign 8
 lbl_80516948:
 	.4byte 0x43300000
 	.4byte 0x80000000
-.global lbl_80516950
+.balign 8
 lbl_80516950:
 	.4byte 0x43300000
 	.4byte 0x00000000
-.global lbl_80516958
 lbl_80516958:
-	.4byte 0x38D1B717
-.global lbl_8051695C
+	.float 1.0E-4
 lbl_8051695C:
-	.4byte 0x25730000
+	.asciz "%s"
 
 .section .text, "ax"  # 0x800056C0 - 0x80472F00
 .global __ct__12J2DTextBoxExFP7J2DPaneP20JSURandomInputStreamUlP11J2DMaterial

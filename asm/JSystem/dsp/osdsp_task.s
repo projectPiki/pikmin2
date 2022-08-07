@@ -5,15 +5,14 @@
 
 .section .sbss # 0x80514D80 - 0x80516360
 .balign 8
-.global DSP_prior_yield
 DSP_prior_yield:
-	.skip 0x4
-.global AUDIO_UPDATE_REQUEST
+	.skip 0x1
+.balign 4
 AUDIO_UPDATE_REQUEST:
 	.skip 0x4
 .global DSP_prior_task
 DSP_prior_task:
-	.skip 0x8
+	.skip 0x4
 
 .section .text, "ax"  # 0x800056C0 - 0x80472F00
 .balign 32, 0
@@ -262,8 +261,7 @@ lbl_800AB060:
 /* 800AB06C 000A7FAC  4E 80 00 20 */	blr 
 
 .balign 32, 0
-.global Dsp_Update_Request__Fv
-Dsp_Update_Request__Fv:
+Dsp_Update_Request__Fv: # local function
 /* 800AB080 000A7FC0  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 800AB084 000A7FC4  7C 08 02 A6 */	mflr r0
 /* 800AB088 000A7FC8  90 01 00 14 */	stw r0, 0x14(r1)

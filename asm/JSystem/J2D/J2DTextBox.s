@@ -50,28 +50,25 @@ __vt__10J2DTextBox:
 	.4byte getBlack__10J2DTextBoxCFv
 	.4byte getWhite__10J2DTextBoxCFv
 	.4byte getMaterial__10J2DTextBoxCFv
-	.4byte 0
 
 .section .sdata2, "a"     # 0x80516360 - 0x80520E40
 .balign 8
-.global lbl_80516860
 lbl_80516860:
-	.4byte 0x00000000
-	.4byte 0x00000000
-.global lbl_80516868
+	.float 0.0
+.balign 8
 lbl_80516868:
 	.4byte 0x43300000
 	.4byte 0x80000000
-.global lbl_80516870
+.balign 8
 lbl_80516870:
 	.4byte 0x43300000
 	.4byte 0x00000000
-.global lbl_80516878
+.balign 4
 lbl_80516878:
-	.4byte 0x25730000
-.global lbl_8051687C
+	.asciz "%s"
+.balign 4
 lbl_8051687C:
-	.4byte 0x38D1B717
+	.float 1.0E-4
 
 .section .text, "ax"  # 0x800056C0 - 0x80472F00
 .global __ct__10J2DTextBoxFv

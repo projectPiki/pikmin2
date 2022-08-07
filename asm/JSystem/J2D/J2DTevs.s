@@ -16,18 +16,18 @@ j2dDefaultTexMtxInfo:
 	.4byte 0x0101FFFF
 	.float 0.5
 	.float 0.5
-	.4byte 0x00000000
+	.float 0.0
 	.float 1.0
 	.float 1.0
-	.4byte 0x00000000
+	.float 0.0
 	.4byte 0x00000000
 	.4byte 0x00000000
 .global j2dDefaultIndTexMtxInfo
 j2dDefaultIndTexMtxInfo:
 	.float 0.5
-	.4byte 0x00000000
-	.4byte 0x00000000
-	.4byte 0x00000000
+	.float 0.0
+	.float 0.0
+	.float 0.0
 	.float 0.5
 	.4byte 0x00000000
 	.4byte 0x01000000
@@ -46,19 +46,14 @@ j2dDefaultIndTevStageInfo:
 
 .section .sdata2, "a"     # 0x80516360 - 0x80520E40
 .balign 8
-.global lbl_805168F8
-lbl_805168F8:
-	.4byte 0x40490FDB
-.global lbl_805168FC
+lbl_805168F8: # pi
+	.float 3.1415927
 lbl_805168FC:
-	.4byte 0x43340000
-.global lbl_80516900
+	.float 180.0
 lbl_80516900:
-	.4byte 0x00000000
-.global lbl_80516904
+	.float 0.0
 lbl_80516904:
 	.float 1.0
-.global lbl_80516908
 lbl_80516908:
 	.float 0.5
 .global j2dDefaultColInfo

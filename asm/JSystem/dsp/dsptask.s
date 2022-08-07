@@ -2019,8 +2019,7 @@ lbl_800AAAD0:
 /* 800AAAE4 000A7A24  4E 80 00 20 */	blr 
 
 .balign 32, 0
-.global DspInitWork__Fv
-DspInitWork__Fv:
+DspInitWork__Fv: # local function
 /* 800AAB00 000A7A40  38 60 00 00 */	li r3, 0
 /* 800AAB04 000A7A44  3C 80 80 4F */	lis r4, taskwork@ha
 /* 800AAB08 000A7A48  38 00 00 10 */	li r0, 0x10

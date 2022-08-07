@@ -108,16 +108,12 @@ __vt__10J3DMtxCalc:
 
 .section .sdata2, "a"     # 0x80516360 - 0x80520E40
 .balign 8
-.global lbl_805164B8
 lbl_805164B8:
-	.4byte 0x00000000
-.global lbl_805164BC
+	.float 0.0
 lbl_805164BC:
 	.float 1.0
-.global lbl_805164C0
 lbl_805164C0:
-	.4byte 0x3BA3D70A
-	.4byte 0x00000000
+	.float 0.005
 
 .section .text, "ax"  # 0x800056C0 - 0x80472F00
 .global J3DUNewMtxCalcAnm__FUlP15J3DAnmTransformP15J3DAnmTransformP15J3DAnmTransformP15J3DAnmTransform14J3DMtxCalcFlag

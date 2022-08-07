@@ -86,30 +86,23 @@ __vt__10J2DPicture:
 	.4byte drawFullSet__10J2DPictureFffffPA3_A4_f
 	.4byte drawTexCoord__10J2DPictureFffffssssssssPA3_A4_f
 	.4byte getUsableTlut__10J2DPictureFUc
-	.4byte 0
 
 .section .sdata2, "a"     # 0x80516360 - 0x80520E40
 .balign 8
-.global lbl_805167F0
 lbl_805167F0:
 	.float 1.0
-	.4byte 0x00000000
-.global lbl_805167F8
+.balign 8
 lbl_805167F8:
 	.4byte 0x43300000
 	.4byte 0x00000000
-.global lbl_80516800
 lbl_80516800:
-	.4byte 0x00000000
-	.4byte 0x00000000
-.global lbl_80516808
+	.float 0.0
+.balign 8
 lbl_80516808:
 	.4byte 0x43300000
 	.4byte 0x80000000
-.global lbl_80516810
 lbl_80516810:
-	.4byte 0x437F0000
-.global lbl_80516814
+	.float 255.0
 lbl_80516814:
 	.float 0.5
 

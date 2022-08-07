@@ -42,34 +42,27 @@ __vt__9J2DScreen:
 	.4byte animationPane__7J2DPaneFPC15J2DAnmTransform
 	.4byte createPane__9J2DScreenFRC18J2DScrnBlockHeaderP20JSURandomInputStreamP7J2DPaneUl
 	.4byte createPane__9J2DScreenFRC18J2DScrnBlockHeaderP20JSURandomInputStreamP7J2DPaneUlP10JKRArchive
-	.4byte 0
 
 .section .sbss # 0x80514D80 - 0x80516360
 .balign 8
 .global mDataManage__9J2DScreen
 mDataManage__9J2DScreen:
-	.skip 0x8
+	.skip 0x4
 
 .section .sdata2, "a"     # 0x80516360 - 0x80520E40
 .balign 8
-.global lbl_80516840
 lbl_80516840:
-	.4byte 0x00000000
-.global lbl_80516844
+	.float 0.0
 lbl_80516844:
-	.4byte 0x44200000
-.global lbl_80516848
+	.float 640.0
 lbl_80516848:
-	.4byte 0x43F00000
-	.4byte 0x00000000
-.global lbl_80516850
+	.float 480.0
+.balign 8
 lbl_80516850:
 	.4byte 0x43300000
 	.4byte 0x00000000
-.global lbl_80516858
 lbl_80516858:
 	.float -1.0
-.global lbl_8051685C
 lbl_8051685C:
 	.float 1.0
 
