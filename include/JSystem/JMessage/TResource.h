@@ -28,18 +28,25 @@ struct TResource : public JGadget::TLinkListNode {
 };
 
 struct TResourceContainer {
-	struct TCResource {
+	struct TCResource : public JGadget::TLinkList_factory<TResource,0> {
 		virtual ~TCResource();               // _08
 		virtual TResource* Do_create();      // _0C
 		virtual void Do_destroy(TResource*); // _10
 
-		u8 _00[0xC]; // _00 - should be TNodeLinkList<TResource> according to ghidra but that struct is fucked
+		void Get_groupID(u16);
+
+		// _00-_08 	= TNodeLinkList
+		//		_00 	= m_count
+		//		_04-_08 = m_linkListNode
+		//			_04 	= m_head
+		//			_08 	= m_tail
+		// _0C 		= VTABLE
 	};
 
-	u32 _00;        // _00 - encoding?
-	void* _04;      // _04 - function pointer for isLeadByte(int);
-	TCResource _08; // _08 - should be TNodeLinkList<TResource> according to ghidra but that struct is fucked atm
-	TCResource _14; // _14
+	u32 _00;        			// _00 - encoding?
+	bool (*isLeadByte)(int);    // _04 - function pointer for isLeadByte(int)
+	TCResource _08; 			// _08
+	TCResource _14; 			// _14
 };
 
 } // namespace JMessage

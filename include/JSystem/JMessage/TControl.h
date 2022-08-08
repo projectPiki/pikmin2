@@ -30,7 +30,7 @@ struct TControl {
 	char* _1C;       // _1C
 	char* _20;       // _20
 	int _24;         // _24
-	u8 _28[0x10];    // _28-_38
+	u8 _28[0x10];    // _28-_38 - unknown
 };
 } // namespace JMessage
 

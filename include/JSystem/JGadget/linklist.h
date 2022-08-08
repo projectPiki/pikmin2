@@ -94,7 +94,19 @@ template <typename T, int I> struct TLinkList : public TNodeLinkList {
 		TLinkList::iterator iter(TLinkList::end());
 		this->Insert(iter, element);
 	}
+
+	// _00-_08	= TNodeLinkList	
 };
+
+template <typename T, int I> struct TLinkList_factory : public TLinkList<T,I> {
+	virtual ~TLinkList_factory() 	= 0;		// _08
+	virtual T* Do_create()			= 0;		// _0C
+	virtual void Do_destroy(T*)		= 0;		// _10
+
+	// _00-_08	= TNodeLinkList
+	// _0C		= VTABLE
+};
+
 
 }; // namespace JGadget
 
