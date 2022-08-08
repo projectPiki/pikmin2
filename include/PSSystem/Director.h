@@ -9,7 +9,7 @@
 namespace PSSystem {
 struct SeqTrackBase;
 
-struct DirectorBase {
+struct DirectorBase : public JADHioNode {
 	DirectorBase(int, const char*);
 
 	virtual ~DirectorBase();                        // _08 (weak)
