@@ -2,6 +2,7 @@
 #define _GAME_ITEMHONEY_H
 
 #include "Game/BaseItem.h"
+#include "Game/gameGenerator.h"
 
 namespace Game {
 namespace ItemHoney {

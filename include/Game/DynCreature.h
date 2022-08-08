@@ -16,7 +16,7 @@ struct DynParticle;
 struct DynCreature : public Creature {
 	DynCreature();
 
-	virtual void Vector3f getPosition();                  // _08
+	virtual Vector3f getPosition();                  // _08
 	virtual void getBoundingSphere(Sys::Sphere&) = 0;     // _10
 	virtual float getFaceDir()                   = 0;     // _64
 	virtual void setVelocity(Vector3f&);                  // _68

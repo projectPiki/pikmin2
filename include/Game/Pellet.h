@@ -38,10 +38,10 @@ struct PelletInitArg : CreatureInitArg {
 };
 
 struct Pellet : public DynCreature, public SysShape::MotionListener, public CarryInfoOwner {
-	virtual Vector3f getPosition()
-	{
-		// return _3AC;
-	}
+	virtual Vector3f getPosition();
+	// {
+	// 	// return _3AC;
+	// }
 
 	// vtable 3
 	/**
