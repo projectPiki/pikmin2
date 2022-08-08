@@ -4,8 +4,7 @@
 #include "Dolphin/os.h"
 #include "JSystem/JSupport/JSUList.h"
 #include "PSSystem/MutexList.h"
-
-struct JASTrack;
+#include "JSystem/JAS/JASTrack.h"
 
 namespace PSSystem {
 struct DirectorBase;

@@ -97,4 +97,5 @@ template <typename A, typename B> struct PrmDataMgrNode : public DataMgrNode {
 	virtual void initInstance();            // _20 (weak)
 };
 
+} // namespace JADUtility
 #endif

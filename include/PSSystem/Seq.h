@@ -8,8 +8,7 @@
 #include "JSystem/JAI/JAInter.h"
 #include "PSSystem/Task.h"
 #include "PSSystem/PSScene.h"
-
-struct JASTrack;
+#include "JSystem/JAS/JASTrack.h"
 
 namespace PSSystem {
 struct SeqPlayReservator;

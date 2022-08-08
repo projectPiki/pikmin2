@@ -6,8 +6,7 @@
 #include "PSAutoBgm/Track.h"
 #include "JSystem/JSupport/JSUList.h"
 #include "JSystem/JKR/JKRArchive.h"
-
-struct JASTrack;
+#include "JSystem/JAS/JASTrack.h"
 
 namespace PSAutoBgm {
 

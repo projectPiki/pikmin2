@@ -4,11 +4,8 @@
 #include "types.h"
 #include "PSSystem/Task.h"
 #include "PSSystem/Director.h"
-
-struct JASTrack;
-namespace JADUtility {
-struct DataMgrNode;
-} // namespace JADUtility
+#include "JSystem/JAS/JASTrack.h"
+#include "JSystem/JAD/JADDataMgr.h"
 
 namespace PSSystem {
 
@@ -19,7 +16,7 @@ struct BeatMgr {
 	void proc();
 
 	u8 _00; // _00 - unknown, but size 0x1 (or 0x2?)
-}
+};
 
 /**
  * @size 0x2C

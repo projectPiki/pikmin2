@@ -5,8 +5,7 @@
 #include "JSystem/JAD/JADUtility.h"
 #include "PSAutoBgm/Cycle.h"
 #include "JSystem/JAD/JADStr.h"
-
-struct JASTrack;
+#include "JSystem/JAS/JASTrack.h"
 
 namespace PSAutoBgm {
 /**

@@ -7,8 +7,7 @@
 #include "JSystem/JAI/JAInter.h"
 #include "JSystem/JAI/JAISound.h"
 #include "Dolphin/os.h"
-
-struct JASTrack;
+#include "JSystem/JAS/JASTrack.h"
 
 namespace PSSystem {
 struct DirectorMgrBase;
