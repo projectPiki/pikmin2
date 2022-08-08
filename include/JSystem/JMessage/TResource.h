@@ -28,7 +28,7 @@ struct TResource : public JGadget::TLinkListNode {
 };
 
 struct TResourceContainer {
-	struct TCResource : public JGadget::TLinkList_factory<TResource,0> {
+	struct TCResource : public JGadget::TLinkList_factory<TResource, 0> {
 		virtual ~TCResource();               // _08
 		virtual TResource* Do_create();      // _0C
 		virtual void Do_destroy(TResource*); // _10
@@ -43,10 +43,10 @@ struct TResourceContainer {
 		// _0C 		= VTABLE
 	};
 
-	u32 _00;        			// _00 - encoding?
-	bool (*isLeadByte)(int);    // _04 - function pointer for isLeadByte(int)
-	TCResource _08; 			// _08
-	TCResource _14; 			// _14
+	u32 _00;                 // _00 - encoding?
+	bool (*isLeadByte)(int); // _04 - function pointer for isLeadByte(int)
+	TCResource _08;          // _08
+	TCResource _14;          // _14
 };
 
 } // namespace JMessage
