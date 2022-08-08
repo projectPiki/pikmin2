@@ -87,10 +87,6 @@ struct Cell {
 
 struct CellObject : public TPositionObject {
 	inline CellObject()
-	    : TPositionObject()
-	    , m_sweepPruneObject()
-	// , m_cellLegs()
-	// , m_collisionBuffer()
 	{
 		m_cellLegs[0].m_flags  = 1;
 		m_cellLegs[1].m_flags  = 0;
@@ -102,30 +98,23 @@ struct CellObject : public TPositionObject {
 		m_cellLegs[3].m_object = this;
 		m_passID               = 0;
 	}
-	virtual void checkCollision(CellObject*);
-	virtual void getBoundingSphere(Sys::Sphere&);
-	virtual bool collisionUpdatable();
-	virtual bool isPiki();
-	virtual bool isNavi();
-	virtual bool deferPikiCollision();
-	virtual char* getTypeName();
-	virtual u16 getObjType();
+	//	virtual Vector3f checkPosition() 				= 0;	// _08
+	virtual void checkCollision(CellObject*);         // _0C (weak)
+	virtual void getBoundingSphere(Sys::Sphere&) = 0; // _10
+	virtual bool collisionUpdatable()            = 0; // _14
+	virtual bool isPiki();                            // _18 (weak)
+	virtual bool isNavi();                            // _1C (weak)
+	virtual bool deferPikiCollision();                // _20 (weak)
+	virtual char* getTypeName();                      // _24
+	virtual u16 getObjType();                         // _28
 
 	void exitCell();
 	float calcCollisionDistance(CellObject*);
 	void updateCollisionBuffer(CellObject*);
 	void resolveUsingBuffer();
 
-	SweepPrune::Object m_sweepPruneObject; // _04
-	// union {
-	// 	CellLeg arrayView[4];
-	// 	struct {
-	// 		CellLeg X1;
-	// 		CellLeg X2;
-	// 		CellLeg Z1;
-	// 		CellLeg Z2;
-	// 	} structView;
-	// } m_cellLegs;                      // _54
+	// _00 		= VTABLE
+	// _04-_54 	= m_sweepPruneObject
 	CellLeg m_cellLegs[4];             // _54
 	u32 m_passID;                      // _A4
 	CollisionBuffer m_collisionBuffer; // _A8

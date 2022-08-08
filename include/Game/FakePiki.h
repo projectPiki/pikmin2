@@ -90,50 +90,50 @@ struct FakePiki : public Creature, public SysShape::MotionListener {
 	FakePiki();
 
 	// vtable 1 (Creature)
-	virtual Vector3f getPosition();                   // _00
-	virtual void getBoundingSphere(Sys::Sphere&);     // _08
-	virtual void doAnimation();                       // _34
-	virtual void doEntry();                           // _38
-	virtual void doSimulation(float);                 // _44
-	virtual float getFaceDir();                       // _5C
-	virtual void setVelocity(Vector3f&);              // _60
-	virtual Vector3f getVelocity();                   // _64
-	virtual void onSetPosition(Vector3f&);            // _68
-	virtual void updateTrMatrix();                    // _70
-	virtual void inWaterCallback(WaterBox*);          // _7C
-	virtual void outWaterCallback();                  // _80
-	virtual bool inWater();                           // _84
-	virtual Vector3f* getSound_PosPtr();              // _F8
-	virtual void movieSetFaceDir(float);              // _120
-	virtual void getVelocityAt(Vector3f&, Vector3f&); // _17C
+	virtual Vector3f getPosition();                   // _08
+	virtual void getBoundingSphere(Sys::Sphere&);     // _10 (weak)
+	virtual void doAnimation();                       // _3C
+	virtual void doEntry();                           // _40
+	virtual void doSimulation(float);                 // _4C
+	virtual float getFaceDir();                       // _64 (weak)
+	virtual void setVelocity(Vector3f&);              // _68 (weak)
+	virtual Vector3f getVelocity();                   // _6C (weak)
+	virtual void onSetPosition(Vector3f&);            // _70 (weak)
+	virtual void updateTrMatrix();                    // _78
+	virtual void inWaterCallback(WaterBox*);          // _84 (weak)
+	virtual void outWaterCallback();                  // _88 (weak)
+	virtual bool inWater();                           // _8C (weak)
+	virtual Vector3f* getSound_PosPtr();              // _100 (weak)
+	virtual void movieSetFaceDir(float);              // _128
+	virtual void getVelocityAt(Vector3f&, Vector3f&); // _184 (weak)
 	// vtable 2 (MotionListener + self)
-	virtual int getDownfloorMass();             // _1B4
-	virtual bool isPikmin();                    // _1B8
-	virtual void doColorChange();               // _1BC
-	virtual void doDebugDL();                   // _1C0
-	virtual void update();                      // _1C4
-	virtual void move(float);                   // _1C8
-	virtual bool useMoveRotation();             // _1CC
-	virtual void setMoveRotation(bool);         // _1D0
-	virtual void useUpdateTrMatrix();           // _1D4
-	virtual void setUpdateTrMatrix(bool);       // _1D8
-	virtual void useMoveVelocity();             // _1DC
-	virtual void setMoveVelocity(bool);         // _1E0
-	virtual void useMapCollision();             // _1E4
-	virtual void setMapCollision(bool);         // _1E8
-	virtual bool isZikatu();                    // _1EC
-	virtual void setZikatu(bool);               // _1F0
-	virtual bool wasZikatu();                   // _1F4
-	virtual float getMapCollisionRadius();      // _1F8
-	virtual void wallCallback(Vector3<float>&); // _1FC
+	// virtual void onKeyEvent(const SysShape::KeyEvent&); thunk // 1B8
+	virtual int getDownfloorMass();             // _1BC (weak)
+	virtual bool isPikmin();                    // _1C0 (weak)
+	virtual void doColorChange();               // _1C4 (weak)
+	virtual void doDebugDL();                   // _1C8 (weak)
+	virtual void update();                      // _1CC (weak)
+	virtual void move(float);                   // _1D0
+	virtual bool useMoveRotation();             // _1D4 (weak)
+	virtual void setMoveRotation(bool);         // _1D8 (weak)
+	virtual void useUpdateTrMatrix();           // _1DC (weak)
+	virtual void setUpdateTrMatrix(bool);       // _1E0 (weak)
+	virtual void useMoveVelocity();             // _1E4 (weak)
+	virtual void setMoveVelocity(bool);         // _1E8 (weak)
+	virtual void useMapCollision();             // _1EC (weak)
+	virtual void setMapCollision(bool);         // _1F0 (weak)
+	virtual bool isZikatu();                    // _1F4 (weak)
+	virtual void setZikatu(bool);               // _1F8 (weak)
+	virtual bool wasZikatu();                   // _1FC (weak)
+	virtual float getMapCollisionRadius();      // _200 (weak)
+	virtual void wallCallback(Vector3<float>&); // _204 (weak)
 	virtual void startMotion(int, int, SysShape::MotionListener*,
-	                         SysShape::MotionListener*); // _200
-	virtual void onKeyEvent(const SysShape::KeyEvent&);  // _204
-	virtual void updateLookCreature();                   // _208
-	virtual void do_updateLookCreature();                // _20C
-	virtual void onSetPosition();                        // _210
-	virtual bool isWalking();                            // _214
-	// virtual void _218() = 0;                             // _218
+	                         SysShape::MotionListener*); // _208
+	virtual void onKeyEvent(const SysShape::KeyEvent&);  // _20C (weak)
+	virtual void updateLookCreature();                   // _210
+	virtual void do_updateLookCreature();                // _214
+	virtual void onSetPosition();                        // _218 (weak)
+	virtual bool isWalking();                            // _21C (weak)
 
 	bool assertMotion(int);
 

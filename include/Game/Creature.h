@@ -8,6 +8,7 @@
 #include "Rect.h"
 #include "SysShape/Animator.h"
 #include "Vector3.h"
+#include "BitFlag.h"
 
 struct Graphics;
 struct Matrixf;
@@ -83,66 +84,66 @@ struct Creature : public CellObject {
 		bool _00; // _00
 	};
 
-	virtual void checkCollision(CellObject*);    // _0C
-	virtual bool collisionUpdatable();           // _14 (weak)
-	virtual bool isPiki();                       // _18
-	virtual bool isNavi();                       // _1C
-	virtual char* getTypeName();                 // _24
-	virtual u16 getObjType();                    // _28 (weak)
-	virtual void constructor();                  // _2C (weak)
-	virtual void onInit(CreatureInitArg*);       // _30 (weak)
-	virtual void onKill(CreatureKillArg*);       // _34 (weak)
-	virtual void onInitPost(CreatureInitArg*);   // _38 (weak)
-	virtual void doAnimation();                  // _3C
-	virtual void doEntry();                      // _40
-	virtual void doSetView(int);                 // _44
-	virtual void doViewCalc();                   // _48
-	virtual void doSimulation(float);            // _4C (weak)
-	virtual void doDirectDraw(Graphics&);        // _50 (weak)
-	virtual float getBodyRadius();               // _54
-	virtual float getCellRadius();               // _58
-	virtual void initPosition(Vector3f&);        // _5C
-	virtual void onInitPosition(Vector3f&);      // _60 (weak)
-	virtual float getFaceDir()            = 0;   // _64
-	virtual void setVelocity(Vector3f&)   = 0;   // _68
-	virtual Vector3f getVelocity()        = 0;   // _6C
-	virtual void onSetPosition(Vector3f&) = 0;   // _70
-	virtual void onSetPositionPost(Vector3f&);   // _74 (weak)
-	virtual void updateTrMatrix() = 0;           // _78
-	virtual bool isTeki();                       // _7C
-	virtual bool isPellet();                     // _80
-	virtual void inWaterCallback(WaterBox*);     // _84 (weak)
-	virtual void outWaterCallback();             // _88 (weak)
-	virtual bool inWater();                      // _8C (weak)
-	virtual u32 getFlockMgr();                   // _90 (weak)
-	virtual void onStartCapture();               // _94 (weak)
-	virtual void onUpdateCapture(Matrixf&);      // _98 (weak)
-	virtual void onEndCapture();                 // _9C (weak)
-	virtual bool isAtari();                      // _A0 (weak)
-	virtual void setAtari(bool);                 // _A4 (weak)
-	virtual bool isAlive();                      // _A8 (weak)
-	virtual void setAlive(bool);                 // _AC (weak)
-	virtual bool isCollisionFlick();             // _B0 (weak)
-	virtual void setCollisionFlick(bool);        // _B4 (weak)
-	virtual bool isMovieActor();                 // _B8 (weak)
-	virtual bool isMovieExtra();                 // _BC (weak)
-	virtual bool isMovieMotion();                // _C0 (weak)
-	virtual void setMovieMotion(bool);           // _C4 (weak)
-	virtual bool isBuried();                     // _C8 (weak)
-	virtual bool isFlying();                     // _CC (weak)
-	virtual bool isUnderground();                // _D0 (weak)
-	virtual bool isLivingThing();                // _D4 (weak)
-	virtual bool isDebugCollision();             // _D8 (weak)
-	virtual void setDebugCollision(bool);        // _DC (weak)
-	virtual void doSave(Stream&);                // _E0 (weak)
-	virtual void doLoad(Stream&);                // _E4 (weak)
-	virtual void bounceCallback(Sys::Triangle*); // _E8 (weak)
-	virtual void collisionCallback(CollEvent&);  // _EC (weak)
-	virtual void platCallback(PlatEvent&);       // _F0 (weak)
-	/**
-	 * @reifiedAddress{80124228}
-	 * @reifiedFile{plugProjectYamashitaU/farmMgr.cpp}
-	 */
+	Creature();
+
+	virtual Vector3f getPosition() = 0;                         // _08
+	virtual void checkCollision(CellObject*);                   // _0C
+	virtual void getBoundingSphere(Sys::Sphere&) = 0;           // _10
+	virtual bool collisionUpdatable();                          // _14 (weak)
+	virtual bool isPiki();                                      // _18
+	virtual bool isNavi();                                      // _1C
+	virtual char* getTypeName();                                // _24
+	virtual u16 getObjType();                                   // _28 (weak)
+	virtual void constructor();                                 // _2C (weak)
+	virtual void onInit(CreatureInitArg*);                      // _30 (weak)
+	virtual void onKill(CreatureKillArg*);                      // _34 (weak)
+	virtual void onInitPost(CreatureInitArg*);                  // _38 (weak)
+	virtual void doAnimation();                                 // _3C
+	virtual void doEntry();                                     // _40
+	virtual void doSetView(int);                                // _44
+	virtual void doViewCalc();                                  // _48
+	virtual void doSimulation(float);                           // _4C (weak)
+	virtual void doDirectDraw(Graphics&);                       // _50 (weak)
+	virtual float getBodyRadius();                              // _54
+	virtual float getCellRadius();                              // _58
+	virtual void initPosition(Vector3f&);                       // _5C
+	virtual void onInitPosition(Vector3f&);                     // _60 (weak)
+	virtual float getFaceDir()            = 0;                  // _64
+	virtual void setVelocity(Vector3f&)   = 0;                  // _68
+	virtual Vector3f getVelocity()        = 0;                  // _6C
+	virtual void onSetPosition(Vector3f&) = 0;                  // _70
+	virtual void onSetPositionPost(Vector3f&);                  // _74 (weak)
+	virtual void updateTrMatrix() = 0;                          // _78
+	virtual bool isTeki();                                      // _7C
+	virtual bool isPellet();                                    // _80
+	virtual void inWaterCallback(WaterBox*);                    // _84 (weak)
+	virtual void outWaterCallback();                            // _88 (weak)
+	virtual bool inWater();                                     // _8C (weak)
+	virtual u32 getFlockMgr();                                  // _90 (weak)
+	virtual void onStartCapture();                              // _94 (weak)
+	virtual void onUpdateCapture(Matrixf&);                     // _98 (weak)
+	virtual void onEndCapture();                                // _9C (weak)
+	virtual bool isAtari();                                     // _A0 (weak)
+	virtual void setAtari(bool);                                // _A4 (weak)
+	virtual bool isAlive();                                     // _A8 (weak)
+	virtual void setAlive(bool);                                // _AC (weak)
+	virtual bool isCollisionFlick();                            // _B0 (weak)
+	virtual void setCollisionFlick(bool);                       // _B4 (weak)
+	virtual bool isMovieActor();                                // _B8 (weak)
+	virtual bool isMovieExtra();                                // _BC (weak)
+	virtual bool isMovieMotion();                               // _C0 (weak)
+	virtual void setMovieMotion(bool);                          // _C4 (weak)
+	virtual bool isBuried();                                    // _C8 (weak)
+	virtual bool isFlying();                                    // _CC (weak)
+	virtual bool isUnderground();                               // _D0 (weak)
+	virtual bool isLivingThing();                               // _D4 (weak)
+	virtual bool isDebugCollision();                            // _D8 (weak)
+	virtual void setDebugCollision(bool);                       // _DC (weak)
+	virtual void doSave(Stream&);                               // _E0 (weak)
+	virtual void doLoad(Stream&);                               // _E4 (weak)
+	virtual void bounceCallback(Sys::Triangle*);                // _E8 (weak)
+	virtual void collisionCallback(CollEvent&);                 // _EC (weak)
+	virtual void platCallback(PlatEvent&);                      // _F0 (weak)
 	virtual JAInter::Object* getJAIObject() { return nullptr; } // _F4 (weak)
 	virtual PSM::Creature* getPSCreature();                     // _F8 (weak)
 	virtual AILOD* getSound_AILOD();                            // _FC (weak)
@@ -186,12 +187,11 @@ struct Creature : public CellObject {
 	virtual Vector3f getSuckPos();                              // _194 (weak)
 	virtual Vector3f getGoalPos();                              // _198 (weak)
 	virtual bool isSuckReady();                                 // _19C (weak)
-	virtual BOOL isSuckArriveWait();                            // _1A0 (weak)
+	virtual bool isSuckArriveWait();                            // _1A0 (weak)
 	virtual bool stimulate(Interaction&);                       // _1A4 (weak)
 	virtual char* getCreatureName();                            // _1A8 (weak)
 	virtual s32 getCreatureID();                                // _1AC (weak)
 
-	Creature();
 	void applyAirDrag(float, float, float);
 	float calcSphereDistance(Creature*);
 	void checkHell(Creature::CheckHellArg&);
@@ -225,17 +225,13 @@ struct Creature : public CellObject {
 
 	static bool usePacketCulling;
 
-	Matrixf* m_captureMatrix; // _0B8
-	union {
-		u8 byteView[4];
-		// Use this with CreatureFlags.
-		u32 intView;
-		// The following bitfield is here for mod usage.
-		// Vanilla seems to just use the previous 2 representations.
-		// u32 m_isDebugCollision : 1, : 24, m_isMovieExtra : 1,
-		//     m_isMovieMotion : 1, m_isMovieActor : 1, padding2 : 1,
-		//     m_isCollisionFlick : 1, m_isAlive : 1, m_isAtari : 1;
-	} m_flags;                     // _0BC
+	Matrixf* m_captureMatrix;      // _0B8
+	                               // The following bitfield is here for mod usage.
+	                               // Vanilla seems to just use the previous 2 representations.
+	                               // u32 m_isDebugCollision : 1, : 24, m_isMovieExtra : 1,
+	                               //     m_isMovieMotion : 1, m_isMovieActor : 1, padding2 : 1,
+	                               //     m_isCollisionFlick : 1, m_isAlive : 1, m_isAtari : 1;
+	BitFlag<u32> m_flags;          // _0BC
 	void* m_parms;                 // _0C0
 	Generator* m_generator;        // _0C4
 	unkptr _0C8;                   // _0C8

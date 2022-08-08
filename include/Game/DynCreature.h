@@ -8,6 +8,7 @@
 
 namespace Sys {
 struct Cylinder;
+struct Sphere;
 } // namespace Sys
 
 namespace Game {
@@ -15,7 +16,24 @@ struct DynParticle;
 struct DynCreature : public Creature {
 	DynCreature();
 
+	virtual void Vector3f getPosition();                  // _08
+	virtual void getBoundingSphere(Sys::Sphere&) = 0;     // _10
+	virtual float getFaceDir()                   = 0;     // _64
+	virtual void setVelocity(Vector3f&);                  // _68
+	virtual Vector3f getVelocity();                       // _6C
+	virtual void onSetPosition(Vector3f&);                // _70
+	virtual void updateTrMatrix() = 0;                    // _78
+	virtual void getVelocityAt(Vector3f&, Vector3f&);     // _184
+	virtual float getAngularEffect(Vector3f&, Vector3f&); // _188
+	virtual void applyImpulse(Vector3f&, Vector3f&);      // _18C
+	virtual void onSetPosition();                         // _1B0 (weak)
+
+	void createParticles(int);
+	void releaseParticles();
+	void updateParticlesPositions();
+	void computeForces(float);
 	void tracemoveCallback(Vector3f&, Vector3f&);
+	void simulate(float);
 
 	// Unused/inlined:
 	void getContactParticeRatio();

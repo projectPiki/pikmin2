@@ -19,6 +19,7 @@
 #include "Vector3.h"
 #include "efx/TEnemyPiyo.h"
 #include "types.h"
+#include "Game/MoveInfo.h"
 
 struct MouthSlots;
 
@@ -35,6 +36,9 @@ struct EnemyAnimatorBase;
 struct EnemyAnimKeyEvent;
 struct EnemyEffectNodeHamon;
 struct EnemyMgrBase;
+struct WaterBox;
+struct LifeGaugeParam;
+struct Interaction;
 
 /**
  * @todo Split this into a separate type PelplantInitialParam?
@@ -64,201 +68,130 @@ struct EnemyBase : public Creature, public SysShape::MotionListener, virtual pub
 	EnemyBase();
 
 	// vtable 1 (Creature)
-	virtual Vector3f getPosition();           // _00
-	virtual void checkCollision(CellObject*); // _04
-	/**
-	 * @reifiedAddress{801028F0}
-	 * @reifiedFile{plugProjectYamashitaU/enemyBase.cpp}
-	 */
-	virtual void getBoundingSphere(Sys::Sphere& sphere) // _08
+	virtual Vector3f getPosition();                     // _08 (weak)
+	virtual void getBoundingSphere(Sys::Sphere& sphere) // _10 (weak)
 	{
 		sphere = m_boundingSphere;
 	}
-	virtual bool collisionUpdatable();                          // _0C
-	virtual bool isPiki();                                      // _10
-	virtual bool isNavi();                                      // _14
-	virtual bool deferPikiCollision();                          // _18
-	virtual char* getTypeName();                                // _1C
-	virtual u16 getObjType();                                   // _20
-	virtual void constructor();                                 // _24
-	virtual void onInit(CreatureInitArg*);                      // _28
-	virtual void onKill(CreatureKillArg*);                      // _2C
-	virtual void onInitPost(CreatureInitArg*);                  // _30
-	virtual void doAnimation();                                 // _34
-	virtual void doEntry();                                     // _38
-	virtual void doSetView(int);                                // _3C
-	virtual void doViewCalc();                                  // _40
-	virtual void doSimulation(float);                           // _44
-	virtual void doDirectDraw(Graphics&);                       // _48
-	virtual float getBodyRadius();                              // _4C
-	virtual float getCellRadius();                              // _50
-	virtual void initPosition(Vector3f&);                       // _54
-	virtual void onInitPosition(Vector3f&);                     // _58
-	virtual float getFaceDir();                                 // _5C
-	virtual void setVelocity(Vector3f&);                        // _60
-	virtual Vector3f getVelocity();                             // _64
-	virtual void onSetPosition(Vector3f&);                      // _68
-	virtual void onSetPositionPost(Vector3f&);                  // _6C
-	virtual void updateTrMatrix();                              // _70
-	virtual bool isTeki();                                      // _74
-	virtual bool isPellet();                                    // _78
-	virtual void inWaterCallback(WaterBox*);                    // _7C
-	virtual void outWaterCallback();                            // _80
-	virtual bool inWater();                                     // _84
-	virtual u32 getFlockMgr();                                  // _88
-	virtual void onStartCapture();                              // _8C
-	virtual void onUpdateCapture(Matrixf&);                     // _90
-	virtual void onEndCapture();                                // _94
-	virtual bool isAtari();                                     // _98
-	virtual void setAtari(bool);                                // _9C
-	virtual bool isAlive();                                     // _A0
-	virtual void setAlive(bool);                                // _A4
-	virtual bool isCollisionFlick();                            // _A8
-	virtual void setCollisionFlick(bool);                       // _AC
-	virtual bool isMovieActor();                                // _B0
-	virtual bool isMovieExtra();                                // _B4
-	virtual bool isMovieMotion();                               // _B8
-	virtual void setMovieMotion(bool);                          // _BC
-	virtual bool isBuried();                                    // _C0
-	virtual bool isFlying();                                    // _C4
-	virtual bool isUnderground();                               // _C8
-	virtual bool isLivingThing();                               // _CC
-	virtual bool isDebugCollision();                            // _D0
-	virtual void setDebugCollision(bool);                       // _D4
-	virtual void doSave(Stream&);                               // _D8
-	virtual void doLoad(Stream&);                               // _DC
-	virtual void bounceCallback(Sys::Triangle*);                // _E0
-	virtual void collisionCallback(CollEvent&);                 // _E4
-	virtual void platCallback(PlatEvent&);                      // _E8
-	virtual JAInter::Object* getJAIObject();                    // _EC
-	virtual PSM::Creature* getPSCreature();                     // _F0
-	virtual AILOD* getSound_AILOD();                            // _F4
-	virtual Vector3f* getSound_PosPtr();                        // _F8
-	virtual bool sound_culling();                               // _FC
-	virtual float getSound_CurrAnimFrame();                     // _100
-	virtual float getSound_CurrAnimSpeed();                     // _104
-	virtual void on_movie_begin(bool);                          // _108
-	virtual void on_movie_end(bool);                            // _10C
-	virtual void movieStartAnimation(unsigned long);            // _110
-	virtual void movieStartDemoAnimation(SysShape::AnimInfo*);  // _114
-	virtual void movieSetAnimationLastFrame();                  // _118
-	virtual void movieSetTranslation(Vector3f&, float);         // _11C
-	virtual void movieSetFaceDir(float);                        // _120
-	virtual bool movieGotoPosition(Vector3f&);                  // _124
-	virtual void movieUserCommand(unsigned long, MoviePlayer*); // _128
-	virtual void getShadowParam(ShadowParam&);                  // _12C
-	virtual bool needShadow();                                  // _130
-	virtual void getLifeGaugeParam(LifeGaugeParam&);            // _134
-	virtual void getLODSphere(Sys::Sphere&);                    // _138
-	virtual void getLODCylinder(Sys::Cylinder&);                // _13C
-	virtual void startPick();                                   // _140
-	virtual void endPick(bool);                                 // _144
-	virtual u32* getMabiki();                                   // _148
-	virtual Footmarks* getFootmarks();                          // _14C
-	virtual void onStickStart(Creature*);                       // _150
-	virtual void onStickEnd(Creature*);                         // _154
-	virtual void onStickStartSelf(Creature*);                   // _158
-	virtual void onStickEndSelf(Creature*);                     // _15C
-	virtual bool isSlotFree(short);                             // _160
-	virtual int getFreeStickSlot();                             // _164
-	virtual int getNearFreeStickSlot(Vector3f&);                // _168
-	virtual int getRandomFreeStickSlot();                       // _16C
-	virtual void onSlotStickStart(Creature*, short);            // _170
-	virtual void onSlotStickEnd(Creature*, short);              // _174
-	virtual void calcStickSlotGlobal(short, Vector3f&);         // _178
-	virtual void getVelocityAt(Vector3f&, Vector3f&);           // _17C
-	virtual float getAngularEffect(Vector3f&, Vector3f&);       // _180
-	virtual void applyImpulse(Vector3f&, Vector3f&);            // _184
-	virtual bool ignoreAtari(Creature*);                        // _188
-	virtual Vector3f getSuckPos();                              // _18C
-	virtual Vector3f getGoalPos();                              // _190
-	virtual bool isSuckReady();                                 // _194
-	virtual BOOL isSuckArriveWait();                            // _198
-	virtual bool stimulate(Interaction&);                       // _19C
-	virtual char* getCreatureName();                            // _1A0
-	virtual s32 getCreatureID();                                // _1A4
+	virtual void constructor();                       // _2C
+	virtual void onInit(CreatureInitArg*);            // _30
+	virtual void onKill(CreatureKillArg*);            // _34
+	virtual void onInitPost(CreatureInitArg*);        // _38
+	virtual void doAnimation();                       // _3C
+	virtual void doEntry();                           // _40
+	virtual void doSetView(int);                      // _44
+	virtual void doViewCalc();                        // _48
+	virtual void doSimulation(float);                 // _4C
+	virtual float getBodyRadius();                    // _54 (weak)
+	virtual float getCellRadius();                    // _58 (weak)
+	virtual float getFaceDir();                       // _64 (weak)
+	virtual void setVelocity(Vector3f&);              // _68 (weak)
+	virtual Vector3f getVelocity();                   // _6C (weak)
+	virtual void onSetPosition(Vector3f&);            // _70 (weak)
+	virtual void onSetPositionPost(Vector3f&);        // _74 (weak)
+	virtual void updateTrMatrix();                    // _78
+	virtual bool isTeki();                            // _7C (weak)
+	virtual void inWaterCallback(WaterBox*);          // _84
+	virtual void outWaterCallback();                  // _88
+	virtual bool inWater();                           // _8C (weak)
+	virtual bool isFlying();                          // _CC (weak)
+	virtual void collisionCallback(CollEvent&);       // _EC
+	virtual JAInter::Object* getJAIObject();          // _F4
+	virtual PSM::Creature* getPSCreature();           // _F8
+	virtual Vector3f* getSound_PosPtr();              // _100 (weak)
+	virtual bool sound_culling();                     // _104 (weak)
+	virtual float getSound_CurrAnimFrame();           // _108 (weak)
+	virtual float getSound_CurrAnimSpeed();           // _10C (weak)
+	virtual bool needShadow();                        // _138
+	virtual void getLifeGaugeParam(LifeGaugeParam&);  // _13C
+	virtual void getLODSphere(Sys::Sphere&);          // _140 (weak)
+	virtual void onStickStart(Creature*);             // _158
+	virtual void onStickEnd(Creature*);               // _15C
+	virtual void getVelocityAt(Vector3f&, Vector3f&); // _184 (weak)
+	virtual bool stimulate(Interaction&);             // _1A4
+	virtual char* getCreatureName();                  // _1A8 (weak)
+	virtual s32 getCreatureID();                      // _1AC (weak)
 	// vtable 2 (MotionListener+self)
-	virtual ~EnemyBase();                                           // _004
-	virtual void birth(Vector3f&, float);                           // _008
-	virtual void setInitialSetting(EnemyInitialParamBase*) = 0;     // _00C
-	virtual void update();                                          // _010
-	virtual void doUpdate() = 0;                                    // _014
-	virtual void doUpdateCommon();                                  // _018
-	virtual void doUpdateCarcass();                                 // _01C
-	virtual void doAnimationUpdateAnimator();                       // _020
-	virtual void doAnimationCullingOff();                           // _024
-	virtual void doAnimationCullingOn();                            // _028
-	virtual void doAnimationStick();                                // _02C
-	virtual void doSimulationCarcass(float);                        // _030
-	virtual void doDebugDraw(Graphics&);                            // _034
-	virtual void doSimpleDraw(struct Viewport*);                    // _038
-	virtual void doSimulationGround(float);                         // _03C
-	virtual void doSimulationFlying(float);                         // _040
-	virtual void doSimulationStick(float);                          // _044
-	virtual void changeMaterial();                                  // _048
-	virtual void getCommonEffectPos(Vector3f&);                     // _04C
-	virtual Vector3f* getFitEffectPos();                            // _050
-	virtual SysShape::Model* viewGetShape();                        // _054
-	virtual void view_start_carrymotion();                          // _058
-	virtual void view_finish_carrymotion();                         // _05C
-	virtual void viewStartPreCarryMotion();                         // _060
-	virtual void viewStartCarryMotion();                            // _064
-	virtual void viewOnPelletKilled();                              // _068
-	virtual void getOffsetForMapCollision();                        // _06C
-	virtual void setParameters();                                   // _070
-	virtual void initMouthSlots();                                  // _074
-	virtual void initWalkSmokeEffect();                             // _078
-	virtual WalkSmokeEffect::Mgr* getWalkSmokeEffectMgr();          // _07C
-	virtual void onKeyEvent(const SysShape::KeyEvent&);             // _080
-	virtual bool injure();                                          // _084
-	virtual void setCollEvent(CollEvent&);                          // _088
-	virtual void getEfxHamonPos(Vector3f*);                         // _08C
-	virtual void createInstanceEfxHamon();                          // _090
-	virtual void updateEfxHamon();                                  // _094
-	virtual void createEfxHamon();                                  // _098
-	virtual void fadeEfxHamon();                                    // _09C
-	virtual EnemyTypeID::EEnemyTypeID getEnemyTypeID() = 0;         // _0A0
-	virtual MouthSlots* getMouthSlots();                            // _0A4
-	virtual void doGetLifeGaugeParam(LifeGaugeParam&);              // _0A8
-	virtual void throwupItem();                                     // _0AC
-	virtual void getThrowupItemPosition(Vector3f*);                 // _0B0
-	virtual void getThrowupItemVelocity(Vector3f*);                 // _0B4
-	virtual void throwupItemInDeathProcedure();                     // _0B8
-	virtual void setLODSphere(Sys::Sphere&);                        // _0BC
-	virtual bool damageCallBack(Creature*, float, CollPart*);       // _0C0
-	virtual bool pressCallBack(Creature*, float, CollPart*);        // _0C4
-	virtual bool flyCollisionCallBack(Creature*, float, CollPart*); // _0C8
-	virtual bool hipdropCallBack(Creature*, float, CollPart*);      // _0CC
-	virtual bool dropCallBack(Creature*);                           // _0D0
-	virtual bool earthquakeCallBack(Creature*, float);              // _0D4
-	virtual bool farmCallBack(Creature*, float);                    // _0D8
-	virtual bool bombCallBack(Creature*, Vector3f&, float);         // _0DC
-	virtual bool eatWhitePikminCallBack(Creature*, float);          // _0E0
-	virtual bool dopeCallBack(Creature*, int);                      // _0E4
-	virtual bool doDopeCallBack(Creature*, int);                    // _0E8
-	virtual void doStartStoneState();                               // _0EC
-	virtual void doFinishStoneState();                              // _0F0
-	virtual float getDamageCoeStoneState();                         // _0F4
-	virtual void doStartEarthquakeState(float);                     // _0F8
-	virtual void doFinishEarthquakeState();                         // _0FC
-	virtual void doStartEarthquakeFitState();                       // _100
-	virtual void doFinishEarthquakeFitState();                      // _104
-	virtual void lifeRecover();                                     // _108
-	virtual void startCarcassMotion();                              // _10C
-	virtual void setCarcassArg(struct PelletViewArg&);              // _110
-	virtual float getCarcassArgHeight();                            // _114
-	virtual bool doBecomeCarcass();                                 // _118
-	virtual void startWaitingBirthTypeDrop();                       // _11C
-	virtual void finishWaitingBirthTypeDrop();                      // _120
-	virtual bool isFinishableWaitingBirthTypeDrop();                // _124
-	virtual void doStartWaitingBirthTypeDrop();                     // _128
-	virtual void doFinishWaitingBirthTypeDrop();                    // _12C
-	virtual void wallCallback(const struct MoveInfo&);              // _130
-	virtual float getDownSmokeScale();                              // _134
-	virtual void doStartMovie();                                    // _138
-	virtual void doEndMovie();                                      // _13C
-	// virtual void _2F0() = 0;                                        // _2F0
-	// virtual void _2F4() = 0;                                        // _2F4
+	// virtual void onKeyEvent(const SysShape::KeyEvent&); - thunk _1B8
+	virtual ~EnemyBase();                                           // _1BC (weak)
+	virtual void birth(Vector3f&, float);                           // _1C0
+	virtual void setInitialSetting(EnemyInitialParamBase*) = 0;     // _1C4
+	virtual void update();                                          // _1C8
+	virtual void doUpdate() = 0;                                    // _1CC
+	virtual void doUpdateCommon();                                  // _1D0
+	virtual void doUpdateCarcass();                                 // _1D4
+	virtual void doAnimationUpdateAnimator();                       // _1D8
+	virtual void doAnimationCullingOff();                           // _1DC
+	virtual void doAnimationCullingOn();                            // _1E0
+	virtual void doAnimationStick();                                // _1E4
+	virtual void doSimulationCarcass(float);                        // _1E8
+	virtual void doDebugDraw(Graphics&);                            // _1EC
+	virtual void doSimpleDraw(Viewport*);                           // _1F0 (weak)
+	virtual void doSimulationGround(float);                         // _1F4
+	virtual void doSimulationFlying(float);                         // _1F8
+	virtual void doSimulationStick(float);                          // _1FC
+	virtual void changeMaterial();                                  // _200
+	virtual void getCommonEffectPos(Vector3f&);                     // _204
+	virtual Vector3f* getFitEffectPos();                            // _208
+	virtual SysShape::Model* viewGetShape();                        // _20C (weak)
+	virtual void view_start_carrymotion();                          // _210 (weak)
+	virtual void view_finish_carrymotion();                         // _214 (weak)
+	virtual void viewStartPreCarryMotion();                         // _218 (weak)
+	virtual void viewStartCarryMotion();                            // _21C (weak)
+	virtual void viewOnPelletKilled();                              // _220 (weak)
+	virtual void getOffsetForMapCollision();                        // _224 (weak)
+	virtual void setParameters();                                   // _228
+	virtual void initMouthSlots();                                  // _22C (weak)
+	virtual void initWalkSmokeEffect();                             // _230 (weak)
+	virtual WalkSmokeEffect::Mgr* getWalkSmokeEffectMgr();          // _234 (weak)
+	virtual void onKeyEvent(const SysShape::KeyEvent&);             // _238 (weak)
+	virtual bool injure();                                          // _23C
+	virtual void setCollEvent(CollEvent&);                          // _240
+	virtual void getEfxHamonPos(Vector3f*);                         // _244 (weak)
+	virtual void createInstanceEfxHamon();                          // _248
+	virtual void updateEfxHamon();                                  // _24C
+	virtual void createEfxHamon();                                  // _250
+	virtual void fadeEfxHamon();                                    // _254
+	virtual EnemyTypeID::EEnemyTypeID getEnemyTypeID() = 0;         // _258
+	virtual MouthSlots* getMouthSlots();                            // _25C (weak)
+	virtual void doGetLifeGaugeParam(LifeGaugeParam&);              // _260
+	virtual void throwupItem();                                     // _264
+	virtual void getThrowupItemPosition(Vector3f*);                 // _268
+	virtual void getThrowupItemVelocity(Vector3f*);                 // _26C
+	virtual void throwupItemInDeathProcedure();                     // _270 (weak)
+	virtual void setLODSphere(Sys::Sphere&);                        // _274 (weak)
+	virtual bool damageCallBack(Creature*, float, CollPart*);       // _278
+	virtual bool pressCallBack(Creature*, float, CollPart*);        // _27C
+	virtual bool flyCollisionCallBack(Creature*, float, CollPart*); // _280
+	virtual bool hipdropCallBack(Creature*, float, CollPart*);      // _284
+	virtual bool dropCallBack(Creature*);                           // _288
+	virtual bool earthquakeCallBack(Creature*, float);              // _28C
+	virtual bool farmCallBack(Creature*, float);                    // _290
+	virtual bool bombCallBack(Creature*, Vector3f&, float);         // _294
+	virtual bool eatWhitePikminCallBack(Creature*, float);          // _298
+	virtual bool dopeCallBack(Creature*, int);                      // _29C
+	virtual bool doDopeCallBack(Creature*, int);                    // _2A0 (weak)
+	virtual void doStartStoneState();                               // _2A4
+	virtual void doFinishStoneState();                              // _2A8
+	virtual float getDamageCoeStoneState();                         // _2AC (weak)
+	virtual void doStartEarthquakeState(float);                     // _2B0
+	virtual void doFinishEarthquakeState();                         // _2B4
+	virtual void doStartEarthquakeFitState();                       // _2B8
+	virtual void doFinishEarthquakeFitState();                      // _2BC
+	virtual void lifeRecover();                                     // _2C0
+	virtual void startCarcassMotion();                              // _2C4 (weak)
+	virtual void setCarcassArg(PelletViewArg&);                     // _2C8
+	virtual float getCarcassArgHeight();                            // _2CC (weak)
+	virtual bool doBecomeCarcass();                                 // _2D0
+	virtual void startWaitingBirthTypeDrop();                       // _2D4
+	virtual void finishWaitingBirthTypeDrop();                      // _2D8
+	virtual bool isFinishableWaitingBirthTypeDrop();                // _2DC
+	virtual void doStartWaitingBirthTypeDrop();                     // _2E0
+	virtual void doFinishWaitingBirthTypeDrop();                    // _2E4
+	virtual void wallCallback(const MoveInfo&);                     // _2E8 (weak)
+	virtual float getDownSmokeScale();                              // _2EC
+	virtual void doStartMovie();                                    // _2F0 (weak)
+	virtual void doEndMovie();                                      // _2F4 (weak)
 	// vtable 3 (PelletView)
 	virtual float viewGetBaseScale();                 // _2F8
 	virtual int viewGetCollTreeJointIndex();          // _300
