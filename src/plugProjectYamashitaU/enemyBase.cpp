@@ -1100,43 +1100,11 @@ void BirthTypeDropState::init(Game::EnemyBase* enemy, Game::StateArg* arg)
  * Address:	800FF6F8
  * Size:	00006C
  */
-void EnemyBaseFSM::BirthTypeDropState::update(Game::EnemyBase* enemy)
+void BirthTypeDropState::update(Game::EnemyBase* enemy)
 {
-	if (enemy->isFinishableWaitingBirthTypeDrop()) {
+	if (isFinishableWaitingBirthTypeDrop(enemy)) {
 		transit(enemy, EBS_Appear, nullptr);
 	}
-	/*
-	.loc_0x0:
-	  stwu      r1, -0x10(r1)
-	  mflr      r0
-	  stw       r0, 0x14(r1)
-	  stw       r31, 0xC(r1)
-	  mr        r31, r4
-	  stw       r30, 0x8(r1)
-	  mr        r30, r3
-	  lwz       r12, 0x0(r3)
-	  lwz       r12, 0x38(r12)
-	  mtctr     r12
-	  bctrl
-	  rlwinm.   r0,r3,0,24,31
-	  beq-      .loc_0x54
-	  mr        r3, r30
-	  mr        r4, r31
-	  lwz       r12, 0x0(r30)
-	  li        r5, 0x5
-	  li        r6, 0
-	  lwz       r12, 0x1C(r12)
-	  mtctr     r12
-	  bctrl
-
-	.loc_0x54:
-	  lwz       r0, 0x14(r1)
-	  lwz       r31, 0xC(r1)
-	  lwz       r30, 0x8(r1)
-	  mtlr      r0
-	  addi      r1, r1, 0x10
-	  blr
-	*/
 }
 
 /*
@@ -1144,25 +1112,7 @@ void EnemyBaseFSM::BirthTypeDropState::update(Game::EnemyBase* enemy)
  * Address:	800FF764
  * Size:	000030
  */
-void EnemyBaseFSM::BirthTypeDropState::cleanup(Game::EnemyBase* enemy)
-{
-	enemy->finishWaitingBirthTypeDrop();
-	/*
-	.loc_0x0:
-	  stwu      r1, -0x10(r1)
-	  mflr      r0
-	  mr        r3, r4
-	  stw       r0, 0x14(r1)
-	  lwz       r12, 0x0(r4)
-	  lwz       r12, 0x2D8(r12)
-	  mtctr     r12
-	  bctrl
-	  lwz       r0, 0x14(r1)
-	  mtlr      r0
-	  addi      r1, r1, 0x10
-	  blr
-	*/
-}
+void BirthTypeDropState::cleanup(Game::EnemyBase* enemy) { enemy->finishWaitingBirthTypeDrop(); }
 
 /*
  * --INFO--
