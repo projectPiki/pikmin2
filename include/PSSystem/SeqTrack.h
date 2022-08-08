@@ -49,25 +49,25 @@ struct SeqTrackRoot : public SeqTrackBase {
 
 	// _00      = VTABLE
 	// _04-_2C  = SeqBase
-	u16 _2C;                   // _2C
-	short _2E;                 // _2E
-	u16 _30;                   // _30
-	u16 _32;                   // _32
-	float _34;                 // _34
-	u32 _38;                   // _38 - unknown
-	BeatMgr m_beatMgr;         // _3C
-	u8 _3D;                    // _3D - possibly padding or part of BeatMgr
-	short _3E;                 // _3E
-	TaskEntry_Tempo _40;       // _40
-	FlagWaitTask _AC;          // _AC
-	OuterParamTask _CC;        // _CC
-	TaskEntry_OuterParam _100; // _100 - probably
-	TaskEntry_PitMod _16C;     // _16C
-	TaskEntry _20C;            // _20C - probably
-	BankRandTask _244;         // _244
-	FlagWaitTask _274;         // _274
-	BankRandTask _294;         // _294
-	JADUtility::DataMgrNode* _2C4;         // _2C4
+	u16 _2C;                       // _2C
+	short _2E;                     // _2E
+	u16 _30;                       // _30
+	u16 _32;                       // _32
+	float _34;                     // _34
+	u32 _38;                       // _38 - unknown
+	BeatMgr m_beatMgr;             // _3C
+	u8 _3D;                        // _3D - possibly padding or part of BeatMgr
+	short _3E;                     // _3E
+	TaskEntry_Tempo _40;           // _40
+	FlagWaitTask _AC;              // _AC
+	OuterParamTask _CC;            // _CC
+	TaskEntry_OuterParam _100;     // _100 - probably
+	TaskEntry_PitMod _16C;         // _16C
+	TaskEntry _20C;                // _20C - probably
+	BankRandTask _244;             // _244
+	FlagWaitTask _274;             // _274
+	BankRandTask _294;             // _294
+	JADUtility::DataMgrNode* _2C4; // _2C4
 };
 
 struct SeqTrackRoot_JumpBgm : public SeqTrackRoot {

@@ -952,7 +952,7 @@ HIKINO:=\
 	$(BUILD_DIR)/asm/plugProjectHikinoU/PSAutoBgm.o\
 	$(BUILD_DIR)/asm/plugProjectHikinoU/PSBnkMgr.o\
 	$(BUILD_DIR)/asm/plugProjectHikinoU/PSTaskBase.o\
-	$(BUILD_DIR)/asm/plugProjectHikinoU/PSBgmTask.o\
+	$(BUILD_DIR)/src/plugProjectHikinoU/PSBgmTask.o\
 	$(BUILD_DIR)/src/plugProjectHikinoU/PSCreatureMgr.o\
 	$(BUILD_DIR)/asm/plugProjectHikinoU/PSAutoBgm_MeloArranger.o\
 	$(BUILD_DIR)/asm/plugProjectHikinoU/PSSe.o\

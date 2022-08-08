@@ -61,9 +61,12 @@ struct ModParamWithTableTask : public TaskBase {
 };
 
 struct TriangleTableModTask : public ModParamWithTableTask {
+
 	virtual float getTgtWithTable(u8);           // _0C
 	virtual u8 getTableIdxNum();                 // _10
 	virtual int tableTask(JASTrack&, float) = 0; // _14
+
+	static const float sTable[40];
 };
 
 struct PitchModTask : public TriangleTableModTask {
@@ -157,6 +160,7 @@ struct TaskChecker {
 	OSMutexObject _00;
 	u8 _18;
 };
+
 } // namespace PSSystem
 
 #endif

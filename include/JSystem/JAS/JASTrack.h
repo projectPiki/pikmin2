@@ -59,6 +59,10 @@ struct JASTrackPort {
  * @size = 0x2C
  */
 struct JASOuterParam {
+
+	void setParam(u8, float);
+	void onSwitch(u16);
+
 	u16 _00;      // _00 - outerSwitch?
 	u16 _02;      // _02 - outerUpdate?
 	float _04;    // _04
