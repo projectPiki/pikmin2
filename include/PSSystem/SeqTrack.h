@@ -67,7 +67,7 @@ struct SeqTrackRoot : public SeqTrackBase {
 	BankRandTask _244;         // _244
 	FlagWaitTask _274;         // _274
 	BankRandTask _294;         // _294
-	DataMgrNode* _2C4;         // _2C4
+	JADUtility::DataMgrNode* _2C4;         // _2C4
 };
 
 struct SeqTrackRoot_JumpBgm : public SeqTrackRoot {

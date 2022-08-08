@@ -7,19 +7,21 @@
 #include "JSystem/JAI/JAISequence.h"
 #include "JSystem/JAI/JAInter.h"
 #include "PSSystem/Task.h"
-#include "PSSystem/PSScene.h"
 #include "JSystem/JAS/JASTrack.h"
+#include "PSSystem/Reservator.h"
 
 namespace PSSystem {
 struct SeqPlayReservator;
 struct SeqPauseOffReservator;
 struct SeqHeap;
+struct Scene;
 
 /**
  * @size 0x68
  */
 struct SeqBase : JSULink<SeqBase> {
-	struct PauseMode;
+	// need to work out what these are
+	enum PauseMode { MODE0 = 0, MODE1 = 1, MODE2 = 2, MODE3 = 3, MODE4 = 4 };
 
 	SeqBase(const char*, const JAInter::SoundInfo&);
 
@@ -112,27 +114,6 @@ struct SeSeq : public SeqBase {
 	// _00-_10  = JSULink<SeqBase>
 	// _10      = VTABLE
 	// _14-_68  = SeqBase
-};
-
-struct SeqMgr : public JSUList<SeqBase> {
-	virtual ~SeqMgr();
-
-	void isPlaying();
-	void pauseOnAllSeq(SeqBase::PauseMode);
-	void pauseOffAllSeq();
-	void reservePauseOffAllSeq();
-	void cancelPauseOffAllSeq();
-	void stopAllSound(u32);
-	void scene1st(TaskChecker*);
-	void findSeq(JASTrack*);
-	void getPlayingSeq(JASTrack*);
-	void getFirstSeq();
-	void getFirstSeqA();
-	void getSeq(u32);
-
-	// _00-_0C  = JSUList<SeqBase>
-	// _0C      = VTABLE
-	Scene* m_scene; // _10
 };
 
 } // namespace PSSystem

@@ -77,7 +77,7 @@ struct JASTrack {
 	JASTrack();
 
 	struct MoveParam_ {
-		MoveParam();
+		MoveParam_();
 
 		float _00; // _00
 		float _04; // _04

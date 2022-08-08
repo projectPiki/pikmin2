@@ -94,8 +94,8 @@ struct JumpBgmSeq : public DirectedBgm {
 	u16 _108;           // _108
 	u8 _10A[0x2];       // _10A - just padding probably
 	OSMutexObject _10C; // _10C
-	u16 _D0;            // _124
-	u8 _D2[0x2];        // _126 - just padding probably
+	u16 _124;           // _124
+	u8 _126[0x2];       // _126 - just padding probably
 	JumpBgmSeq* _128;   // _128
 	u32 _12C;           // _12C
 	short _130;         // _130
