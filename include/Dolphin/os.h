@@ -470,6 +470,7 @@ u8* __OSLockSramEx(void);
 void __OSUnmaskInterrupts(int);
 int OSDisableInterrupts(void);
 void OSRestoreInterrupts(int);
+void OSEnableInterrupts();
 
 uint OSGetSoundMode();
 void OSSetSoundMode(uint);

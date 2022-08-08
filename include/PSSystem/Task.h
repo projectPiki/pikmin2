@@ -75,10 +75,10 @@ struct ModParamWithFade : public TaskBase {
 	virtual float getPreParam(JASTrack&)    = 0; // _0C
 	virtual void timeTask(JASTrack&, float) = 0; // _10
 
-	float _1C; // _1C
+	u32 _1C;   // _1C
 	float _20; // _20
 	float _24; // _24
-	int _28;   // _28
+	u32 _28;   // _28
 	float _2C; // _2C
 };
 

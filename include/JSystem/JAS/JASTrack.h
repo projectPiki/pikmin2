@@ -95,6 +95,8 @@ struct JASTrack {
 		TimedParam_();
 	};
 
+	void setParam(int, float, int);
+
 	JSUPtrList _00;        // _00
 	JASSeqCtrl _0C;        // _0C
 	JASTrackPort _54;      // _54
