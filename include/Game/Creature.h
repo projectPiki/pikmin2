@@ -86,111 +86,111 @@ struct Creature : public CellObject {
 
 	Creature();
 
-	virtual Vector3f getPosition() = 0;                         // _08
-	virtual void checkCollision(CellObject*);                   // _0C
-	virtual void getBoundingSphere(Sys::Sphere&) = 0;           // _10
-	virtual bool collisionUpdatable();                          // _14 (weak)
-	virtual bool isPiki();                                      // _18
-	virtual bool isNavi();                                      // _1C
-	virtual char* getTypeName();                                // _24
-	virtual u16 getObjType();                                   // _28 (weak)
-	virtual void constructor();                                 // _2C (weak)
-	virtual void onInit(CreatureInitArg*);                      // _30 (weak)
-	virtual void onKill(CreatureKillArg*);                      // _34 (weak)
-	virtual void onInitPost(CreatureInitArg*);                  // _38 (weak)
-	virtual void doAnimation();                                 // _3C
-	virtual void doEntry();                                     // _40
-	virtual void doSetView(int);                                // _44
-	virtual void doViewCalc();                                  // _48
-	virtual void doSimulation(float);                           // _4C (weak)
-	virtual void doDirectDraw(Graphics&);                       // _50 (weak)
-	virtual float getBodyRadius();                              // _54
-	virtual float getCellRadius();                              // _58
-	virtual void initPosition(Vector3f&);                       // _5C
-	virtual void onInitPosition(Vector3f&);                     // _60 (weak)
-	virtual float getFaceDir()            = 0;                  // _64
-	virtual void setVelocity(Vector3f&)   = 0;                  // _68
-	virtual Vector3f getVelocity()        = 0;                  // _6C
-	virtual void onSetPosition(Vector3f&) = 0;                  // _70
-	virtual void onSetPositionPost(Vector3f&);                  // _74 (weak)
-	virtual void updateTrMatrix() = 0;                          // _78
-	virtual bool isTeki();                                      // _7C
-	virtual bool isPellet();                                    // _80
-	virtual void inWaterCallback(WaterBox*);                    // _84 (weak)
-	virtual void outWaterCallback();                            // _88 (weak)
-	virtual bool inWater();                                     // _8C (weak)
-	virtual u32 getFlockMgr();                                  // _90 (weak)
-	virtual void onStartCapture();                              // _94 (weak)
-	virtual void onUpdateCapture(Matrixf&);                     // _98 (weak)
-	virtual void onEndCapture();                                // _9C (weak)
-	virtual bool isAtari();                                     // _A0 (weak)
-	virtual void setAtari(bool);                                // _A4 (weak)
-	virtual bool isAlive();                                     // _A8 (weak)
-	virtual void setAlive(bool);                                // _AC (weak)
-	virtual bool isCollisionFlick();                            // _B0 (weak)
-	virtual void setCollisionFlick(bool);                       // _B4 (weak)
-	virtual bool isMovieActor();                                // _B8 (weak)
-	virtual bool isMovieExtra();                                // _BC (weak)
-	virtual bool isMovieMotion();                               // _C0 (weak)
-	virtual void setMovieMotion(bool);                          // _C4 (weak)
-	virtual bool isBuried();                                    // _C8 (weak)
-	virtual bool isFlying();                                    // _CC (weak)
-	virtual bool isUnderground();                               // _D0 (weak)
-	virtual bool isLivingThing();                               // _D4 (weak)
-	virtual bool isDebugCollision();                            // _D8 (weak)
-	virtual void setDebugCollision(bool);                       // _DC (weak)
-	virtual void doSave(Stream&);                               // _E0 (weak)
-	virtual void doLoad(Stream&);                               // _E4 (weak)
-	virtual void bounceCallback(Sys::Triangle*);                // _E8 (weak)
-	virtual void collisionCallback(CollEvent&);                 // _EC (weak)
-	virtual void platCallback(PlatEvent&);                      // _F0 (weak)
-	virtual JAInter::Object* getJAIObject() { return nullptr; } // _F4 (weak)
-	virtual PSM::Creature* getPSCreature();                     // _F8 (weak)
-	virtual AILOD* getSound_AILOD();                            // _FC (weak)
-	virtual Vector3f* getSound_PosPtr();                        // _100 (weak)
-	virtual bool sound_culling();                               // _104
-	virtual float getSound_CurrAnimFrame();                     // _108 (weak)
-	virtual float getSound_CurrAnimSpeed();                     // _10C (weak)
-	virtual void on_movie_begin(bool);                          // _110 (weak)
-	virtual void on_movie_end(bool);                            // _114 (weak)
-	virtual void movieStartAnimation(unsigned long);            // _118 (weak)
-	virtual void movieStartDemoAnimation(SysShape::AnimInfo*);  // _11C (weak)
-	virtual void movieSetAnimationLastFrame();                  // _120 (weak)
-	virtual void movieSetTranslation(Vector3f&, float);         // _124 (weak)
-	virtual void movieSetFaceDir(float);                        // _128 (weak)
-	virtual bool movieGotoPosition(Vector3f&);                  // _12C (weak)
-	virtual void movieUserCommand(unsigned long, MoviePlayer*); // _130 (weak)
-	virtual void getShadowParam(ShadowParam&);                  // _134
-	virtual bool needShadow();                                  // _138
-	virtual void getLifeGaugeParam(LifeGaugeParam&);            // _13C
-	virtual void getLODSphere(Sys::Sphere&);                    // _140 (weak)
-	virtual void getLODCylinder(Sys::Cylinder&);                // _144 (weak)
-	virtual void startPick();                                   // _148 (weak)
-	virtual void endPick(bool);                                 // _14C (weak)
-	virtual u32* getMabiki();                                   // _150 (weak)
-	virtual Footmarks* getFootmarks();                          // _154 (weak)
-	virtual void onStickStart(Creature*);                       // _158 (weak)
-	virtual void onStickEnd(Creature*);                         // _15C (weak)
-	virtual void onStickStartSelf(Creature*);                   // _160 (weak)
-	virtual void onStickEndSelf(Creature*);                     // _164 (weak)
-	virtual bool isSlotFree(short);                             // _168 (weak)
-	virtual int getFreeStickSlot();                             // _16C (weak)
-	virtual int getNearFreeStickSlot(Vector3f&);                // _170 (weak)
-	virtual int getRandomFreeStickSlot();                       // _174 (weak)
-	virtual void onSlotStickStart(Creature*, short);            // _178 (weak)
-	virtual void onSlotStickEnd(Creature*, short);              // _17C (weak)
-	virtual void calcStickSlotGlobal(short, Vector3f&);         // _180 (weak)
-	virtual void getVelocityAt(Vector3f&, Vector3f&) = 0;       // _184
-	virtual float getAngularEffect(Vector3f&, Vector3f&);       // _188 (weak)
-	virtual void applyImpulse(Vector3f&, Vector3f&);            // _18C
-	virtual bool ignoreAtari(Creature*);                        // _190 (weak)
-	virtual Vector3f getSuckPos();                              // _194 (weak)
-	virtual Vector3f getGoalPos();                              // _198 (weak)
-	virtual bool isSuckReady();                                 // _19C (weak)
-	virtual BOOL isSuckArriveWait();                            // _1A0 (weak)
-	virtual bool stimulate(Interaction&);                       // _1A4 (weak)
-	virtual char* getCreatureName();                            // _1A8 (weak)
-	virtual s32 getCreatureID();                                // _1AC (weak)
+	virtual Vector3f getPosition() = 0;                               // _08
+	virtual void checkCollision(CellObject*);                         // _0C
+	virtual void getBoundingSphere(Sys::Sphere&) = 0;                 // _10
+	virtual bool collisionUpdatable();                                // _14 (weak)
+	virtual bool isPiki();                                            // _18
+	virtual bool isNavi();                                            // _1C
+	virtual char* getTypeName();                                      // _24
+	virtual u16 getObjType();                                         // _28 (weak)
+	virtual void constructor();                                       // _2C (weak)
+	virtual void onInit(CreatureInitArg*);                            // _30 (weak)
+	virtual void onKill(CreatureKillArg*);                            // _34 (weak)
+	virtual void onInitPost(CreatureInitArg*);                        // _38 (weak)
+	virtual void doAnimation();                                       // _3C
+	virtual void doEntry();                                           // _40
+	virtual void doSetView(int);                                      // _44
+	virtual void doViewCalc();                                        // _48
+	virtual void doSimulation(float);                                 // _4C (weak)
+	virtual void doDirectDraw(Graphics&);                             // _50 (weak)
+	virtual float getBodyRadius();                                    // _54
+	virtual float getCellRadius();                                    // _58
+	virtual void initPosition(Vector3f&);                             // _5C
+	virtual void onInitPosition(Vector3f&);                           // _60 (weak)
+	virtual float getFaceDir()            = 0;                        // _64
+	virtual void setVelocity(Vector3f&)   = 0;                        // _68
+	virtual Vector3f getVelocity()        = 0;                        // _6C
+	virtual void onSetPosition(Vector3f&) = 0;                        // _70
+	virtual void onSetPositionPost(Vector3f&);                        // _74 (weak)
+	virtual void updateTrMatrix() = 0;                                // _78
+	virtual bool isTeki();                                            // _7C
+	virtual bool isPellet();                                          // _80
+	virtual void inWaterCallback(WaterBox*);                          // _84 (weak)
+	virtual void outWaterCallback();                                  // _88 (weak)
+	virtual bool inWater();                                           // _8C (weak)
+	virtual u32 getFlockMgr();                                        // _90 (weak)
+	virtual void onStartCapture();                                    // _94 (weak)
+	virtual void onUpdateCapture(Matrixf&);                           // _98 (weak)
+	virtual void onEndCapture();                                      // _9C (weak)
+	virtual bool isAtari();                                           // _A0 (weak)
+	virtual void setAtari(bool);                                      // _A4 (weak)
+	virtual bool isAlive() { return m_flags.typeView & CF_IS_ALIVE; } // _A8 (weak)
+	virtual void setAlive(bool);                                      // _AC (weak)
+	virtual bool isCollisionFlick();                                  // _B0 (weak)
+	virtual void setCollisionFlick(bool);                             // _B4 (weak)
+	virtual bool isMovieActor();                                      // _B8 (weak)
+	virtual bool isMovieExtra();                                      // _BC (weak)
+	virtual bool isMovieMotion();                                     // _C0 (weak)
+	virtual void setMovieMotion(bool);                                // _C4 (weak)
+	virtual bool isBuried();                                          // _C8 (weak)
+	virtual bool isFlying();                                          // _CC (weak)
+	virtual bool isUnderground();                                     // _D0 (weak)
+	virtual bool isLivingThing();                                     // _D4 (weak)
+	virtual bool isDebugCollision();                                  // _D8 (weak)
+	virtual void setDebugCollision(bool);                             // _DC (weak)
+	virtual void doSave(Stream&);                                     // _E0 (weak)
+	virtual void doLoad(Stream&);                                     // _E4 (weak)
+	virtual void bounceCallback(Sys::Triangle*);                      // _E8 (weak)
+	virtual void collisionCallback(CollEvent&);                       // _EC (weak)
+	virtual void platCallback(PlatEvent&);                            // _F0 (weak)
+	virtual JAInter::Object* getJAIObject() { return nullptr; }       // _F4 (weak)
+	virtual PSM::Creature* getPSCreature();                           // _F8 (weak)
+	virtual AILOD* getSound_AILOD();                                  // _FC (weak)
+	virtual Vector3f* getSound_PosPtr();                              // _100 (weak)
+	virtual bool sound_culling();                                     // _104
+	virtual float getSound_CurrAnimFrame();                           // _108 (weak)
+	virtual float getSound_CurrAnimSpeed();                           // _10C (weak)
+	virtual void on_movie_begin(bool);                                // _110 (weak)
+	virtual void on_movie_end(bool);                                  // _114 (weak)
+	virtual void movieStartAnimation(unsigned long);                  // _118 (weak)
+	virtual void movieStartDemoAnimation(SysShape::AnimInfo*);        // _11C (weak)
+	virtual void movieSetAnimationLastFrame();                        // _120 (weak)
+	virtual void movieSetTranslation(Vector3f&, float);               // _124 (weak)
+	virtual void movieSetFaceDir(float);                              // _128 (weak)
+	virtual bool movieGotoPosition(Vector3f&);                        // _12C (weak)
+	virtual void movieUserCommand(unsigned long, MoviePlayer*);       // _130 (weak)
+	virtual void getShadowParam(ShadowParam&);                        // _134
+	virtual bool needShadow();                                        // _138
+	virtual void getLifeGaugeParam(LifeGaugeParam&);                  // _13C
+	virtual void getLODSphere(Sys::Sphere&);                          // _140 (weak)
+	virtual void getLODCylinder(Sys::Cylinder&);                      // _144 (weak)
+	virtual void startPick();                                         // _148 (weak)
+	virtual void endPick(bool);                                       // _14C (weak)
+	virtual u32* getMabiki();                                         // _150 (weak)
+	virtual Footmarks* getFootmarks();                                // _154 (weak)
+	virtual void onStickStart(Creature*);                             // _158 (weak)
+	virtual void onStickEnd(Creature*);                               // _15C (weak)
+	virtual void onStickStartSelf(Creature*);                         // _160 (weak)
+	virtual void onStickEndSelf(Creature*);                           // _164 (weak)
+	virtual bool isSlotFree(short);                                   // _168 (weak)
+	virtual int getFreeStickSlot();                                   // _16C (weak)
+	virtual int getNearFreeStickSlot(Vector3f&);                      // _170 (weak)
+	virtual int getRandomFreeStickSlot();                             // _174 (weak)
+	virtual void onSlotStickStart(Creature*, short);                  // _178 (weak)
+	virtual void onSlotStickEnd(Creature*, short);                    // _17C (weak)
+	virtual void calcStickSlotGlobal(short, Vector3f&);               // _180 (weak)
+	virtual void getVelocityAt(Vector3f&, Vector3f&) = 0;             // _184
+	virtual float getAngularEffect(Vector3f&, Vector3f&);             // _188 (weak)
+	virtual void applyImpulse(Vector3f&, Vector3f&);                  // _18C
+	virtual bool ignoreAtari(Creature*);                              // _190 (weak)
+	virtual Vector3f getSuckPos();                                    // _194 (weak)
+	virtual Vector3f getGoalPos();                                    // _198 (weak)
+	virtual bool isSuckReady();                                       // _19C (weak)
+	virtual BOOL isSuckArriveWait();                                  // _1A0 (weak)
+	virtual bool stimulate(Interaction&);                             // _1A4 (weak)
+	virtual char* getCreatureName();                                  // _1A8 (weak)
+	virtual s32 getCreatureID();                                      // _1AC (weak)
 
 	void applyAirDrag(float, float, float);
 	float calcSphereDistance(Creature*);

@@ -871,7 +871,7 @@ namespace EnemyBaseFSM {
  */
 void State::animation(Game::EnemyBase* obj)
 {
-	if (obj->m_flags.intView & 0x10000000) {
+	if (obj->_1E0[0].typeView & 0x10000000) {
 		GeneralEnemyMgr::mTotalCount++;
 
 		bool fxExists = obj->isCullingOff();
@@ -880,7 +880,7 @@ void State::animation(Game::EnemyBase* obj)
 		obj->updateLOD(obj->m_lodParm);
 
 		if (obj->isCullingOff()) {
-			if (obj->m_flags.intView & 0x8000) {
+			if (obj->_1E0[0].typeView & 0x8000) {
 				obj->doAnimationCullingOff();
 			} else {
 				obj->doAnimationCullingOn();
@@ -895,84 +895,10 @@ void State::animation(Game::EnemyBase* obj)
 
 		GeneralEnemyMgr::mCullCount++;
 		obj->doAnimationCullingOn();
-		// if (fxExists) affects code generation
 		if (fxExists == true) {
 			obj->fadeEffects();
 		}
 	}
-	/*
-	.loc_0x0:
-	  stwu      r1, -0x10(r1)
-	  mflr      r0
-	  stw       r0, 0x14(r1)
-	  stw       r31, 0xC(r1)
-	  stw       r30, 0x8(r1)
-	  mr        r30, r4
-	  lwz       r0, 0x1E0(r4)
-	  rlwinm.   r0,r0,0,3,3
-	  beq-      .loc_0xE0
-	  lwz       r4, -0x6E18(r13)
-	  mr        r3, r30
-	  addi      r0, r4, 0x1
-	  stw       r0, -0x6E18(r13)
-	  bl        0x4408
-	  mr        r31, r3
-	  mr        r3, r30
-	  bl        0x3CABC
-	  mr        r3, r30
-	  addi      r4, r30, 0x264
-	  bl        0xD8584
-	  mr        r3, r30
-	  bl        0x43E8
-	  rlwinm.   r0,r3,0,24,31
-	  beq-      .loc_0xAC
-	  lwz       r0, 0x1E0(r30)
-	  rlwinm.   r0,r0,0,16,16
-	  beq-      .loc_0x84
-	  mr        r3, r30
-	  lwz       r12, 0x0(r30)
-	  lwz       r12, 0x1DC(r12)
-	  mtctr     r12
-	  bctrl
-	  b         .loc_0x98
-
-	.loc_0x84:
-	  mr        r3, r30
-	  lwz       r12, 0x0(r30)
-	  lwz       r12, 0x1E0(r12)
-	  mtctr     r12
-	  bctrl
-
-	.loc_0x98:
-	  rlwinm.   r0,r31,0,24,31
-	  bne-      .loc_0xE0
-	  mr        r3, r30
-	  bl        0x24BC
-	  b         .loc_0xE0
-
-	.loc_0xAC:
-	  lwz       r4, -0x6E1C(r13)
-	  mr        r3, r30
-	  addi      r0, r4, 0x1
-	  stw       r0, -0x6E1C(r13)
-	  lwz       r12, 0x0(r30)
-	  lwz       r12, 0x1E0(r12)
-	  mtctr     r12
-	  bctrl
-	  rlwinm    r0,r31,0,24,31
-	  cmplwi    r0, 0x1
-	  bne-      .loc_0xE0
-	  mr        r3, r30
-	  bl        0x24E0
-
-	.loc_0xE0:
-	  lwz       r0, 0x14(r1)
-	  lwz       r31, 0xC(r1)
-	  lwz       r30, 0x8(r1)
-	  mtlr      r0
-	  addi      r1, r1, 0x10
-	  blr
-	*/
 }
 
 /*
@@ -980,14 +906,13 @@ void State::animation(Game::EnemyBase* obj)
  * Address:	800FF364
  * Size:	0001E0
  */
+// WIP: https://decomp.me/scratch/yk70h
+// just regswaps/stack issues
 bool BirthTypeDropState::isFinishableWaitingBirthTypeDrop(EnemyBase* enemy)
 {
-	Sys::Sphere sphere;
-	sphere.m_position.x = (enemy->m_position).x;
-	bool result         = false;
-	sphere.m_radius     = static_cast<EnemyParmsBase*>(enemy->m_parms)->m_general.m_privateRadius.m_value;
-	sphere.m_position.y = (enemy->m_position).y;
-	sphere.m_position.z = (enemy->m_position).z;
+	Sys::Sphere sphere((enemy->m_position), static_cast<EnemyParmsBase*>(enemy->m_parms)->m_general.m_privateRadius.m_value);
+	bool result = false;
+
 	CellIteratorArg cellIteratorArg(sphere);
 	CellIterator cellIterator(cellIteratorArg);
 	cellIterator.first();
@@ -1138,173 +1063,36 @@ bool BirthTypeDropState::isFinishableWaitingBirthTypeDrop(EnemyBase* enemy)
 	  blr
 	*/
 }
-} // namespace EnemyBaseFSM
 
 /*
  * --INFO--
  * Address:	800FF544
  * Size:	00000C
  */
-bool Creature::isAlive()
-{
-	return m_flags.intView & CF_IS_ALIVE;
-	/*
-	.loc_0x0:
-	  lwz       r0, 0xBC(r3)
-	  rlwinm    r3,r0,31,31,31
-	  blr
-	*/
-}
+// WEAK - in header Game/Creature.h
+// bool Creature::isAlive() { return m_flags.typeView & CF_IS_ALIVE; }
 
 /*
  * --INFO--
  * Address:	800FF550
  * Size:	0001A8
  */
-void EnemyBaseFSM::BirthTypeDropState::init(Game::EnemyBase* enemy, Game::StateArg* arg)
+void BirthTypeDropState::init(Game::EnemyBase* enemy, Game::StateArg* arg)
 {
 	if (Game::mapMgr != nullptr) {
-		enemy->m_position.y = mapMgr->getMinY(enemy->m_position) + 300.0f;
-	}
-	switch (enemy->getEnemyTypeID()) {
-	case EnemyTypeID::EnemyID_BluePom:
-	case EnemyTypeID::EnemyID_RedPom:
-	case EnemyTypeID::EnemyID_YellowPom:
-	case EnemyTypeID::EnemyID_BlackPom:
-	case EnemyTypeID::EnemyID_WhitePom:
-	case EnemyTypeID::EnemyID_RandPom:
-		break;
-	default:
-		float theta = rand() * TAU;
-		float f
-		    = (0.0f <= theta) ? JMath::sincosTable_.m_table[(short)theta].first : -JMath::sincosTable_.m_table[(short)(u16)-theta].first;
-		enemy->m_position.x += f * 50.0f;
-		if (theta < 0.0f) {
-			theta = -theta;
+		enemy->m_position.y              = mapMgr->getMinY(enemy->m_position) + 300.0f;
+		EnemyTypeID::EEnemyTypeID typeID = enemy->getEnemyTypeID();
+		if (typeID != EnemyTypeID::EnemyID_BluePom && typeID != EnemyTypeID::EnemyID_RedPom && typeID != EnemyTypeID::EnemyID_YellowPom
+		    && typeID != EnemyTypeID::EnemyID_BlackPom && typeID != EnemyTypeID::EnemyID_WhitePom
+		    && typeID != EnemyTypeID::EnemyID_RandPom) {
+			float theta = randFloat() * TAU;
+			enemy->m_position.x += pikmin2_sinf(theta) * 50.0f;
+			enemy->m_position.z += pikmin2_cosf(theta) * 50.0f;
 		}
-		enemy->m_position.z += JMath::sincosTable_.m_table[(short)theta].second * 50.0f;
-		break;
 	}
 	enemy->setPosition(enemy->m_position, false);
 	enemy->updateCell();
 	enemy->startWaitingBirthTypeDrop();
-	/*
-	.loc_0x0:
-	  stwu      r1, -0x30(r1)
-	  mflr      r0
-	  stw       r0, 0x34(r1)
-	  stw       r31, 0x2C(r1)
-	  mr        r31, r4
-	  lwz       r3, -0x6CF8(r13)
-	  cmplwi    r3, 0
-	  beq-      .loc_0x168
-	  lwz       r12, 0x4(r3)
-	  addi      r4, r31, 0x18C
-	  lwz       r12, 0x28(r12)
-	  mtctr     r12
-	  bctrl
-	  lfs       f0, -0x6BC8(r2)
-	  mr        r3, r31
-	  fadds     f0, f0, f1
-	  stfs      f0, 0x190(r31)
-	  lwz       r12, 0x0(r31)
-	  lwz       r12, 0x258(r12)
-	  mtctr     r12
-	  bctrl
-	  cmpwi     r3, 0x3
-	  beq-      .loc_0x168
-	  cmpwi     r3, 0x4
-	  beq-      .loc_0x168
-	  cmpwi     r3, 0x5
-	  beq-      .loc_0x168
-	  cmpwi     r3, 0x6
-	  beq-      .loc_0x168
-	  cmpwi     r3, 0x7
-	  beq-      .loc_0x168
-	  cmpwi     r3, 0x8
-	  beq-      .loc_0x168
-	  bl        -0x36034
-	  xoris     r3, r3, 0x8000
-	  lis       r0, 0x4330
-	  stw       r3, 0xC(r1)
-	  lfd       f3, -0x6BA8(r2)
-	  stw       r0, 0x8(r1)
-	  lfs       f2, -0x6BC4(r2)
-	  lfd       f0, 0x8(r1)
-	  lfs       f1, -0x6BC0(r2)
-	  fsubs     f4, f0, f3
-	  lfs       f0, -0x6BB0(r2)
-	  lfs       f3, -0x6BBC(r2)
-	  fdivs     f2, f4, f2
-	  fmuls     f4, f1, f2
-	  fcmpo     cr0, f4, f0
-	  bge-      .loc_0xF0
-	  lfs       f0, -0x6BB8(r2)
-	  lis       r3, 0x8050
-	  addi      r3, r3, 0x71A0
-	  fmuls     f0, f4, f0
-	  fctiwz    f0, f0
-	  stfd      f0, 0x10(r1)
-	  lwz       r0, 0x14(r1)
-	  rlwinm    r0,r0,3,18,28
-	  lfsx      f0, r3, r0
-	  fneg      f2, f0
-	  b         .loc_0x114
-
-	.loc_0xF0:
-	  lfs       f0, -0x6BB4(r2)
-	  lis       r3, 0x8050
-	  addi      r3, r3, 0x71A0
-	  fmuls     f0, f4, f0
-	  fctiwz    f0, f0
-	  stfd      f0, 0x18(r1)
-	  lwz       r0, 0x1C(r1)
-	  rlwinm    r0,r0,3,18,28
-	  lfsx      f2, r3, r0
-
-	.loc_0x114:
-	  lfs       f1, 0x18C(r31)
-	  lfs       f0, -0x6BB0(r2)
-	  fmadds    f1, f3, f2, f1
-	  fcmpo     cr0, f4, f0
-	  stfs      f1, 0x18C(r31)
-	  bge-      .loc_0x130
-	  fneg      f4, f4
-
-	.loc_0x130:
-	  lfs       f0, -0x6BB4(r2)
-	  lis       r3, 0x8050
-	  addi      r3, r3, 0x71A0
-	  lfs       f2, -0x6BBC(r2)
-	  fmuls     f1, f4, f0
-	  lfs       f0, 0x194(r31)
-	  fctiwz    f1, f1
-	  stfd      f1, 0x20(r1)
-	  lwz       r0, 0x24(r1)
-	  rlwinm    r0,r0,3,18,28
-	  add       r3, r3, r0
-	  lfs       f1, 0x4(r3)
-	  fmadds    f0, f2, f1, f0
-	  stfs      f0, 0x194(r31)
-
-	.loc_0x168:
-	  mr        r3, r31
-	  addi      r4, r31, 0x18C
-	  li        r5, 0
-	  bl        0x3BAE4
-	  mr        r3, r31
-	  bl        0x3C69C
-	  mr        r3, r31
-	  lwz       r12, 0x0(r31)
-	  lwz       r12, 0x2D4(r12)
-	  mtctr     r12
-	  bctrl
-	  lwz       r0, 0x34(r1)
-	  lwz       r31, 0x2C(r1)
-	  mtlr      r0
-	  addi      r1, r1, 0x30
-	  blr
-	*/
 }
 
 /*

@@ -1,7 +1,8 @@
 #include "types.h"
 #include "Vector3.h"
 #include "Game/Cave/RandMapMgr.h"
-#include "Game/Cave/math.h"
+#include "trig.h"
+#include "Dolphin/rand.h"
 
 namespace Game {
 namespace Cave {

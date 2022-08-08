@@ -20,6 +20,7 @@
 #include "efx/TEnemyPiyo.h"
 #include "types.h"
 #include "Game/MoveInfo.h"
+#include "trig.h"
 
 struct MouthSlots;
 
