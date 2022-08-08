@@ -187,7 +187,7 @@ struct Creature : public CellObject {
 	virtual Vector3f getSuckPos();                              // _194 (weak)
 	virtual Vector3f getGoalPos();                              // _198 (weak)
 	virtual bool isSuckReady();                                 // _19C (weak)
-	virtual bool isSuckArriveWait();                            // _1A0 (weak)
+	virtual BOOL isSuckArriveWait();                            // _1A0 (weak)
 	virtual bool stimulate(Interaction&);                       // _1A4 (weak)
 	virtual char* getCreatureName();                            // _1A8 (weak)
 	virtual s32 getCreatureID();                                // _1AC (weak)

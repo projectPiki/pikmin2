@@ -59,32 +59,32 @@ struct BaseItem : public Creature, public SysShape::MotionListener {
 	virtual s32 getCreatureID();                               // _1AC (weak)
 
 	// vtable 2 (MotionListener + self)
-	virtual void onKeyEvent(const SysShape::KeyEvent&) = 0; // _08
-	virtual void initDependency();                          // _0C (weak)
-	virtual void startSound(u32);                           // _10
-	virtual void makeTrMatrix();                            // _14
-	virtual void doAI();                                    // _18 (weak)
-	virtual void move(float);                               // _1C
-	virtual void changeMaterial();                          // _20 (weak)
-	virtual void do_updateLOD();                            // _24
-	virtual void do_setLODParm(AILODParm&);                 // _28 (weak)
-	virtual float getMapCollisionRadius();                  // _2C (weak)
-	virtual bool interactAttack(InteractAttack&);           // _30 (weak)
-	virtual bool interactBreakBridge(InteractBreakBridge&); // _34 (weak)
-	virtual bool interactEat(InteractEat&);                 // _38 (weak)
-	virtual bool interactFlockAttack(InteractFlockAttack&); // _3C (weak)
-	virtual bool interactAbsorb(InteractAbsorb&);           // _40 (weak)
-	virtual bool interactFue(InteractFue&);                 // _44 (weak)
-	virtual bool interactFarmKarero(InteractFarmKarero&);   // _48 (weak)
-	virtual bool interactFarmHaero(InteractFarmHaero&);     // _4C (weak)
-	virtual bool interactGotKey(InteractGotKey&);           // _50 (weak)
-	virtual bool getVectorField(Sys::Sphere&, Vector3f&);   // _54 (weak)
-	virtual float getWorkDistance(Sys::Sphere&);            // _58 (weak)
-	virtual void do_doAnimation();                          // _5C (weak)
-	virtual void updateBoundSphere();                       // _60 (weak)
-	virtual void update();                                  // _64
-	virtual void entryShape();                              // _68
-	virtual void onSetPosition();                           // _6C (weak)
+	virtual void onKeyEvent(const SysShape::KeyEvent&) = 0; // _1B8
+	virtual void initDependency();                          // _1BC (weak)
+	virtual void startSound(u32);                           // _1C0
+	virtual void makeTrMatrix();                            // _1C4
+	virtual void doAI();                                    // _1C8 (weak)
+	virtual void move(float);                               // _1CC
+	virtual void changeMaterial();                          // _1D0 (weak)
+	virtual void do_updateLOD();                            // _1D4
+	virtual void do_setLODParm(AILODParm&);                 // _1D8 (weak)
+	virtual float getMapCollisionRadius();                  // _1DC (weak)
+	virtual bool interactAttack(InteractAttack&);           // _1D0 (weak)
+	virtual bool interactBreakBridge(InteractBreakBridge&); // _1D4 (weak)
+	virtual bool interactEat(InteractEat&);                 // _1D8 (weak)
+	virtual bool interactFlockAttack(InteractFlockAttack&); // _1EC (weak)
+	virtual bool interactAbsorb(InteractAbsorb&);           // _1F0 (weak)
+	virtual bool interactFue(InteractFue&);                 // _1F4 (weak)
+	virtual bool interactFarmKarero(InteractFarmKarero&);   // _1F8 (weak)
+	virtual bool interactFarmHaero(InteractFarmHaero&);     // _1FC (weak)
+	virtual bool interactGotKey(InteractGotKey&);           // _200 (weak)
+	virtual bool getVectorField(Sys::Sphere&, Vector3f&);   // _204 (weak)
+	virtual float getWorkDistance(Sys::Sphere&);            // _208 (weak)
+	virtual void do_doAnimation();                          // _20C (weak)
+	virtual void updateBoundSphere();                       // _210 (weak)
+	virtual void update();                                  // _214
+	virtual void entryShape();                              // _218
+	virtual void onSetPosition();                           // _21C (weak)
 
 	void updateCollTree();
 
