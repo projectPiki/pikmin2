@@ -1,12 +1,10 @@
 .include "macros.inc"
 .section .rodata  # 0x804732E0 - 0x8049E220
 .balign 8
-.global lbl_8047C0C0
 lbl_8047C0C0:
 	.asciz "/enemy/data/BlueKochappy/kochappy_body_s3tc.3.bti"
-	.skip 2
-.global lbl_8047C0F4
-lbl_8047C0F4:
+.balign 4
+lbl_8047C0F4: # Shift-JIS
 	.4byte 0x90C28352
 	.4byte 0x83608383
 	.4byte 0x83628373
@@ -76,11 +74,9 @@ __vt__Q34Game12BlueKochappy3Mgr:
 	.4byte doLoadBdl__Q24Game12EnemyMgrBaseFPv
 	.4byte initGenerator__Q24Game12EnemyMgrBaseFv
 	.4byte getChangeTexture__Q34Game12BlueKochappy3MgrFv
-	.4byte 0
 
 .section .sdata, "wa"  # 0x80514680 - 0x80514D80
 .balign 8
-.global "cKochappyChangeTexName__Q34Game12BlueKochappy29@unnamed@BlueKochappyMgr_cpp@"
 "cKochappyChangeTexName__Q34Game12BlueKochappy29@unnamed@BlueKochappyMgr_cpp@":
 	.4byte lbl_8047C0C0
 

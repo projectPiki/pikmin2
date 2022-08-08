@@ -38,17 +38,13 @@ lbl_80498420:
 lbl_80498438:
 	.asciz "doukutu_complete.bpk"
 .balign 4
-lbl_80498450:
-	.4byte 0x69506963
-	.4byte 0x6F6E3030
-	.4byte 0x69506963
-	.4byte 0x6F6E3031
-lbl_80498460:
-	.4byte 0x50696E61
-	.4byte 0x6D653030
-	.4byte 0x50696E61
-	.4byte 0x6D653031
-lbl_80498470:
+lbl_80498450: # id64
+	.ascii "iPicon00"
+	.ascii "iPicon01"
+lbl_80498460: # id64
+	.ascii "Piname00"
+	.ascii "Piname01"
+lbl_80498470: # id64
 	.4byte 0x004E6963
 	.4byte 0x6F6E3030
 	.4byte 0x004E6963
@@ -3799,8 +3795,7 @@ getMemberID__Q32kh6Screen14DispCaveResultFv:
 /* 803FBA38 003F8978  38 84 4C 54 */	addi r4, r4, 0x52534C54@l
 /* 803FBA3C 003F897C  4E 80 00 20 */	blr 
 
-.global __sinit_khCaveResult_cpp
-__sinit_khCaveResult_cpp:
+__sinit_khCaveResult_cpp: # static initializer
 /* 803FBA40 003F8980  3C 60 80 51 */	lis r3, msVal__Q32kh6Screen13ObjCaveResult@ha
 /* 803FBA44 003F8984  C1 22 1C B8 */	lfs f9, lbl_80520018@sda21(r2)
 /* 803FBA48 003F8988  39 03 40 D4 */	addi r8, r3, msVal__Q32kh6Screen13ObjCaveResult@l

@@ -134,7 +134,7 @@ lbl_803EB324:
 /* 803EB330 003E8270  38 21 04 30 */	addi r1, r1, 0x430
 /* 803EB334 003E8274  4E 80 00 20 */	blr 
 
-__sinit_ebiP2TitleFog_cpp:
+__sinit_ebiP2TitleFog_cpp: # static initializr
 /* 803EB338 003E8278  3C 80 80 51 */	lis r4, __float_nan@ha
 /* 803EB33C 003E827C  38 00 FF FF */	li r0, -1
 /* 803EB340 003E8280  C0 04 48 B0 */	lfs f0, __float_nan@l(r4)

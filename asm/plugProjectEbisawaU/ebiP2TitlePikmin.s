@@ -5,7 +5,6 @@ lbl_constructor:
 
 .section .rodata  # 0x804732E0 - 0x8049E220
 .balign 8
-.global lbl_80497158
 lbl_80497158:
 	.4byte 0x00000000
 	.4byte 0x00000000
@@ -15,7 +14,6 @@ lbl_80497158:
 	.4byte 0x6C655069
 	.4byte 0x6B6D696E
 	.4byte 0x00000000
-.global lbl_80497178
 lbl_80497178:
 	.4byte 0x54426F69
 	.4byte 0x64506172
@@ -81,7 +79,6 @@ lbl_80497178:
 	.4byte 0x5F70696B
 	.4byte 0x692E626D
 	.4byte 0x64000000
-.global lbl_80497278
 lbl_80497278:
 	.4byte 0x65626950
 	.4byte 0x32546974
@@ -89,10 +86,9 @@ lbl_80497278:
 	.4byte 0x6B6D696E
 	.4byte 0x2E637070
 	.4byte 0x00000000
-.global lbl_80497290
 lbl_80497290:
 	.asciz "P2Assert"
-	.skip 3
+.balign 4
 	.4byte 0x70696B6D
 	.4byte 0x696E2F74
 	.4byte 0x69746C65
@@ -130,7 +126,6 @@ lbl_80497290:
 	.4byte 0x696E2F77
 	.4byte 0x6176652E
 	.4byte 0x62636B00
-.global lbl_80497330
 lbl_80497330:
 	.4byte 0x50696B6D
 	.4byte 0x696E4D67
@@ -212,7 +207,6 @@ lbl_80497330:
 	.4byte 0x91AC9378
 	.4byte 0x8C579094
 	.4byte 0x00000000
-.global lbl_80497470
 lbl_80497470:
 	.4byte 0x70617261
 	.4byte 0x6D2F7061
@@ -220,7 +214,6 @@ lbl_80497470:
 	.4byte 0x70696B6D
 	.4byte 0x696E2E74
 	.4byte 0x78740000
-.global lbl_80497488
 lbl_80497488:
 	.4byte 0x70617261
 	.4byte 0x6D2F7061
@@ -231,25 +224,21 @@ lbl_80497488:
 
 .section .data, "wa"  # 0x8049E220 - 0x804EFC20
 .balign 8
-.global lbl_804E9DF0
-lbl_804E9DF0:
-	.4byte 0x00000000
-	.4byte 0x00000000
-	.4byte 0x00000000
+govNAN___Q24Game5P2JST:
+	.float 0.0
+	.float 0.0
+	.float 0.0
 .global __vt__Q43ebi5title6Pikmin5TUnit
 __vt__Q43ebi5title6Pikmin5TUnit:
 	.4byte 0
 	.4byte 0
 	.4byte getCreatureType__Q43ebi5title6Pikmin5TUnitFv
 	.4byte isCalc__Q43ebi5title6Pikmin5TUnitFv
-	.4byte 0
 
 .section .sbss # 0x80514D80 - 0x80516360
 .balign 8
-.global lbl_805160E8
 lbl_805160E8:
 	.skip 0x4
-.global lbl_805160EC
 lbl_805160EC:
 	.skip 0x4
 .global boidCalcTimer$4026
@@ -261,111 +250,77 @@ init$4027:
 
 .section .sdata2, "a"     # 0x80516360 - 0x80520E40
 .balign 8
-.global lbl_8051FC60
 lbl_8051FC60:
 	.4byte 0x00000000
-.global lbl_8051FC64
 lbl_8051FC64:
 	.4byte 0x3E4CCCCD
-.global lbl_8051FC68
 lbl_8051FC68:
 	.4byte 0x41200000
-.global lbl_8051FC6C
 lbl_8051FC6C:
 	.4byte 0x3ECCCCCD
-.global lbl_8051FC70
 lbl_8051FC70:
 	.4byte 0x40000000
-.global lbl_8051FC74
 lbl_8051FC74:
 	.4byte 0x44480000
-.global lbl_8051FC78
 lbl_8051FC78:
 	.4byte 0x461C4000
-.global lbl_8051FC7C
 lbl_8051FC7C:
 	.4byte 0x40900000
-.global lbl_8051FC80
 lbl_8051FC80:
 	.4byte 0x42C80000
-.global lbl_8051FC84
 lbl_8051FC84:
 	.4byte 0x3BA3D70A
-.global lbl_8051FC88
 lbl_8051FC88:
 	.4byte 0x41F00000
-.global lbl_8051FC8C
 lbl_8051FC8C:
 	.4byte 0x43FA0000
-.global lbl_8051FC90
 lbl_8051FC90:
 	.float 1.0
 	.4byte 0x00000000
-.global lbl_8051FC98
 lbl_8051FC98:
 	.4byte 0x43300000
 	.4byte 0x00000000
-.global lbl_8051FCA0
 lbl_8051FCA0:
 	.4byte 0xBF800000
-.global lbl_8051FCA4
 lbl_8051FCA4:
 	.4byte 0x5061726D
 	.4byte 0x73000000
-.global lbl_8051FCAC
 lbl_8051FCAC:
 	.4byte 0x4019999A
-.global lbl_8051FCB0
 lbl_8051FCB0:
 	.4byte 0x40266666
-.global lbl_8051FCB4
 lbl_8051FCB4:
 	.4byte 0x40A00000
-.global lbl_8051FCB8
 lbl_8051FCB8:
 	.4byte 0x41A00000
-.global lbl_8051FCBC
 lbl_8051FCBC:
 	.4byte 0x42480000
-.global lbl_8051FCC0
 lbl_8051FCC0:
 	.float 0.5
-.global lbl_8051FCC4
 lbl_8051FCC4:
 	.4byte 0xC1200000
-.global lbl_8051FCC8
 lbl_8051FCC8:
 	.4byte 0xC0A00000
-.global lbl_8051FCCC
 lbl_8051FCCC:
 	.4byte 0x43C80000
-.global lbl_8051FCD0
 lbl_8051FCD0:
 	.4byte 0x40C00000
 	.4byte 0x00000000
-.global lbl_8051FCD8
 lbl_8051FCD8:
 	.4byte 0x43300000
 	.4byte 0x80000000
-.global lbl_8051FCE0
 lbl_8051FCE0:
 	.4byte 0x46FFFE00
-.global lbl_8051FCE4
 lbl_8051FCE4:
 	.4byte 0x3F4CCCCD
-.global lbl_8051FCE8
 lbl_8051FCE8:
 	.4byte 0x3ECCCCCE
-.global lbl_8051FCEC
 lbl_8051FCEC:
 	.4byte 0x42700000
-.global lbl_8051FCF0
 lbl_8051FCF0:
 	.float 0.1
-.global lbl_8051FCF4
 lbl_8051FCF4:
 	.4byte 0xC0000000
-.global lbl_8051FCF8
 lbl_8051FCF8:
 	.4byte 0x73686164
 	.4byte 0x6F773100
@@ -4089,14 +4044,13 @@ getCreatureType__Q43ebi5title6Pikmin5TUnitFv:
 /* 803E7328 003E4268  38 60 00 00 */	li r3, 0
 /* 803E732C 003E426C  4E 80 00 20 */	blr 
 
-.global __sinit_ebiP2TitlePikmin_cpp
-__sinit_ebiP2TitlePikmin_cpp:
+__sinit_ebiP2TitlePikmin_cpp: # static initializer
 /* 803E7330 003E4270  3C 80 80 51 */	lis r4, __float_nan@ha
 /* 803E7334 003E4274  38 00 FF FF */	li r0, -1
 /* 803E7338 003E4278  C0 04 48 B0 */	lfs f0, __float_nan@l(r4)
-/* 803E733C 003E427C  3C 60 80 4F */	lis r3, lbl_804E9DF0@ha
+/* 803E733C 003E427C  3C 60 80 4F */	lis r3, govNAN___Q24Game5P2JST@ha
 /* 803E7340 003E4280  90 0D 9A 68 */	stw r0, lbl_805160E8@sda21(r13)
-/* 803E7344 003E4284  D4 03 9D F0 */	stfsu f0, lbl_804E9DF0@l(r3)
+/* 803E7344 003E4284  D4 03 9D F0 */	stfsu f0, govNAN___Q24Game5P2JST@l(r3)
 /* 803E7348 003E4288  D0 0D 9A 6C */	stfs f0, lbl_805160EC@sda21(r13)
 /* 803E734C 003E428C  D0 03 00 04 */	stfs f0, 4(r3)
 /* 803E7350 003E4290  D0 03 00 08 */	stfs f0, 8(r3)

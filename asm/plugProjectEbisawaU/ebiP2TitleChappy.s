@@ -5,75 +5,98 @@ lbl_constructor:
 
 .section .rodata  # 0x804732E0 - 0x8049E220
 .balign 8
-.global lbl_80497628
 lbl_80497628:
 	.4byte 0x00000000
 	.4byte 0x00000000
 	.4byte 0x00000000
-	.4byte 0x65626950
-	.4byte 0x32546974
-	.4byte 0x6C654368
-	.4byte 0x61707079
-	.4byte 0x00000000
-.global lbl_80497648
+.balign 4
+lbl_80497634:
+	.asciz "ebiP2TitleChappy"
+.balign 4
 lbl_80497648:
-	.4byte 0x43686170
-	.4byte 0x70794D67
-	.4byte 0x72000000
+	.asciz "ChappyMgr"
+.balign 4
+lbl_80497654: # Shift-JIS
 	.4byte 0x83588350
 	.4byte 0x815B838B
 	.4byte 0x00000000
+.balign 4
+lbl_80497660: # Shift-JIS
 	.4byte 0x834A838A
 	.4byte 0x8393834F
 	.4byte 0x94BC8C61
 	.4byte 0x00000000
+.balign 4
+lbl_80497670: # Shift-JIS
 	.4byte 0x8352838A
 	.4byte 0x83578387
 	.4byte 0x839394BC
 	.4byte 0x8C610000
+.balign 4
+lbl_80497680: # Shift-JIS
 	.4byte 0x8373834E
 	.4byte 0x837E8393
 	.4byte 0x94BD899E
 	.4byte 0x94BC8C61
 	.4byte 0x00000000
+.balign 4
+lbl_80497694: # Shift-JIS
 	.4byte 0x939682BD
 	.4byte 0x82E84F66
 	.4byte 0x66736574
 	.4byte 0x00000000
+.balign 4
+lbl_804976A4: # Shift-JIS
 	.4byte 0x939682BD
 	.4byte 0x82E894BC
 	.4byte 0x8C610000
+.balign 4
+lbl_804976B0: # Shift-JIS
 	.4byte 0x95E08D73
 	.4byte 0x83898393
 	.4byte 0x835F8380
 	.4byte 0x8A709378
 	.4byte 0x00000000
+.balign 4
+lbl_804976C4: # Shift-JIS
 	.4byte 0x95E08D73
 	.4byte 0x91AC9378
 	.4byte 0x00000000
+.balign 4
+lbl_804976D0: # Shift-JIS
 	.4byte 0x90F989F1
 	.4byte 0x90AB945C
 	.4byte 0x00000000
+.balign 4
+lbl_804976DC: # Shift-JIS
 	.4byte 0x91D282BF
 	.4byte 0x8E9E8AD4
 	.4byte 0x8DC58FAC
 	.4byte 0x28956229
 	.4byte 0x00000000
+.balign 4
+lbl_804976F0: # Shift-JIS
 	.4byte 0x91D282BF
 	.4byte 0x8E9E8AD4
 	.4byte 0x8DC591E5
 	.4byte 0x28956229
 	.4byte 0x00000000
+.balign 4
+lbl_80497704: # Shift-JIS
 	.4byte 0x88DA93AE
 	.4byte 0x8E9E8AD4
 	.4byte 0x8DC58FAC
 	.4byte 0x28956229
 	.4byte 0x00000000
+.balign 4
+lbl_80497718: # Shift-JIS
 	.4byte 0x88DA93AE
 	.4byte 0x8E9E8AD4
 	.4byte 0x8DC591E5
 	.4byte 0x28956229
 	.4byte 0x00000000
+.balign 4
+lbl_8049772C: # Shift-JIS
 	.4byte 0x83528393
 	.4byte 0x8367838D
 	.4byte 0x815B8389
@@ -81,58 +104,37 @@ lbl_80497648:
 	.4byte 0x8E9E8AD4
 	.4byte 0x28956229
 	.4byte 0x00000000
-.global lbl_80497748
+.balign 4
 lbl_80497748:
-	.4byte 0x70617261
-	.4byte 0x6D2F7061
-	.4byte 0x72616D5F
-	.4byte 0x63686170
-	.4byte 0x70792E74
-	.4byte 0x78740000
-	.4byte 0x63686170
-	.4byte 0x70792F6D
-	.4byte 0x6F766531
-	.4byte 0x2E62636B
-	.4byte 0x00000000
-	.4byte 0x63686170
-	.4byte 0x70792F77
-	.4byte 0x61697461
-	.4byte 0x6374312E
-	.4byte 0x62636B00
-	.4byte 0x63686170
-	.4byte 0x70792F61
-	.4byte 0x74746163
-	.4byte 0x6B2E6263
-	.4byte 0x6B000000
-	.4byte 0x63686170
-	.4byte 0x70792F77
-	.4byte 0x61697461
-	.4byte 0x6374322E
-	.4byte 0x62636B00
-	.4byte 0x63686170
-	.4byte 0x70792F73
-	.4byte 0x77616C6C
-	.4byte 0x6F775F6D
-	.4byte 0x6F64656C
-	.4byte 0x2E626D64
-	.4byte 0x00000000
-	.4byte 0x65626950
-	.4byte 0x32546974
-	.4byte 0x6C654368
-	.4byte 0x61707079
-	.4byte 0x2E637070
-	.4byte 0x00000000
+	.asciz "param/param_chappy.txt"
+.balign 4
+lbl_80497760:
+	.asciz "chappy/move1.bck"
+.balign 4
+lbl_80497774:
+	.asciz "chappy/waitact1.bck"
+.balign 4
+lbl_80497788:
+	.asciz "chappy/attack.bck"
+.balign 4
+lbl_8049779C:
+	.asciz "chappy/waitact2.bck"
+.balign 4
+lbl_804977B0:
+	.asciz "chappy/swallow_model.bmd"
+.balign 4
+lbl_804977CC:
+	.asciz "ebiP2TitleChappy.cpp"
+.balign 4
+lbl_804977E4:
 	.asciz "P2Assert"
-	.skip 3
 
 .section .data, "wa"  # 0x8049E220 - 0x804EFC20
 .balign 8
-.global lbl_804E9E60
-lbl_804E9E60:
-	.4byte 0x00000000
-	.4byte 0x00000000
-	.4byte 0x00000000
-.global lbl_804E9E6C
+govNAN___Q24Game5P2JST:
+	.float 0.0
+	.float 0.0
+	.float 0.0
 lbl_804E9E6C:
 	.4byte lbl_803E8B88
 	.4byte lbl_803E8BC8
@@ -142,7 +144,6 @@ lbl_804E9E6C:
 	.4byte lbl_803E8D90
 	.4byte lbl_803E8DEC
 	.4byte lbl_803E8BA4
-.global lbl_804E9E8C
 lbl_804E9E8C:
 	.4byte lbl_803E914C
 	.4byte lbl_803E8F48
@@ -166,117 +167,83 @@ __vt__Q43ebi5title6Chappy11TAnimFolder:
 
 .section .sbss # 0x80514D80 - 0x80516360
 .balign 8
-.global lbl_80516100
-lbl_80516100:
+gu32NAN___Q24Game5P2JST:
 	.skip 0x4
-.global lbl_80516104
-lbl_80516104:
+gfNAN___Q24Game5P2JST:
 	.skip 0x4
 
 .section .sdata2, "a"     # 0x80516360 - 0x80520E40
 .balign 8
-.global lbl_8051FD68
 lbl_8051FD68:
-	.4byte 0x00000000
-.global lbl_8051FD6C
+	.float 0.0
 lbl_8051FD6C:
-	.4byte 0xBF800000
-.global lbl_8051FD70
+	.float -1.0
 lbl_8051FD70:
 	.float 1.0
-.global lbl_8051FD74
+.balign 4
 lbl_8051FD74:
-	.4byte 0x5061726D
-	.4byte 0x73000000
-.global lbl_8051FD7C
+	.asciz "Parms"
+.balign 4
 lbl_8051FD7C:
-	.4byte 0x40000000
-.global lbl_8051FD80
+	.float 2.0
 lbl_8051FD80:
-	.4byte 0x41200000
-.global lbl_8051FD84
+	.float 10.0
 lbl_8051FD84:
-	.4byte 0x42C80000
-.global lbl_8051FD88
+	.float 100.0
 lbl_8051FD88:
-	.4byte 0x43FA0000
-.global lbl_8051FD8C
+	.float 500.0
 lbl_8051FD8C:
-	.4byte 0x43160000
-.global lbl_8051FD90
+	.float 150.0
 lbl_8051FD90:
-	.4byte 0x43960000
-.global lbl_8051FD94
+	.float 300.0
 lbl_8051FD94:
-	.4byte 0x42A00000
-.global lbl_8051FD98
+	.float 80.0
 lbl_8051FD98:
-	.4byte 0x41F00000
-.global lbl_8051FD9C
+	.float 30.0
 lbl_8051FD9C:
-	.4byte 0x42B40000
-.global lbl_8051FDA0
+	.float 90.0
 lbl_8051FDA0:
-	.4byte 0x41000000
-.global lbl_8051FDA4
+	.float 8.0
 lbl_8051FDA4:
 	.float 0.05
-.global lbl_8051FDA8
 lbl_8051FDA8:
 	.float 0.3
-.global lbl_8051FDAC
 lbl_8051FDAC:
 	.float 0.5
-.global lbl_8051FDB0
 lbl_8051FDB0:
-	.4byte 0x3FC00000
-.global lbl_8051FDB4
+	.float 1.5
 lbl_8051FDB4:
-	.4byte 0x40A00000
-.global lbl_8051FDB8
+	.float 5.0
 lbl_8051FDB8:
-	.4byte 0x42700000
-.global lbl_8051FDBC
+	.float 60.0
 lbl_8051FDBC:
-	.4byte 0x42080000
-.global lbl_8051FDC0
+	.float 34.0
 lbl_8051FDC0:
-	.4byte 0x41980000
-.global lbl_8051FDC4
+	.float 19.0
 lbl_8051FDC4:
-	.4byte 0x46FFFE00
-.global lbl_8051FDC8
-lbl_8051FDC8:
-	.4byte 0x40490FDB
-.global lbl_8051FDCC
+	.float 32767.0
+lbl_8051FDC8: # pi
+	.float 3.1415927
 lbl_8051FDCC:
-	.4byte 0x3BB60B61
-.global lbl_8051FDD0
+	.float 0.0055555557
 lbl_8051FDD0:
-	.4byte 0xC3A2F983
-.global lbl_8051FDD4
+	.float -325.9493
 lbl_8051FDD4:
-	.4byte 0x43A2F983
-.global lbl_8051FDD8
+	.float 325.9493
+.balign 8
 lbl_8051FDD8:
 	.4byte 0x43300000
 	.4byte 0x80000000
-.global lbl_8051FDE0
 lbl_8051FDE0:
 	.float 0.1
-.global lbl_8051FDE4
 lbl_8051FDE4:
 	.float 0.7
-.global lbl_8051FDE8
-lbl_8051FDE8:
-	.4byte 0x40C90FDB
-.global lbl_8051FDEC
-lbl_8051FDEC:
-	.4byte 0xC0490FDB
-.global lbl_8051FDF0
+lbl_8051FDE8: # tau
+	.float 6.2831855
+lbl_8051FDEC: # -pi
+	.float -3.1415927
 lbl_8051FDF0:
-	.4byte 0x3DC90FDB
-	.4byte 0x00000000
+	.float 0.09817477
 
 .section .text, "ax"  # 0x800056C0 - 0x80472F00
 .global __ct__Q43ebi5title6Chappy4TMgrFv
@@ -687,7 +654,6 @@ lbl_803E8B64:
 /* 803E8B7C 003E5ABC  7C 03 00 2E */	lwzx r0, r3, r0
 /* 803E8B80 003E5AC0  7C 09 03 A6 */	mtctr r0
 /* 803E8B84 003E5AC4  4E 80 04 20 */	bctr 
-.global lbl_803E8B88
 lbl_803E8B88:
 /* 803E8B88 003E5AC8  80 8D 9A 28 */	lwz r4, titleMgr__Q23ebi5title@sda21(r13)
 /* 803E8B8C 003E5ACC  38 61 00 08 */	addi r3, r1, 8
@@ -696,7 +662,6 @@ lbl_803E8B88:
 /* 803E8B98 003E5AD8  D0 1F 00 04 */	stfs f0, 4(r31)
 /* 803E8B9C 003E5ADC  C0 01 00 0C */	lfs f0, 0xc(r1)
 /* 803E8BA0 003E5AE0  D0 1F 00 08 */	stfs f0, 8(r31)
-.global lbl_803E8BA4
 lbl_803E8BA4:
 /* 803E8BA4 003E5AE4  80 9F 00 4C */	lwz r4, 0x4c(r31)
 /* 803E8BA8 003E5AE8  80 6D 9A EC */	lwz r3, sys@sda21(r13)
@@ -707,7 +672,6 @@ lbl_803E8BA4:
 /* 803E8BBC 003E5AFC  90 7F 00 3C */	stw r3, 0x3c(r31)
 /* 803E8BC0 003E5B00  90 7F 00 40 */	stw r3, 0x40(r31)
 /* 803E8BC4 003E5B04  48 00 02 28 */	b lbl_803E8DEC
-.global lbl_803E8BC8
 lbl_803E8BC8:
 /* 803E8BC8 003E5B08  80 7F 00 4C */	lwz r3, 0x4c(r31)
 /* 803E8BCC 003E5B0C  C3 C3 01 A8 */	lfs f30, 0x1a8(r3)
@@ -731,7 +695,6 @@ lbl_803E8BC8:
 /* 803E8C14 003E5B54  90 7F 00 3C */	stw r3, 0x3c(r31)
 /* 803E8C18 003E5B58  90 7F 00 40 */	stw r3, 0x40(r31)
 /* 803E8C1C 003E5B5C  48 00 01 D0 */	b lbl_803E8DEC
-.global lbl_803E8C20
 lbl_803E8C20:
 /* 803E8C20 003E5B60  C0 3F 00 30 */	lfs f1, 0x30(r31)
 /* 803E8C24 003E5B64  3C 60 80 51 */	lis r3, atanTable___5JMath@ha
@@ -806,7 +769,6 @@ lbl_803E8D04:
 /* 803E8D2C 003E5C6C  D0 1F 00 34 */	stfs f0, 0x34(r31)
 /* 803E8D30 003E5C70  D0 3F 00 38 */	stfs f1, 0x38(r31)
 /* 803E8D34 003E5C74  48 00 00 B8 */	b lbl_803E8DEC
-.global lbl_803E8D38
 lbl_803E8D38:
 /* 803E8D38 003E5C78  80 7F 00 4C */	lwz r3, 0x4c(r31)
 /* 803E8D3C 003E5C7C  C3 C3 02 20 */	lfs f30, 0x220(r3)
@@ -830,7 +792,6 @@ lbl_803E8D38:
 /* 803E8D84 003E5CC4  90 7F 00 3C */	stw r3, 0x3c(r31)
 /* 803E8D88 003E5CC8  90 7F 00 40 */	stw r3, 0x40(r31)
 /* 803E8D8C 003E5CCC  48 00 00 60 */	b lbl_803E8DEC
-.global lbl_803E8D90
 lbl_803E8D90:
 /* 803E8D90 003E5CD0  C0 1F 00 08 */	lfs f0, 8(r31)
 /* 803E8D94 003E5CD4  C0 3F 00 04 */	lfs f1, 4(r31)
@@ -858,7 +819,6 @@ lbl_803E8DC8:
 lbl_803E8DE4:
 /* 803E8DE4 003E5D24  D0 5F 00 0C */	stfs f2, 0xc(r31)
 /* 803E8DE8 003E5D28  D0 7F 00 10 */	stfs f3, 0x10(r31)
-.global lbl_803E8DEC
 lbl_803E8DEC:
 /* 803E8DEC 003E5D2C  E3 E1 00 58 */	psq_l f31, 88(r1), 0, qr0
 /* 803E8DF0 003E5D30  CB E1 00 50 */	lfd f31, 0x50(r1)
@@ -940,7 +900,6 @@ lbl_803E8EEC:
 /* 803E8F04 003E5E44  7C 03 00 2E */	lwzx r0, r3, r0
 /* 803E8F08 003E5E48  7C 09 03 A6 */	mtctr r0
 /* 803E8F0C 003E5E4C  4E 80 04 20 */	bctr 
-.global lbl_803E8F10
 lbl_803E8F10:
 /* 803E8F10 003E5E50  80 7E 00 44 */	lwz r3, 0x44(r30)
 /* 803E8F14 003E5E54  28 03 00 00 */	cmplwi r3, 0
@@ -957,7 +916,6 @@ lbl_803E8F2C:
 /* 803E8F3C 003E5E7C  38 80 00 06 */	li r4, 6
 /* 803E8F40 003E5E80  4B FF FB BD */	bl startAIState___Q43ebi5title6Chappy5TUnitFQ53ebi5title6Chappy5TUnit11enumAIState
 /* 803E8F44 003E5E84  48 00 02 08 */	b lbl_803E914C
-.global lbl_803E8F48
 lbl_803E8F48:
 /* 803E8F48 003E5E88  C3 E2 1A 08 */	lfs f31, lbl_8051FD68@sda21(r2)
 /* 803E8F4C 003E5E8C  3B E0 00 00 */	li r31, 0
@@ -969,7 +927,6 @@ lbl_803E8F48:
 /* 803E8F64 003E5EA4  38 80 00 02 */	li r4, 2
 /* 803E8F68 003E5EA8  4B FF FB 95 */	bl startAIState___Q43ebi5title6Chappy5TUnitFQ53ebi5title6Chappy5TUnit11enumAIState
 /* 803E8F6C 003E5EAC  48 00 01 E0 */	b lbl_803E914C
-.global lbl_803E8F70
 lbl_803E8F70:
 /* 803E8F70 003E5EB0  3C 60 80 51 */	lis r3, atanTable___5JMath@ha
 /* 803E8F74 003E5EB4  C0 3E 00 10 */	lfs f1, 0x10(r30)
@@ -1022,7 +979,6 @@ lbl_803E9014:
 /* 803E9018 003E5F58  C3 E2 1A 0C */	lfs f31, lbl_8051FD6C@sda21(r2)
 /* 803E901C 003E5F5C  3B E0 00 00 */	li r31, 0
 /* 803E9020 003E5F60  48 00 01 2C */	b lbl_803E914C
-.global lbl_803E9024
 lbl_803E9024:
 /* 803E9024 003E5F64  80 1E 00 3C */	lwz r0, 0x3c(r30)
 /* 803E9028 003E5F68  28 00 00 00 */	cmplwi r0, 0
@@ -1086,7 +1042,6 @@ lbl_803E90F8:
 /* 803E90FC 003E603C  38 80 00 02 */	li r4, 2
 /* 803E9100 003E6040  4B FF F9 FD */	bl startAIState___Q43ebi5title6Chappy5TUnitFQ53ebi5title6Chappy5TUnit11enumAIState
 /* 803E9104 003E6044  48 00 00 48 */	b lbl_803E914C
-.global lbl_803E9108
 lbl_803E9108:
 /* 803E9108 003E6048  C3 E2 1A 08 */	lfs f31, lbl_8051FD68@sda21(r2)
 /* 803E910C 003E604C  3B E0 00 01 */	li r31, 1
@@ -1098,18 +1053,15 @@ lbl_803E9108:
 /* 803E9124 003E6064  38 80 00 02 */	li r4, 2
 /* 803E9128 003E6068  4B FF F9 D5 */	bl startAIState___Q43ebi5title6Chappy5TUnitFQ53ebi5title6Chappy5TUnit11enumAIState
 /* 803E912C 003E606C  48 00 00 20 */	b lbl_803E914C
-.global lbl_803E9130
 lbl_803E9130:
 /* 803E9130 003E6070  C3 E2 1A 08 */	lfs f31, lbl_8051FD68@sda21(r2)
 /* 803E9134 003E6074  3B E0 00 00 */	li r31, 0
 /* 803E9138 003E6078  C3 C2 1A 10 */	lfs f30, lbl_8051FD70@sda21(r2)
 /* 803E913C 003E607C  48 00 00 10 */	b lbl_803E914C
-.global lbl_803E9140
 lbl_803E9140:
 /* 803E9140 003E6080  C3 E2 1A 08 */	lfs f31, lbl_8051FD68@sda21(r2)
 /* 803E9144 003E6084  3B E0 00 00 */	li r31, 0
 /* 803E9148 003E6088  C3 C2 1A 10 */	lfs f30, lbl_8051FD70@sda21(r2)
-.global lbl_803E914C
 lbl_803E914C:
 /* 803E914C 003E608C  88 1E 00 48 */	lbz r0, 0x48(r30)
 /* 803E9150 003E6090  28 00 00 00 */	cmplwi r0, 0
@@ -1872,15 +1824,14 @@ getAnimRes__Q43ebi5title6Chappy11TAnimFolderFl:
 /* 803E9C30 003E6B70  7C 60 1A 14 */	add r3, r0, r3
 /* 803E9C34 003E6B74  4E 80 00 20 */	blr 
 
-.global __sinit_ebiP2TitleChappy_cpp
-__sinit_ebiP2TitleChappy_cpp:
+__sinit_ebiP2TitleChappy_cpp: # static initializer
 /* 803E9C38 003E6B78  3C 80 80 51 */	lis r4, __float_nan@ha
 /* 803E9C3C 003E6B7C  38 00 FF FF */	li r0, -1
 /* 803E9C40 003E6B80  C0 04 48 B0 */	lfs f0, __float_nan@l(r4)
-/* 803E9C44 003E6B84  3C 60 80 4F */	lis r3, lbl_804E9E60@ha
-/* 803E9C48 003E6B88  90 0D 9A 80 */	stw r0, lbl_80516100@sda21(r13)
-/* 803E9C4C 003E6B8C  D4 03 9E 60 */	stfsu f0, lbl_804E9E60@l(r3)
-/* 803E9C50 003E6B90  D0 0D 9A 84 */	stfs f0, lbl_80516104@sda21(r13)
+/* 803E9C44 003E6B84  3C 60 80 4F */	lis r3, govNAN___Q24Game5P2JST@ha
+/* 803E9C48 003E6B88  90 0D 9A 80 */	stw r0, gu32NAN___Q24Game5P2JST@sda21(r13)
+/* 803E9C4C 003E6B8C  D4 03 9E 60 */	stfsu f0, govNAN___Q24Game5P2JST@l(r3)
+/* 803E9C50 003E6B90  D0 0D 9A 84 */	stfs f0, gfNAN___Q24Game5P2JST@sda21(r13)
 /* 803E9C54 003E6B94  D0 03 00 04 */	stfs f0, 4(r3)
 /* 803E9C58 003E6B98  D0 03 00 08 */	stfs f0, 8(r3)
 /* 803E9C5C 003E6B9C  4E 80 00 20 */	blr 

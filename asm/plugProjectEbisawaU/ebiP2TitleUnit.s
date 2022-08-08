@@ -5,7 +5,6 @@ lbl_constructor:
 
 .section .rodata  # 0x804732E0 - 0x8049E220
 .balign 8
-.global lbl_804961D8
 lbl_804961D8:
 	.4byte 0x00000000
 	.4byte 0x00000000
@@ -17,14 +16,12 @@ lbl_804961D8:
 	.4byte 0x6F70656E
 	.4byte 0x696E672E
 	.4byte 0x626D6400
-.global lbl_80496200
 lbl_80496200:
 	.4byte 0x65626950
 	.4byte 0x32546974
 	.4byte 0x6C65556E
 	.4byte 0x69742E63
 	.4byte 0x70700000
-.global lbl_80496214
 lbl_80496214:
 	.asciz "P2Assert"
 	.skip 3
@@ -44,7 +41,6 @@ lbl_80496214:
 	.4byte 0x656E656D
 	.4byte 0x792E6263
 	.4byte 0x6B000000
-.global lbl_80496260
 lbl_80496260:
 	.4byte 0x626C6163
 	.4byte 0x6B5F706C
@@ -53,7 +49,6 @@ lbl_80496260:
 
 .section .data, "wa"  # 0x8049E220 - 0x804EFC20
 .balign 8
-.global lbl_804E79B8
 lbl_804E79B8:
 	.4byte 0x00000000
 	.4byte 0x00000000
@@ -62,54 +57,40 @@ lbl_804E79B8:
 
 .section .sbss # 0x80514D80 - 0x80516360
 .balign 8
-.global lbl_805160B8
 lbl_805160B8:
 	.skip 0x4
-.global lbl_805160BC
 lbl_805160BC:
 	.skip 0x4
 
 .section .sdata2, "a"     # 0x80516360 - 0x80520E40
 .balign 8
-.global lbl_8051F838
 lbl_8051F838:
 	.float 1.0
-.global lbl_8051F83C
 lbl_8051F83C:
 	.4byte 0x00000000
-.global lbl_8051F840
 lbl_8051F840:
 	.float 0.5
-.global lbl_8051F844
 lbl_8051F844:
 	.4byte 0x42700000
-.global lbl_8051F848
 lbl_8051F848:
 	.4byte 0x3E4CCCCD
-.global lbl_8051F84C
 lbl_8051F84C:
 	.4byte 0x3F4CCCCD
-.global lbl_8051F850
 lbl_8051F850:
 	.4byte 0xC0A00001
 	.4byte 0x00000000
-.global lbl_8051F858
 lbl_8051F858:
 	.4byte 0x43300000
 	.4byte 0x00000000
-.global lbl_8051F860
 lbl_8051F860:
 	.4byte 0x63616D2E
 	.4byte 0x626D6400
-.global lbl_8051F868
 lbl_8051F868:
 	.4byte 0x63616D2E
 	.4byte 0x62636B00
-.global lbl_8051F870
 lbl_8051F870:
 	.4byte 0x63616D2E
 	.4byte 0x62726B00
-.global lbl_8051F878
 lbl_8051F878:
 	.4byte 0x43300000
 	.4byte 0x80000000

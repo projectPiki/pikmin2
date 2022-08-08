@@ -33,45 +33,59 @@ lbl_80495CB8: # Shift-JIS
 	.4byte 0x834F974C
 	.4byte 0x8CF896B3
 	.4byte 0x8CF80000
-	.4byte 0x54546974
-	.4byte 0x6C655061
-	.4byte 0x72616D65
-	.4byte 0x74657273
-	.4byte 0x00000000
+.balign 4
+lbl_80495CC8: # Shift-JIS
+	.asciz "TTitleParameters"
+.balign 4
+lbl_80495CDC: # Shift-JIS
 	.4byte 0x89C28E8B
 	.4byte 0x94CD88CD
 	.4byte 0x588DC58F
 	.4byte 0xAC000000
+.balign 4
+lbl_80495CEC: # Shift-JIS
 	.4byte 0x89C28E8B
 	.4byte 0x94CD88CD
 	.4byte 0x588DC591
 	.4byte 0xE5000000
+.balign 4
+lbl_80495CFC: # Shift-JIS
 	.4byte 0x89C28E8B
 	.4byte 0x94CD88CD
 	.4byte 0x598DC58F
 	.4byte 0xAC000000
+.balign 4
+lbl_80495D0C: # Shift-JIS
 	.4byte 0x89C28E8B
 	.4byte 0x94CD88CD
 	.4byte 0x598DC591
 	.4byte 0xE5000000
+.balign 4
+lbl_80495D1C: # Shift-JIS
 	.4byte 0x8373834E
 	.4byte 0x837E8393
 	.4byte 0x89F08E55
 	.4byte 0x92869053
 	.4byte 0x8DC09557
 	.4byte 0x58000000
+.balign 4
+lbl_80495D34: # Shift-JIS
 	.4byte 0x8373834E
 	.4byte 0x837E8393
 	.4byte 0x89F08E55
 	.4byte 0x92869053
 	.4byte 0x8DC09557
 	.4byte 0x59000000
+.balign 4
+lbl_80495D4C: # Shift-JIS
 	.4byte 0x8373834E
 	.4byte 0x837E8393
 	.4byte 0x89F08E55
 	.4byte 0x94BC8C61
 	.4byte 0x8DC58FAC
 	.4byte 0x00000000
+.balign 4
+lbl_80495D64: # Shift-JIS
 	.4byte 0x8373834E
 	.4byte 0x837E8393
 	.4byte 0x89F08E55
@@ -84,45 +98,63 @@ lbl_80495CB8: # Shift-JIS
 	.4byte 0x758CC08A
 	.4byte 0x4594BC8C
 	.4byte 0x61290000
+.balign 4
+lbl_80495D94: # Shift-JIS
 	.4byte 0x959782A0
 	.4byte 0x82BD82E8
 	.4byte 0x94CD88CD
 	.4byte 0x82CC9790
 	.4byte 0x90940000
+.balign 4
+lbl_80495DA8: # Shift-JIS
 	.4byte 0x42479597
 	.4byte 0x8FF391D4
 	.4byte 0x8E9E8AD4
 	.4byte 0x28956229
 	.4byte 0x00000000
+.balign 4
+lbl_80495DBC: # Shift-JIS
 	.4byte 0x424F4944
 	.4byte 0x318FF391
 	.4byte 0xD48E9E8A
 	.4byte 0xD4289562
 	.4byte 0x29000000
+.balign 4
+lbl_80495DD0: # Shift-JIS
 	.4byte 0x424F4944
 	.4byte 0x328FF391
 	.4byte 0xD48E9E8A
 	.4byte 0xD4289562
 	.4byte 0x29000000
+.balign 4
+lbl_80495DE4: # Shift-JIS
 	.4byte 0x424F4944
 	.4byte 0x338FF391
 	.4byte 0xD48E9E8A
 	.4byte 0xD4289562
 	.4byte 0x29000000
+.balign 4
+lbl_80495DF8: # Shift-JIS
 	.4byte 0x95978FF3
 	.4byte 0x91D48E9E
 	.4byte 0x8AD42895
 	.4byte 0x62290000
+.balign 4
+lbl_80495E08: # Shift-JIS
 	.4byte 0x93478FF3
 	.4byte 0x91D48E9E
 	.4byte 0x8AD42895
 	.4byte 0x62290000
+.balign 4
+lbl_80495E18: # Shift-JIS
 	.4byte 0x50726573
 	.4byte 0x73537461
 	.4byte 0x72748A4A
 	.4byte 0x8E6E8E9E
 	.4byte 0x8AD42895
 	.4byte 0x62290000
+.balign 4
+lbl_80495E30: # Shift-JIS
 	.4byte 0x834C815B
 	.4byte 0x8EF382AF
 	.4byte 0x82C282AF
@@ -130,240 +162,175 @@ lbl_80495CB8: # Shift-JIS
 	.4byte 0x8E9E8AD4
 	.4byte 0x28956229
 	.4byte 0x00000000
-	.4byte 0x4C696768
-	.4byte 0x744D6772
-	.4byte 0x00000000
+.balign 4
+lbl_80495E4C:
+	.asciz "LightMgr"
+.balign 4
+lbl_80495E58: # Shift-JIS
 	.4byte 0x83818343
 	.4byte 0x83938389
 	.4byte 0x83438367
 	.4byte 0x00000000
+.balign 4
+lbl_80495E68: # Shift-JIS
 	.4byte 0x83588379
 	.4byte 0x834C8385
 	.4byte 0x83898389
 	.4byte 0x83438367
 	.4byte 0x00000000
-	.4byte 0x54416D62
-	.4byte 0x5061726D
-	.4byte 0x73000000
+.balign 4
+lbl_80495E7C:
+	.asciz "TAmbParms"
+.balign 4
+lbl_80495E88:
 	.4byte 0x83418393
 	.4byte 0x83728347
 	.4byte 0x83938367
 	.4byte 0x90465200
+.balign 4
+lbl_80495E98: # Shift-JIS
 	.4byte 0x83418393
 	.4byte 0x83728347
 	.4byte 0x83938367
 	.4byte 0x90464700
+.balign 4
+lbl_80495EA8: # Shift-JIS
 	.4byte 0x83418393
 	.4byte 0x83728347
 	.4byte 0x83938367
 	.4byte 0x90464200
+.balign 4
+lbl_80495EB8: # Shift-JIS
 	.4byte 0x83418393
 	.4byte 0x83728347
 	.4byte 0x83938367
 	.4byte 0x90464100
-	.4byte 0x54537065
-	.4byte 0x63506172
-	.4byte 0x6D730000
+.balign 4
+lbl_80495EC8:
+	.asciz "TSpecParms"
+.balign 4
+lbl_80495ED4: # Shift-JIS
 	.4byte 0x83898343
 	.4byte 0x83679046
 	.4byte 0x52000000
+.balign 4
+lbl_80495EE0: # Shift-JIS
 	.4byte 0x83898343
 	.4byte 0x83679046
 	.4byte 0x47000000
+.balign 4
+lbl_80495EEC: # Shift-JIS
 	.4byte 0x83898343
 	.4byte 0x83679046
 	.4byte 0x42000000
+.balign 4
+lbl_80495EF8: # Shift-JIS
 	.4byte 0x83898343
 	.4byte 0x83679046
 	.4byte 0x41000000
-	.4byte 0x544D6169
-	.4byte 0x6E506172
-	.4byte 0x6D730000
+.balign 4
+lbl_80495F04:
+	.asciz "TMainParms"
+.balign 4
+lbl_80495F10: # Shift-JIS
 	.4byte 0x8B9797A3
 	.4byte 0x8CB8908A
 	.4byte 0x2D8B9797
 	.4byte 0xA3000000
+.balign 4
+lbl_80495F20: # Shift-JIS
 	.4byte 0x8B9797A3
 	.4byte 0x8CB8908A
 	.4byte 0x2D96BE82
 	.4byte 0xE982B300
+.balign 4
+lbl_80495F30: # Shift-JIS
 	.4byte 0x834A8362
 	.4byte 0x83678349
 	.4byte 0x83748A70
 	.4byte 0x93780000
-	.4byte 0x4A334444
-	.4byte 0x72617742
-	.4byte 0x75666665
-	.4byte 0x72000000
-	.4byte 0x54436F6F
-	.4byte 0x72644D67
-	.4byte 0x72204D61
-	.4byte 0x696E0000
-	.4byte 0x54436F6F
-	.4byte 0x72644D67
-	.4byte 0x72205375
-	.4byte 0x62000000
-	.4byte 0x54546974
-	.4byte 0x6C654D67
-	.4byte 0x723A3A6C
-	.4byte 0x6F616452
-	.4byte 0x65736F75
-	.4byte 0x72636528
-	.4byte 0x29000000
-	.4byte 0x54546974
-	.4byte 0x6C654D67
-	.4byte 0x723A3A6C
-	.4byte 0x6F616452
-	.4byte 0x65736F75
-	.4byte 0x7263652D
-	.4byte 0x2D6D6F75
-	.4byte 0x6E745F61
-	.4byte 0x72630000
-	.4byte 0x75736572
-	.4byte 0x2F456269
-	.4byte 0x73617761
-	.4byte 0x2F746974
-	.4byte 0x6C652F74
-	.4byte 0x69746C65
-	.4byte 0x2E737A73
-	.4byte 0x00000000
-	.4byte 0x65626950
-	.4byte 0x32546974
-	.4byte 0x6C652E63
-	.4byte 0x70700000
+.balign 4
+lbl_80495F40:
+	.asciz "J3DDrawBuffer"
+.balign 4
+lbl_80495F50:
+	.asciz "TCoordMgr Main"
+.balign 4
+lbl_80495F60:
+	.asciz "TCoordMgr Sub"
+.balign 4
+lbl_80495F70:
+	.asciz "TTitleMgr::loadResource()"
+.balign 4
+lbl_80495F8C:
+	.asciz "TTitleMgr::loadResource--mount_arc"
+.balign 4
+lbl_80495FB0:
+	.asciz "user/Ebisawa/title/title.szs"
+.balign 4
+lbl_80495FD0:
+	.asciz "ebiP2Title.cpp"
+.balign 4
+lbl_80495FE0:
 	.asciz "P2Assert"
-	.skip 3
-	.4byte 0x70617261
-	.4byte 0x6D2F7061
-	.4byte 0x72616D5F
-	.4byte 0x7469746C
-	.4byte 0x652E7478
-	.4byte 0x74000000
-	.4byte 0x6C6F676F
-	.4byte 0x2F636F6F
-	.4byte 0x7264696E
-	.4byte 0x6174655F
-	.4byte 0x656E6700
-	.4byte 0x6C6F676F
-	.4byte 0x2F636F6F
-	.4byte 0x7264696E
-	.4byte 0x6174655F
-	.4byte 0x4E696E74
-	.4byte 0x656E646F
-	.4byte 0x00000000
-	.4byte 0x6C6F676F
-	.4byte 0x2F636F6F
-	.4byte 0x7264696E
-	.4byte 0x6174655F
-	.4byte 0x6A706E00
-	.4byte 0x70617261
-	.4byte 0x6D2F7061
-	.4byte 0x72616D5F
-	.4byte 0x6C696768
-	.4byte 0x745F7370
-	.4byte 0x72696E67
-	.4byte 0x2E747874
-	.4byte 0x00000000
-	.4byte 0x70617261
-	.4byte 0x6D2F7061
-	.4byte 0x72616D5F
-	.4byte 0x666F675F
-	.4byte 0x73707269
-	.4byte 0x6E672E74
-	.4byte 0x78740000
-	.4byte 0x70617261
-	.4byte 0x6D2F7061
-	.4byte 0x72616D5F
-	.4byte 0x6C696768
-	.4byte 0x745F7375
-	.4byte 0x6D6D6572
-	.4byte 0x2E747874
-	.4byte 0x00000000
-	.4byte 0x70617261
-	.4byte 0x6D2F7061
-	.4byte 0x72616D5F
-	.4byte 0x666F675F
-	.4byte 0x73756D6D
-	.4byte 0x65722E74
-	.4byte 0x78740000
-	.4byte 0x70617261
-	.4byte 0x6D2F7061
-	.4byte 0x72616D5F
-	.4byte 0x6C696768
-	.4byte 0x745F6175
-	.4byte 0x74756D6E
-	.4byte 0x2E747874
-	.4byte 0x00000000
-	.4byte 0x70617261
-	.4byte 0x6D2F7061
-	.4byte 0x72616D5F
-	.4byte 0x666F675F
-	.4byte 0x61757475
-	.4byte 0x6D6E2E74
-	.4byte 0x78740000
-	.4byte 0x70617261
-	.4byte 0x6D2F7061
-	.4byte 0x72616D5F
-	.4byte 0x6C696768
-	.4byte 0x745F7769
-	.4byte 0x6E746572
-	.4byte 0x2E747874
-	.4byte 0x00000000
-	.4byte 0x70617261
-	.4byte 0x6D2F7061
-	.4byte 0x72616D5F
-	.4byte 0x666F675F
-	.4byte 0x77696E74
-	.4byte 0x65722E74
-	.4byte 0x78740000
-	.4byte 0x75736572
-	.4byte 0x2F456269
-	.4byte 0x73617761
-	.4byte 0x2F746974
-	.4byte 0x6C652F62
-	.4byte 0x675F7370
-	.4byte 0x72696E67
-	.4byte 0x2E737A73
-	.4byte 0x00000000
-	.4byte 0x75736572
-	.4byte 0x2F456269
-	.4byte 0x73617761
-	.4byte 0x2F746974
-	.4byte 0x6C652F62
-	.4byte 0x675F7375
-	.4byte 0x6D6D6572
-	.4byte 0x2E737A73
-	.4byte 0x00000000
-	.4byte 0x75736572
-	.4byte 0x2F456269
-	.4byte 0x73617761
-	.4byte 0x2F746974
-	.4byte 0x6C652F62
-	.4byte 0x675F6175
-	.4byte 0x74756D6E
-	.4byte 0x2E737A73
-	.4byte 0x00000000
-	.4byte 0x75736572
-	.4byte 0x2F456269
-	.4byte 0x73617761
-	.4byte 0x2F746974
-	.4byte 0x6C652F62
-	.4byte 0x675F7769
-	.4byte 0x6E746572
-	.4byte 0x2E737A73
-	.4byte 0x00000000
-	.4byte 0x23202564
-	.4byte 0x2F25640D
-	.4byte 0x0A000000
+.balign 4
+lbl_80495FEC:
+	.asciz "param/param_title.txt"
+.balign 4
+lbl_80496004:
+	.asciz "logo/coordinate_eng"
+.balign 4
+lbl_80496018:
+	.asciz "logo/coordinate_Nintendo"
+.balign 4
+lbl_80496034:
+	.asciz "logo/coordinate_jpn"
+.balign 4
+lbl_80496048:
+	.asciz "param/param_light_spring.txt"
+.balign 4
+lbl_80496068:
+	.asciz "param/param_fog_spring.txt"
+.balign 4
+lbl_80496084:
+	.asciz "param/param_light_summer.txt"
+.balign 4
+lbl_804960A4:
+	.asciz "param/param_fog_summer.txt"
+.balign 4
+lbl_804960C0:
+	.asciz "param/param_light_autumn.txt"
+.balign 4
+lbl_804960E0:
+	.asciz "param/param_fog_autumn.txt"
+.balign 4
+lbl_804960FC:
+	.asciz "param/param_light_winter.txt"
+.balign 4
+lbl_8049611C:
+	.asciz "param/param_fog_winter.txt"
+.balign 4
+lbl_80496138:
+	.asciz "user/Ebisawa/title/bg_spring.szs"
+.balign 4
+lbl_8049615C:
+	.asciz "user/Ebisawa/title/bg_summer.szs"
+.balign 4
+lbl_80496180:
+	.asciz "user/Ebisawa/title/bg_autumn.szs"
+.balign 4
+lbl_804961A4:
+	.asciz "user/Ebisawa/title/bg_winter.szs"
+.balign 4
+lbl_804961C8:
+	.asciz "# %d/%d\r\n"
 
 .section .data, "wa"  # 0x8049E220 - 0x804EFC20
 .balign 8
-.global lbl_804E7828
-lbl_804E7828:
-	.4byte 0x00000000
-	.4byte 0x00000000
-	.4byte 0x00000000
-.global lbl_804E7834
+govNAN___Q24Game5P2JST:
+	.float 0.0
+	.float 0.0
+	.float 0.0
 lbl_804E7834:
 	.4byte lbl_803C0214
 	.4byte lbl_803C046C
@@ -495,11 +462,9 @@ __vt__Q33ebi5title8TObjBase:
 
 .section .sbss # 0x80514D80 - 0x80516360
 .balign 8
-.global lbl_805160A0
-lbl_805160A0:
+gu32NAN___Q24Game5P2JST:
 	.skip 0x4
-.global lbl_805160A4
-lbl_805160A4:
+gfNAN___Q24Game5P2JST:
 	.skip 0x4
 .global titleMgr__Q23ebi5title
 titleMgr__Q23ebi5title:
@@ -507,218 +472,176 @@ titleMgr__Q23ebi5title:
 .global _instance__Q33ebi5title9TTitleMgr
 _instance__Q33ebi5title9TTitleMgr:
 	.skip 0x4
-.global boidCalcTimer$5256
 boidCalcTimer$5256:
 	.skip 0x4
-.global init$5257
 init$5257:
-	.skip 0x4
+	.skip 0x1
 
 .section .sdata2, "a"     # 0x80516360 - 0x80520E40
 .balign 8
-.global lbl_8051F6F8
 lbl_8051F6F8:
-	.4byte 0x00000000
-.global lbl_8051F6FC
+	.float 0.0
 lbl_8051F6FC:
-	.4byte 0xBF800000
-.global lbl_8051F700
+	.float -1.0
 lbl_8051F700:
 	.float 1.0
-.global lbl_8051F704
 lbl_8051F704:
-	.4byte 0x41700000
-.global lbl_8051F708
+	.float 15.0
 lbl_8051F708:
-	.4byte 0xC47A0000
-.global lbl_8051F70C
+	.float -1000.0
 lbl_8051F70C:
-	.4byte 0x461C4000
-.global lbl_8051F710
+	.float 10000.0
+.balign 4
 lbl_8051F710:
-	.4byte 0x466F7679
-	.4byte 0x00000000
-.global lbl_8051F718
+	.asciz "Fovy"
+.balign 4
 lbl_8051F718:
-	.4byte 0x420C0000
-.global lbl_8051F71C
+	.float 35.0
 lbl_8051F71C:
-	.4byte 0x43340000
-.global lbl_8051F720
+	.float 180.0
+.balign 4
 lbl_8051F720:
-	.4byte 0x73746172
-	.4byte 0x74207A00
-.global lbl_8051F728
+	.asciz "start z"
+.balign 4
 lbl_8051F728:
-	.4byte 0x42C80000
-.global lbl_8051F72C
+	.float 100.0
 lbl_8051F72C:
-	.4byte 0x44800000
-.global lbl_8051F730
+	.float 1024.0
+.balign 4
 lbl_8051F730:
-	.4byte 0x656E6420
-	.4byte 0x7A000000
-.global lbl_8051F738
+	.asciz "end z"
+.balign 4
 lbl_8051F738:
-	.4byte 0x44FA0000
-.global lbl_8051F73C
+	.float 2000.0
 lbl_8051F73C:
-	.4byte 0x46480000
-.global lbl_8051F740
-lbl_8051F740:
+	.float 12800.0
+.balign 4
+lbl_8051F740: # Shift-JIS
 	.4byte 0x90468140
 	.4byte 0x52000000
-.global lbl_8051F748
-lbl_8051F748:
+.balign 4
+lbl_8051F748: # Shift-JIS
 	.4byte 0x90468140
 	.4byte 0x47000000
-.global lbl_8051F750
-lbl_8051F750:
+.balign 4
+lbl_8051F750: # Shift-JIS
 	.4byte 0x90468140
 	.4byte 0x42000000
-.global lbl_8051F758
-lbl_8051F758:
+.balign 4
+lbl_8051F758: # Shift-JIS
 	.4byte 0x90468140
 	.4byte 0x41000000
-.global lbl_8051F760
+.balign 4
 lbl_8051F760:
-	.4byte 0xC3C80000
-.global lbl_8051F764
+	.float -400.0
 lbl_8051F764:
-	.4byte 0xC4FA0000
-.global lbl_8051F768
+	.float -2000.0
 lbl_8051F768:
-	.4byte 0x43C80000
-.global lbl_8051F76C
+	.float 400.0
 lbl_8051F76C:
-	.4byte 0xC37A0000
-.global lbl_8051F770
+	.float -250.0
 lbl_8051F770:
-	.4byte 0x43AA0000
-.global lbl_8051F774
+	.float 340.0
 lbl_8051F774:
-	.4byte 0xC4200000
-.global lbl_8051F778
+	.float -640.0
 lbl_8051F778:
-	.4byte 0x44200000
-.global lbl_8051F77C
+	.float 640.0
 lbl_8051F77C:
-	.4byte 0xC3F00000
-.global lbl_8051F780
+	.float -480.0
 lbl_8051F780:
-	.4byte 0x43F00000
-.global lbl_8051F784
+	.float 480.0
 lbl_8051F784:
-	.4byte 0x43FA0000
-.global lbl_8051F788
+	.float 500.0
 lbl_8051F788:
-	.4byte 0x447A0000
-.global lbl_8051F78C
+	.float 1000.0
 lbl_8051F78C:
-	.4byte 0x44160000
-.global lbl_8051F790
+	.float 600.0
 lbl_8051F790:
-	.4byte 0x41F00000
-.global lbl_8051F794
+	.float 30.0
 lbl_8051F794:
-	.4byte 0x41000000
-.global lbl_8051F798
+	.float 8.0
 lbl_8051F798:
-	.4byte 0x40400000
-.global lbl_8051F79C
+	.float 3.0
 lbl_8051F79C:
-	.4byte 0x42700000
-.global lbl_8051F7A0
+	.float 60.0
 lbl_8051F7A0:
-	.4byte 0x41200000
-.global lbl_8051F7A4
+	.float 10.0
 lbl_8051F7A4:
-	.4byte 0x40000000
-.global lbl_8051F7A8
+	.float 2.0
 lbl_8051F7A8:
-	.4byte 0x40600000
-.global lbl_8051F7AC
-lbl_8051F7AC:
+	.float 3.5
+.balign 4
+lbl_8051F7AC: # Shift-JIS
 	.4byte 0x8CFC82AB
 	.4byte 0x58000000
-.global lbl_8051F7B4
-lbl_8051F7B4:
+.balign 4
+lbl_8051F7B4: # Shift-JIS
 	.4byte 0x8CFC82AB
 	.4byte 0x59000000
-.global lbl_8051F7BC
-lbl_8051F7BC:
+.balign 4
+lbl_8051F7BC: # Shift-JIS
 	.4byte 0x8CFC82AB
 	.4byte 0x5A000000
-.global lbl_8051F7C4
-lbl_8051F7C4:
+.balign 4
+lbl_8051F7C4: # Shift-JIS
 	.4byte 0x8CF591F2
 	.4byte 0x00000000
-.global lbl_8051F7CC
+.balign 4
 lbl_8051F7CC:
-	.4byte 0x42800000
-.global lbl_8051F7D0
+	.float 64.0
 lbl_8051F7D0:
-	.4byte 0x44000000
-.global lbl_8051F7D4
-lbl_8051F7D4:
+	.float 512.0
+.balign 4
+lbl_8051F7D4: # Shift-JIS
 	.4byte 0x88CA9275
 	.4byte 0x58000000
-.global lbl_8051F7DC
+.balign 4
 lbl_8051F7DC:
-	.4byte 0xC61C4000
-.global lbl_8051F7E0
-lbl_8051F7E0:
+	.float -10000.0
+.balign 4
+lbl_8051F7E0: # Shift-JIS
 	.4byte 0x88CA9275
 	.4byte 0x59000000
-.global lbl_8051F7E8
+.balign 4
 lbl_8051F7E8:
-	.4byte 0x47435000
-.global lbl_8051F7EC
-lbl_8051F7EC:
+	.float 50000.0
+.balign 4
+lbl_8051F7EC: # Shift-JIS
 	.4byte 0x88CA9275
 	.4byte 0x5A000000
-.global lbl_8051F7F4
+.balign 4
 lbl_8051F7F4:
-	.4byte 0x41C80000
-.global lbl_8051F7F8
+	.float 25.0
+.balign 8
 lbl_8051F7F8:
 	.4byte 0x43300000
 	.4byte 0x00000000
-.global lbl_8051F800
 lbl_8051F800:
-	.4byte 0x46FFFE00
-.global lbl_8051F804
+	.float 32767.0
 lbl_8051F804:
-	.4byte 0xBF490FDB
-.global lbl_8051F808
+	.float -0.7853982
 lbl_8051F808:
-	.4byte 0x4096CBE4
-.global lbl_8051F80C
+	.float 4.712389
 lbl_8051F80C:
-	.4byte 0xC3A2F983
-.global lbl_8051F810
+	.float -325.9493
 lbl_8051F810:
-	.4byte 0x43A2F983
-	.4byte 0x00000000
-.global lbl_8051F818
+	.float 325.9493
+.balign 8
 lbl_8051F818:
 	.4byte 0x43300000
 	.4byte 0x80000000
-.global lbl_8051F820
+.balign 4
 lbl_8051F820:
-	.4byte 0x00000000
-.global lbl_8051F824
-lbl_8051F824:
-	.4byte 0x40C90FDB
-.global lbl_8051F828
+	.asciz ""
+.balign 4
+lbl_8051F824: # tau
+	.float 6.2831855
 lbl_8051F828:
-	.4byte 0x3E4CCCCD
-.global lbl_8051F82C
+	.float 0.2
 lbl_8051F82C:
-	.4byte 0x3ECCCCCD
-.global lbl_8051F830
+	.float 0.4
 lbl_8051F830:
-	.4byte 0x3F19999A
+	.float 0.6
 
 .section .text, "ax"  # 0x800056C0 - 0x80472F00
 .global __ct__Q33ebi5title9TTitleMgrFv
@@ -4389,10 +4312,8 @@ updateState__Q33ebi5title9TTitleMgrFv:
 /* 803C0208 003BD148  7C 03 00 2E */	lwzx r0, r3, r0
 /* 803C020C 003BD14C  7C 09 03 A6 */	mtctr r0
 /* 803C0210 003BD150  4E 80 04 20 */	bctr 
-.global lbl_803C0214
 lbl_803C0214:
 /* 803C0214 003BD154  48 00 03 00 */	b lbl_803C0514
-.global lbl_803C0218
 lbl_803C0218:
 /* 803C0218 003BD158  80 7F 0F 60 */	lwz r3, 0xf60(r31)
 /* 803C021C 003BD15C  28 03 00 00 */	cmplwi r3, 0
@@ -4416,7 +4337,6 @@ lbl_803C022C:
 /* 803C0260 003BD1A0  90 7F 0F 60 */	stw r3, 0xf60(r31)
 /* 803C0264 003BD1A4  90 7F 0F 64 */	stw r3, 0xf64(r31)
 /* 803C0268 003BD1A8  48 00 02 04 */	b lbl_803C046C
-.global lbl_803C026C
 lbl_803C026C:
 /* 803C026C 003BD1AC  80 7F 0F 60 */	lwz r3, 0xf60(r31)
 /* 803C0270 003BD1B0  28 03 00 00 */	cmplwi r3, 0
@@ -4440,7 +4360,6 @@ lbl_803C0280:
 /* 803C02B4 003BD1F4  90 7F 0F 60 */	stw r3, 0xf60(r31)
 /* 803C02B8 003BD1F8  90 7F 0F 64 */	stw r3, 0xf64(r31)
 /* 803C02BC 003BD1FC  48 00 01 B0 */	b lbl_803C046C
-.global lbl_803C02C0
 lbl_803C02C0:
 /* 803C02C0 003BD200  80 7F 0F 60 */	lwz r3, 0xf60(r31)
 /* 803C02C4 003BD204  28 03 00 00 */	cmplwi r3, 0
@@ -4456,7 +4375,6 @@ lbl_803C02D4:
 /* 803C02E8 003BD228  38 00 00 01 */	li r0, 1
 /* 803C02EC 003BD22C  90 1F 0F 58 */	stw r0, 0xf58(r31)
 /* 803C02F0 003BD230  48 00 01 7C */	b lbl_803C046C
-.global lbl_803C02F4
 lbl_803C02F4:
 /* 803C02F4 003BD234  80 7F 0F 60 */	lwz r3, 0xf60(r31)
 /* 803C02F8 003BD238  28 03 00 00 */	cmplwi r3, 0
@@ -4510,7 +4428,6 @@ lbl_803C0370:
 /* 803C03AC 003BD2EC  38 00 00 01 */	li r0, 1
 /* 803C03B0 003BD2F0  90 1F 0F 58 */	stw r0, 0xf58(r31)
 /* 803C03B4 003BD2F4  48 00 00 B8 */	b lbl_803C046C
-.global lbl_803C03B8
 lbl_803C03B8:
 /* 803C03B8 003BD2F8  80 7F 0F 60 */	lwz r3, 0xf60(r31)
 /* 803C03BC 003BD2FC  28 03 00 00 */	cmplwi r3, 0
@@ -4561,7 +4478,6 @@ lbl_803C0424:
 /* 803C0460 003BD3A0  48 02 45 91 */	bl assemble__Q43ebi5title6Pikmin4TMgrFv
 /* 803C0464 003BD3A4  38 00 00 01 */	li r0, 1
 /* 803C0468 003BD3A8  90 1F 0F 58 */	stw r0, 0xf58(r31)
-.global lbl_803C046C
 lbl_803C046C:
 /* 803C046C 003BD3AC  38 7F 42 70 */	addi r3, r31, 0x4270
 /* 803C0470 003BD3B0  81 9F 42 70 */	lwz r12, 0x4270(r31)
@@ -5018,10 +4934,10 @@ __sinit_ebiP2Title_cpp: # static initializer
 /* 803C0AC8 003BDA08  3C 80 80 51 */	lis r4, __float_nan@ha
 /* 803C0ACC 003BDA0C  38 00 FF FF */	li r0, -1
 /* 803C0AD0 003BDA10  C0 04 48 B0 */	lfs f0, __float_nan@l(r4)
-/* 803C0AD4 003BDA14  3C 60 80 4E */	lis r3, lbl_804E7828@ha
-/* 803C0AD8 003BDA18  90 0D 9A 20 */	stw r0, lbl_805160A0@sda21(r13)
-/* 803C0ADC 003BDA1C  D4 03 78 28 */	stfsu f0, lbl_804E7828@l(r3)
-/* 803C0AE0 003BDA20  D0 0D 9A 24 */	stfs f0, lbl_805160A4@sda21(r13)
+/* 803C0AD4 003BDA14  3C 60 80 4E */	lis r3, govNAN___Q24Game5P2JST@ha
+/* 803C0AD8 003BDA18  90 0D 9A 20 */	stw r0, gu32NAN___Q24Game5P2JST@sda21(r13)
+/* 803C0ADC 003BDA1C  D4 03 78 28 */	stfsu f0, govNAN___Q24Game5P2JST@l(r3)
+/* 803C0AE0 003BDA20  D0 0D 9A 24 */	stfs f0, gfNAN___Q24Game5P2JST@sda21(r13)
 /* 803C0AE4 003BDA24  D0 03 00 04 */	stfs f0, 4(r3)
 /* 803C0AE8 003BDA28  D0 03 00 08 */	stfs f0, 8(r3)
 /* 803C0AEC 003BDA2C  4E 80 00 20 */	blr 

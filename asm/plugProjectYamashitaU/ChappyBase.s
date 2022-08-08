@@ -315,7 +315,6 @@ lbl_805180C0:
 lbl_805180C4:
 	.4byte 0x68656164
 	.4byte 0x00000000
-	.4byte 0x00000000
 
 .section .text, "ax"  # 0x800056C0 - 0x80472F00
 .global __ct__Q34Game10ChappyBase3ObjFv

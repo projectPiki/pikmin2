@@ -8,18 +8,18 @@ namespace PSSystem {
 
 // clang-format off
 const float TriangleTableModTask::sTable[40] = { 0.0f,   0.1f,  0.2f,  0.3f,  0.4f,  0.5f,  0.6f,  0.7f,  0.8f,  0.9f,
-										   1.0f,   0.9f,  0.8f,  0.7f,  0.6f,  0.5f,  0.4f,  0.3f,  0.2f,  0.1f, 
-										   0.0f,  -0.1f, -0.2f, -0.3f, -0.4f, -0.5f, -0.6f, -0.7f, -0.8f, -0.9f,
-										  -1.0f,  -0.9f, -0.8f, -0.7f, -0.6f, -0.5f, -0.4f, -0.3f, -0.2f, -0.1f
-										  };
+                                                 1.0f,   0.9f,  0.8f,  0.7f,  0.6f,  0.5f,  0.4f,  0.3f,  0.2f,  0.1f, 
+                                                 0.0f,  -0.1f, -0.2f, -0.3f, -0.4f, -0.5f, -0.6f, -0.7f, -0.8f, -0.9f,
+                                                -1.0f,  -0.9f, -0.8f, -0.7f, -0.6f, -0.5f, -0.4f, -0.3f, -0.2f, -0.1f
+                                               };
 // clang-format on
 
 BankRandPrm* BankRandPrm::sInstance;
 
 /*
  * --INFO--
- * Address:	8033E6B4
- * Size:	000124
+ * Address: 8033E6B4
+ * Size:    000124
  */
 int ModParamWithFade::task(JASTrack& track)
 {
@@ -49,8 +49,8 @@ int ModParamWithFade::task(JASTrack& track)
 /*
  * task__Q28PSSystem21ModParamWithTableTaskFR8JASTrack
  * --INFO--
- * Address:	8033E7D8
- * Size:	0000F4
+ * Address: 8033E7D8
+ * Size:    0000F4
  */
 int ModParamWithTableTask::task(JASTrack& track)
 {
@@ -65,8 +65,8 @@ int ModParamWithTableTask::task(JASTrack& track)
 
 /*
  * --INFO--
- * Address:	8033E8CC
- * Size:	000030
+ * Address: 8033E8CC
+ * Size:    000030
  */
 int PitchModTask::tableTask(JASTrack& track, f32 param)
 {
@@ -76,8 +76,8 @@ int PitchModTask::tableTask(JASTrack& track, f32 param)
 
 /*
  * --INFO--
- * Address:	8033E8FC
- * Size:	0000D4
+ * Address: 8033E8FC
+ * Size:    0000D4
  */
 float OuterParamTask::getPreParam(JASTrack& track)
 {
@@ -102,8 +102,8 @@ float OuterParamTask::getPreParam(JASTrack& track)
 
 /*
  * --INFO--
- * Address:	8033E9D0
- * Size:	000098
+ * Address: 8033E9D0
+ * Size:    000098
  */
 void OuterParamTask::timeTask(JASTrack& track, float param)
 {
@@ -121,8 +121,8 @@ void OuterParamTask::timeTask(JASTrack& track, float param)
 
 /*
  * --INFO--
- * Address:	8033EA68
- * Size:	000028
+ * Address: 8033EA68
+ * Size:    000028
  */
 int SimpleWaitTask::task(JASTrack& track)
 {
@@ -135,8 +135,8 @@ int SimpleWaitTask::task(JASTrack& track)
 
 /*
  * --INFO--
- * Address:	8033EA90
- * Size:	000074
+ * Address: 8033EA90
+ * Size:    000074
  */
 BankRandPrm::BankRandPrm()
     : m_inst()
@@ -148,8 +148,8 @@ BankRandPrm::BankRandPrm()
 
 /*
  * --INFO--
- * Address:	8033EB04
- * Size:	000080
+ * Address: 8033EB04
+ * Size:    000080
  */
 void TaskEntry_OuterParam::makeEntry(float p1, u32 p2)
 {
@@ -167,8 +167,8 @@ void TaskEntry_OuterParam::makeEntry(float p1, u32 p2)
 
 /*
  * --INFO--
- * Address:	8033EB84
- * Size:	000054
+ * Address: 8033EB84
+ * Size:    000054
  */
 void TaskEntry_IdMask::makeEntry(u8 noteMask)
 {
@@ -182,8 +182,8 @@ void TaskEntry_IdMask::makeEntry(u8 noteMask)
 
 /*
  * --INFO--
- * Address:	8033EBD8
- * Size:	000110
+ * Address: 8033EBD8
+ * Size:    000110
  */
 void TaskEntry_PitMod::makeEntry(float p1, float p2, u32 p3)
 {
@@ -224,8 +224,8 @@ void TaskEntry_PitMod::makeEntry(float p1, float p2, u32 p3)
 
 /*
  * --INFO--
- * Address:	8033ECE8
- * Size:	0000A4
+ * Address: 8033ECE8
+ * Size:    0000A4
  */
 void TaskEntry_MuteVolume::makeEntry(float p1, u32 p2)
 {
@@ -250,8 +250,8 @@ void TaskEntry_MuteVolume::makeEntry(float p1, u32 p2)
 
 /*
  * --INFO--
- * Address:	8033ED8C
- * Size:	00008C
+ * Address: 8033ED8C
+ * Size:    00008C
  */
 void TaskEntry_MuteOnVolume::makeEntry(u32 p1)
 {
@@ -275,8 +275,8 @@ void TaskEntry_MuteOnVolume::makeEntry(u32 p1)
 
 /*
  * --INFO--
- * Address:	8033EE18
- * Size:	000080
+ * Address: 8033EE18
+ * Size:    000080
  */
 void TaskEntry_Tempo::makeEntry(float p1, u32 p2)
 {

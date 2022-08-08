@@ -1,8 +1,7 @@
 .include "macros.inc"
 .section .rodata  # 0x804732E0 - 0x8049E220
 .balign 8
-.global lbl_8047BF80
-lbl_8047BF80:
+lbl_8047BF80: # Shift-JIS
 	.4byte 0x83608383
 	.4byte 0x83628373
 	.4byte 0x815B8378
@@ -10,20 +9,17 @@ lbl_8047BF80:
 	.4byte 0x837D836C
 	.4byte 0x815B8357
 	.4byte 0x83830000
-.global lbl_8047BF9C
-lbl_8047BF9C:
+.balign 4
+lbl_8047BF9C: # enemy id array
 	.4byte 2
 	.4byte 42
 	.4byte 43
-.global lbl_8047BFA8
-lbl_8047BFA8:
+lbl_8047BFA8: # enemy id array
 	.4byte 2
 	.4byte 42
 	.4byte 43
-.global lbl_8047BFB4
 lbl_8047BFB4:
 	.asciz "osiri_1_2"
-	.skip 2
 
 .section .data, "wa"  # 0x8049E220 - 0x804EFC20
 .balign 8
@@ -90,10 +86,8 @@ __vt__Q34Game10ChappyBase3Mgr:
 
 .section .sdata2, "a"     # 0x80516360 - 0x80520E40
 .balign 8
-.global lbl_80518050
 lbl_80518050:
-	.4byte 0x6174616D
-	.4byte 0x615F3200
+	.asciz "atama_2"
 
 .section .text, "ax"  # 0x800056C0 - 0x80472F00
 .global __ct__Q34Game10ChappyBase3MgrFiUc

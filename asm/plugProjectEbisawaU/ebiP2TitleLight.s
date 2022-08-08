@@ -5,11 +5,10 @@ lbl_constructor:
 
 .section .data, "wa"  # 0x8049E220 - 0x804EFC20
 .balign 8
-.global lbl_804E79D8
-lbl_804E79D8:
-	.4byte 0x00000000
-	.4byte 0x00000000
-	.4byte 0x00000000
+govNAN___Q24Game5P2JST:
+	.float 0.0
+	.float 0.0
+	.float 0.0
 .global __vt__Q33ebi5title14TTitleLightMgr
 __vt__Q33ebi5title14TTitleLightMgr:
 	.4byte 0
@@ -20,23 +19,18 @@ __vt__Q33ebi5title14TTitleLightMgr:
 	.4byte set__8LightMgrFR8Graphics
 	.4byte set__8LightMgrFR7Matrixf
 	.4byte drawDebugInfo__8LightMgrFR8Graphics
-	.4byte 0
 
 .section .sbss # 0x80514D80 - 0x80516360
 .balign 8
-.global lbl_805160C8
-lbl_805160C8:
+gu32NAN___Q24Game5P2JST:
 	.skip 0x4
-.global lbl_805160CC
-lbl_805160CC:
+gfNAN___Q24Game5P2JST:
 	.skip 0x4
 
 .section .sdata2, "a"     # 0x80516360 - 0x80520E40
 .balign 8
-.global lbl_8051F8A0
 lbl_8051F8A0:
-	.4byte 0x00000000
-.global lbl_8051F8A4
+	.float 0.0
 lbl_8051F8A4:
 	.float 1.0
 
@@ -240,15 +234,14 @@ lbl_803C2200:
 /* 803C2214 003BF154  38 21 00 50 */	addi r1, r1, 0x50
 /* 803C2218 003BF158  4E 80 00 20 */	blr 
 
-.global __sinit_ebiP2TitleLight_cpp
-__sinit_ebiP2TitleLight_cpp:
+__sinit_ebiP2TitleLight_cpp: # static initializer
 /* 803C221C 003BF15C  3C 80 80 51 */	lis r4, __float_nan@ha
 /* 803C2220 003BF160  38 00 FF FF */	li r0, -1
 /* 803C2224 003BF164  C0 04 48 B0 */	lfs f0, __float_nan@l(r4)
-/* 803C2228 003BF168  3C 60 80 4E */	lis r3, lbl_804E79D8@ha
-/* 803C222C 003BF16C  90 0D 9A 48 */	stw r0, lbl_805160C8@sda21(r13)
-/* 803C2230 003BF170  D4 03 79 D8 */	stfsu f0, lbl_804E79D8@l(r3)
-/* 803C2234 003BF174  D0 0D 9A 4C */	stfs f0, lbl_805160CC@sda21(r13)
+/* 803C2228 003BF168  3C 60 80 4E */	lis r3, govNAN___Q24Game5P2JST@ha
+/* 803C222C 003BF16C  90 0D 9A 48 */	stw r0, gu32NAN___Q24Game5P2JST@sda21(r13)
+/* 803C2230 003BF170  D4 03 79 D8 */	stfsu f0, govNAN___Q24Game5P2JST@l(r3)
+/* 803C2234 003BF174  D0 0D 9A 4C */	stfs f0, gfNAN___Q24Game5P2JST@sda21(r13)
 /* 803C2238 003BF178  D0 03 00 04 */	stfs f0, 4(r3)
 /* 803C223C 003BF17C  D0 03 00 08 */	stfs f0, 8(r3)
 /* 803C2240 003BF180  4E 80 00 20 */	blr 
