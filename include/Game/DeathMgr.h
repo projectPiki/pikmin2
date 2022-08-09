@@ -53,6 +53,8 @@ struct DeathMgr {
 	static DeathCounter mTotal;
 	static int mSoundDeathCount;
 };
+
+extern DeathMgr* deathMgr;
 } // namespace Game
 
 #endif
