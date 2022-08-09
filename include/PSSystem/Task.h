@@ -27,13 +27,19 @@ struct FlagWaitTask : public TaskBase {
 };
 
 struct IdMaskTask : public TaskBase {
-	virtual int task(JASTrack&); // _08
+	int task(JASTrack& track) {
+		track.setNoteMask(m_noteMask);
+    	return -1;
+	}
 
 	u8 m_noteMask; // _1C
 };
 
 struct MuteTask : public TaskBase {
-	virtual int task(JASTrack&); // _08
+	int task(JASTrack& track) {
+		track.muteTrack(_1C);
+		return -1;
+	}
 
 	u8 _1C; // _1C
 };

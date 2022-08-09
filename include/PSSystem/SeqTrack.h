@@ -26,7 +26,7 @@ struct SeqTrackBase {
 	virtual void init(JASTrack*); // _0C
 	virtual void onStopSeq() = 0; // _10
 
-	void getTaskEntryList();
+	TaskEntryMgr getTaskEntryList();
 
 	TaskEntryMgr m_taskEntryMgr; // _04
 };
@@ -40,7 +40,7 @@ struct SeqTrackRoot : public SeqTrackBase {
 	virtual void update();        // _08 (weak)
 	virtual void init(JASTrack*); // _0C
 	virtual void onStopSeq();     // _10
-	virtual void beatUpdate();    // _14
+	virtual u16 beatUpdate();     // _14
 	virtual void onBeatTop();     // _18 (weak)
 
 	void initSwingRatio();
