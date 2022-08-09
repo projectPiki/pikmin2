@@ -3,7 +3,8 @@
 
 #include "types.h"
 
-typedef struct JSUPtrList;
+struct JSUPtrList;
+template <typename T> struct JSULink;
 
 // Size: 0x10
 struct JSUPtrLink {
@@ -43,8 +44,8 @@ struct JSUPtrList {
 // Something fishy here. JSULists can use JSUPtrList functions.
 // They even use its constructor??? (see _sinit_JKRThread_cpp)
 template <typename T> struct JSUList : public JSUPtrList {
-	inline T* getHead() { return m_head; }
-	inline T* getTail() { return m_tail; };
+	inline JSULink<T>* getHead() { return (JSULink<T>*)m_head; }
+	inline JSULink<T>* getTail() { return (JSULink<T>*)m_tail; };
 
 	inline JSUList<T>()
 	    : JSUPtrList(true)
@@ -53,14 +54,14 @@ template <typename T> struct JSUList : public JSUPtrList {
 };
 
 template <typename T> struct JSULink : public JSUPtrLink {
-	inline T* getList() { return m_list; }
-	inline T* getPrev() { return m_prev; }
-	inline T* getNext() { return m_next; }
-	// /**
-	//  * @fabricated
-	//  */
-	// inline T* getValue() { return m_value; }
-	inline JSULink(T* value)
+	inline JSUList<T>* getList() { return (JSUList<T>*)m_list; }
+	inline JSULink<T>* getPrev() { return (JSULink<T>*)m_prev; }
+	inline JSULink<T>* getNext() { return (JSULink<T>*)m_next; }
+	/**
+	 * @fabricated
+	 */
+	inline T* getValue() { return (T*)m_value; }
+	inline JSULink<T>(T* value)
 	    : JSUPtrLink((void*)value)
 	{
 	}
