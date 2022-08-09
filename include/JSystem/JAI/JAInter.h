@@ -2,7 +2,7 @@
 #define _JSYSTEM_JAI_JAINTER_H
 
 #include "types.h"
-#include "Dolphin/Mtx.h"
+#include "Dolphin/mtx.h"
 #include "JSystem/JAI/JAISound.h"
 #include "JSystem/JAI/JAInter/Object.h"
 #include "JSystem/JAI/JAInter/MoveParaSet.h"

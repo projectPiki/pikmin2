@@ -6,6 +6,12 @@
 
 namespace PSSystem {
 template <typename T> struct MutexList : JSUList<T> {
+	inline MutexList<T>()
+	    : JSUList<T>()
+	{
+		OSInitMutex(&m_mutex);
+	}
+
 	bool append_Lock(JSULink<T>* link)
 	{
 		OSLockMutex(&m_mutex);

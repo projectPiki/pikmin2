@@ -3,7 +3,6 @@
 
 #include "Dolphin/os.h"
 #include "JSystem/JAD/JADHioNode.h"
-#include "PSSystem/PSBgm.h"
 #include "JSystem/JAS/JASTrack.h"
 
 namespace PSSystem {
@@ -82,10 +81,10 @@ struct DirectorMgrBase : public JADHioNode {
 	virtual ~DirectorMgrBase(); // _08 (weak)
 	// virtual void _0C() = 0;		// _0C - possibly?
 
-	void initAndAdaptToBgm(DirectedBgm&);
+	void initAndAdaptToBgm(struct DirectedBgm&);
 	void playInit(JASTrack*);
 	void exec();
-	void off(DirectedBgm*);
+	void off(struct DirectedBgm*);
 
 	DirectorBase** _04; // _04
 	u8 _08;             // _08

@@ -13,6 +13,11 @@ namespace PSSystem {
  * @size 0x1
  */
 struct BeatMgr {
+	inline BeatMgr()
+	    : _00(0)
+	{
+	}
+
 	void proc();
 
 	u8 _00; // _00 - unknown, but size 0x1 (or 0x2?)
@@ -96,7 +101,6 @@ struct SeqTrackChild : public SeqTrackBase {
 	TaskEntry_MuteOnVolume _12C; // _12C
 	TaskEntry_OuterParam _1B8;   // _1B8
 	TaskEntry_IdMask _224;       // _224
-	u8 _27[0x3];                 // _279 - maybe padding
 };
 
 } // namespace PSSystem

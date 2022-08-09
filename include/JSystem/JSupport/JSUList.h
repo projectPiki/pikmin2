@@ -21,6 +21,12 @@ struct JSUPtrList {
 	JSUPtrLink* getFirstLink() const;
 	// JSUPtrList() { initiate(); }
 	JSUPtrList(bool = true);
+	// JSUPtrList(bool doInitialize)
+	// {
+	// 	if (doInitialize) {
+	// 		initiate();
+	// 	}
+	// }
 	~JSUPtrList();
 	void initiate();
 	bool append(JSUPtrLink*);
@@ -40,7 +46,10 @@ template <typename T> struct JSUList : public JSUPtrList {
 	inline T* getHead() { return m_head; }
 	inline T* getTail() { return m_tail; };
 
-	JSUList();
+	inline JSUList<T>()
+	    : JSUPtrList(true)
+	{
+	}
 };
 
 template <typename T> struct JSULink : public JSUPtrLink {

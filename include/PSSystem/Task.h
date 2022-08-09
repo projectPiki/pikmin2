@@ -3,6 +3,8 @@
 
 #include "Dolphin/os.h"
 #include "JSystem/JSupport/JSUList.h"
+#include "JSystem/JUT/JUTException.h"
+#include "PSSystem/BankRandPrm.h"
 #include "PSSystem/MutexList.h"
 #include "JSystem/JAS/JASTrack.h"
 
@@ -21,22 +23,42 @@ struct TaskBase {
 };
 
 struct FlagWaitTask : public TaskBase {
+	inline FlagWaitTask()
+	    : TaskBase()
+	    , _1C(0xFFFFFFF0)
+	{
+	}
+
 	virtual int task(JASTrack&); // _08
 
 	uint _1C; // _1C
 };
 
 struct IdMaskTask : public TaskBase {
-	int task(JASTrack& track) {
+	inline IdMaskTask()
+	    : TaskBase()
+	    , m_noteMask(0)
+	{
+	}
+
+	int task(JASTrack& track)
+	{
 		track.setNoteMask(m_noteMask);
-    	return -1;
+		return -1;
 	}
 
 	u8 m_noteMask; // _1C
 };
 
 struct MuteTask : public TaskBase {
-	int task(JASTrack& track) {
+	inline MuteTask()
+	    : TaskBase()
+	    , _1C(0)
+	{
+	}
+
+	int task(JASTrack& track)
+	{
 		track.muteTrack(_1C);
 		return -1;
 	}
@@ -49,6 +71,13 @@ struct PitchResetTask : public TaskBase {
 };
 
 struct SimpleWaitTask : public TaskBase {
+	inline SimpleWaitTask()
+	    : TaskBase()
+	    , _1C(0)
+	    , _20(0)
+	{
+	}
+
 	virtual int task(JASTrack&); // _08
 
 	uint _1C;
@@ -56,6 +85,14 @@ struct SimpleWaitTask : public TaskBase {
 };
 
 struct ModParamWithTableTask : public TaskBase {
+	inline ModParamWithTableTask()
+	    : TaskBase()
+	    , _1C(0.0f)
+	    , _20(0.0f)
+	    , _24(0.0f)
+	{
+	}
+
 	virtual int task(JASTrack&);                 // _08
 	virtual float getTgtWithTable(u8)       = 0; // _0C
 	virtual u8 getTableIdxNum()             = 0; // _10
@@ -80,6 +117,16 @@ struct PitchModTask : public TriangleTableModTask {
 };
 
 struct ModParamWithFade : public TaskBase {
+	inline ModParamWithFade()
+	    : TaskBase()
+	    , _1C(0)
+	    , _20(0.0f)
+	    , _24(0.0f)
+	    , _28(0)
+	    , _2C(0.0f)
+	{
+	}
+
 	virtual int task(JASTrack&);                 // _08
 	virtual float getPreParam(JASTrack&)    = 0; // _0C
 	virtual void timeTask(JASTrack&, float) = 0; // _10
@@ -92,11 +139,23 @@ struct ModParamWithFade : public TaskBase {
 };
 
 struct BankRandTask : public ModParamWithFade {
+	inline BankRandTask()
+	    : ModParamWithFade()
+	{
+		P2ASSERTLINE(351, BankRandPrm::sInstance != nullptr);
+	}
+
 	virtual float getPreParam(JASTrack&);    // _0C (weak)
 	virtual void timeTask(JASTrack&, float); // _10 (weak)
 };
 
 struct OuterParamTask : public ModParamWithFade {
+	inline OuterParamTask(int p1)
+	    : ModParamWithFade()
+	    , _30(p1)
+	{
+	}
+
 	virtual float getPreParam(JASTrack&);    // _0C
 	virtual void timeTask(JASTrack&, float); // _10
 
@@ -104,6 +163,11 @@ struct OuterParamTask : public ModParamWithFade {
 };
 
 struct TaskEntry : public MutexList<TaskBase> {
+	inline TaskEntry()
+	    : _24(0)
+	    , _28(this)
+	{
+	}
 	void append(TaskBase*);
 
 	u32 _24;        // _24
@@ -117,6 +181,13 @@ struct TaskEntry_IdMask : public TaskEntry {
 };
 
 struct TaskEntry_MuteOnVolume : public TaskEntry {
+	inline TaskEntry_MuteOnVolume()
+	    : TaskEntry()
+	    , m_outerParamTask(1)
+	    , m_muteTask()
+	{
+	}
+
 	void makeEntry(u32);
 
 	OuterParamTask m_outerParamTask; // _38
@@ -124,6 +195,13 @@ struct TaskEntry_MuteOnVolume : public TaskEntry {
 };
 
 struct TaskEntry_MuteVolume : public TaskEntry {
+	inline TaskEntry_MuteVolume()
+	    : TaskEntry()
+	    , m_muteTask()
+	    , m_outerParamTask(1)
+	{
+	}
+
 	void makeEntry(float, u32);
 
 	MuteTask m_muteTask;             // _38
@@ -131,6 +209,12 @@ struct TaskEntry_MuteVolume : public TaskEntry {
 };
 
 struct TaskEntry_OuterParam : public TaskEntry {
+	inline TaskEntry_OuterParam(int p1)
+	    : TaskEntry()
+	    , m_outerParamTask(p1)
+	{
+	}
+
 	void makeEntry(float, u32);
 
 	OuterParamTask m_outerParamTask; // _38
@@ -145,21 +229,30 @@ struct TaskEntry_PitMod : public TaskEntry {
 };
 
 struct TaskEntry_Tempo : public TaskEntry {
+	inline TaskEntry_Tempo()
+	    : TaskEntry()
+	    , m_outerParamTask(0x40)
+	{
+	}
+
 	void makeEntry(float, u32);
 
 	OuterParamTask m_outerParamTask; // _38
 };
 
-struct TaskEntryMgr {
+struct TaskEntryMgr : MutexList<TaskEntry> {
+	inline TaskEntryMgr()
+	    : MutexList<TaskEntry>()
+	    , _24(nullptr)
+	{
+	}
 	void appendEntry(TaskEntry*, DirectorBase*);
 	void removeEntry(TaskEntry*);
 	void removeAllEntry();
 	bool isUnderTask_byDirector(DirectorBase*);
 	void update();
 
-	JSUPtrList _00;    // _00
-	OSMutexObject _0C; // _0C
-	JASTrack* _24;     // _24
+	JASTrack* _24; // _24
 };
 
 struct TaskChecker {
