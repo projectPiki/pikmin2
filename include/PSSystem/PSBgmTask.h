@@ -1,5 +1,5 @@
-#ifndef _PSSYSTEM_TASKBASE_H
-#define _PSSYSTEM_TASKBASE_H
+#ifndef _PSSYSTEM_PSBGMTASK_H
+#define _PSSYSTEM_PSBGMTASK_H
 
 #include "Dolphin/os.h"
 #include "JSystem/JSupport/JSUList.h"
@@ -7,20 +7,9 @@
 #include "PSSystem/BankRandPrm.h"
 #include "PSSystem/MutexList.h"
 #include "JSystem/JAS/JASTrack.h"
+#include "PSSystem/PSTaskBase.h"
 
 namespace PSSystem {
-struct DirectorBase;
-
-struct TaskBase {
-	TaskBase();
-
-	virtual int task(JASTrack&) = 0; // _08
-
-	JSULink<TaskBase> _04; // _04
-	u8 _14;                // _14 - unknown
-	u8 _15;                // _15 - unknown
-	u32 _18;               // _18 - unknown
-};
 
 struct FlagWaitTask : public TaskBase {
 	inline FlagWaitTask()
@@ -160,18 +149,6 @@ struct OuterParamTask : public ModParamWithFade {
 	virtual void timeTask(JASTrack&, float); // _10
 
 	int _30; // _30
-};
-
-struct TaskEntry : public MutexList<TaskBase> {
-	inline TaskEntry()
-	    : _24(0)
-	    , _28(this)
-	{
-	}
-	void append(TaskBase*);
-
-	u32 _24;        // _24
-	JSUPtrLink _28; // _28
 };
 
 struct TaskEntry_IdMask : public TaskEntry {

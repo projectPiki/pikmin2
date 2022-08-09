@@ -204,7 +204,7 @@ void TaskEntry_PitMod::makeEntry(float p1, float p2, u32 p3)
 		m_pitModTask._24 = 0.0f;
 		OSEnableInterrupts();
 
-		m_pitModTask._18 = (u32)&m_waitTask._04;
+		m_pitModTask._18 = &m_waitTask._04;
 		append(&m_pitModTask);
 	} else {
 		OSDisableInterrupts();
