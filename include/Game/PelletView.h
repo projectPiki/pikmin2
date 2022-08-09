@@ -3,6 +3,8 @@
 
 #include "types.h"
 
+const float PELLETVIEW_BASE_SCALE = 1.0f;
+
 struct Matrixf;
 template <typename T> struct Vector3;
 typedef Vector3<float> Vector3f;

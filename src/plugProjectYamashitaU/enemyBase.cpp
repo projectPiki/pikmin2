@@ -32,6 +32,7 @@
 #include "PS.h"
 #include "PSM/EnemyBase.h"
 #include "PSM/EnemyHekoi.h"
+#include "PSGame/Global.h"
 #include "Sys/Sphere.h"
 #include "SysShape/Model.h"
 #include "System.h"
@@ -1492,6 +1493,7 @@ bool Game::EnemyBaseFSM::BirthTypeDropTreasureState::isFinishableWaitingBirthTyp
  * Address:	800FFC8C
  * Size:	00001C
  */
+// WEAK - needs pellet header fixed
 // Vector3f Pellet::getPosition()
 // {
 // 	/*
@@ -1511,28 +1513,16 @@ bool Game::EnemyBaseFSM::BirthTypeDropTreasureState::isFinishableWaitingBirthTyp
  * Address:	800FFCA8
  * Size:	000008
  */
-bool Game::EnemyBaseFSM::BirthTypeDropEarthquakeState::isFinishableWaitingBirthTypeDrop(Game::EnemyBase*) { return false; }
+bool BirthTypeDropEarthquakeState::isFinishableWaitingBirthTypeDrop(Game::EnemyBase*) { return false; }
 
 /*
  * --INFO--
  * Address:	800FFCB0
  * Size:	000024
  */
-void EnemyBaseFSM::AppearState::entry(Game::EnemyBase* enemy)
+void AppearState::entry(Game::EnemyBase* enemy)
 {
 	enemy->doEntryLiving();
-	/*
-	.loc_0x0:
-	  stwu      r1, -0x10(r1)
-	  mflr      r0
-	  mr        r3, r4
-	  stw       r0, 0x14(r1)
-	  bl        0x3850
-	  lwz       r0, 0x14(r1)
-	  mtlr      r0
-	  addi      r1, r1, 0x10
-	  blr
-	*/
 }
 
 /*
@@ -1540,16 +1530,16 @@ void EnemyBaseFSM::AppearState::entry(Game::EnemyBase* enemy)
  * Address:	800FFCD4
  * Size:	0000FC
  */
-void EnemyBaseFSM::AppearState::init(Game::EnemyBase* enemy, Game::StateArg* arg)
+// WIP: https://decomp.me/scratch/I7zeN
+void AppearState::init(Game::EnemyBase* enemy, Game::StateArg* arg)
 {
 	efx::TEnemyApsmoke effect;
+    float mod = enemy->m_scaleModifier;
+    EnemyTypeID::EEnemyTypeID id = enemy->getEnemyTypeID();
 	Vector3f position = enemy->getPosition();
-	efx::ArgEnemyType effectArg(position);
-	effectArg._14 = enemy->m_scaleModifier;
+	efx::ArgEnemyType effectArg(position, id, mod);
 	effect.create(&effectArg);
-	enemy->m_scale.x    = 0.0f;
-	enemy->m_scale.y    = 0.0f;
-	enemy->m_scale.z    = 0.0f;
+	enemy->m_scale = 0.0f;
 	enemy->m_scaleTimer = 0.0f;
 	/*
 	.loc_0x0:
@@ -1624,117 +1614,34 @@ void EnemyBaseFSM::AppearState::init(Game::EnemyBase* enemy, Game::StateArg* arg
  * Address:	800FFDD0
  * Size:	00001C
  */
-Vector3f EnemyBase::getPosition()
-{
-	return m_position;
-	/*
-	.loc_0x0:
-	  lfs       f0, 0x18C(r4)
-	  stfs      f0, 0x0(r3)
-	  lfs       f0, 0x190(r4)
-	  stfs      f0, 0x4(r3)
-	  lfs       f0, 0x194(r4)
-	  stfs      f0, 0x8(r3)
-	  blr
-	*/
-}
+// WEAK - in header
+// Vector3f EnemyBase::getPosition() { return m_position; }
 
 /*
  * --INFO--
  * Address:	800FFDEC
  * Size:	000130
  */
-void EnemyBaseFSM::AppearState::update(Game::EnemyBase*)
+void AppearState::update(Game::EnemyBase* enemy) 
 {
-	/*
-	.loc_0x0:
-	  stwu      r1, -0x20(r1)
-	  mflr      r0
-	  lfs       f3, -0x6BA0(r2)
-	  stw       r0, 0x24(r1)
-	  lfs       f1, -0x6B9C(r2)
-	  stw       r31, 0x1C(r1)
-	  mr        r31, r4
-	  lwz       r5, -0x6514(r13)
-	  lfs       f0, 0x214(r4)
-	  lfs       f2, 0x54(r5)
-	  fmadds    f0, f3, f2, f0
-	  stfs      f0, 0x214(r4)
-	  lfs       f0, 0x214(r4)
-	  fcmpo     cr0, f0, f1
-	  ble-      .loc_0x58
-	  lwz       r12, 0x0(r3)
-	  li        r5, 0x6
-	  li        r6, 0
-	  lwz       r12, 0x1C(r12)
-	  mtctr     r12
-	  bctrl
-	  b         .loc_0x11C
+    enemy->m_scaleTimer += 2.0f * sys->m_secondsPerFrame;
+    if (enemy->m_scaleTimer > PELLETVIEW_BASE_SCALE) {
+        transit(enemy, EBS_Living, 0);
+        return;
+    }
+    
+    enemy->m_scale.x = 2.0f * enemy->m_scaleTimer;
+    if (enemy->m_scale.x > PELLETVIEW_BASE_SCALE) {
+        enemy->m_scale.x = PELLETVIEW_BASE_SCALE;
+    }
 
-	.loc_0x58:
-	  fmuls     f0, f3, f0
-	  stfs      f0, 0x168(r31)
-	  lfs       f0, 0x168(r31)
-	  fcmpo     cr0, f0, f1
-	  ble-      .loc_0x70
-	  stfs      f1, 0x168(r31)
-
-	.loc_0x70:
-	  lfs       f2, -0x6BC0(r2)
-	  lfs       f1, 0x214(r31)
-	  lfs       f0, -0x6BB0(r2)
-	  fmuls     f1, f2, f1
-	  lfs       f2, -0x6B98(r2)
-	  fcmpo     cr0, f1, f0
-	  bge-      .loc_0xB8
-	  lfs       f0, -0x6BB8(r2)
-	  lis       r3, 0x8050
-	  addi      r3, r3, 0x71A0
-	  fmuls     f0, f1, f0
-	  fctiwz    f0, f0
-	  stfd      f0, 0x8(r1)
-	  lwz       r0, 0xC(r1)
-	  rlwinm    r0,r0,3,18,28
-	  lfsx      f0, r3, r0
-	  fneg      f1, f0
-	  b         .loc_0xDC
-
-	.loc_0xB8:
-	  lfs       f0, -0x6BB4(r2)
-	  lis       r3, 0x8050
-	  addi      r3, r3, 0x71A0
-	  fmuls     f0, f1, f0
-	  fctiwz    f0, f0
-	  stfd      f0, 0x10(r1)
-	  lwz       r0, 0x14(r1)
-	  rlwinm    r0,r0,3,18,28
-	  lfsx      f1, r3, r0
-
-	.loc_0xDC:
-	  lfs       f0, 0x168(r31)
-	  mr        r3, r31
-	  fmadds    f0, f2, f1, f0
-	  stfs      f0, 0x168(r31)
-	  lfs       f0, 0x168(r31)
-	  stfs      f0, 0x170(r31)
-	  stfs      f0, 0x16C(r31)
-	  lwz       r12, 0x0(r31)
-	  lwz       r12, 0x1CC(r12)
-	  mtctr     r12
-	  bctrl
-	  mr        r3, r31
-	  lwz       r12, 0x0(r31)
-	  lwz       r12, 0x1D0(r12)
-	  mtctr     r12
-	  bctrl
-
-	.loc_0x11C:
-	  lwz       r0, 0x24(r1)
-	  lwz       r31, 0x1C(r1)
-	  mtlr      r0
-	  addi      r1, r1, 0x20
-	  blr
-	*/
+    enemy->m_scale.x += 0.2f * pikmin2_sinf(TAU * enemy->m_scaleTimer);
+    float newScale = enemy->m_scale.x;
+    enemy->m_scale.z = newScale;
+    enemy->m_scale.y = newScale;
+    
+    enemy->doUpdate();
+    enemy->doUpdateCommon();
 }
 
 /*
@@ -1742,18 +1649,10 @@ void EnemyBaseFSM::AppearState::update(Game::EnemyBase*)
  * Address:	800FFF1C
  * Size:	00001C
  */
-void EnemyBaseFSM::AppearState::cleanup(Game::EnemyBase*)
+void AppearState::cleanup(Game::EnemyBase* enemy) 
 {
-	/*
-	.loc_0x0:
-	  lfs       f1, -0x6B9C(r2)
-	  lfs       f0, -0x6BB0(r2)
-	  stfs      f1, 0x168(r4)
-	  stfs      f1, 0x16C(r4)
-	  stfs      f1, 0x170(r4)
-	  stfs      f0, 0x214(r4)
-	  blr
-	*/
+    enemy->m_scale = PELLETVIEW_BASE_SCALE;
+    enemy->m_scaleTimer = 0.0f;
 }
 
 /*
@@ -1852,78 +1751,29 @@ void EnemyBaseFSM::LivingState::simulation(Game::EnemyBase*, float)
  * Address:	80100044
  * Size:	000008
  */
-s32 EnemyBase::getCreatureID()
-{
-	return m_enemyIndexForType;
-	/*
-	.loc_0x0:
-	  lbz       r3, 0x1F1(r3)
-	  blr
-	*/
-}
+// WEAK - in header
+// s32 Game::EnemyBase::getCreatureID() { return m_enemyIndexForType; }
 
 /*
  * --INFO--
  * Address:	8010004C
  * Size:	000038
  */
-char* EnemyBase::getCreatureName()
-{
-	return EnemyInfoFunc::getEnemyName(getEnemyTypeID(), 0xFFFF);
-	/*
-	.loc_0x0:
-	  stwu      r1, -0x10(r1)
-	  mflr      r0
-	  stw       r0, 0x14(r1)
-	  lwz       r12, 0x0(r3)
-	  lwz       r12, 0x258(r12)
-	  mtctr     r12
-	  bctrl
-	  lis       r4, 0x1
-	  subi      r4, r4, 0x1
-	  bl        0x2326C
-	  lwz       r0, 0x14(r1)
-	  mtlr      r0
-	  addi      r1, r1, 0x10
-	  blr
-	*/
-}
+// WEAK - in header
+// char* EnemyBase::getCreatureName() { return EnemyInfoFunc::getEnemyName(getEnemyTypeID(), 0xFFFF); }
 
 /*
  * --INFO--
  * Address:	80100084
  * Size:	000040
  */
-void EnemyBaseFSM::LivingState::entry(Game::EnemyBase* enemy)
+void LivingState::entry(Game::EnemyBase* enemy) 
 {
-	if (enemy->m_pellet == nullptr) {
-		enemy->doEntryLiving();
-	} else {
-		enemy->doEntryCarcass();
-	}
-	/*
-	.loc_0x0:
-	  stwu      r1, -0x10(r1)
-	  mflr      r0
-	  stw       r0, 0x14(r1)
-	  lwz       r3, 0x17C(r4)
-	  lwz       r0, 0x4(r3)
-	  cmplwi    r0, 0
-	  beq-      .loc_0x28
-	  mr        r3, r4
-	  bl        0x3364
-	  b         .loc_0x30
-
-	.loc_0x28:
-	  mr        r3, r4
-	  bl        0x3460
-
-	.loc_0x30:
-	  lwz       r0, 0x14(r1)
-	  mtlr      r0
-	  addi      r1, r1, 0x10
-	  blr
-	*/
+    if (enemy->m_pellet) {
+        enemy->doEntryCarcass();
+        return;
+    }
+    enemy->doEntryLiving();
 }
 
 /*
@@ -1931,53 +1781,18 @@ void EnemyBaseFSM::LivingState::entry(Game::EnemyBase* enemy)
  * Address:	801000C4
  * Size:	000030
  */
-void EnemyBaseFSM::LivingState::updateCullingOff(Game::EnemyBase* enemy)
-{
-	enemy->doUpdate();
-	/*
-	.loc_0x0:
-	  stwu      r1, -0x10(r1)
-	  mflr      r0
-	  mr        r3, r4
-	  stw       r0, 0x14(r1)
-	  lwz       r12, 0x0(r4)
-	  lwz       r12, 0x1CC(r12)
-	  mtctr     r12
-	  bctrl
-	  lwz       r0, 0x14(r1)
-	  mtlr      r0
-	  addi      r1, r1, 0x10
-	  blr
-	*/
-}
+void LivingState::updateCullingOff(Game::EnemyBase* enemy) { enemy->doUpdate(); }
 
 /*
  * --INFO--
  * Address:	801000F4
  * Size:	000030
  */
-void EnemyBaseFSM::LivingState::updateAlways(Game::EnemyBase* enemy)
+void LivingState::updateAlways(Game::EnemyBase* enemy) 
 {
-	if ((enemy->_1E0[0].typeView & 0x100000) != 0) {
-		enemy->startStoneState();
-	}
-	/*
-	.loc_0x0:
-	  stwu      r1, -0x10(r1)
-	  mflr      r0
-	  stw       r0, 0x14(r1)
-	  lwz       r0, 0x1E0(r4)
-	  rlwinm.   r0,r0,0,11,11
-	  beq-      .loc_0x20
-	  mr        r3, r4
-	  bl        0x2D54
-
-	.loc_0x20:
-	  lwz       r0, 0x14(r1)
-	  mtlr      r0
-	  addi      r1, r1, 0x10
-	  blr
-	*/
+    if (enemy->_1E0[0].typeView & 0x100000) {
+        enemy->startStoneState();
+    }
 }
 
 /*
@@ -1985,130 +1800,34 @@ void EnemyBaseFSM::LivingState::updateAlways(Game::EnemyBase* enemy)
  * Address:	80100124
  * Size:	0001BC
  */
-void EnemyBaseFSM::LivingState::update(Game::EnemyBase*)
+void LivingState::update(Game::EnemyBase* enemy) 
 {
-	/*
-	.loc_0x0:
-	  stwu      r1, -0x10(r1)
-	  mflr      r0
-	  lis       r5, 0x8048
-	  stw       r0, 0x14(r1)
-	  stw       r31, 0xC(r1)
-	  mr        r31, r4
-	  subi      r4, r5, 0x5AC8
-	  li        r5, 0x1
-	  stw       r30, 0x8(r1)
-	  mr        r30, r3
-	  lwz       r6, -0x6514(r13)
-	  lwz       r3, 0x28(r6)
-	  bl        0x32A9A4
-	  lwz       r0, 0x1E0(r31)
-	  rlwinm    r0,r0,0,16,14
-	  stw       r0, 0x1E0(r31)
-	  lwz       r0, 0x1E0(r31)
-	  rlwinm    r0,r0,0,15,13
-	  stw       r0, 0x1E0(r31)
-	  lwz       r3, 0x28C(r31)
-	  lwz       r12, 0x28(r3)
-	  lwz       r12, 0x20(r12)
-	  mtctr     r12
-	  bctrl
-	  lwz       r3, 0x17C(r31)
-	  lwz       r0, 0x4(r3)
-	  cmplwi    r0, 0
-	  beq-      .loc_0x88
-	  mr        r3, r31
-	  lwz       r12, 0x0(r31)
-	  lwz       r12, 0x1D4(r12)
-	  mtctr     r12
-	  bctrl
-	  b         .loc_0x190
-
-	.loc_0x88:
-	  mr        r3, r31
-	  bl        0x34F8
-	  rlwinm.   r0,r3,0,24,31
-	  beq-      .loc_0xC4
-	  mr        r3, r30
-	  mr        r4, r31
-	  lwz       r12, 0x0(r30)
-	  lwz       r12, 0x38(r12)
-	  mtctr     r12
-	  bctrl
-	  mr        r3, r31
-	  lwz       r12, 0x0(r31)
-	  lwz       r12, 0x1D0(r12)
-	  mtctr     r12
-	  bctrl
-
-	.loc_0xC4:
-	  mr        r3, r30
-	  mr        r4, r31
-	  lwz       r12, 0x0(r30)
-	  lwz       r12, 0x3C(r12)
-	  mtctr     r12
-	  bctrl
-	  lfs       f1, 0x200(r31)
-	  lfs       f0, -0x6BB0(r2)
-	  fcmpo     cr0, f1, f0
-	  cror      2, 0, 0x2
-	  beq-      .loc_0x134
-	  mr        r3, r31
-	  lwz       r12, 0x0(r31)
-	  lwz       r12, 0xA8(r12)
-	  mtctr     r12
-	  bctrl
-	  rlwinm.   r0,r3,0,24,31
-	  beq-      .loc_0x134
-	  mr        r3, r31
-	  lwz       r12, 0x0(r31)
-	  lwz       r12, 0x2C0(r12)
-	  mtctr     r12
-	  bctrl
-	  mr        r3, r31
-	  lwz       r12, 0x0(r31)
-	  lwz       r12, 0x23C(r12)
-	  mtctr     r12
-	  bctrl
-
-	.loc_0x134:
-	  lfs       f1, 0x2AC(r31)
-	  lfs       f0, -0x6BB0(r2)
-	  fcmpo     cr0, f1, f0
-	  ble-      .loc_0x190
-	  lwz       r3, -0x6514(r13)
-	  lfs       f1, 0x2A8(r31)
-	  lfs       f0, 0x54(r3)
-	  fadds     f0, f1, f0
-	  stfs      f0, 0x2A8(r31)
-	  lfs       f1, 0x2A8(r31)
-	  lfs       f0, 0x2AC(r31)
-	  fcmpo     cr0, f1, f0
-	  ble-      .loc_0x190
-	  lfs       f1, 0x204(r31)
-	  mr        r3, r31
-	  lfs       f2, -0x6B9C(r2)
-	  bl        0x5D94
-	  lwz       r0, 0x1E0(r31)
-	  rlwinm    r0,r0,0,26,24
-	  stw       r0, 0x1E0(r31)
-	  lwz       r0, 0x1E0(r31)
-	  rlwinm    r0,r0,0,29,27
-	  stw       r0, 0x1E0(r31)
-
-	.loc_0x190:
-	  lwz       r5, -0x6514(r13)
-	  lis       r3, 0x8048
-	  subi      r4, r3, 0x5AC8
-	  lwz       r3, 0x28(r5)
-	  bl        0x32A838
-	  lwz       r0, 0x14(r1)
-	  lwz       r31, 0xC(r1)
-	  lwz       r30, 0x8(r1)
-	  mtlr      r0
-	  addi      r1, r1, 0x10
-	  blr
-	*/
+    sys->m_timers->_start("e-upd-do", 1);
+    enemy->_1E0[0].typeView &= 0xFFFEFFFF;
+    enemy->_1E0[0].typeView &= 0xFFFDFFFF;
+    enemy->m_soundObj->exec();
+    if (enemy->m_pellet) {
+        enemy->doUpdateCarcass();
+    } else {
+        if (enemy->isCullingOff()) {
+            updateCullingOff(enemy);
+            enemy->doUpdateCommon();
+        }
+        updateAlways(enemy);
+        if (!(enemy->m_health <= 0.0f) && (enemy->isAlive())) {
+            enemy->lifeRecover();
+            enemy->injure();
+        }
+        if (enemy->_2AC > 0.0f) {
+            enemy->_2A8 += sys->m_secondsPerFrame;
+            if (enemy->_2A8 > enemy->_2AC) {
+                enemy->addDamage(enemy->m_maxHealth, PELLETVIEW_BASE_SCALE);
+                enemy->_1E0[0].typeView &= 0xFFFFFFBF;
+                enemy->_1E0[0].typeView &= 0xFFFFFFF7;
+            }
+        }
+    }
+    sys->m_timers->_stop("e-upd-do");
 }
 
 /*
@@ -2121,29 +1840,6 @@ void EnemyBaseFSM::FitState::updateCullingOff(Game::EnemyBase* enemy)
 	if (enemy->m_health <= 0.0f) {
 		transit(enemy, EBS_Living, nullptr);
 	}
-	/*
-	.loc_0x0:
-	  stwu      r1, -0x10(r1)
-	  mflr      r0
-	  lfs       f0, -0x6BB0(r2)
-	  stw       r0, 0x14(r1)
-	  lfs       f1, 0x200(r4)
-	  fcmpo     cr0, f1, f0
-	  cror      2, 0, 0x2
-	  bne-      .loc_0x38
-	  lwz       r12, 0x0(r3)
-	  li        r5, 0x6
-	  li        r6, 0
-	  lwz       r12, 0x1C(r12)
-	  mtctr     r12
-	  bctrl
-
-	.loc_0x38:
-	  lwz       r0, 0x14(r1)
-	  mtlr      r0
-	  addi      r1, r1, 0x10
-	  blr
-	*/
 }
 
 /*
@@ -2262,49 +1958,14 @@ void EnemyBaseFSM::FitState::init(Game::EnemyBase* enemy, Game::StateArg* arg)
  * Address:	80100478
  * Size:	000080
  */
-void EnemyBaseFSM::FitState::cleanup(Game::EnemyBase* enemy)
+void FitState::cleanup(Game::EnemyBase* enemy) 
 {
-	enemy->_1E0[0].typeView = enemy->_1E8[0].typeView;
-	enemy->_1E0[1].typeView = enemy->_1E8[1].typeView;
-	enemy->_1E0[1].typeView &= ~3;
-	enemy->startMotion();
-	enemy->doFinishEarthquakeFitState();
-	m_enemyPiyo.fade();
-	/*
-	.loc_0x0:
-	  stwu      r1, -0x10(r1)
-	  mflr      r0
-	  stw       r0, 0x14(r1)
-	  stw       r31, 0xC(r1)
-	  mr        r31, r4
-	  stw       r30, 0x8(r1)
-	  mr        r30, r3
-	  mr        r3, r31
-	  lwz       r0, 0x1E8(r4)
-	  stw       r0, 0x1E0(r4)
-	  lwz       r0, 0x1EC(r4)
-	  stw       r0, 0x1E4(r4)
-	  lwz       r0, 0x1E4(r4)
-	  rlwinm    r0,r0,0,31,29
-	  stw       r0, 0x1E4(r4)
-	  bl        0x6D50
-	  mr        r3, r31
-	  lwz       r12, 0x0(r31)
-	  lwz       r12, 0x2BC(r12)
-	  mtctr     r12
-	  bctrl
-	  addi      r3, r30, 0x10
-	  lwz       r12, 0x10(r30)
-	  lwz       r12, 0x10(r12)
-	  mtctr     r12
-	  bctrl
-	  lwz       r0, 0x14(r1)
-	  lwz       r31, 0xC(r1)
-	  lwz       r30, 0x8(r1)
-	  mtlr      r0
-	  addi      r1, r1, 0x10
-	  blr
-	*/
+    enemy->_1E0[0] = enemy->_1E8[0];
+    enemy->_1E0[1] = enemy->_1E8[1];
+    enemy->_1E0[1].typeView &= 0xFFFFFFFD;
+    enemy->startMotion();
+    enemy->doFinishEarthquakeFitState();
+    m_enemyPiyo.fade();
 }
 
 /*
@@ -2312,158 +1973,24 @@ void EnemyBaseFSM::FitState::cleanup(Game::EnemyBase* enemy)
  * Address:	801004F8
  * Size:	000204
  */
-void EnemyBaseFSM::FitState::updateAlways(Game::EnemyBase*)
+void FitState::updateAlways(Game::EnemyBase* enemy) 
 {
-	/*
-	.loc_0x0:
-	  stwu      r1, -0x40(r1)
-	  mflr      r0
-	  stw       r0, 0x44(r1)
-	  stw       r31, 0x3C(r1)
-	  mr        r31, r4
-	  stw       r30, 0x38(r1)
-	  mr        r30, r3
-	  lwz       r5, -0x6514(r13)
-	  lfs       f1, 0x214(r4)
-	  lfs       f0, 0x54(r5)
-	  fadds     f0, f1, f0
-	  stfs      f0, 0x214(r4)
-	  lwz       r3, 0xC0(r4)
-	  lfs       f4, 0x214(r4)
-	  lfs       f3, 0x6CC(r3)
-	  fcmpo     cr0, f4, f3
-	  bgt-      .loc_0x64
-	  lwz       r0, 0x1E0(r31)
-	  rlwinm.   r0,r0,0,11,11
-	  bne-      .loc_0x64
-	  lfs       f0, 0x200(r31)
-	  lfs       f2, -0x6BB0(r2)
-	  fcmpo     cr0, f0, f2
-	  cror      2, 0, 0x2
-	  bne-      .loc_0x90
+    enemy->m_scaleTimer += sys->m_secondsPerFrame;
+    if ((enemy->m_scaleTimer > ((EnemyParmsBase*) enemy->m_parms)->m_general.m_purplePikminStunTime.m_value) || (enemy->_1E0[0].typeView & 0x100000) || (((enemy->m_health <= 0.0f)))) {
+        enemy->m_scaleTimer = 0.0f;
+        transit(enemy, EBS_Living, 0);
+    } else {
+        float sinStun = 4.0f * pikmin2_sinf((PI * enemy->m_scaleTimer) / ((EnemyParmsBase*) enemy->m_parms)->m_general.m_purplePikminStunTime.m_value);
+        if (sinStun > PELLETVIEW_BASE_SCALE) {
+            sinStun = PELLETVIEW_BASE_SCALE;
+        }
+        float theta = (TAU * enemy->m_scaleTimer) / 0.25f;
 
-	.loc_0x64:
-	  lfs       f0, -0x6BB0(r2)
-	  mr        r3, r30
-	  mr        r4, r31
-	  li        r5, 0x6
-	  stfs      f0, 0x214(r31)
-	  li        r6, 0
-	  lwz       r12, 0x0(r30)
-	  lwz       r12, 0x1C(r12)
-	  mtctr     r12
-	  bctrl
-	  b         .loc_0x1D4
-
-	.loc_0x90:
-	  lfs       f0, -0x6B94(r2)
-	  lfs       f1, -0x6B90(r2)
-	  fmuls     f0, f0, f4
-	  fdivs     f3, f0, f3
-	  fcmpo     cr0, f3, f2
-	  bge-      .loc_0xD4
-	  lfs       f0, -0x6BB8(r2)
-	  lis       r3, 0x8050
-	  addi      r3, r3, 0x71A0
-	  fmuls     f0, f3, f0
-	  fctiwz    f0, f0
-	  stfd      f0, 0x8(r1)
-	  lwz       r0, 0xC(r1)
-	  rlwinm    r0,r0,3,18,28
-	  lfsx      f0, r3, r0
-	  fneg      f0, f0
-	  b         .loc_0xF8
-
-	.loc_0xD4:
-	  lfs       f0, -0x6BB4(r2)
-	  lis       r3, 0x8050
-	  addi      r3, r3, 0x71A0
-	  fmuls     f0, f3, f0
-	  fctiwz    f0, f0
-	  stfd      f0, 0x10(r1)
-	  lwz       r0, 0x14(r1)
-	  rlwinm    r0,r0,3,18,28
-	  lfsx      f0, r3, r0
-
-	.loc_0xF8:
-	  fmuls     f5, f1, f0
-	  lfs       f0, -0x6B9C(r2)
-	  fcmpo     cr0, f5, f0
-	  ble-      .loc_0x10C
-	  fmr       f5, f0
-
-	.loc_0x10C:
-	  lfs       f0, -0x6BC0(r2)
-	  lfs       f2, -0x6B8C(r2)
-	  fmuls     f3, f0, f4
-	  lfs       f0, -0x6BB0(r2)
-	  lfs       f1, -0x6B88(r2)
-	  fdivs     f2, f3, f2
-	  fcmpo     cr0, f2, f0
-	  bge-      .loc_0x158
-	  lfs       f0, -0x6BB8(r2)
-	  lis       r3, 0x8050
-	  addi      r3, r3, 0x71A0
-	  fmuls     f0, f2, f0
-	  fctiwz    f0, f0
-	  stfd      f0, 0x18(r1)
-	  lwz       r0, 0x1C(r1)
-	  rlwinm    r0,r0,3,18,28
-	  lfsx      f0, r3, r0
-	  fneg      f0, f0
-	  b         .loc_0x17C
-
-	.loc_0x158:
-	  lfs       f0, -0x6BB4(r2)
-	  lis       r3, 0x8050
-	  addi      r3, r3, 0x71A0
-	  fmuls     f0, f2, f0
-	  fctiwz    f0, f0
-	  stfd      f0, 0x20(r1)
-	  lwz       r0, 0x24(r1)
-	  rlwinm    r0,r0,3,18,28
-	  lfsx      f0, r3, r0
-
-	.loc_0x17C:
-	  fmuls     f1, f1, f0
-	  lfs       f0, -0x6BB0(r2)
-	  fcmpo     cr0, f2, f0
-	  fmuls     f1, f5, f1
-	  stfs      f1, 0x1BC(r31)
-	  stfs      f0, 0x1C0(r31)
-	  bge-      .loc_0x19C
-	  fneg      f2, f2
-
-	.loc_0x19C:
-	  lfs       f0, -0x6BB4(r2)
-	  lis       r3, 0x8050
-	  addi      r3, r3, 0x71A0
-	  lfs       f1, -0x6B88(r2)
-	  fmuls     f0, f2, f0
-	  fctiwz    f0, f0
-	  stfd      f0, 0x28(r1)
-	  lwz       r0, 0x2C(r1)
-	  rlwinm    r0,r0,3,18,28
-	  add       r3, r3, r0
-	  lfs       f0, 0x4(r3)
-	  fmuls     f0, f1, f0
-	  fmuls     f0, f5, f0
-	  stfs      f0, 0x1C4(r31)
-
-	.loc_0x1D4:
-	  mr        r3, r31
-	  lwz       r12, 0x0(r31)
-	  lwz       r12, 0x208(r12)
-	  mtctr     r12
-	  bctrl
-	  stw       r3, 0x20(r30)
-	  lwz       r0, 0x44(r1)
-	  lwz       r31, 0x3C(r1)
-	  lwz       r30, 0x38(r1)
-	  mtlr      r0
-	  addi      r1, r1, 0x40
-	  blr
-	*/
+        enemy->_1A4.m_matrix[2][0] = sinStun * (0.017453294f * pikmin2_sinf(theta));
+        enemy->_1A4.m_matrix[2][1] = 0.0f;
+        enemy->_1A4.m_matrix[2][2] = sinStun * (0.017453294f * pikmin2_cosf(theta)); 
+    }
+    m_enemyPiyo.m_position = enemy->getFitEffectPos();
 }
 
 /*
@@ -2471,45 +1998,13 @@ void EnemyBaseFSM::FitState::updateAlways(Game::EnemyBase*)
  * Address:	801006FC
  * Size:	000088
  */
-void EnemyBaseFSM::EarthquakeState::init(Game::EnemyBase*, Game::StateArg*)
+void EarthquakeState::init(Game::EnemyBase* enemy, Game::StateArg* arg) 
 {
-	/*
-	.loc_0x0:
-	  stwu      r1, -0x20(r1)
-	  mflr      r0
-	  stw       r0, 0x24(r1)
-	  stw       r31, 0x1C(r1)
-	  mr        r31, r5
-	  stw       r30, 0x18(r1)
-	  mr        r30, r4
-	  stw       r29, 0x14(r1)
-	  mr        r29, r3
-	  mr        r3, r30
-	  lwz       r12, 0x0(r30)
-	  lwz       r12, 0x1CC(r12)
-	  mtctr     r12
-	  bctrl
-	  lwz       r0, 0x1E4(r30)
-	  mr        r3, r30
-	  ori       r0, r0, 0x1
-	  stw       r0, 0x1E4(r30)
-	  bl        0x6B9C
-	  mr        r3, r30
-	  lfs       f1, 0x0(r31)
-	  lwz       r12, 0x0(r30)
-	  lwz       r12, 0x2B0(r12)
-	  mtctr     r12
-	  bctrl
-	  li        r0, 0
-	  stw       r0, 0x10(r29)
-	  lwz       r0, 0x24(r1)
-	  lwz       r31, 0x1C(r1)
-	  lwz       r30, 0x18(r1)
-	  lwz       r29, 0x14(r1)
-	  mtlr      r0
-	  addi      r1, r1, 0x20
-	  blr
-	*/
+    enemy->doUpdate();
+    enemy->_1E0[1].typeView |= 1;
+    enemy->stopMotion();
+    enemy->doStartEarthquakeState(arg->_00);
+    this->_10 = 0;
 }
 
 /*
@@ -2517,31 +2012,11 @@ void EnemyBaseFSM::EarthquakeState::init(Game::EnemyBase*, Game::StateArg*)
  * Address:	80100784
  * Size:	000050
  */
-void EnemyBaseFSM::EarthquakeState::cleanup(Game::EnemyBase*)
+void EarthquakeState::cleanup(Game::EnemyBase* enemy) 
 {
-	/*
-	.loc_0x0:
-	  stwu      r1, -0x10(r1)
-	  mflr      r0
-	  stw       r0, 0x14(r1)
-	  stw       r31, 0xC(r1)
-	  mr        r31, r4
-	  mr        r3, r31
-	  lwz       r0, 0x1E4(r4)
-	  rlwinm    r0,r0,0,0,30
-	  stw       r0, 0x1E4(r4)
-	  bl        0x6A5C
-	  mr        r3, r31
-	  lwz       r12, 0x0(r31)
-	  lwz       r12, 0x2B4(r12)
-	  mtctr     r12
-	  bctrl
-	  lwz       r0, 0x14(r1)
-	  lwz       r31, 0xC(r1)
-	  mtlr      r0
-	  addi      r1, r1, 0x10
-	  blr
-	*/
+    enemy->_1E0[1].typeView &= 0xFFFFFFFE;
+    enemy->startMotion();
+    enemy->doFinishEarthquakeState();
 }
 
 /*
@@ -2549,107 +2024,28 @@ void EnemyBaseFSM::EarthquakeState::cleanup(Game::EnemyBase*)
  * Address:	801007D4
  * Size:	000158
  */
-void EnemyBaseFSM::EarthquakeState::updateCullingOff(Game::EnemyBase*)
+void EarthquakeState::updateCullingOff(Game::EnemyBase* enemy)
 {
-	/*
-	.loc_0x0:
-	  stwu      r1, -0x20(r1)
-	  mflr      r0
-	  lfs       f0, -0x6BB0(r2)
-	  stw       r0, 0x24(r1)
-	  stw       r31, 0x1C(r1)
-	  mr        r31, r4
-	  stw       r30, 0x18(r1)
-	  mr        r30, r3
-	  lfs       f1, 0x200(r4)
-	  fcmpo     cr0, f1, f0
-	  cror      2, 0, 0x2
-	  bne-      .loc_0x58
-	  lwz       r0, 0xC8(r31)
-	  cmplwi    r0, 0
-	  beq-      .loc_0x58
-	  lwz       r12, 0x0(r3)
-	  li        r5, 0x6
-	  li        r6, 0
-	  lwz       r12, 0x1C(r12)
-	  mtctr     r12
-	  bctrl
-	  b         .loc_0x140
-
-	.loc_0x58:
-	  lwz       r3, 0x10(r30)
-	  addi      r0, r3, 0x1
-	  cmpwi     r0, 0x3
-	  stw       r0, 0x10(r30)
-	  ble-      .loc_0x118
-	  lwz       r0, 0xC8(r31)
-	  cmplwi    r0, 0
-	  beq-      .loc_0x118
-	  bl        -0x372AC
-	  xoris     r3, r3, 0x8000
-	  lis       r0, 0x4330
-	  stw       r3, 0xC(r1)
-	  lfd       f3, -0x6BA8(r2)
-	  stw       r0, 0x8(r1)
-	  lfs       f2, -0x6BC4(r2)
-	  lfd       f0, 0x8(r1)
-	  lfs       f1, 0x214(r31)
-	  fsubs     f3, f0, f3
-	  lfs       f0, -0x6BB0(r2)
-	  fcmpo     cr0, f1, f0
-	  fdivs     f1, f3, f2
-	  bgt-      .loc_0xD4
-	  lwz       r3, 0xC0(r31)
-	  lfs       f0, 0x6A4(r3)
-	  fcmpo     cr0, f1, f0
-	  bge-      .loc_0xF8
-	  lwz       r3, 0x1E0(r31)
-	  rlwinm.   r0,r3,0,11,11
-	  bne-      .loc_0xF8
-	  rlwinm.   r0,r3,0,10,10
-	  bne-      .loc_0xF8
-
-	.loc_0xD4:
-	  mr        r3, r30
-	  mr        r4, r31
-	  lwz       r12, 0x0(r30)
-	  li        r5, 0x9
-	  li        r6, 0
-	  lwz       r12, 0x1C(r12)
-	  mtctr     r12
-	  bctrl
-	  b         .loc_0x118
-
-	.loc_0xF8:
-	  mr        r3, r30
-	  mr        r4, r31
-	  lwz       r12, 0x0(r30)
-	  li        r5, 0x6
-	  li        r6, 0
-	  lwz       r12, 0x1C(r12)
-	  mtctr     r12
-	  bctrl
-
-	.loc_0x118:
-	  mr        r3, r31
-	  lwz       r12, 0x0(r31)
-	  lwz       r12, 0xCC(r12)
-	  mtctr     r12
-	  bctrl
-	  rlwinm.   r0,r3,0,24,31
-	  beq-      .loc_0x140
-	  lwz       r0, 0x1E0(r31)
-	  rlwinm    r0,r0,0,30,28
-	  stw       r0, 0x1E0(r31)
-
-	.loc_0x140:
-	  lwz       r0, 0x24(r1)
-	  lwz       r31, 0x1C(r1)
-	  lwz       r30, 0x18(r1)
-	  mtlr      r0
-	  addi      r1, r1, 0x20
-	  blr
-	*/
+    if ((enemy->m_health <= 0.0f) && (enemy->_0C8)) {
+        transit(enemy, EBS_Living, 0);
+        return;
+    }
+    
+    if ((++_10 > 3) && (enemy->_0C8)) {
+        float randChance = randFloat();
+        if ((enemy->m_scaleTimer > 0.0f) || 
+            ((randChance < ((EnemyParmsBase*) enemy->m_parms)->m_general.m_purplePikminStunChance.m_value) && 
+                !(enemy->_1E0[0].typeView & 0x100000) && 
+                !(enemy->_1E0[0].typeView & 0x200000))) {
+            transit(enemy, EBS_Fit, 0);
+        } else {
+            transit(enemy, EBS_Living, 0);
+        }
+    }
+    
+    if (enemy->isFlying()) {
+        enemy->_1E0[0].typeView &= 0xFFFFFFFB;
+    }
 }
 
 /*
@@ -2657,51 +2053,19 @@ void EnemyBaseFSM::EarthquakeState::updateCullingOff(Game::EnemyBase*)
  * Address:	8010092C
  * Size:	00000C
  */
-bool EnemyBase::isFlying()
-{
-	/*
-	.loc_0x0:
-	  lwz       r0, 0x1E0(r3)
-	  rlwinm    r3,r0,30,31,31
-	  blr
-	*/
-}
+// WEAK - in header
+// bool EnemyBase::isFlying() { return ( _1E0[0].typeView >> 2) & 1; }
 
 /*
  * --INFO--
  * Address:	80100938
  * Size:	000064
  */
-void EnemyBaseFSM::StoneState::bounceProcedure(Game::EnemyBase*, Sys::Triangle*)
+void StoneState::bounceProcedure(Game::EnemyBase* enemy, Sys::Triangle* triangle) 
 {
-	/*
-	.loc_0x0:
-	  stwu      r1, -0x10(r1)
-	  mflr      r0
-	  stw       r0, 0x14(r1)
-	  stw       r31, 0xC(r1)
-	  mr        r31, r4
-	  mr        r3, r31
-	  lwz       r0, 0x1E0(r4)
-	  ori       r0, r0, 0x400
-	  stw       r0, 0x1E0(r4)
-	  lwz       r12, 0x0(r31)
-	  lwz       r12, 0x2EC(r12)
-	  mtctr     r12
-	  bctrl
-	  mr        r3, r31
-	  addi      r4, r31, 0x18C
-	  bl        0x31DC
-	  lfs       f1, -0x6BB0(r2)
-	  mr        r3, r31
-	  lfs       f2, -0x6B9C(r2)
-	  bl        0x56A8
-	  lwz       r0, 0x14(r1)
-	  lwz       r31, 0xC(r1)
-	  mtlr      r0
-	  addi      r1, r1, 0x10
-	  blr
-	*/
+    enemy->_1E0[0].typeView |= 0x400;
+    enemy->createBounceEffect(enemy->m_position, enemy->getDownSmokeScale());
+    enemy->addDamage(0.0f, PELLETVIEW_BASE_SCALE);
 }
 
 /*
@@ -2709,85 +2073,33 @@ void EnemyBaseFSM::StoneState::bounceProcedure(Game::EnemyBase*, Sys::Triangle*)
  * Address:	8010099C
  * Size:	000100
  */
-void EnemyBaseFSM::StoneState::init(Game::EnemyBase*, Game::StateArg*)
+void StoneState::init(Game::EnemyBase* enemy, Game::StateArg* arg) 
 {
-	/*
-	.loc_0x0:
-	  stwu      r1, -0x10(r1)
-	  mflr      r0
-	  stw       r0, 0x14(r1)
-	  stw       r31, 0xC(r1)
-	  mr        r31, r4
-	  lwz       r3, 0x1E0(r4)
-	  rlwinm.   r0,r3,0,11,11
-	  beq-      .loc_0x2C
-	  rlwinm    r0,r3,0,12,10
-	  stw       r0, 0x1E0(r31)
-	  b         .loc_0x40
-
-	.loc_0x2C:
-	  mr        r3, r31
-	  lwz       r12, 0x0(r31)
-	  lwz       r12, 0x1CC(r12)
-	  mtctr     r12
-	  bctrl
-
-	.loc_0x40:
-	  lwz       r0, 0x1E0(r31)
-	  mr        r3, r31
-	  stw       r0, 0x1E8(r31)
-	  lwz       r0, 0x1E4(r31)
-	  stw       r0, 0x1EC(r31)
-	  lwz       r0, 0x1E0(r31)
-	  ori       r0, r0, 0x200
-	  stw       r0, 0x1E0(r31)
-	  bl        0x29B8
-	  lfs       f0, -0x6BB0(r2)
-	  mr        r3, r31
-	  stfs      f0, 0x21C(r31)
-	  bl        0x68D4
-	  lfs       f0, -0x6BB0(r2)
-	  stfs      f0, 0x1C8(r31)
-	  stfs      f0, 0x1CC(r31)
-	  stfs      f0, 0x1D0(r31)
-	  lwz       r0, 0xC8(r31)
-	  cmplwi    r0, 0
-	  beq-      .loc_0xA0
-	  lwz       r0, 0x1E0(r31)
-	  ori       r0, r0, 0x400
-	  stw       r0, 0x1E0(r31)
-	  b         .loc_0xAC
-
-	.loc_0xA0:
-	  lwz       r0, 0x1E0(r31)
-	  ori       r0, r0, 0x400
-	  stw       r0, 0x1E0(r31)
-
-	.loc_0xAC:
-	  lbz       r0, 0x1F0(r31)
-	  cmplwi    r0, 0x2
-	  bne-      .loc_0xD8
-	  bl        0x237254
-	  cmplwi    r3, 0
-	  beq-      .loc_0xD8
-	  lwz       r3, 0x28C(r31)
-	  lwz       r12, 0x28(r3)
-	  lwz       r12, 0xC4(r12)
-	  mtctr     r12
-	  bctrl
-
-	.loc_0xD8:
-	  mr        r3, r31
-	  lwz       r12, 0x0(r31)
-	  lwz       r12, 0x2A4(r12)
-	  mtctr     r12
-	  bctrl
-	  lwz       r0, 0x14(r1)
-	  lwz       r31, 0xC(r1)
-	  mtlr      r0
-	  addi      r1, r1, 0x10
-	  blr
-	*/
+    if (enemy->_1E0[0].typeView & 0x100000) {
+        enemy->_1E0[0].typeView &= 0xFFEFFFFF;
+    } else {
+        enemy->doUpdate();
+    }
+    
+    enemy->_1E8[0] = enemy->_1E0[0];
+    enemy->_1E8[1] = enemy->_1E0[1];
+    enemy->_1E0[0].typeView |= 0x200;
+    enemy->hide();
+    enemy->m_stoneTimer = 0.0f;
+    enemy->stopMotion();
+    enemy->m_velocity = 0.0f;
+    
+    if (enemy->_0C8) {
+        enemy->_1E0[0].typeView |= 0x400;
+    } else {
+        enemy->_1E0[0].typeView |= 0x400;
+    }
+    
+    if (enemy->m_emotion == 2 && PSGetDirectedMainBgm()) {
+        enemy->m_soundObj->battleOff();
+    }
+    
+    enemy->doStartStoneState();
 }
 
 /*
@@ -2795,66 +2107,22 @@ void EnemyBaseFSM::StoneState::init(Game::EnemyBase*, Game::StateArg*)
  * Address:	80100A9C
  * Size:	0000CC
  */
-void EnemyBaseFSM::StoneState::cleanup(Game::EnemyBase*)
+void StoneState::cleanup(Game::EnemyBase* enemy) 
 {
-	/*
-	.loc_0x0:
-	  stwu      r1, -0x10(r1)
-	  mflr      r0
-	  stw       r0, 0x14(r1)
-	  stw       r31, 0xC(r1)
-	  mr        r31, r4
-	  lwz       r0, 0x1E0(r4)
-	  rlwinm.   r0,r0,0,22,22
-	  bne-      .loc_0x3C
-	  lis       r3, 0x8048
-	  lis       r5, 0x8048
-	  subi      r3, r3, 0x5ABC
-	  li        r4, 0x400
-	  subi      r5, r5, 0x5AAC
-	  crclr     6, 0x6
-	  bl        -0xD6494
-
-	.loc_0x3C:
-	  lwz       r0, 0x1E8(r31)
-	  mr        r3, r31
-	  stw       r0, 0x1E0(r31)
-	  lwz       r0, 0x1EC(r31)
-	  stw       r0, 0x1E4(r31)
-	  lwz       r0, 0x1E0(r31)
-	  rlwinm    r0,r0,0,12,10
-	  stw       r0, 0x1E0(r31)
-	  lwz       r0, 0x1E0(r31)
-	  rlwinm    r0,r0,0,23,21
-	  stw       r0, 0x1E0(r31)
-	  bl        0x2834
-	  mr        r3, r31
-	  bl        0x66F8
-	  mr        r3, r31
-	  lwz       r12, 0x0(r31)
-	  lwz       r12, 0x2A8(r12)
-	  mtctr     r12
-	  bctrl
-	  lbz       r0, 0x1F0(r31)
-	  cmplwi    r0, 0x2
-	  bne-      .loc_0xB8
-	  bl        0x237178
-	  cmplwi    r3, 0
-	  beq-      .loc_0xB8
-	  lwz       r3, 0x28C(r31)
-	  addi      r3, r3, 0xB8
-	  lwz       r12, 0x10(r3)
-	  lwz       r12, 0x8(r12)
-	  mtctr     r12
-	  bctrl
-
-	.loc_0xB8:
-	  lwz       r0, 0x14(r1)
-	  lwz       r31, 0xC(r1)
-	  mtlr      r0
-	  addi      r1, r1, 0x10
-	  blr
-	*/
+    P2ASSERTLINE(1024, enemy->_1E0[0].typeView & 0x200);
+    
+    enemy->_1E0[0] = enemy->_1E8[0];
+    enemy->_1E0[1] = enemy->_1E8[1];
+    enemy->_1E0[0].typeView &= 0xFFEFFFFF;
+    enemy->_1E0[0].typeView &= 0xFFFFFDFF;
+    
+    enemy->show();
+    enemy->startMotion();
+    enemy->doFinishStoneState();
+    
+    if ((enemy->m_emotion == 2) && PSGetDirectedMainBgm()) {
+        enemy->m_soundObj->battleOn();
+    }
 }
 
 /*
@@ -2862,87 +2130,28 @@ void EnemyBaseFSM::StoneState::cleanup(Game::EnemyBase*)
  * Address:	80100B68
  * Size:	000118
  */
-void EnemyBaseFSM::StoneState::updateAlways(Game::EnemyBase*)
+void StoneState::updateAlways(Game::EnemyBase* enemy) 
 {
-	/*
-	.loc_0x0:
-	  stwu      r1, -0x20(r1)
-	  mflr      r0
-	  stw       r0, 0x24(r1)
-	  stw       r31, 0x1C(r1)
-	  mr        r31, r4
-	  stw       r30, 0x18(r1)
-	  mr        r30, r3
-	  lwz       r3, 0x24C(r4)
-	  bl        0x29234
-	  lwz       r3, -0x6514(r13)
-	  lfs       f1, 0x21C(r31)
-	  lfs       f0, 0x54(r3)
-	  fadds     f0, f1, f0
-	  stfs      f0, 0x21C(r31)
-	  lwz       r3, 0x24C(r31)
-	  lbz       r0, 0x50(r3)
-	  rlwinm.   r0,r0,0,29,29
-	  beq-      .loc_0x100
-	  lwz       r0, 0xC8(r31)
-	  cmplwi    r0, 0
-	  bne-      .loc_0x68
-	  mr        r3, r31
-	  bl        0x6BAC
-	  lwz       r0, 0x1E0(r31)
-	  rlwinm    r0,r0,0,30,28
-	  stw       r0, 0x1E0(r31)
-
-	.loc_0x68:
-	  lwz       r3, 0xC0(r31)
-	  lfs       f1, 0x21C(r31)
-	  lfs       f0, 0x654(r3)
-	  fcmpo     cr0, f1, f0
-	  mfcr      r3
-	  lis       r0, 0x4330
-	  rlwinm    r3,r3,2,31,31
-	  stw       r0, 0x8(r1)
-	  lfd       f2, -0x6B80(r2)
-	  stw       r3, 0xC(r1)
-	  lfs       f0, -0x6BB0(r2)
-	  lfd       f1, 0x8(r1)
-	  fsubs     f1, f1, f2
-	  fcmpu     cr0, f1, f0
-	  beq-      .loc_0x100
-	  lwz       r3, 0x24C(r31)
-	  lbz       r4, 0x50(r3)
-	  rlwinm.   r0,r4,0,28,28
-	  beq-      .loc_0xFC
-	  rlwinm.   r0,r4,0,27,27
-	  beq-      .loc_0x100
-	  mr        r3, r31
-	  lwz       r12, 0x0(r31)
-	  lwz       r12, 0xA8(r12)
-	  mtctr     r12
-	  bctrl
-	  rlwinm.   r0,r3,0,24,31
-	  beq-      .loc_0x100
-	  mr        r3, r30
-	  mr        r4, r31
-	  lwz       r12, 0x0(r30)
-	  li        r5, 0x6
-	  li        r6, 0
-	  lwz       r12, 0x1C(r12)
-	  mtctr     r12
-	  bctrl
-	  b         .loc_0x100
-
-	.loc_0xFC:
-	  bl        0x29078
-
-	.loc_0x100:
-	  lwz       r0, 0x24(r1)
-	  lwz       r31, 0x1C(r1)
-	  lwz       r30, 0x18(r1)
-	  mtlr      r0
-	  addi      r1, r1, 0x20
-	  blr
-	*/
+    enemy->m_enemyStoneObj->update();
+    enemy->m_stoneTimer += sys->m_secondsPerFrame;
+    
+    if (enemy->m_enemyStoneObj->_50 & 4) {
+        if (enemy->_0C8 == nullptr) {
+            enemy->constraintOff();
+            enemy->_1E0[0].typeView &= 0xFFFFFFFB;
+        }
+        // why.
+        float comp = (enemy->m_stoneTimer > ((EnemyParmsBase*) enemy->m_parms)->m_general.m_stoneDuration.m_value);
+        if (comp) {
+            if (enemy->m_enemyStoneObj->_50 & 8) {
+                if ((enemy->m_enemyStoneObj->_50 & 0x10) && enemy->isAlive() ) {
+                    transit(enemy, EBS_Living, 0);
+                }
+            } else {
+                enemy->m_enemyStoneObj->shake();
+            }
+        }
+    }
 }
 
 /*
@@ -2950,42 +2159,11 @@ void EnemyBaseFSM::StoneState::updateAlways(Game::EnemyBase*)
  * Address:	80100C80
  * Size:	000074
  */
-void EnemyBaseFSM::StoneState::updateCullingOff(Game::EnemyBase*)
+void StoneState::updateCullingOff(Game::EnemyBase* enemy) 
 {
-	/*
-	.loc_0x0:
-	  stwu      r1, -0x10(r1)
-	  mflr      r0
-	  stw       r0, 0x14(r1)
-	  stw       r31, 0xC(r1)
-	  mr        r31, r4
-	  mr        r3, r31
-	  lwz       r12, 0x0(r31)
-	  lwz       r12, 0xA8(r12)
-	  mtctr     r12
-	  bctrl
-	  rlwinm.   r0,r3,0,24,31
-	  beq-      .loc_0x60
-	  mr        r3, r31
-	  bl        0x6684
-	  rlwinm.   r0,r3,0,24,31
-	  beq-      .loc_0x60
-	  lfs       f1, 0x200(r31)
-	  lfs       f0, -0x6BB0(r2)
-	  fcmpo     cr0, f1, f0
-	  cror      2, 0, 0x2
-	  bne-      .loc_0x60
-	  mr        r3, r31
-	  li        r4, 0
-	  bl        0x3A414
-
-	.loc_0x60:
-	  lwz       r0, 0x14(r1)
-	  lwz       r31, 0xC(r1)
-	  mtlr      r0
-	  addi      r1, r1, 0x10
-	  blr
-	*/
+    if (enemy->isAlive() && enemy->isStopMotion() && (enemy->m_health <= 0.0f)) {
+        enemy->kill((Game::CreatureKillArg*) nullptr);
+    }
 }
 
 /*

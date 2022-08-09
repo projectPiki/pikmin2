@@ -7,6 +7,8 @@ namespace Game {
 template <typename T> struct StateMachine;
 
 struct StateArg {
+    float _00;	   // _00 - EarthquakeState::init requires this to be a float - could be a union or bitflag?
+    short _04;     // _04
 };
 
 template <typename T> struct FSMState {
