@@ -1,20 +1,17 @@
 #ifndef _JSYSTEM_JAI_JAINTER_H
 #define _JSYSTEM_JAI_JAINTER_H
 
-#include "types.h"
-#include "Dolphin/mtx.h"
-#include "JSystem/JAI/JAISound.h"
-#include "JSystem/JAI/JAInter/Object.h"
 #include "JSystem/JAI/JAInter/MoveParaSet.h"
 #include "JSystem/JAS/JASTrack.h"
+#include "types.h"
+#include "Dolphin/mtx.h"
 
 struct JAISequence;
 
 namespace JAInter {
 
 namespace SequenceMgr {
-struct CustomHeapInfo {
-};
+struct CustomHeapInfo { };
 } // namespace SequenceMgr
 
 struct Actor {
@@ -35,17 +32,13 @@ struct Camera {
 	Mtx* m_mtx;  // _08
 };
 
-struct HeapBlock {
-};
+struct HeapBlock { };
 
-struct LinkSound {
-};
+struct LinkSound { };
 
-struct MuteBit {
-};
+struct MuteBit { };
 
-struct PlayerParameter {
-};
+struct PlayerParameter { };
 
 struct SeParameter {
 	SeParameter();
