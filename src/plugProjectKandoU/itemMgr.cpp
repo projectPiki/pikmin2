@@ -10,7 +10,7 @@
 #include "Game/itemMgr.h"
 #include "Game/StateMachine.h"
 #include "Iterator.h"
-#include "JAInter/Object.h"
+#include "JSystem/JAI/JAInter/Object.h"
 #include "JSystem/J3D/J3DJoint.h"
 #include "JSystem/J3D/J3DModel.h"
 #include "JSystem/J3D/J3DMtxCalc.h"
@@ -2120,7 +2120,7 @@ void TNodeItemMgr::killAll()
  * Address:	801CDB3C
  * Size:	0000C4
  */
-ItemMgr::ItemMgr() { m_name = "アイテムマネージャ"; }
+ItemMgr::ItemMgr() { m_name = "アイ�?�?マネージャ"; }
 
 /*
  * __dt__Q24Game7ItemMgrFv

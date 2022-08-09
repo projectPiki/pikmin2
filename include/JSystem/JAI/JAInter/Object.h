@@ -1,11 +1,13 @@
-#ifndef _JAINTER_OBJECTBASE_H
-#define _JAINTER_OBJECTBASE_H
+#ifndef _JSYSTEM_JAI_JAINTER_OBJECT_H
+#define _JSYSTEM_JAI_JAINTER_OBJECT_H
 
+#include "JSystem/JAI/JAISound.h"
 #include "JSystem/JKR/JKRDisposer.h"
 #include "Vector3.h"
 #include "types.h"
 
-struct JAISound;
+struct Vec;
+struct JKRHeap;
 
 namespace JAInter {
 struct ObjectBase : public JKRDisposer {
@@ -24,11 +26,30 @@ struct ObjectBase : public JKRDisposer {
 
 	void getUseSoundHandleNo(u32);
 
-	u8 _18;
-	u8 m_handleCount;
-	JAISound** m_sounds;
-	u32 _20;
-	Vector3f* _24;
+	// _00		= VTABLE
+	// _04-_18	= JKRDisposer
+	u8 _18;              // _18
+	u8 m_handleCount;    // _19
+	JAISound** m_sounds; // _1C
+	u32 _20;             // _20
+	Vec* _24;            // _24
+};
+
+struct Object : public ObjectBase {
+	Object(Vec*, JKRHeap*, u8);
+
+	virtual ~Object();                 // _08
+	virtual void startSound(u32, u32); // _0C
+	virtual void disable();            // _24
+	virtual void loop();               // _38
+
+	// _00		= VTABLE
+	// _04-_18	= JKRDisposer
+	// _18-_28	= ObjectBase
+	Vec _28;   // _28
+	float _34; // _34
+	float _38; // _38
+	float _3C; // _3C
 };
 } // namespace JAInter
 

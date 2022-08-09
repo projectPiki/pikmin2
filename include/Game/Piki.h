@@ -1,7 +1,7 @@
 #ifndef _GAME_PIKI_H
 #define _GAME_PIKI_H
 
-#include "JAInter/Object.h"
+#include "JSystem/JAI/JAInter/Object.h"
 #include "JSystem/JUtility.h"
 
 #include "PSM/Piki.h"

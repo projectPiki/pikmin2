@@ -1,23 +1,58 @@
 #ifndef _JSYSTEM_JAI_JAIBASIC_H
 #define _JSYSTEM_JAI_JAIBASIC_H
 
+#include "JSystem/JAI/JAInter.h"
+#include "JSystem/JAI/JAISound.h"
+#include "JSystem/JAI/JAISequence.h"
+#include "JSystem/JAI/JAIStream.h"
+#include "JSystem/JKR/JKRHeap.h"
+#include "JSystem/JAI/JAISe.h"
+#include "JSystem/JAS/JASTrack.h"
 #include "types.h"
 
 struct JKRHeap;
-struct JAISound;
-namespace JAInter {
-struct Camera;
-}
 
 struct JAIBasic {
-	virtual void makeSequence();               // _08 (weak)
+	JAIBasic();
+
+	virtual void makeSequence();               // _08
 	virtual void makeSe();                     // _0C
-	virtual void makeStream();                 // _10 (weak)
+	virtual void makeStream();                 // _10
 	virtual void getMapInfoFxline(u32);        // _14
 	virtual void getMapInfoGround(u32);        // _18
 	virtual void getMapInfoFxParameter(u32);   // _1C
 	virtual void setSeExtParameter(JAISound*); // _20
 	virtual void setRegisterTrackCallback();   // _24
+
+	// void prepareSoundVecT<JAISound>(u32, JAISound**, Vec*, u32, u32, u8);
+	// void startSoundVecT<JAISound>(u32, JAISound**, Vec*, u32, u32, u8);
+	// void startSoundActorT<JAISound>(u32, JAISound**, JAInter::Actor*, u32, u8);
+	void initDriver(JKRSolidHeap*, u32, u8);
+	void initInterface(u8);
+	void initInterfaceMain();
+	void initHeap();
+	void initArchive();
+	void initResourcePath();
+	void setCameraInfo(Vec*, Vec*, float (*)[4], u32);
+	void initAudioThread(JKRSolidHeap*, u32, u8);
+	void initCamera();
+	void setInitFileLoadSwitch(u8);
+	void initReadFile();
+	void processFrameWork();
+	void startSoundBasic(u32, JAISound**, JAInter::Actor*, u32, u8, JAInter::SoundInfo*);
+	void startSoundBasic(u32, JAISequence**, JAInter::Actor*, u32, u8, JAInter::SoundInfo*);
+	void startSoundBasic(u32, JAISe**, JAInter::Actor*, u32, u8, JAInter::SoundInfo*);
+	void startSoundBasic(u32, JAIStream**, JAInter::Actor*, u32, u8, JAInter::SoundInfo*);
+	void stopSoundHandle(JAISound*, u32);
+	void stopAllSe(u8);
+	void getSoundOffsetNumberFromID(u32);
+	void setParameterSeqSync(JASTrack*, u16);
+	void stopAudio(u32, bool);
+	void checkAudioStopStatus();
+	void stopCallBack(void*);
+	// void startSoundActorReturnHandleT<JAISe>(JAISe**, u32, JAInter::Actor*, u32, u8);
+	// void startSoundActorT<JAISe>(u32, JAISe**, JAInter::Actor*, u32, u8);
+	// void startSoundVecReturnHandleT<JAISound>(JAISound**, u32, Vec*, u32, u32, u8);
 
 	// VT _00
 	JAInter::Camera* m_cameras; // _04

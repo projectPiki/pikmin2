@@ -12,7 +12,7 @@
 #include "Game/PelletMgr.h"
 #include "Dolphin/rand.h"
 #include "Game/enemyInfo.h"
-#include "JAInter/Object.h"
+#include "JSystem/JAI/JAInter/Object.h"
 #include "Matrix3f.h"
 #include "Sys/Sphere.h"
 #include "SysShape/MotionListener.h"

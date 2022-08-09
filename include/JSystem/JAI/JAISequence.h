@@ -8,33 +8,44 @@
  * @size{0x6A0}
  */
 struct JAISequence : public JAISound {
-	virtual void setPortData(unsigned char, unsigned short);     // _00
-	virtual short getPortData(unsigned char);                    // _04
-	virtual void stop(unsigned long);                            // _0C
-	virtual void setVolume(float, unsigned long, unsigned char); // _14
-	virtual float getVolume(unsigned char);                      // _18
-	virtual void setPan(float, unsigned long, unsigned char);    // _1C
-	virtual float getPan(unsigned char);                         // _20
-	virtual void setPitch(float, unsigned long, unsigned char);  // _24
-	virtual float getPitch(unsigned char);                       // _28
-	virtual void setFxmix(float, unsigned long, unsigned char);  // _2C
-	virtual float getFxmix(unsigned char);                       // _30
-	virtual void setDolby(float, unsigned long, unsigned char);  // _34
-	virtual float getDolby(unsigned char);                       // _38
-	virtual void setTempoProportion(float, unsigned long);       // _3C
-	virtual float getTempoProportion();                          // _40
-	virtual void setVolumeU7(unsigned char, unsigned long,
-	                         unsigned char);                              // _44
-	virtual void getVolumeU7(unsigned char);                              // _48
-	virtual void setPanU7(unsigned char, unsigned long, unsigned char);   // _4C
-	virtual void getPanU7(unsigned char);                                 // _50
-	virtual void setFxmixU7(unsigned char, unsigned long, unsigned char); // _54
-	virtual void getFxmixU7(unsigned char);                               // _58
-	virtual void setDolbyU7(unsigned char, unsigned long, unsigned char); // _5C
-	virtual void getDolbyU7(unsigned char);                               // _60
-	virtual void getFadeCounter();                                        // _9C
-	virtual void setPrepareFlag(unsigned char);                           // _A0
-	virtual void checkReady();                                            // _A4
+	JAISequence();
+
+	virtual void setPortData(u8, u16);           // _08 (weak)
+	virtual short getPortData(u8);               // _0C (weak)
+	virtual void stop(u32);                      // _14 (weak)
+	virtual void setVolume(float, u32, u8);      // _1C (weak)
+	virtual float getVolume(u8);                 // _20 (weak)
+	virtual void setPan(float, u32, u8);         // _24 (weak)
+	virtual float getPan(u8);                    // _28 (weak)
+	virtual void setPitch(float, u32, u8);       // _2C (weak)
+	virtual float getPitch(u8);                  // _30 (weak)
+	virtual void setFxmix(float, u32, u8);       // _34 (weak)
+	virtual float getFxmix(u8);                  // _38 (weak)
+	virtual void setDolby(float, u32, u8);       // _3C (weak)
+	virtual float getDolby(u8);                  // _40 (weak)
+	virtual void setTempoProportion(float, u32); // _44 (weak)
+	virtual float getTempoProportion();          // _48 (weak)
+	virtual void setVolumeU7(u8, u32, u8);       // _4C (weak)
+	virtual void getVolumeU7(u8);                // _50 (weak)
+	virtual void setPanU7(u8, u32, u8);          // _54 (weak)
+	virtual void getPanU7(u8);                   // _58 (weak)
+	virtual void setFxmixU7(u8, u32, u8);        // _5C (weak)
+	virtual void getFxmixU7(u8);                 // _60 (weak)
+	virtual void setDolbyU7(u8, u32, u8);        // _64 (weak)
+	virtual void getDolbyU7(u8);                 // _68 (weak)
+	virtual void getFadeCounter();               // _A4
+	virtual void setPrepareFlag(u8);             // _A8 (weak)
+	virtual void checkReady();                   // _AC (weak)
+
+	void setSeqInterVolume(u8, float, u32);
+	void setSeqInterPan(u8, float, u32);
+	void setSeqInterPitch(u8, float, u32);
+	void setTrackInterruptSwitch(u8, u8);
+	void setTrackFxmix(u8, float, u32);
+	void setTrackPortData(u8, u8, u16);
+	void setSeqPrepareFlag(u8);
+	void checkSeqReady();
+	void getSeqInterVolume(u8);
 
 	JAInter::SeqParameter m_seqParameter; // _48
 };

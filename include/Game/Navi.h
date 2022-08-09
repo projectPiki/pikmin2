@@ -15,7 +15,7 @@
 #include "Game/GameSystem.h"
 #include "Game/PlayData.h"
 
-#include "JAInter/Object.h"
+#include "JSystem/JAI/JAInter/Object.h"
 #include "SysShape/Joint.h"
 
 #include "Dolphin/mtx.h"

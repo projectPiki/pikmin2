@@ -1,7 +1,7 @@
 #ifndef _PSM_CREATUREOBJ_H
 #define _PSM_CREATUREOBJ_H
 
-#include "JAInter/Object.h"
+#include "JSystem/JAI/JAInter/Object.h"
 #include "PSM/Creature.h"
 
 namespace PSM {

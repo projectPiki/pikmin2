@@ -1,21 +1,22 @@
 #ifndef _JSYSTEM_JAI_JAIANIMESOUND_H
 #define _JSYSTEM_JAI_JAIANIMESOUND_H
 
-#include "JAInter/Object.h"
+#include "JSystem/JAI/JAInter/Object.h"
+#include "JSystem/JAI/JAInter.h"
 
-struct JAIAnimeSoundData;
+struct JAIAnimeSoundData {
+	u8 _00[0x17]; // _00 - unknown
+	u8 _18;       // _18
+};
+
 struct JAIAnimeFrameSoundData;
 
-namespace JAInter {
-struct Actor;
-} // namespace JAInter
-
 struct JAIAnimeSound : public JAInter::Object {
-	virtual ~JAIAnimeSound();                                                    // _00
-	virtual void handleStop(u8, u32);                                            // _2C
-	virtual void playActorAnimSound(JAInter::Actor*, float, u8);                 // _34
-	virtual void startAnimSound(u32, JAISound**, JAInter::Actor*, u8);           // _38
-	virtual void setSpeedModifySound(JAISound*, JAIAnimeFrameSoundData*, float); // _3C
+	virtual ~JAIAnimeSound();                                                    // _08 (weak)
+	virtual void handleStop(u8, u32);                                            // _34
+	virtual void playActorAnimSound(JAInter::Actor*, float, u8);                 // _3C
+	virtual void startAnimSound(u32, JAISound**, JAInter::Actor*, u8);           // _40
+	virtual void setSpeedModifySound(JAISound*, JAIAnimeFrameSoundData*, float); // _44
 
 	// _00 VTBL
 	void* _40;                      // _40
