@@ -80,6 +80,10 @@ struct JASOuterParam {
 struct JASTrack {
 	JASTrack();
 
+	void setTempo(u16);
+	void setNoteMask(u8);
+	void muteTrack(bool);
+
 	struct MoveParam_ {
 		MoveParam_();
 

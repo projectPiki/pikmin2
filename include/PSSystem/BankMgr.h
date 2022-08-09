@@ -19,10 +19,15 @@ struct BankMgr : public JKRDisposer {
 	void setWsDataS(u32*);
 	void setBankDataS(u32*);
 
-	u8 _18[0x4]; // _18 - unknown
+	u8 _18;      // _18
+	u8 _19;      // _19
+	u8 _1A;      // _1A
+	u8 _1B;      // _1B
 	void* _1C;   // _1C - unknown pointer
 	u8 _20[0x4]; // _20 - "bank count"?
 	void* _24;   // _24 - unknown pointer
+
+	static BankMgr* sBankMgr;
 };
 } // namespace PSSystem
 

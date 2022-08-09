@@ -12,7 +12,7 @@ struct SeqTrackBase;
 struct DirectorBase : public JADHioNode {
 	DirectorBase(int, const char*);
 
-	virtual ~DirectorBase();                        // _08 (weak)
+	virtual ~DirectorBase() { }                     // _08 (weak)
 	virtual void exec();                            // _0C
 	virtual void directOn();                        // _10
 	virtual void directOff();                       // _14
@@ -31,16 +31,18 @@ struct DirectorBase : public JADHioNode {
 	void directOffInner();
 	void powerOn();
 
-	void* _04;         // _04 - unknown
-	int _08;           // _08
-	OSMutexObject _0C; // _0C
-	OSMutexObject _24; // _24
-	u8 _3C;            // _3C
-	u8 _3D[0x3];       // _3D - padding?
-	u8 _40;            // _40
-	u8 _41;            // _41
-	u8 _42[0x2];       // _42 - padding?
-	u8 _44[4];         // _44
+	SeqTrackBase** _04; // _04
+	int _08;            // _08
+	OSMutexObject _0C;  // _0C
+	OSMutexObject _24;  // _24
+	u8 _3C;             // _3C
+	u8 _3D[0x3];        // _3D - padding?
+	u8 _40;             // _40
+	u8 _41;             // _41
+	u8 _42[0x2];        // _42 - padding?
+	u8 _44[4];          // _44
+
+	static u8 sToolMode;
 };
 
 struct OneShotDirector : public DirectorBase {

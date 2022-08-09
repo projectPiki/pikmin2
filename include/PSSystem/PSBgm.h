@@ -11,6 +11,8 @@
 
 namespace PSSystem {
 struct DirectorMgrBase;
+struct SeqTrackRoot;
+struct SeqTrackChild;
 
 /**
  * @size = 0x6C
