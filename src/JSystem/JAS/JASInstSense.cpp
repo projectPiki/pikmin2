@@ -1,4 +1,4 @@
-#include "JSystem/JAS/JASInstEffect.h"
+#include "JSystem/JAS/JASInst.h"
 #include "types.h"
 
 /*
