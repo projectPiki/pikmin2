@@ -6,7 +6,7 @@
 #include "JSystem/JSupport/JSUList.h"
 #include "JSystem/JAI/JAISequence.h"
 #include "JSystem/JAI/JAInter.h"
-#include "PSSystem/Task.h"
+#include "PSSystem/PSBgmTask.h"
 #include "JSystem/JAS/JASTrack.h"
 #include "PSSystem/Reservator.h"
 

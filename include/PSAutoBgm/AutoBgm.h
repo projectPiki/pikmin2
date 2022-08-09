@@ -4,7 +4,7 @@
 #include "types.h"
 #include "PSSystem/PSBgm.h"
 #include "PSSystem/Seq.h"
-#include "PSSystem/Task.h"
+#include "PSSystem/PSBgmTask.h"
 #include "JSystem/JAI/JAInter.h"
 #include "PSAutoBgm/Conductor.h"
 #include "PSAutoMgr/MeloArr.h"

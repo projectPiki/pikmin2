@@ -5,7 +5,7 @@
 #include "PSSystem/PSBgm.h"
 #include "PSSystem/SeqData.h"
 #include "PSSystem/SeqSound.h"
-#include "PSSystem/Task.h"
+#include "PSSystem/PSBgmTask.h"
 #include "JSystem/JAI/JAISound.h"
 
 namespace PSSystem {

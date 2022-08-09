@@ -1,5 +1,5 @@
 #include "types.h"
-#include "PSSystem/Task.h"
+#include "PSSystem/PSBgmTask.h"
 
 /*
     Generated from dpostproc

@@ -3,7 +3,7 @@
 
 #include "types.h"
 #include "JSystem/JKR/JKRDisposer.h"
-#include "PSSystem/Task.h"
+#include "PSSystem/PSBgmTask.h"
 
 namespace PSSystem {
 
@@ -28,9 +28,9 @@ struct WaveScene : public JKRDisposer {
 
 	virtual ~WaveScene(); // _08 (weak)
 
-	void load(u16, u16, WaveScene::AreaArg, TaskChecker*)
+	void load(u16, u16, WaveScene::AreaArg, TaskChecker*);
 
-	    WaveScene::WaveArea _18[2]; // _18
+	WaveScene::WaveArea _18[2]; // _18
 };
 
 struct WaveLoader {
