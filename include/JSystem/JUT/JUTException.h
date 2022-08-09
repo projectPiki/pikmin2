@@ -66,4 +66,11 @@ struct JUTException : public JKRThread {
 	}                                                                                    \
 	P2ASSERTLINE(line, check##line)
 
+#define P2ASSERTBOOLLINE(line, var) \
+	bool check##line = false;       \
+	if (var) {                      \
+		check##line = true;         \
+	}                               \
+	P2ASSERTLINE(line, check##line)
+
 #endif

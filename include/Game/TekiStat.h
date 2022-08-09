@@ -6,6 +6,9 @@
 
 namespace Game {
 namespace TekiStat {
+#define TEKISTAT_STATE_UPDATED     1
+#define TEKISTAT_STATE_OUT_OF_DATE 2
+
 /**
  * @size{0xC}
  */
@@ -22,7 +25,7 @@ struct Info {
 	int m_killedPikminCount; // _04
 
 	// 1 is ORed to this in incKilled
-	u8 _08; // _08
+	u8 m_state; // _08
 };
 
 struct Mgr {
@@ -32,7 +35,7 @@ struct Mgr {
 	void clear();
 	Info* getTekiInfo(int);
 	void setOutOfDateAll();
-	void whatsNew();
+	bool whatsNew();
 
 	void write(Stream&);
 	void read(Stream&);
