@@ -16,6 +16,7 @@
 #include "Game/EnemyParmsBase.h"
 #include "Game/EnemyStateMachine.h"
 #include "Game/EnemyStone.h"
+#include "Game/GameSystem.h"
 #include "Game/Interaction.h"
 #include "Game/ItemHoney.h"
 #include "Game/MapMgr.h"
@@ -1520,10 +1521,7 @@ bool BirthTypeDropEarthquakeState::isFinishableWaitingBirthTypeDrop(Game::EnemyB
  * Address:	800FFCB0
  * Size:	000024
  */
-void AppearState::entry(Game::EnemyBase* enemy)
-{
-	enemy->doEntryLiving();
-}
+void AppearState::entry(Game::EnemyBase* enemy) { enemy->doEntryLiving(); }
 
 /*
  * --INFO--
@@ -1534,12 +1532,12 @@ void AppearState::entry(Game::EnemyBase* enemy)
 void AppearState::init(Game::EnemyBase* enemy, Game::StateArg* arg)
 {
 	efx::TEnemyApsmoke effect;
-    float mod = enemy->m_scaleModifier;
-    EnemyTypeID::EEnemyTypeID id = enemy->getEnemyTypeID();
-	Vector3f position = enemy->getPosition();
+	float mod                    = enemy->m_scaleModifier;
+	EnemyTypeID::EEnemyTypeID id = enemy->getEnemyTypeID();
+	Vector3f position            = enemy->getPosition();
 	efx::ArgEnemyType effectArg(position, id, mod);
 	effect.create(&effectArg);
-	enemy->m_scale = 0.0f;
+	enemy->m_scale      = 0.0f;
 	enemy->m_scaleTimer = 0.0f;
 	/*
 	.loc_0x0:
@@ -1622,26 +1620,26 @@ void AppearState::init(Game::EnemyBase* enemy, Game::StateArg* arg)
  * Address:	800FFDEC
  * Size:	000130
  */
-void AppearState::update(Game::EnemyBase* enemy) 
+void AppearState::update(Game::EnemyBase* enemy)
 {
-    enemy->m_scaleTimer += 2.0f * sys->m_secondsPerFrame;
-    if (enemy->m_scaleTimer > PELLETVIEW_BASE_SCALE) {
-        transit(enemy, EBS_Living, 0);
-        return;
-    }
-    
-    enemy->m_scale.x = 2.0f * enemy->m_scaleTimer;
-    if (enemy->m_scale.x > PELLETVIEW_BASE_SCALE) {
-        enemy->m_scale.x = PELLETVIEW_BASE_SCALE;
-    }
+	enemy->m_scaleTimer += 2.0f * sys->m_secondsPerFrame;
+	if (enemy->m_scaleTimer > PELLETVIEW_BASE_SCALE) {
+		transit(enemy, EBS_Living, 0);
+		return;
+	}
 
-    enemy->m_scale.x += 0.2f * pikmin2_sinf(TAU * enemy->m_scaleTimer);
-    float newScale = enemy->m_scale.x;
-    enemy->m_scale.z = newScale;
-    enemy->m_scale.y = newScale;
-    
-    enemy->doUpdate();
-    enemy->doUpdateCommon();
+	enemy->m_scale.x = 2.0f * enemy->m_scaleTimer;
+	if (enemy->m_scale.x > PELLETVIEW_BASE_SCALE) {
+		enemy->m_scale.x = PELLETVIEW_BASE_SCALE;
+	}
+
+	enemy->m_scale.x += 0.2f * pikmin2_sinf(TAU * enemy->m_scaleTimer);
+	float newScale   = enemy->m_scale.x;
+	enemy->m_scale.z = newScale;
+	enemy->m_scale.y = newScale;
+
+	enemy->doUpdate();
+	enemy->doUpdateCommon();
 }
 
 /*
@@ -1649,10 +1647,10 @@ void AppearState::update(Game::EnemyBase* enemy)
  * Address:	800FFF1C
  * Size:	00001C
  */
-void AppearState::cleanup(Game::EnemyBase* enemy) 
+void AppearState::cleanup(Game::EnemyBase* enemy)
 {
-    enemy->m_scale = PELLETVIEW_BASE_SCALE;
-    enemy->m_scaleTimer = 0.0f;
+	enemy->m_scale      = PELLETVIEW_BASE_SCALE;
+	enemy->m_scaleTimer = 0.0f;
 }
 
 /*
@@ -1767,13 +1765,13 @@ void EnemyBaseFSM::LivingState::simulation(Game::EnemyBase*, float)
  * Address:	80100084
  * Size:	000040
  */
-void LivingState::entry(Game::EnemyBase* enemy) 
+void LivingState::entry(Game::EnemyBase* enemy)
 {
-    if (enemy->m_pellet) {
-        enemy->doEntryCarcass();
-        return;
-    }
-    enemy->doEntryLiving();
+	if (enemy->m_pellet) {
+		enemy->doEntryCarcass();
+		return;
+	}
+	enemy->doEntryLiving();
 }
 
 /*
@@ -1788,11 +1786,11 @@ void LivingState::updateCullingOff(Game::EnemyBase* enemy) { enemy->doUpdate(); 
  * Address:	801000F4
  * Size:	000030
  */
-void LivingState::updateAlways(Game::EnemyBase* enemy) 
+void LivingState::updateAlways(Game::EnemyBase* enemy)
 {
-    if (enemy->_1E0[0].typeView & 0x100000) {
-        enemy->startStoneState();
-    }
+	if (enemy->_1E0[0].typeView & 0x100000) {
+		enemy->startStoneState();
+	}
 }
 
 /*
@@ -1800,34 +1798,34 @@ void LivingState::updateAlways(Game::EnemyBase* enemy)
  * Address:	80100124
  * Size:	0001BC
  */
-void LivingState::update(Game::EnemyBase* enemy) 
+void LivingState::update(Game::EnemyBase* enemy)
 {
-    sys->m_timers->_start("e-upd-do", 1);
-    enemy->_1E0[0].typeView &= 0xFFFEFFFF;
-    enemy->_1E0[0].typeView &= 0xFFFDFFFF;
-    enemy->m_soundObj->exec();
-    if (enemy->m_pellet) {
-        enemy->doUpdateCarcass();
-    } else {
-        if (enemy->isCullingOff()) {
-            updateCullingOff(enemy);
-            enemy->doUpdateCommon();
-        }
-        updateAlways(enemy);
-        if (!(enemy->m_health <= 0.0f) && (enemy->isAlive())) {
-            enemy->lifeRecover();
-            enemy->injure();
-        }
-        if (enemy->_2AC > 0.0f) {
-            enemy->_2A8 += sys->m_secondsPerFrame;
-            if (enemy->_2A8 > enemy->_2AC) {
-                enemy->addDamage(enemy->m_maxHealth, PELLETVIEW_BASE_SCALE);
-                enemy->_1E0[0].typeView &= 0xFFFFFFBF;
-                enemy->_1E0[0].typeView &= 0xFFFFFFF7;
-            }
-        }
-    }
-    sys->m_timers->_stop("e-upd-do");
+	sys->m_timers->_start("e-upd-do", 1);
+	enemy->_1E0[0].typeView &= 0xFFFEFFFF;
+	enemy->_1E0[0].typeView &= 0xFFFDFFFF;
+	enemy->m_soundObj->exec();
+	if (enemy->m_pellet) {
+		enemy->doUpdateCarcass();
+	} else {
+		if (enemy->isCullingOff()) {
+			updateCullingOff(enemy);
+			enemy->doUpdateCommon();
+		}
+		updateAlways(enemy);
+		if (!(enemy->m_health <= 0.0f) && (enemy->isAlive())) {
+			enemy->lifeRecover();
+			enemy->injure();
+		}
+		if (enemy->_2AC > 0.0f) {
+			enemy->_2A8 += sys->m_secondsPerFrame;
+			if (enemy->_2A8 > enemy->_2AC) {
+				enemy->addDamage(enemy->m_maxHealth, PELLETVIEW_BASE_SCALE);
+				enemy->_1E0[0].typeView &= 0xFFFFFFBF;
+				enemy->_1E0[0].typeView &= 0xFFFFFFF7;
+			}
+		}
+	}
+	sys->m_timers->_stop("e-upd-do");
 }
 
 /*
@@ -1958,14 +1956,14 @@ void EnemyBaseFSM::FitState::init(Game::EnemyBase* enemy, Game::StateArg* arg)
  * Address:	80100478
  * Size:	000080
  */
-void FitState::cleanup(Game::EnemyBase* enemy) 
+void FitState::cleanup(Game::EnemyBase* enemy)
 {
-    enemy->_1E0[0] = enemy->_1E8[0];
-    enemy->_1E0[1] = enemy->_1E8[1];
-    enemy->_1E0[1].typeView &= 0xFFFFFFFD;
-    enemy->startMotion();
-    enemy->doFinishEarthquakeFitState();
-    m_enemyPiyo.fade();
+	enemy->_1E0[0] = enemy->_1E8[0];
+	enemy->_1E0[1] = enemy->_1E8[1];
+	enemy->_1E0[1].typeView &= 0xFFFFFFFD;
+	enemy->startMotion();
+	enemy->doFinishEarthquakeFitState();
+	m_enemyPiyo.fade();
 }
 
 /*
@@ -1973,24 +1971,26 @@ void FitState::cleanup(Game::EnemyBase* enemy)
  * Address:	801004F8
  * Size:	000204
  */
-void FitState::updateAlways(Game::EnemyBase* enemy) 
+void FitState::updateAlways(Game::EnemyBase* enemy)
 {
-    enemy->m_scaleTimer += sys->m_secondsPerFrame;
-    if ((enemy->m_scaleTimer > ((EnemyParmsBase*) enemy->m_parms)->m_general.m_purplePikminStunTime.m_value) || (enemy->_1E0[0].typeView & 0x100000) || (((enemy->m_health <= 0.0f)))) {
-        enemy->m_scaleTimer = 0.0f;
-        transit(enemy, EBS_Living, 0);
-    } else {
-        float sinStun = 4.0f * pikmin2_sinf((PI * enemy->m_scaleTimer) / ((EnemyParmsBase*) enemy->m_parms)->m_general.m_purplePikminStunTime.m_value);
-        if (sinStun > PELLETVIEW_BASE_SCALE) {
-            sinStun = PELLETVIEW_BASE_SCALE;
-        }
-        float theta = (TAU * enemy->m_scaleTimer) / 0.25f;
+	enemy->m_scaleTimer += sys->m_secondsPerFrame;
+	if ((enemy->m_scaleTimer > ((EnemyParmsBase*)enemy->m_parms)->m_general.m_purplePikminStunTime.m_value)
+	    || (enemy->_1E0[0].typeView & 0x100000) || (((enemy->m_health <= 0.0f)))) {
+		enemy->m_scaleTimer = 0.0f;
+		transit(enemy, EBS_Living, 0);
+	} else {
+		float sinStun
+		    = 4.0f * pikmin2_sinf((PI * enemy->m_scaleTimer) / ((EnemyParmsBase*)enemy->m_parms)->m_general.m_purplePikminStunTime.m_value);
+		if (sinStun > PELLETVIEW_BASE_SCALE) {
+			sinStun = PELLETVIEW_BASE_SCALE;
+		}
+		float theta = (TAU * enemy->m_scaleTimer) / 0.25f;
 
-        enemy->_1A4.m_matrix[2][0] = sinStun * (0.017453294f * pikmin2_sinf(theta));
-        enemy->_1A4.m_matrix[2][1] = 0.0f;
-        enemy->_1A4.m_matrix[2][2] = sinStun * (0.017453294f * pikmin2_cosf(theta)); 
-    }
-    m_enemyPiyo.m_position = enemy->getFitEffectPos();
+		enemy->_1A4.m_matrix[2][0] = sinStun * (0.017453294f * pikmin2_sinf(theta));
+		enemy->_1A4.m_matrix[2][1] = 0.0f;
+		enemy->_1A4.m_matrix[2][2] = sinStun * (0.017453294f * pikmin2_cosf(theta));
+	}
+	m_enemyPiyo.m_position = enemy->getFitEffectPos();
 }
 
 /*
@@ -1998,13 +1998,13 @@ void FitState::updateAlways(Game::EnemyBase* enemy)
  * Address:	801006FC
  * Size:	000088
  */
-void EarthquakeState::init(Game::EnemyBase* enemy, Game::StateArg* arg) 
+void EarthquakeState::init(Game::EnemyBase* enemy, Game::StateArg* arg)
 {
-    enemy->doUpdate();
-    enemy->_1E0[1].typeView |= 1;
-    enemy->stopMotion();
-    enemy->doStartEarthquakeState(arg->_00);
-    this->_10 = 0;
+	enemy->doUpdate();
+	enemy->_1E0[1].typeView |= 1;
+	enemy->stopMotion();
+	enemy->doStartEarthquakeState(arg->_00);
+	this->_10 = 0;
 }
 
 /*
@@ -2012,11 +2012,11 @@ void EarthquakeState::init(Game::EnemyBase* enemy, Game::StateArg* arg)
  * Address:	80100784
  * Size:	000050
  */
-void EarthquakeState::cleanup(Game::EnemyBase* enemy) 
+void EarthquakeState::cleanup(Game::EnemyBase* enemy)
 {
-    enemy->_1E0[1].typeView &= 0xFFFFFFFE;
-    enemy->startMotion();
-    enemy->doFinishEarthquakeState();
+	enemy->_1E0[1].typeView &= 0xFFFFFFFE;
+	enemy->startMotion();
+	enemy->doFinishEarthquakeState();
 }
 
 /*
@@ -2026,26 +2026,25 @@ void EarthquakeState::cleanup(Game::EnemyBase* enemy)
  */
 void EarthquakeState::updateCullingOff(Game::EnemyBase* enemy)
 {
-    if ((enemy->m_health <= 0.0f) && (enemy->_0C8)) {
-        transit(enemy, EBS_Living, 0);
-        return;
-    }
-    
-    if ((++_10 > 3) && (enemy->_0C8)) {
-        float randChance = randFloat();
-        if ((enemy->m_scaleTimer > 0.0f) || 
-            ((randChance < ((EnemyParmsBase*) enemy->m_parms)->m_general.m_purplePikminStunChance.m_value) && 
-                !(enemy->_1E0[0].typeView & 0x100000) && 
-                !(enemy->_1E0[0].typeView & 0x200000))) {
-            transit(enemy, EBS_Fit, 0);
-        } else {
-            transit(enemy, EBS_Living, 0);
-        }
-    }
-    
-    if (enemy->isFlying()) {
-        enemy->_1E0[0].typeView &= 0xFFFFFFFB;
-    }
+	if ((enemy->m_health <= 0.0f) && (enemy->_0C8)) {
+		transit(enemy, EBS_Living, 0);
+		return;
+	}
+
+	if ((++_10 > 3) && (enemy->_0C8)) {
+		float randChance = randFloat();
+		if ((enemy->m_scaleTimer > 0.0f)
+		    || ((randChance < ((EnemyParmsBase*)enemy->m_parms)->m_general.m_purplePikminStunChance.m_value)
+		        && !(enemy->_1E0[0].typeView & 0x100000) && !(enemy->_1E0[0].typeView & 0x200000))) {
+			transit(enemy, EBS_Fit, 0);
+		} else {
+			transit(enemy, EBS_Living, 0);
+		}
+	}
+
+	if (enemy->isFlying()) {
+		enemy->_1E0[0].typeView &= 0xFFFFFFFB;
+	}
 }
 
 /*
@@ -2061,11 +2060,11 @@ void EarthquakeState::updateCullingOff(Game::EnemyBase* enemy)
  * Address:	80100938
  * Size:	000064
  */
-void StoneState::bounceProcedure(Game::EnemyBase* enemy, Sys::Triangle* triangle) 
+void StoneState::bounceProcedure(Game::EnemyBase* enemy, Sys::Triangle* triangle)
 {
-    enemy->_1E0[0].typeView |= 0x400;
-    enemy->createBounceEffect(enemy->m_position, enemy->getDownSmokeScale());
-    enemy->addDamage(0.0f, PELLETVIEW_BASE_SCALE);
+	enemy->_1E0[0].typeView |= 0x400;
+	enemy->createBounceEffect(enemy->m_position, enemy->getDownSmokeScale());
+	enemy->addDamage(0.0f, PELLETVIEW_BASE_SCALE);
 }
 
 /*
@@ -2073,33 +2072,33 @@ void StoneState::bounceProcedure(Game::EnemyBase* enemy, Sys::Triangle* triangle
  * Address:	8010099C
  * Size:	000100
  */
-void StoneState::init(Game::EnemyBase* enemy, Game::StateArg* arg) 
+void StoneState::init(Game::EnemyBase* enemy, Game::StateArg* arg)
 {
-    if (enemy->_1E0[0].typeView & 0x100000) {
-        enemy->_1E0[0].typeView &= 0xFFEFFFFF;
-    } else {
-        enemy->doUpdate();
-    }
-    
-    enemy->_1E8[0] = enemy->_1E0[0];
-    enemy->_1E8[1] = enemy->_1E0[1];
-    enemy->_1E0[0].typeView |= 0x200;
-    enemy->hide();
-    enemy->m_stoneTimer = 0.0f;
-    enemy->stopMotion();
-    enemy->m_velocity = 0.0f;
-    
-    if (enemy->_0C8) {
-        enemy->_1E0[0].typeView |= 0x400;
-    } else {
-        enemy->_1E0[0].typeView |= 0x400;
-    }
-    
-    if (enemy->m_emotion == 2 && PSGetDirectedMainBgm()) {
-        enemy->m_soundObj->battleOff();
-    }
-    
-    enemy->doStartStoneState();
+	if (enemy->_1E0[0].typeView & 0x100000) {
+		enemy->_1E0[0].typeView &= 0xFFEFFFFF;
+	} else {
+		enemy->doUpdate();
+	}
+
+	enemy->_1E8[0] = enemy->_1E0[0];
+	enemy->_1E8[1] = enemy->_1E0[1];
+	enemy->_1E0[0].typeView |= 0x200;
+	enemy->hide();
+	enemy->m_stoneTimer = 0.0f;
+	enemy->stopMotion();
+	enemy->m_velocity = 0.0f;
+
+	if (enemy->_0C8) {
+		enemy->_1E0[0].typeView |= 0x400;
+	} else {
+		enemy->_1E0[0].typeView |= 0x400;
+	}
+
+	if (enemy->m_emotion == 2 && PSGetDirectedMainBgm()) {
+		enemy->m_soundObj->battleOff();
+	}
+
+	enemy->doStartStoneState();
 }
 
 /*
@@ -2107,22 +2106,22 @@ void StoneState::init(Game::EnemyBase* enemy, Game::StateArg* arg)
  * Address:	80100A9C
  * Size:	0000CC
  */
-void StoneState::cleanup(Game::EnemyBase* enemy) 
+void StoneState::cleanup(Game::EnemyBase* enemy)
 {
-    P2ASSERTLINE(1024, enemy->_1E0[0].typeView & 0x200);
-    
-    enemy->_1E0[0] = enemy->_1E8[0];
-    enemy->_1E0[1] = enemy->_1E8[1];
-    enemy->_1E0[0].typeView &= 0xFFEFFFFF;
-    enemy->_1E0[0].typeView &= 0xFFFFFDFF;
-    
-    enemy->show();
-    enemy->startMotion();
-    enemy->doFinishStoneState();
-    
-    if ((enemy->m_emotion == 2) && PSGetDirectedMainBgm()) {
-        enemy->m_soundObj->battleOn();
-    }
+	P2ASSERTLINE(1024, enemy->_1E0[0].typeView & 0x200);
+
+	enemy->_1E0[0] = enemy->_1E8[0];
+	enemy->_1E0[1] = enemy->_1E8[1];
+	enemy->_1E0[0].typeView &= 0xFFEFFFFF;
+	enemy->_1E0[0].typeView &= 0xFFFFFDFF;
+
+	enemy->show();
+	enemy->startMotion();
+	enemy->doFinishStoneState();
+
+	if ((enemy->m_emotion == 2) && PSGetDirectedMainBgm()) {
+		enemy->m_soundObj->battleOn();
+	}
 }
 
 /*
@@ -2130,28 +2129,28 @@ void StoneState::cleanup(Game::EnemyBase* enemy)
  * Address:	80100B68
  * Size:	000118
  */
-void StoneState::updateAlways(Game::EnemyBase* enemy) 
+void StoneState::updateAlways(Game::EnemyBase* enemy)
 {
-    enemy->m_enemyStoneObj->update();
-    enemy->m_stoneTimer += sys->m_secondsPerFrame;
-    
-    if (enemy->m_enemyStoneObj->_50 & 4) {
-        if (enemy->_0C8 == nullptr) {
-            enemy->constraintOff();
-            enemy->_1E0[0].typeView &= 0xFFFFFFFB;
-        }
-        // why.
-        float comp = (enemy->m_stoneTimer > ((EnemyParmsBase*) enemy->m_parms)->m_general.m_stoneDuration.m_value);
-        if (comp) {
-            if (enemy->m_enemyStoneObj->_50 & 8) {
-                if ((enemy->m_enemyStoneObj->_50 & 0x10) && enemy->isAlive() ) {
-                    transit(enemy, EBS_Living, 0);
-                }
-            } else {
-                enemy->m_enemyStoneObj->shake();
-            }
-        }
-    }
+	enemy->m_enemyStoneObj->update();
+	enemy->m_stoneTimer += sys->m_secondsPerFrame;
+
+	if (enemy->m_enemyStoneObj->_50 & 4) {
+		if (enemy->_0C8 == nullptr) {
+			enemy->constraintOff();
+			enemy->_1E0[0].typeView &= 0xFFFFFFFB;
+		}
+		// why.
+		float comp = (enemy->m_stoneTimer > ((EnemyParmsBase*)enemy->m_parms)->m_general.m_stoneDuration.m_value);
+		if (comp) {
+			if (enemy->m_enemyStoneObj->_50 & 8) {
+				if ((enemy->m_enemyStoneObj->_50 & 0x10) && enemy->isAlive()) {
+					transit(enemy, EBS_Living, 0);
+				}
+			} else {
+				enemy->m_enemyStoneObj->shake();
+			}
+		}
+	}
 }
 
 /*
@@ -2159,11 +2158,11 @@ void StoneState::updateAlways(Game::EnemyBase* enemy)
  * Address:	80100C80
  * Size:	000074
  */
-void StoneState::updateCullingOff(Game::EnemyBase* enemy) 
+void StoneState::updateCullingOff(Game::EnemyBase* enemy)
 {
-    if (enemy->isAlive() && enemy->isStopMotion() && (enemy->m_health <= 0.0f)) {
-        enemy->kill((Game::CreatureKillArg*) nullptr);
-    }
+	if (enemy->isAlive() && enemy->isStopMotion() && (enemy->m_health <= 0.0f)) {
+		enemy->kill((Game::CreatureKillArg*)nullptr);
+	}
 }
 
 /*
@@ -3364,31 +3363,10 @@ void EnemyBase::fadeEfxHamon()
  */
 void EnemyBase::setEmotionCaution()
 {
-	/*
-	.loc_0x0:
-	  stwu      r1, -0x10(r1)
-	  mflr      r0
-	  stw       r0, 0x14(r1)
-	  li        r0, 0x1
-	  stw       r31, 0xC(r1)
-	  mr        r31, r3
-	  stb       r0, 0x1F0(r3)
-	  bl        0x236310
-	  cmplwi    r3, 0
-	  beq-      .loc_0x3C
-	  lwz       r3, 0x28C(r31)
-	  lwz       r12, 0x28(r3)
-	  lwz       r12, 0xC4(r12)
-	  mtctr     r12
-	  bctrl
-
-	.loc_0x3C:
-	  lwz       r0, 0x14(r1)
-	  lwz       r31, 0xC(r1)
-	  mtlr      r0
-	  addi      r1, r1, 0x10
-	  blr
-	*/
+	m_emotion = 1;
+	if (PSGetDirectedMainBgm() != nullptr) {
+		m_soundObj->battleOff();
+	}
 }
 
 /*
@@ -3398,24 +3376,8 @@ void EnemyBase::setEmotionCaution()
  */
 void EnemyBase::setEmotionExcitement()
 {
-	/*
-	.loc_0x0:
-	  stwu      r1, -0x10(r1)
-	  mflr      r0
-	  stw       r0, 0x14(r1)
-	  li        r0, 0x2
-	  stb       r0, 0x1F0(r3)
-	  lwz       r3, 0x28C(r3)
-	  addi      r3, r3, 0xB8
-	  lwz       r12, 0x10(r3)
-	  lwz       r12, 0x8(r12)
-	  mtctr     r12
-	  bctrl
-	  lwz       r0, 0x14(r1)
-	  mtlr      r0
-	  addi      r1, r1, 0x10
-	  blr
-	*/
+	m_emotion = 2;
+	m_soundObj->battleOn();
 }
 
 /*
@@ -3425,31 +3387,10 @@ void EnemyBase::setEmotionExcitement()
  */
 void EnemyBase::setEmotionNone()
 {
-	/*
-	.loc_0x0:
-	  stwu      r1, -0x10(r1)
-	  mflr      r0
-	  stw       r0, 0x14(r1)
-	  li        r0, 0
-	  stw       r31, 0xC(r1)
-	  mr        r31, r3
-	  stb       r0, 0x1F0(r3)
-	  bl        0x236284
-	  cmplwi    r3, 0
-	  beq-      .loc_0x3C
-	  lwz       r3, 0x28C(r31)
-	  lwz       r12, 0x28(r3)
-	  lwz       r12, 0xC4(r12)
-	  mtctr     r12
-	  bctrl
-
-	.loc_0x3C:
-	  lwz       r0, 0x14(r1)
-	  lwz       r31, 0xC(r1)
-	  mtlr      r0
-	  addi      r1, r1, 0x10
-	  blr
-	*/
+	m_emotion = 0;
+	if (PSGetDirectedMainBgm() != nullptr) {
+		m_soundObj->battleOff();
+	}
 }
 
 /*
@@ -3457,76 +3398,40 @@ void EnemyBase::setEmotionNone()
  * Address:	80101A58
  * Size:	000104
  */
-void EnemyBase::onInit(Game::CreatureInitArg*)
+void EnemyBase::onInit(Game::CreatureInitArg* arg)
 {
-	/*
-	.loc_0x0:
-	  stwu      r1, -0x10(r1)
-	  mflr      r0
-	  stw       r0, 0x14(r1)
-	  stw       r31, 0xC(r1)
-	  mr        r31, r3
-	  bl        0x9D428
-	  lwz       r3, 0x188(r31)
-	  li        r4, 0
-	  lfs       f0, -0x6BB0(r2)
-	  stb       r4, 0x24(r3)
-	  stfs      f0, 0x208(r31)
-	  lwz       r0, 0x1E0(r31)
-	  rlwinm    r0,r0,0,31,29
-	  stw       r0, 0x1E0(r31)
-	  stfs      f0, 0x20C(r31)
-	  stfs      f0, 0x21C(r31)
-	  stb       r4, 0x1E0(r31)
-	  stb       r4, 0x1E1(r31)
-	  stb       r4, 0x1E2(r31)
-	  stb       r4, 0x1E3(r31)
-	  stb       r4, 0x1E4(r31)
-	  stb       r4, 0x1E5(r31)
-	  stb       r4, 0x1E6(r31)
-	  stb       r4, 0x1E7(r31)
-	  stb       r4, 0x1E8(r31)
-	  stb       r4, 0x1E9(r31)
-	  stb       r4, 0x1EA(r31)
-	  stb       r4, 0x1EB(r31)
-	  stb       r4, 0x1EC(r31)
-	  stb       r4, 0x1ED(r31)
-	  stb       r4, 0x1EE(r31)
-	  stb       r4, 0x1EF(r31)
-	  lwz       r0, 0x1E0(r31)
-	  oris      r0, r0, 0x1000
-	  stw       r0, 0x1E0(r31)
-	  lwz       r0, 0x1E0(r31)
-	  ori       r0, r0, 0x8
-	  stw       r0, 0x1E0(r31)
-	  lwz       r0, 0x1E0(r31)
-	  ori       r0, r0, 0x20
-	  stw       r0, 0x1E0(r31)
-	  lwz       r0, 0x1E0(r31)
-	  ori       r0, r0, 0x40
-	  stw       r0, 0x1E0(r31)
-	  lwz       r0, 0x1E0(r31)
-	  ori       r0, r0, 0x80
-	  stw       r0, 0x1E0(r31)
-	  lwz       r0, 0x1E0(r31)
-	  ori       r0, r0, 0x100
-	  stw       r0, 0x1E0(r31)
-	  lwz       r0, 0x1E0(r31)
-	  ori       r0, r0, 0x800
-	  stw       r0, 0x1E0(r31)
-	  stw       r4, 0x280(r31)
-	  lwz       r0, 0x1E0(r31)
-	  ori       r0, r0, 0x1000
-	  stw       r0, 0x1E0(r31)
-	  lwz       r0, 0x1E0(r31)
-	  ori       r0, r0, 0x8000
-	  stw       r0, 0x1E0(r31)
-	  lwz       r31, 0xC(r1)
-	  lwz       r0, 0x14(r1)
-	  mtlr      r0
-	  addi      r1, r1, 0x10
-	  blr
-	*/
+	clearStick();
+	m_animKeyEvent->m_running = false;
+	m_instantDamage           = 0.0f;
+	_1E0[0].typeView &= ~2;
+	m_toFlick           = 0.0f;
+	m_stoneTimer        = 0.0f;
+	_1E0[0].byteView[0] = 0;
+	_1E0[0].byteView[1] = 0;
+	_1E0[0].byteView[2] = 0;
+	_1E0[0].byteView[3] = 0;
+	_1E0[1].byteView[0] = 0;
+	_1E0[1].byteView[1] = 0;
+	_1E0[1].byteView[2] = 0;
+	_1E0[1].byteView[3] = 0;
+	_1E8[0].byteView[0] = 0;
+	_1E8[0].byteView[1] = 0;
+	_1E8[0].byteView[2] = 0;
+	_1E8[0].byteView[3] = 0;
+	_1E8[1].byteView[0] = 0;
+	_1E8[1].byteView[1] = 0;
+	_1E8[1].byteView[2] = 0;
+	_1E8[1].byteView[3] = 0;
+	_1E0[0].typeView |= 0x10000000;
+	_1E0[0].typeView |= 0x8;
+	_1E0[0].typeView |= 0x20;
+	_1E0[0].typeView |= 0x40;
+	_1E0[0].typeView |= 0x80;
+	_1E0[0].typeView |= 0x100;
+	_1E0[0].typeView |= 0x800;
+	m_waterBox = nullptr;
+	_1E0[0].typeView |= 0x1000;
+	_1E0[0].typeView |= 0x8000;
 }
 
 /*
@@ -3534,175 +3439,63 @@ void EnemyBase::onInit(Game::CreatureInitArg*)
  * Address:	80101B5C
  * Size:	000218
  */
-void EnemyBase::onInitPost(Game::CreatureInitArg*)
+void EnemyBase::onInitPost(Game::CreatureInitArg* arg)
 {
-	/*
-	.loc_0x0:
-	  stwu      r1, -0x20(r1)
-	  mflr      r0
-	  stw       r0, 0x24(r1)
-	  stw       r31, 0x1C(r1)
-	  mr        r31, r3
-	  lbz       r6, 0x2B0(r3)
-	  extsb.    r6, r6
-	  beq-      .loc_0x30
-	  blt-      .loc_0x184
-	  cmpwi     r6, 0x6
-	  bge-      .loc_0x184
-	  b         .loc_0x54
+	switch (m_dropGroup) {
+	case 0:
+		m_lifecycleFSM->start(this, 6, nullptr);
+		break;
+	case 1:
+	case 2:
+	case 3:
+	case 4:
+	case 5:
+		if (_1E0[0].typeView & 0x40000) {
+			m_lifecycleFSM->start(this, 6, nullptr);
+		} else {
+			switch (m_dropGroup) {
+			case 1:
+				m_lifecycleFSM->start(this, 0, nullptr);
+				break;
+			case 2:
+				m_lifecycleFSM->start(this, 1, nullptr);
+				break;
+			case 3:
+				m_lifecycleFSM->start(this, 2, nullptr);
+				break;
+			case 4:
+				m_lifecycleFSM->start(this, 3, nullptr);
+				break;
+			case 5:
+				m_lifecycleFSM->start(this, 4, nullptr);
+				break;
+			default:
+				JUT_PANICLINE(1483, "Unknown birth type:%d", m_dropGroup);
+				break;
+			}
+		}
+		break;
+	default:
+		JUT_PANICLINE(1490, "Unknown birth type:%d", m_dropGroup);
+		break;
+	}
 
-	.loc_0x30:
-	  lwz       r3, 0x2B8(r31)
-	  mr        r4, r31
-	  li        r5, 0x6
-	  li        r6, 0
-	  lwz       r12, 0x0(r3)
-	  lwz       r12, 0xC(r12)
-	  mtctr     r12
-	  bctrl
-	  b         .loc_0x1A0
+	if (gameSystem->m_mode == GSM_PIKLOPEDIA) {
+		doAnimationCullingOff();
 
-	.loc_0x54:
-	  lwz       r0, 0x1E0(r31)
-	  rlwinm.   r0,r0,0,13,13
-	  beq-      .loc_0x84
-	  lwz       r3, 0x2B8(r31)
-	  mr        r4, r31
-	  li        r5, 0x6
-	  li        r6, 0
-	  lwz       r12, 0x0(r3)
-	  lwz       r12, 0xC(r12)
-	  mtctr     r12
-	  bctrl
-	  b         .loc_0x1A0
+		Sys::Sphere waterSphere;
+		getWaterSphere(&waterSphere);
 
-	.loc_0x84:
-	  cmpwi     r6, 0x3
-	  beq-      .loc_0xF8
-	  bge-      .loc_0xA0
-	  cmpwi     r6, 0x1
-	  beq-      .loc_0xB0
-	  bge-      .loc_0xD4
-	  b         .loc_0x164
-
-	.loc_0xA0:
-	  cmpwi     r6, 0x5
-	  beq-      .loc_0x140
-	  bge-      .loc_0x164
-	  b         .loc_0x11C
-
-	.loc_0xB0:
-	  lwz       r3, 0x2B8(r31)
-	  mr        r4, r31
-	  li        r5, 0
-	  li        r6, 0
-	  lwz       r12, 0x0(r3)
-	  lwz       r12, 0xC(r12)
-	  mtctr     r12
-	  bctrl
-	  b         .loc_0x1A0
-
-	.loc_0xD4:
-	  lwz       r3, 0x2B8(r31)
-	  mr        r4, r31
-	  li        r5, 0x1
-	  li        r6, 0
-	  lwz       r12, 0x0(r3)
-	  lwz       r12, 0xC(r12)
-	  mtctr     r12
-	  bctrl
-	  b         .loc_0x1A0
-
-	.loc_0xF8:
-	  lwz       r3, 0x2B8(r31)
-	  mr        r4, r31
-	  li        r5, 0x2
-	  li        r6, 0
-	  lwz       r12, 0x0(r3)
-	  lwz       r12, 0xC(r12)
-	  mtctr     r12
-	  bctrl
-	  b         .loc_0x1A0
-
-	.loc_0x11C:
-	  lwz       r3, 0x2B8(r31)
-	  mr        r4, r31
-	  li        r5, 0x3
-	  li        r6, 0
-	  lwz       r12, 0x0(r3)
-	  lwz       r12, 0xC(r12)
-	  mtctr     r12
-	  bctrl
-	  b         .loc_0x1A0
-
-	.loc_0x140:
-	  lwz       r3, 0x2B8(r31)
-	  mr        r4, r31
-	  li        r5, 0x4
-	  li        r6, 0
-	  lwz       r12, 0x0(r3)
-	  lwz       r12, 0xC(r12)
-	  mtctr     r12
-	  bctrl
-	  b         .loc_0x1A0
-
-	.loc_0x164:
-	  lis       r3, 0x8048
-	  lis       r4, 0x8048
-	  subi      r5, r4, 0x5A2C
-	  subi      r3, r3, 0x5ABC
-	  li        r4, 0x5CB
-	  crclr     6, 0x6
-	  bl        -0xD7698
-	  b         .loc_0x1A0
-
-	.loc_0x184:
-	  lis       r3, 0x8048
-	  lis       r4, 0x8048
-	  subi      r5, r4, 0x5A2C
-	  subi      r3, r3, 0x5ABC
-	  li        r4, 0x5D2
-	  crclr     6, 0x6
-	  bl        -0xD76B8
-
-	.loc_0x1A0:
-	  lwz       r3, -0x6C18(r13)
-	  lwz       r0, 0x44(r3)
-	  cmpwi     r0, 0x4
-	  bne-      .loc_0x204
-	  mr        r3, r31
-	  lwz       r12, 0x0(r31)
-	  lwz       r12, 0x1DC(r12)
-	  mtctr     r12
-	  bctrl
-	  mr        r3, r31
-	  addi      r4, r1, 0x8
-	  bl        0x4E38
-	  lwz       r3, -0x6CF8(r13)
-	  li        r0, 0
-	  cmplwi    r3, 0
-	  beq-      .loc_0x1EC
-	  addi      r4, r1, 0x8
-	  bl        0x61BE8
-	  mr        r0, r3
-
-	.loc_0x1EC:
-	  cmplwi    r0, 0
-	  beq-      .loc_0x1FC
-	  stw       r0, 0x280(r31)
-	  b         .loc_0x204
-
-	.loc_0x1FC:
-	  li        r0, 0
-	  stw       r0, 0x280(r31)
-
-	.loc_0x204:
-	  lwz       r0, 0x24(r1)
-	  lwz       r31, 0x1C(r1)
-	  mtlr      r0
-	  addi      r1, r1, 0x20
-	  blr
-	*/
+		WaterBox* waterBox = nullptr;
+		if (mapMgr != nullptr) {
+			waterBox = mapMgr->findWater(waterSphere);
+		}
+		if (waterBox != nullptr) {
+			m_waterBox = waterBox;
+		} else {
+			m_waterBox = nullptr;
+		}
+	}
 }
 
 /*
@@ -11788,7 +11581,7 @@ void EnemyBase::resetDroppingMassZero()
 	_118 = m_friction;
 }
 
-} // namespace Game
+} // namespace EnemyBaseFSM
 
 namespace PSM {
 
