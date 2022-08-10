@@ -14,32 +14,41 @@ struct TChasePos : public TSync {
 	{
 		m_effectID = effectID;
 	}
-	// vtable 2
-	virtual void doExecuteEmitterOperation(JPABaseEmitter*); // _1C
-	virtual ~TChasePos();                                    // _2C
+
+	// vtable 1: TBase
+	// 		_08-_14
+	// vtable 2: JPAEmitterCallBack + self
+	virtual void doExecuteEmitterOperation(JPABaseEmitter*); // _38
+	virtual ~TChasePos() { }                                 // _48 (weak)
 
 	Vector3f* m_position; // _10
 };
 
 struct TChasePos2 : public TSyncGroup2<TChasePos> {
-	TChasePos2(Vector3f*, unsigned short, unsigned short);
+	TChasePos2(Vector3f*, u16, u16);
+
 	void setPosptr(Vector3f*);
 };
 
 struct TChasePos3 : public TSyncGroup3<TChasePos> {
-	TChasePos3(Vector3f*, unsigned short, unsigned short, unsigned short);
+	TChasePos3(Vector3f*, u16, u16, u16);
+
 	void setPosptr(Vector3f*);
 };
 
 struct TChasePos4 : public TSyncGroup4<TChasePos> {
-	TChasePos4(Vector3f*, unsigned short, unsigned short, unsigned short, unsigned short);
+	TChasePos4(Vector3f*, u16, u16, u16, u16);
+
 	void setPosptr(Vector3f*);
 };
 
 struct TChasePosPos : public TSync {
-	// vtable 2
-	virtual void doExecuteEmitterOperation(JPABaseEmitter*); // _1C
-	virtual ~TChasePosPos();                                 // _2C (thunk at _00)
+
+	// vtable 1 (TBase)
+	// 		_08-_14
+	// vtable 2 (JPAEmitterCallBack + self)
+	virtual void doExecuteEmitterOperation(JPABaseEmitter*); // _38
+	virtual ~TChasePosPos();                                 // _48 (weak, thunk at _1C)
 
 	Vector3f* _10; // _10
 	Vector3f* _14; // _14
@@ -48,9 +57,11 @@ struct TChasePosPos : public TSync {
 struct TChasePosPosLocalYScale : public TSync {
 	TChasePosPosLocalYScale();
 
-	// vtable 2
-	virtual void doExecuteEmitterOperation(JPABaseEmitter*); // _1C
-	virtual ~TChasePosPosLocalYScale();                      // _2C (thunk at _00)
+	// vtable 1 (TBase)
+	// 		_08-_14
+	// vtable 2 (JPAEmitterCallBack + self)
+	virtual void doExecuteEmitterOperation(JPABaseEmitter*); // _38
+	virtual ~TChasePosPosLocalYScale();                      // _48 (weak, thunk at _1C)
 
 	Vector3f* _10; // _10
 	Vector3f* _14; // _14
@@ -58,20 +69,25 @@ struct TChasePosPosLocalYScale : public TSync {
 };
 
 struct TChasePosPosLocalYScale2 : public TSyncGroup2<TChasePosPosLocalYScale> {
-	TChasePosPosLocalYScale2(Vector3f*, Vector3f*, float, unsigned short, unsigned short);
+	TChasePosPosLocalYScale2(Vector3f*, Vector3f*, float, u16, u16);
+
 	void setPosptr(Vector3f*, Vector3f*);
 };
 
 struct TChasePosPosLocalYScale3 : public TSyncGroup3<TChasePosPosLocalYScale> {
-	TChasePosPosLocalYScale3(Vector3f*, Vector3f*, float, unsigned short, unsigned short, unsigned short);
+	TChasePosPosLocalYScale3(Vector3f*, Vector3f*, float, u16, u16, u16);
+
 	void setPosptr(Vector3f*, Vector3f*);
 };
 
 struct TChasePosPosLocalZScale : public TSync {
 	TChasePosPosLocalZScale();
-	// vtable 2
-	virtual void doExecuteEmitterOperation(JPABaseEmitter*); // _1C
-	virtual ~TChasePosPosLocalZScale();                      // _2C (thunk at _00)
+
+	// vtable 1 (TBase)
+	// 		_08-_14
+	// vtable 2 (JPAEmitterCallBack + self)
+	virtual void doExecuteEmitterOperation(JPABaseEmitter*); // _38
+	virtual ~TChasePosPosLocalZScale();                      // _48 (weak, thunk at _1C)
 
 	Vector3f* _10; // _10
 	Vector3f* _14; // _14
@@ -79,33 +95,38 @@ struct TChasePosPosLocalZScale : public TSync {
 };
 
 struct TChasePosPosLocalZScale2 : public TSyncGroup2<TChasePosPosLocalZScale> {
-	TChasePosPosLocalZScale2(Vector3f*, Vector3f*, float, unsigned short, unsigned short);
+	TChasePosPosLocalZScale2(Vector3f*, Vector3f*, float, u16, u16);
+
 	void setPosptr(Vector3f*, Vector3f*);
 };
 
 struct TChasePosPosLocalZScale3 : public TSyncGroup3<TChasePosPosLocalZScale> {
-	TChasePosPosLocalZScale3(Vector3f*, Vector3f*, float, unsigned short, unsigned short, unsigned short);
+	TChasePosPosLocalZScale3(Vector3f*, Vector3f*, float, u16, u16, u16);
+
 	void setPosptr(Vector3f*, Vector3f*);
 };
 
 struct TChasePosYRot : public TSync {
 	TChasePosYRot();
-	// vtable 2
-	virtual void doExecuteEmitterOperation(JPABaseEmitter*); // _1C
-	virtual ~TChasePosYRot();                                // _2C (thunk at _00)
+
+	// vtable 1 (TBase)
+	// 		_08-_14
+	// vtable 2 (JPAEmitterCallBack + self)
+	virtual void doExecuteEmitterOperation(JPABaseEmitter*); // _38
+	virtual ~TChasePosYRot();                                // _48 (weak, thunk at _1C)
 
 	Vector3f* m_position; // _10
 	float* m_rotation;    // _14
 };
 
 struct TChasePosYRot2 : public TSyncGroup2<TChasePosYRot> {
-	TChasePosYRot2(Vector3f*, float*, unsigned short, unsigned short);
+	TChasePosYRot2(Vector3f*, float*, u16, u16);
 	void setPosptr(Vector3f*);
 	void setYRot(float*);
 };
 
 struct TChasePosYRot3 : public TSyncGroup3<TChasePosYRot> {
-	TChasePosYRot3(Vector3f*, float*, unsigned short, unsigned short, unsigned short);
+	TChasePosYRot3(Vector3f*, float*, u16, u16, u16);
 	void setPosptr(Vector3f*);
 	void setYRot(float*);
 };

@@ -8,7 +8,8 @@
 
 namespace efx {
 template <typename T> struct TSyncGroup2 : public TBase {
-	virtual bool create(Arg* arg) // _00
+	//////////////// VTABLE
+	virtual bool create(Arg* arg) // _08 (weak)
 	{
 		for (u32 i = 0; i < 2; i++) {
 			if (((TSync*)&m_items[i])->create(arg) == false) {
@@ -17,36 +18,38 @@ template <typename T> struct TSyncGroup2 : public TBase {
 		}
 		return true;
 	}
-	virtual void forceKill() // _04
+	virtual void forceKill() // _0C (weak)
 	{
 		for (u32 i = 0; i < 2; i++) {
 			((TSync*)&m_items[i])->forceKill();
 		}
 	}
-	virtual void fade() // _08
+	virtual void fade() // _10 (weak)
 	{
 		for (u32 i = 0; i < 2; i++) {
 			((TSync*)&m_items[i])->fade();
 		}
 	}
-	virtual void startDemoDrawOff() // _0C
+	virtual void startDemoDrawOff() // _14 (weak)
 	{
 		for (u32 i = 0; i < 2; i++) {
 			((TSync*)&m_items[i])->startDemoDrawOff();
 		}
 	}
-
-	virtual void endDemoDrawOn() // _10
+	virtual void endDemoDrawOn() // _18 (weak)
 	{
 		for (u32 i = 0; i < 2; i++) {
 			((TSync*)&m_items[i])->endDemoDrawOn();
 		}
 	}
+	//////////////// VTABLE END
+
 	T m_items[2];
 };
 
 template <typename T> struct TSyncGroup3 : public TBase {
-	virtual bool create(Arg* arg) // _00
+	//////////////// VTABLE
+	virtual bool create(Arg* arg) // _08 (weak)
 	{
 		for (u32 i = 0; i < 3; i++) {
 			if (((TSync*)&m_items[i])->create(arg) == false) {
@@ -55,36 +58,38 @@ template <typename T> struct TSyncGroup3 : public TBase {
 		}
 		return true;
 	}
-	virtual void forceKill() // _04
+	virtual void forceKill() // _0C (weak)
 	{
 		for (u32 i = 0; i < 3; i++) {
 			((TSync*)&m_items[i])->forceKill();
 		}
 	}
-	virtual void fade() // _08
+	virtual void fade() // _10 (weak)
 	{
 		for (u32 i = 0; i < 3; i++) {
 			((TSync*)&m_items[i])->fade();
 		}
 	}
-	virtual void startDemoDrawOff() // _0C
+	virtual void startDemoDrawOff() // _14 (weak)
 	{
 		for (u32 i = 0; i < 3; i++) {
 			((TSync*)&m_items[i])->startDemoDrawOff();
 		}
 	}
-
-	virtual void endDemoDrawOn() // _10
+	virtual void endDemoDrawOn() // _18 (weak)
 	{
 		for (u32 i = 0; i < 3; i++) {
 			((TSync*)&m_items[i])->endDemoDrawOn();
 		}
 	}
+	//////////////// VTABLE END
+
 	T m_items[3];
 };
 
 template <typename T> struct TSyncGroup4 : public TBase {
-	virtual bool create(Arg* arg) // _00
+	//////////////// VTABLE
+	virtual bool create(Arg* arg) // _08 (weak)
 	{
 		for (u32 i = 0; i < 4; i++) {
 			if (((TSync*)&m_items[i])->create(arg) == false) {
@@ -93,36 +98,38 @@ template <typename T> struct TSyncGroup4 : public TBase {
 		}
 		return true;
 	}
-	virtual void forceKill() // _04
+	virtual void forceKill() // _10 (weak)
 	{
 		for (u32 i = 0; i < 4; i++) {
 			((TSync*)&m_items[i])->forceKill();
 		}
 	}
-	virtual void fade() // _08
+	virtual void fade() // _14 (weak)
 	{
 		for (u32 i = 0; i < 4; i++) {
 			((TSync*)&m_items[i])->fade();
 		}
 	}
-	virtual void startDemoDrawOff() // _0C
+	virtual void startDemoDrawOff() // _18 (weak)
 	{
 		for (u32 i = 0; i < 4; i++) {
 			((TSync*)&m_items[i])->startDemoDrawOff();
 		}
 	}
-
-	virtual void endDemoDrawOn() // _10
+	virtual void endDemoDrawOn() // _1C (weak)
 	{
 		for (u32 i = 0; i < 4; i++) {
 			((TSync*)&m_items[i])->endDemoDrawOn();
 		}
 	}
+	//////////////// VTABLE END
+
 	T m_items[4];
 };
 
 template <typename T> struct TSyncGroup5 : public TBase {
-	virtual bool create(Arg* arg) // _00
+	//////////////// VTABLE
+	virtual bool create(Arg* arg) // _08 (weak)
 	{
 		for (u32 i = 0; i < 5; i++) {
 			if (((TSync*)&m_items[i])->create(arg) == false) {
@@ -131,35 +138,37 @@ template <typename T> struct TSyncGroup5 : public TBase {
 		}
 		return true;
 	}
-	virtual void forceKill() // _04
+	virtual void forceKill() // _0C (weak)
 	{
 		for (u32 i = 0; i < 5; i++) {
 			((TSync*)&m_items[i])->forceKill();
 		}
 	}
-	virtual void fade() // _08
+	virtual void fade() // _10 (weak)
 	{
 		for (u32 i = 0; i < 5; i++) {
 			((TSync*)&m_items[i])->fade();
 		}
 	}
-	virtual void startDemoDrawOff() // _0C
+	virtual void startDemoDrawOff() // _14 (weak)
 	{
 		for (u32 i = 0; i < 5; i++) {
 			((TSync*)&m_items[i])->startDemoDrawOff();
 		}
 	}
-
-	virtual void endDemoDrawOn() // _10
+	virtual void endDemoDrawOn() // _18 (weak)
 	{
 		for (u32 i = 0; i < 5; i++) {
 			((TSync*)&m_items[i])->endDemoDrawOn();
 		}
 	}
+	//////////////// VTABLE END
+
 	T m_items[5];
 };
 
 template <typename T> struct TSyncGroup6 : public TBase {
+	//////////////// VTABLE
 	virtual bool create(Arg* arg) // _00
 	{
 		for (u32 i = 0; i < 6; i++) {
@@ -187,13 +196,14 @@ template <typename T> struct TSyncGroup6 : public TBase {
 			((TSync*)&m_items[i])->startDemoDrawOff();
 		}
 	}
-
 	virtual void endDemoDrawOn() // _10
 	{
 		for (u32 i = 0; i < 6; i++) {
 			((TSync*)&m_items[i])->endDemoDrawOn();
 		}
 	}
+	//////////////// VTABLE END
+
 	T m_items[6];
 };
 } // namespace efx

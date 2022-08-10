@@ -15,17 +15,17 @@ struct TSync : public TBase, public JPAEmitterCallBack {
 	{
 	}
 	// vtable 1 (TBase)
-	virtual bool create(Arg*); // _00
-	virtual void forceKill();  // _04
-	virtual void fade();       // _08
+	virtual bool create(Arg*); // _08
+	virtual void forceKill();  // _0C
+	virtual void fade();       // _10
 	// vtable 2 (JPAEmitterCallBack + self)
-	virtual void execute(JPABaseEmitter*);                       // _14 (thunk at _04)
-	virtual void executeAfter(JPABaseEmitter*);                  // _18 (thunk at _08)
-	virtual void doExecuteEmitterOperation(JPABaseEmitter*) = 0; // _1C
-	virtual void doExecuteAfter(JPABaseEmitter*);                // _20
-	virtual void startDemoDrawOff();                             // _24
-	virtual void endDemoDrawOn();                                // _28
-	virtual ~TSync();                                            // _2C (thunk at _00)
+	virtual void execute(JPABaseEmitter*);                       // _30 (weak; thunk at _20)
+	virtual void executeAfter(JPABaseEmitter*);                  // _34 (weak; thunk at _24)
+	virtual void doExecuteEmitterOperation(JPABaseEmitter*) = 0; // _38
+	virtual void doExecuteAfter(JPABaseEmitter*);                // _3C (weak)
+	virtual void startDemoDrawOff();                             // _40 (weak)
+	virtual void endDemoDrawOn();                                // _44 (weak)
+	virtual ~TSync() { }                                         // _48 (weak; thunk at _1C)
 
 	JPABaseEmitter* m_emitter;
 	u16 m_effectID;

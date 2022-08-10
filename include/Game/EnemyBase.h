@@ -97,7 +97,7 @@ struct EnemyBase : public Creature, public SysShape::MotionListener, virtual pub
 	virtual bool inWater();                           // _8C (weak)
 	virtual bool isFlying()                           // _CC (weak)
 	{
-		return ( _1E0[0].typeView >> 2) & 1;
+		return ( _1E0.m_flags[0].typeView >> 2) & 1;
 	}
 	virtual void collisionCallback(CollEvent&);       // _EC
 	virtual JAInter::Object* getJAIObject();          // _F4
@@ -298,8 +298,8 @@ struct EnemyBase : public Creature, public SysShape::MotionListener, virtual pub
 	Matrix3f _1A4;                     // _1A4
 	Vector3f m_velocity;               // _1C8
 	Vector3f m_velocity2;              // _1D4
-	BitFlag<u32> _1E0[2];              // _1E0
-	BitFlag<u32> _1E8[2];              // _1E8
+	BitFlagArray<u32,2> _1E0;          // _1E0
+	BitFlagArray<u32,2> _1E8;          // _1E8
 	u8 m_emotion;                      // _1F0
 	u8 m_enemyIndexForType;            // _1F1
 	u8 _1F2;                           // _1F2
@@ -352,33 +352,40 @@ enum StateID {
 	EBS_Earthquake,
 	EBS_Fit
 };
+
+struct State;
+
 /**
  * Generic lifecycle FSM that every teki has, often in addition to a more
  * specific FSM derived from Game::StateMachine.
  */
 struct StateMachine : public Game::EnemyStateMachine {
-	virtual void init(EnemyBase*);                            // _00
-	virtual EnemyFSMState* getCurrState(EnemyBase*);          // _14
-	virtual void setCurrState(EnemyBase*, EnemyFSMState*);    // _18
-	virtual void update(EnemyBase*);                          // _1C
-	virtual void entry(EnemyBase*);                           // _20
-	virtual void simulation(EnemyBase*, float);               // _24
-	virtual void animation(EnemyBase*);                       // _28
-	virtual void bounceProcedure(EnemyBase*, Sys::Triangle*); // _2C
+	virtual void init(EnemyBase*);                            // _08
+	virtual EnemyFSMState* getCurrState(EnemyBase*);          // _1C (weak)
+	virtual void setCurrState(EnemyBase*, EnemyFSMState*);    // _20 (weak)
+	virtual void update(EnemyBase*);                          // _24
+	virtual void entry(EnemyBase*);                           // _28
+	virtual void simulation(EnemyBase*, float);               // _2C
+	virtual void animation(EnemyBase*);                       // _30 (weak)
+	virtual void bounceProcedure(EnemyBase*, Sys::Triangle*); // _34 (weak)
+
+	// something has to be here because of StateMachine::update(), entry(), simulation() etc... 
+	// assuming it's a state for now based on the weak state methods following the above in enemyBase
+	State* m_state;	// _1C 
 };
 
 /**
  * Generic lifecycle state.
  */
 struct State : public Game::EnemyFSMState {
-	inline State(int stateID, const char* name)
-	    : EnemyFSMState(stateID, name)
+	inline State(int stateID)
+	    : EnemyFSMState(stateID)
 	{
 	}
 
-	virtual void update(EnemyBase*);                          // _24 (weak)
-	virtual void entry(EnemyBase*);                           // _28 (weak)
-	virtual void simulation(EnemyBase*, float);               // _2C (weak)
+	virtual void update(EnemyBase*) { }                       // _24 (weak)
+	virtual void entry(EnemyBase*) { }                        // _28 (weak)
+	virtual void simulation(EnemyBase*, float) { }            // _2C (weak)
 	virtual void bounceProcedure(EnemyBase*, Sys::Triangle*); // _30 (weak)
 	virtual void animation(EnemyBase*);                       // _34
 
@@ -392,9 +399,10 @@ struct State : public Game::EnemyFSMState {
  * Generic birth-by-dropping state.
  */
 struct BirthTypeDropState : public State {
-	inline BirthTypeDropState(int stateID = EBS_Drop)
-	    : State(EBS_Drop, "BirthTypeDrop")
+	inline BirthTypeDropState(int stateID)
+	    : State(stateID)
 	{
+		m_name = "BirthTypeDrop";
 	}
 
 	virtual void init(EnemyBase*, StateArg*);   				// _08
@@ -451,8 +459,9 @@ struct BirthTypeDropEarthquakeState : public BirthTypeDropState {
  */
 struct AppearState : public State {
 	inline AppearState()
-	    : State(EBS_Appear, "Appear")
+	    : State(EBS_Appear)
 	{
+		m_name = "Appear";
 	}
 
 	virtual void init(EnemyBase*, StateArg*);   // _08
@@ -468,8 +477,9 @@ struct AppearState : public State {
  */
 struct LivingState : public State {
 	inline LivingState(int state = EBS_Living)
-	    : State(state, "Living")
+	    : State(state)
 	{
+		m_name = "Living";
 	}
 
 	virtual void update(EnemyBase*);            // _24
@@ -503,6 +513,7 @@ struct StoneState : public LivingState {
 struct EarthquakeState : public LivingState {
 	inline EarthquakeState()
 	    : LivingState(EBS_Earthquake)
+		, _10(0)
 	{
 		m_name = "Earthquake";
 	}

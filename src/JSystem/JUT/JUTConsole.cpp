@@ -4,6 +4,7 @@
 #include "JSystem/J2D/J2DGrafContext.h"
 #include "JSystem/JUT/JUTDirectPrint.h"
 #include "Dolphin/string.h"
+#include "Dolphin/stl.h"
 
 /*
     Generated from dpostproc

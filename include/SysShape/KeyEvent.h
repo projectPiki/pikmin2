@@ -9,10 +9,13 @@ namespace SysShape {
  * @size{0x20}
  */
 struct KeyEvent : public CNode {
-	virtual ~KeyEvent(); // _08 (weak)
+	inline KeyEvent() { m_frame = 0; m_type = 0; _20 = -1;}
 
-	f32 m_frame; // _18
+	virtual ~KeyEvent() { } // _08 (weak)
+
+	u32 m_frame; // _18
 	u32 m_type;  // _1C
+	short _20;	 // _20
 };
 
 } // namespace SysShape

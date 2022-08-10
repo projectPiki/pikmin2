@@ -11,10 +11,12 @@ struct TEnemyPiyo : public TChasePos {
 	{
 	}
 
-	// vtable 1
-	virtual bool create(Arg*); // _00
-	// vtable 2
-	virtual ~TEnemyPiyo(); // _2C
+	// vtable 1 (TBase)
+	virtual bool create(Arg*); // _08
+	// 	_0C-_14
+	// vtable 2 (JPAEmitterCallBack + Self)
+	virtual ~TEnemyPiyo() { } // _48 (weak)
+
 };
 } // namespace efx
 

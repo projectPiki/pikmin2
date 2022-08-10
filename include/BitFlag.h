@@ -17,4 +17,17 @@ template <typename T> struct BitFlag {
 	};
 };
 
+template <typename T, int I> struct BitFlagArray {
+    inline BitFlagArray()
+    {
+        for (int i = 0; i < I; i++) {
+            for (int j = 0; j < sizeof(T); j++) {
+                m_flags[i].byteView[j] = 0;
+            }
+        }
+    }
+
+    BitFlag<T> m_flags[I];	// _00
+};
+
 #endif
