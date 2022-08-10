@@ -258,6 +258,8 @@ struct Creature : public CellObject {
 	Vector3f m_scale;              // _168 /* Not sure if just model scale. */
 	SysShape::Model* m_model;      // _174
 };
+
+static Creature* currOp;
 } // namespace Game
 
 #endif

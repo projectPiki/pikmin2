@@ -14,6 +14,8 @@
 #include "Vector3.h"
 #include "Game/MapMgr.h"
 #include "Game/DeathMgr.h"
+#include "Game/CollEvent.h"
+#include "nans.h"
 
 // inline float _sqrt(register float x) {
 // 	register float fthis;
@@ -1152,210 +1154,63 @@ void Creature::applyImpulse(Vector3f& unused, Vector3f& impulse)
  * Address:	8013BFDC
  * Size:	0002E4
  */
-void Creature::checkCollision(CellObject*)
+void Creature::checkCollision(Game::CellObject* cellObj) 
 {
-	/*
-	stwu     r1, -0x60(r1)
-	mflr     r0
-	stw      r0, 0x64(r1)
-	stmw     r27, 0x4c(r1)
-	mr       r29, r3
-	mr       r30, r4
-	lwz      r12, 0(r3)
-	lwz      r12, 0xd8(r12)
-	mtctr    r12
-	bctrl
-	clrlwi.  r0, r3, 0x18
-	beq      lbl_8013C034
-	mr       r3, r29
-	lwz      r12, 0(r29)
-	lwz      r12, 0x1a8(r12)
-	mtctr    r12
-	bctrl
-	mr       r3, r30
-	lwz      r12, 0(r30)
-	lwz      r12, 0x1a8(r12)
-	mtctr    r12
-	bctrl
+    CollPart* collPart1;
+    CollPart* collPart2;
+    Vector3f vec;
 
-lbl_8013C034:
-	mr       r3, r30
-	lwz      r12, 0(r30)
-	lwz      r12, 0xa0(r12)
-	mtctr    r12
-	bctrl
-	clrlwi.  r0, r3, 0x18
-	beq      lbl_8013C2AC
-	mr       r3, r29
-	lwz      r12, 0(r29)
-	lwz      r12, 0xa0(r12)
-	mtctr    r12
-	bctrl
-	clrlwi.  r0, r3, 0x18
-	bne      lbl_8013C070
-	b        lbl_8013C2AC
+    if (isDebugCollision()) {
+        getCreatureName();
+        ((Creature*) cellObj)->getCreatureName();
+    }
+    
+    if (!((Creature*) cellObj)->isAtari() || !isAtari()) {
+        return;
+    }
+        
+    if (!((!isStickTo() || (m_sticker != cellObj)) && 
+        (!((Creature*) cellObj)->isStickTo() || (((Creature*) cellObj)->m_sticker != this)) && 
+        (!ignoreAtari((Creature*) cellObj))) || ((Creature*) cellObj)->ignoreAtari(this)) 
+    {
+        return;
+    }
+        
+    if (!((Creature*) cellObj)->isAlive() || !isAlive()) {
+        return;
+    }
+        
+    isDebugCollision();
 
-lbl_8013C070:
-	mr       r3, r29
-	bl       isStickTo__Q24Game8CreatureFv
-	clrlwi.  r0, r3, 0x18
-	beq      lbl_8013C08C
-	lwz      r0, 0xf4(r29)
-	cmplw    r0, r30
-	beq      lbl_8013C2AC
-
-lbl_8013C08C:
-	mr       r3, r30
-	bl       isStickTo__Q24Game8CreatureFv
-	clrlwi.  r0, r3, 0x18
-	beq      lbl_8013C0A8
-	lwz      r0, 0xf4(r30)
-	cmplw    r0, r29
-	beq      lbl_8013C2AC
-
-lbl_8013C0A8:
-	mr       r3, r29
-	mr       r4, r30
-	lwz      r12, 0(r29)
-	lwz      r12, 0x190(r12)
-	mtctr    r12
-	bctrl
-	clrlwi.  r0, r3, 0x18
-	bne      lbl_8013C2AC
-	mr       r3, r30
-	mr       r4, r29
-	lwz      r12, 0(r30)
-	lwz      r12, 0x190(r12)
-	mtctr    r12
-	bctrl
-	clrlwi.  r0, r3, 0x18
-	beq      lbl_8013C0EC
-	b        lbl_8013C2AC
-
-lbl_8013C0EC:
-	mr       r3, r30
-	lwz      r12, 0(r30)
-	lwz      r12, 0xa8(r12)
-	mtctr    r12
-	bctrl
-	clrlwi.  r0, r3, 0x18
-	beq      lbl_8013C2AC
-	mr       r3, r29
-	lwz      r12, 0(r29)
-	lwz      r12, 0xa8(r12)
-	mtctr    r12
-	bctrl
-	clrlwi.  r0, r3, 0x18
-	bne      lbl_8013C128
-	b        lbl_8013C2AC
-
-lbl_8013C128:
-	mr       r3, r29
-	lwz      r12, 0(r29)
-	lwz      r12, 0xd8(r12)
-	mtctr    r12
-	bctrl
-	lis      r3, lbl_804B00A4@ha
-	lis      r4, "__vt__47IDelegate3<P8CollPart,P8CollPart,R10Vector3<f>>"@ha
-	addi     r5, r3, lbl_804B00A4@l
-	lis      r3,
-"__vt__63Delegate3<Q24Game8Creature,P8CollPart,P8CollPart,R10Vector3<f>>"@ha lwz
-r7, 0(r5) addi     r4, r4,
-"__vt__47IDelegate3<P8CollPart,P8CollPart,R10Vector3<f>>"@l lwz      r6, 4(r5)
-	addi     r0, r3,
-"__vt__63Delegate3<Q24Game8Creature,P8CollPart,P8CollPart,R10Vector3<f>>"@l lwz
-r5, 8(r5) mr       r3, r29 stw      r4, 0x30(r1) addi     r31, r1, 0x38 stw r0,
-0x30(r1) stw      r29, 0x34(r1) stw      r7, 0x38(r1) stw      r6, 0x3c(r1) stw
-r5, 0x40(r1) stw      r30, currOp__Q24Game8Creature@sda21(r13) lwz      r12,
-0(r29) stw      r7, 0x24(r1) lwz      r12, 0xd8(r12) stw      r6, 0x28(r1) stw
-r5, 0x2c(r1) mtctr    r12 bctrl clrlwi.  r0, r3, 0x18 beq      lbl_8013C1B0 li
-r0, 1 stb      r0, mDebug__8CollTree@sda21(r13)
-
-lbl_8013C1B0:
-	mr       r3, r29
-	li       r28, 1
-	lwz      r12, 0(r29)
-	lwz      r12, 0x18(r12)
-	mtctr    r12
-	bctrl
-	clrlwi.  r0, r3, 0x18
-	bne      lbl_8013C1F0
-	mr       r3, r29
-	lwz      r12, 0(r29)
-	lwz      r12, 0x1c(r12)
-	mtctr    r12
-	bctrl
-	clrlwi.  r0, r3, 0x18
-	bne      lbl_8013C1F0
-	li       r28, 0
-
-lbl_8013C1F0:
-	mr       r3, r30
-	li       r27, 1
-	lwz      r12, 0(r30)
-	lwz      r12, 0x18(r12)
-	mtctr    r12
-	bctrl
-	clrlwi.  r0, r3, 0x18
-	bne      lbl_8013C230
-	mr       r3, r30
-	lwz      r12, 0(r30)
-	lwz      r12, 0x1c(r12)
-	mtctr    r12
-	bctrl
-	clrlwi.  r0, r3, 0x18
-	bne      lbl_8013C230
-	li       r27, 0
-
-lbl_8013C230:
-	clrlwi.  r0, r28, 0x18
-	beq      lbl_8013C240
-	clrlwi.  r0, r27, 0x18
-	bne      lbl_8013C250
-
-lbl_8013C240:
-	clrlwi.  r0, r28, 0x18
-	bne      lbl_8013C290
-	clrlwi.  r0, r27, 0x18
-	bne      lbl_8013C290
-
-lbl_8013C250:
-	lwz      r3, 0x114(r29)
-	addi     r5, r1, 0xc
-	lwz      r4, 0x114(r30)
-	addi     r6, r1, 8
-	addi     r7, r1, 0x10
-	bl "checkCollision__8CollTreeFP8CollTreePP8CollPartPP8CollPartR10Vector3<f>"
-	clrlwi.  r0, r3, 0x18
-	beq      lbl_8013C2A0
-	lwz      r3, 0x34(r1)
-	mr       r12, r31
-	lwz      r4, 0xc(r1)
-	addi     r6, r1, 0x10
-	lwz      r5, 8(r1)
-	bl       __ptmf_scall
-	nop
-	b        lbl_8013C2A0
-
-lbl_8013C290:
-	lwz      r3, 0x114(r29)
-	addi     r5, r1, 0x30
-	lwz      r4, 0x114(r30)
-	bl
-"checkCollisionMulti__8CollTreeFP8CollTreeP47IDelegate3<P8CollPart,P8CollPart,R10Vector3<f>>"
-
-lbl_8013C2A0:
-	li       r0, 0
-	stb      r0, mDebug__8CollTree@sda21(r13)
-	stw      r0, currOp__Q24Game8Creature@sda21(r13)
-
-lbl_8013C2AC:
-	lmw      r27, 0x4c(r1)
-	lwz      r0, 0x64(r1)
-	mtlr     r0
-	addi     r1, r1, 0x60
-	blr
-	*/
+    Delegate3<Creature,CollPart*,CollPart*,Vector3f&> delegate = Delegate3<Creature,CollPart*,CollPart*,Vector3f&>(this, &resolveOneColl);
+    Creature::currOp = cellObj;
+    
+    if (isDebugCollision()) {
+        CollTree::mDebug = 1;
+    }
+    
+    bool creatureCheck = true;
+    if (!isPiki() && !isNavi()) {
+        creatureCheck = false;
+    }
+    
+    bool objCheck = true;
+    if (!cellObj->isPiki() && !cellObj->isNavi()) {
+        objCheck = false;
+    }
+    
+    if (((creatureCheck != 0) && (objCheck != 0)) || 
+        ((creatureCheck == 0) && (objCheck == 0))) 
+    {
+        if (m_collTree->checkCollision(((Creature*) cellObj)->m_collTree, &collPart1, &collPart2, vec)) {
+                delegate.invoke(collPart1, collPart2, vec);
+        }
+    } else {
+        m_collTree->checkCollisionMulti(((Creature*) cellObj)->m_collTree, (IDelegate3<CollPart*, CollPart*, Vector3<float> &>* ) &delegate);
+    }
+    
+    CollTree::mDebug = 0;
+    currOp = (Game::CellObject* ) 0;
 }
 
 /*
@@ -1363,6 +1218,7 @@ lbl_8013C2AC:
  * Address:	8013C2C0
  * Size:	0008CC
  */
+// WIP: https://decomp.me/scratch/03fuZ
 void Creature::resolveOneColl(CollPart*, CollPart*, Vector3f&)
 {
 	/*
