@@ -117,7 +117,7 @@ struct GeneratorMgr : public CNode {
 };
 
 struct CreatureInitArg {
-	virtual const char* getName() = 0; // _00
+	virtual const char* getName() = 0; // _08
 
 	// _00 VTBL
 };

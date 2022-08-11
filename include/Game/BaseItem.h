@@ -5,6 +5,7 @@
 #include "Game/StateMachine.h"
 #include "Game/TSoundEvent.h"
 #include "SysShape/MotionListener.h"
+#include "GenericObjectMgr.h"
 #include "types.h"
 
 namespace PSM {
@@ -69,9 +70,9 @@ struct BaseItem : public Creature, public SysShape::MotionListener {
 	virtual void do_updateLOD();                            // _1D4
 	virtual void do_setLODParm(AILODParm&);                 // _1D8 (weak)
 	virtual float getMapCollisionRadius();                  // _1DC (weak)
-	virtual bool interactAttack(InteractAttack&);           // _1D0 (weak)
-	virtual bool interactBreakBridge(InteractBreakBridge&); // _1D4 (weak)
-	virtual bool interactEat(InteractEat&);                 // _1D8 (weak)
+	virtual bool interactAttack(InteractAttack&);           // _1E0 (weak)
+	virtual bool interactBreakBridge(InteractBreakBridge&); // _1E4 (weak)
+	virtual bool interactEat(InteractEat&);                 // _1E8 (weak)
 	virtual bool interactFlockAttack(InteractFlockAttack&); // _1EC (weak)
 	virtual bool interactAbsorb(InteractAbsorb&);           // _1F0 (weak)
 	virtual bool interactFue(InteractFue&);                 // _1F4 (weak)
@@ -111,15 +112,15 @@ struct CFSMItem : public BaseItem {
 	}
 
 	// vtable 1
-	virtual void constructor();                  // _24
-	virtual void bounceCallback(Sys::Triangle*); // _E0
-	virtual void collisionCallback(CollEvent&);  // _E4
-	virtual void platCallback(PlatEvent&);       // _E8
+	virtual void constructor();                  // _2C
+	virtual void bounceCallback(Sys::Triangle*); // _E8
+	virtual void collisionCallback(CollEvent&);  // _EC
+	virtual void platCallback(PlatEvent&);       // _F0
 
 	// vtable 2
-	virtual void doAI();                                // _10
-	virtual CItemFSM* createFSM() = 0;                  // _68
-	virtual void onKeyEvent(const SysShape::KeyEvent&); // _6C
+	virtual void doAI();                                // _1C8
+	virtual CItemFSM* createFSM() = 0;                  // _220
+	virtual void onKeyEvent(const SysShape::KeyEvent&); // _224 (weak)
 
 	void initFSM();
 	void setCurrState(FSMState<CFSMItem>*);

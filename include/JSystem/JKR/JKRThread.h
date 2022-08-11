@@ -36,7 +36,7 @@ struct JKRThread : public JKRDisposer {
 	u32 _6C;                   // _6C
 	u32 _70;                   // _70
 	u32 _74;                   // _74
-	u32 _78;			 	   // _78
+	u32 _78;                   // _78
 
 	static JSUList<JKRThread> sThreadList;
 };

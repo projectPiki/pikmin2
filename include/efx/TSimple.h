@@ -8,16 +8,16 @@
 struct JPABaseEmitter;
 
 namespace efx {
-struct TSimple1 : public efx::TBase {
+struct TSimple1 : public TBase {
 	TSimple1(u16 effectID, JPABaseEmitter* emitter)
 	{
 		m_effectIDs[0] = effectID;
 		m_emitters[0]  = emitter;
 	}
 
-	virtual bool create(Arg*); // _00
-	virtual void forceKill();  // _04
-	virtual void fade();       // _08
+	virtual bool create(Arg*); // _08
+	virtual void forceKill();  // _0C (weak)
+	virtual void fade();       // _10 (weak)
 
 	// _00 VTBL
 	u16 m_effectIDs[1];            // _04
@@ -25,9 +25,9 @@ struct TSimple1 : public efx::TBase {
 };
 
 struct TSimple2 : public TBase {
-	virtual bool create(Arg*); // _00
-	virtual void forceKill();  // _04
-	virtual void fade();       // _08
+	virtual bool create(Arg*); // _08
+	virtual void forceKill();  // _0C (weak)
+	virtual void fade();       // _10 (weak)
 
 	// _00 VTBL
 	u16 m_effectIDs[2];            // _04
@@ -45,9 +45,9 @@ struct TSimple3 : public TBase {
 		m_emitters[2]  = nullptr;
 	}
 
-	virtual bool create(Arg*); // _00
-	virtual void forceKill();  // _04
-	virtual void fade();       // _08
+	virtual bool create(Arg*); // _08
+	virtual void forceKill();  // _0C (weak)
+	virtual void fade();       // _10 (weak)
 
 	// _00 VTBL
 	u16 m_effectIDs[3];            // _04
@@ -55,9 +55,9 @@ struct TSimple3 : public TBase {
 };
 
 struct TSimple4 : public TBase {
-	virtual bool create(Arg*); // _00
-	virtual void forceKill();  // _04
-	virtual void fade();       // _08
+	virtual bool create(Arg*); // _08
+	virtual void forceKill();  // _0C (weak)
+	virtual void fade();       // _10 (weak)
 
 	/**
 	 * @fabricated
@@ -83,9 +83,9 @@ struct TSimple4 : public TBase {
 };
 
 struct TSimple5 : public TBase {
-	virtual bool create(Arg*); // _00
-	virtual void forceKill();  // _04
-	virtual void fade();       // _08
+	virtual bool create(Arg*); // _08
+	virtual void forceKill();  // _0C (weak)
+	virtual void fade();       // _10 (weak)
 
 	// _00 VTBL
 	u16 m_effectIDs[5];            // _04

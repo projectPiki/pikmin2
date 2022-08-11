@@ -127,8 +127,6 @@ inline Vector3f operator*=(const Vector3f& a, const float b) { return Vector3f(a
 
 inline float dot(const Vector3f& a, const Vector3f& b) { return a.x * b.x + a.y * b.y + a.z * b.z; }
 
-
-
 // inline float Vector3f::distance(register Vector3f& them) {
 // #pragma optimizewithasm off
 //     register Vector3f* me = this;
@@ -154,7 +152,7 @@ inline float dot(const Vector3f& a, const Vector3f& b) { return a.x * b.x + a.y 
 //     fadds vv1, vv2, vv1
 //     fcmpo cr0, vv1, vv0
 //     ble end
-//     blelr 
+//     blelr
 //     frsqrte vv0, vv1
 //     fmuls vv1, vv0, vv1
 // }
@@ -166,7 +164,6 @@ inline float dot(const Vector3f& a, const Vector3f& b) { return a.x * b.x + a.y 
 //     return vv1;
 // #pragma optimizewithasm on
 // }
-
 
 // inline float Vector3f::length() const {
 // #pragma optimizewithasm off
@@ -204,7 +201,5 @@ inline float dot(const Vector3f& a, const Vector3f& b) { return a.x * b.x + a.y 
 //     return vv1;
 // #pragma optimizewithasm on
 // }
-
-
 
 #endif

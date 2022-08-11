@@ -11,7 +11,8 @@ struct JAISequence;
 namespace JAInter {
 
 namespace SequenceMgr {
-struct CustomHeapInfo { };
+struct CustomHeapInfo {
+};
 } // namespace SequenceMgr
 
 struct Actor {
@@ -32,13 +33,17 @@ struct Camera {
 	Mtx* m_mtx;  // _08
 };
 
-struct HeapBlock { };
+struct HeapBlock {
+};
 
-struct LinkSound { };
+struct LinkSound {
+};
 
-struct MuteBit { };
+struct MuteBit {
+};
 
-struct PlayerParameter { };
+struct PlayerParameter {
+};
 
 struct SeParameter {
 	SeParameter();

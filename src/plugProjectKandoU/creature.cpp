@@ -382,20 +382,20 @@ namespace Game {
  * Address:	8013AE84
  * Size:	00012C
  */
-Creature::Creature() 
+Creature::Creature()
 {
-    m_collTree = 0;
-    m_model = 0;
-    _118 = 100.0f;
-    m_generator = 0;
-    m_scale = 0;
-    PSMTXIdentity(m_mainMatrix.m_matrix.mtxView);
-    m_objectTypeID = -2;
-    for (int i = 0; i < 4; i++) {
-        m_flags.byteView[i] = 0;
-    }
-    m_flags.typeView = m_flags.typeView | 0x7;
-    clearStick();
+	m_collTree  = 0;
+	m_model     = 0;
+	_118        = 100.0f;
+	m_generator = 0;
+	m_scale     = 0;
+	PSMTXIdentity(m_mainMatrix.m_matrix.mtxView);
+	m_objectTypeID = -2;
+	for (int i = 0; i < 4; i++) {
+		m_flags.byteView[i] = 0;
+	}
+	m_flags.typeView = m_flags.typeView | 0x7;
+	clearStick();
 }
 
 /*
@@ -556,32 +556,32 @@ void Creature::getYVector(Vector3f& outVector)
 	outVector.x = m_mainMatrix.m_matrix.structView.yx;
 	outVector.y = m_mainMatrix.m_matrix.structView.yy;
 	outVector.z = m_mainMatrix.m_matrix.structView.yz;
-    float sqlen = sqLen(outVector);
-    
-    register float norm;
-    if (sqlen > 0.0f) {
-            float Y = S(outVector.y); 
-            float complen = Y +  S(outVector.x);
-            float Z = S(outVector.z);
-    		norm = Z + complen;
-            if (norm > 0.0f) {
-        	    register float reg2 = 0.0f;
-        
-            	asm {
+	float sqlen = sqLen(outVector);
+
+	register float norm;
+	if (sqlen > 0.0f) {
+		float Y       = S(outVector.y);
+		float complen = Y + S(outVector.x);
+		float Z       = S(outVector.z);
+		norm          = Z + complen;
+		if (norm > 0.0f) {
+			register float reg2 = 0.0f;
+
+			asm {
                   frsqrte reg2, norm
                   fmuls norm, reg2, norm
-            	}
-            }
-    } else {
-        norm = 0.0f;
-    }
+			}
+		}
+	} else {
+		norm = 0.0f;
+	}
 
-    if (norm > 0) {
-        float factor = 1.0f / norm;
-        outVector.x *= factor;
-        outVector.y *= factor;
-        outVector.z *= factor;
-    }
+	if (norm > 0) {
+		float factor = 1.0f / norm;
+		outVector.x *= factor;
+		outVector.y *= factor;
+		outVector.z *= factor;
+	}
 	/*
 	lfs      f0, 0x13c(r3)
 	lfs      f1, lbl_80518288@sda21(r2)
@@ -839,24 +839,24 @@ void Creature::doSetView(int viewportNo)
 {
 	P2ASSERTBOUNDSLINE(558, 0, viewportNo, 2);
 
-    if (!m_model) {
-        return;
-    }
-    
-    P2ASSERTLINE(563, m_model);
-    
-    m_model->setCurrentViewNo((u16) viewportNo);
-    if (Creature::usePacketCulling ) {
-        if (m_lod.m_flags & (16 << viewportNo)) {
-            m_model->showPackets();
-            return;
-        } else {
-        m_model->hidePackets();
-        return;
-        }
-    } 
-    m_model->showPackets();
-    return;
+	if (!m_model) {
+		return;
+	}
+
+	P2ASSERTLINE(563, m_model);
+
+	m_model->setCurrentViewNo((u16)viewportNo);
+	if (Creature::usePacketCulling) {
+		if (m_lod.m_flags & (16 << viewportNo)) {
+			m_model->showPackets();
+			return;
+		} else {
+			m_model->hidePackets();
+			return;
+		}
+	}
+	m_model->showPackets();
+	return;
 }
 
 /*
@@ -948,27 +948,27 @@ void Creature::movie_end(bool required)
 void Creature::checkWater(WaterBox* waterBox, Sys::Sphere& sphere)
 {
 	if (waterBox) {
-        bool isInWater = waterBox->inWater(sphere);
-        if (isInWater) {
-            goto returnbox;
-        } 
+		bool isInWater = waterBox->inWater(sphere);
+		if (isInWater) {
+			goto returnbox;
+		}
 		if (mapMgr) {
 			waterBox = mapMgr->findWater(sphere);
 		}
 		if (!waterBox) {
 			outWaterCallback();
-            waterBox = 0;
+			waterBox = 0;
 		}
 	} else {
-        WaterBox* wb = 0;
+		WaterBox* wb = 0;
 		if (mapMgr) {
-            wb = mapMgr->findWater(sphere);
-        }
-        waterBox = wb;
-        if (waterBox) {
-            inWaterCallback(waterBox);
-        }
-    }
+			wb = mapMgr->findWater(sphere);
+		}
+		waterBox = wb;
+		if (waterBox) {
+			inWaterCallback(waterBox);
+		}
+	}
 returnbox:
 	return waterBox;
 }
@@ -994,35 +994,35 @@ returnbox:
  * Address:	8013BC24
  * Size:	000144
  */
-u32 Creature::checkHell(Creature::CheckHellArg& hellArg) 
+u32 Creature::checkHell(Creature::CheckHellArg& hellArg)
 {
-    Vector3f pos;
-	pos = getPosition();
-    float yval = pos.y;
-    if (yval < -500.0f) {
-        if (isPiki() && static_cast<FakePiki*>(this)->isPikmin()) {
-            deathMgr->inc(0);
-        }
-        if (hellArg._00) {
-            endStick();
-            setAlive(false);
-            Cell::sCurrCellMgr = cellMgr;
-            exitCell();
-            Cell::sCurrCellMgr = 0;
-            m_updateContext.exit();
-            releaseAllStickers();
-            clearCapture();
-            onKill(0);
-            if (m_generator) {
-                m_generator->informDeath(this);
-                m_generator = 0;
-            }
-        }
-        return 2;    
-    } else {
-        return (yval < -300.0f);
-    }
-    return 0;
+	Vector3f pos;
+	pos        = getPosition();
+	float yval = pos.y;
+	if (yval < -500.0f) {
+		if (isPiki() && static_cast<FakePiki*>(this)->isPikmin()) {
+			deathMgr->inc(0);
+		}
+		if (hellArg._00) {
+			endStick();
+			setAlive(false);
+			Cell::sCurrCellMgr = cellMgr;
+			exitCell();
+			Cell::sCurrCellMgr = 0;
+			m_updateContext.exit();
+			releaseAllStickers();
+			clearCapture();
+			onKill(0);
+			if (m_generator) {
+				m_generator->informDeath(this);
+				m_generator = 0;
+			}
+		}
+		return 2;
+	} else {
+		return (yval < -300.0f);
+	}
+	return 0;
 }
 
 /*
@@ -1030,37 +1030,37 @@ u32 Creature::checkHell(Creature::CheckHellArg& hellArg)
  * Address:	8013BD68
  * Size:	000178
  */
-void Game::Creature::updateCell() 
+void Game::Creature::updateCell()
 {
-    if (!gameSystem || !(gameSystem->_3C & 4)) {
-        m_passID = -1;
-        
-        Sys::Sphere ball;
-        ball.m_position = getPosition();
-        ball.m_radius = getCellRadius();
+	if (!gameSystem || !(gameSystem->_3C & 4)) {
+		m_passID = -1;
 
-        m_sweepPruneObject.m_minX.m_radius = ball.m_position.x - ball.m_radius;
-        m_sweepPruneObject.m_maxX.m_radius = ball.m_position.x + ball.m_radius;
-        m_sweepPruneObject.m_minZ.m_radius = ball.m_position.z - ball.m_radius;
-        m_sweepPruneObject.m_maxZ.m_radius = ball.m_position.z + ball.m_radius;        
+		Sys::Sphere ball;
+		ball.m_position = getPosition();
+		ball.m_radius   = getCellRadius();
 
-        SweepPrune::Object* sweepObj = (SweepPrune::Object*) this;
-        if (this) {
-            sweepObj = &m_sweepPruneObject;
-        }
-        
-        CellPyramid* mgr;
-        sweepObj->m_minX.insertSort((mgr = cellMgr)->_00);
-        sweepObj->m_maxX.insertSort(mgr->_00);
-        sweepObj->m_minZ.insertSort(mgr->_14);
-        sweepObj->m_maxZ.insertSort(mgr->_14);
+		m_sweepPruneObject.m_minX.m_radius = ball.m_position.x - ball.m_radius;
+		m_sweepPruneObject.m_maxX.m_radius = ball.m_position.x + ball.m_radius;
+		m_sweepPruneObject.m_minZ.m_radius = ball.m_position.z - ball.m_radius;
+		m_sweepPruneObject.m_maxZ.m_radius = ball.m_position.z + ball.m_radius;
 
-        if (cellMgr) {
-            CellPyramid::sCellBugName = getCreatureName();
-            CellPyramid::sCellBugID = getCreatureID();
-            cellMgr->entry((Game::CellObject* ) this, ball, m_cellLayerIndex, m_cellRect);
-        }
-    }
+		SweepPrune::Object* sweepObj = (SweepPrune::Object*)this;
+		if (this) {
+			sweepObj = &m_sweepPruneObject;
+		}
+
+		CellPyramid* mgr;
+		sweepObj->m_minX.insertSort((mgr = cellMgr)->_00);
+		sweepObj->m_maxX.insertSort(mgr->_00);
+		sweepObj->m_minZ.insertSort(mgr->_14);
+		sweepObj->m_maxZ.insertSort(mgr->_14);
+
+		if (cellMgr) {
+			CellPyramid::sCellBugName = getCreatureName();
+			CellPyramid::sCellBugID   = getCreatureID();
+			cellMgr->entry((Game::CellObject*)this, ball, m_cellLayerIndex, m_cellRect);
+		}
+	}
 }
 
 /*
@@ -1154,63 +1154,61 @@ void Creature::applyImpulse(Vector3f& unused, Vector3f& impulse)
  * Address:	8013BFDC
  * Size:	0002E4
  */
-void Creature::checkCollision(Game::CellObject* cellObj) 
+void Creature::checkCollision(Game::CellObject* cellObj)
 {
-    CollPart* collPart1;
-    CollPart* collPart2;
-    Vector3f vec;
+	CollPart* collPart1;
+	CollPart* collPart2;
+	Vector3f vec;
 
-    if (isDebugCollision()) {
-        getCreatureName();
-        ((Creature*) cellObj)->getCreatureName();
-    }
-    
-    if (!((Creature*) cellObj)->isAtari() || !isAtari()) {
-        return;
-    }
-        
-    if (!((!isStickTo() || (m_sticker != cellObj)) && 
-        (!((Creature*) cellObj)->isStickTo() || (((Creature*) cellObj)->m_sticker != this)) && 
-        (!ignoreAtari((Creature*) cellObj))) || ((Creature*) cellObj)->ignoreAtari(this)) 
-    {
-        return;
-    }
-        
-    if (!((Creature*) cellObj)->isAlive() || !isAlive()) {
-        return;
-    }
-        
-    isDebugCollision();
+	if (isDebugCollision()) {
+		getCreatureName();
+		((Creature*)cellObj)->getCreatureName();
+	}
 
-    Delegate3<Creature,CollPart*,CollPart*,Vector3f&> delegate = Delegate3<Creature,CollPart*,CollPart*,Vector3f&>(this, &resolveOneColl);
-    Creature::currOp = cellObj;
-    
-    if (isDebugCollision()) {
-        CollTree::mDebug = 1;
-    }
-    
-    bool creatureCheck = true;
-    if (!isPiki() && !isNavi()) {
-        creatureCheck = false;
-    }
-    
-    bool objCheck = true;
-    if (!cellObj->isPiki() && !cellObj->isNavi()) {
-        objCheck = false;
-    }
-    
-    if (((creatureCheck != 0) && (objCheck != 0)) || 
-        ((creatureCheck == 0) && (objCheck == 0))) 
-    {
-        if (m_collTree->checkCollision(((Creature*) cellObj)->m_collTree, &collPart1, &collPart2, vec)) {
-                delegate.invoke(collPart1, collPart2, vec);
-        }
-    } else {
-        m_collTree->checkCollisionMulti(((Creature*) cellObj)->m_collTree, (IDelegate3<CollPart*, CollPart*, Vector3<float> &>* ) &delegate);
-    }
-    
-    CollTree::mDebug = 0;
-    currOp = (Game::CellObject* ) 0;
+	if (!((Creature*)cellObj)->isAtari() || !isAtari()) {
+		return;
+	}
+
+	if (!((!isStickTo() || (m_sticker != cellObj)) && (!((Creature*)cellObj)->isStickTo() || (((Creature*)cellObj)->m_sticker != this))
+	      && (!ignoreAtari((Creature*)cellObj)))
+	    || ((Creature*)cellObj)->ignoreAtari(this)) {
+		return;
+	}
+
+	if (!((Creature*)cellObj)->isAlive() || !isAlive()) {
+		return;
+	}
+
+	isDebugCollision();
+
+	Delegate3<Creature, CollPart*, CollPart*, Vector3f&> delegate
+	    = Delegate3<Creature, CollPart*, CollPart*, Vector3f&>(this, &resolveOneColl);
+	Creature::currOp = cellObj;
+
+	if (isDebugCollision()) {
+		CollTree::mDebug = 1;
+	}
+
+	bool creatureCheck = true;
+	if (!isPiki() && !isNavi()) {
+		creatureCheck = false;
+	}
+
+	bool objCheck = true;
+	if (!cellObj->isPiki() && !cellObj->isNavi()) {
+		objCheck = false;
+	}
+
+	if (((creatureCheck != 0) && (objCheck != 0)) || ((creatureCheck == 0) && (objCheck == 0))) {
+		if (m_collTree->checkCollision(((Creature*)cellObj)->m_collTree, &collPart1, &collPart2, vec)) {
+			delegate.invoke(collPart1, collPart2, vec);
+		}
+	} else {
+		m_collTree->checkCollisionMulti(((Creature*)cellObj)->m_collTree, (IDelegate3<CollPart*, CollPart*, Vector3<float>&>*)&delegate);
+	}
+
+	CollTree::mDebug = 0;
+	currOp           = (Game::CellObject*)0;
 }
 
 /*

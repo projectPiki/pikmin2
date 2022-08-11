@@ -10,6 +10,7 @@
 #include "Game/EnemyStateMachine.h"
 #include "Game/PelletView.h"
 #include "Game/PelletMgr.h"
+#include "Game/Pellet.h"
 #include "Dolphin/rand.h"
 #include "Game/enemyInfo.h"
 #include "JSystem/JAI/JAInter/Object.h"
@@ -23,6 +24,7 @@
 #include "Game/EnemyStone.h"
 #include "Game/EnemyEffectNode.h"
 #include "trig.h"
+#include "Game/EnemyMgrBase.h"
 
 struct MouthSlots;
 
@@ -68,7 +70,7 @@ struct EnemyBase : public Creature, public SysShape::MotionListener, virtual pub
 	EnemyBase();
 
 	// vtable 1 (Creature)
-	virtual Vector3f getPosition()                      // _08 (weak)
+	virtual Vector3f getPosition() // _08 (weak)
 	{
 		return m_position;
 	}
@@ -76,30 +78,30 @@ struct EnemyBase : public Creature, public SysShape::MotionListener, virtual pub
 	{
 		sphere = m_boundingSphere;
 	}
-	virtual void constructor();                       // _2C
-	virtual void onInit(CreatureInitArg*);            // _30
-	virtual void onKill(CreatureKillArg*);            // _34
-	virtual void onInitPost(CreatureInitArg*);        // _38
-	virtual void doAnimation();                       // _3C
-	virtual void doEntry();                           // _40
-	virtual void doSetView(int);                      // _44
-	virtual void doViewCalc();                        // _48
-	virtual void doSimulation(float);                 // _4C
-	virtual float getBodyRadius();                    // _54 (weak)
-	virtual float getCellRadius();                    // _58 (weak)
-	virtual float getFaceDir();                       // _64 (weak)
-	virtual void setVelocity(Vector3f&);              // _68 (weak)
-	virtual Vector3f getVelocity();                   // _6C (weak)
-	virtual void onSetPosition(Vector3f&);            // _70 (weak)
-	virtual void onSetPositionPost(Vector3f&);        // _74 (weak)
-	virtual void updateTrMatrix();                    // _78
-	virtual bool isTeki();                            // _7C (weak)
-	virtual void inWaterCallback(WaterBox*);          // _84
-	virtual void outWaterCallback();                  // _88
-	virtual bool inWater();                           // _8C (weak)
-	virtual bool isFlying()                           // _CC (weak)
+	virtual void constructor();                // _2C
+	virtual void onInit(CreatureInitArg*);     // _30
+	virtual void onKill(CreatureKillArg*);     // _34
+	virtual void onInitPost(CreatureInitArg*); // _38
+	virtual void doAnimation();                // _3C
+	virtual void doEntry();                    // _40
+	virtual void doSetView(int);               // _44
+	virtual void doViewCalc();                 // _48
+	virtual void doSimulation(float);          // _4C
+	virtual float getBodyRadius();             // _54 (weak)
+	virtual float getCellRadius();             // _58 (weak)
+	virtual float getFaceDir();                // _64 (weak)
+	virtual void setVelocity(Vector3f&);       // _68 (weak)
+	virtual Vector3f getVelocity();            // _6C (weak)
+	virtual void onSetPosition(Vector3f&);     // _70 (weak)
+	virtual void onSetPositionPost(Vector3f&); // _74 (weak)
+	virtual void updateTrMatrix();             // _78
+	virtual bool isTeki();                     // _7C (weak)
+	virtual void inWaterCallback(WaterBox*);   // _84
+	virtual void outWaterCallback();           // _88
+	virtual bool inWater();                    // _8C (weak)
+	virtual bool isFlying()                    // _CC (weak)
 	{
-		return ( _1E0.m_flags[0].typeView >> 2) & 1;
+		return (_1E0.m_flags[0].typeView >> 2) & 1;
 	}
 	virtual void collisionCallback(CollEvent&);       // _EC
 	virtual JAInter::Object* getJAIObject();          // _F4
@@ -119,7 +121,7 @@ struct EnemyBase : public Creature, public SysShape::MotionListener, virtual pub
 	{
 		return EnemyInfoFunc::getEnemyName(getEnemyTypeID(), 0xFFFF);
 	}
-	virtual s32 getCreatureID()                       // _1AC (weak)
+	virtual s32 getCreatureID() // _1AC (weak)
 	{
 		return m_enemyIndexForType;
 	}
@@ -289,6 +291,8 @@ struct EnemyBase : public Creature, public SysShape::MotionListener, virtual pub
 
 	void resetCollEvent();
 
+	void becomeCarcass();
+
 	// Creature: _000 - _178
 	// MotionListener: _178 - _17C
 	// ptr to PelletView: _17C
@@ -300,8 +304,8 @@ struct EnemyBase : public Creature, public SysShape::MotionListener, virtual pub
 	Matrix3f _1A4;                     // _1A4
 	Vector3f m_velocity;               // _1C8
 	Vector3f m_velocity2;              // _1D4
-	BitFlagArray<u32,2> _1E0;          // _1E0
-	BitFlagArray<u32,2> _1E8;          // _1E8
+	BitFlagArray<u32, 2> _1E0;         // _1E0
+	BitFlagArray<u32, 2> _1E8;         // _1E8
 	u8 m_emotion;                      // _1F0
 	u8 m_enemyIndexForType;            // _1F1
 	u8 _1F2;                           // _1F2
@@ -333,7 +337,7 @@ struct EnemyBase : public Creature, public SysShape::MotionListener, virtual pub
 	EnemyEffectNodeHamon* m_effectNodeHamon;     // _284
 	u32 _288;                                    // _288
 	PSM::EnemyBase* m_soundObj;                  // _28C
-	CNode m_effectNodeHamonRoot;   				 // _290 - treat as EnemyEffectNodeBase with EnemyEffectNodeHamon nodes
+	CNode m_effectNodeHamonRoot;                 // _290 - treat as EnemyEffectNodeBase with EnemyEffectNodeHamon nodes
 	float _2A8;                                  // _2A8
 	float _2AC;                                  // _2AC
 	u8 m_dropGroup;                              // _2B0
@@ -371,9 +375,9 @@ struct StateMachine : public Game::EnemyStateMachine {
 	virtual void animation(EnemyBase*);                       // _30 (weak)
 	virtual void bounceProcedure(EnemyBase*, Sys::Triangle*); // _34 (weak)
 
-	// something has to be here because of StateMachine::update(), entry(), simulation() etc... 
+	// something has to be here because of StateMachine::update(), entry(), simulation() etc...
 	// assuming it's a state for now based on the weak state methods following the above in enemyBase
-	State* m_state;	// _1C 
+	State* m_state; // _1C
 };
 
 /**
@@ -407,13 +411,13 @@ struct BirthTypeDropState : public State {
 		m_name = "BirthTypeDrop";
 	}
 
-	virtual void init(EnemyBase*, StateArg*);   				// _08
-	virtual void cleanup(EnemyBase*);           				// _10
-	virtual void update(EnemyBase*);            				// _24
-	virtual void entry(EnemyBase*);             				// _28 (weak)
-	virtual void simulation(EnemyBase*, float); 				// _2C (weak)
-	virtual void animation(EnemyBase*);         				// _34 (weak)
-	virtual bool isFinishableWaitingBirthTypeDrop(EnemyBase*); 	// _38
+	virtual void init(EnemyBase*, StateArg*);                  // _08
+	virtual void cleanup(EnemyBase*);                          // _10
+	virtual void update(EnemyBase*);                           // _24
+	virtual void entry(EnemyBase*);                            // _28 (weak)
+	virtual void simulation(EnemyBase*, float);                // _2C (weak)
+	virtual void animation(EnemyBase*);                        // _34 (weak)
+	virtual bool isFinishableWaitingBirthTypeDrop(EnemyBase*); // _38
 };
 
 struct BirthTypeDropPikminState : public BirthTypeDropState {
@@ -485,7 +489,7 @@ struct LivingState : public State {
 	}
 
 	virtual void update(EnemyBase*);            // _24
-	virtual void entry(EnemyBase*);          	// _28
+	virtual void entry(EnemyBase*);             // _28
 	virtual void simulation(EnemyBase*, float); // _2C
 	virtual void updateCullingOff(EnemyBase*);  // _38
 	virtual void updateAlways(EnemyBase*);      // _3C
@@ -515,7 +519,7 @@ struct StoneState : public LivingState {
 struct EarthquakeState : public LivingState {
 	inline EarthquakeState()
 	    : LivingState(EBS_Earthquake)
-		, _10(0)
+	    , _10(0)
 	{
 		m_name = "Earthquake";
 	}
@@ -524,7 +528,7 @@ struct EarthquakeState : public LivingState {
 	virtual void cleanup(EnemyBase*);          // _10
 	virtual void updateCullingOff(EnemyBase*); // _38
 
-	int _10;		// _10
+	int _10; // _10
 };
 
 /**

@@ -26,6 +26,8 @@ struct CreatureAnime : public Creature, public JAIAnimeSound {
 	virtual void onCalcTurnOn();         // _9C
 	virtual void onCalcTurnOff();        // _A0
 
+	void setAnime(JAIAnimeSoundData*, u32, float, float);
+
 	float _AC; // _AC
 	float _B0; // _B0
 	u8 _B4[4]; // _B4

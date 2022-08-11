@@ -17,7 +17,10 @@ struct EnemyFSMState;
  * Is this a case of Pikmin 1 legacy code? :thinking:
  */
 struct EnemyStateMachine {
-	inline EnemyStateMachine() : m_previousID(-1) { }
+	inline EnemyStateMachine()
+	    : m_previousID(-1)
+	{
+	}
 	virtual void init(EnemyBase*);                         // _08 (weak)
 	virtual void start(EnemyBase*, int, StateArg*);        // _0C
 	virtual void exec(EnemyBase*);                         // _10

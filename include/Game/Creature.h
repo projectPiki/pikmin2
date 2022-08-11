@@ -163,37 +163,37 @@ struct Creature : public CellObject {
 	virtual void getShadowParam(ShadowParam&);                        // _134
 	virtual bool needShadow();                                        // _138
 	virtual void getLifeGaugeParam(LifeGaugeParam&);                  // _13C
-	virtual void getLODSphere(Sys::Sphere& sphere) 					  // _140 (weak)
-	{ 
-		return getBoundingSphere(sphere); 
-	}                          
-	virtual void getLODCylinder(Sys::Cylinder&);                      // _144 (weak)
-	virtual void startPick();                                         // _148 (weak)
-	virtual void endPick(bool);                                       // _14C (weak)
-	virtual u32* getMabiki();                                         // _150 (weak)
-	virtual Footmarks* getFootmarks();                                // _154 (weak)
-	virtual void onStickStart(Creature*) { }                          // _158 (weak)
-	virtual void onStickEnd(Creature*) { }                            // _15C (weak)
-	virtual void onStickStartSelf(Creature*);                         // _160 (weak)
-	virtual void onStickEndSelf(Creature*);                           // _164 (weak)
-	virtual bool isSlotFree(short);                                   // _168 (weak)
-	virtual int getFreeStickSlot();                                   // _16C (weak)
-	virtual int getNearFreeStickSlot(Vector3f&);                      // _170 (weak)
-	virtual int getRandomFreeStickSlot();                             // _174 (weak)
-	virtual void onSlotStickStart(Creature*, short);                  // _178 (weak)
-	virtual void onSlotStickEnd(Creature*, short);                    // _17C (weak)
-	virtual void calcStickSlotGlobal(short, Vector3f&);               // _180 (weak)
-	virtual void getVelocityAt(Vector3f&, Vector3f&) = 0;             // _184
-	virtual float getAngularEffect(Vector3f&, Vector3f&);             // _188 (weak)
-	virtual void applyImpulse(Vector3f&, Vector3f&);                  // _18C
-	virtual bool ignoreAtari(Creature*);                              // _190 (weak)
-	virtual Vector3f getSuckPos();                                    // _194 (weak)
-	virtual Vector3f getGoalPos();                                    // _198 (weak)
-	virtual bool isSuckReady();                                       // _19C (weak)
-	virtual BOOL isSuckArriveWait();                                  // _1A0 (weak)
-	virtual bool stimulate(Interaction&);                             // _1A4 (weak)
-	virtual char* getCreatureName();                                  // _1A8 (weak)
-	virtual s32 getCreatureID() { return -1; }                        // _1AC (weak)
+	virtual void getLODSphere(Sys::Sphere& sphere)                    // _140 (weak)
+	{
+		return getBoundingSphere(sphere);
+	}
+	virtual void getLODCylinder(Sys::Cylinder&);          // _144 (weak)
+	virtual void startPick();                             // _148 (weak)
+	virtual void endPick(bool);                           // _14C (weak)
+	virtual u32* getMabiki();                             // _150 (weak)
+	virtual Footmarks* getFootmarks();                    // _154 (weak)
+	virtual void onStickStart(Creature*) { }              // _158 (weak)
+	virtual void onStickEnd(Creature*) { }                // _15C (weak)
+	virtual void onStickStartSelf(Creature*);             // _160 (weak)
+	virtual void onStickEndSelf(Creature*);               // _164 (weak)
+	virtual bool isSlotFree(short);                       // _168 (weak)
+	virtual int getFreeStickSlot();                       // _16C (weak)
+	virtual int getNearFreeStickSlot(Vector3f&);          // _170 (weak)
+	virtual int getRandomFreeStickSlot();                 // _174 (weak)
+	virtual void onSlotStickStart(Creature*, short);      // _178 (weak)
+	virtual void onSlotStickEnd(Creature*, short);        // _17C (weak)
+	virtual void calcStickSlotGlobal(short, Vector3f&);   // _180 (weak)
+	virtual void getVelocityAt(Vector3f&, Vector3f&) = 0; // _184
+	virtual float getAngularEffect(Vector3f&, Vector3f&); // _188 (weak)
+	virtual void applyImpulse(Vector3f&, Vector3f&);      // _18C
+	virtual bool ignoreAtari(Creature*);                  // _190 (weak)
+	virtual Vector3f getSuckPos();                        // _194 (weak)
+	virtual Vector3f getGoalPos();                        // _198 (weak)
+	virtual bool isSuckReady();                           // _19C (weak)
+	virtual BOOL isSuckArriveWait();                      // _1A0 (weak)
+	virtual bool stimulate(Interaction&);                 // _1A4 (weak)
+	virtual char* getCreatureName();                      // _1A8 (weak)
+	virtual s32 getCreatureID() { return -1; }            // _1AC (weak)
 
 	void applyAirDrag(float, float, float);
 	float calcSphereDistance(Creature*);

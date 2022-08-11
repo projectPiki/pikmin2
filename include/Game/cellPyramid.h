@@ -43,14 +43,14 @@ struct CollisionBuffer {
 
 // TODO: Ensure this is aligned.
 struct CellLeg {
-	CellLeg() 
+	CellLeg()
 	{
 		m_prev   = nullptr;
 		m_next   = nullptr;
 		m_object = nullptr;
 		m_cell   = nullptr;
 	}
-	
+
 	CellLeg* m_next;      // _00
 	CellLeg* m_prev;      // _04
 	Cell* m_cell;         // _08

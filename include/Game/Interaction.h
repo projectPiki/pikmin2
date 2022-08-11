@@ -5,6 +5,12 @@
 #include "types.h"
 
 namespace Game {
+struct Piki;
+struct Navi;
+struct EnemyBase;
+struct Pellet;
+struct Onyon;
+struct BaseItem;
 struct Creature;
 
 struct Interaction {
@@ -13,22 +19,22 @@ struct Interaction {
 	{
 	}
 
-	virtual bool actCommon(struct Creature*); // _00
-	virtual bool actPiki(struct Piki*);       // _04
-	virtual bool actNavi(struct Navi*);       // _08
-	virtual bool actEnemy(struct EnemyBase*); // _0C
-	virtual bool actPellet(struct Pellet*);   // _10
-	virtual bool actOnyon(struct Onyon*);     // _14
-	virtual bool actItem(struct BaseItem*);   // _18
+	virtual bool actCommon(Creature*); // _08
+	virtual bool actPiki(Piki*);       // _0C
+	virtual bool actNavi(Navi*);       // _10
+	virtual bool actEnemy(EnemyBase*); // _14
+	virtual bool actPellet(Pellet*);   // _18
+	virtual bool actOnyon(Onyon*);     // _1C
+	virtual bool actItem(BaseItem*);   // _20
 
 	// _00 VTBL
 	Creature* m_creature; // _04
 };
 
 struct InteractFlick : public Interaction {
-	virtual bool actCommon(Creature*);
-	virtual bool actPiki(Piki*);
-	virtual bool actNavi(Navi*);
+	virtual bool actCommon(Creature*); // _08
+	virtual bool actPiki(Piki*);       // _0C
+	virtual bool actNavi(Navi*);       // _10
 
 	f32 m_knockback; // _08
 	f32 m_damage;    // _0C
@@ -36,7 +42,7 @@ struct InteractFlick : public Interaction {
 };
 
 struct InteractAbsorb : public Interaction {
-	virtual bool actItem(BaseItem*); // _18
+	virtual bool actItem(BaseItem*); // _20
 };
 
 struct InteractAttack : public Interaction {
@@ -50,27 +56,27 @@ struct InteractAttack : public Interaction {
 };
 
 struct InteractBreakBridge : public Interaction {
-	virtual bool actItem(BaseItem*); // _18
+	virtual bool actItem(BaseItem*); // _20
 
 	float _08; // _08
 };
 
 struct InteractDope : public Interaction {
-	virtual bool actPiki(Piki*);       // _04
-	virtual bool actEnemy(EnemyBase*); // _0C
+	virtual bool actPiki(Piki*);       // _0C
+	virtual bool actEnemy(EnemyBase*); // _14
 
 	s32 m_sprayType; // _08
 };
 
 struct InteractEat : public Interaction {
-	virtual bool actPellet(Pellet*); // _10
-	virtual bool actItem(BaseItem*); // _18
+	virtual bool actPellet(Pellet*); // _18
+	virtual bool actItem(BaseItem*); // _20
 
 	int _08; // _08
 };
 
 struct InteractFlockAttack : public Interaction {
-	virtual bool actItem(BaseItem*); // _18
+	virtual bool actItem(BaseItem*); // _20
 
 	int _08;      // _08
 	float _0C;    // _0C
@@ -86,9 +92,9 @@ struct InteractFue : public Interaction {
 		_09 = b;
 	}
 
-	virtual bool actPiki(Piki*);     // _04
-	virtual bool actNavi(Navi*);     // _08
-	virtual bool actItem(BaseItem*); // _18
+	virtual bool actPiki(Piki*);     // _0C
+	virtual bool actNavi(Navi*);     // _10
+	virtual bool actItem(BaseItem*); // _20
 
 	// _00 VTBL
 	u8 _08; // _08
@@ -96,27 +102,27 @@ struct InteractFue : public Interaction {
 };
 
 struct InteractGotKey : public Interaction {
-	virtual bool actItem(BaseItem*); // _18
+	virtual bool actItem(BaseItem*); // _20
 
 	// _04 should be casted to Onyon
 };
 
 struct InteractSwallow : public InteractAttack {
-	virtual bool actCommon(Creature*);
-	virtual bool actPiki(Piki*);
+	virtual bool actCommon(Creature*); // _08
+	virtual bool actPiki(Piki*);       // _0C
 
 	int _10; // _10
 };
 
 struct InteractKill : public Interaction {
-	virtual bool actCommon(Creature*);
-	virtual bool actPiki(Piki*);
+	virtual bool actCommon(Creature*); // _08
+	virtual bool actPiki(Piki*);       // _0C
 };
 
 struct InteractBomb : public Interaction {
-	virtual bool actPiki(Piki*);
-	virtual bool actNavi(Navi*);
-	virtual bool actEnemy(EnemyBase*);
+	virtual bool actPiki(Piki*);       // _0C
+	virtual bool actNavi(Navi*);       // _10
+	virtual bool actEnemy(EnemyBase*); // _14
 
 	// _00 VTBL
 	// _04 Parent
@@ -125,18 +131,32 @@ struct InteractBomb : public Interaction {
 };
 
 struct InteractBubble : public Interaction {
-	virtual bool actPiki(Piki*);
-	virtual bool actNavi(Navi*);
+	virtual bool actPiki(Piki*); // _0C
+	virtual bool actNavi(Navi*); // _10
 
 	// _00 VTBL
 	// _04 Parent
 };
 
 struct InteractHipdrop : public InteractAttack {
-	virtual bool actEnemy(EnemyBase*);
+	virtual bool actEnemy(EnemyBase*); // _14
 
 	// _00 VTBL
 	// _04 Parent
+};
+
+struct InteractMattuan : public Interaction {
+	inline InteractMattuan(Creature* parent, float a)
+	    : Interaction(parent)
+	{
+		_08 = a;
+	}
+
+	virtual bool actPellet(Pellet*); // _18
+
+	// _00 VTBL
+	// _04 Parent
+	float _08; // _08
 };
 } // namespace Game
 

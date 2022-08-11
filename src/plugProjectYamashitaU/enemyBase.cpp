@@ -5,6 +5,7 @@
 #include "Game/generalEnemyMgr.h"
 #include "efx/Arg.h"
 #include "efx/TEnemyApsmoke.h"
+#include "efx/TEnemyDead.h"
 #include "efx/TEnemyDownSmoke.h"
 #include "efx/TEnemyDownWat.h"
 #include "Game/AABBWaterBox.h"
@@ -2176,19 +2177,19 @@ void StoneState::updateCullingOff(Game::EnemyBase* enemy)
  */
 void StateMachine::init(Game::EnemyBase* enemy)
 {
-	this->create(10);
+	create(10);
 
-	this->registerState(new BirthTypeDropState(EBS_Drop));
-	this->registerState(new BirthTypeDropPikminState);
-	this->registerState(new BirthTypeDropOlimarState);
-	this->registerState(new BirthTypeDropTreasureState);
-	this->registerState(new BirthTypeDropEarthquakeState);
+	registerState(new BirthTypeDropState(EBS_Drop));
+	registerState(new BirthTypeDropPikminState);
+	registerState(new BirthTypeDropOlimarState);
+	registerState(new BirthTypeDropTreasureState);
+	registerState(new BirthTypeDropEarthquakeState);
 
-	this->registerState(new AppearState);
-	this->registerState(new LivingState);
-	this->registerState(new StoneState);
-	this->registerState(new EarthquakeState);
-	this->registerState(new FitState);
+	registerState(new AppearState);
+	registerState(new LivingState);
+	registerState(new StoneState);
+	registerState(new EarthquakeState);
+	registerState(new FitState);
 }
 
 /*
@@ -2606,14 +2607,14 @@ void EnemyBase::setOtakaraCode(Game::PelletMgr::OtakaraItemCode& itemCode)
 		short dropCode = m_pelletDropCode.m_value;
 		int dropShift  = dropCode >> 8;
 		if ((u8)dropShift == 4) {
-			Radar::Mgr::entry(this, Radar::PELLET_ITEM, 0);
+			Radar::Mgr::entry(this, Radar::MAP_UPGRADE, 0);
 			return;
 		}
 		if (playData->isPelletEverGot(dropShift, dropCode)) {
-			Radar::Mgr::entry(this, Radar::ALREADY_COLLECTED_PELLET, 0);
+			Radar::Mgr::entry(this, Radar::MAP_TREASURE, 0);
 			return;
 		}
-		Radar::Mgr::entry(this, Radar::UNCOLLECTED_PELLET, 0);
+		Radar::Mgr::entry(this, Radar::MAP_SWALLOWED_TREASURE, 0);
 	}
 }
 

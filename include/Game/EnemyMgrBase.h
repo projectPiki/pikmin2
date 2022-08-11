@@ -139,6 +139,7 @@ struct EnemyMgrBase : public IEnemyMgrBase {
 
 	void init(EnemyParmsBase*);
 	bool isValidEnemyTypeID();
+	void kill(EnemyBase*);
 
 	J3DModelData* m_modelData;          // _1C
 	SysShape::AnimMgr* m_animMgr;       // _20

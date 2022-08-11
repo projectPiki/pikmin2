@@ -11,10 +11,11 @@ template <typename T> struct BitFlag {
 		}
 	}
 
-	inline void clear() {
+	inline void clear()
+	{
 		for (int i = 0; i < sizeof(T); i++) {
 			byteView[i] = 0;
-		}		
+		}
 	}
 
 	union {
@@ -24,16 +25,16 @@ template <typename T> struct BitFlag {
 };
 
 template <typename T, int I> struct BitFlagArray {
-    inline BitFlagArray()
-    {
-        for (int i = 0; i < I; i++) {
-            for (int j = 0; j < sizeof(T); j++) {
-                m_flags[i].byteView[j] = 0;
-            }
-        }
-    }
+	inline BitFlagArray()
+	{
+		for (int i = 0; i < I; i++) {
+			for (int j = 0; j < sizeof(T); j++) {
+				m_flags[i].byteView[j] = 0;
+			}
+		}
+	}
 
-    BitFlag<T> m_flags[I];	// _00
+	BitFlag<T> m_flags[I]; // _00
 };
 
 #endif

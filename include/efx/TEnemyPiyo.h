@@ -16,7 +16,6 @@ struct TEnemyPiyo : public TChasePos {
 	// 	_0C-_14
 	// vtable 2 (JPAEmitterCallBack + Self)
 	virtual ~TEnemyPiyo() { } // _48 (weak)
-
 };
 } // namespace efx
 

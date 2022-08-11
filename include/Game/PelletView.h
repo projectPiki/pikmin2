@@ -1,13 +1,11 @@
 #ifndef _GAME_PELLETVIEW_H
 #define _GAME_PELLETVIEW_H
 
+#include "Vector3.h"
+#include "Matrixf.h"
 #include "types.h"
 
 const float PELLETVIEW_BASE_SCALE = 1.0f;
-
-struct Matrixf;
-template <typename T> struct Vector3;
-typedef Vector3<float> Vector3f;
 
 namespace SysShape {
 struct Model;
@@ -16,7 +14,17 @@ struct Model;
 namespace Game {
 struct Creature;
 struct Pellet;
-struct PelletViewArg;
+struct EnemyBase;
+
+struct PelletViewArg {
+	PelletViewArg();
+
+	char* m_enemyName;   // _00
+	Vector3f m_position; // _04
+	Matrixf* m_matrix;   // _10
+	EnemyBase* m_enemy;  // _14
+	Vector3f _18;        // _18
+};
 
 // @trait
 struct PelletView {

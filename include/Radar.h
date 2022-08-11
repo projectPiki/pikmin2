@@ -9,32 +9,32 @@ struct TPositionObject;
 }
 
 struct Radar {
-	typedef enum {
-		RED_ONION 					= 0x0,
-		BLUE_ONION 					= 0x1,
-		YELLOW_ONION 				= 0x2,
-		RED_PIKMIN 					= 0x3,
-		BLUE_PIKMIN 				= 0x4,
-		YELLOW_PIKMIN 				= 0x5,
-		PURPLE_PIKMIN 				= 0x6,
-		WHITE_PIKMIN 				= 0x7,
-		BULBMIN 					= 0x8,
-		PIKIHEAD 					= 0x9,
-		BIG_FOUNTAIN				= 0xa,
-		UNENTERED_CAVE 				= 0xb,
-		UNKNOWN_ONION_x4__POT 		= 0xc,
-		LOUIE_OR_PRESIDENT 			= 0xd,
-		OLIMAR 						= 0xe,
-		UNKNOWN_0xf__UFO 			= 0xf,
-		ALREADY_COLLECTED_PELLET 	= 0x10,
-		UNCOLLECTED_PELLET 			= 0x11,
-		PELLET_ITEM 				= 0x12,
-		INCOMPLETE_CAVE 			= 0x13,
-		COMPLETED_CAVE 				= 0x14,
-		HOLE 						= 0x15,
-		UNKNOWN_0x16				= 0x16,
-		UNKNOWN_0x17 				= 0x17
-	} cRadarType;
+	enum cRadarType {
+		MAP_RED_ONION = 0x0,    // 0x0
+		MAP_BLUE_ONION,         // 0x1
+		MAP_YELLOW_ONION,       // 0x2
+		MAP_RED_PIKMIN,         // 0x3
+		MAP_BLUE_PIKMIN,        // 0x4
+		MAP_YELLOW_PIKMIN,      // 0x5
+		MAP_PURPLE_PIKMIN,      // 0x6
+		MAP_WHITE_PIKMIN,       // 0x7
+		MAP_BULBMIN,            // 0x8
+		MAP_BURIED_PIKMIN,      // 0x9
+		MAP_GEYSER,             // 0xA
+		MAP_UNENTERED_CAVE,     // 0xB
+		MAP_CAVE_POD,           // 0xC
+		MAP_LOUIE_PRESIDENT,    // 0xD
+		MAP_OLIMAR,             // 0xE
+		MAP_SHIP,               // 0xF
+		MAP_TREASURE,           // 0x10	- possibly already collected treasure
+		MAP_SWALLOWED_TREASURE, // 0x11 - possibly just regular treasure
+		MAP_UPGRADE,            // 0x12
+		MAP_INCOMPLETE_CAVE,    // 0x13
+		MAP_COMPLETED_CAVE,     // 0x14
+		MAP_HOLE,               // 0x15
+		MAP_INVALID,            // 0x16
+		MAP_NULL_ICON,          // 0x17
+	};
 
 	struct Mgr {
 		Mgr();

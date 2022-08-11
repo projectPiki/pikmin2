@@ -31,28 +31,28 @@ struct _BaseItemMgrParent2 {
 struct BaseItemMgr : public GenericObjectMgr, virtual public _BaseItemMgrParent2 {
 	BaseItemMgr();
 
-	virtual void doAnimation();                                               // _00
-	virtual void doEntry();                                                   // _04
-	virtual void doSetView(int);                                              // _08
-	virtual void doViewCalc();                                                // _0C
-	virtual void doSimulation(float);                                         // _10
-	virtual void doDirectDraw(Graphics&);                                     // _14
-	virtual void loadResources();                                             // _1C
-	virtual void initDependency() = 0;                                        // _30
-	virtual void killAll();                                                   // _34
-	virtual void setup(BaseItem*);                                            // _38
-	virtual void setupSoundViewerAndBas();                                    // _3C
-	virtual void onLoadResources();                                           // _40
-	virtual void loadEverytime();                                             // _44
-	virtual void updateUseList(GenItemParm*, int);                            // _48
-	virtual void onUpdateUseList(GenItemParm*, int);                          // _4C
-	virtual u32 generatorGetID()                                         = 0; // _50
-	virtual BaseItem* generatorBirth(Vector3f&, Vector3f&, GenItemParm*) = 0; // _54
-	virtual void generatorWrite(Stream&, GenItemParm*);                       // _58
-	virtual void generatorRead(Stream&, GenItemParm*, u32);                   // _5C
-	virtual u32 generatorLocalVersion();                                      // _60
-	virtual J3DModelData* generatorGetShape(GenItemParm*);                    // _64
-	virtual GenItemParm* generatorNewItemParm();                              // _68
+	virtual void doAnimation();                                               // _08 (weak)
+	virtual void doEntry();                                                   // _0C (weak)
+	virtual void doSetView(int);                                              // _10 (weak)
+	virtual void doViewCalc();                                                // _14 (weak)
+	virtual void doSimulation(float);                                         // _18 (weak)
+	virtual void doDirectDraw(Graphics&);                                     // _1C (weak)
+	virtual void loadResources();                                             // _24
+	virtual void initDependency() = 0;                                        // _38
+	virtual void killAll();                                                   // _3C (weak)
+	virtual void setup(BaseItem*);                                            // _40 (weak)
+	virtual void setupSoundViewerAndBas();                                    // _44
+	virtual void onLoadResources();                                           // _48 (weak)
+	virtual void loadEverytime();                                             // _4C (weak)
+	virtual void updateUseList(GenItemParm*, int);                            // _50
+	virtual void onUpdateUseList(GenItemParm*, int);                          // _54 (weak)
+	virtual u32 generatorGetID()                                         = 0; // _58
+	virtual BaseItem* generatorBirth(Vector3f&, Vector3f&, GenItemParm*) = 0; // _5C
+	virtual void generatorWrite(Stream&, GenItemParm*);                       // _60 (weak)
+	virtual void generatorRead(Stream&, GenItemParm*, u32);                   // _64 (weak)
+	virtual u32 generatorLocalVersion();                                      // _68 (weak)
+	virtual J3DModelData* generatorGetShape(GenItemParm*);                    // _6C
+	virtual GenItemParm* generatorNewItemParm();                              // _70
 
 	J3DModelData* getModelData(int);
 	void setModelSize(int);
@@ -131,6 +131,27 @@ struct ItemMgr : public NodeObjectMgr<GenericObjectMgr> {
 	int getIndexByMgr(BaseItemMgr*);
 	BaseItemMgr* getMgrByIndex(int);
 	BaseItemMgr* getMgrByID(ID32&);
+};
+
+template <typename T> struct FixedSizeItemMgr : public BaseItemMgr, public MonoObjectMgr<T> {
+	virtual void doAnimation();                                               // _08 (weak)
+	virtual void doEntry();                                                   // _0C (weak)
+	virtual void doSetView(int);                                              // _10 (weak)
+	virtual void doViewCalc();                                                // _14 (weak)
+	virtual void doSimulation(float);                                         // _18 (weak)
+	virtual void doDirectDraw(Graphics&);                                     // _1C (weak)
+	virtual void initDependency();                                            // _38 (weak)
+	virtual void killAll();                                                   // _3C (weak)
+	virtual u32 generatorGetID()                                         = 0; // _58
+	virtual BaseItem* generatorBirth(Vector3f&, Vector3f&, GenItemParm*) = 0; // _5C
+	virtual void onCreateModel(SysShape::Model*);                             // _A0
+	virtual T* birth();                                                       // _A4
+	virtual void kill(T*);                                                    // _A8 (weak)
+	virtual BaseItem* get(void*);                                             // _AC (weak, thunk at _94)
+	virtual void getNext(void*);                                              // _B0 (weak, thunk at _88)
+	virtual void getStart();                                                  // _B4 (weak, thunk at _8C)
+	virtual void getEnd();                                                    // _B8 (weak, thunk at _90)
+	virtual ~FixedSizeItemMgr<T>();                                           // _BC (weak, thunk at _7C)
 };
 } // namespace Game
 

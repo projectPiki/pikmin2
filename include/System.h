@@ -89,15 +89,15 @@ struct System {
 	f32 _04;                                      // _04
 	f32 _08;                                      // _08
 	u8 _0C[0xC];                                  // _0C
-	JKRHeap* _18;                          // _18
+	JKRHeap* _18;                                 // _18
 	u32 m_cpuRetraceCount;                        // _1C
 	u32 m_cpuLockCount;                           // _20
 	Graphics* m_gfx;                              // _24
-	SysTimers* m_timers;                   // _28
+	SysTimers* m_timers;                          // _28
 	u32 _2C;                                      // _2C
 	u32 _30;                                      // _30
 	u32 _34;                                      // _34
-	JKRHeap* m_sysHeap;                    // _38
+	JKRHeap* m_sysHeap;                           // _38
 	struct GameFlow* m_gameFlow;                  // _3C
 	struct DvdThread* m_dvdThread;                // _40
 	struct ResetManager* m_resetMgr;              // _44
