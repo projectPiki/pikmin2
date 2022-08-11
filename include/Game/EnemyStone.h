@@ -51,10 +51,10 @@ struct DrawInfo : CNode {
 
 struct Obj : CNode {
 	Obj(EnemyBase*, Info*);
-	virtual ~Obj();				// _08 (weak)
+	virtual ~Obj(); // _08 (weak)
 	// virtual void _10() = 0;	// _10 - possibly?
 
-	void start();
+	bool start();
 	void shake();
 	void update();
 	void checkDrawInfoState(int);
@@ -62,11 +62,11 @@ struct Obj : CNode {
 
 	// _00		= VTABLE
 	// _04-_18	= CNode
-	Info* m_info;			// _18
-	CNode m_nodeArray[2];	// _1C
-	EnemyBase* m_enemy;		// _4C
-	u8 _50;					// _50
-	u8 _51[3];				// _51 - possibly padding.
+	Info* m_info;         // _18
+	CNode m_nodeArray[2]; // _1C
+	EnemyBase* m_enemy;   // _4C
+	u8 _50;               // _50
+	u8 _51[3];            // _51 - possibly padding.
 };
 } // namespace EnemyStone
 } // namespace Game

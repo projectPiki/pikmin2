@@ -1,4 +1,5 @@
 #include "BitFlag.h"
+#include "CollInfo.h"
 #include "Dolphin/math.h"
 #include "Dolphin/rand.h"
 #include "Game/generalEnemyMgr.h"
@@ -26,6 +27,7 @@
 #include "Game/PelletMgr.h"
 #include "Game/Piki.h"
 #include "Game/shadowMgr.h"
+#include "Game/TekiStat.h"
 #include "JSystem/JMath.h"
 #include "JSystem/J3D/J3DModel.h"
 #include "LifeGaugeMgr.h"
@@ -2172,21 +2174,21 @@ void StoneState::updateCullingOff(Game::EnemyBase* enemy)
  * Address:	80100CF4
  * Size:	000484
  */
-void StateMachine::init(Game::EnemyBase* enemy) 
+void StateMachine::init(Game::EnemyBase* enemy)
 {
-    this->create(10);
+	this->create(10);
 
-    this->registerState(new BirthTypeDropState(EBS_Drop));
-    this->registerState(new BirthTypeDropPikminState);
-    this->registerState(new BirthTypeDropOlimarState);
-    this->registerState(new BirthTypeDropTreasureState);
-    this->registerState(new BirthTypeDropEarthquakeState);
+	this->registerState(new BirthTypeDropState(EBS_Drop));
+	this->registerState(new BirthTypeDropPikminState);
+	this->registerState(new BirthTypeDropOlimarState);
+	this->registerState(new BirthTypeDropTreasureState);
+	this->registerState(new BirthTypeDropEarthquakeState);
 
-    this->registerState(new AppearState);
-    this->registerState(new LivingState);
-    this->registerState(new StoneState);
-    this->registerState(new EarthquakeState);
-    this->registerState(new FitState);
+	this->registerState(new AppearState);
+	this->registerState(new LivingState);
+	this->registerState(new StoneState);
+	this->registerState(new EarthquakeState);
+	this->registerState(new FitState);
 }
 
 /*
@@ -2296,12 +2298,12 @@ Game::EnemyBase::EnemyBase()
     , m_currentLifecycleState(nullptr)
     , m_lifecycleFSM(nullptr)
 {
-    for (int i = 0; i < 4; i++) {
-        m_flags.byteView[i] = 0;
-    }
-    
-	m_objectTypeID      = OBJTYPE_Teki;
-	m_scaleModifier     = PELLETVIEW_BASE_SCALE;
+	for (int i = 0; i < 4; i++) {
+		m_flags.byteView[i] = 0;
+	}
+
+	m_objectTypeID  = OBJTYPE_Teki;
+	m_scaleModifier = PELLETVIEW_BASE_SCALE;
 	m_collisionBuffer.alloc(this, 8);
 	m_animator       = nullptr;
 	m_animKeyEvent   = new EnemyAnimKeyEvent;
@@ -2313,29 +2315,29 @@ Game::EnemyBase::EnemyBase()
 	clearStick();
 	m_animKeyEvent->m_running = 0;
 	m_instantDamage           = 0.0f;
-	_1E0.m_flags[0].typeView   &= ~0x2;
-	m_toFlick           = 0.0f;
-	m_stoneTimer        = 0.0f;
-    
-    for (int i = 0; i < 2; i++) {
-        for (int j = 0; j < 4; j++) {
-            _1E0.m_flags[i].byteView[j] = 0;
-        }
-    }
-    for (int i = 0; i < 2; i++) {
-        for (int j = 0; j < 4; j++) {
-            _1E8.m_flags[i].byteView[j] = 0; 
-        }
-    }
+	_1E0.m_flags[0].typeView &= ~0x2;
+	m_toFlick    = 0.0f;
+	m_stoneTimer = 0.0f;
+
+	for (int i = 0; i < 2; i++) {
+		for (int j = 0; j < 4; j++) {
+			_1E0.m_flags[i].byteView[j] = 0;
+		}
+	}
+	for (int i = 0; i < 2; i++) {
+		for (int j = 0; j < 4; j++) {
+			_1E8.m_flags[i].byteView[j] = 0;
+		}
+	}
 
 	if (Game::shadowMgr != nullptr) {
 		Game::shadowMgr->createShadow(this);
 	}
-    
+
 	if (lifeGaugeMgr != nullptr) {
 		lifeGaugeMgr->createLifeGauge(this);
 	}
-    
+
 	m_effectNodeHamonRoot.m_child  = nullptr;
 	m_effectNodeHamonRoot.m_parent = nullptr;
 	m_effectNodeHamonRoot.m_prev   = nullptr;
@@ -2375,10 +2377,10 @@ Game::EnemyBase::EnemyBase()
  * Address:	80101788
  * Size:	000044
  */
-void EnemyBase::constructor() 
+void EnemyBase::constructor()
 {
-    m_soundObj = createPSEnemyBase();
-    createInstanceEfxHamon();
+	m_soundObj = createPSEnemyBase();
+	createInstanceEfxHamon();
 }
 
 /*
@@ -2386,15 +2388,15 @@ void EnemyBase::constructor()
  * Address:	801017CC
  * Size:	00005C
  */
-void EnemyBase::createEffects() 
+void EnemyBase::createEffects()
 {
-    EnemyEffectNodeHamon* next;
-    EnemyEffectNodeHamon* hamon = (EnemyEffectNodeHamon*) m_effectNodeHamonRoot.m_child;
-    while (hamon) {
-        next = (EnemyEffectNodeHamon*) hamon->m_next;
-        hamon->create(this);
-        hamon = next;
-    }
+	EnemyEffectNodeHamon* next;
+	EnemyEffectNodeHamon* hamon = (EnemyEffectNodeHamon*)m_effectNodeHamonRoot.m_child;
+	while (hamon) {
+		next = (EnemyEffectNodeHamon*)hamon->m_next;
+		hamon->create(this);
+		hamon = next;
+	}
 }
 
 /*
@@ -2402,15 +2404,15 @@ void EnemyBase::createEffects()
  * Address:	80101828
  * Size:	00005C
  */
-void EnemyBase::fadeEffects() 
+void EnemyBase::fadeEffects()
 {
-    EnemyEffectNodeHamon* next;
-    EnemyEffectNodeHamon* hamon = (EnemyEffectNodeHamon*) m_effectNodeHamonRoot.m_child;
-    while (hamon) {
-        next = (EnemyEffectNodeHamon*) hamon->m_next;
-        hamon->fade(this);
-        hamon = next;
-    }
+	EnemyEffectNodeHamon* next;
+	EnemyEffectNodeHamon* hamon = (EnemyEffectNodeHamon*)m_effectNodeHamonRoot.m_child;
+	while (hamon) {
+		next = (EnemyEffectNodeHamon*)hamon->m_next;
+		hamon->fade(this);
+		hamon = next;
+	}
 }
 
 /*
@@ -2418,10 +2420,10 @@ void EnemyBase::fadeEffects()
  * Address:	80101884
  * Size:	000050
  */
-void EnemyBase::createInstanceEfxHamon() 
+void EnemyBase::createInstanceEfxHamon()
 {
-    m_effectNodeHamon = new EnemyEffectNodeHamon;
-    m_effectNodeHamonRoot.add(m_effectNodeHamon);
+	m_effectNodeHamon = new EnemyEffectNodeHamon;
+	m_effectNodeHamonRoot.add(m_effectNodeHamon);
 }
 
 /*
@@ -2429,11 +2431,11 @@ void EnemyBase::createInstanceEfxHamon()
  * Address:	801018D4
  * Size:	000030
  */
-void EnemyBase::updateEfxHamon() 
+void EnemyBase::updateEfxHamon()
 {
-    if (m_effectNodeHamon) {
-        m_effectNodeHamon->update(this);
-    }
+	if (m_effectNodeHamon) {
+		m_effectNodeHamon->update(this);
+	}
 }
 
 /*
@@ -2441,11 +2443,11 @@ void EnemyBase::updateEfxHamon()
  * Address:	80101904
  * Size:	00003C
  */
-void EnemyBase::createEfxHamon() 
+void EnemyBase::createEfxHamon()
 {
-    if (m_effectNodeHamon) {
-        m_effectNodeHamon->create(this);
-    }
+	if (m_effectNodeHamon) {
+		m_effectNodeHamon->create(this);
+	}
 }
 
 /*
@@ -2453,11 +2455,11 @@ void EnemyBase::createEfxHamon()
  * Address:	80101940
  * Size:	00003C
  */
-void EnemyBase::fadeEfxHamon() 
+void EnemyBase::fadeEfxHamon()
 {
-    if (m_effectNodeHamon) {
-        m_effectNodeHamon->fade(this);
-    }
+	if (m_effectNodeHamon) {
+		m_effectNodeHamon->fade(this);
+	}
 }
 
 /*
@@ -2508,13 +2510,13 @@ void EnemyBase::onInit(Game::CreatureInitArg* arg)
 	m_animKeyEvent->m_running = false;
 	m_instantDamage           = 0.0f;
 	_1E0.m_flags[0].typeView &= ~2;
-	m_toFlick           = 0.0f;
-	m_stoneTimer        = 0.0f;
+	m_toFlick    = 0.0f;
+	m_stoneTimer = 0.0f;
 
-    _1E0.m_flags[0].clear();
-    _1E0.m_flags[1].clear();
-    _1E8.m_flags[0].clear();
-    _1E8.m_flags[1].clear();
+	_1E0.m_flags[0].clear();
+	_1E0.m_flags[1].clear();
+	_1E8.m_flags[0].clear();
+	_1E8.m_flags[1].clear();
 
 	_1E0.m_flags[0].typeView |= 0x10000000;
 	_1E0.m_flags[0].typeView |= 0x8;
@@ -2597,22 +2599,22 @@ void EnemyBase::onInitPost(Game::CreatureInitArg* arg)
  * Address:	80101D74
  * Size:	0000A0
  */
-void EnemyBase::setOtakaraCode(Game::PelletMgr::OtakaraItemCode& itemCode) 
+void EnemyBase::setOtakaraCode(Game::PelletMgr::OtakaraItemCode& itemCode)
 {
-    m_pelletDropCode.m_value = itemCode.m_value;
-    if (!m_pelletDropCode.isNull()) {
-        short dropCode = m_pelletDropCode.m_value;
-        int dropShift = dropCode >> 8;
-        if ((u8) dropShift == 4) { 
-            Radar::Mgr::entry(this, Radar::PELLET_ITEM, 0);
-            return;
-        }
-        if (playData->isPelletEverGot(dropShift, dropCode)) {
-            Radar::Mgr::entry(this, Radar::ALREADY_COLLECTED_PELLET, 0);
-            return;
-        }
-        Radar::Mgr::entry(this, Radar::UNCOLLECTED_PELLET, 0);
-    }
+	m_pelletDropCode.m_value = itemCode.m_value;
+	if (!m_pelletDropCode.isNull()) {
+		short dropCode = m_pelletDropCode.m_value;
+		int dropShift  = dropCode >> 8;
+		if ((u8)dropShift == 4) {
+			Radar::Mgr::entry(this, Radar::PELLET_ITEM, 0);
+			return;
+		}
+		if (playData->isPelletEverGot(dropShift, dropCode)) {
+			Radar::Mgr::entry(this, Radar::ALREADY_COLLECTED_PELLET, 0);
+			return;
+		}
+		Radar::Mgr::entry(this, Radar::UNCOLLECTED_PELLET, 0);
+	}
 }
 
 // } // namespace Game
@@ -3531,73 +3533,22 @@ void EnemyBase::onKill(Game::CreatureKillArg*)
  * Address:	80102920
  * Size:	0000E0
  */
-void EnemyBase::setZukanVisible(bool)
+void EnemyBase::setZukanVisible(bool arg)
 {
-	/*
-	.loc_0x0:
-	  stwu      r1, -0x10(r1)
-	  mflr      r0
-	  stw       r0, 0x14(r1)
-	  stw       r31, 0xC(r1)
-	  mr        r31, r3
-	  stw       r30, 0x8(r1)
-	  mr        r30, r4
-	  lbz       r0, 0x1F3(r3)
-	  cmplwi    r0, 0
-	  beq-      .loc_0xC8
-	  lwz       r4, -0x6C18(r13)
-	  lbz       r0, 0x3C(r4)
-	  rlwinm.   r0,r0,0,27,27
-	  bne-      .loc_0xC8
-	  lwz       r12, 0x0(r3)
-	  lwz       r12, 0x258(r12)
-	  mtctr     r12
-	  bctrl
-	  lis       r4, 0x1
-	  subi      r4, r4, 0x1
-	  bl        0x20908
-	  lhz       r0, 0x8(r3)
-	  rlwinm.   r0,r0,0,22,22
-	  bne-      .loc_0xC8
-	  mr        r3, r31
-	  lwz       r12, 0x0(r31)
-	  lwz       r12, 0x258(r12)
-	  mtctr     r12
-	  bctrl
-	  lwz       r5, -0x6B70(r13)
-	  mr        r4, r3
-	  addi      r3, r5, 0x40
-	  bl        0x131124
-	  mr.       r31, r3
-	  bne-      .loc_0xA8
-	  lis       r3, 0x8048
-	  lis       r5, 0x8048
-	  subi      r3, r3, 0x5ABC
-	  li        r4, 0x743
-	  subi      r5, r5, 0x5AAC
-	  crclr     6, 0x6
-	  bl        -0xD8384
-
-	.loc_0xA8:
-	  rlwinm.   r0,r30,0,24,31
-	  beq-      .loc_0xBC
-	  mr        r3, r31
-	  bl        0x130E48
-	  b         .loc_0xC8
-
-	.loc_0xBC:
-	  lbz       r0, 0x8(r31)
-	  ori       r0, r0, 0x1
-	  stb       r0, 0x8(r31)
-
-	.loc_0xC8:
-	  lwz       r0, 0x14(r1)
-	  lwz       r31, 0xC(r1)
-	  lwz       r30, 0x8(r1)
-	  mtlr      r0
-	  addi      r1, r1, 0x10
-	  blr
-	*/
+	if (m_inZukan) {
+		if (!(gameSystem->_3C & 0x10)) {
+			EnemyInfo* enemyInfo = EnemyInfoFunc::getEnemyInfo(getEnemyTypeID(), 0xFFFF);
+			if (!(enemyInfo->m_flags & 0x200)) {
+				TekiStat::Info* tekiInfo = playData->m_tekiStatMgr.getTekiInfo(getEnemyTypeID());
+				P2ASSERTLINE(1859, tekiInfo != nullptr);
+				if (arg) {
+					tekiInfo->incKilled();
+				} else {
+					tekiInfo->m_state |= TEKISTAT_STATE_UPDATED;
+				}
+			}
+		}
+	}
 }
 
 /*
@@ -3605,101 +3556,44 @@ void EnemyBase::setZukanVisible(bool)
  * Address:	80102A00
  * Size:	000160
  */
-void EnemyBase::birth(Vector3f&, float)
+void EnemyBase::birth(Vector3f& pos, float faceDir)
 {
-	/*
-	.loc_0x0:
-	  stwu      r1, -0x20(r1)
-	  mflr      r0
-	  stw       r0, 0x24(r1)
-	  stfd      f31, 0x10(r1)
-	  psq_st    f31,0x18(r1),0,0
-	  stw       r31, 0xC(r1)
-	  stw       r30, 0x8(r1)
-	  mr        r30, r3
-	  fmr       f31, f1
-	  lwz       r6, 0x1E0(r3)
-	  li        r0, 0x1
-	  mr        r31, r4
-	  li        r5, 0
-	  oris      r6, r6, 0x1000
-	  stw       r6, 0x1E0(r3)
-	  stb       r0, 0x1F3(r3)
-	  bl        0x38768
-	  lfs       f1, 0x0(r31)
-	  li        r0, 0
-	  lfs       f0, -0x6BB0(r2)
-	  stfs      f1, 0x198(r30)
-	  lfs       f1, 0x4(r31)
-	  stfs      f1, 0x19C(r30)
-	  lfs       f1, 0x8(r31)
-	  stfs      f1, 0x1A0(r30)
-	  stfs      f0, 0x1A4(r30)
-	  stfs      f0, 0x1A8(r30)
-	  stfs      f0, 0x1AC(r30)
-	  stfs      f0, 0x1C8(r30)
-	  stfs      f0, 0x1CC(r30)
-	  stfs      f0, 0x1D0(r30)
-	  stfs      f0, 0x1D4(r30)
-	  stfs      f0, 0x1D8(r30)
-	  stfs      f0, 0x1DC(r30)
-	  stw       r0, 0x230(r30)
-	  stfs      f31, 0x1FC(r30)
-	  lfs       f0, 0x1FC(r30)
-	  stfs      f0, 0x1A8(r30)
-	  stw       r0, 0xC8(r30)
-	  stw       r0, 0x1F4(r30)
-	  stw       r0, 0x254(r30)
-	  lwz       r3, 0x174(r30)
-	  lwz       r3, 0x8(r3)
-	  lwz       r12, 0x0(r3)
-	  lwz       r12, 0x10(r12)
-	  mtctr     r12
-	  bctrl
-	  lwz       r3, 0x114(r30)
-	  bl        0x32FDC
-	  mr        r3, r30
-	  bl        0xE08
-	  mr        r3, r30
-	  bl        0x3BBC
-	  li        r0, 0xFF
-	  mr        r3, r30
-	  stb       r0, 0x1F2(r30)
-	  lwz       r12, 0x0(r30)
-	  lwz       r12, 0x228(r12)
-	  mtctr     r12
-	  bctrl
-	  lwz       r3, -0x6980(r13)
-	  mr        r4, r30
-	  bl        0x13F1B4
-	  lwz       r3, -0x6DF8(r13)
-	  cmplwi    r3, 0
-	  beq-      .loc_0x114
-	  lfs       f1, -0x6B9C(r2)
-	  mr        r4, r30
-	  bl        0x17F84
-
-	.loc_0x114:
-	  lwz       r3, 0x174(r30)
-	  lwz       r12, 0x0(r3)
-	  lwz       r12, 0x18(r12)
-	  mtctr     r12
-	  bctrl
-	  li        r0, 0x1
-	  lfs       f0, -0x6BB0(r2)
-	  stb       r0, 0x1F0(r30)
-	  stfs      f0, 0x2AC(r30)
-	  stfs      f0, 0x2A8(r30)
-	  stfs      f0, 0x214(r30)
-	  psq_l     f31,0x18(r1),0,0
-	  lwz       r0, 0x24(r1)
-	  lfd       f31, 0x10(r1)
-	  lwz       r31, 0xC(r1)
-	  lwz       r30, 0x8(r1)
-	  mtlr      r0
-	  addi      r1, r1, 0x20
-	  blr
-	*/
+	_1E0.m_flags[0].typeView |= 0x10000000;
+	m_inZukan = 1;
+	setPosition(pos, false);
+	m_homePosition.x    = pos.x;
+	m_homePosition.y    = pos.y;
+	m_homePosition.z    = pos.z;
+	_1A4.m_matrix[0][0] = 0.0f;
+	_1A4.m_matrix[0][1] = 0.0f;
+	_1A4.m_matrix[0][2] = 0.0f;
+	m_velocity.x        = 0.0f;
+	m_velocity.y        = 0.0f;
+	m_velocity.z        = 0.0f;
+	m_velocity2.x       = 0.0f;
+	m_velocity2.y       = 0.0f;
+	m_velocity2.z       = 0.0f;
+	m_targetCreature    = nullptr;
+	m_faceDir           = faceDir;
+	_1A4.m_matrix[0][1] = m_faceDir;
+	_0C8                = nullptr;
+	m_stickPikminCount  = 0;
+	m_heldPellet        = nullptr;
+	m_model->m_j3dModel->calc();
+	m_collTree->update();
+	updateSpheres();
+	resetCollEvent();
+	_1F2 = 0xFF;
+	setParameters();
+	shadowMgr->addShadow(this);
+	if (lifeGaugeMgr != nullptr) {
+		lifeGaugeMgr->activeLifeGauge(this, 1.0f);
+	}
+	m_model->hide();
+	m_emotion    = 1;
+	_2AC         = 0.0f;
+	_2A8         = 0.0f;
+	m_scaleTimer = 0.0f;
 }
 
 /*
@@ -3751,39 +3645,14 @@ void EnemyBase::updateTrMatrix()
  */
 void EnemyBase::setParameters()
 {
-	/*
-	.loc_0x0:
-	  stwu      r1, -0x20(r1)
-	  mflr      r0
-	  stw       r0, 0x24(r1)
-	  addi      r4, r1, 0x8
-	  stw       r31, 0x1C(r1)
-	  mr        r31, r3
-	  lwz       r3, 0xC0(r3)
-	  lfs       f0, 0x104(r3)
-	  stfs      f0, 0x200(r31)
-	  lwz       r3, 0xC0(r31)
-	  lfs       f0, 0x104(r3)
-	  stfs      f0, 0x204(r31)
-	  lwz       r3, 0xC0(r31)
-	  lfs       f0, 0x2BC(r3)
-	  stfs      f0, 0x118(r31)
-	  lfs       f0, 0x118(r31)
-	  stfs      f0, 0x218(r31)
-	  lwz       r3, 0x114(r31)
-	  lwz       r3, 0x0(r3)
-	  bl        0x355D8
-	  lfs       f0, 0x14(r1)
-	  stfs      f0, 0x22C(r31)
-	  lwz       r3, 0xC0(r31)
-	  lfs       f0, 0x21C(r3)
-	  stfs      f0, 0x27C(r31)
-	  lwz       r31, 0x1C(r1)
-	  lwz       r0, 0x24(r1)
-	  mtlr      r0
-	  addi      r1, r1, 0x20
-	  blr
-	*/
+	m_health    = static_cast<EnemyParmsBase*>(m_parms)->m_general.m_health.m_value;
+	m_maxHealth = static_cast<EnemyParmsBase*>(m_parms)->m_general.m_health.m_value;
+	_118        = static_cast<EnemyParmsBase*>(m_parms)->m_general.m_fp05.m_value;
+	m_friction  = _118;
+	Sys::Sphere sphere;
+	m_collTree->m_part->getSphere(sphere);
+	m_boundingSphere.m_radius = sphere.m_radius;
+	m_lodRange.m_radius       = static_cast<EnemyParmsBase*>(m_parms)->m_general.m_offCameraRadius.m_value;
 }
 
 /*
@@ -3791,25 +3660,7 @@ void EnemyBase::setParameters()
  * Address:	80102C50
  * Size:	000034
  */
-void EnemyBase::update()
-{
-	/*
-	.loc_0x0:
-	  stwu      r1, -0x10(r1)
-	  mflr      r0
-	  mr        r4, r3
-	  stw       r0, 0x14(r1)
-	  lwz       r3, 0x2B8(r3)
-	  lwz       r12, 0x0(r3)
-	  lwz       r12, 0x24(r12)
-	  mtctr     r12
-	  bctrl
-	  lwz       r0, 0x14(r1)
-	  mtlr      r0
-	  addi      r1, r1, 0x10
-	  blr
-	*/
-}
+void EnemyBase::update() { static_cast<EnemyBaseFSM::StateMachine*>(m_lifecycleFSM)->update(this); }
 
 /*
  * --INFO--
@@ -3958,51 +3809,17 @@ bool EnemyBase::isFinishableWaitingBirthTypeDrop()
  */
 void EnemyBase::startStoneState()
 {
-	/*
-	.loc_0x0:
-	  stwu      r1, -0x10(r1)
-	  mflr      r0
-	  stw       r0, 0x14(r1)
-	  stw       r31, 0xC(r1)
-	  mr        r31, r3
-	  lwz       r3, 0x1E0(r3)
-	  rlwinm.   r0,r3,0,9,9
-	  bne-      .loc_0x7C
-	  rlwinm.   r0,r3,0,22,22
-	  bne-      .loc_0x7C
-	  rlwinm.   r0,r3,0,10,10
-	  beq-      .loc_0x3C
-	  oris      r0, r3, 0x10
-	  stw       r0, 0x1E0(r31)
-	  b         .loc_0x7C
-
-	.loc_0x3C:
-	  lwz       r3, 0x24C(r31)
-	  bl        0x26D34
-	  rlwinm.   r0,r3,0,24,31
-	  beq-      .loc_0x70
-	  lwz       r3, 0x2B8(r31)
-	  mr        r4, r31
-	  li        r5, 0x7
-	  li        r6, 0
-	  lwz       r12, 0x0(r3)
-	  lwz       r12, 0x14(r12)
-	  mtctr     r12
-	  bctrl
-	  b         .loc_0x7C
-
-	.loc_0x70:
-	  lwz       r0, 0x1E0(r31)
-	  oris      r0, r0, 0x10
-	  stw       r0, 0x1E0(r31)
-
-	.loc_0x7C:
-	  lwz       r0, 0x14(r1)
-	  lwz       r31, 0xC(r1)
-	  mtlr      r0
-	  addi      r1, r1, 0x10
-	  blr
-	*/
+	if (!(_1E0.m_flags[0].typeView & 0x400000) && !((_1E0.m_flags[0].typeView & 0x200))) {
+		if (_1E0.m_flags[0].typeView & 0x200000) {
+			_1E0.m_flags[0].typeView |= 0x100000;
+			return;
+		}
+		if (m_enemyStoneObj->start()) {
+			m_lifecycleFSM->transit(this, 7, 0);
+		} else {
+			_1E0.m_flags[0].typeView |= 0x100000;
+		}
+	}
 }
 
 /*
@@ -4012,14 +3829,9 @@ void EnemyBase::startStoneState()
  */
 void EnemyBase::doStartStoneState()
 {
-	/*
-	.loc_0x0:
-	  lfs       f0, -0x6BB0(r2)
-	  stfs      f0, 0x1D4(r3)
-	  stfs      f0, 0x1D8(r3)
-	  stfs      f0, 0x1DC(r3)
-	  blr
-	*/
+	m_velocity2.x = 0.0f;
+	m_velocity2.y = 0.0f;
+	m_velocity2.z = 0.0f;
 }
 
 /*
@@ -10641,7 +10453,7 @@ void EnemyBase::resetDroppingMassZero()
 	_118 = m_friction;
 }
 
-} // namespace EnemyBaseFSM
+} // namespace Game
 
 namespace PSM {
 
