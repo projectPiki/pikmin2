@@ -21,6 +21,7 @@
 #include "types.h"
 #include "Game/MoveInfo.h"
 #include "Game/EnemyStone.h"
+#include "Game/EnemyEffectNode.h"
 #include "trig.h"
 
 struct MouthSlots;
@@ -34,9 +35,10 @@ struct Mgr;
 } // namespace WalkSmokeEffect
 
 namespace Game {
+struct EnemyBase;
+
 struct EnemyAnimatorBase;
 struct EnemyAnimKeyEvent;
-struct EnemyEffectNodeHamon;
 struct EnemyMgrBase;
 struct WaterBox;
 struct LifeGaugeParam;
@@ -331,7 +333,7 @@ struct EnemyBase : public Creature, public SysShape::MotionListener, virtual pub
 	EnemyEffectNodeHamon* m_effectNodeHamon;     // _284
 	u32 _288;                                    // _288
 	PSM::EnemyBase* m_soundObj;                  // _28C
-	CNode m_effectNodeHamonRoot;                 // _290
+	CNode m_effectNodeHamonRoot;   				 // _290 - treat as EnemyEffectNodeBase with EnemyEffectNodeHamon nodes
 	float _2A8;                                  // _2A8
 	float _2AC;                                  // _2AC
 	u8 m_dropGroup;                              // _2B0

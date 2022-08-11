@@ -16,6 +16,7 @@
 #include "Game/EnemyParmsBase.h"
 #include "Game/EnemyStateMachine.h"
 #include "Game/EnemyStone.h"
+#include "Game/gamePlayData.h"
 #include "Game/GameSystem.h"
 #include "Game/Interaction.h"
 #include "Game/ItemHoney.h"
@@ -37,6 +38,7 @@
 #include "Sys/Sphere.h"
 #include "SysShape/Model.h"
 #include "System.h"
+#include "Radar.h"
 #include "types.h"
 #include "Vector3.h"
 
@@ -2373,30 +2375,10 @@ Game::EnemyBase::EnemyBase()
  * Address:	80101788
  * Size:	000044
  */
-void EnemyBase::constructor()
+void EnemyBase::constructor() 
 {
-	m_soundObj = createPSEnemyBase();
-	createInstanceEfxHamon();
-	/*
-	.loc_0x0:
-	  stwu      r1, -0x10(r1)
-	  mflr      r0
-	  stw       r0, 0x14(r1)
-	  stw       r31, 0xC(r1)
-	  mr        r31, r3
-	  bl        0x5554
-	  stw       r3, 0x28C(r31)
-	  mr        r3, r31
-	  lwz       r12, 0x0(r31)
-	  lwz       r12, 0x248(r12)
-	  mtctr     r12
-	  bctrl
-	  lwz       r0, 0x14(r1)
-	  lwz       r31, 0xC(r1)
-	  mtlr      r0
-	  addi      r1, r1, 0x10
-	  blr
-	*/
+    m_soundObj = createPSEnemyBase();
+    createInstanceEfxHamon();
 }
 
 /*
@@ -2404,38 +2386,15 @@ void EnemyBase::constructor()
  * Address:	801017CC
  * Size:	00005C
  */
-void EnemyBase::createEffects()
+void EnemyBase::createEffects() 
 {
-	/*
-	.loc_0x0:
-	  stwu      r1, -0x10(r1)
-	  mflr      r0
-	  stw       r0, 0x14(r1)
-	  stw       r31, 0xC(r1)
-	  stw       r30, 0x8(r1)
-	  mr        r30, r3
-	  lwz       r3, 0x2A0(r3)
-	  b         .loc_0x3C
-
-	.loc_0x20:
-	  lwz       r12, 0x0(r3)
-	  mr        r4, r30
-	  lwz       r31, 0x4(r3)
-	  lwz       r12, 0x10(r12)
-	  mtctr     r12
-	  bctrl
-	  mr        r3, r31
-
-	.loc_0x3C:
-	  cmplwi    r3, 0
-	  bne+      .loc_0x20
-	  lwz       r0, 0x14(r1)
-	  lwz       r31, 0xC(r1)
-	  lwz       r30, 0x8(r1)
-	  mtlr      r0
-	  addi      r1, r1, 0x10
-	  blr
-	*/
+    EnemyEffectNodeHamon* next;
+    EnemyEffectNodeHamon* hamon = (EnemyEffectNodeHamon*) m_effectNodeHamonRoot.m_child;
+    while (hamon) {
+        next = (EnemyEffectNodeHamon*) hamon->m_next;
+        hamon->create(this);
+        hamon = next;
+    }
 }
 
 /*
@@ -2443,38 +2402,15 @@ void EnemyBase::createEffects()
  * Address:	80101828
  * Size:	00005C
  */
-void EnemyBase::fadeEffects()
+void EnemyBase::fadeEffects() 
 {
-	/*
-	.loc_0x0:
-	  stwu      r1, -0x10(r1)
-	  mflr      r0
-	  stw       r0, 0x14(r1)
-	  stw       r31, 0xC(r1)
-	  stw       r30, 0x8(r1)
-	  mr        r30, r3
-	  lwz       r3, 0x2A0(r3)
-	  b         .loc_0x3C
-
-	.loc_0x20:
-	  lwz       r12, 0x0(r3)
-	  mr        r4, r30
-	  lwz       r31, 0x4(r3)
-	  lwz       r12, 0x14(r12)
-	  mtctr     r12
-	  bctrl
-	  mr        r3, r31
-
-	.loc_0x3C:
-	  cmplwi    r3, 0
-	  bne+      .loc_0x20
-	  lwz       r0, 0x14(r1)
-	  lwz       r31, 0xC(r1)
-	  lwz       r30, 0x8(r1)
-	  mtlr      r0
-	  addi      r1, r1, 0x10
-	  blr
-	*/
+    EnemyEffectNodeHamon* next;
+    EnemyEffectNodeHamon* hamon = (EnemyEffectNodeHamon*) m_effectNodeHamonRoot.m_child;
+    while (hamon) {
+        next = (EnemyEffectNodeHamon*) hamon->m_next;
+        hamon->fade(this);
+        hamon = next;
+    }
 }
 
 /*
@@ -2482,33 +2418,10 @@ void EnemyBase::fadeEffects()
  * Address:	80101884
  * Size:	000050
  */
-void EnemyBase::createInstanceEfxHamon()
+void EnemyBase::createInstanceEfxHamon() 
 {
-	/*
-	.loc_0x0:
-	  stwu      r1, -0x10(r1)
-	  mflr      r0
-	  stw       r0, 0x14(r1)
-	  stw       r31, 0xC(r1)
-	  mr        r31, r3
-	  li        r3, 0x64
-	  bl        -0xDD9F8
-	  mr.       r0, r3
-	  beq-      .loc_0x2C
-	  bl        0x2CC68
-	  mr        r0, r3
-
-	.loc_0x2C:
-	  stw       r0, 0x284(r31)
-	  addi      r3, r31, 0x290
-	  lwz       r4, 0x284(r31)
-	  bl        0x30FB4C
-	  lwz       r0, 0x14(r1)
-	  lwz       r31, 0xC(r1)
-	  mtlr      r0
-	  addi      r1, r1, 0x10
-	  blr
-	*/
+    m_effectNodeHamon = new EnemyEffectNodeHamon;
+    m_effectNodeHamonRoot.add(m_effectNodeHamon);
 }
 
 /*
@@ -2516,25 +2429,11 @@ void EnemyBase::createInstanceEfxHamon()
  * Address:	801018D4
  * Size:	000030
  */
-void EnemyBase::updateEfxHamon()
+void EnemyBase::updateEfxHamon() 
 {
-	/*
-	.loc_0x0:
-	  stwu      r1, -0x10(r1)
-	  mflr      r0
-	  mr        r4, r3
-	  stw       r0, 0x14(r1)
-	  lwz       r3, 0x284(r3)
-	  cmplwi    r3, 0
-	  beq-      .loc_0x20
-	  bl        0x2D188
-
-	.loc_0x20:
-	  lwz       r0, 0x14(r1)
-	  mtlr      r0
-	  addi      r1, r1, 0x10
-	  blr
-	*/
+    if (m_effectNodeHamon) {
+        m_effectNodeHamon->update(this);
+    }
 }
 
 /*
@@ -2542,28 +2441,11 @@ void EnemyBase::updateEfxHamon()
  * Address:	80101904
  * Size:	00003C
  */
-void EnemyBase::createEfxHamon()
+void EnemyBase::createEfxHamon() 
 {
-	/*
-	.loc_0x0:
-	  stwu      r1, -0x10(r1)
-	  mflr      r0
-	  mr        r4, r3
-	  stw       r0, 0x14(r1)
-	  lwz       r3, 0x284(r3)
-	  cmplwi    r3, 0
-	  beq-      .loc_0x2C
-	  lwz       r12, 0x0(r3)
-	  lwz       r12, 0x10(r12)
-	  mtctr     r12
-	  bctrl
-
-	.loc_0x2C:
-	  lwz       r0, 0x14(r1)
-	  mtlr      r0
-	  addi      r1, r1, 0x10
-	  blr
-	*/
+    if (m_effectNodeHamon) {
+        m_effectNodeHamon->create(this);
+    }
 }
 
 /*
@@ -2571,28 +2453,11 @@ void EnemyBase::createEfxHamon()
  * Address:	80101940
  * Size:	00003C
  */
-void EnemyBase::fadeEfxHamon()
+void EnemyBase::fadeEfxHamon() 
 {
-	/*
-	.loc_0x0:
-	  stwu      r1, -0x10(r1)
-	  mflr      r0
-	  mr        r4, r3
-	  stw       r0, 0x14(r1)
-	  lwz       r3, 0x284(r3)
-	  cmplwi    r3, 0
-	  beq-      .loc_0x2C
-	  lwz       r12, 0x0(r3)
-	  lwz       r12, 0x14(r12)
-	  mtctr     r12
-	  bctrl
-
-	.loc_0x2C:
-	  lwz       r0, 0x14(r1)
-	  mtlr      r0
-	  addi      r1, r1, 0x10
-	  blr
-	*/
+    if (m_effectNodeHamon) {
+        m_effectNodeHamon->fade(this);
+    }
 }
 
 /*
@@ -2645,22 +2510,12 @@ void EnemyBase::onInit(Game::CreatureInitArg* arg)
 	_1E0.m_flags[0].typeView &= ~2;
 	m_toFlick           = 0.0f;
 	m_stoneTimer        = 0.0f;
-	_1E0.m_flags[0].byteView[0] = 0;
-	_1E0.m_flags[0].byteView[1] = 0;
-	_1E0.m_flags[0].byteView[2] = 0;
-	_1E0.m_flags[0].byteView[3] = 0;
-	_1E0.m_flags[1].byteView[0] = 0;
-	_1E0.m_flags[1].byteView[1] = 0;
-	_1E0.m_flags[1].byteView[2] = 0;
-	_1E0.m_flags[1].byteView[3] = 0;
-	_1E8.m_flags[0].byteView[0] = 0;
-	_1E8.m_flags[0].byteView[1] = 0;
-	_1E8.m_flags[0].byteView[2] = 0;
-	_1E8.m_flags[0].byteView[3] = 0;
-	_1E8.m_flags[1].byteView[0] = 0;
-	_1E8.m_flags[1].byteView[1] = 0;
-	_1E8.m_flags[1].byteView[2] = 0;
-	_1E8.m_flags[1].byteView[3] = 0;
+
+    _1E0.m_flags[0].clear();
+    _1E0.m_flags[1].clear();
+    _1E8.m_flags[0].clear();
+    _1E8.m_flags[1].clear();
+
 	_1E0.m_flags[0].typeView |= 0x10000000;
 	_1E0.m_flags[0].typeView |= 0x8;
 	_1E0.m_flags[0].typeView |= 0x20;
@@ -2742,57 +2597,22 @@ void EnemyBase::onInitPost(Game::CreatureInitArg* arg)
  * Address:	80101D74
  * Size:	0000A0
  */
-void EnemyBase::setOtakaraCode(PelletMgr::OtakaraItemCode&)
+void EnemyBase::setOtakaraCode(Game::PelletMgr::OtakaraItemCode& itemCode) 
 {
-	/*
-	.loc_0x0:
-	  stwu      r1, -0x10(r1)
-	  mflr      r0
-	  stw       r0, 0x14(r1)
-	  stw       r31, 0xC(r1)
-	  mr        r31, r3
-	  addi      r3, r31, 0x250
-	  lha       r0, 0x0(r4)
-	  sth       r0, 0x250(r31)
-	  bl        0x6BAF4
-	  rlwinm.   r0,r3,0,24,31
-	  bne-      .loc_0x8C
-	  lha       r0, 0x250(r31)
-	  srawi     r3, r0, 0x8
-	  rlwinm    r4,r3,0,24,31
-	  cmplwi    r4, 0x4
-	  bne-      .loc_0x54
-	  mr        r3, r31
-	  li        r4, 0x12
-	  li        r5, 0
-	  bl        0x11C7C4
-	  b         .loc_0x8C
-
-	.loc_0x54:
-	  lwz       r3, -0x6B70(r13)
-	  rlwinm    r5,r0,0,24,31
-	  bl        0xE5DC8
-	  rlwinm.   r0,r3,0,24,31
-	  beq-      .loc_0x7C
-	  mr        r3, r31
-	  li        r4, 0x10
-	  li        r5, 0
-	  bl        0x11C79C
-	  b         .loc_0x8C
-
-	.loc_0x7C:
-	  mr        r3, r31
-	  li        r4, 0x11
-	  li        r5, 0
-	  bl        0x11C788
-
-	.loc_0x8C:
-	  lwz       r0, 0x14(r1)
-	  lwz       r31, 0xC(r1)
-	  mtlr      r0
-	  addi      r1, r1, 0x10
-	  blr
-	*/
+    m_pelletDropCode.m_value = itemCode.m_value;
+    if (!m_pelletDropCode.isNull()) {
+        short dropCode = m_pelletDropCode.m_value;
+        int dropShift = dropCode >> 8;
+        if ((u8) dropShift == 4) { 
+            Radar::Mgr::entry(this, Radar::PELLET_ITEM, 0);
+            return;
+        }
+        if (playData->isPelletEverGot(dropShift, dropCode)) {
+            Radar::Mgr::entry(this, Radar::ALREADY_COLLECTED_PELLET, 0);
+            return;
+        }
+        Radar::Mgr::entry(this, Radar::UNCOLLECTED_PELLET, 0);
+    }
 }
 
 // } // namespace Game
@@ -2805,6 +2625,7 @@ void EnemyBase::setOtakaraCode(PelletMgr::OtakaraItemCode&)
 //  * Address:	80101E14
 //  * Size:	000004
 //  */
+// WEAK - in header
 // void EnemyBase::setKilled() { }
 
 // } // namespace PSM

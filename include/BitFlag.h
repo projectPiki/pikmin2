@@ -11,6 +11,12 @@ template <typename T> struct BitFlag {
 		}
 	}
 
+	inline void clear() {
+		for (int i = 0; i < sizeof(T); i++) {
+			byteView[i] = 0;
+		}		
+	}
+
 	union {
 		u8 byteView[sizeof(T)];
 		T typeView;

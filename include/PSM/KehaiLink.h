@@ -5,8 +5,8 @@
 
 namespace PSM {
 struct KehaiLink : public JSUPtrLink {
-	virtual void kehaiOn();  // _00
-	virtual void kehaiOff(); // _04
+	virtual void kehaiOn();  // _08
+	virtual void kehaiOff(); // _0C
 
 	// VTBL _10
 };

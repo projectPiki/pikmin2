@@ -8,8 +8,8 @@ namespace PSM {
  * @size{0x14}
  */
 struct BattleLink : public JSUPtrLink {
-	virtual void battleOn();  // _00
-	virtual void battleOff(); // _04
+	virtual void battleOn();  // _08
+	virtual void battleOff(); // _0C
 
 	// VTBL _10
 };

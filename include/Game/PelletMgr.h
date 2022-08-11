@@ -16,6 +16,9 @@ struct PelletMgr : public NodeObjectMgr<GenericObjectMgr> {
 		    : m_value(v)
 		{
 		}
+
+		bool isNull();
+
 		s16 m_value; // _00
 	};
 

@@ -6,24 +6,25 @@
 
 namespace PSM {
 struct CreatureAnime : public Creature, public JAIAnimeSound {
-	// vtable 2 (Creature)
-	virtual ~CreatureAnime();                // _04
-	virtual void frameEnd_onPlaySe();        // _08
-	virtual CreatureCastType getCastType();  // _0C
-	virtual void exec();                     // _10
-	virtual JAInter::Object* getJAIObject(); // _14
+	// vtable 1 (JSUPtrLink, _10)
+	// vtable 2 (Creature, _28)
+	virtual ~CreatureAnime();                // _14 (weak)
+	virtual void frameEnd_onPlaySe();        // _18
+	virtual CreatureCastType getCastType();  // _1C (weak)
+	virtual void exec();                     // _20 (weak)
+	virtual JAInter::Object* getJAIObject(); // _24 (weak)
 	virtual void onCalcOn();                 // _18
 	virtual void getHandleArea(u8);          // _2C
-	// vtable 3 (JAIAnimeSound + self)
-	virtual void startSound(u32, u32);             // _40
-	virtual void startSound(u8, u32, u32);         // _44
-	virtual void startSound(JAISound**, u32, u32); // _48
+	// vtable 3 (JAIAnimeSound + self, _28)
+	virtual void startSound(u32, u32);             // _88 (weak)
+	virtual void startSound(u8, u32, u32);         // _8C (weak)
+	virtual void startSound(JAISound**, u32, u32); // _90 (weak)
 	virtual void startAnimSound(u32, JAISound**, JAInter::Actor*,
-	                            u8); // _4C
+	                            u8); // _94 (weak)
 	virtual void playActorAnimSound(JAInter::Actor*, float,
-	                                u8); // _50
-	virtual void onCalcTurnOn();         // _54
-	virtual void onCalcTurnOff();        // _58
+	                                u8); // _98 (weak)
+	virtual void onCalcTurnOn();         // _9C
+	virtual void onCalcTurnOff();        // _A0
 
 	float _AC; // _AC
 	float _B0; // _B0
