@@ -25,6 +25,7 @@
 #include "Game/EnemyEffectNode.h"
 #include "trig.h"
 #include "Game/EnemyMgrBase.h"
+#include "Vector2.h"
 
 struct MouthSlots;
 
@@ -292,6 +293,12 @@ struct EnemyBase : public Creature, public SysShape::MotionListener, virtual pub
 	void resetCollEvent();
 
 	void becomeCarcass();
+
+	inline void getSeparation(Creature* creature, Vector2f& sep)
+	{
+		sep.x = getPosition().x - creature->getPosition().x;
+		sep.y = getPosition().z - creature->getPosition().z;
+	}
 
 	// Creature: _000 - _178
 	// MotionListener: _178 - _17C

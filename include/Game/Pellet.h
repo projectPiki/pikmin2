@@ -61,7 +61,10 @@ struct Pellet : public DynCreature, public SysShape::MotionListener, public Carr
 	Pellet();
 
 	////////////// VTABLE 1 (DYNCREATURE)
-	virtual Vector3f getPosition();                     // _08 (weak)
+	virtual Vector3f getPosition() // _08 (weak)
+	{
+		return m_pelletPosition;
+	}
 	virtual void getBoundingSphere(Sys::Sphere&);       // _10
 	virtual bool deferPikiCollision();                  // _20 (weak)
 	virtual void constructor();                         // _2C
