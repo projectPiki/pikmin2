@@ -115,6 +115,7 @@ struct RandMapDraw {
 	MapUnitGenerator* m_generator; // _00
 };
 
+extern RandMapMgr* randMapMgr;
 } // namespace Cave
 } // namespace Game
 
