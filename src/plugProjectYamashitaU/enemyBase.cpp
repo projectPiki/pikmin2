@@ -10,6 +10,7 @@
 #include "efx/TEnemyDownWat.h"
 #include "Game/AABBWaterBox.h"
 #include "Game/BaseItem.h"
+#include "Game/BaseHIOParms.h"
 #include "Game/Cave/RandMapMgr.h"
 #include "Game/cellPyramid.h"
 #include "Game/EnemyAnimatorBase.h"
@@ -3332,7 +3333,8 @@ void EnemyBase::doFinishStoneState() { }
  * Address:	80102F0C
  * Size:	000008
  */
-WalkSmokeEffect::Mgr* EnemyBase::getWalkSmokeEffectMgr() { return nullptr; }
+// WEAK - in header
+// WalkSmokeEffect::Mgr* EnemyBase::getWalkSmokeEffectMgr() { return nullptr; }
 
 /*
  * --INFO--
@@ -3341,43 +3343,15 @@ WalkSmokeEffect::Mgr* EnemyBase::getWalkSmokeEffectMgr() { return nullptr; }
  */
 void EnemyBase::doUpdateCommon()
 {
-	/*
-	.loc_0x0:
-	    stwu      r1, -0x10(r1)
-	    mflr      r0
-	    stw       r0, 0x14(r1)
-	    stw       r31, 0xC(r1)
-	    mr        r31, r3
-	    bl        0x2498
-	    mr        r3, r31
-	    bl        0x375C
-	    lbz       r0, 0xD8(r31)
-	    rlwinm.   r0,r0,0,29,29
-	    beq-      .loc_0x6C
-	    mr        r3, r31
-	    lwz       r12, 0x0(r31)
-	    lwz       r12, 0xA8(r12)
-	    mtctr     r12
-	    bctrl
-	    rlwinm.   r0,r3,0,24,31
-	    beq-      .loc_0x6C
-	    mr        r3, r31
-	    lwz       r12, 0x0(r31)
-	    lwz       r12, 0x234(r12)
-	    mtctr     r12
-	    bctrl
-	    cmplwi    r3, 0
-	    beq-      .loc_0x6C
-	    mr        r4, r31
-	    bl        0x2749C
+	scaleDamageAnim();
+	resetCollEvent();
 
-	.loc_0x6C:
-	    lwz       r0, 0x14(r1)
-	    lwz       r31, 0xC(r1)
-	    mtlr      r0
-	    addi      r1, r1, 0x10
-	    blr
-	*/
+	if ((m_lod.m_flags & 4) && isAlive()) {
+		WalkSmokeEffect::Mgr* smokeMgr = getWalkSmokeEffectMgr();
+		if (smokeMgr != nullptr) {
+			smokeMgr->update(this);
+		}
+	}
 }
 
 /*
@@ -3392,24 +3366,8 @@ void EnemyBase::doAnimation() { static_cast<EnemyBaseFSM::StateMachine*>(m_lifec
  * Address:	80102FC8
  * Size:	000030
  */
-void EnemyBaseFSM::StateMachine::animation(Game::EnemyBase*)
-{
-	/*
-	.loc_0x0:
-	    stwu      r1, -0x10(r1)
-	    mflr      r0
-	    stw       r0, 0x14(r1)
-	    lwz       r3, 0x1C(r3)
-	    lwz       r12, 0x0(r3)
-	    lwz       r12, 0x34(r12)
-	    mtctr     r12
-	    bctrl
-	    lwz       r0, 0x14(r1)
-	    mtlr      r0
-	    addi      r1, r1, 0x10
-	    blr
-	*/
-}
+// WEAK = in header
+// void EnemyBaseFSM::StateMachine::animation(Game::EnemyBase* enemy) { m_state->animation(enemy); }
 
 /*
  * --INFO--
@@ -3607,27 +3565,16 @@ void EnemyBase::doAnimationCullingOff()
  * Address:	80103260
  * Size:	000020
  */
-void EnemyBase::onSetPositionPost(Vector3f&) { updateSpheres(); }
+// WEAK - in header
+// void EnemyBase::onSetPositionPost(Vector3f&) { updateSpheres(); }
 
 /*
  * --INFO--
  * Address:	80103280
  * Size:	00001C
  */
-void EnemyBase::onSetPosition(Vector3f& position)
-{
-	m_position = position;
-	/*
-	.loc_0x0:
-	    lfs       f0, 0x0(r4)
-	    stfs      f0, 0x18C(r3)
-	    lfs       f0, 0x4(r4)
-	    stfs      f0, 0x190(r3)
-	    lfs       f0, 0x8(r4)
-	    stfs      f0, 0x194(r3)
-	    blr
-	*/
-}
+// WEAK - in header
+// void EnemyBase::onSetPosition(Vector3f& position) { m_position = position; }
 
 /*
  * --INFO--
@@ -3699,54 +3646,15 @@ void EnemyBase::doAnimationCullingOn()
  */
 void EnemyBase::show()
 {
-	// TODO: Do this after EnemyStone::Obj
-	// if (!(_1E0.m_flags[0].typeView & 0x200)) {
-	// 	m_model->show();
-	// } else if (!(m_enemyStoneObj->_50 & 2)) {
-	// 	m_model->show();
-	// } else {
-	// 	m_model->hide();
-	// }
-	/*
-	.loc_0x0:
-	    stwu      r1, -0x10(r1)
-	    mflr      r0
-	    stw       r0, 0x14(r1)
-	    lwz       r0, 0x1E0(r3)
-	    rlwinm.   r0,r0,0,22,22
-	    beq-      .loc_0x58
-	    lwz       r4, 0x24C(r3)
-	    lbz       r0, 0x50(r4)
-	    rlwinm.   r0,r0,0,30,30
-	    beq-      .loc_0x40
-	    lwz       r3, 0x174(r3)
-	    lwz       r12, 0x0(r3)
-	    lwz       r12, 0x18(r12)
-	    mtctr     r12
-	    bctrl
-	    b         .loc_0x6C
-
-	.loc_0x40:
-	    lwz       r3, 0x174(r3)
-	    lwz       r12, 0x0(r3)
-	    lwz       r12, 0x1C(r12)
-	    mtctr     r12
-	    bctrl
-	    b         .loc_0x6C
-
-	.loc_0x58:
-	    lwz       r3, 0x174(r3)
-	    lwz       r12, 0x0(r3)
-	    lwz       r12, 0x1C(r12)
-	    mtctr     r12
-	    bctrl
-
-	.loc_0x6C:
-	    lwz       r0, 0x14(r1)
-	    mtlr      r0
-	    addi      r1, r1, 0x10
-	    blr
-	*/
+	if (_1E0.m_flags[0].typeView & 0x200) {
+		if (m_enemyStoneObj->_50 & 2) {
+			m_model->hide();
+			return;
+		}
+		m_model->show();
+	} else {
+		m_model->show();
+	}
 }
 
 /*
@@ -3770,98 +3678,29 @@ void EnemyBase::hide()
  */
 void EnemyBase::doEntryCarcass()
 {
-	if (m_lod.m_flags & AILOD::FLAG_NEED_SHADOW) {
-		hide();
-	} else {
-		show();
+	if (m_lod.m_flags & 4) {
+		if (_1E0.m_flags[0].typeView & 0x200) {
+			if (m_enemyStoneObj->_50 & 2) {
+				m_model->hide();
+			} else {
+				m_model->show();
+			}
+
+		} else {
+			m_model->show();
+		}
+
 		changeMaterial();
+
+	} else if (_1E0.m_flags[0].typeView & 0x200) {
+		m_model->hide();
+	} else {
+		m_model->hide();
 	}
+
 	if (!(_1E0.m_flags[0].typeView & 0x40000000)) {
 		m_model->m_j3dModel->entry();
 	}
-	/*
-	.loc_0x0:
-	    stwu      r1, -0x10(r1)
-	    mflr      r0
-	    stw       r0, 0x14(r1)
-	    stw       r31, 0xC(r1)
-	    mr        r31, r3
-	    lbz       r0, 0xD8(r3)
-	    rlwinm.   r0,r0,0,29,29
-	    beq-      .loc_0x98
-	    lwz       r0, 0x1E0(r31)
-	    rlwinm.   r0,r0,0,22,22
-	    beq-      .loc_0x6C
-	    lwz       r3, 0x24C(r31)
-	    lbz       r0, 0x50(r3)
-	    rlwinm.   r0,r0,0,30,30
-	    beq-      .loc_0x54
-	    lwz       r3, 0x174(r31)
-	    lwz       r12, 0x0(r3)
-	    lwz       r12, 0x18(r12)
-	    mtctr     r12
-	    bctrl
-	    b         .loc_0x80
-
-	.loc_0x54:
-	    lwz       r3, 0x174(r31)
-	    lwz       r12, 0x0(r3)
-	    lwz       r12, 0x1C(r12)
-	    mtctr     r12
-	    bctrl
-	    b         .loc_0x80
-
-	.loc_0x6C:
-	    lwz       r3, 0x174(r31)
-	    lwz       r12, 0x0(r3)
-	    lwz       r12, 0x1C(r12)
-	    mtctr     r12
-	    bctrl
-
-	.loc_0x80:
-	    mr        r3, r31
-	    lwz       r12, 0x0(r31)
-	    lwz       r12, 0x200(r12)
-	    mtctr     r12
-	    bctrl
-	    b         .loc_0xD0
-
-	.loc_0x98:
-	    lwz       r0, 0x1E0(r31)
-	    rlwinm.   r0,r0,0,22,22
-	    beq-      .loc_0xBC
-	    lwz       r3, 0x174(r31)
-	    lwz       r12, 0x0(r3)
-	    lwz       r12, 0x18(r12)
-	    mtctr     r12
-	    bctrl
-	    b         .loc_0xD0
-
-	.loc_0xBC:
-	    lwz       r3, 0x174(r31)
-	    lwz       r12, 0x0(r3)
-	    lwz       r12, 0x18(r12)
-	    mtctr     r12
-	    bctrl
-
-	.loc_0xD0:
-	    lwz       r0, 0x1E0(r31)
-	    rlwinm.   r0,r0,0,1,1
-	    bne-      .loc_0xF4
-	    lwz       r3, 0x174(r31)
-	    lwz       r3, 0x8(r3)
-	    lwz       r12, 0x0(r3)
-	    lwz       r12, 0xC(r12)
-	    mtctr     r12
-	    bctrl
-
-	.loc_0xF4:
-	    lwz       r0, 0x14(r1)
-	    lwz       r31, 0xC(r1)
-	    mtlr      r0
-	    addi      r1, r1, 0x10
-	    blr
-	*/
 }
 
 /*
@@ -3871,108 +3710,34 @@ void EnemyBase::doEntryCarcass()
  */
 void EnemyBase::doEntryLiving()
 {
-	/*
-	.loc_0x0:
-	    stwu      r1, -0x10(r1)
-	    mflr      r0
-	    stw       r0, 0x14(r1)
-	    stw       r31, 0xC(r1)
-	    mr        r31, r3
-	    lbz       r0, 0xD8(r3)
-	    rlwinm.   r0,r0,0,29,29
-	    beq-      .loc_0x98
-	    lwz       r0, 0x1E0(r31)
-	    rlwinm.   r0,r0,0,22,22
-	    beq-      .loc_0x6C
-	    lwz       r3, 0x24C(r31)
-	    lbz       r0, 0x50(r3)
-	    rlwinm.   r0,r0,0,30,30
-	    beq-      .loc_0x54
-	    lwz       r3, 0x174(r31)
-	    lwz       r12, 0x0(r3)
-	    lwz       r12, 0x18(r12)
-	    mtctr     r12
-	    bctrl
-	    b         .loc_0x80
+	if (m_lod.m_flags & 4) {
+		if (_1E0.m_flags[0].typeView & 0x200) {
+			if (m_enemyStoneObj->_50 & 2) {
+				m_model->hide();
+			} else {
+				m_model->show();
+			}
+		} else {
+			m_model->show();
+		}
+		changeMaterial();
 
-	.loc_0x54:
-	    lwz       r3, 0x174(r31)
-	    lwz       r12, 0x0(r3)
-	    lwz       r12, 0x1C(r12)
-	    mtctr     r12
-	    bctrl
-	    b         .loc_0x80
+	} else {
+		if (BaseHIOParms::sEntryOpt != false) {
+			if (!gameSystem->isMultiplayerMode())
+				return;
+		}
 
-	.loc_0x6C:
-	    lwz       r3, 0x174(r31)
-	    lwz       r12, 0x0(r3)
-	    lwz       r12, 0x1C(r12)
-	    mtctr     r12
-	    bctrl
+		if (_1E0.m_flags[0].typeView & 0x200) {
+			m_model->hide();
+		} else {
+			m_model->hide();
+		}
+	}
 
-	.loc_0x80:
-	    mr        r3, r31
-	    lwz       r12, 0x0(r31)
-	    lwz       r12, 0x200(r12)
-	    mtctr     r12
-	    bctrl
-	    b         .loc_0x104
-
-	.loc_0x98:
-	    lbz       r0, -0x7B98(r13)
-	    cmplwi    r0, 0
-	    beq-      .loc_0xCC
-	    lwz       r4, -0x6C18(r13)
-	    li        r3, 0
-	    lwz       r0, 0x44(r4)
-	    cmpwi     r0, 0x1
-	    beq-      .loc_0xC0
-	    cmpwi     r0, 0x3
-	    bne-      .loc_0xC4
-
-	.loc_0xC0:
-	    li        r3, 0x1
-
-	.loc_0xC4:
-	    rlwinm.   r0,r3,0,24,31
-	    beq-      .loc_0x128
-
-	.loc_0xCC:
-	    lwz       r0, 0x1E0(r31)
-	    rlwinm.   r0,r0,0,22,22
-	    beq-      .loc_0xF0
-	    lwz       r3, 0x174(r31)
-	    lwz       r12, 0x0(r3)
-	    lwz       r12, 0x18(r12)
-	    mtctr     r12
-	    bctrl
-	    b         .loc_0x104
-
-	.loc_0xF0:
-	    lwz       r3, 0x174(r31)
-	    lwz       r12, 0x0(r3)
-	    lwz       r12, 0x18(r12)
-	    mtctr     r12
-	    bctrl
-
-	.loc_0x104:
-	    lwz       r0, 0x1E0(r31)
-	    rlwinm.   r0,r0,0,1,1
-	    bne-      .loc_0x128
-	    lwz       r3, 0x174(r31)
-	    lwz       r3, 0x8(r3)
-	    lwz       r12, 0x0(r3)
-	    lwz       r12, 0xC(r12)
-	    mtctr     r12
-	    bctrl
-
-	.loc_0x128:
-	    lwz       r0, 0x14(r1)
-	    lwz       r31, 0xC(r1)
-	    mtlr      r0
-	    addi      r1, r1, 0x10
-	    blr
-	*/
+	if (!(_1E0.m_flags[0].typeView & 0x40000000)) {
+		m_model->m_j3dModel->entry();
+	}
 }
 
 /*
@@ -3980,25 +3745,7 @@ void EnemyBase::doEntryLiving()
  * Address:	8010364C
  * Size:	000034
  */
-void EnemyBase::doEntry()
-{
-	/*
-	.loc_0x0:
-	    stwu      r1, -0x10(r1)
-	    mflr      r0
-	    mr        r4, r3
-	    stw       r0, 0x14(r1)
-	    lwz       r3, 0x2B8(r3)
-	    lwz       r12, 0x0(r3)
-	    lwz       r12, 0x28(r12)
-	    mtctr     r12
-	    bctrl
-	    lwz       r0, 0x14(r1)
-	    mtlr      r0
-	    addi      r1, r1, 0x10
-	    blr
-	*/
-}
+void EnemyBase::doEntry() { m_lifecycleFSM->entry(this); }
 
 /*
  * --INFO--

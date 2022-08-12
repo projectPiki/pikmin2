@@ -11,6 +11,7 @@
 #include "Game/PelletView.h"
 #include "Game/PelletMgr.h"
 #include "Game/Pellet.h"
+#include "Game/WalkSmokeEffect.h"
 #include "Dolphin/rand.h"
 #include "Game/enemyInfo.h"
 #include "JSystem/JAI/JAInter/Object.h"
@@ -19,6 +20,7 @@
 #include "SysShape/MotionListener.h"
 #include "Vector3.h"
 #include "efx/TEnemyPiyo.h"
+#include "efx/TEnemyWalkSmoke.h"
 #include "types.h"
 #include "Game/MoveInfo.h"
 #include "Game/EnemyStone.h"
@@ -33,12 +35,12 @@ namespace PSM {
 struct EnemyBase;
 } // namespace PSM
 
-namespace WalkSmokeEffect {
-struct Mgr;
-} // namespace WalkSmokeEffect
-
 namespace Game {
 struct EnemyBase;
+
+namespace EnemyBaseFSM {
+struct StateMachine;
+} // namespace EnemyBaseFSM
 
 struct EnemyAnimatorBase;
 struct EnemyAnimKeyEvent;
@@ -46,6 +48,7 @@ struct EnemyMgrBase;
 struct WaterBox;
 struct LifeGaugeParam;
 struct Interaction;
+struct StateMachine;
 
 /**
  * @todo Split this into a separate type PelplantInitialParam?
@@ -79,28 +82,34 @@ struct EnemyBase : public Creature, public SysShape::MotionListener, virtual pub
 	{
 		sphere = m_boundingSphere;
 	}
-	virtual void constructor();                // _2C
-	virtual void onInit(CreatureInitArg*);     // _30
-	virtual void onKill(CreatureKillArg*);     // _34
-	virtual void onInitPost(CreatureInitArg*); // _38
-	virtual void doAnimation();                // _3C
-	virtual void doEntry();                    // _40
-	virtual void doSetView(int);               // _44
-	virtual void doViewCalc();                 // _48
-	virtual void doSimulation(float);          // _4C
-	virtual float getBodyRadius();             // _54 (weak)
-	virtual float getCellRadius();             // _58 (weak)
-	virtual float getFaceDir();                // _64 (weak)
-	virtual void setVelocity(Vector3f&);       // _68 (weak)
-	virtual Vector3f getVelocity();            // _6C (weak)
-	virtual void onSetPosition(Vector3f&);     // _70 (weak)
-	virtual void onSetPositionPost(Vector3f&); // _74 (weak)
-	virtual void updateTrMatrix();             // _78
-	virtual bool isTeki();                     // _7C (weak)
-	virtual void inWaterCallback(WaterBox*);   // _84
-	virtual void outWaterCallback();           // _88
-	virtual bool inWater();                    // _8C (weak)
-	virtual bool isFlying()                    // _CC (weak)
+	virtual void constructor();                    // _2C
+	virtual void onInit(CreatureInitArg*);         // _30
+	virtual void onKill(CreatureKillArg*);         // _34
+	virtual void onInitPost(CreatureInitArg*);     // _38
+	virtual void doAnimation();                    // _3C
+	virtual void doEntry();                        // _40
+	virtual void doSetView(int);                   // _44
+	virtual void doViewCalc();                     // _48
+	virtual void doSimulation(float);              // _4C
+	virtual float getBodyRadius();                 // _54 (weak)
+	virtual float getCellRadius();                 // _58 (weak)
+	virtual float getFaceDir();                    // _64 (weak)
+	virtual void setVelocity(Vector3f&);           // _68 (weak)
+	virtual Vector3f getVelocity();                // _6C (weak)
+	virtual void onSetPosition(Vector3f& position) // _70 (weak)
+	{
+		m_position = position;
+	}
+	virtual void onSetPositionPost(Vector3f&) // _74 (weak)
+	{
+		updateSpheres();
+	}
+	virtual void updateTrMatrix();           // _78
+	virtual bool isTeki();                   // _7C (weak)
+	virtual void inWaterCallback(WaterBox*); // _84
+	virtual void outWaterCallback();         // _88
+	virtual bool inWater();                  // _8C (weak)
+	virtual bool isFlying()                  // _CC (weak)
 	{
 		return (_1E0.m_flags[0].typeView >> 2) & 1;
 	}
@@ -128,37 +137,40 @@ struct EnemyBase : public Creature, public SysShape::MotionListener, virtual pub
 	}
 	// vtable 2 (MotionListener+self)
 	// virtual void onKeyEvent(const SysShape::KeyEvent&); - thunk _1B8
-	virtual ~EnemyBase();                                           // _1BC (weak)
-	virtual void birth(Vector3f&, float);                           // _1C0
-	virtual void setInitialSetting(EnemyInitialParamBase*) = 0;     // _1C4
-	virtual void update();                                          // _1C8
-	virtual void doUpdate() = 0;                                    // _1CC
-	virtual void doUpdateCommon();                                  // _1D0
-	virtual void doUpdateCarcass();                                 // _1D4
-	virtual void doAnimationUpdateAnimator();                       // _1D8
-	virtual void doAnimationCullingOff();                           // _1DC
-	virtual void doAnimationCullingOn();                            // _1E0
-	virtual void doAnimationStick();                                // _1E4
-	virtual void doSimulationCarcass(float);                        // _1E8
-	virtual void doDebugDraw(Graphics&);                            // _1EC
-	virtual void doSimpleDraw(Viewport*);                           // _1F0 (weak)
-	virtual void doSimulationGround(float);                         // _1F4
-	virtual void doSimulationFlying(float);                         // _1F8
-	virtual void doSimulationStick(float);                          // _1FC
-	virtual void changeMaterial();                                  // _200
-	virtual void getCommonEffectPos(Vector3f&);                     // _204
-	virtual Vector3f* getFitEffectPos();                            // _208
-	virtual SysShape::Model* viewGetShape();                        // _20C (weak)
-	virtual void view_start_carrymotion();                          // _210 (weak)
-	virtual void view_finish_carrymotion();                         // _214 (weak)
-	virtual void viewStartPreCarryMotion();                         // _218 (weak)
-	virtual void viewStartCarryMotion();                            // _21C (weak)
-	virtual void viewOnPelletKilled();                              // _220 (weak)
-	virtual void getOffsetForMapCollision();                        // _224 (weak)
-	virtual void setParameters();                                   // _228
-	virtual void initMouthSlots();                                  // _22C (weak)
-	virtual void initWalkSmokeEffect();                             // _230 (weak)
-	virtual WalkSmokeEffect::Mgr* getWalkSmokeEffectMgr();          // _234 (weak)
+	virtual ~EnemyBase();                                       // _1BC (weak)
+	virtual void birth(Vector3f&, float);                       // _1C0
+	virtual void setInitialSetting(EnemyInitialParamBase*) = 0; // _1C4
+	virtual void update();                                      // _1C8
+	virtual void doUpdate() = 0;                                // _1CC
+	virtual void doUpdateCommon();                              // _1D0
+	virtual void doUpdateCarcass();                             // _1D4
+	virtual void doAnimationUpdateAnimator();                   // _1D8
+	virtual void doAnimationCullingOff();                       // _1DC
+	virtual void doAnimationCullingOn();                        // _1E0
+	virtual void doAnimationStick();                            // _1E4
+	virtual void doSimulationCarcass(float);                    // _1E8
+	virtual void doDebugDraw(Graphics&);                        // _1EC
+	virtual void doSimpleDraw(Viewport*);                       // _1F0 (weak)
+	virtual void doSimulationGround(float);                     // _1F4
+	virtual void doSimulationFlying(float);                     // _1F8
+	virtual void doSimulationStick(float);                      // _1FC
+	virtual void changeMaterial();                              // _200
+	virtual void getCommonEffectPos(Vector3f&);                 // _204
+	virtual Vector3f* getFitEffectPos();                        // _208
+	virtual SysShape::Model* viewGetShape();                    // _20C (weak)
+	virtual void view_start_carrymotion();                      // _210 (weak)
+	virtual void view_finish_carrymotion();                     // _214 (weak)
+	virtual void viewStartPreCarryMotion();                     // _218 (weak)
+	virtual void viewStartCarryMotion();                        // _21C (weak)
+	virtual void viewOnPelletKilled();                          // _220 (weak)
+	virtual void getOffsetForMapCollision();                    // _224 (weak)
+	virtual void setParameters();                               // _228
+	virtual void initMouthSlots();                              // _22C (weak)
+	virtual void initWalkSmokeEffect();                         // _230 (weak)
+	virtual WalkSmokeEffect::Mgr* getWalkSmokeEffectMgr()       // _234 (weak)
+	{
+		return nullptr;
+	}
 	virtual void onKeyEvent(const SysShape::KeyEvent&);             // _238 (weak)
 	virtual bool injure();                                          // _23C
 	virtual void setCollEvent(CollEvent&);                          // _240
@@ -349,7 +361,7 @@ struct EnemyBase : public Creature, public SysShape::MotionListener, virtual pub
 	float _2AC;                                  // _2AC
 	u8 m_dropGroup;                              // _2B0
 	EnemyFSMState* m_currentLifecycleState;      // _2B4
-	EnemyStateMachine* m_lifecycleFSM;           // _2B8
+	EnemyBaseFSM::StateMachine* m_lifecycleFSM;  // _2B8
 	                                             // PelletView: _2BC - _2C8
 };
 namespace EnemyBaseFSM {
@@ -364,27 +376,6 @@ enum StateID {
 	EBS_Stone,
 	EBS_Earthquake,
 	EBS_Fit
-};
-
-struct State;
-
-/**
- * Generic lifecycle FSM that every teki has, often in addition to a more
- * specific FSM derived from Game::StateMachine.
- */
-struct StateMachine : public Game::EnemyStateMachine {
-	virtual void init(EnemyBase*);                            // _08
-	virtual EnemyFSMState* getCurrState(EnemyBase*);          // _1C (weak)
-	virtual void setCurrState(EnemyBase*, EnemyFSMState*);    // _20 (weak)
-	virtual void update(EnemyBase*);                          // _24
-	virtual void entry(EnemyBase*);                           // _28
-	virtual void simulation(EnemyBase*, float);               // _2C
-	virtual void animation(EnemyBase*);                       // _30 (weak)
-	virtual void bounceProcedure(EnemyBase*, Sys::Triangle*); // _34 (weak)
-
-	// something has to be here because of StateMachine::update(), entry(), simulation() etc...
-	// assuming it's a state for now based on the weak state methods following the above in enemyBase
-	State* m_state; // _1C
 };
 
 /**
@@ -555,6 +546,28 @@ struct FitState : public LivingState {
 	virtual void updateAlways(EnemyBase*);     // _3C
 
 	efx::TEnemyPiyo m_enemyPiyo; // _10
+};
+
+/**
+ * Generic lifecycle FSM that every teki has, often in addition to a more
+ * specific FSM derived from Game::StateMachine.
+ */
+struct StateMachine : public Game::EnemyStateMachine {
+	virtual void init(EnemyBase*);                         // _08
+	virtual EnemyFSMState* getCurrState(EnemyBase*);       // _1C (weak)
+	virtual void setCurrState(EnemyBase*, EnemyFSMState*); // _20 (weak)
+	virtual void update(EnemyBase*);                       // _24
+	virtual void entry(EnemyBase*);                        // _28
+	virtual void simulation(EnemyBase*, float);            // _2C
+	virtual void animation(EnemyBase* enemy)               // _30 (weak)
+	{
+		m_state->animation(enemy);
+	}
+	virtual void bounceProcedure(EnemyBase*, Sys::Triangle*); // _34 (weak)
+
+	// something has to be here because of StateMachine::update(), entry(), simulation() etc...
+	// assuming it's a state for now based on the weak state methods following the above in enemyBase
+	State* m_state; // _1C
 };
 } // namespace EnemyBaseFSM
 } // namespace Game
