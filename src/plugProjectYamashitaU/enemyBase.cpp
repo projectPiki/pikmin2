@@ -30,6 +30,7 @@
 #include "Game/Piki.h"
 #include "Game/shadowMgr.h"
 #include "Game/TekiStat.h"
+#include "Game/WalkSmokeEffect.h"
 #include "JSystem/JMath.h"
 #include "JSystem/J3D/J3DJoint.h"
 #include "JSystem/J3D/J3DModel.h"
