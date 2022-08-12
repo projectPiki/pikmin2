@@ -2058,7 +2058,7 @@ void EnemyBase::constructor()
  * Address:	801017CC
  * Size:	00005C
  */
-void EnemyBase::createEffects()
+inline void EnemyBase::createEffects()
 {
 	EnemyEffectNodeHamon* next;
 	EnemyEffectNodeHamon* hamon = (EnemyEffectNodeHamon*)m_effectNodeHamonRoot.m_child;
@@ -4204,39 +4204,19 @@ void EnemyBase::doSimulationStick(float)
  * Address:	801038D0
  * Size:	000070
  */
-void EnemyBase::updateSpheres()
+inline void EnemyBase::updateSpheres()
 {
-	/*
-	.loc_0x0:
-	    stwu      r1, -0x20(r1)
-	    mflr      r0
-	    stw       r0, 0x24(r1)
-	    addi      r4, r1, 0x8
-	    stw       r31, 0x1C(r1)
-	    mr        r31, r3
-	    lwz       r3, 0x114(r3)
-	    lwz       r3, 0x0(r3)
-	    bl        0x3490C
-	    lfs       f0, 0x8(r1)
-	    stfs      f0, 0x220(r31)
-	    lfs       f0, 0xC(r1)
-	    stfs      f0, 0x224(r31)
-	    lfs       f0, 0x10(r1)
-	    stfs      f0, 0x228(r31)
-	    lfs       f0, 0x14(r1)
-	    stfs      f0, 0x22C(r31)
-	    lfs       f0, 0x220(r31)
-	    stfs      f0, 0x270(r31)
-	    lfs       f0, 0x224(r31)
-	    stfs      f0, 0x274(r31)
-	    lfs       f0, 0x228(r31)
-	    stfs      f0, 0x278(r31)
-	    lwz       r31, 0x1C(r1)
-	    lwz       r0, 0x24(r1)
-	    mtlr      r0
-	    addi      r1, r1, 0x20
-	    blr
-	*/
+	Sys::Sphere sphere;
+	m_collTree->m_part->getSphere(sphere);
+
+	m_boundingSphere.m_position.x = sphere.m_position.x;
+	m_boundingSphere.m_position.y = sphere.m_position.y;
+	m_boundingSphere.m_position.z = sphere.m_position.z;
+	m_boundingSphere.m_radius     = sphere.m_radius;
+
+	m_lodRange.m_position.x = m_boundingSphere.m_position.x;
+	m_lodRange.m_position.y = m_boundingSphere.m_position.y;
+	m_lodRange.m_position.z = m_boundingSphere.m_position.z;
 }
 
 /*
@@ -5615,25 +5595,14 @@ void EnemyBase::doSimulationConstraint(float arg)
 		if (_11C.x != 0.0f || _11C.z != 0.0f) {
 			_1E0.m_flags[0].typeView |= 0x20000000;
 		} else if (_0C8 != nullptr) {
-			_1E0.m_flags[0].typeView &= 0xDFFFFFFF;
+			_1E0.m_flags[0].typeView &= ~0x20000000;
 		}
 		if (_1E0.m_flags[0].typeView & 0x20000000) {
 			collisionMapAndPlat(arg);
 		}
 	}
 
-	Sys::Sphere sphere;
-	m_collTree->m_part->getSphere(sphere);
-
-	m_boundingSphere.m_position.x = sphere.m_position.x;
-	m_boundingSphere.m_position.y = sphere.m_position.y;
-	m_boundingSphere.m_position.z = sphere.m_position.z;
-	m_boundingSphere.m_radius     = sphere.m_radius;
-
-	m_lodRange.m_position.x = m_boundingSphere.m_position.x;
-	m_lodRange.m_position.y = m_boundingSphere.m_position.y;
-	m_lodRange.m_position.z = m_boundingSphere.m_position.z;
-
+	updateSpheres();
 	updateWaterBox();
 }
 
@@ -7756,15 +7725,7 @@ void EnemyBase::changeMaterial() { }
  * Address:	801066A0
  * Size:	000008
  */
-SysShape::Model* EnemyBase::viewGetShape()
-{
-	return m_model;
-	/*
-	.loc_0x0:
-	    lwz       r3, 0x174(r3)
-	    blr
-	*/
-}
+SysShape::Model* EnemyBase::viewGetShape() { return m_model; }
 
 /*
  * --INFO--
@@ -8057,27 +8018,12 @@ void EnemyBase::getCommonEffectPos(Vector3f&)
  * Address:	80106B60
  * Size:	000040
  */
-void EnemyBase::getWaterSphere(Sys::Sphere*)
+inline void EnemyBase::getWaterSphere(Sys::Sphere* sphere)
 {
-	/*
-	.loc_0x0:
-	    lfs       f1, 0x18C(r3)
-	    lfs       f0, 0x240(r3)
-	    fadds     f0, f1, f0
-	    stfs      f0, 0x0(r4)
-	    lfs       f1, 0x190(r3)
-	    lfs       f0, 0x244(r3)
-	    fadds     f0, f1, f0
-	    stfs      f0, 0x4(r4)
-	    lfs       f1, 0x194(r3)
-	    lfs       f0, 0x248(r3)
-	    fadds     f0, f1, f0
-	    stfs      f0, 0x8(r4)
-	    lwz       r3, 0xC0(r3)
-	    lfs       f0, 0x1A4(r3)
-	    stfs      f0, 0xC(r4)
-	    blr
-	*/
+	sphere->m_position.x = m_position.x + m_commonEffectOffset.x;
+	sphere->m_position.y = m_position.y + m_commonEffectOffset.y;
+	sphere->m_position.z = m_position.z + m_commonEffectOffset.z;
+	sphere->m_radius     = static_cast<EnemyParmsBase*>(m_parms)->m_general.m_fp01.m_value;
 }
 
 /*
@@ -8087,101 +8033,32 @@ void EnemyBase::getWaterSphere(Sys::Sphere*)
  */
 void EnemyBase::updateWaterBox()
 {
-	/*
-	.loc_0x0:
-	    stwu      r1, -0x20(r1)
-	    mflr      r0
-	    stw       r0, 0x24(r1)
-	    stw       r31, 0x1C(r1)
-	    mr        r31, r3
-	    lfs       f1, 0x18C(r3)
-	    lfs       f0, 0x240(r3)
-	    fadds     f0, f1, f0
-	    stfs      f0, 0x8(r1)
-	    lfs       f1, 0x190(r3)
-	    lfs       f0, 0x244(r3)
-	    fadds     f0, f1, f0
-	    stfs      f0, 0xC(r1)
-	    lfs       f1, 0x194(r3)
-	    lfs       f0, 0x248(r3)
-	    fadds     f0, f1, f0
-	    stfs      f0, 0x10(r1)
-	    lwz       r3, 0xC0(r3)
-	    lfs       f0, 0x1A4(r3)
-	    stfs      f0, 0x14(r1)
-	    lwz       r3, 0x280(r31)
-	    cmplwi    r3, 0
-	    beq-      .loc_0xE4
-	    lwz       r12, 0x0(r3)
-	    addi      r4, r1, 0x8
-	    lwz       r12, 0x8(r12)
-	    mtctr     r12
-	    bctrl
-	    rlwinm.   r0,r3,0,24,31
-	    bne-      .loc_0xCC
-	    lwz       r3, -0x6CF8(r13)
-	    cmplwi    r3, 0
-	    beq-      .loc_0x90
-	    addi      r4, r1, 0x8
-	    bl        0x5CD00
-	    stw       r3, 0x280(r31)
+	Sys::Sphere waterSphere;
+	getWaterSphere(&waterSphere);
 
-	.loc_0x90:
-	    lwz       r0, 0x280(r31)
-	    cmplwi    r0, 0
-	    bne-      .loc_0xCC
-	    li        r0, 0
-	    mr        r3, r31
-	    stw       r0, 0x280(r31)
-	    lwz       r12, 0x0(r31)
-	    lwz       r12, 0x88(r12)
-	    mtctr     r12
-	    bctrl
-	    mr        r3, r31
-	    lwz       r12, 0x0(r31)
-	    lwz       r12, 0x254(r12)
-	    mtctr     r12
-	    bctrl
-
-	.loc_0xCC:
-	    mr        r3, r31
-	    lwz       r12, 0x0(r31)
-	    lwz       r12, 0x24C(r12)
-	    mtctr     r12
-	    bctrl
-	    b         .loc_0x134
-
-	.loc_0xE4:
-	    lwz       r3, -0x6CF8(r13)
-	    li        r4, 0
-	    cmplwi    r3, 0
-	    beq-      .loc_0x100
-	    addi      r4, r1, 0x8
-	    bl        0x5CC90
-	    mr        r4, r3
-
-	.loc_0x100:
-	    cmplwi    r4, 0
-	    beq-      .loc_0x134
-	    stw       r4, 0x280(r31)
-	    mr        r3, r31
-	    lwz       r12, 0x0(r31)
-	    lwz       r12, 0x84(r12)
-	    mtctr     r12
-	    bctrl
-	    mr        r3, r31
-	    lwz       r12, 0x0(r31)
-	    lwz       r12, 0x250(r12)
-	    mtctr     r12
-	    bctrl
-
-	.loc_0x134:
-	    lwz       r0, 0x24(r1)
-	    lwz       r31, 0x1C(r1)
-	    mtlr      r0
-	    addi      r1, r1, 0x20
-	    blr
-	*/
+	if (m_waterBox != nullptr) {
+		if (!m_waterBox->inWater(waterSphere)) {
+			if (mapMgr != nullptr) {
+				m_waterBox = mapMgr->findWater(waterSphere);
+			}
+			if (m_waterBox == nullptr) {
+				m_waterBox = nullptr;
+				outWaterCallback();
+				fadeEfxHamon();
+			}
+		}
+		updateEfxHamon();
+	} else {
+		WaterBox* waterBox = nullptr;
+		if (mapMgr != nullptr) {
+			waterBox = mapMgr->findWater(waterSphere);
+		}
+		if (waterBox != nullptr) {
+			m_waterBox = waterBox;
+			inWaterCallback(waterBox);
+			createEfxHamon();
+		}
+	}
 }
 
 // /*
@@ -8604,16 +8481,9 @@ PSM::EnemyBase* EnemyBase::createPSEnemyBase()
  */
 void EnemyBase::startMotion()
 {
-	/*
-	.loc_0x0:
-	    lwz       r3, 0x184(r3)
-	    lfs       f0, -0x6B9C(r2)
-	    lwz       r0, 0xC(r3)
-	    rlwinm    r0,r0,0,0,29
-	    stw       r0, 0xC(r3)
-	    stfs      f0, 0x8(r3)
-	    blr
-	*/
+	EnemyAnimatorBase* animator = m_animator;
+	animator->m_flags.typeView &= ~0x3;
+	animator->m_progress = PELLETVIEW_BASE_SCALE;
 }
 
 /*
@@ -8621,34 +8491,7 @@ void EnemyBase::startMotion()
  * Address:	80107220
  * Size:	000058
  */
-float EnemyBase::getMotionFrameMax()
-{
-	/*
-	.loc_0x0:
-	    stwu      r1, -0x10(r1)
-	    mflr      r0
-	    stw       r0, 0x14(r1)
-	    lwz       r3, 0x184(r3)
-	    lwz       r12, 0x0(r3)
-	    lwz       r12, 0x10(r12)
-	    mtctr     r12
-	    bctrl
-	    lwz       r3, 0xC(r3)
-	    lis       r0, 0x4330
-	    stw       r0, 0x8(r1)
-	    lwz       r3, 0x18(r3)
-	    lfd       f1, -0x6BA8(r2)
-	    lha       r0, 0x6(r3)
-	    xoris     r0, r0, 0x8000
-	    stw       r0, 0xC(r1)
-	    lfd       f0, 0x8(r1)
-	    fsubs     f1, f0, f1
-	    lwz       r0, 0x14(r1)
-	    mtlr      r0
-	    addi      r1, r1, 0x10
-	    blr
-	*/
-}
+float EnemyBase::getMotionFrameMax() { return m_animator->getAnimator().m_animInfo->m_anm->m_time; }
 
 /*
  * --INFO--
@@ -8657,39 +8500,12 @@ float EnemyBase::getMotionFrameMax()
  */
 float EnemyBase::getFirstKeyFrame()
 {
-	/*
-	.loc_0x0:
-	    stwu      r1, -0x10(r1)
-	    mflr      r0
-	    stw       r0, 0x14(r1)
-	    lwz       r3, 0x184(r3)
-	    lwz       r12, 0x0(r3)
-	    lwz       r12, 0x10(r12)
-	    mtctr     r12
-	    bctrl
-	    lwz       r3, 0xC(r3)
-	    lwz       r3, 0x38(r3)
-	    cmplwi    r3, 0
-	    beq-      .loc_0x54
-	    lwz       r3, 0x18(r3)
-	    lis       r0, 0x4330
-	    stw       r0, 0x8(r1)
-	    xoris     r0, r3, 0x8000
-	    lfd       f1, -0x6BA8(r2)
-	    stw       r0, 0xC(r1)
-	    lfd       f0, 0x8(r1)
-	    fsubs     f1, f0, f1
-	    b         .loc_0x58
-
-	.loc_0x54:
-	    lfs       f1, -0x6BB0(r2)
-
-	.loc_0x58:
-	    lwz       r0, 0x14(r1)
-	    mtlr      r0
-	    addi      r1, r1, 0x10
-	    blr
-	*/
+	SysShape::Animator animator = m_animator->getAnimator();
+	CNode* node                 = animator.m_animInfo->m_keyEvent.m_child;
+	if (node != nullptr) {
+		return (s32) static_cast<SysShape::KeyEvent*>(node)->m_frame;
+	}
+	return 0.0f;
 }
 
 /*
@@ -8699,17 +8515,9 @@ float EnemyBase::getFirstKeyFrame()
  */
 void EnemyBase::stopMotion()
 {
-	/*
-	.loc_0x0:
-	    lwz       r3, 0x184(r3)
-	    lwz       r0, 0xC(r3)
-	    rlwinm    r0,r0,0,30,28
-	    stw       r0, 0xC(r3)
-	    lwz       r0, 0xC(r3)
-	    ori       r0, r0, 0x1
-	    stw       r0, 0xC(r3)
-	    blr
-	*/
+	EnemyAnimatorBase* animator = m_animator;
+	animator->m_flags.typeView &= ~0x4;
+	animator->m_flags.typeView |= 1;
 }
 
 /*
@@ -8717,42 +8525,14 @@ void EnemyBase::stopMotion()
  * Address:	80107300
  * Size:	000038
  */
-bool EnemyBase::isFinishMotion()
-{
-	/*
-	.loc_0x0:
-	    stwu      r1, -0x10(r1)
-	    mflr      r0
-	    stw       r0, 0x14(r1)
-	    lwz       r3, 0x184(r3)
-	    lwz       r12, 0x0(r3)
-	    lwz       r12, 0x10(r12)
-	    mtctr     r12
-	    bctrl
-	    lbz       r0, 0x18(r3)
-	    rlwinm    r3,r0,31,31,31
-	    lwz       r0, 0x14(r1)
-	    mtlr      r0
-	    addi      r1, r1, 0x10
-	    blr
-	*/
-}
+bool EnemyBase::isFinishMotion() { return m_animator->getAnimator().m_flags >> 1 & 1; }
 
 /*
  * --INFO--
  * Address:	80107338
  * Size:	000010
  */
-bool EnemyBase::isStopMotion()
-{
-	/*
-	.loc_0x0:
-	    lwz       r3, 0x184(r3)
-	    lwz       r0, 0xC(r3)
-	    rlwinm    r3,r0,0,31,31
-	    blr
-	*/
-}
+bool EnemyBase::isStopMotion() { return m_animator->m_flags.typeView & 1; }
 
 /*
  * --INFO--
@@ -8761,31 +8541,11 @@ bool EnemyBase::isStopMotion()
  */
 int EnemyBase::getCurrAnimIndex()
 {
-	/*
-	.loc_0x0:
-	    stwu      r1, -0x10(r1)
-	    mflr      r0
-	    stw       r0, 0x14(r1)
-	    lwz       r3, 0x184(r3)
-	    lwz       r12, 0x0(r3)
-	    lwz       r12, 0x10(r12)
-	    mtctr     r12
-	    bctrl
-	    lwz       r3, 0xC(r3)
-	    cmplwi    r3, 0
-	    beq-      .loc_0x34
-	    lha       r3, 0x20(r3)
-	    b         .loc_0x38
-
-	.loc_0x34:
-	    li        r3, -0x1
-
-	.loc_0x38:
-	    lwz       r0, 0x14(r1)
-	    mtlr      r0
-	    addi      r1, r1, 0x10
-	    blr
-	*/
+	SysShape::Animator animator = m_animator->getAnimator();
+	if (animator.m_animInfo != nullptr) {
+		return animator.m_animInfo->m_id;
+	}
+	return -1;
 }
 
 /*
@@ -8793,39 +8553,14 @@ int EnemyBase::getCurrAnimIndex()
  * Address:	80107390
  * Size:	00000C
  */
-void EnemyBase::setAnimSpeed(float)
-{
-	/*
-	.loc_0x0:
-	    lwz       r3, 0x184(r3)
-	    stfs      f1, 0x4(r3)
-	    blr
-	*/
-}
+void EnemyBase::setAnimSpeed(float speed) { m_animator->m_animSpeed = speed; }
 
 /*
  * --INFO--
  * Address:	8010739C
  * Size:	000030
  */
-void EnemyBase::resetAnimSpeed()
-{
-	/*
-	.loc_0x0:
-	    stwu      r1, -0x10(r1)
-	    mflr      r0
-	    stw       r0, 0x14(r1)
-	    lwz       r3, 0x184(r3)
-	    lwz       r12, 0x0(r3)
-	    lwz       r12, 0x20(r12)
-	    mtctr     r12
-	    bctrl
-	    lwz       r0, 0x14(r1)
-	    mtlr      r0
-	    addi      r1, r1, 0x10
-	    blr
-	*/
-}
+void EnemyBase::resetAnimSpeed() { m_animator->resetAnimSpeed(); }
 
 /*
  * --INFO--
@@ -8864,14 +8599,7 @@ JAInter::Object* EnemyBase::getJAIObject()
  * Address:	801073EC
  * Size:	000008
  */
-PSM::Creature* EnemyBase::getPSCreature()
-{
-	/*
-	.loc_0x0:
-	    lwz       r3, 0x28C(r3)
-	    blr
-	*/
-}
+PSM::Creature* EnemyBase::getPSCreature() { return static_cast<PSM::Creature*>(m_soundObj); }
 
 /*
  * --INFO--
@@ -8880,18 +8608,10 @@ PSM::Creature* EnemyBase::getPSCreature()
  */
 int EnemyBase::getStateID()
 {
-	/*
-	.loc_0x0:
-	    lwz       r3, 0x2B4(r3)
-	    cmplwi    r3, 0
-	    beq-      .loc_0x14
-	    lwz       r3, 0x4(r3)
-	    blr
-
-	.loc_0x14:
-	    li        r3, -0x1
-	    blr
-	*/
+	if (m_currentLifecycleState != nullptr) {
+		return m_currentLifecycleState->m_stateID;
+	}
+	return -1;
 }
 
 /*
@@ -8901,60 +8621,19 @@ int EnemyBase::getStateID()
  */
 bool EnemyBase::needShadow()
 {
-	/*
-	.loc_0x0:
-	    stwu      r1, -0x10(r1)
-	    mflr      r0
-	    stw       r0, 0x14(r1)
-	    stw       r31, 0xC(r1)
-	    stw       r30, 0x8(r1)
-	    mr        r30, r3
-	    lwz       r4, -0x64AC(r13)
-	    cmplwi    r4, 0
-	    beq-      .loc_0x74
-	    lwz       r0, 0x1F0(r4)
-	    rlwinm.   r0,r0,0,31,31
-	    beq-      .loc_0x74
-	    lwz       r12, 0x0(r3)
-	    li        r31, 0
-	    lwz       r12, 0xB8(r12)
-	    mtctr     r12
-	    bctrl
-	    rlwinm.   r0,r3,0,24,31
-	    bne-      .loc_0x68
-	    lwz       r3, 0x180(r30)
-	    lwz       r12, 0x0(r3)
-	    lwz       r12, 0x9C(r12)
-	    mtctr     r12
-	    bctrl
-	    rlwinm.   r0,r3,0,24,31
-	    beq-      .loc_0x6C
-
-	.loc_0x68:
-	    li        r31, 0x1
-
-	.loc_0x6C:
-	    mr        r3, r31
-	    b         .loc_0x94
-
-	.loc_0x74:
-	    lbz       r0, 0xD8(r30)
-	    li        r3, 0
-	    rlwinm.   r0,r0,0,29,29
-	    beq-      .loc_0x94
-	    lwz       r0, 0x1E0(r30)
-	    rlwinm.   r0,r0,0,1,1
-	    bne-      .loc_0x94
-	    li        r3, 0x1
-
-	.loc_0x94:
-	    lwz       r0, 0x14(r1)
-	    lwz       r31, 0xC(r1)
-	    lwz       r30, 0x8(r1)
-	    mtlr      r0
-	    addi      r1, r1, 0x10
-	    blr
-	*/
+	if (moviePlayer != nullptr && moviePlayer->m_flags & 1) {
+		bool needShadow = false;
+		if (isMovieActor() || m_mgr->isAlwaysMovieActor()) {
+			needShadow = true;
+		}
+		return needShadow;
+	} else {
+		bool needShadow = false;
+		if (m_lod.m_flags & AILOD::FLAG_NEED_SHADOW && !(_1E0.m_flags[0].typeView & 0x40000000)) {
+			needShadow = true;
+		}
+		return needShadow;
+	}
 }
 
 // /*
@@ -9192,14 +8871,7 @@ EnemyStone::DrawInfo::~DrawInfo()
  * Address:	80107764
  * Size:	000008
  */
-float EnemyBase::getDownSmokeScale()
-{
-	/*
-	.loc_0x0:
-	    lfs       f1, -0x6BB0(r2)
-	    blr
-	*/
-}
+float EnemyBase::getDownSmokeScale() { return 0.0f; }
 
 /*
  * --INFO--
@@ -9240,48 +8912,10 @@ void EnemyBase::hardConstraintOff()
  */
 void EnemyBase::startMovie()
 {
-	/*
-	.loc_0x0:
-	    stwu      r1, -0x10(r1)
-	    mflr      r0
-	    stw       r0, 0x14(r1)
-	    stw       r31, 0xC(r1)
-	    stw       r30, 0x8(r1)
-	    mr        r30, r3
-	    mr        r4, r30
-	    lwz       r3, 0x2B8(r3)
-	    bl        0x291B0
-	    cmpwi     r3, 0x5
-	    blt-      .loc_0x6C
-	    lwz       r3, 0x2A0(r30)
-	    b         .loc_0x50
-
-	.loc_0x34:
-	    lwz       r12, 0x0(r3)
-	    mr        r4, r30
-	    lwz       r31, 0x4(r3)
-	    lwz       r12, 0x14(r12)
-	    mtctr     r12
-	    bctrl
-	    mr        r3, r31
-
-	.loc_0x50:
-	    cmplwi    r3, 0
-	    bne+      .loc_0x34
-	    mr        r3, r30
-	    lwz       r12, 0x0(r30)
-	    lwz       r12, 0x2F0(r12)
-	    mtctr     r12
-	    bctrl
-
-	.loc_0x6C:
-	    lwz       r0, 0x14(r1)
-	    lwz       r31, 0xC(r1)
-	    lwz       r30, 0x8(r1)
-	    mtlr      r0
-	    addi      r1, r1, 0x10
-	    blr
-	*/
+	if (m_lifecycleFSM->getCurrID(this) >= 5) {
+		fadeEffects();
+		doStartMovie();
+	}
 }
 
 /*
@@ -9298,48 +8932,10 @@ void EnemyBase::doStartMovie() { }
  */
 void EnemyBase::endMovie()
 {
-	/*
-	.loc_0x0:
-	    stwu      r1, -0x10(r1)
-	    mflr      r0
-	    stw       r0, 0x14(r1)
-	    stw       r31, 0xC(r1)
-	    stw       r30, 0x8(r1)
-	    mr        r30, r3
-	    mr        r4, r30
-	    lwz       r3, 0x2B8(r3)
-	    bl        0x29128
-	    cmpwi     r3, 0x5
-	    blt-      .loc_0x6C
-	    lwz       r3, 0x2A0(r30)
-	    b         .loc_0x50
-
-	.loc_0x34:
-	    lwz       r12, 0x0(r3)
-	    mr        r4, r30
-	    lwz       r31, 0x4(r3)
-	    lwz       r12, 0x10(r12)
-	    mtctr     r12
-	    bctrl
-	    mr        r3, r31
-
-	.loc_0x50:
-	    cmplwi    r3, 0
-	    bne+      .loc_0x34
-	    mr        r3, r30
-	    lwz       r12, 0x0(r30)
-	    lwz       r12, 0x2F4(r12)
-	    mtctr     r12
-	    bctrl
-
-	.loc_0x6C:
-	    lwz       r0, 0x14(r1)
-	    lwz       r31, 0xC(r1)
-	    lwz       r30, 0x8(r1)
-	    mtlr      r0
-	    addi      r1, r1, 0x10
-	    blr
-	*/
+	if (m_lifecycleFSM->getCurrID(this) >= 5) {
+		createEffects();
+		doEndMovie();
+	}
 }
 
 /*
@@ -9393,23 +8989,7 @@ void EnemyBase::doFinishEarthquakeFitState() { }
  * Address:	8010796C
  * Size:	00002C
  */
-void EnemyBase::startWaitingBirthTypeDrop()
-{
-	/*
-	.loc_0x0:
-	    stwu      r1, -0x10(r1)
-	    mflr      r0
-	    stw       r0, 0x14(r1)
-	    lwz       r12, 0x0(r3)
-	    lwz       r12, 0x2E0(r12)
-	    mtctr     r12
-	    bctrl
-	    lwz       r0, 0x14(r1)
-	    mtlr      r0
-	    addi      r1, r1, 0x10
-	    blr
-	*/
-}
+void EnemyBase::startWaitingBirthTypeDrop() { doStartWaitingBirthTypeDrop(); }
 
 /*
  * --INFO--
@@ -9449,26 +9029,6 @@ void EnemyBase::doFinishWaitingBirthTypeDrop()
 bool EnemyBase::isBirthTypeDropGroup()
 {
 	return (m_dropGroup == 1 || m_dropGroup == 2 || m_dropGroup == 3 || m_dropGroup == 4 || m_dropGroup == 5);
-	/*
-	.loc_0x0:
-	    lbz       r0, 0x2B0(r3)
-	    li        r3, 0
-	    extsb     r0, r0
-	    cmpwi     r0, 0x1
-	    beq-      .loc_0x34
-	    cmpwi     r0, 0x2
-	    beq-      .loc_0x34
-	    cmpwi     r0, 0x3
-	    beq-      .loc_0x34
-	    cmpwi     r0, 0x4
-	    beq-      .loc_0x34
-	    cmpwi     r0, 0x5
-	    bnelr-
-
-	.loc_0x34:
-	    li        r3, 0x1
-	    blr
-	*/
 }
 
 /*
