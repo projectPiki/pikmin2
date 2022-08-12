@@ -3,6 +3,7 @@
 
 #include "types.h"
 #include "Vector3.h"
+#include "Matrixf.h"
 
 // Quat(ernion)
 struct Quat {

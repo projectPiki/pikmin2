@@ -11,20 +11,20 @@
 namespace Game {
 struct EnemyAnimatorBase {
 	EnemyAnimatorBase();
-	virtual ~EnemyAnimatorBase() { }                                // _04
-	virtual void setAnimMgr(SysShape::AnimMgr* newMgr)         = 0; // _08
-	virtual SysShape::Animator& getAnimator()                  = 0; // _0C
-	virtual SysShape::Animator& getAnimator(int animatorIndex) = 0; // _10
+	virtual ~EnemyAnimatorBase() { }                                // _08 (weak)
+	virtual void setAnimMgr(SysShape::AnimMgr* newMgr)         = 0; // _0C
+	virtual SysShape::Animator& getAnimator()                  = 0; // _10
+	virtual SysShape::Animator& getAnimator(int animatorIndex) = 0; // _14
 
 	/**
 	 * @brief Runs the animate function of an inherited animator based on the frame count. The progress will reverse if it reaches the end
 	 * and will playback forwards if it reaches the start.
 	 */
-	virtual void animate(float currentFrame);                    // _14
-	virtual void animate(int animatorIndex, float currentFrame); // _18
+	virtual void animate(float currentFrame);                    // _18
+	virtual void animate(int animatorIndex, float currentFrame); // _1C (weak)
 
-	virtual void resetAnimSpeed(); // _1C
-	virtual u32 getTypeID();       // _20
+	virtual void resetAnimSpeed();             // _20 (weak)
+	virtual u32 getTypeID() { return 'base'; } // _24 (weak)
 
 	inline void reset()
 	{
@@ -45,25 +45,25 @@ struct EnemyAnimatorBase {
 struct EnemyBlendAnimatorBase : public EnemyAnimatorBase {
 	EnemyBlendAnimatorBase();
 
-	virtual ~EnemyBlendAnimatorBase();            // _00
-	virtual void setAnimMgr(SysShape::AnimMgr*);  // _04
-	virtual SysShape::Animator& getAnimator();    // _08
-	virtual SysShape::Animator& getAnimator(int); // _0C
-	virtual void animate(float);                  // _10
+	virtual ~EnemyBlendAnimatorBase();            // _08 (weak)
+	virtual void setAnimMgr(SysShape::AnimMgr*);  // _0C
+	virtual SysShape::Animator& getAnimator();    // _10
+	virtual SysShape::Animator& getAnimator(int); // _14
+	virtual void animate(float);                  // _18
 	/**
 	 * @reifiedAddress{8010AA4C}
 	 * @reifiedFile{plugProjectYamashitaU/pelplant.cpp}
 	 */
-	virtual void animate(int p1, float p2) // _14
+	virtual void animate(int p1, float p2) // _1C (weak)
 	{
 		EnemyAnimatorBase::animate(p1, p2);
 	}
-	virtual void resetAnimSpeed(); // _18
+	// virtual void resetAnimSpeed(); // _20
 	/**
 	 * @reifiedAddress{8010AA6C}
 	 * @reifiedFile{plugProjectYamashitaU/pelplant.cpp}
 	 */
-	virtual u32 getTypeID() { return 'blnd'; } // _1C
+	virtual u32 getTypeID() { return 'blnd'; } // _24 (weak)
 
 	void startBlend(int, int, SysShape::BlendFunction*, float, SysShape::MotionListener*);
 	void endBlend();

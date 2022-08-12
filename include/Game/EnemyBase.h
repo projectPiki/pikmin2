@@ -163,11 +163,14 @@ struct EnemyBase : public Creature, public SysShape::MotionListener, virtual pub
 	virtual void viewStartPreCarryMotion();                     // _218 (weak)
 	virtual void viewStartCarryMotion();                        // _21C (weak)
 	virtual void viewOnPelletKilled();                          // _220 (weak)
-	virtual void getOffsetForMapCollision();                    // _224 (weak)
-	virtual void setParameters();                               // _228
-	virtual void initMouthSlots();                              // _22C (weak)
-	virtual void initWalkSmokeEffect();                         // _230 (weak)
-	virtual WalkSmokeEffect::Mgr* getWalkSmokeEffectMgr()       // _234 (weak)
+	virtual Vector3f getOffsetForMapCollision()                 // _224 (weak)
+	{
+		return Vector3f(0.0f);
+	}
+	virtual void setParameters();                         // _228
+	virtual void initMouthSlots();                        // _22C (weak)
+	virtual void initWalkSmokeEffect();                   // _230 (weak)
+	virtual WalkSmokeEffect::Mgr* getWalkSmokeEffectMgr() // _234 (weak)
 	{
 		return nullptr;
 	}
@@ -185,7 +188,7 @@ struct EnemyBase : public Creature, public SysShape::MotionListener, virtual pub
 	virtual void throwupItem();                                     // _264
 	virtual void getThrowupItemPosition(Vector3f*);                 // _268
 	virtual void getThrowupItemVelocity(Vector3f*);                 // _26C
-	virtual void throwupItemInDeathProcedure();                     // _270 (weak)
+	virtual void throwupItemInDeathProcedure() { throwupItem(); }   // _270 (weak)
 	virtual void setLODSphere(Sys::Sphere&);                        // _274 (weak)
 	virtual bool damageCallBack(Creature*, float, CollPart*);       // _278
 	virtual bool pressCallBack(Creature*, float, CollPart*);        // _27C
@@ -197,7 +200,7 @@ struct EnemyBase : public Creature, public SysShape::MotionListener, virtual pub
 	virtual bool bombCallBack(Creature*, Vector3f&, float);         // _294
 	virtual bool eatWhitePikminCallBack(Creature*, float);          // _298
 	virtual bool dopeCallBack(Creature*, int);                      // _29C
-	virtual bool doDopeCallBack(Creature*, int);                    // _2A0 (weak)
+	virtual bool doDopeCallBack(Creature*, int) { return true; }    // _2A0 (weak)
 	virtual void doStartStoneState();                               // _2A4
 	virtual void doFinishStoneState();                              // _2A8
 	virtual float getDamageCoeStoneState();                         // _2AC (weak)
@@ -215,7 +218,7 @@ struct EnemyBase : public Creature, public SysShape::MotionListener, virtual pub
 	virtual bool isFinishableWaitingBirthTypeDrop();                // _2DC
 	virtual void doStartWaitingBirthTypeDrop();                     // _2E0
 	virtual void doFinishWaitingBirthTypeDrop();                    // _2E4
-	virtual void wallCallback(const MoveInfo&);                     // _2E8 (weak)
+	virtual void wallCallback(const MoveInfo&) { }                  // _2E8 (weak)
 	virtual float getDownSmokeScale();                              // _2EC
 	virtual void doStartMovie();                                    // _2F0 (weak)
 	virtual void doEndMovie();                                      // _2F4 (weak)
@@ -387,11 +390,11 @@ struct State : public Game::EnemyFSMState {
 	{
 	}
 
-	virtual void update(EnemyBase*) { }                       // _24 (weak)
-	virtual void entry(EnemyBase*) { }                        // _28 (weak)
-	virtual void simulation(EnemyBase*, float) { }            // _2C (weak)
-	virtual void bounceProcedure(EnemyBase*, Sys::Triangle*); // _30 (weak)
-	virtual void animation(EnemyBase*);                       // _34
+	virtual void update(EnemyBase*) { }                          // _24 (weak)
+	virtual void entry(EnemyBase*) { }                           // _28 (weak)
+	virtual void simulation(EnemyBase*, float) { }               // _2C (weak)
+	virtual void bounceProcedure(EnemyBase*, Sys::Triangle*) { } // _30 (weak)
+	virtual void animation(EnemyBase*);                          // _34
 
 	// _00 VTBL
 	// _04 int stateID
@@ -563,10 +566,11 @@ struct StateMachine : public Game::EnemyStateMachine {
 	{
 		m_state->animation(enemy);
 	}
-	virtual void bounceProcedure(EnemyBase*, Sys::Triangle*); // _34 (weak)
+	virtual void bounceProcedure(EnemyBase* enemy, Sys::Triangle* triangle) // _34 (weak)
+	{
+		m_state->bounceProcedure(enemy, triangle);
+	}
 
-	// something has to be here because of StateMachine::update(), entry(), simulation() etc...
-	// assuming it's a state for now based on the weak state methods following the above in enemyBase
 	State* m_state; // _1C
 };
 } // namespace EnemyBaseFSM

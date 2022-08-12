@@ -4,6 +4,7 @@
 #include "types.h"
 #include "Quat.h"
 #include "Vector3.h"
+#include "JSystem/J3D/J3DMtxCalc.h"
 
 struct J3DMaterial;
 struct J3DMtxCalc;

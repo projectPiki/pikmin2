@@ -32,26 +32,26 @@ struct WaterBox {
 	 * @reifiedAddress{80106CE8}
 	 * @reifiedFile{plugProjectYamashitaU/enemyBase.cpp}
 	 */
-	virtual bool inWater(Sys::Sphere&) // _00
+	virtual bool inWater(Sys::Sphere&) // _08 (weak)
 	{
 		return false;
 	}
-	virtual bool inWater2d(Sys::Sphere&); // _04
-	virtual float getSeaLevel()      = 0; // _08
-	virtual float* getSeaHeightPtr() = 0; // _0C
-	virtual bool update()            = 0; // _10
-	virtual void startDown(float);        // _14
-	virtual void startUp(float);          // _18
-	virtual void directDraw(Graphics&);   // _1C
-	virtual void doAnimation();           // _20
-	virtual void doEntry();               // _24
-	virtual void doSetView(int);          // _28
-	virtual void doViewCalc();            // _2C
-	virtual void doSimulation(float);     // _30
-	virtual void doDirectDraw(Graphics&); // _34
+	virtual bool inWater2d(Sys::Sphere&); // _0C (weak)
+	virtual float getSeaLevel()      = 0; // _10
+	virtual float* getSeaHeightPtr() = 0; // _14
+	virtual bool update()            = 0; // _18
+	virtual void startDown(float);        // _1C (weak)
+	virtual void startUp(float);          // _20 (weak)
+	virtual void directDraw(Graphics&);   // _24 (weak)
+	virtual void doAnimation();           // _28 (weak)
+	virtual void doEntry();               // _2C (weak)
+	virtual void doSetView(int);          // _30 (weak)
+	virtual void doViewCalc();            // _34 (weak)
+	virtual void doSimulation(float);     // _38 (weak)
+	virtual void doDirectDraw(Graphics&); // _3C (weak)
 	virtual void attachModel(J3DModelData*, Sys::MatTexAnimation*,
-	                         float); // _38
-	virtual void calcMatrix();       // _3C
+	                         float); // _40 (weak)
+	virtual void calcMatrix();       // _44 (weak)
 
 	u8 m_flags; // _04
 };

@@ -9,6 +9,7 @@
 #include "efx/TEnemyDownSmoke.h"
 #include "efx/TEnemyDownWat.h"
 #include "Game/AABBWaterBox.h"
+#include "Game/AIConstants.h"
 #include "Game/BaseItem.h"
 #include "Game/BaseHIOParms.h"
 #include "Game/Cave/RandMapMgr.h"
@@ -3376,48 +3377,13 @@ void EnemyBase::doAnimation() { static_cast<EnemyBaseFSM::StateMachine*>(m_lifec
  */
 void EnemyBase::doAnimationUpdateAnimator()
 {
-	m_animator->animate(sys->m_secondsPerFrame);
-	SysShape::Animator animator = m_animator->getAnimator();
-	SysShape::Model* model      = m_model;
-	// TODO: Final line once J3DJointTree is added
-	// m_model->m_j3dModel->_10->m animator.getCalc();
-	/*
-	.loc_0x0:
-	    stwu      r1, -0x10(r1)
-	    mflr      r0
-	    stw       r0, 0x14(r1)
-	    stw       r31, 0xC(r1)
-	    mr        r31, r3
-	    lwz       r3, 0x184(r3)
-	    lwz       r4, -0x6514(r13)
-	    lwz       r12, 0x0(r3)
-	    lfs       f0, 0x54(r4)
-	    lfs       f1, 0x4(r3)
-	    lwz       r12, 0x18(r12)
-	    fmuls     f1, f1, f0
-	    mtctr     r12
-	    bctrl
-	    lwz       r3, 0x184(r31)
-	    lwz       r12, 0x0(r3)
-	    lwz       r12, 0x10(r12)
-	    mtctr     r12
-	    bctrl
-	    lwz       r12, 0x0(r3)
-	    lwz       r31, 0x174(r31)
-	    lwz       r12, 0x8(r12)
-	    mtctr     r12
-	    bctrl
-	    lwz       r4, 0x8(r31)
-	    lwz       r4, 0x4(r4)
-	    lwz       r4, 0x28(r4)
-	    lwz       r4, 0x0(r4)
-	    stw       r3, 0x54(r4)
-	    lwz       r31, 0xC(r1)
-	    lwz       r0, 0x14(r1)
-	    mtlr      r0
-	    addi      r1, r1, 0x10
-	    blr
-	*/
+	m_animator->animate(m_animator->m_animSpeed * sys->m_secondsPerFrame);
+
+	SysShape::Animator* animator = &m_animator->getAnimator();
+	SysShape::Model* model       = m_model;
+	J3DMtxCalc* calc             = animator->getCalc();
+
+	model->m_j3dModel->m_modelData->m_jointTree.m_joints[0]->m_mtxCalc = static_cast<J3DMtxCalcAnmBase*>(calc);
 }
 
 /*
@@ -3624,20 +3590,7 @@ void EnemyBase::doAnimationStick()
  * Address:
  * Size:	000020
  */
-void EnemyBase::doAnimationCullingOn()
-{
-	/*
-	.loc_0x0:
-	    lwz       r3, 0x174(r3)
-	    li        r0, 0
-	    lwz       r3, 0x8(r3)
-	    lwz       r3, 0x4(r3)
-	    lwz       r3, 0x28(r3)
-	    lwz       r3, 0x0(r3)
-	    stw       r0, 0x54(r3)
-	    blr
-	*/
-}
+void EnemyBase::doAnimationCullingOn() { m_model->m_j3dModel->m_modelData->m_jointTree.m_joints[0]->m_mtxCalc = 0; }
 
 /*
  * --INFO--
@@ -3775,47 +3728,18 @@ bool EnemyBase::isCullingOff()
  */
 void EnemyBase::doViewCalc()
 {
-	/*
-	.loc_0x0:
-	    stwu      r1, -0x10(r1)
-	    mflr      r0
-	    stw       r0, 0x14(r1)
-	    lwz       r4, 0x17C(r3)
-	    lwz       r0, 0x4(r4)
-	    cmplwi    r0, 0
-	    beq-      .loc_0x24
-	    li        r5, 0x1
-	    b         .loc_0x58
-
-	.loc_0x24:
-	    lwz       r0, 0x1E0(r3)
-	    li        r5, 0
-	    rlwinm.   r0,r0,0,25,25
-	    beq-      .loc_0x54
-	    lbz       r4, 0xD8(r3)
-	    rlwinm.   r0,r4,0,29,29
-	    bne-      .loc_0x54
-	    rlwinm.   r0,r4,0,28,28
-	    bne-      .loc_0x54
-	    lwz       r0, 0x1E4(r3)
-	    rlwinm.   r0,r0,0,27,27
-	    beq-      .loc_0x58
-
-	.loc_0x54:
-	    li        r5, 0x1
-
-	.loc_0x58:
-	    rlwinm.   r0,r5,0,24,31
-	    beq-      .loc_0x68
-	    lwz       r3, 0x174(r3)
-	    bl        0x33B8F8
-
-	.loc_0x68:
-	    lwz       r0, 0x14(r1)
-	    mtlr      r0
-	    addi      r1, r1, 0x10
-	    blr
-	*/
+	bool flagCheck;
+	if (m_pellet != nullptr) {
+		flagCheck = true;
+	} else {
+		flagCheck = false;
+		if (!(_1E0.m_flags[0].typeView & 0x40) || ((m_lod.m_flags & 4) || (m_lod.m_flags & 8) || (_1E0.m_flags[1].typeView & 0x10))) {
+			flagCheck = true;
+		}
+	}
+	if (flagCheck) {
+		m_model->viewCalc();
+	}
 }
 
 /*
@@ -3972,63 +3896,15 @@ inline void EnemyBase::updateSpheres()
  * Address:	80103940
  * Size:	0000B8
  */
-void EnemyBase::createDropEffect(const Vector3f& position, float scale)
+void EnemyBase::createDropEffect(const Vector3f& position, float p1)
 {
-	float temp = 1.0f; // There's an (unused?) 1.0f involved here somewhere.
-	                   // Default param? IDK.
-	efx::Arg arg(position);
-	efx::TEnemyDownSmoke effect(0x53, scale);
-	effect.create(&arg);
-	PSStartEnemyDownSmokeSE(this, scale);
-	/*
-	.loc_0x0:
-	    stwu      r1, -0x40(r1)
-	    mflr      r0
-	    stw       r0, 0x44(r1)
-	    stfd      f31, 0x30(r1)
-	    psq_st    f31,0x38(r1),0,0
-	    stw       r31, 0x2C(r1)
-	    lis       r5, 0x804B
-	    lfs       f0, -0x6B9C(r2)
-	    subi      r0, r5, 0x5808
-	    lis       r5, 0x804E
-	    stw       r0, 0x8(r1)
-	    addi      r0, r5, 0x6A78
-	    fmr       f31, f1
-	    lfs       f2, 0x0(r4)
-	    stfs      f0, 0x14(r1)
-	    lis       r6, 0x804B
-	    lfs       f1, 0x4(r4)
-	    lis       r5, 0x804F
-	    lfs       f0, 0x8(r4)
-	    subi      r4, r6, 0x5814
-	    li        r7, 0x53
-	    li        r6, 0
-	    mr        r31, r3
-	    stw       r0, 0x8(r1)
-	    subi      r0, r5, 0x79F0
-	    addi      r3, r1, 0x8
-	    stw       r4, 0x18(r1)
-	    addi      r4, r1, 0x18
-	    stfs      f2, 0x1C(r1)
-	    stfs      f1, 0x20(r1)
-	    stfs      f0, 0x24(r1)
-	    sth       r7, 0xC(r1)
-	    stw       r6, 0x10(r1)
-	    stw       r0, 0x8(r1)
-	    stfs      f31, 0x14(r1)
-	    bl        0x2C4D98
-	    fmr       f1, f31
-	    mr        r3, r31
-	    bl        0x36ACB8
-	    psq_l     f31,0x38(r1),0,0
-	    lwz       r0, 0x44(r1)
-	    lfd       f31, 0x30(r1)
-	    lwz       r31, 0x2C(r1)
-	    mtlr      r0
-	    addi      r1, r1, 0x40
-	    blr
-	*/
+	efx::Arg enemyArg(position);
+	efx::TEnemyDownSmoke downSmoke(0x53, PELLETVIEW_BASE_SCALE);
+
+	downSmoke._0C = p1;
+	downSmoke.create(&enemyArg);
+
+	PSStartEnemyDownSmokeSE(this, p1);
 }
 
 /*
@@ -4702,43 +4578,15 @@ void EnemyBase::finishDropping(bool)
  * Address:	80104288
  * Size:	000080
  */
-void EnemyBase::bounceProcedure(Sys::Triangle*)
+void EnemyBase::bounceProcedure(Sys::Triangle* triangle)
 {
-	/*
-	.loc_0x0:
-	    stwu      r1, -0x10(r1)
-	    mflr      r0
-	    stw       r0, 0x14(r1)
-	    stw       r31, 0xC(r1)
-	    mr        r31, r4
-	    stw       r30, 0x8(r1)
-	    mr        r30, r3
-	    lwz       r12, 0x0(r3)
-	    lwz       r12, 0xE8(r12)
-	    mtctr     r12
-	    bctrl
-	    lwz       r0, 0x1E0(r30)
-	    mr        r3, r30
-	    li        r4, 0x1
-	    rlwinm    r0,r0,0,3,1
-	    stw       r0, 0x1E0(r30)
-	    bl        -0x2CC
-	    mr        r3, r30
-	    bl        0x37B8
-	    lwz       r3, 0x2B8(r30)
-	    mr        r4, r30
-	    mr        r5, r31
-	    lwz       r12, 0x0(r3)
-	    lwz       r12, 0x34(r12)
-	    mtctr     r12
-	    bctrl
-	    lwz       r0, 0x14(r1)
-	    lwz       r31, 0xC(r1)
-	    lwz       r30, 0x8(r1)
-	    mtlr      r0
-	    addi      r1, r1, 0x10
-	    blr
-	*/
+	bounceCallback(triangle);
+	_1E0.m_flags[0].typeView &= 0xDFFFFFFF;
+
+	finishDropping(true);
+	resetDroppingMassZero();
+
+	m_lifecycleFSM->bounceProcedure(this, triangle);
 }
 
 /*
@@ -4746,38 +4594,27 @@ void EnemyBase::bounceProcedure(Sys::Triangle*)
  * Address:	80104308
  * Size:	000030
  */
-void EnemyBaseFSM::StateMachine::bounceProcedure(Game::EnemyBase*, Sys::Triangle*)
-{
-	/*
-	.loc_0x0:
-	    stwu      r1, -0x10(r1)
-	    mflr      r0
-	    stw       r0, 0x14(r1)
-	    lwz       r3, 0x1C(r3)
-	    lwz       r12, 0x0(r3)
-	    lwz       r12, 0x30(r12)
-	    mtctr     r12
-	    bctrl
-	    lwz       r0, 0x14(r1)
-	    mtlr      r0
-	    addi      r1, r1, 0x10
-	    blr
-	*/
-}
+// WEAK - in header
+// void EnemyBaseFSM::StateMachine::bounceProcedure(Game::EnemyBase* enemy, Sys::Triangle* triangle)
+// {
+//     m_state->bounceProcedure(enemy, triangle);
+// }
 
 /*
  * --INFO--
  * Address:	80104338
  * Size:	000004
  */
-void EnemyBaseFSM::State::bounceProcedure(Game::EnemyBase*, Sys::Triangle*) { }
+// WEAK - in header
+// void EnemyBaseFSM::State::bounceProcedure(Game::EnemyBase*, Sys::Triangle*) { }
 
 /*
  * --INFO--
  * Address:	8010433C
  * Size:	000004
  */
-void Creature::bounceCallback(Sys::Triangle*) { }
+// WEAK - in header
+// void Creature::bounceCallback(Sys::Triangle*) { }
 
 /*
  * --INFO--
@@ -5285,38 +5122,32 @@ void EnemyBase::collisionMapAndPlat(float)
  * Address:	80104A14
  * Size:	000004
  */
-void MapMgr::constraintBoundBox(Sys::Sphere&) { }
+// WEAK - in header
+// void MapMgr::constraintBoundBox(Sys::Sphere&) { }
 
 /*
  * --INFO--
  * Address:	80104A18
  * Size:	000008
  */
-bool MapMgr::hasHiddenCollision() { return false; }
+// WEAK - in header
+// bool MapMgr::hasHiddenCollision() { return false; }
 
 /*
  * --INFO--
  * Address:	80104A20
  * Size:	000004
  */
-void EnemyBase::wallCallback(const Game::MoveInfo&) { }
+// WEAK - in header
+// void EnemyBase::wallCallback(const Game::MoveInfo&) { }
 
 /*
  * --INFO--
  * Address:	80104A24
  * Size:	000014
  */
-void EnemyBase::getOffsetForMapCollision()
-{
-	/*
-	.loc_0x0:
-	    lfs       f0, -0x6BB0(r2)
-	    stfs      f0, 0x0(r3)
-	    stfs      f0, 0x4(r3)
-	    stfs      f0, 0x8(r3)
-	    blr
-	*/
-}
+// WEAK - in header
+// void EnemyBase::getOffsetForMapCollision() { return Vector3f(0.0f); }
 
 /*
  * --INFO--
@@ -5719,15 +5550,8 @@ void EnemyBase::endBlend()
  * Address:	80104FF8
  * Size:	00000C
  */
-void EnemyAnimatorBase::getTypeID()
-{
-	/*
-	.loc_0x0:
-	    lis       r3, 0x6261
-	    addi      r3, r3, 0x7365
-	    blr
-	*/
-}
+// WEAK - in header
+// u32 EnemyAnimatorBase::getTypeID() { return 'base'; }
 
 /*
  * --INFO--
@@ -5955,14 +5779,16 @@ bool EnemyBase::stimulate(Game::Interaction& interaction)
  * Address:	80105380
  * Size:	000008
  */
-bool Interaction::actEnemy(Game::EnemyBase*) { return true; }
+// WEAK - in header
+// bool Interaction::actEnemy(Game::EnemyBase*) { return true; }
 
 /*
  * --INFO--
  * Address:	80105388
  * Size:	000008
  */
-bool Interaction::actCommon(Game::Creature*) { return true; }
+// WEAK - in header
+// bool Interaction::actCommon(Game::Creature*) { return true; }
 
 /*
  * --INFO--
@@ -6360,6 +6186,7 @@ void EnemyBase::deathProcedure()
 //  * Address:	80105818
 //  * Size:	000008
 //  */
+// WEAK = in header
 // u32 EnemyBase::getCastType() { return 0x2; }
 // } // namespace PSM
 
@@ -6370,37 +6197,23 @@ void EnemyBase::deathProcedure()
  * Address:	80105820
  * Size:	00002C
  */
-void EnemyBase::throwupItemInDeathProcedure()
-{
-	/*
-	.loc_0x0:
-	    stwu      r1, -0x10(r1)
-	    mflr      r0
-	    stw       r0, 0x14(r1)
-	    lwz       r12, 0x0(r3)
-	    lwz       r12, 0x264(r12)
-	    mtctr     r12
-	    bctrl
-	    lwz       r0, 0x14(r1)
-	    mtlr      r0
-	    addi      r1, r1, 0x10
-	    blr
-	*/
-}
+// WEAK - in header
+// void EnemyBase::throwupItemInDeathProcedure() { throwupItem(); }
 
 /*
  * --INFO--
  * Address:	8010584C
  * Size:	000028
  */
-void Creature::setAlive(bool isAlive)
-{
-	if (isAlive) {
-		m_flags.intView |= CF_IS_ALIVE;
-	} else {
-		m_flags.intView &= ~CF_IS_ALIVE;
-	}
-}
+// WEAK - in header
+// void Creature::setAlive(bool isAlive)
+// {
+// 	if (isAlive) {
+// 		m_flags.intView |= CF_IS_ALIVE;
+// 	} else {
+// 		m_flags.intView &= ~CF_IS_ALIVE;
+// 	}
+// }
 
 /*
  * --INFO--
@@ -6834,6 +6647,7 @@ void EnemyBase::throwupItem()
 //  * Address:	80105E68
 //  * Size:	000004
 //  */
+// WEAK - in header
 // void Pellet::createKiraEffect(Vector3f&) { }
 
 /*
@@ -7365,7 +7179,8 @@ bool EnemyBase::dopeCallBack(Game::Creature*, int)
  * Address:	801065B8
  * Size:	000008
  */
-bool EnemyBase::doDopeCallBack(Game::Creature*, int) { return true; }
+// WEAK - in header
+// bool EnemyBase::doDopeCallBack(Game::Creature*, int) { return true; }
 
 /*
  * --INFO--
@@ -7815,6 +7630,7 @@ void EnemyBase::updateWaterBox()
 //  * Address:	80106CE8
 //  * Size:	000008
 //  */
+// WEAK - in header
 // bool WaterBox::inWater(Sys::Sphere&) { return false; }
 
 /*

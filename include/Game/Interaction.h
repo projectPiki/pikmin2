@@ -19,13 +19,13 @@ struct Interaction {
 	{
 	}
 
-	virtual bool actCommon(Creature*); // _08
-	virtual bool actPiki(Piki*);       // _0C
-	virtual bool actNavi(Navi*);       // _10
-	virtual bool actEnemy(EnemyBase*); // _14
-	virtual bool actPellet(Pellet*);   // _18
-	virtual bool actOnyon(Onyon*);     // _1C
-	virtual bool actItem(BaseItem*);   // _20
+	virtual bool actCommon(Creature*) { return true; } // _08
+	virtual bool actPiki(Piki*);                       // _0C
+	virtual bool actNavi(Navi*);                       // _10
+	virtual bool actEnemy(EnemyBase*) { return true; } // _14
+	virtual bool actPellet(Pellet*);                   // _18
+	virtual bool actOnyon(Onyon*);                     // _1C
+	virtual bool actItem(BaseItem*);                   // _20
 
 	// _00 VTBL
 	Creature* m_creature; // _04

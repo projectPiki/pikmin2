@@ -126,44 +126,51 @@ struct Creature : public CellObject {
 	virtual bool isAtari();                                           // _A0 (weak)
 	virtual void setAtari(bool);                                      // _A4 (weak)
 	virtual bool isAlive() { return m_flags.typeView & CF_IS_ALIVE; } // _A8 (weak)
-	virtual void setAlive(bool);                                      // _AC (weak)
-	virtual bool isCollisionFlick();                                  // _B0 (weak)
-	virtual void setCollisionFlick(bool);                             // _B4 (weak)
-	virtual bool isMovieActor();                                      // _B8 (weak)
-	virtual bool isMovieExtra();                                      // _BC (weak)
-	virtual bool isMovieMotion();                                     // _C0 (weak)
-	virtual void setMovieMotion(bool);                                // _C4 (weak)
-	virtual bool isBuried();                                          // _C8 (weak)
-	virtual bool isFlying() { return false; }                         // _CC (weak)
-	virtual bool isUnderground();                                     // _D0 (weak)
-	virtual bool isLivingThing();                                     // _D4 (weak)
-	virtual bool isDebugCollision();                                  // _D8 (weak)
-	virtual void setDebugCollision(bool);                             // _DC (weak)
-	virtual void doSave(Stream&);                                     // _E0 (weak)
-	virtual void doLoad(Stream&);                                     // _E4 (weak)
-	virtual void bounceCallback(Sys::Triangle*);                      // _E8 (weak)
-	virtual void collisionCallback(CollEvent&) { }                    // _EC (weak)
-	virtual void platCallback(PlatEvent&);                            // _F0 (weak)
-	virtual JAInter::Object* getJAIObject() { return nullptr; }       // _F4 (weak)
-	virtual PSM::Creature* getPSCreature() { return nullptr; }        // _F8 (weak)
-	virtual AILOD* getSound_AILOD();                                  // _FC (weak)
-	virtual Vector3f* getSound_PosPtr() { return nullptr; }           // _100 (weak)
-	virtual bool sound_culling();                                     // _104
-	virtual float getSound_CurrAnimFrame() { return 0.0f; }           // _108 (weak)
-	virtual float getSound_CurrAnimSpeed() { return 0.0f; }           // _10C (weak)
-	virtual void on_movie_begin(bool);                                // _110 (weak)
-	virtual void on_movie_end(bool);                                  // _114 (weak)
-	virtual void movieStartAnimation(unsigned long);                  // _118 (weak)
-	virtual void movieStartDemoAnimation(SysShape::AnimInfo*);        // _11C (weak)
-	virtual void movieSetAnimationLastFrame();                        // _120 (weak)
-	virtual void movieSetTranslation(Vector3f&, float);               // _124 (weak)
-	virtual void movieSetFaceDir(float);                              // _128 (weak)
-	virtual bool movieGotoPosition(Vector3f&);                        // _12C (weak)
-	virtual void movieUserCommand(unsigned long, MoviePlayer*);       // _130 (weak)
-	virtual void getShadowParam(ShadowParam&);                        // _134
-	virtual bool needShadow();                                        // _138
-	virtual void getLifeGaugeParam(LifeGaugeParam&);                  // _13C
-	virtual void getLODSphere(Sys::Sphere& sphere)                    // _140 (weak)
+	virtual void setAlive(bool isAlive)                               // _AC (weak)
+	{
+		if (isAlive) {
+			m_flags.typeView |= CF_IS_ALIVE;
+		} else {
+			m_flags.typeView &= ~CF_IS_ALIVE;
+		}
+	}
+	virtual bool isCollisionFlick();                            // _B0 (weak)
+	virtual void setCollisionFlick(bool);                       // _B4 (weak)
+	virtual bool isMovieActor();                                // _B8 (weak)
+	virtual bool isMovieExtra();                                // _BC (weak)
+	virtual bool isMovieMotion();                               // _C0 (weak)
+	virtual void setMovieMotion(bool);                          // _C4 (weak)
+	virtual bool isBuried();                                    // _C8 (weak)
+	virtual bool isFlying() { return false; }                   // _CC (weak)
+	virtual bool isUnderground();                               // _D0 (weak)
+	virtual bool isLivingThing();                               // _D4 (weak)
+	virtual bool isDebugCollision();                            // _D8 (weak)
+	virtual void setDebugCollision(bool);                       // _DC (weak)
+	virtual void doSave(Stream&);                               // _E0 (weak)
+	virtual void doLoad(Stream&);                               // _E4 (weak)
+	virtual void bounceCallback(Sys::Triangle*) { }             // _E8 (weak)
+	virtual void collisionCallback(CollEvent&) { }              // _EC (weak)
+	virtual void platCallback(PlatEvent&);                      // _F0 (weak)
+	virtual JAInter::Object* getJAIObject() { return nullptr; } // _F4 (weak)
+	virtual PSM::Creature* getPSCreature() { return nullptr; }  // _F8 (weak)
+	virtual AILOD* getSound_AILOD();                            // _FC (weak)
+	virtual Vector3f* getSound_PosPtr() { return nullptr; }     // _100 (weak)
+	virtual bool sound_culling();                               // _104
+	virtual float getSound_CurrAnimFrame() { return 0.0f; }     // _108 (weak)
+	virtual float getSound_CurrAnimSpeed() { return 0.0f; }     // _10C (weak)
+	virtual void on_movie_begin(bool);                          // _110 (weak)
+	virtual void on_movie_end(bool);                            // _114 (weak)
+	virtual void movieStartAnimation(unsigned long);            // _118 (weak)
+	virtual void movieStartDemoAnimation(SysShape::AnimInfo*);  // _11C (weak)
+	virtual void movieSetAnimationLastFrame();                  // _120 (weak)
+	virtual void movieSetTranslation(Vector3f&, float);         // _124 (weak)
+	virtual void movieSetFaceDir(float);                        // _128 (weak)
+	virtual bool movieGotoPosition(Vector3f&);                  // _12C (weak)
+	virtual void movieUserCommand(unsigned long, MoviePlayer*); // _130 (weak)
+	virtual void getShadowParam(ShadowParam&);                  // _134
+	virtual bool needShadow();                                  // _138
+	virtual void getLifeGaugeParam(LifeGaugeParam&);            // _13C
+	virtual void getLODSphere(Sys::Sphere& sphere)              // _140 (weak)
 	{
 		return getBoundingSphere(sphere);
 	}
