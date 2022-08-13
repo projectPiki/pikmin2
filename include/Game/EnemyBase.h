@@ -62,6 +62,11 @@ struct EnemyInitialParamBase {
 };
 
 struct EnemyKillArg : public CreatureKillArg {
+	inline EnemyKillArg(int p1)
+	    : CreatureKillArg(p1)
+	{
+	}
+
 	/**
 	 * @reifiedAddress{80107C38}
 	 * @reifiedFile{plugProjectYamashitaU/enemyBase.cpp}
@@ -546,6 +551,13 @@ struct LivingState : public State {
 	    : State(state)
 	{
 		m_name = "Living";
+	}
+
+	// might need a different name once flags are done
+	// used in EnemyBaseFSM::LivingState::simulation
+	inline bool isLiving(EnemyBase* enemy)
+	{
+		return ((enemy->_1E0.m_flags[0].typeView & 0x400) || ((enemy->_1E0.m_flags[0].typeView & 0x40000)));
 	}
 
 	virtual void update(EnemyBase*);            // _24

@@ -18,7 +18,7 @@ struct KeyEvent : public CNode {
 
 	virtual ~KeyEvent() { } // _08 (weak)
 
-	u32 m_frame; // _18
+	int m_frame; // _18
 	u32 m_type;  // _1C
 	short _20;   // _20
 };

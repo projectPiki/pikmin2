@@ -82,6 +82,11 @@ struct CreatureKillArg {
 
 struct Creature : public CellObject {
 	struct CheckHellArg {
+		inline CheckHellArg()
+		    : _00(true)
+		{
+		}
+
 		bool _00; // _00
 	};
 
@@ -260,7 +265,7 @@ struct Creature : public CellObject {
 
 	void applyAirDrag(float, float, float);
 	float calcSphereDistance(Creature*);
-	u32 checkHell(Creature::CheckHellArg&);
+	int checkHell(Creature::CheckHellArg&);
 	WaterBox* checkWater(WaterBox*, Sys::Sphere&);
 	void clearCapture();
 	void clearStick();

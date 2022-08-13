@@ -994,7 +994,7 @@ returnbox:
  * Address:	8013BC24
  * Size:	000144
  */
-u32 Creature::checkHell(Creature::CheckHellArg& hellArg)
+int Creature::checkHell(Creature::CheckHellArg& hellArg)
 {
 	Vector3f pos;
 	pos        = getPosition();

@@ -1063,7 +1063,7 @@ bool BirthTypeDropOlimarState::isFinishableWaitingBirthTypeDrop(EnemyBase* enemy
  */
 // WIP: this doesn't work with the same inline?
 // https://decomp.me/scratch/3uLnQ
-bool Game::EnemyBaseFSM::BirthTypeDropTreasureState::isFinishableWaitingBirthTypeDrop(Game::EnemyBase*)
+bool EnemyBaseFSM::BirthTypeDropTreasureState::isFinishableWaitingBirthTypeDrop(Game::EnemyBase*)
 {
 	/*
 	.loc_0x0:
@@ -1333,91 +1333,27 @@ void AppearState::cleanup(Game::EnemyBase* enemy)
  * Address:	800FFF38
  * Size:	00010C
  */
-// WIP: https://decomp.me/scratch/6ROLZ
 void EnemyBaseFSM::LivingState::simulation(Game::EnemyBase*, float)
 {
-	/*
-	.loc_0x0:
-	  stwu      r1, -0x20(r1)
-	  mflr      r0
-	  stw       r0, 0x24(r1)
-	  stfd      f31, 0x18(r1)
-	  fmr       f31, f1
-	  stw       r31, 0x14(r1)
-	  mr        r31, r4
-	  lwz       r0, 0x1E0(r4)
-	  rlwinm.   r4,r0,0,13,13
-	  bne-      .loc_0x5C
-	  rlwinm.   r0,r0,0,21,21
-	  li        r3, 0
-	  bne-      .loc_0x3C
-	  cmplwi    r4, 0
-	  beq-      .loc_0x40
+	if ((enemy->_1E0.m_flags[0].typeView & 0x40000)
+	    || isLiving(enemy) && !(enemy->_1E0.m_flags[1].typeView & 1) && !(enemy->_1E0.m_flags[1].typeView & 0x10)) {
 
-	.loc_0x3C:
-	  li        r3, 0x1
+		if (enemy->isCullingOff()) {
+			enemy->doSimulationConstraint(constraint);
+		}
 
-	.loc_0x40:
-	  rlwinm.   r0,r3,0,24,31
-	  beq-      .loc_0x7C
-	  lwz       r3, 0x1E4(r31)
-	  rlwinm.   r0,r3,0,31,31
-	  bne-      .loc_0x7C
-	  rlwinm.   r0,r3,0,27,27
-	  bne-      .loc_0x7C
+	} else if (enemy->isCullingOff()) {
+		enemy->collisionMapAndPlat(constraint);
+		enemy->updateWaterBox();
+	}
 
-	.loc_0x5C:
-	  mr        r3, r31
-	  bl        0x3710
-	  rlwinm.   r0,r3,0,24,31
-	  beq-      .loc_0xA0
-	  fmr       f1, f31
-	  mr        r3, r31
-	  bl        0x4AE0
-	  b         .loc_0xA0
-
-	.loc_0x7C:
-	  mr        r3, r31
-	  bl        0x36F0
-	  rlwinm.   r0,r3,0,24,31
-	  beq-      .loc_0xA0
-	  fmr       f1, f31
-	  mr        r3, r31
-	  bl        0x4374
-	  mr        r3, r31
-	  bl        0x6BCC
-
-	.loc_0xA0:
-	  li        r3, 0x1
-	  li        r0, 0
-	  stb       r3, 0x8(r1)
-	  mr        r3, r31
-	  addi      r4, r1, 0x8
-	  stb       r0, 0x8(r1)
-	  bl        0x3BC34
-	  cmpwi     r3, 0x2
-	  bne-      .loc_0xF4
-	  mr        r3, r31
-	  lwz       r12, 0x0(r31)
-	  lwz       r12, 0x1A8(r12)
-	  mtctr     r12
-	  bctrl
-	  mr        r3, r31
-	  lwz       r12, 0x0(r31)
-	  lwz       r12, 0x1AC(r12)
-	  mtctr     r12
-	  bctrl
-	  mr        r3, r31
-	  bl        0x4B3C
-
-	.loc_0xF4:
-	  lwz       r0, 0x24(r1)
-	  lfd       f31, 0x18(r1)
-	  lwz       r31, 0x14(r1)
-	  mtlr      r0
-	  addi      r1, r1, 0x20
-	  blr
-	*/
+	Creature::CheckHellArg hellArg;
+	hellArg._00 = false;
+	if (enemy->checkHell(hellArg) == 2) {
+		enemy->getCreatureName();
+		enemy->getCreatureID();
+		enemy->gotoHell();
+	}
 }
 
 /*
@@ -1426,7 +1362,7 @@ void EnemyBaseFSM::LivingState::simulation(Game::EnemyBase*, float)
  * Size:	000008
  */
 // WEAK - in header
-// s32 Game::EnemyBase::getCreatureID() { return m_enemyIndexForType; }
+// s32 EnemyBase::getCreatureID() { return m_enemyIndexForType; }
 
 /*
  * --INFO--
@@ -5192,39 +5128,11 @@ void EnemyBase::doSimulationConstraint(float arg)
  */
 void EnemyBase::gotoHell()
 {
-	/*
-	.loc_0x0:
-	    stwu      r1, -0x20(r1)
-	    mflr      r0
-	    stw       r0, 0x24(r1)
-	    stw       r31, 0x1C(r1)
-	    mr        r31, r3
-	    lwz       r0, 0x1E0(r3)
-	    rlwinm.   r0,r0,0,3,3
-	    beq-      .loc_0x5C
-	    lwz       r12, 0x0(r3)
-	    lwz       r12, 0x264(r12)
-	    mtctr     r12
-	    bctrl
-	    lis       r4, 0x804B
-	    lis       r3, 0x804B
-	    subi      r0, r4, 0x5D30
-	    lis       r5, 0x7000
-	    stw       r0, 0x8(r1)
-	    subi      r0, r3, 0x5D3C
-	    mr        r3, r31
-	    addi      r4, r1, 0x8
-	    stw       r5, 0xC(r1)
-	    stw       r0, 0x8(r1)
-	    bl        0x36534
-
-	.loc_0x5C:
-	    lwz       r0, 0x24(r1)
-	    lwz       r31, 0x1C(r1)
-	    mtlr      r0
-	    addi      r1, r1, 0x20
-	    blr
-	*/
+	if (_1E0.m_flags[0].typeView & 0x10000000) {
+		throwupItem();
+		EnemyKillArg killArg(0x70000000);
+		kill(&killArg);
+	}
 }
 
 /*
@@ -5241,138 +5149,42 @@ void EnemyBase::setAnimMgr(SysShape::AnimMgr* mgr) { m_animator->setAnimMgr(mgr)
  */
 void EnemyBase::setPSEnemyBaseAnime()
 {
-	/*
-	.loc_0x0:
-	    stwu      r1, -0x30(r1)
-	    mflr      r0
-	    stw       r0, 0x34(r1)
-	    stw       r31, 0x2C(r1)
-	    mr        r31, r3
-	    stw       r30, 0x28(r1)
-	    stw       r29, 0x24(r1)
-	    stw       r28, 0x20(r1)
-	    lwz       r4, 0x1E0(r3)
-	    rlwinm.   r0,r4,0,7,7
-	    beq-      .loc_0x134
-	    bl        0x2718
-	    mr        r30, r3
-	    lwz       r3, 0x184(r31)
-	    li        r4, 0
-	    lwz       r12, 0x0(r3)
-	    lwz       r12, 0x14(r12)
-	    mtctr     r12
-	    bctrl
-	    lwz       r3, 0x10(r3)
-	    lwz       r29, 0x2C(r3)
-	    b         .loc_0x6C
+	if (_1E0.m_flags[0].typeView & 0x1000000) {
+		int idx                      = getCurrAnimIndex();
+		SysShape::Animator anim      = m_animator->getAnimator(0);
+		SysShape::AnimInfo* info     = static_cast<SysShape::AnimInfo*>(anim.m_animMgr->m_animInfo.m_child)->getInfoByID(idx);
+		JAIAnimeFrameSoundData* file = info->m_basFile;
 
-	.loc_0x58:
-	    lha       r0, 0x20(r29)
-	    cmpw      r30, r0
-	    bne-      .loc_0x68
-	    b         .loc_0x78
+		if (file != nullptr) {
+			SysShape::KeyEvent* event1 = info->getAnimKeyByType(0);
+			SysShape::KeyEvent* event2 = info->getAnimKeyByType(1);
 
-	.loc_0x68:
-	    lwz       r29, 0x4(r29)
+			if (event1 != nullptr && event2 != nullptr) {
+				float val1 = (float)event1->m_frame;
+				float val2 = (float)event2->m_frame;
+				m_soundObj->setAnime((JAIAnimeSoundData*)file, 1, val1, val2);
+				return;
+			}
 
-	.loc_0x6C:
-	    cmplwi    r29, 0
-	    bne+      .loc_0x58
-	    li        r29, 0
+			m_soundObj->setAnime((JAIAnimeSoundData*)file, 1, 0.0f, 0.0f);
+			return;
+		}
 
-	.loc_0x78:
-	    lwz       r28, 0x24(r29)
-	    cmplwi    r28, 0
-	    beq-      .loc_0x118
-	    mr        r3, r29
-	    li        r4, 0
-	    bl        0x324CC4
-	    mr        r30, r3
-	    mr        r3, r29
-	    li        r4, 0x1
-	    bl        0x324CB4
-	    cmplwi    r30, 0
-	    beq-      .loc_0xFC
-	    cmplwi    r3, 0
-	    beq-      .loc_0xFC
-	    lwz       r5, 0x18(r30)
-	    lis       r6, 0x4330
-	    lwz       r0, 0x18(r3)
-	    mr        r4, r28
-	    xoris     r3, r5, 0x8000
-	    stw       r6, 0x8(r1)
-	    xoris     r0, r0, 0x8000
-	    lfd       f2, -0x6BA8(r2)
-	    stw       r3, 0xC(r1)
-	    li        r5, 0x1
-	    lwz       r3, 0x28C(r31)
-	    lfd       f0, 0x8(r1)
-	    stw       r0, 0x14(r1)
-	    fsubs     f1, f0, f2
-	    stw       r6, 0x10(r1)
-	    lfd       f0, 0x10(r1)
-	    fsubs     f2, f0, f2
-	    bl        0x3590E8
-	    b         .loc_0x194
+		m_soundObj->setAnime(nullptr, 1, 0.0f, 0.0f);
+		return;
+	}
 
-	.loc_0xFC:
-	    lfs       f1, -0x6BB0(r2)
-	    mr        r4, r28
-	    lwz       r3, 0x28C(r31)
-	    li        r5, 0x1
-	    fmr       f2, f1
-	    bl        0x3590CC
-	    b         .loc_0x194
+	if (_1E0.m_flags[0].typeView & 0x2000000) {
+		m_soundObj->setAnime((JAIAnimeSoundData*)-1, 1, 0.0f, 0.0f);
+		return;
+	}
 
-	.loc_0x118:
-	    lfs       f1, -0x6BB0(r2)
-	    li        r4, 0
-	    lwz       r3, 0x28C(r31)
-	    li        r5, 0x1
-	    fmr       f2, f1
-	    bl        0x3590B0
-	    b         .loc_0x194
+	if (_1E0.m_flags[0].typeView & 0x4000000) {
+		m_soundObj->setAnime((JAIAnimeSoundData*)-1, 1, 0.0f, 0.0f);
+		return;
+	}
 
-	.loc_0x134:
-	    rlwinm.   r0,r4,0,6,6
-	    beq-      .loc_0x158
-	    lfs       f1, -0x6BB0(r2)
-	    li        r4, -0x1
-	    lwz       r3, 0x28C(r31)
-	    li        r5, 0x1
-	    fmr       f2, f1
-	    bl        0x35908C
-	    b         .loc_0x194
-
-	.loc_0x158:
-	    rlwinm.   r0,r4,0,5,5
-	    beq-      .loc_0x17C
-	    lfs       f1, -0x6BB0(r2)
-	    li        r4, -0x1
-	    lwz       r3, 0x28C(r31)
-	    li        r5, 0x1
-	    fmr       f2, f1
-	    bl        0x359068
-	    b         .loc_0x194
-
-	.loc_0x17C:
-	    lfs       f1, -0x6BB0(r2)
-	    li        r4, 0
-	    lwz       r3, 0x28C(r31)
-	    li        r5, 0x1
-	    fmr       f2, f1
-	    bl        0x35904C
-
-	.loc_0x194:
-	    lwz       r0, 0x34(r1)
-	    lwz       r31, 0x2C(r1)
-	    lwz       r30, 0x28(r1)
-	    lwz       r29, 0x24(r1)
-	    lwz       r28, 0x20(r1)
-	    mtlr      r0
-	    addi      r1, r1, 0x30
-	    blr
-	*/
+	m_soundObj->setAnime(nullptr, 1, 0.0f, 0.0f);
 }
 
 /*
@@ -5380,157 +5192,54 @@ void EnemyBase::setPSEnemyBaseAnime()
  * Address:	80104DB8
  * Size:	0001F0
  */
-void EnemyBase::startBlend(int, int, SysShape::BlendFunction*, float, SysShape::MotionListener*)
+void EnemyBase::startBlend(int p1, int p2, SysShape::BlendFunction* blendFunc, float p3, SysShape::MotionListener* inputListener)
 {
-	/*
-	.loc_0x0:
-	    stwu      r1, -0x30(r1)
-	    mflr      r0
-	    cmplwi    r7, 0
-	    stw       r0, 0x34(r1)
-	    stw       r31, 0x2C(r1)
-	    mr        r31, r3
-	    stw       r30, 0x28(r1)
-	    stw       r29, 0x24(r1)
-	    stw       r28, 0x20(r1)
-	    bne-      .loc_0x38
-	    cmplwi    r31, 0
-	    mr        r7, r31
-	    beq-      .loc_0x38
-	    addi      r7, r7, 0x178
+	SysShape::MotionListener* listener = inputListener;
+	if (listener == nullptr) {
+		listener = static_cast<SysShape::MotionListener*>(this);
+	}
 
-	.loc_0x38:
-	    lwz       r3, 0x184(r31)
-	    bl        0x29378
-	    lwz       r0, 0x1E0(r31)
-	    rlwinm    r0,r0,0,8,3
-	    stw       r0, 0x1E0(r31)
-	    lwz       r0, 0x1E0(r31)
-	    oris      r0, r0, 0x400
-	    stw       r0, 0x1E0(r31)
-	    lwz       r3, 0x1E0(r31)
-	    rlwinm.   r0,r3,0,7,7
-	    beq-      .loc_0x170
-	    mr        r3, r31
-	    bl        0x2528
-	    mr        r30, r3
-	    lwz       r3, 0x184(r31)
-	    li        r4, 0
-	    lwz       r12, 0x0(r3)
-	    lwz       r12, 0x14(r12)
-	    mtctr     r12
-	    bctrl
-	    lwz       r3, 0x10(r3)
-	    lwz       r29, 0x2C(r3)
-	    b         .loc_0xA8
+	static_cast<EnemyBlendAnimatorBase*>(m_animator)->startBlend(p1, p2, blendFunc, p3, listener);
 
-	.loc_0x94:
-	    lha       r0, 0x20(r29)
-	    cmpw      r30, r0
-	    bne-      .loc_0xA4
-	    b         .loc_0xB4
+	_1E0.m_flags[0].typeView &= 0xF0FFFFFF;
+	_1E0.m_flags[0].typeView |= 0x04000000;
 
-	.loc_0xA4:
-	    lwz       r29, 0x4(r29)
+	if (_1E0.m_flags[0].typeView & 0x1000000) {
+		int idx                      = getCurrAnimIndex();
+		SysShape::Animator anim      = m_animator->getAnimator(0);
+		SysShape::AnimInfo* info     = static_cast<SysShape::AnimInfo*>(anim.m_animMgr->m_animInfo.m_child)->getInfoByID(idx);
+		JAIAnimeFrameSoundData* file = info->m_basFile;
 
-	.loc_0xA8:
-	    cmplwi    r29, 0
-	    bne+      .loc_0x94
-	    li        r29, 0
+		if (file != nullptr) {
+			SysShape::KeyEvent* event1 = info->getAnimKeyByType(0);
+			SysShape::KeyEvent* event2 = info->getAnimKeyByType(1);
 
-	.loc_0xB4:
-	    lwz       r28, 0x24(r29)
-	    cmplwi    r28, 0
-	    beq-      .loc_0x154
-	    mr        r3, r29
-	    li        r4, 0
-	    bl        0x324AD4
-	    mr        r30, r3
-	    mr        r3, r29
-	    li        r4, 0x1
-	    bl        0x324AC4
-	    cmplwi    r30, 0
-	    beq-      .loc_0x138
-	    cmplwi    r3, 0
-	    beq-      .loc_0x138
-	    lwz       r5, 0x18(r30)
-	    lis       r6, 0x4330
-	    lwz       r0, 0x18(r3)
-	    mr        r4, r28
-	    xoris     r3, r5, 0x8000
-	    stw       r6, 0x8(r1)
-	    xoris     r0, r0, 0x8000
-	    lfd       f2, -0x6BA8(r2)
-	    stw       r3, 0xC(r1)
-	    li        r5, 0x1
-	    lwz       r3, 0x28C(r31)
-	    lfd       f0, 0x8(r1)
-	    stw       r0, 0x14(r1)
-	    fsubs     f1, f0, f2
-	    stw       r6, 0x10(r1)
-	    lfd       f0, 0x10(r1)
-	    fsubs     f2, f0, f2
-	    bl        0x358EF8
-	    b         .loc_0x1D0
+			if (event1 != nullptr && event2 != nullptr) {
+				float val1 = (float)event1->m_frame;
+				float val2 = (float)event2->m_frame;
+				m_soundObj->setAnime((JAIAnimeSoundData*)file, 1, val1, val2);
+				return;
+			}
 
-	.loc_0x138:
-	    lfs       f1, -0x6BB0(r2)
-	    mr        r4, r28
-	    lwz       r3, 0x28C(r31)
-	    li        r5, 0x1
-	    fmr       f2, f1
-	    bl        0x358EDC
-	    b         .loc_0x1D0
+			m_soundObj->setAnime((JAIAnimeSoundData*)file, 1, 0.0f, 0.0f);
+			return;
+		}
 
-	.loc_0x154:
-	    lfs       f1, -0x6BB0(r2)
-	    li        r4, 0
-	    lwz       r3, 0x28C(r31)
-	    li        r5, 0x1
-	    fmr       f2, f1
-	    bl        0x358EC0
-	    b         .loc_0x1D0
+		m_soundObj->setAnime(nullptr, 1, 0.0f, 0.0f);
+		return;
+	}
 
-	.loc_0x170:
-	    rlwinm.   r0,r3,0,6,6
-	    beq-      .loc_0x194
-	    lfs       f1, -0x6BB0(r2)
-	    li        r4, -0x1
-	    lwz       r3, 0x28C(r31)
-	    li        r5, 0x1
-	    fmr       f2, f1
-	    bl        0x358E9C
-	    b         .loc_0x1D0
+	if (_1E0.m_flags[0].typeView & 0x2000000) {
+		m_soundObj->setAnime((JAIAnimeSoundData*)-1, 1, 0.0f, 0.0f);
+		return;
+	}
 
-	.loc_0x194:
-	    rlwinm.   r0,r3,0,5,5
-	    beq-      .loc_0x1B8
-	    lfs       f1, -0x6BB0(r2)
-	    li        r4, -0x1
-	    lwz       r3, 0x28C(r31)
-	    li        r5, 0x1
-	    fmr       f2, f1
-	    bl        0x358E78
-	    b         .loc_0x1D0
+	if (_1E0.m_flags[0].typeView & 0x4000000) {
+		m_soundObj->setAnime((JAIAnimeSoundData*)-1, 1, 0.0f, 0.0f);
+		return;
+	}
 
-	.loc_0x1B8:
-	    lfs       f1, -0x6BB0(r2)
-	    li        r4, 0
-	    lwz       r3, 0x28C(r31)
-	    li        r5, 0x1
-	    fmr       f2, f1
-	    bl        0x358E5C
-
-	.loc_0x1D0:
-	    lwz       r0, 0x34(r1)
-	    lwz       r31, 0x2C(r1)
-	    lwz       r30, 0x28(r1)
-	    lwz       r29, 0x24(r1)
-	    lwz       r28, 0x20(r1)
-	    mtlr      r0
-	    addi      r1, r1, 0x30
-	    blr
-	*/
+	m_soundObj->setAnime(nullptr, 1, 0.0f, 0.0f);
 }
 
 /*
@@ -7527,53 +7236,13 @@ void EnemyBase::view_finish_carrymotion() { m_animator->getAnimator(0).m_flags |
  * Address:	80106AB8
  * Size:	0000A8
  */
-void EnemyBase::getCommonEffectPos(Vector3f&)
+void EnemyBase::getCommonEffectPos(Vector3f& commonEffectPos)
 {
-	/*
-	.loc_0x0:
-	    stwu      r1, -0x20(r1)
-	    mflr      r0
-	    stw       r0, 0x24(r1)
-	    stw       r31, 0x1C(r1)
-	    mr        r31, r4
-	    stw       r30, 0x18(r1)
-	    mr        r30, r3
-	    mr        r4, r30
-	    addi      r3, r1, 0x8
-	    lwz       r12, 0x0(r30)
-	    lwz       r12, 0x8(r12)
-	    mtctr     r12
-	    bctrl
-	    lfs       f0, 0x8(r1)
-	    stfs      f0, 0x0(r31)
-	    lfs       f0, 0xC(r1)
-	    stfs      f0, 0x4(r31)
-	    lfs       f0, 0x10(r1)
-	    stfs      f0, 0x8(r31)
-	    lfs       f1, 0x0(r31)
-	    lfs       f0, 0x240(r30)
-	    fadds     f0, f1, f0
-	    stfs      f0, 0x0(r31)
-	    lfs       f1, 0x4(r31)
-	    lfs       f0, 0x244(r30)
-	    fadds     f0, f1, f0
-	    stfs      f0, 0x4(r31)
-	    lfs       f1, 0x8(r31)
-	    lfs       f0, 0x248(r30)
-	    fadds     f0, f1, f0
-	    stfs      f0, 0x8(r31)
-	    lwz       r3, 0xC0(r30)
-	    lfs       f1, 0x4(r31)
-	    lfs       f0, 0x1A4(r3)
-	    fadds     f0, f1, f0
-	    stfs      f0, 0x4(r31)
-	    lwz       r31, 0x1C(r1)
-	    lwz       r30, 0x18(r1)
-	    lwz       r0, 0x24(r1)
-	    mtlr      r0
-	    addi      r1, r1, 0x20
-	    blr
-	*/
+	commonEffectPos = getPosition();
+	commonEffectPos.x += m_commonEffectOffset.x;
+	commonEffectPos.y += m_commonEffectOffset.y;
+	commonEffectPos.z += m_commonEffectOffset.z;
+	commonEffectPos.y += static_cast<EnemyParmsBase*>(m_parms)->m_general.m_fp01.m_value;
 }
 
 /*
@@ -7945,17 +7614,7 @@ void EnemyBase::resetAnimSpeed() { m_animator->resetAnimSpeed(); }
  * Address:	801073D8
  * Size:	000014
  */
-JAInter::Object* EnemyBase::getJAIObject()
-{
-	/*
-	.loc_0x0:
-	    lwz       r3, 0x28C(r3)
-	    cmplwi    r3, 0
-	    beqlr-
-	    addi      r3, r3, 0x30
-	    blr
-	*/
-}
+JAInter::Object* EnemyBase::getJAIObject() { return static_cast<JAInter::Object*>(m_soundObj); }
 
 /*
  * --INFO--

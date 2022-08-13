@@ -26,6 +26,19 @@ struct AnimInfo : public CNode {
 	void readEditor(Stream&);
 	void attach(J3DModelData*, void*);
 
+	inline AnimInfo* getInfoByID(int idx)
+	{
+		AnimInfo* info = this;
+		for (info; info; info = (AnimInfo*)info->m_next) {
+			if (idx != info->m_id) {
+				continue;
+			} else {
+				return info;
+			}
+		}
+		return nullptr;
+	}
+
 	J3DAnmBase* m_anm;  // _18
 	J3DMtxCalc* m_calc; // _1C
 	// animation ID
