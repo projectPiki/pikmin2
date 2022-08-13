@@ -5,12 +5,19 @@
 #include "PSM/BattleLink.h"
 #include "PSM/KehaiLink.h"
 
+namespace Game {
+struct EnemyBase;
+} // namespace Game
+
 namespace PSM {
+/**
+ * @size = 0xE0
+ */
 struct EnemyBase : public CreatureAnime, public BattleLink, public KehaiLink {
-	EnemyBase();
+	EnemyBase(Game::EnemyBase*, u8);
 
 	// vtable 2 (CreatureAnime, _28)
-	virtual ~EnemyBase();                  // _14 (weak)
+	virtual ~EnemyBase() { }               // _14 (weak)
 	virtual CreatureCastType getCastType() // _1C (weak)
 	{
 		return CCT_Enemy;
@@ -30,7 +37,56 @@ struct EnemyBase : public CreatureAnime, public BattleLink, public KehaiLink {
 	virtual void setKilled() { } // _C8 (weak)
 	virtual void updateKehai();  // _CC
 	virtual void updateBattle(); // _D0
+
+	void calcKehai();
+
+	// _00-_10 	= JSUPtrLink (+ vtable 1)
+	// _10-_28	= JKRDisposer
+	// _28		= VTABLE 2
+	// _2C-_30	= Game::Creature* (or Game::EnemyBase*, etc)
+	// _30-_AC	= JAIAnimeSound
+	// _AC-_B8	= CreatureAnime
+	// _B8-_CC 	= BattleLink
+	// _CC-_E0	= KehaiLink
 };
+
+/**
+ * @size = 0xE0
+ */
+struct EnemyNotAggressive : public EnemyBase {
+	EnemyNotAggressive(Game::EnemyBase*, u8);
+
+	// vtable 2 (CreatureAnime, _28)
+	virtual ~EnemyNotAggressive();          // _14 (weak)
+	virtual CreatureCastType getCastType(); // _1C (weak)
+	// vtable 3 (CreatureAnime)
+	// vtable 4 (BattleLink)
+	// vtable 5 (KehaiLink + self)
+	virtual void battleOff();   // _C4 (weak)
+	virtual void updateKehai(); // _CC (weak)
+	virtual void kehaiOn();     // _D0 (weak)
+	virtual void kehaiOff();    // _D8 (weak)
+	virtual void battleOn();    // _DC (weak)
+};
+
+/**
+ * @size = 0xE0
+ */
+struct EnemyBig : public EnemyBase {
+	virtual ~EnemyBig() { }                 // _14 (weak)
+	virtual CreatureCastType getCastType(); // _1C (weak)
+	virtual bool judgeNearWithPlayer(const Vec&, const Vec&, float,
+	                                 float); // _34
+};
+
+/**
+ * @size = 0xE0
+ */
+struct Enemy_SpecialChappy : public EnemyBig {
+	virtual ~Enemy_SpecialChappy();           // _14 (weak)
+	virtual void onPlayingSe(u32, JAISound*); // _38
+};
+
 } // namespace PSM
 
 #endif

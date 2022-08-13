@@ -23,8 +23,8 @@ struct EnemyAnimatorBase {
 	virtual void animate(float currentFrame);                    // _18
 	virtual void animate(int animatorIndex, float currentFrame); // _1C (weak)
 
-	virtual void resetAnimSpeed();             // _20 (weak)
-	virtual u32 getTypeID() { return 'base'; } // _24 (weak)
+	virtual void resetAnimSpeed() { m_animSpeed = defaultAnimSpeed; } // _20 (weak)
+	virtual u32 getTypeID() { return 'base'; }                        // _24 (weak)
 
 	inline void reset()
 	{

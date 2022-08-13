@@ -8,13 +8,19 @@ namespace PSM {
 struct CreatureAnime : public Creature, public JAIAnimeSound {
 	// vtable 1 (JSUPtrLink, _10)
 	// vtable 2 (Creature, _28)
-	virtual ~CreatureAnime();                // _14 (weak)
-	virtual void frameEnd_onPlaySe();        // _18
-	virtual CreatureCastType getCastType();  // _1C (weak)
-	virtual void exec();                     // _20 (weak)
-	virtual JAInter::Object* getJAIObject(); // _24 (weak)
+	virtual ~CreatureAnime() { }            // _14 (weak)
+	virtual void frameEnd_onPlaySe();       // _18
+	virtual CreatureCastType getCastType(); // _1C (weak)
+	virtual void exec();                    // _20 (weak)
+	virtual JAInter::Object* getJAIObject() // _24 (weak)
+	{
+		return static_cast<JAInter::Object*>(this);
+	}
 	virtual void onCalcOn();                 // _18
-	virtual void getHandleArea(u8);          // _2C
+	virtual JAISound** getHandleArea(u8 idx) // _2C
+	{
+		return &m_sounds[idx];
+	}
 	// vtable 3 (JAIAnimeSound + self, _28)
 	virtual void startSound(u32, u32);             // _88 (weak)
 	virtual void startSound(u8, u32, u32);         // _8C (weak)

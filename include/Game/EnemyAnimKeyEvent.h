@@ -10,7 +10,7 @@ namespace Game {
 struct EnemyAnimKeyEvent : public SysShape::KeyEvent {
 	inline EnemyAnimKeyEvent() { m_running = 0; }
 
-	virtual ~EnemyAnimKeyEvent(); // _00
+	virtual ~EnemyAnimKeyEvent() { } // _08
 
 	u8 m_running; // _24
 };

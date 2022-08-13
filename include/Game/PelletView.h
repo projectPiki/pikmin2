@@ -34,16 +34,25 @@ struct PelletView {
 	{
 	}
 
-	virtual float viewGetBaseScale();                 // _08 (weak)
-	virtual SysShape::Model* viewGetShape() = 0;      // _0C
-	virtual int viewGetCollTreeJointIndex();          // _10 (weak)
-	virtual Vector3f viewGetCollTreeOffset();         // _14 (weak)
-	virtual void view_start_carrymotion();            // _18 (weak)
-	virtual void view_finish_carrymotion();           // _1C (weak)
-	virtual void viewStartPreCarryMotion();           // _20 (weak)
-	virtual void viewStartCarryMotion();              // _24 (weak)
-	virtual void viewOnPelletKilled();                // _28 (weak)
-	virtual void viewEntryShape(Matrixf&, Vector3f&); // _2C (weak)
+	virtual float viewGetBaseScale() // _08 (weak)
+	{
+		return PELLETVIEW_BASE_SCALE;
+	}
+	virtual SysShape::Model* viewGetShape() = 0; // _0C
+	virtual int viewGetCollTreeJointIndex()      // _10 (weak)
+	{
+		return 0;
+	}
+	virtual Vector3f viewGetCollTreeOffset() // _14 (weak)
+	{
+		return Vector3f::zero;
+	}
+	virtual void view_start_carrymotion() { }            // _18 (weak)
+	virtual void view_finish_carrymotion() { }           // _1C (weak)
+	virtual void viewStartPreCarryMotion() { }           // _20 (weak)
+	virtual void viewStartCarryMotion() { }              // _24 (weak)
+	virtual void viewOnPelletKilled() { }                // _28 (weak)
+	virtual void viewEntryShape(Matrixf&, Vector3f&) { } // _2C (weak)
 
 	void becomePellet(PelletViewArg*);
 	void viewMakeMatrix(Matrixf&);

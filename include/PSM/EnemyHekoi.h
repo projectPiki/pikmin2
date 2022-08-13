@@ -10,7 +10,7 @@ struct EnemyHekoi : public EnemyBase {
 	 * @reifiedAddress{80107AA0}
 	 * @reifiedFile{plugProjectYamashitaU/enemyBase.cpp}
 	 */
-	virtual ~EnemyHekoi(); // _04
+	virtual ~EnemyHekoi() { } // _04
 	/**
 	 * @reifiedAddress{80107C04}
 	 * @reifiedFile{plugProjectYamashitaU/enemyBase.cpp}

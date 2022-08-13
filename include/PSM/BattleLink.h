@@ -7,7 +7,7 @@ namespace PSM {
 /**
  * @size{0x14}
  */
-struct BattleLink : public JSUPtrLink {
+struct BattleLink : public JSULink<BattleLink> {
 	virtual void battleOn();  // _08
 	virtual void battleOff(); // _0C
 

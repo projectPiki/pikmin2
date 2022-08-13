@@ -7831,210 +7831,16 @@ PSM::EnemyBase* EnemyBase::createPSEnemyBase()
 //  * Address:	80106F6C
 //  * Size:	000164
 //  */
-// EnemyBig::~EnemyBig()
-// {
-// 	/*
-// 	.loc_0x0:
-// 	  stwu      r1, -0x10(r1)
-// 	  mflr      r0
-// 	  stw       r0, 0x14(r1)
-// 	  stw       r31, 0xC(r1)
-// 	  mr        r31, r4
-// 	  stw       r30, 0x8(r1)
-// 	  mr.       r30, r3
-// 	  beq-      .loc_0x148
-// 	  lis       r3, 0x804F
-// 	  subi      r5, r3, 0x1290
-// 	  stw       r5, 0x28(r30)
-// 	  addi      r0, r5, 0x8
-// 	  addi      r4, r5, 0x40
-// 	  addi      r3, r5, 0xA4
-// 	  stw       r0, 0x10(r30)
-// 	  addi      r0, r5, 0xB4
-// 	  stw       r4, 0x30(r30)
-// 	  stw       r3, 0xC8(r30)
-// 	  stw       r0, 0xDC(r30)
-// 	  beq-      .loc_0x138
-// 	  lis       r3, 0x804F
-// 	  addic.    r0, r30, 0xCC
-// 	  subi      r5, r3, 0x1054
-// 	  stw       r5, 0x28(r30)
-// 	  addi      r0, r5, 0x8
-// 	  addi      r4, r5, 0x40
-// 	  addi      r3, r5, 0xA4
-// 	  stw       r0, 0x10(r30)
-// 	  addi      r0, r5, 0xB4
-// 	  stw       r4, 0x30(r30)
-// 	  stw       r3, 0xC8(r30)
-// 	  stw       r0, 0xDC(r30)
-// 	  beq-      .loc_0xA4
-// 	  lis       r3, 0x804F
-// 	  addic.    r0, r30, 0xCC
-// 	  subi      r0, r3, 0xF80
-// 	  stw       r0, 0xDC(r30)
-// 	  beq-      .loc_0xA4
-// 	  addi      r3, r30, 0xCC
-// 	  li        r4, 0
-// 	  bl        -0xE083C
-
-// 	.loc_0xA4:
-// 	  addic.    r0, r30, 0xB8
-// 	  beq-      .loc_0xCC
-// 	  lis       r3, 0x804F
-// 	  addic.    r0, r30, 0xB8
-// 	  subi      r0, r3, 0xF70
-// 	  stw       r0, 0xC8(r30)
-// 	  beq-      .loc_0xCC
-// 	  addi      r3, r30, 0xB8
-// 	  li        r4, 0
-// 	  bl        -0xE0864
-
-// 	.loc_0xCC:
-// 	  cmplwi    r30, 0
-// 	  beq-      .loc_0x138
-// 	  lis       r3, 0x804F
-// 	  addic.    r0, r30, 0x30
-// 	  subi      r4, r3, 0xF60
-// 	  stw       r4, 0x28(r30)
-// 	  addi      r3, r4, 0x8
-// 	  addi      r0, r4, 0x40
-// 	  stw       r3, 0x10(r30)
-// 	  stw       r0, 0x30(r30)
-// 	  beq-      .loc_0x110
-// 	  lis       r4, 0x804A
-// 	  addi      r3, r30, 0x30
-// 	  addi      r0, r4, 0x6200
-// 	  li        r4, 0
-// 	  stw       r0, 0x30(r30)
-// 	  bl        -0x4D498
-
-// 	.loc_0x110:
-// 	  cmplwi    r30, 0
-// 	  beq-      .loc_0x138
-// 	  lis       r4, 0x804F
-// 	  mr        r3, r30
-// 	  subi      r5, r4, 0xE34
-// 	  li        r4, 0
-// 	  stw       r5, 0x28(r30)
-// 	  addi      r0, r5, 0x8
-// 	  stw       r0, 0x10(r30)
-// 	  bl        0x355DC4
-
-// 	.loc_0x138:
-// 	  extsh.    r0, r31
-// 	  ble-      .loc_0x148
-// 	  mr        r3, r30
-// 	  bl        -0xE2FFC
-
-// 	.loc_0x148:
-// 	  lwz       r0, 0x14(r1)
-// 	  mr        r3, r30
-// 	  lwz       r31, 0xC(r1)
-// 	  lwz       r30, 0x8(r1)
-// 	  mtlr      r0
-// 	  addi      r1, r1, 0x10
-// 	  blr
-// 	*/
-// }
+// WEAK - in header
+// EnemyBig::~EnemyBig() { }
 
 // /*
 //  * --INFO--
 //  * Address:	801070D0
 //  * Size:	000134
 //  */
-// EnemyBase::~EnemyBase()
-// {
-// 	/*
-// 	.loc_0x0:
-// 	  stwu      r1, -0x10(r1)
-// 	  mflr      r0
-// 	  stw       r0, 0x14(r1)
-// 	  stw       r31, 0xC(r1)
-// 	  mr        r31, r4
-// 	  stw       r30, 0x8(r1)
-// 	  mr.       r30, r3
-// 	  beq-      .loc_0x118
-// 	  lis       r3, 0x804F
-// 	  addic.    r0, r30, 0xCC
-// 	  subi      r5, r3, 0x1054
-// 	  stw       r5, 0x28(r30)
-// 	  addi      r0, r5, 0x8
-// 	  addi      r4, r5, 0x40
-// 	  addi      r3, r5, 0xA4
-// 	  stw       r0, 0x10(r30)
-// 	  addi      r0, r5, 0xB4
-// 	  stw       r4, 0x30(r30)
-// 	  stw       r3, 0xC8(r30)
-// 	  stw       r0, 0xDC(r30)
-// 	  beq-      .loc_0x74
-// 	  lis       r3, 0x804F
-// 	  addic.    r0, r30, 0xCC
-// 	  subi      r0, r3, 0xF80
-// 	  stw       r0, 0xDC(r30)
-// 	  beq-      .loc_0x74
-// 	  addi      r3, r30, 0xCC
-// 	  li        r4, 0
-// 	  bl        -0xE0970
-
-// 	.loc_0x74:
-// 	  addic.    r0, r30, 0xB8
-// 	  beq-      .loc_0x9C
-// 	  lis       r3, 0x804F
-// 	  addic.    r0, r30, 0xB8
-// 	  subi      r0, r3, 0xF70
-// 	  stw       r0, 0xC8(r30)
-// 	  beq-      .loc_0x9C
-// 	  addi      r3, r30, 0xB8
-// 	  li        r4, 0
-// 	  bl        -0xE0998
-
-// 	.loc_0x9C:
-// 	  cmplwi    r30, 0
-// 	  beq-      .loc_0x108
-// 	  lis       r3, 0x804F
-// 	  addic.    r0, r30, 0x30
-// 	  subi      r4, r3, 0xF60
-// 	  stw       r4, 0x28(r30)
-// 	  addi      r3, r4, 0x8
-// 	  addi      r0, r4, 0x40
-// 	  stw       r3, 0x10(r30)
-// 	  stw       r0, 0x30(r30)
-// 	  beq-      .loc_0xE0
-// 	  lis       r4, 0x804A
-// 	  addi      r3, r30, 0x30
-// 	  addi      r0, r4, 0x6200
-// 	  li        r4, 0
-// 	  stw       r0, 0x30(r30)
-// 	  bl        -0x4D5CC
-
-// 	.loc_0xE0:
-// 	  cmplwi    r30, 0
-// 	  beq-      .loc_0x108
-// 	  lis       r4, 0x804F
-// 	  mr        r3, r30
-// 	  subi      r5, r4, 0xE34
-// 	  li        r4, 0
-// 	  stw       r5, 0x28(r30)
-// 	  addi      r0, r5, 0x8
-// 	  stw       r0, 0x10(r30)
-// 	  bl        0x355C90
-
-// 	.loc_0x108:
-// 	  extsh.    r0, r31
-// 	  ble-      .loc_0x118
-// 	  mr        r3, r30
-// 	  bl        -0xE3130
-
-// 	.loc_0x118:
-// 	  lwz       r0, 0x14(r1)
-// 	  mr        r3, r30
-// 	  lwz       r31, 0xC(r1)
-// 	  lwz       r30, 0x8(r1)
-// 	  mtlr      r0
-// 	  addi      r1, r1, 0x10
-// 	  blr
-// 	*/
-// }
+// WEAK - in header
+// EnemyBase::~EnemyBase() { }
 // } // namespace PSM
 // namespace Game {
 
@@ -8131,15 +7937,8 @@ void EnemyBase::resetAnimSpeed() { m_animator->resetAnimSpeed(); }
  * Address:	801073CC
  * Size:	00000C
  */
-void EnemyAnimatorBase::resetAnimSpeed()
-{
-	/*
-	.loc_0x0:
-	    lfs       f0, -0x63C8(r2)
-	    stfs      f0, 0x4(r3)
-	    blr
-	*/
-}
+// WEAK - in header
+// void EnemyAnimatorBase::resetAnimSpeed() { m_animSpeed = defaultAnimSpeed; }
 
 /*
  * --INFO--
@@ -8213,15 +8012,8 @@ bool EnemyBase::needShadow()
  * Address:	801074C4
  * Size:	00000C
  */
-bool Creature::isMovieActor()
-{
-	/*
-	.loc_0x0:
-	    lwz       r0, 0xBC(r3)
-	    rlwinm    r3,r0,28,31,31
-	    blr
-	*/
-}
+// WEAK - in header
+// bool Creature::isMovieActor() { return m_flags.typeView & CF_IS_MOVIE_ACTOR; }
 
 /*
  * --INFO--
@@ -8397,38 +8189,8 @@ bool EnemyBase::eatWhitePikminCallBack(Game::Creature*, float)
  * Address:	80107704
  * Size:	000060
  */
-EnemyStone::DrawInfo::~DrawInfo()
-{
-	/*
-	.loc_0x0:
-	    stwu      r1, -0x10(r1)
-	    mflr      r0
-	    stw       r0, 0x14(r1)
-	    stw       r31, 0xC(r1)
-	    mr        r31, r4
-	    stw       r30, 0x8(r1)
-	    mr.       r30, r3
-	    beq-      .loc_0x44
-	    lis       r5, 0x804B
-	    li        r4, 0
-	    subi      r0, r5, 0x5E2C
-	    stw       r0, 0x0(r30)
-	    bl        0x309E54
-	    extsh.    r0, r31
-	    ble-      .loc_0x44
-	    mr        r3, r30
-	    bl        -0xE3690
-
-	.loc_0x44:
-	    lwz       r0, 0x14(r1)
-	    mr        r3, r30
-	    lwz       r31, 0xC(r1)
-	    lwz       r30, 0x8(r1)
-	    mtlr      r0
-	    addi      r1, r1, 0x10
-	    blr
-	*/
-}
+// WEAK - in header
+// EnemyStone::DrawInfo::~DrawInfo() { }
 
 /*
  * --INFO--
@@ -8487,7 +8249,8 @@ void EnemyBase::startMovie()
  * Address:	80107840
  * Size:	000004
  */
-void EnemyBase::doStartMovie() { }
+// WEAK - in header
+// void EnemyBase::doStartMovie() { }
 
 /*
  * --INFO--
@@ -8507,7 +8270,8 @@ void EnemyBase::endMovie()
  * Address:	801078C8
  * Size:	000004
  */
-void EnemyBase::doEndMovie() { }
+// WEAK - in header
+// void EnemyBase::doEndMovie() { }
 
 /*
  * --INFO--
@@ -8624,120 +8388,17 @@ void EnemyBase::resetDroppingMassZero()
 	_118 = m_friction;
 }
 
-} // namespace Game
+// } // namespace Game
 
-namespace PSM {
+// namespace PSM {
 
 /*
  * --INFO--
  * Address:	80107AA0
  * Size:	000164
  */
-EnemyHekoi::~EnemyHekoi()
-{
-	/*
-	.loc_0x0:
-	  stwu      r1, -0x10(r1)
-	  mflr      r0
-	  stw       r0, 0x14(r1)
-	  stw       r31, 0xC(r1)
-	  mr        r31, r4
-	  stw       r30, 0x8(r1)
-	  mr.       r30, r3
-	  beq-      .loc_0x148
-	  lis       r3, 0x804B
-	  subi      r5, r3, 0x5E1C
-	  stw       r5, 0x28(r30)
-	  addi      r0, r5, 0x8
-	  addi      r4, r5, 0x40
-	  addi      r3, r5, 0xA4
-	  stw       r0, 0x10(r30)
-	  addi      r0, r5, 0xB4
-	  stw       r4, 0x30(r30)
-	  stw       r3, 0xC8(r30)
-	  stw       r0, 0xDC(r30)
-	  beq-      .loc_0x138
-	  lis       r3, 0x804F
-	  addic.    r0, r30, 0xCC
-	  subi      r5, r3, 0x1054
-	  stw       r5, 0x28(r30)
-	  addi      r0, r5, 0x8
-	  addi      r4, r5, 0x40
-	  addi      r3, r5, 0xA4
-	  stw       r0, 0x10(r30)
-	  addi      r0, r5, 0xB4
-	  stw       r4, 0x30(r30)
-	  stw       r3, 0xC8(r30)
-	  stw       r0, 0xDC(r30)
-	  beq-      .loc_0xA4
-	  lis       r3, 0x804F
-	  addic.    r0, r30, 0xCC
-	  subi      r0, r3, 0xF80
-	  stw       r0, 0xDC(r30)
-	  beq-      .loc_0xA4
-	  addi      r3, r30, 0xCC
-	  li        r4, 0
-	  bl        -0xE1370
-
-	.loc_0xA4:
-	  addic.    r0, r30, 0xB8
-	  beq-      .loc_0xCC
-	  lis       r3, 0x804F
-	  addic.    r0, r30, 0xB8
-	  subi      r0, r3, 0xF70
-	  stw       r0, 0xC8(r30)
-	  beq-      .loc_0xCC
-	  addi      r3, r30, 0xB8
-	  li        r4, 0
-	  bl        -0xE1398
-
-	.loc_0xCC:
-	  cmplwi    r30, 0
-	  beq-      .loc_0x138
-	  lis       r3, 0x804F
-	  addic.    r0, r30, 0x30
-	  subi      r4, r3, 0xF60
-	  stw       r4, 0x28(r30)
-	  addi      r3, r4, 0x8
-	  addi      r0, r4, 0x40
-	  stw       r3, 0x10(r30)
-	  stw       r0, 0x30(r30)
-	  beq-      .loc_0x110
-	  lis       r4, 0x804A
-	  addi      r3, r30, 0x30
-	  addi      r0, r4, 0x6200
-	  li        r4, 0
-	  stw       r0, 0x30(r30)
-	  bl        -0x4DFCC
-
-	.loc_0x110:
-	  cmplwi    r30, 0
-	  beq-      .loc_0x138
-	  lis       r4, 0x804F
-	  mr        r3, r30
-	  subi      r5, r4, 0xE34
-	  li        r4, 0
-	  stw       r5, 0x28(r30)
-	  addi      r0, r5, 0x8
-	  stw       r0, 0x10(r30)
-	  bl        0x355290
-
-	.loc_0x138:
-	  extsh.    r0, r31
-	  ble-      .loc_0x148
-	  mr        r3, r30
-	  bl        -0xE3B30
-
-	.loc_0x148:
-	  lwz       r0, 0x14(r1)
-	  mr        r3, r30
-	  lwz       r31, 0xC(r1)
-	  lwz       r30, 0x8(r1)
-	  mtlr      r0
-	  addi      r1, r1, 0x10
-	  blr
-	*/
-}
+// WEAK - in header
+// EnemyHekoi::~EnemyHekoi() { }
 
 /*
  * @reified
@@ -8745,6 +8406,7 @@ EnemyHekoi::~EnemyHekoi()
  * Address:	80107C04
  * Size:	000008
  */
+// WEAK - in header
 // CreatureCastType EnemyHekoi::getCastType() { return 0x3; }
 
 /*
@@ -8752,35 +8414,19 @@ EnemyHekoi::~EnemyHekoi()
  * Address:	80107C0C
  * Size:	000010
  */
-JAInter::Object* CreatureAnime::getJAIObject()
-{
-	/*
-	.loc_0x0:
-	  cmplwi    r3, 0
-	  beqlr-
-	  addi      r3, r3, 0x30
-	  blr
-	*/
-}
+// WEAK - in header
+// JAInter::Object* CreatureAnime::getJAIObject() { return static_cast<JAInter::Object*>(this); }
 
 /*
  * --INFO--
  * Address:	80107C1C
  * Size:	000010
  */
-void CreatureAnime::getHandleArea(unsigned char)
-{
-	/*
-	.loc_0x0:
-	  lwz       r3, 0x4C(r3)
-	  rlwinm    r0,r4,2,22,29
-	  add       r3, r3, r0
-	  blr
-	*/
-}
-} // namespace PSM
+// WEAK - in header
+// JAISound** CreatureAnime::getHandleArea(u8 idx) { return &m_sounds[idx]; }
+// } // namespace PSM
 
-namespace Game {
+// namespace Game {
 
 // /*
 //  * @reified
@@ -8788,15 +8434,8 @@ namespace Game {
 //  * Address:	80107C2C
 //  * Size:	00000C
 //  */
-// void PelletInitArg::getName()
-// {
-// 	/*
-// 	.loc_0x0:
-// 	  lis       r3, 0x8048
-// 	  subi      r3, r3, 0x59E4
-// 	  blr
-// 	*/
-// }
+// WEAK - in header
+// const char* PelletInitArg::getName() { return "PelletInitArg"; }
 
 // /*
 //  * @reified
@@ -8804,15 +8443,8 @@ namespace Game {
 //  * Address:	80107C38
 //  * Size:	00000C
 //  */
-// void EnemyKillArg::getName()
-// {
-// 	/*
-// 	.loc_0x0:
-// 	  lis       r3, 0x8048
-// 	  subi      r3, r3, 0x5A14
-// 	  blr
-// 	*/
-// }
+// WEAK - in header
+// void EnemyKillArg::getName() { return "EnemyKillArg"; }
 
 // } // namespace Game
 
@@ -8824,15 +8456,8 @@ namespace Game {
 //  * Address:	80107C44
 //  * Size:	00000C
 //  */
-// void ArgScale::getName()
-// {
-// 	/*
-// 	.loc_0x0:
-// 	  lis       r3, 0x8048
-// 	  subi      r3, r3, 0x59D4
-// 	  blr
-// 	*/
-// }
+// WEAK - in header
+// void ArgScale::getName() { return "ArgScale"; }
 // } // namespace efx
 
 // namespace Game {
@@ -8842,969 +8467,842 @@ namespace Game {
 //  * Address:	80107C50
 //  * Size:	00000C
 //  */
-// void ItemHoney::InitArg::getName()
-// {
-// 	/*
-// 	.loc_0x0:
-// 	  lis       r3, 0x8048
-// 	  subi      r3, r3, 0x59C8
-// 	  blr
-// 	*/
-// }
+// WEAK - in header
+// void ItemHoney::InitArg::getName() { return "ItemHoney::InitArg"; }
 
 /*
  * --INFO--
  * Address:	80107C5C
  * Size:	000008
  */
-bool Interaction::actPiki(Game::Piki*) { return 0x1; }
+// WEAK - in header
+// bool Interaction::actPiki(Game::Piki*) { return true; }
 
 /*
  * --INFO--
  * Address:	80107C64
  * Size:	000008
  */
-bool Interaction::actNavi(Game::Navi*) { return true; }
+// WEAK - in header
+// bool Interaction::actNavi(Game::Navi*) { return true; }
 
 /*
  * --INFO--
  * Address:	80107C6C
  * Size:	000008
  */
-bool Interaction::actPellet(Game::Pellet*) { return true; }
+// WEAK - in header
+// bool Interaction::actPellet(Game::Pellet*) { return true; }
 
 /*
  * --INFO--
  * Address:	80107C74
  * Size:	000008
  */
-bool Interaction::actOnyon(Game::Onyon*) { return true; }
+// WEAK - in header
+// bool Interaction::actOnyon(Game::Onyon*) { return true; }
 
 /*
  * --INFO--
  * Address:	80107C7C
  * Size:	000008
  */
-bool Interaction::actItem(Game::BaseItem*) { return true; }
+// WEAK - in header
+// bool Interaction::actItem(Game::BaseItem*) { return true; }
 
 /*
  * --INFO--
  * Address:	80107C84
  * Size:	000088
  */
-EnemyBase::~EnemyBase()
-{
-	/*
-	.loc_0x0:
-	  stwu      r1, -0x10(r1)
-	  mflr      r0
-	  stw       r0, 0x14(r1)
-	  stw       r31, 0xC(r1)
-	  mr        r31, r4
-	  stw       r30, 0x8(r1)
-	  mr.       r30, r3
-	  beq-      .loc_0x6C
-	  lis       r3, 0x804B
-	  addi      r0, r30, 0x2BC
-	  subi      r4, r3, 0x5CDC
-	  addi      r3, r30, 0x290
-	  stw       r4, 0x0(r30)
-	  addi      r5, r4, 0x1B0
-	  addi      r6, r4, 0x2F8
-	  li        r4, -0x1
-	  stw       r5, 0x178(r30)
-	  lwz       r5, 0x17C(r30)
-	  stw       r6, 0x0(r5)
-	  lwz       r5, 0x17C(r30)
-	  sub       r0, r0, r5
-	  stw       r0, 0xC(r5)
-	  bl        0x3098AC
-	  extsh.    r0, r31
-	  ble-      .loc_0x6C
-	  mr        r3, r30
-	  bl        -0xE3C38
-
-	.loc_0x6C:
-	  lwz       r0, 0x14(r1)
-	  mr        r3, r30
-	  lwz       r31, 0xC(r1)
-	  lwz       r30, 0x8(r1)
-	  mtlr      r0
-	  addi      r1, r1, 0x10
-	  blr
-	*/
-}
+// WEAK - in header
+// EnemyBase::~EnemyBase() { }
 
 /*
  * --INFO--
  * Address:	80107D0C
  * Size:	000004
  */
-void EnemyBase::doSimpleDraw(Viewport*) { }
+// WEAK - in header
+// void EnemyBase::doSimpleDraw(Viewport*) { }
 
 /*
  * --INFO--
  * Address:	80107D10
  * Size:	00000C
  */
-float EnemyBase::getCellRadius() { return static_cast<EnemyParmsBase*>(m_parms)->m_general.m_cellRadius(); }
+// WEAK - in header
+// float EnemyBase::getCellRadius() { return static_cast<EnemyParmsBase*>(m_parms)->m_general.m_cellRadius(); }
 
 /*
  * --INFO--
  * Address:	80107D1C
  * Size:	00000C
  */
-float EnemyBase::getBodyRadius() { return static_cast<EnemyParmsBase*>(m_parms)->m_general.m_pikminDamageRadius(); }
+// WEAK - in header
+// float EnemyBase::getBodyRadius() { return static_cast<EnemyParmsBase*>(m_parms)->m_general.m_pikminDamageRadius(); }
 
 /*
  * --INFO--
  * Address:	80107D28
  * Size:	000008
  */
-float EnemyBase::getFaceDir() { return m_faceDir; }
+// WEAK - in header
+// float EnemyBase::getFaceDir() { return m_faceDir; }
 
 /*
  * --INFO--
  * Address:	80107D30
  * Size:	00001C
  */
-void EnemyBase::setVelocity(Vector3f& velocity)
-{
-	m_velocity = velocity;
-	/*
-	.loc_0x0:
-	  lfs       f0, 0x0(r4)
-	  stfs      f0, 0x1C8(r3)
-	  lfs       f0, 0x4(r4)
-	  stfs      f0, 0x1CC(r3)
-	  lfs       f0, 0x8(r4)
-	  stfs      f0, 0x1D0(r3)
-	  blr
-	*/
-}
+// WEAK - in header
+// void EnemyBase::setVelocity(Vector3f& velocity) { m_velocity = velocity; }
 
 /*
  * --INFO--
  * Address:	80107D4C
  * Size:	00001C
  */
-Vector3f EnemyBase::getVelocity()
-{
-	return m_velocity;
-	/*
-	.loc_0x0:
-	  lfs       f0, 0x1C8(r4)
-	  stfs      f0, 0x0(r3)
-	  lfs       f0, 0x1CC(r4)
-	  stfs      f0, 0x4(r3)
-	  lfs       f0, 0x1D0(r4)
-	  stfs      f0, 0x8(r3)
-	  blr
-	*/
-}
+// Vector3f EnemyBase::getVelocity() { return m_velocity; }
 
 /*
  * --INFO--
  * Address:	80107D68
  * Size:	000034
  */
-void EnemyBase::getVelocityAt(Vector3f& p1, Vector3f& p2)
-{
-	p1 = m_velocity;
-	p2 = m_velocity;
-	/*
-	.loc_0x0:
-	  lfs       f0, 0x1C8(r3)
-	  stfs      f0, 0x0(r4)
-	  lfs       f0, 0x1CC(r3)
-	  stfs      f0, 0x4(r4)
-	  lfs       f0, 0x1D0(r3)
-	  stfs      f0, 0x8(r4)
-	  lfs       f0, 0x1C8(r3)
-	  stfs      f0, 0x0(r5)
-	  lfs       f0, 0x1CC(r3)
-	  stfs      f0, 0x4(r5)
-	  lfs       f0, 0x1D0(r3)
-	  stfs      f0, 0x8(r5)
-	  blr
-	*/
-}
+// WEAK - in header
+// void EnemyBase::getVelocityAt(Vector3f& p1, Vector3f& p2)
+// {
+// 	p1 = m_velocity;
+// 	p2 = m_velocity;
+// }
 
 /*
  * --INFO--
  * Address:	80107D9C
  * Size:	000008
  */
-bool EnemyBase::isTeki() { return true; }
+// WEAK - in header
+// bool EnemyBase::isTeki() { return true; }
 
 /*
  * --INFO--
  * Address:	80107DA4
  * Size:	000008
  */
-Vector3f* EnemyBase::getSound_PosPtr() { return &m_position; }
+// WEAK - in header
+// Vector3f* EnemyBase::getSound_PosPtr() { return &m_position; }
 
 /*
  * --INFO--
  * Address:	80107DAC
  * Size:	000004
  */
-void EnemyBase::initMouthSlots() { }
+// WEAK - in header
+// void EnemyBase::initMouthSlots() { }
 
 /*
  * --INFO--
  * Address:	80107DB0
  * Size:	000004
  */
-void EnemyBase::initWalkSmokeEffect() { }
+// WEAK - in header
+// void EnemyBase::initWalkSmokeEffect() { }
 
 /*
  * --INFO--
  * Address:	80107DB4
  * Size:	000014
  */
-bool EnemyBase::inWater()
-{
-	return (m_waterBox != nullptr);
-	/*
-	.loc_0x0:
-	  lwz       r3, 0x280(r3)
-	  neg       r0, r3
-	  or        r0, r0, r3
-	  rlwinm    r3,r0,1,31,31
-	  blr
-	*/
-}
+// WEAK - in header
+// bool EnemyBase::inWater() { return (m_waterBox != nullptr); }
 
 /*
  * --INFO--
  * Address:	80107DC8
  * Size:	00001C
  */
-void EnemyBase::getEfxHamonPos(Vector3f* pos) { *pos = m_position; }
+// WEAK - in header
+// void EnemyBase::getEfxHamonPos(Vector3f* pos) { *pos = m_position; }
 
 /*
  * --INFO--
  * Address:	80107DE4
  * Size:	000008
  */
-MouthSlots* EnemyBase::getMouthSlots() { return nullptr; }
+// WEAK - in header
+// MouthSlots* EnemyBase::getMouthSlots() { return nullptr; }
 
 /*
  * --INFO--
  * Address:	80107DEC
  * Size:	000024
  */
-void EnemyBase::setLODSphere(Sys::Sphere&)
-{
-	/*
-	.loc_0x0:
-	  lfs       f0, 0x0(r4)
-	  stfs      f0, 0x270(r3)
-	  lfs       f0, 0x4(r4)
-	  stfs      f0, 0x274(r3)
-	  lfs       f0, 0x8(r4)
-	  stfs      f0, 0x278(r3)
-	  lfs       f0, 0xC(r4)
-	  stfs      f0, 0x27C(r3)
-	  blr
-	*/
-}
+// WEAK - in header
+// void EnemyBase::setLODSphere(Sys::Sphere& sphere) { m_lodRange = sphere; }
 
 /*
  * --INFO--
  * Address:	80107E10
  * Size:	000024
  */
-void EnemyBase::getLODSphere(Sys::Sphere&)
-{
-	/*
-	.loc_0x0:
-	  lfs       f0, 0x270(r3)
-	  stfs      f0, 0x0(r4)
-	  lfs       f0, 0x274(r3)
-	  stfs      f0, 0x4(r4)
-	  lfs       f0, 0x278(r3)
-	  stfs      f0, 0x8(r4)
-	  lfs       f0, 0x27C(r3)
-	  stfs      f0, 0xC(r4)
-	  blr
-	*/
-}
+// WEAK - in header
+// void EnemyBase::getLODSphere(Sys::Sphere& sphere) { sphere = m_lodRange; }
 
 /*
  * --INFO--
  * Address:	80107E34
  * Size:	000008
  */
-float EnemyBase::getDamageCoeStoneState()
-{
-	return 1.5f;
-	/*
-	.loc_0x0:
-	  lfs       f1, -0x6B18(r2)
-	  blr
-	*/
-}
+// WEAK - in header
+// float EnemyBase::getDamageCoeStoneState() { return 1.5f; }
 
 /*
  * --INFO--
  * Address:	80107E3C
  * Size:	000034
  */
-float EnemyBase::getSound_CurrAnimFrame() { return m_animator->getAnimator().m_timer; }
+// WEAK - in header
+// float EnemyBase::getSound_CurrAnimFrame() { return m_animator->getAnimator().m_timer; }
 
 /*
  * --INFO--
  * Address:	80107E70
  * Size:	00000C
  */
-float EnemyBase::getSound_CurrAnimSpeed() { return m_animator->m_animSpeed; }
+// WEAK - in header
+// float EnemyBase::getSound_CurrAnimSpeed() { return m_animator->m_animSpeed; }
 
 /*
  * --INFO--
  * Address:	80107E7C
  * Size:	000030
  */
-bool EnemyBase::sound_culling()
-{
-	/*
-	.loc_0x0:
-	  lwz       r0, 0x1E0(r3)
-	  li        r4, 0
-	  rlwinm.   r0,r0,0,18,18
-	  beq-      .loc_0x28
-	  lbz       r3, 0xD8(r3)
-	  rlwinm.   r0,r3,0,29,29
-	  bne-      .loc_0x28
-	  rlwinm.   r0,r3,0,28,28
-	  bne-      .loc_0x28
-	  li        r4, 0x1
-
-	.loc_0x28:
-	  mr        r3, r4
-	  blr
-	*/
-}
+// WEAK - in header
+// bool EnemyBase::sound_culling()
+// {
+//     bool culling = false;
+//     if (_1E0.m_flags[0].typeView & 0x2000) {
+//         if (!(m_lod.m_flags & AILOD::FLAG_NEED_SHADOW) && !(m_lod.m_flags & AILOD::FLAG_UNKNOWN4)) {
+//             culling = true;
+//         }
+//     }
+//     return culling;
+// }
 
 /*
  * --INFO--
  * Address:	80107EAC
  * Size:	000008
  */
-float EnemyBase::getCarcassArgHeight() { return m_boundingSphere.m_radius; }
+// WEAK - in header
+// float EnemyBase::getCarcassArgHeight() { return m_boundingSphere.m_radius; }
 
 /*
  * --INFO--
  * Address:	80107EB4
  * Size:	000008
  */
-float PelletView::viewGetBaseScale()
-{
-	return 1.0f;
-	/*
-	.loc_0x0:
-	  lfs       f1, -0x6B9C(r2)
-	  blr
-	*/
-}
+// WEAK - in header
+// float PelletView::viewGetBaseScale() { return PELLETVIEW_BASE_SCALE; }
 
 /*
  * --INFO--
  * Address:	80107EBC
  * Size:	000008
  */
-int PelletView::viewGetCollTreeJointIndex() { return 0x0; }
+// WEAK - in header
+// int PelletView::viewGetCollTreeJointIndex() { return 0; }
 
 /*
  * --INFO--
  * Address:	80107EC4
  * Size:	000020
  */
-Vector3f PelletView::viewGetCollTreeOffset()
-{
-	/*
-	.loc_0x0:
-	  lis       r4, 0x8051
-	  lfsu      f0, 0x41E4(r4)
-	  stfs      f0, 0x0(r3)
-	  lfs       f0, 0x4(r4)
-	  stfs      f0, 0x4(r3)
-	  lfs       f0, 0x8(r4)
-	  stfs      f0, 0x8(r3)
-	  blr
-	*/
-}
+// WEAK - in header
+// Vector3f PelletView::viewGetCollTreeOffset() { return Vector3f::zero; }
 
 /*
  * --INFO--
  * Address:	80107EE4
  * Size:	000004
  */
-void PelletView::viewEntryShape(Matrixf&, Vector3f&) { }
+// WEAK - in header
+// void PelletView::viewEntryShape(Matrixf&, Vector3f&) { }
 
 /*
  * --INFO--
  * Address:	80107EE8
  * Size:	000004
  */
-void Creature::doDirectDraw(Graphics&) { }
+// WEAK - in header
+// void Creature::doDirectDraw(Graphics&) { }
 
 /*
  * --INFO--
  * Address:	80107EEC
  * Size:	000004
  */
-void Creature::onInitPosition(Vector3f&) { }
+// WEAK - in header
+// void Creature::onInitPosition(Vector3f&) { }
 
 /*
  * --INFO--
  * Address:	80107EF0
  * Size:	000008
  */
-u32 Creature::getFlockMgr() { return 0x0; }
+// WEAK - in header
+// BaseFlockMgr* Creature::getFlockMgr() { return nullptr; }
 
 /*
  * --INFO--
  * Address:	80107EF8
  * Size:	000004
  */
-void Creature::onStartCapture() { }
+// WEAK - in header
+// void Creature::onStartCapture() { }
 
 /*
  * --INFO--
  * Address:	80107EFC
  * Size:	000004
  */
-void Creature::onUpdateCapture(Matrixf&) { }
+// WEAK - in header
+// void Creature::onUpdateCapture(Matrixf&) { }
 
 /*
  * --INFO--
  * Address:	80107F00
  * Size:	000004
  */
-void Creature::onEndCapture() { }
+// WEAK - in header
+// void Creature::onEndCapture() { }
 
 /*
  * --INFO--
  * Address:	80107F04
  * Size:	00000C
  */
-bool Creature::isAtari() { return (m_flags.intView & CF_IS_ATARI); }
+// WEAK - in header
+// bool Creature::isAtari() { return (m_flags.typeView & CF_IS_ATARI); }
 
 /*
  * --INFO--
  * Address:	80107F10
  * Size:	000028
  */
-void Creature::setAtari(bool atari)
-{
-	if (atari) {
-		m_flags.intView |= CF_IS_ATARI;
-	} else {
-		m_flags.intView &= ~CF_IS_ATARI;
-	}
-}
+// WEAK - in header
+// void Creature::setAtari(bool atari)
+// {
+// 	if (atari) {
+// 		m_flags.typeView |= CF_IS_ATARI;
+// 	} else {
+// 		m_flags.typeView &= ~CF_IS_ATARI;
+// 	}
+// }
 
 /*
  * --INFO--
  * Address:	80107F38
  * Size:	00000C
  */
-bool Creature::isCollisionFlick() { return (m_flags.intView & CF_IS_COLLISION_FLICK); }
+// WEAK - in header
+// bool Creature::isCollisionFlick() { return (m_flags.typeView & CF_IS_COLLISION_FLICK); }
 
 /*
  * --INFO--
  * Address:	80107F44
  * Size:	000028
  */
-void Creature::setCollisionFlick(bool collisionFlick)
-{
-	if (collisionFlick) {
-		m_flags.intView |= CF_IS_COLLISION_FLICK;
-	} else {
-		m_flags.intView &= ~CF_IS_COLLISION_FLICK;
-	}
-}
+// WEAK - in header
+// void Creature::setCollisionFlick(bool collisionFlick)
+// {
+// 	if (collisionFlick) {
+// 		m_flags.intView |= CF_IS_COLLISION_FLICK;
+// 	} else {
+// 		m_flags.intView &= ~CF_IS_COLLISION_FLICK;
+// 	}
+// }
 
 /*
  * --INFO--
  * Address:	80107F6C
  * Size:	00000C
  */
-bool Creature::isMovieExtra() { return (m_flags.intView & CF_IS_MOVIE_EXTRA); }
+// WEAK - in header
+// bool Creature::isMovieExtra() { return m_flags.typeView & CF_IS_MOVIE_EXTRA; }
 
 /*
  * --INFO--
  * Address:	80107F78
  * Size:	00000C
  */
-bool Creature::isMovieMotion() { return (m_flags.intView & CF_IS_MOVIE_MOTION); }
+// WEAK - in header
+// bool Creature::isMovieMotion() { return m_flags.typeView & CF_IS_MOVIE_MOTION; }
 
 /*
  * --INFO--
  * Address:	80107F84
  * Size:	000028
  */
-void Creature::setMovieMotion(bool movieMotion)
-{
-	if (movieMotion) {
-		m_flags.intView |= CF_IS_MOVIE_MOTION;
-	} else {
-		m_flags.intView &= ~CF_IS_MOVIE_MOTION;
-	}
-}
+// WEAK - in header
+// void Creature::setMovieMotion(bool movieMotion)
+// {
+// 	if (movieMotion) {
+// 		m_flags.typeView |= CF_IS_MOVIE_MOTION;
+// 	} else {
+// 		m_flags.typeView &= ~CF_IS_MOVIE_MOTION;
+// 	}
+// }
 
 /*
  * --INFO--
  * Address:	80107FAC
  * Size:	000008
  */
-bool Creature::isBuried() { return false; }
+// WEAK - in header
+// bool Creature::isBuried() { return false; }
 
 /*
  * --INFO--
  * Address:	80107FB4
  * Size:	000008
  */
-bool Creature::isUnderground() { return false; }
+// WEAK - in header
+// bool Creature::isUnderground() { return false; }
 
 /*
  * --INFO--
  * Address:	80107FBC
  * Size:	000008
  */
-bool Creature::isLivingThing() { return true; }
+// WEAK - in header
+// bool Creature::isLivingThing() { return true; }
 
 /*
  * --INFO--
  * Address:	80107FC4
  * Size:	00000C
  */
-bool Creature::isDebugCollision() { return (m_flags.intView & CF_IS_DEBUG_COLLISION); }
+// WEAK - in header
+// bool Creature::isDebugCollision() { return m_flags.typeView & CF_IS_DEBUG_COLLISION; }
 
 /*
  * --INFO--
  * Address:	80107FD0
  * Size:	000028
  */
-void Creature::setDebugCollision(bool debugCollision)
-{
-	if (debugCollision) {
-		m_flags.intView |= CF_IS_DEBUG_COLLISION;
-	} else {
-		m_flags.intView &= ~CF_IS_DEBUG_COLLISION;
-	}
-}
+// WEAK - in header
+// void Creature::setDebugCollision(bool debugCollision)
+// {
+// 	if (debugCollision) {
+// 		m_flags.typeView |= CF_IS_DEBUG_COLLISION;
+// 	} else {
+// 		m_flags.typeView &= ~CF_IS_DEBUG_COLLISION;
+// 	}
+// }
 
 /*
  * --INFO--
  * Address:	80107FF8
  * Size:	000004
  */
-void Creature::doSave(Stream&) { }
+// WEAK - in header
+// void Creature::doSave(Stream&) { }
 
 /*
  * --INFO--
  * Address:	80107FFC
  * Size:	000004
  */
-void Creature::doLoad(Stream&) { }
+// WEAK - in header
+// void Creature::doLoad(Stream&) { }
 
 /*
  * --INFO--
  * Address:	80108000
  * Size:	000004
  */
-void Creature::platCallback(Game::PlatEvent&) { }
+// WEAK - in header
+// void Creature::platCallback(Game::PlatEvent&) { }
 
 /*
  * --INFO--
  * Address:	80108004
  * Size:	000008
  */
-AILOD* Creature::getSound_AILOD() { return &m_lod; }
+// WEAK - in header
+// AILOD* Creature::getSound_AILOD() { return &m_lod; }
 
 /*
  * --INFO--
  * Address:	8010800C
  * Size:	000004
  */
-void Creature::on_movie_begin(bool) { }
+// WEAK - in header
+// void Creature::on_movie_begin(bool) { }
 
 /*
  * --INFO--
  * Address:	80108010
  * Size:	000004
  */
-void Creature::on_movie_end(bool) { }
+// WEAK - in header
+// void Creature::on_movie_end(bool) { }
 
 /*
  * --INFO--
  * Address:	80108014
  * Size:	000004
  */
-void Creature::movieStartAnimation(unsigned long) { }
+// WEAK - in header
+// void Creature::movieStartAnimation(u32) { }
 
 /*
  * --INFO--
  * Address:	80108018
  * Size:	000004
  */
-void Creature::movieStartDemoAnimation(SysShape::AnimInfo*) { }
+// WEAK - in header
+// void Creature::movieStartDemoAnimation(SysShape::AnimInfo*) { }
 
 /*
  * --INFO--
  * Address:	8010801C
  * Size:	000004
  */
-void Creature::movieSetAnimationLastFrame() { }
+// WEAK - in header
+// void Creature::movieSetAnimationLastFrame() { }
 
 /*
  * --INFO--
  * Address:	80108020
  * Size:	000004
  */
-void Creature::movieSetTranslation(Vector3f&, float) { }
+// WEAK - in header
+// void Creature::movieSetTranslation(Vector3f&, float) { }
 
 /*
  * --INFO--
  * Address:	80108024
  * Size:	000004
  */
-void Creature::movieSetFaceDir(float) { }
+// WEAK - in header
+// void Creature::movieSetFaceDir(float) { }
 
 /*
  * --INFO--
  * Address:	80108028
  * Size:	000008
  */
-bool Creature::movieGotoPosition(Vector3f&) { return true; }
+// WEAK - in header
+// bool Creature::movieGotoPosition(Vector3f&) { return true; }
 
 /*
  * --INFO--
  * Address:	80108030
  * Size:	000004
  */
-void Creature::movieUserCommand(unsigned long, Game::MoviePlayer*) { }
+// WEAK - in header
+// void Creature::movieUserCommand(u32, Game::MoviePlayer*) { }
 
 /*
  * --INFO--
  * Address:	80108034
  * Size:	000004
  */
-void Creature::getLODCylinder(Sys::Cylinder&) { }
+// WEAK - in header
+// void Creature::getLODCylinder(Sys::Cylinder&) { }
 
 /*
  * --INFO--
  * Address:	80108038
  * Size:	000004
  */
-void Creature::startPick() { }
+// WEAK - in header
+// void Creature::startPick() { }
 
 /*
  * --INFO--
  * Address:	8010803C
  * Size:	000004
  */
-void Creature::endPick(bool) { }
+// WEAK - in header
+// void Creature::endPick(bool) { }
 
 /*
  * --INFO--
  * Address:	80108040
  * Size:	000008
  */
-u32* Creature::getMabiki() { return nullptr; }
+// WEAK - in header
+// u32* Creature::getMabiki() { return nullptr; }
 
 /*
  * --INFO--
  * Address:	80108048
  * Size:	000008
  */
-Footmarks* Creature::getFootmarks() { return nullptr; }
+// WEAK - in header
+// Footmarks* Creature::getFootmarks() { return nullptr; }
 
 /*
  * --INFO--
  * Address:	80108050
  * Size:	000004
  */
-void Creature::onStickStartSelf(Game::Creature*) { }
+// WEAK - in header
+// void Creature::onStickStartSelf(Game::Creature*) { }
 
 /*
  * --INFO--
  * Address:	80108054
  * Size:	000004
  */
-void Creature::onStickEndSelf(Game::Creature*) { }
+// void Creature::onStickEndSelf(Game::Creature*) { }
 
 /*
  * --INFO--
  * Address:	80108058
  * Size:	000008
  */
-bool Creature::isSlotFree(short) { return false; }
+// WEAK - in header
+// bool Creature::isSlotFree(short) { return false; }
 
 /*
  * --INFO--
  * Address:	80108060
  * Size:	000008
  */
-int Creature::getFreeStickSlot() { return -1; }
+// WEAK - in header
+// int Creature::getFreeStickSlot() { return -1; }
 
 /*
  * --INFO--
  * Address:	80108068
  * Size:	000008
  */
-int Creature::getNearFreeStickSlot(Vector3f&) { return -1; }
+// WEAK - in header
+// int Creature::getNearFreeStickSlot(Vector3f&) { return -1; }
 
 /*
  * --INFO--
  * Address:	80108070
  * Size:	000008
  */
-int Creature::getRandomFreeStickSlot() { return -1; }
+// WEAK - in header
+// int Creature::getRandomFreeStickSlot() { return -1; }
 
 /*
  * --INFO--
  * Address:	80108078
  * Size:	000004
  */
-void Creature::onSlotStickStart(Game::Creature*, short) { }
+// WEAK - in header
+// void Creature::onSlotStickStart(Game::Creature*, short) { }
 
 /*
  * --INFO--
  * Address:	8010807C
  * Size:	000004
  */
-void Creature::onSlotStickEnd(Game::Creature*, short) { }
+// WEAK - in header
+// void Creature::onSlotStickEnd(Game::Creature*, short) { }
 
 /*
  * --INFO--
  * Address:	80108080
  * Size:	000004
  */
-void Creature::calcStickSlotGlobal(short, Vector3f&) { }
+// WEAK - in header
+// void Creature::calcStickSlotGlobal(short, Vector3f&) { }
 
 /*
  * --INFO--
  * Address:	80108084
  * Size:	000008
  */
-float Creature::getAngularEffect(Vector3f&, Vector3f&)
-{
-	return 0.0f;
-	/*
-	.loc_0x0:
-	  lfs       f1, -0x6BB0(r2)
-	  blr
-	*/
-}
+// WEAK - in header
+// float Creature::getAngularEffect(Vector3f&, Vector3f&) { return 0.0f; }
 
 /*
  * --INFO--
  * Address:	8010808C
  * Size:	000008
  */
-bool Creature::ignoreAtari(Game::Creature*) { return false; }
+// WEAK - in header
+// bool Creature::ignoreAtari(Game::Creature*) { return false; }
 
 /*
  * --INFO--
  * Address:	80108094
  * Size:	000038
  */
-Vector3f Creature::getSuckPos() { return getPosition(); }
+// WEAK - in header
+// Vector3f Creature::getSuckPos() { return getPosition(); }
 
 /*
  * --INFO--
  * Address:	801080CC
  * Size:	000038
  */
-Vector3f Creature::getGoalPos() { return getPosition(); }
+// WEAK - in header
+// Vector3f Creature::getGoalPos() { return getPosition(); }
 
 /*
  * --INFO--
  * Address:	80108104
  * Size:	000008
  */
-bool Creature::isSuckReady() { return true; }
+// WEAK - in header
+// bool Creature::isSuckReady() { return true; }
 
 /*
  * --INFO--
  * Address:	8010810C
  * Size:	000008
  */
-BOOL Creature::isSuckArriveWait() { return FALSE; }
+// WEAK - in header
+// BOOL Creature::isSuckArriveWait() { return FALSE; }
 
 /*
  * --INFO--
  * Address:	80108114
  * Size:	000008
  */
-u16 Creature::getObjType() { return m_objectTypeID; }
+// WEAK - in header
+// u16 Creature::getObjType() { return m_objectTypeID; }
 
 /*
  * --INFO--
  * Address:	8010811C
  * Size:	000024
  */
-bool Creature::collisionUpdatable() { return m_updateContext.updatable(); }
+// WEAK - in header
+// bool Creature::collisionUpdatable() { return m_updateContext.updatable(); }
 
 /*
  * --INFO--
  * Address:	80108140
  * Size:	000008
  */
-bool CellObject::deferPikiCollision() { return false; }
+// WEAK - in header
+// bool CellObject::deferPikiCollision() { return false; }
 
 /*
  * --INFO--
  * Address:	80108148
  * Size:	000070
  */
-EnemyAnimKeyEvent::~EnemyAnimKeyEvent()
-{
-	/*
-	.loc_0x0:
-	  stwu      r1, -0x10(r1)
-	  mflr      r0
-	  stw       r0, 0x14(r1)
-	  stw       r31, 0xC(r1)
-	  mr        r31, r4
-	  stw       r30, 0x8(r1)
-	  mr.       r30, r3
-	  beq-      .loc_0x54
-	  lis       r4, 0x804B
-	  subi      r0, r4, 0x59B4
-	  stw       r0, 0x0(r30)
-	  beq-      .loc_0x44
-	  lis       r5, 0x804B
-	  li        r4, 0
-	  subi      r0, r5, 0x59A4
-	  stw       r0, 0x0(r30)
-	  bl        0x309400
-
-	.loc_0x44:
-	  extsh.    r0, r31
-	  ble-      .loc_0x54
-	  mr        r3, r30
-	  bl        -0xE40E4
-
-	.loc_0x54:
-	  lwz       r0, 0x14(r1)
-	  mr        r3, r30
-	  lwz       r31, 0xC(r1)
-	  lwz       r30, 0x8(r1)
-	  mtlr      r0
-	  addi      r1, r1, 0x10
-	  blr
-	*/
-}
+// WEAK - in header
+// EnemyAnimKeyEvent::~EnemyAnimKeyEvent() { }
 
 /*
  * --INFO--
  * Address:	801081B8
  * Size:	000004
  */
-void PelletView::view_start_carrymotion() { }
+// WEAK - in header
+// void PelletView::view_start_carrymotion() { }
 
 /*
  * --INFO--
  * Address:	801081BC
  * Size:	000004
  */
-void PelletView::view_finish_carrymotion() { }
+// WEAK - in header
+// void PelletView::view_finish_carrymotion() { }
 
 /*
  * --INFO--
  * Address:	801081C0
  * Size:	000004
  */
-void PelletView::viewStartPreCarryMotion() { }
+// WEAK - in header
+// void PelletView::viewStartPreCarryMotion() { }
 
 /*
  * --INFO--
  * Address:	801081C4
  * Size:	000004
  */
-void PelletView::viewStartCarryMotion() { }
+// WEAK - in header
+// void PelletView::viewStartCarryMotion() { }
 
 /*
  * --INFO--
  * Address:	801081C8
  * Size:	000004
  */
-void PelletView::viewOnPelletKilled() { }
+// WEAK - in header
+// void PelletView::viewOnPelletKilled() { }
 
 /*
  * --INFO--
  * Address:	801081CC
  * Size:	000008
  */
-EnemyFSMState* EnemyBaseFSM::StateMachine::getCurrState(Game::EnemyBase*)
-{
-	/*
-	.loc_0x0:
-	  lwz       r3, 0x1C(r3)
-	  blr
-	*/
-}
+// WEAK - in header
+// EnemyFSMState* EnemyBaseFSM::StateMachine::getCurrState(Game::EnemyBase*) { return m_state; }
 
 /*
  * --INFO--
  * Address:	801081D4
  * Size:	000008
  */
-void EnemyBaseFSM::StateMachine::setCurrState(Game::EnemyBase*, Game::EnemyFSMState*)
-{
-	/*
-	.loc_0x0:
-	  stw       r5, 0x1C(r3)
-	  blr
-	*/
-}
+// WEAK - in header
+// void EnemyBaseFSM::StateMachine::setCurrState(Game::EnemyBase*, Game::EnemyFSMState*)
+// {
+// 	m_state = static_cast<State*>(state);
+// }
 
 /*
  * --INFO--
  * Address:	801081DC
  * Size:	000004
  */
-void EnemyFSMState::exec(Game::EnemyBase*) { }
+// WEAK - in header
+// void EnemyFSMState::exec(Game::EnemyBase*) { }
 
 /*
  * --INFO--
  * Address:	801081E0
  * Size:	000004
  */
-void EnemyFSMState::resume(Game::EnemyBase*) { }
+// WEAK - in header
+// void EnemyFSMState::resume(Game::EnemyBase*) { }
 
 /*
  * --INFO--
  * Address:	801081E4
  * Size:	000004
  */
-void EnemyFSMState::restart(Game::EnemyBase*) { }
+// WEAK - in header
+// void EnemyFSMState::restart(Game::EnemyBase*) { }
 
 /*
  * --INFO--
  * Address:	801081E8
  * Size:	000004
  */
-void EnemyFSMState::doDirectDraw(Game::EnemyBase*, Graphics&) { }
+// WEAK - in header
+// void EnemyFSMState::doDirectDraw(Game::EnemyBase*, Graphics&) { }
 
 /*
  * --INFO--
  * Address:	801081EC
  * Size:	000004
  */
-void EnemyFSMState::init(Game::EnemyBase*, Game::StateArg*) { }
+// WEAK - in header
+// void EnemyFSMState::init(Game::EnemyBase*, Game::StateArg*) { }
 
 /*
  * --INFO--
  * Address:	801081F0
  * Size:	000004
  */
-void EnemyFSMState::cleanup(Game::EnemyBase*) { }
+// WEAK - in header
+// void EnemyFSMState::cleanup(Game::EnemyBase*) { }
 
 // } // namespace Game
 
@@ -9816,14 +9314,10 @@ void EnemyFSMState::cleanup(Game::EnemyBase*) { }
 //  * Address:	801081F4
 //  * Size:	00000C
 //  */
+// WEAK - in header
 // const char* ArgEnemyType::getName()
 // {
-// 	/*
-// 	.loc_0x0:
-// 	  lis       r3, 0x8048
-// 	  subi      r3, r3, 0x59B4
-// 	  blr
-// 	*/
+// 		return "ArgEnemyType";
 // }
 
 // /*
@@ -9832,13 +9326,10 @@ void EnemyFSMState::cleanup(Game::EnemyBase*) { }
 //  * Address:	80108200
 //  * Size:	000008
 //  */
+// WEAK - in header
 // char* Arg::getName()
 // {
-// 	/*
-// 	.loc_0x0:
-// 	  subi      r3, r2, 0x6B14
-// 	  blr
-// 	*/
+// 		return "Arg";
 // }
 
 // } // namespace efx
@@ -9850,28 +9341,32 @@ void EnemyFSMState::cleanup(Game::EnemyBase*) { }
  * Address:	80108208
  * Size:	000004
  */
-void EnemyBaseFSM::AppearState::simulation(Game::EnemyBase*, float) { }
+// WEAK - in header
+// void EnemyBaseFSM::AppearState::simulation(Game::EnemyBase*, float) { }
 
 /*
  * --INFO--
  * Address:	8010820C
  * Size:	000004
  */
-void EnemyBaseFSM::BirthTypeDropState::entry(Game::EnemyBase*) { }
+// WEAK - in header
+// void EnemyBaseFSM::BirthTypeDropState::entry(Game::EnemyBase*) { }
 
 /*
  * --INFO--
  * Address:	80108210
  * Size:	000004
  */
-void EnemyBaseFSM::BirthTypeDropState::simulation(Game::EnemyBase*, float) { }
+// WEAK - in header
+// void EnemyBaseFSM::BirthTypeDropState::simulation(Game::EnemyBase*, float) { }
 
 /*
  * --INFO--
  * Address:	80108214
  * Size:	000004
  */
-void EnemyBaseFSM::BirthTypeDropState::animation(Game::EnemyBase*) { }
+// WEAK - in header
+// void EnemyBaseFSM::BirthTypeDropState::animation(Game::EnemyBase*) { }
 
 } // namespace Game
 

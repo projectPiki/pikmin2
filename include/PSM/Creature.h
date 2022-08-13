@@ -17,7 +17,7 @@ struct StartSoundArg;
 
 struct Creature : public ObjBase {
 	// vtable 2 (JKRDisposer + ObjBase + self)
-	virtual ~Creature();                          // _04
+	virtual ~Creature() { }                       // _04
 	virtual void frameEnd_onPlaySe()       = 0;   // _08
 	virtual CreatureCastType getCastType() = 0;   // _0C
 	virtual void exec();                          // _18
@@ -28,9 +28,10 @@ struct Creature : public ObjBase {
 	virtual bool judgeNearWithPlayer(const Vec&, const Vec&, float,
 	                                 float);  // _24
 	virtual void onPlayingSe(u32, JAISound*); // _28
-	virtual void getHandleArea(u8) = 0;       // _2C
+	virtual JAISound** getHandleArea(u8) = 0; // _2C
 
-	Game::Creature* m_gameObj;
+	// VTABLE 2: _28
+	Game::Creature* m_gameObj; // _2C
 };
 } // namespace PSM
 

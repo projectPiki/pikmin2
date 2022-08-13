@@ -28,7 +28,7 @@ struct Info {
 struct DrawInfo : CNode {
 	// DrawInfo(bool); - also has a defctor, so :shrug:
 
-	virtual ~DrawInfo(); // _08 (weak)
+	virtual ~DrawInfo() { } // _08 (weak)
 
 	void reset();
 	void update(EnemyBase*);
