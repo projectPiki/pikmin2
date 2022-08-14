@@ -5,6 +5,7 @@
 #include "Game/generalEnemyMgr.h"
 #include "efx/Arg.h"
 #include "efx/TEnemyApsmoke.h"
+#include "efx/TEnemyBomb.h"
 #include "efx/TEnemyDead.h"
 #include "efx/TEnemyDownSmoke.h"
 #include "efx/TEnemyDownWat.h"
@@ -43,6 +44,7 @@
 #include "PSM/CreatureAnime.h"
 #include "PSM/EnemyBase.h"
 #include "PSM/EnemyHekoi.h"
+#include "PSM/EnemyBoss.h"
 #include "PSGame/Global.h"
 #include "Sys/Sphere.h"
 #include "SysShape/AnimInfo.h"
@@ -5794,95 +5796,23 @@ void EnemyBase::deathProcedure()
 {
 	_1E0.m_flags[0].typeView &= ~8;
 	setAlive(false);
-	if ((_1E0.m_flags[0].typeView & 0x200) == 0) {
-		throwupItemInDeathProcedure();
-	} else {
+
+	if (_1E0.m_flags[0].typeView & 0x200) {
 		throwupItem();
+	} else {
+		throwupItemInDeathProcedure();
 	}
 	startMotion();
+
 	if (_1E0.m_flags[0].typeView & 0x100) {
 		createDeadBombEffect();
 		PSStartEnemyFatalHitSE(this, 0.0f);
 	}
-	if (m_soundObj->getCastType() == PSM::CCT_EnemyMidBoss || m_soundObj->getCastType() == PSM::CCT_EnemyBigBoss) {
-		// TODO: I think this is either calling onDisappear or onDeathMotionTop
-		// m_soundObj->
+
+	PSM::EnemyBase* soundObj = m_soundObj;
+	if ((soundObj->getCastType() == PSM::CCT_EnemyMidBoss) || (soundObj->getCastType() == PSM::CCT_EnemyBigBoss)) {
+		static_cast<PSM::EnemyBoss*>(soundObj)->onDeathMotionTop();
 	}
-	/*
-	.loc_0x0:
-	    stwu      r1, -0x10(r1)
-	    mflr      r0
-	    li        r4, 0
-	    stw       r0, 0x14(r1)
-	    stw       r31, 0xC(r1)
-	    mr        r31, r3
-	    lwz       r0, 0x1E0(r3)
-	    rlwinm    r0,r0,0,29,27
-	    stw       r0, 0x1E0(r3)
-	    lwz       r12, 0x0(r3)
-	    lwz       r12, 0xAC(r12)
-	    mtctr     r12
-	    bctrl
-	    lwz       r0, 0x1E0(r31)
-	    rlwinm.   r0,r0,0,22,22
-	    beq-      .loc_0x58
-	    mr        r3, r31
-	    lwz       r12, 0x0(r31)
-	    lwz       r12, 0x264(r12)
-	    mtctr     r12
-	    bctrl
-	    b         .loc_0x6C
-
-	.loc_0x58:
-	    mr        r3, r31
-	    lwz       r12, 0x0(r31)
-	    lwz       r12, 0x270(r12)
-	    mtctr     r12
-	    bctrl
-
-	.loc_0x6C:
-	    mr        r3, r31
-	    bl        0x1A74
-	    lwz       r0, 0x1E0(r31)
-	    rlwinm.   r0,r0,0,23,23
-	    beq-      .loc_0x94
-	    mr        r3, r31
-	    bl        0xD0
-	    lfs       f1, -0x6BB0(r2)
-	    mr        r3, r31
-	    bl        0x368C64
-
-	.loc_0x94:
-	    lwz       r31, 0x28C(r31)
-	    mr        r3, r31
-	    lwz       r12, 0x28(r31)
-	    lwz       r12, 0x1C(r12)
-	    mtctr     r12
-	    bctrl
-	    cmpwi     r3, 0x6
-	    beq-      .loc_0xD0
-	    mr        r3, r31
-	    lwz       r12, 0x28(r31)
-	    lwz       r12, 0x1C(r12)
-	    mtctr     r12
-	    bctrl
-	    cmpwi     r3, 0x7
-	    bne-      .loc_0xE4
-
-	.loc_0xD0:
-	    mr        r3, r31
-	    lwz       r12, 0x28(r31)
-	    lwz       r12, 0xE0(r12)
-	    mtctr     r12
-	    bctrl
-
-	.loc_0xE4:
-	    lwz       r0, 0x14(r1)
-	    lwz       r31, 0xC(r1)
-	    mtlr      r0
-	    addi      r1, r1, 0x10
-	    blr
-	*/
 }
 
 // } // namespace Game
@@ -6390,33 +6320,12 @@ void EnemyBase::getLifeGaugeParam(Game::LifeGaugeParam& param)
  */
 void EnemyBase::doGetLifeGaugeParam(Game::LifeGaugeParam& param)
 {
-	float posY    = m_position.y;
-	float offsetY = static_cast<EnemyParmsBase*>(m_parms)->m_general.m_lifeMeterHeight();
-	float posZ    = m_position.z;
-	param._00.x   = m_position.x;
-	param._00.y   = posY + offsetY;
-	param._00.z   = posZ;
-	param._0C     = m_health / m_maxHealth;
-	param._10     = 10.0f;
-	/*
-	.loc_0x0:
-	    lwz       r5, 0xC0(r3)
-	    lfs       f2, 0x190(r3)
-	    lfs       f0, 0x12C(r5)
-	    lfs       f3, 0x194(r3)
-	    lfs       f1, 0x18C(r3)
-	    fadds     f2, f2, f0
-	    lfs       f0, -0x6B48(r2)
-	    stfs      f1, 0x0(r4)
-	    stfs      f2, 0x4(r4)
-	    stfs      f3, 0x8(r4)
-	    lfs       f2, 0x200(r3)
-	    lfs       f1, 0x204(r3)
-	    fdivs     f1, f2, f1
-	    stfs      f1, 0xC(r4)
-	    stfs      f0, 0x10(r4)
-	    blr
-	*/
+	float y                  = m_position.y + static_cast<EnemyParmsBase*>(m_parms)->m_general.m_lifeMeterHeight.m_value;
+	float z                  = m_position.z;
+	float x                  = m_position.x;
+	param.m_position         = Vector3f(x, y, z);
+	param.m_healthPercentage = m_health / m_maxHealth;
+	param._10                = 10.0f;
 }
 
 /*

@@ -9,11 +9,10 @@ namespace PSM {
  * @size = 0x100
  */
 struct EnemyBoss : public EnemyBase {
-	virtual ~EnemyBoss(); // _14 (weak)
-	virtual CreatureCastType getCastType()
-	    :                    // _1C (weak)
-	    virtual void exec(); // _20
-	virtual void onCalcOn(); // _28
+	virtual ~EnemyBoss();                   // _14 (weak)
+	virtual CreatureCastType getCastType(); // _1C (weak)
+	virtual void exec();                    // _20
+	virtual void onCalcOn();                // _28
 	virtual bool judgeNearWithPlayer(const Vec&, const Vec&, float,
 	                                 float);            // _34
 	virtual void onPlayingSe(unsigned long, JAISound*); // _38
