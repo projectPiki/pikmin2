@@ -6426,17 +6426,25 @@ bool EnemyBase::flyCollisionCallBack(Game::Creature*, float, CollPart*) { return
  * Address:	801060C4
  * Size:	000248
  */
+// WIP: https://decomp.me/scratch/q8OtK - needs correct createSplashDownEffect inline
 bool EnemyBase::hipdropCallBack(Game::Creature* sourceCreature, float damage, CollPart* p3)
 {
-	damageCallBack(sourceCreature, static_cast<EnemyParmsBase*>(m_parms)->m_general.m_purplePikminHipDropDamage(), p3);
+	float purpleDamage = static_cast<EnemyParmsBase*>(m_parms)->m_general.m_purplePikminHipDropDamage();
+
+	if (!(_1E0.m_flags[0].typeView & 1)) {
+		m_instantDamage += purpleDamage;
+		if (_1E0.m_flags[0].typeView & 0x20) {
+			m_toFlick += PELLETVIEW_BASE_SCALE;
+		}
+		_1E0.m_flags[0].typeView |= 2;
+	}
+
 	_1E0.m_flags[0].typeView |= 0x80000;
 	if (_0C8 != 0) {
-		if (m_waterBox) {
-
-		} else {
-			createDropEffect(m_position, getDownSmokeScale());
-		}
+		createSplashDownEffect(m_position, getDownSmokeScale());
+		createDropEffect(m_position, getDownSmokeScale());
 	}
+	return false;
 	/*
 	.loc_0x0:
 	    stwu      r1, -0xA0(r1)
@@ -6634,76 +6642,18 @@ bool EnemyBase::checkBirthTypeDropEarthquake()
  * Address:	801063C4
  * Size:	0000EC
  */
-bool EnemyBase::earthquakeCallBack(Game::Creature*, float)
+bool EnemyBase::earthquakeCallBack(Game::Creature* creature, float p1)
 {
-	/*
-	.loc_0x0:
-	    stwu      r1, -0x30(r1)
-	    mflr      r0
-	    stw       r0, 0x34(r1)
-	    stfd      f31, 0x20(r1)
-	    psq_st    f31,0x28(r1),0,0
-	    stw       r31, 0x1C(r1)
-	    mr        r31, r3
-	    fmr       f31, f1
-	    lwz       r0, 0xC8(r3)
-	    cmplwi    r0, 0
-	    beq-      .loc_0xCC
-	    lfs       f1, 0x200(r31)
-	    lfs       f0, -0x6BB0(r2)
-	    fcmpo     cr0, f1, f0
-	    cror      2, 0, 0x2
-	    beq-      .loc_0xCC
-	    lwz       r12, 0x0(r3)
-	    lwz       r12, 0xCC(r12)
-	    mtctr     r12
-	    bctrl
-	    rlwinm.   r0,r3,0,24,31
-	    bne-      .loc_0xCC
-	    mr        r3, r31
-	    lwz       r12, 0x0(r31)
-	    lwz       r12, 0xA8(r12)
-	    mtctr     r12
-	    bctrl
-	    rlwinm.   r0,r3,0,24,31
-	    beq-      .loc_0xCC
-	    lwz       r4, 0x1E0(r31)
-	    rlwinm.   r0,r4,0,13,13
-	    bne-      .loc_0xCC
-	    rlwinm.   r0,r4,0,22,22
-	    bne-      .loc_0xCC
-	    rlwinm.   r0,r4,0,10,10
-	    li        r3, 0
-	    bne-      .loc_0x9C
-	    rlwinm.   r0,r4,0,9,9
-	    beq-      .loc_0xA0
-
-	.loc_0x9C:
-	    li        r3, 0x1
-
-	.loc_0xA0:
-	    rlwinm.   r0,r3,0,24,31
-	    bne-      .loc_0xCC
-	    stfs      f31, 0x8(r1)
-	    mr        r4, r31
-	    addi      r6, r1, 0x8
-	    li        r5, 0x8
-	    lwz       r3, 0x2B8(r31)
-	    lwz       r12, 0x0(r3)
-	    lwz       r12, 0x14(r12)
-	    mtctr     r12
-	    bctrl
-
-	.loc_0xCC:
-	    li        r3, 0
-	    psq_l     f31,0x28(r1),0,0
-	    lwz       r0, 0x34(r1)
-	    lfd       f31, 0x20(r1)
-	    lwz       r31, 0x1C(r1)
-	    mtlr      r0
-	    addi      r1, r1, 0x30
-	    blr
-	*/
+	if (_0C8 && !(m_health <= 0.0f) && !isFlying() && isAlive()) {
+		if (!(_1E0.m_flags[0].typeView & 0x40000) && !(_1E0.m_flags[0].typeView & 0x200)) {
+			if (((_1E0.m_flags[0].typeView & 0x200000) || (_1E0.m_flags[0].typeView & 0x400000)) == false) {
+				StateArg transitArg;
+				transitArg._00 = p1;
+				m_lifecycleFSM->transit(this, 8, &transitArg);
+			}
+		}
+	}
+	return false;
 }
 
 /*
@@ -6812,33 +6762,19 @@ bool EnemyBase::farmCallBack(Game::Creature*, float) { return false; }
  * Address:	801065C8
  * Size:	000048
  */
-bool EnemyBase::bombCallBack(Game::Creature*, Vector3f&, float)
+bool EnemyBase::bombCallBack(Game::Creature* creature, Vector3f& vec, float damage)
 {
-	/*
-	.loc_0x0:
-	    lwz       r0, 0x1E0(r3)
-	    rlwinm.   r0,r0,0,31,31
-	    bne-      .loc_0x40
-	    lfs       f0, 0x208(r3)
-	    fadds     f0, f0, f1
-	    stfs      f0, 0x208(r3)
-	    lwz       r0, 0x1E0(r3)
-	    rlwinm.   r0,r0,0,26,26
-	    beq-      .loc_0x34
-	    lfs       f1, 0x20C(r3)
-	    lfs       f0, -0x6B9C(r2)
-	    fadds     f0, f1, f0
-	    stfs      f0, 0x20C(r3)
+	if (!(_1E0.m_flags[0].typeView & 1)) {
+		m_instantDamage += damage;
 
-	.loc_0x34:
-	    lwz       r0, 0x1E0(r3)
-	    ori       r0, r0, 0x2
-	    stw       r0, 0x1E0(r3)
+		if (_1E0.m_flags[0].typeView & 0x20) {
+			m_toFlick += PELLETVIEW_BASE_SCALE;
+		}
 
-	.loc_0x40:
-	    li        r3, 0x1
-	    blr
-	*/
+		_1E0.m_flags[0].typeView |= 2;
+	}
+
+	return true;
 }
 
 /*
@@ -6846,32 +6782,10 @@ bool EnemyBase::bombCallBack(Game::Creature*, Vector3f&, float)
  * Address:	80106610
  * Size:	000054
  */
-void EnemyBase::collisionCallback(Game::CollEvent&)
+void EnemyBase::collisionCallback(Game::CollEvent& coll)
 {
-	/*
-	.loc_0x0:
-	    stwu      r1, -0x10(r1)
-	    mflr      r0
-	    stw       r0, 0x14(r1)
-	    stw       r31, 0xC(r1)
-	    mr        r31, r4
-	    li        r4, 0
-	    stw       r30, 0x8(r1)
-	    mr        r30, r3
-	    bl        -0x2634
-	    mr        r3, r30
-	    mr        r4, r31
-	    lwz       r12, 0x0(r30)
-	    lwz       r12, 0x240(r12)
-	    mtctr     r12
-	    bctrl
-	    lwz       r0, 0x14(r1)
-	    lwz       r31, 0xC(r1)
-	    lwz       r30, 0x8(r1)
-	    mtlr      r0
-	    addi      r1, r1, 0x10
-	    blr
-	*/
+	finishDropping(false);
+	setCollEvent(coll);
 }
 
 /*
@@ -7218,186 +7132,39 @@ void EnemyBase::updateWaterBox()
  */
 PSM::EnemyBase* EnemyBase::createPSEnemyBase()
 {
-	/*
-	.loc_0x0:
-	    stwu      r1, -0x10(r1)
-	    mflr      r0
-	    stw       r0, 0x14(r1)
-	    stw       r31, 0xC(r1)
-	    mr        r31, r3
-	    stw       r30, 0x8(r1)
-	    li        r30, 0
-	    lwz       r12, 0x0(r3)
-	    lwz       r12, 0x258(r12)
-	    mtctr     r12
-	    bctrl
-	    cmpwi     r3, 0x23
-	    beq-      .loc_0x50
-	    mr        r3, r31
-	    lwz       r12, 0x0(r31)
-	    lwz       r12, 0x258(r12)
-	    mtctr     r12
-	    bctrl
-	    cmpwi     r3, 0x21
-	    bne-      .loc_0xCC
+	PSM::EnemyBase* base = nullptr;
 
-	.loc_0x50:
-	    li        r3, 0xE0
-	    bl        -0xE2EA0
-	    mr.       r30, r3
-	    beq-      .loc_0xC4
-	    mr        r4, r31
-	    li        r5, 0x4
-	    bl        0x3576EC
-	    lis       r4, 0x804F
-	    lis       r3, 0x804F
-	    subi      r4, r4, 0x1290
-	    stw       r4, 0x28(r30)
-	    subi      r6, r3, 0x1634
-	    addi      r3, r4, 0x8
-	    addi      r0, r4, 0x40
-	    stw       r3, 0x10(r30)
-	    addi      r8, r4, 0xA4
-	    addi      r7, r4, 0xB4
-	    addi      r5, r6, 0x8
-	    stw       r0, 0x30(r30)
-	    addi      r4, r6, 0x40
-	    addi      r3, r6, 0xA4
-	    addi      r0, r6, 0xB4
-	    stw       r8, 0xC8(r30)
-	    stw       r7, 0xDC(r30)
-	    stw       r6, 0x28(r30)
-	    stw       r5, 0x10(r30)
-	    stw       r4, 0x30(r30)
-	    stw       r3, 0xC8(r30)
-	    stw       r0, 0xDC(r30)
+	if (getEnemyTypeID() == EnemyTypeID::EnemyID_KumaChappy || getEnemyTypeID() == EnemyTypeID::EnemyID_FireChappy) {
+		base = new PSM::Enemy_SpecialChappy(this, 4);
+		return base;
+	} else {
+		EnemyInfo* info = EnemyInfoFunc::getEnemyInfo(getEnemyTypeID(), 0xFFFF);
 
-	.loc_0xC4:
-	    mr        r3, r30
-	    b         .loc_0x264
-
-	.loc_0xCC:
-	    mr        r3, r31
-	    lwz       r12, 0x0(r31)
-	    lwz       r12, 0x258(r12)
-	    mtctr     r12
-	    bctrl
-	    lis       r4, 0x1
-	    subi      r4, r4, 0x1
-	    bl        0x1C4A0
-	    lbz       r0, 0x30(r3)
-	    extsb     r0, r0
-	    cmplwi    r0, 0x8
-	    bgt-      .loc_0x260
-	    lis       r3, 0x804B
-	    rlwinm    r0,r0,2,0,29
-	    subi      r3, r3, 0x5E50
-	    lwzx      r0, r3, r0
-	    mtctr     r0
-	    bctr
-	    li        r3, 0xE0
-	    bl        -0xE2F64
-	    mr.       r30, r3
-	    beq-      .loc_0x260
-	    mr        r4, r31
-	    li        r5, 0x2
-	    bl        0x357628
-	    lis       r3, 0x804B
-	    subi      r5, r3, 0x5E1C
-	    stw       r5, 0x28(r30)
-	    addi      r0, r5, 0x8
-	    addi      r4, r5, 0x40
-	    addi      r3, r5, 0xA4
-	    stw       r0, 0x10(r30)
-	    addi      r0, r5, 0xB4
-	    stw       r4, 0x30(r30)
-	    stw       r3, 0xC8(r30)
-	    stw       r0, 0xDC(r30)
-	    b         .loc_0x260
-	    li        r3, 0xE0
-	    bl        -0xE2FB0
-	    mr.       r0, r3
-	    beq-      .loc_0x180
-	    mr        r4, r31
-	    li        r5, 0x3
-	    bl        0x3575DC
-	    mr        r0, r3
-
-	.loc_0x180:
-	    mr        r30, r0
-	    b         .loc_0x260
-	    li        r3, 0xE0
-	    bl        -0xE2FD8
-	    mr.       r30, r3
-	    beq-      .loc_0x260
-	    mr        r4, r31
-	    li        r5, 0x4
-	    bl        0x3575B4
-	    lis       r3, 0x804F
-	    subi      r5, r3, 0x1290
-	    stw       r5, 0x28(r30)
-	    addi      r0, r5, 0x8
-	    addi      r4, r5, 0x40
-	    addi      r3, r5, 0xA4
-	    stw       r0, 0x10(r30)
-	    addi      r0, r5, 0xB4
-	    stw       r4, 0x30(r30)
-	    stw       r3, 0xC8(r30)
-	    stw       r0, 0xDC(r30)
-	    b         .loc_0x260
-	    lis       r3, 0x8048
-	    lis       r5, 0x8048
-	    subi      r3, r3, 0x5ABC
-	    li        r4, 0x1128
-	    subi      r5, r5, 0x59F4
-	    crclr     6, 0x6
-	    bl        -0xDC89C
-	    b         .loc_0x260
-	    li        r3, 0x11C
-	    bl        -0xE3044
-	    mr.       r0, r3
-	    beq-      .loc_0x210
-	    mr        r4, r31
-	    bl        0x359078
-	    mr        r0, r3
-
-	.loc_0x210:
-	    mr        r30, r0
-	    b         .loc_0x260
-	    li        r3, 0x120
-	    bl        -0xE3068
-	    mr.       r0, r3
-	    beq-      .loc_0x234
-	    mr        r4, r31
-	    bl        0x3598D0
-	    mr        r0, r3
-
-	.loc_0x234:
-	    mr        r30, r0
-	    b         .loc_0x260
-	    li        r3, 0xE0
-	    bl        -0xE308C
-	    mr.       r0, r3
-	    beq-      .loc_0x25C
-	    mr        r4, r31
-	    li        r5, 0x2
-	    bl        0x358028
-	    mr        r0, r3
-
-	.loc_0x25C:
-	    mr        r30, r0
-
-	.loc_0x260:
-	    mr        r3, r30
-
-	.loc_0x264:
-	    lwz       r0, 0x14(r1)
-	    lwz       r31, 0xC(r1)
-	    lwz       r30, 0x8(r1)
-	    mtlr      r0
-	    addi      r1, r1, 0x10
-	    blr
-	*/
+		switch (info->m_bitterDrops) {
+		case BDT_Weak:
+			base = new PSM::EnemyHekoi(this, 2);
+			break;
+		case BDT_Normal:
+			base = new PSM::EnemyBase(this, 3);
+			break;
+		case BDT_Strong:
+			base = new PSM::EnemyBig(this, 4);
+			break;
+		case BDT_Triple:
+			JUT_PANICLINE(4392, "abolished type\n");
+			break;
+		case BDT_Empty:
+			base = new PSM::EnemyMidBoss(this);
+			break;
+		case BDT_Boss:
+			base = new PSM::EnemyBigBoss(this);
+			break;
+		case BDT_FinalBoss:
+			base = new PSM::EnemyNotAggressive(this, 2);
+			break;
+		}
+	}
+	return base;
 }
 
 // } // namespace Game
