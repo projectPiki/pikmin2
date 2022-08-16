@@ -1,31 +1,26 @@
 .include "macros.inc"
 .section .rodata  # 0x804732E0 - 0x8049E220
 .balign 8
-.global lbl_80495B68
 lbl_80495B68:
-	.4byte 0x65667832
-	.4byte 0x64456666
-	.4byte 0x65637400
-	.4byte 0x41726753
-	.4byte 0x63616C65
-	.4byte 0x00000000
-	.4byte 0x65667832
-	.4byte 0x64456666
-	.4byte 0x6563742E
-	.4byte 0x63707000
+	.asciz "efx2dEffect"
+.balign 4
+lbl_80495B74:
+	.asciz "ArgScale"
+.balign 4
+lbl_80495B80:
+	.asciz "efx2dEffect.cpp"
+.balign 4
+lbl_80495B90:
 	.asciz "P2Assert"
-	.skip 3
-	.4byte 0x41726753
-	.4byte 0x63616C65
-	.4byte 0x436F6C6F
-	.4byte 0x72436F6C
-	.4byte 0x6F720000
-	.4byte 0x41726743
-	.4byte 0x6F6C6F72
-	.4byte 0x00000000
-	.4byte 0x41726746
-	.4byte 0x696C6563
-	.4byte 0x6F707900
+.balign 4
+lbl_80495B9C:
+	.asciz "ArgScaleColorColor"
+.balign 4
+lbl_80495BB0:
+	.asciz "ArgColor"
+.balign 4
+lbl_80495BBC:
+	.asciz "ArgFilecopy"
 
 .section .data, "wa"  # 0x8049E220 - 0x804EFC20
 .balign 8
@@ -176,20 +171,15 @@ __vt__Q25efx2d9T2DCursor:
 	.4byte drawAfter__18JPAEmitterCallBackFP14JPABaseEmitter
 	.4byte __dt__Q25efx2d9T2DCursorFv
 	.4byte execute__Q25efx2d9TChasePosFP14JPABaseEmitter
-	.4byte 0
 
 .section .sdata2, "a"     # 0x80516360 - 0x80520E40
 .balign 8
-.global lbl_8051F6E0
 lbl_8051F6E0:
-	.4byte 0x3C8AD8F3
-.global lbl_8051F6E4
+	.float 0.016949153
 lbl_8051F6E4:
-	.4byte 0x00000000
-.global lbl_8051F6E8
+	.float 0.0
 lbl_8051F6E8:
-	.4byte 0x43480000
-.global lbl_8051F6EC
+	.float 200.0
 lbl_8051F6EC:
 	.float 1.0
 

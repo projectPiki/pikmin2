@@ -5,59 +5,38 @@ lbl_constructor:
 
 .section .rodata  # 0x804732E0 - 0x8049E220
 .balign 8
-.global lbl_80495BC8
 lbl_80495BC8:
 	.4byte 0x00000000
 	.4byte 0x00000000
 	.4byte 0x00000000
-	.4byte 0x70617274
-	.4byte 0x69636C65
-	.4byte 0x4D677200
-.global lbl_80495BE0
+.balign 4
+lbl_80495BD4:
+	.asciz "particleMgr"
+.balign 4
 lbl_80495BE0:
-	.4byte 0x50617274
-	.4byte 0x69636C65
-	.4byte 0x4D677200
-.global lbl_80495BEC
+	.asciz "ParticleMgr"
+.balign 4
 lbl_80495BEC:
-	.4byte 0x70617274
-	.4byte 0x69636C65
-	.4byte 0x4D67722E
-	.4byte 0x63707000
-.global lbl_80495BFC
+	.asciz "particleMgr.cpp"
+.balign 4
 lbl_80495BFC:
 	.asciz "P2Assert"
-	.skip 3
-	.4byte 0x65666665
-	.4byte 0x63742068
-	.4byte 0x65617020
-	.4byte 0x6E6F7420
-	.4byte 0x616C6C6F
-	.4byte 0x63617465
-	.4byte 0x6420210A
-	.4byte 0x00000000
-	.4byte 0x50617274
-	.4byte 0x69636C65
-	.4byte 0x5265736F
-	.4byte 0x75726365
-	.4byte 0x20282573
-	.4byte 0x29206E6F
-	.4byte 0x7420666F
-	.4byte 0x756E640A
-	.4byte 0x00000000
-.global lbl_80495C4C
+.balign 4
+lbl_80495C08:
+	.asciz "effect heap not allocated !\n"
+.balign 4
+lbl_80495C28:
+	.asciz "ParticleResource (%s) not found\n"
+.balign 4
 lbl_80495C4C:
-	.4byte 0x4950325F
-	.4byte 0x64756D6D
-	.4byte 0x79000000
+	.asciz "IP2_dummy"
 
 .section .data, "wa"  # 0x8049E220 - 0x804EFC20
 .balign 8
-.global lbl_804E7688
-lbl_804E7688:
-	.4byte 0x00000000
-	.4byte 0x00000000
-	.4byte 0x00000000
+govNAN___Q24Game5P2JST:
+	.float 0.0
+	.float 0.0
+	.float 0.0
 .global __vt__11ParticleMgr
 __vt__11ParticleMgr:
 	.4byte 0
@@ -188,11 +167,9 @@ mClipRadiusL__11ParticleMgr:
 
 .section .sbss # 0x80514D80 - 0x80516360
 .balign 8
-.global lbl_80516090
-lbl_80516090:
+gu32NAN___Q24Game5P2JST:
 	.skip 0x4
-.global lbl_80516094
-lbl_80516094:
+gfNAN___Q24Game5P2JST:
 	.skip 0x4
 .global particleMgr
 particleMgr:
@@ -203,12 +180,10 @@ disableCulling__11ParticleMgr:
 
 .section .sdata2, "a"     # 0x80516360 - 0x80520E40
 .balign 8
-.global lbl_8051F6F0
 lbl_8051F6F0:
 	.float 0.5
-.global lbl_8051F6F4
 lbl_8051F6F4:
-	.4byte 0xBF000000
+	.float -0.5
 
 .section .text, "ax"  # 0x800056C0 - 0x80472F00
 .global globalInstance__11ParticleMgrFv
@@ -2359,15 +2334,14 @@ lbl_803BCCA4:
 /* 803BCCB0 003B9BF0  38 21 00 10 */	addi r1, r1, 0x10
 /* 803BCCB4 003B9BF4  4E 80 00 20 */	blr 
 
-.global __sinit_particleMgr_cpp
-__sinit_particleMgr_cpp:
+__sinit_particleMgr_cpp: # static initializer
 /* 803BCCB8 003B9BF8  3C 80 80 51 */	lis r4, __float_nan@ha
 /* 803BCCBC 003B9BFC  38 00 FF FF */	li r0, -1
 /* 803BCCC0 003B9C00  C0 04 48 B0 */	lfs f0, __float_nan@l(r4)
-/* 803BCCC4 003B9C04  3C 60 80 4E */	lis r3, lbl_804E7688@ha
-/* 803BCCC8 003B9C08  90 0D 9A 10 */	stw r0, lbl_80516090@sda21(r13)
-/* 803BCCCC 003B9C0C  D4 03 76 88 */	stfsu f0, lbl_804E7688@l(r3)
-/* 803BCCD0 003B9C10  D0 0D 9A 14 */	stfs f0, lbl_80516094@sda21(r13)
+/* 803BCCC4 003B9C04  3C 60 80 4E */	lis r3, govNAN___Q24Game5P2JST@ha
+/* 803BCCC8 003B9C08  90 0D 9A 10 */	stw r0, gu32NAN___Q24Game5P2JST@sda21(r13)
+/* 803BCCCC 003B9C0C  D4 03 76 88 */	stfsu f0, govNAN___Q24Game5P2JST@l(r3)
+/* 803BCCD0 003B9C10  D0 0D 9A 14 */	stfs f0, gfNAN___Q24Game5P2JST@sda21(r13)
 /* 803BCCD4 003B9C14  D0 03 00 04 */	stfs f0, 4(r3)
 /* 803BCCD8 003B9C18  D0 03 00 08 */	stfs f0, 8(r3)
 /* 803BCCDC 003B9C1C  4E 80 00 20 */	blr 

@@ -2,158 +2,82 @@
 .section .rodata  # 0x804732E0 - 0x8049E220
 .balign 8
 lbl_80496AE8:
-	.4byte 0x65626953
-	.4byte 0x63726565
-	.4byte 0x6E46696C
-	.4byte 0x6553656C
-	.4byte 0x65637400
-	.4byte 0x54536372
-	.4byte 0x65656E44
-	.4byte 0x61746157
-	.4byte 0x696E646F
-	.4byte 0x773A3A73
-	.4byte 0x65744172
-	.4byte 0x63686976
-	.4byte 0x652D2D73
-	.4byte 0x65745F5F
-	.4byte 0x626C6F00
-	.4byte 0x66696C65
-	.4byte 0x5F73656C
-	.4byte 0x6563745F
-	.4byte 0x64775F6E
-	.4byte 0x65772E62
-	.4byte 0x6C6F0000
-	.4byte 0x54536372
-	.4byte 0x65656E5F
-	.4byte 0x46535F73
-	.4byte 0x63656E65
-	.4byte 0x5F6F7065
-	.4byte 0x6E3A3A73
-	.4byte 0x65744172
-	.4byte 0x63686976
-	.4byte 0x652D2D63
-	.4byte 0x616C6C62
-	.4byte 0x61636B5F
-	.4byte 0x6D657373
-	.4byte 0x61676500
+	.asciz "ebiScreenFileSelect"
+.balign 4
+lbl_80496AFC:
+	.asciz "TScreenDataWindow::setArchive--set__blo"
+.balign 4
+lbl_80496B24:
+	.asciz "file_select_dw_new.blo"
+.balign 4
+lbl_80496B3C:
+	.asciz "TScreen_FS_scene_open::setArchive--callback_message"
+.balign 4
 lbl_80496B70:
-	.4byte 0x65626953
-	.4byte 0x63726565
-	.4byte 0x6E46696C
-	.4byte 0x6553656C
-	.4byte 0x6563742E
-	.4byte 0x63707000
+	.asciz "ebiScreenFileSelect.cpp"
+.balign 4
 lbl_80496B88:
 	.asciz "P2Assert"
-	.skip 3
-	.4byte 0x66696C65
-	.4byte 0x5F73656C
-	.4byte 0x6563745F
-	.4byte 0x64775F64
-	.4byte 0x6174612E
-	.4byte 0x626C6F00
-	.4byte 0x54536372
-	.4byte 0x65656E46
-	.4byte 0x696C6553
-	.4byte 0x656C6563
-	.4byte 0x743A3A6C
-	.4byte 0x6F616452
-	.4byte 0x65736F75
-	.4byte 0x72636500
-	.4byte 0x66696C65
-	.4byte 0x5F73656C
-	.4byte 0x6563742E
-	.4byte 0x737A7300
-	.4byte 0x54536372
-	.4byte 0x65656E46
-	.4byte 0x696C6553
-	.4byte 0x656C6563
-	.4byte 0x743A3A73
-	.4byte 0x65744172
-	.4byte 0x63686976
-	.4byte 0x65000000
-	.4byte 0x54536372
-	.4byte 0x65656E46
-	.4byte 0x696C6553
-	.4byte 0x656C6563
-	.4byte 0x743A3A73
-	.4byte 0x65744172
-	.4byte 0x63686976
-	.4byte 0x652D2D73
-	.4byte 0x65745F5F
-	.4byte 0x626C6F00
-	.4byte 0x66696C65
-	.4byte 0x5F73656C
-	.4byte 0x6563742E
-	.4byte 0x626C6F00
-	.4byte 0x66696C65
-	.4byte 0x5F73656C
-	.4byte 0x6563742E
-	.4byte 0x62636B00
-	.4byte 0x66696C65
-	.4byte 0x5F73656C
-	.4byte 0x6563742E
-	.4byte 0x62706B00
-	.4byte 0x66696C65
-	.4byte 0x5F73656C
-	.4byte 0x6563745F
-	.4byte 0x30332E62
-	.4byte 0x746B0000
-	.4byte 0x66696C65
-	.4byte 0x5F73656C
-	.4byte 0x6563745F
-	.4byte 0x30322E62
-	.4byte 0x746B0000
-	.4byte 0x66696C65
-	.4byte 0x5F73656C
-	.4byte 0x6563742E
-	.4byte 0x62746B00
-	.4byte 0x66696C65
-	.4byte 0x5F73656C
-	.4byte 0x6563745F
-	.4byte 0x30342E62
-	.4byte 0x746B0000
-	.4byte 0x66696C65
-	.4byte 0x5F73656C
-	.4byte 0x6563742E
-	.4byte 0x62726B00
-	.4byte 0x75736572
-	.4byte 0x2F456269
-	.4byte 0x73617761
-	.4byte 0x2F656666
-	.4byte 0x6563742F
-	.4byte 0x65666632
-	.4byte 0x645F6669
-	.4byte 0x6C655F73
-	.4byte 0x656C6563
-	.4byte 0x742E6A70
-	.4byte 0x63000000
-	.4byte 0x62726561
-	.4byte 0x6B5F6E65
-	.4byte 0x775F6963
-	.4byte 0x6F6E2E62
-	.4byte 0x74690000
-	.4byte 0x6E65775F
-	.4byte 0x69636F6E
-	.4byte 0x2E627469
-	.4byte 0x00000000
-	.4byte 0x6469636F
-	.4byte 0x6E5F6963
-	.4byte 0x6F6E2E62
-	.4byte 0x74690000
+.balign 4
+lbl_80496B94:
+	.asciz "file_select_dw_data.blo"
+.balign 4
+lbl_80496BAC:
+	.asciz "TScreenFileSelect::loadResource"
+.balign 4
+lbl_80496BCC:
+	.asciz "file_select.szs"
+.balign 4
+lbl_80496BDC:
+	.asciz "TScreenFileSelect::setArchive"
+.balign 4
+lbl_80496BFC:
+	.asciz "TScreenFileSelect::setArchive--set__blo"
+.balign 4
+lbl_80496C24:
+	.asciz "file_select.blo"
+.balign 4
+lbl_80496C34:
+	.asciz "file_select.bck"
+.balign 4
+lbl_80496C44:
+	.asciz "file_select.bpk"
+.balign 4
+lbl_80496C54:
+	.asciz "file_select_03.btk"
+.balign 4
+lbl_80496C68:
+	.asciz "file_select_02.btk"
+.balign 4
+lbl_80496C7C:
+	.asciz "file_select.btk"
+.balign 4
+lbl_80496C8C:
+	.asciz "file_select_04.btk"
+.balign 4
+lbl_80496CA0:
+	.asciz "file_select.brk"
+.balign 4
+lbl_80496CB0:
+	.asciz "user/Ebisawa/effect/eff2d_file_select.jpc"
+.balign 4
+lbl_80496CDC:
+	.asciz "break_new_icon.bti"
+.balign 4
+lbl_80496CF0:
+	.asciz "new_icon.bti"
+.balign 4
+lbl_80496D00:
+	.asciz "dicon_icon.bti"
+.balign 4
 lbl_80496D10:
-	.4byte 0x41726743
-	.4byte 0x6F6C6F72
-	.4byte 0x00000000
+	.asciz "ArgColor"
+.balign 4
 lbl_80496D1C:
-	.4byte 0x41726746
-	.4byte 0x696C6563
-	.4byte 0x6F707900
+	.asciz "ArgFilecopy"
+.balign 4
 lbl_80496D28:
-	.4byte 0x5446696C
-	.4byte 0x6553656C
-	.4byte 0x65637400
-	.4byte 0x00000000
+	.asciz "TFileSelect"
 
 .section .data, "wa"  # 0x8049E220 - 0x804EFC20
 .balign 8
@@ -310,43 +234,43 @@ __vt__Q35efx2d10FileSelect11T2DFilecopy:
 .section .sdata2, "a"     # 0x80516360 - 0x80520E40
 .balign 8
 lbl_8051FB18:
-	.4byte 0x42480000
+	.float 50.0
 lbl_8051FB1C:
-	.4byte 0x00000000
+	.float 0.0
 lbl_8051FB20:
-	.4byte 0x3D08850A
+	.float 0.03333
 lbl_8051FB24:
 	.float 1.0
 lbl_8051FB28:
-	.4byte 0x40A00000
+	.float 5.0
 lbl_8051FB2C:
-	.4byte 0x42700000
+	.float 60.0
 lbl_8051FB30:
 	.float 0.5
 lbl_8051FB34:
 	.float 0.25
 lbl_8051FB38:
-	.4byte 0x3ECCCCCD
+	.float 0.4
 lbl_8051FB3C:
-	.4byte 0x437F0000
+	.float 255.0
 lbl_8051FB40:
-	.4byte 0x3F99999A
-	.4byte 0x00000000
+	.float 1.2
+.balign 8
 lbl_8051FB48:
 	.4byte 0x43300000
 	.4byte 0x00000000
 lbl_8051FB50:
-	.4byte 0x3E4CCCCD
+	.float 0.2
 lbl_8051FB54:
-	.4byte 0x40555555
+	.float 3.3333333
 lbl_8051FB58:
-	.4byte 0x41F00000
+	.float 30.0
 lbl_8051FB5C:
-	.4byte 0x3F19999A
+	.float 0.6
 lbl_8051FB60:
-	.4byte 0x447FC000
+	.float 1023.0
 lbl_8051FB64:
-	.4byte 0x433E0000
+	.float 190.0
 
 .section .text, "ax"  # 0x800056C0 - 0x80472F00
 .global setData__Q43ebi6Screen10FileSelect22TScreenDataWindow_dataFlUlUlUlUlUlUl

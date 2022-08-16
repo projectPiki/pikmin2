@@ -1,35 +1,26 @@
 .include "macros.inc"
 .section .rodata  # 0x804732E0 - 0x8049E220
 .balign 8
-.global lbl_80497910
 lbl_80497910:
-	.4byte 0x65667845
-	.4byte 0x6E656D79
-	.4byte 0x426F7373
-	.4byte 0x2E637070
-	.4byte 0x00000000
-.global lbl_80497924
+	.asciz "efxEnemyBoss.cpp"
+.balign 4
 lbl_80497924:
 	.asciz "P2Assert"
-	.skip 3
-	.4byte 0x41726750
-	.4byte 0x726D436F
-	.4byte 0x6C6F7200
-	.4byte 0x41726750
-	.4byte 0x6F73506F
-	.4byte 0x73000000
-	.4byte 0x41726753
-	.4byte 0x63616C65
-	.4byte 0x00000000
-	.4byte 0x41726752
-	.4byte 0x6F745953
-	.4byte 0x63616C65
-	.4byte 0x00000000
-	.4byte 0x4172674B
-	.4byte 0x6368596F
-	.4byte 0x64617265
-	.4byte 0x00000000
-	.4byte 0x00000000
+.balign 4
+lbl_80497930:
+	.asciz "ArgPrmColor"
+.balign 4
+lbl_8049793C:
+	.asciz "ArgPosPos"
+.balign 4
+lbl_80497948:
+	.asciz "ArgScale"
+.balign 4
+lbl_80497954:
+	.asciz "ArgRotYScale"
+.balign 4
+lbl_80497964:
+	.asciz "ArgKchYodare"
 
 .section .data, "wa"  # 0x8049E220 - 0x804EFC20
 .balign 8
@@ -186,20 +177,17 @@ __vt__Q23efx11TDangoCrash:
 
 .section .sdata2, "a"     # 0x80516360 - 0x80520E40
 .balign 8
-.global lbl_8051FE38
 lbl_8051FE38:
 	.asciz "ArgDir"
-	.skip 1
-.global lbl_8051FE40
+.balign 4
 lbl_8051FE40:
 	.float 0.0
-.global lbl_8051FE44
 lbl_8051FE44:
 	.float 1.0
-.global lbl_8051FE48
+.balign 4
 lbl_8051FE48:
 	.asciz "ArgRotY"
-.global lbl_8051FE50
+.balign 4
 lbl_8051FE50:
 	.float 100.0
 

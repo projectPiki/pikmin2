@@ -1,65 +1,39 @@
 .include "macros.inc"
 .section .rodata  # 0x804732E0 - 0x8049E220
 .balign 8
-.global lbl_80496448
 lbl_80496448:
-	.4byte 0x65626953
-	.4byte 0x63726565
-	.4byte 0x6E4F7074
-	.4byte 0x696F6E00
-	.4byte 0x53637265
-	.4byte 0x656E3A3A
-	.4byte 0x544F7074
-	.4byte 0x696F6E3A
-	.4byte 0x3A736574
-	.4byte 0x41726368
-	.4byte 0x69766500
-	.4byte 0x53637265
-	.4byte 0x656E3A3A
-	.4byte 0x544F7074
-	.4byte 0x696F6E3A
-	.4byte 0x3A736574
-	.4byte 0x5F626C6F
-	.4byte 0x5F503244
-	.4byte 0x53637265
-	.4byte 0x656E3A3A
-	.4byte 0x4D677200
-	.4byte 0x6F707469
-	.4byte 0x6F6E2E62
-	.4byte 0x6C6F0000
-	.4byte 0x53637265
-	.4byte 0x656E3A3A
-	.4byte 0x544F7074
-	.4byte 0x696F6E3A
-	.4byte 0x3A6E6577
-	.4byte 0x5F6F6743
-	.4byte 0x616C6C42
-	.4byte 0x61636B00
-	.4byte 0x6F707469
-	.4byte 0x6F6E2E62
-	.4byte 0x636B0000
-	.4byte 0x544F7074
-	.4byte 0x696F6E3A
-	.4byte 0x3A6C6F61
-	.4byte 0x64526573
-	.4byte 0x6F757263
-	.4byte 0x65000000
-	.4byte 0x6F707469
-	.4byte 0x6F6E5F75
-	.4byte 0x732E737A
-	.4byte 0x73000000
-	.4byte 0x65626953
-	.4byte 0x63726565
-	.4byte 0x6E4F7074
-	.4byte 0x696F6E2E
-	.4byte 0x63707000
+	.asciz "ebiScreenOption"
+.balign 4
+lbl_80496458:
+	.asciz "Screen::TOption::setArchive"
+.balign 4
+lbl_80496474:
+	.asciz "Screen::TOption::set_blo_P2DScreen::Mgr"
+.balign 4
+lbl_8049649C:
+	.asciz "option.blo"
+.balign 4
+lbl_804964A8:
+	.asciz "Screen::TOption::new_ogCallBack"
+.balign 4
+lbl_804964C8:
+	.asciz "option.bck"
+.balign 4
+lbl_804964D4:
+	.asciz "TOption::loadResource"
+.balign 4
+lbl_804964EC:
+	.asciz "option_us.szs"
+.balign 4
+lbl_804964FC:
+	.asciz "ebiScreenOption.cpp"
+.balign 4
+lbl_80496510:
 	.asciz "P2Assert"
-	.skip 3
 
 .section .data, "wa"  # 0x8049E220 - 0x804EFC20
 .balign 8
 .if version == 1
-.global lbl_804E8750
 lbl_804E8750:
 	.4byte lbl_803CC164
 	.4byte lbl_803CBD40
@@ -69,7 +43,6 @@ lbl_804E8750:
 	.4byte lbl_803CC048
 	.4byte lbl_803CC13C
 .else
-.global lbl_804E8750
 lbl_804E8750:
 	.4byte lbl_803CC0F4
 	.4byte lbl_803CBCD0
@@ -79,7 +52,6 @@ lbl_804E8750:
 	.4byte lbl_803CBFD8
 	.4byte lbl_803CC0CC
 .endif
-.global lbl_804E876C
 lbl_804E876C:
 	.4byte lbl_803CD6B8
 	.4byte lbl_803CD5C4
@@ -109,67 +81,50 @@ __vt__Q33ebi6Screen7TOption:
 	.4byte doUpdateStateClose__Q33ebi6Screen7TOptionFv
 	.4byte doDraw__Q33ebi6Screen7TOptionFv
 	.4byte getName__Q33ebi6Screen7TOptionFv
-	.4byte 0
 
 .section .sdata2, "a"     # 0x80516360 - 0x80520E40
 .balign 8
-.global lbl_8051FA00
 lbl_8051FA00:
-	.4byte 0x41200000
-.global lbl_8051FA04
+	.float 10.0
 lbl_8051FA04:
-	.4byte 0x437F0000
-.global lbl_8051FA08
+	.float 255.0
+.balign 8
 lbl_8051FA08:
 	.4byte 0x43300000
 	.4byte 0x00000000
-.global lbl_8051FA10
+.balign 8
 lbl_8051FA10:
 	.4byte 0x43300000
 	.4byte 0x80000000
-.global lbl_8051FA18
 lbl_8051FA18:
-	.4byte 0x40555555
-.global lbl_8051FA1C
+	.float 3.3333333
 lbl_8051FA1C:
-	.4byte 0x00000000
-.global lbl_8051FA20
+	.float 0.0
 lbl_8051FA20:
-	.4byte 0x42700000
-.global lbl_8051FA24
+	.float 60.0
 lbl_8051FA24:
 	.float 0.1
-.global lbl_8051FA28
 lbl_8051FA28:
-	.4byte 0x41F00000
-.global lbl_8051FA2C
+	.float 30.0
 lbl_8051FA2C:
-	.4byte 0x3F19999A
-.global lbl_8051FA30
+	.float 0.6
 lbl_8051FA30:
-	.4byte 0x3FD55555
-.global lbl_8051FA34
+	.float 1.6666666
 lbl_8051FA34:
 	.float 0.5
-.global lbl_8051FA38
 lbl_8051FA38:
-	.4byte 0x3E4CCCCD
-.global lbl_8051FA3C
+	.float 0.2
 lbl_8051FA3C:
-	.4byte 0xBF000000
-.global lbl_8051FA40
+	.float -0.5
 lbl_8051FA40:
 	.float 1.0
-.global lbl_8051FA44
 lbl_8051FA44:
-	.4byte 0x3F28F5C3
-.global lbl_8051FA48
+	.float 0.66
 lbl_8051FA48:
 	.float 0.15
-.global lbl_8051FA4C
+.balign 4
 lbl_8051FA4C:
-	.4byte 0x544F7074
-	.4byte 0x696F6E00
+	.asciz "TOption"
 
 .section .text, "ax"  # 0x800056C0 - 0x80472F00
 .global loadRam__Q33ebi6Screen16TOptionParameterFv
@@ -1228,7 +1183,6 @@ lbl_803CBD1C:
 /* 803CBD34 003C8C74  7C 03 00 2E */	lwzx r0, r3, r0
 /* 803CBD38 003C8C78  7C 09 03 A6 */	mtctr r0
 /* 803CBD3C 003C8C7C  4E 80 04 20 */	bctr 
-.global lbl_803CBD40
 lbl_803CBD40:
 /* 803CBD40 003C8C80  80 7F 00 0C */	lwz r3, 0xc(r31)
 /* 803CBD44 003C8C84  80 03 00 18 */	lwz r0, 0x18(r3)
@@ -1298,7 +1252,6 @@ lbl_803CBDE4:
 /* 803CBE28 003C8D68  80 6D 98 58 */	lwz r3, spSysIF__8PSSystem@sda21(r13)
 /* 803CBE2C 003C8D6C  4B F6 C8 39 */	bl playSystemSe__Q28PSSystem5SysIFFUlUl
 /* 803CBE30 003C8D70  48 00 03 34 */	b lbl_803CC164
-.global lbl_803CBE38
 lbl_803CBE38:
 /* 803CBE34 003C8D74  38 7F 00 6C */	addi r3, r31, 0x6c
 /* 803CBE38 003C8D78  4B FF 5C C9 */	bl update__Q23ebi24EUTPadInterface_countNumFv
@@ -1354,7 +1307,6 @@ lbl_803CBED0:
 /* 803CBEF0 003C8E30  38 A0 00 00 */	li r5, 0
 /* 803CBEF4 003C8E34  4B F6 C7 71 */	bl playSystemSe__Q28PSSystem5SysIFFUlUl
 /* 803CBEF8 003C8E38  48 00 02 6C */	b lbl_803CC164
-.global lbl_803CAE18
 lbl_803CBEFC:
 /* 803CBEFC 003C8E3C  38 7F 00 14 */	addi r3, r31, 0x14
 /* 803CBF00 003C8E40  4B FF 5C 01 */	bl update__Q23ebi24EUTPadInterface_countNumFv
@@ -1408,7 +1360,6 @@ lbl_803CBF9C:
 /* 803CBFB4 003C8EF4  38 A0 00 00 */	li r5, 0
 /* 803CBFB8 003C8EF8  4B F6 C6 AD */	bl playSystemSe__Q28PSSystem5SysIFFUlUl
 /* 803CBFBC 003C8EFC  48 00 01 A8 */	b lbl_803CC164
-.global lbl_803CBFC0
 lbl_803CBFC0:
 /* 803CBFC0 003C8F00  38 7F 00 40 */	addi r3, r31, 0x40
 /* 803CBFC4 003C8F04  4B FF 5B 3D */	bl update__Q23ebi24EUTPadInterface_countNumFv
@@ -1445,7 +1396,6 @@ lbl_803CC034:
 /* 803CC03C 003C8F7C  38 A0 00 00 */	li r5, 0
 /* 803CC040 003C8F80  4B F6 C6 25 */	bl playSystemSe__Q28PSSystem5SysIFFUlUl
 /* 803CC044 003C8F84  48 00 01 20 */	b lbl_803CC164
-.global lbl_803CC048
 lbl_803CC048:
 /* 803CC048 003C8F88  80 7F 00 0C */	lwz r3, 0xc(r31)
 /* 803CC04C 003C8F8C  80 03 00 18 */	lwz r0, 0x18(r3)
@@ -1515,7 +1465,6 @@ lbl_803CC0EC:
 /* 803CC130 003C9070  38 00 00 06 */	li r0, 6
 /* 803CC134 003C9074  90 1F 00 C4 */	stw r0, 0xc4(r31)
 /* 803CC138 003C9078  48 00 00 2C */	b lbl_803CC164
-.global lbl_803CC13C
 lbl_803CC13C:
 /* 803CC13C 003C907C  80 7F 00 0C */	lwz r3, 0xc(r31)
 /* 803CC140 003C9080  80 03 00 1C */	lwz r0, 0x1c(r3)
@@ -1917,7 +1866,6 @@ lbl_803CBCAC:
 /* 803CBCC4 003C8C04  7C 03 00 2E */	lwzx r0, r3, r0
 /* 803CBCC8 003C8C08  7C 09 03 A6 */	mtctr r0
 /* 803CBCCC 003C8C0C  4E 80 04 20 */	bctr 
-.global lbl_803CBCD0
 lbl_803CBCD0:
 /* 803CBCD0 003C8C10  80 7F 00 0C */	lwz r3, 0xc(r31)
 /* 803CBCD4 003C8C14  80 03 00 18 */	lwz r0, 0x18(r3)
@@ -1987,7 +1935,6 @@ lbl_803CBD74:
 /* 803CBDB8 003C8CF8  80 6D 98 58 */	lwz r3, spSysIF__8PSSystem@sda21(r13)
 /* 803CBDBC 003C8CFC  4B F6 C8 75 */	bl playSystemSe__Q28PSSystem5SysIFFUlUl
 /* 803CBDC0 003C8D00  48 00 03 34 */	b lbl_803CC0F4
-.global lbl_803CBDC4
 lbl_803CBDC4:
 /* 803CBDC4 003C8D04  38 7F 00 6C */	addi r3, r31, 0x6c
 /* 803CBDC8 003C8D08  4B FF 5C D5 */	bl update__Q23ebi24EUTPadInterface_countNumFv
@@ -2043,7 +1990,6 @@ lbl_803CBE60:
 /* 803CBE80 003C8DC0  38 A0 00 00 */	li r5, 0
 /* 803CBE84 003C8DC4  4B F6 C7 AD */	bl playSystemSe__Q28PSSystem5SysIFFUlUl
 /* 803CBE88 003C8DC8  48 00 02 6C */	b lbl_803CC0F4
-.global lbl_803CBE8C
 lbl_803CBE8C:
 /* 803CBE8C 003C8DCC  38 7F 00 14 */	addi r3, r31, 0x14
 /* 803CBE90 003C8DD0  4B FF 5C 0D */	bl update__Q23ebi24EUTPadInterface_countNumFv
@@ -2097,7 +2043,6 @@ lbl_803CBF2C:
 /* 803CBF44 003C8E84  38 A0 00 00 */	li r5, 0
 /* 803CBF48 003C8E88  4B F6 C6 E9 */	bl playSystemSe__Q28PSSystem5SysIFFUlUl
 /* 803CBF4C 003C8E8C  48 00 01 A8 */	b lbl_803CC0F4
-.global lbl_803CBF50
 lbl_803CBF50:
 /* 803CBF50 003C8E90  38 7F 00 40 */	addi r3, r31, 0x40
 /* 803CBF54 003C8E94  4B FF 5B 49 */	bl update__Q23ebi24EUTPadInterface_countNumFv
@@ -2134,7 +2079,6 @@ lbl_803CBFC4:
 /* 803CBFCC 003C8F0C  38 A0 00 00 */	li r5, 0
 /* 803CBFD0 003C8F10  4B F6 C6 61 */	bl playSystemSe__Q28PSSystem5SysIFFUlUl
 /* 803CBFD4 003C8F14  48 00 01 20 */	b lbl_803CC0F4
-.global lbl_803CBFD8
 lbl_803CBFD8:
 /* 803CBFD8 003C8F18  80 7F 00 0C */	lwz r3, 0xc(r31)
 /* 803CBFDC 003C8F1C  80 03 00 18 */	lwz r0, 0x18(r3)
@@ -2204,7 +2148,6 @@ lbl_803CC07C:
 /* 803CC0C0 003C9000  38 00 00 06 */	li r0, 6
 /* 803CC0C4 003C9004  90 1F 00 C4 */	stw r0, 0xc4(r31)
 /* 803CC0C8 003C9008  48 00 00 2C */	b lbl_803CC0F4
-.global lbl_803CC0CC
 lbl_803CC0CC:
 /* 803CC0CC 003C900C  80 7F 00 0C */	lwz r3, 0xc(r31)
 /* 803CC0D0 003C9010  80 03 00 1C */	lwz r0, 0x1c(r3)
@@ -2216,7 +2159,6 @@ lbl_803CC0CC:
 /* 803CC0E8 003C9028  38 A0 00 00 */	li r5, 0
 /* 803CC0EC 003C902C  80 6D 98 58 */	lwz r3, spSysIF__8PSSystem@sda21(r13)
 /* 803CC0F0 003C9030  4B F6 C5 41 */	bl playSystemSe__Q28PSSystem5SysIFFUlUl
-.global lbl_803CC0F4
 lbl_803CC0F4:
 /* 803CC0F4 003C9034  88 1F 00 D8 */	lbz r0, 0xd8(r31)
 /* 803CC0F8 003C9038  28 00 00 01 */	cmplwi r0, 1
@@ -3679,7 +3621,6 @@ lbl_803CD5A0:
 /* 803CD5B8 003CA4F8  7C 03 00 2E */	lwzx r0, r3, r0
 /* 803CD5BC 003CA4FC  7C 09 03 A6 */	mtctr r0
 /* 803CD5C0 003CA500  4E 80 04 20 */	bctr 
-.global lbl_803CD5C4
 lbl_803CD5C4:
 /* 803CD5C4 003CA504  88 1F 00 C9 */	lbz r0, 0xc9(r31)
 /* 803CD5C8 003CA508  28 00 00 00 */	cmplwi r0, 0
@@ -3694,7 +3635,6 @@ lbl_803CD5E4:
 /* 803CD5E4 003CA524  38 00 00 00 */	li r0, 0
 /* 803CD5E8 003CA528  90 1F 02 A4 */	stw r0, 0x2a4(r31)
 /* 803CD5EC 003CA52C  48 00 00 CC */	b lbl_803CD6B8
-.global lbl_803CD5F0
 lbl_803CD5F0:
 /* 803CD5F0 003CA530  80 7F 00 CC */	lwz r3, 0xcc(r31)
 /* 803CD5F4 003CA534  38 00 00 00 */	li r0, 0
@@ -3704,7 +3644,6 @@ lbl_803CD5F0:
 /* 803CD604 003CA544  90 7F 02 58 */	stw r3, 0x258(r31)
 /* 803CD608 003CA548  90 1F 02 A4 */	stw r0, 0x2a4(r31)
 /* 803CD60C 003CA54C  48 00 00 AC */	b lbl_803CD6B8
-.global lbl_803CD610
 lbl_803CD610:
 /* 803CD610 003CA550  38 60 00 00 */	li r3, 0
 /* 803CD614 003CA554  90 7F 02 58 */	stw r3, 0x258(r31)
@@ -3719,7 +3658,6 @@ lbl_803CD62C:
 /* 803CD634 003CA574  80 03 01 50 */	lwz r0, 0x150(r3)
 /* 803CD638 003CA578  90 1F 02 A4 */	stw r0, 0x2a4(r31)
 /* 803CD63C 003CA57C  48 00 00 7C */	b lbl_803CD6B8
-.global lbl_803CD640
 lbl_803CD640:
 /* 803CD640 003CA580  38 60 00 00 */	li r3, 0
 /* 803CD644 003CA584  90 7F 02 58 */	stw r3, 0x258(r31)
@@ -3734,7 +3672,6 @@ lbl_803CD65C:
 /* 803CD664 003CA5A4  80 03 01 28 */	lwz r0, 0x128(r3)
 /* 803CD668 003CA5A8  90 1F 02 A4 */	stw r0, 0x2a4(r31)
 /* 803CD66C 003CA5AC  48 00 00 4C */	b lbl_803CD6B8
-.global lbl_803CD670
 lbl_803CD670:
 /* 803CD670 003CA5B0  88 1F 00 D8 */	lbz r0, 0xd8(r31)
 /* 803CD674 003CA5B4  28 00 00 00 */	cmplwi r0, 0
@@ -3749,7 +3686,6 @@ lbl_803CD690:
 /* 803CD690 003CA5D0  38 00 00 00 */	li r0, 0
 /* 803CD694 003CA5D4  90 1F 02 A4 */	stw r0, 0x2a4(r31)
 /* 803CD698 003CA5D8  48 00 00 20 */	b lbl_803CD6B8
-.global lbl_803CD69C
 lbl_803CD69C:
 /* 803CD69C 003CA5DC  38 00 00 00 */	li r0, 0
 /* 803CD6A0 003CA5E0  90 1F 02 58 */	stw r0, 0x258(r31)
@@ -3759,7 +3695,6 @@ lbl_803CD6AC:
 /* 803CD6AC 003CA5EC  38 00 00 00 */	li r0, 0
 /* 803CD6B0 003CA5F0  90 1F 02 58 */	stw r0, 0x258(r31)
 /* 803CD6B4 003CA5F4  90 1F 02 A4 */	stw r0, 0x2a4(r31)
-.global lbl_803CD6B8
 lbl_803CD6B8:
 /* 803CD6B8 003CA5F8  BB 61 01 AC */	lmw r27, 0x1ac(r1)
 /* 803CD6BC 003CA5FC  80 01 01 C4 */	lwz r0, 0x1c4(r1)

@@ -10,7 +10,7 @@ lbl_8047AED4:
 lbl_8047AEF8:
 	.asciz "/enemy/data/Chappy/swallow_565.1.bti"
 .balign 4
-lbl_8047AF20:
+lbl_8047AF20: # Shift-JIS
 	.4byte 0x90D48360
 	.4byte 0x83838362
 	.4byte 0x8373815B
@@ -21,58 +21,64 @@ lbl_8047AF20:
 lbl_8047AF38:
 	.asciz "ChappyParms"
 .balign 4
-lbl_8047AF44:
+lbl_8047AF44: # Shift-JIS
 	.4byte 0x91AB8CB3
 	.4byte 0x94CD88CD
 	.4byte 0x00000000
+.balign 4
+lbl_8047AF50: # Shift-JIS
 	.4byte 0x94928373
 	.4byte 0x834E837E
 	.4byte 0x839393C5
 	.4byte 0x00000000
+.balign 4
+lbl_8047AF60: # Shift-JIS
 	.4byte 0x96DA8A6F
 	.4byte 0x82DF8B97
 	.4byte 0x97A30000
-	.4byte 0x43726561
-	.4byte 0x74757265
-	.4byte 0x3A3A5072
-	.4byte 0x6F706572
-	.4byte 0x74790000
-	.4byte 0x66726963
-	.4byte 0x74696F6E
-	.4byte 0x286E6F74
-	.4byte 0x20757365
-	.4byte 0x64290000
-	.4byte 0x77616C6C
-	.4byte 0x5265666C
-	.4byte 0x65637469
-	.4byte 0x6F6E0000
-	.4byte 0x66616365
-	.4byte 0x44697241
-	.4byte 0x646A7573
-	.4byte 0x74000000
-	.4byte 0x626F756E
-	.4byte 0x63654661
-	.4byte 0x63746F72
-	.4byte 0x00000000
-	.4byte 0x456E656D
-	.4byte 0x79506172
-	.4byte 0x6D734261
-	.4byte 0x73650000
+.balign 4
+lbl_8047AF6C:
+	.asciz "Creature::Property"
+.balign 4
+lbl_8047AF80:
+	.asciz "friction(not used)"
+.balign 4
+lbl_8047AF94:
+	.asciz "wallReflection"
+.balign 4
+lbl_8047AFA4:
+	.asciz "faceDirAdjust"
+.balign 4
+lbl_8047AFB4:
+	.asciz "bounceFactor"
+.balign 4
+lbl_8047AFC4:
+	.asciz "EnemyParmsBase"
+.balign 4
+lbl_8047AFD4: # Shift-JIS
 	.4byte 0x83898343
 	.4byte 0x837482CC
 	.4byte 0x8D8282B3
 	.4byte 0x00000000
+.balign 4
+lbl_8047AFE4: # Shift-JIS
 	.4byte 0x83898343
 	.4byte 0x837489F1
 	.4byte 0x959C97A6
 	.4byte 0x00000000
+.balign 4
+lbl_8047AFF4: # Shift-JIS
 	.4byte 0x8C7889FA
 	.4byte 0x83898343
 	.4byte 0x83740000
+.balign 4
+lbl_8047B000: # Shift-JIS
 	.4byte 0x837D8362
 	.4byte 0x837682C6
 	.4byte 0x82CC9396
 	.4byte 0x82E80000
+.balign 4
+lbl_8047B010: # Shift-JIS
 	.4byte 0x837D8362
 	.4byte 0x837682C6
 	.4byte 0x82CC82A0
@@ -81,136 +87,201 @@ lbl_8047AF44:
 	.4byte 0x83538393
 	.4byte 0x82CC9149
 	.4byte 0x92E80000
+.balign 4
+lbl_8047B030: # Shift-JIS
 	.4byte 0x8373834E
 	.4byte 0x837E8393
 	.4byte 0x82C682CC
 	.4byte 0x82A082BD
 	.4byte 0x82E80000
+.balign 4
+lbl_8047B044: # Shift-JIS
 	.4byte 0x835F8381
 	.4byte 0x815B8357
 	.4byte 0x83588350
 	.4byte 0x815B838B
 	.4byte 0x585A0000
+.balign 4
+lbl_8047B058: # Shift-JIS
 	.4byte 0x835F8381
 	.4byte 0x815B8357
 	.4byte 0x83588350
 	.4byte 0x815B838B
 	.4byte 0x59000000
+.balign 4
+lbl_8047B06C: # Shift-JIS
 	.4byte 0x835F8381
 	.4byte 0x815B8357
 	.4byte 0x8374838C
 	.4byte 0x815B8380
 	.4byte 0x00000000
+.balign 4
+lbl_8047B080: # Shift-JIS
 	.4byte 0x89F1935D
 	.4byte 0x91AC9378
 	.4byte 0x97A60000
+.balign 4
+lbl_8047B08C: # Shift-JIS
 	.4byte 0x89F1935D
 	.4byte 0x8DC591E5
 	.4byte 0x91AC9378
 	.4byte 0x00000000
+.balign 4
+lbl_8047B09C: # Shift-JIS
 	.4byte 0x8365838A
 	.4byte 0x8367838A
 	.4byte 0x815B0000
+.balign 4
+lbl_8047B0A8: # Shift-JIS
 	.4byte 0x837A815B
 	.4byte 0x838094CD
 	.4byte 0x88CD0000
+.balign 4
+lbl_8047B0B4: # Shift-JIS
 	.4byte 0x83768389
 	.4byte 0x83438378
 	.4byte 0x815B8367
 	.4byte 0x8B9797A3
 	.4byte 0x00000000
+.balign 4
+lbl_8047B0C8: # Shift-JIS
 	.4byte 0x8E8B8A45
 	.4byte 0x8B9797A3
 	.4byte 0x00000000
+.balign 4
+lbl_8047B0D4: # Shift-JIS
 	.4byte 0x8E8B8A45
 	.4byte 0x8A709378
 	.4byte 0x00000000
+.balign 4
+lbl_8047B0E0: # Shift-JIS
 	.4byte 0x92548DF5
 	.4byte 0x8B9797A3
 	.4byte 0x00000000
+.balign 4
+lbl_8047B0EC: # Shift-JIS
 	.4byte 0x92548DF5
 	.4byte 0x8A709378
 	.4byte 0x00000000
+.balign 4
+lbl_8047B0F8: # Shift-JIS
 	.4byte 0x905582E8
 	.4byte 0x95A582A2
 	.4byte 0x97CD0000
+.balign 4
+lbl_8047B104: # Shift-JIS
 	.4byte 0x905582E8
 	.4byte 0x95A582A2
 	.4byte 0x835F8381
 	.4byte 0x815B8357
 	.4byte 0x00000000
+.balign 4
+lbl_8047B118: # Shift-JIS
 	.4byte 0x905582E8
 	.4byte 0x95A582A2
 	.4byte 0x94CD88CD
 	.4byte 0x00000000
+.balign 4
+lbl_8047B128: # Shift-JIS
 	.4byte 0x905582E8
 	.4byte 0x95A582A2
 	.4byte 0x97A60000
+.balign 4
+lbl_8047B134: # Shift-JIS
 	.4byte 0x8D558C82
 	.4byte 0x89C2945C
 	.4byte 0x94CD88CD
 	.4byte 0x00000000
+.balign 4
+lbl_8047B144: # Shift-JIS
 	.4byte 0x8D558C82
 	.4byte 0x89C2945C
 	.4byte 0x8A709378
 	.4byte 0x00000000
+.balign 4
+lbl_8047B154: # Shift-JIS
 	.4byte 0x8D558C82
 	.4byte 0x83718362
 	.4byte 0x836794CD
 	.4byte 0x88CD0000
+.balign 4
+lbl_8047B164: # Shift-JIS
 	.4byte 0x8D558C82
 	.4byte 0x83718362
 	.4byte 0x83678A70
 	.4byte 0x93780000
+.balign 4
+lbl_8047B174: # Shift-JIS
 	.4byte 0x8C7889FA
 	.4byte 0x8E9E8AD4
 	.4byte 0x00000000
+.balign 4
+lbl_8047B180: # Shift-JIS
 	.4byte 0x90CE89BB
 	.4byte 0x8E9E8AD4
 	.4byte 0x00000000
+.balign 4
+lbl_8047B18C: # Shift-JIS
 	.4byte 0x83718362
 	.4byte 0x83768368
 	.4byte 0x838D8362
 	.4byte 0x8376835F
 	.4byte 0x8381815B
 	.4byte 0x83570000
+.balign 4
+lbl_8047B1A4: # Shift-JIS
 	.4byte 0x926E906B
 	.4byte 0x8B4390E2
 	.4byte 0x8A6D97A7
 	.4byte 0x00000000
+.balign 4
+lbl_8047B1B4: # Shift-JIS
 	.4byte 0x926E906B
 	.4byte 0x8B4390E2
 	.4byte 0x8E9E8AD4
 	.4byte 0x00000000
+.balign 4
+lbl_8047B1C4: # Shift-JIS
 	.4byte 0x905582E8
 	.4byte 0x95A582A2
 	.4byte 0x91C58C82
 	.4byte 0x82600000
+.balign 4
+lbl_8047B1D4: # Shift-JIS
 	.4byte 0x905582E8
 	.4byte 0x95A582A2
 	.4byte 0x92A39574
 	.4byte 0x82500000
+.balign 4
+lbl_8047B1E4: # Shift-JIS
 	.4byte 0x905582E8
 	.4byte 0x95A582A2
 	.4byte 0x91C58C82
 	.4byte 0x82610000
+.balign 4
+lbl_8047B1F4: # Shift-JIS
 	.4byte 0x905582E8
 	.4byte 0x95A582A2
 	.4byte 0x92A39574
 	.4byte 0x82510000
+.balign 4
+lbl_8047B204: # Shift-JIS
 	.4byte 0x905582E8
 	.4byte 0x95A582A2
 	.4byte 0x91C58C82
 	.4byte 0x82620000
+.balign 4
+lbl_8047B214: # Shift-JIS
 	.4byte 0x905582E8
 	.4byte 0x95A582A2
 	.4byte 0x92A39574
 	.4byte 0x82520000
+.balign 4
+lbl_8047B224: # Shift-JIS
 	.4byte 0x905582E8
 	.4byte 0x95A582A2
 	.4byte 0x91C58C82
 	.4byte 0x82630000
-	.4byte 0x00000000
 
 .section .data, "wa"  # 0x8049E220 - 0x804EFC20
 .balign 8
@@ -327,7 +398,7 @@ __ct__Q34Game6Chappy3MgrFiUc:
 /* 801197D0 00116710  4E 80 00 20 */	blr 
 
 .global __dt__Q34Game10ChappyBase3MgrFv
-__dt__Q34Game10ChappyBase3MgrFv:
+__dt__Q34Game10ChappyBase3MgrFv: # weak function
 /* 801197D4 00116714  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 801197D8 00116718  7C 08 02 A6 */	mflr r0
 /* 801197DC 0011671C  90 01 00 14 */	stw r0, 0x14(r1)
@@ -428,7 +499,7 @@ lbl_8011991C:
 /* 80119934 00116874  4E 80 00 20 */	blr 
 
 .global __ct__Q34Game10ChappyBase5ParmsFv
-__ct__Q34Game10ChappyBase5ParmsFv:
+__ct__Q34Game10ChappyBase5ParmsFv: # weak function
 /* 80119938 00116878  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 8011993C 0011687C  7C 08 02 A6 */	mflr r0
 /* 80119940 00116880  3C 80 80 48 */	lis r4, lbl_8047AEC8@ha
@@ -506,7 +577,7 @@ __ct__Q34Game10ChappyBase5ParmsFv:
 /* 80119A60 001169A0  4E 80 00 20 */	blr 
 
 .global read__Q34Game10ChappyBase5ParmsFR6Stream
-read__Q34Game10ChappyBase5ParmsFR6Stream:
+read__Q34Game10ChappyBase5ParmsFR6Stream: # weak function
 /* 80119A64 001169A4  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 80119A68 001169A8  7C 08 02 A6 */	mflr r0
 /* 80119A6C 001169AC  90 01 00 14 */	stw r0, 0x14(r1)
@@ -529,7 +600,7 @@ read__Q34Game10ChappyBase5ParmsFR6Stream:
 /* 80119AB0 001169F0  4E 80 00 20 */	blr 
 
 .global __dt__Q34Game6Chappy3MgrFv
-__dt__Q34Game6Chappy3MgrFv:
+__dt__Q34Game6Chappy3MgrFv: # weak function
 /* 80119AB4 001169F4  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 80119AB8 001169F8  7C 08 02 A6 */	mflr r0
 /* 80119ABC 001169FC  90 01 00 14 */	stw r0, 0x14(r1)
@@ -584,12 +655,12 @@ lbl_80119B60:
 /* 80119B78 00116AB8  4E 80 00 20 */	blr 
 
 .global getEnemyTypeID__Q34Game6Chappy3MgrFv
-getEnemyTypeID__Q34Game6Chappy3MgrFv:
+getEnemyTypeID__Q34Game6Chappy3MgrFv: # weak function
 /* 80119B7C 00116ABC  38 60 00 02 */	li r3, 2
 /* 80119B80 00116AC0  4E 80 00 20 */	blr 
 
 .global createObj__Q34Game6Chappy3MgrFi
-createObj__Q34Game6Chappy3MgrFi:
+createObj__Q34Game6Chappy3MgrFi: # weak function
 /* 80119B84 00116AC4  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 80119B88 00116AC8  7C 08 02 A6 */	mflr r0
 /* 80119B8C 00116ACC  90 01 00 14 */	stw r0, 0x14(r1)
@@ -616,7 +687,7 @@ createObj__Q34Game6Chappy3MgrFi:
 /* 80119BE0 00116B20  4E 80 00 20 */	blr 
 
 .global getEnemy__Q34Game6Chappy3MgrFi
-getEnemy__Q34Game6Chappy3MgrFi:
+getEnemy__Q34Game6Chappy3MgrFi: # weak function
 /* 80119BE4 00116B24  1C 04 02 F4 */	mulli r0, r4, 0x2f4
 /* 80119BE8 00116B28  80 63 00 4C */	lwz r3, 0x4c(r3)
 /* 80119BEC 00116B2C  7C 63 02 14 */	add r3, r3, r0

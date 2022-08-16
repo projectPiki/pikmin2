@@ -1,72 +1,53 @@
 .include "macros.inc"
 .section .rodata  # 0x804732E0 - 0x8049E220
 .balign 8
-.global lbl_80496F18
 lbl_80496F18:
-	.4byte 0x65626953
-	.4byte 0x63726565
-	.4byte 0x6E46696C
-	.4byte 0x6553656C
-	.4byte 0x6563745F
-	.4byte 0x4D677200
-	.4byte 0x4F70656E
-	.4byte 0x5363656E
-	.4byte 0x65000000
-	.4byte 0x43686563
-	.4byte 0x6B446174
-	.4byte 0x61000000
-	.4byte 0x44656369
-	.4byte 0x64654461
-	.4byte 0x74610000
-	.4byte 0x53656C65
-	.4byte 0x63744461
-	.4byte 0x74610000
-	.4byte 0x44617461
-	.4byte 0x42726F6B
-	.4byte 0x656E0000
-	.4byte 0x4E6F7744
-	.4byte 0x656C6574
-	.4byte 0x65000000
-	.4byte 0x446F596F
-	.4byte 0x7544656C
-	.4byte 0x65746500
-	.4byte 0x57686963
-	.4byte 0x68446174
-	.4byte 0x61446F59
-	.4byte 0x6F75436F
-	.4byte 0x7079546F
-	.4byte 0x00000000
-	.4byte 0x4661696C
-	.4byte 0x546F4465
-	.4byte 0x6C657465
-	.4byte 0x00000000
-	.4byte 0x46696E69
-	.4byte 0x73684465
-	.4byte 0x6C657465
-	.4byte 0x00000000
-	.4byte 0x446F596F
-	.4byte 0x754F7665
-	.4byte 0x72777269
-	.4byte 0x74650000
-	.4byte 0x4661696C
-	.4byte 0x546F436F
-	.4byte 0x70790000
-	.4byte 0x46696E69
-	.4byte 0x7368436F
-	.4byte 0x70790000
-.global lbl_80496FE4
+	.asciz "ebiScreenFileSelect_Mgr"
+.balign 4
+lbl_80496F30:
+	.asciz "OpenScene"
+.balign 4
+lbl_80496F3C:
+	.asciz "CheckData"
+.balign 4
+lbl_80496F48:
+	.asciz "DecideData"
+.balign 4
+lbl_80496F54:
+	.asciz "SelectData"
+.balign 4
+lbl_80496F60:
+	.asciz "DataBroken"
+.balign 4
+lbl_80496F6C:
+	.asciz "NowDelete"
+.balign 4
+lbl_80496F78:
+	.asciz "DoYouDelete"
+.balign 4
+lbl_80496F84:
+	.asciz "WhichDataDoYouCopyTo"
+.balign 4
+lbl_80496F9C:
+	.asciz "FailToDelete"
+.balign 4
+lbl_80496FAC:
+	.asciz "FinishDelete"
+.balign 4
+lbl_80496FBC:
+	.asciz "DoYouOverwrite"
+.balign 4
+lbl_80496FCC:
+	.asciz "FailToCopy"
+.balign 4
+lbl_80496FD8:
+	.asciz "FinishCopy"
+.balign 4
 lbl_80496FE4:
-	.4byte 0x65626953
-	.4byte 0x63726565
-	.4byte 0x6E46696C
-	.4byte 0x6553656C
-	.4byte 0x6563745F
-	.4byte 0x4D67722E
-	.4byte 0x63707000
-.global lbl_80497000
+	.asciz "ebiScreenFileSelect_Mgr.cpp"
+.balign 4
 lbl_80497000:
 	.asciz "P2Assert"
-	.skip 3
 
 .section .data, "wa"  # 0x8049E220 - 0x804EFC20
 .balign 8
@@ -351,30 +332,20 @@ __vt__Q33ebi2FS15FSMStateMachine:
 
 .section .sdata2, "a"     # 0x80516360 - 0x80520E40
 .balign 8
-.global lbl_8051FBF8
 lbl_8051FBF8:
-	.4byte 0x5374616E
-	.4byte 0x64627900
-.global lbl_8051FC00
+	.asciz "Standby"
+.balign 4
 lbl_8051FC00:
-	.4byte 0x4E6F7743
-	.4byte 0x6F707900
-.global lbl_8051FC08
+	.asciz "NowCopy"
+.balign 4
 lbl_8051FC08:
 	.float 0.5
-.global lbl_8051FC0C
 lbl_8051FC0C:
-	.4byte 0xBF000000
-.global lbl_8051FC10
+	.float -0.5
 lbl_8051FC10:
-	.4byte 0x40400000
-.global lbl_8051FC14
+	.float 3.0
 lbl_8051FC14:
 	.float 1.0
-.global lbl_8051FC18
-lbl_8051FC18:
-	.4byte 0x5374616E
-	.4byte 0x64627900
 
 .section .text, "ax"  # 0x800056C0 - 0x80472F00
 .global init__Q33ebi2FS15FSMStateMachineFPQ33ebi2FS4TMgr

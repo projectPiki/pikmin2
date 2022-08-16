@@ -1,130 +1,62 @@
 .include "macros.inc"
 .section .rodata  # 0x804732E0 - 0x8049E220
 .balign 8
-.global lbl_80496908
 lbl_80496908:
-	.4byte 0x65626953
-	.4byte 0x63726565
-	.4byte 0x6E507573
-	.4byte 0x68537461
-	.4byte 0x72740000
-	.4byte 0x54536372
-	.4byte 0x65656E50
-	.4byte 0x75736853
-	.4byte 0x74617274
-	.4byte 0x3A3A7365
-	.4byte 0x74417263
-	.4byte 0x68697665
-	.4byte 0x2D2D7365
-	.4byte 0x745F626C
-	.4byte 0x6F5F6100
-	.4byte 0x70757368
-	.4byte 0x5F737461
-	.4byte 0x72745F61
-	.4byte 0x2E626C6F
-	.4byte 0x00000000
-	.4byte 0x54536372
-	.4byte 0x65656E50
-	.4byte 0x75736853
-	.4byte 0x74617274
-	.4byte 0x3A3A7365
-	.4byte 0x74417263
-	.4byte 0x68697665
-	.4byte 0x2D2D7365
-	.4byte 0x745F626C
-	.4byte 0x6F5F6200
-	.4byte 0x70757368
-	.4byte 0x5F737461
-	.4byte 0x72745F62
-	.4byte 0x2E626C6F
-	.4byte 0x00000000
-	.4byte 0x54536372
-	.4byte 0x65656E50
-	.4byte 0x75736853
-	.4byte 0x74617274
-	.4byte 0x3A3A7365
-	.4byte 0x74417263
-	.4byte 0x68697665
-	.4byte 0x2D2D7365
-	.4byte 0x745F626C
-	.4byte 0x6F5F6300
-	.4byte 0x70757368
-	.4byte 0x5F737461
-	.4byte 0x72745F63
-	.4byte 0x2E626C6F
-	.4byte 0x00000000
-	.4byte 0x54536372
-	.4byte 0x65656E50
-	.4byte 0x75736853
-	.4byte 0x74617274
-	.4byte 0x3A3A7365
-	.4byte 0x74417263
-	.4byte 0x68697665
-	.4byte 0x2D2D7365
-	.4byte 0x745F626C
-	.4byte 0x6F5F6400
-	.4byte 0x70757368
-	.4byte 0x5F737461
-	.4byte 0x72745F64
-	.4byte 0x2E626C6F
-	.4byte 0x00000000
-	.4byte 0x54536372
-	.4byte 0x65656E50
-	.4byte 0x75736853
-	.4byte 0x74617274
-	.4byte 0x3A3A7365
-	.4byte 0x74417263
-	.4byte 0x68697665
-	.4byte 0x2D2D6D61
-	.4byte 0x6B65416E
-	.4byte 0x6D506F69
-	.4byte 0x6E746572
-	.4byte 0x00000000
-	.4byte 0x70757368
-	.4byte 0x5F737461
-	.4byte 0x72745F61
-	.4byte 0x2E62636B
-	.4byte 0x00000000
-	.4byte 0x70757368
-	.4byte 0x5F737461
-	.4byte 0x72745F61
-	.4byte 0x2E62706B
-	.4byte 0x00000000
-	.4byte 0x70757368
-	.4byte 0x5F737461
-	.4byte 0x72745F62
-	.4byte 0x2E62636B
-	.4byte 0x00000000
-	.4byte 0x70757368
-	.4byte 0x5F737461
-	.4byte 0x72745F62
-	.4byte 0x2E62706B
-	.4byte 0x00000000
-	.4byte 0x70757368
-	.4byte 0x5F737461
-	.4byte 0x72745F63
-	.4byte 0x2E62636B
-	.4byte 0x00000000
-	.4byte 0x70757368
-	.4byte 0x5F737461
-	.4byte 0x72745F63
-	.4byte 0x2E62706B
-	.4byte 0x00000000
-	.4byte 0x70757368
-	.4byte 0x5F737461
-	.4byte 0x72745F64
-	.4byte 0x2E62636B
-	.4byte 0x00000000
-	.4byte 0x70757368
-	.4byte 0x5F737461
-	.4byte 0x72745F64
-	.4byte 0x2E62706B
-	.4byte 0x00000000
-.global lbl_80496ADC
+	.asciz "ebiScreenPushStart"
+.balign 4
+lbl_8049691C:
+	.asciz "TScreenPushStart::setArchive--set_blo_a"
+.balign 4
+lbl_80496944:
+	.asciz "push_start_a.blo"
+.balign 4
+lbl_80496958:
+	.asciz "TScreenPushStart::setArchive--set_blo_b"
+.balign 4
+lbl_80496980:
+	.asciz "push_start_b.blo"
+.balign 4
+lbl_80496994:
+	.asciz "TScreenPushStart::setArchive--set_blo_c"
+.balign 4
+lbl_804969BC:
+	.asciz "push_start_c.blo"
+.balign 4
+lbl_804969D0:
+	.asciz "TScreenPushStart::setArchive--set_blo_d"
+.balign 4
+lbl_804969F8:
+	.asciz "push_start_d.blo"
+.balign 4
+lbl_80496A0C:
+	.asciz "TScreenPushStart::setArchive--makeAnmPointer"
+.balign 4
+lbl_80496A3C:
+	.asciz "push_start_a.bck"
+.balign 4
+lbl_80496A50:
+	.asciz "push_start_a.bpk"
+.balign 4
+lbl_80496A64:
+	.asciz "push_start_b.bck"
+.balign 4
+lbl_80496A78:
+	.asciz "push_start_b.bpk"
+.balign 4
+lbl_80496A8C:
+	.asciz "push_start_c.bck"
+.balign 4
+lbl_80496AA0:
+	.asciz "push_start_c.bpk"
+.balign 4
+lbl_80496AB4:
+	.asciz "push_start_d.bck"
+.balign 4
+lbl_80496AC8:
+	.asciz "push_start_d.bpk"
+.balign 4
 lbl_80496ADC:
-	.4byte 0x54507265
-	.4byte 0x73735374
-	.4byte 0x61727400
+	.asciz "TPressStart"
 
 .section .data, "wa"  # 0x8049E220 - 0x804EFC20
 .balign 8
@@ -152,34 +84,26 @@ __vt__Q33ebi6Screen11TPressStart:
 
 .section .sdata2, "a"     # 0x80516360 - 0x80520E40
 .balign 8
-.global lbl_8051FAE0
 lbl_8051FAE0:
-	.4byte 0x3E4CCCCD
-.global lbl_8051FAE4
+	.float 0.2
 lbl_8051FAE4:
-	.4byte 0x00000000
-.global lbl_8051FAE8
+	.float 0.0
 lbl_8051FAE8:
-	.4byte 0x437F0000
+	.float 255.0
 .balign 8
-.global lbl_8051FAF0
 lbl_8051FAF0:
 	.4byte 0x43300000
 	.4byte 0x00000000
-.global lbl_8051FAF8
 lbl_8051FAF8:
-	.4byte 0x46FFFE00
+	.float 32767.0
 lbl_8051FAFC:
 	.float 0.25
-.global lbl_8051FB00
 lbl_8051FB00:
 	.float 0.5
-.global lbl_8051FB04
 lbl_8051FB04:
-	.4byte 0x3F400000
-.global lbl_8051FB08
+	.float 0.75
 lbl_8051FB08:
-	.4byte 0x42700000
+	.float 60.0
 .balign 8
 lbl_8051FB10:
 	.4byte 0x43300000

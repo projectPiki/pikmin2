@@ -2,41 +2,36 @@
 .section .rodata  # 0x804732E0 - 0x8049E220
 .balign 8
 lbl_80496DD0:
-	.4byte 0x65626953
-	.4byte 0x6176654D
-	.4byte 0x67720000
-	.4byte 0x446F596F
-	.4byte 0x75536176
-	.4byte 0x65000000
-	.4byte 0x446F596F
-	.4byte 0x75436F6E
-	.4byte 0x74696E75
-	.4byte 0x65000000
-	.4byte 0x4D6F756E
-	.4byte 0x74436865
-	.4byte 0x636B0000
-	.4byte 0x47657450
-	.4byte 0x6C617965
-	.4byte 0x72486561
-	.4byte 0x64657200
-	.4byte 0x43686563
-	.4byte 0x6B426566
-	.4byte 0x6F726553
-	.4byte 0x61766500
-	.4byte 0x41667465
-	.4byte 0x72536176
-	.4byte 0x65000000
-	.4byte 0x43617264
-	.4byte 0x4572726F
-	.4byte 0x72000000
+	.asciz "ebiSaveMgr"
+.balign 4
+lbl_80496DDC:
+	.asciz "DoYouSave"
+.balign 4
+lbl_80496DE8:
+	.asciz "DoYouContinue"
+.balign 4
+lbl_80496DF8:
+	.asciz "MountCheck"
+.balign 4
+lbl_80496E04:
+	.asciz "GetPlayerHeader"
+.balign 4
+lbl_80496E14:
+	.asciz "CheckBeforeSave"
+.balign 4
+lbl_80496E24:
+	.asciz "AfterSave"
+.balign 4
+lbl_80496E30:
+	.asciz "CardError"
+.balign 4
 lbl_80496E3C:
-	.4byte 0x65626953
-	.4byte 0x6176654D
-	.4byte 0x67722E63
-	.4byte 0x70700000
+	.asciz "ebiSaveMgr.cpp"
+.balign 4
 lbl_80496E4C:
 	.asciz "P2Assert"
-	.skip 3
+.balign 4
+lbl_80496E58: # Shift-JIS
 	.4byte 0x917A92E8
 	.4byte 0x8A4F82C5
 	.4byte 0x82B78142
@@ -270,27 +265,28 @@ __vt__Q33ebi4Save15FSMStateMachine:
 .balign 8
 .global msInstance__Q33ebi4Save4TMgr
 msInstance__Q33ebi4Save4TMgr:
-	.skip 0x8
+	.skip 0x4
 
 .section .sdata2, "a"     # 0x80516360 - 0x80520E40
 .balign 8
 lbl_8051FBA0:
-	.4byte 0x5374616E
-	.4byte 0x64627900
+	.asciz "Standby"
+.balign 4
 lbl_8051FBA8:
-	.4byte 0x4E6F7753
-	.4byte 0x61766500
+	.asciz "NowSave"
+.balign 4
 lbl_8051FBB0:
 	.float 1.0
 lbl_8051FBB4:
 	.float 0.5
+.balign 8
 lbl_8051FBB8:
 	.4byte 0x43300000
 	.4byte 0x00000000
 lbl_8051FBC0:
-	.4byte 0x40A00000
+	.float 5.0
 lbl_8051FBC4:
-	.4byte 0x00000000
+	.float 0.0
 
 .section .text, "ax"  # 0x800056C0 - 0x80472F00
 .global init__Q33ebi4Save15FSMStateMachineFPQ33ebi4Save4TMgr

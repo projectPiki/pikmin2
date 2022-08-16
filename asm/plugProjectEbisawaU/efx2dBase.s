@@ -1,16 +1,11 @@
 .include "macros.inc"
 .section .rodata  # 0x804732E0 - 0x8049E220
 .balign 8
-.global lbl_80495B48
 lbl_80495B48:
-	.4byte 0x65667832
-	.4byte 0x64426173
-	.4byte 0x652E6370
-	.4byte 0x70000000
-.global lbl_80495B58
+	.asciz "efx2dBase.cpp"
+.balign 4
 lbl_80495B58:
 	.asciz "P2Assert"
-	.skip 3
 
 .section .data, "wa"  # 0x8049E220 - 0x804EFC20
 .balign 8
@@ -99,10 +94,8 @@ __vt__Q25efx2d8TSimple1:
 
 .section .sdata2, "a"     # 0x80516360 - 0x80520E40
 .balign 8
-.global lbl_8051F6D8
 lbl_8051F6D8:
-	.4byte 0x00000000
-	.4byte 0x00000000
+	.float 0.0
 
 .section .text, "ax"  # 0x800056C0 - 0x80472F00
 .global create__Q25efx2d8TSimple1FPQ25efx2d3Arg

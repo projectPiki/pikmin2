@@ -1,19 +1,24 @@
 .include "macros.inc"
 .section .rodata  # 0x804732E0 - 0x8049E220
 .balign 8
-.global lbl_80497B40
 lbl_80497B40:
 	.asciz "ebiScreenOmakeCardE"
+.balign 4
+lbl_80497B54:
 	.asciz "Screen_newScreen_of_TOmakeCardE"
+.balign 4
+lbl_80497B74:
 	.asciz "omake_tunagu.blo"
-	.skip 3
+.balign 4
+lbl_80497B88:
 	.asciz "Screen_setCallBackMessage_of_TOmakeCardE"
-	.skip 3
+.balign 4
+lbl_80497BB4:
 	.asciz "omake_tunagu.bck"
-	.skip 3
+.balign 4
+lbl_80497BC8:
 	.asciz "omake_tunagu.bpk"
-	.skip 3
-.global lbl_80497BDC
+.balign 4
 lbl_80497BDC:
 	.asciz "TOmakeCardE"
 
@@ -40,26 +45,19 @@ __vt__Q33ebi6Screen11TOmakeCardE:
 	.4byte doUpdateStateClose__Q33ebi6Screen11TOmakeCardEFv
 	.4byte doDraw__Q33ebi6Screen11TOmakeCardEFv
 	.4byte getName__Q33ebi6Screen11TOmakeCardEFv
-	.4byte 0
 
 .section .sdata2, "a"     # 0x80516360 - 0x80520E40
 .balign 8
-.global lbl_8051FEB0
 lbl_8051FEB0:
-	.4byte 0x42280000
-.global lbl_8051FEB4
+	.float 42.0
 lbl_8051FEB4:
-	.4byte 0x41F00000
-.global lbl_8051FEB8
+	.float 30.0
 lbl_8051FEB8:
-	.4byte 0x42700000
-.global lbl_8051FEBC
+	.float 60.0
 lbl_8051FEBC:
-	.4byte 0x451F6000
-.global lbl_8051FEC0
+	.float 2550.0
 lbl_8051FEC0:
-	.4byte 0x00000000
-.global lbl_8051FEC4
+	.float 0.0
 lbl_8051FEC4:
 	.float 1.0
 

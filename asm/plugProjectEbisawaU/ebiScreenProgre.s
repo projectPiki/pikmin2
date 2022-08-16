@@ -1,43 +1,26 @@
 .include "macros.inc"
 .section .rodata  # 0x804732E0 - 0x8049E220
 .balign 8
-.global lbl_80496520
 lbl_80496520:
-	.4byte 0x65626953
-	.4byte 0x63726565
-	.4byte 0x6E50726F
-	.4byte 0x67726500
-	.4byte 0x54536372
-	.4byte 0x65656E50
-	.4byte 0x726F6772
-	.4byte 0x653A3A6C
-	.4byte 0x6F616452
-	.4byte 0x65736F75
-	.4byte 0x72636500
-	.4byte 0x70726F67
-	.4byte 0x72652E73
-	.4byte 0x7A730000
-	.4byte 0x65626953
-	.4byte 0x63726565
-	.4byte 0x6E50726F
-	.4byte 0x6772652E
-	.4byte 0x63707000
+	.asciz "ebiScreenProgre"
+.balign 4
+lbl_80496530:
+	.asciz "TScreenProgre::loadResource"
+.balign 4
+lbl_8049654C:
+	.asciz "progre.szs"
+.balign 4
+lbl_80496558:
+	.asciz "ebiScreenProgre.cpp"
+.balign 4
+lbl_8049656C:
 	.asciz "P2Assert"
-	.skip 3
-.global lbl_80496578
+.balign 4
 lbl_80496578:
-	.4byte 0x54536372
-	.4byte 0x65656E50
-	.4byte 0x726F6772
-	.4byte 0x653A3A73
-	.4byte 0x65744172
-	.4byte 0x63686976
-	.4byte 0x65000000
-.global lbl_80496594
+	.asciz "TScreenProgre::setArchive"
+.balign 4
 lbl_80496594:
-	.4byte 0x70726F67
-	.4byte 0x72652E62
-	.4byte 0x6C6F0000
+	.asciz "progre.blo"
 
 .section .data, "wa"  # 0x8049E220 - 0x804EFC20
 .balign 8
@@ -46,29 +29,22 @@ __vt__Q23ebi13TScreenProgre:
 	.4byte 0
 	.4byte 0
 	.4byte setArchive__Q23ebi13TScreenProgreFP10JKRArchive
-	.4byte 0
 
 .section .sdata2, "a"     # 0x80516360 - 0x80520E40
 .balign 8
-.global lbl_8051FA58
 lbl_8051FA58:
-	.4byte 0x40555555
-.global lbl_8051FA5C
+	.float 3.3333333
 lbl_8051FA5C:
-	.4byte 0x00000000
-.global lbl_8051FA60
+	.float 0.0
 lbl_8051FA60:
 	.float 1.0
-.global lbl_8051FA64
 lbl_8051FA64:
-	.4byte 0x437F0000
-.global lbl_8051FA68
+	.float 255.0
 lbl_8051FA68:
 	.float 0.5
-.global lbl_8051FA6C
 lbl_8051FA6C:
-	.4byte 0xBF000000
-.global lbl_8051FA70
+	.float -0.5
+.balign 8
 lbl_8051FA70:
 	.4byte 0x43300000
 	.4byte 0x00000000

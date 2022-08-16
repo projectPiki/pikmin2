@@ -1,34 +1,20 @@
 .include "macros.inc"
 .section .rodata  # 0x804732E0 - 0x8049E220
 .balign 8
-.global lbl_80496378
 lbl_80496378:
-	.4byte 0x65667854
-	.4byte 0x506B4566
-	.4byte 0x66656374
-	.4byte 0x4D67722E
-	.4byte 0x63707000
-.global lbl_8049638C
+	.asciz "efxTPkEffectMgr.cpp"
+.balign 4
 lbl_8049638C:
-	.4byte 0x756E6B6E
-	.4byte 0x6F776E20
-	.4byte 0x636F6C6F
-	.4byte 0x72000000
-.global lbl_8049639C
+	.asciz "unknown color"
+.balign 4
 lbl_8049639C:
 	.asciz "P2Assert"
-	.skip 3
-	.4byte 0x696C6C65
-	.4byte 0x67616C20
-	.4byte 0x6B6F7572
-	.4byte 0x696E2063
-	.4byte 0x6F6C6F72
-	.4byte 0x2025640A
-	.4byte 0x00000000
+.balign 4
+lbl_804963A8:
+	.asciz "illegal kourin color %d\n"
 
 .section .data, "wa"  # 0x8049E220 - 0x804EFC20
 .balign 8
-.global lbl_804E7AC8
 lbl_804E7AC8:
 	.4byte lbl_803C715C
 	.4byte lbl_803C70CC
@@ -38,7 +24,6 @@ lbl_804E7AC8:
 	.4byte lbl_803C711C
 	.4byte lbl_803C7130
 	.4byte lbl_803C7130
-.global lbl_804E7AE8
 lbl_804E7AE8:
 	.4byte lbl_803C7224
 	.4byte lbl_803C71B0
@@ -69,7 +54,6 @@ __vt__Q23efx19TPkOneEmitterSimple:
 	.4byte drawAfter__18JPAEmitterCallBackFP14JPABaseEmitter
 	.4byte executeAfter__Q23efx19TPkOneEmitterSimpleFP14JPABaseEmitter
 	.4byte __dt__Q23efx19TPkOneEmitterSimpleFv
-	.4byte 0
 
 .section .sbss # 0x80514D80 - 0x80516360
 .balign 8
@@ -2482,42 +2466,36 @@ lbl_803C709C:
 /* 803C70C0 003C4000  7C 03 00 2E */	lwzx r0, r3, r0
 /* 803C70C4 003C4004  7C 09 03 A6 */	mtctr r0
 /* 803C70C8 003C4008  4E 80 04 20 */	bctr 
-.global lbl_803C70CC
 lbl_803C70CC:
 /* 803C70CC 003C400C  80 6D 9A 50 */	lwz r3, pkEffectMgr@sda21(r13)
 /* 803C70D0 003C4010  7F 84 E3 78 */	mr r4, r28
 /* 803C70D4 003C4014  80 63 00 18 */	lwz r3, 0x18(r3)
 /* 803C70D8 003C4018  4B FE 7A 75 */	bl add__Q23efx19TOneEmitterChasePosFPQ23efx15ContextChasePos
 /* 803C70DC 003C401C  48 00 00 80 */	b lbl_803C715C
-.global lbl_803C70E0
 lbl_803C70E0:
 /* 803C70E0 003C4020  80 6D 9A 50 */	lwz r3, pkEffectMgr@sda21(r13)
 /* 803C70E4 003C4024  7F 84 E3 78 */	mr r4, r28
 /* 803C70E8 003C4028  80 63 00 1C */	lwz r3, 0x1c(r3)
 /* 803C70EC 003C402C  4B FE 7A 61 */	bl add__Q23efx19TOneEmitterChasePosFPQ23efx15ContextChasePos
 /* 803C70F0 003C4030  48 00 00 6C */	b lbl_803C715C
-.global lbl_803C70F4
 lbl_803C70F4:
 /* 803C70F4 003C4034  80 6D 9A 50 */	lwz r3, pkEffectMgr@sda21(r13)
 /* 803C70F8 003C4038  7F 84 E3 78 */	mr r4, r28
 /* 803C70FC 003C403C  80 63 00 20 */	lwz r3, 0x20(r3)
 /* 803C7100 003C4040  4B FE 7A 4D */	bl add__Q23efx19TOneEmitterChasePosFPQ23efx15ContextChasePos
 /* 803C7104 003C4044  48 00 00 58 */	b lbl_803C715C
-.global lbl_803C7108
 lbl_803C7108:
 /* 803C7108 003C4048  80 6D 9A 50 */	lwz r3, pkEffectMgr@sda21(r13)
 /* 803C710C 003C404C  7F 84 E3 78 */	mr r4, r28
 /* 803C7110 003C4050  80 63 00 24 */	lwz r3, 0x24(r3)
 /* 803C7114 003C4054  4B FE 7A 39 */	bl add__Q23efx19TOneEmitterChasePosFPQ23efx15ContextChasePos
 /* 803C7118 003C4058  48 00 00 44 */	b lbl_803C715C
-.global lbl_803C711C
 lbl_803C711C:
 /* 803C711C 003C405C  80 6D 9A 50 */	lwz r3, pkEffectMgr@sda21(r13)
 /* 803C7120 003C4060  7F 84 E3 78 */	mr r4, r28
 /* 803C7124 003C4064  80 63 00 28 */	lwz r3, 0x28(r3)
 /* 803C7128 003C4068  4B FE 7A 25 */	bl add__Q23efx19TOneEmitterChasePosFPQ23efx15ContextChasePos
 /* 803C712C 003C406C  48 00 00 30 */	b lbl_803C715C
-.global lbl_803C7130
 lbl_803C7130:
 /* 803C7130 003C4070  80 6D 9A 50 */	lwz r3, pkEffectMgr@sda21(r13)
 /* 803C7134 003C4074  7F 84 E3 78 */	mr r4, r28
@@ -2531,7 +2509,6 @@ lbl_803C7144:
 /* 803C7150 003C4090  38 80 01 5C */	li r4, 0x15c
 /* 803C7154 003C4094  4C C6 31 82 */	crclr 6
 /* 803C7158 003C4098  4B C6 34 E9 */	bl panic_f__12JUTExceptionFPCciPCce
-.global lbl_803C715C
 lbl_803C715C:
 /* 803C715C 003C409C  80 01 00 24 */	lwz r0, 0x24(r1)
 /* 803C7160 003C40A0  83 E1 00 1C */	lwz r31, 0x1c(r1)
@@ -2557,48 +2534,41 @@ kill__Q23efx9ToeKourinFv:
 /* 803C71A4 003C40E4  7C 04 00 2E */	lwzx r0, r4, r0
 /* 803C71A8 003C40E8  7C 09 03 A6 */	mtctr r0
 /* 803C71AC 003C40EC  4E 80 04 20 */	bctr 
-.global lbl_803C71B0
 lbl_803C71B0:
 /* 803C71B0 003C40F0  80 AD 9A 50 */	lwz r5, pkEffectMgr@sda21(r13)
 /* 803C71B4 003C40F4  7C 64 1B 78 */	mr r4, r3
 /* 803C71B8 003C40F8  80 65 00 18 */	lwz r3, 0x18(r5)
 /* 803C71BC 003C40FC  4B FE 79 D9 */	bl del__Q23efx19TOneEmitterChasePosFPQ23efx15ContextChasePos
 /* 803C71C0 003C4100  48 00 00 64 */	b lbl_803C7224
-.global lbl_803C71C4
 lbl_803C71C4:
 /* 803C71C4 003C4104  80 AD 9A 50 */	lwz r5, pkEffectMgr@sda21(r13)
 /* 803C71C8 003C4108  7C 64 1B 78 */	mr r4, r3
 /* 803C71CC 003C410C  80 65 00 1C */	lwz r3, 0x1c(r5)
 /* 803C71D0 003C4110  4B FE 79 C5 */	bl del__Q23efx19TOneEmitterChasePosFPQ23efx15ContextChasePos
 /* 803C71D4 003C4114  48 00 00 50 */	b lbl_803C7224
-.global lbl_803C71D8
 lbl_803C71D8:
 /* 803C71D8 003C4118  80 AD 9A 50 */	lwz r5, pkEffectMgr@sda21(r13)
 /* 803C71DC 003C411C  7C 64 1B 78 */	mr r4, r3
 /* 803C71E0 003C4120  80 65 00 20 */	lwz r3, 0x20(r5)
 /* 803C71E4 003C4124  4B FE 79 B1 */	bl del__Q23efx19TOneEmitterChasePosFPQ23efx15ContextChasePos
 /* 803C71E8 003C4128  48 00 00 3C */	b lbl_803C7224
-.global lbl_803C71EC
 lbl_803C71EC:
 /* 803C71EC 003C412C  80 AD 9A 50 */	lwz r5, pkEffectMgr@sda21(r13)
 /* 803C71F0 003C4130  7C 64 1B 78 */	mr r4, r3
 /* 803C71F4 003C4134  80 65 00 24 */	lwz r3, 0x24(r5)
 /* 803C71F8 003C4138  4B FE 79 9D */	bl del__Q23efx19TOneEmitterChasePosFPQ23efx15ContextChasePos
 /* 803C71FC 003C413C  48 00 00 28 */	b lbl_803C7224
-.global lbl_803C7200
 lbl_803C7200:
 /* 803C7200 003C4140  80 AD 9A 50 */	lwz r5, pkEffectMgr@sda21(r13)
 /* 803C7204 003C4144  7C 64 1B 78 */	mr r4, r3
 /* 803C7208 003C4148  80 65 00 28 */	lwz r3, 0x28(r5)
 /* 803C720C 003C414C  4B FE 79 89 */	bl del__Q23efx19TOneEmitterChasePosFPQ23efx15ContextChasePos
 /* 803C7210 003C4150  48 00 00 14 */	b lbl_803C7224
-.global lbl_803C7214
 lbl_803C7214:
 /* 803C7214 003C4154  80 AD 9A 50 */	lwz r5, pkEffectMgr@sda21(r13)
 /* 803C7218 003C4158  7C 64 1B 78 */	mr r4, r3
 /* 803C721C 003C415C  80 65 00 2C */	lwz r3, 0x2c(r5)
 /* 803C7220 003C4160  4B FE 79 75 */	bl del__Q23efx19TOneEmitterChasePosFPQ23efx15ContextChasePos
-.global lbl_803C7224
 lbl_803C7224:
 /* 803C7224 003C4164  80 01 00 14 */	lwz r0, 0x14(r1)
 /* 803C7228 003C4168  7C 08 03 A6 */	mtlr r0

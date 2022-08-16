@@ -9,22 +9,17 @@ lbl_80497158:
 	.4byte 0x00000000
 	.4byte 0x00000000
 	.4byte 0x00000000
-	.4byte 0x65626950
-	.4byte 0x32546974
-	.4byte 0x6C655069
-	.4byte 0x6B6D696E
-	.4byte 0x00000000
+.balign 4
+lbl_80497164:
+	.asciz "ebiP2TitlePikmin"
+.balign 4
 lbl_80497178:
-	.4byte 0x54426F69
-	.4byte 0x64506172
-	.4byte 0x616D4D67
-	.4byte 0x72000000
-	.4byte 0x54546974
-	.4byte 0x6C655374
-	.4byte 0x61746550
-	.4byte 0x6172616D
-	.4byte 0x65746572
-	.4byte 0x73000000
+	.asciz "TBoidParamMgr"
+.balign 4
+lbl_80497188:
+	.asciz "TTitleStateParameters"
+.balign 4
+lbl_804971A0: # Shift-JIS
 	.4byte 0x8CFC82AB
 	.4byte 0x95CF82A6
 	.4byte 0x8378834E
@@ -32,31 +27,43 @@ lbl_80497178:
 	.4byte 0x82CC91E5
 	.4byte 0x82AB82B3
 	.4byte 0x00000000
+.balign 4
+lbl_804971BC: # Shift-JIS
 	.4byte 0x8CFC82AB
 	.4byte 0x95CF82A6
 	.4byte 0x8378834E
 	.4byte 0x8367838B
 	.4byte 0x8DC591E5
 	.4byte 0x00000000
+.balign 4
+lbl_804971D4: # Shift-JIS
 	.4byte 0x8DC591E5
 	.4byte 0x95E082AD
 	.4byte 0x91AC9378
 	.4byte 0x00000000
+.balign 4
+lbl_804971E4: # Shift-JIS
 	.4byte 0x424F4944
 	.4byte 0x8FD593CB
 	.4byte 0x89F194F0
 	.4byte 0x8C579094
 	.4byte 0x00000000
+.balign 4
+lbl_804971F8: # Shift-JIS
 	.4byte 0x424F4944
 	.4byte 0x91AC9378
 	.4byte 0x8D8782ED
 	.4byte 0x82B98C57
 	.4byte 0x90940000
+.balign 4
+lbl_8049720C: # Shift-JIS
 	.4byte 0x424F4944
 	.4byte 0x92869053
 	.4byte 0x8F578D87
 	.4byte 0x8C579094
 	.4byte 0x00000000
+.balign 4
+lbl_80497220: # Shift-JIS
 	.4byte 0x424F4944
 	.4byte 0x8CC291CC
 	.4byte 0x82CC8BDF
@@ -64,6 +71,8 @@ lbl_80497178:
 	.4byte 0x815B8360
 	.4byte 0x94BC8C61
 	.4byte 0x00000000
+.balign 4
+lbl_8049723C: # Shift-JIS
 	.4byte 0x8C5182CC
 	.4byte 0x92869053
 	.4byte 0x82C68CC2
@@ -72,89 +81,77 @@ lbl_80497178:
 	.4byte 0x926E82CC
 	.4byte 0x8A848D87
 	.4byte 0x00000000
-	.4byte 0x70696B6D
-	.4byte 0x696E2F74
-	.4byte 0x69746C65
-	.4byte 0x5F726564
-	.4byte 0x5F70696B
-	.4byte 0x692E626D
-	.4byte 0x64000000
+.balign 4
+lbl_8049725C:
+	.asciz "pikmin/title_red_piki.bmd"
+.balign 4
 lbl_80497278:
-	.4byte 0x65626950
-	.4byte 0x32546974
-	.4byte 0x6C655069
-	.4byte 0x6B6D696E
-	.4byte 0x2E637070
-	.4byte 0x00000000
+	.asciz "ebiP2TitlePikmin.cpp"
+.balign 4
 lbl_80497290:
 	.asciz "P2Assert"
 .balign 4
-	.4byte 0x70696B6D
-	.4byte 0x696E2F74
-	.4byte 0x69746C65
-	.4byte 0x5F79656C
-	.4byte 0x6C6F775F
-	.4byte 0x70696B69
-	.4byte 0x2E626D64
-	.4byte 0x00000000
-	.4byte 0x70696B6D
-	.4byte 0x696E2F74
-	.4byte 0x69746C65
-	.4byte 0x5F626C75
-	.4byte 0x655F7069
-	.4byte 0x6B692E62
-	.4byte 0x6D640000
-	.4byte 0x70696B6D
-	.4byte 0x696E2F74
-	.4byte 0x69746C65
-	.4byte 0x5F626C61
-	.4byte 0x636B5F70
-	.4byte 0x696B692E
-	.4byte 0x626D6400
-	.4byte 0x70696B6D
-	.4byte 0x696E2F74
-	.4byte 0x69746C65
-	.4byte 0x5F776869
-	.4byte 0x74655F70
-	.4byte 0x696B692E
-	.4byte 0x626D6400
-	.4byte 0x70696B6D
-	.4byte 0x696E2F77
-	.4byte 0x6169742E
-	.4byte 0x62636B00
-	.4byte 0x70696B6D
-	.4byte 0x696E2F77
-	.4byte 0x6176652E
-	.4byte 0x62636B00
+lbl_8049729C:
+	.asciz "pikmin/title_yellow_piki.bmd"
+.balign 4
+lbl_804972BC:
+	.asciz "pikmin/title_blue_piki.bmd"
+.balign 4
+lbl_804972D8:
+	.asciz "pikmin/title_black_piki.bmd"
+.balign 4
+lbl_804972F4:
+	.asciz "pikmin/title_white_piki.bmd"
+.balign 4
+lbl_80497310:
+	.asciz "pikmin/wait.bck"
+.balign 4
+lbl_80497320:
+	.asciz "pikmin/wave.bck"
+.balign 4
 lbl_80497330:
-	.4byte 0x50696B6D
-	.4byte 0x696E4D67
-	.4byte 0x72000000
+	.asciz "PikminMgr"
+.balign 4
+lbl_8049733C: # Shift-JIS
 	.4byte 0x8A438A4F
 	.4byte 0x94C58358
 	.4byte 0x8350815B
 	.4byte 0x838B0000
+.balign 4
+lbl_8049734C: # Shift-JIS
 	.4byte 0x93FA967B
 	.4byte 0x8CEA94C5
 	.4byte 0x83588350
 	.4byte 0x815B838B
 	.4byte 0x00000000
+.balign 4
+lbl_80497360: # Shift-JIS
 	.4byte 0x8352838A
 	.4byte 0x83578387
 	.4byte 0x839394BC
 	.4byte 0x8C610000
+.balign 4
+lbl_80497370: # Shift-JIS
 	.4byte 0x92E28E7E
 	.4byte 0x8B9797A3
 	.4byte 0x00000000
+.balign 4
+lbl_8049737C: # Shift-JIS
 	.4byte 0x8EFB91A9
 	.4byte 0x8B9797A3
 	.4byte 0x00000000
+.balign 4
+lbl_80497388: # Shift-JIS
 	.4byte 0x896582B8
 	.4byte 0x82E782B5
 	.4byte 0x58000000
+.balign 4
+lbl_80497394: # Shift-JIS
 	.4byte 0x896582B8
 	.4byte 0x82E782B5
 	.4byte 0x5A000000
+.balign 4
+lbl_804973A0: # Shift-JIS
 	.4byte 0x8341836A
 	.4byte 0x83818358
 	.4byte 0x8373815B
@@ -163,28 +160,38 @@ lbl_80497330:
 	.4byte 0x91AC9378
 	.4byte 0x94E497E1
 	.4byte 0x816A0000
+.balign 4
+lbl_804973C0: # Shift-JIS
 	.4byte 0x8341836A
 	.4byte 0x83818358
 	.4byte 0x8373815B
 	.4byte 0x83689597
 	.4byte 0x00000000
+.balign 4
+lbl_804973D4: # Shift-JIS
 	.4byte 0x8341836A
 	.4byte 0x83818358
 	.4byte 0x8373815B
 	.4byte 0x83685741
 	.4byte 0x49548DC5
 	.4byte 0x91E50000
+.balign 4
+lbl_804973EC: # Shift-JIS
 	.4byte 0x8341836A
 	.4byte 0x83818358
 	.4byte 0x8373815B
 	.4byte 0x83685741
 	.4byte 0x49548DC5
 	.4byte 0x8FAC0000
+.balign 4
+lbl_80497404: # Shift-JIS
 	.4byte 0x8352834B
 	.4byte 0x836C8D44
 	.4byte 0x82AB8D44
 	.4byte 0x82AB8C57
 	.4byte 0x90940000
+.balign 4
+lbl_80497418: # Shift-JIS
 	.4byte 0x83608383
 	.4byte 0x83628373
 	.4byte 0x815B82A9
@@ -192,35 +199,33 @@ lbl_80497330:
 	.4byte 0x82B082E9
 	.4byte 0x8C579094
 	.4byte 0x00000000
+.balign 4
+lbl_80497434: # Shift-JIS
 	.4byte 0x92C782A2
 	.4byte 0x82A982AF
 	.4byte 0x82A082AB
 	.4byte 0x82E782DF
 	.4byte 0x94BC8C61
 	.4byte 0x00000000
+.balign 4
+lbl_8049744C: # Shift-JIS
 	.4byte 0x9597835E
 	.4byte 0x8343837D
 	.4byte 0x815B2895
 	.4byte 0x62290000
+.balign 4
+lbl_8049745C: # Shift-JIS
 	.4byte 0x8B9797A3
 	.4byte 0x94E497E1
 	.4byte 0x91AC9378
 	.4byte 0x8C579094
 	.4byte 0x00000000
+.balign 4
 lbl_80497470:
-	.4byte 0x70617261
-	.4byte 0x6D2F7061
-	.4byte 0x72616D5F
-	.4byte 0x70696B6D
-	.4byte 0x696E2E74
-	.4byte 0x78740000
+	.asciz "param/param_pikmin.txt"
+.balign 4
 lbl_80497488:
-	.4byte 0x70617261
-	.4byte 0x6D2F7061
-	.4byte 0x72616D5F
-	.4byte 0x626F6964
-	.4byte 0x2E747874
-	.4byte 0x00000000
+	.asciz "param/param_boid.txt"
 
 .section .data, "wa"  # 0x8049E220 - 0x804EFC20
 .balign 8
@@ -237,93 +242,92 @@ __vt__Q43ebi5title6Pikmin5TUnit:
 
 .section .sbss # 0x80514D80 - 0x80516360
 .balign 8
-lbl_805160E8:
+gu32NAN___Q24Game5P2JST:
 	.skip 0x4
-lbl_805160EC:
+gfNAN___Q24Game5P2JST:
 	.skip 0x4
-.global boidCalcTimer$4026
 boidCalcTimer$4026:
 	.skip 0x4
-.global init$4027
 init$4027:
-	.skip 0x4
+	.skip 0x1
 
 .section .sdata2, "a"     # 0x80516360 - 0x80520E40
 .balign 8
 lbl_8051FC60:
-	.4byte 0x00000000
+	.float 0.0
 lbl_8051FC64:
-	.4byte 0x3E4CCCCD
+	.float 0.2
 lbl_8051FC68:
-	.4byte 0x41200000
+	.float 10.0
 lbl_8051FC6C:
-	.4byte 0x3ECCCCCD
+	.float 0.4
 lbl_8051FC70:
-	.4byte 0x40000000
+	.float 2.0
 lbl_8051FC74:
-	.4byte 0x44480000
+	.float 800.0
 lbl_8051FC78:
-	.4byte 0x461C4000
+	.float 10000.0
 lbl_8051FC7C:
-	.4byte 0x40900000
+	.float 4.5
 lbl_8051FC80:
-	.4byte 0x42C80000
+	.float 100.0
 lbl_8051FC84:
-	.4byte 0x3BA3D70A
+	.float 0.005
 lbl_8051FC88:
-	.4byte 0x41F00000
+	.float 30.0
 lbl_8051FC8C:
-	.4byte 0x43FA0000
+	.float 500.0
 lbl_8051FC90:
 	.float 1.0
-	.4byte 0x00000000
+.balign 8
 lbl_8051FC98:
 	.4byte 0x43300000
 	.4byte 0x00000000
 lbl_8051FCA0:
-	.4byte 0xBF800000
+	.float -1.0
+.balign 4
 lbl_8051FCA4:
-	.4byte 0x5061726D
-	.4byte 0x73000000
+	.asciz "Parms"
+.balign 4
 lbl_8051FCAC:
-	.4byte 0x4019999A
+	.float 2.4
 lbl_8051FCB0:
-	.4byte 0x40266666
+	.float 2.6
 lbl_8051FCB4:
-	.4byte 0x40A00000
+	.float 5.0
 lbl_8051FCB8:
-	.4byte 0x41A00000
+	.float 20.0
 lbl_8051FCBC:
-	.4byte 0x42480000
+	.float 50.0
 lbl_8051FCC0:
 	.float 0.5
 lbl_8051FCC4:
-	.4byte 0xC1200000
+	.float -10.0
 lbl_8051FCC8:
-	.4byte 0xC0A00000
+	.float -5.0
 lbl_8051FCCC:
-	.4byte 0x43C80000
+	.float 400.0
 lbl_8051FCD0:
-	.4byte 0x40C00000
-	.4byte 0x00000000
+	.float 6.0
+.balign 8
 lbl_8051FCD8:
 	.4byte 0x43300000
 	.4byte 0x80000000
 lbl_8051FCE0:
-	.4byte 0x46FFFE00
+	.float 32767.0
 lbl_8051FCE4:
-	.4byte 0x3F4CCCCD
+	.float 0.8
 lbl_8051FCE8:
-	.4byte 0x3ECCCCCE
+	.float 0.40000004
 lbl_8051FCEC:
-	.4byte 0x42700000
+	.float 60.0
 lbl_8051FCF0:
 	.float 0.1
 lbl_8051FCF4:
-	.4byte 0xC0000000
+	.float -2.0
+.balign 4
 lbl_8051FCF8:
-	.4byte 0x73686164
-	.4byte 0x6F773100
+	.asciz "shadow1"
 
 .section .text, "ax"  # 0x800056C0 - 0x80472F00
 .global setArchive__Q43ebi5title6Pikmin9TAnimatorFP10JKRArchive
@@ -4049,9 +4053,9 @@ __sinit_ebiP2TitlePikmin_cpp: # static initializer
 /* 803E7334 003E4274  38 00 FF FF */	li r0, -1
 /* 803E7338 003E4278  C0 04 48 B0 */	lfs f0, __float_nan@l(r4)
 /* 803E733C 003E427C  3C 60 80 4F */	lis r3, govNAN___Q24Game5P2JST@ha
-/* 803E7340 003E4280  90 0D 9A 68 */	stw r0, lbl_805160E8@sda21(r13)
+/* 803E7340 003E4280  90 0D 9A 68 */	stw r0, gu32NAN___Q24Game5P2JST@sda21(r13)
 /* 803E7344 003E4284  D4 03 9D F0 */	stfsu f0, govNAN___Q24Game5P2JST@l(r3)
-/* 803E7348 003E4288  D0 0D 9A 6C */	stfs f0, lbl_805160EC@sda21(r13)
+/* 803E7348 003E4288  D0 0D 9A 6C */	stfs f0, gfNAN___Q24Game5P2JST@sda21(r13)
 /* 803E734C 003E428C  D0 03 00 04 */	stfs f0, 4(r3)
 /* 803E7350 003E4290  D0 03 00 08 */	stfs f0, 8(r3)
 /* 803E7354 003E4294  4E 80 00 20 */	blr 

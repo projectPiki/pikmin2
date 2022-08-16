@@ -1,45 +1,25 @@
 .include "macros.inc"
 .section .rodata  # 0x804732E0 - 0x8049E220
 .balign 8
-.global lbl_80496E70
 lbl_80496E70:
-	.4byte 0x65626953
-	.4byte 0x63726565
-	.4byte 0x6E536176
-	.4byte 0x654D656E
-	.4byte 0x75000000
-.global lbl_80496E84
+	.asciz "ebiScreenSaveMenu"
+.balign 4
 lbl_80496E84:
-	.4byte 0x696E666F
-	.4byte 0x5F77696E
-	.4byte 0x646F772E
-	.4byte 0x626C6F00
-	.4byte 0x54536372
-	.4byte 0x65656E53
-	.4byte 0x6176654D
-	.4byte 0x656E753A
-	.4byte 0x3A6C6F61
-	.4byte 0x64526573
-	.4byte 0x6F757263
-	.4byte 0x65000000
-	.4byte 0x696E666F
-	.4byte 0x5F77696E
-	.4byte 0x646F772E
-	.4byte 0x737A7300
-.global lbl_80496EC4
+	.asciz "info_window.blo"
+.balign 4
+lbl_80496E94:
+	.asciz "TScreenSaveMenu::loadResource"
+.balign 4
+lbl_80496EB4:
+	.asciz "info_window.szs"
+.balign 4
 lbl_80496EC4:
-	.4byte 0x65626953
-	.4byte 0x63726565
-	.4byte 0x6E536176
-	.4byte 0x654D656E
-	.4byte 0x752E6370
-	.4byte 0x70000000
-.global lbl_80496EDC
+	.asciz "ebiScreenSaveMenu.cpp"
+.balign 4
 lbl_80496EDC:
 	.asciz "P2Assert"
-	.skip 3
-.global lbl_80496EE8
-lbl_80496EE8:
+.balign 4
+lbl_80496EE8: # Shift-JIS
 	.4byte 0x82A082E8
 	.4byte 0x82A682C8
 	.4byte 0x82A28149
@@ -49,11 +29,9 @@ lbl_80496EE8:
 	.4byte 0x82BD82CD
 	.4byte 0x82A082C1
 	.4byte 0x81490A00
-.global lbl_80496F0C
+.balign 4
 lbl_80496F0C:
-	.4byte 0x54536176
-	.4byte 0x654D656E
-	.4byte 0x75000000
+	.asciz "TSaveMenu"
 
 .section .data, "wa"  # 0x8049E220 - 0x804EFC20
 .balign 8
@@ -78,42 +56,31 @@ __vt__Q33ebi6Screen9TSaveMenu:
 	.4byte doUpdateStateClose__Q33ebi6Screen9TSaveMenuFv
 	.4byte doDraw__Q33ebi6Screen9TSaveMenuFv
 	.4byte getName__Q33ebi6Screen9TSaveMenuFv
-	.4byte 0
 
 .section .sdata2, "a"     # 0x80516360 - 0x80520E40
 .balign 8
-.global lbl_8051FBC8
 lbl_8051FBC8:
-	.4byte 0x00000000
-.global lbl_8051FBCC
+	.float 0.0
 lbl_8051FBCC:
-	.4byte 0x44480000
-.global lbl_8051FBD0
+	.float 800.0
 lbl_8051FBD0:
 	.float 1.0
-.global lbl_8051FBD4
 lbl_8051FBD4:
 	.float 0.3
-.global lbl_8051FBD8
 lbl_8051FBD8:
-	.4byte 0xC4480000
-	.4byte 0x00000000
-.global lbl_8051FBE0
+	.float -800.0
+.balign 8
 lbl_8051FBE0:
 	.4byte 0x43300000
 	.4byte 0x00000000
-.global lbl_8051FBE8
 lbl_8051FBE8:
-	.4byte 0x3F19999A
-.global lbl_8051FBEC
+	.float 0.6
 lbl_8051FBEC:
-	.4byte 0x3F4CCCCD
-.global lbl_8051FBF0
+	.float 0.8
 lbl_8051FBF0:
 	.float 0.5
-.global lbl_8051FBF4
 lbl_8051FBF4:
-	.4byte 0xBF000000
+	.float -0.5
 
 .section .text, "ax"  # 0x800056C0 - 0x80472F00
 .global doSetArchive__Q33ebi6Screen9TSaveMenuFP10JKRArchive

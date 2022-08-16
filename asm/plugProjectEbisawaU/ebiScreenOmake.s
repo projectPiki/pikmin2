@@ -1,29 +1,29 @@
 .include "macros.inc"
 .section .rodata  # 0x804732E0 - 0x8049E220
 .balign 8
-.global lbl_80497A18
 lbl_80497A18:
 	.asciz "ebiScreenOmake"
-	.skip 1
+.balign 4
+lbl_80497A28:
 	.asciz "Screen_newScreen_of_TOmake"
-	.skip 1
+.balign 4
+lbl_80497A44:
 	.asciz "omake.blo"
-	.skip 2
+.balign 4
+lbl_80497A50:
 	.asciz "Screen_setCallBackMessage_of_TOmake"
+.balign 4
+lbl_80497A74:
 	.asciz "omake.bck"
-	.skip 2
-.global lbl_80497A80
+.balign 4
 lbl_80497A80:
 	.asciz "ebiScreenOmake.cpp"
-	.skip 1
-.global lbl_80497A94
+.balign 4
 lbl_80497A94:
 	.asciz "P2Assert"
-	.skip 3
 
 .section .data, "wa"  # 0x8049E220 - 0x804EFC20
 .balign 8
-.global lbl_804EA198
 lbl_804EA198:
 	.4byte lbl_803EE28C
 	.4byte lbl_803EE674
@@ -56,48 +56,35 @@ __vt__Q33ebi6Screen6TOmake:
 
 .section .sdata2, "a"     # 0x80516360 - 0x80520E40
 .balign 8
-.global lbl_8051FE60
 lbl_8051FE60:
 	.float 1.0
-.global lbl_8051FE64
 lbl_8051FE64:
-	.4byte 0x00000000
-.global lbl_8051FE68
+	.float 0.0
 lbl_8051FE68:
-	.4byte 0x3D08850A
-.global lbl_8051FE6C
+	.float 0.03333
 lbl_8051FE6C:
-	.4byte 0x42700000
-.global lbl_8051FE70
+	.float 60.0
 lbl_8051FE70:
 	.float 0.1
-.global lbl_8051FE74
 lbl_8051FE74:
-	.4byte 0x40555555
-.global lbl_8051FE78
+	.float 3.3333333
 lbl_8051FE78:
-	.4byte 0x41F00000
-.global lbl_8051FE7C
+	.float 30.0
 lbl_8051FE7C:
-	.4byte 0x3F19999A
-.global lbl_8051FE80
+	.float 0.6
 lbl_8051FE80:
-	.4byte 0x437F0000
-	.4byte 0x00000000
-.global lbl_8051FE88
+	.float 255.0
+.balign 8
 lbl_8051FE88:
 	.4byte 0x43300000
 	.4byte 0x00000000
-.global lbl_8051FE90
 lbl_8051FE90:
-	.4byte 0x3F28F5C3
-.global lbl_8051FE94
+	.float 0.66
 lbl_8051FE94:
 	.float 0.15
-.global lbl_8051FE98
+.balign 4
 lbl_8051FE98:
-	.4byte 0x544F6D61
-	.4byte 0x6B650000
+	.asciz "TOmake"
 
 .section .text, "ax"  # 0x800056C0 - 0x80472F00
 .global __ct__Q33ebi6Screen6TOmakeFv
@@ -1152,7 +1139,6 @@ lbl_803EE268:
 /* 803EE280 003EB1C0  7C 03 00 2E */	lwzx r0, r3, r0
 /* 803EE284 003EB1C4  7C 09 03 A6 */	mtctr r0
 /* 803EE288 003EB1C8  4E 80 04 20 */	bctr 
-.global lbl_803EE28C
 lbl_803EE28C:
 /* 803EE28C 003EB1CC  38 7E 00 10 */	addi r3, r30, 0x10
 /* 803EE290 003EB1D0  4B FD 38 0D */	bl update__Q23ebi24EUTPadInterface_countNumFv
@@ -1330,7 +1316,6 @@ lbl_803EE500:
 /* 803EE514 003EB454  4B F4 A1 1D */	bl playSystemSe__Q28PSSystem5SysIFFUlUl
 /* 803EE518 003EB458  38 60 00 01 */	li r3, 1
 /* 803EE51C 003EB45C  48 00 01 5C */	b lbl_803EE678
-.global lbl_803EE520
 lbl_803EE520:
 /* 803EE520 003EB460  38 7E 01 1C */	addi r3, r30, 0x11c
 /* 803EE524 003EB464  4B FE 29 DD */	bl getPlayFinRate__Q23ebi19E2DCallBack_AnmBaseFv
@@ -1371,7 +1356,6 @@ lbl_803EE520:
 /* 803EE5B0 003EB4F0  38 00 00 01 */	li r0, 1
 /* 803EE5B4 003EB4F4  90 1E 00 0C */	stw r0, 0xc(r30)
 /* 803EE5B8 003EB4F8  48 00 00 BC */	b lbl_803EE674
-.global lbl_803EE5BC
 lbl_803EE5BC:
 /* 803EE5BC 003EB4FC  38 7E 00 E0 */	addi r3, r30, 0xe0
 /* 803EE5C0 003EB500  4B FE 29 41 */	bl getPlayFinRate__Q23ebi19E2DCallBack_AnmBaseFv
@@ -1408,7 +1392,6 @@ lbl_803EE5BC:
 /* 803EE63C 003EB57C  38 00 00 00 */	li r0, 0
 /* 803EE640 003EB580  90 1E 00 0C */	stw r0, 0xc(r30)
 /* 803EE644 003EB584  48 00 00 30 */	b lbl_803EE674
-.global lbl_803EE648
 lbl_803EE648:
 /* 803EE648 003EB588  80 1E 00 50 */	lwz r0, 0x50(r30)
 /* 803EE64C 003EB58C  28 00 00 00 */	cmplwi r0, 0
@@ -1416,14 +1399,12 @@ lbl_803EE648:
 /* 803EE654 003EB594  38 00 00 04 */	li r0, 4
 /* 803EE658 003EB598  90 1E 00 0C */	stw r0, 0xc(r30)
 /* 803EE65C 003EB59C  48 00 00 18 */	b lbl_803EE674
-.global lbl_803EE660
 lbl_803EE660:
 /* 803EE660 003EB5A0  80 1E 00 50 */	lwz r0, 0x50(r30)
 /* 803EE664 003EB5A4  28 00 00 00 */	cmplwi r0, 0
 /* 803EE668 003EB5A8  40 82 00 0C */	bne lbl_803EE674
 /* 803EE66C 003EB5AC  38 00 00 00 */	li r0, 0
 /* 803EE670 003EB5B0  90 1E 00 0C */	stw r0, 0xc(r30)
-.global lbl_803EE674
 lbl_803EE674:
 /* 803EE674 003EB5B4  38 60 00 00 */	li r3, 0
 lbl_803EE678:
@@ -1810,6 +1791,6 @@ __ct__Q23ebi26E2DCallBack_BlinkFontColorFv:
 /* 803EEBDC 003EBB1C  4E 80 00 20 */	blr 
 
 .global getName__Q33ebi6Screen6TOmakeFv
-getName__Q33ebi6Screen6TOmakeFv:
+getName__Q33ebi6Screen6TOmakeFv: # weak function
 /* 803EEBE0 003EBB20  38 62 1B 38 */	addi r3, r2, lbl_8051FE98@sda21
 /* 803EEBE4 003EBB24  4E 80 00 20 */	blr 

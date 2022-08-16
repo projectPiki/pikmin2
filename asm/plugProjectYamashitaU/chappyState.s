@@ -1,14 +1,11 @@
 .include "macros.inc"
 .section .rodata  # 0x804732E0 - 0x8049E220
 .balign 8
-.global lbl_8047AEA8
 lbl_8047AEA8:
 	.asciz "StateCautionBase"
-	.skip 3
-.global lbl_8047AEBC
+.balign 4
 lbl_8047AEBC:
 	.asciz "TurnToHome"
-	.skip 1
 
 .section .data, "wa"  # 0x8049E220 - 0x804EFC20
 .balign 8
@@ -147,72 +144,56 @@ __vt__Q34Game10ChappyBase3FSM:
 
 .section .sdata2, "a"     # 0x80516360 - 0x80520E40
 .balign 8
-.global lbl_80517AA0
 lbl_80517AA0:
-	.4byte 0x00000000
-.global lbl_80517AA4
+	.float 0.0
 lbl_80517AA4:
-	.4byte 0x43340000
-.global lbl_80517AA8
+	.float 180.0
+.balign 4
 lbl_80517AA8:
-	.4byte 0x736C6565
-	.4byte 0x70000000
-.global lbl_80517AB0
+	.asciz "sleep"
+.balign 4
 lbl_80517AB0:
-	.4byte 0x428C0000
-.global lbl_80517AB4
+	.float 70.0
 lbl_80517AB4:
-	.4byte 0x41F00000
-.global lbl_80517AB8
+	.float 30.0
 lbl_80517AB8:
-	.4byte 0x42700000
-.global lbl_80517ABC
+	.float 60.0
+.balign 4
 lbl_80517ABC:
-	.4byte 0x64656164
-	.4byte 0x00000000
-.global lbl_80517AC4
+	.asciz "dead"
+.balign 4
 lbl_80517AC4:
 	.float 1.0
-.global lbl_80517AC8
 lbl_80517AC8:
-	.4byte 0x3F666666
-.global lbl_80517ACC
+	.float 0.9
 lbl_80517ACC:
-	.4byte 0x41200000
-.global lbl_80517AD0
-lbl_80517AD0:
-	.4byte 0x40490FDB
-.global lbl_80517AD4
+	.float 10.0
+lbl_80517AD0: # pi
+	.float 3.1415927
 lbl_80517AD4:
-	.4byte 0x3BB60B61
-.global lbl_80517AD8
+	.float 0.0055555557
+.balign 8
 lbl_80517AD8:
 	.4byte 0x43300000
 	.4byte 0x80000000
-.global lbl_80517AE0
+.balign 4
 lbl_80517AE0:
-	.4byte 0x7475726E
-	.4byte 0x00000000
-.global lbl_80517AE8
+	.asciz "turn"
+.balign 4
 lbl_80517AE8:
-	.4byte 0x42200000
-.global lbl_80517AEC
+	.float 40.0
+.balign 4
 lbl_80517AEC:
-	.4byte 0x57616C6B
-	.4byte 0x00000000
-.global lbl_80517AF4
+	.asciz "Walk"
+.balign 4
 lbl_80517AF4:
-	.4byte 0x41747461
-	.4byte 0x636B0000
-.global lbl_80517AFC
+	.asciz "Attack"
+.balign 4
 lbl_80517AFC:
-	.4byte 0x466C6963
-	.4byte 0x6B000000
-.global lbl_80517B04
+	.asciz "Flick"
+.balign 4
 lbl_80517B04:
-	.4byte 0x476F486F
-	.4byte 0x6D650000
-	.4byte 0x00000000
+	.asciz "GoHome"
 
 .section .text, "ax"  # 0x800056C0 - 0x80472F00
 .global init__Q34Game10ChappyBase3FSMFPQ24Game9EnemyBase

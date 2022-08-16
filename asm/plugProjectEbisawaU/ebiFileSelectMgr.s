@@ -244,6 +244,11 @@ __vt__Q33ebi10FileSelect15FSMStateMachine:
 msInstance__Q33ebi10FileSelect4TMgr:
 	.skip 0x4
 
+.section .sdata2, "a"     # 0x80516360 - 0x80520E40
+.balign 8
+lbl_8051FC18:
+	.asciz "Standby"
+
 .section .text, "ax"  # 0x800056C0 - 0x80472F00
 .global init__Q33ebi10FileSelect15FSMStateMachineFPQ33ebi10FileSelect4TMgr
 init__Q33ebi10FileSelect15FSMStateMachineFPQ33ebi10FileSelect4TMgr:

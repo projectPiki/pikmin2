@@ -26,31 +26,23 @@ __vt__Q24Game13InteractSarai:
 
 .section .sdata2, "a"     # 0x80516360 - 0x80520E40
 .balign 8
-.global lbl_80519788
 lbl_80519788:
 	.4byte 0xC1200000
-.global lbl_8051978C
 lbl_8051978C:
 	.4byte 0x00000000
-.global lbl_80519790
 lbl_80519790:
 	.4byte 0x43A2F983
-.global lbl_80519794
 lbl_80519794:
 	.4byte 0xC3A2F983
-.global lbl_80519798
 lbl_80519798:
 	.4byte 0x47000000
-.global lbl_8051979C
 lbl_8051979C:
 	.float 0.1
-.global lbl_805197A0
 lbl_805197A0:
 	.4byte 0x42C80000
-.global lbl_805197A4
 lbl_805197A4:
 	.4byte 0x42480000
-.global lbl_805197A8
+.balign 8
 lbl_805197A8:
 	.4byte 0x43300000
 	.4byte 0x80000000

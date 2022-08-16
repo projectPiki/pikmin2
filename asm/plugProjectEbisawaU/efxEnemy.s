@@ -1,66 +1,59 @@
 .include "macros.inc"
 .section .rodata  # 0x804732E0 - 0x8049E220
 .balign 8
-.global lbl_80495898
 lbl_80495898:
-	.4byte 0x65667845
-	.4byte 0x6E656D79
-	.4byte 0x2E637070
-	.4byte 0x00000000
-	.4byte 0x41726753
-	.4byte 0x63616C65
-	.4byte 0x00000000
-.global lbl_804958B4
+	.asciz "efxEnemy.cpp"
+.balign 4
+lbl_804958A8:
+	.asciz "ArgScale"
+.balign 4
 lbl_804958B4:
 	.asciz "P2Assert"
-	.skip 3
-	.4byte 0x41726749
-	.4byte 0x6D6F4561
-	.4byte 0x74000000
-.global lbl_804958CC
+.balign 4
+lbl_804958C0:
+	.asciz "ArgImoEat"
+.balign 4
 lbl_804958CC:
-	.4byte 0x3E4CCCCD
-	.4byte 0x3E4CCCCD
-	.4byte 0x3E4CCCCD
+	.float 0.2
+	.float 0.2
+	.float 0.2
 	.float 1.0
 	.float 1.0
 	.float 1.0
-	.4byte 0x3DA7EF9E
+	.float 0.082
 	.float 0.05
-	.4byte 0x00000000
-	.4byte 0x40133333
-	.4byte 0x3FD9999A
-	.4byte 0x00000000
-.global lbl_804958FC
+	.float 0.0
+	.float 2.3
+	.float 1.7
+	.float 0.0
 lbl_804958FC:
-	.4byte 0x3F59999A
+	.float 0.85
 	.float 0.5
-	.4byte 0x3EB33333
+	.float 0.35
 	.float 0.3
-	.4byte 0x3E4CCCCD
-	.4byte 0x00000000
+	.float 0.2
+	.float 0.0
 	.float 0.25
 	.float 0.25
-	.4byte 0x3E4CCCCD
+	.float 0.2
 	.float 0.25
 	.float 0.15
-	.4byte 0x00000000
-	.4byte 0x41726747
-	.4byte 0x61737548
-	.4byte 0x69626100
-.global lbl_80495938
+	.float 0.0
+.balign 4
+lbl_8049592C:
+	.asciz "ArgGasuHiba"
+.balign 4
 lbl_80495938:
 	.float 0.5
-	.4byte 0x3ECCCCCD
+	.float 0.4
 	.float 0.25
-	.4byte 0x3EB33333
-	.4byte 0x3E4CCCCD
+	.float 0.35
+	.float 0.2
 	.float 0.1
-	.4byte 0x41726744
-	.4byte 0x656E6B69
-	.4byte 0x48696261
-	.4byte 0x00000000
-.global lbl_80495960
+.balign 4
+lbl_80495950:
+	.asciz "ArgDenkiHiba"
+.balign 4
 lbl_80495960:
 	.float 1.0
 	.float 1.0
@@ -453,40 +446,30 @@ __vt__Q23efx9TChibiHit:
 	.4byte create__Q23efx9TChibiHitFPQ23efx3Arg
 	.4byte forceKill__Q23efx8TSimple4Fv
 	.4byte fade__Q23efx8TSimple4Fv
-	.4byte 0
 
 .section .sdata2, "a"     # 0x80516360 - 0x80520E40
 .balign 8
-.global lbl_8051F620
 lbl_8051F620:
-	.4byte 0x41726743
-	.4byte 0x686F7500
-.global lbl_8051F628
+	.asciz "ArgChou"
+.balign 4
 lbl_8051F628:
-	.4byte 0x3FA66666
-.global lbl_8051F62C
+	.float 1.3
+.balign 4
 lbl_8051F62C:
-	.4byte 0x41726752
-	.4byte 0x6F745900
-.global lbl_8051F634
+	.asciz "ArgRotY"
+.balign 4
 lbl_8051F634:
-	.4byte 0xC20C0000
-.global lbl_8051F638
+	.float -35.0
 lbl_8051F638:
-	.4byte 0x00000000
-.global lbl_8051F63C
+	.float 0.0
 lbl_8051F63C:
 	.float 0.5
-.global lbl_8051F640
 lbl_8051F640:
-	.4byte 0x40400000
-.global lbl_8051F644
+	.float 3.0
 lbl_8051F644:
-	.4byte 0x447A0000
-.global lbl_8051F648
+	.float 1000.0
 lbl_8051F648:
-	.4byte 0x42F00000
-.global lbl_8051F64C
+	.float 120.0
 lbl_8051F64C:
 	.float 1.0
 

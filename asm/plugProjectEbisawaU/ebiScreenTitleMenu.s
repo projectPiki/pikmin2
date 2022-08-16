@@ -1,51 +1,29 @@
 .include "macros.inc"
 .section .rodata  # 0x804732E0 - 0x8049E220
 .balign 8
-.global lbl_80496D38
 lbl_80496D38:
-	.4byte 0x65626953
-	.4byte 0x63726565
-	.4byte 0x6E546974
-	.4byte 0x6C654D65
-	.4byte 0x6E750000
-	.4byte 0x54546974
-	.4byte 0x6C654D65
-	.4byte 0x6E753A3A
-	.4byte 0x73657441
-	.4byte 0x72636869
-	.4byte 0x76650000
-	.4byte 0x7469746C
-	.4byte 0x655F6D65
-	.4byte 0x6E755F36
-	.4byte 0x2E626C6F
-	.4byte 0x00000000
-.global lbl_80496D78
+	.asciz "ebiScreenTitleMenu"
+.balign 4
+lbl_80496D4C:
+	.asciz "TTitleMenu::setArchive"
+.balign 4
+lbl_80496D64:
+	.asciz "title_menu_6.blo"
+.balign 4
 lbl_80496D78:
-	.4byte 0x65626953
-	.4byte 0x63726565
-	.4byte 0x6E546974
-	.4byte 0x6C654D65
-	.4byte 0x6E752E63
-	.4byte 0x70700000
-.global lbl_80496D90
+	.asciz "ebiScreenTitleMenu.cpp"
+.balign 4
 lbl_80496D90:
 	.asciz "P2Assert"
-	.skip 3
-	.4byte 0x7469746C
-	.4byte 0x655F6D65
-	.4byte 0x6E755F35
-	.4byte 0x2E62636B
-	.4byte 0x00000000
-	.4byte 0x7469746C
-	.4byte 0x655F6D65
-	.4byte 0x6E755F36
-	.4byte 0x2E62636B
-	.4byte 0x00000000
-.global lbl_80496DC4
+.balign 4
+lbl_80496D9C:
+	.asciz "title_menu_5.bck"
+.balign 4
+lbl_80496DB0:
+	.asciz "title_menu_6.bck"
+.balign 4
 lbl_80496DC4:
-	.4byte 0x54546974
-	.4byte 0x6C654D65
-	.4byte 0x6E750000
+	.asciz "TTitleMenu"
 
 .section .data, "wa"  # 0x8049E220 - 0x804EFC20
 .balign 8
@@ -70,43 +48,32 @@ __vt__Q33ebi6Screen10TTitleMenu:
 	.4byte doUpdateStateClose__Q33ebi6Screen10TTitleMenuFv
 	.4byte doDraw__Q33ebi6Screen10TTitleMenuFv
 	.4byte getName__Q33ebi6Screen10TTitleMenuFv
-	.4byte 0
 
 .section .sdata2, "a"     # 0x80516360 - 0x80520E40
 .balign 8
-.global lbl_8051FB68
 lbl_8051FB68:
-	.4byte 0x3F28F5C3
-.global lbl_8051FB6C
+	.float 0.66
 lbl_8051FB6C:
 	.float 0.15
-.global lbl_8051FB70
 lbl_8051FB70:
-	.4byte 0x42700000
-.global lbl_8051FB74
+	.float 60.0
 lbl_8051FB74:
-	.4byte 0x41F00000
-.global lbl_8051FB78
+	.float 30.0
 lbl_8051FB78:
-	.4byte 0x3E4CCCCD
-.global lbl_8051FB7C
+	.float 0.2
 lbl_8051FB7C:
 	.float 1.0
-.global lbl_8051FB80
 lbl_8051FB80:
-	.4byte 0x46FFFE00
-	.4byte 0x00000000
-.global lbl_8051FB88
+	.float 32767.0
+.balign 8
 lbl_8051FB88:
 	.4byte 0x43300000
 	.4byte 0x80000000
-.global lbl_8051FB90
 lbl_8051FB90:
-	.4byte 0x00000000
-.global lbl_8051FB94
+	.float 0.0
 lbl_8051FB94:
-	.4byte 0x437F0000
-.global lbl_8051FB98
+	.float 255.0
+.balign 8
 lbl_8051FB98:
 	.4byte 0x43300000
 	.4byte 0x00000000

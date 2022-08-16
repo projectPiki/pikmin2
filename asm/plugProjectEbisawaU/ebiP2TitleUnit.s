@@ -9,57 +9,46 @@ lbl_804961D8:
 	.4byte 0x00000000
 	.4byte 0x00000000
 	.4byte 0x00000000
-	.4byte 0x65626950
-	.4byte 0x32546974
-	.4byte 0x6C65556E
-	.4byte 0x69740000
-	.4byte 0x6F70656E
-	.4byte 0x696E672E
-	.4byte 0x626D6400
+.balign 4
+lbl_804961E4:
+	.asciz "ebiP2TitleUnit"
+.balign 4
+lbl_804961F4:
+	.asciz "opening.bmd"
+.balign 4
 lbl_80496200:
-	.4byte 0x65626950
-	.4byte 0x32546974
-	.4byte 0x6C65556E
-	.4byte 0x69742E63
-	.4byte 0x70700000
+	.asciz "ebiP2TitleUnit.cpp"
+.balign 4
 lbl_80496214:
 	.asciz "P2Assert"
-	.skip 3
-	.4byte 0x6F70656E
-	.4byte 0x696E675F
-	.4byte 0x77616974
-	.4byte 0x2E62636B
-	.4byte 0x00000000
-	.4byte 0x6F70656E
-	.4byte 0x696E675F
-	.4byte 0x6B617A65
-	.4byte 0x2E62636B
-	.4byte 0x00000000
-	.4byte 0x656E656D
-	.4byte 0x792E626D
-	.4byte 0x64000000
-	.4byte 0x656E656D
-	.4byte 0x792E6263
-	.4byte 0x6B000000
+.balign 4
+lbl_80496220:
+	.asciz "opening_wait.bck"
+.balign 4
+lbl_80496234:
+	.asciz "opening_kaze.bck"
+.balign 4
+lbl_80496248:
+	.asciz "enemy.bmd"
+.balign 4
+lbl_80496254:
+	.asciz "enemy.bck"
+.balign 4
 lbl_80496260:
-	.4byte 0x626C6163
-	.4byte 0x6B5F706C
-	.4byte 0x616E6500
-	.4byte 0x00000000
+	.asciz "black_plane"
 
 .section .data, "wa"  # 0x8049E220 - 0x804EFC20
 .balign 8
-lbl_804E79B8:
-	.4byte 0x00000000
-	.4byte 0x00000000
-	.4byte 0x00000000
-	.4byte 0x00000000
+govNAN___Q24Game5P2JST:
+	.float 0.0
+	.float 0.0
+	.float 0.0
 
 .section .sbss # 0x80514D80 - 0x80516360
 .balign 8
-lbl_805160B8:
+gu32NAN___Q24Game5P2JST:
 	.skip 0x4
-lbl_805160BC:
+gfNAN___Q24Game5P2JST:
 	.skip 0x4
 
 .section .sdata2, "a"     # 0x80516360 - 0x80520E40
@@ -67,30 +56,31 @@ lbl_805160BC:
 lbl_8051F838:
 	.float 1.0
 lbl_8051F83C:
-	.4byte 0x00000000
+	.float 0.0
 lbl_8051F840:
 	.float 0.5
 lbl_8051F844:
-	.4byte 0x42700000
+	.float 60.0
 lbl_8051F848:
-	.4byte 0x3E4CCCCD
+	.float 0.2
 lbl_8051F84C:
-	.4byte 0x3F4CCCCD
+	.float 0.8
 lbl_8051F850:
-	.4byte 0xC0A00001
-	.4byte 0x00000000
+	.float -5.0000005
+.balign 8
 lbl_8051F858:
 	.4byte 0x43300000
 	.4byte 0x00000000
+.balign 4
 lbl_8051F860:
-	.4byte 0x63616D2E
-	.4byte 0x626D6400
+	.asciz "cam.bmd"
+.balign 4
 lbl_8051F868:
-	.4byte 0x63616D2E
-	.4byte 0x62636B00
+	.asciz "cam.bck"
+.balign 4
 lbl_8051F870:
-	.4byte 0x63616D2E
-	.4byte 0x62726B00
+	.asciz "cam.brk"
+.balign 8
 lbl_8051F878:
 	.4byte 0x43300000
 	.4byte 0x80000000
@@ -1136,15 +1126,14 @@ getCameraPos__Q33ebi5title11TBlackPlaneFv:
 /* 803C1A0C 003BE94C  38 21 00 10 */	addi r1, r1, 0x10
 /* 803C1A10 003BE950  4E 80 00 20 */	blr 
 
-.global __sinit_ebiP2TitleUnit_cpp
-__sinit_ebiP2TitleUnit_cpp:
+__sinit_ebiP2TitleUnit_cpp: # static initializer
 /* 803C1A14 003BE954  3C 80 80 51 */	lis r4, __float_nan@ha
 /* 803C1A18 003BE958  38 00 FF FF */	li r0, -1
 /* 803C1A1C 003BE95C  C0 04 48 B0 */	lfs f0, __float_nan@l(r4)
-/* 803C1A20 003BE960  3C 60 80 4E */	lis r3, lbl_804E79B8@ha
-/* 803C1A24 003BE964  90 0D 9A 38 */	stw r0, lbl_805160B8@sda21(r13)
-/* 803C1A28 003BE968  D4 03 79 B8 */	stfsu f0, lbl_804E79B8@l(r3)
-/* 803C1A2C 003BE96C  D0 0D 9A 3C */	stfs f0, lbl_805160BC@sda21(r13)
+/* 803C1A20 003BE960  3C 60 80 4E */	lis r3, govNAN___Q24Game5P2JST@ha
+/* 803C1A24 003BE964  90 0D 9A 38 */	stw r0, gu32NAN___Q24Game5P2JST@sda21(r13)
+/* 803C1A28 003BE968  D4 03 79 B8 */	stfsu f0, govNAN___Q24Game5P2JST@l(r3)
+/* 803C1A2C 003BE96C  D0 0D 9A 3C */	stfs f0, gfNAN___Q24Game5P2JST@sda21(r13)
 /* 803C1A30 003BE970  D0 03 00 04 */	stfs f0, 4(r3)
 /* 803C1A34 003BE974  D0 03 00 08 */	stfs f0, 8(r3)
 /* 803C1A38 003BE978  4E 80 00 20 */	blr 

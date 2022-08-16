@@ -244,77 +244,60 @@ __vt__Q34Game10ChappyBase3Obj:
 
 .section .sdata2, "a"     # 0x80516360 - 0x80520E40
 .balign 8
-.global lbl_80518058
 lbl_80518058:
-	.4byte 0x61676F00
-.global lbl_8051805C
+	.asciz "ago"
+.balign 4
 lbl_8051805C:
-	.4byte 0x00000000
-.global lbl_80518060
+	.float 0.0
 lbl_80518060:
-	.4byte 0x3E4CCCCD
-.global lbl_80518064
+	.float 0.2
 lbl_80518064:
-	.4byte 0x3D99999A
-.global lbl_80518068
+	.float 0.075
 lbl_80518068:
-	.4byte 0x418C0000
-.global lbl_8051806C
+	.float 17.5
 lbl_8051806C:
-	.4byte 0x40A00000
-.global lbl_80518070
+	.float 5.0
 lbl_80518070:
 	.float 1.0
-.global lbl_80518074
 lbl_80518074:
-	.4byte 0x42C80000
-.global lbl_80518078
+	.float 100.0
 lbl_80518078:
-	.4byte 0x42000000
-.global lbl_8051807C
+	.float 32.0
 lbl_8051807C:
 	.float 0.25
-.global lbl_80518080
+.balign 4
 lbl_80518080:
-	.4byte 0x6B616D75
-	.4byte 0x31000000
-.global lbl_80518088
+	.asciz "kamu1"
+.balign 4
 lbl_80518088:
-	.4byte 0x6B616D75
-	.4byte 0x32000000
-.global lbl_80518090
+	.asciz "kamu2"
+.balign 4
 lbl_80518090:
-	.4byte 0x6B616D75
-	.4byte 0x33000000
-.global lbl_80518098
+	.asciz "kamu3"
+.balign 4
 lbl_80518098:
-	.4byte 0x6B616D75
-	.4byte 0x34000000
-.global lbl_805180A0
+	.asciz "kamu4"
+.balign 4
 lbl_805180A0:
-	.4byte 0x6B616D75
-	.4byte 0x35000000
-.global lbl_805180A8
+	.asciz "kamu5"
+.balign 4
 lbl_805180A8:
-	.4byte 0x420C0000
-.global lbl_805180AC
+	.float 35.0
+.balign 4
 lbl_805180AC:
-	.4byte 0x6173694C
-	.4byte 0x00000000
-.global lbl_805180B4
+	.asciz "asiL"
+.balign 4
 lbl_805180B4:
-	.4byte 0x41200000
-.global lbl_805180B8
+	.float 10.0
+.balign 4
 lbl_805180B8:
-	.4byte 0x61736952
-	.4byte 0x00000000
-.global lbl_805180C0
+	.asciz "asiR"
+.balign 4
 lbl_805180C0:
-	.4byte 0x3F400000
-.global lbl_805180C4
+	.float 0.75
+.balign 4
 lbl_805180C4:
-	.4byte 0x68656164
-	.4byte 0x00000000
+	.asciz "head"
 
 .section .text, "ax"  # 0x800056C0 - 0x80472F00
 .global __ct__Q34Game10ChappyBase3ObjFv

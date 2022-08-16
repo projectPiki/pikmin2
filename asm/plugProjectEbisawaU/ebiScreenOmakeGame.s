@@ -1,21 +1,23 @@
 .include "macros.inc"
 .section .rodata  # 0x804732E0 - 0x8049E220
 .balign 8
-.global lbl_80497BE8
 lbl_80497BE8:
 	.asciz "ebiScreenOmakeGame"
-	.skip 1
+.balign 4
+lbl_80497BFC:
 	.asciz "Screen_newScreen_of_TOmakeGame"
-	.skip 1
+.balign 4
+lbl_80497C1C:
 	.asciz "omake_game.blo"
-	.skip 1
+.balign 4
+lbl_80497C2C:
 	.asciz "Screen_setCallBackMessage_of_TOmakeGame"
+.balign 4
+lbl_80497C54:
 	.asciz "omake_game.bck"
-	.skip 1
-.global lbl_80497C64
+.balign 4
 lbl_80497C64:
 	.asciz "TOmakeGame"
-	.skip 1
 
 .section .data, "wa"  # 0x8049E220 - 0x804EFC20
 .balign 8
@@ -40,35 +42,25 @@ __vt__Q33ebi6Screen10TOmakeGame:
 	.4byte doUpdateStateClose__Q33ebi6Screen10TOmakeGameFv
 	.4byte doDraw__Q33ebi6Screen10TOmakeGameFv
 	.4byte getName__Q33ebi6Screen10TOmakeGameFv
-	.4byte 0
 
 .section .sdata2, "a"     # 0x80516360 - 0x80520E40
 .balign 8
-.global lbl_8051FEC8
 lbl_8051FEC8:
 	.float 1.0
-.global lbl_8051FECC
 lbl_8051FECC:
-	.4byte 0x00000000
-.global lbl_8051FED0
+	.float 0.0
 lbl_8051FED0:
-	.4byte 0x42700000
-.global lbl_8051FED4
+	.float 60.0
 lbl_8051FED4:
 	.float 0.1
-.global lbl_8051FED8
 lbl_8051FED8:
-	.4byte 0x40555555
-.global lbl_8051FEDC
+	.float 3.3333333
 lbl_8051FEDC:
-	.4byte 0x41F00000
-.global lbl_8051FEE0
+	.float 30.0
 lbl_8051FEE0:
-	.4byte 0x3F19999A
-.global lbl_8051FEE4
+	.float 0.6
 lbl_8051FEE4:
-	.4byte 0x3F28F5C3
-.global lbl_8051FEE8
+	.float 0.66
 lbl_8051FEE8:
 	.float 0.15
 

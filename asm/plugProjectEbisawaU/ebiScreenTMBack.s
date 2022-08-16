@@ -1,55 +1,26 @@
 .include "macros.inc"
 .section .rodata  # 0x804732E0 - 0x8049E220
 .balign 8
-.global lbl_804977F0
 lbl_804977F0:
-	.4byte 0x54536372
-	.4byte 0x65656E54
-	.4byte 0x4D426163
-	.4byte 0x6B3A3A73
-	.4byte 0x65744172
-	.4byte 0x63686976
-	.4byte 0x65000000
-.global lbl_8049780C
+	.asciz "TScreenTMBack::setArchive"
+.balign 4
 lbl_8049780C:
-	.4byte 0x746D5F62
-	.4byte 0x61636B2E
-	.4byte 0x626C6F00
-.global lbl_80497818
+	.asciz "tm_back.blo"
+.balign 4
 lbl_80497818:
-	.4byte 0x65626953
-	.4byte 0x63726565
-	.4byte 0x6E544D42
-	.4byte 0x61636B2E
-	.4byte 0x63707000
-.global lbl_8049782C
+	.asciz "ebiScreenTMBack.cpp"
+.balign 4
 lbl_8049782C:
 	.asciz "P2Assert"
-	.skip 3
-.global lbl_80497838
+.balign 4
 lbl_80497838:
-	.4byte 0x54536372
-	.4byte 0x65656E4E
-	.4byte 0x696E7465
-	.4byte 0x6E646F4C
-	.4byte 0x6F676F3A
-	.4byte 0x3A736574
-	.4byte 0x41726368
-	.4byte 0x69766500
-.global lbl_80497858
+	.asciz "TScreenNintendoLogo::setArchive"
+.balign 4
 lbl_80497858:
-	.4byte 0x746D5F32
-	.4byte 0x3030336E
-	.4byte 0x696E7465
-	.4byte 0x6E646F2E
-	.4byte 0x626C6F00
-.global lbl_8049786C
+	.asciz "tm_2003nintendo.blo"
+.balign 4
 lbl_8049786C:
-	.4byte 0x544E696E
-	.4byte 0x74656E64
-	.4byte 0x6F4C6F67
-	.4byte 0x6F000000
-	.4byte 0x00000000
+	.asciz "TNintendoLogo"
 
 .section .data, "wa"  # 0x8049E220 - 0x804EFC20
 .balign 8
@@ -98,19 +69,15 @@ __vt__Q33ebi6Screen7TTMBack:
 
 .section .sdata2, "a"     # 0x80516360 - 0x80520E40
 .balign 8
-.global lbl_8051FDF8
 lbl_8051FDF8:
 	.float 0.5
-.global lbl_8051FDFC
 lbl_8051FDFC:
-	.4byte 0x00000000
-.global lbl_8051FE00
+	.float 0.0
 lbl_8051FE00:
-	.4byte 0x43000000
-.global lbl_8051FE04
+	.float 128.0
 lbl_8051FE04:
 	.float 1.0
-.global lbl_8051FE08
+.balign 8
 lbl_8051FE08:
 	.4byte 0x43300000
 	.4byte 0x00000000

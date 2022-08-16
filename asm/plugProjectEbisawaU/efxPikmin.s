@@ -1,26 +1,20 @@
 .include "macros.inc"
 .section .rodata  # 0x804732E0 - 0x8049E220
 .balign 8
-.global lbl_80495A28
 lbl_80495A28:
-	.4byte 0x65667850
-	.4byte 0x696B6D69
-	.4byte 0x6E2E6370
-	.4byte 0x70000000
-.global lbl_80495A38
+	.asciz "efxPikmin.cpp"
+.balign 4
 lbl_80495A38:
 	.asciz "P2Assert"
-	.skip 3
-	.4byte 0x41726744
-	.4byte 0x6F70696E
-	.4byte 0x67536D6F
-	.4byte 0x6B650000
-	.4byte 0x41726743
-	.4byte 0x7572736F
-	.4byte 0x72000000
-	.4byte 0x41726753
-	.4byte 0x63616C65
-	.4byte 0x00000000
+.balign 4
+lbl_80495A44:
+	.asciz "ArgDopingSmoke"
+.balign 4
+lbl_80495A54:
+	.asciz "ArgCursor"
+.balign 4
+lbl_80495A60:
+	.asciz "ArgScale"
 
 .section .data, "wa"  # 0x8049E220 - 0x804EFC20
 .balign 8
@@ -163,61 +157,45 @@ __vt__Q23efx11TPkNageBlur:
 	.4byte startDemoDrawOff__Q23efx5TSyncFv
 	.4byte endDemoDrawOn__Q23efx5TSyncFv
 	.4byte __dt__Q23efx11TPkNageBlurFv
-	.4byte 0
 
 .section .sdata2, "a"     # 0x80516360 - 0x80520E40
 .balign 8
-.global lbl_8051F670
 lbl_8051F670:
-	.4byte 0x00000000
-.global lbl_8051F674
+	.float 0.0
+.balign 4
 lbl_8051F674:
-	.4byte 0x41726754
-	.4byte 0x79706500
-.global lbl_8051F67C
+	.asciz "ArgType"
+.balign 4
 lbl_8051F67C:
 	.float 1.0
-.global lbl_8051F680
-lbl_8051F680:
-	.4byte 0x40C90FDB
-.global lbl_8051F684
-lbl_8051F684:
-	.4byte 0x40490FDB
-.global lbl_8051F688
+lbl_8051F680: # tau
+	.float 6.2831855
+lbl_8051F684: # pi
+	.float 3.1415927
 lbl_8051F688:
-	.4byte 0x40000000
-.global lbl_8051F68C
+	.float 2.0
 lbl_8051F68C:
-	.4byte 0x43A2F983
-.global lbl_8051F690
+	.float 325.9493
 lbl_8051F690:
-	.4byte 0xC3A2F983
-	.4byte 0x00000000
-.global lbl_8051F698
+	.float -325.9493
+.balign 8
 lbl_8051F698:
 	.4byte 0x43300000
 	.4byte 0x80000000
-.global lbl_8051F6A0
 lbl_8051F6A0:
-	.4byte 0x42000000
-.global lbl_8051F6A4
+	.float 32.0
 lbl_8051F6A4:
 	.float 0.5
-.global lbl_8051F6A8
 lbl_8051F6A8:
-	.4byte 0x40400000
-.global lbl_8051F6AC
+	.float 3.0
 lbl_8051F6AC:
-	.4byte 0x432F0000
-.global lbl_8051F6B0
+	.float 175.0
 lbl_8051F6B0:
-	.4byte 0x42C80000
-.global lbl_8051F6B4
+	.float 100.0
 lbl_8051F6B4:
-	.4byte 0x41400000
-.global lbl_8051F6B8
+	.float 12.0
 lbl_8051F6B8:
-	.4byte 0x41B00000
+	.float 22.0
 
 .section .text, "ax"  # 0x800056C0 - 0x80472F00
 .global create__Q23efx11TPkNageBlurFPQ23efx3Arg
