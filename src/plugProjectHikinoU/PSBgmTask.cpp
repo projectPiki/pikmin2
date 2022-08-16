@@ -232,20 +232,20 @@ void TaskEntry_MuteVolume::makeEntry(float p1, u32 p2)
 	f32 temp_f0;
 
 	OSDisableInterrupts();
-	m_muteTask._1C = 0;
-	m_muteTask._14 = 1;
+	m_muteTask1._1C = 0;
+	m_muteTask1._14 = 1;
 	OSEnableInterrupts();
 
-	append(&m_muteTask);
+	append(&m_muteTask1);
 	OSDisableInterrupts();
-	m_outerParamTask._20 = p1;
-	m_outerParamTask._1C = p2;
-	m_outerParamTask._14 = 1;
-	m_outerParamTask._28 = 0;
-	m_outerParamTask._2C = 0.0f;
-	m_outerParamTask._24 = 0.0f;
+	m_outerParamTask1._20 = p1;
+	m_outerParamTask1._1C = p2;
+	m_outerParamTask1._14 = 1;
+	m_outerParamTask1._28 = 0;
+	m_outerParamTask1._2C = 0.0f;
+	m_outerParamTask1._24 = 0.0f;
 	OSEnableInterrupts();
-	append(&m_outerParamTask);
+	append(&m_outerParamTask1);
 }
 
 /*
@@ -281,14 +281,14 @@ void TaskEntry_MuteOnVolume::makeEntry(u32 p1)
 void TaskEntry_Tempo::makeEntry(float p1, u32 p2)
 {
 	OSDisableInterrupts();
-	m_outerParamTask._20 = p1;
-	m_outerParamTask._1C = p2;
-	m_outerParamTask._14 = 1;
-	m_outerParamTask._28 = 0;
-	m_outerParamTask._2C = 0.0f;
-	m_outerParamTask._24 = 0.0f;
+	m_outerParamTask1._20 = p1;
+	m_outerParamTask1._1C = p2;
+	m_outerParamTask1._14 = 1;
+	m_outerParamTask1._28 = 0;
+	m_outerParamTask1._2C = 0.0f;
+	m_outerParamTask1._24 = 0.0f;
 	OSEnableInterrupts();
 
-	append(&m_outerParamTask);
+	append(&m_outerParamTask1);
 }
 } // namespace PSSystem

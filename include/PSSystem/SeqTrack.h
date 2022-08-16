@@ -42,11 +42,15 @@ struct SeqTrackBase {
 struct SeqTrackRoot : public SeqTrackBase {
 	SeqTrackRoot();
 
-	virtual void update();        // _08 (weak)
+	virtual void update()         // _08 (weak)
+	{
+		m_beatMgr.proc();
+		SeqTrackBase::update();
+	}
 	virtual void init(JASTrack*); // _0C
 	virtual void onStopSeq();     // _10
 	virtual u16 beatUpdate();     // _14
-	virtual void onBeatTop();     // _18 (weak)
+	virtual void onBeatTop() { }  // _18 (weak)
 
 	void initSwingRatio();
 	void pitchModulation(float, float, u32, DirectorBase*);
@@ -64,14 +68,9 @@ struct SeqTrackRoot : public SeqTrackBase {
 	u8 _3D;                        // _3D - possibly padding or part of BeatMgr
 	u16 _3E;                       // _3E
 	TaskEntry_Tempo _40;           // _40
-	FlagWaitTask _AC;              // _AC
-	OuterParamTask _CC;            // _CC
-	TaskEntry_OuterParam _100;     // _100 - probably
+	TaskEntry_OuterParam _100;     // _100
 	TaskEntry_PitMod _16C;         // _16C
-	TaskEntry _20C;                // _20C - probably
-	BankRandTask _244;             // _244
-	FlagWaitTask _274;             // _274
-	BankRandTask _294;             // _294
+	TaskEntry_BankRandTask _20C;   // _20C
 	JADUtility::DataMgrNode* _2C4; // _2C4
 };
 
@@ -95,9 +94,6 @@ struct SeqTrackChild : public SeqTrackBase {
 	// _00      = VTABLE
 	// _04-_2C  = SeqBase
 	TaskEntry_MuteVolume _2C;    // _2C
-	FlagWaitTask _B8;            // _B8
-	OuterParamTask _D8;          // _D8
-	MuteTask _10C;               // _10C
 	TaskEntry_MuteOnVolume _12C; // _12C
 	TaskEntry_OuterParam _1B8;   // _1B8
 	TaskEntry_IdMask _224;       // _224
