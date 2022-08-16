@@ -1,4 +1,5 @@
 #include "types.h"
+#include "Game/Entities/Catfish.h"
 
 /*
     Generated from dpostproc
@@ -252,80 +253,24 @@
 */
 
 namespace Game {
+namespace Catfish {
 
 /*
  * --INFO--
  * Address:	80277008
  * Size:	000090
  */
-Catfish::Obj::Obj()
-{
-	/*
-	stwu     r1, -0x10(r1)
-	mflr     r0
-	stw      r0, 0x14(r1)
-	extsh.   r0, r4
-	stw      r31, 0xc(r1)
-	mr       r31, r3
-	beq      lbl_80277044
-	addi     r0, r31, 0x2d8
-	lis      r3, __vt__Q24Game10PelletView@ha
-	stw      r0, 0x17c(r31)
-	addi     r3, r3, __vt__Q24Game10PelletView@l
-	li       r0, 0
-	stw      r3, 0x2d8(r31)
-	stw      r0, 0x2dc(r31)
-	stw      r0, 0x2e0(r31)
-
-lbl_80277044:
-	mr       r3, r31
-	li       r4, 0
-	bl       __ct__Q34Game12KochappyBase3ObjFv
-	lis      r3, __vt__Q34Game7Catfish3Obj@ha
-	addi     r0, r31, 0x2d8
-	addi     r5, r3, __vt__Q34Game7Catfish3Obj@l
-	mr       r3, r31
-	stw      r5, 0(r31)
-	addi     r4, r5, 0x1b0
-	addi     r5, r5, 0x308
-	stw      r4, 0x178(r31)
-	lwz      r4, 0x17c(r31)
-	stw      r5, 0(r4)
-	lwz      r4, 0x17c(r31)
-	subf     r0, r4, r0
-	stw      r0, 0xc(r4)
-	lwz      r31, 0xc(r1)
-	lwz      r0, 0x14(r1)
-	mtlr     r0
-	addi     r1, r1, 0x10
-	blr
-	*/
-}
+Obj::Obj() { }
 
 /*
  * --INFO--
  * Address:	80277098
  * Size:	00003C
  */
-void Catfish::Obj::onInit(Game::CreatureInitArg*)
+void Obj::onInit(Game::CreatureInitArg* arg)
 {
-	/*
-	stwu     r1, -0x10(r1)
-	mflr     r0
-	stw      r0, 0x14(r1)
-	stw      r31, 0xc(r1)
-	mr       r31, r3
-	bl       onInit__Q34Game12KochappyBase3ObjFPQ24Game15CreatureInitArg
-	lwz      r3, 0x174(r31)
-	addi     r4, r2, lbl_8051B358@sda21
-	bl       getJoint__Q28SysShape5ModelFPc
-	stw      r3, 0x2c8(r31)
-	lwz      r0, 0x14(r1)
-	lwz      r31, 0xc(r1)
-	mtlr     r0
-	addi     r1, r1, 0x10
-	blr
-	*/
+	KochappyBase::Obj::onInit(arg);
+	m_shadowJoint = m_model->getJoint("kosi");
 }
 
 /*
@@ -333,62 +278,24 @@ void Catfish::Obj::onInit(Game::CreatureInitArg*)
  * Address:	802770D4
  * Size:	0000C0
  */
-void Catfish::Obj::getShadowParam(Game::ShadowParam&)
+void Obj::getShadowParam(Game::ShadowParam& param)
 {
-	/*
-	stwu     r1, -0x10(r1)
-	mflr     r0
-	stw      r0, 0x14(r1)
-	stw      r31, 0xc(r1)
-	mr       r31, r4
-	stw      r30, 8(r1)
-	mr       r30, r3
-	lwz      r3, 0x2c8(r3)
-	bl       getWorldMatrix__Q28SysShape5JointFv
-	lfs      f4, 0x2c(r3)
-	lfs      f3, 0x1c(r3)
-	lfs      f0, 0xc(r3)
-	lfs      f2, lbl_8051B360@sda21(r2)
-	stfs     f0, 0(r31)
-	lfs      f1, lbl_8051B364@sda21(r2)
-	stfs     f3, 4(r31)
-	lfs      f0, lbl_8051B368@sda21(r2)
-	stfs     f4, 8(r31)
-	lfs      f3, 4(r31)
-	fsubs    f2, f3, f2
-	stfs     f2, 4(r31)
-	stfs     f1, 0xc(r31)
-	stfs     f0, 0x10(r31)
-	stfs     f1, 0x14(r31)
-	lfs      f1, 4(r31)
-	lfs      f0, 0x190(r30)
-	fsubs    f0, f1, f0
-	stfs     f0, 0x18(r31)
-	lwz      r0, 0x1e4(r30)
-	clrlwi.  r0, r0, 0x1f
-	beq      lbl_80277164
-	lfs      f1, 0x18(r31)
-	lfs      f0, lbl_8051B36C@sda21(r2)
-	fadds    f0, f1, f0
-	stfs     f0, 0x18(r31)
-	b        lbl_80277174
+	Matrixf* worldMatrix = m_shadowJoint->getWorldMatrix();
 
-lbl_80277164:
-	lfs      f1, 0x18(r31)
-	lfs      f0, lbl_8051B370@sda21(r2)
-	fadds    f0, f1, f0
-	stfs     f0, 0x18(r31)
+	param.m_position
+	    = Vector3f(worldMatrix->m_matrix.mtxView[0][3], worldMatrix->m_matrix.mtxView[1][3], worldMatrix->m_matrix.mtxView[2][3]);
 
-lbl_80277174:
-	lfs      f0, lbl_8051B370@sda21(r2)
-	stfs     f0, 0x1c(r31)
-	lwz      r0, 0x14(r1)
-	lwz      r31, 0xc(r1)
-	lwz      r30, 8(r1)
-	mtlr     r0
-	addi     r1, r1, 0x10
-	blr
-	*/
+	param.m_position.y -= 10.0f;
+	param.m_boundingSphere.m_position = Vector3f(0.0f, 1.0f, 0.0f);
+	param.m_boundingSphere.m_radius   = param.m_position.y - m_position.y;
+
+	if (_1E0.m_flags[1].typeView & ENEMY_EVENT_REFRESH) {
+		param.m_boundingSphere.m_radius += 50.0f;
+	} else {
+		param.m_boundingSphere.m_radius += 15.0f;
+	}
+
+	param._1C = 15.0f;
 }
 
 /*
@@ -396,20 +303,10 @@ lbl_80277174:
  * Address:	80277194
  * Size:	000028
  */
-void Catfish::Obj::pressCallBack(Game::Creature*, float, CollPart*)
+bool Catfish::Obj::pressCallBack(Game::Creature*, float damage, CollPart*)
 {
-	/*
-	stwu     r1, -0x10(r1)
-	mflr     r0
-	lfs      f2, lbl_8051B368@sda21(r2)
-	stw      r0, 0x14(r1)
-	bl       addDamage__Q24Game9EnemyBaseFff
-	lwz      r0, 0x14(r1)
-	li       r3, 0
-	mtlr     r0
-	addi     r1, r1, 0x10
-	blr
-	*/
+	EnemyBase::addDamage(damage, 1.0f);
+	return false;
 }
 
 /*
@@ -417,18 +314,9 @@ void Catfish::Obj::pressCallBack(Game::Creature*, float, CollPart*)
  * Address:	802771BC
  * Size:	000020
  */
-void Catfish::Obj::hipdropCallBack(Game::Creature*, float, CollPart*)
+bool Catfish::Obj::hipdropCallBack(Game::Creature* creature, float a2, CollPart* collPart)
 {
-	/*
-	stwu     r1, -0x10(r1)
-	mflr     r0
-	stw      r0, 0x14(r1)
-	bl       hipdropCallBack__Q24Game9EnemyBaseFPQ24Game8CreaturefP8CollPart
-	lwz      r0, 0x14(r1)
-	mtlr     r0
-	addi     r1, r1, 0x10
-	blr
-	*/
+	return EnemyBase::hipdropCallBack(creature, a2, collPart);
 }
 
 /*
@@ -438,52 +326,13 @@ void Catfish::Obj::hipdropCallBack(Game::Creature*, float, CollPart*)
  */
 void Catfish::Obj::initMouthSlots()
 {
-	/*
-	stwu     r1, -0x20(r1)
-	mflr     r0
-	stw      r0, 0x24(r1)
-	stfd     f31, 0x10(r1)
-	psq_st   f31, 24(r1), 0, qr0
-	stw      r31, 0xc(r1)
-	stw      r30, 8(r1)
-	mr       r30, r3
-	li       r4, 2
-	addi     r3, r30, 0x2c0
-	bl       alloc__10MouthSlotsFi
-	lwz      r5, 0x174(r30)
-	addi     r3, r30, 0x2c0
-	li       r4, 0
-	addi     r6, r2, lbl_8051B374@sda21
-	bl       setup__10MouthSlotsFiPQ28SysShape5ModelPc
-	lwz      r5, 0x174(r30)
-	addi     r3, r30, 0x2c0
-	li       r4, 1
-	addi     r6, r2, lbl_8051B37C@sda21
-	bl       setup__10MouthSlotsFiPQ28SysShape5ModelPc
-	lfs      f31, lbl_8051B384@sda21(r2)
-	li       r31, 0
-	b        lbl_80277250
+	m_mouthSlots.alloc(2);
+	m_mouthSlots.setup(0, Creature::m_model, "kamu1");
+	m_mouthSlots.setup(1, Creature::m_model, "kamu2");
 
-lbl_8027723C:
-	mr       r4, r31
-	addi     r3, r30, 0x2c0
-	bl       getSlot__10MouthSlotsFi
-	stfs     f31, 0x1c(r3)
-	addi     r31, r31, 1
-
-lbl_80277250:
-	lwz      r0, 0x2c0(r30)
-	cmpw     r31, r0
-	blt      lbl_8027723C
-	psq_l    f31, 24(r1), 0, qr0
-	lwz      r0, 0x24(r1)
-	lfd      f31, 0x10(r1)
-	lwz      r31, 0xc(r1)
-	lwz      r30, 8(r1)
-	mtlr     r0
-	addi     r1, r1, 0x20
-	blr
-	*/
+	for (int i = 0; i < m_mouthSlots.m_max; i++) {
+		m_mouthSlots.getSlot(i)->_1C = 20.0f;
+	}
 }
 
 /*
@@ -493,27 +342,11 @@ lbl_80277250:
  */
 void Catfish::Obj::resetEnemyNonStone()
 {
-	/*
-	stwu     r1, -0x10(r1)
-	mflr     r0
-	stw      r0, 0x14(r1)
-	stw      r31, 0xc(r1)
-	mr       r31, r3
-	lwz      r0, 0x1e0(r3)
-	rlwinm.  r0, r0, 0, 0xa, 0xa
-	beq      lbl_802772A0
-	bl       createDownEffect__Q34Game7Catfish3ObjFv
+	if (_1E0.m_flags[0].typeView & ENEMY_EVENT_STONE) {
+		createDownEffect();
+	}
 
-lbl_802772A0:
-	lwz      r0, 0x1e0(r31)
-	rlwinm   r0, r0, 0, 0xb, 9
-	stw      r0, 0x1e0(r31)
-	lwz      r31, 0xc(r1)
-	lwz      r0, 0x14(r1)
-	mtlr     r0
-	addi     r1, r1, 0x10
-	blr
-	*/
+	_1E0.m_flags[0].typeView &= 0xFFDFFFFF;
 }
 
 /*
@@ -523,18 +356,7 @@ lbl_802772A0:
  */
 void Catfish::Obj::createDownEffect()
 {
-	/*
-	stwu     r1, -0x10(r1)
-	mflr     r0
-	lfs      f1, lbl_8051B388@sda21(r2)
-	addi     r4, r3, 0x18c
-	stw      r0, 0x14(r1)
-	bl       "createBounceEffect__Q24Game9EnemyBaseFRC10Vector3<f>f"
-	lwz      r0, 0x14(r1)
-	mtlr     r0
-	addi     r1, r1, 0x10
-	blr
-	*/
+	EnemyBase::createBounceEffect(m_position, 0.5);
 }
 
 /*
@@ -542,41 +364,43 @@ void Catfish::Obj::createDownEffect()
  * Address:	802772E8
  * Size:	000004
  */
-void Catfish::Obj::changeMaterial() { }
+// void Catfish::Obj::changeMaterial() { }
 
-/*
- * --INFO--
- * Address:	802772EC
- * Size:	000004
- */
-void Catfish::Obj::inWaterCallback(Game::WaterBox*) { }
+// /*
+//  * --INFO--
+//  * Address:	802772EC
+//  * Size:	000004
+//  */
+// void Catfish::Obj::inWaterCallback(Game::WaterBox*) { }
 
-/*
- * --INFO--
- * Address:	802772F0
- * Size:	000004
- */
-void Catfish::Obj::outWaterCallback() { }
+// /*
+//  * --INFO--
+//  * Address:	802772F0
+//  * Size:	000004
+//  */
+// void Catfish::Obj::outWaterCallback() { }
 
-/*
- * --INFO--
- * Address:	802772F4
- * Size:	000008
- */
-u32 Catfish::Obj::getEnemyTypeID() { return 0x1A; }
+// /*
+//  * --INFO--
+//  * Address:	802772F4
+//  * Size:	000008
+//  */
+// u32 Catfish::Obj::getEnemyTypeID() { return 0x1A; }
 
-/*
- * --INFO--
- * Address:	802772FC
- * Size:	000010
- */
-void Catfish::Obj::setEnemyNonStone()
-{
-	/*
-	lwz      r0, 0x1e0(r3)
-	oris     r0, r0, 0x20
-	stw      r0, 0x1e0(r3)
-	blr
-	*/
-}
+// /*
+//  * --INFO--
+//  * Address:	802772FC
+//  * Size:	000010
+//  */
+// void Catfish::Obj::setEnemyNonStone()
+// {
+// 	/*
+// 	lwz      r0, 0x1e0(r3)
+// 	oris     r0, r0, 0x20
+// 	stw      r0, 0x1e0(r3)
+// 	blr
+// 	*/
+// }
+
+} // namespace Catfish
 } // namespace Game

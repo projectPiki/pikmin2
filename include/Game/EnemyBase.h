@@ -31,6 +31,37 @@
 #include "Game/EnemyMgrBase.h"
 #include "Vector2.h"
 
+#define ENEMY_EVENT_REFRESH       (0x1)
+#define ENEMY_EVENT_DAMAGE        (0x2)
+#define ENEMY_EVENT_3             (0x4)
+#define ENEMY_EVENT_FLYING        (0x8)
+#define ENEMY_EVENT_COLLISION     (0x10)
+#define ENEMY_EVENT_DROP_MASS_SET (0x20)
+#define ENEMY_EVENT_7             (0x40)
+#define ENEMY_EVENT_8             (0x80)
+#define ENEMY_EVENT_9             (0x100)
+#define ENEMY_EVENT_10            (0x200)
+#define ENEMY_EVENT_11            (0x400)
+#define ENEMY_EVENT_12            (0x800)
+#define ENEMY_EVENT_13            (0x1000)
+#define ENEMY_EVENT_14            (0x2000)
+#define ENEMY_EVENT_15            (0x4000)
+#define ENEMY_EVENT_16            (0x8000)
+#define ENEMY_EVENT_17            (0x10000)
+#define ENEMY_EVENT_18            (0x20000)
+#define ENEMY_EVENT_HARD          (0x40000)
+#define ENEMY_EVENT_20            (0x80000)
+#define ENEMY_EVENT_21            (0x100000)
+#define ENEMY_EVENT_STONE         (0x200000)
+#define ENEMY_EVENT_23            (0x400000)
+#define ENEMY_EVENT_24            (0x800000)
+#define ENEMY_EVENT_25            (0x1000000)
+#define ENEMY_EVENT_26            (0x2000000)
+#define ENEMY_EVENT_27            (0x4000000)
+#define ENEMY_EVENT_28            (0x8000000)
+#define ENEMY_EVENT_29            (0x10000000)
+#define ENEMY_EVENT_30            (0x20000000)
+
 struct MouthSlots;
 
 namespace PSM {
