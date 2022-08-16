@@ -1,20 +1,17 @@
 .include "macros.inc"
 .section .rodata  # 0x804732E0 - 0x8049E220
 .balign 8
-.global lbl_8048F710
 lbl_8048F710:
 	.4byte 0x6F674F74
 	.4byte 0x616B6172
 	.4byte 0x6153656E
 	.4byte 0x736F7200
-.global lbl_8048F720
 lbl_8048F720:
 	.4byte 0x6F674F74
 	.4byte 0x616B6172
 	.4byte 0x6153656E
 	.4byte 0x736F722E
 	.4byte 0x63707000
-.global lbl_8048F734
 lbl_8048F734:
 	.4byte 0x4E554C4C
 	.4byte 0x2070616E
@@ -42,22 +39,6 @@ lbl_8048F734:
 	.4byte 0x63656E65
 	.4byte 0x2E680000
 	.4byte 0x00000000
-.global lbl_8048F7A0
-lbl_8048F7A0:
-	.4byte 0x534D656E
-	.4byte 0x75436F6E
-	.4byte 0x74207363
-	.4byte 0x7265656E
-	.4byte 0x00000000
-.global lbl_8048F7B4
-lbl_8048F7B4:
-	.4byte 0x7265735F
-	.4byte 0x735F6D65
-	.4byte 0x6E755F63
-	.4byte 0x6F6E7472
-	.4byte 0x6F6C6C65
-	.4byte 0x722E737A
-	.4byte 0x73000000
 
 .section .data, "wa"  # 0x8049E220 - 0x804EFC20
 .balign 8
@@ -88,108 +69,74 @@ __vt__Q25efx2d12T2DSensorGet:
 
 .section .sdata2, "a"     # 0x80516360 - 0x80520E40
 .balign 8
-.global lbl_8051DF78
 lbl_8051DF78:
 	.4byte 0x00000000
-.global lbl_8051DF7C
 lbl_8051DF7C:
 	.float 1.0
-.global lbl_8051DF80
 lbl_8051DF80:
 	.4byte 0x40400000
-.global lbl_8051DF84
 lbl_8051DF84:
 	.float 0.3
-.global lbl_8051DF88
 lbl_8051DF88:
 	.4byte 0x3E4CCCCD
-.global lbl_8051DF8C
 lbl_8051DF8C:
 	.float 0.25
-.global lbl_8051DF90
 lbl_8051DF90:
 	.4byte 0x404CCCCD
-.global lbl_8051DF94
 lbl_8051DF94:
 	.4byte 0x41400000
-.global lbl_8051DF98
 lbl_8051DF98:
 	.4byte 0x42C80000
-.global lbl_8051DF9C
 lbl_8051DF9C:
 	.4byte 0x3ECCCCCD
-.global lbl_8051DFA0
 lbl_8051DFA0:
 	.4byte 0x47000000
-.global lbl_8051DFA4
 lbl_8051DFA4:
 	.4byte 0x43340000
-.global lbl_8051DFA8
 lbl_8051DFA8:
 	.4byte 0x42B40000
 	.4byte 0x00000000
-.global lbl_8051DFB0
 lbl_8051DFB0:
 	.4byte 0x43300000
 	.4byte 0x80000000
-.global lbl_8051DFB8
 lbl_8051DFB8:
 	.4byte 0x44610000
-.global lbl_8051DFBC
 lbl_8051DFBC:
 	.4byte 0x3F733333
-.global lbl_8051DFC0
 lbl_8051DFC0:
 	.float 0.05
-.global lbl_8051DFC4
 lbl_8051DFC4:
 	.4byte 0x43A2F983
-.global lbl_8051DFC8
 lbl_8051DFC8:
 	.4byte 0x3FC00000
-.global lbl_8051DFCC
 lbl_8051DFCC:
 	.4byte 0x40200000
-.global lbl_8051DFD0
 lbl_8051DFD0:
 	.4byte 0x40C90FDB
-.global lbl_8051DFD4
 lbl_8051DFD4:
 	.4byte 0xC3A2F983
-.global lbl_8051DFD8
 lbl_8051DFD8:
 	.float 0.5
-.global lbl_8051DFDC
 lbl_8051DFDC:
 	.4byte 0x3FC90FDB
-.global lbl_8051DFE0
 lbl_8051DFE0:
 	.float 0.7
-.global lbl_8051DFE4
 lbl_8051DFE4:
 	.4byte 0x42200000
-.global lbl_8051DFE8
 lbl_8051DFE8:
 	.4byte 0x41200000
-.global lbl_8051DFEC
 lbl_8051DFEC:
 	.4byte 0xC2B40000
-.global lbl_8051DFF0
 lbl_8051DFF0:
 	.4byte 0x40000000
-.global lbl_8051DFF4
 lbl_8051DFF4:
 	.4byte 0x41700000
-.global lbl_8051DFF8
 lbl_8051DFF8:
 	.4byte 0xC1F00000
-.global lbl_8051DFFC
 lbl_8051DFFC:
 	.4byte 0x41F00000
-.global lbl_8051E000
 lbl_8051E000:
 	.float 0.1
-.global lbl_8051E004
 lbl_8051E004:
 	.4byte 0x3F4CCCCD
 

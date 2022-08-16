@@ -5,6 +5,7 @@ lbl_constructor:
 
 .section .rodata  # 0x804732E0 - 0x8049E220
 .balign 8
+# Epoch note: none of these strings are named. 
 str_RootMenu:
 	.asciz "Root Menu"
 .balign 4

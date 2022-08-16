@@ -5,7 +5,6 @@ lbl_constructor:
 
 .section .rodata  # 0x804732E0 - 0x8049E220
 .balign 8
-.global lbl_8049A158
 lbl_8049A158:
 	.4byte 0x00000000
 	.4byte 0x00000000
@@ -14,7 +13,6 @@ lbl_8049A158:
 	.4byte 0x626A6563
 	.4byte 0x74416374
 	.4byte 0x6F720000
-.global lbl_8049A174
 lbl_8049A174:
 	.4byte 0x4A53544F
 	.4byte 0x626A6563
@@ -29,7 +27,6 @@ lbl_8049A174:
 	.4byte 0x656C5F20
 	.4byte 0x6E756C6C
 	.4byte 0x00000000
-.global lbl_8049A1A8
 lbl_8049A1A8:
 	.4byte 0x444F4E27
 	.4byte 0x54204341
@@ -54,14 +51,11 @@ lbl_8049A1A8:
 	.4byte 0x6E673A25
 	.4byte 0x752C2573
 	.4byte 0x0A000000
-.global lbl_8049A204
 lbl_8049A204:
 	.asciz "P2Assert"
-	.skip 3
 
 .section .data, "wa"  # 0x8049E220 - 0x804EFC20
 .balign 8
-.global lbl_804EC018
 lbl_804EC018:
 	.4byte 0x00000000
 	.4byte 0x00000000
@@ -132,34 +126,25 @@ __vt__Q34Game5P2JST10ObjectBase:
 
 .section .sbss # 0x80514D80 - 0x80516360
 .balign 8
-.global lbl_805161D8
 lbl_805161D8:
 	.skip 0x4
-.global lbl_805161DC
 lbl_805161DC:
 	.skip 0x4
 
 .section .sdata2, "a"     # 0x80516360 - 0x80520E40
 .balign 8
-.global lbl_80520678
 lbl_80520678:
 	.float 1.0
-.global lbl_8052067C
 lbl_8052067C:
 	.4byte 0x00000000
-.global lbl_80520680
 lbl_80520680:
 	.4byte 0x3C8EFA35
-.global lbl_80520684
 lbl_80520684:
 	.4byte 0x40490FDB
-.global lbl_80520688
 lbl_80520688:
 	.4byte 0x3BB60B61
-.global lbl_8052068C
 lbl_8052068C:
 	.4byte 0x62670000
-.global lbl_80520690
 lbl_80520690:
 	.4byte 0x43300000
 	.4byte 0x80000000
@@ -1137,8 +1122,7 @@ start__Q34Game5P2JST11ObjectActorFv:
 parseUserData___Q34Game5P2JST10ObjectBaseFUlPCv:
 /* 8042F690 0042C5D0  4E 80 00 20 */	blr 
 
-.global __sinit_JSTObjectActor_cpp
-__sinit_JSTObjectActor_cpp:
+__sinit_JSTObjectActor_cpp: # static initializer
 /* 8042F694 0042C5D4  3C 80 80 51 */	lis r4, __float_nan@ha
 /* 8042F698 0042C5D8  38 00 FF FF */	li r0, -1
 /* 8042F69C 0042C5DC  C0 04 48 B0 */	lfs f0, __float_nan@l(r4)

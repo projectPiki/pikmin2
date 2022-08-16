@@ -379,7 +379,7 @@ lbl_804317F0:
 /* 80431800 0042E740  38 21 01 30 */	addi r1, r1, 0x130
 /* 80431804 0042E744  4E 80 00 20 */	blr 
 
-__sinit_JSTFindCreature_cpp:
+__sinit_JSTFindCreature_cpp: # static initializer
 /* 80431808 0042E748  3C 80 80 51 */	lis r4, __float_nan@ha
 /* 8043180C 0042E74C  38 00 FF FF */	li r0, -1
 /* 80431810 0042E750  C0 04 48 B0 */	lfs f0, __float_nan@l(r4)

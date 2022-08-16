@@ -3480,7 +3480,7 @@ clearInitGX__8GraphicsFv:
 split4__8SplitterFff:
 /* 80427F64 00424EA4  4E 80 00 20 */	blr 
 
-__sinit_graphics_cpp:
+__sinit_graphics_cpp: # static initializer
 /* 80427F68 00424EA8  3C 80 80 51 */	lis r4, __float_nan@ha
 /* 80427F6C 00424EAC  38 00 FF FF */	li r0, -1
 /* 80427F70 00424EB0  C0 04 48 B0 */	lfs f0, __float_nan@l(r4)

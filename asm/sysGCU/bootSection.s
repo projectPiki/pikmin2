@@ -6,7 +6,9 @@ lbl_constructor:
 .section .rodata  # 0x804732E0 - 0x8049E220
 .balign 8
 lbl_8049AF08:
-	.skip 0xC
+	.4byte 0
+	.4byte 0
+	.4byte 0
 .balign 4
 lbl_8049AF14:
 	.asciz "bootSection.cpp"
@@ -29,7 +31,7 @@ TitlePiki_White:
 TitlePiki_Violet:
 	.asciz "title_violet_5a3.bti"
 .balign 4
-lbl_8049AF9C:
+lbl_8049AF9C: # these strings are unnamed in the dol.
 	.4byte TitlePiki_Red
 	.4byte TitlePiki_Yellow
 	.4byte TitlePiki_Blue

@@ -56,10 +56,8 @@ __vt__18J3DAnmTransformKey:
 
 .section .sdata2, "a"     # 0x80516360 - 0x80520E40
 .balign 8
-.global lbl_80516A90
 lbl_80516A90:
-	.4byte 0x00000000
-	.4byte 0x00000000
+	.float 0.0
 
 .section .text, "ax"  # 0x800056C0 - 0x80472F00
 .global load__20J3DAnmLoaderDataBaseFPCv

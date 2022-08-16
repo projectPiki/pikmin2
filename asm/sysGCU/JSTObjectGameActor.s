@@ -5,7 +5,6 @@ lbl_constructor:
 
 .section .rodata  # 0x804732E0 - 0x8049E220
 .balign 8
-.global lbl_8049A210
 lbl_8049A210:
 	.4byte 0x00000000
 	.4byte 0x00000000
@@ -14,7 +13,6 @@ lbl_8049A210:
 	.4byte 0x63744761
 	.4byte 0x6D654163
 	.4byte 0x746F7200
-.global lbl_8049A22C
 lbl_8049A22C:
 	.4byte 0x4A53544F
 	.4byte 0x626A6563
@@ -22,7 +20,6 @@ lbl_8049A22C:
 	.4byte 0x65416374
 	.4byte 0x6F722E63
 	.4byte 0x70700000
-.global lbl_8049A244
 lbl_8049A244:
 	.4byte 0x444F4E27
 	.4byte 0x54205553
@@ -32,7 +29,6 @@ lbl_8049A244:
 	.4byte 0x4E445F47
 	.4byte 0x4F544F5D
 	.4byte 0x0A000000
-.global lbl_8049A264
 lbl_8049A264:
 	.4byte 0x746F6F20
 	.4byte 0x6D616E79
@@ -75,7 +71,6 @@ lbl_8049A264:
 
 .section .data, "wa"  # 0x8049E220 - 0x804EFC20
 .balign 8
-.global lbl_804EC1F0
 lbl_804EC1F0:
 	.4byte 0x00000000
 	.4byte 0x00000000
@@ -136,25 +131,19 @@ __vt__Q34Game5P2JST15ObjectGameActor:
 
 .section .sbss # 0x80514D80 - 0x80516360
 .balign 8
-.global lbl_805161F0
 lbl_805161F0:
 	.skip 0x4
-.global lbl_805161F4
 lbl_805161F4:
 	.skip 0x4
 
 .section .sdata2, "a"     # 0x80516360 - 0x80520E40
 .balign 8
-.global lbl_805206B8
 lbl_805206B8:
 	.4byte 0x00000000
-.global lbl_805206BC
 lbl_805206BC:
 	.float 1.0
-.global lbl_805206C0
 lbl_805206C0:
 	.4byte 0x40490FDB
-.global lbl_805206C4
 lbl_805206C4:
 	.4byte 0x3BB60B61
 
