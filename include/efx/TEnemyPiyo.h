@@ -1,7 +1,6 @@
 #ifndef _EFX_TENEMYPIYO_H
 #define _EFX_TENEMYPIYO_H
 
-#include "efx/EffectID.h"
 #include "efx/TChasePos.h"
 
 namespace efx {

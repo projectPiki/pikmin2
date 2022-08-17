@@ -19,18 +19,14 @@ struct J3DAnmVtxColorIndexData;
 struct J3DTransformInfo;
 struct Vec;
 
-#pragma enumalwaysint on
-enum J2DAnmType {
-	J2DANM_TRANSFORM = 0,
-	J2DANM_COLOR,
-	J2DANM_TEXTURE_PATTERN,
-	J2DANM_UNKNOWN_3,
-	J2DANM_TEXTURE_SRT_KEY,
-	J2DANM_TEV_REG_KEY,
-	J2DANM_VISIBILITY_FULL,
-	J2DANM_VERTEX_COLOR
-};
-#pragma enumalwaysint reset
+#define J2DANM_TRANSFORM       (0)
+#define J2DANM_COLOR           (1)
+#define J2DANM_TEXTURE_PATTERN (2)
+#define J2DANM_UNKNOWN_3       (3)
+#define J2DANM_TEXTURE_SRT_KEY (4)
+#define J2DANM_TEV_REG_KEY     (5)
+#define J2DANM_VISIBILITY_FULL (6)
+#define J2DANM_VERTEX_COLOR    (7)
 
 struct J2DAnmBase {
 	virtual ~J2DAnmBase();                           // _00
@@ -40,7 +36,7 @@ struct J2DAnmBase {
 	u8 _04[2];            // _04
 	short m_maxFrame;     // _06
 	float m_currentFrame; // _08
-	J2DAnmType m_type;    // _0C
+	u8 m_type;            // _0C
 };
 
 struct J2DAnmColor : public J2DAnmBase {

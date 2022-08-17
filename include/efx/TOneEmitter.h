@@ -3,7 +3,6 @@
 
 #include "Vector3.h"
 #include "efx/Context.h"
-#include "efx/EffectID.h"
 #include "efx/TBase.h"
 #include "JSystem/JPA/JPAEmitter.h"
 

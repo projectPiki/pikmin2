@@ -7,6 +7,11 @@
 #include "efx/Arg.h"
 #include "types.h"
 
+///////// EFFECT IDS
+#define EID_EnemyPiyo (0x291)
+#define EID_Sync      (0x2B2)
+/////////
+
 namespace efx {
 struct TBase {
 	virtual bool create(Arg*) = 0; // _00

@@ -1,7 +1,6 @@
 #ifndef _EFX_TSYNC_H
 #define _EFX_TSYNC_H
 
-#include "efx/EffectID.h"
 #include "efx/TBase.h"
 #include "JSystem/JPA/JPAEmitter.h"
 

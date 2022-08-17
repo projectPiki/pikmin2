@@ -31,6 +31,10 @@
 #include "Game/EnemyMgrBase.h"
 #include "Vector2.h"
 
+#define EMOTE_None       (0)
+#define EMOTE_Caution    (1)
+#define EMOTE_Excitement (2)
+
 struct MouthSlots;
 
 namespace PSM {
@@ -88,12 +92,6 @@ enum EnemyEvent {
 };
 
 enum EnemyEvent2 { EB2_1 = 0x1, EB2_2 = 0x2, EB2_3 = 0x4, EB2_4 = 0x8, EB2_5 = 0x10, EB2_DroppingMassZero = 0x20 };
-
-#pragma enumalwaysint off
-
-enum EnemyEmotion { EMOTE_None = 0, EMOTE_Caution, EMOTE_Excitement };
-
-#pragma enumalwaysint reset
 
 /**
  * @todo Split this into a separate type PelplantInitialParam?
