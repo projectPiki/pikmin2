@@ -1,30 +1,25 @@
 .include "macros.inc"
 .section .rodata  # 0x804732E0 - 0x8049E220
 .balign 8
-.global lbl_8049AB98
 lbl_8049AB98:
 	.asciz "messageObj.cpp"
-	.skip 1
-.global lbl_8049ABA8
+.balign 4
 lbl_8049ABA8:
 	.asciz "P2Assert"
-	.skip 3
-.global lbl_8049ABB4
-lbl_8049ABB4:
+.balign 4
+lbl_8049ABB4: # Shift-JIS
 	.4byte 0x4A4D6573
 	.4byte 0x73616765
 	.4byte 0x8EC09195
 	.4byte 0x834E8389
 	.4byte 0x83580000
-.global lbl_8049ABC8
-lbl_8049ABC8:
+lbl_8049ABC8: # Shift-JIS
 	.4byte 0x8CC295CA
 	.4byte 0x8F898AFA
 	.4byte 0x89BB0000
-.global lbl_8049ABD4
+.balign 4
 lbl_8049ABD4:
 	.asciz "messageObj.h"
-	.skip 7
 
 .section .data, "wa"  # 0x8049E220 - 0x804EFC20
 .balign 8
@@ -51,11 +46,9 @@ __vt__Q25P2JME8TControl:
 
 .section .sdata2, "a"     # 0x80516360 - 0x80520E40
 .balign 8
-.global lbl_805208A8
 lbl_805208A8:
 	.float 0.0
-	.skip 4
-.global lbl_805208B0
+.balign 8
 lbl_805208B0:
 	.4byte 0x43300000
 	.4byte 0x80000000

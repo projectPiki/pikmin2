@@ -5,22 +5,15 @@ lbl_constructor:
 
 .section .rodata  # 0x804732E0 - 0x8049E220
 .balign 8
-.global lbl_8049AC90
 lbl_8049AC90:
-	.4byte 0x73797353
-	.4byte 0x68617065
-	.4byte 0x4D6F6465
-	.4byte 0x6C2E6370
-	.4byte 0x70000000
-	.4byte 0x00000000
+	.asciz "sysShapeModel.cpp"
 
 .section .data, "wa"  # 0x8049E220 - 0x804EFC20
 .balign 8
-.global lbl_804ECC00
-lbl_804ECC00:
-	.4byte 0x00000000
-	.4byte 0x00000000
-	.4byte 0x00000000
+govNAN___Q24Game5P2JST:
+	.float 0.0
+	.float 0.0
+	.float 0.0
 .global __vt__Q28SysShape5Joint
 __vt__Q28SysShape5Joint:
 	.4byte 0
@@ -41,47 +34,36 @@ __vt__Q28SysShape5Model:
 	.4byte showPackets__Q28SysShape5ModelFv
 	.4byte jointVisible__Q28SysShape5ModelFbi
 	.4byte jointVisible__Q28SysShape5ModelFbPQ28SysShape5Joint
-	.4byte 0
 
 .section .sdata, "wa"  # 0x80514680 - 0x80514D80
 .balign 8
 .global viewCalcMode__Q28SysShape5Model
 viewCalcMode__Q28SysShape5Model:
 	.byte 0x01
-	.byte 0x00
-	.byte 0x00
-	.byte 0x00
 
 .section .sbss # 0x80514D80 - 0x80516360
 .balign 8
-.global lbl_80516278
-lbl_80516278:
+gu32NAN___Q24Game5P2JST:
 	.skip 0x4
-.global lbl_8051627C
-lbl_8051627C:
+gfNAN___Q24Game5P2JST:
 	.skip 0x4
 .global cullCount__Q28SysShape5Model
 cullCount__Q28SysShape5Model:
-	.skip 0x8
+	.skip 0x4
 
 .section .sdata2, "a"     # 0x80516360 - 0x80520E40
 .balign 8
-.global lbl_80520908
 lbl_80520908:
-	.4byte 0x6D616E64
-	.4byte 0x610A0000
-.global lbl_80520910
+	.asciz "manda\n"
+.balign 4
 lbl_80520910:
-	.4byte 0x00000000
-.global lbl_80520914
+	.float 0.0
 lbl_80520914:
 	.float 0.5
-.global lbl_80520918
 lbl_80520918:
-	.4byte 0x47000000
-.global lbl_8052091C
+	.float 32768.0
 lbl_8052091C:
-	.4byte 0xC7000000
+	.float -32768.0
 
 .section .text, "ax"  # 0x800056C0 - 0x80472F00
 .global __ct__Q28SysShape5ModelFP12J3DModelDataUlUl
@@ -1215,17 +1197,17 @@ isMtxImmediate__Q28SysShape5ModelFv:
 /* 8043F11C 0043C05C  4E 80 00 20 */	blr 
 
 .global isModel__Q28SysShape5ModelFv
-isModel__Q28SysShape5ModelFv:
+isModel__Q28SysShape5ModelFv: # weak function
 /* 8043F120 0043C060  38 60 00 01 */	li r3, 1
 /* 8043F124 0043C064  4E 80 00 20 */	blr 
 
 .global isVisible__Q28SysShape5ModelFv
-isVisible__Q28SysShape5ModelFv:
+isVisible__Q28SysShape5ModelFv: # weak function
 /* 8043F128 0043C068  88 63 00 06 */	lbz r3, 6(r3)
 /* 8043F12C 0043C06C  4E 80 00 20 */	blr 
 
 .global jointVisible__Q28SysShape5ModelFbPQ28SysShape5Joint
-jointVisible__Q28SysShape5ModelFbPQ28SysShape5Joint:
+jointVisible__Q28SysShape5ModelFbPQ28SysShape5Joint: # weak function
 /* 8043F130 0043C070  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 8043F134 0043C074  7C 08 02 A6 */	mflr r0
 /* 8043F138 0043C078  90 01 00 14 */	stw r0, 0x14(r1)
@@ -1239,15 +1221,14 @@ jointVisible__Q28SysShape5ModelFbPQ28SysShape5Joint:
 /* 8043F158 0043C098  38 21 00 10 */	addi r1, r1, 0x10
 /* 8043F15C 0043C09C  4E 80 00 20 */	blr 
 
-.global __sinit_sysShapeModel_cpp
-__sinit_sysShapeModel_cpp:
+__sinit_sysShapeModel_cpp: # static initializer
 /* 8043F160 0043C0A0  3C 80 80 51 */	lis r4, __float_nan@ha
 /* 8043F164 0043C0A4  38 00 FF FF */	li r0, -1
 /* 8043F168 0043C0A8  C0 04 48 B0 */	lfs f0, __float_nan@l(r4)
-/* 8043F16C 0043C0AC  3C 60 80 4F */	lis r3, lbl_804ECC00@ha
-/* 8043F170 0043C0B0  90 0D 9B F8 */	stw r0, lbl_80516278@sda21(r13)
-/* 8043F174 0043C0B4  D4 03 CC 00 */	stfsu f0, lbl_804ECC00@l(r3)
-/* 8043F178 0043C0B8  D0 0D 9B FC */	stfs f0, lbl_8051627C@sda21(r13)
+/* 8043F16C 0043C0AC  3C 60 80 4F */	lis r3, govNAN___Q24Game5P2JST@ha
+/* 8043F170 0043C0B0  90 0D 9B F8 */	stw r0, gu32NAN___Q24Game5P2JST@sda21(r13)
+/* 8043F174 0043C0B4  D4 03 CC 00 */	stfsu f0, govNAN___Q24Game5P2JST@l(r3)
+/* 8043F178 0043C0B8  D0 0D 9B FC */	stfs f0, gfNAN___Q24Game5P2JST@sda21(r13)
 /* 8043F17C 0043C0BC  D0 03 00 04 */	stfs f0, 4(r3)
 /* 8043F180 0043C0C0  D0 03 00 08 */	stfs f0, 8(r3)
 /* 8043F184 0043C0C4  4E 80 00 20 */	blr 

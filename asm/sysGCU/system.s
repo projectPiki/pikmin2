@@ -5,13 +5,13 @@ lbl_constructor:
 
 .section .rodata  # 0x804732E0 - 0x8049E220
 .balign 8
-sStrSystem_CPP:
+lbl_804997C8:
 	.asciz "system.cpp"
 .balign 4
-sStrSystem_MemoryAllocError:
+lbl_804997D4:
 	.asciz "Memory Alloc Error!\n%x (size %d) align(%d)\nRestTotal=%d\nRestFree =%d\n"
 .balign 4
-sStrSystem_InOnLine:
+lbl_8049981C:
 	.asciz "%s in \"%s\" on line %d\n"
 .balign 4
 lbl_80499834:
@@ -52,7 +52,8 @@ lbl_804998CC:
 .balign 4
 lbl_804998DC:
 	.asciz "CPU LOCKED!"
-str_MapFileName:
+.balign 4
+lbl_804998E8:
 	.asciz "/pikmin2UP.map"
 .balign 4
 lbl_804998F8:
@@ -209,7 +210,7 @@ sUseABXCommand:
 	.byte 0x01
 .balign 4
 cMapFileName:
-	.4byte str_MapFileName
+	.4byte lbl_804998E8
 
 .section .sbss # 0x80514D80 - 0x80516360
 .balign 8
@@ -268,21 +269,21 @@ Pikmin2DefaultMemoryErrorRoutine__FPvUli: #local function
 /* 80421EF0 0041EE30  7C 7F 1B 78 */	mr r31, r3
 /* 80421EF4 0041EE34  7F 83 E3 78 */	mr r3, r28
 /* 80421EF8 0041EE38  4B C0 18 E9 */	bl getTotalFreeSize__7JKRHeapFv
-/* 80421EFC 0041EE3C  3C A0 80 4A */	lis r5, sStrSystem_CPP@ha
-/* 80421F00 0041EE40  3C 80 80 4A */	lis r4, sStrSystem_MemoryAllocError@ha
+/* 80421EFC 0041EE3C  3C A0 80 4A */	lis r5, lbl_804997C8@ha
+/* 80421F00 0041EE40  3C 80 80 4A */	lis r4, lbl_804997D4@ha
 /* 80421F04 0041EE44  7C 69 1B 78 */	mr r9, r3
 /* 80421F08 0041EE48  7F 86 E3 78 */	mr r6, r28
-/* 80421F0C 0041EE4C  38 65 97 C8 */	addi r3, r5, sStrSystem_CPP@l
-/* 80421F10 0041EE50  38 A4 97 D4 */	addi r5, r4, sStrSystem_MemoryAllocError@l
+/* 80421F0C 0041EE4C  38 65 97 C8 */	addi r3, r5, lbl_804997C8@l
+/* 80421F10 0041EE50  38 A4 97 D4 */	addi r5, r4, lbl_804997D4@l
 /* 80421F14 0041EE54  7F A7 EB 78 */	mr r7, r29
 /* 80421F18 0041EE58  7F C8 F3 78 */	mr r8, r30
 /* 80421F1C 0041EE5C  7F EA FB 78 */	mr r10, r31
 /* 80421F20 0041EE60  38 80 00 63 */	li r4, 0x63
 /* 80421F24 0041EE64  4C C6 31 82 */	crclr 6
 /* 80421F28 0041EE68  4B C0 87 19 */	bl panic_f__12JUTExceptionFPCciPCce
-/* 80421F2C 0041EE6C  3C 60 80 4A */	lis r3, sStrSystem_CPP@ha
+/* 80421F2C 0041EE6C  3C 60 80 4A */	lis r3, lbl_804997C8@ha
 /* 80421F30 0041EE70  38 80 00 65 */	li r4, 0x65
-/* 80421F34 0041EE74  38 63 97 C8 */	addi r3, r3, sStrSystem_CPP@l
+/* 80421F34 0041EE74  38 63 97 C8 */	addi r3, r3, lbl_804997C8@l
 /* 80421F38 0041EE78  38 A2 20 A0 */	addi r5, r2, sStrSystem_Abort@sda21
 /* 80421F3C 0041EE7C  4C C6 31 82 */	crclr 6
 /* 80421F40 0041EE80  4B CC B8 2D */	bl OSPanic
@@ -367,9 +368,9 @@ lbl_8042201C:
 /* 8042206C 0041EFAC  54 00 07 BD */	rlwinm. r0, r0, 0, 0x1e, 0x1e
 /* 80422070 0041EFB0  40 82 00 20 */	bne lbl_80422090
 lbl_80422074:
-/* 80422074 0041EFB4  3C 60 80 4A */	lis r3, sStrSystem_InOnLine@ha
+/* 80422074 0041EFB4  3C 60 80 4A */	lis r3, lbl_8049981C@ha
 /* 80422078 0041EFB8  7F A5 EB 78 */	mr r5, r29
-/* 8042207C 0041EFBC  38 63 98 1C */	addi r3, r3, sStrSystem_InOnLine@l
+/* 8042207C 0041EFBC  38 63 98 1C */	addi r3, r3, lbl_8049981C@l
 /* 80422080 0041EFC0  7F C6 F3 78 */	mr r6, r30
 /* 80422084 0041EFC4  38 81 00 74 */	addi r4, r1, 0x74
 /* 80422088 0041EFC8  4C C6 31 82 */	crclr 6
@@ -403,11 +404,11 @@ lbl_804220B8:
 preUserCallback__FUsP9OSContextUlUl: #local function
 /* 804220EC 0041F02C  94 21 FF C0 */	stwu r1, -0x40(r1)
 /* 804220F0 0041F030  7C 08 02 A6 */	mflr r0
-/* 804220F4 0041F034  3C 80 80 4A */	lis r4, sStrSystem_CPP@ha
+/* 804220F4 0041F034  3C 80 80 4A */	lis r4, lbl_804997C8@ha
 /* 804220F8 0041F038  90 01 00 44 */	stw r0, 0x44(r1)
 /* 804220FC 0041F03C  93 E1 00 3C */	stw r31, 0x3c(r1)
 /* 80422100 0041F040  93 C1 00 38 */	stw r30, 0x38(r1)
-/* 80422104 0041F044  3B C4 97 C8 */	addi r30, r4, sStrSystem_CPP@l
+/* 80422104 0041F044  3B C4 97 C8 */	addi r30, r4, lbl_804997C8@l
 /* 80422108 0041F048  93 A1 00 34 */	stw r29, 0x34(r1)
 /* 8042210C 0041F04C  93 81 00 30 */	stw r28, 0x30(r1)
 /* 80422110 0041F050  80 6D 9A EC */	lwz r3, sys@sda21(r13)
@@ -579,10 +580,10 @@ disableCPULockDetector__6SystemFv:
 retraceCallback__FUl:
 /* 80422344 0041F284  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 80422348 0041F288  7C 08 02 A6 */	mflr r0
-/* 8042234C 0041F28C  3C 60 80 4A */	lis r3, sStrSystem_CPP@ha
+/* 8042234C 0041F28C  3C 60 80 4A */	lis r3, lbl_804997C8@ha
 /* 80422350 0041F290  90 01 00 14 */	stw r0, 0x14(r1)
 /* 80422354 0041F294  93 E1 00 0C */	stw r31, 0xc(r1)
-/* 80422358 0041F298  3B E3 97 C8 */	addi r31, r3, sStrSystem_CPP@l
+/* 80422358 0041F298  3B E3 97 C8 */	addi r31, r3, lbl_804997C8@l
 /* 8042235C 0041F29C  80 8D 9A EC */	lwz r4, sys@sda21(r13)
 /* 80422360 0041F2A0  80 64 00 1C */	lwz r3, 0x1c(r4)
 /* 80422364 0041F2A4  38 03 00 01 */	addi r0, r3, 1
@@ -700,11 +701,11 @@ lbl_80422498:
 construct__6SystemFv:
 /* 80422504 0041F444  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 80422508 0041F448  7C 08 02 A6 */	mflr r0
-/* 8042250C 0041F44C  3C 80 80 4A */	lis r4, sStrSystem_CPP@ha
+/* 8042250C 0041F44C  3C 80 80 4A */	lis r4, lbl_804997C8@ha
 /* 80422510 0041F450  38 A0 00 00 */	li r5, 0
 /* 80422514 0041F454  90 01 00 14 */	stw r0, 0x14(r1)
 /* 80422518 0041F458  93 E1 00 0C */	stw r31, 0xc(r1)
-/* 8042251C 0041F45C  3B E4 97 C8 */	addi r31, r4, sStrSystem_CPP@l
+/* 8042251C 0041F45C  3B E4 97 C8 */	addi r31, r4, lbl_804997C8@l
 /* 80422520 0041F460  38 9F 01 30 */	addi r4, r31, 0x130
 /* 80422524 0041F464  93 C1 00 08 */	stw r30, 8(r1)
 /* 80422528 0041F468  7C 7E 1B 78 */	mr r30, r3
@@ -843,10 +844,10 @@ lbl_804226F0:
 constructWithDvdAccessFirst__6SystemFv:
 /* 80422718 0041F658  94 21 FF E0 */	stwu r1, -0x20(r1)
 /* 8042271C 0041F65C  7C 08 02 A6 */	mflr r0
-/* 80422720 0041F660  3C 80 80 4A */	lis r4, sStrSystem_CPP@ha
+/* 80422720 0041F660  3C 80 80 4A */	lis r4, lbl_804997C8@ha
 /* 80422724 0041F664  90 01 00 24 */	stw r0, 0x24(r1)
 /* 80422728 0041F668  93 E1 00 1C */	stw r31, 0x1c(r1)
-/* 8042272C 0041F66C  3B E4 97 C8 */	addi r31, r4, sStrSystem_CPP@l
+/* 8042272C 0041F66C  3B E4 97 C8 */	addi r31, r4, lbl_804997C8@l
 /* 80422730 0041F670  93 C1 00 18 */	stw r30, 0x18(r1)
 /* 80422734 0041F674  93 A1 00 14 */	stw r29, 0x14(r1)
 /* 80422738 0041F678  7C 7D 1B 78 */	mr r29, r3
@@ -905,10 +906,10 @@ lbl_80422770:
 constructWithDvdAccessSecond__6SystemFv:
 /* 80422800 0041F740  94 21 FF E0 */	stwu r1, -0x20(r1)
 /* 80422804 0041F744  7C 08 02 A6 */	mflr r0
-/* 80422808 0041F748  3C 80 80 4A */	lis r4, sStrSystem_CPP@ha
+/* 80422808 0041F748  3C 80 80 4A */	lis r4, lbl_804997C8@ha
 /* 8042280C 0041F74C  90 01 00 24 */	stw r0, 0x24(r1)
 /* 80422810 0041F750  93 E1 00 1C */	stw r31, 0x1c(r1)
-/* 80422814 0041F754  3B E4 97 C8 */	addi r31, r4, sStrSystem_CPP@l
+/* 80422814 0041F754  3B E4 97 C8 */	addi r31, r4, lbl_804997C8@l
 /* 80422818 0041F758  93 C1 00 18 */	stw r30, 0x18(r1)
 /* 8042281C 0041F75C  93 A1 00 14 */	stw r29, 0x14(r1)
 /* 80422820 0041F760  7C 7D 1B 78 */	mr r29, r3
@@ -1031,11 +1032,11 @@ lbl_804229A8:
 createSoundSystem__6SystemFv:
 /* 804229C4 0041F904  94 21 FF E0 */	stwu r1, -0x20(r1)
 /* 804229C8 0041F908  7C 08 02 A6 */	mflr r0
-/* 804229CC 0041F90C  3C 80 80 4A */	lis r4, sStrSystem_CPP@ha
+/* 804229CC 0041F90C  3C 80 80 4A */	lis r4, lbl_804997C8@ha
 /* 804229D0 0041F910  38 A0 00 00 */	li r5, 0
 /* 804229D4 0041F914  90 01 00 24 */	stw r0, 0x24(r1)
 /* 804229D8 0041F918  BF 61 00 0C */	stmw r27, 0xc(r1)
-/* 804229DC 0041F91C  3B A4 97 C8 */	addi r29, r4, sStrSystem_CPP@l
+/* 804229DC 0041F91C  3B A4 97 C8 */	addi r29, r4, lbl_804997C8@l
 /* 804229E0 0041F920  38 9D 01 D4 */	addi r4, r29, 0x1d4
 /* 804229E4 0041F924  80 6D 9A EC */	lwz r3, sys@sda21(r13)
 /* 804229E8 0041F928  48 00 09 75 */	bl heapStatusStart__6SystemFPcP7JKRHeap
@@ -1150,10 +1151,10 @@ lbl_80422B24:
 loadSoundResource__6SystemFv:
 /* 80422B7C 0041FABC  94 21 FF E0 */	stwu r1, -0x20(r1)
 /* 80422B80 0041FAC0  7C 08 02 A6 */	mflr r0
-/* 80422B84 0041FAC4  3C 60 80 4A */	lis r3, sStrSystem_CPP@ha
+/* 80422B84 0041FAC4  3C 60 80 4A */	lis r3, lbl_804997C8@ha
 /* 80422B88 0041FAC8  90 01 00 24 */	stw r0, 0x24(r1)
 /* 80422B8C 0041FACC  93 E1 00 1C */	stw r31, 0x1c(r1)
-/* 80422B90 0041FAD0  3B E3 97 C8 */	addi r31, r3, sStrSystem_CPP@l
+/* 80422B90 0041FAD0  3B E3 97 C8 */	addi r31, r3, lbl_804997C8@l
 /* 80422B94 0041FAD4  93 C1 00 18 */	stw r30, 0x18(r1)
 /* 80422B98 0041FAD8  93 A1 00 14 */	stw r29, 0x14(r1)
 /* 80422B9C 0041FADC  93 81 00 10 */	stw r28, 0x10(r1)
@@ -1658,10 +1659,10 @@ getRenderModeObj__6SystemFv:
 changeRenderMode__6SystemFQ26System11ERenderMode:
 /* 8042323C 0042017C  94 21 FF E0 */	stwu r1, -0x20(r1)
 /* 80423240 00420180  7C 08 02 A6 */	mflr r0
-/* 80423244 00420184  3C A0 80 4A */	lis r5, sStrSystem_CPP@ha
+/* 80423244 00420184  3C A0 80 4A */	lis r5, lbl_804997C8@ha
 /* 80423248 00420188  90 01 00 24 */	stw r0, 0x24(r1)
 /* 8042324C 0042018C  93 E1 00 1C */	stw r31, 0x1c(r1)
-/* 80423250 00420190  3B E5 97 C8 */	addi r31, r5, sStrSystem_CPP@l
+/* 80423250 00420190  3B E5 97 C8 */	addi r31, r5, lbl_804997C8@l
 /* 80423254 00420194  93 C1 00 18 */	stw r30, 0x18(r1)
 /* 80423258 00420198  93 A1 00 14 */	stw r29, 0x14(r1)
 /* 8042325C 0042019C  7C 9D 23 78 */	mr r29, r4
@@ -1846,9 +1847,9 @@ startChangeCurrentHeap__6SystemFP7JKRHeap:
 /* 80423468 004203A8  80 1E 00 18 */	lwz r0, 0x18(r30)
 /* 8042346C 004203AC  28 00 00 00 */	cmplwi r0, 0
 /* 80423470 004203B0  41 82 00 20 */	beq lbl_80423490
-/* 80423474 004203B4  3C 60 80 4A */	lis r3, sStrSystem_CPP@ha
+/* 80423474 004203B4  3C 60 80 4A */	lis r3, lbl_804997C8@ha
 /* 80423478 004203B8  3C A0 80 4A */	lis r5, lbl_8049993C@ha
-/* 8042347C 004203BC  38 63 97 C8 */	addi r3, r3, sStrSystem_CPP@l
+/* 8042347C 004203BC  38 63 97 C8 */	addi r3, r3, lbl_804997C8@l
 /* 80423480 004203C0  38 80 07 F1 */	li r4, 0x7f1
 /* 80423484 004203C4  38 A5 99 3C */	addi r5, r5, lbl_8049993C@l
 /* 80423488 004203C8  4C C6 31 82 */	crclr 6
@@ -1875,9 +1876,9 @@ endChangeCurrentHeap__6SystemFv:
 /* 804234CC 0042040C  80 03 00 18 */	lwz r0, 0x18(r3)
 /* 804234D0 00420410  28 00 00 00 */	cmplwi r0, 0
 /* 804234D4 00420414  40 82 00 20 */	bne lbl_804234F4
-/* 804234D8 00420418  3C 60 80 4A */	lis r3, sStrSystem_CPP@ha
+/* 804234D8 00420418  3C 60 80 4A */	lis r3, lbl_804997C8@ha
 /* 804234DC 0042041C  3C A0 80 4A */	lis r5, lbl_8049993C@ha
-/* 804234E0 00420420  38 63 97 C8 */	addi r3, r3, sStrSystem_CPP@l
+/* 804234E0 00420420  38 63 97 C8 */	addi r3, r3, lbl_804997C8@l
 /* 804234E4 00420424  38 80 07 F9 */	li r4, 0x7f9
 /* 804234E8 00420428  38 A5 99 3C */	addi r5, r5, lbl_8049993C@l
 /* 804234EC 0042042C  4C C6 31 82 */	crclr 6
@@ -1920,9 +1921,9 @@ setFrameRate__6SystemFi:
 /* 8042354C 0042048C  83 E3 00 4C */	lwz r31, 0x4c(r3)
 /* 80423550 00420490  28 1F 00 00 */	cmplwi r31, 0
 /* 80423554 00420494  40 82 00 20 */	bne lbl_80423574
-/* 80423558 00420498  3C 60 80 4A */	lis r3, sStrSystem_CPP@ha
+/* 80423558 00420498  3C 60 80 4A */	lis r3, lbl_804997C8@ha
 /* 8042355C 0042049C  3C A0 80 4A */	lis r5, lbl_804999E4@ha
-/* 80423560 004204A0  38 63 97 C8 */	addi r3, r3, sStrSystem_CPP@l
+/* 80423560 004204A0  38 63 97 C8 */	addi r3, r3, lbl_804997C8@l
 /* 80423564 004204A4  38 80 09 27 */	li r4, 0x927
 /* 80423568 004204A8  38 A5 99 E4 */	addi r5, r5, lbl_804999E4@l
 /* 8042356C 004204AC  4C C6 31 82 */	crclr 6
@@ -2076,7 +2077,7 @@ lbl_80423714:
 /* 80423750 00420690  38 21 00 10 */	addi r1, r1, 0x10
 /* 80423754 00420694  4E 80 00 20 */	blr 
 
-__sinit_system_cpp: #static initializer
+__sinit_system_cpp: # static initializer
 /* 80423758 00420698  38 80 00 01 */	li r4, 1
 /* 8042375C 0042069C  38 00 00 00 */	li r0, 0
 /* 80423760 004206A0  38 6D 9A F0 */	addi r3, r13, sVerifyArg__6System@sda21

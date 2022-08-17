@@ -1,5 +1,6 @@
 .include "macros.inc"
 .section .rodata  # 0x804732E0 - 0x8049E220
+# NONE OF THESE STRINGS ARE NAMED. THE LABELS ARE JUST FOR READABILITY IN THE ASM.
 .balign 8
 lbl_8049C410:
 	.asciz "pikmin2AramMgr.cpp"

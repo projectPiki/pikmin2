@@ -5,20 +5,16 @@ lbl_constructor:
 
 .section .data, "wa"  # 0x8049E220 - 0x804EFC20
 .balign 8
-.global lbl_804EC810
-lbl_804EC810:
-	.4byte 0x00000000
-	.4byte 0x00000000
-	.4byte 0x00000000
-	.4byte 0x00000000
+govNAN___Q24Game5P2JST:
+	.float 0.0
+	.float 0.0
+	.float 0.0
 
 .section .sbss # 0x80514D80 - 0x80516360
 .balign 8
-.global lbl_80516240
-lbl_80516240:
+gu32NAN___Q24Game5P2JST:
 	.skip 0x4
-.global lbl_80516244
-lbl_80516244:
+gfNAN___Q24Game5P2JST:
 	.skip 0x4
 
 .section .text, "ax"  # 0x800056C0 - 0x80472F00
@@ -377,15 +373,14 @@ lbl_804373C8:
 /* 804373D0 00434310  38 21 00 50 */	addi r1, r1, 0x50
 /* 804373D4 00434314  4E 80 00 20 */	blr 
 
-.global __sinit_moviePlayerPauseAndDraw_cpp
-__sinit_moviePlayerPauseAndDraw_cpp:
+__sinit_moviePlayerPauseAndDraw_cpp: # static initializer
 /* 804373D8 00434318  3C 80 80 51 */	lis r4, __float_nan@ha
 /* 804373DC 0043431C  38 00 FF FF */	li r0, -1
 /* 804373E0 00434320  C0 04 48 B0 */	lfs f0, __float_nan@l(r4)
-/* 804373E4 00434324  3C 60 80 4F */	lis r3, lbl_804EC810@ha
-/* 804373E8 00434328  90 0D 9B C0 */	stw r0, lbl_80516240@sda21(r13)
-/* 804373EC 0043432C  D4 03 C8 10 */	stfsu f0, lbl_804EC810@l(r3)
-/* 804373F0 00434330  D0 0D 9B C4 */	stfs f0, lbl_80516244@sda21(r13)
+/* 804373E4 00434324  3C 60 80 4F */	lis r3, govNAN___Q24Game5P2JST@ha
+/* 804373E8 00434328  90 0D 9B C0 */	stw r0, gu32NAN___Q24Game5P2JST@sda21(r13)
+/* 804373EC 0043432C  D4 03 C8 10 */	stfsu f0, govNAN___Q24Game5P2JST@l(r3)
+/* 804373F0 00434330  D0 0D 9B C4 */	stfs f0, gfNAN___Q24Game5P2JST@sda21(r13)
 /* 804373F4 00434334  D0 03 00 04 */	stfs f0, 4(r3)
 /* 804373F8 00434338  D0 03 00 08 */	stfs f0, 8(r3)
 /* 804373FC 0043433C  4E 80 00 20 */	blr 

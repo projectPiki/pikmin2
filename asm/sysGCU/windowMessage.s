@@ -5,45 +5,31 @@ lbl_constructor:
 
 .section .rodata  # 0x804732E0 - 0x8049E220
 .balign 8
-.global lbl_8049ACA8
 lbl_8049ACA8:
 	.4byte 0x00000000
 	.4byte 0x00000000
 	.4byte 0x00000000
-.global lbl_8049ACB4
 lbl_8049ACB4:
-	.4byte 0x77696E64
-	.4byte 0x6F774D65
-	.4byte 0x73736167
-	.4byte 0x652E6370
-	.4byte 0x70000000
-.global lbl_8049ACC8
+	.asciz "windowMessage.cpp"
+.balign 4
 lbl_8049ACC8:
 	.asciz "P2Assert"
-	.skip 3
-	.4byte 0x44726177
-	.4byte 0x496E666F
-	.4byte 0x4D67723A
-	.4byte 0x3A696E69
-	.4byte 0x74000000
-.global lbl_8049ACE8
+.balign 4
+lbl_8049ACD4:
+	.asciz "DrawInfoMgr::init"
+.balign 4
 lbl_8049ACE8:
-	.4byte 0x50534761
-	.4byte 0x6D652E68
-	.4byte 0x00000000
-	.4byte 0x6D657373
-	.4byte 0x6167654F
-	.4byte 0x626A2E68
-	.4byte 0x00000000
-	.4byte 0x00000000
+	.asciz "PSGame.h"
+.balign 4
+lbl_8049ACF4:
+	.asciz "messageObj.h"
 
 .section .data, "wa"  # 0x8049E220 - 0x804EFC20
 .balign 8
-.global lbl_804ECC50
-lbl_804ECC50:
-	.4byte 0x00000000
-	.4byte 0x00000000
-	.4byte 0x00000000
+govNAN___Q24Game5P2JST:
+	.float 0.0
+	.float 0.0
+	.float 0.0
 .global __vt__Q35P2JME6Window8TControl
 __vt__Q35P2JME6Window8TControl:
 	.4byte 0
@@ -140,81 +126,59 @@ __vt__Q35P2JME6Window8DrawInfo:
 	.4byte 0
 	.4byte __dt__Q35P2JME6Window8DrawInfoFv
 	.4byte getChildCount__5CNodeFv
-	.4byte 0
 
 .section .sbss # 0x80514D80 - 0x80516360
 .balign 8
-.global lbl_80516288
-lbl_80516288:
+gu32NAN___Q24Game5P2JST:
 	.skip 0x4
-.global lbl_8051628C
-lbl_8051628C:
+gfNAN___Q24Game5P2JST:
 	.skip 0x4
 
 .section .sdata2, "a"     # 0x80516360 - 0x80520E40
 .balign 8
-.global lbl_80520920
 lbl_80520920:
-	.4byte 0x00000000
-.global lbl_80520924
+	.asciz ""
+.balign 4
 lbl_80520924:
-	.4byte 0x00000000
-.global lbl_80520928
+	.float 0.0
 lbl_80520928:
 	.float 0.5
-.global lbl_8052092C
 lbl_8052092C:
-	.4byte 0x41F00000
-.global lbl_80520930
-lbl_80520930:
-	.4byte 0x3FC90FDB
-.global lbl_80520934
+	.float 30.0
+lbl_80520930: # half-pi
+	.float 1.5707964
 lbl_80520934:
-	.4byte 0x437F0000
-.global lbl_80520938
+	.float 255.0
 lbl_80520938:
-	.4byte 0x41200000
-.global lbl_8052093C
+	.float 10.0
 lbl_8052093C:
-	.4byte 0x40A00000
-.global lbl_80520940
+	.float 5.0
+.balign 8
 lbl_80520940:
 	.4byte 0x43300000
 	.4byte 0x00000000
-.global lbl_80520948
 lbl_80520948:
-	.4byte 0x41490FDB
-.global lbl_8052094C
+	.float 12.566371
 lbl_8052094C:
-	.4byte 0x43A2F983
-.global lbl_80520950
+	.float 325.9493
 lbl_80520950:
 	.float 1.0
-.global lbl_80520954
 lbl_80520954:
-	.4byte 0x3F4CCCCD
-.global lbl_80520958
+	.float 0.8
 lbl_80520958:
-	.4byte 0x40000000
-.global lbl_8052095C
-lbl_8052095C:
-	.4byte 0x40C90FDB
-.global lbl_80520960
+	.float 2.0
+lbl_8052095C: # tau
+	.float 6.2831855
 lbl_80520960:
-	.4byte 0x40800000
-.global lbl_80520964
+	.float 4.0
 lbl_80520964:
-	.4byte 0x41700000
-.global lbl_80520968
-lbl_80520968:
-	.4byte 0x40490FDB
-.global lbl_8052096C
+	.float 15.0
+lbl_80520968: # pi
+	.float 3.1415927
 lbl_8052096C:
-	.4byte 0x42480000
-.global lbl_80520970
+	.float 50.0
 lbl_80520970:
-	.4byte 0x43680000
-	.4byte 0x00000000
+	.float 232.0
 
 .section .text, "ax"  # 0x800056C0 - 0x80472F00
 .global __ct__Q35P2JME6Window8DrawInfoFv
@@ -1665,15 +1629,14 @@ lbl_804405AC:
 /* 804405C0 0043D500  38 21 00 10 */	addi r1, r1, 0x10
 /* 804405C4 0043D504  4E 80 00 20 */	blr 
 
-.global __sinit_windowMessage_cpp
-__sinit_windowMessage_cpp:
+__sinit_windowMessage_cpp: # static initializer
 /* 804405C8 0043D508  3C 80 80 51 */	lis r4, __float_nan@ha
 /* 804405CC 0043D50C  38 00 FF FF */	li r0, -1
 /* 804405D0 0043D510  C0 04 48 B0 */	lfs f0, __float_nan@l(r4)
-/* 804405D4 0043D514  3C 60 80 4F */	lis r3, lbl_804ECC50@ha
-/* 804405D8 0043D518  90 0D 9C 08 */	stw r0, lbl_80516288@sda21(r13)
-/* 804405DC 0043D51C  D4 03 CC 50 */	stfsu f0, lbl_804ECC50@l(r3)
-/* 804405E0 0043D520  D0 0D 9C 0C */	stfs f0, lbl_8051628C@sda21(r13)
+/* 804405D4 0043D514  3C 60 80 4F */	lis r3, govNAN___Q24Game5P2JST@ha
+/* 804405D8 0043D518  90 0D 9C 08 */	stw r0, gu32NAN___Q24Game5P2JST@sda21(r13)
+/* 804405DC 0043D51C  D4 03 CC 50 */	stfsu f0, govNAN___Q24Game5P2JST@l(r3)
+/* 804405E0 0043D520  D0 0D 9C 0C */	stfs f0, gfNAN___Q24Game5P2JST@sda21(r13)
 /* 804405E4 0043D524  D0 03 00 04 */	stfs f0, 4(r3)
 /* 804405E8 0043D528  D0 03 00 08 */	stfs f0, 8(r3)
 /* 804405EC 0043D52C  4E 80 00 20 */	blr 

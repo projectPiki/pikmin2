@@ -5,100 +5,99 @@ lbl_constructor:
 
 .section .rodata  # 0x804732E0 - 0x8049E220
 .balign 8
-.global lbl_8049A8D0
 lbl_8049A8D0:
-	.skip 0xC
-.global lbl_8049A8DC
+	.4byte 0
+	.4byte 0
+	.4byte 0
+.balign 4
 lbl_8049A8DC:
 	.asciz "/message/font_foreign.szs"
-	.skip 2
-.global lbl_8049A8F8
+.balign 4
 lbl_8049A8F8:
 	.asciz "/message/font_jpn.szs"
-	.skip 2
-.global lbl_8049A910
+.balign 4
 lbl_8049A910:
 	.asciz "/message/mesRes_eng.szs"
-.global lbl_8049A928
+.balign 4
 lbl_8049A928:
 	.asciz "/message/mesRes_fra.szs"
-.global lbl_8049A940
+.balign 4
 lbl_8049A940:
 	.asciz "/message/mesRes_ger.szs"
-.global lbl_8049A958
+.balign 4
 lbl_8049A958:
 	.asciz "/message/mesRes_hol.szs"
-.global lbl_8049A970
+.balign 4
 lbl_8049A970:
 	.asciz "/message/mesRes_ita.szs"
-.global lbl_8049A988
+.balign 4
 lbl_8049A988:
 	.asciz "/message/mesRes_jpn.szs"
-.global lbl_8049A9A0
+.balign 4
 lbl_8049A9A0:
 	.asciz "/message/mesRes_spa.szs"
-.global lbl_8049A9B8
+.balign 4
 lbl_8049A9B8:
 	.asciz "a_btn.bti"
-	.skip 2
-.global lbl_8049A9C4
+.balign 4
 lbl_8049A9C4:
 	.asciz "b_btn.bti"
-	.skip 2
-.global lbl_8049A9D0
+.balign 4
 lbl_8049A9D0:
 	.asciz "c_btn.bti"
-	.skip 2
-.global lbl_8049A9DC
+.balign 4
 lbl_8049A9DC:
 	.asciz "x_btn.bti"
-	.skip 2
-.global lbl_8049A9E8
+.balign 4
 lbl_8049A9E8:
 	.asciz "y_btn.bti"
-	.skip 2
-.global lbl_8049A9F4
+.balign 4
 lbl_8049A9F4:
 	.asciz "z_btn.bti"
-	.skip 2
-.global lbl_8049AA00
+.balign 4
 lbl_8049AA00:
 	.asciz "l_btn.bti"
-	.skip 2
-.global lbl_8049AA0C
+.balign 4
 lbl_8049AA0C:
 	.asciz "r_btn.bti"
-	.skip 2
-.global lbl_8049AA18
+.balign 4
 lbl_8049AA18:
 	.asciz "3d_btn.bti"
-	.skip 1
-.global lbl_8049AA24
+.balign 4
 lbl_8049AA24:
 	.asciz "st_btn.bti"
-	.skip 1
-.global lbl_8049AA30
+.balign 4
 lbl_8049AA30:
 	.asciz "t_btn.bti"
-	.skip 2
-.global lbl_8049AA3C
+.balign 4
 lbl_8049AA3C:
 	.asciz "messageMgr.cpp"
-	.skip 1
-.global lbl_8049AA4C
+.balign 4
 lbl_8049AA4C:
 	.asciz "P2Assert"
-	.skip 3
+.balign 4
+lbl_8049AA58:
 	.asciz "MessageMgr"
-	.skip 1
+.balign 4
+lbl_8049AA64:
 	.asciz "font res"
-	.skip 3
+.balign 4
+lbl_8049AA70:
 	.asciz "pikmin2main.bfn"
+.balign 4
+lbl_8049AA80:
 	.asciz "pikmin2.bmg"
+.balign 4
+lbl_8049AA8C:
 	.asciz "pikmin2.bmc"
+.balign 4
+lbl_8049AA98:
 	.asciz "/user/Yamashita/arc/gameTex.szs"
+.balign 4
+lbl_8049AAB8:
 	.asciz "cacheFont"
-	.skip 2
+.balign 4
+lbl_8049AAC4: # Shift-JIS
 	.4byte 0x0982A082
 	.4byte 0xA282A482
 	.4byte 0xA682A882
@@ -140,11 +139,15 @@ lbl_8049AA4C:
 	.4byte 0x83848386
 	.4byte 0x8388838F
 	.4byte 0x83930900
+.balign 4
+lbl_8049AB68: # Shift-JIS
 	.4byte 0x83818362
 	.4byte 0x835A815B
 	.4byte 0x835782CC
 	.4byte 0x8370815B
 	.4byte 0x83580000
+.balign 4
+lbl_8049AB7C: # Shift-JIS
 	.4byte 0x83818362
 	.4byte 0x835A815B
 	.4byte 0x8357834A
@@ -155,12 +158,10 @@ lbl_8049AA4C:
 
 .section .data, "wa"  # 0x8049E220 - 0x804EFC20
 .balign 8
-.global lbl_804EC970
-lbl_804EC970:
-	.4byte 0x00000000
-	.4byte 0x00000000
-	.4byte 0x00000000
-.global sFontResName__5P2JME
+govNAN___Q24Game5P2JST:
+	.float 0.0
+	.float 0.0
+	.float 0.0
 sFontResName__5P2JME:
 	.4byte lbl_8049A8DC
 	.4byte lbl_8049A8DC
@@ -169,7 +170,6 @@ sFontResName__5P2JME:
 	.4byte lbl_8049A8DC
 	.4byte lbl_8049A8F8
 	.4byte lbl_8049A8DC
-.global sMesResName__5P2JME
 sMesResName__5P2JME:
 	.4byte lbl_8049A910
 	.4byte lbl_8049A928
@@ -178,7 +178,6 @@ sMesResName__5P2JME:
 	.4byte lbl_8049A970
 	.4byte lbl_8049A988
 	.4byte lbl_8049A9A0
-.global cBtnTexName__5P2JME
 cBtnTexName__5P2JME:
 	.4byte lbl_8049A9B8
 	.4byte lbl_8049A9C4
@@ -196,29 +195,25 @@ __vt__Q25P2JME3Mgr:
 	.4byte 0
 	.4byte 0
 	.4byte __dt__Q25P2JME3MgrFv
-	.4byte 0
 
 .section .sbss # 0x80514D80 - 0x80516360
 .balign 8
-.global lbl_80516250
-lbl_80516250:
+gu32NAN___Q24Game5P2JST:
 	.skip 0x4
-.global lbl_80516254
-lbl_80516254:
+gfNAN___Q24Game5P2JST:
 	.skip 0x4
 .global gP2JMEMgr
 gP2JMEMgr:
-	.skip 0x8
+	.skip 0x4
 
 .section .sdata2, "a"     # 0x80516360 - 0x80520E40
 .balign 8
-.global lbl_80520890
 lbl_80520890:
 	.asciz "tex res"
-.global lbl_80520898
+.balign 4
 lbl_80520898:
 	.asciz "resFont"
-.global lbl_805208A0
+.balign 4
 lbl_805208A0:
 	.asciz "bmg"
 
@@ -1020,15 +1015,14 @@ lbl_804389D4:
 /* 80438A04 00435944  38 21 00 30 */	addi r1, r1, 0x30
 /* 80438A08 00435948  4E 80 00 20 */	blr 
 
-.global __sinit_messageMgr_cpp
-__sinit_messageMgr_cpp:
+__sinit_messageMgr_cpp: # static initializer
 /* 80438A0C 0043594C  3C 80 80 51 */	lis r4, __float_nan@ha
 /* 80438A10 00435950  38 00 FF FF */	li r0, -1
 /* 80438A14 00435954  C0 04 48 B0 */	lfs f0, __float_nan@l(r4)
-/* 80438A18 00435958  3C 60 80 4F */	lis r3, lbl_804EC970@ha
-/* 80438A1C 0043595C  90 0D 9B D0 */	stw r0, lbl_80516250@sda21(r13)
-/* 80438A20 00435960  D4 03 C9 70 */	stfsu f0, lbl_804EC970@l(r3)
-/* 80438A24 00435964  D0 0D 9B D4 */	stfs f0, lbl_80516254@sda21(r13)
+/* 80438A18 00435958  3C 60 80 4F */	lis r3, govNAN___Q24Game5P2JST@ha
+/* 80438A1C 0043595C  90 0D 9B D0 */	stw r0, gu32NAN___Q24Game5P2JST@sda21(r13)
+/* 80438A20 00435960  D4 03 C9 70 */	stfsu f0, govNAN___Q24Game5P2JST@l(r3)
+/* 80438A24 00435964  D0 0D 9B D4 */	stfs f0, gfNAN___Q24Game5P2JST@sda21(r13)
 /* 80438A28 00435968  D0 03 00 04 */	stfs f0, 4(r3)
 /* 80438A2C 0043596C  D0 03 00 08 */	stfs f0, 8(r3)
 /* 80438A30 00435970  4E 80 00 20 */	blr 

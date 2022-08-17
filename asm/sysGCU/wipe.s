@@ -5,11 +5,10 @@ lbl_constructor:
 
 .section .data, "wa"  # 0x8049E220 - 0x804EFC20
 .balign 8
-.global lbl_804EBED8
-lbl_804EBED8:
-	.4byte 0x00000000
-	.4byte 0x00000000
-	.4byte 0x00000000
+govNAN___Q24Game5P2JST:
+	.float 0.0
+	.float 0.0
+	.float 0.0
 .global __vt__10BlackFader
 __vt__10BlackFader:
 	.4byte 0
@@ -70,45 +69,34 @@ __vt__8WipeBase:
 	.4byte isBlack__8WipeBaseFv
 	.4byte on_start__8WipeBaseFv
 	.4byte do_draw__8WipeBaseFf
-	.4byte 0
 
 .section .sbss # 0x80514D80 - 0x80516360
 .balign 8
-.global lbl_805161C0
-lbl_805161C0:
+gu32NAN___Q24Game5P2JST:
 	.skip 0x4
-.global lbl_805161C4
-lbl_805161C4:
+gfNAN___Q24Game5P2JST:
 	.skip 0x4
 
 .section .sdata2, "a"     # 0x80516360 - 0x80520E40
 .balign 8
-.global lbl_805205E8
 lbl_805205E8:
-	.4byte 0x00000000
-.global lbl_805205EC
+	.float 0.0
 lbl_805205EC:
 	.float 1.0
-.global lbl_805205F0
 lbl_805205F0:
 	.float 0.5
-.global lbl_805205F4
 lbl_805205F4:
-	.4byte 0x3E4CCCCD
-.global lbl_805205F8
+	.float 0.2
 lbl_805205F8:
-	.4byte 0x3F4CCCCD
-.global lbl_805205FC
+	.float 0.8
 lbl_805205FC:
-	.4byte 0x437F0000
-.global lbl_80520600
+	.float 255.0
+.balign 8
 lbl_80520600:
 	.4byte 0x43300000
 	.4byte 0x00000000
-.global lbl_80520608
 lbl_80520608:
-	.4byte 0x3FA00000
-.global lbl_8052060C
+	.float 1.25
 lbl_8052060C:
 	.float 0.1
 
@@ -838,15 +826,14 @@ lbl_8042C6BC:
 /* 8042C6D0 00429610  38 21 00 10 */	addi r1, r1, 0x10
 /* 8042C6D4 00429614  4E 80 00 20 */	blr 
 
-.global __sinit_wipe_cpp
-__sinit_wipe_cpp:
+__sinit_wipe_cpp: # static initializer
 /* 8042C6D8 00429618  3C 80 80 51 */	lis r4, __float_nan@ha
 /* 8042C6DC 0042961C  38 00 FF FF */	li r0, -1
 /* 8042C6E0 00429620  C0 04 48 B0 */	lfs f0, __float_nan@l(r4)
-/* 8042C6E4 00429624  3C 60 80 4F */	lis r3, lbl_804EBED8@ha
-/* 8042C6E8 00429628  90 0D 9B 40 */	stw r0, lbl_805161C0@sda21(r13)
-/* 8042C6EC 0042962C  D4 03 BE D8 */	stfsu f0, lbl_804EBED8@l(r3)
-/* 8042C6F0 00429630  D0 0D 9B 44 */	stfs f0, lbl_805161C4@sda21(r13)
+/* 8042C6E4 00429624  3C 60 80 4F */	lis r3, govNAN___Q24Game5P2JST@ha
+/* 8042C6E8 00429628  90 0D 9B 40 */	stw r0, gu32NAN___Q24Game5P2JST@sda21(r13)
+/* 8042C6EC 0042962C  D4 03 BE D8 */	stfsu f0, govNAN___Q24Game5P2JST@l(r3)
+/* 8042C6F0 00429630  D0 0D 9B 44 */	stfs f0, gfNAN___Q24Game5P2JST@sda21(r13)
 /* 8042C6F4 00429634  D0 03 00 04 */	stfs f0, 4(r3)
 /* 8042C6F8 00429638  D0 03 00 08 */	stfs f0, 8(r3)
 /* 8042C6FC 0042963C  4E 80 00 20 */	blr 

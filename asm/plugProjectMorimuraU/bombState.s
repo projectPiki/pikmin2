@@ -77,27 +77,28 @@ __vt__Q34Game4Bomb3FSM:
 
 .section .sbss # 0x80514D80 - 0x80516360
 .balign 8
-lbl_80515F28:
+gu32NAN___Q24Game5P2JST:
 	.skip 0x4
-lbl_80515F2C:
+gfNAN___Q24Game5P2JST:
 	.skip 0x4
 
 .section .sdata2, "a"     # 0x80516360 - 0x80520E40
 .balign 8
 lbl_8051E300:
-	.4byte 0x77616974
-	.4byte 0x00000000
+	.asciz "wait"
+.balign 4
 lbl_8051E308:
 	.float 1.0
+.balign 4
 lbl_8051E30C:
-	.4byte 0x626F6D62
-	.4byte 0x00000000
+	.asciz "bomb"
+.balign 4
 lbl_8051E314:
-	.4byte 0x00000000
+	.float 0.0
 lbl_8051E318:
-	.4byte 0x42C80000
+	.float 100.0
 lbl_8051E31C:
-	.4byte 0x43480000
+	.float 200.0
 
 .section .text, "ax"  # 0x800056C0 - 0x80472F00
 .global init__Q34Game4Bomb3FSMFPQ24Game9EnemyBase
@@ -750,9 +751,9 @@ __sinit_bombState_cpp: # static initializer
 /* 80349D40 00346C80  38 00 FF FF */	li r0, -1
 /* 80349D44 00346C84  C0 04 48 B0 */	lfs f0, __float_nan@l(r4)
 /* 80349D48 00346C88  3C 60 80 4E */	lis r3, govNAN___Q24Game5P2JST@ha
-/* 80349D4C 00346C8C  90 0D 98 A8 */	stw r0, lbl_80515F28@sda21(r13)
+/* 80349D4C 00346C8C  90 0D 98 A8 */	stw r0, gu32NAN___Q24Game5P2JST@sda21(r13)
 /* 80349D50 00346C90  D4 03 B9 78 */	stfsu f0, govNAN___Q24Game5P2JST@l(r3)
-/* 80349D54 00346C94  D0 0D 98 AC */	stfs f0, lbl_80515F2C@sda21(r13)
+/* 80349D54 00346C94  D0 0D 98 AC */	stfs f0, gfNAN___Q24Game5P2JST@sda21(r13)
 /* 80349D58 00346C98  D0 03 00 04 */	stfs f0, 4(r3)
 /* 80349D5C 00346C9C  D0 03 00 08 */	stfs f0, 8(r3)
 /* 80349D60 00346CA0  4E 80 00 20 */	blr 

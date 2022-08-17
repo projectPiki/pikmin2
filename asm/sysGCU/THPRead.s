@@ -1,8 +1,11 @@
 .include "macros.inc"
 .section .bss  # 0x804EFC20 - 0x8051467C
+
+# presumably OSMessageQueue
 .lcomm FreeReadBufferQueue, 0x20, 4
 .lcomm ReadedBufferQueue, 0x20, 4
 .lcomm ReadedBufferQueue2, 0x20, 4
+
 .lcomm FreeReadBufferMessage, 0x28, 4
 .lcomm ReadedBufferMessage, 0x28, 4
 .lcomm ReadedBufferMessage2, 0x28, 4

@@ -5,71 +5,38 @@ lbl_constructor:
 
 .section .rodata  # 0x804732E0 - 0x8049E220
 .balign 8
-.global lbl_8049B8C8
 lbl_8049B8C8:
 	.4byte 0x00000000
 	.4byte 0x00000000
 	.4byte 0x00000000
-.global lbl_8049B8D4
 lbl_8049B8D4:
-	.4byte 0x73637265
-	.4byte 0x656E4D67
-	.4byte 0x722E6370
-	.4byte 0x70000000
-.global lbl_8049B8E4
+	.asciz "screenMgr.cpp"
+.balign 4
 lbl_8049B8E4:
 	.asciz "P2Assert"
-	.skip 3
-	.4byte 0x64697370
-	.4byte 0x4D656D62
-	.4byte 0x65725B25
-	.4byte 0x735D2053
-	.4byte 0x697A6520
-	.4byte 0x6F766572
-	.4byte 0x2E200A20
-	.4byte 0x2564206D
-	.4byte 0x61783A25
-	.4byte 0x64000000
-	.4byte 0x53657453
-	.4byte 0x63656E65
-	.4byte 0x00000000
-	.4byte 0x53746172
-	.4byte 0x74536365
-	.4byte 0x6E650000
-	.4byte 0x456E6453
-	.4byte 0x63656E65
-	.4byte 0x00000000
-.global lbl_8049B93C
+.balign 4
+lbl_8049B8F0:
+	.asciz "dispMember[%s] Size over. \n %d max:%d"
+.balign 4
+lbl_8049B918:
+	.asciz "SetScene"
+.balign 4
+lbl_8049B924:
+	.asciz "StartScene"
+.balign 4
+lbl_8049B930:
+	.asciz "EndScene"
+.balign 4
 lbl_8049B93C:
-	.4byte 0x63616E27
-	.4byte 0x74207265
-	.4byte 0x7365742E
-	.4byte 0x206F776E
-	.4byte 0x65725B25
-	.4byte 0x735D2020
-	.4byte 0x6D656D62
-	.4byte 0x65725B25
-	.4byte 0x735D0A00
-	.4byte 0x63616E27
-	.4byte 0x74207374
-	.4byte 0x61727453
-	.4byte 0x63656E65
-	.4byte 0x2E0A206F
-	.4byte 0x776E6572
-	.4byte 0x5B25735D
-	.4byte 0x206D656D
-	.4byte 0x6265725B
-	.4byte 0x25735D0A
-	.4byte 0x00000000
-	.4byte 0x73637265
-	.4byte 0x656E2063
-	.4byte 0x6F6D6D61
-	.4byte 0x6E642062
-	.4byte 0x75666665
-	.4byte 0x72206973
-	.4byte 0x20656D70
-	.4byte 0x74792E0A
-	.4byte 0x00000000
+	.asciz "can't reset. owner[%s]  member[%s]\n"
+.balign 4
+lbl_8049B960:
+	.asciz "can't startScene.\n owner[%s] member[%s]\n"
+.balign 4
+lbl_8049B98C:
+	.asciz "screen command buffer is empty.\n"
+.balign 4
+lbl_8049B9B0: # Shift-JIS
 	.4byte 0x81798347
 	.4byte 0x8389815B
 	.4byte 0x817A8352
@@ -80,48 +47,28 @@ lbl_8049B93C:
 	.4byte 0x91AB82E8
 	.4byte 0x82DC82B9
 	.4byte 0x82F10A00
-	.4byte 0x4D69736D
-	.4byte 0x61746368
-	.4byte 0x20617267
-	.4byte 0x2E206375
-	.4byte 0x7272656E
-	.4byte 0x74207363
-	.4byte 0x656E653A
-	.4byte 0x25642061
-	.4byte 0x72673A25
-	.4byte 0x640A0000
+lbl_8049B9D8:
+	.asciz "Mismatch arg. current scene:%d arg:%d\n"
+.balign 4
+lbl_8049BA00: # Shift-JIS
 	.4byte 0x8356815B
 	.4byte 0x839382CC
 	.4byte 0x90B690AC
 	.4byte 0x82C98EB8
 	.4byte 0x94730000
-	.4byte 0x63616E27
-	.4byte 0x74206372
-	.4byte 0x65617465
-	.4byte 0x204E6577
-	.4byte 0x20536365
-	.4byte 0x6E65496E
-	.4byte 0x666F4C69
-	.4byte 0x73742E0A
-	.4byte 0x00000000
-.global lbl_8049BA38
+.balign 4
+lbl_8049BA14:
+	.asciz "can't create New SceneInfoList.\n"
+.balign 4
 lbl_8049BA38:
-	.4byte 0x746F2020
-	.4byte 0x205B2573
-	.4byte 0x5D205B25
-	.4byte 0x735D0A66
-	.4byte 0x726F6D20
-	.4byte 0x5B25735D
-	.4byte 0x205B2573
-	.4byte 0x5D0A0000
+	.asciz "to   [%s] [%s]\nfrom [%s] [%s]\n"
 
 .section .data, "wa"	# 0x8049E220 - 0x804EFC20
 .balign 8
-.global lbl_804ED6F8
-lbl_804ED6F8:
-	.4byte 0x00000000
-	.4byte 0x00000000
-	.4byte 0x00000000
+govNAN___Q24Game5P2JST:
+	.float 0.0
+	.float 0.0
+	.float 0.0
 .global __vt__Q26Screen3Mgr
 __vt__Q26Screen3Mgr:
 	.4byte 0
@@ -148,26 +95,21 @@ __vt__Q26Screen13SceneInfoList:
 	.4byte 0
 	.4byte __dt__Q26Screen13SceneInfoListFv
 	.4byte getChildCount__5CNodeFv
-	.4byte 0
 
 .section .sbss # 0x80514D80 - 0x80516360
 .balign 8
-.global lbl_805162E0
-lbl_805162E0:
+gu32NAN___Q24Game5P2JST:
 	.skip 0x4
-.global lbl_805162E4
-lbl_805162E4:
+gfNAN___Q24Game5P2JST:
 	.skip 0x4
 .global sScreenMgr__Q26Screen3Mgr
 sScreenMgr__Q26Screen3Mgr:
-	.skip 0x8
+	.skip 0x4
 
 .section .sdata2, "a"     # 0x80516360 - 0x80520E40
 .balign 8
-.global lbl_80520B80
 lbl_80520B80:
-	.4byte 0x00000000
-	.4byte 0x00000000
+	.asciz ""
 
 .section .text, "ax"  # 0x800056C0 - 0x80472F00
 .global __ct__Q26Screen13SceneInfoListFv
@@ -1889,15 +1831,14 @@ lbl_80453AA4:
 /* 80453AB8 004509F8  38 21 00 10 */	addi r1, r1, 0x10
 /* 80453ABC 004509FC  4E 80 00 20 */	blr 
 
-.global __sinit_screenMgr_cpp
-__sinit_screenMgr_cpp:
+__sinit_screenMgr_cpp: # static initializer
 /* 80453AC0 00450A00  3C 80 80 51 */	lis r4, __float_nan@ha
 /* 80453AC4 00450A04  38 00 FF FF */	li r0, -1
 /* 80453AC8 00450A08  C0 04 48 B0 */	lfs f0, __float_nan@l(r4)
-/* 80453ACC 00450A0C  3C 60 80 4F */	lis r3, lbl_804ED6F8@ha
-/* 80453AD0 00450A10  90 0D 9C 60 */	stw r0, lbl_805162E0@sda21(r13)
-/* 80453AD4 00450A14  D4 03 D6 F8 */	stfsu f0, lbl_804ED6F8@l(r3)
-/* 80453AD8 00450A18  D0 0D 9C 64 */	stfs f0, lbl_805162E4@sda21(r13)
+/* 80453ACC 00450A0C  3C 60 80 4F */	lis r3, govNAN___Q24Game5P2JST@ha
+/* 80453AD0 00450A10  90 0D 9C 60 */	stw r0, gu32NAN___Q24Game5P2JST@sda21(r13)
+/* 80453AD4 00450A14  D4 03 D6 F8 */	stfsu f0, govNAN___Q24Game5P2JST@l(r3)
+/* 80453AD8 00450A18  D0 0D 9C 64 */	stfs f0, gfNAN___Q24Game5P2JST@sda21(r13)
 /* 80453ADC 00450A1C  D0 03 00 04 */	stfs f0, 4(r3)
 /* 80453AE0 00450A20  D0 03 00 08 */	stfs f0, 8(r3)
 /* 80453AE4 00450A24  4E 80 00 20 */	blr 

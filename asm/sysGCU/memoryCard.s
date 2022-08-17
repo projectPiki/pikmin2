@@ -1,39 +1,22 @@
 .include "macros.inc"
 .section .rodata  # 0x804732E0 - 0x8049E220
 .balign 8
-.global lbl_8049AD08
 lbl_8049AD08:
-	.4byte 0x6D656D6F
-	.4byte 0x72794361
-	.4byte 0x72642E63
-	.4byte 0x70700000
-	.4byte 0x636F6D6D
-	.4byte 0x616E6420
-	.4byte 0x71756575
-	.4byte 0x65206973
-	.4byte 0x2062726F
-	.4byte 0x6B656E2E
-	.4byte 0x666C6167
-	.4byte 0x3A256420
-	.4byte 0x6E756D3A
-	.4byte 0x25640000
-.global lbl_8049AD40
+	.asciz "memoryCard.cpp"
+.balign 4
+lbl_8049AD18:
+	.asciz "command queue is broken.flag:%d num:%d"
+.balign 4
 lbl_8049AD40:
 	.asciz "P2Assert"
-	.skip 3
-	.4byte 0x636F6D6D
-	.4byte 0x616E6420
-	.4byte 0x51756575
-	.4byte 0x65206973
-	.4byte 0x2066756C
-	.4byte 0x6C2E0000
-	.4byte 0x696D706F
-	.4byte 0x73736962
-	.4byte 0x6C652063
-	.4byte 0x6173650A
-	.4byte 0x00000000
-.global lbl_8049AD78
-lbl_8049AD78:
+.balign 4
+lbl_8049AD4C:
+	.asciz "command Queue is full."
+.balign 4
+lbl_8049AD64:
+	.asciz "impossible case\n"
+.balign 4
+lbl_8049AD78: # Shift-JIS
 	.4byte 0x8373834E
 	.4byte 0x837E8393
 	.4byte 0x82518140
@@ -41,21 +24,12 @@ lbl_8049AD78:
 	.4byte 0x83758366
 	.4byte 0x815B835E
 	.4byte 0x20000000
-.global lbl_8049AD94
+.balign 4
 lbl_8049AD94:
-	.4byte 0x25303464
-	.4byte 0x2F253032
-	.4byte 0x642F2530
-	.4byte 0x32642025
-	.4byte 0x3032643A
-	.4byte 0x25303264
-	.4byte 0x3A253032
-	.4byte 0x64000000
-	.4byte 0x00000000
+	.asciz "%04d/%02d/%02d %02d:%02d:%02d"
 
 .section .data, "wa"  # 0x8049E220 - 0x804EFC20
 .balign 8
-.global lbl_804ECDC0
 lbl_804ECDC0:
 	.4byte lbl_80441028
 	.4byte lbl_80441020
@@ -69,7 +43,6 @@ lbl_804ECDC0:
 	.4byte lbl_80441058
 	.4byte lbl_80441060
 	.4byte lbl_80441068
-.global lbl_804ECDF0
 lbl_804ECDF0:
 	.4byte lbl_80441384
 	.4byte lbl_8044137C
@@ -83,7 +56,6 @@ lbl_804ECDF0:
 	.4byte lbl_804413B4
 	.4byte lbl_804413BC
 	.4byte lbl_804413C4
-.global lbl_804ECE20
 lbl_804ECE20:
 	.4byte lbl_804414D8
 	.4byte lbl_804414D0
@@ -97,7 +69,6 @@ lbl_804ECE20:
 	.4byte lbl_80441508
 	.4byte lbl_80441510
 	.4byte lbl_80441518
-.global lbl_804ECE50
 lbl_804ECE50:
 	.4byte lbl_80441678
 	.4byte lbl_80441670
@@ -111,7 +82,6 @@ lbl_804ECE50:
 	.4byte lbl_804416A8
 	.4byte lbl_804416B0
 	.4byte lbl_804416B8
-.global lbl_804ECE80
 lbl_804ECE80:
 	.4byte lbl_804418F8
 	.4byte lbl_804418F0
@@ -125,7 +95,6 @@ lbl_804ECE80:
 	.4byte lbl_80441928
 	.4byte lbl_80441930
 	.4byte lbl_80441938
-.global lbl_804ECEB0
 lbl_804ECEB0:
 	.4byte lbl_80441B58
 	.4byte lbl_80441B50
@@ -139,7 +108,6 @@ lbl_804ECEB0:
 	.4byte lbl_80441B88
 	.4byte lbl_80441B90
 	.4byte lbl_80441B98
-.global lbl_804ECEE0
 lbl_804ECEE0:
 	.4byte lbl_80441E20
 	.4byte lbl_80441E18
@@ -910,7 +878,6 @@ lbl_80441018:
 /* 80441018 0043DF58  3B C0 00 01 */	li r30, 1
 /* 8044101C 0043DF5C  48 00 00 7C */	b lbl_80441098
 lbl_80441020:
-lbl_80441020:
 /* 80441020 0043DF60  3B C0 00 02 */	li r30, 2
 /* 80441024 0043DF64  48 00 00 74 */	b lbl_80441098
 lbl_80441028:
@@ -1168,7 +1135,6 @@ lbl_80441374:
 /* 80441374 0043E2B4  3B C0 00 01 */	li r30, 1
 /* 80441378 0043E2B8  48 00 00 7C */	b lbl_804413F4
 lbl_8044137C:
-lbl_8044137C:
 /* 8044137C 0043E2BC  3B C0 00 02 */	li r30, 2
 /* 80441380 0043E2C0  48 00 00 74 */	b lbl_804413F4
 lbl_80441384:
@@ -1272,7 +1238,6 @@ lbl_8044148C:
 lbl_804414C8:
 /* 804414C8 0043E408  3B 60 00 01 */	li r27, 1
 /* 804414CC 0043E40C  48 00 00 7C */	b lbl_80441548
-lbl_804414D0:
 lbl_804414D0:
 /* 804414D0 0043E410  3B 60 00 02 */	li r27, 2
 /* 804414D4 0043E414  48 00 00 74 */	b lbl_80441548
@@ -1400,7 +1365,6 @@ lbl_8044162C:
 lbl_80441668:
 /* 80441668 0043E5A8  3B 20 00 01 */	li r25, 1
 /* 8044166C 0043E5AC  48 00 00 7C */	b lbl_804416E8
-lbl_80441670:
 lbl_80441670:
 /* 80441670 0043E5B0  3B 20 00 02 */	li r25, 2
 /* 80441674 0043E5B4  48 00 00 74 */	b lbl_804416E8
@@ -1592,7 +1556,6 @@ lbl_804418E8:
 /* 804418E8 0043E828  3B 40 00 01 */	li r26, 1
 /* 804418EC 0043E82C  48 00 00 7C */	b lbl_80441968
 lbl_804418F0:
-lbl_804418F0:
 /* 804418F0 0043E830  3B 40 00 02 */	li r26, 2
 /* 804418F4 0043E834  48 00 00 74 */	b lbl_80441968
 lbl_804418F8:
@@ -1770,7 +1733,6 @@ lbl_80441B0C:
 lbl_80441B48:
 /* 80441B48 0043EA88  3A C0 00 01 */	li r22, 1
 /* 80441B4C 0043EA8C  48 00 00 7C */	b lbl_80441BC8
-lbl_80441B50:
 lbl_80441B50:
 /* 80441B50 0043EA90  3A C0 00 02 */	li r22, 2
 /* 80441B54 0043EA94  48 00 00 74 */	b lbl_80441BC8
@@ -1981,7 +1943,6 @@ lbl_80441DD4:
 lbl_80441E10:
 /* 80441E10 0043ED50  3A C0 00 01 */	li r22, 1
 /* 80441E14 0043ED54  48 00 00 7C */	b lbl_80441E90
-lbl_80441E18:
 lbl_80441E18:
 /* 80441E18 0043ED58  3A C0 00 02 */	li r22, 2
 /* 80441E1C 0043ED5C  48 00 00 74 */	b lbl_80441E90

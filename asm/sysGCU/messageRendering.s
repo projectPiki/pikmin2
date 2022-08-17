@@ -12,6 +12,7 @@ lbl_8049AC0C:
 
 .section .data, "wa"  # 0x8049E220 - 0x804EFC20
 .balign 8
+# array of eleven TColor[2]
 "cBtnIconColor__Q25P2JME30@unnamed@messageRendering_cpp@":
 	.4byte 0xFFFFFFFF
 	.4byte 0x00A60000

@@ -5,185 +5,120 @@ lbl_constructor:
 
 .section .rodata  # 0x804732E0 - 0x8049E220
 .balign 8
-.global lbl_8049B100
 lbl_8049B100:
 	.4byte 0x00000000
 	.4byte 0x00000000
 	.4byte 0x00000000
-	.4byte 0x7469746C
-	.4byte 0x65536563
-	.4byte 0x74696F6E
-	.4byte 0x00000000
-	.4byte 0x50534761
-	.4byte 0x6D652E68
-	.4byte 0x00000000
+.balign 4
+lbl_8049B10C:
+	.asciz "titleSection"
+.balign 4
+lbl_8049B11C:
+	.asciz "PSGame.h"
+.balign 4
+lbl_8049B128:
 	.asciz "P2Assert"
-	.skip 3
-	.4byte 0x7469746C
-	.4byte 0x65536563
-	.4byte 0x74696F6E
-	.4byte 0x2E637070
-	.4byte 0x00000000
-	.4byte 0x67616D65
-	.4byte 0x32444D67
-	.4byte 0x723A3A72
-	.4byte 0x65736574
-	.4byte 0x20657272
-	.4byte 0x6F720A00
-	.4byte 0x7469746C
-	.4byte 0x65536563
-	.4byte 0x74696F6E
-	.4byte 0x3A3A6C6F
-	.4byte 0x61645265
-	.4byte 0x73696465
-	.4byte 0x6E740000
-	.4byte 0x2F757365
-	.4byte 0x722F4B61
-	.4byte 0x6E646F2F
-	.4byte 0x70696B69
-	.4byte 0x2F70696B
-	.4byte 0x69732E73
-	.4byte 0x7A730000
-	.4byte 0x2573203A
-	.4byte 0x206D6F75
-	.4byte 0x6E742066
-	.4byte 0x61696C65
-	.4byte 0x64202121
-	.4byte 0x0A000000
-	.4byte 0x75736572
-	.4byte 0x2F4B616E
-	.4byte 0x646F2F6F
-	.4byte 0x6E796F6E
-	.4byte 0x2F617263
-	.4byte 0x2E737A73
-	.4byte 0x00000000
-	.4byte 0x5469746C
-	.4byte 0x65536563
-	.4byte 0x74696F6E
-	.4byte 0x3A3A696E
-	.4byte 0x69740000
-	.4byte 0x4A4D414E
-	.4byte 0x65775369
-	.4byte 0x6E546162
-	.4byte 0x6C650000
+.balign 4
+lbl_8049B134:
+	.asciz "titleSection.cpp"
+.balign 4
+lbl_8049B148:
+	.asciz "game2DMgr::reset error\n"
+.balign 4
+lbl_8049B160:
+	.asciz "titleSection::loadResident"
+.balign 4
+lbl_8049B17C:
+	.asciz "/user/Kando/piki/pikis.szs"
+.balign 4
+lbl_8049B198:
+	.asciz "%s : mount failed !!\n"
+.balign 4
+lbl_8049B1B0:
+	.asciz "user/Kando/onyon/arc.szs"
+.balign 4
+lbl_8049B1CC:
+	.asciz "TitleSection::init"
+.balign 4
+lbl_8049B1E0:
+	.asciz "JMANewSinTable"
+.balign 4
+lbl_8049B1F0: # Shift-JIS
 	.4byte 0x835E8343
 	.4byte 0x8367838B
 	.4byte 0x835A834E
 	.4byte 0x83568387
 	.4byte 0x83930000
-	.4byte 0x6672616D
-	.4byte 0x65427566
-	.4byte 0x66657200
-	.4byte 0x5053436F
-	.4byte 0x6D6D6F6E
-	.4byte 0x2E680000
-	.4byte 0x636F6465
-	.4byte 0x2073697A
-	.4byte 0x65202020
-	.4byte 0x20202020
-	.4byte 0x20202020
-	.4byte 0x25644B42
-	.4byte 0x0A000000
-	.4byte 0x47616D65
-	.4byte 0x53797374
-	.4byte 0x656D4865
-	.4byte 0x61702046
-	.4byte 0x72656520
-	.4byte 0x25644B42
-	.4byte 0x0A000000
-	.4byte 0x50535363
-	.4byte 0x656E652E
-	.4byte 0x68000000
-	.4byte 0x5469746C
-	.4byte 0x65536563
-	.4byte 0x74696F6E
-	.4byte 0x3A3A6C6F
-	.4byte 0x61645265
-	.4byte 0x736F7572
-	.4byte 0x63650000
-	.4byte 0x54506172
-	.4byte 0x7469636C
-	.4byte 0x6532644D
-	.4byte 0x67720000
-	.4byte 0x75736572
-	.4byte 0x2F456269
-	.4byte 0x73617761
-	.4byte 0x2F656666
-	.4byte 0x6563742F
-	.4byte 0x65666632
-	.4byte 0x645F6761
-	.4byte 0x6D653264
-	.4byte 0x2E6A7063
-	.4byte 0x00000000
-	.4byte 0x7469746C
-	.4byte 0x654D6772
-	.4byte 0x00000000
-	.4byte 0x6F707469
-	.4byte 0x6F6E4D67
-	.4byte 0x72000000
-	.4byte 0x68697363
-	.4byte 0x6F726554
-	.4byte 0x65787475
-	.4byte 0x72650000
-	.4byte 0x7265735F
-	.4byte 0x68697363
-	.4byte 0x6F726554
-	.4byte 0x65787475
-	.4byte 0x72652E73
-	.4byte 0x7A730000
-	.4byte 0x6172634E
-	.4byte 0x616D6520
-	.4byte 0x3D202573
-	.4byte 0x0A000000
-	.4byte 0x6F6D616B
-	.4byte 0x654D6772
-	.4byte 0x00000000
-	.4byte 0x5469746C
-	.4byte 0x6544756D
-	.4byte 0x6D795365
-	.4byte 0x6374696F
-	.4byte 0x6E3A3A6C
-	.4byte 0x6F616452
-	.4byte 0x65736F75
-	.4byte 0x72636500
-	.4byte 0x2F757365
-	.4byte 0x722F5961
-	.4byte 0x6D617368
-	.4byte 0x6974612F
-	.4byte 0x74657374
-	.4byte 0x5265736F
-	.4byte 0x75726365
-	.4byte 0x2F746578
-	.4byte 0x00000000
-	.4byte 0x7469746C
-	.4byte 0x656C6F67
-	.4byte 0x6F2E6274
-	.4byte 0x69000000
-	.4byte 0x00000000
+.balign 4
+lbl_8049B204:
+	.asciz "frameBuffer"
+.balign 4
+lbl_8049B210:
+	.asciz "PSCommon.h"
+.balign 4
+lbl_8049B21C:
+	.asciz "code size           %dKB\n"
+.balign 4
+lbl_8049B238:
+	.asciz "GameSystemHeap Free %dKB\n"
+.balign 4
+lbl_8049B254:
+	.asciz "PSScene.h"
+.balign 4
+lbl_8049B260:
+	.asciz "TitleSection::loadResource"
+.balign 4
+lbl_8049B27C:
+	.asciz "TParticle2dMgr"
+.balign 4
+lbl_8049B28C:
+	.asciz "user/Ebisawa/effect/eff2d_game2d.jpc"
+.balign 4
+lbl_8049B2B4:
+	.asciz "titleMgr"
+.balign 4
+lbl_8049B2C0:
+	.asciz "optionMgr"
+.balign 4
+lbl_8049B2CC:
+	.asciz "hiscoreTexture"
+.balign 4
+lbl_8049B2DC:
+	.asciz "res_hiscoreTexture.szs"
+.balign 4
+lbl_8049B2F4:
+	.asciz "arcName = %s\n"
+.balign 4
+lbl_8049B304:
+	.asciz "omakeMgr"
+.balign 4
+lbl_8049B310:
+	.asciz "TitleDummySection::loadResource"
+.balign 4
+lbl_8049B330:
+	.asciz "/user/Yamashita/testResource/tex"
+.balign 4
+lbl_8049B354:
+	.asciz "titlelogo.bti"
 
 .section .data, "wa"	# 0x8049E220 - 0x804EFC20
 .balign 8
-.global lbl_804ED1A8
-lbl_804ED1A8:
-	.4byte 0x00000000
-	.4byte 0x00000000
-	.4byte 0x00000000
-.global lbl_804ED1B4
+govNAN___Q24Game5P2JST:
+	.float 0.0
+	.float 0.0
+	.float 0.0
 lbl_804ED1B4:
 	.4byte 0x00000000
 	.4byte 0xFFFFFFFF
 	.4byte loadResident__Q25Title7SectionFv
-.global lbl_804ED1C0
 lbl_804ED1C0:
 	.4byte 0x00000000
 	.4byte 0xFFFFFFFF
 	.4byte menuCancel__Q25Title7SectionFR4Menu
-.global lbl_804ED1CC
 lbl_804ED1CC:
 	.4byte 0x00000000
 	.4byte 0xFFFFFFFF
 	.4byte menuSelect__Q25Title7SectionFR4Menu
-.global lbl_804ED1D8
 lbl_804ED1D8:
 	.4byte lbl_8044B290
 	.4byte lbl_8044AF78
@@ -192,12 +127,10 @@ lbl_804ED1D8:
 	.4byte lbl_8044AF9C
 	.4byte lbl_8044B088
 	.4byte lbl_8044B1B4
-.global lbl_804ED1F4
 lbl_804ED1F4:
 	.4byte 0x00000000
 	.4byte 0x00000050
 	.4byte 0x00000000
-.global lbl_804ED200
 lbl_804ED200:
 	.4byte lbl_8044C208
 	.4byte lbl_8044C214
@@ -258,7 +191,6 @@ __vt__Q25Title7Section:
 
 .section .sdata, "wa"  # 0x80514680 - 0x80514D80
 .balign 8
-.global "sMovieIndex__26@unnamed@titleSection_cpp@"
 "sMovieIndex__26@unnamed@titleSection_cpp@":
 	.byte 0x0
 	.byte 0x2
@@ -267,45 +199,35 @@ __vt__Q25Title7Section:
 	.byte 0x03
 	.byte 0x0B
 	.byte 0x0B
-.global "sSeasonIndex__26@unnamed@titleSection_cpp@"
 "sSeasonIndex__26@unnamed@titleSection_cpp@":
 	.byte 0xFF
 
 .section .sbss # 0x80514D80 - 0x80516360
 .balign 8
-.global lbl_805162A0
-lbl_805162A0:
+gu32NAN___Q24Game5P2JST:
 	.skip 0x4
-.global lbl_805162A4
-lbl_805162A4:
+gfNAN___Q24Game5P2JST:
 	.skip 0x4
 
 .section .sdata2, "a"     # 0x80516360 - 0x80520E40
 .balign 8
-.global lbl_80520A80
 lbl_80520A80:
-	.4byte 0x00000000
-.global lbl_80520A84
+	.float 0.0
+.balign 4
 lbl_80520A84:
-	.4byte 0x4E4F204E
-	.4byte 0x414D4500
-	.4byte 0x00000000
-.global lbl_80520A90
+	.asciz "NO NAME"
+.balign 8
 lbl_80520A90:
 	.4byte 0x43300000
 	.4byte 0x80000000
-.global lbl_80520A98
 lbl_80520A98:
 	.float 0.5
-.global lbl_80520A9C
 lbl_80520A9C:
-	.4byte 0x422C0000
-.global lbl_80520AA0
+	.float 43.0
 lbl_80520AA0:
-	.4byte 0x47000000
-.global lbl_80520AA4
+	.float 32768.0
 lbl_80520AA4:
-	.4byte 0x41400000
+	.float 12.0
 
 .section .text, "ax"  # 0x800056C0 - 0x80472F00
 .if version == 1
@@ -5144,15 +5066,14 @@ lbl_8044C47C:
 /* 8044C4F0 00449430  38 21 00 10 */	addi r1, r1, 0x10
 /* 8044C4F4 00449434  4E 80 00 20 */	blr 
 
-.global __sinit_titleSection_cpp
-__sinit_titleSection_cpp:
+__sinit_titleSection_cpp: # static initializer
 /* 8044C4F8 00449438  3C 80 80 51 */	lis r4, __float_nan@ha
 /* 8044C4FC 0044943C  38 00 FF FF */	li r0, -1
 /* 8044C500 00449440  C0 04 48 B0 */	lfs f0, __float_nan@l(r4)
-/* 8044C504 00449444  3C 60 80 4F */	lis r3, lbl_804ED1A8@ha
-/* 8044C508 00449448  90 0D 9C 20 */	stw r0, lbl_805162A0@sda21(r13)
-/* 8044C50C 0044944C  D4 03 D1 A8 */	stfsu f0, lbl_804ED1A8@l(r3)
-/* 8044C510 00449450  D0 0D 9C 24 */	stfs f0, lbl_805162A4@sda21(r13)
+/* 8044C504 00449444  3C 60 80 4F */	lis r3, govNAN___Q24Game5P2JST@ha
+/* 8044C508 00449448  90 0D 9C 20 */	stw r0, gu32NAN___Q24Game5P2JST@sda21(r13)
+/* 8044C50C 0044944C  D4 03 D1 A8 */	stfsu f0, govNAN___Q24Game5P2JST@l(r3)
+/* 8044C510 00449450  D0 0D 9C 24 */	stfs f0, gfNAN___Q24Game5P2JST@sda21(r13)
 /* 8044C514 00449454  D0 03 00 04 */	stfs f0, 4(r3)
 /* 8044C518 00449458  D0 03 00 08 */	stfs f0, 8(r3)
 /* 8044C51C 0044945C  4E 80 00 20 */	blr 

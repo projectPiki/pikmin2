@@ -60,64 +60,79 @@ lbl_80486934: # Shift-JIS
 	.4byte 0x8FE38FB8
 	.4byte 0x8C579094
 	.4byte 0x28352900
+.balign 4
+lbl_80486940: # Shift-JIS
 	.4byte 0x905595A5
 	.4byte 0x8A6D97A6
 	.4byte 0x28312900
+.balign 4
+lbl_8048694C: # Shift-JIS
 	.4byte 0x905595A5
 	.4byte 0x8A6D97A6
 	.4byte 0x28352900
+.balign 4
+lbl_80486958: # Shift-JIS
 	.4byte 0x82E082AA
 	.4byte 0x82AB8E9E
 	.4byte 0x8AD40000
+.balign 4
+lbl_80486964: # Shift-JIS
 	.4byte 0x836E8393
 	.4byte 0x836789BA
 	.4byte 0x8D7E8C57
 	.4byte 0x90940000
+.balign 4
+lbl_80486974: # Shift-JIS
 	.4byte 0x836E8393
 	.4byte 0x83678CE3
 	.4byte 0x8CB8908A
 	.4byte 0x97A60000
+.balign 4
+lbl_80486984: # Shift-JIS
 	.4byte 0x46616C6C
 	.4byte 0x204D6563
 	.4byte 0x6B2091AC
 	.4byte 0x93780000
-	.4byte 0x43726561
-	.4byte 0x74757265
-	.4byte 0x3A3A5072
-	.4byte 0x6F706572
-	.4byte 0x74790000
-	.4byte 0x66726963
-	.4byte 0x74696F6E
-	.4byte 0x286E6F74
-	.4byte 0x20757365
-	.4byte 0x64290000
-	.4byte 0x77616C6C
-	.4byte 0x5265666C
-	.4byte 0x65637469
-	.4byte 0x6F6E0000
-	.4byte 0x66616365
-	.4byte 0x44697241
-	.4byte 0x646A7573
-	.4byte 0x74000000
-	.4byte 0x626F756E
-	.4byte 0x63654661
-	.4byte 0x63746F72
-	.4byte 0x00000000
+.balign 4
+lbl_80486994:
+	.asciz "Creature::Property"
+.balign 4
+lbl_804869A8:
+	.asciz "friction(not used)"
+.balign 4
+lbl_804869BC:
+	.asciz "wallReflection"
+.balign 4
+lbl_804869CC:
+	.asciz "faceDirAdjust"
+.balign 4
+lbl_804869DC:
+	.asciz "bounceFactor"
+.balign 4
+lbl_804869EC:
 	.4byte 0x83898343
 	.4byte 0x837482CC
 	.4byte 0x8D8282B3
 	.4byte 0x00000000
+.balign 4
+lbl_804869FC: # Shift-JIS
 	.4byte 0x83898343
 	.4byte 0x837489F1
 	.4byte 0x959C97A6
 	.4byte 0x00000000
+.balign 4
+lbl_80486A0C: # Shift-JIS
 	.4byte 0x8C7889FA
 	.4byte 0x83898343
 	.4byte 0x83740000
+.balign 4
+lbl_80486A18: # Shift-JIS
 	.4byte 0x837D8362
 	.4byte 0x837682C6
 	.4byte 0x82CC9396
 	.4byte 0x82E80000
+.balign 4
+lbl_80486A28: # Shift-JIS
 	.4byte 0x837D8362
 	.4byte 0x837682C6
 	.4byte 0x82CC82A0
@@ -126,131 +141,197 @@ lbl_80486934: # Shift-JIS
 	.4byte 0x83538393
 	.4byte 0x82CC9149
 	.4byte 0x92E80000
+.balign 4
+lbl_80486A48: # Shift-JIS
 	.4byte 0x8373834E
 	.4byte 0x837E8393
 	.4byte 0x82C682CC
 	.4byte 0x82A082BD
 	.4byte 0x82E80000
+.balign 4
+lbl_80486A5C: # Shift-JIS
 	.4byte 0x835F8381
 	.4byte 0x815B8357
 	.4byte 0x83588350
 	.4byte 0x815B838B
 	.4byte 0x585A0000
+.balign 4
+lbl_80486A70: # Shift-JIS
 	.4byte 0x835F8381
 	.4byte 0x815B8357
 	.4byte 0x83588350
 	.4byte 0x815B838B
 	.4byte 0x59000000
+.balign 4
+lbl_80486A84: # Shift-JIS
 	.4byte 0x835F8381
 	.4byte 0x815B8357
 	.4byte 0x8374838C
 	.4byte 0x815B8380
 	.4byte 0x00000000
+.balign 4
+lbl_80486A98: # Shift-JIS
 	.4byte 0x89F1935D
 	.4byte 0x91AC9378
 	.4byte 0x97A60000
+.balign 4
+lbl_80486AA4: # Shift-JIS
 	.4byte 0x89F1935D
 	.4byte 0x8DC591E5
 	.4byte 0x91AC9378
 	.4byte 0x00000000
+.balign 4
+lbl_80486AB4: # Shift-JIS
 	.4byte 0x8365838A
 	.4byte 0x8367838A
 	.4byte 0x815B0000
+.balign 4
+lbl_80486AC0: # Shift-JIS
 	.4byte 0x837A815B
 	.4byte 0x838094CD
 	.4byte 0x88CD0000
+.balign 4
+lbl_80486ACC: # Shift-JIS
 	.4byte 0x83768389
 	.4byte 0x83438378
 	.4byte 0x815B8367
 	.4byte 0x8B9797A3
 	.4byte 0x00000000
+.balign 4
+lbl_80486AE0: # Shift-JIS
 	.4byte 0x8E8B8A45
 	.4byte 0x8B9797A3
 	.4byte 0x00000000
+.balign 4
+lbl_80486AEC: # Shift-JIS
 	.4byte 0x8E8B8A45
 	.4byte 0x8A709378
 	.4byte 0x00000000
+.balign 4
+lbl_80486AF8: # Shift-JIS
 	.4byte 0x92548DF5
 	.4byte 0x8B9797A3
 	.4byte 0x00000000
+.balign 4
+lbl_80486B04: # Shift-JIS
 	.4byte 0x92548DF5
 	.4byte 0x8A709378
 	.4byte 0x00000000
+.balign 4
+lbl_80486B10: # Shift-JIS
 	.4byte 0x905582E8
 	.4byte 0x95A582A2
 	.4byte 0x97CD0000
+.balign 4
+lbl_80486B1C: # Shift-JIS
 	.4byte 0x905582E8
 	.4byte 0x95A582A2
 	.4byte 0x835F8381
 	.4byte 0x815B8357
 	.4byte 0x00000000
+.balign 4
+lbl_80486B30: # Shift-JIS
 	.4byte 0x905582E8
 	.4byte 0x95A582A2
 	.4byte 0x94CD88CD
 	.4byte 0x00000000
+.balign 4
+lbl_80486B40: # Shift-JIS
 	.4byte 0x905582E8
 	.4byte 0x95A582A2
 	.4byte 0x97A60000
+.balign 4
+lbl_80486B4C: # Shift-JIS
 	.4byte 0x8D558C82
 	.4byte 0x89C2945C
 	.4byte 0x94CD88CD
 	.4byte 0x00000000
+.balign 4
+lbl_80486B5C: # Shift-JIS
 	.4byte 0x8D558C82
 	.4byte 0x89C2945C
 	.4byte 0x8A709378
 	.4byte 0x00000000
+.balign 4
+lbl_80486B6C: # Shift-JIS
 	.4byte 0x8D558C82
 	.4byte 0x83718362
 	.4byte 0x836794CD
 	.4byte 0x88CD0000
+.balign 4
+lbl_80486B7C: # Shift-JIS
 	.4byte 0x8D558C82
 	.4byte 0x83718362
 	.4byte 0x83678A70
 	.4byte 0x93780000
+.balign 4
+lbl_80486B8C: # Shift-JIS
 	.4byte 0x8C7889FA
 	.4byte 0x8E9E8AD4
 	.4byte 0x00000000
+.balign 4
+lbl_80486B98: # Shift-JIS
 	.4byte 0x90CE89BB
 	.4byte 0x8E9E8AD4
 	.4byte 0x00000000
+.balign 4
+lbl_80486BA4: # Shift-JIS
 	.4byte 0x83718362
 	.4byte 0x83768368
 	.4byte 0x838D8362
 	.4byte 0x8376835F
 	.4byte 0x8381815B
 	.4byte 0x83570000
+.balign 4
+lbl_80486BBC: # Shift-JIS
 	.4byte 0x926E906B
 	.4byte 0x8B4390E2
 	.4byte 0x8A6D97A7
 	.4byte 0x00000000
+.balign 4
+lbl_80486BCC: # Shift-JIS
 	.4byte 0x926E906B
 	.4byte 0x8B4390E2
 	.4byte 0x8E9E8AD4
 	.4byte 0x00000000
+.balign 4
+lbl_80486BDC: # Shift-JIS
 	.4byte 0x905582E8
 	.4byte 0x95A582A2
 	.4byte 0x91C58C82
 	.4byte 0x82600000
+.balign 4
+lbl_80486BEC: # Shift-JIS
 	.4byte 0x905582E8
 	.4byte 0x95A582A2
 	.4byte 0x92A39574
 	.4byte 0x82500000
+.balign 4
+lbl_80486BFC: # Shift-JIS
 	.4byte 0x905582E8
 	.4byte 0x95A582A2
 	.4byte 0x91C58C82
 	.4byte 0x82610000
+.balign 4
+lbl_80486C0C: # Shift-JIS
 	.4byte 0x905582E8
 	.4byte 0x95A582A2
 	.4byte 0x92A39574
 	.4byte 0x82510000
+.balign 4
+lbl_80486C1C: # Shift-JIS
 	.4byte 0x905582E8
 	.4byte 0x95A582A2
 	.4byte 0x91C58C82
 	.4byte 0x82620000
+.balign 4
+lbl_80486C2C: # Shift-JIS
 	.4byte 0x905582E8
 	.4byte 0x95A582A2
 	.4byte 0x92A39574
 	.4byte 0x82520000
+.balign 4
+lbl_80486C3C: # Shift-JIS
 	.4byte 0x905582E8
 	.4byte 0x95A582A2
 	.4byte 0x91C58C82

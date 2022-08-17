@@ -6,7 +6,9 @@ lbl_constructor:
 .section .rodata  # 0x804732E0 - 0x8049E220
 .balign 8
 lbl_80499C58:
-	.skip 0xC
+	.4byte 0
+	.4byte 0
+	.4byte 0
 .balign 4
 lbl_80499C64:
 	.asciz "sysShape"

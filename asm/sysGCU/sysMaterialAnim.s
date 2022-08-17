@@ -1,17 +1,11 @@
 .include "macros.inc"
 .section .rodata  # 0x804732E0 - 0x8049E220
 .balign 8
-.global lbl_8049A6A0
 lbl_8049A6A0:
-	.4byte 0x7379734D
-	.4byte 0x61746572
-	.4byte 0x69616C41
-	.4byte 0x6E696D2E
-	.4byte 0x63707000
-.global lbl_8049A6B4
+	.asciz "sysMaterialAnim.cpp"
+.balign 4
 lbl_8049A6B4:
 	.asciz "P2Assert"
-	.skip 3
 
 .section .data, "wa"  # 0x8049E220 - 0x804EFC20
 .balign 8
@@ -60,18 +54,14 @@ __vt__Q23Sys16MatBaseAnimation:
 	.4byte 0
 	.4byte 0
 	.4byte 0
-	.4byte 0
 
 .section .sdata2, "a"     # 0x80516360 - 0x80520E40
 .balign 8
-.global lbl_80520780
 lbl_80520780:
 	.4byte 0x43300000
 	.4byte 0x80000000
-.global lbl_80520788
 lbl_80520788:
-	.4byte 0x00000000
-	.4byte 0x00000000
+	.float 0.0
 
 .section .text, "ax"  # 0x800056C0 - 0x80472F00
 .global attachResource__Q23Sys16MatBaseAnimationFPvP12J3DModelData

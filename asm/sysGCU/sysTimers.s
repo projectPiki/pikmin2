@@ -115,7 +115,7 @@ lbl_8042A89C:
 /* 8042A8D8 00427818  4E 80 00 20 */	blr 
 
 .global __defctor__8TimerInfFv
-__defctor__8TimerInfFv:
+__defctor__8TimerInfFv: # weak function
 /* 8042A8DC 0042781C  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 8042A8E0 00427820  7C 08 02 A6 */	mflr r0
 /* 8042A8E4 00427824  90 01 00 14 */	stw r0, 0x14(r1)

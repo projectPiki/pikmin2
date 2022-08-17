@@ -9,10 +9,8 @@
 
 .section .sbss # 0x80514D80 - 0x80516360
 .balign 8
-.global VideoDecodeThreadCreated
 VideoDecodeThreadCreated:
 	.skip 0x4
-.global First
 First:
 	.skip 0x4
 
@@ -113,7 +111,6 @@ lbl_8044F9EC:
 /* 8044F9F4 0044C934  38 21 00 10 */	addi r1, r1, 0x10
 /* 8044F9F8 0044C938  4E 80 00 20 */	blr 
 
-.global VideoDecoder__FPv
 VideoDecoder__FPv:
 /* 8044F9FC 0044C93C  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 8044FA00 0044C940  7C 08 02 A6 */	mflr r0
@@ -173,7 +170,6 @@ lbl_8044FAB0:
 /* 8044FABC 0044C9FC  4B FF FD 65 */	bl PushFreeReadBuffer
 /* 8044FAC0 0044CA00  4B FF FF 58 */	b lbl_8044FA18
 
-.global VideoDecoderForOnMemory__FPv
 VideoDecoderForOnMemory__FPv:
 /* 8044FAC4 0044CA04  94 21 FF D0 */	stwu r1, -0x30(r1)
 /* 8044FAC8 0044CA08  7C 08 02 A6 */	mflr r0
@@ -262,7 +258,6 @@ lbl_8044FBF0:
 /* 8044FBF0 0044CB30  3B BD 00 01 */	addi r29, r29, 1
 /* 8044FBF4 0044CB34  4B FF FE FC */	b lbl_8044FAF0
 
-.global VideoDecode__FP13THPReadBuffer
 VideoDecode__FP13THPReadBuffer:
 /* 8044FBF8 0044CB38  94 21 FF D0 */	stwu r1, -0x30(r1)
 /* 8044FBFC 0044CB3C  7C 08 02 A6 */	mflr r0

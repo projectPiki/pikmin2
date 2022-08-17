@@ -1,25 +1,17 @@
 .include "macros.inc"
 .section .rodata  # 0x804732E0 - 0x8049E220
 .balign 8
-.global lbl_8049B8A0
 lbl_8049B8A0:
-	.4byte 0x73637265
-	.4byte 0x656E5363
-	.4byte 0x656E652E
-	.4byte 0x63707000
-.global lbl_8049B8B0
+	.asciz "screenScene.cpp"
+.balign 4
 lbl_8049B8B0:
 	.asciz "P2Assert"
-	.skip 3
-.global lbl_8049B8BC
+.balign 4
 lbl_8049B8BC:
-	.4byte 0x73637265
-	.4byte 0x656E4D67
-	.4byte 0x722E6800
+	.asciz "screenMgr.h"
 
 .section .data, "wa"	# 0x8049E220 - 0x804EFC20
 .balign 8
-.global lbl_804ED680
 lbl_804ED680:
 	.4byte 0x00000000
 	.4byte 0xFFFFFFFF
@@ -56,20 +48,17 @@ __vt__Q26Screen9SceneBase:
 	.4byte 0
 	.4byte 0
 	.4byte 0
-	.4byte 0
 
 .section .sdata2, "a"     # 0x80516360 - 0x80520E40
 .balign 8
-.global lbl_80520B70
 lbl_80520B70:
-	.4byte 0x6E6F206E
-	.4byte 0x616D6500
-.global lbl_80520B78
+	.asciz "no name"
+.balign 4
 lbl_80520B78:
-	.4byte 0x3F3F3F00
-.global lbl_80520B7C
+	.asciz "???"
+.balign 4
 lbl_80520B7C:
-	.4byte 0x00000000
+	.asciz ""
 
 .section .text, "ax"  # 0x800056C0 - 0x80472F00
 .global __ct__Q26Screen9SceneBaseFv

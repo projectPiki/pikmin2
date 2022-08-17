@@ -1,48 +1,41 @@
 .include "macros.inc"
 .section .rodata  # 0x804732E0 - 0x8049E220
 .balign 8
-.global lbl_8049ADB8
 lbl_8049ADB8:
 	.asciz "Pikmin2_SaveData"
-	.skip 3
-.global gStrMemoryCardMgrCpp
-gStrMemoryCardMgrCpp:
+.balign 4
+lbl_8049ADCC:
 	.asciz "pikmin2MemoryCardMgr.cpp"
-	.skip 3
-.global gStrMemoryCardMgrP2Assert
-gStrMemoryCardMgrP2Assert:
+.balign 4
+lbl_8049ADE8:
 	.asciz "P2Assert"
-	.skip 3
-.global lbl_8049ADF4
+.balign 4
 lbl_8049ADF4:
 	.asciz "sizeof(PlayerInfo): %d BLOCKSIZE %d padding:%d \n"
-	.skip 3
-.global lbl_8049AE28
+.balign 4
 lbl_8049AE28:
 	.asciz "/memoryCard/memoryCardHeader.szs"
-	.skip 3
+.balign 4
+lbl_8049AE4C:
 	.asciz "banner.dat"
-	.skip 1
+.balign 4
+lbl_8049AE58:
 	.asciz "icon.dat"
-	.skip 3
-.global lbl_8049AE64
+.balign 4
 lbl_8049AE64:
 	.asciz "MemoryCardModify Error"
-	.skip 1
+.balign 4
+lbl_8049AE7C:
 	.asciz "card [%d] memory[%d]\n"
-	.skip 2
-.global lbl_8049AE94
+.balign 4
 lbl_8049AE94:
 	.asciz "PIKMIN 2"
-	.skip 3
-.global lbl_8049AEA0
+.balign 4
 lbl_8049AEA0:
 	.asciz "%02d/%02d/%04d %02d:%02d:%02d"
-	.skip 2
 
 .section .data, "wa"  # 0x8049E220 - 0x804EFC20
 .balign 8
-.global lbl_804ECF58
 lbl_804ECF58:
 	.4byte lbl_80443790
 	.4byte lbl_804437EC
@@ -89,7 +82,6 @@ __vt__Q34Game10MemoryCard8Resource:
 	.4byte 0
 	.4byte 0
 	.4byte __dt__Q34Game10MemoryCard8ResourceFv
-	.4byte 0
 
 .section .sdata, "wa"  # 0x80514680 - 0x80514D80
 .balign 8
@@ -99,7 +91,6 @@ cFileName__Q24Game10MemoryCard:
 
 .section .sdata2, "a"     # 0x80516360 - 0x80520E40
 .balign 8
-.global lbl_80520978
 lbl_80520978:
 	.asciz "dameck\n"
 
@@ -159,11 +150,11 @@ getPlayer__Q34Game10MemoryCard14PlayerFileInfoFi:
 lbl_8044295C:
 /* 8044295C 0043F89C  54 00 06 3F */	clrlwi. r0, r0, 0x18
 /* 80442960 0043F8A0  40 82 00 20 */	bne lbl_80442980
-/* 80442964 0043F8A4  3C 60 80 4A */	lis r3, gStrMemoryCardMgrCpp@ha
-/* 80442968 0043F8A8  3C A0 80 4A */	lis r5, gStrMemoryCardMgrP2Assert@ha
-/* 8044296C 0043F8AC  38 63 AD CC */	addi r3, r3, gStrMemoryCardMgrCpp@l
+/* 80442964 0043F8A4  3C 60 80 4A */	lis r3, lbl_8049ADCC@ha
+/* 80442968 0043F8A8  3C A0 80 4A */	lis r5, lbl_8049ADE8@ha
+/* 8044296C 0043F8AC  38 63 AD CC */	addi r3, r3, lbl_8049ADCC@l
 /* 80442970 0043F8B0  38 80 01 8C */	li r4, 0x18c
-/* 80442974 0043F8B4  38 A5 AD E8 */	addi r5, r5, gStrMemoryCardMgrP2Assert@l
+/* 80442974 0043F8B4  38 A5 AD E8 */	addi r5, r5, lbl_8049ADE8@l
 /* 80442978 0043F8B8  4C C6 31 82 */	crclr 6
 /* 8044297C 0043F8BC  4B BE 7C C5 */	bl panic_f__12JUTExceptionFPCciPCce
 lbl_80442980:
@@ -193,11 +184,11 @@ isBrokenFile__Q34Game10MemoryCard14PlayerFileInfoFi:
 lbl_804429D0:
 /* 804429D0 0043F910  54 00 06 3F */	clrlwi. r0, r0, 0x18
 /* 804429D4 0043F914  40 82 00 20 */	bne lbl_804429F4
-/* 804429D8 0043F918  3C 60 80 4A */	lis r3, gStrMemoryCardMgrCpp@ha
-/* 804429DC 0043F91C  3C A0 80 4A */	lis r5, gStrMemoryCardMgrP2Assert@ha
-/* 804429E0 0043F920  38 63 AD CC */	addi r3, r3, gStrMemoryCardMgrCpp@l
+/* 804429D8 0043F918  3C 60 80 4A */	lis r3, lbl_8049ADCC@ha
+/* 804429DC 0043F91C  3C A0 80 4A */	lis r5, lbl_8049ADE8@ha
+/* 804429E0 0043F920  38 63 AD CC */	addi r3, r3, lbl_8049ADCC@l
 /* 804429E4 0043F924  38 80 01 8C */	li r4, 0x18c
-/* 804429E8 0043F928  38 A5 AD E8 */	addi r5, r5, gStrMemoryCardMgrP2Assert@l
+/* 804429E8 0043F928  38 A5 AD E8 */	addi r5, r5, lbl_8049ADE8@l
 /* 804429EC 0043F92C  4C C6 31 82 */	crclr 6
 /* 804429F0 0043F930  4B BE 7C 51 */	bl panic_f__12JUTExceptionFPCciPCce
 lbl_804429F4:
@@ -230,11 +221,11 @@ isNewFile__Q34Game10MemoryCard14PlayerFileInfoFi:
 lbl_80442A50:
 /* 80442A50 0043F990  54 00 06 3F */	clrlwi. r0, r0, 0x18
 /* 80442A54 0043F994  40 82 00 20 */	bne lbl_80442A74
-/* 80442A58 0043F998  3C 60 80 4A */	lis r3, gStrMemoryCardMgrCpp@ha
-/* 80442A5C 0043F99C  3C A0 80 4A */	lis r5, gStrMemoryCardMgrP2Assert@ha
-/* 80442A60 0043F9A0  38 63 AD CC */	addi r3, r3, gStrMemoryCardMgrCpp@l
+/* 80442A58 0043F998  3C 60 80 4A */	lis r3, lbl_8049ADCC@ha
+/* 80442A5C 0043F99C  3C A0 80 4A */	lis r5, lbl_8049ADE8@ha
+/* 80442A60 0043F9A0  38 63 AD CC */	addi r3, r3, lbl_8049ADCC@l
 /* 80442A64 0043F9A4  38 80 01 8C */	li r4, 0x18c
-/* 80442A68 0043F9A8  38 A5 AD E8 */	addi r5, r5, gStrMemoryCardMgrP2Assert@l
+/* 80442A68 0043F9A8  38 A5 AD E8 */	addi r5, r5, lbl_8049ADE8@l
 /* 80442A6C 0043F9AC  4C C6 31 82 */	crclr 6
 /* 80442A70 0043F9B0  4B BE 7B D1 */	bl panic_f__12JUTExceptionFPCciPCce
 lbl_80442A74:
@@ -848,11 +839,11 @@ loadPlayer__Q34Game10MemoryCard3MgrFi:
 lbl_804432C8:
 /* 804432C8 00440208  54 00 06 3F */	clrlwi. r0, r0, 0x18
 /* 804432CC 0044020C  40 82 00 20 */	bne lbl_804432EC
-/* 804432D0 00440210  3C 60 80 4A */	lis r3, gStrMemoryCardMgrCpp@ha
-/* 804432D4 00440214  3C A0 80 4A */	lis r5, gStrMemoryCardMgrP2Assert@ha
-/* 804432D8 00440218  38 63 AD CC */	addi r3, r3, gStrMemoryCardMgrCpp@l
+/* 804432D0 00440210  3C 60 80 4A */	lis r3, lbl_8049ADCC@ha
+/* 804432D4 00440214  3C A0 80 4A */	lis r5, lbl_8049ADE8@ha
+/* 804432D8 00440218  38 63 AD CC */	addi r3, r3, lbl_8049ADCC@l
 /* 804432DC 0044021C  38 80 03 2F */	li r4, 0x32f
-/* 804432E0 00440220  38 A5 AD E8 */	addi r5, r5, gStrMemoryCardMgrP2Assert@l
+/* 804432E0 00440220  38 A5 AD E8 */	addi r5, r5, lbl_8049ADE8@l
 /* 804432E4 00440224  4C C6 31 82 */	crclr 6
 /* 804432E8 00440228  4B BE 73 59 */	bl panic_f__12JUTExceptionFPCciPCce
 lbl_804432EC:
@@ -928,11 +919,11 @@ deletePlayer__Q34Game10MemoryCard3MgrFi:
 lbl_804433EC:
 /* 804433EC 0044032C  54 00 06 3F */	clrlwi. r0, r0, 0x18
 /* 804433F0 00440330  40 82 00 20 */	bne lbl_80443410
-/* 804433F4 00440334  3C 60 80 4A */	lis r3, gStrMemoryCardMgrCpp@ha
-/* 804433F8 00440338  3C A0 80 4A */	lis r5, gStrMemoryCardMgrP2Assert@ha
-/* 804433FC 0044033C  38 63 AD CC */	addi r3, r3, gStrMemoryCardMgrCpp@l
+/* 804433F4 00440334  3C 60 80 4A */	lis r3, lbl_8049ADCC@ha
+/* 804433F8 00440338  3C A0 80 4A */	lis r5, lbl_8049ADE8@ha
+/* 804433FC 0044033C  38 63 AD CC */	addi r3, r3, lbl_8049ADCC@l
 /* 80443400 00440340  38 80 03 47 */	li r4, 0x347
-/* 80443404 00440344  38 A5 AD E8 */	addi r5, r5, gStrMemoryCardMgrP2Assert@l
+/* 80443404 00440344  38 A5 AD E8 */	addi r5, r5, lbl_8049ADE8@l
 /* 80443408 00440348  4C C6 31 82 */	crclr 6
 /* 8044340C 0044034C  4B BE 72 35 */	bl panic_f__12JUTExceptionFPCciPCce
 lbl_80443410:
@@ -1006,11 +997,11 @@ copyPlayer__Q34Game10MemoryCard3MgrFii:
 lbl_80443508:
 /* 80443508 00440448  54 00 06 3F */	clrlwi. r0, r0, 0x18
 /* 8044350C 0044044C  40 82 00 20 */	bne lbl_8044352C
-/* 80443510 00440450  3C 60 80 4A */	lis r3, gStrMemoryCardMgrCpp@ha
-/* 80443514 00440454  3C A0 80 4A */	lis r5, gStrMemoryCardMgrP2Assert@ha
-/* 80443518 00440458  38 63 AD CC */	addi r3, r3, gStrMemoryCardMgrCpp@l
+/* 80443510 00440450  3C 60 80 4A */	lis r3, lbl_8049ADCC@ha
+/* 80443514 00440454  3C A0 80 4A */	lis r5, lbl_8049ADE8@ha
+/* 80443518 00440458  38 63 AD CC */	addi r3, r3, lbl_8049ADCC@l
 /* 8044351C 0044045C  38 80 03 5E */	li r4, 0x35e
-/* 80443520 00440460  38 A5 AD E8 */	addi r5, r5, gStrMemoryCardMgrP2Assert@l
+/* 80443520 00440460  38 A5 AD E8 */	addi r5, r5, lbl_8049ADE8@l
 /* 80443524 00440464  4C C6 31 82 */	crclr 6
 /* 80443528 00440468  4B BE 71 19 */	bl panic_f__12JUTExceptionFPCciPCce
 lbl_8044352C:
@@ -1023,11 +1014,11 @@ lbl_8044352C:
 lbl_80443544:
 /* 80443544 00440484  54 00 06 3F */	clrlwi. r0, r0, 0x18
 /* 80443548 00440488  40 82 00 20 */	bne lbl_80443568
-/* 8044354C 0044048C  3C 60 80 4A */	lis r3, gStrMemoryCardMgrCpp@ha
-/* 80443550 00440490  3C A0 80 4A */	lis r5, gStrMemoryCardMgrP2Assert@ha
-/* 80443554 00440494  38 63 AD CC */	addi r3, r3, gStrMemoryCardMgrCpp@l
+/* 8044354C 0044048C  3C 60 80 4A */	lis r3, lbl_8049ADCC@ha
+/* 80443550 00440490  3C A0 80 4A */	lis r5, lbl_8049ADE8@ha
+/* 80443554 00440494  38 63 AD CC */	addi r3, r3, lbl_8049ADCC@l
 /* 80443558 00440498  38 80 03 5F */	li r4, 0x35f
-/* 8044355C 0044049C  38 A5 AD E8 */	addi r5, r5, gStrMemoryCardMgrP2Assert@l
+/* 8044355C 0044049C  38 A5 AD E8 */	addi r5, r5, lbl_8049ADE8@l
 /* 80443560 004404A0  4C C6 31 82 */	crclr 6
 /* 80443564 004404A4  4B BE 70 DD */	bl panic_f__12JUTExceptionFPCciPCce
 lbl_80443568:
@@ -1343,22 +1334,22 @@ lbl_804439C8:
 /* 804439D0 00440910  7C 7C 1B 78 */	mr r28, r3
 /* 804439D4 00440914  48 00 00 20 */	b lbl_804439F4
 lbl_804439D8:
-/* 804439D8 00440918  3C 60 80 4A */	lis r3, gStrMemoryCardMgrCpp@ha
-/* 804439DC 0044091C  3C A0 80 4A */	lis r5, gStrMemoryCardMgrP2Assert@ha
-/* 804439E0 00440920  38 63 AD CC */	addi r3, r3, gStrMemoryCardMgrCpp@l
+/* 804439D8 00440918  3C 60 80 4A */	lis r3, lbl_8049ADCC@ha
+/* 804439DC 0044091C  3C A0 80 4A */	lis r5, lbl_8049ADE8@ha
+/* 804439E0 00440920  38 63 AD CC */	addi r3, r3, lbl_8049ADCC@l
 /* 804439E4 00440924  38 80 03 E3 */	li r4, 0x3e3
-/* 804439E8 00440928  38 A5 AD E8 */	addi r5, r5, gStrMemoryCardMgrP2Assert@l
+/* 804439E8 00440928  38 A5 AD E8 */	addi r5, r5, lbl_8049ADE8@l
 /* 804439EC 0044092C  4C C6 31 82 */	crclr 6
 /* 804439F0 00440930  4B BE 6C 51 */	bl panic_f__12JUTExceptionFPCciPCce
 lbl_804439F4:
 /* 804439F4 00440934  80 0D 88 2C */	lwz r0, sCurrentHeap__7JKRHeap@sda21(r13)
 /* 804439F8 00440938  7C 1D 00 40 */	cmplw r29, r0
 /* 804439FC 0044093C  41 82 00 20 */	beq lbl_80443A1C
-/* 80443A00 00440940  3C 60 80 4A */	lis r3, gStrMemoryCardMgrCpp@ha
-/* 80443A04 00440944  3C A0 80 4A */	lis r5, gStrMemoryCardMgrP2Assert@ha
-/* 80443A08 00440948  38 63 AD CC */	addi r3, r3, gStrMemoryCardMgrCpp@l
+/* 80443A00 00440940  3C 60 80 4A */	lis r3, lbl_8049ADCC@ha
+/* 80443A04 00440944  3C A0 80 4A */	lis r5, lbl_8049ADE8@ha
+/* 80443A08 00440948  38 63 AD CC */	addi r3, r3, lbl_8049ADCC@l
 /* 80443A0C 0044094C  38 80 03 F0 */	li r4, 0x3f0
-/* 80443A10 00440950  38 A5 AD E8 */	addi r5, r5, gStrMemoryCardMgrP2Assert@l
+/* 80443A10 00440950  38 A5 AD E8 */	addi r5, r5, lbl_8049ADE8@l
 /* 80443A14 00440954  4C C6 31 82 */	crclr 6
 /* 80443A18 00440958  4B BE 6C 29 */	bl panic_f__12JUTExceptionFPCciPCce
 lbl_80443A1C:
@@ -1366,11 +1357,11 @@ lbl_80443A1C:
 /* 80443A20 00440960  4B BD FD C1 */	bl getTotalFreeSize__7JKRHeapFv
 /* 80443A24 00440964  7C 1E 18 00 */	cmpw r30, r3
 /* 80443A28 00440968  41 82 00 20 */	beq lbl_80443A48
-/* 80443A2C 0044096C  3C 60 80 4A */	lis r3, gStrMemoryCardMgrCpp@ha
-/* 80443A30 00440970  3C A0 80 4A */	lis r5, gStrMemoryCardMgrP2Assert@ha
-/* 80443A34 00440974  38 63 AD CC */	addi r3, r3, gStrMemoryCardMgrCpp@l
+/* 80443A2C 0044096C  3C 60 80 4A */	lis r3, lbl_8049ADCC@ha
+/* 80443A30 00440970  3C A0 80 4A */	lis r5, lbl_8049ADE8@ha
+/* 80443A34 00440974  38 63 AD CC */	addi r3, r3, lbl_8049ADCC@l
 /* 80443A38 00440978  38 80 03 F2 */	li r4, 0x3f2
-/* 80443A3C 0044097C  38 A5 AD E8 */	addi r5, r5, gStrMemoryCardMgrP2Assert@l
+/* 80443A3C 0044097C  38 A5 AD E8 */	addi r5, r5, lbl_8049ADE8@l
 /* 80443A40 00440980  4C C6 31 82 */	crclr 6
 /* 80443A44 00440984  4B BE 6B FD */	bl panic_f__12JUTExceptionFPCciPCce
 lbl_80443A48:
@@ -1391,11 +1382,11 @@ commandUpdatePlayerHeader__Q34Game10MemoryCard3MgrFPQ34Game10MemoryCard14PlayerF
 /* 80443A74 004409B4  7C 7B 1B 78 */	mr r27, r3
 /* 80443A78 004409B8  3B C0 00 00 */	li r30, 0
 /* 80443A7C 004409BC  40 82 00 20 */	bne lbl_80443A9C
-/* 80443A80 004409C0  3C 60 80 4A */	lis r3, gStrMemoryCardMgrCpp@ha
-/* 80443A84 004409C4  3C A0 80 4A */	lis r5, gStrMemoryCardMgrP2Assert@ha
-/* 80443A88 004409C8  38 63 AD CC */	addi r3, r3, gStrMemoryCardMgrCpp@l
+/* 80443A80 004409C0  3C 60 80 4A */	lis r3, lbl_8049ADCC@ha
+/* 80443A84 004409C4  3C A0 80 4A */	lis r5, lbl_8049ADE8@ha
+/* 80443A88 004409C8  38 63 AD CC */	addi r3, r3, lbl_8049ADCC@l
 /* 80443A8C 004409CC  38 80 04 07 */	li r4, 0x407
-/* 80443A90 004409D0  38 A5 AD E8 */	addi r5, r5, gStrMemoryCardMgrP2Assert@l
+/* 80443A90 004409D0  38 A5 AD E8 */	addi r5, r5, lbl_8049ADE8@l
 /* 80443A94 004409D4  4C C6 31 82 */	crclr 6
 /* 80443A98 004409D8  4B BE 6B A9 */	bl panic_f__12JUTExceptionFPCciPCce
 lbl_80443A9C:
@@ -1435,11 +1426,11 @@ lbl_80443AB0:
 lbl_80443B1C:
 /* 80443B1C 00440A5C  54 00 06 3F */	clrlwi. r0, r0, 0x18
 /* 80443B20 00440A60  40 82 00 20 */	bne lbl_80443B40
-/* 80443B24 00440A64  3C 60 80 4A */	lis r3, gStrMemoryCardMgrCpp@ha
-/* 80443B28 00440A68  3C A0 80 4A */	lis r5, gStrMemoryCardMgrP2Assert@ha
-/* 80443B2C 00440A6C  38 63 AD CC */	addi r3, r3, gStrMemoryCardMgrCpp@l
+/* 80443B24 00440A64  3C 60 80 4A */	lis r3, lbl_8049ADCC@ha
+/* 80443B28 00440A68  3C A0 80 4A */	lis r5, lbl_8049ADE8@ha
+/* 80443B2C 00440A6C  38 63 AD CC */	addi r3, r3, lbl_8049ADCC@l
 /* 80443B30 00440A70  38 80 01 8C */	li r4, 0x18c
-/* 80443B34 00440A74  38 A5 AD E8 */	addi r5, r5, gStrMemoryCardMgrP2Assert@l
+/* 80443B34 00440A74  38 A5 AD E8 */	addi r5, r5, lbl_8049ADE8@l
 /* 80443B38 00440A78  4C C6 31 82 */	crclr 6
 /* 80443B3C 00440A7C  4B BE 6B 05 */	bl panic_f__12JUTExceptionFPCciPCce
 lbl_80443B40:
@@ -1501,11 +1492,11 @@ lbl_80443BBC:
 lbl_80443C18:
 /* 80443C18 00440B58  54 00 06 3F */	clrlwi. r0, r0, 0x18
 /* 80443C1C 00440B5C  40 82 00 20 */	bne lbl_80443C3C
-/* 80443C20 00440B60  3C 60 80 4A */	lis r3, gStrMemoryCardMgrCpp@ha
-/* 80443C24 00440B64  3C A0 80 4A */	lis r5, gStrMemoryCardMgrP2Assert@ha
-/* 80443C28 00440B68  38 63 AD CC */	addi r3, r3, gStrMemoryCardMgrCpp@l
+/* 80443C20 00440B60  3C 60 80 4A */	lis r3, lbl_8049ADCC@ha
+/* 80443C24 00440B64  3C A0 80 4A */	lis r5, lbl_8049ADE8@ha
+/* 80443C28 00440B68  38 63 AD CC */	addi r3, r3, lbl_8049ADCC@l
 /* 80443C2C 00440B6C  38 80 01 8C */	li r4, 0x18c
-/* 80443C30 00440B70  38 A5 AD E8 */	addi r5, r5, gStrMemoryCardMgrP2Assert@l
+/* 80443C30 00440B70  38 A5 AD E8 */	addi r5, r5, lbl_8049ADE8@l
 /* 80443C34 00440B74  4C C6 31 82 */	crclr 6
 /* 80443C38 00440B78  4B BE 6A 09 */	bl panic_f__12JUTExceptionFPCciPCce
 lbl_80443C3C:
@@ -1538,11 +1529,11 @@ lbl_80443C80:
 lbl_80443CA0:
 /* 80443CA0 00440BE0  54 00 06 3F */	clrlwi. r0, r0, 0x18
 /* 80443CA4 00440BE4  40 82 00 20 */	bne lbl_80443CC4
-/* 80443CA8 00440BE8  3C 60 80 4A */	lis r3, gStrMemoryCardMgrCpp@ha
-/* 80443CAC 00440BEC  3C A0 80 4A */	lis r5, gStrMemoryCardMgrP2Assert@ha
-/* 80443CB0 00440BF0  38 63 AD CC */	addi r3, r3, gStrMemoryCardMgrCpp@l
+/* 80443CA8 00440BE8  3C 60 80 4A */	lis r3, lbl_8049ADCC@ha
+/* 80443CAC 00440BEC  3C A0 80 4A */	lis r5, lbl_8049ADE8@ha
+/* 80443CB0 00440BF0  38 63 AD CC */	addi r3, r3, lbl_8049ADCC@l
 /* 80443CB4 00440BF4  38 80 01 8C */	li r4, 0x18c
-/* 80443CB8 00440BF8  38 A5 AD E8 */	addi r5, r5, gStrMemoryCardMgrP2Assert@l
+/* 80443CB8 00440BF8  38 A5 AD E8 */	addi r5, r5, lbl_8049ADE8@l
 /* 80443CBC 00440BFC  4C C6 31 82 */	crclr 6
 /* 80443CC0 00440C00  4B BE 69 81 */	bl panic_f__12JUTExceptionFPCciPCce
 lbl_80443CC4:
@@ -1587,11 +1578,11 @@ lbl_80443D50:
 /* 80443D50 00440C90  88 01 00 08 */	lbz r0, 8(r1)
 /* 80443D54 00440C94  28 00 00 00 */	cmplwi r0, 0
 /* 80443D58 00440C98  40 82 FD 44 */	bne lbl_80443A9C
-/* 80443D5C 00440C9C  3C 80 80 4A */	lis r4, gStrMemoryCardMgrCpp@ha
-/* 80443D60 00440CA0  3C 60 80 4A */	lis r3, gStrMemoryCardMgrP2Assert@ha
-/* 80443D64 00440CA4  3B A4 AD CC */	addi r29, r4, gStrMemoryCardMgrCpp@l
+/* 80443D5C 00440C9C  3C 80 80 4A */	lis r4, lbl_8049ADCC@ha
+/* 80443D60 00440CA0  3C 60 80 4A */	lis r3, lbl_8049ADE8@ha
+/* 80443D64 00440CA4  3B A4 AD CC */	addi r29, r4, lbl_8049ADCC@l
 /* 80443D68 00440CA8  3B 40 00 00 */	li r26, 0
-/* 80443D6C 00440CAC  3B 83 AD E8 */	addi r28, r3, gStrMemoryCardMgrP2Assert@l
+/* 80443D6C 00440CAC  3B 83 AD E8 */	addi r28, r3, lbl_8049ADE8@l
 /* 80443D70 00440CB0  48 00 00 3C */	b lbl_80443DAC
 lbl_80443D74:
 /* 80443D74 00440CB4  7F 43 07 75 */	extsb. r3, r26
@@ -1744,11 +1735,11 @@ lbl_80443F5C:
 /* 80443F64 00440EA4  4B FF E8 DD */	bl setInsideStatusFlag__13MemoryCardMgrFQ213MemoryCardMgr17EInsideStatusFlag
 /* 80443F68 00440EA8  48 00 00 20 */	b lbl_80443F88
 lbl_80443F6C:
-/* 80443F6C 00440EAC  3C 60 80 4A */	lis r3, gStrMemoryCardMgrCpp@ha
-/* 80443F70 00440EB0  3C A0 80 4A */	lis r5, gStrMemoryCardMgrP2Assert@ha
-/* 80443F74 00440EB4  38 63 AD CC */	addi r3, r3, gStrMemoryCardMgrCpp@l
+/* 80443F6C 00440EAC  3C 60 80 4A */	lis r3, lbl_8049ADCC@ha
+/* 80443F70 00440EB0  3C A0 80 4A */	lis r5, lbl_8049ADE8@ha
+/* 80443F74 00440EB4  38 63 AD CC */	addi r3, r3, lbl_8049ADCC@l
 /* 80443F78 00440EB8  38 80 04 C4 */	li r4, 0x4c4
-/* 80443F7C 00440EBC  38 A5 AD E8 */	addi r5, r5, gStrMemoryCardMgrP2Assert@l
+/* 80443F7C 00440EBC  38 A5 AD E8 */	addi r5, r5, lbl_8049ADE8@l
 /* 80443F80 00440EC0  4C C6 31 82 */	crclr 6
 /* 80443F84 00440EC4  4B BE 66 BD */	bl panic_f__12JUTExceptionFPCciPCce
 lbl_80443F88:
@@ -1889,11 +1880,11 @@ lbl_8044415C:
 /* 80444164 004410A4  4B FF E6 DD */	bl setInsideStatusFlag__13MemoryCardMgrFQ213MemoryCardMgr17EInsideStatusFlag
 /* 80444168 004410A8  48 00 00 20 */	b lbl_80444188
 lbl_8044416C:
-/* 8044416C 004410AC  3C 60 80 4A */	lis r3, gStrMemoryCardMgrCpp@ha
-/* 80444170 004410B0  3C A0 80 4A */	lis r5, gStrMemoryCardMgrP2Assert@ha
-/* 80444174 004410B4  38 63 AD CC */	addi r3, r3, gStrMemoryCardMgrCpp@l
+/* 8044416C 004410AC  3C 60 80 4A */	lis r3, lbl_8049ADCC@ha
+/* 80444170 004410B0  3C A0 80 4A */	lis r5, lbl_8049ADE8@ha
+/* 80444174 004410B4  38 63 AD CC */	addi r3, r3, lbl_8049ADCC@l
 /* 80444178 004410B8  38 80 04 C4 */	li r4, 0x4c4
-/* 8044417C 004410BC  38 A5 AD E8 */	addi r5, r5, gStrMemoryCardMgrP2Assert@l
+/* 8044417C 004410BC  38 A5 AD E8 */	addi r5, r5, lbl_8049ADE8@l
 /* 80444180 004410C0  4C C6 31 82 */	crclr 6
 /* 80444184 004410C4  4B BE 64 BD */	bl panic_f__12JUTExceptionFPCciPCce
 lbl_80444188:
@@ -2151,11 +2142,11 @@ lbl_80444500:
 /* 8044450C 0044144C  4B BD FB 3D */	bl __nwa__FUlP7JKRHeapi
 /* 80444510 00441450  7C 7E 1B 79 */	or. r30, r3, r3
 /* 80444514 00441454  40 82 00 20 */	bne lbl_80444534
-/* 80444518 00441458  3C 60 80 4A */	lis r3, gStrMemoryCardMgrCpp@ha
-/* 8044451C 0044145C  3C A0 80 4A */	lis r5, gStrMemoryCardMgrP2Assert@ha
-/* 80444520 00441460  38 63 AD CC */	addi r3, r3, gStrMemoryCardMgrCpp@l
+/* 80444518 00441458  3C 60 80 4A */	lis r3, lbl_8049ADCC@ha
+/* 8044451C 0044145C  3C A0 80 4A */	lis r5, lbl_8049ADE8@ha
+/* 80444520 00441460  38 63 AD CC */	addi r3, r3, lbl_8049ADCC@l
 /* 80444524 00441464  38 80 05 DC */	li r4, 0x5dc
-/* 80444528 00441468  38 A5 AD E8 */	addi r5, r5, gStrMemoryCardMgrP2Assert@l
+/* 80444528 00441468  38 A5 AD E8 */	addi r5, r5, lbl_8049ADE8@l
 /* 8044452C 0044146C  4C C6 31 82 */	crclr 6
 /* 80444530 00441470  4B BE 61 11 */	bl panic_f__12JUTExceptionFPCciPCce
 lbl_80444534:
@@ -2277,11 +2268,11 @@ commandLoadGameOption__Q34Game10MemoryCard3MgrFv:
 /* 804446D4 00441614  28 03 00 00 */	cmplwi r3, 0
 /* 804446D8 00441618  90 61 00 08 */	stw r3, 8(r1)
 /* 804446DC 0044161C  40 82 00 20 */	bne lbl_804446FC
-/* 804446E0 00441620  3C 60 80 4A */	lis r3, gStrMemoryCardMgrCpp@ha
-/* 804446E4 00441624  3C A0 80 4A */	lis r5, gStrMemoryCardMgrP2Assert@ha
-/* 804446E8 00441628  38 63 AD CC */	addi r3, r3, gStrMemoryCardMgrCpp@l
+/* 804446E0 00441620  3C 60 80 4A */	lis r3, lbl_8049ADCC@ha
+/* 804446E4 00441624  3C A0 80 4A */	lis r5, lbl_8049ADE8@ha
+/* 804446E8 00441628  38 63 AD CC */	addi r3, r3, lbl_8049ADCC@l
 /* 804446EC 0044162C  38 80 06 50 */	li r4, 0x650
-/* 804446F0 00441630  38 A5 AD E8 */	addi r5, r5, gStrMemoryCardMgrP2Assert@l
+/* 804446F0 00441630  38 A5 AD E8 */	addi r5, r5, lbl_8049ADE8@l
 /* 804446F4 00441634  4C C6 31 82 */	crclr 6
 /* 804446F8 00441638  4B BE 5F 49 */	bl panic_f__12JUTExceptionFPCciPCce
 lbl_804446FC:
@@ -2292,11 +2283,11 @@ lbl_804446FC:
 /* 8044470C 0044164C  28 03 00 00 */	cmplwi r3, 0
 /* 80444710 00441650  90 61 00 0C */	stw r3, 0xc(r1)
 /* 80444714 00441654  40 82 00 20 */	bne lbl_80444734
-/* 80444718 00441658  3C 60 80 4A */	lis r3, gStrMemoryCardMgrCpp@ha
-/* 8044471C 0044165C  3C A0 80 4A */	lis r5, gStrMemoryCardMgrP2Assert@ha
-/* 80444720 00441660  38 63 AD CC */	addi r3, r3, gStrMemoryCardMgrCpp@l
+/* 80444718 00441658  3C 60 80 4A */	lis r3, lbl_8049ADCC@ha
+/* 8044471C 0044165C  3C A0 80 4A */	lis r5, lbl_8049ADE8@ha
+/* 80444720 00441660  38 63 AD CC */	addi r3, r3, lbl_8049ADCC@l
 /* 80444724 00441664  38 80 06 52 */	li r4, 0x652
-/* 80444728 00441668  38 A5 AD E8 */	addi r5, r5, gStrMemoryCardMgrP2Assert@l
+/* 80444728 00441668  38 A5 AD E8 */	addi r5, r5, lbl_8049ADE8@l
 /* 8044472C 0044166C  4C C6 31 82 */	crclr 6
 /* 80444730 00441670  4B BE 5F 11 */	bl panic_f__12JUTExceptionFPCciPCce
 lbl_80444734:
@@ -2397,11 +2388,11 @@ lbl_80444874:
 /* 80444888 004417C8  4B BD EF 59 */	bl getTotalFreeSize__7JKRHeapFv
 /* 8044488C 004417CC  7C 1F 18 00 */	cmpw r31, r3
 /* 80444890 004417D0  41 82 00 20 */	beq lbl_804448B0
-/* 80444894 004417D4  3C 60 80 4A */	lis r3, gStrMemoryCardMgrCpp@ha
-/* 80444898 004417D8  3C A0 80 4A */	lis r5, gStrMemoryCardMgrP2Assert@ha
-/* 8044489C 004417DC  38 63 AD CC */	addi r3, r3, gStrMemoryCardMgrCpp@l
+/* 80444894 004417D4  3C 60 80 4A */	lis r3, lbl_8049ADCC@ha
+/* 80444898 004417D8  3C A0 80 4A */	lis r5, lbl_8049ADE8@ha
+/* 8044489C 004417DC  38 63 AD CC */	addi r3, r3, lbl_8049ADCC@l
 /* 804448A0 004417E0  38 80 06 AB */	li r4, 0x6ab
-/* 804448A4 004417E4  38 A5 AD E8 */	addi r5, r5, gStrMemoryCardMgrP2Assert@l
+/* 804448A4 004417E4  38 A5 AD E8 */	addi r5, r5, lbl_8049ADE8@l
 /* 804448A8 004417E8  4C C6 31 82 */	crclr 6
 /* 804448AC 004417EC  4B BE 5D 95 */	bl panic_f__12JUTExceptionFPCciPCce
 lbl_804448B0:
@@ -2495,11 +2486,11 @@ commandSavePlayer__Q34Game10MemoryCard3MgrFScb:
 lbl_804449D0:
 /* 804449D0 00441910  54 60 06 3F */	clrlwi. r0, r3, 0x18
 /* 804449D4 00441914  40 82 00 20 */	bne lbl_804449F4
-/* 804449D8 00441918  3C 60 80 4A */	lis r3, gStrMemoryCardMgrCpp@ha
-/* 804449DC 0044191C  3C A0 80 4A */	lis r5, gStrMemoryCardMgrP2Assert@ha
-/* 804449E0 00441920  38 63 AD CC */	addi r3, r3, gStrMemoryCardMgrCpp@l
+/* 804449D8 00441918  3C 60 80 4A */	lis r3, lbl_8049ADCC@ha
+/* 804449DC 0044191C  3C A0 80 4A */	lis r5, lbl_8049ADE8@ha
+/* 804449E0 00441920  38 63 AD CC */	addi r3, r3, lbl_8049ADCC@l
 /* 804449E4 00441924  38 80 07 7A */	li r4, 0x77a
-/* 804449E8 00441928  38 A5 AD E8 */	addi r5, r5, gStrMemoryCardMgrP2Assert@l
+/* 804449E8 00441928  38 A5 AD E8 */	addi r5, r5, lbl_8049ADE8@l
 /* 804449EC 0044192C  4C C6 31 82 */	crclr 6
 /* 804449F0 00441930  4B BE 5C 51 */	bl panic_f__12JUTExceptionFPCciPCce
 lbl_804449F4:
@@ -2561,11 +2552,11 @@ commandSavePlayerNoCheckSerialNo__Q34Game10MemoryCard3MgrFScb:
 /* 80444AB8 004419F8  4B BD F5 91 */	bl __nwa__FUlP7JKRHeapi
 /* 80444ABC 004419FC  7C 7E 1B 79 */	or. r30, r3, r3
 /* 80444AC0 00441A00  40 82 00 20 */	bne lbl_80444AE0
-/* 80444AC4 00441A04  3C 60 80 4A */	lis r3, gStrMemoryCardMgrCpp@ha
-/* 80444AC8 00441A08  3C A0 80 4A */	lis r5, gStrMemoryCardMgrP2Assert@ha
-/* 80444ACC 00441A0C  38 63 AD CC */	addi r3, r3, gStrMemoryCardMgrCpp@l
+/* 80444AC4 00441A04  3C 60 80 4A */	lis r3, lbl_8049ADCC@ha
+/* 80444AC8 00441A08  3C A0 80 4A */	lis r5, lbl_8049ADE8@ha
+/* 80444ACC 00441A0C  38 63 AD CC */	addi r3, r3, lbl_8049ADCC@l
 /* 80444AD0 00441A10  38 80 07 93 */	li r4, 0x793
-/* 80444AD4 00441A14  38 A5 AD E8 */	addi r5, r5, gStrMemoryCardMgrP2Assert@l
+/* 80444AD4 00441A14  38 A5 AD E8 */	addi r5, r5, lbl_8049ADE8@l
 /* 80444AD8 00441A18  4C C6 31 82 */	crclr 6
 /* 80444ADC 00441A1C  4B BE 5B 65 */	bl panic_f__12JUTExceptionFPCciPCce
 lbl_80444AE0:
@@ -2692,9 +2683,9 @@ lbl_80444CA0:
 /* 80444CB0 00441BF0  93 BE 00 3C */	stw r29, 0x3c(r30)
 /* 80444CB4 00441BF4  48 00 00 64 */	b lbl_80444D18
 lbl_80444CB8:
-/* 80444CB8 00441BF8  3C 60 80 4A */	lis r3, gStrMemoryCardMgrCpp@ha
+/* 80444CB8 00441BF8  3C 60 80 4A */	lis r3, lbl_8049ADCC@ha
 /* 80444CBC 00441BFC  38 80 07 FA */	li r4, 0x7fa
-/* 80444CC0 00441C00  38 63 AD CC */	addi r3, r3, gStrMemoryCardMgrCpp@l
+/* 80444CC0 00441C00  38 63 AD CC */	addi r3, r3, lbl_8049ADCC@l
 /* 80444CC4 00441C04  38 A2 26 18 */	addi r5, r2, lbl_80520978@sda21
 /* 80444CC8 00441C08  4C C6 31 82 */	crclr 6
 /* 80444CCC 00441C0C  4B BE 59 75 */	bl panic_f__12JUTExceptionFPCciPCce
@@ -2746,11 +2737,11 @@ lbl_80444D78:
 /* 80444D7C 00441CBC  4B BD EA 65 */	bl getTotalFreeSize__7JKRHeapFv
 /* 80444D80 00441CC0  7C 1F 18 00 */	cmpw r31, r3
 /* 80444D84 00441CC4  41 82 00 20 */	beq lbl_80444DA4
-/* 80444D88 00441CC8  3C 60 80 4A */	lis r3, gStrMemoryCardMgrCpp@ha
-/* 80444D8C 00441CCC  3C A0 80 4A */	lis r5, gStrMemoryCardMgrP2Assert@ha
-/* 80444D90 00441CD0  38 63 AD CC */	addi r3, r3, gStrMemoryCardMgrCpp@l
+/* 80444D88 00441CC8  3C 60 80 4A */	lis r3, lbl_8049ADCC@ha
+/* 80444D8C 00441CCC  3C A0 80 4A */	lis r5, lbl_8049ADE8@ha
+/* 80444D90 00441CD0  38 63 AD CC */	addi r3, r3, lbl_8049ADCC@l
 /* 80444D94 00441CD4  38 80 08 1F */	li r4, 0x81f
-/* 80444D98 00441CD8  38 A5 AD E8 */	addi r5, r5, gStrMemoryCardMgrP2Assert@l
+/* 80444D98 00441CD8  38 A5 AD E8 */	addi r5, r5, lbl_8049ADE8@l
 /* 80444D9C 00441CDC  4C C6 31 82 */	crclr 6
 /* 80444DA0 00441CE0  4B BE 58 A1 */	bl panic_f__12JUTExceptionFPCciPCce
 lbl_80444DA4:
@@ -2840,9 +2831,9 @@ lbl_80444EC8:
 /* 80444EC8 00441E08  3B 9C 00 01 */	addi r28, r28, 1
 /* 80444ECC 00441E0C  28 1C 00 05 */	cmplwi r28, 5
 /* 80444ED0 00441E10  41 80 00 20 */	blt lbl_80444EF0
-/* 80444ED4 00441E14  3C 60 80 4A */	lis r3, gStrMemoryCardMgrCpp@ha
+/* 80444ED4 00441E14  3C 60 80 4A */	lis r3, lbl_8049ADCC@ha
 /* 80444ED8 00441E18  3C A0 80 4A */	lis r5, lbl_8049AE64@ha
-/* 80444EDC 00441E1C  38 63 AD CC */	addi r3, r3, gStrMemoryCardMgrCpp@l
+/* 80444EDC 00441E1C  38 63 AD CC */	addi r3, r3, lbl_8049ADCC@l
 /* 80444EE0 00441E20  38 80 08 73 */	li r4, 0x873
 /* 80444EE4 00441E24  38 A5 AE 64 */	addi r5, r5, lbl_8049AE64@l
 /* 80444EE8 00441E28  4C C6 31 82 */	crclr 6
@@ -3007,11 +2998,11 @@ commandLoadPlayer__Q34Game10MemoryCard3MgrFSc:
 lbl_80445134:
 /* 80445134 00442074  54 60 06 3F */	clrlwi. r0, r3, 0x18
 /* 80445138 00442078  40 82 00 20 */	bne lbl_80445158
-/* 8044513C 0044207C  3C 60 80 4A */	lis r3, gStrMemoryCardMgrCpp@ha
-/* 80445140 00442080  3C A0 80 4A */	lis r5, gStrMemoryCardMgrP2Assert@ha
-/* 80445144 00442084  38 63 AD CC */	addi r3, r3, gStrMemoryCardMgrCpp@l
+/* 8044513C 0044207C  3C 60 80 4A */	lis r3, lbl_8049ADCC@ha
+/* 80445140 00442080  3C A0 80 4A */	lis r5, lbl_8049ADE8@ha
+/* 80445144 00442084  38 63 AD CC */	addi r3, r3, lbl_8049ADCC@l
 /* 80445148 00442088  38 80 08 D8 */	li r4, 0x8d8
-/* 8044514C 0044208C  38 A5 AD E8 */	addi r5, r5, gStrMemoryCardMgrP2Assert@l
+/* 8044514C 0044208C  38 A5 AD E8 */	addi r5, r5, lbl_8049ADE8@l
 /* 80445150 00442090  4C C6 31 82 */	crclr 6
 /* 80445154 00442094  4B BE 54 ED */	bl panic_f__12JUTExceptionFPCciPCce
 lbl_80445158:
@@ -3043,11 +3034,11 @@ lbl_80445174:
 /* 804451B8 004420F8  4B BD EE 91 */	bl __nwa__FUlP7JKRHeapi
 /* 804451BC 004420FC  7C 7D 1B 79 */	or. r29, r3, r3
 /* 804451C0 00442100  40 82 00 20 */	bne lbl_804451E0
-/* 804451C4 00442104  3C 60 80 4A */	lis r3, gStrMemoryCardMgrCpp@ha
-/* 804451C8 00442108  3C A0 80 4A */	lis r5, gStrMemoryCardMgrP2Assert@ha
-/* 804451CC 0044210C  38 63 AD CC */	addi r3, r3, gStrMemoryCardMgrCpp@l
+/* 804451C4 00442104  3C 60 80 4A */	lis r3, lbl_8049ADCC@ha
+/* 804451C8 00442108  3C A0 80 4A */	lis r5, lbl_8049ADE8@ha
+/* 804451CC 0044210C  38 63 AD CC */	addi r3, r3, lbl_8049ADCC@l
 /* 804451D0 00442110  38 80 08 F2 */	li r4, 0x8f2
-/* 804451D4 00442114  38 A5 AD E8 */	addi r5, r5, gStrMemoryCardMgrP2Assert@l
+/* 804451D4 00442114  38 A5 AD E8 */	addi r5, r5, lbl_8049ADE8@l
 /* 804451D8 00442118  4C C6 31 82 */	crclr 6
 /* 804451DC 0044211C  4B BE 54 65 */	bl panic_f__12JUTExceptionFPCciPCce
 lbl_804451E0:
@@ -3116,11 +3107,11 @@ loadPlayerForNoCard__Q34Game10MemoryCard3MgrFSc:
 lbl_804452C4:
 /* 804452C4 00442204  54 60 06 3F */	clrlwi. r0, r3, 0x18
 /* 804452C8 00442208  40 82 00 20 */	bne lbl_804452E8
-/* 804452CC 0044220C  3C 60 80 4A */	lis r3, gStrMemoryCardMgrCpp@ha
-/* 804452D0 00442210  3C A0 80 4A */	lis r5, gStrMemoryCardMgrP2Assert@ha
-/* 804452D4 00442214  38 63 AD CC */	addi r3, r3, gStrMemoryCardMgrCpp@l
+/* 804452CC 0044220C  3C 60 80 4A */	lis r3, lbl_8049ADCC@ha
+/* 804452D0 00442210  3C A0 80 4A */	lis r5, lbl_8049ADE8@ha
+/* 804452D4 00442214  38 63 AD CC */	addi r3, r3, lbl_8049ADCC@l
 /* 804452D8 00442218  38 80 09 4E */	li r4, 0x94e
-/* 804452DC 0044221C  38 A5 AD E8 */	addi r5, r5, gStrMemoryCardMgrP2Assert@l
+/* 804452DC 0044221C  38 A5 AD E8 */	addi r5, r5, lbl_8049ADE8@l
 /* 804452E0 00442220  4C C6 31 82 */	crclr 6
 /* 804452E4 00442224  4B BE 53 5D */	bl panic_f__12JUTExceptionFPCciPCce
 lbl_804452E8:
@@ -3166,11 +3157,11 @@ loadPlayerProc__Q34Game10MemoryCard3MgrFScPUc:
 lbl_80445378:
 /* 80445378 004422B8  54 60 06 3F */	clrlwi. r0, r3, 0x18
 /* 8044537C 004422BC  40 82 00 20 */	bne lbl_8044539C
-/* 80445380 004422C0  3C 60 80 4A */	lis r3, gStrMemoryCardMgrCpp@ha
-/* 80445384 004422C4  3C A0 80 4A */	lis r5, gStrMemoryCardMgrP2Assert@ha
-/* 80445388 004422C8  38 63 AD CC */	addi r3, r3, gStrMemoryCardMgrCpp@l
+/* 80445380 004422C0  3C 60 80 4A */	lis r3, lbl_8049ADCC@ha
+/* 80445384 004422C4  3C A0 80 4A */	lis r5, lbl_8049ADE8@ha
+/* 80445388 004422C8  38 63 AD CC */	addi r3, r3, lbl_8049ADCC@l
 /* 8044538C 004422CC  38 80 09 67 */	li r4, 0x967
-/* 80445390 004422D0  38 A5 AD E8 */	addi r5, r5, gStrMemoryCardMgrP2Assert@l
+/* 80445390 004422D0  38 A5 AD E8 */	addi r5, r5, lbl_8049ADE8@l
 /* 80445394 004422D4  4C C6 31 82 */	crclr 6
 /* 80445398 004422D8  4B BE 52 A9 */	bl panic_f__12JUTExceptionFPCciPCce
 lbl_8044539C:
@@ -3310,11 +3301,11 @@ savePlayerProc__Q34Game10MemoryCard3MgrFScPUcb:
 lbl_80445584:
 /* 80445584 004424C4  54 60 06 3F */	clrlwi. r0, r3, 0x18
 /* 80445588 004424C8  40 82 00 20 */	bne lbl_804455A8
-/* 8044558C 004424CC  3C 60 80 4A */	lis r3, gStrMemoryCardMgrCpp@ha
-/* 80445590 004424D0  3C A0 80 4A */	lis r5, gStrMemoryCardMgrP2Assert@ha
-/* 80445594 004424D4  38 63 AD CC */	addi r3, r3, gStrMemoryCardMgrCpp@l
+/* 8044558C 004424CC  3C 60 80 4A */	lis r3, lbl_8049ADCC@ha
+/* 80445590 004424D0  3C A0 80 4A */	lis r5, lbl_8049ADE8@ha
+/* 80445594 004424D4  38 63 AD CC */	addi r3, r3, lbl_8049ADCC@l
 /* 80445598 004424D8  38 80 09 CA */	li r4, 0x9ca
-/* 8044559C 004424DC  38 A5 AD E8 */	addi r5, r5, gStrMemoryCardMgrP2Assert@l
+/* 8044559C 004424DC  38 A5 AD E8 */	addi r5, r5, lbl_8049ADE8@l
 /* 804455A0 004424E0  4C C6 31 82 */	crclr 6
 /* 804455A4 004424E4  4B BE 50 9D */	bl panic_f__12JUTExceptionFPCciPCce
 lbl_804455A8:
@@ -3448,11 +3439,11 @@ commandCopyPlayer__Q34Game10MemoryCard3MgrFScSc:
 /* 8044576C 004426AC  4B BD E8 DD */	bl __nwa__FUlP7JKRHeapi
 /* 80445770 004426B0  7C 7E 1B 79 */	or. r30, r3, r3
 /* 80445774 004426B4  40 82 00 20 */	bne lbl_80445794
-/* 80445778 004426B8  3C 60 80 4A */	lis r3, gStrMemoryCardMgrCpp@ha
-/* 8044577C 004426BC  3C A0 80 4A */	lis r5, gStrMemoryCardMgrP2Assert@ha
-/* 80445780 004426C0  38 63 AD CC */	addi r3, r3, gStrMemoryCardMgrCpp@l
+/* 80445778 004426B8  3C 60 80 4A */	lis r3, lbl_8049ADCC@ha
+/* 8044577C 004426BC  3C A0 80 4A */	lis r5, lbl_8049ADE8@ha
+/* 80445780 004426C0  38 63 AD CC */	addi r3, r3, lbl_8049ADCC@l
 /* 80445784 004426C4  38 80 0A 5A */	li r4, 0xa5a
-/* 80445788 004426C8  38 A5 AD E8 */	addi r5, r5, gStrMemoryCardMgrP2Assert@l
+/* 80445788 004426C8  38 A5 AD E8 */	addi r5, r5, lbl_8049ADE8@l
 /* 8044578C 004426CC  4C C6 31 82 */	crclr 6
 /* 80445790 004426D0  4B BE 4E B1 */	bl panic_f__12JUTExceptionFPCciPCce
 lbl_80445794:
@@ -3467,11 +3458,11 @@ lbl_80445794:
 lbl_804457B4:
 /* 804457B4 004426F4  54 60 06 3F */	clrlwi. r0, r3, 0x18
 /* 804457B8 004426F8  40 82 00 20 */	bne lbl_804457D8
-/* 804457BC 004426FC  3C 60 80 4A */	lis r3, gStrMemoryCardMgrCpp@ha
-/* 804457C0 00442700  3C A0 80 4A */	lis r5, gStrMemoryCardMgrP2Assert@ha
-/* 804457C4 00442704  38 63 AD CC */	addi r3, r3, gStrMemoryCardMgrCpp@l
+/* 804457BC 004426FC  3C 60 80 4A */	lis r3, lbl_8049ADCC@ha
+/* 804457C0 00442700  3C A0 80 4A */	lis r5, lbl_8049ADE8@ha
+/* 804457C4 00442704  38 63 AD CC */	addi r3, r3, lbl_8049ADCC@l
 /* 804457C8 00442708  38 80 09 67 */	li r4, 0x967
-/* 804457CC 0044270C  38 A5 AD E8 */	addi r5, r5, gStrMemoryCardMgrP2Assert@l
+/* 804457CC 0044270C  38 A5 AD E8 */	addi r5, r5, lbl_8049ADE8@l
 /* 804457D0 00442710  4C C6 31 82 */	crclr 6
 /* 804457D4 00442714  4B BE 4E 6D */	bl panic_f__12JUTExceptionFPCciPCce
 lbl_804457D8:
@@ -3747,11 +3738,11 @@ lbl_80445B74:
 /* 80445B74 00442AB4  3B E0 00 0E */	li r31, 0xe
 /* 80445B78 00442AB8  48 00 00 30 */	b lbl_80445BA8
 lbl_80445B7C:
-/* 80445B7C 00442ABC  3C 60 80 4A */	lis r3, gStrMemoryCardMgrCpp@ha
-/* 80445B80 00442AC0  3C A0 80 4A */	lis r5, gStrMemoryCardMgrP2Assert@ha
-/* 80445B84 00442AC4  38 63 AD CC */	addi r3, r3, gStrMemoryCardMgrCpp@l
+/* 80445B7C 00442ABC  3C 60 80 4A */	lis r3, lbl_8049ADCC@ha
+/* 80445B80 00442AC0  3C A0 80 4A */	lis r5, lbl_8049ADE8@ha
+/* 80445B84 00442AC4  38 63 AD CC */	addi r3, r3, lbl_8049ADCC@l
 /* 80445B88 00442AC8  38 80 0B 10 */	li r4, 0xb10
-/* 80445B8C 00442ACC  38 A5 AD E8 */	addi r5, r5, gStrMemoryCardMgrP2Assert@l
+/* 80445B8C 00442ACC  38 A5 AD E8 */	addi r5, r5, lbl_8049ADE8@l
 /* 80445B90 00442AD0  4C C6 31 82 */	crclr 6
 /* 80445B94 00442AD4  4B BE 4A AD */	bl panic_f__12JUTExceptionFPCciPCce
 /* 80445B98 00442AD8  48 00 00 10 */	b lbl_80445BA8
@@ -3781,11 +3772,11 @@ writeInvalidGameOption__Q34Game10MemoryCard3MgrFv:
 /* 80445BE4 00442B24  4B BD E4 65 */	bl __nwa__FUlP7JKRHeapi
 /* 80445BE8 00442B28  7C 7D 1B 79 */	or. r29, r3, r3
 /* 80445BEC 00442B2C  40 82 00 20 */	bne lbl_80445C0C
-/* 80445BF0 00442B30  3C 60 80 4A */	lis r3, gStrMemoryCardMgrCpp@ha
-/* 80445BF4 00442B34  3C A0 80 4A */	lis r5, gStrMemoryCardMgrP2Assert@ha
-/* 80445BF8 00442B38  38 63 AD CC */	addi r3, r3, gStrMemoryCardMgrCpp@l
+/* 80445BF0 00442B30  3C 60 80 4A */	lis r3, lbl_8049ADCC@ha
+/* 80445BF4 00442B34  3C A0 80 4A */	lis r5, lbl_8049ADE8@ha
+/* 80445BF8 00442B38  38 63 AD CC */	addi r3, r3, lbl_8049ADCC@l
 /* 80445BFC 00442B3C  38 80 0B 29 */	li r4, 0xb29
-/* 80445C00 00442B40  38 A5 AD E8 */	addi r5, r5, gStrMemoryCardMgrP2Assert@l
+/* 80445C00 00442B40  38 A5 AD E8 */	addi r5, r5, lbl_8049ADE8@l
 /* 80445C04 00442B44  4C C6 31 82 */	crclr 6
 /* 80445C08 00442B48  4B BE 4A 39 */	bl panic_f__12JUTExceptionFPCciPCce
 lbl_80445C0C:
@@ -3873,11 +3864,11 @@ writeInvalidPlayerInfo__Q34Game10MemoryCard3MgrFiSc:
 lbl_80445D28:
 /* 80445D28 00442C68  54 00 06 3F */	clrlwi. r0, r0, 0x18
 /* 80445D2C 00442C6C  40 82 00 20 */	bne lbl_80445D4C
-/* 80445D30 00442C70  3C 60 80 4A */	lis r3, gStrMemoryCardMgrCpp@ha
-/* 80445D34 00442C74  3C A0 80 4A */	lis r5, gStrMemoryCardMgrP2Assert@ha
-/* 80445D38 00442C78  38 63 AD CC */	addi r3, r3, gStrMemoryCardMgrCpp@l
+/* 80445D30 00442C70  3C 60 80 4A */	lis r3, lbl_8049ADCC@ha
+/* 80445D34 00442C74  3C A0 80 4A */	lis r5, lbl_8049ADE8@ha
+/* 80445D38 00442C78  38 63 AD CC */	addi r3, r3, lbl_8049ADCC@l
 /* 80445D3C 00442C7C  38 80 0B 6A */	li r4, 0xb6a
-/* 80445D40 00442C80  38 A5 AD E8 */	addi r5, r5, gStrMemoryCardMgrP2Assert@l
+/* 80445D40 00442C80  38 A5 AD E8 */	addi r5, r5, lbl_8049ADE8@l
 /* 80445D44 00442C84  4C C6 31 82 */	crclr 6
 /* 80445D48 00442C88  4B BE 48 F9 */	bl panic_f__12JUTExceptionFPCciPCce
 lbl_80445D4C:
@@ -3887,11 +3878,11 @@ lbl_80445D4C:
 /* 80445D58 00442C98  4B BD E2 F1 */	bl __nwa__FUlP7JKRHeapi
 /* 80445D5C 00442C9C  7C 7F 1B 79 */	or. r31, r3, r3
 /* 80445D60 00442CA0  40 82 00 20 */	bne lbl_80445D80
-/* 80445D64 00442CA4  3C 60 80 4A */	lis r3, gStrMemoryCardMgrCpp@ha
-/* 80445D68 00442CA8  3C A0 80 4A */	lis r5, gStrMemoryCardMgrP2Assert@ha
-/* 80445D6C 00442CAC  38 63 AD CC */	addi r3, r3, gStrMemoryCardMgrCpp@l
+/* 80445D64 00442CA4  3C 60 80 4A */	lis r3, lbl_8049ADCC@ha
+/* 80445D68 00442CA8  3C A0 80 4A */	lis r5, lbl_8049ADE8@ha
+/* 80445D6C 00442CAC  38 63 AD CC */	addi r3, r3, lbl_8049ADCC@l
 /* 80445D70 00442CB0  38 80 0B 6D */	li r4, 0xb6d
-/* 80445D74 00442CB4  38 A5 AD E8 */	addi r5, r5, gStrMemoryCardMgrP2Assert@l
+/* 80445D74 00442CB4  38 A5 AD E8 */	addi r5, r5, lbl_8049ADE8@l
 /* 80445D78 00442CB8  4C C6 31 82 */	crclr 6
 /* 80445D7C 00442CBC  4B BE 48 C5 */	bl panic_f__12JUTExceptionFPCciPCce
 lbl_80445D80:
@@ -3962,11 +3953,11 @@ lbl_80445E58:
 /* 80445E70 00442DB0  4B BD E1 D9 */	bl __nwa__FUlP7JKRHeapi
 /* 80445E74 00442DB4  7C 7E 1B 79 */	or. r30, r3, r3
 /* 80445E78 00442DB8  40 82 00 20 */	bne lbl_80445E98
-/* 80445E7C 00442DBC  3C 60 80 4A */	lis r3, gStrMemoryCardMgrCpp@ha
-/* 80445E80 00442DC0  3C A0 80 4A */	lis r5, gStrMemoryCardMgrP2Assert@ha
-/* 80445E84 00442DC4  38 63 AD CC */	addi r3, r3, gStrMemoryCardMgrCpp@l
+/* 80445E7C 00442DBC  3C 60 80 4A */	lis r3, lbl_8049ADCC@ha
+/* 80445E80 00442DC0  3C A0 80 4A */	lis r5, lbl_8049ADE8@ha
+/* 80445E84 00442DC4  38 63 AD CC */	addi r3, r3, lbl_8049ADCC@l
 /* 80445E88 00442DC8  38 80 0B 9F */	li r4, 0xb9f
-/* 80445E8C 00442DCC  38 A5 AD E8 */	addi r5, r5, gStrMemoryCardMgrP2Assert@l
+/* 80445E8C 00442DCC  38 A5 AD E8 */	addi r5, r5, lbl_8049ADE8@l
 /* 80445E90 00442DD0  4C C6 31 82 */	crclr 6
 /* 80445E94 00442DD4  4B BE 47 AD */	bl panic_f__12JUTExceptionFPCciPCce
 lbl_80445E98:
@@ -4333,11 +4324,11 @@ lbl_8044639C:
 /* 804463A8 004432E8  4B BD DC A1 */	bl __nwa__FUlP7JKRHeapi
 /* 804463AC 004432EC  7C 7C 1B 79 */	or. r28, r3, r3
 /* 804463B0 004432F0  40 82 00 20 */	bne lbl_804463D0
-/* 804463B4 004432F4  3C 60 80 4A */	lis r3, gStrMemoryCardMgrCpp@ha
-/* 804463B8 004432F8  3C A0 80 4A */	lis r5, gStrMemoryCardMgrP2Assert@ha
-/* 804463BC 004432FC  38 63 AD CC */	addi r3, r3, gStrMemoryCardMgrCpp@l
+/* 804463B4 004432F4  3C 60 80 4A */	lis r3, lbl_8049ADCC@ha
+/* 804463B8 004432F8  3C A0 80 4A */	lis r5, lbl_8049ADE8@ha
+/* 804463BC 004432FC  38 63 AD CC */	addi r3, r3, lbl_8049ADCC@l
 /* 804463C0 00443300  38 80 0D 75 */	li r4, 0xd75
-/* 804463C4 00443304  38 A5 AD E8 */	addi r5, r5, gStrMemoryCardMgrP2Assert@l
+/* 804463C4 00443304  38 A5 AD E8 */	addi r5, r5, lbl_8049ADE8@l
 /* 804463C8 00443308  4C C6 31 82 */	crclr 6
 /* 804463CC 0044330C  4B BE 42 75 */	bl panic_f__12JUTExceptionFPCciPCce
 lbl_804463D0:
@@ -4483,11 +4474,11 @@ lbl_80446590:
 lbl_804465CC:
 /* 804465CC 0044350C  54 00 06 3F */	clrlwi. r0, r0, 0x18
 /* 804465D0 00443510  40 82 00 20 */	bne lbl_804465F0
-/* 804465D4 00443514  3C 60 80 4A */	lis r3, gStrMemoryCardMgrCpp@ha
-/* 804465D8 00443518  3C A0 80 4A */	lis r5, gStrMemoryCardMgrP2Assert@ha
-/* 804465DC 0044351C  38 63 AD CC */	addi r3, r3, gStrMemoryCardMgrCpp@l
+/* 804465D4 00443514  3C 60 80 4A */	lis r3, lbl_8049ADCC@ha
+/* 804465D8 00443518  3C A0 80 4A */	lis r5, lbl_8049ADE8@ha
+/* 804465DC 0044351C  38 63 AD CC */	addi r3, r3, lbl_8049ADCC@l
 /* 804465E0 00443520  38 80 0B 6A */	li r4, 0xb6a
-/* 804465E4 00443524  38 A5 AD E8 */	addi r5, r5, gStrMemoryCardMgrP2Assert@l
+/* 804465E4 00443524  38 A5 AD E8 */	addi r5, r5, lbl_8049ADE8@l
 /* 804465E8 00443528  4C C6 31 82 */	crclr 6
 /* 804465EC 0044352C  4B BE 40 55 */	bl panic_f__12JUTExceptionFPCciPCce
 lbl_804465F0:
@@ -4497,11 +4488,11 @@ lbl_804465F0:
 /* 804465FC 0044353C  4B BD DA 4D */	bl __nwa__FUlP7JKRHeapi
 /* 80446600 00443540  7C 75 1B 79 */	or. r21, r3, r3
 /* 80446604 00443544  40 82 00 20 */	bne lbl_80446624
-/* 80446608 00443548  3C 60 80 4A */	lis r3, gStrMemoryCardMgrCpp@ha
-/* 8044660C 0044354C  3C A0 80 4A */	lis r5, gStrMemoryCardMgrP2Assert@ha
-/* 80446610 00443550  38 63 AD CC */	addi r3, r3, gStrMemoryCardMgrCpp@l
+/* 80446608 00443548  3C 60 80 4A */	lis r3, lbl_8049ADCC@ha
+/* 8044660C 0044354C  3C A0 80 4A */	lis r5, lbl_8049ADE8@ha
+/* 80446610 00443550  38 63 AD CC */	addi r3, r3, lbl_8049ADCC@l
 /* 80446614 00443554  38 80 0B 6D */	li r4, 0xb6d
-/* 80446618 00443558  38 A5 AD E8 */	addi r5, r5, gStrMemoryCardMgrP2Assert@l
+/* 80446618 00443558  38 A5 AD E8 */	addi r5, r5, lbl_8049ADE8@l
 /* 8044661C 0044355C  4C C6 31 82 */	crclr 6
 /* 80446620 00443560  4B BE 40 21 */	bl panic_f__12JUTExceptionFPCciPCce
 lbl_80446624:
@@ -4562,11 +4553,11 @@ lbl_804466D4:
 lbl_804466EC:
 /* 804466EC 0044362C  54 00 06 3F */	clrlwi. r0, r0, 0x18
 /* 804466F0 00443630  40 82 00 20 */	bne lbl_80446710
-/* 804466F4 00443634  3C 60 80 4A */	lis r3, gStrMemoryCardMgrCpp@ha
-/* 804466F8 00443638  3C A0 80 4A */	lis r5, gStrMemoryCardMgrP2Assert@ha
-/* 804466FC 0044363C  38 63 AD CC */	addi r3, r3, gStrMemoryCardMgrCpp@l
+/* 804466F4 00443634  3C 60 80 4A */	lis r3, lbl_8049ADCC@ha
+/* 804466F8 00443638  3C A0 80 4A */	lis r5, lbl_8049ADE8@ha
+/* 804466FC 0044363C  38 63 AD CC */	addi r3, r3, lbl_8049ADCC@l
 /* 80446700 00443640  38 80 0B 6A */	li r4, 0xb6a
-/* 80446704 00443644  38 A5 AD E8 */	addi r5, r5, gStrMemoryCardMgrP2Assert@l
+/* 80446704 00443644  38 A5 AD E8 */	addi r5, r5, lbl_8049ADE8@l
 /* 80446708 00443648  4C C6 31 82 */	crclr 6
 /* 8044670C 0044364C  4B BE 3F 35 */	bl panic_f__12JUTExceptionFPCciPCce
 lbl_80446710:
@@ -4576,11 +4567,11 @@ lbl_80446710:
 /* 8044671C 0044365C  4B BD D9 2D */	bl __nwa__FUlP7JKRHeapi
 /* 80446720 00443660  7C 73 1B 79 */	or. r19, r3, r3
 /* 80446724 00443664  40 82 00 20 */	bne lbl_80446744
-/* 80446728 00443668  3C 60 80 4A */	lis r3, gStrMemoryCardMgrCpp@ha
-/* 8044672C 0044366C  3C A0 80 4A */	lis r5, gStrMemoryCardMgrP2Assert@ha
-/* 80446730 00443670  38 63 AD CC */	addi r3, r3, gStrMemoryCardMgrCpp@l
+/* 80446728 00443668  3C 60 80 4A */	lis r3, lbl_8049ADCC@ha
+/* 8044672C 0044366C  3C A0 80 4A */	lis r5, lbl_8049ADE8@ha
+/* 80446730 00443670  38 63 AD CC */	addi r3, r3, lbl_8049ADCC@l
 /* 80446734 00443674  38 80 0B 6D */	li r4, 0xb6d
-/* 80446738 00443678  38 A5 AD E8 */	addi r5, r5, gStrMemoryCardMgrP2Assert@l
+/* 80446738 00443678  38 A5 AD E8 */	addi r5, r5, lbl_8049ADE8@l
 /* 8044673C 0044367C  4C C6 31 82 */	crclr 6
 /* 80446740 00443680  4B BE 3F 01 */	bl panic_f__12JUTExceptionFPCciPCce
 lbl_80446744:
@@ -4688,11 +4679,11 @@ lbl_804468A0:
 lbl_804468A4:
 /* 804468A4 004437E4  57 E0 06 3F */	clrlwi. r0, r31, 0x18
 /* 804468A8 004437E8  40 82 00 20 */	bne lbl_804468C8
-/* 804468AC 004437EC  3C 60 80 4A */	lis r3, gStrMemoryCardMgrCpp@ha
-/* 804468B0 004437F0  3C A0 80 4A */	lis r5, gStrMemoryCardMgrP2Assert@ha
-/* 804468B4 004437F4  38 63 AD CC */	addi r3, r3, gStrMemoryCardMgrCpp@l
+/* 804468AC 004437EC  3C 60 80 4A */	lis r3, lbl_8049ADCC@ha
+/* 804468B0 004437F0  3C A0 80 4A */	lis r5, lbl_8049ADE8@ha
+/* 804468B4 004437F4  38 63 AD CC */	addi r3, r3, lbl_8049ADCC@l
 /* 804468B8 004437F8  38 80 0E BD */	li r4, 0xebd
-/* 804468BC 004437FC  38 A5 AD E8 */	addi r5, r5, gStrMemoryCardMgrP2Assert@l
+/* 804468BC 004437FC  38 A5 AD E8 */	addi r5, r5, lbl_8049ADE8@l
 /* 804468C0 00443800  4C C6 31 82 */	crclr 6
 /* 804468C4 00443804  4B BE 3D 7D */	bl panic_f__12JUTExceptionFPCciPCce
 lbl_804468C8:

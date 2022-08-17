@@ -1,33 +1,20 @@
 .include "macros.inc"
 .section .rodata  # 0x804732E0 - 0x8049E220
 .balign 8
-.global lbl_8049B368
 lbl_8049B368:
-	.4byte 0x6C6F6164
-	.4byte 0x5265736F
-	.4byte 0x75726365
-	.4byte 0x2E637070
-	.4byte 0x00000000
-	.4byte 0x4172616D
-	.4byte 0x526F6F74
-	.4byte 0x00000000
+	.asciz "loadResource.cpp"
+.balign 4
+lbl_8049B37C:
+	.asciz "AramRoot"
+.balign 4
+lbl_8049B388:
 	.asciz "P2Assert"
-	.skip 3
-.global lbl_8049B394
+.balign 4
 lbl_8049B394:
-	.4byte 0x6D6F756E
-	.4byte 0x74206172
-	.4byte 0x63206661
-	.4byte 0x696C7572
-	.4byte 0x65000000
-.global lbl_8049B3A8
+	.asciz "mount arc failure"
+.balign 4
 lbl_8049B3A8:
-	.4byte 0x556E6B6E
-	.4byte 0x6F776E20
-	.4byte 0x666C6167
-	.4byte 0x3A256420
-	.4byte 0x0A000000
-	.4byte 0x00000000
+	.asciz "Unknown flag:%d \n"
 
 .section .data, "wa"	# 0x8049E220 - 0x804EFC20
 .balign 8
@@ -40,20 +27,17 @@ __vt__Q212LoadResource4Node:
 	.4byte 0
 	.4byte 0
 	.4byte "@24@__dt__Q212LoadResource4NodeFv"
-	.4byte 0
 
 .section .sdata2, "a"     # 0x80516360 - 0x80520E40
 .balign 8
-.global lbl_80520AA8
 lbl_80520AA8:
-	.4byte 0x44766452
-	.4byte 0x6F6F7400
+	.asciz "DvdRoot"
 
 .section .sbss # 0x80514D80 - 0x80516360
 .balign 8
 .global gLoadResourceMgr
 gLoadResourceMgr:
-	.skip 0x8
+	.skip 0x4
 
 .section .text, "ax"  # 0x800056C0 - 0x80472F00
 .global __dt__Q212LoadResource4NodeFv

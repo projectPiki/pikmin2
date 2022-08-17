@@ -1,17 +1,11 @@
 .include "macros.inc"
 .section .rodata  # 0x804732E0 - 0x8049E220
 .balign 8
-.global lbl_8049BA58
 lbl_8049BA58:
-	.4byte 0x73637265
-	.4byte 0x656E4F62
-	.4byte 0x6A2E6370
-	.4byte 0x70000000
-.global lbl_8049BA68
+	.asciz "screenObj.cpp"
+.balign 4
 lbl_8049BA68:
 	.asciz "P2Assert"
-	.skip 3
-	.4byte 0x00000000
 
 .section .data, "wa"	# 0x8049E220 - 0x804EFC20
 .balign 8
@@ -50,16 +44,13 @@ __vt__Q26Screen7ObjBase:
 
 .section .sdata2, "a"     # 0x80516360 - 0x80520E40
 .balign 8
-.global lbl_80520B88
 lbl_80520B88:
-	.4byte 0x4E6F204E
-	.4byte 0x616D6500
-.global lbl_80520B90
+	.asciz "No Name"
+.balign 4
 lbl_80520B90:
-	.4byte 0x00000000
-.global lbl_80520B94
+	.float 0.0
 lbl_80520B94:
-	.4byte 0x42C80000
+	.float 100.0
 
 .section .text, "ax"  # 0x800056C0 - 0x80472F00
 .global __ct__Q26Screen7ObjBaseFv

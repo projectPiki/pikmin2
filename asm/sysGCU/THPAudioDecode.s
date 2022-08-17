@@ -108,7 +108,6 @@ lbl_8044D3F8:
 /* 8044D400 0044A340  38 21 00 10 */	addi r1, r1, 0x10
 /* 8044D404 0044A344  4E 80 00 20 */	blr 
 
-.global AudioDecoder__FPv
 AudioDecoder__FPv:
 /* 8044D408 0044A348  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 8044D40C 0044A34C  7C 08 02 A6 */	mflr r0
@@ -122,7 +121,6 @@ lbl_8044D418:
 /* 8044D428 0044A368  48 00 24 5D */	bl PushReadedBuffer2
 /* 8044D42C 0044A36C  4B FF FF EC */	b lbl_8044D418
 
-.global AudioDecoderForOnMemory__FPv
 AudioDecoderForOnMemory__FPv:
 /* 8044D430 0044A370  94 21 FF D0 */	stwu r1, -0x30(r1)
 /* 8044D434 0044A374  7C 08 02 A6 */	mflr r0
@@ -171,7 +169,6 @@ lbl_8044D4D0:
 /* 8044D4D0 0044A410  3B FF 00 01 */	addi r31, r31, 1
 /* 8044D4D4 0044A414  4B FF FF 88 */	b lbl_8044D45C
 
-.global AudioDecode__FP13THPReadBuffer
 AudioDecode__FP13THPReadBuffer:
 /* 8044D4D8 0044A418  94 21 FF E0 */	stwu r1, -0x20(r1)
 /* 8044D4DC 0044A41C  7C 08 02 A6 */	mflr r0

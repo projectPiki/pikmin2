@@ -72,7 +72,6 @@ lbl_8049E0C0:
 .balign 4
 lbl_8049E0DC:
 	.asciz "file num over\n"
-.balign 4
 
 .section .data, "wa"  # 0x8049E220 - 0x804EFC20
 .balign 8
@@ -85,13 +84,11 @@ __vt__Q23PSM15BgmTrackMapFile:
 	.4byte 0
 	.4byte 0
 	.4byte "@28@__dt__Q23PSM15BgmTrackMapFileFv"
-	.4byte 0
 
 .section .sdata2, "a"     # 0x80516360 - 0x80520E40
 .balign 8
 lbl_80520DB0:
 	.asciz ""
-.balign 4
 
 .section .text, "ax"  # 0x800056C0 - 0x80472F00
 .global __ct__Q23PSM15BgmTrackMapFileFb

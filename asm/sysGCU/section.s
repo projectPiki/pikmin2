@@ -6,7 +6,9 @@ lbl_constructor:
 .section .rodata  # 0x804732E0 - 0x8049E220
 .balign 8
 lbl_804999F0: #unused? three zero floats?
-	.skip 0xC
+	.4byte 0
+	.4byte 0
+	.4byte 0
 .balign 4
 lbl_804999FC:
 	.asciz "PSGame.h"
@@ -92,10 +94,10 @@ lbl_80520454:
 .balign 4
 .if version == 1
 lbl_8052045C:
-	.4byte 0x43340000
+	.float 180.0
 .else
 lbl_8052045C: #unused?
-	.4byte 0x00000000
+	.float 0.0
 .endif
 
 .section .text, "ax"  # 0x800056C0 - 0x80472F00

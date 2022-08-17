@@ -1,17 +1,11 @@
 .include "macros.inc"
 .section .rodata  # 0x804732E0 - 0x8049E220
 .balign 8
-.global lbl_8049A6C0
 lbl_8049A6C0:
-	.4byte 0x50324453
-	.4byte 0x63726565
-	.4byte 0x6E2E6370
-	.4byte 0x70000000
-.global lbl_8049A6D0
+	.asciz "P2DScreen.cpp"
+.balign 4
 lbl_8049A6D0:
 	.asciz "P2Assert"
-	.skip 3
-	.4byte 0x00000000
 
 .section .data, "wa"  # 0x8049E220 - 0x804EFC20
 .balign 8
@@ -102,31 +96,27 @@ __vt__Q29P2DScreen3Mgr:
 
 .section .sdata2, "a"     # 0x80516360 - 0x80520E40
 .balign 8
-.global lbl_80520790
 lbl_80520790:
-	.4byte 0x00000000
+	.float 0.0
 .global mstTuningScaleX__Q29P2DScreen10Mgr_tuning
 mstTuningScaleX__Q29P2DScreen10Mgr_tuning:
-	.4byte 0x3F733333
+	.float 0.95
 .global mstTuningScaleY__Q29P2DScreen10Mgr_tuning
 mstTuningScaleY__Q29P2DScreen10Mgr_tuning:
-	.4byte 0x3F733333
+	.float 0.95
 .global mstTuningTransX__Q29P2DScreen10Mgr_tuning
 mstTuningTransX__Q29P2DScreen10Mgr_tuning:
-	.4byte 0xC1733333
+	.float -15.2
 .global mstTuningTransY__Q29P2DScreen10Mgr_tuning
 mstTuningTransY__Q29P2DScreen10Mgr_tuning:
-	.4byte 0xC1733333
-.global lbl_805207A4
+	.float -15.2
 lbl_805207A4:
-	.4byte 0x3F733333
-.global lbl_805207A8
+	.float 0.95
 lbl_805207A8:
-	.4byte 0xC1733333
-.global lbl_805207AC
+	.float -15.2
 lbl_805207AC:
 	.float 0.5
-.global lbl_805207B0
+.balign 8
 lbl_805207B0:
 	.4byte 0x43300000
 	.4byte 0x00000000

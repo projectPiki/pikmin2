@@ -112,19 +112,14 @@ VolumeTable:
 .balign 8
 Initialized:
 	.skip 0x4
-.global PrepareReadyMessage
 PrepareReadyMessage:
 	.skip 0x4
-.global OldVIPostCallback
 OldVIPostCallback:
 	.skip 0x4
-.global SoundBufferIndex
 SoundBufferIndex:
 	.skip 0x4
-.global LastAudioBuffer
 LastAudioBuffer:
 	.skip 0x4
-.global CurAudioBuffer
 CurAudioBuffer:
 	.skip 0x4
 
@@ -145,7 +140,6 @@ lbl_80520B08:
 	.4byte 0x80000000
 
 .section .text, "ax"  # 0x800056C0 - 0x80472F00
-.global audioCallbackWithMSound__Fl
 audioCallbackWithMSound__Fl:
 /* 8044DE38 0044AD78  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 8044DE3C 0044AD7C  7C 08 02 A6 */	mflr r0
@@ -1087,7 +1081,6 @@ lbl_8044EB5C:
 /* 8044EB5C 0044BA9C  38 60 00 00 */	li r3, 0
 /* 8044EB60 0044BAA0  4E 80 00 20 */	blr 
 
-.global PlayControl__FUl
 PlayControl__FUl:
 /* 8044EB64 0044BAA4  94 21 FF E0 */	stwu r1, -0x20(r1)
 /* 8044EB68 0044BAA8  7C 08 02 A6 */	mflr r0
@@ -1280,7 +1273,6 @@ lbl_8044EE00:
 /* 8044EE14 0044BD54  38 21 00 20 */	addi r1, r1, 0x20
 /* 8044EE18 0044BD58  4E 80 00 20 */	blr 
 
-.global ProperTimingForStart__Fv
 ProperTimingForStart__Fv:
 /* 8044EE1C 0044BD5C  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 8044EE20 0044BD60  7C 08 02 A6 */	mflr r0
@@ -1314,7 +1306,6 @@ lbl_8044EE78:
 /* 8044EE80 0044BDC0  38 21 00 10 */	addi r1, r1, 0x10
 /* 8044EE84 0044BDC4  4E 80 00 20 */	blr 
 
-.global ProperTimingForGettingNextFrame__Fv
 ProperTimingForGettingNextFrame__Fv:
 /* 8044EE88 0044BDC8  94 21 FF E0 */	stwu r1, -0x20(r1)
 /* 8044EE8C 0044BDCC  7C 08 02 A6 */	mflr r0
@@ -1508,7 +1499,6 @@ lbl_8044F120:
 /* 8044F128 0044C068  38 21 00 10 */	addi r1, r1, 0x10
 /* 8044F12C 0044C06C  4E 80 00 20 */	blr 
 
-.global PushUsedTextureSet__FPv
 PushUsedTextureSet__FPv:
 /* 8044F130 0044C070  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 8044F134 0044C074  7C 08 02 A6 */	mflr r0
@@ -1523,7 +1513,6 @@ PushUsedTextureSet__FPv:
 /* 8044F158 0044C098  38 21 00 10 */	addi r1, r1, 0x10
 /* 8044F15C 0044C09C  4E 80 00 20 */	blr 
 
-.global PopUsedTextureSet__Fv
 PopUsedTextureSet__Fv:
 /* 8044F160 0044C0A0  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 8044F164 0044C0A4  7C 08 02 A6 */	mflr r0
@@ -1580,7 +1569,6 @@ lbl_8044F200:
 /* 8044F20C 0044C14C  38 21 00 20 */	addi r1, r1, 0x20
 /* 8044F210 0044C150  4E 80 00 20 */	blr 
 
-.global MixAudio__FPsPsUl
 MixAudio__FPsPsUl:
 /* 8044F214 0044C154  94 21 FF 80 */	stwu r1, -0x80(r1)
 /* 8044F218 0044C158  7C 08 02 A6 */	mflr r0
