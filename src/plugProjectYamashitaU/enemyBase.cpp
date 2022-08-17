@@ -834,7 +834,7 @@ void StoneState::init(Game::EnemyBase* enemy, Game::StateArg* arg)
 		enemy->setEvent(0, EB_Constraint);
 	}
 
-	if (enemy->m_emotion == 2 && PSGetDirectedMainBgm()) {
+	if (enemy->m_emotion == EMOTE_Excitement && PSGetDirectedMainBgm()) {
 		enemy->m_soundObj->battleOff();
 	}
 
@@ -859,7 +859,7 @@ void StoneState::cleanup(Game::EnemyBase* enemy)
 	enemy->startMotion();
 	enemy->doFinishStoneState();
 
-	if ((enemy->m_emotion == 2) && PSGetDirectedMainBgm()) {
+	if ((enemy->m_emotion == EMOTE_Excitement) && PSGetDirectedMainBgm()) {
 		enemy->m_soundObj->battleOn();
 	}
 }
@@ -962,7 +962,7 @@ Game::EnemyBase::EnemyBase()
     , _1A4()
     , m_events()
     , _1E8()
-    , m_emotion(1)
+    , m_emotion(EMOTE_Caution)
     , m_enemyIndexForType(0xFF)
     , _1F2(0xFF)
     , m_stickPikminCount(0)
@@ -1129,7 +1129,7 @@ void EnemyBase::fadeEfxHamon()
  */
 void EnemyBase::setEmotionCaution()
 {
-	m_emotion = 1;
+	m_emotion = EMOTE_Caution;
 	if (PSGetDirectedMainBgm() != nullptr) {
 		m_soundObj->battleOff();
 	}
@@ -1142,7 +1142,7 @@ void EnemyBase::setEmotionCaution()
  */
 void EnemyBase::setEmotionExcitement()
 {
-	m_emotion = 2;
+	m_emotion = EMOTE_Excitement;
 	m_soundObj->battleOn();
 }
 
@@ -1153,7 +1153,7 @@ void EnemyBase::setEmotionExcitement()
  */
 void EnemyBase::setEmotionNone()
 {
-	m_emotion = 0;
+	m_emotion = EMOTE_None;
 	if (PSGetDirectedMainBgm() != nullptr) {
 		m_soundObj->battleOff();
 	}
@@ -2129,7 +2129,7 @@ void EnemyBase::birth(Vector3f& pos, float faceDir)
 		lifeGaugeMgr->activeLifeGauge(this, 1.0f);
 	}
 	m_model->hide();
-	m_emotion    = 1;
+	m_emotion    = EMOTE_Caution;
 	_2AC         = 0.0f;
 	_2A8         = 0.0f;
 	m_scaleTimer = 0.0f;
@@ -5829,7 +5829,7 @@ void EnemyBase::viewOnPelletKilled()
 	}
 
 	fadeEffects();
-	m_emotion = 0;
+	m_emotion = EMOTE_None;
 
 	if (PSGetDirectedMainBgm()) {
 		m_soundObj->battleOff();
