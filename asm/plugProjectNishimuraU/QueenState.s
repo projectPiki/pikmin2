@@ -5,10 +5,10 @@ lbl_constructor:
 
 .section .data, "wa"  # 0x8049E220 - 0x804EFC20
 .balign 8
-lbl_804C9AB8:
-	.4byte 0x00000000
-	.4byte 0x00000000
-	.4byte 0x00000000
+govNAN___Q24Game5P2JST:
+	.float 0.0
+	.float 0.0
+	.float 0.0
 .global __vt__Q34Game5Queen9StateBorn
 __vt__Q34Game5Queen9StateBorn:
 	.4byte 0
@@ -111,57 +111,58 @@ __vt__Q34Game5Queen3FSM:
 
 .section .sbss # 0x80514D80 - 0x80516360
 .balign 8
-lbl_80515D48:
+gu32NAN___Q24Game5P2JST:
 	.skip 0x4
-lbl_80515D4C:
+gfNAN___Q24Game5P2JST:
 	.skip 0x4
 
 .section .sdata2, "a"     # 0x80516360 - 0x80520E40
 .balign 8
 lbl_8051B798:
-	.4byte 0x64656164
-	.4byte 0x00000000
+	.asciz "dead"
+.balign 4
 lbl_8051B7A0:
-	.4byte 0x736C6565
-	.4byte 0x70000000
+	.asciz "sleep"
+.balign 4
 lbl_8051B7A8:
-	.4byte 0x77616974
-	.4byte 0x00000000
+	.asciz "wait"
+.balign 4
 lbl_8051B7B0:
-	.4byte 0x64616D61
-	.4byte 0x67650000
+	.asciz "damage"
+.balign 4
 lbl_8051B7B8:
-	.4byte 0x666C6963
-	.4byte 0x6B000000
+	.asciz "flick"
+.balign 4
 lbl_8051B7C0:
-	.4byte 0x726F6C6C
-	.4byte 0x696E6700
+	.asciz "rolling"
+.balign 4
 lbl_8051B7C8:
-	.4byte 0x626F726E
-	.4byte 0x00000000
+	.asciz "born"
+.balign 4
 lbl_8051B7D0:
-	.4byte 0x00000000
+	.float 0.0
 lbl_8051B7D4:
-	.4byte 0x41F00000
+	.float 30.0
+.balign 4
 lbl_8051B7D8:
-	.4byte 0x6C656674
-	.4byte 0x00000000
-lbl_8051B7E0:
-	.4byte 0x3FC90FDB
-lbl_8051B7E4:
-	.4byte 0xBFC90FDB
+	.asciz "left"
+.balign 4
+lbl_8051B7E0: # half-pi
+	.float 1.5707964
+lbl_8051B7E4: # negative half-pi
+	.float -1.5707964
 lbl_8051B7E8:
-	.4byte 0x43A2F983
+	.float 325.9493
 lbl_8051B7EC:
-	.4byte 0xC3A2F983
+	.float -325.9493
 lbl_8051B7F0:
-	.4byte 0x41200000
+	.float 10.0
 lbl_8051B7F4:
 	.float 1.0
 lbl_8051B7F8:
-	.4byte 0xC47A0000
+	.float -1000.0
 lbl_8051B7FC:
-	.4byte 0x42480000
+	.float 50.0
 
 .section .text, "ax"  # 0x800056C0 - 0x80472F00
 .global init__Q34Game5Queen3FSMFPQ24Game9EnemyBase
@@ -1488,15 +1489,14 @@ cleanup__Q34Game5Queen9StateBornFPQ24Game9EnemyBase:
 /* 80288E10 00285D50  38 21 00 10 */	addi r1, r1, 0x10
 /* 80288E14 00285D54  4E 80 00 20 */	blr 
 
-.global __sinit_QueenState_cpp
-__sinit_QueenState_cpp:
+__sinit_QueenState_cpp: # static initializer
 /* 80288E18 00285D58  3C 80 80 51 */	lis r4, __float_nan@ha
 /* 80288E1C 00285D5C  38 00 FF FF */	li r0, -1
 /* 80288E20 00285D60  C0 04 48 B0 */	lfs f0, __float_nan@l(r4)
-/* 80288E24 00285D64  3C 60 80 4D */	lis r3, lbl_804C9AB8@ha
-/* 80288E28 00285D68  90 0D 96 C8 */	stw r0, lbl_80515D48@sda21(r13)
-/* 80288E2C 00285D6C  D4 03 9A B8 */	stfsu f0, lbl_804C9AB8@l(r3)
-/* 80288E30 00285D70  D0 0D 96 CC */	stfs f0, lbl_80515D4C@sda21(r13)
+/* 80288E24 00285D64  3C 60 80 4D */	lis r3, govNAN___Q24Game5P2JST@ha
+/* 80288E28 00285D68  90 0D 96 C8 */	stw r0, gu32NAN___Q24Game5P2JST@sda21(r13)
+/* 80288E2C 00285D6C  D4 03 9A B8 */	stfsu f0, govNAN___Q24Game5P2JST@l(r3)
+/* 80288E30 00285D70  D0 0D 96 CC */	stfs f0, gfNAN___Q24Game5P2JST@sda21(r13)
 /* 80288E34 00285D74  D0 03 00 04 */	stfs f0, 4(r3)
 /* 80288E38 00285D78  D0 03 00 08 */	stfs f0, 8(r3)
 /* 80288E3C 00285D7C  4E 80 00 20 */	blr 

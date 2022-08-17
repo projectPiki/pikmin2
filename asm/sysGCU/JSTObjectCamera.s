@@ -5,10 +5,10 @@ lbl_constructor:
 
 .section .data, "wa"  # 0x8049E220 - 0x804EFC20
 .balign 8
-lbl_804EC110:
-	.4byte 0x00000000
-	.4byte 0x00000000
-	.4byte 0x00000000
+govNAN___Q24Game5P2JST:
+	.float 0.0
+	.float 0.0
+	.float 0.0
 .global __vt__Q34Game5P2JST12ObjectCamera
 __vt__Q34Game5P2JST12ObjectCamera:
 	.4byte 0
@@ -63,34 +63,32 @@ __vt__Q34Game5P2JST12ObjectCamera:
 	.4byte update__Q34Game5P2JST12ObjectCameraFv
 	.4byte start__Q34Game5P2JST12ObjectCameraFv
 	.4byte stop__Q34Game5P2JST12ObjectCameraFv
-	.4byte 0
 
 .section .sbss # 0x80514D80 - 0x80516360
 .balign 8
-lbl_805161E0:
+gu32NAN___Q24Game5P2JST:
 	.skip 0x4
-lbl_805161E4:
+gfNAN___Q24Game5P2JST:
 	.skip 0x4
-.global sFovBackup__Q24Game5P2JST
 sFovBackup__Q24Game5P2JST:
 	.skip 0x4
 
 .section .sdata2, "a"     # 0x80516360 - 0x80520E40
 .balign 8
 lbl_80520698:
-	.4byte 0x42340000
-	.4byte 0x00000000
+	.float 45.0
+.balign 8
 lbl_805206A0:
 	.4byte 0x43300000
 	.4byte 0x80000000
 lbl_805206A8:
-	.4byte 0x00000000
+	.float 0.0
 lbl_805206AC:
 	.float 1.0
 lbl_805206B0:
-	.4byte 0x3C8EFA35
+	.float 0.017453292
 lbl_805206B4:
-	.4byte 0x43480000
+	.float 200.0
 
 .section .text, "ax"  # 0x800056C0 - 0x80472F00
 .global __ct__Q34Game5P2JST12ObjectCameraFPCcPQ24Game11MoviePlayer
@@ -106,7 +104,7 @@ __ct__Q34Game5P2JST12ObjectCameraFPCcPQ24Game11MoviePlayer:
 /* 8042F704 0042C644  93 E1 00 0C */	stw r31, 0xc(r1)
 /* 8042F708 0042C648  7C 7F 1B 78 */	mr r31, r3
 /* 8042F70C 0042C64C  3C 60 80 4A */	lis r3, __vt__Q26JStage7TCamera@ha
-/* 8042F710 0042C650  C0 0D 9B 64 */	lfs f0, lbl_805161E4@sda21(r13)
+/* 8042F710 0042C650  C0 0D 9B 64 */	lfs f0, gfNAN___Q24Game5P2JST@sda21(r13)
 /* 8042F714 0042C654  90 1F 00 00 */	stw r0, 0(r31)
 /* 8042F718 0042C658  38 03 35 E8 */	addi r0, r3, __vt__Q26JStage7TCamera@l
 /* 8042F71C 0042C65C  3C 60 80 4F */	lis r3, __vt__Q34Game5P2JST12ObjectCamera@ha
@@ -114,9 +112,9 @@ __ct__Q34Game5P2JST12ObjectCameraFPCcPQ24Game11MoviePlayer:
 /* 8042F724 0042C664  90 1F 00 00 */	stw r0, 0(r31)
 /* 8042F728 0042C668  39 03 C1 1C */	addi r8, r3, __vt__Q34Game5P2JST12ObjectCamera@l
 /* 8042F72C 0042C66C  38 06 C0 F0 */	addi r0, r6, __vt__Q34Game5P2JST10ObjectBase@l
-/* 8042F730 0042C670  3C 60 80 4F */	lis r3, lbl_804EC110@ha
+/* 8042F730 0042C670  3C 60 80 4F */	lis r3, govNAN___Q24Game5P2JST@ha
 /* 8042F734 0042C674  90 1F 00 04 */	stw r0, 4(r31)
-/* 8042F738 0042C678  38 C3 C1 10 */	addi r6, r3, lbl_804EC110@l
+/* 8042F738 0042C678  38 C3 C1 10 */	addi r6, r3, govNAN___Q24Game5P2JST@l
 /* 8042F73C 0042C67C  38 E8 00 94 */	addi r7, r8, 0x94
 /* 8042F740 0042C680  80 06 00 08 */	lwz r0, 8(r6)
 /* 8042F744 0042C684  90 BF 00 08 */	stw r5, 8(r31)
@@ -191,14 +189,14 @@ lbl_8042F820:
 reset__Q34Game5P2JST12ObjectCameraFv:
 /* 8042F83C 0042C77C  94 21 FF E0 */	stwu r1, -0x20(r1)
 /* 8042F840 0042C780  7C 08 02 A6 */	mflr r0
-/* 8042F844 0042C784  3C 80 80 4F */	lis r4, lbl_804EC110@ha
-/* 8042F848 0042C788  C0 2D 9B 64 */	lfs f1, lbl_805161E4@sda21(r13)
+/* 8042F844 0042C784  3C 80 80 4F */	lis r4, govNAN___Q24Game5P2JST@ha
+/* 8042F848 0042C788  C0 2D 9B 64 */	lfs f1, gfNAN___Q24Game5P2JST@sda21(r13)
 /* 8042F84C 0042C78C  90 01 00 24 */	stw r0, 0x24(r1)
 /* 8042F850 0042C790  C0 02 23 38 */	lfs f0, lbl_80520698@sda21(r2)
 /* 8042F854 0042C794  93 E1 00 1C */	stw r31, 0x1c(r1)
 /* 8042F858 0042C798  93 C1 00 18 */	stw r30, 0x18(r1)
 /* 8042F85C 0042C79C  7C 7E 1B 78 */	mr r30, r3
-/* 8042F860 0042C7A0  38 64 C1 10 */	addi r3, r4, lbl_804EC110@l
+/* 8042F860 0042C7A0  38 64 C1 10 */	addi r3, r4, govNAN___Q24Game5P2JST@l
 /* 8042F864 0042C7A4  C0 83 00 00 */	lfs f4, 0(r3)
 /* 8042F868 0042C7A8  C0 63 00 04 */	lfs f3, 4(r3)
 /* 8042F86C 0042C7AC  D0 9E 00 90 */	stfs f4, 0x90(r30)
@@ -595,15 +593,14 @@ lbl_8042FD44:
 /* 8042FD58 0042CC98  38 21 00 10 */	addi r1, r1, 0x10
 /* 8042FD5C 0042CC9C  4E 80 00 20 */	blr 
 
-.global __sinit_JSTObjectCamera_cpp
-__sinit_JSTObjectCamera_cpp:
+__sinit_JSTObjectCamera_cpp: # static initializer
 /* 8042FD60 0042CCA0  3C 80 80 51 */	lis r4, __float_nan@ha
 /* 8042FD64 0042CCA4  38 00 FF FF */	li r0, -1
 /* 8042FD68 0042CCA8  C0 04 48 B0 */	lfs f0, __float_nan@l(r4)
-/* 8042FD6C 0042CCAC  3C 60 80 4F */	lis r3, lbl_804EC110@ha
-/* 8042FD70 0042CCB0  90 0D 9B 60 */	stw r0, lbl_805161E0@sda21(r13)
-/* 8042FD74 0042CCB4  D4 03 C1 10 */	stfsu f0, lbl_804EC110@l(r3)
-/* 8042FD78 0042CCB8  D0 0D 9B 64 */	stfs f0, lbl_805161E4@sda21(r13)
+/* 8042FD6C 0042CCAC  3C 60 80 4F */	lis r3, govNAN___Q24Game5P2JST@ha
+/* 8042FD70 0042CCB0  90 0D 9B 60 */	stw r0, gu32NAN___Q24Game5P2JST@sda21(r13)
+/* 8042FD74 0042CCB4  D4 03 C1 10 */	stfsu f0, govNAN___Q24Game5P2JST@l(r3)
+/* 8042FD78 0042CCB8  D0 0D 9B 64 */	stfs f0, gfNAN___Q24Game5P2JST@sda21(r13)
 /* 8042FD7C 0042CCBC  D0 03 00 04 */	stfs f0, 4(r3)
 /* 8042FD80 0042CCC0  D0 03 00 08 */	stfs f0, 8(r3)
 /* 8042FD84 0042CCC4  4E 80 00 20 */	blr 

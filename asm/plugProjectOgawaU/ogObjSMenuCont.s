@@ -5,88 +5,26 @@ lbl_constructor:
 
 .section .rodata  # 0x804732E0 - 0x8049E220
 .balign 8
-.global lbl_8048F7D0
 lbl_8048F7D0:
-	.4byte 0x6F674F62
-	.4byte 0x6A534D65
-	.4byte 0x6E75436F
-	.4byte 0x6E742E63
-	.4byte 0x70700000
-	.4byte 0x735F6D65
-	.4byte 0x6E755F63
-	.4byte 0x6F6E7472
-	.4byte 0x6F6C6C65
-	.4byte 0x722E626C
-	.4byte 0x6F000000
-	.4byte 0x735F6D65
-	.4byte 0x6E755F63
-	.4byte 0x6F6E7472
-	.4byte 0x6F6C6C65
-	.4byte 0x722E6274
-	.4byte 0x6B000000
-	.4byte 0x735F6D65
-	.4byte 0x6E755F63
-	.4byte 0x6F6E7472
-	.4byte 0x6F6C6C65
-	.4byte 0x725F3032
-	.4byte 0x2E62746B
-	.4byte 0x00000000
-	.4byte 0x73637265
-	.4byte 0x656E4F62
-	.4byte 0x6A2E6800
+	.asciz "ogObjSMenuCont.cpp"
+.balign 4
+lbl_8048F7E4:
+	.asciz "s_menu_controller.blo"
+.balign 4
+lbl_8048F7FC:
+	.asciz "s_menu_controller.btk"
+.balign 4
+lbl_8048F814:
+	.asciz "s_menu_controller_02.btk"
+.balign 4
+lbl_8048F830:
+	.asciz "screenObj.h"
+.balign 4
+lbl_8048F83C:
 	.asciz "P2Assert"
-	.skip 3
 
 .section .data, "wa"  # 0x8049E220 - 0x804EFC20
 .balign 8
-.global lbl_804DA328
-lbl_804DA328:
-	.4byte lbl_8033058C
-	.4byte lbl_8033058C
-	.4byte lbl_8033058C
-	.4byte lbl_80330590
-	.4byte lbl_80330590
-	.4byte lbl_80330590
-	.4byte lbl_80330590
-	.4byte lbl_80330590
-	.4byte lbl_80330590
-	.4byte lbl_80330590
-	.4byte lbl_8033058C
-	.4byte lbl_8033058C
-	.4byte lbl_8033058C
-	.4byte lbl_8033058C
-	.4byte lbl_80330590
-	.4byte lbl_80330590
-	.4byte lbl_80330590
-	.4byte lbl_80330590
-	.4byte lbl_80330590
-	.4byte lbl_80330590
-	.4byte lbl_8033058C
-	.4byte lbl_80330590
-	.4byte lbl_80330590
-	.4byte lbl_8033058C
-.global __vt__Q32og9newScreen9SMenuCont
-__vt__Q32og9newScreen9SMenuCont:
-	.4byte 0
-	.4byte 0
-	.4byte getSceneType__Q32og9newScreen9SMenuContFv
-	.4byte getOwnerID__Q32og9newScreen9SMenuContFv
-	.4byte getMemberID__Q32og9newScreen9SMenuContFv
-	.4byte isUseBackupSceneInfo__Q32og9newScreen9SMenuContFv
-	.4byte isDrawInDemo__Q26Screen9SceneBaseCFv
-	.4byte getResName__Q32og9newScreen9SMenuContCFv
-	.4byte doCreateObj__Q32og9newScreen9SMenuContFP10JKRArchive
-	.4byte doUserCallBackFunc__Q32og9newScreen9SMenuContFPQ28Resource10MgrCommand
-	.4byte setPort__Q26Screen9SceneBaseFR8Graphics
-	.4byte doUpdateActive__Q32og9newScreen9SMenuContFv
-	.4byte doConfirmSetScene__Q32og9newScreen9SMenuContFRQ26Screen11SetSceneArg
-	.4byte doConfirmStartScene__Q26Screen9SceneBaseFPQ26Screen13StartSceneArg
-	.4byte doConfirmEndScene__Q26Screen9SceneBaseFRPQ26Screen11EndSceneArg
-	.4byte doStart__Q26Screen9SceneBaseFPQ26Screen13StartSceneArg
-	.4byte doEnd__Q26Screen9SceneBaseFPQ26Screen11EndSceneArg
-	.4byte setDefaultDispMember__Q26Screen9SceneBaseFv
-	.4byte doSetBackupScene__Q32og9newScreen9SMenuContFRQ26Screen11SetSceneArg
-	.4byte doGetFinishState__Q32og9newScreen14SceneSMenuBaseFv
 .global __vt__Q32og9newScreen12ObjSMenuCont
 __vt__Q32og9newScreen12ObjSMenuCont:
 	.4byte 0
@@ -140,13 +78,10 @@ msVal__Q32og9newScreen12ObjSMenuCont:
 
 .section .sdata2, "a"     # 0x80516360 - 0x80520E40
 .balign 8
-.global lbl_8051E090
 lbl_8051E090:
-	.4byte 0x00000000
-.global lbl_8051E094
+	.float 0.0
 lbl_8051E094:
-	.4byte 0x41700000
-.global lbl_8051E098
+	.float 15.0
 lbl_8051E098:
 	.float 1.0
 
@@ -641,8 +576,7 @@ doUpdateFadeout__Q32og9newScreen12ObjSMenuContFv:
 doUpdateCancelAction__Q32og9newScreen12ObjSMenuContFv:
 /* 80330D00 0032DC40  4E 80 00 20 */	blr 
 
-.global __sinit_ogObjSMenuCont_cpp
-__sinit_ogObjSMenuCont_cpp:
+__sinit_ogObjSMenuCont_cpp: # static initializer
 /* 80330D04 0032DC44  C0 02 FD 38 */	lfs f0, lbl_8051E098@sda21(r2)
 /* 80330D08 0032DC48  38 6D 98 40 */	addi r3, r13, msVal__Q32og9newScreen12ObjSMenuCont@sda21
 /* 80330D0C 0032DC4C  D0 0D 98 40 */	stfs f0, msVal__Q32og9newScreen12ObjSMenuCont@sda21(r13)

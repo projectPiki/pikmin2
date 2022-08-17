@@ -5,22 +5,19 @@ lbl_constructor:
 
 .section .rodata  # 0x804732E0 - 0x8049E220
 .balign 8
-.global lbl_80499EF8
-lbl_80499EF8:
+lbl_80499EF8: # Shift-JIS
 	.4byte 0x83418393
 	.4byte 0x83728347
 	.4byte 0x83938367
 	.4byte 0x83898343
 	.4byte 0x83670000
-	.4byte 0x00000000
 
 .section .data, "wa"  # 0x8049E220 - 0x804EFC20
 .balign 8
-.global lbl_804EBE88
-lbl_804EBE88:
-	.4byte 0x00000000
-	.4byte 0x00000000
-	.4byte 0x00000000
+govNAN___Q24Game5P2JST:
+	.float 0.0
+	.float 0.0
+	.float 0.0
 .global __vt__8LightMgr
 __vt__8LightMgr:
 	.4byte 0
@@ -45,55 +42,41 @@ __vt__8LightObj:
 
 .section .sbss # 0x80514D80 - 0x80516360
 .balign 8
-.global lbl_805161B8
-lbl_805161B8:
+gu32NAN___Q24Game5P2JST:
 	.skip 0x4
-.global lbl_805161BC
-lbl_805161BC:
+gfNAN___Q24Game5P2JST:
 	.skip 0x4
 
 .section .sdata2, "a"     # 0x80516360 - 0x80520E40
 .balign 8
-.global lbl_805205A8
 lbl_805205A8:
-	.4byte 0x00000000
-.global lbl_805205AC
+	.float 0.0
 lbl_805205AC:
-	.4byte 0x447A0000
-.global lbl_805205B0
+	.float 1000.0
 lbl_805205B0:
-	.4byte 0xBF800000
-.global lbl_805205B4
+	.float -1.0
 lbl_805205B4:
 	.float 1.0
-.global lbl_805205B8
 lbl_805205B8:
-	.4byte 0x42700000
-.global lbl_805205BC
+	.float 60.0
 lbl_805205BC:
-	.4byte 0x41800000
-.global lbl_805205C0
+	.float 16.0
 lbl_805205C0:
-	.4byte 0x41F00000
-.global lbl_805205C4
+	.float 30.0
 lbl_805205C4:
-	.4byte 0x437F0000
-.global lbl_805205C8
+	.float 255.0
 lbl_805205C8:
 	.float 0.5
-	.4byte 0x00000000
-.global lbl_805205D0
+.balign 8
 lbl_805205D0:
 	.4byte 0x43300000
 	.4byte 0x00000000
-.global lbl_805205D8
 lbl_805205D8:
-	.4byte 0x41200000
-.global lbl_805205DC
-lbl_805205DC:
+	.float 10.0
+.balign 4
+lbl_805205DC: # Shift-JIS
 	.4byte 0x83898343
 	.4byte 0x83670000
-	.4byte 0x00000000
 
 .section .text, "ax"  # 0x800056C0 - 0x80472F00
 .global __ct__8LightObjFPc10_GXLightID14ELightTypeFlagQ28JUtility6TColor
@@ -688,15 +671,14 @@ lbl_8042BCC0:
 update__8LightMgrFv:
 /* 8042BCE0 00428C20  4E 80 00 20 */	blr 
 
-.global __sinit_light_cpp
-__sinit_light_cpp:
+__sinit_light_cpp: # static initializer
 /* 8042BCE4 00428C24  3C 80 80 51 */	lis r4, __float_nan@ha
 /* 8042BCE8 00428C28  38 00 FF FF */	li r0, -1
 /* 8042BCEC 00428C2C  C0 04 48 B0 */	lfs f0, __float_nan@l(r4)
-/* 8042BCF0 00428C30  3C 60 80 4F */	lis r3, lbl_804EBE88@ha
-/* 8042BCF4 00428C34  90 0D 9B 38 */	stw r0, lbl_805161B8@sda21(r13)
-/* 8042BCF8 00428C38  D4 03 BE 88 */	stfsu f0, lbl_804EBE88@l(r3)
-/* 8042BCFC 00428C3C  D0 0D 9B 3C */	stfs f0, lbl_805161BC@sda21(r13)
+/* 8042BCF0 00428C30  3C 60 80 4F */	lis r3, govNAN___Q24Game5P2JST@ha
+/* 8042BCF4 00428C34  90 0D 9B 38 */	stw r0, gu32NAN___Q24Game5P2JST@sda21(r13)
+/* 8042BCF8 00428C38  D4 03 BE 88 */	stfsu f0, govNAN___Q24Game5P2JST@l(r3)
+/* 8042BCFC 00428C3C  D0 0D 9B 3C */	stfs f0, gfNAN___Q24Game5P2JST@sda21(r13)
 /* 8042BD00 00428C40  D0 03 00 04 */	stfs f0, 4(r3)
 /* 8042BD04 00428C44  D0 03 00 08 */	stfs f0, 8(r3)
 /* 8042BD08 00428C48  4E 80 00 20 */	blr 

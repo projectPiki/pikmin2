@@ -1,51 +1,62 @@
 .include "macros.inc"
 .section .rodata  # 0x804732E0 - 0x8049E220
 .balign 8
-.global lbl_80486890
 lbl_80486890:
-	.4byte 0x3234362D
-	.4byte 0x53617261
-	.4byte 0x694D6772
-	.4byte 0x00000000
-.global lbl_804868A0
-lbl_804868A0:
+	.asciz "246-SaraiMgr"
+.balign 4
+lbl_804868A0: # Shift-JIS
 	.4byte 0x83548389
 	.4byte 0x83438380
 	.4byte 0x8356837D
 	.4byte 0x836C815B
 	.4byte 0x83578383
 	.4byte 0x00000000
-	.4byte 0x456E656D
-	.4byte 0x79506172
-	.4byte 0x6D734261
-	.4byte 0x73650000
+.balign 4
+lbl_804868B8:
+	.asciz "EnemyParmsBase"
+.balign 4
+lbl_804868C8: # Shift-JIS
 	.4byte 0x92CA8FED
 	.4byte 0x94F28D73
 	.4byte 0x8D8282B3
 	.4byte 0x00000000
+.balign 4
+lbl_804868D8: # Shift-JIS
 	.4byte 0x92CD82DD
 	.4byte 0x94F28D73
 	.4byte 0x8D8282B3
 	.4byte 0x00000000
+.balign 4
+lbl_804868E8: # Shift-JIS
 	.4byte 0x8FF391D4
 	.4byte 0x914A88DA
 	.4byte 0x8D8282B3
 	.4byte 0x00000000
+.balign 4
+lbl_804868F8: # Shift-JIS
 	.4byte 0x92CA8FED
 	.4byte 0x88DA93AE
 	.4byte 0x91AC9378
 	.4byte 0x00000000
+.balign 4
+lbl_80486908: # Shift-JIS
 	.4byte 0x92CD82DD
 	.4byte 0x88DA93AE
 	.4byte 0x91AC9378
 	.4byte 0x00000000
+.balign 4
+lbl_80486918: # Shift-JIS
 	.4byte 0x83458346
 	.4byte 0x83438367
 	.4byte 0x8E9E8AD4
 	.4byte 0x00000000
+.balign 4
+lbl_80486928: # Shift-JIS
 	.4byte 0x8FE38FB8
 	.4byte 0x8C579094
 	.4byte 0x28302900
+.balign 4
+lbl_80486934: # Shift-JIS
 	.4byte 0x8FE38FB8
 	.4byte 0x8C579094
 	.4byte 0x28352900
@@ -310,62 +321,43 @@ __vt__Q34Game5Sarai3Mgr:
 	.4byte doLoadBmd__Q24Game12EnemyMgrBaseFPv
 	.4byte doLoadBdl__Q24Game12EnemyMgrBaseFPv
 	.4byte initGenerator__Q24Game12EnemyMgrBaseFv
-	.4byte 0
 
 .section .sdata2, "a"     # 0x80516360 - 0x80520E40
 .balign 8
-.global lbl_8051B1B0
 lbl_8051B1B0:
-	.4byte 0x42C80000
-.global lbl_8051B1B4
+	.float 100.0
 lbl_8051B1B4:
-	.4byte 0x00000000
-.global lbl_8051B1B8
+	.float 0.0
 lbl_8051B1B8:
-	.4byte 0x43960000
-.global lbl_8051B1BC
+	.float 300.0
 lbl_8051B1BC:
-	.4byte 0x42A00000
-.global lbl_8051B1C0
+	.float 80.0
 lbl_8051B1C0:
-	.4byte 0x42480000
-.global lbl_8051B1C4
+	.float 50.0
 lbl_8051B1C4:
-	.4byte 0x42960000
-.global lbl_8051B1C8
+	.float 75.0
 lbl_8051B1C8:
-	.4byte 0x40400000
-.global lbl_8051B1CC
+	.float 3.0
 lbl_8051B1CC:
-	.4byte 0x41200000
-.global lbl_8051B1D0
+	.float 10.0
 lbl_8051B1D0:
-	.4byte 0x3FC00000
-.global lbl_8051B1D4
+	.float 1.5
 lbl_8051B1D4:
-	.4byte 0x40A00000
-.global lbl_8051B1D8
+	.float 5.0
 lbl_8051B1D8:
 	.float 1.0
-.global lbl_8051B1DC
 lbl_8051B1DC:
 	.float 0.1
-.global lbl_8051B1E0
 lbl_8051B1E0:
 	.float 0.7
-.global lbl_8051B1E4
 lbl_8051B1E4:
 	.float 0.3
-.global lbl_8051B1E8
 lbl_8051B1E8:
-	.4byte 0x3F733333
-.global lbl_8051B1EC
+	.float 0.95
 lbl_8051B1EC:
-	.4byte 0x43480000
-.global lbl_8051B1F0
+	.float 200.0
 lbl_8051B1F0:
-	.4byte 0x447A0000
-	.4byte 0x00000000
+	.float 1000.0
 
 .section .text, "ax"  # 0x800056C0 - 0x80472F00
 .global __ct__Q34Game5Sarai3MgrFiUc

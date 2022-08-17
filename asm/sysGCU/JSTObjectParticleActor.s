@@ -6,25 +6,20 @@ lbl_constructor:
 .section .rodata  # 0x804732E0 - 0x8049E220
 .balign 8
 lbl_8049BA78:
-	.4byte 0x7475746F
-	.4byte 0x7269616C
-	.4byte 0x00000000
+	.asciz "tutorial"
+.balign 4
 lbl_8049BA84:
-	.4byte 0x79616B75
-	.4byte 0x7368696D
-	.4byte 0x61000000
+	.asciz "yakushima"
+.balign 4
 lbl_8049BA90:
-	.4byte 0x73747269
-	.4byte 0x6E673A25
-	.4byte 0x752C2573
-	.4byte 0x0A000000
+	.asciz "string:%u,%s\n"
 
 .section .data, "wa"  # 0x8049E220 - 0x804EFC20
 .balign 8
-lbl_804ED7D0:
-	.4byte 0x00000000
-	.4byte 0x00000000
-	.4byte 0x00000000
+govNAN___Q24Game5P2JST:
+	.float 0.0
+	.float 0.0
+	.float 0.0
 .global __vt__Q34Game5P2JST19ObjectParticleActor
 __vt__Q34Game5P2JST19ObjectParticleActor:
 	.4byte 0
@@ -89,28 +84,27 @@ __vt__Q34Game5P2JST19ObjectParticleActor:
 
 .section .sbss # 0x80514D80 - 0x80516360
 .balign 8
-lbl_805162F0:
+gu32NAN___Q24Game5P2JST:
 	.skip 0x4
-lbl_805162F4:
+gfNAN___Q24Game5P2JST:
 	.skip 0x4
 
 .section .sdata2, "a"     # 0x80516360 - 0x80520E40
 .balign 8
 lbl_80520B98:
-	.4byte 0x666F7265
-	.4byte 0x73740000
+	.asciz "forest"
+.balign 4
 lbl_80520BA0:
-	.4byte 0x6C617374
-	.4byte 0x00000000
+	.asciz "last"
+.balign 4
 lbl_80520BA8:
-	.4byte 0x00000000
+	.float 0.0
+.balign 4
 lbl_80520BAC:
-	.4byte 0x6B696C6C
-	.4byte 0x00000000
+	.asciz "kill"
+.balign 4
 lbl_80520BB4:
-	.4byte 0x4067726F
-	.4byte 0x756E6400
-	.4byte 0x00000000
+	.asciz "@ground"
 
 .section .text, "ax"  # 0x800056C0 - 0x80472F00
 .global __ct__Q34Game5P2JST19ObjectParticleActorFPCcPQ24Game11MoviePlayerPQ24Game8Creature
@@ -694,15 +688,14 @@ lbl_80454CBC:
 /* 80454CD0 00451C10  38 21 00 10 */	addi r1, r1, 0x10
 /* 80454CD4 00451C14  4E 80 00 20 */	blr 
 
-.global __sinit_JSTObjectParticleActor_cpp
-__sinit_JSTObjectParticleActor_cpp:
+__sinit_JSTObjectParticleActor_cpp: # static initializer
 /* 80454CD8 00451C18  3C 80 80 51 */	lis r4, __float_nan@ha
 /* 80454CDC 00451C1C  38 00 FF FF */	li r0, -1
 /* 80454CE0 00451C20  C0 04 48 B0 */	lfs f0, __float_nan@l(r4)
-/* 80454CE4 00451C24  3C 60 80 4F */	lis r3, lbl_804ED7D0@ha
-/* 80454CE8 00451C28  90 0D 9C 70 */	stw r0, lbl_805162F0@sda21(r13)
-/* 80454CEC 00451C2C  D4 03 D7 D0 */	stfsu f0, lbl_804ED7D0@l(r3)
-/* 80454CF0 00451C30  D0 0D 9C 74 */	stfs f0, lbl_805162F4@sda21(r13)
+/* 80454CE4 00451C24  3C 60 80 4F */	lis r3, govNAN___Q24Game5P2JST@ha
+/* 80454CE8 00451C28  90 0D 9C 70 */	stw r0, gu32NAN___Q24Game5P2JST@sda21(r13)
+/* 80454CEC 00451C2C  D4 03 D7 D0 */	stfsu f0, govNAN___Q24Game5P2JST@l(r3)
+/* 80454CF0 00451C30  D0 0D 9C 74 */	stfs f0, gfNAN___Q24Game5P2JST@sda21(r13)
 /* 80454CF4 00451C34  D0 03 00 04 */	stfs f0, 4(r3)
 /* 80454CF8 00451C38  D0 03 00 08 */	stfs f0, 8(r3)
 /* 80454CFC 00451C3C  4E 80 00 20 */	blr 

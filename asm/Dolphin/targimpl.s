@@ -7,7 +7,6 @@ gTRKMemMap:
 	.4byte 0xFFFFFFFF
 	.4byte 0x00000001
 	.4byte 0x00000001
-.global lbl_80479BB0
 lbl_80479BB0:
 	.4byte 0x60000000
 	.4byte 0x60000000
@@ -19,7 +18,6 @@ lbl_80479BB0:
 	.4byte 0x60000000
 	.4byte 0x60000000
 	.4byte 0x60000000
-.global lbl_80479BD8
 lbl_80479BD8:
 	.4byte 0x60000000
 	.4byte 0x60000000
@@ -31,7 +29,6 @@ lbl_80479BD8:
 	.4byte 0x60000000
 	.4byte 0x60000000
 	.4byte 0x60000000
-.global lbl_80479C00
 lbl_80479C00:
 	.4byte 0x60000000
 	.4byte 0x60000000
@@ -43,12 +40,8 @@ lbl_80479C00:
 	.4byte 0x60000000
 	.4byte 0x60000000
 	.4byte 0x60000000
-.global lbl_80479C28
 lbl_80479C28:
-	.4byte 0x54617267
-	.4byte 0x6574446F
-	.4byte 0x53746570
-	.4byte 0x28290A00
+	.asciz "TargetDoStep()\n"
 
 .section .data, "wa"  # 0x8049E220 - 0x804EFC20
 .balign 8
@@ -57,13 +50,11 @@ gTRKRestoreFlags:
 	.4byte 0x00000000
 	.4byte 0x00000000
 	.4byte 0x00000000
-.global gTRKExceptionStatus
 gTRKExceptionStatus:
 	.4byte 0x00000000
 	.4byte 0x00000000
 	.4byte 0x00000000
 	.4byte 0x01000000
-.global gTRKStepStatus
 gTRKStepStatus:
 	.4byte 0x00000000
 	.4byte 0x00000000
@@ -75,10 +66,12 @@ gTRKStepStatus:
 .balign 8
 .global TRK_saved_exceptionID
 TRK_saved_exceptionID:
-	.skip 0x4
+	.skip 0x2
+.balign 4
 .global gTRKState
 gTRKState:
 	.skip 0xA4
+.balign 8
 .global gTRKCPUState
 gTRKCPUState:
 	.skip 0x430
@@ -87,7 +80,7 @@ gTRKSaveState:
 	.skip 0x94
 .global TRKvalue128_temp
 TRKvalue128_temp:
-	.skip 0x14
+	.skip 0x10
 
 .section .text, "ax"  # 0x800056C0 - 0x80472F00
 .global __TRK_get_MSR
@@ -129,7 +122,7 @@ TRKInterruptHandler:
 /* 800BDF04 000BAE44  7C 53 43 A6 */	mtspr 0x113, r2
 /* 800BDF08 000BAE48  3C 40 80 4F */	lis r2, gTRKState@h
 /* 800BDF0C 000BAE4C  60 42 42 84 */	ori r2, r2, gTRKState@l
-/* 800BDF10 000BAE50  80 42 00 8C */	lwz r2, lbl_8051E3EC@sda21(r2)
+/* 800BDF10 000BAE50  80 42 00 8C */	lwz r2, 0x8C(r2)
 /* 800BDF14 000BAE54  60 42 80 02 */	ori r2, r2, 0x8002
 /* 800BDF18 000BAE58  68 42 80 02 */	xori r2, r2, 0x8002
 /* 800BDF1C 000BAE5C  7C 00 04 AC */	sync 0
@@ -137,103 +130,103 @@ TRKInterruptHandler:
 /* 800BDF24 000BAE64  7C 00 04 AC */	sync 0
 /* 800BDF28 000BAE68  3C 40 80 4F */	lis r2, TRK_saved_exceptionID@h
 /* 800BDF2C 000BAE6C  60 42 42 80 */	ori r2, r2, TRK_saved_exceptionID@l
-/* 800BDF30 000BAE70  B0 62 00 00 */	sth r3, lbl_8051E360@sda21(r2)
+/* 800BDF30 000BAE70  B0 62 00 00 */	sth r3, 0(r2)
 /* 800BDF34 000BAE74  2C 03 05 00 */	cmpwi r3, 0x500
 /* 800BDF38 000BAE78  40 82 00 84 */	bne lbl_800BDFBC
 /* 800BDF3C 000BAE7C  3C 40 80 4F */	lis r2, gTRKCPUState@h
 /* 800BDF40 000BAE80  60 42 43 28 */	ori r2, r2, gTRKCPUState@l
 /* 800BDF44 000BAE84  7C 68 02 A6 */	mflr r3
-/* 800BDF48 000BAE88  90 62 04 2C */	stw r3, lbl_8051E78C@sda21(r2)
+/* 800BDF48 000BAE88  90 62 04 2C */	stw r3, 0x42c(r2)
 /* 800BDF4C 000BAE8C  48 00 25 A1 */	bl TRKUARTInterruptHandler
 /* 800BDF50 000BAE90  3C 40 80 4F */	lis r2, gTRKCPUState@h
 /* 800BDF54 000BAE94  60 42 43 28 */	ori r2, r2, gTRKCPUState@l
-/* 800BDF58 000BAE98  80 62 04 2C */	lwz r3, lbl_8051E78C@sda21(r2)
+/* 800BDF58 000BAE98  80 62 04 2C */	lwz r3, 0x42c(r2)
 /* 800BDF5C 000BAE9C  7C 68 03 A6 */	mtlr r3
 /* 800BDF60 000BAEA0  3C 40 80 4F */	lis r2, gTRKState@h
 /* 800BDF64 000BAEA4  60 42 42 84 */	ori r2, r2, gTRKState@l
-/* 800BDF68 000BAEA8  80 42 00 A0 */	lwz r2, lbl_8051E400@sda21(r2)
-/* 800BDF6C 000BAEAC  88 42 00 00 */	lbz r2, lbl_8051E360@sda21(r2)
+/* 800BDF68 000BAEA8  80 42 00 A0 */	lwz r2, 0xa0(r2)
+/* 800BDF6C 000BAEAC  88 42 00 00 */	lbz r2, 0(r2)
 /* 800BDF70 000BAEB0  2C 02 00 00 */	cmpwi r2, 0
 /* 800BDF74 000BAEB4  41 82 00 2C */	beq lbl_800BDFA0
 /* 800BDF78 000BAEB8  3C 40 80 4A */	lis r2, gTRKExceptionStatus@h
 /* 800BDF7C 000BAEBC  60 42 68 BC */	ori r2, r2, gTRKExceptionStatus@l
-/* 800BDF80 000BAEC0  88 42 00 0C */	lbz r2, lbl_8051E36C@sda21(r2)
+/* 800BDF80 000BAEC0  88 42 00 0C */	lbz r2, 0xc(r2)
 /* 800BDF84 000BAEC4  2C 02 00 01 */	cmpwi r2, 1
 /* 800BDF88 000BAEC8  41 82 00 18 */	beq lbl_800BDFA0
 /* 800BDF8C 000BAECC  3C 40 80 4F */	lis r2, gTRKState@h
 /* 800BDF90 000BAED0  60 42 42 84 */	ori r2, r2, gTRKState@l
 /* 800BDF94 000BAED4  38 60 00 01 */	li r3, 1
-/* 800BDF98 000BAED8  98 62 00 9C */	stb r3, lbl_8051E3FC@sda21(r2)
+/* 800BDF98 000BAED8  98 62 00 9C */	stb r3, 0x9c(r2)
 /* 800BDF9C 000BAEDC  48 00 00 20 */	b lbl_800BDFBC
 lbl_800BDFA0:
 /* 800BDFA0 000BAEE0  3C 40 80 4F */	lis r2, gTRKSaveState@h
 /* 800BDFA4 000BAEE4  60 42 47 58 */	ori r2, r2, gTRKSaveState@l
-/* 800BDFA8 000BAEE8  80 62 00 88 */	lwz r3, lbl_8051E3E8@sda21(r2)
+/* 800BDFA8 000BAEE8  80 62 00 88 */	lwz r3, 0x88(r2)
 /* 800BDFAC 000BAEEC  7C 6F F1 20 */	mtcrf 0xff, r3
-/* 800BDFB0 000BAEF0  80 62 00 0C */	lwz r3, lbl_8051E36C@sda21(r2)
-/* 800BDFB4 000BAEF4  80 42 00 08 */	lwz r2, lbl_8051E368@sda21(r2)
+/* 800BDFB0 000BAEF0  80 62 00 0C */	lwz r3, 0xc(r2)
+/* 800BDFB4 000BAEF4  80 42 00 08 */	lwz r2, 0x8(r2)
 /* 800BDFB8 000BAEF8  4C 00 00 64 */	rfi 
 lbl_800BDFBC:
 /* 800BDFBC 000BAEFC  3C 40 80 4F */	lis r2, TRK_saved_exceptionID@h
 /* 800BDFC0 000BAF00  60 42 42 80 */	ori r2, r2, TRK_saved_exceptionID@l
-/* 800BDFC4 000BAF04  A0 62 00 00 */	lhz r3, lbl_8051E360@sda21(r2)
+/* 800BDFC4 000BAF04  A0 62 00 00 */	lhz r3, 0(r2)
 /* 800BDFC8 000BAF08  3C 40 80 4A */	lis r2, gTRKExceptionStatus@h
 /* 800BDFCC 000BAF0C  60 42 68 BC */	ori r2, r2, gTRKExceptionStatus@l
-/* 800BDFD0 000BAF10  88 42 00 0C */	lbz r2, lbl_8051E36C@sda21(r2)
+/* 800BDFD0 000BAF10  88 42 00 0C */	lbz r2, 0xc(r2)
 /* 800BDFD4 000BAF14  2C 02 00 00 */	cmpwi r2, 0
 /* 800BDFD8 000BAF18  40 82 00 B0 */	bne TRKExceptionHandler
 /* 800BDFDC 000BAF1C  3C 40 80 4F */	lis r2, gTRKCPUState@h
 /* 800BDFE0 000BAF20  60 42 43 28 */	ori r2, r2, gTRKCPUState@l
-/* 800BDFE4 000BAF24  90 02 00 00 */	stw r0, lbl_8051E360@sda21(r2)
-/* 800BDFE8 000BAF28  90 22 00 04 */	stw r1, lbl_8051E364@sda21(r2)
+/* 800BDFE4 000BAF24  90 02 00 00 */	stw r0, 0(r2)
+/* 800BDFE8 000BAF28  90 22 00 04 */	stw r1, 0x4(r2)
 /* 800BDFEC 000BAF2C  7C 11 42 A6 */	mfspr r0, 0x111
-/* 800BDFF0 000BAF30  90 02 00 08 */	stw r0, lbl_8051E368@sda21(r2)
-/* 800BDFF4 000BAF34  B0 62 02 F8 */	sth r3, lbl_8051E658@sda21(r2)
-/* 800BDFF8 000BAF38  B0 62 02 FA */	sth r3, lbl_8051E65A@sda21(r2)
+/* 800BDFF0 000BAF30  90 02 00 08 */	stw r0, 0x8(r2)
+/* 800BDFF4 000BAF34  B0 62 02 F8 */	sth r3, 0x2f8(r2)
+/* 800BDFF8 000BAF38  B0 62 02 FA */	sth r3, 0x2fa(r2)
 /* 800BDFFC 000BAF3C  7C 12 42 A6 */	mfspr r0, 0x112
-/* 800BE000 000BAF40  90 02 00 0C */	stw r0, lbl_8051E36C@sda21(r2)
-/* 800BE004 000BAF44  BC 82 00 10 */	stmw r4, lbl_8051E370@sda21(r2)
+/* 800BE000 000BAF40  90 02 00 0C */	stw r0, 0xc(r2)
+/* 800BE004 000BAF44  BC 82 00 10 */	stmw r4, 0x10(r2)
 /* 800BE008 000BAF48  7F 7A 02 A6 */	mfspr r27, 0x1a
 /* 800BE00C 000BAF4C  7F 88 02 A6 */	mflr r28
 /* 800BE010 000BAF50  7F B3 42 A6 */	mfspr r29, 0x113
 /* 800BE014 000BAF54  7F C9 02 A6 */	mfctr r30
 /* 800BE018 000BAF58  7F E1 02 A6 */	mfxer r31
-/* 800BE01C 000BAF5C  BF 62 00 80 */	stmw r27, lbl_8051E3E0@sda21(r2)
+/* 800BE01C 000BAF5C  BF 62 00 80 */	stmw r27, 0x80(r2)
 /* 800BE020 000BAF60  48 00 1A 41 */	bl TRKSaveExtended1Block
 /* 800BE024 000BAF64  3C 40 80 4A */	lis r2, gTRKExceptionStatus@h
 /* 800BE028 000BAF68  60 42 68 BC */	ori r2, r2, gTRKExceptionStatus@l
 /* 800BE02C 000BAF6C  38 60 00 01 */	li r3, 1
-/* 800BE030 000BAF70  98 62 00 0C */	stb r3, lbl_8051E36C@sda21(r2)
+/* 800BE030 000BAF70  98 62 00 0C */	stb r3, 0xc(r2)
 /* 800BE034 000BAF74  3C 40 80 4F */	lis r2, gTRKState@h
 /* 800BE038 000BAF78  60 42 42 84 */	ori r2, r2, gTRKState@l
-/* 800BE03C 000BAF7C  80 02 00 8C */	lwz r0, lbl_8051E3EC@sda21(r2)
+/* 800BE03C 000BAF7C  80 02 00 8C */	lwz r0, 0x8C(r2)
 /* 800BE040 000BAF80  7C 00 04 AC */	sync 0
 /* 800BE044 000BAF84  7C 00 01 24 */	mtmsr r0
 /* 800BE048 000BAF88  7C 00 04 AC */	sync 0
-/* 800BE04C 000BAF8C  80 02 00 80 */	lwz r0, lbl_8051E3E0@sda21(r2)
+/* 800BE04C 000BAF8C  80 02 00 80 */	lwz r0, 0x80(r2)
 /* 800BE050 000BAF90  7C 08 03 A6 */	mtlr r0
-/* 800BE054 000BAF94  80 02 00 84 */	lwz r0, lbl_8051E3E4@sda21(r2)
+/* 800BE054 000BAF94  80 02 00 84 */	lwz r0, 0x84(r2)
 /* 800BE058 000BAF98  7C 09 03 A6 */	mtctr r0
-/* 800BE05C 000BAF9C  80 02 00 88 */	lwz r0, lbl_8051E3E8@sda21(r2)
+/* 800BE05C 000BAF9C  80 02 00 88 */	lwz r0, 0x88(r2)
 /* 800BE060 000BAFA0  7C 01 03 A6 */	mtxer r0
-/* 800BE064 000BAFA4  80 02 00 94 */	lwz r0, lbl_8051E3F4@sda21(r2)
+/* 800BE064 000BAFA4  80 02 00 94 */	lwz r0, 0x94(r2)
 /* 800BE068 000BAFA8  7C 12 03 A6 */	mtdsisr r0
-/* 800BE06C 000BAFAC  80 02 00 90 */	lwz r0, lbl_8051E3F0@sda21(r2)
+/* 800BE06C 000BAFAC  80 02 00 90 */	lwz r0, 0x90(r2)
 /* 800BE070 000BAFB0  7C 13 03 A6 */	mtdar r0
-/* 800BE074 000BAFB4  B8 62 00 0C */	lmw r3, lbl_8051E36C@sda21(r2)
-/* 800BE078 000BAFB8  80 02 00 00 */	lwz r0, lbl_8051E360@sda21(r2)
-/* 800BE07C 000BAFBC  80 22 00 04 */	lwz r1, lbl_8051E364@sda21(r2)
-/* 800BE080 000BAFC0  80 42 00 08 */	lwz r2, lbl_8051E368@sda21(r2)
+/* 800BE074 000BAFB4  B8 62 00 0C */	lmw r3, 0xc(r2)
+/* 800BE078 000BAFB8  80 02 00 00 */	lwz r0, 0x0(r2)
+/* 800BE07C 000BAFBC  80 22 00 04 */	lwz r1, 0x4(r2)
+/* 800BE080 000BAFC0  80 42 00 08 */	lwz r2, 0x8(r2)
 /* 800BE084 000BAFC4  48 00 09 20 */	b TRKPostInterruptEvent
 
 .global TRKExceptionHandler
 TRKExceptionHandler:
 /* 800BE088 000BAFC8  3C 40 80 4A */	lis r2, gTRKExceptionStatus@h
 /* 800BE08C 000BAFCC  60 42 68 BC */	ori r2, r2, gTRKExceptionStatus@l
-/* 800BE090 000BAFD0  B0 62 00 08 */	sth r3, lbl_8051E368@sda21(r2)
+/* 800BE090 000BAFD0  B0 62 00 08 */	sth r3, 0x8(r2)
 /* 800BE094 000BAFD4  7C 7A 02 A6 */	mfspr r3, 0x1a
-/* 800BE098 000BAFD8  90 62 00 00 */	stw r3, lbl_8051E360@sda21(r2)
-/* 800BE09C 000BAFDC  A0 62 00 08 */	lhz r3, lbl_8051E368@sda21(r2)
+/* 800BE098 000BAFD8  90 62 00 00 */	stw r3, 0(r2)
+/* 800BE09C 000BAFDC  A0 62 00 08 */	lhz r3, 0x8(r2)
 /* 800BE0A0 000BAFE0  2C 03 02 00 */	cmpwi r3, 0x200
 /* 800BE0A4 000BAFE4  41 82 00 50 */	beq lbl_800BE0F4
 /* 800BE0A8 000BAFE8  2C 03 03 00 */	cmpwi r3, 0x300
@@ -263,7 +256,7 @@ lbl_800BE100:
 /* 800BE100 000BB040  3C 40 80 4A */	lis r2, gTRKExceptionStatus@h
 /* 800BE104 000BB044  60 42 68 BC */	ori r2, r2, gTRKExceptionStatus@l
 /* 800BE108 000BB048  38 60 00 01 */	li r3, 1
-/* 800BE10C 000BB04C  98 62 00 0D */	stb r3, lbl_8051E36D@sda21(r2)
+/* 800BE10C 000BB04C  98 62 00 0D */	stb r3, 0xd(r2)
 /* 800BE110 000BB050  7C 73 42 A6 */	mfspr r3, 0x113
 /* 800BE114 000BB054  7C 6F F1 20 */	mtcrf 0xff, r3
 /* 800BE118 000BB058  7C 51 42 A6 */	mfspr r2, 0x111
@@ -294,57 +287,57 @@ TRKSwapAndGo:
 /* 800BE170 000BB0B0  7C 60 01 24 */	mtmsr r3
 /* 800BE174 000BB0B4  3C 40 80 4F */	lis r2, gTRKState@h
 /* 800BE178 000BB0B8  60 42 42 84 */	ori r2, r2, gTRKState@l
-/* 800BE17C 000BB0BC  80 42 00 A0 */	lwz r2, lbl_8051E400@sda21(r2)
-/* 800BE180 000BB0C0  88 42 00 00 */	lbz r2, lbl_8051E360@sda21(r2)
+/* 800BE17C 000BB0BC  80 42 00 A0 */	lwz r2, 0xa0(r2)
+/* 800BE180 000BB0C0  88 42 00 00 */	lbz r2, 0(r2)
 /* 800BE184 000BB0C4  2C 02 00 00 */	cmpwi r2, 0
 /* 800BE188 000BB0C8  41 82 00 18 */	beq lbl_800BE1A0
 /* 800BE18C 000BB0CC  3C 40 80 4F */	lis r2, gTRKState@h
 /* 800BE190 000BB0D0  60 42 42 84 */	ori r2, r2, gTRKState@l
 /* 800BE194 000BB0D4  38 60 00 01 */	li r3, 1
-/* 800BE198 000BB0D8  98 62 00 9C */	stb r3, lbl_8051E3FC@sda21(r2)
+/* 800BE198 000BB0D8  98 62 00 9C */	stb r3, 0x9c(r2)
 /* 800BE19C 000BB0DC  48 00 00 4C */	b TRKInterruptHandlerEnableInterrupts
 lbl_800BE1A0:
 /* 800BE1A0 000BB0E0  3C 40 80 4A */	lis r2, gTRKExceptionStatus@h
 /* 800BE1A4 000BB0E4  60 42 68 BC */	ori r2, r2, gTRKExceptionStatus@l
 /* 800BE1A8 000BB0E8  38 60 00 00 */	li r3, 0
-/* 800BE1AC 000BB0EC  98 62 00 0C */	stb r3, lbl_8051E36C@sda21(r2)
+/* 800BE1AC 000BB0EC  98 62 00 0C */	stb r3, 0xc(r2)
 /* 800BE1B0 000BB0F0  48 00 1A 69 */	bl TRKRestoreExtended1Block
 /* 800BE1B4 000BB0F4  3C 40 80 4F */	lis r2, gTRKCPUState@h
 /* 800BE1B8 000BB0F8  60 42 43 28 */	ori r2, r2, gTRKCPUState@l
-/* 800BE1BC 000BB0FC  BB 62 00 80 */	lmw r27, lbl_8051E3E0@sda21(r2)
+/* 800BE1BC 000BB0FC  BB 62 00 80 */	lmw r27, 0x80(r2)
 /* 800BE1C0 000BB100  7F 7A 03 A6 */	mtspr 0x1a, r27
 /* 800BE1C4 000BB104  7F 88 03 A6 */	mtlr r28
 /* 800BE1C8 000BB108  7F AF F1 20 */	mtcrf 0xff, r29
 /* 800BE1CC 000BB10C  7F C9 03 A6 */	mtctr r30
 /* 800BE1D0 000BB110  7F E1 03 A6 */	mtxer r31
-/* 800BE1D4 000BB114  B8 62 00 0C */	lmw r3, lbl_8051E36C@sda21(r2)
-/* 800BE1D8 000BB118  80 02 00 00 */	lwz r0, lbl_8051E360@sda21(r2)
-/* 800BE1DC 000BB11C  80 22 00 04 */	lwz r1, lbl_8051E364@sda21(r2)
-/* 800BE1E0 000BB120  80 42 00 08 */	lwz r2, lbl_8051E368@sda21(r2)
+/* 800BE1D4 000BB114  B8 62 00 0C */	lmw r3, 0xc(r2)
+/* 800BE1D8 000BB118  80 02 00 00 */	lwz r0, 0(r2)
+/* 800BE1DC 000BB11C  80 22 00 04 */	lwz r1, 0x4(r2)
+/* 800BE1E0 000BB120  80 42 00 08 */	lwz r2, 0x8(r2)
 /* 800BE1E4 000BB124  4C 00 00 64 */	rfi 
 
 .global TRKInterruptHandlerEnableInterrupts
 TRKInterruptHandlerEnableInterrupts:
 /* 800BE1E8 000BB128  3C 40 80 4F */	lis r2, gTRKState@h
 /* 800BE1EC 000BB12C  60 42 42 84 */	ori r2, r2, gTRKState@l
-/* 800BE1F0 000BB130  80 02 00 8C */	lwz r0, lbl_8051E3EC@sda21(r2)
+/* 800BE1F0 000BB130  80 02 00 8C */	lwz r0, 0x8C(r2)
 /* 800BE1F4 000BB134  7C 00 04 AC */	sync 0
 /* 800BE1F8 000BB138  7C 00 01 24 */	mtmsr r0
 /* 800BE1FC 000BB13C  7C 00 04 AC */	sync 0
-/* 800BE200 000BB140  80 02 00 80 */	lwz r0, lbl_8051E3E0@sda21(r2)
+/* 800BE200 000BB140  80 02 00 80 */	lwz r0, 0x80(r2)
 /* 800BE204 000BB144  7C 08 03 A6 */	mtlr r0
-/* 800BE208 000BB148  80 02 00 84 */	lwz r0, lbl_8051E3E4@sda21(r2)
+/* 800BE208 000BB148  80 02 00 84 */	lwz r0, 0x84(r2)
 /* 800BE20C 000BB14C  7C 09 03 A6 */	mtctr r0
-/* 800BE210 000BB150  80 02 00 88 */	lwz r0, lbl_8051E3E8@sda21(r2)
+/* 800BE210 000BB150  80 02 00 88 */	lwz r0, 0x88(r2)
 /* 800BE214 000BB154  7C 01 03 A6 */	mtxer r0
-/* 800BE218 000BB158  80 02 00 94 */	lwz r0, lbl_8051E3F4@sda21(r2)
+/* 800BE218 000BB158  80 02 00 94 */	lwz r0, 0x94(r2)
 /* 800BE21C 000BB15C  7C 12 03 A6 */	mtdsisr r0
-/* 800BE220 000BB160  80 02 00 90 */	lwz r0, lbl_8051E3F0@sda21(r2)
+/* 800BE220 000BB160  80 02 00 90 */	lwz r0, 0x90(r2)
 /* 800BE224 000BB164  7C 13 03 A6 */	mtdar r0
-/* 800BE228 000BB168  B8 62 00 0C */	lmw r3, lbl_8051E36C@sda21(r2)
-/* 800BE22C 000BB16C  80 02 00 00 */	lwz r0, lbl_8051E360@sda21(r2)
-/* 800BE230 000BB170  80 22 00 04 */	lwz r1, lbl_8051E364@sda21(r2)
-/* 800BE234 000BB174  80 42 00 08 */	lwz r2, lbl_8051E368@sda21(r2)
+/* 800BE228 000BB168  B8 62 00 0C */	lmw r3, 0xc(r2)
+/* 800BE22C 000BB16C  80 02 00 00 */	lwz r0, 0(r2)
+/* 800BE230 000BB170  80 22 00 04 */	lwz r1, 0x4(r2)
+/* 800BE234 000BB174  80 42 00 08 */	lwz r2, 0x8(r2)
 /* 800BE238 000BB178  48 00 07 6C */	b TRKPostInterruptEvent
 
 .global ReadFPSCR

@@ -210,26 +210,19 @@ __vt__Q34Game5Demon3Obj:
 	.4byte "@732@12@viewStartCarryMotion__Q24Game9EnemyBaseFv"
 	.4byte "@732@12@viewOnPelletKilled__Q24Game9EnemyBaseFv"
 	.4byte "viewEntryShape__Q24Game10PelletViewFR7MatrixfR10Vector3<f>"
-	.4byte 0
 
 .section .sdata2, "a"     # 0x80516360 - 0x80520E40
 .balign 8
-.global lbl_8051B930
 lbl_8051B930:
-	.4byte 0x40400000
-.global lbl_8051B934
-lbl_8051B934:
-	.4byte 0x40490FDB
-.global lbl_8051B938
+	.float 3.0
+lbl_8051B934: # pi
+	.float 3.1415927
 lbl_8051B938:
-	.4byte 0x3BB60B61
-.global lbl_8051B93C
+	.float 0.0055555557
 lbl_8051B93C:
-	.4byte 0x00000000
-.global lbl_8051B940
+	.float 0.0
 lbl_8051B940:
 	.float 1.0
-	.4byte 0x00000000
 
 .section .text, "ax"  # 0x800056C0 - 0x80472F00
 .global __ct__Q34Game5Demon3ObjFv

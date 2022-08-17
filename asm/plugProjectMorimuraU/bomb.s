@@ -230,56 +230,38 @@ __vt__Q34Game4Bomb3Obj:
 
 .section .sdata2, "a"     # 0x80516360 - 0x80520E40
 .balign 8
-.global lbl_8051E330
 lbl_8051E330:
-	.4byte 0x00000000
-.global lbl_8051E334
+	.float 0.0
 lbl_8051E334:
-	.4byte 0x41A00000
-.global lbl_8051E338
+	.float 20.0
+.balign 4
 lbl_8051E338:
-	.4byte 0x636F7265
-	.4byte 0x31000000
-.global lbl_8051E340
+	.asciz "core1"
+.balign 4
 lbl_8051E340:
-	.4byte 0x3F666666
-.global lbl_8051E344
+	.float 0.9
 lbl_8051E344:
-	.4byte 0x40800000
-.global lbl_8051E348
+	.float 4.0
 lbl_8051E348:
-	.4byte 0x43A2F983
-.global lbl_8051E34C
+	.float 325.9493
 lbl_8051E34C:
-	.4byte 0xC3A2F983
-.global lbl_8051E350
+	.float -325.9493
 lbl_8051E350:
-	.4byte 0x40000000
-.global lbl_8051E354
+	.float 2.0
 lbl_8051E354:
 	.float 1.0
-.global lbl_8051E358
 lbl_8051E358:
-	.4byte 0x41F00000
-.global lbl_8051E35C
+	.float 30.0
 lbl_8051E35C:
-	.4byte 0x41200000
-.global lbl_8051E360
+	.float 10.0
+.balign 8
 lbl_8051E360:
 	.4byte 0x43300000
-.global lbl_8051E364
-lbl_8051E364:
 	.4byte 0x80000000
-.global lbl_8051E368
 lbl_8051E368:
 	.float 0.5
-.global lbl_8051E36C
 lbl_8051E36C:
-	.byte 0x3F
-.global lbl_8051E36D
-lbl_8051E36D:
-	.byte 0xA6
-	.2byte 0x6666
+	.float 1.3
 
 .section .text, "ax"  # 0x800056C0 - 0x80472F00
 .global setParameters__Q34Game4Bomb3ObjFv

@@ -3,19 +3,60 @@
 .section .rodata  # 0x804732E0 - 0x8049E220
 .balign 8
 lbl_8048F7A0:
-	.4byte 0x534D656E
-	.4byte 0x75436F6E
-	.4byte 0x74207363
-	.4byte 0x7265656E
-	.4byte 0x00000000
+	.asciz "SMenuCont screen"
+.balign 4
 lbl_8048F7B4:
-	.4byte 0x7265735F
-	.4byte 0x735F6D65
-	.4byte 0x6E755F63
-	.4byte 0x6F6E7472
-	.4byte 0x6F6C6C65
-	.4byte 0x722E737A
-	.4byte 0x73000000
+	.asciz "res_s_menu_controller.szs"
+
+.section .data, "wa"  # 0x8049E220 - 0x804EFC20
+.balign 8
+lbl_804DA328:
+	.4byte lbl_8033058C
+	.4byte lbl_8033058C
+	.4byte lbl_8033058C
+	.4byte lbl_80330590
+	.4byte lbl_80330590
+	.4byte lbl_80330590
+	.4byte lbl_80330590
+	.4byte lbl_80330590
+	.4byte lbl_80330590
+	.4byte lbl_80330590
+	.4byte lbl_8033058C
+	.4byte lbl_8033058C
+	.4byte lbl_8033058C
+	.4byte lbl_8033058C
+	.4byte lbl_80330590
+	.4byte lbl_80330590
+	.4byte lbl_80330590
+	.4byte lbl_80330590
+	.4byte lbl_80330590
+	.4byte lbl_80330590
+	.4byte lbl_8033058C
+	.4byte lbl_80330590
+	.4byte lbl_80330590
+	.4byte lbl_8033058C
+.global __vt__Q32og9newScreen9SMenuCont
+__vt__Q32og9newScreen9SMenuCont:
+	.4byte 0
+	.4byte 0
+	.4byte getSceneType__Q32og9newScreen9SMenuContFv
+	.4byte getOwnerID__Q32og9newScreen9SMenuContFv
+	.4byte getMemberID__Q32og9newScreen9SMenuContFv
+	.4byte isUseBackupSceneInfo__Q32og9newScreen9SMenuContFv
+	.4byte isDrawInDemo__Q26Screen9SceneBaseCFv
+	.4byte getResName__Q32og9newScreen9SMenuContCFv
+	.4byte doCreateObj__Q32og9newScreen9SMenuContFP10JKRArchive
+	.4byte doUserCallBackFunc__Q32og9newScreen9SMenuContFPQ28Resource10MgrCommand
+	.4byte setPort__Q26Screen9SceneBaseFR8Graphics
+	.4byte doUpdateActive__Q32og9newScreen9SMenuContFv
+	.4byte doConfirmSetScene__Q32og9newScreen9SMenuContFRQ26Screen11SetSceneArg
+	.4byte doConfirmStartScene__Q26Screen9SceneBaseFPQ26Screen13StartSceneArg
+	.4byte doConfirmEndScene__Q26Screen9SceneBaseFRPQ26Screen11EndSceneArg
+	.4byte doStart__Q26Screen9SceneBaseFPQ26Screen13StartSceneArg
+	.4byte doEnd__Q26Screen9SceneBaseFPQ26Screen11EndSceneArg
+	.4byte setDefaultDispMember__Q26Screen9SceneBaseFv
+	.4byte doSetBackupScene__Q32og9newScreen9SMenuContFRQ26Screen11SetSceneArg
+	.4byte doGetFinishState__Q32og9newScreen14SceneSMenuBaseFv
 
 .section .text, "ax"  # 0x800056C0 - 0x80472F00
 .global __ct__Q32og9newScreen9SMenuContFv
@@ -62,10 +103,8 @@ doConfirmSetScene__Q32og9newScreen9SMenuContFRQ26Screen11SetSceneArg:
 /* 80330580 0032D4C0  7C 03 00 2E */	lwzx r0, r3, r0
 /* 80330584 0032D4C4  7C 09 03 A6 */	mtctr r0
 /* 80330588 0032D4C8  4E 80 04 20 */	bctr 
-.global lbl_8033058C
 lbl_8033058C:
 /* 8033058C 0032D4CC  3B E0 00 01 */	li r31, 1
-.global lbl_80330590
 lbl_80330590:
 /* 80330590 0032D4D0  80 01 00 14 */	lwz r0, 0x14(r1)
 /* 80330594 0032D4D4  7F E3 FB 78 */	mr r3, r31
@@ -134,7 +173,7 @@ getOwnerID__Q32og9newScreen9SMenuContFv:
 /* 80330638 0032D578  4E 80 00 20 */	blr 
 
 .global getMemberID__Q32og9newScreen9SMenuContFv
-getMemberID__Q32og9newScreen9SMenuContFv:
+getMemberID__Q32og9newScreen9SMenuContFv: # weak function
 /* 8033063C 0032D57C  3C 80 43 4F */	lis r4, 0x434F4E54@ha
 /* 80330640 0032D580  3C 60 00 53 */	lis r3, 0x00534D5F@ha
 /* 80330644 0032D584  38 84 4E 54 */	addi r4, r4, 0x434F4E54@l

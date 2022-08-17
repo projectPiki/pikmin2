@@ -17,7 +17,6 @@ __TRK_reset:
 
 .section .data, "wa"  # 0x8049E220 - 0x804EFC20
 .balign 8
-.global TRK_ISR_OFFSETS
 TRK_ISR_OFFSETS:
 	.4byte 0x00000100
 	.4byte 0x00000200
@@ -34,12 +33,11 @@ TRK_ISR_OFFSETS:
 	.4byte 0x00001300
 	.4byte 0x00001400
 	.4byte 0x00001700
-	.4byte 0x00000000
 
 .section .bss  # 0x804EFC20 - 0x8051467C
-.global lc_base
+.balign 8
 lc_base:
-	.skip 0x8
+	.skip 0x4
 
 .section .text, "ax"  # 0x800056C0 - 0x80472F00
 .global InitMetroTRK

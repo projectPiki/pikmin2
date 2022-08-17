@@ -1,8 +1,7 @@
 .include "macros.inc"
 .section .rodata  # 0x804732E0 - 0x8049E220
 .balign 8
-.global lbl_80488330
-lbl_80488330:
+lbl_80488330: # Shift-JIS
 	.4byte 0x8349836A
 	.4byte 0x83548389
 	.4byte 0x8343837D

@@ -2,43 +2,28 @@
 .section .rodata  # 0x804732E0 - 0x8049E220
 .balign 8
 lbl_8048F710:
-	.4byte 0x6F674F74
-	.4byte 0x616B6172
-	.4byte 0x6153656E
-	.4byte 0x736F7200
+	.asciz "ogOtakaraSensor"
+.balign 4
 lbl_8048F720:
-	.4byte 0x6F674F74
-	.4byte 0x616B6172
-	.4byte 0x6153656E
-	.4byte 0x736F722E
-	.4byte 0x63707000
+	.asciz "ogOtakaraSensor.cpp"
+.balign 4
 lbl_8048F734:
-	.4byte 0x4E554C4C
-	.4byte 0x2070616E
-	.4byte 0x652E0A00
-	.4byte 0x50534761
-	.4byte 0x6D652E68
-	.4byte 0x00000000
+	.asciz "NULL pane.\n"
+.balign 4
+lbl_8048F740:
+	.asciz "PSGame.h"
+.balign 4
+lbl_8048F74C:
 	.asciz "P2Assert"
-	.skip 3
-	.4byte 0x50535363
-	.4byte 0x656E652E
-	.4byte 0x68000000
-	.4byte 0x67657420
-	.4byte 0x736F756E
-	.4byte 0x64207363
-	.4byte 0x656E6520
-	.4byte 0x61740A69
-	.4byte 0x6E76616C
-	.4byte 0x69642074
-	.4byte 0x696D6D69
-	.4byte 0x6E670A00
-	.4byte 0x50534D61
-	.4byte 0x696E5369
-	.4byte 0x64655F53
-	.4byte 0x63656E65
-	.4byte 0x2E680000
-	.4byte 0x00000000
+.balign 4
+lbl_8048F758:
+	.asciz "PSScene.h"
+.balign 4
+lbl_8048F764:
+	.asciz "get sound scene at\ninvalid timming\n"
+.balign 4
+lbl_8048F788:
+	.asciz "PSMainSide_Scene.h"
 
 .section .data, "wa"  # 0x8049E220 - 0x804EFC20
 .balign 8
@@ -70,75 +55,75 @@ __vt__Q25efx2d12T2DSensorGet:
 .section .sdata2, "a"     # 0x80516360 - 0x80520E40
 .balign 8
 lbl_8051DF78:
-	.4byte 0x00000000
+	.float 0.0
 lbl_8051DF7C:
 	.float 1.0
 lbl_8051DF80:
-	.4byte 0x40400000
+	.float 3.0
 lbl_8051DF84:
 	.float 0.3
 lbl_8051DF88:
-	.4byte 0x3E4CCCCD
+	.float 0.2
 lbl_8051DF8C:
 	.float 0.25
 lbl_8051DF90:
-	.4byte 0x404CCCCD
+	.float 3.2
 lbl_8051DF94:
-	.4byte 0x41400000
+	.float 12.0
 lbl_8051DF98:
-	.4byte 0x42C80000
+	.float 100.0
 lbl_8051DF9C:
-	.4byte 0x3ECCCCCD
+	.float 0.4
 lbl_8051DFA0:
-	.4byte 0x47000000
+	.float 32768.0
 lbl_8051DFA4:
-	.4byte 0x43340000
+	.float 180.0
 lbl_8051DFA8:
-	.4byte 0x42B40000
-	.4byte 0x00000000
+	.float 90.0
+.balign 8
 lbl_8051DFB0:
 	.4byte 0x43300000
 	.4byte 0x80000000
 lbl_8051DFB8:
-	.4byte 0x44610000
+	.float 900.0
 lbl_8051DFBC:
-	.4byte 0x3F733333
+	.float 0.95
 lbl_8051DFC0:
 	.float 0.05
 lbl_8051DFC4:
-	.4byte 0x43A2F983
+	.float 325.9493
 lbl_8051DFC8:
-	.4byte 0x3FC00000
+	.float 1.5
 lbl_8051DFCC:
-	.4byte 0x40200000
-lbl_8051DFD0:
-	.4byte 0x40C90FDB
+	.float 2.5
+lbl_8051DFD0: # tau
+	.float 6.2831855
 lbl_8051DFD4:
-	.4byte 0xC3A2F983
+	.float -325.9493
 lbl_8051DFD8:
 	.float 0.5
-lbl_8051DFDC:
-	.4byte 0x3FC90FDB
+lbl_8051DFDC: # half-pi
+	.float 1.5707964
 lbl_8051DFE0:
 	.float 0.7
 lbl_8051DFE4:
-	.4byte 0x42200000
+	.float 40.0
 lbl_8051DFE8:
-	.4byte 0x41200000
+	.float 10.0
 lbl_8051DFEC:
-	.4byte 0xC2B40000
+	.float -90.0
 lbl_8051DFF0:
-	.4byte 0x40000000
+	.float 2.0
 lbl_8051DFF4:
-	.4byte 0x41700000
+	.float 15.0
 lbl_8051DFF8:
-	.4byte 0xC1F00000
+	.float -30.0
 lbl_8051DFFC:
-	.4byte 0x41F00000
+	.float 30.0
 lbl_8051E000:
 	.float 0.1
 lbl_8051E004:
-	.4byte 0x3F4CCCCD
+	.float 0.8
 
 .section .text, "ax"  # 0x800056C0 - 0x80472F00
 .global __ct__Q32og6Screen13OtakaraSensorFv

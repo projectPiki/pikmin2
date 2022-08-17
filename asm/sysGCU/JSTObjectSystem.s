@@ -6,28 +6,17 @@ lbl_constructor:
 .section .rodata  # 0x804732E0 - 0x8049E220
 .balign 8
 lbl_8049A300:
-	.4byte 0x4A53544F
-	.4byte 0x626A6563
-	.4byte 0x74537973
-	.4byte 0x74656D2E
-	.4byte 0x63707000
+	.asciz "JSTObjectSystem.cpp"
+.balign 4
 lbl_8049A314:
-	.4byte 0x4A534746
-	.4byte 0x696E644F
-	.4byte 0x626A6563
-	.4byte 0x742D2D2D
-	.4byte 0x2D202564
-	.4byte 0x206E6F74
-	.4byte 0x20666F75
-	.4byte 0x6E640A00
-	.4byte 0x00000000
+	.asciz "JSGFindObject---- %d not found\n"
 
 .section .data, "wa"  # 0x8049E220 - 0x804EFC20
 .balign 8
-lbl_804EC2C8:
-	.4byte 0x00000000
-	.4byte 0x00000000
-	.4byte 0x00000000
+govNAN___Q24Game5P2JST:
+	.float 0.0
+	.float 0.0
+	.float 0.0
 .global __vt__Q34Game5P2JST12ObjectSystem
 __vt__Q34Game5P2JST12ObjectSystem:
 	.4byte 0
@@ -62,16 +51,16 @@ __vt__Q34Game5P2JST12ObjectSystem:
 	.4byte entry__Q34Game5P2JST12ObjectSystemFv
 	.4byte start__Q34Game5P2JST12ObjectSystemFv
 	.4byte stop__Q34Game5P2JST12ObjectSystemFv
-	.4byte 0
 
 .section .sbss # 0x80514D80 - 0x80516360
 .balign 8
 lbl_805161F8:
+	.skip 0x1
+.balign 4
+gu32NAN___Q24Game5P2JST:
 	.skip 0x4
-lbl_805161FC:
+gfNAN___Q24Game5P2JST:
 	.skip 0x4
-lbl_80516200:
-	.skip 0x8
 
 .section .text, "ax"  # 0x800056C0 - 0x80472F00
 .global __ct__Q34Game5P2JST12ObjectSystemFPCcPQ24Game11MoviePlayer
@@ -827,15 +816,14 @@ JSGSetData__Q34Game5P2JST12ObjectSystemFUlPCvUl:
 /* 80431368 0042E2A8  90 C3 00 1C */	stw r6, 0x1c(r3)
 /* 8043136C 0042E2AC  4E 80 00 20 */	blr 
 
-.global __sinit_JSTObjectSystem_cpp
-__sinit_JSTObjectSystem_cpp:
+__sinit_JSTObjectSystem_cpp: # static initializer
 /* 80431370 0042E2B0  3C 80 80 51 */	lis r4, __float_nan@ha
 /* 80431374 0042E2B4  38 00 FF FF */	li r0, -1
 /* 80431378 0042E2B8  C0 04 48 B0 */	lfs f0, __float_nan@l(r4)
-/* 8043137C 0042E2BC  3C 60 80 4F */	lis r3, lbl_804EC2C8@ha
-/* 80431380 0042E2C0  90 0D 9B 7C */	stw r0, lbl_805161FC@sda21(r13)
-/* 80431384 0042E2C4  D4 03 C2 C8 */	stfsu f0, lbl_804EC2C8@l(r3)
-/* 80431388 0042E2C8  D0 0D 9B 80 */	stfs f0, lbl_80516200@sda21(r13)
+/* 8043137C 0042E2BC  3C 60 80 4F */	lis r3, govNAN___Q24Game5P2JST@ha
+/* 80431380 0042E2C0  90 0D 9B 7C */	stw r0, gu32NAN___Q24Game5P2JST@sda21(r13)
+/* 80431384 0042E2C4  D4 03 C2 C8 */	stfsu f0, govNAN___Q24Game5P2JST@l(r3)
+/* 80431388 0042E2C8  D0 0D 9B 80 */	stfs f0, gfNAN___Q24Game5P2JST@sda21(r13)
 /* 8043138C 0042E2CC  D0 03 00 04 */	stfs f0, 4(r3)
 /* 80431390 0042E2D0  D0 03 00 08 */	stfs f0, 8(r3)
 /* 80431394 0042E2D4  4E 80 00 20 */	blr 
