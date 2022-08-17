@@ -55,830 +55,6 @@
 #include "types.h"
 #include "Vector3.h"
 
-/*
-    Generated from dpostproc
-
-    .section .ctors, "wa"  # 0x80472F00 - 0x804732C0
-    .4byte __sinit_enemyBase_cpp
-
-    .section .rodata  # 0x804732E0 - 0x8049E220
-    lbl_8047A520:
-        .skip 0xC
-        .asciz "enemyBase"
-        .skip 2
-    lbl_8047A538:
-        .asciz "e-upd-do"
-        .skip 3
-    lbl_8047A544:
-        .asciz "enemyBase.cpp"
-        .skip 2
-    lbl_8047A554:
-        .asciz "P2Assert"
-        .skip 3
-        .asciz "BirthTypeDrop"
-        .skip 2
-        .asciz "BirthTypeDropPikmin"
-        .asciz "BirthTypeDropOlimar"
-        .asciz "BirthTypeDropTreasure"
-        .skip 2
-        .asciz "BirthTypeDropEarthquake"
-        .asciz "Earthquake"
-        .skip 1
-    lbl_8047A5D4:
-        .asciz "Unknown birth type:%d"
-        .skip 2
-    lbl_8047A5EC:
-        .asciz "EnemyKillArg"
-        .skip 3
-    lbl_8047A5FC:
-        .asciz "CreatureKillArg"
-    lbl_8047A60C:
-        .asciz "abolished type\n"
-    lbl_8047A61C:
-        .asciz "PelletInitArg"
-        .skip 2
-    lbl_8047A62C:
-        .asciz "ArgScale"
-        .skip 3
-    lbl_8047A638:
-        .asciz "ItemHoney::InitArg"
-        .skip 1
-    lbl_8047A64C:
-        .asciz "ArgEnemyType"
-        .skip 3
-
-    .section .data, "wa"  # 0x8049E220 - 0x804EFC20
-    lbl_804AA150:
-        .4byte 0x00000000
-        .4byte 0x00000000
-        .4byte 0x00000000
-    lbl_804AA15C:
-        .4byte lbl_80105D00
-        .4byte lbl_80105CE4
-        .4byte lbl_80105D00
-        .4byte lbl_80105D00
-        .4byte lbl_80105D00
-        .4byte lbl_80105CEC
-        .4byte lbl_80105D00
-        .4byte lbl_80105D00
-        .4byte lbl_80105D00
-        .4byte lbl_80105D00
-        .4byte lbl_80105CF4
-        .4byte lbl_80105D00
-        .4byte lbl_80105D00
-        .4byte lbl_80105D00
-        .4byte lbl_80105D00
-        .4byte lbl_80105D00
-        .4byte lbl_80105D00
-        .4byte lbl_80105D00
-        .4byte lbl_80105D00
-        .4byte lbl_80105D00
-        .4byte lbl_80105CFC
-    lbl_804AA1B0:
-        .4byte lbl_80106E04
-        .4byte lbl_80106E50
-        .4byte lbl_80106E78
-        .4byte lbl_80106EC4
-        .4byte lbl_80106F2C
-        .4byte lbl_80106F50
-        .4byte lbl_80106EC4
-        .4byte lbl_80106EE4
-        .4byte lbl_80106F08
-    .global __vt__Q34Game10EnemyStone8DrawInfo
-    __vt__Q34Game10EnemyStone8DrawInfo:
-        .4byte 0
-        .4byte 0
-        .4byte __dt__Q34Game10EnemyStone8DrawInfoFv
-        .4byte getChildCount__5CNodeFv
-    .global __vt__Q23PSM10EnemyHekoi
-    __vt__Q23PSM10EnemyHekoi:
-        .4byte 0
-        .4byte 0
-        .4byte 0
-        .4byte 0
-        .4byte "@16@__dt__Q23PSM10EnemyHekoiFv"
-        .4byte __dt__Q23PSM10EnemyHekoiFv
-        .4byte frameEnd_onPlaySe__Q23PSM13CreatureAnimeFv
-        .4byte getCastType__Q23PSM10EnemyHekoiFv
-        .4byte exec__Q23PSM13CreatureAnimeFv
-        .4byte getJAIObject__Q23PSM13CreatureAnimeFv
-        .4byte onCalcOn__Q23PSM9EnemyBaseFv
-        .4byte loopCalc__Q23PSM8CreatureFRQ23PSM12FrameCalcArg
-        .4byte startSoundInner__Q23PSM9EnemyBaseFRQ23PSM13StartSoundArg
-        .4byte judgeNearWithPlayer__Q23PSM9EnemyBaseFRC3VecRC3Vecff
-        .4byte onPlayingSe__Q23PSM8CreatureFUlP8JAISound
-        .4byte getHandleArea__Q23PSM13CreatureAnimeFUc
-        .4byte 0
-        .4byte 0
-        .4byte "@48@__dt__Q23PSM10EnemyHekoiFv"
-        .4byte "@48@startSound__Q23PSM13CreatureAnimeFUlUl"
-        .4byte "@48@startSound__Q23PSM13CreatureAnimeFUcUlUl"
-        .4byte "@48@startSound__Q23PSM13CreatureAnimeFPP8JAISoundUlUl"
-        .4byte stopAllSound__Q27JAInter10ObjectBaseFv
-        .4byte stopSound__Q27JAInter10ObjectBaseFUlUl
-        .4byte enable__Q27JAInter10ObjectBaseFv
-        .4byte disable__Q27JAInter6ObjectFv
-        .4byte dispose__Q27JAInter10ObjectBaseFv
-        .4byte getFreeSoundHandlePointer__Q27JAInter10ObjectBaseFv
-        .4byte getUseSoundHandlePointer__Q27JAInter10ObjectBaseFUl
-        .4byte handleStop__13JAIAnimeSoundFUcUl
-        .4byte loop__Q27JAInter6ObjectFv
-        .4byte
-   "@48@playActorAnimSound__Q23PSM13CreatureAnimeFPQ27JAInter5ActorfUc" .4byte
-   "@48@startAnimSound__Q23PSM9EnemyBaseFUlPP8JAISoundPQ27JAInter5ActorUc"
-        .4byte
-   setSpeedModifySound__13JAIAnimeSoundFP8JAISoundP22JAIAnimeFrameSoundDataf
-        .4byte startSound__Q23PSM13CreatureAnimeFUlUl
-        .4byte startSound__Q23PSM13CreatureAnimeFUcUlUl
-        .4byte startSound__Q23PSM13CreatureAnimeFPP8JAISoundUlUl
-        .4byte startAnimSound__Q23PSM9EnemyBaseFUlPP8JAISoundPQ27JAInter5ActorUc
-        .4byte playActorAnimSound__Q23PSM13CreatureAnimeFPQ27JAInter5ActorfUc
-        .4byte onCalcTurnOn__Q23PSM9EnemyBaseFv
-        .4byte onCalcTurnOff__Q23PSM9EnemyBaseFv
-        .4byte 0
-        .4byte 0
-        .4byte battleOn__Q23PSM10BattleLinkFv
-        .4byte "@184@battleOff__Q23PSM9EnemyBaseFv"
-        .4byte 0
-        .4byte 0
-        .4byte kehaiOn__Q23PSM9KehaiLinkFv
-        .4byte kehaiOff__Q23PSM9KehaiLinkFv
-        .4byte battleOff__Q23PSM9EnemyBaseFv
-        .4byte setKilled__Q23PSM9EnemyBaseFv
-        .4byte updateKehai__Q23PSM9EnemyBaseFv
-        .4byte updateBattle__Q23PSM9EnemyBaseFv
-    .global __vt__Q24Game13PelletInitArg
-    __vt__Q24Game13PelletInitArg:
-        .4byte 0
-        .4byte 0
-        .4byte getName__Q24Game13PelletInitArgFv
-    .global __vt__Q24Game12EnemyKillArg
-    __vt__Q24Game12EnemyKillArg:
-        .4byte 0
-        .4byte 0
-        .4byte getName__Q24Game12EnemyKillArgFv
-    .global __vt__Q24Game15CreatureKillArg
-    __vt__Q24Game15CreatureKillArg:
-        .4byte 0
-        .4byte 0
-        .4byte getName__Q24Game15CreatureKillArgFv
-    .global __vt__Q23efx8ArgScale
-    __vt__Q23efx8ArgScale:
-        .4byte 0
-        .4byte 0
-        .4byte getName__Q23efx8ArgScaleFv
-    .global __vt__Q34Game9ItemHoney7InitArg
-    __vt__Q34Game9ItemHoney7InitArg:
-        .4byte 0
-        .4byte 0
-        .4byte getName__Q34Game9ItemHoney7InitArgFv
-    .global __vt__Q24Game15CreatureInitArg
-    __vt__Q24Game15CreatureInitArg:
-        .4byte 0
-        .4byte 0
-        .4byte 0
-    .global __vt__Q24Game11Interaction
-    __vt__Q24Game11Interaction:
-        .4byte 0
-        .4byte 0
-        .4byte actCommon__Q24Game11InteractionFPQ24Game8Creature
-        .4byte actPiki__Q24Game11InteractionFPQ24Game4Piki
-        .4byte actNavi__Q24Game11InteractionFPQ24Game4Navi
-        .4byte actEnemy__Q24Game11InteractionFPQ24Game9EnemyBase
-        .4byte actPellet__Q24Game11InteractionFPQ24Game6Pellet
-        .4byte actOnyon__Q24Game11InteractionFPQ24Game5Onyon
-        .4byte actItem__Q24Game11InteractionFPQ24Game8BaseItem
-    .global __vt__Q24Game9EnemyBase
-    __vt__Q24Game9EnemyBase:
-        .4byte 0
-        .4byte 0
-        .4byte getPosition__Q24Game9EnemyBaseFv
-        .4byte checkCollision__Q24Game8CreatureFPQ24Game10CellObject
-        .4byte getBoundingSphere__Q24Game9EnemyBaseFRQ23Sys6Sphere
-        .4byte collisionUpdatable__Q24Game8CreatureFv
-        .4byte isPiki__Q24Game8CreatureFv
-        .4byte isNavi__Q24Game8CreatureFv
-        .4byte deferPikiCollision__Q24Game10CellObjectFv
-        .4byte getTypeName__Q24Game8CreatureFv
-        .4byte getObjType__Q24Game8CreatureFv
-        .4byte constructor__Q24Game9EnemyBaseFv
-        .4byte onInit__Q24Game9EnemyBaseFPQ24Game15CreatureInitArg
-        .4byte onKill__Q24Game9EnemyBaseFPQ24Game15CreatureKillArg
-        .4byte onInitPost__Q24Game9EnemyBaseFPQ24Game15CreatureInitArg
-        .4byte doAnimation__Q24Game9EnemyBaseFv
-        .4byte doEntry__Q24Game9EnemyBaseFv
-        .4byte doSetView__Q24Game9EnemyBaseFi
-        .4byte doViewCalc__Q24Game9EnemyBaseFv
-        .4byte doSimulation__Q24Game9EnemyBaseFf
-        .4byte doDirectDraw__Q24Game8CreatureFR8Graphics
-        .4byte getBodyRadius__Q24Game9EnemyBaseFv
-        .4byte getCellRadius__Q24Game9EnemyBaseFv
-        .4byte "initPosition__Q24Game8CreatureFR10Vector3<f>"
-        .4byte "onInitPosition__Q24Game8CreatureFR10Vector3<f>"
-        .4byte getFaceDir__Q24Game9EnemyBaseFv
-        .4byte "setVelocity__Q24Game9EnemyBaseFR10Vector3<f>"
-        .4byte getVelocity__Q24Game9EnemyBaseFv
-        .4byte "onSetPosition__Q24Game9EnemyBaseFR10Vector3<f>"
-        .4byte "onSetPositionPost__Q24Game9EnemyBaseFR10Vector3<f>"
-        .4byte updateTrMatrix__Q24Game9EnemyBaseFv
-        .4byte isTeki__Q24Game9EnemyBaseFv
-        .4byte isPellet__Q24Game8CreatureFv
-        .4byte inWaterCallback__Q24Game9EnemyBaseFPQ24Game8WaterBox
-        .4byte outWaterCallback__Q24Game9EnemyBaseFv
-        .4byte inWater__Q24Game9EnemyBaseFv
-        .4byte getFlockMgr__Q24Game8CreatureFv
-        .4byte onStartCapture__Q24Game8CreatureFv
-        .4byte onUpdateCapture__Q24Game8CreatureFR7Matrixf
-        .4byte onEndCapture__Q24Game8CreatureFv
-        .4byte isAtari__Q24Game8CreatureFv
-        .4byte setAtari__Q24Game8CreatureFb
-        .4byte isAlive__Q24Game8CreatureFv
-        .4byte setAlive__Q24Game8CreatureFb
-        .4byte isCollisionFlick__Q24Game8CreatureFv
-        .4byte setCollisionFlick__Q24Game8CreatureFb
-        .4byte isMovieActor__Q24Game8CreatureFv
-        .4byte isMovieExtra__Q24Game8CreatureFv
-        .4byte isMovieMotion__Q24Game8CreatureFv
-        .4byte setMovieMotion__Q24Game8CreatureFb
-        .4byte isBuried__Q24Game8CreatureFv
-        .4byte isFlying__Q24Game9EnemyBaseFv
-        .4byte isUnderground__Q24Game8CreatureFv
-        .4byte isLivingThing__Q24Game8CreatureFv
-        .4byte isDebugCollision__Q24Game8CreatureFv
-        .4byte setDebugCollision__Q24Game8CreatureFb
-        .4byte doSave__Q24Game8CreatureFR6Stream
-        .4byte doLoad__Q24Game8CreatureFR6Stream
-        .4byte bounceCallback__Q24Game8CreatureFPQ23Sys8Triangle
-        .4byte collisionCallback__Q24Game9EnemyBaseFRQ24Game9CollEvent
-        .4byte platCallback__Q24Game8CreatureFRQ24Game9PlatEvent
-        .4byte getJAIObject__Q24Game9EnemyBaseFv
-        .4byte getPSCreature__Q24Game9EnemyBaseFv
-        .4byte getSound_AILOD__Q24Game8CreatureFv
-        .4byte getSound_PosPtr__Q24Game9EnemyBaseFv
-        .4byte sound_culling__Q24Game9EnemyBaseFv
-        .4byte getSound_CurrAnimFrame__Q24Game9EnemyBaseFv
-        .4byte getSound_CurrAnimSpeed__Q24Game9EnemyBaseFv
-        .4byte on_movie_begin__Q24Game8CreatureFb
-        .4byte on_movie_end__Q24Game8CreatureFb
-        .4byte movieStartAnimation__Q24Game8CreatureFUl
-        .4byte movieStartDemoAnimation__Q24Game8CreatureFPQ28SysShape8AnimInfo
-        .4byte movieSetAnimationLastFrame__Q24Game8CreatureFv
-        .4byte "movieSetTranslation__Q24Game8CreatureFR10Vector3<f>f"
-        .4byte movieSetFaceDir__Q24Game8CreatureFf
-        .4byte "movieGotoPosition__Q24Game8CreatureFR10Vector3<f>"
-        .4byte movieUserCommand__Q24Game8CreatureFUlPQ24Game11MoviePlayer
-        .4byte getShadowParam__Q24Game8CreatureFRQ24Game11ShadowParam
-        .4byte needShadow__Q24Game9EnemyBaseFv
-        .4byte getLifeGaugeParam__Q24Game9EnemyBaseFRQ24Game14LifeGaugeParam
-        .4byte getLODSphere__Q24Game9EnemyBaseFRQ23Sys6Sphere
-        .4byte getLODCylinder__Q24Game8CreatureFRQ23Sys8Cylinder
-        .4byte startPick__Q24Game8CreatureFv
-        .4byte endPick__Q24Game8CreatureFb
-        .4byte getMabiki__Q24Game8CreatureFv
-        .4byte getFootmarks__Q24Game8CreatureFv
-        .4byte onStickStart__Q24Game9EnemyBaseFPQ24Game8Creature
-        .4byte onStickEnd__Q24Game9EnemyBaseFPQ24Game8Creature
-        .4byte onStickStartSelf__Q24Game8CreatureFPQ24Game8Creature
-        .4byte onStickEndSelf__Q24Game8CreatureFPQ24Game8Creature
-        .4byte isSlotFree__Q24Game8CreatureFs
-        .4byte getFreeStickSlot__Q24Game8CreatureFv
-        .4byte "getNearFreeStickSlot__Q24Game8CreatureFR10Vector3<f>"
-        .4byte getRandomFreeStickSlot__Q24Game8CreatureFv
-        .4byte onSlotStickStart__Q24Game8CreatureFPQ24Game8Creatures
-        .4byte onSlotStickEnd__Q24Game8CreatureFPQ24Game8Creatures
-        .4byte "calcStickSlotGlobal__Q24Game8CreatureFsR10Vector3<f>"
-        .4byte "getVelocityAt__Q24Game9EnemyBaseFR10Vector3<f>R10Vector3<f>"
-        .4byte "getAngularEffect__Q24Game8CreatureFR10Vector3<f>R10Vector3<f>"
-        .4byte "applyImpulse__Q24Game8CreatureFR10Vector3<f>R10Vector3<f>"
-        .4byte ignoreAtari__Q24Game8CreatureFPQ24Game8Creature
-        .4byte getSuckPos__Q24Game8CreatureFv
-        .4byte getGoalPos__Q24Game8CreatureFv
-        .4byte isSuckReady__Q24Game8CreatureFv
-        .4byte isSuckArriveWait__Q24Game8CreatureFv
-        .4byte stimulate__Q24Game9EnemyBaseFRQ24Game11Interaction
-        .4byte getCreatureName__Q24Game9EnemyBaseFv
-        .4byte getCreatureID__Q24Game9EnemyBaseFv
-        .4byte 0
-        .4byte 0
-        .4byte "@376@onKeyEvent__Q24Game9EnemyBaseFRCQ28SysShape8KeyEvent"
-        .4byte __dt__Q24Game9EnemyBaseFv
-        .4byte "birth__Q24Game9EnemyBaseFR10Vector3<f>f"
-        .4byte 0
-        .4byte update__Q24Game9EnemyBaseFv
-        .4byte 0
-        .4byte doUpdateCommon__Q24Game9EnemyBaseFv
-        .4byte doUpdateCarcass__Q24Game9EnemyBaseFv
-        .4byte doAnimationUpdateAnimator__Q24Game9EnemyBaseFv
-        .4byte doAnimationCullingOff__Q24Game9EnemyBaseFv
-        .4byte doAnimationCullingOn__Q24Game9EnemyBaseFv
-        .4byte doAnimationStick__Q24Game9EnemyBaseFv
-        .4byte doSimulationCarcass__Q24Game9EnemyBaseFf
-        .4byte doDebugDraw__Q24Game9EnemyBaseFR8Graphics
-        .4byte doSimpleDraw__Q24Game9EnemyBaseFP8Viewport
-        .4byte doSimulationGround__Q24Game9EnemyBaseFf
-        .4byte doSimulationFlying__Q24Game9EnemyBaseFf
-        .4byte doSimulationStick__Q24Game9EnemyBaseFf
-        .4byte changeMaterial__Q24Game9EnemyBaseFv
-        .4byte "getCommonEffectPos__Q24Game9EnemyBaseFR10Vector3<f>"
-        .4byte getFitEffectPos__Q24Game9EnemyBaseFv
-        .4byte viewGetShape__Q24Game9EnemyBaseFv
-        .4byte view_start_carrymotion__Q24Game9EnemyBaseFv
-        .4byte view_finish_carrymotion__Q24Game9EnemyBaseFv
-        .4byte viewStartPreCarryMotion__Q24Game9EnemyBaseFv
-        .4byte viewStartCarryMotion__Q24Game9EnemyBaseFv
-        .4byte viewOnPelletKilled__Q24Game9EnemyBaseFv
-        .4byte getOffsetForMapCollision__Q24Game9EnemyBaseFv
-        .4byte setParameters__Q24Game9EnemyBaseFv
-        .4byte initMouthSlots__Q24Game9EnemyBaseFv
-        .4byte initWalkSmokeEffect__Q24Game9EnemyBaseFv
-        .4byte getWalkSmokeEffectMgr__Q24Game9EnemyBaseFv
-        .4byte onKeyEvent__Q24Game9EnemyBaseFRCQ28SysShape8KeyEvent
-        .4byte injure__Q24Game9EnemyBaseFv
-        .4byte setCollEvent__Q24Game9EnemyBaseFRQ24Game9CollEvent
-        .4byte "getEfxHamonPos__Q24Game9EnemyBaseFP10Vector3<f>"
-        .4byte createInstanceEfxHamon__Q24Game9EnemyBaseFv
-        .4byte updateEfxHamon__Q24Game9EnemyBaseFv
-        .4byte createEfxHamon__Q24Game9EnemyBaseFv
-        .4byte fadeEfxHamon__Q24Game9EnemyBaseFv
-        .4byte 0
-        .4byte getMouthSlots__Q24Game9EnemyBaseFv
-        .4byte doGetLifeGaugeParam__Q24Game9EnemyBaseFRQ24Game14LifeGaugeParam
-        .4byte throwupItem__Q24Game9EnemyBaseFv
-        .4byte "getThrowupItemPosition__Q24Game9EnemyBaseFP10Vector3<f>"
-        .4byte "getThrowupItemVelocity__Q24Game9EnemyBaseFP10Vector3<f>"
-        .4byte throwupItemInDeathProcedure__Q24Game9EnemyBaseFv
-        .4byte setLODSphere__Q24Game9EnemyBaseFRQ23Sys6Sphere
-        .4byte damageCallBack__Q24Game9EnemyBaseFPQ24Game8CreaturefP8CollPart
-        .4byte pressCallBack__Q24Game9EnemyBaseFPQ24Game8CreaturefP8CollPart
-        .4byte
-   flyCollisionCallBack__Q24Game9EnemyBaseFPQ24Game8CreaturefP8CollPart .4byte
-   hipdropCallBack__Q24Game9EnemyBaseFPQ24Game8CreaturefP8CollPart .4byte
-   dropCallBack__Q24Game9EnemyBaseFPQ24Game8Creature .4byte
-   earthquakeCallBack__Q24Game9EnemyBaseFPQ24Game8Creaturef .4byte
-   farmCallBack__Q24Game9EnemyBaseFPQ24Game8Creaturef .4byte
-   "bombCallBack__Q24Game9EnemyBaseFPQ24Game8CreatureR10Vector3<f>f" .4byte
-   eatWhitePikminCallBack__Q24Game9EnemyBaseFPQ24Game8Creaturef .4byte
-   dopeCallBack__Q24Game9EnemyBaseFPQ24Game8Creaturei .4byte
-   doDopeCallBack__Q24Game9EnemyBaseFPQ24Game8Creaturei .4byte
-   doStartStoneState__Q24Game9EnemyBaseFv .4byte
-   doFinishStoneState__Q24Game9EnemyBaseFv .4byte
-   getDamageCoeStoneState__Q24Game9EnemyBaseFv .4byte
-   doStartEarthquakeState__Q24Game9EnemyBaseFf .4byte
-   doFinishEarthquakeState__Q24Game9EnemyBaseFv .4byte
-   doStartEarthquakeFitState__Q24Game9EnemyBaseFv .4byte
-   doFinishEarthquakeFitState__Q24Game9EnemyBaseFv .4byte
-   lifeRecover__Q24Game9EnemyBaseFv .4byte
-   startCarcassMotion__Q24Game9EnemyBaseFv .4byte
-   setCarcassArg__Q24Game9EnemyBaseFRQ24Game13PelletViewArg .4byte
-   getCarcassArgHeight__Q24Game9EnemyBaseFv .4byte
-   doBecomeCarcass__Q24Game9EnemyBaseFv .4byte
-   startWaitingBirthTypeDrop__Q24Game9EnemyBaseFv .4byte
-   finishWaitingBirthTypeDrop__Q24Game9EnemyBaseFv .4byte
-   isFinishableWaitingBirthTypeDrop__Q24Game9EnemyBaseFv .4byte
-   doStartWaitingBirthTypeDrop__Q24Game9EnemyBaseFv .4byte
-   doFinishWaitingBirthTypeDrop__Q24Game9EnemyBaseFv .4byte
-   wallCallback__Q24Game9EnemyBaseFRCQ24Game8MoveInfo .4byte
-   getDownSmokeScale__Q24Game9EnemyBaseFv .4byte
-   doStartMovie__Q24Game9EnemyBaseFv .4byte doEndMovie__Q24Game9EnemyBaseFv
-        .4byte 0
-        .4byte 0
-        .4byte viewGetBaseScale__Q24Game10PelletViewFv
-        .4byte "@700@12@viewGetShape__Q24Game9EnemyBaseFv"
-        .4byte viewGetCollTreeJointIndex__Q24Game10PelletViewFv
-        .4byte viewGetCollTreeOffset__Q24Game10PelletViewFv
-        .4byte "@700@12@view_start_carrymotion__Q24Game9EnemyBaseFv"
-        .4byte "@700@12@view_finish_carrymotion__Q24Game9EnemyBaseFv"
-        .4byte "@700@12@viewStartPreCarryMotion__Q24Game9EnemyBaseFv"
-        .4byte "@700@12@viewStartCarryMotion__Q24Game9EnemyBaseFv"
-        .4byte "@700@12@viewOnPelletKilled__Q24Game9EnemyBaseFv"
-        .4byte "viewEntryShape__Q24Game10PelletViewFR7MatrixfR10Vector3<f>"
-    .global __vt__Q24Game17EnemyAnimKeyEvent
-    __vt__Q24Game17EnemyAnimKeyEvent:
-        .4byte 0
-        .4byte 0
-        .4byte __dt__Q24Game17EnemyAnimKeyEventFv
-        .4byte getChildCount__5CNodeFv
-    .global __vt__Q28SysShape8KeyEvent
-    __vt__Q28SysShape8KeyEvent:
-        .4byte 0
-        .4byte 0
-        .4byte __dt__Q28SysShape8KeyEventFv
-        .4byte getChildCount__5CNodeFv
-    .global __vt__Q28SysShape14MotionListener
-    __vt__Q28SysShape14MotionListener:
-        .4byte 0
-        .4byte 0
-        .4byte 0
-    .global __vt__Q24Game10PelletView
-    __vt__Q24Game10PelletView:
-        .4byte 0
-        .4byte 0
-        .4byte viewGetBaseScale__Q24Game10PelletViewFv
-        .4byte 0
-        .4byte viewGetCollTreeJointIndex__Q24Game10PelletViewFv
-        .4byte viewGetCollTreeOffset__Q24Game10PelletViewFv
-        .4byte view_start_carrymotion__Q24Game10PelletViewFv
-        .4byte view_finish_carrymotion__Q24Game10PelletViewFv
-        .4byte viewStartPreCarryMotion__Q24Game10PelletViewFv
-        .4byte viewStartCarryMotion__Q24Game10PelletViewFv
-        .4byte viewOnPelletKilled__Q24Game10PelletViewFv
-        .4byte "viewEntryShape__Q24Game10PelletViewFR7MatrixfR10Vector3<f>"
-    .global __vt__Q34Game12EnemyBaseFSM12StateMachine
-    __vt__Q34Game12EnemyBaseFSM12StateMachine:
-        .4byte 0
-        .4byte 0
-        .4byte init__Q34Game12EnemyBaseFSM12StateMachineFPQ24Game9EnemyBase
-        .4byte
-   start__Q24Game17EnemyStateMachineFPQ24Game9EnemyBaseiPQ24Game8StateArg .4byte
-   exec__Q24Game17EnemyStateMachineFPQ24Game9EnemyBase .4byte
-   transit__Q24Game17EnemyStateMachineFPQ24Game9EnemyBaseiPQ24Game8StateArg
-        .4byte
-   doDirectDraw__Q24Game17EnemyStateMachineFPQ24Game9EnemyBaseR8Graphics .4byte
-   getCurrState__Q34Game12EnemyBaseFSM12StateMachineFPQ24Game9EnemyBase .4byte
-   setCurrState__Q34Game12EnemyBaseFSM12StateMachineFPQ24Game9EnemyBasePQ24Game13EnemyFSMState
-        .4byte update__Q34Game12EnemyBaseFSM12StateMachineFPQ24Game9EnemyBase
-        .4byte entry__Q34Game12EnemyBaseFSM12StateMachineFPQ24Game9EnemyBase
-        .4byte
-   simulation__Q34Game12EnemyBaseFSM12StateMachineFPQ24Game9EnemyBasef .4byte
-   animation__Q34Game12EnemyBaseFSM12StateMachineFPQ24Game9EnemyBase .4byte
-   bounceProcedure__Q34Game12EnemyBaseFSM12StateMachineFPQ24Game9EnemyBasePQ23Sys8Triangle
-    .global __vt__Q34Game12EnemyBaseFSM10StoneState
-    __vt__Q34Game12EnemyBaseFSM10StoneState:
-        .4byte 0
-        .4byte 0
-        .4byte
-   init__Q34Game12EnemyBaseFSM10StoneStateFPQ24Game9EnemyBasePQ24Game8StateArg
-        .4byte exec__Q24Game13EnemyFSMStateFPQ24Game9EnemyBase
-        .4byte cleanup__Q34Game12EnemyBaseFSM10StoneStateFPQ24Game9EnemyBase
-        .4byte resume__Q24Game13EnemyFSMStateFPQ24Game9EnemyBase
-        .4byte restart__Q24Game13EnemyFSMStateFPQ24Game9EnemyBase
-        .4byte
-   transit__Q24Game13EnemyFSMStateFPQ24Game9EnemyBaseiPQ24Game8StateArg .4byte
-   doDirectDraw__Q24Game13EnemyFSMStateFPQ24Game9EnemyBaseR8Graphics .4byte
-   update__Q34Game12EnemyBaseFSM11LivingStateFPQ24Game9EnemyBase .4byte
-   entry__Q34Game12EnemyBaseFSM11LivingStateFPQ24Game9EnemyBase .4byte
-   simulation__Q34Game12EnemyBaseFSM11LivingStateFPQ24Game9EnemyBasef .4byte
-   bounceProcedure__Q34Game12EnemyBaseFSM10StoneStateFPQ24Game9EnemyBasePQ23Sys8Triangle
-        .4byte animation__Q34Game12EnemyBaseFSM5StateFPQ24Game9EnemyBase
-        .4byte
-   updateCullingOff__Q34Game12EnemyBaseFSM10StoneStateFPQ24Game9EnemyBase .4byte
-   updateAlways__Q34Game12EnemyBaseFSM10StoneStateFPQ24Game9EnemyBase .global
-   __vt__Q34Game12EnemyBaseFSM15EarthquakeState
-    __vt__Q34Game12EnemyBaseFSM15EarthquakeState:
-        .4byte 0
-        .4byte 0
-        .4byte
-   init__Q34Game12EnemyBaseFSM15EarthquakeStateFPQ24Game9EnemyBasePQ24Game8StateArg
-        .4byte exec__Q24Game13EnemyFSMStateFPQ24Game9EnemyBase
-        .4byte
-   cleanup__Q34Game12EnemyBaseFSM15EarthquakeStateFPQ24Game9EnemyBase .4byte
-   resume__Q24Game13EnemyFSMStateFPQ24Game9EnemyBase .4byte
-   restart__Q24Game13EnemyFSMStateFPQ24Game9EnemyBase .4byte
-   transit__Q24Game13EnemyFSMStateFPQ24Game9EnemyBaseiPQ24Game8StateArg .4byte
-   doDirectDraw__Q24Game13EnemyFSMStateFPQ24Game9EnemyBaseR8Graphics .4byte
-   update__Q34Game12EnemyBaseFSM11LivingStateFPQ24Game9EnemyBase .4byte
-   entry__Q34Game12EnemyBaseFSM11LivingStateFPQ24Game9EnemyBase .4byte
-   simulation__Q34Game12EnemyBaseFSM11LivingStateFPQ24Game9EnemyBasef .4byte
-   bounceProcedure__Q34Game12EnemyBaseFSM5StateFPQ24Game9EnemyBasePQ23Sys8Triangle
-        .4byte animation__Q34Game12EnemyBaseFSM5StateFPQ24Game9EnemyBase
-        .4byte
-   updateCullingOff__Q34Game12EnemyBaseFSM15EarthquakeStateFPQ24Game9EnemyBase
-        .4byte
-   updateAlways__Q34Game12EnemyBaseFSM11LivingStateFPQ24Game9EnemyBase .global
-   __vt__Q34Game12EnemyBaseFSM8FitState
-    __vt__Q34Game12EnemyBaseFSM8FitState:
-        .4byte 0
-        .4byte 0
-        .4byte
-   init__Q34Game12EnemyBaseFSM8FitStateFPQ24Game9EnemyBasePQ24Game8StateArg
-        .4byte exec__Q24Game13EnemyFSMStateFPQ24Game9EnemyBase
-        .4byte cleanup__Q34Game12EnemyBaseFSM8FitStateFPQ24Game9EnemyBase
-        .4byte resume__Q24Game13EnemyFSMStateFPQ24Game9EnemyBase
-        .4byte restart__Q24Game13EnemyFSMStateFPQ24Game9EnemyBase
-        .4byte
-   transit__Q24Game13EnemyFSMStateFPQ24Game9EnemyBaseiPQ24Game8StateArg .4byte
-   doDirectDraw__Q24Game13EnemyFSMStateFPQ24Game9EnemyBaseR8Graphics .4byte
-   update__Q34Game12EnemyBaseFSM11LivingStateFPQ24Game9EnemyBase .4byte
-   entry__Q34Game12EnemyBaseFSM11LivingStateFPQ24Game9EnemyBase .4byte
-   simulation__Q34Game12EnemyBaseFSM11LivingStateFPQ24Game9EnemyBasef .4byte
-   bounceProcedure__Q34Game12EnemyBaseFSM5StateFPQ24Game9EnemyBasePQ23Sys8Triangle
-        .4byte animation__Q34Game12EnemyBaseFSM5StateFPQ24Game9EnemyBase
-        .4byte
-   updateCullingOff__Q34Game12EnemyBaseFSM8FitStateFPQ24Game9EnemyBase .4byte
-   updateAlways__Q34Game12EnemyBaseFSM8FitStateFPQ24Game9EnemyBase .global
-   __vt__Q34Game12EnemyBaseFSM11LivingState
-    __vt__Q34Game12EnemyBaseFSM11LivingState:
-        .4byte 0
-        .4byte 0
-        .4byte init__Q24Game13EnemyFSMStateFPQ24Game9EnemyBasePQ24Game8StateArg
-        .4byte exec__Q24Game13EnemyFSMStateFPQ24Game9EnemyBase
-        .4byte cleanup__Q24Game13EnemyFSMStateFPQ24Game9EnemyBase
-        .4byte resume__Q24Game13EnemyFSMStateFPQ24Game9EnemyBase
-        .4byte restart__Q24Game13EnemyFSMStateFPQ24Game9EnemyBase
-        .4byte
-   transit__Q24Game13EnemyFSMStateFPQ24Game9EnemyBaseiPQ24Game8StateArg .4byte
-   doDirectDraw__Q24Game13EnemyFSMStateFPQ24Game9EnemyBaseR8Graphics .4byte
-   update__Q34Game12EnemyBaseFSM11LivingStateFPQ24Game9EnemyBase .4byte
-   entry__Q34Game12EnemyBaseFSM11LivingStateFPQ24Game9EnemyBase .4byte
-   simulation__Q34Game12EnemyBaseFSM11LivingStateFPQ24Game9EnemyBasef .4byte
-   bounceProcedure__Q34Game12EnemyBaseFSM5StateFPQ24Game9EnemyBasePQ23Sys8Triangle
-        .4byte animation__Q34Game12EnemyBaseFSM5StateFPQ24Game9EnemyBase
-        .4byte
-   updateCullingOff__Q34Game12EnemyBaseFSM11LivingStateFPQ24Game9EnemyBase
-        .4byte
-   updateAlways__Q34Game12EnemyBaseFSM11LivingStateFPQ24Game9EnemyBase .global
-   __vt__Q23efx12ArgEnemyType
-    __vt__Q23efx12ArgEnemyType:
-        .4byte 0
-        .4byte 0
-        .4byte getName__Q23efx12ArgEnemyTypeFv
-    .global __vt__Q23efx3Arg
-    __vt__Q23efx3Arg:
-        .4byte 0
-        .4byte 0
-        .4byte getName__Q23efx3ArgFv
-    .global __vt__Q23efx5TBase
-    __vt__Q23efx5TBase:
-        .4byte 0
-        .4byte 0
-        .4byte 0
-        .4byte 0
-        .4byte 0
-    .global __vt__Q34Game12EnemyBaseFSM11AppearState
-    __vt__Q34Game12EnemyBaseFSM11AppearState:
-        .4byte 0
-        .4byte 0
-        .4byte
-   init__Q34Game12EnemyBaseFSM11AppearStateFPQ24Game9EnemyBasePQ24Game8StateArg
-        .4byte exec__Q24Game13EnemyFSMStateFPQ24Game9EnemyBase
-        .4byte cleanup__Q34Game12EnemyBaseFSM11AppearStateFPQ24Game9EnemyBase
-        .4byte resume__Q24Game13EnemyFSMStateFPQ24Game9EnemyBase
-        .4byte restart__Q24Game13EnemyFSMStateFPQ24Game9EnemyBase
-        .4byte
-   transit__Q24Game13EnemyFSMStateFPQ24Game9EnemyBaseiPQ24Game8StateArg .4byte
-   doDirectDraw__Q24Game13EnemyFSMStateFPQ24Game9EnemyBaseR8Graphics .4byte
-   update__Q34Game12EnemyBaseFSM11AppearStateFPQ24Game9EnemyBase .4byte
-   entry__Q34Game12EnemyBaseFSM11AppearStateFPQ24Game9EnemyBase .4byte
-   simulation__Q34Game12EnemyBaseFSM11AppearStateFPQ24Game9EnemyBasef .4byte
-   bounceProcedure__Q34Game12EnemyBaseFSM5StateFPQ24Game9EnemyBasePQ23Sys8Triangle
-        .4byte animation__Q34Game12EnemyBaseFSM5StateFPQ24Game9EnemyBase
-    .global __vt__Q34Game12EnemyBaseFSM28BirthTypeDropEarthquakeState
-    __vt__Q34Game12EnemyBaseFSM28BirthTypeDropEarthquakeState:
-        .4byte 0
-        .4byte 0
-        .4byte
-   init__Q34Game12EnemyBaseFSM18BirthTypeDropStateFPQ24Game9EnemyBasePQ24Game8StateArg
-        .4byte exec__Q24Game13EnemyFSMStateFPQ24Game9EnemyBase
-        .4byte
-   cleanup__Q34Game12EnemyBaseFSM18BirthTypeDropStateFPQ24Game9EnemyBase .4byte
-   resume__Q24Game13EnemyFSMStateFPQ24Game9EnemyBase .4byte
-   restart__Q24Game13EnemyFSMStateFPQ24Game9EnemyBase .4byte
-   transit__Q24Game13EnemyFSMStateFPQ24Game9EnemyBaseiPQ24Game8StateArg .4byte
-   doDirectDraw__Q24Game13EnemyFSMStateFPQ24Game9EnemyBaseR8Graphics .4byte
-   update__Q34Game12EnemyBaseFSM18BirthTypeDropStateFPQ24Game9EnemyBase .4byte
-   entry__Q34Game12EnemyBaseFSM18BirthTypeDropStateFPQ24Game9EnemyBase .4byte
-   simulation__Q34Game12EnemyBaseFSM18BirthTypeDropStateFPQ24Game9EnemyBasef
-        .4byte
-   bounceProcedure__Q34Game12EnemyBaseFSM5StateFPQ24Game9EnemyBasePQ23Sys8Triangle
-        .4byte
-   animation__Q34Game12EnemyBaseFSM18BirthTypeDropStateFPQ24Game9EnemyBase
-        .4byte
-   isFinishableWaitingBirthTypeDrop__Q34Game12EnemyBaseFSM28BirthTypeDropEarthquakeStateFPQ24Game9EnemyBase
-    .global __vt__Q34Game12EnemyBaseFSM26BirthTypeDropTreasureState
-    __vt__Q34Game12EnemyBaseFSM26BirthTypeDropTreasureState:
-        .4byte 0
-        .4byte 0
-        .4byte
-   init__Q34Game12EnemyBaseFSM18BirthTypeDropStateFPQ24Game9EnemyBasePQ24Game8StateArg
-        .4byte exec__Q24Game13EnemyFSMStateFPQ24Game9EnemyBase
-        .4byte
-   cleanup__Q34Game12EnemyBaseFSM18BirthTypeDropStateFPQ24Game9EnemyBase .4byte
-   resume__Q24Game13EnemyFSMStateFPQ24Game9EnemyBase .4byte
-   restart__Q24Game13EnemyFSMStateFPQ24Game9EnemyBase .4byte
-   transit__Q24Game13EnemyFSMStateFPQ24Game9EnemyBaseiPQ24Game8StateArg .4byte
-   doDirectDraw__Q24Game13EnemyFSMStateFPQ24Game9EnemyBaseR8Graphics .4byte
-   update__Q34Game12EnemyBaseFSM18BirthTypeDropStateFPQ24Game9EnemyBase .4byte
-   entry__Q34Game12EnemyBaseFSM18BirthTypeDropStateFPQ24Game9EnemyBase .4byte
-   simulation__Q34Game12EnemyBaseFSM18BirthTypeDropStateFPQ24Game9EnemyBasef
-        .4byte
-   bounceProcedure__Q34Game12EnemyBaseFSM5StateFPQ24Game9EnemyBasePQ23Sys8Triangle
-        .4byte
-   animation__Q34Game12EnemyBaseFSM18BirthTypeDropStateFPQ24Game9EnemyBase
-        .4byte
-   isFinishableWaitingBirthTypeDrop__Q34Game12EnemyBaseFSM26BirthTypeDropTreasureStateFPQ24Game9EnemyBase
-    .global __vt__Q34Game12EnemyBaseFSM24BirthTypeDropOlimarState
-    __vt__Q34Game12EnemyBaseFSM24BirthTypeDropOlimarState:
-        .4byte 0
-        .4byte 0
-        .4byte
-   init__Q34Game12EnemyBaseFSM18BirthTypeDropStateFPQ24Game9EnemyBasePQ24Game8StateArg
-        .4byte exec__Q24Game13EnemyFSMStateFPQ24Game9EnemyBase
-        .4byte
-   cleanup__Q34Game12EnemyBaseFSM18BirthTypeDropStateFPQ24Game9EnemyBase .4byte
-   resume__Q24Game13EnemyFSMStateFPQ24Game9EnemyBase .4byte
-   restart__Q24Game13EnemyFSMStateFPQ24Game9EnemyBase .4byte
-   transit__Q24Game13EnemyFSMStateFPQ24Game9EnemyBaseiPQ24Game8StateArg .4byte
-   doDirectDraw__Q24Game13EnemyFSMStateFPQ24Game9EnemyBaseR8Graphics .4byte
-   update__Q34Game12EnemyBaseFSM18BirthTypeDropStateFPQ24Game9EnemyBase .4byte
-   entry__Q34Game12EnemyBaseFSM18BirthTypeDropStateFPQ24Game9EnemyBase .4byte
-   simulation__Q34Game12EnemyBaseFSM18BirthTypeDropStateFPQ24Game9EnemyBasef
-        .4byte
-   bounceProcedure__Q34Game12EnemyBaseFSM5StateFPQ24Game9EnemyBasePQ23Sys8Triangle
-        .4byte
-   animation__Q34Game12EnemyBaseFSM18BirthTypeDropStateFPQ24Game9EnemyBase
-        .4byte
-   isFinishableWaitingBirthTypeDrop__Q34Game12EnemyBaseFSM24BirthTypeDropOlimarStateFPQ24Game9EnemyBase
-    .global __vt__Q34Game12EnemyBaseFSM24BirthTypeDropPikminState
-    __vt__Q34Game12EnemyBaseFSM24BirthTypeDropPikminState:
-        .4byte 0
-        .4byte 0
-        .4byte
-   init__Q34Game12EnemyBaseFSM18BirthTypeDropStateFPQ24Game9EnemyBasePQ24Game8StateArg
-        .4byte exec__Q24Game13EnemyFSMStateFPQ24Game9EnemyBase
-        .4byte
-   cleanup__Q34Game12EnemyBaseFSM18BirthTypeDropStateFPQ24Game9EnemyBase .4byte
-   resume__Q24Game13EnemyFSMStateFPQ24Game9EnemyBase .4byte
-   restart__Q24Game13EnemyFSMStateFPQ24Game9EnemyBase .4byte
-   transit__Q24Game13EnemyFSMStateFPQ24Game9EnemyBaseiPQ24Game8StateArg .4byte
-   doDirectDraw__Q24Game13EnemyFSMStateFPQ24Game9EnemyBaseR8Graphics .4byte
-   update__Q34Game12EnemyBaseFSM18BirthTypeDropStateFPQ24Game9EnemyBase .4byte
-   entry__Q34Game12EnemyBaseFSM18BirthTypeDropStateFPQ24Game9EnemyBase .4byte
-   simulation__Q34Game12EnemyBaseFSM18BirthTypeDropStateFPQ24Game9EnemyBasef
-        .4byte
-   bounceProcedure__Q34Game12EnemyBaseFSM5StateFPQ24Game9EnemyBasePQ23Sys8Triangle
-        .4byte
-   animation__Q34Game12EnemyBaseFSM18BirthTypeDropStateFPQ24Game9EnemyBase
-        .4byte
-   isFinishableWaitingBirthTypeDrop__Q34Game12EnemyBaseFSM24BirthTypeDropPikminStateFPQ24Game9EnemyBase
-    .global __vt__Q34Game12EnemyBaseFSM18BirthTypeDropState
-    __vt__Q34Game12EnemyBaseFSM18BirthTypeDropState:
-        .4byte 0
-        .4byte 0
-        .4byte
-   init__Q34Game12EnemyBaseFSM18BirthTypeDropStateFPQ24Game9EnemyBasePQ24Game8StateArg
-        .4byte exec__Q24Game13EnemyFSMStateFPQ24Game9EnemyBase
-        .4byte
-   cleanup__Q34Game12EnemyBaseFSM18BirthTypeDropStateFPQ24Game9EnemyBase .4byte
-   resume__Q24Game13EnemyFSMStateFPQ24Game9EnemyBase .4byte
-   restart__Q24Game13EnemyFSMStateFPQ24Game9EnemyBase .4byte
-   transit__Q24Game13EnemyFSMStateFPQ24Game9EnemyBaseiPQ24Game8StateArg .4byte
-   doDirectDraw__Q24Game13EnemyFSMStateFPQ24Game9EnemyBaseR8Graphics .4byte
-   update__Q34Game12EnemyBaseFSM18BirthTypeDropStateFPQ24Game9EnemyBase .4byte
-   entry__Q34Game12EnemyBaseFSM18BirthTypeDropStateFPQ24Game9EnemyBase .4byte
-   simulation__Q34Game12EnemyBaseFSM18BirthTypeDropStateFPQ24Game9EnemyBasef
-        .4byte
-   bounceProcedure__Q34Game12EnemyBaseFSM5StateFPQ24Game9EnemyBasePQ23Sys8Triangle
-        .4byte
-   animation__Q34Game12EnemyBaseFSM18BirthTypeDropStateFPQ24Game9EnemyBase
-        .4byte
-   isFinishableWaitingBirthTypeDrop__Q34Game12EnemyBaseFSM18BirthTypeDropStateFPQ24Game9EnemyBase
-    .global __vt__Q34Game12EnemyBaseFSM5State
-    __vt__Q34Game12EnemyBaseFSM5State:
-        .4byte 0
-        .4byte 0
-        .4byte init__Q24Game13EnemyFSMStateFPQ24Game9EnemyBasePQ24Game8StateArg
-        .4byte exec__Q24Game13EnemyFSMStateFPQ24Game9EnemyBase
-        .4byte cleanup__Q24Game13EnemyFSMStateFPQ24Game9EnemyBase
-        .4byte resume__Q24Game13EnemyFSMStateFPQ24Game9EnemyBase
-        .4byte restart__Q24Game13EnemyFSMStateFPQ24Game9EnemyBase
-        .4byte
-   transit__Q24Game13EnemyFSMStateFPQ24Game9EnemyBaseiPQ24Game8StateArg .4byte
-   doDirectDraw__Q24Game13EnemyFSMStateFPQ24Game9EnemyBaseR8Graphics .4byte
-   update__Q34Game12EnemyBaseFSM5StateFPQ24Game9EnemyBase .4byte
-   entry__Q34Game12EnemyBaseFSM5StateFPQ24Game9EnemyBase .4byte
-   simulation__Q34Game12EnemyBaseFSM5StateFPQ24Game9EnemyBasef .4byte
-   bounceProcedure__Q34Game12EnemyBaseFSM5StateFPQ24Game9EnemyBasePQ23Sys8Triangle
-        .4byte animation__Q34Game12EnemyBaseFSM5StateFPQ24Game9EnemyBase
-
-    .section .sbss # 0x80514D80 - 0x80516360
-    .global lbl_80515820
-    lbl_80515820:
-        .skip 0x4
-    .global lbl_80515824
-    lbl_80515824:
-        .skip 0x4
-    .global gParmArc__4Game
-    gParmArc__4Game:
-        .skip 0x4
-    .global "sInstance__Q28PSSystem24ArcMgr<Q26PSGame6BASARC>"
-    "sInstance__Q28PSSystem24ArcMgr<Q26PSGame6BASARC>":
-        .skip 0x4
-    .global "sInstance__Q28PSSystem39SingletonBase<Q33PSM12BossBgmFader3Mgr>"
-    "sInstance__Q28PSSystem39SingletonBase<Q33PSM12BossBgmFader3Mgr>":
-        .skip 0x4
-    .global "sInstance__Q28PSSystem34SingletonBase<Q23PSM11ObjCalcBase>"
-    "sInstance__Q28PSSystem34SingletonBase<Q23PSM11ObjCalcBase>":
-        .skip 0x4
-    .global "sInstance__Q28PSSystem34SingletonBase<Q23PSM11CreaturePrm>"
-    "sInstance__Q28PSSystem34SingletonBase<Q23PSM11CreaturePrm>":
-        .skip 0x4
-    .global "sInstance__Q28PSSystem28SingletonBase<Q23PSM6ObjMgr>"
-    "sInstance__Q28PSSystem28SingletonBase<Q23PSM6ObjMgr>":
-        .skip 0x4
-    .global "sInstance__Q28PSSystem38SingletonBase<Q23PSM15BgmTrackMapFile>"
-    "sInstance__Q28PSSystem38SingletonBase<Q23PSM15BgmTrackMapFile>":
-        .skip 0x4
-    .global
-   "sInstance__Q28PSSystem49SingletonBase<Q36PSGame10SoundTable11CategoryMgr>"
-    "sInstance__Q28PSSystem49SingletonBase<Q36PSGame10SoundTable11CategoryMgr>":
-        .skip 0x4
-    .global "sInstance__Q28PSSystem30SingletonBase<Q26PSGame5SeMgr>"
-    "sInstance__Q28PSSystem30SingletonBase<Q26PSGame5SeMgr>":
-        .skip 0x4
-    .global "sInstance__Q28PSSystem39SingletonBase<Q28PSSystem11SeqDataList>"
-    "sInstance__Q28PSSystem39SingletonBase<Q28PSSystem11SeqDataList>":
-        .skip 0x4
-    .global "sInstance__Q28PSSystem42SingletonBase<Q28PSSystem14StreamDataList>"
-    "sInstance__Q28PSSystem42SingletonBase<Q28PSSystem14StreamDataList>":
-        .skip 0x8
-
-    .section .sdata2, "a"     # 0x80516360 - 0x80520E40
-    lbl_80517798:
-        .float 300.0
-    lbl_8051779C:
-        .float 32768.0
-    lbl_805177A0:
-        .float 6.2831855
-    lbl_805177A4:
-        .float 50.0
-    lbl_805177A8:
-        .float -325.9493
-    lbl_805177AC:
-        .float 325.9493
-    lbl_805177B0:
-        .float 0.0
-        .skip 4
-    lbl_805177B8:
-        .4byte 0x43300000
-        .4byte 0x80000000
-    lbl_805177C0:
-        .float 2.0
-    PELLETVIEW_BASE_SCALE:
-        .float 1.0
-    lbl_805177C8:
-        .float 0.2
-    lbl_805177CC:
-        .float 3.1415927
-    lbl_805177D0:
-        .float 4.0
-    lbl_805177D4:
-        .float 0.25
-    lbl_805177D8:
-        .float 0.017453294
-        .skip 4
-    lbl_805177E0:
-        .4byte 0x43300000
-        .4byte 0x00000000
-    lbl_805177E8:
-        .asciz "Appear"
-        .skip 1
-    lbl_805177F0:
-        .asciz "Living"
-        .skip 1
-    lbl_805177F8:
-        .asciz "Stone"
-        .skip 2
-    lbl_80517800:
-        .asciz "Fit"
-    lbl_80517804:
-        .float 2.5
-    lbl_80517808:
-        .float 0.99
-    lbl_8051780C:
-        .float 0.9
-    lbl_80517810:
-        .float 0.85
-    lbl_80517814:
-        .float 0.5
-    lbl_80517818:
-        .float 10.0
-    lbl_8051781C:
-        .float 250.0
-    lbl_80517820:
-        .asciz "e-calc"
-        .skip 1
-    lbl_80517828:
-        .float 3.0
-    lbl_8051782C:
-        .float 0.6
-    lbl_80517830:
-        .float 0.03490659
-    lbl_80517834:
-        .float 0.043633234
-    lbl_80517838:
-        .float 200.0
-    lbl_8051783C:
-        .float 8.0
-    lbl_80517840:
-        .float 150.0
-    lbl_80517844:
-        .float 100.0
-    lbl_80517848:
-        .float 1.5
-    lbl_8051784C:
-        .asciz "Arg"
-*/
-
 namespace Game {
 namespace EnemyBaseFSM {
 /*
@@ -888,7 +64,7 @@ namespace EnemyBaseFSM {
  */
 void State::animation(Game::EnemyBase* obj)
 {
-	if (obj->_1E0.m_flags[0].typeView & 0x10000000) {
+	if (obj->m_events.m_flags[0].typeView & 0x10000000) {
 		GeneralEnemyMgr::mTotalCount++;
 
 		bool fxExists = obj->isCullingOff();
@@ -897,7 +73,7 @@ void State::animation(Game::EnemyBase* obj)
 		obj->updateLOD(obj->m_lodParm);
 
 		if (obj->isCullingOff()) {
-			if (obj->_1E0.m_flags[0].typeView & 0x8000) {
+			if (obj->m_events.m_flags[0].typeView & 0x8000) {
 				obj->doAnimationCullingOff();
 			} else {
 				obj->doAnimationCullingOn();
@@ -948,14 +124,6 @@ bool BirthTypeDropState::isFinishableWaitingBirthTypeDrop(EnemyBase* enemy)
 	}
 	return result;
 }
-
-/*
- * --INFO--
- * Address:	800FF544
- * Size:	00000C
- */
-// WEAK - in header Game/Creature.h
-// bool Creature::isAlive() { return m_flags.typeView & CF_IS_ALIVE; }
 
 /*
  * --INFO--
@@ -1178,15 +346,6 @@ bool EnemyBaseFSM::BirthTypeDropTreasureState::isFinishableWaitingBirthTypeDrop(
 }
 
 /*
- * @autogenerated
- * --INFO--
- * Address:	800FFC8C
- * Size:	00001C
- */
-// WEAK - in header
-// Vector3f Pellet::getPosition() { return m_pelletPosition; }
-
-/*
  * --INFO--
  * Address:	800FFCA8
  * Size:	000008
@@ -1286,28 +445,20 @@ void AppearState::init(Game::EnemyBase* enemy, Game::StateArg* arg)
 
 /*
  * --INFO--
- * Address:	800FFDD0
- * Size:	00001C
- */
-// WEAK - in header
-// Vector3f EnemyBase::getPosition() { return m_position; }
-
-/*
- * --INFO--
  * Address:	800FFDEC
  * Size:	000130
  */
 void AppearState::update(Game::EnemyBase* enemy)
 {
 	enemy->m_scaleTimer += 2.0f * sys->m_secondsPerFrame;
-	if (enemy->m_scaleTimer > PELLETVIEW_BASE_SCALE) {
+	if (enemy->m_scaleTimer > 1.0f) {
 		transit(enemy, EBS_Living, 0);
 		return;
 	}
 
 	enemy->m_scale.x = 2.0f * enemy->m_scaleTimer;
-	if (enemy->m_scale.x > PELLETVIEW_BASE_SCALE) {
-		enemy->m_scale.x = PELLETVIEW_BASE_SCALE;
+	if (enemy->m_scale.x > 1.0f) {
+		enemy->m_scale.x = 1.0f;
 	}
 
 	enemy->m_scale.x += 0.2f * pikmin2_sinf(TAU * enemy->m_scaleTimer);
@@ -1326,7 +477,7 @@ void AppearState::update(Game::EnemyBase* enemy)
  */
 void AppearState::cleanup(Game::EnemyBase* enemy)
 {
-	enemy->m_scale      = PELLETVIEW_BASE_SCALE;
+	enemy->m_scale      = 1.0f;
 	enemy->m_scaleTimer = 0.0f;
 }
 
@@ -1335,10 +486,10 @@ void AppearState::cleanup(Game::EnemyBase* enemy)
  * Address:	800FFF38
  * Size:	00010C
  */
-void EnemyBaseFSM::LivingState::simulation(Game::EnemyBase*, float)
+void EnemyBaseFSM::LivingState::simulation(Game::EnemyBase* enemy, float constraint)
 {
-	if ((enemy->_1E0.m_flags[0].typeView & 0x40000)
-	    || isLiving(enemy) && !(enemy->_1E0.m_flags[1].typeView & 1) && !(enemy->_1E0.m_flags[1].typeView & 0x10)) {
+	if ((enemy->m_events.m_flags[0].typeView & 0x40000)
+	    || isLiving(enemy) && !(enemy->m_events.m_flags[1].typeView & 1) && !(enemy->m_events.m_flags[1].typeView & 0x10)) {
 
 		if (enemy->isCullingOff()) {
 			enemy->doSimulationConstraint(constraint);
@@ -1357,22 +508,6 @@ void EnemyBaseFSM::LivingState::simulation(Game::EnemyBase*, float)
 		enemy->gotoHell();
 	}
 }
-
-/*
- * --INFO--
- * Address:	80100044
- * Size:	000008
- */
-// WEAK - in header
-// s32 EnemyBase::getCreatureID() { return m_enemyIndexForType; }
-
-/*
- * --INFO--
- * Address:	8010004C
- * Size:	000038
- */
-// WEAK - in header
-// char* EnemyBase::getCreatureName() { return EnemyInfoFunc::getEnemyName(getEnemyTypeID(), 0xFFFF); }
 
 /*
  * --INFO--
@@ -1402,7 +537,7 @@ void LivingState::updateCullingOff(Game::EnemyBase* enemy) { enemy->doUpdate(); 
  */
 void LivingState::updateAlways(Game::EnemyBase* enemy)
 {
-	if (enemy->_1E0.m_flags[0].typeView & 0x100000) {
+	if (enemy->m_events.m_flags[0].typeView & 0x100000) {
 		enemy->startStoneState();
 	}
 }
@@ -1415,8 +550,8 @@ void LivingState::updateAlways(Game::EnemyBase* enemy)
 void LivingState::update(Game::EnemyBase* enemy)
 {
 	sys->m_timers->_start("e-upd-do", 1);
-	enemy->_1E0.m_flags[0].typeView &= 0xFFFEFFFF;
-	enemy->_1E0.m_flags[0].typeView &= 0xFFFDFFFF;
+	enemy->m_events.m_flags[0].typeView &= 0xFFFEFFFF;
+	enemy->m_events.m_flags[0].typeView &= 0xFFFDFFFF;
 	enemy->m_soundObj->exec();
 	if (enemy->m_pellet) {
 		enemy->doUpdateCarcass();
@@ -1433,9 +568,9 @@ void LivingState::update(Game::EnemyBase* enemy)
 		if (enemy->_2AC > 0.0f) {
 			enemy->_2A8 += sys->m_secondsPerFrame;
 			if (enemy->_2A8 > enemy->_2AC) {
-				enemy->addDamage(enemy->m_maxHealth, PELLETVIEW_BASE_SCALE);
-				enemy->_1E0.m_flags[0].typeView &= 0xFFFFFFBF;
-				enemy->_1E0.m_flags[0].typeView &= 0xFFFFFFF7;
+				enemy->addDamage(enemy->m_maxHealth, 1.0f);
+				enemy->m_events.m_flags[0].typeView &= 0xFFFFFFBF;
+				enemy->m_events.m_flags[0].typeView &= 0xFFFFFFF7;
 			}
 		}
 	}
@@ -1463,11 +598,11 @@ void EnemyBaseFSM::FitState::updateCullingOff(Game::EnemyBase* enemy)
 void EnemyBaseFSM::FitState::init(Game::EnemyBase* enemy, Game::StateArg* arg)
 {
 	enemy->doUpdate();
-	enemy->_1E8.m_flags[0].typeView = enemy->_1E0.m_flags[0].typeView;
-	enemy->_1E8.m_flags[1].typeView = enemy->_1E0.m_flags[1].typeView;
-	enemy->_1E0.m_flags[1].typeView |= 0x2;
+	enemy->_1E8.m_flags[0].typeView = enemy->m_events.m_flags[0].typeView;
+	enemy->_1E8.m_flags[1].typeView = enemy->m_events.m_flags[1].typeView;
+	enemy->m_events.m_flags[1].typeView |= 0x2;
 	enemy->stopMotion();
-	enemy->_1E0.m_flags[0].typeView |= 0x400;
+	enemy->m_events.m_flags[0].typeView |= 0x400;
 	enemy->m_velocity2.x = 0.0f;
 	enemy->m_velocity2.y = 0.0f;
 	enemy->m_velocity2.z = 0.0f;
@@ -1573,9 +708,9 @@ void EnemyBaseFSM::FitState::init(Game::EnemyBase* enemy, Game::StateArg* arg)
  */
 void FitState::cleanup(Game::EnemyBase* enemy)
 {
-	enemy->_1E0.m_flags[0] = enemy->_1E8.m_flags[0];
-	enemy->_1E0.m_flags[1] = enemy->_1E8.m_flags[1];
-	enemy->_1E0.m_flags[1].typeView &= 0xFFFFFFFD;
+	enemy->m_events.m_flags[0] = enemy->_1E8.m_flags[0];
+	enemy->m_events.m_flags[1] = enemy->_1E8.m_flags[1];
+	enemy->m_events.m_flags[1].typeView &= 0xFFFFFFFD;
 	enemy->startMotion();
 	enemy->doFinishEarthquakeFitState();
 	m_enemyPiyo.fade();
@@ -1590,14 +725,14 @@ void FitState::updateAlways(Game::EnemyBase* enemy)
 {
 	enemy->m_scaleTimer += sys->m_secondsPerFrame;
 	if ((enemy->m_scaleTimer > ((EnemyParmsBase*)enemy->m_parms)->m_general.m_purplePikminStunTime.m_value)
-	    || (enemy->_1E0.m_flags[0].typeView & 0x100000) || (((enemy->m_health <= 0.0f)))) {
+	    || (enemy->m_events.m_flags[0].typeView & 0x100000) || (((enemy->m_health <= 0.0f)))) {
 		enemy->m_scaleTimer = 0.0f;
 		transit(enemy, EBS_Living, 0);
 	} else {
 		float sinStun
 		    = 4.0f * pikmin2_sinf((PI * enemy->m_scaleTimer) / ((EnemyParmsBase*)enemy->m_parms)->m_general.m_purplePikminStunTime.m_value);
-		if (sinStun > PELLETVIEW_BASE_SCALE) {
-			sinStun = PELLETVIEW_BASE_SCALE;
+		if (sinStun > 1.0f) {
+			sinStun = 1.0f;
 		}
 		float theta = (TAU * enemy->m_scaleTimer) / 0.25f;
 
@@ -1616,7 +751,7 @@ void FitState::updateAlways(Game::EnemyBase* enemy)
 void EarthquakeState::init(Game::EnemyBase* enemy, Game::StateArg* arg)
 {
 	enemy->doUpdate();
-	enemy->_1E0.m_flags[1].typeView |= 1;
+	enemy->m_events.m_flags[1].typeView |= 1;
 	enemy->stopMotion();
 	enemy->doStartEarthquakeState(arg->_00);
 	this->_10 = 0;
@@ -1629,7 +764,7 @@ void EarthquakeState::init(Game::EnemyBase* enemy, Game::StateArg* arg)
  */
 void EarthquakeState::cleanup(Game::EnemyBase* enemy)
 {
-	enemy->_1E0.m_flags[1].typeView &= 0xFFFFFFFE;
+	enemy->m_events.m_flags[1].typeView &= 0xFFFFFFFE;
 	enemy->startMotion();
 	enemy->doFinishEarthquakeState();
 }
@@ -1650,7 +785,7 @@ void EarthquakeState::updateCullingOff(Game::EnemyBase* enemy)
 		float randChance = randFloat();
 		if ((enemy->m_scaleTimer > 0.0f)
 		    || ((randChance < ((EnemyParmsBase*)enemy->m_parms)->m_general.m_purplePikminStunChance.m_value)
-		        && !(enemy->_1E0.m_flags[0].typeView & 0x100000) && !(enemy->_1E0.m_flags[0].typeView & 0x200000))) {
+		        && !(enemy->m_events.m_flags[0].typeView & 0x100000) && !(enemy->m_events.m_flags[0].typeView & 0x200000))) {
 			transit(enemy, EBS_Fit, 0);
 		} else {
 			transit(enemy, EBS_Living, 0);
@@ -1658,17 +793,9 @@ void EarthquakeState::updateCullingOff(Game::EnemyBase* enemy)
 	}
 
 	if (enemy->isFlying()) {
-		enemy->_1E0.m_flags[0].typeView &= 0xFFFFFFFB;
+		enemy->m_events.m_flags[0].typeView &= 0xFFFFFFFB;
 	}
 }
-
-/*
- * --INFO--
- * Address:	8010092C
- * Size:	00000C
- */
-// WEAK - in header
-// bool EnemyBase::isFlying() { return ( _1E0.m_flags[0].typeView >> 2) & 1; }
 
 /*
  * --INFO--
@@ -1677,9 +804,9 @@ void EarthquakeState::updateCullingOff(Game::EnemyBase* enemy)
  */
 void StoneState::bounceProcedure(Game::EnemyBase* enemy, Sys::Triangle* triangle)
 {
-	enemy->_1E0.m_flags[0].typeView |= 0x400;
+	enemy->m_events.m_flags[0].typeView |= 0x400;
 	enemy->createBounceEffect(enemy->m_position, enemy->getDownSmokeScale());
-	enemy->addDamage(0.0f, PELLETVIEW_BASE_SCALE);
+	enemy->addDamage(0.0f, 1.0f);
 }
 
 /*
@@ -1689,24 +816,24 @@ void StoneState::bounceProcedure(Game::EnemyBase* enemy, Sys::Triangle* triangle
  */
 void StoneState::init(Game::EnemyBase* enemy, Game::StateArg* arg)
 {
-	if (enemy->_1E0.m_flags[0].typeView & 0x100000) {
-		enemy->_1E0.m_flags[0].typeView &= 0xFFEFFFFF;
+	if (enemy->m_events.m_flags[0].typeView & 0x100000) {
+		enemy->m_events.m_flags[0].typeView &= 0xFFEFFFFF;
 	} else {
 		enemy->doUpdate();
 	}
 
-	enemy->_1E8.m_flags[0] = enemy->_1E0.m_flags[0];
-	enemy->_1E8.m_flags[1] = enemy->_1E0.m_flags[1];
-	enemy->_1E0.m_flags[0].typeView |= 0x200;
+	enemy->_1E8.m_flags[0] = enemy->m_events.m_flags[0];
+	enemy->_1E8.m_flags[1] = enemy->m_events.m_flags[1];
+	enemy->m_events.m_flags[0].typeView |= 0x200;
 	enemy->hide();
 	enemy->m_stoneTimer = 0.0f;
 	enemy->stopMotion();
 	enemy->m_velocity = 0.0f;
 
 	if (enemy->_0C8) {
-		enemy->_1E0.m_flags[0].typeView |= 0x400;
+		enemy->m_events.m_flags[0].typeView |= 0x400;
 	} else {
-		enemy->_1E0.m_flags[0].typeView |= 0x400;
+		enemy->m_events.m_flags[0].typeView |= 0x400;
 	}
 
 	if (enemy->m_emotion == 2 && PSGetDirectedMainBgm()) {
@@ -1723,12 +850,12 @@ void StoneState::init(Game::EnemyBase* enemy, Game::StateArg* arg)
  */
 void StoneState::cleanup(Game::EnemyBase* enemy)
 {
-	P2ASSERTLINE(1024, enemy->_1E0.m_flags[0].typeView & 0x200);
+	P2ASSERTLINE(1024, enemy->m_events.m_flags[0].typeView & 0x200);
 
-	enemy->_1E0.m_flags[0] = enemy->_1E8.m_flags[0];
-	enemy->_1E0.m_flags[1] = enemy->_1E8.m_flags[1];
-	enemy->_1E0.m_flags[0].typeView &= 0xFFEFFFFF;
-	enemy->_1E0.m_flags[0].typeView &= 0xFFFFFDFF;
+	enemy->m_events.m_flags[0] = enemy->_1E8.m_flags[0];
+	enemy->m_events.m_flags[1] = enemy->_1E8.m_flags[1];
+	enemy->m_events.m_flags[0].typeView &= 0xFFEFFFFF;
+	enemy->m_events.m_flags[0].typeView &= 0xFFFFFDFF;
 
 	enemy->show();
 	enemy->startMotion();
@@ -1752,7 +879,7 @@ void StoneState::updateAlways(Game::EnemyBase* enemy)
 	if (enemy->m_enemyStoneObj->_50 & 4) {
 		if (enemy->_0C8 == nullptr) {
 			enemy->constraintOff();
-			enemy->_1E0.m_flags[0].typeView &= 0xFFFFFFFB;
+			enemy->m_events.m_flags[0].typeView &= 0xFFFFFFFB;
 		}
 		// why.
 		float comp = (enemy->m_stoneTimer > ((EnemyParmsBase*)enemy->m_parms)->m_general.m_stoneDuration.m_value);
@@ -1804,42 +931,10 @@ void StateMachine::init(Game::EnemyBase* enemy)
 
 /*
  * --INFO--
- * Address:	80101178
- * Size:	00009C
- */
-// WEAK - in header
-// TEnemyPiyo::~TEnemyPiyo() { }
-
-/*
- * --INFO--
- * Address:	80101214
- * Size:	000084
- */
-// WEAK - in header
-// TChasePos::~TChasePos() { }
-
-/*
- * --INFO--
- * Address:	80101298
- * Size:	00006C
- */
-// WEAK - in header
-// TSync::~TSync() { }
-
-/*
- * --INFO--
  * Address:	80101304
  * Size:	000030
  */
 void StateMachine::update(EnemyBase* enemy) { m_state->update(enemy); }
-
-/*
- * --INFO--
- * Address:	80101334
- * Size:	000004
- */
-// WEAK - in header
-// void State::update(Game::EnemyBase*) { }
 
 /*
  * --INFO--
@@ -1850,28 +945,12 @@ void StateMachine::entry(EnemyBase* enemy) { m_state->entry(enemy); }
 
 /*
  * --INFO--
- * Address:	80101368
- * Size:	000004
- */
-// WEAK - in header
-// void State::entry(Game::EnemyBase*) { }
-
-/*
- * --INFO--
  * Address:	8010136C
  * Size:	000030
  */
 void StateMachine::simulation(EnemyBase* enemy, float constraint) { m_state->simulation(enemy, constraint); }
-
-/*
- * --INFO--
- * Address:	8010139C
- * Size:	000004
- */
-// WEAK - in header
-// void State::simulation(Game::EnemyBase*, float) { }
-
 } // namespace EnemyBaseFSM
+
 /*
  * --INFO--
  * Address:	801013A0
@@ -1883,7 +962,7 @@ Game::EnemyBase::EnemyBase()
     , PelletView()
     , m_position(0.0f, 0.0f, 0.0f)
     , _1A4()
-    , _1E0()
+    , m_events()
     , _1E8()
     , m_emotion(1)
     , m_enemyIndexForType(0xFF)
@@ -1914,7 +993,7 @@ Game::EnemyBase::EnemyBase()
 	}
 
 	m_objectTypeID  = OBJTYPE_Teki;
-	m_scaleModifier = PELLETVIEW_BASE_SCALE;
+	m_scaleModifier = 1.0f;
 	m_collisionBuffer.alloc(this, 8);
 	m_animator       = nullptr;
 	m_animKeyEvent   = new EnemyAnimKeyEvent;
@@ -1926,13 +1005,13 @@ Game::EnemyBase::EnemyBase()
 	clearStick();
 	m_animKeyEvent->m_running = 0;
 	m_instantDamage           = 0.0f;
-	_1E0.m_flags[0].typeView &= ~0x2;
+	m_events.m_flags[0].typeView &= ~0x2;
 	m_toFlick    = 0.0f;
 	m_stoneTimer = 0.0f;
 
 	for (int i = 0; i < 2; i++) {
 		for (int j = 0; j < 4; j++) {
-			_1E0.m_flags[i].byteView[j] = 0;
+			m_events.m_flags[i].byteView[j] = 0;
 		}
 	}
 	for (int i = 0; i < 2; i++) {
@@ -1954,34 +1033,6 @@ Game::EnemyBase::EnemyBase()
 	m_effectNodeHamonRoot.m_prev   = nullptr;
 	m_effectNodeHamonRoot.m_next   = nullptr;
 }
-
-// } // namespace Game
-
-// namespace SysShape {
-
-// /*
-//  * --INFO--
-//  * Address:	80101710
-//  * Size:	000060
-//  */
-// WEAK - in header
-// KeyEvent::~KeyEvent() { }
-
-// } // namespace SysShape
-
-// /*
-//  * --INFO--
-//  * Address:	80101770
-//  * Size:	000018
-//  */
-// BitFlag<u32>()
-// {
-// 		for (int i = 0; i < sizeof(T); i++) {
-// 			byteView[i] = 0;
-// 		}
-// }
-
-// namespace Game {
 
 /*
  * --INFO--
@@ -2120,25 +1171,25 @@ void EnemyBase::onInit(Game::CreatureInitArg* arg)
 	clearStick();
 	m_animKeyEvent->m_running = false;
 	m_instantDamage           = 0.0f;
-	_1E0.m_flags[0].typeView &= ~2;
+	m_events.m_flags[0].typeView &= ~2;
 	m_toFlick    = 0.0f;
 	m_stoneTimer = 0.0f;
 
-	_1E0.m_flags[0].clear();
-	_1E0.m_flags[1].clear();
+	m_events.m_flags[0].clear();
+	m_events.m_flags[1].clear();
 	_1E8.m_flags[0].clear();
 	_1E8.m_flags[1].clear();
 
-	_1E0.m_flags[0].typeView |= 0x10000000;
-	_1E0.m_flags[0].typeView |= 0x8;
-	_1E0.m_flags[0].typeView |= 0x20;
-	_1E0.m_flags[0].typeView |= 0x40;
-	_1E0.m_flags[0].typeView |= 0x80;
-	_1E0.m_flags[0].typeView |= 0x100;
-	_1E0.m_flags[0].typeView |= 0x800;
+	m_events.m_flags[0].typeView |= 0x10000000;
+	m_events.m_flags[0].typeView |= 0x8;
+	m_events.m_flags[0].typeView |= 0x20;
+	m_events.m_flags[0].typeView |= 0x40;
+	m_events.m_flags[0].typeView |= 0x80;
+	m_events.m_flags[0].typeView |= 0x100;
+	m_events.m_flags[0].typeView |= 0x800;
 	m_waterBox = nullptr;
-	_1E0.m_flags[0].typeView |= 0x1000;
-	_1E0.m_flags[0].typeView |= 0x8000;
+	m_events.m_flags[0].typeView |= 0x1000;
+	m_events.m_flags[0].typeView |= 0x8000;
 }
 
 /*
@@ -2157,7 +1208,7 @@ void EnemyBase::onInitPost(Game::CreatureInitArg* arg)
 	case 3:
 	case 4:
 	case 5:
-		if (_1E0.m_flags[0].typeView & 0x40000) {
+		if (m_events.m_flags[0].typeView & 0x40000) {
 			m_lifecycleFSM->start(this, 6, nullptr);
 		} else {
 			switch (m_dropGroup) {
@@ -2227,23 +1278,6 @@ void EnemyBase::setOtakaraCode(Game::PelletMgr::OtakaraItemCode& itemCode)
 		Radar::Mgr::entry(this, Radar::MAP_SWALLOWED_TREASURE, 0);
 	}
 }
-
-// } // namespace Game
-
-// namespace PSM {
-
-// /*
-//  * @autogenerated
-//  * --INFO--
-//  * Address:	80101E14
-//  * Size:	000004
-//  */
-// WEAK - in header
-// void EnemyBase::setKilled() { }
-
-// } // namespace PSM
-
-// namespace Game {
 
 /*
  * --INFO--
@@ -3036,33 +2070,6 @@ void EnemyBase::onKill(Game::CreatureKillArg*)
 }
 
 /*
- * @reified
- * --INFO--
- * Address:	801028D4
- * Size:	00001C
- */
-// WEAK - in header
-// void BaseItem::setVelocity(Vector3f& velocity) { m_velocity = velocity; }
-
-/*
- * @reified
- * --INFO--
- * Address:	801028F0
- * Size:	000024
- */
-// WEAK - in header
-// void EnemyBase::getBoundingSphere(Sys::Sphere& sphere) { sphere = m_boundingSphere; }
-
-/*
- * @reified
- * --INFO--
- * Address:	80102914
- * Size:	00000C
- */
-// WEAK - in header
-// const char* CreatureKillArg::getName() { return "CreatureKillArg"; }
-
-/*
  * --INFO--
  * Address:	80102920
  * Size:	0000E0
@@ -3092,7 +2099,7 @@ void EnemyBase::setZukanVisible(bool arg)
  */
 void EnemyBase::birth(Vector3f& pos, float faceDir)
 {
-	_1E0.m_flags[0].typeView |= 0x10000000;
+	m_events.m_flags[0].typeView |= 0x10000000;
 	m_inZukan = 1;
 	setPosition(pos, false);
 	m_homePosition.x    = pos.x;
@@ -3235,15 +2242,15 @@ bool EnemyBase::isFinishableWaitingBirthTypeDrop()
  */
 void EnemyBase::startStoneState()
 {
-	if (!(_1E0.m_flags[0].typeView & 0x400000) && !((_1E0.m_flags[0].typeView & 0x200))) {
-		if (_1E0.m_flags[0].typeView & 0x200000) {
-			_1E0.m_flags[0].typeView |= 0x100000;
+	if (!(m_events.m_flags[0].typeView & 0x400000) && !((m_events.m_flags[0].typeView & 0x200))) {
+		if (m_events.m_flags[0].typeView & 0x200000) {
+			m_events.m_flags[0].typeView |= 0x100000;
 			return;
 		}
 		if (m_enemyStoneObj->start()) {
 			m_lifecycleFSM->transit(this, 7, 0);
 		} else {
-			_1E0.m_flags[0].typeView |= 0x100000;
+			m_events.m_flags[0].typeView |= 0x100000;
 		}
 	}
 }
@@ -3269,14 +2276,6 @@ void EnemyBase::doFinishStoneState() { }
 
 /*
  * --INFO--
- * Address:	80102F0C
- * Size:	000008
- */
-// WEAK - in header
-// WalkSmokeEffect::Mgr* EnemyBase::getWalkSmokeEffectMgr() { return nullptr; }
-
-/*
- * --INFO--
  * Address:	80102F14
  * Size:	000080
  */
@@ -3299,14 +2298,6 @@ void EnemyBase::doUpdateCommon()
  * Size:	000034
  */
 void EnemyBase::doAnimation() { static_cast<EnemyBaseFSM::StateMachine*>(m_lifecycleFSM)->animation(this); }
-
-/*
- * --INFO--
- * Address:	80102FC8
- * Size:	000030
- */
-// WEAK = in header
-// void EnemyBaseFSM::StateMachine::animation(Game::EnemyBase* enemy) { m_state->animation(enemy); }
 
 /*
  * --INFO--
@@ -3466,22 +2457,6 @@ void EnemyBase::doAnimationCullingOff()
 
 /*
  * --INFO--
- * Address:	80103260
- * Size:	000020
- */
-// WEAK - in header
-// void EnemyBase::onSetPositionPost(Vector3f&) { updateSpheres(); }
-
-/*
- * --INFO--
- * Address:	80103280
- * Size:	00001C
- */
-// WEAK - in header
-// void EnemyBase::onSetPosition(Vector3f& position) { m_position = position; }
-
-/*
- * --INFO--
  * Address:	8010329C
  * Size:	00007C
  */
@@ -3535,14 +2510,14 @@ void EnemyBase::doAnimationCullingOn() { m_model->m_j3dModel->m_modelData->m_joi
  * Address:	80103338
  * Size:	00007C
  */
-void EnemyBase::show()
+inline void EnemyBase::show()
 {
-	if (_1E0.m_flags[0].typeView & 0x200) {
+	if (m_events.m_flags[0].typeView & 0x200) {
 		if (m_enemyStoneObj->_50 & 2) {
 			m_model->hide();
-			return;
+		} else {
+			m_model->show();
 		}
-		m_model->show();
 	} else {
 		m_model->show();
 	}
@@ -3555,7 +2530,7 @@ void EnemyBase::show()
  */
 void EnemyBase::hide()
 {
-	if ((_1E0.m_flags[0].typeView & 0x200)) {
+	if ((m_events.m_flags[0].typeView & 0x200)) {
 		m_model->hide();
 	} else {
 		m_model->hide();
@@ -3570,26 +2545,15 @@ void EnemyBase::hide()
 void EnemyBase::doEntryCarcass()
 {
 	if (m_lod.m_flags & 4) {
-		if (_1E0.m_flags[0].typeView & 0x200) {
-			if (m_enemyStoneObj->_50 & 2) {
-				m_model->hide();
-			} else {
-				m_model->show();
-			}
-
-		} else {
-			m_model->show();
-		}
-
+		show();
 		changeMaterial();
-
-	} else if (_1E0.m_flags[0].typeView & 0x200) {
+	} else if (m_events.m_flags[0].typeView & 0x200) {
 		m_model->hide();
 	} else {
 		m_model->hide();
 	}
 
-	if (!(_1E0.m_flags[0].typeView & 0x40000000)) {
+	if (!(m_events.m_flags[0].typeView & 0x40000000)) {
 		m_model->m_j3dModel->entry();
 	}
 }
@@ -3602,31 +2566,22 @@ void EnemyBase::doEntryCarcass()
 void EnemyBase::doEntryLiving()
 {
 	if (m_lod.m_flags & 4) {
-		if (_1E0.m_flags[0].typeView & 0x200) {
-			if (m_enemyStoneObj->_50 & 2) {
-				m_model->hide();
-			} else {
-				m_model->show();
-			}
-		} else {
-			m_model->show();
-		}
+		show();
 		changeMaterial();
-
 	} else {
 		if (BaseHIOParms::sEntryOpt != false) {
 			if (!gameSystem->isMultiplayerMode())
 				return;
 		}
 
-		if (_1E0.m_flags[0].typeView & 0x200) {
+		if (m_events.m_flags[0].typeView & 0x200) {
 			m_model->hide();
 		} else {
 			m_model->hide();
 		}
 	}
 
-	if (!(_1E0.m_flags[0].typeView & 0x40000000)) {
+	if (!(m_events.m_flags[0].typeView & 0x40000000)) {
 		m_model->m_j3dModel->entry();
 	}
 }
@@ -3655,8 +2610,8 @@ bool EnemyBase::isCullingOff()
 	if (m_pellet) {
 		return true;
 	}
-	return ((!(_1E0.m_flags[0].typeView & 0x40)) || (m_lod.m_flags & AILOD::FLAG_NEED_SHADOW) || (m_lod.m_flags & AILOD::FLAG_UNKNOWN4)
-	        || (_1E0.m_flags[1].typeView & 0x10));
+	return ((!(m_events.m_flags[0].typeView & 0x40)) || (m_lod.m_flags & AILOD::FLAG_NEED_SHADOW) || (m_lod.m_flags & AILOD::FLAG_UNKNOWN4)
+	        || (m_events.m_flags[1].typeView & 0x10));
 }
 
 /*
@@ -3671,7 +2626,7 @@ void EnemyBase::doViewCalc()
 		flagCheck = true;
 	} else {
 		flagCheck = false;
-		if (!(_1E0.m_flags[0].typeView & 0x40) || ((m_lod.m_flags & 4) || (m_lod.m_flags & 8) || (_1E0.m_flags[1].typeView & 0x10))) {
+		if (!(m_events.m_flags[0].typeView & 0x40) || ((m_lod.m_flags & 4) || (m_lod.m_flags & 8) || (m_events.m_flags[1].typeView & 0x10))) {
 			flagCheck = true;
 		}
 	}
@@ -3837,7 +2792,7 @@ inline void EnemyBase::updateSpheres()
 void EnemyBase::createDropEffect(const Vector3f& position, float p1)
 {
 	efx::Arg enemyArg(position);
-	efx::TEnemyDownSmoke downSmoke(0x53, PELLETVIEW_BASE_SCALE);
+	efx::TEnemyDownSmoke downSmoke(0x53, 1.0f);
 
 	downSmoke._0C = p1;
 	downSmoke.create(&enemyArg);
@@ -4519,40 +3474,13 @@ void EnemyBase::finishDropping(bool)
 void EnemyBase::bounceProcedure(Sys::Triangle* triangle)
 {
 	bounceCallback(triangle);
-	_1E0.m_flags[0].typeView &= 0xDFFFFFFF;
+	m_events.m_flags[0].typeView &= 0xDFFFFFFF;
 
 	finishDropping(true);
 	resetDroppingMassZero();
 
 	m_lifecycleFSM->bounceProcedure(this, triangle);
 }
-
-/*
- * --INFO--
- * Address:	80104308
- * Size:	000030
- */
-// WEAK - in header
-// void EnemyBaseFSM::StateMachine::bounceProcedure(Game::EnemyBase* enemy, Sys::Triangle* triangle)
-// {
-//     m_state->bounceProcedure(enemy, triangle);
-// }
-
-/*
- * --INFO--
- * Address:	80104338
- * Size:	000004
- */
-// WEAK - in header
-// void EnemyBaseFSM::State::bounceProcedure(Game::EnemyBase*, Sys::Triangle*) { }
-
-/*
- * --INFO--
- * Address:	8010433C
- * Size:	000004
- */
-// WEAK - in header
-// void Creature::bounceCallback(Sys::Triangle*) { }
 
 /*
  * --INFO--
@@ -5057,38 +3985,6 @@ void EnemyBase::collisionMapAndPlat(float)
 
 /*
  * --INFO--
- * Address:	80104A14
- * Size:	000004
- */
-// WEAK - in header
-// void MapMgr::constraintBoundBox(Sys::Sphere&) { }
-
-/*
- * --INFO--
- * Address:	80104A18
- * Size:	000008
- */
-// WEAK - in header
-// bool MapMgr::hasHiddenCollision() { return false; }
-
-/*
- * --INFO--
- * Address:	80104A20
- * Size:	000004
- */
-// WEAK - in header
-// void EnemyBase::wallCallback(const Game::MoveInfo&) { }
-
-/*
- * --INFO--
- * Address:	80104A24
- * Size:	000014
- */
-// WEAK - in header
-// void EnemyBase::getOffsetForMapCollision() { return Vector3f(0.0f); }
-
-/*
- * --INFO--
  * Address:	80104A38
  * Size:	000020
  */
@@ -5108,13 +4004,13 @@ void EnemyBase::doSimulation(float arg) { static_cast<EnemyBaseFSM::StateMachine
  */
 void EnemyBase::doSimulationConstraint(float arg)
 {
-	if (!(_1E0.m_flags[0].typeView & 0x40000)) {
+	if (!(m_events.m_flags[0].typeView & 0x40000)) {
 		if (_11C.x != 0.0f || _11C.z != 0.0f) {
-			_1E0.m_flags[0].typeView |= 0x20000000;
+			m_events.m_flags[0].typeView |= 0x20000000;
 		} else if (_0C8 != nullptr) {
-			_1E0.m_flags[0].typeView &= ~0x20000000;
+			m_events.m_flags[0].typeView &= ~0x20000000;
 		}
-		if (_1E0.m_flags[0].typeView & 0x20000000) {
+		if (m_events.m_flags[0].typeView & 0x20000000) {
 			collisionMapAndPlat(arg);
 		}
 	}
@@ -5130,7 +4026,7 @@ void EnemyBase::doSimulationConstraint(float arg)
  */
 void EnemyBase::gotoHell()
 {
-	if (_1E0.m_flags[0].typeView & 0x10000000) {
+	if (m_events.m_flags[0].typeView & 0x10000000) {
 		throwupItem();
 		EnemyKillArg killArg(0x70000000);
 		kill(&killArg);
@@ -5151,7 +4047,7 @@ void EnemyBase::setAnimMgr(SysShape::AnimMgr* mgr) { m_animator->setAnimMgr(mgr)
  */
 void EnemyBase::setPSEnemyBaseAnime()
 {
-	if (_1E0.m_flags[0].typeView & 0x1000000) {
+	if (m_events.m_flags[0].typeView & 0x1000000) {
 		int idx                      = getCurrAnimIndex();
 		SysShape::Animator anim      = m_animator->getAnimator(0);
 		SysShape::AnimInfo* info     = static_cast<SysShape::AnimInfo*>(anim.m_animMgr->m_animInfo.m_child)->getInfoByID(idx);
@@ -5176,12 +4072,12 @@ void EnemyBase::setPSEnemyBaseAnime()
 		return;
 	}
 
-	if (_1E0.m_flags[0].typeView & 0x2000000) {
+	if (m_events.m_flags[0].typeView & 0x2000000) {
 		m_soundObj->setAnime((JAIAnimeSoundData*)-1, 1, 0.0f, 0.0f);
 		return;
 	}
 
-	if (_1E0.m_flags[0].typeView & 0x4000000) {
+	if (m_events.m_flags[0].typeView & 0x4000000) {
 		m_soundObj->setAnime((JAIAnimeSoundData*)-1, 1, 0.0f, 0.0f);
 		return;
 	}
@@ -5203,10 +4099,10 @@ void EnemyBase::startBlend(int p1, int p2, SysShape::BlendFunction* blendFunc, f
 
 	static_cast<EnemyBlendAnimatorBase*>(m_animator)->startBlend(p1, p2, blendFunc, p3, listener);
 
-	_1E0.m_flags[0].typeView &= 0xF0FFFFFF;
-	_1E0.m_flags[0].typeView |= 0x04000000;
+	m_events.m_flags[0].typeView &= 0xF0FFFFFF;
+	m_events.m_flags[0].typeView |= 0x04000000;
 
-	if (_1E0.m_flags[0].typeView & 0x1000000) {
+	if (m_events.m_flags[0].typeView & 0x1000000) {
 		int idx                      = getCurrAnimIndex();
 		SysShape::Animator anim      = m_animator->getAnimator(0);
 		SysShape::AnimInfo* info     = static_cast<SysShape::AnimInfo*>(anim.m_animMgr->m_animInfo.m_child)->getInfoByID(idx);
@@ -5231,12 +4127,12 @@ void EnemyBase::startBlend(int p1, int p2, SysShape::BlendFunction* blendFunc, f
 		return;
 	}
 
-	if (_1E0.m_flags[0].typeView & 0x2000000) {
+	if (m_events.m_flags[0].typeView & 0x2000000) {
 		m_soundObj->setAnime((JAIAnimeSoundData*)-1, 1, 0.0f, 0.0f);
 		return;
 	}
 
-	if (_1E0.m_flags[0].typeView & 0x4000000) {
+	if (m_events.m_flags[0].typeView & 0x4000000) {
 		m_soundObj->setAnime((JAIAnimeSoundData*)-1, 1, 0.0f, 0.0f);
 		return;
 	}
@@ -5255,14 +4151,6 @@ void EnemyBase::endBlend()
 		static_cast<EnemyBlendAnimatorBase*>(m_animator)->endBlend();
 	}
 }
-
-/*
- * --INFO--
- * Address:	80104FF8
- * Size:	00000C
- */
-// WEAK - in header
-// u32 EnemyAnimatorBase::getTypeID() { return 'base'; }
 
 /*
  * --INFO--
@@ -5484,22 +4372,6 @@ bool EnemyBase::stimulate(Game::Interaction& interaction)
 	}
 	return b;
 }
-
-/*
- * --INFO--
- * Address:	80105380
- * Size:	000008
- */
-// WEAK - in header
-// bool Interaction::actEnemy(Game::EnemyBase*) { return true; }
-
-/*
- * --INFO--
- * Address:	80105388
- * Size:	000008
- */
-// WEAK - in header
-// bool Interaction::actCommon(Game::Creature*) { return true; }
 
 /*
  * --INFO--
@@ -5783,8 +4655,8 @@ void EnemyBase::scaleDamageAnim()
 void EnemyBase::finishScaleDamageAnim()
 {
 	_210 = 0.0f;
-	_1E0.m_flags[0].typeView &= 0xFFFFBFFF;
-	_1E0.m_flags[0].typeView &= 0xFFF7FFFF;
+	m_events.m_flags[0].typeView &= 0xFFFFBFFF;
+	m_events.m_flags[0].typeView &= 0xFFF7FFFF;
 }
 
 /*
@@ -5794,17 +4666,17 @@ void EnemyBase::finishScaleDamageAnim()
  */
 void EnemyBase::deathProcedure()
 {
-	_1E0.m_flags[0].typeView &= ~8;
+	m_events.m_flags[0].typeView &= ~8;
 	setAlive(false);
 
-	if (_1E0.m_flags[0].typeView & 0x200) {
+	if (m_events.m_flags[0].typeView & 0x200) {
 		throwupItem();
 	} else {
 		throwupItemInDeathProcedure();
 	}
 	startMotion();
 
-	if (_1E0.m_flags[0].typeView & 0x100) {
+	if (m_events.m_flags[0].typeView & 0x100) {
 		createDeadBombEffect();
 		PSStartEnemyFatalHitSE(this, 0.0f);
 	}
@@ -5814,45 +4686,6 @@ void EnemyBase::deathProcedure()
 		static_cast<PSM::EnemyBoss*>(soundObj)->onDeathMotionTop();
 	}
 }
-
-// } // namespace Game
-
-// namespace PSM {
-
-// /*
-//  * @reified
-//  * --INFO--
-//  * Address:	80105818
-//  * Size:	000008
-//  */
-// WEAK = in header
-// u32 EnemyBase::getCastType() { return 0x2; }
-// } // namespace PSM
-
-// namespace Game {
-
-/*
- * --INFO--
- * Address:	80105820
- * Size:	00002C
- */
-// WEAK - in header
-// void EnemyBase::throwupItemInDeathProcedure() { throwupItem(); }
-
-/*
- * --INFO--
- * Address:	8010584C
- * Size:	000028
- */
-// WEAK - in header
-// void Creature::setAlive(bool isAlive)
-// {
-// 	if (isAlive) {
-// 		m_flags.intView |= CF_IS_ALIVE;
-// 	} else {
-// 		m_flags.intView &= ~CF_IS_ALIVE;
-// 	}
-// }
 
 /*
  * --INFO--
@@ -6280,15 +5113,6 @@ void EnemyBase::throwupItem()
 	*/
 }
 
-// /*
-//  * @reified
-//  * --INFO--
-//  * Address:	80105E68
-//  * Size:	000004
-//  */
-// WEAK - in header
-// void Pellet::createKiraEffect(Vector3f&) { }
-
 /*
  * --INFO--
  * Address:	80105E6C
@@ -6306,7 +5130,7 @@ void EnemyBase::getLifeGaugeParam(Game::LifeGaugeParam& param)
 	if ((Game::moviePlayer) && (moviePlayer->m_flags & MoviePlayer::IS_ACTIVE)) {
 		param._14 = false;
 	} else {
-		param._14 = ((_1E0.m_flags[0].typeView & 0x800) && (m_lod.m_flags & AILOD::FLAG_NEED_SHADOW));
+		param._14 = ((m_events.m_flags[0].typeView & 0x800) && (m_lod.m_flags & AILOD::FLAG_NEED_SHADOW));
 	}
 	if (param._14) {
 		doGetLifeGaugeParam(param);
@@ -6359,15 +5183,15 @@ void EnemyBase::onStickEnd(Game::Creature* other)
  */
 bool EnemyBase::injure()
 {
-	if (_1E0.m_flags[0].typeView & 2) {
-		if (!(_1E0.m_flags[0].typeView & 1)) {
+	if (m_events.m_flags[0].typeView & 2) {
+		if (!(m_events.m_flags[0].typeView & 1)) {
 			m_health -= m_instantDamage;
 			if (m_health < 0.0f) {
 				m_health = 0.0f;
 			}
 		}
 		m_instantDamage = 0.0f;
-		_1E0.m_flags[0].typeView &= ~2;
+		m_events.m_flags[0].typeView &= ~2;
 		return true;
 	}
 	return false;
@@ -6380,14 +5204,14 @@ bool EnemyBase::injure()
  */
 void EnemyBase::addDamage(float p1, float p2)
 {
-	if (_1E0.m_flags[0].typeView & 1) {
+	if (m_events.m_flags[0].typeView & 1) {
 		return;
 	}
 	m_instantDamage += p1;
-	if (_1E0.m_flags[0].typeView & 0x20) {
+	if (m_events.m_flags[0].typeView & 0x20) {
 		m_toFlick += p2;
 	}
-	_1E0.m_flags[0].typeView |= 2;
+	m_events.m_flags[0].typeView |= 2;
 }
 
 /*
@@ -6397,12 +5221,12 @@ void EnemyBase::addDamage(float p1, float p2)
  */
 bool EnemyBase::damageCallBack(Game::Creature* sourceCreature, float damage, CollPart* p3)
 {
-	if (!(_1E0.m_flags[0].typeView & 1)) {
+	if (!(m_events.m_flags[0].typeView & 1)) {
 		m_instantDamage += damage;
-		if (_1E0.m_flags[0].typeView & 0x20) {
+		if (m_events.m_flags[0].typeView & 0x20) {
 			m_toFlick += 1.0f;
 		}
-		_1E0.m_flags[0].typeView |= 2;
+		m_events.m_flags[0].typeView |= 2;
 	}
 	return true;
 }
@@ -6431,15 +5255,15 @@ bool EnemyBase::hipdropCallBack(Game::Creature* sourceCreature, float damage, Co
 {
 	float purpleDamage = static_cast<EnemyParmsBase*>(m_parms)->m_general.m_purplePikminHipDropDamage();
 
-	if (!(_1E0.m_flags[0].typeView & 1)) {
+	if (!(m_events.m_flags[0].typeView & 1)) {
 		m_instantDamage += purpleDamage;
-		if (_1E0.m_flags[0].typeView & 0x20) {
-			m_toFlick += PELLETVIEW_BASE_SCALE;
+		if (m_events.m_flags[0].typeView & 0x20) {
+			m_toFlick += 1.0f;
 		}
-		_1E0.m_flags[0].typeView |= 2;
+		m_events.m_flags[0].typeView |= 2;
 	}
 
-	_1E0.m_flags[0].typeView |= 0x80000;
+	m_events.m_flags[0].typeView |= 0x80000;
 	if (_0C8 != 0) {
 		createSplashDownEffect(m_position, getDownSmokeScale());
 		createDropEffect(m_position, getDownSmokeScale());
@@ -6645,8 +5469,8 @@ bool EnemyBase::checkBirthTypeDropEarthquake()
 bool EnemyBase::earthquakeCallBack(Game::Creature* creature, float p1)
 {
 	if (_0C8 && !(m_health <= 0.0f) && !isFlying() && isAlive()) {
-		if (!(_1E0.m_flags[0].typeView & 0x40000) && !(_1E0.m_flags[0].typeView & 0x200)) {
-			if (((_1E0.m_flags[0].typeView & 0x200000) || (_1E0.m_flags[0].typeView & 0x400000)) == false) {
+		if (!(m_events.m_flags[0].typeView & 0x40000) && !(m_events.m_flags[0].typeView & 0x200)) {
+			if (((m_events.m_flags[0].typeView & 0x200000) || (m_events.m_flags[0].typeView & 0x400000)) == false) {
 				StateArg transitArg;
 				transitArg._00 = p1;
 				m_lifecycleFSM->transit(this, 8, &transitArg);
@@ -6744,14 +5568,6 @@ bool EnemyBase::dopeCallBack(Game::Creature*, int)
 
 /*
  * --INFO--
- * Address:	801065B8
- * Size:	000008
- */
-// WEAK - in header
-// bool EnemyBase::doDopeCallBack(Game::Creature*, int) { return true; }
-
-/*
- * --INFO--
  * Address:	801065C0
  * Size:	000008
  */
@@ -6764,14 +5580,14 @@ bool EnemyBase::farmCallBack(Game::Creature*, float) { return false; }
  */
 bool EnemyBase::bombCallBack(Game::Creature* creature, Vector3f& vec, float damage)
 {
-	if (!(_1E0.m_flags[0].typeView & 1)) {
+	if (!(m_events.m_flags[0].typeView & 1)) {
 		m_instantDamage += damage;
 
-		if (_1E0.m_flags[0].typeView & 0x20) {
-			m_toFlick += PELLETVIEW_BASE_SCALE;
+		if (m_events.m_flags[0].typeView & 0x20) {
+			m_toFlick += 1.0f;
 		}
 
-		_1E0.m_flags[0].typeView |= 2;
+		m_events.m_flags[0].typeView |= 2;
 	}
 
 	return true;
@@ -6798,7 +5614,7 @@ void EnemyBase::setCollEvent(Game::CollEvent& event)
 	m_collEvent.m_collidingCreature = event.m_collidingCreature;
 	m_collEvent._04                 = event._04;
 	m_collEvent.m_hitPart           = event.m_hitPart;
-	_1E0.m_flags[0].typeView |= 0x10;
+	m_events.m_flags[0].typeView |= 0x10;
 }
 
 /*
@@ -6806,7 +5622,7 @@ void EnemyBase::setCollEvent(Game::CollEvent& event)
  * Address:	8010668C
  * Size:	000010
  */
-void EnemyBase::resetCollEvent() { _1E0.m_flags[0].typeView &= 0xFFFFFFEF; }
+void EnemyBase::resetCollEvent() { m_events.m_flags[0].typeView &= 0xFFFFFFEF; }
 
 /*
  * --INFO--
@@ -7116,15 +5932,6 @@ void EnemyBase::updateWaterBox()
 	}
 }
 
-// /*
-//  * @reified
-//  * --INFO--
-//  * Address:	80106CE8
-//  * Size:	000008
-//  */
-// WEAK - in header
-// bool WaterBox::inWater(Sys::Sphere&) { return false; }
-
 /*
  * --INFO--
  * Address:	80106CF0
@@ -7167,28 +5974,6 @@ PSM::EnemyBase* EnemyBase::createPSEnemyBase()
 	return base;
 }
 
-// } // namespace Game
-
-// namespace PSM {
-
-// /*
-//  * --INFO--
-//  * Address:	80106F6C
-//  * Size:	000164
-//  */
-// WEAK - in header
-// EnemyBig::~EnemyBig() { }
-
-// /*
-//  * --INFO--
-//  * Address:	801070D0
-//  * Size:	000134
-//  */
-// WEAK - in header
-// EnemyBase::~EnemyBase() { }
-// } // namespace PSM
-// namespace Game {
-
 /*
  * --INFO--
  * Address:	80107204
@@ -7198,7 +5983,7 @@ void EnemyBase::startMotion()
 {
 	EnemyAnimatorBase* animator = m_animator;
 	animator->m_flags.typeView &= ~0x3;
-	animator->m_progress = PELLETVIEW_BASE_SCALE;
+	animator->m_progress = 1.0f;
 }
 
 /*
@@ -7279,14 +6064,6 @@ void EnemyBase::resetAnimSpeed() { m_animator->resetAnimSpeed(); }
 
 /*
  * --INFO--
- * Address:	801073CC
- * Size:	00000C
- */
-// WEAK - in header
-// void EnemyAnimatorBase::resetAnimSpeed() { m_animSpeed = defaultAnimSpeed; }
-
-/*
- * --INFO--
  * Address:	801073D8
  * Size:	000014
  */
@@ -7327,28 +6104,12 @@ bool EnemyBase::needShadow()
 		return needShadow;
 	} else {
 		bool needShadow = false;
-		if (m_lod.m_flags & AILOD::FLAG_NEED_SHADOW && !(_1E0.m_flags[0].typeView & 0x40000000)) {
+		if (m_lod.m_flags & AILOD::FLAG_NEED_SHADOW && !(m_events.m_flags[0].typeView & 0x40000000)) {
 			needShadow = true;
 		}
 		return needShadow;
 	}
 }
-
-// /*
-//  * @reified
-//  * --INFO--
-//  * Address:	801074BC
-//  * Size:	000008
-//  */
-// bool EnemyMgrBase::isAlwaysMovieActor() { return false; }
-
-/*
- * --INFO--
- * Address:	801074C4
- * Size:	00000C
- */
-// WEAK - in header
-// bool Creature::isMovieActor() { return m_flags.typeView & CF_IS_MOVIE_ACTOR; }
 
 /*
  * --INFO--
@@ -7521,14 +6282,6 @@ bool EnemyBase::eatWhitePikminCallBack(Game::Creature*, float)
 
 /*
  * --INFO--
- * Address:	80107704
- * Size:	000060
- */
-// WEAK - in header
-// EnemyStone::DrawInfo::~DrawInfo() { }
-
-/*
- * --INFO--
  * Address:	80107764
  * Size:	000008
  */
@@ -7539,7 +6292,7 @@ float EnemyBase::getDownSmokeScale() { return 0.0f; }
  * Address:	8010776C
  * Size:	000010
  */
-void EnemyBase::constraintOff() { _1E0.m_flags[0].typeView &= ~0x400; }
+void EnemyBase::constraintOff() { m_events.m_flags[0].typeView &= ~0x400; }
 
 /*
  * --INFO--
@@ -7548,7 +6301,7 @@ void EnemyBase::constraintOff() { _1E0.m_flags[0].typeView &= ~0x400; }
  */
 void EnemyBase::hardConstraintOn()
 {
-	_1E0.m_flags[0].typeView |= 0x40000;
+	m_events.m_flags[0].typeView |= 0x40000;
 	_118 = 0.0f;
 }
 
@@ -7559,7 +6312,7 @@ void EnemyBase::hardConstraintOn()
  */
 void EnemyBase::hardConstraintOff()
 {
-	_1E0.m_flags[0].typeView &= ~0x40000;
+	m_events.m_flags[0].typeView &= ~0x40000;
 	_118   = m_friction;
 	_11C.x = 0.0f;
 	_11C.y = 0.0f;
@@ -7578,14 +6331,6 @@ void EnemyBase::startMovie()
 		doStartMovie();
 	}
 }
-
-/*
- * --INFO--
- * Address:	80107840
- * Size:	000004
- */
-// WEAK - in header
-// void EnemyBase::doStartMovie() { }
 
 /*
  * --INFO--
@@ -7676,7 +6421,7 @@ void EnemyBase::finishWaitingBirthTypeDrop() { doFinishWaitingBirthTypeDrop(); }
 void EnemyBase::doFinishWaitingBirthTypeDrop()
 {
 	if (!isFlying()) {
-		_1E0.m_flags[1].typeView |= 0x10;
+		m_events.m_flags[1].typeView |= 0x10;
 		setDroppingMassZero();
 		m_scale.x = 1.0f;
 		m_scale.y = 1.0f;
@@ -7708,7 +6453,7 @@ Vector3f* EnemyBase::getFitEffectPos() { return &m_boundingSphere.m_position; }
  */
 void EnemyBase::setDroppingMassZero()
 {
-	_1E0.m_flags[1].typeView |= 0x20;
+	m_events.m_flags[1].typeView |= 0x20;
 	_118 = 0.0f;
 }
 
@@ -7719,990 +6464,9 @@ void EnemyBase::setDroppingMassZero()
  */
 void EnemyBase::resetDroppingMassZero()
 {
-	_1E0.m_flags[1].typeView &= ~0x20;
+	m_events.m_flags[1].typeView &= ~0x20;
 	_118 = m_friction;
 }
-
-// } // namespace Game
-
-// namespace PSM {
-
-/*
- * --INFO--
- * Address:	80107AA0
- * Size:	000164
- */
-// WEAK - in header
-// EnemyHekoi::~EnemyHekoi() { }
-
-/*
- * @reified
- * --INFO--
- * Address:	80107C04
- * Size:	000008
- */
-// WEAK - in header
-// CreatureCastType EnemyHekoi::getCastType() { return 0x3; }
-
-/*
- * --INFO--
- * Address:	80107C0C
- * Size:	000010
- */
-// WEAK - in header
-// JAInter::Object* CreatureAnime::getJAIObject() { return static_cast<JAInter::Object*>(this); }
-
-/*
- * --INFO--
- * Address:	80107C1C
- * Size:	000010
- */
-// WEAK - in header
-// JAISound** CreatureAnime::getHandleArea(u8 idx) { return &m_sounds[idx]; }
-// } // namespace PSM
-
-// namespace Game {
-
-// /*
-//  * @reified
-//  * --INFO--
-//  * Address:	80107C2C
-//  * Size:	00000C
-//  */
-// WEAK - in header
-// const char* PelletInitArg::getName() { return "PelletInitArg"; }
-
-// /*
-//  * @reified
-//  * --INFO--
-//  * Address:	80107C38
-//  * Size:	00000C
-//  */
-// WEAK - in header
-// void EnemyKillArg::getName() { return "EnemyKillArg"; }
-
-// } // namespace Game
-
-// namespace efx {
-
-// /*
-//  * @reified
-//  * --INFO--
-//  * Address:	80107C44
-//  * Size:	00000C
-//  */
-// WEAK - in header
-// void ArgScale::getName() { return "ArgScale"; }
-// } // namespace efx
-
-// namespace Game {
-
-// /*
-//  * --INFO--
-//  * Address:	80107C50
-//  * Size:	00000C
-//  */
-// WEAK - in header
-// void ItemHoney::InitArg::getName() { return "ItemHoney::InitArg"; }
-
-/*
- * --INFO--
- * Address:	80107C5C
- * Size:	000008
- */
-// WEAK - in header
-// bool Interaction::actPiki(Game::Piki*) { return true; }
-
-/*
- * --INFO--
- * Address:	80107C64
- * Size:	000008
- */
-// WEAK - in header
-// bool Interaction::actNavi(Game::Navi*) { return true; }
-
-/*
- * --INFO--
- * Address:	80107C6C
- * Size:	000008
- */
-// WEAK - in header
-// bool Interaction::actPellet(Game::Pellet*) { return true; }
-
-/*
- * --INFO--
- * Address:	80107C74
- * Size:	000008
- */
-// WEAK - in header
-// bool Interaction::actOnyon(Game::Onyon*) { return true; }
-
-/*
- * --INFO--
- * Address:	80107C7C
- * Size:	000008
- */
-// WEAK - in header
-// bool Interaction::actItem(Game::BaseItem*) { return true; }
-
-/*
- * --INFO--
- * Address:	80107C84
- * Size:	000088
- */
-// WEAK - in header
-// EnemyBase::~EnemyBase() { }
-
-/*
- * --INFO--
- * Address:	80107D0C
- * Size:	000004
- */
-// WEAK - in header
-// void EnemyBase::doSimpleDraw(Viewport*) { }
-
-/*
- * --INFO--
- * Address:	80107D10
- * Size:	00000C
- */
-// WEAK - in header
-// float EnemyBase::getCellRadius() { return static_cast<EnemyParmsBase*>(m_parms)->m_general.m_cellRadius(); }
-
-/*
- * --INFO--
- * Address:	80107D1C
- * Size:	00000C
- */
-// WEAK - in header
-// float EnemyBase::getBodyRadius() { return static_cast<EnemyParmsBase*>(m_parms)->m_general.m_pikminDamageRadius(); }
-
-/*
- * --INFO--
- * Address:	80107D28
- * Size:	000008
- */
-// WEAK - in header
-// float EnemyBase::getFaceDir() { return m_faceDir; }
-
-/*
- * --INFO--
- * Address:	80107D30
- * Size:	00001C
- */
-// WEAK - in header
-// void EnemyBase::setVelocity(Vector3f& velocity) { m_velocity = velocity; }
-
-/*
- * --INFO--
- * Address:	80107D4C
- * Size:	00001C
- */
-// Vector3f EnemyBase::getVelocity() { return m_velocity; }
-
-/*
- * --INFO--
- * Address:	80107D68
- * Size:	000034
- */
-// WEAK - in header
-// void EnemyBase::getVelocityAt(Vector3f& p1, Vector3f& p2)
-// {
-// 	p1 = m_velocity;
-// 	p2 = m_velocity;
-// }
-
-/*
- * --INFO--
- * Address:	80107D9C
- * Size:	000008
- */
-// WEAK - in header
-// bool EnemyBase::isTeki() { return true; }
-
-/*
- * --INFO--
- * Address:	80107DA4
- * Size:	000008
- */
-// WEAK - in header
-// Vector3f* EnemyBase::getSound_PosPtr() { return &m_position; }
-
-/*
- * --INFO--
- * Address:	80107DAC
- * Size:	000004
- */
-// WEAK - in header
-// void EnemyBase::initMouthSlots() { }
-
-/*
- * --INFO--
- * Address:	80107DB0
- * Size:	000004
- */
-// WEAK - in header
-// void EnemyBase::initWalkSmokeEffect() { }
-
-/*
- * --INFO--
- * Address:	80107DB4
- * Size:	000014
- */
-// WEAK - in header
-// bool EnemyBase::inWater() { return (m_waterBox != nullptr); }
-
-/*
- * --INFO--
- * Address:	80107DC8
- * Size:	00001C
- */
-// WEAK - in header
-// void EnemyBase::getEfxHamonPos(Vector3f* pos) { *pos = m_position; }
-
-/*
- * --INFO--
- * Address:	80107DE4
- * Size:	000008
- */
-// WEAK - in header
-// MouthSlots* EnemyBase::getMouthSlots() { return nullptr; }
-
-/*
- * --INFO--
- * Address:	80107DEC
- * Size:	000024
- */
-// WEAK - in header
-// void EnemyBase::setLODSphere(Sys::Sphere& sphere) { m_lodRange = sphere; }
-
-/*
- * --INFO--
- * Address:	80107E10
- * Size:	000024
- */
-// WEAK - in header
-// void EnemyBase::getLODSphere(Sys::Sphere& sphere) { sphere = m_lodRange; }
-
-/*
- * --INFO--
- * Address:	80107E34
- * Size:	000008
- */
-// WEAK - in header
-// float EnemyBase::getDamageCoeStoneState() { return 1.5f; }
-
-/*
- * --INFO--
- * Address:	80107E3C
- * Size:	000034
- */
-// WEAK - in header
-// float EnemyBase::getSound_CurrAnimFrame() { return m_animator->getAnimator().m_timer; }
-
-/*
- * --INFO--
- * Address:	80107E70
- * Size:	00000C
- */
-// WEAK - in header
-// float EnemyBase::getSound_CurrAnimSpeed() { return m_animator->m_animSpeed; }
-
-/*
- * --INFO--
- * Address:	80107E7C
- * Size:	000030
- */
-// WEAK - in header
-// bool EnemyBase::sound_culling()
-// {
-//     bool culling = false;
-//     if (_1E0.m_flags[0].typeView & 0x2000) {
-//         if (!(m_lod.m_flags & AILOD::FLAG_NEED_SHADOW) && !(m_lod.m_flags & AILOD::FLAG_UNKNOWN4)) {
-//             culling = true;
-//         }
-//     }
-//     return culling;
-// }
-
-/*
- * --INFO--
- * Address:	80107EAC
- * Size:	000008
- */
-// WEAK - in header
-// float EnemyBase::getCarcassArgHeight() { return m_boundingSphere.m_radius; }
-
-/*
- * --INFO--
- * Address:	80107EB4
- * Size:	000008
- */
-// WEAK - in header
-// float PelletView::viewGetBaseScale() { return PELLETVIEW_BASE_SCALE; }
-
-/*
- * --INFO--
- * Address:	80107EBC
- * Size:	000008
- */
-// WEAK - in header
-// int PelletView::viewGetCollTreeJointIndex() { return 0; }
-
-/*
- * --INFO--
- * Address:	80107EC4
- * Size:	000020
- */
-// WEAK - in header
-// Vector3f PelletView::viewGetCollTreeOffset() { return Vector3f::zero; }
-
-/*
- * --INFO--
- * Address:	80107EE4
- * Size:	000004
- */
-// WEAK - in header
-// void PelletView::viewEntryShape(Matrixf&, Vector3f&) { }
-
-/*
- * --INFO--
- * Address:	80107EE8
- * Size:	000004
- */
-// WEAK - in header
-// void Creature::doDirectDraw(Graphics&) { }
-
-/*
- * --INFO--
- * Address:	80107EEC
- * Size:	000004
- */
-// WEAK - in header
-// void Creature::onInitPosition(Vector3f&) { }
-
-/*
- * --INFO--
- * Address:	80107EF0
- * Size:	000008
- */
-// WEAK - in header
-// BaseFlockMgr* Creature::getFlockMgr() { return nullptr; }
-
-/*
- * --INFO--
- * Address:	80107EF8
- * Size:	000004
- */
-// WEAK - in header
-// void Creature::onStartCapture() { }
-
-/*
- * --INFO--
- * Address:	80107EFC
- * Size:	000004
- */
-// WEAK - in header
-// void Creature::onUpdateCapture(Matrixf&) { }
-
-/*
- * --INFO--
- * Address:	80107F00
- * Size:	000004
- */
-// WEAK - in header
-// void Creature::onEndCapture() { }
-
-/*
- * --INFO--
- * Address:	80107F04
- * Size:	00000C
- */
-// WEAK - in header
-// bool Creature::isAtari() { return (m_flags.typeView & CF_IS_ATARI); }
-
-/*
- * --INFO--
- * Address:	80107F10
- * Size:	000028
- */
-// WEAK - in header
-// void Creature::setAtari(bool atari)
-// {
-// 	if (atari) {
-// 		m_flags.typeView |= CF_IS_ATARI;
-// 	} else {
-// 		m_flags.typeView &= ~CF_IS_ATARI;
-// 	}
-// }
-
-/*
- * --INFO--
- * Address:	80107F38
- * Size:	00000C
- */
-// WEAK - in header
-// bool Creature::isCollisionFlick() { return (m_flags.typeView & CF_IS_COLLISION_FLICK); }
-
-/*
- * --INFO--
- * Address:	80107F44
- * Size:	000028
- */
-// WEAK - in header
-// void Creature::setCollisionFlick(bool collisionFlick)
-// {
-// 	if (collisionFlick) {
-// 		m_flags.intView |= CF_IS_COLLISION_FLICK;
-// 	} else {
-// 		m_flags.intView &= ~CF_IS_COLLISION_FLICK;
-// 	}
-// }
-
-/*
- * --INFO--
- * Address:	80107F6C
- * Size:	00000C
- */
-// WEAK - in header
-// bool Creature::isMovieExtra() { return m_flags.typeView & CF_IS_MOVIE_EXTRA; }
-
-/*
- * --INFO--
- * Address:	80107F78
- * Size:	00000C
- */
-// WEAK - in header
-// bool Creature::isMovieMotion() { return m_flags.typeView & CF_IS_MOVIE_MOTION; }
-
-/*
- * --INFO--
- * Address:	80107F84
- * Size:	000028
- */
-// WEAK - in header
-// void Creature::setMovieMotion(bool movieMotion)
-// {
-// 	if (movieMotion) {
-// 		m_flags.typeView |= CF_IS_MOVIE_MOTION;
-// 	} else {
-// 		m_flags.typeView &= ~CF_IS_MOVIE_MOTION;
-// 	}
-// }
-
-/*
- * --INFO--
- * Address:	80107FAC
- * Size:	000008
- */
-// WEAK - in header
-// bool Creature::isBuried() { return false; }
-
-/*
- * --INFO--
- * Address:	80107FB4
- * Size:	000008
- */
-// WEAK - in header
-// bool Creature::isUnderground() { return false; }
-
-/*
- * --INFO--
- * Address:	80107FBC
- * Size:	000008
- */
-// WEAK - in header
-// bool Creature::isLivingThing() { return true; }
-
-/*
- * --INFO--
- * Address:	80107FC4
- * Size:	00000C
- */
-// WEAK - in header
-// bool Creature::isDebugCollision() { return m_flags.typeView & CF_IS_DEBUG_COLLISION; }
-
-/*
- * --INFO--
- * Address:	80107FD0
- * Size:	000028
- */
-// WEAK - in header
-// void Creature::setDebugCollision(bool debugCollision)
-// {
-// 	if (debugCollision) {
-// 		m_flags.typeView |= CF_IS_DEBUG_COLLISION;
-// 	} else {
-// 		m_flags.typeView &= ~CF_IS_DEBUG_COLLISION;
-// 	}
-// }
-
-/*
- * --INFO--
- * Address:	80107FF8
- * Size:	000004
- */
-// WEAK - in header
-// void Creature::doSave(Stream&) { }
-
-/*
- * --INFO--
- * Address:	80107FFC
- * Size:	000004
- */
-// WEAK - in header
-// void Creature::doLoad(Stream&) { }
-
-/*
- * --INFO--
- * Address:	80108000
- * Size:	000004
- */
-// WEAK - in header
-// void Creature::platCallback(Game::PlatEvent&) { }
-
-/*
- * --INFO--
- * Address:	80108004
- * Size:	000008
- */
-// WEAK - in header
-// AILOD* Creature::getSound_AILOD() { return &m_lod; }
-
-/*
- * --INFO--
- * Address:	8010800C
- * Size:	000004
- */
-// WEAK - in header
-// void Creature::on_movie_begin(bool) { }
-
-/*
- * --INFO--
- * Address:	80108010
- * Size:	000004
- */
-// WEAK - in header
-// void Creature::on_movie_end(bool) { }
-
-/*
- * --INFO--
- * Address:	80108014
- * Size:	000004
- */
-// WEAK - in header
-// void Creature::movieStartAnimation(u32) { }
-
-/*
- * --INFO--
- * Address:	80108018
- * Size:	000004
- */
-// WEAK - in header
-// void Creature::movieStartDemoAnimation(SysShape::AnimInfo*) { }
-
-/*
- * --INFO--
- * Address:	8010801C
- * Size:	000004
- */
-// WEAK - in header
-// void Creature::movieSetAnimationLastFrame() { }
-
-/*
- * --INFO--
- * Address:	80108020
- * Size:	000004
- */
-// WEAK - in header
-// void Creature::movieSetTranslation(Vector3f&, float) { }
-
-/*
- * --INFO--
- * Address:	80108024
- * Size:	000004
- */
-// WEAK - in header
-// void Creature::movieSetFaceDir(float) { }
-
-/*
- * --INFO--
- * Address:	80108028
- * Size:	000008
- */
-// WEAK - in header
-// bool Creature::movieGotoPosition(Vector3f&) { return true; }
-
-/*
- * --INFO--
- * Address:	80108030
- * Size:	000004
- */
-// WEAK - in header
-// void Creature::movieUserCommand(u32, Game::MoviePlayer*) { }
-
-/*
- * --INFO--
- * Address:	80108034
- * Size:	000004
- */
-// WEAK - in header
-// void Creature::getLODCylinder(Sys::Cylinder&) { }
-
-/*
- * --INFO--
- * Address:	80108038
- * Size:	000004
- */
-// WEAK - in header
-// void Creature::startPick() { }
-
-/*
- * --INFO--
- * Address:	8010803C
- * Size:	000004
- */
-// WEAK - in header
-// void Creature::endPick(bool) { }
-
-/*
- * --INFO--
- * Address:	80108040
- * Size:	000008
- */
-// WEAK - in header
-// u32* Creature::getMabiki() { return nullptr; }
-
-/*
- * --INFO--
- * Address:	80108048
- * Size:	000008
- */
-// WEAK - in header
-// Footmarks* Creature::getFootmarks() { return nullptr; }
-
-/*
- * --INFO--
- * Address:	80108050
- * Size:	000004
- */
-// WEAK - in header
-// void Creature::onStickStartSelf(Game::Creature*) { }
-
-/*
- * --INFO--
- * Address:	80108054
- * Size:	000004
- */
-// void Creature::onStickEndSelf(Game::Creature*) { }
-
-/*
- * --INFO--
- * Address:	80108058
- * Size:	000008
- */
-// WEAK - in header
-// bool Creature::isSlotFree(short) { return false; }
-
-/*
- * --INFO--
- * Address:	80108060
- * Size:	000008
- */
-// WEAK - in header
-// int Creature::getFreeStickSlot() { return -1; }
-
-/*
- * --INFO--
- * Address:	80108068
- * Size:	000008
- */
-// WEAK - in header
-// int Creature::getNearFreeStickSlot(Vector3f&) { return -1; }
-
-/*
- * --INFO--
- * Address:	80108070
- * Size:	000008
- */
-// WEAK - in header
-// int Creature::getRandomFreeStickSlot() { return -1; }
-
-/*
- * --INFO--
- * Address:	80108078
- * Size:	000004
- */
-// WEAK - in header
-// void Creature::onSlotStickStart(Game::Creature*, short) { }
-
-/*
- * --INFO--
- * Address:	8010807C
- * Size:	000004
- */
-// WEAK - in header
-// void Creature::onSlotStickEnd(Game::Creature*, short) { }
-
-/*
- * --INFO--
- * Address:	80108080
- * Size:	000004
- */
-// WEAK - in header
-// void Creature::calcStickSlotGlobal(short, Vector3f&) { }
-
-/*
- * --INFO--
- * Address:	80108084
- * Size:	000008
- */
-// WEAK - in header
-// float Creature::getAngularEffect(Vector3f&, Vector3f&) { return 0.0f; }
-
-/*
- * --INFO--
- * Address:	8010808C
- * Size:	000008
- */
-// WEAK - in header
-// bool Creature::ignoreAtari(Game::Creature*) { return false; }
-
-/*
- * --INFO--
- * Address:	80108094
- * Size:	000038
- */
-// WEAK - in header
-// Vector3f Creature::getSuckPos() { return getPosition(); }
-
-/*
- * --INFO--
- * Address:	801080CC
- * Size:	000038
- */
-// WEAK - in header
-// Vector3f Creature::getGoalPos() { return getPosition(); }
-
-/*
- * --INFO--
- * Address:	80108104
- * Size:	000008
- */
-// WEAK - in header
-// bool Creature::isSuckReady() { return true; }
-
-/*
- * --INFO--
- * Address:	8010810C
- * Size:	000008
- */
-// WEAK - in header
-// BOOL Creature::isSuckArriveWait() { return FALSE; }
-
-/*
- * --INFO--
- * Address:	80108114
- * Size:	000008
- */
-// WEAK - in header
-// u16 Creature::getObjType() { return m_objectTypeID; }
-
-/*
- * --INFO--
- * Address:	8010811C
- * Size:	000024
- */
-// WEAK - in header
-// bool Creature::collisionUpdatable() { return m_updateContext.updatable(); }
-
-/*
- * --INFO--
- * Address:	80108140
- * Size:	000008
- */
-// WEAK - in header
-// bool CellObject::deferPikiCollision() { return false; }
-
-/*
- * --INFO--
- * Address:	80108148
- * Size:	000070
- */
-// WEAK - in header
-// EnemyAnimKeyEvent::~EnemyAnimKeyEvent() { }
-
-/*
- * --INFO--
- * Address:	801081B8
- * Size:	000004
- */
-// WEAK - in header
-// void PelletView::view_start_carrymotion() { }
-
-/*
- * --INFO--
- * Address:	801081BC
- * Size:	000004
- */
-// WEAK - in header
-// void PelletView::view_finish_carrymotion() { }
-
-/*
- * --INFO--
- * Address:	801081C0
- * Size:	000004
- */
-// WEAK - in header
-// void PelletView::viewStartPreCarryMotion() { }
-
-/*
- * --INFO--
- * Address:	801081C4
- * Size:	000004
- */
-// WEAK - in header
-// void PelletView::viewStartCarryMotion() { }
-
-/*
- * --INFO--
- * Address:	801081C8
- * Size:	000004
- */
-// WEAK - in header
-// void PelletView::viewOnPelletKilled() { }
-
-/*
- * --INFO--
- * Address:	801081CC
- * Size:	000008
- */
-// WEAK - in header
-// EnemyFSMState* EnemyBaseFSM::StateMachine::getCurrState(Game::EnemyBase*) { return m_state; }
-
-/*
- * --INFO--
- * Address:	801081D4
- * Size:	000008
- */
-// WEAK - in header
-// void EnemyBaseFSM::StateMachine::setCurrState(Game::EnemyBase*, Game::EnemyFSMState*)
-// {
-// 	m_state = static_cast<State*>(state);
-// }
-
-/*
- * --INFO--
- * Address:	801081DC
- * Size:	000004
- */
-// WEAK - in header
-// void EnemyFSMState::exec(Game::EnemyBase*) { }
-
-/*
- * --INFO--
- * Address:	801081E0
- * Size:	000004
- */
-// WEAK - in header
-// void EnemyFSMState::resume(Game::EnemyBase*) { }
-
-/*
- * --INFO--
- * Address:	801081E4
- * Size:	000004
- */
-// WEAK - in header
-// void EnemyFSMState::restart(Game::EnemyBase*) { }
-
-/*
- * --INFO--
- * Address:	801081E8
- * Size:	000004
- */
-// WEAK - in header
-// void EnemyFSMState::doDirectDraw(Game::EnemyBase*, Graphics&) { }
-
-/*
- * --INFO--
- * Address:	801081EC
- * Size:	000004
- */
-// WEAK - in header
-// void EnemyFSMState::init(Game::EnemyBase*, Game::StateArg*) { }
-
-/*
- * --INFO--
- * Address:	801081F0
- * Size:	000004
- */
-// WEAK - in header
-// void EnemyFSMState::cleanup(Game::EnemyBase*) { }
-
-// } // namespace Game
-
-// namespace efx {
-
-// /*
-//  * @reified
-//  * --INFO--
-//  * Address:	801081F4
-//  * Size:	00000C
-//  */
-// WEAK - in header
-// const char* ArgEnemyType::getName()
-// {
-// 		return "ArgEnemyType";
-// }
-
-// /*
-//  * @reified
-//  * --INFO--
-//  * Address:	80108200
-//  * Size:	000008
-//  */
-// WEAK - in header
-// char* Arg::getName()
-// {
-// 		return "Arg";
-// }
-
-// } // namespace efx
-
-// namespace Game {
-
-/*
- * --INFO--
- * Address:	80108208
- * Size:	000004
- */
-// WEAK - in header
-// void EnemyBaseFSM::AppearState::simulation(Game::EnemyBase*, float) { }
-
-/*
- * --INFO--
- * Address:	8010820C
- * Size:	000004
- */
-// WEAK - in header
-// void EnemyBaseFSM::BirthTypeDropState::entry(Game::EnemyBase*) { }
-
-/*
- * --INFO--
- * Address:	80108210
- * Size:	000004
- */
-// WEAK - in header
-// void EnemyBaseFSM::BirthTypeDropState::simulation(Game::EnemyBase*, float) { }
-
-/*
- * --INFO--
- * Address:	80108214
- * Size:	000004
- */
-// WEAK - in header
-// void EnemyBaseFSM::BirthTypeDropState::animation(Game::EnemyBase*) { }
-
 } // namespace Game
 
 /*
@@ -8726,243 +6490,3 @@ void __sinit_enemyBase_cpp(void)
 	  blr
 	*/
 }
-
-// namespace Game {
-
-// /*
-//  * --INFO--
-//  * Address:	80108240
-//  * Size:	000008
-//  */
-// void EnemyBase::@376 @onKeyEvent(const SysShape::KeyEvent&)
-// {
-// 	/*
-// 	.loc_0x0:
-// 	  subi      r3, r3, 0x178
-// 	  b         -0x2F64
-// 	*/
-// }
-
-// /*
-//  * --INFO--
-//  * Address:	80108248
-//  * Size:	000014
-//  */
-// void EnemyBase::@700 @12 @viewOnPelletKilled()
-// {
-// 	/*
-// 	.loc_0x0:
-// 	  li        r11, 0xC
-// 	  lwzx      r11, r3, r11
-// 	  add       r3, r3, r11
-// 	  subi      r3, r3, 0x2BC
-// 	  b         -0x193C
-// 	*/
-// }
-
-// /*
-//  * --INFO--
-//  * Address:	8010825C
-//  * Size:	000014
-//  */
-// void EnemyBase::@700 @12 @viewStartCarryMotion()
-// {
-// 	/*
-// 	.loc_0x0:
-// 	  li        r11, 0xC
-// 	  lwzx      r11, r3, r11
-// 	  add       r3, r3, r11
-// 	  subi      r3, r3, 0x2BC
-// 	  b         -0x1BC4
-// 	*/
-// }
-
-// /*
-//  * --INFO--
-//  * Address:	80108270
-//  * Size:	000014
-//  */
-// void EnemyBase::@700 @12 @viewStartPreCarryMotion()
-// {
-// 	/*
-// 	.loc_0x0:
-// 	  li        r11, 0xC
-// 	  lwzx      r11, r3, r11
-// 	  add       r3, r3, r11
-// 	  subi      r3, r3, 0x2BC
-// 	  b         -0x1BB8
-// 	*/
-// }
-
-// /*
-//  * --INFO--
-//  * Address:	80108284
-//  * Size:	000014
-//  */
-// void EnemyBase::@700 @12 @view_finish_carrymotion()
-// {
-// 	/*
-// 	.loc_0x0:
-// 	  li        r11, 0xC
-// 	  lwzx      r11, r3, r11
-// 	  add       r3, r3, r11
-// 	  subi      r3, r3, 0x2BC
-// 	  b         -0x181C
-// 	*/
-// }
-
-// /*
-//  * --INFO--
-//  * Address:	80108298
-//  * Size:	000014
-//  */
-// void EnemyBase::@700 @12 @view_start_carrymotion()
-// {
-// 	/*
-// 	.loc_0x0:
-// 	  li        r11, 0xC
-// 	  lwzx      r11, r3, r11
-// 	  add       r3, r3, r11
-// 	  subi      r3, r3, 0x2BC
-// 	  b         -0x185C
-// 	*/
-// }
-
-// /*
-//  * --INFO--
-//  * Address:	801082AC
-//  * Size:	000014
-//  */
-// void EnemyBase::@700 @12 @viewGetShape()
-// {
-// 	/*
-// 	.loc_0x0:
-// 	  li        r11, 0xC
-// 	  lwzx      r11, r3, r11
-// 	  add       r3, r3, r11
-// 	  subi      r3, r3, 0x2BC
-// 	  b         -0x1C1C
-// 	*/
-// }
-
-// namespace PSM {
-
-// 	/*
-// 	 * --INFO--
-// 	 * Address:	801082C0
-// 	 * Size:	000008
-// 	 */
-// 	EnemyHekoi::@16 @~EnemyHekoi()
-// 	{
-// 		/*
-// 		.loc_0x0:
-// 		  subi      r3, r3, 0x10
-// 		  b         -0x824
-// 		*/
-// 	}
-
-// 	/*
-// 	 * --INFO--
-// 	 * Address:	801082C8
-// 	 * Size:	000008
-// 	 */
-// 	void PSM::CreatureAnime::@48
-// 	    @startSound(unsigned char, unsigned long, unsigned long)
-// 	{
-// 		/*
-// 		.loc_0x0:
-// 		  subi      r3, r3, 0x30
-// 		  b         0x3559BC
-// 		*/
-// 	}
-
-// 	/*
-// 	 * --INFO--
-// 	 * Address:	801082D0
-// 	 * Size:	000008
-// 	 */
-// 	void PSM::CreatureAnime::@48
-// 	    @startSound(JAISound**, unsigned long, unsigned long)
-// 	{
-// 		/*
-// 		.loc_0x0:
-// 		  subi      r3, r3, 0x30
-// 		  b         0x355A64
-// 		*/
-// 	}
-
-// } // namespace PSM
-
-// /*
-//  * --INFO--
-//  * Address:	801082D8
-//  * Size:	000008
-//  */
-// void CreatureAnime::@48 @startSound(unsigned long, unsigned long)
-// {
-// 	/*
-// 	.loc_0x0:
-// 	  subi      r3, r3, 0x30
-// 	  b         0x355970
-// 	*/
-// }
-
-// /*
-//  * --INFO--
-//  * Address:	801082E0
-//  * Size:	000008
-//  */
-// EnemyHekoi::@48 @~EnemyHekoi()
-// {
-// 	/*
-// 	.loc_0x0:
-// 	  subi      r3, r3, 0x30
-// 	  b         -0x844
-// 	*/
-// }
-
-// /*
-//  * --INFO--
-//  * Address:	801082E8
-//  * Size:	000008
-//  */
-// void PSM::EnemyBase::@48
-//     @startAnimSound(unsigned long, JAISound**, JAInter::Actor*, unsigned
-//     char)
-// {
-// 	/*
-// 	.loc_0x0:
-// 	  subi      r3, r3, 0x30
-// 	  b         0x3563B4
-// 	*/
-// }
-
-// /*
-//  * --INFO--
-//  * Address:	801082F0
-//  * Size:	000008
-//  */
-// void PSM::CreatureAnime::@48
-//     @playActorAnimSound(JAInter::Actor*, float, unsigned char)
-// {
-// 	/*
-// 	.loc_0x0:
-// 	  subi      r3, r3, 0x30
-// 	  b         0x355B2C
-// 	*/
-// }
-
-// /*
-//  * --INFO--
-//  * Address:	801082F8
-//  * Size:	000008
-//  */
-// void EnemyBase::@184 @battleOff()
-// {
-// 	/*
-// 	.loc_0x0:
-// 	  subi      r3, r3, 0xB8
-// 	  b         0x3566F4
-// 	*/
-// }
-// } // namespace Game

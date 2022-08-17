@@ -170,7 +170,7 @@ struct EnemyBase : public Creature, public SysShape::MotionListener, virtual pub
 	}
 	virtual bool isFlying() // _CC (weak)
 	{
-		return (_1E0.m_flags[0].typeView >> 2) & 1;
+		return (m_events.m_flags[0].typeView >> 2) & 1;
 	}
 	virtual void collisionCallback(CollEvent&); // _EC
 	virtual JAInter::Object* getJAIObject();    // _F4
@@ -182,7 +182,7 @@ struct EnemyBase : public Creature, public SysShape::MotionListener, virtual pub
 	virtual bool sound_culling() // _104 (weak)
 	{
 		bool culling = false;
-		if (_1E0.m_flags[0].typeView & 0x2000) {
+		if (m_events.m_flags[0].typeView & 0x2000) {
 			if (!(m_lod.m_flags & AILOD::FLAG_NEED_SHADOW) && !(m_lod.m_flags & AILOD::FLAG_UNKNOWN4)) {
 				culling = true;
 			}
@@ -230,7 +230,7 @@ struct EnemyBase : public Creature, public SysShape::MotionListener, virtual pub
 	virtual void doUpdateCarcass();                             // _1D4
 	virtual void doAnimationUpdateAnimator();                   // _1D8
 	virtual void doAnimationCullingOff();                       // _1DC
-	virtual void doAnimationCullingOn();                        // _1E0
+	virtual void doAnimationCullingOn();                        // m_events
 	virtual void doAnimationStick();                            // _1E4
 	virtual void doSimulationCarcass(float);                    // _1E8
 	virtual void doDebugDraw(Graphics&);                        // _1EC
@@ -421,7 +421,7 @@ struct EnemyBase : public Creature, public SysShape::MotionListener, virtual pub
 	Matrix3f _1A4;                     // _1A4
 	Vector3f m_velocity;               // _1C8
 	Vector3f m_velocity2;              // _1D4
-	BitFlagArray<u32, 2> _1E0;         // _1E0
+	BitFlagArray<u32, 2> m_events;         // m_events
 	BitFlagArray<u32, 2> _1E8;         // _1E8
 	u8 m_emotion;                      // _1F0
 	u8 m_enemyIndexForType;            // _1F1
@@ -588,7 +588,7 @@ struct LivingState : public State {
 	// used in EnemyBaseFSM::LivingState::simulation
 	inline bool isLiving(EnemyBase* enemy)
 	{
-		return ((enemy->_1E0.m_flags[0].typeView & 0x400) || ((enemy->_1E0.m_flags[0].typeView & 0x40000)));
+		return ((enemy->m_events.m_flags[0].typeView & 0x400) || ((enemy->m_events.m_flags[0].typeView & 0x40000)));
 	}
 
 	virtual void update(EnemyBase*);            // _24
