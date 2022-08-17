@@ -73,7 +73,10 @@ struct EnemyNotAggressive : public EnemyBase {
  * @size = 0xE0
  */
 struct EnemyBig : public EnemyBase {
-    inline EnemyBig(Game::EnemyBase* enemy, u8 a) : EnemyBase(enemy, a) {} 
+	inline EnemyBig(Game::EnemyBase* enemy, u8 a)
+	    : EnemyBase(enemy, a)
+	{
+	}
 
 	virtual ~EnemyBig() { }                 // _14 (weak)
 	virtual CreatureCastType getCastType(); // _1C (weak)
@@ -85,9 +88,12 @@ struct EnemyBig : public EnemyBase {
  * @size = 0xE0
  */
 struct EnemyHekoi : public EnemyBase {
-    inline EnemyHekoi(Game::EnemyBase* enemy, u8 a) : EnemyBase(enemy, a) {}
+	inline EnemyHekoi(Game::EnemyBase* enemy, u8 a)
+	    : EnemyBase(enemy, a)
+	{
+	}
 
-	virtual ~EnemyHekoi() { } // _04
+	virtual ~EnemyHekoi() { }              // _04
 	virtual CreatureCastType getCastType() // _0C
 	{
 		return CCT_EnemyHekoi;
@@ -98,7 +104,10 @@ struct EnemyHekoi : public EnemyBase {
  * @size = 0xE0
  */
 struct Enemy_SpecialChappy : public EnemyBig {
-    inline Enemy_SpecialChappy(Game::EnemyBase* enemy, u8 a) : EnemyBig(enemy, a) {} 
+	inline Enemy_SpecialChappy(Game::EnemyBase* enemy, u8 a)
+	    : EnemyBig(enemy, a)
+	{
+	}
 
 	virtual ~Enemy_SpecialChappy();           // _14 (weak)
 	virtual void onPlayingSe(u32, JAISound*); // _38

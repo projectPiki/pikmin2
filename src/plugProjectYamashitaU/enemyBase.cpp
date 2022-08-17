@@ -43,7 +43,6 @@
 #include "PS.h"
 #include "PSM/CreatureAnime.h"
 #include "PSM/EnemyBase.h"
-#include "PSM/EnemyHekoi.h"
 #include "PSM/EnemyBoss.h"
 #include "PSGame/Global.h"
 #include "Sys/Sphere.h"
@@ -62,34 +61,34 @@ namespace EnemyBaseFSM {
  * Address:	800FF26C
  * Size:	0000F8
  */
-void State::animation(Game::EnemyBase* obj)
+void State::animation(Game::EnemyBase* enemy)
 {
-	if (obj->m_events.m_flags[0].typeView & 0x10000000) {
+	if (enemy->m_events.m_flags[0].typeView & 0x10000000) {
 		GeneralEnemyMgr::mTotalCount++;
 
-		bool fxExists = obj->isCullingOff();
+		bool fxExists = enemy->isCullingOff();
 
-		obj->updateCell();
-		obj->updateLOD(obj->m_lodParm);
+		enemy->updateCell();
+		enemy->updateLOD(enemy->m_lodParm);
 
-		if (obj->isCullingOff()) {
-			if (obj->m_events.m_flags[0].typeView & 0x8000) {
-				obj->doAnimationCullingOff();
+		if (enemy->isCullingOff()) {
+			if (enemy->m_events.m_flags[0].typeView & 0x8000) {
+				enemy->doAnimationCullingOff();
 			} else {
-				obj->doAnimationCullingOn();
+				enemy->doAnimationCullingOn();
 			}
 
 			if (!fxExists) {
-				obj->createEffects();
+				enemy->createEffects();
 			}
 
 			return;
 		}
 
 		GeneralEnemyMgr::mCullCount++;
-		obj->doAnimationCullingOn();
+		enemy->doAnimationCullingOn();
 		if (fxExists == true) {
-			obj->fadeEffects();
+			enemy->fadeEffects();
 		}
 	}
 }
@@ -585,7 +584,7 @@ void LivingState::update(Game::EnemyBase* enemy)
 void EnemyBaseFSM::FitState::updateCullingOff(Game::EnemyBase* enemy)
 {
 	if (enemy->m_health <= 0.0f) {
-		transit(enemy, EBS_Living, nullptr);
+		transit(enemy, EBS_Living, 0);
 	}
 }
 
@@ -598,8 +597,8 @@ void EnemyBaseFSM::FitState::updateCullingOff(Game::EnemyBase* enemy)
 void EnemyBaseFSM::FitState::init(Game::EnemyBase* enemy, Game::StateArg* arg)
 {
 	enemy->doUpdate();
-	enemy->_1E8.m_flags[0].typeView = enemy->m_events.m_flags[0].typeView;
-	enemy->_1E8.m_flags[1].typeView = enemy->m_events.m_flags[1].typeView;
+	enemy->m_eventBuffer.m_flags[0].typeView = enemy->m_events.m_flags[0].typeView;
+	enemy->m_eventBuffer.m_flags[1].typeView = enemy->m_events.m_flags[1].typeView;
 	enemy->m_events.m_flags[1].typeView |= 0x2;
 	enemy->stopMotion();
 	enemy->m_events.m_flags[0].typeView |= 0x400;
@@ -708,8 +707,8 @@ void EnemyBaseFSM::FitState::init(Game::EnemyBase* enemy, Game::StateArg* arg)
  */
 void FitState::cleanup(Game::EnemyBase* enemy)
 {
-	enemy->m_events.m_flags[0] = enemy->_1E8.m_flags[0];
-	enemy->m_events.m_flags[1] = enemy->_1E8.m_flags[1];
+	enemy->m_events.m_flags[0] = enemy->m_eventBuffer.m_flags[0];
+	enemy->m_events.m_flags[1] = enemy->m_eventBuffer.m_flags[1];
 	enemy->m_events.m_flags[1].typeView &= 0xFFFFFFFD;
 	enemy->startMotion();
 	enemy->doFinishEarthquakeFitState();
@@ -822,8 +821,8 @@ void StoneState::init(Game::EnemyBase* enemy, Game::StateArg* arg)
 		enemy->doUpdate();
 	}
 
-	enemy->_1E8.m_flags[0] = enemy->m_events.m_flags[0];
-	enemy->_1E8.m_flags[1] = enemy->m_events.m_flags[1];
+	enemy->m_eventBuffer.m_flags[0] = enemy->m_events.m_flags[0];
+	enemy->m_eventBuffer.m_flags[1] = enemy->m_events.m_flags[1];
 	enemy->m_events.m_flags[0].typeView |= 0x200;
 	enemy->hide();
 	enemy->m_stoneTimer = 0.0f;
@@ -852,8 +851,8 @@ void StoneState::cleanup(Game::EnemyBase* enemy)
 {
 	P2ASSERTLINE(1024, enemy->m_events.m_flags[0].typeView & 0x200);
 
-	enemy->m_events.m_flags[0] = enemy->_1E8.m_flags[0];
-	enemy->m_events.m_flags[1] = enemy->_1E8.m_flags[1];
+	enemy->m_events.m_flags[0] = enemy->m_eventBuffer.m_flags[0];
+	enemy->m_events.m_flags[1] = enemy->m_eventBuffer.m_flags[1];
 	enemy->m_events.m_flags[0].typeView &= 0xFFEFFFFF;
 	enemy->m_events.m_flags[0].typeView &= 0xFFFFFDFF;
 
@@ -1016,7 +1015,7 @@ Game::EnemyBase::EnemyBase()
 	}
 	for (int i = 0; i < 2; i++) {
 		for (int j = 0; j < 4; j++) {
-			_1E8.m_flags[i].byteView[j] = 0;
+			m_eventBuffer.m_flags[i].byteView[j] = 0;
 		}
 	}
 
@@ -1177,8 +1176,8 @@ void EnemyBase::onInit(Game::CreatureInitArg* arg)
 
 	m_events.m_flags[0].clear();
 	m_events.m_flags[1].clear();
-	_1E8.m_flags[0].clear();
-	_1E8.m_flags[1].clear();
+	m_eventBuffer.m_flags[0].clear();
+	m_eventBuffer.m_flags[1].clear();
 
 	m_events.m_flags[0].typeView |= 0x10000000;
 	m_events.m_flags[0].typeView |= 0x8;
@@ -2076,7 +2075,7 @@ void EnemyBase::onKill(Game::CreatureKillArg*)
  */
 void EnemyBase::setZukanVisible(bool arg)
 {
-	if (m_inZukan) {
+	if (m_inPiklopedia) {
 		if (!(gameSystem->_3C & 0x10)) {
 			EnemyInfo* enemyInfo = EnemyInfoFunc::getEnemyInfo(getEnemyTypeID(), 0xFFFF);
 			if (!(enemyInfo->m_flags & 0x200)) {
@@ -2100,7 +2099,7 @@ void EnemyBase::setZukanVisible(bool arg)
 void EnemyBase::birth(Vector3f& pos, float faceDir)
 {
 	m_events.m_flags[0].typeView |= 0x10000000;
-	m_inZukan = 1;
+	m_inPiklopedia = true;
 	setPosition(pos, false);
 	m_homePosition.x    = pos.x;
 	m_homePosition.y    = pos.y;
@@ -2626,7 +2625,8 @@ void EnemyBase::doViewCalc()
 		flagCheck = true;
 	} else {
 		flagCheck = false;
-		if (!(m_events.m_flags[0].typeView & 0x40) || ((m_lod.m_flags & 4) || (m_lod.m_flags & 8) || (m_events.m_flags[1].typeView & 0x10))) {
+		if (!(m_events.m_flags[0].typeView & 0x40)
+		    || ((m_lod.m_flags & 4) || (m_lod.m_flags & 8) || (m_events.m_flags[1].typeView & 0x10))) {
 			flagCheck = true;
 		}
 	}

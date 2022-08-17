@@ -25,7 +25,8 @@ struct ProperAnimator : public EnemyAnimatorBase {
 	SysShape::Animator m_animator; // _10
 };
 
-struct FSM { };
+struct FSM {
+};
 
 struct Parms : public EnemyParmsBase {
 	Parms();
@@ -39,16 +40,16 @@ struct Obj : public EnemyBase {
 
 	Obj();
 
-	virtual void onInit(CreatureInitArg*);       			// _30
-	virtual void doDirectDraw(Graphics&);        			// _50
-	virtual void bounceCallback(Sys::Triangle*); 			// _E8
-	virtual void getShadowParam(ShadowParam&);   			// _134
+	virtual void onInit(CreatureInitArg*);                   // _30
+	virtual void doDirectDraw(Graphics&);                    // _50
+	virtual void bounceCallback(Sys::Triangle*);             // _E8
+	virtual void getShadowParam(ShadowParam&);               // _134
 	virtual ~Obj() { }                                       // _1BC (weak)
-	virtual void birth(Vector3f&, float);              		// _1C0
+	virtual void birth(Vector3f&, float);                    // _1C0
 	virtual void setInitialSetting(EnemyInitialParamBase*);  // _1C4
 	virtual void doUpdate();                                 // _1C8
 	virtual void doDebugDraw(Graphics&);                     // _1EC
-	virtual Vector3f getOffsetForMapCollision();                 // _224
+	virtual Vector3f getOffsetForMapCollision();             // _224
 	virtual void initMouthSlots();                           // _22C
 	virtual void initWalkSmokeEffect();                      // _230
 	virtual WalkSmokeEffect::Mgr* getWalkSmokeEffectMgr();   // _234

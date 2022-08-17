@@ -54,7 +54,8 @@ SeqTrackRoot::SeqTrackRoot()
     , _100(2)
     , _16C()
     , _20C()
-{ }
+{
+}
 
 /*
  * --INFO--
@@ -147,7 +148,8 @@ SeqTrackChild::SeqTrackChild(const PSSystem::SeqTrackRoot&)
     , _12C()
     , _1B8(1)
     , _224()
-{ }
+{
+}
 
 /*
  * --INFO--

@@ -31,36 +31,44 @@
 #include "Game/EnemyMgrBase.h"
 #include "Vector2.h"
 
-#define ENEMY_EVENT_REFRESH       (0x1)
-#define ENEMY_EVENT_DAMAGE        (0x2)
-#define ENEMY_EVENT_3             (0x4)
-#define ENEMY_EVENT_FLYING        (0x8)
-#define ENEMY_EVENT_COLLISION     (0x10)
-#define ENEMY_EVENT_DROP_MASS_SET (0x20)
-#define ENEMY_EVENT_7             (0x40)
-#define ENEMY_EVENT_8             (0x80)
-#define ENEMY_EVENT_9             (0x100)
-#define ENEMY_EVENT_10            (0x200)
-#define ENEMY_EVENT_11            (0x400)
-#define ENEMY_EVENT_12            (0x800)
-#define ENEMY_EVENT_13            (0x1000)
-#define ENEMY_EVENT_14            (0x2000)
-#define ENEMY_EVENT_15            (0x4000)
-#define ENEMY_EVENT_16            (0x8000)
-#define ENEMY_EVENT_17            (0x10000)
-#define ENEMY_EVENT_18            (0x20000)
-#define ENEMY_EVENT_HARD          (0x40000)
-#define ENEMY_EVENT_20            (0x80000)
-#define ENEMY_EVENT_21            (0x100000)
-#define ENEMY_EVENT_STONE         (0x200000)
-#define ENEMY_EVENT_23            (0x400000)
-#define ENEMY_EVENT_24            (0x800000)
-#define ENEMY_EVENT_25            (0x1000000)
-#define ENEMY_EVENT_26            (0x2000000)
-#define ENEMY_EVENT_27            (0x4000000)
-#define ENEMY_EVENT_28            (0x8000000)
-#define ENEMY_EVENT_29            (0x10000000)
-#define ENEMY_EVENT_30            (0x20000000)
+#define ENEMY_EVENT_VULNERABLE        (0x1)
+#define ENEMY_EVENT_DAMAGE            (0x2)
+#define ENEMY_EVENT_3                 (0x4)
+#define ENEMY_EVENT_FLYING            (0x8)
+#define ENEMY_EVENT_COLLISION         (0x10)
+#define ENEMY_EVENT_DROP_MASS_SET     (0x20)
+#define ENEMY_EVENT_CULLABLE          (0x40)
+#define ENEMY_EVENT_LEAVE_CARCASS     (0x80)
+#define ENEMY_EVENT_9                 (0x100)
+#define ENEMY_EVENT_BITTERED          (0x200)
+#define ENEMY_EVENT_CONSTRAINT        (0x400)
+#define ENEMY_EVENT_LIFEGAUGE_VISIBLE (0x800)
+#define ENEMY_EVENT_13                (0x1000)
+#define ENEMY_EVENT_SOUND_CULLLABLE   (0x2000)
+#define ENEMY_EVENT_15                (0x4000)
+#define ENEMY_EVENT_16                (0x8000)
+#define ENEMY_EVENT_17                (0x10000)
+#define ENEMY_EVENT_18                (0x20000)
+#define ENEMY_EVENT_HARD_CONSTRAINT   (0x40000)
+#define ENEMY_EVENT_20                (0x80000)
+#define ENEMY_EVENT_21                (0x100000)
+#define ENEMY_EVENT_22                (0x200000)
+#define ENEMY_EVENT_UNBITTERABLE      (0x400000)
+#define ENEMY_EVENT_24                (0x800000)
+#define ENEMY_EVENT_PS_1              (0x1000000)
+#define ENEMY_EVENT_PS_2              (0x2000000)
+#define ENEMY_EVENT_PS_3              (0x4000000)
+#define ENEMY_EVENT_PS_4              (0x8000000)
+#define ENEMY_EVENT_29                (0x10000000)
+#define ENEMY_EVENT_30                (0x20000000)
+#define ENEMY_EVENT_31                (0x40000000)
+#define ENEMY_EVENT_32                (0x80000000)
+
+#define ENEMY_EVENT_33 (0x1)
+#define ENEMY_EVENT_34 (0x2)
+#define ENEMY_EVENT_35 (0x4)
+#define ENEMY_EVENT_36 (0x8)
+#define ENEMY_EVENT_37 (0x10)
 
 struct MouthSlots;
 
@@ -82,6 +90,43 @@ struct WaterBox;
 struct LifeGaugeParam;
 struct Interaction;
 struct StateMachine;
+
+enum EnemyEvent {
+	EB_Vulnerable       = 0x1,
+	EB_Damage           = 0x2,
+	EB_3                = 0x4,
+	EB_Flying           = 0x8,
+	EB_Collision        = 0x10,
+	EB_DropMassSet      = 0x20,
+	EB_Cullable         = 0x40,
+	EB_LeaveCarcass     = 0x80,
+	EB_9                = 0x100,
+	EB_Bittered         = 0x200,
+	EB_Constraint       = 0x400,
+	EB_LifegaugeVisible = 0x800,
+	EB_13               = 0x1000,
+	EB_SoundCullable    = 0x2000,
+	EB_15               = 0x4000,
+	EB_16               = 0x8000,
+	EB_17               = 0x10000,
+	EB_18               = 0x20000,
+	EB_HardConstraint   = 0x40000,
+	EB_20               = 0x80000,
+	EB_21               = 0x100000,
+	EB_22               = 0x200000,
+	EB_BitterImmune     = 0x400000,
+	EB_24               = 0x800000,
+	EB_PS1              = 0x1000000,
+	EB_PS2              = 0x2000000,
+	EB_PS3              = 0x4000000,
+	EB_PS4              = 0x8000000,
+	EB_29               = 0x10000000,
+	EB_30               = 0x20000000,
+	EB_31               = 0x40000000,
+	EB_32               = 0x80000000
+};
+
+enum EnemyEvent2 { EB2_1 = 0x1, EB2_2 = 0x2, EB2_3 = 0x4, EB2_4 = 0x8, EB2_5 = 0x10 };
 
 /**
  * @todo Split this into a separate type PelplantInitialParam?
@@ -410,31 +455,35 @@ struct EnemyBase : public Creature, public SysShape::MotionListener, virtual pub
 		sep.y = getPosition().z - creature->getPosition().z;
 	}
 
+	inline void setEvent(int i, u32 flag) { m_events.m_flags[i].typeView |= flag; }
+
+	inline void unsetEvent(int i, u32 flag) { m_events.m_flags[i].typeView &= ~flag; }
+
 	// Creature: _000 - _178
 	// MotionListener: _178 - _17C
 	// ptr to PelletView: _17C
-	EnemyMgrBase* m_mgr;               // _180
-	EnemyAnimatorBase* m_animator;     // _184
-	EnemyAnimKeyEvent* m_animKeyEvent; // _188
-	Vector3f m_position;               // _18C
-	Vector3f m_homePosition;           // _198
-	Matrix3f _1A4;                     // _1A4
-	Vector3f m_velocity;               // _1C8
-	Vector3f m_velocity2;              // _1D4
-	BitFlagArray<u32, 2> m_events;         // m_events
-	BitFlagArray<u32, 2> _1E8;         // _1E8
-	u8 m_emotion;                      // _1F0
-	u8 m_enemyIndexForType;            // _1F1
-	u8 _1F2;                           // _1F2
-	u8 m_inZukan;                      // _1F3
-	int m_stickPikminCount;            // _1F4
-	float m_scaleModifier;             // _1F8
-	float m_faceDir;                   // _1FC
-	float m_health;                    // _200
-	float m_maxHealth;                 // _204
-	float m_instantDamage;             // _208
-	float m_toFlick;                   // _20C
-	float _210;                        // _210
+	EnemyMgrBase* m_mgr;                // _180
+	EnemyAnimatorBase* m_animator;      // _184
+	EnemyAnimKeyEvent* m_animKeyEvent;  // _188
+	Vector3f m_position;                // _18C
+	Vector3f m_homePosition;            // _198
+	Matrix3f _1A4;                      // _1A4
+	Vector3f m_velocity;                // _1C8
+	Vector3f m_velocity2;               // _1D4
+	BitFlagArray<u32, 2> m_events;      // _1E0
+	BitFlagArray<u32, 2> m_eventBuffer; // _1E8
+	u8 m_emotion;                       // _1F0
+	u8 m_enemyIndexForType;             // _1F1
+	u8 _1F2;                            // _1F2
+	bool m_inPiklopedia;                // _1F3
+	int m_stickPikminCount;             // _1F4
+	float m_scaleModifier;              // _1F8
+	float m_faceDir;                    // _1FC
+	float m_health;                     // _200
+	float m_maxHealth;                  // _204
+	float m_instantDamage;              // _208
+	float m_toFlick;                    // _20C
+	float _210;                         // _210
 	// TODO: Name is from PikDecomp. Sodium called this "purpleStunTimer". Which
 	// name is more accurate?
 	float m_scaleTimer;                          // _214

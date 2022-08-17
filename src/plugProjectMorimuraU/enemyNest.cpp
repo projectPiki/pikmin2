@@ -262,11 +262,11 @@ void Obj::onInit(Game::CreatureInitArg* arg)
 	_2EE           = 0xFF;
 	_2F0           = 0;
 	m_homePosition = m_position;
-	_1E0[0].typeView &= ~0x0080;
-	_1E0[0].typeView &= ~0x0008;
-	_1E0[0].typeView &= ~0x0100;
-	_1E0[0].typeView &= ~0x1000;
-	_1E0[0].typeView |= 0x400000;
+	m_events.m_flags[0].typeView &= ~0x80;
+	m_events.m_flags[0].typeView &= ~0x8;
+	m_events.m_flags[0].typeView &= ~0x100;
+	m_events.m_flags[0].typeView &= ~0x1000;
+	m_events.m_flags[0].typeView |= 0x400000;
 
 	setEmotionNone();
 	if (shadowMgr) {

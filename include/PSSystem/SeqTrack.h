@@ -42,7 +42,7 @@ struct SeqTrackBase {
 struct SeqTrackRoot : public SeqTrackBase {
 	SeqTrackRoot();
 
-	virtual void update()         // _08 (weak)
+	virtual void update() // _08 (weak)
 	{
 		m_beatMgr.proc();
 		SeqTrackBase::update();

@@ -2119,7 +2119,7 @@ bool Pelplant::Obj::farmCallBack(Game::Creature* p1, float p2)
 	} else {
 		_2C8 |= 1;
 	}
-	_1E0[0].typeView &= 0xFFFFFFBF;
+	m_events.m_flags[0].typeView &= 0xFFFFFFBF;
 	return true;
 }
 
@@ -2193,7 +2193,7 @@ unknown Pelplant::Obj::neckJointCallBack(J3DJoint* joint, int p2)
 Pelplant::Mgr::Mgr(int p1, unsigned char p2)
     : EnemyMgrBase(p1, p2)
 {
-	m_name = "ペレット草マネージャ";
+	m_name = "ペレ�?ト草マネージャ";
 }
 
 /*
@@ -3234,10 +3234,10 @@ void Pelplant::Obj::onInit(Game::CreatureInitArg* arg)
 		stateID = 0;
 	}
 	m_fsm->start(this, stateID, nullptr);
-	_1E0->typeView &= ~0x100;
-	_1E0->typeView &= ~0x80;
-	_1E0->typeView &= ~0x1000;
-	_1E0->typeView |= 0x400000;
+	m_events.m_flags->typeView &= ~0x100;
+	m_events.m_flags->typeView &= ~0x80;
+	m_events.m_flags->typeView &= ~0x1000;
+	m_events.m_flags->typeView |= 0x400000;
 	hardConstraintOn();
 }
 

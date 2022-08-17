@@ -153,16 +153,16 @@ struct OuterParamTask : public ModParamWithFade {
 
 struct TaskEntry_BankRandTask : public TaskEntry {
 	inline TaskEntry_BankRandTask()
-		: TaskEntry()
-		, m_bankRandTask1()
-		, m_flagWaitTask()
-		, m_bankRandTask2()
+	    : TaskEntry()
+	    , m_bankRandTask1()
+	    , m_flagWaitTask()
+	    , m_bankRandTask2()
 	{
 	}
 
-	BankRandTask m_bankRandTask1;	// _38
-	FlagWaitTask m_flagWaitTask;	// _68
-	BankRandTask m_bankRandTask2;	// _88
+	BankRandTask m_bankRandTask1; // _38
+	FlagWaitTask m_flagWaitTask;  // _68
+	BankRandTask m_bankRandTask2; // _88
 };
 
 struct TaskEntry_IdMask : public TaskEntry {
@@ -190,9 +190,9 @@ struct TaskEntry_MuteVolume : public TaskEntry {
 	    : TaskEntry()
 	    , m_muteTask1()
 	    , m_outerParamTask1(1)
-		, m_flagWaitTask()
-		, m_outerParamTask2(1)
-		, m_muteTask2()
+	    , m_flagWaitTask()
+	    , m_outerParamTask2(1)
+	    , m_muteTask2()
 	{
 	}
 
@@ -202,7 +202,7 @@ struct TaskEntry_MuteVolume : public TaskEntry {
 	OuterParamTask m_outerParamTask1; // _58
 	FlagWaitTask m_flagWaitTask;      // _8C
 	OuterParamTask m_outerParamTask2; // _AC
-	MuteTask m_muteTask2;			  // _E0
+	MuteTask m_muteTask2;             // _E0
 };
 
 struct TaskEntry_OuterParam : public TaskEntry {
@@ -229,15 +229,15 @@ struct TaskEntry_Tempo : public TaskEntry {
 	inline TaskEntry_Tempo()
 	    : TaskEntry()
 	    , m_outerParamTask1(0x40)
-		, m_flagWaitTask()
-		, m_outerParamTask2(0x40)
+	    , m_flagWaitTask()
+	    , m_outerParamTask2(0x40)
 	{
 	}
 
 	void makeEntry(float, u32);
 
 	OuterParamTask m_outerParamTask1; // _38
-	FlagWaitTask m_flagWaitTask;	  // _6C
+	FlagWaitTask m_flagWaitTask;      // _6C
 	OuterParamTask m_outerParamTask2; // _8C
 };
 
@@ -246,8 +246,8 @@ struct TaskEntry_Wait_Volume : public TaskEntry {
 	    : TaskEntry()
 	    , m_muteTask1()
 	    , m_outerParamTask1(1)
-		, m_outerParamTask2(1)
-		, m_muteTask2()
+	    , m_outerParamTask2(1)
+	    , m_muteTask2()
 	{
 	}
 
@@ -257,7 +257,7 @@ struct TaskEntry_Wait_Volume : public TaskEntry {
 	OuterParamTask m_outerParamTask1; // _58
 	FlagWaitTask m_flagWaitTask;      // _8C
 	OuterParamTask m_outerParamTask2; // _AC
-	MuteTask m_muteTask2;			  // _E0
+	MuteTask m_muteTask2;             // _E0
 };
 
 struct TaskEntryMgr : MutexList<TaskEntry> {

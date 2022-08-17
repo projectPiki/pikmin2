@@ -354,10 +354,7 @@ void Catfish::Obj::resetEnemyNonStone()
  * Address:	802772C0
  * Size:	000028
  */
-void Catfish::Obj::createDownEffect()
-{
-	EnemyBase::createBounceEffect(m_position, 0.5);
-}
+void Catfish::Obj::createDownEffect() { EnemyBase::createBounceEffect(m_position, 0.5); }
 
 /*
  * --INFO--
