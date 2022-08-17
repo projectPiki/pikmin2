@@ -63,7 +63,7 @@ namespace EnemyBaseFSM {
  */
 void State::animation(Game::EnemyBase* enemy)
 {
-	if (enemy->m_events.m_flags[0].typeView & 0x10000000) {
+	if (enemy->isEvent(0, EB_29)) {
 		GeneralEnemyMgr::mTotalCount++;
 
 		bool fxExists = enemy->isCullingOff();
@@ -72,7 +72,7 @@ void State::animation(Game::EnemyBase* enemy)
 		enemy->updateLOD(enemy->m_lodParm);
 
 		if (enemy->isCullingOff()) {
-			if (enemy->m_events.m_flags[0].typeView & 0x8000) {
+			if (enemy->isEvent(0, EB_16)) {
 				enemy->doAnimationCullingOff();
 			} else {
 				enemy->doAnimationCullingOn();
@@ -487,8 +487,7 @@ void AppearState::cleanup(Game::EnemyBase* enemy)
  */
 void EnemyBaseFSM::LivingState::simulation(Game::EnemyBase* enemy, float constraint)
 {
-	if ((enemy->m_events.m_flags[0].typeView & 0x40000)
-	    || isLiving(enemy) && !(enemy->m_events.m_flags[1].typeView & 1) && !(enemy->m_events.m_flags[1].typeView & 0x10)) {
+	if ((enemy->isEvent(0, EB_HardConstraint)) || isLiving(enemy) && !(enemy->isEvent(1, EB2_1)) && !(enemy->isEvent(1, EB2_5))) {
 
 		if (enemy->isCullingOff()) {
 			enemy->doSimulationConstraint(constraint);
@@ -536,7 +535,7 @@ void LivingState::updateCullingOff(Game::EnemyBase* enemy) { enemy->doUpdate(); 
  */
 void LivingState::updateAlways(Game::EnemyBase* enemy)
 {
-	if (enemy->m_events.m_flags[0].typeView & 0x100000) {
+	if (enemy->isEvent(0, EB_21)) {
 		enemy->startStoneState();
 	}
 }
@@ -549,8 +548,8 @@ void LivingState::updateAlways(Game::EnemyBase* enemy)
 void LivingState::update(Game::EnemyBase* enemy)
 {
 	sys->m_timers->_start("e-upd-do", 1);
-	enemy->m_events.m_flags[0].typeView &= 0xFFFEFFFF;
-	enemy->m_events.m_flags[0].typeView &= 0xFFFDFFFF;
+	enemy->resetEvent(0, EB_17);
+	enemy->resetEvent(0, EB_18);
 	enemy->m_soundObj->exec();
 	if (enemy->m_pellet) {
 		enemy->doUpdateCarcass();
@@ -568,8 +567,8 @@ void LivingState::update(Game::EnemyBase* enemy)
 			enemy->_2A8 += sys->m_secondsPerFrame;
 			if (enemy->_2A8 > enemy->_2AC) {
 				enemy->addDamage(enemy->m_maxHealth, 1.0f);
-				enemy->m_events.m_flags[0].typeView &= 0xFFFFFFBF;
-				enemy->m_events.m_flags[0].typeView &= 0xFFFFFFF7;
+				enemy->resetEvent(0, EB_Cullable);
+				enemy->resetEvent(0, EB_Flying);
 			}
 		}
 	}
@@ -599,9 +598,9 @@ void EnemyBaseFSM::FitState::init(Game::EnemyBase* enemy, Game::StateArg* arg)
 	enemy->doUpdate();
 	enemy->m_eventBuffer.m_flags[0].typeView = enemy->m_events.m_flags[0].typeView;
 	enemy->m_eventBuffer.m_flags[1].typeView = enemy->m_events.m_flags[1].typeView;
-	enemy->m_events.m_flags[1].typeView |= 0x2;
+	enemy->setEvent(1, EB2_2);
 	enemy->stopMotion();
-	enemy->m_events.m_flags[0].typeView |= 0x400;
+	enemy->setEvent(0, EB_Constraint);
 	enemy->m_velocity2.x = 0.0f;
 	enemy->m_velocity2.y = 0.0f;
 	enemy->m_velocity2.z = 0.0f;
@@ -709,7 +708,7 @@ void FitState::cleanup(Game::EnemyBase* enemy)
 {
 	enemy->m_events.m_flags[0] = enemy->m_eventBuffer.m_flags[0];
 	enemy->m_events.m_flags[1] = enemy->m_eventBuffer.m_flags[1];
-	enemy->m_events.m_flags[1].typeView &= 0xFFFFFFFD;
+	enemy->resetEvent(1, EB2_2);
 	enemy->startMotion();
 	enemy->doFinishEarthquakeFitState();
 	m_enemyPiyo.fade();
@@ -723,8 +722,8 @@ void FitState::cleanup(Game::EnemyBase* enemy)
 void FitState::updateAlways(Game::EnemyBase* enemy)
 {
 	enemy->m_scaleTimer += sys->m_secondsPerFrame;
-	if ((enemy->m_scaleTimer > ((EnemyParmsBase*)enemy->m_parms)->m_general.m_purplePikminStunTime.m_value)
-	    || (enemy->m_events.m_flags[0].typeView & 0x100000) || (((enemy->m_health <= 0.0f)))) {
+	if ((enemy->m_scaleTimer > ((EnemyParmsBase*)enemy->m_parms)->m_general.m_purplePikminStunTime.m_value) || (enemy->isEvent(0, EB_21))
+	    || (((enemy->m_health <= 0.0f)))) {
 		enemy->m_scaleTimer = 0.0f;
 		transit(enemy, EBS_Living, 0);
 	} else {
@@ -750,7 +749,7 @@ void FitState::updateAlways(Game::EnemyBase* enemy)
 void EarthquakeState::init(Game::EnemyBase* enemy, Game::StateArg* arg)
 {
 	enemy->doUpdate();
-	enemy->m_events.m_flags[1].typeView |= 1;
+	enemy->setEvent(1, EB2_1);
 	enemy->stopMotion();
 	enemy->doStartEarthquakeState(arg->_00);
 	this->_10 = 0;
@@ -763,7 +762,7 @@ void EarthquakeState::init(Game::EnemyBase* enemy, Game::StateArg* arg)
  */
 void EarthquakeState::cleanup(Game::EnemyBase* enemy)
 {
-	enemy->m_events.m_flags[1].typeView &= 0xFFFFFFFE;
+	enemy->resetEvent(1, EB2_1);
 	enemy->startMotion();
 	enemy->doFinishEarthquakeState();
 }
@@ -783,8 +782,8 @@ void EarthquakeState::updateCullingOff(Game::EnemyBase* enemy)
 	if ((++_10 > 3) && (enemy->_0C8)) {
 		float randChance = randFloat();
 		if ((enemy->m_scaleTimer > 0.0f)
-		    || ((randChance < ((EnemyParmsBase*)enemy->m_parms)->m_general.m_purplePikminStunChance.m_value)
-		        && !(enemy->m_events.m_flags[0].typeView & 0x100000) && !(enemy->m_events.m_flags[0].typeView & 0x200000))) {
+		    || ((randChance < ((EnemyParmsBase*)enemy->m_parms)->m_general.m_purplePikminStunChance.m_value) && !(enemy->isEvent(0, EB_21))
+		        && !(enemy->isEvent(0, EB_22)))) {
 			transit(enemy, EBS_Fit, 0);
 		} else {
 			transit(enemy, EBS_Living, 0);
@@ -792,7 +791,7 @@ void EarthquakeState::updateCullingOff(Game::EnemyBase* enemy)
 	}
 
 	if (enemy->isFlying()) {
-		enemy->m_events.m_flags[0].typeView &= 0xFFFFFFFB;
+		enemy->resetEvent(0, EB_3);
 	}
 }
 
@@ -803,7 +802,7 @@ void EarthquakeState::updateCullingOff(Game::EnemyBase* enemy)
  */
 void StoneState::bounceProcedure(Game::EnemyBase* enemy, Sys::Triangle* triangle)
 {
-	enemy->m_events.m_flags[0].typeView |= 0x400;
+	enemy->setEvent(0, EB_Constraint);
 	enemy->createBounceEffect(enemy->m_position, enemy->getDownSmokeScale());
 	enemy->addDamage(0.0f, 1.0f);
 }
@@ -815,24 +814,24 @@ void StoneState::bounceProcedure(Game::EnemyBase* enemy, Sys::Triangle* triangle
  */
 void StoneState::init(Game::EnemyBase* enemy, Game::StateArg* arg)
 {
-	if (enemy->m_events.m_flags[0].typeView & 0x100000) {
-		enemy->m_events.m_flags[0].typeView &= 0xFFEFFFFF;
+	if (enemy->isEvent(0, EB_21)) {
+		enemy->resetEvent(0, EB_21);
 	} else {
 		enemy->doUpdate();
 	}
 
 	enemy->m_eventBuffer.m_flags[0] = enemy->m_events.m_flags[0];
 	enemy->m_eventBuffer.m_flags[1] = enemy->m_events.m_flags[1];
-	enemy->m_events.m_flags[0].typeView |= 0x200;
+	enemy->setEvent(0, EB_Bittered);
 	enemy->hide();
 	enemy->m_stoneTimer = 0.0f;
 	enemy->stopMotion();
 	enemy->m_velocity = 0.0f;
 
 	if (enemy->_0C8) {
-		enemy->m_events.m_flags[0].typeView |= 0x400;
+		enemy->setEvent(0, EB_Constraint);
 	} else {
-		enemy->m_events.m_flags[0].typeView |= 0x400;
+		enemy->setEvent(0, EB_Constraint);
 	}
 
 	if (enemy->m_emotion == 2 && PSGetDirectedMainBgm()) {
@@ -849,12 +848,12 @@ void StoneState::init(Game::EnemyBase* enemy, Game::StateArg* arg)
  */
 void StoneState::cleanup(Game::EnemyBase* enemy)
 {
-	P2ASSERTLINE(1024, enemy->m_events.m_flags[0].typeView & 0x200);
+	P2ASSERTLINE(1024, enemy->isEvent(0, EB_Bittered));
 
 	enemy->m_events.m_flags[0] = enemy->m_eventBuffer.m_flags[0];
 	enemy->m_events.m_flags[1] = enemy->m_eventBuffer.m_flags[1];
-	enemy->m_events.m_flags[0].typeView &= 0xFFEFFFFF;
-	enemy->m_events.m_flags[0].typeView &= 0xFFFFFDFF;
+	resetEvent(0, EB_21);
+	resetEvent(0, EB_Bittered);
 
 	enemy->show();
 	enemy->startMotion();
@@ -878,7 +877,7 @@ void StoneState::updateAlways(Game::EnemyBase* enemy)
 	if (enemy->m_enemyStoneObj->_50 & 4) {
 		if (enemy->_0C8 == nullptr) {
 			enemy->constraintOff();
-			enemy->m_events.m_flags[0].typeView &= 0xFFFFFFFB;
+			enemy->resetEvent(0, EB_3);
 		}
 		// why.
 		float comp = (enemy->m_stoneTimer > ((EnemyParmsBase*)enemy->m_parms)->m_general.m_stoneDuration.m_value);
@@ -1004,7 +1003,7 @@ Game::EnemyBase::EnemyBase()
 	clearStick();
 	m_animKeyEvent->m_running = 0;
 	m_instantDamage           = 0.0f;
-	m_events.m_flags[0].typeView &= ~0x2;
+	resetEvent(0, EB_Damage);
 	m_toFlick    = 0.0f;
 	m_stoneTimer = 0.0f;
 
@@ -1170,7 +1169,7 @@ void EnemyBase::onInit(Game::CreatureInitArg* arg)
 	clearStick();
 	m_animKeyEvent->m_running = false;
 	m_instantDamage           = 0.0f;
-	m_events.m_flags[0].typeView &= ~2;
+	resetEvent(0, EB_Damage);
 	m_toFlick    = 0.0f;
 	m_stoneTimer = 0.0f;
 
@@ -1179,16 +1178,16 @@ void EnemyBase::onInit(Game::CreatureInitArg* arg)
 	m_eventBuffer.m_flags[0].clear();
 	m_eventBuffer.m_flags[1].clear();
 
-	m_events.m_flags[0].typeView |= 0x10000000;
-	m_events.m_flags[0].typeView |= 0x8;
-	m_events.m_flags[0].typeView |= 0x20;
-	m_events.m_flags[0].typeView |= 0x40;
-	m_events.m_flags[0].typeView |= 0x80;
-	m_events.m_flags[0].typeView |= 0x100;
-	m_events.m_flags[0].typeView |= 0x800;
+	setEvent(0, EB_29);
+	setEvent(0, EB_Flying);
+	setEvent(0, EB_DropMassSet);
+	setEvent(0, EB_Cullable);
+	setEvent(0, EB_LeaveCarcass);
+	setEvent(0, EB_9);
+	setEvent(0, EB_LifegaugeVisible);
 	m_waterBox = nullptr;
-	m_events.m_flags[0].typeView |= 0x1000;
-	m_events.m_flags[0].typeView |= 0x8000;
+	setEvent(0, EB_13);
+	setEvent(0, EB_16);
 }
 
 /*
@@ -1200,31 +1199,31 @@ void EnemyBase::onInitPost(Game::CreatureInitArg* arg)
 {
 	switch (m_dropGroup) {
 	case 0:
-		m_lifecycleFSM->start(this, 6, nullptr);
+		m_lifecycleFSM->start(this, EnemyBaseFSM::EBS_Living, nullptr);
 		break;
 	case 1:
 	case 2:
 	case 3:
 	case 4:
 	case 5:
-		if (m_events.m_flags[0].typeView & 0x40000) {
-			m_lifecycleFSM->start(this, 6, nullptr);
+		if (isEvent(0, EB_HardConstraint)) {
+			m_lifecycleFSM->start(this, EnemyBaseFSM::EBS_Living, nullptr);
 		} else {
 			switch (m_dropGroup) {
 			case 1:
-				m_lifecycleFSM->start(this, 0, nullptr);
+				m_lifecycleFSM->start(this, EnemyBaseFSM::EBS_Drop, nullptr);
 				break;
 			case 2:
-				m_lifecycleFSM->start(this, 1, nullptr);
+				m_lifecycleFSM->start(this, EnemyBaseFSM::EBS_DropPikmin, nullptr);
 				break;
 			case 3:
-				m_lifecycleFSM->start(this, 2, nullptr);
+				m_lifecycleFSM->start(this, EnemyBaseFSM::EBS_DropOlimar, nullptr);
 				break;
 			case 4:
-				m_lifecycleFSM->start(this, 3, nullptr);
+				m_lifecycleFSM->start(this, EnemyBaseFSM::EBS_DropTreasure, nullptr);
 				break;
 			case 5:
-				m_lifecycleFSM->start(this, 4, nullptr);
+				m_lifecycleFSM->start(this, EnemyBaseFSM::EBS_DropEarthquake, nullptr);
 				break;
 			default:
 				JUT_PANICLINE(1483, "Unknown birth type:%d", m_dropGroup);
@@ -2098,7 +2097,7 @@ void EnemyBase::setZukanVisible(bool arg)
  */
 void EnemyBase::birth(Vector3f& pos, float faceDir)
 {
-	m_events.m_flags[0].typeView |= 0x10000000;
+	setEvent(0, EB_29);
 	m_inPiklopedia = true;
 	setPosition(pos, false);
 	m_homePosition.x    = pos.x;
@@ -2241,15 +2240,15 @@ bool EnemyBase::isFinishableWaitingBirthTypeDrop()
  */
 void EnemyBase::startStoneState()
 {
-	if (!(m_events.m_flags[0].typeView & 0x400000) && !((m_events.m_flags[0].typeView & 0x200))) {
-		if (m_events.m_flags[0].typeView & 0x200000) {
-			m_events.m_flags[0].typeView |= 0x100000;
+	if (!(isEvent(0, EB_BitterImmune)) && !((isEvent(0, EB_Bittered)))) {
+		if (isEvent(0, EB_22)) {
+			setEvent(0, EB_21);
 			return;
 		}
 		if (m_enemyStoneObj->start()) {
-			m_lifecycleFSM->transit(this, 7, 0);
+			m_lifecycleFSM->transit(this, EnemyBaseFSM::EBS_Stone, 0);
 		} else {
-			m_events.m_flags[0].typeView |= 0x100000;
+			setEvent(0, EB_21);
 		}
 	}
 }
@@ -2283,7 +2282,7 @@ void EnemyBase::doUpdateCommon()
 	scaleDamageAnim();
 	resetCollEvent();
 
-	if ((m_lod.m_flags & 4) && isAlive()) {
+	if ((m_lod.m_flags & AILOD::FLAG_NEED_SHADOW) && isAlive()) {
 		WalkSmokeEffect::Mgr* smokeMgr = getWalkSmokeEffectMgr();
 		if (smokeMgr != nullptr) {
 			smokeMgr->update(this);
@@ -2509,9 +2508,9 @@ void EnemyBase::doAnimationCullingOn() { m_model->m_j3dModel->m_modelData->m_joi
  * Address:	80103338
  * Size:	00007C
  */
-inline void EnemyBase::show()
+void EnemyBase::show()
 {
-	if (m_events.m_flags[0].typeView & 0x200) {
+	if (isEvent(0, EB_Bittered)) {
 		if (m_enemyStoneObj->_50 & 2) {
 			m_model->hide();
 		} else {
@@ -2529,7 +2528,7 @@ inline void EnemyBase::show()
  */
 void EnemyBase::hide()
 {
-	if ((m_events.m_flags[0].typeView & 0x200)) {
+	if ((isEvent(0, EB_Bittered))) {
 		m_model->hide();
 	} else {
 		m_model->hide();
@@ -2543,16 +2542,14 @@ void EnemyBase::hide()
  */
 void EnemyBase::doEntryCarcass()
 {
-	if (m_lod.m_flags & 4) {
+	if (m_lod.m_flags & AILOD::FLAG_NEED_SHADOW) {
 		show();
 		changeMaterial();
-	} else if (m_events.m_flags[0].typeView & 0x200) {
-		m_model->hide();
 	} else {
-		m_model->hide();
+		hide();
 	}
 
-	if (!(m_events.m_flags[0].typeView & 0x40000000)) {
+	if (!(isEvent(0, EB_31))) {
 		m_model->m_j3dModel->entry();
 	}
 }
@@ -2564,7 +2561,7 @@ void EnemyBase::doEntryCarcass()
  */
 void EnemyBase::doEntryLiving()
 {
-	if (m_lod.m_flags & 4) {
+	if (m_lod.m_flags & AILOD::FLAG_NEED_SHADOW) {
 		show();
 		changeMaterial();
 	} else {
@@ -2573,14 +2570,10 @@ void EnemyBase::doEntryLiving()
 				return;
 		}
 
-		if (m_events.m_flags[0].typeView & 0x200) {
-			m_model->hide();
-		} else {
-			m_model->hide();
-		}
+		hide();
 	}
 
-	if (!(m_events.m_flags[0].typeView & 0x40000000)) {
+	if (!(isEvent(0, EB_31))) {
 		m_model->m_j3dModel->entry();
 	}
 }
@@ -2606,11 +2599,11 @@ void EnemyBase::doSetView(int viewNo) { m_model->setCurrentViewNo((u16)viewNo); 
  */
 bool EnemyBase::isCullingOff()
 {
-	if (m_pellet) {
+	if (m_pellet != nullptr) {
 		return true;
 	}
-	return ((!(m_events.m_flags[0].typeView & 0x40)) || (m_lod.m_flags & AILOD::FLAG_NEED_SHADOW) || (m_lod.m_flags & AILOD::FLAG_UNKNOWN4)
-	        || (m_events.m_flags[1].typeView & 0x10));
+	return ((!(isEvent(0, EB_Cullable))) || (m_lod.m_flags & AILOD::FLAG_NEED_SHADOW) || (m_lod.m_flags & AILOD::FLAG_UNKNOWN4)
+	        || (isEvent(1, EB2_5)));
 }
 
 /*
@@ -2620,17 +2613,7 @@ bool EnemyBase::isCullingOff()
  */
 void EnemyBase::doViewCalc()
 {
-	bool flagCheck;
-	if (m_pellet != nullptr) {
-		flagCheck = true;
-	} else {
-		flagCheck = false;
-		if (!(m_events.m_flags[0].typeView & 0x40)
-		    || ((m_lod.m_flags & 4) || (m_lod.m_flags & 8) || (m_events.m_flags[1].typeView & 0x10))) {
-			flagCheck = true;
-		}
-	}
-	if (flagCheck) {
+	if (isCullingOff()) {
 		m_model->viewCalc();
 	}
 }
@@ -3474,7 +3457,7 @@ void EnemyBase::finishDropping(bool)
 void EnemyBase::bounceProcedure(Sys::Triangle* triangle)
 {
 	bounceCallback(triangle);
-	m_events.m_flags[0].typeView &= 0xDFFFFFFF;
+	resetEvent(0, EB_30);
 
 	finishDropping(true);
 	resetDroppingMassZero();
@@ -4004,13 +3987,13 @@ void EnemyBase::doSimulation(float arg) { static_cast<EnemyBaseFSM::StateMachine
  */
 void EnemyBase::doSimulationConstraint(float arg)
 {
-	if (!(m_events.m_flags[0].typeView & 0x40000)) {
+	if (!(isEvent(0, EB_HardConstraint))) {
 		if (_11C.x != 0.0f || _11C.z != 0.0f) {
-			m_events.m_flags[0].typeView |= 0x20000000;
+			setEvent(0, EB_30);
 		} else if (_0C8 != nullptr) {
-			m_events.m_flags[0].typeView &= ~0x20000000;
+			resetEvent(0, EB_30);
 		}
-		if (m_events.m_flags[0].typeView & 0x20000000) {
+		if (isEvent(0, EB_30)) {
 			collisionMapAndPlat(arg);
 		}
 	}
@@ -4026,7 +4009,7 @@ void EnemyBase::doSimulationConstraint(float arg)
  */
 void EnemyBase::gotoHell()
 {
-	if (m_events.m_flags[0].typeView & 0x10000000) {
+	if (isEvent(0, EB_29)) {
 		throwupItem();
 		EnemyKillArg killArg(0x70000000);
 		kill(&killArg);
@@ -4047,7 +4030,7 @@ void EnemyBase::setAnimMgr(SysShape::AnimMgr* mgr) { m_animator->setAnimMgr(mgr)
  */
 void EnemyBase::setPSEnemyBaseAnime()
 {
-	if (m_events.m_flags[0].typeView & 0x1000000) {
+	if (isEvent(0, EB_PS1)) {
 		int idx                      = getCurrAnimIndex();
 		SysShape::Animator anim      = m_animator->getAnimator(0);
 		SysShape::AnimInfo* info     = static_cast<SysShape::AnimInfo*>(anim.m_animMgr->m_animInfo.m_child)->getInfoByID(idx);
@@ -4072,12 +4055,12 @@ void EnemyBase::setPSEnemyBaseAnime()
 		return;
 	}
 
-	if (m_events.m_flags[0].typeView & 0x2000000) {
+	if (isEvent(0, EB_PS2)) {
 		m_soundObj->setAnime((JAIAnimeSoundData*)-1, 1, 0.0f, 0.0f);
 		return;
 	}
 
-	if (m_events.m_flags[0].typeView & 0x4000000) {
+	if (isEvent(0, EB_PS3)) {
 		m_soundObj->setAnime((JAIAnimeSoundData*)-1, 1, 0.0f, 0.0f);
 		return;
 	}
@@ -4099,10 +4082,10 @@ void EnemyBase::startBlend(int p1, int p2, SysShape::BlendFunction* blendFunc, f
 
 	static_cast<EnemyBlendAnimatorBase*>(m_animator)->startBlend(p1, p2, blendFunc, p3, listener);
 
-	m_events.m_flags[0].typeView &= 0xF0FFFFFF;
-	m_events.m_flags[0].typeView |= 0x04000000;
+	resetEvent(0, EB_PS1 + EB_PS2 + EB_PS3 + EB_PS4);
+	setEvent(0, EB_PS3);
 
-	if (m_events.m_flags[0].typeView & 0x1000000) {
+	if (isEvent(0, EB_PS1)) {
 		int idx                      = getCurrAnimIndex();
 		SysShape::Animator anim      = m_animator->getAnimator(0);
 		SysShape::AnimInfo* info     = static_cast<SysShape::AnimInfo*>(anim.m_animMgr->m_animInfo.m_child)->getInfoByID(idx);
@@ -4127,12 +4110,12 @@ void EnemyBase::startBlend(int p1, int p2, SysShape::BlendFunction* blendFunc, f
 		return;
 	}
 
-	if (m_events.m_flags[0].typeView & 0x2000000) {
+	if (isEvent(0, EB_PS2)) {
 		m_soundObj->setAnime((JAIAnimeSoundData*)-1, 1, 0.0f, 0.0f);
 		return;
 	}
 
-	if (m_events.m_flags[0].typeView & 0x4000000) {
+	if (isEvent(0, EB_PS3)) {
 		m_soundObj->setAnime((JAIAnimeSoundData*)-1, 1, 0.0f, 0.0f);
 		return;
 	}
@@ -4655,8 +4638,8 @@ void EnemyBase::scaleDamageAnim()
 void EnemyBase::finishScaleDamageAnim()
 {
 	_210 = 0.0f;
-	m_events.m_flags[0].typeView &= 0xFFFFBFFF;
-	m_events.m_flags[0].typeView &= 0xFFF7FFFF;
+	resetEvent(0, EB_15);
+	resetEvent(0, EB_20);
 }
 
 /*
@@ -4666,17 +4649,17 @@ void EnemyBase::finishScaleDamageAnim()
  */
 void EnemyBase::deathProcedure()
 {
-	m_events.m_flags[0].typeView &= ~8;
+	resetEvent(0, EB_Flying);
 	setAlive(false);
 
-	if (m_events.m_flags[0].typeView & 0x200) {
+	if (isEvent(0, EB_Bittered)) {
 		throwupItem();
 	} else {
 		throwupItemInDeathProcedure();
 	}
 	startMotion();
 
-	if (m_events.m_flags[0].typeView & 0x100) {
+	if (isEvent(0, EB_9)) {
 		createDeadBombEffect();
 		PSStartEnemyFatalHitSE(this, 0.0f);
 	}
@@ -5130,7 +5113,7 @@ void EnemyBase::getLifeGaugeParam(Game::LifeGaugeParam& param)
 	if ((Game::moviePlayer) && (moviePlayer->m_flags & MoviePlayer::IS_ACTIVE)) {
 		param._14 = false;
 	} else {
-		param._14 = ((m_events.m_flags[0].typeView & 0x800) && (m_lod.m_flags & AILOD::FLAG_NEED_SHADOW));
+		param._14 = ((isEvent(0, EB_LifegaugeVisible)) && (m_lod.m_flags & AILOD::FLAG_NEED_SHADOW));
 	}
 	if (param._14) {
 		doGetLifeGaugeParam(param);
@@ -5183,15 +5166,15 @@ void EnemyBase::onStickEnd(Game::Creature* other)
  */
 bool EnemyBase::injure()
 {
-	if (m_events.m_flags[0].typeView & 2) {
-		if (!(m_events.m_flags[0].typeView & 1)) {
+	if (isEvent(0, EB_Damage)) {
+		if (!(isEvent(0, EB_Vulnerable))) {
 			m_health -= m_instantDamage;
 			if (m_health < 0.0f) {
 				m_health = 0.0f;
 			}
 		}
 		m_instantDamage = 0.0f;
-		m_events.m_flags[0].typeView &= ~2;
+		resetEvent(0, EB_Damage);
 		return true;
 	}
 	return false;
@@ -5204,14 +5187,14 @@ bool EnemyBase::injure()
  */
 void EnemyBase::addDamage(float p1, float p2)
 {
-	if (m_events.m_flags[0].typeView & 1) {
+	if (isEvent(0, EB_Vulnerable)) {
 		return;
 	}
 	m_instantDamage += p1;
-	if (m_events.m_flags[0].typeView & 0x20) {
+	if (isEvent(0, EB_DropMassSet)) {
 		m_toFlick += p2;
 	}
-	m_events.m_flags[0].typeView |= 2;
+	setEvent(0, EB_Damage);
 }
 
 /*
@@ -5221,12 +5204,12 @@ void EnemyBase::addDamage(float p1, float p2)
  */
 bool EnemyBase::damageCallBack(Game::Creature* sourceCreature, float damage, CollPart* p3)
 {
-	if (!(m_events.m_flags[0].typeView & 1)) {
+	if (!(isEvent(0, EB_Vulnerable))) {
 		m_instantDamage += damage;
-		if (m_events.m_flags[0].typeView & 0x20) {
+		if (isEvent(0, EB_DropMassSet)) {
 			m_toFlick += 1.0f;
 		}
-		m_events.m_flags[0].typeView |= 2;
+		setEvent(0, EB_Damage);
 	}
 	return true;
 }
@@ -5255,15 +5238,15 @@ bool EnemyBase::hipdropCallBack(Game::Creature* sourceCreature, float damage, Co
 {
 	float purpleDamage = static_cast<EnemyParmsBase*>(m_parms)->m_general.m_purplePikminHipDropDamage();
 
-	if (!(m_events.m_flags[0].typeView & 1)) {
+	if (!(isEvent(0, EB_Vulnerable))) {
 		m_instantDamage += purpleDamage;
-		if (m_events.m_flags[0].typeView & 0x20) {
+		if (isEvent(0, EB_DropMassSet)) {
 			m_toFlick += 1.0f;
 		}
-		m_events.m_flags[0].typeView |= 2;
+		setEvent(0, EB_Damage);
 	}
 
-	m_events.m_flags[0].typeView |= 0x80000;
+	setEvent(0, EB_20);
 	if (_0C8 != 0) {
 		createSplashDownEffect(m_position, getDownSmokeScale());
 		createDropEffect(m_position, getDownSmokeScale());
@@ -5469,11 +5452,11 @@ bool EnemyBase::checkBirthTypeDropEarthquake()
 bool EnemyBase::earthquakeCallBack(Game::Creature* creature, float p1)
 {
 	if (_0C8 && !(m_health <= 0.0f) && !isFlying() && isAlive()) {
-		if (!(m_events.m_flags[0].typeView & 0x40000) && !(m_events.m_flags[0].typeView & 0x200)) {
-			if (((m_events.m_flags[0].typeView & 0x200000) || (m_events.m_flags[0].typeView & 0x400000)) == false) {
+		if (!(isEvent(0, EB_HardConstraint)) && !(isEvent(0, EB_Bittered))) {
+			if (((isEvent(0, EB_22)) || (isEvent(0, EB_BitterImmune))) == false) {
 				StateArg transitArg;
 				transitArg._00 = p1;
-				m_lifecycleFSM->transit(this, 8, &transitArg);
+				m_lifecycleFSM->transit(this, EnemyBaseFSM::EBS_Earthquake, &transitArg);
 			}
 		}
 	}
@@ -5580,14 +5563,14 @@ bool EnemyBase::farmCallBack(Game::Creature*, float) { return false; }
  */
 bool EnemyBase::bombCallBack(Game::Creature* creature, Vector3f& vec, float damage)
 {
-	if (!(m_events.m_flags[0].typeView & 1)) {
+	if (!(isEvent(0, EB_Vulnerable))) {
 		m_instantDamage += damage;
 
-		if (m_events.m_flags[0].typeView & 0x20) {
+		if (isEvent(0, EB_DropMassSet)) {
 			m_toFlick += 1.0f;
 		}
 
-		m_events.m_flags[0].typeView |= 2;
+		setEvent(0, EB_Damage);
 	}
 
 	return true;
@@ -5614,7 +5597,7 @@ void EnemyBase::setCollEvent(Game::CollEvent& event)
 	m_collEvent.m_collidingCreature = event.m_collidingCreature;
 	m_collEvent._04                 = event._04;
 	m_collEvent.m_hitPart           = event.m_hitPart;
-	m_events.m_flags[0].typeView |= 0x10;
+	setEvent(0, EB_Collision);
 }
 
 /*
@@ -5622,7 +5605,7 @@ void EnemyBase::setCollEvent(Game::CollEvent& event)
  * Address:	8010668C
  * Size:	000010
  */
-void EnemyBase::resetCollEvent() { m_events.m_flags[0].typeView &= 0xFFFFFFEF; }
+void EnemyBase::resetCollEvent() { resetEvent(0, EB_Collision); }
 
 /*
  * --INFO--
@@ -6104,7 +6087,7 @@ bool EnemyBase::needShadow()
 		return needShadow;
 	} else {
 		bool needShadow = false;
-		if (m_lod.m_flags & AILOD::FLAG_NEED_SHADOW && !(m_events.m_flags[0].typeView & 0x40000000)) {
+		if (m_lod.m_flags & AILOD::FLAG_NEED_SHADOW && !(isEvent(0, EB_31))) {
 			needShadow = true;
 		}
 		return needShadow;
@@ -6292,7 +6275,7 @@ float EnemyBase::getDownSmokeScale() { return 0.0f; }
  * Address:	8010776C
  * Size:	000010
  */
-void EnemyBase::constraintOff() { m_events.m_flags[0].typeView &= ~0x400; }
+void EnemyBase::constraintOff() { resetEvent(0, EB_Constraint); }
 
 /*
  * --INFO--
@@ -6301,7 +6284,7 @@ void EnemyBase::constraintOff() { m_events.m_flags[0].typeView &= ~0x400; }
  */
 void EnemyBase::hardConstraintOn()
 {
-	m_events.m_flags[0].typeView |= 0x40000;
+	setEvent(0, EB_HardConstraint);
 	_118 = 0.0f;
 }
 
@@ -6312,7 +6295,7 @@ void EnemyBase::hardConstraintOn()
  */
 void EnemyBase::hardConstraintOff()
 {
-	m_events.m_flags[0].typeView &= ~0x40000;
+	resetEvent(0, EB_HardConstraint);
 	_118   = m_friction;
 	_11C.x = 0.0f;
 	_11C.y = 0.0f;
@@ -6421,7 +6404,7 @@ void EnemyBase::finishWaitingBirthTypeDrop() { doFinishWaitingBirthTypeDrop(); }
 void EnemyBase::doFinishWaitingBirthTypeDrop()
 {
 	if (!isFlying()) {
-		m_events.m_flags[1].typeView |= 0x10;
+		setEvent(1, EB2_5);
 		setDroppingMassZero();
 		m_scale.x = 1.0f;
 		m_scale.y = 1.0f;
@@ -6453,7 +6436,7 @@ Vector3f* EnemyBase::getFitEffectPos() { return &m_boundingSphere.m_position; }
  */
 void EnemyBase::setDroppingMassZero()
 {
-	m_events.m_flags[1].typeView |= 0x20;
+	setEvent(1, EB2_DroppingMassZero);
 	_118 = 0.0f;
 }
 
@@ -6464,7 +6447,7 @@ void EnemyBase::setDroppingMassZero()
  */
 void EnemyBase::resetDroppingMassZero()
 {
-	m_events.m_flags[1].typeView &= ~0x20;
+	resetEvent(1, EB2_DroppingMassZero);
 	_118 = m_friction;
 }
 } // namespace Game

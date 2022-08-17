@@ -21,7 +21,7 @@ struct Obj : public KochappyBase::Obj {
 	virtual bool pressCallBack(Creature*, float, CollPart*);                                    // _274
 	virtual bool hipdropCallBack(Creature*, float, CollPart*);                                  // _27C
 	virtual void resetEnemyNonStone();                                                          // _2F8
-	virtual void setEnemyNonStone() { _1E0.m_flags[0].typeView |= ENEMY_EVENT_STONE; }          // _2FC
+	virtual void setEnemyNonStone() { setEvent(0, EB_22); }                                     // _2FC
 
 	void createDownEffect();
 

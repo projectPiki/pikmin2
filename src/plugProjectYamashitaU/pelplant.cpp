@@ -2119,7 +2119,7 @@ bool Pelplant::Obj::farmCallBack(Game::Creature* p1, float p2)
 	} else {
 		_2C8 |= 1;
 	}
-	m_events.m_flags[0].typeView &= 0xFFFFFFBF;
+	resetEvent(0, EB_Cullable);
 	return true;
 }
 
@@ -3234,10 +3234,10 @@ void Pelplant::Obj::onInit(Game::CreatureInitArg* arg)
 		stateID = 0;
 	}
 	m_fsm->start(this, stateID, nullptr);
-	m_events.m_flags->typeView &= ~0x100;
-	m_events.m_flags->typeView &= ~0x80;
-	m_events.m_flags->typeView &= ~0x1000;
-	m_events.m_flags->typeView |= 0x400000;
+	resetEvent(0, EB_9);
+	resetEvent(0, EB_LeaveCarcass);
+	resetEvent(0, EB_13);
+	setEvent(0, EB_BitterImmune);
 	hardConstraintOn();
 }
 

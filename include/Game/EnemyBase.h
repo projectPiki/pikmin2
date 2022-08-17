@@ -31,45 +31,6 @@
 #include "Game/EnemyMgrBase.h"
 #include "Vector2.h"
 
-#define ENEMY_EVENT_VULNERABLE        (0x1)
-#define ENEMY_EVENT_DAMAGE            (0x2)
-#define ENEMY_EVENT_3                 (0x4)
-#define ENEMY_EVENT_FLYING            (0x8)
-#define ENEMY_EVENT_COLLISION         (0x10)
-#define ENEMY_EVENT_DROP_MASS_SET     (0x20)
-#define ENEMY_EVENT_CULLABLE          (0x40)
-#define ENEMY_EVENT_LEAVE_CARCASS     (0x80)
-#define ENEMY_EVENT_9                 (0x100)
-#define ENEMY_EVENT_BITTERED          (0x200)
-#define ENEMY_EVENT_CONSTRAINT        (0x400)
-#define ENEMY_EVENT_LIFEGAUGE_VISIBLE (0x800)
-#define ENEMY_EVENT_13                (0x1000)
-#define ENEMY_EVENT_SOUND_CULLLABLE   (0x2000)
-#define ENEMY_EVENT_15                (0x4000)
-#define ENEMY_EVENT_16                (0x8000)
-#define ENEMY_EVENT_17                (0x10000)
-#define ENEMY_EVENT_18                (0x20000)
-#define ENEMY_EVENT_HARD_CONSTRAINT   (0x40000)
-#define ENEMY_EVENT_20                (0x80000)
-#define ENEMY_EVENT_21                (0x100000)
-#define ENEMY_EVENT_22                (0x200000)
-#define ENEMY_EVENT_UNBITTERABLE      (0x400000)
-#define ENEMY_EVENT_24                (0x800000)
-#define ENEMY_EVENT_PS_1              (0x1000000)
-#define ENEMY_EVENT_PS_2              (0x2000000)
-#define ENEMY_EVENT_PS_3              (0x4000000)
-#define ENEMY_EVENT_PS_4              (0x8000000)
-#define ENEMY_EVENT_29                (0x10000000)
-#define ENEMY_EVENT_30                (0x20000000)
-#define ENEMY_EVENT_31                (0x40000000)
-#define ENEMY_EVENT_32                (0x80000000)
-
-#define ENEMY_EVENT_33 (0x1)
-#define ENEMY_EVENT_34 (0x2)
-#define ENEMY_EVENT_35 (0x4)
-#define ENEMY_EVENT_36 (0x8)
-#define ENEMY_EVENT_37 (0x10)
-
 struct MouthSlots;
 
 namespace PSM {
@@ -92,20 +53,20 @@ struct Interaction;
 struct StateMachine;
 
 enum EnemyEvent {
-	EB_Vulnerable       = 0x1,
-	EB_Damage           = 0x2,
+	EB_Vulnerable       = 0x1, // can take damage or not
+	EB_Damage           = 0x2, // currently taking damage
 	EB_3                = 0x4,
-	EB_Flying           = 0x8,
-	EB_Collision        = 0x10,
+	EB_Flying           = 0x8,  // is ignored by pikmin
+	EB_Collision        = 0x10, // is colliding
 	EB_DropMassSet      = 0x20,
-	EB_Cullable         = 0x40,
-	EB_LeaveCarcass     = 0x80,
+	EB_Cullable         = 0x40, // can be culled/deloaded
+	EB_LeaveCarcass     = 0x80, // leaves carcass upon death
 	EB_9                = 0x100,
-	EB_Bittered         = 0x200,
+	EB_Bittered         = 0x200, // currently bittered
 	EB_Constraint       = 0x400,
-	EB_LifegaugeVisible = 0x800,
+	EB_LifegaugeVisible = 0x800, // has visible lifegauge
 	EB_13               = 0x1000,
-	EB_SoundCullable    = 0x2000,
+	EB_SoundCullable    = 0x2000, // sounds can be culled/deloaded
 	EB_15               = 0x4000,
 	EB_16               = 0x8000,
 	EB_17               = 0x10000,
@@ -114,19 +75,19 @@ enum EnemyEvent {
 	EB_20               = 0x80000,
 	EB_21               = 0x100000,
 	EB_22               = 0x200000,
-	EB_BitterImmune     = 0x400000,
+	EB_BitterImmune     = 0x400000, // immune to being bittered
 	EB_24               = 0x800000,
-	EB_PS1              = 0x1000000,
-	EB_PS2              = 0x2000000,
-	EB_PS3              = 0x4000000,
-	EB_PS4              = 0x8000000,
+	EB_PS1              = 0x1000000, // sound-related
+	EB_PS2              = 0x2000000, // sound-related
+	EB_PS3              = 0x4000000, // sound-related
+	EB_PS4              = 0x8000000, // sound-related
 	EB_29               = 0x10000000,
 	EB_30               = 0x20000000,
 	EB_31               = 0x40000000,
 	EB_32               = 0x80000000
 };
 
-enum EnemyEvent2 { EB2_1 = 0x1, EB2_2 = 0x2, EB2_3 = 0x4, EB2_4 = 0x8, EB2_5 = 0x10 };
+enum EnemyEvent2 { EB2_1 = 0x1, EB2_2 = 0x2, EB2_3 = 0x4, EB2_4 = 0x8, EB2_5 = 0x10, EB2_DroppingMassZero = 0x20 };
 
 /**
  * @todo Split this into a separate type PelplantInitialParam?
@@ -457,7 +418,9 @@ struct EnemyBase : public Creature, public SysShape::MotionListener, virtual pub
 
 	inline void setEvent(int i, u32 flag) { m_events.m_flags[i].typeView |= flag; }
 
-	inline void unsetEvent(int i, u32 flag) { m_events.m_flags[i].typeView &= ~flag; }
+	inline void resetEvent(int i, u32 flag) { m_events.m_flags[i].typeView &= ~flag; }
+
+	inline bool isEvent(int i, u32 flag) { return m_events.m_flags[i].typeView & flag; }
 
 	// Creature: _000 - _178
 	// MotionListener: _178 - _17C
@@ -506,7 +469,7 @@ struct EnemyBase : public Creature, public SysShape::MotionListener, virtual pub
 	CNode m_effectNodeHamonRoot;                 // _290 - treat as EnemyEffectNodeBase with EnemyEffectNodeHamon nodes
 	float _2A8;                                  // _2A8
 	float _2AC;                                  // _2AC
-	u8 m_dropGroup;                              // _2B0
+	s8 m_dropGroup;                              // _2B0
 	EnemyFSMState* m_currentLifecycleState;      // _2B4
 	EnemyBaseFSM::StateMachine* m_lifecycleFSM;  // _2B8
 	                                             // PelletView: _2BC - _2C8

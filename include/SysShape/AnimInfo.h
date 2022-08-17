@@ -21,7 +21,7 @@ struct AnimInfo : public CNode {
 
 	void getLowestAnimKey(float);
 	void getLastLoopStart(KeyEvent*);
-	void getAnimKeyByType(unsigned long);
+	SysShape::KeyEvent* getAnimKeyByType(u32);
 	void read(Stream&);
 	void readEditor(Stream&);
 	void attach(J3DModelData*, void*);
