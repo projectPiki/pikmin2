@@ -150,6 +150,7 @@ $(BUILD_DIR)/src/Dolphin/OS.o: MWCC_VERSION := 1.2.5
 # It seems TRK-related files need -sdata 0
 $(BUILD_DIR)/src/Dolphin/main_TRK.o: CFLAGS += -sdata 0
 $(BUILD_DIR)/src/Dolphin/mainloop.o: CFLAGS += -sdata 0
+$(BUILD_DIR)/src/Dolphin/nubinit.o: CFLAGS += -sdata 0
 $(BUILD_DIR)/src/Dolphin/target_options.o: CFLAGS += -sdata 0
 
 # Disable read-only strings

@@ -6,7 +6,9 @@ lbl_constructor:
 .section .rodata  # 0x804732E0 - 0x8049E220
 .balign 8
 lbl_8047A520:
-	.skip 0xC
+	.4byte 0
+	.4byte 0
+	.4byte 0
 .balign 4
 lbl_8047A52C:
 	.asciz "enemyBase"

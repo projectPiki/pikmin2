@@ -39,10 +39,8 @@ sBlendQuadraticFun__Q24Game22EnemyBlendAnimatorBase:
 
 .section .sdata2, "a"     # 0x80516360 - 0x80520E40
 .balign 8
-.global lbl_80518118
 lbl_80518118:
-	.4byte 0x00000000
-	.4byte 0x00000000
+	.float 0.0
 
 .section .text, "ax"  # 0x800056C0 - 0x80472F00
 .global __ct__Q24Game22EnemyBlendAnimatorBaseFv
@@ -222,8 +220,7 @@ lbl_8012E314:
 getValue__Q28SysShape14BlendLinearFunFf:
 /* 8012E324 0012B264  4E 80 00 20 */	blr 
 
-.global __sinit_enemyBlendAnimatorBase_cpp
-__sinit_enemyBlendAnimatorBase_cpp:
+__sinit_enemyBlendAnimatorBase_cpp: # static initializer
 /* 8012E328 0012B268  3C 80 80 4B */	lis r4, __vt__Q28SysShape14BlendLinearFun@ha
 /* 8012E32C 0012B26C  3C 60 80 4B */	lis r3, __vt__Q28SysShape18BlendQuadraticFunc@ha
 /* 8012E330 0012B270  38 84 F8 18 */	addi r4, r4, __vt__Q28SysShape14BlendLinearFun@l

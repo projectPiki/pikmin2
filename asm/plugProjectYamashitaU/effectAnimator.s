@@ -1,26 +1,21 @@
 .include "macros.inc"
 .section .rodata  # 0x804732E0 - 0x8049E220
 .balign 8
-.global lbl_8047C570
 lbl_8047C570:
 	.4byte 0x65666665
 	.4byte 0x63744F62
 	.4byte 0x6A000000
-.global lbl_8047C57C
 lbl_8047C57C:
 	.4byte 0x65666665
 	.4byte 0x6374416E
 	.4byte 0x696D6174
 	.4byte 0x6F722E63
 	.4byte 0x70700000
-.global lbl_8047C590
 lbl_8047C590:
 	.asciz "P2Assert"
-	.skip 3
 
 .section .data, "wa"  # 0x8049E220 - 0x804EFC20
 .balign 8
-.global "sVibration_Move1__Q214EffectAnimator28@unnamed@effectAnimator_cpp@"
 "sVibration_Move1__Q214EffectAnimator28@unnamed@effectAnimator_cpp@":
 	.float 0.0
 	.float 0.0
@@ -28,7 +23,6 @@ lbl_8047C590:
 	.float 0.0
 	.float -1.0
 	.float 0.0
-.global "sBristle_Move1__Q214EffectAnimator28@unnamed@effectAnimator_cpp@"
 "sBristle_Move1__Q214EffectAnimator28@unnamed@effectAnimator_cpp@":
 	.float 0.0
 	.float 0.25
@@ -48,7 +42,6 @@ lbl_8047C590:
 	.float 0.25
 	.float -1.0
 	.float 0.0
-.global "sLength_Move1__Q214EffectAnimator28@unnamed@effectAnimator_cpp@"
 "sLength_Move1__Q214EffectAnimator28@unnamed@effectAnimator_cpp@":
 	.float 0.0
 	.float 1.0
@@ -56,12 +49,10 @@ lbl_8047C590:
 	.float 1.0
 	.float -1.0
 	.float 0.0
-.global "sMove1__Q214EffectAnimator28@unnamed@effectAnimator_cpp@"
 "sMove1__Q214EffectAnimator28@unnamed@effectAnimator_cpp@":
 	.4byte "sVibration_Move1__Q214EffectAnimator28@unnamed@effectAnimator_cpp@"
 	.4byte "sBristle_Move1__Q214EffectAnimator28@unnamed@effectAnimator_cpp@"
 	.4byte "sLength_Move1__Q214EffectAnimator28@unnamed@effectAnimator_cpp@"
-.global "sVibration_Waitact1__Q214EffectAnimator28@unnamed@effectAnimator_cpp@"
 "sVibration_Waitact1__Q214EffectAnimator28@unnamed@effectAnimator_cpp@":
 	.float 0.0
 	.float 0.0
@@ -75,7 +66,6 @@ lbl_8047C590:
 	.float 0.0
 	.float -1.0
 	.float 0.0
-.global "sBristle_Waitact1__Q214EffectAnimator28@unnamed@effectAnimator_cpp@"
 "sBristle_Waitact1__Q214EffectAnimator28@unnamed@effectAnimator_cpp@":
 	.float 0.0
 	.float 0.25
@@ -83,7 +73,6 @@ lbl_8047C590:
 	.float 0.25
 	.float -1.0
 	.float 0.0
-.global "sLength_Waitact1__Q214EffectAnimator28@unnamed@effectAnimator_cpp@"
 "sLength_Waitact1__Q214EffectAnimator28@unnamed@effectAnimator_cpp@":
 	.float 0.0
 	.float 1.0
@@ -91,12 +80,10 @@ lbl_8047C590:
 	.float 1.0
 	.float -1.0
 	.float 0.0
-.global "sWaitact1__Q214EffectAnimator28@unnamed@effectAnimator_cpp@"
 "sWaitact1__Q214EffectAnimator28@unnamed@effectAnimator_cpp@":
 	.4byte "sVibration_Waitact1__Q214EffectAnimator28@unnamed@effectAnimator_cpp@"
 	.4byte "sBristle_Waitact1__Q214EffectAnimator28@unnamed@effectAnimator_cpp@"
 	.4byte "sLength_Waitact1__Q214EffectAnimator28@unnamed@effectAnimator_cpp@"
-.global "sVibration_Attack__Q214EffectAnimator28@unnamed@effectAnimator_cpp@"
 "sVibration_Attack__Q214EffectAnimator28@unnamed@effectAnimator_cpp@":
 	.float 0.0
 	.float 0.0
@@ -108,7 +95,6 @@ lbl_8047C590:
 	.float 0.0
 	.float -1.0
 	.float 0.0
-.global "sBristle_Attack__Q214EffectAnimator28@unnamed@effectAnimator_cpp@"
 "sBristle_Attack__Q214EffectAnimator28@unnamed@effectAnimator_cpp@":
 	.float 0.0
 	.float 0.25
@@ -122,7 +108,6 @@ lbl_8047C590:
 	.float 0.25
 	.float -1.0
 	.float 0.0
-.global "sLength_Attack__Q214EffectAnimator28@unnamed@effectAnimator_cpp@"
 "sLength_Attack__Q214EffectAnimator28@unnamed@effectAnimator_cpp@":
 	.float 0.0
 	.float 1.0
@@ -130,12 +115,10 @@ lbl_8047C590:
 	.float 1.0
 	.float -1.0
 	.float 0.0
-.global "sAttack__Q214EffectAnimator28@unnamed@effectAnimator_cpp@"
 "sAttack__Q214EffectAnimator28@unnamed@effectAnimator_cpp@":
 	.4byte "sVibration_Attack__Q214EffectAnimator28@unnamed@effectAnimator_cpp@"
 	.4byte "sBristle_Attack__Q214EffectAnimator28@unnamed@effectAnimator_cpp@"
 	.4byte "sLength_Attack__Q214EffectAnimator28@unnamed@effectAnimator_cpp@"
-.global "sVibration_Flick__Q214EffectAnimator28@unnamed@effectAnimator_cpp@"
 "sVibration_Flick__Q214EffectAnimator28@unnamed@effectAnimator_cpp@":
 	.float 0.0
 	.float 0.0
@@ -149,7 +132,6 @@ lbl_8047C590:
 	.float 0.0
 	.float -1.0
 	.float 0.0
-.global "sBristle_Flick__Q214EffectAnimator28@unnamed@effectAnimator_cpp@"
 "sBristle_Flick__Q214EffectAnimator28@unnamed@effectAnimator_cpp@":
 	.float 0.0
 	.float 0.25
@@ -163,7 +145,6 @@ lbl_8047C590:
 	.float 0.25
 	.float -1.0
 	.float 0.0
-.global "sLength_Flick__Q214EffectAnimator28@unnamed@effectAnimator_cpp@"
 "sLength_Flick__Q214EffectAnimator28@unnamed@effectAnimator_cpp@":
 	.float 0.0
 	.float 1.0
@@ -177,12 +158,10 @@ lbl_8047C590:
 	.float 1.0
 	.float -1.0
 	.float 0.0
-.global "sFlick__Q214EffectAnimator28@unnamed@effectAnimator_cpp@"
 "sFlick__Q214EffectAnimator28@unnamed@effectAnimator_cpp@":
 	.4byte "sVibration_Flick__Q214EffectAnimator28@unnamed@effectAnimator_cpp@"
 	.4byte "sBristle_Flick__Q214EffectAnimator28@unnamed@effectAnimator_cpp@"
 	.4byte "sLength_Flick__Q214EffectAnimator28@unnamed@effectAnimator_cpp@"
-.global "sVibration_Type1__Q214EffectAnimator28@unnamed@effectAnimator_cpp@"
 "sVibration_Type1__Q214EffectAnimator28@unnamed@effectAnimator_cpp@":
 	.float 0.0
 	.float 0.0
@@ -206,7 +185,6 @@ lbl_8047C590:
 	.float 0.0
 	.float -1.0
 	.float 0.0
-.global "sBristle_Type1__Q214EffectAnimator28@unnamed@effectAnimator_cpp@"
 "sBristle_Type1__Q214EffectAnimator28@unnamed@effectAnimator_cpp@":
 	.float 0.0
 	.float 0.25
@@ -230,7 +208,6 @@ lbl_8047C590:
 	.float 0.25
 	.float -1.0
 	.float 0.0
-.global "sLength_Type1__Q214EffectAnimator28@unnamed@effectAnimator_cpp@"
 "sLength_Type1__Q214EffectAnimator28@unnamed@effectAnimator_cpp@":
 	.float 0.0
 	.float 1.0
@@ -238,12 +215,10 @@ lbl_8047C590:
 	.float 1.0
 	.float -1.0
 	.float 0.0
-.global "sType1__Q214EffectAnimator28@unnamed@effectAnimator_cpp@"
 "sType1__Q214EffectAnimator28@unnamed@effectAnimator_cpp@":
 	.4byte "sVibration_Type1__Q214EffectAnimator28@unnamed@effectAnimator_cpp@"
 	.4byte "sBristle_Type1__Q214EffectAnimator28@unnamed@effectAnimator_cpp@"
 	.4byte "sLength_Type1__Q214EffectAnimator28@unnamed@effectAnimator_cpp@"
-.global "sEffectAnimData__Q214EffectAnimator28@unnamed@effectAnimator_cpp@"
 "sEffectAnimData__Q214EffectAnimator28@unnamed@effectAnimator_cpp@":
 	.4byte "sAttack__Q214EffectAnimator28@unnamed@effectAnimator_cpp@"
 	.4byte 0
@@ -285,20 +260,16 @@ __vt__Q214EffectAnimator3Obj:
 
 .section .sdata2, "a"     # 0x80516360 - 0x80520E40
 .balign 8
-.global lbl_805181F8
 lbl_805181F8:
-	.4byte 0x00000000
-.global lbl_805181FC
+	.float 0.0
 lbl_805181FC:
 	.float 0.25
-.global lbl_80518200
 lbl_80518200:
 	.float 1.0
-	.4byte 0x00000000
 
 .section .text, "ax"  # 0x800056C0 - 0x80472F00
 .global update__Q214EffectAnimator3ObjFPQ23efx13TKechappyTestf
-update__Q214EffectAnimator3ObjFPQ23efx13TKechappyTestf:
+update__Q214EffectAnimator3ObjFPQ23efx13TKechappyTestf: # weak function
 /* 80132CB4 0012FBF4  4E 80 00 20 */	blr 
 
 .global setup__Q214EffectAnimator6ObjMgrFPQ214EffectAnimator10ObjMgrData

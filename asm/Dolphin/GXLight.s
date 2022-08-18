@@ -1,7 +1,6 @@
 .include "macros.inc"
 .section .data, "wa"  # 0x8049E220 - 0x804EFC20
 .balign 8
-.global lbl_804A8530
 lbl_804A8530:
 	.4byte lbl_800E69EC
 	.4byte lbl_800E68FC
@@ -10,58 +9,43 @@ lbl_804A8530:
 	.4byte lbl_800E6950
 	.4byte lbl_800E697C
 	.4byte lbl_800E69B0
-	.4byte 0x00000000
 
 .section .sdata2, "a"     # 0x80516360 - 0x80520E40
 .balign 8
-.global lbl_80517628
 lbl_80517628:
 	.4byte 0x00000000
-.global lbl_8051762C
 lbl_8051762C:
 	.4byte 0x42B40000
-.global lbl_80517630
 lbl_80517630:
 	.4byte 0x40490FDB
-.global lbl_80517634
 lbl_80517634:
 	.4byte 0x43340000
-.global lbl_80517638
 lbl_80517638:
 	.4byte 0xC47A0000
-.global lbl_8051763C
 lbl_8051763C:
 	.4byte 0x447A0000
-.global lbl_80517640
 lbl_80517640:
 	.float 1.0
-.global lbl_80517644
 lbl_80517644:
 	.4byte 0x40000000
-.global lbl_80517648
 lbl_80517648:
 	.4byte 0xC0800000
-.global lbl_8051764C
 lbl_8051764C:
 	.4byte 0x40800000
-.global lbl_80517650
 lbl_80517650:
 	.4byte 0xC0000000
-.global lbl_80517654
 lbl_80517654:
 	.float 0.5
-.global lbl_80517658
+.balign 8
 lbl_80517658:
 	.4byte 0x3FE00000
 	.4byte 0x00000000
-.global lbl_80517660
+.balign 8
 lbl_80517660:
 	.4byte 0x40080000
 	.4byte 0x00000000
-.global lbl_80517668
 lbl_80517668:
 	.4byte 0xDD5E0B6B
-	.4byte 0x00000000
 
 .section .text, "ax"  # 0x800056C0 - 0x80472F00
 .global GXInitLightAttn
@@ -106,14 +90,12 @@ lbl_800E68C8:
 /* 800E68F0 000E3830  7C 03 00 2E */	lwzx r0, r3, r0
 /* 800E68F4 000E3834  7C 09 03 A6 */	mtctr r0
 /* 800E68F8 000E3838  4E 80 04 20 */	bctr 
-.global lbl_800E68FC
 lbl_800E68FC:
 /* 800E68FC 000E383C  C0 02 92 D8 */	lfs f0, lbl_80517638@sda21(r2)
 /* 800E6900 000E3840  C0 82 92 DC */	lfs f4, lbl_8051763C@sda21(r2)
 /* 800E6904 000E3844  EC 60 00 72 */	fmuls f3, f0, f1
 /* 800E6908 000E3848  C0 C2 92 C8 */	lfs f6, lbl_80517628@sda21(r2)
 /* 800E690C 000E384C  48 00 00 EC */	b lbl_800E69F8
-.global lbl_800E6910
 lbl_800E6910:
 /* 800E6910 000E3850  C0 42 92 E0 */	lfs f2, lbl_80517640@sda21(r2)
 /* 800E6914 000E3854  FC 00 08 50 */	fneg f0, f1
@@ -123,7 +105,6 @@ lbl_800E6910:
 /* 800E6924 000E3864  FC 80 08 90 */	fmr f4, f1
 /* 800E6928 000E3868  EC 60 00 72 */	fmuls f3, f0, f1
 /* 800E692C 000E386C  48 00 00 CC */	b lbl_800E69F8
-.global lbl_800E6930
 lbl_800E6930:
 /* 800E6930 000E3870  C0 42 92 E0 */	lfs f2, lbl_80517640@sda21(r2)
 /* 800E6934 000E3874  FC 00 08 50 */	fneg f0, f1
@@ -133,7 +114,6 @@ lbl_800E6930:
 /* 800E6944 000E3884  FC C0 08 90 */	fmr f6, f1
 /* 800E6948 000E3888  EC 80 00 72 */	fmuls f4, f0, f1
 /* 800E694C 000E388C  48 00 00 AC */	b lbl_800E69F8
-.global lbl_800E6950
 lbl_800E6950:
 /* 800E6950 000E3890  C0 82 92 E0 */	lfs f4, lbl_80517640@sda21(r2)
 /* 800E6954 000E3894  C0 42 92 E4 */	lfs f2, lbl_80517644@sda21(r2)
@@ -146,7 +126,6 @@ lbl_800E6950:
 /* 800E6970 000E38B0  EC 82 00 72 */	fmuls f4, f2, f1
 /* 800E6974 000E38B4  FC C0 08 50 */	fneg f6, f1
 /* 800E6978 000E38B8  48 00 00 80 */	b lbl_800E69F8
-.global lbl_800E697C
 lbl_800E697C:
 /* 800E697C 000E38BC  C0 A2 92 E0 */	lfs f5, lbl_80517640@sda21(r2)
 /* 800E6980 000E38C0  C0 62 92 E8 */	lfs f3, lbl_80517648@sda21(r2)
@@ -161,7 +140,6 @@ lbl_800E697C:
 /* 800E69A4 000E38E4  FC C0 10 90 */	fmr f6, f2
 /* 800E69A8 000E38E8  EC 62 00 72 */	fmuls f3, f2, f1
 /* 800E69AC 000E38EC  48 00 00 4C */	b lbl_800E69F8
-.global lbl_800E69B0
 lbl_800E69B0:
 /* 800E69B0 000E38F0  C0 A2 92 E0 */	lfs f5, lbl_80517640@sda21(r2)
 /* 800E69B4 000E38F4  C0 02 92 E4 */	lfs f0, lbl_80517644@sda21(r2)
@@ -178,7 +156,6 @@ lbl_800E69B0:
 /* 800E69E0 000E3920  EC C0 00 F2 */	fmuls f6, f0, f3
 /* 800E69E4 000E3924  EC 65 08 28 */	fsubs f3, f5, f1
 /* 800E69E8 000E3928  48 00 00 10 */	b lbl_800E69F8
-.global lbl_800E69EC
 lbl_800E69EC:
 /* 800E69EC 000E392C  C0 82 92 C8 */	lfs f4, lbl_80517628@sda21(r2)
 /* 800E69F0 000E3930  C0 62 92 E0 */	lfs f3, lbl_80517640@sda21(r2)

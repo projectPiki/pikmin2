@@ -1,12 +1,11 @@
 .include "macros.inc"
 .section .rodata  # 0x804732E0 - 0x8049E220
 .balign 8
-.global lbl_80479720
 lbl_80479720:
-	.ascii "ERROR : No buffer available\n"
-	.skip 4
+	.asciz "ERROR : No buffer available\n"
 
 .section .bss  # 0x804EFC20 - 0x8051467C
+.balign 8
 .global gTRKMsgBufs
 gTRKMsgBufs:
 	.skip 0x19B0
