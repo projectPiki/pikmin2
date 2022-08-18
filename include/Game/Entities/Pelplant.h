@@ -113,9 +113,9 @@ struct Parms : EnemyParmsBase {
 	struct _Parms : public Parameters {
 		inline _Parms()
 		    : Parameters(nullptr, "EnemyParmsBase")
-		    , m_fp01(this, 'fp01', "??? need to fix SHIFT-JIS again ???", 120.0f, 0.0f, 300.0f)
-		    , m_fp02(this, 'fp02', "??? need to fix SHIFT-JIS again ???", 120.0f, 0.0f, 300.0f)
-		    , m_fp03(this, 'fp03', "??? need to fix SHIFT-JIS again ???", 1.5f, 0.0f, 5.0f)
+		    , m_fp01(this, 'fp01', "成長(小→中）", 120.0f, 0.0f, 300.0f) // growth (small to medium)
+		    , m_fp02(this, 'fp02', "成長(中→大）", 120.0f, 0.0f, 300.0f) // growth (medium to large)
+		    , m_fp03(this, 'fp03', "カラー変更時間", 1.5f, 0.0f, 5.0f)    // color change time
 		{
 		}
 		Parm<float> m_fp01;
@@ -164,10 +164,10 @@ struct ProperAnimator : public EnemyBlendAnimatorBase {
 	 * @reifiedAddress{8010A9E0}
 	 * @reifiedFile{plugProjectYamashitaU/pelplant.cpp}
 	 */
-	virtual ~ProperAnimator() {};                                     // _00
-	virtual void setAnimMgr(SysShape::AnimMgr*);                      // _04
-	virtual SysShape::Animator& getAnimator(); 						  // _08
-	virtual SysShape::Animator& getAnimator(int);                     // _0C
+	virtual ~ProperAnimator() {};                 // _00
+	virtual void setAnimMgr(SysShape::AnimMgr*);  // _04
+	virtual SysShape::Animator& getAnimator();    // _08
+	virtual SysShape::Animator& getAnimator(int); // _0C
 };
 
 static float sLODRadius[4];

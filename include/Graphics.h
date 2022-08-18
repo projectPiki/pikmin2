@@ -22,14 +22,14 @@ struct Sphere;
 }
 
 struct PerspPrintfInfo {
-	inline PerspPrintfInfo() :
-	m_font(JFWSystem::systemFont)
-    , _04(0)
-    , _08(0)
-    , _0C(0)
-    , _10(1.0f)
-    , _14(Color4(0x66, 0x99, 0xFF, 0xFF))
-    , _18(Color4(0, 0x66, 0xFF, 0xFF))
+	inline PerspPrintfInfo()
+	    : m_font(JFWSystem::systemFont)
+	    , _04(0)
+	    , _08(0)
+	    , _0C(0)
+	    , _10(1.0f)
+	    , _14(Color4(0x66, 0x99, 0xFF, 0xFF))
+	    , _18(Color4(0, 0x66, 0xFF, 0xFF))
 	{
 	}
 

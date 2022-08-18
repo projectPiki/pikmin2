@@ -21,7 +21,6 @@
 #include "JSystem/J3D/J3DMtxBuffer.h"
 #include "JSystem/J3D/J3DMtxCalc.h"
 
-
 /*
     Generated from dpostproc
 
@@ -986,8 +985,8 @@
         .4byte 0x00000000
 */
 
-const char* dataPath = "/enemy/data/pelplant"; 	// unused/used in print inline probably
-const char* parmPath = "/enemy/parm/pelplant";	// unused/used in print inline probably
+const char* dataPath = "/enemy/data/pelplant"; // unused/used in print inline probably
+const char* parmPath = "/enemy/parm/pelplant"; // unused/used in print inline probably
 
 namespace Game {
 
@@ -999,17 +998,17 @@ namespace Pelplant {
  */
 float BlendAccelerationFunc::getValue(float p1)
 {
-    float sinTheta = pikmin2_sinf(TAU * (3.0f * -p1));
-    float value = (0.5f * (1.0f - p1));
-    value = (value * sinTheta) + p1;
-    if (value > 1.0f) {
-        return 1.0f;
-    }
+	float sinTheta = pikmin2_sinf(TAU * (3.0f * -p1));
+	float value    = (0.5f * (1.0f - p1));
+	value          = (value * sinTheta) + p1;
+	if (value > 1.0f) {
+		return 1.0f;
+	}
 
-    if (value < 0.0f) {
-        value = 0.0f;
-    }
-    return value;
+	if (value < 0.0f) {
+		value = 0.0f;
+	}
+	return value;
 }
 
 /*
@@ -1093,7 +1092,7 @@ void Obj::setInitialSetting(EnemyInitialParamBase* param)
  * Address:	801086E4
  * Size:	000138
  */
-Obj::Obj() 
+Obj::Obj()
     : EnemyBase()
     , m_fsm(nullptr)
     , _2C4(nullptr)
@@ -1107,7 +1106,7 @@ Obj::Obj()
 	m_animator = new ProperAnimator();
 	setFSM(new FSM());
 	_2C8 = 0;
-} 
+}
 
 /*
  * --INFO--
@@ -1179,22 +1178,22 @@ void Obj::doDirectDraw(Graphics&) { }
  */
 void Obj::doDebugDraw(Graphics& graphics)
 {
-    EnemyBase::doDebugDraw(graphics);
-    if (((Parms*)m_parms)->m_flags[0].typeView & 1) {
-        graphics.initPerspPrintf(graphics.m_currentViewport);
+	EnemyBase::doDebugDraw(graphics);
+	if (((Parms*)m_parms)->m_flags[0].typeView & 1) {
+		graphics.initPerspPrintf(graphics.m_currentViewport);
 
-    	PerspPrintfInfo info;
-        Vector3f perspVec (m_position.x, 100.0f + m_position.y, m_position.z);
-        
-        info._14 = Color4(0xC8, 0xC8, 0xFF, 0xC8);
-        info._18 = Color4(0x64, 0x64, 0xFF, 0xC8);
-        graphics.perspPrintf(info, perspVec, "FARM_POW(%d) Grow%s", m_farmPow, (_2C8 & 1) ? "on" : "off");
-        
-        perspVec.y += 16.0f;
-        info._14 = Color4(0xFF, 0xC8, 0xFF, 0xC8);
-        info._18 = Color4(0xC8, 0x64, 0xFF, 0xC8);
-        graphics.perspPrintf(info, perspVec, "%s %4.2f", m_fsm->getCurrName(this), _2C0);
-    }
+		PerspPrintfInfo info;
+		Vector3f perspVec(m_position.x, 100.0f + m_position.y, m_position.z);
+
+		info._14 = Color4(0xC8, 0xC8, 0xFF, 0xC8);
+		info._18 = Color4(0x64, 0x64, 0xFF, 0xC8);
+		graphics.perspPrintf(info, perspVec, "FARM_POW(%d) Grow%s", m_farmPow, (_2C8 & 1) ? "on" : "off");
+
+		perspVec.y += 16.0f;
+		info._14 = Color4(0xFF, 0xC8, 0xFF, 0xC8);
+		info._18 = Color4(0xC8, 0x64, 0xFF, 0xC8);
+		graphics.perspPrintf(info, perspVec, "%s %4.2f", m_fsm->getCurrName(this), _2C0);
+	}
 }
 
 /*
@@ -1291,26 +1290,26 @@ void Obj::doAnimationUpdateAnimator()
  */
 float Obj::getHeadScale()
 {
-    float headScale;
+	float headScale;
 	if (m_pellet) {
 		switch (m_pelletSize) {
 		case 1:
 			headScale = 1.0f;
-            break;
+			break;
 		case 5:
 			headScale = 2.0f;
-            break;
+			break;
 		case 10:
 			headScale = 3.5f;
-            break;
+			break;
 		case 20:
 			headScale = 4.8f;
-            break;
+			break;
 		}
 	} else {
-        headScale = 1.0f;
+		headScale = 1.0f;
 	}
-    return headScale;
+	return headScale;
 }
 
 /*
@@ -1318,27 +1317,27 @@ float Obj::getHeadScale()
  * Address:	........
  * Size:	00009C
  */
-inline void Obj::getNeckScale(Vector3f* scale) 
+inline void Obj::getNeckScale(Vector3f* scale)
 {
-    float neckScale;
-    switch (m_pelletSize) {
-    case 1:
-        neckScale = 12.0f;
-        break;
-    case 5:
-        neckScale = 12.0f;
-        break;
-    case 10:
-        neckScale = 12.0f;
-        break;
-    case 20: 
-        neckScale = 12.0f;
-        break;
-    default: 
-        JUT_PANICLINE(663, "Unknown Pellet size. %d \n", m_pelletSize);
-        break;
-    }
-    *scale = Vector3f(neckScale, 0.0f, 0.0f);
+	float neckScale;
+	switch (m_pelletSize) {
+	case 1:
+		neckScale = 12.0f;
+		break;
+	case 5:
+		neckScale = 12.0f;
+		break;
+	case 10:
+		neckScale = 12.0f;
+		break;
+	case 20:
+		neckScale = 12.0f;
+		break;
+	default:
+		JUT_PANICLINE(663, "Unknown Pellet size. %d \n", m_pelletSize);
+		break;
+	}
+	*scale = Vector3f(neckScale, 0.0f, 0.0f);
 }
 
 /*
@@ -1347,30 +1346,30 @@ inline void Obj::getNeckScale(Vector3f* scale)
  * Address:	80108CB8
  * Size:	000198
  */
-void Obj::doAnimation() 
+void Obj::doAnimation()
 {
-    sys->m_timers->_start("zama", true);
-    
-    float headScale = getHeadScale();
-    
-    Obj::sCurrentObj = this;
-    EnemyBase::doAnimation();
-    Obj::sCurrentObj = nullptr;
+	sys->m_timers->_start("zama", true);
 
-    if (m_pellet != nullptr) {
-        Vector3f translation;
-        getNeckScale(&translation);
-        
-        Vector3f rotation (0.0f, HALF_PI, -HALF_PI);
-        
-        Vector3f scale (1.0f / headScale);
+	float headScale = getHeadScale();
 
-        Matrixf mat;
-        mat.makeSRT(scale, rotation, translation);
-        m_pellet->updateCapture(mat);
-    }
-    
-    sys->m_timers->_stop("zama");
+	Obj::sCurrentObj = this;
+	EnemyBase::doAnimation();
+	Obj::sCurrentObj = nullptr;
+
+	if (m_pellet != nullptr) {
+		Vector3f translation;
+		getNeckScale(&translation);
+
+		Vector3f rotation(0.0f, HALF_PI, -HALF_PI);
+
+		Vector3f scale(1.0f / headScale);
+
+		Matrixf mat;
+		mat.makeSRT(scale, rotation, translation);
+		m_pellet->updateCapture(mat);
+	}
+
+	sys->m_timers->_stop("zama");
 }
 
 /*
@@ -1385,28 +1384,28 @@ void Obj::doSimulation(float) { }
  * Address:	80108E54
  * Size:	0000F0
  */
-void Obj::setPelletColor(u16 color, bool check) 
+void Obj::setPelletColor(u16 color, bool check)
 {
-    if (m_pellet != nullptr) {
-        switch (color) {
-        case PELLET_BLUE:
-        case PELLET_RED:
-        case PELLET_YELLOW:
-            if (check) {
-                if (playData->hasMetPikmin(color)) {
-                    m_pellet->setValidColor(color);
-                    return;
-                }
-                m_pellet->m_pelletColor = PELLET_RED;
-                return;
-            }
-            m_pellet->setValidColor(color);
-            break;
-        default:
-            m_pellet->m_pelletColor = PELLET_RED; 
-            break; 
-        } 
-    }
+	if (m_pellet != nullptr) {
+		switch (color) {
+		case PELLET_BLUE:
+		case PELLET_RED:
+		case PELLET_YELLOW:
+			if (check) {
+				if (playData->hasMetPikmin(color)) {
+					m_pellet->setValidColor(color);
+					return;
+				}
+				m_pellet->m_pelletColor = PELLET_RED;
+				return;
+			}
+			m_pellet->setValidColor(color);
+			break;
+		default:
+			m_pellet->m_pelletColor = PELLET_RED;
+			break;
+		}
+	}
 }
 
 /*
@@ -1414,138 +1413,48 @@ void Obj::setPelletColor(u16 color, bool check)
  * Address:	80108F44
  * Size:	000190
  */
-void Pelplant::Obj::changePelletColor()
+void Obj::changePelletColor()
 {
-	/*
-	stwu     r1, -0x20(r1)
-	mflr     r0
-	stw      r0, 0x24(r1)
-	stw      r31, 0x1c(r1)
-	mr       r31, r3
-	stw      r30, 0x18(r1)
-	stw      r29, 0x14(r1)
-	lwz      r4, 0x2cc(r3)
-	cmplwi   r4, 0
-	beq      lbl_801090B8
-	lbz      r0, 0x2d4(r31)
-	cmplwi   r0, 3
-	bne      lbl_801090B8
-	lwz      r3, 0xc0(r31)
-	lfs      f1, 0x2d0(r31)
-	lfs      f0, 0x86c(r3)
-	fcmpo    cr0, f1, f0
-	ble      lbl_8010909C
-	cmplwi   r4, 0
-	beq      lbl_80108F9C
-	lhz      r3, 0x43e(r4)
-	b        lbl_80108FA0
+	if ((m_pellet != nullptr) && (_2D4 == 3)) {
 
-lbl_80108F9C:
-	li       r3, 0
+		if (_2D0 > static_cast<Parms*>(m_parms)->m_pelplantParms.m_fp03.m_value) {
+			u16 initialColor;
+			if (m_pellet != nullptr) {
+				initialColor = m_pellet->m_pelletColor;
+			} else {
+				initialColor = PELLET_BLUE;
+			}
+			u16 nextColor = initialColor + 1;
+			u16 colorCap  = nextColor;
 
-lbl_80108FA0:
-	addi     r0, r3, 1
-	clrlwi   r29, r0, 0x10
-	mr       r30, r29
-	b        lbl_80108FD4
+			while (!playData->hasMetPikmin(nextColor)) {
+				nextColor += 1;
+				if (nextColor > 2) {
+					nextColor = PELLET_BLUE;
+				}
+				if (nextColor == colorCap) {
+					nextColor = PELLET_RED;
+				}
+			}
 
-lbl_80108FB0:
-	addi     r29, r29, 1
-	clrlwi   r0, r29, 0x10
-	cmplwi   r0, 2
-	ble      lbl_80108FC4
-	li       r29, 0
+			if (nextColor > 2) {
+				nextColor = PELLET_BLUE;
+			}
+			setPelletColor(nextColor, true);
 
-lbl_80108FC4:
-	clrlwi   r0, r29, 0x10
-	cmplw    r0, r30
-	bne      lbl_80108FD4
-	li       r29, 1
+			if (_2C8 & 1) {
+				_2D0 = 0.0f;
+				return;
+			}
+			_2D0 = 0.0f;
+			return;
+		}
 
-lbl_80108FD4:
-	lwz      r3, playData__4Game@sda21(r13)
-	clrlwi   r4, r29, 0x10
-	bl       hasMetPikmin__Q24Game8PlayDataFi
-	clrlwi.  r0, r3, 0x18
-	beq      lbl_80108FB0
-	clrlwi   r0, r29, 0x10
-	cmplwi   r0, 2
-	ble      lbl_80108FF8
-	li       r29, 0
-
-lbl_80108FF8:
-	lwz      r3, 0x2cc(r31)
-	cmplwi   r3, 0
-	beq      lbl_80109078
-	clrlwi   r4, r29, 0x10
-	cmpwi    r4, 3
-	bge      lbl_80109070
-	cmpwi    r4, 0
-	bge      lbl_8010901C
-	b        lbl_80109070
-
-lbl_8010901C:
-	lwz      r3, playData__4Game@sda21(r13)
-	bl       hasMetPikmin__Q24Game8PlayDataFi
-	clrlwi.  r0, r3, 0x18
-	beq      lbl_80109060
-	clrlwi   r0, r29, 0x10
-	lwz      r30, 0x2cc(r31)
-	cmplwi   r0, 2
-	ble      lbl_80109058
-	lis      r3, lbl_8047A700@ha
-	lis      r5, lbl_8047A6AC@ha
-	addi     r3, r3, lbl_8047A700@l
-	li       r4, 0x38d
-	addi     r5, r5, lbl_8047A6AC@l
-	crclr    6
-	bl       panic_f__12JUTExceptionFPCciPCce
-
-lbl_80109058:
-	sth      r29, 0x43e(r30)
-	b        lbl_80109078
-
-lbl_80109060:
-	lwz      r3, 0x2cc(r31)
-	li       r0, 1
-	sth      r0, 0x43e(r3)
-	b        lbl_80109078
-
-lbl_80109070:
-	li       r0, 1
-	sth      r0, 0x43e(r3)
-
-lbl_80109078:
-	lbz      r0, 0x2c8(r31)
-	clrlwi.  r0, r0, 0x1f
-	beq      lbl_80109090
-	lfs      f0, lbl_80517860@sda21(r2)
-	stfs     f0, 0x2d0(r31)
-	b        lbl_801090B8
-
-lbl_80109090:
-	lfs      f0, lbl_80517860@sda21(r2)
-	stfs     f0, 0x2d0(r31)
-	b        lbl_801090B8
-
-lbl_8010909C:
-	lbz      r0, 0x2c8(r31)
-	lwz      r3, sys@sda21(r13)
-	clrlwi.  r0, r0, 0x1f
-	lfs      f0, 0x54(r3)
-	beq      lbl_801090B8
-	fadds    f0, f1, f0
-	stfs     f0, 0x2d0(r31)
-
-lbl_801090B8:
-	lwz      r0, 0x24(r1)
-	lwz      r31, 0x1c(r1)
-	lwz      r30, 0x18(r1)
-	lwz      r29, 0x14(r1)
-	mtlr     r0
-	addi     r1, r1, 0x20
-	blr
-	*/
+		const float advanceFrame = sys->m_secondsPerFrame;
+		if (_2C8 & 1) {
+			_2D0 += advanceFrame;
+		}
+	}
 }
 
 /*
@@ -1553,90 +1462,24 @@ lbl_801090B8:
  * Address:	801090D4
  * Size:	000110
  */
-void Pelplant::Obj::attachPellet()
+void Obj::attachPellet()
 {
-	/*
-	stwu     r1, -0x40(r1)
-	mflr     r0
-	stw      r0, 0x44(r1)
-	stw      r31, 0x3c(r1)
-	stw      r30, 0x38(r1)
-	stw      r29, 0x34(r1)
-	stw      r28, 0x30(r1)
-	mr       r28, r3
-	lis      r3, lbl_8047A660@ha
-	lwz      r0, 0x2cc(r28)
-	addi     r31, r3, lbl_8047A660@l
-	cmplwi   r0, 0
-	bne      lbl_801091C4
-	stw      r28, sCurrentObj__Q34Game8Pelplant3Obj@sda21(r13)
-	addi     r3, r1, 8
-	li       r5, 0
-	lbz      r4, 0x2d5(r28)
-	bl       __ct__Q24Game19PelletNumberInitArgFii
-	lwz      r3, pelletMgr__4Game@sda21(r13)
-	addi     r4, r1, 8
-	bl       birth__Q24Game9PelletMgrFPQ24Game13PelletInitArg
-	or.      r29, r3, r3
-	beq      lbl_801091BC
-	lwz      r3, 0x174(r28)
-	addi     r4, r2, lbl_8051786C@sda21
-	bl       getJoint__Q28SysShape5ModelFPc
-	bl       getWorldMatrix__Q28SysShape5JointFv
-	or.      r30, r3, r3
-	bne      lbl_8010915C
-	addi     r3, r31, 0
-	addi     r5, r31, 0x4c
-	li       r4, 0x309
-	crclr    6
-	bl       panic_f__12JUTExceptionFPCciPCce
+	if (m_pellet == nullptr) {
+		Obj::sCurrentObj = this;
+		PelletNumberInitArg numberArg(m_pelletSize, 0);
+		Pellet* newPellet = pelletMgr->birth(&numberArg);
 
-lbl_8010915C:
-	mr       r3, r29
-	mr       r4, r30
-	bl       startCapture__Q24Game8CreatureFP7Matrixf
-	stw      r29, 0x2cc(r28)
-	lwz      r29, 0x2cc(r28)
-	lbz      r30, 0x2d4(r28)
-	cmplwi   r29, 0
-	beq      lbl_801091BC
-	cmpwi    r30, 3
-	bge      lbl_801091B4
-	cmpwi    r30, 0
-	bge      lbl_80109190
-	b        lbl_801091B4
+		if (newPellet != nullptr) {
+			Matrixf* mat = m_model->getJoint("headjnt")->getWorldMatrix();
+			P2ASSERTLINE(777, mat != nullptr);
+			newPellet->startCapture(mat);
+			m_pellet = (PelletNumber::Object*)newPellet;
 
-lbl_80109190:
-	cmplwi   r30, 2
-	ble      lbl_801091AC
-	addi     r3, r31, 0xa0
-	addi     r5, r31, 0x4c
-	li       r4, 0x38d
-	crclr    6
-	bl       panic_f__12JUTExceptionFPCciPCce
+			setPelletColor(_2D4, false);
+		}
 
-lbl_801091AC:
-	sth      r30, 0x43e(r29)
-	b        lbl_801091BC
-
-lbl_801091B4:
-	li       r0, 1
-	sth      r0, 0x43e(r29)
-
-lbl_801091BC:
-	li       r0, 0
-	stw      r0, sCurrentObj__Q34Game8Pelplant3Obj@sda21(r13)
-
-lbl_801091C4:
-	lwz      r0, 0x44(r1)
-	lwz      r31, 0x3c(r1)
-	lwz      r30, 0x38(r1)
-	lwz      r29, 0x34(r1)
-	lwz      r28, 0x30(r1)
-	mtlr     r0
-	addi     r1, r1, 0x40
-	blr
-	*/
+		Obj::sCurrentObj = nullptr;
+	}
 }
 
 /*
@@ -1716,26 +1559,50 @@ unknown Pelplant::Obj::headJointCallBack(J3DJoint* joint, int p2)
  * Address:	80109450
  * Size:	000104
  */
-unknown Pelplant::Obj::neckJointCallBack(J3DJoint* joint, int p2)
+unknown Game::Pelplant::Obj::neckJointCallBack(J3DJoint* joint, int p2)
 {
 	if (sCurrentObj != nullptr && p2 == 1) {
 		Mtx& mtx = J3DMtxCalc::mMtxBuffer->m_worldMatrices[joint->getJntNo()];
-		Vector3f scale;
-		sCurrentObj->getNeckScale(&scale);
+
+		float neckScale1;
+		float neckScale2;
+		if (sCurrentObj->m_pellet != nullptr) {
+			switch (sCurrentObj->m_pelletSize) { /* switch 2 */
+			case 1:                              /* switch 2 */
+				neckScale2 = 12.0f;
+				neckScale1 = neckScale2;
+				break;
+			case 5: /* switch 2 */
+				neckScale2 = 12.0f;
+				neckScale1 = neckScale2;
+				break;
+			case 10: /* switch 2 */
+				neckScale2 = 1.5;
+				neckScale1 = 0.85;
+				break;
+			case 20: /* switch 2 */
+				neckScale2 = 2.0;
+				neckScale1 = 0.75;
+				break;
+			}
+
+		} else {
+			neckScale2 = 12.0f;
+			neckScale1 = neckScale2;
+		}
+
+		Vector3f scale(neckScale2, neckScale1, neckScale2);
 		mtx[0][0] *= scale.x;
 		mtx[0][1] *= scale.x;
 		mtx[0][2] *= scale.x;
+
 		mtx[1][0] *= scale.y;
 		mtx[1][1] *= scale.y;
 		mtx[1][2] *= scale.y;
+
 		mtx[2][0] *= scale.z;
 		mtx[2][1] *= scale.z;
 		mtx[2][2] *= scale.z;
-		// for (int i = 0; i < 3; i++) {
-		// 	for (int j = 0; j < 3; j++) {
-		// 		mtx[i][j] *= scale.y;
-		// 	}
-		// }
 	}
 	return 0;
 }
@@ -1749,7 +1616,7 @@ unknown Pelplant::Obj::neckJointCallBack(J3DJoint* joint, int p2)
 Pelplant::Mgr::Mgr(int p1, unsigned char p2)
     : EnemyMgrBase(p1, p2)
 {
-	m_name = "??? need to fill in shift-JIS again ???";
+	m_name = "ペレット草マネージャ"; // pellet plant manager
 }
 
 /*
@@ -1758,53 +1625,8 @@ Pelplant::Mgr::Mgr(int p1, unsigned char p2)
  * Address:	801095A4
  * Size:	000098
  */
-EnemyMgrBase::~EnemyMgrBase()
-{
-	/*
-	stwu     r1, -0x10(r1)
-	mflr     r0
-	stw      r0, 0x14(r1)
-	stw      r31, 0xc(r1)
-	mr       r31, r4
-	stw      r30, 8(r1)
-	or.      r30, r3, r3
-	beq      lbl_80109620
-	lis      r3, __vt__Q24Game12EnemyMgrBase@ha
-	addi     r3, r3, __vt__Q24Game12EnemyMgrBase@l
-	stw      r3, 0(r30)
-	addi     r0, r3, 0x38
-	stw      r0, 4(r30)
-	beq      lbl_80109610
-	lis      r3, __vt__Q24Game13IEnemyMgrBase@ha
-	addic.   r0, r30, 4
-	addi     r3, r3, __vt__Q24Game13IEnemyMgrBase@l
-	stw      r3, 0(r30)
-	addi     r0, r3, 0x38
-	stw      r0, 4(r30)
-	beq      lbl_80109610
-	lis      r4, __vt__16GenericContainer@ha
-	addi     r3, r30, 4
-	addi     r0, r4, __vt__16GenericContainer@l
-	li       r4, 0
-	stw      r0, 4(r30)
-	bl       __dt__5CNodeFv
-
-lbl_80109610:
-	extsh.   r0, r31
-	ble      lbl_80109620
-	mr       r3, r30
-	bl       __dl__FPv
-
-lbl_80109620:
-	lwz      r0, 0x14(r1)
-	mr       r3, r30
-	lwz      r31, 0xc(r1)
-	lwz      r30, 8(r1)
-	mtlr     r0
-	addi     r1, r1, 0x10
-	blr
-	*/
-}
+// WEAK - need to move to header
+EnemyMgrBase::~EnemyMgrBase() { }
 
 /*
  * --INFO--
@@ -2743,7 +2565,7 @@ void Pelplant::Mgr::doAlloc() { init(new Parms()); }
 // 	*/
 // }
 
-} // namespace Game
+} // namespace Pelplant
 
 /*
  * --INFO--
@@ -3209,7 +3031,7 @@ namespace Game {
  */
 EnemyTypeID::EEnemyTypeID Pelplant::Obj::getEnemyTypeID() { return EnemyTypeID::EnemyID_Pelplant; }
 
-} // namespace Pelplant
+} // namespace Game
 
 } // namespace Game
 

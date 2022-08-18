@@ -5,13 +5,13 @@
 
 namespace efx {
 struct TPelkira_ver01 : public TChasePos {
-    // possibly needs an inline ctor?
+	// possibly needs an inline ctor?
 
 	// vtable 1 (TBase)
 	virtual bool create(Arg*); // _08
 	// 	_0C-_14
 	// vtable 2 (JPAEmitterCallBack + Self)
-	virtual ~TPelkira_ver01();    // _48 (weak)
+	virtual ~TPelkira_ver01(); // _48 (weak)
 };
 } // namespace efx
 

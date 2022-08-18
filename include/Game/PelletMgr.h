@@ -1,6 +1,6 @@
 #ifndef _GAME_PELLETMGR_H
 #define _GAME_PELLETMGR_H
- 
+
 #include "CarryInfo.h"
 #include "Game/DynCreature.h"
 #include "ObjectMgr.h"
@@ -22,10 +22,10 @@
 #include "types.h"
 #include "JSystem/JUT/JUTException.h"
 
-#define PELLET_BLUE 	(0)
-#define PELLET_RED 		(1)
-#define PELLET_YELLOW 	(2)
-#define PELLET_RANDOM	(3)
+#define PELLET_BLUE   (0)
+#define PELLET_RED    (1)
+#define PELLET_YELLOW (2)
+#define PELLET_RANDOM (3)
 
 namespace PSM {
 struct PelletOtakara;
@@ -65,7 +65,7 @@ struct PelletMgr : public NodeObjectMgr<GenericObjectMgr> {
 	void createManagers(unsigned long);
 	void resetMgrs();
 	void setupResources();
-	void birth(Game::PelletInitArg*);
+	Pellet* birth(Game::PelletInitArg*);
 	void setUse(Game::PelletInitArg*);
 	void makePelletInitArg(Game::PelletInitArg&, char*);
 	void makeVsCarryMinMax(Game::PelletInitArg&, char*);
@@ -89,7 +89,6 @@ struct PelletIterator {
 	Pellet* operator*();
 	void setFirst();
 };
-
 
 struct CreatureInitArg {
 	virtual const char* getName() = 0; // _08
@@ -123,6 +122,12 @@ struct PelletInitArg : CreatureInitArg {
 	u8 _1F;                 // _1F
 	int m_minCarriers;      // _20
 	int m_maxCarriers;      // _24
+};
+
+struct PelletNumberInitArg : public PelletInitArg {
+	PelletNumberInitArg(int, int);
+
+	u32 m_pelletNumberType; // _28
 };
 
 /**
@@ -252,11 +257,11 @@ struct Pellet : public DynCreature, public SysShape::MotionListener, public Carr
 	void updateDiscoverDisable();
 	void discoverDisabled();
 
-	inline void setValidColor(u16 color) 
-    {
-        P2ASSERTLINE(909, !(color > 2));
-        m_pelletColor = color;
-    }
+	inline void setValidColor(u16 color)
+	{
+		P2ASSERTLINE(909, !(color > 2));
+		m_pelletColor = color;
+	}
 
 	// _00		= VTABLE 1
 	// _04-_314	= DYNCREATURE
@@ -306,7 +311,7 @@ struct Pellet : public DynCreature, public SysShape::MotionListener, public Carr
 	SysShape::Animator _41C;                // _41C
 	float _438;                             // _438
 	u8 _43C[0x2];                           // _43C - unknown
-	u16 m_pelletColor;                 		// _43E
+	u16 m_pelletColor;                      // _43E
 	int m_slotIndex;                        // _440
 	Sys::Sphere m_lodSphere;                // _444
 	BasePelletMgr* m_mgr;                   // _454
