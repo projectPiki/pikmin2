@@ -5,7 +5,7 @@ BOOL gTRKBigEndian;
  * Address:	........
  * Size:	000070
  */
-TRKResult TRKInitializeEndian(void)
+BOOL TRKInitializeEndian(void)
 {
 	u8 bendian[4];
 	BOOL result   = FALSE;
