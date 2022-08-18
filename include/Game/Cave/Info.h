@@ -9,7 +9,7 @@
 #include "Matrixf.h"
 #include "Vector3.h"
 #include "types.h"
-#include "Game/PelletMgr.h"
+#include "Game/pelletMgr.h"
 
 namespace Game {
 namespace Cave {

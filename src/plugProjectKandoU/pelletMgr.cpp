@@ -1,5 +1,4 @@
-#include "Game/PelletMgr.h"
-#include "Game/Pellet.h"
+#include "Game/pelletMgr.h"
 #include "types.h"
 
 /*

@@ -8,6 +8,9 @@
 #include "Game/Entities/Pelplant.h"
 #include "Game/Farm.h"
 #include "Game/GameSystem.h"
+#include "Game/PelletNumber.h"
+#include "Game/gamePlayData.h"
+#include "Game/pelletMgr.h"
 #include "CollInfo.h"
 #include "SysShape/Joint.h"
 #include "SysShape/Model.h"
@@ -17,6 +20,7 @@
 #include "JSystem/J3D/J3DJoint.h"
 #include "JSystem/J3D/J3DMtxBuffer.h"
 #include "JSystem/J3D/J3DMtxCalc.h"
+
 
 /*
     Generated from dpostproc
@@ -982,69 +986,30 @@
         .4byte 0x00000000
 */
 
+const char* dataPath = "/enemy/data/pelplant"; 	// unused/used in print inline probably
+const char* parmPath = "/enemy/parm/pelplant";	// unused/used in print inline probably
+
 namespace Game {
 
+namespace Pelplant {
 /*
  * --INFO--
  * Address:	80108300
  * Size:	0000B0
  */
-float Pelplant::BlendAccelerationFunc::getValue(float)
+float BlendAccelerationFunc::getValue(float p1)
 {
-	/*
-	fneg     f2, f1
-	lfs      f3, lbl_8051785C@sda21(r2)
-	lfs      f4, lbl_80517858@sda21(r2)
-	lfs      f0, lbl_80517860@sda21(r2)
-	fmuls    f2, f3, f2
-	stwu     r1, -0x20(r1)
-	fmuls    f2, f4, f2
-	fcmpo    cr0, f2, f0
-	bge      lbl_80108350
-	lfs      f0, lbl_80517850@sda21(r2)
-	lis      r3, sincosTable___5JMath@ha
-	addi     r3, r3, sincosTable___5JMath@l
-	fmuls    f0, f2, f0
-	fctiwz   f0, f0
-	stfd     f0, 8(r1)
-	lwz      r0, 0xc(r1)
-	rlwinm   r0, r0, 3, 0x12, 0x1c
-	lfsx     f0, r3, r0
-	fneg     f4, f0
-	b        lbl_80108374
+    float sinTheta = pikmin2_sinf(TAU * (3.0f * -p1));
+    float value = (0.5f * (1.0f - p1));
+    value = (value * sinTheta) + p1;
+    if (value > 1.0f) {
+        return 1.0f;
+    }
 
-lbl_80108350:
-	lfs      f0, lbl_80517854@sda21(r2)
-	lis      r3, sincosTable___5JMath@ha
-	addi     r3, r3, sincosTable___5JMath@l
-	fmuls    f0, f2, f0
-	fctiwz   f0, f0
-	stfd     f0, 0x10(r1)
-	lwz      r0, 0x14(r1)
-	rlwinm   r0, r0, 3, 0x12, 0x1c
-	lfsx     f4, r3, r0
-
-lbl_80108374:
-	lfs      f2, lbl_80517868@sda21(r2)
-	lfs      f3, lbl_80517864@sda21(r2)
-	fsubs    f0, f2, f1
-	fmuls    f0, f3, f0
-	fmadds   f1, f0, f4, f1
-	fcmpo    cr0, f1, f2
-	ble      lbl_80108398
-	fmr      f1, f2
-	b        lbl_801083A8
-
-lbl_80108398:
-	lfs      f0, lbl_80517860@sda21(r2)
-	fcmpo    cr0, f1, f0
-	bge      lbl_801083A8
-	fmr      f1, f0
-
-lbl_801083A8:
-	addi     r1, r1, 0x20
-	blr
-	*/
+    if (value < 0.0f) {
+        value = 0.0f;
+    }
+    return value;
 }
 
 /*
@@ -1052,7 +1017,7 @@ lbl_801083A8:
  * Address:	801083B0
  * Size:	0000B4
  */
-void Pelplant::Obj::birth(Vector3f& position, float faceDir)
+void Obj::birth(Vector3f& position, float faceDir)
 {
 	EnemyBase::birth(position, faceDir);
 	m_farmPow = 0;
@@ -1072,7 +1037,7 @@ void Pelplant::Obj::birth(Vector3f& position, float faceDir)
  * Address:	80108464
  * Size:	000280
  */
-void Pelplant::Obj::setInitialSetting(EnemyInitialParamBase* param)
+void Obj::setInitialSetting(EnemyInitialParamBase* param)
 {
 	if (m_farmPow == 0) {
 		_2C8 |= 1;
@@ -1127,9 +1092,8 @@ void Pelplant::Obj::setInitialSetting(EnemyInitialParamBase* param)
  * --INFO--
  * Address:	801086E4
  * Size:	000138
- * @todo Depends on SysShape::BlendAnimator::BlendAnimator() in SysShape.cpp for proper matching output?
  */
-Pelplant::Obj::Obj()
+Obj::Obj() 
     : EnemyBase()
     , m_fsm(nullptr)
     , _2C4(nullptr)
@@ -1143,99 +1107,14 @@ Pelplant::Obj::Obj()
 	m_animator = new ProperAnimator();
 	setFSM(new FSM());
 	_2C8 = 0;
-	/*
-	stwu     r1, -0x10(r1)
-	mflr     r0
-	stw      r0, 0x14(r1)
-	extsh.   r0, r4
-	stw      r31, 0xc(r1)
-	mr       r31, r3
-	stw      r30, 8(r1)
-	beq      lbl_80108724
-	addi     r0, r31, 0x2d8
-	lis      r3, __vt__Q24Game10PelletView@ha
-	stw      r0, 0x17c(r31)
-	addi     r3, r3, __vt__Q24Game10PelletView@l
-	li       r0, 0
-	stw      r3, 0x2d8(r31)
-	stw      r0, 0x2dc(r31)
-	stw      r0, 0x2e0(r31)
-
-lbl_80108724:
-	mr       r3, r31
-	li       r4, 0
-	bl       __ct__Q24Game9EnemyBaseFv
-	lis      r3, __vt__Q34Game8Pelplant3Obj@ha
-	addi     r6, r31, 0x2d8
-	addi     r3, r3, __vt__Q34Game8Pelplant3Obj@l
-	li       r5, 0
-	stw      r3, 0(r31)
-	addi     r0, r3, 0x1b0
-	addi     r8, r3, 0x2fc
-	lfs      f0, lbl_80517860@sda21(r2)
-	stw      r0, 0x178(r31)
-	li       r4, 3
-	li       r0, 1
-	li       r3, 0x60
-	lwz      r7, 0x17c(r31)
-	stw      r8, 0(r7)
-	lwz      r7, 0x17c(r31)
-	subf     r6, r7, r6
-	stw      r6, 0xc(r7)
-	stw      r5, 0x2bc(r31)
-	stw      r5, 0x2c4(r31)
-	stb      r5, 0x2c8(r31)
-	stw      r5, 0x2cc(r31)
-	stfs     f0, 0x2d0(r31)
-	stb      r4, 0x2d4(r31)
-	stb      r0, 0x2d5(r31)
-	stb      r5, 0x2d6(r31)
-	bl       __nw__FUl
-	or.      r30, r3, r3
-	beq      lbl_801087B0
-	bl       __ct__Q24Game22EnemyBlendAnimatorBaseFv
-	lis      r3, __vt__Q34Game8Pelplant14ProperAnimator@ha
-	addi     r0, r3, __vt__Q34Game8Pelplant14ProperAnimator@l
-	stw      r0, 0(r30)
-
-lbl_801087B0:
-	stw      r30, 0x184(r31)
-	li       r3, 0x1c
-	bl       __nw__FUl
-	or.      r4, r3, r3
-	beq      lbl_801087E4
-	lis      r5, __vt__Q24Game17EnemyStateMachine@ha
-	lis      r3, __vt__Q34Game8Pelplant3FSM@ha
-	addi     r0, r5, __vt__Q24Game17EnemyStateMachine@l
-	li       r5, -1
-	stw      r0, 0(r4)
-	addi     r0, r3, __vt__Q34Game8Pelplant3FSM@l
-	stw      r5, 0x18(r4)
-	stw      r0, 0(r4)
-
-lbl_801087E4:
-	lwz      r12, 0(r31)
-	mr       r3, r31
-	lwz      r12, 0x2f8(r12)
-	mtctr    r12
-	bctrl
-	li       r0, 0
-	mr       r3, r31
-	stb      r0, 0x2c8(r31)
-	lwz      r31, 0xc(r1)
-	lwz      r30, 8(r1)
-	lwz      r0, 0x14(r1)
-	mtlr     r0
-	addi     r1, r1, 0x10
-	blr
-	*/
-}
+} 
 
 /*
  * --INFO--
  * Address:	8010881C
  * Size:	00004C
  */
+// WEAK - need to move to header
 void Pelplant::Obj::setFSM(Game::Pelplant::FSM* fsm)
 {
 	m_fsm = fsm;
@@ -1249,38 +1128,8 @@ void Pelplant::Obj::setFSM(Game::Pelplant::FSM* fsm)
  * Address:	80108868
  * Size:	00005C
  */
-EnemyBlendAnimatorBase::~EnemyBlendAnimatorBase()
-{
-	/*
-	stwu     r1, -0x10(r1)
-	mflr     r0
-	stw      r0, 0x14(r1)
-	stw      r31, 0xc(r1)
-	or.      r31, r3, r3
-	beq      lbl_801088AC
-	lis      r3, __vt__Q24Game22EnemyBlendAnimatorBase@ha
-	addi     r0, r3, __vt__Q24Game22EnemyBlendAnimatorBase@l
-	stw      r0, 0(r31)
-	beq      lbl_8010889C
-	lis      r3, __vt__Q24Game17EnemyAnimatorBase@ha
-	addi     r0, r3, __vt__Q24Game17EnemyAnimatorBase@l
-	stw      r0, 0(r31)
-
-lbl_8010889C:
-	extsh.   r0, r4
-	ble      lbl_801088AC
-	mr       r3, r31
-	bl       __dl__FPv
-
-lbl_801088AC:
-	lwz      r0, 0x14(r1)
-	mr       r3, r31
-	lwz      r31, 0xc(r1)
-	mtlr     r0
-	addi     r1, r1, 0x10
-	blr
-	*/
-}
+// WEAK - need to move to header
+EnemyBlendAnimatorBase::~EnemyBlendAnimatorBase() { }
 
 /*
  * --INFO--
@@ -1321,126 +1170,31 @@ void Pelplant::Obj::updateLODSphereRadius(int p1)
  * Address:	80108980
  * Size:	000004
  */
-void Pelplant::Obj::doDirectDraw(Graphics&) { }
+void Obj::doDirectDraw(Graphics&) { }
 
 /*
  * --INFO--
  * Address:	80108984
  * Size:	00018C
  */
-void Pelplant::Obj::doDebugDraw(Graphics& gfx)
+void Obj::doDebugDraw(Graphics& graphics)
 {
-	EnemyBase::doDebugDraw(gfx);
-	if (((Parms*)m_parms)->m_flags[0].typeView & 1) {
-		gfx.initPerspPrintf(gfx._25C);
-	}
-	PerspPrintfInfo info;
-	// info.m_font = JFWSystem::systemFont;
-	/*
-	stwu     r1, -0x40(r1)
-	mflr     r0
-	stw      r0, 0x44(r1)
-	stw      r31, 0x3c(r1)
-	mr       r31, r4
-	stw      r30, 0x38(r1)
-	mr       r30, r3
-	bl       doDebugDraw__Q24Game9EnemyBaseFR8Graphics
-	lwz      r3, 0xc0(r30)
-	lhz      r0, 0xdc(r3)
-	clrlwi.  r0, r0, 0x1f
-	beq      lbl_80108AF8
-	lwz      r4, 0x25c(r31)
-	mr       r3, r31
-	bl       initPerspPrintf__8GraphicsFP8Viewport
-	lwz      r0, systemFont__9JFWSystem@sda21(r13)
-	li       r12, 0
-	li       r9, 0xff
-	li       r11, 0x66
-	lfs      f0, lbl_80517868@sda21(r2)
-	li       r10, 0x99
-	stw      r0, 0x14(r1)
-	lis      r3, lbl_8047A6C4@ha
-	lfs      f2, lbl_80517874@sda21(r2)
-	addi     r6, r3, lbl_8047A6C4@l
-	stw      r12, 0x18(r1)
-	li       r7, 0xc8
-	li       r0, 0x64
-	mr       r3, r31
-	stw      r12, 0x1c(r1)
-	addi     r4, r1, 0x14
-	addi     r5, r1, 8
-	addi     r8, r2, lbl_8051787C@sda21
-	stw      r12, 0x20(r1)
-	stfs     f0, 0x24(r1)
-	stb      r11, 0x28(r1)
-	stb      r10, 0x29(r1)
-	stb      r9, 0x2a(r1)
-	stb      r9, 0x2b(r1)
-	stb      r12, 0x2c(r1)
-	stb      r11, 0x2d(r1)
-	stb      r9, 0x2e(r1)
-	stb      r9, 0x2f(r1)
-	lfs      f1, 0x190(r30)
-	lfs      f3, 0x194(r30)
-	lfs      f0, 0x18c(r30)
-	fadds    f1, f2, f1
-	stfs     f0, 8(r1)
-	stfs     f1, 0xc(r1)
-	stfs     f3, 0x10(r1)
-	stb      r7, 0x28(r1)
-	stb      r7, 0x29(r1)
-	stb      r9, 0x2a(r1)
-	stb      r7, 0x2b(r1)
-	stb      r0, 0x2c(r1)
-	stb      r0, 0x2d(r1)
-	stb      r9, 0x2e(r1)
-	stb      r7, 0x2f(r1)
-	lbz      r0, 0x2c8(r30)
-	lbz      r7, 0x2d6(r30)
-	clrlwi.  r0, r0, 0x1f
-	extsb    r7, r7
-	beq      lbl_80108A84
-	addi     r8, r2, lbl_80517878@sda21
+    EnemyBase::doDebugDraw(graphics);
+    if (((Parms*)m_parms)->m_flags[0].typeView & 1) {
+        graphics.initPerspPrintf(graphics.m_currentViewport);
 
-lbl_80108A84:
-	crclr    6
-	bl       "perspPrintf__8GraphicsFR15PerspPrintfInfoR10Vector3<f>Pce"
-	lfs      f1, 0xc(r1)
-	li       r3, 0xc8
-	lfs      f0, lbl_80517880@sda21(r2)
-	li       r5, 0xff
-	li       r0, 0x64
-	stb      r5, 0x28(r1)
-	fadds    f0, f1, f0
-	mr       r4, r30
-	stb      r3, 0x29(r1)
-	stfs     f0, 0xc(r1)
-	stb      r5, 0x2a(r1)
-	stb      r3, 0x2b(r1)
-	stb      r3, 0x2c(r1)
-	stb      r0, 0x2d(r1)
-	stb      r5, 0x2e(r1)
-	stb      r3, 0x2f(r1)
-	lwz      r3, 0x2bc(r30)
-	bl       getCurrName__Q24Game17EnemyStateMachineFPQ24Game9EnemyBase
-	lis      r4, lbl_8047A6D8@ha
-	lfs      f1, 0x2c0(r30)
-	mr       r7, r3
-	mr       r3, r31
-	addi     r6, r4, lbl_8047A6D8@l
-	addi     r4, r1, 0x14
-	addi     r5, r1, 8
-	crset    6
-	bl       "perspPrintf__8GraphicsFR15PerspPrintfInfoR10Vector3<f>Pce"
-
-lbl_80108AF8:
-	lwz      r0, 0x44(r1)
-	lwz      r31, 0x3c(r1)
-	lwz      r30, 0x38(r1)
-	mtlr     r0
-	addi     r1, r1, 0x40
-	blr
-	*/
+    	PerspPrintfInfo info;
+        Vector3f perspVec (m_position.x, 100.0f + m_position.y, m_position.z);
+        
+        info._14 = Color4(0xC8, 0xC8, 0xFF, 0xC8);
+        info._18 = Color4(0x64, 0x64, 0xFF, 0xC8);
+        graphics.perspPrintf(info, perspVec, "FARM_POW(%d) Grow%s", m_farmPow, (_2C8 & 1) ? "on" : "off");
+        
+        perspVec.y += 16.0f;
+        info._14 = Color4(0xFF, 0xC8, 0xFF, 0xC8);
+        info._18 = Color4(0xC8, 0x64, 0xFF, 0xC8);
+        graphics.perspPrintf(info, perspVec, "%s %4.2f", m_fsm->getCurrName(this), _2C0);
+    }
 }
 
 /*
@@ -1448,7 +1202,7 @@ lbl_80108AF8:
  * Address:	80108B10
  * Size:	0000C0
  */
-void Pelplant::Obj::getShadowParam(Game::ShadowParam& param)
+void Obj::getShadowParam(Game::ShadowParam& param)
 {
 	param.m_position = m_position;
 	param.m_position.y += 2.0f;
@@ -1518,7 +1272,7 @@ lbl_80108BC0:
  * Address:	80108BD0
  * Size:	000090
  */
-void Pelplant::Obj::doAnimationUpdateAnimator()
+void Obj::doAnimationUpdateAnimator()
 {
 	BlendAccelerationFunc func;
 	static_cast<EnemyBlendAnimatorBase*>(m_animator)
@@ -1535,22 +1289,28 @@ void Pelplant::Obj::doAnimationUpdateAnimator()
  * Address:	80108C60
  * Size:	000058
  */
-float Pelplant::Obj::getHeadScale()
+float Obj::getHeadScale()
 {
+    float headScale;
 	if (m_pellet) {
 		switch (m_pelletSize) {
 		case 1:
-			return 1.0f;
+			headScale = 1.0f;
+            break;
 		case 5:
-			return 2.0f;
+			headScale = 2.0f;
+            break;
 		case 10:
-			return 3.5f;
+			headScale = 3.5f;
+            break;
 		case 20:
-			return 4.8f;
+			headScale = 4.8f;
+            break;
 		}
 	} else {
-		return 1.0f;
+        headScale = 1.0f;
 	}
+    return headScale;
 }
 
 /*
@@ -1558,36 +1318,27 @@ float Pelplant::Obj::getHeadScale()
  * Address:	........
  * Size:	00009C
  */
-void Pelplant::Obj::getNeckScale(Vector3f* scale)
+inline void Obj::getNeckScale(Vector3f* scale) 
 {
-	if (m_pellet) {
-		switch (m_pelletSize) {
-		case 1:
-			scale->x = 1.0f;
-			scale->y = 1.0f;
-			scale->z = 1.0f;
-			return;
-		case 5:
-			scale->x = 1.0f;
-			scale->y = 1.0f;
-			scale->z = 1.0f;
-			return;
-		case 10:
-			scale->x = 0.85f;
-			scale->y = 1.50f;
-			scale->z = 0.85f;
-			return;
-		case 20:
-			scale->x = 0.75f;
-			scale->y = 2.00f;
-			scale->z = 0.75f;
-			return;
-		}
-	} else {
-		scale->x = 1.0f;
-		scale->y = 1.0f;
-		scale->z = 1.0f;
-	}
+    float neckScale;
+    switch (m_pelletSize) {
+    case 1:
+        neckScale = 12.0f;
+        break;
+    case 5:
+        neckScale = 12.0f;
+        break;
+    case 10:
+        neckScale = 12.0f;
+        break;
+    case 20: 
+        neckScale = 12.0f;
+        break;
+    default: 
+        JUT_PANICLINE(663, "Unknown Pellet size. %d \n", m_pelletSize);
+        break;
+    }
+    *scale = Vector3f(neckScale, 0.0f, 0.0f);
 }
 
 /*
@@ -1596,164 +1347,30 @@ void Pelplant::Obj::getNeckScale(Vector3f* scale)
  * Address:	80108CB8
  * Size:	000198
  */
-void Pelplant::Obj::doAnimation()
+void Obj::doAnimation() 
 {
-	sys->m_timers->_start("zama", true);
-	float headScale = getHeadScale();
-	sCurrentObj     = this;
-	doAnimation();
-	sCurrentObj = nullptr;
-	// TODO: what's inlined here, if anything?
-	// float neckScale = getNeckScale();
-	Matrixf mtx;
-	Vector3f scale(1.0f / headScale);
-	Vector3f rotation(0.0f, HALF_PI, -HALF_PI);
-	Vector3f translation(12.0f, 0.0f, 0.0f);
+    sys->m_timers->_start("zama", true);
+    
+    float headScale = getHeadScale();
+    
+    Obj::sCurrentObj = this;
+    EnemyBase::doAnimation();
+    Obj::sCurrentObj = nullptr;
 
-	mtx.makeSRT(scale, rotation, translation);
-	updateCapture(mtx);
-	sys->m_timers->_stop("zama");
+    if (m_pellet != nullptr) {
+        Vector3f translation;
+        getNeckScale(&translation);
+        
+        Vector3f rotation (0.0f, HALF_PI, -HALF_PI);
+        
+        Vector3f scale (1.0f / headScale);
 
-	/*
-	stwu     r1, -0x90(r1)
-	mflr     r0
-	stw      r0, 0x94(r1)
-	stfd     f31, 0x80(r1)
-	psq_st   f31, 136(r1), 0, qr0
-	stfd     f30, 0x70(r1)
-	psq_st   f30, 120(r1), 0, qr0
-	stw      r31, 0x6c(r1)
-	lwz      r6, sys@sda21(r13)
-	mr       r31, r3
-	addi     r4, r2, lbl_805178A4@sda21
-	li       r5, 1
-	lwz      r3, 0x28(r6)
-	bl       _start__9SysTimersFPcb
-	lwz      r0, 0x2cc(r31)
-	cmplwi   r0, 0
-	beq      lbl_80108D40
-	lbz      r0, 0x2d5(r31)
-	cmplwi   r0, 0x14
-	bgt      lbl_80108D44
-	lis      r3, lbl_804AAAB4@ha
-	slwi     r0, r0, 2
-	addi     r3, r3, lbl_804AAAB4@l
-	lwzx     r0, r3, r0
-	mtctr    r0
-	bctr
-	.global  lbl_80108D20
-
-lbl_80108D20:
-	lfs      f31, lbl_80517868@sda21(r2)
-	b        lbl_80108D44
-	.global  lbl_80108D28
-
-lbl_80108D28:
-	lfs      f31, lbl_80517884@sda21(r2)
-	b        lbl_80108D44
-	.global  lbl_80108D30
-
-lbl_80108D30:
-	lfs      f31, lbl_80517890@sda21(r2)
-	b        lbl_80108D44
-	.global  lbl_80108D38
-
-lbl_80108D38:
-	lfs      f31, lbl_80517894@sda21(r2)
-	b        lbl_80108D44
-
-lbl_80108D40:
-	lfs      f31, lbl_80517868@sda21(r2)
-	.global  lbl_80108D44
-
-lbl_80108D44:
-	stw      r31, sCurrentObj__Q34Game8Pelplant3Obj@sda21(r13)
-	mr       r3, r31
-	bl       doAnimation__Q24Game9EnemyBaseFv
-	li       r0, 0
-	stw      r0, sCurrentObj__Q34Game8Pelplant3Obj@sda21(r13)
-	lwz      r0, 0x2cc(r31)
-	cmplwi   r0, 0
-	beq      lbl_80108E1C
-	lbz      r6, 0x2d5(r31)
-	cmplwi   r6, 0x14
-	bgt      lbl_80108DA8
-	lis      r3, lbl_804AAA60@ha
-	slwi     r0, r6, 2
-	addi     r3, r3, lbl_804AAA60@l
-	lwzx     r0, r3, r0
-	mtctr    r0
-	bctr
-	.global  lbl_80108D88
-
-lbl_80108D88:
-	lfs      f30, lbl_805178AC@sda21(r2)
-	b        lbl_80108DC4
-	.global  lbl_80108D90
-
-lbl_80108D90:
-	lfs      f30, lbl_805178AC@sda21(r2)
-	b        lbl_80108DC4
-	.global  lbl_80108D98
-
-lbl_80108D98:
-	lfs      f30, lbl_805178AC@sda21(r2)
-	b        lbl_80108DC4
-	.global  lbl_80108DA0
-
-lbl_80108DA0:
-	lfs      f30, lbl_805178AC@sda21(r2)
-	b        lbl_80108DC4
-	.global  lbl_80108DA8
-
-lbl_80108DA8:
-	lis      r3, lbl_8047A660@ha
-	lis      r4, lbl_8047A6E4@ha
-	addi     r5, r4, lbl_8047A6E4@l
-	addi     r3, r3, lbl_8047A660@l
-	li       r4, 0x297
-	crclr    6
-	bl       panic_f__12JUTExceptionFPCciPCce
-
-lbl_80108DC4:
-	lfs      f0, lbl_80517868@sda21(r2)
-	addi     r3, r1, 0x2c
-	lfs      f2, lbl_80517860@sda21(r2)
-	addi     r4, r1, 8
-	fdivs    f3, f0, f31
-	lfs      f1, lbl_805178B0@sda21(r2)
-	lfs      f0, lbl_805178B4@sda21(r2)
-	addi     r5, r1, 0x14
-	stfs     f30, 0x20(r1)
-	addi     r6, r1, 0x20
-	stfs     f2, 0x24(r1)
-	stfs     f2, 0x28(r1)
-	stfs     f2, 0x14(r1)
-	stfs     f1, 0x18(r1)
-	stfs     f0, 0x1c(r1)
-	stfs     f3, 8(r1)
-	stfs     f3, 0xc(r1)
-	stfs     f3, 0x10(r1)
-	bl       "makeSRT__7MatrixfFR10Vector3<f>R10Vector3<f>R10Vector3<f>"
-	lwz      r3, 0x2cc(r31)
-	addi     r4, r1, 0x2c
-	bl       updateCapture__Q24Game8CreatureFR7Matrixf
-
-lbl_80108E1C:
-	lwz      r3, sys@sda21(r13)
-	addi     r4, r2, lbl_805178A4@sda21
-	lwz      r3, 0x28(r3)
-	bl       _stop__9SysTimersFPc
-	psq_l    f31, 136(r1), 0, qr0
-	lfd      f31, 0x80(r1)
-	psq_l    f30, 120(r1), 0, qr0
-	lfd      f30, 0x70(r1)
-	lwz      r0, 0x94(r1)
-	lwz      r31, 0x6c(r1)
-	mtlr     r0
-	addi     r1, r1, 0x90
-	blr
-	*/
+        Matrixf mat;
+        mat.makeSRT(scale, rotation, translation);
+        m_pellet->updateCapture(mat);
+    }
+    
+    sys->m_timers->_stop("zama");
 }
 
 /*
@@ -1761,96 +1378,35 @@ lbl_80108E1C:
  * Address:	80108E50
  * Size:	000004
  */
-void Pelplant::Obj::doSimulation(float) { }
+void Obj::doSimulation(float) { }
 
 /*
  * --INFO--
  * Address:	80108E54
  * Size:	0000F0
  */
-void Pelplant::Obj::setPelletColor(unsigned short pikiType, bool p2)
+void Obj::setPelletColor(u16 color, bool check) 
 {
-	if (m_pellet != nullptr) {
-		if (OnyonCount < pikiType || false) {
-			// m_pellet->m_onyonType = EPikiColor::Red;
-		}
-	}
-	/*
-	stwu     r1, -0x20(r1)
-	mflr     r0
-	stw      r0, 0x24(r1)
-	stw      r31, 0x1c(r1)
-	stw      r30, 0x18(r1)
-	mr       r30, r4
-	stw      r29, 0x14(r1)
-	mr       r29, r3
-	lwz      r31, 0x2cc(r3)
-	cmplwi   r31, 0
-	beq      lbl_80108F28
-	clrlwi   r4, r30, 0x10
-	cmpwi    r4, 3
-	bge      lbl_80108F20
-	cmpwi    r4, 0
-	bge      lbl_80108E98
-	b        lbl_80108F20
-
-lbl_80108E98:
-	clrlwi.  r0, r5, 0x18
-	beq      lbl_80108EF4
-	lwz      r3, playData__4Game@sda21(r13)
-	bl       hasMetPikmin__Q24Game8PlayDataFi
-	clrlwi.  r0, r3, 0x18
-	beq      lbl_80108EE4
-	clrlwi   r0, r30, 0x10
-	lwz      r31, 0x2cc(r29)
-	cmplwi   r0, 2
-	ble      lbl_80108EDC
-	lis      r3, lbl_8047A700@ha
-	lis      r5, lbl_8047A6AC@ha
-	addi     r3, r3, lbl_8047A700@l
-	li       r4, 0x38d
-	addi     r5, r5, lbl_8047A6AC@l
-	crclr    6
-	bl       panic_f__12JUTExceptionFPCciPCce
-
-lbl_80108EDC:
-	sth      r30, 0x43e(r31)
-	b        lbl_80108F28
-
-lbl_80108EE4:
-	lwz      r3, 0x2cc(r29)
-	li       r0, 1
-	sth      r0, 0x43e(r3)
-	b        lbl_80108F28
-
-lbl_80108EF4:
-	cmplwi   r4, 2
-	ble      lbl_80108F18
-	lis      r3, lbl_8047A700@ha
-	lis      r5, lbl_8047A6AC@ha
-	addi     r3, r3, lbl_8047A700@l
-	li       r4, 0x38d
-	addi     r5, r5, lbl_8047A6AC@l
-	crclr    6
-	bl       panic_f__12JUTExceptionFPCciPCce
-
-lbl_80108F18:
-	sth      r30, 0x43e(r31)
-	b        lbl_80108F28
-
-lbl_80108F20:
-	li       r0, 1
-	sth      r0, 0x43e(r31)
-
-lbl_80108F28:
-	lwz      r0, 0x24(r1)
-	lwz      r31, 0x1c(r1)
-	lwz      r30, 0x18(r1)
-	lwz      r29, 0x14(r1)
-	mtlr     r0
-	addi     r1, r1, 0x20
-	blr
-	*/
+    if (m_pellet != nullptr) {
+        switch (color) {
+        case PELLET_BLUE:
+        case PELLET_RED:
+        case PELLET_YELLOW:
+            if (check) {
+                if (playData->hasMetPikmin(color)) {
+                    m_pellet->setValidColor(color);
+                    return;
+                }
+                m_pellet->m_pelletColor = PELLET_RED;
+                return;
+            }
+            m_pellet->setValidColor(color);
+            break;
+        default:
+            m_pellet->m_pelletColor = PELLET_RED; 
+            break; 
+        } 
+    }
 }
 
 /*
@@ -2193,7 +1749,7 @@ unknown Pelplant::Obj::neckJointCallBack(J3DJoint* joint, int p2)
 Pelplant::Mgr::Mgr(int p1, unsigned char p2)
     : EnemyMgrBase(p1, p2)
 {
-	m_name = "ペレ�?ト草マネージャ";
+	m_name = "??? need to fill in shift-JIS again ???";
 }
 
 /*
@@ -3652,6 +3208,8 @@ namespace Game {
  * Size:	000008
  */
 EnemyTypeID::EEnemyTypeID Pelplant::Obj::getEnemyTypeID() { return EnemyTypeID::EnemyID_Pelplant; }
+
+} // namespace Pelplant
 
 } // namespace Game
 

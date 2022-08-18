@@ -6,6 +6,7 @@
 #include "Matrixf.h"
 #include "Color4.h"
 #include "JSystem/J2D/J2DGrafContext.h"
+#include "JSystem/JFW/JFWSystem.h"
 
 struct Color4;
 template <typename T> struct IDelegate1;
@@ -21,7 +22,16 @@ struct Sphere;
 }
 
 struct PerspPrintfInfo {
-	inline PerspPrintfInfo() {};
+	inline PerspPrintfInfo() :
+	m_font(JFWSystem::systemFont)
+    , _04(0)
+    , _08(0)
+    , _0C(0)
+    , _10(1.0f)
+    , _14(Color4(0x66, 0x99, 0xFF, 0xFF))
+    , _18(Color4(0, 0x66, 0xFF, 0xFF))
+	{
+	}
 
 	struct JUTFont* m_font; // _00
 	u32 _04;                // _04

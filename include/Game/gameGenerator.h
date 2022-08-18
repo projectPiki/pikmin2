@@ -10,7 +10,7 @@
 #include "id32.h"
 #include "Game/enemyInfo.h"
 #include "Game/EnemyPelletInfo.h"
-#include "Game/PelletMgr.h"
+#include "Game/pelletMgr.h"
 
 struct J3DModelData;
 
@@ -115,12 +115,6 @@ struct GeneratorMgr : public CNode {
 	u8 _6D;                    // _6D
 
 	static Delegate1<struct BaseGameSection, Vector3f&>* cursorCallback;
-};
-
-struct CreatureInitArg {
-	virtual const char* getName() = 0; // _08
-
-	// _00 VTBL
 };
 
 struct GenArg : public CreatureInitArg {

@@ -1,7 +1,7 @@
 #include "Dolphin/string.h"
 #include "Game/Cave/Info.h"
 #include "Game/generalEnemyMgr.h"
-#include "Game/PelletMgr.h"
+#include "Game/pelletMgr.h"
 #include "JSystem/JUT/JUTException.h"
 #include "types.h"
 
@@ -595,7 +595,7 @@ void GateInfo::read(Stream& input)
 {
 	char* name = input.readString(nullptr, 0);
 	m_caveID   = Game::pelletMgr->getCaveID(name);
-	JUT_ASSERTLINE(659, m_caveID != -1, "ï¿½Ï‚Èƒyï¿½ï¿½ï¿½bï¿½gï¿½lï¿½[ï¿½ï¿½ï¿½Å‚ï¿½!\n");
+	JUT_ASSERTLINE(659, m_caveID != -1, "?¿½Ï‚Èƒy?¿½?¿½?¿½b?¿½g?¿½l?¿½[?¿½?¿½?¿½Å‚ï¿½!\n");
 	m_weight = input.readInt();
 	m_name   = name;
 	/*

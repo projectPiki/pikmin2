@@ -13,6 +13,7 @@
 #include "Game/gameGenerator.h"
 #include "Game/EnemyBase.h"
 #include "Game/EnemyMgrBase.h"
+#include "Game/PelletNumber.h"
 
 namespace Game {
 namespace PelletNumber {
@@ -32,11 +33,8 @@ struct BlendAccelerationFunc : SysShape::BlendFunction {
 struct FSM : public EnemyStateMachine {
 	FSM()
 	    : EnemyStateMachine()
-	    , _18(-1)
 	{
 	}
-
-	int _18; // _18
 };
 
 /**
@@ -115,9 +113,9 @@ struct Parms : EnemyParmsBase {
 	struct _Parms : public Parameters {
 		inline _Parms()
 		    : Parameters(nullptr, "EnemyParmsBase")
-		    , m_fp01(this, 'fp01', "成長(小→中）", 120.0f, 0.0f, 300.0f)
-		    , m_fp02(this, 'fp02', "成長(中→大）", 120.0f, 0.0f, 300.0f)
-		    , m_fp03(this, 'fp03', "カラー変更時間", 1.5f, 0.0f, 5.0f)
+		    , m_fp01(this, 'fp01', "??? need to fix SHIFT-JIS again ???", 120.0f, 0.0f, 300.0f)
+		    , m_fp02(this, 'fp02', "??? need to fix SHIFT-JIS again ???", 120.0f, 0.0f, 300.0f)
+		    , m_fp03(this, 'fp03', "??? need to fix SHIFT-JIS again ???", 1.5f, 0.0f, 5.0f)
 		{
 		}
 		Parm<float> m_fp01;
@@ -168,10 +166,8 @@ struct ProperAnimator : public EnemyBlendAnimatorBase {
 	 */
 	virtual ~ProperAnimator() {};                                     // _00
 	virtual void setAnimMgr(SysShape::AnimMgr*);                      // _04
-	virtual SysShape::Animator& getAnimator() { return m_animator; }; // _08
+	virtual SysShape::Animator& getAnimator(); 						  // _08
 	virtual SysShape::Animator& getAnimator(int);                     // _0C
-
-	SysShape::Animator m_animator; // _10
 };
 
 static float sLODRadius[4];

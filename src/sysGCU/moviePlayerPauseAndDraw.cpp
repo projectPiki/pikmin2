@@ -1,5 +1,5 @@
 #include "Game/MoviePlayer.h"
-#include "Game/PelletMgr.h"
+#include "Game/pelletMgr.h"
 #include "Game/generalEnemyMgr.h"
 #include "Game/PikiMgr.h"
 #include "Game/EnemyBase.h"

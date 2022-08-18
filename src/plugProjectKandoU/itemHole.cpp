@@ -4,7 +4,7 @@
 #include "Game/ItemBarrel.h"
 #include "Game/MapMgr.h"
 #include "Game/MoviePlayer.h"
-#include "Game/Pellet.h"
+#include "Game/pelletMgr.h"
 #include "Game/itemMgr.h"
 #include "Iterator.h"
 #include "JSystem/J3D/J3DModel.h"

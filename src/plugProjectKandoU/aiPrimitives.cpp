@@ -2,7 +2,7 @@
 #include "JSystem/JUT/JUTException.h"
 #include "Vector3.h"
 #include "PikiAI.h"
-#include "Game/Pellet.h"
+#include "Game/pelletMgr.h"
 #include "Game/Onyon.h"
 #include "Game/pathfinder.h"
 #include "Game/routeMgr.h"
