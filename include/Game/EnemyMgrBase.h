@@ -25,15 +25,15 @@ struct EnemyGeneratorBase;
 struct EnemyParmsBase;
 
 struct EnemyBirthArg {
-	Vector3f m_position;                           // _00
-	float m_faceDir;                               // _0C
-	u8 m_tekiBirthType;                            // _10
-	EnemyGeneratorBase* m_generator;               // _14
-	PelletMgr::OtakaraItemCode* m_otakaraItemCode; // _18
-	EnemyPelletInfo m_pelletInfo;                  // _1C
-	EnemyTypeID::EEnemyTypeID m_typeID;            // _28
-	float _2C;                                     // _2C
-	u8 _30;                                        // _30
+	Vector3f m_position;                          // _00
+	float m_faceDir;                              // _0C
+	u8 m_tekiBirthType;                           // _10
+	EnemyGeneratorBase* m_generator;              // _14
+	PelletMgr::OtakaraItemCode m_otakaraItemCode; // _18
+	EnemyPelletInfo m_pelletInfo;                 // _1C
+	EnemyTypeID::EEnemyTypeID m_typeID;           // _28
+	float _2C;                                    // _2C
+	u8 _30;                                       // _30
 };
 
 struct IEnemyMgrBase : public GenericObjectMgr, public GenericContainer {

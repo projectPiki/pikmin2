@@ -18,6 +18,7 @@ namespace Game {
 struct Creature;
 struct GeneratorMgr;
 struct GenObject;
+struct EnemyInitialParamBase;
 
 struct Generator : public CNode {
 	Generator();
@@ -163,13 +164,12 @@ struct EnemyGeneratorBase : public CNode {
 	{
 	}
 
-	u32 getInitialParam();
-
-	virtual ~EnemyGeneratorBase() {};         // _08
-	virtual void doWrite(Stream&);            // _10
-	virtual void doRead(Stream&);             // _14
-	virtual u32 getLatestVersion();           // _18
-	virtual void draw(Graphics&, Generator*); // _1C
+	virtual ~EnemyGeneratorBase() {};                 // _08
+	virtual void doWrite(Stream&);                    // _10
+	virtual void doRead(Stream&);                     // _14
+	virtual u32 getLatestVersion();                   // _18
+	virtual void draw(Graphics&, Generator*);         // _1C
+	virtual void* getInitialParam(); 				  // _20
 
 	// _00 VTBL
 
