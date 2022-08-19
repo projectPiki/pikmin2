@@ -20,6 +20,7 @@
 #include "JSystem/J3D/J3DJoint.h"
 #include "JSystem/J3D/J3DMtxBuffer.h"
 #include "JSystem/J3D/J3DMtxCalc.h"
+#include "sqrt.h"
 
 /*
     Generated from dpostproc
@@ -984,6 +985,11 @@
         .float 0.05
         .4byte 0x00000000
 */
+namespace Game {
+namespace Farm {
+FarmMgr* farmMgr;
+}
+} // namespace Game
 
 const char* dataPath = "/enemy/data/pelplant"; // unused/used in print inline probably
 const char* parmPath = "/enemy/parm/pelplant"; // unused/used in print inline probably
@@ -1201,71 +1207,33 @@ void Obj::doDebugDraw(Graphics& graphics)
  * Address:	80108B10
  * Size:	0000C0
  */
-// one. single. regswap.
-// WIP: https://decomp.me/scratch/ewP6E
 void Obj::getShadowParam(Game::ShadowParam& param)
 {
 	param.m_position = m_position;
 	param.m_position.y += 2.0f;
-	// TODO: Needs _0C8
-	/*
-	lfs      f1, 0x18c(r3)
-	lfs      f0, lbl_80517884@sda21(r2)
-	stfs     f1, 0(r4)
-	lfs      f1, 0x190(r3)
-	stfs     f1, 4(r4)
-	lfs      f1, 0x194(r3)
-	stfs     f1, 8(r4)
-	lfs      f1, 4(r4)
-	fadds    f0, f1, f0
-	stfs     f0, 4(r4)
-	lwz      r5, 0xc8(r3)
-	cmplwi   r5, 0
-	beq      lbl_80108B60
-	lfs      f0, 0xc(r5)
-	stfs     f0, 0xc(r4)
-	lfs      f0, 0x10(r5)
-	stfs     f0, 0x10(r4)
-	lfs      f0, 0x14(r5)
-	stfs     f0, 0x14(r4)
-	b        lbl_80108B74
 
-lbl_80108B60:
-	lfs      f1, lbl_80517860@sda21(r2)
-	lfs      f0, lbl_80517868@sda21(r2)
-	stfs     f1, 0xc(r4)
-	stfs     f0, 0x10(r4)
-	stfs     f1, 0x14(r4)
+	if (_0C8 != nullptr) {
+		Plane* plane                        = &_0C8->m_trianglePlane;
+		param.m_boundingSphere.m_position.x = plane->a;
+		param.m_boundingSphere.m_position.y = plane->b;
+		param.m_boundingSphere.m_position.z = plane->c;
+	} else {
+		param.m_boundingSphere.m_position = Vector3f(0.0f, 1.0f, 0.0f);
+	}
 
-lbl_80108B74:
-	lfs      f1, lbl_80517888@sda21(r2)
-	lfs      f0, lbl_80517860@sda21(r2)
-	stfs     f1, 0x18(r4)
-	lwz      r3, 0x2c4(r3)
-	lfs      f1, 0(r3)
-	lfs      f2, 4(r3)
-	fmuls    f3, f1, f1
-	lfs      f1, 8(r3)
-	fmuls    f2, f2, f2
-	fmuls    f1, f1, f1
-	fadds    f3, f3, f2
-	fadds    f3, f3, f1
-	fcmpo    cr0, f3, f0
-	ble      lbl_80108BBC
-	ble      lbl_80108BC0
-	frsqrte  f0, f3
-	fmuls    f3, f0, f3
-	b        lbl_80108BC0
+	param.m_boundingSphere.m_radius = 50.0f;
 
-lbl_80108BBC:
-	fmr      f3, f0
+	Vector3f vec((*_2C4)(0, 0), (*_2C4)(0, 1), (*_2C4)(0, 2));
+	Vector3f newVec = vec;
+	float sum       = newVec.x;
+	newVec.y *= newVec.y;
+	newVec.z *= newVec.z;
+	sum *= newVec.x;
+	sum += newVec.y;
+	sum += newVec.z;
+	_sqrtf(sum, &sum);
 
-lbl_80108BC0:
-	lfs      f0, lbl_8051788C@sda21(r2)
-	fmuls    f0, f0, f3
-	stfs     f0, 0x1c(r4)
-	blr
-	*/
+	param._1C = 8.0f * sum;
 }
 
 /*
