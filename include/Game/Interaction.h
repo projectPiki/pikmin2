@@ -31,16 +31,6 @@ struct Interaction {
 	Creature* m_creature; // _04
 };
 
-struct InteractFlick : public Interaction {
-	virtual bool actCommon(Creature*); // _08
-	virtual bool actPiki(Piki*);       // _0C
-	virtual bool actNavi(Navi*);       // _10
-
-	f32 m_knockback; // _08
-	f32 m_damage;    // _0C
-	f32 _10;         // _10
-};
-
 struct InteractAbsorb : public Interaction {
 	virtual bool actItem(BaseItem*); // _20
 };
@@ -55,10 +45,29 @@ struct InteractAttack : public Interaction {
 	struct CollPart* m_collPart; // _0C
 };
 
+struct InteractBomb : public Interaction {
+	virtual bool actPiki(Piki*);       // _0C
+	virtual bool actNavi(Navi*);       // _10
+	virtual bool actEnemy(EnemyBase*); // _14
+
+	// _00 VTBL
+	// _04 Parent
+	float m_damage;      // _08
+	Vector3f m_velocity; // _0C
+};
+
 struct InteractBreakBridge : public Interaction {
 	virtual bool actItem(BaseItem*); // _20
 
 	float _08; // _08
+};
+
+struct InteractBubble : public Interaction {
+	virtual bool actPiki(Piki*); // _0C
+	virtual bool actNavi(Navi*); // _10
+
+	// _00 VTBL
+	// _04 Parent
 };
 
 struct InteractDope : public Interaction {
@@ -68,11 +77,29 @@ struct InteractDope : public Interaction {
 	s32 m_sprayType; // _08
 };
 
+struct InteractDrop : public Interaction {
+	virtual bool actEnemy(EnemyBase*); // _14
+};
+
+struct InteractEarthquake : public InteractAttack {
+	virtual bool actEnemy(EnemyBase*); // _14
+};
+
 struct InteractEat : public Interaction {
 	virtual bool actPellet(Pellet*); // _18
 	virtual bool actItem(BaseItem*); // _20
 
 	int _08; // _08
+};
+
+struct InteractFlick : public Interaction {
+	virtual bool actCommon(Creature*); // _08
+	virtual bool actPiki(Piki*);       // _0C
+	virtual bool actNavi(Navi*);       // _10
+
+	f32 m_knockback; // _08
+	f32 m_damage;    // _0C
+	f32 _10;         // _10
 };
 
 struct InteractFlockAttack : public Interaction {
@@ -82,6 +109,10 @@ struct InteractFlockAttack : public Interaction {
 	float _0C;    // _0C
 	u8 _10;       // _10
 	Vector3f _14; // _14
+};
+
+struct InteractFlyCollision : public InteractAttack {
+	virtual bool actEnemy(EnemyBase*); // _14
 };
 
 struct InteractFue : public Interaction {
@@ -107,42 +138,16 @@ struct InteractGotKey : public Interaction {
 	// _04 should be casted to Onyon
 };
 
-struct InteractSwallow : public InteractAttack {
-	virtual bool actCommon(Creature*); // _08
-	virtual bool actPiki(Piki*);       // _0C
-
-	int _10; // _10
-};
-
-struct InteractKill : public Interaction {
-	virtual bool actCommon(Creature*); // _08
-	virtual bool actPiki(Piki*);       // _0C
-};
-
-struct InteractBomb : public Interaction {
-	virtual bool actPiki(Piki*);       // _0C
-	virtual bool actNavi(Navi*);       // _10
-	virtual bool actEnemy(EnemyBase*); // _14
-
-	// _00 VTBL
-	// _04 Parent
-	float m_damage;      // _08
-	Vector3f m_velocity; // _0C
-};
-
-struct InteractBubble : public Interaction {
-	virtual bool actPiki(Piki*); // _0C
-	virtual bool actNavi(Navi*); // _10
-
-	// _00 VTBL
-	// _04 Parent
-};
-
 struct InteractHipdrop : public InteractAttack {
 	virtual bool actEnemy(EnemyBase*); // _14
 
 	// _00 VTBL
 	// _04 Parent
+};
+
+struct InteractKill : public Interaction {
+	virtual bool actCommon(Creature*); // _08
+	virtual bool actPiki(Piki*);       // _0C
 };
 
 struct InteractMattuan : public Interaction {
@@ -157,6 +162,19 @@ struct InteractMattuan : public Interaction {
 	// _00 VTBL
 	// _04 Parent
 	float _08; // _08
+};
+
+struct InteractPress : public InteractAttack {
+	virtual bool actPiki(Piki*);       // _0C
+	virtual bool actNavi(Navi*);       // _10
+	virtual bool actEnemy(EnemyBase*); // _14
+};
+
+struct InteractSwallow : public InteractAttack {
+	virtual bool actCommon(Creature*); // _08
+	virtual bool actPiki(Piki*);       // _0C
+
+	int _10; // _10
 };
 } // namespace Game
 
