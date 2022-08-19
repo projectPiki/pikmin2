@@ -419,6 +419,8 @@ struct EnemyBase : public Creature, public SysShape::MotionListener, virtual pub
 		sep.y = getPosition().z - creature->getPosition().z;
 	}
 
+	inline void setEnemyIndexForType(u8 idx) { m_enemyIndexForType = idx; }
+
 	inline void setEvent(int i, u32 flag) { m_events.m_flags[i].typeView |= flag; }
 
 	inline void resetEvent(int i, u32 flag) { m_events.m_flags[i].typeView &= ~flag; }
