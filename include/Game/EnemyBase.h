@@ -27,7 +27,6 @@
 #include "Game/EnemyStone.h"
 #include "Game/EnemyEffectNode.h"
 #include "trig.h"
-#include "Game/EnemyMgrBase.h"
 #include "Vector2.h"
 
 #define EMOTE_None       (0)
@@ -418,6 +417,8 @@ struct EnemyBase : public Creature, public SysShape::MotionListener, virtual pub
 		sep.x = getPosition().x - creature->getPosition().x;
 		sep.y = getPosition().z - creature->getPosition().z;
 	}
+
+	inline void setEnemyIndexForType(u8 idx) { m_enemyIndexForType = idx; }
 
 	inline void setEvent(int i, u32 flag) { m_events.m_flags[i].typeView |= flag; }
 

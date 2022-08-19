@@ -8,6 +8,7 @@
 #include "stream.h"
 #include "CNode.h"
 #include "id32.h"
+#include "Game/EnemyBase.h"
 #include "Game/enemyInfo.h"
 #include "Game/EnemyPelletInfo.h"
 #include "Game/pelletMgr.h"
@@ -18,7 +19,6 @@ namespace Game {
 struct Creature;
 struct GeneratorMgr;
 struct GenObject;
-struct EnemyInitialParamBase;
 
 struct Generator : public CNode {
 	Generator();

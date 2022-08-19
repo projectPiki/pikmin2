@@ -5,6 +5,10 @@
 #include "Dolphin/os.h"
 #include "JSystem/JAI/JAIBasic.h"
 #include "PSSystem/FxMgr.h"
+#include "JSystem/JKR/JKRDisposer.h"
+#include "JSystem/JKR/JKRFileLoader.h"
+#include "JSystem/JUT/JUTException.h"
+#include "PSGame/BASARC.H"
 
 namespace PSSystem {
 struct SetupArg;
@@ -35,6 +39,22 @@ struct SysIF : public JAIBasic {
 	FxMgr m_fxMgr;         // _44
 	u32 _48;               // _48
 };
+
+template <typename T> struct ArcMgr : public JKRDisposer {
+	virtual ~ArcMgr(); // _08
+
+	static T* sInstance;
+
+	// _00      = VTABLE
+	// _04-_18  = JKRDisposer
+	JKRArchive* m_archive; // _18
+};
+
+inline JKRFileLoader* getLoaderInstance()
+{
+	P2ASSERTLINE(80, PSSystem::ArcMgr<PSGame::BASARC>::sInstance != nullptr);
+	return (JKRFileLoader*)PSSystem::ArcMgr<PSGame::BASARC>::sInstance->_18.m_value;
+}
 
 extern SysIF* spSysIF;
 } // namespace PSSystem

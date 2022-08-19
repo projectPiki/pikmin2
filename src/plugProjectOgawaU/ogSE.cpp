@@ -1,6 +1,6 @@
 #include "types.h"
 #include "og/Sound.h"
-#include "PSSystem/SysIF.h"
+#include "PSSystem/PSSystemIF.h"
 #include "SoundID.h"
 
 /*

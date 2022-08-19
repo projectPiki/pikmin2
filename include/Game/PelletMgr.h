@@ -38,7 +38,7 @@ struct PelletInitArg;
 
 struct PelletMgr : public NodeObjectMgr<GenericObjectMgr> {
 	struct OtakaraItemCode {
-		OtakaraItemCode(s16 v)
+		OtakaraItemCode(s16 v = 0)
 		    : m_value(v)
 		{
 		}

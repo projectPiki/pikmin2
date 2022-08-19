@@ -23,7 +23,7 @@
 #include "nans.h"
 #include "Game/ItemHole.h"
 #include "SoundID.h"
-#include "PSSystem/SysIF.h"
+#include "PSSystem/PSSystemIF.h"
 
 /*
     Generated from dpostproc

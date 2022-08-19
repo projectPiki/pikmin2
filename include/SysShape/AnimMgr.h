@@ -7,7 +7,10 @@
 struct JKRFileLoader;
 
 namespace PSGame {
-struct SoundCreatureMgr;
+class SoundCreatureMgr {
+public:
+	void registerAnime(J3DAnmBase*, const char*);
+};
 } // namespace PSGame
 
 namespace SysShape {
