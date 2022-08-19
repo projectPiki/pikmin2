@@ -122,22 +122,25 @@ struct EnemyMgrBase : public IEnemyMgrBase {
 	{
 		return false;
 	}
-	virtual void createObj(int)      = 0;               // _60
-	virtual EnemyBase* getEnemy(int) = 0;               // _64
-	virtual void doAlloc();                             // _68
-	virtual EnemyTypeID::EEnemyTypeID getEnemyTypeID(); // _6C
-	virtual SysShape::Model* createModel();             // _70
-	virtual void initParms();                           // _74
-	virtual void loadResource();                        // _78
-	virtual void initObjects();                         // _7C
-	virtual void initStoneSetting();                    // _80
-	virtual J3DModelData* loadModelData(JKRArchive*);   // _84
-	virtual void loadModelData();                       // _88
-	virtual void loadAnimData();                        // _8C
-	virtual void loadTexData();                         // _90
-	virtual J3DModelData* doLoadBmd(void*);             // _94
-	virtual J3DModelData* doLoadBdl(void*);             // _98
-	virtual void initGenerator();                       // _9C
+	virtual void createObj(int)      = 0;              // _60
+	virtual EnemyBase* getEnemy(int) = 0;              // _64
+	virtual void doAlloc();                            // _68
+	virtual EnemyTypeID::EEnemyTypeID getEnemyTypeID() // _6C
+	{
+		return (EnemyTypeID::EEnemyTypeID)-1;
+	}
+	virtual SysShape::Model* createModel();           // _70
+	virtual void initParms();                         // _74
+	virtual void loadResource();                      // _78
+	virtual void initObjects();                       // _7C
+	virtual void initStoneSetting();                  // _80
+	virtual J3DModelData* loadModelData(JKRArchive*); // _84
+	virtual void loadModelData();                     // _88
+	virtual void loadAnimData();                      // _8C
+	virtual void loadTexData();                       // _90
+	virtual J3DModelData* doLoadBmd(void*);           // _94
+	virtual J3DModelData* doLoadBdl(void*);           // _98
+	virtual void initGenerator();                     // _9C
 
 	void init(EnemyParmsBase*);
 	bool isValidEnemyTypeID();

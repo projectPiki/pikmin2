@@ -5,8 +5,7 @@
 #include "JSystem/J3D/J3DSys.h"
 #include "JSystem/JUT/JUTException.h"
 #include "LoadResource.h"
-#include "PSGame/BASARC.h"
-#include "PSSystem/ArcMgr.h"
+#include "PSSystem/PSSystemIF.h"
 #include "System.h"
 
 namespace Game {
@@ -196,6 +195,21 @@ void EnemyMgrBase::doDirectDraw(Graphics& graphics)
 
 /*
  * --INFO--
+ * Address:	8012f354
+ * Size:	000074
+ */
+void* EnemyMgrBase::getNext(void* object)
+{
+	for (int i = (int)object + 1; i < m_objLimit; i++) {
+		if (getEnemy(i)->m_events.m_flags[0].typeView & 0x10000000) {
+			return (void*)i;
+		}
+	}
+	return (void*)m_objLimit;
+}
+
+/*
+ * --INFO--
  * Address:	8012F3C8
  * Size:	000184
  */
@@ -269,9 +283,9 @@ void EnemyMgrBase::kill(EnemyBase* enemy)
 
 	EnemyFSMState* state = enemy->m_currentLifecycleState;
 	if (state != nullptr) {
-		JUT_PANICLINE(447, "kill dead enemy. %s %d\n state: %s", enemy->getCreatureName(), enemy->getCreatureID(), state->m_name);
+		JUT_PANICLINE(447, "kill dead enemy. %s %d\n state:%s", enemy->getCreatureName(), enemy->getCreatureID(), state->m_name);
 	} else {
-		JUT_PANICLINE(453, "kill dead enemy. %s %d\n state: %d", enemy->getCreatureName(), enemy->getCreatureID(), enemy->getStateID());
+		JUT_PANICLINE(453, "kill dead enemy. %s %d\n state:%d", enemy->getCreatureName(), enemy->getCreatureID(), enemy->getStateID());
 	}
 }
 
@@ -299,7 +313,7 @@ void EnemyMgrBase::killAll(CreatureKillArg* arg)
  * Address:	8012F760
  * Size:	00003C
  */
-inline bool EnemyMgrBase::isValidEnemyTypeID()
+bool EnemyMgrBase::isValidEnemyTypeID()
 {
 	const bool result = (getEnemyTypeID() != -1);
 	return result;
@@ -318,8 +332,7 @@ void Game::EnemyMgrBase::setupSoundViewerAndBas()
 		char* resName   = EnemyInfoFunc::getEnemyResName(getEnemyTypeID(), 0xFFFF);
 		char* enemyName = EnemyInfoFunc::getEnemyName(getEnemyTypeID(), 0xFFFF);
 
-		P2ASSERTLINE(80, PSSystem::ArcMgr<PSGame::BASARC>::sInstance != nullptr);
-		JKRFileLoader* fileLoader = (JKRFileLoader*)PSSystem::ArcMgr<PSGame::BASARC>::sInstance->_18.m_value;
+		JKRFileLoader* fileLoader = PSSystem::getLoaderInstance();
 
 		m_animMgr->connectBasArc(resName, enemyName, fileLoader);
 		m_animMgr->registerSoundViewer(&soundMgr);

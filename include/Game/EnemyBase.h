@@ -27,7 +27,6 @@
 #include "Game/EnemyStone.h"
 #include "Game/EnemyEffectNode.h"
 #include "trig.h"
-#include "Game/EnemyMgrBase.h"
 #include "Vector2.h"
 
 #define EMOTE_None       (0)

@@ -3,7 +3,7 @@
 #include "ebi/E2DCallBack.h"
 #include "Graphics.h"
 #include "JSystem/JUT/JUTException.h"
-#include "PSSystem/SysIF.h"
+#include "PSSystem/PSSystemIF.h"
 #include "Screen/Game2DMgr.h"
 #include "SoundID.h"
 #include "System.h"
