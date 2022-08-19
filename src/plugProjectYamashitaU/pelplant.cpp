@@ -1201,6 +1201,8 @@ void Obj::doDebugDraw(Graphics& graphics)
  * Address:	80108B10
  * Size:	0000C0
  */
+// one. single. regswap.
+// WIP: https://decomp.me/scratch/ewP6E
 void Obj::getShadowParam(Game::ShadowParam& param)
 {
 	param.m_position = m_position;
@@ -1626,7 +1628,7 @@ Mgr::Mgr(int p1, unsigned char p2)
  * Address:	801095A4
  * Size:	000098
  */
-// WEAK - need to move to header
+// WEAK - in header
 // EnemyMgrBase::~EnemyMgrBase() { }
 
 /*
@@ -1654,135 +1656,11 @@ void Mgr::doAlloc() { init(new Parms); }
  * Address:	8010979C
  * Size:	0001D4
  */
-// WEAK - needs to go in header once matched
+// WEAK - in header
 // EnemyParmsBase::EnemyParmsBase()
-//     : CreatureParms()
-//     , m_flags()
-//     , m_general()
 // {
-// 	m_flags[0].byteView[0] = 0;
-// 	m_flags[0].byteView[1] = 0;
-// 	m_flags[1].byteView[0] = 0;
-// 	m_flags[1].byteView[1] = 0;
-// 	/*
-// 	stwu     r1, -0x10(r1)
-// 	mflr     r0
-// 	lis      r5, 0x73303030@ha
-// 	lis      r4, __vt__Q24Game13CreatureParms@ha
-// 	stw      r0, 0x14(r1)
-// 	addi     r0, r4, __vt__Q24Game13CreatureParms@l
-// 	addi     r5, r5, 0x73303030@l
-// 	stw      r31, 0xc(r1)
-// 	mr       r31, r3
-// 	lis      r3, lbl_8047A660@ha
-// 	stw      r30, 8(r1)
-// 	addi     r30, r3, lbl_8047A660@l
-// 	li       r3, 0
-// 	mr       r4, r31
-// 	stw      r0, 0xd8(r31)
-// 	addi     r0, r31, 0xd4
-// 	addi     r6, r30, 0x118
-// 	stw      r0, 0(r31)
-// 	addi     r0, r30, 0x104
-// 	stw      r3, 4(r31)
-// 	addi     r3, r31, 0xc
-// 	stw      r0, 8(r31)
-// 	bl       __ct__8BaseParmFP10ParametersUlPc
-// 	lis      r3, "__vt__7Parm<f>"@ha
-// 	lis      r5, 0x73303031@ha
-// 	addi     r0, r3, "__vt__7Parm<f>"@l
-// 	lfs      f0, lbl_80517864@sda21(r2)
-// 	stw      r0, 0xc(r31)
-// 	mr       r4, r31
-// 	lfs      f1, lbl_80517860@sda21(r2)
-// 	addi     r3, r31, 0x34
-// 	stfs     f0, 0x24(r31)
-// 	addi     r5, r5, 0x73303031@l
-// 	lfs      f0, lbl_80517868@sda21(r2)
-// 	addi     r6, r30, 0x12c
-// 	stfs     f1, 0x2c(r31)
-// 	stfs     f0, 0x30(r31)
-// 	bl       __ct__8BaseParmFP10ParametersUlPc
-// 	lis      r3, "__vt__7Parm<f>"@ha
-// 	lis      r5, 0x73303032@ha
-// 	addi     r0, r3, "__vt__7Parm<f>"@l
-// 	lfs      f0, lbl_80517864@sda21(r2)
-// 	stw      r0, 0x34(r31)
-// 	mr       r4, r31
-// 	lfs      f1, lbl_80517860@sda21(r2)
-// 	addi     r3, r31, 0x5c
-// 	stfs     f0, 0x4c(r31)
-// 	addi     r5, r5, 0x73303032@l
-// 	lfs      f0, lbl_80517868@sda21(r2)
-// 	addi     r6, r30, 0x13c
-// 	stfs     f1, 0x54(r31)
-// 	stfs     f0, 0x58(r31)
-// 	bl       __ct__8BaseParmFP10ParametersUlPc
-// 	lis      r3, "__vt__7Parm<f>"@ha
-// 	lis      r5, 0x73303033@ha
-// 	addi     r0, r3, "__vt__7Parm<f>"@l
-// 	lfs      f0, lbl_805178C4@sda21(r2)
-// 	stw      r0, 0x5c(r31)
-// 	mr       r4, r31
-// 	lfs      f1, lbl_80517860@sda21(r2)
-// 	addi     r3, r31, 0x84
-// 	stfs     f0, 0x74(r31)
-// 	addi     r5, r5, 0x73303033@l
-// 	lfs      f0, lbl_80517868@sda21(r2)
-// 	addi     r6, r2, lbl_805178C8@sda21
-// 	stfs     f1, 0x7c(r31)
-// 	stfs     f0, 0x80(r31)
-// 	bl       __ct__8BaseParmFP10ParametersUlPc
-// 	lis      r3, "__vt__7Parm<f>"@ha
-// 	lis      r5, 0x73303034@ha
-// 	addi     r0, r3, "__vt__7Parm<f>"@l
-// 	lfs      f0, lbl_805178D0@sda21(r2)
-// 	stw      r0, 0x84(r31)
-// 	mr       r4, r31
-// 	lfs      f1, lbl_805178D4@sda21(r2)
-// 	addi     r3, r31, 0xac
-// 	stfs     f0, 0x9c(r31)
-// 	addi     r5, r5, 0x73303034@l
-// 	lfs      f0, lbl_80517884@sda21(r2)
-// 	addi     r6, r30, 0x14c
-// 	stfs     f1, 0xa4(r31)
-// 	stfs     f0, 0xa8(r31)
-// 	bl       __ct__8BaseParmFP10ParametersUlPc
-// 	lis      r3, "__vt__7Parm<f>"@ha
-// 	lfs      f0, lbl_805178D8@sda21(r2)
-// 	addi     r0, r3, "__vt__7Parm<f>"@l
-// 	lfs      f1, lbl_805178D4@sda21(r2)
-// 	stw      r0, 0xac(r31)
-// 	lis      r5, __vt__Q24Game14EnemyParmsBase@ha
-// 	addi     r0, r5, __vt__Q24Game14EnemyParmsBase@l
-// 	lis      r3, "__ct__11BitFlag<Us>Fv"@ha
-// 	stfs     f0, 0xc4(r31)
-// 	addi     r4, r3, "__ct__11BitFlag<Us>Fv"@l
-// 	lfs      f0, lbl_80517884@sda21(r2)
-// 	addi     r3, r31, 0xdc
-// 	stfs     f1, 0xcc(r31)
-// 	li       r5, 0
-// 	li       r6, 2
-// 	li       r7, 2
-// 	stfs     f0, 0xd0(r31)
-// 	stw      r0, 0xd8(r31)
-// 	bl       __construct_array
-// 	addi     r3, r31, 0xe0
-// 	li       r4, 1
-// 	bl       __ct__Q34Game14EnemyParmsBase5ParmsFv
-// 	li       r0, 0
-// 	mr       r3, r31
-// 	stb      r0, 0xdc(r31)
-// 	stb      r0, 0xdd(r31)
-// 	stb      r0, 0xde(r31)
-// 	stb      r0, 0xdf(r31)
-// 	lwz      r31, 0xc(r1)
-// 	lwz      r30, 8(r1)
-// 	lwz      r0, 0x14(r1)
-// 	mtlr     r0
-// 	addi     r1, r1, 0x10
-// 	blr
-// 	*/
+// 	m_flags[0].clear();
+//  m_flags[1].clear();
 // }
 
 /*
@@ -1908,6 +1786,9 @@ void Obj::doGetLifeGaugeParam(Game::LifeGaugeParam& param)
 	param._10                = 10.0f;
 }
 
+} // namespace Pelplant
+} // namespace Game
+
 /*
  * __dt__Q34Game8Pelplant3MgrFv
  * --INFO--
@@ -1948,7 +1829,8 @@ void Obj::doGetLifeGaugeParam(Game::LifeGaugeParam& param)
  * Address:	8010A76C
  * Size:	000010
  */
-EnemyBase* Pelplant::Mgr::getEnemy(int index) { return &m_objects[index]; }
+// WEAK - in header
+// EnemyBase* Pelplant::Mgr::getEnemy(int index) { return &m_objects[index]; }
 
 /*
  * --INFO--
@@ -1964,6 +1846,7 @@ EnemyBase* Pelplant::Mgr::getEnemy(int index) { return &m_objects[index]; }
  * Address:	8010A780
  * Size:	00002C
  */
+// WEAK - in header
 // void EnemyMgrBase::get(void*)
 // {
 // }
@@ -1997,8 +1880,6 @@ EnemyBase* Pelplant::Mgr::getEnemy(int index) { return &m_objects[index]; }
 // int EnemyMgrBase::getMaxObjects() const
 // {
 // }
-
-} // namespace Pelplant
 
 /*
  * doSimpleDraw__16GenericObjectMgrFP8Viewport
@@ -2047,8 +1928,6 @@ EnemyBase* Pelplant::Mgr::getEnemy(int index) { return &m_objects[index]; }
  * Size:	000008
  */
 // u32 GenericObjectMgr::getMatrixLoadType() { return 0x0; }
-
-namespace Game {
 
 /**
  * getEnd__Q24Game12EnemyMgrBaseFv
@@ -2110,8 +1989,6 @@ namespace Game {
 // {
 // }
 
-} // namespace Game
-
 /*
  * __dt__16GenericContainerFv
  * --INFO--
@@ -2121,8 +1998,6 @@ namespace Game {
 // GenericContainer::~GenericContainer()
 // {
 // }
-
-namespace Game {
 
 /*
  * __dt__Q24Game13IEnemyMgrBaseFv
@@ -2142,39 +2017,6 @@ namespace Game {
  */
 // Pelplant::ProperAnimator::~ProperAnimator()
 // {
-// 	/*
-// 	stwu     r1, -0x10(r1)
-// 	mflr     r0
-// 	stw      r0, 0x14(r1)
-// 	stw      r31, 0xc(r1)
-// 	or.      r31, r3, r3
-// 	beq      lbl_8010AA34
-// 	lis      r3, __vt__Q34Game8Pelplant14ProperAnimator@ha
-// 	addi     r0, r3, __vt__Q34Game8Pelplant14ProperAnimator@l
-// 	stw      r0, 0(r31)
-// 	beq      lbl_8010AA24
-// 	lis      r3, __vt__Q24Game22EnemyBlendAnimatorBase@ha
-// 	addi     r0, r3, __vt__Q24Game22EnemyBlendAnimatorBase@l
-// 	stw      r0, 0(r31)
-// 	beq      lbl_8010AA24
-// 	lis      r3, __vt__Q24Game17EnemyAnimatorBase@ha
-// 	addi     r0, r3, __vt__Q24Game17EnemyAnimatorBase@l
-// 	stw      r0, 0(r31)
-
-// lbl_8010AA24:
-// 	extsh.   r0, r4
-// 	ble      lbl_8010AA34
-// 	mr       r3, r31
-// 	bl       __dl__FPv
-
-// lbl_8010AA34:
-// 	lwz      r0, 0x14(r1)
-// 	mr       r3, r31
-// 	lwz      r31, 0xc(r1)
-// 	mtlr     r0
-// 	addi     r1, r1, 0x10
-// 	blr
-// 	*/
 // }
 
 /*
@@ -2203,11 +2045,8 @@ namespace Game {
  * Address:	8010AA78
  * Size:	000008
  */
-EnemyTypeID::EEnemyTypeID Pelplant::Obj::getEnemyTypeID() { return EnemyTypeID::EnemyID_Pelplant; }
-
-} // namespace Game
-
-} // namespace Game
+// WEAK - in header
+// EnemyTypeID::EEnemyTypeID Pelplant::Obj::getEnemyTypeID() { return EnemyTypeID::EnemyID_Pelplant; }
 
 /*
  * size__7Parm<i>Fv

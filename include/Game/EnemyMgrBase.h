@@ -112,7 +112,7 @@ struct EnemyMgrBase : public IEnemyMgrBase {
 	 */
 	virtual EnemyBase* get(void* index) // _58
 	{
-		return getEnemy((long)index);
+		return getEnemy((int)index);
 	}
 	/**
 	 * @reifiedAddress{801074BC}

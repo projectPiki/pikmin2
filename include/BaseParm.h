@@ -26,8 +26,7 @@ template <typename T> struct Parm : public BaseParm {
 	{
 	}
 
-	virtual int size();
-	// { return 0x4; }
+	virtual int size() { return sizeof(T); }
 	virtual void write(Stream&);
 	virtual void read(Stream&);
 	inline T operator()() { return m_value; }

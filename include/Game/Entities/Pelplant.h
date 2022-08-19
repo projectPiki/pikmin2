@@ -56,13 +56,16 @@ struct Obj : public EnemyBase {
 	virtual void getShadowParam(ShadowParam&); // _12C
 	virtual void onStickStart(Creature*);      // _150
 	// vtable 2 (MotionListener+EnemyBase+self)
-	virtual ~Obj() { }                                        // _004
-	virtual void birth(Vector3f&, float);                     // _008
-	virtual void setInitialSetting(EnemyInitialParamBase*);   // _00C
-	virtual void doUpdate();                                  // _014
-	virtual void doAnimationUpdateAnimator();                 // _020
-	virtual void doDebugDraw(Graphics&);                      // _034
-	virtual EnemyTypeID::EEnemyTypeID getEnemyTypeID();       // _0A0
+	virtual ~Obj() { }                                      // _004
+	virtual void birth(Vector3f&, float);                   // _008
+	virtual void setInitialSetting(EnemyInitialParamBase*); // _00C
+	virtual void doUpdate();                                // _014
+	virtual void doAnimationUpdateAnimator();               // _020
+	virtual void doDebugDraw(Graphics&);                    // _034
+	virtual EnemyTypeID::EEnemyTypeID getEnemyTypeID()      // _0A0
+	{
+		return EnemyTypeID::EnemyID_Pelplant;
+	}
 	virtual void doGetLifeGaugeParam(LifeGaugeParam&);        // _0A8
 	virtual bool damageCallBack(Creature*, float, CollPart*); // _0C0
 	virtual bool farmCallBack(Creature*, float);              // _0D8
@@ -109,7 +112,7 @@ struct Mgr : public EnemyMgrBase {
 	virtual ~Mgr() { }
 	virtual EnemyBase* birth(EnemyBirthArg&);
 	virtual void createObj(int count) { m_objects = new Obj[count]; }
-	virtual EnemyBase* getEnemy(int);
+	virtual EnemyBase* getEnemy(int index) { return &m_objects[index]; }
 	virtual void doAlloc();
 	virtual EnemyTypeID::EEnemyTypeID getEnemyTypeID() { return EnemyTypeID::EnemyID_Pelplant; }
 	virtual void initStoneSetting() { }
@@ -172,7 +175,7 @@ struct ProperAnimator : public EnemyBlendAnimatorBase {
 	 * @reifiedAddress{8010A9E0}
 	 * @reifiedFile{plugProjectYamashitaU/pelplant.cpp}
 	 */
-	virtual ~ProperAnimator() {};                 // _00
+	virtual ~ProperAnimator() { }                 // _00
 	virtual void setAnimMgr(SysShape::AnimMgr*);  // _04
 	virtual SysShape::Animator& getAnimator();    // _08
 	virtual SysShape::Animator& getAnimator(int); // _0C

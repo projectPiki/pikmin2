@@ -54,26 +54,18 @@ struct CreatureProperty {
 	    : m_props() {};
 	Property m_props;
 };
-struct CreatureParms : public CreatureProperty {
-	CreatureParms()
-	    : CreatureProperty() {};
+
+struct CreatureParms {
+	CreatureParms() {};
+
+	CreatureProperty m_creatureProps;
 
 	virtual void read(Stream& input) // _00
 	{
-		m_props.read(input);
+		m_creatureProps.m_props.read(input);
 	};
 };
-// struct CreatureParms {
-// 	CreatureParms()
-// 	    : m_props() {};
 
-// 	virtual void read(Stream& input) // _00
-// 	{
-// 		m_props.read(input);
-// 	};
-
-// 	Property m_props;
-// };
 struct EnemyParmsBase : public CreatureParms {
 	struct Parms : public Parameters {
 		Parms()
@@ -174,14 +166,9 @@ struct EnemyParmsBase : public CreatureParms {
 	};
 
 	EnemyParmsBase()
-	    : CreatureParms()
-	    , m_flags()
-	    , m_general()
 	{
-		m_flags[0].byteView[0] = 0;
-		m_flags[0].byteView[1] = 0;
-		m_flags[1].byteView[0] = 0;
-		m_flags[1].byteView[1] = 0;
+		m_flags[0].clear();
+		m_flags[1].clear();
 	}
 
 	bool loadSettingFile(JKRArchive* archive, char* name);
