@@ -57,7 +57,7 @@ struct EnemyMgrBase : public IEnemyMgrBase {
 	virtual void doSimulation(float);     // _10
 	virtual void doDirectDraw(Graphics&); // _14
 	// vtable 2 (GenericContainer + IEnemyMgrBase + self)
-	virtual ~EnemyMgrBase(); // _18
+	virtual ~EnemyMgrBase() { } // _18
 	/**
 	 * @reifiedAddress{8010A820}
 	 * @reifiedFile{plugProjectYamashitaU/pelplant.cpp}

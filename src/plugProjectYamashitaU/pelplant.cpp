@@ -1113,13 +1113,13 @@ Obj::Obj()
  * Address:	8010881C
  * Size:	00004C
  */
-// WEAK - need to move to header
-void Pelplant::Obj::setFSM(Game::Pelplant::FSM* fsm)
-{
-	m_fsm = fsm;
-	m_fsm->init(this);
-	m_currentLifecycleState = nullptr;
-}
+// WEAK - in header
+// void Pelplant::Obj::setFSM(Game::Pelplant::FSM* fsm)
+// {
+// 	m_fsm = fsm;
+// 	m_fsm->init(this);
+// 	m_currentLifecycleState = nullptr;
+// }
 
 /*
  * __dt__Q24Game22EnemyBlendAnimatorBaseFv
@@ -1127,8 +1127,8 @@ void Pelplant::Obj::setFSM(Game::Pelplant::FSM* fsm)
  * Address:	80108868
  * Size:	00005C
  */
-// WEAK - need to move to header
-EnemyBlendAnimatorBase::~EnemyBlendAnimatorBase() { }
+// WEAK - in header
+// EnemyBlendAnimatorBase::~EnemyBlendAnimatorBase() { }
 
 /*
  * --INFO--
@@ -1487,7 +1487,7 @@ void Obj::attachPellet()
  * Address:	801091E4
  * Size:	000098
  */
-bool Pelplant::Obj::damageCallBack(Game::Creature* source, float damage, CollPart* part)
+bool Obj::damageCallBack(Game::Creature* source, float damage, CollPart* part)
 {
 	if (isLivingThing()) {
 		addDamage(damage, 1.0f);
@@ -1503,14 +1503,15 @@ bool Pelplant::Obj::damageCallBack(Game::Creature* source, float damage, CollPar
  * Address:	8010927C
  * Size:	00000C
  */
-bool Pelplant::Obj::isLivingThing() { return (_2C8 >> 1 & 1); }
+// WEAK - in header
+// bool Obj::isLivingThing() { return (_2C8 >> 1 & 1); }
 
 /*
  * --INFO--
  * Address:	80109288
  * Size:	000078
  */
-bool Pelplant::Obj::farmCallBack(Game::Creature* p1, float p2)
+bool Obj::farmCallBack(Game::Creature* p1, float p2)
 {
 	m_farmPow = (char)((p2 >= 0.0f) ? p2 + 0.5f : p2 - 0.5f);
 	if (m_farmPow < 0) {
@@ -1527,7 +1528,7 @@ bool Pelplant::Obj::farmCallBack(Game::Creature* p1, float p2)
  * Address:	80109300
  * Size:	000060
  */
-void Pelplant::Obj::onStickStart(Game::Creature* other)
+void Obj::onStickStart(Game::Creature* other)
 {
 	EnemyBase::onStickStart(other);
 	if (other->_0F8 && other->_0F8->_3C.getStrID()[3] == '0') {
@@ -1540,7 +1541,7 @@ void Pelplant::Obj::onStickStart(Game::Creature* other)
  * Address:	80109360
  * Size:	0000F0
  */
-unknown Pelplant::Obj::headJointCallBack(J3DJoint* joint, int p2)
+unknown Obj::headJointCallBack(J3DJoint* joint, int p2)
 {
 	if (sCurrentObj != nullptr && p2 == 1) {
 		Mtx& mtx    = J3DMtxCalc::mMtxBuffer->m_worldMatrices[joint->getJntNo()];
@@ -1559,7 +1560,7 @@ unknown Pelplant::Obj::headJointCallBack(J3DJoint* joint, int p2)
  * Address:	80109450
  * Size:	000104
  */
-unknown Game::Pelplant::Obj::neckJointCallBack(J3DJoint* joint, int p2)
+unknown Obj::neckJointCallBack(J3DJoint* joint, int p2)
 {
 	if (sCurrentObj != nullptr && p2 == 1) {
 		Mtx& mtx = J3DMtxCalc::mMtxBuffer->m_worldMatrices[joint->getJntNo()];
@@ -1613,7 +1614,7 @@ unknown Game::Pelplant::Obj::neckJointCallBack(J3DJoint* joint, int p2)
  * Address:	80109554
  * Size:	000050
  */
-Pelplant::Mgr::Mgr(int p1, unsigned char p2)
+Mgr::Mgr(int p1, unsigned char p2)
     : EnemyMgrBase(p1, p2)
 {
 	m_name = "ÉyÉåÉbÉgëêÉ}ÉlÅ[ÉWÉÉ"; // pellet plant manager
@@ -1626,14 +1627,14 @@ Pelplant::Mgr::Mgr(int p1, unsigned char p2)
  * Size:	000098
  */
 // WEAK - need to move to header
-EnemyMgrBase::~EnemyMgrBase() { }
+// EnemyMgrBase::~EnemyMgrBase() { }
 
 /*
  * --INFO--
  * Address:	8010963C
  * Size:	000048
  */
-void Pelplant::Mgr::doAlloc() { init(new Parms()); }
+void Mgr::doAlloc() { init(new Parms); }
 
 /*
  * __ct__Q34Game8Pelplant5ParmsFv
@@ -1641,83 +1642,11 @@ void Pelplant::Mgr::doAlloc() { init(new Parms()); }
  * Address:	80109684
  * Size:	000118
  */
+// WEAK - in header
 // Pelplant::Parms::Parms()
 //     : EnemyParmsBase()
 //     , m_pelplantParms()
-// {
-// 	/*
-// 	stwu     r1, -0x10(r1)
-// 	mflr     r0
-// 	lis      r4, lbl_8047A660@ha
-// 	stw      r0, 0x14(r1)
-// 	stw      r31, 0xc(r1)
-// 	addi     r31, r4, lbl_8047A660@l
-// 	stw      r30, 8(r1)
-// 	mr       r30, r3
-// 	bl       __ct__Q24Game14EnemyParmsBaseFv
-// 	lis      r3, __vt__Q34Game8Pelplant5Parms@ha
-// 	lis      r5, 0x66703031@ha
-// 	addi     r0, r3, __vt__Q34Game8Pelplant5Parms@l
-// 	addi     r4, r30, 0x87c
-// 	stw      r0, 0xd8(r30)
-// 	li       r7, 0
-// 	addi     r0, r31, 0xc4
-// 	addi     r3, r30, 0x804
-// 	stw      r4, 0x7f8(r30)
-// 	addi     r4, r30, 0x7f8
-// 	addi     r5, r5, 0x66703031@l
-// 	addi     r6, r31, 0xd4
-// 	stw      r7, 0x7fc(r30)
-// 	stw      r0, 0x800(r30)
-// 	bl       __ct__8BaseParmFP10ParametersUlPc
-// 	lis      r3, "__vt__7Parm<f>"@ha
-// 	lis      r5, 0x66703032@ha
-// 	addi     r0, r3, "__vt__7Parm<f>"@l
-// 	lfs      f0, lbl_805178B8@sda21(r2)
-// 	stw      r0, 0x804(r30)
-// 	addi     r3, r30, 0x82c
-// 	lfs      f1, lbl_80517860@sda21(r2)
-// 	addi     r4, r30, 0x7f8
-// 	stfs     f0, 0x81c(r30)
-// 	addi     r5, r5, 0x66703032@l
-// 	lfs      f0, lbl_805178BC@sda21(r2)
-// 	addi     r6, r31, 0xe4
-// 	stfs     f1, 0x824(r30)
-// 	stfs     f0, 0x828(r30)
-// 	bl       __ct__8BaseParmFP10ParametersUlPc
-// 	lis      r3, "__vt__7Parm<f>"@ha
-// 	lis      r5, 0x66703033@ha
-// 	addi     r0, r3, "__vt__7Parm<f>"@l
-// 	lfs      f0, lbl_805178B8@sda21(r2)
-// 	stw      r0, 0x82c(r30)
-// 	addi     r3, r30, 0x854
-// 	lfs      f1, lbl_80517860@sda21(r2)
-// 	addi     r4, r30, 0x7f8
-// 	stfs     f0, 0x844(r30)
-// 	addi     r5, r5, 0x66703033@l
-// 	lfs      f0, lbl_805178BC@sda21(r2)
-// 	addi     r6, r31, 0xf4
-// 	stfs     f1, 0x84c(r30)
-// 	stfs     f0, 0x850(r30)
-// 	bl       __ct__8BaseParmFP10ParametersUlPc
-// 	lis      r3, "__vt__7Parm<f>"@ha
-// 	lfs      f2, lbl_80517898@sda21(r2)
-// 	addi     r0, r3, "__vt__7Parm<f>"@l
-// 	lfs      f1, lbl_80517860@sda21(r2)
-// 	stw      r0, 0x854(r30)
-// 	mr       r3, r30
-// 	lfs      f0, lbl_805178C0@sda21(r2)
-// 	stfs     f2, 0x86c(r30)
-// 	stfs     f1, 0x874(r30)
-// 	stfs     f0, 0x878(r30)
-// 	lwz      r31, 0xc(r1)
-// 	lwz      r30, 8(r1)
-// 	lwz      r0, 0x14(r1)
-// 	mtlr     r0
-// 	addi     r1, r1, 0x10
-// 	blr
-// 	*/
-// }
+// { }
 
 /*
  * __ct__Q24Game14EnemyParmsBaseFv
@@ -1725,6 +1654,7 @@ void Pelplant::Mgr::doAlloc() { init(new Parms()); }
  * Address:	8010979C
  * Size:	0001D4
  */
+// WEAK - needs to go in header once matched
 // EnemyParmsBase::EnemyParmsBase()
 //     : CreatureParms()
 //     , m_flags()
@@ -1861,711 +1791,55 @@ void Pelplant::Mgr::doAlloc() { init(new Parms()); }
  * Address:	80109970
  * Size:	000AE0
  */
+// WEAK - in header
 // EnemyParmsBase::Parms::Parms()
-// {
-// 	/*
-// 	stwu     r1, -0x10(r1)
-// 	mflr     r0
-// 	stw      r0, 0x14(r1)
-// 	extsh.   r0, r4
-// 	lis      r4, lbl_8047A660@ha
-// 	stw      r31, 0xc(r1)
-// 	addi     r31, r4, lbl_8047A660@l
-// 	stw      r30, 8(r1)
-// 	mr       r30, r3
-// 	beq      lbl_801099A0
-// 	addi     r0, r30, 0x714
-// 	stw      r0, 0(r30)
-
-// lbl_801099A0:
-// 	li       r0, 0
-// 	lis      r5, 0x66703030@ha
-// 	stw      r0, 4(r30)
-// 	addi     r0, r31, 0xc4
-// 	mr       r4, r30
-// 	addi     r3, r30, 0xc
-// 	stw      r0, 8(r30)
-// 	addi     r5, r5, 0x66703030@l
-// 	addi     r6, r2, lbl_805178DC@sda21
-// 	bl       __ct__8BaseParmFP10ParametersUlPc
-// 	lis      r3, "__vt__7Parm<f>"@ha
-// 	lis      r5, 0x66703237@ha
-// 	addi     r0, r3, "__vt__7Parm<f>"@l
-// 	lfs      f0, lbl_80517874@sda21(r2)
-// 	stw      r0, 0xc(r30)
-// 	mr       r4, r30
-// 	lfs      f1, lbl_80517860@sda21(r2)
-// 	addi     r3, r30, 0x34
-// 	stfs     f0, 0x24(r30)
-// 	addi     r5, r5, 0x66703237@l
-// 	lfs      f0, lbl_805178E4@sda21(r2)
-// 	addi     r6, r31, 0x15c
-// 	stfs     f1, 0x2c(r30)
-// 	stfs     f0, 0x30(r30)
-// 	bl       __ct__8BaseParmFP10ParametersUlPc
-// 	lis      r3, "__vt__7Parm<f>"@ha
-// 	lis      r5, 0x66703331@ha
-// 	addi     r0, r3, "__vt__7Parm<f>"@l
-// 	lfs      f0, lbl_80517888@sda21(r2)
-// 	stw      r0, 0x34(r30)
-// 	mr       r4, r30
-// 	lfs      f1, lbl_80517860@sda21(r2)
-// 	addi     r3, r30, 0x5c
-// 	stfs     f0, 0x4c(r30)
-// 	addi     r5, r5, 0x66703331@l
-// 	lfs      f0, lbl_805178E8@sda21(r2)
-// 	addi     r6, r31, 0x16c
-// 	stfs     f1, 0x54(r30)
-// 	stfs     f0, 0x58(r30)
-// 	bl       __ct__8BaseParmFP10ParametersUlPc
-// 	lis      r3, "__vt__7Parm<f>"@ha
-// 	lis      r5, 0x66703330@ha
-// 	addi     r0, r3, "__vt__7Parm<f>"@l
-// 	lfs      f0, lbl_805178D4@sda21(r2)
-// 	stw      r0, 0x5c(r30)
-// 	mr       r4, r30
-// 	lfs      f1, lbl_80517860@sda21(r2)
-// 	addi     r3, r30, 0x84
-// 	stfs     f0, 0x74(r30)
-// 	addi     r5, r5, 0x66703330@l
-// 	lfs      f0, lbl_80517868@sda21(r2)
-// 	addi     r6, r31, 0x17c
-// 	stfs     f1, 0x7c(r30)
-// 	stfs     f0, 0x80(r30)
-// 	bl       __ct__8BaseParmFP10ParametersUlPc
-// 	lis      r3, "__vt__7Parm<f>"@ha
-// 	lis      r5, 0x66703031@ha
-// 	addi     r0, r3, "__vt__7Parm<f>"@l
-// 	lfs      f0, lbl_805178EC@sda21(r2)
-// 	stw      r0, 0x84(r30)
-// 	mr       r4, r30
-// 	lfs      f1, lbl_80517860@sda21(r2)
-// 	addi     r3, r30, 0xac
-// 	stfs     f0, 0x9c(r30)
-// 	addi     r5, r5, 0x66703031@l
-// 	lfs      f0, lbl_805178E4@sda21(r2)
-// 	addi     r6, r31, 0x188
-// 	stfs     f1, 0xa4(r30)
-// 	stfs     f0, 0xa8(r30)
-// 	bl       __ct__8BaseParmFP10ParametersUlPc
-// 	lis      r3, "__vt__7Parm<f>"@ha
-// 	lis      r5, 0x66703333@ha
-// 	addi     r0, r3, "__vt__7Parm<f>"@l
-// 	lfs      f0, lbl_805178F0@sda21(r2)
-// 	stw      r0, 0xac(r30)
-// 	mr       r4, r30
-// 	lfs      f1, lbl_80517860@sda21(r2)
-// 	addi     r3, r30, 0xd4
-// 	stfs     f0, 0xc4(r30)
-// 	addi     r5, r5, 0x66703333@l
-// 	lfs      f0, lbl_80517874@sda21(r2)
-// 	addi     r6, r31, 0x198
-// 	stfs     f1, 0xcc(r30)
-// 	stfs     f0, 0xd0(r30)
-// 	bl       __ct__8BaseParmFP10ParametersUlPc
-// 	lis      r3, "__vt__7Parm<f>"@ha
-// 	lis      r5, 0x66703334@ha
-// 	addi     r0, r3, "__vt__7Parm<f>"@l
-// 	lfs      f0, lbl_805178F0@sda21(r2)
-// 	stw      r0, 0xd4(r30)
-// 	mr       r4, r30
-// 	lfs      f1, lbl_80517860@sda21(r2)
-// 	addi     r3, r30, 0xfc
-// 	stfs     f0, 0xec(r30)
-// 	addi     r5, r5, 0x66703334@l
-// 	lfs      f0, lbl_805178F4@sda21(r2)
-// 	addi     r6, r31, 0x1b8
-// 	stfs     f1, 0xf4(r30)
-// 	stfs     f0, 0xf8(r30)
-// 	bl       __ct__8BaseParmFP10ParametersUlPc
-// 	lis      r3, "__vt__7Parm<f>"@ha
-// 	lis      r5, 0x66703332@ha
-// 	addi     r0, r3, "__vt__7Parm<f>"@l
-// 	lfs      f0, lbl_805178F0@sda21(r2)
-// 	stw      r0, 0xfc(r30)
-// 	mr       r4, r30
-// 	lfs      f1, lbl_80517860@sda21(r2)
-// 	addi     r3, r30, 0x124
-// 	stfs     f0, 0x114(r30)
-// 	addi     r5, r5, 0x66703332@l
-// 	lfs      f0, lbl_805178F4@sda21(r2)
-// 	addi     r6, r2, lbl_805178F8@sda21
-// 	stfs     f1, 0x11c(r30)
-// 	stfs     f0, 0x120(r30)
-// 	bl       __ct__8BaseParmFP10ParametersUlPc
-// 	lis      r3, "__vt__7Parm<f>"@ha
-// 	lis      r5, 0x66703032@ha
-// 	addi     r0, r3, "__vt__7Parm<f>"@l
-// 	lfs      f0, lbl_805178F0@sda21(r2)
-// 	stw      r0, 0x124(r30)
-// 	mr       r4, r30
-// 	lfs      f1, lbl_80517860@sda21(r2)
-// 	addi     r3, r30, 0x14c
-// 	stfs     f0, 0x13c(r30)
-// 	addi     r5, r5, 0x66703032@l
-// 	lfs      f0, lbl_805178F4@sda21(r2)
-// 	addi     r6, r31, 0x1cc
-// 	stfs     f1, 0x144(r30)
-// 	stfs     f0, 0x148(r30)
-// 	bl       __ct__8BaseParmFP10ParametersUlPc
-// 	lis      r3, "__vt__7Parm<f>"@ha
-// 	lis      r5, 0x66703033@ha
-// 	addi     r0, r3, "__vt__7Parm<f>"@l
-// 	lfs      f0, lbl_80517900@sda21(r2)
-// 	stw      r0, 0x14c(r30)
-// 	mr       r4, r30
-// 	lfs      f1, lbl_80517860@sda21(r2)
-// 	addi     r3, r30, 0x174
-// 	stfs     f0, 0x164(r30)
-// 	addi     r5, r5, 0x66703033@l
-// 	lfs      f0, lbl_80517868@sda21(r2)
-// 	addi     r6, r31, 0x1e0
-// 	stfs     f1, 0x16c(r30)
-// 	stfs     f0, 0x170(r30)
-// 	bl       __ct__8BaseParmFP10ParametersUlPc
-// 	lis      r3, "__vt__7Parm<f>"@ha
-// 	lis      r5, 0x66703034@ha
-// 	addi     r0, r3, "__vt__7Parm<f>"@l
-// 	lfs      f0, lbl_805178C4@sda21(r2)
-// 	stw      r0, 0x174(r30)
-// 	mr       r4, r30
-// 	lfs      f1, lbl_80517860@sda21(r2)
-// 	addi     r3, r30, 0x19c
-// 	stfs     f0, 0x18c(r30)
-// 	addi     r5, r5, 0x66703034@l
-// 	lfs      f0, lbl_80517868@sda21(r2)
-// 	addi     r6, r31, 0x1f4
-// 	stfs     f1, 0x194(r30)
-// 	stfs     f0, 0x198(r30)
-// 	bl       __ct__8BaseParmFP10ParametersUlPc
-// 	lis      r3, "__vt__7Parm<f>"@ha
-// 	lis      r5, 0x66703035@ha
-// 	addi     r0, r3, "__vt__7Parm<f>"@l
-// 	lfs      f0, lbl_80517904@sda21(r2)
-// 	stw      r0, 0x19c(r30)
-// 	mr       r4, r30
-// 	lfs      f1, lbl_80517860@sda21(r2)
-// 	addi     r3, r30, 0x1c4
-// 	stfs     f0, 0x1b4(r30)
-// 	addi     r5, r5, 0x66703035@l
-// 	lfs      f0, lbl_80517868@sda21(r2)
-// 	addi     r6, r2, lbl_80517908@sda21
-// 	stfs     f1, 0x1bc(r30)
-// 	stfs     f0, 0x1c0(r30)
-// 	bl       __ct__8BaseParmFP10ParametersUlPc
-// 	lis      r3, "__vt__7Parm<f>"@ha
-// 	lis      r5, 0x66703036@ha
-// 	addi     r0, r3, "__vt__7Parm<f>"@l
-// 	lfs      f0, lbl_80517868@sda21(r2)
-// 	stw      r0, 0x1c4(r30)
-// 	mr       r4, r30
-// 	lfs      f1, lbl_80517860@sda21(r2)
-// 	addi     r3, r30, 0x1ec
-// 	stfs     f0, 0x1dc(r30)
-// 	addi     r5, r5, 0x66703036@l
-// 	lfs      f0, lbl_80517874@sda21(r2)
-// 	addi     r6, r2, lbl_80517910@sda21
-// 	stfs     f1, 0x1e4(r30)
-// 	stfs     f0, 0x1e8(r30)
-// 	bl       __ct__8BaseParmFP10ParametersUlPc
-// 	lis      r3, "__vt__7Parm<f>"@ha
-// 	lis      r5, 0x66703038@ha
-// 	addi     r0, r3, "__vt__7Parm<f>"@l
-// 	lfs      f0, lbl_80517918@sda21(r2)
-// 	stw      r0, 0x1ec(r30)
-// 	mr       r4, r30
-// 	lfs      f1, lbl_80517860@sda21(r2)
-// 	addi     r3, r30, 0x214
-// 	stfs     f0, 0x204(r30)
-// 	addi     r5, r5, 0x66703038@l
-// 	lfs      f0, lbl_805178E8@sda21(r2)
-// 	addi     r6, r31, 0x208
-// 	stfs     f1, 0x20c(r30)
-// 	stfs     f0, 0x210(r30)
-// 	bl       __ct__8BaseParmFP10ParametersUlPc
-// 	lis      r3, "__vt__7Parm<f>"@ha
-// 	lis      r5, 0x66703238@ha
-// 	addi     r0, r3, "__vt__7Parm<f>"@l
-// 	lfs      f0, lbl_805178D0@sda21(r2)
-// 	stw      r0, 0x214(r30)
-// 	mr       r4, r30
-// 	lfs      f1, lbl_80517860@sda21(r2)
-// 	addi     r3, r30, 0x23c
-// 	stfs     f0, 0x22c(r30)
-// 	addi     r5, r5, 0x66703238@l
-// 	lfs      f0, lbl_80517868@sda21(r2)
-// 	addi     r6, r31, 0x214
-// 	stfs     f1, 0x234(r30)
-// 	stfs     f0, 0x238(r30)
-// 	bl       __ct__8BaseParmFP10ParametersUlPc
-// 	lis      r3, "__vt__7Parm<f>"@ha
-// 	lis      r5, 0x66703039@ha
-// 	addi     r0, r3, "__vt__7Parm<f>"@l
-// 	lfs      f0, lbl_8051791C@sda21(r2)
-// 	stw      r0, 0x23c(r30)
-// 	mr       r4, r30
-// 	lfs      f1, lbl_80517860@sda21(r2)
-// 	addi     r3, r30, 0x264
-// 	stfs     f0, 0x254(r30)
-// 	addi     r5, r5, 0x66703039@l
-// 	lfs      f0, lbl_80517920@sda21(r2)
-// 	addi     r6, r31, 0x224
-// 	stfs     f1, 0x25c(r30)
-// 	stfs     f0, 0x260(r30)
-// 	bl       __ct__8BaseParmFP10ParametersUlPc
-// 	lis      r3, "__vt__7Parm<f>"@ha
-// 	lis      r5, 0x66703130@ha
-// 	addi     r0, r3, "__vt__7Parm<f>"@l
-// 	lfs      f0, lbl_80517924@sda21(r2)
-// 	stw      r0, 0x264(r30)
-// 	mr       r4, r30
-// 	lfs      f1, lbl_80517868@sda21(r2)
-// 	addi     r3, r30, 0x28c
-// 	stfs     f0, 0x27c(r30)
-// 	addi     r5, r5, 0x66703130@l
-// 	lfs      f0, lbl_805178E8@sda21(r2)
-// 	addi     r6, r31, 0x230
-// 	stfs     f1, 0x284(r30)
-// 	stfs     f0, 0x288(r30)
-// 	bl       __ct__8BaseParmFP10ParametersUlPc
-// 	lis      r3, "__vt__7Parm<f>"@ha
-// 	lis      r5, 0x66703131@ha
-// 	addi     r0, r3, "__vt__7Parm<f>"@l
-// 	lfs      f0, lbl_80517928@sda21(r2)
-// 	stw      r0, 0x28c(r30)
-// 	mr       r4, r30
-// 	lfs      f1, lbl_80517868@sda21(r2)
-// 	addi     r3, r30, 0x2b4
-// 	stfs     f0, 0x2a4(r30)
-// 	addi     r5, r5, 0x66703131@l
-// 	lfs      f0, lbl_805178E8@sda21(r2)
-// 	addi     r6, r31, 0x23c
-// 	stfs     f1, 0x2ac(r30)
-// 	stfs     f0, 0x2b0(r30)
-// 	bl       __ct__8BaseParmFP10ParametersUlPc
-// 	lis      r3, "__vt__7Parm<f>"@ha
-// 	lis      r5, 0x66703132@ha
-// 	addi     r0, r3, "__vt__7Parm<f>"@l
-// 	lfs      f0, lbl_8051792C@sda21(r2)
-// 	stw      r0, 0x2b4(r30)
-// 	mr       r4, r30
-// 	lfs      f1, lbl_80517860@sda21(r2)
-// 	addi     r3, r30, 0x2dc
-// 	stfs     f0, 0x2cc(r30)
-// 	addi     r5, r5, 0x66703132@l
-// 	lfs      f0, lbl_805178E8@sda21(r2)
-// 	addi     r6, r31, 0x250
-// 	stfs     f1, 0x2d4(r30)
-// 	stfs     f0, 0x2d8(r30)
-// 	bl       __ct__8BaseParmFP10ParametersUlPc
-// 	lis      r3, "__vt__7Parm<f>"@ha
-// 	lis      r5, 0x66703235@ha
-// 	addi     r0, r3, "__vt__7Parm<f>"@l
-// 	lfs      f0, lbl_80517924@sda21(r2)
-// 	stw      r0, 0x2dc(r30)
-// 	mr       r4, r30
-// 	lfs      f1, lbl_80517860@sda21(r2)
-// 	addi     r3, r30, 0x304
-// 	stfs     f0, 0x2f4(r30)
-// 	addi     r5, r5, 0x66703235@l
-// 	lfs      f0, lbl_805178E8@sda21(r2)
-// 	addi     r6, r2, lbl_80517930@sda21
-// 	stfs     f1, 0x2fc(r30)
-// 	stfs     f0, 0x300(r30)
-// 	bl       __ct__8BaseParmFP10ParametersUlPc
-// 	lis      r3, "__vt__7Parm<f>"@ha
-// 	lis      r5, 0x66703133@ha
-// 	addi     r0, r3, "__vt__7Parm<f>"@l
-// 	lfs      f0, lbl_80517888@sda21(r2)
-// 	stw      r0, 0x304(r30)
-// 	mr       r4, r30
-// 	lfs      f1, lbl_80517860@sda21(r2)
-// 	addi     r3, r30, 0x32c
-// 	stfs     f0, 0x31c(r30)
-// 	addi     r5, r5, 0x66703133@l
-// 	lfs      f0, lbl_805178E8@sda21(r2)
-// 	addi     r6, r31, 0x25c
-// 	stfs     f1, 0x324(r30)
-// 	stfs     f0, 0x328(r30)
-// 	bl       __ct__8BaseParmFP10ParametersUlPc
-// 	lis      r3, "__vt__7Parm<f>"@ha
-// 	lis      r5, 0x66703134@ha
-// 	addi     r0, r3, "__vt__7Parm<f>"@l
-// 	lfs      f0, lbl_80517938@sda21(r2)
-// 	stw      r0, 0x32c(r30)
-// 	mr       r4, r30
-// 	lfs      f1, lbl_80517860@sda21(r2)
-// 	addi     r3, r30, 0x354
-// 	stfs     f0, 0x344(r30)
-// 	addi     r5, r5, 0x66703134@l
-// 	lfs      f0, lbl_8051793C@sda21(r2)
-// 	addi     r6, r31, 0x268
-// 	stfs     f1, 0x34c(r30)
-// 	stfs     f0, 0x350(r30)
-// 	bl       __ct__8BaseParmFP10ParametersUlPc
-// 	lis      r3, "__vt__7Parm<f>"@ha
-// 	lis      r5, 0x66703236@ha
-// 	addi     r0, r3, "__vt__7Parm<f>"@l
-// 	lfs      f0, lbl_80517924@sda21(r2)
-// 	stw      r0, 0x354(r30)
-// 	mr       r4, r30
-// 	lfs      f1, lbl_80517860@sda21(r2)
-// 	addi     r3, r30, 0x37c
-// 	stfs     f0, 0x36c(r30)
-// 	addi     r5, r5, 0x66703236@l
-// 	lfs      f0, lbl_805178E8@sda21(r2)
-// 	addi     r6, r2, lbl_80517940@sda21
-// 	stfs     f1, 0x374(r30)
-// 	stfs     f0, 0x378(r30)
-// 	bl       __ct__8BaseParmFP10ParametersUlPc
-// 	lis      r3, "__vt__7Parm<f>"@ha
-// 	lis      r5, 0x66703135@ha
-// 	addi     r0, r3, "__vt__7Parm<f>"@l
-// 	lfs      f0, lbl_80517888@sda21(r2)
-// 	stw      r0, 0x37c(r30)
-// 	mr       r4, r30
-// 	lfs      f1, lbl_80517860@sda21(r2)
-// 	addi     r3, r30, 0x3a4
-// 	stfs     f0, 0x394(r30)
-// 	addi     r5, r5, 0x66703135@l
-// 	lfs      f0, lbl_805178E8@sda21(r2)
-// 	addi     r6, r31, 0x274
-// 	stfs     f1, 0x39c(r30)
-// 	stfs     f0, 0x3a0(r30)
-// 	bl       __ct__8BaseParmFP10ParametersUlPc
-// 	lis      r3, "__vt__7Parm<f>"@ha
-// 	lis      r5, 0x66703137@ha
-// 	addi     r0, r3, "__vt__7Parm<f>"@l
-// 	lfs      f0, lbl_805178B8@sda21(r2)
-// 	stw      r0, 0x3a4(r30)
-// 	mr       r4, r30
-// 	lfs      f1, lbl_80517860@sda21(r2)
-// 	addi     r3, r30, 0x3cc
-// 	stfs     f0, 0x3bc(r30)
-// 	addi     r5, r5, 0x66703137@l
-// 	lfs      f0, lbl_8051793C@sda21(r2)
-// 	addi     r6, r31, 0x280
-// 	stfs     f1, 0x3c4(r30)
-// 	stfs     f0, 0x3c8(r30)
-// 	bl       __ct__8BaseParmFP10ParametersUlPc
-// 	lis      r3, "__vt__7Parm<f>"@ha
-// 	lis      r5, 0x66703138@ha
-// 	addi     r0, r3, "__vt__7Parm<f>"@l
-// 	lfs      f0, lbl_805178BC@sda21(r2)
-// 	stw      r0, 0x3cc(r30)
-// 	mr       r4, r30
-// 	lfs      f1, lbl_80517860@sda21(r2)
-// 	addi     r3, r30, 0x3f4
-// 	stfs     f0, 0x3e4(r30)
-// 	addi     r5, r5, 0x66703138@l
-// 	lfs      f0, lbl_805178E8@sda21(r2)
-// 	addi     r6, r31, 0x28c
-// 	stfs     f1, 0x3ec(r30)
-// 	stfs     f0, 0x3f0(r30)
-// 	bl       __ct__8BaseParmFP10ParametersUlPc
-// 	lis      r3, "__vt__7Parm<f>"@ha
-// 	lis      r5, 0x66703139@ha
-// 	addi     r0, r3, "__vt__7Parm<f>"@l
-// 	lfs      f1, lbl_80517860@sda21(r2)
-// 	stw      r0, 0x3f4(r30)
-// 	mr       r4, r30
-// 	lfs      f0, lbl_805178E8@sda21(r2)
-// 	addi     r3, r30, 0x41c
-// 	stfs     f1, 0x40c(r30)
-// 	addi     r5, r5, 0x66703139@l
-// 	addi     r6, r31, 0x2a0
-// 	stfs     f1, 0x414(r30)
-// 	stfs     f0, 0x418(r30)
-// 	bl       __ct__8BaseParmFP10ParametersUlPc
-// 	lis      r3, "__vt__7Parm<f>"@ha
-// 	lis      r5, 0x66703136@ha
-// 	addi     r0, r3, "__vt__7Parm<f>"@l
-// 	lfs      f0, lbl_805178B8@sda21(r2)
-// 	stw      r0, 0x41c(r30)
-// 	mr       r4, r30
-// 	lfs      f1, lbl_80517860@sda21(r2)
-// 	addi     r3, r30, 0x444
-// 	stfs     f0, 0x434(r30)
-// 	addi     r5, r5, 0x66703136@l
-// 	lfs      f0, lbl_805178E8@sda21(r2)
-// 	addi     r6, r31, 0x2b0
-// 	stfs     f1, 0x43c(r30)
-// 	stfs     f0, 0x440(r30)
-// 	bl       __ct__8BaseParmFP10ParametersUlPc
-// 	lis      r3, "__vt__7Parm<f>"@ha
-// 	lis      r5, 0x66703230@ha
-// 	addi     r0, r3, "__vt__7Parm<f>"@l
-// 	lfs      f1, lbl_80517868@sda21(r2)
-// 	stw      r0, 0x444(r30)
-// 	mr       r4, r30
-// 	lfs      f0, lbl_80517860@sda21(r2)
-// 	addi     r3, r30, 0x46c
-// 	stfs     f1, 0x45c(r30)
-// 	addi     r5, r5, 0x66703230@l
-// 	addi     r6, r31, 0x2bc
-// 	stfs     f0, 0x464(r30)
-// 	stfs     f1, 0x468(r30)
-// 	bl       __ct__8BaseParmFP10ParametersUlPc
-// 	lis      r3, "__vt__7Parm<f>"@ha
-// 	lis      r5, 0x66703231@ha
-// 	addi     r0, r3, "__vt__7Parm<f>"@l
-// 	lfs      f0, lbl_8051792C@sda21(r2)
-// 	stw      r0, 0x46c(r30)
-// 	mr       r4, r30
-// 	lfs      f1, lbl_80517860@sda21(r2)
-// 	addi     r3, r30, 0x494
-// 	stfs     f0, 0x484(r30)
-// 	addi     r5, r5, 0x66703231@l
-// 	lfs      f0, lbl_805178E8@sda21(r2)
-// 	addi     r6, r31, 0x2cc
-// 	stfs     f1, 0x48c(r30)
-// 	stfs     f0, 0x490(r30)
-// 	bl       __ct__8BaseParmFP10ParametersUlPc
-// 	lis      r3, "__vt__7Parm<f>"@ha
-// 	lis      r5, 0x66703232@ha
-// 	addi     r0, r3, "__vt__7Parm<f>"@l
-// 	lfs      f0, lbl_80517928@sda21(r2)
-// 	stw      r0, 0x494(r30)
-// 	mr       r4, r30
-// 	lfs      f1, lbl_80517860@sda21(r2)
-// 	addi     r3, r30, 0x4bc
-// 	stfs     f0, 0x4ac(r30)
-// 	addi     r5, r5, 0x66703232@l
-// 	lfs      f0, lbl_8051793C@sda21(r2)
-// 	addi     r6, r31, 0x2dc
-// 	stfs     f1, 0x4b4(r30)
-// 	stfs     f0, 0x4b8(r30)
-// 	bl       __ct__8BaseParmFP10ParametersUlPc
-// 	lis      r3, "__vt__7Parm<f>"@ha
-// 	lis      r5, 0x66703233@ha
-// 	addi     r0, r3, "__vt__7Parm<f>"@l
-// 	lfs      f0, lbl_8051792C@sda21(r2)
-// 	stw      r0, 0x4bc(r30)
-// 	mr       r4, r30
-// 	lfs      f1, lbl_80517860@sda21(r2)
-// 	addi     r3, r30, 0x4e4
-// 	stfs     f0, 0x4d4(r30)
-// 	addi     r5, r5, 0x66703233@l
-// 	lfs      f0, lbl_805178E8@sda21(r2)
-// 	addi     r6, r31, 0x2ec
-// 	stfs     f1, 0x4dc(r30)
-// 	stfs     f0, 0x4e0(r30)
-// 	bl       __ct__8BaseParmFP10ParametersUlPc
-// 	lis      r3, "__vt__7Parm<f>"@ha
-// 	lis      r5, 0x66703234@ha
-// 	addi     r0, r3, "__vt__7Parm<f>"@l
-// 	lfs      f0, lbl_80517928@sda21(r2)
-// 	stw      r0, 0x4e4(r30)
-// 	mr       r4, r30
-// 	lfs      f1, lbl_80517860@sda21(r2)
-// 	addi     r3, r30, 0x50c
-// 	stfs     f0, 0x4fc(r30)
-// 	addi     r5, r5, 0x66703234@l
-// 	lfs      f0, lbl_8051793C@sda21(r2)
-// 	addi     r6, r2, lbl_80517948@sda21
-// 	stfs     f1, 0x504(r30)
-// 	stfs     f0, 0x508(r30)
-// 	bl       __ct__8BaseParmFP10ParametersUlPc
-// 	lis      r3, "__vt__7Parm<f>"@ha
-// 	lis      r5, 0x66703239@ha
-// 	addi     r0, r3, "__vt__7Parm<f>"@l
-// 	lfs      f0, lbl_8051791C@sda21(r2)
-// 	stw      r0, 0x50c(r30)
-// 	mr       r4, r30
-// 	lfs      f1, lbl_80517860@sda21(r2)
-// 	addi     r3, r30, 0x534
-// 	stfs     f0, 0x524(r30)
-// 	addi     r5, r5, 0x66703239@l
-// 	lfs      f0, lbl_805178E8@sda21(r2)
-// 	addi     r6, r31, 0x2fc
-// 	stfs     f1, 0x52c(r30)
-// 	stfs     f0, 0x530(r30)
-// 	bl       __ct__8BaseParmFP10ParametersUlPc
-// 	lis      r3, "__vt__7Parm<f>"@ha
-// 	lis      r5, 0x66703335@ha
-// 	addi     r0, r3, "__vt__7Parm<f>"@l
-// 	lfs      f0, lbl_80517928@sda21(r2)
-// 	stw      r0, 0x534(r30)
-// 	mr       r4, r30
-// 	lfs      f1, lbl_80517860@sda21(r2)
-// 	addi     r3, r30, 0x55c
-// 	stfs     f0, 0x54c(r30)
-// 	addi     r5, r5, 0x66703335@l
-// 	lfs      f0, lbl_80517950@sda21(r2)
-// 	addi     r6, r31, 0x308
-// 	stfs     f1, 0x554(r30)
-// 	stfs     f0, 0x558(r30)
-// 	bl       __ct__8BaseParmFP10ParametersUlPc
-// 	lis      r3, "__vt__7Parm<f>"@ha
-// 	lis      r5, 0x66703336@ha
-// 	addi     r0, r3, "__vt__7Parm<f>"@l
-// 	lfs      f0, lbl_80517868@sda21(r2)
-// 	stw      r0, 0x55c(r30)
-// 	mr       r4, r30
-// 	lfs      f1, lbl_80517860@sda21(r2)
-// 	addi     r3, r30, 0x584
-// 	stfs     f0, 0x574(r30)
-// 	addi     r5, r5, 0x66703336@l
-// 	lfs      f0, lbl_80517954@sda21(r2)
-// 	addi     r6, r31, 0x314
-// 	stfs     f1, 0x57c(r30)
-// 	stfs     f0, 0x580(r30)
-// 	bl       __ct__8BaseParmFP10ParametersUlPc
-// 	lis      r3, "__vt__7Parm<f>"@ha
-// 	lis      r5, 0x66703337@ha
-// 	addi     r0, r3, "__vt__7Parm<f>"@l
-// 	lfs      f0, lbl_8051791C@sda21(r2)
-// 	stw      r0, 0x584(r30)
-// 	mr       r4, r30
-// 	lfs      f1, lbl_80517860@sda21(r2)
-// 	addi     r3, r30, 0x5ac
-// 	stfs     f0, 0x59c(r30)
-// 	addi     r5, r5, 0x66703337@l
-// 	lfs      f0, lbl_805178E8@sda21(r2)
-// 	addi     r6, r31, 0x32c
-// 	stfs     f1, 0x5a4(r30)
-// 	stfs     f0, 0x5a8(r30)
-// 	bl       __ct__8BaseParmFP10ParametersUlPc
-// 	lis      r3, "__vt__7Parm<f>"@ha
-// 	lis      r5, 0x66703338@ha
-// 	addi     r0, r3, "__vt__7Parm<f>"@l
-// 	lfs      f0, lbl_80517958@sda21(r2)
-// 	stw      r0, 0x5ac(r30)
-// 	mr       r4, r30
-// 	lfs      f1, lbl_80517860@sda21(r2)
-// 	addi     r3, r30, 0x5d4
-// 	stfs     f0, 0x5c4(r30)
-// 	addi     r5, r5, 0x66703338@l
-// 	lfs      f0, lbl_80517868@sda21(r2)
-// 	addi     r6, r31, 0x33c
-// 	stfs     f1, 0x5cc(r30)
-// 	stfs     f0, 0x5d0(r30)
-// 	bl       __ct__8BaseParmFP10ParametersUlPc
-// 	lis      r3, "__vt__7Parm<f>"@ha
-// 	lis      r5, 0x69703031@ha
-// 	addi     r0, r3, "__vt__7Parm<f>"@l
-// 	lfs      f0, lbl_8051791C@sda21(r2)
-// 	stw      r0, 0x5d4(r30)
-// 	mr       r4, r30
-// 	lfs      f1, lbl_80517860@sda21(r2)
-// 	addi     r3, r30, 0x5fc
-// 	stfs     f0, 0x5ec(r30)
-// 	addi     r5, r5, 0x69703031@l
-// 	lfs      f0, lbl_80517954@sda21(r2)
-// 	addi     r6, r31, 0x34c
-// 	stfs     f1, 0x5f4(r30)
-// 	stfs     f0, 0x5f8(r30)
-// 	bl       __ct__8BaseParmFP10ParametersUlPc
-// 	lis      r3, "__vt__7Parm<i>"@ha
-// 	lis      r5, 0x69703032@ha
-// 	addi     r0, r3, "__vt__7Parm<i>"@l
-// 	li       r3, 3
-// 	stw      r0, 0x5fc(r30)
-// 	li       r7, 0
-// 	li       r0, 0xc8
-// 	mr       r4, r30
-// 	stw      r3, 0x614(r30)
-// 	addi     r3, r30, 0x624
-// 	addi     r5, r5, 0x69703032@l
-// 	addi     r6, r31, 0x35c
-// 	stw      r7, 0x61c(r30)
-// 	stw      r0, 0x620(r30)
-// 	bl       __ct__8BaseParmFP10ParametersUlPc
-// 	lis      r3, "__vt__7Parm<i>"@ha
-// 	lis      r5, 0x69703033@ha
-// 	addi     r0, r3, "__vt__7Parm<i>"@l
-// 	li       r3, 3
-// 	stw      r0, 0x624(r30)
-// 	li       r7, 0
-// 	li       r0, 0x64
-// 	mr       r4, r30
-// 	stw      r3, 0x63c(r30)
-// 	addi     r3, r30, 0x64c
-// 	addi     r5, r5, 0x69703033@l
-// 	addi     r6, r31, 0x36c
-// 	stw      r7, 0x644(r30)
-// 	stw      r0, 0x648(r30)
-// 	bl       __ct__8BaseParmFP10ParametersUlPc
-// 	lis      r3, "__vt__7Parm<i>"@ha
-// 	lis      r5, 0x69703034@ha
-// 	addi     r0, r3, "__vt__7Parm<i>"@l
-// 	li       r3, 8
-// 	stw      r0, 0x64c(r30)
-// 	li       r7, 0
-// 	li       r0, 0xc8
-// 	mr       r4, r30
-// 	stw      r3, 0x664(r30)
-// 	addi     r3, r30, 0x674
-// 	addi     r5, r5, 0x69703034@l
-// 	addi     r6, r31, 0x37c
-// 	stw      r7, 0x66c(r30)
-// 	stw      r0, 0x670(r30)
-// 	bl       __ct__8BaseParmFP10ParametersUlPc
-// 	lis      r3, "__vt__7Parm<i>"@ha
-// 	lis      r5, 0x69703035@ha
-// 	addi     r0, r3, "__vt__7Parm<i>"@l
-// 	li       r3, 5
-// 	stw      r0, 0x674(r30)
-// 	li       r7, 0
-// 	li       r0, 0x64
-// 	mr       r4, r30
-// 	stw      r3, 0x68c(r30)
-// 	addi     r3, r30, 0x69c
-// 	addi     r5, r5, 0x69703035@l
-// 	addi     r6, r31, 0x38c
-// 	stw      r7, 0x694(r30)
-// 	stw      r0, 0x698(r30)
-// 	bl       __ct__8BaseParmFP10ParametersUlPc
-// 	lis      r3, "__vt__7Parm<i>"@ha
-// 	lis      r5, 0x69703036@ha
-// 	addi     r0, r3, "__vt__7Parm<i>"@l
-// 	li       r3, 0xf
-// 	stw      r0, 0x69c(r30)
-// 	li       r7, 0
-// 	li       r0, 0xc8
-// 	mr       r4, r30
-// 	stw      r3, 0x6b4(r30)
-// 	addi     r3, r30, 0x6c4
-// 	addi     r5, r5, 0x69703036@l
-// 	addi     r6, r31, 0x39c
-// 	stw      r7, 0x6bc(r30)
-// 	stw      r0, 0x6c0(r30)
-// 	bl       __ct__8BaseParmFP10ParametersUlPc
-// 	lis      r3, "__vt__7Parm<i>"@ha
-// 	lis      r5, 0x69703037@ha
-// 	addi     r0, r3, "__vt__7Parm<i>"@l
-// 	li       r3, 0xa
-// 	stw      r0, 0x6c4(r30)
-// 	li       r7, 0
-// 	li       r0, 0x64
-// 	mr       r4, r30
-// 	stw      r3, 0x6dc(r30)
-// 	addi     r3, r30, 0x6ec
-// 	addi     r5, r5, 0x69703037@l
-// 	addi     r6, r31, 0x3ac
-// 	stw      r7, 0x6e4(r30)
-// 	stw      r0, 0x6e8(r30)
-// 	bl       __ct__8BaseParmFP10ParametersUlPc
-// 	lis      r3, "__vt__7Parm<i>"@ha
-// 	li       r5, 0x1e
-// 	addi     r0, r3, "__vt__7Parm<i>"@l
-// 	li       r4, 0
-// 	stw      r0, 0x6ec(r30)
-// 	li       r0, 0xc8
-// 	mr       r3, r30
-// 	stw      r5, 0x704(r30)
-// 	stw      r4, 0x70c(r30)
-// 	stw      r0, 0x710(r30)
-// 	lwz      r31, 0xc(r1)
-// 	lwz      r30, 8(r1)
-// 	lwz      r0, 0x14(r1)
-// 	mtlr     r0
-// 	addi     r1, r1, 0x10
-// 	blr
-// 	*/
-// }
-
-} // namespace Pelplant
+// : Parameters(nullptr, "EnemyParmsBase")
+// , m_health(this, 'fp00', "ÉâÉCÉt", 100.0f, 0.0f, 99999.0f)    // life
+// , m_lifeMeterHeight(this, 'fp27', "ÉâÉCÉtÇÃçÇÇ≥", 50.0f, 0.0f, 1000.0f) // height of life
+// , m_regenerationRate(this, 'fp31', "ÉâÉCÉtâÒïúó¶", 0.01f, 0.0f, 1.0f) // life recovery rate
+// , m_fp30(this, 'fp30', "åxâ˙ÉâÉCÉt", 30.0f, 0.0f, 99999.0f) // 'vigilant life'
+// , m_fp01(this, 'fp01', "É}ÉbÉvÇ∆ÇÃìñÇË", 40.0f, 0.0f, 100.0f) // 'match with the map'
+// , m_cellRadius(this, 'fp33', "É}ÉbÉvÇ∆ÇÃÇ†ÇΩÇËÉ|ÉäÉSÉìÇÃëIíË", 40.0f, 0.0f, 500.0f) // 'selection of map-related polygons'
+// , m_pikminDamageRadius(this, 'fp34', "ÉsÉNÉ~ÉìÇ∆ÇÃÇ†ÇΩÇË", 40.0f, 0.0f, 500.0f) // 'about pikmin'
+// , m_offCameraRadius(this, 'fp32', "LODîºåa", 40.0f, 0.0f, 500.0f) // LOD radius
+// , m_horizontalDamageScale(this, 'fp02', "É_ÉÅÅ[ÉWÉXÉPÅ[ÉãXZ", 0.2f, 0.0f, 1.0f) // damage scale XZ
+// , m_verticalDamageScale(this, 'fp03', "É_ÉÅÅ[ÉWÉXÉPÅ[ÉãY", 0.25f, 0.0f, 1.0f) // damage scale Y
+// , m_damageScaleDuration(this, 'fp04', "É_ÉÅÅ[ÉWÉtÉåÅ[ÉÄ", 0.35f, 0.0f, 1.0f) // 'damage frame'
+// , m_fp05(this, 'fp05', "éøó ", 1.0f, 0.0f, 100.0f) // mass
+// , m_moveSpeed(this, 'fp06', "ë¨ìx", 80.0f, 0.0f, 1000.0f) // speed
+// , m_rotationalAccel(this, 'fp08', "âÒì]ë¨ìxó¶", 0.1f, 0.0f, 1.0f) // rotation speed rate
+// , m_rotationalSpeed(this, 'fp28', "âÒì]ç≈ëÂë¨ìx", 10.0f, 0.0f, 360.0f) // maximum rotation speed
+// , m_territoryRadius(this, 'fp09', "ÉeÉäÉgÉäÅ[", 200.0f, 1.0f, 1000.0f) // territory
+// , m_homeRadius(this, 'fp10', "ÉzÅ[ÉÄîÕàÕ", 15.0f, 1.0f, 1000.0f) // home range
+// , m_privateRadius(this, 'fp11', "ÉvÉâÉCÉxÅ[Égãóó£", 70.0f, 0.0f, 1000.0f) // private distance
+// , m_sightRadius(this, 'fp12', "éãäEãóó£", 200.0f, 0.0f, 1000.0f) // sight distance
+// , m_fp25(this, 'fp25', "éãäEçÇ", 50.0f, 0.0f, 1000.0f) // visibility height
+// , m_fov(this, 'fp13', "éãäEäpìx", 90.0f, 0.0f, 180.0f) // view angle
+// , m_fp14(this, 'fp14', "íTçıãóó£", 200.0f, 0.0f, 1000.0f) // search distance
+// , m_fp26(this, 'fp26', "íTçıçÇ", 50.0f, 0.0f, 1000.0f) // search height
+// , m_fp15(this, 'fp15', "íTçıäpìx", 120.0f, 0.0f, 180.0f) // search angle
+// , m_shakeKnockback(this, 'fp17', "êUÇËï•Ç¢óÕ", 300.0f, 0.0f, 1000.0f) // shake off power
+// , m_shakeDamage(this, 'fp18', "êUÇËï•Ç¢É_ÉÅÅ[ÉW", 0.0f, 0.0f, 1000.0f) // shake off damage
+// , m_shakeRange(this, 'fp19', "êUÇËï•Ç¢îÕàÕ", 120.0f, 0.0f, 1000.0f) // shake off range
+// , m_shakeRateMaybe(this, 'fp16', "êUÇËï•Ç¢ó¶", 1.0f, 0.0f, 1.0f) // shake off rate
+// , m_fp20(this, 'fp20', "çUåÇâ¬î\îÕàÕ", 70.0f, 0.0f, 1000.0f) // attack range
+// , m_fp21(this, 'fp21', "çUåÇâ¬î\äpìx", 15.0f, 0.0f, 180.0f) // 'possible attack angle'
+// , m_fp22(this, 'fp22', "çUåÇÉqÉbÉgîÕàÕ", 70.0f, 0.0f, 1000.0f) // attack hit range
+// , m_fp23(this, 'fp23', "çUåÇÉqÉbÉgäpìx", 15.0f, 0.0f, 180.0f) // attack hit angle
+// , m_attackDamage(this, 'fp24', "çUåÇóÕ", 10.0f, 0.0f, 1000.0f) // attack power
+// , m_fp29(this, 'fp29', "åxâ˙éûä‘", 15.0f, 0.0f, 99.0f) // alert time
+// , m_stoneDuration(this, 'fp35', "êŒâªéûä‘", 1.0f, 0.0f, 60.0f) // stone time
+// , m_purplePikminHipDropDamage(this, 'fp36', "ÉqÉbÉvÉhÉçÉbÉvÉ_ÉÅÅ[ÉW", 10.0f, 0.0f, 1000.0f) // hip drop damage
+// , m_purplePikminStunChance(this, 'fp37', "ínêkãCê‚ämóß", 0.05f, 0.0f, 1.0f) // earthquake faint probability
+// , m_purplePikminStunTime(this, 'fp38', "ínêkãCê‚éûä‘", 10.0f, 0.0f, 60.0f) // earthquake faint time
+// , m_ip01(this, 'ip01', "êUÇËï•Ç¢ë≈åÇÇ`", 3, 0, 200) // shake off blow A
+// , m_ip02(this, 'ip02', "êUÇËï•Ç¢í£ïtÇP", 3, 0, 100) // shake off sticking 1
+// , m_ip03(this, 'ip03', "êUÇËï•Ç¢ë≈åÇÇa", 8, 0, 200) // shake off blow B
+// , m_ip04(this, 'ip04', "êUÇËï•Ç¢í£ïtÇQ", 5, 0, 100) // shake off sticking 2
+// , m_ip05(this, 'ip05', "êUÇËï•Ç¢ë≈åÇÇb", 15, 0, 200) // shake off blow C
+// , m_ip06(this, 'ip06', "êUÇËï•Ç¢í£ïtÇR", 10, 0, 100) // shake off sticking 3
+// , m_ip07(this, 'ip07', "êUÇËï•Ç¢ë≈åÇÇc", 30, 0, 200) // shake off blow D
+// { }
 
 /*
  * --INFO--
@@ -2582,36 +1856,38 @@ void Pelplant::Mgr::doAlloc() { init(new Parms()); }
 // 	*/
 // }
 
-namespace Game {
-
 /*
  * birth__Q34Game8Pelplant3MgrFRQ24Game13EnemyBirthArg
  * --INFO--
  * Address:	8010A460
  * Size:	000020
  */
-EnemyBase* Pelplant::Mgr::birth(Game::EnemyBirthArg& arg) { return EnemyMgrBase::birth(arg); }
+EnemyBase* Mgr::birth(Game::EnemyBirthArg& arg) { return EnemyMgrBase::birth(arg); }
 
 /*
  * --INFO--
  * Address:	8010A480
  * Size:	0000D0
  */
-void Pelplant::Obj::onInit(Game::CreatureInitArg* arg)
+void Obj::onInit(Game::CreatureInitArg* arg)
 {
 	EnemyBase::onInit(arg);
 	_2C0 = 0.0f;
 	setEmotionNone();
+
 	if (m_farmPow == 0) {
 		_2C8 |= 1;
 	} else {
 		_2C8 &= ~1;
 	}
+
 	int stateID = getStateID();
 	if (stateID == -1) {
 		stateID = 0;
 	}
+
 	m_fsm->start(this, stateID, nullptr);
+
 	resetEvent(0, EB_9);
 	resetEvent(0, EB_LeaveCarcass);
 	resetEvent(0, EB_13);
@@ -2624,7 +1900,7 @@ void Pelplant::Obj::onInit(Game::CreatureInitArg* arg)
  * Address:	8010A550
  * Size:	000048
  */
-void Pelplant::Obj::doGetLifeGaugeParam(Game::LifeGaugeParam& param)
+void Obj::doGetLifeGaugeParam(Game::LifeGaugeParam& param)
 {
 	_2C4->getTranslation(param.m_position);
 	param.m_position.y += 60.0f;
@@ -2638,73 +1914,24 @@ void Pelplant::Obj::doGetLifeGaugeParam(Game::LifeGaugeParam& param)
  * Address:	8010A598
  * Size:	0000B0
  */
-Pelplant::Mgr::~Mgr()
-{
-	/*
-	stwu     r1, -0x10(r1)
-	mflr     r0
-	stw      r0, 0x14(r1)
-	stw      r31, 0xc(r1)
-	mr       r31, r4
-	stw      r30, 8(r1)
-	or.      r30, r3, r3
-	beq      lbl_8010A62C
-	lis      r3, __vt__Q34Game8Pelplant3Mgr@ha
-	addi     r3, r3, __vt__Q34Game8Pelplant3Mgr@l
-	stw      r3, 0(r30)
-	addi     r0, r3, 0x38
-	stw      r0, 4(r30)
-	beq      lbl_8010A61C
-	lis      r3, __vt__Q24Game12EnemyMgrBase@ha
-	addi     r3, r3, __vt__Q24Game12EnemyMgrBase@l
-	stw      r3, 0(r30)
-	addi     r0, r3, 0x38
-	stw      r0, 4(r30)
-	beq      lbl_8010A61C
-	lis      r3, __vt__Q24Game13IEnemyMgrBase@ha
-	addic.   r0, r30, 4
-	addi     r3, r3, __vt__Q24Game13IEnemyMgrBase@l
-	stw      r3, 0(r30)
-	addi     r0, r3, 0x38
-	stw      r0, 4(r30)
-	beq      lbl_8010A61C
-	lis      r4, __vt__16GenericContainer@ha
-	addi     r3, r30, 4
-	addi     r0, r4, __vt__16GenericContainer@l
-	li       r4, 0
-	stw      r0, 4(r30)
-	bl       __dt__5CNodeFv
-
-lbl_8010A61C:
-	extsh.   r0, r31
-	ble      lbl_8010A62C
-	mr       r3, r30
-	bl       __dl__FPv
-
-lbl_8010A62C:
-	lwz      r0, 0x14(r1)
-	mr       r3, r30
-	lwz      r31, 0xc(r1)
-	lwz      r30, 8(r1)
-	mtlr     r0
-	addi     r1, r1, 0x10
-	blr
-	*/
-}
+// WEAK - in header
+// Pelplant::Mgr::~Mgr() { }
 
 /*
  * --INFO--
  * Address:	8010A648
  * Size:	000008
  */
-EnemyTypeID::EEnemyTypeID Pelplant::Mgr::getEnemyTypeID() { return EnemyTypeID::EnemyID_Pelplant; }
+// WEAK - in header
+// EnemyTypeID::EEnemyTypeID Pelplant::Mgr::getEnemyTypeID() { return EnemyTypeID::EnemyID_Pelplant; }
 
 /*
  * --INFO--
  * Address:	8010A650
  * Size:	000060
  */
-void Pelplant::Mgr::createObj(int count) { m_objects = new Obj[count]; }
+// WEAK - in header
+// void Pelplant::Mgr::createObj(int count) { m_objects = new Obj[count]; }
 
 /*
  * __dt__Q34Game8Pelplant3ObjFv
@@ -2712,62 +1939,8 @@ void Pelplant::Mgr::createObj(int count) { m_objects = new Obj[count]; }
  * Address:	8010A6B0
  * Size:	0000BC
  */
-Pelplant::Obj::~Obj()
-{
-	/*
-	stwu     r1, -0x10(r1)
-	mflr     r0
-	stw      r0, 0x14(r1)
-	stw      r31, 0xc(r1)
-	or.      r31, r3, r3
-	stw      r30, 8(r1)
-	mr       r30, r4
-	beq      lbl_8010A750
-	lis      r3, __vt__Q34Game8Pelplant3Obj@ha
-	addi     r0, r31, 0x2d8
-	addi     r4, r3, __vt__Q34Game8Pelplant3Obj@l
-	stw      r4, 0(r31)
-	addi     r3, r4, 0x1b0
-	addi     r4, r4, 0x2fc
-	stw      r3, 0x178(r31)
-	lwz      r3, 0x17c(r31)
-	stw      r4, 0(r3)
-	lwz      r3, 0x17c(r31)
-	subf     r0, r3, r0
-	stw      r0, 0xc(r3)
-	beq      lbl_8010A740
-	lis      r3, __vt__Q24Game9EnemyBase@ha
-	addi     r0, r31, 0x2bc
-	addi     r4, r3, __vt__Q24Game9EnemyBase@l
-	addi     r3, r31, 0x290
-	stw      r4, 0(r31)
-	addi     r5, r4, 0x1b0
-	addi     r6, r4, 0x2f8
-	li       r4, -1
-	stw      r5, 0x178(r31)
-	lwz      r5, 0x17c(r31)
-	stw      r6, 0(r5)
-	lwz      r5, 0x17c(r31)
-	subf     r0, r5, r0
-	stw      r0, 0xc(r5)
-	bl       __dt__5CNodeFv
-
-lbl_8010A740:
-	extsh.   r0, r30
-	ble      lbl_8010A750
-	mr       r3, r31
-	bl       __dl__FPv
-
-lbl_8010A750:
-	lwz      r0, 0x14(r1)
-	mr       r3, r31
-	lwz      r31, 0xc(r1)
-	lwz      r30, 8(r1)
-	mtlr     r0
-	addi     r1, r1, 0x10
-	blr
-	*/
-}
+// WEAK - in header
+// Pelplant::Obj::~Obj() { }
 
 /*
  * getEnemy__Q34Game8Pelplant3MgrFi
@@ -2782,7 +1955,8 @@ EnemyBase* Pelplant::Mgr::getEnemy(int index) { return &m_objects[index]; }
  * Address:	8010A77C
  * Size:	000004
  */
-void Pelplant::Mgr::initStoneSetting() { }
+// WEAK - in header
+// void Pelplant::Mgr::initStoneSetting() { }
 
 /*
  * get__Q24Game12EnemyMgrBaseFPv
@@ -2824,7 +1998,7 @@ void Pelplant::Mgr::initStoneSetting() { }
 // {
 // }
 
-} // namespace Game
+} // namespace Pelplant
 
 /*
  * doSimpleDraw__16GenericObjectMgrFP8Viewport

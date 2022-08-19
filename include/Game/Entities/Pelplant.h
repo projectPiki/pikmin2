@@ -45,15 +45,18 @@ struct Obj : public EnemyBase {
 	Obj();
 
 	// vtable 1 (Creature)
-	virtual void onInit(CreatureInitArg*);     // _028
-	virtual void doAnimation();                // _034
-	virtual void doSimulation(float);          // _044
-	virtual void doDirectDraw(Graphics&);      // _048
-	virtual bool isLivingThing();              // _0CC
+	virtual void onInit(CreatureInitArg*); // _028
+	virtual void doAnimation();            // _034
+	virtual void doSimulation(float);      // _044
+	virtual void doDirectDraw(Graphics&);  // _048
+	virtual bool isLivingThing()           // _0CC (weak)
+	{
+		return (_2C8 >> 1 & 1);
+	}
 	virtual void getShadowParam(ShadowParam&); // _12C
 	virtual void onStickStart(Creature*);      // _150
 	// vtable 2 (MotionListener+EnemyBase+self)
-	virtual ~Obj();                                           // _004
+	virtual ~Obj() { }                                        // _004
 	virtual void birth(Vector3f&, float);                     // _008
 	virtual void setInitialSetting(EnemyInitialParamBase*);   // _00C
 	virtual void doUpdate();                                  // _014
@@ -63,7 +66,12 @@ struct Obj : public EnemyBase {
 	virtual void doGetLifeGaugeParam(LifeGaugeParam&);        // _0A8
 	virtual bool damageCallBack(Creature*, float, CollPart*); // _0C0
 	virtual bool farmCallBack(Creature*, float);              // _0D8
-	virtual void setFSM(FSM*);                                // _1D0
+	virtual void setFSM(FSM* fsm)                             // _1D0 (weak)
+	{
+		m_fsm = fsm;
+		m_fsm->init(this);
+		m_currentLifecycleState = nullptr;
+	}
 
 	void attachPellet();
 	void changePelletColor();
@@ -98,13 +106,13 @@ struct Obj : public EnemyBase {
 struct Mgr : public EnemyMgrBase {
 	Mgr(int, u8);
 
-	virtual ~Mgr();
+	virtual ~Mgr() { }
 	virtual EnemyBase* birth(EnemyBirthArg&);
-	virtual void createObj(int);
+	virtual void createObj(int count) { m_objects = new Obj[count]; }
 	virtual EnemyBase* getEnemy(int);
 	virtual void doAlloc();
-	virtual EnemyTypeID::EEnemyTypeID getEnemyTypeID();
-	virtual void initStoneSetting();
+	virtual EnemyTypeID::EEnemyTypeID getEnemyTypeID() { return EnemyTypeID::EnemyID_Pelplant; }
+	virtual void initStoneSetting() { }
 
 	Obj* m_objects; // _48
 };

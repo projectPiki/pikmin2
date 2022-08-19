@@ -45,7 +45,7 @@ struct EnemyAnimatorBase {
 struct EnemyBlendAnimatorBase : public EnemyAnimatorBase {
 	EnemyBlendAnimatorBase();
 
-	virtual ~EnemyBlendAnimatorBase();            // _08 (weak)
+	virtual ~EnemyBlendAnimatorBase() { }         // _08 (weak)
 	virtual void setAnimMgr(SysShape::AnimMgr*);  // _0C
 	virtual SysShape::Animator& getAnimator();    // _10
 	virtual SysShape::Animator& getAnimator(int); // _14
