@@ -1,18 +1,15 @@
 .include "macros.inc"
 .section .sbss # 0x80514D80 - 0x80516360
 .balign 8
-.global TokenCB
 TokenCB:
 	.skip 0x4
-.global DrawDoneCB
 DrawDoneCB:
 	.skip 0x4
-.global DrawDone
 DrawDone:
-	.skip 0x4
-.global FinishQueue
+	.skip 0x1
+.balign 4
 FinishQueue:
-	.skip 0xC
+	.skip 0x8
 
 .section .text, "ax"  # 0x800056C0 - 0x80472F00
 .global GXSetMisc
@@ -571,7 +568,6 @@ GXSetDrawSyncCallback:
 /* 800E5740 000E2680  7C 08 03 A6 */	mtlr r0
 /* 800E5744 000E2684  4E 80 00 20 */	blr 
 
-.global GXTokenInterruptHandler
 GXTokenInterruptHandler:
 /* 800E5748 000E2688  7C 08 02 A6 */	mflr r0
 /* 800E574C 000E268C  90 01 00 04 */	stw r0, 4(r1)
@@ -629,7 +625,6 @@ GXSetDrawDoneCallback:
 /* 800E580C 000E274C  7C 08 03 A6 */	mtlr r0
 /* 800E5810 000E2750  4E 80 00 20 */	blr 
 
-.global GXFinishInterruptHandler
 GXFinishInterruptHandler:
 /* 800E5814 000E2754  7C 08 02 A6 */	mflr r0
 /* 800E5818 000E2758  38 60 00 01 */	li r3, 1

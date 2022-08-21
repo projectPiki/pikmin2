@@ -71,14 +71,14 @@ gfNAN___Q24Game5P2JST:
 
 .section .sdata2, "a"     # 0x80516360 - 0x80520E40
 .balign 8
-lbl_80517A78:
-	.4byte 0x40490FDB
+lbl_80517A78: # pi
+	.float 3.1415927
 lbl_80517A7C:
-	.4byte 0x3BB60B61
+	.float 0.0055555557
 lbl_80517A80:
-	.4byte 0x00000000
+	.float 0.0
 lbl_80517A84:
-	.4byte 0x47000000
+	.float 32768.0
 .balign 8
 lbl_80517A88:
 	.4byte 0x43300000

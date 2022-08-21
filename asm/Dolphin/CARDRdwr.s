@@ -1,7 +1,6 @@
 .include "macros.inc"
 
 .section .text, "ax"  # 0x800056C0 - 0x80472F00
-.global BlockReadCallback
 BlockReadCallback:
 /* 800D6B80 000D3AC0  7C 08 02 A6 */	mflr r0
 /* 800D6B84 000D3AC4  90 01 00 04 */	stw r0, 4(r1)

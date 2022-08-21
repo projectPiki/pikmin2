@@ -13,39 +13,37 @@ lbl_804A8530:
 .section .sdata2, "a"     # 0x80516360 - 0x80520E40
 .balign 8
 lbl_80517628:
-	.4byte 0x00000000
+	.float 0.0
 lbl_8051762C:
-	.4byte 0x42B40000
-lbl_80517630:
-	.4byte 0x40490FDB
+	.float 90.0
+lbl_80517630: # pi
+	.float 3.1415927
 lbl_80517634:
-	.4byte 0x43340000
+	.float 180.0
 lbl_80517638:
-	.4byte 0xC47A0000
+	.float -1000.0
 lbl_8051763C:
-	.4byte 0x447A0000
+	.float 1000.0
 lbl_80517640:
 	.float 1.0
 lbl_80517644:
-	.4byte 0x40000000
+	.float 2.0
 lbl_80517648:
-	.4byte 0xC0800000
+	.float -4.0
 lbl_8051764C:
-	.4byte 0x40800000
+	.float 4.0
 lbl_80517650:
-	.4byte 0xC0000000
+	.float -2.0
 lbl_80517654:
 	.float 0.5
 .balign 8
 lbl_80517658:
-	.4byte 0x3FE00000
-	.4byte 0x00000000
+	.double 0.5
 .balign 8
 lbl_80517660:
-	.4byte 0x40080000
-	.4byte 0x00000000
+	.double 3.0
 lbl_80517668:
-	.4byte 0xDD5E0B6B
+	.float -9.9999998E17
 
 .section .text, "ax"  # 0x800056C0 - 0x80472F00
 .global GXInitLightAttn

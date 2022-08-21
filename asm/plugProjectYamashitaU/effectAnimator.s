@@ -2,15 +2,11 @@
 .section .rodata  # 0x804732E0 - 0x8049E220
 .balign 8
 lbl_8047C570:
-	.4byte 0x65666665
-	.4byte 0x63744F62
-	.4byte 0x6A000000
+	.asciz "effectObj"
+.balign 4
 lbl_8047C57C:
-	.4byte 0x65666665
-	.4byte 0x6374416E
-	.4byte 0x696D6174
-	.4byte 0x6F722E63
-	.4byte 0x70700000
+	.asciz "effectAnimator.cpp"
+.balign 4
 lbl_8047C590:
 	.asciz "P2Assert"
 
