@@ -7,7 +7,7 @@ extern void __end_critical_region(int);
 extern void fclose(FILE*);
 static char stdin_buff[0x100];
 static char stdout_buff[0x100];
-static char stderr_buff[0x100]; // these three buffs should be static!
+static char stderr_buff[0x100];
 
 extern int __read_console(u32, u32, u32*);
 extern BOOL __write_console(s32, s32, s32*, s32);

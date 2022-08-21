@@ -25,7 +25,7 @@ __declspec(section ".init") asm void __init_hardware(void) {
     blr
 }
 
-__declspec(section ".init") asm void __flush_cache(void) {
+__declspec(section ".init") asm void __flush_cache(unsigned long param_1, int param_2) {
 	nofralloc
 	lis r5, 0xFFFFFFF1@h
 	ori r5, r5, 0xFFFFFFF1@l
