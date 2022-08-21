@@ -1,5 +1,9 @@
 #include "types.h"
 
+#define WRITE(dst, add, n_dst, n_src) ((u##n_dst*)dst) = ((u##n_dst*)(((u##n_src*)dst) + add)) - 1
+#define WRITE_BYTE(dst, add)          WRITE(dst, add, 8, 32)
+#define WRITE_WORD(dst, add)          WRITE(dst, add, 32, 8)
+
 __declspec(section ".init") void* TRK_memcpy(void* dst, const void* src, size_t n);
 __declspec(section ".init") void* TRK_memset(void* dst, int val, size_t n);
 
@@ -29,10 +33,10 @@ void* TRK_memcpy(void* dst, const void* src, size_t n)
  */
 void TRK_fill_mem(void* dst, int val, size_t n)
 {
-	u32 v, i, j;
-	v = (u8)val;
+	u32 v = (u8)val;
+	u32 i, j;
 
-	((u8*)dst) = ((u8*)dst) - 1;
+	WRITE_BYTE(dst, 0);
 
 	if (n >= 32) {
 		i = (~(u32)dst) & 3;
@@ -48,8 +52,8 @@ void TRK_fill_mem(void* dst, int val, size_t n)
 		if (v)
 			v |= v << 24 | v << 16 | v << 8;
 
-		((u32*)dst) = ((u32*)(((u8*)dst) + 4)) - 1;
-		((u32*)dst) = ((u32*)(((u8*)dst) + 1)) - 1;
+		WRITE_WORD(dst, 4);
+		WRITE_WORD(dst, 1);
 
 		i = n / 32;
 
@@ -68,7 +72,7 @@ void TRK_fill_mem(void* dst, int val, size_t n)
 			} while (--i);
 		}
 
-		((u8*)dst) = ((u8*)(((u32*)dst) + 1)) - 1;
+		WRITE_BYTE(dst, 1);
 
 		n %= 4;
 	}
