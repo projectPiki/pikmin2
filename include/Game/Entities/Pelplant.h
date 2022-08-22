@@ -35,6 +35,8 @@ struct FSM : public EnemyStateMachine {
 	    : EnemyStateMachine()
 	{
 	}
+
+	virtual void init(EnemyBase*); // _08
 };
 
 /**
@@ -179,6 +181,109 @@ struct ProperAnimator : public EnemyBlendAnimatorBase {
 	virtual void setAnimMgr(SysShape::AnimMgr*);  // _04
 	virtual SysShape::Animator& getAnimator();    // _08
 	virtual SysShape::Animator& getAnimator(int); // _0C
+};
+
+struct State : public EnemyFSMState {
+	inline State(int stateID)
+	    : EnemyFSMState(stateID)
+	{
+	}
+
+	// _00 VTBL
+	// _04 int stateID
+	// _08 EnemyStateMachine* m_stateMachine
+	// _0C const char* m_name
+};
+
+struct StateBlendAnim : public State {
+	inline StateBlendAnim(int stateID, int a, int b, int c)
+	    : State(stateID)
+	    , _10(a)
+	    , _14(b)
+	    , _18(c)
+	{
+	}
+
+	virtual void init(EnemyBase*, StateArg*); // _08
+	virtual void exec(EnemyBase*);            // _0C
+
+	// _00 VTBL
+	// _04 int stateID
+	// _08 EnemyStateMachine* m_stateMachine
+	// _0C const char* m_name
+	int _10; // _10
+	int _14; // _14
+	int _18; // _18
+};
+
+struct StateDamage : public State {
+	StateDamage(int, int);
+
+	virtual void init(EnemyBase*, StateArg*); // _08
+	virtual void exec(EnemyBase*);            // _0C
+	virtual void cleanup(EnemyBase*);         // _10
+
+	// _00 VTBL
+	// _04 int stateID
+	// _08 EnemyStateMachine* m_stateMachine
+	// _0C const char* m_name
+	int _10; // _10
+};
+
+struct StateDead : public State {
+	StateDead(int, int);
+
+	virtual void init(EnemyBase*, StateArg*); // _08
+	virtual void exec(EnemyBase*);            // _0C
+	virtual void cleanup(EnemyBase*);         // _10
+
+	// _00 VTBL
+	// _04 int stateID
+	// _08 EnemyStateMachine* m_stateMachine
+	// _0C const char* m_name
+	int _10; // _10
+};
+
+struct StateGrow : public State {
+	StateGrow(int, int, int);
+
+	virtual void init(EnemyBase*, StateArg*); // _08
+	virtual void exec(EnemyBase*);            // _0C
+	virtual void cleanup(EnemyBase*);         // _10
+
+	// _00 VTBL
+	// _04 int stateID
+	// _08 EnemyStateMachine* m_stateMachine
+	// _0C const char* m_name
+	int _10; // _10
+	u32 _14; // _14
+};
+
+struct StateWait : public State {
+	StateWait(int, int);
+
+	virtual void init(EnemyBase*, StateArg*); // _08
+	virtual void exec(EnemyBase*);            // _0C
+	virtual void cleanup(EnemyBase*);         // _10
+
+	// _00 VTBL
+	// _04 int stateID
+	// _08 EnemyStateMachine* m_stateMachine
+	// _0C const char* m_name
+	u32 _10; // _10
+};
+
+struct StateWither : public StateBlendAnim {
+	StateWither(int, int, int, int);
+
+	virtual void init(EnemyBase*, StateArg*); // _08
+	virtual void exec(EnemyBase*);            // _0C
+	virtual void cleanup(EnemyBase*);         // _10
+
+	// _00 VTBL
+	// _04 int stateID
+	// _08 EnemyStateMachine* m_stateMachine
+	// _0C const char* m_name
 };
 
 static float sLODRadius[4];
