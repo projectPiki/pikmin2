@@ -2141,39 +2141,8 @@ void EnemyBase::birth(Vector3f& pos, float faceDir)
  */
 void EnemyBase::updateTrMatrix()
 {
-	/*
-	.loc_0x0:
-	  stwu      r1, -0x20(r1)
-	  mflr      r0
-	  mr        r6, r3
-	  stw       r0, 0x24(r1)
-	  addi      r5, r1, 0x8
-	  addi      r4, r6, 0x18C
-	  lfs       f3, 0x1AC(r3)
-	  addi      r3, r6, 0x138
-	  lfs       f2, 0x1B8(r6)
-	  lfs       f1, 0x1A8(r6)
-	  fadds     f5, f3, f2
-	  lfs       f0, 0x1B4(r6)
-	  lfs       f3, 0x1C4(r6)
-	  fadds     f4, f1, f0
-	  lfs       f2, 0x1A4(r6)
-	  lfs       f1, 0x1B0(r6)
-	  fadds     f5, f5, f3
-	  lfs       f3, 0x1C0(r6)
-	  fadds     f1, f2, f1
-	  lfs       f0, 0x1BC(r6)
-	  fadds     f2, f4, f3
-	  fadds     f0, f1, f0
-	  stfs      f5, 0x10(r1)
-	  stfs      f2, 0xC(r1)
-	  stfs      f0, 0x8(r1)
-	  bl        0x325CC4
-	  lwz       r0, 0x24(r1)
-	  mtlr      r0
-	  addi      r1, r1, 0x20
-	  blr
-	*/
+    Vector3f rot = _1A4.getRow(0) + _1A4.getRow(1) + _1A4.getRow(2);
+    m_mainMatrix.makeTR(m_position, rot);
 }
 
 /*
@@ -2319,137 +2288,39 @@ void EnemyBase::doAnimationUpdateAnimator()
  */
 void EnemyBase::doAnimationCullingOff()
 {
-	/*
-	.loc_0x0:
-	    stwu      r1, -0x60(r1)
-	    mflr      r0
-	    stw       r0, 0x64(r1)
-	    li        r0, 0
-	    stw       r31, 0x5C(r1)
-	    mr        r31, r3
-	    lwz       r4, 0x188(r3)
-	    stb       r0, 0x24(r4)
-	    lwz       r12, 0x0(r3)
-	    lwz       r12, 0x1D8(r12)
-	    mtctr     r12
-	    bctrl
-	    lwz       r3, 0x17C(r31)
-	    lwz       r0, 0x4(r3)
-	    cmplwi    r0, 0
-	    beq-      .loc_0xB8
-	    addi      r4, r31, 0x138
-	    bl        0x62CDC
-	    lfs       f1, 0x168(r31)
-	    addi      r3, r1, 0x20
-	    lfs       f2, 0x16C(r31)
-	    lfs       f3, 0x170(r31)
-	    bl        -0x18904
-	    addi      r3, r31, 0x138
-	    addi      r4, r1, 0x20
-	    mr        r5, r3
-	    bl        -0x18DE8
-	    lfs       f0, 0x144(r31)
-	    mr        r3, r31
-	    addi      r4, r1, 0x14
-	    stfs      f0, 0x14(r1)
-	    lfs       f0, 0x154(r31)
-	    stfs      f0, 0x18(r1)
-	    lfs       f0, 0x164(r31)
-	    stfs      f0, 0x1C(r1)
-	    lwz       r12, 0x0(r31)
-	    lwz       r12, 0x70(r12)
-	    mtctr     r12
-	    bctrl
-	    mr        r3, r31
-	    addi      r4, r1, 0x14
-	    lwz       r12, 0x0(r31)
-	    lwz       r12, 0x74(r12)
-	    mtctr     r12
-	    bctrl
-	    b         .loc_0x13C
+    m_animKeyEvent->m_running = false;
+    doAnimationUpdateAnimator();
+    
+    if (m_pellet != nullptr) {
+        viewMakeMatrix(m_mainMatrix);
+        Matrixf mtx;
+        PSMTXScale(mtx.m_matrix.mtxView, m_scale.x, m_scale.y, m_scale.z);
+        PSMTXConcat(m_mainMatrix.m_matrix.mtxView, mtx.m_matrix.mtxView, m_mainMatrix.m_matrix.mtxView);
 
-	.loc_0xB8:
-	    mr        r3, r31
-	    bl        0x9C438
-	    rlwinm.   r0,r3,0,24,31
-	    beq-      .loc_0xE0
-	    mr        r3, r31
-	    lwz       r12, 0x0(r31)
-	    lwz       r12, 0x1E4(r12)
-	    mtctr     r12
-	    bctrl
-	    b         .loc_0x13C
+        Vector3f pos;
+        pos.x = m_mainMatrix.m_matrix.structView.tx;
+        pos.y = m_mainMatrix.m_matrix.structView.ty;
+        pos.z = m_mainMatrix.m_matrix.structView.tz;
+        onSetPosition(pos);
+        onSetPositionPost(pos);
+    } else {
+        if (isStickTo()) {
+            doAnimationStick();
+        } else {
+            Vector3f rot = _1A4.getRow(0) + _1A4.getRow(1) + _1A4.getRow(2);
+            m_mainMatrix.makeSRT(m_scale, rot, m_position);
+        }
+    }
+    
+    sys->m_timers->_start("e-calc", true);
+    PSMTXCopy(m_mainMatrix.m_matrix.mtxView, m_model->m_j3dModel->_24);
+    m_model->m_j3dModel->calc();
+    sys->m_timers->_stop("e-calc");
+    m_collTree->update();
 
-	.loc_0xE0:
-	    lfs       f3, 0x1AC(r31)
-	    addi      r3, r31, 0x138
-	    lfs       f2, 0x1B8(r31)
-	    addi      r4, r31, 0x168
-	    lfs       f1, 0x1A8(r31)
-	    addi      r5, r1, 0x8
-	    lfs       f0, 0x1B4(r31)
-	    fadds     f6, f3, f2
-	    lfs       f5, 0x1C4(r31)
-	    addi      r6, r31, 0x18C
-	    lfs       f2, 0x1A4(r31)
-	    fadds     f4, f1, f0
-	    lfs       f1, 0x1B0(r31)
-	    lfs       f3, 0x1C0(r31)
-	    fadds     f5, f6, f5
-	    lfs       f0, 0x1BC(r31)
-	    fadds     f1, f2, f1
-	    fadds     f2, f4, f3
-	    stfs      f5, 0x10(r1)
-	    fadds     f0, f1, f0
-	    stfs      f2, 0xC(r1)
-	    stfs      f0, 0x8(r1)
-	    bl        0x325120
-
-	.loc_0x13C:
-	    lwz       r3, -0x6514(r13)
-	    subi      r4, r2, 0x6B40
-	    li        r5, 0x1
-	    lwz       r3, 0x28(r3)
-	    bl        0x32792C
-	    lwz       r4, 0x174(r31)
-	    addi      r3, r31, 0x138
-	    lwz       r4, 0x8(r4)
-	    addi      r4, r4, 0x24
-	    bl        -0x18F14
-	    lwz       r3, 0x174(r31)
-	    lwz       r3, 0x8(r3)
-	    lwz       r12, 0x0(r3)
-	    lwz       r12, 0x10(r12)
-	    mtctr     r12
-	    bctrl
-	    lwz       r3, -0x6514(r13)
-	    subi      r4, r2, 0x6B40
-	    lwz       r3, 0x28(r3)
-	    bl        0x3278F4
-	    lwz       r3, 0x114(r31)
-	    bl        0x3288C
-	    lwz       r3, 0x184(r31)
-	    lwz       r12, 0x0(r3)
-	    lwz       r12, 0x10(r12)
-	    mtctr     r12
-	    bctrl
-	    lbz       r0, 0x18(r3)
-	    rlwinm.   r0,r0,0,31,31
-	    beq-      .loc_0x1CC
-	    lfs       f1, -0x6BB0(r2)
-	    li        r4, 0
-	    lwz       r3, 0x28C(r31)
-	    li        r5, 0x1
-	    fmr       f2, f1
-	    bl        0x35AB98
-
-	.loc_0x1CC:
-	    lwz       r0, 0x64(r1)
-	    lwz       r31, 0x5C(r1)
-	    mtlr      r0
-	    addi      r1, r1, 0x60
-	    blr
-	*/
+    if (m_animator->getAnimator().m_flags & 1) {
+        static_cast<PSM::CreatureAnime*>(m_soundObj)->setAnime(nullptr, 1, 0.0f, 0.0f);
+    }
 }
 
 /*
@@ -2459,40 +2330,8 @@ void EnemyBase::doAnimationCullingOff()
  */
 void EnemyBase::doAnimationStick()
 {
-	/*
-	.loc_0x0:
-	    stwu      r1, -0x20(r1)
-	    mflr      r0
-	    mr        r7, r3
-	    stw       r0, 0x24(r1)
-	    addi      r5, r1, 0x8
-	    addi      r4, r7, 0x168
-	    addi      r6, r7, 0x18C
-	    lfs       f3, 0x1AC(r3)
-	    addi      r3, r7, 0x138
-	    lfs       f2, 0x1B8(r7)
-	    lfs       f1, 0x1A8(r7)
-	    fadds     f5, f3, f2
-	    lfs       f0, 0x1B4(r7)
-	    lfs       f3, 0x1C4(r7)
-	    fadds     f4, f1, f0
-	    lfs       f2, 0x1A4(r7)
-	    lfs       f1, 0x1B0(r7)
-	    fadds     f5, f5, f3
-	    lfs       f3, 0x1C0(r7)
-	    fadds     f1, f2, f1
-	    lfs       f0, 0x1BC(r7)
-	    fadds     f2, f4, f3
-	    fadds     f0, f1, f0
-	    stfs      f5, 0x10(r1)
-	    stfs      f2, 0xC(r1)
-	    stfs      f0, 0x8(r1)
-	    bl        0x324FD4
-	    lwz       r0, 0x24(r1)
-	    mtlr      r0
-	    addi      r1, r1, 0x20
-	    blr
-	*/
+    Vector3f rot = _1A4.getRow(0) + _1A4.getRow(1) + _1A4.getRow(2);
+    m_mainMatrix.makeSRT(m_scale, rot, m_position);
 }
 
 /*
