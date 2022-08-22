@@ -334,7 +334,7 @@ DOLPHIN:=\
 	$(BUILD_DIR)/src/Dolphin/e_sqrt.o\
 	$(BUILD_DIR)/src/Dolphin/math_ppc.o\
 	$(BUILD_DIR)/src/Dolphin/w_sqrt.o\
-	$(BUILD_DIR)/asm/Dolphin/extras.o\
+	$(BUILD_DIR)/src/Dolphin/extras.o\
 	$(BUILD_DIR)/src/Dolphin/DebuggerDriver.o\
 	$(BUILD_DIR)/asm/Dolphin/DebuggerDriver.o\
 	$(BUILD_DIR)/asm/Dolphin/vi.o\

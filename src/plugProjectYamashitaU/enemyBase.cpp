@@ -2141,8 +2141,8 @@ void EnemyBase::birth(Vector3f& pos, float faceDir)
  */
 void EnemyBase::updateTrMatrix()
 {
-    Vector3f rot = _1A4.getRow(0) + _1A4.getRow(1) + _1A4.getRow(2);
-    m_mainMatrix.makeTR(m_position, rot);
+	Vector3f rot = _1A4.getRow(0) + _1A4.getRow(1) + _1A4.getRow(2);
+	m_mainMatrix.makeTR(m_position, rot);
 }
 
 /*
@@ -2288,39 +2288,39 @@ void EnemyBase::doAnimationUpdateAnimator()
  */
 void EnemyBase::doAnimationCullingOff()
 {
-    m_animKeyEvent->m_running = false;
-    doAnimationUpdateAnimator();
-    
-    if (m_pellet != nullptr) {
-        viewMakeMatrix(m_mainMatrix);
-        Matrixf mtx;
-        PSMTXScale(mtx.m_matrix.mtxView, m_scale.x, m_scale.y, m_scale.z);
-        PSMTXConcat(m_mainMatrix.m_matrix.mtxView, mtx.m_matrix.mtxView, m_mainMatrix.m_matrix.mtxView);
+	m_animKeyEvent->m_running = false;
+	doAnimationUpdateAnimator();
 
-        Vector3f pos;
-        pos.x = m_mainMatrix.m_matrix.structView.tx;
-        pos.y = m_mainMatrix.m_matrix.structView.ty;
-        pos.z = m_mainMatrix.m_matrix.structView.tz;
-        onSetPosition(pos);
-        onSetPositionPost(pos);
-    } else {
-        if (isStickTo()) {
-            doAnimationStick();
-        } else {
-            Vector3f rot = _1A4.getRow(0) + _1A4.getRow(1) + _1A4.getRow(2);
-            m_mainMatrix.makeSRT(m_scale, rot, m_position);
-        }
-    }
-    
-    sys->m_timers->_start("e-calc", true);
-    PSMTXCopy(m_mainMatrix.m_matrix.mtxView, m_model->m_j3dModel->_24);
-    m_model->m_j3dModel->calc();
-    sys->m_timers->_stop("e-calc");
-    m_collTree->update();
+	if (m_pellet != nullptr) {
+		viewMakeMatrix(m_mainMatrix);
+		Matrixf mtx;
+		PSMTXScale(mtx.m_matrix.mtxView, m_scale.x, m_scale.y, m_scale.z);
+		PSMTXConcat(m_mainMatrix.m_matrix.mtxView, mtx.m_matrix.mtxView, m_mainMatrix.m_matrix.mtxView);
 
-    if (m_animator->getAnimator().m_flags & 1) {
-        static_cast<PSM::CreatureAnime*>(m_soundObj)->setAnime(nullptr, 1, 0.0f, 0.0f);
-    }
+		Vector3f pos;
+		pos.x = m_mainMatrix.m_matrix.structView.tx;
+		pos.y = m_mainMatrix.m_matrix.structView.ty;
+		pos.z = m_mainMatrix.m_matrix.structView.tz;
+		onSetPosition(pos);
+		onSetPositionPost(pos);
+	} else {
+		if (isStickTo()) {
+			doAnimationStick();
+		} else {
+			Vector3f rot = _1A4.getRow(0) + _1A4.getRow(1) + _1A4.getRow(2);
+			m_mainMatrix.makeSRT(m_scale, rot, m_position);
+		}
+	}
+
+	sys->m_timers->_start("e-calc", true);
+	PSMTXCopy(m_mainMatrix.m_matrix.mtxView, m_model->m_j3dModel->_24);
+	m_model->m_j3dModel->calc();
+	sys->m_timers->_stop("e-calc");
+	m_collTree->update();
+
+	if (m_animator->getAnimator().m_flags & 1) {
+		static_cast<PSM::CreatureAnime*>(m_soundObj)->setAnime(nullptr, 1, 0.0f, 0.0f);
+	}
 }
 
 /*
@@ -2330,8 +2330,8 @@ void EnemyBase::doAnimationCullingOff()
  */
 void EnemyBase::doAnimationStick()
 {
-    Vector3f rot = _1A4.getRow(0) + _1A4.getRow(1) + _1A4.getRow(2);
-    m_mainMatrix.makeSRT(m_scale, rot, m_position);
+	Vector3f rot = _1A4.getRow(0) + _1A4.getRow(1) + _1A4.getRow(2);
+	m_mainMatrix.makeSRT(m_scale, rot, m_position);
 }
 
 /*

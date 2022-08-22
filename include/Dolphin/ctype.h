@@ -16,8 +16,10 @@ extern "C" {
 #define CTYPE_UPPER  0x80
 
 extern unsigned char __ctype_map[256];
+extern unsigned char __lower_map[256];
 
 inline BOOL isdigit(int c) { return (__ctype_map[c & 0xFF] & CTYPE_DIGIT) != 0; }
+inline BOOL islower(u8 c) { return (__lower_map[c & 0xFF]); }
 
 #ifdef __cplusplus
 };

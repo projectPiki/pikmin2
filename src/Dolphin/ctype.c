@@ -384,11 +384,11 @@ void isprint(void)
  * Address:	........
  * Size:	000018
  */
-BOOL islower(unsigned char c)
-{
-	// UNUSED FUNCTION
-	return __ctype_map[c] & CTYPE_LOWER;
-}
+// BOOL islower(unsigned char c)
+//{
+//	// UNUSED FUNCTION
+//	return __ctype_map[c] & CTYPE_LOWER;
+//}
 
 /*
  * --INFO--
