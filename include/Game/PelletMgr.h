@@ -126,8 +126,6 @@ struct PelletInitArg : CreatureInitArg {
 
 struct PelletNumberInitArg : public PelletInitArg {
 	PelletNumberInitArg(int, int);
-
-	u32 m_pelletNumberType; // _28
 };
 
 /**

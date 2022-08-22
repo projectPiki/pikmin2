@@ -19,6 +19,7 @@
 #include "Matrix3f.h"
 #include "Sys/Sphere.h"
 #include "SysShape/MotionListener.h"
+#include "SysShape/AnimMgr.h"
 #include "Vector3.h"
 #include "efx/TEnemyPiyo.h"
 #include "efx/TEnemyWalkSmoke.h"
@@ -28,6 +29,7 @@
 #include "Game/EnemyEffectNode.h"
 #include "trig.h"
 #include "Vector2.h"
+#include "PSM/EnemyBase.h"
 
 #define EMOTE_None       (0)
 #define EMOTE_Caution    (1)
@@ -313,7 +315,55 @@ struct EnemyBase : public Creature, public SysShape::MotionListener, virtual pub
 	virtual void doStartEarthquakeFitState();   // _2B8
 	virtual void doFinishEarthquakeFitState();  // _2BC
 	virtual void lifeRecover();                 // _2C0
-	virtual void startCarcassMotion();          // _2C4 (weak)
+	virtual void startCarcassMotion()           // _2C4 (weak)
+	{
+		SysShape::MotionListener* listener = this;
+
+		EnemyAnimatorBase* animator = m_animator;
+		animator->m_flags.typeView &= ~0x3;
+		animator->m_progress = 1.0f;
+		animator->getAnimator(0).startAnim(0, listener);
+
+		resetEvent(0, EB_PS1 + EB_PS2 + EB_PS3 + EB_PS4);
+		setEvent(0, EB_PS1);
+
+		if (isEvent(0, EB_PS1)) {
+			int idx                      = getCurrAnimIndex();
+			SysShape::Animator anim      = m_animator->getAnimator(0);
+			SysShape::AnimInfo* info     = static_cast<SysShape::AnimInfo*>(anim.m_animMgr->m_animInfo.m_child)->getInfoByID(idx);
+			JAIAnimeFrameSoundData* file = info->m_basFile;
+
+			if (file != nullptr) {
+				SysShape::KeyEvent* event1 = info->getAnimKeyByType(0);
+				SysShape::KeyEvent* event2 = info->getAnimKeyByType(1);
+
+				if (event1 != nullptr && event2 != nullptr) {
+					float val1 = (float)event1->m_frame;
+					float val2 = (float)event2->m_frame;
+					m_soundObj->setAnime((JAIAnimeSoundData*)file, 1, val1, val2);
+					return;
+				}
+
+				m_soundObj->setAnime((JAIAnimeSoundData*)file, 1, 0.0f, 0.0f);
+				return;
+			}
+
+			m_soundObj->setAnime(nullptr, 1, 0.0f, 0.0f);
+			return;
+		}
+
+		if (isEvent(0, EB_PS2)) {
+			m_soundObj->setAnime((JAIAnimeSoundData*)-1, 1, 0.0f, 0.0f);
+			return;
+		}
+
+		if (isEvent(0, EB_PS3)) {
+			m_soundObj->setAnime((JAIAnimeSoundData*)-1, 1, 0.0f, 0.0f);
+			return;
+		}
+
+		m_soundObj->setAnime(nullptr, 1, 0.0f, 0.0f);
+	}
 	virtual void setCarcassArg(PelletViewArg&); // _2C8
 	virtual float getCarcassArgHeight()         // _2CC (weak)
 	{
@@ -425,6 +475,16 @@ struct EnemyBase : public Creature, public SysShape::MotionListener, virtual pub
 	inline void resetEvent(int i, u32 flag) { m_events.m_flags[i].typeView &= ~flag; }
 
 	inline bool isEvent(int i, u32 flag) { return m_events.m_flags[i].typeView & flag; }
+
+	inline bool checkSecondary()
+	{ // needs a better name eventually, used in doSimulationGround
+		return (isEvent(1, EB2_1) || isEvent(1, EB2_5));
+	}
+
+	inline float getSimulationScale(float constraint)
+	{
+		return constraint / static_cast<EnemyParmsBase*>(m_parms)->m_creatureProps.m_props.m_accel.m_value;
+	}
 
 	// Creature: _000 - _178
 	// MotionListener: _178 - _17C

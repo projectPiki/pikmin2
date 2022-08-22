@@ -26,7 +26,7 @@ struct Info {
 };
 
 struct DrawInfo : CNode {
-	// DrawInfo(bool); - also has a defctor, so :shrug:
+	DrawInfo(bool); // also has a defctor, so :shrug:
 
 	virtual ~DrawInfo() { } // _08 (weak)
 
@@ -34,7 +34,7 @@ struct DrawInfo : CNode {
 	void update(EnemyBase*);
 	void makeMatrix(Matrixf*, bool);
 	void getStateID();
-	void getPosAndScale(Vector3f*, float*);
+	bool getPosAndScale(Vector3f*, float*);
 	void appear(EnemyBase*, float);
 	void fit(EnemyBase*);
 	void shake(EnemyBase*, float);
@@ -45,7 +45,7 @@ struct DrawInfo : CNode {
 	FSMState<DrawInfo>* m_currentState; // _34
 	float _38;                          // _38
 	float _3C;                          // _3C
-	void* _40;                          // _40
+	ObjInfo* _40;                       // _40
 	Matrixf* _44;                       // _44
 };
 
