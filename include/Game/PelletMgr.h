@@ -315,7 +315,7 @@ struct Pellet : public DynCreature, public SysShape::MotionListener, public Carr
 	BasePelletMgr* m_mgr;                   // _454
 };
 
-static PelletMgr* pelletMgr;
+extern PelletMgr* pelletMgr;
 
 } // namespace Game
 

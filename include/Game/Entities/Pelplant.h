@@ -22,13 +22,17 @@ struct Object;
 
 namespace Pelplant {
 
+/**
+ * @size{0x4}
+ */
 struct BlendAccelerationFunc : SysShape::BlendFunction {
-	virtual float getValue(float); // _00
+	virtual float getValue(float); // _08
+
+	// _00		= VTABLE
 };
 
 /**
  * @size{0x1C}
- * @todo everything
  */
 struct FSM : public EnemyStateMachine {
 	FSM()
@@ -37,46 +41,50 @@ struct FSM : public EnemyStateMachine {
 	}
 
 	virtual void init(EnemyBase*); // _08
+
+	// _00		= VTABLE
+	// _04-_1C	= EnemyStateMachine
 };
 
 /**
  * @size{0x2E8}
- * @todo vtables, funcs
  */
 struct Obj : public EnemyBase {
 	Obj();
 
-	// vtable 1 (Creature)
-	virtual void onInit(CreatureInitArg*); // _028
-	virtual void doAnimation();            // _034
-	virtual void doSimulation(float);      // _044
-	virtual void doDirectDraw(Graphics&);  // _048
-	virtual bool isLivingThing()           // _0CC (weak)
+	/////////////// VTABLE
+	// vtable 1 (Creature, _00, _08-_1AC)
+	virtual void onInit(CreatureInitArg*); // _030
+	virtual void doAnimation();            // _03C
+	virtual void doSimulation(float);      // _04C
+	virtual void doDirectDraw(Graphics&);  // _050
+	virtual bool isLivingThing()           // _0D4 (weak)
 	{
 		return (_2C8 >> 1 & 1);
 	}
-	virtual void getShadowParam(ShadowParam&); // _12C
-	virtual void onStickStart(Creature*);      // _150
-	// vtable 2 (MotionListener+EnemyBase+self)
-	virtual ~Obj() { }                                      // _004
-	virtual void birth(Vector3f&, float);                   // _008
-	virtual void setInitialSetting(EnemyInitialParamBase*); // _00C
-	virtual void doUpdate();                                // _014
-	virtual void doAnimationUpdateAnimator();               // _020
-	virtual void doDebugDraw(Graphics&);                    // _034
-	virtual EnemyTypeID::EEnemyTypeID getEnemyTypeID()      // _0A0
+	virtual void getShadowParam(ShadowParam&); // _134
+	virtual void onStickStart(Creature*);      // _158
+	// vtable 2 (MotionListener+EnemyBase+self, _00, _1BC-1D0)
+	virtual ~Obj() { }                                      // _1BC (weak)
+	virtual void birth(Vector3f&, float);                   // _1C0
+	virtual void setInitialSetting(EnemyInitialParamBase*); // _1C4
+	virtual void doUpdate();                                // _1CC
+	virtual void doAnimationUpdateAnimator();               // _1D8
+	virtual void doDebugDraw(Graphics&);                    // _1EC
+	virtual EnemyTypeID::EEnemyTypeID getEnemyTypeID()      // _258 (weak)
 	{
 		return EnemyTypeID::EnemyID_Pelplant;
 	}
-	virtual void doGetLifeGaugeParam(LifeGaugeParam&);        // _0A8
-	virtual bool damageCallBack(Creature*, float, CollPart*); // _0C0
-	virtual bool farmCallBack(Creature*, float);              // _0D8
-	virtual void setFSM(FSM* fsm)                             // _1D0 (weak)
+	virtual void doGetLifeGaugeParam(LifeGaugeParam&);        // _260
+	virtual bool damageCallBack(Creature*, float, CollPart*); // _278
+	virtual bool farmCallBack(Creature*, float);              // _290
+	virtual void setFSM(FSM* fsm)                             // _2F8 (weak)
 	{
 		m_fsm = fsm;
 		m_fsm->init(this);
 		m_currentLifecycleState = nullptr;
 	}
+	/////////////// VTABLE END
 
 	void attachPellet();
 	void changePelletColor();
@@ -90,6 +98,10 @@ struct Obj : public EnemyBase {
 	// Inlined:
 	void getNeckScale(Vector3f*);
 
+	// Creature: 		_000 - _178
+	// MotionListener: 	_178 - _17C
+	// PelletView*: 	_17C - _180
+	// EnemyBase: 		_180 - _2B8
 	FSM* m_fsm;                           // _2BC
 	float _2C0;                           // _2C0
 	Matrixf* _2C4;                        // _2C4
@@ -99,29 +111,47 @@ struct Obj : public EnemyBase {
 	u8 _2D4;                              // _2D4
 	u8 m_pelletSize;                      // _2D5
 	s8 m_farmPow;                         // _2D6
-	// PelletView: 0x2D8 - 0x2E7
+	                                      // PelletView: _2D8 - _2E4
 
 	static Obj* sCurrentObj;
 };
 
 /**
  * @size{0x48}
- * @todo vtable offsets
  */
 struct Mgr : public EnemyMgrBase {
 	Mgr(int, u8);
 
-	virtual ~Mgr() { }
-	virtual EnemyBase* birth(EnemyBirthArg&);
-	virtual void createObj(int count) { m_objects = new Obj[count]; }
-	virtual EnemyBase* getEnemy(int index) { return &m_objects[index]; }
-	virtual void doAlloc();
-	virtual EnemyTypeID::EEnemyTypeID getEnemyTypeID() { return EnemyTypeID::EnemyID_Pelplant; }
-	virtual void initStoneSetting() { }
+	/////////////// VTABLE
+	// vtable 1 (GenericObjectMgr, _00, _08-_38)
+	// vtable 2 (GenericContainer + IEnemyMgrBase + self, _00, _40-_E0)
+	// GenericContainer thunks _40-_58
+	virtual ~Mgr() { }                        // _58 (weak)
+	virtual EnemyBase* birth(EnemyBirthArg&); // _70
+	virtual void createObj(int count)         // _A0 (weak)
+	{
+		m_objects = new Obj[count];
+	}
+	virtual EnemyBase* getEnemy(int index) // _A4 (weak)
+	{
+		return &m_objects[index];
+	}
+	virtual void doAlloc();                            // _A8
+	virtual EnemyTypeID::EEnemyTypeID getEnemyTypeID() // _AC (weak)
+	{
+		return EnemyTypeID::EnemyID_Pelplant;
+	}
+	virtual void initStoneSetting() { } // _C0 (weak)
+	/////////////// VTABLE END
 
-	Obj* m_objects; // _48
+	// _00		= VTABLE
+	// _04-_44	= EnemyMgrBase
+	Obj* m_objects; // _44
 };
 
+/**
+ * @size{0x880}
+ */
 struct Parms : EnemyParmsBase {
 	struct _Parms : public Parameters {
 		inline _Parms()
@@ -140,17 +170,21 @@ struct Parms : EnemyParmsBase {
 	    : EnemyParmsBase()
 	    , m_pelplantParms() {};
 
-	virtual void read(Stream& input) // _00
+	virtual void read(Stream& input) // _08 (weak)
 	{
 		EnemyParmsBase::read(input);
 		m_pelplantParms.read(input);
 	}
 
-	_Parms m_pelplantParms;
+	_Parms m_pelplantParms; // _7F4
 };
 
+/**
+ * @size{0x27}
+ */
 struct Generator : public EnemyGeneratorBase {
 	Generator();
+
 	virtual ~Generator() {};                                   // _08
 	virtual void doWrite(Stream&);                             // _10
 	virtual void doRead(Stream&);                              // _14
@@ -158,29 +192,33 @@ struct Generator : public EnemyGeneratorBase {
 	virtual void* getInitialParam() { return &m_pelletType; }; // _20
 	// getInitialParam returns address of first parameter
 
-	// _00 VTBL
+	void doReadOldVersion(Stream&);
 
+	// _00 		= VTABLE
+	// _04-_24 	= EnemyGeneratorBase
 	u8 m_pelletType; // _24
 	u8 m_pelletSize; // _25
 	u8 m_size;       // _26
-
-	void doReadOldVersion(Stream&);
 };
 
+/**
+ * @size{0x60}
+ */
 struct ProperAnimator : public EnemyBlendAnimatorBase {
 	ProperAnimator()
 	    : EnemyBlendAnimatorBase()
 	{
 	}
 
+	// vtable (EnemyBlendAnimatorBase, _00, _08-_28)
 	/**
 	 * @reifiedAddress{8010A9E0}
 	 * @reifiedFile{plugProjectYamashitaU/pelplant.cpp}
 	 */
-	virtual ~ProperAnimator() { }                 // _00
-	virtual void setAnimMgr(SysShape::AnimMgr*);  // _04
-	virtual SysShape::Animator& getAnimator();    // _08
-	virtual SysShape::Animator& getAnimator(int); // _0C
+	virtual ~ProperAnimator() { } // _08 (weak)
+
+	// _00		= VTABLE
+	// _04-_60	= EnemyBlendAnimatorBase
 };
 
 struct State : public EnemyFSMState {
@@ -285,8 +323,6 @@ struct StateWither : public StateBlendAnim {
 	// _08 EnemyStateMachine* m_stateMachine
 	// _0C const char* m_name
 };
-
-static float sLODRadius[4];
 
 } // namespace Pelplant
 } // namespace Game

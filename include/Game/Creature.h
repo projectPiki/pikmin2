@@ -327,7 +327,7 @@ struct Creature : public CellObject {
 	SysShape::Model* m_model;      // _174
 };
 
-static Creature* currOp;
+extern Creature* currOp;
 } // namespace Game
 
 #endif

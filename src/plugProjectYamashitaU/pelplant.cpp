@@ -1,4 +1,5 @@
 #include "Dolphin/math.h"
+#include "Dolphin/os.h"
 #include "Game/EnemyBase.h"
 #include "Graphics.h"
 #include "Game/Piki.h"
@@ -30,11 +31,17 @@ FarmMgr* farmMgr;
 
 namespace Pelplant {
 Obj* Obj::sCurrentObj;
-}
+
+static float sLODRadius[4] = { 45.0f, 60.0f, 103.0f, 133.0f };
+} // namespace Pelplant
 } // namespace Game
 
-const char* dataPath = "/enemy/data/pelplant"; // unused/used in print inline probably
-const char* parmPath = "/enemy/parm/pelplant"; // unused/used in print inline probably
+inline void _Print(char* format, ...)
+{
+	OSReport(__FILE__);
+	OSReport("/enemy/data/pelplant"); // unused/used in print inline probably
+	OSReport("/enemy/parm/pelplant"); // unused/used in print inline probably
+}
 
 namespace Game {
 

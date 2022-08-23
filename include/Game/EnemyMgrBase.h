@@ -24,6 +24,9 @@ namespace Game {
 struct EnemyGeneratorBase;
 struct EnemyParmsBase;
 
+/**
+ * @size{0x49}
+ */
 struct EnemyBirthArg {
 	EnemyBirthArg();
 
@@ -38,49 +41,61 @@ struct EnemyBirthArg {
 	u8 _30;                                       // _30
 };
 
+/**
+ * @size{0x1C}
+ */
 struct IEnemyMgrBase : public GenericObjectMgr, public GenericContainer {
-	// vtable 2 (GenericContainer + self)
+	// vtable 1 (GenericObjectMgr, _00, _08-_38)
+	// vtable 2 (GenericContainer + self, _00, _40-_5C)
 	/**
 	 * @reifiedAddress{8010A960}
 	 * @reifiedFile{plugProjectYamashitaU/pelplant.cpp}
 	 */
-	virtual ~IEnemyMgrBase() { } // 18
+	virtual ~IEnemyMgrBase() { } // 58 (weak)
+
+	// _00		= VTABLE
+	// _04-_1C	= GenericContainer
 };
+
+/**
+ * @size{0x44}
+ */
 struct EnemyMgrBase : public IEnemyMgrBase {
 	EnemyMgrBase(int, u8);
 
-	// vtable 1 (GenericObjectMgr)
-	virtual void doAnimation();           // _00
-	virtual void doEntry();               // _04
-	virtual void doSetView(int);          // _08
-	virtual void doViewCalc();            // _0C
-	virtual void doSimulation(float);     // _10
-	virtual void doDirectDraw(Graphics&); // _14
-	// vtable 2 (GenericContainer + IEnemyMgrBase + self)
-	virtual ~EnemyMgrBase() { } // _18
+	// vtable 1 (GenericObjectMgr, _00, _08-_38)
+	virtual void doAnimation();           // _08
+	virtual void doEntry();               // _0C
+	virtual void doSetView(int);          // _10
+	virtual void doViewCalc();            // _14
+	virtual void doSimulation(float);     // _18
+	virtual void doDirectDraw(Graphics&); // _1C
+	// vtable 2 (GenericContainer + IEnemyMgrBase + self, _00, _40-_E0)
+	// GenericContainer thunks _40-_58
+	virtual ~EnemyMgrBase() { } // _58 (weak)
 	/**
 	 * @reifiedAddress{8010A820}
 	 * @reifiedFile{plugProjectYamashitaU/pelplant.cpp}
 	 */
-	virtual void* getObject(void* index) { return get(index); }; // _1C
-	virtual void* getNext(void*);                                // _20
+	virtual void* getObject(void* index) { return get(index); }; // _5C (weak)
+	virtual void* getNext(void*);                                // _60 (weak)
 	/**
 	 * @reifiedAddress{8010A7F0}
 	 * @reifiedFile{plugProjectYamashitaU/pelplant.cpp}
 	 */
-	virtual void* getStart() { return getNext((void*)-1); } // _24
+	virtual void* getStart() { return getNext((void*)-1); } // _64 (weak)
 	/**
 	 * @reifiedAddress{8010A7E8}
 	 * @reifiedFile{plugProjectYamashitaU/pelplant.cpp}
 	 */
-	virtual void* getEnd() { return (void*)m_objLimit; } // _28
-	virtual void alloc();                                // _2C
-	virtual EnemyBase* birth(EnemyBirthArg&);            // _30
+	virtual void* getEnd() { return (void*)m_objLimit; } // _68 (weak)
+	virtual void alloc();                                // _6C
+	virtual EnemyBase* birth(EnemyBirthArg&);            // _70
 	/**
 	 * @reifiedAddress{8010A7AC}
 	 * @reifiedFile{plugProjectYamashitaU/pelplant.cpp}
 	 */
-	virtual J3DModelData* getJ3DModelData() const // _34
+	virtual J3DModelData* getJ3DModelData() const // _74 (weak)
 	{
 		return m_modelData;
 	}
@@ -88,29 +103,29 @@ struct EnemyMgrBase : public IEnemyMgrBase {
 	 * @reifiedAddress{8010A7B4}
 	 * @reifiedFile{plugProjectYamashitaU/pelplant.cpp}
 	 */
-	virtual EnemyGeneratorBase* getGenerator() const // _38
+	virtual EnemyGeneratorBase* getGenerator() const // _78 (weak)
 	{
 		return m_generator;
 	}
-	virtual void killAll(CreatureKillArg*); // _3C
-	virtual void setupSoundViewerAndBas();  // _40
-	virtual void setDebugParm(u32);         // _44
-	virtual void resetDebugParm(u32);       // _48
+	virtual void killAll(CreatureKillArg*); // _7C
+	virtual void setupSoundViewerAndBas();  // _80
+	virtual void setDebugParm(u32);         // _84
+	virtual void resetDebugParm(u32);       // _88
 	/**
 	 * @reifiedAddress{8010A7BC}
 	 * @reifiedFile{plugProjectYamashitaU/pelplant.cpp}
 	 */
-	virtual int getMaxObjects() const // _4C
+	virtual int getMaxObjects() const // _8C
 	{
 		return m_objLimit;
 	}
-	virtual void startMovie(); // _50
-	virtual void endMovie();   // _54
+	virtual void startMovie(); // _90
+	virtual void endMovie();   // _94
 	/**
 	 * @reifiedAddress{8010A780}
 	 * @reifiedFile{plugProjectYamashitaU/pelplant.cpp}
 	 */
-	virtual EnemyBase* get(void* index) // _58
+	virtual EnemyBase* get(void* index) // _98 (weak)
 	{
 		return getEnemy((int)index);
 	}
@@ -118,29 +133,29 @@ struct EnemyMgrBase : public IEnemyMgrBase {
 	 * @reifiedAddress{801074BC}
 	 * @reifiedFile{plugProjectYamashitaU/enemyBase.cpp}
 	 */
-	virtual bool isAlwaysMovieActor() // _5C
+	virtual bool isAlwaysMovieActor() // _9C (weak)
 	{
 		return false;
 	}
-	virtual void createObj(int)      = 0;              // _60
-	virtual EnemyBase* getEnemy(int) = 0;              // _64
-	virtual void doAlloc();                            // _68
-	virtual EnemyTypeID::EEnemyTypeID getEnemyTypeID() // _6C
+	virtual void createObj(int)      = 0;              // _A0
+	virtual EnemyBase* getEnemy(int) = 0;              // _A4
+	virtual void doAlloc();                            // _A8 (weak)
+	virtual EnemyTypeID::EEnemyTypeID getEnemyTypeID() // _AC (weak)
 	{
 		return (EnemyTypeID::EEnemyTypeID)-1;
 	}
-	virtual SysShape::Model* createModel();           // _70
-	virtual void initParms();                         // _74
-	virtual void loadResource();                      // _78
-	virtual void initObjects();                       // _7C
-	virtual void initStoneSetting();                  // _80
-	virtual J3DModelData* loadModelData(JKRArchive*); // _84
-	virtual void loadModelData();                     // _88
-	virtual void loadAnimData();                      // _8C
-	virtual void loadTexData();                       // _90
-	virtual J3DModelData* doLoadBmd(void*);           // _94
-	virtual J3DModelData* doLoadBdl(void*);           // _98
-	virtual void initGenerator();                     // _9C
+	virtual SysShape::Model* createModel();           // _B0
+	virtual void initParms();                         // _B4
+	virtual void loadResource();                      // _B8
+	virtual void initObjects();                       // _BC
+	virtual void initStoneSetting();                  // _C0
+	virtual J3DModelData* loadModelData(JKRArchive*); // _C4
+	virtual void loadModelData();                     // _C8
+	virtual void loadAnimData();                      // _CC
+	virtual void loadTexData();                       // _D0
+	virtual J3DModelData* doLoadBmd(void*);           // _D4
+	virtual J3DModelData* doLoadBdl(void*);           // _D8
+	virtual void initGenerator();                     // _DC
 
 	void init(EnemyParmsBase*);
 	bool isValidEnemyTypeID();
@@ -165,6 +180,8 @@ struct EnemyMgrBase : public IEnemyMgrBase {
 		return enemy;
 	}
 
+	// _00		= VTABLE
+	// _04-_1C	= GenericContainer
 	J3DModelData* m_modelData;          // _1C
 	SysShape::AnimMgr* m_animMgr;       // _20
 	u8 m_modelType;                     // _24

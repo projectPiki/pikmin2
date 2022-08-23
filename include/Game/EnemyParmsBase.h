@@ -175,7 +175,7 @@ struct EnemyParmsBase : public CreatureParms {
 	void setDebugParm(u32);
 	void resetDebugParm(u32);
 
-	virtual void read(Stream& input) // _00
+	virtual void read(Stream& input) // _08 (weak)
 	{
 		CreatureParms::read(input);
 		m_general.read(input);
