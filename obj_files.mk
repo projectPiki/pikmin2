@@ -884,7 +884,6 @@ OGAWA:=\
 	$(BUILD_DIR)/asm/plugProjectOgawaU/ogCopyPane.o\
 	$(BUILD_DIR)/asm/plugProjectOgawaU/ogBloGroup.o\
 	$(BUILD_DIR)/src/plugProjectOgawaU/DispMemberBase.o\
-	$(BUILD_DIR)/asm/plugProjectOgawaU/DispMemberBase.o\
 	$(BUILD_DIR)/src/plugProjectOgawaU/ogLib2D.o\
 	$(BUILD_DIR)/asm/plugProjectOgawaU/ogObjSMenuMap.o\
 	$(BUILD_DIR)/asm/plugProjectOgawaU/ogSceneSMenuMap.o\
