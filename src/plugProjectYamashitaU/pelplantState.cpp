@@ -377,7 +377,7 @@ void StateDamage::init(EnemyBase* enemy, StateArg* stateArg)
  */
 void StateDamage::exec(Game::EnemyBase* enemy)
 {
-	if ((enemy->m_animKeyEvent->m_running != 0) && ((u32) enemy->m_animKeyEvent->m_type == 0x3E8)) {
+	if ((enemy->m_animKeyEvent->m_running != 0) && ((u32)enemy->m_animKeyEvent->m_type == 0x3E8)) {
 		transit(enemy, m_stateMachine->m_previousID, 0);
 	}
 	static_cast<Obj*>(enemy)->changePelletColor();
@@ -434,7 +434,7 @@ void StateDead::init(EnemyBase* enemy, StateArg* stateArg)
  */
 void StateDead::exec(EnemyBase* enemy)
 {
-	if ((enemy->m_animKeyEvent->m_running != 0) && ((u32) enemy->m_animKeyEvent->m_type == 0x3E8)) {
+	if ((enemy->m_animKeyEvent->m_running != 0) && ((u32)enemy->m_animKeyEvent->m_type == 0x3E8)) {
 		if (static_cast<Obj*>(enemy)->m_pellet != nullptr) {
 			static_cast<Obj*>(enemy)->m_pellet->endCapture();
 			static_cast<Obj*>(enemy)->m_pellet = nullptr;

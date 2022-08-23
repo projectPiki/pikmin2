@@ -580,7 +580,7 @@ unknown Obj::neckJointCallBack(J3DJoint* joint, int p2)
 		float neckScale1;
 		float neckScale2;
 		if (sCurrentObj->m_pellet != nullptr) {
-			switch (sCurrentObj->m_pelletSize) { 
+			switch (sCurrentObj->m_pelletSize) {
 			case 1:
 				neckScale2 = 1.0f;
 				neckScale1 = neckScale2;

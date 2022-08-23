@@ -46,7 +46,7 @@ typedef struct TRKEvent {
  */
 typedef struct TRKEventQueue {
 	u8 _00[4];
-	int _04;
+	int m_currEvtID;
 	int m_nextSlotToOverwrite;
 	TRKEvent m_events[2];
 	u32 _24; /* max of 0x100? */

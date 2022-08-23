@@ -239,7 +239,7 @@ JSYSTEM:=\
 
 DOLPHIN:=\
 	$(BUILD_DIR)/src/Dolphin/mainloop.o\
-	$(BUILD_DIR)/asm/Dolphin/nubevent.o\
+	$(BUILD_DIR)/src/Dolphin/nubevent.o\
 	$(BUILD_DIR)/src/Dolphin/nubinit.o\
 	$(BUILD_DIR)/src/Dolphin/msg.o\
 	$(BUILD_DIR)/asm/Dolphin/msgbuf.o\
