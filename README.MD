@@ -4,8 +4,8 @@ Pikmin 2 decompilation to C++/C
 ```diff
 - INFORMATION! -
 
-The ROM this repository builds can be shifted! Meaning you are able to now
-add and remove code as you see fit, for modding or research purposes.
+The ROM this repository builds can be shifted. You are able to add
+and remove code as you see fit, for modding or research purposes.
 ```
 
 It builds the following DOL:
