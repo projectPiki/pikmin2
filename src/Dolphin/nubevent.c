@@ -1,6 +1,6 @@
 #include "Dolphin/trk.h"
 
-static TRKEventQueue gTRKEventQueue;
+TRKEventQueue gTRKEventQueue;
 
 /*
  * --INFO--
