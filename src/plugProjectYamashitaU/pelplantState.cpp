@@ -179,7 +179,6 @@ void StateWait::init(EnemyBase* enemy, StateArg* stateArg)
  * Address:	8010B148
  * Size:	000278
  */
-// WIP: switches are being dumb: https://decomp.me/scratch/QE4EZ
 void StateWait::exec(EnemyBase* enemy)
 {
 	float frameTime = sys->m_secondsPerFrame;
@@ -202,8 +201,6 @@ void StateWait::exec(EnemyBase* enemy)
 
 			if ((static_cast<Obj*>(enemy)->_2C0 > growth) || (static_cast<Obj*>(enemy)->m_farmPow > 0)) {
 				static_cast<Obj*>(enemy)->_2C0 = 0.0f;
-
-				////////////////// this switch needs an extra b-> at the 'end' of the check (target 108)
 				switch (_10) {
 				case 0:
 					transit(enemy, 3, 0);
@@ -211,14 +208,14 @@ void StateWait::exec(EnemyBase* enemy)
 				case 1:
 					transit(enemy, 4, 0);
 					break;
-				default:
+				case 2:
 					break;
 				}
 
 			} else if (static_cast<Obj*>(enemy)->m_farmPow < 0) {
-
-				////////////////// this switch is checking the wrong things (target 160)
 				switch (_10) {
+				case 0:
+					break;
 				case 1:
 					transit(enemy, 8, 0);
 					break;
@@ -246,200 +243,6 @@ void StateWait::exec(EnemyBase* enemy)
 			}
 		}
 	}
-	/*
-	stwu     r1, -0x20(r1)
-	mflr     r0
-	stw      r0, 0x24(r1)
-	stw      r31, 0x1c(r1)
-	mr       r31, r4
-	stw      r30, 0x18(r1)
-	mr       r30, r3
-	lbz      r0, 0x2c8(r31)
-	lwz      r4, sys@sda21(r13)
-	clrlwi.  r0, r0, 0x1f
-	lfs      f1, 0x54(r4)
-	beq      lbl_8010B184
-	lfs      f0, 0x2c0(r31)
-	fadds    f0, f0, f1
-	stfs     f0, 0x2c0(r31)
-
-lbl_8010B184:
-	lwz      r3, 0x188(r31)
-	lbz      r0, 0x24(r3)
-	cmplwi   r0, 0
-	beq      lbl_8010B30C
-	lwz      r0, 0x1c(r3)
-	cmpwi    r0, 0x3e8
-	beq      lbl_8010B1B0
-	bge      lbl_8010B3A8
-	cmpwi    r0, 1
-	beq      lbl_8010B1B0
-	b        lbl_8010B3A8
-
-lbl_8010B1B0:
-	lwz      r3, gameSystem__4Game@sda21(r13)
-	lwz      r0, 0x44(r3)
-	cmpwi    r0, 4
-	bne      lbl_8010B1F4
-	bl       rand
-	xoris    r3, r3, 0x8000
-	lis      r0, 0x4330
-	stw      r3, 0xc(r1)
-	lfd      f3, lbl_80517980@sda21(r2)
-	stw      r0, 8(r1)
-	lfs      f1, lbl_80517974@sda21(r2)
-	lfd      f2, 8(r1)
-	lfs      f0, lbl_80517978@sda21(r2)
-	fsubs    f2, f2, f3
-	fdivs    f1, f2, f1
-	fmuls    f1, f0, f1
-	b        lbl_8010B214
-
-lbl_8010B1F4:
-	lwz      r0, 0x10(r30)
-	cmpwi    r0, 0
-	bne      lbl_8010B20C
-	lwz      r3, 0xc0(r31)
-	lfs      f1, 0x81c(r3)
-	b        lbl_8010B214
-
-lbl_8010B20C:
-	lwz      r3, 0xc0(r31)
-	lfs      f1, 0x844(r3)
-
-lbl_8010B214:
-	lfs      f0, 0x2c0(r31)
-	fcmpo    cr0, f0, f1
-	bgt      lbl_8010B22C
-	lbz      r3, 0x2d6(r31)
-	extsb.   r0, r3
-	ble      lbl_8010B29C
-
-lbl_8010B22C:
-	lfs      f0, lbl_8051796C@sda21(r2)
-	stfs     f0, 0x2c0(r31)
-	lwz      r0, 0x10(r30)
-	cmpwi    r0, 1
-	beq      lbl_8010B278
-	bge      lbl_8010B3A8
-	cmpwi    r0, 0
-	bge      lbl_8010B254
-	b        lbl_8010B3A8
-	b        lbl_8010B3A8
-
-lbl_8010B254:
-	mr       r3, r30
-	mr       r4, r31
-	lwz      r12, 0(r30)
-	li       r5, 3
-	li       r6, 0
-	lwz      r12, 0x1c(r12)
-	mtctr    r12
-	bctrl
-	b        lbl_8010B3A8
-
-lbl_8010B278:
-	mr       r3, r30
-	mr       r4, r31
-	lwz      r12, 0(r30)
-	li       r5, 4
-	li       r6, 0
-	lwz      r12, 0x1c(r12)
-	mtctr    r12
-	bctrl
-	b        lbl_8010B3A8
-
-lbl_8010B29C:
-	extsb.   r0, r3
-	bge      lbl_8010B3A8
-	lwz      r0, 0x10(r30)
-	cmpwi    r0, 1
-	beq      lbl_8010B2C4
-	bge      lbl_8010B2B8
-	b        lbl_8010B3A8
-
-lbl_8010B2B8:
-	cmpwi    r0, 3
-	bge      lbl_8010B3A8
-	b        lbl_8010B2E8
-
-lbl_8010B2C4:
-	mr       r3, r30
-	mr       r4, r31
-	lwz      r12, 0(r30)
-	li       r5, 8
-	li       r6, 0
-	lwz      r12, 0x1c(r12)
-	mtctr    r12
-	bctrl
-	b        lbl_8010B3A8
-
-lbl_8010B2E8:
-	mr       r3, r30
-	mr       r4, r31
-	lwz      r12, 0(r30)
-	li       r5, 7
-	li       r6, 0
-	lwz      r12, 0x1c(r12)
-	mtctr    r12
-	bctrl
-	b        lbl_8010B3A8
-
-lbl_8010B30C:
-	mr       r3, r31
-	bl       changePelletColor__Q34Game8Pelplant3ObjFv
-	mr       r3, r31
-	lwz      r12, 0(r31)
-	lwz      r12, 0x23c(r12)
-	mtctr    r12
-	bctrl
-	clrlwi.  r0, r3, 0x18
-	beq      lbl_8010B3A8
-	lfs      f1, 0x200(r31)
-	lfs      f0, lbl_8051796C@sda21(r2)
-	fcmpo    cr0, f1, f0
-	cror     2, 0, 2
-	bne      lbl_8010B378
-	lwz      r0, 0x10(r30)
-	cmpwi    r0, 2
-	beq      lbl_8010B354
-	b        lbl_8010B3A8
-
-lbl_8010B354:
-	mr       r3, r30
-	mr       r4, r31
-	lwz      r12, 0(r30)
-	li       r5, 6
-	li       r6, 0
-	lwz      r12, 0x1c(r12)
-	mtctr    r12
-	bctrl
-	b        lbl_8010B3A8
-
-lbl_8010B378:
-	lwz      r0, 0x10(r30)
-	cmpwi    r0, 2
-	beq      lbl_8010B388
-	b        lbl_8010B3A8
-
-lbl_8010B388:
-	mr       r3, r30
-	mr       r4, r31
-	lwz      r12, 0(r30)
-	li       r5, 5
-	li       r6, 0
-	lwz      r12, 0x1c(r12)
-	mtctr    r12
-	bctrl
-
-lbl_8010B3A8:
-	lwz      r0, 0x24(r1)
-	lwz      r31, 0x1c(r1)
-	lwz      r30, 0x18(r1)
-	mtlr     r0
-	addi     r1, r1, 0x20
-	blr
-	*/
 }
 
 /*
@@ -574,7 +377,7 @@ void StateDamage::init(EnemyBase* enemy, StateArg* stateArg)
  */
 void StateDamage::exec(Game::EnemyBase* enemy)
 {
-	if ((enemy->m_animKeyEvent->m_running != 0) && (enemy->m_animKeyEvent->m_type == 0x3E8)) {
+	if ((enemy->m_animKeyEvent->m_running != 0) && ((u32) enemy->m_animKeyEvent->m_type == 0x3E8)) {
 		transit(enemy, m_stateMachine->m_previousID, 0);
 	}
 	static_cast<Obj*>(enemy)->changePelletColor();
@@ -631,7 +434,7 @@ void StateDead::init(EnemyBase* enemy, StateArg* stateArg)
  */
 void StateDead::exec(EnemyBase* enemy)
 {
-	if ((enemy->m_animKeyEvent->m_running != 0) && (enemy->m_animKeyEvent->m_type == 0x3E8)) {
+	if ((enemy->m_animKeyEvent->m_running != 0) && ((u32) enemy->m_animKeyEvent->m_type == 0x3E8)) {
 		if (static_cast<Obj*>(enemy)->m_pellet != nullptr) {
 			static_cast<Obj*>(enemy)->m_pellet->endCapture();
 			static_cast<Obj*>(enemy)->m_pellet = nullptr;

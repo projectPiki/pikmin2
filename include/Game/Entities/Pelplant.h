@@ -270,7 +270,7 @@ struct StateWait : public State {
 	// _04 int stateID
 	// _08 EnemyStateMachine* m_stateMachine
 	// _0C const char* m_name
-	u32 _10; // _10
+	int _10; // _10
 };
 
 struct StateWither : public StateBlendAnim {
