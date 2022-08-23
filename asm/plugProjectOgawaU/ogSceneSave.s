@@ -1,11 +1,8 @@
 .include "macros.inc"
 .section .rodata  # 0x804732E0 - 0x8049E220
 .balign 8
-.global lbl_8048F318
 lbl_8048F318:
-	.4byte 0x73617665
-	.4byte 0x206D656E
-	.4byte 0x75000000
+	.asciz "save menu"
 
 .section .data, "wa"  # 0x8049E220 - 0x804EFC20
 .balign 8
@@ -34,10 +31,8 @@ __vt__Q32og9newScreen4Save:
 
 .section .sdata2, "a"     # 0x80516360 - 0x80520E40
 .balign 8
-.global lbl_8051DD70
 lbl_8051DD70:
-	.4byte 0x00000000
-	.4byte 0x00000000
+	.asciz ""
 
 .section .text, "ax"  # 0x800056C0 - 0x80472F00
 .global __ct__Q32og9newScreen4SaveFv
@@ -137,23 +132,23 @@ lbl_80324ED4:
 /* 80324EFC 00321E3C  4E 80 00 20 */	blr 
 
 .global getResName__Q32og9newScreen4SaveCFv
-getResName__Q32og9newScreen4SaveCFv:
+getResName__Q32og9newScreen4SaveCFv: # weak function
 /* 80324F00 00321E40  38 62 FA 10 */	addi r3, r2, lbl_8051DD70@sda21
 /* 80324F04 00321E44  4E 80 00 20 */	blr 
 
 .global getSceneType__Q32og9newScreen4SaveFv
-getSceneType__Q32og9newScreen4SaveFv:
+getSceneType__Q32og9newScreen4SaveFv: # weak function
 /* 80324F08 00321E48  38 60 27 25 */	li r3, 0x2725
 /* 80324F0C 00321E4C  4E 80 00 20 */	blr 
 
 .global getOwnerID__Q32og9newScreen4SaveFv
-getOwnerID__Q32og9newScreen4SaveFv:
+getOwnerID__Q32og9newScreen4SaveFv: # weak function
 /* 80324F10 00321E50  3C 60 00 4F */	lis r3, 0x004F4741@ha
 /* 80324F14 00321E54  38 63 47 41 */	addi r3, r3, 0x004F4741@l
 /* 80324F18 00321E58  4E 80 00 20 */	blr 
 
 .global getMemberID__Q32og9newScreen4SaveFv
-getMemberID__Q32og9newScreen4SaveFv:
+getMemberID__Q32og9newScreen4SaveFv: # weak function
 /* 80324F1C 00321E5C  3C 80 53 41 */	lis r4, 0x53415645@ha
 /* 80324F20 00321E60  38 60 00 00 */	li r3, 0
 /* 80324F24 00321E64  38 84 56 45 */	addi r4, r4, 0x53415645@l

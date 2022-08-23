@@ -54,7 +54,7 @@ pikmin2.usa.dol: `sha1: 90d328bf8f190c90472e8c19e7e53c6ad0fe0d1a`
 - A recursive context processing script is included in the repo (<a href="https://github.com/projectPiki/pikmin2/tree/main/tools/decompctx.py">tools/decompctx.py</a>), which generates a `ctx.c` file in the root directory.
 	- The contents of this can then be copied and pasted into the 'Context' section of a decomp.me scratch or similar.
 - To use, call the generator via the terminal/command line from the root directory (replacing DIRECTORY and FILE as required):
-    ```python3 tools/decompctx.py /src/DIRECTORY/FILE.cpp```
+    ```python3 tools/decompctx.py src/DIRECTORY/FILE.cpp```
 - Credit to encounter and the [Metroid Prime decomp project](https://github.com/PrimeDecomp/prime) for the script!
 
 ## Project Organisation

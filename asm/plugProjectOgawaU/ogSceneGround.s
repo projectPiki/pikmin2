@@ -1,24 +1,29 @@
 .include "macros.inc"
 .section .rodata  # 0x804732E0 - 0x8049E220
 .balign 8
-.global lbl_8048E090
 lbl_8048E090:
 	.asciz "ground screen"
-	.skip 2
+.balign 4
+lbl_8048E0A0:
 	.asciz "PSGame.h"
-	.skip 3
+.balign 4
+lbl_8048E0AC:
 	.asciz "P2Assert"
-	.skip 3
+.balign 4
+lbl_8048E0B8:
 	.asciz "PSScene.h"
-	.skip 2
+.balign 4
+lbl_8048E0C4:
 	.asciz "get sound scene at\ninvalid timming\n"
+.balign 4
+lbl_8048E0E8:
 	.asciz "DayEndCount"
+.balign 4
+lbl_8048E0F4:
 	.asciz "HurryUp2D"
-	.skip 2
-.global lbl_8048E100
+.balign 4
 lbl_8048E100:
 	.asciz "res_ground.szs"
-	.skip 1
 
 .section .data, "wa"  # 0x8049E220 - 0x804EFC20
 .balign 8
@@ -47,23 +52,18 @@ __vt__Q32og9newScreen6Ground:
 
 .section .sbss # 0x80514D80 - 0x80516360
 .balign 8
-.global sGameFlag_MainBgm_Evening__Q22og9newScreen
 sGameFlag_MainBgm_Evening__Q22og9newScreen:
-	.skip 0x8
+	.skip 0x1
 
 .section .sdata2, "a"     # 0x80516360 - 0x80520E40
 .balign 8
-.global lbl_8051D6D8
 lbl_8051D6D8:
 	.float 1.0
-.global lbl_8051D6DC
 lbl_8051D6DC:
-	.4byte 0x3F666666
-.global lbl_8051D6E0
+	.float 0.9
 lbl_8051D6E0:
-	.4byte 0x00000000
-	.4byte 0x00000000
-.global lbl_8051D6E8
+	.float 0.0
+.balign 8
 lbl_8051D6E8:
 	.4byte 0x43300000
 	.4byte 0x00000000
@@ -390,30 +390,30 @@ lbl_8030DE4C:
 /* 8030DE7C 0030ADBC  4E 80 00 20 */	blr 
 
 .global getResName__Q32og9newScreen6GroundCFv
-getResName__Q32og9newScreen6GroundCFv:
+getResName__Q32og9newScreen6GroundCFv: # weak function
 /* 8030DE80 0030ADC0  3C 60 80 49 */	lis r3, lbl_8048E100@ha
 /* 8030DE84 0030ADC4  38 63 E1 00 */	addi r3, r3, lbl_8048E100@l
 /* 8030DE88 0030ADC8  4E 80 00 20 */	blr 
 
 .global getSceneType__Q32og9newScreen6GroundFv
-getSceneType__Q32og9newScreen6GroundFv:
+getSceneType__Q32og9newScreen6GroundFv: # weak function
 /* 8030DE8C 0030ADCC  38 60 27 10 */	li r3, 0x2710
 /* 8030DE90 0030ADD0  4E 80 00 20 */	blr 
 
 .global getOwnerID__Q32og9newScreen6GroundFv
-getOwnerID__Q32og9newScreen6GroundFv:
+getOwnerID__Q32og9newScreen6GroundFv: # weak function
 /* 8030DE94 0030ADD4  3C 60 00 4F */	lis r3, 0x004F4741@ha
 /* 8030DE98 0030ADD8  38 63 47 41 */	addi r3, r3, 0x004F4741@l
 /* 8030DE9C 0030ADDC  4E 80 00 20 */	blr 
 
 .global getMemberID__Q32og9newScreen6GroundFv
-getMemberID__Q32og9newScreen6GroundFv:
+getMemberID__Q32og9newScreen6GroundFv: # weak function
 /* 8030DEA0 0030ADE0  3C 80 4F 55 */	lis r4, 0x4F554E44@ha
 /* 8030DEA4 0030ADE4  38 60 47 52 */	li r3, 0x4752
 /* 8030DEA8 0030ADE8  38 84 4E 44 */	addi r4, r4, 0x4F554E44@l
 /* 8030DEAC 0030ADEC  4E 80 00 20 */	blr 
 
 .global isDrawInDemo__Q32og9newScreen6GroundCFv
-isDrawInDemo__Q32og9newScreen6GroundCFv:
+isDrawInDemo__Q32og9newScreen6GroundCFv: # weak function
 /* 8030DEB0 0030ADF0  38 60 00 00 */	li r3, 0
 /* 8030DEB4 0030ADF4  4E 80 00 20 */	blr 

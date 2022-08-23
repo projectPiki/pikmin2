@@ -3651,32 +3651,26 @@ lbl_80449038:
 /* 8044905C 00445F9C  7C 03 00 2E */	lwzx r0, r3, r0
 /* 80449060 00445FA0  7C 09 03 A6 */	mtctr r0
 /* 80449064 00445FA4  4E 80 04 20 */	bctr 
-.global lbl_80449068
 lbl_80449068:
 /* 80449068 00445FA8  7F E3 FB 78 */	mr r3, r31
 /* 8044906C 00445FAC  48 00 04 5D */	bl updateLoadResourceFirst__11BootSectionFv
 /* 80449070 00445FB0  48 00 03 E8 */	b lbl_80449458
-.global lbl_80449074
 lbl_80449074:
 /* 80449074 00445FB4  7F E3 FB 78 */	mr r3, r31
 /* 80449078 00445FB8  48 00 05 75 */	bl updateLoadMemoryCard__11BootSectionFv
 /* 8044907C 00445FBC  48 00 03 DC */	b lbl_80449458
-.global lbl_80449080
 lbl_80449080:
 /* 80449080 00445FC0  7F E3 FB 78 */	mr r3, r31
 /* 80449084 00445FC4  48 00 06 A5 */	bl updateNintendoLogo__11BootSectionFv
 /* 80449088 00445FC8  48 00 03 D0 */	b lbl_80449458
-.global lbl_8044908C
 lbl_8044908C:
 /* 8044908C 00445FCC  7F E3 FB 78 */	mr r3, r31
 /* 80449090 00445FD0  48 00 09 21 */	bl updateProgressive__11BootSectionFv
 /* 80449094 00445FD4  48 00 03 C4 */	b lbl_80449458
-.global lbl_80449098
 lbl_80449098:
 /* 80449098 00445FD8  7F E3 FB 78 */	mr r3, r31
 /* 8044909C 00445FDC  48 00 0A 95 */	bl updateWaitProgressive__11BootSectionFv
 /* 804490A0 00445FE0  48 00 03 B8 */	b lbl_80449458
-.global lbl_804490A4
 lbl_804490A4:
 /* 804490A4 00445FE4  80 7F 00 24 */	lwz r3, 0x24(r31)
 /* 804490A8 00445FE8  80 63 00 04 */	lwz r3, 4(r3)
@@ -3776,7 +3770,6 @@ lbl_804491C4:
 /* 80449200 00446140  38 80 00 01 */	li r4, 1
 /* 80449204 00446144  4B FD A0 B5 */	bl changeRenderMode__6SystemFQ26System11ERenderMode
 /* 80449208 00446148  48 00 02 50 */	b lbl_80449458
-.global lbl_8044920C
 lbl_8044920C:
 /* 8044920C 0044614C  80 7F 00 24 */	lwz r3, 0x24(r31)
 /* 80449210 00446150  80 63 00 04 */	lwz r3, 4(r3)
@@ -3871,7 +3864,6 @@ lbl_8044932C:
 /* 80449354 00446294  38 80 00 00 */	li r4, 0
 /* 80449358 00446298  4B FD 9F 61 */	bl changeRenderMode__6SystemFQ26System11ERenderMode
 /* 8044935C 0044629C  48 00 00 FC */	b lbl_80449458
-.global lbl_80449360
 lbl_80449360:
 /* 80449360 004462A0  7F E3 FB 78 */	mr r3, r31
 /* 80449364 004462A4  38 80 00 04 */	li r4, 4
@@ -3898,7 +3890,6 @@ lbl_804493A8:
 /* 804493AC 004462EC  7C 04 00 40 */	cmplw r4, r0
 /* 804493B0 004462F0  41 80 FF D4 */	blt lbl_80449384
 /* 804493B4 004462F4  48 00 00 A4 */	b lbl_80449458
-.global lbl_804493B8
 lbl_804493B8:
 /* 804493B8 004462F8  80 7F 00 24 */	lwz r3, 0x24(r31)
 /* 804493BC 004462FC  80 63 00 04 */	lwz r3, 4(r3)
@@ -3938,7 +3929,6 @@ lbl_80449414:
 /* 8044943C 0044637C  38 80 00 0A */	li r4, 0xa
 /* 80449440 00446380  48 00 09 41 */	bl setMode__11BootSectionFi
 /* 80449444 00446384  48 00 00 14 */	b lbl_80449458
-.global lbl_80449448
 lbl_80449448:
 /* 80449448 00446388  38 00 00 00 */	li r0, 0
 /* 8044944C 0044638C  C0 02 26 98 */	lfs f0, lbl_805209F8@sda21(r2)
@@ -5678,7 +5668,7 @@ lbl_80449FC8:
 .endif
 
 .global forceReset__11BootSectionFv
-forceReset__11BootSectionFv: #weak function
+forceReset__11BootSectionFv: # weak function
 /* 80449FDC 00446F1C  38 60 00 00 */	li r3, 0
 /* 80449FE0 00446F20  4E 80 00 20 */	blr 
 
@@ -5697,7 +5687,7 @@ forceReset__11BootSectionFv: #weak function
 /* 8044A00C 00446F4C  38 21 00 10 */	addi r1, r1, 0x10
 /* 8044A010 00446F50  4E 80 00 20 */	blr 
 
-__sinit_bootSection_cpp: #static initializer
+__sinit_bootSection_cpp: # static initializer
 /* 8044A014 00446F54  3C 80 80 51 */	lis r4, __float_nan@ha
 /* 8044A018 00446F58  38 00 FF FF */	li r0, -1
 /* 8044A01C 00446F5C  C0 04 48 B0 */	lfs f0, __float_nan@l(r4)
