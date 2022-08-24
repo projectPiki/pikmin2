@@ -287,47 +287,17 @@ void JUTConsole::doDraw(JUTConsole::EConsoleType inputType) const
  * Address:	800289A0
  * Size:	00008C
  */
-void JUTConsole::print_f(const char*, ...)
-{
-	/*
-	stwu     r1, -0x80(r1)
-	mflr     r0
-	stw      r0, 0x84(r1)
-	stw      r31, 0x7c(r1)
-	bne      cr1, lbl_800289D4
-	stfd     f1, 0x28(r1)
-	stfd     f2, 0x30(r1)
-	stfd     f3, 0x38(r1)
-	stfd     f4, 0x40(r1)
-	stfd     f5, 0x48(r1)
-	stfd     f6, 0x50(r1)
-	stfd     f7, 0x58(r1)
-	stfd     f8, 0x60(r1)
+extern "C" {
+void JUTConsole_print_f_va_(JUTConsole* console, const char* fmt, va_list args);
+}
 
-lbl_800289D4:
-	addi     r11, r1, 0x88
-	addi     r0, r1, 8
-	lis      r12, 0x200
-	stw      r3, 8(r1)
-	addi     r31, r1, 0x68
-	stw      r5, 0x10(r1)
-	mr       r5, r31
-	stw      r4, 0xc(r1)
-	stw      r6, 0x14(r1)
-	stw      r7, 0x18(r1)
-	stw      r8, 0x1c(r1)
-	stw      r9, 0x20(r1)
-	stw      r10, 0x24(r1)
-	stw      r12, 0x68(r1)
-	stw      r11, 0x6c(r1)
-	stw      r0, 0x70(r1)
-	bl       JUTConsole_print_f_va_
-	lwz      r0, 0x84(r1)
-	lwz      r31, 0x7c(r1)
-	mtlr     r0
-	addi     r1, r1, 0x80
-	blr
-	*/
+void JUTConsole::print_f(const char* format, ...)
+{
+	va_list args;
+	va_start(args, format);
+
+	JUTConsole_print_f_va_(this, format, args);
+	va_end(args);
 }
 
 /*
@@ -572,28 +542,11 @@ lbl_80028D10:
  * Address:	80028D2C
  * Size:	000048
  */
-void JUTConsole_print_f_va_(void)
+extern "C" void JUTConsole_print_f_va_(JUTConsole* console, const char* format, va_list args)
 {
-	/*
-	stwu     r1, -0x410(r1)
-	mflr     r0
-	mr       r6, r5
-	mr       r5, r4
-	stw      r0, 0x414(r1)
-	li       r4, 0x400
-	stw      r31, 0x40c(r1)
-	mr       r31, r3
-	addi     r3, r1, 8
-	bl       vsnprintf
-	mr       r3, r31
-	addi     r4, r1, 8
-	bl       print__10JUTConsoleFPCc
-	lwz      r0, 0x414(r1)
-	lwz      r31, 0x40c(r1)
-	mtlr     r0
-	addi     r1, r1, 0x410
-	blr
-	*/
+	char buffer[1024];
+	vsnprintf(buffer, sizeof(buffer), format, args);
+	console->print(buffer);
 }
 
 /*
@@ -621,85 +574,38 @@ void JUTConsole::dumpToConsole(JUTConsole*, unsigned int)
  * Address:	80028D74
  * Size:	0000DC
  */
-void JUTConsole::scroll(int)
+void JUTConsole::scroll(int amount)
 {
-	/*
-	cmpwi    r4, 0
-	bge      lbl_80028DAC
-	lwz      r5, 0x34(r3)
-	lwz      r0, 0x30(r3)
-	subf.    r5, r5, r0
-	blt      lbl_80028D90
-	b        lbl_80028D98
+	if (amount < 0) {
+		int var = field_0x30 - field_0x34;
+		var     = field_0x30 - field_0x34 >= 0 ? var : var + field_0x24;
 
-lbl_80028D90:
-	lwz      r0, 0x24(r3)
-	add      r5, r5, r0
+		if (amount < -var) {
+			amount = -var;
+		}
+	} else if (amount > 0) {
+		int var2 = field_0x38 - field_0x34;
+		var2     = var2 >= 0 ? var2 : var2 + field_0x24;
 
-lbl_80028D98:
-	neg      r0, r5
-	cmpw     r4, r0
-	bge      lbl_80028E10
-	mr       r4, r0
-	b        lbl_80028E10
+		if (var2 + 1 <= mHeight) {
+			amount = 0;
+		} else {
+			int var3 = field_0x38 - field_0x30;
+			var3     = field_0x38 - field_0x30 >= 0 ? var3 : var3 + field_0x24;
 
-lbl_80028DAC:
-	ble      lbl_80028E10
-	lwz      r0, 0x34(r3)
-	lwz      r6, 0x38(r3)
-	subf.    r5, r0, r6
-	blt      lbl_80028DC4
-	b        lbl_80028DCC
+			if (amount > (s32)(var3 - mHeight + 1)) {
+				amount = var3 - mHeight + 1;
+			}
+		}
+	}
 
-lbl_80028DC4:
-	lwz      r0, 0x24(r3)
-	add      r5, r5, r0
-
-lbl_80028DCC:
-	lwz      r7, 0x48(r3)
-	addi     r0, r5, 1
-	cmplw    r0, r7
-	bgt      lbl_80028DE4
-	li       r4, 0
-	b        lbl_80028E10
-
-lbl_80028DE4:
-	lwz      r0, 0x30(r3)
-	subf.    r5, r0, r6
-	blt      lbl_80028DF4
-	b        lbl_80028DFC
-
-lbl_80028DF4:
-	lwz      r0, 0x24(r3)
-	add      r5, r5, r0
-
-lbl_80028DFC:
-	subf     r5, r7, r5
-	addi     r0, r5, 1
-	cmpw     r4, r0
-	ble      lbl_80028E10
-	mr       r4, r0
-
-lbl_80028E10:
-	lwz      r0, 0x30(r3)
-	add      r0, r0, r4
-	stw      r0, 0x30(r3)
-	lwz      r4, 0x30(r3)
-	cmpwi    r4, 0
-	bge      lbl_80028E34
-	lwz      r0, 0x24(r3)
-	add      r0, r4, r0
-	stw      r0, 0x30(r3)
-
-lbl_80028E34:
-	lwz      r0, 0x30(r3)
-	lwz      r4, 0x24(r3)
-	cmplw    r0, r4
-	bltlr
-	subf     r0, r4, r0
-	stw      r0, 0x30(r3)
-	blr
-	*/
+	field_0x30 += amount;
+	if (field_0x30 < 0) {
+		field_0x30 += field_0x24;
+	}
+	if (field_0x30 >= field_0x24) {
+		field_0x30 -= field_0x24;
+	}
 }
 
 /*
@@ -709,19 +615,11 @@ lbl_80028E34:
  */
 int JUTConsole::getUsedLine() const
 {
-	/*
-	lwz      r4, 0x34(r3)
-	lwz      r0, 0x38(r3)
-	subf.    r4, r4, r0
-	blt      lbl_80028E68
-	mr       r3, r4
-	blr
-
-lbl_80028E68:
-	lwz      r0, 0x24(r3)
-	add      r3, r4, r0
-	blr
-	*/
+	int line = field_0x38 - field_0x34;
+	if (line >= 0) {
+		return line;
+	}
+	return line + field_0x24;
 }
 
 /*
@@ -731,19 +629,11 @@ lbl_80028E68:
  */
 int JUTConsole::getLineOffset() const
 {
-	/*
-	lwz      r4, 0x34(r3)
-	lwz      r0, 0x30(r3)
-	subf.    r4, r4, r0
-	blt      lbl_80028E8C
-	mr       r3, r4
-	blr
-
-lbl_80028E8C:
-	lwz      r0, 0x24(r3)
-	add      r3, r4, r0
-	blr
-	*/
+	int line = field_0x30 - field_0x34;
+	if (line >= 0) {
+		return line;
+	}
+	return line + field_0x24;
 }
 
 /*
@@ -781,40 +671,14 @@ JUTConsoleManager::~JUTConsoleManager()
  * Address:	80028E98
  * Size:	000068
  */
-void JUTConsoleManager::createManager(JKRHeap*)
+JUTConsoleManager* JUTConsoleManager::createManager(JKRHeap* heap)
 {
-	/*
-	stwu     r1, -0x10(r1)
-	mflr     r0
-	cmplwi   r3, 0
-	stw      r0, 0x14(r1)
-	bne      lbl_80028EB0
-	lwz      r3, sCurrentHeap__7JKRHeap@sda21(r13)
-
-lbl_80028EB0:
-	mr       r4, r3
-	li       r3, 0x14
-	li       r5, 0
-	bl       __nw__FUlP7JKRHeapi
-	cmplwi   r3, 0
-	beq      lbl_80028EEC
-	li       r4, 0
-	addi     r0, r3, 4
-	stw      r4, 4(r3)
-	stw      r4, 8(r3)
-	stw      r4, 0(r3)
-	stw      r0, 4(r3)
-	stw      r0, 8(r3)
-	stw      r4, 0xc(r3)
-	stw      r4, 0x10(r3)
-
-lbl_80028EEC:
-	stw      r3, sManager__17JUTConsoleManager@sda21(r13)
-	lwz      r0, 0x14(r1)
-	mtlr     r0
-	addi     r1, r1, 0x10
-	blr
-	*/
+	if (heap == NULL) {
+		heap = JKRHeap::sCurrentHeap;
+	}
+	JUTConsoleManager* manager = new (heap, 0) JUTConsoleManager();
+	sManager                   = manager;
+	return manager;
 }
 
 /*
