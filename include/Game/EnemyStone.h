@@ -3,6 +3,8 @@
 
 #include "CNode.h"
 #include "Game/StateMachine.h"
+#include "JSystem/J3D/J3DModel.h"
+#include "Viewport.h"
 #include "Matrixf.h"
 #include "types.h"
 
@@ -68,6 +70,29 @@ struct Obj : CNode {
 	u8 _50;               // _50
 	u8 _51[3];            // _51 - possibly padding.
 };
+
+/**
+ * @size{0x38}
+ */
+struct Mgr {
+	Mgr();
+
+	void loadResource();
+	void regist(Obj*);
+	void release(Obj*);
+	void draw(Viewport*);
+
+	// Inlined/Unused:
+	void getDrawInfo();
+	void addDrawInfo(DrawInfo*);
+	// ~Mgr();
+
+	J3DModelData* _00[2]; // _00 - could be an array of pointers
+	u8 _04[4];            // _04 - unknown
+	CNode m_drawInfo;     // _08 - might be DrawInfo?
+	CNode m_obj;          // _20 - might be Obj?
+};
+
 } // namespace EnemyStone
 } // namespace Game
 

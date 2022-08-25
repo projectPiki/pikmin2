@@ -88,6 +88,11 @@ struct PelletIterator {
 	void next();
 	Pellet* operator*();
 	void setFirst();
+
+	u32 _00;        // _00 - unknown
+	void* _04;      // _04 - unknown pointer
+	PelletMgr* _08; // _08 - probably? it's a TObjectNode<GenericObjectMgr>* according to ghidra
+	u32 _0C;        // _0C - unknown
 };
 
 struct CreatureInitArg {

@@ -231,118 +231,28 @@ bool BirthTypeDropOlimarState::isFinishableWaitingBirthTypeDrop(EnemyBase* enemy
  * Address:	800FFB00
  * Size:	00018C
  */
-// WIP: this doesn't work with the same inline?
-// https://decomp.me/scratch/3uLnQ
-bool EnemyBaseFSM::BirthTypeDropTreasureState::isFinishableWaitingBirthTypeDrop(Game::EnemyBase*)
+bool BirthTypeDropTreasureState::isFinishableWaitingBirthTypeDrop(Game::EnemyBase* enemy)
 {
-	/*
-	.loc_0x0:
-	  stwu      r1, -0xA0(r1)
-	  mflr      r0
-	  stw       r0, 0xA4(r1)
-	  stfd      f31, 0x90(r1)
-	  psq_st    f31,0x98(r1),0,0
-	  stfd      f30, 0x80(r1)
-	  psq_st    f30,0x88(r1),0,0
-	  stfd      f29, 0x70(r1)
-	  psq_st    f29,0x78(r1),0,0
-	  stw       r31, 0x6C(r1)
-	  stw       r30, 0x68(r1)
-	  stw       r29, 0x64(r1)
-	  mr        r29, r4
-	  addi      r3, r1, 0x44
-	  li        r31, 0
-	  bl        0x6CE2C
-	  addi      r3, r1, 0x44
-	  bl        0x6CE3C
-	  b         .loc_0x144
+	bool result = false;
+	PelletIterator pelletIterator;
 
-	.loc_0x4C:
-	  addi      r3, r1, 0x44
-	  bl        0x6CE7C
-	  lwz       r12, 0x0(r3)
-	  mr        r30, r3
-	  lwz       r12, 0xA8(r12)
-	  mtctr     r12
-	  bctrl
-	  rlwinm.   r0,r3,0,24,31
-	  beq-      .loc_0x13C
-	  mr        r3, r30
-	  lwz       r12, 0x0(r30)
-	  lwz       r12, 0x204(r12)
-	  mtctr     r12
-	  bctrl
-	  rlwinm.   r0,r3,0,24,31
-	  beq-      .loc_0x13C
-	  mr        r4, r30
-	  addi      r3, r1, 0x38
-	  lwz       r12, 0x0(r30)
-	  lwz       r12, 0x8(r12)
-	  mtctr     r12
-	  bctrl
-	  mr        r4, r30
-	  lwz       r5, 0xC0(r29)
-	  lwz       r12, 0x0(r30)
-	  addi      r3, r1, 0x14
-	  lfs       f29, 0x3AC(r5)
-	  lwz       r12, 0x8(r12)
-	  mtctr     r12
-	  bctrl
-	  mr        r4, r29
-	  addi      r3, r1, 0x8
-	  lwz       r12, 0x0(r29)
-	  lfs       f31, 0x14(r1)
-	  lwz       r12, 0x8(r12)
-	  mtctr     r12
-	  bctrl
-	  mr        r4, r30
-	  lfs       f0, 0x8(r1)
-	  lwz       r12, 0x0(r30)
-	  addi      r3, r1, 0x2C
-	  fsubs     f30, f0, f31
-	  lwz       r12, 0x8(r12)
-	  mtctr     r12
-	  bctrl
-	  mr        r4, r29
-	  addi      r3, r1, 0x20
-	  lwz       r12, 0x0(r29)
-	  lfs       f31, 0x34(r1)
-	  lwz       r12, 0x8(r12)
-	  mtctr     r12
-	  bctrl
-	  lfs       f1, 0x28(r1)
-	  fmuls     f0, f29, f29
-	  fsubs     f1, f1, f31
-	  fmuls     f1, f1, f1
-	  fmadds    f1, f30, f30, f1
-	  fcmpo     cr0, f1, f0
-	  bge-      .loc_0x13C
-	  li        r31, 0x1
+	pelletIterator.first();
+	while (!pelletIterator.isDone()) {
+		Pellet* cell = (Pellet*)(*pelletIterator);
+		if (cell->isAlive() && cell->isCarried()) {
+			Vector3f pos        = cell->getPosition(); // why this
+			float privateRadius = static_cast<EnemyParmsBase*>(enemy->m_parms)->m_general.m_privateRadius.m_value;
+			Vector2f delta;
 
-	.loc_0x13C:
-	  addi      r3, r1, 0x44
-	  bl        0x6CDF4
+			enemy->getSeparation(cell, delta);
 
-	.loc_0x144:
-	  addi      r3, r1, 0x44
-	  bl        0x6CEAC
-	  rlwinm.   r0,r3,0,24,31
-	  beq+      .loc_0x4C
-	  mr        r3, r31
-	  psq_l     f31,0x98(r1),0,0
-	  lfd       f31, 0x90(r1)
-	  psq_l     f30,0x88(r1),0,0
-	  lfd       f30, 0x80(r1)
-	  psq_l     f29,0x78(r1),0,0
-	  lfd       f29, 0x70(r1)
-	  lwz       r31, 0x6C(r1)
-	  lwz       r30, 0x68(r1)
-	  lwz       r0, 0xA4(r1)
-	  lwz       r29, 0x64(r1)
-	  mtlr      r0
-	  addi      r1, r1, 0xA0
-	  blr
-	*/
+			if ((SQUARE(delta.x) + SQUARE(delta.y)) < SQUARE(privateRadius)) {
+				result = true;
+			}
+		}
+		pelletIterator.next();
+	}
+	return result;
 }
 
 /*
