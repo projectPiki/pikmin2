@@ -160,6 +160,9 @@ $(BUILD_DIR)/src/Dolphin/db.o: CFLAGS += -str noreadonly
 $(BUILD_DIR)/src/Dolphin/OS.o: CFLAGS += -str noreadonly
 $(BUILD_DIR)/src/Dolphin/GBA.o: CFLAGS += -str noreadonly
 
+# This is inline-deferred for some reason
+$(BUILD_DIR)/src/Dolphin/mbstring.o: CFLAGS := -Cpp_exceptions off -enum int -inline deferred -proc gekko -RTTI off -fp hard -fp_contract on -rostr -O4,p -use_lmw_stmw on -common on -sdata 8 -sdata2 8 -nodefaults -DVERNUM=$(VERNUM) $(INCLUDES)
+
 # Disable common BSS pool
 $(DOLPHIN): CFLAGS += -common off
 

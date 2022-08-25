@@ -5,10 +5,10 @@
  * Address:	........
  * Size:	00011C
  */
-void mblen(void)
-{
-	// UNUSED FUNCTION
-}
+// void mblen(void)
+// {
+// 	// UNUSED FUNCTION
+// }
 
 /*
  * --INFO--
@@ -17,36 +17,51 @@ void mblen(void)
  */
 static int is_utf8_complete(const char* s, size_t n)
 {
-	int i, encoded;
+	if (n == 0) { // must have more than zero characters
+		return -1;
+    }
 
-	if (n <= 0) // must have more than zero characters
-		return (-1);
-
-	if (*s == 0x00)
-		return (0);
-
-	if ((*s & 0x80) == 0x00)
+	if (s[0] == 0x00) { // first char is 0
+		return 0;
+    }
+    
+	if ((s[0] & 0x80) == 0x00) 
+    {
 		return (1);
-	else if ((*s & 0xe0) == 0xc0)
-		encoded = 1;
-	else if ((*s & 0xf0) == 0xe0)
-		encoded = 2;
-	else if ((*s & 0xf8) == 0xf0)
-		encoded = 3;
-	else if ((*s & 0xfc) == 0xf8)
-		encoded = 4;
-	else if ((*s & 0xfe) == 0xfc)
-		encoded = 5;
-	else
+    } 
+    else if ((s[0] & 0xe0) == 0xc0) 
+    {
+        if (n >= 2) 
+        {
+            if ((*(s + 1) & 0x80) == 0x80) 
+            {
+                return 2;
+            } 
+            return -1;
+        }
+		return -2;
+    } 
+    else if ((s[0] & 0xf0) == 0xe0) 
+    {
+        if (n >= 3) 
+        {
+            if ((s[1] & 0x80) == 0x80) 
+            {
+                if ((s[2] & 0x80) == 0x80) 
+                {
+                    return 3;
+                }
+            } 
+            return -1;
+        } 
+        else if ((n == 2 && ((s[1] & 0x80) == 0x80)) || n == 1) 
+        {
+            return -2;
+        }
+        return -1;
+    } else {
 		return (-1);
-
-	for (i = 0; i < encoded; i++) {
-		if ((*(s + i + 1) & 0xc0) != 0x80)
-			return (-1);
-	}
-	if (n < i + 1)
-		return (-2);
-	return (encoded + 1);
+    }
 }
 
 /*
@@ -54,10 +69,10 @@ static int is_utf8_complete(const char* s, size_t n)
  * Address:	........
  * Size:	000120
  */
-void utf8_to_unicode(void)
-{
-	// UNUSED FUNCTION
-}
+// void utf8_to_unicode(void)
+// {
+// 	// UNUSED FUNCTION
+// }
 
 /*
  * --INFO--
@@ -216,47 +231,47 @@ size_t wcstombs(char* s, const wchar_t* pwcs, size_t n)
  * Address:	........
  * Size:	000054
  */
-void mbrlen(void)
-{
-	// UNUSED FUNCTION
-}
+// void mbrlen(void)
+// {
+// 	// UNUSED FUNCTION
+// }
 
 /*
  * --INFO--
  * Address:	........
  * Size:	000188
  */
-void mbrtowc(void)
-{
-	// UNUSED FUNCTION
-}
+// void mbrtowc(void)
+// {
+// 	// UNUSED FUNCTION
+// }
 
 /*
  * --INFO--
  * Address:	........
  * Size:	0000B0
  */
-void wcrtomb(void)
-{
-	// UNUSED FUNCTION
-}
+// void wcrtomb(void)
+// {
+// 	// UNUSED FUNCTION
+// }
 
 /*
  * --INFO--
  * Address:	........
  * Size:	0001E0
  */
-void mbsrtowcs(void)
-{
-	// UNUSED FUNCTION
-}
+// void mbsrtowcs(void)
+// {
+// 	// UNUSED FUNCTION
+// }
 
 /*
  * --INFO--
  * Address:	........
  * Size:	000114
  */
-void wcsrtombs(void)
-{
-	// UNUSED FUNCTION
-}
+// void wcsrtombs(void)
+// {
+// 	// UNUSED FUNCTION
+// }
