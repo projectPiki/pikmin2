@@ -107,6 +107,8 @@ struct PlatMgr : public NodeObjectMgr<PlatInstance> {
 	void resetOnCount();
 	void doDirectDraw(Graphics&);
 };
+
+extern PlatMgr* platMgr;
 } // namespace Game
 
 #endif

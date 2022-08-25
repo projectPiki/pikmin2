@@ -31,6 +31,7 @@
 #include "Game/MoviePlayer.h"
 #include "Game/pelletMgr.h"
 #include "Game/Piki.h"
+#include "Game/PlatInstance.h"
 #include "Game/shadowMgr.h"
 #include "Game/TekiStat.h"
 #include "Game/WalkSmokeEffect.h"
@@ -2281,14 +2282,8 @@ inline void EnemyBase::updateSpheres()
 	Sys::Sphere sphere;
 	m_collTree->m_part->getSphere(sphere);
 
-	m_boundingSphere.m_position.x = sphere.m_position.x;
-	m_boundingSphere.m_position.y = sphere.m_position.y;
-	m_boundingSphere.m_position.z = sphere.m_position.z;
-	m_boundingSphere.m_radius     = sphere.m_radius;
-
-	m_lodRange.m_position.x = m_boundingSphere.m_position.x;
-	m_lodRange.m_position.y = m_boundingSphere.m_position.y;
-	m_lodRange.m_position.z = m_boundingSphere.m_position.z;
+	m_boundingSphere      = sphere;
+	m_lodRange.m_position = m_boundingSphere.m_position;
 }
 
 /*
@@ -2403,2666 +2398,2769 @@ void EnemyBase::finishDropping(bool)
 
 		resetEvent(1, EB2_5);
 		m_velocity = 0.0f;
-		/*
-		.loc_0x0:
-		    stwu      r1, -0xB0(r1)
-		    mflr      r0
-		    stw       r0, 0xB4(r1)
-		    stfd      f31, 0xA0(r1)
-		    psq_st    f31,0xA8(r1),0,0
-		    stfd      f30, 0x90(r1)
-		    psq_st    f30,0x98(r1),0,0
-		    stw       r31, 0x8C(r1)
-		    stw       r30, 0x88(r1)
-		    lwz       r0, 0x1E4(r3)
-		    mr        r31, r3
-		    mr        r30, r4
-		    rlwinm.   r0,r0,0,27,27
-		    beq-      .loc_0x264
-		    lfs       f1, -0x6BB0(r2)
-		    lfs       f2, -0x6B9C(r2)
-		    bl        0x1FF0
-		    lwz       r0, 0x1E0(r31)
-		    mr        r3, r31
-		    addi      r4, r1, 0x4C
-		    oris      r0, r0, 0x8
-		    stw       r0, 0x1E0(r31)
-		    lwz       r12, 0x0(r31)
-		    lwz       r12, 0x10(r12)
-		    mtctr     r12
-		    bctrl
-		    lfs       f2, 0x4C(r1)
-		    rlwinm.   r0,r30,0,24,31
-		    lfs       f1, 0x50(r1)
-		    lfs       f0, 0x54(r1)
-		    stfs      f2, 0x40(r1)
-		    stfs      f1, 0x44(r1)
-		    stfs      f0, 0x48(r1)
-		    beq-      .loc_0xAC
-		    lwz       r3, -0x6CF8(r13)
-		    cmplwi    r3, 0
-		    beq-      .loc_0xAC
-		    lwz       r12, 0x4(r3)
-		    addi      r4, r1, 0x40
-		    lwz       r12, 0x28(r12)
-		    mtctr     r12
-		    bctrl
-		    stfs      f1, 0x44(r1)
-
-		.loc_0xAC:
-		    mr        r3, r31
-		    lwz       r12, 0x0(r31)
-		    lwz       r12, 0x2EC(r12)
-		    mtctr     r12
-		    bctrl
-		    lwz       r3, 0x280(r31)
-		    fmr       f31, f1
-		    cmplwi    r3, 0
-		    beq-      .loc_0x1CC
-		    beq-      .loc_0x100
-		    lwz       r12, 0x0(r3)
-		    lfs       f30, 0x48(r1)
-		    lwz       r12, 0x14(r12)
-		    mtctr     r12
-		    bctrl
-		    lfs       f1, 0x0(r3)
-		    lfs       f0, 0x40(r1)
-		    stfs      f1, 0x2C(r1)
-		    stfs      f0, 0x28(r1)
-		    stfs      f30, 0x30(r1)
-		    b         .loc_0x118
-
-		.loc_0x100:
-		    lfs       f2, 0x40(r1)
-		    lfs       f1, 0x44(r1)
-		    lfs       f0, 0x48(r1)
-		    stfs      f2, 0x28(r1)
-		    stfs      f1, 0x2C(r1)
-		    stfs      f0, 0x30(r1)
-
-		.loc_0x118:
-		    lwz       r4, 0x28(r1)
-		    lis       r3, 0x804B
-		    lwz       r7, 0x2C(r1)
-		    subi      r0, r3, 0x5808
-		    lwz       r6, 0x30(r1)
-		    lis       r3, 0x804B
-		    stw       r4, 0x34(r1)
-		    lis       r4, 0x804E
-		    subi      r11, r3, 0x5814
-		    lis       r10, 0x804B
-		    li        r5, 0
-		    stw       r7, 0x38(r1)
-		    lfs       f2, 0x34(r1)
-		    lis       r3, 0x804F
-		    stw       r6, 0x3C(r1)
-		    li        r8, 0x54
-		    lfs       f1, 0x38(r1)
-		    li        r7, 0x55
-		    lfs       f0, 0x3C(r1)
-		    li        r6, 0x56
-		    stw       r0, 0x70(r1)
-		    addi      r9, r4, 0x6A50
-		    subi      r10, r10, 0x5D24
-		    subi      r0, r3, 0x7A04
-		    stw       r11, 0x5C(r1)
-		    addi      r3, r1, 0x70
-		    addi      r4, r1, 0x5C
-		    stw       r9, 0x70(r1)
-		    stfs      f2, 0x60(r1)
-		    stfs      f1, 0x64(r1)
-		    stfs      f0, 0x68(r1)
-		    stw       r10, 0x5C(r1)
-		    stfs      f31, 0x6C(r1)
-		    sth       r8, 0x74(r1)
-		    sth       r7, 0x76(r1)
-		    sth       r6, 0x78(r1)
-		    stw       r5, 0x7C(r1)
-		    stw       r5, 0x80(r1)
-		    stw       r5, 0x84(r1)
-		    stw       r0, 0x70(r1)
-		    bl        0x2C4618
-		    fmr       f1, f31
-		    mr        r3, r31
-		    bl        0x36A680
-		    b         .loc_0x248
-
-		.loc_0x1CC:
-		    lis       r3, 0x804B
-		    lfs       f0, -0x6B9C(r2)
-		    subi      r0, r3, 0x5808
-		    lis       r3, 0x804E
-		    stw       r0, 0x18(r1)
-		    addi      r0, r3, 0x6A78
-		    lfs       f2, 0x40(r1)
-		    lis       r4, 0x804B
-		    stfs      f0, 0x24(r1)
-		    lis       r3, 0x804F
-		    lfs       f1, 0x44(r1)
-		    subi      r4, r4, 0x5814
-		    lfs       f0, 0x48(r1)
-		    li        r6, 0x53
-		    li        r5, 0
-		    stw       r0, 0x18(r1)
-		    subi      r0, r3, 0x79F0
-		    addi      r3, r1, 0x18
-		    stw       r4, 0x8(r1)
-		    addi      r4, r1, 0x8
-		    stfs      f2, 0xC(r1)
-		    stfs      f1, 0x10(r1)
-		    stfs      f0, 0x14(r1)
-		    sth       r6, 0x1C(r1)
-		    stw       r5, 0x20(r1)
-		    stw       r0, 0x18(r1)
-		    stfs      f31, 0x24(r1)
-		    bl        0x2C4530
-		    fmr       f1, f31
-		    mr        r3, r31
-		    bl        0x36A450
-
-		.loc_0x248:
-		    lwz       r0, 0x1E4(r31)
-		    lfs       f0, -0x6BB0(r2)
-		    rlwinm    r0,r0,0,28,26
-		    stw       r0, 0x1E4(r31)
-		    stfs      f0, 0x1C8(r31)
-		    stfs      f0, 0x1CC(r31)
-		    stfs      f0, 0x1D0(r31)
-
-		.loc_0x264:
-		    psq_l     f31,0xA8(r1),0,0
-		    lfd       f31, 0xA0(r1)
-		    psq_l     f30,0x98(r1),0,0
-		    lfd       f30, 0x90(r1)
-		    lwz       r31, 0x8C(r1)
-		    lwz       r0, 0xB4(r1)
-		    lwz       r30, 0x88(r1)
-		    mtlr      r0
-		    addi      r1, r1, 0xB0
-		    blr
-		*/
 	}
-
 	/*
-	 * --INFO--
-	 * Address:	80104288
-	 * Size:	000080
-	 */
-	void EnemyBase::bounceProcedure(Sys::Triangle * triangle)
-	{
-		bounceCallback(triangle);
-		resetEvent(0, EB_30);
+	.loc_0x0:
+	    stwu      r1, -0xB0(r1)
+	    mflr      r0
+	    stw       r0, 0xB4(r1)
+	    stfd      f31, 0xA0(r1)
+	    psq_st    f31,0xA8(r1),0,0
+	    stfd      f30, 0x90(r1)
+	    psq_st    f30,0x98(r1),0,0
+	    stw       r31, 0x8C(r1)
+	    stw       r30, 0x88(r1)
+	    lwz       r0, 0x1E4(r3)
+	    mr        r31, r3
+	    mr        r30, r4
+	    rlwinm.   r0,r0,0,27,27
+	    beq-      .loc_0x264
+	    lfs       f1, -0x6BB0(r2)
+	    lfs       f2, -0x6B9C(r2)
+	    bl        0x1FF0
+	    lwz       r0, 0x1E0(r31)
+	    mr        r3, r31
+	    addi      r4, r1, 0x4C
+	    oris      r0, r0, 0x8
+	    stw       r0, 0x1E0(r31)
+	    lwz       r12, 0x0(r31)
+	    lwz       r12, 0x10(r12)
+	    mtctr     r12
+	    bctrl
+	    lfs       f2, 0x4C(r1)
+	    rlwinm.   r0,r30,0,24,31
+	    lfs       f1, 0x50(r1)
+	    lfs       f0, 0x54(r1)
+	    stfs      f2, 0x40(r1)
+	    stfs      f1, 0x44(r1)
+	    stfs      f0, 0x48(r1)
+	    beq-      .loc_0xAC
+	    lwz       r3, -0x6CF8(r13)
+	    cmplwi    r3, 0
+	    beq-      .loc_0xAC
+	    lwz       r12, 0x4(r3)
+	    addi      r4, r1, 0x40
+	    lwz       r12, 0x28(r12)
+	    mtctr     r12
+	    bctrl
+	    stfs      f1, 0x44(r1)
 
-		finishDropping(true);
-		resetDroppingMassZero();
+	.loc_0xAC:
+	    mr        r3, r31
+	    lwz       r12, 0x0(r31)
+	    lwz       r12, 0x2EC(r12)
+	    mtctr     r12
+	    bctrl
+	    lwz       r3, 0x280(r31)
+	    fmr       f31, f1
+	    cmplwi    r3, 0
+	    beq-      .loc_0x1CC
+	    beq-      .loc_0x100
+	    lwz       r12, 0x0(r3)
+	    lfs       f30, 0x48(r1)
+	    lwz       r12, 0x14(r12)
+	    mtctr     r12
+	    bctrl
+	    lfs       f1, 0x0(r3)
+	    lfs       f0, 0x40(r1)
+	    stfs      f1, 0x2C(r1)
+	    stfs      f0, 0x28(r1)
+	    stfs      f30, 0x30(r1)
+	    b         .loc_0x118
 
-		m_lifecycleFSM->bounceProcedure(this, triangle);
-	}
+	.loc_0x100:
+	    lfs       f2, 0x40(r1)
+	    lfs       f1, 0x44(r1)
+	    lfs       f0, 0x48(r1)
+	    stfs      f2, 0x28(r1)
+	    stfs      f1, 0x2C(r1)
+	    stfs      f0, 0x30(r1)
 
-	/*
-	 * --INFO--
-	 * Address:	80104340
-	 * Size:	0006D4
-	 */
-	// WIP: https://decomp.me/scratch/YsXWy
-	void EnemyBase::collisionMapAndPlat(float)
-	{
-		/*
-		.loc_0x0:
-		    stwu      r1, -0x180(r1)
-		    mflr      r0
-		    stw       r0, 0x184(r1)
-		    stfd      f31, 0x170(r1)
-		    psq_st    f31,0x178(r1),0,0
-		    stfd      f30, 0x160(r1)
-		    psq_st    f30,0x168(r1),0,0
-		    stfd      f29, 0x150(r1)
-		    psq_st    f29,0x158(r1),0,0
-		    stfd      f28, 0x140(r1)
-		    psq_st    f28,0x148(r1),0,0
-		    stfd      f27, 0x130(r1)
-		    psq_st    f27,0x138(r1),0,0
-		    stw       r31, 0x12C(r1)
-		    mr        r31, r3
-		    fmr       f30, f1
-		    bl        0x9B1F4
-		    rlwinm.   r0,r3,0,24,31
-		    bne-      .loc_0x54C
-		    lwz       r0, 0x1E0(r31)
-		    rlwinm.   r0,r0,0,29,29
-		    bne-      .loc_0x74
-		    mr        r3, r31
-		    fmr       f1, f30
-		    lwz       r12, 0x0(r31)
-		    lwz       r12, 0x1F4(r12)
-		    mtctr     r12
-		    bctrl
-		    b         .loc_0x98
+	.loc_0x118:
+	    lwz       r4, 0x28(r1)
+	    lis       r3, 0x804B
+	    lwz       r7, 0x2C(r1)
+	    subi      r0, r3, 0x5808
+	    lwz       r6, 0x30(r1)
+	    lis       r3, 0x804B
+	    stw       r4, 0x34(r1)
+	    lis       r4, 0x804E
+	    subi      r11, r3, 0x5814
+	    lis       r10, 0x804B
+	    li        r5, 0
+	    stw       r7, 0x38(r1)
+	    lfs       f2, 0x34(r1)
+	    lis       r3, 0x804F
+	    stw       r6, 0x3C(r1)
+	    li        r8, 0x54
+	    lfs       f1, 0x38(r1)
+	    li        r7, 0x55
+	    lfs       f0, 0x3C(r1)
+	    li        r6, 0x56
+	    stw       r0, 0x70(r1)
+	    addi      r9, r4, 0x6A50
+	    subi      r10, r10, 0x5D24
+	    subi      r0, r3, 0x7A04
+	    stw       r11, 0x5C(r1)
+	    addi      r3, r1, 0x70
+	    addi      r4, r1, 0x5C
+	    stw       r9, 0x70(r1)
+	    stfs      f2, 0x60(r1)
+	    stfs      f1, 0x64(r1)
+	    stfs      f0, 0x68(r1)
+	    stw       r10, 0x5C(r1)
+	    stfs      f31, 0x6C(r1)
+	    sth       r8, 0x74(r1)
+	    sth       r7, 0x76(r1)
+	    sth       r6, 0x78(r1)
+	    stw       r5, 0x7C(r1)
+	    stw       r5, 0x80(r1)
+	    stw       r5, 0x84(r1)
+	    stw       r0, 0x70(r1)
+	    bl        0x2C4618
+	    fmr       f1, f31
+	    mr        r3, r31
+	    bl        0x36A680
+	    b         .loc_0x248
 
-		.loc_0x74:
-		    mr        r3, r31
-		    fmr       f1, f30
-		    lwz       r12, 0x0(r31)
-		    lwz       r12, 0x1F8(r12)
-		    mtctr     r12
-		    bctrl
-		    lwz       r0, 0x1E0(r31)
-		    rlwinm    r0,r0,0,3,1
-		    stw       r0, 0x1E0(r31)
+	.loc_0x1CC:
+	    lis       r3, 0x804B
+	    lfs       f0, -0x6B9C(r2)
+	    subi      r0, r3, 0x5808
+	    lis       r3, 0x804E
+	    stw       r0, 0x18(r1)
+	    addi      r0, r3, 0x6A78
+	    lfs       f2, 0x40(r1)
+	    lis       r4, 0x804B
+	    stfs      f0, 0x24(r1)
+	    lis       r3, 0x804F
+	    lfs       f1, 0x44(r1)
+	    subi      r4, r4, 0x5814
+	    lfs       f0, 0x48(r1)
+	    li        r6, 0x53
+	    li        r5, 0
+	    stw       r0, 0x18(r1)
+	    subi      r0, r3, 0x79F0
+	    addi      r3, r1, 0x18
+	    stw       r4, 0x8(r1)
+	    addi      r4, r1, 0x8
+	    stfs      f2, 0xC(r1)
+	    stfs      f1, 0x10(r1)
+	    stfs      f0, 0x14(r1)
+	    sth       r6, 0x1C(r1)
+	    stw       r5, 0x20(r1)
+	    stw       r0, 0x18(r1)
+	    stfs      f31, 0x24(r1)
+	    bl        0x2C4530
+	    fmr       f1, f31
+	    mr        r3, r31
+	    bl        0x36A450
 
-		.loc_0x98:
-		    mr        r4, r31
-		    lwz       r5, 0xC0(r31)
-		    lwz       r12, 0x0(r31)
-		    addi      r3, r1, 0x34
-		    lfs       f31, 0x1A4(r5)
-		    lwz       r12, 0x8(r12)
-		    mtctr     r12
-		    bctrl
-		    mr        r4, r31
-		    addi      r3, r1, 0x28
-		    lwz       r12, 0x0(r31)
-		    lfs       f29, 0x34(r1)
-		    lwz       r12, 0x224(r12)
-		    lfs       f28, 0x38(r1)
-		    lfs       f27, 0x3C(r1)
-		    mtctr     r12
-		    bctrl
-		    lfs       f0, 0x28(r1)
-		    li        r3, 0
-		    stfs      f0, 0x240(r31)
-		    lfs       f0, 0x2C(r1)
-		    stfs      f0, 0x244(r31)
-		    lfs       f0, 0x30(r1)
-		    stfs      f0, 0x248(r31)
-		    lfs       f0, 0x244(r31)
-		    lfs       f1, 0x240(r31)
-		    fadds     f28, f28, f0
-		    lfs       f0, 0x248(r31)
-		    fadds     f29, f29, f1
-		    fadds     f27, f27, f0
-		    stfs      f31, 0x64(r1)
-		    fadds     f28, f28, f31
-		    stfs      f29, 0x58(r1)
-		    stfs      f28, 0x5C(r1)
-		    stfs      f27, 0x60(r1)
-		    lwz       r4, 0x1E4(r31)
-		    rlwinm.   r0,r4,0,31,31
-		    bne-      .loc_0x138
-		    rlwinm.   r0,r4,0,27,27
-		    beq-      .loc_0x13C
+	.loc_0x248:
+	    lwz       r0, 0x1E4(r31)
+	    lfs       f0, -0x6BB0(r2)
+	    rlwinm    r0,r0,0,28,26
+	    stw       r0, 0x1E4(r31)
+	    stfs      f0, 0x1C8(r31)
+	    stfs      f0, 0x1CC(r31)
+	    stfs      f0, 0x1D0(r31)
 
-		.loc_0x138:
-		    li        r3, 0x1
+	.loc_0x264:
+	    psq_l     f31,0xA8(r1),0,0
+	    lfd       f31, 0xA0(r1)
+	    psq_l     f30,0x98(r1),0,0
+	    lfd       f30, 0x90(r1)
+	    lwz       r31, 0x8C(r1)
+	    lwz       r0, 0xB4(r1)
+	    lwz       r30, 0x88(r1)
+	    mtlr      r0
+	    addi      r1, r1, 0xB0
+	    blr
+	*/
+}
 
-		.loc_0x13C:
-		    rlwinm.   r0,r3,0,24,31
-		    beq-      .loc_0x14C
-		    lfs       f8, -0x6BB0(r2)
-		    b         .loc_0x154
+/*
+ * --INFO--
+ * Address:	80104288
+ * Size:	000080
+ */
+void EnemyBase::bounceProcedure(Sys::Triangle* triangle)
+{
+	bounceCallback(triangle);
+	resetEvent(0, EB_30);
 
-		.loc_0x14C:
-		    lwz       r3, 0xC0(r31)
-		    lfs       f8, 0x4C(r3)
+	finishDropping(true);
+	resetDroppingMassZero();
 
-		.loc_0x154:
-		    lfs       f6, -0x6BB0(r2)
-		    lis       r3, 0x8050
-		    addi      r3, r3, 0x71A0
-		    li        r5, 0
-		    stfs      f6, 0x120(r31)
-		    addi      r7, r1, 0x58
-		    lfs       f0, -0x6B34(r2)
-		    addi      r6, r1, 0x4C
-		    lfs       f4, 0x1D0(r31)
-		    li        r0, -0x1
-		    lfs       f3, 0x124(r31)
-		    fmr       f1, f30
-		    lfs       f5, 0x1CC(r31)
-		    addi      r4, r1, 0x68
-		    lfs       f2, 0x120(r31)
-		    fadds     f7, f4, f3
-		    lfs       f4, 0x1C8(r31)
-		    lfs       f3, 0x11C(r31)
-		    fadds     f5, f5, f2
-		    lfs       f2, 0x800(r3)
-		    fadds     f3, f4, f3
-		    stw       r5, 0x7C(r1)
-		    lwz       r3, -0x6CF8(r13)
-		    stfs      f5, 0x50(r1)
-		    stfs      f3, 0x4C(r1)
-		    stfs      f7, 0x54(r1)
-		    stw       r7, 0x68(r1)
-		    stw       r6, 0x6C(r1)
-		    stfs      f8, 0x70(r1)
-		    stfs      f6, 0x74(r1)
-		    stw       r5, 0x78(r1)
-		    stw       r5, 0xAC(r1)
-		    stb       r5, 0xDC(r1)
-		    stb       r5, 0x81(r1)
-		    stb       r5, 0x80(r1)
-		    stw       r5, 0xB0(r1)
-		    stb       r5, 0xF8(r1)
-		    stw       r5, 0xFC(r1)
-		    stfs      f2, 0x94(r1)
-		    stfs      f0, 0x98(r1)
-		    stw       r0, 0x100(r1)
-		    stw       r5, 0xB4(r1)
-		    stb       r5, 0x82(r1)
-		    stw       r31, 0x7C(r1)
-		    lwz       r12, 0x4(r3)
-		    lwz       r12, 0x24(r12)
-		    mtctr     r12
-		    bctrl
-		    lfs       f0, 0x4C(r1)
-		    lfs       f1, -0x6BB0(r2)
-		    stfs      f0, 0x1C8(r31)
-		    lfs       f0, 0x50(r1)
-		    stfs      f0, 0x1CC(r31)
-		    lfs       f0, 0x54(r1)
-		    stfs      f0, 0x1D0(r31)
-		    lfs       f3, 0x1C8(r31)
-		    lfs       f2, 0x1CC(r31)
-		    fmuls     f0, f3, f3
-		    lfs       f4, 0x1D0(r31)
-		    fmuls     f2, f2, f2
-		    fmuls     f4, f4, f4
-		    fadds     f0, f0, f2
-		    fadds     f0, f4, f0
-		    fcmpo     cr0, f0, f1
-		    ble-      .loc_0x274
-		    fmadds    f0, f3, f3, f2
-		    fadds     f4, f4, f0
-		    fcmpo     cr0, f4, f1
-		    ble-      .loc_0x278
-		    fsqrte    f0, f4
-		    fmuls     f4, f0, f4
-		    b         .loc_0x278
+	m_lifecycleFSM->bounceProcedure(this, triangle);
+}
 
-		.loc_0x274:
-		    fmr       f4, f1
-
-		.loc_0x278:
-		    lfs       f0, -0x6BB0(r2)
-		    fcmpo     cr0, f4, f0
-		    ble-      .loc_0x2B4
-		    lfs       f1, -0x6B9C(r2)
-		    lfs       f0, 0x1C8(r31)
-		    fdivs     f1, f1, f4
-		    fmuls     f0, f0, f1
-		    stfs      f0, 0x1C8(r31)
-		    lfs       f0, 0x1CC(r31)
-		    fmuls     f0, f0, f1
-		    stfs      f0, 0x1CC(r31)
-		    lfs       f0, 0x1D0(r31)
-		    fmuls     f0, f0, f1
-		    stfs      f0, 0x1D0(r31)
-		    b         .loc_0x2B8
-
-		.loc_0x2B4:
-		    fmr       f4, f0
-
-		.loc_0x2B8:
-		    lfs       f2, 0x11C(r31)
-		    lfs       f1, 0x120(r31)
-		    fmuls     f0, f2, f2
-		    lfs       f3, 0x124(r31)
-		    fmuls     f5, f1, f1
-		    lfs       f1, -0x6BB0(r2)
-		    fmuls     f3, f3, f3
-		    fadds     f0, f0, f5
-		    fadds     f0, f3, f0
-		    fcmpo     cr0, f0, f1
-		    ble-      .loc_0x300
-		    fmadds    f0, f2, f2, f5
-		    fadds     f0, f3, f0
-		    fcmpo     cr0, f0, f1
-		    ble-      .loc_0x304
-		    fsqrte    f1, f0
-		    fmuls     f0, f1, f0
-		    b         .loc_0x304
-
-		.loc_0x300:
-		    fmr       f0, f1
-
-		.loc_0x304:
-		    fcmpo     cr0, f4, f0
-		    ble-      .loc_0x348
-		    fsubs     f4, f4, f0
-		    lfs       f0, 0x1C8(r31)
-		    lfs       f2, 0x1CC(r31)
-		    lfs       f3, 0x1D0(r31)
-		    fmuls     f1, f0, f4
-		    lfs       f0, -0x6BB0(r2)
-		    fmuls     f2, f2, f4
-		    fmuls     f3, f3, f4
-		    stfs      f1, 0x1C8(r31)
-		    stfs      f2, 0x1CC(r31)
-		    stfs      f3, 0x1D0(r31)
-		    stfs      f0, 0x11C(r31)
-		    stfs      f0, 0x120(r31)
-		    stfs      f0, 0x124(r31)
-		    b         .loc_0x37C
-
-		.loc_0x348:
-		    lfs       f0, 0x1C8(r31)
-		    lfs       f2, 0x1CC(r31)
-		    fmuls     f1, f0, f4
-		    lfs       f3, 0x1D0(r31)
-		    fmuls     f2, f2, f4
-		    lfs       f0, -0x6BB0(r2)
-		    fmuls     f3, f3, f4
-		    stfs      f1, 0x1C8(r31)
-		    stfs      f2, 0x1CC(r31)
-		    stfs      f3, 0x1D0(r31)
-		    stfs      f0, 0x11C(r31)
-		    stfs      f0, 0x120(r31)
-		    stfs      f0, 0x124(r31)
-
-		.loc_0x37C:
-		    lwz       r0, 0xC8(r31)
-		    cmplwi    r0, 0
-		    bne-      .loc_0x39C
-		    lwz       r4, 0xAC(r1)
-		    cmplwi    r4, 0
-		    beq-      .loc_0x39C
-		    mr        r3, r31
-		    bl        -0x450
-
-		.loc_0x39C:
-		    lwz       r0, 0xAC(r1)
-		    stw       r0, 0xC8(r31)
-		    lfs       f0, 0xB8(r1)
-		    stfs      f0, 0xCC(r31)
-		    lfs       f0, 0xBC(r1)
-		    stfs      f0, 0xD0(r31)
-		    lfs       f0, 0xC0(r1)
-		    stfs      f0, 0xD4(r31)
-		    lwz       r0, 0x288(r31)
-		    cmplwi    r0, 0
-		    bne-      .loc_0x3EC
-		    lwz       r0, 0xB0(r1)
-		    cmplwi    r0, 0
-		    beq-      .loc_0x3EC
-		    mr        r3, r31
-		    addi      r4, r1, 0x68
-		    lwz       r12, 0x0(r31)
-		    lwz       r12, 0x2E8(r12)
-		    mtctr     r12
-		    bctrl
-
-		.loc_0x3EC:
-		    lwz       r0, 0xB0(r1)
-		    stw       r0, 0x288(r31)
-		    lwz       r3, -0x6BE0(r13)
-		    cmplwi    r3, 0
-		    beq-      .loc_0x498
-		    lwz       r0, 0x1E0(r31)
-		    rlwinm.   r0,r0,0,19,19
-		    beq-      .loc_0x498
-		    addi      r0, r31, 0x1C8
-		    fmr       f1, f30
-		    stw       r0, 0x6C(r1)
-		    addi      r4, r1, 0x68
-		    bl        0xC145C
-		    lwz       r0, 0xC8(r31)
-		    cmplwi    r0, 0
-		    bne-      .loc_0x460
-		    lwz       r4, 0xAC(r1)
-		    cmplwi    r4, 0
-		    beq-      .loc_0x440
-		    mr        r3, r31
-		    bl        -0x4F4
-
-		.loc_0x440:
-		    lwz       r0, 0xAC(r1)
-		    stw       r0, 0xC8(r31)
-		    lfs       f0, 0xB8(r1)
-		    stfs      f0, 0xCC(r31)
-		    lfs       f0, 0xBC(r1)
-		    stfs      f0, 0xD0(r31)
-		    lfs       f0, 0xC0(r1)
-		    stfs      f0, 0xD4(r31)
-
-		.loc_0x460:
-		    lwz       r0, 0x288(r31)
-		    cmplwi    r0, 0
-		    bne-      .loc_0x490
-		    lwz       r0, 0xB0(r1)
-		    cmplwi    r0, 0
-		    beq-      .loc_0x490
-		    mr        r3, r31
-		    addi      r4, r1, 0x68
-		    lwz       r12, 0x0(r31)
-		    lwz       r12, 0x2E8(r12)
-		    mtctr     r12
-		    bctrl
-
-		.loc_0x490:
-		    lwz       r0, 0xB0(r1)
-		    stw       r0, 0x288(r31)
-
-		.loc_0x498:
-		    lwz       r3, -0x6CF8(r13)
-		    lwz       r12, 0x4(r3)
-		    lwz       r12, 0x8(r12)
-		    mtctr     r12
-		    bctrl
-		    rlwinm.   r0,r3,0,24,31
-		    beq-      .loc_0x4CC
-		    lwz       r3, -0x6CF8(r13)
-		    addi      r4, r1, 0x58
-		    lwz       r12, 0x4(r3)
-		    lwz       r12, 0xC(r12)
-		    mtctr     r12
-		    bctrl
-
-		.loc_0x4CC:
-		    lfs       f1, 0x58(r1)
-		    addi      r4, r1, 0x18
-		    lfs       f0, 0x240(r31)
-		    fsubs     f0, f1, f0
-		    stfs      f0, 0x18C(r31)
-		    lfs       f1, 0x5C(r1)
-		    lfs       f0, 0x244(r31)
-		    fsubs     f0, f1, f0
-		    fsubs     f0, f0, f31
-		    stfs      f0, 0x190(r31)
-		    lfs       f1, 0x60(r1)
-		    lfs       f0, 0x248(r31)
-		    fsubs     f0, f1, f0
-		    stfs      f0, 0x194(r31)
-		    lwz       r3, 0x114(r31)
-		    lwz       r3, 0x0(r3)
-		    bl        0x339B0
-		    lfs       f0, 0x18(r1)
-		    stfs      f0, 0x220(r31)
-		    lfs       f0, 0x1C(r1)
-		    stfs      f0, 0x224(r31)
-		    lfs       f0, 0x20(r1)
-		    stfs      f0, 0x228(r31)
-		    lfs       f0, 0x24(r1)
-		    stfs      f0, 0x22C(r31)
-		    lfs       f0, 0x220(r31)
-		    stfs      f0, 0x270(r31)
-		    lfs       f0, 0x224(r31)
-		    stfs      f0, 0x274(r31)
-		    lfs       f0, 0x228(r31)
-		    stfs      f0, 0x278(r31)
-		    b         .loc_0x698
-
-		.loc_0x54C:
-		    lfs       f0, -0x6BB0(r2)
-		    mr        r3, r31
-		    fmr       f1, f30
-		    stfs      f0, 0x11C(r31)
-		    stfs      f0, 0x120(r31)
-		    stfs      f0, 0x124(r31)
-		    lwz       r12, 0x0(r31)
-		    lwz       r12, 0x1FC(r12)
-		    mtctr     r12
-		    bctrl
-		    lfs       f2, 0x18C(r31)
-		    lfs       f1, 0x1C8(r31)
-		    lfs       f0, -0x6BB0(r2)
-		    fadds     f1, f2, f1
-		    stfs      f1, 0x18C(r31)
-		    lfs       f2, 0x190(r31)
-		    lfs       f1, 0x1CC(r31)
-		    fadds     f1, f2, f1
-		    stfs      f1, 0x190(r31)
-		    lfs       f2, 0x194(r31)
-		    lfs       f1, 0x1D0(r31)
-		    fadds     f1, f2, f1
-		    stfs      f1, 0x194(r31)
-		    lfs       f4, 0x1FC(r31)
-		    fmr       f1, f4
-		    fcmpo     cr0, f4, f0
-		    bge-      .loc_0x5BC
-		    fneg      f1, f4
-
-		.loc_0x5BC:
-		    lfs       f2, -0x6BB4(r2)
-		    lis       r3, 0x8050
-		    lfs       f0, -0x6BB0(r2)
-		    addi      r4, r3, 0x71A0
-		    fmuls     f1, f1, f2
-		    fcmpo     cr0, f4, f0
-		    fctiwz    f0, f1
-		    stfd      f0, 0x108(r1)
-		    lwz       r0, 0x10C(r1)
-		    rlwinm    r0,r0,3,18,28
-		    add       r3, r4, r0
-		    lfs       f3, 0x4(r3)
-		    bge-      .loc_0x614
-		    lfs       f0, -0x6BB8(r2)
-		    fmuls     f0, f4, f0
-		    fctiwz    f0, f0
-		    stfd      f0, 0x110(r1)
-		    lwz       r0, 0x114(r1)
-		    rlwinm    r0,r0,3,18,28
-		    lfsx      f0, r4, r0
-		    fneg      f1, f0
-		    b         .loc_0x62C
-
-		.loc_0x614:
-		    fmuls     f0, f4, f2
-		    fctiwz    f0, f0
-		    stfd      f0, 0x118(r1)
-		    lwz       r0, 0x11C(r1)
-		    rlwinm    r0,r0,3,18,28
-		    lfsx      f1, r4, r0
-
-		.loc_0x62C:
-		    lfs       f0, -0x6BB0(r2)
-		    mr        r3, r31
-		    stfs      f1, 0x40(r1)
-		    addi      r4, r1, 0x40
-		    stfs      f0, 0x44(r1)
-		    stfs      f3, 0x48(r1)
-		    bl        0x9AC64
-		    lwz       r3, 0x114(r31)
-		    addi      r4, r1, 0x8
-		    lwz       r3, 0x0(r3)
-		    bl        0x33868
-		    lfs       f0, 0x8(r1)
-		    mr        r3, r31
-		    stfs      f0, 0x220(r31)
-		    lfs       f0, 0xC(r1)
-		    stfs      f0, 0x224(r31)
-		    lfs       f0, 0x10(r1)
-		    stfs      f0, 0x228(r31)
-		    lfs       f0, 0x14(r1)
-		    stfs      f0, 0x22C(r31)
-		    lfs       f0, 0x220(r31)
-		    stfs      f0, 0x270(r31)
-		    lfs       f0, 0x224(r31)
-		    stfs      f0, 0x274(r31)
-		    lfs       f0, 0x228(r31)
-		    stfs      f0, 0x278(r31)
-		    bl        0x37394
-
-		.loc_0x698:
-		    psq_l     f31,0x178(r1),0,0
-		    lfd       f31, 0x170(r1)
-		    psq_l     f30,0x168(r1),0,0
-		    lfd       f30, 0x160(r1)
-		    psq_l     f29,0x158(r1),0,0
-		    lfd       f29, 0x150(r1)
-		    psq_l     f28,0x148(r1),0,0
-		    lfd       f28, 0x140(r1)
-		    psq_l     f27,0x138(r1),0,0
-		    lfd       f27, 0x130(r1)
-		    lwz       r0, 0x184(r1)
-		    lwz       r31, 0x12C(r1)
-		    mtlr      r0
-		    addi      r1, r1, 0x180
-		    blr
-		*/
-	}
-
-	/*
-	 * --INFO--
-	 * Address:	80104A38
-	 * Size:	000020
-	 */
-	void EnemyBase::doSimulationCarcass(float _) { updateWaterBox(); }
-
-	/*
-	 * --INFO--
-	 * Address:	80104A58
-	 * Size:	000034
-	 */
-	void EnemyBase::doSimulation(float arg) { static_cast<EnemyBaseFSM::StateMachine*>(m_lifecycleFSM)->simulation(this, arg); }
-
-	/*
-	 * --INFO--
-	 * Address:	80104A8C
-	 * Size:	0000D8
-	 */
-	void EnemyBase::doSimulationConstraint(float arg)
-	{
-		if (!(isEvent(0, EB_HardConstraint))) {
-			if (_11C.x != 0.0f || _11C.z != 0.0f) {
-				setEvent(0, EB_30);
-			} else if (_0C8 != nullptr) {
-				resetEvent(0, EB_30);
-			}
-			if (isEvent(0, EB_30)) {
-				collisionMapAndPlat(arg);
-			}
+/*
+ * --INFO--
+ * Address:	80104340
+ * Size:	0006D4
+ */
+// WIP: https://decomp.me/scratch/YsXWy
+// LITERALLY MATCHES IF VECTOR3F::LENGTH AND NORMALISE MATCH SMH
+void EnemyBase::collisionMapAndPlat(float constraint)
+{
+	if (!isStickTo()) {
+		if (!(isEvent(0, EB_3))) {
+			doSimulationGround(constraint);
+		} else {
+			doSimulationFlying(constraint);
+			resetEvent(0, EB_30);
 		}
+
+		float radius = static_cast<EnemyParmsBase*>(m_parms)->m_general.m_fp01.m_value;
+
+		Vector3f pos         = getPosition();
+		m_commonEffectOffset = getOffsetForMapCollision();
+
+		Sys::Sphere sphere;
+		pos += m_commonEffectOffset;
+		pos.y += radius;
+		sphere.m_position = pos;
+		sphere.m_radius   = radius;
+
+		float z;
+		if (checkSecondary()) {
+			z = 0.0f;
+		} else {
+			z = static_cast<CreatureProperty*>(m_parms)->m_props.m_wallReflection.m_value;
+		}
+
+		_11C.y = 0.0f;
+
+		Vector3f vec = m_velocity + _11C;
+		MoveInfo moveInfo(&sphere, &vec, z);
+		moveInfo._14 = (BaseItem*)this;
+
+		mapMgr->traceMove(moveInfo, constraint);
+
+		m_velocity = vec;
+
+		// these regswaps will resolve once normalise and length are matched
+		float velocityNorm = m_velocity.normalise();
+		float _11CNorm     = _11C.length();
+
+		if ((velocityNorm > _11CNorm)) {
+			velocityNorm -= _11CNorm;
+			m_velocity *= velocityNorm;
+			_11C = 0.0f;
+		} else {
+			m_velocity *= velocityNorm;
+			_11C = 0.0f;
+		}
+
+		if (_0C8 == nullptr && moveInfo._44 != nullptr) {
+			bounceProcedure(moveInfo._44);
+		}
+		_0C8 = moveInfo._44;
+
+		m_collisionPosition = moveInfo._50;
+
+		if (_288 == nullptr && moveInfo._48 != nullptr) {
+			wallCallback(moveInfo);
+		}
+		_288 = moveInfo._48;
+
+		if (platMgr != nullptr && isEvent(0, EB_13)) {
+			moveInfo._04 = &m_velocity;
+			platMgr->traceMove(moveInfo, constraint);
+
+			if (_0C8 == nullptr) {
+				if (moveInfo._44 != nullptr) {
+					bounceProcedure(moveInfo._44);
+				}
+				_0C8 = moveInfo._44;
+
+				m_collisionPosition = moveInfo._50;
+			}
+
+			if (_288 == nullptr && moveInfo._48 != nullptr) {
+				wallCallback(moveInfo);
+			}
+			_288 = moveInfo._48;
+		}
+
+		if (mapMgr->hasHiddenCollision()) {
+			mapMgr->constraintBoundBox(sphere);
+		}
+
+		m_position.x = sphere.m_position.x - m_commonEffectOffset.x;
+		m_position.y = sphere.m_position.y - m_commonEffectOffset.y - radius;
+		m_position.z = sphere.m_position.z - m_commonEffectOffset.z;
 
 		updateSpheres();
-		updateWaterBox();
-	}
+	} else {
+		_11C = 0.0f;
 
+		doSimulationStick(constraint);
+
+		m_position += m_velocity;
+
+		Vector3f stick(pikmin2_sinf(m_faceDir), 0.0f, pikmin2_cosf(m_faceDir));
+		updateStick(stick);
+		updateSpheres();
+		updateCell();
+	}
 	/*
-	 * --INFO--
-	 * Address:	80104B64
-	 * Size:	000070
-	 */
-	void EnemyBase::gotoHell()
-	{
-		if (isEvent(0, EB_29)) {
-			throwupItem();
-			EnemyKillArg killArg(0x70000000);
-			kill(&killArg);
+	.loc_0x0:
+	    stwu      r1, -0x180(r1)
+	    mflr      r0
+	    stw       r0, 0x184(r1)
+	    stfd      f31, 0x170(r1)
+	    psq_st    f31,0x178(r1),0,0
+	    stfd      f30, 0x160(r1)
+	    psq_st    f30,0x168(r1),0,0
+	    stfd      f29, 0x150(r1)
+	    psq_st    f29,0x158(r1),0,0
+	    stfd      f28, 0x140(r1)
+	    psq_st    f28,0x148(r1),0,0
+	    stfd      f27, 0x130(r1)
+	    psq_st    f27,0x138(r1),0,0
+	    stw       r31, 0x12C(r1)
+	    mr        r31, r3
+	    fmr       f30, f1
+	    bl        0x9B1F4
+	    rlwinm.   r0,r3,0,24,31
+	    bne-      .loc_0x54C
+	    lwz       r0, 0x1E0(r31)
+	    rlwinm.   r0,r0,0,29,29
+	    bne-      .loc_0x74
+	    mr        r3, r31
+	    fmr       f1, f30
+	    lwz       r12, 0x0(r31)
+	    lwz       r12, 0x1F4(r12)
+	    mtctr     r12
+	    bctrl
+	    b         .loc_0x98
+
+	.loc_0x74:
+	    mr        r3, r31
+	    fmr       f1, f30
+	    lwz       r12, 0x0(r31)
+	    lwz       r12, 0x1F8(r12)
+	    mtctr     r12
+	    bctrl
+	    lwz       r0, 0x1E0(r31)
+	    rlwinm    r0,r0,0,3,1
+	    stw       r0, 0x1E0(r31)
+
+	.loc_0x98:
+	    mr        r4, r31
+	    lwz       r5, 0xC0(r31)
+	    lwz       r12, 0x0(r31)
+	    addi      r3, r1, 0x34
+	    lfs       f31, 0x1A4(r5)
+	    lwz       r12, 0x8(r12)
+	    mtctr     r12
+	    bctrl
+	    mr        r4, r31
+	    addi      r3, r1, 0x28
+	    lwz       r12, 0x0(r31)
+	    lfs       f29, 0x34(r1)
+	    lwz       r12, 0x224(r12)
+	    lfs       f28, 0x38(r1)
+	    lfs       f27, 0x3C(r1)
+	    mtctr     r12
+	    bctrl
+	    lfs       f0, 0x28(r1)
+	    li        r3, 0
+	    stfs      f0, 0x240(r31)
+	    lfs       f0, 0x2C(r1)
+	    stfs      f0, 0x244(r31)
+	    lfs       f0, 0x30(r1)
+	    stfs      f0, 0x248(r31)
+	    lfs       f0, 0x244(r31)
+	    lfs       f1, 0x240(r31)
+	    fadds     f28, f28, f0
+	    lfs       f0, 0x248(r31)
+	    fadds     f29, f29, f1
+	    fadds     f27, f27, f0
+	    stfs      f31, 0x64(r1)
+	    fadds     f28, f28, f31
+	    stfs      f29, 0x58(r1)
+	    stfs      f28, 0x5C(r1)
+	    stfs      f27, 0x60(r1)
+	    lwz       r4, 0x1E4(r31)
+	    rlwinm.   r0,r4,0,31,31
+	    bne-      .loc_0x138
+	    rlwinm.   r0,r4,0,27,27
+	    beq-      .loc_0x13C
+
+	.loc_0x138:
+	    li        r3, 0x1
+
+	.loc_0x13C:
+	    rlwinm.   r0,r3,0,24,31
+	    beq-      .loc_0x14C
+	    lfs       f8, -0x6BB0(r2)
+	    b         .loc_0x154
+
+	.loc_0x14C:
+	    lwz       r3, 0xC0(r31)
+	    lfs       f8, 0x4C(r3)
+
+	.loc_0x154:
+	    lfs       f6, -0x6BB0(r2)
+	    lis       r3, 0x8050
+	    addi      r3, r3, 0x71A0
+	    li        r5, 0
+	    stfs      f6, 0x120(r31)
+	    addi      r7, r1, 0x58
+	    lfs       f0, -0x6B34(r2)
+	    addi      r6, r1, 0x4C
+	    lfs       f4, 0x1D0(r31)
+	    li        r0, -0x1
+	    lfs       f3, 0x124(r31)
+	    fmr       f1, f30
+	    lfs       f5, 0x1CC(r31)
+	    addi      r4, r1, 0x68
+	    lfs       f2, 0x120(r31)
+	    fadds     f7, f4, f3
+	    lfs       f4, 0x1C8(r31)
+	    lfs       f3, 0x11C(r31)
+	    fadds     f5, f5, f2
+	    lfs       f2, 0x800(r3)
+	    fadds     f3, f4, f3
+	    stw       r5, 0x7C(r1)
+	    lwz       r3, -0x6CF8(r13)
+	    stfs      f5, 0x50(r1)
+	    stfs      f3, 0x4C(r1)
+	    stfs      f7, 0x54(r1)
+	    stw       r7, 0x68(r1)
+	    stw       r6, 0x6C(r1)
+	    stfs      f8, 0x70(r1)
+	    stfs      f6, 0x74(r1)
+	    stw       r5, 0x78(r1)
+	    stw       r5, 0xAC(r1)
+	    stb       r5, 0xDC(r1)
+	    stb       r5, 0x81(r1)
+	    stb       r5, 0x80(r1)
+	    stw       r5, 0xB0(r1)
+	    stb       r5, 0xF8(r1)
+	    stw       r5, 0xFC(r1)
+	    stfs      f2, 0x94(r1)
+	    stfs      f0, 0x98(r1)
+	    stw       r0, 0x100(r1)
+	    stw       r5, 0xB4(r1)
+	    stb       r5, 0x82(r1)
+	    stw       r31, 0x7C(r1)
+	    lwz       r12, 0x4(r3)
+	    lwz       r12, 0x24(r12)
+	    mtctr     r12
+	    bctrl
+	    lfs       f0, 0x4C(r1)
+	    lfs       f1, -0x6BB0(r2)
+	    stfs      f0, 0x1C8(r31)
+	    lfs       f0, 0x50(r1)
+	    stfs      f0, 0x1CC(r31)
+	    lfs       f0, 0x54(r1)
+	    stfs      f0, 0x1D0(r31)
+	    lfs       f3, 0x1C8(r31)
+	    lfs       f2, 0x1CC(r31)
+	    fmuls     f0, f3, f3
+	    lfs       f4, 0x1D0(r31)
+	    fmuls     f2, f2, f2
+	    fmuls     f4, f4, f4
+	    fadds     f0, f0, f2
+	    fadds     f0, f4, f0
+	    fcmpo     cr0, f0, f1
+	    ble-      .loc_0x274
+	    fmadds    f0, f3, f3, f2
+	    fadds     f4, f4, f0
+	    fcmpo     cr0, f4, f1
+	    ble-      .loc_0x278
+	    fsqrte    f0, f4
+	    fmuls     f4, f0, f4
+	    b         .loc_0x278
+
+	.loc_0x274:
+	    fmr       f4, f1
+
+	.loc_0x278:
+	    lfs       f0, -0x6BB0(r2)
+	    fcmpo     cr0, f4, f0
+	    ble-      .loc_0x2B4
+	    lfs       f1, -0x6B9C(r2)
+	    lfs       f0, 0x1C8(r31)
+	    fdivs     f1, f1, f4
+	    fmuls     f0, f0, f1
+	    stfs      f0, 0x1C8(r31)
+	    lfs       f0, 0x1CC(r31)
+	    fmuls     f0, f0, f1
+	    stfs      f0, 0x1CC(r31)
+	    lfs       f0, 0x1D0(r31)
+	    fmuls     f0, f0, f1
+	    stfs      f0, 0x1D0(r31)
+	    b         .loc_0x2B8
+
+	.loc_0x2B4:
+	    fmr       f4, f0
+
+	.loc_0x2B8:
+	    lfs       f2, 0x11C(r31)
+	    lfs       f1, 0x120(r31)
+	    fmuls     f0, f2, f2
+	    lfs       f3, 0x124(r31)
+	    fmuls     f5, f1, f1
+	    lfs       f1, -0x6BB0(r2)
+	    fmuls     f3, f3, f3
+	    fadds     f0, f0, f5
+	    fadds     f0, f3, f0
+	    fcmpo     cr0, f0, f1
+	    ble-      .loc_0x300
+	    fmadds    f0, f2, f2, f5
+	    fadds     f0, f3, f0
+	    fcmpo     cr0, f0, f1
+	    ble-      .loc_0x304
+	    fsqrte    f1, f0
+	    fmuls     f0, f1, f0
+	    b         .loc_0x304
+
+	.loc_0x300:
+	    fmr       f0, f1
+
+	.loc_0x304:
+	    fcmpo     cr0, f4, f0
+	    ble-      .loc_0x348
+	    fsubs     f4, f4, f0
+	    lfs       f0, 0x1C8(r31)
+	    lfs       f2, 0x1CC(r31)
+	    lfs       f3, 0x1D0(r31)
+	    fmuls     f1, f0, f4
+	    lfs       f0, -0x6BB0(r2)
+	    fmuls     f2, f2, f4
+	    fmuls     f3, f3, f4
+	    stfs      f1, 0x1C8(r31)
+	    stfs      f2, 0x1CC(r31)
+	    stfs      f3, 0x1D0(r31)
+	    stfs      f0, 0x11C(r31)
+	    stfs      f0, 0x120(r31)
+	    stfs      f0, 0x124(r31)
+	    b         .loc_0x37C
+
+	.loc_0x348:
+	    lfs       f0, 0x1C8(r31)
+	    lfs       f2, 0x1CC(r31)
+	    fmuls     f1, f0, f4
+	    lfs       f3, 0x1D0(r31)
+	    fmuls     f2, f2, f4
+	    lfs       f0, -0x6BB0(r2)
+	    fmuls     f3, f3, f4
+	    stfs      f1, 0x1C8(r31)
+	    stfs      f2, 0x1CC(r31)
+	    stfs      f3, 0x1D0(r31)
+	    stfs      f0, 0x11C(r31)
+	    stfs      f0, 0x120(r31)
+	    stfs      f0, 0x124(r31)
+
+	.loc_0x37C:
+	    lwz       r0, 0xC8(r31)
+	    cmplwi    r0, 0
+	    bne-      .loc_0x39C
+	    lwz       r4, 0xAC(r1)
+	    cmplwi    r4, 0
+	    beq-      .loc_0x39C
+	    mr        r3, r31
+	    bl        -0x450
+
+	.loc_0x39C:
+	    lwz       r0, 0xAC(r1)
+	    stw       r0, 0xC8(r31)
+	    lfs       f0, 0xB8(r1)
+	    stfs      f0, 0xCC(r31)
+	    lfs       f0, 0xBC(r1)
+	    stfs      f0, 0xD0(r31)
+	    lfs       f0, 0xC0(r1)
+	    stfs      f0, 0xD4(r31)
+	    lwz       r0, 0x288(r31)
+	    cmplwi    r0, 0
+	    bne-      .loc_0x3EC
+	    lwz       r0, 0xB0(r1)
+	    cmplwi    r0, 0
+	    beq-      .loc_0x3EC
+	    mr        r3, r31
+	    addi      r4, r1, 0x68
+	    lwz       r12, 0x0(r31)
+	    lwz       r12, 0x2E8(r12)
+	    mtctr     r12
+	    bctrl
+
+	.loc_0x3EC:
+	    lwz       r0, 0xB0(r1)
+	    stw       r0, 0x288(r31)
+	    lwz       r3, -0x6BE0(r13)
+	    cmplwi    r3, 0
+	    beq-      .loc_0x498
+	    lwz       r0, 0x1E0(r31)
+	    rlwinm.   r0,r0,0,19,19
+	    beq-      .loc_0x498
+	    addi      r0, r31, 0x1C8
+	    fmr       f1, f30
+	    stw       r0, 0x6C(r1)
+	    addi      r4, r1, 0x68
+	    bl        0xC145C
+	    lwz       r0, 0xC8(r31)
+	    cmplwi    r0, 0
+	    bne-      .loc_0x460
+	    lwz       r4, 0xAC(r1)
+	    cmplwi    r4, 0
+	    beq-      .loc_0x440
+	    mr        r3, r31
+	    bl        -0x4F4
+
+	.loc_0x440:
+	    lwz       r0, 0xAC(r1)
+	    stw       r0, 0xC8(r31)
+	    lfs       f0, 0xB8(r1)
+	    stfs      f0, 0xCC(r31)
+	    lfs       f0, 0xBC(r1)
+	    stfs      f0, 0xD0(r31)
+	    lfs       f0, 0xC0(r1)
+	    stfs      f0, 0xD4(r31)
+
+	.loc_0x460:
+	    lwz       r0, 0x288(r31)
+	    cmplwi    r0, 0
+	    bne-      .loc_0x490
+	    lwz       r0, 0xB0(r1)
+	    cmplwi    r0, 0
+	    beq-      .loc_0x490
+	    mr        r3, r31
+	    addi      r4, r1, 0x68
+	    lwz       r12, 0x0(r31)
+	    lwz       r12, 0x2E8(r12)
+	    mtctr     r12
+	    bctrl
+
+	.loc_0x490:
+	    lwz       r0, 0xB0(r1)
+	    stw       r0, 0x288(r31)
+
+	.loc_0x498:
+	    lwz       r3, -0x6CF8(r13)
+	    lwz       r12, 0x4(r3)
+	    lwz       r12, 0x8(r12)
+	    mtctr     r12
+	    bctrl
+	    rlwinm.   r0,r3,0,24,31
+	    beq-      .loc_0x4CC
+	    lwz       r3, -0x6CF8(r13)
+	    addi      r4, r1, 0x58
+	    lwz       r12, 0x4(r3)
+	    lwz       r12, 0xC(r12)
+	    mtctr     r12
+	    bctrl
+
+	.loc_0x4CC:
+	    lfs       f1, 0x58(r1)
+	    addi      r4, r1, 0x18
+	    lfs       f0, 0x240(r31)
+	    fsubs     f0, f1, f0
+	    stfs      f0, 0x18C(r31)
+	    lfs       f1, 0x5C(r1)
+	    lfs       f0, 0x244(r31)
+	    fsubs     f0, f1, f0
+	    fsubs     f0, f0, f31
+	    stfs      f0, 0x190(r31)
+	    lfs       f1, 0x60(r1)
+	    lfs       f0, 0x248(r31)
+	    fsubs     f0, f1, f0
+	    stfs      f0, 0x194(r31)
+	    lwz       r3, 0x114(r31)
+	    lwz       r3, 0x0(r3)
+	    bl        0x339B0
+	    lfs       f0, 0x18(r1)
+	    stfs      f0, 0x220(r31)
+	    lfs       f0, 0x1C(r1)
+	    stfs      f0, 0x224(r31)
+	    lfs       f0, 0x20(r1)
+	    stfs      f0, 0x228(r31)
+	    lfs       f0, 0x24(r1)
+	    stfs      f0, 0x22C(r31)
+	    lfs       f0, 0x220(r31)
+	    stfs      f0, 0x270(r31)
+	    lfs       f0, 0x224(r31)
+	    stfs      f0, 0x274(r31)
+	    lfs       f0, 0x228(r31)
+	    stfs      f0, 0x278(r31)
+	    b         .loc_0x698
+
+	.loc_0x54C:
+	    lfs       f0, -0x6BB0(r2)
+	    mr        r3, r31
+	    fmr       f1, f30
+	    stfs      f0, 0x11C(r31)
+	    stfs      f0, 0x120(r31)
+	    stfs      f0, 0x124(r31)
+	    lwz       r12, 0x0(r31)
+	    lwz       r12, 0x1FC(r12)
+	    mtctr     r12
+	    bctrl
+	    lfs       f2, 0x18C(r31)
+	    lfs       f1, 0x1C8(r31)
+	    lfs       f0, -0x6BB0(r2)
+	    fadds     f1, f2, f1
+	    stfs      f1, 0x18C(r31)
+	    lfs       f2, 0x190(r31)
+	    lfs       f1, 0x1CC(r31)
+	    fadds     f1, f2, f1
+	    stfs      f1, 0x190(r31)
+	    lfs       f2, 0x194(r31)
+	    lfs       f1, 0x1D0(r31)
+	    fadds     f1, f2, f1
+	    stfs      f1, 0x194(r31)
+	    lfs       f4, 0x1FC(r31)
+	    fmr       f1, f4
+	    fcmpo     cr0, f4, f0
+	    bge-      .loc_0x5BC
+	    fneg      f1, f4
+
+	.loc_0x5BC:
+	    lfs       f2, -0x6BB4(r2)
+	    lis       r3, 0x8050
+	    lfs       f0, -0x6BB0(r2)
+	    addi      r4, r3, 0x71A0
+	    fmuls     f1, f1, f2
+	    fcmpo     cr0, f4, f0
+	    fctiwz    f0, f1
+	    stfd      f0, 0x108(r1)
+	    lwz       r0, 0x10C(r1)
+	    rlwinm    r0,r0,3,18,28
+	    add       r3, r4, r0
+	    lfs       f3, 0x4(r3)
+	    bge-      .loc_0x614
+	    lfs       f0, -0x6BB8(r2)
+	    fmuls     f0, f4, f0
+	    fctiwz    f0, f0
+	    stfd      f0, 0x110(r1)
+	    lwz       r0, 0x114(r1)
+	    rlwinm    r0,r0,3,18,28
+	    lfsx      f0, r4, r0
+	    fneg      f1, f0
+	    b         .loc_0x62C
+
+	.loc_0x614:
+	    fmuls     f0, f4, f2
+	    fctiwz    f0, f0
+	    stfd      f0, 0x118(r1)
+	    lwz       r0, 0x11C(r1)
+	    rlwinm    r0,r0,3,18,28
+	    lfsx      f1, r4, r0
+
+	.loc_0x62C:
+	    lfs       f0, -0x6BB0(r2)
+	    mr        r3, r31
+	    stfs      f1, 0x40(r1)
+	    addi      r4, r1, 0x40
+	    stfs      f0, 0x44(r1)
+	    stfs      f3, 0x48(r1)
+	    bl        0x9AC64
+	    lwz       r3, 0x114(r31)
+	    addi      r4, r1, 0x8
+	    lwz       r3, 0x0(r3)
+	    bl        0x33868
+	    lfs       f0, 0x8(r1)
+	    mr        r3, r31
+	    stfs      f0, 0x220(r31)
+	    lfs       f0, 0xC(r1)
+	    stfs      f0, 0x224(r31)
+	    lfs       f0, 0x10(r1)
+	    stfs      f0, 0x228(r31)
+	    lfs       f0, 0x14(r1)
+	    stfs      f0, 0x22C(r31)
+	    lfs       f0, 0x220(r31)
+	    stfs      f0, 0x270(r31)
+	    lfs       f0, 0x224(r31)
+	    stfs      f0, 0x274(r31)
+	    lfs       f0, 0x228(r31)
+	    stfs      f0, 0x278(r31)
+	    bl        0x37394
+
+	.loc_0x698:
+	    psq_l     f31,0x178(r1),0,0
+	    lfd       f31, 0x170(r1)
+	    psq_l     f30,0x168(r1),0,0
+	    lfd       f30, 0x160(r1)
+	    psq_l     f29,0x158(r1),0,0
+	    lfd       f29, 0x150(r1)
+	    psq_l     f28,0x148(r1),0,0
+	    lfd       f28, 0x140(r1)
+	    psq_l     f27,0x138(r1),0,0
+	    lfd       f27, 0x130(r1)
+	    lwz       r0, 0x184(r1)
+	    lwz       r31, 0x12C(r1)
+	    mtlr      r0
+	    addi      r1, r1, 0x180
+	    blr
+	*/
+}
+
+/*
+ * --INFO--
+ * Address:	80104A38
+ * Size:	000020
+ */
+void EnemyBase::doSimulationCarcass(float _) { updateWaterBox(); }
+
+/*
+ * --INFO--
+ * Address:	80104A58
+ * Size:	000034
+ */
+void EnemyBase::doSimulation(float arg) { static_cast<EnemyBaseFSM::StateMachine*>(m_lifecycleFSM)->simulation(this, arg); }
+
+/*
+ * --INFO--
+ * Address:	80104A8C
+ * Size:	0000D8
+ */
+void EnemyBase::doSimulationConstraint(float arg)
+{
+	if (!(isEvent(0, EB_HardConstraint))) {
+		if (_11C.x != 0.0f || _11C.z != 0.0f) {
+			setEvent(0, EB_30);
+		} else if (_0C8 != nullptr) {
+			resetEvent(0, EB_30);
+		}
+		if (isEvent(0, EB_30)) {
+			collisionMapAndPlat(arg);
 		}
 	}
 
-	/*
-	 * --INFO--
-	 * Address:	80104BD4
-	 * Size:	000030
-	 */
-	void EnemyBase::setAnimMgr(SysShape::AnimMgr * mgr) { m_animator->setAnimMgr(mgr); }
+	updateSpheres();
+	updateWaterBox();
+}
 
-	/*
-	 * --INFO--
-	 * Address:	80104C04
-	 * Size:	0001B4
-	 */
-	void EnemyBase::setPSEnemyBaseAnime()
-	{
-		if (isEvent(0, EB_PS1)) {
-			int idx                      = getCurrAnimIndex();
-			SysShape::Animator anim      = m_animator->getAnimator(0);
-			SysShape::AnimInfo* info     = static_cast<SysShape::AnimInfo*>(anim.m_animMgr->m_animInfo.m_child)->getInfoByID(idx);
-			JAIAnimeFrameSoundData* file = info->m_basFile;
+/*
+ * --INFO--
+ * Address:	80104B64
+ * Size:	000070
+ */
+void EnemyBase::gotoHell()
+{
+	if (isEvent(0, EB_29)) {
+		throwupItem();
+		EnemyKillArg killArg(0x70000000);
+		kill(&killArg);
+	}
+}
 
-			if (file != nullptr) {
-				SysShape::KeyEvent* event1 = info->getAnimKeyByType(0);
-				SysShape::KeyEvent* event2 = info->getAnimKeyByType(1);
+/*
+ * --INFO--
+ * Address:	80104BD4
+ * Size:	000030
+ */
+void EnemyBase::setAnimMgr(SysShape::AnimMgr* mgr) { m_animator->setAnimMgr(mgr); }
 
-				if (event1 != nullptr && event2 != nullptr) {
-					float val1 = (float)event1->m_frame;
-					float val2 = (float)event2->m_frame;
-					m_soundObj->setAnime((JAIAnimeSoundData*)file, 1, val1, val2);
-					return;
-				}
+/*
+ * --INFO--
+ * Address:	80104C04
+ * Size:	0001B4
+ */
+void EnemyBase::setPSEnemyBaseAnime()
+{
+	if (isEvent(0, EB_PS1)) {
+		int idx                      = getCurrAnimIndex();
+		SysShape::Animator anim      = m_animator->getAnimator(0);
+		SysShape::AnimInfo* info     = static_cast<SysShape::AnimInfo*>(anim.m_animMgr->m_animInfo.m_child)->getInfoByID(idx);
+		JAIAnimeFrameSoundData* file = info->m_basFile;
 
-				m_soundObj->setAnime((JAIAnimeSoundData*)file, 1, 0.0f, 0.0f);
+		if (file != nullptr) {
+			SysShape::KeyEvent* event1 = info->getAnimKeyByType(0);
+			SysShape::KeyEvent* event2 = info->getAnimKeyByType(1);
+
+			if (event1 != nullptr && event2 != nullptr) {
+				float val1 = (float)event1->m_frame;
+				float val2 = (float)event2->m_frame;
+				m_soundObj->setAnime((JAIAnimeSoundData*)file, 1, val1, val2);
 				return;
 			}
 
-			m_soundObj->setAnime(nullptr, 1, 0.0f, 0.0f);
-			return;
-		}
-
-		if (isEvent(0, EB_PS2)) {
-			m_soundObj->setAnime((JAIAnimeSoundData*)-1, 1, 0.0f, 0.0f);
-			return;
-		}
-
-		if (isEvent(0, EB_PS3)) {
-			m_soundObj->setAnime((JAIAnimeSoundData*)-1, 1, 0.0f, 0.0f);
+			m_soundObj->setAnime((JAIAnimeSoundData*)file, 1, 0.0f, 0.0f);
 			return;
 		}
 
 		m_soundObj->setAnime(nullptr, 1, 0.0f, 0.0f);
+		return;
 	}
 
-	/*
-	 * --INFO--
-	 * Address:	80104DB8
-	 * Size:	0001F0
-	 */
-	void EnemyBase::startBlend(int p1, int p2, SysShape::BlendFunction* blendFunc, float p3, SysShape::MotionListener* inputListener)
-	{
-		SysShape::MotionListener* listener = inputListener;
-		if (listener == nullptr) {
-			listener = static_cast<SysShape::MotionListener*>(this);
-		}
+	if (isEvent(0, EB_PS2)) {
+		m_soundObj->setAnime((JAIAnimeSoundData*)-1, 1, 0.0f, 0.0f);
+		return;
+	}
 
-		static_cast<EnemyBlendAnimatorBase*>(m_animator)->startBlend(p1, p2, blendFunc, p3, listener);
+	if (isEvent(0, EB_PS3)) {
+		m_soundObj->setAnime((JAIAnimeSoundData*)-1, 1, 0.0f, 0.0f);
+		return;
+	}
 
-		resetEvent(0, EB_PS1 + EB_PS2 + EB_PS3 + EB_PS4);
-		setEvent(0, EB_PS3);
+	m_soundObj->setAnime(nullptr, 1, 0.0f, 0.0f);
+}
 
-		if (isEvent(0, EB_PS1)) {
-			int idx                      = getCurrAnimIndex();
-			SysShape::Animator anim      = m_animator->getAnimator(0);
-			SysShape::AnimInfo* info     = static_cast<SysShape::AnimInfo*>(anim.m_animMgr->m_animInfo.m_child)->getInfoByID(idx);
-			JAIAnimeFrameSoundData* file = info->m_basFile;
+/*
+ * --INFO--
+ * Address:	80104DB8
+ * Size:	0001F0
+ */
+void EnemyBase::startBlend(int p1, int p2, SysShape::BlendFunction* blendFunc, float p3, SysShape::MotionListener* inputListener)
+{
+	SysShape::MotionListener* listener = inputListener;
+	if (listener == nullptr) {
+		listener = static_cast<SysShape::MotionListener*>(this);
+	}
 
-			if (file != nullptr) {
-				SysShape::KeyEvent* event1 = info->getAnimKeyByType(0);
-				SysShape::KeyEvent* event2 = info->getAnimKeyByType(1);
+	static_cast<EnemyBlendAnimatorBase*>(m_animator)->startBlend(p1, p2, blendFunc, p3, listener);
 
-				if (event1 != nullptr && event2 != nullptr) {
-					float val1 = (float)event1->m_frame;
-					float val2 = (float)event2->m_frame;
-					m_soundObj->setAnime((JAIAnimeSoundData*)file, 1, val1, val2);
-					return;
-				}
+	resetEvent(0, EB_PS1 + EB_PS2 + EB_PS3 + EB_PS4);
+	setEvent(0, EB_PS3);
 
-				m_soundObj->setAnime((JAIAnimeSoundData*)file, 1, 0.0f, 0.0f);
+	if (isEvent(0, EB_PS1)) {
+		int idx                      = getCurrAnimIndex();
+		SysShape::Animator anim      = m_animator->getAnimator(0);
+		SysShape::AnimInfo* info     = static_cast<SysShape::AnimInfo*>(anim.m_animMgr->m_animInfo.m_child)->getInfoByID(idx);
+		JAIAnimeFrameSoundData* file = info->m_basFile;
+
+		if (file != nullptr) {
+			SysShape::KeyEvent* event1 = info->getAnimKeyByType(0);
+			SysShape::KeyEvent* event2 = info->getAnimKeyByType(1);
+
+			if (event1 != nullptr && event2 != nullptr) {
+				float val1 = (float)event1->m_frame;
+				float val2 = (float)event2->m_frame;
+				m_soundObj->setAnime((JAIAnimeSoundData*)file, 1, val1, val2);
 				return;
 			}
 
-			m_soundObj->setAnime(nullptr, 1, 0.0f, 0.0f);
-			return;
-		}
-
-		if (isEvent(0, EB_PS2)) {
-			m_soundObj->setAnime((JAIAnimeSoundData*)-1, 1, 0.0f, 0.0f);
-			return;
-		}
-
-		if (isEvent(0, EB_PS3)) {
-			m_soundObj->setAnime((JAIAnimeSoundData*)-1, 1, 0.0f, 0.0f);
+			m_soundObj->setAnime((JAIAnimeSoundData*)file, 1, 0.0f, 0.0f);
 			return;
 		}
 
 		m_soundObj->setAnime(nullptr, 1, 0.0f, 0.0f);
+		return;
 	}
 
-	/*
-	 * --INFO--
-	 * Address:	80104FA8
-	 * Size:	000050
-	 */
-	void EnemyBase::endBlend()
-	{
-		if (m_animator->getTypeID() == 'blnd') {
-			static_cast<EnemyBlendAnimatorBase*>(m_animator)->endBlend();
-		}
+	if (isEvent(0, EB_PS2)) {
+		m_soundObj->setAnime((JAIAnimeSoundData*)-1, 1, 0.0f, 0.0f);
+		return;
 	}
 
-	/*
-	 * --INFO--
-	 * Address:	80105004
-	 * Size:	000224
-	 */
-	void EnemyBase::startMotion(int p1, SysShape::MotionListener* inputListener)
-	{
-		SysShape::MotionListener* listener;
-		if (!(listener = inputListener)) {
-			inputListener = static_cast<SysShape::MotionListener*>(this);
-		}
+	if (isEvent(0, EB_PS3)) {
+		m_soundObj->setAnime((JAIAnimeSoundData*)-1, 1, 0.0f, 0.0f);
+		return;
+	}
 
-		EnemyAnimatorBase* animator = m_animator;
-		animator->m_flags.typeView &= ~0x3;
-		animator->m_progress = 1.0f;
+	m_soundObj->setAnime(nullptr, 1, 0.0f, 0.0f);
+}
 
-		(animator->getAnimator(0)).startAnim(p1, inputListener);
+/*
+ * --INFO--
+ * Address:	80104FA8
+ * Size:	000050
+ */
+void EnemyBase::endBlend()
+{
+	if (m_animator->getTypeID() == 'blnd') {
+		static_cast<EnemyBlendAnimatorBase*>(m_animator)->endBlend();
+	}
+}
 
-		resetEvent(0, EB_PS1 + EB_PS2 + EB_PS3 + EB_PS4);
-		setEvent(0, EB_PS1);
+/*
+ * --INFO--
+ * Address:	80105004
+ * Size:	000224
+ */
+void EnemyBase::startMotion(int p1, SysShape::MotionListener* inputListener)
+{
+	SysShape::MotionListener* listener;
+	if (!(listener = inputListener)) {
+		inputListener = static_cast<SysShape::MotionListener*>(this);
+	}
 
-		if (isEvent(0, EB_PS1)) {
-			int idx                      = getCurrAnimIndex();
-			SysShape::Animator anim      = m_animator->getAnimator(0);
-			SysShape::AnimInfo* info     = static_cast<SysShape::AnimInfo*>(anim.m_animMgr->m_animInfo.m_child)->getInfoByID(idx);
-			JAIAnimeFrameSoundData* file = info->m_basFile;
+	EnemyAnimatorBase* animator = m_animator;
+	animator->m_flags.typeView &= ~0x3;
+	animator->m_progress = 1.0f;
 
-			if (file != nullptr) {
-				SysShape::KeyEvent* event1 = info->getAnimKeyByType(0);
-				SysShape::KeyEvent* event2 = info->getAnimKeyByType(1);
+	(animator->getAnimator(0)).startAnim(p1, inputListener);
 
-				if (event1 != nullptr && event2 != nullptr) {
-					float val1 = (float)event1->m_frame;
-					float val2 = (float)event2->m_frame;
-					m_soundObj->setAnime((JAIAnimeSoundData*)file, 1, val1, val2);
-					return;
-				}
+	resetEvent(0, EB_PS1 + EB_PS2 + EB_PS3 + EB_PS4);
+	setEvent(0, EB_PS1);
 
-				m_soundObj->setAnime((JAIAnimeSoundData*)file, 1, 0.0f, 0.0f);
+	if (isEvent(0, EB_PS1)) {
+		int idx                      = getCurrAnimIndex();
+		SysShape::Animator anim      = m_animator->getAnimator(0);
+		SysShape::AnimInfo* info     = static_cast<SysShape::AnimInfo*>(anim.m_animMgr->m_animInfo.m_child)->getInfoByID(idx);
+		JAIAnimeFrameSoundData* file = info->m_basFile;
+
+		if (file != nullptr) {
+			SysShape::KeyEvent* event1 = info->getAnimKeyByType(0);
+			SysShape::KeyEvent* event2 = info->getAnimKeyByType(1);
+
+			if (event1 != nullptr && event2 != nullptr) {
+				float val1 = (float)event1->m_frame;
+				float val2 = (float)event2->m_frame;
+				m_soundObj->setAnime((JAIAnimeSoundData*)file, 1, val1, val2);
 				return;
 			}
 
-			m_soundObj->setAnime(nullptr, 1, 0.0f, 0.0f);
-			return;
-		}
-
-		if (isEvent(0, EB_PS2)) {
-			m_soundObj->setAnime((JAIAnimeSoundData*)-1, 1, 0.0f, 0.0f);
-			return;
-		}
-
-		if (isEvent(0, EB_PS3)) {
-			m_soundObj->setAnime((JAIAnimeSoundData*)-1, 1, 0.0f, 0.0f);
+			m_soundObj->setAnime((JAIAnimeSoundData*)file, 1, 0.0f, 0.0f);
 			return;
 		}
 
 		m_soundObj->setAnime(nullptr, 1, 0.0f, 0.0f);
+		return;
 	}
 
-	/*
-	 * --INFO--
-	 * Address:	80105228
-	 * Size:	000044
-	 */
-	void EnemyBase::setMotionFrame(float frame) { m_animator->getAnimator().setCurrFrame(frame); }
-
-	/*
-	 * --INFO--
-	 * Address:	8010526C
-	 * Size:	000034
-	 */
-	float EnemyBase::getMotionFrame() { return m_animator->getAnimator().m_timer; }
-
-	/*
-	 * --INFO--
-	 * Address:	801052A0
-	 * Size:	000040
-	 */
-	void EnemyBase::finishMotion() { m_animator->getAnimator(0).m_flags |= 2; }
-
-	/*
-	 * --INFO--
-	 * Address:	801052E0
-	 * Size:	000020
-	 */
-	void EnemyBase::onKeyEvent(const SysShape::KeyEvent& event)
-	{
-		EnemyAnimKeyEvent* animKeyEvent = m_animKeyEvent;
-		animKeyEvent->m_frame           = event.m_frame;
-		animKeyEvent->m_type            = event.m_type;
-		animKeyEvent->m_running         = true;
+	if (isEvent(0, EB_PS2)) {
+		m_soundObj->setAnime((JAIAnimeSoundData*)-1, 1, 0.0f, 0.0f);
+		return;
 	}
 
+	if (isEvent(0, EB_PS3)) {
+		m_soundObj->setAnime((JAIAnimeSoundData*)-1, 1, 0.0f, 0.0f);
+		return;
+	}
+
+	m_soundObj->setAnime(nullptr, 1, 0.0f, 0.0f);
+}
+
+/*
+ * --INFO--
+ * Address:	80105228
+ * Size:	000044
+ */
+void EnemyBase::setMotionFrame(float frame) { m_animator->getAnimator().setCurrFrame(frame); }
+
+/*
+ * --INFO--
+ * Address:	8010526C
+ * Size:	000034
+ */
+float EnemyBase::getMotionFrame() { return m_animator->getAnimator().m_timer; }
+
+/*
+ * --INFO--
+ * Address:	801052A0
+ * Size:	000040
+ */
+void EnemyBase::finishMotion() { m_animator->getAnimator(0).m_flags |= 2; }
+
+/*
+ * --INFO--
+ * Address:	801052E0
+ * Size:	000020
+ */
+void EnemyBase::onKeyEvent(const SysShape::KeyEvent& event)
+{
+	EnemyAnimKeyEvent* animKeyEvent = m_animKeyEvent;
+	animKeyEvent->m_frame           = event.m_frame;
+	animKeyEvent->m_type            = event.m_type;
+	animKeyEvent->m_running         = true;
+}
+
+/*
+ * --INFO--
+ * Address:	80105300
+ * Size:	000080
+ */
+bool EnemyBase::stimulate(Game::Interaction& interaction)
+{
+	bool b = false;
+	if (interaction.actCommon(this)) {
+		b = interaction.actEnemy(this);
+	}
+	return b;
+}
+
+/*
+ * --INFO--
+ * Address:	80105390
+ * Size:	000030
+ */
+void EnemyBase::lifeRecover()
+{
+	m_health += m_maxHealth * static_cast<EnemyParmsBase*>(m_parms)->m_general.m_regenerationRate.m_value;
+	if (m_health > m_maxHealth) {
+		m_health = m_maxHealth;
+	}
+}
+
+/*
+ * --INFO--
+ * Address:	801053C0
+ * Size:	00033C
+ */
+void EnemyBase::scaleDamageAnim()
+{
 	/*
-	 * --INFO--
-	 * Address:	80105300
-	 * Size:	000080
-	 */
-	bool EnemyBase::stimulate(Game::Interaction & interaction)
-	{
-		bool b = false;
-		if (interaction.actCommon(this)) {
-			b = interaction.actEnemy(this);
+	.loc_0x0:
+	    stwu      r1, -0x50(r1)
+	    mflr      r0
+	    stw       r0, 0x54(r1)
+	    stfd      f31, 0x40(r1)
+	    psq_st    f31,0x48(r1),0,0
+	    stfd      f30, 0x30(r1)
+	    psq_st    f30,0x38(r1),0,0
+	    stw       r31, 0x2C(r1)
+	    lwz       r4, 0x1E0(r3)
+	    mr        r31, r3
+	    rlwinm.   r0,r4,0,28,28
+	    bne-      .loc_0x40
+	    lfs       f1, -0x6BB0(r2)
+	    lfs       f0, 0x210(r31)
+	    fcmpu     cr0, f1, f0
+	    beq-      .loc_0x318
+
+	.loc_0x40:
+	    lfs       f0, -0x6BB0(r2)
+	    lfs       f1, 0x210(r31)
+	    fcmpu     cr0, f0, f1
+	    bne-      .loc_0x6C
+	    rlwinm.   r0,r4,0,30,30
+	    beq-      .loc_0x318
+	    lwz       r3, -0x6514(r13)
+	    lfs       f0, 0x54(r3)
+	    fadds     f0, f1, f0
+	    stfs      f0, 0x210(r31)
+	    b         .loc_0x318
+
+	.loc_0x6C:
+	    lwz       r3, 0xC0(r31)
+	    rlwinm.   r0,r4,0,12,12
+	    fmr       f31, f0
+	    lfs       f3, 0x294(r3)
+	    beq-      .loc_0x88
+	    lfs       f30, -0x6B5C(r2)
+	    b         .loc_0x8C
+
+	.loc_0x88:
+	    lfs       f30, -0x6B9C(r2)
+
+	.loc_0x8C:
+	    rlwinm.   r0,r4,0,17,17
+	    beq-      .loc_0xB0
+	    lwz       r3, -0x6514(r13)
+	    lfs       f2, -0x6B4C(r2)
+	    lfs       f1, 0x54(r3)
+	    lfs       f0, 0x210(r31)
+	    fmadds    f0, f2, f1, f0
+	    stfs      f0, 0x210(r31)
+	    b         .loc_0xC4
+
+	.loc_0xB0:
+	    lwz       r3, -0x6514(r13)
+	    lfs       f1, 0x210(r31)
+	    lfs       f0, 0x54(r3)
+	    fadds     f0, f1, f0
+	    stfs      f0, 0x210(r31)
+
+	.loc_0xC4:
+	    lwz       r0, 0x1E0(r31)
+	    rlwinm.   r0,r0,0,22,22
+	    beq-      .loc_0x204
+	    lfs       f0, 0x210(r31)
+	    fcmpo     cr0, f0, f3
+	    ble-      .loc_0xE8
+	    mr        r3, r31
+	    bl        .loc_0x33C
+	    b         .loc_0xF4
+
+	.loc_0xE8:
+	    fdivs     f0, f0, f3
+	    lfs       f1, -0x6B9C(r2)
+	    fsubs     f31, f1, f0
+
+	.loc_0xF4:
+	    lfs       f1, -0x6BC0(r2)
+	    lfs       f0, -0x6BB0(r2)
+	    fmuls     f1, f1, f31
+	    fcmpo     cr0, f1, f0
+	    bge-      .loc_0x134
+	    lfs       f0, -0x6BB8(r2)
+	    lis       r3, 0x8050
+	    addi      r3, r3, 0x71A0
+	    fmuls     f0, f1, f0
+	    fctiwz    f0, f0
+	    stfd      f0, 0x8(r1)
+	    lwz       r0, 0xC(r1)
+	    rlwinm    r0,r0,3,18,28
+	    lfsx      f0, r3, r0
+	    fneg      f4, f0
+	    b         .loc_0x158
+
+	.loc_0x134:
+	    lfs       f0, -0x6BB4(r2)
+	    lis       r3, 0x8050
+	    addi      r3, r3, 0x71A0
+	    fmuls     f0, f1, f0
+	    fctiwz    f0, f0
+	    stfd      f0, 0x10(r1)
+	    lwz       r0, 0x14(r1)
+	    rlwinm    r0,r0,3,18,28
+	    lfsx      f4, r3, r0
+
+	.loc_0x158:
+	    lfs       f1, -0x6B30(r2)
+	    lfs       f0, -0x6BA0(r2)
+	    fmuls     f3, f1, f30
+	    lfs       f1, -0x6BC0(r2)
+	    fmuls     f0, f0, f31
+	    lfs       f2, -0x6BB0(r2)
+	    fmuls     f3, f3, f4
+	    fmuls     f1, f1, f0
+	    fmuls     f0, f31, f3
+	    fcmpo     cr0, f1, f2
+	    stfs      f0, 0x1B0(r31)
+	    stfs      f2, 0x1B4(r31)
+	    bge-      .loc_0x1B8
+	    lfs       f0, -0x6BB8(r2)
+	    lis       r3, 0x8050
+	    addi      r3, r3, 0x71A0
+	    fmuls     f0, f1, f0
+	    fctiwz    f0, f0
+	    stfd      f0, 0x18(r1)
+	    lwz       r0, 0x1C(r1)
+	    rlwinm    r0,r0,3,18,28
+	    lfsx      f0, r3, r0
+	    fneg      f1, f0
+	    b         .loc_0x1DC
+
+	.loc_0x1B8:
+	    lfs       f0, -0x6BB4(r2)
+	    lis       r3, 0x8050
+	    addi      r3, r3, 0x71A0
+	    fmuls     f0, f1, f0
+	    fctiwz    f0, f0
+	    stfd      f0, 0x20(r1)
+	    lwz       r0, 0x24(r1)
+	    rlwinm    r0,r0,3,18,28
+	    lfsx      f1, r3, r0
+
+	.loc_0x1DC:
+	    lfs       f0, -0x6B2C(r2)
+	    fmuls     f0, f0, f30
+	    fmuls     f0, f0, f1
+	    fmuls     f0, f31, f0
+	    stfs      f0, 0x1B8(r31)
+	    lfs       f0, 0x1F8(r31)
+	    stfs      f0, 0x170(r31)
+	    stfs      f0, 0x16C(r31)
+	    stfs      f0, 0x168(r31)
+	    b         .loc_0x318
+
+	.loc_0x204:
+	    lfs       f0, 0x210(r31)
+	    fcmpo     cr0, f0, f3
+	    ble-      .loc_0x21C
+	    mr        r3, r31
+	    bl        .loc_0x33C
+	    b         .loc_0x290
+
+	.loc_0x21C:
+	    fdivs     f2, f0, f3
+	    lfs       f1, -0x6BC0(r2)
+	    lfs       f0, -0x6BB0(r2)
+	    fmuls     f1, f1, f2
+	    fcmpo     cr0, f1, f0
+	    bge-      .loc_0x260
+	    lfs       f0, -0x6BB8(r2)
+	    lis       r3, 0x8050
+	    addi      r3, r3, 0x71A0
+	    fmuls     f0, f1, f0
+	    fctiwz    f0, f0
+	    stfd      f0, 0x20(r1)
+	    lwz       r0, 0x24(r1)
+	    rlwinm    r0,r0,3,18,28
+	    lfsx      f0, r3, r0
+	    fneg      f1, f0
+	    b         .loc_0x284
+
+	.loc_0x260:
+	    lfs       f0, -0x6BB4(r2)
+	    lis       r3, 0x8050
+	    addi      r3, r3, 0x71A0
+	    fmuls     f0, f1, f0
+	    fctiwz    f0, f0
+	    stfd      f0, 0x18(r1)
+	    lwz       r0, 0x1C(r1)
+	    rlwinm    r0,r0,3,18,28
+	    lfsx      f1, r3, r0
+
+	.loc_0x284:
+	    lfs       f0, -0x6B9C(r2)
+	    fsubs     f0, f0, f2
+	    fmuls     f31, f0, f1
+
+	.loc_0x290:
+	    lwz       r4, 0x1E0(r31)
+	    rlwinm.   r0,r4,0,17,17
+	    beq-      .loc_0x2A4
+	    lfs       f0, -0x6BA0(r2)
+	    fmuls     f31, f31, f0
+
+	.loc_0x2A4:
+	    lwz       r3, 0xC0(r31)
+	    rlwinm.   r0,r4,0,12,12
+	    lfs       f0, 0x244(r3)
+	    fmuls     f0, f30, f0
+	    fmuls     f2, f31, f0
+	    beq-      .loc_0x2EC
+	    lfs       f0, 0x1F8(r31)
+	    fadds     f0, f0, f2
+	    stfs      f0, 0x168(r31)
+	    lwz       r3, 0xC0(r31)
+	    lfs       f0, 0x1F8(r31)
+	    lfs       f1, 0x26C(r3)
+	    fnmsubs   f0, f31, f1, f0
+	    stfs      f0, 0x16C(r31)
+	    lfs       f0, 0x1F8(r31)
+	    fadds     f0, f0, f2
+	    stfs      f0, 0x170(r31)
+	    b         .loc_0x318
+
+	.loc_0x2EC:
+	    lfs       f0, 0x1F8(r31)
+	    fsubs     f0, f0, f2
+	    stfs      f0, 0x168(r31)
+	    lwz       r3, 0xC0(r31)
+	    lfs       f0, 0x1F8(r31)
+	    lfs       f1, 0x26C(r3)
+	    fmadds    f0, f31, f1, f0
+	    stfs      f0, 0x16C(r31)
+	    lfs       f0, 0x1F8(r31)
+	    fsubs     f0, f0, f2
+	    stfs      f0, 0x170(r31)
+
+	.loc_0x318:
+	    psq_l     f31,0x48(r1),0,0
+	    lfd       f31, 0x40(r1)
+	    psq_l     f30,0x38(r1),0,0
+	    lfd       f30, 0x30(r1)
+	    lwz       r0, 0x54(r1)
+	    lwz       r31, 0x2C(r1)
+	    mtlr      r0
+	    addi      r1, r1, 0x50
+	    blr
+
+	.loc_0x33C:
+	*/
+}
+
+/*
+ * --INFO--
+ * Address:	801056FC
+ * Size:	000024
+ */
+void EnemyBase::finishScaleDamageAnim()
+{
+	_210 = 0.0f;
+	resetEvent(0, EB_15);
+	resetEvent(0, EB_20);
+}
+
+/*
+ * --INFO--
+ * Address:	80105720
+ * Size:	0000F8
+ */
+void EnemyBase::deathProcedure()
+{
+	resetEvent(0, EB_Flying);
+	setAlive(false);
+
+	if (isEvent(0, EB_Bittered)) {
+		throwupItem();
+	} else {
+		throwupItemInDeathProcedure();
+	}
+	startMotion();
+
+	if (isEvent(0, EB_9)) {
+		createDeadBombEffect();
+		PSStartEnemyFatalHitSE(this, 0.0f);
+	}
+
+	PSM::EnemyBase* soundObj = m_soundObj;
+	if ((soundObj->getCastType() == PSM::CCT_EnemyMidBoss) || (soundObj->getCastType() == PSM::CCT_EnemyBigBoss)) {
+		static_cast<PSM::EnemyBoss*>(soundObj)->onDeathMotionTop();
+	}
+}
+
+/*
+ * --INFO--
+ * Address:	80105874
+ * Size:	0000D8
+ */
+void EnemyBase::createDeadBombEffect()
+{
+	/*
+	.loc_0x0:
+	    stwu      r1, -0x60(r1)
+	    mflr      r0
+	    stw       r0, 0x64(r1)
+	    stfd      f31, 0x50(r1)
+	    psq_st    f31,0x58(r1),0,0
+	    stw       r31, 0x4C(r1)
+	    lwz       r12, 0x0(r3)
+	    mr        r31, r3
+	    addi      r4, r1, 0x18
+	    lwz       r12, 0x204(r12)
+	    mtctr     r12
+	    bctrl
+	    mr        r3, r31
+	    lfs       f31, 0x1F8(r31)
+	    lwz       r12, 0x0(r31)
+	    lwz       r12, 0x258(r12)
+	    mtctr     r12
+	    bctrl
+	    lwz       r6, 0x18(r1)
+	    lis       r5, 0x804B
+	    lwz       r0, 0x1C(r1)
+	    lis       r4, 0x804B
+	    lwz       r8, 0x20(r1)
+	    subi      r7, r5, 0x5814
+	    stw       r6, 0xC(r1)
+	    subi      r5, r4, 0x5808
+	    lis       r6, 0x804B
+	    lis       r4, 0x804F
+	    stw       r0, 0x10(r1)
+	    subi      r6, r6, 0x5820
+	    lfs       f2, 0xC(r1)
+	    subi      r0, r4, 0x7A2C
+	    stw       r8, 0x14(r1)
+	    addi      r4, r1, 0x24
+	    lfs       f1, 0x10(r1)
+	    stw       r7, 0x24(r1)
+	    lfs       f0, 0x14(r1)
+	    stw       r5, 0x8(r1)
+	    stw       r3, 0x34(r1)
+	    addi      r3, r1, 0x8
+	    stfs      f2, 0x28(r1)
+	    stfs      f1, 0x2C(r1)
+	    stfs      f0, 0x30(r1)
+	    stw       r6, 0x24(r1)
+	    stfs      f31, 0x38(r1)
+	    stw       r0, 0x8(r1)
+	    bl        0x2C3458
+	    psq_l     f31,0x58(r1),0,0
+	    lwz       r0, 0x64(r1)
+	    lfd       f31, 0x50(r1)
+	    lwz       r31, 0x4C(r1)
+	    mtlr      r0
+	    addi      r1, r1, 0x60
+	    blr
+	*/
+}
+
+/*
+ * --INFO--
+ * Address:	8010594C
+ * Size:	000054
+ */
+void EnemyBase::getThrowupItemPosition(Vector3f* throwupItemPosition)
+{
+	Sys::Sphere sphere;
+	getBoundingSphere(sphere);
+	*throwupItemPosition = sphere.m_position;
+}
+
+/*
+ * --INFO--
+ * Address:	801059A0
+ * Size:	000018
+ */
+void EnemyBase::getThrowupItemVelocity(Vector3f* throwupItemVelocity)
+{
+	throwupItemVelocity->x = 0.0f;
+	throwupItemVelocity->y = 200.0f;
+	throwupItemVelocity->z = 0.0f;
+}
+
+/*
+ * --INFO--
+ * Address:	801059B8
+ * Size:	0004B0
+ */
+void EnemyBase::throwupItem()
+{
+	Vector3f throwupPosition;
+	getThrowupItemPosition(&throwupPosition);
+
+	PelletInitArg pelletInitArg;
+
+	if (pelletMgr->makePelletInitArg(pelletInitArg, m_pelletDropCode)) {
+		pelletInitArg._14            = 2;
+		EnemyTypeID::EEnemyTypeID id = getEnemyTypeID();
+
+		if ((id == EnemyTypeID::EnemyID_Queen || id == EnemyTypeID::EnemyID_SnakeCrow || id == EnemyTypeID::EnemyID_KingChappy
+		     || id == EnemyTypeID::EnemyID_Damagumo || id == EnemyTypeID::EnemyID_OoPanModoki || id == EnemyTypeID::EnemyID_Houdai
+		     || id == EnemyTypeID::EnemyID_UmiMushiBlind || id == EnemyTypeID::EnemyID_BlackMan || id == EnemyTypeID::EnemyID_DangoMushi
+		     || id == EnemyTypeID::EnemyID_BigFoot || id == EnemyTypeID::EnemyID_SnakeWhole || id == EnemyTypeID::EnemyID_UmiMushi
+		     || id == EnemyTypeID::EnemyID_BigTreasure)
+		    && gameSystem != nullptr && gameSystem->m_mode == GSM_STORY_MODE && gameSystem->m_isInCaveMaybe && Cave::randMapMgr != nullptr
+		    && Cave::randMapMgr->isLastFloor()) {
+			pelletInitArg._1D = true;
 		}
-		return b;
-	}
 
-	/*
-	 * --INFO--
-	 * Address:	80105390
-	 * Size:	000030
-	 */
-	void EnemyBase::lifeRecover()
-	{
-		m_health += m_maxHealth * static_cast<EnemyParmsBase*>(m_parms)->m_general.m_regenerationRate.m_value;
-		if (m_health > m_maxHealth) {
-			m_health = m_maxHealth;
+		if (Pellet::sFromTekiEnable) {
+			pelletInitArg._1F = true;
+		}
+
+		m_heldPellet = pelletMgr->birth(&pelletInitArg);
+
+		if (m_heldPellet != nullptr) {
+			InteractMattuan mattuan = InteractMattuan(this, 8.0f);
+			m_heldPellet->stimulate(mattuan);
+
+			Vector3f throwupVelocity;
+			getThrowupItemVelocity(&throwupVelocity);
+
+			m_heldPellet->setPosition(throwupPosition, false);
+			m_heldPellet->setVelocity(throwupVelocity);
+			m_heldPellet->createKiraEffect(throwupPosition);
+
+			Radar::Mgr::exit(this);
+			m_soundObj->startSound(PSSE_EN_ENEMY_LOOSE_ITEM, 0);
 		}
 	}
 
-	/*
-	 * --INFO--
-	 * Address:	801053C0
-	 * Size:	00033C
-	 */
-	void EnemyBase::scaleDamageAnim()
-	{
-		/*
-		.loc_0x0:
-		    stwu      r1, -0x50(r1)
-		    mflr      r0
-		    stw       r0, 0x54(r1)
-		    stfd      f31, 0x40(r1)
-		    psq_st    f31,0x48(r1),0,0
-		    stfd      f30, 0x30(r1)
-		    psq_st    f30,0x38(r1),0,0
-		    stw       r31, 0x2C(r1)
-		    lwz       r4, 0x1E0(r3)
-		    mr        r31, r3
-		    rlwinm.   r0,r4,0,28,28
-		    bne-      .loc_0x40
-		    lfs       f1, -0x6BB0(r2)
-		    lfs       f0, 0x210(r31)
-		    fcmpu     cr0, f1, f0
-		    beq-      .loc_0x318
-
-		.loc_0x40:
-		    lfs       f0, -0x6BB0(r2)
-		    lfs       f1, 0x210(r31)
-		    fcmpu     cr0, f0, f1
-		    bne-      .loc_0x6C
-		    rlwinm.   r0,r4,0,30,30
-		    beq-      .loc_0x318
-		    lwz       r3, -0x6514(r13)
-		    lfs       f0, 0x54(r3)
-		    fadds     f0, f1, f0
-		    stfs      f0, 0x210(r31)
-		    b         .loc_0x318
-
-		.loc_0x6C:
-		    lwz       r3, 0xC0(r31)
-		    rlwinm.   r0,r4,0,12,12
-		    fmr       f31, f0
-		    lfs       f3, 0x294(r3)
-		    beq-      .loc_0x88
-		    lfs       f30, -0x6B5C(r2)
-		    b         .loc_0x8C
-
-		.loc_0x88:
-		    lfs       f30, -0x6B9C(r2)
-
-		.loc_0x8C:
-		    rlwinm.   r0,r4,0,17,17
-		    beq-      .loc_0xB0
-		    lwz       r3, -0x6514(r13)
-		    lfs       f2, -0x6B4C(r2)
-		    lfs       f1, 0x54(r3)
-		    lfs       f0, 0x210(r31)
-		    fmadds    f0, f2, f1, f0
-		    stfs      f0, 0x210(r31)
-		    b         .loc_0xC4
-
-		.loc_0xB0:
-		    lwz       r3, -0x6514(r13)
-		    lfs       f1, 0x210(r31)
-		    lfs       f0, 0x54(r3)
-		    fadds     f0, f1, f0
-		    stfs      f0, 0x210(r31)
-
-		.loc_0xC4:
-		    lwz       r0, 0x1E0(r31)
-		    rlwinm.   r0,r0,0,22,22
-		    beq-      .loc_0x204
-		    lfs       f0, 0x210(r31)
-		    fcmpo     cr0, f0, f3
-		    ble-      .loc_0xE8
-		    mr        r3, r31
-		    bl        .loc_0x33C
-		    b         .loc_0xF4
-
-		.loc_0xE8:
-		    fdivs     f0, f0, f3
-		    lfs       f1, -0x6B9C(r2)
-		    fsubs     f31, f1, f0
-
-		.loc_0xF4:
-		    lfs       f1, -0x6BC0(r2)
-		    lfs       f0, -0x6BB0(r2)
-		    fmuls     f1, f1, f31
-		    fcmpo     cr0, f1, f0
-		    bge-      .loc_0x134
-		    lfs       f0, -0x6BB8(r2)
-		    lis       r3, 0x8050
-		    addi      r3, r3, 0x71A0
-		    fmuls     f0, f1, f0
-		    fctiwz    f0, f0
-		    stfd      f0, 0x8(r1)
-		    lwz       r0, 0xC(r1)
-		    rlwinm    r0,r0,3,18,28
-		    lfsx      f0, r3, r0
-		    fneg      f4, f0
-		    b         .loc_0x158
-
-		.loc_0x134:
-		    lfs       f0, -0x6BB4(r2)
-		    lis       r3, 0x8050
-		    addi      r3, r3, 0x71A0
-		    fmuls     f0, f1, f0
-		    fctiwz    f0, f0
-		    stfd      f0, 0x10(r1)
-		    lwz       r0, 0x14(r1)
-		    rlwinm    r0,r0,3,18,28
-		    lfsx      f4, r3, r0
-
-		.loc_0x158:
-		    lfs       f1, -0x6B30(r2)
-		    lfs       f0, -0x6BA0(r2)
-		    fmuls     f3, f1, f30
-		    lfs       f1, -0x6BC0(r2)
-		    fmuls     f0, f0, f31
-		    lfs       f2, -0x6BB0(r2)
-		    fmuls     f3, f3, f4
-		    fmuls     f1, f1, f0
-		    fmuls     f0, f31, f3
-		    fcmpo     cr0, f1, f2
-		    stfs      f0, 0x1B0(r31)
-		    stfs      f2, 0x1B4(r31)
-		    bge-      .loc_0x1B8
-		    lfs       f0, -0x6BB8(r2)
-		    lis       r3, 0x8050
-		    addi      r3, r3, 0x71A0
-		    fmuls     f0, f1, f0
-		    fctiwz    f0, f0
-		    stfd      f0, 0x18(r1)
-		    lwz       r0, 0x1C(r1)
-		    rlwinm    r0,r0,3,18,28
-		    lfsx      f0, r3, r0
-		    fneg      f1, f0
-		    b         .loc_0x1DC
-
-		.loc_0x1B8:
-		    lfs       f0, -0x6BB4(r2)
-		    lis       r3, 0x8050
-		    addi      r3, r3, 0x71A0
-		    fmuls     f0, f1, f0
-		    fctiwz    f0, f0
-		    stfd      f0, 0x20(r1)
-		    lwz       r0, 0x24(r1)
-		    rlwinm    r0,r0,3,18,28
-		    lfsx      f1, r3, r0
-
-		.loc_0x1DC:
-		    lfs       f0, -0x6B2C(r2)
-		    fmuls     f0, f0, f30
-		    fmuls     f0, f0, f1
-		    fmuls     f0, f31, f0
-		    stfs      f0, 0x1B8(r31)
-		    lfs       f0, 0x1F8(r31)
-		    stfs      f0, 0x170(r31)
-		    stfs      f0, 0x16C(r31)
-		    stfs      f0, 0x168(r31)
-		    b         .loc_0x318
-
-		.loc_0x204:
-		    lfs       f0, 0x210(r31)
-		    fcmpo     cr0, f0, f3
-		    ble-      .loc_0x21C
-		    mr        r3, r31
-		    bl        .loc_0x33C
-		    b         .loc_0x290
-
-		.loc_0x21C:
-		    fdivs     f2, f0, f3
-		    lfs       f1, -0x6BC0(r2)
-		    lfs       f0, -0x6BB0(r2)
-		    fmuls     f1, f1, f2
-		    fcmpo     cr0, f1, f0
-		    bge-      .loc_0x260
-		    lfs       f0, -0x6BB8(r2)
-		    lis       r3, 0x8050
-		    addi      r3, r3, 0x71A0
-		    fmuls     f0, f1, f0
-		    fctiwz    f0, f0
-		    stfd      f0, 0x20(r1)
-		    lwz       r0, 0x24(r1)
-		    rlwinm    r0,r0,3,18,28
-		    lfsx      f0, r3, r0
-		    fneg      f1, f0
-		    b         .loc_0x284
-
-		.loc_0x260:
-		    lfs       f0, -0x6BB4(r2)
-		    lis       r3, 0x8050
-		    addi      r3, r3, 0x71A0
-		    fmuls     f0, f1, f0
-		    fctiwz    f0, f0
-		    stfd      f0, 0x18(r1)
-		    lwz       r0, 0x1C(r1)
-		    rlwinm    r0,r0,3,18,28
-		    lfsx      f1, r3, r0
-
-		.loc_0x284:
-		    lfs       f0, -0x6B9C(r2)
-		    fsubs     f0, f0, f2
-		    fmuls     f31, f0, f1
-
-		.loc_0x290:
-		    lwz       r4, 0x1E0(r31)
-		    rlwinm.   r0,r4,0,17,17
-		    beq-      .loc_0x2A4
-		    lfs       f0, -0x6BA0(r2)
-		    fmuls     f31, f31, f0
-
-		.loc_0x2A4:
-		    lwz       r3, 0xC0(r31)
-		    rlwinm.   r0,r4,0,12,12
-		    lfs       f0, 0x244(r3)
-		    fmuls     f0, f30, f0
-		    fmuls     f2, f31, f0
-		    beq-      .loc_0x2EC
-		    lfs       f0, 0x1F8(r31)
-		    fadds     f0, f0, f2
-		    stfs      f0, 0x168(r31)
-		    lwz       r3, 0xC0(r31)
-		    lfs       f0, 0x1F8(r31)
-		    lfs       f1, 0x26C(r3)
-		    fnmsubs   f0, f31, f1, f0
-		    stfs      f0, 0x16C(r31)
-		    lfs       f0, 0x1F8(r31)
-		    fadds     f0, f0, f2
-		    stfs      f0, 0x170(r31)
-		    b         .loc_0x318
-
-		.loc_0x2EC:
-		    lfs       f0, 0x1F8(r31)
-		    fsubs     f0, f0, f2
-		    stfs      f0, 0x168(r31)
-		    lwz       r3, 0xC0(r31)
-		    lfs       f0, 0x1F8(r31)
-		    lfs       f1, 0x26C(r3)
-		    fmadds    f0, f31, f1, f0
-		    stfs      f0, 0x16C(r31)
-		    lfs       f0, 0x1F8(r31)
-		    fsubs     f0, f0, f2
-		    stfs      f0, 0x170(r31)
-
-		.loc_0x318:
-		    psq_l     f31,0x48(r1),0,0
-		    lfd       f31, 0x40(r1)
-		    psq_l     f30,0x38(r1),0,0
-		    lfd       f30, 0x30(r1)
-		    lwz       r0, 0x54(r1)
-		    lwz       r31, 0x2C(r1)
-		    mtlr      r0
-		    addi      r1, r1, 0x50
-		    blr
-
-		.loc_0x33C:
-		*/
-	}
-
-	/*
-	 * --INFO--
-	 * Address:	801056FC
-	 * Size:	000024
-	 */
-	void EnemyBase::finishScaleDamageAnim()
-	{
-		_210 = 0.0f;
-		resetEvent(0, EB_15);
-		resetEvent(0, EB_20);
-	}
-
-	/*
-	 * --INFO--
-	 * Address:	80105720
-	 * Size:	0000F8
-	 */
-	void EnemyBase::deathProcedure()
-	{
-		resetEvent(0, EB_Flying);
-		setAlive(false);
-
-		if (isEvent(0, EB_Bittered)) {
-			throwupItem();
+	if (randFloat() < m_pelletInfo.m_spawnThreshold) {
+		float range = (m_pelletInfo.m_maxPellets - m_pelletInfo.m_minPellets) * randFloat();
+		float roundRange;
+		if (range >= 0.0f) {
+			roundRange = range + 0.5f;
 		} else {
-			throwupItemInDeathProcedure();
+			roundRange = range - 0.5f;
 		}
-		startMotion();
+		int additionalPellets = m_pelletInfo.m_minPellets + (int)roundRange;
 
-		if (isEvent(0, EB_9)) {
-			createDeadBombEffect();
-			PSStartEnemyFatalHitSE(this, 0.0f);
-		}
-
-		PSM::EnemyBase* soundObj = m_soundObj;
-		if ((soundObj->getCastType() == PSM::CCT_EnemyMidBoss) || (soundObj->getCastType() == PSM::CCT_EnemyBigBoss)) {
-			static_cast<PSM::EnemyBoss*>(soundObj)->onDeathMotionTop();
-		}
-	}
-
-	/*
-	 * --INFO--
-	 * Address:	80105874
-	 * Size:	0000D8
-	 */
-	void EnemyBase::createDeadBombEffect()
-	{
-		/*
-		.loc_0x0:
-		    stwu      r1, -0x60(r1)
-		    mflr      r0
-		    stw       r0, 0x64(r1)
-		    stfd      f31, 0x50(r1)
-		    psq_st    f31,0x58(r1),0,0
-		    stw       r31, 0x4C(r1)
-		    lwz       r12, 0x0(r3)
-		    mr        r31, r3
-		    addi      r4, r1, 0x18
-		    lwz       r12, 0x204(r12)
-		    mtctr     r12
-		    bctrl
-		    mr        r3, r31
-		    lfs       f31, 0x1F8(r31)
-		    lwz       r12, 0x0(r31)
-		    lwz       r12, 0x258(r12)
-		    mtctr     r12
-		    bctrl
-		    lwz       r6, 0x18(r1)
-		    lis       r5, 0x804B
-		    lwz       r0, 0x1C(r1)
-		    lis       r4, 0x804B
-		    lwz       r8, 0x20(r1)
-		    subi      r7, r5, 0x5814
-		    stw       r6, 0xC(r1)
-		    subi      r5, r4, 0x5808
-		    lis       r6, 0x804B
-		    lis       r4, 0x804F
-		    stw       r0, 0x10(r1)
-		    subi      r6, r6, 0x5820
-		    lfs       f2, 0xC(r1)
-		    subi      r0, r4, 0x7A2C
-		    stw       r8, 0x14(r1)
-		    addi      r4, r1, 0x24
-		    lfs       f1, 0x10(r1)
-		    stw       r7, 0x24(r1)
-		    lfs       f0, 0x14(r1)
-		    stw       r5, 0x8(r1)
-		    stw       r3, 0x34(r1)
-		    addi      r3, r1, 0x8
-		    stfs      f2, 0x28(r1)
-		    stfs      f1, 0x2C(r1)
-		    stfs      f0, 0x30(r1)
-		    stw       r6, 0x24(r1)
-		    stfs      f31, 0x38(r1)
-		    stw       r0, 0x8(r1)
-		    bl        0x2C3458
-		    psq_l     f31,0x58(r1),0,0
-		    lwz       r0, 0x64(r1)
-		    lfd       f31, 0x50(r1)
-		    lwz       r31, 0x4C(r1)
-		    mtlr      r0
-		    addi      r1, r1, 0x60
-		    blr
-		*/
-	}
-
-	/*
-	 * --INFO--
-	 * Address:	8010594C
-	 * Size:	000054
-	 */
-	void EnemyBase::getThrowupItemPosition(Vector3f * throwupItemPosition)
-	{
-		Sys::Sphere sphere;
-		getBoundingSphere(sphere);
-		*throwupItemPosition = sphere.m_position;
-	}
-
-	/*
-	 * --INFO--
-	 * Address:	801059A0
-	 * Size:	000018
-	 */
-	void EnemyBase::getThrowupItemVelocity(Vector3f * throwupItemVelocity)
-	{
-		throwupItemVelocity->x = 0.0f;
-		throwupItemVelocity->y = 200.0f;
-		throwupItemVelocity->z = 0.0f;
-	}
-
-	/*
-	 * --INFO--
-	 * Address:	801059B8
-	 * Size:	0004B0
-	 */
-	void EnemyBase::throwupItem()
-	{
-		Vector3f throwupPosition;
-		getThrowupItemPosition(&throwupPosition);
-
-		PelletInitArg pelletInitArg;
-
-		if (pelletMgr->makePelletInitArg(pelletInitArg, m_pelletDropCode)) {
-			pelletInitArg._14            = 2;
-			EnemyTypeID::EEnemyTypeID id = getEnemyTypeID();
-
-			if ((id == EnemyTypeID::EnemyID_Queen || id == EnemyTypeID::EnemyID_SnakeCrow || id == EnemyTypeID::EnemyID_KingChappy
-			     || id == EnemyTypeID::EnemyID_Damagumo || id == EnemyTypeID::EnemyID_OoPanModoki || id == EnemyTypeID::EnemyID_Houdai
-			     || id == EnemyTypeID::EnemyID_UmiMushiBlind || id == EnemyTypeID::EnemyID_BlackMan || id == EnemyTypeID::EnemyID_DangoMushi
-			     || id == EnemyTypeID::EnemyID_BigFoot || id == EnemyTypeID::EnemyID_SnakeWhole || id == EnemyTypeID::EnemyID_UmiMushi
-			     || id == EnemyTypeID::EnemyID_BigTreasure)
-			    && gameSystem != nullptr && gameSystem->m_mode == GSM_STORY_MODE && gameSystem->m_isInCaveMaybe
-			    && Cave::randMapMgr != nullptr && Cave::randMapMgr->isLastFloor()) {
-				pelletInitArg._1D = true;
-			}
-
-			if (Pellet::sFromTekiEnable) {
-				pelletInitArg._1F = true;
-			}
-
-			m_heldPellet = pelletMgr->birth(&pelletInitArg);
-
-			if (m_heldPellet != nullptr) {
-				InteractMattuan mattuan = InteractMattuan(this, 8.0f);
-				m_heldPellet->stimulate(mattuan);
-
-				Vector3f throwupVelocity;
-				getThrowupItemVelocity(&throwupVelocity);
-
-				m_heldPellet->setPosition(throwupPosition, false);
-				m_heldPellet->setVelocity(throwupVelocity);
-				m_heldPellet->createKiraEffect(throwupPosition);
-
-				Radar::Mgr::exit(this);
-				m_soundObj->startSound(PSSE_EN_ENEMY_LOOSE_ITEM, 0);
-			}
+		float velocity = 0.0f;
+		switch (m_pelletInfo.m_size) {
+		case 1:
+			velocity = 150.0f;
+			break;
+		case 5:
+			velocity = 200.0f;
+			break;
+		case 10:
+			velocity = 250.0f;
+			break;
+		case 20:
+			velocity = 250.0f;
+			break;
 		}
 
-		if (randFloat() < m_pelletInfo.m_spawnThreshold) {
-			float range = (m_pelletInfo.m_maxPellets - m_pelletInfo.m_minPellets) * randFloat();
-			float roundRange;
-			if (range >= 0.0f) {
-				roundRange = range + 0.5f;
-			} else {
-				roundRange = range - 0.5f;
-			}
-			int additionalPellets = m_pelletInfo.m_minPellets + (int)roundRange;
-
-			float velocity = 0.0f;
-			switch (m_pelletInfo.m_size) {
-			case 1:
-				velocity = 150.0f;
-				break;
-			case 5:
-				velocity = 200.0f;
-				break;
-			case 10:
-				velocity = 250.0f;
-				break;
-			case 20:
-				velocity = 250.0f;
-				break;
+		for (int i = 0; i < additionalPellets; i++) {
+			u8 pelletColor = m_pelletInfo.m_color;
+			if (pelletColor == 3) {
+				pelletColor = randFloat() * 3.0f;
 			}
 
-			for (int i = 0; i < additionalPellets; i++) {
-				u8 pelletColor = m_pelletInfo.m_color;
-				if (pelletColor == 3) {
-					pelletColor = randFloat() * 3.0f;
-				}
+			PelletNumberInitArg numberInitArg(m_pelletInfo.m_size, pelletColor);
+			numberInitArg._14 = 2;
+			Pellet* pellet    = pelletMgr->birth(&numberInitArg);
 
-				PelletNumberInitArg numberInitArg(m_pelletInfo.m_size, pelletColor);
-				numberInitArg._14 = 2;
-				Pellet* pellet    = pelletMgr->birth(&numberInitArg);
-
-				if (pellet != nullptr) {
-					Vector3f throwupVelocity = Vector3f(velocity * (randFloat() - 0.5f), velocity, velocity * (randFloat() - 0.5f));
-					pellet->setPosition(throwupPosition, false);
-					pellet->setVelocity(throwupVelocity);
-					pellet->createKiraEffect(throwupPosition);
-				}
+			if (pellet != nullptr) {
+				Vector3f throwupVelocity = Vector3f(velocity * (randFloat() - 0.5f), velocity, velocity * (randFloat() - 0.5f));
+				pellet->setPosition(throwupPosition, false);
+				pellet->setVelocity(throwupVelocity);
+				pellet->createKiraEffect(throwupPosition);
 			}
 		}
 	}
+}
 
-	/*
-	 * --INFO--
-	 * Address:	80105E6C
-	 * Size:	000004
-	 */
-	void EnemyBase::doDebugDraw(Graphics&) { }
+/*
+ * --INFO--
+ * Address:	80105E6C
+ * Size:	000004
+ */
+void EnemyBase::doDebugDraw(Graphics&) { }
 
-	/*
-	 * --INFO--
-	 * Address:	80105E70
-	 * Size:	000080
-	 */
-	void EnemyBase::getLifeGaugeParam(Game::LifeGaugeParam & param)
-	{
-		if ((Game::moviePlayer) && (moviePlayer->m_flags & MoviePlayer::IS_ACTIVE)) {
-			param._14 = false;
-		} else {
-			param._14 = ((isEvent(0, EB_LifegaugeVisible)) && (m_lod.m_flags & AILOD::FLAG_NEED_SHADOW));
-		}
-		if (param._14) {
-			doGetLifeGaugeParam(param);
-		}
+/*
+ * --INFO--
+ * Address:	80105E70
+ * Size:	000080
+ */
+void EnemyBase::getLifeGaugeParam(Game::LifeGaugeParam& param)
+{
+	if ((Game::moviePlayer) && (moviePlayer->m_flags & MoviePlayer::IS_ACTIVE)) {
+		param._14 = false;
+	} else {
+		param._14 = ((isEvent(0, EB_LifegaugeVisible)) && (m_lod.m_flags & AILOD::FLAG_NEED_SHADOW));
 	}
-
-	/*
-	 * --INFO--
-	 * Address:	80105EF0
-	 * Size:	000040
-	 */
-	void EnemyBase::doGetLifeGaugeParam(Game::LifeGaugeParam & param)
-	{
-		float y                  = m_position.y + static_cast<EnemyParmsBase*>(m_parms)->m_general.m_lifeMeterHeight.m_value;
-		float z                  = m_position.z;
-		float x                  = m_position.x;
-		param.m_position         = Vector3f(x, y, z);
-		param.m_healthPercentage = m_health / m_maxHealth;
-		param._10                = 10.0f;
+	if (param._14) {
+		doGetLifeGaugeParam(param);
 	}
+}
 
-	/*
-	 * --INFO--
-	 * Address:	80105F30
-	 * Size:	000050
-	 */
-	void EnemyBase::onStickStart(Game::Creature * other)
-	{
-		if (other->isPiki()) {
-			m_stickPikminCount++;
-		}
+/*
+ * --INFO--
+ * Address:	80105EF0
+ * Size:	000040
+ */
+void EnemyBase::doGetLifeGaugeParam(Game::LifeGaugeParam& param)
+{
+	float y                  = m_position.y + static_cast<EnemyParmsBase*>(m_parms)->m_general.m_lifeMeterHeight.m_value;
+	float z                  = m_position.z;
+	float x                  = m_position.x;
+	param.m_position         = Vector3f(x, y, z);
+	param.m_healthPercentage = m_health / m_maxHealth;
+	param._10                = 10.0f;
+}
+
+/*
+ * --INFO--
+ * Address:	80105F30
+ * Size:	000050
+ */
+void EnemyBase::onStickStart(Game::Creature* other)
+{
+	if (other->isPiki()) {
+		m_stickPikminCount++;
 	}
+}
 
-	/*
-	 * --INFO--
-	 * Address:	80105F80
-	 * Size:	000050
-	 */
-	void EnemyBase::onStickEnd(Game::Creature * other)
-	{
-		if (other->isPiki()) {
-			m_stickPikminCount--;
-		}
+/*
+ * --INFO--
+ * Address:	80105F80
+ * Size:	000050
+ */
+void EnemyBase::onStickEnd(Game::Creature* other)
+{
+	if (other->isPiki()) {
+		m_stickPikminCount--;
 	}
+}
 
-	/*
-	 * --INFO--
-	 * Address:	80105FD0
-	 * Size:	00005C
-	 */
-	bool EnemyBase::injure()
-	{
-		if (isEvent(0, EB_Damage)) {
-			if (!(isEvent(0, EB_Vulnerable))) {
-				m_health -= m_instantDamage;
-				if (m_health < 0.0f) {
-					m_health = 0.0f;
-				}
+/*
+ * --INFO--
+ * Address:	80105FD0
+ * Size:	00005C
+ */
+bool EnemyBase::injure()
+{
+	if (isEvent(0, EB_Damage)) {
+		if (!(isEvent(0, EB_Vulnerable))) {
+			m_health -= m_instantDamage;
+			if (m_health < 0.0f) {
+				m_health = 0.0f;
 			}
-			m_instantDamage = 0.0f;
-			resetEvent(0, EB_Damage);
-			return true;
 		}
-		return false;
+		m_instantDamage = 0.0f;
+		resetEvent(0, EB_Damage);
+		return true;
 	}
+	return false;
+}
 
-	/*
-	 * --INFO--
-	 * Address:	8010602C
-	 * Size:	000040
-	 */
-	void EnemyBase::addDamage(float p1, float p2)
-	{
-		if (isEvent(0, EB_Vulnerable)) {
-			return;
-		}
-		m_instantDamage += p1;
+/*
+ * --INFO--
+ * Address:	8010602C
+ * Size:	000040
+ */
+void EnemyBase::addDamage(float p1, float p2)
+{
+	if (isEvent(0, EB_Vulnerable)) {
+		return;
+	}
+	m_instantDamage += p1;
+	if (isEvent(0, EB_DropMassSet)) {
+		m_toFlick += p2;
+	}
+	setEvent(0, EB_Damage);
+}
+
+/*
+ * --INFO--
+ * Address:	8010606C
+ * Size:	000048
+ */
+bool EnemyBase::damageCallBack(Game::Creature* sourceCreature, float damage, CollPart* p3)
+{
+	if (!(isEvent(0, EB_Vulnerable))) {
+		m_instantDamage += damage;
 		if (isEvent(0, EB_DropMassSet)) {
-			m_toFlick += p2;
+			m_toFlick += 1.0f;
+		}
+		setEvent(0, EB_Damage);
+	}
+	return true;
+}
+
+/*
+ * --INFO--
+ * Address:	801060B4
+ * Size:	000008
+ */
+bool EnemyBase::pressCallBack(Game::Creature*, float, CollPart*) { return false; }
+
+/*
+ * --INFO--
+ * Address:	801060BC
+ * Size:	000008
+ */
+bool EnemyBase::flyCollisionCallBack(Game::Creature*, float, CollPart*) { return false; }
+
+/*
+ * --INFO--
+ * Address:	801060C4
+ * Size:	000248
+ */
+// WIP: https://decomp.me/scratch/q8OtK - needs correct createSplashDownEffect inline
+bool EnemyBase::hipdropCallBack(Game::Creature* sourceCreature, float damage, CollPart* p3)
+{
+	float purpleDamage = static_cast<EnemyParmsBase*>(m_parms)->m_general.m_purplePikminHipDropDamage();
+
+	if (!(isEvent(0, EB_Vulnerable))) {
+		m_instantDamage += purpleDamage;
+		if (isEvent(0, EB_DropMassSet)) {
+			m_toFlick += 1.0f;
 		}
 		setEvent(0, EB_Damage);
 	}
 
-	/*
-	 * --INFO--
-	 * Address:	8010606C
-	 * Size:	000048
-	 */
-	bool EnemyBase::damageCallBack(Game::Creature * sourceCreature, float damage, CollPart* p3)
-	{
-		if (!(isEvent(0, EB_Vulnerable))) {
-			m_instantDamage += damage;
-			if (isEvent(0, EB_DropMassSet)) {
-				m_toFlick += 1.0f;
-			}
-			setEvent(0, EB_Damage);
-		}
-		return true;
+	setEvent(0, EB_20);
+	if (_0C8 != 0) {
+		createSplashDownEffect(m_position, getDownSmokeScale());
+		createDropEffect(m_position, getDownSmokeScale());
 	}
-
+	return false;
 	/*
-	 * --INFO--
-	 * Address:	801060B4
-	 * Size:	000008
-	 */
-	bool EnemyBase::pressCallBack(Game::Creature*, float, CollPart*) { return false; }
+	.loc_0x0:
+	    stwu      r1, -0xA0(r1)
+	    mflr      r0
+	    stw       r0, 0xA4(r1)
+	    stfd      f31, 0x90(r1)
+	    psq_st    f31,0x98(r1),0,0
+	    stfd      f30, 0x80(r1)
+	    psq_st    f30,0x88(r1),0,0
+	    stw       r31, 0x7C(r1)
+	    lwz       r0, 0x1E0(r3)
+	    mr        r31, r3
+	    lwz       r3, 0xC0(r3)
+	    rlwinm.   r0,r0,0,31,31
+	    lfs       f1, 0x67C(r3)
+	    bne-      .loc_0x6C
+	    lfs       f0, 0x208(r31)
+	    fadds     f0, f0, f1
+	    stfs      f0, 0x208(r31)
+	    lwz       r0, 0x1E0(r31)
+	    rlwinm.   r0,r0,0,26,26
+	    beq-      .loc_0x60
+	    lfs       f1, 0x20C(r31)
+	    lfs       f0, -0x6B9C(r2)
+	    fadds     f0, f1, f0
+	    stfs      f0, 0x20C(r31)
 
-	/*
-	 * --INFO--
-	 * Address:	801060BC
-	 * Size:	000008
-	 */
-	bool EnemyBase::flyCollisionCallBack(Game::Creature*, float, CollPart*) { return false; }
+	.loc_0x60:
+	    lwz       r0, 0x1E0(r31)
+	    ori       r0, r0, 0x2
+	    stw       r0, 0x1E0(r31)
 
-	/*
-	 * --INFO--
-	 * Address:	801060C4
-	 * Size:	000248
-	 */
-	// WIP: https://decomp.me/scratch/q8OtK - needs correct createSplashDownEffect inline
-	bool EnemyBase::hipdropCallBack(Game::Creature * sourceCreature, float damage, CollPart* p3)
-	{
-		float purpleDamage = static_cast<EnemyParmsBase*>(m_parms)->m_general.m_purplePikminHipDropDamage();
+	.loc_0x6C:
+	    lwz       r0, 0x1E0(r31)
+	    oris      r0, r0, 0x8
+	    stw       r0, 0x1E0(r31)
+	    lwz       r0, 0xC8(r31)
+	    cmplwi    r0, 0
+	    beq-      .loc_0x220
+	    mr        r3, r31
+	    lwz       r12, 0x0(r31)
+	    lwz       r12, 0x2EC(r12)
+	    mtctr     r12
+	    bctrl
+	    lwz       r3, 0x280(r31)
+	    fmr       f31, f1
+	    cmplwi    r3, 0
+	    beq-      .loc_0x1A4
+	    beq-      .loc_0xD8
+	    lwz       r12, 0x0(r3)
+	    lfs       f30, 0x194(r31)
+	    lwz       r12, 0x14(r12)
+	    mtctr     r12
+	    bctrl
+	    lfs       f1, 0x0(r3)
+	    lfs       f0, 0x18C(r31)
+	    stfs      f1, 0x2C(r1)
+	    stfs      f0, 0x28(r1)
+	    stfs      f30, 0x30(r1)
+	    b         .loc_0xF0
 
-		if (!(isEvent(0, EB_Vulnerable))) {
-			m_instantDamage += purpleDamage;
-			if (isEvent(0, EB_DropMassSet)) {
-				m_toFlick += 1.0f;
-			}
-			setEvent(0, EB_Damage);
-		}
+	.loc_0xD8:
+	    lfs       f2, 0x18C(r31)
+	    lfs       f1, 0x190(r31)
+	    lfs       f0, 0x194(r31)
+	    stfs      f2, 0x28(r1)
+	    stfs      f1, 0x2C(r1)
+	    stfs      f0, 0x30(r1)
 
-		setEvent(0, EB_20);
-		if (_0C8 != 0) {
-			createSplashDownEffect(m_position, getDownSmokeScale());
-			createDropEffect(m_position, getDownSmokeScale());
-		}
-		return false;
-		/*
-		.loc_0x0:
-		    stwu      r1, -0xA0(r1)
-		    mflr      r0
-		    stw       r0, 0xA4(r1)
-		    stfd      f31, 0x90(r1)
-		    psq_st    f31,0x98(r1),0,0
-		    stfd      f30, 0x80(r1)
-		    psq_st    f30,0x88(r1),0,0
-		    stw       r31, 0x7C(r1)
-		    lwz       r0, 0x1E0(r3)
-		    mr        r31, r3
-		    lwz       r3, 0xC0(r3)
-		    rlwinm.   r0,r0,0,31,31
-		    lfs       f1, 0x67C(r3)
-		    bne-      .loc_0x6C
-		    lfs       f0, 0x208(r31)
-		    fadds     f0, f0, f1
-		    stfs      f0, 0x208(r31)
-		    lwz       r0, 0x1E0(r31)
-		    rlwinm.   r0,r0,0,26,26
-		    beq-      .loc_0x60
-		    lfs       f1, 0x20C(r31)
-		    lfs       f0, -0x6B9C(r2)
-		    fadds     f0, f1, f0
-		    stfs      f0, 0x20C(r31)
+	.loc_0xF0:
+	    lwz       r4, 0x28(r1)
+	    lis       r3, 0x804B
+	    lwz       r7, 0x2C(r1)
+	    subi      r0, r3, 0x5808
+	    lwz       r6, 0x30(r1)
+	    lis       r3, 0x804B
+	    stw       r4, 0x34(r1)
+	    lis       r4, 0x804E
+	    subi      r11, r3, 0x5814
+	    lis       r10, 0x804B
+	    li        r5, 0
+	    stw       r7, 0x38(r1)
+	    lfs       f2, 0x34(r1)
+	    lis       r3, 0x804F
+	    stw       r6, 0x3C(r1)
+	    li        r8, 0x54
+	    lfs       f1, 0x38(r1)
+	    li        r7, 0x55
+	    lfs       f0, 0x3C(r1)
+	    li        r6, 0x56
+	    stw       r0, 0x54(r1)
+	    addi      r9, r4, 0x6A50
+	    subi      r10, r10, 0x5D24
+	    subi      r0, r3, 0x7A04
+	    stw       r11, 0x40(r1)
+	    addi      r3, r1, 0x54
+	    addi      r4, r1, 0x40
+	    stw       r9, 0x54(r1)
+	    stfs      f2, 0x44(r1)
+	    stfs      f1, 0x48(r1)
+	    stfs      f0, 0x4C(r1)
+	    stw       r10, 0x40(r1)
+	    stfs      f31, 0x50(r1)
+	    sth       r8, 0x58(r1)
+	    sth       r7, 0x5A(r1)
+	    sth       r6, 0x5C(r1)
+	    stw       r5, 0x60(r1)
+	    stw       r5, 0x64(r1)
+	    stw       r5, 0x68(r1)
+	    stw       r0, 0x54(r1)
+	    bl        0x2C2578
+	    fmr       f1, f31
+	    mr        r3, r31
+	    bl        0x3685E0
+	    b         .loc_0x220
 
-		.loc_0x60:
-		    lwz       r0, 0x1E0(r31)
-		    ori       r0, r0, 0x2
-		    stw       r0, 0x1E0(r31)
+	.loc_0x1A4:
+	    lis       r3, 0x804B
+	    lis       r5, 0x804B
+	    subi      r0, r3, 0x5814
+	    lis       r4, 0x804E
+	    stw       r0, 0x8(r1)
+	    lis       r3, 0x804F
+	    subi      r8, r5, 0x5808
+	    lfs       f0, -0x6B9C(r2)
+	    lfs       f1, 0x18C(r31)
+	    addi      r7, r4, 0x6A78
+	    subi      r0, r3, 0x79F0
+	    li        r6, 0x53
+	    stfs      f1, 0xC(r1)
+	    li        r5, 0
+	    addi      r3, r1, 0x18
+	    addi      r4, r1, 0x8
+	    lfs       f1, 0x190(r31)
+	    stfs      f1, 0x10(r1)
+	    lfs       f1, 0x194(r31)
+	    stw       r8, 0x18(r1)
+	    stw       r7, 0x18(r1)
+	    stfs      f0, 0x24(r1)
+	    stfs      f1, 0x14(r1)
+	    sth       r6, 0x1C(r1)
+	    stw       r5, 0x20(r1)
+	    stw       r0, 0x18(r1)
+	    stfs      f31, 0x24(r1)
+	    bl        0x2C2490
+	    fmr       f1, f31
+	    mr        r3, r31
+	    bl        0x3683B0
 
-		.loc_0x6C:
-		    lwz       r0, 0x1E0(r31)
-		    oris      r0, r0, 0x8
-		    stw       r0, 0x1E0(r31)
-		    lwz       r0, 0xC8(r31)
-		    cmplwi    r0, 0
-		    beq-      .loc_0x220
-		    mr        r3, r31
-		    lwz       r12, 0x0(r31)
-		    lwz       r12, 0x2EC(r12)
-		    mtctr     r12
-		    bctrl
-		    lwz       r3, 0x280(r31)
-		    fmr       f31, f1
-		    cmplwi    r3, 0
-		    beq-      .loc_0x1A4
-		    beq-      .loc_0xD8
-		    lwz       r12, 0x0(r3)
-		    lfs       f30, 0x194(r31)
-		    lwz       r12, 0x14(r12)
-		    mtctr     r12
-		    bctrl
-		    lfs       f1, 0x0(r3)
-		    lfs       f0, 0x18C(r31)
-		    stfs      f1, 0x2C(r1)
-		    stfs      f0, 0x28(r1)
-		    stfs      f30, 0x30(r1)
-		    b         .loc_0xF0
+	.loc_0x220:
+	    li        r3, 0
+	    psq_l     f31,0x98(r1),0,0
+	    lfd       f31, 0x90(r1)
+	    psq_l     f30,0x88(r1),0,0
+	    lfd       f30, 0x80(r1)
+	    lwz       r0, 0xA4(r1)
+	    lwz       r31, 0x7C(r1)
+	    mtlr      r0
+	    addi      r1, r1, 0xA0
+	    blr
+	*/
+}
 
-		.loc_0xD8:
-		    lfs       f2, 0x18C(r31)
-		    lfs       f1, 0x190(r31)
-		    lfs       f0, 0x194(r31)
-		    stfs      f2, 0x28(r1)
-		    stfs      f1, 0x2C(r1)
-		    stfs      f0, 0x30(r1)
+/*
+ * --INFO--
+ * Address:	8010630C
+ * Size:	000008
+ */
+bool EnemyBase::dropCallBack(Game::Creature*) { return false; }
 
-		.loc_0xF0:
-		    lwz       r4, 0x28(r1)
-		    lis       r3, 0x804B
-		    lwz       r7, 0x2C(r1)
-		    subi      r0, r3, 0x5808
-		    lwz       r6, 0x30(r1)
-		    lis       r3, 0x804B
-		    stw       r4, 0x34(r1)
-		    lis       r4, 0x804E
-		    subi      r11, r3, 0x5814
-		    lis       r10, 0x804B
-		    li        r5, 0
-		    stw       r7, 0x38(r1)
-		    lfs       f2, 0x34(r1)
-		    lis       r3, 0x804F
-		    stw       r6, 0x3C(r1)
-		    li        r8, 0x54
-		    lfs       f1, 0x38(r1)
-		    li        r7, 0x55
-		    lfs       f0, 0x3C(r1)
-		    li        r6, 0x56
-		    stw       r0, 0x54(r1)
-		    addi      r9, r4, 0x6A50
-		    subi      r10, r10, 0x5D24
-		    subi      r0, r3, 0x7A04
-		    stw       r11, 0x40(r1)
-		    addi      r3, r1, 0x54
-		    addi      r4, r1, 0x40
-		    stw       r9, 0x54(r1)
-		    stfs      f2, 0x44(r1)
-		    stfs      f1, 0x48(r1)
-		    stfs      f0, 0x4C(r1)
-		    stw       r10, 0x40(r1)
-		    stfs      f31, 0x50(r1)
-		    sth       r8, 0x58(r1)
-		    sth       r7, 0x5A(r1)
-		    sth       r6, 0x5C(r1)
-		    stw       r5, 0x60(r1)
-		    stw       r5, 0x64(r1)
-		    stw       r5, 0x68(r1)
-		    stw       r0, 0x54(r1)
-		    bl        0x2C2578
-		    fmr       f1, f31
-		    mr        r3, r31
-		    bl        0x3685E0
-		    b         .loc_0x220
+/*
+ * --INFO--
+ * Address:	80106314
+ * Size:	000040
+ */
+bool EnemyBase::isBeforeAppearState() { return m_lifecycleFSM->getCurrID(this) < 5; }
 
-		.loc_0x1A4:
-		    lis       r3, 0x804B
-		    lis       r5, 0x804B
-		    subi      r0, r3, 0x5814
-		    lis       r4, 0x804E
-		    stw       r0, 0x8(r1)
-		    lis       r3, 0x804F
-		    subi      r8, r5, 0x5808
-		    lfs       f0, -0x6B9C(r2)
-		    lfs       f1, 0x18C(r31)
-		    addi      r7, r4, 0x6A78
-		    subi      r0, r3, 0x79F0
-		    li        r6, 0x53
-		    stfs      f1, 0xC(r1)
-		    li        r5, 0
-		    addi      r3, r1, 0x18
-		    addi      r4, r1, 0x8
-		    lfs       f1, 0x190(r31)
-		    stfs      f1, 0x10(r1)
-		    lfs       f1, 0x194(r31)
-		    stw       r8, 0x18(r1)
-		    stw       r7, 0x18(r1)
-		    stfs      f0, 0x24(r1)
-		    stfs      f1, 0x14(r1)
-		    sth       r6, 0x1C(r1)
-		    stw       r5, 0x20(r1)
-		    stw       r0, 0x18(r1)
-		    stfs      f31, 0x24(r1)
-		    bl        0x2C2490
-		    fmr       f1, f31
-		    mr        r3, r31
-		    bl        0x3683B0
-
-		.loc_0x220:
-		    li        r3, 0
-		    psq_l     f31,0x98(r1),0,0
-		    lfd       f31, 0x90(r1)
-		    psq_l     f30,0x88(r1),0,0
-		    lfd       f30, 0x80(r1)
-		    lwz       r0, 0xA4(r1)
-		    lwz       r31, 0x7C(r1)
-		    mtlr      r0
-		    addi      r1, r1, 0xA0
-		    blr
-		*/
+/*
+ * --INFO--
+ * Address:	80106354
+ * Size:	000070
+ */
+bool EnemyBase::checkBirthTypeDropEarthquake()
+{
+	bool b = false;
+	if (m_lifecycleFSM->getCurrID(this) == 4) {
+		m_lifecycleFSM->transit(this, 5, nullptr);
+		b = true;
 	}
+	return b;
+}
 
-	/*
-	 * --INFO--
-	 * Address:	8010630C
-	 * Size:	000008
-	 */
-	bool EnemyBase::dropCallBack(Game::Creature*) { return false; }
-
-	/*
-	 * --INFO--
-	 * Address:	80106314
-	 * Size:	000040
-	 */
-	bool EnemyBase::isBeforeAppearState() { return m_lifecycleFSM->getCurrID(this) < 5; }
-
-	/*
-	 * --INFO--
-	 * Address:	80106354
-	 * Size:	000070
-	 */
-	bool EnemyBase::checkBirthTypeDropEarthquake()
-	{
-		bool b = false;
-		if (m_lifecycleFSM->getCurrID(this) == 4) {
-			m_lifecycleFSM->transit(this, 5, nullptr);
-			b = true;
-		}
-		return b;
-	}
-
-	/*
-	 * --INFO--
-	 * Address:	801063C4
-	 * Size:	0000EC
-	 */
-	bool EnemyBase::earthquakeCallBack(Game::Creature * creature, float p1)
-	{
-		if (_0C8 && !(m_health <= 0.0f) && !isFlying() && isAlive()) {
-			if (!(isEvent(0, EB_HardConstraint)) && !(isEvent(0, EB_Bittered))) {
-				if (((isEvent(0, EB_22)) || (isEvent(0, EB_BitterImmune))) == false) {
-					StateArg transitArg;
-					transitArg._00 = p1;
-					m_lifecycleFSM->transit(this, EnemyBaseFSM::EBS_Earthquake, &transitArg);
-				}
+/*
+ * --INFO--
+ * Address:	801063C4
+ * Size:	0000EC
+ */
+bool EnemyBase::earthquakeCallBack(Game::Creature* creature, float p1)
+{
+	if (_0C8 && !(m_health <= 0.0f) && !isFlying() && isAlive()) {
+		if (!(isEvent(0, EB_HardConstraint)) && !(isEvent(0, EB_Bittered))) {
+			if (((isEvent(0, EB_22)) || (isEvent(0, EB_BitterImmune))) == false) {
+				StateArg transitArg;
+				transitArg._00 = p1;
+				m_lifecycleFSM->transit(this, EnemyBaseFSM::EBS_Earthquake, &transitArg);
 			}
 		}
-		return false;
 	}
+	return false;
+}
 
+/*
+ * --INFO--
+ * Address:	801064B0
+ * Size:	000108
+ */
+bool EnemyBase::dopeCallBack(Game::Creature*, int)
+{
 	/*
-	 * --INFO--
-	 * Address:	801064B0
-	 * Size:	000108
-	 */
-	bool EnemyBase::dopeCallBack(Game::Creature*, int)
-	{
-		/*
-		.loc_0x0:
-		    stwu      r1, -0x20(r1)
-		    mflr      r0
-		    stw       r0, 0x24(r1)
-		    stw       r31, 0x1C(r1)
-		    mr        r31, r5
-		    stw       r30, 0x18(r1)
-		    mr        r30, r4
-		    stw       r29, 0x14(r1)
-		    mr        r29, r3
-		    lwz       r12, 0x0(r3)
-		    lwz       r12, 0xA8(r12)
-		    mtctr     r12
-		    bctrl
-		    rlwinm.   r0,r3,0,24,31
-		    beq-      .loc_0xE8
-		    lfs       f1, 0x200(r29)
-		    lfs       f0, -0x6BB0(r2)
-		    fcmpo     cr0, f1, f0
-		    cror      2, 0, 0x2
-		    beq-      .loc_0xE8
-		    mr        r3, r29
-		    mr        r4, r30
-		    lwz       r12, 0x0(r29)
-		    mr        r5, r31
-		    lwz       r12, 0x2A0(r12)
-		    mtctr     r12
-		    bctrl
-		    rlwinm.   r0,r3,0,24,31
-		    beq-      .loc_0xE8
-		    cmpwi     r31, 0x1
-		    beq-      .loc_0x80
-		    b         .loc_0xE8
+	.loc_0x0:
+	    stwu      r1, -0x20(r1)
+	    mflr      r0
+	    stw       r0, 0x24(r1)
+	    stw       r31, 0x1C(r1)
+	    mr        r31, r5
+	    stw       r30, 0x18(r1)
+	    mr        r30, r4
+	    stw       r29, 0x14(r1)
+	    mr        r29, r3
+	    lwz       r12, 0x0(r3)
+	    lwz       r12, 0xA8(r12)
+	    mtctr     r12
+	    bctrl
+	    rlwinm.   r0,r3,0,24,31
+	    beq-      .loc_0xE8
+	    lfs       f1, 0x200(r29)
+	    lfs       f0, -0x6BB0(r2)
+	    fcmpo     cr0, f1, f0
+	    cror      2, 0, 0x2
+	    beq-      .loc_0xE8
+	    mr        r3, r29
+	    mr        r4, r30
+	    lwz       r12, 0x0(r29)
+	    mr        r5, r31
+	    lwz       r12, 0x2A0(r12)
+	    mtctr     r12
+	    bctrl
+	    rlwinm.   r0,r3,0,24,31
+	    beq-      .loc_0xE8
+	    cmpwi     r31, 0x1
+	    beq-      .loc_0x80
+	    b         .loc_0xE8
 
-		.loc_0x80:
-		    lwz       r3, 0x1E0(r29)
-		    rlwinm.   r0,r3,0,9,9
-		    bne-      .loc_0xE8
-		    rlwinm.   r0,r3,0,22,22
-		    bne-      .loc_0xE8
-		    rlwinm.   r0,r3,0,10,10
-		    beq-      .loc_0xA8
-		    oris      r0, r3, 0x10
-		    stw       r0, 0x1E0(r29)
-		    b         .loc_0xE8
+	.loc_0x80:
+	    lwz       r3, 0x1E0(r29)
+	    rlwinm.   r0,r3,0,9,9
+	    bne-      .loc_0xE8
+	    rlwinm.   r0,r3,0,22,22
+	    bne-      .loc_0xE8
+	    rlwinm.   r0,r3,0,10,10
+	    beq-      .loc_0xA8
+	    oris      r0, r3, 0x10
+	    stw       r0, 0x1E0(r29)
+	    b         .loc_0xE8
 
-		.loc_0xA8:
-		    lwz       r3, 0x24C(r29)
-		    bl        0x2367C
-		    rlwinm.   r0,r3,0,24,31
-		    beq-      .loc_0xDC
-		    lwz       r3, 0x2B8(r29)
-		    mr        r4, r29
-		    li        r5, 0x7
-		    li        r6, 0
-		    lwz       r12, 0x0(r3)
-		    lwz       r12, 0x14(r12)
-		    mtctr     r12
-		    bctrl
-		    b         .loc_0xE8
+	.loc_0xA8:
+	    lwz       r3, 0x24C(r29)
+	    bl        0x2367C
+	    rlwinm.   r0,r3,0,24,31
+	    beq-      .loc_0xDC
+	    lwz       r3, 0x2B8(r29)
+	    mr        r4, r29
+	    li        r5, 0x7
+	    li        r6, 0
+	    lwz       r12, 0x0(r3)
+	    lwz       r12, 0x14(r12)
+	    mtctr     r12
+	    bctrl
+	    b         .loc_0xE8
 
-		.loc_0xDC:
-		    lwz       r0, 0x1E0(r29)
-		    oris      r0, r0, 0x10
-		    stw       r0, 0x1E0(r29)
+	.loc_0xDC:
+	    lwz       r0, 0x1E0(r29)
+	    oris      r0, r0, 0x10
+	    stw       r0, 0x1E0(r29)
 
-		.loc_0xE8:
-		    lwz       r0, 0x24(r1)
-		    li        r3, 0
-		    lwz       r31, 0x1C(r1)
-		    lwz       r30, 0x18(r1)
-		    lwz       r29, 0x14(r1)
-		    mtlr      r0
-		    addi      r1, r1, 0x20
-		    blr
-		*/
-	}
+	.loc_0xE8:
+	    lwz       r0, 0x24(r1)
+	    li        r3, 0
+	    lwz       r31, 0x1C(r1)
+	    lwz       r30, 0x18(r1)
+	    lwz       r29, 0x14(r1)
+	    mtlr      r0
+	    addi      r1, r1, 0x20
+	    blr
+	*/
+}
 
-	/*
-	 * --INFO--
-	 * Address:	801065C0
-	 * Size:	000008
-	 */
-	bool EnemyBase::farmCallBack(Game::Creature*, float) { return false; }
+/*
+ * --INFO--
+ * Address:	801065C0
+ * Size:	000008
+ */
+bool EnemyBase::farmCallBack(Game::Creature*, float) { return false; }
 
-	/*
-	 * --INFO--
-	 * Address:	801065C8
-	 * Size:	000048
-	 */
-	bool EnemyBase::bombCallBack(Game::Creature * creature, Vector3f & vec, float damage)
-	{
-		if (!(isEvent(0, EB_Vulnerable))) {
-			m_instantDamage += damage;
+/*
+ * --INFO--
+ * Address:	801065C8
+ * Size:	000048
+ */
+bool EnemyBase::bombCallBack(Game::Creature* creature, Vector3f& vec, float damage)
+{
+	if (!(isEvent(0, EB_Vulnerable))) {
+		m_instantDamage += damage;
 
-			if (isEvent(0, EB_DropMassSet)) {
-				m_toFlick += 1.0f;
-			}
-
-			setEvent(0, EB_Damage);
+		if (isEvent(0, EB_DropMassSet)) {
+			m_toFlick += 1.0f;
 		}
 
-		return true;
+		setEvent(0, EB_Damage);
 	}
 
-	/*
-	 * --INFO--
-	 * Address:	80106610
-	 * Size:	000054
-	 */
-	void EnemyBase::collisionCallback(Game::CollEvent & coll)
-	{
-		finishDropping(false);
-		setCollEvent(coll);
+	return true;
+}
+
+/*
+ * --INFO--
+ * Address:	80106610
+ * Size:	000054
+ */
+void EnemyBase::collisionCallback(Game::CollEvent& coll)
+{
+	finishDropping(false);
+	setCollEvent(coll);
+}
+
+/*
+ * --INFO--
+ * Address:	80106664
+ * Size:	000028
+ */
+void EnemyBase::setCollEvent(Game::CollEvent& event)
+{
+	m_collEvent.m_collidingCreature = event.m_collidingCreature;
+	m_collEvent._04                 = event._04;
+	m_collEvent.m_hitPart           = event.m_hitPart;
+	setEvent(0, EB_Collision);
+}
+
+/*
+ * --INFO--
+ * Address:	8010668C
+ * Size:	000010
+ */
+void EnemyBase::resetCollEvent() { resetEvent(0, EB_Collision); }
+
+/*
+ * --INFO--
+ * Address:	8010669C
+ * Size:	000004
+ */
+void EnemyBase::changeMaterial() { }
+
+/*
+ * --INFO--
+ * Address:	801066A0
+ * Size:	000008
+ */
+SysShape::Model* EnemyBase::viewGetShape() { return m_model; }
+
+/*
+ * --INFO--
+ * Address:	801066A8
+ * Size:	000020
+ */
+void EnemyBase::viewStartCarryMotion() { startMotion(); }
+
+/*
+ * --INFO--
+ * Address:	801066C8
+ * Size:	000040
+ */
+void EnemyBase::viewStartPreCarryMotion()
+{
+	startCarcassMotion();
+	stopMotion();
+}
+
+/*
+ * --INFO--
+ * Address:	8010691C
+ * Size:	000130
+ */
+void EnemyBase::viewOnPelletKilled()
+{
+	if (m_heldPellet != nullptr) {
+		InteractMattuan mattuan = InteractMattuan(this, 2.5f);
+		m_heldPellet->stimulate(mattuan);
+		m_heldPellet = nullptr;
 	}
 
-	/*
-	 * --INFO--
-	 * Address:	80106664
-	 * Size:	000028
-	 */
-	void EnemyBase::setCollEvent(Game::CollEvent & event)
-	{
-		m_collEvent.m_collidingCreature = event.m_collidingCreature;
-		m_collEvent._04                 = event._04;
-		m_collEvent.m_hitPart           = event.m_hitPart;
-		setEvent(0, EB_Collision);
+	m_soundObj->setKilled();
+
+	if (lifeGaugeMgr != nullptr) {
+		lifeGaugeMgr->inactiveLifeGauge(this);
+	}
+	if (shadowMgr != nullptr) {
+		shadowMgr->delShadow(this);
 	}
 
-	/*
-	 * --INFO--
-	 * Address:	8010668C
-	 * Size:	000010
-	 */
-	void EnemyBase::resetCollEvent() { resetEvent(0, EB_Collision); }
+	fadeEffects();
+	m_emotion = EMOTE_None;
 
-	/*
-	 * --INFO--
-	 * Address:	8010669C
-	 * Size:	000004
-	 */
-	void EnemyBase::changeMaterial() { }
-
-	/*
-	 * --INFO--
-	 * Address:	801066A0
-	 * Size:	000008
-	 */
-	SysShape::Model* EnemyBase::viewGetShape() { return m_model; }
-
-	/*
-	 * --INFO--
-	 * Address:	801066A8
-	 * Size:	000020
-	 */
-	void EnemyBase::viewStartCarryMotion() { startMotion(); }
-
-	/*
-	 * --INFO--
-	 * Address:	801066C8
-	 * Size:	000040
-	 */
-	void EnemyBase::viewStartPreCarryMotion()
-	{
-		startCarcassMotion();
-		stopMotion();
+	if (PSGetDirectedMainBgm()) {
+		m_soundObj->battleOff();
 	}
 
-	/*
-	 * --INFO--
-	 * Address:	8010691C
-	 * Size:	000130
-	 */
-	void EnemyBase::viewOnPelletKilled()
-	{
-		if (m_heldPellet != nullptr) {
-			InteractMattuan mattuan = InteractMattuan(this, 2.5f);
-			m_heldPellet->stimulate(mattuan);
-			m_heldPellet = nullptr;
-		}
+	static_cast<PSM::CreatureAnime*>(m_soundObj)->setAnime(nullptr, 1, 0.0f, 0.0f);
+	m_mgr->kill(this);
+}
 
-		m_soundObj->setKilled();
+/*
+ * --INFO--
+ * Address:	80106A4C
+ * Size:	00002C
+ */
+void EnemyBase::view_start_carrymotion() { startCarcassMotion(); }
 
-		if (lifeGaugeMgr != nullptr) {
-			lifeGaugeMgr->inactiveLifeGauge(this);
-		}
-		if (shadowMgr != nullptr) {
-			shadowMgr->delShadow(this);
-		}
+/*
+ * --INFO--
+ * Address:	80106A78
+ * Size:	000040
+ */
+void EnemyBase::view_finish_carrymotion() { m_animator->getAnimator(0).m_flags |= 2; }
 
-		fadeEffects();
-		m_emotion = EMOTE_None;
+/*
+ * --INFO--
+ * Address:	80106AB8
+ * Size:	0000A8
+ */
+void EnemyBase::getCommonEffectPos(Vector3f& commonEffectPos)
+{
+	commonEffectPos = getPosition();
+	commonEffectPos.x += m_commonEffectOffset.x;
+	commonEffectPos.y += m_commonEffectOffset.y;
+	commonEffectPos.z += m_commonEffectOffset.z;
+	commonEffectPos.y += static_cast<EnemyParmsBase*>(m_parms)->m_general.m_fp01.m_value;
+}
 
-		if (PSGetDirectedMainBgm()) {
-			m_soundObj->battleOff();
-		}
+/*
+ * --INFO--
+ * Address:	80106B60
+ * Size:	000040
+ */
+inline void EnemyBase::getWaterSphere(Sys::Sphere* sphere)
+{
+	sphere->m_position.x = m_position.x + m_commonEffectOffset.x;
+	sphere->m_position.y = m_position.y + m_commonEffectOffset.y;
+	sphere->m_position.z = m_position.z + m_commonEffectOffset.z;
+	sphere->m_radius     = static_cast<EnemyParmsBase*>(m_parms)->m_general.m_fp01.m_value;
+}
 
-		static_cast<PSM::CreatureAnime*>(m_soundObj)->setAnime(nullptr, 1, 0.0f, 0.0f);
-		m_mgr->kill(this);
-	}
+/*
+ * --INFO--
+ * Address:	80106BA0
+ * Size:	000148
+ */
+void EnemyBase::updateWaterBox()
+{
+	Sys::Sphere waterSphere;
+	getWaterSphere(&waterSphere);
 
-	/*
-	 * --INFO--
-	 * Address:	80106A4C
-	 * Size:	00002C
-	 */
-	void EnemyBase::view_start_carrymotion() { startCarcassMotion(); }
-
-	/*
-	 * --INFO--
-	 * Address:	80106A78
-	 * Size:	000040
-	 */
-	void EnemyBase::view_finish_carrymotion() { m_animator->getAnimator(0).m_flags |= 2; }
-
-	/*
-	 * --INFO--
-	 * Address:	80106AB8
-	 * Size:	0000A8
-	 */
-	void EnemyBase::getCommonEffectPos(Vector3f & commonEffectPos)
-	{
-		commonEffectPos = getPosition();
-		commonEffectPos.x += m_commonEffectOffset.x;
-		commonEffectPos.y += m_commonEffectOffset.y;
-		commonEffectPos.z += m_commonEffectOffset.z;
-		commonEffectPos.y += static_cast<EnemyParmsBase*>(m_parms)->m_general.m_fp01.m_value;
-	}
-
-	/*
-	 * --INFO--
-	 * Address:	80106B60
-	 * Size:	000040
-	 */
-	inline void EnemyBase::getWaterSphere(Sys::Sphere * sphere)
-	{
-		sphere->m_position.x = m_position.x + m_commonEffectOffset.x;
-		sphere->m_position.y = m_position.y + m_commonEffectOffset.y;
-		sphere->m_position.z = m_position.z + m_commonEffectOffset.z;
-		sphere->m_radius     = static_cast<EnemyParmsBase*>(m_parms)->m_general.m_fp01.m_value;
-	}
-
-	/*
-	 * --INFO--
-	 * Address:	80106BA0
-	 * Size:	000148
-	 */
-	void EnemyBase::updateWaterBox()
-	{
-		Sys::Sphere waterSphere;
-		getWaterSphere(&waterSphere);
-
-		if (m_waterBox != nullptr) {
-			if (!m_waterBox->inWater(waterSphere)) {
-				if (mapMgr != nullptr) {
-					m_waterBox = mapMgr->findWater(waterSphere);
-				}
-				if (m_waterBox == nullptr) {
-					m_waterBox = nullptr;
-					outWaterCallback();
-					fadeEfxHamon();
-				}
-			}
-			updateEfxHamon();
-		} else {
-			WaterBox* waterBox = nullptr;
+	if (m_waterBox != nullptr) {
+		if (!m_waterBox->inWater(waterSphere)) {
 			if (mapMgr != nullptr) {
-				waterBox = mapMgr->findWater(waterSphere);
+				m_waterBox = mapMgr->findWater(waterSphere);
 			}
-			if (waterBox != nullptr) {
-				m_waterBox = waterBox;
-				inWaterCallback(waterBox);
-				createEfxHamon();
+			if (m_waterBox == nullptr) {
+				m_waterBox = nullptr;
+				outWaterCallback();
+				fadeEfxHamon();
 			}
+		}
+		updateEfxHamon();
+	} else {
+		WaterBox* waterBox = nullptr;
+		if (mapMgr != nullptr) {
+			waterBox = mapMgr->findWater(waterSphere);
+		}
+		if (waterBox != nullptr) {
+			m_waterBox = waterBox;
+			inWaterCallback(waterBox);
+			createEfxHamon();
 		}
 	}
+}
 
-	/*
-	 * --INFO--
-	 * Address:	80106CF0
-	 * Size:	00027C
-	 */
-	PSM::EnemyBase* EnemyBase::createPSEnemyBase()
-	{
-		PSM::EnemyBase* base = nullptr;
+/*
+ * --INFO--
+ * Address:	80106CF0
+ * Size:	00027C
+ */
+PSM::EnemyBase* EnemyBase::createPSEnemyBase()
+{
+	PSM::EnemyBase* base = nullptr;
 
-		if (getEnemyTypeID() == EnemyTypeID::EnemyID_KumaChappy || getEnemyTypeID() == EnemyTypeID::EnemyID_FireChappy) {
-			base = new PSM::Enemy_SpecialChappy(this, 4);
-			return base;
-		} else {
-			EnemyInfo* info = EnemyInfoFunc::getEnemyInfo(getEnemyTypeID(), 0xFFFF);
-
-			switch (info->m_bitterDrops) {
-			case BDT_Weak:
-				base = new PSM::EnemyHekoi(this, 2);
-				break;
-			case BDT_Normal:
-				base = new PSM::EnemyBase(this, 3);
-				break;
-			case BDT_Strong:
-				base = new PSM::EnemyBig(this, 4);
-				break;
-			case BDT_Triple:
-				JUT_PANICLINE(4392, "abolished type\n");
-				break;
-			case BDT_Empty:
-				base = new PSM::EnemyMidBoss(this);
-				break;
-			case BDT_Boss:
-				base = new PSM::EnemyBigBoss(this);
-				break;
-			case BDT_FinalBoss:
-				base = new PSM::EnemyNotAggressive(this, 2);
-				break;
-			}
-		}
+	if (getEnemyTypeID() == EnemyTypeID::EnemyID_KumaChappy || getEnemyTypeID() == EnemyTypeID::EnemyID_FireChappy) {
+		base = new PSM::Enemy_SpecialChappy(this, 4);
 		return base;
-	}
+	} else {
+		EnemyInfo* info = EnemyInfoFunc::getEnemyInfo(getEnemyTypeID(), 0xFFFF);
 
-	/*
-	 * --INFO--
-	 * Address:	80107204
-	 * Size:	00001C
-	 */
-	void EnemyBase::startMotion()
-	{
-		EnemyAnimatorBase* animator = m_animator;
-		animator->m_flags.typeView &= ~0x3;
-		animator->m_progress = 1.0f;
-	}
-
-	/*
-	 * --INFO--
-	 * Address:	80107220
-	 * Size:	000058
-	 */
-	float EnemyBase::getMotionFrameMax() { return m_animator->getAnimator().m_animInfo->m_anm->m_time; }
-
-	/*
-	 * --INFO--
-	 * Address:	80107278
-	 * Size:	000068
-	 */
-	float EnemyBase::getFirstKeyFrame()
-	{
-		SysShape::Animator animator = m_animator->getAnimator();
-		CNode* node                 = animator.m_animInfo->m_keyEvent.m_child;
-		if (node != nullptr) {
-			return (s32) static_cast<SysShape::KeyEvent*>(node)->m_frame;
-		}
-		return 0.0f;
-	}
-
-	/*
-	 * --INFO--
-	 * Address:	801072E0
-	 * Size:	000020
-	 */
-	void EnemyBase::stopMotion()
-	{
-		EnemyAnimatorBase* animator = m_animator;
-		animator->m_flags.typeView &= ~0x4;
-		animator->m_flags.typeView |= 1;
-	}
-
-	/*
-	 * --INFO--
-	 * Address:	80107300
-	 * Size:	000038
-	 */
-	bool EnemyBase::isFinishMotion() { return m_animator->getAnimator().m_flags >> 1 & 1; }
-
-	/*
-	 * --INFO--
-	 * Address:	80107338
-	 * Size:	000010
-	 */
-	bool EnemyBase::isStopMotion() { return m_animator->m_flags.typeView & 1; }
-
-	/*
-	 * --INFO--
-	 * Address:	80107348
-	 * Size:	000048
-	 */
-	int EnemyBase::getCurrAnimIndex()
-	{
-		SysShape::Animator animator = m_animator->getAnimator();
-		if (animator.m_animInfo != nullptr) {
-			return animator.m_animInfo->m_id;
-		}
-		return -1;
-	}
-
-	/*
-	 * --INFO--
-	 * Address:	80107390
-	 * Size:	00000C
-	 */
-	void EnemyBase::setAnimSpeed(float speed) { m_animator->m_animSpeed = speed; }
-
-	/*
-	 * --INFO--
-	 * Address:	8010739C
-	 * Size:	000030
-	 */
-	void EnemyBase::resetAnimSpeed() { m_animator->resetAnimSpeed(); }
-
-	/*
-	 * --INFO--
-	 * Address:	801073D8
-	 * Size:	000014
-	 */
-	JAInter::Object* EnemyBase::getJAIObject() { return static_cast<JAInter::Object*>(m_soundObj); }
-
-	/*
-	 * --INFO--
-	 * Address:	801073EC
-	 * Size:	000008
-	 */
-	PSM::Creature* EnemyBase::getPSCreature() { return static_cast<PSM::Creature*>(m_soundObj); }
-
-	/*
-	 * --INFO--
-	 * Address:	801073F4
-	 * Size:	00001C
-	 */
-	int EnemyBase::getStateID()
-	{
-		if (m_currentLifecycleState != nullptr) {
-			return m_currentLifecycleState->m_stateID;
-		}
-		return -1;
-	}
-
-	/*
-	 * --INFO--
-	 * Address:	80107410
-	 * Size:	0000AC
-	 */
-	bool EnemyBase::needShadow()
-	{
-		if (moviePlayer != nullptr && moviePlayer->m_flags & 1) {
-			bool needShadow = false;
-			if (isMovieActor() || m_mgr->isAlwaysMovieActor()) {
-				needShadow = true;
-			}
-			return needShadow;
-		} else {
-			bool needShadow = false;
-			if (m_lod.m_flags & AILOD::FLAG_NEED_SHADOW && !(isEvent(0, EB_31))) {
-				needShadow = true;
-			}
-			return needShadow;
+		switch (info->m_bitterDrops) {
+		case BDT_Weak:
+			base = new PSM::EnemyHekoi(this, 2);
+			break;
+		case BDT_Normal:
+			base = new PSM::EnemyBase(this, 3);
+			break;
+		case BDT_Strong:
+			base = new PSM::EnemyBig(this, 4);
+			break;
+		case BDT_Triple:
+			JUT_PANICLINE(4392, "abolished type\n");
+			break;
+		case BDT_Empty:
+			base = new PSM::EnemyMidBoss(this);
+			break;
+		case BDT_Boss:
+			base = new PSM::EnemyBigBoss(this);
+			break;
+		case BDT_FinalBoss:
+			base = new PSM::EnemyNotAggressive(this, 2);
+			break;
 		}
 	}
+	return base;
+}
 
-	/*
-	 * --INFO--
-	 * Address:	801074D0
-	 * Size:	000234
-	 */
-	// WIP: https://decomp.me/scratch/fauDT
-	bool EnemyBase::eatWhitePikminCallBack(Game::Creature*, float)
-	{
-		/*
-		.loc_0x0:
-		    stwu      r1, -0xB0(r1)
-		    mflr      r0
-		    stw       r0, 0xB4(r1)
-		    stmw      r27, 0x9C(r1)
-		    mr        r29, r3
-		    lwz       r0, 0x1E0(r3)
-		    rlwinm.   r0,r0,0,31,31
-		    bne-      .loc_0x54
-		    lfs       f0, 0x208(r29)
-		    fadds     f0, f0, f1
-		    stfs      f0, 0x208(r29)
-		    lwz       r0, 0x1E0(r29)
-		    rlwinm.   r0,r0,0,26,26
-		    beq-      .loc_0x48
-		    lfs       f1, 0x20C(r29)
-		    lfs       f0, -0x6BB0(r2)
-		    fadds     f0, f1, f0
-		    stfs      f0, 0x20C(r29)
+/*
+ * --INFO--
+ * Address:	80107204
+ * Size:	00001C
+ */
+void EnemyBase::startMotion()
+{
+	EnemyAnimatorBase* animator = m_animator;
+	animator->m_flags.typeView &= ~0x3;
+	animator->m_progress = 1.0f;
+}
 
-		.loc_0x48:
-		    lwz       r0, 0x1E0(r29)
-		    ori       r0, r0, 0x2
-		    stw       r0, 0x1E0(r29)
+/*
+ * --INFO--
+ * Address:	80107220
+ * Size:	000058
+ */
+float EnemyBase::getMotionFrameMax() { return m_animator->getAnimator().m_animInfo->m_anm->m_time; }
 
-		.loc_0x54:
-		    lwz       r3, 0x1E0(r29)
-		    rlwinm.   r0,r3,0,17,17
-		    bne-      .loc_0x21C
-		    ori       r0, r3, 0x4000
-		    lis       r3, 0x804B
-		    stw       r0, 0x1E0(r29)
-		    subi      r28, r3, 0x5E2C
-		    li        r30, 0
-		    li        r31, 0
-		    lwz       r3, -0x6514(r13)
-		    lfs       f0, 0x54(r3)
-		    stfs      f0, 0x210(r29)
-		    b         .loc_0x1EC
-
-		.loc_0x88:
-		    addi      r3, r1, 0x50
-		    li        r4, 0
-		    bl        0x21F20
-		    lwz       r4, 0x24C(r29)
-		    lwz       r3, 0x174(r29)
-		    lwz       r4, 0x18(r4)
-		    lwz       r0, 0x4(r4)
-		    add       r27, r0, r31
-		    lwz       r4, 0x0(r27)
-		    bl        0x337A68
-		    bl        0x322320
-		    stw       r3, 0x94(r1)
-		    addi      r3, r1, 0x50
-		    addi      r4, r1, 0x30
-		    addi      r5, r1, 0x8
-		    stw       r27, 0x90(r1)
-		    bl        0x22134
-		    rlwinm.   r0,r3,0,24,31
-		    beq-      .loc_0x1D4
-		    lwz       r7, 0x30(r1)
-		    lis       r4, 0x804B
-		    lwz       r6, 0x34(r1)
-		    lis       r3, 0x804B
-		    lwz       r5, 0x38(r1)
-		    subi      r4, r4, 0x5814
-		    lfs       f0, 0x1F8(r29)
-		    subi      r0, r3, 0x5D24
-		    lfs       f1, 0x8(r1)
-		    stw       r7, 0xC(r1)
-		    fmuls     f3, f1, f0
-		    lwz       r3, 0x90(r1)
-		    stw       r6, 0x10(r1)
-		    lfs       f2, 0xC(r1)
-		    stw       r5, 0x14(r1)
-		    lfs       f1, 0x10(r1)
-		    stw       r4, 0x3C(r1)
-		    lfs       f0, 0x14(r1)
-		    stfs      f3, 0x8(r1)
-		    stfs      f2, 0x40(r1)
-		    stfs      f1, 0x44(r1)
-		    stfs      f0, 0x48(r1)
-		    stw       r0, 0x3C(r1)
-		    stfs      f3, 0x4C(r1)
-		    lwz       r0, 0x4(r3)
-		    cmpwi     r0, 0x1
-		    beq-      .loc_0x194
-		    bge-      .loc_0x1D4
-		    cmpwi     r0, 0
-		    bge-      .loc_0x150
-		    b         .loc_0x1D4
-
-		.loc_0x150:
-		    lis       r3, 0x804B
-		    lis       r4, 0x804E
-		    subi      r0, r3, 0x5808
-		    lis       r3, 0x804F
-		    stw       r0, 0x24(r1)
-		    addi      r0, r4, 0x6A78
-		    li        r6, 0x22E
-		    li        r5, 0
-		    stw       r0, 0x24(r1)
-		    subi      r0, r3, 0x7914
-		    addi      r3, r1, 0x24
-		    addi      r4, r1, 0x3C
-		    sth       r6, 0x28(r1)
-		    stw       r5, 0x2C(r1)
-		    stw       r0, 0x24(r1)
-		    bl        0x2C044C
-		    b         .loc_0x1D4
-
-		.loc_0x194:
-		    lis       r3, 0x804B
-		    lis       r4, 0x804E
-		    subi      r0, r3, 0x5808
-		    lis       r3, 0x804F
-		    stw       r0, 0x18(r1)
-		    addi      r0, r4, 0x6A78
-		    li        r6, 0x22F
-		    li        r5, 0
-		    stw       r0, 0x18(r1)
-		    subi      r0, r3, 0x7928
-		    addi      r3, r1, 0x18
-		    addi      r4, r1, 0x3C
-		    sth       r6, 0x1C(r1)
-		    stw       r5, 0x20(r1)
-		    stw       r0, 0x18(r1)
-		    bl        0x2C04E4
-
-		.loc_0x1D4:
-		    stw       r28, 0x50(r1)
-		    addi      r3, r1, 0x50
-		    li        r4, 0
-		    bl        0x309ED8
-		    addi      r31, r31, 0x38
-		    addi      r30, r30, 0x1
-
-		.loc_0x1EC:
-		    lwz       r3, 0x24C(r29)
-		    lwz       r3, 0x18(r3)
-		    lbz       r0, 0x0(r3)
-		    cmpw      r30, r0
-		    blt+      .loc_0x88
-		    lwz       r3, 0x28C(r29)
-		    li        r4, 0x5807
-		    li        r5, 0
-		    lwz       r12, 0x28(r3)
-		    lwz       r12, 0x88(r12)
-		    mtctr     r12
-		    bctrl
-
-		.loc_0x21C:
-		    lmw       r27, 0x9C(r1)
-		    li        r3, 0x1
-		    lwz       r0, 0xB4(r1)
-		    mtlr      r0
-		    addi      r1, r1, 0xB0
-		    blr
-		*/
+/*
+ * --INFO--
+ * Address:	80107278
+ * Size:	000068
+ */
+float EnemyBase::getFirstKeyFrame()
+{
+	SysShape::Animator animator = m_animator->getAnimator();
+	CNode* node                 = animator.m_animInfo->m_keyEvent.m_child;
+	if (node != nullptr) {
+		return (s32) static_cast<SysShape::KeyEvent*>(node)->m_frame;
 	}
+	return 0.0f;
+}
 
-	/*
-	 * --INFO--
-	 * Address:	80107764
-	 * Size:	000008
-	 */
-	float EnemyBase::getDownSmokeScale() { return 0.0f; }
+/*
+ * --INFO--
+ * Address:	801072E0
+ * Size:	000020
+ */
+void EnemyBase::stopMotion()
+{
+	EnemyAnimatorBase* animator = m_animator;
+	animator->m_flags.typeView &= ~0x4;
+	animator->m_flags.typeView |= 1;
+}
 
-	/*
-	 * --INFO--
-	 * Address:	8010776C
-	 * Size:	000010
-	 */
-	void EnemyBase::constraintOff() { resetEvent(0, EB_Constraint); }
+/*
+ * --INFO--
+ * Address:	80107300
+ * Size:	000038
+ */
+bool EnemyBase::isFinishMotion() { return m_animator->getAnimator().m_flags >> 1 & 1; }
 
-	/*
-	 * --INFO--
-	 * Address:	8010777C
-	 * Size:	000018
-	 */
-	void EnemyBase::hardConstraintOn()
-	{
-		setEvent(0, EB_HardConstraint);
-		_118 = 0.0f;
+/*
+ * --INFO--
+ * Address:	80107338
+ * Size:	000010
+ */
+bool EnemyBase::isStopMotion() { return m_animator->m_flags.typeView & 1; }
+
+/*
+ * --INFO--
+ * Address:	80107348
+ * Size:	000048
+ */
+int EnemyBase::getCurrAnimIndex()
+{
+	SysShape::Animator animator = m_animator->getAnimator();
+	if (animator.m_animInfo != nullptr) {
+		return animator.m_animInfo->m_id;
 	}
+	return -1;
+}
 
-	/*
-	 * --INFO--
-	 * Address:	80107794
-	 * Size:	000028
-	 */
-	void EnemyBase::hardConstraintOff()
-	{
-		resetEvent(0, EB_HardConstraint);
-		_118   = m_friction;
-		_11C.x = 0.0f;
-		_11C.y = 0.0f;
-		_11C.z = 0.0f;
+/*
+ * --INFO--
+ * Address:	80107390
+ * Size:	00000C
+ */
+void EnemyBase::setAnimSpeed(float speed) { m_animator->m_animSpeed = speed; }
+
+/*
+ * --INFO--
+ * Address:	8010739C
+ * Size:	000030
+ */
+void EnemyBase::resetAnimSpeed() { m_animator->resetAnimSpeed(); }
+
+/*
+ * --INFO--
+ * Address:	801073D8
+ * Size:	000014
+ */
+JAInter::Object* EnemyBase::getJAIObject() { return static_cast<JAInter::Object*>(m_soundObj); }
+
+/*
+ * --INFO--
+ * Address:	801073EC
+ * Size:	000008
+ */
+PSM::Creature* EnemyBase::getPSCreature() { return static_cast<PSM::Creature*>(m_soundObj); }
+
+/*
+ * --INFO--
+ * Address:	801073F4
+ * Size:	00001C
+ */
+int EnemyBase::getStateID()
+{
+	if (m_currentLifecycleState != nullptr) {
+		return m_currentLifecycleState->m_stateID;
 	}
+	return -1;
+}
 
-	/*
-	 * --INFO--
-	 * Address:	801077BC
-	 * Size:	000084
-	 */
-	void EnemyBase::startMovie()
-	{
-		if (m_lifecycleFSM->getCurrID(this) >= 5) {
-			fadeEffects();
-			doStartMovie();
+/*
+ * --INFO--
+ * Address:	80107410
+ * Size:	0000AC
+ */
+bool EnemyBase::needShadow()
+{
+	if (moviePlayer != nullptr && moviePlayer->m_flags & 1) {
+		bool needShadow = false;
+		if (isMovieActor() || m_mgr->isAlwaysMovieActor()) {
+			needShadow = true;
 		}
-	}
-
-	/*
-	 * --INFO--
-	 * Address:	80107844
-	 * Size:	000084
-	 */
-	void EnemyBase::endMovie()
-	{
-		if (m_lifecycleFSM->getCurrID(this) >= 5) {
-			createEffects();
-			doEndMovie();
+		return needShadow;
+	} else {
+		bool needShadow = false;
+		if (m_lod.m_flags & AILOD::FLAG_NEED_SHADOW && !(isEvent(0, EB_31))) {
+			needShadow = true;
 		}
+		return needShadow;
 	}
+}
 
+/*
+ * --INFO--
+ * Address:	801074D0
+ * Size:	000234
+ */
+// WIP: https://decomp.me/scratch/fauDT
+bool EnemyBase::eatWhitePikminCallBack(Game::Creature*, float)
+{
 	/*
-	 * --INFO--
-	 * Address:	801078C8
-	 * Size:	000004
-	 */
-	// WEAK - in header
-	// void EnemyBase::doEndMovie() { }
+	.loc_0x0:
+	    stwu      r1, -0xB0(r1)
+	    mflr      r0
+	    stw       r0, 0xB4(r1)
+	    stmw      r27, 0x9C(r1)
+	    mr        r29, r3
+	    lwz       r0, 0x1E0(r3)
+	    rlwinm.   r0,r0,0,31,31
+	    bne-      .loc_0x54
+	    lfs       f0, 0x208(r29)
+	    fadds     f0, f0, f1
+	    stfs      f0, 0x208(r29)
+	    lwz       r0, 0x1E0(r29)
+	    rlwinm.   r0,r0,0,26,26
+	    beq-      .loc_0x48
+	    lfs       f1, 0x20C(r29)
+	    lfs       f0, -0x6BB0(r2)
+	    fadds     f0, f1, f0
+	    stfs      f0, 0x20C(r29)
 
-	/*
-	 * --INFO--
-	 * Address:	801078CC
-	 * Size:	000094
-	 */
-	void EnemyBase::doStartEarthquakeState(float param_1)
-	{
-		m_velocity2.x = 0.0f;
-		m_velocity2.y = 0.0f;
-		m_velocity2.z = 0.0f;
+	.loc_0x48:
+	    lwz       r0, 0x1E0(r29)
+	    ori       r0, r0, 0x2
+	    stw       r0, 0x1E0(r29)
 
-		m_velocity.x = 0.0f;
-		m_velocity.y = 0.0f;
-		m_velocity.z = 0.0f;
+	.loc_0x54:
+	    lwz       r3, 0x1E0(r29)
+	    rlwinm.   r0,r3,0,17,17
+	    bne-      .loc_0x21C
+	    ori       r0, r3, 0x4000
+	    lis       r3, 0x804B
+	    stw       r0, 0x1E0(r29)
+	    subi      r28, r3, 0x5E2C
+	    li        r30, 0
+	    li        r31, 0
+	    lwz       r3, -0x6514(r13)
+	    lfs       f0, 0x54(r3)
+	    stfs      f0, 0x210(r29)
+	    b         .loc_0x1EC
 
-		m_velocity.y = (param_1 * 200.0f + randFloat() * 100.0f);
-	};
+	.loc_0x88:
+	    addi      r3, r1, 0x50
+	    li        r4, 0
+	    bl        0x21F20
+	    lwz       r4, 0x24C(r29)
+	    lwz       r3, 0x174(r29)
+	    lwz       r4, 0x18(r4)
+	    lwz       r0, 0x4(r4)
+	    add       r27, r0, r31
+	    lwz       r4, 0x0(r27)
+	    bl        0x337A68
+	    bl        0x322320
+	    stw       r3, 0x94(r1)
+	    addi      r3, r1, 0x50
+	    addi      r4, r1, 0x30
+	    addi      r5, r1, 0x8
+	    stw       r27, 0x90(r1)
+	    bl        0x22134
+	    rlwinm.   r0,r3,0,24,31
+	    beq-      .loc_0x1D4
+	    lwz       r7, 0x30(r1)
+	    lis       r4, 0x804B
+	    lwz       r6, 0x34(r1)
+	    lis       r3, 0x804B
+	    lwz       r5, 0x38(r1)
+	    subi      r4, r4, 0x5814
+	    lfs       f0, 0x1F8(r29)
+	    subi      r0, r3, 0x5D24
+	    lfs       f1, 0x8(r1)
+	    stw       r7, 0xC(r1)
+	    fmuls     f3, f1, f0
+	    lwz       r3, 0x90(r1)
+	    stw       r6, 0x10(r1)
+	    lfs       f2, 0xC(r1)
+	    stw       r5, 0x14(r1)
+	    lfs       f1, 0x10(r1)
+	    stw       r4, 0x3C(r1)
+	    lfs       f0, 0x14(r1)
+	    stfs      f3, 0x8(r1)
+	    stfs      f2, 0x40(r1)
+	    stfs      f1, 0x44(r1)
+	    stfs      f0, 0x48(r1)
+	    stw       r0, 0x3C(r1)
+	    stfs      f3, 0x4C(r1)
+	    lwz       r0, 0x4(r3)
+	    cmpwi     r0, 0x1
+	    beq-      .loc_0x194
+	    bge-      .loc_0x1D4
+	    cmpwi     r0, 0
+	    bge-      .loc_0x150
+	    b         .loc_0x1D4
 
-	/*
-	 * --INFO--
-	 * Address:	80107960
-	 * Size:	000004
-	 */
-	void EnemyBase::doFinishEarthquakeState() { }
+	.loc_0x150:
+	    lis       r3, 0x804B
+	    lis       r4, 0x804E
+	    subi      r0, r3, 0x5808
+	    lis       r3, 0x804F
+	    stw       r0, 0x24(r1)
+	    addi      r0, r4, 0x6A78
+	    li        r6, 0x22E
+	    li        r5, 0
+	    stw       r0, 0x24(r1)
+	    subi      r0, r3, 0x7914
+	    addi      r3, r1, 0x24
+	    addi      r4, r1, 0x3C
+	    sth       r6, 0x28(r1)
+	    stw       r5, 0x2C(r1)
+	    stw       r0, 0x24(r1)
+	    bl        0x2C044C
+	    b         .loc_0x1D4
 
-	/*
-	 * --INFO--
-	 * Address:	80107964
-	 * Size:	000004
-	 */
-	void EnemyBase::doStartEarthquakeFitState() { }
+	.loc_0x194:
+	    lis       r3, 0x804B
+	    lis       r4, 0x804E
+	    subi      r0, r3, 0x5808
+	    lis       r3, 0x804F
+	    stw       r0, 0x18(r1)
+	    addi      r0, r4, 0x6A78
+	    li        r6, 0x22F
+	    li        r5, 0
+	    stw       r0, 0x18(r1)
+	    subi      r0, r3, 0x7928
+	    addi      r3, r1, 0x18
+	    addi      r4, r1, 0x3C
+	    sth       r6, 0x1C(r1)
+	    stw       r5, 0x20(r1)
+	    stw       r0, 0x18(r1)
+	    bl        0x2C04E4
 
-	/*
-	 * --INFO--
-	 * Address:	80107968
-	 * Size:	000004
-	 */
-	void EnemyBase::doFinishEarthquakeFitState() { }
+	.loc_0x1D4:
+	    stw       r28, 0x50(r1)
+	    addi      r3, r1, 0x50
+	    li        r4, 0
+	    bl        0x309ED8
+	    addi      r31, r31, 0x38
+	    addi      r30, r30, 0x1
 
-	/*
-	 * --INFO--
-	 * Address:	8010796C
-	 * Size:	00002C
-	 */
-	void EnemyBase::startWaitingBirthTypeDrop() { doStartWaitingBirthTypeDrop(); }
+	.loc_0x1EC:
+	    lwz       r3, 0x24C(r29)
+	    lwz       r3, 0x18(r3)
+	    lbz       r0, 0x0(r3)
+	    cmpw      r30, r0
+	    blt+      .loc_0x88
+	    lwz       r3, 0x28C(r29)
+	    li        r4, 0x5807
+	    li        r5, 0
+	    lwz       r12, 0x28(r3)
+	    lwz       r12, 0x88(r12)
+	    mtctr     r12
+	    bctrl
 
-	/*
-	 * --INFO--
-	 * Address:	80107998
-	 * Size:	000004
-	 */
-	void EnemyBase::doStartWaitingBirthTypeDrop() { }
+	.loc_0x21C:
+	    lmw       r27, 0x9C(r1)
+	    li        r3, 0x1
+	    lwz       r0, 0xB4(r1)
+	    mtlr      r0
+	    addi      r1, r1, 0xB0
+	    blr
+	*/
+}
 
-	/*
-	 * --INFO--
-	 * Address:	8010799C
-	 * Size:	00002C
-	 */
-	void EnemyBase::finishWaitingBirthTypeDrop() { doFinishWaitingBirthTypeDrop(); }
+/*
+ * --INFO--
+ * Address:	80107764
+ * Size:	000008
+ */
+float EnemyBase::getDownSmokeScale() { return 0.0f; }
 
-	/*
-	 * --INFO--
-	 * Address:	801079C8
-	 * Size:	000064
-	 */
-	void EnemyBase::doFinishWaitingBirthTypeDrop()
-	{
-		if (!isFlying()) {
-			setEvent(1, EB2_5);
-			setDroppingMassZero();
-			m_scale.x = 1.0f;
-			m_scale.y = 1.0f;
-			m_scale.z = 1.0f;
-		}
+/*
+ * --INFO--
+ * Address:	8010776C
+ * Size:	000010
+ */
+void EnemyBase::constraintOff() { resetEvent(0, EB_Constraint); }
+
+/*
+ * --INFO--
+ * Address:	8010777C
+ * Size:	000018
+ */
+void EnemyBase::hardConstraintOn()
+{
+	setEvent(0, EB_HardConstraint);
+	_118 = 0.0f;
+}
+
+/*
+ * --INFO--
+ * Address:	80107794
+ * Size:	000028
+ */
+void EnemyBase::hardConstraintOff()
+{
+	resetEvent(0, EB_HardConstraint);
+	_118   = m_friction;
+	_11C.x = 0.0f;
+	_11C.y = 0.0f;
+	_11C.z = 0.0f;
+}
+
+/*
+ * --INFO--
+ * Address:	801077BC
+ * Size:	000084
+ */
+void EnemyBase::startMovie()
+{
+	if (m_lifecycleFSM->getCurrID(this) >= 5) {
+		fadeEffects();
+		doStartMovie();
 	}
+}
 
-	/*
-	 * --INFO--
-	 * Address:	80107A2C
-	 * Size:	00003C
-	 */
-	bool EnemyBase::isBirthTypeDropGroup()
-	{
-		return (m_dropGroup == 1 || m_dropGroup == 2 || m_dropGroup == 3 || m_dropGroup == 4 || m_dropGroup == 5);
+/*
+ * --INFO--
+ * Address:	80107844
+ * Size:	000084
+ */
+void EnemyBase::endMovie()
+{
+	if (m_lifecycleFSM->getCurrID(this) >= 5) {
+		createEffects();
+		doEndMovie();
 	}
+}
 
-	/*
-	 * --INFO--
-	 * Address:	80107A68
-	 * Size:	000008
-	 */
-	Vector3f* EnemyBase::getFitEffectPos() { return &m_boundingSphere.m_position; }
+/*
+ * --INFO--
+ * Address:	801078C8
+ * Size:	000004
+ */
+// WEAK - in header
+// void EnemyBase::doEndMovie() { }
 
-	/*
-	 * --INFO--
-	 * Address:	80107A70
-	 * Size:	000018
-	 */
-	void EnemyBase::setDroppingMassZero()
-	{
-		setEvent(1, EB2_DroppingMassZero);
-		_118 = 0.0f;
+/*
+ * --INFO--
+ * Address:	801078CC
+ * Size:	000094
+ */
+void EnemyBase::doStartEarthquakeState(float param_1)
+{
+	m_velocity2.x = 0.0f;
+	m_velocity2.y = 0.0f;
+	m_velocity2.z = 0.0f;
+
+	m_velocity.x = 0.0f;
+	m_velocity.y = 0.0f;
+	m_velocity.z = 0.0f;
+
+	m_velocity.y = (param_1 * 200.0f + randFloat() * 100.0f);
+};
+
+/*
+ * --INFO--
+ * Address:	80107960
+ * Size:	000004
+ */
+void EnemyBase::doFinishEarthquakeState() { }
+
+/*
+ * --INFO--
+ * Address:	80107964
+ * Size:	000004
+ */
+void EnemyBase::doStartEarthquakeFitState() { }
+
+/*
+ * --INFO--
+ * Address:	80107968
+ * Size:	000004
+ */
+void EnemyBase::doFinishEarthquakeFitState() { }
+
+/*
+ * --INFO--
+ * Address:	8010796C
+ * Size:	00002C
+ */
+void EnemyBase::startWaitingBirthTypeDrop() { doStartWaitingBirthTypeDrop(); }
+
+/*
+ * --INFO--
+ * Address:	80107998
+ * Size:	000004
+ */
+void EnemyBase::doStartWaitingBirthTypeDrop() { }
+
+/*
+ * --INFO--
+ * Address:	8010799C
+ * Size:	00002C
+ */
+void EnemyBase::finishWaitingBirthTypeDrop() { doFinishWaitingBirthTypeDrop(); }
+
+/*
+ * --INFO--
+ * Address:	801079C8
+ * Size:	000064
+ */
+void EnemyBase::doFinishWaitingBirthTypeDrop()
+{
+	if (!isFlying()) {
+		setEvent(1, EB2_5);
+		setDroppingMassZero();
+		m_scale.x = 1.0f;
+		m_scale.y = 1.0f;
+		m_scale.z = 1.0f;
 	}
+}
 
-	/*
-	 * --INFO--
-	 * Address:	80107A88
-	 * Size:	000018
-	 */
-	void EnemyBase::resetDroppingMassZero()
-	{
-		resetEvent(1, EB2_DroppingMassZero);
-		_118 = m_friction;
-	}
+/*
+ * --INFO--
+ * Address:	80107A2C
+ * Size:	00003C
+ */
+bool EnemyBase::isBirthTypeDropGroup()
+{
+	return (m_dropGroup == 1 || m_dropGroup == 2 || m_dropGroup == 3 || m_dropGroup == 4 || m_dropGroup == 5);
+}
+
+/*
+ * --INFO--
+ * Address:	80107A68
+ * Size:	000008
+ */
+Vector3f* EnemyBase::getFitEffectPos() { return &m_boundingSphere.m_position; }
+
+/*
+ * --INFO--
+ * Address:	80107A70
+ * Size:	000018
+ */
+void EnemyBase::setDroppingMassZero()
+{
+	setEvent(1, EB2_DroppingMassZero);
+	_118 = 0.0f;
+}
+
+/*
+ * --INFO--
+ * Address:	80107A88
+ * Size:	000018
+ */
+void EnemyBase::resetDroppingMassZero()
+{
+	resetEvent(1, EB2_DroppingMassZero);
+	_118 = m_friction;
+}
 } // namespace Game
 
 /*

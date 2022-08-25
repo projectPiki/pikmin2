@@ -81,16 +81,13 @@ template <typename T> struct Vector3 {
 	//     newVector.z *= other;
 	//     return newVector;
 	// }
-	// inline void operator*=(const float other) {
-	//     this->x *= other;
-	//     this->y *= other;
-	//     this->z *= other;
-	// }
-	// inline void operator+=(const Vector3& other) {
-	//     this->x += other.x;
-	//     this->y += other.y;
-	//     this->z += other.z;
-	// }
+	inline void operator*=(const float other) { *this = Vector3(x * other, y * other, z * other); }
+	inline void operator+=(const Vector3& other)
+	{
+		this->x += other.x;
+		this->y += other.y;
+		this->z += other.z;
+	}
 	inline T distance(Vector3<T>&);
 	float length() const;
 	float normalise();
