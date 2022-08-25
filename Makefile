@@ -145,6 +145,7 @@ $(BUILD_DIR)/src/Dolphin/db.o: MWCC_VERSION := 1.2.5
 $(BUILD_DIR)/src/Dolphin/OSAudioSystem.o: MWCC_VERSION := 1.2.5
 $(BUILD_DIR)/src/Dolphin/OSAlloc.o: MWCC_VERSION := 1.2.5
 $(BUILD_DIR)/src/Dolphin/OS.o: MWCC_VERSION := 1.2.5
+$(BUILD_DIR)/src/Dolphin/OSCache.o: MWCC_VERSION := 1.2.5
 
 # Dirty hack to overwrite sdata
 # It seems TRK-related files need -sdata 0
@@ -158,6 +159,7 @@ $(BUILD_DIR)/src/Dolphin/SISamplingRate.o: CFLAGS += -str noreadonly
 $(BUILD_DIR)/src/Dolphin/fstload.o: CFLAGS += -str noreadonly
 $(BUILD_DIR)/src/Dolphin/db.o: CFLAGS += -str noreadonly
 $(BUILD_DIR)/src/Dolphin/OS.o: CFLAGS += -str noreadonly
+$(BUILD_DIR)/src/Dolphin/OSCache.o: CFLAGS += -str noreadonly
 $(BUILD_DIR)/src/Dolphin/GBA.o: CFLAGS += -str noreadonly
 
 # This is inline-deferred for some reason

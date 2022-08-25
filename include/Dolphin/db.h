@@ -20,4 +20,6 @@ void DBInit(void);
 void DBInitComm(int* inputFlagPtr, int* mtrCallback);
 static void __DBExceptionDestination(void);
 
+void DBPrintf(const char* format, ...);
+
 #endif

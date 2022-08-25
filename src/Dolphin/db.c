@@ -98,4 +98,4 @@ void __DBSetPresent(void)
  * Size:	000050
  */
 
-void DBPrintf(char*, ...) { }
+void DBPrintf(const char*, ...) { }

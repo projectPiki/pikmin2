@@ -2,12 +2,17 @@
 #define _DOLPHIN_OS_H
 
 #include "types.h"
+#include "Dolphin/PPCArch.h"
 
 #ifdef __cplusplus
 extern "C" {
 #endif // ifdef __cplusplus
 
 #define OSCachedToPhysical(paddr) ((void*)((u32)(paddr) + 0x80000000))
+
+#define OS_CACHED_REGION_PREFIX   0x8000
+#define OS_UNCACHED_REGION_PREFIX 0xC000
+#define OS_PHYSICAL_MASK          0x3FFF
 
 // __ppc_eabi_init
 extern void __OSPSInit();
@@ -17,6 +22,27 @@ extern void __OSCacheInit();
 // OS logging
 void OSReport(const char*, ...);
 void OSPanic(const char* file, int line, const char* message, ...);
+
+typedef u16 OSError;
+
+#define OS_ERROR_SYSTEM_RESET       0
+#define OS_ERROR_MACHINE_CHECK      1
+#define OS_ERROR_DSI                2
+#define OS_ERROR_ISI                3
+#define OS_ERROR_EXTERNAL_INTERRUPT 4
+#define OS_ERROR_ALIGNMENT          5
+#define OS_ERROR_PROGRAM            6
+#define OS_ERROR_FLOATING_POINT     7
+#define OS_ERROR_DECREMENTER        8
+#define OS_ERROR_SYSTEM_CALL        9
+#define OS_ERROR_TRACE              10
+#define OS_ERROR_PERFORMACE_MONITOR 11
+#define OS_ERROR_BREAKPOINT         12
+#define OS_ERROR_SYSTEM_INTERRUPT   13
+#define OS_ERROR_THERMAL_INTERRUPT  14
+#define OS_ERROR_PROTECTION         15
+#define OS_ERROR_MAX                (OS_ERROR_PROTECTION + 1)
+
 #define OSError(...) OSPanic(__FILE__, __LINE__, __VA_ARGS__)
 #ifndef MATCHING
 #define OSErrorLine(line, ...) OSError(__VA_ARGS__)
@@ -28,7 +54,33 @@ void OSRegisterVersion(const char*);
 
 // TODO: fill these structs
 typedef struct OSContext {
-	char filler[712];
+	// General-purpose registers
+	u32 gpr[32];
+
+	u32 cr;
+	u32 lr;
+	u32 ctr;
+	u32 xer;
+
+	// Floating-point registers
+	f64 fpr[32];
+
+	u32 fpscr_pad;
+	u32 fpscr;
+
+	// Exception handling registers
+	u32 srr0;
+	u32 srr1;
+
+	// Context mode
+	u16 mode;  // since UIMM is 16 bits in PPC
+	u16 state; // OR-ed OS_CONTEXT_STATE_*
+
+	// Place Gekko regs at the end so we have minimal changes to
+	// existing code
+	u32 gqr[8];
+	f64 psf[32];
+
 } OSContext;
 
 typedef struct OSMessageQueue {
@@ -347,6 +399,9 @@ void ICInvalidateRange(void* addr, u32 nBytes);
 #define LC_BASE_PREFIX 0xE000
 #define LC_BASE        (LC_BASE_PREFIX << 16)
 
+void L2Init(void);
+void L2Disable(void);
+void L2GlobalInvalidate(void);
 void LCEnable(void);
 void LCDisable(void);
 void LCLoadBlocks(void* destTag, void* srcAddr, u32 numBlocks);
