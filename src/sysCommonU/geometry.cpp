@@ -3560,165 +3560,37 @@ void GridInfo::write(Stream&)
  * Address:	8041919C
  * Size:	000248
  */
-void GridDivider::read(Stream&)
+void GridDivider::read(Stream& stream)
 {
-	/*
-	stwu     r1, -0x30(r1)
-	mflr     r0
-	stw      r0, 0x34(r1)
-	stmw     r27, 0x1c(r1)
-	mr       r30, r3
-	mr       r31, r4
-	li       r3, 0x50
-	bl       __nw__FUl
-	or.      r29, r3, r3
-	beq      lbl_80419234
-	bl       __ct__5CNodeFv
-	lis      r4, __vt__16GenericContainer@ha
-	lis      r3, "__vt__23Container<10Vector3<f>>"@ha
-	addi     r0, r4, __vt__16GenericContainer@l
-	lis      r4, "__vt__28ArrayContainer<10Vector3<f>>"@ha
-	stw      r0, 0(r29)
-	addi     r0, r3, "__vt__23Container<10Vector3<f>>"@l
-	lis      r3, __vt__Q23Sys11VertexTable@ha
-	li       r6, 0
-	stw      r0, 0(r29)
-	addi     r5, r4, "__vt__28ArrayContainer<10Vector3<f>>"@l
-	li       r4, 1
-	addi     r0, r3, __vt__Q23Sys11VertexTable@l
-	stb      r6, 0x18(r29)
-	lfs      f1, lbl_8052033C@sda21(r2)
-	stw      r5, 0(r29)
-	lfs      f0, lbl_80520340@sda21(r2)
-	stb      r4, 0x18(r29)
-	stw      r6, 0x20(r29)
-	stw      r6, 0x1c(r29)
-	stw      r6, 0x24(r29)
-	stw      r0, 0(r29)
-	stfs     f1, 0x28(r29)
-	stfs     f1, 0x2c(r29)
-	stfs     f1, 0x30(r29)
-	stfs     f0, 0x34(r29)
-	stfs     f0, 0x38(r29)
-	stfs     f0, 0x3c(r29)
+	m_vertexTable = new VertexTable;
+	m_vertexTable->read(stream);
 
-lbl_80419234:
-	stw      r29, 0x18(r30)
-	mr       r4, r31
-	lwz      r3, 0x18(r30)
-	lwz      r12, 0(r3)
-	lwz      r12, 0x38(r12)
-	mtctr    r12
-	bctrl
-	li       r3, 0x28
-	bl       __nw__FUl
-	or.      r0, r3, r3
-	beq      lbl_80419268
-	bl       __ct__Q23Sys13TriangleTableFv
-	mr       r0, r3
+	m_triangleTable = new TriangleTable;
+	m_triangleTable->read(stream);
 
-lbl_80419268:
-	stw      r0, 0x1c(r30)
-	mr       r4, r31
-	lwz      r3, 0x1c(r30)
-	lwz      r12, 0(r3)
-	lwz      r12, 0x38(r12)
-	mtctr    r12
-	bctrl
-	mr       r4, r31
-	addi     r3, r30, 0x2c
-	bl       read__8BoundBoxFR6Stream
-	mr       r3, r31
-	bl       readInt__6StreamFv
-	stw      r3, 0x20(r30)
-	mr       r3, r31
-	bl       readInt__6StreamFv
-	stw      r3, 0x24(r30)
-	mr       r3, r31
-	bl       readFloat__6StreamFv
-	stfs     f1, 0x44(r30)
-	mr       r3, r31
-	bl       readFloat__6StreamFv
-	stfs     f1, 0x48(r30)
-	lwz      r27, 0x24(r30)
-	lwz      r28, 0x20(r30)
-	mullw    r29, r28, r27
-	mulli    r3, r29, 0x28
-	addi     r3, r3, 0x10
-	bl       __nwa__FUl
-	lis      r4, __ct__Q23Sys12TriIndexListFv@ha
-	lis      r5, __dt__Q23Sys12TriIndexListFv@ha
-	addi     r4, r4, __ct__Q23Sys12TriIndexListFv@l
-	mr       r7, r29
-	addi     r5, r5, __dt__Q23Sys12TriIndexListFv@l
-	li       r6, 0x28
-	bl       __construct_new_array
-	stw      r3, 0x28(r30)
-	lis      r3, 0x4330
-	xoris    r4, r28, 0x8000
-	xoris    r0, r27, 0x8000
-	lfs      f0, 0x2c(r30)
-	li       r29, 0
-	stw      r4, 0xc(r1)
-	mr       r27, r29
-	lfd      f2, lbl_80520330@sda21(r2)
-	stfs     f0, 0x2c(r30)
-	lfs      f0, 0x30(r30)
-	stw      r3, 8(r1)
-	stfs     f0, 0x30(r30)
-	lfd      f0, 8(r1)
-	lfs      f3, 0x34(r30)
-	fsubs    f1, f0, f2
-	stw      r0, 0x14(r1)
-	stfs     f3, 0x34(r30)
-	lfs      f0, 0x38(r30)
-	stw      r3, 0x10(r1)
-	stfs     f0, 0x38(r30)
-	lfd      f0, 0x10(r1)
-	lfs      f3, 0x38(r30)
-	fsubs    f0, f0, f2
-	lfs      f2, 0x2c(r30)
-	fsubs    f2, f3, f2
-	fabs     f2, f2
-	frsp     f2, f2
-	fdivs    f1, f2, f1
-	stfs     f1, 0x44(r30)
-	lfs      f2, 0x40(r30)
-	lfs      f1, 0x34(r30)
-	fsubs    f1, f2, f1
-	fabs     f1, f1
-	frsp     f1, f1
-	fdivs    f0, f1, f0
-	stfs     f0, 0x48(r30)
-	b        lbl_804193B0
+	m_boundingBox.read(stream);
 
-lbl_8041938C:
-	lwz      r0, 0x28(r30)
-	mr       r4, r31
-	add      r3, r0, r27
-	lwz      r12, 0(r3)
-	lwz      r12, 0x38(r12)
-	mtctr    r12
-	bctrl
-	addi     r27, r27, 0x28
-	addi     r29, r29, 1
+	m_maxX   = stream.readInt();
+	m_maxZ   = stream.readInt();
+	m_scaleX = stream.readFloat();
+	m_scaleZ = stream.readFloat();
 
-lbl_804193B0:
-	lwz      r3, 0x20(r30)
-	lwz      r0, 0x24(r30)
-	mullw    r0, r3, r0
-	cmpw     r29, r0
-	blt      lbl_8041938C
-	lwz      r3, 0x1c(r30)
-	lwz      r4, 0x18(r30)
-	bl       createTriangleSphere__Q23Sys13TriangleTableFRQ23Sys11VertexTable
-	lmw      r27, 0x1c(r1)
-	lwz      r0, 0x34(r1)
-	mtlr     r0
-	addi     r1, r1, 0x30
-	blr
-	*/
-}
+	Vector2i maxVals = Vector2i(m_maxX, m_maxZ);
+	int maxLim       = maxVals.x * maxVals.y;
+	m_triIndexLists  = new TriIndexList[maxLim];
+
+	m_boundingBox.m_min = m_boundingBox.m_min;
+	m_boundingBox.m_max = m_boundingBox.m_max;
+
+	float X  = m_boundingBox.m_max.x - m_boundingBox.m_min.x;
+	m_scaleX = FABS(X) / (float)maxVals.x;
+	float Z  = m_boundingBox.m_max.z - m_boundingBox.m_min.z;
+	m_scaleZ = FABS(Z) / (float)maxVals.y;
+
+	readIndexList(stream);
+
+	m_triangleTable->createTriangleSphere(*m_vertexTable);
+};
 
 /*
  * @generated{read__31ArrayContainer<Q23Sys8Triangle>FR6Stream}
@@ -3795,41 +3667,9 @@ lbl_804193B0:
  */
 void TriangleTable::createTriangleSphere(Sys::VertexTable&)
 {
-	/*
-	stwu     r1, -0x20(r1)
-	mflr     r0
-	stw      r0, 0x24(r1)
-	stw      r31, 0x1c(r1)
-	li       r31, 0
-	stw      r30, 0x18(r1)
-	li       r30, 0
-	stw      r29, 0x14(r1)
-	mr       r29, r4
-	stw      r28, 0x10(r1)
-	mr       r28, r3
-	b        lbl_804194E0
-
-lbl_804194C8:
-	lwz      r0, 0x24(r28)
-	mr       r4, r29
-	add      r3, r0, r31
-	bl       createSphere__Q23Sys8TriangleFRQ23Sys11VertexTable
-	addi     r31, r31, 0x60
-	addi     r30, r30, 1
-
-lbl_804194E0:
-	lwz      r0, 0x20(r28)
-	cmpw     r30, r0
-	blt      lbl_804194C8
-	lwz      r0, 0x24(r1)
-	lwz      r31, 0x1c(r1)
-	lwz      r30, 0x18(r1)
-	lwz      r29, 0x14(r1)
-	lwz      r28, 0x10(r1)
-	mtlr     r0
-	addi     r1, r1, 0x20
-	blr
-	*/
+	for (int i = 0; i < m_limit; i++) {
+		m_objects[i].createSphere(arg0);
+	}
 }
 
 /*
@@ -3837,48 +3677,12 @@ lbl_804194E0:
  * Address:	8041950C
  * Size:	000088
  */
-void TriIndexList::constructClone(Sys::TriangleTable&)
+void TriIndexList::constructClone(Sys::TriangleTable& triTable)
 {
-	/*
-	stwu     r1, -0x20(r1)
-	mflr     r0
-	stw      r0, 0x24(r1)
-	stw      r31, 0x1c(r1)
-	mr       r31, r4
-	stw      r30, 0x18(r1)
-	mr       r30, r3
-	lwz      r12, 0(r3)
-	lwz      r4, 0x1c(r4)
-	lwz      r12, 0x3c(r12)
-	mtctr    r12
-	bctrl
-	li       r0, 0
-	stw      r0, 8(r1)
-	b        lbl_8041956C
-
-lbl_80419548:
-	mr       r3, r30
-	addi     r4, r1, 8
-	lwz      r12, 0(r30)
-	lwz      r12, 0x40(r12)
-	mtctr    r12
-	bctrl
-	lwz      r3, 8(r1)
-	addi     r0, r3, 1
-	stw      r0, 8(r1)
-
-lbl_8041956C:
-	lwz      r3, 8(r1)
-	lwz      r0, 0x1c(r31)
-	cmpw     r3, r0
-	blt      lbl_80419548
-	lwz      r0, 0x24(r1)
-	lwz      r31, 0x1c(r1)
-	lwz      r30, 0x18(r1)
-	mtlr     r0
-	addi     r1, r1, 0x20
-	blr
-	*/
+	alloc(triTable.m_count);
+	for (int i = 0; i < triTable.m_count; i++) {
+		addOne(i);
+	}
 }
 
 /*
@@ -3886,105 +3690,28 @@ lbl_8041956C:
  * Address:	80419594
  * Size:	000150
  */
-void TriIndexList::getMinMax(Sys::VertexTable&, Sys::TriangleTable&, Vector3f&, Vector3f&, float&, float&)
+void TriIndexList::getMinMax(VertexTable& vertTable, TriangleTable& triTable, Vector3f& vec1, Vector3f& vec2, float& min, float& max)
 {
-	/*
-	.loc_0x0:
-	  stwu      r1, -0x40(r1)
-	  lfs       f1, 0x1FE4(r2)
-	  stw       r31, 0x3C(r1)
-	  lfs       f0, 0x1FE8(r2)
-	  stw       r30, 0x38(r1)
-	  stw       r29, 0x34(r1)
-	  li        r29, 0
-	  stw       r28, 0x30(r1)
-	  li        r28, 0
-	  stfs      f1, 0x0(r8)
-	  stfs      f0, 0x0(r9)
-	  b         .loc_0x12C
+	min = 10000000000.0f;
+	max = -10000000000.0f;
 
-	.loc_0x30:
-	  lwz       r10, 0x24(r3)
-	  li        r0, 0x3
-	  lwz       r11, 0x24(r5)
-	  addi      r30, r1, 0x8
-	  lwzx      r10, r10, r29
-	  lwz       r31, 0x24(r4)
-	  mulli     r10, r10, 0x60
-	  add       r10, r11, r10
-	  lwz       r12, 0x0(r10)
-	  lwz       r11, 0x4(r10)
-	  lwz       r10, 0x8(r10)
-	  mulli     r12, r12, 0xC
-	  add       r12, r31, r12
-	  mulli     r11, r11, 0xC
-	  lfs       f1, 0x0(r12)
-	  lfs       f0, 0x4(r12)
-	  lfs       f6, 0x8(r12)
-	  add       r11, r31, r11
-	  stfs      f1, 0x8(r1)
-	  mulli     r10, r10, 0xC
-	  lfs       f5, 0x0(r11)
-	  lfs       f4, 0x4(r11)
-	  lfs       f3, 0x8(r11)
-	  add       r10, r31, r10
-	  stfs      f0, 0xC(r1)
-	  lfs       f2, 0x0(r10)
-	  lfs       f1, 0x4(r10)
-	  lfs       f0, 0x8(r10)
-	  stfs      f6, 0x10(r1)
-	  stfs      f5, 0x14(r1)
-	  stfs      f4, 0x18(r1)
-	  stfs      f3, 0x1C(r1)
-	  stfs      f2, 0x20(r1)
-	  stfs      f1, 0x24(r1)
-	  stfs      f0, 0x28(r1)
-	  mtctr     r0
+	for (int i = 0; i < m_count; i++) {
+		Triangle* currTri = &triTable.m_objects[m_objects[i]];
+		Vector3f vertices[3];
+		vertices[0] = vertTable.m_objects[currTri->m_vertices.x];
+		vertices[1] = vertTable.m_objects[currTri->m_vertices.y];
+		vertices[2] = vertTable.m_objects[currTri->m_vertices.z];
 
-	.loc_0xC0:
-	  lfs       f1, 0x4(r30)
-	  lfs       f0, 0x4(r7)
-	  lfs       f3, 0x0(r30)
-	  lfs       f2, 0x0(r7)
-	  fsubs     f1, f1, f0
-	  lfs       f0, 0x4(r6)
-	  fsubs     f2, f3, f2
-	  lfs       f4, 0x8(r30)
-	  lfs       f3, 0x8(r7)
-	  fmuls     f0, f1, f0
-	  lfs       f1, 0x0(r6)
-	  fsubs     f3, f4, f3
-	  fmadds    f1, f2, f1, f0
-	  lfs       f2, 0x8(r6)
-	  lfs       f0, 0x0(r9)
-	  fmadds    f1, f3, f2, f1
-	  fcmpo     cr0, f1, f0
-	  ble-      .loc_0x10C
-	  stfs      f1, 0x0(r9)
-
-	.loc_0x10C:
-	  lfs       f0, 0x0(r8)
-	  fcmpo     cr0, f1, f0
-	  bge-      .loc_0x11C
-	  stfs      f1, 0x0(r8)
-
-	.loc_0x11C:
-	  addi      r30, r30, 0xC
-	  bdnz+     .loc_0xC0
-	  addi      r29, r29, 0x4
-	  addi      r28, r28, 0x1
-
-	.loc_0x12C:
-	  lwz       r0, 0x1C(r3)
-	  cmpw      r28, r0
-	  blt+      .loc_0x30
-	  lwz       r31, 0x3C(r1)
-	  lwz       r30, 0x38(r1)
-	  lwz       r29, 0x34(r1)
-	  lwz       r28, 0x30(r1)
-	  addi      r1, r1, 0x40
-	  blr
-	*/
+		for (int j = 0; j < 3; j++) {
+			float testVal = vec1.dot(vertices[j] - vec2);
+			if (testVal > max) {
+				max = testVal;
+			}
+			if (testVal < min) {
+				min = testVal;
+			}
+		};
+	}
 }
 
 /*
@@ -4188,42 +3915,7 @@ void TriIndexList::draw(Graphics&, Sys::VertexTable&, Sys::TriangleTable&, bool)
  * Address:	8041997C
  * Size:	00007C
  */
-TriangleTable::TriangleTable(void)
-{
-	/*
-	stwu     r1, -0x10(r1)
-	mflr     r0
-	stw      r0, 0x14(r1)
-	stw      r31, 0xc(r1)
-	mr       r31, r3
-	bl       __ct__5CNodeFv
-	lis      r4, __vt__16GenericContainer@ha
-	lis      r3, "__vt__26Container<Q23Sys8Triangle>"@ha
-	addi     r0, r4, __vt__16GenericContainer@l
-	lis      r4, "__vt__31ArrayContainer<Q23Sys8Triangle>"@ha
-	stw      r0, 0(r31)
-	addi     r0, r3, "__vt__26Container<Q23Sys8Triangle>"@l
-	lis      r3, __vt__Q23Sys13TriangleTable@ha
-	li       r6, 0
-	stw      r0, 0(r31)
-	addi     r5, r4, "__vt__31ArrayContainer<Q23Sys8Triangle>"@l
-	li       r4, 1
-	addi     r0, r3, __vt__Q23Sys13TriangleTable@l
-	stb      r6, 0x18(r31)
-	mr       r3, r31
-	stw      r5, 0(r31)
-	stb      r4, 0x18(r31)
-	stw      r6, 0x20(r31)
-	stw      r6, 0x1c(r31)
-	stw      r6, 0x24(r31)
-	stw      r0, 0(r31)
-	lwz      r31, 0xc(r1)
-	lwz      r0, 0x14(r1)
-	mtlr     r0
-	addi     r1, r1, 0x10
-	blr
-	*/
-}
+TriangleTable::TriangleTable() { }
 
 /*
  * @generated{__dt__31ArrayContainer<Q23Sys8Triangle>Fv}

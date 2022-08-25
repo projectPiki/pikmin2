@@ -2,7 +2,10 @@
 #define _SYS_GRIDDIVIDER_H
 
 #include "Sys/TriDivider.h"
+#include "Sys/TriIndexList.h"
 #include "Vector3.h"
+#include "Vector2.h"
+
 namespace Game {
 struct CurrTriInfo;
 } // namespace Game
@@ -45,6 +48,13 @@ struct GridDivider : public TriDivider {
 
 	// Unused/inlined:
 	void write(Stream&); // TODO: I wonder if this was declared virtual and then removed when unused somehow...
+
+	inline void readIndexList(Stream& stream)
+	{
+		for (int i = 0; i < (m_maxX * m_maxZ); i++) {
+			m_triIndexLists[i].read(stream);
+		}
+	}
 
 	int m_maxX;
 	int m_maxZ;
