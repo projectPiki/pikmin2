@@ -1,31 +1,222 @@
-
+#include "Dolphin/mbstring.h"
 
 /*
  * --INFO--
  * Address:	........
- * Size:	000114
+ * Size:	00011C
  */
-void wcsrtombs(void)
+void mblen(void)
 {
 	// UNUSED FUNCTION
 }
 
 /*
  * --INFO--
- * Address:	........
- * Size:	0001E0
+ * Address:	800C6EFC
+ * Size:	0000EC
  */
-void mbsrtowcs(void)
+static int is_utf8_complete(const char* s, size_t n)
+{
+	int i, encoded;
+
+	if (n <= 0) // must have more than zero characters
+		return (-1);
+
+	if (*s == 0x00)
+		return (0);
+
+	if ((*s & 0x80) == 0x00)
+		return (1);
+	else if ((*s & 0xe0) == 0xc0)
+		encoded = 1;
+	else if ((*s & 0xf0) == 0xe0)
+		encoded = 2;
+	else if ((*s & 0xf8) == 0xf0)
+		encoded = 3;
+	else if ((*s & 0xfc) == 0xf8)
+		encoded = 4;
+	else if ((*s & 0xfe) == 0xfc)
+		encoded = 5;
+	else
+		return (-1);
+
+	for (i = 0; i < encoded; i++) {
+		if ((*(s + i + 1) & 0xc0) != 0x80)
+			return (-1);
+	}
+	if (n < i + 1)
+		return (-2);
+	return (encoded + 1);
+}
+
+/*
+ * --INFO--
+ * Address:	........
+ * Size:	000120
+ */
+void utf8_to_unicode(void)
 {
 	// UNUSED FUNCTION
 }
 
 /*
  * --INFO--
- * Address:	........
- * Size:	0000B0
+ * Address:	800C6DDC
+ * Size:	000120
  */
-void wcrtomb(void)
+int mbtowc(wchar_t* pwc, const char* s, size_t n) { return mbstowcs(pwc, s, n); }
+
+/*
+ * --INFO--
+ * Address:	........
+ * Size:	0000A4
+ */
+inline static int unicode_to_UTF8(char* s, wchar_t wchar)
+{
+	int number_of_bytes;
+	wchar_t wide_char;
+	char* target_ptr;
+	char first_byte_mark[4] = { 0x00, 0x00, 0xc0, 0xe0 };
+
+	if (!s)
+		return (0);
+
+	wide_char = wchar;
+	if (wide_char < 0x0080)
+		number_of_bytes = 1;
+	else if (wide_char < 0x0800)
+		number_of_bytes = 2;
+	else
+		number_of_bytes = 3;
+
+	target_ptr = s + number_of_bytes;
+
+	switch (number_of_bytes) {
+	case 3:
+		*--target_ptr = (wide_char & 0x003f) | 0x80;
+		wide_char >>= 6;
+	case 2:
+		*--target_ptr = (wide_char & 0x003f) | 0x80;
+		wide_char >>= 6;
+	case 1:
+		*--target_ptr = wide_char | first_byte_mark[number_of_bytes];
+	}
+
+	return number_of_bytes;
+}
+
+/*
+ * --INFO--
+ * Address:	........
+ * Size:	0000A4
+ */
+inline int wctomb(char* s, wchar_t wchar) { return (unicode_to_UTF8(s, wchar)); }
+
+/*
+ * --INFO--
+ * Address:	........
+ * Size:	000188
+ */
+inline int mbstowcs(wchar_t* pwc, const char* s, size_t n)
+{
+	u32 result_chr;
+	int number_of_bytes = 0;
+	int isUTF8;
+	char* source;
+
+	if (!s) {
+		number_of_bytes = 0;
+		return (number_of_bytes);
+	}
+
+	if (n <= 0) {
+		number_of_bytes = -1;
+		return (number_of_bytes);
+	}
+
+	isUTF8 = is_utf8_complete(s, n);
+	if (isUTF8 < 0) {
+		number_of_bytes = -1;
+		return number_of_bytes;
+	}
+
+	source = (char*)s;
+	switch (isUTF8) {
+	case 3:
+		result_chr = (*source & 0x1f);
+		source++;
+		number_of_bytes = (result_chr << 6) & 0x3C0;
+	case 2:
+		result_chr = number_of_bytes | (*source & 0x3f);
+		source++;
+		number_of_bytes = (result_chr << 6) & 0xFFC0;
+	case 1:
+		result_chr = number_of_bytes | (*source & 0x7f);
+		source++;
+		number_of_bytes = result_chr & 0xFFFF;
+	}
+
+	result_chr = number_of_bytes & 0xFFFF;
+
+	if (!(result_chr)) {
+		result_chr = 0;
+	} else if (result_chr < 0x00000080) {
+		result_chr = 1;
+	} else if (result_chr < 0x00000800) {
+		result_chr = 2;
+	} else {
+		result_chr = 3;
+	}
+
+	if ((int)result_chr != isUTF8) {
+		number_of_bytes = -1;
+		return (number_of_bytes);
+	}
+	if (pwc) {
+		*pwc = number_of_bytes;
+	}
+	return isUTF8;
+}
+
+/*
+ * --INFO--
+ * Address:	800C6CC4
+ * Size:	000118
+ */
+size_t wcstombs(char* s, const wchar_t* pwcs, size_t n)
+{
+	int chars_written = 0;
+	int result;
+	char temp[3];
+	wchar_t* source;
+
+	if (!s || !pwcs)
+		return (0);
+
+	source = (wchar_t*)pwcs;
+	while (chars_written <= n) {
+		if (!*source) {
+			*(s + chars_written) = '\0';
+			break;
+		} else {
+			result = wctomb(temp, *source++);
+			if ((chars_written + result) <= n) {
+				strncpy(s + chars_written, temp, result);
+				chars_written += result;
+			} else
+				break;
+		}
+	}
+
+	return chars_written;
+}
+
+/*
+ * --INFO--
+ * Address:	........
+ * Size:	000054
+ */
+void mbrlen(void)
 {
 	// UNUSED FUNCTION
 }
@@ -43,127 +234,9 @@ void mbrtowc(void)
 /*
  * --INFO--
  * Address:	........
- * Size:	000054
+ * Size:	0000B0
  */
-void mbrlen(void)
-{
-	// UNUSED FUNCTION
-}
-
-/*
- * --INFO--
- * Address:	800C6CC4
- * Size:	000118
- */
-void wcstombs(void)
-{
-	/*
-	.loc_0x0:
-	  stwu      r1, -0x30(r1)
-	  mflr      r0
-	  stw       r0, 0x34(r1)
-	  stmw      r27, 0x1C(r1)
-	  mr.       r28, r3
-	  mr        r29, r5
-	  li        r31, 0
-	  beq-      .loc_0x28
-	  cmplwi    r4, 0
-	  bne-      .loc_0x30
-
-	.loc_0x28:
-	  li        r3, 0
-	  b         .loc_0x104
-
-	.loc_0x30:
-	  mr        r30, r4
-	  b         .loc_0xF8
-
-	.loc_0x38:
-	  lhz       r6, 0x0(r30)
-	  cmplwi    r6, 0
-	  bne-      .loc_0x50
-	  li        r0, 0
-	  stbx      r0, r28, r31
-	  b         .loc_0x104
-
-	.loc_0x50:
-	  lwz       r0, -0x7298(r2)
-	  cmplwi    r6, 0x80
-	  addi      r30, r30, 0x2
-	  stw       r0, 0x8(r1)
-	  bge-      .loc_0x6C
-	  li        r27, 0x1
-	  b         .loc_0x80
-
-	.loc_0x6C:
-	  cmplwi    r6, 0x800
-	  bge-      .loc_0x7C
-	  li        r27, 0x2
-	  b         .loc_0x80
-
-	.loc_0x7C:
-	  li        r27, 0x3
-
-	.loc_0x80:
-	  cmpwi     r27, 0x2
-	  addi      r5, r1, 0xC
-	  add       r5, r5, r27
-	  beq-      .loc_0xB8
-	  bge-      .loc_0xA0
-	  cmpwi     r27, 0x1
-	  bge-      .loc_0xC8
-	  b         .loc_0xD8
-
-	.loc_0xA0:
-	  cmpwi     r27, 0x4
-	  bge-      .loc_0xD8
-	  rlwinm    r0,r6,0,26,31
-	  rlwinm    r6,r6,26,22,31
-	  ori       r0, r0, 0x80
-	  stbu      r0, -0x1(r5)
-
-	.loc_0xB8:
-	  rlwinm    r0,r6,0,26,31
-	  rlwinm    r6,r6,26,22,31
-	  ori       r0, r0, 0x80
-	  stbu      r0, -0x1(r5)
-
-	.loc_0xC8:
-	  addi      r4, r1, 0x8
-	  lbzx      r0, r4, r27
-	  or        r0, r6, r0
-	  stb       r0, -0x1(r5)
-
-	.loc_0xD8:
-	  add       r0, r31, r27
-	  cmplw     r0, r29
-	  bgt-      .loc_0x104
-	  mr        r5, r27
-	  add       r3, r28, r31
-	  addi      r4, r1, 0xC
-	  bl        0x3A60
-	  add       r31, r31, r27
-
-	.loc_0xF8:
-	  cmplw     r31, r29
-	  mr        r3, r31
-	  ble+      .loc_0x38
-
-	.loc_0x104:
-	  lmw       r27, 0x1C(r1)
-	  lwz       r0, 0x34(r1)
-	  mtlr      r0
-	  addi      r1, r1, 0x30
-	  blr
-	*/
-}
-
-/*
- * --INFO--
- * Address:	........
- * Size:	000188
- */
-void mbstowcs(void)
+void wcrtomb(void)
 {
 	// UNUSED FUNCTION
 }
@@ -171,9 +244,9 @@ void mbstowcs(void)
 /*
  * --INFO--
  * Address:	........
- * Size:	0000A4
+ * Size:	0001E0
  */
-void wctomb(void)
+void mbsrtowcs(void)
 {
 	// UNUSED FUNCTION
 }
@@ -181,236 +254,9 @@ void wctomb(void)
 /*
  * --INFO--
  * Address:	........
- * Size:	0000A4
+ * Size:	000114
  */
-void unicode_to_UTF8(void)
-{
-	// UNUSED FUNCTION
-}
-
-/*
- * --INFO--
- * Address:	800C6DDC
- * Size:	000120
- */
-void mbtowc(void)
-{
-	/*
-	.loc_0x0:
-	  stwu      r1, -0x20(r1)
-	  mflr      r0
-	  stw       r0, 0x24(r1)
-	  stw       r31, 0x1C(r1)
-	  mr        r31, r3
-	  stw       r30, 0x18(r1)
-	  li        r30, 0
-	  stw       r29, 0x14(r1)
-	  mr.       r29, r4
-	  bne-      .loc_0x2C
-	  b         .loc_0x100
-
-	.loc_0x2C:
-	  cmplwi    r5, 0
-	  bne-      .loc_0x3C
-	  li        r30, -0x1
-	  b         .loc_0x100
-
-	.loc_0x3C:
-	  mr        r3, r29
-	  mr        r4, r5
-	  bl        .loc_0x120
-	  cmpwi     r3, 0
-	  bge-      .loc_0x58
-	  li        r30, -0x1
-	  b         .loc_0x100
-
-	.loc_0x58:
-	  cmpwi     r3, 0x2
-	  mr        r4, r29
-	  beq-      .loc_0x88
-	  bge-      .loc_0x74
-	  cmpwi     r3, 0x1
-	  bge-      .loc_0x9C
-	  b         .loc_0xAC
-
-	.loc_0x74:
-	  cmpwi     r3, 0x4
-	  bge-      .loc_0xAC
-	  lbz       r0, 0x0(r29)
-	  addi      r4, r29, 0x1
-	  rlwinm    r30,r0,6,22,25
-
-	.loc_0x88:
-	  lbz       r0, 0x0(r4)
-	  addi      r4, r4, 0x1
-	  rlwinm    r0,r0,0,26,31
-	  or        r0, r30, r0
-	  rlwinm    r30,r0,6,16,25
-
-	.loc_0x9C:
-	  lbz       r0, 0x0(r4)
-	  rlwinm    r0,r0,0,25,31
-	  or        r0, r30, r0
-	  rlwinm    r30,r0,0,16,31
-
-	.loc_0xAC:
-	  rlwinm.   r0,r30,0,16,31
-	  bne-      .loc_0xBC
-	  li        r0, 0
-	  b         .loc_0xE0
-
-	.loc_0xBC:
-	  cmplwi    r0, 0x80
-	  bge-      .loc_0xCC
-	  li        r0, 0x1
-	  b         .loc_0xE0
-
-	.loc_0xCC:
-	  cmplwi    r0, 0x800
-	  bge-      .loc_0xDC
-	  li        r0, 0x2
-	  b         .loc_0xE0
-
-	.loc_0xDC:
-	  li        r0, 0x3
-
-	.loc_0xE0:
-	  cmpw      r0, r3
-	  beq-      .loc_0xF0
-	  li        r30, -0x1
-	  b         .loc_0x100
-
-	.loc_0xF0:
-	  cmplwi    r31, 0
-	  beq-      .loc_0xFC
-	  sth       r30, 0x0(r31)
-
-	.loc_0xFC:
-	  mr        r30, r3
-
-	.loc_0x100:
-	  lwz       r0, 0x24(r1)
-	  mr        r3, r30
-	  lwz       r31, 0x1C(r1)
-	  lwz       r30, 0x18(r1)
-	  lwz       r29, 0x14(r1)
-	  mtlr      r0
-	  addi      r1, r1, 0x20
-	  blr
-
-	.loc_0x120:
-	*/
-}
-
-/*
- * --INFO--
- * Address:	........
- * Size:	000120
- */
-void utf8_to_unicode(void)
-{
-	// UNUSED FUNCTION
-}
-
-/*
- * --INFO--
- * Address:	800C6EFC
- * Size:	0000EC
- */
-void is_utf8_complete(void)
-{
-	/*
-	.loc_0x0:
-	  cmplwi    r4, 0
-	  bne-      .loc_0x10
-	  li        r3, -0x1
-	  blr
-
-	.loc_0x10:
-	  lbz       r5, 0x0(r3)
-	  extsb.    r0, r5
-	  bne-      .loc_0x24
-	  li        r3, 0
-	  blr
-
-	.loc_0x24:
-	  extsb     r5, r5
-	  rlwinm.   r0,r5,0,24,24
-	  bne-      .loc_0x38
-	  li        r3, 0x1
-	  blr
-
-	.loc_0x38:
-	  rlwinm    r0,r5,0,24,26
-	  cmpwi     r0, 0xC0
-	  bne-      .loc_0x70
-	  cmplwi    r4, 0x2
-	  blt-      .loc_0x68
-	  lbz       r0, 0x1(r3)
-	  li        r3, -0x1
-	  rlwinm    r0,r0,0,24,24
-	  cmpwi     r0, 0x80
-	  bnelr-
-	  li        r3, 0x2
-	  blr
-
-	.loc_0x68:
-	  li        r3, -0x2
-	  blr
-
-	.loc_0x70:
-	  rlwinm    r0,r5,0,24,27
-	  cmpwi     r0, 0xE0
-	  bne-      .loc_0xE4
-	  cmplwi    r4, 0x3
-	  blt-      .loc_0xB4
-	  lbz       r0, 0x1(r3)
-	  rlwinm    r0,r0,0,24,24
-	  cmpwi     r0, 0x80
-	  bne-      .loc_0xAC
-	  lbz       r0, 0x2(r3)
-	  rlwinm    r0,r0,0,24,24
-	  cmpwi     r0, 0x80
-	  bne-      .loc_0xAC
-	  li        r3, 0x3
-	  blr
-
-	.loc_0xAC:
-	  li        r3, -0x1
-	  blr
-
-	.loc_0xB4:
-	  cmplwi    r4, 0x2
-	  bne-      .loc_0xCC
-	  lbz       r0, 0x1(r3)
-	  rlwinm    r0,r0,0,24,24
-	  cmpwi     r0, 0x80
-	  beq-      .loc_0xD4
-
-	.loc_0xCC:
-	  cmplwi    r4, 0x1
-	  bne-      .loc_0xDC
-
-	.loc_0xD4:
-	  li        r3, -0x2
-	  blr
-
-	.loc_0xDC:
-	  li        r3, -0x1
-	  blr
-
-	.loc_0xE4:
-	  li        r3, -0x1
-	  blr
-	*/
-}
-
-/*
- * --INFO--
- * Address:	........
- * Size:	00011C
- */
-void mblen(void)
+void wcsrtombs(void)
 {
 	// UNUSED FUNCTION
 }

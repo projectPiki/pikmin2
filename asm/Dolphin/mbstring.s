@@ -180,8 +180,7 @@ lbl_800C6EDC:
 /* 800C6EF4 000C3E34  38 21 00 20 */	addi r1, r1, 0x20
 /* 800C6EF8 000C3E38  4E 80 00 20 */	blr 
 
-.global is_utf8_complete
-is_utf8_complete:
+is_utf8_complete: # local function
 /* 800C6EFC 000C3E3C  28 04 00 00 */	cmplwi r4, 0
 /* 800C6F00 000C3E40  40 82 00 0C */	bne lbl_800C6F0C
 /* 800C6F04 000C3E44  38 60 FF FF */	li r3, -1
