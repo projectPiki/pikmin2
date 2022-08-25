@@ -78,7 +78,7 @@ struct Mgr {
 	Mgr();
 
 	void loadResource();
-	void regist(Obj*);
+	bool regist(Obj*);
 	void release(Obj*);
 	void draw(Viewport*);
 

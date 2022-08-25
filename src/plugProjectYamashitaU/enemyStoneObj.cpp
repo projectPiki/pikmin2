@@ -1,4 +1,8 @@
 #include "types.h"
+#include "Game/EnemyStone.h"
+#include "Game/generalEnemyMgr.h"
+#include "Game/gamePlayData.h"
+#include "Game/MoviePlayer.h"
 
 /*
     Generated from dpostproc
@@ -52,58 +56,21 @@
 */
 
 namespace Game {
+namespace EnemyStone {
 
 /*
  * --INFO--
  * Address:	80129B30
  * Size:	0000A8
  */
-EnemyStone::Obj::Obj(Game::EnemyBase*, Game::EnemyStone::Info*)
+Obj::Obj(EnemyBase* enemy, Info* info)
+    : m_info(info)
+    , m_enemy(enemy)
+    , _50(0)
 {
-	/*
-	stwu     r1, -0x20(r1)
-	mflr     r0
-	stw      r0, 0x24(r1)
-	stw      r31, 0x1c(r1)
-	mr       r31, r5
-	stw      r30, 0x18(r1)
-	mr       r30, r4
-	stw      r29, 0x14(r1)
-	mr       r29, r3
-	bl       __ct__5CNodeFv
-	lis      r3, __vt__Q34Game10EnemyStone3Obj@ha
-	lis      r4, __ct__5CNodeFv@ha
-	addi     r0, r3, __vt__Q34Game10EnemyStone3Obj@l
-	li       r6, 0x18
-	stw      r0, 0(r29)
-	lis      r3, __dt__5CNodeFv@ha
-	addi     r5, r3, __dt__5CNodeFv@l
-	addi     r4, r4, __ct__5CNodeFv@l
-	stw      r31, 0x18(r29)
-	addi     r3, r29, 0x1c
-	li       r7, 2
-	bl       __construct_array
-	stw      r30, 0x4c(r29)
-	li       r0, 0
-	mr       r3, r29
-	stb      r0, 0x50(r29)
-	stb      r0, 0x50(r29)
-	stw      r0, 0x2c(r29)
-	stw      r0, 0x28(r29)
-	stw      r0, 0x24(r29)
-	stw      r0, 0x20(r29)
-	stw      r0, 0x44(r29)
-	stw      r0, 0x40(r29)
-	stw      r0, 0x3c(r29)
-	stw      r0, 0x38(r29)
-	lwz      r31, 0x1c(r1)
-	lwz      r30, 0x18(r1)
-	lwz      r29, 0x14(r1)
-	lwz      r0, 0x24(r1)
-	mtlr     r0
-	addi     r1, r1, 0x20
-	blr
-	*/
+	_50 = 0;
+	m_nodeArray[0].clearRelations();
+	m_nodeArray[1].clearRelations();
 }
 
 /*
@@ -111,83 +78,28 @@ EnemyStone::Obj::Obj(Game::EnemyBase*, Game::EnemyStone::Info*)
  * Address:	80129BD8
  * Size:	000104
  */
-void EnemyStone::Obj::start()
+void Obj::start()
 {
-	/*
-	stwu     r1, -0x40(r1)
-	mflr     r0
-	stw      r0, 0x44(r1)
-	stfd     f31, 0x30(r1)
-	psq_st   f31, 56(r1), 0, qr0
-	stfd     f30, 0x20(r1)
-	psq_st   f30, 40(r1), 0, qr0
-	stw      r31, 0x1c(r1)
-	stw      r30, 0x18(r1)
-	stw      r29, 0x14(r1)
-	stw      r28, 0x10(r1)
-	mr       r28, r3
-	li       r0, 0
-	stb      r0, 0x50(r3)
-	mr       r4, r28
-	li       r31, 0
-	lwz      r3, generalEnemyMgr__4Game@sda21(r13)
-	addi     r3, r3, 0x58
-	bl       regist__Q34Game10EnemyStone3MgrFPQ34Game10EnemyStone3Obj
-	clrlwi.  r0, r3, 0x18
-	beq      lbl_80129CA8
-	lbz      r3, 0x50(r28)
-	lis      r0, 0x4330
-	stw      r0, 8(r1)
-	mr       r31, r28
-	ori      r0, r3, 0x20
-	lfd      f1, lbl_80518040@sda21(r2)
-	stb      r0, 0x50(r28)
-	li       r30, 0
-	lfs      f2, lbl_8051803C@sda21(r2)
-	lwz      r3, 0x18(r28)
-	lfs      f31, lbl_80518038@sda21(r2)
-	lbz      r0, 0(r3)
-	stw      r0, 0xc(r1)
-	lfd      f0, 8(r1)
-	fsubs    f0, f0, f1
-	fdivs    f30, f2, f0
+	_50         = 0;
+	bool result = false;
+	if (generalEnemyMgr->m_stoneMgr.regist(this) != false) {
+		_50 |= 0x20;
+		float appearVal = 0.0f;
+		float normVal   = 1.0f / (float)m_info->m_infoCnt;
 
-lbl_80129C6C:
-	lwz      r3, 0x2c(r31)
-	b        lbl_80129C8C
+		for (int i = 0; i < 2; i++) {
+			CNode* currChild = m_nodeArray[i].m_child;
+			while (currChild) {
+				CNode* nextChild = currChild->m_next;
+				static_cast<DrawInfo*>(currChild)->appear(m_enemy, appearVal);
+				appearVal -= normVal;
+				currChild = nextChild;
+			}
+		}
 
-lbl_80129C74:
-	fmr      f1, f31
-	lwz      r29, 4(r3)
-	lwz      r4, 0x4c(r28)
-	bl       appear__Q34Game10EnemyStone8DrawInfoFPQ24Game9EnemyBasef
-	fsubs    f31, f31, f30
-	mr       r3, r29
-
-lbl_80129C8C:
-	cmplwi   r3, 0
-	bne      lbl_80129C74
-	addi     r30, r30, 1
-	addi     r31, r31, 0x18
-	cmpwi    r30, 2
-	blt      lbl_80129C6C
-	li       r31, 1
-
-lbl_80129CA8:
-	mr       r3, r31
-	psq_l    f31, 56(r1), 0, qr0
-	lfd      f31, 0x30(r1)
-	psq_l    f30, 40(r1), 0, qr0
-	lfd      f30, 0x20(r1)
-	lwz      r31, 0x1c(r1)
-	lwz      r30, 0x18(r1)
-	lwz      r29, 0x14(r1)
-	lwz      r0, 0x44(r1)
-	lwz      r28, 0x10(r1)
-	mtlr     r0
-	addi     r1, r1, 0x40
-	blr
-	*/
+		result = true;
+	}
+	return result;
 }
 
 /*
@@ -195,7 +107,7 @@ lbl_80129CA8:
  * Address:	80129CDC
  * Size:	0000E0
  */
-void EnemyStone::Obj::shake()
+void Obj::shake()
 {
 	/*
 	stwu     r1, -0x40(r1)
@@ -270,7 +182,7 @@ lbl_80129D8C:
  * Address:	80129DBC
  * Size:	0002A8
  */
-void EnemyStone::Obj::update()
+void Obj::update()
 {
 	/*
 	stwu     r1, -0x60(r1)
@@ -475,7 +387,7 @@ lbl_8012A044:
  * Address:	8012A064
  * Size:	000088
  */
-void EnemyStone::Obj::checkDrawInfoState(int)
+void Obj::checkDrawInfoState(int)
 {
 	/*
 	stwu     r1, -0x20(r1)
@@ -530,7 +442,7 @@ lbl_8012A0CC:
  * Address:	8012A0EC
  * Size:	0000B4
  */
-void EnemyStone::Obj::dead()
+void Obj::dead()
 {
 	/*
 	stwu     r1, -0x20(r1)
@@ -592,7 +504,7 @@ lbl_8012A12C:
  * Address:	8012A1A0
  * Size:	00007C
  */
-EnemyStone::Obj::~Obj()
+Obj::~Obj()
 {
 	/*
 	stwu     r1, -0x10(r1)
@@ -631,6 +543,7 @@ lbl_8012A200:
 	*/
 }
 
+} // namespace EnemyStone
 } // namespace Game
 
 /*

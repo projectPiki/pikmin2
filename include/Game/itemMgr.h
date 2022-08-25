@@ -112,7 +112,7 @@ struct ItemMgr : public NodeObjectMgr<GenericObjectMgr> {
 	ItemMgr();
 
 	// vtable 1
-	~ItemMgr(); // _00
+	~ItemMgr(); // _08
 	// vtable 2
 	virtual void doAnimation();           // _00, _30
 	virtual void doEntry();               // _04, _34
@@ -133,7 +133,7 @@ struct ItemMgr : public NodeObjectMgr<GenericObjectMgr> {
 	BaseItemMgr* getMgrByID(ID32&);
 };
 
-template <typename T> struct FixedSizeItemMgr : public BaseItemMgr, public MonoObjectMgr<T> {
+template <typename T> struct FixedSizeItemMgr : public BaseItemMgr, public Container<T> {
 	virtual void doAnimation();                                               // _08 (weak)
 	virtual void doEntry();                                                   // _0C (weak)
 	virtual void doSetView(int);                                              // _10 (weak)
@@ -152,6 +152,13 @@ template <typename T> struct FixedSizeItemMgr : public BaseItemMgr, public MonoO
 	virtual void getStart();                                                  // _B4 (weak, thunk at _8C)
 	virtual void getEnd();                                                    // _B8 (weak, thunk at _90)
 	virtual ~FixedSizeItemMgr<T>();                                           // _BC (weak, thunk at _7C)
+
+	void createModel(T*);
+	void createModelCallback(SysShape::Model*);
+	void createMgr(int, u32);
+	void onAlloc();
+
+	MonoObjectMgr<T> m_monoObjectMgr; // _4C
 };
 } // namespace Game
 

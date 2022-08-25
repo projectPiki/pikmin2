@@ -63,12 +63,12 @@ struct Item : public CFSMItem {
 };
 
 struct Mgr : public FixedSizeItemMgr<ItemHoney::Item> {
-	virtual void onLoadResources();                                                   // _48
-	virtual u32 generatorGetID();                                                     // _58 (weak)
-	virtual BaseItem* generatorBirth(Vector3<float>&, Vector3<float>&, GenItemParm*); // _5C
-	virtual void onCreateModel(SysShape::Model*);                                     // _A0
-	virtual ItemHoney::Item* birth();                                                 // _A4
-	virtual ~Mgr();                                                                   // _BC (weak)
+	virtual void onLoadResources();                                       // _48
+	virtual u32 generatorGetID();                                         // _58 (weak)
+	virtual BaseItem* generatorBirth(Vector3f&, Vector3f&, GenItemParm*); // _5C
+	virtual void onCreateModel(SysShape::Model*);                         // _A0
+	virtual ItemHoney::Item* birth();                                     // _A4
+	virtual ~Mgr();                                                       // _BC (weak)
 
 	u8 _7C[0x8]; // _7C - unknown
 };
