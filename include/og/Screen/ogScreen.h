@@ -35,7 +35,7 @@ void blendPictureTreeColor(PictureTreeColorCaptureInfo*, JUtility::TColor&, JUti
 void calcGlbCenter(J2DPane*, Vector2f*);
 u32 CalcKeta(u32);
 float calcSmooth0to1(float, float);
-u32* capturePictureTreeColor(J2DPane*, int);
+PictureTreeColorCaptureInfo* capturePictureTreeColor(J2DPane*, int);
 void centeringPane(J2DPane*, bool, bool);
 u64 CharCodeToTag(char*);
 bool checkVisibleGlb(J2DPane*);

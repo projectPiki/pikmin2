@@ -2,226 +2,13 @@
 #include "JSystem/JSupport/JSUTreeIterator.h"
 #include "og/Screen/AlphaMgr.h"
 #include "og/Screen/ogScreen.h"
+#include "og/Screen/ArrowAlphaBlink.h"
+#include "og/Screen/PictureTreeColor.h"
 #include "P2DScreen.h"
-
-/*
-    Generated from dpostproc
-
-    .section .rodata  # 0x804732E0 - 0x8049E220
-    .global lbl_8048DCC0
-    lbl_8048DCC0:
-        .asciz "ogScreen"
-        .skip 3
-    .global lbl_8048DCCC
-    lbl_8048DCCC:
-        .asciz "ogScreen.cpp"
-        .skip 3
-    .global lbl_8048DCDC
-    lbl_8048DCDC:
-        .asciz "picture pane overflow!!\n"
-        .skip 3
-    .global lbl_8048DCF8
-    lbl_8048DCF8:
-        .asciz "num is overflow!\n"
-        .skip 2
-    .global lbl_8048DD0C
-    lbl_8048DD0C:
-        .asciz "toumei_piki.bti"
-    .global lbl_8048DD1C
-    lbl_8048DD1C:
-        .asciz "bp_l64.bti"
-        .skip 1
-    .global lbl_8048DD28
-    lbl_8048DD28:
-        .asciz "bp_b64.bti"
-        .skip 1
-    .global lbl_8048DD34
-    lbl_8048DD34:
-        .asciz "bp_f64.bti"
-        .skip 1
-    .global lbl_8048DD40
-    lbl_8048DD40:
-        .asciz "rp_l64.bti"
-        .skip 1
-    .global lbl_8048DD4C
-    lbl_8048DD4C:
-        .asciz "rp_b64.bti"
-        .skip 1
-    .global lbl_8048DD58
-    lbl_8048DD58:
-        .asciz "rp_f64.bti"
-        .skip 1
-    .global lbl_8048DD64
-    lbl_8048DD64:
-        .asciz "yp_l64.bti"
-        .skip 1
-    .global lbl_8048DD70
-    lbl_8048DD70:
-        .asciz "yp_b64.bti"
-        .skip 1
-    .global lbl_8048DD7C
-    lbl_8048DD7C:
-        .asciz "yp_f64.bti"
-        .skip 1
-    .global lbl_8048DD88
-    lbl_8048DD88:
-        .asciz "blp_l64.bti"
-    .global lbl_8048DD94
-    lbl_8048DD94:
-        .asciz "blp_b64.bti"
-    .global lbl_8048DDA0
-    lbl_8048DDA0:
-        .asciz "blp_f64.bti"
-    .global lbl_8048DDAC
-    lbl_8048DDAC:
-        .asciz "wp_l64.bti"
-        .skip 1
-    .global lbl_8048DDB8
-    lbl_8048DDB8:
-        .asciz "wp_b64.bti"
-        .skip 1
-    .global lbl_8048DDC4
-    lbl_8048DDC4:
-        .asciz "wp_f64.bti"
-        .skip 1
-    .global lbl_8048DDD0
-    lbl_8048DDD0:
-        .asciz "cha_l.bti"
-        .skip 2
-    .global lbl_8048DDDC
-    lbl_8048DDDC:
-        .asciz "cha_b.bti"
-        .skip 2
-    .global lbl_8048DDE8
-    lbl_8048DDE8:
-        .asciz "cha_f.bti"
-        .skip 2
-        .asciz "MojiToNum ERR!(keta) [%s]\n"
-        .skip 1
-        .asciz "MojiToNum ERR! [%s]\n"
-        .skip 3
-    .global lbl_8048DE28
-    lbl_8048DE28:
-        .asciz "x%02x%02x"
-        .skip 2
-    .global lbl_8048DE34
-    lbl_8048DE34:
-        .asciz "tag[%s] is not exist!!\n"
-
-    .section .data, "wa"  # 0x8049E220 - 0x804EFC20
-    .global PikiIconTextureName__Q22og6Screen
-    PikiIconTextureName__Q22og6Screen:
-        .4byte lbl_8048DD0C
-        .4byte lbl_8048DD1C
-        .4byte lbl_8048DD28
-        .4byte lbl_8048DD34
-        .4byte lbl_8048DD40
-        .4byte lbl_8048DD4C
-        .4byte lbl_8048DD58
-        .4byte lbl_8048DD64
-        .4byte lbl_8048DD70
-        .4byte lbl_8048DD7C
-        .4byte lbl_8048DD88
-        .4byte lbl_8048DD94
-        .4byte lbl_8048DDA0
-        .4byte lbl_8048DDAC
-        .4byte lbl_8048DDB8
-        .4byte lbl_8048DDC4
-        .4byte lbl_8048DDD0
-        .4byte lbl_8048DDDC
-        .4byte lbl_8048DDE8
-    .global __vt__Q29P2DScreen4Node
-    __vt__Q29P2DScreen4Node:
-        .4byte 0
-        .4byte 0
-        .4byte __dt__Q29P2DScreen4NodeFv
-        .4byte getChildCount__5CNodeFv
-        .4byte update__Q29P2DScreen4NodeFv
-        .4byte draw__Q29P2DScreen4NodeFR8GraphicsR14J2DGrafContext
-        .4byte doInit__Q29P2DScreen4NodeFv
-
-    .section .bss  # 0x804EFC20 - 0x8051467C
-    .global PikiIconTextureResTIMG__Q22og6Screen
-    PikiIconTextureResTIMG__Q22og6Screen:
-        .skip 0x4C
-
-    .section .sbss # 0x80514D80 - 0x80516360
-    .global wkPtr$3542
-    wkPtr$3542:
-        .skip 0x4
-    .global init$3543
-    init$3543:
-        .skip 0x4
-    .global Max$3545
-    Max$3545:
-        .skip 0x4
-    .global init$3546
-    init$3546:
-        .skip 0x4
-    .global wkMax$3548
-    wkMax$3548:
-        .skip 0x4
-    .global init$3549
-    init$3549:
-        .skip 0x4
-
-    .section .sdata2, "a"     # 0x80516360 - 0x80520E40
-    .global lbl_8051D508
-    lbl_8051D508:
-        .4byte 0x41F00000
-    .global lbl_8051D50C
-    lbl_8051D50C:
-        .4byte 0x40C90FDB
-    .global lbl_8051D510
-    lbl_8051D510:
-        .float 1.0
-    .global lbl_8051D514
-    lbl_8051D514:
-        .4byte 0xC3A2F983
-    .global lbl_8051D518
-    lbl_8051D518:
-        .4byte 0x43A2F983
-    .global lbl_8051D51C
-    lbl_8051D51C:
-        .4byte 0x00000000
-    .global lbl_8051D520
-    lbl_8051D520:
-        .float 0.5
-        .4byte 0x00000000
-    .global lbl_8051D528
-    lbl_8051D528:
-        .4byte 0x43300000
-        .4byte 0x00000000
-    .global lbl_8051D530
-    lbl_8051D530:
-        .4byte 0x3F4CCCCD
-        .4byte 0x00000000
-    .global lbl_8051D538
-    lbl_8051D538:
-        .4byte 0x3FF00000
-        .4byte 0x00000000
-    .global lbl_8051D540
-    lbl_8051D540:
-        .4byte 0x3FC90FDB
-    .global lbl_8051D544
-    lbl_8051D544:
-        .4byte 0x3E4CCCCC
-    .global lbl_8051D548
-    lbl_8051D548:
-        .4byte 0x40240000
-        .4byte 0x00000000
-    .global lbl_8051D550
-    lbl_8051D550:
-        .4byte 0x43300000
-        .4byte 0x80000000
-    .global lbl_8051D558
-    lbl_8051D558:
-        .4byte 0x437F0000
-        .4byte 0x00000000
-*/
+#include "trig.h"
+#include "System.h"
 
 namespace og {
-
 namespace Screen {
 
 /*
@@ -229,97 +16,43 @@ namespace Screen {
  * Address:	80301EB8
  * Size:	000008
  */
-void ArrowAlphaBlink::setSpeed(float)
-{
-	/*
-stfs     f1, 4(r3)
-blr
-	*/
-}
+void ArrowAlphaBlink::setSpeed(float speed) { m_speed = speed; }
 
 /*
  * --INFO--
  * Address:	........
  * Size:	000008
  */
-void ArrowAlphaBlink::setAmp(float)
-{
-	// UNUSED FUNCTION
-}
+// void ArrowAlphaBlink::setAmp(float)
+// {
+// 	// UNUSED FUNCTION
+// }
 
 /*
  * --INFO--
  * Address:	........
  * Size:	000008
  */
-void ArrowAlphaBlink::setBottom(float)
-{
-	// UNUSED FUNCTION
-}
+// void ArrowAlphaBlink::setBottom(float)
+// {
+// 	// UNUSED FUNCTION
+// }
 
 /*
  * --INFO--
  * Address:	80301EC0
  * Size:	0000C0
  */
-void ArrowAlphaBlink::calc(void)
+float ArrowAlphaBlink::calc()
 {
-	/*
-stwu     r1, -0x20(r1)
-lfs      f3, lbl_8051D508@sda21(r2)
-lwz      r4, sys@sda21(r13)
-lfs      f1, 4(r3)
-lfs      f0, 0x54(r4)
-fmuls    f2, f1, f0
-lfs      f1, 0(r3)
-lfs      f0, lbl_8051D50C@sda21(r2)
-fmadds   f1, f3, f2, f1
-stfs     f1, 0(r3)
-lfs      f1, 0(r3)
-fcmpo    cr0, f1, f0
-ble      lbl_80301EFC
-fsubs    f0, f1, f0
-stfs     f0, 0(r3)
-
-lbl_80301EFC:
-lfs      f2, 0(r3)
-lfs      f0, lbl_8051D51C@sda21(r2)
-lfs      f3, 8(r3)
-fcmpo    cr0, f2, f0
-lfs      f1, lbl_8051D510@sda21(r2)
-bge      lbl_80301F40
-lfs      f0, lbl_8051D514@sda21(r2)
-lis      r4, sincosTable___5JMath@ha
-addi     r4, r4, sincosTable___5JMath@l
-fmuls    f0, f2, f0
-fctiwz   f0, f0
-stfd     f0, 8(r1)
-lwz      r0, 0xc(r1)
-rlwinm   r0, r0, 3, 0x12, 0x1c
-lfsx     f0, r4, r0
-fneg     f0, f0
-b        lbl_80301F64
-
-lbl_80301F40:
-lfs      f0, lbl_8051D518@sda21(r2)
-lis      r4, sincosTable___5JMath@ha
-addi     r4, r4, sincosTable___5JMath@l
-fmuls    f0, f2, f0
-fctiwz   f0, f0
-stfd     f0, 0x10(r1)
-lwz      r0, 0x14(r1)
-rlwinm   r0, r0, 3, 0x12, 0x1c
-lfsx     f0, r4, r0
-
-lbl_80301F64:
-fadds    f2, f1, f0
-lfs      f1, lbl_8051D520@sda21(r2)
-lfs      f0, 0xc(r3)
-fmuls    f2, f3, f2
-fmadds   f1, f2, f1, f0
-addi     r1, r1, 0x20
-blr
-	*/
+    _00 += 30.0f * (m_speed * sys->m_secondsPerFrame);
+    if (_00 > TAU) {
+        _00 = _00 - TAU;
+    }
+    float factor = _08 * (1.0f + pikmin2_sinf(_00));
+    float scale = 0.5f;
+    float result = factor * scale + _0C;
+    return result;
 }
 
 /*
@@ -327,163 +60,51 @@ blr
  * Address:	80301F80
  * Size:	00021C
  */
-void capturePictureTreeColor(J2DPane*, int)
+PictureTreeColorCaptureInfo* capturePictureTreeColor(J2DPane* picture, int count)
 {
-	/*
-stwu     r1, -0x30(r1)
-mflr     r0
-stw      r0, 0x34(r1)
-stw      r31, 0x2c(r1)
-stw      r30, 0x28(r1)
-mr       r30, r4
-stw      r29, 0x24(r1)
-mr       r29, r3
-lbz      r0, init$3543@sda21(r13)
-extsb.   r0, r0
-bne      lbl_80301FBC
-li       r3, 0
-li       r0, 1
-stw      r3, wkPtr$3542@sda21(r13)
-stb      r0, init$3543@sda21(r13)
+    static PictureTreeColorInfo* wkPtr = nullptr;
+    static int Max = 0;
+    static int wkMax = 0;
 
-lbl_80301FBC:
-lbz      r0, init$3546@sda21(r13)
-extsb.   r0, r0
-bne      lbl_80301FD8
-li       r3, 0
-li       r0, 1
-stw      r3, Max$3545@sda21(r13)
-stb      r0, init$3546@sda21(r13)
+    PictureTreeColorCaptureInfo* resultPtr = nullptr;
+    
+    if (count > 0) {
+        wkPtr = new PictureTreeColorInfo[count];
+        Max = count;
+        wkMax = count;
+        resultPtr = new PictureTreeColorCaptureInfo(count, wkPtr);
+    }
+    
+    if ((u16) picture->getTypeID() == 0x12) {
+        JUtility::TColor white = static_cast<J2DPicture*>(picture)->getWhite();
+        JUtility::TColor black = static_cast<J2DPicture*>(picture)->getBlack();
+        if (wkMax > 0) {
+            wkPtr->m_pane = picture;
+            wkPtr->m_white.set(white.asGXColor.r, white.asGXColor.g, white.asGXColor.b, white.asGXColor.a);
+            wkPtr->m_black.set(black.asGXColor.r, black.asGXColor.g, black.asGXColor.b, black.asGXColor.a);
+            wkPtr++;
+            wkMax--;
+        } else {
+            JUT_PANICLINE(157, "picture pane overflow!!\n");
+        }
+    }
+    
+    JSUPtrLink* tree = (JSUPtrLink*) picture->m_tree.m_list.m_head;
 
-lbl_80301FD8:
-lbz      r0, init$3549@sda21(r13)
-extsb.   r0, r0
-bne      lbl_80301FF4
-li       r3, 0
-li       r0, 1
-stw      r3, wkMax$3548@sda21(r13)
-stb      r0, init$3549@sda21(r13)
-
-lbl_80301FF4:
-cmpwi    r30, 0
-li       r31, 0
-ble      lbl_80302050
-mulli    r3, r30, 0xc
-addi     r3, r3, 0x10
-bl       __nwa__FUl
-lis      r4, __ct__Q32og6Screen20PictureTreeColorInfoFv@ha
-mr       r7, r30
-addi     r4, r4, __ct__Q32og6Screen20PictureTreeColorInfoFv@l
-li       r5, 0
-li       r6, 0xc
-bl       __construct_new_array
-stw      r3, wkPtr$3542@sda21(r13)
-li       r3, 8
-stw      r30, Max$3545@sda21(r13)
-stw      r30, wkMax$3548@sda21(r13)
-bl       __nw__FUl
-cmplwi   r3, 0
-beq      lbl_8030204C
-lwz      r0, wkPtr$3542@sda21(r13)
-stw      r30, 0(r3)
-stw      r0, 4(r3)
-
-lbl_8030204C:
-mr       r31, r3
-
-lbl_80302050:
-mr       r3, r29
-lwz      r12, 0(r29)
-lwz      r12, 0xc(r12)
-mtctr    r12
-bctrl
-clrlwi   r0, r3, 0x10
-cmplwi   r0, 0x12
-bne      lbl_80302144
-mr       r4, r29
-addi     r3, r1, 0xc
-lwz      r12, 0(r29)
-lwz      r12, 0x138(r12)
-mtctr    r12
-bctrl
-mr       r4, r29
-lwz      r0, 0xc(r1)
-lwz      r12, 0(r29)
-addi     r3, r1, 8
-stw      r0, 0x14(r1)
-lwz      r12, 0x134(r12)
-mtctr    r12
-bctrl
-lwz      r0, wkMax$3548@sda21(r13)
-lwz      r3, 8(r1)
-cmpwi    r0, 0
-stw      r3, 0x10(r1)
-ble      lbl_80302128
-lwz      r3, wkPtr$3542@sda21(r13)
-lbz      r0, 0x14(r1)
-stw      r29, 0(r3)
-lbz      r4, 0x15(r1)
-lwz      r6, wkPtr$3542@sda21(r13)
-lbz      r3, 0x16(r1)
-stb      r0, 4(r6)
-lbz      r0, 0x17(r1)
-stb      r4, 5(r6)
-lbz      r5, 0x10(r1)
-stb      r3, 6(r6)
-lbz      r4, 0x11(r1)
-stb      r0, 7(r6)
-lbz      r3, 0x12(r1)
-lwz      r6, wkPtr$3542@sda21(r13)
-lbz      r0, 0x13(r1)
-stb      r5, 8(r6)
-stb      r4, 9(r6)
-stb      r3, 0xa(r6)
-stb      r0, 0xb(r6)
-lwz      r4, wkPtr$3542@sda21(r13)
-lwz      r3, wkMax$3548@sda21(r13)
-addi     r4, r4, 0xc
-addi     r0, r3, -1
-stw      r4, wkPtr$3542@sda21(r13)
-stw      r0, wkMax$3548@sda21(r13)
-b        lbl_80302144
-
-lbl_80302128:
-lis      r3, lbl_8048DCCC@ha
-lis      r5, lbl_8048DCDC@ha
-addi     r3, r3, lbl_8048DCCC@l
-li       r4, 0x9d
-addi     r5, r5, lbl_8048DCDC@l
-crclr    6
-bl       panic_f__12JUTExceptionFPCciPCce
-
-lbl_80302144:
-lwz      r29, 0xdc(r29)
-cmplwi   r29, 0
-beq      lbl_80302174
-addi     r29, r29, -12
-b        lbl_80302174
-
-lbl_80302158:
-lwz      r3, 0xc(r29)
-li       r4, 0
-bl       capturePictureTreeColor__Q22og6ScreenFP7J2DPanei
-lwz      r29, 0x18(r29)
-cmplwi   r29, 0
-beq      lbl_80302174
-addi     r29, r29, -12
-
-lbl_80302174:
-cmplwi   r29, 0
-bne      lbl_80302158
-lwz      r0, 0x34(r1)
-mr       r3, r31
-lwz      r31, 0x2c(r1)
-lwz      r30, 0x28(r1)
-lwz      r29, 0x24(r1)
-mtlr     r0
-addi     r1, r1, 0x30
-blr
-	*/
+    if (tree != nullptr) {
+        &((JSUTree<J2DPane>*) tree)->m_list -= 1;
+    }
+    
+    while (tree != nullptr) {
+        capturePictureTreeColor((J2DPane*) ((JSUTree<J2DPane>*) tree)->m_link.m_value, 0);
+        tree = ((JSUTree<J2DPane>*) tree)->m_link.m_next;
+        
+        if (tree != nullptr) {
+            &((JSUTree<J2DPane>*) tree)->m_list -= 1;
+        }
+    }
+    
+    return resultPtr;
 }
 
 /*
@@ -491,136 +112,47 @@ blr
  * Address:	8030219C
  * Size:	00003C
  */
-PictureTreeColorInfo::PictureTreeColorInfo(void)
-{
-	/*
-li       r5, -1
-li       r4, 0
-stw      r5, 4(r3)
-li       r0, 0xff
-stw      r5, 8(r3)
-stw      r4, 0(r3)
-stb      r0, 4(r3)
-stb      r0, 5(r3)
-stb      r0, 6(r3)
-stb      r0, 7(r3)
-stb      r4, 8(r3)
-stb      r4, 9(r3)
-stb      r4, 0xa(r3)
-stb      r4, 0xb(r3)
-blr
-	*/
-}
+// WEAK - in header
+// PictureTreeColorInfo::PictureTreeColorInfo(void)
+// {
+//     m_pane = 0;
+//     m_white.set(0xFF, 0xFF, 0xFF, 0xFF);
+//     m_black.set(0, 0, 0, 0);
+// }
 
 /*
  * --INFO--
  * Address:	........
  * Size:	0000AC
  */
-void recoverPictureTreeColor(og::Screen::PictureTreeColorCaptureInfo*)
-{
-	// UNUSED FUNCTION
-}
+// void recoverPictureTreeColor(og::Screen::PictureTreeColorCaptureInfo*)
+// {
+// 	// UNUSED FUNCTION
+// }
 
 /*
  * --INFO--
  * Address:	803021D8
  * Size:	000154
  */
-void blendColor(JUtility::TColor&, JUtility::TColor&, float, JUtility::TColor*)
+void blendColor(JUtility::TColor& color1, JUtility::TColor& color2, float blendFactor, JUtility::TColor* outColor)
 {
-	/*
-	.loc_0x0:
-	  lfs       f0, -0xE44(r2)
-	  stwu      r1, -0x70(r1)
-	  fcmpo     cr0, f1, f0
-	  bge-      .loc_0x14
-	  fmr       f1, f0
+    float t = blendFactor;
+    if (t < 0.0f) {
+        t = 0.0f;
+    }
+    if (t > 1.0f) {
+        t = 1.0f;
+    }
 
-	.loc_0x14:
-	  lfs       f0, -0xE50(r2)
-	  fcmpo     cr0, f1, f0
-	  ble-      .loc_0x24
-	  fmr       f1, f0
+    float tCompl = 1.0f - t;
 
-	.loc_0x24:
-	  lbz       r0, 0x0(r4)
-	  lis       r9, 0x4330
-	  lbz       r7, 0x1(r4)
-	  li        r11, -0x1
-	  stw       r0, 0x1C(r1)
-	  lbz       r10, 0x0(r3)
-	  stw       r9, 0x18(r1)
-	  lfs       f0, -0xE50(r2)
-	  lbz       r6, 0x2(r4)
-	  stw       r7, 0x34(r1)
-	  fsubs     f7, f0, f1
-	  lfd       f6, -0xE38(r2)
-	  stw       r9, 0x30(r1)
-	  lfd       f2, 0x18(r1)
-	  lfd       f0, 0x30(r1)
-	  fsubs     f2, f2, f6
-	  lbz       r8, 0x1(r3)
-	  fsubs     f0, f0, f6
-	  stw       r10, 0x14(r1)
-	  lbz       r0, 0x3(r4)
-	  stw       r9, 0x10(r1)
-	  fmuls     f2, f2, f1
-	  lbz       r4, 0x2(r3)
-	  lfd       f4, 0x10(r1)
-	  fmuls     f3, f0, f1
-	  stw       r6, 0x4C(r1)
-	  fsubs     f4, f4, f6
-	  stw       r9, 0x48(r1)
-	  lbz       r3, 0x3(r3)
-	  lfd       f0, 0x48(r1)
-	  fmadds    f2, f4, f7, f2
-	  stw       r8, 0x2C(r1)
-	  fsubs     f0, f0, f6
-	  fctiwz    f5, f2
-	  stw       r9, 0x28(r1)
-	  lfd       f4, 0x28(r1)
-	  fmuls     f2, f0, f1
-	  stw       r0, 0x64(r1)
-	  fsubs     f0, f4, f6
-	  stw       r9, 0x60(r1)
-	  fmadds    f0, f0, f7, f3
-	  stw       r4, 0x44(r1)
-	  stfd      f5, 0x20(r1)
-	  fctiwz    f3, f0
-	  lfd       f0, 0x60(r1)
-	  lwz       r6, 0x24(r1)
-	  fsubs     f0, f0, f6
-	  stw       r9, 0x40(r1)
-	  stfd      f3, 0x38(r1)
-	  fmuls     f0, f0, f1
-	  lfd       f1, 0x40(r1)
-	  stw       r11, 0x8(r1)
-	  fsubs     f3, f1, f6
-	  lwz       r0, 0x3C(r1)
-	  stb       r6, 0x0(r5)
-	  fmadds    f2, f3, f7, f2
-	  stw       r3, 0x5C(r1)
-	  stw       r9, 0x58(r1)
-	  fctiwz    f2, f2
-	  lfd       f1, 0x58(r1)
-	  stb       r0, 0x1(r5)
-	  fsubs     f1, f1, f6
-	  stfd      f2, 0x50(r1)
-	  lwz       r3, 0x54(r1)
-	  fmadds    f0, f1, f7, f0
-	  stb       r0, 0x9(r1)
-	  fctiwz    f0, f0
-	  stb       r3, 0x2(r5)
-	  stb       r6, 0x8(r1)
-	  stfd      f0, 0x68(r1)
-	  lwz       r0, 0x6C(r1)
-	  stb       r3, 0xA(r1)
-	  stb       r0, 0xB(r1)
-	  stb       r0, 0x3(r5)
-	  addi      r1, r1, 0x70
-	  blr
-	*/
+    JUtility::TColor store;
+    store.asGXColor.r = (color1.asGXColor.r * tCompl) + (color2.asGXColor.r * t);
+    store.asGXColor.g = (color1.asGXColor.g * tCompl) + (color2.asGXColor.g * t);
+    store.asGXColor.b = (color1.asGXColor.b * tCompl) + (color2.asGXColor.b * t);
+    store.asGXColor.a = (color1.asGXColor.a * tCompl) + (color2.asGXColor.a * t);
+    outColor->set(store.asGXColor.r, store.asGXColor.g, store.asGXColor.b, store.asGXColor.a);
 }
 
 /*
@@ -628,255 +160,35 @@ void blendColor(JUtility::TColor&, JUtility::TColor&, float, JUtility::TColor*)
  * Address:	........
  * Size:	0003D0
  */
-void setPictureTreeColor(J2DPane*, JUtility::TColor&, JUtility::TColor&, float)
-{
-	// UNUSED FUNCTION
-}
+// void setPictureTreeColor(J2DPane*, JUtility::TColor&, JUtility::TColor&, float)
+// {
+// 	// UNUSED FUNCTION
+// }
 
 /*
  * --INFO--
  * Address:	8030232C
  * Size:	000370
  */
-void blendPictureTreeColor(og::Screen::PictureTreeColorCaptureInfo*, JUtility::TColor&, JUtility::TColor&, float)
+void blendPictureTreeColor(PictureTreeColorCaptureInfo* captureInfo, JUtility::TColor& color1, JUtility::TColor& color2, float blendFactor) 
 {
-	/*
-	.loc_0x0:
-	  stwu      r1, -0x140(r1)
-	  mflr      r0
-	  stw       r0, 0x144(r1)
-	  stfd      f31, 0x130(r1)
-	  psq_st    f31,0x138(r1),0,0
-	  stfd      f30, 0x120(r1)
-	  psq_st    f30,0x128(r1),0,0
-	  stfd      f29, 0x110(r1)
-	  psq_st    f29,0x118(r1),0,0
-	  stfd      f28, 0x100(r1)
-	  psq_st    f28,0x108(r1),0,0
-	  stmw      r24, 0xE0(r1)
-	  fmr       f28, f1
-	  lfs       f29, -0xE44(r2)
-	  lfs       f30, -0xE50(r2)
-	  mr        r25, r3
-	  lwz       r30, 0x4(r3)
-	  mr        r26, r4
-	  lfd       f31, -0xE38(r2)
-	  mr        r27, r5
-	  li        r29, 0
-	  lis       r31, 0x4330
-	  b         .loc_0x330
-
-	.loc_0x5C:
-	  lwz       r28, 0x0(r30)
-	  cmplwi    r28, 0
-	  beq-      .loc_0x33C
-	  lwz       r3, 0x4(r30)
-	  fmr       f7, f28
-	  lwz       r0, 0x8(r30)
-	  fcmpo     cr0, f28, f29
-	  stw       r3, 0x1C(r1)
-	  stw       r0, 0x18(r1)
-	  bge-      .loc_0x88
-	  fmr       f7, f29
-
-	.loc_0x88:
-	  fcmpo     cr0, f7, f30
-	  ble-      .loc_0x94
-	  fmr       f7, f30
-
-	.loc_0x94:
-	  lbz       r8, 0x0(r26)
-	  li        r10, -0x1
-	  lbz       r6, 0x1(r26)
-	  fsubs     f0, f30, f7
-	  stw       r8, 0x2C(r1)
-	  fmr       f1, f28
-	  lbz       r4, 0x2(r26)
-	  fcmpo     cr0, f28, f29
-	  stw       r31, 0x28(r1)
-	  lbz       r0, 0x3(r26)
-	  lfd       f2, 0x28(r1)
-	  stw       r6, 0x44(r1)
-	  fsubs     f3, f2, f31
-	  lbz       r9, 0x1C(r1)
-	  stw       r31, 0x40(r1)
-	  lbz       r7, 0x1D(r1)
-	  lfd       f2, 0x40(r1)
-	  fmuls     f6, f3, f7
-	  stw       r4, 0x5C(r1)
-	  fsubs     f3, f2, f31
-	  lbz       r5, 0x1E(r1)
-	  stw       r31, 0x58(r1)
-	  lbz       r3, 0x1F(r1)
-	  lfd       f2, 0x58(r1)
-	  fmuls     f5, f3, f7
-	  stw       r0, 0x74(r1)
-	  fsubs     f3, f2, f31
-	  stw       r31, 0x70(r1)
-	  lfd       f2, 0x70(r1)
-	  fmuls     f3, f3, f7
-	  stw       r9, 0x24(r1)
-	  fsubs     f2, f2, f31
-	  stw       r31, 0x20(r1)
-	  lfd       f4, 0x20(r1)
-	  fmuls     f2, f2, f7
-	  stw       r7, 0x3C(r1)
-	  fsubs     f7, f4, f31
-	  stw       r31, 0x38(r1)
-	  fmadds    f7, f7, f0, f6
-	  lfd       f4, 0x38(r1)
-	  stw       r5, 0x54(r1)
-	  fsubs     f6, f4, f31
-	  stw       r31, 0x50(r1)
-	  fctiwz    f7, f7
-	  lfd       f4, 0x50(r1)
-	  fmadds    f5, f6, f0, f5
-	  stfd      f7, 0x30(r1)
-	  fsubs     f4, f4, f31
-	  fctiwz    f5, f5
-	  lwz       r0, 0x34(r1)
-	  stw       r10, 0xC(r1)
-	  fmadds    f3, f4, f0, f3
-	  stfd      f5, 0x48(r1)
-	  lwz       r4, 0x4C(r1)
-	  fctiwz    f4, f3
-	  stw       r3, 0x6C(r1)
-	  stw       r31, 0x68(r1)
-	  lfd       f3, 0x68(r1)
-	  stfd      f4, 0x60(r1)
-	  fsubs     f3, f3, f31
-	  lwz       r3, 0x64(r1)
-	  stb       r0, 0xC(r1)
-	  fmadds    f0, f3, f0, f2
-	  stb       r0, 0x1C(r1)
-	  fctiwz    f0, f0
-	  stb       r4, 0xD(r1)
-	  stb       r3, 0xE(r1)
-	  stfd      f0, 0x78(r1)
-	  lwz       r0, 0x7C(r1)
-	  stb       r4, 0x1D(r1)
-	  stb       r0, 0xF(r1)
-	  stb       r3, 0x1E(r1)
-	  stb       r0, 0x1F(r1)
-	  bge-      .loc_0x1C0
-	  fmr       f1, f29
-
-	.loc_0x1C0:
-	  fcmpo     cr0, f1, f30
-	  ble-      .loc_0x1CC
-	  fmr       f1, f30
-
-	.loc_0x1CC:
-	  lbz       r0, 0x0(r27)
-	  li        r24, -0x1
-	  lbz       r9, 0x1(r27)
-	  fsubs     f0, f30, f1
-	  stw       r0, 0x8C(r1)
-	  mr        r3, r28
-	  lbz       r7, 0x2(r27)
-	  addi      r4, r1, 0x14
-	  stw       r31, 0x88(r1)
-	  lbz       r5, 0x3(r27)
-	  lfd       f2, 0x88(r1)
-	  stw       r9, 0xA4(r1)
-	  fsubs     f3, f2, f31
-	  lbz       r11, 0x18(r1)
-	  stw       r31, 0xA0(r1)
-	  lbz       r10, 0x19(r1)
-	  lfd       f2, 0xA0(r1)
-	  fmuls     f5, f3, f1
-	  stw       r7, 0xBC(r1)
-	  fsubs     f2, f2, f31
-	  lbz       r8, 0x1A(r1)
-	  stw       r31, 0xB8(r1)
-	  lbz       r6, 0x1B(r1)
-	  fmuls     f4, f2, f1
-	  lfd       f2, 0xB8(r1)
-	  stw       r5, 0xD4(r1)
-	  fsubs     f3, f2, f31
-	  lwz       r0, 0x1C(r1)
-	  stw       r31, 0xD0(r1)
-	  lfd       f2, 0xD0(r1)
-	  fmuls     f3, f3, f1
-	  stw       r11, 0x84(r1)
-	  fsubs     f2, f2, f31
-	  stw       r31, 0x80(r1)
-	  lfd       f6, 0x80(r1)
-	  fmuls     f1, f2, f1
-	  stw       r10, 0x9C(r1)
-	  fsubs     f6, f6, f31
-	  stw       r31, 0x98(r1)
-	  fmadds    f6, f6, f0, f5
-	  lfd       f2, 0x98(r1)
-	  stw       r8, 0xB4(r1)
-	  fsubs     f5, f2, f31
-	  stw       r31, 0xB0(r1)
-	  fctiwz    f6, f6
-	  lfd       f2, 0xB0(r1)
-	  fmadds    f4, f5, f0, f4
-	  stw       r0, 0x14(r1)
-	  fsubs     f2, f2, f31
-	  fctiwz    f4, f4
-	  stfd      f6, 0x90(r1)
-	  lwz       r12, 0x0(r28)
-	  fmadds    f2, f2, f0, f3
-	  lwz       r0, 0x94(r1)
-	  stw       r24, 0x8(r1)
-	  lwz       r12, 0x12C(r12)
-	  fctiwz    f3, f2
-	  stfd      f4, 0xA8(r1)
-	  lwz       r7, 0xAC(r1)
-	  stfd      f3, 0xC0(r1)
-	  lwz       r5, 0xC4(r1)
-	  stw       r6, 0xCC(r1)
-	  stw       r31, 0xC8(r1)
-	  lfd       f2, 0xC8(r1)
-	  stb       r0, 0x8(r1)
-	  fsubs     f2, f2, f31
-	  stb       r0, 0x18(r1)
-	  fmadds    f0, f2, f0, f1
-	  stb       r7, 0x9(r1)
-	  stb       r5, 0xA(r1)
-	  fctiwz    f0, f0
-	  stb       r7, 0x19(r1)
-	  stfd      f0, 0xD8(r1)
-	  lwz       r0, 0xDC(r1)
-	  stb       r5, 0x1A(r1)
-	  stb       r0, 0xB(r1)
-	  stb       r0, 0x1B(r1)
-	  mtctr     r12
-	  bctrl
-	  lwz       r0, 0x18(r1)
-	  mr        r3, r28
-	  addi      r4, r1, 0x10
-	  stw       r0, 0x10(r1)
-	  lwz       r12, 0x0(r28)
-	  lwz       r12, 0x128(r12)
-	  mtctr     r12
-	  bctrl
-	  addi      r30, r30, 0xC
-	  addi      r29, r29, 0x1
-
-	.loc_0x330:
-	  lwz       r0, 0x0(r25)
-	  cmpw      r29, r0
-	  blt+      .loc_0x5C
-
-	.loc_0x33C:
-	  psq_l     f31,0x138(r1),0,0
-	  lfd       f31, 0x130(r1)
-	  psq_l     f30,0x128(r1),0,0
-	  lfd       f30, 0x120(r1)
-	  psq_l     f29,0x118(r1),0,0
-	  lfd       f29, 0x110(r1)
-	  psq_l     f28,0x108(r1),0,0
-	  lfd       f28, 0x100(r1)
-	  lmw       r24, 0xE0(r1)
-	  lwz       r0, 0x144(r1)
-	  mtlr      r0
-	  addi      r1, r1, 0x140
-	  blr
-	*/
+    PictureTreeColorInfo* colorInfo = captureInfo->m_colorInfoArray;
+    for (int i = 0; i < captureInfo->m_count; i++) {
+        
+        J2DPicture* picture = static_cast<J2DPicture*>(colorInfo[i].m_pane);
+        if (picture == nullptr) {
+            return;
+        } else {
+            JUtility::TColor white = colorInfo[i].m_white;
+            JUtility::TColor black = colorInfo[i].m_black;
+            
+            blendColor(white, color1, blendFactor, &white);
+            blendColor(black, color2, blendFactor, &black);   
+            
+            picture->setWhite(white); 
+            picture->setBlack(black);
+        }
+    }
 }
 
 /*
@@ -884,72 +196,26 @@ void blendPictureTreeColor(og::Screen::PictureTreeColorCaptureInfo*, JUtility::T
  * Address:	8030269C
  * Size:	0000C8
  */
-float calcSmooth0to1(float, float)
+float calcSmooth0to1(float p1, float p2) 
 {
-	/*
-fdivs    f1, f1, f2
-lfs      f0, lbl_8051D51C@sda21(r2)
-stwu     r1, -0x20(r1)
-fcmpo    cr0, f1, f0
-bge      lbl_803026B4
-fmr      f1, f0
-
-lbl_803026B4:
-lfs      f0, lbl_8051D510@sda21(r2)
-fcmpo    cr0, f1, f0
-ble      lbl_803026C4
-fmr      f1, f0
-
-lbl_803026C4:
-lfs      f0, lbl_8051D530@sda21(r2)
-fcmpo    cr0, f1, f0
-bge      lbl_803026D4
-b        lbl_8030275C
-
-lbl_803026D4:
-lfd      f4, lbl_8051D538@sda21(r2)
-fsubs    f1, f1, f0
-lfs      f2, lbl_8051D540@sda21(r2)
-fsub     f3, f4, f0
-lfs      f0, lbl_8051D51C@sda21(r2)
-fmuls    f1, f2, f1
-lfs      f2, lbl_8051D544@sda21(r2)
-fdiv     f3, f4, f3
-fmul     f1, f3, f1
-frsp     f1, f1
-fcmpo    cr0, f1, f0
-bge      lbl_80302730
-lfs      f0, lbl_8051D514@sda21(r2)
-lis      r3, sincosTable___5JMath@ha
-addi     r3, r3, sincosTable___5JMath@l
-fmuls    f0, f1, f0
-fctiwz   f0, f0
-stfd     f0, 8(r1)
-lwz      r0, 0xc(r1)
-rlwinm   r0, r0, 3, 0x12, 0x1c
-lfsx     f0, r3, r0
-fneg     f1, f0
-b        lbl_80302754
-
-lbl_80302730:
-lfs      f0, lbl_8051D518@sda21(r2)
-lis      r3, sincosTable___5JMath@ha
-addi     r3, r3, sincosTable___5JMath@l
-fmuls    f0, f1, f0
-fctiwz   f0, f0
-stfd     f0, 0x10(r1)
-lwz      r0, 0x14(r1)
-rlwinm   r0, r0, 3, 0x12, 0x1c
-lfsx     f1, r3, r0
-
-lbl_80302754:
-lfs      f0, lbl_8051D530@sda21(r2)
-fmadds   f1, f2, f1, f0
-
-lbl_8030275C:
-addi     r1, r1, 0x20
-blr
-	*/
+    float ratio = p1 / p2;
+    
+    if (ratio < 0.0f) {
+        ratio = 0.0f;
+    }
+    if (ratio > 1.0f) {
+        ratio = 1.0f;
+    }
+    
+    float limit = 0.8f;
+    
+    if (ratio < limit) {
+        return ratio;
+    }
+    
+    float theta = ((1.0 / (1.0 - (double) limit)) * (double) (HALF_PI * (ratio - limit)));
+    float sin = pikmin2_sinf(theta);
+    return (0.19999999f * sin) + 0.8f;
 }
 
 /*
@@ -2197,30 +1463,30 @@ JSUTree<J2DPane> J2DPane::getPaneTree()
  * Address:	........
  * Size:	000364
  */
-void printPaneTree__Q22og6ScreenFP7J2DPane25JSUTreeIterator<J2DPane>(void)
-{
-	// UNUSED FUNCTION
-}
+// void printPaneTree__Q22og6ScreenFP7J2DPane25JSUTreeIterator<J2DPane>(void)
+// {
+// 	// UNUSED FUNCTION
+// }
 
 /*
  * --INFO--
  * Address:	........
  * Size:	000008
  */
-float J2DPane::getTranslateY() const
-{
-	// UNUSED FUNCTION
-}
+// float J2DPane::getTranslateY() const
+// {
+// 	// UNUSED FUNCTION
+// }
 
 /*
  * --INFO--
  * Address:	........
  * Size:	000008
  */
-float J2DPane::getTranslateX() const
-{
-	// UNUSED FUNCTION
-}
+// float J2DPane::getTranslateX() const
+// {
+// 	// UNUSED FUNCTION
+// }
 
 /*
  * --INFO--
@@ -2247,10 +1513,10 @@ namespace Screen {
  * Address:	........
  * Size:	000070
  */
-AnimeScreen::AnimeScreen(JKRArchive*, int)
-{
-	// UNUSED FUNCTION
-}
+// AnimeScreen::AnimeScreen(JKRArchive*, int)
+// {
+// 	// UNUSED FUNCTION
+// }
 
 /*
  * --INFO--
@@ -2311,40 +1577,40 @@ blr
  * Address:	........
  * Size:	0000C8
  */
-void AnimeScreen::addAnim(unsigned long long, char*)
-{
-	// UNUSED FUNCTION
-}
+// void AnimeScreen::addAnim(unsigned long long, char*)
+// {
+// 	// UNUSED FUNCTION
+// }
 
 /*
  * --INFO--
  * Address:	........
  * Size:	000088
  */
-void setP2DScreen(char*, unsigned long, JKRArchive*)
-{
-	// UNUSED FUNCTION
-}
+// void setP2DScreen(char*, unsigned long, JKRArchive*)
+// {
+// 	// UNUSED FUNCTION
+// }
 
 /*
  * --INFO--
  * Address:	........
  * Size:	000004
  */
-void dumpInfoResTIMG(ResTIMG const*)
-{
-	// UNUSED FUNCTION
-}
+// void dumpInfoResTIMG(ResTIMG const*)
+// {
+// 	// UNUSED FUNCTION
+// }
 
 /*
  * --INFO--
  * Address:	........
  * Size:	000200
  */
-void drawPaneFrame(J2DGrafContext&, J2DPane*, JUtility::TColor&)
-{
-	// UNUSED FUNCTION
-}
+// void drawPaneFrame(J2DGrafContext&, J2DPane*, JUtility::TColor&)
+// {
+// 	// UNUSED FUNCTION
+// }
 
 } // namespace Screen
 
@@ -2417,9 +1683,9 @@ namespace Screen {
  * Address:	........
  * Size:	0000A4
  */
-AnimeScreen::~AnimeScreen(void)
-{
-	// UNUSED FUNCTION
-}
+// AnimeScreen::~AnimeScreen(void)
+// {
+// 	// UNUSED FUNCTION
+// }
 } // namespace Screen
 } // namespace og
