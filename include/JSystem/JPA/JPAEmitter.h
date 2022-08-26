@@ -82,42 +82,40 @@ struct JPABaseEmitter {
 	int getDrawCount() const;
 	void loadTexture(unsigned char, _GXTexMapID);
 
-	float _00;             // _00
-	float _04;             // _04
-	float _08;             // _08
-	JGeometry::TVec3f _0C; // _0C
-	JGeometry::TVec3f _18; // _18
-	s32 _24;               // _24
-	float _28;             // _28
-	float _2C;             // _2C
-	float _30;             // _30
-	u8 _34[0xC];           // _34
-	float _40;             // _40
-	u8 _44[4];             // _44
-	float _48;             // _48
-	u16 _4C;               // _4C
-	u16 _4E;               // _4E
-	u16 _50;               // _50
-	s32 : 0;               // reset alignment to _54
-	u16 _54;               // _54
-	JSUPtrLink _58;        // _58
-	Mtx _68;               // _68
-	JGeometry::TVec3f _98; // _98
-	JGeometry::TVec3f _A4; // _A4
-	float _B0;             // _B0
-	float _B4;             // _B4
-	u8 _B8;                // _B8
-	u8 _B9;                // _B9
-	u8 _BA;                // _BA
-	u8 _BB;                // _BB
-	u8 _BC;                // _BC
-	u8 _BD;                // _BD
-	u8 _BE;                // _BE
-	s32 : 0;               // reset alignment to _C0
-	u8 _C0[4];             // _C0
-	u32 _C4;               // _C4
-	unkptr _C8;            // _C8
-	unkptr _CC;            // _CC
+	float _00;                // _00
+	float _04;                // _04
+	float _08;                // _08
+	JGeometry::TVec3f _0C;    // _0C
+	JGeometry::TVec3f _18;    // _18
+	s32 _24;                  // _24
+	float _28;                // _28
+	float _2C;                // _2C
+	float _30;                // _30
+	u8 _34[0xC];              // _34
+	float _40;                // _40
+	u8 _44[4];                // _44
+	float _48;                // _48
+	u16 _4C;                  // _4C
+	u16 _4E;                  // _4E
+	u16 _50;                  // _50
+	s32 : 0;                  // reset alignment to _54
+	u16 _54;                  // _54
+	JSUPtrLink _58;           // _58
+	Mtx _68;                  // _68
+	JGeometry::TVec3f _98;    // _98
+	JGeometry::TVec3f _A4;    // _A4
+	float _B0;                // _B0
+	float _B4;                // _B4
+	u8 _B8;                   // _B8
+	u8 _B9;                   // _B9
+	u8 _BA;                   // _BA
+	u8 _BB;                   // _BB
+	JUtility::TColor m_color; // _BC
+	s32 : 0;                  // reset alignment to _C0
+	u8 _C0[4];                // _C0
+	u32 _C4;                  // _C4
+	unkptr _C8;               // _C8
+	unkptr _CC;               // _CC
 	// JPANode<JPABaseParticle>* _C8; // _C8
 	// JPANode<JPABaseParticle>* _CC; // _CC
 	s32 _D0;    // _D0

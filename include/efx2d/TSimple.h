@@ -14,18 +14,18 @@ struct TSimple1 : public TBase {
 		m_emitters[0]  = emitter;
 	}
 
-	virtual bool create(Arg*); // _00
-	virtual void forceKill();  // _04
-	virtual void fade();       // _08
+	virtual bool create(Arg*); // _08
+	virtual void kill();       // _0C (weak)
+	virtual void fade();       // _10 (weak)
 
 	u16 m_effectIDs[1];            // _08
 	JPABaseEmitter* m_emitters[1]; // _0C
 };
 
 struct TSimple2 : public TBase {
-	virtual bool create(Arg*); // _00
-	virtual void forceKill();  // _04
-	virtual void fade();       // _08
+	virtual bool create(Arg*); // _08
+	virtual void kill();       // _0C (weak)
+	virtual void fade();       // _10 (weak)
 
 	u16 m_effectIDs[2];            // _08
 	JPABaseEmitter* m_emitters[2]; // _0C
@@ -42,9 +42,9 @@ struct TSimple3 : public TBase {
 		m_emitters[2]  = nullptr;
 	}
 
-	virtual bool create(Arg*); // _00
-	virtual void forceKill();  // _04
-	virtual void fade();       // _08
+	virtual bool create(Arg*); // _08
+	virtual void kill();       // _0C (weak)
+	virtual void fade();       // _10 (weak)
 
 	// _00 VTBL
 	u16 m_effectIDs[3];            // _08
