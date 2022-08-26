@@ -13,29 +13,44 @@ struct TForever : public TBase, public JPAEmitterCallBack {
 	TForever();
 
 	// vtable 1 (TBase)
-	virtual bool create(Arg*); // _00
-	virtual void kill();       // _04
-	virtual void fade();       // _08
+	virtual bool create(Arg*); // _08
+	virtual void kill();       // _0C
+	virtual void fade();       // _10
 	// vtable 2 (JPABaseEmitter + self)
-	virtual ~TForever(); // _14
+	virtual ~TForever() { } // _34 (weak)
 
 	void setGlobalAlpha(u8);
 	void setGlobalEnvColor(JUtility::TColor&);
 	void setGlobalScale(float);
 
-	short _0C;                 // _0C
+	inline void setColor(JUtility::TColor& color1, JUtility::TColor& color2)
+	{
+		u8 blue            = color2.asGXColor.b;
+		u8 green           = color2.asGXColor.g;
+		color1.asGXColor.r = color2.asGXColor.r;
+		color1.asGXColor.g = green;
+		color1.asGXColor.b = blue;
+	}
+
+	u16 _0C;                   // _0C
 	JPABaseEmitter* m_emitter; // _10
 };
 
-struct TForeverN : public TBase {
+struct TForeverN : public TBaseIF {
 	TForeverN(u8);
 
-	virtual bool create(Arg*); // _00
-	virtual void kill();       // _04
-	virtual void fade();       // _08
-	virtual void setGroup(u8); // _0C
+	virtual bool create(Arg*); // _08
+	virtual void kill();       // _0C
+	virtual void fade();       // _10
+	virtual void setGroup(u8); // _14
 
 	void setGlobalAlpha(u8);
+
+	u8 m_length;          // _04
+	u8 _05;               // _05
+	u8 _06;               // _06
+	u8 _07;               // _07
+	TForever* m_forevers; // _08
 };
 } // namespace efx2d
 

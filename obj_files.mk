@@ -1026,7 +1026,7 @@ EBISAWA:=\
 	$(BUILD_DIR)/asm/plugProjectEbisawaU/efxObject.o\
 	$(BUILD_DIR)/asm/plugProjectEbisawaU/efxPikmin.o\
 	$(BUILD_DIR)/asm/plugProjectEbisawaU/particle2dMgr.o\
-	$(BUILD_DIR)/asm/plugProjectEbisawaU/efx2dBase.o\
+	$(BUILD_DIR)/src/plugProjectEbisawaU/efx2dBase.o\
 	$(BUILD_DIR)/asm/plugProjectEbisawaU/efx2dEffect.o\
 	$(BUILD_DIR)/asm/plugProjectEbisawaU/particleMgr.o\
 	$(BUILD_DIR)/asm/plugProjectEbisawaU/ebiP2Title.o\
