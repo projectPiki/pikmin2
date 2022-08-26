@@ -50,6 +50,12 @@ template <typename T> struct TVec2 {
 
 template <typename T> struct TVec3 {
 	inline TVec3() { }
+	inline TVec3(T value)
+	    : x(value)
+	    , y(value)
+	    , z(value)
+	{
+	}
 	inline TVec3(T inX, T inY, T inZ)
 	    : x(inX)
 	    , y(inY)

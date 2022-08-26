@@ -15,7 +15,7 @@ bool TSimple1::create(Arg* arg)
 {
 	P2ASSERTLINE(10, arg != nullptr);
 
-	Vector2f vec = (Vector2f)*arg;
+	Vector2f vec = *arg;
 
 	m_emitters[0] = particle2dMgr->create(m_effectIDs[0], vec, _05, _04);
 
@@ -34,7 +34,7 @@ bool TSimple2::create(Arg* arg)
 {
 	P2ASSERTLINE(25, arg != nullptr);
 
-	Vector2f vec = (Vector2f)*arg;
+	Vector2f vec = *arg;
 
 	for (int i = 0; i < 2; i++) {
 		m_emitters[i] = particle2dMgr->create(m_effectIDs[i], vec, _05, _04);
@@ -54,7 +54,7 @@ bool TSimple3::create(Arg* arg)
 {
 	P2ASSERTLINE(40, arg != nullptr);
 
-	Vector2f vec = (Vector2f)*arg;
+	Vector2f vec = *arg;
 
 	for (int i = 0; i < 3; i++) {
 		m_emitters[i] = particle2dMgr->create(m_effectIDs[i], vec, _05, _04);
@@ -74,7 +74,7 @@ bool TForever::create(Arg* arg)
 {
 	P2ASSERTLINE(54, arg != nullptr);
 
-	Vector2f vec = (Vector2f)*arg;
+	Vector2f vec = *arg;
 
 	if (m_emitter != nullptr) {
 		return false;
@@ -119,11 +119,9 @@ void TForever::setGlobalScale(float scale)
 		return;
 	}
 
-	emitter->_98.x = scale;
-	emitter->_98.y = scale;
-	emitter->_98.z = scale;
-	emitter->_B0   = scale;
-	emitter->_B4   = scale;
+	emitter->_98 = scale;
+	emitter->_B0 = scale;
+	emitter->_B4 = scale;
 }
 
 /*
