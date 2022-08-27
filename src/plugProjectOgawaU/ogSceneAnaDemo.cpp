@@ -37,55 +37,5 @@ void AnaDemo::doCreateObj(JKRArchive* archive)
 	registObj(obj, archive);
 	setColorBG(0, 0, 0, 150);
 }
-
-/*
- * --INFO--
- * Address:	8031EB54
- * Size:	00000C
- */
-// const char* AnaDemo::getResName() const { return "res_ana_demo.szs"; }
-
-/*
- * --INFO--
- * Address:	8031EB60
- * Size:	000008
- */
-// SceneType AnaDemo::getSceneType() { return m_sceneType; }
-
-/*
- * --INFO--
- * Address:	8031EB68
- * Size:	00000C
- */
-// ScreenOwnerID AnaDemo::getOwnerID() { return OWNER_OGA; }
-
-/*
- * --INFO--
- * Address:	8031EB74
- * Size:	00006C
- */
-/* ScreenMemberID AnaDemo::getMemberID()
-{
-    ScreenMemberID id = _MEMBER_EMPTY_STRING;
-    switch (m_sceneType) {
-    case SCENE_CAVE_IN_MENU:
-        id = MEMBER_ANA_DEMO;
-        break;
-    case SCENE_KANKETU_MENU:
-        id = MEMBER_KANKETU_MENU;
-        break;
-    case SCENE_CAVE_MORE_MENU:
-        id = MEMBER_CAVE_MORE;
-        break;
-    }
-    return id;
-} */
-
-/*
- * --INFO--
- * Address:	8031EBE0
- * Size:	000008
- */
-// bool AnaDemo::isUseBackupSceneInfo() { return true; }
 } // namespace newScreen
 } // namespace og

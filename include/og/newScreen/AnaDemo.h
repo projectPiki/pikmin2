@@ -18,6 +18,7 @@ struct DispMemberAnaDemo;
 namespace newScreen {
 struct AnaDemo : public ::Screen::SceneBase {
 	AnaDemo(long);
+
 	virtual const char* getResName() const { return "res_ana_demo.szs"; } // _1C (weak)
 	virtual SceneType getSceneType() { return m_sceneType; }              // _08 (weak)
 	virtual ScreenOwnerID getOwnerID() { return OWNER_OGA; }              // _0C (weak)
@@ -48,26 +49,26 @@ struct ObjAnaDemo : public ::Screen::ObjBase {
 	ObjAnaDemo(const char*);
 
 	og::Screen::DispMemberAnaDemo* _38;
-	unknown _3C;
-	unknown _40;
-	unknown _44;
-	unknown _48;
+	u32 _3C;
+	u32 _40;
+	u32 _44;
+	u32 _48;
 	P2DScreen::Mgr_tuning* m_mgrTuning;
 	og::Screen::MenuMgr* m_menuMgr;
-	unknown _54;
+	u32 _54;
 	og::Screen::AnimText_Screen* _58;
 	og::Screen::AnimText_Screen* _5C;
 	og::Screen::AnimText_Screen* _60;
 	og::Screen::AnimGroup* m_animGroup;
 	float _68;
-	unknown _6C;
+	u32 _6C;
 	J2DPane* m_pane;
 	float _74;
 	float _78;
 	u8 _7C[4];
 	float _80;
 	float _84;
-	unknown _88;
+	u32 _88;
 	float _8C;
 	float _90;
 };
