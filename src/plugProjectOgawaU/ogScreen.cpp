@@ -351,26 +351,26 @@ u16 CalcKeta(u32 p1)
  * Address:	80302A74
  * Size:	000158
  */
-u64 MojiToNum(u64 arg0, int arg1)
+u64 MojiToNum(u64 moji, int arg1)
 {
-	char buff1[0xC];
-	char buff2[0xC];
+	char name1[0xC];
+	char name2[0xC];
 
 	if ((arg1 < 1) || (arg1 > 8)) {
-		TagToName(arg0, buff1);
-		JUT_PANICLINE(567, "MojiToNum ERR!(keta) [%s]\n", buff1);
+		TagToName(moji, name1);
+		JUT_PANICLINE(567, "MojiToNum ERR!(keta) [%s]\n", name1);
 	}
 
 	u64 result = 0;
 	for (int i = 0; i < arg1; i++) {
 
-		int shift = ((arg0 >> (i * 8)) & 0xFF) - 0x30;
+		int shift = ((moji >> (i * 8)) & 0xFF) - 0x30;
 		if ((shift < 0) || (shift > 9)) {
-			TagToName(arg0, buff2);
-			JUT_PANICLINE(576, "MojiToNum ERR! [%s]\n", buff2);
+			TagToName(moji, name2);
+			JUT_PANICLINE(576, "MojiToNum ERR! [%s]\n", name2);
 		}
 
-		double power = pow(10.0, (f64)i);
+		double power = pow(10.0, (double)i);
 		result       = shift * power + result;
 	}
 
@@ -382,126 +382,23 @@ u64 MojiToNum(u64 arg0, int arg1)
  * Address:	80302BCC
  * Size:	000158
  */
-void TagToName(u64, char*)
+void TagToName(u64 tag, char* name)
 {
-	/*
-li       r8, 0xff
-srwi     r0, r3, 0x18
-and      r6, r0, r8
-li       r9, 0
-srwi     r0, r3, 0x10
-stb      r6, 0(r5)
-and      r6, r0, r8
-srwi     r0, r3, 8
-stb      r6, 1(r5)
-and      r7, r0, r8
-rotlwi   r6, r4, 0x10
-stb      r7, 2(r5)
-and      r7, r3, r8
-rotlwi   r0, r4, 8
-rlwimi   r6, r3, 0x10, 0, 0xf
-rlwimi   r0, r3, 8, 0, 0x17
-stb      r7, 3(r5)
-and      r7, r0, r8
-and      r6, r6, r8
-stb      r7, 4(r5)
-rotlwi   r0, r4, 0x18
-rlwimi   r0, r3, 0x18, 0, 7
-and      r3, r4, r8
-stb      r6, 5(r5)
-and      r0, r0, r8
-stb      r0, 6(r5)
-li       r0, 0x3f
-stb      r3, 7(r5)
-stb      r9, 8(r5)
-lbz      r3, 0(r5)
-extsb    r3, r3
-cmpwi    r3, 0x20
-blt      lbl_80302C58
-cmpwi    r3, 0x7e
-ble      lbl_80302C5C
+	name[0] = (char)((tag >> 0x38) & 0xFF);
+	name[1] = (char)((tag >> 0x30) & 0xFF);
+	name[2] = (char)((tag >> 0x28) & 0xFF);
+	name[3] = (char)((tag >> 0x20) & 0xFF);
+	name[4] = (char)((tag >> 0x18) & 0xFF);
+	name[5] = (char)((tag >> 0x10) & 0xFF);
+	name[6] = (char)((tag >> 0x8) & 0xFF);
+	name[7] = (char)(tag & 0xFF);
+	name[8] = 0;
 
-lbl_80302C58:
-stb      r0, 0(r5)
-
-lbl_80302C5C:
-lbz      r3, 1(r5)
-extsb    r3, r3
-cmpwi    r3, 0x20
-blt      lbl_80302C74
-cmpwi    r3, 0x7e
-ble      lbl_80302C78
-
-lbl_80302C74:
-stb      r0, 1(r5)
-
-lbl_80302C78:
-lbz      r3, 2(r5)
-extsb    r3, r3
-cmpwi    r3, 0x20
-blt      lbl_80302C90
-cmpwi    r3, 0x7e
-ble      lbl_80302C94
-
-lbl_80302C90:
-stb      r0, 2(r5)
-
-lbl_80302C94:
-lbz      r3, 3(r5)
-extsb    r3, r3
-cmpwi    r3, 0x20
-blt      lbl_80302CAC
-cmpwi    r3, 0x7e
-ble      lbl_80302CB0
-
-lbl_80302CAC:
-stb      r0, 3(r5)
-
-lbl_80302CB0:
-lbz      r3, 4(r5)
-extsb    r3, r3
-cmpwi    r3, 0x20
-blt      lbl_80302CC8
-cmpwi    r3, 0x7e
-ble      lbl_80302CCC
-
-lbl_80302CC8:
-stb      r0, 4(r5)
-
-lbl_80302CCC:
-lbz      r3, 5(r5)
-extsb    r3, r3
-cmpwi    r3, 0x20
-blt      lbl_80302CE4
-cmpwi    r3, 0x7e
-ble      lbl_80302CE8
-
-lbl_80302CE4:
-stb      r0, 5(r5)
-
-lbl_80302CE8:
-lbz      r3, 6(r5)
-extsb    r3, r3
-cmpwi    r3, 0x20
-blt      lbl_80302D00
-cmpwi    r3, 0x7e
-ble      lbl_80302D04
-
-lbl_80302D00:
-stb      r0, 6(r5)
-
-lbl_80302D04:
-lbz      r3, 7(r5)
-extsb    r3, r3
-cmpwi    r3, 0x20
-blt      lbl_80302D1C
-cmpwi    r3, 0x7e
-blelr
-
-lbl_80302D1C:
-stb      r0, 7(r5)
-blr
-	*/
+	for (int i = 0; i < 8; i++) {
+		if ((name[i] < ' ') || (name[i] > '~')) {
+			name[i] = '?';
+		}
+	}
 }
 
 /*
@@ -599,129 +496,17 @@ void TagToHex(u64 tag, char* hex)
  * Address:	80302EAC
  * Size:	00018C
  */
-J2DPane* TagSearch(J2DScreen* parentScreen, u64 tag)
+J2DPane* TagSearch(J2DScreen* screen, u64 tag)
 {
-	/*
-stwu     r1, -0x430(r1)
-mflr     r0
-stw      r0, 0x434(r1)
-stw      r31, 0x42c(r1)
-stw      r30, 0x428(r1)
-mr       r30, r6
-stw      r29, 0x424(r1)
-stw      r28, 0x420(r1)
-mr       r28, r5
-lwz      r12, 0(r3)
-lwz      r12, 0x3c(r12)
-mtctr    r12
-bctrl
-or.      r31, r3, r3
-bne      lbl_80303014
-li       r12, 0xff
-srwi     r7, r28, 0x18
-srwi     r6, r28, 0x10
-srwi     r5, r28, 8
-rotlwi   r4, r30, 8
-rotlwi   r3, r30, 0x10
-rotlwi   r0, r30, 0x18
-li       r29, 0
-and      r11, r7, r12
-rlwimi   r4, r28, 8, 0, 0x17
-and      r7, r4, r12
-and      r10, r6, r12
-rlwimi   r3, r28, 0x10, 0, 0xf
-and      r9, r5, r12
-and      r6, r3, r12
-rlwimi   r0, r28, 0x18, 0, 7
-and      r5, r0, r12
-and      r8, r28, r12
-and      r4, r30, r12
-stb      r9, 0xa(r1)
-li       r0, 2
-addi     r9, r1, 8
-stb      r11, 8(r1)
-li       r3, 0x3f
-stb      r10, 9(r1)
-stb      r8, 0xb(r1)
-stb      r7, 0xc(r1)
-stb      r6, 0xd(r1)
-stb      r5, 0xe(r1)
-stb      r4, 0xf(r1)
-stb      r29, 0x10(r1)
-mtctr    r0
-
-lbl_80302F68:
-lbz      r0, 0(r9)
-extsb    r0, r0
-cmpwi    r0, 0x20
-blt      lbl_80302F80
-cmpwi    r0, 0x7e
-ble      lbl_80302F84
-
-lbl_80302F80:
-stb      r3, 0(r9)
-
-lbl_80302F84:
-lbz      r0, 1(r9)
-extsb    r0, r0
-cmpwi    r0, 0x20
-blt      lbl_80302F9C
-cmpwi    r0, 0x7e
-ble      lbl_80302FA0
-
-lbl_80302F9C:
-stb      r3, 1(r9)
-
-lbl_80302FA0:
-lbz      r0, 2(r9)
-extsb    r0, r0
-cmpwi    r0, 0x20
-blt      lbl_80302FB8
-cmpwi    r0, 0x7e
-ble      lbl_80302FBC
-
-lbl_80302FB8:
-stb      r3, 2(r9)
-
-lbl_80302FBC:
-lbz      r0, 3(r9)
-extsb    r0, r0
-cmpwi    r0, 0x20
-blt      lbl_80302FD4
-cmpwi    r0, 0x7e
-ble      lbl_80302FD8
-
-lbl_80302FD4:
-stb      r3, 3(r9)
-
-lbl_80302FD8:
-addi     r9, r9, 4
-addi     r29, r29, 3
-bdnz     lbl_80302F68
-lis      r4, lbl_8048DE34@ha
-addi     r3, r1, 0x14
-addi     r4, r4, lbl_8048DE34@l
-addi     r5, r1, 8
-crclr    6
-bl       sprintf
-lis      r3, lbl_8048DCCC@ha
-addi     r5, r1, 0x14
-addi     r3, r3, lbl_8048DCCC@l
-li       r4, 0x2b0
-crclr    6
-bl       panic_f__12JUTExceptionFPCciPCce
-
-lbl_80303014:
-lwz      r0, 0x434(r1)
-mr       r3, r31
-lwz      r31, 0x42c(r1)
-lwz      r30, 0x428(r1)
-lwz      r29, 0x424(r1)
-lwz      r28, 0x420(r1)
-mtlr     r0
-addi     r1, r1, 0x430
-blr
-	*/
+	J2DPane* searchPane = screen->search(tag);
+	if (searchPane == nullptr) {
+		char name[0xC];
+		TagToName(tag, name);
+		char errCode[0x400];
+		sprintf(errCode, "tag[%s] is not exist!!\n", name);
+		JUT_PANICLINE(688, errCode);
+	}
+	return searchPane;
 }
 
 /*
