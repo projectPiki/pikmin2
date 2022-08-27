@@ -25,13 +25,13 @@ namespace newScreen {
 struct Cave : public ::Screen::SceneBase {
 	Cave();
 
-	virtual SceneType getSceneType();                       // _00
-	virtual ScreenOwnerID getOwnerID();                     // _04
-	virtual ScreenMemberID getMemberID();                   // _08
-	virtual bool isDrawInDemo() const;                      // _10
-	virtual const char* getResName() const;                 // _14
-	virtual void doCreateObj(JKRArchive*);                  // _18
-	virtual void doUserCallBackFunc(Resource::MgrCommand*); // _1C
+	virtual const char* getResName() const { return "res_cave.szs"; } // _1C (weak)
+	virtual SceneType getSceneType() { return SCENE_CAVE; }           // _08 (weak)
+	virtual ScreenOwnerID getOwnerID() { return OWNER_OGA; }          // _0C (weak)
+	virtual ScreenMemberID getMemberID() { return MEMBER_CAVE; }      // _10 (weak)
+	virtual bool isDrawInDemo() const { return false; }               // _18 (weak)
+	virtual void doCreateObj(JKRArchive*);                            // _20
+	virtual void doUserCallBackFunc(Resource::MgrCommand*);           // _24
 };
 
 struct ObjCave : public ::Screen::ObjBase {
