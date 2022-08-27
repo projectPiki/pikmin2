@@ -33,7 +33,7 @@ struct PictureTreeColorCaptureInfo;
 void blendColor(JUtility::TColor&, JUtility::TColor&, float, JUtility::TColor*);
 void blendPictureTreeColor(PictureTreeColorCaptureInfo*, JUtility::TColor&, JUtility::TColor&, float);
 void calcGlbCenter(J2DPane*, Vector2f*);
-u32 CalcKeta(u32);
+u16 CalcKeta(u32);
 float calcSmooth0to1(float, float);
 PictureTreeColorCaptureInfo* capturePictureTreeColor(J2DPane*, int);
 void centeringPane(J2DPane*, bool, bool);

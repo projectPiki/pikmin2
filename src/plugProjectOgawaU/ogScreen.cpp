@@ -20,39 +20,19 @@ void ArrowAlphaBlink::setSpeed(float speed) { m_speed = speed; }
 
 /*
  * --INFO--
- * Address:	........
- * Size:	000008
- */
-// void ArrowAlphaBlink::setAmp(float)
-// {
-// 	// UNUSED FUNCTION
-// }
-
-/*
- * --INFO--
- * Address:	........
- * Size:	000008
- */
-// void ArrowAlphaBlink::setBottom(float)
-// {
-// 	// UNUSED FUNCTION
-// }
-
-/*
- * --INFO--
  * Address:	80301EC0
  * Size:	0000C0
  */
 float ArrowAlphaBlink::calc()
 {
-    _00 += 30.0f * (m_speed * sys->m_secondsPerFrame);
-    if (_00 > TAU) {
-        _00 = _00 - TAU;
-    }
-    float factor = _08 * (1.0f + pikmin2_sinf(_00));
-    float scale = 0.5f;
-    float result = factor * scale + _0C;
-    return result;
+	_00 += 30.0f * (m_speed * sys->m_secondsPerFrame);
+	if (_00 > TAU) {
+		_00 = _00 - TAU;
+	}
+	float factor = _08 * (1.0f + pikmin2_sinf(_00));
+	float scale  = 0.5f;
+	float result = factor * scale + _0C;
+	return result;
 }
 
 /*
@@ -62,73 +42,50 @@ float ArrowAlphaBlink::calc()
  */
 PictureTreeColorCaptureInfo* capturePictureTreeColor(J2DPane* picture, int count)
 {
-    static PictureTreeColorInfo* wkPtr = nullptr;
-    static int Max = 0;
-    static int wkMax = 0;
+	static PictureTreeColorInfo* wkPtr = nullptr;
+	static int Max                     = 0;
+	static int wkMax                   = 0;
 
-    PictureTreeColorCaptureInfo* resultPtr = nullptr;
-    
-    if (count > 0) {
-        wkPtr = new PictureTreeColorInfo[count];
-        Max = count;
-        wkMax = count;
-        resultPtr = new PictureTreeColorCaptureInfo(count, wkPtr);
-    }
-    
-    if ((u16) picture->getTypeID() == 0x12) {
-        JUtility::TColor white = static_cast<J2DPicture*>(picture)->getWhite();
-        JUtility::TColor black = static_cast<J2DPicture*>(picture)->getBlack();
-        if (wkMax > 0) {
-            wkPtr->m_pane = picture;
-            wkPtr->m_white.set(white.asGXColor.r, white.asGXColor.g, white.asGXColor.b, white.asGXColor.a);
-            wkPtr->m_black.set(black.asGXColor.r, black.asGXColor.g, black.asGXColor.b, black.asGXColor.a);
-            wkPtr++;
-            wkMax--;
-        } else {
-            JUT_PANICLINE(157, "picture pane overflow!!\n");
-        }
-    }
-    
-    JSUPtrLink* tree = (JSUPtrLink*) picture->m_tree.m_list.m_head;
+	PictureTreeColorCaptureInfo* resultPtr = nullptr;
 
-    if (tree != nullptr) {
-        &((JSUTree<J2DPane>*) tree)->m_list -= 1;
-    }
-    
-    while (tree != nullptr) {
-        capturePictureTreeColor((J2DPane*) ((JSUTree<J2DPane>*) tree)->m_link.m_value, 0);
-        tree = ((JSUTree<J2DPane>*) tree)->m_link.m_next;
-        
-        if (tree != nullptr) {
-            &((JSUTree<J2DPane>*) tree)->m_list -= 1;
-        }
-    }
-    
-    return resultPtr;
+	if (count > 0) {
+		wkPtr     = new PictureTreeColorInfo[count];
+		Max       = count;
+		wkMax     = count;
+		resultPtr = new PictureTreeColorCaptureInfo(count, wkPtr);
+	}
+
+	if ((u16)picture->getTypeID() == 0x12) {
+		JUtility::TColor white = static_cast<J2DPicture*>(picture)->getWhite();
+		JUtility::TColor black = static_cast<J2DPicture*>(picture)->getBlack();
+		if (wkMax > 0) {
+			wkPtr->m_pane = picture;
+			wkPtr->m_white.set(white.asGXColor.r, white.asGXColor.g, white.asGXColor.b, white.asGXColor.a);
+			wkPtr->m_black.set(black.asGXColor.r, black.asGXColor.g, black.asGXColor.b, black.asGXColor.a);
+			wkPtr++;
+			wkMax--;
+		} else {
+			JUT_PANICLINE(157, "picture pane overflow!!\n");
+		}
+	}
+
+	JSUPtrLink* tree = (JSUPtrLink*)picture->m_tree.m_list.m_head;
+
+	if (tree != nullptr) {
+		&((JSUTree<J2DPane>*)tree)->m_list -= 1;
+	}
+
+	while (tree != nullptr) {
+		capturePictureTreeColor((J2DPane*)((JSUTree<J2DPane>*)tree)->m_link.m_value, 0);
+		tree = ((JSUTree<J2DPane>*)tree)->m_link.m_next;
+
+		if (tree != nullptr) {
+			&((JSUTree<J2DPane>*)tree)->m_list -= 1;
+		}
+	}
+
+	return resultPtr;
 }
-
-/*
- * --INFO--
- * Address:	8030219C
- * Size:	00003C
- */
-// WEAK - in header
-// PictureTreeColorInfo::PictureTreeColorInfo(void)
-// {
-//     m_pane = 0;
-//     m_white.set(0xFF, 0xFF, 0xFF, 0xFF);
-//     m_black.set(0, 0, 0, 0);
-// }
-
-/*
- * --INFO--
- * Address:	........
- * Size:	0000AC
- */
-// void recoverPictureTreeColor(og::Screen::PictureTreeColorCaptureInfo*)
-// {
-// 	// UNUSED FUNCTION
-// }
 
 /*
  * --INFO--
@@ -137,58 +94,48 @@ PictureTreeColorCaptureInfo* capturePictureTreeColor(J2DPane* picture, int count
  */
 void blendColor(JUtility::TColor& color1, JUtility::TColor& color2, float blendFactor, JUtility::TColor* outColor)
 {
-    float t = blendFactor;
-    if (t < 0.0f) {
-        t = 0.0f;
-    }
-    if (t > 1.0f) {
-        t = 1.0f;
-    }
+	float t = blendFactor;
+	if (t < 0.0f) {
+		t = 0.0f;
+	}
+	if (t > 1.0f) {
+		t = 1.0f;
+	}
 
-    float tCompl = 1.0f - t;
+	float tCompl = 1.0f - t;
 
-    JUtility::TColor store;
-    store.asGXColor.r = (color1.asGXColor.r * tCompl) + (color2.asGXColor.r * t);
-    store.asGXColor.g = (color1.asGXColor.g * tCompl) + (color2.asGXColor.g * t);
-    store.asGXColor.b = (color1.asGXColor.b * tCompl) + (color2.asGXColor.b * t);
-    store.asGXColor.a = (color1.asGXColor.a * tCompl) + (color2.asGXColor.a * t);
-    outColor->set(store.asGXColor.r, store.asGXColor.g, store.asGXColor.b, store.asGXColor.a);
+	JUtility::TColor store;
+	store.asGXColor.r = (color1.asGXColor.r * tCompl) + (color2.asGXColor.r * t);
+	store.asGXColor.g = (color1.asGXColor.g * tCompl) + (color2.asGXColor.g * t);
+	store.asGXColor.b = (color1.asGXColor.b * tCompl) + (color2.asGXColor.b * t);
+	store.asGXColor.a = (color1.asGXColor.a * tCompl) + (color2.asGXColor.a * t);
+	outColor->set(store.asGXColor.r, store.asGXColor.g, store.asGXColor.b, store.asGXColor.a);
 }
-
-/*
- * --INFO--
- * Address:	........
- * Size:	0003D0
- */
-// void setPictureTreeColor(J2DPane*, JUtility::TColor&, JUtility::TColor&, float)
-// {
-// 	// UNUSED FUNCTION
-// }
 
 /*
  * --INFO--
  * Address:	8030232C
  * Size:	000370
  */
-void blendPictureTreeColor(PictureTreeColorCaptureInfo* captureInfo, JUtility::TColor& color1, JUtility::TColor& color2, float blendFactor) 
+void blendPictureTreeColor(PictureTreeColorCaptureInfo* captureInfo, JUtility::TColor& color1, JUtility::TColor& color2, float blendFactor)
 {
-    PictureTreeColorInfo* colorInfo = captureInfo->m_colorInfoArray;
-    for (int i = 0; i < captureInfo->m_count; i++) {
-        
-        J2DPicture* picture = static_cast<J2DPicture*>(colorInfo[i].m_pane);
-        if (picture == nullptr) {
-            return;
-        } else {
-            JUtility::TColor white = colorInfo[i].m_white;
-            JUtility::TColor black = colorInfo[i].m_black;
-            
-            blendColor(white, color1, blendFactor, &white);
-            blendColor(black, color2, blendFactor, &black);   
-            
-            picture->setWhite(white); 
-            picture->setBlack(black);
-        }
-    }
+	PictureTreeColorInfo* colorInfo = captureInfo->m_colorInfoArray;
+	for (int i = 0; i < captureInfo->m_count; i++) {
+
+		J2DPicture* picture = static_cast<J2DPicture*>(colorInfo[i].m_pane);
+		if (picture == nullptr) {
+			return;
+		} else {
+			JUtility::TColor white = colorInfo[i].m_white;
+			JUtility::TColor black = colorInfo[i].m_black;
+
+			blendColor(white, color1, blendFactor, &white);
+			blendColor(black, color2, blendFactor, &black);
+
+			picture->setWhite(white);
+			picture->setBlack(black);
+		}
+	}
 }
 
 /*
@@ -196,26 +143,26 @@ void blendPictureTreeColor(PictureTreeColorCaptureInfo* captureInfo, JUtility::T
  * Address:	8030269C
  * Size:	0000C8
  */
-float calcSmooth0to1(float p1, float p2) 
+float calcSmooth0to1(float p1, float p2)
 {
-    float ratio = p1 / p2;
-    
-    if (ratio < 0.0f) {
-        ratio = 0.0f;
-    }
-    if (ratio > 1.0f) {
-        ratio = 1.0f;
-    }
-    
-    float limit = 0.8f;
-    
-    if (ratio < limit) {
-        return ratio;
-    }
-    
-    float theta = ((1.0 / (1.0 - (double) limit)) * (double) (HALF_PI * (ratio - limit)));
-    float sin = pikmin2_sinf(theta);
-    return (0.19999999f * sin) + 0.8f;
+	float ratio = p1 / p2;
+
+	if (ratio < 0.0f) {
+		ratio = 0.0f;
+	}
+	if (ratio > 1.0f) {
+		ratio = 1.0f;
+	}
+
+	float limit = 0.8f;
+
+	if (ratio < limit) {
+		return ratio;
+	}
+
+	float theta = ((1.0 / (1.0 - (double)limit)) * (double)(HALF_PI * (ratio - limit)));
+	float sin   = pikmin2_sinf(theta);
+	return (0.19999999f * sin) + 0.8f;
 }
 
 /*
@@ -272,26 +219,6 @@ void calcGlbCenter(J2DPane*, Vector2f*)
 	addi     r1, r1, 0x40
 	blr
 	*/
-}
-
-/*
- * --INFO--
- * Address:	........
- * Size:	000154
- */
-void kakomiPane(J2DPane*)
-{
-	// UNUSED FUNCTION
-}
-
-/*
- * --INFO--
- * Address:	........
- * Size:	000224
- */
-void centeringPane(J2DPane*, bool, bool)
-{
-	// UNUSED FUNCTION
 }
 
 /*
@@ -379,58 +306,24 @@ blr
  * Address:	80302920
  * Size:	0000A0
  */
-u64 maskTag(u64, u16, u16)
+u64 maskTag(u64 arg0, u16 arg1, u16 arg2)
 {
-	/*
-stwu     r1, -0x20(r1)
-mflr     r0
-clrlwi   r5, r5, 0x10
-stw      r0, 0x24(r1)
-cmplwi   r5, 8
-stmw     r27, 0xc(r1)
-mr       r28, r3
-mr       r27, r4
-mr       r29, r6
-blt      lbl_80302954
-li       r4, 0
-li       r3, 0
-b        lbl_803029AC
+	if (arg1 >= 8) {
+		return 0;
+	}
 
-lbl_80302954:
-addi     r0, r5, -1
-li       r3, 0
-rlwinm   r31, r0, 3, 0x10, 0x1c
-li       r4, 0xff
-mr       r5, r31
-bl       __shl2i
-clrlwi   r5, r29, 0x10
-nor      r29, r4, r4
-cmplwi   r5, 9
-nor      r30, r3, r3
-bgt      lbl_8030298C
-addi     r4, r5, 0x30
-srawi    r3, r4, 0x1f
-b        lbl_80302994
+	int shift    = ((arg1 - 1) * 8) & 0xFFF8;
+	u64 val      = 0xFF;
+	u64 firstVal = ~(val << shift);
 
-lbl_8030298C:
-addi     r4, r5, 0x37
-srawi    r3, r4, 0x1f
+	u64 nextVal;
+	if (arg2 <= 9) {
+		nextVal = arg2 + 0x30;
+	} else {
+		nextVal = arg2 + 0x37;
+	}
 
-lbl_80302994:
-mr       r5, r31
-bl       __shl2i
-and      r5, r27, r29
-and      r0, r28, r30
-or       r4, r4, r5
-or       r3, r3, r0
-
-lbl_803029AC:
-lmw      r27, 0xc(r1)
-lwz      r0, 0x24(r1)
-mtlr     r0
-addi     r1, r1, 0x20
-blr
-	*/
+	return (nextVal << shift) | (arg0 & firstVal);
 }
 
 /*
@@ -438,59 +331,19 @@ blr
  * Address:	803029C0
  * Size:	0000B4
  */
-i32 CalcKeta(u32)
+u16 CalcKeta(u32 p1)
 {
-	/*
-stwu     r1, -0x40(r1)
-mflr     r0
-stw      r0, 0x44(r1)
-stfd     f31, 0x38(r1)
-lfd      f31, lbl_8051D528@sda21(r2)
-stfd     f30, 0x30(r1)
-lfd      f30, lbl_8051D550@sda21(r2)
-stw      r31, 0x2c(r1)
-lis      r31, 0x4330
-stw      r30, 0x28(r1)
-li       r30, 1
-stw      r29, 0x24(r1)
-li       r29, 1
-stw      r28, 0x20(r1)
-mr       r28, r3
+	u16 result = 1;
+	for (int i = 1; i < 10; i++) {
+		if (p1 >= pow(10.0, (double)i)) {
+			short j = i + 1;
+			result  = j;
+		} else {
+			break;
+		}
+	}
 
-lbl_803029FC:
-xoris    r0, r29, 0x8000
-stw      r31, 8(r1)
-lfd      f1, lbl_8051D548@sda21(r2)
-stw      r0, 0xc(r1)
-lfd      f0, 8(r1)
-fsub     f2, f0, f30
-bl       pow
-stw      r28, 0x14(r1)
-stw      r31, 0x10(r1)
-lfd      f0, 0x10(r1)
-fsub     f0, f0, f31
-fcmpo    cr0, f0, f1
-cror     2, 1, 2
-bne      lbl_80302A48
-addi     r0, r29, 1
-addi     r29, r29, 1
-cmpwi    r29, 0xa
-clrlwi   r30, r0, 0x10
-blt      lbl_803029FC
-
-lbl_80302A48:
-lwz      r0, 0x44(r1)
-mr       r3, r30
-lfd      f31, 0x38(r1)
-lfd      f30, 0x30(r1)
-lwz      r31, 0x2c(r1)
-lwz      r30, 0x28(r1)
-lwz      r29, 0x24(r1)
-lwz      r28, 0x20(r1)
-mtlr     r0
-addi     r1, r1, 0x40
-blr
-	*/
+	return result;
 }
 
 /*
@@ -498,108 +351,30 @@ blr
  * Address:	80302A74
  * Size:	000158
  */
-void MojiToNum(unsigned long long, int)
+u64 MojiToNum(u64 arg0, int arg1)
 {
-	/*
-stwu     r1, -0x70(r1)
-mflr     r0
-stw      r0, 0x74(r1)
-stfd     f31, 0x68(r1)
-stfd     f30, 0x60(r1)
-stmw     r22, 0x38(r1)
-mr       r26, r5
-lis      r5, lbl_8048DCC0@ha
-mr       r25, r3
-cmpwi    r26, 1
-mr       r24, r4
-addi     r31, r5, lbl_8048DCC0@l
-blt      lbl_80302AB0
-cmpwi    r26, 8
-ble      lbl_80302AD8
+	char buff1[0xC];
+	char buff2[0xC];
 
-lbl_80302AB0:
-mr       r4, r24
-mr       r3, r25
-addi     r5, r1, 0x14
-bl       TagToName__Q22og6ScreenFUxPc
-addi     r3, r31, 0xc
-addi     r5, r31, 0x134
-addi     r6, r1, 0x14
-li       r4, 0x237
-crclr    6
-bl       panic_f__12JUTExceptionFPCciPCce
+	if ((arg1 < 1) || (arg1 > 8)) {
+		TagToName(arg0, buff1);
+		JUT_PANICLINE(567, "MojiToNum ERR!(keta) [%s]\n", buff1);
+	}
 
-lbl_80302AD8:
-lfd      f30, lbl_8051D550@sda21(r2)
-li       r28, 0
-li       r29, 0
-li       r27, 0
-li       r30, 0
-lis      r23, 0x4330
-b        lbl_80302BA0
+	u64 result = 0;
+	for (int i = 0; i < arg1; i++) {
 
-lbl_80302AF4:
-mr       r3, r25
-mr       r4, r24
-mr       r5, r30
-bl       __shr2u
-li       r0, 0xff
-and      r4, r4, r0
-li       r0, -48
-addc.    r22, r4, r0
-blt      lbl_80302B20
-cmpwi    r22, 9
-ble      lbl_80302B48
+		int shift = ((arg0 >> (i * 8)) & 0xFF) - 0x30;
+		if ((shift < 0) || (shift > 9)) {
+			TagToName(arg0, buff2);
+			JUT_PANICLINE(576, "MojiToNum ERR! [%s]\n", buff2);
+		}
 
-lbl_80302B20:
-mr       r4, r24
-mr       r3, r25
-addi     r5, r1, 8
-bl       TagToName__Q22og6ScreenFUxPc
-addi     r3, r31, 0xc
-addi     r5, r31, 0x150
-addi     r6, r1, 8
-li       r4, 0x240
-crclr    6
-bl       panic_f__12JUTExceptionFPCciPCce
+		double power = pow(10.0, (f64)i);
+		result       = shift * power + result;
+	}
 
-lbl_80302B48:
-xoris    r0, r27, 0x8000
-stw      r23, 0x20(r1)
-lfd      f1, lbl_8051D548@sda21(r2)
-stw      r0, 0x24(r1)
-lfd      f0, 0x20(r1)
-fsub     f2, f0, f30
-bl       pow
-fmr      f31, f1
-mr       r3, r29
-mr       r4, r28
-bl       __cvt_ull_dbl
-xoris    r0, r22, 0x8000
-stw      r23, 0x28(r1)
-stw      r0, 0x2c(r1)
-lfd      f0, 0x28(r1)
-fsub     f0, f0, f30
-fmadd    f1, f0, f31, f1
-bl       __cvt_dbl_usll
-mr       r28, r4
-mr       r29, r3
-addi     r27, r27, 1
-addi     r30, r30, 8
-
-lbl_80302BA0:
-cmpw     r27, r26
-blt      lbl_80302AF4
-lfd      f31, 0x68(r1)
-mr       r4, r28
-mr       r3, r29
-lfd      f30, 0x60(r1)
-lmw      r22, 0x38(r1)
-lwz      r0, 0x74(r1)
-mtlr     r0
-addi     r1, r1, 0x70
-blr
-	*/
+	return result;
 }
 
 /*
@@ -731,16 +506,6 @@ blr
 
 /*
  * --INFO--
- * Address:	........
- * Size:	000134
- */
-u64 NameToTag(char*)
-{
-	// UNUSED FUNCTION
-}
-
-/*
- * --INFO--
  * Address:	80302D24
  * Size:	0000F4
  */
@@ -816,51 +581,17 @@ blr
  * Address:	80302E18
  * Size:	000094
  */
-void TagToHex(u64, char*)
+void TagToHex(u64 tag, char* hex)
 {
-	/*
-stwu     r1, -0x30(r1)
-mflr     r0
-stw      r0, 0x34(r1)
-stmw     r24, 0x10(r1)
-mr       r26, r5
-li       r28, 0
-mr       r25, r3
-mr       r24, r4
-mr       r31, r26
-mr       r30, r28
-li       r27, 0
-li       r29, 0xf
-
-lbl_80302E48:
-subfic   r5, r28, 0x3c
-mr       r3, r25
-mr       r4, r24
-bl       __shr2u
-and      r3, r4, r29
-clrlwi   r0, r3, 0x10
-cmplwi   r0, 9
-addi     r0, r3, 0x57
-extsb    r0, r0
-bgt      lbl_80302E78
-addi     r0, r3, 0x30
-extsb    r0, r0
-
-lbl_80302E78:
-addi     r27, r27, 1
-stb      r0, 0(r31)
-cmpwi    r27, 0x10
-addi     r28, r28, 4
-addi     r31, r31, 1
-blt      lbl_80302E48
-li       r0, 0
-stb      r0, 0x10(r26)
-lmw      r24, 0x10(r1)
-lwz      r0, 0x34(r1)
-mtlr     r0
-addi     r1, r1, 0x30
-blr
-	*/
+	for (int i = 0; i < 16; i++) {
+		u32 conversion = (u32)((tag >> (0x3C - i * 4)) & 0xF);
+		char outChar   = (char)(conversion + 0x57);
+		if ((u16)conversion <= 9) {
+			outChar = (conversion + 0x30);
+		}
+		hex[i] = outChar;
+	}
+	hex[16] = 0;
 }
 
 /*
@@ -998,20 +729,14 @@ blr
  * Address:	80303038
  * Size:	000028
  */
-AlphaMgr::AlphaMgr(void)
+AlphaMgr::AlphaMgr()
 {
-	/*
-li       r0, 0
-lfs      f1, lbl_8051D51C@sda21(r2)
-stw      r0, 0(r3)
-lfs      f0, lbl_8051D510@sda21(r2)
-stfs     f1, 4(r3)
-stfs     f1, 8(r3)
-stfs     f0, 0xc(r3)
-stfs     f1, 0x10(r3)
-stfs     f0, 0x14(r3)
-blr
-	*/
+	_00 = 0;
+	_04 = 0.0f;
+	_08 = 0.0f;
+	_0C = 1.0f;
+	_10 = 0.0f;
+	_14 = 1.0f;
 }
 
 /*
@@ -1019,13 +744,10 @@ blr
  * Address:	80303060
  * Size:	00000C
  */
-void AlphaMgr::setBlinkArea(float, float)
+void AlphaMgr::setBlinkArea(float arg0, float arg1)
 {
-	/*
-stfs     f1, 0x10(r3)
-stfs     f2, 0x14(r3)
-blr
-	*/
+	_10 = arg0;
+	_14 = arg1;
 }
 
 /*
@@ -1033,39 +755,22 @@ blr
  * Address:	8030306C
  * Size:	000064
  */
-void AlphaMgr::in(float)
+void AlphaMgr::in(float p1)
 {
-	/*
-lfs      f3, lbl_8051D510@sda21(r2)
-lfs      f0, 4(r3)
-fcmpu    cr0, f3, f0
-bne      lbl_80303088
-li       r0, 0
-stw      r0, 0(r3)
-blr
+	if (1.0f == _04) {
+		_00 = 0;
+		return;
+	}
 
-lbl_80303088:
-lfs      f0, lbl_8051D51C@sda21(r2)
-fcmpu    cr0, f0, f1
-bne      lbl_803030A4
-li       r0, 0
-stw      r0, 0(r3)
-stfs     f3, 4(r3)
-blr
+	if (0.0f == p1) {
+		_00 = 0;
+		_04 = 1.0f;
+		return;
+	}
 
-lbl_803030A4:
-stfs     f0, 4(r3)
-li       r0, 1
-stw      r0, 0(r3)
-lwz      r4, sys@sda21(r13)
-lfs      f2, 4(r3)
-lfs      f0, 0x54(r4)
-fsubs    f2, f3, f2
-fdivs    f0, f1, f0
-fdivs    f0, f2, f0
-stfs     f0, 8(r3)
-blr
-	*/
+	_04 = 0.0f;
+	_00 = 1;
+	_08 = (1.0f - _04) / (p1 / sys->m_secondsPerFrame);
 }
 
 /*
@@ -1073,39 +778,23 @@ blr
  * Address:	803030D0
  * Size:	000064
  */
-void AlphaMgr::out(float)
+void AlphaMgr::out(float p1)
 {
-	/*
-lfs      f0, lbl_8051D510@sda21(r2)
-lfs      f2, lbl_8051D51C@sda21(r2)
-stfs     f0, 4(r3)
-lfs      f0, 4(r3)
-fcmpu    cr0, f2, f0
-bne      lbl_803030F4
-li       r0, 0
-stw      r0, 0(r3)
-blr
+	_04 = 1.0f;
 
-lbl_803030F4:
-fcmpu    cr0, f2, f1
-bne      lbl_8030310C
-li       r0, 0
-stw      r0, 0(r3)
-stfs     f2, 4(r3)
-blr
+	if (0.0f == _04) {
+		_00 = 0;
+		return;
+	}
 
-lbl_8030310C:
-li       r0, 2
-stw      r0, 0(r3)
-lwz      r4, sys@sda21(r13)
-lfs      f2, 4(r3)
-lfs      f0, 0x54(r4)
-fneg     f2, f2
-fdivs    f0, f1, f0
-fdivs    f0, f2, f0
-stfs     f0, 8(r3)
-blr
-	*/
+	if (0.0f == p1) {
+		_00 = 0;
+		_04 = 0.0f;
+		return;
+	}
+
+	_00 = 2;
+	_08 = -_04 / (p1 / sys->m_secondsPerFrame);
 }
 
 /*
@@ -1113,34 +802,17 @@ blr
  * Address:	80303134
  * Size:	000050
  */
-void AlphaMgr::blink(float)
+void AlphaMgr::blink(float p1)
 {
-	/*
-lwz      r0, 0(r3)
-cmpwi    r0, 0
-beq      lbl_80303148
-cmpwi    r0, 3
-bnelr
-
-lbl_80303148:
-li       r0, 3
-lfs      f0, lbl_8051D51C@sda21(r2)
-stw      r0, 0(r3)
-lfs      f2, 8(r3)
-lwz      r4, sys@sda21(r13)
-fcmpo    cr0, f2, f0
-lfs      f0, 0x54(r4)
-ble      lbl_80303174
-fdivs    f0, f0, f1
-stfs     f0, 8(r3)
-blr
-
-lbl_80303174:
-fdivs    f0, f0, f1
-fneg     f0, f0
-stfs     f0, 8(r3)
-blr
-	*/
+	if ((_00 == 0) || (_00 == 3)) {
+		_00             = 3;
+		float frametime = sys->m_secondsPerFrame;
+		if (_08 > 0.0f) {
+			_08 = frametime / p1;
+			return;
+		}
+		_08 = -(frametime / p1);
+	}
 }
 
 /*
@@ -1150,126 +822,54 @@ blr
  */
 u8 AlphaMgr::calc()
 {
-	/*
-stwu     r1, -0x10(r1)
-lwz      r0, 0(r3)
-cmpwi    r0, 2
-beq      lbl_80303268
-bge      lbl_803031A8
-cmpwi    r0, 0
-beq      lbl_803032F4
-bge      lbl_803031B8
-b        lbl_803032F4
+	switch (_00) {
+	case 0:
+		break;
+	case 1:
+		_04 += _08;
+		if (_04 >= 1.0f) {
+			_04 = 1.0f;
+			_00 = 0;
+		}
+		break;
+	case 4:
+		_04 += _08;
 
-lbl_803031A8:
-cmpwi    r0, 4
-beq      lbl_803031EC
-bge      lbl_803032F4
-b        lbl_8030329C
+		if (_04 >= 1.0f) {
+			_04         = 1.0f;
+			float tempC = _0C;
 
-lbl_803031B8:
-lfs      f2, 4(r3)
-lfs      f1, 8(r3)
-lfs      f0, lbl_8051D510@sda21(r2)
-fadds    f1, f2, f1
-stfs     f1, 4(r3)
-lfs      f1, 4(r3)
-fcmpo    cr0, f1, f0
-cror     2, 1, 2
-bne      lbl_803032F4
-stfs     f0, 4(r3)
-li       r0, 0
-stw      r0, 0(r3)
-b        lbl_803032F4
+			if ((_00 == 0) || (_00 == 3)) {
+				_00             = 3;
+				float frametime = sys->m_secondsPerFrame;
+				if (_08 > 0.0f) {
+					_08 = frametime / tempC;
+				} else {
+					_08 = -(frametime / tempC);
+				}
+			}
+		}
+		break;
+	case 2:
+		_04 += _08;
+		if (_04 <= 0.0f) {
+			_04 = 0.0f;
+			_00 = 0;
+		}
+		break;
+	case 3:
+		_04 += _08;
+		if (_04 >= _14) {
+			_04 = _14;
+			_08 = -_08;
+		} else if (_04 <= _10) {
+			_04 = _10;
+			_08 = -_08;
+		}
+		break;
+	}
 
-lbl_803031EC:
-lfs      f2, 4(r3)
-lfs      f1, 8(r3)
-lfs      f0, lbl_8051D510@sda21(r2)
-fadds    f1, f2, f1
-stfs     f1, 4(r3)
-lfs      f1, 4(r3)
-fcmpo    cr0, f1, f0
-cror     2, 1, 2
-bne      lbl_803032F4
-stfs     f0, 4(r3)
-lwz      r0, 0(r3)
-lfs      f2, 0xc(r3)
-cmpwi    r0, 0
-beq      lbl_8030322C
-cmpwi    r0, 3
-bne      lbl_803032F4
-
-lbl_8030322C:
-li       r0, 3
-lfs      f0, lbl_8051D51C@sda21(r2)
-stw      r0, 0(r3)
-lfs      f1, 8(r3)
-lwz      r4, sys@sda21(r13)
-fcmpo    cr0, f1, f0
-lfs      f0, 0x54(r4)
-ble      lbl_80303258
-fdivs    f0, f0, f2
-stfs     f0, 8(r3)
-b        lbl_803032F4
-
-lbl_80303258:
-fdivs    f0, f0, f2
-fneg     f0, f0
-stfs     f0, 8(r3)
-b        lbl_803032F4
-
-lbl_80303268:
-lfs      f2, 4(r3)
-lfs      f1, 8(r3)
-lfs      f0, lbl_8051D51C@sda21(r2)
-fadds    f1, f2, f1
-stfs     f1, 4(r3)
-lfs      f1, 4(r3)
-fcmpo    cr0, f1, f0
-cror     2, 0, 2
-bne      lbl_803032F4
-stfs     f0, 4(r3)
-li       r0, 0
-stw      r0, 0(r3)
-b        lbl_803032F4
-
-lbl_8030329C:
-lfs      f1, 4(r3)
-lfs      f0, 8(r3)
-fadds    f0, f1, f0
-stfs     f0, 4(r3)
-lfs      f1, 4(r3)
-lfs      f0, 0x14(r3)
-fcmpo    cr0, f1, f0
-cror     2, 1, 2
-bne      lbl_803032D4
-stfs     f0, 4(r3)
-lfs      f0, 8(r3)
-fneg     f0, f0
-stfs     f0, 8(r3)
-b        lbl_803032F4
-
-lbl_803032D4:
-lfs      f0, 0x10(r3)
-fcmpo    cr0, f1, f0
-cror     2, 0, 2
-bne      lbl_803032F4
-stfs     f0, 4(r3)
-lfs      f0, 8(r3)
-fneg     f0, f0
-stfs     f0, 8(r3)
-
-lbl_803032F4:
-lfs      f1, lbl_8051D558@sda21(r2)
-lfs      f0, 4(r3)
-fmuls    f0, f1, f0
-fctiwz   f0, f0
-stfd     f0, 8(r1)
-lwz      r3, 0xc(r1)
-addi     r1, r1, 0x10
-blr
-	*/
+	return 255.0f * _04;
 }
 
 /*
@@ -1428,264 +1028,4 @@ blr
 
 } // namespace Screen
 
-} // namespace og
-
-/*
- * --INFO--
- * Address:	803034E8
- * Size:	00000C
- */
-void JSUTreeIterator<J2DPane>::getObject() const
-{
-	/*
-	lwz      r3, 0(r3)
-	lwz      r3, 0xc(r3)
-	blr
-	*/
-}
-
-/*
- * --INFO--
- * Address:	803034F4
- * Size:	000008
- */
-JSUTree<J2DPane> J2DPane::getPaneTree()
-{
-	return m_tree;
-	/*
-	addi     r3, r3, 0xdc
-	blr
-	*/
-}
-
-/*
- * --INFO--
- * Address:	........
- * Size:	000364
- */
-// void printPaneTree__Q22og6ScreenFP7J2DPane25JSUTreeIterator<J2DPane>(void)
-// {
-// 	// UNUSED FUNCTION
-// }
-
-/*
- * --INFO--
- * Address:	........
- * Size:	000008
- */
-// float J2DPane::getTranslateY() const
-// {
-// 	// UNUSED FUNCTION
-// }
-
-/*
- * --INFO--
- * Address:	........
- * Size:	000008
- */
-// float J2DPane::getTranslateX() const
-// {
-// 	// UNUSED FUNCTION
-// }
-
-/*
- * --INFO--
- * Address:	803034FC
- * Size:	000010
- */
-u64 J2DPane::getTagName() const
-{
-	return m_tag;
-	/*
-	mr       r4, r3
-	lwz      r3, 0x10(r3)
-	lwz      r4, 0x14(r4)
-	blr
-	*/
-}
-
-namespace og {
-
-namespace Screen {
-
-/*
- * --INFO--
- * Address:	........
- * Size:	000070
- */
-// AnimeScreen::AnimeScreen(JKRArchive*, int)
-// {
-// 	// UNUSED FUNCTION
-// }
-
-/*
- * --INFO--
- * Address:	8030350C
- * Size:	000094
- */
-P2DScreen::Mgr_tuning::~Mgr_tuning(void)
-{
-	/*
-stwu     r1, -0x10(r1)
-mflr     r0
-stw      r0, 0x14(r1)
-stw      r31, 0xc(r1)
-mr       r31, r4
-stw      r30, 8(r1)
-or.      r30, r3, r3
-beq      lbl_80303584
-lis      r3, __vt__Q29P2DScreen10Mgr_tuning@ha
-addi     r0, r3, __vt__Q29P2DScreen10Mgr_tuning@l
-stw      r0, 0(r30)
-beq      lbl_80303574
-lis      r3, __vt__Q29P2DScreen3Mgr@ha
-addic.   r0, r30, 0x118
-addi     r0, r3, __vt__Q29P2DScreen3Mgr@l
-stw      r0, 0(r30)
-beq      lbl_80303568
-lis      r4, __vt__Q29P2DScreen4Node@ha
-addi     r3, r30, 0x118
-addi     r0, r4, __vt__Q29P2DScreen4Node@l
-li       r4, 0
-stw      r0, 0x118(r30)
-bl       __dt__5CNodeFv
-
-lbl_80303568:
-mr       r3, r30
-li       r4, 0
-bl       __dt__9J2DScreenFv
-
-lbl_80303574:
-extsh.   r0, r31
-ble      lbl_80303584
-mr       r3, r30
-bl       __dl__FPv
-
-lbl_80303584:
-lwz      r0, 0x14(r1)
-mr       r3, r30
-lwz      r31, 0xc(r1)
-lwz      r30, 8(r1)
-mtlr     r0
-addi     r1, r1, 0x10
-blr
-	*/
-}
-
-/*
- * --INFO--
- * Address:	........
- * Size:	0000C8
- */
-// void AnimeScreen::addAnim(unsigned long long, char*)
-// {
-// 	// UNUSED FUNCTION
-// }
-
-/*
- * --INFO--
- * Address:	........
- * Size:	000088
- */
-// void setP2DScreen(char*, unsigned long, JKRArchive*)
-// {
-// 	// UNUSED FUNCTION
-// }
-
-/*
- * --INFO--
- * Address:	........
- * Size:	000004
- */
-// void dumpInfoResTIMG(ResTIMG const*)
-// {
-// 	// UNUSED FUNCTION
-// }
-
-/*
- * --INFO--
- * Address:	........
- * Size:	000200
- */
-// void drawPaneFrame(J2DGrafContext&, J2DPane*, JUtility::TColor&)
-// {
-// 	// UNUSED FUNCTION
-// }
-
-} // namespace Screen
-
-} // namespace og
-
-/*
- * --INFO--
- * Address:	803035A0
- * Size:	000004
- */
-void P2DScreen::Node::update(void) { }
-
-/*
- * --INFO--
- * Address:	803035A4
- * Size:	000004
- */
-void P2DScreen::Node::draw(Graphics&, J2DGrafContext&) { }
-
-/*
- * --INFO--
- * Address:	803035A8
- * Size:	000004
- */
-void P2DScreen::Node::doInit(void) { }
-
-/*
- * --INFO--
- * Address:	803035AC
- * Size:	000060
- */
-P2DScreen::Node::~Node(void)
-{
-	/*
-	stwu     r1, -0x10(r1)
-	mflr     r0
-	stw      r0, 0x14(r1)
-	stw      r31, 0xc(r1)
-	mr       r31, r4
-	stw      r30, 8(r1)
-	or.      r30, r3, r3
-	beq      lbl_803035F0
-	lis      r5, __vt__Q29P2DScreen4Node@ha
-	li       r4, 0
-	addi     r0, r5, __vt__Q29P2DScreen4Node@l
-	stw      r0, 0(r30)
-	bl       __dt__5CNodeFv
-	extsh.   r0, r31
-	ble      lbl_803035F0
-	mr       r3, r30
-	bl       __dl__FPv
-
-lbl_803035F0:
-	lwz      r0, 0x14(r1)
-	mr       r3, r30
-	lwz      r31, 0xc(r1)
-	lwz      r30, 8(r1)
-	mtlr     r0
-	addi     r1, r1, 0x10
-	blr
-	*/
-}
-
-namespace og {
-
-namespace Screen {
-
-/*
- * --INFO--
- * Address:	........
- * Size:	0000A4
- */
-// AnimeScreen::~AnimeScreen(void)
-// {
-// 	// UNUSED FUNCTION
-// }
-} // namespace Screen
 } // namespace og

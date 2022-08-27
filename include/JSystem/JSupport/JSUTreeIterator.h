@@ -10,7 +10,7 @@ template <typename T> struct JSUTreeIterator {
 	inline void operator++() { m_tree = m_tree->getNextChild(); }
 	T* operator->() const;
 
-	T* getObject() const;
+	T* getObject() const { return static_cast<T*>(m_tree->m_link.m_value); }
 
 	// TODO: This is probably wrong?
 	JSUTree<T>* m_tree; // _00

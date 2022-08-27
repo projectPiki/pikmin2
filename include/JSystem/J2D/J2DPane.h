@@ -55,7 +55,7 @@ struct J2DPane {
 	J2DPane(J2DPane*, bool, u64, const JGeometry::TBox2f&);
 	J2DPane(u64, const JGeometry::TBox2f&);
 	J2DPane(J2DPane*, JSURandomInputStream*, u8);
-	
+
 	virtual ~J2DPane();                                                  // _08
 	virtual u32 getTypeID() const;                                       // _0C (weak)
 	virtual void move(float, float);                                     // _10
@@ -103,7 +103,7 @@ struct J2DPane {
 	JGeometry::TBox2f* getBounds();
 	JGeometry::TVec3f getGlbVtx(u8) const;
 	void* getPointer(JSURandomInputStream*, u32, JKRArchive*);
-	u64 getTagName() const;
+	u64 getTagName() const { return m_tag; }
 	float getTranslateX() const;
 	float getTranslateY() const;
 
@@ -116,7 +116,7 @@ struct J2DPane {
 	J2DPane* getFirstChildPane();
 	J2DPane* getNextChildPane();
 	J2DPane* getParentPane();
-	JSUTree<J2DPane>* getPaneTree();
+	JSUTree<J2DPane>* getPaneTree() { return &m_tree; }
 
 	void initiate();
 	void initialize(J2DPane*, bool, u64, const JGeometry::TBox2f&);
