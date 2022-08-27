@@ -18,12 +18,26 @@ struct DispMemberAnaDemo;
 namespace newScreen {
 struct AnaDemo : public ::Screen::SceneBase {
 	AnaDemo(long);
-
-	virtual SceneType getSceneType();                       // _08 (weak)
-	virtual ScreenOwnerID getOwnerID();                     // _0C (weak)
-	virtual ScreenMemberID getMemberID();                   // _10 (weak)
-	virtual bool isUseBackupSceneInfo();                    // _14 (weak)
-	virtual const char* getResName() const;                 // _1C (weak)
+	virtual const char* getResName() const { return "res_ana_demo.szs"; } // _1C (weak)
+	virtual SceneType getSceneType() { return m_sceneType; }              // _08 (weak)
+	virtual ScreenOwnerID getOwnerID() { return OWNER_OGA; }              // _0C (weak)
+	virtual ScreenMemberID getMemberID()
+	{
+		ScreenMemberID id = _MEMBER_EMPTY_STRING;
+		switch (m_sceneType) {
+		case SCENE_CAVE_IN_MENU:
+			id = MEMBER_ANA_DEMO;
+			break;
+		case SCENE_KANKETU_MENU:
+			id = MEMBER_KANKETU_MENU;
+			break;
+		case SCENE_CAVE_MORE_MENU:
+			id = MEMBER_CAVE_MORE;
+			break;
+		}
+		return id;
+	}                                                       // _10 (weak)
+	virtual bool isUseBackupSceneInfo() { return true; }    // _14 (weak)
 	virtual void doCreateObj(JKRArchive*);                  // _20
 	virtual void doUserCallBackFunc(Resource::MgrCommand*); // _24
 
