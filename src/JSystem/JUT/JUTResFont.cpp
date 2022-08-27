@@ -2,156 +2,6 @@
 #include "JSystem/JKR/JKRHeap.h"
 #include "types.h"
 
-/*
-    Generated from dpostproc
-
-    .section .rodata  # 0x804732E0 - 0x8049E220
-    .global saoAboutEncoding___10JUTResFont
-    saoAboutEncoding___10JUTResFont:
-        .4byte isLeadByte_1Byte__7JUTFontFi
-        .4byte isLeadByte_2Byte__7JUTFontFi
-        .4byte isLeadByte_ShiftJIS__7JUTFontFi
-    .global lbl_8047418C
-    lbl_8047418C:
-        .asciz "JUTResFont: Unknown data block\n"
-    .global lbl_804741AC
-    lbl_804741AC:
-        .asciz "Unknown data block\n"
-    .global halftofull$725
-    halftofull$725:
-        .2byte 0x8140
-        .2byte 0x8149
-        .2byte 0x8168
-        .2byte 0x8194
-        .2byte 0x8190
-        .2byte 0x8193
-        .2byte 0x8195
-        .2byte 0x8166
-        .2byte 0x8169
-        .2byte 0x816A
-        .2byte 0x8196
-        .2byte 0x817B
-        .2byte 0x8143
-        .2byte 0x817C
-        .2byte 0x8144
-        .2byte 0x815E
-        .2byte 0x824F
-        .2byte 0x8250
-        .2byte 0x8251
-        .2byte 0x8252
-        .2byte 0x8253
-        .2byte 0x8254
-        .2byte 0x8255
-        .2byte 0x8256
-        .2byte 0x8257
-        .2byte 0x8258
-        .2byte 0x8146
-        .2byte 0x8147
-        .2byte 0x8183
-        .2byte 0x8181
-        .2byte 0x8184
-        .2byte 0x8148
-        .2byte 0x8197
-        .2byte 0x8260
-        .2byte 0x8261
-        .2byte 0x8262
-        .2byte 0x8263
-        .2byte 0x8264
-        .2byte 0x8265
-        .2byte 0x8266
-        .2byte 0x8267
-        .2byte 0x8268
-        .2byte 0x8269
-        .2byte 0x826A
-        .2byte 0x826B
-        .2byte 0x826C
-        .2byte 0x826D
-        .2byte 0x826E
-        .2byte 0x826F
-        .2byte 0x8270
-        .2byte 0x8271
-        .2byte 0x8272
-        .2byte 0x8273
-        .2byte 0x8274
-        .2byte 0x8275
-        .2byte 0x8276
-        .2byte 0x8277
-        .2byte 0x8278
-        .2byte 0x8279
-        .2byte 0x816D
-        .2byte 0x818F
-        .2byte 0x816E
-        .2byte 0x814F
-        .2byte 0x8151
-        .2byte 0x8165
-        .2byte 0x8281
-        .2byte 0x8282
-        .2byte 0x8283
-        .2byte 0x8284
-        .2byte 0x8285
-        .2byte 0x8286
-        .2byte 0x8287
-        .2byte 0x8288
-        .2byte 0x8289
-        .2byte 0x828A
-        .2byte 0x828B
-        .2byte 0x828C
-        .2byte 0x828D
-        .2byte 0x828E
-        .2byte 0x828F
-        .2byte 0x8290
-        .2byte 0x8291
-        .2byte 0x8292
-        .2byte 0x8293
-        .2byte 0x8294
-        .2byte 0x8295
-        .2byte 0x8296
-        .2byte 0x8297
-        .2byte 0x8298
-        .2byte 0x8299
-        .2byte 0x829A
-        .2byte 0x816F
-        .2byte 0x8162
-        .2byte 0x8170
-        .2byte 0x8160
-
-    .section .data, "wa"  # 0x8049E220 - 0x804EFC20
-    .global __vt__10JUTResFont
-    __vt__10JUTResFont:
-        .4byte 0
-        .4byte 0
-        .4byte __dt__10JUTResFontFv
-        .4byte setGX__10JUTResFontFv
-        .4byte setGX__10JUTResFontFQ28JUtility6TColorQ28JUtility6TColor
-        .4byte drawChar_scale__10JUTResFontFffffib
-        .4byte getLeading__10JUTResFontCFv
-        .4byte getAscent__10JUTResFontCFv
-        .4byte getDescent__10JUTResFontCFv
-        .4byte getHeight__10JUTResFontCFv
-        .4byte getWidth__10JUTResFontCFv
-        .4byte getWidthEntry__10JUTResFontCFiPQ27JUTFont6TWidth
-        .4byte getCellWidth__10JUTResFontCFv
-        .4byte getCellHeight__10JUTResFontCFv
-        .4byte getFontType__10JUTResFontCFv
-        .4byte getResFont__10JUTResFontCFv
-        .4byte isLeadByte__10JUTResFontCFi
-        .4byte loadImage__10JUTResFontFi11_GXTexMapID
-        .4byte setBlock__10JUTResFontFv
-
-    .section .sdata2, "a"     # 0x80516360 - 0x80520E40
-    .balign 8
-    lbl_805166E0:
-        .float 0.0
-    .balign 8
-    lbl_805166E8:
-        .4byte 0x43300000
-        .4byte 0x80000000
-    .balign 8
-    lbl_805166F0:
-        .4byte 0x43300000
-        .4byte 0x00000000
-*/
-
 JUTFont::IsLeadByte const JUTResFont::saoAboutEncoding_[3]
     = { JUTFont::isLeadByte_1Byte, JUTFont::isLeadByte_2Byte, JUTFont::isLeadByte_ShiftJIS };
 
@@ -449,10 +299,9 @@ f32 JUTResFont::drawChar_scale(f32 pos_x, f32 pos_y, f32 scale_x, f32 scale_y, i
 			retval = width.w1 * (scale_x / getCellWidth());
 		}
 	}
-	sca_wid         = width_val + scale_x;
-	pos_height      = scale_y / getHeight();
-	ascent          = getAscent();
-	ascent_val      = pos_y - ascent * pos_height;
+	sca_wid = width_val + scale_x;
+	// getAscent needs to be called before getHeight for the sake of weak function order
+	ascent_val      = pos_y - getAscent() * (scale_y / getHeight());
 	scaled_height   = scale_y / getHeight();
 	f32 descent     = getDescent();
 	f32 ascent_calc = descent * ascent_val;
@@ -526,8 +375,6 @@ f32 JUTResFont::drawChar_scale(f32 pos_x, f32 pos_y, f32 scale_x, f32 scale_y, i
  * should have weak linkage
  */
 
-int JUTResFont::getHeight() const { return getAscent() + getDescent(); }
-
 /*
  * --INFO--
  * Address:	80031EC0
@@ -535,8 +382,6 @@ int JUTResFont::getHeight() const { return getAscent() + getDescent(); }
  * int JUTResFont::getAscent() const { return m_infoBlock->m_ascent; };
  * should have weak linkage
  */
-
-int JUTResFont::getAscent() const { return m_infoBlock->m_ascent; };
 
 /*
  * --INFO--
@@ -775,8 +620,6 @@ int JUTResFont::convertSjis(int inChr, u16* inLead) const
  * ResFONT* JUTResFont::getResFont() const
  * should have weak linkage
  */
-
-ResFONT* JUTResFont::getResFont() const { return m_resource; };
 
 /*
  * --INFO--
