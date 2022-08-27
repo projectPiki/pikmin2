@@ -2,71 +2,6 @@
 #include "JSystem/JUT/JUTFont.h"
 #include "types.h"
 
-/*
-    Generated from dpostproc
-
-.section .rodata  # 0x804732E0 - 0x8049E220
-.balign 8
-lbl_80474280:
-    .asciz "Font Encode Type %d\n"
-.balign 4
-lbl_80474298:
-    .asciz "IPLROM fontdata size : %u\n"
-
-.section .data, "wa"  # 0x8049E220 - 0x804EFC20
-.balign 8
-.global saoAboutEncoding___10JUTRomFont
-saoAboutEncoding___10JUTRomFont:
-    .4byte 0x00000000
-    .4byte 0x00020120
-    .4byte isLeadByte_1Byte__7JUTFontFi
-    .4byte 0x00000002
-    .4byte 0x00120F00
-    .4byte isLeadByte_ShiftJIS__7JUTFontFi
-.global __vt__10JUTRomFont
-__vt__10JUTRomFont:
-    .4byte 0
-    .4byte 0
-    .4byte __dt__10JUTRomFontFv
-    .4byte setGX__10JUTRomFontFv
-    .4byte setGX__7JUTFontFQ28JUtility6TColorQ28JUtility6TColor
-    .4byte drawChar_scale__10JUTRomFontFffffib
-    .4byte getLeading__10JUTRomFontCFv
-    .4byte getAscent__10JUTRomFontCFv
-    .4byte getDescent__10JUTRomFontCFv
-    .4byte getHeight__10JUTRomFontCFv
-    .4byte getWidth__10JUTRomFontCFv
-    .4byte getWidthEntry__10JUTRomFontCFiPQ27JUTFont6TWidth
-    .4byte getCellWidth__10JUTRomFontCFv
-    .4byte getCellHeight__10JUTRomFontCFv
-    .4byte getFontType__10JUTRomFontCFv
-    .4byte getResFont__10JUTRomFontCFv
-    .4byte isLeadByte__10JUTRomFontCFi
-
-.section .sbss # 0x80514D80 - 0x80516360
-.balign 8
-.global spAboutEncoding___10JUTRomFont
-spAboutEncoding___10JUTRomFont:
-    .skip 0x4
-.global spFontHeader___10JUTRomFont
-spFontHeader___10JUTRomFont:
-    .skip 0x4
-.global suFontHeaderRefered___10JUTRomFont
-suFontHeaderRefered___10JUTRomFont:
-    .skip 0x4
-
-.section .sdata2, "a"     # 0x80516360 - 0x80520E40
-.balign 8
-lbl_805166F8:
-    .float 0.0
-lbl_805166FC:
-    .float 0.5
-.balign 8
-lbl_80516700:
-    .4byte 0x43300000
-    .4byte 0x80000000
-*/
-
 JUTRomFont::AboutEncoding* JUTRomFont::spAboutEncoding_;
 JUTRomFont::FontHeader* JUTRomFont::spFontHeader_;
 u32 JUTRomFont::suFontHeaderRefered_; // they misspelled referred
@@ -339,18 +274,6 @@ bool JUTRomFont::isLeadByte(int c) const { return spAboutEncoding_->m_isLeadByte
 
 /*
  * --INFO--
- * Address:	........
- * Size:	00004C
- * Fake function to force weak virtual ordering.
- */
-void JUTRomFont::fakefunc()
-{
-	getLeading();
-	getWidth();
-}
-
-/*
- * --INFO--
  * Address:	80032EF0
  * Size:	00000C
  * int JUTRomFont::getWidth() const { return spFontHeader_->m_width; }
@@ -364,18 +287,6 @@ void JUTRomFont::fakefunc()
  * u16 JUTRomFont::getLeading() const { return spFontHeader_->m_leading; }
  * Weak function.
  */
-
-/*
- * --INFO--
- * Address:	........
- * Size:	00004C
- * Fake function to force weak virtual ordering.
- */
-void JUTRomFont::fakefunc2()
-{
-	getFontType();
-	getResFont();
-}
 
 /*
  * --INFO--
