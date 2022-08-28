@@ -3,45 +3,58 @@
 
 #include "Game/Cave/ObjectLayout.h"
 #include "Game/Cave/Info.h"
-
 #include "Game/Cave/RandMapMgr.h"
 
 namespace Game {
 namespace Cave {
-enum NodeType { Item = 1, Gate };
 struct RandMapScore;
+struct EnemyNode;
 
-// size: 0xC
+enum NodeType { Item = 1, Gate };
+
+/**
+ * @size{0xC}
+ */
 struct Adjust {
+	Adjust();
+
 	s32 _00; // _00
 	s32 _04; // _04
 	s32 _08; // _08
-
-	Adjust();
 };
 
-// size: 0x24
+/**
+ * @size{0x24}
+ */
 struct AdjustNode : public CNode {
-	virtual ~AdjustNode() { } // _08 (weak)
-
 	AdjustNode();
 	AdjustNode(Adjust*);
+
+	virtual ~AdjustNode() { } // _08 (weak)
 
 	Adjust* m_node; // _18
 };
 
-// size: 0x8
+/**
+ * @size{0x8}
+ */
 struct Door {
-	int m_direction;
-	int m_offset;
-
 	Door();
+
+	int m_direction; // _00
+	int m_offset;    // _04
 };
 
-// size: 0x20
+/**
+ * @size{0x20}
+ */
 struct DoorNode : public CNode {
 	DoorNode();
+	DoorNode(Door&);
+
 	~DoorNode() {};
+
+	bool isDoorAdjust(DoorNode*);
 
 	inline void reset()
 	{
@@ -49,13 +62,12 @@ struct DoorNode : public CNode {
 		m_node.m_offset    = -1;
 	}
 
-	DoorNode(Door&);
-	bool isDoorAdjust(DoorNode*);
-
 	Door m_node; // _18
 };
 
-// size: 0x18
+/**
+ * @size{0x18}
+ */
 struct FixObjNode : public ObjectLayoutNode {
 	virtual ~FixObjNode() { }                      // _08 (weak)
 	virtual int getObjectId();                     // _10 (weak)
@@ -65,12 +77,16 @@ struct FixObjNode : public ObjectLayoutNode {
 	virtual void getBirthPosition(float&, float&); // _24 (weak)
 };
 
-// size: 0x4
+/**
+ * @size{0x4}
+ */
 struct GateUnit {
 	GateInfo* m_info; // _00
 };
 
-// size: 0x24
+/**
+ * @size{0x24}
+ */
 struct GateNode : public ObjectLayoutNode {
 	GateNode();
 	GateNode(GateUnit* unit, int index, int dir); // for dir, use cardinal direction
@@ -82,15 +98,21 @@ struct GateNode : public ObjectLayoutNode {
 	virtual float getDirection();    // _1C
 	virtual int getBirthDoorIndex(); // _20
 
-	GateUnit* m_unit; // _18
-	f32 m_direction;  // _1C
-	s32 m_index;      // _20
+	GateUnit* m_unit;  // _18
+	float m_direction; // _1C
+	int m_index;       // _20
 };
 
+/**
+ * @size{0x4}
+ */
 struct ItemUnit {
 	ItemInfo* m_info; // _00
 };
 
+/**
+ * @size{0x34}
+ */
 struct ItemNode : public ObjectLayoutNode {
 	ItemNode();
 	ItemNode(ItemUnit*, BaseGen*, int);
@@ -107,10 +129,13 @@ struct ItemNode : public ObjectLayoutNode {
 	ItemUnit* m_unit;     // _18
 	BaseGen* m_generator; // _1C
 	u32 m_birthCount;     // _20
-	f32 m_direction;      // _24
+	float m_direction;    // _24
 	Vector3f m_position;  // _28
 };
 
+/**
+ * @size{0x24}
+ */
 struct MapUnits {
 	MapUnits(JUTTexture*);
 
@@ -142,8 +167,9 @@ struct MapUnits {
 	int m_sizeY;              // _20
 };
 
-struct EnemyNode;
-
+/**
+ * @size{0x40}
+ */
 struct MapNode : public CNode {
 	MapNode(UnitInfo* info = nullptr);
 
@@ -173,7 +199,7 @@ struct MapNode : public CNode {
 	void getEnemyScore();
 	void getNodeScore();
 	void getVersusScore();
-	void getUnitName();
+	char* getUnitName();
 	void getNodeCentreOffset(float&, float&);
 	void getDirection();
 	Vector3f getBaseGenGlobalPosition(BaseGen*);
@@ -190,13 +216,16 @@ struct MapNode : public CNode {
 	ObjectLayoutNode* m_itemNode;  // _24
 
 	MapNode** m_nodeList; // _28
-	s32 m_xGridOffset;    // _2C
-	s32 m_yGridOffset;    // _30
-	s32 m_enemyScore;     // _34
-	s32 m_nodeScore;      // _38
-	s32 m_vsScore;        // _3C
+	int m_xGridOffset;    // _2C
+	int m_yGridOffset;    // _30
+	int m_enemyScore;     // _34
+	int m_nodeScore;      // _38
+	int m_vsScore;        // _3C
 };
 
+/**
+ * @size{0x30}
+ */
 struct EnemyUnit {
 	TekiInfo* m_tekiInfo;     // _00
 	RandMapScore* m_mapScore; // _04
@@ -208,7 +237,9 @@ struct EnemyUnit {
 	int m_typeMax[4];   // _20 (_20 A, _24 B, _28 C, _2C F)
 };
 
-// size: 0x38
+/**
+ * @size{0x38}
+ */
 struct EnemyNode : public ObjectLayoutNode {
 	EnemyNode();
 	EnemyNode(EnemyUnit*, BaseGen*, int);
@@ -225,6 +256,8 @@ struct EnemyNode : public ObjectLayoutNode {
 	void makeGlobalData(Game::Cave::MapNode*);
 	void setGlobalData(Vector3f&, float);
 	void setBirthDoorIndex(int);
+
+	inline TekiInfo* getTekiInfo() { return m_enemyUnit->m_tekiInfo; }
 
 	EnemyUnit* m_enemyUnit; // _18
 	BaseGen* m_baseGen;     // _1C

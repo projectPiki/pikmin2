@@ -15,14 +15,15 @@ struct GateNode;
 struct ItemNode;
 struct MapNode;
 
+/**
+ * @size{0x34}
+ */
 struct MapUnitGenerator {
-	bool m_isFinalFloor;
-	bool m_hasEscapeFountain;
-	bool m_versusMode;
-	u8 _03; // _03
-
-	u32 _04; // _04
-
+	bool m_isFinalFloor;        // _00
+	bool m_hasEscapeFountain;   // _01
+	bool m_versusMode;          // _02
+	u8 _03;                     // _03
+	u32 _04;                    // _04
 	FloorInfo* m_floorInfo;     // _08
 	MapNode* m_mapNode;         // _0C
 	MapNode* m_mapNodeArr;      // _10
@@ -36,18 +37,24 @@ struct MapUnitGenerator {
 	EditMapUnit* m_editMapUnit; // _30
 };
 
+/**
+ * @size{0x4}
+ */
 struct RandMapChecker {
-	MapNode* m_mapNode; // _00
-
 	RandMapChecker(MapNode*);
+
 	bool isPutOnMap(MapNode*);
 	bool isPartsOnParts(MapNode*);
 	bool isDoorOnParts(MapNode*);
 	bool isPartsOnDoor(MapNode*);
 	bool isInnerBox(int, int, int, int, int, int, int, int);
+
+	MapNode* m_mapNode; // _00
 };
 
-/// @size{0x2C}
+/**
+ * @size{0x2C}
+ */
 struct RandMapUnit {
 	RandMapUnit(MapUnitGenerator*);
 
@@ -91,14 +98,13 @@ struct RandMapUnit {
 	void setUnitKindOrder(MapNode*, int*);
 	void setRandomDoorIndex(int*, int);
 
-	int m_doorCountMaybe;         // _00
-	int m_roomCount;              // _04
-	float m_routeRatio;           // _08
-	bool m_mapHasDiameter36;      // _0C
-	bool m_needsLoopMapNodeCheck; // _0D
-	int m_capCandidateCount;      // _10
-	// Float between 0.0 and 1.0
-	float m_capMax;                       // _14
+	int m_doorCountMaybe;                 // _00
+	int m_roomCount;                      // _04
+	float m_routeRatio;                   // _08
+	bool m_mapHasDiameter36;              // _0C
+	bool m_needsLoopMapNodeCheck;         // _0D
+	int m_capCandidateCount;              // _10
+	float m_capMax;                       // _14, between 0.0 and 1.0
 	MapNode** m_capCandidateNodes;        // _18
 	int* m_capCandidateDoorIndices;       // _1C
 	MapUnitGenerator* m_mapUnitGenerator; // _20
