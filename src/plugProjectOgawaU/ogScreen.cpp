@@ -1,5 +1,6 @@
 #include "types.h"
-#include "JSystem/JSupport/JSUTreeIterator.h"
+#include "Dolphin/os.h"
+#include "JSystem/JSupport/JSUList.h"
 #include "og/Screen/AlphaMgr.h"
 #include "og/Screen/ogScreen.h"
 #include "og/Screen/ArrowAlphaBlink.h"
@@ -10,6 +11,18 @@
 
 namespace og {
 namespace Screen {
+
+static ResTIMG* PikiIconTextureResTIMG[19];
+
+void _Print(char* format, ...)
+{
+	OSReport("ogScreen");
+	char buffer[512];
+	va_list args;
+	va_start(args, format);
+	sprintf(buffer, format, __FILE__, buffer);
+	vprintf(buffer, args);
+}
 
 /*
  * --INFO--
@@ -46,13 +59,13 @@ PictureTreeColorCaptureInfo* capturePictureTreeColor(J2DPane* picture, int count
 	static int Max                     = 0;
 	static int wkMax                   = 0;
 
-	PictureTreeColorCaptureInfo* resultPtr = nullptr;
+	PictureTreeColorCaptureInfo* captureInfo = nullptr;
 
 	if (count > 0) {
-		wkPtr     = new PictureTreeColorInfo[count];
-		Max       = count;
-		wkMax     = count;
-		resultPtr = new PictureTreeColorCaptureInfo(count, wkPtr);
+		wkPtr       = new PictureTreeColorInfo[count];
+		Max         = count;
+		wkMax       = count;
+		captureInfo = new PictureTreeColorCaptureInfo(count, wkPtr);
 	}
 
 	if ((u16)picture->getTypeID() == 0x12) {
@@ -69,22 +82,15 @@ PictureTreeColorCaptureInfo* capturePictureTreeColor(J2DPane* picture, int count
 		}
 	}
 
-	JSUPtrLink* tree = (JSUPtrLink*)picture->m_tree.m_list.m_head;
+	JSUTree<J2DPane>* tree = picture->getPaneTree();
+	JSUTreeIterator<J2DPane> iterator(tree->getFirstChild());
 
-	if (tree != nullptr) {
-		&((JSUTree<J2DPane>*)tree)->m_list -= 1;
+	while (iterator != tree->getEndChild()) {
+		capturePictureTreeColor(iterator.getObject(), 0);
+		++iterator;
 	}
 
-	while (tree != nullptr) {
-		capturePictureTreeColor((J2DPane*)((JSUTree<J2DPane>*)tree)->m_link.m_value, 0);
-		tree = ((JSUTree<J2DPane>*)tree)->m_link.m_next;
-
-		if (tree != nullptr) {
-			&((JSUTree<J2DPane>*)tree)->m_list -= 1;
-		}
-	}
-
-	return resultPtr;
+	return captureInfo;
 }
 
 /*
@@ -226,6 +232,28 @@ u64 maskTag(u64 tag, u16 num, u16 mask)
 	return (maskedChar << shift) | (tag & extractChar);
 }
 
+static const char* PikiIconTextureName[] = {
+	"toumei_piki.bti",
+	"bp_l64.bti",
+	"bp_b64.bti",
+	"bp_f64.bti",
+	"rp_l64.bti",
+	"rp_b64.bti",
+	"rp_f64.bti",
+	"yp_l64.bti",
+	"yp_b64.bti",
+	"yp_f64.bti",
+	"blp_l64.bti",
+	"blp_b64.bti",
+	"blp_f64.bti",
+	"wp_l64.bti",
+	"wp_b64.bti",
+	"wp_f64.bti",
+	"cha_l.bti",
+	"cha_b.bti",
+	"cha_f.bti"	
+};
+
 /*
  * --INFO--
  * Address:	803029C0
@@ -233,17 +261,17 @@ u64 maskTag(u64 tag, u16 num, u16 mask)
  */
 u16 CalcKeta(u32 p1)
 {
-	u16 result = 1;
+	u16 keta = 1;
 	for (int i = 1; i < 10; i++) {
 		if (p1 >= pow(10.0, (double)i)) {
 			short j = i + 1;
-			result  = j;
+			keta    = j;
 		} else {
 			break;
 		}
 	}
 
-	return result;
+	return keta;
 }
 
 /*
@@ -251,18 +279,18 @@ u16 CalcKeta(u32 p1)
  * Address:	80302A74
  * Size:	000158
  */
-u64 MojiToNum(u64 moji, int arg1)
+u64 MojiToNum(u64 moji, int length)
 {
 	char name1[0xC];
 	char name2[0xC];
 
-	if ((arg1 < 1) || (arg1 > 8)) {
+	if ((length < 1) || (length > 8)) {
 		TagToName(moji, name1);
 		JUT_PANICLINE(567, "MojiToNum ERR!(keta) [%s]\n", name1);
 	}
 
-	u64 result = 0;
-	for (int i = 0; i < arg1; i++) {
+	u64 num = 0;
+	for (int i = 0; i < length; i++) {
 
 		int shift = ((moji >> (i * 8)) & 0xFF) - 0x30;
 		if ((shift < 0) || (shift > 9)) {
@@ -271,10 +299,10 @@ u64 MojiToNum(u64 moji, int arg1)
 		}
 
 		double power = pow(10.0, (double)i);
-		result       = shift * power + result;
+		num          = shift * power + num;
 	}
 
-	return result;
+	return num;
 }
 
 /*
@@ -509,154 +537,29 @@ u8 AlphaMgr::calc()
  * Address:	80303314
  * Size:	0001D4
  */
-void setAlphaScreen(J2DPane*)
+void setAlphaScreen(J2DPane* pane)
 {
-	/*
-stwu     r1, -0x30(r1)
-mflr     r0
-li       r4, 1
-li       r5, 0
-stw      r0, 0x34(r1)
-stmw     r25, 0x14(r1)
-mr       r25, r3
-bl       setInfluencedAlpha__7J2DPaneFbb
-lwz      r31, 0xdc(r25)
-cmplwi   r31, 0
-beq      lbl_803034CC
-addi     r31, r31, -12
-b        lbl_803034CC
+	pane->setInfluencedAlpha(1, 0);
 
-lbl_80303348:
-lwz      r28, 0xc(r31)
-li       r4, 1
-li       r5, 0
-mr       r3, r28
-bl       setInfluencedAlpha__7J2DPaneFbb
-lwz      r30, 0xdc(r28)
-cmplwi   r30, 0
-beq      lbl_803034B4
-addi     r30, r30, -12
-b        lbl_803034B4
+	JSUTree<J2DPane>* tree = pane->getPaneTree();
+	JSUTreeIterator<J2DPane> iterator(tree->getFirstChild());
 
-lbl_80303370:
-lwz      r28, 0xc(r30)
-li       r4, 1
-li       r5, 0
-mr       r3, r28
-bl       setInfluencedAlpha__7J2DPaneFbb
-lwz      r29, 0xdc(r28)
-cmplwi   r29, 0
-beq      lbl_8030349C
-addi     r29, r29, -12
-b        lbl_8030349C
-
-lbl_80303398:
-lwz      r28, 0xc(r29)
-li       r4, 1
-li       r5, 0
-mr       r3, r28
-bl       setInfluencedAlpha__7J2DPaneFbb
-addi     r3, r28, 0xdc
-bl       getFirstLink__10JSUPtrListCFv
-cmplwi   r3, 0
-beq      lbl_803033C0
-addi     r3, r3, -12
-
-lbl_803033C0:
-mr       r26, r3
-b        lbl_80303484
-
-lbl_803033C8:
-lwz      r28, 0xc(r26)
-li       r4, 1
-li       r5, 0
-mr       r3, r28
-bl       setInfluencedAlpha__7J2DPaneFbb
-addi     r27, r28, 0xdc
-mr       r3, r27
-bl       "getFirstChild__17JSUTree<7J2DPane>CFv"
-mr       r25, r3
-b        lbl_80303464
-
-lbl_803033F0:
-mr       r3, r25
-bl       "getObject__17JSUTree<7J2DPane>CFv"
-li       r4, 1
-mr       r28, r3
-li       r5, 0
-bl       setInfluencedAlpha__7J2DPaneFbb
-mr       r3, r28
-bl       getPaneTree__7J2DPaneFv
-mr       r28, r3
-bl       "getFirstChild__17JSUTree<7J2DPane>CFv"
-mr       r4, r3
-addi     r3, r1, 8
-bl       "__ct__25JSUTreeIterator<7J2DPane>FP17JSUTree<7J2DPane>"
-b        lbl_8030343C
-
-lbl_80303428:
-addi     r3, r1, 8
-bl       "getObject__25JSUTreeIterator<7J2DPane>CFv"
-bl       setAlphaScreen__Q22og6ScreenFP7J2DPane
-addi     r3, r1, 8
-bl       "__pp__25JSUTreeIterator<7J2DPane>Fv"
-
-lbl_8030343C:
-mr       r3, r28
-bl       "getEndChild__17JSUTree<7J2DPane>CFv"
-mr       r4, r3
-addi     r3, r1, 8
-bl       "__ne__25JSUTreeIterator<7J2DPane>CFPC17JSUTree<7J2DPane>"
-clrlwi.  r0, r3, 0x18
-bne      lbl_80303428
-mr       r3, r25
-bl       "getNextChild__17JSUTree<7J2DPane>CFv"
-mr       r25, r3
-
-lbl_80303464:
-mr       r3, r27
-bl       "getEndChild__17JSUTree<7J2DPane>CFv"
-cmplw    r25, r3
-bne      lbl_803033F0
-lwz      r26, 0x18(r26)
-cmplwi   r26, 0
-beq      lbl_80303484
-addi     r26, r26, -12
-
-lbl_80303484:
-cmplwi   r26, 0
-bne      lbl_803033C8
-lwz      r29, 0x18(r29)
-cmplwi   r29, 0
-beq      lbl_8030349C
-addi     r29, r29, -12
-
-lbl_8030349C:
-cmplwi   r29, 0
-bne      lbl_80303398
-lwz      r30, 0x18(r30)
-cmplwi   r30, 0
-beq      lbl_803034B4
-addi     r30, r30, -12
-
-lbl_803034B4:
-cmplwi   r30, 0
-bne      lbl_80303370
-lwz      r31, 0x18(r31)
-cmplwi   r31, 0
-beq      lbl_803034CC
-addi     r31, r31, -12
-
-lbl_803034CC:
-cmplwi   r31, 0
-bne      lbl_80303348
-lmw      r25, 0x14(r1)
-lwz      r0, 0x34(r1)
-mtlr     r0
-addi     r1, r1, 0x30
-blr
-	*/
+	while (iterator != tree->getEndChild()) {
+		J2DPane* nextPane = iterator.getObject();
+		setAlphaScreen(nextPane);
+		++iterator;
+	}
 }
+
+// fabricated to generate the P2DScreen::Node vtable and Mgr_tuning dtor
+void fakeogScreen1(P2DScreen::Node* node, P2DScreen::Mgr_tuning* mgr, Graphics& graphics, J2DGrafContext& context) { 
+    node->~Node();
+    node->doInit();
+    node->draw(graphics, context);
+	node->update();
+    mgr->~Mgr_tuning();
+}
+
 
 } // namespace Screen
 

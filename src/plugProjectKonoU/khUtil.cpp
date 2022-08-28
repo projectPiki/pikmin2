@@ -1,7 +1,6 @@
 #include "kh/khUtil.h"
 #include "JSystem/JGeometry.h"
-#include "JSystem/JSupport/JSUTree.h"
-#include "JSystem/JSupport/JSUTreeIterator.h"
+#include "JSystem/JSupport/JSUList.h"
 #include "JSystem/JUT/JUTException.h"
 #include "types.h"
 #include "Vector3.h"

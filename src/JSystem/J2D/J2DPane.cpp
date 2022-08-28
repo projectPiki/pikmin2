@@ -6,7 +6,7 @@
 #include "JSystem/J2D/J2DGrafContext.h"
 #include "JSystem/JGeometry.h"
 #include "JSystem/JSupport/JSUStream.h"
-#include "JSystem/JSupport/JSUTreeIterator.h"
+#include "JSystem/JSupport/JSUList.h"
 
 JGeometry::TBox2f J2DPane::static_mBounds(0.0f, 0.0f, 0.0f, 0.0f);
 /*

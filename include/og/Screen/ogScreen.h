@@ -5,6 +5,7 @@
 #include "types.h"
 #include "Screen/Enums.h"
 #include "Vector2.h"
+#include "JSystem/ResTIMG.h"
 
 struct J2DPane;
 struct ResTIMG;
@@ -108,6 +109,10 @@ struct DispMemberBase {
 	// _00 VTBL
 	DispMemberBase* m_subMember; // _04
 };
+
+extern const char* PikiIconTextureName[19];
+
+extern ResTIMG* PikiIconTextureResTIMG[19];
 
 } // namespace Screen
 } // namespace og

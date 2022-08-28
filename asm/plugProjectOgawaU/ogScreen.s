@@ -118,9 +118,6 @@ __vt__Q29P2DScreen4Node:
 .section .bss  # 0x804EFC20 - 0x8051467C
 # ogScreen.cpp
 .comm PikiIconTextureResTIMG__Q22og6Screen, 0x4C, 4
-# ogLifeGauge.cpp
-# temporarily moved to ogScreen.s for the sake of alignment
-.comm msVal__Q32og6Screen18CallBack_LifeGauge, 0x10, 4
 
 .section .sbss # 0x80514D80 - 0x80516360
 .balign 8
