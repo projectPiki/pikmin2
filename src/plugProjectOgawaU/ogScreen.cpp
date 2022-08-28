@@ -170,55 +170,12 @@ float calcSmooth0to1(float p1, float p2)
  * Address:	80302764
  * Size:	0000B0
  */
-// void calcGlbCenter__Q22og6ScreenFP7J2DPaneP10Vector2<float>(void)
-void calcGlbCenter(J2DPane*, Vector2f*)
+void calcGlbCenter(J2DPane* pane, Vector2f* center)
 {
-	/*
-	stwu     r1, -0x40(r1)
-	mflr     r0
-	li       r5, 0
-	stw      r0, 0x44(r1)
-	stw      r31, 0x3c(r1)
-	mr       r31, r4
-	stw      r30, 0x38(r1)
-	mr       r30, r3
-	addi     r3, r1, 0x14
-	mr       r4, r30
-	bl       getGlbVtx__7J2DPaneCFUc
-	lwz      r5, 0x14(r1)
-	mr       r4, r30
-	lwz      r6, 0x18(r1)
-	addi     r3, r1, 8
-	lwz      r0, 0x1c(r1)
-	stw      r5, 0x2c(r1)
-	li       r5, 3
-	stw      r6, 0x30(r1)
-	stw      r0, 0x34(r1)
-	bl       getGlbVtx__7J2DPaneCFUc
-	lwz      r0, 8(r1)
-	lwz      r3, 0xc(r1)
-	stw      r0, 0x20(r1)
-	lwz      r0, 0x10(r1)
-	stw      r3, 0x24(r1)
-	lfs      f3, 0x2c(r1)
-	lfs      f2, 0x20(r1)
-	lfs      f1, 0x30(r1)
-	lfs      f0, 0x24(r1)
-	fadds    f3, f3, f2
-	lfs      f2, lbl_8051D520@sda21(r2)
-	fadds    f0, f1, f0
-	stw      r0, 0x28(r1)
-	fmuls    f1, f3, f2
-	fmuls    f0, f0, f2
-	stfs     f1, 0(r31)
-	stfs     f0, 4(r31)
-	lwz      r31, 0x3c(r1)
-	lwz      r30, 0x38(r1)
-	lwz      r0, 0x44(r1)
-	mtlr     r0
-	addi     r1, r1, 0x40
-	blr
-	*/
+	Vector3f vec1 = pane->getGlbVtx(0);
+	Vector3f vec2 = pane->getGlbVtx(3);
+	center->x     = (vec1.x + vec2.x) / 2.f;
+	center->y     = (vec1.y + vec2.y) / 2.f;
 }
 
 /*
@@ -226,79 +183,22 @@ void calcGlbCenter(J2DPane*, Vector2f*)
  * Address:	80302814
  * Size:	00010C
  */
-u64 maskTag2(u64, u16)
+u64 maskTag2(u64 tag, u16 num)
 {
-	/*
-stwu     r1, -0x50(r1)
-mflr     r0
-stw      r0, 0x54(r1)
-clrlwi   r0, r5, 0x10
-cmplwi   r0, 0x63
-stw      r31, 0x4c(r1)
-mr       r31, r3
-stw      r30, 0x48(r1)
-mr       r30, r5
-stw      r29, 0x44(r1)
-mr       r29, r4
-ble      lbl_80302860
-lis      r3, lbl_8048DCCC@ha
-lis      r5, lbl_8048DCF8@ha
-addi     r3, r3, lbl_8048DCCC@l
-li       r4, 0x1c2
-addi     r5, r5, lbl_8048DCF8@l
-crclr    6
-bl       panic_f__12JUTExceptionFPCciPCce
+	JUT_ASSERTLINE(450, num <= 0x63, "num is overflow!\n");
+	char name[0xC];           // between 0x9 and 0xC inclusive
+	char bottomHex[0x18];     // between 0x11 and 0x18 inclusive
+	char complementHex[0x14]; // between 0x11 and 0x14 inclusive
 
-lbl_80302860:
-lis      r4, 0x66666667@ha
-lis      r0, 0xffff
-clrlwi   r11, r30, 0x10
-li       r3, -1
-addi     r10, r4, 0x66666667@l
-and      r0, r29, r0
-mulhw    r4, r10, r11
-and      r3, r31, r3
-addi     r5, r1, 8
-mr       r31, r3
-srawi    r8, r4, 2
-srawi    r4, r4, 2
-srwi     r6, r4, 0x1f
-srwi     r9, r8, 0x1f
-add      r7, r4, r6
-mulhw    r4, r10, r7
-add      r8, r8, r9
-srawi    r4, r4, 2
-srwi     r6, r4, 0x1f
-add      r4, r4, r6
-mulli    r4, r4, 0xa
-mulli    r6, r8, 0xa
-subf     r4, r4, r7
-subf     r6, r6, r11
-slwi     r4, r4, 8
-add      r4, r6, r4
-addi     r4, r4, 0x3030
-or       r30, r4, r0
-mr       r4, r30
-bl       TagToName__Q22og6ScreenFUxPc
-lis      r3, 0x0000FFFF@ha
-addi     r5, r1, 0x28
-addi     r4, r3, 0x0000FFFF@l
-li       r3, 0
-bl       TagToHex__Q22og6ScreenFUxPc
-addi     r5, r1, 0x14
-lis      r4, 0xffff
-li       r3, -1
-bl       TagToHex__Q22og6ScreenFUxPc
-lwz      r0, 0x54(r1)
-mr       r3, r31
-mr       r4, r30
-lwz      r31, 0x4c(r1)
-lwz      r30, 0x48(r1)
-lwz      r29, 0x44(r1)
-mtlr     r0
-addi     r1, r1, 0x50
-blr
-	*/
+	u32 decimalMask = '00' + num % 10 + (((num / 10) % 10) * 0x100);
+	u64 complement  = (tag & 0xFFFFFFFFFFFF0000);
+	u64 maskedTag   = (tag & 0xFFFFFFFF00000000) | complement | decimalMask;
+
+	TagToName(maskedTag, name);
+	TagToHex(0xFFFF, bottomHex);
+	TagToHex(0xFFFFFFFFFFFF0000, complementHex);
+
+	return maskedTag;
 }
 
 /*
@@ -306,24 +206,24 @@ blr
  * Address:	80302920
  * Size:	0000A0
  */
-u64 maskTag(u64 arg0, u16 arg1, u16 arg2)
+u64 maskTag(u64 tag, u16 num, u16 mask)
 {
-	if (arg1 >= 8) {
+	if (num >= 8) {
 		return 0;
 	}
 
-	int shift    = ((arg1 - 1) * 8) & 0xFFF8;
-	u64 val      = 0xFF;
-	u64 firstVal = ~(val << shift);
+	int shift       = ((num - 1) * 8) & 0xFFF8;
+	u64 baseChar    = 0xFF;
+	u64 extractChar = ~(baseChar << shift);
 
-	u64 nextVal;
-	if (arg2 <= 9) {
-		nextVal = arg2 + 0x30;
+	u64 maskedChar;
+	if (mask <= 9) {
+		maskedChar = mask + 0x30;
 	} else {
-		nextVal = arg2 + 0x37;
+		maskedChar = mask + 0x37;
 	}
 
-	return (nextVal << shift) | (arg0 & firstVal);
+	return (maskedChar << shift) | (tag & extractChar);
 }
 
 /*
@@ -406,71 +306,18 @@ void TagToName(u64 tag, char* name)
  * Address:	80302D24
  * Size:	0000F4
  */
-u64 CharCodeToTag(char*)
+u64 CharCodeToTag(char* code)
 {
-	/*
-stwu     r1, -0x20(r1)
-mflr     r0
-lis      r4, lbl_8048DE28@ha
-stw      r0, 0x24(r1)
-addi     r4, r4, lbl_8048DE28@l
-stw      r31, 0x1c(r1)
-stw      r30, 0x18(r1)
-lbz      r5, 0(r3)
-lbz      r6, 1(r3)
-addi     r3, r1, 8
-crclr    6
-bl       sprintf
-lbz      r0, 8(r1)
-li       r9, 0
-lbz      r3, 9(r1)
-li       r10, 0xff
-extsb    r6, r0
-lbz      r0, 0xa(r1)
-srawi    r5, r6, 0x1f
-extsb    r4, r3
-extsb    r3, r0
-and      r30, r6, r10
-and      r0, r5, r9
-srawi    r7, r4, 0x1f
-slwi     r8, r0, 8
-lbz      r0, 0xb(r1)
-and      r31, r4, r10
-srawi    r6, r3, 0x1f
-extsb    r4, r0
-lbz      r0, 0xc(r1)
-srawi    r5, r4, 0x1f
-rlwimi   r8, r30, 8, 0x18, 0x1f
-and      r11, r4, r10
-and      r4, r7, r9
-or       r4, r8, r4
-and      r12, r3, r10
-rlwimi   r31, r30, 8, 0x10, 0x17
-extsb    r3, r0
-slwi     r7, r4, 8
-and      r6, r6, r9
-rlwimi   r12, r31, 8, 8, 0x17
-srawi    r0, r3, 0x1f
-rlwimi   r7, r31, 8, 0x18, 0x1f
-and      r4, r3, r10
-and      r3, r5, r9
-rlwimi   r11, r12, 8, 0, 0x17
-or       r5, r7, r6
-lwz      r31, 0x1c(r1)
-slwi     r5, r5, 8
-and      r0, r0, r9
-rlwimi   r5, r12, 8, 0x18, 0x1f
-rlwimi   r4, r11, 8, 0, 0x17
-or       r3, r5, r3
-lwz      r30, 0x18(r1)
-slwi     r3, r3, 8
-rlwimi   r3, r11, 8, 0x18, 0x1f
-or       r3, r3, r0
-lwz      r0, 0x24(r1)
-mtlr     r0
-addi     r1, r1, 0x20
-blr
-	*/
+	char tagStore[10];
+	sprintf(tagStore, "x%02x%02x", (u8)code[0], (u8)code[1]);
+
+	u64 tag = ((u64)tagStore[0]) & 0xFF;
+	tag     = (tag << 8) | ((u64)tagStore[1]) & 0xFF;
+	tag     = (tag << 8) | ((u64)tagStore[2]) & 0xFF;
+	tag     = (tag << 8) | ((u64)tagStore[3]) & 0xFF;
+	tag     = (tag << 8) | ((u64)tagStore[4]) & 0xFF;
+
+	return tag;
 }
 
 /*
