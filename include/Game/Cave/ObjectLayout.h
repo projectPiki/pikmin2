@@ -7,6 +7,10 @@
 #include "JSystem/JUT/JUTTexture.h"
 
 namespace Game {
+
+/**
+ * @size{0x18}
+ */
 struct ObjectLayoutNode : public CNode {
 	virtual ~ObjectLayoutNode() { }                   // _08 (weak)
 	virtual int getObjectId()   = 0;                  // _10
@@ -19,6 +23,9 @@ struct ObjectLayoutNode : public CNode {
 	virtual bool isFixedBattery() { return false; }   // _2C (weak)
 };
 
+/**
+ * @size{0x4}
+ */
 struct ObjectLayoutInfo {
 	ObjectLayoutInfo() { }
 
@@ -32,6 +39,11 @@ struct DoorNode;
 struct BaseGen;
 struct AdjustNode;
 struct MapUnits;
+struct MapNode;
+
+/**
+ * @size{0x18}
+ */
 struct UnitInfo {
 	UnitInfo(MapUnits* mapUnits);
 
@@ -55,9 +67,9 @@ struct UnitInfo {
 	int m_unitSizeY;          // _14
 };
 
-struct BaseGen;
-struct MapNode;
-
+/**
+ * @size{0x8}
+ */
 struct ObjectLayout : public ObjectLayoutInfo {
 	ObjectLayout(MapNode*);
 
