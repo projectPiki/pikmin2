@@ -103,7 +103,7 @@ struct J2DPane {
 	JGeometry::TBox2f* getBounds();
 	JGeometry::TVec3f getGlbVtx(u8) const;
 	void* getPointer(JSURandomInputStream*, u32, JKRArchive*);
-	u64 getTagName() const { return m_tag; }
+	u64 getTagName() const;
 	float getTranslateX() const;
 	float getTranslateY() const;
 
