@@ -43,8 +43,7 @@ float ArrowAlphaBlink::calc()
 		_00 = _00 - TAU;
 	}
 	float factor = _08 * (1.0f + pikmin2_sinf(_00));
-	float scale  = 0.5f;
-	float result = factor * scale + _0C;
+	float result = (factor / 2) + _0C;
 	return result;
 }
 
@@ -180,8 +179,8 @@ void calcGlbCenter(J2DPane* pane, Vector2f* center)
 {
 	Vector3f vec1 = pane->getGlbVtx(0);
 	Vector3f vec2 = pane->getGlbVtx(3);
-	center->x     = (vec1.x + vec2.x) / 2.f;
-	center->y     = (vec1.y + vec2.y) / 2.f;
+	center->x     = (vec1.x + vec2.x) / 2;
+	center->y     = (vec1.y + vec2.y) / 2;
 }
 
 /*
@@ -247,8 +246,7 @@ u16 CalcKeta(u32 p1)
 	u16 keta = 1;
 	for (int i = 1; i < 10; i++) {
 		if (p1 >= pow(10.0, (double)i)) {
-			short j = i + 1;
-			keta    = j;
+			keta = i + 1;
 		} else {
 			break;
 		}
