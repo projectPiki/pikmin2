@@ -11,20 +11,13 @@ typedef void JKRHeapErrorHandler(void*, u32, int);
 struct JKRHeap : public JKRDisposer {
 
 	struct TState {
-		~TState();
-		void dump() const;
-		static bool isVerbose();
-		TState(const JKRHeap*, u32, bool);
-		bool isCompareOnDestructed() const;
-		const JKRHeap* getHeap() const;
-		u32 getId() const;
-
 		struct TLocation {
 			TLocation();
 
 			u32 _00; // _00
 			int _04; // _04
 		};
+
 		struct TArgument {
 			TArgument(const JKRHeap*, u32, bool);
 
@@ -32,6 +25,19 @@ struct JKRHeap : public JKRDisposer {
 			u32 _04;               // _04
 			bool _08;              // _08
 		};
+
+		TState(const JKRHeap*, u32, bool);
+		~TState();
+		void dump() const;
+		static bool isVerbose();
+		bool isCompareOnDestructed() const;
+		const JKRHeap* getHeap() const;
+		u32 getId() const;
+
+		// unused/inlined:
+		TState(const JKRHeap::TState::TArgument& arg, const JKRHeap::TState::TLocation& location);
+		TState(const JKRHeap::TState& other, bool p2);
+		TState(const JKRHeap::TState& other, const JKRHeap::TState::TLocation& location, bool p3);
 
 		u32 _00;                      // _00
 		u32 _04;                      // _04
@@ -103,7 +109,7 @@ struct JKRHeap : public JKRDisposer {
 	u8 _3E[2];                           // _3E
 	JSUPtrList _40;                      // _40
 	JSUPtrLink _4C;                      // _4C
-	JSUList<JKRDisposer> m_DisposerList; // _5C
+	JSUList<JKRDisposer> m_disposerList; // _5C
 	bool _68;                            // _68
 	u8 _69;                              // _69
 
