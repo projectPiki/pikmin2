@@ -1,6 +1,7 @@
 #include "Game/pelletMgr.h"
 #include "Game/PelletView.h"
 #include "Game/shadowMgr.h"
+#include "Game/EnemyBase.h"
 #include "types.h"
 
 namespace Game {
@@ -102,8 +103,58 @@ PelletViewArg::PelletViewArg()
  * Address:	80165B80
  * Size:	000220
  */
-void PelletView::becomePellet(Game::PelletViewArg*)
+// WIP: https://decomp.me/scratch/a4K8T
+// regswaps
+Pellet* PelletView::becomePellet(PelletViewArg* viewArg) 
 {
+    PelletInitArg initArg;
+    initArg.m_textIdentifier = viewArg->m_enemyName;
+    initArg._0C = 0;
+    initArg._10 = -1;
+    initArg.m_pelletType = PELTYPE_CARCASS;
+    initArg._18 = this;
+    
+    Pellet* newPellet = pelletMgr->birth(&initArg);
+    if (newPellet != nullptr) {
+        Vector3f position = viewArg->m_position;
+        position.y += 0.5f * newPellet->getCylinderHeight();
+        
+        PelletConfig* config = newPellet->m_config;
+        Vector3f offset = config->m_params.m_offset.m_data;
+
+        Vector3f resultVec;
+        Vector3f* vecPtr = &resultVec;
+        *vecPtr = offset;
+        
+        Vector3f row1;
+        viewArg->m_matrix->getRow(0, row1);
+        vecPtr->x = dot(offset, row1);
+        Vector3f row2;
+        viewArg->m_matrix->getRow(1, row2);
+        vecPtr->y = dot(offset, row2);
+        Vector3f row3;
+        viewArg->m_matrix->getRow(2, row3);
+        vecPtr->z = dot(offset, row3);
+        position = position + resultVec;
+        
+        newPellet->setPosition(position, false);
+        m_pellet = newPellet;
+        
+        newPellet->_324 = 1;
+        newPellet->setOrientation(*viewArg->m_matrix);
+        newPellet->m_scale = viewArg->_18;
+        newPellet->m_lod.m_flags |= (AILOD::VisibleOnViewport0 + AILOD::VisibleOnViewport1 + AILOD::FLAG_NEED_SHADOW);
+        
+        viewStartPreCarryMotion();
+        
+        m_creature = static_cast<Creature*>(viewArg->m_enemy);
+        P2ASSERTLINE(895, m_creature != nullptr);
+    } else {
+        m_pellet = nullptr;
+        m_creature = nullptr;
+    }
+    
+    return m_pellet;
 	/*
 	stwu     r1, -0x60(r1)
 	mflr     r0

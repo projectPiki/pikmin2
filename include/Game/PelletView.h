@@ -54,7 +54,7 @@ struct PelletView {
 	virtual void viewOnPelletKilled() { }                // _28 (weak)
 	virtual void viewEntryShape(Matrixf&, Vector3f&) { } // _2C (weak)
 
-	void becomePellet(PelletViewArg*);
+	Pellet* becomePellet(PelletViewArg*);
 	void viewMakeMatrix(Matrixf&);
 
 	// vtable _00

@@ -45,6 +45,7 @@ namespace Game {
 struct BasePelletMgr;
 struct Pellet;
 struct PelletInitArg;
+struct PelletView;
 
 struct PelletMgr : public NodeObjectMgr<GenericObjectMgr> {
 	struct OtakaraItemCode {
@@ -115,6 +116,20 @@ struct CreatureInitArg {
  * @size{0x28}
  */
 struct PelletInitArg : CreatureInitArg {
+    PelletInitArg() {
+        _1C = 0;
+        _14 = 0;
+        m_pelletType = 0xFF;
+        _18 = nullptr;
+        _17 = 0;
+        _04 = true;
+        _1D = 0;
+        m_maxCarriers = -1;
+        m_minCarriers = -1;
+        _1E = 0;
+        _1F = 0;
+    }
+
 	/**
 	 * @reifiedAddress{80107C2C}
 	 * @reifiedFile{plugProjectYamashitaU/enemyBase.cpp}
@@ -124,13 +139,14 @@ struct PelletInitArg : CreatureInitArg {
 		return "PelletInitArg";
 	}
 
+	bool _04;				// _04
 	char* m_textIdentifier; // _08
 	int _0C;                // _0C
 	int _10;                // _10
 	short _14;              // _14
 	u8 m_pelletType;        // _16
 	u8 _17;                 // _17
-	u32 _18;                // _18
+	PelletView* _18;                // _18
 	u8 _1C;                 // _1C
 	u8 _1D;                 // _1D
 	u8 _1E;                 // _1E
