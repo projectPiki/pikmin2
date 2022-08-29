@@ -224,9 +224,9 @@ struct Pellet : public DynCreature, public SysShape::MotionListener, public Carr
 	void getBuryRadius(float);
 
 	void getBottomRadius();
-	void getPickRadius();
-	void getCylinderHeight();
-	void getConfigIndex();
+	float getPickRadius();
+	float getCylinderHeight();
+	int getConfigIndex();
 	void getConfigName();
 	void getPelletConfigMin();
 	void getPelletConfigMax();
