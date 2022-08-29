@@ -22,10 +22,20 @@
 #include "types.h"
 #include "JSystem/JUT/JUTException.h"
 
-#define PELLET_BLUE   (0)
-#define PELLET_RED    (1)
-#define PELLET_YELLOW (2)
-#define PELLET_RANDOM (3)
+// pellet carry colors/onion destinations
+// for use with Pellet::m_pelletColor
+#define PELCOLOR_BLUE   (0)
+#define PELCOLOR_RED    (1)
+#define PELCOLOR_YELLOW (2)
+#define PELCOLOR_RANDOM (3)
+
+// pellet types
+// for use with Pellet:m_pelletType
+#define PELTYPE_NUMBER 	 (0)
+#define PELTYPE_CARCASS  (1)
+#define PELTYPE_BERRY    (2)
+#define PELTYPE_TREASURE (3)
+#define PELTYPE_UPGRADE  (4)
 
 namespace PSM {
 struct PelletOtakara;

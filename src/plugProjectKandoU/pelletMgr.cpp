@@ -1,4 +1,5 @@
 #include "Game/pelletMgr.h"
+#include "Game/PelletView.h"
 #include "Game/shadowMgr.h"
 #include "types.h"
 
@@ -9,12 +10,12 @@ namespace Game {
  * Address:	801658EC
  * Size:	000020
  */
-char* Pellet::getCreatureName() 
+char* Pellet::getCreatureName()
 {
-    if (m_config != nullptr) {
-        return m_config->m_params.m_name.m_data;
-    }
-    return "no config pellet";
+	if (m_config != nullptr) {
+		return m_config->m_params.m_name.m_data;
+	}
+	return "no config pellet";
 }
 
 /*
@@ -22,12 +23,12 @@ char* Pellet::getCreatureName()
  * Address:	8016590C
  * Size:	000034
  */
-s32 Pellet::getCreatureID() 
+s32 Pellet::getCreatureID()
 {
-    if (m_config != nullptr) {
-        return getConfigIndex();
-    }
-    return -1;
+	if (m_config != nullptr) {
+		return getConfigIndex();
+	}
+	return -1;
 }
 
 /*
@@ -35,114 +36,34 @@ s32 Pellet::getCreatureID()
  * Address:	80165940
  * Size:	000190
  */
-void Pellet::getShadowParam(Game::ShadowParam&)
+void Pellet::getShadowParam(ShadowParam& shadow)
 {
-	/*
-	stwu     r1, -0x90(r1)
-	mflr     r0
-	stw      r0, 0x94(r1)
-	stfd     f31, 0x80(r1)
-	psq_st   f31, 136(r1), 0, qr0
-	stfd     f30, 0x70(r1)
-	psq_st   f30, 120(r1), 0, qr0
-	stfd     f29, 0x60(r1)
-	psq_st   f29, 104(r1), 0, qr0
-	stfd     f28, 0x50(r1)
-	psq_st   f28, 88(r1), 0, qr0
-	stfd     f27, 0x40(r1)
-	psq_st   f27, 72(r1), 0, qr0
-	stfd     f26, 0x30(r1)
-	psq_st   f26, 56(r1), 0, qr0
-	stfd     f25, 0x20(r1)
-	psq_st   f25, 40(r1), 0, qr0
-	stw      r31, 0x1c(r1)
-	stw      r30, 0x18(r1)
-	mr       r30, r3
-	lfs      f1, lbl_80518910@sda21(r2)
-	lfs      f30, 0x14c(r3)
-	mr       r31, r4
-	lfs      f0, lbl_80518914@sda21(r2)
-	fabs     f2, f30
-	lfs      f31, 0x13c(r3)
-	lfs      f29, 0x15c(r3)
-	frsp     f2, f2
-	fnmsubs  f1, f2, f2, f1
-	fcmpo    cr0, f1, f0
-	mr       r3, r30
-	bl       getPickRadius__Q24Game6PelletFv
-	mr       r4, r30
-	fmr      f28, f1
-	lwz      r12, 0(r30)
-	addi     r3, r1, 8
-	lwz      r12, 8(r12)
-	mtctr    r12
-	bctrl
-	lfs      f0, lbl_80518914@sda21(r2)
-	lfs      f27, 8(r1)
-	fcmpo    cr0, f30, f0
-	lfs      f26, 0xc(r1)
-	lfs      f25, 0x10(r1)
-	ble      lbl_80165A20
-	mr       r3, r30
-	bl       getCylinderHeight__Q24Game6PelletFv
-	lfs      f0, lbl_80518918@sda21(r2)
-	fmuls    f0, f0, f1
-	fmuls    f2, f31, f0
-	fmuls    f1, f30, f0
-	fmuls    f0, f29, f0
-	fsubs    f3, f27, f2
-	fsubs    f4, f26, f1
-	fsubs    f5, f25, f0
-	b        lbl_80165A48
+	Vector3f col;
+	m_mainMatrix.getBasis(1, col);
 
-lbl_80165A20:
-	mr       r3, r30
-	bl       getCylinderHeight__Q24Game6PelletFv
-	lfs      f0, lbl_80518918@sda21(r2)
-	fmuls    f0, f0, f1
-	fmuls    f2, f31, f0
-	fmuls    f1, f30, f0
-	fmuls    f0, f29, f0
-	fadds    f3, f27, f2
-	fadds    f4, f26, f1
-	fadds    f5, f25, f0
+	if (-(SQUARE(FABS(col.y)) - 1.0f) > 0.0f) {
+		col.y = col.y;
+	}
 
-lbl_80165A48:
-	lfs      f0, lbl_8051891C@sda21(r2)
-	fabs     f2, f30
-	stfs     f3, 0(r31)
-	fadds    f4, f4, f0
-	lfs      f1, lbl_80518920@sda21(r2)
-	frsp     f0, f2
-	stfs     f4, 4(r31)
-	fmuls    f0, f28, f0
-	stfs     f5, 8(r31)
-	stfs     f31, 0xc(r31)
-	stfs     f30, 0x10(r31)
-	stfs     f29, 0x14(r31)
-	stfs     f1, 0x18(r31)
-	stfs     f0, 0x1c(r31)
-	psq_l    f31, 136(r1), 0, qr0
-	lfd      f31, 0x80(r1)
-	psq_l    f30, 120(r1), 0, qr0
-	lfd      f30, 0x70(r1)
-	psq_l    f29, 104(r1), 0, qr0
-	lfd      f29, 0x60(r1)
-	psq_l    f28, 88(r1), 0, qr0
-	lfd      f28, 0x50(r1)
-	psq_l    f27, 72(r1), 0, qr0
-	lfd      f27, 0x40(r1)
-	psq_l    f26, 56(r1), 0, qr0
-	lfd      f26, 0x30(r1)
-	psq_l    f25, 40(r1), 0, qr0
-	lfd      f25, 0x20(r1)
-	lwz      r31, 0x1c(r1)
-	lwz      r0, 0x94(r1)
-	lwz      r30, 0x18(r1)
-	mtlr     r0
-	addi     r1, r1, 0x90
-	blr
-	*/
+	float pickRadius  = getPickRadius();
+	Vector3f position = getPosition();
+	Vector3f shadowPos;
+	if (col.y > 0.0f) {
+		float midHeight    = 0.5f * getCylinderHeight();
+		Vector3f scaledCol = col * midHeight;
+		shadowPos          = position - scaledCol;
+	} else {
+		float midHeight    = 0.5f * getCylinderHeight();
+		Vector3f scaledCol = col * midHeight;
+		shadowPos          = position + scaledCol;
+	}
+
+	float absY = FABS(col.y);
+	shadowPos.y += 0.2f;
+	shadow.m_position                  = shadowPos;
+	shadow.m_boundingSphere.m_position = col;
+	shadow.m_boundingSphere.m_radius   = 90.0f;
+	shadow._1C                         = pickRadius * FABS(col.y);
 }
 
 /*
@@ -150,43 +71,9 @@ lbl_80165A48:
  * Address:	80165AD0
  * Size:	000074
  */
-void Pellet::needShadow(void)
+bool Pellet::needShadow()
 {
-	/*
-	stwu     r1, -0x10(r1)
-	mflr     r0
-	stw      r0, 0x14(r1)
-	stw      r31, 0xc(r1)
-	li       r31, 0
-	stw      r30, 8(r1)
-	mr       r30, r3
-	lwz      r4, pelletMgr__4Game@sda21(r13)
-	lbz      r0, 0x3c(r4)
-	cmplwi   r0, 0
-	beq      lbl_80165B24
-	beq      lbl_80165B28
-	lwz      r12, 0(r3)
-	lwz      r12, 0xb8(r12)
-	mtctr    r12
-	bctrl
-	clrlwi.  r0, r3, 0x18
-	beq      lbl_80165B28
-	lbz      r0, 0xd8(r30)
-	rlwinm.  r0, r0, 0, 0x1d, 0x1d
-	beq      lbl_80165B28
-
-lbl_80165B24:
-	li       r31, 1
-
-lbl_80165B28:
-	lwz      r0, 0x14(r1)
-	mr       r3, r31
-	lwz      r31, 0xc(r1)
-	lwz      r30, 8(r1)
-	mtlr     r0
-	addi     r1, r1, 0x10
-	blr
-	*/
+	return ((pelletMgr->_3C == 0) || ((pelletMgr->_3C != 0) && isMovieActor() && (m_lod.m_flags & AILOD::FLAG_NEED_SHADOW)));
 }
 
 /*
@@ -194,36 +81,20 @@ lbl_80165B28:
  * Address:	80165B44
  * Size:	000008
  */
-void Pellet::getWallTimer(void)
-{
-	/*
-	lbz      r3, 0x3bc(r3)
-	blr
-	*/
-}
+u8 Pellet::getWallTimer() { return m_wallTimer; }
 
 /*
  * --INFO--
  * Address:	80165B4C
  * Size:	000034
  */
-PelletViewArg::PelletViewArg(void)
+PelletViewArg::PelletViewArg()
 {
-	/*
-	lfs      f1, lbl_80518910@sda21(r2)
-	li       r0, 0
-	lfs      f0, lbl_80518914@sda21(r2)
-	stfs     f1, 0x18(r3)
-	stfs     f1, 0x1c(r3)
-	stfs     f1, 0x20(r3)
-	stw      r0, 0x14(r3)
-	stw      r0, 0x10(r3)
-	stfs     f0, 4(r3)
-	stfs     f0, 8(r3)
-	stfs     f0, 0xc(r3)
-	stw      r0, 0(r3)
-	blr
-	*/
+	_18         = Vector3f(1.0f);
+	m_enemy     = nullptr;
+	m_matrix    = nullptr;
+	m_position  = Vector3f(0.0f);
+	m_enemyName = 0;
 }
 
 /*

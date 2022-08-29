@@ -407,21 +407,21 @@ void Obj::setPelletColor(u16 color, bool check)
 {
 	if (m_pellet != nullptr) {
 		switch (color) {
-		case PELLET_BLUE:
-		case PELLET_RED:
-		case PELLET_YELLOW:
+		case PELCOLOR_BLUE:
+		case PELCOLOR_RED:
+		case PELCOLOR_YELLOW:
 			if (check) {
 				if (playData->hasMetPikmin(color)) {
 					m_pellet->setValidColor(color);
 					return;
 				}
-				m_pellet->m_pelletColor = PELLET_RED;
+				m_pellet->m_pelletColor = PELCOLOR_RED;
 				return;
 			}
 			m_pellet->setValidColor(color);
 			break;
 		default:
-			m_pellet->m_pelletColor = PELLET_RED;
+			m_pellet->m_pelletColor = PELCOLOR_RED;
 			break;
 		}
 	}
@@ -441,7 +441,7 @@ void Obj::changePelletColor()
 			if (m_pellet != nullptr) {
 				initialColor = m_pellet->m_pelletColor;
 			} else {
-				initialColor = PELLET_BLUE;
+				initialColor = PELCOLOR_BLUE;
 			}
 			u16 nextColor = initialColor + 1;
 			u16 colorCap  = nextColor;
@@ -449,15 +449,15 @@ void Obj::changePelletColor()
 			while (!playData->hasMetPikmin(nextColor)) {
 				nextColor += 1;
 				if (nextColor > 2) {
-					nextColor = PELLET_BLUE;
+					nextColor = PELCOLOR_BLUE;
 				}
 				if (nextColor == colorCap) {
-					nextColor = PELLET_RED;
+					nextColor = PELCOLOR_RED;
 				}
 			}
 
 			if (nextColor > 2) {
-				nextColor = PELLET_BLUE;
+				nextColor = PELCOLOR_BLUE;
 			}
 			setPelletColor(nextColor, true);
 
