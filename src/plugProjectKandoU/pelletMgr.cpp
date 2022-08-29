@@ -1,8 +1,10 @@
+#include "Dolphin/rand.h"
+#include "Game/GameSystem.h"
 #include "Game/pelletMgr.h"
 #include "Game/PelletView.h"
 #include "Game/shadowMgr.h"
 #include "Game/EnemyBase.h"
-#include "types.h"
+#include "System.h"
 
 namespace Game {
 
@@ -105,56 +107,56 @@ PelletViewArg::PelletViewArg()
  */
 // WIP: https://decomp.me/scratch/a4K8T
 // regswaps
-Pellet* PelletView::becomePellet(PelletViewArg* viewArg) 
+Pellet* PelletView::becomePellet(PelletViewArg* viewArg)
 {
-    PelletInitArg initArg;
-    initArg.m_textIdentifier = viewArg->m_enemyName;
-    initArg._0C = 0;
-    initArg._10 = -1;
-    initArg.m_pelletType = PELTYPE_CARCASS;
-    initArg._18 = this;
-    
-    Pellet* newPellet = pelletMgr->birth(&initArg);
-    if (newPellet != nullptr) {
-        Vector3f position = viewArg->m_position;
-        position.y += 0.5f * newPellet->getCylinderHeight();
-        
-        PelletConfig* config = newPellet->m_config;
-        Vector3f offset = config->m_params.m_offset.m_data;
+	PelletInitArg initArg;
+	initArg.m_textIdentifier = viewArg->m_enemyName;
+	initArg._0C              = 0;
+	initArg._10              = -1;
+	initArg.m_pelletType     = PELTYPE_CARCASS;
+	initArg._18              = this;
 
-        Vector3f resultVec;
-        Vector3f* vecPtr = &resultVec;
-        *vecPtr = offset;
-        
-        Vector3f row1;
-        viewArg->m_matrix->getRow(0, row1);
-        vecPtr->x = dot(offset, row1);
-        Vector3f row2;
-        viewArg->m_matrix->getRow(1, row2);
-        vecPtr->y = dot(offset, row2);
-        Vector3f row3;
-        viewArg->m_matrix->getRow(2, row3);
-        vecPtr->z = dot(offset, row3);
-        position = position + resultVec;
-        
-        newPellet->setPosition(position, false);
-        m_pellet = newPellet;
-        
-        newPellet->_324 = 1;
-        newPellet->setOrientation(*viewArg->m_matrix);
-        newPellet->m_scale = viewArg->_18;
-        newPellet->m_lod.m_flags |= (AILOD::VisibleOnViewport0 + AILOD::VisibleOnViewport1 + AILOD::FLAG_NEED_SHADOW);
-        
-        viewStartPreCarryMotion();
-        
-        m_creature = static_cast<Creature*>(viewArg->m_enemy);
-        P2ASSERTLINE(895, m_creature != nullptr);
-    } else {
-        m_pellet = nullptr;
-        m_creature = nullptr;
-    }
-    
-    return m_pellet;
+	Pellet* newPellet = pelletMgr->birth(&initArg);
+	if (newPellet != nullptr) {
+		Vector3f position = viewArg->m_position;
+		position.y += 0.5f * newPellet->getCylinderHeight();
+
+		PelletConfig* config = newPellet->m_config;
+		Vector3f offset      = config->m_params.m_offset.m_data;
+
+		Vector3f resultVec;
+		Vector3f* vecPtr = &resultVec;
+		*vecPtr          = offset;
+
+		Vector3f row1;
+		viewArg->m_matrix->getRow(0, row1);
+		vecPtr->x = dot(offset, row1);
+		Vector3f row2;
+		viewArg->m_matrix->getRow(1, row2);
+		vecPtr->y = dot(offset, row2);
+		Vector3f row3;
+		viewArg->m_matrix->getRow(2, row3);
+		vecPtr->z = dot(offset, row3);
+		position  = position + resultVec;
+
+		newPellet->setPosition(position, false);
+		m_pellet = newPellet;
+
+		newPellet->_324 = 1;
+		newPellet->setOrientation(*viewArg->m_matrix);
+		newPellet->m_scale = viewArg->_18;
+		newPellet->m_lod.m_flags |= (AILOD::VisibleOnViewport0 + AILOD::VisibleOnViewport1 + AILOD::FLAG_NEED_SHADOW);
+
+		viewStartPreCarryMotion();
+
+		m_creature = static_cast<Creature*>(viewArg->m_enemy);
+		P2ASSERTLINE(895, m_creature != nullptr);
+	} else {
+		m_pellet   = nullptr;
+		m_creature = nullptr;
+	}
+
+	return m_pellet;
 	/*
 	stwu     r1, -0x60(r1)
 	mflr     r0
@@ -348,27 +350,18 @@ void PelletView::viewMakeMatrix(Matrixf&)
  * Address:	80165E24
  * Size:	00000C
  */
-void Pellet::clearClaim(void)
-{
-	// Generated from stw r0, 0x3C0(r3)
-	_3C0 = 0;
-}
+void Pellet::clearClaim() { _3C0 = 0; }
 
 /*
  * --INFO--
  * Address:	80165E30
  * Size:	000018
  */
-void Pellet::sendClaim(void)
+void Pellet::sendClaim()
 {
-	/*
-	lwz      r4, 0x3c0(r3)
-	cmpwi    r4, 0xa
-	bgelr
-	addi     r0, r4, 1
-	stw      r0, 0x3c0(r3)
-	blr
-	*/
+	if (_3C0 < 10) {
+		_3C0++;
+	}
 }
 
 /*
@@ -666,28 +659,14 @@ lbl_8016620C:
  * Address:	8016623C
  * Size:	00000C
  */
-void Pellet::getBuryDepthMax(void)
-{
-	/*
-	lwz      r3, 0x35c(r3)
-	lfs      f1, 0x1c0(r3)
-	blr
-	*/
-}
+float Pellet::getBuryDepthMax() { return m_config->m_params.m_depthMax.m_data; }
 
 /*
  * --INFO--
  * Address:	80166248
  * Size:	00000C
  */
-void Pellet::getBuryDepth(void)
-{
-	/*
-	lwz      r3, 0x35c(r3)
-	lfs      f1, 0x1b0(r3)
-	blr
-	*/
-}
+float Pellet::getBuryDepth() { return m_config->m_params.m_depth.m_data; }
 
 /*
  * --INFO--
@@ -782,43 +761,12 @@ lbl_80166338:
  * Address:	80166378
  * Size:	000074
  */
-void Pellet::stimulate(Game::Interaction&)
+bool Pellet::stimulate(Game::Interaction& interaction)
 {
-	/*
-	stwu     r1, -0x10(r1)
-	mflr     r0
-	stw      r0, 0x14(r1)
-	stw      r31, 0xc(r1)
-	mr       r31, r4
-	stw      r30, 8(r1)
-	mr       r30, r3
-	mr       r3, r31
-	lwz      r12, 0(r31)
-	mr       r4, r30
-	lwz      r12, 8(r12)
-	mtctr    r12
-	bctrl
-	clrlwi.  r0, r3, 0x18
-	beq      lbl_801663D0
-	mr       r3, r31
-	mr       r4, r30
-	lwz      r12, 0(r31)
-	lwz      r12, 0x18(r12)
-	mtctr    r12
-	bctrl
-	b        lbl_801663D4
-
-lbl_801663D0:
-	li       r3, 0
-
-lbl_801663D4:
-	lwz      r0, 0x14(r1)
-	lwz      r31, 0xc(r1)
-	lwz      r30, 8(r1)
-	mtlr     r0
-	addi     r1, r1, 0x10
-	blr
-	*/
+	if (interaction.actCommon(this)) {
+		return interaction.actPellet(this);
+	}
+	return false;
 }
 
 /*
@@ -826,48 +774,14 @@ lbl_801663D4:
  * Address:	801663EC
  * Size:	000088
  */
-void InteractMattuan::actPellet(Game::Pellet*)
+bool InteractMattuan::actPellet(Pellet* pellet)
 {
-	/*
-	stwu     r1, -0x20(r1)
-	mflr     r0
-	stw      r0, 0x24(r1)
-	stw      r31, 0x1c(r1)
-	mr       r31, r4
-	stw      r30, 0x18(r1)
-	mr       r30, r3
-	mr       r3, r31
-	lwz      r12, 0(r31)
-	lwz      r12, 0x1f4(r12)
-	mtctr    r12
-	bctrl
-	clrlwi   r0, r3, 0x18
-	cmplwi   r0, 4
-	bne      lbl_80166450
-	lwz      r4, sys@sda21(r13)
-	mr       r3, r31
-	lfs      f1, 8(r30)
-	lfs      f0, 0x54(r4)
-	fdivs    f0, f1, f0
-	fctiwz   f0, f0
-	stfd     f0, 8(r1)
-	lwz      r4, 0xc(r1)
-	bl       startDiscoverDisable__Q24Game6PelletFUc
-	b        lbl_80166458
-
-lbl_80166450:
-	mr       r3, r31
-	bl       clearDiscoverDisable__Q24Game6PelletFv
-
-lbl_80166458:
-	lwz      r0, 0x24(r1)
-	li       r3, 1
-	lwz      r31, 0x1c(r1)
-	lwz      r30, 0x18(r1)
-	mtlr     r0
-	addi     r1, r1, 0x20
-	blr
-	*/
+	if (pellet->getKind() == PELTYPE_UPGRADE) {
+		pellet->startDiscoverDisable(_08 / sys->m_secondsPerFrame);
+	} else {
+		pellet->clearDiscoverDisable();
+	}
+	return true;
 }
 
 /*
@@ -1041,16 +955,6 @@ void Pellet::doDirectDraw(Graphics&) { }
 
 /*
  * --INFO--
- * Address:	........
- * Size:	000004
- */
-void Pellet::directDraw(Graphics&)
-{
-	// UNUSED FUNCTION
-}
-
-/*
- * --INFO--
  * Address:	80166680
  * Size:	0001B0
  */
@@ -1214,88 +1118,74 @@ lbl_80166880:
 	*/
 }
 
-namespace PSM {
+// namespace PSM {
 
-/*
- * --INFO--
- * Address:	8016689C
- * Size:	00009C
- */
-CreatureObj::~CreatureObj(void)
-{
-	/*
-stwu     r1, -0x10(r1)
-mflr     r0
-stw      r0, 0x14(r1)
-stw      r31, 0xc(r1)
-mr       r31, r4
-stw      r30, 8(r1)
-or.      r30, r3, r3
-beq      lbl_8016691C
-lis      r4, __vt__Q23PSM11CreatureObj@ha
-addi     r3, r30, 0x30
-addi     r6, r4, __vt__Q23PSM11CreatureObj@l
-li       r4, 0
-stw      r6, 0x28(r30)
-addi     r5, r6, 8
-addi     r0, r6, 0x40
-stw      r5, 0x10(r30)
-stw      r0, 0x30(r30)
-bl       __dt__Q27JAInter6ObjectFv
-cmplwi   r30, 0
-beq      lbl_8016690C
-lis      r4, __vt__Q23PSM8Creature@ha
-mr       r3, r30
-addi     r5, r4, __vt__Q23PSM8Creature@l
-li       r4, 0
-stw      r5, 0x28(r30)
-addi     r0, r5, 8
-stw      r0, 0x10(r30)
-bl       __dt__Q23PSM7ObjBaseFv
+// /*
+//  * --INFO--
+//  * Address:	8016689C
+//  * Size:	00009C
+//  */
+// CreatureObj::~CreatureObj(void)
+// {
+// 	/*
+// stwu     r1, -0x10(r1)
+// mflr     r0
+// stw      r0, 0x14(r1)
+// stw      r31, 0xc(r1)
+// mr       r31, r4
+// stw      r30, 8(r1)
+// or.      r30, r3, r3
+// beq      lbl_8016691C
+// lis      r4, __vt__Q23PSM11CreatureObj@ha
+// addi     r3, r30, 0x30
+// addi     r6, r4, __vt__Q23PSM11CreatureObj@l
+// li       r4, 0
+// stw      r6, 0x28(r30)
+// addi     r5, r6, 8
+// addi     r0, r6, 0x40
+// stw      r5, 0x10(r30)
+// stw      r0, 0x30(r30)
+// bl       __dt__Q27JAInter6ObjectFv
+// cmplwi   r30, 0
+// beq      lbl_8016690C
+// lis      r4, __vt__Q23PSM8Creature@ha
+// mr       r3, r30
+// addi     r5, r4, __vt__Q23PSM8Creature@l
+// li       r4, 0
+// stw      r5, 0x28(r30)
+// addi     r0, r5, 8
+// stw      r0, 0x10(r30)
+// bl       __dt__Q23PSM7ObjBaseFv
 
-lbl_8016690C:
-extsh.   r0, r31
-ble      lbl_8016691C
-mr       r3, r30
-bl       __dl__FPv
+// lbl_8016690C:
+// extsh.   r0, r31
+// ble      lbl_8016691C
+// mr       r3, r30
+// bl       __dl__FPv
 
-lbl_8016691C:
-lwz      r0, 0x14(r1)
-mr       r3, r30
-lwz      r31, 0xc(r1)
-lwz      r30, 8(r1)
-mtlr     r0
-addi     r1, r1, 0x10
-blr
-	*/
-}
+// lbl_8016691C:
+// lwz      r0, 0x14(r1)
+// mr       r3, r30
+// lwz      r31, 0xc(r1)
+// lwz      r30, 8(r1)
+// mtlr     r0
+// addi     r1, r1, 0x10
+// blr
+// 	*/
+// }
 
-} // namespace PSM
+// } // namespace PSM
 
 /*
  * --INFO--
  * Address:	80166938
  * Size:	000034
  */
-void Pellet::shadowOn(void)
+void Pellet::shadowOn()
 {
-	/*
-	stwu     r1, -0x10(r1)
-	mflr     r0
-	mr       r4, r3
-	stw      r0, 0x14(r1)
-	lwz      r0, shadowMgr__4Game@sda21(r13)
-	cmplwi   r0, 0
-	beq      lbl_8016695C
-	mr       r3, r0
-	bl       addShadow__Q24Game9ShadowMgrFPQ24Game8Creature
-
-lbl_8016695C:
-	lwz      r0, 0x14(r1)
-	mtlr     r0
-	addi     r1, r1, 0x10
-	blr
-	*/
+	if (shadowMgr != nullptr) {
+		shadowMgr->addShadow(this);
+	}
 }
 
 /*
@@ -1303,45 +1193,11 @@ lbl_8016695C:
  * Address:	8016696C
  * Size:	000034
  */
-void Pellet::shadowOff(void)
+void Pellet::shadowOff()
 {
-	/*
-	stwu     r1, -0x10(r1)
-	mflr     r0
-	mr       r4, r3
-	stw      r0, 0x14(r1)
-	lwz      r0, shadowMgr__4Game@sda21(r13)
-	cmplwi   r0, 0
-	beq      lbl_80166990
-	mr       r3, r0
-	bl       delShadow__Q24Game9ShadowMgrFPQ24Game8Creature
-
-lbl_80166990:
-	lwz      r0, 0x14(r1)
-	mtlr     r0
-	addi     r1, r1, 0x10
-	blr
-	*/
-}
-
-/*
- * --INFO--
- * Address:	........
- * Size:	000010
- */
-void Pellet::isMomijiType(void)
-{
-	// UNUSED FUNCTION
-}
-
-/*
- * --INFO--
- * Address:	........
- * Size:	000010
- */
-void Pellet::postTexGen(void)
-{
-	// UNUSED FUNCTION
+	if (shadowMgr != nullptr) {
+		shadowMgr->delShadow(this);
+	}
 }
 
 /*
@@ -1378,76 +1234,31 @@ void Pellet::getPSCreature(void)
  * Address:	801669BC
  * Size:	00000C
  */
-void Pellet::getBottomRadius(void)
-{
-	/*
-	lwz      r3, 0x35c(r3)
-	lfs      f1, 0xa0(r3)
-	blr
-	*/
-}
+float Pellet::getBottomRadius() { return m_config->m_params.m_radius.m_data; }
 
 /*
  * --INFO--
  * Address:	801669C8
  * Size:	00000C
  */
-void Pellet::getPickRadius(void)
-{
-	/*
-	lwz      r3, 0x35c(r3)
-	lfs      f1, 0xb0(r3)
-	blr
-	*/
-}
+float Pellet::getPickRadius() { return m_config->m_params.m_pRadius.m_data; }
 
 /*
  * --INFO--
  * Address:	801669D4
  * Size:	00000C
  */
-void Pellet::getCylinderHeight(void)
-{
-	/*
-	lwz      r3, 0x35c(r3)
-	lfs      f1, 0xc0(r3)
-	blr
-	*/
-}
+float Pellet::getCylinderHeight() { return m_config->m_params.m_height.m_data; }
 
 /*
  * --INFO--
  * Address:	801669E0
  * Size:	000058
  */
-void Pellet::getConfigIndex(void)
+s16 Pellet::getConfigIndex()
 {
-	/*
-	stwu     r1, -0x10(r1)
-	mflr     r0
-	stw      r0, 0x14(r1)
-	stw      r31, 0xc(r1)
-	mr       r31, r3
-	lwz      r0, 0x35c(r3)
-	cmplwi   r0, 0
-	bne      lbl_80166A1C
-	lis      r3, lbl_8047E344@ha
-	lis      r5, lbl_8047E354@ha
-	addi     r3, r3, lbl_8047E344@l
-	li       r4, 0x599
-	addi     r5, r5, lbl_8047E354@l
-	crclr    6
-	bl       panic_f__12JUTExceptionFPCciPCce
-
-lbl_80166A1C:
-	lwz      r3, 0x35c(r31)
-	lwz      r0, 0x14(r1)
-	lha      r3, 0x258(r3)
-	lwz      r31, 0xc(r1)
-	mtlr     r0
-	addi     r1, r1, 0x10
-	blr
-	*/
+	P2ASSERTLINE(1433, m_config != nullptr);
+	return m_config->m_params.m_index;
 }
 
 /*
@@ -1455,24 +1266,7 @@ lbl_80166A1C:
  * Address:	80166A38
  * Size:	00000C
  */
-void Pellet::getConfigName(void)
-{
-	/*
-	lwz      r3, 0x35c(r3)
-	lwz      r3, 0x40(r3)
-	blr
-	*/
-}
-
-/*
- * --INFO--
- * Address:	........
- * Size:	00007C
- */
-PelletGinkaInitArg::PelletGinkaInitArg(void)
-{
-	// UNUSED FUNCTION
-}
+char* Pellet::getConfigName() { return m_config->m_params.m_name.m_data; }
 
 /*
  * --INFO--
@@ -1653,20 +1447,10 @@ lbl_80166C54:
 
 /*
  * --INFO--
- * Address:	........
- * Size:	0000E0
- */
-PelletDropInitArg::PelletDropInitArg(Game::BasePelletMgr*, int)
-{
-	// UNUSED FUNCTION
-}
-
-/*
- * --INFO--
  * Address:	80166C64
  * Size:	000040
  */
-void Pellet::isPickable(void)
+bool Pellet::isPickable()
 {
 	/*
 	stwu     r1, -0x10(r1)
@@ -1692,12 +1476,12 @@ lbl_80166C94:
 	*/
 }
 
-/*
- * --INFO--
- * Address:	80166CA4
- * Size:	000008
- */
-u32 PelletState::isPickable(void) { return 0x0; }
+// /*
+//  * --INFO--
+//  * Address:	80166CA4
+//  * Size:	000008
+//  */
+// u32 PelletState::isPickable(void) { return 0x0; }
 
 /*
  * --INFO--
@@ -2998,65 +2782,22 @@ lbl_80167D10:
 
 /*
  * --INFO--
- * Address:	........
- * Size:	000004
- */
-void Pellet::setupParticles_complex(void)
-{
-	// UNUSED FUNCTION
-}
-
-/*
- * --INFO--
  * Address:	80167D74
  * Size:	000018
  */
-void Pellet::panmodokiCarryable(void)
-{
-	/*
-	lwz      r3, 0x35c(r3)
-	lhz      r0, 0x244(r3)
-	clrlwi   r0, r0, 0x1f
-	cntlzw   r0, r0
-	srwi     r3, r0, 5
-	blr
-	*/
-}
+bool Pellet::panmodokiCarryable() { return !(m_config->m_params.m_code.m_data & 1); }
 
 /*
  * --INFO--
  * Address:	80167D8C
  * Size:	00004C
  */
-void Pellet::isCarried(void)
+bool Pellet::isCarried()
 {
-	/*
-	stwu     r1, -0x10(r1)
-	mflr     r0
-	stw      r0, 0x14(r1)
-	lbz      r0, 0x3f6(r3)
-	cmplwi   r0, 0
-	bne      lbl_80167DBC
-	lwz      r12, 0(r3)
-	lwz      r12, 0x208(r12)
-	mtctr    r12
-	bctrl
-	clrlwi.  r0, r3, 0x18
-	beq      lbl_80167DC4
-
-lbl_80167DBC:
-	li       r3, 1
-	b        lbl_80167DC8
-
-lbl_80167DC4:
-	li       r3, 0
-
-lbl_80167DC8:
-	lwz      r0, 0x14(r1)
-	mtlr     r0
-	addi     r1, r1, 0x10
-	blr
-	*/
+	if (_3F6 || isPicked()) {
+		return true;
+	}
+	return false;
 }
 
 /*
@@ -3075,42 +2816,15 @@ void Pellet::isPicked(void)
 
 /*
  * --INFO--
- * Address:	........
- * Size:	00006C
- */
-void Pellet::startDisplayCarryInfo(void)
-{
-	// UNUSED FUNCTION
-}
-
-/*
- * --INFO--
  * Address:	80167DE4
  * Size:	000044
  */
-void Pellet::finishDisplayCarryInfo(void)
+void Pellet::finishDisplayCarryInfo()
 {
-	/*
-	stwu     r1, -0x10(r1)
-	mflr     r0
-	stw      r0, 0x14(r1)
-	stw      r31, 0xc(r1)
-	mr       r31, r3
-	lwz      r3, 0x398(r3)
-	cmplwi   r3, 0
-	beq      lbl_80167E14
-	addi     r3, r3, 0x48
-	bl       disappear__9CarryInfoFv
-	li       r0, 0
-	stw      r0, 0x398(r31)
-
-lbl_80167E14:
-	lwz      r0, 0x14(r1)
-	lwz      r31, 0xc(r1)
-	mtlr     r0
-	addi     r1, r1, 0x10
-	blr
-	*/
+	if (m_carryInfoMgr != nullptr) {
+		m_carryInfoMgr->m_activeList.m_param.m_carryInfo.disappear();
+		m_carryInfoMgr = nullptr;
+	}
 }
 
 /*
@@ -3173,38 +2887,13 @@ lbl_80167EA4:
  * Address:	80167EC8
  * Size:	000068
  */
-void Pellet::setCarryColor(int)
+void Pellet::setCarryColor(int color)
 {
-	/*
-	stwu     r1, -0x10(r1)
-	mflr     r0
-	stw      r0, 0x14(r1)
-	stw      r31, 0xc(r1)
-	mr       r31, r4
-	stw      r30, 8(r1)
-	mr       r30, r3
-	lwz      r5, gameSystem__4Game@sda21(r13)
-	lwz      r0, 0x44(r5)
-	cmpwi    r0, 1
-	bne      lbl_80167F14
-	lwz      r0, 0x3d4(r30)
-	cmpw     r31, r0
-	beq      lbl_80167F14
-	stw      r31, 0x3d4(r30)
-	lwz      r12, 0(r3)
-	lwz      r12, 0x20c(r12)
-	mtctr    r12
-	bctrl
-
-lbl_80167F14:
-	stw      r31, 0x3d4(r30)
-	lwz      r0, 0x14(r1)
-	lwz      r31, 0xc(r1)
-	lwz      r30, 8(r1)
-	mtlr     r0
-	addi     r1, r1, 0x10
-	blr
-	*/
+	if ((gameSystem->m_mode == GSM_VERSUS_MODE) && (color != m_carryColor)) {
+		m_carryColor = color;
+		sound_otakaraEventStart();
+	}
+	m_carryColor = color;
 }
 
 /*
@@ -3219,11 +2908,7 @@ void Pellet::sound_otakaraEventStart(void) { }
  * Address:	80167F34
  * Size:	00000C
  */
-void Pellet::clearCarryColor(void)
-{
-	// Generated from stw r0, 0x3D4(r3)
-	_3D4 = 5;
-}
+void Pellet::clearCarryColor() { m_carryColor = 5; }
 
 /*
  * --INFO--
@@ -3270,7 +2955,7 @@ namespace Game {
  * Address:	80167F78
  * Size:	000104
  */
-void Pellet::allocateTexCaster(void)
+void Pellet::allocateTexCaster()
 {
 	/*
 	stwu     r1, -0x30(r1)

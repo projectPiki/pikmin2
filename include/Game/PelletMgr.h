@@ -31,7 +31,7 @@
 
 // pellet types
 // for use with Pellet:m_pelletType
-#define PELTYPE_NUMBER 	 (0)
+#define PELTYPE_NUMBER   (0)
 #define PELTYPE_CARCASS  (1)
 #define PELTYPE_BERRY    (2)
 #define PELTYPE_TREASURE (3)
@@ -116,19 +116,20 @@ struct CreatureInitArg {
  * @size{0x28}
  */
 struct PelletInitArg : CreatureInitArg {
-    PelletInitArg() {
-        _1C = 0;
-        _14 = 0;
-        m_pelletType = 0xFF;
-        _18 = nullptr;
-        _17 = 0;
-        _04 = true;
-        _1D = 0;
-        m_maxCarriers = -1;
-        m_minCarriers = -1;
-        _1E = 0;
-        _1F = 0;
-    }
+	PelletInitArg()
+	{
+		_1C           = 0;
+		_14           = 0;
+		m_pelletType  = 0xFF;
+		_18           = nullptr;
+		_17           = 0;
+		_04           = true;
+		_1D           = 0;
+		m_maxCarriers = -1;
+		m_minCarriers = -1;
+		_1E           = 0;
+		_1F           = 0;
+	}
 
 	/**
 	 * @reifiedAddress{80107C2C}
@@ -139,14 +140,14 @@ struct PelletInitArg : CreatureInitArg {
 		return "PelletInitArg";
 	}
 
-	bool _04;				// _04
+	bool _04;               // _04
 	char* m_textIdentifier; // _08
 	int _0C;                // _0C
 	int _10;                // _10
 	short _14;              // _14
 	u8 m_pelletType;        // _16
 	u8 _17;                 // _17
-	PelletView* _18;                // _18
+	PelletView* _18;        // _18
 	u8 _1C;                 // _1C
 	u8 _1D;                 // _1D
 	u8 _1E;                 // _1E
@@ -230,7 +231,7 @@ struct Pellet : public DynCreature, public SysShape::MotionListener, public Carr
 	virtual void getBedamaColor();                      // _1E8 (weak)
 	virtual void do_update();                           // _1EC (weak)
 	virtual void onKeyEvent(const SysShape::KeyEvent&); // _1F0 (weak, thunk at _1BC)
-	virtual void getKind() = 0;                         // _1F4
+	virtual u8 getKind() = 0;                           // _1F4
 	virtual void changeMaterial();                      // _1F8 (weak)
 	virtual void createKiraEffect(Vector3f&) { }        // _1FC (weak)
 	virtual void getCarryInfoParam(CarryInfoParam&);    // _200 (weak, thunk at _1C8)
@@ -241,25 +242,25 @@ struct Pellet : public DynCreature, public SysShape::MotionListener, public Carr
 	virtual void sound_otakaraEventStop();              // _214 (weak)
 	virtual void sound_otakaraEventFinish();            // _218 (weak)
 
-	void getWallTimer();
+	u8 getWallTimer();
 	void clearClaim();
 	void sendClaim();
 	void updateClaim();
-	void getBuryDepthMax();
-	void getBuryDepth();
+	float getBuryDepthMax();
+	float getBuryDepth();
 	void getBuryRadius(float);
 
-	void getBottomRadius();
+	float getBottomRadius();
 	float getPickRadius();
 	float getCylinderHeight();
-	int getConfigIndex();
-	void getConfigName();
+	s16 getConfigIndex();
+	char* getConfigName();
 	void getPelletConfigMin();
 	void getPelletConfigMax();
 	void setupParticles();
 	void setupParticles_simple();
 	void setupParticles_tall();
-	void panmodokiCarryable();
+	bool panmodokiCarryable();
 	void finishDisplayCarryInfo();
 	void setCarryColor(int);
 	void clearCarryColor();
@@ -327,7 +328,7 @@ struct Pellet : public DynCreature, public SysShape::MotionListener, public Carr
 	u8 _3CC[0x4];                           // _3CC - unknown
 	u8 _3D0;                                // _3D0
 	u8 _3D1[0x3];                           // _3D1 - unknown
-	u32 _3D4;                               // _3D4 - possibly carry color?
+	int m_carryColor;                       // _3D4
 	u8 _3D8[0x4];                           // _3D8 - unknown
 	int _3DC;                               // _3DC
 	float _3E0;                             // _3E0
