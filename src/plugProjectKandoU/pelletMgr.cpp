@@ -4,6 +4,8 @@
 #include "Game/PelletView.h"
 #include "Game/shadowMgr.h"
 #include "Game/EnemyBase.h"
+#include "Game/Stickers.h"
+#include "Iterator.h"
 #include "System.h"
 
 namespace Game {
@@ -306,43 +308,12 @@ lbl_80165D80:
  * Address:	80165DA0
  * Size:	000084
  */
-void PelletView::viewMakeMatrix(Matrixf&)
+void PelletView::viewMakeMatrix(Matrixf& outMat) 
 {
-	/*
-	stwu     r1, -0x50(r1)
-	mflr     r0
-	stw      r0, 0x54(r1)
-	stw      r31, 0x4c(r1)
-	mr       r31, r4
-	stw      r30, 0x48(r1)
-	mr       r30, r3
-	lwz      r3, 4(r3)
-	bl       getCylinderHeight__Q24Game6PelletFv
-	lfs      f2, lbl_80518924@sda21(r2)
-	lis      r3, "zero__10Vector3<f>"@ha
-	lfs      f0, lbl_80518914@sda21(r2)
-	addi     r5, r3, "zero__10Vector3<f>"@l
-	fmuls    f1, f2, f1
-	addi     r3, r1, 0x14
-	stfs     f0, 8(r1)
-	addi     r6, r1, 8
-	stfs     f1, 0xc(r1)
-	stfs     f0, 0x10(r1)
-	lwz      r4, 4(r30)
-	addi     r4, r4, 0x168
-	bl       "makeSRT__7MatrixfFR10Vector3<f>R10Vector3<f>R10Vector3<f>"
-	lwz      r3, 4(r30)
-	mr       r5, r31
-	addi     r4, r1, 0x14
-	addi     r3, r3, 0x138
-	bl       PSMTXConcat
-	lwz      r0, 0x54(r1)
-	lwz      r31, 0x4c(r1)
-	lwz      r30, 0x48(r1)
-	mtlr     r0
-	addi     r1, r1, 0x50
-	blr
-	*/
+    Vector3f translation (0.0f, -0.5f * m_pellet->getCylinderHeight(), 0.0f);
+    Matrixf srtMatrix;
+    srtMatrix.makeSRT(m_pellet->m_scale, Vector3f::zero, translation);
+    PSMTXConcat(m_pellet->m_mainMatrix.m_matrix.mtxView, srtMatrix.m_matrix.mtxView, outMat.m_matrix.mtxView);
 }
 
 /*
