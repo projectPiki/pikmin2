@@ -15,10 +15,10 @@ struct Node : public CNode {
 		_18 = nullptr;
 	}
 
-	virtual ~Node() { }                            // _00
-	virtual void update();                         // _08
-	virtual void draw(Graphics&, J2DGrafContext&); // _0C
-	virtual void doInit();                         // _10
+	virtual ~Node() { }                               // _08 (weak)
+	virtual void update() { }                         // _10 (weak)
+	virtual void draw(Graphics&, J2DGrafContext&) { } // _14 (weak)
+	virtual void doInit() { }                         // _18 (weak)
 
 	J2DPane* _18; // _18
 };

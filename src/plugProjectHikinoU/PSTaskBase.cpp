@@ -114,8 +114,8 @@ void TaskEntry::removeAll()
  */
 bool TaskEntryMgr::isUnderTask_byDirector(PSSystem::DirectorBase* director)
 {
-	for (JSULink<TaskEntry>* entry = getHead(); entry != nullptr; entry = entry->getNext()) {
-		if (entry->getValue()->_24 == director) {
+	for (JSULink<TaskEntry>* entry = getFirst(); entry != nullptr; entry = entry->getNext()) {
+		if (entry->getObject()->_24 == director) {
 			return true;
 		}
 	}
@@ -135,18 +135,18 @@ void TaskEntryMgr::update()
 	P2ASSERTLINE(197, _24 != nullptr);
 	bool result;
 	OSLockMutex(&m_mutex);
-	if (getHead() != nullptr) {
-		TaskEntry* entry = getHead()->getValue();
+	if (getFirst() != nullptr) {
+		TaskEntry* entry = getFirst()->getObject();
 		JASTrack* track  = _24;
 		OSLockMutex(&entry->m_mutex);
-		JSULink<TaskBase>* taskLink = entry->getHead();
+		JSULink<TaskBase>* taskLink = entry->getFirst();
 		if (taskLink == nullptr) {
 			OSUnlockMutex(&entry->m_mutex);
 			result     = false;
 			entry->_24 = nullptr;
 		} else {
 			while (taskLink != nullptr) {
-				TaskBase* task = taskLink->getValue();
+				TaskBase* task = taskLink->getObject();
 				u32 i          = 0xFFFFFFF0;
 				if (task->_18 != nullptr && task->_18->getList() == nullptr) {
 					i = 0xFFFFFFFF;
@@ -166,7 +166,7 @@ void TaskEntryMgr::update()
 			result = true;
 		}
 		if (!result) {
-			remove(getHead());
+			remove(getFirst());
 		}
 	}
 	OSUnlockMutex(&m_mutex);
@@ -352,7 +352,7 @@ void TaskEntryMgr::removeEntry(PSSystem::TaskEntry* entry)
 	if (entry != nullptr) {
 		remove_Lock(&entry->_28);
 		OSLockMutex(&entry->m_mutex);
-		JSULink<TaskBase>* taskLink = entry->getHead();
+		JSULink<TaskBase>* taskLink = entry->getFirst();
 		while (taskLink != nullptr) {
 			JSULink<TaskBase>* nextLink = taskLink->getNext();
 			entry->remove(taskLink);

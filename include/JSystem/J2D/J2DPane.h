@@ -4,7 +4,7 @@
 #include "Dolphin/gx.h"
 #include "Dolphin/mtx.h"
 #include "JSystem/JGeometry.h"
-#include "JSystem/JSupport/JSUTree.h"
+#include "JSystem/JSupport/JSUList.h"
 #include "JSystem/JUtility.h"
 
 struct J2DAnmBase;
@@ -55,42 +55,43 @@ struct J2DPane {
 	J2DPane(J2DPane*, bool, u64, const JGeometry::TBox2f&);
 	J2DPane(u64, const JGeometry::TBox2f&);
 	J2DPane(J2DPane*, JSURandomInputStream*, u8);
-	virtual ~J2DPane();                                                  // _00
-	virtual u32 getTypeID() const;                                       // _04
-	virtual void move(float, float);                                     // _08
-	virtual void add(float, float);                                      // _0C
-	virtual void resize(float, float);                                   // _10
-	virtual void setCullBack(bool);                                      // _14
-	virtual void setCullBack(GXCullMode);                                // _18
-	virtual void setAlpha(u8);                                           // _1C
-	virtual bool setConnectParent(bool);                                 // _20
-	virtual void calcMtx();                                              // _24
-	virtual void update();                                               // _28
-	virtual void drawSelf(float, float);                                 // _2C
-	virtual void drawSelf(float, float, float (*)[3][4]);                // _30
-	virtual J2DPane* search(u64);                                        // _34
-	virtual J2DPane* searchUserInfo(u64);                                // _38
-	virtual void makeMatrix(float, float);                               // _3C
-	virtual void makeMatrix(float, float, float, float);                 // _40
-	virtual bool isUsed(const ResTIMG*);                                 // _44
-	virtual bool isUsed(const ResFONT*);                                 // _48
-	virtual void clearAnmTransform();                                    // _4C
-	virtual void rewriteAlpha();                                         // _50
-	virtual void setAnimation(J2DAnmBase*);                              // _54
-	virtual void setAnimation(J2DAnmTransform*);                         // _58
-	virtual void setAnimation(J2DAnmColor*);                             // _5C
-	virtual void setAnimation(J2DAnmTexPattern*);                        // _60
-	virtual void setAnimation(J2DAnmTextureSRTKey*);                     // _64
-	virtual void setAnimation(J2DAnmTevRegKey*);                         // _68
-	virtual void setAnimation(J2DAnmVisibilityFull*);                    // _6C
-	virtual void setAnimation(J2DAnmVtxColor*);                          // _70
-	virtual J2DAnmTransform* animationTransform(const J2DAnmTransform*); // _74
-	virtual void setVisibileAnimation(J2DAnmVisibilityFull*);            // _78
-	virtual void setAnimationVF(J2DAnmVisibilityFull*);                  // _7C
-	virtual void setVtxColorAnimation(J2DAnmVtxColor*);                  // _80
-	virtual void setAnimationVC(J2DAnmVtxColor*);                        // _84
-	virtual void animationPane(const J2DAnmTransform*);                  // _88
-	// virtual void _8C() = 0;                                           // _8C
+
+	virtual ~J2DPane();                                                  // _08
+	virtual u32 getTypeID() const;                                       // _0C (weak)
+	virtual void move(float, float);                                     // _10
+	virtual void add(float, float);                                      // _14
+	virtual void resize(float, float);                                   // _18
+	virtual void setCullBack(bool);                                      // _1C (weak)
+	virtual void setCullBack(GXCullMode);                                // _20
+	virtual void setAlpha(u8);                                           // _24 (weak)
+	virtual bool setConnectParent(bool);                                 // _28 (weak)
+	virtual void calcMtx();                                              // _2C (weak)
+	virtual void update();                                               // _30 (weak)
+	virtual void drawSelf(float, float);                                 // _34 (weak)
+	virtual void drawSelf(float, float, float (*)[3][4]);                // _38 (weak)
+	virtual J2DPane* search(u64);                                        // _3C
+	virtual J2DPane* searchUserInfo(u64);                                // _40
+	virtual void makeMatrix(float, float);                               // _44 (weak)
+	virtual void makeMatrix(float, float, float, float);                 // _48
+	virtual bool isUsed(const ResTIMG*);                                 // _4C
+	virtual bool isUsed(const ResFONT*);                                 // _50
+	virtual void clearAnmTransform();                                    // _54
+	virtual void rewriteAlpha();                                         // _58 (weak)
+	virtual void setAnimation(J2DAnmBase*);                              // _5C
+	virtual void setAnimation(J2DAnmTransform*);                         // _60
+	virtual void setAnimation(J2DAnmColor*);                             // _64 (weak)
+	virtual void setAnimation(J2DAnmTexPattern*);                        // _68 (weak)
+	virtual void setAnimation(J2DAnmTextureSRTKey*);                     // _6C (weak)
+	virtual void setAnimation(J2DAnmTevRegKey*);                         // _70 (weak)
+	virtual void setAnimation(J2DAnmVisibilityFull*);                    // _74 (weak)
+	virtual void setAnimation(J2DAnmVtxColor*);                          // _78 (weak)
+	virtual J2DAnmTransform* animationTransform(const J2DAnmTransform*); // _7C
+	virtual void setVisibileAnimation(J2DAnmVisibilityFull*);            // _80
+	virtual void setAnimationVF(J2DAnmVisibilityFull*);                  // _84 (weak)
+	virtual void setVtxColorAnimation(J2DAnmVtxColor*);                  // _88
+	virtual void setAnimationVC(J2DAnmVtxColor*);                        // _8C (weak)
+	virtual void animationPane(const J2DAnmTransform*);                  // _90
+	// virtual void _8C() = 0;                                           // _94
 	// /* This is just (automatic?) padding. */
 
 	void animationTransform();
@@ -115,7 +116,7 @@ struct J2DPane {
 	J2DPane* getFirstChildPane();
 	J2DPane* getNextChildPane();
 	J2DPane* getParentPane();
-	JSUTree<J2DPane>* getPaneTree();
+	JSUTree<J2DPane>* getPaneTree() { return &m_tree; }
 
 	void initiate();
 	void initialize(J2DPane*, bool, u64, const JGeometry::TBox2f&);

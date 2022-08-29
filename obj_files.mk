@@ -860,7 +860,7 @@ NISHIMURA:=\
 	$(BUILD_DIR)/asm/plugProjectNishimuraU/TyreShadow.o\
 
 OGAWA:=\
-	$(BUILD_DIR)/asm/plugProjectOgawaU/ogScreen.o\
+	$(BUILD_DIR)/src/plugProjectOgawaU/ogScreen.o\
 	$(BUILD_DIR)/asm/plugProjectOgawaU/ogDopingScreen.o\
 	$(BUILD_DIR)/asm/plugProjectOgawaU/ogPikminCounter.o\
 	$(BUILD_DIR)/asm/plugProjectOgawaU/ogAnime.o\

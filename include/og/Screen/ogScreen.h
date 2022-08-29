@@ -5,6 +5,7 @@
 #include "types.h"
 #include "Screen/Enums.h"
 #include "Vector2.h"
+#include "JSystem/ResTIMG.h"
 
 struct J2DPane;
 struct ResTIMG;
@@ -33,9 +34,9 @@ struct PictureTreeColorCaptureInfo;
 void blendColor(JUtility::TColor&, JUtility::TColor&, float, JUtility::TColor*);
 void blendPictureTreeColor(PictureTreeColorCaptureInfo*, JUtility::TColor&, JUtility::TColor&, float);
 void calcGlbCenter(J2DPane*, Vector2f*);
-u32 CalcKeta(u32);
+u16 CalcKeta(u32);
 float calcSmooth0to1(float, float);
-u32* capturePictureTreeColor(J2DPane*, int);
+PictureTreeColorCaptureInfo* capturePictureTreeColor(J2DPane*, int);
 void centeringPane(J2DPane*, bool, bool);
 u64 CharCodeToTag(char*);
 bool checkVisibleGlb(J2DPane*);
@@ -108,6 +109,10 @@ struct DispMemberBase {
 	// _00 VTBL
 	DispMemberBase* m_subMember; // _04
 };
+
+extern const char* PikiIconTextureName[19];
+
+extern ResTIMG* PikiIconTextureResTIMG[19];
 
 } // namespace Screen
 } // namespace og

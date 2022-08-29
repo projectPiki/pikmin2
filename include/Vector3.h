@@ -30,6 +30,7 @@ template <typename T> struct Vector3 {
 		y = other.y;
 		z = other.z;
 	}
+	inline Vector3(JGeometry::TVec3<T> vec) { __memcpy(this, &vec, sizeof(Vector3)); }
 
 	inline Vector3& operator=(const Vector3& other)
 	{
