@@ -4,8 +4,13 @@
 #include "types.h"
 #include "ObjectMgr.h"
 
+// TODO: this needs fixing, sigh
 template <typename T> struct MonoObjectMgr : public ObjectMgr<T> {
-
+	virtual ~MonoObjectMgr<T>();
+	virtual void* getNext(void*);
+	virtual void* getStart();
+	virtual void* getEnd();
+	virtual T* get(void*);
 	virtual void doAnimation() // _30 (thunk at _00)
 	{
 		for (int i = 0; i < m_max; i++) {

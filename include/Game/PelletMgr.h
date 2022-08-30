@@ -10,6 +10,8 @@
 #include "Game/pelletConfig.h"
 #include "Game/Onyon.h"
 #include "Game/StateMachine.h"
+#include "Game/BasePelletMgr.h"
+#include "efx/TOrima.h"
 #include "SysShape/MotionListener.h"
 #include "SysShape/KeyEvent.h"
 #include "SysShape/Animator.h"
@@ -47,6 +49,7 @@ struct Pellet;
 struct PelletInitArg;
 struct PelletView;
 struct PelletFSM;
+struct PathNode;
 
 struct PelletMgr : public NodeObjectMgr<GenericObjectMgr> {
 	struct OtakaraItemCode {
@@ -59,6 +62,8 @@ struct PelletMgr : public NodeObjectMgr<GenericObjectMgr> {
 
 		s16 m_value; // _00
 	};
+
+	PelletMgr();
 
 	// vtable 1
 	virtual void doAnimation();           // _64 (weak)
@@ -73,21 +78,21 @@ struct PelletMgr : public NodeObjectMgr<GenericObjectMgr> {
 	virtual void doSimpleDraw(Viewport*); // _8C (weak)
 
 	void setMovieDraw(bool);
-	PelletMgr();
-	void createManagers(unsigned long);
+
+	void createManagers(u32);
 	void resetMgrs();
 	void setupResources();
-	Pellet* birth(Game::PelletInitArg*);
-	void setUse(Game::PelletInitArg*);
-	void makePelletInitArg(Game::PelletInitArg&, char*);
-	void makeVsCarryMinMax(Game::PelletInitArg&, char*);
-	void makePelletInitArg(Game::PelletInitArg&, Game::PelletMgr::OtakaraItemCode&);
-	void makeOtakaraItemCode(char*, Game::PelletMgr::OtakaraItemCode&);
-	void addMgr(Game::BasePelletMgr*);
+	Pellet* birth(PelletInitArg*);
+	void setUse(PelletInitArg*);
+	void makePelletInitArg(PelletInitArg&, char*);
+	void makeVsCarryMinMax(PelletInitArg&, char*);
+	void makePelletInitArg(PelletInitArg&, PelletMgr::OtakaraItemCode&);
+	void makeOtakaraItemCode(char*, PelletMgr::OtakaraItemCode&);
+	void addMgr(BasePelletMgr*);
 	void setupSoundViewerAndBas();
-	void decode(long, unsigned char&, int&);
-	void encode(unsigned char, int);
-	void getMgrByID(unsigned char);
+	void decode(long, u8&, int&);
+	void encode(u8, int);
+	BasePelletMgr* getMgrByID(u8);
 
 	u8 _3C; // _3C
 };
@@ -157,8 +162,17 @@ struct PelletInitArg : CreatureInitArg {
 	int m_maxCarriers;      // _24
 };
 
+struct PelletIndexInitArg : public PelletInitArg {
+	PelletIndexInitArg(int);
+
+	u8 _28[0x8]; // _28, unknown
+};
+
 struct PelletNumberInitArg : public PelletInitArg {
 	PelletNumberInitArg(int, int);
+};
+
+struct PelletKillArg : public CreatureKillArg {
 };
 
 /**
@@ -377,6 +391,129 @@ struct PelletGoalStateArg : public StateArg {
 
 	// _00 needs to be Creature* (probably void*?????) idk
 	// _04 is VTBL???? SO NOTHING ELSE IS IN STATEARG???
+};
+
+struct PelletState : public FSMState<Pellet> {
+	virtual bool isBuried();                    // _20 (weak)
+	virtual bool appeared();                    // _24 (weak)
+	virtual bool isPickable() { return false; } // _28 (weak)
+
+	u8 _0C[0x4]; // _0C
+};
+
+struct PelletAppearState : public PelletState {
+	virtual void init(Pellet*, StateArg*); // _08
+	virtual void exec(Pellet*);            // _0C
+	virtual void cleanup(Pellet*);         // _10
+	virtual bool appeared();               // _24 (weak)
+
+	float _10;   // _10
+	float _14;   // _14
+	float _18;   // _18
+	float _1C;   // _1C
+	float _20;   // _20
+	float _24;   // _24
+	float _28;   // _28
+	u8 _2C;      // _29
+	u8 _2D[0x3]; // _2A, unknown/maybe padding
+};
+
+struct PelletBuryState : public PelletState {
+	virtual void init(Pellet*, StateArg*); // _08
+	virtual void exec(Pellet*);            // _0C
+	virtual void cleanup(Pellet*);         // _10
+	virtual bool isBuried();               // _20 (weak)
+};
+
+struct PelletGoalState : public PelletState {
+	virtual void init(Pellet*, StateArg*); // _08
+	virtual void exec(Pellet*);            // _0C
+	virtual void cleanup(Pellet*);         // _10
+
+	void checkMovie(Pellet*);
+
+	Creature* m_creature; // _10
+	float _14;            // _14
+	float _18;            // _18
+	float _1C;            // _1C
+	float _20;            // _20
+	u8 _24[0x18];         // _24, unknown
+	u8 _3C;               // _3C, unknown
+	u8 _3D;               // _3D
+	u8 _3E[0x2];          // _3E, unknown/maybe padding
+};
+
+struct PelletGoalWaitState : public PelletState {
+	virtual void init(Pellet*, StateArg*); // _08
+	virtual void exec(Pellet*);            // _0C
+	virtual void cleanup(Pellet*);         // _10
+
+	u8 _10[0x4]; // _10, unknown
+};
+
+struct PelletNormalState : public PelletState {
+	virtual void init(Pellet*, StateArg*); // _08
+	virtual void exec(Pellet*);            // _0C
+	virtual void cleanup(Pellet*);         // _10
+	virtual bool isPickable();             // _28 (weak)
+};
+
+struct PelletReturnState : public PelletState {
+	PelletReturnState();
+
+	virtual void init(Pellet*, StateArg*); // _08
+	virtual void exec(Pellet*);            // _0C
+	virtual void cleanup(Pellet*);         // _10
+
+	void initPathfinding(Pellet*);
+	void execPathfinding(Pellet*);
+	void execMove(Pellet*);
+	void execMoveGoal(Pellet*);
+
+	float _10;                // _10
+	float _14;                // _14
+	u8 _18[0x2];              // _18
+	u16 _1A;                  // _1A
+	u32 _1C;                  // _1C
+	u8 _20[0xC];              // _20, unknown
+	PathNode* _24;            // _24
+	PathNode* _28;            // _28
+	int _2C;                  // _2C, maybe count of nodes traversed?
+	efx::TOrimaLight* _30;    // _30
+	efx::TOrimaLightAct* _34; // _34
+};
+
+struct PelletScaleAppearState : public PelletState {
+	// might inherit PelletAppearState or vice versa?
+	virtual void init(Pellet*, StateArg*); // _08
+	virtual void exec(Pellet*);            // _0C
+	virtual void cleanup(Pellet*);         // _10
+	virtual bool appeared();               // _24 (weak)
+
+	float _10;   // _10
+	float _14;   // _14
+	float _18;   // _18
+	float _1C;   // _1C
+	float _20;   // _20
+	float _24;   // _24
+	float _28;   // _28
+	u8 _2C;      // _2C
+	u8 _2D[0x3]; // _2D, unknown/maybe padding
+};
+
+struct PelletUpState : public PelletState {
+	virtual void init(Pellet*, StateArg*); // _08
+	virtual void exec(Pellet*);            // _0C
+	virtual void cleanup(Pellet*);         // _10
+	virtual bool isBuried();               // _20 (weak)
+};
+
+struct PelletZukanState : public PelletState {
+	virtual void init(Pellet*, StateArg*); // _08
+	virtual void exec(Pellet*);            // _0C
+	virtual void cleanup(Pellet*);         // _10
+
+	float _10; // _10
 };
 
 extern PelletMgr* pelletMgr;

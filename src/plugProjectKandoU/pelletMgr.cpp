@@ -996,88 +996,18 @@ char* Pellet::getConfigName() { return m_config->m_params.m_name.m_data; }
  * Address:	80166A44
  * Size:	000130
  */
-PelletIndexInitArg::PelletIndexInitArg(int)
+PelletIndexInitArg::PelletIndexInitArg(int idx)
 {
-	/*
-	stwu     r1, -0x30(r1)
-	mflr     r0
-	lis      r5, __vt__Q24Game15CreatureInitArg@ha
-	li       r10, 0
-	stw      r0, 0x34(r1)
-	addi     r0, r5, __vt__Q24Game15CreatureInitArg@l
-	li       r9, 0xff
-	li       r8, 1
-	stw      r31, 0x2c(r1)
-	mr       r31, r3
-	lis      r3, __vt__Q24Game13PelletInitArg@ha
-	li       r7, -1
-	stw      r30, 0x28(r1)
-	addi     r5, r31, 0x16
-	addi     r6, r1, 8
-	stw      r0, 0(r31)
-	addi     r0, r3, __vt__Q24Game13PelletInitArg@l
-	lis      r3, __vt__Q24Game18PelletIndexInitArg@ha
-	stw      r0, 0(r31)
-	addi     r0, r3, __vt__Q24Game18PelletIndexInitArg@l
-	stb      r10, 0x1c(r31)
-	sth      r10, 0x14(r31)
-	stb      r9, 0x16(r31)
-	stw      r10, 0x18(r31)
-	stb      r10, 0x17(r31)
-	stb      r8, 4(r31)
-	stb      r10, 0x1d(r31)
-	stw      r7, 0x24(r31)
-	stw      r7, 0x20(r31)
-	stb      r10, 0x1e(r31)
-	stb      r10, 0x1f(r31)
-	stw      r0, 0(r31)
-	lwz      r3, pelletMgr__4Game@sda21(r13)
-	bl       decode__Q24Game9PelletMgrFlRUcRi
-	lwz      r3, pelletMgr__4Game@sda21(r13)
-	lbz      r4, 0x16(r31)
-	bl       getMgrByID__Q24Game9PelletMgrFUc
-	or.      r30, r3, r3
-	bne      lbl_80166AFC
-	lis      r3, lbl_8047E344@ha
-	lis      r5, lbl_8047E354@ha
-	addi     r3, r3, lbl_8047E344@l
-	li       r4, 0x5b9
-	addi     r5, r5, lbl_8047E354@l
-	crclr    6
-	bl       panic_f__12JUTExceptionFPCciPCce
+	int code;
+	pelletMgr->decode(idx, m_pelletType, code);
 
-lbl_80166AFC:
-	lwz      r4, 8(r1)
-	mr       r3, r30
-	bl       getPelletConfig__Q24Game13BasePelletMgrFi
-	lwz      r0, 0x40(r3)
-	stw      r0, 8(r31)
-	lwz      r0, 8(r1)
-	stw      r0, 0x10(r31)
-	bl       rand
-	xoris    r3, r3, 0x8000
-	lis      r0, 0x4330
-	stw      r3, 0x14(r1)
-	mr       r3, r31
-	lfd      f3, lbl_80518930@sda21(r2)
-	stw      r0, 0x10(r1)
-	lfs      f1, lbl_80518940@sda21(r2)
-	lfd      f2, 0x10(r1)
-	lfs      f0, lbl_80518944@sda21(r2)
-	fsubs    f2, f2, f3
-	fdivs    f1, f2, f1
-	fmuls    f0, f0, f1
-	fctiwz   f0, f0
-	stfd     f0, 0x18(r1)
-	lwz      r0, 0x1c(r1)
-	stw      r0, 0xc(r31)
-	lwz      r31, 0x2c(r1)
-	lwz      r30, 0x28(r1)
-	lwz      r0, 0x34(r1)
-	mtlr     r0
-	addi     r1, r1, 0x30
-	blr
-	*/
+	BasePelletMgr* newPelletMgr = pelletMgr->getMgrByID(m_pelletType);
+	P2ASSERTLINE(1465, newPelletMgr != nullptr);
+	PelletConfig* config = newPelletMgr->getPelletConfig(code);
+
+	m_textIdentifier = config->m_params.m_name.m_data;
+	_10              = code;
+	_0C              = (int)(3.0f * randFloat());
 }
 
 /*
@@ -1121,28 +1051,10 @@ PelletNumberInitArg::PelletNumberInitArg(int p1, int p2)
  */
 bool Pellet::isPickable()
 {
-	/*
-	stwu     r1, -0x10(r1)
-	mflr     r0
-	stw      r0, 0x14(r1)
-	lwz      r3, 0x3cc(r3)
-	cmplwi   r3, 0
-	beq      lbl_80166C90
-	lwz      r12, 0(r3)
-	lwz      r12, 0x28(r12)
-	mtctr    r12
-	bctrl
-	b        lbl_80166C94
-
-lbl_80166C90:
-	li       r3, 0
-
-lbl_80166C94:
-	lwz      r0, 0x14(r1)
-	mtlr     r0
-	addi     r1, r1, 0x10
-	blr
-	*/
+	if (m_pelletState != nullptr) {
+		return m_pelletState->isPickable();
+	}
+	return false;
 }
 
 // /*
@@ -1150,7 +1062,8 @@ lbl_80166C94:
 //  * Address:	80166CA4
 //  * Size:	000008
 //  */
-// u32 PelletState::isPickable(void) { return 0x0; }
+// // WEAK - in header
+// bool PelletState::isPickable() { return false; }
 
 /*
  * --INFO--
