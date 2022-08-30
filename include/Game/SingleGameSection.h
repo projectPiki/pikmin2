@@ -23,42 +23,42 @@ struct State;
 /**
  * @Size{0x278}
  */
-struct SingleGameSection : BaseGameSection {
+struct SingleGameSection : public BaseGameSection {
 	SingleGameSection(JKRHeap*);
 
-	virtual ~SingleGameSection();                                          // _00
-	virtual bool doUpdate();                                               // _34
-	virtual void doDraw(Graphics&);                                        // _38
-	virtual int getCurrFloor();                                            // _50
-	virtual bool isDevelopSection();                                       // _54
-	virtual void startMainBgm();                                           // _5C
-	virtual void section_fadeout();                                        // _60
-	virtual void goNextFloor(ItemHole::Item*);                             // _64
-	virtual void goCave(ItemCave::Item*);                                  // _68
-	virtual void goMainMap(ItemBigFountain::Item*);                        // _6C
-	virtual u32 getCaveID();                                               // _70
-	virtual CourseInfo* getCurrentCourseInfo();                            // _74
-	virtual char* getCaveFilename();                                       // _7C
-	virtual void playMovie_firstexperience(int, Creature*);                // _90
-	virtual void playMovie_bootup(Onyon*);                                 // _94
-	virtual void playMovie_helloPikmin(Piki*);                             // _98
-	virtual void enableTimer(float, unsigned long);                        // _9C
-	virtual void disableTimer(unsigned long);                              // _A0
-	virtual u32 getTimerType();                                            // _A4
-	virtual void onMovieStart(MovieConfig*, unsigned long, unsigned long); // _A8
-	virtual void onMovieDone(MovieConfig*, unsigned long, unsigned long);  // _AC
-	virtual void onMovieCommand(int);                                      // _B0
-	virtual void gmOrimaDown(int);                                         // _C8
-	virtual void gmPikminZero();                                           // _CC
-	virtual void openCaveInMenu(ItemCave::Item*, int);                     // _D0
-	virtual void openCaveMoreMenu(ItemHole::Item*, Controller*);           // _D4
-	virtual void openKanketuMenu(ItemBigFountain::Item*, Controller*);     // _D8
-	virtual void on_setCamController(int);                                 // _DC
-	virtual void onInit();                                                 // _E8
-	virtual void onSetupFloatMemory();                                     // _118
-	virtual void onSetSoundScene();                                        // _120
-	virtual void onStartHeap();                                            // _124
-	virtual void onClearHeap();                                            // _128
+	virtual ~SingleGameSection();                                          // _08
+	virtual bool doUpdate();                                               // _3C
+	virtual void doDraw(Graphics&);                                        // _40
+	virtual int getCurrFloor();                                            // _58 (weak)
+	virtual bool isDevelopSection();                                       // _5C (weak)
+	virtual void startMainBgm();                                           // _64
+	virtual void section_fadeout();                                        // _68
+	virtual void goNextFloor(ItemHole::Item*);                             // _6C
+	virtual void goCave(ItemCave::Item*);                                  // _70
+	virtual void goMainMap(ItemBigFountain::Item*);                        // _74
+	virtual u32 getCaveID();                                               // _78 (weak)
+	virtual CourseInfo* getCurrentCourseInfo();                            // _7C (weak)
+	virtual char* getCaveFilename();                                       // _84 (weak)
+	virtual void playMovie_firstexperience(int, Creature*);                // _98
+	virtual void playMovie_bootup(Onyon*);                                 // _9C
+	virtual void playMovie_helloPikmin(Piki*);                             // _A0
+	virtual void enableTimer(float, u32);                        // _A4
+	virtual void disableTimer(u32);                              // _A8
+	virtual u32 getTimerType();                                            // _AC (weak)
+	virtual void onMovieStart(MovieConfig*, u32, u32); // _B0
+	virtual void onMovieDone(MovieConfig*, u32, u32);  // _B4
+	virtual void onMovieCommand(int);                                      // _B8
+	virtual void gmOrimaDown(int);                                         // _D0
+	virtual void gmPikminZero();                                           // _D4
+	virtual void openCaveInMenu(ItemCave::Item*, int);                     // _D8
+	virtual void openCaveMoreMenu(ItemHole::Item*, Controller*);           // _DC
+	virtual void openKanketuMenu(ItemBigFountain::Item*, Controller*);     // _E0
+	virtual void on_setCamController(int);                                 // _E4
+	virtual void onInit();                                                 // _F0
+	virtual void onSetupFloatMemory();                                     // _120
+	virtual void onSetSoundScene();                                        // _128
+	virtual void onStartHeap();                                            // _12C
+	virtual void onClearHeap();                                            // _130
 
 	void clearCaveMenus();
 	void clearCaveOtakaraEarningsAndDrops();

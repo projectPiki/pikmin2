@@ -248,7 +248,7 @@ struct Pellet : public DynCreature, public SysShape::MotionListener, public Carr
 	void updateClaim();
 	float getBuryDepthMax();
 	float getBuryDepth();
-	void getBuryRadius(float);
+	float getBuryRadius(float);
 
 	float getBottomRadius();
 	float getPickRadius();

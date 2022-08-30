@@ -5,6 +5,7 @@
 #include "Game/shadowMgr.h"
 #include "Game/EnemyBase.h"
 #include "Game/Stickers.h"
+#include "Game/GameMessage.h"
 #include "Iterator.h"
 #include "System.h"
 
