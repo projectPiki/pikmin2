@@ -29,6 +29,10 @@ struct Caster : public CNode {
 };
 
 struct Mgr {
+	Caster* create(Sys::Sphere&, float);
+
+	static Mgr* sInstance;
+
 	int m_textureCount;      // _00
 	JUTTexture** m_textures; // _04
 	Caster m_caster;         // _08

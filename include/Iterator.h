@@ -58,10 +58,7 @@ template <typename T> struct Iterator {
 		return *this;
 	}
 
-	inline bool satisfy() 
-	{
-		return m_condition->satisfy(m_container->get(m_index));
-	}
+	inline bool satisfy() { return m_condition->satisfy(m_container->get(m_index)); }
 
 	// VTBL _00
 	void* m_index;             // _04;

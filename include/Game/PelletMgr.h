@@ -38,7 +38,7 @@
 #define PELTYPE_UPGRADE  (4)
 
 namespace PSM {
-struct PelletOtakara;
+struct EventBase;
 } // namespace PSM
 
 namespace Game {
@@ -46,6 +46,7 @@ struct BasePelletMgr;
 struct Pellet;
 struct PelletInitArg;
 struct PelletView;
+struct PelletFSM;
 
 struct PelletMgr : public NodeObjectMgr<GenericObjectMgr> {
 	struct OtakaraItemCode {
@@ -221,25 +222,25 @@ struct Pellet : public DynCreature, public SysShape::MotionListener, public Carr
 
 	////////////// VTABLE 3 (CARRYINFOOWNER + SELF)
 	// getCarryInfoParam thunk at _1C8
-	virtual void do_onInit(CreatureInitArg*);           // _1CC (weak)
-	virtual void onCreateShape();                       // _1D0 (weak)
+	virtual void do_onInit(CreatureInitArg*) { }        // _1CC (weak)
+	virtual void onCreateShape() { }                    // _1D0 (weak)
 	virtual void theEntry();                            // _1D4
-	virtual void onBounce();                            // _1D8 (weak)
+	virtual void onBounce() { }                         // _1D8 (weak)
 	virtual void shadowOn();                            // _1DC
 	virtual void shadowOff();                           // _1E0
 	virtual bool isPickable();                          // _1E4
 	virtual void getBedamaColor();                      // _1E8 (weak)
-	virtual void do_update();                           // _1EC (weak)
+	virtual void do_update() { }                        // _1EC (weak)
 	virtual void onKeyEvent(const SysShape::KeyEvent&); // _1F0 (weak, thunk at _1BC)
 	virtual u8 getKind() = 0;                           // _1F4
-	virtual void changeMaterial();                      // _1F8 (weak)
+	virtual void changeMaterial() { }                   // _1F8 (weak)
 	virtual void createKiraEffect(Vector3f&) { }        // _1FC (weak)
 	virtual void getCarryInfoParam(CarryInfoParam&);    // _200 (weak, thunk at _1C8)
 	virtual bool isCarried();                           // _204
 	virtual bool isPicked();                            // _208 (weak)
-	virtual void sound_otakaraEventStart();             // _20C (weak)
-	virtual void sound_otakaraEventRestart();           // _210 (weak)
-	virtual void sound_otakaraEventStop();              // _214 (weak)
+	virtual void sound_otakaraEventStart() { }          // _20C (weak)
+	virtual void sound_otakaraEventRestart() { }        // _210 (weak)
+	virtual void sound_otakaraEventStop() { }           // _214 (weak)
 	virtual void sound_otakaraEventFinish();            // _218 (weak)
 
 	u8 getWallTimer();
@@ -296,55 +297,86 @@ struct Pellet : public DynCreature, public SysShape::MotionListener, public Carr
 	// _00		= VTABLE 1
 	// _04-_314	= DYNCREATURE
 	// _318 	= VTABLE 2? 3?
-	float m_radius;                         // _31C
-	float m_depth;                          // _320
-	u8 _324;                                // _324 - unknown
-	bool m_isInWater;                       // _325
-	u8 _326[0x2];                           // _326 - could be padding
-	TexCaster::Caster* m_caster;            // _328
-	u8 _32C;                                // _32C - unknown
-	bool m_discoverDisable;                 // _32D - could be u8?
-	u8 _32E[0x2];                           //  _32E - could be padding
-	PSM::PelletOtakara* m_soundMgr;         // _330
-	PelletCarry* m_pelletCarry;             // _334
-	u8 _338[0x4];                           // _unknown
-	SysShape::Animator _33C;                // _33C
-	u32 _358;                               // _340 - unknown
-	PelletConfig* m_config;                 // _35C
-	int _360;                               // _360
-	u8 _364;                                // _364
-	u8 _365[0x33];                          // _365 - unknown
-	CarryInfoMgr* m_carryInfoMgr;           // _398
-	u8 _39C;                                // _39C - unknown
-	u8 _39D[0xF];                           // _39D - unknown
-	Vector3f m_pelletPosition;              // _3AC
-	float m_faceDir;                        // _3B8
-	u8 m_wallTimer;                         // _3BC
-	u8 _3BD[0x3];                           // _3BD - possibly padding
-	u32 _3C0;                               // _3C0 - 'claim'?
-	u8 _3C4;                                // _3C4
-	u8 _3C5[0x3];                           // _3C5 - unknown
-	StateMachine<Game::Pellet>* m_pelletSM; // _3C8
-	u8 _3CC[0x4];                           // _3CC - unknown
-	u8 _3D0;                                // _3D0
-	u8 _3D1[0x3];                           // _3D1 - unknown
-	int m_carryColor;                       // _3D4
-	u8 _3D8[0x4];                           // _3D8 - unknown
-	int _3DC;                               // _3DC
-	float _3E0;                             // _3E0
-	u8 _3E4[0x10];                          // _3E4 - unknown
-	short _3F4;                             // _3F4
-	u8 _3F6;                                // _3F6
-	u8 _3F7;                                // _3F7 - unknown, maybe padding
-	u8 _3F8[0x20];                          // _3F8 - unknown
-	float _418;                             // _418 - 'total pellet carry power?'
-	SysShape::Animator _41C;                // _41C
-	float _438;                             // _438
-	u8 _43C[0x2];                           // _43C - unknown
-	u16 m_pelletColor;                      // _43E
-	int m_slotIndex;                        // _440
-	Sys::Sphere m_lodSphere;                // _444
-	BasePelletMgr* m_mgr;                   // _454
+	float m_radius;               // _31C
+	float m_depth;                // _320
+	u8 _324;                      // _324 - unknown
+	bool m_isInWater;             // _325
+	u8 _326[0x2];                 // _326 - could be padding
+	TexCaster::Caster* m_caster;  // _328
+	u8 _32C;                      // _32C - unknown
+	bool m_discoverDisable;       // _32D - could be u8?
+	u8 _32E[0x2];                 //  _32E - could be padding
+	PSM::EventBase* m_soundMgr;   // _330
+	PelletCarry* m_pelletCarry;   // _334
+	u8 _338[0x4];                 // _unknown
+	SysShape::Animator _33C;      // _33C
+	u32 _358;                     // _358 - unknown
+	PelletConfig* m_config;       // _35C
+	int _360;                     // _360
+	u8 _364;                      // _364
+	u8 _365[0x33];                // _365 - unknown
+	CarryInfoMgr* m_carryInfoMgr; // _398
+	u8 _39C;                      // _39C - unknown
+	u8 _39D[0xF];                 // _39D - unknown
+	Vector3f m_pelletPosition;    // _3AC
+	float m_faceDir;              // _3B8
+	u8 m_wallTimer;               // _3BC
+	u8 _3BD[0x3];                 // _3BD - possibly padding
+	u32 _3C0;                     // _3C0 - 'claim'?
+	u8 _3C4;                      // _3C4
+	u8 _3C5[0x3];                 // _3C5 - unknown
+	PelletFSM* m_pelletSM;        // _3C8
+	u8 _3CC[0x4];                 // _3CC - unknown
+	u8 _3D0;                      // _3D0
+	u8 _3D1[0x3];                 // _3D1 - unknown
+	int m_carryColor;             // _3D4
+	u8 _3D8[0x4];                 // _3D8 - unknown
+	int _3DC;                     // _3DC
+	float _3E0;                   // _3E0
+	u8 _3E4;                      // _3E4 - unknown
+	u8 _3E5;                      // _3E5 - unknown
+	u8 _3E6;                      // _3E5 - unknown
+	u8 _3E7;                      // _3E5 - unknown
+	u8 _3E8;                      // _3E5 - unknown
+	u8 _3E9;                      // _3E5 - unknown
+	u8 _3EA;                      // _3E5 - unknown
+	u8 _3EB;                      // _3E5 - unknown
+	u8 _3EC;                      // _3E5 - unknown
+	u8 _3ED;                      // _3E5 - unknown
+	u8 _3EE;                      // _3E5 - unknown
+	u8 _3EF;                      // _3E5 - unknown
+	u8 _3F0;                      // _3E5 - unknown
+	u8 _3F1;                      // _3E5 - unknown
+	u8 _3F2;                      // _3E5 - unknown
+	u8 _3F3;                      // _3E5 - unknown
+	short _3F4;                   // _3F4
+	u8 _3F6;                      // _3F6
+	u8 _3F7;                      // _3F7 - unknown, maybe padding
+	u8 _3F8[0x20];                // _3F8 - unknown
+	float _418;                   // _418 - 'total pellet carry power?'
+	SysShape::Animator _41C;      // _41C
+	float _438;                   // _438
+	u8 _43C[0x2];                 // _43C - unknown
+	u16 m_pelletColor;            // _43E
+	int m_slotIndex;              // _440
+	Sys::Sphere m_lodSphere;      // _444
+	BasePelletMgr* m_mgr;         // _454
+};
+
+struct PelletFSM : public StateMachine<Pellet> {
+	virtual void init(Pellet*); // _08
+
+	// _00 		= VTABLE
+	// _04-_1C 	= StateMachine<Pellet>
+};
+
+struct PelletGoalStateArg : public StateArg {
+	inline PelletGoalStateArg(Creature* creature) { _00 = (void*)creature; }
+
+	virtual char* getName(); // _08 (weak)
+
+	// _00 needs to be Creature* (probably void*?????) idk
+	// _04 is VTBL???? SO NOTHING ELSE IS IN STATEARG???
 };
 
 extern PelletMgr* pelletMgr;
