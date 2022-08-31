@@ -8,6 +8,7 @@ namespace Game {
 struct BaseGameSection;
 struct SingleGameSection;
 struct VsGameSection;
+struct Pellet;
 
 struct GameMessage {
 	virtual bool actCommon(BaseGameSection*);   // _08 (weak)
@@ -20,7 +21,14 @@ struct GameMessagePelletBorn : public GameMessage {
 };
 
 struct GameMessagePelletDead : public GameMessage {
+	inline GameMessagePelletDead(Pellet* pellet)
+	    : m_pellet(pellet)
+	{
+	}
+
 	virtual bool actVs(VsGameSection*); // _10
+
+	Pellet* m_pellet; // _04
 };
 
 struct GameMessageVsAddEnemy : public GameMessage {

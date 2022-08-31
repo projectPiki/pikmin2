@@ -39,7 +39,8 @@ struct Radar {
 	struct Mgr {
 		Mgr();
 
-		static void entry(Game::TPositionObject*, Radar::cRadarType, unsigned long);
+		static void entry(Game::TPositionObject*, Radar::cRadarType, u32);
+		static void exit(Game::TPositionObject*);
 
 		void attach(Game::TPositionObject*, Radar::cRadarType, unsigned long);
 		void bornFuefuki();
@@ -48,7 +49,6 @@ struct Radar {
 		void detach(Game::TPositionObject*);
 		void dieFuefuki();
 
-		void exit(Game::TPositionObject*);
 		void fuefuki();
 		void getNumOtakaraItems();
 		void ogDummpyInit();

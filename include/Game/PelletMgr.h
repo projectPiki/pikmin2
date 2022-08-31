@@ -32,7 +32,7 @@
 #define PELCOLOR_RANDOM (3)
 
 // pellet types
-// for use with Pellet:m_pelletType
+// for use with Pellet:m_pelletType and getKind()
 #define PELTYPE_NUMBER   (0)
 #define PELTYPE_CARCASS  (1)
 #define PELTYPE_BERRY    (2)
@@ -173,6 +173,7 @@ struct PelletNumberInitArg : public PelletInitArg {
 };
 
 struct PelletKillArg : public CreatureKillArg {
+	u8 _08; // _08
 };
 
 /**
@@ -324,7 +325,7 @@ struct Pellet : public DynCreature, public SysShape::MotionListener, public Carr
 	PelletCarry* m_pelletCarry;   // _334
 	u8 _338[0x4];                 // _unknown
 	SysShape::Animator _33C;      // _33C
-	u32 _358;                     // _358 - unknown
+	PelletView* m_pelletView;     // _358
 	PelletConfig* m_config;       // _35C
 	int _360;                     // _360
 	u8 _364;                      // _364
