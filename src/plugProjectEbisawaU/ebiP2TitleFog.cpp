@@ -1,7 +1,10 @@
 #include "types.h"
+#include "FogMgr.h"
 #include "Camera.h"
 #include "Dolphin/gx.h"
 #include "System.h"
+#include "BaseParm.h"
+#include "nans.h"
 
 /*
     Generated from dpostproc
