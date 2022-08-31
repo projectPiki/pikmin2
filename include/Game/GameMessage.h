@@ -17,7 +17,14 @@ struct GameMessage {
 };
 
 struct GameMessagePelletBorn : public GameMessage {
+	inline GameMessagePelletBorn(Pellet* pellet)
+	    : m_pellet(pellet)
+	{
+	}
+
 	virtual bool actVs(VsGameSection*); // _10
+
+	Pellet* m_pellet; // _04
 };
 
 struct GameMessagePelletDead : public GameMessage {

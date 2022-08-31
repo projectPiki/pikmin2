@@ -6,6 +6,7 @@
 #include "Game/EnemyBase.h"
 #include "Game/Stickers.h"
 #include "Game/GameMessage.h"
+#include "Game/GameStats.h"
 #include "efx/TFruitsDown.h"
 #include "PSM/Otakara.h"
 #include "Iterator.h"
@@ -1155,460 +1156,184 @@ void start__Q24Game28StateMachine<Game::Pellet> FPQ24Game6PelletiPQ24Game8StateA
  * Address:	80166F68
  * Size:	000620
  */
-void Pellet::onInit(Game::CreatureInitArg*)
+void Pellet::onInit(Game::CreatureInitArg* initArg) 
 {
-	/*
-	stwu     r1, -0x20(r1)
-	mflr     r0
-	li       r5, -1
-	stw      r0, 0x24(r1)
-	li       r0, 0
-	stw      r31, 0x1c(r1)
-	mr       r31, r4
-	stw      r30, 0x18(r1)
-	mr       r30, r3
-	stw      r5, 0x3dc(r3)
-	stw      r5, 0x3d8(r3)
-	stb      r0, 0x3bc(r3)
-	stb      r0, 0x324(r3)
-	stb      r0, 0x325(r3)
-	bl       clearDiscoverDisable__Q24Game6PelletFv
-	li       r0, 0
-	lfs      f0, lbl_80518914@sda21(r2)
-	stw      r0, 0x3c0(r30)
-	mr       r3, r30
-	stfs     f0, 0x3e0(r30)
-	stw      r0, 0xc8(r30)
-	stb      r0, 0x311(r30)
-	stfs     f0, 0x3b8(r30)
-	stfs     f0, 0x438(r30)
-	stb      r0, 0x3c4(r30)
-	stb      r0, 0x3d0(r30)
-	stw      r0, 0x398(r30)
-	bl       clearCapture__Q24Game8CreatureFv
-	lfs      f0, lbl_80518914@sda21(r2)
-	cmplwi   r31, 0
-	stfs     f0, 0x418(r30)
-	bne      lbl_80167004
-	lis      r3, lbl_8047E344@ha
-	lis      r5, lbl_8047E354@ha
-	addi     r3, r3, lbl_8047E344@l
-	li       r4, 0x660
-	addi     r5, r5, lbl_8047E354@l
-	crclr    6
-	bl       panic_f__12JUTExceptionFPCciPCce
+    _3DC = -1;
+    _3D8 = -1;
+    m_wallTimer = 0;
+    _324 = 0;
+    m_isInWater = false;
 
-lbl_80167004:
-	lhz      r0, 0x14(r31)
-	cmplwi   r0, 0
-	bne      lbl_80167044
-	lwz      r3, 0x3c8(r30)
-	mr       r4, r30
-	li       r5, 0
-	li       r6, 0
-	lwz      r12, 0(r3)
-	lwz      r12, 0xc(r12)
-	mtctr    r12
-	bctrl
-	lfs      f0, lbl_80518910@sda21(r2)
-	stfs     f0, 0x168(r30)
-	stfs     f0, 0x16c(r30)
-	stfs     f0, 0x170(r30)
-	b        lbl_801670DC
+    clearDiscoverDisable();
 
-lbl_80167044:
-	cmplwi   r0, 3
-	bne      lbl_80167070
-	lwz      r3, 0x3c8(r30)
-	mr       r4, r30
-	li       r5, 6
-	li       r6, 0
-	lwz      r12, 0(r3)
-	lwz      r12, 0xc(r12)
-	mtctr    r12
-	bctrl
-	b        lbl_801670DC
+    _3C0 = 0;
+    _3E0 = 0.0f;
+    _0C8 = nullptr;
+    _311 = 0;
+    m_faceDir = 0.0f;
+    _438 = 0.0f;
+    _3C4 = 0;
+    _3D0 = 0;
+    m_carryInfoMgr = nullptr;
 
-lbl_80167070:
-	cmplwi   r0, 1
-	bne      lbl_801670AC
-	lwz      r3, 0x3c8(r30)
-	mr       r4, r30
-	li       r5, 4
-	li       r6, 0
-	lwz      r12, 0(r3)
-	lwz      r12, 0xc(r12)
-	mtctr    r12
-	bctrl
-	lfs      f0, lbl_8051895C@sda21(r2)
-	stfs     f0, 0x168(r30)
-	stfs     f0, 0x16c(r30)
-	stfs     f0, 0x170(r30)
-	b        lbl_801670DC
+    clearCapture();
 
-lbl_801670AC:
-	lwz      r3, 0x3c8(r30)
-	mr       r4, r30
-	li       r5, 5
-	li       r6, 0
-	lwz      r12, 0(r3)
-	lwz      r12, 0xc(r12)
-	mtctr    r12
-	bctrl
-	lfs      f0, lbl_8051895C@sda21(r2)
-	stfs     f0, 0x168(r30)
-	stfs     f0, 0x16c(r30)
-	stfs     f0, 0x170(r30)
+    _418 = 0.0f;
 
-lbl_801670DC:
-	li       r0, 0
-	stw      r0, 0x3f8(r30)
-	stw      r0, 0x3fc(r30)
-	stw      r0, 0x400(r30)
-	stw      r0, 0x404(r30)
-	stw      r0, 0x408(r30)
-	stw      r0, 0x40c(r30)
-	stw      r0, 0x410(r30)
-	stw      r0, 0x414(r30)
-	lwz      r0, 0x10(r31)
-	sth      r0, 0x43c(r30)
-	lwz      r3, 0x454(r30)
-	lwz      r4, 8(r31)
-	lwz      r3, 8(r3)
-	bl       getPelletConfig__Q24Game16PelletConfigListFPc
-	stw      r3, 0x35c(r30)
-	lwz      r3, 0x35c(r30)
-	lhz      r0, 0x244(r3)
-	clrlwi.  r0, r0, 0x1f
-	bne      lbl_80167140
-	mr       r3, r30
-	lwz      r12, 0(r30)
-	lwz      r12, 0x1dc(r12)
-	mtctr    r12
-	bctrl
+    P2ASSERTLINE(1632, initArg != nullptr);
 
-lbl_80167140:
-	lbz      r0, 0x1d(r31)
-	cmplwi   r0, 0
-	beq      lbl_80167174
-	li       r3, -1
-	bl       getMapPikmins__Q24Game8GameStatFi
-	stw      r3, 0x3d8(r30)
-	lwz      r3, 0x35c(r30)
-	lwz      r0, 0x3d8(r30)
-	lwz      r3, 0x120(r3)
-	cmpw     r0, r3
-	ble      lbl_8016717C
-	stw      r3, 0x3d8(r30)
-	b        lbl_8016717C
+    u16 stateType = static_cast<PelletInitArg*>(initArg)->_14;
+    if (stateType == 0) {
+        m_pelletSM->start(this, 0, nullptr);
+        m_scale = Vector3f(1.0f);        
+    } else if (stateType == 3) {
+        m_pelletSM->start(this, 6, nullptr);        
+    } else if (stateType == 1) {
+        m_pelletSM->start(this, 4, nullptr);
+        m_scale = Vector3f(0.01f);        
+    } else {
+        m_pelletSM->start(this, 5, nullptr);
+        m_scale = Vector3f(0.01f);       
+    }
 
-lbl_80167174:
-	li       r0, -1
-	stw      r0, 0x3d8(r30)
+    _3F8 = 0;
+    _3FC = 0;
+    _400 = 0;
+    _404 = 0;
+    _408 = 0;
+    _40C = 0;
+    _410 = 0;
+    _414 = 0;
+    _43C = (u16) static_cast<PelletInitArg*>(initArg)->_10;
 
-lbl_8016717C:
-	lwz      r3, 0x20(r31)
-	cmpwi    r3, -1
-	beq      lbl_801671A0
-	lwz      r0, 0x24(r31)
-	cmpwi    r0, -1
-	beq      lbl_801671A0
-	stw      r3, 0x3d8(r30)
-	lwz      r0, 0x24(r31)
-	stw      r0, 0x3dc(r30)
+    m_config = m_mgr->m_configList->getPelletConfig(static_cast<PelletInitArg*>(initArg)->m_textIdentifier);
+    
+    if (!(m_config->m_params.m_code.m_data & 1)) {
+        shadowOn();
+    }
+    
+    if (static_cast<PelletInitArg*>(initArg)->_1D != 0) {
+        _3D8 = GameStat::getMapPikmins(-1);
+        int minPikis = m_config->m_params.m_min.m_data;
+        if (_3D8 > minPikis) {
+            _3D8 = minPikis;
+        }
+    } else {
+        _3D8 = -1;
+    }
 
-lbl_801671A0:
-	lbz      r0, 0x2f1(r30)
-	addi     r4, r2, lbl_80518960@sda21
-	rlwinm   r0, r0, 0, 0x18, 0x1e
-	stb      r0, 0x2f1(r30)
-	lbz      r0, 0x2f1(r30)
-	clrlwi   r0, r0, 0x19
-	stb      r0, 0x2f1(r30)
-	lwz      r0, 0xc(r31)
-	sth      r0, 0x43e(r30)
-	lwz      r3, 0x35c(r30)
-	lwz      r3, 0x40(r3)
-	bl       strcmp
-	cmpwi    r3, 0
-	bne      lbl_801671E4
-	li       r0, 0
-	stb      r0, 0x32c(r30)
-	b        lbl_80167210
+    
+    // temp_r3_6 = arg0->unk20;
+    if ((static_cast<PelletInitArg*>(initArg)->m_minCarriers != -1) && (static_cast<PelletInitArg*>(initArg)->m_maxCarriers != -1)) {
+        _3D8 = static_cast<PelletInitArg*>(initArg)->m_minCarriers;
+        _3DC = static_cast<PelletInitArg*>(initArg)->m_maxCarriers;
+    }
 
-lbl_801671E4:
-	lwz      r3, 0x35c(r30)
-	addi     r4, r2, lbl_80518968@sda21
-	lwz      r3, 0x40(r3)
-	bl       strcmp
-	cmpwi    r3, 0
-	bne      lbl_80167208
-	li       r0, 1
-	stb      r0, 0x32c(r30)
-	b        lbl_80167210
+    
+    m_rigid._175 &= ~0x01;
+    m_rigid._175 &= ~0x80;
+    m_pelletColor = static_cast<PelletInitArg*>(initArg)->_0C;
+    
+    if (strcmp(m_config->m_params.m_name.m_data, "loozy") == 0) {
+        _32C = 0;
+    } else if (strcmp(m_config->m_params.m_name.m_data, "orima") == 0) {
+        _32C = 1;
+    } else {
+        _32C = 2;
+    }
+    
+    if (strcmp(m_config->m_params.m_name.m_data, VsOtakaraName::cBedamaYellow) == 0) {
+        _32C = 6;
+    } else if (strcmp(m_config->m_params.m_name.m_data, VsOtakaraName::cBedamaRed) == 0) {
+        _32C = 4;
+    } else if (strcmp(m_config->m_params.m_name.m_data, VsOtakaraName::cBedamaBlue) == 0) {
+        _32C = 5;
+    } else if (strcmp(m_config->m_params.m_name.m_data, VsOtakaraName::cCoin) == 0) {
+        _32C = 3;
+    }
+    
+    if (static_cast<PelletInitArg*>(initArg)->_1C == 0) {
+        m_model = m_mgr->createShape(_43C, m_slotIndex);
+        onCreateShape();
+    }
+    
+    if (m_model != nullptr) {
+        _41C.m_animMgr = m_mgr->m_animMgr[_43C];
+        m_radius = 2.0f * m_model->getRoughBoundingRadius();
+    } else {
+        m_radius = m_config->m_params.m_radius.m_data;
+    }
+    
+    if (_41C.m_animMgr != nullptr) {
+        SysShape::MotionListener* listener = this;
+        _41C.startAnim(0, listener);
+        stop_carrymotion();
+        init_pmotions();
+        start_pmotions();
+        if ((gameSystem->m_mode == GSM_PIKLOPEDIA) && (_32C == 0)) {
+            _438 = 30.0f;
+        }
+    }
 
-lbl_80167208:
-	li       r0, 2
-	stb      r0, 0x32c(r30)
+    m_mgr->setCollTree(this, _43C);
 
-lbl_80167210:
-	lwz      r3, 0x35c(r30)
-	lwz      r4, cBedamaYellow__13VsOtakaraName@sda21(r13)
-	lwz      r3, 0x40(r3)
-	bl       strcmp
-	cmpwi    r3, 0
-	bne      lbl_80167234
-	li       r0, 6
-	stb      r0, 0x32c(r30)
-	b        lbl_8016729C
+    if (strcmp(m_config->m_params.m_dynamics.m_data, "never") == 0) {
+        _364 = 2;
+        _39C = 0;
+        m_config->m_params.m_numParticles.m_data = 0;
+    } else if (strcmp(m_config->m_params.m_dynamics.m_data, "lod") == 0) {
+        _364 = 1;
+        _39C = 1;
+    } else {
+        _364 = 0;
+        _39C = 1;
+    }
+    
+    _3E4 = 0;
+    _3E5 = 0;
+    _3E6 = 0;
+    _3E7 = 0;
+    _3E8 = 0;
+    _3E9 = 0;
+    _3EA = 0;
+    _3EB = 0;
+    _3EC = 0;
+    _3ED = 0;
+    _3EE = 0;
+    _3EF = 0;
+    _3F0 = 0;
+    _3F1 = 0;
+    _3F2 = 0;
+    _3F3 = 0;
+    _3F6 = 0;
+    
+    _3F4 = getPelletConfigMax();
+    
+    if (_3F4 > 128) {
+        _3F4 = 128;
+    }
+    
+    if (m_config->m_params.m_min.m_data == 128) {
+        _3D8 = 1000;
+        _3DC = 1000;
+    }
+    
+    m_dynParticle = nullptr;
+    setupParticles();
+    do_onInit(initArg);
 
-lbl_80167234:
-	lwz      r3, 0x35c(r30)
-	lwz      r4, cBedamaRed__13VsOtakaraName@sda21(r13)
-	lwz      r3, 0x40(r3)
-	bl       strcmp
-	cmpwi    r3, 0
-	bne      lbl_80167258
-	li       r0, 4
-	stb      r0, 0x32c(r30)
-	b        lbl_8016729C
+    if (getKind() == PELTYPE_TREASURE) {
+        Radar::Mgr::entry(this, Radar::MAP_TREASURE, 0);
+    } else if (getKind() == PELTYPE_UPGRADE) {
+        Radar::Mgr::entry(this, Radar::MAP_UPGRADE, 0);
+    }
+    
+    setAlive(true);
 
-lbl_80167258:
-	lwz      r3, 0x35c(r30)
-	lwz      r4, cBedamaBlue__13VsOtakaraName@sda21(r13)
-	lwz      r3, 0x40(r3)
-	bl       strcmp
-	cmpwi    r3, 0
-	bne      lbl_8016727C
-	li       r0, 5
-	stb      r0, 0x32c(r30)
-	b        lbl_8016729C
-
-lbl_8016727C:
-	lwz      r3, 0x35c(r30)
-	lwz      r4, cCoin__13VsOtakaraName@sda21(r13)
-	lwz      r3, 0x40(r3)
-	bl       strcmp
-	cmpwi    r3, 0
-	bne      lbl_8016729C
-	li       r0, 3
-	stb      r0, 0x32c(r30)
-
-lbl_8016729C:
-	lbz      r0, 0x1c(r31)
-	cmplwi   r0, 0
-	bne      lbl_801672DC
-	lwz      r3, 0x454(r30)
-	lhz      r4, 0x43c(r30)
-	lwz      r12, 0(r3)
-	lwz      r5, 0x440(r30)
-	lwz      r12, 0x6c(r12)
-	mtctr    r12
-	bctrl
-	stw      r3, 0x174(r30)
-	mr       r3, r30
-	lwz      r12, 0(r30)
-	lwz      r12, 0x1d0(r12)
-	mtctr    r12
-	bctrl
-
-lbl_801672DC:
-	lwz      r0, 0x174(r30)
-	cmplwi   r0, 0
-	beq      lbl_80167318
-	lwz      r3, 0x454(r30)
-	lhz      r0, 0x43c(r30)
-	lwz      r3, 0x10(r3)
-	slwi     r0, r0, 2
-	lwzx     r0, r3, r0
-	stw      r0, 0x42c(r30)
-	lwz      r3, 0x174(r30)
-	bl       getRoughBoundingRadius__Q28SysShape5ModelFv
-	lfs      f0, lbl_80518970@sda21(r2)
-	fmuls    f0, f0, f1
-	stfs     f0, 0x31c(r30)
-	b        lbl_80167324
-
-lbl_80167318:
-	lwz      r3, 0x35c(r30)
-	lfs      f0, 0xa0(r3)
-	stfs     f0, 0x31c(r30)
-
-lbl_80167324:
-	lwz      r0, 0x42c(r30)
-	cmplwi   r0, 0
-	beq      lbl_80167388
-	cmplwi   r30, 0
-	mr       r5, r30
-	beq      lbl_80167340
-	addi     r5, r30, 0x314
-
-lbl_80167340:
-	addi     r3, r30, 0x41c
-	li       r4, 0
-	bl       startAnim__Q28SysShape8AnimatorFiPQ28SysShape14MotionListener
-	mr       r3, r30
-	bl       stop_carrymotion__Q24Game6PelletFv
-	mr       r3, r30
-	bl       init_pmotions__Q24Game6PelletFv
-	mr       r3, r30
-	bl       start_pmotions__Q24Game6PelletFv
-	lwz      r3, gameSystem__4Game@sda21(r13)
-	lwz      r0, 0x44(r3)
-	cmpwi    r0, 4
-	bne      lbl_80167388
-	lbz      r0, 0x32c(r30)
-	cmplwi   r0, 0
-	bne      lbl_80167388
-	lfs      f0, lbl_80518928@sda21(r2)
-	stfs     f0, 0x438(r30)
-
-lbl_80167388:
-	lwz      r3, 0x454(r30)
-	mr       r4, r30
-	lhz      r5, 0x43c(r30)
-	bl       setCollTree__Q24Game13BasePelletMgrFPQ24Game6Pelleti
-	lwz      r3, 0x35c(r30)
-	addi     r4, r2, lbl_80518974@sda21
-	lwz      r3, 0x160(r3)
-	bl       strcmp
-	cmpwi    r3, 0
-	bne      lbl_801673CC
-	li       r3, 2
-	li       r0, 0
-	stb      r3, 0x364(r30)
-	stb      r0, 0x39c(r30)
-	lwz      r3, 0x35c(r30)
-	stw      r0, 0xf0(r3)
-	b        lbl_80167404
-
-lbl_801673CC:
-	lwz      r3, 0x35c(r30)
-	addi     r4, r2, lbl_8051897C@sda21
-	lwz      r3, 0x160(r3)
-	bl       strcmp
-	cmpwi    r3, 0
-	bne      lbl_801673F4
-	li       r0, 1
-	stb      r0, 0x364(r30)
-	stb      r0, 0x39c(r30)
-	b        lbl_80167404
-
-lbl_801673F4:
-	li       r3, 0
-	li       r0, 1
-	stb      r3, 0x364(r30)
-	stb      r0, 0x39c(r30)
-
-lbl_80167404:
-	li       r0, 0
-	mr       r3, r30
-	stb      r0, 0x3e4(r30)
-	stb      r0, 0x3e5(r30)
-	stb      r0, 0x3e6(r30)
-	stb      r0, 0x3e7(r30)
-	stb      r0, 0x3e8(r30)
-	stb      r0, 0x3e9(r30)
-	stb      r0, 0x3ea(r30)
-	stb      r0, 0x3eb(r30)
-	stb      r0, 0x3ec(r30)
-	stb      r0, 0x3ed(r30)
-	stb      r0, 0x3ee(r30)
-	stb      r0, 0x3ef(r30)
-	stb      r0, 0x3f0(r30)
-	stb      r0, 0x3f1(r30)
-	stb      r0, 0x3f2(r30)
-	stb      r0, 0x3f3(r30)
-	stb      r0, 0x3f6(r30)
-	bl       getPelletConfigMax__Q24Game6PelletFv
-	sth      r3, 0x3f4(r30)
-	lha      r0, 0x3f4(r30)
-	cmpwi    r0, 0x80
-	ble      lbl_8016746C
-	li       r0, 0x80
-	sth      r0, 0x3f4(r30)
-
-lbl_8016746C:
-	lwz      r3, 0x35c(r30)
-	lwz      r0, 0x120(r3)
-	cmpwi    r0, 0x80
-	bne      lbl_80167488
-	li       r0, 0x3e8
-	stw      r0, 0x3d8(r30)
-	stw      r0, 0x3dc(r30)
-
-lbl_80167488:
-	li       r0, 0
-	mr       r3, r30
-	stw      r0, 0x178(r30)
-	bl       setupParticles__Q24Game6PelletFv
-	mr       r3, r30
-	mr       r4, r31
-	lwz      r12, 0(r30)
-	lwz      r12, 0x1cc(r12)
-	mtctr    r12
-	bctrl
-	mr       r3, r30
-	lwz      r12, 0(r30)
-	lwz      r12, 0x1f4(r12)
-	mtctr    r12
-	bctrl
-	clrlwi   r0, r3, 0x18
-	cmplwi   r0, 3
-	bne      lbl_801674E4
-	mr       r3, r30
-	li       r4, 0x10
-	li       r5, 0
-	bl       entry__Q25Radar3MgrFPQ24Game15TPositionObjectQ25Radar10cRadarTypeUl
-	b        lbl_80167514
-
-lbl_801674E4:
-	mr       r3, r30
-	lwz      r12, 0(r30)
-	lwz      r12, 0x1f4(r12)
-	mtctr    r12
-	bctrl
-	clrlwi   r0, r3, 0x18
-	cmplwi   r0, 4
-	bne      lbl_80167514
-	mr       r3, r30
-	li       r4, 0x12
-	li       r5, 0
-	bl       entry__Q25Radar3MgrFPQ24Game15TPositionObjectQ25Radar10cRadarTypeUl
-
-lbl_80167514:
-	mr       r3, r30
-	li       r4, 1
-	lwz      r12, 0(r30)
-	lwz      r12, 0xac(r12)
-	mtctr    r12
-	bctrl
-	lwz      r6, gameSystem__4Game@sda21(r13)
-	lwz      r0, 0x44(r6)
-	cmpwi    r0, 1
-	bne      lbl_80167570
-	lis      r4, __vt__Q24Game11GameMessage@ha
-	lis      r3, __vt__Q24Game21GameMessagePelletBorn@ha
-	addi     r5, r4, __vt__Q24Game11GameMessage@l
-	stw      r30, 0xc(r1)
-	addi     r0, r3, __vt__Q24Game21GameMessagePelletBorn@l
-	addi     r4, r1, 8
-	stw      r5, 8(r1)
-	stw      r0, 8(r1)
-	lwz      r3, 0x58(r6)
-	lwz      r12, 0(r3)
-	lwz      r12, 0x50(r12)
-	mtctr    r12
-	bctrl
-
-lbl_80167570:
-	lwz      r0, 0x24(r1)
-	lwz      r31, 0x1c(r1)
-	lwz      r30, 0x18(r1)
-	mtlr     r0
-	addi     r1, r1, 0x20
-	blr
-	*/
+    if (gameSystem->m_mode == GSM_VERSUS_MODE) {
+        GameMessagePelletBorn msg (this);
+        gameSystem->m_section->sendMessage(msg);
+    }
 }
 
 /*

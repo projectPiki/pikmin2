@@ -150,7 +150,7 @@ struct PelletInitArg : CreatureInitArg {
 	char* m_textIdentifier; // _08
 	int _0C;                // _0C
 	int _10;                // _10
-	short _14;              // _14
+	u16 _14;                // _14
 	u8 m_pelletType;        // _16
 	u8 _17;                 // _17
 	PelletView* _18;        // _18
@@ -271,8 +271,8 @@ struct Pellet : public DynCreature, public SysShape::MotionListener, public Carr
 	float getCylinderHeight();
 	s16 getConfigIndex();
 	char* getConfigName();
-	void getPelletConfigMin();
-	void getPelletConfigMax();
+	short getPelletConfigMin();
+	short getPelletConfigMax();
 	void setupParticles();
 	void setupParticles_simple();
 	void setupParticles_tall();
@@ -345,7 +345,7 @@ struct Pellet : public DynCreature, public SysShape::MotionListener, public Carr
 	u8 _3D0;                      // _3D0
 	u8 _3D1[0x3];                 // _3D1 - unknown
 	int m_carryColor;             // _3D4
-	u8 _3D8[0x4];                 // _3D8 - unknown
+	int _3D8;                     // _3D8, to do with pikmin number
 	int _3DC;                     // _3DC
 	float _3E0;                   // _3E0
 	u8 _3E4;                      // _3E4 - unknown
@@ -367,11 +367,18 @@ struct Pellet : public DynCreature, public SysShape::MotionListener, public Carr
 	short _3F4;                   // _3F4
 	u8 _3F6;                      // _3F6
 	u8 _3F7;                      // _3F7 - unknown, maybe padding
-	u8 _3F8[0x20];                // _3F8 - unknown
+	u32 _3F8;                     // _3F8 - unknown
+	u32 _3FC;                     // _3FC - unknown
+	u32 _400;                     // _400 - unknown
+	u32 _404;                     // _404 - unknown
+	u32 _408;                     // _408 - unknown
+	u32 _40C;                     // _40C - unknown
+	u32 _410;                     // _410 - unknown
+	u32 _414;                     // _414 - unknown
 	float _418;                   // _418 - 'total pellet carry power?'
 	SysShape::Animator _41C;      // _41C
 	float _438;                   // _438
-	u8 _43C[0x2];                 // _43C - unknown
+	u16 _43C;                     // _43C
 	u16 m_pelletColor;            // _43E
 	int m_slotIndex;              // _440
 	Sys::Sphere m_lodSphere;      // _444
