@@ -866,7 +866,7 @@ void GXBeginDisplayList(void*, u32 dlSize);
 u32 GXEndDisplayList(void);
 void GXCallDisplayList(void*, u32 byteCnt);
 
-void GXSetFog(GXFogType type, void* data, float, float, float nearz, float farz);
+void GXSetFog(GXFogType type, f32 startz, f32 endz, f32 nearz, f32 farz, GXColor color);
 
 void GXInitFogAdjTable(GXFogAdjTable* table, u16 width, f32 projmtx[4][4]);
 
