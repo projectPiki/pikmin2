@@ -29,11 +29,7 @@ FogMgr::FogMgr()
  * Address:	804329BC
  * Size:	000040
  */
-void FogMgr::off(Graphics&)
-{
-	GXColor fogColor = m_color.GXColorView;
-	GXSetFog(GX_FOG_NONE, 0.0f, 0.0f, 0.0f, 0.0f, fogColor);
-}
+void FogMgr::off(Graphics&) { GXSetFog(GX_FOG_NONE, 0.0f, 0.0f, 0.0f, 0.0f, m_color.GXColorView); }
 
 /*
  * --INFO--
@@ -45,14 +41,13 @@ void FogMgr::set(Graphics& graphics)
 	GXFogAdjTable table;
 	Camera* activeCam = graphics.m_currentViewport->m_camera;
 
-	GXColor fogColor = m_color.GXColorView;
-	GXSetFog(m_type, m_nearZ, m_farZ, activeCam->getNear(), activeCam->getFar(), fogColor);
+	GXSetFog(m_type, m_nearZ, m_farZ, activeCam->getNear(), activeCam->getFar(), m_color.GXColorView);
 
 	u16 width = System::getRenderModeObj()->fbWidth;
 	GXInitFogAdjTable(&table, width, activeCam->m_projectionMtx);
 
 	width = System::getRenderModeObj()->fbWidth;
-	GXSetFogRangeAdj(TRUE, width / 2, &table);
+	GXSetFogRangeAdj(GX_TRUE, width / 2, &table);
 }
 
 /*
