@@ -10,7 +10,7 @@ template <typename T> struct ObjectMgr : public Container<T>, GenericObjectMgr {
 	{
 	}
 
-	virtual ~ObjectMgr();                 // _08
+	virtual ~ObjectMgr() { }              // _08
 	virtual void doAnimation();           // _34
 	virtual void doEntry();               // _38
 	virtual void doSetView(int);          // _3C

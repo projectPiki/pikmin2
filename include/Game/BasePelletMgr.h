@@ -14,7 +14,12 @@ namespace Game {
 struct PelletConfig;
 struct GenPelletParm;
 
-struct BasePelletMgr : public GenericObjectMgr {
+// BasePelletMgr inherits something virtual, but I cannot work out what
+// it seems like all these BaseXMgrs are inheriting something virtual....
+struct _BasePelletMgrParent2 {
+};
+
+struct BasePelletMgr : public GenericObjectMgr, virtual public _BasePelletMgrParent2 {
 	BasePelletMgr(PelletList::cKind);
 
 	////////// VTABLE
@@ -57,7 +62,7 @@ struct BasePelletMgr : public GenericObjectMgr {
 	void setCollTree(Pellet*, int);
 
 	// _00 = VTBL
-	u8 _04[0x4];                    // _04, unknown
+	// _04 = ptr to NotSure/vtable for NotSure?
 	PelletConfigList* m_configList; // _08
 	J3DModelData** m_modelData;     // _0C
 	SysShape::AnimMgr** m_animMgr;  // _10
@@ -66,6 +71,7 @@ struct BasePelletMgr : public GenericObjectMgr {
 	SysShape::ModelMgr* m_modelMgr; // _48
 	bool* _4C;                      // _4C
 	int _50;                        // _50
+	                                // _54 - virtual NotSure
 };
 
 } // namespace Game

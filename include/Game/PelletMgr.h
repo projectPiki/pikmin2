@@ -50,6 +50,7 @@ struct PelletInitArg;
 struct PelletView;
 struct PelletFSM;
 struct PathNode;
+struct PelletState;
 
 struct PelletMgr : public NodeObjectMgr<GenericObjectMgr> {
 	struct OtakaraItemCode {
@@ -93,6 +94,8 @@ struct PelletMgr : public NodeObjectMgr<GenericObjectMgr> {
 	void decode(long, u8&, int&);
 	void encode(u8, int);
 	BasePelletMgr* getMgrByID(u8);
+
+	static bool mDebug;
 
 	u8 _3C; // _3C
 };
@@ -237,26 +240,44 @@ struct Pellet : public DynCreature, public SysShape::MotionListener, public Carr
 
 	////////////// VTABLE 3 (CARRYINFOOWNER + SELF)
 	// getCarryInfoParam thunk at _1C8
-	virtual void do_onInit(CreatureInitArg*) { }        // _1CC (weak)
-	virtual void onCreateShape() { }                    // _1D0 (weak)
-	virtual void theEntry();                            // _1D4
-	virtual void onBounce() { }                         // _1D8 (weak)
-	virtual void shadowOn();                            // _1DC
-	virtual void shadowOff();                           // _1E0
-	virtual bool isPickable();                          // _1E4
-	virtual void getBedamaColor();                      // _1E8 (weak)
-	virtual void do_update() { }                        // _1EC (weak)
-	virtual void onKeyEvent(const SysShape::KeyEvent&); // _1F0 (weak, thunk at _1BC)
-	virtual u8 getKind() = 0;                           // _1F4
-	virtual void changeMaterial() { }                   // _1F8 (weak)
-	virtual void createKiraEffect(Vector3f&) { }        // _1FC (weak)
-	virtual void getCarryInfoParam(CarryInfoParam&);    // _200 (weak, thunk at _1C8)
-	virtual bool isCarried();                           // _204
-	virtual bool isPicked();                            // _208 (weak)
-	virtual void sound_otakaraEventStart() { }          // _20C (weak)
-	virtual void sound_otakaraEventRestart() { }        // _210 (weak)
-	virtual void sound_otakaraEventStop() { }           // _214 (weak)
-	virtual void sound_otakaraEventFinish();            // _218 (weak)
+	virtual void do_onInit(CreatureInitArg*) { }              // _1CC (weak)
+	virtual void onCreateShape() { }                          // _1D0 (weak)
+	virtual void theEntry();                                  // _1D4
+	virtual void onBounce() { }                               // _1D8 (weak)
+	virtual void shadowOn();                                  // _1DC
+	virtual void shadowOff();                                 // _1E0
+	virtual bool isPickable();                                // _1E4
+	virtual void getBedamaColor();                            // _1E8 (weak)
+	virtual void do_update() { }                              // _1EC (weak)
+	virtual void onKeyEvent(const SysShape::KeyEvent&);       // _1F0 (weak, thunk at _1BC)
+	virtual u8 getKind() = 0;                                 // _1F4
+	virtual void changeMaterial() { }                         // _1F8 (weak)
+	virtual void createKiraEffect(Vector3f&) { }              // _1FC (weak)
+	virtual void getCarryInfoParam(CarryInfoParam& infoParam) // _200 (weak, thunk at _1C8)
+	{
+		infoParam._00        = 0;
+		infoParam.m_position = m_rigid.m_configs[0]._00;
+		infoParam._10        = 30.0f + m_config->m_params.m_height.m_data;
+		infoParam._14        = 1;
+		infoParam._1C        = 1;
+		infoParam._18        = getTotalCarryPikmins();
+
+		int minVal;
+		if (_3D8 > 0) {
+			minVal = _3D8;
+		} else {
+			minVal = m_config->m_params.m_min.m_data;
+		}
+		infoParam._16 = minVal;
+
+		infoParam._15 = m_carryColor;
+	}
+	virtual bool isCarried();                    // _204
+	virtual bool isPicked() { return _3D0 & 1; } // _208 (weak)
+	virtual void sound_otakaraEventStart() { }   // _20C (weak)
+	virtual void sound_otakaraEventRestart() { } // _210 (weak)
+	virtual void sound_otakaraEventStop() { }    // _214 (weak)
+	virtual void sound_otakaraEventFinish();     // _218 (weak)
 
 	u8 getWallTimer();
 	void clearClaim();
@@ -271,8 +292,8 @@ struct Pellet : public DynCreature, public SysShape::MotionListener, public Carr
 	float getCylinderHeight();
 	s16 getConfigIndex();
 	char* getConfigName();
-	short getPelletConfigMin();
-	short getPelletConfigMax();
+	int getPelletConfigMin();
+	int getPelletConfigMax();
 	void setupParticles();
 	void setupParticles_simple();
 	void setupParticles_tall();
@@ -283,7 +304,7 @@ struct Pellet : public DynCreature, public SysShape::MotionListener, public Carr
 	void allocateTexCaster();
 	void setPanModokiRotation(float);
 	void setOrientation(Matrixf&);
-	void getStateID();
+	int getStateID();
 	void update();
 	void getPikiBirthCount(int&, int&);
 	void entryShape();
@@ -295,7 +316,7 @@ struct Pellet : public DynCreature, public SysShape::MotionListener, public Carr
 	int getSpeicalSlot();
 	void getPelletGoal();
 	void getTotalPikmins();
-	void getTotalCarryPikmins();
+	short getTotalCarryPikmins();
 	void getPikmins(int);
 	void getFace();
 	void clearDiscoverDisable();
@@ -341,7 +362,7 @@ struct Pellet : public DynCreature, public SysShape::MotionListener, public Carr
 	u8 _3C4;                      // _3C4
 	u8 _3C5[0x3];                 // _3C5 - unknown
 	PelletFSM* m_pelletSM;        // _3C8
-	u8 _3CC[0x4];                 // _3CC - unknown
+	PelletState* m_pelletState;   // _3CC
 	u8 _3D0;                      // _3D0
 	u8 _3D1[0x3];                 // _3D1 - unknown
 	int m_carryColor;             // _3D4

@@ -9,6 +9,9 @@
 #include "Game/Stickers.h"
 #include "Game/GameMessage.h"
 #include "Game/GameStats.h"
+#include "Game/DynParticle.h"
+#include "Game/ItemTreasure.h"
+#include "Game/MapMgr.h"
 #include "efx/TFruitsDown.h"
 #include "PSM/Otakara.h"
 #include "Iterator.h"
@@ -1133,24 +1136,11 @@ void Pellet::onKill(CreatureKillArg* killArg)
  * Address:	80166F34
  * Size:	000034
  */
-void start__Q24Game28StateMachine<Game::Pellet> FPQ24Game6PelletiPQ24Game8StateArg(void)
+// should be weak, but also not generalisable to a template? who knows
+void StateMachine<Game::Pellet>::start(Pellet* pellet, int stateID, StateArg* arg)
 {
-	/*
-	.loc_0x0:
-	  stwu      r1, -0x10(r1)
-	  mflr      r0
-	  stw       r0, 0x14(r1)
-	  li        r0, 0
-	  stw       r0, 0x3CC(r4)
-	  lwz       r12, 0x0(r3)
-	  lwz       r12, 0x14(r12)
-	  mtctr     r12
-	  bctrl
-	  lwz       r0, 0x14(r1)
-	  mtlr      r0
-	  addi      r1, r1, 0x10
-	  blr
-	*/
+	pellet->m_pelletState = 0;
+	transit(pellet, stateID, arg);
 }
 
 /*
@@ -1357,20 +1347,12 @@ void Pellet::onInit(Game::CreatureInitArg* initArg)
  * Address:	80167590
  * Size:	000020
  */
-void Pellet::getPelletConfigMin(void)
+int Pellet::getPelletConfigMin()
 {
-	/*
-	lwz      r0, 0x3d8(r3)
-	cmpwi    r0, 0
-	ble      lbl_801675A4
-	mr       r3, r0
-	blr
-
-lbl_801675A4:
-	lwz      r3, 0x35c(r3)
-	lwz      r3, 0x120(r3)
-	blr
-	*/
+	if (_3D8 > 0) {
+		return _3D8;
+	}
+	return m_config->m_params.m_min.m_data;
 }
 
 /*
@@ -1378,20 +1360,12 @@ lbl_801675A4:
  * Address:	801675B0
  * Size:	000020
  */
-void Pellet::getPelletConfigMax(void)
+int Pellet::getPelletConfigMax()
 {
-	/*
-	lwz      r0, 0x3dc(r3)
-	cmpwi    r0, 0
-	ble      lbl_801675C4
-	mr       r3, r0
-	blr
-
-lbl_801675C4:
-	lwz      r3, 0x35c(r3)
-	lwz      r3, 0x130(r3)
-	blr
-	*/
+	if (_3DC > 0) {
+		return _3DC;
+	}
+	return m_config->m_params.m_max.m_data;
 }
 
 /*
@@ -1981,14 +1955,8 @@ bool Pellet::isCarried()
  * Address:	80167DD8
  * Size:	00000C
  */
-void Pellet::isPicked(void)
-{
-	/*
-	lbz      r0, 0x3d0(r3)
-	clrlwi   r3, r0, 0x1f
-	blr
-	*/
-}
+// WEAK - in header
+// void Pellet::isPicked() { return _3D0 & 1; }
 
 /*
  * --INFO--
@@ -2008,54 +1976,24 @@ void Pellet::finishDisplayCarryInfo()
  * Address:	80167E28
  * Size:	0000A0
  */
-void Pellet::getCarryInfoParam(CarryInfoParam&)
+void Pellet::getCarryInfoParam(CarryInfoParam& infoParam)
 {
-	/*
-	stwu     r1, -0x10(r1)
-	mflr     r0
-	lfs      f1, lbl_80518928@sda21(r2)
-	stw      r0, 0x14(r1)
-	li       r0, 0
-	stw      r31, 0xc(r1)
-	mr       r31, r4
-	stw      r30, 8(r1)
-	mr       r30, r3
-	stw      r0, 0(r4)
-	li       r0, 1
-	lfs      f0, 0x1b0(r3)
-	stfs     f0, 4(r4)
-	lfs      f0, 0x1b4(r3)
-	stfs     f0, 8(r4)
-	lfs      f0, 0x1b8(r3)
-	stfs     f0, 0xc(r4)
-	lwz      r4, 0x35c(r3)
-	lfs      f0, 0xc0(r4)
-	fadds    f0, f1, f0
-	stfs     f0, 0x10(r31)
-	stb      r0, 0x14(r31)
-	stw      r0, 0x1c(r31)
-	bl       getTotalCarryPikmins__Q24Game6PelletFv
-	sth      r3, 0x18(r31)
-	lwz      r0, 0x3d8(r30)
-	cmpwi    r0, 0
-	ble      lbl_80167E9C
-	b        lbl_80167EA4
+	infoParam._00        = 0;
+	infoParam.m_position = m_rigid.m_configs[0]._00;
+	infoParam._10        = 30.0f + m_config->m_params.m_height.m_data;
+	infoParam._14        = 1;
+	infoParam._1C        = 1;
+	infoParam._18        = getTotalCarryPikmins();
 
-lbl_80167E9C:
-	lwz      r3, 0x35c(r30)
-	lwz      r0, 0x120(r3)
+	int minVal;
+	if (_3D8 > 0) {
+		minVal = _3D8;
+	} else {
+		minVal = m_config->m_params.m_min.m_data;
+	}
+	infoParam._16 = minVal;
 
-lbl_80167EA4:
-	sth      r0, 0x16(r31)
-	lwz      r0, 0x3d4(r30)
-	stb      r0, 0x15(r31)
-	lwz      r0, 0x14(r1)
-	lwz      r31, 0xc(r1)
-	lwz      r30, 8(r1)
-	mtlr     r0
-	addi     r1, r1, 0x10
-	blr
-	*/
+	infoParam._15 = m_carryColor;
 }
 
 /*
@@ -2092,40 +2030,14 @@ void Pellet::clearCarryColor() { m_carryColor = 5; }
  * Address:	80167F40
  * Size:	00001C
  */
-void Pellet::getVelocity(void)
-{
-	/*
-	lfs      f0, 0x1bc(r4)
-	stfs     f0, 0(r3)
-	lfs      f0, 0x1c0(r4)
-	stfs     f0, 4(r3)
-	lfs      f0, 0x1c4(r4)
-	stfs     f0, 8(r3)
-	blr
-	*/
-}
-
-} // namespace Game
+Vector3f Pellet::getVelocity() { return m_rigid.m_configs[0].m_velocity; }
 
 /*
  * --INFO--
  * Address:	80167F5C
  * Size:	00001C
  */
-void setVelocity__Q24Game6PelletFR10Vector3f(void)
-{
-	/*
-	lfs      f0, 0(r4)
-	stfs     f0, 0x1bc(r3)
-	lfs      f0, 4(r4)
-	stfs     f0, 0x1c0(r3)
-	lfs      f0, 8(r4)
-	stfs     f0, 0x1c4(r3)
-	blr
-	*/
-}
-
-namespace Game {
+void Pellet::setVelocity(Vector3f& velocity) { m_rigid.m_configs[0].m_velocity = velocity; }
 
 /*
  * --INFO--
@@ -4809,12 +4721,13 @@ lbl_8016A490:
  * Address:	8016A4A8
  * Size:	00001C
  */
-int Pellet::getSpeicalSlot() {
-    short slot = 9999;
-    if (_3F6 > 0) {
-        slot = -1;
-    }
-    return slot;
+int Pellet::getSpeicalSlot()
+{
+	short slot = 9999;
+	if (_3F6 > 0) {
+		slot = -1;
+	}
+	return slot;
 }
 
 /*
@@ -5198,15 +5111,16 @@ lbl_8016A918:
  * Address:	8016A934
  * Size:	00003C
  */
-int Pellet::getTotalPikmins() {
-    int count = _3F8;
-    count += _3FC;
-    count += _400;
-    count += _404;
-    count += _408;
-    count += _40C;
-    count += _410;
-    return count;
+int Pellet::getTotalPikmins()
+{
+	int count = _3F8;
+	count += _3FC;
+	count += _400;
+	count += _404;
+	count += _408;
+	count += _40C;
+	count += _410;
+	return count;
 }
 
 /*
@@ -6646,305 +6560,53 @@ lbl_8016B9A0:
  * Address:	8016B9C0
  * Size:	000270
  */
-BasePelletMgr::BasePelletMgr(Game::PelletList::cKind)
+BasePelletMgr::BasePelletMgr(PelletList::cKind kind)
 {
-	/*
-	stwu     r1, -0x20(r1)
-	mflr     r0
-	stw      r0, 0x24(r1)
-	extsh.   r0, r4
-	stw      r31, 0x1c(r1)
-	stw      r30, 0x18(r1)
-	mr       r30, r3
-	stw      r29, 0x14(r1)
-	mr       r29, r5
-	beq      lbl_8016B9F0
-	addi     r0, r30, 0x54
-	stw      r0, 4(r30)
+	m_configList = PelletList::Mgr::getConfigList(kind);
+	int count    = m_configList->m_configCnt;
+	_50          = count;
 
-lbl_8016B9F0:
-	lis      r4, __vt__16GenericObjectMgr@ha
-	lis      r3, __vt__Q24Game13BasePelletMgr@ha
-	addi     r0, r4, __vt__16GenericObjectMgr@l
-	addi     r31, r30, 0x18
-	stw      r0, 0(r30)
-	addi     r0, r3, __vt__Q24Game13BasePelletMgr@l
-	mr       r3, r31
-	stw      r0, 0(r30)
-	bl       "__ct__24MonoObjectMgr<8CollPart>Fv"
-	lis      r4, __vt__11CollPartMgr@ha
-	mr       r3, r29
-	addi     r4, r4, __vt__11CollPartMgr@l
-	stw      r4, 0(r31)
-	addi     r0, r4, 0x2c
-	stw      r0, 0x1c(r31)
-	bl       getConfigList__Q34Game10PelletList3MgrFQ34Game10PelletList5cKind
-	stw      r3, 8(r30)
-	lwz      r3, 8(r30)
-	lwz      r31, 0x18(r3)
-	slwi     r29, r31, 2
-	stw      r31, 0x50(r30)
-	mr       r3, r29
-	bl       __nwa__FUl
-	stw      r3, 0xc(r30)
-	mr       r3, r29
-	bl       __nwa__FUl
-	stw      r3, 0x10(r30)
-	mr       r3, r29
-	bl       __nwa__FUl
-	stw      r3, 0x14(r30)
-	mr       r3, r31
-	bl       __nwa__FUl
-	stw      r3, 0x4c(r30)
-	li       r5, 0
-	li       r4, 1
-	li       r0, 0
-	mtctr    r31
-	cmpwi    r31, 0
-	ble      lbl_8016BAB4
+	m_modelData = new J3DModelData*[count];
+	m_animMgr   = new SysShape::AnimMgr*[count];
+	m_collParts = new CollPart*[count];
+	_4C         = new bool[count];
 
-lbl_8016BA8C:
-	lbz      r3, mDebug__Q24Game9PelletMgr@sda21(r13)
-	cmplwi   r3, 0
-	beq      lbl_8016BAA4
-	lwz      r3, 0x4c(r30)
-	stbx     r4, r3, r5
-	b        lbl_8016BAAC
+	for (int i = 0; i < count; i++) {
+		if (PelletMgr::mDebug) {
+			_4C[i] = true;
+		} else {
+			_4C[i] = false;
+		}
+	}
 
-lbl_8016BAA4:
-	lwz      r3, 0x4c(r30)
-	stbx     r0, r3, r5
+	for (int j = 0; j < count; j++) {
+		m_modelData[j] = nullptr;
+		m_animMgr[j]   = nullptr;
+		m_collParts[j] = nullptr;
+	}
 
-lbl_8016BAAC:
-	addi     r5, r5, 1
-	bdnz     lbl_8016BA8C
-
-lbl_8016BAB4:
-	cmpwi    r31, 0
-	li       r4, 0
-	ble      lbl_8016BC08
-	cmpwi    r31, 8
-	addi     r5, r31, -8
-	ble      lbl_8016BBD0
-	addi     r0, r5, 7
-	li       r3, 0
-	srwi     r0, r0, 3
-	mtctr    r0
-	cmpwi    r5, 0
-	ble      lbl_8016BBD0
-
-lbl_8016BAE4:
-	lwz      r5, 0xc(r30)
-	li       r0, 0
-	addi     r12, r3, 4
-	addi     r11, r3, 8
-	stwx     r0, r5, r3
-	addi     r10, r3, 0xc
-	addi     r9, r3, 0x10
-	addi     r8, r3, 0x14
-	lwz      r5, 0x10(r30)
-	addi     r7, r3, 0x18
-	addi     r6, r3, 0x1c
-	addi     r4, r4, 8
-	stwx     r0, r5, r3
-	lwz      r5, 0x14(r30)
-	stwx     r0, r5, r3
-	addi     r3, r3, 0x20
-	lwz      r5, 0xc(r30)
-	stwx     r0, r5, r12
-	lwz      r5, 0x10(r30)
-	stwx     r0, r5, r12
-	lwz      r5, 0x14(r30)
-	stwx     r0, r5, r12
-	lwz      r5, 0xc(r30)
-	stwx     r0, r5, r11
-	lwz      r5, 0x10(r30)
-	stwx     r0, r5, r11
-	lwz      r5, 0x14(r30)
-	stwx     r0, r5, r11
-	lwz      r5, 0xc(r30)
-	stwx     r0, r5, r10
-	lwz      r5, 0x10(r30)
-	stwx     r0, r5, r10
-	lwz      r5, 0x14(r30)
-	stwx     r0, r5, r10
-	lwz      r5, 0xc(r30)
-	stwx     r0, r5, r9
-	lwz      r5, 0x10(r30)
-	stwx     r0, r5, r9
-	lwz      r5, 0x14(r30)
-	stwx     r0, r5, r9
-	lwz      r5, 0xc(r30)
-	stwx     r0, r5, r8
-	lwz      r5, 0x10(r30)
-	stwx     r0, r5, r8
-	lwz      r5, 0x14(r30)
-	stwx     r0, r5, r8
-	lwz      r5, 0xc(r30)
-	stwx     r0, r5, r7
-	lwz      r5, 0x10(r30)
-	stwx     r0, r5, r7
-	lwz      r5, 0x14(r30)
-	stwx     r0, r5, r7
-	lwz      r5, 0xc(r30)
-	stwx     r0, r5, r6
-	lwz      r5, 0x10(r30)
-	stwx     r0, r5, r6
-	lwz      r5, 0x14(r30)
-	stwx     r0, r5, r6
-	bdnz     lbl_8016BAE4
-
-lbl_8016BBD0:
-	subf     r0, r4, r31
-	slwi     r6, r4, 2
-	li       r5, 0
-	mtctr    r0
-	cmpw     r4, r31
-	bge      lbl_8016BC08
-
-lbl_8016BBE8:
-	lwz      r3, 0xc(r30)
-	stwx     r5, r3, r6
-	lwz      r3, 0x10(r30)
-	stwx     r5, r3, r6
-	lwz      r3, 0x14(r30)
-	stwx     r5, r3, r6
-	addi     r6, r6, 4
-	bdnz     lbl_8016BBE8
-
-lbl_8016BC08:
-	li       r0, 0
-	mr       r3, r30
-	stw      r0, 0x48(r30)
-	lwz      r31, 0x1c(r1)
-	lwz      r30, 0x18(r1)
-	lwz      r29, 0x14(r1)
-	lwz      r0, 0x24(r1)
-	mtlr     r0
-	addi     r1, r1, 0x20
-	blr
-	*/
+	m_modelMgr = nullptr;
 }
 
-} // namespace Game
+// } // namespace Game
 
 /*
  * --INFO--
  * Address:	8016BC30
  * Size:	0000B8
  */
-CollPartMgr::~CollPartMgr()
-{
-	/*
-	stwu     r1, -0x10(r1)
-	mflr     r0
-	stw      r0, 0x14(r1)
-	stw      r31, 0xc(r1)
-	mr       r31, r4
-	stw      r30, 8(r1)
-	or.      r30, r3, r3
-	beq      lbl_8016BCCC
-	lis      r4, __vt__11CollPartMgr@ha
-	addi     r4, r4, __vt__11CollPartMgr@l
-	stw      r4, 0(r30)
-	addi     r0, r4, 0x2c
-	stw      r0, 0x1c(r30)
-	beq      lbl_8016BCBC
-	lis      r4, "__vt__24MonoObjectMgr<8CollPart>"@ha
-	addi     r4, r4, "__vt__24MonoObjectMgr<8CollPart>"@l
-	stw      r4, 0(r30)
-	addi     r0, r4, 0x2c
-	stw      r0, 0x1c(r30)
-	beq      lbl_8016BCBC
-	lis      r4, "__vt__20ObjectMgr<8CollPart>"@ha
-	addi     r4, r4, "__vt__20ObjectMgr<8CollPart>"@l
-	stw      r4, 0(r30)
-	addi     r0, r4, 0x2c
-	stw      r0, 0x1c(r30)
-	beq      lbl_8016BCBC
-	lis      r4, "__vt__20Container<8CollPart>"@ha
-	addi     r0, r4, "__vt__20Container<8CollPart>"@l
-	stw      r0, 0(r30)
-	beq      lbl_8016BCBC
-	lis      r5, __vt__16GenericContainer@ha
-	li       r4, 0
-	addi     r0, r5, __vt__16GenericContainer@l
-	stw      r0, 0(r30)
-	bl       __dt__5CNodeFv
-
-lbl_8016BCBC:
-	extsh.   r0, r31
-	ble      lbl_8016BCCC
-	mr       r3, r30
-	bl       __dl__FPv
-
-lbl_8016BCCC:
-	lwz      r0, 0x14(r1)
-	mr       r3, r30
-	lwz      r31, 0xc(r1)
-	lwz      r30, 8(r1)
-	mtlr     r0
-	addi     r1, r1, 0x10
-	blr
-	*/
-}
+// WEAK - in header
+// CollPartMgr::~CollPartMgr() {}
 
 /*
  * --INFO--
  * Address:	8016BCE8
  * Size:	0000A0
  */
-void MonoObjectMgr<CollPart>::~MonoObjectMgr()
-{
-	/*
-	stwu     r1, -0x10(r1)
-	mflr     r0
-	stw      r0, 0x14(r1)
-	stw      r31, 0xc(r1)
-	mr       r31, r4
-	stw      r30, 8(r1)
-	or.      r30, r3, r3
-	beq      lbl_8016BD6C
-	lis      r4, "__vt__24MonoObjectMgr<8CollPart>"@ha
-	addi     r4, r4, "__vt__24MonoObjectMgr<8CollPart>"@l
-	stw      r4, 0(r30)
-	addi     r0, r4, 0x2c
-	stw      r0, 0x1c(r30)
-	beq      lbl_8016BD5C
-	lis      r4, "__vt__20ObjectMgr<8CollPart>"@ha
-	addi     r4, r4, "__vt__20ObjectMgr<8CollPart>"@l
-	stw      r4, 0(r30)
-	addi     r0, r4, 0x2c
-	stw      r0, 0x1c(r30)
-	beq      lbl_8016BD5C
-	lis      r4, "__vt__20Container<8CollPart>"@ha
-	addi     r0, r4, "__vt__20Container<8CollPart>"@l
-	stw      r0, 0(r30)
-	beq      lbl_8016BD5C
-	lis      r5, __vt__16GenericContainer@ha
-	li       r4, 0
-	addi     r0, r5, __vt__16GenericContainer@l
-	stw      r0, 0(r30)
-	bl       __dt__5CNodeFv
+// WEAK - in header
+// void MonoObjectMgr<CollPart>::~MonoObjectMgr() { }
 
-lbl_8016BD5C:
-	extsh.   r0, r31
-	ble      lbl_8016BD6C
-	mr       r3, r30
-	bl       __dl__FPv
-
-lbl_8016BD6C:
-	lwz      r0, 0x14(r1)
-	mr       r3, r30
-	lwz      r31, 0xc(r1)
-	lwz      r30, 8(r1)
-	mtlr     r0
-	addi     r1, r1, 0x10
-	blr
-	*/
-}
-
-namespace Game {
+// namespace Game {
 
 /*
  * --INFO--
@@ -6979,231 +6641,105 @@ void BasePelletMgr::setUse(int i)
  * Address:	........
  * Size:	000078
  */
-void BasePelletMgr::used(int)
-{
-	// UNUSED FUNCTION
-}
+// void BasePelletMgr::used(int)
+// {
+// 	// UNUSED FUNCTION
+// }
 
 /*
  * --INFO--
  * Address:	........
  * Size:	000024
  */
-void BasePelletMgr::setUseFlagAll(bool)
-{
-	// UNUSED FUNCTION
-}
+// void BasePelletMgr::setUseFlagAll(bool)
+// {
+// 	// UNUSED FUNCTION
+// }
 
 /*
  * --INFO--
  * Address:	8016BE34
  * Size:	000298
  */
-void BasePelletMgr::load(void)
+void BasePelletMgr::load()
 {
-	/*
-	stwu     r1, -0x430(r1)
-	mflr     r0
-	lis      r4, gGameConfig__4Game@ha
-	lis      r5, lbl_8047E318@ha
-	stw      r0, 0x434(r1)
-	addi     r4, r4, gGameConfig__4Game@l
-	stmw     r23, 0x40c(r1)
-	mr       r23, r3
-	addi     r31, r5, lbl_8047E318@l
-	li       r28, 0
-	lwz      r0, 0x158(r4)
-	cmpwi    r0, 0
-	beq      lbl_8016BEF4
-	lwz      r3, sys@sda21(r13)
-	lwz      r0, 0xd4(r3)
-	cmpwi    r0, 4
-	beq      lbl_8016BED8
-	bge      lbl_8016BE94
-	cmpwi    r0, 0
-	beq      lbl_8016BEBC
-	blt      lbl_8016BEF8
-	cmpwi    r0, 3
-	bge      lbl_8016BEF8
-	b        lbl_8016BED8
+	char buffer[512];
+	char* file = nullptr;
 
-lbl_8016BE94:
-	cmpwi    r0, 6
-	beq      lbl_8016BED8
-	bge      lbl_8016BEF8
-	addi     r3, r1, 0x208
-	addi     r4, r31, 0xe0
-	addi     r5, r2, lbl_805189C8@sda21
-	crclr    6
-	bl       sprintf
-	addi     r28, r1, 0x208
-	b        lbl_8016BEF8
+	if (gGameConfig.m_parms.m_pelletMultiLang.m_data != 0) {
+		switch (sys->m_region) {
+		case System::LANG_JAPANESE:
+			sprintf(buffer, "/user/Abe/Pellet/%s/", "jpn");
+			file = buffer;
+			break;
+		case System::LANG_ENGLISH:
+			sprintf(buffer, "/user/Abe/Pellet/%s/", "us");
+			file = buffer;
+			break;
+		case System::LANG_FRENCH:
+		case System::LANG_GERMAN:
+		// case System::LANG_HOL_UNUSED:
+		case System::LANG_ITALIAN:
+		case System::LANG_SPANISH:
+			sprintf(buffer, "/user/Abe/Pellet/%s/", "pal");
+			file = buffer;
+			break;
+		}
+	} else {
+		file = "user/Kando/pellet/";
+	}
 
-lbl_8016BEBC:
-	addi     r3, r1, 0x208
-	addi     r4, r31, 0xe0
-	addi     r5, r2, lbl_805189CC@sda21
-	crclr    6
-	bl       sprintf
-	addi     r28, r1, 0x208
-	b        lbl_8016BEF8
+	char buffer2[512];
 
-lbl_8016BED8:
-	addi     r3, r1, 0x208
-	addi     r4, r31, 0xe0
-	addi     r5, r2, lbl_805189D0@sda21
-	crclr    6
-	bl       sprintf
-	addi     r28, r1, 0x208
-	b        lbl_8016BEF8
+	for (int i = 0; i < m_configList->m_configCnt; i++) {
 
-lbl_8016BEF4:
-	addi     r28, r31, 0xf8
+		PelletConfig* config     = &m_configList->m_configs[i];
+		JKRArchive* archive      = nullptr;
+		config->m_params.m_index = i;
+		char* archiveName        = config->m_params.m_archive.m_data;
+		if (strcmp("null", archiveName)) {
+			sprintf(buffer2, "%s%s", file, config->m_params.m_archive.m_data);
+			archive = JKRArchive::mount(buffer2, JKRArchive::EMM_Unk1, nullptr, JKRArchive::EMD_Unk1);
+		}
 
-lbl_8016BEF8:
-	li       r30, 0
-	li       r27, 0
-	mr       r29, r30
-	b        lbl_8016C0A8
+		J3DModelData* data = nullptr;
 
-lbl_8016BF08:
-	lwz      r0, 0x1c(r3)
-	li       r25, 0
-	addi     r3, r2, lbl_805189D4@sda21
-	add      r26, r0, r30
-	sth      r27, 0x258(r26)
-	lwz      r4, 0x50(r26)
-	bl       strcmp
-	cmpwi    r3, 0
-	beq      lbl_8016BF5C
-	lwz      r6, 0x50(r26)
-	mr       r5, r28
-	addi     r3, r1, 8
-	addi     r4, r2, lbl_805189DC@sda21
-	crclr    6
-	bl       sprintf
-	addi     r3, r1, 8
-	li       r4, 1
-	li       r5, 0
-	li       r6, 1
-	bl
-mount__10JKRArchiveFPCcQ210JKRArchive10EMountModeP7JKRHeapQ210JKRArchive15EMountDirection
-	mr       r25, r3
+		if (strcmp("null", config->m_params.m_bmd.m_data) == 0) {
+			m_modelData[i] = nullptr;
+		} else {
+			sprintf(buffer2, "%s", config->m_params.m_bmd.m_data);
 
-lbl_8016BF5C:
-	lwz      r4, 0x70(r26)
-	li       r24, 0
-	addi     r3, r2, lbl_805189D4@sda21
-	bl       strcmp
-	cmpwi    r3, 0
-	bne      lbl_8016BF84
-	lwz      r3, 0xc(r23)
-	li       r0, 0
-	stwx     r0, r3, r29
-	b        lbl_8016C034
+			void* resource = JKRFileLoader::getGlbResource(buffer2, nullptr);
+			if (resource == nullptr) {
+				JUT_PANICLINE(4560, "meck ** %s : is not foun !\n", buffer2);
+			}
 
-lbl_8016BF84:
-	lwz      r5, 0x70(r26)
-	addi     r3, r1, 8
-	addi     r4, r2, lbl_805189E4@sda21
-	crclr    6
-	bl       sprintf
-	addi     r3, r1, 8
-	li       r4, 0
-	bl       getGlbResource__13JKRFileLoaderFPCcP13JKRFileLoader
-	or.      r24, r3, r3
-	bne      lbl_8016BFC4
-	addi     r3, r31, 0x2c
-	addi     r5, r31, 0x10c
-	addi     r6, r1, 8
-	li       r4, 0x11d0
-	crclr    6
-	bl       panic_f__12JUTExceptionFPCciPCce
+			u32 flags = 0x21020010;
+			if (config->m_params.m_code.m_data & 2) {
+				flags |= 0x20;
+			}
 
-lbl_8016BFC4:
-	lhz      r0, 0x244(r26)
-	lis      r3, 0x21020010@ha
-	addi     r4, r3, 0x21020010@l
-	rlwinm.  r0, r0, 0, 0x1e, 0x1e
-	beq      lbl_8016BFDC
-	ori      r4, r4, 0x20
+			data = J3DModelLoaderDataBase::load(resource, flags);
 
-lbl_8016BFDC:
-	mr       r3, r24
-	bl       load__22J3DModelLoaderDataBaseFPCvUl
-	lhz      r0, 0x244(r26)
-	mr       r24, r3
-	rlwinm.  r0, r0, 0, 0x1e, 0x1e
-	beq      lbl_8016C02C
-	li       r4, 0
-	b        lbl_8016C01C
+			if (config->m_params.m_code.m_data & 2) {
+				for (u16 i = 0; i < data->m_shapeCnt; i++) {
+					data->m_shapes[i]->m_flags = data->m_shapes[i]->m_flags & 0xFFFF0FFF | 0x2000;
+				}
+			}
 
-lbl_8016BFFC:
-	lwz      r3, 0x80(r24)
-	rlwinm   r0, r4, 2, 0xe, 0x1d
-	addi     r4, r4, 1
-	lwzx     r3, r3, r0
-	lwz      r0, 0xc(r3)
-	rlwinm   r0, r0, 0, 0x14, 0xf
-	ori      r0, r0, 0x2000
-	stw      r0, 0xc(r3)
+			m_modelData[i] = data;
+		}
 
-lbl_8016C01C:
-	lhz      r0, 0x7c(r24)
-	clrlwi   r3, r4, 0x10
-	cmplw    r3, r0
-	blt      lbl_8016BFFC
+		if (config->m_params.m_animMgr.m_data != nullptr) {
+			sprintf(buffer2, "%s%s", file, config->m_params.m_animMgr.m_data);
+			m_animMgr[i] = SysShape::AnimMgr::load(buffer2, data, archive);
+		}
 
-lbl_8016C02C:
-	lwz      r3, 0xc(r23)
-	stwx     r24, r3, r29
-
-lbl_8016C034:
-	lwz      r6, 0x80(r26)
-	cmplwi   r6, 0
-	beq      lbl_8016C06C
-	mr       r5, r28
-	addi     r3, r1, 8
-	addi     r4, r2, lbl_805189DC@sda21
-	crclr    6
-	bl       sprintf
-	mr       r4, r24
-	mr       r5, r25
-	addi     r3, r1, 8
-	bl       load__Q28SysShape7AnimMgrFPcP12J3DModelDataP13JKRFileLoader
-	lwz      r4, 0x10(r23)
-	stwx     r3, r4, r29
-
-lbl_8016C06C:
-	lwz      r6, 0x90(r26)
-	cmplwi   r6, 0
-	beq      lbl_8016C09C
-	mr       r5, r28
-	addi     r3, r1, 8
-	addi     r4, r2, lbl_805189DC@sda21
-	crclr    6
-	bl       sprintf
-	addi     r3, r1, 8
-	bl       load__15CollPartFactoryFPc
-	lwz      r4, 0x14(r23)
-	stwx     r3, r4, r29
-
-lbl_8016C09C:
-	addi     r30, r30, 0x260
-	addi     r29, r29, 4
-	addi     r27, r27, 1
-
-lbl_8016C0A8:
-	lwz      r3, 8(r23)
-	lwz      r0, 0x18(r3)
-	cmpw     r27, r0
-	blt      lbl_8016BF08
-	lmw      r23, 0x40c(r1)
-	lwz      r0, 0x434(r1)
-	mtlr     r0
-	addi     r1, r1, 0x430
-	blr
-	*/
+		if (config->m_params.m_colltree.m_data != nullptr) {
+			sprintf(buffer2, "%s%s", file, config->m_params.m_colltree.m_data);
+			m_collParts[i] = CollPartFactory::load(buffer2);
+		}
+	}
 }
 
 /*
@@ -7520,88 +7056,37 @@ lbl_8016C480:
  * Address:	8016C4B0
  * Size:	00010C
  */
-void BasePelletMgr::openTextArc(char*)
+void BasePelletMgr::openTextArc(char* arc)
 {
-	/*
-	stwu     r1, -0x410(r1)
-	mflr     r0
-	lis      r3, gGameConfig__4Game@ha
-	li       r5, 0
-	stw      r0, 0x414(r1)
-	addi     r3, r3, gGameConfig__4Game@l
-	stw      r31, 0x40c(r1)
-	mr       r31, r4
-	lwz      r0, 0x158(r3)
-	cmpwi    r0, 0
-	beq      lbl_8016C574
-	lwz      r3, sys@sda21(r13)
-	lwz      r0, 0xd4(r3)
-	cmpwi    r0, 4
-	beq      lbl_8016C554
-	bge      lbl_8016C508
-	cmpwi    r0, 0
-	beq      lbl_8016C534
-	blt      lbl_8016C580
-	cmpwi    r0, 3
-	bge      lbl_8016C580
-	b        lbl_8016C554
+	char directory[512];
+	char* file = nullptr;
+	if (gGameConfig.m_parms.m_pelletMultiLang.m_data != 0) {
+		switch (sys->m_region) {
+		case System::LANG_JAPANESE:
+			sprintf(directory, "/user/Abe/Pellet/%s/", "jpn");
+			file = directory;
+			break;
+		case System::LANG_ENGLISH:
+			sprintf(directory, "/user/Abe/Pellet/%s/", "us");
+			file = directory;
+			break;
+		case System::LANG_FRENCH:
+		case System::LANG_GERMAN:
+		// case System::LANG_HOL_UNUSED:
+		case System::LANG_ITALIAN:
+		case System::LANG_SPANISH:
+			sprintf(directory, "/user/Abe/Pellet/%s/", "pal");
+			file = directory;
+			break;
+		}
+	} else {
+		file = "user/Kando/pellet/";
+	}
 
-lbl_8016C508:
-	cmpwi    r0, 6
-	beq      lbl_8016C554
-	bge      lbl_8016C580
-	lis      r4, lbl_8047E3F8@ha
-	addi     r3, r1, 0x208
-	addi     r4, r4, lbl_8047E3F8@l
-	addi     r5, r2, lbl_805189C8@sda21
-	crclr    6
-	bl       sprintf
-	addi     r5, r1, 0x208
-	b        lbl_8016C580
+	char filePath[512];
 
-lbl_8016C534:
-	lis      r4, lbl_8047E3F8@ha
-	addi     r3, r1, 0x208
-	addi     r4, r4, lbl_8047E3F8@l
-	addi     r5, r2, lbl_805189CC@sda21
-	crclr    6
-	bl       sprintf
-	addi     r5, r1, 0x208
-	b        lbl_8016C580
-
-lbl_8016C554:
-	lis      r4, lbl_8047E3F8@ha
-	addi     r3, r1, 0x208
-	addi     r4, r4, lbl_8047E3F8@l
-	addi     r5, r2, lbl_805189D0@sda21
-	crclr    6
-	bl       sprintf
-	addi     r5, r1, 0x208
-	b        lbl_8016C580
-
-lbl_8016C574:
-	lis      r3, lbl_8047E410@ha
-	addi     r0, r3, lbl_8047E410@l
-	mr       r5, r0
-
-lbl_8016C580:
-	mr       r6, r31
-	addi     r3, r1, 8
-	addi     r4, r2, lbl_805189E8@sda21
-	crclr    6
-	bl       sprintf
-	lwz      r5, sCurrentHeap__7JKRHeap@sda21(r13)
-	addi     r3, r1, 8
-	li       r4, 1
-	li       r6, 2
-	bl
-mount__10JKRArchiveFPCcQ210JKRArchive10EMountModeP7JKRHeapQ210JKRArchive15EMountDirection
-	lwz      r0, 0x414(r1)
-	lwz      r31, 0x40c(r1)
-	mtlr     r0
-	addi     r1, r1, 0x410
-	blr
-	*/
+	sprintf(filePath, "%s/%s", file, arc);
+	JKRArchive::mount(filePath, JKRArchive::EMM_Unk1, JKRHeap::sCurrentHeap, JKRArchive::EMD_Unk2);
 }
 
 /*
@@ -8775,57 +8260,58 @@ namespace Game {
  * Address:	8016D4C0
  * Size:	00021C
  */
-Pellet* PelletMgr::birth(PelletInitArg* arg) {
-    bool validType = false;
-    if (arg != nullptr && arg->m_pelletType != 0xFF) {
-        validType = true;
-    }
-    P2ASSERTLINE(5394, validType);
+Pellet* PelletMgr::birth(PelletInitArg* arg)
+{
+	bool validType = false;
+	if (arg != nullptr && arg->m_pelletType != 0xFF) {
+		validType = true;
+	}
+	P2ASSERTLINE(5394, validType);
 
-    BasePelletMgr* mgr = getMgrByID(arg->m_pelletType);
-    P2ASSERTLINE(5396, mgr != nullptr);
+	BasePelletMgr* mgr = getMgrByID(arg->m_pelletType);
+	P2ASSERTLINE(5396, mgr != nullptr);
 
-    PelletConfig* config;
-    if (gameSystem->m_mode != GSM_PIKLOPEDIA && gameSystem->m_mode != GSM_VERSUS_MODE && !PelletMgr::mDebug && !arg->_17) {
-        config = mgr->m_configList->getPelletConfig(arg->m_textIdentifier);
-        if (strcmp("yes", config->m_params.m_unique.m_data) == 0) {
-            int unk = arg->_10;
-            if (arg->m_pelletType == PelletList::OTAKARA) {
-                u8* result = playData->_B0->_04(unk);
-                if (*result & 2) {
-                    mgr->m_configList->getPelletConfig(arg->m_textIdentifier);
-                    return nullptr;
-                }
-            } else if (arg->m_pelletType == PelletList::ITEM) {
-                u8* result = playData->_B0->_0C(unk);
-                if (*result & 2) {
-                    mgr->m_configList->getPelletConfig(arg->m_textIdentifier);
-                    return nullptr;
-                }
-            }
-        }
-    }
+	PelletConfig* config;
+	if (gameSystem->m_mode != GSM_PIKLOPEDIA && gameSystem->m_mode != GSM_VERSUS_MODE && !PelletMgr::mDebug && !arg->_17) {
+		config = mgr->m_configList->getPelletConfig(arg->m_textIdentifier);
+		if (strcmp("yes", config->m_params.m_unique.m_data) == 0) {
+			int unk = arg->_10;
+			if (arg->m_pelletType == PelletList::OTAKARA) {
+				u8* result = playData->_B0->_04(unk);
+				if (*result & 2) {
+					mgr->m_configList->getPelletConfig(arg->m_textIdentifier);
+					return nullptr;
+				}
+			} else if (arg->m_pelletType == PelletList::ITEM) {
+				u8* result = playData->_B0->_0C(unk);
+				if (*result & 2) {
+					mgr->m_configList->getPelletConfig(arg->m_textIdentifier);
+					return nullptr;
+				}
+			}
+		}
+	}
 
-    Pellet* pellet;
-    if (arg->_1F != 0) {
-        config = mgr->m_configList->getPelletConfig(arg->m_textIdentifier);
-        pellet = mgr->birthFromTeki(config);
-        if (pellet != nullptr) {
-            mgr->setComeAlive(pellet->m_slotIndex);
-            arg->_1C = 1;
-            pellet->init(arg);
-            return pellet;
-        }
-        return nullptr;
-    } else {
-        pellet = mgr->birth();
-        if (pellet != nullptr) {
-            pellet->m_pelletView = arg->_18;
-            pellet->m_mgr = mgr;
-            pellet->init(arg);
-        }
-        return pellet;
-    }
+	Pellet* pellet;
+	if (arg->_1F != 0) {
+		config = mgr->m_configList->getPelletConfig(arg->m_textIdentifier);
+		pellet = mgr->birthFromTeki(config);
+		if (pellet != nullptr) {
+			mgr->setComeAlive(pellet->m_slotIndex);
+			arg->_1C = 1;
+			pellet->init(arg);
+			return pellet;
+		}
+		return nullptr;
+	} else {
+		pellet = mgr->birth();
+		if (pellet != nullptr) {
+			pellet->m_pelletView = arg->_18;
+			pellet->m_mgr        = mgr;
+			pellet->init(arg);
+		}
+		return pellet;
+	}
 }
 
 /*
@@ -8833,47 +8319,48 @@ Pellet* PelletMgr::birth(PelletInitArg* arg) {
  * Address:	8016D6DC
  * Size:	0001AC
  */
-bool PelletMgr::setUse(PelletInitArg* arg) {
-    bool validType = false;
-    if (arg != nullptr && arg->m_pelletType != 0xFF) {
-        validType = true;
-    }
-    P2ASSERTLINE(5531, validType);
+bool PelletMgr::setUse(PelletInitArg* arg)
+{
+	bool validType = false;
+	if (arg != nullptr && arg->m_pelletType != 0xFF) {
+		validType = true;
+	}
+	P2ASSERTLINE(5531, validType);
 
-    BasePelletMgr* mgr = getMgrByID(arg->m_pelletType);
-    P2ASSERTLINE(5533, mgr != nullptr);
+	BasePelletMgr* mgr = getMgrByID(arg->m_pelletType);
+	P2ASSERTLINE(5533, mgr != nullptr);
 
-    PelletConfig* config;
-    if (gameSystem->m_mode != GSM_PIKLOPEDIA && !arg->_17) {
-        config = mgr->m_configList->getPelletConfig(arg->m_textIdentifier);
-        if (strcmp("yes", config->m_params.m_unique.m_data) == 0) {
-            int unk = arg->_10;
-            if (arg->m_pelletType == PelletList::OTAKARA) {
-                u8* result = playData->_B0->_04(unk);
-                if (*result & 2) {
-                    mgr->m_configList->getPelletConfig(arg->m_textIdentifier);
-                    return false;
-                }
-            } else if (arg->m_pelletType == PelletList::ITEM) {
-                u8* result = playData->_B0->_0C(unk);
-                if (*result & 2) {
-                    mgr->m_configList->getPelletConfig(arg->m_textIdentifier);
-                    return false;
-                }
-            }
-        }
-    }
+	PelletConfig* config;
+	if (gameSystem->m_mode != GSM_PIKLOPEDIA && !arg->_17) {
+		config = mgr->m_configList->getPelletConfig(arg->m_textIdentifier);
+		if (strcmp("yes", config->m_params.m_unique.m_data) == 0) {
+			int unk = arg->_10;
+			if (arg->m_pelletType == PelletList::OTAKARA) {
+				u8* result = playData->_B0->_04(unk);
+				if (*result & 2) {
+					mgr->m_configList->getPelletConfig(arg->m_textIdentifier);
+					return false;
+				}
+			} else if (arg->m_pelletType == PelletList::ITEM) {
+				u8* result = playData->_B0->_0C(unk);
+				if (*result & 2) {
+					mgr->m_configList->getPelletConfig(arg->m_textIdentifier);
+					return false;
+				}
+			}
+		}
+	}
 
-    int index = arg->_10;
-    
-    bool validIndex = false;
-    if (index >= 0 && index < mgr->_50) {
-        validIndex = true;
-    }
-    P2ASSERTLINE(4419, validIndex);
+	int index = arg->_10;
 
-    mgr->_4C[index] = true;
-    return true;
+	bool validIndex = false;
+	if (index >= 0 && index < mgr->_50) {
+		validIndex = true;
+	}
+	P2ASSERTLINE(4419, validIndex);
+
+	mgr->_4C[index] = true;
+	return true;
 }
 
 /*

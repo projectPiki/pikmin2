@@ -6,7 +6,7 @@
 
 // TODO: this needs fixing, sigh
 template <typename T> struct MonoObjectMgr : public ObjectMgr<T> {
-	virtual ~MonoObjectMgr<T>();
+	virtual ~MonoObjectMgr<T>() { }
 	virtual void* getNext(void*);
 	virtual void* getStart();
 	virtual void* getEnd();

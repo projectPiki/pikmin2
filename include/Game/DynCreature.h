@@ -30,7 +30,7 @@ struct DynCreature : public Creature {
 
 	void createParticles(int);
 	void releaseParticles();
-	void updateParticlesPositions();
+	void updateParticlePositions();
 	void computeForces(float);
 	void tracemoveCallback(Vector3f&, Vector3f&);
 	void simulate(float);
