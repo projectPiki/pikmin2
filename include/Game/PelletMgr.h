@@ -83,7 +83,7 @@ struct PelletMgr : public NodeObjectMgr<GenericObjectMgr> {
 	void resetMgrs();
 	void setupResources();
 	Pellet* birth(PelletInitArg*);
-	void setUse(PelletInitArg*);
+	bool setUse(PelletInitArg*);
 	void makePelletInitArg(PelletInitArg&, char*);
 	void makeVsCarryMinMax(PelletInitArg&, char*);
 	void makePelletInitArg(PelletInitArg&, PelletMgr::OtakaraItemCode&);
@@ -292,7 +292,7 @@ struct Pellet : public DynCreature, public SysShape::MotionListener, public Carr
 	void start_pmotions();
 	void stop_carrymotion();
 	void finish_carrymotion();
-	void getSpeicalSlot();
+	int getSpeicalSlot();
 	void getPelletGoal();
 	void getTotalPikmins();
 	void getTotalCarryPikmins();

@@ -1,5 +1,6 @@
 #include "Dolphin/rand.h"
 #include "Game/GameConfig.h"
+#include "Game/gamePlayData.h"
 #include "Game/GameSystem.h"
 #include "Game/pelletMgr.h"
 #include "Game/PelletView.h"
@@ -4808,19 +4809,12 @@ lbl_8016A490:
  * Address:	8016A4A8
  * Size:	00001C
  */
-void Pellet::getSpeicalSlot(void)
-{
-	/*
-	lbz      r0, 0x3f6(r3)
-	li       r3, 0x270f
-	cmplwi   r0, 0
-	beq      lbl_8016A4BC
-	li       r3, -1
-
-lbl_8016A4BC:
-	extsh    r3, r3
-	blr
-	*/
+int Pellet::getSpeicalSlot() {
+    short slot = 9999;
+    if (_3F6 > 0) {
+        slot = -1;
+    }
+    return slot;
 }
 
 /*
@@ -5204,25 +5198,15 @@ lbl_8016A918:
  * Address:	8016A934
  * Size:	00003C
  */
-void Pellet::getTotalPikmins(void)
-{
-	/*
-	lwz      r5, 0x3f8(r3)
-	lwz      r4, 0x3fc(r3)
-	lwz      r0, 0x400(r3)
-	add      r5, r5, r4
-	lwz      r4, 0x404(r3)
-	add      r5, r5, r0
-	lwz      r0, 0x408(r3)
-	add      r5, r5, r4
-	lwz      r4, 0x40c(r3)
-	add      r5, r5, r0
-	lwz      r0, 0x410(r3)
-	add      r5, r5, r4
-	add      r5, r5, r0
-	mr       r3, r5
-	blr
-	*/
+int Pellet::getTotalPikmins() {
+    int count = _3F8;
+    count += _3FC;
+    count += _400;
+    count += _404;
+    count += _408;
+    count += _40C;
+    count += _410;
+    return count;
 }
 
 /*
@@ -8791,163 +8775,57 @@ namespace Game {
  * Address:	8016D4C0
  * Size:	00021C
  */
-void PelletMgr::birth(Game::PelletInitArg*)
-{
-	/*
-	stwu     r1, -0x20(r1)
-	mflr     r0
-	stw      r0, 0x24(r1)
-	stw      r31, 0x1c(r1)
-	stw      r30, 0x18(r1)
-	or.      r30, r4, r4
-	stw      r29, 0x14(r1)
-	mr       r29, r3
-	li       r3, 0
-	beq      lbl_8016D4F8
-	lbz      r0, 0x16(r30)
-	cmplwi   r0, 0xff
-	beq      lbl_8016D4F8
-	li       r3, 1
+Pellet* PelletMgr::birth(PelletInitArg* arg) {
+    bool validType = false;
+    if (arg != nullptr && arg->m_pelletType != 0xFF) {
+        validType = true;
+    }
+    P2ASSERTLINE(5394, validType);
 
-lbl_8016D4F8:
-	clrlwi.  r0, r3, 0x18
-	bne      lbl_8016D51C
-	lis      r3, lbl_8047E344@ha
-	lis      r5, lbl_8047E354@ha
-	addi     r3, r3, lbl_8047E344@l
-	li       r4, 0x1512
-	addi     r5, r5, lbl_8047E354@l
-	crclr    6
-	bl       panic_f__12JUTExceptionFPCciPCce
+    BasePelletMgr* mgr = getMgrByID(arg->m_pelletType);
+    P2ASSERTLINE(5396, mgr != nullptr);
 
-lbl_8016D51C:
-	lbz      r4, 0x16(r30)
-	mr       r3, r29
-	bl       getMgrByID__Q24Game9PelletMgrFUc
-	or.      r31, r3, r3
-	bne      lbl_8016D54C
-	lis      r3, lbl_8047E344@ha
-	lis      r5, lbl_8047E354@ha
-	addi     r3, r3, lbl_8047E344@l
-	li       r4, 0x1514
-	addi     r5, r5, lbl_8047E354@l
-	crclr    6
-	bl       panic_f__12JUTExceptionFPCciPCce
+    PelletConfig* config;
+    if (gameSystem->m_mode != GSM_PIKLOPEDIA && gameSystem->m_mode != GSM_VERSUS_MODE && !PelletMgr::mDebug && !arg->_17) {
+        config = mgr->m_configList->getPelletConfig(arg->m_textIdentifier);
+        if (strcmp("yes", config->m_params.m_unique.m_data) == 0) {
+            int unk = arg->_10;
+            if (arg->m_pelletType == PelletList::OTAKARA) {
+                u8* result = playData->_B0->_04(unk);
+                if (*result & 2) {
+                    mgr->m_configList->getPelletConfig(arg->m_textIdentifier);
+                    return nullptr;
+                }
+            } else if (arg->m_pelletType == PelletList::ITEM) {
+                u8* result = playData->_B0->_0C(unk);
+                if (*result & 2) {
+                    mgr->m_configList->getPelletConfig(arg->m_textIdentifier);
+                    return nullptr;
+                }
+            }
+        }
+    }
 
-lbl_8016D54C:
-	lwz      r3, gameSystem__4Game@sda21(r13)
-	lwz      r0, 0x44(r3)
-	cmpwi    r0, 4
-	beq      lbl_8016D618
-	cmpwi    r0, 1
-	beq      lbl_8016D618
-	lbz      r0, mDebug__Q24Game9PelletMgr@sda21(r13)
-	cmplwi   r0, 0
-	bne      lbl_8016D618
-	lbz      r0, 0x17(r30)
-	cmplwi   r0, 0
-	bne      lbl_8016D618
-	lwz      r3, 8(r31)
-	lwz      r4, 8(r30)
-	bl       getPelletConfig__Q24Game16PelletConfigListFPc
-	mr       r4, r3
-	addi     r3, r2, lbl_805189F8@sda21
-	lwz      r4, 0x180(r4)
-	bl       strcmp
-	cmpwi    r3, 0
-	bne      lbl_8016D618
-	lbz      r0, 0x16(r30)
-	lwz      r4, 0x10(r30)
-	cmplwi   r0, 3
-	bne      lbl_8016D5E0
-	lwz      r3, playData__4Game@sda21(r13)
-	lwz      r3, 0xb0(r3)
-	addi     r3, r3, 4
-	bl       __cl__Q24Game11KindCounterFi
-	lbz      r0, 0(r3)
-	rlwinm.  r0, r0, 0, 0x1e, 0x1e
-	beq      lbl_8016D618
-	lwz      r3, 8(r31)
-	lwz      r4, 8(r30)
-	bl       getPelletConfig__Q24Game16PelletConfigListFPc
-	li       r3, 0
-	b        lbl_8016D6C0
-
-lbl_8016D5E0:
-	cmplwi   r0, 4
-	bne      lbl_8016D618
-	lwz      r3, playData__4Game@sda21(r13)
-	lwz      r3, 0xb0(r3)
-	addi     r3, r3, 0xc
-	bl       __cl__Q24Game11KindCounterFi
-	lbz      r0, 0(r3)
-	rlwinm.  r0, r0, 0, 0x1e, 0x1e
-	beq      lbl_8016D618
-	lwz      r3, 8(r31)
-	lwz      r4, 8(r30)
-	bl       getPelletConfig__Q24Game16PelletConfigListFPc
-	li       r3, 0
-	b        lbl_8016D6C0
-
-lbl_8016D618:
-	lbz      r0, 0x1f(r30)
-	cmplwi   r0, 0
-	beq      lbl_8016D68C
-	lwz      r3, 8(r31)
-	lwz      r4, 8(r30)
-	bl       getPelletConfig__Q24Game16PelletConfigListFPc
-	lwz      r12, 0(r31)
-	mr       r4, r3
-	mr       r3, r31
-	lwz      r12, 0x48(r12)
-	mtctr    r12
-	bctrl
-	or.      r29, r3, r3
-	beq      lbl_8016D684
-	mr       r3, r31
-	lwz      r4, 0x440(r29)
-	lwz      r12, 0(r31)
-	lwz      r12, 0x4c(r12)
-	mtctr    r12
-	bctrl
-	li       r0, 1
-	mr       r3, r29
-	stb      r0, 0x1c(r30)
-	mr       r4, r30
-	bl       init__Q24Game8CreatureFPQ24Game15CreatureInitArg
-	mr       r3, r29
-	b        lbl_8016D6C0
-
-lbl_8016D684:
-	li       r3, 0
-	b        lbl_8016D6C0
-
-lbl_8016D68C:
-	mr       r3, r31
-	lwz      r12, 0(r31)
-	lwz      r12, 0x3c(r12)
-	mtctr    r12
-	bctrl
-	or.      r29, r3, r3
-	beq      lbl_8016D6BC
-	lwz      r0, 0x18(r30)
-	mr       r4, r30
-	stw      r0, 0x358(r29)
-	stw      r31, 0x454(r29)
-	bl       init__Q24Game8CreatureFPQ24Game15CreatureInitArg
-
-lbl_8016D6BC:
-	mr       r3, r29
-
-lbl_8016D6C0:
-	lwz      r0, 0x24(r1)
-	lwz      r31, 0x1c(r1)
-	lwz      r30, 0x18(r1)
-	lwz      r29, 0x14(r1)
-	mtlr     r0
-	addi     r1, r1, 0x20
-	blr
-	*/
+    Pellet* pellet;
+    if (arg->_1F != 0) {
+        config = mgr->m_configList->getPelletConfig(arg->m_textIdentifier);
+        pellet = mgr->birthFromTeki(config);
+        if (pellet != nullptr) {
+            mgr->setComeAlive(pellet->m_slotIndex);
+            arg->_1C = 1;
+            pellet->init(arg);
+            return pellet;
+        }
+        return nullptr;
+    } else {
+        pellet = mgr->birth();
+        if (pellet != nullptr) {
+            pellet->m_pelletView = arg->_18;
+            pellet->m_mgr = mgr;
+            pellet->init(arg);
+        }
+        return pellet;
+    }
 }
 
 /*
@@ -8955,133 +8833,47 @@ lbl_8016D6C0:
  * Address:	8016D6DC
  * Size:	0001AC
  */
-void PelletMgr::setUse(Game::PelletInitArg*)
-{
-	/*
-	stwu     r1, -0x10(r1)
-	mflr     r0
-	stw      r0, 0x14(r1)
-	stw      r31, 0xc(r1)
-	mr       r31, r3
-	li       r3, 0
-	stw      r30, 8(r1)
-	or.      r30, r4, r4
-	beq      lbl_8016D710
-	lbz      r0, 0x16(r30)
-	cmplwi   r0, 0xff
-	beq      lbl_8016D710
-	li       r3, 1
+bool PelletMgr::setUse(PelletInitArg* arg) {
+    bool validType = false;
+    if (arg != nullptr && arg->m_pelletType != 0xFF) {
+        validType = true;
+    }
+    P2ASSERTLINE(5531, validType);
 
-lbl_8016D710:
-	clrlwi.  r0, r3, 0x18
-	bne      lbl_8016D734
-	lis      r3, lbl_8047E344@ha
-	lis      r5, lbl_8047E354@ha
-	addi     r3, r3, lbl_8047E344@l
-	li       r4, 0x159b
-	addi     r5, r5, lbl_8047E354@l
-	crclr    6
-	bl       panic_f__12JUTExceptionFPCciPCce
+    BasePelletMgr* mgr = getMgrByID(arg->m_pelletType);
+    P2ASSERTLINE(5533, mgr != nullptr);
 
-lbl_8016D734:
-	lbz      r4, 0x16(r30)
-	mr       r3, r31
-	bl       getMgrByID__Q24Game9PelletMgrFUc
-	or.      r31, r3, r3
-	bne      lbl_8016D764
-	lis      r3, lbl_8047E344@ha
-	lis      r5, lbl_8047E354@ha
-	addi     r3, r3, lbl_8047E344@l
-	li       r4, 0x159d
-	addi     r5, r5, lbl_8047E354@l
-	crclr    6
-	bl       panic_f__12JUTExceptionFPCciPCce
+    PelletConfig* config;
+    if (gameSystem->m_mode != GSM_PIKLOPEDIA && !arg->_17) {
+        config = mgr->m_configList->getPelletConfig(arg->m_textIdentifier);
+        if (strcmp("yes", config->m_params.m_unique.m_data) == 0) {
+            int unk = arg->_10;
+            if (arg->m_pelletType == PelletList::OTAKARA) {
+                u8* result = playData->_B0->_04(unk);
+                if (*result & 2) {
+                    mgr->m_configList->getPelletConfig(arg->m_textIdentifier);
+                    return false;
+                }
+            } else if (arg->m_pelletType == PelletList::ITEM) {
+                u8* result = playData->_B0->_0C(unk);
+                if (*result & 2) {
+                    mgr->m_configList->getPelletConfig(arg->m_textIdentifier);
+                    return false;
+                }
+            }
+        }
+    }
 
-lbl_8016D764:
-	lwz      r3, gameSystem__4Game@sda21(r13)
-	lwz      r0, 0x44(r3)
-	cmpwi    r0, 4
-	beq      lbl_8016D81C
-	lbz      r0, 0x17(r30)
-	cmplwi   r0, 0
-	bne      lbl_8016D81C
-	lwz      r3, 8(r31)
-	lwz      r4, 8(r30)
-	bl       getPelletConfig__Q24Game16PelletConfigListFPc
-	mr       r4, r3
-	addi     r3, r2, lbl_805189F8@sda21
-	lwz      r4, 0x180(r4)
-	bl       strcmp
-	cmpwi    r3, 0
-	bne      lbl_8016D81C
-	lbz      r0, 0x16(r30)
-	lwz      r4, 0x10(r30)
-	cmplwi   r0, 3
-	bne      lbl_8016D7E4
-	lwz      r3, playData__4Game@sda21(r13)
-	lwz      r3, 0xb0(r3)
-	addi     r3, r3, 4
-	bl       __cl__Q24Game11KindCounterFi
-	lbz      r0, 0(r3)
-	rlwinm.  r0, r0, 0, 0x1e, 0x1e
-	beq      lbl_8016D81C
-	lwz      r3, 8(r31)
-	lwz      r4, 8(r30)
-	bl       getPelletConfig__Q24Game16PelletConfigListFPc
-	li       r3, 0
-	b        lbl_8016D870
+    int index = arg->_10;
+    
+    bool validIndex = false;
+    if (index >= 0 && index < mgr->_50) {
+        validIndex = true;
+    }
+    P2ASSERTLINE(4419, validIndex);
 
-lbl_8016D7E4:
-	cmplwi   r0, 4
-	bne      lbl_8016D81C
-	lwz      r3, playData__4Game@sda21(r13)
-	lwz      r3, 0xb0(r3)
-	addi     r3, r3, 0xc
-	bl       __cl__Q24Game11KindCounterFi
-	lbz      r0, 0(r3)
-	rlwinm.  r0, r0, 0, 0x1e, 0x1e
-	beq      lbl_8016D81C
-	lwz      r3, 8(r31)
-	lwz      r4, 8(r30)
-	bl       getPelletConfig__Q24Game16PelletConfigListFPc
-	li       r3, 0
-	b        lbl_8016D870
-
-lbl_8016D81C:
-	lwz      r30, 0x10(r30)
-	li       r3, 0
-	cmpwi    r30, 0
-	blt      lbl_8016D83C
-	lwz      r0, 0x50(r31)
-	cmpw     r30, r0
-	bge      lbl_8016D83C
-	li       r3, 1
-
-lbl_8016D83C:
-	clrlwi.  r0, r3, 0x18
-	bne      lbl_8016D860
-	lis      r3, lbl_8047E344@ha
-	lis      r5, lbl_8047E354@ha
-	addi     r3, r3, lbl_8047E344@l
-	li       r4, 0x1143
-	addi     r5, r5, lbl_8047E354@l
-	crclr    6
-	bl       panic_f__12JUTExceptionFPCciPCce
-
-lbl_8016D860:
-	lwz      r4, 0x4c(r31)
-	li       r0, 1
-	li       r3, 1
-	stbx     r0, r4, r30
-
-lbl_8016D870:
-	lwz      r0, 0x14(r1)
-	lwz      r31, 0xc(r1)
-	lwz      r30, 8(r1)
-	mtlr     r0
-	addi     r1, r1, 0x10
-	blr
-	*/
+    mgr->_4C[index] = true;
+    return true;
 }
 
 /*
