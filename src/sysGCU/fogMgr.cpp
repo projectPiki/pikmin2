@@ -43,13 +43,13 @@ void FogMgr::off(Graphics&)
 void FogMgr::set(Graphics& graphics)
 {
 	GXFogAdjTable table;
-	Camera* cam = graphics.m_currentViewport->m_camera;
+	Camera* activeCam = graphics.m_currentViewport->m_camera;
 
 	GXColor fogColor = m_color.GXColorView;
-	GXSetFog(m_type, m_nearZ, m_farZ, cam->getNear(), cam->getFar(), fogColor);
+	GXSetFog(m_type, m_nearZ, m_farZ, activeCam->getNear(), activeCam->getFar(), fogColor);
 
 	u16 width = System::getRenderModeObj()->fbWidth;
-	GXInitFogAdjTable(&table, width, cam->m_projectionMtx);
+	GXInitFogAdjTable(&table, width, activeCam->m_projectionMtx);
 
 	width = System::getRenderModeObj()->fbWidth;
 	GXSetFogRangeAdj(TRUE, width / 2, &table);
