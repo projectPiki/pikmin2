@@ -1,8 +1,14 @@
 #include "types.h"
 #include "JSystem/JKR/JKRDisposer.h"
 // #include "PSGame/PSGame.h"
-#include "PSSystem/PSScene.h"
+// #include "PSSystem/PSScene.h"
 #include "SoundID.h"
+
+struct DemoArg {
+	char* pelletname;
+	char* name;
+	u32 bgmID;
+};
 
 namespace PSM {
 class Demo : public JKRDisposer { /* #Extends(JKRDisposer) #Size(0x2c) (see

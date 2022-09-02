@@ -317,7 +317,7 @@ struct Pellet : public DynCreature, public SysShape::MotionListener, public Carr
 	void getPelletGoal();
 	int getTotalPikmins();
 	short getTotalCarryPikmins();
-	void getPikmins(int);
+	void getPikmins(int); 
 	void getFace();
 	void clearDiscoverDisable();
 	void startDiscoverDisable(u8);

@@ -15,6 +15,7 @@
 #include "Game/MapMgr.h"
 #include "efx/TFruitsDown.h"
 #include "PSM/Otakara.h"
+#include "PSM/Scene.h"
 #include "Iterator.h"
 #include "System.h"
 #include "ObjectTypes.h"
@@ -3955,20 +3956,21 @@ lbl_80169970:
 // WEAK - in header
 // void Pellet::do_update() { }
 
-} // namespace Game
+// } // namespace Game
 
-namespace PSM {
+// namespace PSM {
 
 /*
  * --INFO--
  * Address:	801699B0
  * Size:	000008
  */
-u32 Scene_Game::isCave(void) { return 0x0; }
+// WEAK - in header
+// bool Scene_Game::isCave() { return false; }
 
-namespace Game {
+// namespace Game {
 
-} // namespace Game
+// } // namespace Game
 
 /*
  * --INFO--
