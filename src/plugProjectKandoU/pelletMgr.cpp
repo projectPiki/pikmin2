@@ -1,3 +1,4 @@
+#include "Dolphin/arith.h"
 #include "Dolphin/rand.h"
 #include "Game/GameConfig.h"
 #include "Game/gamePlayData.h"
@@ -5111,15 +5112,14 @@ lbl_8016A918:
  * Address:	8016A934
  * Size:	00003C
  */
-int Pellet::getTotalPikmins()
-{
-	int count = _3F8;
-	count += _3FC;
-	count += _400;
-	count += _404;
-	count += _408;
-	count += _40C;
-	count += _410;
+int Pellet::getTotalPikmins() {
+	int count = m_pikminCount[0];
+	count += m_pikminCount[1];
+	count += m_pikminCount[2];
+	count += m_pikminCount[3];
+	count += m_pikminCount[4];
+	count += m_pikminCount[5];
+	count += m_pikminCount[6];
 	return count;
 }
 
@@ -5213,151 +5213,36 @@ lbl_8016AA30:
  * Address:	8016AA54
  * Size:	0001D4
  */
-void Pellet::onSlotStickStart(Game::Creature*, short)
-{
-	/*
-	stwu     r1, -0x20(r1)
-	mflr     r0
-	stw      r0, 0x24(r1)
-	stw      r31, 0x1c(r1)
-	mr       r31, r4
-	stw      r30, 0x18(r1)
-	mr       r30, r3
-	stw      r29, 0x14(r1)
-	mr       r29, r5
-	extsh    r5, r29
-	cmpwi    r5, 0x270f
-	beq      lbl_8016AB34
-	extsh.   r0, r29
-	li       r3, 0
-	blt      lbl_8016AAA0
-	lha      r0, 0x3f4(r30)
-	cmpw     r5, r0
-	bge      lbl_8016AAA0
-	li       r3, 1
+void Pellet::onSlotStickStart(Creature* creature, short slot) {
+    if (slot != 9999) {
+        bool validSlot = false;
+        if (slot >= 0 && slot < m_slotCount) {
+            validSlot = true;
+        }
+        P2ASSERTLINE(3917, validSlot);
+        P2ASSERTLINE(3918, isSlotFree(slot));
+        setSlotOccupied(m_slots, slot);
+    }
 
-lbl_8016AAA0:
-	clrlwi.  r0, r3, 0x18
-	bne      lbl_8016AAC4
-	lis      r3, lbl_8047E344@ha
-	lis      r5, lbl_8047E354@ha
-	addi     r3, r3, lbl_8047E344@l
-	li       r4, 0xf4d
-	addi     r5, r5, lbl_8047E354@l
-	crclr    6
-	bl       panic_f__12JUTExceptionFPCciPCce
+    if (creature->isPiki()) {
+        int pikminType = static_cast<Piki*>(creature)->m_pikminType;
+        bool validType = false;
+        if (pikminType >= 0 && pikminType < 7) {
+            validType = true;
+        }
+        P2ASSERTLINE(3925, validType);
 
-lbl_8016AAC4:
-	mr       r3, r30
-	mr       r4, r29
-	lwz      r12, 0(r30)
-	lwz      r12, 0x168(r12)
-	mtctr    r12
-	bctrl
-	clrlwi.  r0, r3, 0x18
-	bne      lbl_8016AB00
-	lis      r3, lbl_8047E344@ha
-	lis      r5, lbl_8047E354@ha
-	addi     r3, r3, lbl_8047E344@l
-	li       r4, 0xf4e
-	addi     r5, r5, lbl_8047E354@l
-	crclr    6
-	bl       panic_f__12JUTExceptionFPCciPCce
+        m_pikminCount[pikminType]++;
+        m_carryPower += static_cast<Piki*>(creature)->getPelletCarryPower();
+    } else {
+        _414++;
+    }
 
-lbl_8016AB00:
-	extsh    r6, r29
-	cmpwi    r6, 0x80
-	bge      lbl_8016AB34
-	srawi    r4, r6, 3
-	li       r3, 1
-	subfic   r0, r4, 0xf
-	add      r5, r30, r0
-	slwi     r0, r4, 3
-	lbz      r4, 0x3e4(r5)
-	subf     r0, r0, r6
-	slw      r0, r3, r0
-	or       r0, r4, r0
-	stb      r0, 0x3e4(r5)
-
-lbl_8016AB34:
-	mr       r3, r31
-	lwz      r12, 0(r31)
-	lwz      r12, 0x18(r12)
-	mtctr    r12
-	bctrl
-	clrlwi.  r0, r3, 0x18
-	beq      lbl_8016ABBC
-	lbz      r29, 0x2b8(r31)
-	li       r0, 0
-	cmpwi    r29, 0
-	blt      lbl_8016AB6C
-	cmpwi    r29, 7
-	bge      lbl_8016AB6C
-	li       r0, 1
-
-lbl_8016AB6C:
-	clrlwi.  r0, r0, 0x18
-	bne      lbl_8016AB90
-	lis      r3, lbl_8047E344@ha
-	lis      r5, lbl_8047E354@ha
-	addi     r3, r3, lbl_8047E344@l
-	li       r4, 0xf55
-	addi     r5, r5, lbl_8047E354@l
-	crclr    6
-	bl       panic_f__12JUTExceptionFPCciPCce
-
-lbl_8016AB90:
-	slwi     r0, r29, 2
-	mr       r3, r31
-	add      r5, r30, r0
-	lwz      r4, 0x3f8(r5)
-	addi     r0, r4, 1
-	stw      r0, 0x3f8(r5)
-	bl       getPelletCarryPower__Q24Game4PikiFv
-	lfs      f0, 0x418(r30)
-	fadds    f0, f0, f1
-	stfs     f0, 0x418(r30)
-	b        lbl_8016ABC8
-
-lbl_8016ABBC:
-	lwz      r3, 0x414(r30)
-	addi     r0, r3, 1
-	stw      r0, 0x414(r30)
-
-lbl_8016ABC8:
-	lwz      r0, 0x3dc(r30)
-	cmpwi    r0, 0
-	ble      lbl_8016ABD8
-	b        lbl_8016ABE0
-
-lbl_8016ABD8:
-	lwz      r3, 0x35c(r30)
-	lwz      r0, 0x130(r3)
-
-lbl_8016ABE0:
-	cmpwi    r0, 1
-	beq      lbl_8016AC0C
-	li       r0, 5
-	cmplwi   r30, 0
-	stw      r0, 0x3d4(r30)
-	mr       r4, r30
-	beq      lbl_8016AC00
-	addi     r4, r30, 0x318
-
-lbl_8016AC00:
-	lwz      r3, carryInfoMgr@sda21(r13)
-	bl       appear__12CarryInfoMgrFP14CarryInfoOwner
-	stw      r3, 0x398(r30)
-
-lbl_8016AC0C:
-	lwz      r0, 0x24(r1)
-	lwz      r31, 0x1c(r1)
-	lwz      r30, 0x18(r1)
-	lwz      r29, 0x14(r1)
-	mtlr     r0
-	addi     r1, r1, 0x20
-	blr
-	*/
+    int max = _3DC > 0 ? _3DC : m_config->m_params.m_max.m_data;
+    if (max != 1) {
+        m_carryColor = 5;
+        m_carryInfoMgr = carryInfoMgr->appear(this);
+    }
 }
 
 /*
@@ -5365,152 +5250,40 @@ lbl_8016AC0C:
  * Address:	8016AC28
  * Size:	0001E8
  */
-void Pellet::onSlotStickEnd(Game::Creature*, short)
-{
-	/*
-	stwu     r1, -0x20(r1)
-	mflr     r0
-	lis      r6, lbl_8047E318@ha
-	stw      r0, 0x24(r1)
-	stw      r31, 0x1c(r1)
-	addi     r31, r6, lbl_8047E318@l
-	stw      r30, 0x18(r1)
-	mr       r30, r4
-	stw      r29, 0x14(r1)
-	mr       r29, r3
-	stw      r28, 0x10(r1)
-	mr       r28, r5
-	extsh    r5, r28
-	cmpwi    r5, 0x270f
-	beq      lbl_8016AD04
-	extsh.   r0, r28
-	li       r3, 0
-	blt      lbl_8016AC80
-	lha      r0, 0x3f4(r29)
-	cmpw     r5, r0
-	bge      lbl_8016AC80
-	li       r3, 1
+void Pellet::onSlotStickEnd(Creature* creature, short slot) {
+    if (slot != 9999) {
+        bool validSlot = false;
+        if (slot >= 0 && slot < m_slotCount) {
+            validSlot = true;
+        }
+        P2ASSERTLINE(3952, validSlot);
+        if (isSlotFree(slot)) {
+            JUT_PANICLINE(3956, "onSlotStickEnd\n");
+        }
+        setSlotFree(m_slots, slot);
+    }
 
-lbl_8016AC80:
-	clrlwi.  r0, r3, 0x18
-	bne      lbl_8016AC9C
-	addi     r3, r31, 0x2c
-	addi     r5, r31, 0x3c
-	li       r4, 0xf70
-	crclr    6
-	bl       panic_f__12JUTExceptionFPCciPCce
+    if (creature->isPiki()) {
+        int pikminType = static_cast<Piki*>(creature)->m_pikminType;
+        bool validType = false;
+        if (pikminType >= 0 && pikminType < 7) {
+            validType = true;
+        }
+        P2ASSERTLINE(3964, validType);
+    
+        m_pikminCount[pikminType]--;
+        m_carryPower -= static_cast<Piki*>(creature)->getPelletCarryPower();
+    } else {
+        _414--;
+    }
 
-lbl_8016AC9C:
-	mr       r3, r29
-	mr       r4, r28
-	lwz      r12, 0(r29)
-	lwz      r12, 0x168(r12)
-	mtctr    r12
-	bctrl
-	clrlwi.  r0, r3, 0x18
-	beq      lbl_8016ACD0
-	addi     r3, r31, 0x2c
-	addi     r5, r31, 0xd0
-	li       r4, 0xf74
-	crclr    6
-	bl       panic_f__12JUTExceptionFPCciPCce
-
-lbl_8016ACD0:
-	extsh    r6, r28
-	cmpwi    r6, 0x80
-	bge      lbl_8016AD04
-	srawi    r4, r6, 3
-	li       r3, 1
-	subfic   r0, r4, 0xf
-	add      r5, r29, r0
-	slwi     r0, r4, 3
-	lbz      r4, 0x3e4(r5)
-	subf     r0, r0, r6
-	slw      r0, r3, r0
-	andc     r0, r4, r0
-	stb      r0, 0x3e4(r5)
-
-lbl_8016AD04:
-	mr       r3, r30
-	lwz      r12, 0(r30)
-	lwz      r12, 0x18(r12)
-	mtctr    r12
-	bctrl
-	clrlwi.  r0, r3, 0x18
-	beq      lbl_8016AD84
-	lbz      r28, 0x2b8(r30)
-	li       r0, 0
-	cmpwi    r28, 0
-	blt      lbl_8016AD3C
-	cmpwi    r28, 7
-	bge      lbl_8016AD3C
-	li       r0, 1
-
-lbl_8016AD3C:
-	clrlwi.  r0, r0, 0x18
-	bne      lbl_8016AD58
-	addi     r3, r31, 0x2c
-	addi     r5, r31, 0x3c
-	li       r4, 0xf7c
-	crclr    6
-	bl       panic_f__12JUTExceptionFPCciPCce
-
-lbl_8016AD58:
-	slwi     r0, r28, 2
-	mr       r3, r30
-	add      r5, r29, r0
-	lwz      r4, 0x3f8(r5)
-	addi     r0, r4, -1
-	stw      r0, 0x3f8(r5)
-	bl       getPelletCarryPower__Q24Game4PikiFv
-	lfs      f0, 0x418(r29)
-	fsubs    f0, f0, f1
-	stfs     f0, 0x418(r29)
-	b        lbl_8016AD90
-
-lbl_8016AD84:
-	lwz      r3, 0x414(r29)
-	addi     r0, r3, -1
-	stw      r0, 0x414(r29)
-
-lbl_8016AD90:
-	lwz      r4, 0x3f8(r29)
-	lwz      r3, 0x3fc(r29)
-	lwz      r0, 0x400(r29)
-	add      r4, r4, r3
-	lwz      r3, 0x404(r29)
-	add      r4, r4, r0
-	lwz      r0, 0x408(r29)
-	add      r4, r4, r3
-	lwz      r3, 0x40c(r29)
-	add      r4, r4, r0
-	lwz      r0, 0x410(r29)
-	add      r4, r4, r3
-	add.     r4, r4, r0
-	bne      lbl_8016ADF0
-	lwz      r3, 0x398(r29)
-	cmplwi   r3, 0
-	beq      lbl_8016ADE4
-	addi     r3, r3, 0x48
-	bl       disappear__9CarryInfoFv
-	li       r0, 0
-	stw      r0, 0x398(r29)
-
-lbl_8016ADE4:
-	lwz      r3, 0x334(r29)
-	li       r4, 0
-	bl       giveup__Q24Game11PelletCarryFUs
-
-lbl_8016ADF0:
-	lwz      r0, 0x24(r1)
-	lwz      r31, 0x1c(r1)
-	lwz      r30, 0x18(r1)
-	lwz      r29, 0x14(r1)
-	lwz      r28, 0x10(r1)
-	mtlr     r0
-	addi     r1, r1, 0x20
-	blr
-	*/
+    if (getTotalPikmins() == 0) {
+        if (m_carryInfoMgr != nullptr) {
+            m_carryInfoMgr->m_activeList.m_param.m_carryInfo.disappear();
+            m_carryInfoMgr = nullptr;
+        }
+        m_pelletCarry->giveup(0);
+    }
 }
 
 } // namespace Game
@@ -5739,7 +5512,7 @@ lbl_8016B084:
  * Address:	8016B094
  * Size:	0002AC
  */
-void Pellet::startPick(void)
+void Pellet::startPick()
 {
 	/*
 	stwu     r1, -0x40(r1)
@@ -11962,7 +11735,7 @@ u32 CreatureObj::getCastType(void) { return 0x0; }
  * Address:	8017017C
  * Size:	000010
  */
-void CreatureObj::getJAIObject(void)
+void CreatureObj::getJAIObject()
 {
 	/*
 	cmplwi   r3, 0

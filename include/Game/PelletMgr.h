@@ -191,7 +191,7 @@ struct Pellet : public DynCreature, public SysShape::MotionListener, public Carr
 		return m_pelletPosition;
 	}
 	virtual void getBoundingSphere(Sys::Sphere&);       // _10
-	virtual bool deferPikiCollision();                  // _20 (weak)
+	virtual bool deferPikiCollision() { return true; }  // _20 (weak)
 	virtual void constructor();                         // _2C
 	virtual void onInit(CreatureInitArg*);              // _30 (weak)
 	virtual void onKill(CreatureKillArg*);              // _34
@@ -201,12 +201,12 @@ struct Pellet : public DynCreature, public SysShape::MotionListener, public Carr
 	virtual void doViewCalc();                          // _48
 	virtual void doSimulation(float);                   // _4C
 	virtual void doDirectDraw(Graphics&);               // _50
-	virtual float getFaceDir();                         // _64 (weak)
+	virtual float getFaceDir() { return m_faceDir; }    // _64 (weak)
 	virtual void setVelocity(Vector3f&);                // _68
 	virtual Vector3f getVelocity();                     // _6C
 	virtual void onSetPosition(Vector3f&);              // _70 (weak)
 	virtual void updateTrMatrix();                      // _78
-	virtual bool inWater();                             // _8C (weak)
+	virtual bool inWater() { return m_isInWater; }      // _8C (weak)
 	virtual void onStartCapture();                      // _94
 	virtual void onUpdateCapture(Matrixf&);             // _98
 	virtual void onEndCapture();                        // _9C
@@ -215,7 +215,7 @@ struct Pellet : public DynCreature, public SysShape::MotionListener, public Carr
 	virtual void bounceCallback(Sys::Triangle*);        // _E8
 	virtual JAInter::Object* getJAIObject();            // _F4
 	virtual PSM::Creature* getPSCreature();             // _F8
-	virtual Vector3f* getSound_PosPtr();                // _100 (weak)
+	virtual Vector3f* getSound_PosPtr() { return &m_pelletPosition; } // _100 (weak)
 	virtual void getShadowParam(ShadowParam&);          // _134
 	virtual bool needShadow();                          // _138
 	virtual void getLODSphere(Sys::Sphere&);            // _140
@@ -247,7 +247,7 @@ struct Pellet : public DynCreature, public SysShape::MotionListener, public Carr
 	virtual void shadowOn();                                  // _1DC
 	virtual void shadowOff();                                 // _1E0
 	virtual bool isPickable();                                // _1E4
-	virtual void getBedamaColor();                            // _1E8 (weak)
+	virtual s32 getBedamaColor() { return -1; }               // _1E8 (weak)
 	virtual void do_update() { }                              // _1EC (weak)
 	virtual void onKeyEvent(const SysShape::KeyEvent&);       // _1F0 (weak, thunk at _1BC)
 	virtual u8 getKind() = 0;                                 // _1F4
@@ -277,7 +277,7 @@ struct Pellet : public DynCreature, public SysShape::MotionListener, public Carr
 	virtual void sound_otakaraEventStart() { }   // _20C (weak)
 	virtual void sound_otakaraEventRestart() { } // _210 (weak)
 	virtual void sound_otakaraEventStop() { }    // _214 (weak)
-	virtual void sound_otakaraEventFinish();     // _218 (weak)
+	virtual void sound_otakaraEventFinish() { }  // _218 (weak)
 
 	u8 getWallTimer();
 	void clearClaim();
@@ -315,7 +315,7 @@ struct Pellet : public DynCreature, public SysShape::MotionListener, public Carr
 	void finish_carrymotion();
 	int getSpeicalSlot();
 	void getPelletGoal();
-	void getTotalPikmins();
+	int getTotalPikmins();
 	short getTotalCarryPikmins();
 	void getPikmins(int);
 	void getFace();
@@ -329,6 +329,24 @@ struct Pellet : public DynCreature, public SysShape::MotionListener, public Carr
 		P2ASSERTLINE(909, !(color > 2));
 		m_pelletColor = color;
 	}
+
+	inline void setSlotOccupied(u8* m_slots, int slot)
+    {
+        if (slot < 128) {
+            u32 index = slot >> 3;
+            u32 flag = 1 << slot - index * 8;
+            m_slots[15 - index] |= flag;
+        }
+    }
+
+	inline void setSlotFree(u8* m_slots, int slot)
+    {
+        if (slot < 128) {
+            u32 index = slot >> 3;
+            u32 flag = 1 << slot - index * 8;
+            m_slots[15 - index] &= ~flag;
+        }
+    }
 
 	// _00		= VTABLE 1
 	// _04-_314	= DYNCREATURE
@@ -369,34 +387,13 @@ struct Pellet : public DynCreature, public SysShape::MotionListener, public Carr
 	int _3D8;                     // _3D8, to do with pikmin number
 	int _3DC;                     // _3DC
 	float _3E0;                   // _3E0
-	u8 _3E4;                      // _3E4 - unknown
-	u8 _3E5;                      // _3E5 - unknown
-	u8 _3E6;                      // _3E5 - unknown
-	u8 _3E7;                      // _3E5 - unknown
-	u8 _3E8;                      // _3E5 - unknown
-	u8 _3E9;                      // _3E5 - unknown
-	u8 _3EA;                      // _3E5 - unknown
-	u8 _3EB;                      // _3E5 - unknown
-	u8 _3EC;                      // _3E5 - unknown
-	u8 _3ED;                      // _3E5 - unknown
-	u8 _3EE;                      // _3E5 - unknown
-	u8 _3EF;                      // _3E5 - unknown
-	u8 _3F0;                      // _3E5 - unknown
-	u8 _3F1;                      // _3E5 - unknown
-	u8 _3F2;                      // _3E5 - unknown
-	u8 _3F3;                      // _3E5 - unknown
-	short _3F4;                   // _3F4
+	u8 m_slots[16];               // _3E4
+	short m_slotCount;            // _3F4
 	u8 _3F6;                      // _3F6
 	u8 _3F7;                      // _3F7 - unknown, maybe padding
-	u32 _3F8;                     // _3F8 - unknown
-	u32 _3FC;                     // _3FC - unknown
-	u32 _400;                     // _400 - unknown
-	u32 _404;                     // _404 - unknown
-	u32 _408;                     // _408 - unknown
-	u32 _40C;                     // _40C - unknown
-	u32 _410;                     // _410 - unknown
+	u32 m_pikminCount[7];         // _3F8
 	u32 _414;                     // _414 - unknown
-	float _418;                   // _418 - 'total pellet carry power?'
+	float m_carryPower;           // _418
 	SysShape::Animator _41C;      // _41C
 	float _438;                   // _438
 	u16 _43C;                     // _43C
@@ -416,7 +413,7 @@ struct PelletFSM : public StateMachine<Pellet> {
 struct PelletGoalStateArg : public StateArg {
 	inline PelletGoalStateArg(Creature* creature) { _00 = (void*)creature; }
 
-	virtual char* getName(); // _08 (weak)
+	virtual char* getName() { return "PelletGoalStateArg"; } // _08 (weak)
 
 	// _00 needs to be Creature* (probably void*?????) idk
 	// _04 is VTBL???? SO NOTHING ELSE IS IN STATEARG???
