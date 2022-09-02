@@ -10,7 +10,7 @@ template <typename T> struct ObjectMgr : public Container<T>, GenericObjectMgr {
 	{
 	}
 
-	virtual ~ObjectMgr() { }              // _08
+	virtual ~ObjectMgr() { }              // _08 (weak)
 	virtual void doAnimation();           // _34
 	virtual void doEntry();               // _38
 	virtual void doSetView(int);          // _3C
@@ -20,6 +20,10 @@ template <typename T> struct ObjectMgr : public Container<T>, GenericObjectMgr {
 };
 
 template <typename T> struct TObjectNode : public CNode {
+	virtual ~TObjectNode() { } // _08 (weak)
+
+	TObjectNode<T>* getNext() { return static_cast<TObjectNode<T>*>(m_next); }
+
 	T* m_contents; // _18
 };
 
@@ -30,7 +34,7 @@ template <typename T> struct NodeObjectMgr : public ObjectMgr<T> {
 	{
 	}
 	// first VTBL:
-	virtual ~NodeObjectMgr();         // _00
+	virtual ~NodeObjectMgr() { }      // _00
 	virtual void* getNext(void* node) // _08
 	{
 		return ((TObjectNode<T>*)node)->m_next;

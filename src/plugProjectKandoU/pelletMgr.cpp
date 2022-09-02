@@ -13,6 +13,9 @@
 #include "Game/DynParticle.h"
 #include "Game/ItemTreasure.h"
 #include "Game/MapMgr.h"
+#include "Game/Entities/PelletCarcass.h"
+#include "Game/Entities/PelletFruit.h"
+#include "Game/Entities/PelletNumber.h"
 #include "efx/TFruitsDown.h"
 #include "PSM/Otakara.h"
 #include "PSM/Scene.h"
@@ -5114,7 +5117,8 @@ lbl_8016A918:
  * Address:	8016A934
  * Size:	00003C
  */
-int Pellet::getTotalPikmins() {
+int Pellet::getTotalPikmins()
+{
 	int count = m_pikminCount[0];
 	count += m_pikminCount[1];
 	count += m_pikminCount[2];
@@ -5215,36 +5219,37 @@ lbl_8016AA30:
  * Address:	8016AA54
  * Size:	0001D4
  */
-void Pellet::onSlotStickStart(Creature* creature, short slot) {
-    if (slot != 9999) {
-        bool validSlot = false;
-        if (slot >= 0 && slot < m_slotCount) {
-            validSlot = true;
-        }
-        P2ASSERTLINE(3917, validSlot);
-        P2ASSERTLINE(3918, isSlotFree(slot));
-        setSlotOccupied(m_slots, slot);
-    }
+void Pellet::onSlotStickStart(Creature* creature, short slot)
+{
+	if (slot != 9999) {
+		bool validSlot = false;
+		if (slot >= 0 && slot < m_slotCount) {
+			validSlot = true;
+		}
+		P2ASSERTLINE(3917, validSlot);
+		P2ASSERTLINE(3918, isSlotFree(slot));
+		setSlotOccupied(m_slots, slot);
+	}
 
-    if (creature->isPiki()) {
-        int pikminType = static_cast<Piki*>(creature)->m_pikminType;
-        bool validType = false;
-        if (pikminType >= 0 && pikminType < 7) {
-            validType = true;
-        }
-        P2ASSERTLINE(3925, validType);
+	if (creature->isPiki()) {
+		int pikminType = static_cast<Piki*>(creature)->m_pikminType;
+		bool validType = false;
+		if (pikminType >= 0 && pikminType < 7) {
+			validType = true;
+		}
+		P2ASSERTLINE(3925, validType);
 
-        m_pikminCount[pikminType]++;
-        m_carryPower += static_cast<Piki*>(creature)->getPelletCarryPower();
-    } else {
-        _414++;
-    }
+		m_pikminCount[pikminType]++;
+		m_carryPower += static_cast<Piki*>(creature)->getPelletCarryPower();
+	} else {
+		_414++;
+	}
 
-    int max = _3DC > 0 ? _3DC : m_config->m_params.m_max.m_data;
-    if (max != 1) {
-        m_carryColor = 5;
-        m_carryInfoMgr = carryInfoMgr->appear(this);
-    }
+	int max = _3DC > 0 ? _3DC : m_config->m_params.m_max.m_data;
+	if (max != 1) {
+		m_carryColor   = 5;
+		m_carryInfoMgr = carryInfoMgr->appear(this);
+	}
 }
 
 /*
@@ -5252,40 +5257,41 @@ void Pellet::onSlotStickStart(Creature* creature, short slot) {
  * Address:	8016AC28
  * Size:	0001E8
  */
-void Pellet::onSlotStickEnd(Creature* creature, short slot) {
-    if (slot != 9999) {
-        bool validSlot = false;
-        if (slot >= 0 && slot < m_slotCount) {
-            validSlot = true;
-        }
-        P2ASSERTLINE(3952, validSlot);
-        if (isSlotFree(slot)) {
-            JUT_PANICLINE(3956, "onSlotStickEnd\n");
-        }
-        setSlotFree(m_slots, slot);
-    }
+void Pellet::onSlotStickEnd(Creature* creature, short slot)
+{
+	if (slot != 9999) {
+		bool validSlot = false;
+		if (slot >= 0 && slot < m_slotCount) {
+			validSlot = true;
+		}
+		P2ASSERTLINE(3952, validSlot);
+		if (isSlotFree(slot)) {
+			JUT_PANICLINE(3956, "onSlotStickEnd\n");
+		}
+		setSlotFree(m_slots, slot);
+	}
 
-    if (creature->isPiki()) {
-        int pikminType = static_cast<Piki*>(creature)->m_pikminType;
-        bool validType = false;
-        if (pikminType >= 0 && pikminType < 7) {
-            validType = true;
-        }
-        P2ASSERTLINE(3964, validType);
-    
-        m_pikminCount[pikminType]--;
-        m_carryPower -= static_cast<Piki*>(creature)->getPelletCarryPower();
-    } else {
-        _414--;
-    }
+	if (creature->isPiki()) {
+		int pikminType = static_cast<Piki*>(creature)->m_pikminType;
+		bool validType = false;
+		if (pikminType >= 0 && pikminType < 7) {
+			validType = true;
+		}
+		P2ASSERTLINE(3964, validType);
 
-    if (getTotalPikmins() == 0) {
-        if (m_carryInfoMgr != nullptr) {
-            m_carryInfoMgr->m_activeList.m_param.m_carryInfo.disappear();
-            m_carryInfoMgr = nullptr;
-        }
-        m_pelletCarry->giveup(0);
-    }
+		m_pikminCount[pikminType]--;
+		m_carryPower -= static_cast<Piki*>(creature)->getPelletCarryPower();
+	} else {
+		_414--;
+	}
+
+	if (getTotalPikmins() == 0) {
+		if (m_carryInfoMgr != nullptr) {
+			m_carryInfoMgr->m_activeList.m_param.m_carryInfo.disappear();
+			m_carryInfoMgr = nullptr;
+		}
+		m_pelletCarry->giveup(0);
+	}
 }
 
 } // namespace Game
@@ -7403,22 +7409,17 @@ lbl_8016CE40:
 	*/
 }
 
-} // namespace Game
+// } // namespace Game
 
 /*
  * --INFO--
  * Address:	8016CE54
  * Size:	000008
  */
-void TObjectNode<GenericObjectMgr>::getNext()
-{
-	/*
-	lwz      r3, 4(r3)
-	blr
-	*/
-}
+// WEAK - in header
+// TObjectNode<GenericObjectMgr>* TObjectNode<GenericObjectMgr>::getNext() { return static_cast<TObjectNode<GenericObjectMgr>*>(m_next); }
 
-namespace Game {
+// namespace Game {
 
 /*
  * --INFO--
@@ -7482,203 +7483,39 @@ PelletMgr::PelletMgr(void)
 	*/
 }
 
-} // namespace Game
+// } // namespace Game
 
 /*
  * --INFO--
  * Address:	8016CF28
  * Size:	0000C8
  */
-void NodeObjectMgr<GenericObjectMgr>::~NodeObjectMgr()
-{
-	/*
-	stwu     r1, -0x10(r1)
-	mflr     r0
-	stw      r0, 0x14(r1)
-	stw      r31, 0xc(r1)
-	mr       r31, r4
-	stw      r30, 8(r1)
-	or.      r30, r3, r3
-	beq      lbl_8016CFD4
-	lis      r3, "__vt__33NodeObjectMgr<16GenericObjectMgr>"@ha
-	addic.   r0, r30, 0x20
-	addi     r3, r3, "__vt__33NodeObjectMgr<16GenericObjectMgr>"@l
-	stw      r3, 0(r30)
-	addi     r0, r3, 0x2c
-	stw      r0, 0x1c(r30)
-	beq      lbl_8016CF7C
-	lis      r4, "__vt__31TObjectNode<16GenericObjectMgr>"@ha
-	addi     r3, r30, 0x20
-	addi     r0, r4, "__vt__31TObjectNode<16GenericObjectMgr>"@l
-	li       r4, 0
-	stw      r0, 0x20(r30)
-	bl       __dt__5CNodeFv
-
-lbl_8016CF7C:
-	cmplwi   r30, 0
-	beq      lbl_8016CFC4
-	lis      r3, "__vt__29ObjectMgr<16GenericObjectMgr>"@ha
-	addi     r3, r3, "__vt__29ObjectMgr<16GenericObjectMgr>"@l
-	stw      r3, 0(r30)
-	addi     r0, r3, 0x2c
-	stw      r0, 0x1c(r30)
-	beq      lbl_8016CFC4
-	lis      r3, "__vt__29Container<16GenericObjectMgr>"@ha
-	addi     r0, r3, "__vt__29Container<16GenericObjectMgr>"@l
-	stw      r0, 0(r30)
-	beq      lbl_8016CFC4
-	lis      r4, __vt__16GenericContainer@ha
-	mr       r3, r30
-	addi     r0, r4, __vt__16GenericContainer@l
-	li       r4, 0
-	stw      r0, 0(r30)
-	bl       __dt__5CNodeFv
-
-lbl_8016CFC4:
-	extsh.   r0, r31
-	ble      lbl_8016CFD4
-	mr       r3, r30
-	bl       __dl__FPv
-
-lbl_8016CFD4:
-	lwz      r0, 0x14(r1)
-	mr       r3, r30
-	lwz      r31, 0xc(r1)
-	lwz      r30, 8(r1)
-	mtlr     r0
-	addi     r1, r1, 0x10
-	blr
-	*/
-}
+// WEAK - in header
+// NodeObjectMgr<GenericObjectMgr>::~NodeObjectMgr() { }
 
 /*
  * --INFO--
  * Address:	8016CFF0
  * Size:	000060
  */
-void TObjectNode<GenericObjectMgr>::~TObjectNode()
-{
-	/*
-	stwu     r1, -0x10(r1)
-	mflr     r0
-	stw      r0, 0x14(r1)
-	stw      r31, 0xc(r1)
-	mr       r31, r4
-	stw      r30, 8(r1)
-	or.      r30, r3, r3
-	beq      lbl_8016D034
-	lis      r5, "__vt__31TObjectNode<16GenericObjectMgr>"@ha
-	li       r4, 0
-	addi     r0, r5, "__vt__31TObjectNode<16GenericObjectMgr>"@l
-	stw      r0, 0(r30)
-	bl       __dt__5CNodeFv
-	extsh.   r0, r31
-	ble      lbl_8016D034
-	mr       r3, r30
-	bl       __dl__FPv
-
-lbl_8016D034:
-	lwz      r0, 0x14(r1)
-	mr       r3, r30
-	lwz      r31, 0xc(r1)
-	lwz      r30, 8(r1)
-	mtlr     r0
-	addi     r1, r1, 0x10
-	blr
-	*/
-}
+// WEAK - in header
+// TObjectNode<GenericObjectMgr>::~TObjectNode() { }
 
 /*
  * --INFO--
  * Address:	8016D050
  * Size:	000088
  */
-void ObjectMgr<GenericObjectMgr>::~ObjectMgr()
-{
-	/*
-	stwu     r1, -0x10(r1)
-	mflr     r0
-	stw      r0, 0x14(r1)
-	stw      r31, 0xc(r1)
-	mr       r31, r4
-	stw      r30, 8(r1)
-	or.      r30, r3, r3
-	beq      lbl_8016D0BC
-	lis      r4, "__vt__29ObjectMgr<16GenericObjectMgr>"@ha
-	addi     r4, r4, "__vt__29ObjectMgr<16GenericObjectMgr>"@l
-	stw      r4, 0(r30)
-	addi     r0, r4, 0x2c
-	stw      r0, 0x1c(r30)
-	beq      lbl_8016D0AC
-	lis      r4, "__vt__29Container<16GenericObjectMgr>"@ha
-	addi     r0, r4, "__vt__29Container<16GenericObjectMgr>"@l
-	stw      r0, 0(r30)
-	beq      lbl_8016D0AC
-	lis      r5, __vt__16GenericContainer@ha
-	li       r4, 0
-	addi     r0, r5, __vt__16GenericContainer@l
-	stw      r0, 0(r30)
-	bl       __dt__5CNodeFv
-
-lbl_8016D0AC:
-	extsh.   r0, r31
-	ble      lbl_8016D0BC
-	mr       r3, r30
-	bl       __dl__FPv
-
-lbl_8016D0BC:
-	lwz      r0, 0x14(r1)
-	mr       r3, r30
-	lwz      r31, 0xc(r1)
-	lwz      r30, 8(r1)
-	mtlr     r0
-	addi     r1, r1, 0x10
-	blr
-	*/
-}
+// WEAK - in header
+// ObjectMgr<GenericObjectMgr>::~ObjectMgr() { }
 
 /*
  * --INFO--
  * Address:	8016D0D8
  * Size:	000070
  */
-void Container<GenericObjectMgr>::~Container()
-{
-	/*
-	stwu     r1, -0x10(r1)
-	mflr     r0
-	stw      r0, 0x14(r1)
-	stw      r31, 0xc(r1)
-	mr       r31, r4
-	stw      r30, 8(r1)
-	or.      r30, r3, r3
-	beq      lbl_8016D12C
-	lis      r4, "__vt__29Container<16GenericObjectMgr>"@ha
-	addi     r0, r4, "__vt__29Container<16GenericObjectMgr>"@l
-	stw      r0, 0(r30)
-	beq      lbl_8016D11C
-	lis      r5, __vt__16GenericContainer@ha
-	li       r4, 0
-	addi     r0, r5, __vt__16GenericContainer@l
-	stw      r0, 0(r30)
-	bl       __dt__5CNodeFv
-
-lbl_8016D11C:
-	extsh.   r0, r31
-	ble      lbl_8016D12C
-	mr       r3, r30
-	bl       __dl__FPv
-
-lbl_8016D12C:
-	lwz      r0, 0x14(r1)
-	mr       r3, r30
-	lwz      r31, 0xc(r1)
-	lwz      r30, 8(r1)
-	mtlr     r0
-	addi     r1, r1, 0x10
-	blr
-	*/
-}
+// WEAK - in header
+// Container<GenericObjectMgr>::~Container() { }
 
 namespace Game {
 
@@ -7816,102 +7653,45 @@ void PelletMgr::resetMgrs(void)
 	*/
 }
 
-} // namespace Game
+// } // namespace Game
 
 /*
  * --INFO--
  * Address:	8016D2B8
  * Size:	000050
  */
-void resetMgr__Q24Game47FixedSizePelletMgr<Game::PelletFruit::Object> Fv(void)
-{
-	/*
-	stwu     r1, -0x10(r1)
-	mflr     r0
-	stw      r0, 0x14(r1)
-	stw      r31, 0xc(r1)
-	mr       r31, r3
-	addi     r3, r31, 0x70
-	lwz      r12, 0x70(r31)
-	lwz      r12, 0x80(r12)
-	mtctr    r12
-	bctrl
-	addi     r3, r31, 0x18
-	lwz      r12, 0x18(r31)
-	lwz      r12, 0x80(r12)
-	mtctr    r12
-	bctrl
-	lwz      r0, 0x14(r1)
-	lwz      r31, 0xc(r1)
-	mtlr     r0
-	addi     r1, r1, 0x10
-	blr
-	*/
-}
+// WEAK - in header
+// void FixedSizePelletMgr<PelletFruit::Object>::resetMgr()
+// {
+// 	m_monoObjectMgr.resetMgr();
+// 	m_collPartMgr.resetMgr();
+// }
 
 /*
  * --INFO--
  * Address:	8016D308
  * Size:	000050
  */
-void resetMgr__Q24Game49FixedSizePelletMgr<Game::PelletCarcass::Object> Fv(void)
-{
-	/*
-	stwu     r1, -0x10(r1)
-	mflr     r0
-	stw      r0, 0x14(r1)
-	stw      r31, 0xc(r1)
-	mr       r31, r3
-	addi     r3, r31, 0x70
-	lwz      r12, 0x70(r31)
-	lwz      r12, 0x80(r12)
-	mtctr    r12
-	bctrl
-	addi     r3, r31, 0x18
-	lwz      r12, 0x18(r31)
-	lwz      r12, 0x80(r12)
-	mtctr    r12
-	bctrl
-	lwz      r0, 0x14(r1)
-	lwz      r31, 0xc(r1)
-	mtlr     r0
-	addi     r1, r1, 0x10
-	blr
-	*/
-}
+// WEAK - in header
+// void FixedSizePelletMgr<PelletCarcass::Object>::resetMgr()
+// {
+// 	m_monoObjectMgr.resetMgr();
+// 	m_collPartMgr.resetMgr();
+// }
 
 /*
  * --INFO--
  * Address:	8016D358
  * Size:	000050
  */
-void resetMgr__Q24Game48FixedSizePelletMgr<Game::PelletNumber::Object> Fv(void)
-{
-	/*
-	stwu     r1, -0x10(r1)
-	mflr     r0
-	stw      r0, 0x14(r1)
-	stw      r31, 0xc(r1)
-	mr       r31, r3
-	addi     r3, r31, 0x70
-	lwz      r12, 0x70(r31)
-	lwz      r12, 0x80(r12)
-	mtctr    r12
-	bctrl
-	addi     r3, r31, 0x18
-	lwz      r12, 0x18(r31)
-	lwz      r12, 0x80(r12)
-	mtctr    r12
-	bctrl
-	lwz      r0, 0x14(r1)
-	lwz      r31, 0xc(r1)
-	mtlr     r0
-	addi     r1, r1, 0x10
-	blr
-	*/
-}
+// WEAK - in header
+// void FixedSizePelletMgr<PelletNumber::Object>::resetMgr()
+// {
+// 	m_monoObjectMgr.resetMgr();
+// 	m_collPartMgr.resetMgr();
+// }
 
-namespace Game {
+// namespace Game {
 
 /*
  * --INFO--
@@ -7956,79 +7736,35 @@ void PelletMgr::setupResources(void)
 	*/
 }
 
-} // namespace Game
+// } // namespace Game
 
 /*
  * --INFO--
  * Address:	........
  * Size:	00050C
  */
-void calcNearestTreasure__Q24Game9PelletMgrFR10Vector3f f(void)
-{
-	// UNUSED FUNCTION
-}
+// void calcNearestTreasure__Q24Game9PelletMgrFR10Vector3f f(void)
+// {
+// 	// UNUSED FUNCTION
+// }
 
 /*
  * --INFO--
  * Address:	8016D428
  * Size:	00004C
  */
-void Iterator<Game::PelletItem::Object>::isDone()
-{
-	/*
-	stwu     r1, -0x10(r1)
-	mflr     r0
-	stw      r0, 0x14(r1)
-	stw      r31, 0xc(r1)
-	mr       r31, r3
-	lwz      r3, 8(r3)
-	lwz      r12, 0(r3)
-	lwz      r12, 0x1c(r12)
-	mtctr    r12
-	bctrl
-	lwz      r0, 4(r31)
-	subf     r0, r0, r3
-	cntlzw   r0, r0
-	srwi     r3, r0, 5
-	lwz      r31, 0xc(r1)
-	lwz      r0, 0x14(r1)
-	mtlr     r0
-	addi     r1, r1, 0x10
-	blr
-	*/
-}
+// WEAK - in header
+// bool Iterator<Game::PelletItem::Object>::isDone() { return (m_index == m_container->getEnd()); }
 
 /*
  * --INFO--
  * Address:	8016D474
  * Size:	00004C
  */
-void Iterator<Game::PelletOtakara::Object>::isDone()
-{
-	/*
-	stwu     r1, -0x10(r1)
-	mflr     r0
-	stw      r0, 0x14(r1)
-	stw      r31, 0xc(r1)
-	mr       r31, r3
-	lwz      r3, 8(r3)
-	lwz      r12, 0(r3)
-	lwz      r12, 0x1c(r12)
-	mtctr    r12
-	bctrl
-	lwz      r0, 4(r31)
-	subf     r0, r0, r3
-	cntlzw   r0, r0
-	srwi     r3, r0, 5
-	lwz      r31, 0xc(r1)
-	lwz      r0, 0x14(r1)
-	mtlr     r0
-	addi     r1, r1, 0x10
-	blr
-	*/
-}
+// WEAK - in header
+// bool Iterator<Game::PelletOtakara::Object>::isDone() { return (m_index == m_container->getEnd()); }
 
-namespace Game {
+// namespace Game {
 
 /*
  * --INFO--

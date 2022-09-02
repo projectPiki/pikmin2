@@ -9,7 +9,7 @@
 #include "Game/Entities/Pelplant.h"
 #include "Game/Farm.h"
 #include "Game/GameSystem.h"
-#include "Game/PelletNumber.h"
+#include "Game/Entities/PelletNumber.h"
 #include "Game/gamePlayData.h"
 #include "Game/pelletMgr.h"
 #include "CollInfo.h"

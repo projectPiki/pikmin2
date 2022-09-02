@@ -49,8 +49,8 @@ struct EnvSeMgr {
 	// inlined/unused:
 	void setPauseFlag(u32, u8);
 
-	JSUList<EnvSeBase> m_envList;		// _00
-	EnvSe_PauseOffReservator m_reservator;	// _0C
+	JSUList<EnvSeBase> m_envList;          // _00
+	EnvSe_PauseOffReservator m_reservator; // _0C
 };
 } // namespace PSSystem
 

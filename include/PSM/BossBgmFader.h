@@ -66,7 +66,7 @@ struct Mgr {
 
 	// _00 = VTBL
 	JSUList<PSM::EnemyBoss> m_enemyBossList; // _04
-	TypedProc_MidBoss m_typedProc;              // _10
+	TypedProc_MidBoss m_typedProc;           // _10
 };
 } // namespace BossBgmFader
 } // namespace PSM

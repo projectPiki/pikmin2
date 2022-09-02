@@ -23,6 +23,7 @@
 #include "Matrixf.h"
 #include "types.h"
 #include "JSystem/JUT/JUTException.h"
+#include "System.h"
 
 // pellet carry colors/onion destinations
 // for use with Pellet::m_pelletColor
@@ -190,48 +191,48 @@ struct Pellet : public DynCreature, public SysShape::MotionListener, public Carr
 	{
 		return m_pelletPosition;
 	}
-	virtual void getBoundingSphere(Sys::Sphere&);       // _10
-	virtual bool deferPikiCollision() { return true; }  // _20 (weak)
-	virtual void constructor();                         // _2C
-	virtual void onInit(CreatureInitArg*);              // _30 (weak)
-	virtual void onKill(CreatureKillArg*);              // _34
-	virtual void doAnimation();                         // _3C
-	virtual void doEntry();                             // _40
-	virtual void doSetView(int);                        // _44
-	virtual void doViewCalc();                          // _48
-	virtual void doSimulation(float);                   // _4C
-	virtual void doDirectDraw(Graphics&);               // _50
-	virtual float getFaceDir() { return m_faceDir; }    // _64 (weak)
-	virtual void setVelocity(Vector3f&);                // _68
-	virtual Vector3f getVelocity();                     // _6C
-	virtual void onSetPosition(Vector3f&);              // _70 (weak)
-	virtual void updateTrMatrix();                      // _78
-	virtual bool inWater() { return m_isInWater; }      // _8C (weak)
-	virtual void onStartCapture();                      // _94
-	virtual void onUpdateCapture(Matrixf&);             // _98
-	virtual void onEndCapture();                        // _9C
-	virtual void doSave(Stream&);                       // _E0
-	virtual void doLoad(Stream&);                       // _E4
-	virtual void bounceCallback(Sys::Triangle*);        // _E8
-	virtual JAInter::Object* getJAIObject();            // _F4
-	virtual PSM::Creature* getPSCreature();             // _F8
+	virtual void getBoundingSphere(Sys::Sphere&);                     // _10
+	virtual bool deferPikiCollision() { return true; }                // _20 (weak)
+	virtual void constructor();                                       // _2C
+	virtual void onInit(CreatureInitArg*);                            // _30 (weak)
+	virtual void onKill(CreatureKillArg*);                            // _34
+	virtual void doAnimation();                                       // _3C
+	virtual void doEntry();                                           // _40
+	virtual void doSetView(int);                                      // _44
+	virtual void doViewCalc();                                        // _48
+	virtual void doSimulation(float);                                 // _4C
+	virtual void doDirectDraw(Graphics&);                             // _50
+	virtual float getFaceDir() { return m_faceDir; }                  // _64 (weak)
+	virtual void setVelocity(Vector3f&);                              // _68
+	virtual Vector3f getVelocity();                                   // _6C
+	virtual void onSetPosition(Vector3f&);                            // _70 (weak)
+	virtual void updateTrMatrix();                                    // _78
+	virtual bool inWater() { return m_isInWater; }                    // _8C (weak)
+	virtual void onStartCapture();                                    // _94
+	virtual void onUpdateCapture(Matrixf&);                           // _98
+	virtual void onEndCapture();                                      // _9C
+	virtual void doSave(Stream&);                                     // _E0
+	virtual void doLoad(Stream&);                                     // _E4
+	virtual void bounceCallback(Sys::Triangle*);                      // _E8
+	virtual JAInter::Object* getJAIObject();                          // _F4
+	virtual PSM::Creature* getPSCreature();                           // _F8
 	virtual Vector3f* getSound_PosPtr() { return &m_pelletPosition; } // _100 (weak)
-	virtual void getShadowParam(ShadowParam&);          // _134
-	virtual bool needShadow();                          // _138
-	virtual void getLODSphere(Sys::Sphere&);            // _140
-	virtual void startPick();                           // _148
-	virtual void endPick(bool);                         // _14C
-	virtual bool isSlotFree(short);                     // _168
-	virtual int getFreeStickSlot();                     // _16C
-	virtual int getNearFreeStickSlot(Vector3f&);        // _170
-	virtual int getRandomFreeStickSlot();               // _174
-	virtual void onSlotStickStart(Creature*, short);    // _178
-	virtual void onSlotStickEnd(Creature*, short);      // _17C
-	virtual void calcStickSlotGlobal(short, Vector3f&); // _180
-	virtual bool stimulate(Interaction&);               // _1A4
-	virtual char* getCreatureName();                    // _1A8
-	virtual s32 getCreatureID();                        // _1AC
-	virtual void onSetPosition();                       // _1B0
+	virtual void getShadowParam(ShadowParam&);                        // _134
+	virtual bool needShadow();                                        // _138
+	virtual void getLODSphere(Sys::Sphere&);                          // _140
+	virtual void startPick();                                         // _148
+	virtual void endPick(bool);                                       // _14C
+	virtual bool isSlotFree(short);                                   // _168
+	virtual int getFreeStickSlot();                                   // _16C
+	virtual int getNearFreeStickSlot(Vector3f&);                      // _170
+	virtual int getRandomFreeStickSlot();                             // _174
+	virtual void onSlotStickStart(Creature*, short);                  // _178
+	virtual void onSlotStickEnd(Creature*, short);                    // _17C
+	virtual void calcStickSlotGlobal(short, Vector3f&);               // _180
+	virtual bool stimulate(Interaction&);                             // _1A4
+	virtual char* getCreatureName();                                  // _1A8
+	virtual s32 getCreatureID();                                      // _1AC
+	virtual void onSetPosition();                                     // _1B0
 	////////////// VTABLE 1 END (DYNCREATURE)
 
 	////////////// VTABLE 2  (MOTIONLISTENER)
@@ -240,16 +241,26 @@ struct Pellet : public DynCreature, public SysShape::MotionListener, public Carr
 
 	////////////// VTABLE 3 (CARRYINFOOWNER + SELF)
 	// getCarryInfoParam thunk at _1C8
-	virtual void do_onInit(CreatureInitArg*) { }              // _1CC (weak)
-	virtual void onCreateShape() { }                          // _1D0 (weak)
-	virtual void theEntry();                                  // _1D4
-	virtual void onBounce() { }                               // _1D8 (weak)
-	virtual void shadowOn();                                  // _1DC
-	virtual void shadowOff();                                 // _1E0
-	virtual bool isPickable();                                // _1E4
-	virtual s32 getBedamaColor() { return -1; }               // _1E8 (weak)
-	virtual void do_update() { }                              // _1EC (weak)
-	virtual void onKeyEvent(const SysShape::KeyEvent&);       // _1F0 (weak, thunk at _1BC)
+	virtual void do_onInit(CreatureInitArg*) { }                // _1CC (weak)
+	virtual void onCreateShape() { }                            // _1D0 (weak)
+	virtual void theEntry();                                    // _1D4
+	virtual void onBounce() { }                                 // _1D8 (weak)
+	virtual void shadowOn();                                    // _1DC
+	virtual void shadowOff();                                   // _1E0
+	virtual bool isPickable();                                  // _1E4
+	virtual s32 getBedamaColor() { return -1; }                 // _1E8 (weak)
+	virtual void do_update() { }                                // _1EC (weak)
+	virtual void onKeyEvent(const SysShape::KeyEvent& keyEvent) // _1F0 (weak, thunk at _1BC)
+	{
+		if ((keyEvent.m_type == 0x3E8U) && (_41C.m_flags & 2)) {
+			_41C.startAnim(0, this);
+			if (_3D0 & 1) {
+				_438 = 30.0f * sys->m_secondsPerFrame;
+				return;
+			}
+			_438 = 0.0f;
+		}
+	}
 	virtual u8 getKind() = 0;                                 // _1F4
 	virtual void changeMaterial() { }                         // _1F8 (weak)
 	virtual void createKiraEffect(Vector3f&) { }              // _1FC (weak)
@@ -317,7 +328,7 @@ struct Pellet : public DynCreature, public SysShape::MotionListener, public Carr
 	void getPelletGoal();
 	int getTotalPikmins();
 	short getTotalCarryPikmins();
-	void getPikmins(int); 
+	void getPikmins(int);
 	void getFace();
 	void clearDiscoverDisable();
 	void startDiscoverDisable(u8);
@@ -331,22 +342,22 @@ struct Pellet : public DynCreature, public SysShape::MotionListener, public Carr
 	}
 
 	inline void setSlotOccupied(u8* m_slots, int slot)
-    {
-        if (slot < 128) {
-            u32 index = slot >> 3;
-            u32 flag = 1 << slot - index * 8;
-            m_slots[15 - index] |= flag;
-        }
-    }
+	{
+		if (slot < 128) {
+			u32 index = slot >> 3;
+			u32 flag  = 1 << slot - index * 8;
+			m_slots[15 - index] |= flag;
+		}
+	}
 
 	inline void setSlotFree(u8* m_slots, int slot)
-    {
-        if (slot < 128) {
-            u32 index = slot >> 3;
-            u32 flag = 1 << slot - index * 8;
-            m_slots[15 - index] &= ~flag;
-        }
-    }
+	{
+		if (slot < 128) {
+			u32 index = slot >> 3;
+			u32 flag  = 1 << slot - index * 8;
+			m_slots[15 - index] &= ~flag;
+		}
+	}
 
 	// _00		= VTABLE 1
 	// _04-_314	= DYNCREATURE
