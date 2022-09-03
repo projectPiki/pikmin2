@@ -17,8 +17,7 @@ struct TDispTriangleArray;
 
 struct MoveInfo {
 	inline MoveInfo(Sys::Sphere* sphere, Vector3f* vec, float a)
-	    : _14(nullptr)
-	    , _00(sphere)
+	    : _00(sphere)
 	    , _04(vec)
 	    , _08(a)
 	{
@@ -29,6 +28,7 @@ struct MoveInfo {
 		_19 = 0;
 		_18 = 0;
 		_48 = nullptr;
+		_14 = nullptr;
 		_90 = 0;
 		_94 = nullptr;
 		_2C = JMath::sincosTable_.m_table[256].first; // pi/2

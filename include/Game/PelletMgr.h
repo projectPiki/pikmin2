@@ -11,10 +11,12 @@
 #include "Game/Onyon.h"
 #include "Game/StateMachine.h"
 #include "Game/BasePelletMgr.h"
+#include "Game/GameSystem.h"
 #include "efx/TOrima.h"
 #include "SysShape/MotionListener.h"
 #include "SysShape/KeyEvent.h"
 #include "SysShape/Animator.h"
+#include "SysShape/Joint.h"
 #include "Sys/Sphere.h"
 #include "Sys/Triangle.h"
 #include "CarryInfo.h"
@@ -97,8 +99,9 @@ struct PelletMgr : public NodeObjectMgr<GenericObjectMgr> {
 	BasePelletMgr* getMgrByID(u8);
 
 	static bool mDebug;
+	static bool disableDynamics;
 
-	u8 _3C; // _3C
+	bool m_noMovieDraw; // _3C, setMovieDraw sets this to !input - may need to flip the name eventually
 };
 
 struct PelletIterator {
@@ -327,7 +330,7 @@ struct Pellet : public DynCreature, public SysShape::MotionListener, public Carr
 	int getSpeicalSlot();
 	void getPelletGoal();
 	int getTotalPikmins();
-	short getTotalCarryPikmins();
+	int getTotalCarryPikmins();
 	void getPikmins(int);
 	void getFace();
 	void clearDiscoverDisable();
@@ -341,7 +344,7 @@ struct Pellet : public DynCreature, public SysShape::MotionListener, public Carr
 		m_pelletColor = color;
 	}
 
-	inline void setSlotOccupied(u8* m_slots, int slot)
+	inline void setSlotOccupied(int slot)
 	{
 		if (slot < 128) {
 			u32 index = slot >> 3;
@@ -350,13 +353,52 @@ struct Pellet : public DynCreature, public SysShape::MotionListener, public Carr
 		}
 	}
 
-	inline void setSlotFree(u8* m_slots, int slot)
+	inline void setSlotFree(int slot)
 	{
 		if (slot < 128) {
 			u32 index = slot >> 3;
 			u32 flag  = 1 << slot - index * 8;
 			m_slots[15 - index] &= ~flag;
 		}
+	}
+
+	inline void animate_pmotions(SysShape::Animator* animator)
+	{
+		for (int i = 0; i < m_numPMotions; i++) {
+			animator->animate(1.0f);
+
+			char jointName[128];
+			sprintf(jointName, "pmotion");
+
+			SysShape::Joint* joint = m_model->getJoint(jointName);
+
+			if (joint != nullptr) {
+				u16 index               = joint->m_jointIndex;
+				SysShape::Model* model  = m_model;
+				J3DMtxCalcAnmBase* calc = static_cast<J3DMtxCalcAnmBase*>(animator->getCalc());
+
+				model->m_j3dModel->m_modelData->m_jointTree.m_joints[index]->m_mtxCalc = calc;
+			}
+		}
+	}
+
+	inline bool isTreasurePosition() // this probably needs a better name; used in Pellet::onSetPosition
+	{
+		bool check = false;
+		if ((m_captureMatrix == nullptr) && (PelletMgr::mDebug == false) && (m_config->m_params.m_depth.m_data > 0.0f) && (_3C4 == 0)) {
+			check = true;
+		}
+		if ((gameSystem->m_mode == GSM_VERSUS_MODE) && (m_captureMatrix == nullptr) && (_3C4 == 0)) {
+			u8 test = _32C;
+			if (test == 4) {
+				check = false;
+			} else if (test == 5) {
+				check = false;
+			} else if (test == 6 && getStateID() != 5) {
+				check = true;
+			}
+		}
+		return check;
 	}
 
 	// _00		= VTABLE 1
@@ -373,7 +415,8 @@ struct Pellet : public DynCreature, public SysShape::MotionListener, public Carr
 	u8 _32E[0x2];                 //  _32E - could be padding
 	PSM::EventBase* m_soundMgr;   // _330
 	PelletCarry* m_pelletCarry;   // _334
-	u8 _338[0x4];                 // _unknown
+	u8 m_numPMotions;             // _338
+	u8 _339[0x3];                 // _339, unknown/padding
 	SysShape::Animator _33C;      // _33C
 	PelletView* m_pelletView;     // _358
 	PelletConfig* m_config;       // _35C
@@ -387,7 +430,7 @@ struct Pellet : public DynCreature, public SysShape::MotionListener, public Carr
 	float m_faceDir;              // _3B8
 	u8 m_wallTimer;               // _3BC
 	u8 _3BD[0x3];                 // _3BD - possibly padding
-	u32 _3C0;                     // _3C0 - 'claim'?
+	u32 m_claim;                  // _3C0
 	u8 _3C4;                      // _3C4
 	u8 _3C5[0x3];                 // _3C5 - unknown
 	PelletFSM* m_pelletSM;        // _3C8

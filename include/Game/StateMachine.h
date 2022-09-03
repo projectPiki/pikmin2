@@ -39,10 +39,10 @@ template <typename T> struct StateMachine {
 	// virtual void start(T*, int, StateArg*)    = 0; // _04
 	// virtual void exec(T*)                    = 0; // _08
 	// virtual void transit(T*, int, StateArg*) = 0; // _0C
-	virtual void init(T*);                    // _00
-	virtual void start(T*, int, StateArg*);   // _04
-	virtual void exec(T*);                    // _08
-	virtual void transit(T*, int, StateArg*); // _0C
+	virtual void init(T*);                    // _08
+	virtual void start(T*, int, StateArg*);   // _0C
+	virtual void exec(T*);                    // _10
+	virtual void transit(T*, int, StateArg*); // _14
 
 	// #pragma dont_inline on
 	void create(int limit);
@@ -69,6 +69,8 @@ template <typename T> struct StateMachine {
 	// 	m_count++;
 	// }
 	// #pragma dont_inline reset
+
+	int getCurrID(T*);
 
 	// VTBL _00
 	FSMState<T>** m_states; // _04

@@ -8,6 +8,7 @@ float pikmin2_sinf(float x);
 float pikmin2_cosf(float x);
 float pikmin2_atan2f(float x, float y);
 float pikmin2_sqrtf(float x);
+float roundAng(float x);
 
 float qdist2(float, float, float, float);
 

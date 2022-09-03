@@ -54,10 +54,20 @@ struct SceneMgr {
 
 	inline void checkScene() { P2ASSERTLINE(199, m_scenes != nullptr); }
 
+	inline Scene* getChildScene()
+	{
+		P2ASSERTLINE(207, m_scenes != nullptr);
+		Scene* child = m_scenes->m_child;
+		JUT_ASSERTLINE(209, child != nullptr, "get sound scene at\ninvalid timming\n");
+		return child;
+	}
+
 	// _00	= VTBL
 	Scene* m_scenes; // _04
 	Scene* m_endScene;
 };
+
+extern SceneMgr* spSceneMgr;
 } // namespace PSSystem
 
 #endif
