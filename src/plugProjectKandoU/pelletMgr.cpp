@@ -11,6 +11,7 @@
 #include "Game/GameMessage.h"
 #include "Game/GameStats.h"
 #include "Game/DynParticle.h"
+#include "Game/ItemOnyon.h"
 #include "Game/ItemTreasure.h"
 #include "Game/MapMgr.h"
 #include "Game/routeMgr.h"
@@ -19,6 +20,7 @@
 #include "Game/Entities/PelletItem.h"
 #include "Game/Entities/PelletNumber.h"
 #include "Game/Entities/PelletOtakara.h"
+#include "Game/PikiMgr.h"
 #include "Game/PlatInstance.h"
 #include "Game/MoviePlayer.h"
 #include "Game/AIConstants.h"
@@ -2104,7 +2106,7 @@ void Pellet::onSetPosition()
 				item->setPosition(m_pelletPosition, false);
 				item->setTreasure(this);
 			} else {
-				JUT_PANICLINE(2326, "がっかり\n"); // 'disappointed' lol
+				JUT_PANICLINE(2326, "????????\n"); // 'disappointed' lol
 			}
 		}
 	}
@@ -4466,7 +4468,7 @@ lbl_8016A704:
  * Address:	8016A728
  * Size:	00020C
  */
-void Pellet::getPelletGoal(void)
+void Pellet::getPelletGoal()
 {
 	/*
 	stwu     r1, -0x40(r1)
@@ -4647,39 +4649,12 @@ int Pellet::getTotalPikmins()
  * Address:	8016A970
  * Size:	00006C
  */
-void Pellet::getTotalCarryPikmins(void)
-{
-	/*
-	stwu     r1, -0x20(r1)
-	mflr     r0
-	stw      r0, 0x24(r1)
-	stw      r31, 0x1c(r1)
-	mr       r31, r3
-	stw      r30, 0x18(r1)
-	li       r30, 0
-	stw      r29, 0x14(r1)
-	li       r29, 0
-
-lbl_8016A994:
-	lwz      r3, pikiMgr__4Game@sda21(r13)
-	mr       r4, r29
-	bl       getColorTransportScale__Q24Game7PikiMgrFi
-	lwz      r0, 0x3f8(r31)
-	addi     r29, r29, 1
-	cmpwi    r29, 7
-	addi     r31, r31, 4
-	mullw    r0, r0, r3
-	add      r30, r30, r0
-	blt      lbl_8016A994
-	lwz      r0, 0x24(r1)
-	mr       r3, r30
-	lwz      r31, 0x1c(r1)
-	lwz      r30, 0x18(r1)
-	lwz      r29, 0x14(r1)
-	mtlr     r0
-	addi     r1, r1, 0x20
-	blr
-	*/
+int Pellet::getTotalCarryPikmins() {
+    int total = 0;
+    for (int i = 0; i < 7; i++) {
+        total += m_pikminCount[i] * pikiMgr->getColorTransportScale(i);
+    }
+    return total;
 }
 
 /*
@@ -4687,44 +4662,13 @@ lbl_8016A994:
  * Address:	8016A9DC
  * Size:	000078
  */
-void Pellet::getPikmins(int)
-{
-	/*
-	stwu     r1, -0x10(r1)
-	mflr     r0
-	stw      r0, 0x14(r1)
-	li       r0, 0
-	stw      r31, 0xc(r1)
-	or.      r31, r4, r4
-	stw      r30, 8(r1)
-	mr       r30, r3
-	blt      lbl_8016AA0C
-	cmpwi    r31, 7
-	bge      lbl_8016AA0C
-	li       r0, 1
-
-lbl_8016AA0C:
-	clrlwi.  r0, r0, 0x18
-	bne      lbl_8016AA30
-	lis      r3, lbl_8047E344@ha
-	lis      r5, lbl_8047E354@ha
-	addi     r3, r3, lbl_8047E344@l
-	li       r4, 0xf3e
-	addi     r5, r5, lbl_8047E354@l
-	crclr    6
-	bl       panic_f__12JUTExceptionFPCciPCce
-
-lbl_8016AA30:
-	slwi     r0, r31, 2
-	add      r3, r30, r0
-	lwz      r3, 0x3f8(r3)
-	lwz      r31, 0xc(r1)
-	lwz      r30, 8(r1)
-	lwz      r0, 0x14(r1)
-	mtlr     r0
-	addi     r1, r1, 0x10
-	blr
-	*/
+int Pellet::getPikmins(int color) {
+    bool validColor = false;
+    if (color >= 0 && color < 7) {
+        validColor = true;
+    }
+    P2ASSERTLINE(3902, validColor);
+    return m_pikminCount[color];
 }
 
 /*
@@ -4976,44 +4920,19 @@ namespace Game {
  * Address:	8016B02C
  * Size:	000068
  */
-void Pellet::getFace(void)
-{
-	/*
-	stwu     r1, -0x20(r1)
-	mflr     r0
-	stw      r0, 0x24(r1)
-	lbz      r0, 0x364(r3)
-	cmplwi   r0, 2
-	bne      lbl_8016B04C
-	li       r3, 0
-	b        lbl_8016B084
-
-lbl_8016B04C:
-	addi     r4, r1, 8
-	bl       "getYVector__Q24Game8CreatureFR10Vector3<f>"
-	lfs      f1, 0xc(r1)
-	lfs      f0, lbl_80518914@sda21(r2)
-	fcmpo    cr0, f1, f0
-	ble      lbl_8016B06C
-	li       r3, 0
-	b        lbl_8016B084
-
-lbl_8016B06C:
-	lfs      f0, lbl_805189C4@sda21(r2)
-	fcmpo    cr0, f1, f0
-	bge      lbl_8016B080
-	li       r3, 1
-	b        lbl_8016B084
-
-lbl_8016B080:
-	li       r3, 2
-
-lbl_8016B084:
-	lwz      r0, 0x24(r1)
-	mtlr     r0
-	addi     r1, r1, 0x20
-	blr
-	*/
+inline int Pellet::getFace() {
+    if (_364 == 2) {
+        return 0;
+    }
+    Vector3f yVec;
+    getYVector(yVec);
+    if (yVec.y > 0.0f) {
+        return 0;
+    } else if (yVec.y < -0.0f) {
+        return 1;
+    } else {
+        return 2;
+    }
 }
 
 /*
@@ -5021,225 +4940,82 @@ lbl_8016B084:
  * Address:	8016B094
  * Size:	0002AC
  */
-void Pellet::startPick()
-{
-	/*
-	stwu     r1, -0x40(r1)
-	mflr     r0
-	stw      r0, 0x44(r1)
-	stw      r31, 0x3c(r1)
-	mr       r31, r3
-	stw      r30, 0x38(r1)
-	lbz      r0, 0x3d0(r3)
-	clrlwi.  r0, r0, 0x1f
-	bne      lbl_8016B328
-	lwz      r4, 0x35c(r31)
-	lhz      r0, 0x244(r4)
-	clrlwi.  r0, r0, 0x1f
-	beq      lbl_8016B0D8
-	lwz      r12, 0(r3)
-	lwz      r12, 0x1dc(r12)
-	mtctr    r12
-	bctrl
+void Pellet::startPick() {
+    if (!(_3D0 & 1)) {
+        if (m_config->m_params.m_code.m_data & 1) {
+            shadowOn();
+        }
+        
+        if (_41C.m_animMgr != nullptr) {
+            if (!(_41C.m_flags & 2)) {
+                _41C.startAnim(0, this);
+                _438 = 30.0f * sys->m_secondsPerFrame;
+            }
+        } else if (m_pelletView != nullptr) {
+            m_pelletView->view_start_carrymotion();
+        }
 
-lbl_8016B0D8:
-	lwz      r0, 0x42c(r31)
-	cmplwi   r0, 0
-	beq      lbl_8016B124
-	lbz      r0, 0x434(r31)
-	rlwinm.  r0, r0, 0, 0x1e, 0x1e
-	bne      lbl_8016B140
-	cmplwi   r31, 0
-	mr       r5, r31
-	beq      lbl_8016B100
-	addi     r5, r31, 0x314
+        Vector3f vec2;
+        Vector3f vec1;
+        Vector3f vec3;
+        Vector3f vec4;
+        int face;
+        
+        if (_364 != 2) {
+            getYVector(vec1);
+        }
+        
+        getYVector(vec2);
+        vec2 *= 4.0f;
+        
+        if (_364 == 2) {
+            face = 0;
+        } else {
+            getYVector(vec3);
+            if (vec3.y > 0.0f) {
+                face = 0;
+            } else if (vec3.y < -0.0f) {
+                face = 1;
+            } else {
+                face = 2;
+            }
+        }
+        if (face == 0) {
+            m_rigid.m_configs[0]._00 += vec2;
+        } else {
+            m_rigid.m_configs[0]._00 -= vec2;
+        }
+        
+        DynParticle* particle = m_dynParticle;
+        while (particle != nullptr) {
+            if (_364 == 2) {
+                face = 0;
+            } else {
+                getYVector(vec4);
+                if (vec4.y > 0.0f) {
+                    face = 0;
+                } else if (vec4.y < -0.0f) {
+                    face = 1;
+                } else {
+                    face = 2;
+                }
+            }
+            if (face == 0) {
+                particle->_00.y -= 4.0f; 
+            } else {
+                particle->_00.y += 4.0f;
+            }            
+            particle = static_cast<DynParticle*>(particle->m_next);
+        }
 
-lbl_8016B100:
-	addi     r3, r31, 0x41c
-	li       r4, 0
-	bl       startAnim__Q28SysShape8AnimatorFiPQ28SysShape14MotionListener
-	lwz      r3, sys@sda21(r13)
-	lfs      f1, lbl_80518928@sda21(r2)
-	lfs      f0, 0x54(r3)
-	fmuls    f0, f1, f0
-	stfs     f0, 0x438(r31)
-	b        lbl_8016B140
-
-lbl_8016B124:
-	lwz      r3, 0x358(r31)
-	cmplwi   r3, 0
-	beq      lbl_8016B140
-	lwz      r12, 0(r3)
-	lwz      r12, 0x18(r12)
-	mtctr    r12
-	bctrl
-
-lbl_8016B140:
-	lbz      r0, 0x364(r31)
-	cmplwi   r0, 2
-	beq      lbl_8016B158
-	mr       r3, r31
-	addi     r4, r1, 0x20
-	bl       "getYVector__Q24Game8CreatureFR10Vector3<f>"
-
-lbl_8016B158:
-	mr       r3, r31
-	addi     r4, r1, 0x2c
-	bl       "getYVector__Q24Game8CreatureFR10Vector3<f>"
-	lfs      f3, 0x34(r1)
-	lfs      f2, lbl_80518938@sda21(r2)
-	lfs      f1, 0x30(r1)
-	lfs      f0, 0x2c(r1)
-	fmuls    f3, f3, f2
-	fmuls    f1, f1, f2
-	fmuls    f0, f0, f2
-	stfs     f3, 0x34(r1)
-	stfs     f0, 0x2c(r1)
-	stfs     f1, 0x30(r1)
-	lbz      r0, 0x364(r31)
-	cmplwi   r0, 2
-	bne      lbl_8016B1A0
-	li       r0, 0
-	b        lbl_8016B1DC
-
-lbl_8016B1A0:
-	mr       r3, r31
-	addi     r4, r1, 0x14
-	bl       "getYVector__Q24Game8CreatureFR10Vector3<f>"
-	lfs      f1, 0x18(r1)
-	lfs      f0, lbl_80518914@sda21(r2)
-	fcmpo    cr0, f1, f0
-	ble      lbl_8016B1C4
-	li       r0, 0
-	b        lbl_8016B1DC
-
-lbl_8016B1C4:
-	lfs      f0, lbl_805189C4@sda21(r2)
-	fcmpo    cr0, f1, f0
-	bge      lbl_8016B1D8
-	li       r0, 1
-	b        lbl_8016B1DC
-
-lbl_8016B1D8:
-	li       r0, 2
-
-lbl_8016B1DC:
-	cmpwi    r0, 0
-	bne      lbl_8016B218
-	lfs      f1, 0x1b0(r31)
-	lfs      f0, 0x2c(r1)
-	fadds    f0, f1, f0
-	stfs     f0, 0x1b0(r31)
-	lfs      f1, 0x1b4(r31)
-	lfs      f0, 0x30(r1)
-	fadds    f0, f1, f0
-	stfs     f0, 0x1b4(r31)
-	lfs      f1, 0x1b8(r31)
-	lfs      f0, 0x34(r1)
-	fadds    f0, f1, f0
-	stfs     f0, 0x1b8(r31)
-	b        lbl_8016B248
-
-lbl_8016B218:
-	lfs      f1, 0x1b0(r31)
-	lfs      f0, 0x2c(r1)
-	fsubs    f0, f1, f0
-	stfs     f0, 0x1b0(r31)
-	lfs      f1, 0x1b4(r31)
-	lfs      f0, 0x30(r1)
-	fsubs    f0, f1, f0
-	stfs     f0, 0x1b4(r31)
-	lfs      f1, 0x1b8(r31)
-	lfs      f0, 0x34(r1)
-	fsubs    f0, f1, f0
-	stfs     f0, 0x1b8(r31)
-
-lbl_8016B248:
-	lwz      r30, 0x178(r31)
-	b        lbl_8016B2D0
-
-lbl_8016B250:
-	lbz      r0, 0x364(r31)
-	cmplwi   r0, 2
-	bne      lbl_8016B264
-	li       r0, 0
-	b        lbl_8016B2A0
-
-lbl_8016B264:
-	mr       r3, r31
-	addi     r4, r1, 8
-	bl       "getYVector__Q24Game8CreatureFR10Vector3<f>"
-	lfs      f1, 0xc(r1)
-	lfs      f0, lbl_80518914@sda21(r2)
-	fcmpo    cr0, f1, f0
-	ble      lbl_8016B288
-	li       r0, 0
-	b        lbl_8016B2A0
-
-lbl_8016B288:
-	lfs      f0, lbl_805189C4@sda21(r2)
-	fcmpo    cr0, f1, f0
-	bge      lbl_8016B29C
-	li       r0, 1
-	b        lbl_8016B2A0
-
-lbl_8016B29C:
-	li       r0, 2
-
-lbl_8016B2A0:
-	cmpwi    r0, 0
-	bne      lbl_8016B2BC
-	lfs      f1, 4(r30)
-	lfs      f0, lbl_80518938@sda21(r2)
-	fsubs    f0, f1, f0
-	stfs     f0, 4(r30)
-	b        lbl_8016B2CC
-
-lbl_8016B2BC:
-	lfs      f1, 4(r30)
-	lfs      f0, lbl_80518938@sda21(r2)
-	fadds    f0, f1, f0
-	stfs     f0, 4(r30)
-
-lbl_8016B2CC:
-	lwz      r30, 0x1c(r30)
-
-lbl_8016B2D0:
-	cmplwi   r30, 0
-	bne      lbl_8016B250
-	lbz      r0, 0x3d0(r31)
-	rlwinm.  r0, r0, 0, 0x1e, 0x1e
-	beq      lbl_8016B2FC
-	mr       r3, r31
-	lwz      r12, 0(r31)
-	lwz      r12, 0x210(r12)
-	mtctr    r12
-	bctrl
-	b        lbl_8016B31C
-
-lbl_8016B2FC:
-	mr       r3, r31
-	lwz      r12, 0(r31)
-	lwz      r12, 0x20c(r12)
-	mtctr    r12
-	bctrl
-	lbz      r0, 0x3d0(r31)
-	ori      r0, r0, 2
-	stb      r0, 0x3d0(r31)
-
-lbl_8016B31C:
-	lbz      r0, 0x3d0(r31)
-	ori      r0, r0, 1
-	stb      r0, 0x3d0(r31)
-
-lbl_8016B328:
-	lwz      r0, 0x44(r1)
-	lwz      r31, 0x3c(r1)
-	lwz      r30, 0x38(r1)
-	mtlr     r0
-	addi     r1, r1, 0x40
-	blr
-	*/
+        if (_3D0 & 2) {
+            sound_otakaraEventRestart();
+        } else {
+            sound_otakaraEventStart();
+            _3D0 |= 2;
+        }
+        _3D0 |= 1;
+    }
 }
 
 /*
@@ -5276,7 +5052,7 @@ void Pellet::endPick(bool b)
 		_3D0 &= ~0x1;
 		Vector3f vec1;
 		Vector3f vec2;
-		int ySign;
+		int face;
 
 		if (_364 != 2) {
 			getYVector(vec1);
@@ -5285,18 +5061,18 @@ void Pellet::endPick(bool b)
 		DynParticle* particle = m_dynParticle;
 		while (particle != nullptr) {
 			if (_364 == 2) {
-				ySign = 0;
+				face = 0;
 			} else {
 				getYVector(vec2);
 				if (vec2.y > 0.0f) {
-					ySign = 0;
+					face = 0;
 				} else if (vec2.y < -0.0f) {
-					ySign = 1;
+					face = 1;
 				} else {
-					ySign = 2;
+					face = 2;
 				}
 			}
-			if (ySign == 0) {
+			if (face == 0) {
 				particle->_00.y += 4.0f;
 			} else {
 				particle->_00.y -= 4.0f;
@@ -6233,16 +6009,12 @@ void BasePelletMgr::setupSoundViewerAndBas(void)
  * Address:	8016C968
  * Size:	000018
  */
-PelletIterator::PelletIterator(void)
+PelletIterator::PelletIterator()
 {
-	/*
-	li       r0, 0
-	stw      r0, 0(r3)
-	stw      r0, 8(r3)
-	stw      r0, 0xc(r3)
-	stw      r0, 4(r3)
-	blr
-	*/
+    _00 = 0;
+    _08 = nullptr;
+    _0C = nullptr;
+    _04 = 0;
 }
 
 /*
@@ -6790,80 +6562,26 @@ void PelletMgr::setUseFlagAll(bool)
  * Address:	8016D148
  * Size:	0000F0
  */
-void PelletMgr::createManagers(unsigned long)
-{
-	/*
-	stwu     r1, -0x10(r1)
-	mflr     r0
-	stw      r0, 0x14(r1)
-	stw      r31, 0xc(r1)
-	mr       r31, r3
-	li       r3, 0xa4
-	bl       __nw__FUl
-	or.      r4, r3, r3
-	beq      lbl_8016D178
-	li       r4, 1
-	bl       __ct__Q34Game12PelletNumber3MgrFv
-	mr       r4, r3
-
-lbl_8016D178:
-	stw      r4, mgr__Q24Game12PelletNumber@sda21(r13)
-	mr       r3, r31
-	bl       addMgr__Q24Game9PelletMgrFPQ24Game13BasePelletMgr
-	li       r3, 0xa4
-	bl       __nw__FUl
-	or.      r4, r3, r3
-	beq      lbl_8016D1A0
-	li       r4, 1
-	bl       __ct__Q34Game13PelletCarcass3MgrFv
-	mr       r4, r3
-
-lbl_8016D1A0:
-	stw      r4, mgr__Q24Game13PelletCarcass@sda21(r13)
-	mr       r3, r31
-	bl       addMgr__Q24Game9PelletMgrFPQ24Game13BasePelletMgr
-	li       r3, 0xa4
-	bl       __nw__FUl
-	or.      r4, r3, r3
-	beq      lbl_8016D1C8
-	li       r4, 1
-	bl       __ct__Q34Game11PelletFruit3MgrFv
-	mr       r4, r3
-
-lbl_8016D1C8:
-	stw      r4, mgr__Q24Game11PelletFruit@sda21(r13)
-	mr       r3, r31
-	bl       addMgr__Q24Game9PelletMgrFPQ24Game13BasePelletMgr
-	li       r3, 0xa4
-	bl       __nw__FUl
-	or.      r4, r3, r3
-	beq      lbl_8016D1F0
-	li       r4, 1
-	bl       __ct__Q34Game13PelletOtakara3MgrFv
-	mr       r4, r3
-
-lbl_8016D1F0:
-	stw      r4, mgr__Q24Game13PelletOtakara@sda21(r13)
-	mr       r3, r31
-	bl       addMgr__Q24Game9PelletMgrFPQ24Game13BasePelletMgr
-	li       r3, 0xa4
-	bl       __nw__FUl
-	or.      r4, r3, r3
-	beq      lbl_8016D218
-	li       r4, 1
-	bl       __ct__Q34Game10PelletItem3MgrFv
-	mr       r4, r3
-
-lbl_8016D218:
-	stw      r4, mgr__Q24Game10PelletItem@sda21(r13)
-	mr       r3, r31
-	bl       addMgr__Q24Game9PelletMgrFPQ24Game13BasePelletMgr
-	lwz      r0, 0x14(r1)
-	lwz      r31, 0xc(r1)
-	mtlr     r0
-	addi     r1, r1, 0x10
-	blr
-	*/
+void PelletMgr::createManagers(u32) {
+    PelletNumber::Mgr* numberMgr = new PelletNumber::Mgr();
+    PelletNumber::mgr = numberMgr;
+    addMgr(numberMgr);
+        
+    PelletCarcass::Mgr* carcassMgr = new PelletCarcass::Mgr();
+    PelletCarcass::mgr = carcassMgr;
+    addMgr(carcassMgr);
+    
+    PelletFruit::Mgr* fruitMgr = new PelletFruit::Mgr();
+    PelletFruit::mgr = fruitMgr;
+    addMgr(fruitMgr);
+        
+    PelletOtakara::Mgr* otakaraMgr = new PelletOtakara::Mgr();
+    PelletOtakara::mgr = otakaraMgr;
+    addMgr(otakaraMgr);
+    
+    PelletItem::Mgr* itemMgr = new PelletItem::Mgr();
+    PelletItem::mgr = itemMgr;
+    addMgr(itemMgr);
 }
 
 /*
@@ -6871,42 +6589,12 @@ lbl_8016D218:
  * Address:	8016D238
  * Size:	000080
  */
-void PelletMgr::resetMgrs(void)
-{
-	/*
-	stwu     r1, -0x10(r1)
-	mflr     r0
-	stw      r0, 0x14(r1)
-	lwz      r3, mgr__Q24Game12PelletNumber@sda21(r13)
-	lwz      r12, 0(r3)
-	lwz      r12, 0x28(r12)
-	mtctr    r12
-	bctrl
-	lwz      r3, mgr__Q24Game13PelletCarcass@sda21(r13)
-	lwz      r12, 0(r3)
-	lwz      r12, 0x28(r12)
-	mtctr    r12
-	bctrl
-	lwz      r3, mgr__Q24Game11PelletFruit@sda21(r13)
-	lwz      r12, 0(r3)
-	lwz      r12, 0x28(r12)
-	mtctr    r12
-	bctrl
-	lwz      r3, mgr__Q24Game10PelletItem@sda21(r13)
-	lwz      r12, 0(r3)
-	lwz      r12, 0x38(r12)
-	mtctr    r12
-	bctrl
-	lwz      r3, mgr__Q24Game13PelletOtakara@sda21(r13)
-	lwz      r12, 0(r3)
-	lwz      r12, 0x38(r12)
-	mtctr    r12
-	bctrl
-	lwz      r0, 0x14(r1)
-	mtlr     r0
-	addi     r1, r1, 0x10
-	blr
-	*/
+void PelletMgr::resetMgrs() {
+    PelletNumber::mgr->resetMgr();
+    PelletCarcass::mgr->resetMgr();
+    PelletFruit::mgr->resetMgr();
+    PelletItem::mgr->resetMgrAndResources();
+    PelletOtakara::mgr->resetMgrAndResources();
 }
 
 // } // namespace Game
@@ -6954,42 +6642,12 @@ void PelletMgr::resetMgrs(void)
  * Address:	8016D3A8
  * Size:	000080
  */
-void PelletMgr::setupResources(void)
-{
-	/*
-	stwu     r1, -0x10(r1)
-	mflr     r0
-	stw      r0, 0x14(r1)
-	lwz      r3, mgr__Q24Game12PelletNumber@sda21(r13)
-	lwz      r12, 0(r3)
-	lwz      r12, 0x44(r12)
-	mtctr    r12
-	bctrl
-	lwz      r3, mgr__Q24Game13PelletCarcass@sda21(r13)
-	lwz      r12, 0(r3)
-	lwz      r12, 0x44(r12)
-	mtctr    r12
-	bctrl
-	lwz      r3, mgr__Q24Game11PelletFruit@sda21(r13)
-	lwz      r12, 0(r3)
-	lwz      r12, 0x44(r12)
-	mtctr    r12
-	bctrl
-	lwz      r3, mgr__Q24Game13PelletOtakara@sda21(r13)
-	lwz      r12, 0(r3)
-	lwz      r12, 0x44(r12)
-	mtctr    r12
-	bctrl
-	lwz      r3, mgr__Q24Game10PelletItem@sda21(r13)
-	lwz      r12, 0(r3)
-	lwz      r12, 0x44(r12)
-	mtctr    r12
-	bctrl
-	lwz      r0, 0x14(r1)
-	mtlr     r0
-	addi     r1, r1, 0x10
-	blr
-	*/
+void Game::PelletMgr::setupResources() {
+    PelletNumber::mgr->setupResources();
+    PelletCarcass::mgr->setupResources();
+    PelletFruit::mgr->setupResources();
+    PelletOtakara::mgr->setupResources();
+    PelletItem::mgr->setupResources();
 }
 
 // } // namespace Game
@@ -7320,75 +6978,22 @@ lbl_8016DA58:
  * Address:	8016DAAC
  * Size:	0000E4
  */
-void PelletMgr::makeVsCarryMinMax(Game::PelletInitArg&, char*)
-{
-	/*
-	stwu     r1, -0x10(r1)
-	mflr     r0
-	stw      r0, 0x14(r1)
-	stw      r31, 0xc(r1)
-	mr       r31, r5
-	stw      r30, 8(r1)
-	mr       r30, r4
-	lwz      r3, gameSystem__4Game@sda21(r13)
-	cmplwi   r3, 0
-	beq      lbl_8016DB78
-	lwz      r0, 0x44(r3)
-	cmpwi    r0, 1
-	bne      lbl_8016DB78
-	lwz      r3, cBedamaYellow__13VsOtakaraName@sda21(r13)
-	mr       r4, r31
-	bl       strcmp
-	cmpwi    r3, 0
-	bne      lbl_8016DB08
-	li       r3, 1
-	li       r0, 8
-	stw      r3, 0x20(r30)
-	stw      r0, 0x24(r30)
-	b        lbl_8016DB78
-
-lbl_8016DB08:
-	lwz      r3, cBedamaRed__13VsOtakaraName@sda21(r13)
-	mr       r4, r31
-	bl       strcmp
-	cmpwi    r3, 0
-	bne      lbl_8016DB30
-	li       r3, 1
-	li       r0, 8
-	stw      r3, 0x20(r30)
-	stw      r0, 0x24(r30)
-	b        lbl_8016DB78
-
-lbl_8016DB30:
-	lwz      r3, cBedamaBlue__13VsOtakaraName@sda21(r13)
-	mr       r4, r31
-	bl       strcmp
-	cmpwi    r3, 0
-	bne      lbl_8016DB58
-	li       r3, 1
-	li       r0, 8
-	stw      r3, 0x20(r30)
-	stw      r0, 0x24(r30)
-	b        lbl_8016DB78
-
-lbl_8016DB58:
-	lwz      r3, cCoin__13VsOtakaraName@sda21(r13)
-	mr       r4, r31
-	bl       strcmp
-	cmpwi    r3, 0
-	bne      lbl_8016DB78
-	li       r0, 1
-	stw      r0, 0x20(r30)
-	stw      r0, 0x24(r30)
-
-lbl_8016DB78:
-	lwz      r0, 0x14(r1)
-	lwz      r31, 0xc(r1)
-	lwz      r30, 8(r1)
-	mtlr     r0
-	addi     r1, r1, 0x10
-	blr
-	*/
+void PelletMgr::makeVsCarryMinMax(PelletInitArg& arg, char* name) {
+    if (gameSystem != nullptr && gameSystem->m_mode == GSM_VERSUS_MODE) {
+        if (strcmp(VsOtakaraName::cBedamaYellow, name) == 0) {
+            arg.m_minCarriers = 1;
+            arg.m_maxCarriers = 8;
+        } else if (strcmp(VsOtakaraName::cBedamaRed, name) == 0) {
+            arg.m_minCarriers = 1;
+            arg.m_maxCarriers = 8;
+        } else if (strcmp(VsOtakaraName::cBedamaBlue, name) == 0) {
+            arg.m_minCarriers = 1;
+            arg.m_maxCarriers = 8;
+        } else if (strcmp(VsOtakaraName::cCoin, name) == 0) {
+            arg.m_minCarriers = 1;
+            arg.m_maxCarriers = 1;
+        }
+    }
 }
 
 /*
@@ -7682,23 +7287,8 @@ lbl_8016DEC8:
  * Address:	8016DEDC
  * Size:	000034
  */
-void PelletMgr::OtakaraItemCode::read(Stream&)
-{
-	/*
-	stwu     r1, -0x10(r1)
-	mflr     r0
-	stw      r0, 0x14(r1)
-	stw      r31, 0xc(r1)
-	mr       r31, r3
-	mr       r3, r4
-	bl       readShort__6StreamFv
-	sth      r3, 0(r31)
-	lwz      r0, 0x14(r1)
-	lwz      r31, 0xc(r1)
-	mtlr     r0
-	addi     r1, r1, 0x10
-	blr
-	*/
+void PelletMgr::OtakaraItemCode::read(Stream& stream) {
+    m_value = stream.readShort();
 }
 
 /*
@@ -7706,34 +7296,10 @@ void PelletMgr::OtakaraItemCode::read(Stream&)
  * Address:	8016DF10
  * Size:	000060
  */
-void PelletMgr::OtakaraItemCode::write(Stream&)
-{
-	/*
-	stwu     r1, -0x10(r1)
-	mflr     r0
-	stw      r0, 0x14(r1)
-	stw      r31, 0xc(r1)
-	mr       r31, r4
-	stw      r30, 8(r1)
-	mr       r30, r3
-	mr       r3, r31
-	lwz      r4, 0x414(r4)
-	bl       textWriteTab__6StreamFi
-	lha      r4, 0(r30)
-	mr       r3, r31
-	bl       writeShort__6StreamFs
-	lis      r4, lbl_8047E500@ha
-	mr       r3, r31
-	addi     r4, r4, lbl_8047E500@l
-	crclr    6
-	bl       textWriteText__6StreamFPce
-	lwz      r0, 0x14(r1)
-	lwz      r31, 0xc(r1)
-	lwz      r30, 8(r1)
-	mtlr     r0
-	addi     r1, r1, 0x10
-	blr
-	*/
+void PelletMgr::OtakaraItemCode::write(Stream& stream) {
+    stream.textWriteTab(stream.m_tabCount);
+    stream.writeShort(m_value);
+    stream.textWriteText("# お宝アイテムコード\r\n");
 }
 
 /*
@@ -8866,15 +8432,9 @@ lbl_8016ED58:
  * Address:	8016ED88
  * Size:	000014
  */
-void PelletMgr::decode(long, unsigned char&, int&)
-{
-	/*
-	srwi     r3, r4, 0x18
-	clrlwi   r0, r4, 8
-	stb      r3, 0(r5)
-	stw      r0, 0(r6)
-	blr
-	*/
+void PelletMgr::decode(long index, u8& pelletType, int& code) {
+    pelletType = (index >> 24) & 0xFF;
+    code = index & 0xFFFFFF;
 }
 
 /*
@@ -8882,13 +8442,8 @@ void PelletMgr::decode(long, unsigned char&, int&)
  * Address:	8016ED9C
  * Size:	00000C
  */
-void PelletMgr::encode(unsigned char, int)
-{
-	/*
-	slwi     r0, r4, 0x18
-	or       r3, r0, r5
-	blr
-	*/
+int PelletMgr::encode(u8 pelletType, int code) {
+    return (pelletType << 24) | code;
 }
 
 /*

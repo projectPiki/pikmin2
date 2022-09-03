@@ -63,6 +63,8 @@ struct PelletMgr : public NodeObjectMgr<GenericObjectMgr> {
 		}
 
 		bool isNull();
+		void read(Stream&);
+		void write(Stream&);
 
 		s16 m_value; // _00
 	};
@@ -115,7 +117,7 @@ struct PelletIterator {
 
 	u32 _00;        // _00 - unknown
 	void* _04;      // _04 - unknown pointer
-	PelletMgr* _08; // _08 - probably? it's a TObjectNode<GenericObjectMgr>* according to ghidra
+	TObjectNode<GenericObjectMgr>* _08; // _08
 	u32 _0C;        // _0C - unknown
 };
 
@@ -331,8 +333,8 @@ struct Pellet : public DynCreature, public SysShape::MotionListener, public Carr
 	void getPelletGoal();
 	int getTotalPikmins();
 	int getTotalCarryPikmins();
-	void getPikmins(int);
-	void getFace();
+	int getPikmins(int);
+	int getFace();
 	void clearDiscoverDisable();
 	void startDiscoverDisable(u8);
 	void updateDiscoverDisable();
