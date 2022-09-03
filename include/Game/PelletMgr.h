@@ -333,7 +333,7 @@ struct Pellet : public DynCreature, public SysShape::MotionListener, public Carr
 	void clearDiscoverDisable();
 	void startDiscoverDisable(u8);
 	void updateDiscoverDisable();
-	void discoverDisabled();
+	bool discoverDisabled();
 
 	inline void setValidColor(u16 color)
 	{
@@ -369,7 +369,7 @@ struct Pellet : public DynCreature, public SysShape::MotionListener, public Carr
 	u8 _326[0x2];                 // _326 - could be padding
 	TexCaster::Caster* m_caster;  // _328
 	u8 _32C;                      // _32C - unknown
-	bool m_discoverDisable;       // _32D - could be u8?
+	u8 m_discoverDisable;         // _32D
 	u8 _32E[0x2];                 //  _32E - could be padding
 	PSM::EventBase* m_soundMgr;   // _330
 	PelletCarry* m_pelletCarry;   // _334
