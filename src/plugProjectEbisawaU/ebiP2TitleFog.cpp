@@ -18,18 +18,18 @@ namespace title {
 void TTitleFogMgr::setGX(Camera& camera)
 {
 	if (m_parms.fg10.m_value) {
-        Color4 color4_local (m_parms.fg02.m_value, m_parms.fg03.m_value, m_parms.fg04.m_value, m_parms.fg05.m_value);
-        GXColor color_local = color4_local.toGXColor();
+		Color4 color4_local(m_parms.fg02.m_value, m_parms.fg03.m_value, m_parms.fg04.m_value, m_parms.fg05.m_value);
+		GXColor color_local = color4_local.toGXColor();
 
-        float f1 = m_parms.fg00.m_value;
-        float f2 = m_parms.fg01.m_value;
+		float f1 = m_parms.fg00.m_value;
+		float f2 = m_parms.fg01.m_value;
 
 		GXSetFog(GX_FOG_LINEAR, f1, f2, camera.getNear(), camera.getFar(), color_local);
 
-        u16 width = System::getRenderModeObj()->fbWidth;
+		u16 width = System::getRenderModeObj()->fbWidth;
 		GXFogAdjTable table;
 		GXInitFogAdjTable(&table, width, camera.m_projectionMtx);
-		GXSetFogRangeAdj(GX_TRUE, (u16) (System::getRenderModeObj()->fbWidth) / 2, &table);
+		GXSetFogRangeAdj(GX_TRUE, (u16)(System::getRenderModeObj()->fbWidth) / 2, &table);
 	} else {
 		GXSetFog(GX_FOG_NONE, 0.0f, 0.0f, 0.0f, 0.0f, m_color.GXColorView);
 	}
