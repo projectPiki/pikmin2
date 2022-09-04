@@ -1,4 +1,5 @@
 #include "types.h"
+#include "JSystem/JKR/JKRArchive.h"
 #include "FogMgr.h"
 #include "Camera.h"
 #include "Dolphin/gx.h"
@@ -105,45 +106,17 @@ void TTitleFogMgr::offGX(void)
  * Address:	803EB2BC
  * Size:	00007C
  */
-void TTitleFogMgr::loadSettingFile(JKRArchive*, char*)
+void TTitleFogMgr::loadSettingFile(JKRArchive* archive, char* file)
 {
-	/*
-stwu     r1, -0x430(r1)
-mflr     r0
-stw      r0, 0x434(r1)
-stw      r31, 0x42c(r1)
-mr       r31, r3
-mr       r3, r4
-lwz      r12, 0(r4)
-mr       r4, r5
-lwz      r12, 0x14(r12)
-mtctr    r12
-bctrl
-cmplwi   r3, 0
-beq      lbl_803EB324
-mr       r4, r3
-addi     r3, r1, 8
-li       r5, -1
-bl       __ct__9RamStreamFPvi
-li       r0, 1
-cmpwi    r0, 1
-stw      r0, 0x14(r1)
-bne      lbl_803EB318
-li       r0, 0
-stw      r0, 0x41c(r1)
-
-lbl_803EB318:
-addi     r3, r31, 0x28
-addi     r4, r1, 8
-bl       read__10ParametersFR6Stream
-
-lbl_803EB324:
-lwz      r0, 0x434(r1)
-lwz      r31, 0x42c(r1)
-mtlr     r0
-addi     r1, r1, 0x430
-blr
-	*/
+	void* a = archive->getResource(file);
+	if (a != nullptr) {
+		RamStream stream(a, -1);
+		stream.m_mode = 1;
+		if (stream.m_mode == 1) {
+			stream.m_tabCount = 0;
+		};
+		m_parameters.read(stream);
+	}
 }
 
 } // namespace title
