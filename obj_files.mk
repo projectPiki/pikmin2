@@ -1060,7 +1060,7 @@ EBISAWA:=\
 	$(BUILD_DIR)/asm/plugProjectEbisawaU/ebiP2TitleChappy.o\
 	$(BUILD_DIR)/asm/plugProjectEbisawaU/ebiScreenTMBack.o\
 	$(BUILD_DIR)/asm/plugProjectEbisawaU/ebiMainTitleMgr.o\
-	$(BUILD_DIR)/asm/plugProjectEbisawaU/ebiP2TitleFog.o\
+	$(BUILD_DIR)/src/plugProjectEbisawaU/ebiP2TitleFog.o\
 	$(BUILD_DIR)/asm/plugProjectEbisawaU/efxEnemyBoss.o\
 	$(BUILD_DIR)/asm/plugProjectEbisawaU/ebiCardEReader.o\
 	$(BUILD_DIR)/asm/plugProjectEbisawaU/ebiScreenOmake.o\
