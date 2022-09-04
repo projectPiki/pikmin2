@@ -31,7 +31,6 @@ struct Mgr : public FixedSizePelletMgr<Object> {
 
 	// _00      = VTABLE
 	// _00-_A0  = FixedSizePelletMgr
-	u8 _A0[0x4]; // _A0, unknown
 };
 
 extern Mgr* mgr;

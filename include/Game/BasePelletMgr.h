@@ -23,12 +23,12 @@ struct BasePelletMgr : public GenericObjectMgr, virtual public _BasePelletMgrPar
 	BasePelletMgr(PelletList::cKind);
 
 	////////// VTABLE
-	virtual void doAnimation();                                        // _08 (weak)
-	virtual void doEntry();                                            // _0C (weak)
-	virtual void doSetView(int);                                       // _10 (weak)
-	virtual void doViewCalc();                                         // _14 (weak)
-	virtual void doSimulation(float);                                  // _18 (weak)
-	virtual void doDirectDraw(Graphics&);                              // _1C (weak)
+	virtual void doAnimation() { }                                     // _08 (weak)
+	virtual void doEntry() { }                                         // _0C (weak)
+	virtual void doSetView(int) { }                                    // _10 (weak)
+	virtual void doViewCalc() { }                                      // _14 (weak)
+	virtual void doSimulation(float) { }                               // _18 (weak)
+	virtual void doDirectDraw(Graphics&) { }                           // _1C (weak)
 	virtual void resetMgrAndResources()          = 0;                  // _38
 	virtual Pellet* birth()                      = 0;                  // _3C
 	virtual void kill(Pellet*)                   = 0;                  // _40
@@ -44,11 +44,15 @@ struct BasePelletMgr : public GenericObjectMgr, virtual public _BasePelletMgrPar
 	virtual void getFlag(Pellet*)     = 0;                             // _68
 	virtual SysShape::Model* createShape(int, int);                    // _6C
 	virtual void generatorBirth(Vector3f&, Vector3f&, GenPelletParm*); // _70 (weak)
-	virtual void generatorWrite(Stream&, GenPelletParm*);              // _74 (weak)
-	virtual void generatorRead(Stream&, GenPelletParm*, u32);          // _78 (weak)
+	virtual void generatorWrite(Stream&, GenPelletParm*) { }           // _74 (weak)
+	virtual void generatorRead(Stream&, GenPelletParm*, u32) { }       // _78 (weak)
 	virtual void generatorLocalVersion();                              // _7C (weak)
 	virtual void generatorGetShape(GenPelletParm*);                    // _80
 	virtual void generatorNewPelletParm();                             // _84
+	virtual Pellet* getObjectPtr(void*) = 0;                           // _88
+	virtual void* getNext(void*)        = 0;                           // _8C
+	virtual void* getStart()            = 0;                           // _90
+	virtual void* getEnd()              = 0;                           // _94
 	////////// VTABLE END
 
 	PelletConfig* getPelletConfig(int);

@@ -72,15 +72,19 @@ struct PelletMgr : public NodeObjectMgr<GenericObjectMgr> {
 	PelletMgr();
 
 	// vtable 1
-	virtual void doAnimation();           // _64 (weak)
-	virtual void doEntry();               // _68 (weak)
-	virtual void doSetView(int);          // _6C (weak)
-	virtual void doViewCalc();            // _70 (weak)
-	virtual void doSimulation(float);     // _74 (weak)
-	virtual void doDirectDraw(Graphics&); // _78 (weak)
-	virtual void getMgrName();            // _80 (weak)
-	virtual void getCaveName(int);        // _84
-	virtual void getCaveID(char*);        // _88
+	virtual ~PelletMgr() { }                 // _08 (weak)
+	virtual void doAnimation();              // _64 (weak)
+	virtual void doEntry();                  // _68 (weak)
+	virtual void doSetView(int);             // _6C (weak)
+	virtual void doViewCalc();               // _70 (weak)
+	virtual void doSimulation(float);        // _74 (weak)
+	virtual void doDirectDraw(Graphics&) { } // _78 (weak)
+	virtual char* getMgrName()               // _80 (weak)
+	{
+		return "ペレットマネージャ"; // pellet manager
+	}
+	virtual char* getCaveName(int);       // _84
+	virtual u8 getCaveID(char*);          // _88
 	virtual void doSimpleDraw(Viewport*); // _8C (weak)
 
 	void setMovieDraw(bool);
@@ -103,7 +107,7 @@ struct PelletMgr : public NodeObjectMgr<GenericObjectMgr> {
 	static bool mDebug;
 	static bool disableDynamics;
 
-	bool m_noMovieDraw; // _3C, setMovieDraw sets this to !input - may need to flip the name eventually
+	bool m_movieDrawDisabled; // _3C, setMovieDraw sets this to !input
 };
 
 struct PelletIterator {
@@ -115,10 +119,10 @@ struct PelletIterator {
 	Pellet* operator*();
 	void setFirst();
 
-	u32 _00;        // _00 - unknown
-	void* _04;      // _04 - unknown pointer
-	TObjectNode<GenericObjectMgr>* _08; // _08
-	u32 _0C;        // _0C - unknown
+	u32 _00;                               // _00 - unknown
+	FixedSizePelletMgr<Pellet>* m_mgr;     // _04
+	TObjectNode<GenericObjectMgr>* m_node; // _08
+	int m_index;                           // _0C
 };
 
 struct CreatureInitArg {

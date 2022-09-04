@@ -14,7 +14,7 @@ struct CreatureObj : public Creature, public JAInter::Object {
 	virtual void frameEnd_onPlaySe();                                  // _18
 	virtual CreatureCastType getCastType() { return CCT_CreatureObj; } // _1C (weak)
 	virtual JAInter::Object* getJAIObject() { return this; }           // _24 (weak)
-	virtual void onCalcOn();                                           // _28 (weak)
+	virtual void onCalcOn() { }                                        // _28 (weak)
 	virtual JAISound** getHandleArea(u8 i) { return m_sounds + i; }    // _3C (weak)
 
 	// vtable 3 (JAInter::ObjectBase -> JAInter::Object + self, _28)
