@@ -39,25 +39,20 @@ namespace ebi {
 
 namespace title {
 
-struct TTitleFogMgr {
-	void setGX(Camera&);
+struct TTitleFogMgr : public FogMgr {
+    virtual ~TTitleFogMgr() { }     // _08 (weak)
+    
+	void setGX(Camera& camera);
+    void loadSettingFile(JKRArchive* archive, char* file);
 
-	u8 _00[36];
-	s32* _24;
-	u8 _28[36];
-	u8 _4C;
-	u8 _4D[27];
-	f32 _68;
-	u8 _6C[36];
-	f32 _90;
-	u8 _94[36];
-	s32 _B8;
-	u8 _BC[36];
-	s32 _E0;
-	u8 _E4[36];
-	s32 _108;
-	u8 _10C[36];
-	s32 _130;
+    Parameters m_parameters;
+    Parm<bool> fg10;
+    Parm<float> fg00;
+    Parm<float> fg01;
+    Parm<int> fg02;
+    Parm<int> fg03;
+    Parm<int> fg04;
+    Parm<int> fg05;
 };
 
 /*
