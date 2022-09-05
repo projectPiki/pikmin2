@@ -20,299 +20,12 @@
 #include "Vector3.h"
 
 /*
-    Generated from dpostproc
-
-    .section .rodata  # 0x804732E0 - 0x8049E220
-    .global lbl_8047C5A0
-    lbl_8047C5A0:
-        .4byte 0x636F6C6C
-        .4byte 0x696E666F
-        .4byte 0x2E637070
-        .4byte 0x00000000
-    .global lbl_8047C5B0
-    lbl_8047C5B0:
-        .4byte 0x706C6174
-        .4byte 0x666F726D
-        .4byte 0x20257320
-        .4byte 0x6E6F7420
-        .4byte 0x666F756E
-        .4byte 0x6420210A
-        .4byte 0x00000000
-    .global lbl_8047C5CC
-    lbl_8047C5CC:
-        .asciz "P2Assert"
-        .skip 3
-    .global lbl_8047C5D8
-    lbl_8047C5D8:
-        .4byte 0x636F6C6C
-        .4byte 0x70617274
-        .4byte 0x20626972
-        .4byte 0x74682066
-        .4byte 0x61696C65
-        .4byte 0x64203A20
-        .4byte 0x73696E67
-        .4byte 0x6C652073
-        .4byte 0x70686572
-        .4byte 0x650A0000
-    .global lbl_8047C600
-    lbl_8047C600:
-        .4byte 0x6E756D3D
-        .4byte 0x2564203A
-        .4byte 0x2072616E
-        .4byte 0x646F6D3D
-        .4byte 0x25640A00
-    .global lbl_8047C614
-    lbl_8047C614:
-        .4byte 0x636F6C6C
-        .4byte 0x70617274
-        .4byte 0x20626972
-        .4byte 0x74682066
-        .4byte 0x61696C65
-        .4byte 0x6420210A
-        .4byte 0x00000000
-    .global lbl_8047C630
-    lbl_8047C630:
-        .4byte 0x436F6C6C
-        .4byte 0x50617274
-        .4byte 0x00000000
-    .global lbl_8047C63C
-    lbl_8047C63C:
-        .4byte 0x23202564
-        .4byte 0x2F25640D
-        .4byte 0x0A000000
-
-    .section .data, "wa"  # 0x8049E220 - 0x804EFC20
-    .global __vt__11AgeCollPart
-    __vt__11AgeCollPart:
-        .4byte 0
-        .4byte 0
-        .4byte __dt__11AgeCollPartFv
-        .4byte getChildCount__8CollPartFv
-        .4byte isMouth__8CollPartFv
-        .4byte draw__11AgeCollPartFR8Graphics
-        .4byte constructor__8CollPartFv
-        .4byte doAnimation__8CollPartFv
-        .4byte doEntry__8CollPartFv
-        .4byte doSetView__8CollPartFUl
-        .4byte doViewCalc__8CollPartFv
-        .4byte doSimulation__8CollPartFf
-        .4byte doDirectDraw__8CollPartFR8Graphics
-    .global __vt__15CollPartFactory
-    __vt__15CollPartFactory:
-        .4byte 0
-        .4byte 0
-        .4byte __dt__15CollPartFactoryFv
-        .4byte getChildCount__8CollPartFv
-        .4byte isMouth__8CollPartFv
-        .4byte draw__8CollPartFR8Graphics
-        .4byte constructor__8CollPartFv
-        .4byte doAnimation__8CollPartFv
-        .4byte doEntry__8CollPartFv
-        .4byte doSetView__8CollPartFUl
-        .4byte doViewCalc__8CollPartFv
-        .4byte doSimulation__8CollPartFf
-        .4byte doDirectDraw__8CollPartFR8Graphics
-    .global __vt__13MouthCollPart
-    __vt__13MouthCollPart:
-        .4byte 0
-        .4byte 0
-        .4byte __dt__13MouthCollPartFv
-        .4byte getChildCount__8CollPartFv
-        .4byte isMouth__13MouthCollPartFv
-        .4byte draw__8CollPartFR8Graphics
-        .4byte constructor__8CollPartFv
-        .4byte doAnimation__8CollPartFv
-        .4byte doEntry__8CollPartFv
-        .4byte doSetView__8CollPartFUl
-        .4byte doViewCalc__8CollPartFv
-        .4byte doSimulation__8CollPartFf
-        .4byte doDirectDraw__8CollPartFR8Graphics
-    .global __vt__8CollPart
-    __vt__8CollPart:
-        .4byte 0
-        .4byte 0
-        .4byte __dt__8CollPartFv
-        .4byte getChildCount__8CollPartFv
-        .4byte isMouth__8CollPartFv
-        .4byte draw__8CollPartFR8Graphics
-        .4byte constructor__8CollPartFv
-        .4byte doAnimation__8CollPartFv
-        .4byte doEntry__8CollPartFv
-        .4byte doSetView__8CollPartFUl
-        .4byte doViewCalc__8CollPartFv
-        .4byte doSimulation__8CollPartFf
-        .4byte doDirectDraw__8CollPartFR8Graphics
-    .global __vt__Q23Sys3OBB
-    __vt__Q23Sys3OBB:
-        .4byte 0
-        .4byte 0
-        .4byte __dt__Q23Sys3OBBFv
-        .4byte getChildCount__5CNodeFv
-    .global "__vt__12Container<i>"
-    "__vt__12Container<i>":
-        .4byte 0
-        .4byte 0
-        .4byte "__dt__12Container<i>Fv"
-        .4byte getChildCount__5CNodeFv
-        .4byte "getObject__12Container<i>FPv"
-        .4byte 0
-        .4byte 0
-        .4byte 0
-        .4byte 0
-        .4byte "getAt__12Container<i>Fi"
-        .4byte "getTo__12Container<i>Fv"
-    .global "__vt__17ArrayContainer<i>"
-    "__vt__17ArrayContainer<i>":
-        .4byte 0
-        .4byte 0
-        .4byte "__dt__17ArrayContainer<i>Fv"
-        .4byte getChildCount__5CNodeFv
-        .4byte "getObject__12Container<i>FPv"
-        .4byte "getNext__17ArrayContainer<i>FPv"
-        .4byte "getStart__17ArrayContainer<i>Fv"
-        .4byte "getEnd__17ArrayContainer<i>Fv"
-        .4byte "get__17ArrayContainer<i>FPv"
-        .4byte "getAt__17ArrayContainer<i>Fi"
-        .4byte "getTo__17ArrayContainer<i>Fv"
-        .4byte "writeObject__17ArrayContainer<i>FR6StreamRi"
-        .4byte "readObject__17ArrayContainer<i>FR6StreamRi"
-        .4byte "write__17ArrayContainer<i>FR6Stream"
-        .4byte "read__17ArrayContainer<i>FR6Stream"
-        .4byte "alloc__17ArrayContainer<i>Fi"
-        .4byte "addOne__17ArrayContainer<i>FRi"
-        .4byte "setArray__17ArrayContainer<i>FPii"
-    .global __vt__Q23Sys9IndexList
-    __vt__Q23Sys9IndexList:
-        .4byte 0
-        .4byte 0
-        .4byte __dt__Q23Sys9IndexListFv
-        .4byte getChildCount__5CNodeFv
-        .4byte "getObject__12Container<i>FPv"
-        .4byte "getNext__17ArrayContainer<i>FPv"
-        .4byte "getStart__17ArrayContainer<i>Fv"
-        .4byte "getEnd__17ArrayContainer<i>Fv"
-        .4byte "get__17ArrayContainer<i>FPv"
-        .4byte "getAt__17ArrayContainer<i>Fi"
-        .4byte "getTo__17ArrayContainer<i>Fv"
-        .4byte writeObject__Q23Sys9IndexListFR6StreamRi
-        .4byte readObject__Q23Sys9IndexListFR6StreamRi
-        .4byte "write__17ArrayContainer<i>FR6Stream"
-        .4byte "read__17ArrayContainer<i>FR6Stream"
-        .4byte "alloc__17ArrayContainer<i>Fi"
-        .4byte "addOne__17ArrayContainer<i>FRi"
-        .4byte "setArray__17ArrayContainer<i>FPii"
-    .global __vt__Q23Sys12TriIndexList
-    __vt__Q23Sys12TriIndexList:
-        .4byte 0
-        .4byte 0
-        .4byte __dt__Q23Sys12TriIndexListFv
-        .4byte getChildCount__5CNodeFv
-        .4byte "getObject__12Container<i>FPv"
-        .4byte "getNext__17ArrayContainer<i>FPv"
-        .4byte "getStart__17ArrayContainer<i>Fv"
-        .4byte "getEnd__17ArrayContainer<i>Fv"
-        .4byte "get__17ArrayContainer<i>FPv"
-        .4byte "getAt__17ArrayContainer<i>Fi"
-        .4byte "getTo__17ArrayContainer<i>Fv"
-        .4byte writeObject__Q23Sys9IndexListFR6StreamRi
-        .4byte readObject__Q23Sys9IndexListFR6StreamRi
-        .4byte "write__17ArrayContainer<i>FR6Stream"
-        .4byte "read__17ArrayContainer<i>FR6Stream"
-        .4byte "alloc__17ArrayContainer<i>Fi"
-        .4byte "addOne__17ArrayContainer<i>FRi"
-        .4byte "setArray__17ArrayContainer<i>FPii"
-    .global "__vt__28ArrayContainer<10Vector3<f>>"
-    "__vt__28ArrayContainer<10Vector3<f>>":
-        .4byte 0
-        .4byte 0
-        .4byte "__dt__28ArrayContainer<10Vector3<f>>Fv"
-        .4byte getChildCount__5CNodeFv
-        .4byte "getObject__23Container<10Vector3<f>>FPv"
-        .4byte "getNext__28ArrayContainer<10Vector3<f>>FPv"
-        .4byte "getStart__28ArrayContainer<10Vector3<f>>Fv"
-        .4byte "getEnd__28ArrayContainer<10Vector3<f>>Fv"
-        .4byte "get__28ArrayContainer<10Vector3<f>>FPv"
-        .4byte "getAt__28ArrayContainer<10Vector3<f>>Fi"
-        .4byte "getTo__28ArrayContainer<10Vector3<f>>Fv"
-        .4byte
-   "writeObject__28ArrayContainer<10Vector3<f>>FR6StreamR10Vector3<f>" .4byte
-   "readObject__28ArrayContainer<10Vector3<f>>FR6StreamR10Vector3<f>" .4byte
-   "write__28ArrayContainer<10Vector3<f>>FR6Stream" .4byte
-   "read__28ArrayContainer<10Vector3<f>>FR6Stream" .4byte
-   "alloc__28ArrayContainer<10Vector3<f>>Fi" .4byte
-   "addOne__28ArrayContainer<10Vector3<f>>FR10Vector3<f>" .4byte
-   "setArray__28ArrayContainer<10Vector3<f>>FP10Vector3<f>i" .global
-   "__vt__23Container<10Vector3<f>>"
-    "__vt__23Container<10Vector3<f>>":
-        .4byte 0
-        .4byte 0
-        .4byte "__dt__23Container<10Vector3<f>>Fv"
-        .4byte getChildCount__5CNodeFv
-        .4byte "getObject__23Container<10Vector3<f>>FPv"
-        .4byte 0
-        .4byte 0
-        .4byte 0
-        .4byte 0
-        .4byte "getAt__23Container<10Vector3<f>>Fi"
-        .4byte "getTo__23Container<10Vector3<f>>Fv"
-    .global __vt__8Platform
-    __vt__8Platform:
-        .4byte 0
-        .4byte 0
-        .4byte __dt__8PlatformFv
-        .4byte getChildCount__5CNodeFv
-
-    .section .sbss # 0x80514D80 - 0x80516360
-    .global mDebug__8CollTree
-    mDebug__8CollTree:
-        .skip 0x8
-
-    .section .sdata2, "a"     # 0x80516360 - 0x80520E40
-    .global lbl_80518208
-    lbl_80518208:
-        .4byte 0x47000000
-    .global lbl_8051820C
-    lbl_8051820C:
-        .4byte 0xC7000000
-    .global lbl_80518210
-    lbl_80518210:
-        .4byte 0x00000000
-    .global lbl_80518214
-    lbl_80518214:
-        .4byte 0x47FA0000
-    .global lbl_80518218
-    lbl_80518218:
-        .4byte 0x43300000
-        .4byte 0x80000000
-    .global lbl_80518220
-    lbl_80518220:
-        .4byte 0x3A83126F
-    .global lbl_80518224
-    lbl_80518224:
-        .float 1.0
-    .global lbl_80518228
-    lbl_80518228:
-        .float 0.3
-    .global lbl_8051822C
-    lbl_8051822C:
-        .float 0.1
-    .global lbl_80518230
-    lbl_80518230:
-        .4byte 0x0D0A0000
-        .4byte 0x00000000
-*/
-
-/*
  * __ct__8PlatformFv
  * --INFO--
  * Address:	801336A8
  * Size:	000044
  */
-Platform::Platform()
-    : CNode()
-    , m_triDivider(nullptr)
-{
-}
+Platform::Platform() { m_triDivider = nullptr; }
 
 /*
  * --INFO--
@@ -389,62 +102,13 @@ Platform* Platform::clone(Matrixf& matrix)
  */
 void Platform::load(JKRFileLoader* loader, char* path)
 {
-	void* data = JKRFileLoader::getGlbResource(path, loader);
-	JUT_ASSERTLINE(236, data != nullptr, "platform %s not found !\n", path);
+    void* data = JKRFileLoader::getGlbResource(path, loader);
+	if (data == nullptr) {
+        JUT_PANICLINE(236, "platform %s not found !\n", path);
+        return;
+    }
 	RamStream input(data, -1);
 	read(input);
-
-	/*
-	stwu     r1, -0x430(r1)
-	mflr     r0
-	stw      r0, 0x434(r1)
-	stw      r31, 0x42c(r1)
-	mr       r31, r5
-	stw      r30, 0x428(r1)
-	mr       r30, r3
-	mr       r3, r31
-	bl       getGlbResource__13JKRFileLoaderFPCcP13JKRFileLoader
-	cmplwi   r3, 0
-	bne      lbl_80133804
-	lis      r3, lbl_8047C5A0@ha
-	lis      r4, lbl_8047C5B0@ha
-	addi     r5, r4, lbl_8047C5B0@l
-	mr       r6, r31
-	addi     r3, r3, lbl_8047C5A0@l
-	li       r4, 0xec
-	crclr    6
-	bl       panic_f__12JUTExceptionFPCciPCce
-	b        lbl_80133848
-
-lbl_80133804:
-	mr       r4, r3
-	addi     r3, r1, 8
-	li       r5, -1
-	bl       __ct__9RamStreamFPvi
-	li       r3, 0x130
-	bl       __nw__FUl
-	or.      r0, r3, r3
-	beq      lbl_8013382C
-	bl       __ct__Q23Sys7OBBTreeFv
-	mr       r0, r3
-
-lbl_8013382C:
-	stw      r0, 0x18(r30)
-	addi     r4, r1, 8
-	lwz      r3, 0x18(r30)
-	lwz      r12, 0(r3)
-	lwz      r12, 0x18(r12)
-	mtctr    r12
-	bctrl
-
-lbl_80133848:
-	lwz      r0, 0x434(r1)
-	lwz      r31, 0x42c(r1)
-	lwz      r30, 0x428(r1)
-	mtlr     r0
-	addi     r1, r1, 0x430
-	blr
-	*/
 }
 
 /*
@@ -484,15 +148,6 @@ void PlatAttacher::setMapCodeAll(MapCode::Code& code)
 // }
 
 /*
- * __dt__8PlatformFv
- * --INFO--
- * Address:	801338D8
- * Size:	000060
- */
-// WEAK - in Platform.h header
-// Platform::~Platform() { }
-
-/*
  * write__12PlatAttacherFR6Stream
  * --INFO--
  * Address:	........
@@ -527,46 +182,6 @@ void PlatAttacher::read(Stream& input)
 }
 
 /*
- * read__28ArrayContainer<10Vector3<f>>FR6Stream
- * --INFO--
- * Address:	80133AC8
- * Size:	0000B0
- */
-// template <> void ArrayContainer<Vector3f>::read(Stream&) {}
-
-/*
- * readObject__28ArrayContainer<10Vector3<f>>FR6StreamR10Vector3<f>
- * --INFO--
- * Address:	80133B78
- * Size:	000004
- */
-// template <> void ArrayContainer<Vector3f>::readObject(Stream&, Vector3f&) { }
-
-/*
- * alloc__28ArrayContainer<10Vector3<f>>Fi
- * --INFO--
- * Address:	80133B7C
- * Size:	000068
- */
-// template <> void ArrayContainer<Vector3f>::alloc(int) {}
-
-/*
- * __dt__28ArrayContainer<10Vector3<f>>Fv
- * --INFO--
- * Address:	80133BE4
- * Size:	000080
- */
-// template <> ArrayContainer<Vector3f>::~ArrayContainer() {}
-
-/*
- * __dt__23Container<10Vector3<f>>Fv
- * --INFO--
- * Address:	80133C64
- * Size:	000070
- */
-// template <> Container<Vector3f>::~Container() {}
-
-/*
  * --INFO--
  * Address:	80133CD4
  * Size:	000008
@@ -580,10 +195,6 @@ int PlatAttacher::getNumShapes() { return m_numShapes; }
  */
 u16 PlatAttacher::getJointIndex(int i)
 {
-	// #ifdef MATCHING
-	// #line 311 // Will be 312 on assert line
-	// #endif
-	// P2ASSERTLINE(312, (-1 < i) && (m_numShapes < i));
 	P2ASSERTBOUNDSLINE(312, 0, i, m_numShapes);
 	return m_jointIndices[i];
 }
@@ -595,162 +206,9 @@ u16 PlatAttacher::getJointIndex(int i)
  */
 Platform* PlatAttacher::getPlatform(int i)
 {
-	// Only 6 lines difference from the previous assert!
 	P2ASSERTBOUNDSLINE(318, 0, i, m_numShapes);
 	return &m_platforms[i];
 }
-
-/*
- * draw__12PlatAttacherFR8Graphicsi
- * --INFO--
- * Address:	........
- * Size:	000004
- */
-// void PlatAttacher::draw(Graphics& gfx, int p2)
-// {
-// 	// UNUSED FUNCTION
-// }
-
-/*
- * __ct__11AgePlatformFv
- * --INFO--
- * Address:	........
- * Size:	0000C8
- */
-// AgePlatform::AgePlatform()
-// {
-// 	// UNUSED FUNCTION
-// }
-
-namespace Sys {
-
-/*
- * __dt__Q23Sys11GridDividerFv
- * --INFO--
- * Address:	80133DD4
- * Size:	000090
- */
-GridDivider::~GridDivider()
-{
-	// TODO: I think GridInfo is involved here, given the order of subsquent generated dtors.
-	if (m_triIndexLists != nullptr) {
-		delete[] m_triIndexLists;
-	}
-	/*
-	stwu     r1, -0x10(r1)
-	mflr     r0
-	stw      r0, 0x14(r1)
-	stw      r31, 0xc(r1)
-	mr       r31, r4
-	stw      r30, 8(r1)
-	or.      r30, r3, r3
-	beq      lbl_80133E48
-	lis      r3, __vt__Q23Sys11GridDivider@ha
-	addic.   r0, r30, 0x20
-	addi     r0, r3, __vt__Q23Sys11GridDivider@l
-	stw      r0, 0(r30)
-	beq      lbl_80133E18
-	lis      r4, __dt__Q23Sys12TriIndexListFv@ha
-	lwz      r3, 0x28(r30)
-	addi     r4, r4, __dt__Q23Sys12TriIndexListFv@l
-	bl       __destroy_new_array
-
-lbl_80133E18:
-	cmplwi   r30, 0
-	beq      lbl_80133E38
-	lis      r4, __vt__Q23Sys10TriDivider@ha
-	mr       r3, r30
-	addi     r0, r4, __vt__Q23Sys10TriDivider@l
-	li       r4, 0
-	stw      r0, 0(r30)
-	bl       __dt__5CNodeFv
-
-lbl_80133E38:
-	extsh.   r0, r31
-	ble      lbl_80133E48
-	mr       r3, r30
-	bl       __dl__FPv
-
-lbl_80133E48:
-	lwz      r0, 0x14(r1)
-	mr       r3, r30
-	lwz      r31, 0xc(r1)
-	lwz      r30, 8(r1)
-	mtlr     r0
-	addi     r1, r1, 0x10
-	blr
-	*/
-}
-
-/*
- * __dt__Q23Sys12TriIndexListFv
- * @generated
- * --INFO--
- * Address:	80133E64
- * Size:	0000A0
- */
-// TriIndexList::~TriIndexList()
-// {
-// }
-
-/*
- * __dt__Q23Sys8GridInfoFv
- * --INFO--
- * Address:	........
- * Size:	00005C
- */
-// GridInfo::~GridInfo()
-// {
-// 	// UNUSED FUNCTION
-// }
-
-/*
- * __dt__Q23Sys10TriDividerFv
- * --INFO--
- * Address:	80133F04
- * Size:	000060
- */
-// TriDivider::~TriDivider()
-// {
-// 	/*
-// 	stwu     r1, -0x10(r1)
-// 	mflr     r0
-// 	stw      r0, 0x14(r1)
-// 	stw      r31, 0xc(r1)
-// 	mr       r31, r4
-// 	stw      r30, 8(r1)
-// 	or.      r30, r3, r3
-// 	beq      lbl_80133F48
-// 	lis      r5, __vt__Q23Sys10TriDivider@ha
-// 	li       r4, 0
-// 	addi     r0, r5, __vt__Q23Sys10TriDivider@l
-// 	stw      r0, 0(r30)
-// 	bl       __dt__5CNodeFv
-// 	extsh.   r0, r31
-// 	ble      lbl_80133F48
-// 	mr       r3, r30
-// 	bl       __dl__FPv
-
-// lbl_80133F48:
-// 	lwz      r0, 0x14(r1)
-// 	mr       r3, r30
-// 	lwz      r31, 0xc(r1)
-// 	lwz      r30, 8(r1)
-// 	mtlr     r0
-// 	addi     r1, r1, 0x10
-// 	blr
-// 	*/
-// }
-
-/*
- * __dt__Q23Sys7OBBTreeFv
- * --INFO--
- * Address:	80133F64
- * Size:	0000F8
- */
-// OBBTree::~OBBTree() { }
-
-} // namespace Sys
 
 /*
  * --INFO--
@@ -790,33 +248,10 @@ CollTree::CollTree()
  */
 void CollTree::createFromFactory(SysShape::MtxObject* mtxObject, CollPartFactory* factory, CollPartMgr* mgr)
 {
-	m_mgr = mgr;
+    m_mgr = mgr;
 	if (factory != nullptr) {
-		factory->createInstance(mtxObject, mgr);
-		m_part = factory;
+		m_part = factory->createInstance(mtxObject, mgr);
 	}
-	/*
-	.loc_0x0:
-	  stwu      r1, -0x10(r1)
-	  mflr      r0
-	  cmplwi    r5, 0
-	  stw       r0, 0x14(r1)
-	  stw       r31, 0xC(r1)
-	  mr        r31, r3
-	  stw       r6, 0x4(r3)
-	  beq-      .loc_0x30
-	  mr        r3, r5
-	  mr        r5, r6
-	  bl        0x49D8
-	  stw       r3, 0x0(r31)
-
-	.loc_0x30:
-	  lwz       r0, 0x14(r1)
-	  lwz       r31, 0xC(r1)
-	  mtlr      r0
-	  addi      r1, r1, 0x10
-	  blr
-	*/
 }
 
 /*
@@ -859,283 +294,22 @@ void CollTree::release()
  * Address:	801341F8
  * Size:	000348
  */
+// matches so long as kill isn't in the header........
 void CollTree::releaseRec(CollPart* part)
 {
 	CollPart* next  = part->getNext();
 	CollPart* child = part->getChild();
+    
 	if (child != nullptr) {
 		releaseRec(child);
 	}
-	m_mgr->kill(part);
+    
+    m_mgr->kill(part);
+    
 	if (next != nullptr) {
 		releaseRec(next);
 	}
-
-	/*
-	stwu     r1, -0x30(r1)
-	mflr     r0
-	stw      r0, 0x34(r1)
-	stmw     r23, 0xc(r1)
-	mr       r29, r4
-	mr       r31, r3
-	lwz      r27, 0x10(r4)
-	lwz      r30, 4(r4)
-	cmplwi   r27, 0
-	beq      lbl_8013439C
-	lwz      r25, 0x10(r27)
-	lwz      r26, 4(r27)
-	cmplwi   r25, 0
-	beq      lbl_801342DC
-	lwz      r23, 0x10(r25)
-	lwz      r24, 4(r25)
-	cmplwi   r23, 0
-	beq      lbl_80134284
-	mr       r3, r23
-	bl       getNext__8CollPartFv
-	mr       r28, r3
-	mr       r3, r23
-	bl       getChild__8CollPartFv
-	or.      r4, r3, r3
-	beq      lbl_80134264
-	mr       r3, r31
-	bl       releaseRec__8CollTreeFP8CollPart
-
-lbl_80134264:
-	lwz      r3, 4(r31)
-	mr       r4, r23
-	bl       "kill__24MonoObjectMgr<8CollPart>FP8CollPart"
-	cmplwi   r28, 0
-	beq      lbl_80134284
-	mr       r3, r31
-	mr       r4, r28
-	bl       releaseRec__8CollTreeFP8CollPart
-
-lbl_80134284:
-	lwz      r3, 4(r31)
-	mr       r4, r25
-	bl       "kill__24MonoObjectMgr<8CollPart>FP8CollPart"
-	cmplwi   r24, 0
-	beq      lbl_801342DC
-	mr       r3, r24
-	bl       getNext__8CollPartFv
-	mr       r28, r3
-	mr       r3, r24
-	bl       getChild__8CollPartFv
-	or.      r4, r3, r3
-	beq      lbl_801342BC
-	mr       r3, r31
-	bl       releaseRec__8CollTreeFP8CollPart
-
-lbl_801342BC:
-	lwz      r3, 4(r31)
-	mr       r4, r24
-	bl       "kill__24MonoObjectMgr<8CollPart>FP8CollPart"
-	cmplwi   r28, 0
-	beq      lbl_801342DC
-	mr       r3, r31
-	mr       r4, r28
-	bl       releaseRec__8CollTreeFP8CollPart
-
-lbl_801342DC:
-	lwz      r3, 4(r31)
-	mr       r4, r27
-	bl       "kill__24MonoObjectMgr<8CollPart>FP8CollPart"
-	cmplwi   r26, 0
-	beq      lbl_8013439C
-	lwz      r24, 0x10(r26)
-	lwz      r23, 4(r26)
-	cmplwi   r24, 0
-	beq      lbl_80134344
-	mr       r3, r24
-	bl       getNext__8CollPartFv
-	mr       r28, r3
-	mr       r3, r24
-	bl       getChild__8CollPartFv
-	or.      r4, r3, r3
-	beq      lbl_80134324
-	mr       r3, r31
-	bl       releaseRec__8CollTreeFP8CollPart
-
-lbl_80134324:
-	lwz      r3, 4(r31)
-	mr       r4, r24
-	bl       "kill__24MonoObjectMgr<8CollPart>FP8CollPart"
-	cmplwi   r28, 0
-	beq      lbl_80134344
-	mr       r3, r31
-	mr       r4, r28
-	bl       releaseRec__8CollTreeFP8CollPart
-
-lbl_80134344:
-	lwz      r3, 4(r31)
-	mr       r4, r26
-	bl       "kill__24MonoObjectMgr<8CollPart>FP8CollPart"
-	cmplwi   r23, 0
-	beq      lbl_8013439C
-	mr       r3, r23
-	bl       getNext__8CollPartFv
-	mr       r28, r3
-	mr       r3, r23
-	bl       getChild__8CollPartFv
-	or.      r4, r3, r3
-	beq      lbl_8013437C
-	mr       r3, r31
-	bl       releaseRec__8CollTreeFP8CollPart
-
-lbl_8013437C:
-	lwz      r3, 4(r31)
-	mr       r4, r23
-	bl       "kill__24MonoObjectMgr<8CollPart>FP8CollPart"
-	cmplwi   r28, 0
-	beq      lbl_8013439C
-	mr       r3, r31
-	mr       r4, r28
-	bl       releaseRec__8CollTreeFP8CollPart
-
-lbl_8013439C:
-	lwz      r3, 4(r31)
-	mr       r4, r29
-	bl       "kill__24MonoObjectMgr<8CollPart>FP8CollPart"
-	cmplwi   r30, 0
-	beq      lbl_8013452C
-	lwz      r24, 0x10(r30)
-	lwz      r23, 4(r30)
-	cmplwi   r24, 0
-	beq      lbl_8013446C
-	lwz      r26, 0x10(r24)
-	lwz      r25, 4(r24)
-	cmplwi   r26, 0
-	beq      lbl_80134414
-	mr       r3, r26
-	bl       getNext__8CollPartFv
-	mr       r28, r3
-	mr       r3, r26
-	bl       getChild__8CollPartFv
-	or.      r4, r3, r3
-	beq      lbl_801343F4
-	mr       r3, r31
-	bl       releaseRec__8CollTreeFP8CollPart
-
-lbl_801343F4:
-	lwz      r3, 4(r31)
-	mr       r4, r26
-	bl       "kill__24MonoObjectMgr<8CollPart>FP8CollPart"
-	cmplwi   r28, 0
-	beq      lbl_80134414
-	mr       r3, r31
-	mr       r4, r28
-	bl       releaseRec__8CollTreeFP8CollPart
-
-lbl_80134414:
-	lwz      r3, 4(r31)
-	mr       r4, r24
-	bl       "kill__24MonoObjectMgr<8CollPart>FP8CollPart"
-	cmplwi   r25, 0
-	beq      lbl_8013446C
-	mr       r3, r25
-	bl       getNext__8CollPartFv
-	mr       r28, r3
-	mr       r3, r25
-	bl       getChild__8CollPartFv
-	or.      r4, r3, r3
-	beq      lbl_8013444C
-	mr       r3, r31
-	bl       releaseRec__8CollTreeFP8CollPart
-
-lbl_8013444C:
-	lwz      r3, 4(r31)
-	mr       r4, r25
-	bl       "kill__24MonoObjectMgr<8CollPart>FP8CollPart"
-	cmplwi   r28, 0
-	beq      lbl_8013446C
-	mr       r3, r31
-	mr       r4, r28
-	bl       releaseRec__8CollTreeFP8CollPart
-
-lbl_8013446C:
-	lwz      r3, 4(r31)
-	mr       r4, r30
-	bl       "kill__24MonoObjectMgr<8CollPart>FP8CollPart"
-	cmplwi   r23, 0
-	beq      lbl_8013452C
-	lwz      r25, 0x10(r23)
-	lwz      r24, 4(r23)
-	cmplwi   r25, 0
-	beq      lbl_801344D4
-	mr       r3, r25
-	bl       getNext__8CollPartFv
-	mr       r28, r3
-	mr       r3, r25
-	bl       getChild__8CollPartFv
-	or.      r4, r3, r3
-	beq      lbl_801344B4
-	mr       r3, r31
-	bl       releaseRec__8CollTreeFP8CollPart
-
-lbl_801344B4:
-	lwz      r3, 4(r31)
-	mr       r4, r25
-	bl       "kill__24MonoObjectMgr<8CollPart>FP8CollPart"
-	cmplwi   r28, 0
-	beq      lbl_801344D4
-	mr       r3, r31
-	mr       r4, r28
-	bl       releaseRec__8CollTreeFP8CollPart
-
-lbl_801344D4:
-	lwz      r3, 4(r31)
-	mr       r4, r23
-	bl       "kill__24MonoObjectMgr<8CollPart>FP8CollPart"
-	cmplwi   r24, 0
-	beq      lbl_8013452C
-	mr       r3, r24
-	bl       getNext__8CollPartFv
-	mr       r28, r3
-	mr       r3, r24
-	bl       getChild__8CollPartFv
-	or.      r4, r3, r3
-	beq      lbl_8013450C
-	mr       r3, r31
-	bl       releaseRec__8CollTreeFP8CollPart
-
-lbl_8013450C:
-	lwz      r3, 4(r31)
-	mr       r4, r24
-	bl       "kill__24MonoObjectMgr<8CollPart>FP8CollPart"
-	cmplwi   r28, 0
-	beq      lbl_8013452C
-	mr       r3, r31
-	mr       r4, r28
-	bl       releaseRec__8CollTreeFP8CollPart
-
-lbl_8013452C:
-	lmw      r23, 0xc(r1)
-	lwz      r0, 0x34(r1)
-	mtlr     r0
-	addi     r1, r1, 0x30
-	blr
-	*/
 }
-
-/*
- * @generated
- * --INFO--
- * Address:	80134540
- * Size:	000008
- */
-// CollPart* CollPart::getChild()
-// {
-// }
-
-/*
- * @generated
- * --INFO--
- * Address:	80134548
- * Size:	000008
- */
-// CollPart* CollPart::getNext()
-// {
-// }
 
 /*
  * --INFO--
@@ -1182,25 +356,6 @@ bool CollTree::checkCollisionRec(CollPart* p1, CollPart* p2, CollPart** p3, Coll
 		return false;
 	}
 }
-
-/*
- * @generated
- * --INFO--
- * Address:	80134B90
- * Size:	000010
- */
-// bool CollPart::isLeaf()
-// }
-
-/*
- * @generated
- * --INFO--
- * Address:	80134BA0
- * Size:	000030
- */
-// bool CollPart::isPrim()
-// {
-// }
 
 /*
  * checkCollision__8CollTreeFRQ23Sys6SphereP22IDelegate1<P8CollPart>

@@ -34,15 +34,14 @@ struct GridDivider : public TriDivider {
 		m_maxX          = 0;
 	}
 
-	virtual ~GridDivider();                                                          // _08 (weak)
+	virtual ~GridDivider() { if (&m_maxX) delete [] m_triIndexLists; }            	 // _08 (weak)
 	virtual float getMinY(Vector3f&);                                                // _10
 	virtual TriIndexList* findTriLists(Sys::Sphere&);                                // _14
 	virtual void read(Stream&);                                                      // _18
 	virtual void getCurrTri(Game::CurrTriInfo&);                                     // _1C
 	virtual void createTriangles(Sys::CreateTriangleArg&);                           // _20
 	virtual void getBoundBox(BoundBox&);                                             // _24 (weak)
-	virtual GridDivider* do_clone(Matrixf&, Sys::VertexTable*, Sys::TriangleTable*); // _2C
-	// virtual void _30() = 0;														  // _30 - need to work out what this is
+	virtual TriDivider* do_clone(Matrixf&, Sys::VertexTable*, Sys::TriangleTable*);  // _2C
 
 	void create(BoundBox&, int, int, Sys::VertexTable*, Sys::TriangleTable*);
 
@@ -56,12 +55,12 @@ struct GridDivider : public TriDivider {
 		}
 	}
 
-	int m_maxX;
-	int m_maxZ;
-	TriIndexList* m_triIndexLists;
-	BoundBox m_boundingBox;
-	float m_scaleX;
-	float m_scaleZ;
+	int m_maxX;							// _20
+	int m_maxZ;							// _24
+	TriIndexList* m_triIndexLists;		// _28
+	BoundBox m_boundingBox;				// _2C
+	float m_scaleX;						// _44
+	float m_scaleZ;						// _48
 };
 } // namespace Sys
 

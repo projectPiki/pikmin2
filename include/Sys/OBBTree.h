@@ -15,7 +15,7 @@ struct CurrTriInfo;
 namespace Sys {
 struct VertexTable;
 struct RayIntersectInfo;
-struct OBBTree : TriDivider {
+struct OBBTree : public TriDivider {
 	OBBTree();
 
 	virtual ~OBBTree() { }                            // _08 (weak)
@@ -34,8 +34,6 @@ struct OBBTree : TriDivider {
 	void traceMove_new(Matrixf&, Matrixf&, Game::MoveInfo&, float);
 	void traceMove_new_global(Game::MoveInfo&, float);
 
-	VertexTable* m_vertexTable;     // _18
-	TriangleTable* m_triangleTable; // _1C
 	OBB m_obb;                      // _20
 };
 } // namespace Sys

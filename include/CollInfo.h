@@ -161,7 +161,7 @@ struct CollPartFactory : public CollPart {
 
 	static CollPartFactory* load(char*);
 	static CollPartFactory* load(JKRFileLoader*, char*);
-	void createInstance(SysShape::MtxObject*, CollPartMgr*);
+	CollPart* createInstance(SysShape::MtxObject*, CollPartMgr*);
 };
 
 struct CollTree {
