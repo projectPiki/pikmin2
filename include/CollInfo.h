@@ -15,6 +15,10 @@
 struct CollPartMgr;
 struct FindCollPartArg;
 
+#define COLLTYPE_SPHERE   (0)
+#define COLLTYPE_TUBE     (1)
+#define COLLTYPE_TUBETREE (2)
+
 struct CollPart : public CNode {
 	CollPart();
 	CollPart(SysShape::MtxObject*);
@@ -37,55 +41,37 @@ struct CollPart : public CNode {
 	////////////// END VTABLE
 
 	void init(SysShape::MtxObject*);
-	/**
-	 * @reifiedAddress{8013915C}
-	 * @reifiedFile{plugProjectKandoU/collinfo.cpp}
-	 */
+
 	void addChild(CollPart* child) { add(child); }
 	void attachModel(SysShape::MtxObject*);
+
 	void calcStickGlobal(Vector3f&, Vector3f&);
 	void calcStickLocal(Vector3f&, Vector3f&);
 	void calcPoseMatrix(Vector3f&, Matrixf&);
+
 	void checkCollision(Sys::Sphere&, IDelegate1<CollPart*>*);
 	void checkCollisionMulti(CollPart*, IDelegate3<CollPart*, CollPart*, Vector3f&>*);
+
 	CollPart* clone(SysShape::MtxObject*, CollPartMgr*);
 	bool collide(CollPart*, Vector3f&);
+
 	int getAllCollPartToArray(CollPart**, int, int&);
-	/**
-	 * @reifiedAddress{80134540}
-	 * @reifiedFile{plugProjectKandoU/collinfo.cpp}
-	 */
+
 	CollPart* getChild() { return (CollPart*)m_child; }
 	CollPart* getCollPart(u32);
-	/**
-	 * @reifiedAddress{80134548}
-	 * @reifiedFile{plugProjectKandoU/collinfo.cpp}
-	 */
 	CollPart* getNext() { return (CollPart*)m_next; }
+
 	void getSphere(Sys::Sphere&);
 	void getTube(Sys::Tube&);
-	/**
-	 * @reifiedAddress{80134B90}
-	 * @reifiedFile{plugProjectKandoU/collinfo.cpp}
-	 */
-	bool isLeaf() { return (m_child == nullptr); }
-	/**
-	 * @reifiedAddress{80135510}
-	 * @reifiedFile{plugProjectKandoU/collinfo.cpp}
-	 */
-	bool isSphere() { return (m_hasCollPart == 0); }
+
+	bool isLeaf() { return (getChild() == nullptr); }
+	bool isSphere() { return (m_hasCollPart == COLLTYPE_SPHERE); }
 	bool isStickable();
-	bool isTube() { return (m_hasCollPart == 2); }
-	bool isTubeTree() { return (m_hasCollPart == 1); }
-	/**
-	 * @fabricated
-	 */
-	bool isTubeLike() { return isTubeTree() || isTube(); }
-	/**
-	 * @reifiedAddress{80134BA0}
-	 * @reifiedFile{plugProjectKandoU/collinfo.cpp}
-	 */
-	bool isPrim() { return (isLeaf() || isTubeTree() || isTube()); }
+	bool isTube() { return (m_hasCollPart == COLLTYPE_TUBE); }
+	bool isTubeTree() { return (m_hasCollPart == COLLTYPE_TUBETREE); }
+	bool isTubeLike() { return isTube() || isTubeTree(); }
+	bool isPrim() { return (getChild() == nullptr || isTube() || isTubeTree()); }
+
 	void makeMatrixTo(Matrixf&);
 	void makeTubeTree();
 	void read(Stream&, bool);

@@ -34,14 +34,18 @@ struct GridDivider : public TriDivider {
 		m_maxX          = 0;
 	}
 
-	virtual ~GridDivider() { if (&m_maxX) delete [] m_triIndexLists; }            	 // _08 (weak)
-	virtual float getMinY(Vector3f&);                                                // _10
-	virtual TriIndexList* findTriLists(Sys::Sphere&);                                // _14
-	virtual void read(Stream&);                                                      // _18
-	virtual void getCurrTri(Game::CurrTriInfo&);                                     // _1C
-	virtual void createTriangles(Sys::CreateTriangleArg&);                           // _20
-	virtual void getBoundBox(BoundBox&);                                             // _24 (weak)
-	virtual TriDivider* do_clone(Matrixf&, Sys::VertexTable*, Sys::TriangleTable*);  // _2C
+	virtual ~GridDivider()
+	{
+		if (&m_maxX)
+			delete[] m_triIndexLists;
+	}                                                                               // _08 (weak)
+	virtual float getMinY(Vector3f&);                                               // _10
+	virtual TriIndexList* findTriLists(Sys::Sphere&);                               // _14
+	virtual void read(Stream&);                                                     // _18
+	virtual void getCurrTri(Game::CurrTriInfo&);                                    // _1C
+	virtual void createTriangles(Sys::CreateTriangleArg&);                          // _20
+	virtual void getBoundBox(BoundBox&);                                            // _24 (weak)
+	virtual TriDivider* do_clone(Matrixf&, Sys::VertexTable*, Sys::TriangleTable*); // _2C
 
 	void create(BoundBox&, int, int, Sys::VertexTable*, Sys::TriangleTable*);
 
@@ -55,12 +59,12 @@ struct GridDivider : public TriDivider {
 		}
 	}
 
-	int m_maxX;							// _20
-	int m_maxZ;							// _24
-	TriIndexList* m_triIndexLists;		// _28
-	BoundBox m_boundingBox;				// _2C
-	float m_scaleX;						// _44
-	float m_scaleZ;						// _48
+	int m_maxX;                    // _20
+	int m_maxZ;                    // _24
+	TriIndexList* m_triIndexLists; // _28
+	BoundBox m_boundingBox;        // _2C
+	float m_scaleX;                // _44
+	float m_scaleZ;                // _48
 };
 } // namespace Sys
 

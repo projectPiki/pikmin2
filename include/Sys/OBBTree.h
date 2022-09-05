@@ -34,7 +34,7 @@ struct OBBTree : public TriDivider {
 	void traceMove_new(Matrixf&, Matrixf&, Game::MoveInfo&, float);
 	void traceMove_new_global(Game::MoveInfo&, float);
 
-	OBB m_obb;                      // _20
+	OBB m_obb; // _20
 };
 } // namespace Sys
 

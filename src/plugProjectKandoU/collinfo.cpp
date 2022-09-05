@@ -102,11 +102,11 @@ Platform* Platform::clone(Matrixf& matrix)
  */
 void Platform::load(JKRFileLoader* loader, char* path)
 {
-    void* data = JKRFileLoader::getGlbResource(path, loader);
+	void* data = JKRFileLoader::getGlbResource(path, loader);
 	if (data == nullptr) {
-        JUT_PANICLINE(236, "platform %s not found !\n", path);
-        return;
-    }
+		JUT_PANICLINE(236, "platform %s not found !\n", path);
+		return;
+	}
 	RamStream input(data, -1);
 	read(input);
 }
@@ -248,7 +248,7 @@ CollTree::CollTree()
  */
 void CollTree::createFromFactory(SysShape::MtxObject* mtxObject, CollPartFactory* factory, CollPartMgr* mgr)
 {
-    m_mgr = mgr;
+	m_mgr = mgr;
 	if (factory != nullptr) {
 		m_part = factory->createInstance(mtxObject, mgr);
 	}
@@ -299,13 +299,13 @@ void CollTree::releaseRec(CollPart* part)
 {
 	CollPart* next  = part->getNext();
 	CollPart* child = part->getChild();
-    
+
 	if (child != nullptr) {
 		releaseRec(child);
 	}
-    
-    m_mgr->kill(part);
-    
+
+	m_mgr->kill(part);
+
 	if (next != nullptr) {
 		releaseRec(next);
 	}
@@ -376,732 +376,30 @@ void CollTree::checkCollision(Sys::Sphere& sphere, IDelegate1<CollPart*>* delega
  * Address:	80134BFC
  * Size:	0008B8
  */
-void CollPart::checkCollision(Sys::Sphere&, IDelegate1<CollPart*>*)
+void CollPart::checkCollision(Sys::Sphere& sphere, IDelegate1<CollPart*>* delegate)
 {
-	/*
-	stwu     r1, -0x200(r1)
-	mflr     r0
-	stw      r0, 0x204(r1)
-	stfd     f31, 0x1f0(r1)
-	psq_st   f31, 504(r1), 0, qr0
-	stfd     f30, 0x1e0(r1)
-	psq_st   f30, 488(r1), 0, qr0
-	stmw     r26, 0x1c8(r1)
-	mr       r28, r3
-	mr       r29, r4
-	lwz      r7, 0x10(r3)
-	mr       r30, r5
-	li       r3, 0
-	cmplwi   r7, 0
-	beq      lbl_80134C4C
-	lbz      r0, 0x58(r28)
-	cmplwi   r0, 1
-	beq      lbl_80134C4C
-	cmplwi   r0, 2
-	bne      lbl_80134C50
-
-lbl_80134C4C:
-	li       r3, 1
-
-lbl_80134C50:
-	clrlwi.  r0, r3, 0x18
-	beq      lbl_80134D38
-	lbz      r0, 0x58(r28)
-	cmplwi   r0, 0
-	bne      lbl_80134CB4
-	lfs      f1, 0x1c(r28)
-	mr       r4, r29
-	lfs      f0, 0x4c(r28)
-	addi     r3, r1, 0xd8
-	stfs     f0, 0xd8(r1)
-	lfs      f0, 0x50(r28)
-	stfs     f0, 0xdc(r1)
-	lfs      f0, 0x54(r28)
-	stfs     f0, 0xe0(r1)
-	stfs     f1, 0xe4(r1)
-	bl       intersect__Q23Sys6SphereFRQ23Sys6Sphere
-	clrlwi.  r0, r3, 0x18
-	beq      lbl_80134D38
-	mr       r3, r30
-	mr       r4, r28
-	lwz      r12, 0(r30)
-	lwz      r12, 8(r12)
-	mtctr    r12
-	bctrl
-	b        lbl_80134D38
-
-lbl_80134CB4:
-	cmplwi   r0, 1
-	beq      lbl_80134CC4
-	cmplwi   r0, 2
-	bne      lbl_80134D38
-
-lbl_80134CC4:
-	lfs      f2, 0x1c(r7)
-	mr       r4, r29
-	lfs      f1, 0x1c(r28)
-	addi     r3, r1, 0x1a8
-	lfs      f0, 0x4c(r28)
-	addi     r5, r1, 0xcc
-	addi     r6, r1, 0x20
-	stfs     f0, 0x1a8(r1)
-	lfs      f0, 0x50(r28)
-	stfs     f0, 0x1ac(r1)
-	lfs      f0, 0x54(r28)
-	stfs     f0, 0x1b0(r1)
-	lfs      f0, 0x4c(r7)
-	stfs     f0, 0x1b4(r1)
-	lfs      f0, 0x50(r7)
-	stfs     f0, 0x1b8(r1)
-	lfs      f0, 0x54(r7)
-	stfs     f0, 0x1bc(r1)
-	stfs     f1, 0x1c0(r1)
-	stfs     f2, 0x1c4(r1)
-	bl       "collide__Q23Sys4TubeFRQ23Sys6SphereR10Vector3<f>Rf"
-	clrlwi.  r0, r3, 0x18
-	beq      lbl_80134D38
-	mr       r3, r30
-	mr       r4, r28
-	lwz      r12, 0(r30)
-	lwz      r12, 8(r12)
-	mtctr    r12
-	bctrl
-
-lbl_80134D38:
-	lwz      r31, 0x10(r28)
-	cmplwi   r31, 0
-	beq      lbl_801350E4
-	mr       r3, r31
-	li       r27, 0
-	bl       getChild__8CollPartFv
-	cmplwi   r3, 0
-	beq      lbl_80134D78
-	mr       r3, r31
-	bl       isTube__8CollPartFv
-	clrlwi.  r0, r3, 0x18
-	bne      lbl_80134D78
-	mr       r3, r31
-	bl       isTubeTree__8CollPartFv
-	clrlwi.  r0, r3, 0x18
-	beq      lbl_80134D7C
-
-lbl_80134D78:
-	li       r27, 1
-
-lbl_80134D7C:
-	clrlwi.  r0, r27, 0x18
-	beq      lbl_80134E54
-	lbz      r0, 0x58(r31)
-	cmplwi   r0, 0
-	bne      lbl_80134DD4
-	lfs      f31, 0x1c(r31)
-	addi     r3, r1, 0xb0
-	addi     r4, r31, 0x4c
-	bl       "__ct__10Vector3<f>FRC10Vector3<f>"
-	stfs     f31, 0xbc(r1)
-	mr       r4, r29
-	addi     r3, r1, 0xb0
-	bl       intersect__Q23Sys6SphereFRQ23Sys6Sphere
-	clrlwi.  r0, r3, 0x18
-	beq      lbl_80134E54
-	mr       r3, r30
-	mr       r4, r31
-	lwz      r12, 0(r30)
-	lwz      r12, 8(r12)
-	mtctr    r12
-	bctrl
-	b        lbl_80134E54
-
-lbl_80134DD4:
-	cmplwi   r0, 1
-	beq      lbl_80134DE4
-	cmplwi   r0, 2
-	bne      lbl_80134E54
-
-lbl_80134DE4:
-	mr       r3, r31
-	bl       getChild__8CollPartFv
-	lfs      f30, 0x1c(r3)
-	mr       r3, r31
-	lfs      f31, 0x1c(r31)
-	bl       getChild__8CollPartFv
-	addi     r27, r3, 0x4c
-	addi     r3, r1, 0x188
-	addi     r4, r31, 0x4c
-	bl       "__ct__10Vector3<f>FRC10Vector3<f>"
-	mr       r4, r27
-	addi     r3, r1, 0x194
-	bl       "__ct__10Vector3<f>FRC10Vector3<f>"
-	stfs     f31, 0x1a0(r1)
-	mr       r4, r29
-	addi     r3, r1, 0x188
-	addi     r5, r1, 0xc0
-	stfs     f30, 0x1a4(r1)
-	addi     r6, r1, 0x1c
-	bl       "collide__Q23Sys4TubeFRQ23Sys6SphereR10Vector3<f>Rf"
-	clrlwi.  r0, r3, 0x18
-	beq      lbl_80134E54
-	mr       r3, r30
-	mr       r4, r31
-	lwz      r12, 0(r30)
-	lwz      r12, 8(r12)
-	mtctr    r12
-	bctrl
-
-lbl_80134E54:
-	lwz      r0, 0x10(r31)
-	cmplwi   r0, 0
-	beq      lbl_80134F9C
-	mr       r3, r31
-	bl       getChild__8CollPartFv
-	mr       r26, r3
-	bl       isPrim__8CollPartFv
-	clrlwi.  r0, r3, 0x18
-	beq      lbl_80134F54
-	mr       r3, r26
-	bl       isSphere__8CollPartFv
-	clrlwi.  r0, r3, 0x18
-	beq      lbl_80134EC8
-	lfs      f1, 0x1c(r26)
-	addi     r3, r1, 0x78
-	addi     r4, r26, 0x4c
-	bl       "__ct__Q23Sys6SphereFR10Vector3<f>f"
-	mr       r4, r29
-	addi     r3, r1, 0x78
-	bl       intersect__Q23Sys6SphereFRQ23Sys6Sphere
-	clrlwi.  r0, r3, 0x18
-	beq      lbl_80134F54
-	mr       r3, r30
-	mr       r4, r26
-	lwz      r12, 0(r30)
-	lwz      r12, 8(r12)
-	mtctr    r12
-	bctrl
-	b        lbl_80134F54
-
-lbl_80134EC8:
-	mr       r3, r26
-	bl       isTube__8CollPartFv
-	clrlwi.  r0, r3, 0x18
-	bne      lbl_80134EE8
-	mr       r3, r26
-	bl       isTubeTree__8CollPartFv
-	clrlwi.  r0, r3, 0x18
-	beq      lbl_80134F54
-
-lbl_80134EE8:
-	mr       r3, r26
-	bl       getChild__8CollPartFv
-	mr       r27, r3
-	mr       r3, r26
-	bl       getChild__8CollPartFv
-	mr       r5, r3
-	lfs      f1, 0x1c(r26)
-	lfs      f2, 0x1c(r27)
-	addi     r3, r1, 0x148
-	addi     r4, r26, 0x4c
-	addi     r5, r5, 0x4c
-	bl       "__ct__Q23Sys4TubeFR10Vector3<f>R10Vector3<f>ff"
-	addi     r3, r1, 0x88
-	bl       "__ct__10Vector3<f>Fv"
-	mr       r4, r29
-	addi     r3, r1, 0x148
-	addi     r5, r1, 0x88
-	addi     r6, r1, 0x14
-	bl       "collide__Q23Sys4TubeFRQ23Sys6SphereR10Vector3<f>Rf"
-	clrlwi.  r0, r3, 0x18
-	beq      lbl_80134F54
-	mr       r3, r30
-	mr       r4, r26
-	lwz      r12, 0(r30)
-	lwz      r12, 8(r12)
-	mtctr    r12
-	bctrl
-
-lbl_80134F54:
-	mr       r3, r26
-	bl       getChild__8CollPartFv
-	cmplwi   r3, 0
-	beq      lbl_80134F78
-	mr       r3, r26
-	bl       getChild__8CollPartFv
-	mr       r4, r29
-	mr       r5, r30
-	bl       "checkCollision__8CollPartFRQ23Sys6SphereP22IDelegate1<P8CollPart>"
-
-lbl_80134F78:
-	mr       r3, r26
-	bl       getNext__8CollPartFv
-	cmplwi   r3, 0
-	beq      lbl_80134F9C
-	mr       r3, r26
-	bl       getNext__8CollPartFv
-	mr       r4, r29
-	mr       r5, r30
-	bl       "checkCollision__8CollPartFRQ23Sys6SphereP22IDelegate1<P8CollPart>"
-
-lbl_80134F9C:
-	lwz      r0, 4(r31)
-	cmplwi   r0, 0
-	beq      lbl_801350E4
-	mr       r3, r31
-	bl       getNext__8CollPartFv
-	mr       r26, r3
-	bl       isPrim__8CollPartFv
-	clrlwi.  r0, r3, 0x18
-	beq      lbl_8013509C
-	mr       r3, r26
-	bl       isSphere__8CollPartFv
-	clrlwi.  r0, r3, 0x18
-	beq      lbl_80135010
-	lfs      f1, 0x1c(r26)
-	addi     r3, r1, 0x5c
-	addi     r4, r26, 0x4c
-	bl       "__ct__Q23Sys6SphereFR10Vector3<f>f"
-	mr       r4, r29
-	addi     r3, r1, 0x5c
-	bl       intersect__Q23Sys6SphereFRQ23Sys6Sphere
-	clrlwi.  r0, r3, 0x18
-	beq      lbl_8013509C
-	mr       r3, r30
-	mr       r4, r26
-	lwz      r12, 0(r30)
-	lwz      r12, 8(r12)
-	mtctr    r12
-	bctrl
-	b        lbl_8013509C
-
-lbl_80135010:
-	mr       r3, r26
-	bl       isTube__8CollPartFv
-	clrlwi.  r0, r3, 0x18
-	bne      lbl_80135030
-	mr       r3, r26
-	bl       isTubeTree__8CollPartFv
-	clrlwi.  r0, r3, 0x18
-	beq      lbl_8013509C
-
-lbl_80135030:
-	mr       r3, r26
-	bl       getChild__8CollPartFv
-	mr       r31, r3
-	mr       r3, r26
-	bl       getChild__8CollPartFv
-	mr       r5, r3
-	lfs      f1, 0x1c(r26)
-	lfs      f2, 0x1c(r31)
-	addi     r3, r1, 0x128
-	addi     r4, r26, 0x4c
-	addi     r5, r5, 0x4c
-	bl       "__ct__Q23Sys4TubeFR10Vector3<f>R10Vector3<f>ff"
-	addi     r3, r1, 0x6c
-	bl       "__ct__10Vector3<f>Fv"
-	mr       r4, r29
-	addi     r3, r1, 0x128
-	addi     r5, r1, 0x6c
-	addi     r6, r1, 0x10
-	bl       "collide__Q23Sys4TubeFRQ23Sys6SphereR10Vector3<f>Rf"
-	clrlwi.  r0, r3, 0x18
-	beq      lbl_8013509C
-	mr       r3, r30
-	mr       r4, r26
-	lwz      r12, 0(r30)
-	lwz      r12, 8(r12)
-	mtctr    r12
-	bctrl
-
-lbl_8013509C:
-	mr       r3, r26
-	bl       getChild__8CollPartFv
-	cmplwi   r3, 0
-	beq      lbl_801350C0
-	mr       r3, r26
-	bl       getChild__8CollPartFv
-	mr       r4, r29
-	mr       r5, r30
-	bl       "checkCollision__8CollPartFRQ23Sys6SphereP22IDelegate1<P8CollPart>"
-
-lbl_801350C0:
-	mr       r3, r26
-	bl       getNext__8CollPartFv
-	cmplwi   r3, 0
-	beq      lbl_801350E4
-	mr       r3, r26
-	bl       getNext__8CollPartFv
-	mr       r4, r29
-	mr       r5, r30
-	bl       "checkCollision__8CollPartFRQ23Sys6SphereP22IDelegate1<P8CollPart>"
-
-lbl_801350E4:
-	lwz      r31, 4(r28)
-	cmplwi   r31, 0
-	beq      lbl_80135490
-	mr       r3, r31
-	li       r28, 0
-	bl       getChild__8CollPartFv
-	cmplwi   r3, 0
-	beq      lbl_80135124
-	mr       r3, r31
-	bl       isTube__8CollPartFv
-	clrlwi.  r0, r3, 0x18
-	bne      lbl_80135124
-	mr       r3, r31
-	bl       isTubeTree__8CollPartFv
-	clrlwi.  r0, r3, 0x18
-	beq      lbl_80135128
-
-lbl_80135124:
-	li       r28, 1
-
-lbl_80135128:
-	clrlwi.  r0, r28, 0x18
-	beq      lbl_80135200
-	lbz      r0, 0x58(r31)
-	cmplwi   r0, 0
-	bne      lbl_80135180
-	lfs      f30, 0x1c(r31)
-	addi     r3, r1, 0x94
-	addi     r4, r31, 0x4c
-	bl       "__ct__10Vector3<f>FRC10Vector3<f>"
-	stfs     f30, 0xa0(r1)
-	mr       r4, r29
-	addi     r3, r1, 0x94
-	bl       intersect__Q23Sys6SphereFRQ23Sys6Sphere
-	clrlwi.  r0, r3, 0x18
-	beq      lbl_80135200
-	mr       r3, r30
-	mr       r4, r31
-	lwz      r12, 0(r30)
-	lwz      r12, 8(r12)
-	mtctr    r12
-	bctrl
-	b        lbl_80135200
-
-lbl_80135180:
-	cmplwi   r0, 1
-	beq      lbl_80135190
-	cmplwi   r0, 2
-	bne      lbl_80135200
-
-lbl_80135190:
-	mr       r3, r31
-	bl       getChild__8CollPartFv
-	lfs      f31, 0x1c(r3)
-	mr       r3, r31
-	lfs      f30, 0x1c(r31)
-	bl       getChild__8CollPartFv
-	addi     r26, r3, 0x4c
-	addi     r3, r1, 0x168
-	addi     r4, r31, 0x4c
-	bl       "__ct__10Vector3<f>FRC10Vector3<f>"
-	mr       r4, r26
-	addi     r3, r1, 0x174
-	bl       "__ct__10Vector3<f>FRC10Vector3<f>"
-	stfs     f30, 0x180(r1)
-	mr       r4, r29
-	addi     r3, r1, 0x168
-	addi     r5, r1, 0xa4
-	stfs     f31, 0x184(r1)
-	addi     r6, r1, 0x18
-	bl       "collide__Q23Sys4TubeFRQ23Sys6SphereR10Vector3<f>Rf"
-	clrlwi.  r0, r3, 0x18
-	beq      lbl_80135200
-	mr       r3, r30
-	mr       r4, r31
-	lwz      r12, 0(r30)
-	lwz      r12, 8(r12)
-	mtctr    r12
-	bctrl
-
-lbl_80135200:
-	lwz      r0, 0x10(r31)
-	cmplwi   r0, 0
-	beq      lbl_80135348
-	mr       r3, r31
-	bl       getChild__8CollPartFv
-	mr       r26, r3
-	bl       isPrim__8CollPartFv
-	clrlwi.  r0, r3, 0x18
-	beq      lbl_80135300
-	mr       r3, r26
-	bl       isSphere__8CollPartFv
-	clrlwi.  r0, r3, 0x18
-	beq      lbl_80135274
-	lfs      f1, 0x1c(r26)
-	addi     r3, r1, 0x40
-	addi     r4, r26, 0x4c
-	bl       "__ct__Q23Sys6SphereFR10Vector3<f>f"
-	mr       r4, r29
-	addi     r3, r1, 0x40
-	bl       intersect__Q23Sys6SphereFRQ23Sys6Sphere
-	clrlwi.  r0, r3, 0x18
-	beq      lbl_80135300
-	mr       r3, r30
-	mr       r4, r26
-	lwz      r12, 0(r30)
-	lwz      r12, 8(r12)
-	mtctr    r12
-	bctrl
-	b        lbl_80135300
-
-lbl_80135274:
-	mr       r3, r26
-	bl       isTube__8CollPartFv
-	clrlwi.  r0, r3, 0x18
-	bne      lbl_80135294
-	mr       r3, r26
-	bl       isTubeTree__8CollPartFv
-	clrlwi.  r0, r3, 0x18
-	beq      lbl_80135300
-
-lbl_80135294:
-	mr       r3, r26
-	bl       getChild__8CollPartFv
-	mr       r28, r3
-	mr       r3, r26
-	bl       getChild__8CollPartFv
-	mr       r5, r3
-	lfs      f1, 0x1c(r26)
-	lfs      f2, 0x1c(r28)
-	addi     r3, r1, 0x108
-	addi     r4, r26, 0x4c
-	addi     r5, r5, 0x4c
-	bl       "__ct__Q23Sys4TubeFR10Vector3<f>R10Vector3<f>ff"
-	addi     r3, r1, 0x50
-	bl       "__ct__10Vector3<f>Fv"
-	mr       r4, r29
-	addi     r3, r1, 0x108
-	addi     r5, r1, 0x50
-	addi     r6, r1, 0xc
-	bl       "collide__Q23Sys4TubeFRQ23Sys6SphereR10Vector3<f>Rf"
-	clrlwi.  r0, r3, 0x18
-	beq      lbl_80135300
-	mr       r3, r30
-	mr       r4, r26
-	lwz      r12, 0(r30)
-	lwz      r12, 8(r12)
-	mtctr    r12
-	bctrl
-
-lbl_80135300:
-	mr       r3, r26
-	bl       getChild__8CollPartFv
-	cmplwi   r3, 0
-	beq      lbl_80135324
-	mr       r3, r26
-	bl       getChild__8CollPartFv
-	mr       r4, r29
-	mr       r5, r30
-	bl       "checkCollision__8CollPartFRQ23Sys6SphereP22IDelegate1<P8CollPart>"
-
-lbl_80135324:
-	mr       r3, r26
-	bl       getNext__8CollPartFv
-	cmplwi   r3, 0
-	beq      lbl_80135348
-	mr       r3, r26
-	bl       getNext__8CollPartFv
-	mr       r4, r29
-	mr       r5, r30
-	bl       "checkCollision__8CollPartFRQ23Sys6SphereP22IDelegate1<P8CollPart>"
-
-lbl_80135348:
-	lwz      r0, 4(r31)
-	cmplwi   r0, 0
-	beq      lbl_80135490
-	mr       r3, r31
-	bl       getNext__8CollPartFv
-	mr       r26, r3
-	bl       isPrim__8CollPartFv
-	clrlwi.  r0, r3, 0x18
-	beq      lbl_80135448
-	mr       r3, r26
-	bl       isSphere__8CollPartFv
-	clrlwi.  r0, r3, 0x18
-	beq      lbl_801353BC
-	lfs      f1, 0x1c(r26)
-	addi     r3, r1, 0x24
-	addi     r4, r26, 0x4c
-	bl       "__ct__Q23Sys6SphereFR10Vector3<f>f"
-	mr       r4, r29
-	addi     r3, r1, 0x24
-	bl       intersect__Q23Sys6SphereFRQ23Sys6Sphere
-	clrlwi.  r0, r3, 0x18
-	beq      lbl_80135448
-	mr       r3, r30
-	mr       r4, r26
-	lwz      r12, 0(r30)
-	lwz      r12, 8(r12)
-	mtctr    r12
-	bctrl
-	b        lbl_80135448
-
-lbl_801353BC:
-	mr       r3, r26
-	bl       isTube__8CollPartFv
-	clrlwi.  r0, r3, 0x18
-	bne      lbl_801353DC
-	mr       r3, r26
-	bl       isTubeTree__8CollPartFv
-	clrlwi.  r0, r3, 0x18
-	beq      lbl_80135448
-
-lbl_801353DC:
-	mr       r3, r26
-	bl       getChild__8CollPartFv
-	mr       r28, r3
-	mr       r3, r26
-	bl       getChild__8CollPartFv
-	mr       r5, r3
-	lfs      f1, 0x1c(r26)
-	lfs      f2, 0x1c(r28)
-	addi     r3, r1, 0xe8
-	addi     r4, r26, 0x4c
-	addi     r5, r5, 0x4c
-	bl       "__ct__Q23Sys4TubeFR10Vector3<f>R10Vector3<f>ff"
-	addi     r3, r1, 0x34
-	bl       "__ct__10Vector3<f>Fv"
-	mr       r4, r29
-	addi     r3, r1, 0xe8
-	addi     r5, r1, 0x34
-	addi     r6, r1, 8
-	bl       "collide__Q23Sys4TubeFRQ23Sys6SphereR10Vector3<f>Rf"
-	clrlwi.  r0, r3, 0x18
-	beq      lbl_80135448
-	mr       r3, r30
-	mr       r4, r26
-	lwz      r12, 0(r30)
-	lwz      r12, 8(r12)
-	mtctr    r12
-	bctrl
-
-lbl_80135448:
-	mr       r3, r26
-	bl       getChild__8CollPartFv
-	cmplwi   r3, 0
-	beq      lbl_8013546C
-	mr       r3, r26
-	bl       getChild__8CollPartFv
-	mr       r4, r29
-	mr       r5, r30
-	bl       "checkCollision__8CollPartFRQ23Sys6SphereP22IDelegate1<P8CollPart>"
-
-lbl_8013546C:
-	mr       r3, r26
-	bl       getNext__8CollPartFv
-	cmplwi   r3, 0
-	beq      lbl_80135490
-	mr       r3, r26
-	bl       getNext__8CollPartFv
-	mr       r4, r29
-	mr       r5, r30
-	bl       "checkCollision__8CollPartFRQ23Sys6SphereP22IDelegate1<P8CollPart>"
-
-lbl_80135490:
-	psq_l    f31, 504(r1), 0, qr0
-	lfd      f31, 0x1f0(r1)
-	psq_l    f30, 488(r1), 0, qr0
-	lfd      f30, 0x1e0(r1)
-	lmw      r26, 0x1c8(r1)
-	lwz      r0, 0x204(r1)
-	mtlr     r0
-	addi     r1, r1, 0x200
-	blr
-	*/
+	if (isPrim()) {
+		if (isSphere()) {
+			Sys::Sphere partSphere(m_position, _1C);
+			if (partSphere.intersect(sphere)) {
+				delegate->invoke(this);
+			}
+		} else if (isTube() || isTubeTree()) {
+			Sys::Tube collTube(m_position, getChild()->m_position, _1C, getChild()->_1C);
+			Vector3f colVec;
+			float colSep;
+			if (collTube.collide(sphere, colVec, colSep)) {
+				delegate->invoke(this);
+			}
+		}
+	}
+	if (getChild() != nullptr) {
+		getChild()->checkCollision(sphere, delegate);
+	}
+	if (getNext() != nullptr) {
+		getNext()->checkCollision(sphere, delegate);
+	}
 }
-
-namespace Sys {
-// TODO: These are probably generated...
-/*
- * __ct__Q23Sys4TubeFR10Vector3<f>R10Vector3<f>ff
- * --INFO--
- * Address:	801354B4
- * Size:	00003C
- */
-Tube::Tube(Vector3f& p1, Vector3f& p2, float p3, float p4)
-{
-	_00 = p1;
-	_0C = p2;
-	_18 = p3;
-	_1C = p4;
-}
-
-/*
- * __ct__Q23Sys6SphereFR10Vector3<f>f
- * --INFO--
- * Address:	801354F0
- * Size:	000020
- */
-Sphere::Sphere(Vector3f& position, float radius)
-{
-	m_position = position;
-	m_radius   = radius;
-}
-
-} // namespace Sys
-
-/*
- * @generated
- * --INFO--
- * Address:	80135510
- * Size:	000010
- */
-// bool CollPart::isSphere()
-// {
-// }
-
-/*
- * __ct__10Vector3<f>FRC10Vector3<f>
- * --INFO--
- * Address:	80135520
- * Size:	00001C
- */
-// Vector3f::Vector3(const Vector3f&)
-// {
-// 	/*
-// 	lfs      f0, 0(r4)
-// 	lfs      f1, 4(r4)
-// 	stfs     f0, 0(r3)
-// 	lfs      f0, 8(r4)
-// 	stfs     f1, 4(r3)
-// 	stfs     f0, 8(r3)
-// 	blr
-// 	*/
-// }
-
-/*
- * isTubeTree__8CollPartFv
- * --INFO--
- * Address:	8013553C
- * Size:	000014
- */
-// bool CollPart::isTubeTree()
-// {
-// 	/*
-// 	lbz      r0, 0x58(r3)
-// 	subfic   r0, r0, 2
-// 	cntlzw   r0, r0
-// 	srwi     r3, r0, 5
-// 	blr
-// 	*/
-// }
-
-/*
- * isTube__8CollPartFv
- * --INFO--
- * Address:	80135550
- * Size:	000014
- */
-// bool CollPart::isTube()
-// {
-// 	/*
-// 	lbz      r0, 0x58(r3)
-// 	subfic   r0, r0, 1
-// 	cntlzw   r0, r0
-// 	srwi     r3, r0, 5
-// 	blr
-// 	*/
-// }
 
 /*
  * checkCollisionMulti__8CollTreeFP8CollTreeP47IDelegate3<P8CollPart,P8CollPart,R10Vector3<f>>
@@ -1111,9 +409,12 @@ Sphere::Sphere(Vector3f& position, float radius)
  */
 void CollTree::checkCollisionMulti(CollTree* other, IDelegate3<CollPart*, CollPart*, Vector3f&>* delegate)
 {
-	CollPart* otherPart;
+	CollPart* inputPart = other->m_part;
+
 	for (CollPart* thisPart = m_part; thisPart != nullptr; thisPart = thisPart->getNext()) {
-		for (otherPart = other->m_part; otherPart != nullptr; otherPart = otherPart->getNext()) {
+
+		for (CollPart* otherPart = inputPart; otherPart != nullptr; otherPart = otherPart->getNext()) {
+
 			Vector3f outPosition;
 			if (thisPart->collide(otherPart, outPosition)) {
 				if (thisPart->isPrim()) {
@@ -1121,10 +422,8 @@ void CollTree::checkCollisionMulti(CollTree* other, IDelegate3<CollPart*, CollPa
 						delegate->invoke(thisPart, otherPart, outPosition);
 						if (!thisPart->isLeaf()) {
 							thisPart->getChild()->checkCollisionMulti(otherPart, delegate);
-						} else {
-							if (!otherPart->isLeaf()) {
-								thisPart->checkCollisionMulti(otherPart->getChild(), delegate);
-							}
+						} else if (!otherPart->isLeaf()) {
+							thisPart->checkCollisionMulti(otherPart->getChild(), delegate);
 						}
 						continue;
 					}
@@ -1141,142 +440,6 @@ void CollTree::checkCollisionMulti(CollTree* other, IDelegate3<CollPart*, CollPa
 			}
 		}
 	}
-
-	/*
-	.loc_0x0:
-	  stwu      r1, -0x30(r1)
-	  mflr      r0
-	  stw       r0, 0x34(r1)
-	  stw       r31, 0x2C(r1)
-	  stw       r30, 0x28(r1)
-	  stw       r29, 0x24(r1)
-	  stw       r28, 0x20(r1)
-	  mr        r28, r5
-	  lwz       r31, 0x0(r4)
-	  lwz       r30, 0x0(r3)
-	  b         .loc_0x170
-
-	.loc_0x2C:
-	  mr        r29, r31
-	  b         .loc_0x164
-
-	.loc_0x34:
-	  mr        r3, r30
-	  mr        r4, r29
-	  addi      r5, r1, 0x8
-	  bl        0x348
-	  rlwinm.   r0,r3,0,24,31
-	  beq-      .loc_0x160
-	  lwz       r3, 0x10(r30)
-	  li        r4, 0
-	  cmplwi    r3, 0
-	  beq-      .loc_0x70
-	  lbz       r0, 0x58(r30)
-	  cmplwi    r0, 0x1
-	  beq-      .loc_0x70
-	  cmplwi    r0, 0x2
-	  bne-      .loc_0x74
-
-	.loc_0x70:
-	  li        r4, 0x1
-
-	.loc_0x74:
-	  rlwinm.   r0,r4,0,24,31
-	  beq-      .loc_0x104
-	  lwz       r0, 0x10(r29)
-	  li        r4, 0
-	  cmplwi    r0, 0
-	  beq-      .loc_0xA0
-	  lbz       r0, 0x58(r29)
-	  cmplwi    r0, 0x1
-	  beq-      .loc_0xA0
-	  cmplwi    r0, 0x2
-	  bne-      .loc_0xA4
-
-	.loc_0xA0:
-	  li        r4, 0x1
-
-	.loc_0xA4:
-	  rlwinm.   r0,r4,0,24,31
-	  beq-      .loc_0x104
-	  mr        r3, r28
-	  mr        r4, r30
-	  lwz       r12, 0x0(r28)
-	  mr        r5, r29
-	  addi      r6, r1, 0x8
-	  lwz       r12, 0x8(r12)
-	  mtctr     r12
-	  bctrl
-	  lwz       r3, 0x10(r30)
-	  cmplwi    r3, 0
-	  beq-      .loc_0xE8
-	  mr        r4, r29
-	  mr        r5, r28
-	  bl        .loc_0x198
-	  b         .loc_0x160
-
-	.loc_0xE8:
-	  lwz       r4, 0x10(r29)
-	  cmplwi    r4, 0
-	  beq-      .loc_0x160
-	  mr        r3, r30
-	  mr        r5, r28
-	  bl        .loc_0x198
-	  b         .loc_0x160
-
-	.loc_0x104:
-	  cmplwi    r3, 0
-	  bne-      .loc_0x120
-	  lwz       r4, 0x10(r29)
-	  mr        r3, r30
-	  mr        r5, r28
-	  bl        .loc_0x198
-	  b         .loc_0x160
-
-	.loc_0x120:
-	  lwz       r4, 0x10(r29)
-	  cmplwi    r4, 0
-	  bne-      .loc_0x13C
-	  mr        r4, r29
-	  mr        r5, r28
-	  bl        .loc_0x198
-	  b         .loc_0x160
-
-	.loc_0x13C:
-	  cmplwi    r3, 0
-	  beq-      .loc_0x154
-	  mr        r4, r29
-	  mr        r5, r28
-	  bl        .loc_0x198
-	  b         .loc_0x160
-
-	.loc_0x154:
-	  mr        r3, r30
-	  mr        r5, r28
-	  bl        .loc_0x198
-
-	.loc_0x160:
-	  lwz       r29, 0x4(r29)
-
-	.loc_0x164:
-	  cmplwi    r29, 0
-	  bne+      .loc_0x34
-	  lwz       r30, 0x4(r30)
-
-	.loc_0x170:
-	  cmplwi    r30, 0
-	  bne+      .loc_0x2C
-	  lwz       r0, 0x34(r1)
-	  lwz       r31, 0x2C(r1)
-	  lwz       r30, 0x28(r1)
-	  lwz       r29, 0x24(r1)
-	  lwz       r28, 0x20(r1)
-	  mtlr      r0
-	  addi      r1, r1, 0x30
-	  blr
-
-	.loc_0x198:
-	*/
 }
 
 /*
@@ -1285,173 +448,39 @@ void CollTree::checkCollisionMulti(CollTree* other, IDelegate3<CollPart*, CollPa
  * Address:	801356FC
  * Size:	0001F0
  */
-void CollPart::checkCollisionMulti(CollPart*, IDelegate3<CollPart*, CollPart*, Vector3f&>*)
+void CollPart::checkCollisionMulti(CollPart* other, IDelegate3<CollPart*, CollPart*, Vector3f&>* delegate)
 {
-	/*
-	.loc_0x0:
-	  stwu      r1, -0x30(r1)
-	  mflr      r0
-	  stw       r0, 0x34(r1)
-	  stw       r31, 0x2C(r1)
-	  mr        r31, r3
-	  stw       r30, 0x28(r1)
-	  stw       r29, 0x24(r1)
-	  mr        r29, r5
-	  stw       r28, 0x20(r1)
-	  mr        r28, r4
-	  b         .loc_0x1C8
+	for (CollPart* thisPart = this; thisPart != nullptr; thisPart = thisPart->getNext()) {
 
-	.loc_0x2C:
-	  mr        r30, r28
-	  b         .loc_0x1BC
+		for (CollPart* otherPart = other; otherPart != nullptr; otherPart = otherPart->getNext()) {
 
-	.loc_0x34:
-	  mr        r3, r31
-	  mr        r4, r30
-	  addi      r5, r1, 0x8
-	  bl        .loc_0x1F0
-	  rlwinm.   r0,r3,0,24,31
-	  beq-      .loc_0x16C
-	  lwz       r4, 0x10(r31)
-	  li        r3, 0
-	  cmplwi    r4, 0
-	  beq-      .loc_0x70
-	  lbz       r0, 0x58(r31)
-	  cmplwi    r0, 0x1
-	  beq-      .loc_0x70
-	  cmplwi    r0, 0x2
-	  bne-      .loc_0x74
+			Vector3f colVec;
+			if (thisPart->collide(otherPart, colVec)) {
+				if (thisPart->isPrim() && otherPart->isPrim()) {
+					delegate->invoke(thisPart, otherPart, colVec);
+					if (!otherPart->isLeaf()) {
+						thisPart->checkCollisionMulti(otherPart->getChild(), delegate);
+					} else if (!thisPart->isLeaf()) {
+						otherPart->checkCollisionMulti(thisPart->getChild(), delegate);
+					}
 
-	.loc_0x70:
-	  li        r3, 0x1
+				} else if (thisPart->isLeaf()) {
+					thisPart->checkCollisionMulti(otherPart->getChild(), delegate);
+				} else if (otherPart->isLeaf()) {
+					otherPart->checkCollisionMulti(thisPart->getChild(), delegate);
+				} else if (!thisPart->isLeaf()) {
+					thisPart->getChild()->checkCollisionMulti(otherPart, delegate);
+				} else {
+					thisPart->checkCollisionMulti(otherPart->getChild(), delegate);
+				}
 
-	.loc_0x74:
-	  rlwinm.   r0,r3,0,24,31
-	  beq-      .loc_0x104
-	  lwz       r0, 0x10(r30)
-	  li        r3, 0
-	  cmplwi    r0, 0
-	  beq-      .loc_0xA0
-	  lbz       r0, 0x58(r30)
-	  cmplwi    r0, 0x1
-	  beq-      .loc_0xA0
-	  cmplwi    r0, 0x2
-	  bne-      .loc_0xA4
-
-	.loc_0xA0:
-	  li        r3, 0x1
-
-	.loc_0xA4:
-	  rlwinm.   r0,r3,0,24,31
-	  beq-      .loc_0x104
-	  mr        r3, r29
-	  mr        r4, r31
-	  lwz       r12, 0x0(r29)
-	  mr        r5, r30
-	  addi      r6, r1, 0x8
-	  lwz       r12, 0x8(r12)
-	  mtctr     r12
-	  bctrl
-	  lwz       r4, 0x10(r30)
-	  cmplwi    r4, 0
-	  beq-      .loc_0xE8
-	  mr        r3, r31
-	  mr        r5, r29
-	  bl        .loc_0x0
-	  b         .loc_0x1B8
-
-	.loc_0xE8:
-	  lwz       r4, 0x10(r31)
-	  cmplwi    r4, 0
-	  beq-      .loc_0x1B8
-	  mr        r3, r30
-	  mr        r5, r29
-	  bl        .loc_0x0
-	  b         .loc_0x1B8
-
-	.loc_0x104:
-	  cmplwi    r4, 0
-	  bne-      .loc_0x120
-	  lwz       r4, 0x10(r30)
-	  mr        r3, r31
-	  mr        r5, r29
-	  bl        .loc_0x0
-	  b         .loc_0x1B8
-
-	.loc_0x120:
-	  lwz       r0, 0x10(r30)
-	  cmplwi    r0, 0
-	  bne-      .loc_0x13C
-	  mr        r3, r30
-	  mr        r5, r29
-	  bl        .loc_0x0
-	  b         .loc_0x1B8
-
-	.loc_0x13C:
-	  cmplwi    r4, 0
-	  beq-      .loc_0x158
-	  mr        r3, r4
-	  mr        r4, r30
-	  mr        r5, r29
-	  bl        .loc_0x0
-	  b         .loc_0x1B8
-
-	.loc_0x158:
-	  mr        r3, r31
-	  mr        r4, r0
-	  mr        r5, r29
-	  bl        .loc_0x0
-	  b         .loc_0x1B8
-
-	.loc_0x16C:
-	  lbz       r0, 0x58(r31)
-	  cmplwi    r0, 0x1
-	  beq-      .loc_0x180
-	  cmplwi    r0, 0x2
-	  bne-      .loc_0x194
-
-	.loc_0x180:
-	  lwz       r4, 0x10(r31)
-	  mr        r3, r30
-	  mr        r5, r29
-	  bl        .loc_0x0
-	  b         .loc_0x1B8
-
-	.loc_0x194:
-	  lbz       r0, 0x58(r30)
-	  cmplwi    r0, 0x1
-	  beq-      .loc_0x1A8
-	  cmplwi    r0, 0x2
-	  bne-      .loc_0x1B8
-
-	.loc_0x1A8:
-	  lwz       r4, 0x10(r30)
-	  mr        r3, r31
-	  mr        r5, r29
-	  bl        .loc_0x0
-
-	.loc_0x1B8:
-	  lwz       r30, 0x4(r30)
-
-	.loc_0x1BC:
-	  cmplwi    r30, 0
-	  bne+      .loc_0x34
-	  lwz       r31, 0x4(r31)
-
-	.loc_0x1C8:
-	  cmplwi    r31, 0
-	  bne+      .loc_0x2C
-	  lwz       r0, 0x34(r1)
-	  lwz       r31, 0x2C(r1)
-	  lwz       r30, 0x28(r1)
-	  lwz       r29, 0x24(r1)
-	  lwz       r28, 0x20(r1)
-	  mtlr      r0
-	  addi      r1, r1, 0x30
-	  blr
-
-	.loc_0x1F0:
-	*/
+			} else if (thisPart->isTube() || thisPart->isTubeTree()) {
+				otherPart->checkCollisionMulti(thisPart->getChild(), delegate);
+			} else if (otherPart->isTube() || otherPart->isTubeTree()) {
+				thisPart->checkCollisionMulti(otherPart->getChild(), delegate);
+			}
+		}
+	}
 }
 
 /*

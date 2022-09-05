@@ -10,9 +10,9 @@ struct Sphere {
 	inline Sphere() { }
 
 	Sphere(Vector3f& vec, float rad)
+	    : m_position(vec)
+	    , m_radius(rad)
 	{
-		m_position = vec;
-		m_radius   = rad;
 	}
 
 	inline Sphere(const Vector3f& vec) { m_position = vec; }
