@@ -94,10 +94,18 @@ struct WayPointIterator {
 };
 
 struct WPCondition : public Condition<WayPoint> {
-	virtual void satisfy(WayPoint*) = 0; // _08
+	virtual bool satisfy(WayPoint*) = 0; // _08
 };
 
 struct WPSearchArg {
+	WPSearchArg(Vector3f position, WPCondition* condition, u8 arg3, float arg4)
+	{
+		m_position  = position;
+		m_condition = condition;
+		_10         = arg3;
+		_14         = arg4;
+	}
+
 	Vector3f m_position;      // _00
 	WPCondition* m_condition; // _0C
 	u8 _10;                   // _10
@@ -186,5 +194,9 @@ struct GameRouteMgr : public RouteMgr {
 };
 
 } // namespace Game
+
+struct WPExcludeSpot : public Game::WPCondition {
+	virtual bool satisfy(Game::WayPoint*); // _08 (weak)
+};
 
 #endif

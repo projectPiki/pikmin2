@@ -81,7 +81,7 @@ struct PelletMgr : public NodeObjectMgr<GenericObjectMgr> {
 	virtual void doDirectDraw(Graphics&) { } // _78 (weak)
 	virtual char* getMgrName()               // _80 (weak)
 	{
-		return "ƒyƒŒƒbƒgƒ}ƒl[ƒWƒƒ"; // pellet manager
+		return "ï¿½yï¿½ï¿½ï¿½bï¿½gï¿½}ï¿½lï¿½[ï¿½Wï¿½ï¿½"; // pellet manager
 	}
 	virtual char* getCaveName(int);       // _84
 	virtual u8 getCaveID(char*);          // _88
@@ -437,7 +437,7 @@ struct Pellet : public DynCreature, public SysShape::MotionListener, public Carr
 	u8 m_wallTimer;               // _3BC
 	u8 _3BD[0x3];                 // _3BD - possibly padding
 	u32 m_claim;                  // _3C0
-	u8 _3C4;                      // _3C4
+	bool _3C4;                    // _3C4
 	u8 _3C5[0x3];                 // _3C5 - unknown
 	PelletFSM* m_pelletSM;        // _3C8
 	PelletState* m_pelletState;   // _3CC

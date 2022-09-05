@@ -4390,7 +4390,7 @@ lbl_8016A604:
  * Address:	8016A640
  * Size:	0000E8
  */
-void Pellet::getRandomFreeStickSlot(void)
+void Pellet::getRandomFreeStickSlot()
 {
 	/*
 	stwu     r1, -0x30(r1)
@@ -6256,7 +6256,7 @@ bool PelletMgr::setUse(PelletInitArg* arg)
  * Address:	8016D888
  * Size:	00015C
  */
-void PelletMgr::OtakaraItemCode::isNull(void)
+void PelletMgr::OtakaraItemCode::isNull()
 {
 	/*
 	stwu     r1, -0x20(r1)
@@ -6712,38 +6712,15 @@ void PelletMgr::makePelletInitArg(Game::PelletInitArg&, Game::PelletMgr::Otakara
  * Address:	8016DE7C
  * Size:	000060
  */
-void PelletMgr::makeOtakaraItemCode(char*, Game::PelletMgr::OtakaraItemCode&)
+void PelletMgr::makeOtakaraItemCode(char* configName, PelletMgr::OtakaraItemCode& code)
 {
-	/*
-	stwu     r1, -0x20(r1)
-	mflr     r0
-	mr       r3, r4
-	stw      r0, 0x24(r1)
-	addi     r4, r1, 8
-	stw      r31, 0x1c(r1)
-	mr       r31, r5
-	bl getConfigAndKind__Q34Game10PelletList3MgrFPcRQ34Game10PelletList5cKind
-	cmplwi   r3, 0
-	beq      lbl_8016DEC0
-	lha      r0, 0x258(r3)
-	lwz      r4, 8(r1)
-	clrlwi   r0, r0, 0x18
-	rlwinm   r3, r4, 8, 0x10, 0x17
-	add      r0, r3, r0
-	sth      r0, 0(r31)
-	b        lbl_8016DEC8
-
-lbl_8016DEC0:
-	li       r0, 0
-	sth      r0, 0(r31)
-
-lbl_8016DEC8:
-	lwz      r0, 0x24(r1)
-	lwz      r31, 0x1c(r1)
-	mtlr     r0
-	addi     r1, r1, 0x20
-	blr
-	*/
+	PelletList::cKind kind;
+	PelletConfig* config = PelletList::Mgr::getConfigAndKind(configName, kind);
+	if (config != nullptr) {
+		code.m_value = (kind << 8 & 0xFF00) + (u8)config->m_params.m_index;
+	} else {
+		code.m_value = 0;
+	}
 }
 
 /*
@@ -6770,39 +6747,11 @@ void PelletMgr::OtakaraItemCode::write(Stream& stream)
  * Address:	8016DF70
  * Size:	00006C
  */
-void PelletMgr::addMgr(Game::BasePelletMgr*)
+void PelletMgr::addMgr(BasePelletMgr* mgr)
 {
-	/*
-	stwu     r1, -0x20(r1)
-	mflr     r0
-	stw      r0, 0x24(r1)
-	stw      r31, 0x1c(r1)
-	stw      r30, 0x18(r1)
-	mr       r30, r4
-	stw      r29, 0x14(r1)
-	mr       r29, r3
-	li       r3, 0x1c
-	bl       __nw__FUl
-	or.      r31, r3, r3
-	beq      lbl_8016DFB0
-	bl       __ct__5CNodeFv
-	lis      r3, "__vt__31TObjectNode<16GenericObjectMgr>"@ha
-	addi     r0, r3, "__vt__31TObjectNode<16GenericObjectMgr>"@l
-	stw      r0, 0(r31)
-
-lbl_8016DFB0:
-	stw      r30, 0x18(r31)
-	mr       r4, r31
-	addi     r3, r29, 0x20
-	bl       add__5CNodeFP5CNode
-	lwz      r0, 0x24(r1)
-	lwz      r31, 0x1c(r1)
-	lwz      r30, 0x18(r1)
-	lwz      r29, 0x14(r1)
-	mtlr     r0
-	addi     r1, r1, 0x20
-	blr
-	*/
+	TObjectNode<GenericObjectMgr>* node = new TObjectNode<GenericObjectMgr>();
+	node->m_contents                    = mgr;
+	m_node.add(node);
 }
 
 /*
@@ -7752,7 +7701,7 @@ lbl_8016EB80:
  * Address:	8016EBB4
  * Size:	0001D4
  */
-void PelletMgr::setupSoundViewerAndBas(void)
+void PelletMgr::setupSoundViewerAndBas()
 {
 	/*
 	stwu     r1, -0x20(r1)
