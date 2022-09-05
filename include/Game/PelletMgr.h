@@ -26,6 +26,7 @@
 #include "types.h"
 #include "JSystem/JUT/JUTException.h"
 #include "System.h"
+#include "Iterator.h"
 
 // pellet carry colors/onion destinations
 // for use with Pellet::m_pelletColor
@@ -72,16 +73,16 @@ struct PelletMgr : public NodeObjectMgr<GenericObjectMgr> {
 	PelletMgr();
 
 	// vtable 1
-	virtual ~PelletMgr() { }                 // _08 (weak)
-	virtual void doAnimation();              // _64 (weak)
-	virtual void doEntry();                  // _68 (weak)
-	virtual void doSetView(int);             // _6C (weak)
-	virtual void doViewCalc();               // _70 (weak)
-	virtual void doSimulation(float);        // _74 (weak)
-	virtual void doDirectDraw(Graphics&) { } // _78 (weak)
-	virtual char* getMgrName()               // _80 (weak)
+	virtual ~PelletMgr() { }              // _08 (weak)
+	virtual void doAnimation();           // _64 (weak)
+	virtual void doEntry();               // _68 (weak)
+	virtual void doSetView(int);          // _6C (weak)
+	virtual void doViewCalc();            // _70 (weak)
+	virtual void doSimulation(float);     // _74 (weak)
+	virtual void doDirectDraw(Graphics&); // _78 (weak)
+	virtual char* getMgrName()            // _80 (weak)
 	{
-		return "ÔøΩyÔøΩÔøΩÔøΩbÔøΩgÔøΩ}ÔøΩlÔøΩ[ÔøΩWÔøΩÔøΩ"; // pellet manager
+		return "ÉyÉåÉbÉgÉ}ÉlÅ[ÉWÉÉ"; // pellet manager
 	}
 	virtual char* getCaveName(int);       // _84
 	virtual u8 getCaveID(char*);          // _88
@@ -232,9 +233,9 @@ struct Pellet : public DynCreature, public SysShape::MotionListener, public Carr
 	virtual void startPick();                                         // _148
 	virtual void endPick(bool);                                       // _14C
 	virtual bool isSlotFree(short);                                   // _168
-	virtual int getFreeStickSlot();                                   // _16C
-	virtual int getNearFreeStickSlot(Vector3f&);                      // _170
-	virtual int getRandomFreeStickSlot();                             // _174
+	virtual short getFreeStickSlot();                                 // _16C
+	virtual short getNearFreeStickSlot(Vector3f&);                    // _170
+	virtual short getRandomFreeStickSlot();                           // _174
 	virtual void onSlotStickStart(Creature*, short);                  // _178
 	virtual void onSlotStickEnd(Creature*, short);                    // _17C
 	virtual void calcStickSlotGlobal(short, Vector3f&);               // _180

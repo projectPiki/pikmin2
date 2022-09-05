@@ -13,8 +13,8 @@ struct EventBase : public CreatureObj {
 
 	// vtable 1 (JSUPtrLink, _10)
 	// vtable 2 (JKRDisposer -> ObjBase -> Creature, _28)
-	virtual ~EventBase(); // _14
-	                      // vtable 3 (JAInter::ObjectBase -> JAInter::Object + self, _28)
+	virtual ~EventBase() { } // _14
+	                         // vtable 3 (JAInter::ObjectBase -> JAInter::Object + self, _28)
 
 	// _00      = VTABLE
 	// _04-_70  = CreatureObj

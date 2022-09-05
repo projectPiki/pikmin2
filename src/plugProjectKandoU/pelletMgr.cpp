@@ -36,6 +36,7 @@
 #include "ObjectTypes.h"
 #include "CollInfo.h"
 #include "Radar.h"
+#include "VsOtakaraName.h"
 
 namespace {
 struct NotOff : public Game::WPCondition {
@@ -5274,7 +5275,7 @@ PelletConfig* BasePelletMgr::getPelletConfig(int i)
 	if (i < 0 || i >= m_configList->m_configCnt) {
 		return nullptr;
 	}
-	return m_configList->m_configs + i;
+	return &m_configList->m_configs[i];
 }
 
 /*
@@ -6258,117 +6259,49 @@ bool PelletMgr::setUse(PelletInitArg* arg)
  */
 void PelletMgr::OtakaraItemCode::isNull()
 {
-	/*
-	stwu     r1, -0x20(r1)
-	mflr     r0
-	stw      r0, 0x24(r1)
-	stw      r31, 0x1c(r1)
-	stw      r30, 0x18(r1)
-	stw      r29, 0x14(r1)
-	mr       r29, r3
-	lis      r3, lbl_8047E318@ha
-	lha      r6, 0(r29)
-	addi     r31, r3, lbl_8047E318@l
-	extsh.   r0, r6
-	bne      lbl_8016D8C0
-	li       r3, 1
-	b        lbl_8016D9C8
+	BasePelletMgr* mgr;
+	PelletConfig* config;
+	if (m_value == 0) {
+		return true;
+	}
 
-lbl_8016D8C0:
-	srawi    r0, r6, 8
-	li       r30, 0
-	clrlwi   r0, r0, 0x18
-	cmplwi   r0, 3
-	bne      lbl_8016D8DC
-	lwz      r30, mgr__Q24Game13PelletOtakara@sda21(r13)
-	b        lbl_8016D8E8
+	u8 code = m_value >> 8;
+	mgr     = nullptr;
+	if (code == 3) {
+		mgr = PelletOtakara::mgr;
+	} else if (code == 4) {
+		mgr = PelletItem::mgr;
+	}
+	if (mgr == nullptr) {
+		JUT_PANICLINE(5574, "illegal code (%x)\n", m_value);
+	}
 
-lbl_8016D8DC:
-	cmplwi   r0, 4
-	bne      lbl_8016D8E8
-	lwz      r30, mgr__Q24Game10PelletItem@sda21(r13)
+	code = m_value;
+	if ((m_value & 0xFF) < 0 || code >= mgr->m_configList->m_configCnt) {
+		config = nullptr;
+	} else {
+		config = mgr->m_configList->m_configs + code;
+	}
 
-lbl_8016D8E8:
-	cmplwi   r30, 0
-	bne      lbl_8016D904
-	addi     r3, r31, 0x2c
-	addi     r5, r31, 0x190
-	li       r4, 0x15c6
-	crclr    6
-	bl       panic_f__12JUTExceptionFPCciPCce
+	if (config == nullptr) {
+		JUT_PANICLINE(5578, "illegal code no config found (%x) index %d\n", m_value, code);
+	}
 
-lbl_8016D904:
-	lha      r6, 0(r29)
-	clrlwi.  r7, r6, 0x18
-	blt      lbl_8016D920
-	lwz      r3, 8(r30)
-	lwz      r0, 0x18(r3)
-	cmpw     r7, r0
-	blt      lbl_8016D928
-
-lbl_8016D920:
-	li       r30, 0
-	b        lbl_8016D934
-
-lbl_8016D928:
-	mulli    r0, r7, 0x260
-	lwz      r3, 0x1c(r3)
-	add      r30, r3, r0
-
-lbl_8016D934:
-	cmplwi   r30, 0
-	bne      lbl_8016D950
-	addi     r3, r31, 0x2c
-	addi     r5, r31, 0x1a4
-	li       r4, 0x15ca
-	crclr    6
-	bl       panic_f__12JUTExceptionFPCciPCce
-
-lbl_8016D950:
-	lwz      r4, 0x180(r30)
-	addi     r3, r2, lbl_805189F8@sda21
-	bl       strcmp
-	cmpwi    r3, 0
-	bne      lbl_8016D9C4
-	lha      r3, 0(r29)
-	srawi    r0, r3, 8
-	clrlwi   r4, r3, 0x18
-	clrlwi   r0, r0, 0x18
-	cmplwi   r0, 3
-	bne      lbl_8016D9A0
-	lwz      r3, playData__4Game@sda21(r13)
-	lwz      r3, 0xb0(r3)
-	addi     r3, r3, 4
-	bl       __cl__Q24Game11KindCounterFi
-	lbz      r0, 0(r3)
-	rlwinm.  r0, r0, 0, 0x1e, 0x1e
-	beq      lbl_8016D9C4
-	li       r3, 1
-	b        lbl_8016D9C8
-
-lbl_8016D9A0:
-	lwz      r3, playData__4Game@sda21(r13)
-	lwz      r3, 0xb0(r3)
-	addi     r3, r3, 0xc
-	bl       __cl__Q24Game11KindCounterFi
-	lbz      r0, 0(r3)
-	rlwinm.  r0, r0, 0, 0x1e, 0x1e
-	beq      lbl_8016D9C4
-	li       r3, 1
-	b        lbl_8016D9C8
-
-lbl_8016D9C4:
-	li       r3, 0
-
-lbl_8016D9C8:
-	lwz      r0, 0x24(r1)
-	lwz      r31, 0x1c(r1)
-	lwz      r30, 0x18(r1)
-	lwz      r29, 0x14(r1)
-	mtlr     r0
-	addi     r1, r1, 0x20
-	blr
-	*/
+	if (strcmp("yes", config->m_params.m_unique.m_data) == 0) {
+		u8 code = m_value;
+		if ((u8)(m_value >> 8) == 3) {
+			u8* result = playData->_B0->_04(code);
+			if (*result & 2) {
+				return true;
+			}
+		} else {
+			u8* result = playData->_B0->_0C(code);
+			if (*result & 2) {
+				return true;
+			}
+		}
+	}
+	return false;
 }
 
 /*
@@ -6376,64 +6309,28 @@ lbl_8016D9C8:
  * Address:	8016D9E4
  * Size:	0000C8
  */
-void PelletMgr::makePelletInitArg(Game::PelletInitArg&, char*)
+void PelletMgr::makePelletInitArg(PelletInitArg& arg, char* identifier)
 {
-	/*
-	stwu     r1, -0x20(r1)
-	mflr     r0
-	stw      r0, 0x24(r1)
-	stmw     r27, 0xc(r1)
-	mr       r27, r3
-	mr       r29, r5
-	mr       r28, r4
-	mr       r4, r29
-	lwz      r31, mgr__Q24Game13PelletOtakara@sda21(r13)
-	lwz      r3, 8(r31)
-	bl       getPelletConfig__Q24Game16PelletConfigListFPc
-	cmplwi   r3, 0
-	mr       r30, r3
-	bne      lbl_8016DA30
-	lwz      r31, mgr__Q24Game10PelletItem@sda21(r13)
-	mr       r4, r29
-	lwz      r3, 8(r31)
-	bl       getPelletConfig__Q24Game16PelletConfigListFPc
-	mr       r30, r3
+	BasePelletMgr* mgr          = PelletOtakara::mgr;
+	PelletConfig* otakaraConfig = mgr->m_configList->getPelletConfig(identifier);
+	PelletConfig* config        = otakaraConfig;
 
-lbl_8016DA30:
-	cmplwi   r30, 0
-	bne      lbl_8016DA58
-	lis      r3, lbl_8047E344@ha
-	lis      r4, lbl_8047E4E8@ha
-	addi     r5, r4, lbl_8047E4E8@l
-	mr       r6, r29
-	addi     r3, r3, lbl_8047E344@l
-	li       r4, 0x15ee
-	crclr    6
-	bl       panic_f__12JUTExceptionFPCciPCce
+	if (otakaraConfig == nullptr) {
+		mgr    = PelletItem::mgr;
+		config = mgr->m_configList->getPelletConfig(identifier);
+	}
 
-lbl_8016DA58:
-	stw      r29, 8(r28)
-	mr       r3, r31
-	lwz      r12, 0(r31)
-	lwz      r12, 0x5c(r12)
-	mtctr    r12
-	bctrl
-	stb      r3, 0x16(r28)
-	li       r0, 0
-	mr       r3, r27
-	mr       r4, r28
-	lha      r6, 0x258(r30)
-	mr       r5, r29
-	stw      r6, 0x10(r28)
-	stw      r0, 0x18(r28)
-	bl       makeVsCarryMinMax__Q24Game9PelletMgrFRQ24Game13PelletInitArgPc
-	lmw      r27, 0xc(r1)
-	li       r3, 1
-	lwz      r0, 0x24(r1)
-	mtlr     r0
-	addi     r1, r1, 0x20
-	blr
-	*/
+	if (config == nullptr) {
+		JUT_PANICLINE(5614, "no config found(%s)\n", identifier);
+	}
+
+	arg.m_textIdentifier = identifier;
+	arg.m_pelletType     = mgr->getMgrID();
+	arg._10              = config->m_params.m_index;
+	arg._18              = 0;
+
+	makeVsCarryMinMax(arg, identifier);
+	return true;
 }
 
 /*
@@ -6465,246 +6362,43 @@ void PelletMgr::makeVsCarryMinMax(PelletInitArg& arg, char* name)
  * Address:	8016DB90
  * Size:	0002EC
  */
-void PelletMgr::makePelletInitArg(Game::PelletInitArg&, Game::PelletMgr::OtakaraItemCode&)
+void PelletMgr::makePelletInitArg(Game::PelletInitArg& arg, Game::PelletMgr::OtakaraItemCode& itemCode)
 {
-	/*
-	.loc_0x0:
-	  stwu      r1, -0x20(r1)
-	  mflr      r0
-	  lis       r3, 0x8048
-	  stw       r0, 0x24(r1)
-	  stw       r31, 0x1C(r1)
-	  subi      r31, r3, 0x1CE8
-	  stw       r30, 0x18(r1)
-	  mr        r30, r5
-	  stw       r29, 0x14(r1)
-	  mr        r29, r4
-	  stw       r28, 0x10(r1)
-	  lha       r6, 0x0(r5)
-	  extsh.    r0, r6
-	  bne-      .loc_0x40
-	  li        r0, 0x1
-	  b         .loc_0x148
+	if (itemCode.isNull()) {
+		return false;
+	}
 
-	.loc_0x40:
-	  srawi     r0, r6, 0x8
-	  li        r28, 0
-	  rlwinm    r0,r0,0,24,31
-	  cmplwi    r0, 0x3
-	  bne-      .loc_0x5C
-	  lwz       r28, -0x6AE0(r13)
-	  b         .loc_0x68
+	BasePelletMgr* mgr;
+	PelletConfig* config;
 
-	.loc_0x5C:
-	  cmplwi    r0, 0x4
-	  bne-      .loc_0x68
-	  lwz       r28, -0x6AD8(r13)
+	u8 code = itemCode.m_value >> 8;
+	mgr     = nullptr;
+	if (code == 3) {
+		mgr = PelletOtakara::mgr;
+	} else if (code == 4) {
+		mgr = PelletItem::mgr;
+	}
+	if (mgr == nullptr) {
+		JUT_PANICLINE(5672, "illegal code (%x)\n", itemCode.m_value);
+	}
 
-	.loc_0x68:
-	  cmplwi    r28, 0
-	  bne-      .loc_0x84
-	  addi      r3, r31, 0x2C
-	  addi      r5, r31, 0x190
-	  li        r4, 0x15C6
-	  crclr     6, 0x6
-	  bl        -0x1435D0
+	code = itemCode.m_value;
+	if ((itemCode.m_value & 0xFF) < 0 || code >= mgr->m_configList->m_configCnt) {
+		config = nullptr;
+	} else {
+		config = mgr->m_configList->m_configs + code;
+	}
 
-	.loc_0x84:
-	  lha       r6, 0x0(r30)
-	  rlwinm.   r7,r6,0,24,31
-	  blt-      .loc_0xA0
-	  lwz       r3, 0x8(r28)
-	  lwz       r0, 0x18(r3)
-	  cmpw      r7, r0
-	  blt-      .loc_0xA8
+	if (config == nullptr) {
+		JUT_PANICLINE(5676, "illegal code no config found (%x) index %d\n", itemCode.m_value, code);
+	}
 
-	.loc_0xA0:
-	  li        r28, 0
-	  b         .loc_0xB4
-
-	.loc_0xA8:
-	  mulli     r0, r7, 0x260
-	  lwz       r3, 0x1C(r3)
-	  add       r28, r3, r0
-
-	.loc_0xB4:
-	  cmplwi    r28, 0
-	  bne-      .loc_0xD0
-	  addi      r3, r31, 0x2C
-	  addi      r5, r31, 0x1A4
-	  li        r4, 0x15CA
-	  crclr     6, 0x6
-	  bl        -0x14361C
-
-	.loc_0xD0:
-	  lwz       r4, 0x180(r28)
-	  subi      r3, r2, 0x5968
-	  bl        -0xA35A8
-	  cmpwi     r3, 0
-	  bne-      .loc_0x144
-	  lha       r3, 0x0(r30)
-	  srawi     r0, r3, 0x8
-	  rlwinm    r4,r3,0,24,31
-	  rlwinm    r0,r0,0,24,31
-	  cmplwi    r0, 0x3
-	  bne-      .loc_0x120
-	  lwz       r3, -0x6B70(r13)
-	  lwz       r3, 0xB0(r3)
-	  addi      r3, r3, 0x4
-	  bl        0x77768
-	  lbz       r0, 0x0(r3)
-	  rlwinm.   r0,r0,0,30,30
-	  beq-      .loc_0x144
-	  li        r0, 0x1
-	  b         .loc_0x148
-
-	.loc_0x120:
-	  lwz       r3, -0x6B70(r13)
-	  lwz       r3, 0xB0(r3)
-	  addi      r3, r3, 0xC
-	  bl        0x77744
-	  lbz       r0, 0x0(r3)
-	  rlwinm.   r0,r0,0,30,30
-	  beq-      .loc_0x144
-	  li        r0, 0x1
-	  b         .loc_0x148
-
-	.loc_0x144:
-	  li        r0, 0
-
-	.loc_0x148:
-	  rlwinm.   r0,r0,0,24,31
-	  beq-      .loc_0x158
-	  li        r3, 0
-	  b         .loc_0x2CC
-
-	.loc_0x158:
-	  lha       r6, 0x0(r30)
-	  li        r28, 0
-	  srawi     r0, r6, 0x8
-	  rlwinm    r0,r0,0,24,31
-	  cmplwi    r0, 0x3
-	  bne-      .loc_0x178
-	  lwz       r28, -0x6AE0(r13)
-	  b         .loc_0x184
-
-	.loc_0x178:
-	  cmplwi    r0, 0x4
-	  bne-      .loc_0x184
-	  lwz       r28, -0x6AD8(r13)
-
-	.loc_0x184:
-	  cmplwi    r28, 0
-	  bne-      .loc_0x1A0
-	  addi      r3, r31, 0x2C
-	  addi      r5, r31, 0x190
-	  li        r4, 0x1628
-	  crclr     6, 0x6
-	  bl        -0x1436EC
-
-	.loc_0x1A0:
-	  lha       r6, 0x0(r30)
-	  rlwinm.   r7,r6,0,24,31
-	  blt-      .loc_0x1BC
-	  lwz       r3, 0x8(r28)
-	  lwz       r0, 0x18(r3)
-	  cmpw      r7, r0
-	  blt-      .loc_0x1C4
-
-	.loc_0x1BC:
-	  li        r28, 0
-	  b         .loc_0x1D0
-
-	.loc_0x1C4:
-	  mulli     r0, r7, 0x260
-	  lwz       r3, 0x1C(r3)
-	  add       r28, r3, r0
-
-	.loc_0x1D0:
-	  cmplwi    r28, 0
-	  bne-      .loc_0x1EC
-	  addi      r3, r31, 0x2C
-	  addi      r5, r31, 0x1A4
-	  li        r4, 0x162C
-	  crclr     6, 0x6
-	  bl        -0x143738
-
-	.loc_0x1EC:
-	  lwz       r3, 0x40(r28)
-	  li        r0, 0
-	  stw       r3, 0x8(r29)
-	  lha       r3, 0x0(r30)
-	  srawi     r3, r3, 0x8
-	  stb       r3, 0x16(r29)
-	  lha       r3, 0x0(r30)
-	  rlwinm    r3,r3,0,24,31
-	  stw       r3, 0x10(r29)
-	  stw       r0, 0x18(r29)
-	  lwz       r3, -0x6C18(r13)
-	  lwz       r28, 0x8(r29)
-	  cmplwi    r3, 0
-	  beq-      .loc_0x2C8
-	  lwz       r0, 0x44(r3)
-	  cmpwi     r0, 0x1
-	  bne-      .loc_0x2C8
-	  lwz       r3, -0x7B7C(r13)
-	  mr        r4, r28
-	  bl        -0xA3708
-	  cmpwi     r3, 0
-	  bne-      .loc_0x258
-	  li        r3, 0x1
-	  li        r0, 0x8
-	  stw       r3, 0x20(r29)
-	  stw       r0, 0x24(r29)
-	  b         .loc_0x2C8
-
-	.loc_0x258:
-	  lwz       r3, -0x7B80(r13)
-	  mr        r4, r28
-	  bl        -0xA3730
-	  cmpwi     r3, 0
-	  bne-      .loc_0x280
-	  li        r3, 0x1
-	  li        r0, 0x8
-	  stw       r3, 0x20(r29)
-	  stw       r0, 0x24(r29)
-	  b         .loc_0x2C8
-
-	.loc_0x280:
-	  lwz       r3, -0x7B84(r13)
-	  mr        r4, r28
-	  bl        -0xA3758
-	  cmpwi     r3, 0
-	  bne-      .loc_0x2A8
-	  li        r3, 0x1
-	  li        r0, 0x8
-	  stw       r3, 0x20(r29)
-	  stw       r0, 0x24(r29)
-	  b         .loc_0x2C8
-
-	.loc_0x2A8:
-	  lwz       r3, -0x7B88(r13)
-	  mr        r4, r28
-	  bl        -0xA3780
-	  cmpwi     r3, 0
-	  bne-      .loc_0x2C8
-	  li        r0, 0x1
-	  stw       r0, 0x20(r29)
-	  stw       r0, 0x24(r29)
-
-	.loc_0x2C8:
-	  li        r3, 0x1
-
-	.loc_0x2CC:
-	  lwz       r0, 0x24(r1)
-	  lwz       r31, 0x1C(r1)
-	  lwz       r30, 0x18(r1)
-	  lwz       r29, 0x14(r1)
-	  lwz       r28, 0x10(r1)
-	  mtlr      r0
-	  addi      r1, r1, 0x20
-	  blr
-	*/
+	arg.m_textIdentifier = config->m_params.m_name.m_data;
+	arg.m_pelletType     = itemCode.m_value >> 8;
+	arg._10              = itemCode.m_value & 0xFF;
+	arg._18              = 0;
+	makeVsCarryMinMax(arg, arg.m_textIdentifier);
+	return true;
 }
 
 /*
@@ -6759,329 +6453,29 @@ void PelletMgr::addMgr(BasePelletMgr* mgr)
  * Address:	8016DFDC
  * Size:	0001E4
  */
-void PelletMgr::doAnimation(void)
+void PelletMgr::doAnimation()
 {
-	/*
-	stwu     r1, -0x20(r1)
-	mflr     r0
-	lis      r4, "__vt__28Iterator<16GenericObjectMgr>"@ha
-	stw      r0, 0x24(r1)
-	li       r0, 0
-	addi     r4, r4, "__vt__28Iterator<16GenericObjectMgr>"@l
-	cmplwi   r0, 0
-	stw      r0, 0x14(r1)
-	stw      r4, 8(r1)
-	stw      r0, 0xc(r1)
-	stw      r3, 0x10(r1)
-	bne      lbl_8016E024
-	lwz      r12, 0(r3)
-	lwz      r12, 0x18(r12)
-	mtctr    r12
-	bctrl
-	stw      r3, 0xc(r1)
-	b        lbl_8016E190
-
-lbl_8016E024:
-	lwz      r12, 0(r3)
-	lwz      r12, 0x18(r12)
-	mtctr    r12
-	bctrl
-	stw      r3, 0xc(r1)
-	b        lbl_8016E090
-
-lbl_8016E03C:
-	lwz      r3, 0x10(r1)
-	lwz      r4, 0xc(r1)
-	lwz      r12, 0(r3)
-	lwz      r12, 0x20(r12)
-	mtctr    r12
-	bctrl
-	mr       r4, r3
-	lwz      r3, 0x14(r1)
-	lwz      r12, 0(r3)
-	lwz      r12, 8(r12)
-	mtctr    r12
-	bctrl
-	clrlwi.  r0, r3, 0x18
-	bne      lbl_8016E190
-	lwz      r3, 0x10(r1)
-	lwz      r4, 0xc(r1)
-	lwz      r12, 0(r3)
-	lwz      r12, 0x14(r12)
-	mtctr    r12
-	bctrl
-	stw      r3, 0xc(r1)
-
-lbl_8016E090:
-	lwz      r12, 8(r1)
-	addi     r3, r1, 8
-	lwz      r12, 0x10(r12)
-	mtctr    r12
-	bctrl
-	clrlwi.  r0, r3, 0x18
-	beq      lbl_8016E03C
-	b        lbl_8016E190
-
-lbl_8016E0B0:
-	lwz      r3, 0x10(r1)
-	lwz      r12, 0(r3)
-	lwz      r12, 0x20(r12)
-	mtctr    r12
-	bctrl
-	lwz      r12, 0(r3)
-	lwz      r12, 8(r12)
-	mtctr    r12
-	bctrl
-	lwz      r0, 0x14(r1)
-	cmplwi   r0, 0
-	bne      lbl_8016E100
-	lwz      r3, 0x10(r1)
-	lwz      r4, 0xc(r1)
-	lwz      r12, 0(r3)
-	lwz      r12, 0x14(r12)
-	mtctr    r12
-	bctrl
-	stw      r3, 0xc(r1)
-	b        lbl_8016E190
-
-lbl_8016E100:
-	lwz      r3, 0x10(r1)
-	lwz      r4, 0xc(r1)
-	lwz      r12, 0(r3)
-	lwz      r12, 0x14(r12)
-	mtctr    r12
-	bctrl
-	stw      r3, 0xc(r1)
-	b        lbl_8016E174
-
-lbl_8016E120:
-	lwz      r3, 0x10(r1)
-	lwz      r4, 0xc(r1)
-	lwz      r12, 0(r3)
-	lwz      r12, 0x20(r12)
-	mtctr    r12
-	bctrl
-	mr       r4, r3
-	lwz      r3, 0x14(r1)
-	lwz      r12, 0(r3)
-	lwz      r12, 8(r12)
-	mtctr    r12
-	bctrl
-	clrlwi.  r0, r3, 0x18
-	bne      lbl_8016E190
-	lwz      r3, 0x10(r1)
-	lwz      r4, 0xc(r1)
-	lwz      r12, 0(r3)
-	lwz      r12, 0x14(r12)
-	mtctr    r12
-	bctrl
-	stw      r3, 0xc(r1)
-
-lbl_8016E174:
-	lwz      r12, 8(r1)
-	addi     r3, r1, 8
-	lwz      r12, 0x10(r12)
-	mtctr    r12
-	bctrl
-	clrlwi.  r0, r3, 0x18
-	beq      lbl_8016E120
-
-lbl_8016E190:
-	lwz      r3, 0x10(r1)
-	lwz      r12, 0(r3)
-	lwz      r12, 0x1c(r12)
-	mtctr    r12
-	bctrl
-	lwz      r4, 0xc(r1)
-	cmplw    r4, r3
-	bne      lbl_8016E0B0
-	lwz      r0, 0x24(r1)
-	mtlr     r0
-	addi     r1, r1, 0x20
-	blr
-	*/
+	Iterator<GenericObjectMgr> iter(this);
+	iter.first();
+	while (iter.m_index != iter.m_container->getEnd()) {
+		iter.m_container->get(iter.m_index)->doAnimation();
+		iter.next();
+	}
 }
-
-} // namespace Game
-
-/*
- * --INFO--
- * Address:	8016E1C0
- * Size:	00004C
- */
-// void Iterator<GenericObjectMgr>::isDone()
-// {
-// 	/*
-// 	stwu     r1, -0x10(r1)
-// 	mflr     r0
-// 	stw      r0, 0x14(r1)
-// 	stw      r31, 0xc(r1)
-// 	mr       r31, r3
-// 	lwz      r3, 8(r3)
-// 	lwz      r12, 0(r3)
-// 	lwz      r12, 0x1c(r12)
-// 	mtctr    r12
-// 	bctrl
-// 	lwz      r0, 4(r31)
-// 	subf     r0, r0, r3
-// 	cntlzw   r0, r0
-// 	srwi     r3, r0, 5
-// 	lwz      r31, 0xc(r1)
-// 	lwz      r0, 0x14(r1)
-// 	mtlr     r0
-// 	addi     r1, r1, 0x10
-// 	blr
-// 	*/
-// }
-
-namespace Game {
 
 /*
  * --INFO--
  * Address:	8016E20C
  * Size:	0001E4
  */
-void PelletMgr::doEntry(void)
+void PelletMgr::doEntry()
 {
-	/*
-	stwu     r1, -0x20(r1)
-	mflr     r0
-	lis      r4, "__vt__28Iterator<16GenericObjectMgr>"@ha
-	stw      r0, 0x24(r1)
-	li       r0, 0
-	addi     r4, r4, "__vt__28Iterator<16GenericObjectMgr>"@l
-	cmplwi   r0, 0
-	stw      r0, 0x14(r1)
-	stw      r4, 8(r1)
-	stw      r0, 0xc(r1)
-	stw      r3, 0x10(r1)
-	bne      lbl_8016E254
-	lwz      r12, 0(r3)
-	lwz      r12, 0x18(r12)
-	mtctr    r12
-	bctrl
-	stw      r3, 0xc(r1)
-	b        lbl_8016E3C0
-
-lbl_8016E254:
-	lwz      r12, 0(r3)
-	lwz      r12, 0x18(r12)
-	mtctr    r12
-	bctrl
-	stw      r3, 0xc(r1)
-	b        lbl_8016E2C0
-
-lbl_8016E26C:
-	lwz      r3, 0x10(r1)
-	lwz      r4, 0xc(r1)
-	lwz      r12, 0(r3)
-	lwz      r12, 0x20(r12)
-	mtctr    r12
-	bctrl
-	mr       r4, r3
-	lwz      r3, 0x14(r1)
-	lwz      r12, 0(r3)
-	lwz      r12, 8(r12)
-	mtctr    r12
-	bctrl
-	clrlwi.  r0, r3, 0x18
-	bne      lbl_8016E3C0
-	lwz      r3, 0x10(r1)
-	lwz      r4, 0xc(r1)
-	lwz      r12, 0(r3)
-	lwz      r12, 0x14(r12)
-	mtctr    r12
-	bctrl
-	stw      r3, 0xc(r1)
-
-lbl_8016E2C0:
-	lwz      r12, 8(r1)
-	addi     r3, r1, 8
-	lwz      r12, 0x10(r12)
-	mtctr    r12
-	bctrl
-	clrlwi.  r0, r3, 0x18
-	beq      lbl_8016E26C
-	b        lbl_8016E3C0
-
-lbl_8016E2E0:
-	lwz      r3, 0x10(r1)
-	lwz      r12, 0(r3)
-	lwz      r12, 0x20(r12)
-	mtctr    r12
-	bctrl
-	lwz      r12, 0(r3)
-	lwz      r12, 0xc(r12)
-	mtctr    r12
-	bctrl
-	lwz      r0, 0x14(r1)
-	cmplwi   r0, 0
-	bne      lbl_8016E330
-	lwz      r3, 0x10(r1)
-	lwz      r4, 0xc(r1)
-	lwz      r12, 0(r3)
-	lwz      r12, 0x14(r12)
-	mtctr    r12
-	bctrl
-	stw      r3, 0xc(r1)
-	b        lbl_8016E3C0
-
-lbl_8016E330:
-	lwz      r3, 0x10(r1)
-	lwz      r4, 0xc(r1)
-	lwz      r12, 0(r3)
-	lwz      r12, 0x14(r12)
-	mtctr    r12
-	bctrl
-	stw      r3, 0xc(r1)
-	b        lbl_8016E3A4
-
-lbl_8016E350:
-	lwz      r3, 0x10(r1)
-	lwz      r4, 0xc(r1)
-	lwz      r12, 0(r3)
-	lwz      r12, 0x20(r12)
-	mtctr    r12
-	bctrl
-	mr       r4, r3
-	lwz      r3, 0x14(r1)
-	lwz      r12, 0(r3)
-	lwz      r12, 8(r12)
-	mtctr    r12
-	bctrl
-	clrlwi.  r0, r3, 0x18
-	bne      lbl_8016E3C0
-	lwz      r3, 0x10(r1)
-	lwz      r4, 0xc(r1)
-	lwz      r12, 0(r3)
-	lwz      r12, 0x14(r12)
-	mtctr    r12
-	bctrl
-	stw      r3, 0xc(r1)
-
-lbl_8016E3A4:
-	lwz      r12, 8(r1)
-	addi     r3, r1, 8
-	lwz      r12, 0x10(r12)
-	mtctr    r12
-	bctrl
-	clrlwi.  r0, r3, 0x18
-	beq      lbl_8016E350
-
-lbl_8016E3C0:
-	lwz      r3, 0x10(r1)
-	lwz      r12, 0(r3)
-	lwz      r12, 0x1c(r12)
-	mtctr    r12
-	bctrl
-	lwz      r4, 0xc(r1)
-	cmplw    r4, r3
-	bne      lbl_8016E2E0
-	lwz      r0, 0x24(r1)
-	mtlr     r0
-	addi     r1, r1, 0x20
-	blr
-	*/
+	Iterator<GenericObjectMgr> iter(this);
+	iter.first();
+	while (iter.m_index != iter.m_container->getEnd()) {
+		iter.m_container->get(iter.m_index)->doEntry();
+		iter.next();
+	}
 }
 
 /*
@@ -7089,151 +6483,14 @@ lbl_8016E3C0:
  * Address:	8016E3F0
  * Size:	0001F4
  */
-void PelletMgr::doSetView(int)
+void PelletMgr::doSetView(int p1)
 {
-	/*
-	stwu     r1, -0x20(r1)
-	mflr     r0
-	lis      r5, "__vt__28Iterator<16GenericObjectMgr>"@ha
-	stw      r0, 0x24(r1)
-	li       r0, 0
-	addi     r5, r5, "__vt__28Iterator<16GenericObjectMgr>"@l
-	stw      r31, 0x1c(r1)
-	cmplwi   r0, 0
-	mr       r31, r4
-	stw      r0, 0x14(r1)
-	stw      r5, 8(r1)
-	stw      r0, 0xc(r1)
-	stw      r3, 0x10(r1)
-	bne      lbl_8016E440
-	lwz      r12, 0(r3)
-	lwz      r12, 0x18(r12)
-	mtctr    r12
-	bctrl
-	stw      r3, 0xc(r1)
-	b        lbl_8016E5B0
-
-lbl_8016E440:
-	lwz      r12, 0(r3)
-	lwz      r12, 0x18(r12)
-	mtctr    r12
-	bctrl
-	stw      r3, 0xc(r1)
-	b        lbl_8016E4AC
-
-lbl_8016E458:
-	lwz      r3, 0x10(r1)
-	lwz      r4, 0xc(r1)
-	lwz      r12, 0(r3)
-	lwz      r12, 0x20(r12)
-	mtctr    r12
-	bctrl
-	mr       r4, r3
-	lwz      r3, 0x14(r1)
-	lwz      r12, 0(r3)
-	lwz      r12, 8(r12)
-	mtctr    r12
-	bctrl
-	clrlwi.  r0, r3, 0x18
-	bne      lbl_8016E5B0
-	lwz      r3, 0x10(r1)
-	lwz      r4, 0xc(r1)
-	lwz      r12, 0(r3)
-	lwz      r12, 0x14(r12)
-	mtctr    r12
-	bctrl
-	stw      r3, 0xc(r1)
-
-lbl_8016E4AC:
-	lwz      r12, 8(r1)
-	addi     r3, r1, 8
-	lwz      r12, 0x10(r12)
-	mtctr    r12
-	bctrl
-	clrlwi.  r0, r3, 0x18
-	beq      lbl_8016E458
-	b        lbl_8016E5B0
-
-lbl_8016E4CC:
-	lwz      r3, 0x10(r1)
-	lwz      r12, 0(r3)
-	lwz      r12, 0x20(r12)
-	mtctr    r12
-	bctrl
-	lwz      r12, 0(r3)
-	mr       r4, r31
-	lwz      r12, 0x10(r12)
-	mtctr    r12
-	bctrl
-	lwz      r0, 0x14(r1)
-	cmplwi   r0, 0
-	bne      lbl_8016E520
-	lwz      r3, 0x10(r1)
-	lwz      r4, 0xc(r1)
-	lwz      r12, 0(r3)
-	lwz      r12, 0x14(r12)
-	mtctr    r12
-	bctrl
-	stw      r3, 0xc(r1)
-	b        lbl_8016E5B0
-
-lbl_8016E520:
-	lwz      r3, 0x10(r1)
-	lwz      r4, 0xc(r1)
-	lwz      r12, 0(r3)
-	lwz      r12, 0x14(r12)
-	mtctr    r12
-	bctrl
-	stw      r3, 0xc(r1)
-	b        lbl_8016E594
-
-lbl_8016E540:
-	lwz      r3, 0x10(r1)
-	lwz      r4, 0xc(r1)
-	lwz      r12, 0(r3)
-	lwz      r12, 0x20(r12)
-	mtctr    r12
-	bctrl
-	mr       r4, r3
-	lwz      r3, 0x14(r1)
-	lwz      r12, 0(r3)
-	lwz      r12, 8(r12)
-	mtctr    r12
-	bctrl
-	clrlwi.  r0, r3, 0x18
-	bne      lbl_8016E5B0
-	lwz      r3, 0x10(r1)
-	lwz      r4, 0xc(r1)
-	lwz      r12, 0(r3)
-	lwz      r12, 0x14(r12)
-	mtctr    r12
-	bctrl
-	stw      r3, 0xc(r1)
-
-lbl_8016E594:
-	lwz      r12, 8(r1)
-	addi     r3, r1, 8
-	lwz      r12, 0x10(r12)
-	mtctr    r12
-	bctrl
-	clrlwi.  r0, r3, 0x18
-	beq      lbl_8016E540
-
-lbl_8016E5B0:
-	lwz      r3, 0x10(r1)
-	lwz      r12, 0(r3)
-	lwz      r12, 0x1c(r12)
-	mtctr    r12
-	bctrl
-	lwz      r4, 0xc(r1)
-	cmplw    r4, r3
-	bne      lbl_8016E4CC
-	lwz      r0, 0x24(r1)
-	lwz      r31, 0x1c(r1)
-	mtlr     r0
-	addi     r1, r1, 0x20
-	blr
-	*/
+	Iterator<GenericObjectMgr> iter(this);
+	iter.first();
+	while (iter.m_index != iter.m_container->getEnd()) {
+		iter.m_container->get(iter.m_index)->doSetView(p1);
+		iter.next();
+	}
 }
 
 /*
@@ -7241,147 +6498,14 @@ lbl_8016E5B0:
  * Address:	8016E5E4
  * Size:	0001E4
  */
-void PelletMgr::doViewCalc(void)
+void PelletMgr::doViewCalc()
 {
-	/*
-	stwu     r1, -0x20(r1)
-	mflr     r0
-	lis      r4, "__vt__28Iterator<16GenericObjectMgr>"@ha
-	stw      r0, 0x24(r1)
-	li       r0, 0
-	addi     r4, r4, "__vt__28Iterator<16GenericObjectMgr>"@l
-	cmplwi   r0, 0
-	stw      r0, 0x14(r1)
-	stw      r4, 8(r1)
-	stw      r0, 0xc(r1)
-	stw      r3, 0x10(r1)
-	bne      lbl_8016E62C
-	lwz      r12, 0(r3)
-	lwz      r12, 0x18(r12)
-	mtctr    r12
-	bctrl
-	stw      r3, 0xc(r1)
-	b        lbl_8016E798
-
-lbl_8016E62C:
-	lwz      r12, 0(r3)
-	lwz      r12, 0x18(r12)
-	mtctr    r12
-	bctrl
-	stw      r3, 0xc(r1)
-	b        lbl_8016E698
-
-lbl_8016E644:
-	lwz      r3, 0x10(r1)
-	lwz      r4, 0xc(r1)
-	lwz      r12, 0(r3)
-	lwz      r12, 0x20(r12)
-	mtctr    r12
-	bctrl
-	mr       r4, r3
-	lwz      r3, 0x14(r1)
-	lwz      r12, 0(r3)
-	lwz      r12, 8(r12)
-	mtctr    r12
-	bctrl
-	clrlwi.  r0, r3, 0x18
-	bne      lbl_8016E798
-	lwz      r3, 0x10(r1)
-	lwz      r4, 0xc(r1)
-	lwz      r12, 0(r3)
-	lwz      r12, 0x14(r12)
-	mtctr    r12
-	bctrl
-	stw      r3, 0xc(r1)
-
-lbl_8016E698:
-	lwz      r12, 8(r1)
-	addi     r3, r1, 8
-	lwz      r12, 0x10(r12)
-	mtctr    r12
-	bctrl
-	clrlwi.  r0, r3, 0x18
-	beq      lbl_8016E644
-	b        lbl_8016E798
-
-lbl_8016E6B8:
-	lwz      r3, 0x10(r1)
-	lwz      r12, 0(r3)
-	lwz      r12, 0x20(r12)
-	mtctr    r12
-	bctrl
-	lwz      r12, 0(r3)
-	lwz      r12, 0x14(r12)
-	mtctr    r12
-	bctrl
-	lwz      r0, 0x14(r1)
-	cmplwi   r0, 0
-	bne      lbl_8016E708
-	lwz      r3, 0x10(r1)
-	lwz      r4, 0xc(r1)
-	lwz      r12, 0(r3)
-	lwz      r12, 0x14(r12)
-	mtctr    r12
-	bctrl
-	stw      r3, 0xc(r1)
-	b        lbl_8016E798
-
-lbl_8016E708:
-	lwz      r3, 0x10(r1)
-	lwz      r4, 0xc(r1)
-	lwz      r12, 0(r3)
-	lwz      r12, 0x14(r12)
-	mtctr    r12
-	bctrl
-	stw      r3, 0xc(r1)
-	b        lbl_8016E77C
-
-lbl_8016E728:
-	lwz      r3, 0x10(r1)
-	lwz      r4, 0xc(r1)
-	lwz      r12, 0(r3)
-	lwz      r12, 0x20(r12)
-	mtctr    r12
-	bctrl
-	mr       r4, r3
-	lwz      r3, 0x14(r1)
-	lwz      r12, 0(r3)
-	lwz      r12, 8(r12)
-	mtctr    r12
-	bctrl
-	clrlwi.  r0, r3, 0x18
-	bne      lbl_8016E798
-	lwz      r3, 0x10(r1)
-	lwz      r4, 0xc(r1)
-	lwz      r12, 0(r3)
-	lwz      r12, 0x14(r12)
-	mtctr    r12
-	bctrl
-	stw      r3, 0xc(r1)
-
-lbl_8016E77C:
-	lwz      r12, 8(r1)
-	addi     r3, r1, 8
-	lwz      r12, 0x10(r12)
-	mtctr    r12
-	bctrl
-	clrlwi.  r0, r3, 0x18
-	beq      lbl_8016E728
-
-lbl_8016E798:
-	lwz      r3, 0x10(r1)
-	lwz      r12, 0(r3)
-	lwz      r12, 0x1c(r12)
-	mtctr    r12
-	bctrl
-	lwz      r4, 0xc(r1)
-	cmplw    r4, r3
-	bne      lbl_8016E6B8
-	lwz      r0, 0x24(r1)
-	mtlr     r0
-	addi     r1, r1, 0x20
-	blr
-	*/
+	Iterator<GenericObjectMgr> iter(this);
+	iter.first();
+	while (iter.m_index != iter.m_container->getEnd()) {
+		iter.m_container->get(iter.m_index)->doViewCalc();
+		iter.next();
+	}
 }
 
 /*
@@ -7389,151 +6513,14 @@ lbl_8016E798:
  * Address:	8016E7C8
  * Size:	0001F4
  */
-void PelletMgr::doSimulation(float)
+void PelletMgr::doSimulation(float constraint)
 {
-	/*
-	stwu     r1, -0x20(r1)
-	mflr     r0
-	lis      r4, "__vt__28Iterator<16GenericObjectMgr>"@ha
-	stw      r0, 0x24(r1)
-	li       r0, 0
-	addi     r4, r4, "__vt__28Iterator<16GenericObjectMgr>"@l
-	stfd     f31, 0x18(r1)
-	fmr      f31, f1
-	cmplwi   r0, 0
-	stw      r4, 8(r1)
-	stw      r0, 0x14(r1)
-	stw      r0, 0xc(r1)
-	stw      r3, 0x10(r1)
-	bne      lbl_8016E818
-	lwz      r12, 0(r3)
-	lwz      r12, 0x18(r12)
-	mtctr    r12
-	bctrl
-	stw      r3, 0xc(r1)
-	b        lbl_8016E988
-
-lbl_8016E818:
-	lwz      r12, 0(r3)
-	lwz      r12, 0x18(r12)
-	mtctr    r12
-	bctrl
-	stw      r3, 0xc(r1)
-	b        lbl_8016E884
-
-lbl_8016E830:
-	lwz      r3, 0x10(r1)
-	lwz      r4, 0xc(r1)
-	lwz      r12, 0(r3)
-	lwz      r12, 0x20(r12)
-	mtctr    r12
-	bctrl
-	mr       r4, r3
-	lwz      r3, 0x14(r1)
-	lwz      r12, 0(r3)
-	lwz      r12, 8(r12)
-	mtctr    r12
-	bctrl
-	clrlwi.  r0, r3, 0x18
-	bne      lbl_8016E988
-	lwz      r3, 0x10(r1)
-	lwz      r4, 0xc(r1)
-	lwz      r12, 0(r3)
-	lwz      r12, 0x14(r12)
-	mtctr    r12
-	bctrl
-	stw      r3, 0xc(r1)
-
-lbl_8016E884:
-	lwz      r12, 8(r1)
-	addi     r3, r1, 8
-	lwz      r12, 0x10(r12)
-	mtctr    r12
-	bctrl
-	clrlwi.  r0, r3, 0x18
-	beq      lbl_8016E830
-	b        lbl_8016E988
-
-lbl_8016E8A4:
-	lwz      r3, 0x10(r1)
-	lwz      r12, 0(r3)
-	lwz      r12, 0x20(r12)
-	mtctr    r12
-	bctrl
-	lwz      r12, 0(r3)
-	fmr      f1, f31
-	lwz      r12, 0x18(r12)
-	mtctr    r12
-	bctrl
-	lwz      r0, 0x14(r1)
-	cmplwi   r0, 0
-	bne      lbl_8016E8F8
-	lwz      r3, 0x10(r1)
-	lwz      r4, 0xc(r1)
-	lwz      r12, 0(r3)
-	lwz      r12, 0x14(r12)
-	mtctr    r12
-	bctrl
-	stw      r3, 0xc(r1)
-	b        lbl_8016E988
-
-lbl_8016E8F8:
-	lwz      r3, 0x10(r1)
-	lwz      r4, 0xc(r1)
-	lwz      r12, 0(r3)
-	lwz      r12, 0x14(r12)
-	mtctr    r12
-	bctrl
-	stw      r3, 0xc(r1)
-	b        lbl_8016E96C
-
-lbl_8016E918:
-	lwz      r3, 0x10(r1)
-	lwz      r4, 0xc(r1)
-	lwz      r12, 0(r3)
-	lwz      r12, 0x20(r12)
-	mtctr    r12
-	bctrl
-	mr       r4, r3
-	lwz      r3, 0x14(r1)
-	lwz      r12, 0(r3)
-	lwz      r12, 8(r12)
-	mtctr    r12
-	bctrl
-	clrlwi.  r0, r3, 0x18
-	bne      lbl_8016E988
-	lwz      r3, 0x10(r1)
-	lwz      r4, 0xc(r1)
-	lwz      r12, 0(r3)
-	lwz      r12, 0x14(r12)
-	mtctr    r12
-	bctrl
-	stw      r3, 0xc(r1)
-
-lbl_8016E96C:
-	lwz      r12, 8(r1)
-	addi     r3, r1, 8
-	lwz      r12, 0x10(r12)
-	mtctr    r12
-	bctrl
-	clrlwi.  r0, r3, 0x18
-	beq      lbl_8016E918
-
-lbl_8016E988:
-	lwz      r3, 0x10(r1)
-	lwz      r12, 0(r3)
-	lwz      r12, 0x1c(r12)
-	mtctr    r12
-	bctrl
-	lwz      r4, 0xc(r1)
-	cmplw    r4, r3
-	bne      lbl_8016E8A4
-	lwz      r0, 0x24(r1)
-	lfd      f31, 0x18(r1)
-	mtlr     r0
-	addi     r1, r1, 0x20
-	blr
-	*/
+	Iterator<GenericObjectMgr> iter(this);
+	iter.first();
+	while (iter.m_index != iter.m_container->getEnd()) {
+		iter.m_container->get(iter.m_index)->doSimulation(constraint);
+		iter.next();
+	}
 }
 
 /*
@@ -7541,159 +6528,21 @@ lbl_8016E988:
  * Address:	8016E9BC
  * Size:	000004
  */
-// WEAK - in header
-// void PelletMgr::doDirectDraw(Graphics&) { }
+void PelletMgr::doDirectDraw(Graphics&) { }
 
 /*
  * --INFO--
  * Address:	8016E9C0
  * Size:	0001F4
  */
-void PelletMgr::doSimpleDraw(Viewport*)
+void PelletMgr::doSimpleDraw(Viewport* viewport)
 {
-	/*
-	stwu     r1, -0x20(r1)
-	mflr     r0
-	lis      r5, "__vt__28Iterator<16GenericObjectMgr>"@ha
-	stw      r0, 0x24(r1)
-	li       r0, 0
-	addi     r5, r5, "__vt__28Iterator<16GenericObjectMgr>"@l
-	stw      r31, 0x1c(r1)
-	cmplwi   r0, 0
-	mr       r31, r4
-	stw      r0, 0x14(r1)
-	stw      r5, 8(r1)
-	stw      r0, 0xc(r1)
-	stw      r3, 0x10(r1)
-	bne      lbl_8016EA10
-	lwz      r12, 0(r3)
-	lwz      r12, 0x18(r12)
-	mtctr    r12
-	bctrl
-	stw      r3, 0xc(r1)
-	b        lbl_8016EB80
-
-lbl_8016EA10:
-	lwz      r12, 0(r3)
-	lwz      r12, 0x18(r12)
-	mtctr    r12
-	bctrl
-	stw      r3, 0xc(r1)
-	b        lbl_8016EA7C
-
-lbl_8016EA28:
-	lwz      r3, 0x10(r1)
-	lwz      r4, 0xc(r1)
-	lwz      r12, 0(r3)
-	lwz      r12, 0x20(r12)
-	mtctr    r12
-	bctrl
-	mr       r4, r3
-	lwz      r3, 0x14(r1)
-	lwz      r12, 0(r3)
-	lwz      r12, 8(r12)
-	mtctr    r12
-	bctrl
-	clrlwi.  r0, r3, 0x18
-	bne      lbl_8016EB80
-	lwz      r3, 0x10(r1)
-	lwz      r4, 0xc(r1)
-	lwz      r12, 0(r3)
-	lwz      r12, 0x14(r12)
-	mtctr    r12
-	bctrl
-	stw      r3, 0xc(r1)
-
-lbl_8016EA7C:
-	lwz      r12, 8(r1)
-	addi     r3, r1, 8
-	lwz      r12, 0x10(r12)
-	mtctr    r12
-	bctrl
-	clrlwi.  r0, r3, 0x18
-	beq      lbl_8016EA28
-	b        lbl_8016EB80
-
-lbl_8016EA9C:
-	lwz      r3, 0x10(r1)
-	lwz      r12, 0(r3)
-	lwz      r12, 0x20(r12)
-	mtctr    r12
-	bctrl
-	lwz      r12, 0(r3)
-	mr       r4, r31
-	lwz      r12, 0x20(r12)
-	mtctr    r12
-	bctrl
-	lwz      r0, 0x14(r1)
-	cmplwi   r0, 0
-	bne      lbl_8016EAF0
-	lwz      r3, 0x10(r1)
-	lwz      r4, 0xc(r1)
-	lwz      r12, 0(r3)
-	lwz      r12, 0x14(r12)
-	mtctr    r12
-	bctrl
-	stw      r3, 0xc(r1)
-	b        lbl_8016EB80
-
-lbl_8016EAF0:
-	lwz      r3, 0x10(r1)
-	lwz      r4, 0xc(r1)
-	lwz      r12, 0(r3)
-	lwz      r12, 0x14(r12)
-	mtctr    r12
-	bctrl
-	stw      r3, 0xc(r1)
-	b        lbl_8016EB64
-
-lbl_8016EB10:
-	lwz      r3, 0x10(r1)
-	lwz      r4, 0xc(r1)
-	lwz      r12, 0(r3)
-	lwz      r12, 0x20(r12)
-	mtctr    r12
-	bctrl
-	mr       r4, r3
-	lwz      r3, 0x14(r1)
-	lwz      r12, 0(r3)
-	lwz      r12, 8(r12)
-	mtctr    r12
-	bctrl
-	clrlwi.  r0, r3, 0x18
-	bne      lbl_8016EB80
-	lwz      r3, 0x10(r1)
-	lwz      r4, 0xc(r1)
-	lwz      r12, 0(r3)
-	lwz      r12, 0x14(r12)
-	mtctr    r12
-	bctrl
-	stw      r3, 0xc(r1)
-
-lbl_8016EB64:
-	lwz      r12, 8(r1)
-	addi     r3, r1, 8
-	lwz      r12, 0x10(r12)
-	mtctr    r12
-	bctrl
-	clrlwi.  r0, r3, 0x18
-	beq      lbl_8016EB10
-
-lbl_8016EB80:
-	lwz      r3, 0x10(r1)
-	lwz      r12, 0(r3)
-	lwz      r12, 0x1c(r12)
-	mtctr    r12
-	bctrl
-	lwz      r4, 0xc(r1)
-	cmplw    r4, r3
-	bne      lbl_8016EA9C
-	lwz      r0, 0x24(r1)
-	lwz      r31, 0x1c(r1)
-	mtlr     r0
-	addi     r1, r1, 0x20
-	blr
-	*/
+	Iterator<GenericObjectMgr> iter(this);
+	iter.first();
+	while (iter.m_index != iter.m_container->getEnd()) {
+		iter.m_container->get(iter.m_index)->doSimpleDraw(viewport);
+		iter.next();
+	}
 }
 
 /*
@@ -7703,141 +6552,12 @@ lbl_8016EB80:
  */
 void PelletMgr::setupSoundViewerAndBas()
 {
-	/*
-	stwu     r1, -0x20(r1)
-	mflr     r0
-	lis      r4, "__vt__28Iterator<16GenericObjectMgr>"@ha
-	stw      r0, 0x24(r1)
-	li       r0, 0
-	addi     r4, r4, "__vt__28Iterator<16GenericObjectMgr>"@l
-	cmplwi   r0, 0
-	stw      r0, 0x14(r1)
-	stw      r4, 8(r1)
-	stw      r0, 0xc(r1)
-	stw      r3, 0x10(r1)
-	bne      lbl_8016EBFC
-	lwz      r12, 0(r3)
-	lwz      r12, 0x18(r12)
-	mtctr    r12
-	bctrl
-	stw      r3, 0xc(r1)
-	b        lbl_8016ED58
-
-lbl_8016EBFC:
-	lwz      r12, 0(r3)
-	lwz      r12, 0x18(r12)
-	mtctr    r12
-	bctrl
-	stw      r3, 0xc(r1)
-	b        lbl_8016EC68
-
-lbl_8016EC14:
-	lwz      r3, 0x10(r1)
-	lwz      r4, 0xc(r1)
-	lwz      r12, 0(r3)
-	lwz      r12, 0x20(r12)
-	mtctr    r12
-	bctrl
-	mr       r4, r3
-	lwz      r3, 0x14(r1)
-	lwz      r12, 0(r3)
-	lwz      r12, 8(r12)
-	mtctr    r12
-	bctrl
-	clrlwi.  r0, r3, 0x18
-	bne      lbl_8016ED58
-	lwz      r3, 0x10(r1)
-	lwz      r4, 0xc(r1)
-	lwz      r12, 0(r3)
-	lwz      r12, 0x14(r12)
-	mtctr    r12
-	bctrl
-	stw      r3, 0xc(r1)
-
-lbl_8016EC68:
-	lwz      r12, 8(r1)
-	addi     r3, r1, 8
-	lwz      r12, 0x10(r12)
-	mtctr    r12
-	bctrl
-	clrlwi.  r0, r3, 0x18
-	beq      lbl_8016EC14
-	b        lbl_8016ED58
-
-lbl_8016EC88:
-	lwz      r3, 0x10(r1)
-	lwz      r12, 0(r3)
-	lwz      r12, 0x20(r12)
-	mtctr    r12
-	bctrl
-	lwz      r0, 0x14(r1)
-	cmplwi   r0, 0
-	bne      lbl_8016ECC8
-	lwz      r3, 0x10(r1)
-	lwz      r4, 0xc(r1)
-	lwz      r12, 0(r3)
-	lwz      r12, 0x14(r12)
-	mtctr    r12
-	bctrl
-	stw      r3, 0xc(r1)
-	b        lbl_8016ED58
-
-lbl_8016ECC8:
-	lwz      r3, 0x10(r1)
-	lwz      r4, 0xc(r1)
-	lwz      r12, 0(r3)
-	lwz      r12, 0x14(r12)
-	mtctr    r12
-	bctrl
-	stw      r3, 0xc(r1)
-	b        lbl_8016ED3C
-
-lbl_8016ECE8:
-	lwz      r3, 0x10(r1)
-	lwz      r4, 0xc(r1)
-	lwz      r12, 0(r3)
-	lwz      r12, 0x20(r12)
-	mtctr    r12
-	bctrl
-	mr       r4, r3
-	lwz      r3, 0x14(r1)
-	lwz      r12, 0(r3)
-	lwz      r12, 8(r12)
-	mtctr    r12
-	bctrl
-	clrlwi.  r0, r3, 0x18
-	bne      lbl_8016ED58
-	lwz      r3, 0x10(r1)
-	lwz      r4, 0xc(r1)
-	lwz      r12, 0(r3)
-	lwz      r12, 0x14(r12)
-	mtctr    r12
-	bctrl
-	stw      r3, 0xc(r1)
-
-lbl_8016ED3C:
-	lwz      r12, 8(r1)
-	addi     r3, r1, 8
-	lwz      r12, 0x10(r12)
-	mtctr    r12
-	bctrl
-	clrlwi.  r0, r3, 0x18
-	beq      lbl_8016ECE8
-
-lbl_8016ED58:
-	lwz      r3, 0x10(r1)
-	lwz      r12, 0(r3)
-	lwz      r12, 0x1c(r12)
-	mtctr    r12
-	bctrl
-	lwz      r4, 0xc(r1)
-	cmplw    r4, r3
-	bne      lbl_8016EC88
-	lwz      r0, 0x24(r1)
-	mtlr     r0
-	addi     r1, r1, 0x20
-	blr
-	*/
+	Iterator<GenericObjectMgr> iter(this);
+	iter.first();
+	while (iter.m_index != iter.m_container->getEnd()) {
+		iter.m_container->get(iter.m_index);
+		iter.next();
+	}
 }
 
 /*
@@ -7863,65 +6583,14 @@ int PelletMgr::encode(u8 pelletType, int code) { return (pelletType << 24) | cod
  * Address:	8016EDA8
  * Size:	0000B4
  */
-char* PelletMgr::getCaveName(int)
+char* PelletMgr::getCaveName(int caveID)
 {
-	/*
-	stwu     r1, -0x10(r1)
-	mflr     r0
-	stw      r0, 0x14(r1)
-	srwi     r0, r4, 0x18
-	stw      r31, 0xc(r1)
-	stw      r30, 8(r1)
-	clrlwi   r30, r4, 8
-	mr       r4, r0
-	bl       getMgrByID__Q24Game9PelletMgrFUc
-	or.      r31, r3, r3
-	bne      lbl_8016EDF0
-	lis      r3, lbl_8047E344@ha
-	lis      r5, lbl_8047E354@ha
-	addi     r3, r3, lbl_8047E344@l
-	li       r4, 0x16f9
-	addi     r5, r5, lbl_8047E354@l
-	crclr    6
-	bl       panic_f__12JUTExceptionFPCciPCce
-
-lbl_8016EDF0:
-	cmpwi    r30, 0
-	blt      lbl_8016EE08
-	lwz      r3, 8(r31)
-	lwz      r0, 0x18(r3)
-	cmpw     r30, r0
-	blt      lbl_8016EE10
-
-lbl_8016EE08:
-	li       r31, 0
-	b        lbl_8016EE1C
-
-lbl_8016EE10:
-	mulli    r0, r30, 0x260
-	lwz      r3, 0x1c(r3)
-	add      r31, r3, r0
-
-lbl_8016EE1C:
-	cmplwi   r31, 0
-	bne      lbl_8016EE40
-	lis      r3, lbl_8047E344@ha
-	lis      r5, lbl_8047E354@ha
-	addi     r3, r3, lbl_8047E344@l
-	li       r4, 0x16fb
-	addi     r5, r5, lbl_8047E354@l
-	crclr    6
-	bl       panic_f__12JUTExceptionFPCciPCce
-
-lbl_8016EE40:
-	lwz      r0, 0x14(r1)
-	lwz      r3, 0x40(r31)
-	lwz      r31, 0xc(r1)
-	lwz      r30, 8(r1)
-	mtlr     r0
-	addi     r1, r1, 0x10
-	blr
-	*/
+	int idx            = caveID & 0xFFFFFF;
+	BasePelletMgr* mgr = getMgrByID((caveID >> 24) & 0xFF);
+	P2ASSERTLINE(5881, mgr != nullptr);
+	PelletConfig* config = mgr->getPelletConfig(idx);
+	P2ASSERTLINE(5883, config != nullptr);
+	return config->m_params.m_name.m_data;
 }
 
 /*
@@ -8865,7 +7534,8 @@ namespace Game {
  * Address:	8016F9BC
  * Size:	000008
  */
-void BasePelletMgr::generatorBirth(Vector3f&, Vector3f&, GenPelletParm*) { return 0x0; }
+// WEAK - in header
+// Pellet* BasePelletMgr::generatorBirth(Vector3f&, Vector3f&, GenPelletParm*) { return nullptr; }
 
 /*
  * --INFO--
@@ -8888,14 +7558,8 @@ void BasePelletMgr::generatorBirth(Vector3f&, Vector3f&, GenPelletParm*) { retur
  * Address:	8016F9CC
  * Size:	00000C
  */
-void BasePelletMgr::generatorLocalVersion(void)
-{
-	/*
-	lis      r3, 0x30303030@ha
-	addi     r3, r3, 0x30303030@l
-	blr
-	*/
-}
+// WEAK - in header
+// u32 BasePelletMgr::generatorLocalVersion() { return '0000'; }
 
 /*
  * --INFO--
@@ -9483,71 +8147,17 @@ void Pellet::onSetPosition(Vector3f&)
  */
 // void Pellet::sound_otakaraEventFinish(void) { }
 
-namespace PSM {
+// namespace PSM {
 
 /*
  * --INFO--
  * Address:	801700B8
  * Size:	0000BC
  */
-EventBase::~EventBase(void)
-{
-	/*
-stwu     r1, -0x10(r1)
-mflr     r0
-stw      r0, 0x14(r1)
-stw      r31, 0xc(r1)
-mr       r31, r4
-stw      r30, 8(r1)
-or.      r30, r3, r3
-beq      lbl_80170158
-lis      r3, __vt__Q23PSM9EventBase@ha
-addi     r4, r3, __vt__Q23PSM9EventBase@l
-stw      r4, 0x28(r30)
-addi     r3, r4, 8
-addi     r0, r4, 0x40
-stw      r3, 0x10(r30)
-stw      r0, 0x30(r30)
-beq      lbl_80170148
-lis      r4, __vt__Q23PSM11CreatureObj@ha
-addi     r3, r30, 0x30
-addi     r6, r4, __vt__Q23PSM11CreatureObj@l
-li       r4, 0
-stw      r6, 0x28(r30)
-addi     r5, r6, 8
-addi     r0, r6, 0x40
-stw      r5, 0x10(r30)
-stw      r0, 0x30(r30)
-bl       __dt__Q27JAInter6ObjectFv
-cmplwi   r30, 0
-beq      lbl_80170148
-lis      r4, __vt__Q23PSM8Creature@ha
-mr       r3, r30
-addi     r5, r4, __vt__Q23PSM8Creature@l
-li       r4, 0
-stw      r5, 0x28(r30)
-addi     r0, r5, 8
-stw      r0, 0x10(r30)
-bl       __dt__Q23PSM7ObjBaseFv
+// WEAK - in header
+// EventBase::~EventBase() {}
 
-lbl_80170148:
-extsh.   r0, r31
-ble      lbl_80170158
-mr       r3, r30
-bl       __dl__FPv
-
-lbl_80170158:
-lwz      r0, 0x14(r1)
-mr       r3, r30
-lwz      r31, 0xc(r1)
-lwz      r30, 8(r1)
-mtlr     r0
-addi     r1, r1, 0x10
-blr
-	*/
-}
-
-} // namespace PSM
+// } // namespace PSM
 
 /*
  * --INFO--

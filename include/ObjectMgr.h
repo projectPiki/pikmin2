@@ -10,13 +10,66 @@ template <typename T> struct ObjectMgr : public Container<T>, GenericObjectMgr {
 	{
 	}
 
-	virtual ~ObjectMgr() { }              // _08 (weak)
-	virtual void doAnimation();           // _34
-	virtual void doEntry();               // _38
-	virtual void doSetView(int);          // _3C
-	virtual void doViewCalc();            // _40
-	virtual void doSimulation(float);     // _44
-	virtual void doDirectDraw(Graphics&); // _48
+	///////////////// VTABLE
+	virtual ~ObjectMgr() { }   // _08 (weak)
+	virtual void doAnimation() // _34
+	{
+		Iterator<T> iter(this);
+		iter.first();
+		while (iter.m_index != iter.m_container->getEnd()) {
+			iter.m_container->get(iter.m_index)->doAnimation();
+			iter.next();
+		}
+	}
+	virtual void doEntry() // _38
+	{
+		Iterator<T> iter(this);
+		iter.first();
+		while (iter.m_index != iter.m_container->getEnd()) {
+			iter.m_container->get(iter.m_index)->doEntry();
+			iter.next();
+		}
+	}
+	virtual void doSetView(int p1) // _3C
+	{
+		Iterator<T> iter(this);
+		iter.first();
+		while (iter.m_index != iter.m_container->getEnd()) {
+			iter.m_container->get(iter.m_index)->doSetView(p1);
+			iter.next();
+		}
+	}
+	virtual void doViewCalc() // _40
+	{
+		Iterator<T> iter(this);
+		iter.first();
+		while (iter.m_index != iter.m_container->getEnd()) {
+			iter.m_container->get(iter.m_index)->doViewCalc();
+			iter.next();
+		}
+	}
+	virtual void doSimulation(float constraint) // _44
+	{
+		Iterator<T> iter(this);
+		iter.first();
+		while (iter.m_index != iter.m_container->getEnd()) {
+			iter.m_container->get(iter.m_index)->doSimulation(constraint);
+			iter.next();
+		}
+	}
+	virtual void doDirectDraw(Graphics& graphics) // _48
+	{
+		Iterator<T> iter(this);
+		iter.first();
+		while (iter.m_index != iter.m_container->getEnd()) {
+			iter.m_container->get(iter.m_index)->doDirectDraw(graphics);
+			iter.next();
+		}
+	}
+	///////////////// VTABLE END
+
+	// _00		= VTBL
+	// _00-_18	= Container
 };
 
 template <typename T> struct TObjectNode : public CNode {
@@ -34,20 +87,20 @@ template <typename T> struct NodeObjectMgr : public ObjectMgr<T> {
 	{
 	}
 	// first VTBL:
-	virtual ~NodeObjectMgr() { }      // _00
-	virtual void* getNext(void* node) // _08
+	virtual ~NodeObjectMgr() { }      // _08
+	virtual void* getNext(void* node) // _14
 	{
 		return ((TObjectNode<T>*)node)->m_next;
 	}
-	virtual void* getStart() // _0C
+	virtual void* getStart() // _18
 	{
 		return m_node.m_child;
 	}
-	virtual void* getEnd() // _10
+	virtual void* getEnd() // _1C
 	{
 		return nullptr;
 	}
-	virtual T* get(void* node) // _14
+	virtual T* get(void* node) // _20
 	{
 		return ((TObjectNode<T>*)node)->m_contents;
 	}

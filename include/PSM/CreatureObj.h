@@ -22,8 +22,7 @@ struct CreatureObj : public Creature, public JAInter::Object {
 	virtual void startSound(u8, u32, u32);         // _80 (thunk at _50)
 	virtual void startSound(JAISound**, u32, u32); // _84 (thunk at _54)
 
-	// _00 VTBL
-	JAInter::Object m_obj; // _30
+	// _28 		= VTBL
 };
 } // namespace PSM
 

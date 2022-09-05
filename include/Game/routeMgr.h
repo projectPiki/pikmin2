@@ -199,4 +199,8 @@ struct WPExcludeSpot : public Game::WPCondition {
 	virtual bool satisfy(Game::WayPoint*); // _08 (weak)
 };
 
+struct WPFindCond : public Game::WPCondition {
+	virtual bool satisfy(Game::WayPoint*); // _08 (weak)
+};
+
 #endif
