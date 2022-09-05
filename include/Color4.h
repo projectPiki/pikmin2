@@ -14,6 +14,16 @@ struct Color4 {
 	    , b(blue)
 	    , a(alpha) {};
 
+	inline GXColor toGXColor()
+	{
+		GXColor color;
+		color.r = r;
+		color.g = g;
+		color.b = b;
+		color.a = a;
+		return color;
+	}
+
 	void read(struct Stream&);
 	void write(struct Stream&);
 
