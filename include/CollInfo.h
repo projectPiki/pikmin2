@@ -11,9 +11,9 @@
 #include "SysShape/Model.h"
 #include "SysShape/MtxObject.h"
 #include "Vector3.h"
+#include "Condition.h"
 
 struct CollPartMgr;
-struct FindCollPartArg;
 
 #define COLLTYPE_SPHERE   (0)
 #define COLLTYPE_TUBE     (1)
@@ -99,6 +99,11 @@ struct CollPartMgr : public MonoObjectMgr<CollPart> {
 	CollPart* createOne(SysShape::MtxObject*);
 };
 
+struct FindCollPartArg {
+	Condition<CollPart>* m_condition; // _00
+	Vector3f m_position;              // _04
+};
+
 struct MouthCollPart : public CollPart {
 	MouthCollPart();
 
@@ -159,7 +164,7 @@ struct CollTree {
 	void checkCollision(Sys::Sphere&, IDelegate1<CollPart*>*);
 	bool checkCollisionRec(CollPart*, CollPart*, CollPart**, CollPart**, Vector3f&);
 	void checkCollisionMulti(CollTree*, IDelegate3<CollPart*, CollPart*, Vector3f&>*);
-	void findCollPart(FindCollPartArg&);
+	CollPart* findCollPart(FindCollPartArg&);
 	void getBoundingSphere(Sys::Sphere&);
 	CollPart* getCollPart(u32);
 	CollPart* getRandomCollPart();
