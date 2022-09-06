@@ -24,9 +24,12 @@ struct CollPart : public CNode {
 	CollPart(SysShape::MtxObject*);
 
 	////////////// VTABLE
-	virtual ~CollPart() { }      // _08 (weak)
-	virtual int getChildCount(); // _0C (weak)
-	virtual bool isMouth()       // _10 (weak)
+	virtual ~CollPart() { }     // _08 (weak)
+	virtual int getChildCount() // _0C (weak)
+	{
+		return CNode::getChildCount();
+	}
+	virtual bool isMouth() // _10 (weak)
 	{
 		return false;
 	}
@@ -85,7 +88,7 @@ struct CollPart : public CNode {
 	u32 m_jointIndex;             // _2C
 	ID32 _30;                     // _30
 	ID32 _3C;                     // _3C
-	short m_attribute;            // _48   /* name from PikDecomp */
+	u16 m_attribute;              // _48   /* name from PikDecomp */
 	Vector3f m_position;          // _4C   /* name from PikDecomp */
 	u8 m_hasCollPart;             // _58   /* name from PikDecomp */
 	SysShape::MtxObject* m_model; // _5C
@@ -116,6 +119,9 @@ struct MouthCollPart : public CollPart {
 	void copyMatrixTo(Matrixf&);
 	void getPosition(Vector3f&);
 
+	// inlined
+	void setup(SysShape::Model* model, char* jointName, Vector3f& vector);
+
 	CollPart* _64;        // _64
 	SysShape::Joint* _68; // _68
 	u8 _6C;               // _6C
@@ -135,7 +141,7 @@ struct MouthSlots {
 struct AgeCollPart : public CollPart {
 	AgeCollPart(SysShape::Model*);
 
-	virtual ~AgeCollPart();       // _08 (weak)
+	virtual ~AgeCollPart() { }    // _08 (weak)
 	virtual void draw(Graphics&); // _14
 
 	u8 _64; // _64

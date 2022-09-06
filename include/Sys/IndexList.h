@@ -6,13 +6,15 @@
 
 namespace Sys {
 struct IndexList : public ArrayContainer<int> {
-	/**
-	 * @reifiedAddress{801397AC}
-	 * @reifiedFile{plugProjectKandoU/collinfo.cpp}
-	 */
-	virtual ~IndexList() { }                 // _08 (weak)
-	virtual void writeObject(Stream&, int&); // _2C (weak)
-	virtual void readObject(Stream&, int&);  // _30 (weak)
+	virtual ~IndexList() { }                          // _08 (weak)
+	virtual void writeObject(Stream& stream, int& p1) // _2C (weak)
+	{
+		stream.writeInt(p1);
+	}
+	virtual void readObject(Stream& stream, int& p1) // _30 (weak)
+	{
+		p1 = stream.readInt();
+	}
 };
 } // namespace Sys
 

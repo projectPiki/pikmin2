@@ -817,6 +817,7 @@ void CollPart::makeMatrixTo(Matrixf& p1)
  * Address:	8013739C
  * Size:	000214
  */
+// WIP: https://decomp.me/scratch/b2SSt
 void CollPart::makeTubeTree()
 {
 	if (getChild() != nullptr) {
@@ -1041,6 +1042,7 @@ lbl_80137594:
  * Address:	801375B0
  * Size:	00022C
  */
+// WIP: https://decomp.me/scratch/a35NF
 void CollPart::calcStickLocal(Vector3f&, Vector3f&)
 {
 	/*
@@ -1211,135 +1213,27 @@ lbl_801377B8:
  * Address:	801377DC
  * Size:	000168
  */
-void CollPart::calcStickGlobal(Vector3f& p1, Vector3f& p2)
+void CollPart::calcStickGlobal(Vector3f& arg0, Vector3f& arg1)
 {
 	switch (m_hasCollPart) {
-	case 0:
-		Matrixf m;
-		makeMatrixTo(m);
-		Vec v;
-		PSMTXMultVec(m.m_matrix.mtxView, (Vec*)(&p1), &v);
-		p2.x = v.x;
-		p2.y = v.y;
-		p2.z = v.z;
+	case COLLTYPE_SPHERE:
+		Matrixf mtx;
+		makeMatrixTo(mtx);
+		arg1 = mtx.mtxMult(arg0);
 		break;
-	case 1:
-		calcStickLocal(p2, p1);
-		Sys::Tube tube;
-		getTube(tube);
-		p2 = tube.setPos(p1.y);
+	case COLLTYPE_TUBE:
+		calcStickLocal(arg1, arg0);
+		Sys::Tube tube1;
+		getTube(tube1);
+		arg1 = tube1.setPos(arg0.y);
 		break;
-	case 2:
-		calcStickLocal(p2, p1);
+	case COLLTYPE_TUBETREE:
+		calcStickLocal(arg1, arg0);
 		Sys::Tube tube2;
 		getTube(tube2);
-		p2 = tube2.setPos(p1.y);
+		arg1 = tube2.setPos(arg0.y);
 		break;
 	}
-	/*
-	stwu     r1, -0xe0(r1)
-	mflr     r0
-	stw      r0, 0xe4(r1)
-	stw      r31, 0xdc(r1)
-	mr       r31, r5
-	stw      r30, 0xd8(r1)
-	mr       r30, r4
-	stw      r29, 0xd4(r1)
-	mr       r29, r3
-	lbz      r0, 0x58(r3)
-	cmpwi    r0, 1
-	beq      lbl_801378A4
-	bge      lbl_8013781C
-	cmpwi    r0, 0
-	bge      lbl_80137828
-	b        lbl_80137928
-
-lbl_8013781C:
-	cmpwi    r0, 3
-	bge      lbl_80137928
-	b        lbl_801378E8
-
-lbl_80137828:
-	lwz      r0, 0x2c(r29)
-	cmpwi    r0, -1
-	beq      lbl_80137878
-	addi     r3, r1, 0x6c
-	bl       PSMTXIdentity
-	lfs      f0, 0x20(r29)
-	stfs     f0, 0x78(r1)
-	lfs      f0, 0x24(r29)
-	stfs     f0, 0x88(r1)
-	lfs      f0, 0x28(r29)
-	stfs     f0, 0x98(r1)
-	lwz      r3, 0x5c(r29)
-	lwz      r4, 0x2c(r29)
-	lwz      r12, 0(r3)
-	lwz      r12, 8(r12)
-	mtctr    r12
-	bctrl
-	addi     r4, r1, 0x6c
-	addi     r5, r1, 0x9c
-	bl       PSMTXConcat
-
-lbl_80137878:
-	mr       r4, r30
-	addi     r3, r1, 0x9c
-	addi     r5, r1, 8
-	bl       PSMTXMultVec
-	lfs      f1, 0xc(r1)
-	lfs      f2, 0x10(r1)
-	lfs      f0, 8(r1)
-	stfs     f0, 0(r31)
-	stfs     f1, 4(r31)
-	stfs     f2, 8(r31)
-	b        lbl_80137928
-
-lbl_801378A4:
-	mr       r4, r31
-	mr       r5, r30
-	bl       "calcStickLocal__8CollPartFR10Vector3<f>R10Vector3<f>"
-	mr       r3, r29
-	addi     r4, r1, 0x4c
-	bl       getTube__8CollPartFRQ23Sys4Tube
-	lfs      f1, 4(r30)
-	addi     r3, r1, 0x20
-	addi     r4, r1, 0x4c
-	bl       setPos__Q23Sys4TubeFf
-	lfs      f0, 0x20(r1)
-	stfs     f0, 0(r31)
-	lfs      f0, 0x24(r1)
-	stfs     f0, 4(r31)
-	lfs      f0, 0x28(r1)
-	stfs     f0, 8(r31)
-	b        lbl_80137928
-
-lbl_801378E8:
-	mr       r4, r31
-	mr       r5, r30
-	bl       "calcStickLocal__8CollPartFR10Vector3<f>R10Vector3<f>"
-	mr       r3, r29
-	addi     r4, r1, 0x2c
-	bl       getTube__8CollPartFRQ23Sys4Tube
-	lfs      f1, 4(r30)
-	addi     r3, r1, 0x14
-	addi     r4, r1, 0x2c
-	bl       setPos__Q23Sys4TubeFf
-	lfs      f0, 0x14(r1)
-	stfs     f0, 0(r31)
-	lfs      f0, 0x18(r1)
-	stfs     f0, 4(r31)
-	lfs      f0, 0x1c(r1)
-	stfs     f0, 8(r31)
-
-lbl_80137928:
-	lwz      r0, 0xe4(r1)
-	lwz      r31, 0xdc(r1)
-	lwz      r30, 0xd8(r1)
-	lwz      r29, 0xd4(r1)
-	mtlr     r0
-	addi     r1, r1, 0xe0
-	blr
-	*/
 }
 
 /*
@@ -1347,6 +1241,7 @@ lbl_80137928:
  * Address:	80137944
  * Size:	0004C8
  */
+// WIP: https://decomp.me/scratch/rvuzC
 void CollPart::calcPoseMatrix(Vector3f&, Matrixf&)
 {
 	/*
@@ -1774,89 +1669,38 @@ void CollPart::draw(Graphics&) { }
  * Size:	000134
  */
 MouthCollPart::MouthCollPart()
-    : CollPart()
-    , _64(nullptr)
-    , _6C(0)
 {
-	/*
-	stwu     r1, -0x10(r1)
-	mflr     r0
-	stw      r0, 0x14(r1)
-	stw      r31, 0xc(r1)
-	stw      r30, 8(r1)
-	mr       r30, r3
-	mr       r0, r30
-	mr       r31, r0
-	bl       __ct__5CNodeFv
-	lis      r4, __vt__8CollPart@ha
-	addi     r3, r31, 0x30
-	addi     r0, r4, __vt__8CollPart@l
-	stw      r0, 0(r31)
-	bl       __ct__4ID32Fv
-	addi     r3, r31, 0x3c
-	bl       __ct__4ID32Fv
-	li       r5, 0
-	lis      r4, 0x5F5F5F5F@ha
-	stw      r5, 0x10(r31)
-	li       r0, -1
-	lfs      f0, lbl_80518210@sda21(r2)
-	addi     r3, r31, 0x3c
-	stw      r5, 0xc(r31)
-	addi     r4, r4, 0x5F5F5F5F@l
-	stw      r5, 8(r31)
-	stw      r5, 4(r31)
-	stfs     f0, 0x1c(r31)
-	stfs     f0, 0x18(r31)
-	stfs     f0, 0x20(r31)
-	stfs     f0, 0x24(r31)
-	stfs     f0, 0x28(r31)
-	stfs     f0, 0x4c(r31)
-	stfs     f0, 0x50(r31)
-	stfs     f0, 0x54(r31)
-	stw      r5, 0x5c(r31)
-	stw      r0, 0x2c(r31)
-	stw      r5, 0x60(r31)
-	sth      r5, 0x48(r31)
-	stb      r5, 0x58(r31)
-	bl       setID__4ID32FUl
-	lis      r3, __vt__13MouthCollPart@ha
-	lis      r4, 0x5F5F5F5F@ha
-	addi     r0, r3, __vt__13MouthCollPart@l
-	li       r5, 0
-	stw      r0, 0(r30)
-	li       r0, -1
-	lfs      f0, lbl_80518210@sda21(r2)
-	addi     r3, r30, 0x3c
-	stw      r5, 0x10(r30)
-	addi     r4, r4, 0x5F5F5F5F@l
-	stw      r5, 0xc(r30)
-	stw      r5, 8(r30)
-	stw      r5, 4(r30)
-	stfs     f0, 0x1c(r30)
-	stfs     f0, 0x18(r30)
-	stfs     f0, 0x20(r30)
-	stfs     f0, 0x24(r30)
-	stfs     f0, 0x28(r30)
-	stfs     f0, 0x4c(r30)
-	stfs     f0, 0x50(r30)
-	stfs     f0, 0x54(r30)
-	stw      r5, 0x5c(r30)
-	stw      r0, 0x2c(r30)
-	stw      r5, 0x60(r30)
-	sth      r5, 0x48(r30)
-	stb      r5, 0x58(r30)
-	bl       setID__4ID32FUl
-	li       r0, 0
-	mr       r3, r30
-	stw      r0, 0x64(r30)
-	stb      r0, 0x6c(r30)
-	lwz      r31, 0xc(r1)
-	lwz      r30, 8(r1)
-	lwz      r0, 0x14(r1)
-	mtlr     r0
-	addi     r1, r1, 0x10
-	blr
-	*/
+	clearRelations();
+	_1C           = 0.0f;
+	_18           = 0.0f;
+	_20           = 0.0f;
+	m_position    = Vector3f(0.0f);
+	m_model       = nullptr;
+	m_jointIndex  = -1;
+	_60           = 0;
+	m_attribute   = 0;
+	m_hasCollPart = COLLTYPE_SPHERE;
+	_3C.setID('____');
+	_64 = nullptr;
+	_6C = 0;
+}
+
+/*
+ * --INLINED--
+ * setup__13MouthCollPartFPQ28SysShape5ModelPcR10Vector3<f>
+ * --INFO--
+ * Address: ........
+ * Size:    000080
+ */
+
+inline void MouthCollPart::setup(SysShape::Model* model, char* jointName, Vector3f& vector)
+{
+	m_model      = model;
+	_68          = static_cast<SysShape::Model*>(m_model)->getJoint(jointName);
+	_20          = vector;
+	m_jointIndex = _68->m_j3d->m_jointIdx;
+	_1C          = 0.0f;
+	_64          = nullptr;
 }
 
 /*
@@ -1919,78 +1763,8 @@ void MouthSlots::update()
  */
 void MouthSlots::setup(int slotIndex, SysShape::Model* model, char* jointName)
 {
-
 	P2ASSERTBOUNDSLINE(1485, 0, slotIndex, m_max);
-	m_slots[slotIndex].m_model      = model;
-	m_slots[slotIndex]._68          = model->getJoint(jointName);
-	m_slots[slotIndex]._20          = Vector3f::zero;
-	m_slots[slotIndex].m_jointIndex = m_slots[slotIndex]._68->m_j3d->m_jointIdx;
-	m_slots[slotIndex]._1C          = 0.0f;
-	m_slots[slotIndex]._64          = nullptr;
-	/*
-	stwu     r1, -0x20(r1)
-	mflr     r0
-	stw      r0, 0x24(r1)
-	stw      r31, 0x1c(r1)
-	mr       r31, r6
-	stw      r30, 0x18(r1)
-	mr       r30, r5
-	stw      r29, 0x14(r1)
-	or.      r29, r4, r4
-	stw      r28, 0x10(r1)
-	mr       r28, r3
-	li       r3, 0
-	blt      lbl_801386D4
-	lwz      r0, 0(r28)
-	cmpw     r29, r0
-	bge      lbl_801386D4
-	li       r3, 1
-
-lbl_801386D4:
-	clrlwi.  r0, r3, 0x18
-	bne      lbl_801386F8
-	lis      r3, lbl_8047C5A0@ha
-	lis      r5, lbl_8047C5CC@ha
-	addi     r3, r3, lbl_8047C5A0@l
-	li       r4, 0x5cd
-	addi     r5, r5, lbl_8047C5CC@l
-	crclr    6
-	bl       panic_f__12JUTExceptionFPCciPCce
-
-lbl_801386F8:
-	mulli    r0, r29, 0x70
-	lwz      r3, 4(r28)
-	mr       r4, r31
-	add      r31, r3, r0
-	stw      r30, 0x5c(r31)
-	lwz      r3, 0x5c(r31)
-	bl       getJoint__Q28SysShape5ModelFPc
-	lis      r4, "zero__10Vector3<f>"@ha
-	stw      r3, 0x68(r31)
-	addi     r3, r4, "zero__10Vector3<f>"@l
-	lfs      f0, lbl_80518210@sda21(r2)
-	lfs      f1, 0(r3)
-	li       r0, 0
-	stfs     f1, 0x20(r31)
-	lfs      f1, 4(r3)
-	stfs     f1, 0x24(r31)
-	lfs      f1, 8(r3)
-	stfs     f1, 0x28(r31)
-	lwz      r3, 0x68(r31)
-	lwz      r3, 0x18(r3)
-	lhz      r3, 0x14(r3)
-	stw      r3, 0x2c(r31)
-	stfs     f0, 0x1c(r31)
-	stw      r0, 0x64(r31)
-	lwz      r31, 0x1c(r1)
-	lwz      r30, 0x18(r1)
-	lwz      r29, 0x14(r1)
-	lwz      r28, 0x10(r1)
-	lwz      r0, 0x24(r1)
-	mtlr     r0
-	addi     r1, r1, 0x20
-	blr
-	*/
+	m_slots[slotIndex].setup(model, jointName, Vector3f::zero);
 }
 
 /*
@@ -2005,18 +1779,6 @@ MouthCollPart* MouthSlots::getSlot(int slotIndex)
 }
 
 /*
- * __ct__15CollPartFactoryFR6Stream
- * @generatedAndInlined
- * --INFO--
- * Address:	........
- * Size:	0000E4
- */
-// CollPartFactory::CollPartFactory(Stream&)
-// {
-// 	// UNUSED FUNCTION
-// }
-
-/*
  * load__15CollPartFactoryFPc
  * --INFO--
  * Address:	801387F4
@@ -2028,7 +1790,7 @@ CollPartFactory* CollPartFactory::load(char* path)
 	                                         nullptr);
 	CollPartFactory* factory;
 	if (data == nullptr) {
-		factory = nullptr;
+		return nullptr;
 	} else {
 		RamStream input(data, -1);
 		input.m_mode = STREAM_MODE_TEXT;
@@ -2039,101 +1801,6 @@ CollPartFactory* CollPartFactory::load(char* path)
 		delete[] data;
 	}
 	return factory;
-	/*
-	stwu     r1, -0x440(r1)
-	mflr     r0
-	li       r4, 0
-	li       r5, 0
-	stw      r0, 0x444(r1)
-	li       r0, 0
-	li       r6, 0
-	li       r8, 2
-	stw      r31, 0x43c(r1)
-	li       r9, 0
-	li       r10, 0
-	stw      r30, 0x438(r1)
-	stw      r29, 0x434(r1)
-	stw      r0, 8(r1)
-	lwz      r7, sSystemHeap__7JKRHeap@sda21(r13)
-	bl
-loadToMainRAM__12JKRDvdRipperFPCcPUc15JKRExpandSwitchUlP7JKRHeapQ212JKRDvdRipper15EAllocDirectionUlPiPUl
-	or.      r30, r3, r3
-	bne      lbl_80138844
-	li       r3, 0
-	b        lbl_80138928
-
-lbl_80138844:
-	mr       r4, r30
-	addi     r3, r1, 0x10
-	li       r5, -1
-	bl       __ct__9RamStreamFPvi
-	li       r0, 1
-	cmpwi    r0, 1
-	stw      r0, 0x1c(r1)
-	bne      lbl_8013886C
-	li       r0, 0
-	stw      r0, 0x424(r1)
-
-lbl_8013886C:
-	li       r3, 0x64
-	bl       __nw__FUl
-	or.      r31, r3, r3
-	beq      lbl_8013891C
-	mr       r29, r31
-	bl       __ct__5CNodeFv
-	lis      r4, __vt__8CollPart@ha
-	addi     r3, r31, 0x30
-	addi     r0, r4, __vt__8CollPart@l
-	stw      r0, 0(r31)
-	bl       __ct__4ID32Fv
-	addi     r3, r31, 0x3c
-	bl       __ct__4ID32Fv
-	li       r5, 0
-	lis      r4, 0x5F5F5F5F@ha
-	stw      r5, 0x10(r31)
-	li       r0, -1
-	lfs      f0, lbl_80518210@sda21(r2)
-	addi     r3, r31, 0x3c
-	stw      r5, 0xc(r31)
-	addi     r4, r4, 0x5F5F5F5F@l
-	stw      r5, 8(r31)
-	stw      r5, 4(r31)
-	stfs     f0, 0x1c(r31)
-	stfs     f0, 0x18(r31)
-	stfs     f0, 0x20(r31)
-	stfs     f0, 0x24(r31)
-	stfs     f0, 0x28(r31)
-	stfs     f0, 0x4c(r31)
-	stfs     f0, 0x50(r31)
-	stfs     f0, 0x54(r31)
-	stw      r5, 0x5c(r31)
-	stw      r0, 0x2c(r31)
-	stw      r5, 0x60(r31)
-	sth      r5, 0x48(r31)
-	stb      r5, 0x58(r31)
-	bl       setID__4ID32FUl
-	lis      r4, __vt__15CollPartFactory@ha
-	mr       r3, r29
-	addi     r0, r4, __vt__15CollPartFactory@l
-	addi     r4, r1, 0x10
-	stw      r0, 0(r29)
-	li       r5, 0
-	bl       read__8CollPartFR6Streamb
-
-lbl_8013891C:
-	mr       r3, r30
-	bl       __dla__FPv
-	mr       r3, r31
-
-lbl_80138928:
-	lwz      r0, 0x444(r1)
-	lwz      r31, 0x43c(r1)
-	lwz      r30, 0x438(r1)
-	lwz      r29, 0x434(r1)
-	mtlr     r0
-	addi     r1, r1, 0x440
-	blr
-	*/
 }
 
 /*
@@ -2164,62 +1831,20 @@ CollPartFactory* CollPartFactory::load(JKRFileLoader* loader, char* path)
  * Address:	80138A6C
  * Size:	000020
  */
-void CollPartFactory::createInstance(SysShape::MtxObject* mtxObject, CollPartMgr* mgr) { clone(mtxObject, mgr); }
+CollPart* CollPartFactory::createInstance(SysShape::MtxObject* mtxObject, CollPartMgr* mgr) { return clone(mtxObject, mgr); }
 
 /*
  * --INFO--
  * Address:	80138A8C
  * Size:	0000AC
  */
-CollPart* CollPartMgr::createOne(SysShape::MtxObject*)
+CollPart* CollPartMgr::createOne(SysShape::MtxObject* mtxObject)
 {
-	/*
-	stwu     r1, -0x10(r1)
-	mflr     r0
-	stw      r0, 0x14(r1)
-	stw      r31, 0xc(r1)
-	stw      r30, 8(r1)
-	mr       r30, r4
-	lwz      r12, 0(r3)
-	lwz      r12, 0x7c(r12)
-	mtctr    r12
-	bctrl
-	or.      r31, r3, r3
-	beq      lbl_80138B1C
-	li       r5, 0
-	lis      r4, 0x5F5F5F5F@ha
-	stw      r5, 0x10(r31)
-	li       r0, -1
-	lfs      f0, lbl_80518210@sda21(r2)
-	addi     r3, r31, 0x3c
-	stw      r5, 0xc(r31)
-	addi     r4, r4, 0x5F5F5F5F@l
-	stw      r5, 8(r31)
-	stw      r5, 4(r31)
-	stfs     f0, 0x1c(r31)
-	stfs     f0, 0x18(r31)
-	stfs     f0, 0x20(r31)
-	stfs     f0, 0x24(r31)
-	stfs     f0, 0x28(r31)
-	stfs     f0, 0x4c(r31)
-	stfs     f0, 0x50(r31)
-	stfs     f0, 0x54(r31)
-	stw      r30, 0x5c(r31)
-	stw      r0, 0x2c(r31)
-	stw      r5, 0x60(r31)
-	sth      r5, 0x48(r31)
-	stb      r5, 0x58(r31)
-	bl       setID__4ID32FUl
-
-lbl_80138B1C:
-	lwz      r0, 0x14(r1)
-	mr       r3, r31
-	lwz      r31, 0xc(r1)
-	lwz      r30, 8(r1)
-	mtlr     r0
-	addi     r1, r1, 0x10
-	blr
-	*/
+	CollPart* part = birth();
+	if (part != nullptr) {
+		part->init(mtxObject);
+	}
+	return part;
 }
 
 /*
@@ -2232,13 +1857,18 @@ CollPart* CollPart::clone(SysShape::MtxObject* mtxObject, CollPartMgr* mgr)
 {
 	CollPart* copy;
 	if (mgr != nullptr) {
-		copy = mgr->birth();
+		CollPart* birthObj = mgr->birth();
+		if (copy = birthObj) {
+			copy->init(mtxObject);
+		}
 		JUT_ASSERTLINE(1571, copy != nullptr, "collpart birth failed !\n");
+		copy->init(mtxObject);
 	} else {
 		copy = new CollPart(mtxObject);
 	}
+
 	copy->_1C           = _1C;
-	copy->_18           = _18;
+	copy->_18           = copy->_1C;
 	copy->_30           = _30;
 	copy->_3C           = _3C;
 	copy->_20           = _20;
@@ -2248,218 +1878,15 @@ CollPart* CollPart::clone(SysShape::MtxObject* mtxObject, CollPartMgr* mgr)
 	copy->_60           = _60;
 	copy->m_attribute   = m_attribute;
 	copy->m_model       = mtxObject;
-	int childCount      = getChildCount();
-	CollPart* child     = getChild();
+
+	int childCount  = getChildCount();
+	CollPart* child = getChild();
 	for (int i = 0; i < childCount; i++) {
-		copy->addChild(child->clone(mtxObject, mgr));
-		child = child->getChild();
+		CollPart* newChild = child->clone(mtxObject, mgr);
+		copy->addChild(newChild);
+		child = child->getNext();
 	}
 	return copy;
-
-	/*
-	stwu     r1, -0x20(r1)
-	mflr     r0
-	stw      r0, 0x24(r1)
-	stmw     r26, 8(r1)
-	or.      r30, r5, r5
-	mr       r28, r3
-	mr       r29, r4
-	beq      lbl_80138C5C
-	mr       r3, r30
-	lwz      r12, 0(r30)
-	lwz      r12, 0x7c(r12)
-	mtctr    r12
-	bctrl
-	or.      r31, r3, r3
-	beq      lbl_80138BD4
-	li       r5, 0
-	lis      r4, 0x5F5F5F5F@ha
-	stw      r5, 0x10(r31)
-	li       r0, -1
-	lfs      f0, lbl_80518210@sda21(r2)
-	addi     r3, r31, 0x3c
-	stw      r5, 0xc(r31)
-	addi     r4, r4, 0x5F5F5F5F@l
-	stw      r5, 8(r31)
-	stw      r5, 4(r31)
-	stfs     f0, 0x1c(r31)
-	stfs     f0, 0x18(r31)
-	stfs     f0, 0x20(r31)
-	stfs     f0, 0x24(r31)
-	stfs     f0, 0x28(r31)
-	stfs     f0, 0x4c(r31)
-	stfs     f0, 0x50(r31)
-	stfs     f0, 0x54(r31)
-	stw      r29, 0x5c(r31)
-	stw      r0, 0x2c(r31)
-	stw      r5, 0x60(r31)
-	sth      r5, 0x48(r31)
-	stb      r5, 0x58(r31)
-	bl       setID__4ID32FUl
-
-lbl_80138BD4:
-	cmplwi   r31, 0
-	bne      lbl_80138BF8
-	lis      r3, lbl_8047C5A0@ha
-	lis      r5, lbl_8047C614@ha
-	addi     r3, r3, lbl_8047C5A0@l
-	li       r4, 0x623
-	addi     r5, r5, lbl_8047C614@l
-	crclr    6
-	bl       panic_f__12JUTExceptionFPCciPCce
-
-lbl_80138BF8:
-	li       r5, 0
-	lis      r4, 0x5F5F5F5F@ha
-	stw      r5, 0x10(r31)
-	li       r0, -1
-	lfs      f0, lbl_80518210@sda21(r2)
-	addi     r3, r31, 0x3c
-	stw      r5, 0xc(r31)
-	addi     r4, r4, 0x5F5F5F5F@l
-	stw      r5, 8(r31)
-	stw      r5, 4(r31)
-	stfs     f0, 0x1c(r31)
-	stfs     f0, 0x18(r31)
-	stfs     f0, 0x20(r31)
-	stfs     f0, 0x24(r31)
-	stfs     f0, 0x28(r31)
-	stfs     f0, 0x4c(r31)
-	stfs     f0, 0x50(r31)
-	stfs     f0, 0x54(r31)
-	stw      r29, 0x5c(r31)
-	stw      r0, 0x2c(r31)
-	stw      r5, 0x60(r31)
-	sth      r5, 0x48(r31)
-	stb      r5, 0x58(r31)
-	bl       setID__4ID32FUl
-	b        lbl_80138CF0
-
-lbl_80138C5C:
-	li       r3, 0x64
-	bl       __nw__FUl
-	or.      r31, r3, r3
-	beq      lbl_80138CF0
-	mr       r26, r31
-	bl       __ct__5CNodeFv
-	lis      r4, __vt__8CollPart@ha
-	addi     r3, r26, 0x30
-	addi     r0, r4, __vt__8CollPart@l
-	stw      r0, 0(r26)
-	bl       __ct__4ID32Fv
-	addi     r3, r26, 0x3c
-	bl       __ct__4ID32Fv
-	li       r5, 0
-	lis      r4, 0x5F5F5F5F@ha
-	stw      r5, 0x10(r26)
-	li       r0, -1
-	lfs      f0, lbl_80518210@sda21(r2)
-	addi     r3, r26, 0x3c
-	stw      r5, 0xc(r26)
-	addi     r4, r4, 0x5F5F5F5F@l
-	stw      r5, 8(r26)
-	stw      r5, 4(r26)
-	stfs     f0, 0x1c(r26)
-	stfs     f0, 0x18(r26)
-	stfs     f0, 0x20(r26)
-	stfs     f0, 0x24(r26)
-	stfs     f0, 0x28(r26)
-	stfs     f0, 0x4c(r26)
-	stfs     f0, 0x50(r26)
-	stfs     f0, 0x54(r26)
-	stw      r29, 0x5c(r26)
-	stw      r0, 0x2c(r26)
-	stw      r5, 0x60(r26)
-	sth      r5, 0x48(r26)
-	stb      r5, 0x58(r26)
-	bl       setID__4ID32FUl
-
-lbl_80138CF0:
-	lfs      f0, 0x1c(r28)
-	addi     r3, r31, 0x30
-	addi     r4, r28, 0x30
-	li       r5, 5
-	stfs     f0, 0x1c(r31)
-	lfs      f0, 0x1c(r31)
-	stfs     f0, 0x18(r31)
-	bl       __copy
-	lwz      r0, 0x38(r28)
-	addi     r3, r31, 0x3c
-	addi     r4, r28, 0x3c
-	li       r5, 5
-	stw      r0, 0x38(r31)
-	bl       __copy
-	lwz      r0, 0x44(r28)
-	mr       r3, r28
-	stw      r0, 0x44(r31)
-	lfs      f0, 0x20(r28)
-	stfs     f0, 0x20(r31)
-	lfs      f0, 0x24(r28)
-	stfs     f0, 0x24(r31)
-	lfs      f0, 0x28(r28)
-	stfs     f0, 0x28(r31)
-	lbz      r0, 0x58(r28)
-	stb      r0, 0x58(r31)
-	lwz      r0, 0x2c(r28)
-	stw      r0, 0x2c(r31)
-	lwz      r0, 0x5c(r28)
-	stw      r0, 0x5c(r31)
-	lwz      r0, 0x60(r28)
-	stw      r0, 0x60(r31)
-	lhz      r0, 0x48(r28)
-	sth      r0, 0x48(r31)
-	stw      r29, 0x5c(r31)
-	lwz      r12, 0(r28)
-	lwz      r12, 0xc(r12)
-	mtctr    r12
-	bctrl
-	lwz      r27, 0x10(r28)
-	mr       r28, r3
-	li       r26, 0
-	b        lbl_80138DC0
-
-lbl_80138D98:
-	mr       r3, r27
-	mr       r4, r29
-	mr       r5, r30
-	bl       clone__8CollPartFPQ28SysShape9MtxObjectP11CollPartMgr
-	mr       r0, r3
-	mr       r3, r31
-	mr       r4, r0
-	bl       add__5CNodeFP5CNode
-	lwz      r27, 4(r27)
-	addi     r26, r26, 1
-
-lbl_80138DC0:
-	cmpw     r26, r28
-	blt      lbl_80138D98
-	mr       r3, r31
-	lmw      r26, 8(r1)
-	lwz      r0, 0x24(r1)
-	mtlr     r0
-	addi     r1, r1, 0x20
-	blr
-	*/
-}
-
-/*
- * --INFO--
- * Address:	80138DE0
- * Size:	000020
- */
-// WEAK
-int CollPart::getChildCount()
-{
-	/*
-	stwu     r1, -0x10(r1)
-	mflr     r0
-	stw      r0, 0x14(r1)
-	bl       getChildCount__5CNodeFv
-	lwz      r0, 0x14(r1)
-	mtlr     r0
-	addi     r1, r1, 0x10
-	blr
-	*/
 }
 
 /*
@@ -2496,83 +1923,25 @@ void CollPart::read(Stream& input, bool isAgeCollPart)
  * Address:	801391A8
  * Size:	00010C
  */
-void AgeCollPart::draw(Graphics&)
+void AgeCollPart::draw(Graphics& graphics)
 {
-	/*
-	stwu     r1, -0x90(r1)
-	mflr     r0
-	stw      r0, 0x94(r1)
-	stfd     f31, 0x80(r1)
-	psq_st   f31, 136(r1), 0, qr0
-	stw      r31, 0x7c(r1)
-	stw      r30, 0x78(r1)
-	stw      r29, 0x74(r1)
-	mr       r29, r3
-	mr       r30, r4
-	lwz      r4, 0x2c(r3)
-	cmpwi    r4, -1
-	beq      lbl_80139290
-	lwz      r3, 0x5c(r29)
-	mulli    r0, r4, 0x3c
-	lwz      r3, 0x10(r3)
-	add.     r31, r3, r0
-	beq      lbl_80139290
-	cmpwi    r4, -1
-	beq      lbl_8013923C
-	addi     r3, r1, 8
-	bl       PSMTXIdentity
-	lfs      f0, 0x20(r29)
-	stfs     f0, 0x14(r1)
-	lfs      f0, 0x24(r29)
-	stfs     f0, 0x24(r1)
-	lfs      f0, 0x28(r29)
-	stfs     f0, 0x34(r1)
-	lwz      r3, 0x5c(r29)
-	lwz      r4, 0x2c(r29)
-	lwz      r12, 0(r3)
-	lwz      r12, 8(r12)
-	mtctr    r12
-	bctrl
-	addi     r4, r1, 8
-	addi     r5, r1, 0x38
-	bl       PSMTXConcat
+	if ((int)m_jointIndex != -1) {
+		SysShape::Joint* jointArray = static_cast<SysShape::Model*>(m_model)->m_joints;
+		SysShape::Joint* joint      = &jointArray[m_jointIndex];
+		if (joint) {
+			Matrixf mtx;
+			makeMatrixTo(mtx);
 
-lbl_8013923C:
-	lbz      r0, 0x64(r29)
-	clrlwi.  r0, r0, 0x1f
-	beq      lbl_80139290
-	lwz      r3, 0x18(r31)
-	lfs      f0, lbl_8051822C@sda21(r2)
-	lfs      f1, 0x38(r3)
-	fmr      f31, f1
-	fcmpo    cr0, f1, f0
-	bge      lbl_80139278
-	lwz      r3, 0x5c(r29)
-	lfs      f1, lbl_80518228@sda21(r2)
-	lwz      r3, 0x10(r3)
-	lwz      r3, 0x18(r3)
-	lfs      f0, 0x38(r3)
-	fmuls    f31, f1, f0
-
-lbl_80139278:
-	mr       r3, r31
-	bl       getWorldMatrix__Q28SysShape5JointFv
-	fmr      f1, f31
-	mr       r4, r3
-	mr       r3, r30
-	bl       drawAxis__8GraphicsFfP7Matrixf
-
-lbl_80139290:
-	psq_l    f31, 136(r1), 0, qr0
-	lwz      r0, 0x94(r1)
-	lfd      f31, 0x80(r1)
-	lwz      r31, 0x7c(r1)
-	lwz      r30, 0x78(r1)
-	lwz      r29, 0x74(r1)
-	mtlr     r0
-	addi     r1, r1, 0x90
-	blr
-	*/
+			if (_64 & 1) {
+				float zVal     = joint->m_j3d->m_zRotation.z;
+				float rotation = zVal;
+				if (zVal < 0.1f) {
+					rotation = 0.3f * (*static_cast<SysShape::Model*>(m_model)->m_joints).m_j3d->m_zRotation.z;
+				}
+				graphics.drawAxis(rotation, joint->getWorldMatrix());
+			}
+		}
+	}
 }
 
 /*
@@ -2586,134 +1955,3 @@ AgeCollPart::AgeCollPart(SysShape::Model* model)
     , _64(0)
 {
 }
-
-/*
- * --INFO--
- * Address:	80139380
- * Size:	000070
- */
-AgeCollPart::~AgeCollPart()
-{
-	/*
-	stwu     r1, -0x10(r1)
-	mflr     r0
-	stw      r0, 0x14(r1)
-	stw      r31, 0xc(r1)
-	mr       r31, r4
-	stw      r30, 8(r1)
-	or.      r30, r3, r3
-	beq      lbl_801393D4
-	lis      r4, __vt__11AgeCollPart@ha
-	addi     r0, r4, __vt__11AgeCollPart@l
-	stw      r0, 0(r30)
-	beq      lbl_801393C4
-	lis      r5, __vt__8CollPart@ha
-	li       r4, 0
-	addi     r0, r5, __vt__8CollPart@l
-	stw      r0, 0(r30)
-	bl       __dt__5CNodeFv
-
-lbl_801393C4:
-	extsh.   r0, r31
-	ble      lbl_801393D4
-	mr       r3, r30
-	bl       __dl__FPv
-
-lbl_801393D4:
-	lwz      r0, 0x14(r1)
-	mr       r3, r30
-	lwz      r31, 0xc(r1)
-	lwz      r30, 8(r1)
-	mtlr     r0
-	addi     r1, r1, 0x10
-	blr
-	*/
-}
-
-namespace Sys {
-
-/*
- * readObject__Q23Sys9IndexListFR6StreamRi
- * --INFO--
- * Address:	80139750
- * Size:	000034
- */
-void IndexList::readObject(Stream&, int&)
-{
-	/*
-	stwu     r1, -0x10(r1)
-	mflr     r0
-	mr       r3, r4
-	stw      r0, 0x14(r1)
-	stw      r31, 0xc(r1)
-	mr       r31, r5
-	bl       readInt__6StreamFv
-	stw      r3, 0(r31)
-	lwz      r0, 0x14(r1)
-	lwz      r31, 0xc(r1)
-	mtlr     r0
-	addi     r1, r1, 0x10
-	blr
-	*/
-}
-
-/*
- * writeObject__Q23Sys9IndexListFR6StreamRi
- * --INFO--
- * Address:	80139784
- * Size:	000028
- */
-void IndexList::writeObject(Stream&, int&)
-{
-	/*
-	stwu     r1, -0x10(r1)
-	mflr     r0
-	mr       r3, r4
-	stw      r0, 0x14(r1)
-	lwz      r4, 0(r5)
-	bl       writeInt__6StreamFi
-	lwz      r0, 0x14(r1)
-	mtlr     r0
-	addi     r1, r1, 0x10
-	blr
-	*/
-}
-
-} // namespace Sys
-
-/*
- * kill__24MonoObjectMgr<8CollPart>FP8CollPart
- * --INFO--
- * Address:	801398EC
- * Size:	000054
- */
-// template <> void MonoObjectMgr<CollPart>::kill(CollPart*)
-// {
-// 	/*
-// 	lwz      r0, 0x24(r3)
-// 	li       r6, 0
-// 	li       r5, 0
-// 	mtctr    r0
-// 	cmpwi    r0, 0
-// 	blelr
-
-// lbl_80139904:
-// 	lwz      r0, 0x28(r3)
-// 	add      r0, r0, r5
-// 	cmplw    r0, r4
-// 	bne      lbl_80139930
-// 	lwz      r4, 0x2c(r3)
-// 	li       r0, 1
-// 	stbx     r0, r4, r6
-// 	lwz      r4, 0x20(r3)
-// 	addi     r0, r4, -1
-// 	stw      r0, 0x20(r3)
-// 	blr
-
-// lbl_80139930:
-// 	addi     r5, r5, 0x64
-// 	addi     r6, r6, 1
-// 	bdnz     lbl_80139904
-// 	blr
-// 	*/
-// }
