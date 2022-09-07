@@ -10,12 +10,13 @@ namespace Catfish {
 struct Obj : public KochappyBase::Obj {
 	Obj();
 
+	// weak function generation in Catfish.cpp requires this ordering
+	virtual void changeMaterial() { }                                                           // _1F8
 	virtual void onInit(CreatureInitArg*);                                                      // _28
 	virtual void inWaterCallback(WaterBox*) { }                                                 // _7C
 	virtual void outWaterCallback() { }                                                         // _80
 	virtual void getShadowParam(ShadowParam&);                                                  // _12C
 	virtual ~Obj();                                                                             // _1B4
-	virtual void changeMaterial() { }                                                           // _1F8
 	virtual void initMouthSlots();                                                              // _224
 	virtual EnemyTypeID::EEnemyTypeID getEnemyTypeID() { return EnemyTypeID::EnemyID_Catfish; } // _250
 	virtual bool pressCallBack(Creature*, float, CollPart*);                                    // _274

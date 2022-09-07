@@ -154,6 +154,7 @@ pikmin2.usa.dol: `sha1: 90d328bf8f190c90472e8c19e7e53c6ad0fe0d1a`
 	- <a href="https://github.com/projectPiki/pikmin2/tree/main/src/plugProjectNishimuraU/BabyAnimator.cpp">plugProjectNishimuraU/BabyAnimator.cpp</a>
 	- <a href="https://github.com/projectPiki/pikmin2/tree/main/src/plugProjectNishimuraU/BigFootAnimator.cpp">plugProjectNishimuraU/BigFootAnimator.cpp</a>
 	- <a href="https://github.com/projectPiki/pikmin2/tree/main/src/plugProjectNishimuraU/BombSaraiAnimator.cpp">plugProjectNishimuraU/BombSaraiAnimator.cpp</a>
+	- <a href="https://github.com/projectPiki/pikmin2/tree/main/src/plugProjectNishimuraU/Catfish.cpp">plugProjectNishimuraU/Catfish.cpp</a>
 	- <a href="https://github.com/projectPiki/pikmin2/tree/main/src/plugProjectNishimuraU/DamagumoAnimator.cpp">plugProjectNishimuraU/DamagumoAnimator.cpp</a>
 	- <a href="https://github.com/projectPiki/pikmin2/tree/main/src/plugProjectNishimuraU/DoorNode.cpp">plugProjectNishimuraU/DoorNode.cpp</a>
 	- <a href="https://github.com/projectPiki/pikmin2/tree/main/src/plugProjectNishimuraU/ElecBugAnimator.cpp">plugProjectNishimuraU/ElecBugAnimator.cpp</a>
