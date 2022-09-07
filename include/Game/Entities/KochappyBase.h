@@ -33,7 +33,7 @@ struct Parms : public EnemyParmsBase {
 
 	virtual void read(Stream& input);
 
-	// _B40
+	u8 _7F8[0x88];    // _7F8
 };
 
 struct Obj : public EnemyBase {
