@@ -3,81 +3,8 @@
 #include "Sys/TriangleTable.h"
 
 /*
-    Generated from dpostproc
-
-    .section .rodata  # 0x804732E0 - 0x8049E220
-    .global lbl_804997B8
-    lbl_804997B8:
-        .asciz "# %d/%d\r\n"
-        .skip 0x6
-
-    .section .data, "wa"  # 0x8049E220 - 0x804EFC20
-    .global __vt__Q37MapCode3Mgr9CodeArray
-    __vt__Q37MapCode3Mgr9CodeArray:
-        .4byte 0
-        .4byte 0
-        .4byte __dt__Q37MapCode3Mgr9CodeArrayFv
-        .4byte getChildCount__5CNodeFv
-        .4byte "getObject__26Container<Q27MapCode4Code>FPv"
-        .4byte "getNext__31ArrayContainer<Q27MapCode4Code>FPv"
-        .4byte "getStart__31ArrayContainer<Q27MapCode4Code>Fv"
-        .4byte "getEnd__31ArrayContainer<Q27MapCode4Code>Fv"
-        .4byte "get__31ArrayContainer<Q27MapCode4Code>FPv"
-        .4byte "getAt__31ArrayContainer<Q27MapCode4Code>Fi"
-        .4byte "getTo__31ArrayContainer<Q27MapCode4Code>Fv"
-        .4byte writeObject__Q37MapCode3Mgr9CodeArrayFR6StreamRQ27MapCode4Code
-        .4byte readObject__Q37MapCode3Mgr9CodeArrayFR6StreamRQ27MapCode4Code
-        .4byte "write__31ArrayContainer<Q27MapCode4Code>FR6Stream"
-        .4byte "read__31ArrayContainer<Q27MapCode4Code>FR6Stream"
-        .4byte "alloc__31ArrayContainer<Q27MapCode4Code>Fi"
-        .4byte "addOne__31ArrayContainer<Q27MapCode4Code>FRQ27MapCode4Code"
-        .4byte "setArray__31ArrayContainer<Q27MapCode4Code>FPQ27MapCode4Codei"
-    .global "__vt__31ArrayContainer<Q27MapCode4Code>"
-    "__vt__31ArrayContainer<Q27MapCode4Code>":
-        .4byte 0
-        .4byte 0
-        .4byte "__dt__31ArrayContainer<Q27MapCode4Code>Fv"
-        .4byte getChildCount__5CNodeFv
-        .4byte "getObject__26Container<Q27MapCode4Code>FPv"
-        .4byte "getNext__31ArrayContainer<Q27MapCode4Code>FPv"
-        .4byte "getStart__31ArrayContainer<Q27MapCode4Code>Fv"
-        .4byte "getEnd__31ArrayContainer<Q27MapCode4Code>Fv"
-        .4byte "get__31ArrayContainer<Q27MapCode4Code>FPv"
-        .4byte "getAt__31ArrayContainer<Q27MapCode4Code>Fi"
-        .4byte "getTo__31ArrayContainer<Q27MapCode4Code>Fv"
-        .4byte
-   "writeObject__31ArrayContainer<Q27MapCode4Code>FR6StreamRQ27MapCode4Code"
-        .4byte
-   "readObject__31ArrayContainer<Q27MapCode4Code>FR6StreamRQ27MapCode4Code"
-        .4byte "write__31ArrayContainer<Q27MapCode4Code>FR6Stream"
-        .4byte "read__31ArrayContainer<Q27MapCode4Code>FR6Stream"
-        .4byte "alloc__31ArrayContainer<Q27MapCode4Code>Fi"
-        .4byte "addOne__31ArrayContainer<Q27MapCode4Code>FRQ27MapCode4Code"
-        .4byte "setArray__31ArrayContainer<Q27MapCode4Code>FPQ27MapCode4Codei"
-    .global "__vt__26Container<Q27MapCode4Code>"
-    "__vt__26Container<Q27MapCode4Code>":
-        .4byte 0
-        .4byte 0
-        .4byte "__dt__26Container<Q27MapCode4Code>Fv"
-        .4byte getChildCount__5CNodeFv
-        .4byte "getObject__26Container<Q27MapCode4Code>FPv"
-        .4byte 0
-        .4byte 0
-        .4byte 0
-        .4byte 0
-        .4byte "getAt__26Container<Q27MapCode4Code>Fi"
-        .4byte "getTo__26Container<Q27MapCode4Code>Fv"
-        .4byte 0
-
-    .section .sdata2, "a"     # 0x80516360 - 0x80520E40
-    .global lbl_805203A8
-    lbl_805203A8:
-        .asciz "\r\n"
-        .skip 0x1
-        .4byte 0x00000000
-*/
-
-/*
+ * Returns 'attribute' component of code.
+ *
  * --INFO--
  * Address:	8041C434
  * Size:	00000C
@@ -85,17 +12,8 @@
 u8 MapCode::Code::getAttribute(void) { return m_contents & ATTR_MASK; }
 
 /*
- * --INFO--
- * Address:	........
- * Size:	000018
- */
-// char* MapCode::Code::getAttributeName()
-// {
-// 	// UNUSED FUNCTION
-// 	return nullptr;
-// }
-
-/*
+ * Returns 'Slip Code' component of code.
+ *
  * --INFO--
  * Address:	8041C440
  * Size:	00000C
@@ -103,41 +21,35 @@ u8 MapCode::Code::getAttribute(void) { return m_contents & ATTR_MASK; }
 u8 MapCode::Code::getSlipCode() { return m_contents >> 4 & SLIPCODE_MASK; }
 
 /*
- * --INFO--
- * Address:	........
- * Size:	000018
- */
-// char* MapCode::Code::getSlipCodeName()
-// {
-// 	// UNUSED FUNCTION
-// 	return nullptr;
-// }
-
-/*
+ * Returns 'is bald' component of code.
+ *
  * --INFO--
  * Address:	8041C44C
  * Size:	00000C
  */
 bool MapCode::Code::isBald() { return m_contents >> 6 & 1; }
 
-/*
+/* --INLINE--
+ * Writes contents of code to stream.
+ *
  * --INFO--
  * Address:	........
  * Size:	00002C
  */
-// INLINE
-// bit hacky but it works
 inline void MapCode::Code::write(Stream& output) { output.writeByte((u8)getContents()); }
 
-/*
+/* --INLINE--
+ * Reads contents of stream into code.
+ *
  * --INFO--
  * Address:	........
  * Size:	000034
  */
-// INLINE
 inline void MapCode::Code::read(Stream& input) { m_contents = input.readByte(); }
 
 /*
+ * Sets code given 'attribute', 'slip code' and 'is bald' components.
+ *
  * --INFO--
  * Address:	8041C458
  * Size:	000024
@@ -151,151 +63,36 @@ void MapCode::Code::setCode(int attribute, int slipCode, bool isBald)
 }
 
 /*
- * __ct__Q27MapCode3MgrFv
+ * MapCode Mgr constructor.
+ *
  * --INFO--
  * Address:	8041C47C
  * Size:	00007C
  */
-MapCode::Mgr::Mgr()
-    : m_codeArray()
-{
-}
+MapCode::Mgr::Mgr() { }
 
-/**
- * @generated{__dt__Q37MapCode3Mgr9CodeArrayFv}
- * @generated{__dt__31ArrayContainer<Q27MapCode4Code>Fv}
- * @generated{__dt__26Container<Q27MapCode4Code>Fv}
- */
-
-// /*
-//  * --INFO--
-//  * Address:	8041C4F8
-//  * Size:	000090
-//  */
-// MapCode::Mgr::CodeArray::~CodeArray(void)
-// {
-// }
-
-// /*
-//  * --INFO--
-//  * Address:	8041C588
-//  * Size:	000080
-//  */
-// ArrayContainer<MapCode::Code>::~ArrayContainer()
-// {
-// }
-
-// /*
-//  * --INFO--
-//  * Address:	8041C608
-//  * Size:	000070
-//  */
-// Container<MapCode::Code>::~Container()
-// {
-// }
-
-/*
- * --INFO--
- * Address:	........
- * Size:	000094
- */
-inline MapCode::Mgr::~Mgr(void)
-{
-	// UNUSED FUNCTION
-}
-
-/*
- * TODO
+/* --UNUSED--
+ * Writes contents of code array to stream.
+ * NB: required to generate weak functions in the correct place.
  *
  * --INFO--
- * Address:	........
- * Size:	00002C
+ * Address:	8041C47C
+ * Size:	00007C
  */
-void MapCode::Mgr::write(Stream& stream)
-{
-	// UNUSED FUNCTION
-	m_codeArray.write(stream);
-}
-
-/**
- * @generated{write__31ArrayContainer<Q27MapCode4Code>FR6Stream}
- * @generated{writeObject__31ArrayContainer<Q27MapCode4Code>FR6StreamRQ27MapCode4Code}
- */
+void MapCode::Mgr::write(Stream& stream) { m_codeArray.write(stream); }
 
 /*
- * --INFO--
- * Address:	8041C678
- * Size:	0000E4
- */
-// template <> void ArrayContainer<MapCode::Code>::write(Stream& stream)
-// {
-// 	stream.textBeginGroup(m_name);
-// 	stream.addTab();
-// 	stream.writeInt(m_count);
-// 	stream.textWriteText("\r\n");
-// 	for (int i = 0; i < m_count; i++) {
-// 		stream.addTab();
-// 		writeObject(stream, m_objects[i]);
-// 		stream.textWriteText("# %d/%d\r\n", i, m_count);
-// 	}
-// }
-
-/*
- * --INFO--
- * Address:	8041C75C
- * Size:	000004
- */
-// template <> void ArrayContainer<MapCode::Code>::writeObject(Stream&, MapCode::Code&) { }
-
-/*
- * read__Q27MapCode3MgrFR6Stream
+ * Reads contents of stream into code array.
+ *
  * --INFO--
  * Address:	8041C760
  * Size:	00002C
  */
 void MapCode::Mgr::read(Stream& stream) { m_codeArray.read(stream); }
 
-/**
- * @generated{read__31ArrayContainer<Q27MapCode4Code>FR6Stream}
- * @generated{readObject__31ArrayContainer<Q27MapCode4Code>FR6StreamRQ27MapCode4Code}
- * @generated{alloc__31ArrayContainer<Q27MapCode4Code>Fi}
- */
-
-// /*
-//  * --INFO--
-//  * Address:	8041C78C
-//  * Size:	0000A0
-//  */
-// template <> void ArrayContainer<MapCode::Code>::read(Stream& stream)
-// {
-// 	m_limit = stream.readInt();
-// 	alloc(m_limit);
-// 	m_count = m_limit;
-// 	for (int i = 0; i < m_limit; ++i) {
-// 		readObject(stream, m_objects[i]);
-// 	}
-// }
-
-// /*
-//  * --INFO--
-//  * Address:	8041C82C
-//  * Size:	000004
-//  */
-// void ArrayContainer<MapCode::Code>::readObject(Stream&, MapCode::Code&) { }
-
-// /*
-//  * --INFO--
-//  * Address:	8041C830
-//  * Size:	00004C
-//  */
-// void ArrayContainer<MapCode::Code>::alloc(int count)
-// {
-// 	m_objects  = new MapCode::Code[count];
-// 	m_limit    = count;
-// 	m_count = 0;
-// }
-
 /*
+ * Adds codes from code array into code slot of TriangleTable triangles.
+ *
  * --INFO--
  * Address:	8041C87C
  * Size:	000044
@@ -309,7 +106,8 @@ void MapCode::Mgr::attachCodes(Sys::TriangleTable* table)
 }
 
 /*
- * writeObject__Q37MapCode3Mgr9CodeArrayFR6StreamRQ27MapCode4Code
+ * Writes contents of input code object to stream.
+ *
  * --INFO--
  * Address:	8041C8C0
  * Size:	00002C
@@ -317,117 +115,25 @@ void MapCode::Mgr::attachCodes(Sys::TriangleTable* table)
 void MapCode::Mgr::CodeArray::writeObject(Stream& output, MapCode::Code& object) { object.write(output); }
 
 /*
- * readObject__Q37MapCode3Mgr9CodeArrayFR6StreamRQ27MapCode4Code
+ * Reads contents of stream into input code object.
+ *
  * --INFO--
  * Address:	8041C8EC
  * Size:	000034
  */
 void MapCode::Mgr::CodeArray::readObject(Stream& input, MapCode::Code& object) { object.read(input); }
 
-/**
- * @generated{addOne__31ArrayContainer<Q27MapCode4Code>FRQ27MapCode4Code}
- * @generated{setArray__31ArrayContainer<Q27MapCode4Code>FPQ27MapCode4Codei}
- * @generated{get__31ArrayContainer<Q27MapCode4Code>FPv}
- * @generated{getNext__31ArrayContainer<Q27MapCode4Code>FPv}
- * @generated{getStart__31ArrayContainer<Q27MapCode4Code>Fv}
- * @generated{getEnd__31ArrayContainer<Q27MapCode4Code>Fv}
- * @generated{getAt__31ArrayContainer<Q27MapCode4Code>Fi}
- * @generated{getTo__31ArrayContainer<Q27MapCode4Code>Fv}
- * @generated{getObject__26Container<Q27MapCode4Code>FPv}
- * @generated{getAt__26Container<Q27MapCode4Code>Fi}
- * @generated{getTo__26Container<Q27MapCode4Code>Fv}
+/* --UNUSED--
+ * Fake function required to generate weak functions in correct order.
+ * (Likely due to inlined/unused functions that have not been re-created)
+ *
+ * --INFO--
+ * Address:	--------
+ * Size:	000000
  */
-
-// /*
-//  * --INFO--
-//  * Address:	8041C920
-//  * Size:	000028
-//  */
-// template <> void ArrayContainer<MapCode::Code>::addOne(MapCode::Code& object)
-// {
-// }
-
-// /*
-//  * --INFO--
-//  * Address:	8041C948
-//  * Size:	000010
-//  */
-// template <>
-// void ArrayContainer<MapCode::Code>::setArray(MapCode::Code* objects, int count)
-// {
-// }
-
-// /*
-//  * --INFO--
-//  * Address:	8041C958
-//  * Size:	00000C
-//  */
-// template <> MapCode::Code* ArrayContainer<MapCode::Code>::get(void* index)
-// {
-// }
-
-// /*
-//  * --INFO--
-//  * Address:	8041C964
-//  * Size:	000008
-//  */
-// template <> int ArrayContainer<MapCode::Code>::getNext(void* index)
-// {
-// }
-
-// /*
-//  * --INFO--
-//  * Address:	8041C96C
-//  * Size:	000008
-//  */
-// template <> u32 ArrayContainer<MapCode::Code>::getStart() { return 0x0; }
-
-// /*
-//  * --INFO--
-//  * Address:	8041C974
-//  * Size:	000008
-//  */
-// template <> int ArrayContainer<MapCode::Code>::getEnd()
-// {
-// }
-
-// /*
-//  * --INFO--
-//  * Address:	8041C97C
-//  * Size:	00000C
-//  */
-// template <> MapCode::Code* ArrayContainer<MapCode::Code>::getAt(int index)
-// {
-// }
-
-// /*
-//  * --INFO--
-//  * Address:	8041C988
-//  * Size:	000008
-//  */
-// template <> int ArrayContainer<MapCode::Code>::getTo()
-// {
-// }
-
-// /*
-//  * --INFO--
-//  * Address:	8041C990
-//  * Size:	00002C
-//  */
-// template <> MapCode::Code* Container<MapCode::Code>::getObject(void* index)
-// {
-// }
-
-// /*
-//  * --INFO--
-//  * Address:	8041C9BC
-//  * Size:	000008
-//  */
-// template <> u32 Container<MapCode::Code>::getAt(int) { return 0x0; }
-
-// /*
-//  * --INFO--
-//  * Address:	8041C9C4
-//  * Size:	000008
-//  */
-// template <> u32 Container<MapCode::Code>::getTo() { return 0x0; }
+void fakeFunction(ArrayContainer<MapCode::Code>* container, MapCode::Code* code)
+{
+	container->get(nullptr);
+	container->setArray(0, 0);
+	container->addOne(*code);
+}
