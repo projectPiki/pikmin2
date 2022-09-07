@@ -2628,7 +2628,7 @@ lbl_8018A42C:
 /* 8018A45C 0018739C  D0 61 00 20 */	stfs f3, 0x20(r1)
 /* 8018A460 001873A0  D0 41 00 24 */	stfs f2, 0x24(r1)
 /* 8018A464 001873A4  D0 01 00 28 */	stfs f0, 0x28(r1)
-/* 8018A468 001873A8  48 29 DB 29 */	bl "makeNaturalPosture__7MatrixfFR10Vector3<f>"
+/* 8018A468 001873A8  48 29 DB 29 */	bl "makeNaturalPosture__7MatrixfFR10Vector3<f>f"
 /* 8018A46C 001873AC  3C 80 80 51 */	lis r4, "zero__10Vector3<f>"@ha
 /* 8018A470 001873B0  38 61 00 A8 */	addi r3, r1, 0xa8
 /* 8018A474 001873B4  38 A4 41 E4 */	addi r5, r4, "zero__10Vector3<f>"@l

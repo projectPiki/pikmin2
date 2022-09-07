@@ -1496,7 +1496,7 @@ lbl_80137C8C:
 	lfs      f1, 0(r30)
 	mr       r3, r31
 	addi     r4, r1, 0x20
-	bl       "makeNaturalPosture__7MatrixfFR10Vector3<f>"
+	bl       "makeNaturalPosture__7MatrixfFR10Vector3<f>f"
 	b        lbl_80137DF0
 
 lbl_80137CA0:

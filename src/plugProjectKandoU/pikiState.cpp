@@ -375,7 +375,7 @@ lbl_8018A42C:
 	stfs     f3, 0x20(r1)
 	stfs     f2, 0x24(r1)
 	stfs     f0, 0x28(r1)
-	bl       "makeNaturalPosture__7MatrixfFR10Vector3<f>"
+	bl       "makeNaturalPosture__7MatrixfFR10Vector3<f>f"
 	lis      r4, "zero__10Vector3<f>"@ha
 	addi     r3, r1, 0xa8
 	addi     r5, r4, "zero__10Vector3<f>"@l

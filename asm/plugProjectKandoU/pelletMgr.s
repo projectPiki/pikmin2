@@ -3938,7 +3938,7 @@ lbl_801683DC:
 lbl_80168414:
 /* 80168414 00165354  38 61 00 14 */	addi r3, r1, 0x14
 /* 80168418 00165358  38 81 00 08 */	addi r4, r1, 8
-/* 8016841C 0016535C  48 2B FB 75 */	bl "makeNaturalPosture__7MatrixfFR10Vector3<f>"
+/* 8016841C 0016535C  48 2B FB 75 */	bl "makeNaturalPosture__7MatrixfFR10Vector3<f>f"
 /* 80168420 00165360  80 A1 00 14 */	lwz r5, 0x14(r1)
 /* 80168424 00165364  38 7F 01 F8 */	addi r3, r31, 0x1f8
 /* 80168428 00165368  80 01 00 18 */	lwz r0, 0x18(r1)

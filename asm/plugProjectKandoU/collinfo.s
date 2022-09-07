@@ -5279,7 +5279,7 @@ lbl_80137C8C:
 /* 80137C8C 00134BCC  C0 3E 00 00 */	lfs f1, 0(r30)
 /* 80137C90 00134BD0  7F E3 FB 78 */	mr r3, r31
 /* 80137C94 00134BD4  38 81 00 20 */	addi r4, r1, 0x20
-/* 80137C98 00134BD8  48 2F 02 F9 */	bl "makeNaturalPosture__7MatrixfFR10Vector3<f>"
+/* 80137C98 00134BD8  48 2F 02 F9 */	bl "makeNaturalPosture__7MatrixfFR10Vector3<f>f"
 /* 80137C9C 00134BDC  48 00 01 54 */	b lbl_80137DF0
 lbl_80137CA0:
 /* 80137CA0 00134BE0  38 81 00 2C */	addi r4, r1, 0x2c
