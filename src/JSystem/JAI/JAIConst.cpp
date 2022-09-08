@@ -7,52 +7,19 @@
 #include "JSystem/JAI/JAIConst.h"
 
 extern JKRSolidHeap* JASDram;
-/*
-    Generated from dpostproc
 
-    .section .ctors, "wa"  # 0x80472F00 - 0x804732C0
-    .4byte __sinit_JAIConst_cpp
-
-    .section .data, "wa"  # 0x8049E220 - 0x804EFC20
-    .global dummyZeroVec__Q27JAInter5Const
-    dummyZeroVec__Q27JAInter5Const:
-        .float 0.0
-        .float 0.0
-        .float 0.0
-    .global sCInfos_0__Q27JAInter5Const
-    sCInfos_0__Q27JAInter5Const:
-        .4byte 0x04020402
-        .4byte 0x04020402
-        .4byte 0x04020402
-        .4byte 0x04020402
-        .4byte 0x04020402
-        .4byte 0x04020402
-        .4byte 0x04020402
-        .4byte 0x04020402
-
-    .section .bss  # 0x804EFC20 - 0x8051467C
-    .global nullCamera__Q27JAInter5Const
-    nullCamera__Q27JAInter5Const:
-        .skip 0x68
-    .global nullActor__Q27JAInter5Const
-    nullActor__Q27JAInter5Const:
-        .skip 0x14
-    .global camMtx__Q27JAInter5Const
-    camMtx__Q27JAInter5Const:
-        .skip 0x30
-    .global camTrans__Q27JAInter5Const
-    camTrans__Q27JAInter5Const:
-        .skip 0xC
-    .global camPreTrans__Q27JAInter5Const
-    camPreTrans__Q27JAInter5Const:
-        .skip 0xC
-
-    .section .sbss # 0x80514D80 - 0x80516360
-    .global random__Q27JAInter5Const
-    random__Q27JAInter5Const:
-        .skip 0x4
-*/
 namespace JAInter {
+namespace Const {
+Vec dummyZeroVec = { 0, 0, 0 };
+u32 sCInfos_0[8] = { 0x04020402, 0x04020402, 0x04020402, 0x04020402, 0x04020402, 0x04020402, 0x04020402, 0x04020402 };
+Camera nullCamera(camTrans, camPreTrans, camMtx);
+Actor nullActor(0, 0, 0, 0);
+Mtx camMtx;
+Vec camTrans;
+Vec camPreTrans;
+JMath::TRandom_fast_ random(0);
+} // namespace Const
+
 /*
  * --INFO--
  * Address:	800AD1C4
@@ -125,56 +92,4 @@ u32 routeToTrack(u32 param_1)
 	}
 	return param_1 & uVar2;
 }
-/*
-namespace Const {
-Actor::nullActor { m_flag.boolView[0] = true };
-} // namespace Const
-*/
-/*
- * --INFO--
- * Address:	800AD40C
- * Size:	000084
- */
-// void __sinit_JAIConst_cpp(void)
-//{
-/*
-stwu     r1, -0x10(r1)
-mflr     r0
-lis      r7, camTrans__Q27JAInter5Const@ha
-lis      r5, camPreTrans__Q27JAInter5Const@ha
-stw      r0, 0x14(r1)
-li       r0, 0
-addi     r7, r7, camTrans__Q27JAInter5Const@l
-lis      r6, nullCamera__Q27JAInter5Const@ha
-lis      r4, camMtx__Q27JAInter5Const@ha
-lis      r3, nullActor__Q27JAInter5Const@ha
-stwu     r0, nullActor__Q27JAInter5Const@l(r3)
-addi     r5, r5, camPreTrans__Q27JAInter5Const@l
-addi     r4, r4, camMtx__Q27JAInter5Const@l
-cmplwi   r0, 0
-stwu     r7, nullCamera__Q27JAInter5Const@l(r6)
-stw      r5, 4(r6)
-stw      r4, 8(r6)
-stw      r0, 4(r3)
-stw      r0, 8(r3)
-stw      r0, 0xc(r3)
-bne      lbl_800AD46C
-li       r0, 1
-stb      r0, 0x10(r3)
-b        lbl_800AD474
-
-lbl_800AD46C:
-li       r0, 1
-stb      r0, 0x10(r3)
-
-lbl_800AD474:
-addi     r3, r13, random__Q27JAInter5Const@sda21
-li       r4, 0
-bl       __ct__Q25JMath13TRandom_fast_FUl
-lwz      r0, 0x14(r1)
-mtlr     r0
-addi     r1, r1, 0x10
-blr
-*/
-//}
 } // namespace JAInter
