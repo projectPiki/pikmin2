@@ -6,6 +6,8 @@
 #include "Game/EnemyMgrBase.h"
 #include "Game/EnemyParmsBase.h"
 #include "Game/WalkSmokeEffect.h"
+#include "JSystem/J3D/J3DModel.h"
+#include "efx/TKkabuto.h"
 
 ////////// Header for Cannon Beetles
 // Kabuto 		= Base Class for Cannon Beetle
@@ -77,13 +79,19 @@ struct Obj : public EnemyBase {
 struct Mgr : public EnemyMgrBase {
 	Mgr(int, u8);
 
-	virtual ~Mgr() { }                                  // _58 (weak)
-	virtual EnemyTypeID::EEnemyTypeID getEnemyTypeID(); // _AC (weak)
-	virtual SysShape::Model* createModel();             // _B0
-	virtual void loadModelData();                       // _C8
-	virtual void loadAnimData();                        // _CC
-	virtual J3DModelData* doLoadBmd(void*);             // _D4 (weak)
-	virtual ResTIMG* getChangeTexture() = 0;            // _E0
+	virtual ~Mgr() { }                                 // _58 (weak)
+	virtual EnemyTypeID::EEnemyTypeID getEnemyTypeID() // _AC (weak)
+	{
+		return EnemyTypeID::EnemyID_Kabuto;
+	}
+	virtual SysShape::Model* createModel();         // _B0
+	virtual void loadModelData();                   // _C8
+	virtual void loadAnimData();                    // _CC
+	virtual J3DModelData* doLoadBmd(void* resource) // _D4 (weak)
+	{
+		return J3DModelLoaderDataBase::load(resource, 0x01240030);
+	}
+	virtual ResTIMG* getChangeTexture() = 0; // _E0
 
 	// _00		= VTBL
 	// _00-_44	= EnemyMgrBase
@@ -241,21 +249,26 @@ namespace FixKabuto {
 struct Obj : public Kabuto::Obj {
 	Obj();
 
-	virtual ~Obj() { }                                  // _1BC (weak)
-	virtual void changeMaterial();                      // _200
-	virtual EnemyTypeID::EEnemyTypeID getEnemyTypeID(); // _258 (weak)
-	virtual void createEffect();                        // _2FC
-	virtual void setupEffect();                         // _300
-	virtual void startRotateEffect();                   // _304
-	virtual void finishRotateEffect();                  // _308
-	virtual void startWaitEffect();                     // _30C
-	virtual void finishWaitEffect();                    // _310
-	virtual void effectDrawOn();                        // _314
-	virtual void effectDrawOff();                       // _318
+	virtual void onKill(CreatureKillArg*);             // _34
+	virtual ~Obj() { }                                 // _1BC (weak)
+	virtual void changeMaterial();                     // _200
+	virtual EnemyTypeID::EEnemyTypeID getEnemyTypeID() // _258 (weak)
+	{
+		return EnemyTypeID::EnemyID_Fkabuto;
+	}
+	virtual void createEffect();       // _2FC
+	virtual void setupEffect();        // _300
+	virtual void startRotateEffect();  // _304
+	virtual void finishRotateEffect(); // _308
+	virtual void startWaitEffect();    // _30C
+	virtual void finishWaitEffect();   // _310
+	virtual void effectDrawOn();       // _314
+	virtual void effectDrawOff();      // _318
 
 	// _00		= VTBL
 	// _00-_2E4 = Kabuto::Obj
-	u8 _2E4[0x8]; // _2E4, unknown
+	efx::TKkabutoRot* m_efxRot;   // _2E4
+	efx::TKkabutoWait* m_efxWait; // _2E8
 };
 
 struct Mgr : public Kabuto::Mgr {

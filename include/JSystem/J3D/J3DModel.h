@@ -35,6 +35,10 @@ struct J3DModelData {
 	void simpleCalcMaterial(u16, Mtx*);
 	void syncJ3DSysFlags() const;
 
+	inline u16 getShapeCount() { return m_shapeTable.m_count; }
+
+	inline u16 getMaterialCount1() { return m_materialTable.m_count1; }
+
 	// VTBL _00
 	u8* m_bmd;                        // _04
 	u32 m_modelLoaderFlags;           // _08
@@ -60,13 +64,13 @@ struct J3DModel {
 		initialize();
 		entryModelData(data, p2, modelType);
 	}
-	virtual void update();         // _00
-	virtual void entry();          // _04
-	virtual void calc();           // _08
-	virtual void calcMaterial();   // _0C
-	virtual void calcDiffTexMtx(); // _10
-	virtual void viewCalc();       // _14
-	virtual ~J3DModel();           // _18
+	virtual void update();         // _08
+	virtual void entry();          // _0C
+	virtual void calc();           // _10
+	virtual void calcMaterial();   // _14
+	virtual void calcDiffTexMtx(); // _18
+	virtual void viewCalc();       // _1C
+	virtual ~J3DModel();           // _20
 
 	void initialize();
 	void entryModelData(J3DModelData*, unsigned long, unsigned long);

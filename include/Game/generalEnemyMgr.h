@@ -72,7 +72,7 @@ struct GeneralEnemyMgr : public GenericObjectMgr, public CNode {
 	void addEnemyNum(int, u8, Game::GenObjectEnemy*);
 	void getEnemyNum(int, bool);
 	void useHeap();
-	void getEnemyMgr(int);
+	EnemyMgrBase* getEnemyMgr(int);
 	void setMovieDraw(bool);
 	void prepareDayendEnemies();
 	void createDayendEnemies(Sys::Sphere&);

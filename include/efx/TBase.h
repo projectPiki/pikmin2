@@ -14,9 +14,9 @@
 
 namespace efx {
 struct TBase {
-	virtual bool create(Arg*) = 0; // _00
-	virtual void forceKill()  = 0; // _04
-	virtual void fade()       = 0; // _08
+	virtual bool create(Arg*) = 0; // _08
+	virtual void forceKill()  = 0; // _0C
+	virtual void fade()       = 0; // _10
 
 	static TCallBack_StaticClipping mCallBack_StaticClipping;
 

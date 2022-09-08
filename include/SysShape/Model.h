@@ -4,6 +4,7 @@
 #include "types.h"
 #include "SysShape/MtxObject.h"
 #include "JSystem/J3D/J3DModel.h"
+#include "JSystem/J3D/J3DSys.h"
 
 struct Matrixf;
 namespace Sys {
@@ -50,6 +51,18 @@ struct Model : MtxObject {
 	void entry(Sys::Sphere&);
 	void update();
 	bool needViewCalc();
+
+	inline void updateModel()
+	{
+		Matrixf mtx;
+		PSMTXIdentity(mtx.m_matrix.mtxView);
+		PSMTXCopy(mtx.m_matrix.mtxView, j3dSys._00);
+		J3DModel* j3dModel = m_j3dModel;
+		j3dModel->calc();
+		j3dModel->calcMaterial();
+		j3dModel->makeDL();
+		j3dModel->lock();
+	}
 
 	// VTBL _00
 	u8 _04;               // _04
