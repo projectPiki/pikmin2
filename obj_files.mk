@@ -703,7 +703,7 @@ NISHIMURA:=\
 	$(BUILD_DIR)/asm/plugProjectNishimuraU/TankMgr.o\
 	$(BUILD_DIR)/asm/plugProjectNishimuraU/Tank.o\
 	$(BUILD_DIR)/asm/plugProjectNishimuraU/CatfishMgr.o\
-	$(BUILD_DIR)/asm/plugProjectNishimuraU/Catfish.o\
+	$(BUILD_DIR)/src/plugProjectNishimuraU/Catfish.o\
 	$(BUILD_DIR)/asm/plugProjectNishimuraU/TadpoleState.o\
 	$(BUILD_DIR)/src/plugProjectNishimuraU/TadpoleAnimator.o\
 	$(BUILD_DIR)/asm/plugProjectNishimuraU/TadpoleMgr.o\
