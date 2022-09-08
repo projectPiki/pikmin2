@@ -70,6 +70,11 @@ O_FILES :=	$(GROUP_0_FILES) $(JSYSTEM) $(DOLPHIN)\
 ifeq ($(EPILOGUE_PROCESS),1)
 E_FILES :=	$(EPILOGUE_UNSCHEDULED)
 endif
+DEPENDS := $(O_FILES:.o=.d)
+DEPENDS += $(E_FILES:.o=.d)
+# If a specific .o file is passed as a target, also process its deps
+DEPENDS += $(MAKECMDGOALS:.o=.d)
+
 #-------------------------------------------------------------------------------
 # Tools
 #-------------------------------------------------------------------------------
@@ -88,11 +93,17 @@ ifeq ($(WINDOWS),1)
   CPP     := $(DEVKITPPC)/bin/powerpc-eabi-cpp.exe -P
   PYTHON  := python
 else
-  WINE ?= wine
+  WIBO   := $(shell command -v wibo 2> /dev/null)
+  ifdef WIBO
+    WINE ?= wibo
+  else
+    WINE ?= wine
+  endif
   # Disable wine debug output for cleanliness
   export WINEDEBUG ?= -all
   # Default devkitPPC path
   DEVKITPPC ?= /opt/devkitpro/devkitPPC
+  DEPENDS   := $(DEPENDS:.d=.d.unix)
   AS      := $(DEVKITPPC)/bin/powerpc-eabi-as
   CPP     := $(DEVKITPPC)/bin/powerpc-eabi-cpp -P
   PYTHON  := python3
@@ -105,6 +116,7 @@ LD      := $(WINE) tools/mwcc_compiler/$(MWLD_VERSION)/mwldeppc.exe
 ELF2DOL := tools/elf2dol
 SHA1SUM := sha1sum
 
+TRANSFORM_DEP := tools/transform-dep.py
 FRANK := tools/franklite.py
 
 # Options
@@ -120,7 +132,7 @@ ifeq ($(VERBOSE),0)
 # this set of LDFLAGS generates no warnings.
 LDFLAGS := $(MAPGEN) -fp hard -nodefaults -w off
 endif
-CFLAGS  := -Cpp_exceptions off -enum int -inline auto -proc gekko -RTTI off -fp hard -fp_contract on -rostr -O4,p -use_lmw_stmw on -common on -sdata 8 -sdata2 8 -nodefaults -DVERNUM=$(VERNUM) $(INCLUDES)
+CFLAGS  := -Cpp_exceptions off -enum int -inline auto -proc gekko -RTTI off -fp hard -fp_contract on -rostr -O4,p -use_lmw_stmw on -common on -sdata 8 -sdata2 8 -nodefaults -MMD -DVERNUM=$(VERNUM) $(INCLUDES)
 
 ifeq ($(VERBOSE),0)
 # this set of ASFLAGS generates no warnings.
@@ -163,7 +175,7 @@ $(BUILD_DIR)/src/Dolphin/OSCache.o: CFLAGS += -str noreadonly
 $(BUILD_DIR)/src/Dolphin/GBA.o: CFLAGS += -str noreadonly
 
 # This is inline-deferred for some reason
-$(BUILD_DIR)/src/Dolphin/mbstring.o: CFLAGS := -Cpp_exceptions off -enum int -inline deferred -proc gekko -RTTI off -fp hard -fp_contract on -rostr -O4,p -use_lmw_stmw on -common on -sdata 8 -sdata2 8 -nodefaults -DVERNUM=$(VERNUM) $(INCLUDES)
+$(BUILD_DIR)/src/Dolphin/mbstring.o: CFLAGS := -Cpp_exceptions off -enum int -inline deferred -proc gekko -RTTI off -fp hard -fp_contract on -rostr -O4,p -use_lmw_stmw on -common on -sdata 8 -sdata2 8 -nodefaults -MMD -DVERNUM=$(VERNUM) $(INCLUDES)
 
 # Disable common BSS pool
 $(DOLPHIN): CFLAGS += -common off
@@ -232,21 +244,27 @@ $(ELF): $(O_FILES) $(LDSCRIPT)
 	$(QUIET) $(LD) $(LDFLAGS) -o $@ -lcf $(LDSCRIPT) @build/o_files
 endif
 
+%.d.unix: %.d $(TRANSFORM_DEP)
+	@echo Processing $<
+	$(QUIET) $(PYTHON) $(TRANSFORM_DEP) $< $@
+
+-include $(DEPENDS)
+
 $(BUILD_DIR)/%.o: %.s
 	@echo Assembling $<
 	$(QUIET) $(AS) $(ASFLAGS) -o $@ $<
 
 $(BUILD_DIR)/%.o: %.c
 	@echo "Compiling " $<
-	$(QUIET) $(CC) $(CFLAGS) -c -o $@ $<
+	$(QUIET) $(CC) $(CFLAGS) -c -o $(dir $@) $<
 
 $(BUILD_DIR)/%.o: %.cp
 	@echo "Compiling " $<
-	$(QUIET) $(CC) $(CFLAGS) -c -o $@ $<
-	
+	$(QUIET) $(CC) $(CFLAGS) -c -o $(dir $@) $<
+
 $(BUILD_DIR)/%.o: %.cpp
 	@echo "Compiling " $<
-	$(QUIET) $(CC) $(CFLAGS) -c -o $@ $<
+	$(QUIET) $(CC) $(CFLAGS) -c -o $(dir $@) $<
 
 ifeq ($(EPILOGUE_PROCESS),1)
 $(EPILOGUE_DIR)/%.o: %.c $(BUILD_DIR)/%.o
