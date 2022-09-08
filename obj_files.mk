@@ -854,9 +854,9 @@ NISHIMURA:=\
 	$(BUILD_DIR)/asm/plugProjectNishimuraU/FixKabuto.o\
 	$(BUILD_DIR)/src/plugProjectNishimuraU/RandCapEnemyUnit.o\
 	$(BUILD_DIR)/asm/plugProjectNishimuraU/NormMiniHoudaiMgr.o\
-	$(BUILD_DIR)/asm/plugProjectNishimuraU/NormMiniHoudai.o\
+	$(BUILD_DIR)/src/plugProjectNishimuraU/NormMiniHoudai.o\
 	$(BUILD_DIR)/asm/plugProjectNishimuraU/FixMiniHoudaiMgr.o\
-	$(BUILD_DIR)/asm/plugProjectNishimuraU/FixMiniHoudai.o\
+	$(BUILD_DIR)/src/plugProjectNishimuraU/FixMiniHoudai.o\
 	$(BUILD_DIR)/asm/plugProjectNishimuraU/TyreShadow.o\
 
 OGAWA:=\

@@ -161,6 +161,7 @@ pikmin2.usa.dol: `sha1: 90d328bf8f190c90472e8c19e7e53c6ad0fe0d1a`
 	- <a href="https://github.com/projectPiki/pikmin2/tree/main/src/plugProjectNishimuraU/ElecBugAnimator.cpp">plugProjectNishimuraU/ElecBugAnimator.cpp</a>
 	- <a href="https://github.com/projectPiki/pikmin2/tree/main/src/plugProjectNishimuraU/ElecHibaAnimator.cpp">plugProjectNishimuraU/ElecHibaAnimator.cpp</a>
 	- <a href="https://github.com/projectPiki/pikmin2/tree/main/src/plugProjectNishimuraU/EnemyUnit.cpp">plugProjectNishimuraU/EnemyUnit.cpp</a>
+	- <a href="https://github.com/projectPiki/pikmin2/tree/main/src/plugProjectNishimuraU/FixMiniHoudai.cpp">plugProjectNishimuraU/FixMiniHoudai.cpp</a>
 	- <a href="https://github.com/projectPiki/pikmin2/tree/main/src/plugProjectNishimuraU/FrogAnimator.cpp">plugProjectNishimuraU/FrogAnimator.cpp</a>
 	- <a href="https://github.com/projectPiki/pikmin2/tree/main/src/plugProjectNishimuraU/FuefukiAnimator.cpp">plugProjectNishimuraU/FuefukiAnimator.cpp</a>
 	- <a href="https://github.com/projectPiki/pikmin2/tree/main/src/plugProjectNishimuraU/GasHibaAnimator.cpp">plugProjectNishimuraU/GasHibaAnimator.cpp</a>
@@ -178,6 +179,7 @@ pikmin2.usa.dol: `sha1: 90d328bf8f190c90472e8c19e7e53c6ad0fe0d1a`
 	- <a href="https://github.com/projectPiki/pikmin2/tree/main/src/plugProjectNishimuraU/MapCreator.cpp">plugProjectNishimuraU/MapCreator.cpp</a>
 	- <a href="https://github.com/projectPiki/pikmin2/tree/main/src/plugProjectNishimuraU/MarAnimator.cpp">plugProjectNishimuraU/MarAnimator.cpp</a>
 	- <a href="https://github.com/projectPiki/pikmin2/tree/main/src/plugProjectNishimuraU/MiniHoudaiAnimator.cpp">plugProjectNishimuraU/MiniHoudaiAnimator.cpp</a>
+	- <a href="https://github.com/projectPiki/pikmin2/tree/main/src/plugProjectNishimuraU/NormMiniHoudai.cpp">plugProjectNishimuraU/NormMiniHoudai.cpp</a>
 	- <a href="https://github.com/projectPiki/pikmin2/tree/main/src/plugProjectNishimuraU/ObjectLayout.cpp">plugProjectNishimuraU/ObjectLayout.cpp</a>
 	- <a href="https://github.com/projectPiki/pikmin2/tree/main/src/plugProjectNishimuraU/OniKurageAnimator.cpp">plugProjectNishimuraU/OniKurageAnimator.cpp</a>
 	- <a href="https://github.com/projectPiki/pikmin2/tree/main/src/plugProjectNishimuraU/OtakaraBaseAnimator.cpp">plugProjectNishimuraU/OtakaraBaseAnimator.cpp</a>
