@@ -5,7 +5,7 @@
 #include "types.h"
 
 struct ResTIMG {
-    u8 m_textureFormat;      // _00
+	u8 m_textureFormat;      // _00
 	u8 m_transparency;       // _01
 	u16 m_sizeX;             // _02
 	u16 m_sizeY;             // _04

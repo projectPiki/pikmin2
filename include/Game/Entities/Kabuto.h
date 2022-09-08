@@ -13,6 +13,8 @@
 // RedKabuto 	= Decorated Cannon Beetle
 // FixKabuto	= Buried Cannon Beetle Larva
 
+struct ResTIMG;
+
 namespace Game {
 // Base Cannon Beetle Structs
 namespace Kabuto {
@@ -25,7 +27,7 @@ struct Obj : public EnemyBase {
 	virtual void doDirectDraw(Graphics&);                   // _50
 	virtual bool isUnderground();                           // _D0 (weak)
 	virtual void getShadowParam(ShadowParam&);              // _134
-	virtual ~Obj();                                         // _1BC (weak)
+	virtual ~Obj() { }                                      // _1BC (weak)
 	virtual void setInitialSetting(EnemyInitialParamBase*); // _1C4
 	virtual void doUpdate();                                // _1CC
 	virtual void doDebugDraw(Graphics&);                    // _1EC
@@ -75,7 +77,7 @@ struct Obj : public EnemyBase {
 struct Mgr : public EnemyMgrBase {
 	Mgr(int, u8);
 
-	virtual ~Mgr();                                     // _58 (weak)
+	virtual ~Mgr() { }                                  // _58 (weak)
 	virtual EnemyTypeID::EEnemyTypeID getEnemyTypeID(); // _AC (weak)
 	virtual SysShape::Model* createModel();             // _B0
 	virtual void loadModelData();                       // _C8
@@ -88,14 +90,24 @@ struct Mgr : public EnemyMgrBase {
 };
 
 struct Parms : public EnemyParmsBase {
-	Parms();
+	struct ParmParms : public Parameters {
+		inline ParmParms()
+		    : Parameters(nullptr, "EnemyParmsBase")
+		{
+		}
+	};
 
-	virtual void read(Stream&); // _08 (weak)
+	Parms() { }
+
+	virtual void read(Stream& stream) // _08 (weak)
+	{
+		((Parameters*)this)->read(stream);
+		m_general.read(stream);
+		m_kabutoParms.read(stream);
+	}
 
 	// _00-_7F8	= EnemyParmsBase
-	u8 _7F8[0x8]; // _7F8, unknown
-	char* _800;   // _800, name?
-	u8 _804[0x4]; // _804, unknown
+	ParmParms m_kabutoParms;
 };
 
 struct FSM : public EnemyStateMachine {
@@ -149,9 +161,9 @@ namespace GreenKabuto {
 struct Obj : public Kabuto::Obj {
 	Obj();
 
-	virtual ~Obj() { }                                  // _1BC (weak)
-	virtual void changeMaterial();                      // _200
-	virtual EnemyTypeID::EEnemyTypeID getEnemyTypeID()  // _258 (weak)
+	virtual ~Obj() { }                                 // _1BC (weak)
+	virtual void changeMaterial();                     // _200
+	virtual EnemyTypeID::EEnemyTypeID getEnemyTypeID() // _258 (weak)
 	{
 		return EnemyTypeID::EnemyID_Kabuto;
 	}
@@ -163,18 +175,24 @@ struct Obj : public Kabuto::Obj {
 struct Mgr : public Kabuto::Mgr {
 	Mgr(int, u8);
 
-	virtual ~Mgr();                                     // _58 (weak)
-	virtual void createObj(int);                        // _A0
-	virtual EnemyBase* getEnemy(int);                   // _A4
-	virtual void doAlloc();                             // _A8
-	virtual EnemyTypeID::EEnemyTypeID getEnemyTypeID(); // _AC (weak)
-	virtual void loadTexData();                         // _D0
-	virtual ResTIMG* getChangeTexture();                // _E0 (weak)
+	virtual ~Mgr() { }                                 // _58 (weak)
+	virtual void createObj(int);                       // _A0
+	virtual EnemyBase* getEnemy(int);                  // _A4
+	virtual void doAlloc();                            // _A8
+	virtual EnemyTypeID::EEnemyTypeID getEnemyTypeID() // _AC (weak)
+	{
+		return EnemyTypeID::EnemyID_Kabuto;
+	}
+	virtual void loadTexData();         // _D0
+	virtual ResTIMG* getChangeTexture() // _E0 (weak)
+	{
+		return m_changeTexture;
+	}
 
 	// _00		= VTBL
 	// _00-_44	= EnemyMgrBase
-	u8 _44[0x4]; // _44, unknown
-	Obj* m_obj;  // _48, array of Objs
+	ResTIMG* m_changeTexture; // _44
+	Obj* m_obj;               // _48, array of Objs
 };
 } // namespace GreenKabuto
 
@@ -183,9 +201,9 @@ namespace RedKabuto {
 struct Obj : public Kabuto::Obj {
 	Obj();
 
-	virtual ~Obj() { }                                  // _1BC (weak)
-	virtual void changeMaterial();                      // _200
-	virtual EnemyTypeID::EEnemyTypeID getEnemyTypeID()  // _258 (weak)
+	virtual ~Obj() { }                                 // _1BC (weak)
+	virtual void changeMaterial();                     // _200
+	virtual EnemyTypeID::EEnemyTypeID getEnemyTypeID() // _258 (weak)
 	{
 		return EnemyTypeID::EnemyID_Rkabuto;
 	}
@@ -197,18 +215,24 @@ struct Obj : public Kabuto::Obj {
 struct Mgr : public Kabuto::Mgr {
 	Mgr(int, u8);
 
-	virtual ~Mgr();                                     // _58 (weak)
-	virtual void createObj(int);                        // _A0
-	virtual EnemyBase* getEnemy(int);                   // _A4
-	virtual void doAlloc();                             // _A8
-	virtual EnemyTypeID::EEnemyTypeID getEnemyTypeID(); // _AC (weak)
-	virtual void loadTexData();                         // _D0
-	virtual ResTIMG* getChangeTexture();                // _E0 (weak)
+	virtual ~Mgr() { }                                 // _58 (weak)
+	virtual void createObj(int);                       // _A0
+	virtual EnemyBase* getEnemy(int);                  // _A4
+	virtual void doAlloc();                            // _A8
+	virtual EnemyTypeID::EEnemyTypeID getEnemyTypeID() // _AC (weak)
+	{
+		return EnemyTypeID::EnemyID_Rkabuto;
+	}
+	virtual void loadTexData();         // _D0
+	virtual ResTIMG* getChangeTexture() // _E0 (weak)
+	{
+		return m_changeTexture;
+	}
 
 	// _00		= VTBL
 	// _00-_44	= EnemyMgrBase
-	u8 _44[0x4]; // _44, unknown
-	Obj* m_obj;  // _48, array of Objs
+	ResTIMG* m_changeTexture; // _44
+	Obj* m_obj;               // _48, array of Objs
 };
 } // namespace RedKabuto
 
@@ -217,7 +241,7 @@ namespace FixKabuto {
 struct Obj : public Kabuto::Obj {
 	Obj();
 
-	virtual ~Obj();                                     // _1BC (weak)
+	virtual ~Obj() { }                                  // _1BC (weak)
 	virtual void changeMaterial();                      // _200
 	virtual EnemyTypeID::EEnemyTypeID getEnemyTypeID(); // _258 (weak)
 	virtual void createEffect();                        // _2FC
@@ -237,18 +261,24 @@ struct Obj : public Kabuto::Obj {
 struct Mgr : public Kabuto::Mgr {
 	Mgr(int, u8);
 
-	virtual ~Mgr();                                     // _58 (weak)
-	virtual void createObj(int);                        // _A0
-	virtual EnemyBase* getEnemy(int);                   // _A4
-	virtual void doAlloc();                             // _A8
-	virtual EnemyTypeID::EEnemyTypeID getEnemyTypeID(); // _AC (weak)
-	virtual void loadTexData();                         // _D0
-	virtual ResTIMG* getChangeTexture();                // _E0 (weak)
+	virtual ~Mgr() { }                                 // _58 (weak)
+	virtual void createObj(int);                       // _A0
+	virtual EnemyBase* getEnemy(int);                  // _A4
+	virtual void doAlloc();                            // _A8
+	virtual EnemyTypeID::EEnemyTypeID getEnemyTypeID() // _AC (weak)
+	{
+		return EnemyTypeID::EnemyID_Fkabuto;
+	}
+	virtual void loadTexData();         // _D0
+	virtual ResTIMG* getChangeTexture() // _E0 (weak)
+	{
+		return m_changeTexture;
+	}
 
 	// _00		= VTBL
 	// _00-_44	= EnemyMgrBase
-	u8 _44[0x4]; // _44, unknown
-	Obj* m_obj;  // _48, array of Objs
+	ResTIMG* m_changeTexture; // _44
+	Obj* m_obj;               // _48, array of Objs
 };
 } // namespace FixKabuto
 

@@ -12,7 +12,7 @@ namespace Catfish {
 Mgr::Mgr(int p1, u8 p2)
     : EnemyMgrBase(p1, p2)
 {
-	m_name = "ナマズマネージャ";
+	m_name = "ナマズマネージャ"; // catfish manager
 }
 
 /*
