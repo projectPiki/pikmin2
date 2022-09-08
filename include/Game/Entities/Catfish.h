@@ -11,21 +11,21 @@ struct Obj : public KochappyBase::Obj {
 	Obj();
 
 	// weak function generation in Catfish.cpp requires this ordering
-	virtual void changeMaterial() { }                                                           // _200 (weak)
-	virtual void onInit(CreatureInitArg*);                                                      // _30
-	virtual void inWaterCallback(WaterBox*) { }                                                 // _84 (weak)
-	virtual void outWaterCallback() { }                                                         // _88 (weak)
-	virtual void getShadowParam(ShadowParam&);                                                  // _134
-	virtual ~Obj() { }                                                                          // _1BC (weak)
-	virtual void initMouthSlots();                                                              // _22C
-	virtual EnemyTypeID::EEnemyTypeID getEnemyTypeID()  										// _258 (weak)
+	virtual void changeMaterial() { }                  // _200 (weak)
+	virtual void onInit(CreatureInitArg*);             // _30
+	virtual void inWaterCallback(WaterBox*) { }        // _84 (weak)
+	virtual void outWaterCallback() { }                // _88 (weak)
+	virtual void getShadowParam(ShadowParam&);         // _134
+	virtual ~Obj() { }                                 // _1BC (weak)
+	virtual void initMouthSlots();                     // _22C
+	virtual EnemyTypeID::EEnemyTypeID getEnemyTypeID() // _258 (weak)
 	{
 		return EnemyTypeID::EnemyID_Catfish;
 	}
-	virtual bool pressCallBack(Creature*, float, CollPart*);                                    // _27C
-	virtual bool hipdropCallBack(Creature*, float, CollPart*);                                  // _284
-	virtual void resetEnemyNonStone();                                                          // _300
-	virtual void setEnemyNonStone() { setEvent(0, EB_22); }                                     // _304 (weak)
+	virtual bool pressCallBack(Creature*, float, CollPart*);   // _27C
+	virtual bool hipdropCallBack(Creature*, float, CollPart*); // _284
+	virtual void resetEnemyNonStone();                         // _300
+	virtual void setEnemyNonStone() { setEvent(0, EB_22); }    // _304 (weak)
 
 	void createDownEffect();
 
@@ -36,18 +36,18 @@ struct Obj : public KochappyBase::Obj {
 struct Mgr : public EnemyMgrBase {
 	Mgr(int, u8);
 
-	virtual ~Mgr() { }                                  // _58 (weak)
-	virtual void createObj(int);                        // _A0
-	virtual EnemyBase* getEnemy(int);                   // _A4
-	virtual void doAlloc();                             // _A8
-	virtual EnemyTypeID::EEnemyTypeID getEnemyTypeID()  // _AC (weak)
+	virtual ~Mgr() { }                                 // _58 (weak)
+	virtual void createObj(int);                       // _A0
+	virtual EnemyBase* getEnemy(int);                  // _A4
+	virtual void doAlloc();                            // _A8
+	virtual EnemyTypeID::EEnemyTypeID getEnemyTypeID() // _AC (weak)
 	{
 		return EnemyTypeID::EnemyID_Catfish;
 	}
 
 	// _00 		= VTBL
 	// _00-_44	= EnemyMgrBase
-	Obj* m_obj;	// _44, array of Objs
+	Obj* m_obj; // _44, array of Objs
 };
 } // namespace Catfish
 } // namespace Game

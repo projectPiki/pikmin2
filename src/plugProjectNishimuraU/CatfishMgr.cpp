@@ -10,7 +10,7 @@ namespace Catfish {
  * Size:	000050
  */
 Mgr::Mgr(int p1, u8 p2)
-	: EnemyMgrBase(p1, p2)
+    : EnemyMgrBase(p1, p2)
 {
 	m_name = "ナマズマネージャ";
 }
@@ -20,10 +20,7 @@ Mgr::Mgr(int p1, u8 p2)
  * Address:	80276DA4
  * Size:	000048
  */
-void Mgr::doAlloc() 
-{
-    init(new KochappyBase::Parms);
-}
+void Mgr::doAlloc() { init(new KochappyBase::Parms); }
 
 /*
  * --INFO--
@@ -39,10 +36,11 @@ void Mgr::createObj(int count) { m_obj = new Obj[count]; }
  */
 EnemyBase* Mgr::getEnemy(int idx) { return &m_obj[idx]; }
 
-void fakeFunct(Mgr* mgr) {
-    mgr->getEnemyTypeID();
-    mgr->~Mgr();
+void fakeFunct(Mgr* mgr)
+{
+	mgr->getEnemyTypeID();
+	mgr->~Mgr();
 }
 
-}
+} // namespace Catfish
 } // namespace Game
