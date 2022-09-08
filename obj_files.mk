@@ -847,9 +847,9 @@ NISHIMURA:=\
 	$(BUILD_DIR)/asm/plugProjectNishimuraU/DangoMushiMgr.o\
 	$(BUILD_DIR)/asm/plugProjectNishimuraU/DangoMushi.o\
 	$(BUILD_DIR)/asm/plugProjectNishimuraU/GreenKabutoMgr.o\
-	$(BUILD_DIR)/asm/plugProjectNishimuraU/GreenKabuto.o\
+	$(BUILD_DIR)/src/plugProjectNishimuraU/GreenKabuto.o\
 	$(BUILD_DIR)/asm/plugProjectNishimuraU/RedKabutoMgr.o\
-	$(BUILD_DIR)/asm/plugProjectNishimuraU/RedKabuto.o\
+	$(BUILD_DIR)/src/plugProjectNishimuraU/RedKabuto.o\
 	$(BUILD_DIR)/asm/plugProjectNishimuraU/FixKabutoMgr.o\
 	$(BUILD_DIR)/asm/plugProjectNishimuraU/FixKabuto.o\
 	$(BUILD_DIR)/src/plugProjectNishimuraU/RandCapEnemyUnit.o\

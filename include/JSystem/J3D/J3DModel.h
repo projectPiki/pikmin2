@@ -10,6 +10,7 @@
 #include "JSystem/J3D/J3DTypes.h"
 #include "JSystem/J3D/J3DVertexBuffer.h"
 #include "JSystem/JGeometry.h"
+#include "JSystem/J3D/J3DPacket.h"
 
 struct J3DDeformData;
 struct J3DMatPacket;
@@ -91,7 +92,7 @@ struct J3DModel {
 	u32 _14;                         // _14
 	JGeometry::TVec3f m_modelScale;  // _18
 	Mtx _24;                         // _24
-	J3DMtxCalc* _54;                 // _54
+	Mtx _54;                         // _54
 	J3DMtxBuffer* m_mtxBuffer;       // _84
 	J3DVertexBuffer m_vertexBuffer;  // _88
 	J3DMatPacket* m_matPackets;      // _C0

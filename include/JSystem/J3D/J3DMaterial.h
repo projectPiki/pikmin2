@@ -2,6 +2,7 @@
 #define _JSYSTEM_J3D_J3DMATERIAL_H
 
 #include "JSystem/J3D/J3DTypes.h"
+#include "JSystem/J3D/J3DTexture.h"
 #include "types.h"
 
 struct J3DAnmColor;
