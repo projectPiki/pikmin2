@@ -138,16 +138,16 @@ struct EnemyBase : public Creature, public SysShape::MotionListener, virtual pub
 	virtual void doEntry();                    // _40
 	virtual void doSetView(int);               // _44
 	virtual void doViewCalc();                 // _48
-	virtual void doSimulation(float);          // _4C
-	virtual float getBodyRadius()              // _54 (weak)
+	virtual void doSimulation(f32);            // _4C
+	virtual f32 getBodyRadius()                // _54 (weak)
 	{
 		return static_cast<EnemyParmsBase*>(m_parms)->m_general.m_pikminDamageRadius();
 	}
-	virtual float getCellRadius() // _58 (weak)
+	virtual f32 getCellRadius() // _58 (weak)
 	{
 		return static_cast<EnemyParmsBase*>(m_parms)->m_general.m_cellRadius();
 	}
-	virtual float getFaceDir() // _64 (weak)
+	virtual f32 getFaceDir() // _64 (weak)
 	{
 		return m_faceDir;
 	}
@@ -199,11 +199,11 @@ struct EnemyBase : public Creature, public SysShape::MotionListener, virtual pub
 		}
 		return culling;
 	}
-	virtual float getSound_CurrAnimFrame() // _108 (weak)
+	virtual f32 getSound_CurrAnimFrame() // _108 (weak)
 	{
 		return m_animator->getAnimator().m_timer;
 	}
-	virtual float getSound_CurrAnimSpeed() // _10C (weak)
+	virtual f32 getSound_CurrAnimSpeed() // _10C (weak)
 	{
 		return m_animator->m_animSpeed;
 	}
@@ -232,7 +232,7 @@ struct EnemyBase : public Creature, public SysShape::MotionListener, virtual pub
 	// vtable 2 (MotionListener+self)
 	// virtual void onKeyEvent(const SysShape::KeyEvent&); - thunk _1B8
 	virtual ~EnemyBase() { }                                    // _1BC (weak)
-	virtual void birth(Vector3f&, float);                       // _1C0
+	virtual void birth(Vector3f&, f32);                         // _1C0
 	virtual void setInitialSetting(EnemyInitialParamBase*) = 0; // _1C4
 	virtual void update();                                      // _1C8
 	virtual void doUpdate() = 0;                                // _1CC
@@ -240,14 +240,14 @@ struct EnemyBase : public Creature, public SysShape::MotionListener, virtual pub
 	virtual void doUpdateCarcass();                             // _1D4
 	virtual void doAnimationUpdateAnimator();                   // _1D8
 	virtual void doAnimationCullingOff();                       // _1DC
-	virtual void doAnimationCullingOn();                        // m_events
+	virtual void doAnimationCullingOn();                        // _1E0
 	virtual void doAnimationStick();                            // _1E4
-	virtual void doSimulationCarcass(float);                    // _1E8
+	virtual void doSimulationCarcass(f32);                      // _1E8
 	virtual void doDebugDraw(Graphics&);                        // _1EC
 	virtual void doSimpleDraw(Viewport*) { }                    // _1F0 (weak)
-	virtual void doSimulationGround(float);                     // _1F4
-	virtual void doSimulationFlying(float);                     // _1F8
-	virtual void doSimulationStick(float);                      // _1FC
+	virtual void doSimulationGround(f32);                       // _1F4
+	virtual void doSimulationFlying(f32);                       // _1F8
+	virtual void doSimulationStick(f32);                        // _1FC
 	virtual void changeMaterial();                              // _200
 	virtual void getCommonEffectPos(Vector3f&);                 // _204
 	virtual Vector3f* getFitEffectPos();                        // _208
@@ -293,29 +293,29 @@ struct EnemyBase : public Creature, public SysShape::MotionListener, virtual pub
 	{
 		m_lodRange = sphere;
 	}
-	virtual bool damageCallBack(Creature*, float, CollPart*);       // _278
-	virtual bool pressCallBack(Creature*, float, CollPart*);        // _27C
-	virtual bool flyCollisionCallBack(Creature*, float, CollPart*); // _280
-	virtual bool hipdropCallBack(Creature*, float, CollPart*);      // _284
-	virtual bool dropCallBack(Creature*);                           // _288
-	virtual bool earthquakeCallBack(Creature*, float);              // _28C
-	virtual bool farmCallBack(Creature*, float);                    // _290
-	virtual bool bombCallBack(Creature*, Vector3f&, float);         // _294
-	virtual bool eatWhitePikminCallBack(Creature*, float);          // _298
-	virtual bool dopeCallBack(Creature*, int);                      // _29C
-	virtual bool doDopeCallBack(Creature*, int) { return true; }    // _2A0 (weak)
-	virtual void doStartStoneState();                               // _2A4
-	virtual void doFinishStoneState();                              // _2A8
-	virtual float getDamageCoeStoneState()                          // _2AC (weak)
+	virtual bool damageCallBack(Creature*, f32, CollPart*);       // _278
+	virtual bool pressCallBack(Creature*, f32, CollPart*);        // _27C
+	virtual bool flyCollisionCallBack(Creature*, f32, CollPart*); // _280
+	virtual bool hipdropCallBack(Creature*, f32, CollPart*);      // _284
+	virtual bool dropCallBack(Creature*);                         // _288
+	virtual bool earthquakeCallBack(Creature*, f32);              // _28C
+	virtual bool farmCallBack(Creature*, f32);                    // _290
+	virtual bool bombCallBack(Creature*, Vector3f&, f32);         // _294
+	virtual bool eatWhitePikminCallBack(Creature*, f32);          // _298
+	virtual bool dopeCallBack(Creature*, int);                    // _29C
+	virtual bool doDopeCallBack(Creature*, int) { return true; }  // _2A0 (weak)
+	virtual void doStartStoneState();                             // _2A4
+	virtual void doFinishStoneState();                            // _2A8
+	virtual f32 getDamageCoeStoneState()                          // _2AC (weak)
 	{
 		return 1.5f;
 	}
-	virtual void doStartEarthquakeState(float); // _2B0
-	virtual void doFinishEarthquakeState();     // _2B4
-	virtual void doStartEarthquakeFitState();   // _2B8
-	virtual void doFinishEarthquakeFitState();  // _2BC
-	virtual void lifeRecover();                 // _2C0
-	virtual void startCarcassMotion()           // _2C4 (weak)
+	virtual void doStartEarthquakeState(f32);  // _2B0
+	virtual void doFinishEarthquakeState();    // _2B4
+	virtual void doStartEarthquakeFitState();  // _2B8
+	virtual void doFinishEarthquakeFitState(); // _2BC
+	virtual void lifeRecover();                // _2C0
+	virtual void startCarcassMotion()          // _2C4 (weak)
 	{
 		SysShape::MotionListener* listener = this;
 
@@ -338,8 +338,8 @@ struct EnemyBase : public Creature, public SysShape::MotionListener, virtual pub
 				SysShape::KeyEvent* event2 = info->getAnimKeyByType(1);
 
 				if (event1 != nullptr && event2 != nullptr) {
-					float val1 = (float)event1->m_frame;
-					float val2 = (float)event2->m_frame;
+					f32 val1 = (f32)event1->m_frame;
+					f32 val2 = (f32)event2->m_frame;
 					m_soundObj->setAnime((JAIAnimeSoundData*)file, 1, val1, val2);
 					return;
 				}
@@ -365,7 +365,7 @@ struct EnemyBase : public Creature, public SysShape::MotionListener, virtual pub
 		m_soundObj->setAnime(nullptr, 1, 0.0f, 0.0f);
 	}
 	virtual void setCarcassArg(PelletViewArg&); // _2C8
-	virtual float getCarcassArgHeight()         // _2CC (weak)
+	virtual f32 getCarcassArgHeight()           // _2CC (weak)
 	{
 		return m_boundingSphere.m_radius;
 	}
@@ -376,28 +376,28 @@ struct EnemyBase : public Creature, public SysShape::MotionListener, virtual pub
 	virtual void doStartWaitingBirthTypeDrop();      // _2E0
 	virtual void doFinishWaitingBirthTypeDrop();     // _2E4
 	virtual void wallCallback(const MoveInfo&) { }   // _2E8 (weak)
-	virtual float getDownSmokeScale();               // _2EC
+	virtual f32 getDownSmokeScale();                 // _2EC
 	virtual void doStartMovie() { }                  // _2F0 (weak)
 	virtual void doEndMovie() { }                    // _2F4 (weak)
 	// vtable 3 (PelletView)
 
-	void addDamage(float, float);
+	void addDamage(f32, f32);
 
 	void bounceProcedure(Sys::Triangle*);
 
-	void collisionMapAndPlat(float);
+	void collisionMapAndPlat(f32);
 
 	PSM::EnemyBase* createPSEnemyBase();
 	void createEffects();
-	void createBounceEffect(const Vector3f&, float);
+	void createBounceEffect(const Vector3f&, f32);
 	void createDeadBombEffect();
-	void createDropEffect(const Vector3f&, float);
-	void createSplashDownEffect(const Vector3f&, float);
+	void createDropEffect(const Vector3f&, f32);
+	void createSplashDownEffect(const Vector3f&, f32);
 	void fadeEffects();
 
 	void doEntryCarcass();
 	void doEntryLiving();
-	void doSimulationConstraint(float);
+	void doSimulationConstraint(f32);
 	void hardConstraintOn();
 	void hardConstraintOff();
 	void constraintOff();
@@ -415,13 +415,13 @@ struct EnemyBase : public Creature, public SysShape::MotionListener, virtual pub
 	void stopMotion();
 	bool isFinishMotion();
 	bool isStopMotion();
-	float getFirstKeyFrame();
-	float getMotionFrame();
-	float getMotionFrameMax();
-	void setMotionFrame(float);
+	f32 getFirstKeyFrame();
+	f32 getMotionFrame();
+	f32 getMotionFrameMax();
+	void setMotionFrame(f32);
 
 	int getCurrAnimIndex();
-	void setAnimSpeed(float);
+	void setAnimSpeed(f32);
 	void resetAnimSpeed();
 
 	void setEmotionCaution();
@@ -433,7 +433,7 @@ struct EnemyBase : public Creature, public SysShape::MotionListener, virtual pub
 	void setPSEnemyBaseAnime();
 	void setZukanVisible(bool);
 
-	void startBlend(int, int, SysShape::BlendFunction*, float, SysShape::MotionListener*);
+	void startBlend(int, int, SysShape::BlendFunction*, f32, SysShape::MotionListener*);
 	void endBlend();
 
 	void show();
@@ -481,7 +481,7 @@ struct EnemyBase : public Creature, public SysShape::MotionListener, virtual pub
 		return (isEvent(1, EB2_1) || isEvent(1, EB2_5));
 	}
 
-	inline float getSimulationScale(float constraint)
+	inline f32 getSimulationScale(f32 constraint)
 	{
 		return constraint / static_cast<EnemyParmsBase*>(m_parms)->m_creatureProps.m_props.m_accel.m_value;
 	}
@@ -504,18 +504,18 @@ struct EnemyBase : public Creature, public SysShape::MotionListener, virtual pub
 	u8 _1F2;                            // _1F2
 	bool m_inPiklopedia;                // _1F3
 	int m_stickPikminCount;             // _1F4
-	float m_scaleModifier;              // _1F8
-	float m_faceDir;                    // _1FC
-	float m_health;                     // _200
-	float m_maxHealth;                  // _204
-	float m_instantDamage;              // _208
-	float m_toFlick;                    // _20C
-	float _210;                         // _210
+	f32 m_scaleModifier;                // _1F8
+	f32 m_faceDir;                      // _1FC
+	f32 m_health;                       // _200
+	f32 m_maxHealth;                    // _204
+	f32 m_instantDamage;                // _208
+	f32 m_toFlick;                      // _20C
+	f32 _210;                           // _210
 	// TODO: Name is from PikDecomp. Sodium called this "purpleStunTimer". Which
 	// name is more accurate?
-	float m_scaleTimer;                          // _214
-	float m_friction;                            // _218
-	float m_stoneTimer;                          // _21C
+	f32 m_scaleTimer;                            // _214
+	f32 m_friction;                              // _218
+	f32 m_stoneTimer;                            // _21C
 	Sys::Sphere m_boundingSphere;                // _220
 	Creature* m_targetCreature;                  // _230
 	CollEvent m_collEvent;                       // _234
@@ -531,8 +531,8 @@ struct EnemyBase : public Creature, public SysShape::MotionListener, virtual pub
 	Sys::Triangle* _288;                         // _288
 	PSM::EnemyBase* m_soundObj;                  // _28C
 	CNode m_effectNodeHamonRoot;                 // _290 - treat as EnemyEffectNodeBase with EnemyEffectNodeHamon nodes
-	float _2A8;                                  // _2A8
-	float _2AC;                                  // _2AC
+	f32 _2A8;                                    // _2A8
+	f32 _2AC;                                    // _2AC
 	s8 m_dropGroup;                              // _2B0
 	EnemyFSMState* m_currentLifecycleState;      // _2B4
 	EnemyBaseFSM::StateMachine* m_lifecycleFSM;  // _2B8
@@ -563,7 +563,7 @@ struct State : public Game::EnemyFSMState {
 
 	virtual void update(EnemyBase*) { }                          // _24 (weak)
 	virtual void entry(EnemyBase*) { }                           // _28 (weak)
-	virtual void simulation(EnemyBase*, float) { }               // _2C (weak)
+	virtual void simulation(EnemyBase*, f32) { }                 // _2C (weak)
 	virtual void bounceProcedure(EnemyBase*, Sys::Triangle*) { } // _30 (weak)
 	virtual void animation(EnemyBase*);                          // _34
 
@@ -587,7 +587,7 @@ struct BirthTypeDropState : public State {
 	virtual void cleanup(EnemyBase*);                          // _10
 	virtual void update(EnemyBase*);                           // _24
 	virtual void entry(EnemyBase*) { }                         // _28 (weak)
-	virtual void simulation(EnemyBase*, float) { }             // _2C (weak)
+	virtual void simulation(EnemyBase*, f32) { }               // _2C (weak)
 	virtual void animation(EnemyBase*) { }                     // _34 (weak)
 	virtual bool isFinishableWaitingBirthTypeDrop(EnemyBase*); // _38
 };
@@ -642,11 +642,11 @@ struct AppearState : public State {
 		m_name = "Appear";
 	}
 
-	virtual void init(EnemyBase*, StateArg*);      // _08
-	virtual void cleanup(EnemyBase*);              // _10
-	virtual void update(EnemyBase*);               // _24
-	virtual void entry(EnemyBase*);                // _28
-	virtual void simulation(EnemyBase*, float) { } // _2C (weak)
+	virtual void init(EnemyBase*, StateArg*);    // _08
+	virtual void cleanup(EnemyBase*);            // _10
+	virtual void update(EnemyBase*);             // _24
+	virtual void entry(EnemyBase*);              // _28
+	virtual void simulation(EnemyBase*, f32) { } // _2C (weak)
 };
 
 /**
@@ -667,11 +667,11 @@ struct LivingState : public State {
 		return ((enemy->m_events.m_flags[0].typeView & 0x400) || ((enemy->m_events.m_flags[0].typeView & 0x40000)));
 	}
 
-	virtual void update(EnemyBase*);            // _24
-	virtual void entry(EnemyBase*);             // _28
-	virtual void simulation(EnemyBase*, float); // _2C
-	virtual void updateCullingOff(EnemyBase*);  // _38
-	virtual void updateAlways(EnemyBase*);      // _3C
+	virtual void update(EnemyBase*);           // _24
+	virtual void entry(EnemyBase*);            // _28
+	virtual void simulation(EnemyBase*, f32);  // _2C
+	virtual void updateCullingOff(EnemyBase*); // _38
+	virtual void updateAlways(EnemyBase*);     // _3C
 };
 
 /**
@@ -743,10 +743,10 @@ struct StateMachine : public Game::EnemyStateMachine {
 	{
 		m_state = static_cast<State*>(state);
 	}
-	virtual void update(EnemyBase*);            // _24
-	virtual void entry(EnemyBase*);             // _28
-	virtual void simulation(EnemyBase*, float); // _2C
-	virtual void animation(EnemyBase* enemy)    // _30 (weak)
+	virtual void update(EnemyBase*);          // _24
+	virtual void entry(EnemyBase*);           // _28
+	virtual void simulation(EnemyBase*, f32); // _2C
+	virtual void animation(EnemyBase* enemy)  // _30 (weak)
 	{
 		m_state->animation(enemy);
 	}

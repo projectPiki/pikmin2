@@ -121,6 +121,17 @@ struct Parms : public EnemyParmsBase {
 	ParmParms m_kabutoParms; // _7F8
 };
 
+struct ProperAnimator : public EnemyAnimatorBase {
+	virtual ~ProperAnimator() { }                                    // _08 (weak)
+	virtual void setAnimMgr(SysShape::AnimMgr*);                     // _0C
+	virtual SysShape::Animator& getAnimator() { return m_animator; } // _10 (weak)
+	virtual SysShape::Animator& getAnimator(int);                    // _14
+
+	SysShape::Animator m_animator; // _10
+};
+
+/////////////////////////////////////////////////////////////////
+// STATE MACHINE DEFINITIONS
 struct FSM : public EnemyStateMachine {
 	virtual void init(EnemyBase*); // _08
 
@@ -133,28 +144,114 @@ struct State : public EnemyFSMState {
 	// _00-_10 	= EnemyFSMState
 };
 
-// TODO: fill these out
-struct StateAttack;
-struct StateDead;
-struct StateFlick;
-struct StateMove;
-struct StateTurn;
-struct StateWait;
-struct StateFixAttack;
-struct StateFixFlick;
-struct StateFixHide;
-struct StateFixStay;
-struct StateFixTurn;
-struct StateFixWait;
+struct StateAttack : public State {
+	virtual void init(EnemyBase*, StateArg*); // _08
+	virtual void exec(EnemyBase*);            // _0C
+	virtual void cleanup(EnemyBase*);         // _10
 
-struct ProperAnimator : public EnemyAnimatorBase {
-	virtual ~ProperAnimator() {};                                     // _00
-	virtual void setAnimMgr(SysShape::AnimMgr*);                      // _04
-	virtual SysShape::Animator& getAnimator() { return m_animator; }; // _08
-	virtual SysShape::Animator& getAnimator(int);                     // _0C
-
-	SysShape::Animator m_animator; // _10
+	// _00		= VTBL
+	// _00-_10 	= EnemyFSMState
 };
+
+struct StateDead : public State {
+	virtual void init(EnemyBase*, StateArg*); // _08
+	virtual void exec(EnemyBase*);            // _0C
+	virtual void cleanup(EnemyBase*);         // _10
+
+	// _00		= VTBL
+	// _00-_10 	= EnemyFSMState
+};
+
+struct StateFlick : public State {
+	virtual void init(EnemyBase*, StateArg*); // _08
+	virtual void exec(EnemyBase*);            // _0C
+	virtual void cleanup(EnemyBase*);         // _10
+
+	// _00		= VTBL
+	// _00-_10 	= EnemyFSMState
+};
+
+struct StateMove : public State {
+	virtual void init(EnemyBase*, StateArg*); // _08
+	virtual void exec(EnemyBase*);            // _0C
+	virtual void cleanup(EnemyBase*);         // _10
+
+	// _00		= VTBL
+	// _00-_10 	= EnemyFSMState
+};
+
+struct StateTurn : public State {
+	virtual void init(EnemyBase*, StateArg*); // _08
+	virtual void exec(EnemyBase*);            // _0C
+	virtual void cleanup(EnemyBase*);         // _10
+
+	// _00		= VTBL
+	// _00-_10 	= EnemyFSMState
+};
+
+struct StateWait : public State {
+	virtual void init(EnemyBase*, StateArg*); // _08
+	virtual void exec(EnemyBase*);            // _0C
+	virtual void cleanup(EnemyBase*);         // _10
+
+	// _00		= VTBL
+	// _00-_10 	= EnemyFSMState
+};
+
+struct StateFixAttack : public State {
+	virtual void init(EnemyBase*, StateArg*); // _08
+	virtual void exec(EnemyBase*);            // _0C
+	virtual void cleanup(EnemyBase*);         // _10
+
+	// _00		= VTBL
+	// _00-_10 	= EnemyFSMState
+};
+
+struct StateFixFlick : public State {
+	virtual void init(EnemyBase*, StateArg*); // _08
+	virtual void exec(EnemyBase*);            // _0C
+	virtual void cleanup(EnemyBase*);         // _10
+
+	// _00		= VTBL
+	// _00-_10 	= EnemyFSMState
+};
+
+struct StateFixHide : public State {
+	virtual void init(EnemyBase*, StateArg*); // _08
+	virtual void exec(EnemyBase*);            // _0C
+	virtual void cleanup(EnemyBase*);         // _10
+
+	// _00		= VTBL
+	// _00-_10 	= EnemyFSMState
+};
+
+struct StateFixStay : public State {
+	virtual void init(EnemyBase*, StateArg*); // _08
+	virtual void exec(EnemyBase*);            // _0C
+	virtual void cleanup(EnemyBase*);         // _10
+
+	// _00		= VTBL
+	// _00-_10 	= EnemyFSMState
+};
+
+struct StateFixTurn : public State {
+	virtual void init(EnemyBase*, StateArg*); // _08
+	virtual void exec(EnemyBase*);            // _0C
+	virtual void cleanup(EnemyBase*);         // _10
+
+	// _00		= VTBL
+	// _00-_10 	= EnemyFSMState
+};
+
+struct StateFixWait : public State {
+	virtual void init(EnemyBase*, StateArg*); // _08
+	virtual void exec(EnemyBase*);            // _0C
+	virtual void cleanup(EnemyBase*);         // _10
+
+	// _00		= VTBL
+	// _00-_10 	= EnemyFSMState
+};
+/////////////////////////////////////////////////////////////////
 } // namespace Kabuto
 
 /* Armored Cannon Beetle Larva */

@@ -3,6 +3,13 @@
 
 #include "Game/EnemyAnimatorBase.h"
 
+/**
+ * --Header for Breadbug Base Class--
+ * Derived classes:
+ * OoPanModoki	= Giant Breadbug
+ * PanModoki	= Breadbug
+ */
+
 namespace Game {
 namespace PanModokiBase {
 struct ProperAnimator : public EnemyAnimatorBase {

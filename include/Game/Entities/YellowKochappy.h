@@ -1,17 +1,17 @@
-#ifndef _GAME_ENTITIES_BLUECHAPPY_H
-#define _GAME_ENTITIES_BLUECHAPPY_H
+#ifndef _GAME_ENTITIES_YELLOWKOCHAPPY_H
+#define _GAME_ENTITIES_YELLOWKOCHAPPY_H
 
 #include "Game/EnemyMgrBase.h"
 #include "Game/EnemyBase.h"
-#include "Game/Entities/ChappyBase.h"
+#include "Game/Entities/KochappyBase.h"
 
 /**
- * --Header for Orange Bulborb (BlueChappy)--
+ * --Header for Dwarf Snowy Bulborb (YellowKochappy)--
  */
 
 namespace Game {
-namespace BlueChappy {
-struct Obj : public ChappyBase::Obj {
+namespace YellowKochappy {
+struct Obj : public KochappyBase::Obj {
 	Obj();
 
 	virtual ~Obj();                                     // _1BC (weak)
@@ -19,10 +19,10 @@ struct Obj : public ChappyBase::Obj {
 	virtual EnemyTypeID::EEnemyTypeID getEnemyTypeID(); // _258 (weak)
 
 	// _00 		= VTBL
-	// _00-_2E4	= ChappyBase::Obj
+	// _00-_2D4	= KochappyBase::Obj
 };
 
-struct Mgr : public ChappyBase::Mgr {
+struct Mgr : public KochappyBase::Mgr {
 	Mgr(int, u8);
 
 	//////////////// VTABLE
@@ -31,19 +31,15 @@ struct Mgr : public ChappyBase::Mgr {
 	virtual EnemyBase* getEnemy(int);                   // _A4 (weak)
 	virtual void doAlloc();                             // _A8
 	virtual EnemyTypeID::EEnemyTypeID getEnemyTypeID(); // _AC (weak)
-	virtual SysShape::Model* createModel();             // _B0
 	virtual void loadTexData();                         // _D0
-	virtual void getChangeTexture0();                   // _E0 (weak)
-	virtual void getChangeTexture1();                   // _E4 (weak)
-	//////////////// VTABLE END
+	virtual void getChangeTexture();                    // _E0 (weak)
+	                                                    //////////////// VTABLE END
 
 	// _00 		= VTBL
 	// _00-_44	= EnemyMgrBase
-	u8 _44[0x8]; // _44, unknown
-	Obj* m_obj;  // _4C, an array of Objs
 };
 
-} // namespace BlueChappy
+} // namespace YellowKochappy
 } // namespace Game
 
 #endif

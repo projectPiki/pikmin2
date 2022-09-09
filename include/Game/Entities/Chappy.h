@@ -1,16 +1,16 @@
-#ifndef _GAME_ENTITIES_BLUECHAPPY_H
-#define _GAME_ENTITIES_BLUECHAPPY_H
+#ifndef _GAME_ENTITIES_CHAPPY_H
+#define _GAME_ENTITIES_CHAPPY_H
 
 #include "Game/EnemyMgrBase.h"
 #include "Game/EnemyBase.h"
 #include "Game/Entities/ChappyBase.h"
 
 /**
- * --Header for Orange Bulborb (BlueChappy)--
+ * --Header for Red Bulborb (Chappy)--
  */
 
 namespace Game {
-namespace BlueChappy {
+namespace Chappy {
 struct Obj : public ChappyBase::Obj {
 	Obj();
 
@@ -31,7 +31,6 @@ struct Mgr : public ChappyBase::Mgr {
 	virtual EnemyBase* getEnemy(int);                   // _A4 (weak)
 	virtual void doAlloc();                             // _A8
 	virtual EnemyTypeID::EEnemyTypeID getEnemyTypeID(); // _AC (weak)
-	virtual SysShape::Model* createModel();             // _B0
 	virtual void loadTexData();                         // _D0
 	virtual void getChangeTexture0();                   // _E0 (weak)
 	virtual void getChangeTexture1();                   // _E4 (weak)
@@ -43,7 +42,7 @@ struct Mgr : public ChappyBase::Mgr {
 	Obj* m_obj;  // _4C, an array of Objs
 };
 
-} // namespace BlueChappy
+} // namespace Chappy
 } // namespace Game
 
 #endif

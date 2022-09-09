@@ -11,6 +11,7 @@
 namespace Game {
 struct EnemyAnimatorBase {
 	EnemyAnimatorBase();
+
 	virtual ~EnemyAnimatorBase() { }                                // _08 (weak)
 	virtual void setAnimMgr(SysShape::AnimMgr* newMgr)         = 0; // _0C
 	virtual SysShape::Animator& getAnimator()                  = 0; // _10

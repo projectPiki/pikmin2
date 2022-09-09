@@ -5,11 +5,16 @@
 #include "Game/EnemyMgrBase.h"
 #include "Game/Entities/KochappyBase.h"
 
+/**
+ * --Header for Water Dumple (Catfish)--
+ */
+
 namespace Game {
 namespace Catfish {
 struct Obj : public KochappyBase::Obj {
 	Obj();
 
+	//////////////// VTABLE
 	// weak function generation in Catfish.cpp requires this ordering
 	virtual void changeMaterial() { }                  // _200 (weak)
 	virtual void onInit(CreatureInitArg*);             // _30
@@ -26,6 +31,7 @@ struct Obj : public KochappyBase::Obj {
 	virtual bool hipdropCallBack(Creature*, float, CollPart*); // _284
 	virtual void resetEnemyNonStone();                         // _300
 	virtual void setEnemyNonStone() { setEvent(0, EB_22); }    // _304 (weak)
+	//////////////// VTABLE END
 
 	void createDownEffect();
 
@@ -36,6 +42,7 @@ struct Obj : public KochappyBase::Obj {
 struct Mgr : public EnemyMgrBase {
 	Mgr(int, u8);
 
+	//////////////// VTABLE
 	virtual ~Mgr() { }                                 // _58 (weak)
 	virtual void createObj(int);                       // _A0
 	virtual EnemyBase* getEnemy(int);                  // _A4
@@ -44,6 +51,7 @@ struct Mgr : public EnemyMgrBase {
 	{
 		return EnemyTypeID::EnemyID_Catfish;
 	}
+	//////////////// VTABLE END
 
 	// _00 		= VTBL
 	// _00-_44	= EnemyMgrBase
