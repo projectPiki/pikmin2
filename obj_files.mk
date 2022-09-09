@@ -218,7 +218,6 @@ JSYSTEM:=\
 	$(BUILD_DIR)/asm/JSystem/JAI/JAIBankWave.o\
 	$(BUILD_DIR)/asm/JSystem/JAI/JAIBasic.o\
 	$(BUILD_DIR)/src/JSystem/JAI/JAIConst.o\
-	$(BUILD_DIR)/asm/JSystem/JAI/JAIConst.o\
 	$(BUILD_DIR)/asm/JSystem/JAI/JAIDummyObject.o\
 	$(BUILD_DIR)/asm/JSystem/JAI/JAIFx.o\
 	$(BUILD_DIR)/asm/JSystem/JAI/JAIGlobalParameter.o\

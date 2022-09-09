@@ -229,6 +229,7 @@ pikmin2.usa.dol: `sha1: 90d328bf8f190c90472e8c19e7e53c6ad0fe0d1a`
 	- <a href="https://github.com/projectPiki/pikmin2/tree/main/src/JSystem/J3D/J3DUDL.cpp">JSystem/J3D/J3DUDL.cpp</a>
 	- <a href="https://github.com/projectPiki/pikmin2/tree/main/src/JSystem/J3D/J3DUShadow.cpp">JSystem/J3D/J3DUShadow.cpp</a>
 	- <a href="https://github.com/projectPiki/pikmin2/tree/main/src/JSystem/JAD/JADHioNode.cpp">JSystem/JAD/JADHioNode.cpp</a>
+	- <a href="https://github.com/projectPiki/pikmin2/tree/main/src/JSystem/JAI/JAIConst.cpp">JSystem/JAI/JAIConst.cpp</a>
 	- <a href="https://github.com/projectPiki/pikmin2/tree/main/src/JSystem/JAS/JASBank.cpp">JSystem/JAS/JASBank.cpp</a>
 	- <a href="https://github.com/projectPiki/pikmin2/tree/main/src/JSystem/JAS/JASInstEffect.cpp">JSystem/JAS/JASInstEffect.cpp</a>
 	- <a href="https://github.com/projectPiki/pikmin2/tree/main/src/JSystem/JAS/JASWaveBank.cpp">JSystem/JAS/JASWaveBank.cpp</a>
@@ -278,5 +279,4 @@ pikmin2.usa.dol: `sha1: 90d328bf8f190c90472e8c19e7e53c6ad0fe0d1a`
 	- <a href="https://github.com/projectPiki/pikmin2/tree/main/src/plugProjectYamashitaU/carryInfoMgr.cpp" >plugProjectYamashitaU/carryInfoMgr.cpp</a>
 - JSystem
 	- <a href="https://github.com/projectPiki/pikmin2/tree/main/src/JSystem/J2D/J2DManage.cpp" >JSystem/J2D/J2DManage.cpp</a>
-	- <a href="https://github.com/projectPiki/pikmin2/tree/main/src/JSystem/JAI/JAIConst.cpp" >JSystem/JAI/JAIConst.cpp</a>
 	- <a href="https://github.com/projectPiki/pikmin2/tree/main/src/JSystem/JAL/JALCalc.cpp" >JSystem/JAL/JALCalc.cpp</a>

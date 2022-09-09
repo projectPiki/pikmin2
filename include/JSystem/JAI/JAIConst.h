@@ -3,20 +3,18 @@
 
 #include "types.h"
 #include "JSystem/JAI/JAInter.h"
+#include "JSystem/JMath.h"
 
 namespace JAInter {
 namespace Const {
-Vec dummyZeroVec = { 0, 0, 0 };
-u32 sCInfos_0[8] = { 0x04020402, 0x04020402, 0x04020402, 0x04020402, 0x04020402, 0x04020402, 0x04020402, 0x04020402 };
-/*
-Camera nullCamera;
-Actor nullActor;
-// Actor nullActor { m_flag.boolView[0] = true };
-Mtx camMtx;
-Vec camTrans;
-Vec camPreTrans;
-u32 random;
-*/
+extern Vec dummyZeroVec;
+extern u32 sCInfos_0[8];
+extern Vec camPreTrans;
+extern Vec camTrans;
+extern Mtx camMtx;
+extern Camera nullCamera;
+extern Actor nullActor;
+extern JMath::TRandom_fast_ random;
 } // namespace Const
 } // namespace JAInter
 #endif

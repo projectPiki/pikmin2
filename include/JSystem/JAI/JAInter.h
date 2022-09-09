@@ -16,6 +16,20 @@ struct CustomHeapInfo {
 } // namespace SequenceMgr
 
 struct Actor {
+	inline Actor(Vec* vec1, Vec* vec2, Vec* vec3, u32 unk)
+	{
+		m_vec1 = vec1;
+		m_vec2 = vec2;
+		m_vec3 = vec3;
+		m_unk  = unk;
+		// Actual condition is unknown
+		if (m_vec1 == nullptr) {
+			m_flag.boolView[0] = true;
+		} else {
+			m_flag.boolView[0] = true;
+		}
+	}
+
 	Vec* m_vec1; // _00
 	Vec* m_vec2; // _04
 	Vec* m_vec3; // _08
@@ -28,6 +42,13 @@ struct Actor {
 };
 
 struct Camera {
+	inline Camera(Vec& vec1, Vec& vec2, Mtx& mtx)
+	{
+		m_vec1 = &vec1;
+		m_vec2 = &vec2;
+		m_mtx  = &mtx;
+	}
+
 	Vec* m_vec1; // _00
 	Vec* m_vec2; // _04
 	Mtx* m_mtx;  // _08
