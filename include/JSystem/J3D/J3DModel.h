@@ -10,6 +10,7 @@
 #include "JSystem/J3D/J3DTypes.h"
 #include "JSystem/J3D/J3DVertexBuffer.h"
 #include "JSystem/JGeometry.h"
+#include "JSystem/J3D/J3DPacket.h"
 
 struct J3DDeformData;
 struct J3DMatPacket;
@@ -33,6 +34,10 @@ struct J3DModelData {
 	void makeSharedDL();
 	void simpleCalcMaterial(u16, Mtx*);
 	void syncJ3DSysFlags() const;
+
+	inline u16 getShapeCount() { return m_shapeTable.m_count; }
+
+	inline u16 getMaterialCount1() { return m_materialTable.m_count1; }
 
 	// VTBL _00
 	u8* m_bmd;                        // _04
@@ -59,13 +64,13 @@ struct J3DModel {
 		initialize();
 		entryModelData(data, p2, modelType);
 	}
-	virtual void update();         // _00
-	virtual void entry();          // _04
-	virtual void calc();           // _08
-	virtual void calcMaterial();   // _0C
-	virtual void calcDiffTexMtx(); // _10
-	virtual void viewCalc();       // _14
-	virtual ~J3DModel();           // _18
+	virtual void update();         // _08
+	virtual void entry();          // _0C
+	virtual void calc();           // _10
+	virtual void calcMaterial();   // _14
+	virtual void calcDiffTexMtx(); // _18
+	virtual void viewCalc();       // _1C
+	virtual ~J3DModel();           // _20
 
 	void initialize();
 	void entryModelData(J3DModelData*, unsigned long, unsigned long);
@@ -91,7 +96,7 @@ struct J3DModel {
 	u32 _14;                         // _14
 	JGeometry::TVec3f m_modelScale;  // _18
 	Mtx _24;                         // _24
-	J3DMtxCalc* _54;                 // _54
+	Mtx _54;                         // _54
 	J3DMtxBuffer* m_mtxBuffer;       // _84
 	J3DVertexBuffer m_vertexBuffer;  // _88
 	J3DMatPacket* m_matPackets;      // _C0

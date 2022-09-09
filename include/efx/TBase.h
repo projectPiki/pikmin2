@@ -8,15 +8,17 @@
 #include "types.h"
 
 ///////// EFFECT IDS
-#define EID_EnemyPiyo (0x291)
-#define EID_Sync      (0x2B2)
+#define EID_KkabutoRot  (0x287)
+#define EID_KkabutoWait (0x288)
+#define EID_EnemyPiyo   (0x291)
+#define EID_Sync        (0x2B2)
 /////////
 
 namespace efx {
 struct TBase {
-	virtual bool create(Arg*) = 0; // _00
-	virtual void forceKill()  = 0; // _04
-	virtual void fade()       = 0; // _08
+	virtual bool create(Arg*) = 0; // _08
+	virtual void forceKill()  = 0; // _0C
+	virtual void fade()       = 0; // _10
 
 	static TCallBack_StaticClipping mCallBack_StaticClipping;
 
