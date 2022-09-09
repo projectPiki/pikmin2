@@ -54,7 +54,7 @@ void Mgr::loadTexData()
 	LoadResource::Node* resource = gLoadResourceMgr->load(loadArg);
 
 	if (resource != nullptr) {
-		m_changeTexture = (ResTIMG*)resource->_30;
+		m_changeTexture = static_cast<ResTIMG*>(resource->_30);
 	}
 
 	P2ASSERTLINE(82, m_changeTexture != nullptr);

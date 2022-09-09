@@ -5,6 +5,33 @@
 #include "types.h"
 
 struct ResTIMG {
+
+	inline void copyTo(ResTIMG* dest)
+	{
+		dest->m_textureFormat     = m_textureFormat;
+		dest->m_transparency      = m_transparency;
+		dest->m_sizeX             = m_sizeX;
+		dest->m_sizeY             = m_sizeY;
+		dest->m_wrapS             = m_wrapS;
+		dest->m_wrapT             = m_wrapT;
+		dest->m_paletteFormat     = m_paletteFormat;
+		dest->m_lutFormat         = m_lutFormat;
+		dest->m_paletteEntryCount = m_paletteEntryCount;
+		dest->m_paletteOffset     = m_paletteOffset;
+		dest->_10                 = _10;
+		dest->_11                 = _11;
+		dest->_12                 = _12;
+		dest->_13                 = _13;
+		dest->m_magFilterType     = m_magFilterType;
+		dest->m_minFilterType     = m_minFilterType;
+		dest->_16                 = _16;
+		dest->_17                 = _17;
+		dest->m_totalImageCount   = m_totalImageCount;
+		dest->_19                 = _19;
+		dest->_1A                 = _1A;
+		dest->m_imageDataOffset   = m_imageDataOffset;
+	}
+
 	u8 m_textureFormat;      // _00
 	u8 m_transparency;       // _01
 	u16 m_sizeX;             // _02

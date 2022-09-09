@@ -36,32 +36,12 @@ void Obj::changeMaterial()
 	ResTIMG* texture   = static_cast<Mgr*>(m_mgr)->getChangeTexture();
 
 	j3dModel->calcMaterial();
+
 	ResTIMG* newTexture;
 	J3DTexture* j3dTexture = m_model->m_j3dModel->m_modelData->m_materialTable.m_texture;
 	newTexture             = j3dTexture->_04;
 
-	newTexture->m_textureFormat     = texture->m_textureFormat;
-	newTexture->m_transparency      = texture->m_transparency;
-	newTexture->m_sizeX             = texture->m_sizeX;
-	newTexture->m_sizeY             = texture->m_sizeY;
-	newTexture->m_wrapS             = texture->m_wrapS;
-	newTexture->m_wrapT             = texture->m_wrapT;
-	newTexture->m_paletteFormat     = texture->m_paletteFormat;
-	newTexture->m_lutFormat         = texture->m_lutFormat;
-	newTexture->m_paletteEntryCount = texture->m_paletteEntryCount;
-	newTexture->m_paletteOffset     = texture->m_paletteOffset;
-	newTexture->_10                 = texture->_10;
-	newTexture->_11                 = texture->_11;
-	newTexture->_12                 = texture->_12;
-	newTexture->_13                 = texture->_13;
-	newTexture->m_magFilterType     = texture->m_magFilterType;
-	newTexture->m_minFilterType     = texture->m_minFilterType;
-	newTexture->_16                 = texture->_16;
-	newTexture->_17                 = texture->_17;
-	newTexture->m_totalImageCount   = texture->m_totalImageCount;
-	newTexture->_19                 = texture->_19;
-	newTexture->_1A                 = texture->_1A;
-	newTexture->m_imageDataOffset   = texture->m_imageDataOffset;
+	texture->copyTo(newTexture);
 
 	j3dTexture->setImageOffset((u32)texture);
 	j3dTexture->setPaletteOffset((u32)texture);
@@ -81,8 +61,8 @@ void Obj::changeMaterial()
  */
 void Obj::createEffect()
 {
-	m_efxRot  = new efx::TKkabutoRot(0x287, &m_position);
-	m_efxWait = new efx::TKkabutoWait(0x288, &m_position);
+	m_efxRot  = new efx::TKkabutoRot(EID_KkabutoRot, &m_position);
+	m_efxWait = new efx::TKkabutoWait(EID_KkabutoWait, &m_position);
 }
 
 /*

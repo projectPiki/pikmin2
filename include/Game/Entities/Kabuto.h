@@ -9,11 +9,13 @@
 #include "JSystem/J3D/J3DModel.h"
 #include "efx/TKkabuto.h"
 
-////////// Header for Cannon Beetles
-// Kabuto 		= Base Class for Cannon Beetle
-// GreenKabuto  = Armored Cannon Beetle Larva
-// RedKabuto 	= Decorated Cannon Beetle
-// FixKabuto	= Buried Cannon Beetle Larva
+/**
+ * --Header for Cannon Beetles--
+ * Kabuto 		= Base Class for Cannon Beetle
+ * GreenKabuto  = Armored Cannon Beetle Larva
+ * RedKabuto 	= Decorated Cannon Beetle
+ * FixKabuto	= Buried Cannon Beetle Larva
+ */
 
 struct ResTIMG;
 
@@ -25,6 +27,7 @@ struct FSM;
 struct Obj : public EnemyBase {
 	Obj();
 
+	//////////////// VTABLE
 	virtual void onInit(CreatureInitArg*);                  // _30
 	virtual void doDirectDraw(Graphics&);                   // _50
 	virtual bool isUnderground();                           // _D0 (weak)
@@ -52,6 +55,7 @@ struct Obj : public EnemyBase {
 	virtual void finishWaitEffect();                        // _310 (weak)
 	virtual void effectDrawOn();                            // _314 (weak)
 	virtual void effectDrawOff();                           // _318 (weak)
+	//////////////// VTABLE END
 
 	void setRandTarget();
 	void getSearchedTarget();
@@ -72,7 +76,6 @@ struct Obj : public EnemyBase {
 	float _2DC;                          // _2DC
 	u8 _2E0;                             // _2E0, unknown
 	bool m_isUnderground;                // _2E1
-	u8 _2E2[0x2];                        // _2E2, unknown/probably padding
 	                                     // _2E4 = PelletView
 };
 
@@ -115,7 +118,7 @@ struct Parms : public EnemyParmsBase {
 	}
 
 	// _00-_7F8	= EnemyParmsBase
-	ParmParms m_kabutoParms;
+	ParmParms m_kabutoParms; // _7F8
 };
 
 struct FSM : public EnemyStateMachine {
@@ -130,28 +133,18 @@ struct State : public EnemyFSMState {
 	// _00-_10 	= EnemyFSMState
 };
 
+// TODO: fill these out
 struct StateAttack;
-
 struct StateDead;
-
 struct StateFlick;
-
 struct StateMove;
-
 struct StateTurn;
-
 struct StateWait;
-
 struct StateFixAttack;
-
 struct StateFixFlick;
-
 struct StateFixHide;
-
 struct StateFixStay;
-
 struct StateFixTurn;
-
 struct StateFixWait;
 
 struct ProperAnimator : public EnemyAnimatorBase {
@@ -164,7 +157,7 @@ struct ProperAnimator : public EnemyAnimatorBase {
 };
 } // namespace Kabuto
 
-////////// Armored Cannon Beetle Larva
+/* Armored Cannon Beetle Larva */
 namespace GreenKabuto {
 struct Obj : public Kabuto::Obj {
 	Obj();
@@ -204,7 +197,7 @@ struct Mgr : public Kabuto::Mgr {
 };
 } // namespace GreenKabuto
 
-////////// Decorated Cannon Beetle
+/* Decorated Cannon Beetle */
 namespace RedKabuto {
 struct Obj : public Kabuto::Obj {
 	Obj();
@@ -244,7 +237,7 @@ struct Mgr : public Kabuto::Mgr {
 };
 } // namespace RedKabuto
 
-////////// Armored Cannon Beetle Larva (Buried)
+/* Buried Cannon Beetle Larva */
 namespace FixKabuto {
 struct Obj : public Kabuto::Obj {
 	Obj();

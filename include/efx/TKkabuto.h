@@ -13,6 +13,9 @@ struct TKkabutoRot : public TChasePos {
 	// vtable 1 (TBase)
 	// vtable 2 (JPAEmitterCallBack + Self)
 	virtual ~TKkabutoRot() { } // _48 (weak)
+
+	// _00		= VTBL
+	// _00-_14  = TChasePos
 };
 
 struct TKkabutoWait : public TChasePos {
@@ -24,6 +27,9 @@ struct TKkabutoWait : public TChasePos {
 	// vtable 1 (TBase)
 	// vtable 2 (JPAEmitterCallBack + Self)
 	virtual ~TKkabutoWait() { } // _48 (weak)
+
+	// _00		= VTBL
+	// _00-_14  = TChasePos
 };
 } // namespace efx
 
