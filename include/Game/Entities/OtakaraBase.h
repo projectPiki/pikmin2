@@ -8,7 +8,7 @@
 #include "Game/EnemyBase.h"
 
 /**
- * --Header for Dweevil Base Class--
+ * --Header for Dweevil Base Class (OtakaraBase)--
  * Derived classes:
  * BombOtakara		= Volatile Dweevil
  * ElecOtakara		= Anode Dweevil

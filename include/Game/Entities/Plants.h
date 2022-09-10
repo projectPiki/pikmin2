@@ -2,9 +2,10 @@
 #define _GAME_ENTITIES_PLANTS_H
 
 #include "Game/EnemyAnimatorBase.h"
+#include "Game/EnemyBase.h"
 
 /**
- * --Header for Plant Base Class--
+ * --Header for Plant Base Class (Plants)--
  * Derived classes:
  * Chiyogami		= Chiyogami Paper
  * Clover			= Clover
@@ -27,6 +28,39 @@
 
 namespace Game {
 namespace Plants {
+struct Obj : public EnemyBase {
+	Obj();
+
+	//////////////// VTABLE
+	virtual void onInit(CreatureInitArg*);                  // _30
+	virtual void doAnimation();                             // _3C
+	virtual void doSimulation(f32);                         // _4C (weak)
+	virtual bool isLivingThing();                           // _D4 (weak)
+	virtual void collisionCallback(CollEvent&);             // _EC
+	virtual bool ignoreAtari(Creature*);                    // _190 (weak)
+	virtual ~Obj();                                         // _1BC (weak)
+	virtual void birth(Vector3f&, f32);                     // _1C0
+	virtual void setInitialSetting(EnemyInitialParamBase*); // _1C4 (weak)
+	virtual void update();                                  // _1C8
+	virtual void doUpdate();                                // _1CC (weak)
+	virtual void doUpdateCommon();                          // _1D0 (weak)
+	virtual void doAnimationCullingOff();                   // _1DC
+	virtual void doDebugDraw(Graphics&);                    // _1EC
+	virtual void setParameters();                           // _228
+	virtual EnemyTypeID::EEnemyTypeID getEnemyTypeID() = 0; // _258
+	virtual bool earthquakeCallBack(Creature*, f32);        // _28C
+	virtual void touched();                                 // _2F8
+	virtual void touchedSE(Navi*);                          // _2FC
+	//////////////// VTABLE END
+
+	// _00 		= VTBL
+	// _00-_2BC	= EnemyBase
+	u8 _2BC;                  // _2BC, unknown
+	u8 _2BD;                  // _2BD, unknown
+	bool m_spawnsSpectralids; // _2BE, spawns spectralids on touch
+	                          // _2BF = PelletView
+};
+
 struct ProperAnimator : public EnemyAnimatorBase {
 	virtual ~ProperAnimator() { }                                    // _08 (weak)
 	virtual void setAnimMgr(SysShape::AnimMgr*);                     // _0C

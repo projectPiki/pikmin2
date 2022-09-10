@@ -144,7 +144,7 @@ struct Obj : public EnemyBase {
 	efx::TDamaSmoke* _3D0[3];                // _3D0
 	efx::TOdamaHahen* _3DC[3][4];            // _3DC
 	efx::TDamaDeadElecA* _40C[3][4];         // _40C
-	efx::TDamaDeadElecA* _43C[2][4];         // _43C
+	efx::TDamaDeadElecB* _43C[2][4];         // _43C
 	efx::TOdamaDeadHahenA* _45C[2][4];       // _45C
 	efx::TOdamaDeadHahenB* _47C[4];          // _47C
 	efx::TOdamaDeadHahenC1* _48C;            // _48C
