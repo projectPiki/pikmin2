@@ -124,7 +124,7 @@ struct Mgr : public EnemyMgrBase {
 	// _00-_44	= EnemyMgrBase
 	Sys::MatTexAnimation* _44;    // _44, probably, based on Hanachirashi
 	Sys::MatTevRegAnimation* _48; // _48, probably, based on Hanachirashi
-	Obj* m_obj;                   // _44, array of Objs
+	Obj* m_obj;                   // _4C, array of Objs
 };
 
 struct Parms : public EnemyParmsBase {

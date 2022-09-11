@@ -1,21 +1,32 @@
 #ifndef _GAME_ENTITIES_MINIHOUDAI_H
 #define _GAME_ENTITIES_MINIHOUDAI_H
 
+#include "Game/EnemyStateMachine.h"
 #include "Game/EnemyAnimatorBase.h"
-#include "Game/EnemyBase.h"
+#include "Game/EnemyParmsBase.h"
 #include "Game/EnemyMgrBase.h"
+#include "Game/EnemyBase.h"
 #include "Game/WalkSmokeEffect.h"
+
+/**
+ * --Header for Gatling Groinks (MiniHoudai)--
+ * MiniHoudai 		= Groink Base Class
+ * NormMiniHoudai	= Gatling Groink (Roaming)
+ * FixMiniHoudai	= Tower Groink (Fixed)
+ */
+
+struct J3DJoint;
 
 namespace efx {
 struct TChibiCharge;
 struct TChibiDeadLight;
+struct TChibiShell;
 } // namespace efx
 
 namespace Game {
 struct WayPoint;
 
 namespace MiniHoudai {
-
 enum MiniHoudaiStateID {
 	DEAD      = 0,
 	REBIRTH   = 1,
@@ -37,34 +48,34 @@ struct Obj : public EnemyBase {
 	Obj();
 
 	////////// VTABLE
-	virtual void onInit(CreatureInitArg*);                    // _30
-	virtual void onKill(CreatureKillArg*);                    // _34
-	virtual void doDirectDraw(Graphics&);                     // _50
-	virtual void getShadowParam(ShadowParam&);                // _134
-	virtual ~Obj();                                           // _1BC (weak)
-	virtual void setInitialSetting(EnemyInitialParamBase*);   // _1C4
-	virtual void doUpdate();                                  // _1CC
-	virtual void doUpdateCommon();                            // _1D0
-	virtual void doUpdateCarcass();                           // _1D4
-	virtual void doAnimationCullingOff();                     // _1DC
-	virtual void doDebugDraw(Graphics&);                      // _1EC
-	virtual void initWalkSmokeEffect();                       // _230
-	virtual WalkSmokeEffect::Mgr* getWalkSmokeEffectMgr();    // _234
-	virtual EnemyTypeID::EEnemyTypeID getEnemyTypeID();       // _258 (weak)
-	virtual void doGetLifeGaugeParam(LifeGaugeParam&);        // _260
-	virtual bool damageCallBack(Creature*, float, CollPart*); // _278
-	virtual void doStartStoneState();                         // _2A4
-	virtual void doFinishStoneState();                        // _2A8
-	virtual void doStartEarthquakeFitState();                 // _2B8
-	virtual void doFinishEarthquakeFitState();                // _2BC
-	virtual void startCarcassMotion();                        // _2C4
-	virtual bool doBecomeCarcass();                           // _2D0
-	virtual void doStartWaitingBirthTypeDrop();               // _2E0
-	virtual void doFinishWaitingBirthTypeDrop();              // _2E4
-	virtual float getDownSmokeScale();                        // _2EC (weak)
-	virtual void doStartMovie();                              // _2F0
-	virtual void doEndMovie();                                // _2F4
-	virtual void setFSM(FSM*);                                // _2F8
+	virtual void onInit(CreatureInitArg*);                  // _30
+	virtual void onKill(CreatureKillArg*);                  // _34
+	virtual void doDirectDraw(Graphics&);                   // _50
+	virtual void getShadowParam(ShadowParam&);              // _134
+	virtual ~Obj();                                         // _1BC (weak)
+	virtual void setInitialSetting(EnemyInitialParamBase*); // _1C4
+	virtual void doUpdate();                                // _1CC
+	virtual void doUpdateCommon();                          // _1D0
+	virtual void doUpdateCarcass();                         // _1D4
+	virtual void doAnimationCullingOff();                   // _1DC
+	virtual void doDebugDraw(Graphics&);                    // _1EC
+	virtual void initWalkSmokeEffect();                     // _230
+	virtual WalkSmokeEffect::Mgr* getWalkSmokeEffectMgr();  // _234
+	virtual EnemyTypeID::EEnemyTypeID getEnemyTypeID();     // _258 (weak)
+	virtual void doGetLifeGaugeParam(LifeGaugeParam&);      // _260
+	virtual bool damageCallBack(Creature*, f32, CollPart*); // _278
+	virtual void doStartStoneState();                       // _2A4
+	virtual void doFinishStoneState();                      // _2A8
+	virtual void doStartEarthquakeFitState();               // _2B8
+	virtual void doFinishEarthquakeFitState();              // _2BC
+	virtual void startCarcassMotion();                      // _2C4
+	virtual bool doBecomeCarcass();                         // _2D0
+	virtual void doStartWaitingBirthTypeDrop();             // _2E0
+	virtual void doFinishWaitingBirthTypeDrop();            // _2E4
+	virtual float getDownSmokeScale();                      // _2EC (weak)
+	virtual void doStartMovie();                            // _2F0
+	virtual void doEndMovie();                              // _2F4
+	virtual void setFSM(FSM*);                              // _2F8
 	////////// VTABLE END
 
 	void updateCaution();
@@ -94,7 +105,7 @@ struct Obj : public EnemyBase {
 	void setupEffect();
 	void createSmokeSmallEffect(bool);
 	void createSmokeLargeEffect();
-	void createDownEffect(float);
+	void createDownEffect(f32);
 	void startChargeEffect();
 	void finishChargeEffect();
 	void createDeadLightEffect();
@@ -104,7 +115,7 @@ struct Obj : public EnemyBase {
 
 	// _00 		= VTBL
 	// _00-_2B8	= EnemyBase
-	FSM* m_houdaiFSM;                     // _2BC
+	FSM* m_FSM;                           // _2BC
 	WalkSmokeEffect::Mgr m_walkSmokeMgr;  // _2C0
 	float _2C8;                           // _2C8, caution?
 	float _2CC;                           // _2CC
@@ -125,22 +136,203 @@ struct Mgr : public EnemyMgrBase {
 
 	virtual ~Mgr();                                     // _58 (weak)
 	virtual EnemyTypeID::EEnemyTypeID getEnemyTypeID(); // _AC (weak)
-	virtual J3DModelData* loadModelData();              // _C8
+	virtual void loadModelData();                       // _C8
 	virtual void loadAnimData();                        // _CC
 	virtual J3DModelData* doLoadBmd(void*);             // _D4 (weak)
+
+	// _00 		= VTBL
+	// _00-_44	= EnemyMgrBase
+};
+
+struct Parms : public EnemyParmsBase {
+	struct ProperParms : public Parameters {
+		inline ProperParms(); // likely
+
+		Parm<f32> _804; // _804, type unsure
+		Parm<f32> _82C; // _82C, type unsure
+	};
+
+	Parms();
+
+	virtual void read(Stream&); // _08 (weak)
+
+	// _00-_7F8	= EnemyParmsBase
+	ProperParms m_properParms; // _7F8
 };
 
 struct ProperAnimator : public EnemyAnimatorBase {
-	virtual ~ProperAnimator() {};                                     // _08
-	virtual void setAnimMgr(SysShape::AnimMgr*);                      // _0C
-	virtual SysShape::Animator& getAnimator() { return m_animator; }; // _10
-	virtual SysShape::Animator& getAnimator(int);                     // _14
+	virtual ~ProperAnimator() { }                                    // _08 (weak)
+	virtual void setAnimMgr(SysShape::AnimMgr*);                     // _0C
+	virtual SysShape::Animator& getAnimator() { return m_animator; } // _10 (weak)
+	virtual SysShape::Animator& getAnimator(int);                    // _14
 
+	// _00 		= VTBL
+	// _00-_10	= EnemyAnimatorBase
 	SysShape::Animator m_animator; // _10
 };
 
+struct MiniHoudaiShotGunNode : public CNode {
+	virtual ~MiniHoudaiShotGunNode(); // _08 (weak)
+
+	void update();
+
+	// _00		= VTBL
+	// _00-_18 	= CNode
+	u8 _18;                       // _18
+	Obj* m_owner;                 // _1C
+	efx::TChibiShell* m_efxShell; // _20
+	Vector3f _24;                 // _24
+	Vector3f _30;                 // _30
+};
+
+struct MiniHoudaiShotGunMgr {
+	MiniHoudaiShotGunMgr(Obj*);
+
+	void setupShotGun();
+	void resetCallBack();
+	void setCallBack();
+	void startRotation();
+	void finishRotation();
+	bool isShotGunRotation();
+	bool isShotGunLockOn();
+	bool isFinishShotGun();
+	void setShotGunTarget(Vector3f&);
+	void emitShotGun();
+	void doUpdate();
+	void doUpdateCommon();
+	void forceFinishShotGun();
+	Vector3f getShotGunPosition();
+	void searchShotGunRotation();
+	void returnShotGunRotation();
+	void rotateVertical(J3DJoint*);
+	void effectDrawOn();
+	void effectDrawOff();
+
+	Obj* m_owner;               // _00
+	u8 _04[0xC];                // _04, unknown
+	Matrixf* _10;               // _10
+	Vector3f m_targetPosition;  // _14
+	u8 _20[0xC];                // _20, unknown
+	MiniHoudaiShotGunNode* _2C; // _2C
+	MiniHoudaiShotGunNode* _30; // _30
+};
+
+/////////////////////////////////////////////////////////////////
+// STATE MACHINE DEFINITIONS
+struct FSM : public EnemyStateMachine {
+	virtual void init(EnemyBase*); // _08
+
+	// _00		= VTBL
+	// _00-_1C	= EnemyStateMachine
+};
+
+struct State : public EnemyFSMState {
+	// _00		= VTBL
+	// _00-_10 	= EnemyFSMState
+};
+
+struct StateAttack : public State {
+	virtual void init(EnemyBase*, StateArg*); // _08
+	virtual void exec(EnemyBase*);            // _0C
+	virtual void cleanup(EnemyBase*);         // _10
+
+	// _00		= VTBL
+	// _00-_10 	= EnemyFSMState
+};
+
+struct StateDead : public State {
+	virtual void init(EnemyBase*, StateArg*); // _08
+	virtual void exec(EnemyBase*);            // _0C
+	virtual void cleanup(EnemyBase*);         // _10
+
+	// _00		= VTBL
+	// _00-_10 	= EnemyFSMState
+};
+
+struct StateFlick : public State {
+	virtual void init(EnemyBase*, StateArg*); // _08
+	virtual void exec(EnemyBase*);            // _0C
+	virtual void cleanup(EnemyBase*);         // _10
+
+	// _00		= VTBL
+	// _00-_10 	= EnemyFSMState
+};
+
+struct StateLost : public State {
+	virtual void init(EnemyBase*, StateArg*); // _08
+	virtual void exec(EnemyBase*);            // _0C
+	virtual void cleanup(EnemyBase*);         // _10
+
+	// _00		= VTBL
+	// _00-_10 	= EnemyFSMState
+};
+
+struct StateRebirth : public State {
+	virtual void init(EnemyBase*, StateArg*); // _08
+	virtual void exec(EnemyBase*);            // _0C
+	virtual void cleanup(EnemyBase*);         // _10
+
+	// _00		= VTBL
+	// _00-_10 	= EnemyFSMState
+};
+
+struct StateTurn : public State {
+	virtual void init(EnemyBase*, StateArg*); // _08
+	virtual void exec(EnemyBase*);            // _0C
+	virtual void cleanup(EnemyBase*);         // _10
+
+	// _00		= VTBL
+	// _00-_10 	= EnemyFSMState
+};
+
+struct StateTurnHome : public State {
+	virtual void init(EnemyBase*, StateArg*); // _08
+	virtual void exec(EnemyBase*);            // _0C
+	virtual void cleanup(EnemyBase*);         // _10
+
+	// _00		= VTBL
+	// _00-_10 	= EnemyFSMState
+};
+
+struct StateTurnPath : public State {
+	virtual void init(EnemyBase*, StateArg*); // _08
+	virtual void exec(EnemyBase*);            // _0C
+	virtual void cleanup(EnemyBase*);         // _10
+
+	// _00		= VTBL
+	// _00-_10 	= EnemyFSMState
+};
+
+struct StateWalk : public State {
+	virtual void init(EnemyBase*, StateArg*); // _08
+	virtual void exec(EnemyBase*);            // _0C
+	virtual void cleanup(EnemyBase*);         // _10
+
+	// _00		= VTBL
+	// _00-_10 	= EnemyFSMState
+};
+
+struct StateWalkHome : public State {
+	virtual void init(EnemyBase*, StateArg*); // _08
+	virtual void exec(EnemyBase*);            // _0C
+	virtual void cleanup(EnemyBase*);         // _10
+
+	// _00		= VTBL
+	// _00-_10 	= EnemyFSMState
+};
+
+struct StateWalkPath : public State {
+	virtual void init(EnemyBase*, StateArg*); // _08
+	virtual void exec(EnemyBase*);            // _0C
+	virtual void cleanup(EnemyBase*);         // _10
+
+	// _00		= VTBL
+	// _00-_10 	= EnemyFSMState
+};
+/////////////////////////////////////////////////////////////////
 } // namespace MiniHoudai
 
+/* Tower Groink */
 namespace FixMiniHoudai {
 struct Obj : public MiniHoudai::Obj {
 	Obj();
@@ -167,6 +359,7 @@ struct Mgr : public MiniHoudai::Mgr {
 };
 } // namespace FixMiniHoudai
 
+/* Roaming Groink */
 namespace NormMiniHoudai {
 struct Obj : public MiniHoudai::Obj {
 	Obj();

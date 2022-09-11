@@ -110,7 +110,7 @@ struct Mgr : public EnemyMgrBase {
 	// _00-_44	= EnemyMgrBase
 	Sys::MatTexAnimation* _44;    // _44
 	Sys::MatTevRegAnimation* _48; // _48
-	Obj* m_obj;                   // _44, array of Objs, probably
+	Obj* m_obj;                   // _4C, array of Objs, probably
 };
 
 struct Parms : public EnemyParmsBase {

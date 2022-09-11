@@ -213,7 +213,7 @@ struct ProperAnimator : public EnemyBlendAnimatorBase {
 	virtual ~ProperAnimator() { } // _08 (weak)
 
 	// _00		= VTABLE
-	// _04-_60	= EnemyBlendAnimatorBase
+	// _00-_60	= EnemyBlendAnimatorBase
 };
 
 /////////////////////////////////////////////////////////////////

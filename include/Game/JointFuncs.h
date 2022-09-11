@@ -13,6 +13,17 @@ struct JointGroundCallBack {
 	virtual void invokeOffGround(int, WaterBox*); // _0C
 };
 
+struct JointShadowParm {
+	Vector3f _00; // _00
+	f32 _0C;      // _0C
+	f32 _10;      // _10
+	f32 _14;      // _14
+	f32 _18;      // _18
+	f32 _1C;      // _1C
+	f32 _20;      // _20
+	f32 _24;      // _24
+};
+
 struct JointShadowNode : public CNode {
 	JointShadowNode();
 
