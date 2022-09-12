@@ -5,15 +5,14 @@
 #include "Game/EnemyParmsBase.h"
 #include "Game/EnemyStateMachine.h"
 #include "SysShape/Animator.h"
-#include "types.h"
-#include "CNode.h"
-#include "id32.h"
-#include "Graphics.h"
-#include "stream.h"
 #include "Game/gameGenerator.h"
 #include "Game/EnemyBase.h"
 #include "Game/EnemyMgrBase.h"
 #include "Game/PelletNumber.h"
+
+/**
+ * --Header for Pellet Posies (Pelplant)--
+ */
 
 namespace Game {
 namespace PelletNumber {
@@ -21,15 +20,6 @@ struct Object;
 } // namespace PelletNumber
 
 namespace Pelplant {
-
-/**
- * @size{0x4}
- */
-struct BlendAccelerationFunc : SysShape::BlendFunction {
-	virtual float getValue(float); // _08
-
-	// _00		= VTABLE
-};
 
 /**
  * @size{0x1C}
@@ -98,6 +88,8 @@ struct Obj : public EnemyBase {
 	// Inlined:
 	void getNeckScale(Vector3f*);
 
+	static Obj* sCurrentObj;
+
 	// Creature: 		_000 - _178
 	// MotionListener: 	_178 - _17C
 	// PelletView*: 	_17C - _180
@@ -111,9 +103,7 @@ struct Obj : public EnemyBase {
 	u8 _2D4;                              // _2D4
 	u8 m_pelletSize;                      // _2D5
 	s8 m_farmPow;                         // _2D6
-	                                      // PelletView: _2D8 - _2E4
-
-	static Obj* sCurrentObj;
+	                                      // PelletView: _2D8
 };
 
 /**
@@ -202,6 +192,15 @@ struct Generator : public EnemyGeneratorBase {
 };
 
 /**
+ * @size{0x4}
+ */
+struct BlendAccelerationFunc : public SysShape::BlendFunction {
+	virtual float getValue(float); // _08
+
+	// _00		= VTABLE
+};
+
+/**
  * @size{0x60}
  */
 struct ProperAnimator : public EnemyBlendAnimatorBase {
@@ -211,16 +210,14 @@ struct ProperAnimator : public EnemyBlendAnimatorBase {
 	}
 
 	// vtable (EnemyBlendAnimatorBase, _00, _08-_28)
-	/**
-	 * @reifiedAddress{8010A9E0}
-	 * @reifiedFile{plugProjectYamashitaU/pelplant.cpp}
-	 */
 	virtual ~ProperAnimator() { } // _08 (weak)
 
 	// _00		= VTABLE
-	// _04-_60	= EnemyBlendAnimatorBase
+	// _00-_60	= EnemyBlendAnimatorBase
 };
 
+/////////////////////////////////////////////////////////////////
+// STATE MACHINE DEFINITIONS
 struct State : public EnemyFSMState {
 	inline State(int stateID)
 	    : EnemyFSMState(stateID)
@@ -323,7 +320,7 @@ struct StateWither : public StateBlendAnim {
 	// _08 EnemyStateMachine* m_stateMachine
 	// _0C const char* m_name
 };
-
+/////////////////////////////////////////////////////////////////
 } // namespace Pelplant
 } // namespace Game
 

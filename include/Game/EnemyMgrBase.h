@@ -193,6 +193,20 @@ struct EnemyMgrBase : public IEnemyMgrBase {
 	EnemyStone::Info m_stoneInfo;       // _3C
 };
 
+struct EnemyMgrBaseAlwaysMovieActor : public EnemyMgrBase {
+	inline EnemyMgrBaseAlwaysMovieActor(int, u8); // probably necessary?
+
+	virtual void doAnimation();              // _08 (weak)
+	virtual void doEntry();                  // _0C (weak)
+	virtual void doSimulation(f32);          // _18 (weak)
+	virtual void doDirectDraw(Graphics&);    // _1C (weak)
+	virtual ~EnemyMgrBaseAlwaysMovieActor(); // _58 (weak)
+	virtual bool isAlwaysMovieActor();       // _9C (weak)
+
+	// _00		= VTABLE
+	// _00-_44	= EnemyMgrBase
+};
+
 extern JKRArchive* gParmArc;
 } // namespace Game
 

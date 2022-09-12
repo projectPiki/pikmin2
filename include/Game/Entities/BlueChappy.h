@@ -1,13 +1,31 @@
-#ifndef _GAME_BLUECHAPPY_H
-#define _GAME_BLUECHAPPY_H
+#ifndef _GAME_ENTITIES_BLUECHAPPY_H
+#define _GAME_ENTITIES_BLUECHAPPY_H
 
 #include "Game/EnemyMgrBase.h"
 #include "Game/EnemyBase.h"
 #include "Game/Entities/ChappyBase.h"
 
+/**
+ * --Header for Orange Bulborb (BlueChappy)--
+ */
+
 namespace Game {
 namespace BlueChappy {
-struct Mgr : public EnemyMgrBase {
+struct Obj : public ChappyBase::Obj {
+	Obj();
+
+	virtual ~Obj();                                     // _1BC (weak)
+	virtual void changeMaterial();                      // _200
+	virtual EnemyTypeID::EEnemyTypeID getEnemyTypeID(); // _258 (weak)
+
+	// _00 		= VTBL
+	// _00-_2E4	= ChappyBase::Obj
+};
+
+struct Mgr : public ChappyBase::Mgr {
+	Mgr(int, u8);
+
+	//////////////// VTABLE
 	virtual ~Mgr() { }                                  // _58 (weak)
 	virtual void createObj(int);                        // _A0 (weak)
 	virtual EnemyBase* getEnemy(int);                   // _A4 (weak)
@@ -17,17 +35,14 @@ struct Mgr : public EnemyMgrBase {
 	virtual void loadTexData();                         // _D0
 	virtual void getChangeTexture0();                   // _E0 (weak)
 	virtual void getChangeTexture1();                   // _E4 (weak)
+	//////////////// VTABLE END
 
-	Mgr(int, unsigned char);
+	// _00 		= VTBL
+	// _00-_44	= EnemyMgrBase
+	u8 _44[0x8]; // _44, unknown
+	Obj* m_obj;  // _4C, an array of Objs
 };
 
-struct Obj : public ChappyBase::Obj {
-	virtual ~Obj();                                     // _1BC (weak)
-	virtual void changeMaterial();                      // _200
-	virtual EnemyTypeID::EEnemyTypeID getEnemyTypeID(); // _258 (weak)
-
-	Obj();
-};
 } // namespace BlueChappy
 } // namespace Game
 
