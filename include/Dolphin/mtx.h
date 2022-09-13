@@ -37,6 +37,7 @@ void PSMTX44Copy(Mtx44, Mtx44);
 
 void C_MTXPerspective(float, float, float, float, Mtx);
 void C_MTXOrtho(Mtx44, float, float, float, float, float, float);
+void C_MTXLookAt(Mtx, const Vec*, const Vec*, const Vec*);
 
 #ifdef __cplusplus
 }
