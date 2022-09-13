@@ -26,6 +26,9 @@ template <typename T> struct NodeTree {
 	u32 _18;   // _08 - unknown
 };
 
+// TODO: this
+struct AccessMode;
+
 /**
  * @size = 0x1C
  */

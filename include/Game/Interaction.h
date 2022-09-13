@@ -176,6 +176,35 @@ struct InteractSwallow : public InteractAttack {
 
 	int _10; // _10
 };
+
+struct InteractSuck : public Interaction {
+	virtual bool actPellet(Pellet*); // _18
+
+	// _00 VTBL
+	// _04 should be casted to Pellet
+};
+
+struct InteractSuckArrive : public Interaction {
+	virtual bool actOnyon(Onyon*); // _1C
+
+	// _00 VTBL
+	// _04 should be casted to Pellet
+};
+
+struct InteractSuckDone : public Interaction {
+	virtual bool actOnyon(Onyon*); // _1C
+
+	// _00 VTBL
+	// _04 should be casted to Pellet
+	u8 _08; // _08, unknown but probably bool m_isDone or something
+};
+
+struct InteractSuckFinish : public Interaction {
+	virtual bool actEnemy(EnemyBase*); // _14
+
+	// _00 VTBL
+	// _04 should be casted to Pellet
+};
 } // namespace Game
 
 #endif

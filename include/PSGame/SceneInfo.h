@@ -62,30 +62,30 @@ struct CaveFloorInfo : public SceneInfo {
 	 * @reifiedAddress{80156344}
 	 * @reifiedFile{src/plugProjectKandoU/singleGameSection.cpp}
 	 */
-	virtual bool isBossFloor() // _04
-	{
-		/*
-		lwz      r0, 0x3c(r3)
-		subfic   r0, r0, 1
-		cntlzw   r0, r0
-		srwi     r3, r0, 5
-		blr
-		*/
-	}
+	virtual bool isBossFloor(); // _04
+	// {
+	// 	/*
+	// 	lwz      r0, 0x3c(r3)
+	// 	subfic   r0, r0, 1
+	// 	cntlzw   r0, r0
+	// 	srwi     r3, r0, 5
+	// 	blr
+	// 	*/
+	// }
 	/**
 	 * @reifiedAddress{80156358}
 	 * @reifiedFile{src/plugProjectKandoU/singleGameSection.cpp}
 	 */
-	virtual bool isRelaxFloor() // _08
-	{
-		/*
-		lwz      r0, 0x3c(r3)
-		subfic   r0, r0, 2
-		cntlzw   r0, r0
-		srwi     r3, r0, 5
-		blr
-		*/
-	}
+	virtual bool isRelaxFloor(); // _08
+	// {
+	// 	/*
+	// 	lwz      r0, 0x3c(r3)
+	// 	subfic   r0, r0, 2
+	// 	cntlzw   r0, r0
+	// 	srwi     r3, r0, 5
+	// 	blr
+	// 	*/
+	// }
 
 	u32 getCaveNoFromID();
 

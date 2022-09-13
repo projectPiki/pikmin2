@@ -35,7 +35,7 @@ struct Model : MtxObject {
 	void clearAnimatorAll();
 	static void enableMaterialAnim(J3DModelData*, int);
 	void enableMaterialAnim(int);
-	void getRoughBoundingRadius();
+	float getRoughBoundingRadius();
 	void getRoughCenter();
 	void initJoints();
 	void initJointsRec(int, SysShape::Joint*);

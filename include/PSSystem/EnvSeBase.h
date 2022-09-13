@@ -2,6 +2,7 @@
 #define _PSSYSTEM_ENVSEBASE_H
 
 #include "Dolphin/os.h"
+#include "PSSystem/Reservator.h"
 #include "JSystem/JSupport/JSUList.h"
 #include "SoundID.h"
 
@@ -31,6 +32,25 @@ struct EnvSeBase : JSULink<EnvSeBase> {
 	u8 _38;            // _38
 	u8 _39;            // _39
 	u8 _3A;            // _3A
+};
+
+struct EnvSeMgr {
+	EnvSeMgr();
+
+	void setAllPauseFlag(u8);
+	void on();
+	void on(u32, bool);
+	void off();
+	void off(u32, bool);
+	void reservePauseOff();
+	void setVolumeRequest(float, u32, u8);
+	void exec();
+
+	// inlined/unused:
+	void setPauseFlag(u32, u8);
+
+	JSUList<EnvSeBase> m_envList;          // _00
+	EnvSe_PauseOffReservator m_reservator; // _0C
 };
 } // namespace PSSystem
 

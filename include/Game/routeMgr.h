@@ -5,17 +5,12 @@
 #include "Vector3.h"
 #include "types.h"
 #include "Container.h"
+#include "Condition.h"
 
 struct Graphics;
 struct Plane;
 
 namespace Game {
-struct WPSearchArg {
-};
-
-struct WPEdgeSearchArg {
-};
-
 enum WayPointFlags {
 	WPF_Unset    = 0x00,
 	WPF_Closed   = 0x01,
@@ -44,9 +39,9 @@ struct WayPoint : public JKRDisposer {
 
 	WayPoint();
 
-	virtual ~WayPoint();                       // _00
-	virtual void directDraw(Graphics&);        // _04
-	virtual void directDraw_Simple(Graphics&); // _08
+	virtual ~WayPoint();                       // _08
+	virtual void directDraw(Graphics&);        // _0C
+	virtual void directDraw_Simple(Graphics&); // _10
 
 	void reset();
 	void setOpen(bool);
@@ -64,6 +59,8 @@ struct WayPoint : public JKRDisposer {
 	void read(Stream&);
 	void write(Stream&);
 	void createOffPlane(Plane&, WayPoint*);
+
+	inline Vector3f getPosition() { return m_position; }
 
 	RoomList m_roomList;  // _18
 	u8 m_flags;           // _34
@@ -96,6 +93,37 @@ struct WayPointIterator {
 	bool _08;             // _08
 };
 
+struct WPCondition : public Condition<WayPoint> {
+	virtual bool satisfy(WayPoint*) = 0; // _08
+};
+
+struct WPSearchArg {
+	WPSearchArg(Vector3f position, WPCondition* condition, u8 arg3, float arg4)
+	{
+		m_position  = position;
+		m_condition = condition;
+		_10         = arg3;
+		_14         = arg4;
+	}
+
+	Vector3f m_position;      // _00
+	WPCondition* m_condition; // _0C
+	u8 _10;                   // _10
+	u8 _11[0x3];              // _11, unknown/padding
+	float _14;                // _14, radius maybe?
+};
+
+struct WPEdgeSearchArg {
+	Vector3f _00;  // _00
+	u8 _0C;        // _0C
+	u8 _0D[0x3];   // _0D, unknown/padding
+	void* _10;     // _10, ActPathMove ptr of some description
+	short _14;     // _14
+	u8 _16[0x2];   // _16, padding probably
+	WayPoint* _18; // _18
+	WayPoint* _1C; // _1C
+};
+
 struct RouteMgr : public Container<WayPoint> {
 	struct SonarArg {
 	};
@@ -110,7 +138,7 @@ struct RouteMgr : public Container<WayPoint> {
 	void makeInvertLinks();
 	bool linkable(WayPoint*, WayPoint*);
 	void refreshWater();
-	void getNearestWayPoint(WPSearchArg&);
+	WayPoint* getNearestWayPoint(WPSearchArg&);
 	void getNearestEdge(WPEdgeSearchArg&);
 	void setCloseAll();
 	void openRoom(short);
@@ -166,5 +194,13 @@ struct GameRouteMgr : public RouteMgr {
 };
 
 } // namespace Game
+
+struct WPExcludeSpot : public Game::WPCondition {
+	virtual bool satisfy(Game::WayPoint*); // _08 (weak)
+};
+
+struct WPFindCond : public Game::WPCondition {
+	virtual bool satisfy(Game::WayPoint*); // _08 (weak)
+};
 
 #endif

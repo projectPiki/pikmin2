@@ -81,7 +81,7 @@ struct CarryInfoMgr : public InfoMgr<CarryInfoOwner, CarryInfoList> {
 	virtual CarryInfoList* regist(CarryInfoOwner*);  // _18 (weak)
 	virtual CarryInfoList* scratch(CarryInfoOwner*); // _1C (weak)
 
-	void appear(CarryInfoOwner*);
+	CarryInfoMgr* appear(CarryInfoOwner*);
 	void appearPoko(const Vector3f&, int);
 	void updatePokoInfoOwners();
 

@@ -226,24 +226,24 @@ struct Creature : public CellObject {
 	{
 		return getBoundingSphere(sphere);
 	}
-	virtual void getLODCylinder(Sys::Cylinder&) { }            // _144 (weak)
-	virtual void startPick() { }                               // _148 (weak)
-	virtual void endPick(bool) { }                             // _14C (weak)
-	virtual u32* getMabiki() { return nullptr; }               // _150 (weak) - maybe shouldn't be u32*
-	virtual Footmarks* getFootmarks() { return nullptr; }      // _154 (weak)
-	virtual void onStickStart(Creature*) { }                   // _158 (weak)
-	virtual void onStickEnd(Creature*) { }                     // _15C (weak)
-	virtual void onStickStartSelf(Creature*) { }               // _160 (weak)
-	virtual void onStickEndSelf(Creature*) { }                 // _164 (weak)
-	virtual bool isSlotFree(short) { return false; }           // _168 (weak)
-	virtual int getFreeStickSlot() { return -1; }              // _16C (weak)
-	virtual int getNearFreeStickSlot(Vector3f&) { return -1; } // _170 (weak)
-	virtual int getRandomFreeStickSlot() { return -1; }        // _174 (weak)
-	virtual void onSlotStickStart(Creature*, short) { }        // _178 (weak)
-	virtual void onSlotStickEnd(Creature*, short) { }          // _17C (weak)
-	virtual void calcStickSlotGlobal(short, Vector3f&) { }     // _180 (weak)
-	virtual void getVelocityAt(Vector3f&, Vector3f&) = 0;      // _184
-	virtual float getAngularEffect(Vector3f&, Vector3f&)       // _188 (weak)
+	virtual void getLODCylinder(Sys::Cylinder&) { }              // _144 (weak)
+	virtual void startPick() { }                                 // _148 (weak)
+	virtual void endPick(bool) { }                               // _14C (weak)
+	virtual u32* getMabiki() { return nullptr; }                 // _150 (weak) - maybe shouldn't be u32*
+	virtual Footmarks* getFootmarks() { return nullptr; }        // _154 (weak)
+	virtual void onStickStart(Creature*) { }                     // _158 (weak)
+	virtual void onStickEnd(Creature*) { }                       // _15C (weak)
+	virtual void onStickStartSelf(Creature*) { }                 // _160 (weak)
+	virtual void onStickEndSelf(Creature*) { }                   // _164 (weak)
+	virtual bool isSlotFree(short) { return false; }             // _168 (weak)
+	virtual short getFreeStickSlot() { return -1; }              // _16C (weak)
+	virtual short getNearFreeStickSlot(Vector3f&) { return -1; } // _170 (weak)
+	virtual short getRandomFreeStickSlot() { return -1; }        // _174 (weak)
+	virtual void onSlotStickStart(Creature*, short) { }          // _178 (weak)
+	virtual void onSlotStickEnd(Creature*, short) { }            // _17C (weak)
+	virtual void calcStickSlotGlobal(short, Vector3f&) { }       // _180 (weak)
+	virtual void getVelocityAt(Vector3f&, Vector3f&) = 0;        // _184
+	virtual float getAngularEffect(Vector3f&, Vector3f&)         // _188 (weak)
 	{
 		return 0.0f;
 	}

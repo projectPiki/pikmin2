@@ -10,9 +10,9 @@ struct Stickers : public Container<Game::Creature> {
 	Stickers(Game::Creature*);
 
 	virtual ~Stickers();          // _08
-	virtual void getNext(void*);  // _14
-	virtual void getStart();      // _18
-	virtual void getEnd();        // _1C
+	virtual void* getNext(void*); // _14
+	virtual void* getStart();     // _18
+	virtual void* getEnd();       // _1C
 	virtual Creature* get(void*); // _20
 
 	void initialise();

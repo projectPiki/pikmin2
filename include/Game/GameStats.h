@@ -11,6 +11,8 @@ struct PikiNaviCounter {
 	void dec(Game::Piki*);
 };
 
+int getMapPikmins(int);
+
 extern PikiNaviCounter* workPikis;
 
 } // namespace GameStat

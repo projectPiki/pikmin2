@@ -4,49 +4,16 @@
 #include "JSystem/JUT/JUTException.h"
 #include "PSSystem/PSScene.h"
 
-struct JASTrack;
-
+// idk what else goes in this file (if anything? maybe this is in the PSGame folder??)
+// but these use the file name in the exception check so :shrug:
 namespace PSSystem {
-struct SceneMgr_04_04 {
-	virtual void _08();
-	virtual void _0C();
-	virtual void _10();
-	virtual void _14();
-	virtual void _18();
-	virtual void _1C();
-};
-
-struct SceneMgr_04 {
-	u32 _00;
-	SceneMgr_04_04* _04;
-};
-
-struct SceneMgr {
-	virtual void exec(); // _08 (weak)
-
-	void refreshCurEndScene();
-	void findSeq(JASTrack*);
-	void getPlayingSeq(JASTrack*);
-	void deleteScene(Scene*);
-	void deleteCurrentScene();
-
-	SceneMgr_04* _04;
-};
-
-extern SceneMgr* spSceneMgr;
-
 inline SceneMgr* getSceneMgr()
 {
 	P2ASSERTLINE(467, spSceneMgr);
 	return spSceneMgr;
 }
 
-inline void checkSceneMgr4()
-{
-	if (!(spSceneMgr->_04)) {
-		JUTException::panic_f("PSScene.h", 199, "P2Assert");
-	}
-}
+inline void checkSceneMgr(SceneMgr* mgr) { P2ASSERTLINE(476, mgr); }
 }; // namespace PSSystem
 
 #endif

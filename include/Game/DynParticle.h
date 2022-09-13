@@ -13,7 +13,7 @@ namespace Game {
 struct _DynParticleParent {
 	Vector3f _00;               // _00
 	Vector3f _0C;               // _0C
-	u8 _18[4];                  // _18
+	float _18;                  // _18
 	_DynParticleParent* m_next; // _1C
 	u8 _20[0x10];               // _18
 };

@@ -13,7 +13,8 @@ template <typename T> struct Iterator {
 		m_container = container;
 	}
 
-	virtual void first() // _00
+	///////////////// VTABLE
+	virtual void first() // _08
 	{
 		if (m_condition == nullptr) {
 			m_index = m_container->getStart();
@@ -27,8 +28,7 @@ template <typename T> struct Iterator {
 			}
 		}
 	}
-
-	virtual void next() // _04
+	virtual void next() // _0C
 	{
 		if (m_condition == nullptr) {
 			m_index = m_container->getNext(m_index);
@@ -42,16 +42,23 @@ template <typename T> struct Iterator {
 			}
 		}
 	}
-
-	virtual bool isDone() // _08
+	virtual bool isDone() // _10
 	{
 		return (m_index == m_container->getEnd());
 	}
-
-	virtual T* operator*() // _0C
+	virtual T* operator*() // _14
 	{
 		return m_container->get(m_index);
 	}
+	///////////////// VTABLE END
+
+	inline Iterator<T>& operator++()
+	{
+		m_index = m_container->getNext(m_index);
+		return *this;
+	}
+
+	inline bool satisfy() { return m_condition->satisfy(m_container->get(m_index)); }
 
 	// VTBL _00
 	void* m_index;             // _04;

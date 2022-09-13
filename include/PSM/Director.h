@@ -212,6 +212,29 @@ struct ActorDirector_Kehai : public ActorDirector_Enemy {
 	virtual double getVolZeroDist(Game::EnemyBase*); // _38
 	virtual double getVolMaxDist(Game::EnemyBase*);  // _3C
 };
+
+/**
+ * @size{0x10}
+ */
+struct DirectorUpdator {
+	struct Type {
+		u32 m_type; // _00, I guess?
+	};
+
+	DirectorUpdator(PSSystem::DirectorBase*, u8, Type);
+
+	void directOn(u8);
+	void directOff(u8);
+	void frameEndWork();
+
+	u8 _00;                             // _00
+	u8 _01[0x3];                        // _01, unknown/padding
+	Type m_type;                        // _04
+	u8 _08;                             // _08
+	u8 _09;                             // _09
+	u8 _0A[0x2];                        // _0A, unknown/padding probably
+	PSSystem::DirectorBase* m_director; // _0C
+};
 } // namespace PSM
 
 #endif

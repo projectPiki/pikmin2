@@ -8,6 +8,7 @@
 #include "IDelegate.h"
 #include "Vector3.h"
 #include "Rect.h"
+#include "Game/GameMessage.h"
 
 struct BlackFader;
 struct BlendCamera;

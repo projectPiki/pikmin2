@@ -150,7 +150,7 @@ struct Piki : public FakePiki, public SysShape::MotionListener {
 	void getCurrAction();
 	int getCurrActionID();
 	int getFormationSlotID();
-	void getPelletCarryPower();
+	float getPelletCarryPower();
 	void getSpeed(float);
 	int getStateID();
 	float getThrowHeight();

@@ -8,7 +8,7 @@
 #include "Game/gameGenerator.h"
 #include "Game/EnemyBase.h"
 #include "Game/EnemyMgrBase.h"
-#include "Game/PelletNumber.h"
+#include "Game/Entities/PelletNumber.h"
 
 /**
  * --Header for Pellet Posies (Pelplant)--

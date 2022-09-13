@@ -4,8 +4,15 @@
 #include "types.h"
 #include "ObjectMgr.h"
 
+// TODO: this needs fixing, sigh
 template <typename T> struct MonoObjectMgr : public ObjectMgr<T> {
 
+	///////////// VTABLE
+	virtual ~MonoObjectMgr<T>() { }
+	virtual void* getNext(void*);
+	virtual void* getStart();
+	virtual void* getEnd();
+	virtual T* get(void*);
 	virtual void doAnimation() // _30 (thunk at _00)
 	{
 		for (int i = 0; i < m_max; i++) {
@@ -14,7 +21,6 @@ template <typename T> struct MonoObjectMgr : public ObjectMgr<T> {
 			}
 		}
 	}
-
 	virtual void doEntry() // _34 (thunk at _04)
 	{
 		for (int i = 0; i < m_max; i++) {
@@ -23,7 +29,6 @@ template <typename T> struct MonoObjectMgr : public ObjectMgr<T> {
 			}
 		}
 	}
-
 	virtual void doSetView(int viewNo) // _38 (thunk at _08)
 	{
 		for (int i = 0; i < m_max; i++) {
@@ -32,7 +37,6 @@ template <typename T> struct MonoObjectMgr : public ObjectMgr<T> {
 			}
 		}
 	}
-
 	virtual void doViewCalc() // _3C (thunk at _0C)
 	{
 		for (int i = 0; i < m_max; i++) {
@@ -41,7 +45,6 @@ template <typename T> struct MonoObjectMgr : public ObjectMgr<T> {
 			}
 		}
 	}
-
 	virtual void doSimulation(float p1) // _40 (thunk at _10)
 	{
 		for (int i = 0; i < m_max; i++) {
@@ -50,7 +53,6 @@ template <typename T> struct MonoObjectMgr : public ObjectMgr<T> {
 			}
 		}
 	}
-
 	virtual void doDirectDraw(Graphics& gfx) // _44 (thunk at _14)
 	{
 		for (int i = 0; i < m_max; i++) {
@@ -59,7 +61,6 @@ template <typename T> struct MonoObjectMgr : public ObjectMgr<T> {
 			}
 		}
 	}
-
 	virtual T* birth() // _48
 	{
 		int index = getEmptyIndex();
@@ -73,7 +74,6 @@ template <typename T> struct MonoObjectMgr : public ObjectMgr<T> {
 		}
 		return result;
 	}
-
 	virtual void resetMgr() // _4C
 	{
 		m_array       = nullptr;
@@ -89,6 +89,7 @@ template <typename T> struct MonoObjectMgr : public ObjectMgr<T> {
 		}
 	}
 	virtual void onAlloc() { } // _54
+	////////////// VTABLE END
 
 	// TODO: Check if this matches
 	void kill(T* item)
