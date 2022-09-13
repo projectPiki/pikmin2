@@ -28,6 +28,10 @@ struct Object {
 };
 
 struct World {
+	struct Callback {
+		virtual void invoke(Object*, Object*) = 0; // _08
+	};
+
 	struct ResolveArg {
 		Callback* m_callback;
 		u32 _04;
@@ -35,6 +39,7 @@ struct World {
 	};
 
 	World();
+
 	~World();
 	void resolve(ResolveArg&);
 
@@ -43,11 +48,7 @@ struct World {
 };
 } // namespace SweepPrune
 
-struct Callback {
-	virtual void invoke(SweepPrune::Object*, SweepPrune::Object*);
-};
-
-struct SweepCallback : Callback {
+struct SweepCallback : public SweepPrune::World::Callback {
 	virtual void invoke(SweepPrune::Object*, SweepPrune::Object*);
 
 	// vt _00

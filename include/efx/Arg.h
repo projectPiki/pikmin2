@@ -21,7 +21,7 @@ struct Arg {
 	 * @reifiedAddress{80108200}
 	 * @reifiedFile{plugProjectYamashitaU/enemyBase.cpp}
 	 */
-	virtual const char* getName() // _08
+	virtual const char* getName() // _08 (weak)
 	{
 		return "Arg";
 	}
@@ -43,7 +43,7 @@ struct ArgEnemyType : public Arg {
 	 * @reifiedAddress{801081F4}
 	 * @reifiedFile{plugProjectYamashitaU/enemyBase.cpp}
 	 */
-	virtual const char* getName() // _00
+	virtual const char* getName() // _08 (weak)
 	{
 		return "ArgEnemyType";
 	}
@@ -62,7 +62,7 @@ struct ArgScale : public Arg {
 	 * @reifiedAddress{80107C44}
 	 * @reifiedFile{plugProjectYamashitaU/enemyBase.cpp}
 	 */
-	virtual const char* getName() // _00
+	virtual const char* getName() // _08 (weak)
 	{
 		return "ArgScale";
 	}
@@ -76,7 +76,7 @@ struct ArgChou : public Arg {
 	{
 	}
 
-	virtual const char* getName() // _08
+	virtual const char* getName() // _08 (weak)
 	{
 		return "ArgChou";
 	}
@@ -88,9 +88,21 @@ struct ArgCursor : public Arg {
 	{
 	}
 
-	virtual const char* getName() // _08
+	virtual const char* getName() // _08 (weak)
 	{
 		return "ArgCursor";
+	}
+};
+
+struct ArgDenkiHiba : public Arg {
+	ArgDenkiHiba(Vector3f& position)
+	    : Arg(position)
+	{
+	}
+
+	virtual const char* getName() // _08 (weak)
+	{
+		return "ArgDenkiHiba";
 	}
 };
 
@@ -100,7 +112,7 @@ struct ArgDir : public Arg {
 	{
 	}
 
-	virtual const char* getName() // _08
+	virtual const char* getName() // _08 (weak)
 	{
 		return "ArgDir";
 	}
@@ -112,7 +124,7 @@ struct ArgDopingSmoke : public Arg {
 	{
 	}
 
-	virtual const char* getName() // _08
+	virtual const char* getName() // _08 (weak)
 	{
 		return "ArgDopingSmoke";
 	}
@@ -124,7 +136,7 @@ struct ArgGasuHiba : public Arg {
 	{
 	}
 
-	virtual const char* getName() // _08
+	virtual const char* getName() // _08 (weak)
 	{
 		return "ArgGasuHiba";
 	}
@@ -136,7 +148,7 @@ struct ArgImoEat : public Arg {
 	{
 	}
 
-	virtual const char* getName() // _08
+	virtual const char* getName() // _08 (weak)
 	{
 		return "ArgImoEat";
 	}
@@ -148,7 +160,7 @@ struct ArgKchYodare : public Arg {
 	{
 	}
 
-	virtual const char* getName() // _08
+	virtual const char* getName() // _08 (weak)
 	{
 		return "ArgKchYodare";
 	}
@@ -160,7 +172,7 @@ struct ArgKouhai : public Arg {
 	{
 	}
 
-	virtual const char* getName() // _08
+	virtual const char* getName() // _08 (weak)
 	{
 		return "ArgKouhai";
 	}
@@ -172,7 +184,7 @@ struct ArgPelType : public Arg {
 	{
 	}
 
-	virtual const char* getName() // _08
+	virtual const char* getName() // _08 (weak)
 	{
 		return "ArgPelType";
 	}
@@ -184,7 +196,7 @@ struct ArgPosPos : public Arg {
 	{
 	}
 
-	virtual const char* getName() // _08
+	virtual const char* getName() // _08 (weak)
 	{
 		return "ArgPosPos";
 	}
@@ -196,7 +208,7 @@ struct ArgPrmColor : public Arg {
 	{
 	}
 
-	virtual const char* getName() // _08
+	virtual const char* getName() // _08 (weak)
 	{
 		return "ArgPrmColor";
 	}
@@ -208,7 +220,7 @@ struct ArgRotY : public Arg {
 	{
 	}
 
-	virtual const char* getName() // _08
+	virtual const char* getName() // _08 (weak)
 	{
 		return "ArgRotY";
 	}
@@ -220,7 +232,7 @@ struct ArgRotYScale : public Arg {
 	{
 	}
 
-	virtual const char* getName() // _08
+	virtual const char* getName() // _08 (weak)
 	{
 		return "ArgRotYScale";
 	}
@@ -232,7 +244,7 @@ struct ArgType : public Arg {
 	{
 	}
 
-	virtual const char* getName() // _08
+	virtual const char* getName() // _08 (weak)
 	{
 		return "ArgType";
 	}

@@ -11,6 +11,9 @@ struct WarpZone : public TForever4 {
 	}
 
 	void setRateLOD(int, bool);
+
+	// _00		= VTBL
+	// _00-_44	= TForever4
 };
 
 } // namespace efx

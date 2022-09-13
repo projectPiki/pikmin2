@@ -33,8 +33,8 @@ struct BaseGen : public CNode {
 
 	Type m_spawnType;    // _18
 	Vector3f m_position; // _1C
-	float m_angle;       // _28
-	float m_radius;      // _2C
+	f32 m_angle;         // _28
+	f32 m_radius;        // _2C
 	int m_minimum;       // _30
 	int m_maximum;       // _34
 };
@@ -76,7 +76,7 @@ struct GateInfo : CNode {
 	virtual void read(Stream&); // _10
 
 	int m_caveID; // _18
-	float m_life; // _1C
+	f32 m_life;   // _1C
 	int m_weight; // _20
 };
 
@@ -107,7 +107,7 @@ struct FloorInfo : CNode {
 		Parm<int> m_gateMax;           // _0AC  /* f004 */
 		Parm<int> m_capMax;            // _0D4  /* f014 */
 		Parm<int> m_roomCount;         // _0FC  /* f005 */
-		Parm<float> m_routeRatio;      // _124  /* f006 */
+		Parm<f32> m_routeRatio;        // _124  /* f006 */
 		Parm<int> m_hasEscapeFountain; // _14C  /* f007 */
 		ParmString m_caveUnitFile;     // _174  /* f008 */
 		ParmString m_lightingFile;     // _194  /* f009 */
@@ -119,10 +119,10 @@ struct FloorInfo : CNode {
 
 		ParmEnum m_floorHidden; // _244  /* f013 */
 
-		Parm<int> m_version;            // _268  /* f015 */
-		Parm<float> m_waterwraithTimer; // _290  /* f016 */
-		Parm<int> m_glitchySeesaw;      // _2B8  /* f017 */
-		void* m_end;                    // _2E0
+		Parm<int> m_version;          // _268  /* f015 */
+		Parm<f32> m_waterwraithTimer; // _290  /* f016 */
+		Parm<int> m_glitchySeesaw;    // _2B8  /* f017 */
+		void* m_end;                  // _2E0
 	};
 
 	FloorInfo();
@@ -150,7 +150,7 @@ struct FloorInfo : CNode {
 	CapInfo* getCapInfo(int);
 
 	int getRoomNum();
-	float getRouteRatio();
+	f32 getRouteRatio();
 	bool hasEscapeFountain(int);
 	bool hasHiddenCollision();
 	bool useKaidanBarrel();
@@ -169,11 +169,13 @@ struct CaveInfo : CNode {
 	/* Erased? */
 	struct Parms : Parameters {
 		inline Parms();
+
 		Parm<int> m_floorMax; // _0C
 		void* m_end;          // _34
 	};
 
 	CaveInfo();
+
 	virtual ~CaveInfo();        // _08 (weak)
 	virtual void read(Stream&); // _10
 

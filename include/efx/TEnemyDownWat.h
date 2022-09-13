@@ -11,7 +11,10 @@ struct TEnemyDownWat : public TSimple3 {
 	{
 	}
 
-	virtual bool create(Arg*); // _00
+	virtual bool create(Arg*); // _08
+
+	// _00		= VTBL
+	// _00-_18	= TSimple3
 };
 
 } // namespace efx

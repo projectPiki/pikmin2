@@ -1,40 +1,224 @@
 #ifndef _GAME_VSGAME_VSGAME_H
 #define _GAME_VSGAME_VSGAME_H
 
+#include "Graphics.h"
+#include "Vector3.h"
+#include "stream.h"
+#include "CNode.h"
+#include "Game/PikiContainer.h"
 #include "Game/StateMachine.h"
 #include "Game/VsGameSection.h"
 
-namespace ItemHole {
-struct Item;
-}
+struct JUTTexture;
+struct LightObj;
 
 namespace Game {
+namespace ItemHole {
+struct Item;
+} // namespace ItemHole
+
+struct MovieConfig;
+
 namespace VsGame {
-struct GameState : public FSMState<GameState> {
+struct TekiNode : public CNode {
+	virtual ~TekiNode(); // _08 (weak)
+
+	// _00 		= VTBL
+	// _00-_18	= CNode
+	u32 m_enemyID; // _18, probably EnemyTypeID?
+	int _1C;       // _1C
+	int m_nodeID;  // _20
+};
+
+struct TekiMgr {
+	TekiNode m_node; // _00
+	int m_nodeCount; // _24
+};
+
+struct CardMgr {
+	struct SlotMachine {
+		SlotMachine();
+
+		void clear();
+		void start();
+		void startStop();
+		void update();
+		void updateAppear();
+		void startZoomIn();
+		void startZoomUse();
+		void updateZoomIn();
+		void updateZoomUse();
+
+		f32 _00;           // _00
+		u8 _04[0x8];       // _04, unknown
+		f32 _0C;           // _0C
+		f32 _10;           // _10
+		f32 _14;           // _14
+		u8 _18[0x4];       // _18, unknown
+		u32 _1C;           // _1C, unknown
+		int _20;           // _20
+		u8 _24[0x8];       // _24, unknown
+		f32 _2C;           // _2C
+		u8 _30[0xC];       // _30, unknown
+		f32 _3C;           // _3C, timer?
+		f32 _40;           // _40
+		f32 _44;           // _44
+		f32 _48;           // _48
+		int _4C;           // _4C, maybe currentSlotIndex?
+		u8 _50;            // _50, unknown
+		u8 _51;            // _51
+		f32 _54;           // _54
+		u8 _58[0x4];       // _58, unknown
+		int m_playerIndex; // _5C
+		CardMgr* _60;      // _60
+		u32 _64;           // _64
+		f32 _68;           // _68
+		f32 _6C;           // _6C
+	};
+
+	CardMgr(VsGameSection*, TekiMgr*);
+
+	void loadResource();
+	void update();
+	void draw(Graphics&);
+	void stopSlot(int);
+	void usePlayerCard(int, TekiMgr*);
+	void gotPlayerCard(int);
+	void initDraw();
+	void drawSlot(Graphics&, Vector3f&, SlotMachine&);
+
+	u32 _00;                  // _00, unknown
+	JUTTexture** _04;         // _04, slot textures?
+	JUTTexture* _08;          // _08
+	JUTTexture* _0C;          // _0C
+	JUTTexture* _10;          // _10
+	JUTTexture* _14;          // _14
+	SlotMachine _18[2];       // _18
+	int _F8;                  // _F8
+	Vector3f* _FC;            // _FC, array of 0x100 vectors?
+	Vector3f* _100;           // _100, array of 0x100 vectors?
+	f32 _104;                 // _104
+	LightObj* m_lightObj;     // _108
+	VsGameSection* m_section; // _10C
+	TekiMgr* m_tekiMgr;       // _110
+};
+
+struct StageData : public CNode {
+	virtual ~StageData(); // _08 (weak)
+
+	// _00 		= VTBL
+	// _00-_18	= CNode
+	PikiContainer m_pikiContainer;  // _18
+	char m_caveInfoFilename[64];    // _20, default = "caveinfo.txt"
+	f32 m_timeLimit;                // _60
+	int m_startNumBitter;           // _64
+	int m_startNumSpicy;            // _68
+	int m_index2D;                  // _6C
+	char m_stageLayoutFilePath[64]; // _70
+	int m_startNumYellowMarbles;    // _B0
+};
+
+struct StageList : public CNode {
+	StageList();
+
+	virtual ~StageList(); // _08 (weak)
+
+	void read(Stream&);
+	void getStageData(int);
+
+	// _00 		= VTBL
+	// _00-_18	= CNode
+	StageData m_stageData;
+};
+
+/////////////////////////////////////////////////////////////////
+// STATE MACHINE DEFINITIONS
+struct FSM : public StateMachine<VsGameSection> {
+	virtual void init(VsGameSection*);                    // _08
+	virtual void transit(VsGameSection*, int, StateArg*); // _14
+};
+
+struct State : public FSMState<VsGameSection> {
+	virtual void draw(VsGameSection*, Graphics&);                      // _20 (weak)
+	virtual void pre2dDraw(Graphics&, VsGameSection*);                 // _24 (weak)
+	virtual void onOrimaDown(VsGameSection*, int);                     // _28 (weak)
+	virtual void onMovieStart(VsGameSection*, MovieConfig*, u32, u32); // _2C (weak)
+	virtual void onMovieDone(VsGameSection*, MovieConfig*, u32, u32);  // _30 (weak)
+	virtual void onNextFloor(VsGameSection*, ItemHole::Item*);         // _34 (weak)
+	virtual void on_section_fadeout(VsGameSection*);                   // _38 (weak)
+	virtual void goingToCave(VsGameSection*);                          // _3C (weak)
+	virtual void onBattleFinished(VsGameSection*, int, bool);          // _40 (weak)
+	virtual void onRedOrBlueSuckStart(VsGameSection*, int, bool);      // _44 (weak)
+	virtual void isCardUsable(VsGameSection*);                         // _48 (weak)
+};
+
+struct GameState : public State {
 	GameState();
 
-	virtual void draw(VsGameSection*, struct Graphics&); // _00
-	virtual void pre2dDraw(Graphics&, VsGameSection*);   // _04
-	virtual void onOrimaDown(VsGameSection*, int);       // _08
-	virtual void onMovieStart(VsGameSection*, struct MovieConfig*, unsigned long,
-	                          unsigned long); // _0C
-	virtual void onMovieDone(VsGameSection*, MovieConfig*, unsigned long,
-	                         unsigned long);                      // _10
-	virtual void onNextFloor(VsGameSection*, ItemHole::Item*);    // _14
-	virtual void on_section_fadeout(VsGameSection*);              // _18
-	virtual void goingToCave(VsGameSection*);                     // _1C
-	virtual void onBattleFinished(VsGameSection*, int, bool);     // _20
-	virtual void onRedOrBlueSuckStart(VsGameSection*, int, bool); // _24
-	virtual void isCardUsable(VsGameSection*);                    // _28
-	virtual void drawStatus(Graphics&, VsGameSection*);           // _2C
-	virtual void do_init(VsGameSection*);                         // _30
+	virtual void draw(VsGameSection*, Graphics&);                      // _20
+	virtual void pre2dDraw(Graphics&, VsGameSection*);                 // _24
+	virtual void onOrimaDown(VsGameSection*, int);                     // _28
+	virtual void onMovieStart(VsGameSection*, MovieConfig*, u32, u32); // _2C
+	virtual void onMovieDone(VsGameSection*, MovieConfig*, u32, u32);  // _30
+	virtual void onNextFloor(VsGameSection*, ItemHole::Item*);         // _34
+	virtual void on_section_fadeout(VsGameSection*);                   // _38 (weak)
+	virtual void goingToCave(VsGameSection*);                          // _3C
+	virtual void onBattleFinished(VsGameSection*, int, bool);          // _40
+	virtual void onRedOrBlueSuckStart(VsGameSection*, int, bool);      // _44
+	virtual void isCardUsable(VsGameSection*);                         // _48
+	virtual void drawStatus(Graphics&, VsGameSection*);                // _4C
+	virtual void do_init(VsGameSection*);                              // _50
+
+	void clearLoseCauses();
+	void checkFindKeyDemo(VsGameSection*);
+	void checkSMenu(VsGameSection*);
+	void checkPikminZero(VsGameSection*);
+	void open_GameChallenge(VsGameSection*, int);
+	void update_GameChallenge(VsGameSection*);
 };
 
 struct VSState : public GameState {
 	VSState();
 
-	virtual void do_init(VsGameSection*); // _30
+	virtual void do_init(VsGameSection*); // _50
 };
+
+struct LoadState : public State {
+	LoadState();
+
+	virtual void init(VsGameSection*, StateArg*); // _08
+	virtual void exec(VsGameSection*);            // _0C
+	virtual void cleanup(VsGameSection*);         // _10
+	virtual void draw(VsGameSection*, Graphics&); // _20
+
+	void dvdLoad();
+};
+
+struct ResultState : public State {
+	ResultState();
+
+	virtual void init(VsGameSection*, StateArg*); // _08
+	virtual void exec(VsGameSection*);            // _0C
+	virtual void cleanup(VsGameSection*);         // _10
+	virtual void draw(VsGameSection*, Graphics&); // _20
+
+	void prepareMorimuraInfo(VsGameSection*);
+	void dvdload();
+};
+
+struct TitleState : public State {
+	TitleState();
+
+	virtual void init(VsGameSection*, StateArg*); // _08
+	virtual void exec(VsGameSection*);            // _0C
+	virtual void cleanup(VsGameSection*);         // _10
+	virtual void draw(VsGameSection*, Graphics&); // _20
+
+	void dvdload();
+	void execChallenge(VsGameSection*);
+	void execVs(VsGameSection*);
+};
+/////////////////////////////////////////////////////////////////
 } // namespace VsGame
 } // namespace Game
 

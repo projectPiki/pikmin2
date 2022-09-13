@@ -7,16 +7,16 @@
 struct Graphics;
 
 struct InfoMgrBase {
-	virtual ~InfoMgrBase();           // _00
-	virtual void loadResource()  = 0; // _04
-	virtual void update()        = 0; // _08
-	virtual void draw(Graphics&) = 0; // _0C
+	virtual ~InfoMgrBase();           // _08
+	virtual void loadResource()  = 0; // _0C
+	virtual void update()        = 0; // _10
+	virtual void draw(Graphics&) = 0; // _14
 
 	// VTBL _00
 };
 
 template <typename Owner, typename List> struct InfoListBase : public JKRDisposer {
-	virtual ~InfoListBase() // _00
+	virtual ~InfoListBase() // _08
 	{
 		if (_18 != nullptr) {
 			_18->_1C = _1C;
@@ -27,10 +27,10 @@ template <typename Owner, typename List> struct InfoListBase : public JKRDispose
 		_1C = nullptr;
 		_18 = nullptr;
 	}
-	virtual void init() {};          // _04
-	virtual void update() {};        // _08
-	virtual void draw(Graphics&) {}; // _0C
-	virtual bool isFinish() = 0;     // _10
+	virtual void init() {};          // _0C
+	virtual void update() {};        // _10
+	virtual void draw(Graphics&) {}; // _14
+	virtual bool isFinish() = 0;     // _18
 
 	// TODO: These may be just List*?
 	InfoListBase<Owner, List>* _18; // _18
@@ -43,11 +43,9 @@ template <typename Owner, typename List> struct InfoMgr : public InfoMgrBase {
 	InfoMgr();
 
 	// TODO: dtor
-	virtual ~InfoMgr(); // _00
-
-	virtual void loadResource() = 0; // _04
-
-	virtual void update() // _08
+	virtual ~InfoMgr();              // _08
+	virtual void loadResource() = 0; // _0C
+	virtual void update()            // _10
 	{
 		// InfoListBase<Owner, List>* next;
 		// for (
@@ -65,8 +63,7 @@ template <typename Owner, typename List> struct InfoMgr : public InfoMgrBase {
 			}
 		}
 	}
-
-	virtual void draw(Graphics& gfx) // _0C
+	virtual void draw(Graphics& gfx) // _14
 	{
 		InfoListBase<Owner, List>* list = ((InfoListBase<Owner, List>)m_activeList)._1C;
 		if (list != nullptr) {
@@ -75,8 +72,7 @@ template <typename Owner, typename List> struct InfoMgr : public InfoMgrBase {
 			}
 		}
 	}
-
-	virtual List* regist(Owner* owner) // _10
+	virtual List* regist(Owner* owner) // _18
 	{
 		InfoListBase<Owner, List>* list;
 		for (list = ((InfoListBase<Owner, List>)m_activeList)._1C; list != nullptr; list = list->_1C) {
@@ -93,8 +89,7 @@ template <typename Owner, typename List> struct InfoMgr : public InfoMgrBase {
 		}
 		return list;
 	}
-
-	virtual List* search(List* list, Owner* owner) // _14
+	virtual List* search(List* list, Owner* owner) // _1C
 	{
 		while (true) {
 			if (list == nullptr) {

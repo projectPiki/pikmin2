@@ -22,24 +22,26 @@ namespace Title {
 struct Section : public Game::BaseHIOSection {
 	Section(JKRHeap*);
 
-	virtual ~Section();                              // _08
-	virtual void run();                              // _0C
-	virtual bool update();                           // _10
-	virtual void draw(Graphics&);                    // _14
-	virtual void init();                             // _18
-	virtual void drawInit(Graphics&);                // _1C
-	virtual void drawInit(Graphics&, EDrawInitMode); // _20
-	virtual void doExit();                           // _24
-	virtual bool forceFinish();                      // _28
-	virtual bool forceReset();                       // _2C
-	virtual Section* getCurrentSection();            // _30
-	virtual void doLoadingStart();                   // _34
-	virtual bool doLoading();                        // _38
-	virtual bool doUpdate();                         // _3C
-	virtual void doDraw(Graphics&);                  // _40
-	virtual bool isFinishable();                     // _44
-	virtual void loadResource();                     // _50
+	virtual ~Section();             // _08
+	virtual void run();             // _0C
+	virtual void init();            // _18
+	virtual void doExit();          // _24
+	virtual bool forceReset();      // _2C (weak)
+	virtual void doLoadingStart();  // _34
+	virtual bool doLoading();       // _38
+	virtual bool doUpdate();        // _3C
+	virtual void doDraw(Graphics&); // _40
+	virtual bool isFinishable();    // _44
+	virtual void loadResource();    // _50
 
+	void loadResident();
+	// void menuCancel(Menu&);
+	// void menuSelect(Menu&);
+	void doUpdateMainTitle();
+	void doUpdateOmake();
+
+	// _00		= VTBL
+	// _00-_48	= Game::BaseHIOSection
 	int _48;                           // _0048
 	float _4C;                         // _004C
 	Menu* _50;                         // _0050

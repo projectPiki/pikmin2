@@ -19,7 +19,7 @@ namespace Caption {
 struct Node : public CNode {
 	Node();
 
-	virtual ~Node() { }         // _08
+	virtual ~Node() { }         // _08 (weak)
 	virtual void read(Stream&); // _10
 
 	u32 m_startFrame; // _18
@@ -33,8 +33,8 @@ struct Node : public CNode {
 struct Mgr : public CNode {
 	Mgr();
 
-	virtual ~Mgr();             // _00
-	virtual void read(Stream&); // _08
+	virtual ~Mgr();             // _08 (weak)
+	virtual void read(Stream&); // _10
 
 	void draw(Graphics&);
 	P2JME::Caption::TControl* getFreeMessage();

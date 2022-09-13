@@ -12,8 +12,10 @@ struct TEnemyDownSmoke : public TSimple1 {
 	{
 	}
 
-	virtual bool create(Arg*); // _00
+	virtual bool create(Arg*); // _08
 
+	// _00		= VTBL
+	// _00-_0C	= TSimple1
 	float _0C; // _0C
 };
 

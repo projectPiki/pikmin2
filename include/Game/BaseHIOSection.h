@@ -15,14 +15,15 @@ struct HIORootNode;
 struct BaseHIOSection : public Section {
 	BaseHIOSection(JKRHeap*);
 
-	virtual ~BaseHIOSection();          // _00
-	virtual bool doUpdate();            // _34
-	virtual void initHIO(HIORootNode*); // _40
-	virtual void refreshHIO();          // _44
+	virtual ~BaseHIOSection();          // _08
+	virtual bool doUpdate();            // _3C
+	virtual void initHIO(HIORootNode*); // _48
+	virtual void refreshHIO();          // _4C
 
 	void addGenNode(CNode*);
 	void createScreenRootNode();
 	void setDisplay(JFWDisplay*, int);
+
 #if BUILDTARGET == USADEMO1
 	u8 _DemoPadding1[0x1C];
 #endif
@@ -40,7 +41,7 @@ struct BaseHIOSection : public Section {
 struct HIORootNode : public CNode {
 	HIORootNode(Section*);
 
-	virtual ~HIORootNode() { } // _00
+	virtual ~HIORootNode() { } // _08 (weak)
 
 	Section* m_section; // _18
 };

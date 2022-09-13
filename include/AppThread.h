@@ -5,8 +5,11 @@
 
 struct AppThread : public JKRThread {
 	AppThread(u32 stackSize, int msgCount, int threadPriority);
-	virtual ~AppThread(); // _08
-	virtual u32 run();    // _0C
+
+	virtual ~AppThread(); // _08 (weak)
+
+	// _00  	= VTBL
+	// _00-_7C 	= JKRThread
 };
 
 #endif

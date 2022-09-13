@@ -126,16 +126,10 @@ struct PelletIterator {
 	int m_index;                           // _0C
 };
 
-struct CreatureInitArg {
-	virtual const char* getName() = 0; // _08
-
-	// _00 VTBL
-};
-
 /**
  * @size{0x28}
  */
-struct PelletInitArg : CreatureInitArg {
+struct PelletInitArg : public CreatureInitArg {
 	PelletInitArg()
 	{
 		_1C           = 0;

@@ -44,7 +44,8 @@ template <typename T> struct TSyncGroup2 : public TBase {
 	}
 	//////////////// VTABLE END
 
-	T m_items[2];
+	// _00 	= VTBL
+	T m_items[2]; // _04
 };
 
 template <typename T> struct TSyncGroup3 : public TBase {
@@ -84,7 +85,8 @@ template <typename T> struct TSyncGroup3 : public TBase {
 	}
 	//////////////// VTABLE END
 
-	T m_items[3];
+	// _00 = VTBL
+	T m_items[3]; // _04
 };
 
 template <typename T> struct TSyncGroup4 : public TBase {
@@ -124,7 +126,8 @@ template <typename T> struct TSyncGroup4 : public TBase {
 	}
 	//////////////// VTABLE END
 
-	T m_items[4];
+	// _00 = VTBL
+	T m_items[4]; // _04
 };
 
 template <typename T> struct TSyncGroup5 : public TBase {
@@ -164,7 +167,8 @@ template <typename T> struct TSyncGroup5 : public TBase {
 	}
 	//////////////// VTABLE END
 
-	T m_items[5];
+	// _00 = VTBL
+	T m_items[5]; // _04
 };
 
 template <typename T> struct TSyncGroup6 : public TBase {
@@ -204,7 +208,8 @@ template <typename T> struct TSyncGroup6 : public TBase {
 	}
 	//////////////// VTABLE END
 
-	T m_items[6];
+	// _00 = VTBL
+	T m_items[6]; // _04
 };
 } // namespace efx
 

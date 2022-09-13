@@ -31,10 +31,13 @@ struct BootSection : public Game::BaseHIOSection {
 	};
 
 	BootSection(JKRHeap*);
-	~BootSection();
 
-	void doDraw(Graphics&);
-	virtual bool doUpdate();
+	virtual ~BootSection();         // _08
+	virtual void run();             // _0C
+	virtual void init();            // _18
+	virtual bool forceReset();      // _2C (weak)
+	virtual bool doUpdate();        // _3C
+	virtual void doDraw(Graphics&); // _40
 
 	void drawDolbyLogo(Graphics&);
 	void drawEpilepsy(Graphics&);
@@ -43,14 +46,10 @@ struct BootSection : public Game::BaseHIOSection {
 	void drawSetInterlace(Graphics&);
 	void drawSetProgressive(Graphics&);
 
-	virtual bool forceReset();
-	void init();
-
 	void load2DResource();
 	void loadBootResource();
 	void loadResident();
 
-	void run();
 	void runWait(RunWaitCallback);
 
 	void setMode(int);

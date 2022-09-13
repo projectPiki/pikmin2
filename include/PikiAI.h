@@ -4,6 +4,8 @@
 #include "types.h"
 #include "Vector3.h"
 #include "SysShape/MotionListener.h"
+#include "Condition.h"
+#include "Collinfo.h"
 
 namespace Sys {
 struct Triangle;
@@ -24,6 +26,10 @@ struct WayPoint;
 } // namespace Game
 
 struct Graphics;
+
+struct FindCondition : public Condition<CollPart> {
+	virtual bool satisfy(CollPart*); // _08 (weak)
+};
 
 namespace PikiAI {
 struct ActAttack;

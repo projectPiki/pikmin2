@@ -1,6 +1,6 @@
 #include "CNode.h"
 #include "Condition.h"
-#include "Game/AABBWaterBox.h"
+#include "Game/WaterBox.h"
 #include "Game/MapMgr.h"
 #include "Game/routeMgr.h"
 #include "Iterator.h"

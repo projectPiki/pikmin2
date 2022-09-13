@@ -17,6 +17,13 @@ struct ISection : public JKRDisposer {
 	virtual void init()          = 0; // _18
 };
 
+struct ISectionMgr {
+	ISectionMgr() { }
+
+	virtual void run() = 0;                // _08
+	virtual ISection* getCurrentSection(); // _0C (weak)
+};
+
 struct Section : public ISection {
 	enum EDrawInitMode { Zero = 0, One = 1, Two = 2 };
 

@@ -101,26 +101,4 @@ struct Mgr : public LightMgr {
 };
 } // namespace TreasureLight
 
-namespace Game {
-struct GameLightTimeSetting;
-struct GameLightEventArg;
-
-struct GameLightMgr : public LightMgr {
-	virtual ~GameLightMgr();     // _08 (weak)
-	virtual void update();       // _10
-	virtual void set(Graphics&); // _14
-
-	GameLightMgr(char*);
-	void start();
-	void createEventLight(Game::GameLightEventArg&);
-	void loadParm(Stream&);
-	void calcSetting(Game::GameLightTimeSetting*, Game::GameLightTimeSetting*, Game::GameLightTimeSetting*);
-	void updateSunType();
-	void updateSpotType();
-	void updatePosition(Viewport*);
-
-	u8 _50[0x2344 - 0x50];
-	FogMgr* m_fogMgr; // _2344
-};
-} // namespace Game
 #endif

@@ -109,8 +109,6 @@ struct CollPart : public CNode {
 struct CollPartMgr : public MonoObjectMgr<CollPart> {
 
 	virtual ~CollPartMgr() { } // _08 (weak)
-	// virtual void _2C() = 0;		  // _2C - need to work out
-	// virtual void _30() = 0; 		  // _30 - need to work out
 
 	CollPart* createOne(SysShape::MtxObject*);
 };
@@ -152,7 +150,7 @@ struct AgeCollPart : public CollPart {
 	u8 _64; // _64
 };
 
-struct CollPartFactory : CollPart {
+struct CollPartFactory : public CollPart {
 	inline CollPartFactory(Stream& input)
 	    : CollPart()
 	{

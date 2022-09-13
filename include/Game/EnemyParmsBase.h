@@ -60,7 +60,7 @@ struct CreatureParms {
 
 	CreatureProperty m_creatureProps;
 
-	virtual void read(Stream& input) // _00
+	virtual void read(Stream& input) // _08 (weak)
 	{
 		m_creatureProps.m_props.read(input);
 	};
