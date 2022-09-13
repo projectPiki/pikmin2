@@ -95,7 +95,7 @@ JSYSTEM:=\
 	$(BUILD_DIR)/asm/JSystem/JMath/JMath.o\
 	$(BUILD_DIR)/src/JSystem/JMath/random.o\
 	$(BUILD_DIR)/asm/JSystem/JMath/JMATrigonometric.o\
-	$(BUILD_DIR)/asm/JSystem/J2D/J2DOrthoGraph.o\
+	$(BUILD_DIR)/src/JSystem/J2D/J2DOrthoGraph.o\
 	$(BUILD_DIR)/asm/JSystem/J2D/J2DPerspGraph.o\
 	$(BUILD_DIR)/asm/JSystem/J2D/J2DGrafContext.o\
 	$(BUILD_DIR)/asm/JSystem/J2D/J2DPane.o\
