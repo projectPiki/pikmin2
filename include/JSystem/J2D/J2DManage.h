@@ -13,7 +13,7 @@ struct J2DResReference {
 };
 
 // fabricated name, but struct should exist
-// kinda surprised this isn't just a JSUPtrLink tbh but :shrug:
+// this is a (one-way) linked list, vs JSUPtrLink which is two-way
 struct J2DDataLink {
 	void* m_value;       // _00
 	char* m_name;        // _04
