@@ -37,6 +37,14 @@ struct TColor : public GXColor {
 
 	void set(GXColor gxColor) { *(GXColor*)&r = gxColor; }
 
+    void setRGB(u8 cR, u8 cG, u8 cB) {
+        r = cR;
+        g = cG;
+        b = cB;
+    }
+
+	void setRGB(const TColor& other) { setRGB(other.r, other.g, other.b); }
+
 	// _00 = GXColor (_00 = r, _01 = g, _02 = b, _03 = a)
 };
 } // namespace JUtility
