@@ -2,7 +2,7 @@
 #define _OG_GROUND_H
 
 #include "JSystem/J2D/J2DPane.h"
-#include "JSystem/JUtility.h"
+#include "JSystem/JUT/TColor.h"
 #include "Morimura/DayEndCount.h"
 #include "Morimura/HurryUp.h"
 #include "og/Screen/ogScreen.h"

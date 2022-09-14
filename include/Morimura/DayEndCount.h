@@ -3,7 +3,7 @@
 
 #include "JSystem/J2D/J2DPane.h"
 #include "JSystem/JGeometry.h"
-#include "JSystem/JUtility.h"
+#include "JSystem/JUT/TColor.h"
 #include "Morimura/TTestBase.h"
 #include "Screen/Enums.h"
 #include "og/Screen/ogScreen.h"

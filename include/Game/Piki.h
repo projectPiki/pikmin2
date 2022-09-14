@@ -2,7 +2,7 @@
 #define _GAME_PIKI_H
 
 #include "JSystem/JAI/JAInter/Object.h"
-#include "JSystem/JUtility.h"
+#include "JSystem/JUT/TColor.h"
 
 #include "PSM/Piki.h"
 

@@ -1,5 +1,5 @@
 #include "JSystem/JGeometry.h"
-#include "JSystem/JUtility.h"
+#include "JSystem/JUT/TColor.h"
 #include "types.h"
 #include "og/Floor.h"
 #include "Dolphin/string.h"
@@ -814,7 +814,7 @@ void ObjFloor::doCreate(JKRArchive* archive)
 	Screen::DispMemberBase* disp = getDispMember();
 	if (disp->isID(OWNER_OGA, MEMBER_FLOOR) == false) {
 		if (disp->isID(OWNER_OGA, MEMBER_DUMMY) == false) {
-			JUT_PANICLINE(452, "ERR! in ObjFloor Createï¿½ï¿½ï¿½sï¿½I\n");
+			JUT_PANICLINE(452, "ERR! in ObjFloor Create?¿½?¿½?¿½s?¿½I\n");
 		}
 		disp         = new Screen::DispMemberFloor();
 		m_dispMember = disp;

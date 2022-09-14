@@ -2,7 +2,7 @@
 #define _JSYSTEM_J2D_J2DPRINT_H
 
 #include "types.h"
-#include "JSystem/JUtility.h"
+#include "JSystem/JUT/TColor.h"
 #include "JSystem/JUT/JUTFont.h"
 
 struct J2DTextBoxVBinding;

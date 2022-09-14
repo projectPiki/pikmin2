@@ -14,54 +14,6 @@ extern P2JME::Mgr* gP2JMEMgr;
 
 enum LanguageID { LANG_ENGLISH = 0, LANG_FRENCH, LANG_GERMAN, LANG_HOL_UNUSED, LANG_ITALIAN, LANG_JAPANESE, LANG_SPANISH };
 
-/*
-    Generated from dpostproc
-
-    .section .rodata  # 0x804732E0 - 0x8049E220
-    .balign 8
-    lbl_80499DA8:
-        .asciz "dvdStatus"
-    .balign 4
-    lbl_80499DB4:
-        .asciz "dvdStatus.cpp"
-    .balign 4
-    lbl_80499DC4:
-        .asciz "no display.\n"
-    .balign 4
-    lbl_80499DD4:
-        .asciz "display changed !\n"
-    .balign 4
-    lbl_80499DE8:
-        .asciz "no ROM font\n"
-    .balign 4
-    lbl_80499DF8:
-        .asciz "unknown language. %d"
-
-    .section .data, "wa"  # 0x8049E220 - 0x804EFC20
-    .balign 8
-    lbl_804EBE20:
-        .4byte lbl_8042A6C4
-        .4byte lbl_8042A6D4
-        .4byte lbl_8042A6E4
-        .4byte lbl_8042A724
-        .4byte lbl_8042A6F4
-        .4byte lbl_8042A704
-        .4byte lbl_8042A714
-
-    .section .sdata2, "a"     # 0x80516360 - 0x80520E40
-    .balign 8
-    lbl_80520570:
-        .float 0.0
-    lbl_80520574:
-        .float 40.0
-    lbl_80520578:
-        .float 200.0
-    .balign 8
-    lbl_80520580:
-        .4byte 0x43300000
-        .4byte 0x00000000
-*/
-
 const char* filler1 = "dvdStatus";
 
 /*
@@ -201,8 +153,8 @@ void DvdStatus::draw(void)
 
 			JStack128.initiate();
 
-			JStack128._40 = whiteset();
-			JStack128._44 = whiteset();
+			JStack128._40.set(TCOLOR_WHITE);
+			JStack128._44.set(TCOLOR_WHITE);
 
 			JStack128.print(40.0f, 200.0f, errorMsgSet[_00]);
 		}

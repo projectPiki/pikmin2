@@ -2,7 +2,7 @@
 #include "IDelegate.h"
 #include "JSystem/JKR/JKRArchive.h"
 #include "JSystem/JUT/JUTException.h"
-#include "JSystem/JUtility.h"
+#include "JSystem/JUT/TColor.h"
 #include "Screen/Enums.h"
 #include "Screen/SceneInfoList.h"
 #include "og/Screen/DispMemberDummy.h"

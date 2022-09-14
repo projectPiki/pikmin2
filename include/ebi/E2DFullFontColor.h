@@ -1,7 +1,7 @@
 #ifndef _EBI_E2DFULLFONTCOLOR_H
 #define _EBI_E2DFULLFONTCOLOR_H
 
-#include "JSystem/JUtility.h"
+#include "JSystem/JUT/TColor.h"
 
 namespace ebi {
 // @size{0x10}

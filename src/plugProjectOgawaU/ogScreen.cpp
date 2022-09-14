@@ -72,8 +72,8 @@ PictureTreeColorCaptureInfo* capturePictureTreeColor(J2DPane* picture, int count
 		JUtility::TColor black = static_cast<J2DPicture*>(picture)->getBlack();
 		if (wkMax > 0) {
 			wkPtr->m_pane = picture;
-			wkPtr->m_white.set(white.asGXColor.r, white.asGXColor.g, white.asGXColor.b, white.asGXColor.a);
-			wkPtr->m_black.set(black.asGXColor.r, black.asGXColor.g, black.asGXColor.b, black.asGXColor.a);
+			wkPtr->m_white.set(white.r, white.g, white.b, white.a);
+			wkPtr->m_black.set(black.r, black.g, black.b, black.a);
 			wkPtr++;
 			wkMax--;
 		} else {
@@ -110,11 +110,11 @@ void blendColor(JUtility::TColor& color1, JUtility::TColor& color2, float blendF
 	float tCompl = 1.0f - t;
 
 	JUtility::TColor store;
-	store.asGXColor.r = (color1.asGXColor.r * tCompl) + (color2.asGXColor.r * t);
-	store.asGXColor.g = (color1.asGXColor.g * tCompl) + (color2.asGXColor.g * t);
-	store.asGXColor.b = (color1.asGXColor.b * tCompl) + (color2.asGXColor.b * t);
-	store.asGXColor.a = (color1.asGXColor.a * tCompl) + (color2.asGXColor.a * t);
-	outColor->set(store.asGXColor.r, store.asGXColor.g, store.asGXColor.b, store.asGXColor.a);
+	store.r = (color1.r * tCompl) + (color2.r * t);
+	store.g = (color1.g * tCompl) + (color2.g * t);
+	store.b = (color1.b * tCompl) + (color2.b * t);
+	store.a = (color1.a * tCompl) + (color2.a * t);
+	outColor->set(store.r, store.g, store.b, store.a);
 }
 
 /*

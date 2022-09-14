@@ -3,7 +3,7 @@
 
 #include "Dolphin/gx.h"
 #include "JSystem/JKR/JKRDisposer.h"
-#include "JSystem/JUtility.h"
+#include "JSystem/JUT/TColor.h"
 #include "Resource.h"
 #include "Screen/Enums.h"
 #include "types.h"

@@ -2,7 +2,7 @@
 #define _WIPE_H
 
 #include "CNode.h"
-#include "JSystem/JUtility.h"
+#include "JSystem/JUT/TColor.h"
 #include "Vector2.h"
 
 struct Graphics;

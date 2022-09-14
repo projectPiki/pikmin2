@@ -3,7 +3,7 @@
 
 #include "types.h"
 #include "Game/MemoryCard/Mgr.h"
-#include "JSystem/JUtility.h"
+#include "JSystem/JUT/TColor.h"
 
 struct JUTFader;
 
@@ -26,9 +26,6 @@ void onDvdErrorRecovered();
 } // namespace TMgr
 } // namespace FileSelect
 } // namespace ebi
-
-// used in DvdStatus::draw
-inline JUtility::TColor whiteset(void) { return JUtility::TColor(0xFF, 0xFF, 0xFF, 0xFF); };
 
 namespace DvdError {
 extern char* gMessage_eng[];

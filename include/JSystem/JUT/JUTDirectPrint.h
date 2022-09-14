@@ -2,7 +2,7 @@
 #define _JUTDIRECTPRINT_H
 
 #include "types.h"
-#include "JSystem/JUtility.h"
+#include "JSystem/JUT/TColor.h"
 
 struct JUTDirectPrint {
 	void* _00;            // _00

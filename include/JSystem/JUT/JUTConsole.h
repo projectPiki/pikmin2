@@ -138,4 +138,9 @@ private:
 	JUTConsole* mDirectConsole;                  // _10
 };                                               // Size: 0x14
 
+extern "C" {
+void JUTReportConsole(char const*);
+void JUTReportConsole_f(char const*, ...);
+}
+
 #endif

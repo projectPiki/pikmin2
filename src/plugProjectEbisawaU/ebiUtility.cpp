@@ -140,10 +140,10 @@ void EUTPadInterface_countNum::update()
  */
 void EUTColor_complement(JUtility::TColor& color1, JUtility::TColor& color2, float f1, float f2, JUtility::TColor* color3)
 {
-	color3->asGXColor.r = f1 * color1.asGXColor.r + f2 * color2.asGXColor.r;
-	color3->asGXColor.g = f1 * color1.asGXColor.g + f2 * color2.asGXColor.g;
-	color3->asGXColor.b = f1 * color1.asGXColor.b + f2 * color2.asGXColor.b;
-	color3->asGXColor.a = f1 * color1.asGXColor.a + f2 * color2.asGXColor.a;
+	color3->r = f1 * color1.r + f2 * color2.r;
+	color3->g = f1 * color1.g + f2 * color2.g;
+	color3->b = f1 * color1.b + f2 * color2.b;
+	color3->a = f1 * color1.a + f2 * color2.a;
 }
 
 /*
