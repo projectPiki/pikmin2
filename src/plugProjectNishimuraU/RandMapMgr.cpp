@@ -901,7 +901,7 @@ lbl_80244E7C:
  * Address:	80244E94
  * Size:	00001C
  */
-void Cave::RandMapMgr::isLastFloor(void)
+bool Cave::RandMapMgr::isLastFloor(void)
 {
 	/*
 	lwz      r3, 0x18(r3)

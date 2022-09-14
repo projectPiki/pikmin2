@@ -89,7 +89,7 @@ struct RandMapMgr : public CNode {
 	void setUnitTexture(int, JUTTexture*);
 	void setCaptureOn();
 	void captureRadarMap(Graphics&);
-	void isLastFloor();
+	bool isLastFloor();
 	void isVersusHiba();
 	void getRadarMapTexture();
 	void radarMapPartsOpen(Vector3f&);

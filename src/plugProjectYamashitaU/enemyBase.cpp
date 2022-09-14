@@ -519,7 +519,7 @@ void EarthquakeState::init(Game::EnemyBase* enemy, Game::StateArg* arg)
 	enemy->doUpdate();
 	enemy->setEvent(1, EB2_1);
 	enemy->stopMotion();
-	enemy->doStartEarthquakeState(arg->_00);
+	enemy->doStartEarthquakeState(arg->_00.f32);
 	this->_10 = 0;
 }
 
@@ -620,8 +620,8 @@ void StoneState::cleanup(Game::EnemyBase* enemy)
 
 	enemy->m_events.m_flags[0] = enemy->m_eventBuffer.m_flags[0];
 	enemy->m_events.m_flags[1] = enemy->m_eventBuffer.m_flags[1];
-	resetEvent(0, EB_21);
-	resetEvent(0, EB_Bittered);
+	enemy->resetEvent(0, EB_21);
+	enemy->resetEvent(0, EB_Bittered);
 
 	enemy->show();
 	enemy->startMotion();
@@ -729,7 +729,7 @@ Game::EnemyBase::EnemyBase()
     , m_position(0.0f, 0.0f, 0.0f)
     , _1A4()
     , m_events()
-    , _1E8()
+    , m_eventBuffer()
     , m_emotion(EMOTE_Caution)
     , m_enemyIndexForType(0xFF)
     , _1F2(0xFF)
@@ -2265,7 +2265,7 @@ void EnemyBase::doSimulationFlying(float constraint)
  * Address:	80103878
  * Size:	000058
  */
-void EnemyBase::doSimulationStick(float)
+void EnemyBase::doSimulationStick(float constraint)
 {
 	Vector3f diff = m_velocity2 - m_velocity;
 	diff          = diff * getSimulationScale(constraint);
@@ -2373,7 +2373,7 @@ void EnemyBase::inWaterCallback(Game::WaterBox* water)
  */
 // WIP: https://decomp.me/scratch/kkYEd
 // single regswap lmao
-void EnemyBase::finishDropping(bool)
+void EnemyBase::finishDropping(bool heightCheck)
 {
 	if (isEvent(1, EB2_5)) {
 		addDamage(0.0f, 1.0f);
@@ -4282,7 +4282,7 @@ bool EnemyBase::earthquakeCallBack(Game::Creature* creature, float p1)
 		if (!(isEvent(0, EB_HardConstraint)) && !(isEvent(0, EB_Bittered))) {
 			if (((isEvent(0, EB_22)) || (isEvent(0, EB_BitterImmune))) == false) {
 				StateArg transitArg;
-				transitArg._00 = p1;
+				transitArg._00.f32 = p1;
 				m_lifecycleFSM->transit(this, EnemyBaseFSM::EBS_Earthquake, &transitArg);
 			}
 		}

@@ -6362,7 +6362,7 @@ void PelletMgr::makeVsCarryMinMax(PelletInitArg& arg, char* name)
  * Address:	8016DB90
  * Size:	0002EC
  */
-void PelletMgr::makePelletInitArg(Game::PelletInitArg& arg, Game::PelletMgr::OtakaraItemCode& itemCode)
+bool PelletMgr::makePelletInitArg(Game::PelletInitArg& arg, Game::PelletMgr::OtakaraItemCode& itemCode)
 {
 	if (itemCode.isNull()) {
 		return false;
