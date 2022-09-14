@@ -134,7 +134,7 @@ void TForever::setGlobalEnvColor(JUtility::TColor& color)
 	JPABaseEmitter* emitter = m_emitter;
 
 	if (emitter != nullptr) {
-        m_emitter->m_color.setRGB(color);
+		m_emitter->m_color.setRGB(color);
 	}
 }
 

@@ -37,11 +37,12 @@ struct TColor : public GXColor {
 
 	void set(GXColor gxColor) { *(GXColor*)&r = gxColor; }
 
-    void setRGB(u8 cR, u8 cG, u8 cB) {
-        r = cR;
-        g = cG;
-        b = cB;
-    }
+	void setRGB(u8 cR, u8 cG, u8 cB)
+	{
+		r = cR;
+		g = cG;
+		b = cB;
+	}
 
 	void setRGB(const TColor& other) { setRGB(other.r, other.g, other.b); }
 

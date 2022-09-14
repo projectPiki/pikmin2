@@ -139,13 +139,13 @@ typedef enum _GXIndTexWrap {
 } GXIndTexWrap;
 
 typedef enum _GXTexOffset {
-	/* 0x0 */ GX_TO_ZERO,
-	/* 0x1 */ GX_TO_SIXTEENTH,
-	/* 0x2 */ GX_TO_EIGHTH,
-	/* 0x3 */ GX_TO_FOURTH,
-	/* 0x4 */ GX_TO_HALF,
-	/* 0x5 */ GX_TO_ONE,
-	/* 0x6 */ GX_MAX_TEXOFFSET,
+	GX_TO_ZERO,
+	GX_TO_SIXTEENTH,
+	GX_TO_EIGHTH,
+	GX_TO_FOURTH,
+	GX_TO_HALF,
+	GX_TO_ONE,
+	GX_MAX_TEXOFFSET,
 } GXTexOffset;
 
 /*
@@ -504,10 +504,7 @@ typedef struct _SDK_GXFogAdjTable {
 	u16 _00[10];
 } GXFogAdjTable;
 
-typedef enum _GXTexMtxType {
-	/* 0x0 */ GX_MTX3x4,
-	/* 0x1 */ GX_MTX2x4
-} GXTexMtxType;
+typedef enum _GXTexMtxType { GX_MTX3x4, GX_MTX2x4 } GXTexMtxType;
 
 // Compare types.
 typedef enum _SDK_GXCompare {
@@ -521,13 +518,7 @@ typedef enum _SDK_GXCompare {
 	GX_ALWAYS   // Always true.
 } GXCompare;
 
-typedef enum _GXAlphaOp {
-	/* 0x0 */ GX_AOP_AND,
-	/* 0x1 */ GX_AOP_OR,
-	/* 0x2 */ GX_AOP_XOR,
-	/* 0x3 */ GX_AOP_XNOR,
-	/* 0x4 */ GX_MAX_ALPHAOP
-} GXAlphaOp;
+typedef enum _GXAlphaOp { GX_AOP_AND, GX_AOP_OR, GX_AOP_XOR, GX_AOP_XNOR, GX_MAX_ALPHAOP } GXAlphaOp;
 
 // Blending type.
 typedef enum _SDK_GXBlendMode {
