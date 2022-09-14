@@ -1,5 +1,6 @@
 #include "JSystem/JUT/JUTFont.h"
 #include "JSystem/JKR/JKRHeap.h"
+#include "JSystem/JUT/JUTConsole.h"
 #include "types.h"
 
 JUTFont::IsLeadByte const JUTResFont::saoAboutEncoding_[3]
@@ -240,7 +241,7 @@ void JUTResFont::setGX()
  */
 void JUTResFont::setGX(JUtility::TColor param_0, JUtility::TColor param_1)
 {
-	if (param_0.asU32 == 0 && param_1.asU32 == -1) {
+	if (u32(param_0) == 0 && u32(param_1) == -1) {
 		setGX();
 	} else {
 		GXSetNumChans(1);
@@ -248,8 +249,8 @@ void JUTResFont::setGX(JUtility::TColor param_0, JUtility::TColor param_1)
 		GXSetNumTexGens(1);
 		GXSetTevOrder(GX_TEVSTAGE0, GX_TEXCOORD0, GX_TEXMAP0, GX_COLOR_NULL);
 		GXSetChanCtrl(GX_COLOR0A0, GX_FALSE, GX_SRC_REG, GX_SRC_VTX, GX_LIGHT_NULL, GX_DF_NONE, GX_AF_NONE);
-		GXSetTevColor(GX_TEVREG0, param_0.asGXColor);
-		GXSetTevColor(GX_TEVREG1, param_1.asGXColor);
+		GXSetTevColor(GX_TEVREG0, param_0);
+		GXSetTevColor(GX_TEVREG1, param_1);
 		GXSetTevColorIn(GX_TEVSTAGE0, GX_CC_C0, GX_CC_C2, GX_CC_TEXC, GX_CC_ZERO);
 		GXSetTevAlphaIn(GX_TEVSTAGE0, GX_CA_A0, GX_CA_A1, GX_CA_TEXA, GX_ZERO);
 		GXSetTevColorOp(GX_TEVSTAGE0, GX_TEV_ADD, GX_TB_ZERO, GX_CS_SCALE_1, GX_TRUE, GX_TEVPREV);
@@ -330,28 +331,28 @@ f32 JUTResFont::drawChar_scale(f32 pos_x, f32 pos_y, f32 scale_x, f32 scale_y, i
 	HW_REG(0xCC008000, f32) = width_val;
 	HW_REG(0xCC008000, f32) = ascent_val;
 	HW_REG(0xCC008000, f32) = zero_f;
-	HW_REG(0xCC008000, u32) = _0C.asU32;
+	HW_REG(0xCC008000, u32) = u32(_0C);
 	HW_REG(0xCC008000, s16) = div_width;
 	HW_REG(0xCC008000, s16) = div_height;
 
 	HW_REG(0xCC008000, f32) = sca_wid;
 	HW_REG(0xCC008000, f32) = ascent_val;
 	HW_REG(0xCC008000, f32) = zero_f;
-	HW_REG(0xCC008000, u32) = _10.asU32;
+	HW_REG(0xCC008000, u32) = u32(_10);
 	HW_REG(0xCC008000, s16) = width_ratio;
 	HW_REG(0xCC008000, s16) = div_height;
 
 	HW_REG(0xCC008000, f32) = sca_wid;
 	HW_REG(0xCC008000, f32) = deshei;
 	HW_REG(0xCC008000, f32) = zero_f;
-	HW_REG(0xCC008000, u32) = _18.asU32;
+	HW_REG(0xCC008000, u32) = u32(_18);
 	HW_REG(0xCC008000, s16) = width_ratio;
 	HW_REG(0xCC008000, s16) = height_ratio;
 
 	HW_REG(0xCC008000, f32) = width_val;
 	HW_REG(0xCC008000, f32) = deshei;
 	HW_REG(0xCC008000, f32) = zero_f;
-	HW_REG(0xCC008000, u32) = _14.asU32;
+	HW_REG(0xCC008000, u32) = u32(_14);
 	HW_REG(0xCC008000, s16) = div_width;
 	HW_REG(0xCC008000, s16) = height_ratio;
 

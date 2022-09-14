@@ -37,6 +37,8 @@ float tanf(float);
 double atan(double);
 double atan2(double, double);
 
+double ceil(double);
+
 #ifdef __cplusplus
 };
 #endif // ifdef __cplusplus

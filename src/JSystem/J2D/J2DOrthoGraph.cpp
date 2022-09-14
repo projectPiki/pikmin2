@@ -2,28 +2,6 @@
 #include "JSystem/J2D/J2DGrafContext.h"
 
 /*
-    Generated from dpostproc
-
-    .section .data, "wa"  # 0x8049E220 - 0x804EFC20
-    .global __vt__13J2DOrthoGraph
-    __vt__13J2DOrthoGraph:
-        .4byte 0
-        .4byte 0
-        .4byte __dt__13J2DOrthoGraphFv
-        .4byte "place__14J2DGrafContextFRCQ29JGeometry8TBox2<f>"
-        .4byte place__14J2DGrafContextFffff
-        .4byte setPort__13J2DOrthoGraphFv
-        .4byte setup2D__14J2DGrafContextFv
-        .4byte setScissor__14J2DGrafContextFv
-        .4byte getGrafType__13J2DOrthoGraphCFv
-        .4byte setLookat__13J2DOrthoGraphFv
-
-    .section .sdata2, "a"     # 0x80516360 - 0x80520E40
-    lbl_80516780:
-        .float 0.0
-*/
-
-/*
  * --INFO--
  * Address:	80035530
  * Size:	000060
@@ -36,23 +14,15 @@ J2DOrthoGraph::J2DOrthoGraph()
 
 /*
  * --INFO--
- * Address:	80035590
- * Size:	000048
- * J2DGrafContext::~J2DGrafContext() {};
- * Weak function.
- */
-
-/*
- * --INFO--
  * Address:	800355D8
  * Size:	0000E4
  */
 J2DOrthoGraph::J2DOrthoGraph(f32 left, f32 top, f32 right, f32 bottom, f32 param_4, f32 param_5)
     : J2DGrafContext(left, top, right, bottom)
 {
-	m_Ortho = JGeometry::TBox2<f32>(0, 0, right, bottom);
-	m_Near  = -param_5;
-	m_Far   = -param_4;
+	m_ortho = JGeometry::TBox2<f32>(0, 0, right, bottom);
+	m_near  = -param_5;
+	m_far   = -param_4;
 	setLookat();
 }
 
@@ -64,8 +34,8 @@ J2DOrthoGraph::J2DOrthoGraph(f32 left, f32 top, f32 right, f32 bottom, f32 param
 void J2DOrthoGraph::setPort()
 {
 	J2DGrafContext::setPort(); // thiscall
-	C_MTXOrtho(m_Mtx44, m_Ortho.i.y, m_Ortho.f.y, m_Ortho.i.x, m_Ortho.f.x, m_Near, m_Far);
-	GXSetProjection(m_Mtx44, GX_ORTHOGRAPHIC);
+	C_MTXOrtho(m_mtx44, m_ortho.i.y, m_ortho.f.y, m_ortho.i.x, m_ortho.f.x, m_near, m_far);
+	GXSetProjection(m_mtx44, GX_ORTHOGRAPHIC);
 }
 
 /*
@@ -75,9 +45,9 @@ void J2DOrthoGraph::setPort()
  */
 void J2DOrthoGraph::setOrtho(JGeometry::TBox2<f32> const& bounds, f32 far, f32 near)
 {
-	m_Ortho = bounds;
-	m_Near  = -near;
-	m_Far   = -far;
+	m_ortho = bounds;
+	m_near  = -near;
+	m_far   = -far;
 }
 
 /*
@@ -87,8 +57,8 @@ void J2DOrthoGraph::setOrtho(JGeometry::TBox2<f32> const& bounds, f32 far, f32 n
  */
 void J2DOrthoGraph::setLookat()
 {
-	PSMTXIdentity(m_PosMtx);
-	GXLoadPosMtxImm(m_PosMtx, 0);
+	PSMTXIdentity(m_posMtx);
+	GXLoadPosMtxImm(m_posMtx, 0);
 }
 
 /*
@@ -100,14 +70,14 @@ void J2DOrthoGraph::scissorBounds(JGeometry::TBox2<f32>* param_0, JGeometry::TBo
 {
 	f32 widthPower  = this->getWidthPower();
 	f32 heightPower = this->getHeightPower();
-	f32 ix          = m_Bounds.i.x >= 0 ? m_Bounds.i.x : 0;
-	f32 iy          = m_Bounds.i.y >= 0 ? m_Bounds.i.y : 0;
-	f32 f0          = ix + widthPower * (param_1->i.x - m_Ortho.i.x);
-	f32 f2          = ix + widthPower * (param_1->f.x - m_Ortho.i.x);
-	f32 f1          = iy + heightPower * (param_1->i.y - m_Ortho.i.y);
-	f32 f3          = iy + heightPower * (param_1->f.y - m_Ortho.i.y);
+	f32 ix          = m_bounds.i.x >= 0 ? m_bounds.i.x : 0;
+	f32 iy          = m_bounds.i.y >= 0 ? m_bounds.i.y : 0;
+	f32 f0          = ix + widthPower * (param_1->i.x - m_ortho.i.x);
+	f32 f2          = ix + widthPower * (param_1->f.x - m_ortho.i.x);
+	f32 f1          = iy + heightPower * (param_1->i.y - m_ortho.i.y);
+	f32 f3          = iy + heightPower * (param_1->f.y - m_ortho.i.y);
 	param_0->set(f0, f1, f2, f3);
-	param_0->intersect(m_ScissorBounds);
+	param_0->intersect(m_scissorBounds);
 }
 
 /*
@@ -190,19 +160,3 @@ void J2DDrawFrame(JGeometry::TBox2<f32> const& param_0, JUtility::TColor color, 
 	oGrph.setLineWidth(line_width);
 	oGrph.drawFrame(param_0);
 }
-
-/*
- * --INFO--
- * Address:	80035D78
- * Size:	000008
- * int J2DOrthoGraph::getGrafType() const { return 1; }
- * Weak function defined in J2DGrafContext.h
- */
-
-/*
- * --INFO--
- * Address:	80035D80
- * Size:	000048
- * void J2DGrafContext::place(float, float, float, float);
- * Weak function defined in J2DGrafContext.h
- */

@@ -2,7 +2,7 @@
 #define _OG_FLOOR_H
 
 #include "JSystem/J2D/J2DPane.h"
-#include "JSystem/JUtility.h"
+#include "JSystem/JUT/TColor.h"
 #include "types.h"
 #include "Screen/Bases.h"
 #include "og/Screen/ogScreen.h"

@@ -1,5 +1,6 @@
 #include "JSystem/JKR/JKRHeap.h"
 #include "JSystem/JUT/JUTFont.h"
+#include "JSystem/JUT/JUTConsole.h"
 #include "types.h"
 
 JUTRomFont::AboutEncoding* JUTRomFont::spAboutEncoding_;
@@ -176,28 +177,28 @@ f32 JUTRomFont::drawChar_scale(f32 pos_x, f32 pos_y, f32 scale_x, f32 scale_y, i
 	HW_REG(0xCC008000, f32) = (s16)_f28; // 2f4
 	HW_REG(0xCC008000, f32) = (s16)_f26; // 304
 	HW_REG(0xCC008000, f32) = _f4;       // 30c
-	HW_REG(0xCC008000, u32) = _0C.asU32; // 324
+	HW_REG(0xCC008000, u32) = u32(_0C);  // 324
 	HW_REG(0xCC008000, s16) = _r30;      // 32c
 	HW_REG(0xCC008000, s16) = _r28;      // 334
 
 	HW_REG(0xCC008000, f32) = (s16)_f27; // 364
 	HW_REG(0xCC008000, f32) = (s16)_f26; // 370
 	HW_REG(0xCC008000, f32) = _f4;       // 374
-	HW_REG(0xCC008000, u32) = _10.asU32; // 380
+	HW_REG(0xCC008000, u32) = u32(_10);  // 380
 	HW_REG(0xCC008000, s16) = _r29;      // 388
 	HW_REG(0xCC008000, s16) = _r28;      // 390
 
 	HW_REG(0xCC008000, f32) = (s16)_f27;   // 3a0
 	HW_REG(0xCC008000, f32) = (s16)_f29_2; // 3a8
 	HW_REG(0xCC008000, f32) = _f4;         // 3b4
-	HW_REG(0xCC008000, u32) = _18.asU32;   // 3cc
+	HW_REG(0xCC008000, u32) = u32(_18);    // 3cc
 	HW_REG(0xCC008000, s16) = _r29;        // 3d8
 	HW_REG(0xCC008000, s16) = _r27;        // 3f8
 
 	HW_REG(0xCC008000, f32) = (s16)_f28;   // 400
 	HW_REG(0xCC008000, f32) = (s16)_f29_2; // 404
 	HW_REG(0xCC008000, f32) = _f4;         // 408
-	HW_REG(0xCC008000, u32) = _14.asU32;   // 414
+	HW_REG(0xCC008000, u32) = u32(_14);    // 414
 	HW_REG(0xCC008000, s16) = _r30;        // 418
 	HW_REG(0xCC008000, s16) = _r27;        // 41c
 

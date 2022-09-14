@@ -2,7 +2,7 @@
 #define _JSYSTEM_JUT_JUTFONT_H
 
 #include "Dolphin/gx.h"
-#include "JSystem/JUtility.h"
+#include "JSystem/JUT/TColor.h"
 
 struct JKRAramBlock;
 struct JKRHeap;

@@ -3,7 +3,7 @@
 
 #include "CNode.h"
 #include "JSystem/JKR/JKRDisposer.h"
-#include "JSystem/JUtility.h"
+#include "JSystem/JUT/TColor.h"
 #include "Screen/Bases.h"
 #include "types.h"
 

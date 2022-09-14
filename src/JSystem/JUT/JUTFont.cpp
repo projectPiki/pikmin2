@@ -1,4 +1,4 @@
-#include "JSystem/JUtility.h"
+#include "JSystem/JUT/TColor.h"
 #include "types.h"
 #include "JSystem/JUT/JUTFont.h"
 
@@ -64,25 +64,10 @@ void JUTFont::initialize_state()
  */
 void JUTFont::setCharColor(JUtility::TColor color)
 {
-	_0C.asGXColor.r = color.asGXColor.r;
-	_0C.asGXColor.g = color.asGXColor.g;
-	_0C.asGXColor.b = color.asGXColor.b;
-	_0C.asGXColor.a = color.asGXColor.a;
-
-	_10.asGXColor.r = color.asGXColor.r;
-	_10.asGXColor.g = color.asGXColor.g;
-	_10.asGXColor.b = color.asGXColor.b;
-	_10.asGXColor.a = color.asGXColor.a;
-
-	_14.asGXColor.r = color.asGXColor.r;
-	_14.asGXColor.g = color.asGXColor.g;
-	_14.asGXColor.b = color.asGXColor.b;
-	_14.asGXColor.a = color.asGXColor.a;
-
-	_18.asGXColor.r = color.asGXColor.r;
-	_18.asGXColor.g = color.asGXColor.g;
-	_18.asGXColor.b = color.asGXColor.b;
-	_18.asGXColor.a = color.asGXColor.a;
+	_0C = color;
+	_10 = color;
+	_14 = color;
+	_18 = color;
 }
 
 /*
@@ -93,25 +78,10 @@ void JUTFont::setCharColor(JUtility::TColor color)
  */
 void JUTFont::setGradColor(JUtility::TColor color, JUtility::TColor color2)
 {
-	_0C.asGXColor.r = color.asGXColor.r;
-	_0C.asGXColor.g = color.asGXColor.g;
-	_0C.asGXColor.b = color.asGXColor.b;
-	_0C.asGXColor.a = color.asGXColor.a;
-
-	_10.asGXColor.r = color.asGXColor.r;
-	_10.asGXColor.g = color.asGXColor.g;
-	_10.asGXColor.b = color.asGXColor.b;
-	_10.asGXColor.a = color.asGXColor.a;
-
-	_14.asGXColor.r = color2.asGXColor.r;
-	_14.asGXColor.g = color2.asGXColor.g;
-	_14.asGXColor.b = color2.asGXColor.b;
-	_14.asGXColor.a = color2.asGXColor.a;
-
-	_18.asGXColor.r = color2.asGXColor.r;
-	_18.asGXColor.g = color2.asGXColor.g;
-	_18.asGXColor.b = color2.asGXColor.b;
-	_18.asGXColor.a = color2.asGXColor.a;
+	_0C = color;
+	_10 = color;
+	_14 = color2;
+	_18 = color2;
 }
 
 /*

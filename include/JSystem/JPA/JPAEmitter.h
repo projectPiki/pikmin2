@@ -5,7 +5,7 @@
 #include "Dolphin/mtx.h"
 #include "JSystem/JGeometry.h"
 #include "JSystem/JSupport/JSUList.h"
-#include "JSystem/JUtility.h"
+#include "JSystem/JUT/TColor.h"
 #include "types.h"
 
 struct JPABaseEmitter;

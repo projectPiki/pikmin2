@@ -2,7 +2,7 @@
 #define _EBI_UTILITY_H
 
 #include "Controller.h"
-#include "JSystem/JUtility.h"
+#include "JSystem/JUT/TColor.h"
 
 namespace ebi {
 struct EUTPadInterface_countNum {

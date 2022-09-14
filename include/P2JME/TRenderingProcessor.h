@@ -4,7 +4,7 @@
 #include "types.h"
 #include "JSystem/JMessage/TProcessor.h"
 #include "JSystem/JMessage/TReference.h"
-#include "JSystem/JUtility.h"
+#include "JSystem/JUT/TColor.h"
 
 struct JUTFont;
 struct JUTTexture;

@@ -1,7 +1,7 @@
 #ifndef _JSYSTEM_JFW_JFWDISPLAY_H
 #define _JSYSTEM_JFW_JFWDISPLAY_H
 
-#include "JSystem/JUtility.h"
+#include "JSystem/JUT/TColor.h"
 #include "JSystem/JUT/JUTXfb.h"
 
 struct JUTFader;

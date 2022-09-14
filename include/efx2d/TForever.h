@@ -23,15 +23,6 @@ struct TForever : public TBase, public JPAEmitterCallBack {
 	void setGlobalEnvColor(JUtility::TColor&);
 	void setGlobalScale(float);
 
-	inline void setColor(JUtility::TColor& color1, JUtility::TColor& color2)
-	{
-		u8 blue            = color2.asGXColor.b;
-		u8 green           = color2.asGXColor.g;
-		color1.asGXColor.r = color2.asGXColor.r;
-		color1.asGXColor.g = green;
-		color1.asGXColor.b = blue;
-	}
-
 	u16 _0C;                   // _0C
 	JPABaseEmitter* m_emitter; // _10
 };

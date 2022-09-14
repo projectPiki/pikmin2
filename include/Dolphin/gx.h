@@ -138,6 +138,16 @@ typedef enum _GXIndTexWrap {
 	GX_IND_TEX_WRAP_0,
 } GXIndTexWrap;
 
+typedef enum _GXTexOffset {
+	GX_TO_ZERO,
+	GX_TO_SIXTEENTH,
+	GX_TO_EIGHTH,
+	GX_TO_FOURTH,
+	GX_TO_HALF,
+	GX_TO_ONE,
+	GX_MAX_TEXOFFSET,
+} GXTexOffset;
+
 /*
  * RGB, RGBA, Intensity, Intensity/Alpha, Compressed, and Z texture format
  * types. See GXCITexFmt for information on color index formats. The CTF format
@@ -494,6 +504,8 @@ typedef struct _SDK_GXFogAdjTable {
 	u16 _00[10];
 } GXFogAdjTable;
 
+typedef enum _GXTexMtxType { GX_MTX3x4, GX_MTX2x4 } GXTexMtxType;
+
 // Compare types.
 typedef enum _SDK_GXCompare {
 	GX_NEVER,   // Always false.
@@ -505,6 +517,8 @@ typedef enum _SDK_GXCompare {
 	GX_GTEQUAL, //>=
 	GX_ALWAYS   // Always true.
 } GXCompare;
+
+typedef enum _GXAlphaOp { GX_AOP_AND, GX_AOP_OR, GX_AOP_XOR, GX_AOP_XNOR, GX_MAX_ALPHAOP } GXAlphaOp;
 
 // Blending type.
 typedef enum _SDK_GXBlendMode {
@@ -846,7 +860,9 @@ void GXSetNumTexGens(u8);
 void GXSetNumChans(u32);
 void GXSetChanCtrl(GXChannelID chan, GXBool enable, GXColorSrc amb_src, GXColorSrc mat_src, GXLightID light_mask, GXDiffuseFn diff_fn,
                    GXAttnFn attn_fn);
+void GXSetNumIndStages(u8 num);
 void GXSetNumTevStages(u32);
+void GXSetTevDirect(GXTevStageID);
 void GXSetTevOrder(GXTevStageID, GXTexCoordID, GXTexMapID, GXChannelID);
 void GXSetTevOp(GXTevStageID, GXTevMode);
 void GXSetTevColor(GXTevRegID, GXColor);
@@ -876,8 +892,11 @@ void GXSetBlendMode(GXBlendMode type, GXBlendFactor src_factor, GXBlendFactor ds
 
 void GXSetColorUpdate(GXBool update_enable);
 void GXSetAlphaUpdate(GXBool update_enable);
+void GXSetAlphaCompare(GXCompare, u8, GXAlphaOp, GXCompare, u8);
 void GXSetDispCopyGamma(GXBool update_enable);
 void GXSetZMode(GXBool compare_enable, GXCompare func, GXBool update_enable);
+void GXSetCullMode(GXCullMode);
+void GXSetCurrentMtx(u32);
 
 void GXSetZCompLoc(GXBool before_tex);
 void GXSetPixelFmt(GXPixelFmt pix_fmt, GXZFmt16 z_fmt);
@@ -919,6 +938,7 @@ void __GXFifoLink(u8);
 void __GXWriteFifoIntEnable(u32, u32);
 void __GXWriteFifoIntReset(u32, u32);
 
+void GXSetScissor(u32, u32, u32, u32);
 void GXSetProjection(Mtx, GXProjectionType);
 
 typedef void GXBreakpointCallback(void);
@@ -993,6 +1013,10 @@ void GXBegin(GXPrimitive, GXVtxFmt, u16);
 
 void GXLoadPosMtxImm(Mtx, int);
 void GXLoadNrmMtxImm(Mtx, int);
+void GXLoadTexMtxImm(Mtx, u32, GXTexMtxType);
+
+void GXSetTexCoordGen2(GXTexCoordID, GXTexGenType, GXTexGenSrc, u32, GXBool, u32);
+void GXSetLineWidth(u8, GXTexOffset);
 
 u16 GXGetNumXfbLines(float, u16);
 float GXGetYScaleFactor(u16, u16);
@@ -1046,6 +1070,8 @@ static inline void GXNormal3f32(const f32 x, const f32 y, const f32 z)
 	GXWGFifo.f32 = y;
 	GXWGFifo.f32 = z;
 }
+
+static inline void GXColor1u32(u32 c) { GXWGFifo.u32 = c; }
 
 static inline void GXColor4u8(const u8 r, const u8 g, const u8 b, const u8 a)
 {
