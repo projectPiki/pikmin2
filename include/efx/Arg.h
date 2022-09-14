@@ -53,7 +53,7 @@ struct ArgEnemyType : public Arg {
 };
 
 struct ArgScale : public Arg {
-	ArgScale(Vector3f& position, float scale)
+	ArgScale(Vector3f position, float scale)
 	    : m_scale(scale)
 	    , Arg(position)
 	{
@@ -71,7 +71,7 @@ struct ArgScale : public Arg {
 };
 
 struct ArgChou : public Arg {
-	ArgChou(Vector3f& position)
+	ArgChou(Vector3f position)
 	    : Arg(position)
 	{
 	}
@@ -83,7 +83,7 @@ struct ArgChou : public Arg {
 };
 
 struct ArgCursor : public Arg {
-	ArgCursor(Vector3f& position)
+	ArgCursor(Vector3f position)
 	    : Arg(position)
 	{
 	}
@@ -95,7 +95,7 @@ struct ArgCursor : public Arg {
 };
 
 struct ArgDir : public Arg {
-	ArgDir(Vector3f& position)
+	ArgDir(Vector3f position)
 	    : Arg(position)
 	{
 	}
@@ -107,7 +107,7 @@ struct ArgDir : public Arg {
 };
 
 struct ArgDopingSmoke : public Arg {
-	ArgDopingSmoke(Vector3f& position)
+	ArgDopingSmoke(Vector3f position)
 	    : Arg(position)
 	{
 	}
@@ -119,7 +119,7 @@ struct ArgDopingSmoke : public Arg {
 };
 
 struct ArgGasuHiba : public Arg {
-	ArgGasuHiba(Vector3f& position)
+	ArgGasuHiba(Vector3f position)
 	    : Arg(position)
 	{
 	}
@@ -131,7 +131,7 @@ struct ArgGasuHiba : public Arg {
 };
 
 struct ArgImoEat : public Arg {
-	ArgImoEat(Vector3f& position)
+	ArgImoEat(Vector3f position)
 	    : Arg(position)
 	{
 	}
@@ -143,7 +143,7 @@ struct ArgImoEat : public Arg {
 };
 
 struct ArgKchYodare : public Arg {
-	ArgKchYodare(Vector3f& position)
+	ArgKchYodare(Vector3f position)
 	    : Arg(position)
 	{
 	}
@@ -155,7 +155,7 @@ struct ArgKchYodare : public Arg {
 };
 
 struct ArgKouhai : public Arg {
-	ArgKouhai(Vector3f& position)
+	ArgKouhai(Vector3f position)
 	    : Arg(position)
 	{
 	}
@@ -167,7 +167,7 @@ struct ArgKouhai : public Arg {
 };
 
 struct ArgPelType : public Arg {
-	ArgPelType(Vector3f& position)
+	ArgPelType(Vector3f position)
 	    : Arg(position)
 	{
 	}
@@ -179,7 +179,7 @@ struct ArgPelType : public Arg {
 };
 
 struct ArgPosPos : public Arg {
-	ArgPosPos(Vector3f& position)
+	ArgPosPos(Vector3f position)
 	    : Arg(position)
 	{
 	}
@@ -191,7 +191,7 @@ struct ArgPosPos : public Arg {
 };
 
 struct ArgPrmColor : public Arg {
-	ArgPrmColor(Vector3f& position)
+	ArgPrmColor(Vector3f position)
 	    : Arg(position)
 	{
 	}
@@ -203,7 +203,7 @@ struct ArgPrmColor : public Arg {
 };
 
 struct ArgRotY : public Arg {
-	ArgRotY(Vector3f& position)
+	ArgRotY(Vector3f position)
 	    : Arg(position)
 	{
 	}
@@ -215,7 +215,7 @@ struct ArgRotY : public Arg {
 };
 
 struct ArgRotYScale : public Arg {
-	ArgRotYScale(Vector3f& position)
+	ArgRotYScale(Vector3f position)
 	    : Arg(position)
 	{
 	}
@@ -227,7 +227,7 @@ struct ArgRotYScale : public Arg {
 };
 
 struct ArgType : public Arg {
-	ArgType(Vector3f& position)
+	ArgType(Vector3f position)
 	    : Arg(position)
 	{
 	}

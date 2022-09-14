@@ -281,11 +281,8 @@ void AppearState::init(Game::EnemyBase* enemy, Game::StateArg* arg)
 	// for context, the term "effects" refer to particle effects
 	float mod                    = enemy->m_scaleModifier;
 	EnemyTypeID::EEnemyTypeID id = enemy->getEnemyTypeID();
-	Vector3f position;
-	const Vector3f& result = enemy->getPosition();
-	__memcpy(&position, &result, sizeof(Vector3f));
 
-	efx::ArgEnemyType effectArg(position, id, mod);
+	efx::ArgEnemyType effectArg(enemy->getPosition(), id, mod);
 	effect.create(&effectArg);
 
 	enemy->m_scale      = 0.0f;
@@ -460,10 +457,7 @@ void EnemyBaseFSM::FitState::init(Game::EnemyBase* enemy, Game::StateArg* arg)
 	float scale                  = enemy->m_scaleModifier;
 	EnemyTypeID::EEnemyTypeID id = enemy->getEnemyTypeID();
 
-	Vector3f position;
-	__memcpy(&position, &enemy->m_position, sizeof(Vector3f));
-
-	efx::ArgEnemyType effectArg(position, id, scale);
+	efx::ArgEnemyType effectArg(enemy->m_position, id, scale);
 	m_enemyPiyo.create(&effectArg);
 }
 
@@ -2316,10 +2310,7 @@ void EnemyBase::createSplashDownEffect(const Vector3f& position, float scale)
 		effectPosition = position;
 	}
 
-	Vector3f pos;
-	__memcpy(&pos, &effectPosition, sizeof(Vector3f));
-
-	efx::ArgScale scaleArg(pos, scale);
+	efx::ArgScale scaleArg(effectPosition, scale);
 	efx::TEnemyDownWat waterEffects(0x54, 0x55, 0x56);
 
 	waterEffects.create(&scaleArg);
