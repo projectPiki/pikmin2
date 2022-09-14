@@ -12,7 +12,7 @@ struct Arg {
 	{
 	}
 
-	Arg(const Vector3f& position)
+	Arg(Vector3f position)
 	    : m_position(position)
 	{
 	}
@@ -30,13 +30,13 @@ struct Arg {
 };
 
 struct ArgEnemyType : public Arg {
-	ArgEnemyType(Vector3f& position, Game::EnemyTypeID::EEnemyTypeID typeID, float p3)
+	ArgEnemyType(Vector3f position, Game::EnemyTypeID::EEnemyTypeID typeID, float p3)
 	    : Arg(position)
 	    , m_typeID(typeID)
 	{
 		_14 = p3;
 	};
-	ArgEnemyType(Vector3f& position)
+	ArgEnemyType(Vector3f position)
 	    : Arg(position) {};
 
 	/**
