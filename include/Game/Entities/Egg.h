@@ -13,26 +13,6 @@
  */
 
 // TODO: move these to their own headers in efx
-namespace efx {
-struct TEggdown : public TSimple1 {
-	TEggdown()
-	    : TSimple1(73, nullptr)
-	{
-	}
-
-	// _00 VTBL
-};
-
-struct TEnemyBomb : public TBase {
-	virtual bool create(Arg*); // _00
-	virtual void forceKill();  // _04
-	virtual void fade();       // _08
-
-	// _00 VTBL
-	Vector3f m_position;
-};
-} // namespace efx
-
 namespace Game {
 namespace Egg {
 struct FSM;

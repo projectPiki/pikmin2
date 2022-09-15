@@ -141,6 +141,7 @@ pikmin2.usa.dol: `sha1: 90d328bf8f190c90472e8c19e7e53c6ad0fe0d1a`
 	- <a href="https://github.com/projectPiki/pikmin2/tree/main/src/plugProjectMorimuraU/blackManAnimator.cpp">plugProjectMorimuraU/blackManAnimator.cpp</a>
 	- <a href="https://github.com/projectPiki/pikmin2/tree/main/src/plugProjectMorimuraU/bombAnimator.cpp">plugProjectMorimuraU/bombAnimator.cpp</a>
 	- <a href="https://github.com/projectPiki/pikmin2/tree/main/src/plugProjectMorimuraU/eggAnimator.cpp">plugProjectMorimuraU/eggAnimator.cpp</a>
+	- <a href="https://github.com/projectPiki/pikmin2/tree/main/src/plugProjectMorimuraU/eggState.cpp">plugProjectMorimuraU/eggState.cpp</a>
 	- <a href="https://github.com/projectPiki/pikmin2/tree/main/src/plugProjectMorimuraU/jigumoAnimator.cpp">plugProjectMorimuraU/jigumoAnimator.cpp</a>
 	- <a href="https://github.com/projectPiki/pikmin2/tree/main/src/plugProjectMorimuraU/miulinAnimator.cpp">plugProjectMorimuraU/miulinAnimator.cpp</a>
 	- <a href="https://github.com/projectPiki/pikmin2/tree/main/src/plugProjectMorimuraU/panModokiAnimator.cpp">plugProjectMorimuraU/panModokiAnimator.cpp</a>
