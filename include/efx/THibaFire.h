@@ -5,10 +5,10 @@
 
 namespace efx {
 struct THibaFire : public TForever4 {
-    void setRateLOD(int);
+	void setRateLOD(int);
 
-    // _00      = VTBL
-    // _00-_44  = TForever4
+	// _00      = VTBL
+	// _00-_44  = TForever4
 };
 } // namespace efx
 

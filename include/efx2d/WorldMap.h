@@ -42,7 +42,7 @@ struct T2DNewmap : public TSimple2 {
 	virtual bool create(Arg*); // _08
 
 	// _00		= VTBL
-	// _00-_14	= TSimple2	
+	// _00-_14	= TSimple2
 };
 
 /**
@@ -79,7 +79,7 @@ struct T2DRocketB : public TChasePosDir {
 
 	// _00		= VTBL
 	// _00-_1C	= TChasePosDir
-	Vector3f _1C;	// _1C
+	Vector3f _1C; // _1C
 };
 
 /**

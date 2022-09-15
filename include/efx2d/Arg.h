@@ -32,7 +32,7 @@ struct ArgColor : public Arg {
 
 	// _00-_08	= Vector2f
 	// _08 		= VTBL
-	u32 _0C;	// JUtility::TColor? maybe?
+	u32 _0C; // JUtility::TColor? maybe?
 };
 
 struct ArgScale : public Arg {

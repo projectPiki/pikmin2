@@ -5,142 +5,141 @@
 #include "efx/TChasePos.h"
 #include "efx/TChaseMtx.h"
 
-
 namespace efx {
 struct TKchApSand : public TSimple3 {
-    virtual void create(Arg*);  // _08
+	virtual void create(Arg*); // _08
 
-    // _00      = VTBL
-    // _00-_18  = TSimple3
+	// _00      = VTBL
+	// _00-_18  = TSimple3
 };
 
 struct TKchApWat : public TSimple5 {
-    virtual void create(Arg*);  // _08
+	virtual void create(Arg*); // _08
 
-    // _00      = VTBL
-    // _00-_24  = TSimple5
+	// _00      = VTBL
+	// _00-_24  = TSimple5
 };
 
 struct TKchCryAB : public TChasePos2 {
-    void setGlobalScale(f32);
+	void setGlobalScale(f32);
 
-    // _00      = VTBL
-    // _00-_2C  = TChasePos2
+	// _00      = VTBL
+	// _00-_2C  = TChasePos2
 };
 
 struct TKchCryInd : public TChasePos2 {
-    virtual ~TKchCryInd();  // _48 (weak)
-    
-    void setGlobalScale(f32);
+	virtual ~TKchCryInd(); // _48 (weak)
 
-    // _00      = VTBL
-    // _00-_14  = TChaseMtxT
+	void setGlobalScale(f32);
+
+	// _00      = VTBL
+	// _00-_14  = TChaseMtxT
 };
 
 struct TKchDamage : public TSimple4 {
-    virtual void create(Arg*);  // _08
+	virtual void create(Arg*); // _08
 
-    // _00      = VTBL
-    // _00-_1C  = TSimple4
+	// _00      = VTBL
+	// _00-_1C  = TSimple4
 };
 
 struct TKchDeadHana : public TChaseMtx2 {
-    void setGlobalScale(f32);
+	void setGlobalScale(f32);
 
-    // _00      = VTBL
-    // _00-_2C  = TChaseMtx2
+	// _00      = VTBL
+	// _00-_2C  = TChaseMtx2
 };
 
 struct TKchDiveSand : public TChasePosYRot3 {
-    void setGlobalScale(f32);
+	void setGlobalScale(f32);
 
-    // _00      = VTBL
-    // _00-_4C  = TChasePosYRot3
+	// _00      = VTBL
+	// _00-_4C  = TChasePosYRot3
 };
 
 struct TKchDiveWat : public TChasePosYRot3 {
-    void setGlobalScale(f32);
+	void setGlobalScale(f32);
 
-    // _00      = VTBL
-    // _00-_4C  = TChasePosYRot3
+	// _00      = VTBL
+	// _00-_4C  = TChasePosYRot3
 };
 
 struct TKchDownsmoke : public TSimple1 {
-    virtual void create(Arg*);  // _08
+	virtual void create(Arg*); // _08
 
-    // _00      = VTBL
-    // _00-_0C  = TSimple1
+	// _00      = VTBL
+	// _00-_0C  = TSimple1
 };
 
 struct TKchFlickSand : public TSimple2 {
-    virtual void create(Arg*);  // _08
+	virtual void create(Arg*); // _08
 
-    // _00      = VTBL
-    // _00-_10  = TSimple2
+	// _00      = VTBL
+	// _00-_10  = TSimple2
 };
 
 struct TKchSmokeHana : public TChaseMtx {
-    virtual ~TKchSmokeHana();   // _48 (weak)
+	virtual ~TKchSmokeHana(); // _48 (weak)
 
-    void setGlobalScale(f32);
+	void setGlobalScale(f32);
 
-    // _00      = VTBL
-    // _00-_14  = TChaseMtx
+	// _00      = VTBL
+	// _00-_14  = TChaseMtx
 };
 
 struct TKchYodareBaseChaseMtx : public TChaseMtx {
-    virtual void create(Arg*);  // _08
-    virtual void forceKill();   // _0C (weak)
-    virtual void fade();        // _10 (weak)
-    virtual void startDemoDrawOff();    // _40 (weak)
-    virtual void endDemoDrawOn();       // _44 (weak)
-    virtual ~TKchYodareBaseChaseMtx();  // _48 (weak)
+	virtual void create(Arg*);         // _08
+	virtual void forceKill();          // _0C (weak)
+	virtual void fade();               // _10 (weak)
+	virtual void startDemoDrawOff();   // _40 (weak)
+	virtual void endDemoDrawOn();      // _44 (weak)
+	virtual ~TKchYodareBaseChaseMtx(); // _48 (weak)
 
-    void setGlobalScale(f32);
+	void setGlobalScale(f32);
 
-    // _00      = VTBL
-    // _00-_14  = TChaseMtx
+	// _00      = VTBL
+	// _00-_14  = TChaseMtx
 };
 
 struct TKchAttackYodare : public TKchYodareBaseChaseMtx {
-    TKchAttackYodare(f32 (*)[4]);
+	TKchAttackYodare(f32 (*)[4]);
 
-    virtual ~TKchAttackYodare();    // _48 (weak)
+	virtual ~TKchAttackYodare(); // _48 (weak)
 
-    // _00      = VTBL
-    // _00-_14  = TKchYodareBaseChaseMtx
+	// _00      = VTBL
+	// _00-_14  = TKchYodareBaseChaseMtx
 };
 
 struct TKchDeadYodare : public TKchYodareBaseChaseMtx {
-    TKchDeadYodare(f32 (*)[4]);
+	TKchDeadYodare(f32 (*)[4]);
 
-    virtual ~TKchDeadYodare();  // _48 (weak)
+	virtual ~TKchDeadYodare(); // _48 (weak)
 
-    // _00      = VTBL
-    // _00-_14  = TKchYodareBaseChaseMtx
+	// _00      = VTBL
+	// _00-_14  = TKchYodareBaseChaseMtx
 };
 
 struct TKchYodare : public TKchYodareBaseChaseMtx {
-    TKchYodare(f32 (*)[4]);
+	TKchYodare(f32 (*)[4]);
 
-    virtual ~TKchYodare();  // _48 (weak)
+	virtual ~TKchYodare(); // _48 (weak)
 
-    // _00      = VTBL
-    // _00-_14  = TKchYodareBaseChaseMtx
+	// _00      = VTBL
+	// _00-_14  = TKchYodareBaseChaseMtx
 };
 
 struct TKchYodareHitGr : public TOneEmitterSimple {
-    virtual ~TKchYodareHitGr(); // _3C (weak)
+	virtual ~TKchYodareHitGr(); // _3C (weak)
 
-    // _00      = VTBL
-    // _00-_18  = TOneEmitterSimple
+	// _00      = VTBL
+	// _00-_18  = TOneEmitterSimple
 };
 
 struct TKchYodareHitWat : public TOneEmitterSimple {
-    virtual ~TKchYodareHitWat(); // _3C (weak)
+	virtual ~TKchYodareHitWat(); // _3C (weak)
 
-    // _00      = VTBL
-    // _00-_18  = TOneEmitterSimple
+	// _00      = VTBL
+	// _00-_18  = TOneEmitterSimple
 };
 } // namespace efx
 
