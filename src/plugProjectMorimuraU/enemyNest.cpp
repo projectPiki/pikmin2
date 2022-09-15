@@ -5,17 +5,6 @@
 #include "Vector3.h"
 #include "types.h"
 
-/*
- * --INFO--
- * Address:	........
- * Size:	0000E4
- */
-static void _Print(char* name, ...)
-{
-	// The omitted text is 5 bytes.
-	OSReport("Nest");
-}
-
 namespace Game {
 namespace Nest {
 /*
