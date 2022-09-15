@@ -35,7 +35,7 @@ struct TekiMgr {
 	TekiMgr();
 
 	void entry(EnemyTypeID::EEnemyTypeID, int);
-	void birth(int, Vector3<float>&, bool);
+	EnemyBase* birth(int, Vector3<float>&, bool);
 	TekiNode m_node; // _00
 	int m_nodeCount; // _24
 };
