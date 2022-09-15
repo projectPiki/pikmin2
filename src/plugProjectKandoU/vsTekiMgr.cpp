@@ -14,6 +14,13 @@ TekiMgr::TekiMgr() { m_nodeCount = 0; }
 
 /*
  * --INFO--
+ * Address:	80235334
+ * Size:	000060
+ * TekiNode's destructor (weak, lives in "Game/VsGame/VsGame.h")
+ */
+
+/*
+ * --INFO--
  * Address:	80235394
  * Size:	0000A0
  */
@@ -28,9 +35,35 @@ void TekiMgr::entry(EnemyTypeID::EEnemyTypeID id, int a2)
 	generalEnemyMgr->addEnemyNum(id, a2, nullptr);
 }
 
+/*
+ * --INFO--
+ * Address:	........
+ * Size:	000020
+ */
+TekiNode* TekiMgr::getNode(int idx) { return static_cast<TekiNode*>(m_node.getChildAt(idx)); }
+
+/*
+ * --INFO--
+ * Address:	........
+ * Size:	00002C
+ * Speculation: possibly inlined into TekiMgr::birth
+ * Unknown return type
+ */
+/*
+bool TekiMgr::birthable(int)
+{
+    // UNUSED FUNCTION
+}
+*/
+
+/*
+ * --INFO--
+ * Address:	80235434
+ * Size:	0000D8
+ */
 EnemyBase* TekiMgr::birth(int idx, Vector3f& position, bool check)
 {
-	if (TekiNode* node = static_cast<TekiNode*>(m_node.getChildAt(idx))) {
+	if (TekiNode* node = getNode(idx)) {
 		EnemyBirthArg birthArg;
 		birthArg.m_faceDir  = TAU * randFloat();
 		birthArg.m_position = position;
@@ -45,5 +78,19 @@ EnemyBase* TekiMgr::birth(int idx, Vector3f& position, bool check)
 	}
 	return nullptr;
 }
+
+/*
+ * --INFO--
+ * Address:	........
+ * Size:	000034
+ * Unknown return type. Likely int or EnemyTypeID::EEnemyTypeID
+ */
+/*
+EnemyTypeID::EEnemyTypeID TekiMgr::getID(int)
+{
+    // UNUSED FUNCTION
+}
+*/
+
 } // namespace VsGame
 } // namespace Game
