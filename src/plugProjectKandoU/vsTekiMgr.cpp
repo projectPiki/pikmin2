@@ -14,13 +14,6 @@ TekiMgr::TekiMgr() { m_nodeCount = 0; }
 
 /*
  * --INFO--
- * Address:	80235334
- * Size:	000060
- * TekiNode's destructor (weak, lives in "Game/VsGame/VsGame.h")
- */
-
-/*
- * --INFO--
  * Address:	80235394
  * Size:	0000A0
  */
