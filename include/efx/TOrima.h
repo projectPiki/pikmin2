@@ -7,26 +7,32 @@
 
 namespace efx {
 
-struct TOrimaLight : public TSyncGroup2<efx::TChaseMtx> {
+struct TOrimaLight : public TChaseMtx2 {
 	virtual void create(Arg*); // _08
 
-	// _00      = VTABLE
-	// _04-_2C  = TSyncGroup2
+	// _00      = VTBL
+	// _00-_2C  = TChaseMtx2
 	u32 _2C; // _2C, unknown
 };
 
-struct TOrimaLightAct : public TSyncGroup2<efx::TChaseMtx> {
+struct TOrimaLightAct : public TChaseMtx2 {
 	virtual void create(Arg*); // _08
 
-	// _00      = VTABLE
-	// _04-_2C  = TSyncGroup2
+	// _00      = VTBL
+	// _00-_2C  = TChaseMtx2
 	u32 _2C; // _2C, unknown
 };
 
-struct TOrimadamage : public TSyncGroup2<efx::TChaseMtxT> {
+struct TOrimadamage : public TChaseMtx2 {
+	// _00		= VTBL
+	// _00-_2C	= TChaseMtx2
 };
 
 struct TOrimapunch : public TSimple1 {
+	// NB: has a weirdly large (empty) vtable - 8 empty slots after fade()...
+
+	// _00		= VTBL
+	// _00-_0C	= TSimple1
 };
 
 } // namespace efx

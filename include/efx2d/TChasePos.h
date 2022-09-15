@@ -12,6 +12,8 @@ struct TChasePos : public TForever {
 	virtual ~TChasePos();                  // _34 (weak)
 	virtual void execute(JPABaseEmitter*); // _38
 
+	// _00		= VTBL
+	// _00-_14	= TForever
 	Vector2f* _14;
 };
 
@@ -22,6 +24,8 @@ struct TChasePosDir : public TForever {
 	virtual ~TChasePosDir() { }            // _34 (weak)
 	virtual void execute(JPABaseEmitter*); // _38
 
+	// _00		= VTBL
+	// _00-_14	= TForever
 	Vector2f* _14;
 	Vector2f* _18;
 };

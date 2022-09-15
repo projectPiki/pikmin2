@@ -13,6 +13,7 @@ struct TSync : public TBase, public JPAEmitterCallBack {
 	    , m_flags(0)
 	{
 	}
+
 	// vtable 1 (TBase)
 	virtual bool create(Arg*); // _08
 	virtual void forceKill();  // _0C
@@ -26,9 +27,11 @@ struct TSync : public TBase, public JPAEmitterCallBack {
 	virtual void endDemoDrawOn();                                // _44 (weak)
 	virtual ~TSync() { }                                         // _48 (weak; thunk at _1C)
 
-	JPABaseEmitter* m_emitter;
-	u16 m_effectID;
-	u8 m_flags;
+	// _00		= VTBL
+	// _04		= JPAEmitterCallBack
+	JPABaseEmitter* m_emitter; // _08
+	u16 m_effectID;            // _0C
+	u8 m_flags;                // _0E
 };
 } // namespace efx
 

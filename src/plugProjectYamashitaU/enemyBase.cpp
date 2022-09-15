@@ -10,7 +10,7 @@
 #include "efx/TEnemyDownSmoke.h"
 #include "efx/TEnemyDownWat.h"
 #include "efx/TEnemyPoison.h"
-#include "Game/AABBWaterBox.h"
+#include "Game/WaterBox.h"
 #include "Game/AIConstants.h"
 #include "Game/BaseItem.h"
 #include "Game/BaseHIOParms.h"

@@ -69,12 +69,12 @@ struct DoorNode : public CNode {
  * @size{0x18}
  */
 struct FixObjNode : public ObjectLayoutNode {
-	virtual ~FixObjNode() { }                      // _08 (weak)
-	virtual int getObjectId();                     // _10 (weak)
-	virtual u32 getObjectType();                   // _14 (weak)
-	virtual int getBirthCount();                   // _18 (weak)
-	virtual float getDirection();                  // _1C (weak)
-	virtual void getBirthPosition(float&, float&); // _24 (weak)
+	virtual ~FixObjNode() { }                  // _08 (weak)
+	virtual int getObjectId();                 // _10 (weak)
+	virtual u32 getObjectType();               // _14 (weak)
+	virtual int getBirthCount();               // _18 (weak)
+	virtual f32 getDirection();                // _1C (weak)
+	virtual void getBirthPosition(f32&, f32&); // _24 (weak)
 };
 
 /**
@@ -95,12 +95,12 @@ struct GateNode : public ObjectLayoutNode {
 	virtual int getObjectId();       // _10
 	virtual u32 getObjectType();     // _14
 	virtual int getBirthCount();     // _18
-	virtual float getDirection();    // _1C
+	virtual f32 getDirection();      // _1C
 	virtual int getBirthDoorIndex(); // _20
 
-	GateUnit* m_unit;  // _18
-	float m_direction; // _1C
-	int m_index;       // _20
+	GateUnit* m_unit; // _18
+	f32 m_direction;  // _1C
+	int m_index;      // _20
 };
 
 /**
@@ -117,19 +117,19 @@ struct ItemNode : public ObjectLayoutNode {
 	ItemNode();
 	ItemNode(ItemUnit*, BaseGen*, int);
 
-	virtual ~ItemNode() { }                        // _08 (weak)
-	virtual int getObjectId();                     // _10
-	virtual u32 getObjectType();                   // _14
-	virtual int getBirthCount();                   // _18
-	virtual float getDirection();                  // _1C
-	virtual void getBirthPosition(float&, float&); // _24
+	virtual ~ItemNode() { }                    // _08 (weak)
+	virtual int getObjectId();                 // _10
+	virtual u32 getObjectType();               // _14
+	virtual int getBirthCount();               // _18
+	virtual f32 getDirection();                // _1C
+	virtual void getBirthPosition(f32&, f32&); // _24
 
 	void makeGlobalData(MapNode*);
 
 	ItemUnit* m_unit;     // _18
 	BaseGen* m_generator; // _1C
 	u32 m_birthCount;     // _20
-	float m_direction;    // _24
+	f32 m_direction;      // _24
 	Vector3f m_position;  // _28
 };
 
@@ -193,14 +193,14 @@ struct MapNode : public CNode {
 	void setNodeScore(int);
 	void copyNodeScoreToVersusScore();
 	void subNodeScoreToVersusScore();
-	void draw(float, float, float);
+	void draw(f32, f32, f32);
 	int getNodeOffsetX();
 	int getNodeOffsetY();
 	void getEnemyScore();
 	void getNodeScore();
 	void getVersusScore();
 	char* getUnitName();
-	void getNodeCentreOffset(float&, float&);
+	void getNodeCentreOffset(f32&, f32&);
 	void getDirection();
 	Vector3f getBaseGenGlobalPosition(BaseGen*);
 	void getDoorGlobalPosition(int);
@@ -244,17 +244,17 @@ struct EnemyNode : public ObjectLayoutNode {
 	EnemyNode();
 	EnemyNode(EnemyUnit*, BaseGen*, int);
 
-	virtual ~EnemyNode() { }                       // _08 (weak)
-	virtual int getObjectId();                     // _10
-	virtual u32 getObjectType();                   // _14
-	virtual int getBirthCount();                   // _18
-	virtual float getDirection();                  // _1C
-	virtual int getBirthDoorIndex();               // _20
-	virtual void getBirthPosition(float&, float&); // _24
-	virtual u32 getExtraCode();                    // _28
+	virtual ~EnemyNode() { }                   // _08 (weak)
+	virtual int getObjectId();                 // _10
+	virtual u32 getObjectType();               // _14
+	virtual int getBirthCount();               // _18
+	virtual f32 getDirection();                // _1C
+	virtual int getBirthDoorIndex();           // _20
+	virtual void getBirthPosition(f32&, f32&); // _24
+	virtual u32 getExtraCode();                // _28
 
 	void makeGlobalData(Game::Cave::MapNode*);
-	void setGlobalData(Vector3f&, float);
+	void setGlobalData(Vector3f&, f32);
 	void setBirthDoorIndex(int);
 
 	inline TekiInfo* getTekiInfo() { return m_enemyUnit->m_tekiInfo; }
@@ -263,7 +263,7 @@ struct EnemyNode : public ObjectLayoutNode {
 	BaseGen* m_baseGen;     // _1C
 	int m_birthDoorIndex;   // _20
 	int m_birthCount;       // _24
-	float m_direction;      // _28
+	f32 m_direction;        // _28
 	Vector3f m_birthPos;    // _2C
 };
 } // namespace Cave

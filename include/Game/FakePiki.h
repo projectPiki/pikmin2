@@ -1,7 +1,7 @@
 #ifndef _GAME_FAKEPIKI_H
 #define _GAME_FAKEPIKI_H
 
-#include "Game/AABBWaterBox.h"
+#include "Game/WaterBox.h"
 #include "Game/Creature.h"
 #include "SysShape/MotionListener.h"
 #include "Game/shadowMgr.h"

@@ -5,7 +5,7 @@
 
 namespace efx {
 struct OnyonSpotArg : public ModelEffectCreateArg {
-	virtual u64 getID() { return 'ONY_SPOT'; }
+	virtual u64 getID() { return 'ONY_SPOT'; } // _08 (weak)
 };
 
 struct OnyonSpotData : public ModelEffectData {

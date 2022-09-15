@@ -34,7 +34,7 @@ struct CullPlane : public ArrayContainer<Plane> {
 	virtual void writeObject(Stream&, Plane&) {}; // _2C (weak)
 	virtual void readObject(Stream&, Plane&) {};  // _30 (weak)
 
-	bool isPointVisible(Vector3f&, float);
+	bool isPointVisible(Vector3f&, f32);
 	bool isVisible(Sys::Sphere&);
 	bool isCylinderVisible(Sys::Cylinder&);
 };
@@ -63,8 +63,8 @@ struct CullFrustum : public CullPlane {
 	Vector3f getViewVector();
 
 	// CullPlane _00 - _24
-	float m_viewAngle;     // _28
-	float m_aspectRatio;   // _2C
+	f32 m_viewAngle;       // _28
+	f32 m_aspectRatio;     // _2C
 	Matrixf* m_viewMatrix; // _30
 };
 
@@ -78,7 +78,7 @@ struct Camera : public CullFrustum {
 	virtual void updatePlanes();                              // _50
 	virtual void updateScreenConstants();                     // _54
 	virtual Vector3f getLookAtPosition_();                    // _58 (weak)
-	virtual float getTargetDistance();                        // _5C (weak)
+	virtual f32 getTargetDistance();                          // _5C (weak)
 	virtual Vector3f* getPositionPtr();                       // _60
 	virtual Vector3f* on_getPositionPtr() { return nullptr; } // _64 (weak)
 	virtual Vector3f* getSoundPositionPtr()                   // _68 (weak)
@@ -93,34 +93,34 @@ struct Camera : public CullFrustum {
 	virtual void updateMatrix() { } // _74 (weak)
 	virtual void doUpdate();        // _78 (weak)
 
-	void calcProperDistance(float, float);
-	float calcScreenSize(Sys::Sphere&);
+	void calcProperDistance(f32, f32);
+	f32 calcScreenSize(Sys::Sphere&);
 	void copyFrom(Camera*);
-	float getFar();
+	f32 getFar();
 	Vector3f getLookAtPosition();
-	float getNear();
-	void setFixNearFar(bool, float, float);
+	f32 getNear();
+	void setFixNearFar(bool, f32, f32);
 	void setProjection();
 	void update();
 	// void updatePlanes();
-	void updateSoundCamera(float);
+	void updateSoundCamera(f32);
 
 	inline bool isRunning() { return (m_jstObject && m_jstObject->isRunning()); }
 
 	// CullFrustum _00 - _34
 	Matrixf _34;                            // _034
-	float m_near;                           // _064 - distance to 'near' plane
-	float m_far;                            // _068 - distance to 'far' plane
+	f32 m_near;                             // _064 - distance to 'near' plane
+	f32 m_far;                              // _068 - distance to 'far' plane
 	bool isFixed;                           // _06C
-	float m_projectionNear;                 // _070 - projected distance to 'near' plane when not in fixed camera
-	float m_projectionFar;                  // _074 - projected distance to 'far' plane when not in fixed camera
+	f32 m_projectionNear;                   // _070 - projected distance to 'near' plane when not in fixed camera
+	f32 m_projectionFar;                    // _074 - projected distance to 'far' plane when not in fixed camera
 	Vector3f m_soundPosition;               // _078
 	Matrixf m_soundMatrix;                  // _084
 	Mtx44 m_projectionMtx;                  // _0B4
 	Mtx44 _F4;                              // _0F4
-	float _134;                             // _134
-	float _138;                             // _138
-	float _13C;                             // _13C
+	f32 _134;                               // _134
+	f32 _138;                               // _138
+	f32 _13C;                               // _13C
 	Game::P2JST::ObjectCamera* m_jstObject; // _140
 };
 
@@ -141,12 +141,12 @@ struct LookAtCamera : public Camera {
 };
 
 struct BlendCamera : public Camera {
-	BlendCamera(int, struct Camera**);
+	BlendCamera(int, Camera**);
 
 	virtual ~BlendCamera() { } // _08 (weak)
 	virtual void doUpdate();   // _78
 
-	void setBlendFactor(float);
+	void setBlendFactor(f32);
 	void setCameras(Camera**);
 
 	// Camera _00 - _144

@@ -100,11 +100,11 @@ struct RandMapUnit {
 
 	int m_doorCountMaybe;                 // _00
 	int m_roomCount;                      // _04
-	float m_routeRatio;                   // _08
+	f32 m_routeRatio;                     // _08
 	bool m_mapHasDiameter36;              // _0C
 	bool m_needsLoopMapNodeCheck;         // _0D
 	int m_capCandidateCount;              // _10
-	float m_capMax;                       // _14, between 0.0 and 1.0
+	f32 m_capMax;                         // _14, between 0.0 and 1.0
 	MapNode** m_capCandidateNodes;        // _18
 	int* m_capCandidateDoorIndices;       // _1C
 	MapUnitGenerator* m_mapUnitGenerator; // _20

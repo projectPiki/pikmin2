@@ -80,12 +80,12 @@ struct RandMapMgr : public CNode {
 	void create();
 	int getNumRooms();
 	char* getUseUnitName(int);
-	char* getRoomData(int, float&, float&, int&);
+	char* getRoomData(int, f32&, f32&, int&);
 	RoomLink* makeRoomLink(int);
 	ObjectLayoutInfo* makeObjectLayoutInfo(int);
 	void getStartPosition(Vector3f&, int);
-	void getItemDropPosition(Vector3f&, float, float);
-	void getItemDropPosition(Vector3f*, int, float, float);
+	void getItemDropPosition(Vector3f&, f32, f32);
+	void getItemDropPosition(Vector3f*, int, f32, f32);
 	void setUnitTexture(int, JUTTexture*);
 	void setCaptureOn();
 	void captureRadarMap(Graphics&);
@@ -93,8 +93,8 @@ struct RandMapMgr : public CNode {
 	void isVersusHiba();
 	void getRadarMapTexture();
 	void radarMapPartsOpen(Vector3f&);
-	void getPositionOnTex(Vector3f&, float&, float&);
-	void getBaseGenData(Vector3f*, float*);
+	void getPositionOnTex(Vector3f&, f32&, f32&);
+	void getBaseGenData(Vector3f*, f32*);
 	void drawFrameBuffer(Graphics&);
 
 	MapUnitGenerator* m_mapUnitGenerator; // _18
@@ -118,7 +118,7 @@ struct RandMapDraw {
 	RandMapDraw(MapUnitGenerator* generator);
 
 	void radarMapPartsOpen(Vector3f& vec);
-	void draw(struct Graphics& gfx, float x, float y, float z);
+	void draw(struct Graphics& gfx, f32 x, f32 y, f32 z);
 
 	MapUnitGenerator* m_generator; // _00
 };

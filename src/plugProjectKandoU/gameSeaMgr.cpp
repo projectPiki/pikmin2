@@ -7,7 +7,7 @@
 #include "Game/MapMgr.h"
 #include "Game/routeMgr.h"
 #include "Game/seaMgr.h"
-#include "Game/AABBWaterBox.h"
+#include "Game/WaterBox.h"
 #include "Iterator.h"
 #include "JSystem/J3D/J3DModel.h"
 #include "JSystem/J3D/J3DTexture.h"

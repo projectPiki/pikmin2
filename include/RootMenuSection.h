@@ -5,6 +5,7 @@
 
 struct MenuSection : public Section {
 	MenuSection(struct JFWDisplay*, struct JKRHeap*, bool);
+
 	virtual ~MenuSection() { }                                        // _08 (weak)
 	virtual void run();                                               // _0C
 	virtual Section* getCurrentSection() { return m_currentSection; } // _30 (weak)
@@ -12,6 +13,8 @@ struct MenuSection : public Section {
 
 	bool runChildSection();
 
+	// _00		= VTBL
+	// _00-_3C	= Section
 #if BUILDTARGET == USADEMO1
 	// There is an extra unaccounted for space of data 0x1C long
 	u8 _39[0x1C]; // _39
@@ -25,6 +28,7 @@ struct MenuSection : public Section {
 
 struct RootMenuSection : public MenuSection {
 	RootMenuSection(struct JKRHeap*);
+
 	virtual ~RootMenuSection();                  // _08
 	virtual void drawInit(struct Graphics&);     // _1C
 	virtual bool doUpdate() { return false; }    // _3C

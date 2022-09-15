@@ -41,7 +41,6 @@ struct CellObject;
 struct CollEvent;
 struct Creature;
 struct CreatureInitArg;
-struct CreatureKillArg;
 struct Footmarks;
 struct Generator;
 struct Interaction;
@@ -67,16 +66,24 @@ enum CreatureFlags {
 	CF_IS_DEBUG_COLLISION = 0x80000000
 };
 
+struct CreatureInitArg {
+	virtual const char* getName() = 0; // _08
+
+	// _00 = VTBL
+};
+
 struct CreatureKillArg {
 	inline CreatureKillArg(int p1)
 	    : _04(p1)
 	{
 	}
-	virtual const char* getName() // _00
+
+	virtual const char* getName() // _08 (weak)
 	{
 		return "CreatureKillArg";
 	}
 
+	// _00 = VTBL
 	int _04; // _04
 };
 

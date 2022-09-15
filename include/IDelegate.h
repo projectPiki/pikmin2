@@ -4,19 +4,19 @@
 #include "types.h"
 
 struct IDelegate {
-	virtual void invoke() = 0;
+	virtual void invoke() = 0; // _08
 };
 
 template <typename A> struct IDelegate1 {
-	virtual void invoke(A) = 0;
+	virtual void invoke(A) = 0; // _08
 };
 
 template <typename A, typename B> struct IDelegate2 {
-	virtual void invoke(A, B) = 0;
+	virtual void invoke(A, B) = 0; // _08
 };
 
 template <typename A, typename B, typename C> struct IDelegate3 {
-	virtual void invoke(A, B, C) = 0;
+	virtual void invoke(A, B, C) = 0; // _08
 };
 
 template <typename T> struct Delegate : public IDelegate {
@@ -25,7 +25,8 @@ template <typename T> struct Delegate : public IDelegate {
 		m_object   = obj;
 		m_function = func;
 	}
-	virtual void invoke() { (m_object->*m_function)(); }
+
+	virtual void invoke() { (m_object->*m_function)(); } // _08
 
 	// VTBL _00
 	T* m_object;             // _04
@@ -39,7 +40,7 @@ template <typename T, typename A> struct Delegate1 : public IDelegate1<A> {
 		m_function = func;
 	}
 
-	virtual void invoke(A a) { (m_object->*m_function)(a); }
+	virtual void invoke(A a) { (m_object->*m_function)(a); } // _08
 
 	// VTBL _00
 	T* m_object;              // _04
@@ -53,7 +54,7 @@ template <typename T, typename A, typename B> struct Delegate2 : public IDelegat
 		m_function = func;
 	}
 
-	virtual void invoke(A a, B b) { (m_object->*m_function)(a, b); }
+	virtual void invoke(A a, B b) { (m_object->*m_function)(a, b); } // _08
 
 	// VTBL _00
 	T* m_object;                 // _04
@@ -67,7 +68,7 @@ template <typename T, typename A, typename B, typename C> struct Delegate3 : pub
 		m_function = func;
 	}
 
-	virtual void invoke(A a, B b, C c) { (m_object->*m_function)(a, b, c); }
+	virtual void invoke(A a, B b, C c) { (m_object->*m_function)(a, b, c); } // _08
 
 	// VTBL _00
 	T* m_object;                    // _04

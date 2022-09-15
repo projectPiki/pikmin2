@@ -7,21 +7,33 @@
 namespace efx {
 struct TForever : public TSync {
 	TForever();
-	// vtable 2
-	virtual void doExecuteEmitterOperation(JPABaseEmitter*); // _1C
-	virtual ~TForever();                                     // _2C (thunk at _00)
+
+	virtual void doExecuteEmitterOperation(JPABaseEmitter*); // _38 (weak)
+	virtual ~TForever();                                     // _48 (weak, thunk at _1C)
+
+	// _00		= VTBL
+	// _00-_0E	= TSync
 };
 
 struct TForever2 : public TSyncGroup2<TForever> {
-	TForever2(unsigned short, unsigned short);
+	TForever2(u16, u16);
+
+	// _00		= VTBL
+	// _00-_24	= TSyncGroup2<TForever>
 };
 
 struct TForever3 : public TSyncGroup3<TForever> {
-	TForever3(unsigned short, unsigned short, unsigned short);
+	TForever3(u16, u16, u16);
+
+	// _00		= VTBL
+	// _00-_34	= TSyncGroup3<TForever>
 };
 
 struct TForever4 : public TSyncGroup4<TForever> {
-	TForever4(unsigned short, unsigned short, unsigned short, unsigned short);
+	TForever4(u16, u16, u16, u16);
+
+	// _00		= VTBL
+	// _00-_44	= TSyncGroup4<TForever>
 };
 } // namespace efx
 

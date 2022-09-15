@@ -14,7 +14,7 @@ struct StateArg {
 		f32 f32;
 		void* ptr;
 	} _00; // _00 - EarthquakeState::init requires this to be a float - could be a union or bitflag?
-	           // short _04; // _04
+	       // short _04; // _04
 };
 
 template <typename T> struct FSMState {

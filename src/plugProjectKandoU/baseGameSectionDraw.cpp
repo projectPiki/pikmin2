@@ -1,5 +1,6 @@
 #include "Game/BaseGameSection.h"
 #include "Game/GameSystem.h"
+#include "Game/GameLight.h"
 
 #include "Sys/DrawBuffers.h"
 

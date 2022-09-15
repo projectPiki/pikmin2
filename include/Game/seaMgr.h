@@ -1,7 +1,7 @@
 #ifndef _GAME_SEAMGR_H
 #define _GAME_SEAMGR_H
 
-#include "Game/AABBWaterBox.h"
+#include "Game/WaterBox.h"
 #include "ObjectMgr.h"
 #include "types.h"
 

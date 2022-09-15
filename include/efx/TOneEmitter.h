@@ -9,22 +9,22 @@
 namespace efx {
 struct TOneEmitter : public TBase, public JPAEmitterCallBack {
 	// vtable 1 (TBase)
-	virtual bool create(Arg*); // _00
-	virtual void forceKill();  // _04
-	virtual void fade();       // _08
+	virtual bool create(Arg*); // _08
+	virtual void forceKill();  // _0C
+	virtual void fade();       // _10
 	// vtable 2 (JPAEmitterCallBack + self)
-	virtual void executeAfter(JPABaseEmitter*); // _14 (thunk at _08)
-	virtual void startDemoDrawOff();            // _18
-	virtual void endDemoDrawOn();               // _1C
-	virtual ~TOneEmitter();                     // _20 (thunk at _00)
+	virtual void executeAfter(JPABaseEmitter*); // _30 (weak)
+	virtual void startDemoDrawOff();            // _34 (weak)
+	virtual void endDemoDrawOn();               // _38 (weak)
+	virtual ~TOneEmitter();                     // _3C (weak)
 
 	void add(Context*);
 
 	// Unused/inlined:
 	void del(Context*);
 
-	// VTBL 1 _00
-	// VTBL 2 _04
+	// _00		= VTBL
+	// _04-_08	= JPAEmitterCallBack
 	JPABaseEmitter* m_emitter; // _08
 	u16 m_effectID;            // _0C
 	Context m_context;         // _10
@@ -35,20 +35,20 @@ struct TOneEmitter : public TBase, public JPAEmitterCallBack {
  */
 struct TOneEmitterChasePos : public TBase, public JPAEmitterCallBack {
 	// vtable 1 (TBase)
-	virtual bool create(Arg*); // _00
-	virtual void forceKill();  // _04
-	virtual void fade();       // _08
+	virtual bool create(Arg*); // _08
+	virtual void forceKill();  // _0C
+	virtual void fade();       // _10
 	// vtable 2 (JPAEmitterCallBack + self)
-	virtual void executeAfter(JPABaseEmitter*); // _14 (thunk at _08)
-	virtual void startDemoDrawOff();            // _18
-	virtual void endDemoDrawOn();               // _1C
-	virtual ~TOneEmitterChasePos();             // _20 (thunk at _00)
+	virtual void executeAfter(JPABaseEmitter*); // _30 (weak)
+	virtual void startDemoDrawOff();            // _34 (weak)
+	virtual void endDemoDrawOn();               // _38 (weak)
+	virtual ~TOneEmitterChasePos();             // _3C (weak)
 
 	void add(ContextChasePos*);
 	void del(ContextChasePos*);
 
-	// VTBL 1 _00
-	// VTBL 2 _04
+	// _00		= VTBL
+	// _04-_08	= JPAEmitterCallBack
 	ContextChasePos m_context; // _08
 	JPABaseEmitter* m_emitter; // _24
 	u16 m_effectID;            // _28
@@ -56,17 +56,17 @@ struct TOneEmitterChasePos : public TBase, public JPAEmitterCallBack {
 
 struct TOneEmitterSimple : public TBase, public JPAEmitterCallBack {
 	// vtable 1 (TBase)
-	virtual bool create(Arg*); // _00
-	virtual void forceKill();  // _04
-	virtual void fade();       // _08
+	virtual bool create(Arg*); // _08
+	virtual void forceKill();  // _0C (weak)
+	virtual void fade();       // _10 (weak)
 	// vtable 2 (JPAEmitterCallBack + self)
-	virtual void executeAfter(JPABaseEmitter*); // _14 (thunk at _08)
-	virtual void startDemoDrawOff();            // _18
-	virtual void endDemoDrawOn();               // _1C
-	virtual ~TOneEmitterSimple();               // _20 (thunk at _00)
+	virtual void executeAfter(JPABaseEmitter*); // _30 (weak)
+	virtual void startDemoDrawOff();            // _34 (weak)
+	virtual void endDemoDrawOn();               // _38 (weak)
+	virtual ~TOneEmitterSimple();               // _3C (weak)
 
-	// VTBL 1 _00
-	// VTBL 2 _04
+	// _00		= VTBL
+	// _04-_08	= JPAEmitterCallBack
 	JPABaseEmitter* m_emitter; // _08
 	u16 m_effectID;            // _0C
 	Vector3f** _10;            // _10

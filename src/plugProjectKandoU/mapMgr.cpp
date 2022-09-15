@@ -1,5 +1,5 @@
 #include "Game/MapMgr.h"
-#include "Game/AABBWaterBox.h"
+#include "Game/WaterBox.h"
 #include "MapCollision.h"
 #include "types.h"
 

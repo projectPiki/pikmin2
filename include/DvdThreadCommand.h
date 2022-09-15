@@ -2,6 +2,7 @@
 #define _DVDTHREADCOMMAND_H
 
 #include "JSystem/JSupport/JSUList.h"
+#include "AppThread.h"
 #include "types.h"
 
 struct JKRArchive;
@@ -26,6 +27,27 @@ struct DvdThreadCommand {
 	s32* _40;                     // _40
 	u8 _44[0x18];                 // _44
 	JSUPtrLink m_link;            // _5C
+};
+
+struct DvdThread : public AppThread {
+	struct ESyncBlockFlag {
+		// might be an enum? size 0x4?
+	};
+
+	DvdThread(u32, int, int);
+
+	virtual ~DvdThread(); // _08 (weak)
+	virtual void run();   // _0C
+
+	void loadArchive(DvdThreadCommand*);
+	void loadFile(DvdThreadCommand*);
+	void sendCommand(DvdThreadCommand*);
+	void sync(DvdThreadCommand*, ESyncBlockFlag);
+	void syncAll(ESyncBlockFlag);
+
+	// _00 		= VTBL
+	// _00-_7C 	= AppThread
+	JSUPtrList _7C; // _7C
 };
 
 #endif

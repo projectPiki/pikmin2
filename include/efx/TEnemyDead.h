@@ -13,8 +13,15 @@ struct TEnemyDead : public TSimple1 {
 
 	virtual bool create(Arg*); // _08
 
-	// _00      = VTABLE
-	// _04-_0C  = TSimple1
+	// _00      = VTBL
+	// _00-_0C  = TSimple1
+};
+
+struct TEnemyDead_ArgScale : public TSimple1 {
+	virtual void create(Arg*); // _08
+
+	// _00		= VTBL
+	// _00-_0C	= TSimple1
 };
 
 } // namespace efx

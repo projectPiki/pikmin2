@@ -30,16 +30,16 @@ struct CaveSaveData {
 	void write(Stream&);
 	void read(Stream&, u32);
 
-	bool m_isInCave;          // _00
-	int m_currentCourse;      // _04 // TODO: Should this be currentCourseIndex?
-	ID32 m_currentCaveID;     // _08
-	PikiContainer _14;        // _14
-	float m_time;             // _1C
-	u8 m_isWaterwraithAlive;  // _20
-	float m_waterwraithTimer; // _24
-	int m_currentFloor;       // _28
-	u8 m_activeNaviID;        // _2C
-	PikiContainer _30;        // _30
+	bool m_isInCave;         // _00
+	int m_currentCourse;     // _04 // TODO: Should this be currentCourseIndex?
+	ID32 m_currentCaveID;    // _08
+	PikiContainer _14;       // _14
+	f32 m_time;              // _1C
+	u8 m_isWaterwraithAlive; // _20
+	f32 m_waterwraithTimer;  // _24
+	int m_currentFloor;      // _28
+	u8 m_activeNaviID;       // _2C
+	PikiContainer _30;       // _30
 };
 
 struct KindCounter {
@@ -107,8 +107,8 @@ struct OlimarData {
 struct PelletCropMemory {
 	PelletCropMemory(int, int, int); // inlined
 
-	virtual void read(Stream&);  // _00
-	virtual void write(Stream&); // _04
+	virtual void read(Stream&);  // _08
+	virtual void write(Stream&); // _0C
 
 	void addTo(PelletCropMemory*);
 	int calcEarnKinds();
@@ -120,6 +120,7 @@ struct PelletCropMemory {
 	void obtainPellet(Pellet*);
 	int calcNumKinds();
 
+	// _00	= VTBL
 	KindCounter _04; // _04
 	KindCounter _0C; // _0C
 	KindCounter _14; // _14
@@ -128,9 +129,12 @@ struct PelletCropMemory {
 struct PelletFirstMemory : public PelletCropMemory {
 	PelletFirstMemory(int, int, int); // inlined
 
-	bool firstCarryPellet(Pellet*);
-	void obtainPellet(BasePelletMgr*, int);
-	void losePellet(BasePelletMgr*, int);
+	virtual bool firstCarryPellet(Pellet*);         // _10
+	virtual void obtainPellet(BasePelletMgr*, int); // _14
+	virtual void losePellet(BasePelletMgr*, int);   // _18
+
+	// _00 		= VTBL
+	// _00-_1C  = PelletCropMemory
 };
 
 /**
@@ -175,7 +179,7 @@ struct PlayData : public CNode {
 
 	PlayData();
 
-	virtual ~PlayData(); // _00
+	virtual ~PlayData(); // _08
 
 	bool isCompletePelletTrigger();
 	void construct();
@@ -230,7 +234,7 @@ struct PlayData : public CNode {
 	void read_CaveOtakara(Stream&);
 	void write_CaveOtakara(Stream&);
 	int getRepayLevel();
-	float getRepayLevelPercent(int);
+	f32 getRepayLevelPercent(int);
 	bool checkRepayLevelFirstClear();
 	void experienceRepayLevelFirstClear();
 	void initLimitGens();
@@ -267,7 +271,7 @@ struct PlayData : public CNode {
 	u8 _19;                                  // _19
 	u32 _1C;                                 // _1C
 	u8 _20;                                  // _20
-	float m_naviLifeMax[2];                  // _24
+	f32 m_naviLifeMax[2];                    // _24
 	u8 m_hasContainerFlags;                  // _2C
 	u8 m_hasBootContainerFlags;              // _2D
 	u8 m_meetPikminFlags;                    // _2E

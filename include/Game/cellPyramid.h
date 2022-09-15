@@ -2,19 +2,26 @@
 #define _GAME_CELLPYRAMID_H
 
 #include "types.h"
-#include "Game/TPositionObject.h"
 #include "Sys/Sphere.h"
 #include "SweepPrune.h"
 #include "IDelegate.h"
 #include "Graphics.h"
 #include "Rect.h"
 #include "Vector2.h"
+#include "Vector3.h"
 #include "BoundBox.h"
 
 namespace Game {
 struct Cell;
 struct CellObject;
 struct CellPyramid;
+
+struct TPositionObject {
+	virtual Vector3f getPosition() = 0; // _08
+
+	// VTBL _00
+	SweepPrune::Object m_sweepPruneObject; // _04
+};
 
 struct CollNode {
 	CollNode();
@@ -105,15 +112,15 @@ struct CellObject : public TPositionObject {
 		m_cellLegs[3].m_object = this;
 		m_passID               = 0;
 	}
-	//	virtual Vector3f checkPosition() 				= 0;	// _08
+	//	virtual Vector3f getPosition() 				= 0;	// _08
 	virtual void checkCollision(CellObject*) { }        // _0C (weak)
 	virtual void getBoundingSphere(Sys::Sphere&) = 0;   // _10
 	virtual bool collisionUpdatable()            = 0;   // _14
 	virtual bool isPiki() { return false; }             // _18 (weak)
 	virtual bool isNavi() { return false; }             // _1C (weak)
 	virtual bool deferPikiCollision() { return false; } // _20 (weak)
-	virtual char* getTypeName();                        // _24
-	virtual u16 getObjType();                           // _28
+	virtual char* getTypeName() = 0;                    // _24
+	virtual u16 getObjType()    = 0;                    // _28
 
 	void exitCell();
 	float calcCollisionDistance(CellObject*);
