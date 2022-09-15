@@ -12,7 +12,6 @@
  * --Header for Egg (Egg)--
  */
 
-// TODO: move these to their own headers in efx
 namespace Game {
 namespace Egg {
 struct FSM;
