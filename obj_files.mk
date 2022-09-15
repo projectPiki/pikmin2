@@ -965,7 +965,7 @@ MORIMURA:=\
 	$(BUILD_DIR)/src/plugProjectMorimuraU/bombAnimator.o\
 	$(BUILD_DIR)/asm/plugProjectMorimuraU/bombMgr.o\
 	$(BUILD_DIR)/asm/plugProjectMorimuraU/bomb.o\
-	$(BUILD_DIR)/asm/plugProjectMorimuraU/eggState.o\
+	$(BUILD_DIR)/src/plugProjectMorimuraU/eggState.o\
 	$(BUILD_DIR)/src/plugProjectMorimuraU/eggAnimator.o\
 	$(BUILD_DIR)/asm/plugProjectMorimuraU/eggMgr.o\
 	$(BUILD_DIR)/asm/plugProjectMorimuraU/egg.o\

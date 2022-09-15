@@ -5,6 +5,11 @@
 
 namespace efx {
 struct TEggdown : public TSimple1 {
+	TEggdown()
+	    : TSimple1(73, nullptr)
+	{
+	}
+
 	// _00      = VTBL
 	// _00-_0C  = TSimple1
 };

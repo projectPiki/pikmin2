@@ -1,6 +1,8 @@
 #include "types.h"
 #include "Game/EnemyAnimKeyEvent.h"
 #include "Game/Entities/Egg.h"
+#include "efx/TEggdown.h"
+#include "efx/TEnemyBomb.h"
 #include "PSM/EnemyBase.h"
 
 namespace Game {
@@ -55,11 +57,9 @@ void StateWait::exec(Game::EnemyBase* base)
 		eggObj->getCommonEffectPos(fxPos);
 
 		EnemyTypeID::EEnemyTypeID id = eggObj->getEnemyTypeID();
-
 		efx::ArgEnemyType type(fxPos, id, 1.0f);
 
 		efx::TEggdown eggdown;
-		eggdown.m_emitters[0] = nullptr;
 		eggdown.create(&type);
 
 		efx::TEnemyBomb enemybomb;
@@ -76,7 +76,7 @@ void StateWait::exec(Game::EnemyBase* base)
 	}
 
 	EnemyAnimKeyEvent* ekEvent = eggObj->m_animKeyEvent;
-	if (ekEvent->m_running && ekEvent->m_type == 1000) {
+	if (ekEvent->m_running && (u32)ekEvent->m_type == 1000) {
 		eggObj->startMotion(0, nullptr);
 		eggObj->stopMotion();
 	}
