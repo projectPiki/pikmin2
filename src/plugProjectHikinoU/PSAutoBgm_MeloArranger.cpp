@@ -67,25 +67,35 @@ bool MeloArr_RandomAvoid::avoidChk(MeloArrArg& meloArg)
 
 /*
  * --INFO--
+ * Address:	........
+ * Size:	000078
+ */
+void MeloArrArg::assertCheck() const
+{
+	P2ASSERTLINE(89, _00 < 0x10);
+	P2ASSERTLINE(90, _01 != 0xFF);
+}
+
+/*
+ * --INFO--
  * Address:	8033EED8
  * Size:	000138
  */
-// WIP: https://decomp.me/scratch/Q4yv7
+// WIP: https://decomp.me/scratch/4nD7B
 bool MeloArrMgr::isToAvoid(MeloArrArg& meloArg)
 {
-	P2ASSERTLINE(89, meloArg._00 < 0x10);
-	P2ASSERTLINE(90, meloArg._01 != 0xFF);
-	if (_12 == 0) {
+	meloArg.assertCheck();
+	if (!_12) {
 		return false;
 	}
 	bool check = false;
 	if ((_10 >> meloArg._00) & 1) {
-		MeloArrBase* currLink = (MeloArrBase*)m_list.m_head;
-		for (currLink; currLink; currLink = (MeloArrBase*)currLink->m_next) {
-			MeloArr_RandomAvoid* randAvoid = (MeloArr_RandomAvoid*)currLink->m_value;
+		MeloArrBase* currLink = static_cast<MeloArrBase*>(m_list.m_head);
+		for (currLink; currLink; currLink = static_cast<MeloArrBase*>(currLink->m_next)) {
+			MeloArrBase* randAvoid = static_cast<MeloArrBase*>(currLink->m_value);
 			randAvoid->pre(meloArg);
 			if (check == false) {
-				randAvoid = (MeloArr_RandomAvoid*)currLink->m_value;
+				randAvoid = static_cast<MeloArrBase*>(currLink->m_value);
 				bool interCheck;
 				if (randAvoid->_19 == true) {
 					interCheck = randAvoid->avoidChk(meloArg);
@@ -95,7 +105,7 @@ bool MeloArrMgr::isToAvoid(MeloArrArg& meloArg)
 				check = interCheck;
 			}
 
-			randAvoid = (MeloArr_RandomAvoid*)currLink->m_value;
+			randAvoid = static_cast<MeloArrBase*>(currLink->m_value);
 			randAvoid->post(meloArg);
 		}
 	}

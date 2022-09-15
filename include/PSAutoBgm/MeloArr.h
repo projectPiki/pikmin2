@@ -10,6 +10,8 @@ namespace PSAutoBgm {
 
 // not sure of size of this, just based off PSAutoBgm_MeloArranger.cpp
 struct MeloArrArg {
+	void assertCheck() const;
+
 	u8 _00; // _00
 	u8 _01; // _01
 };
