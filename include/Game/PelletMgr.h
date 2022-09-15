@@ -95,9 +95,9 @@ struct PelletMgr : public NodeObjectMgr<GenericObjectMgr> {
 	void setupResources();
 	Pellet* birth(PelletInitArg*);
 	bool setUse(PelletInitArg*);
-	void makePelletInitArg(PelletInitArg&, char*);
+	bool makePelletInitArg(PelletInitArg&, char*);
 	void makeVsCarryMinMax(PelletInitArg&, char*);
-	void makePelletInitArg(PelletInitArg&, PelletMgr::OtakaraItemCode&);
+	bool makePelletInitArg(PelletInitArg&, PelletMgr::OtakaraItemCode&);
 	void makeOtakaraItemCode(char*, PelletMgr::OtakaraItemCode&);
 	void addMgr(BasePelletMgr*);
 	void setupSoundViewerAndBas();
@@ -462,6 +462,8 @@ struct Pellet : public DynCreature, public SysShape::MotionListener, public Carr
 	int m_slotIndex;              // _440
 	Sys::Sphere m_lodSphere;      // _444
 	BasePelletMgr* m_mgr;         // _454
+
+	static bool sFromTekiEnable;
 };
 
 struct PelletFSM : public StateMachine<Pellet> {
@@ -472,7 +474,7 @@ struct PelletFSM : public StateMachine<Pellet> {
 };
 
 struct PelletGoalStateArg : public StateArg {
-	inline PelletGoalStateArg(Creature* creature) { _00 = (void*)creature; }
+	inline PelletGoalStateArg(Creature* creature) { _00.ptr = creature; }
 
 	virtual char* getName() { return "PelletGoalStateArg"; } // _08 (weak)
 

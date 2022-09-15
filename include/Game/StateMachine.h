@@ -10,7 +10,10 @@ template <typename T> struct StateMachine;
 // see Earthquake::init (in enemyBase.cpp) vs InteractSuck::actPellet (in pelletMgr.cpp)
 // should be size 0x4 and first variable should be void* or something, but Earthquake::init disagrees
 struct StateArg {
-	void* _00; // _00 - EarthquakeState::init requires this to be a float - could be a union or bitflag?
+	union {
+		f32 f32;
+		void* ptr;
+	} _00; // _00 - EarthquakeState::init requires this to be a float - could be a union or bitflag?
 	           // short _04; // _04
 };
 

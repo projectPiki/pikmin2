@@ -24,12 +24,6 @@ template <typename T> struct Vector3 {
 		this->y = y;
 		this->z = z;
 	}
-	inline Vector3(const Vector3<T>& other)
-	{
-		x = other.x;
-		y = other.y;
-		z = other.z;
-	}
 	inline Vector3(JGeometry::TVec3<T> vec) { __memcpy(this, &vec, sizeof(Vector3)); }
 
 	inline Vector3& operator=(const Vector3& other)

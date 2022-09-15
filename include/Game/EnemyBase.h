@@ -11,7 +11,7 @@
 #include "Game/EnemyAnimatorBase.h"
 #include "Game/EnemyParmsBase.h"
 #include "Game/PelletView.h"
-#include "Game/pelletMgr.h"
+#include "Game/PelletMgr.h"
 #include "Game/WalkSmokeEffect.h"
 #include "Dolphin/rand.h"
 #include "Game/enemyInfo.h"
