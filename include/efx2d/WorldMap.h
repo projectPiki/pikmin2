@@ -9,33 +9,40 @@
 namespace efx2d {
 namespace WorldMap {
 struct ArgDirScale : public Arg {
-	/**
-	 * @reifiedAddress{803F80F4}
-	 * @reifiedFile{plugProjectKonoU/khWorldMap.cpp}
-	 */
-	virtual const char* getName() // _00
+
+	virtual const char* getName() // _08 (weak)
 	{
 		return "ArgDirScale";
 	}
 
+	// _00-_08 	= Vector2f
+	// _08		= VTBL
 	Vector3f _0C; // _0C
 };
 
 struct TSimple_ArgDirScale : public TSimple1 {
-	virtual bool create(Arg*); // _00
+	virtual bool create(Arg*); // _08
+
+	// _00		= VTBL
+	// _00-_10	= TSimple1
 };
 
 /**
  * @size{0x18}
  */
 struct T2DMapFlare : public TChasePos {
-	virtual ~T2DMapFlare(); // _14
+	virtual ~T2DMapFlare(); // _34 (weak)
 
-	u8 _14[8]; // _14
+	// _00		= VTBL
+	// _00-_18	= TChasePos
+	u8 _18[4]; // _18
 };
 
 struct T2DNewmap : public TSimple2 {
-	virtual bool create(Arg*); // _00
+	virtual bool create(Arg*); // _08
+
+	// _00		= VTBL
+	// _00-_14	= TSimple2	
 };
 
 /**
@@ -43,16 +50,20 @@ struct T2DNewmap : public TSimple2 {
  */
 struct T2DOnyonKira : public TChasePosDir {
 	// vtable 1
-	virtual bool create(Arg*); // _00
+	virtual bool create(Arg*); // _08
 	// vtable 2
-	virtual ~T2DOnyonKira(); // _14
+	virtual ~T2DOnyonKira(); // _34 (weak)
 
-	void setGlobalParticleScale(float);
+	void setGlobalParticleScale(f32);
 
+	// _00		= VTBL
+	// _00-_1C	= TChasePosDir
 	Vector3f _1C; // _1C
 };
 
 struct T2DRocketA : public TSimple_ArgDirScale {
+	// _00		= VTBL
+	// _00-_10	= TSimple_ArgDirScale
 };
 
 /**
@@ -60,13 +71,15 @@ struct T2DRocketA : public TSimple_ArgDirScale {
  */
 struct T2DRocketB : public TChasePosDir {
 	// vtable 1
-	virtual bool create(Arg*); // _00
+	virtual bool create(Arg*); // _08
 	// vtable 2
-	virtual ~T2DRocketB(); // _14
+	virtual ~T2DRocketB(); // _34 (weak)
 
-	void setGlobalParticleScale(float);
+	void setGlobalParticleScale(f32);
 
-	Vector3f _1C;
+	// _00		= VTBL
+	// _00-_1C	= TChasePosDir
+	Vector3f _1C;	// _1C
 };
 
 /**
@@ -74,20 +87,29 @@ struct T2DRocketB : public TChasePosDir {
  */
 struct T2DRocketGlow : public TChasePosDir {
 	// vtable 2
-	virtual ~T2DRocketGlow(); // _14
+	virtual ~T2DRocketGlow(); // _34 (weak)
 
-	void setGlobalParticleScale(float);
+	void setGlobalParticleScale(f32);
+
+	// _00		= VTBL
+	// _00-_1C	= TChasePosDir
 };
 
 /**
  * @size{0x18}
  */
 struct T2DShstar1 : public TChasePos {
-	virtual ~T2DShstar1(); // _14
+	virtual ~T2DShstar1(); // _34 (weak)
+
+	// _00		= VTBL
+	// _00-_18	= TChasePos
 };
 
 struct T2DShstar2 : public TSimple1 {
-	virtual bool create(Arg*); // _00
+	virtual bool create(Arg*); // _08
+
+	// _00		= VTBL
+	// _00-_10	= TSimple1
 };
 } // namespace WorldMap
 } // namespace efx2d

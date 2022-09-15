@@ -14,54 +14,48 @@ struct Arg : Vector2f {
 		this->y = y;
 	}
 
-	/**
-	 * @reifiedAddress{80238E80}
-	 * @reifiedFile{plugProjectKandoU/vsCardMgr.cpp}
-	 */
-	virtual const char* getName() // _08
+	virtual const char* getName() // _08 (weak)
 	{
 		return "Arg";
 	}
 
-	// vtbl _08
+	// _00-_08	= Vector2f
+	// _08 		= VTBL
 };
 
 struct ArgColor : public Arg {
-	/**
-	 * @reifiedAddress{803D9BFC}
-	 * @reifiedFile{plugProjectEbisawaU/ebiScreenFileSelect.cpp}
-	 */
-	virtual const char* getName() // _08
+
+	virtual const char* getName() // _08 (weak)
 	{
 		return "ArgColor";
 	}
 
-	u32 _0C;
+	// _00-_08	= Vector2f
+	// _08 		= VTBL
+	u32 _0C;	// JUtility::TColor? maybe?
 };
 
 struct ArgScale : public Arg {
-	/**
-	 * @reifiedAddress{80327BDC}
-	 * @reifiedFile{plugProjectOgawaU/ogObjVs.cpp}
-	 */
-	virtual const char* getName() // _08
+
+	virtual const char* getName() // _08 (weak)
 	{
 		return "ArgScale";
 	}
 
+	// _00-_08	= Vector2f
+	// _08 		= VTBL
 	float m_scale; // _0C
 };
 
 struct ArgScaleColorColor : public Arg {
-	/**
-	 * @reifiedAddress{80238E74}
-	 * @reifiedFile{plugProjectKandoU/vsCardMgr.cpp}
-	 */
-	virtual const char* getName() // _08
+
+	virtual const char* getName() // _08 (weak)
 	{
 		return "ArgScaleColorColor";
 	}
 
+	// _00-_08	= Vector2f
+	// _08 		= VTBL
 	float m_scale;        // _0C
 	JUtility::TColor _10; // _10
 	JUtility::TColor _14; // _14
