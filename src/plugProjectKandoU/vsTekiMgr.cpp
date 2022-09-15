@@ -56,7 +56,8 @@ bool TekiMgr::birthable(int)
  */
 EnemyBase* TekiMgr::birth(int idx, Vector3f& position, bool check)
 {
-	if (TekiNode* node = getNode(idx)) {
+	TekiNode* node = getNode(idx);
+	if (node != nullptr) {
 		EnemyBirthArg birthArg;
 		birthArg.m_faceDir  = TAU * randFloat();
 		birthArg.m_position = position;
