@@ -93,7 +93,7 @@ struct GeneralEnemyMgr : public GenericObjectMgr, public CNode {
 	static int mCullCount;
 };
 
-static GeneralEnemyMgr* generalEnemyMgr;
+extern GeneralEnemyMgr* generalEnemyMgr;
 
 }; // namespace Game
 

@@ -30,20 +30,20 @@ void TekiMgr::entry(EnemyTypeID::EEnemyTypeID id, int a2)
 
 EnemyBase* TekiMgr::birth(int idx, Vector3f& position, bool check)
 {
-    if (TekiNode* node = static_cast<TekiNode*>(m_node.getChildAt(idx))) {
-        EnemyBirthArg birthArg;
-        birthArg.m_faceDir = TAU * randFloat();
-        birthArg.m_position = position;
-        if (check) {
-            birthArg._2C = 50.0f;
-        }
-        EnemyBase* teki = generalEnemyMgr->birth(node->m_id, birthArg);
-        if (teki != nullptr) {
-            teki->init(nullptr);
-        }
-        return teki;
-    }
-    return nullptr;
+	if (TekiNode* node = static_cast<TekiNode*>(m_node.getChildAt(idx))) {
+		EnemyBirthArg birthArg;
+		birthArg.m_faceDir  = TAU * randFloat();
+		birthArg.m_position = position;
+		if (check) {
+			birthArg._2C = 50.0f;
+		}
+		EnemyBase* teki = generalEnemyMgr->birth(node->m_id, birthArg);
+		if (teki != nullptr) {
+			teki->init(nullptr);
+		}
+		return teki;
+	}
+	return nullptr;
 }
 } // namespace VsGame
 } // namespace Game
