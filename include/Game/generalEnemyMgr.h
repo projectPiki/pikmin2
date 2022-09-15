@@ -63,7 +63,7 @@ struct GeneralEnemyMgr : public GenericObjectMgr, public CNode {
 	void killAll();
 	void setupSoundViewerAndBas();
 	void getJ3DModelData(int);
-	void birth(int, Game::EnemyBirthArg&);
+	EnemyBase* birth(int, Game::EnemyBirthArg&);
 	void getEnemyName(int, int);
 	void getEnemyID(char*, int);
 	void getIEnemyMgrBase(int);
@@ -93,7 +93,7 @@ struct GeneralEnemyMgr : public GenericObjectMgr, public CNode {
 	static int mCullCount;
 };
 
-static GeneralEnemyMgr* generalEnemyMgr;
+extern GeneralEnemyMgr* generalEnemyMgr;
 
 }; // namespace Game
 
