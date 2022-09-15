@@ -2,6 +2,7 @@
 #include "CNode.h"
 #include "Game/enemyInfo.h"
 #include "Game/generalEnemyMgr.h"
+#include "Game/VsGame/VsGame.h"
 
 /*
     Generated from dpostproc
@@ -33,31 +34,13 @@
 
 namespace Game {
 namespace VsGame {
-struct TekiNode : public CNode {
-	inline TekiNode() { }
-	virtual ~TekiNode();
-
-	// _14 CNODE
-	EnemyTypeID::EEnemyTypeID m_id; // _18
-	s32 _1C;                        // _1C
-	s32 m_index;                    // _20
-};
-
-struct TekiMgr {
-	TekiMgr();
-
-	void entry(EnemyTypeID::EEnemyTypeID, int);
-
-	TekiNode m_head; // _00
-	u32 m_tekiCount; // _24
-};
 
 /*
  * --INFO--
  * Address:	802352F0
  * Size:	000044
  */
-TekiMgr::TekiMgr() { m_tekiCount = 0; }
+TekiMgr::TekiMgr() { m_nodeCount = 0; }
 
 /*
  * --INFO--
@@ -76,8 +59,8 @@ void TekiMgr::entry(EnemyTypeID::EEnemyTypeID id, int a2)
 	TekiNode* newNode = new TekiNode();
 	newNode->m_id     = id;
 	newNode->_1C      = a2;
-	newNode->m_index  = m_tekiCount++;
-	m_head.add(newNode);
+	newNode->m_nodeID = m_nodeCount++;
+	m_node.add(newNode);
 
 	generalEnemyMgr->addEnemyNum(id, a2, nullptr);
 }

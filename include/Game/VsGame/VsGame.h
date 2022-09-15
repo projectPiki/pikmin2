@@ -21,16 +21,21 @@ struct MovieConfig;
 
 namespace VsGame {
 struct TekiNode : public CNode {
-	virtual ~TekiNode(); // _08 (weak)
+	inline TekiNode() { }
+	virtual ~TekiNode() {}; // _08 (weak)
 
 	// _00 		= VTBL
 	// _00-_18	= CNode
-	u32 m_enemyID; // _18, probably EnemyTypeID?
-	int _1C;       // _1C
-	int m_nodeID;  // _20
+	EnemyTypeID::EEnemyTypeID m_id; // _18
+	int _1C;                        // _1C
+	int m_nodeID;                   // _20
 };
 
 struct TekiMgr {
+	TekiMgr();
+
+	void entry(EnemyTypeID::EEnemyTypeID, int);
+	void birth(int, Vector3<float>&, bool);
 	TekiNode m_node; // _00
 	int m_nodeCount; // _24
 };
