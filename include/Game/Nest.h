@@ -15,27 +15,26 @@ namespace Nest {
 struct Obj : public EnemyBase {
 	Obj();
 
-	// vtable 1
-	virtual void onInit(CreatureInitArg*);  // _28
-	virtual void doEntry();                 // _38
-	virtual void doViewCalc();              // _40
-	virtual void doSimulation(float);       // _44
-	virtual bool isLivingThing();           // _CC
-	virtual float getSound_CurrAnimFrame(); // _100
-	virtual float getSound_CurrAnimSpeed(); // _104
-	virtual bool needShadow();              // _130
-	virtual bool ignoreAtari(Creature*);    // _188
-	// vtable 2
-	// TODO: Fix these offsets to be relative to onKeyEvent
-	virtual ~Obj();                                         // _1B4
-	virtual void birth(Vector3f&, float);                   // _1B8
-	virtual void setInitialSetting(EnemyInitialParamBase*); // _1BC
-	virtual void update();                                  // _1C0
-	virtual void doUpdate();                                // _1C4
-	virtual void doUpdateCommon();                          // _1C8
-	virtual void doAnimationCullingOff();                   // _1D4
-	virtual void doAnimationCullingOn();                    // _1D8
-	virtual EnemyTypeID::EEnemyTypeID getEnemyTypeID();     // _250
+	// vtable 1 & 2
+	virtual void onInit(CreatureInitArg*);                                                       // _28
+	virtual void setInitialSetting(EnemyInitialParamBase*) { }                                   // _1BC
+	virtual void update() { }                                                                    // _1C0
+	virtual void doUpdate() { }                                                                  // _1C4
+	virtual void doSimulation(float) { }                                                         // _44
+	virtual void doAnimationCullingOn() { }                                                      // _1D8
+	virtual void doAnimationCullingOff() { }                                                     // _1D4
+	virtual void doUpdateCommon() { }                                                            // _1C8
+	virtual void doEntry() { }                                                                   // _38
+	virtual void doViewCalc() { }                                                                // _40
+	virtual bool isLivingThing() { return false; }                                               // _CC
+	virtual bool ignoreAtari(Game::Creature*) { return false; }                                  // _188
+	virtual bool needShadow() { return false; }                                                  // _130
+	virtual EnemyTypeID::EEnemyTypeID getEnemyTypeID() { return EnemyTypeID::EnemyID_PanHouse; } // _250
+	virtual float getSound_CurrAnimFrame() { return 0.0f; }                                      // _100
+	virtual float getSound_CurrAnimSpeed() { return 1.0f; }                                      // _104
+	virtual ~Obj();                                                                              // _1B4
+	virtual void birth(Vector3f&, float);                                                        // _1B8
+
 	// vtable 3 (no changes)
 
 	void setHouseType(int);
