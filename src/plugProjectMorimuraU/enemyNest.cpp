@@ -1,5 +1,5 @@
 #include "Dolphin/os.h"
-#include "Game/Nest.h"
+#include "Game/Entities/Nest.h"
 #include "Game/enemyInfo.h"
 #include "Game/shadowMgr.h"
 #include "Vector3.h"
