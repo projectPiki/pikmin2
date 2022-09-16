@@ -17,7 +17,7 @@ struct MeloArrArg {
 };
 
 // this has some funky inheritance going on I think?
-struct MeloArrBase : public JSUPtrLink, JADHioNode {
+struct MeloArrBase : public JSULink<MeloArrBase>, JADHioNode {
 	// JADHioNode vtable:
 	// virtual void ~MeloArrBase() = 0;     // _08
 	// virtual void _0C() = 0;              // _0C - might just be gap
