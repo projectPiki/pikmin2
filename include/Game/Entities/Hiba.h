@@ -6,6 +6,8 @@
 #include "Game/EnemyParmsBase.h"
 #include "Game/EnemyMgrBase.h"
 #include "Game/EnemyBase.h"
+#include "efx/TEnemyBomb.h"
+#include "PS.h"
 
 /**
  * --Header for Fire Geyser (Hiba)--
@@ -23,18 +25,21 @@ struct Obj : public EnemyBase {
 	Obj();
 
 	//////////////// VTABLE
-	virtual void onInit(CreatureInitArg*);                   // _30
-	virtual void doSimulation(f32);                          // _4C (weak)
-	virtual void doDirectDraw(Graphics&);                    // _50
-	virtual void inWaterCallback(WaterBox*);                 // _84 (weak)
-	virtual void outWaterCallback();                         // _88 (weak)
-	virtual bool isLivingThing();                            // _D4 (weak)
-	virtual void getShadowParam(ShadowParam&);               // _134
-	virtual ~Obj();                                          // _1BC (weak)
-	virtual void setInitialSetting(EnemyInitialParamBase*);  // _1C4
-	virtual void doUpdate();                                 // _1CC
-	virtual void doDebugDraw(Graphics&);                     // _1EC
-	virtual EnemyTypeID::EEnemyTypeID getEnemyTypeID();      // _258 (weak)
+	virtual void onInit(CreatureInitArg*);                  // _30
+	virtual void doSimulation(f32);                         // _4C (weak)
+	virtual void doDirectDraw(Graphics&);                   // _50
+	virtual void inWaterCallback(WaterBox*);                // _84 (weak)
+	virtual void outWaterCallback();                        // _88 (weak)
+	virtual bool isLivingThing();                           // _D4 (weak)
+	virtual void getShadowParam(ShadowParam&);              // _134
+	virtual ~Obj();                                         // _1BC (weak)
+	virtual void setInitialSetting(EnemyInitialParamBase*); // _1C4
+	virtual void doUpdate();                                // _1CC
+	virtual void doDebugDraw(Graphics&);                    // _1EC
+	virtual EnemyTypeID::EEnemyTypeID getEnemyTypeID()      // _258 (weak)
+	{
+		return EnemyTypeID::EnemyID_Hiba;
+	}
 	virtual bool damageCallBack(Creature*, f32, CollPart*);  // _278
 	virtual bool pressCallBack(Creature*, f32, CollPart*);   // _27C
 	virtual bool hipdropCallBack(Creature*, f32, CollPart*); // _284
@@ -55,7 +60,7 @@ struct Obj : public EnemyBase {
 	// _00-_2BC	= EnemyBase
 	FSM* m_FSM;                // _2BC
 	bool m_isAlive;            // _2C0
-	f32 _2C4;                  // _2C4, timer?
+	f32 m_timer;               // _2C4
 	efx::THibaFire* m_efxFire; // _2C8
 	                           // _2CC = PelletView
 };
@@ -106,6 +111,12 @@ struct ProperAnimator : public EnemyAnimatorBase {
 
 /////////////////////////////////////////////////////////////////
 // STATE MACHINE DEFINITIONS
+enum StateID {
+	HIBA_Dead   = 0,
+	HIBA_Wait   = 1,
+	HIBA_Attack = 2,
+};
+
 struct FSM : public EnemyStateMachine {
 	virtual void init(EnemyBase*); // _08
 
@@ -114,11 +125,22 @@ struct FSM : public EnemyStateMachine {
 };
 
 struct State : public EnemyFSMState {
+	inline State(int stateID, const char* name)
+	    : EnemyFSMState(stateID)
+	{
+		m_name = name;
+	}
+
 	// _00		= VTBL
 	// _00-_10 	= EnemyFSMState
 };
 
 struct StateAttack : public State {
+	inline StateAttack()
+	    : State(HIBA_Attack, "attack")
+	{
+	}
+
 	virtual void init(EnemyBase*, StateArg*); // _08
 	virtual void exec(EnemyBase*);            // _0C
 	virtual void cleanup(EnemyBase*);         // _10
@@ -128,6 +150,11 @@ struct StateAttack : public State {
 };
 
 struct StateDead : public State {
+	inline StateDead()
+	    : State(HIBA_Dead, "dead")
+	{
+	}
+
 	virtual void init(EnemyBase*, StateArg*); // _08
 	virtual void exec(EnemyBase*);            // _0C
 	virtual void cleanup(EnemyBase*);         // _10
@@ -137,6 +164,11 @@ struct StateDead : public State {
 };
 
 struct StateWait : public State {
+	inline StateWait()
+	    : State(HIBA_Wait, "wait")
+	{
+	}
+
 	virtual void init(EnemyBase*, StateArg*); // _08
 	virtual void exec(EnemyBase*);            // _0C
 	virtual void cleanup(EnemyBase*);         // _10
