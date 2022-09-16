@@ -1,5 +1,5 @@
-#ifndef _GAME_ENTITIES_BIGFOOT_H
-#define _GAME_ENTITIES_BIGFOOT_H
+#ifndef _GAME_ENTITIES_NEST_H
+#define _GAME_ENTITIES_NEST_H
 
 #include "Game/EnemyStateMachine.h"
 #include "Game/EnemyAnimatorBase.h"
@@ -19,24 +19,24 @@ struct Obj : public EnemyBase {
 	Obj();
 
 	//////////////// VTABLE
-	virtual void onInit(CreatureInitArg*);                  // _30
-	virtual void doEntry();                                 // _40 (weak)
-	virtual void doViewCalc();                              // _48 (weak)
-	virtual void doSimulation(f32);                         // _4C (weak)
-	virtual bool isLivingThing();                           // _D4 (weak)
-	virtual f32 getSound_CurrAnimFrame();                   // _108 (weak)
-	virtual f32 getSound_CurrAnimSpeed();                   // _10C (weak)
-	virtual bool needShadow();                              // _138 (weak)
-	virtual bool ignoreAtari(Creature*);                    // _190 (weak)
-	virtual ~Obj();                                         // _1BC (weak)
-	virtual void birth(Vector3f&, f32);                     // _1C0
-	virtual void setInitialSetting(EnemyInitialParamBase*); // _1C4 (weak)
-	virtual void update();                                  // _1C8 (weak)
-	virtual void doUpdate();                                // _1CC (weak)
-	virtual void doUpdateCommon();                          // _1D0 (weak)
-	virtual void doAnimationCullingOff();                   // _1DC (weak)
-	virtual void doAnimationCullingOn();                    // _1E0 (weak)
-	virtual EnemyTypeID::EEnemyTypeID getEnemyTypeID();     // _258 (weak)
+	virtual void onInit(CreatureInitArg*);                                                       // _30
+	virtual void setInitialSetting(EnemyInitialParamBase*) { }                                   // _1C4 (weak)
+	virtual void update() { }                                                                    // _1C8 (weak)
+	virtual void doUpdate() { }                                                                  // _1CC (weak)
+	virtual void doSimulation(float) { }                                                         // _4C (weak)
+	virtual void doAnimationCullingOn() { }                                                      // _1E0 (weak)
+	virtual void doAnimationCullingOff() { }                                                     // _1DC (weak)
+	virtual void doUpdateCommon() { }                                                            // _1D0 (weak)
+	virtual void doEntry() { }                                                                   // _40 (weak)
+	virtual void doViewCalc() { }                                                                // _48 (weak)
+	virtual bool isLivingThing() { return false; }                                               // _D4 (weak)
+	virtual bool ignoreAtari(Game::Creature*) { return false; }                                  // _190 (weak)
+	virtual bool needShadow() { return false; }                                                  // _138 (weak)
+	virtual EnemyTypeID::EEnemyTypeID getEnemyTypeID() { return EnemyTypeID::EnemyID_PanHouse; } // _258 (weak)
+	virtual float getSound_CurrAnimFrame() { return 0.0f; }                                      // _108 (weak)
+	virtual float getSound_CurrAnimSpeed() { return 1.0f; }                                      // _10C (weak)
+	virtual ~Obj();                                                                              // _1BC (weak)
+	virtual void birth(Vector3f&, float);                                                        // _1C0
 	//////////////// VTABLE END
 
 	void setHouseType(int);
