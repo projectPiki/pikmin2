@@ -40,7 +40,10 @@ struct Obj : public EnemyBase {
 	virtual void setInitialSetting(EnemyInitialParamBase*);  // _1C4
 	virtual void doUpdate();                                 // _1CC
 	virtual void doDebugDraw(Graphics&);                     // _1EC
-	virtual EnemyTypeID::EEnemyTypeID getEnemyTypeID();      // _258 (weak)
+	virtual EnemyTypeID::EEnemyTypeID getEnemyTypeID()       // _258 (weak)
+	{
+		return EnemyTypeID::EnemyID_GasHiba;
+	}
 	virtual bool damageCallBack(Creature*, f32, CollPart*);  // _278
 	virtual bool pressCallBack(Creature*, f32, CollPart*);   // _27C
 	virtual bool hipdropCallBack(Creature*, f32, CollPart*); // _284

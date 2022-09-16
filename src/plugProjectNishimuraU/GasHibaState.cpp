@@ -1,4 +1,8 @@
 #include "types.h"
+#include "Game/Entities/GasHiba.h"
+#include "Game/EnemyAnimKeyEvent.h"
+#include "efx/TEnemyBomb.h"
+#include "PS.h"
 
 /*
     Generated from dpostproc
