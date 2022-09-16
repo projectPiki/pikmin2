@@ -68,7 +68,7 @@ bool MeloArrMgr::isToAvoid(MeloArrArg& meloArg)
  * Fake function, required to fix weak function ordering, probably due to an inlined
  * method for a struct that doesn't get used elsewhere :c
  */
-void fakeFunc(MeloArr_RandomAvoid* randAvoid, MeloArrBase* base)
+static void fakeFunc(MeloArr_RandomAvoid* randAvoid, MeloArrBase* base)
 {
 	randAvoid->~MeloArr_RandomAvoid();
 	base->~MeloArrBase();
