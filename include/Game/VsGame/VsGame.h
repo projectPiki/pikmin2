@@ -31,12 +31,16 @@ struct TekiNode : public CNode {
 	int m_nodeID;                   // _20
 };
 
-struct TekiMgr {
+class TekiMgr {
 	TekiMgr();
 
 	void entry(EnemyTypeID::EEnemyTypeID, int);
+	TekiNode* getNode(int); // unused; inlined into birth
+	bool birthable(int);    // unused
 	EnemyBase* birth(int, Vector3f&, bool);
+	EnemyTypeID::EEnemyTypeID getID(int); // unused
 
+	// these elements were likely private
 	TekiNode m_node; // _00
 	int m_nodeCount; // _24
 };
