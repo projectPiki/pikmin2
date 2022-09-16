@@ -680,7 +680,7 @@ NISHIMURA:=\
 	$(BUILD_DIR)/src/plugProjectNishimuraU/TobiAnimator.o\
 	$(BUILD_DIR)/asm/plugProjectNishimuraU/TobiMgr.o\
 	$(BUILD_DIR)/asm/plugProjectNishimuraU/Tobi.o\
-	$(BUILD_DIR)/asm/plugProjectNishimuraU/HibaState.o\
+	$(BUILD_DIR)/src/plugProjectNishimuraU/HibaState.o\
 	$(BUILD_DIR)/src/plugProjectNishimuraU/HibaAnimator.o\
 	$(BUILD_DIR)/asm/plugProjectNishimuraU/HibaMgr.o\
 	$(BUILD_DIR)/asm/plugProjectNishimuraU/Hiba.o\
