@@ -12,7 +12,7 @@ namespace Hiba {
  * Address:	8026B354
  * Size:	000128
  */
-void Hiba::FSM::init(EnemyBase* enemy)
+void FSM::init(EnemyBase* enemy)
 {
 	create(3);
 	registerState(new StateDead);
