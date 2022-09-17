@@ -9,6 +9,7 @@ namespace Game {
 namespace Cave {
 struct RandMapScore;
 struct EnemyNode;
+struct MapNode;
 
 enum NodeType { Item = 1, Gate };
 
@@ -21,6 +22,15 @@ struct Adjust {
 	s32 _00; // _00
 	s32 _04; // _04
 	s32 _08; // _08
+};
+
+/**
+ * @size{0xC}
+ */
+struct AdjustInfo {
+	MapNode* m_node;      // _00
+	int m_birthDoorIndex; // _04
+	int m_doorScore;      // _08
 };
 
 /**
@@ -187,7 +197,7 @@ struct MapNode : public CNode {
 	void isDoorScoreSetDone(int);
 	DoorNode* getDoorNode(int);
 	void getAdjustNode(int);
-	void isGateSetDoor(int);
+	bool isGateSetDoor(int);
 	void getGateScore(int);
 	void setEnemyScore();
 	void setNodeScore(int);
@@ -215,12 +225,12 @@ struct MapNode : public CNode {
 	ObjectLayoutNode* m_gateNode;  // _20
 	ObjectLayoutNode* m_itemNode;  // _24
 
-	MapNode** m_nodeList; // _28
-	int m_xGridOffset;    // _2C
-	int m_yGridOffset;    // _30
-	int m_enemyScore;     // _34
-	int m_nodeScore;      // _38
-	int m_vsScore;        // _3C
+	AdjustInfo* m_adjustInfo; // _28, array of AdjustInfos
+	int m_xGridOffset;        // _2C
+	int m_yGridOffset;        // _30
+	int m_enemyScore;         // _34
+	int m_nodeScore;          // _38
+	int m_vsScore;            // _3C
 };
 
 /**

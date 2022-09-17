@@ -39,7 +39,7 @@ void RandMapDraw::radarMapPartsOpen(Vector3f& pos)
 
 			const int doorCount = childNode->getNumDoors();
 			for (int i = 0; i < doorCount; i++) {
-				MapNode* currMapNode = childNode->m_nodeList[i * 3];
+				MapNode* currMapNode = childNode->m_adjustInfo[i].m_node;
 
 				// If the node has a door that leads to a dead end, we've discovered it too
 				if ((placedMapNodes == currMapNode->m_parent) && (currMapNode->m_unitInfo->getUnitKind() == 0)) {
