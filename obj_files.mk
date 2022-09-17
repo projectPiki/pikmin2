@@ -684,7 +684,7 @@ NISHIMURA:=\
 	$(BUILD_DIR)/src/plugProjectNishimuraU/HibaAnimator.o\
 	$(BUILD_DIR)/asm/plugProjectNishimuraU/HibaMgr.o\
 	$(BUILD_DIR)/asm/plugProjectNishimuraU/Hiba.o\
-	$(BUILD_DIR)/asm/plugProjectNishimuraU/GasHibaState.o\
+	$(BUILD_DIR)/src/plugProjectNishimuraU/GasHibaState.o\
 	$(BUILD_DIR)/src/plugProjectNishimuraU/GasHibaAnimator.o\
 	$(BUILD_DIR)/asm/plugProjectNishimuraU/GasHibaMgr.o\
 	$(BUILD_DIR)/asm/plugProjectNishimuraU/GasHiba.o\
