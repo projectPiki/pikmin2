@@ -29,18 +29,21 @@ struct Obj : public EnemyBase {
 	Obj();
 
 	//////////////// VTABLE
-	virtual void onInit(CreatureInitArg*);                   // _30
-	virtual void doSimulation(f32);                          // _4C (weak)
-	virtual void doDirectDraw(Graphics&);                    // _50
-	virtual void inWaterCallback(WaterBox*);                 // _84 (weak)
-	virtual void outWaterCallback();                         // _88 (weak)
-	virtual bool isLivingThing();                            // _D4 (weak)
-	virtual void getShadowParam(ShadowParam&);               // _134
-	virtual ~Obj();                                          // _1BC (weak)
-	virtual void setInitialSetting(EnemyInitialParamBase*);  // _1C4
-	virtual void doUpdate();                                 // _1CC
-	virtual void doDebugDraw(Graphics&);                     // _1EC
-	virtual EnemyTypeID::EEnemyTypeID getEnemyTypeID();      // _258 (weak)
+	virtual void onInit(CreatureInitArg*);                  // _30
+	virtual void doSimulation(f32);                         // _4C (weak)
+	virtual void doDirectDraw(Graphics&);                   // _50
+	virtual void inWaterCallback(WaterBox*);                // _84 (weak)
+	virtual void outWaterCallback();                        // _88 (weak)
+	virtual bool isLivingThing();                           // _D4 (weak)
+	virtual void getShadowParam(ShadowParam&);              // _134
+	virtual ~Obj();                                         // _1BC (weak)
+	virtual void setInitialSetting(EnemyInitialParamBase*); // _1C4
+	virtual void doUpdate();                                // _1CC
+	virtual void doDebugDraw(Graphics&);                    // _1EC
+	virtual EnemyTypeID::EEnemyTypeID getEnemyTypeID()      // _258 (weak)
+	{
+		return EnemyTypeID::EnemyID_GasHiba;
+	}
 	virtual bool damageCallBack(Creature*, f32, CollPart*);  // _278
 	virtual bool pressCallBack(Creature*, f32, CollPart*);   // _27C
 	virtual bool hipdropCallBack(Creature*, f32, CollPart*); // _284
@@ -65,7 +68,7 @@ struct Obj : public EnemyBase {
 	FSM* m_FSM;                 // _2BC
 	u8 _2C0;                    // _2C0, unknown
 	bool m_isAlive;             // _2C1
-	f32 _2C4;                   // _2C4
+	f32 m_timer;                // _2C4
 	ItemBridge::Item* m_bridge; // _2C8
 	ItemGate* m_gate;           // _2CC
 	efx::TGasuHiba* m_efxGas;   // _2D0
@@ -90,12 +93,12 @@ struct Parms : public EnemyParmsBase {
 	struct ProperParms : public Parameters {
 		inline ProperParms(); // likely
 
-		Parm<f32> m_fp02;    // _804
-		Parm<f32> m_fp01;    // _82C
-		Parm<f32> m_fp03;    // _854
-		Parm<f32> m_fp04;    // _87C
-		Parm<f32> m_lodNear; // _8A4, fp90
-		Parm<f32> m_lodFar;  // _8CC, fp91
+		Parm<f32> m_waitTime;   // _804, fp02
+		Parm<f32> m_activeTime; // _82C, fp01
+		Parm<f32> m_stopTime;   // _854, fp03
+		Parm<f32> m_fp04;       // _87C, fp04
+		Parm<f32> m_lodNear;    // _8A4, fp90
+		Parm<f32> m_lodFar;     // _8CC, fp91
 	};
 
 	Parms();
@@ -119,6 +122,12 @@ struct ProperAnimator : public EnemyAnimatorBase {
 
 /////////////////////////////////////////////////////////////////
 // STATE MACHINE DEFINITIONS
+enum StateID {
+	HIBA_Dead   = 0,
+	HIBA_Wait   = 1,
+	HIBA_Attack = 2,
+};
+
 struct FSM : public EnemyStateMachine {
 	virtual void init(EnemyBase*); // _08
 
@@ -127,11 +136,21 @@ struct FSM : public EnemyStateMachine {
 };
 
 struct State : public EnemyFSMState {
+	inline State(int stateID, const char* name)
+	    : EnemyFSMState(stateID)
+	{
+		m_name = name;
+	}
 	// _00		= VTBL
 	// _00-_10 	= EnemyFSMState
 };
 
 struct StateAttack : public State {
+	inline StateAttack()
+	    : State(HIBA_Attack, "attack")
+	{
+	}
+
 	virtual void init(EnemyBase*, StateArg*); // _08
 	virtual void exec(EnemyBase*);            // _0C
 	virtual void cleanup(EnemyBase*);         // _10
@@ -141,6 +160,11 @@ struct StateAttack : public State {
 };
 
 struct StateDead : public State {
+	inline StateDead()
+	    : State(HIBA_Dead, "dead")
+	{
+	}
+
 	virtual void init(EnemyBase*, StateArg*); // _08
 	virtual void exec(EnemyBase*);            // _0C
 	virtual void cleanup(EnemyBase*);         // _10
@@ -150,6 +174,11 @@ struct StateDead : public State {
 };
 
 struct StateWait : public State {
+	inline StateWait()
+	    : State(HIBA_Wait, "wait")
+	{
+	}
+
 	virtual void init(EnemyBase*, StateArg*); // _08
 	virtual void exec(EnemyBase*);            // _0C
 	virtual void cleanup(EnemyBase*);         // _10
