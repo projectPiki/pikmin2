@@ -49,14 +49,17 @@ void Obj::changeMaterial()
  */
 bool Obj::damageCallBack(Creature* creature, f32 damage, CollPart* collpart)
 {
-	if ((m_targetCreature != nullptr) && m_targetCreature->isAlive()) {
+	if (m_targetCreature != nullptr && m_targetCreature->isAlive()) {
 		if (isEvent(0, EB_Bittered)) {
+			// If we're bittered, then register the damage
 			static_cast<Bomb::Obj*>(m_targetCreature)->damageCallBack(creature, damage, collpart);
 		} else {
+			// If not, then explode
 			static_cast<Bomb::Obj*>(m_targetCreature)->forceBomb();
 		}
 		return true;
 	}
+
 	return false;
 }
 
@@ -77,6 +80,7 @@ bool Obj::earthquakeCallBack(Creature* creature, f32 p1)
 	if ((m_targetCreature != nullptr) && m_targetCreature->isAlive()) {
 		static_cast<Bomb::Obj*>(m_targetCreature)->forceBomb();
 	}
+
 	return EnemyBase::earthquakeCallBack(creature, p1);
 }
 
@@ -94,12 +98,13 @@ bool Obj::bombCallBack(Creature* creature, Vector3f& vec, f32 damage) { return d
  */
 void Obj::startEscapeSE()
 {
-	if (_2CC > 2.5f) {
+	if (m_escapeSfxTimer > 2.5f) {
 		getJAIObject()->startSound(PSSE_EN_OTAKARA_STANDUP, 0);
-		_2CC = 0.0f;
+		m_escapeSfxTimer = 0.0f;
 		return;
 	}
-	_2CC += sys->m_secondsPerFrame;
+
+	m_escapeSfxTimer += sys->m_secondsPerFrame;
 }
 } // namespace BombOtakara
 } // namespace Game

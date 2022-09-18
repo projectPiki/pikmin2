@@ -6,7 +6,6 @@
 
 namespace Game {
 namespace GasHiba {
-
 /*
  * --INFO--
  * Address:	8026C68C
@@ -14,7 +13,7 @@ namespace GasHiba {
  */
 void FSM::init(EnemyBase* enemy)
 {
-	create(3);
+	create(HIBA_Count);
 	registerState(new StateDead);
 	registerState(new StateWait);
 	registerState(new StateAttack);
@@ -28,6 +27,7 @@ void FSM::init(EnemyBase* enemy)
 void StateDead::init(EnemyBase* enemy, StateArg* stateArg)
 {
 	Obj* hiba = static_cast<Obj*>(enemy);
+
 	hiba->setEvent(0, EB_3);
 	hiba->resetEvent(0, EB_LifegaugeVisible);
 	hiba->setEvent(0, EB_Vulnerable);
@@ -70,11 +70,13 @@ void StateDead::cleanup(Game::EnemyBase*) { }
 void StateWait::init(EnemyBase* enemy, StateArg* stateArg)
 {
 	Obj* hiba = static_cast<Obj*>(enemy);
+
 	if (stateArg != nullptr) {
 		hiba->m_timer = stateArg->_00.f32;
 	} else {
 		hiba->m_timer = 0.0f;
 	}
+
 	hiba->startMotion(0, nullptr);
 }
 
@@ -87,6 +89,7 @@ void StateWait::exec(EnemyBase* enemy)
 {
 	Obj* hiba = static_cast<Obj*>(enemy);
 	hiba->m_timer += sys->m_secondsPerFrame;
+
 	hiba->setInitLivingThing();
 	hiba->updateLivingThing();
 
@@ -95,6 +98,7 @@ void StateWait::exec(EnemyBase* enemy)
 		return;
 	}
 
+	// If enough time has passed, attack
 	if (hiba->m_timer > static_cast<Parms*>(hiba->m_parms)->m_properParms.m_waitTime.m_value) {
 		transit(hiba, HIBA_Attack, nullptr);
 	}
@@ -128,6 +132,8 @@ void StateAttack::init(EnemyBase* enemy, StateArg* stateArg)
 void StateAttack::exec(EnemyBase* enemy)
 {
 	Obj* hiba = static_cast<Obj*>(enemy);
+
+	// If dead or we're done attacking, then finish
 	if ((hiba->m_health <= 0.0f)
 	    || ((static_cast<Parms*>(hiba->m_parms)->m_properParms.m_waitTime.m_value > 0.0f)
 	        && (hiba->m_timer > static_cast<Parms*>(hiba->m_parms)->m_properParms.m_activeTime.m_value))) {
@@ -135,20 +141,23 @@ void StateAttack::exec(EnemyBase* enemy)
 	}
 
 	hiba->m_timer += sys->m_secondsPerFrame;
+
 	hiba->updateEfxLod();
 	hiba->updateLivingThing();
+
 	if (hiba->m_timer > static_cast<Parms*>(hiba->m_parms)->m_properParms.m_stopTime.m_value) {
 		hiba->interactGasAttack();
 	}
 
 	hiba->getJAIObject()->startSound(PSSE_EN_GAS_HIBA_VOMIT, 0);
 
-	if ((hiba->m_animKeyEvent->m_running)
-	    && ((u32)hiba->m_animKeyEvent->m_type == 1000) /* Epoch: wtf is this, needs cleanup. Surely an enum? */) {
+	if (hiba->m_animKeyEvent->m_running
+	    && ((u32)hiba->m_animKeyEvent->m_type == 1000) /* Epoch: wtf is this, needs cleanup. Surely an enum (+1 from INTNS)? */) {
 		if (hiba->m_health <= 0.0f) {
 			transit(hiba, HIBA_Dead, nullptr);
 			return;
 		}
+
 		transit(hiba, HIBA_Wait, nullptr);
 	}
 }

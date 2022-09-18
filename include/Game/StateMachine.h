@@ -9,6 +9,10 @@ template <typename T> struct StateMachine;
 // TODO: WORK OUT WHAT'S HAPPENING WITH THIS BC IT MAKES NO SENSE
 // see Earthquake::init (in enemyBase.cpp) vs InteractSuck::actPellet (in pelletMgr.cpp)
 // should be size 0x4 and first variable should be void* or something, but Earthquake::init disagrees
+
+// FROM INTNS: I had a similar issue about WTF to do, with the whole Interact struct, MAYBE this is an
+// EMPTY struct that uses specialised classes to fill in extra information, something like that at least lol
+
 struct StateArg {
 	union {
 		f32 f32;

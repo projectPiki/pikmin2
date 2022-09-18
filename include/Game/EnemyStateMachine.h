@@ -29,7 +29,7 @@ struct EnemyStateMachine {
 	virtual EnemyFSMState* getCurrState(EnemyBase*);       // _1C
 	virtual void setCurrState(EnemyBase*, EnemyFSMState*); // _20
 
-	void create(int);
+	void create(int stateCount);
 	int getCurrID(EnemyBase*);
 	const char* getCurrName(EnemyBase*);
 	void registerState(EnemyFSMState*);
