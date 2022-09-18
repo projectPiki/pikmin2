@@ -16,6 +16,13 @@ struct _UnknownJ3DTextureParent {
  * @size{0xC}
  */
 struct J3DTexture : _UnknownJ3DTextureParent {
+	inline J3DTexture(u16 p1, ResTIMG* res)
+	{
+		_00 = p1;
+		_02 = 0;
+		_04 = res;
+	}
+
 	virtual ~J3DTexture(); // _00
 
 	inline void setImageOffset(u32 format) { _04->m_imageDataOffset = (int)((format + _04->m_imageDataOffset) - (u32)_04); }

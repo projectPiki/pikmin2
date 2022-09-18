@@ -1,4 +1,6 @@
 #include "JSystem/J3D/J3DSys.h"
+#include "Dolphin/gx.h"
+#include "Dolphin/os.h"
 #include "types.h"
 
 /*
@@ -132,6 +134,11 @@
         .4byte 0x00000000
 */
 
+static GXColor ColorBlack = { 0x00, 0x00, 0x00, 0x00 };
+static GXColor ColorWhite = { 0xFF, 0xFF, 0xFF, 0xFF };
+
+static u8 NullTexData[0x10] = { 0x0 };
+
 /*
  * --INFO--
  * Address:	8005DAAC
@@ -217,19 +224,11 @@ J3DSys::J3DSys()
  * Address:	8005DBC0
  * Size:	000024
  */
-void J3DSys::loadPosMtxIndx(int, unsigned short) const
+void J3DSys::loadPosMtxIndx(int p1, unsigned short p2) const
 {
-	/*
-	mulli    r0, r4, 0xc
-	li       r4, 0x20
-	lis      r3, 0xCC008000@ha
-	stb      r4, 0xCC008000@l(r3)
-	clrlwi   r0, r0, 0x10
-	sth      r5, -0x8000(r3)
-	ori      r0, r0, 0xb000
-	sth      r0, -0x8000(r3)
-	blr
-	*/
+	HW_REG(0xCC008000, u8)  = 0x20;
+	HW_REG(0xCC008000, u16) = p2;
+	HW_REG(0xCC008000, u16) = (u16)(p1 * 0xC) | 0xB000;
 }
 
 /*
@@ -237,20 +236,11 @@ void J3DSys::loadPosMtxIndx(int, unsigned short) const
  * Address:	8005DBE4
  * Size:	000028
  */
-void J3DSys::loadNrmMtxIndx(int, unsigned short) const
+void J3DSys::loadNrmMtxIndx(int p1, unsigned short p2) const
 {
-	/*
-	mulli    r3, r4, 9
-	li       r0, 0x28
-	lis      r4, 0xCC008000@ha
-	stb      r0, 0xCC008000@l(r4)
-	addi     r0, r3, 0x400
-	clrlwi   r0, r0, 0x10
-	sth      r5, -0x8000(r4)
-	ori      r0, r0, 0x8000
-	sth      r0, -0x8000(r4)
-	blr
-	*/
+	HW_REG(0xCC008000, u8)  = 0x28;
+	HW_REG(0xCC008000, u16) = p2;
+	HW_REG(0xCC008000, u16) = (u16)(p1 * 9 + 0x400) | 0x8000;
 }
 
 /*
@@ -816,31 +806,13 @@ lbl_8005E3B0:
  */
 void J3DSys::reinitGX()
 {
-	/*
-	stwu     r1, -0x10(r1)
-	mflr     r0
-	stw      r0, 0x14(r1)
-	stw      r31, 0xc(r1)
-	mr       r31, r3
-	bl       reinitGenMode__6J3DSysFv
-	mr       r3, r31
-	bl       reinitLighting__6J3DSysFv
-	mr       r3, r31
-	bl       reinitTransform__6J3DSysFv
-	mr       r3, r31
-	bl       reinitTexture__6J3DSysFv
-	mr       r3, r31
-	bl       reinitTevStages__6J3DSysFv
-	mr       r3, r31
-	bl       reinitIndStages__6J3DSysFv
-	mr       r3, r31
-	bl       reinitPixelProc__6J3DSysFv
-	lwz      r0, 0x14(r1)
-	lwz      r31, 0xc(r1)
-	mtlr     r0
-	addi     r1, r1, 0x10
-	blr
-	*/
+	reinitGenMode();
+	reinitLighting();
+	reinitTransform();
+	reinitTexture();
+	reinitTevStages();
+	reinitIndStages();
+	reinitPixelProc();
 }
 
 /*
@@ -850,6 +822,12 @@ void J3DSys::reinitGX()
  */
 void J3DSys::reinitGenMode()
 {
+	// GXSetNumChans(0);
+	// GXSetNumTexGens(1);
+	// GXSetNumTevStages(1);
+	// GXSetNumIndStages(0);
+	// GXSetCullMode(2);
+	// GXSetCoPlanar(0);
 	/*
 	stwu     r1, -0x10(r1)
 	mflr     r0
@@ -880,51 +858,20 @@ void J3DSys::reinitGenMode()
  */
 void J3DSys::reinitLighting()
 {
-	/*
-	stwu     r1, -0x20(r1)
-	mflr     r0
-	li       r3, 4
-	li       r4, 0
-	stw      r0, 0x24(r1)
-	li       r5, 0
-	li       r6, 1
-	li       r7, 0
-	li       r8, 0
-	li       r9, 2
-	bl       GXSetChanCtrl
-	li       r3, 5
-	li       r4, 0
-	li       r5, 0
-	li       r6, 1
-	li       r7, 0
-	li       r8, 0
-	li       r9, 2
-	bl       GXSetChanCtrl
-	lwz      r0, ColorBlack@sda21(r13)
-	addi     r4, r1, 0x14
-	li       r3, 4
-	stw      r0, 0x14(r1)
-	bl       GXSetChanAmbColor
-	lwz      r0, ColorBlack@sda21(r13)
-	addi     r4, r1, 0x10
-	li       r3, 5
-	stw      r0, 0x10(r1)
-	bl       GXSetChanAmbColor
-	lwz      r0, ColorWhite@sda21(r13)
-	addi     r4, r1, 0xc
-	li       r3, 4
-	stw      r0, 0xc(r1)
-	bl       GXSetChanMatColor
-	lwz      r0, ColorWhite@sda21(r13)
-	addi     r4, r1, 8
-	li       r3, 5
-	stw      r0, 8(r1)
-	bl       GXSetChanMatColor
-	lwz      r0, 0x24(r1)
-	mtlr     r0
-	addi     r1, r1, 0x20
-	blr
-	*/
+	GXSetChanCtrl(GX_COLOR0A0, GX_FALSE, GX_SRC_REG, GX_SRC_VTX, GX_LIGHT_NULL, GX_DF_NONE, GX_AF_NONE);
+	GXSetChanCtrl(GX_COLOR1A1, GX_FALSE, GX_SRC_REG, GX_SRC_VTX, GX_LIGHT_NULL, GX_DF_NONE, GX_AF_NONE);
+	// GXColor a = ColorBlack;
+	// GXSetChanAmbColor(4, &a);
+	// GXColor b = ColorBlack;
+	// GXSetChanAmbColor(5, &b);
+	// GXColor c = ColorWhite;
+	// GXSetChanMatColor(4, &c);
+	// GXColor d = ColorWhite;
+	// GXSetChanMatColor(5, &d);
+	GXSetChanAmbColor(4, ColorBlack);
+	GXSetChanAmbColor(5, ColorBlack);
+	GXSetChanMatColor(4, ColorWhite);
+	GXSetChanMatColor(5, ColorWhite);
 }
 
 /*
@@ -1010,49 +957,16 @@ void J3DSys::reinitTransform()
  */
 void J3DSys::reinitTexture()
 {
-	/*
-	stwu     r1, -0x30(r1)
-	mflr     r0
-	lis      r4, NullTexData@ha
-	li       r5, 4
-	stw      r0, 0x34(r1)
-	addi     r3, r1, 8
-	addi     r4, r4, NullTexData@l
-	li       r6, 4
-	li       r7, 3
-	li       r8, 0
-	li       r9, 0
-	li       r10, 0
-	bl       GXInitTexObj
-	addi     r3, r1, 8
-	li       r4, 0
-	bl       GXLoadTexObj
-	addi     r3, r1, 8
-	li       r4, 1
-	bl       GXLoadTexObj
-	addi     r3, r1, 8
-	li       r4, 2
-	bl       GXLoadTexObj
-	addi     r3, r1, 8
-	li       r4, 3
-	bl       GXLoadTexObj
-	addi     r3, r1, 8
-	li       r4, 4
-	bl       GXLoadTexObj
-	addi     r3, r1, 8
-	li       r4, 5
-	bl       GXLoadTexObj
-	addi     r3, r1, 8
-	li       r4, 6
-	bl       GXLoadTexObj
-	addi     r3, r1, 8
-	li       r4, 7
-	bl       GXLoadTexObj
-	lwz      r0, 0x34(r1)
-	mtlr     r0
-	addi     r1, r1, 0x30
-	blr
-	*/
+	GXTexObj texObj;
+	GXInitTexObj(&texObj, &NullTexData, 4, 4, GX_TF_IA8, GX_CLAMP, GX_CLAMP, GX_FALSE);
+	GXLoadTexObj(&texObj, GX_TEXMAP0);
+	GXLoadTexObj(&texObj, GX_TEXMAP1);
+	GXLoadTexObj(&texObj, GX_TEXMAP2);
+	GXLoadTexObj(&texObj, GX_TEXMAP3);
+	GXLoadTexObj(&texObj, GX_TEXMAP4);
+	GXLoadTexObj(&texObj, GX_TEXMAP5);
+	GXLoadTexObj(&texObj, GX_TEXMAP6);
+	GXLoadTexObj(&texObj, GX_TEXMAP7);
 }
 
 /*
@@ -1062,204 +976,43 @@ void J3DSys::reinitTexture()
  */
 void J3DSys::reinitTevStages()
 {
-	/*
-	stwu     r1, -0x30(r1)
-	mflr     r0
-	li       r3, 0
-	li       r4, 0xff
-	stw      r0, 0x34(r1)
-	li       r5, 0xff
-	li       r6, 0xff
-	stw      r31, 0x2c(r1)
-	bl       GXSetTevOrder
-	li       r3, 1
-	li       r4, 0xff
-	li       r5, 0xff
-	li       r6, 0xff
-	bl       GXSetTevOrder
-	li       r3, 2
-	li       r4, 0xff
-	li       r5, 0xff
-	li       r6, 0xff
-	bl       GXSetTevOrder
-	li       r3, 3
-	li       r4, 0xff
-	li       r5, 0xff
-	li       r6, 0xff
-	bl       GXSetTevOrder
-	li       r3, 4
-	li       r4, 0xff
-	li       r5, 0xff
-	li       r6, 0xff
-	bl       GXSetTevOrder
-	li       r3, 5
-	li       r4, 0xff
-	li       r5, 0xff
-	li       r6, 0xff
-	bl       GXSetTevOrder
-	li       r3, 6
-	li       r4, 0xff
-	li       r5, 0xff
-	li       r6, 0xff
-	bl       GXSetTevOrder
-	li       r3, 7
-	li       r4, 0xff
-	li       r5, 0xff
-	li       r6, 0xff
-	bl       GXSetTevOrder
-	li       r3, 8
-	li       r4, 0xff
-	li       r5, 0xff
-	li       r6, 0xff
-	bl       GXSetTevOrder
-	li       r3, 9
-	li       r4, 0xff
-	li       r5, 0xff
-	li       r6, 0xff
-	bl       GXSetTevOrder
-	li       r3, 0xa
-	li       r4, 0xff
-	li       r5, 0xff
-	li       r6, 0xff
-	bl       GXSetTevOrder
-	li       r3, 0xb
-	li       r4, 0xff
-	li       r5, 0xff
-	li       r6, 0xff
-	bl       GXSetTevOrder
-	li       r3, 0xc
-	li       r4, 0xff
-	li       r5, 0xff
-	li       r6, 0xff
-	bl       GXSetTevOrder
-	li       r3, 0xd
-	li       r4, 0xff
-	li       r5, 0xff
-	li       r6, 0xff
-	bl       GXSetTevOrder
-	li       r3, 0xe
-	li       r4, 0xff
-	li       r5, 0xff
-	li       r6, 0xff
-	bl       GXSetTevOrder
-	li       r3, 0xf
-	li       r4, 0xff
-	li       r5, 0xff
-	li       r6, 0xff
-	bl       GXSetTevOrder
-	lwz      r0, ColorWhite@sda21(r13)
-	addi     r4, r1, 0x20
-	li       r3, 1
-	stw      r0, 0x20(r1)
-	bl       GXSetTevColor
-	lwz      r0, ColorWhite@sda21(r13)
-	addi     r4, r1, 0x1c
-	li       r3, 2
-	stw      r0, 0x1c(r1)
-	bl       GXSetTevColor
-	lwz      r0, ColorWhite@sda21(r13)
-	addi     r4, r1, 0x18
-	li       r3, 3
-	stw      r0, 0x18(r1)
-	bl       GXSetTevColor
-	lwz      r0, ColorWhite@sda21(r13)
-	addi     r4, r1, 0x14
-	li       r3, 0
-	stw      r0, 0x14(r1)
-	bl       GXSetTevKColor
-	lwz      r0, ColorWhite@sda21(r13)
-	addi     r4, r1, 0x10
-	li       r3, 1
-	stw      r0, 0x10(r1)
-	bl       GXSetTevKColor
-	lwz      r0, ColorWhite@sda21(r13)
-	addi     r4, r1, 0xc
-	li       r3, 2
-	stw      r0, 0xc(r1)
-	bl       GXSetTevKColor
-	lwz      r0, ColorWhite@sda21(r13)
-	addi     r4, r1, 8
-	li       r3, 3
-	stw      r0, 8(r1)
-	bl       GXSetTevKColor
-	li       r31, 0
-
-lbl_8005E8A0:
-	mr       r3, r31
-	li       r4, 0xa
-	li       r5, 0xf
-	li       r6, 0xf
-	li       r7, 0xf
-	bl       GXSetTevColorIn
-	mr       r3, r31
-	li       r4, 0
-	li       r5, 0
-	li       r6, 0
-	li       r7, 1
-	li       r8, 0
-	bl       GXSetTevColorOp
-	mr       r3, r31
-	li       r4, 5
-	li       r5, 7
-	li       r6, 7
-	li       r7, 7
-	bl       GXSetTevAlphaIn
-	mr       r3, r31
-	li       r4, 0
-	li       r5, 0
-	li       r6, 0
-	li       r7, 1
-	li       r8, 0
-	bl       GXSetTevAlphaOp
-	mr       r3, r31
-	li       r4, 6
-	bl       GXSetTevKColorSel
-	mr       r3, r31
-	li       r4, 0
-	bl       GXSetTevKAlphaSel
-	mr       r3, r31
-	li       r4, 0
-	li       r5, 0
-	bl       GXSetTevSwapMode
-	addi     r31, r31, 1
-	cmplwi   r31, 0x10
-	blt      lbl_8005E8A0
-	li       r3, 0
-	li       r4, 0
-	li       r5, 1
-	li       r6, 2
-	li       r7, 3
-	bl       GXSetTevSwapModeTable
-	li       r3, 1
-	li       r4, 0
-	li       r5, 0
-	li       r6, 0
-	li       r7, 3
-	bl       GXSetTevSwapModeTable
-	li       r3, 2
-	li       r4, 1
-	li       r5, 1
-	li       r6, 1
-	li       r7, 3
-	bl       GXSetTevSwapModeTable
-	li       r3, 3
-	li       r4, 2
-	li       r5, 2
-	li       r6, 2
-	li       r7, 3
-	bl       GXSetTevSwapModeTable
-	li       r3, 7
-	li       r4, 0
-	li       r5, 0
-	li       r6, 7
-	li       r7, 0
-	bl       GXSetAlphaCompare
-	lwz      r0, 0x34(r1)
-	lwz      r31, 0x2c(r1)
-	mtlr     r0
-	addi     r1, r1, 0x30
-	blr
-	*/
+	GXSetTevOrder(GX_TEVSTAGE0, GX_TEXCOORD_NULL, GX_TEXMAP_NULL, GX_COLOR_NULL);
+	GXSetTevOrder(GX_TEVSTAGE1, GX_TEXCOORD_NULL, GX_TEXMAP_NULL, GX_COLOR_NULL);
+	GXSetTevOrder(GX_TEVSTAGE2, GX_TEXCOORD_NULL, GX_TEXMAP_NULL, GX_COLOR_NULL);
+	GXSetTevOrder(GX_TEVSTAGE3, GX_TEXCOORD_NULL, GX_TEXMAP_NULL, GX_COLOR_NULL);
+	GXSetTevOrder(GX_TEVSTAGE4, GX_TEXCOORD_NULL, GX_TEXMAP_NULL, GX_COLOR_NULL);
+	GXSetTevOrder(GX_TEVSTAGE5, GX_TEXCOORD_NULL, GX_TEXMAP_NULL, GX_COLOR_NULL);
+	GXSetTevOrder(GX_TEVSTAGE6, GX_TEXCOORD_NULL, GX_TEXMAP_NULL, GX_COLOR_NULL);
+	GXSetTevOrder(GX_TEVSTAGE7, GX_TEXCOORD_NULL, GX_TEXMAP_NULL, GX_COLOR_NULL);
+	GXSetTevOrder(GX_TEVSTAGE8, GX_TEXCOORD_NULL, GX_TEXMAP_NULL, GX_COLOR_NULL);
+	GXSetTevOrder(GX_TEVSTAGE9, GX_TEXCOORD_NULL, GX_TEXMAP_NULL, GX_COLOR_NULL);
+	GXSetTevOrder(GX_TEVSTAGE10, GX_TEXCOORD_NULL, GX_TEXMAP_NULL, GX_COLOR_NULL);
+	GXSetTevOrder(GX_TEVSTAGE11, GX_TEXCOORD_NULL, GX_TEXMAP_NULL, GX_COLOR_NULL);
+	GXSetTevOrder(GX_TEVSTAGE12, GX_TEXCOORD_NULL, GX_TEXMAP_NULL, GX_COLOR_NULL);
+	GXSetTevOrder(GX_TEVSTAGE13, GX_TEXCOORD_NULL, GX_TEXMAP_NULL, GX_COLOR_NULL);
+	GXSetTevOrder(GX_TEVSTAGE14, GX_TEXCOORD_NULL, GX_TEXMAP_NULL, GX_COLOR_NULL);
+	GXSetTevOrder(GX_TEVSTAGE15, GX_TEXCOORD_NULL, GX_TEXMAP_NULL, GX_COLOR_NULL);
+	GXSetTevColor(GX_TEVREG0, ColorWhite);
+	GXSetTevColor(GX_TEVREG1, ColorWhite);
+	GXSetTevColor(GX_TEVREG2, ColorWhite);
+	GXSetTevKColor(GX_KCOLOR0, ColorWhite);
+	GXSetTevKColor(GX_KCOLOR1, ColorWhite);
+	GXSetTevKColor(GX_KCOLOR2, ColorWhite);
+	GXSetTevKColor(GX_KCOLOR3, ColorWhite);
+	for (u32 i = 0; i < 0x10; i++) {
+		GXSetTevColorIn((GXTevStageID)i, GX_CC_RASC, GX_CC_ZERO, GX_CC_ZERO, GX_CC_ZERO);
+		GXSetTevColorOp((GXTevStageID)i, GX_TEV_ADD, GX_TB_ZERO, GX_CS_SCALE_1, GX_TRUE, GX_TEVPREV);
+		GXSetTevAlphaIn((GXTevStageID)i, GX_CA_RASA, GX_ZERO, GX_ZERO, GX_ZERO);
+		GXSetTevAlphaOp((GXTevStageID)i, GX_TEV_ADD, GX_TB_ZERO, GX_CS_SCALE_1, GX_TRUE, GX_TEVPREV);
+		GXSetTevKColorSel((GXTevStageID)i, GX_TEV_KCSEL_K2_R);
+		GXSetTevKAlphaSel((GXTevStageID)i, 0);
+		GXSetTevSwapMode((GXTevStageID)i, 0, 0);
+	}
+	GXSetTevSwapModeTable(GX_TEV_SWAP0, 0, 1, 2, 3);
+	GXSetTevSwapModeTable(GX_TEV_SWAP1, 0, 0, 0, 3);
+	GXSetTevSwapModeTable(GX_TEV_SWAP2, 1, 1, 1, 3);
+	GXSetTevSwapModeTable(GX_TEV_SWAP3, 2, 2, 2, 3);
+	GXSetAlphaCompare(7, 0, 0, 7, 0);
 }
 
 /*
@@ -1269,6 +1022,20 @@ lbl_8005E8A0:
  */
 void J3DSys::reinitIndStages()
 {
+	// for (u32 i = 0; i < 0x10; i++) {
+	// 	GXSetTevDirect(i);
+	// }
+	// GXSetIndTexOrder(0, 0, 0);
+	// GXSetIndTexOrder(1, 1, 1);
+	// GXSetIndTexOrder(2, 2, 2);
+	// GXSetIndTexOrder(3, 3, 3);
+	// GXSetIndTexCoordScale(0, 0, 0);
+	// GXSetIndTexCoordScale(1, 0, 0);
+	// GXSetIndTexCoordScale(2, 0, 0);
+	// GXSetIndTexCoordScale(3, 0, 0);
+	// GXSetIndTexMtx(1, IndMtx, 1);
+	// GXSetIndTexMtx(2, IndMtx, 1);
+	// GXSetIndTexMtx(3, IndMtx, 1);
 	/*
 	stwu     r1, -0x10(r1)
 	mflr     r0
@@ -1344,6 +1111,14 @@ lbl_8005E9DC:
  */
 void J3DSys::reinitPixelProc()
 {
+	GXSetBlendMode(GX_BM_NONE, GX_BL_SRCALPHA, GX_BL_INVSRCALPHA, GX_LO_CLEAR);
+	GXSetColorUpdate(GX_TRUE);
+	GXSetAlphaUpdate(GX_TRUE);
+	GXSetDither(GX_TRUE);
+	GXSetFog(GX_FOG_NONE, 1.0f, 0.1f, 1.0f, 0.0f, ColorBlack);
+	GXSetFogRangeAdj(GX_FALSE, 0, nullptr);
+	GXSetZMode(GX_TRUE, GX_LTEQUAL, GX_TRUE);
+	GXSetZCompLoc(GX_TRUE);
 	/*
 	stwu     r1, -0x10(r1)
 	mflr     r0

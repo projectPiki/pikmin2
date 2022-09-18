@@ -1,3 +1,7 @@
+#include "JSystem/J3D/J3DDisplayListObj.h"
+#include "JSystem/J3D/J3DPacket.h"
+#include "JSystem/J3D/J3DTevBlock.h"
+#include "JSystem/J3D/J3DTexGenBlock.h"
 #include "types.h"
 
 /*
@@ -67,7 +71,7 @@
  * Address:	8005F82C
  * Size:	000060
  */
-void J3DDisplayListObj::newDisplayList(unsigned long)
+int J3DDisplayListObj::newDisplayList(u32)
 {
 	/*
 	stwu     r1, -0x10(r1)
@@ -102,7 +106,7 @@ void J3DDisplayListObj::newDisplayList(unsigned long)
  * Address:	8005F88C
  * Size:	000058
  */
-void J3DDisplayListObj::newSingleDisplayList(unsigned long)
+int J3DDisplayListObj::newSingleDisplayList(u32)
 {
 	/*
 	stwu     r1, -0x10(r1)
@@ -135,7 +139,7 @@ void J3DDisplayListObj::newSingleDisplayList(unsigned long)
  * Address:	8005F8E4
  * Size:	000068
  */
-void J3DDisplayListObj::single_To_Double()
+int J3DDisplayListObj::single_To_Double()
 {
 	/*
 	stwu     r1, -0x10(r1)
@@ -174,7 +178,7 @@ lbl_8005F934:
  * Address:	8005F94C
  * Size:	000020
  */
-void J3DDisplayListObj::setSingleDisplayList(void*, unsigned long)
+void J3DDisplayListObj::setSingleDisplayList(void* p1, u32 p2)
 {
 	/*
 	addi     r0, r5, 0x1f
@@ -250,7 +254,7 @@ void J3DDisplayListObj::beginDL()
  * Address:	8005F9F8
  * Size:	00005C
  */
-void J3DDisplayListObj::endDL()
+u32 J3DDisplayListObj::endDL()
 {
 	/*
 	stwu     r1, -0x10(r1)
@@ -319,7 +323,7 @@ void J3DDisplayListObj::beginPatch()
  * Address:	8005FAB4
  * Size:	00003C
  */
-void J3DDisplayListObj::endPatch()
+u32 J3DDisplayListObj::endPatch()
 {
 	/*
 	stwu     r1, -0x10(r1)
@@ -345,7 +349,7 @@ void J3DDisplayListObj::endPatch()
  * Address:	8005FAF0
  * Size:	000008
  */
-u32 J3DPacket::entry(J3DDrawBuffer*) { return 0x1; }
+bool J3DPacket::entry(J3DDrawBuffer*) { return 0x1; }
 
 /*
  * --INFO--
@@ -449,7 +453,7 @@ lbl_8005FBA8:
  * Address:	8005FBC0
  * Size:	0000A4
  */
-void J3DDrawPacket::newDisplayList(unsigned long)
+int J3DDrawPacket::newDisplayList(u32)
 {
 	/*
 	stwu     r1, -0x10(r1)
@@ -507,7 +511,7 @@ lbl_8005FC4C:
  * Address:	8005FC64
  * Size:	00009C
  */
-void J3DDrawPacket::newSingleDisplayList(unsigned long)
+int J3DDrawPacket::newSingleDisplayList(u32)
 {
 	/*
 	stwu     r1, -0x10(r1)
@@ -718,7 +722,7 @@ void J3DMatPacket::beginDiff()
  * Address:	8005FE78
  * Size:	000060
  */
-void J3DMatPacket::endDiff()
+u32 J3DMatPacket::endDiff()
 {
 	/*
 	stwu     r1, -0x10(r1)
@@ -753,7 +757,7 @@ void J3DMatPacket::endDiff()
  * Address:	8005FED8
  * Size:	000024
  */
-void J3DMatPacket::isSame(J3DMatPacket*) const
+bool J3DMatPacket::isSame(J3DMatPacket*) const
 {
 	/*
 	lwz      r5, 0x34(r3)
@@ -902,7 +906,7 @@ lbl_8006003C:
  * Address:	80060054
  * Size:	000274
  */
-void J3DShapePacket::calcDifferedBufferSize(unsigned long)
+int J3DShapePacket::calcDifferedBufferSize(u32)
 {
 	/*
 	stwu     r1, -0x20(r1)
@@ -1108,21 +1112,21 @@ lbl_800602A0:
  * Address:	800602C8
  * Size:	000008
  */
-u32 J3DTevBlock::getTevStageNum() const { return 0x1; }
+// u8 J3DTevBlock::getTevStageNum() const { return 0x1; }
 
 /*
  * --INFO--
  * Address:	800602D0
  * Size:	000008
  */
-u32 J3DTexGenBlock::getTexGenNum() const { return 0x0; }
+// u32 J3DTexGenBlock::getTexGenNum() const { return 0x0; }
 
 /*
  * --INFO--
  * Address:	800602D8
  * Size:	0000BC
  */
-void J3DShapePacket::newDifferedDisplayList(unsigned long)
+int J3DShapePacket::newDifferedDisplayList(u32)
 {
 	/*
 	stwu     r1, -0x10(r1)
@@ -1188,7 +1192,7 @@ lbl_8006037C:
  * Address:	80060394
  * Size:	000114
  */
-void J3DShapePacket::newDifferedTexMtx(J3DTexDiffFlag)
+int J3DShapePacket::newDifferedTexMtx(J3DTexDiffFlag)
 {
 	/*
 	stwu     r1, -0x20(r1)
@@ -1552,7 +1556,7 @@ lbl_800607DC:
  * Address:	800607F0
  * Size:	000060
  */
-void J3DMatPacket::entry(J3DDrawBuffer*)
+bool J3DMatPacket::entry(J3DDrawBuffer*)
 {
 	/*
 	stwu     r1, -0x20(r1)

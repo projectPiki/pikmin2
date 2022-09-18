@@ -5,7 +5,10 @@
 
 struct J3DJoint;
 
-struct J3DJointBlock {
+/**
+ * TODO: This was previously called J3DJointBlock. It's not that, though. Not sure what it is....
+ */
+struct J3DJointBlockExceptNotReally {
 	J3DJoint* m_joint; // _00
 	s32 dataSize;      // _04
 	u16 jointCount;    // _08

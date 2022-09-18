@@ -26,7 +26,11 @@ struct J3DVtxColorCalc;
 struct J3DModelData {
 	J3DModelData();
 
-	virtual ~J3DModelData(); // _00
+	/**
+	 * @reifiedAddress{80083BB4}
+	 * @reifiedFile{JSystem/J3D/J3DModelLoader.cpp}
+	 */
+	virtual ~J3DModelData() {}; // _00
 
 	void clear();
 	void newSharedDisplayList(u32);
@@ -40,7 +44,7 @@ struct J3DModelData {
 	inline u16 getMaterialCount1() { return m_materialTable.m_count1; }
 
 	// VTBL _00
-	u8* m_bmd;                        // _04
+	const void* m_bmd;                // _04
 	u32 m_modelLoaderFlags;           // _08
 	u16 _0C;                          // _0C
 	u16 m_jointSet;                   // _0E
@@ -70,14 +74,19 @@ struct J3DModel {
 	virtual void calcMaterial();   // _14
 	virtual void calcDiffTexMtx(); // _18
 	virtual void viewCalc();       // _1C
-	virtual ~J3DModel();           // _20
+
+	/**
+	 * @reifiedAddress{800675CC}
+	 * @reifiedFile{JSystem/J3D/J3DModel.cpp}
+	 */
+	virtual ~J3DModel() {}; // _20
 
 	void initialize();
-	void entryModelData(J3DModelData*, unsigned long, unsigned long);
-	J3DShapePacket* createShapePacket(J3DModelData*);
-	J3DMatPacket* createMatPacket(J3DModelData*, unsigned long);
-	void newDifferedDisplayList(unsigned long);
-	void newDifferedTexMtx(J3DTexDiffFlag);
+	int entryModelData(J3DModelData*, u32, u32);
+	int createShapePacket(J3DModelData*);
+	int createMatPacket(J3DModelData*, u32);
+	int newDifferedDisplayList(u32);
+	int newDifferedTexMtx(J3DTexDiffFlag);
 	void lock();
 	void makeDL();
 	void diff();
@@ -109,13 +118,8 @@ struct J3DModel {
 };
 
 struct J3DModelHierarchy {
-	short _00;
-	short _02;
-};
-
-struct J3DModelLoaderDataBase {
-	static J3DModelData* load(const void*, u32);
-	static J3DModelData* loadBinaryDisplayList(const void*, u32);
+	u16 _00;
+	u16 _02;
 };
 
 #endif

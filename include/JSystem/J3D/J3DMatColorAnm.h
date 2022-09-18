@@ -4,6 +4,8 @@
 #include "types.h"
 
 struct J3DMatColorAnm {
+	J3DMatColorAnm();
+
 	u16 _00; // _00
 	u16 _02; // _02
 	u16 _04; // _04

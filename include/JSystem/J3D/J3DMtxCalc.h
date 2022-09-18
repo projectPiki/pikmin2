@@ -8,7 +8,7 @@
 struct J3DMtxBuffer;
 
 struct J3DMtxCalc {
-	virtual ~J3DMtxCalc();                                         // _00
+	virtual ~J3DMtxCalc() {};                                      // _00
 	virtual void setAnmTransform(J3DAnmTransform*);                // _04
 	virtual void getAnmTransform();                                // _08
 	virtual void setAnmTransform(unsigned char, J3DAnmTransform*); // _0C
@@ -30,7 +30,11 @@ struct J3DMtxCalc {
 };
 
 struct J3DMtxCalcNoAnmBase : public J3DMtxCalc {
-	virtual ~J3DMtxCalcNoAnmBase(); // _00
+	/**
+	 * @reifiedAddress{80070510}
+	 * @reifiedFile{JSystem/J3D/J3DModelLoader.cpp}
+	 */
+	virtual ~J3DMtxCalcNoAnmBase() {}; // _00
 };
 
 struct J3DMtxCalcAnmBase : public J3DMtxCalc {

@@ -1,3 +1,4 @@
+#include "JSystem/J3D/J3DTypes.h"
 #include "types.h"
 
 /*

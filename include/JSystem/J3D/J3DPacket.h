@@ -1,14 +1,17 @@
 #ifndef _JSYSTEM_J3D_J3DPACKET_H
 #define _JSYSTEM_J3D_J3DPACKET_H
 
+#include "Dolphin/mtx.h"
 #include "JSystem/J3D/J3DTypes.h"
 
 struct J3DDrawBuffer;
 
+struct J3DShapePacket;
+
 struct J3DPacket {
-	virtual void entry(J3DDrawBuffer*); // _00
-	virtual void draw();                // _04
-	virtual ~J3DPacket();               // _08
+	virtual bool entry(J3DDrawBuffer*); // _08
+	virtual void draw();                // _0C
+	virtual ~J3DPacket();               // _10
 
 	void addChildPacket(J3DPacket*);
 
@@ -18,8 +21,11 @@ struct J3DPacket {
 };
 
 struct J3DDrawPacket : public J3DPacket {
-	virtual void draw();      // _04
-	virtual ~J3DDrawPacket(); // _08
+	virtual void draw();      // _0C
+	virtual ~J3DDrawPacket(); // _10
+
+	int newDisplayList(u32);
+	int newSingleDisplayList(u32);
 };
 
 // TODO: Data members
@@ -27,9 +33,16 @@ struct J3DDrawPacket : public J3DPacket {
  * @size{0x40}
  */
 struct J3DMatPacket : public J3DDrawPacket {
-	virtual void entry(J3DDrawBuffer*); // _08
+	J3DMatPacket();
+
+	virtual bool entry(J3DDrawBuffer*); // _08
 	virtual void draw();                // _0C
 	virtual ~J3DMatPacket();            // _10
+
+	void addShapePacket(J3DShapePacket*);
+	void beginDiff();
+	u32 endDiff();
+	bool isSame(J3DMatPacket*) const;
 
 	u32 _0C;                       // _0C
 	u32 _10;                       // _10
@@ -50,16 +63,19 @@ struct J3DShapePacket_0x24 {
 	s16 _08;    // _08
 };
 
-// TODO: Data members
 /**
  * @size{0x3C}
  */
 struct J3DShapePacket : public J3DDrawPacket {
-	virtual void draw();       // _04
-	virtual ~J3DShapePacket(); // _08
+	J3DShapePacket();
+
+	virtual void draw();       // _0C
+	virtual ~J3DShapePacket(); // _10
 
 	int newDifferedDisplayList(u32 displayListFlag);
 	int newDifferedTexMtx(J3DTexDiffFlag);
+	int calcDifferedBufferSize(u32);
+	void drawFast();
 
 	u32 _0C;                  // _0C
 	u32 _10;                  // _10

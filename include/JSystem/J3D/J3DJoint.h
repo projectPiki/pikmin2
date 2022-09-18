@@ -1,9 +1,10 @@
 #ifndef _JSYSTEM_J3D_J3DJOINT_H
 #define _JSYSTEM_J3D_J3DJOINT_H
 
+#include "JSystem/J3D/J3DTypes.h"
+#include "JSystem/JGeometry.h"
+#include "JSystem/JMath.h"
 #include "types.h"
-#include "Quat.h"
-#include "Vector3.h"
 #include "JSystem/J3D/J3DMtxCalc.h"
 
 struct J3DMaterial;
@@ -38,22 +39,20 @@ struct J3DJoint {
 	 */
 	J3DJoint* getChild() { return m_child; }
 
-	u32 _00;                      // _00
-	J3DJointCallBack* m_function; // _04
-	u32 _08;                      // _08
-	J3DJoint* m_child;            // _0C
-	J3DJoint* m_parent;           // _10
-	u16 m_jointIdx;               // _14
-	s8 _16;                       // _16
-	s8 m_ignoreParentScaling;     // _17
-	Vector3f m_scale;             // _18
-	s16 m_eulerRot[3];            // _24
-	Quat m_zRotation;             // _2C
-	Quat m_yRotation;             // _3C
-	u32 _4C;                      // _4C
-	u32 _50;                      // _50
-	J3DMtxCalcAnmBase* m_mtxCalc; // _54
-	J3DMaterial* m_material;      // _58
+	u32 _00;                          // _00
+	J3DJointCallBack* m_function;     // _04
+	u32 _08;                          // _08
+	J3DJoint* m_child;                // _0C
+	J3DJoint* m_parent;               // _10
+	u16 m_jointIdx;                   // _14
+	s8 _16;                           // _16
+	u8 m_ignoreParentScaling;         // _17
+	J3DTransformInfo m_transformInfo; // _18
+	f32 _38;                          // _38
+	JGeometry::TVec3f m_yRotation;    // _3C
+	JGeometry::TVec3f _48;            // _48
+	J3DMtxCalcAnmBase* m_mtxCalc;     // _54
+	J3DMaterial* m_material;          // _58
 
 	static J3DMtxCalc* sCurrentMtxCalc;
 };

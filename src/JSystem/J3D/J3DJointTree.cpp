@@ -51,7 +51,7 @@
  */
 J3DJointTree::J3DJointTree()
     : m_hierarchy(nullptr)
-    , _08(0)
+    , m_08(0)
     , m_flags(0)
     , _10(nullptr)
     , m_transformCalc(nullptr)

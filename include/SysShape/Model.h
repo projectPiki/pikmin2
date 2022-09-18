@@ -1,12 +1,12 @@
 #ifndef _SYSSHAPE_MODEL_H
 #define _SYSSHAPE_MODEL_H
 
+#include "Matrixf.h"
 #include "types.h"
 #include "SysShape/MtxObject.h"
 #include "JSystem/J3D/J3DModel.h"
 #include "JSystem/J3D/J3DSys.h"
 
-struct Matrixf;
 namespace Sys {
 struct Sphere;
 } // namespace Sys

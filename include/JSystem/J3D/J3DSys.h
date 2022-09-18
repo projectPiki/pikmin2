@@ -2,6 +2,7 @@
 #define _JSYSTEM_J3D_J3DSYS_H
 
 #include "Dolphin/mtx.h"
+#include "JSystem/J3D/J3DTypes.h"
 #include "JSystem/JGeometry.h"
 #include "types.h"
 
@@ -16,13 +17,16 @@ struct J3DSys {
 	J3DSys();
 	void drawInit();
 	void reinitGX();
-	static void reinitGenMode();
-	static void reinitIndStages();
-	static void reinitLighting();
-	static void reinitPixelProc();
-	static void reinitTexture();
-	static void reinitTevStages();
-	static void reinitTransform();
+	void reinitGenMode();
+	void reinitIndStages();
+	void reinitLighting();
+	void reinitPixelProc();
+	void reinitTexture();
+	void reinitTevStages();
+	void reinitTransform();
+	void loadPosMtxIndx(int, unsigned short) const;
+	void loadNrmMtxIndx(int, unsigned short) const;
+	void ErrorReport(J3DErrType) const;
 
 	Mtx _00;                       // _000
 	J3DMtxCalc* m_mtxCalc;         // _030
@@ -56,5 +60,7 @@ struct J3DSys {
 };
 
 extern J3DSys j3dSys;
+
+extern s32 j3dDefaultViewNo;
 
 #endif

@@ -1,10 +1,18 @@
 #ifndef _JSYSTEM_J3D_J3DTEXMTX_H
 #define _JSYSTEM_J3D_J3DTEXMTX_H
 
+#include "Dolphin/mtx.h"
 #include "types.h"
-#include "Matrixf.h"
 
 struct J3DTexMtx {
+	void calc(const float (*)[4]);
+	void calcTexMtx(const float (*)[4]);
+	void calcPostTexMtx(const float (*)[4]);
+
+	void load(unsigned long) const;
+	void loadTexMtx(unsigned long) const;
+	void loadPostTexMtx(unsigned long) const;
+
 	u8 _00;       // _00
 	s8 m_flags;   // _01
 	u8 _02;       // _02
@@ -35,7 +43,7 @@ struct J3DTexMtx {
 	u32 _58;      // _58
 	u32 _5C;      // _5C
 	u32 _60;      // _60
-	Matrixf _64;  // _64
+	Mtx _64;      // _64
 };
 
 #endif
