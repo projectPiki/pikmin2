@@ -108,7 +108,7 @@ struct Mgr : public EnemyMgrBase {
 	virtual SysShape::Model* createModel();             // _B0
 	virtual void loadModelData();                       // _C8
 	virtual void loadAnimData();                        // _CC
-	virtual void getChangeTexture() = 0;                // _E0
+	virtual ResTIMG* getChangeTexture() = 0;            // _E0
 
 	// _00 		= VTBL
 	// _00-_44	= EnemyMgrBase

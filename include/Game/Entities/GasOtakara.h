@@ -12,7 +12,6 @@ namespace GasOtakara {
 struct Obj : public OtakaraBase::Obj {
 	Obj();
 
-	//////////////// VTABLE
 	virtual ~Obj();                                     // _1BC (weak)
 	virtual void changeMaterial();                      // _200
 	virtual EnemyTypeID::EEnemyTypeID getEnemyTypeID(); // _258 (weak)
@@ -25,7 +24,6 @@ struct Obj : public OtakaraBase::Obj {
 	virtual void effectDrawOn();                        // _314
 	virtual void effectDrawOff();                       // _318
 	virtual void startDisChargeSE();                    // _320
-	                                                    //////////////// VTABLE END
 
 	// _00 		= VTBL
 	// _00-_2F4 = OtakaraBase::Obj
@@ -40,7 +38,7 @@ struct Mgr : public OtakaraBase::Mgr {
 	virtual void doAlloc();                             // _A8
 	virtual EnemyTypeID::EEnemyTypeID getEnemyTypeID(); // _AC (weak)
 	virtual void loadTexData();                         // _D0
-	virtual void getChangeTexture();                    // _E0 (weak)
+	virtual ResTIMG* getChangeTexture();                // _E0 (weak)
 
 	// _00 		= VTBL
 	// _00-_48	= OtakaraBase::Mgr
