@@ -3,8 +3,12 @@
 
 #include "types.h"
 
+/**
+ * probably rgba? could inherit Color4 or GXColor or something?
+ */
 struct J3DGXColor {
-	// probably rgba? could inherit Color4 or GXColor or something?
+	J3DGXColor();
+
 	u8 _00; // _00
 	u8 _01; // _01
 	u8 _02; // _02
@@ -12,8 +16,12 @@ struct J3DGXColor {
 };
 
 struct J3DGXColorS10 {
+	J3DGXColorS10();
+
 	u16 _00; // _00
 	u16 _02; // _02
 	u16 _04; // _04
 	u16 _06; // _06
 };
+
+#endif

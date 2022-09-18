@@ -1,3 +1,11 @@
+#include "Dolphin/gd.h"
+#include "Dolphin/os.h"
+#include "JSystem/J3D/J3DDisplayListObj.h"
+#include "JSystem/J3D/J3DMaterial.h"
+#include "JSystem/J3D/J3DModel.h"
+#include "JSystem/J3D/J3DSys.h"
+#include "JSystem/J3D/J3DTevBlock.h"
+#include "JSystem/J3D/J3DTypes.h"
 #include "types.h"
 
 /*
@@ -31,14 +39,10 @@
  */
 void J3DModelData::clear()
 {
-	/*
-	li       r0, 0
-	stw      r0, 4(r3)
-	stw      r0, 8(r3)
-	sth      r0, 0xc(r3)
-	sth      r0, 0xe(r3)
-	blr
-	*/
+	m_bmd              = nullptr;
+	m_modelLoaderFlags = 0;
+	_0C                = 0;
+	m_jointSet         = 0;
 }
 
 /*
@@ -47,119 +51,52 @@ void J3DModelData::clear()
  * Size:	000080
  */
 J3DModelData::J3DModelData()
+    : m_jointTree()
+    , m_materialTable()
+    , m_shapeTable()
+    , _84()
+    , m_vertexData()
 {
-	/*
-	stwu     r1, -0x10(r1)
-	mflr     r0
-	lis      r4, __vt__12J3DModelData@ha
-	stw      r0, 0x14(r1)
-	addi     r0, r4, __vt__12J3DModelData@l
-	stw      r31, 0xc(r1)
-	mr       r31, r3
-	stw      r0, 0(r3)
-	addi     r3, r31, 0x10
-	bl       __ct__12J3DJointTreeFv
-	addi     r3, r31, 0x58
-	bl       __ct__16J3DMaterialTableFv
-	lis      r3, __vt__13J3DShapeTable@ha
-	li       r0, 0
-	addi     r4, r3, __vt__13J3DShapeTable@l
-	addi     r3, r31, 0x88
-	stw      r4, 0x78(r31)
-	sth      r0, 0x7c(r31)
-	stw      r0, 0x80(r31)
-	stw      r0, 0x84(r31)
-	bl       __ct__13J3DVertexDataFv
-	li       r0, 0
-	mr       r3, r31
-	stw      r0, 4(r31)
-	stw      r0, 8(r31)
-	sth      r0, 0xc(r31)
-	sth      r0, 0xe(r31)
-	lwz      r31, 0xc(r1)
-	lwz      r0, 0x14(r1)
-	mtlr     r0
-	addi     r1, r1, 0x10
-	blr
-	*/
+	clear();
 }
 
 /*
  * --INFO--
  * Address:	8008382C
  * Size:	000048
+ * __dt__13J3DShapeTableFv
  */
-J3DShapeTable::~J3DShapeTable()
-{
-	/*
-	stwu     r1, -0x10(r1)
-	mflr     r0
-	stw      r0, 0x14(r1)
-	stw      r31, 0xc(r1)
-	or.      r31, r3, r3
-	beq      lbl_8008385C
-	lis      r5, __vt__13J3DShapeTable@ha
-	extsh.   r0, r4
-	addi     r0, r5, __vt__13J3DShapeTable@l
-	stw      r0, 0(r31)
-	ble      lbl_8008385C
-	bl       __dl__FPv
-
-lbl_8008385C:
-	lwz      r0, 0x14(r1)
-	mr       r3, r31
-	lwz      r31, 0xc(r1)
-	mtlr     r0
-	addi     r1, r1, 0x10
-	blr
-	*/
-}
+// J3DShapeTable::~J3DShapeTable()
+// {
+// }
 
 /*
  * --INFO--
  * Address:	80083874
  * Size:	000064
+ * __dt__12J3DJointTreeFv
  */
-J3DJointTree::~J3DJointTree()
-{
-	/*
-	stwu     r1, -0x10(r1)
-	mflr     r0
-	stw      r0, 0x14(r1)
-	stw      r31, 0xc(r1)
-	mr       r31, r4
-	stw      r30, 8(r1)
-	or.      r30, r3, r3
-	beq      lbl_800838BC
-	lis      r4, __vt__12J3DJointTree@ha
-	addi     r3, r30, 0x34
-	addi     r0, r4, __vt__12J3DJointTree@l
-	li       r4, -1
-	stw      r0, 0(r30)
-	bl       __dt__14J3DDrawMtxDataFv
-	extsh.   r0, r31
-	ble      lbl_800838BC
-	mr       r3, r30
-	bl       __dl__FPv
-
-lbl_800838BC:
-	lwz      r0, 0x14(r1)
-	mr       r3, r30
-	lwz      r31, 0xc(r1)
-	lwz      r30, 8(r1)
-	mtlr     r0
-	addi     r1, r1, 0x10
-	blr
-	*/
-}
+// J3DJointTree::~J3DJointTree()
+// {
+// }
 
 /*
  * --INFO--
  * Address:	800838D8
  * Size:	000094
  */
-void J3DModelData::newSharedDisplayList(unsigned long)
+void J3DModelData::newSharedDisplayList(u32 flags)
 {
+	u16 count = m_materialTable.m_count1;
+	for (u16 i = 0; i < count; i++) {
+		if (flags & J3DMLF_19) {
+			J3DMaterial* material = m_materialTable.m_materials1[i];
+			material->newSingleSharedDisplayList(material->countDLSize());
+		} else {
+			J3DMaterial* material = m_materialTable.m_materials1[i];
+			material->newSharedDisplayList(material->countDLSize());
+		}
+	}
 	/*
 	stwu     r1, -0x20(r1)
 	mflr     r0
@@ -216,6 +153,20 @@ lbl_8008394C:
  */
 void J3DModelData::indexToPtr()
 {
+	j3dSys._58                = m_materialTable.m_texture;
+	static int sInterruptFlag = OSDisableInterrupts();
+	OSDisableScheduler();
+	u16 count = m_materialTable.m_count1;
+	for (u16 i = 0; i < count; i++) {
+		J3DMaterial* material = m_materialTable.m_materials1[i];
+		GDCurrentDL currentDL;
+		GDInitGDLObj(&currentDL, material->_48->_00, material->_48->_08);
+		__GDCurrentDL = &currentDL;
+		material->m_tevBlock->indexToPtr();
+	}
+	__GDCurrentDL = nullptr;
+	OSEnableScheduler();
+	OSRestoreInterrupts(sInterruptFlag);
 	/*
 	stwu     r1, -0x30(r1)
 	mflr     r0
@@ -282,44 +233,12 @@ lbl_800839FC:
  */
 void J3DModelData::makeSharedDL()
 {
-	/*
-	stwu     r1, -0x20(r1)
-	mflr     r0
-	stw      r0, 0x24(r1)
-	stw      r31, 0x1c(r1)
-	stw      r30, 0x18(r1)
-	li       r30, 0
-	stw      r29, 0x14(r1)
-	mr       r29, r3
-	lis      r3, j3dSys@ha
-	lwz      r0, 0x6c(r29)
-	addi     r3, r3, j3dSys@l
-	stw      r0, 0x58(r3)
-	lhz      r31, 0x5c(r29)
-	b        lbl_80083A88
-
-lbl_80083A68:
-	lwz      r3, 0x60(r29)
-	rlwinm   r0, r30, 2, 0xe, 0x1d
-	lwzx     r3, r3, r0
-	lwz      r12, 0(r3)
-	lwz      r12, 0x14(r12)
-	mtctr    r12
-	bctrl
-	addi     r30, r30, 1
-
-lbl_80083A88:
-	clrlwi   r0, r30, 0x10
-	cmplw    r0, r31
-	blt      lbl_80083A68
-	lwz      r0, 0x24(r1)
-	lwz      r31, 0x1c(r1)
-	lwz      r30, 0x18(r1)
-	lwz      r29, 0x14(r1)
-	mtlr     r0
-	addi     r1, r1, 0x20
-	blr
-	*/
+	j3dSys._58 = m_materialTable.m_texture;
+	u16 count  = m_materialTable.m_count1;
+	for (u16 i = 0; i < count; i++) {
+		J3DMaterial* material = m_materialTable.m_materials1[i];
+		material->makeSharedDisplayList();
+	}
 }
 
 /*
@@ -327,8 +246,12 @@ lbl_80083A88:
  * Address:	80083AB0
  * Size:	0000C8
  */
-void J3DModelData::simpleCalcMaterial(unsigned short, float (*)[4])
+void J3DModelData::simpleCalcMaterial(u16 jointIndex, Mtx*) // float (*)[4])
 {
+	syncJ3DSysFlags();
+	for (J3DMaterial* material = m_jointTree.m_joints[jointIndex]->m_material; material != nullptr; material = material->_04) {
+		// TODO: ???
+	}
 	/*
 	stwu     r1, -0x20(r1)
 	mflr     r0
@@ -404,78 +327,19 @@ lbl_80083B54:
  */
 void J3DModelData::syncJ3DSysFlags() const
 {
-	/*
-	lwz      r0, 8(r3)
-	rlwinm.  r0, r0, 0, 0x1a, 0x1a
-	beq      lbl_80083B9C
-	lis      r3, j3dSys@ha
-	addi     r3, r3, j3dSys@l
-	lwz      r0, 0x34(r3)
-	oris     r0, r0, 0x4000
-	stw      r0, 0x34(r3)
-	blr
-
-lbl_80083B9C:
-	lis      r3, j3dSys@ha
-	addi     r3, r3, j3dSys@l
-	lwz      r0, 0x34(r3)
-	rlwinm   r0, r0, 0, 2, 0
-	stw      r0, 0x34(r3)
-	blr
-	*/
+	if (m_modelLoaderFlags & J3DMLF_06) {
+		j3dSys._34 |= 0x40000000;
+	} else {
+		j3dSys._34 &= ~0x40000000;
+	}
 }
 
 /*
  * --INFO--
  * Address:	80083BB4
  * Size:	000098
+ * __dt__12J3DModelDataFv
  */
-J3DModelData::~J3DModelData()
-{
-	/*
-	stwu     r1, -0x10(r1)
-	mflr     r0
-	stw      r0, 0x14(r1)
-	stw      r31, 0xc(r1)
-	mr       r31, r4
-	stw      r30, 8(r1)
-	or.      r30, r3, r3
-	beq      lbl_80083C30
-	lis      r3, __vt__12J3DModelData@ha
-	addic.   r0, r30, 0x78
-	addi     r0, r3, __vt__12J3DModelData@l
-	stw      r0, 0(r30)
-	beq      lbl_80083BF4
-	lis      r3, __vt__13J3DShapeTable@ha
-	addi     r0, r3, __vt__13J3DShapeTable@l
-	stw      r0, 0x78(r30)
-
-lbl_80083BF4:
-	addi     r3, r30, 0x58
-	li       r4, -1
-	bl       __dt__16J3DMaterialTableFv
-	addic.   r0, r30, 0x10
-	beq      lbl_80083C20
-	lis      r4, __vt__12J3DJointTree@ha
-	addi     r3, r30, 0x44
-	addi     r0, r4, __vt__12J3DJointTree@l
-	li       r4, -1
-	stw      r0, 0x10(r30)
-	bl       __dt__14J3DDrawMtxDataFv
-
-lbl_80083C20:
-	extsh.   r0, r31
-	ble      lbl_80083C30
-	mr       r3, r30
-	bl       __dl__FPv
-
-lbl_80083C30:
-	lwz      r0, 0x14(r1)
-	mr       r3, r30
-	lwz      r31, 0xc(r1)
-	lwz      r30, 8(r1)
-	mtlr     r0
-	addi     r1, r1, 0x10
-	blr
-	*/
-}
+// J3DModelData::~J3DModelData()
+// {
+// }

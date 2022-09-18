@@ -11,6 +11,7 @@ extern "C" {
 
 // sizeof = 48 or 0x30
 typedef float Mtx[3][4];
+typedef float Mtx33[3][3];
 typedef float Mtx44[4][4];
 typedef float PSQuaternion[4];
 #define MTXDegToRad(a) ((a)*0.01745329252f)
@@ -30,7 +31,7 @@ void PSMTXScale(Mtx, float, float, float);
 void PSMTXScaleApply(const Mtx, Mtx, float, float, float);
 void PSMTXQuat(Mtx, const PSQuaternion*);
 void PSMTXMultVec(Mtx, Vec*, Vec*);
-void PSMTXMultVecSR(Mtx, Vec, Vec);
+void PSMTXMultVecSR(Mtx, Vec*, Vec*);
 /* TODO: Determine what these params are. */
 void PSMTXMultVecArraySR(Mtx, float*, float*, float*);
 void PSMTX44Copy(Mtx44, Mtx44);

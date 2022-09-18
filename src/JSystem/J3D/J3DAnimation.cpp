@@ -1,3 +1,13 @@
+#include "JSystem/J3D/J3DAnmBase.h"
+#include "JSystem/J3D/J3DAnmCluster.h"
+#include "JSystem/J3D/J3DAnmColor.h"
+#include "JSystem/J3D/J3DAnmTevRegKey.h"
+#include "JSystem/J3D/J3DAnmTexPattern.h"
+#include "JSystem/J3D/J3DAnmTextureSRTKey.h"
+#include "JSystem/J3D/J3DAnmTransform.h"
+#include "JSystem/J3D/J3DAnmVtxColor.h"
+#include "JSystem/J3D/J3DFrameCtrl.h"
+#include "JSystem/J3D/J3DModel.h"
 #include "types.h"
 
 /*
@@ -127,22 +137,15 @@
  * Address:	80067678
  * Size:	000030
  */
-void J3DFrameCtrl::init(short)
+void J3DFrameCtrl::init(short p1)
 {
-	/*
-	li       r5, 2
-	li       r0, 0
-	stb      r5, 4(r3)
-	lfs      f1, lbl_80516A18@sda21(r2)
-	stb      r0, 5(r3)
-	lfs      f0, lbl_80516A1C@sda21(r2)
-	sth      r0, 6(r3)
-	sth      r4, 8(r3)
-	sth      r0, 0xa(r3)
-	stfs     f1, 0xc(r3)
-	stfs     f0, 0x10(r3)
-	blr
-	*/
+	m_attr = 2;
+	_05    = 0;
+	_06    = 0;
+	_08    = p1;
+	_0A    = 0;
+	_0C    = 1.0f;
+	_10    = 0.0f;
 }
 
 /*
@@ -1775,60 +1778,17 @@ lbl_80068A64:
  * Address:	80068A88
  * Size:	0000A8
  */
-void J3DAnmColor::searchUpdateMaterialID(J3DModelData*)
+void J3DAnmColor::searchUpdateMaterialID(J3DModelData* data)
 {
-	/*
-	stwu     r1, -0x20(r1)
-	mflr     r0
-	stw      r0, 0x24(r1)
-	stw      r31, 0x1c(r1)
-	li       r31, 0
-	stw      r30, 0x18(r1)
-	stw      r29, 0x14(r1)
-	mr       r29, r4
-	stw      r28, 0x10(r1)
-	mr       r28, r3
-	b        lbl_80068B00
-
-lbl_80068AB4:
-	lwz      r30, 0x64(r29)
-	mr       r4, r31
-	addi     r3, r28, 0x1c
-	bl       getName__10JUTNameTabCFUs
-	mr       r4, r3
-	mr       r3, r30
-	bl       getIndex__10JUTNameTabCFPCc
-	cmpwi    r3, -1
-	beq      lbl_80068AE8
-	lwz      r4, 0x18(r28)
-	rlwinm   r0, r31, 1, 0xf, 0x1e
-	sthx     r3, r4, r0
-	b        lbl_80068AFC
-
-lbl_80068AE8:
-	lis      r4, 0x0000FFFF@ha
-	lwz      r3, 0x18(r28)
-	addi     r4, r4, 0x0000FFFF@l
-	rlwinm   r0, r31, 1, 0xf, 0x1e
-	sthx     r4, r3, r0
-
-lbl_80068AFC:
-	addi     r31, r31, 1
-
-lbl_80068B00:
-	lhz      r0, 0x14(r28)
-	clrlwi   r3, r31, 0x10
-	cmplw    r3, r0
-	blt      lbl_80068AB4
-	lwz      r0, 0x24(r1)
-	lwz      r31, 0x1c(r1)
-	lwz      r30, 0x18(r1)
-	lwz      r29, 0x14(r1)
-	lwz      r28, 0x10(r1)
-	mtlr     r0
-	addi     r1, r1, 0x20
-	blr
-	*/
+	for (u16 i = 0; i < _14; i++) {
+		JUTNameTab* matNameTable = data->m_materialTable._0C;
+		int index                = matNameTable->getIndex(m_nameTab.getName(i));
+		if (index != -1) {
+			_18[i] = index;
+		} else {
+			_18[i] = 0xFFFF;
+		}
+	}
 }
 
 /*
@@ -2977,7 +2937,7 @@ lbl_80069854:
  * Address:	8006986C
  * Size:	000008
  */
-u32 J3DAnmColorKey::getKind() const { return 0xB; }
+J3DAnmKind J3DAnmColorKey::getKind() const { return J3DAnmKind_ColorKey; }
 
 /*
  * --INFO--
@@ -3061,7 +3021,7 @@ lbl_80069918:
  * Address:	80069930
  * Size:	000008
  */
-u32 J3DAnmColor::getKind() const { return 0x1; }
+J3DAnmKind J3DAnmColor::getKind() const { return J3DAnmKind_Color; }
 
 /*
  * --INFO--
@@ -3125,7 +3085,7 @@ lbl_800699A8:
  * Address:	800699C0
  * Size:	000008
  */
-u32 J3DAnmColorFull::getKind() const { return 0xA; }
+J3DAnmKind J3DAnmColorFull::getKind() const { return J3DAnmKind_ColorFull; }
 
 /*
  * --INFO--
@@ -3174,7 +3134,7 @@ lbl_80069A1C:
  * Address:	80069A34
  * Size:	000008
  */
-u32 J3DAnmVtxColorKey::getKind() const { return 0xF; }
+J3DAnmKind J3DAnmVtxColorKey::getKind() const { return J3DAnmKind_VtxColorKey; }
 
 /*
  * --INFO--
@@ -3219,7 +3179,7 @@ lbl_80069A80:
  * Address:	80069A98
  * Size:	000008
  */
-u32 J3DAnmVtxColor::getKind() const { return 0x7; }
+J3DAnmKind J3DAnmVtxColor::getKind() const { return J3DAnmKind_VtxColor; }
 
 /*
  * --INFO--
@@ -3275,7 +3235,7 @@ lbl_80069AF8:
  * Address:	80069B10
  * Size:	000008
  */
-u32 J3DAnmVtxColorFull::getKind() const { return 0xE; }
+J3DAnmKind J3DAnmVtxColorFull::getKind() const { return J3DAnmKind_VtxColorFull; }
 
 /*
  * --INFO--
@@ -3324,7 +3284,7 @@ lbl_80069B6C:
  * Address:	80069B84
  * Size:	000008
  */
-u32 J3DAnmClusterKey::getKind() const { return 0xD; }
+J3DAnmKind J3DAnmClusterKey::getKind() const { return J3DAnmKind_ClusterKey; }
 
 /*
  * --INFO--
@@ -3369,7 +3329,7 @@ lbl_80069BD0:
  * Address:	80069BE8
  * Size:	000008
  */
-u32 J3DAnmCluster::getKind() const { return 0x3; }
+J3DAnmKind J3DAnmCluster::getKind() const { return J3DAnmKind_Cluster; }
 
 /*
  * --INFO--
@@ -3431,7 +3391,7 @@ lbl_80069C4C:
  * Address:	80069C64
  * Size:	000008
  */
-u32 J3DAnmClusterFull::getKind() const { return 0xC; }
+J3DAnmKind J3DAnmClusterFull::getKind() const { return J3DAnmKind_ClusterFull; }
 
 /*
  * --INFO--
@@ -3480,7 +3440,7 @@ lbl_80069CC0:
  * Address:	80069CD8
  * Size:	000008
  */
-u32 J3DAnmTransformFull::getKind() const { return 0x9; }
+J3DAnmKind J3DAnmTransformFull::getKind() const { return J3DAnmKind_TransformFull; }
 
 /*
  * --INFO--
@@ -3525,296 +3485,296 @@ lbl_80069D24:
  * Address:	80069D3C
  * Size:	000008
  */
-u32 J3DAnmTransform::getKind() const { return 0x0; }
+// J3DAnmKind J3DAnmTransform::getKind() const { return J3DAnmKind_Transform; }
 
 /*
  * --INFO--
  * Address:	80069D44
  * Size:	000234
  */
-void J3DGetKeyFrameInterpolation<short>(float, J3DAnmKeyTableBase*, short*)
-{
-	/*
-	stwu     r1, -0x10(r1)
-	lis      r5, 0x4330
-	lfd      f2, lbl_80516A28@sda21(r2)
-	lha      r0, 0(r4)
-	stw      r5, 8(r1)
-	xoris    r0, r0, 0x8000
-	stw      r0, 0xc(r1)
-	lfd      f0, 8(r1)
-	fsubs    f0, f0, f2
-	fcmpo    cr0, f1, f0
-	bge      lbl_80069D8C
-	lha      r0, 2(r4)
-	stw      r5, 8(r1)
-	xoris    r0, r0, 0x8000
-	stw      r0, 0xc(r1)
-	lfd      f0, 8(r1)
-	fsubs    f1, f0, f2
-	b        lbl_80069F70
+// void J3DGetKeyFrameInterpolation<short>(float, J3DAnmKeyTableBase*, short*)
+// {
+// 	/*
+// 	stwu     r1, -0x10(r1)
+// 	lis      r5, 0x4330
+// 	lfd      f2, lbl_80516A28@sda21(r2)
+// 	lha      r0, 0(r4)
+// 	stw      r5, 8(r1)
+// 	xoris    r0, r0, 0x8000
+// 	stw      r0, 0xc(r1)
+// 	lfd      f0, 8(r1)
+// 	fsubs    f0, f0, f2
+// 	fcmpo    cr0, f1, f0
+// 	bge      lbl_80069D8C
+// 	lha      r0, 2(r4)
+// 	stw      r5, 8(r1)
+// 	xoris    r0, r0, 0x8000
+// 	stw      r0, 0xc(r1)
+// 	lfd      f0, 8(r1)
+// 	fsubs    f1, f0, f2
+// 	b        lbl_80069F70
 
-lbl_80069D8C:
-	lhz      r0, 4(r3)
-	cmplwi   r0, 0
-	bne      lbl_80069E88
-	lhz      r6, 0(r3)
-	stw      r5, 8(r1)
-	addi     r0, r6, -1
-	mulli    r3, r0, 6
-	lhax     r0, r4, r3
-	xoris    r0, r0, 0x8000
-	stw      r0, 0xc(r1)
-	lfd      f0, 8(r1)
-	fsubs    f0, f0, f2
-	fcmpo    cr0, f0, f1
-	cror     2, 0, 2
-	bne      lbl_80069E2C
-	add      r3, r4, r3
-	stw      r5, 8(r1)
-	lha      r0, 2(r3)
-	xoris    r0, r0, 0x8000
-	stw      r0, 0xc(r1)
-	lfd      f0, 8(r1)
-	fsubs    f1, f0, f2
-	b        lbl_80069F70
-	b        lbl_80069E2C
+// lbl_80069D8C:
+// 	lhz      r0, 4(r3)
+// 	cmplwi   r0, 0
+// 	bne      lbl_80069E88
+// 	lhz      r6, 0(r3)
+// 	stw      r5, 8(r1)
+// 	addi     r0, r6, -1
+// 	mulli    r3, r0, 6
+// 	lhax     r0, r4, r3
+// 	xoris    r0, r0, 0x8000
+// 	stw      r0, 0xc(r1)
+// 	lfd      f0, 8(r1)
+// 	fsubs    f0, f0, f2
+// 	fcmpo    cr0, f0, f1
+// 	cror     2, 0, 2
+// 	bne      lbl_80069E2C
+// 	add      r3, r4, r3
+// 	stw      r5, 8(r1)
+// 	lha      r0, 2(r3)
+// 	xoris    r0, r0, 0x8000
+// 	stw      r0, 0xc(r1)
+// 	lfd      f0, 8(r1)
+// 	fsubs    f1, f0, f2
+// 	b        lbl_80069F70
+// 	b        lbl_80069E2C
 
-lbl_80069DEC:
-	srwi     r7, r6, 1
-	stw      r5, 8(r1)
-	mulli    r0, r7, 3
-	slwi     r3, r0, 1
-	lhax     r0, r4, r3
-	xoris    r0, r0, 0x8000
-	stw      r0, 0xc(r1)
-	lfd      f0, 8(r1)
-	fsubs    f0, f0, f2
-	fcmpo    cr0, f1, f0
-	cror     2, 1, 2
-	bne      lbl_80069E28
-	add      r4, r4, r3
-	subf     r6, r7, r6
-	b        lbl_80069E2C
+// lbl_80069DEC:
+// 	srwi     r7, r6, 1
+// 	stw      r5, 8(r1)
+// 	mulli    r0, r7, 3
+// 	slwi     r3, r0, 1
+// 	lhax     r0, r4, r3
+// 	xoris    r0, r0, 0x8000
+// 	stw      r0, 0xc(r1)
+// 	lfd      f0, 8(r1)
+// 	fsubs    f0, f0, f2
+// 	fcmpo    cr0, f1, f0
+// 	cror     2, 1, 2
+// 	bne      lbl_80069E28
+// 	add      r4, r4, r3
+// 	subf     r6, r7, r6
+// 	b        lbl_80069E2C
 
-lbl_80069E28:
-	mr       r6, r7
+// lbl_80069E28:
+// 	mr       r6, r7
 
-lbl_80069E2C:
-	cmplwi   r6, 1
-	bgt      lbl_80069DEC
-	psq_l    f2, 0(r4), 1, qr5
-	psq_l    f0, 6(r4), 1, qr5
-	psq_l    f7, 2(r4), 1, qr5
-	fsubs    f5, f0, f2
-	psq_l    f6, 8(r4), 1, qr5
-	fsubs    f3, f1, f2
-	psq_l    f0, 10(r4), 1, qr5
-	fsubs    f4, f6, f7
-	fdivs    f3, f3, f5
-	psq_l    f1, 4(r4), 1, qr5
-	fmadds   f0, f0, f5, f7
-	fnmsubs  f4, f5, f1, f4
-	fmuls    f2, f3, f3
-	fsubs    f0, f0, f6
-	fsubs    f0, f0, f4
-	fmuls    f0, f2, f0
-	fmadds   f1, f5, f1, f0
-	fmadds   f1, f1, f3, f7
-	fmadds   f1, f4, f2, f1
-	fsubs    f1, f1, f0
-	b        lbl_80069F70
+// lbl_80069E2C:
+// 	cmplwi   r6, 1
+// 	bgt      lbl_80069DEC
+// 	psq_l    f2, 0(r4), 1, qr5
+// 	psq_l    f0, 6(r4), 1, qr5
+// 	psq_l    f7, 2(r4), 1, qr5
+// 	fsubs    f5, f0, f2
+// 	psq_l    f6, 8(r4), 1, qr5
+// 	fsubs    f3, f1, f2
+// 	psq_l    f0, 10(r4), 1, qr5
+// 	fsubs    f4, f6, f7
+// 	fdivs    f3, f3, f5
+// 	psq_l    f1, 4(r4), 1, qr5
+// 	fmadds   f0, f0, f5, f7
+// 	fnmsubs  f4, f5, f1, f4
+// 	fmuls    f2, f3, f3
+// 	fsubs    f0, f0, f6
+// 	fsubs    f0, f0, f4
+// 	fmuls    f0, f2, f0
+// 	fmadds   f1, f5, f1, f0
+// 	fmadds   f1, f1, f3, f7
+// 	fmadds   f1, f4, f2, f1
+// 	fsubs    f1, f1, f0
+// 	b        lbl_80069F70
 
-lbl_80069E88:
-	lhz      r6, 0(r3)
-	stw      r5, 8(r1)
-	addi     r0, r6, -1
-	slwi     r3, r0, 3
-	lhax     r0, r4, r3
-	xoris    r0, r0, 0x8000
-	stw      r0, 0xc(r1)
-	lfd      f0, 8(r1)
-	fsubs    f0, f0, f2
-	fcmpo    cr0, f0, f1
-	cror     2, 0, 2
-	bne      lbl_80069F18
-	add      r3, r4, r3
-	stw      r5, 8(r1)
-	lha      r0, 2(r3)
-	xoris    r0, r0, 0x8000
-	stw      r0, 0xc(r1)
-	lfd      f0, 8(r1)
-	fsubs    f1, f0, f2
-	b        lbl_80069F70
-	b        lbl_80069F18
+// lbl_80069E88:
+// 	lhz      r6, 0(r3)
+// 	stw      r5, 8(r1)
+// 	addi     r0, r6, -1
+// 	slwi     r3, r0, 3
+// 	lhax     r0, r4, r3
+// 	xoris    r0, r0, 0x8000
+// 	stw      r0, 0xc(r1)
+// 	lfd      f0, 8(r1)
+// 	fsubs    f0, f0, f2
+// 	fcmpo    cr0, f0, f1
+// 	cror     2, 0, 2
+// 	bne      lbl_80069F18
+// 	add      r3, r4, r3
+// 	stw      r5, 8(r1)
+// 	lha      r0, 2(r3)
+// 	xoris    r0, r0, 0x8000
+// 	stw      r0, 0xc(r1)
+// 	lfd      f0, 8(r1)
+// 	fsubs    f1, f0, f2
+// 	b        lbl_80069F70
+// 	b        lbl_80069F18
 
-lbl_80069EDC:
-	rlwinm   r3, r6, 2, 0, 0x1c
-	stw      r5, 8(r1)
-	lhax     r0, r4, r3
-	srwi     r7, r6, 1
-	xoris    r0, r0, 0x8000
-	stw      r0, 0xc(r1)
-	lfd      f0, 8(r1)
-	fsubs    f0, f0, f2
-	fcmpo    cr0, f1, f0
-	cror     2, 1, 2
-	bne      lbl_80069F14
-	add      r4, r4, r3
-	subf     r6, r7, r6
-	b        lbl_80069F18
+// lbl_80069EDC:
+// 	rlwinm   r3, r6, 2, 0, 0x1c
+// 	stw      r5, 8(r1)
+// 	lhax     r0, r4, r3
+// 	srwi     r7, r6, 1
+// 	xoris    r0, r0, 0x8000
+// 	stw      r0, 0xc(r1)
+// 	lfd      f0, 8(r1)
+// 	fsubs    f0, f0, f2
+// 	fcmpo    cr0, f1, f0
+// 	cror     2, 1, 2
+// 	bne      lbl_80069F14
+// 	add      r4, r4, r3
+// 	subf     r6, r7, r6
+// 	b        lbl_80069F18
 
-lbl_80069F14:
-	mr       r6, r7
+// lbl_80069F14:
+// 	mr       r6, r7
 
-lbl_80069F18:
-	cmplwi   r6, 1
-	bgt      lbl_80069EDC
-	psq_l    f2, 0(r4), 1, qr5
-	psq_l    f0, 8(r4), 1, qr5
-	psq_l    f7, 2(r4), 1, qr5
-	fsubs    f5, f0, f2
-	psq_l    f6, 10(r4), 1, qr5
-	fsubs    f3, f1, f2
-	psq_l    f0, 12(r4), 1, qr5
-	fsubs    f4, f6, f7
-	fdivs    f3, f3, f5
-	psq_l    f1, 6(r4), 1, qr5
-	fmadds   f0, f0, f5, f7
-	fnmsubs  f4, f5, f1, f4
-	fmuls    f2, f3, f3
-	fsubs    f0, f0, f6
-	fsubs    f0, f0, f4
-	fmuls    f0, f2, f0
-	fmadds   f1, f5, f1, f0
-	fmadds   f1, f1, f3, f7
-	fmadds   f1, f4, f2, f1
-	fsubs    f1, f1, f0
+// lbl_80069F18:
+// 	cmplwi   r6, 1
+// 	bgt      lbl_80069EDC
+// 	psq_l    f2, 0(r4), 1, qr5
+// 	psq_l    f0, 8(r4), 1, qr5
+// 	psq_l    f7, 2(r4), 1, qr5
+// 	fsubs    f5, f0, f2
+// 	psq_l    f6, 10(r4), 1, qr5
+// 	fsubs    f3, f1, f2
+// 	psq_l    f0, 12(r4), 1, qr5
+// 	fsubs    f4, f6, f7
+// 	fdivs    f3, f3, f5
+// 	psq_l    f1, 6(r4), 1, qr5
+// 	fmadds   f0, f0, f5, f7
+// 	fnmsubs  f4, f5, f1, f4
+// 	fmuls    f2, f3, f3
+// 	fsubs    f0, f0, f6
+// 	fsubs    f0, f0, f4
+// 	fmuls    f0, f2, f0
+// 	fmadds   f1, f5, f1, f0
+// 	fmadds   f1, f1, f3, f7
+// 	fmadds   f1, f4, f2, f1
+// 	fsubs    f1, f1, f0
 
-lbl_80069F70:
-	addi     r1, r1, 0x10
-	blr
-	*/
-}
+// lbl_80069F70:
+// 	addi     r1, r1, 0x10
+// 	blr
+// 	*/
+// }
 
 /*
  * --INFO--
  * Address:	80069F78
  * Size:	00017C
  */
-void J3DGetKeyFrameInterpolation<float>(float, J3DAnmKeyTableBase*, float*)
-{
-	/*
-	lfs      f0, 0(r4)
-	fcmpo    cr0, f1, f0
-	bge      lbl_80069F8C
-	lfs      f1, 4(r4)
-	blr
+// void J3DGetKeyFrameInterpolation<float>(float, J3DAnmKeyTableBase*, float*)
+// {
+// 	/*
+// 	lfs      f0, 0(r4)
+// 	fcmpo    cr0, f1, f0
+// 	bge      lbl_80069F8C
+// 	lfs      f1, 4(r4)
+// 	blr
 
-lbl_80069F8C:
-	lhz      r0, 4(r3)
-	cmplwi   r0, 0
-	bne      lbl_8006A048
-	lhz      r3, 0(r3)
-	addi     r0, r3, -1
-	mulli    r0, r0, 0xc
-	lfsx     f0, r4, r0
-	fcmpo    cr0, f0, f1
-	cror     2, 0, 2
-	bne      lbl_80069FF0
-	add      r3, r4, r0
-	lfs      f1, 4(r3)
-	blr
-	b        lbl_80069FF0
+// lbl_80069F8C:
+// 	lhz      r0, 4(r3)
+// 	cmplwi   r0, 0
+// 	bne      lbl_8006A048
+// 	lhz      r3, 0(r3)
+// 	addi     r0, r3, -1
+// 	mulli    r0, r0, 0xc
+// 	lfsx     f0, r4, r0
+// 	fcmpo    cr0, f0, f1
+// 	cror     2, 0, 2
+// 	bne      lbl_80069FF0
+// 	add      r3, r4, r0
+// 	lfs      f1, 4(r3)
+// 	blr
+// 	b        lbl_80069FF0
 
-lbl_80069FC4:
-	srwi     r5, r3, 1
-	mulli    r0, r5, 3
-	slwi     r0, r0, 2
-	lfsx     f0, r4, r0
-	fcmpo    cr0, f1, f0
-	cror     2, 1, 2
-	bne      lbl_80069FEC
-	add      r4, r4, r0
-	subf     r3, r5, r3
-	b        lbl_80069FF0
+// lbl_80069FC4:
+// 	srwi     r5, r3, 1
+// 	mulli    r0, r5, 3
+// 	slwi     r0, r0, 2
+// 	lfsx     f0, r4, r0
+// 	fcmpo    cr0, f1, f0
+// 	cror     2, 1, 2
+// 	bne      lbl_80069FEC
+// 	add      r4, r4, r0
+// 	subf     r3, r5, r3
+// 	b        lbl_80069FF0
 
-lbl_80069FEC:
-	mr       r3, r5
+// lbl_80069FEC:
+// 	mr       r3, r5
 
-lbl_80069FF0:
-	cmplwi   r3, 1
-	bgt      lbl_80069FC4
-	lfs      f0, 0(r4)
-	lfs      f2, 0xc(r4)
-	fsubs    f5, f1, f0
-	lfs      f6, 4(r4)
-	fsubs    f4, f2, f0
-	lfs      f2, 0x10(r4)
-	lfs      f7, 8(r4)
-	lfs      f8, 0x14(r4)
-	fdivs    f3, f5, f4
-	fmuls    f0, f3, f3
-	fsubs    f4, f6, f2
-	fadds    f1, f3, f3
-	fsubs    f2, f0, f3
-	fmsubs   f0, f1, f2, f0
-	fmadds   f1, f7, f2, f7
-	fmadds   f0, f0, f4, f6
-	fmadds   f1, f8, f2, f1
-	fmsubs   f1, f3, f7, f1
-	fnmsubs  f1, f5, f1, f0
-	blr
+// lbl_80069FF0:
+// 	cmplwi   r3, 1
+// 	bgt      lbl_80069FC4
+// 	lfs      f0, 0(r4)
+// 	lfs      f2, 0xc(r4)
+// 	fsubs    f5, f1, f0
+// 	lfs      f6, 4(r4)
+// 	fsubs    f4, f2, f0
+// 	lfs      f2, 0x10(r4)
+// 	lfs      f7, 8(r4)
+// 	lfs      f8, 0x14(r4)
+// 	fdivs    f3, f5, f4
+// 	fmuls    f0, f3, f3
+// 	fsubs    f4, f6, f2
+// 	fadds    f1, f3, f3
+// 	fsubs    f2, f0, f3
+// 	fmsubs   f0, f1, f2, f0
+// 	fmadds   f1, f7, f2, f7
+// 	fmadds   f0, f0, f4, f6
+// 	fmadds   f1, f8, f2, f1
+// 	fmsubs   f1, f3, f7, f1
+// 	fnmsubs  f1, f5, f1, f0
+// 	blr
 
-lbl_8006A048:
-	lhz      r3, 0(r3)
-	addi     r0, r3, -1
-	slwi     r0, r0, 4
-	lfsx     f0, r4, r0
-	fcmpo    cr0, f0, f1
-	cror     2, 0, 2
-	bne      lbl_8006A09C
-	add      r3, r4, r0
-	lfs      f1, 4(r3)
-	blr
-	b        lbl_8006A09C
+// lbl_8006A048:
+// 	lhz      r3, 0(r3)
+// 	addi     r0, r3, -1
+// 	slwi     r0, r0, 4
+// 	lfsx     f0, r4, r0
+// 	fcmpo    cr0, f0, f1
+// 	cror     2, 0, 2
+// 	bne      lbl_8006A09C
+// 	add      r3, r4, r0
+// 	lfs      f1, 4(r3)
+// 	blr
+// 	b        lbl_8006A09C
 
-lbl_8006A074:
-	rlwinm   r0, r3, 3, 0, 0x1b
-	srwi     r5, r3, 1
-	lfsx     f0, r4, r0
-	fcmpo    cr0, f1, f0
-	cror     2, 1, 2
-	bne      lbl_8006A098
-	add      r4, r4, r0
-	subf     r3, r5, r3
-	b        lbl_8006A09C
+// lbl_8006A074:
+// 	rlwinm   r0, r3, 3, 0, 0x1b
+// 	srwi     r5, r3, 1
+// 	lfsx     f0, r4, r0
+// 	fcmpo    cr0, f1, f0
+// 	cror     2, 1, 2
+// 	bne      lbl_8006A098
+// 	add      r4, r4, r0
+// 	subf     r3, r5, r3
+// 	b        lbl_8006A09C
 
-lbl_8006A098:
-	mr       r3, r5
+// lbl_8006A098:
+// 	mr       r3, r5
 
-lbl_8006A09C:
-	cmplwi   r3, 1
-	bgt      lbl_8006A074
-	lfs      f0, 0(r4)
-	lfs      f2, 0x10(r4)
-	fsubs    f5, f1, f0
-	lfs      f6, 4(r4)
-	fsubs    f4, f2, f0
-	lfs      f2, 0x14(r4)
-	lfs      f7, 0xc(r4)
-	lfs      f8, 0x18(r4)
-	fdivs    f3, f5, f4
-	fmuls    f0, f3, f3
-	fsubs    f4, f6, f2
-	fadds    f1, f3, f3
-	fsubs    f2, f0, f3
-	fmsubs   f0, f1, f2, f0
-	fmadds   f1, f7, f2, f7
-	fmadds   f0, f0, f4, f6
-	fmadds   f1, f8, f2, f1
-	fmsubs   f1, f3, f7, f1
-	fnmsubs  f1, f5, f1, f0
-	blr
-	*/
-}
+// lbl_8006A09C:
+// 	cmplwi   r3, 1
+// 	bgt      lbl_8006A074
+// 	lfs      f0, 0(r4)
+// 	lfs      f2, 0x10(r4)
+// 	fsubs    f5, f1, f0
+// 	lfs      f6, 4(r4)
+// 	fsubs    f4, f2, f0
+// 	lfs      f2, 0x14(r4)
+// 	lfs      f7, 0xc(r4)
+// 	lfs      f8, 0x18(r4)
+// 	fdivs    f3, f5, f4
+// 	fmuls    f0, f3, f3
+// 	fsubs    f4, f6, f2
+// 	fadds    f1, f3, f3
+// 	fsubs    f2, f0, f3
+// 	fmsubs   f0, f1, f2, f0
+// 	fmadds   f1, f7, f2, f7
+// 	fmadds   f0, f0, f4, f6
+// 	fmadds   f1, f8, f2, f1
+// 	fmsubs   f1, f3, f7, f1
+// 	fnmsubs  f1, f5, f1, f0
+// 	blr
+// 	*/
+// }

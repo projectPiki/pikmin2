@@ -1,3 +1,4 @@
+#include "JSystem/J3D/J3DMaterialFactory.h"
 #include "types.h"
 
 /*

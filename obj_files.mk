@@ -131,7 +131,7 @@ JSYSTEM:=\
 	$(BUILD_DIR)/asm/JSystem/J3D/J3DMaterialFactory.o\
 	$(BUILD_DIR)/src/JSystem/J3D/J3DBinaryFormat.o\
 	$(BUILD_DIR)/asm/JSystem/J3D/J3DModelLoader.o\
-	$(BUILD_DIR)/asm/JSystem/J3D/J3DJointFactory.o\
+	$(BUILD_DIR)/src/JSystem/J3D/J3DJointFactory.o\
 	$(BUILD_DIR)/asm/JSystem/J3D/J3DShapeFactory.o\
 	$(BUILD_DIR)/asm/JSystem/J3D/J3DAnmLoader.o\
 	$(BUILD_DIR)/src/JSystem/J3D/J3DModelSaver.o\

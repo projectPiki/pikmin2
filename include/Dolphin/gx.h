@@ -495,10 +495,12 @@ typedef enum _GXProjectionType {
 typedef struct _SDK_GXColor {
 	u8 r, g, b, a;
 } GXColor;
+typedef GXColor _GXColor; // this might be a wrapper in Pikmin 2? IDK.
 
 typedef struct _SDK_GXColorS10 {
 	u16 r, g, b, a;
 } GXColorS10;
+typedef GXColorS10 _GXColorS10; // this might be a wrapper in Pikmin 2? IDK.
 
 typedef struct _SDK_GXFogAdjTable {
 	u16 _00[10];
@@ -608,6 +610,11 @@ typedef struct GXTexObj {
 	s8 _1e;
 	s8 _1f;
 } GXTexObj;
+
+typedef struct _GXVtxDescList {
+	s32 _00;
+	u32 _04;
+} GXTexDescList;
 
 // Compressed Z format
 typedef enum _SDK_GXZFmt16 {
@@ -857,6 +864,12 @@ void __GXSendFlushPrim();
 
 void GXFlush();
 void GXSetNumTexGens(u8);
+void GXInitLightPos(struct GXLightObj* lt_obj, f32 x, f32 y, f32 z );
+void GXInitLightColor(struct GXLightObj* lt_obj, GXColor color );
+void GXLoadLightObjImm(struct GXLightObj* lt_obj, GXLightID light );
+void GXLoadLightObjIndx(u32 lt_obj_indx, GXLightID light );
+void GXSetChanAmbColor(GXChannelID chan, GXColor amb_color );
+void GXSetChanMatColor(GXChannelID chan, GXColor mat_color );
 void GXSetNumChans(u32);
 void GXSetChanCtrl(GXChannelID chan, GXBool enable, GXColorSrc amb_src, GXColorSrc mat_src, GXLightID light_mask, GXDiffuseFn diff_fn,
                    GXAttnFn attn_fn);
@@ -874,6 +887,7 @@ void GXSetTevColorOp(GXTevStageID, GXTevOp, GXTevBias, GXTevScale, GXBool, GXTev
 void GXSetTevAlphaOp(GXTevStageID, GXTevOp, GXTevBias, GXTevScale, GXBool, GXTevRegID);
 void GXSetTevKColor(GXTevKColorID, GXColor);
 void GXSetTevKColorSel(GXTevStageID, GXTevKColorSel);
+void GXSetTevKAlphaSel(GXTevStageID, u32); // params might not be right
 void GXSetVtxAttrFmt(GXVtxFmt, GXAttr, GXCompCnt, GXCompType, uint);
 void GXClearVtxDesc();
 void GXSetVtxDesc(GXAttr, GXAttrType);
@@ -1042,7 +1056,11 @@ typedef union {
 	f64 f64;
 } PPCWGPipe;
 
+#ifdef __MWERKS__
 volatile PPCWGPipe GXWGFifo : GXFIFO_ADDR;
+#else
+volatile PPCWGPipe GXWGFifo;
+#endif
 
 static inline void GXPosition2f32(const f32 x, const f32 y)
 {
