@@ -5,6 +5,8 @@
 #include "stream.h"
 #include "Dolphin/math.h"
 #include "sysMath.h"
+#include "Vector2.h"
+#include "sqrt.h"
 
 template <typename T> struct Vector3 {
 	T x, y, z;
@@ -125,79 +127,48 @@ inline Vector3f operator*=(const Vector3f& a, const float b) { return Vector3f(a
 
 inline float dot(const Vector3f& a, const Vector3f& b) { return a.x * b.x + a.y * b.y + a.z * b.z; }
 
-// inline float Vector3f::distance(register Vector3f& them) {
-// #pragma optimizewithasm off
-//     register Vector3f* me = this;
-//     register float vv0;
-//     register float vv1;
-//     register float vv2;
-//     register float vv3;
-//     register float vv4;
-// asm {
-//     lfs vv1, 4(me)
-//     lfs vv0, 4(them)
-//     lfs vv3, 0(me)
-//     fsubs vv4, vv1, vv0
-//     lfs vv2, 0(them)
-//     lfs vv1, 8(me)
-//     lfs vv0, 8(them)
-//     fsubs vv3, vv3, vv2
-//     fmuls vv2, vv4, vv4
-//     fsubs vv4, vv1, vv0
-//     lfs vv0, 0.0f
-//     fmadds vv1, vv3, vv3, vv2
-//     fmuls vv2, vv4, vv4
-//     fadds vv1, vv2, vv1
-//     fcmpo cr0, vv1, vv0
-//     ble end
-//     blelr
-//     frsqrte vv0, vv1
-//     fmuls vv1, vv0, vv1
-// }
-//     return vv1;
-// asm {
-//     end:
-//     fmr vv1, vv0
-// }
-//     return vv1;
-// #pragma optimizewithasm on
-// }
+inline f32 Vector3f::length() const
+{
+	f32 thing = x;
+	Vector2f thing2(x * x, y * y);
 
-// inline float Vector3f::length() const {
-// #pragma optimizewithasm off
-//     register Vector3f* me = (Vector3f*) this;
-//     register float vv0;
-//     register float vv1;
-//     register float vv2;
-//     register float vv3;
-//     register float vv4;
-//     register u8 comp;
-// asm {
-//     lfs vv3, 0(me)
-//     lfs vv1, 4(me)
-//     fmuls vv0, vv3, vv3
-//     lfs vv4, 8(me)
-//     fmuls vv1, vv1, vv1
-// }
-// vv2 = 0.0f;
-// asm {
-//     fmuls vv4, vv4, vv4
-//     fadds vv0, vv0, vv1
-//     fadds vv0, vv4, vv0
-//     fcmpo cr0, vv0, vv2
-//     ble end
-//     fmadds vv0, vv3, vv3, vv1
-//     fadds vv1, vv4, vv0
-//     fcmpo cr0, vv1, vv2
-//     blelr
-//     frsqrte vv0, vv1
-//     fmuls vv1, vv0, vv1
-//     blr
-// end:
-//     fmr vv1, vv2
-// }
-//     return vv1;
-// #pragma optimizewithasm on
-// }
+	if ((z * z + (thing2.x + thing2.y)) > 0.0f) {
+		f32 result = z * z + ((thing * thing) + thing2.y);
+		if (result > 0.0f) {
+			register f32 __frsqrte_v = result;
+			asm { frsqrte __frsqrte_v, __frsqrte_v }
+			result = __frsqrte_v * result;
+		}
+		return result;
+	}
+	return 0.0f;
+}
 
+inline f32 Vector3f::normalise()
+{
+	f32 len = length();
+
+	if (len > 0.0f) {
+		f32 norm = 1.0f / len;
+		x *= norm;
+		y *= norm;
+		z *= norm;
+		return len;
+	}
+	return 0.0f;
+}
+
+inline void _normalise(Vector3f& vec)
+{
+	Vector2f sqr(vec.z * vec.z, vec.x * vec.x + vec.y * vec.y);
+	f32 length = sqr.x + sqr.y;
+	_sqrtf(length, &length);
+
+	if (length > 0.0f) {
+		f32 norm = 1.0f / length;
+		vec.x *= norm;
+		vec.y *= norm;
+		vec.z *= norm;
+	}
+}
 #endif
