@@ -166,7 +166,9 @@ pikmin2.usa.dol: `sha1: 90d328bf8f190c90472e8c19e7e53c6ad0fe0d1a`
 	- <a href="https://github.com/projectPiki/pikmin2/tree/main/src/plugProjectNishimuraU/DoorNode.cpp">plugProjectNishimuraU/DoorNode.cpp</a>
 	- <a href="https://github.com/projectPiki/pikmin2/tree/main/src/plugProjectNishimuraU/ElecBugAnimator.cpp">plugProjectNishimuraU/ElecBugAnimator.cpp</a>
 	- <a href="https://github.com/projectPiki/pikmin2/tree/main/src/plugProjectNishimuraU/ElecHibaAnimator.cpp">plugProjectNishimuraU/ElecHibaAnimator.cpp</a>
+	- <a href="https://github.com/projectPiki/pikmin2/tree/main/src/plugProjectNishimuraU/ElecOtakara.cpp">plugProjectNishimuraU/ElecOtakara.cpp</a>
 	- <a href="https://github.com/projectPiki/pikmin2/tree/main/src/plugProjectNishimuraU/EnemyUnit.cpp">plugProjectNishimuraU/EnemyUnit.cpp</a>
+	- <a href="https://github.com/projectPiki/pikmin2/tree/main/src/plugProjectNishimuraU/FireOtakara.cpp">plugProjectNishimuraU/FireOtakara.cpp</a>
 	- <a href="https://github.com/projectPiki/pikmin2/tree/main/src/plugProjectNishimuraU/FixKabuto.cpp">plugProjectNishimuraU/FixKabuto.cpp</a>
 	- <a href="https://github.com/projectPiki/pikmin2/tree/main/src/plugProjectNishimuraU/FixKabutoMgr.cpp">plugProjectNishimuraU/FixKabutoMgr.cpp</a>
 	- <a href="https://github.com/projectPiki/pikmin2/tree/main/src/plugProjectNishimuraU/FixMiniHoudai.cpp">plugProjectNishimuraU/FixMiniHoudai.cpp</a>
@@ -174,6 +176,7 @@ pikmin2.usa.dol: `sha1: 90d328bf8f190c90472e8c19e7e53c6ad0fe0d1a`
 	- <a href="https://github.com/projectPiki/pikmin2/tree/main/src/plugProjectNishimuraU/FuefukiAnimator.cpp">plugProjectNishimuraU/FuefukiAnimator.cpp</a>
 	- <a href="https://github.com/projectPiki/pikmin2/tree/main/src/plugProjectNishimuraU/GasHibaAnimator.cpp">plugProjectNishimuraU/GasHibaAnimator.cpp</a>
 	- <a href="https://github.com/projectPiki/pikmin2/tree/main/src/plugProjectNishimuraU/GasHibaState.cpp">plugProjectNishimuraU/GasHibaState.cpp</a>
+	- <a href="https://github.com/projectPiki/pikmin2/tree/main/src/plugProjectNishimuraU/GasOtakara.cpp">plugProjectNishimuraU/GasOtakara.cpp</a>
 	- <a href="https://github.com/projectPiki/pikmin2/tree/main/src/plugProjectNishimuraU/GateUnit.cpp">plugProjectNishimuraU/GateUnit.cpp</a>
 	- <a href="https://github.com/projectPiki/pikmin2/tree/main/src/plugProjectNishimuraU/GreenKabuto.cpp">plugProjectNishimuraU/GreenKabuto.cpp</a>
 	- <a href="https://github.com/projectPiki/pikmin2/tree/main/src/plugProjectNishimuraU/GreenKabutoMgr.cpp">plugProjectNishimuraU/GreenKabutoMgr.cpp</a>
@@ -215,6 +218,7 @@ pikmin2.usa.dol: `sha1: 90d328bf8f190c90472e8c19e7e53c6ad0fe0d1a`
 	- <a href="https://github.com/projectPiki/pikmin2/tree/main/src/plugProjectNishimuraU/TobiAnimator.cpp">plugProjectNishimuraU/TobiAnimator.cpp</a>
 	- <a href="https://github.com/projectPiki/pikmin2/tree/main/src/plugProjectNishimuraU/UjiaAnimator.cpp">plugProjectNishimuraU/UjiaAnimator.cpp</a>
 	- <a href="https://github.com/projectPiki/pikmin2/tree/main/src/plugProjectNishimuraU/UjibAnimator.cpp">plugProjectNishimuraU/UjibAnimator.cpp</a>
+	- <a href="https://github.com/projectPiki/pikmin2/tree/main/src/plugProjectNishimuraU/WaterOtakara.cpp">plugProjectNishimuraU/WaterOtakara.cpp</a>
 - plugProjectYamashitaU
 	- <a href="https://github.com/projectPiki/pikmin2/tree/main/src/plugProjectYamashitaU/chappyAnimator.cpp">plugProjectYamashitaU/chappyAnimator.cpp</a>
 	- <a href="https://github.com/projectPiki/pikmin2/tree/main/src/plugProjectYamashitaU/enemyAnimatorBase.cpp">plugProjectYamashitaU/enemyAnimatorBase.cpp</a>

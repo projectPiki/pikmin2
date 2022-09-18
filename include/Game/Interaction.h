@@ -63,11 +63,18 @@ struct InteractBreakBridge : public Interaction {
 };
 
 struct InteractBubble : public Interaction {
+	inline InteractBubble(Creature* parent, f32 damage)
+	    : Interaction(parent)
+	{
+		m_damage = damage;
+	}
+
 	virtual bool actPiki(Piki*); // _0C
 	virtual bool actNavi(Navi*); // _10
 
-	// _00 VTBL
-	// _04 Parent
+	// _00 		= VTBL
+	// _04 		= Interaction
+	f32 m_damage; // _08
 };
 
 struct InteractDope : public Interaction {
@@ -90,6 +97,21 @@ struct InteractEat : public Interaction {
 	virtual bool actItem(BaseItem*); // _20
 
 	int _08; // _08
+};
+
+struct InteractFire : public Interaction {
+	inline InteractFire(Creature* parent, f32 damage)
+	    : Interaction(parent)
+	{
+		m_damage = damage;
+	}
+
+	virtual bool actPiki(Piki*); // _0C
+	virtual bool actNavi(Navi*); // _10
+
+	// _00		= VTBL
+	// _00-_04	= Interaction
+	f32 m_damage; // _08
 };
 
 struct InteractFlick : public Interaction {
@@ -130,6 +152,21 @@ struct InteractFue : public Interaction {
 	// _00 VTBL
 	u8 _08; // _08
 	u8 _09; // _09
+};
+
+struct InteractGas : public Interaction {
+	inline InteractGas(Creature* parent, f32 damage)
+	    : Interaction(parent)
+	{
+		m_damage = damage;
+	}
+
+	virtual bool actPiki(Piki*); // _0C
+	virtual bool actNavi(Navi*); // _10
+
+	// _00		= VTBL
+	// _00-_04	= Interaction
+	f32 m_damage; // _08
 };
 
 struct InteractGotKey : public Interaction {
@@ -204,6 +241,38 @@ struct InteractSuckFinish : public Interaction {
 
 	// _00 VTBL
 	// _04 should be casted to Pellet
+};
+
+struct InteractWind : public Interaction {
+	inline InteractWind(Creature* parent, f32 force, Vector3f* direction)
+	    : Interaction(parent)
+	{
+		m_damage      = force;
+		m_direction.x = direction->x;
+		m_direction.y = direction->y;
+		m_direction.z = direction->z;
+	}
+
+	virtual bool actPiki(Piki*); // _0C
+	virtual bool actNavi(Navi*); // _10
+
+	// _00		= VTBL
+	// _00-_04	= Interaction
+	f32 m_damage;         // _08, damage or force?
+	Vector3f m_direction; // _0C
+};
+
+struct InteractDenki : public InteractWind {
+	inline InteractDenki(Creature* parent, f32 force, Vector3f* direction)
+	    : InteractWind(parent, force, direction)
+	{
+	}
+
+	virtual bool actPiki(Piki*); // _0C
+	virtual bool actNavi(Navi*); // _10
+
+	// _00		= VTBL
+	// _00-_18	= InteractWind
 };
 } // namespace Game
 

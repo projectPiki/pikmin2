@@ -2,7 +2,12 @@
 #define _VECTOR2_H
 
 template <typename T> struct Vector2 {
-	Vector2();
+	Vector2() { }
+	Vector2(T _x, T _y)
+	{
+		x = _x;
+		y = _y;
+	}
 
 	T x, y;
 };

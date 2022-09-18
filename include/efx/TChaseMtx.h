@@ -81,9 +81,9 @@ struct TChaseMtxT : public TSync {
 };
 
 struct TChaseMtxT2 : public TSyncGroup2<TChaseMtxT> {
-	TChaseMtxT2(float (*)[4], u16, u16);
+	TChaseMtxT2(Mtx, u16, u16);
 
-	void setMtxptr(float (*)[4]);
+	void setMtxptr(Mtx);
 
 	// _00		= VTBL
 	// _00-_2C	= TSyncGroup2<TChaseMtx>
