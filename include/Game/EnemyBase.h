@@ -538,6 +538,7 @@ struct EnemyBase : public Creature, public SysShape::MotionListener, virtual pub
 	EnemyBaseFSM::StateMachine* m_lifecycleFSM;  // _2B8
 	                                             // PelletView: _2BC - _2C8
 };
+
 namespace EnemyBaseFSM {
 enum StateID {
 	EBS_Drop = 0,

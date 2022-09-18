@@ -126,6 +126,7 @@ enum StateID {
 	HIBA_Dead   = 0,
 	HIBA_Wait   = 1,
 	HIBA_Attack = 2,
+	HIBA_Count  = 3,
 };
 
 struct FSM : public EnemyStateMachine {
