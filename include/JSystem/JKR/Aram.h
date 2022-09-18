@@ -1,6 +1,7 @@
 #ifndef _JSYSTEM_JKR_ARAM_H
 #define _JSYSTEM_JKR_ARAM_H
 
+#include "Dolphin/os.h"
 #include "JSystem/JKR/JKRArchive.h"
 #include "JSystem/JKR/JKRThread.h"
 #include "JSystem/JKR/JKRDvdRipper.h"
@@ -15,7 +16,7 @@ struct JKRDecompCommand;
 struct JKRAramBlock {
 	JKRAramBlock(u32, u32, u32, u8, bool);
 
-	virtual ~JKRAramBlock(); // _00
+	virtual ~JKRAramBlock(); // _08
 
 	JKRAramBlock* allocHead(u32, u8, JKRAramHeap*);
 	JKRAramBlock* allocTail(u32, u8, JKRAramHeap*);
@@ -33,8 +34,8 @@ struct JKRAramHeap : public JKRDisposer {
 
 	JKRAramHeap(u32, u32);
 
-	virtual ~JKRAramHeap(); // _00
-	// virtual void _04() = 0;
+	virtual ~JKRAramHeap(); // _08
+	// virtual void _0C() = 0;
 
 	JKRAramBlock* alloc(u32, EAllocMode);
 	JKRAramBlock* allocFromHead(u32);
@@ -53,8 +54,8 @@ struct JKRAramHeap : public JKRDisposer {
 struct JKRAram : public JKRThread {
 	JKRAram(u32, u32, long);
 
-	virtual ~JKRAram(); // _00
-	virtual void run(); // _04
+	virtual ~JKRAram();  // _08
+	virtual void* run(); // _0C
 
 	static JKRAram* create(u32, u32, long, long, long);
 	static JKRAramBlock* mainRamToAram(u8*, u32, u32, JKRExpandSwitch, u32, JKRHeap*, s32, u32*);
@@ -70,15 +71,17 @@ struct JKRAram : public JKRThread {
 	JKRAramHeap* m_aramHeap; // _94
 	u32 m_blockLength;       // _98
 	u8 _9C[4];               // _9C
+
+	static JKRAram* sAramObject;
 };
 
 struct JKRAramArchive : public JKRArchive {
 	JKRAramArchive(long, EMountDirection);
 
-	virtual ~JKRAramArchive();                                    // _00
-	virtual long getExpandedResSize(const void*) const;           // _34
-	virtual u32 fetchResource(SDIFileEntry*, u32*);               // _38
-	virtual void* fetchResource(void*, u32, SDIFileEntry*, u32*); // _3C
+	virtual ~JKRAramArchive();                                    // _08
+	virtual u32 getExpandedResSize(const void*) const;            // _3C
+	virtual void* fetchResource(SDIFileEntry*, u32*);             // _40
+	virtual void* fetchResource(void*, u32, SDIFileEntry*, u32*); // _44
 
 	bool open(long);
 	void fetchResource_subroutine(u32, u32, u8*, u32, s32);
@@ -145,8 +148,8 @@ typedef struct JKRAramStreamCommand {
 };
 
 struct JKRAramStream : public JKRThread {
-	virtual ~JKRAramStream(); // _00
-	virtual void run();       // _04
+	virtual ~JKRAramStream(); // _08
+	virtual void* run();      // _0C
 
 	// _00 VTBL
 
@@ -171,5 +174,7 @@ void orderSync(int, u32, u32, u32, JKRAramBlock*);
 void sendCommand(JKRAMCommand*);
 void startDMA(JKRAMCommand*);
 } // namespace JKRAramPiece
+
+extern OSMutexObject decompMutex;
 
 #endif

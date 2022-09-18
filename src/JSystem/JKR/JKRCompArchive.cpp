@@ -66,7 +66,7 @@
  * __ct
  */
 JKRCompArchive::JKRCompArchive(long p1, JKRArchive::EMountDirection mountDirection)
-    : JKRArchive(p1, EMM_Unk4)
+    : JKRArchive(p1, EMM_Comp)
     , m_mountDirection(mountDirection)
 {
 	if (open(p1)) {
@@ -660,7 +660,7 @@ lbl_8001C320:
  * Address:	8001C334
  * Size:	000190
  */
-u32 JKRCompArchive::fetchResource(JKRArchive::SDIFileEntry*, unsigned long*)
+void* JKRCompArchive::fetchResource(JKRArchive::SDIFileEntry*, unsigned long*)
 {
 	/*
 	stwu     r1, -0x30(r1)
@@ -1032,7 +1032,7 @@ lbl_8001C754:
  * Address:	8001C770
  * Size:	0001C4
  */
-long JKRCompArchive::getExpandedResSize(const void*) const
+u32 JKRCompArchive::getExpandedResSize(const void*) const
 {
 	/*
 	stwu     r1, -0x60(r1)

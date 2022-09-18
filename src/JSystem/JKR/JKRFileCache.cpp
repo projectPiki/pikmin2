@@ -2,6 +2,7 @@
 #include "Dolphin/os.h"
 #include "JSystem/JKR/JKRFileCache.h"
 #include "JSystem/JKR/JKRFile.h"
+#include "JSystem/JKR/JKRFileFinder.h"
 #include "JSystem/JKR/JKRHeap.h"
 
 /*
@@ -851,7 +852,7 @@ long JKRFileCache::getResSize(const void* resource) const
  * Address:	800222C8
  * Size:	00007C
  */
-int JKRFileCache::countFile(const char* p1) const
+u16 JKRFileCache::countFile(const char* p1) const
 {
 	OSFstEntry dir;
 	OSFstEntry file;
@@ -911,7 +912,7 @@ lbl_8002231C:
  * Address:	80022344
  * Size:	00009C
  */
-void* JKRFileCache::getFirstFile(const char* p1) const
+JKRFileFinder* JKRFileCache::getFirstFile(const char* p1) const
 {
 	char* path           = getDvdPathName(p1);
 	JKRDvdFinder* finder = new (JKRHeap::sSystemHeap, 0) JKRDvdFinder(path);
@@ -977,31 +978,31 @@ lbl_800223C8:
  * Address:	800223E0
  * Size:	000048
  */
-JKRFileFinder::~JKRFileFinder()
-{
-	/*
-	stwu     r1, -0x10(r1)
-	mflr     r0
-	stw      r0, 0x14(r1)
-	stw      r31, 0xc(r1)
-	or.      r31, r3, r3
-	beq      lbl_80022410
-	lis      r5, __vt__13JKRFileFinder@ha
-	extsh.   r0, r4
-	addi     r0, r5, __vt__13JKRFileFinder@l
-	stw      r0, 0xc(r31)
-	ble      lbl_80022410
-	bl       __dl__FPv
+// JKRFileFinder::~JKRFileFinder()
+// {
+// 	/*
+// 	stwu     r1, -0x10(r1)
+// 	mflr     r0
+// 	stw      r0, 0x14(r1)
+// 	stw      r31, 0xc(r1)
+// 	or.      r31, r3, r3
+// 	beq      lbl_80022410
+// 	lis      r5, __vt__13JKRFileFinder@ha
+// 	extsh.   r0, r4
+// 	addi     r0, r5, __vt__13JKRFileFinder@l
+// 	stw      r0, 0xc(r31)
+// 	ble      lbl_80022410
+// 	bl       __dl__FPv
 
-lbl_80022410:
-	lwz      r0, 0x14(r1)
-	mr       r3, r31
-	lwz      r31, 0xc(r1)
-	mtlr     r0
-	addi     r1, r1, 0x10
-	blr
-	*/
-}
+// lbl_80022410:
+// 	lwz      r0, 0x14(r1)
+// 	mr       r3, r31
+// 	lwz      r31, 0xc(r1)
+// 	mtlr     r0
+// 	addi     r1, r1, 0x10
+// 	blr
+// 	*/
+// }
 
 /*
  * --INFO--

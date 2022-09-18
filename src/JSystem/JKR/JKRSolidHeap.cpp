@@ -1,4 +1,5 @@
 #include "types.h"
+#include "JSystem/JKR/JKRHeap.h"
 
 /*
     Generated from dpostproc
@@ -84,8 +85,26 @@
  * Address:	80024D70
  * Size:	0000B4
  */
-void JKRSolidHeap::create(unsigned long, JKRHeap*, bool)
+JKRSolidHeap* JKRSolidHeap::create(unsigned long heapSize, JKRHeap* parent, bool p3)
 {
+	if (parent == nullptr) {
+		parent = sRootHeap;
+	}
+	if (heapSize == 0xFFFFFFFF) {
+		heapSize = parent->getMaxAllocatableSize(0x10);
+	}
+	u32 byteCount = heapSize & 0xFFFFFFF0;
+	JKRSolidHeap* result;
+	if (byteCount < 0x80) {
+		result = nullptr;
+	} else {
+		void* memory = JKRHeap::alloc(byteCount, 0x10, parent);
+		if (memory) {
+			// (*((JKRSolidHeap*)memory)).JKRSolidHeap(((u8*)memory)+sizeof(JKRSolidHeap), byteCount-0x80, parent, p3);
+		}
+	}
+	// result = new(parent, 0x10) JKRSolidHeap(sizeof(JKRSolidHeap))
+	return result;
 	/*
 	stwu     r1, -0x20(r1)
 	mflr     r0
@@ -154,6 +173,7 @@ lbl_80024E08:
  */
 void JKRSolidHeap::do_destroy()
 {
+
 	/*
 	stwu     r1, -0x10(r1)
 	mflr     r0
@@ -328,7 +348,7 @@ lbl_80024FF0:
  * Address:	8002500C
  * Size:	0000B0
  */
-void JKRSolidHeap::do_alloc(unsigned long, int)
+void* JKRSolidHeap::do_alloc(unsigned long, int)
 {
 	/*
 	stwu     r1, -0x20(r1)
@@ -645,7 +665,7 @@ void JKRSolidHeap::do_fillFreeArea() { }
  * Address:	80025380
  * Size:	000030
  */
-void JKRSolidHeap::do_resize(void*, unsigned long)
+int JKRSolidHeap::do_resize(void*, unsigned long)
 {
 	/*
 	stwu     r1, -0x10(r1)
@@ -668,7 +688,7 @@ void JKRSolidHeap::do_resize(void*, unsigned long)
  * Address:	800253B0
  * Size:	000030
  */
-void JKRSolidHeap::do_getSize(void*)
+int JKRSolidHeap::do_getSize(void*)
 {
 	/*
 	stwu     r1, -0x10(r1)
@@ -691,7 +711,7 @@ void JKRSolidHeap::do_getSize(void*)
  * Address:	800253E0
  * Size:	00008C
  */
-void JKRSolidHeap::check()
+bool JKRSolidHeap::check()
 {
 	/*
 	stwu     r1, -0x10(r1)
@@ -739,7 +759,7 @@ lbl_80025448:
  * Address:	8002546C
  * Size:	000104
  */
-void JKRSolidHeap::dump()
+bool JKRSolidHeap::dump()
 {
 	/*
 	stwu     r1, -0x30(r1)
@@ -849,7 +869,7 @@ void JKRSolidHeap::state_register(JKRHeap::TState*, unsigned long) const
  * Address:	800255CC
  * Size:	000030
  */
-void JKRSolidHeap::state_compare(const JKRHeap::TState&, const JKRHeap::TState&) const
+bool JKRSolidHeap::state_compare(const JKRHeap::TState&, const JKRHeap::TState&) const
 {
 	/*
 	.loc_0x0:
@@ -875,7 +895,7 @@ void JKRSolidHeap::state_compare(const JKRHeap::TState&, const JKRHeap::TState&)
  * Address:	800255FC
  * Size:	00000C
  */
-void JKRSolidHeap::getHeapType()
+u32 JKRSolidHeap::getHeapType()
 {
 	/*
 	lis      r3, 0x534C4944@ha
@@ -889,7 +909,7 @@ void JKRSolidHeap::getHeapType()
  * Address:	80025608
  * Size:	000008
  */
-void JKRSolidHeap::do_getFreeSize()
+u32 JKRSolidHeap::do_getFreeSize()
 {
 	/*
 	lwz      r3, 0x6c(r3)
@@ -902,7 +922,7 @@ void JKRSolidHeap::do_getFreeSize()
  * Address:	80025610
  * Size:	000008
  */
-void JKRSolidHeap::do_getMaxFreeBlock()
+void* JKRSolidHeap::do_getMaxFreeBlock()
 {
 	/*
 	lwz      r3, 0x70(r3)
@@ -915,7 +935,7 @@ void JKRSolidHeap::do_getMaxFreeBlock()
  * Address:	80025618
  * Size:	000020
  */
-void JKRSolidHeap::do_getTotalFreeSize()
+u32 JKRSolidHeap::do_getTotalFreeSize()
 {
 	/*
 	stwu     r1, -0x10(r1)

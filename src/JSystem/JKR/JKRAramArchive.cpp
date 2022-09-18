@@ -65,7 +65,7 @@
  * __ct
  */
 JKRAramArchive::JKRAramArchive(long p1, JKRArchive::EMountDirection mountDirection)
-    : JKRArchive(p1, EMM_Unk2)
+    : JKRArchive(p1, EMM_Aram)
     , _60(mountDirection)
 {
 	if (open(p1)) {
@@ -537,7 +537,7 @@ lbl_80018ED8:
  * Address:	80018EEC
  * Size:	000124
  */
-u32 JKRAramArchive::fetchResource(JKRArchive::SDIFileEntry*, unsigned long*)
+void* JKRAramArchive::fetchResource(JKRArchive::SDIFileEntry*, unsigned long*)
 {
 	/*
 	stwu     r1, -0x20(r1)
@@ -905,7 +905,7 @@ void JKRAramArchive::fetchResource_subroutine(u32, u32, JKRHeap*, s32, u8**)
  * Address:	80019310
  * Size:	000134
  */
-long JKRAramArchive::getExpandedResSize(const void*) const
+u32 JKRAramArchive::getExpandedResSize(const void*) const
 {
 	/*
 	stwu     r1, -0x60(r1)

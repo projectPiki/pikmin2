@@ -51,6 +51,7 @@
  * --INFO--
  * Address:	80025638
  * Size:	0000B8
+ * __ct__9JKRThreadFUlii
  */
 JKRThread::JKRThread(unsigned long stackSize, int msgCount, int threadPriority)
     : JKRDisposer()
@@ -67,63 +68,13 @@ JKRThread::JKRThread(unsigned long stackSize, int msgCount, int threadPriority)
 	}
 	setCommon_heapSpecified(heap, stackSize, threadPriority);
 	setCommon_mesgQueue(m_heap, msgCount);
-
-	/*
-	stwu     r1, -0x20(r1)
-	mflr     r0
-	stw      r0, 0x24(r1)
-	stw      r31, 0x1c(r1)
-	mr       r31, r6
-	stw      r30, 0x18(r1)
-	mr       r30, r5
-	stw      r29, 0x14(r1)
-	mr       r29, r4
-	stw      r28, 0x10(r1)
-	mr       r28, r3
-	bl       __ct__11JKRDisposerFv
-	lis      r3, __vt__9JKRThread@ha
-	mr       r4, r28
-	addi     r0, r3, __vt__9JKRThread@l
-	addi     r3, r28, 0x18
-	stw      r0, 0(r28)
-	bl       __ct__10JSUPtrLinkFPv
-	li       r0, 0
-	mr       r3, r28
-	stw      r0, 0x68(r28)
-	stw      r0, 0x64(r28)
-	stw      r0, 0x6c(r28)
-	stb      r0, 0x60(r28)
-	stw      r0, 0x70(r28)
-	bl       findFromRoot__7JKRHeapFPv
-	or.      r4, r3, r3
-	bne      lbl_800256AC
-	lwz      r4, sSystemHeap__7JKRHeap@sda21(r13)
-
-lbl_800256AC:
-	mr       r3, r28
-	mr       r5, r29
-	mr       r6, r31
-	bl       setCommon_heapSpecified__9JKRThreadFP7JKRHeapUli
-	lwz      r4, 0x28(r28)
-	mr       r3, r28
-	mr       r5, r30
-	bl       setCommon_mesgQueue__9JKRThreadFP7JKRHeapi
-	lwz      r0, 0x24(r1)
-	mr       r3, r28
-	lwz      r31, 0x1c(r1)
-	lwz      r30, 0x18(r1)
-	lwz      r29, 0x14(r1)
-	lwz      r28, 0x10(r1)
-	mtlr     r0
-	addi     r1, r1, 0x20
-	blr
-	*/
 }
 
 /*
  * --INFO--
  * Address:	800256F0
  * Size:	0000A0
+ * __ct__9JKRThreadFP7JKRHeapUlii
  */
 JKRThread::JKRThread(JKRHeap* heap, unsigned long stackSize, int msgCount, int threadPriority)
     : JKRDisposer()
@@ -135,61 +86,17 @@ JKRThread::JKRThread(JKRHeap* heap, unsigned long stackSize, int msgCount, int t
 	_60 = 0;
 	_70 = 0;
 	if (heap == nullptr) {
-		heap = JKRHeap::sSystemHeap;
+		heap = JKRHeap::sCurrentHeap;
 	}
 	setCommon_heapSpecified(heap, stackSize, threadPriority);
 	setCommon_mesgQueue(m_heap, msgCount);
-
-	/*
-	stwu     r1, -0x20(r1)
-	mflr     r0
-	stw      r0, 0x24(r1)
-	stmw     r27, 0xc(r1)
-	mr       r27, r3
-	mr       r28, r4
-	mr       r29, r5
-	mr       r30, r6
-	mr       r31, r7
-	bl       __ct__11JKRDisposerFv
-	lis      r3, __vt__9JKRThread@ha
-	mr       r4, r27
-	addi     r0, r3, __vt__9JKRThread@l
-	addi     r3, r27, 0x18
-	stw      r0, 0(r27)
-	bl       __ct__10JSUPtrLinkFPv
-	li       r0, 0
-	cmplwi   r28, 0
-	stw      r0, 0x68(r27)
-	stw      r0, 0x64(r27)
-	stw      r0, 0x6c(r27)
-	stb      r0, 0x60(r27)
-	stw      r0, 0x70(r27)
-	bne      lbl_80025754
-	lwz      r28, sCurrentHeap__7JKRHeap@sda21(r13)
-
-lbl_80025754:
-	mr       r3, r27
-	mr       r4, r28
-	mr       r5, r29
-	mr       r6, r31
-	bl       setCommon_heapSpecified__9JKRThreadFP7JKRHeapUli
-	lwz      r4, 0x28(r27)
-	mr       r3, r27
-	mr       r5, r30
-	bl       setCommon_mesgQueue__9JKRThreadFP7JKRHeapi
-	mr       r3, r27
-	lmw      r27, 0xc(r1)
-	lwz      r0, 0x24(r1)
-	mtlr     r0
-	addi     r1, r1, 0x20
-	blr
-	*/
 }
 
 /*
  * --INFO--
  * Address:	80025790
  * Size:	0000A8
+ * __ct__9JKRThreadFP8OSThreadi
  */
 JKRThread::JKRThread(OSThread* thread, int msgCount)
     : JKRDisposer()
@@ -202,53 +109,9 @@ JKRThread::JKRThread(OSThread* thread, int msgCount)
 	_70         = 0;
 	m_heap      = nullptr;
 	m_thread    = thread;
-	m_stackSize = (int*)thread->stackEnd - (int*)thread->stackBase;
+	m_stackSize = (u32)thread->stackEnd - (u32)thread->stackBase;
 	m_stack     = thread->stackBase;
-	setCommon_mesgQueue(m_heap, msgCount);
-	/*
-	stwu     r1, -0x20(r1)
-	mflr     r0
-	stw      r0, 0x24(r1)
-	stw      r31, 0x1c(r1)
-	mr       r31, r5
-	stw      r30, 0x18(r1)
-	mr       r30, r4
-	stw      r29, 0x14(r1)
-	mr       r29, r3
-	bl       __ct__11JKRDisposerFv
-	lis      r3, __vt__9JKRThread@ha
-	mr       r4, r29
-	addi     r0, r3, __vt__9JKRThread@l
-	addi     r3, r29, 0x18
-	stw      r0, 0(r29)
-	bl       __ct__10JSUPtrLinkFPv
-	li       r0, 0
-	mr       r3, r29
-	stw      r0, 0x68(r29)
-	mr       r5, r31
-	stw      r0, 0x64(r29)
-	stw      r0, 0x6c(r29)
-	stb      r0, 0x60(r29)
-	stw      r0, 0x70(r29)
-	stw      r0, 0x28(r29)
-	stw      r30, 0x2c(r29)
-	lwz      r4, 0x304(r30)
-	lwz      r0, 0x308(r30)
-	subf     r0, r4, r0
-	stw      r0, 0x5c(r29)
-	lwz      r0, 0x304(r30)
-	stw      r0, 0x58(r29)
-	lwz      r4, sSystemHeap__7JKRHeap@sda21(r13)
-	bl       setCommon_mesgQueue__9JKRThreadFP7JKRHeapi
-	lwz      r0, 0x24(r1)
-	mr       r3, r29
-	lwz      r31, 0x1c(r1)
-	lwz      r30, 0x18(r1)
-	lwz      r29, 0x14(r1)
-	mtlr     r0
-	addi     r1, r1, 0x20
-	blr
-	*/
+	setCommon_mesgQueue(JKRHeap::sSystemHeap, msgCount);
 }
 
 /*
@@ -333,7 +196,7 @@ void JKRThread::setCommon_mesgQueue(JKRHeap* heap, int msgCount)
 {
 	m_msgCount  = msgCount;
 	m_msgBuffer = (OSMessage*)JKRHeap::alloc(m_msgCount << 2, 0, heap);
-	OSInitMessageQueue(&m_msgQueue, m_msgBuffer, m_msgCount);
+	OSInitMessageQueue(&m_msgQueue, (void**)m_msgBuffer, m_msgCount);
 	JKRThread::sThreadList.append(&m_link);
 	_74 = 0;
 	_78 = 0;
@@ -344,51 +207,13 @@ void JKRThread::setCommon_mesgQueue(JKRHeap* heap, int msgCount)
  * Address:	80025980
  * Size:	000090
  */
-bool JKRThread::setCommon_heapSpecified(JKRHeap* heap, unsigned long stackSize, int threadPriority)
+BOOL JKRThread::setCommon_heapSpecified(JKRHeap* heap, unsigned long stackSize, int threadPriority)
 {
 	m_heap      = heap;
 	m_stackSize = stackSize & ~0x1F;
 	m_stack     = JKRHeap::alloc(m_stackSize, 0x20, m_heap);
 	m_thread    = (OSThread*)JKRHeap::alloc(sizeof(OSThread), 0x20, m_heap);
-	return OSCreateThread(m_thread, &JKRThread::start, this, (int*)m_stack + m_stackSize, m_stackSize, threadPriority, 1);
-	/*
-	stwu     r1, -0x10(r1)
-	mflr     r0
-	stw      r0, 0x14(r1)
-	rlwinm   r0, r5, 0, 0, 0x1a
-	stw      r31, 0xc(r1)
-	mr       r31, r6
-	stw      r30, 8(r1)
-	mr       r30, r3
-	stw      r4, 0x28(r3)
-	li       r4, 0x20
-	stw      r0, 0x5c(r3)
-	lwz      r3, 0x5c(r3)
-	lwz      r5, 0x28(r30)
-	bl       alloc__7JKRHeapFUliP7JKRHeap
-	stw      r3, 0x58(r30)
-	li       r3, 0x318
-	li       r4, 0x20
-	lwz      r5, 0x28(r30)
-	bl       alloc__7JKRHeapFUliP7JKRHeap
-	stw      r3, 0x2c(r30)
-	lis      r3, start__9JKRThreadFPv@ha
-	addi     r4, r3, start__9JKRThreadFPv@l
-	mr       r5, r30
-	lwz      r7, 0x5c(r30)
-	mr       r8, r31
-	lwz      r0, 0x58(r30)
-	li       r9, 1
-	lwz      r3, 0x2c(r30)
-	add      r6, r0, r7
-	bl       OSCreateThread
-	lwz      r0, 0x14(r1)
-	lwz      r31, 0xc(r1)
-	lwz      r30, 8(r1)
-	mtlr     r0
-	addi     r1, r1, 0x10
-	blr
-	*/
+	return OSCreateThread(m_thread, &JKRThread::start, this, (void*)((u32)m_stack + m_stackSize), m_stackSize, threadPriority, 1);
 }
 
 /*
@@ -396,30 +221,14 @@ bool JKRThread::setCommon_heapSpecified(JKRHeap* heap, unsigned long stackSize, 
  * Address:	80025A10
  * Size:	00002C
  */
-void* JKRThread::start(void*)
-{
-	return (void*)run();
-	/*
-	stwu     r1, -0x10(r1)
-	mflr     r0
-	stw      r0, 0x14(r1)
-	lwz      r12, 0(r3)
-	lwz      r12, 0xc(r12)
-	mtctr    r12
-	bctrl
-	lwz      r0, 0x14(r1)
-	mtlr     r0
-	addi     r1, r1, 0x10
-	blr
-	*/
-}
+void* JKRThread::start(void* thread) { return static_cast<JKRThread*>(thread)->run(); }
 
 /*
  * --INFO--
  * Address:	80025A3C
  * Size:	000008
  */
-u32 JKRThread::run() { return 0x0; }
+void* JKRThread::run() { return nullptr; }
 
 /*
  * --INFO--
@@ -849,7 +658,7 @@ lbl_80025F68:
  * Address:	80025F7C
  * Size:	00009C
  */
-u32 JKRTask::run()
+void* JKRTask::run()
 {
 	/*
 	stwu     r1, -0x20(r1)

@@ -136,7 +136,7 @@ lbl_8001CA28:
  * Address:	8001CA44
  * Size:	0000C8
  */
-void JKRDecomp::run()
+void* JKRDecomp::run()
 {
 	void* inputBuffer[1];
 	JKRDecompCommand* command;

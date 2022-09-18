@@ -1,6 +1,9 @@
 #include "Dolphin/dvd.h"
+#include "JSystem/JKR/Aram.h"
 #include "JSystem/JKR/JKRArchive.h"
 #include "JSystem/JKR/JKRDisposer.h"
+#include "JSystem/JKR/JKRHeap.h"
+#include "JSystem/JKR/JKRFileFinder.h"
 #include "types.h"
 
 /*
@@ -31,6 +34,25 @@
         .4byte getExpandSize__10JKRArchiveCFPQ210JKRArchive12SDIFileEntry
 */
 
+JKRArchive* JKRArchive::check_mount_already(long entryNum, JKRHeap* heap)
+{
+	JKRFileLoader* loader = nullptr;
+	if (heap == nullptr) {
+		heap = JKRHeap::sCurrentHeap;
+	}
+	for (JSULink<JKRFileLoader>* link = JKRArchive::sVolumeList.getFirst(); link != nullptr; link = link->getNext()) {
+		JKRFileLoader* loader = link->getObject();
+		if (loader->m_magicWord == 'RARC') {
+			JKRArchive* archive = static_cast<JKRArchive*>(loader);
+			if (archive->_40 == entryNum && archive->_38 == heap) {
+				archive->m_mountCount++;
+				return archive;
+			}
+		}
+	}
+	return nullptr;
+}
+
 /*
  * --INFO--
  * Address:	8001B130
@@ -46,9 +68,22 @@ JKRArchive* JKRArchive::mount(const char* path, EMountMode mode, JKRHeap* heap, 
  * --INFO--
  * Address:	8001B194
  * Size:	0000D8
+ * mount__10JKRArchiveFPvP7JKRHeapQ210JKRArchive15EMountDirection
  */
-JKRArchive* JKRArchive::mount(void*, JKRHeap*, EMountDirection)
+JKRArchive* JKRArchive::mount(void* p1, JKRHeap* heap, EMountDirection mountDirection)
 {
+	// JKRHeap* aHeap = heap;
+	// if (aHeap == nullptr) {
+	// 	aHeap = JKRHeap::sCurrentHeap;
+	// }
+	JKRArchive* archive = check_mount_already((long)p1, heap);
+	if (archive) {
+		return archive;
+	} else {
+		int i   = (mountDirection == EMD_Unk1) ? 4 : -4;
+		archive = new (heap, i) JKRMemArchive(p1, 0xFFFF, MBF_0);
+	}
+	return archive;
 	/*
 	stwu     r1, -0x10(r1)
 	mflr     r0
@@ -129,9 +164,40 @@ lbl_8001B258:
  * --INFO--
  * Address:	8001B26C
  * Size:	0001D8
+ * mount__10JKRArchiveFlQ210JKRArchive10EMountModeP7JKRHeapQ210JKRArchive15EMountDirection
  */
-JKRArchive* JKRArchive::mount(long, EMountMode, JKRHeap*, EMountDirection)
+JKRArchive* JKRArchive::mount(long entryNum, EMountMode mountMode, JKRHeap* heap, EMountDirection mountDirection)
 {
+	// JKRHeap* aHeap = heap;
+	// if (heap == nullptr) {
+	// 	aHeap = JKRHeap::sCurrentHeap;
+	// }
+	JKRArchive* archive = check_mount_already(entryNum, heap);
+	if (archive) {
+		return archive;
+	} else {
+		int i = (mountDirection == EMD_Unk1) ? 4 : -4;
+		switch (mountMode) {
+		case EMM_Mem:
+			archive = new (heap, i) JKRMemArchive(entryNum, mountDirection);
+			break;
+		case EMM_Aram:
+			archive = new (heap, i) JKRAramArchive(entryNum, mountDirection);
+			break;
+		case EMM_Dvd:
+			archive = new (heap, i) JKRDvdArchive(entryNum, mountDirection);
+			break;
+		case EMM_Comp:
+			archive = new (heap, i) JKRCompArchive(entryNum, mountDirection);
+			break;
+		}
+		if (archive != nullptr && archive->m_mountMode == EMM_Unk0) {
+			delete archive;
+			archive = nullptr;
+		}
+		// archive = new(heap, (mountDirection == EMD_Unk1) ? 4 : -4) JKRMemArchive(entryNum, 0xFFFF, 0);
+	}
+	return archive;
 	/*
 	.loc_0x0:
 	  stwu      r1, -0x10(r1)
@@ -314,55 +380,10 @@ bool JKRArchive::becomeCurrent(const char* path)
 	}
 	bool result = (entry != nullptr);
 	if (result) {
-		int index      = entry - _48;
-		sCurrentDirID  = (index >> 4) + (index < 0 && ((index & 0xF) != 0));
 		sCurrentVolume = this;
+		sCurrentDirID  = (entry - _48);
 	}
 	return result;
-	/*
-	stwu     r1, -0x10(r1)
-	mflr     r0
-	stw      r0, 0x14(r1)
-	lbz      r0, 0(r4)
-	stw      r31, 0xc(r1)
-	mr       r31, r3
-	cmpwi    r0, 0x2f
-	bne      lbl_8001B484
-	lbzu     r0, 1(r4)
-	extsb.   r0, r0
-	bne      lbl_8001B474
-	li       r4, 0
-
-lbl_8001B474:
-	mr       r3, r31
-	li       r5, 0
-	bl       findDirectory__10JKRArchiveCFPCcUl
-	b        lbl_8001B48C
-
-lbl_8001B484:
-	lwz      r5, sCurrentDirID__10JKRArchive@sda21(r13)
-	bl       findDirectory__10JKRArchiveCFPCcUl
-
-lbl_8001B48C:
-	neg      r0, r3
-	or       r0, r0, r3
-	rlwinm.  r4, r0, 1, 0x1f, 0x1f
-	beq      lbl_8001B4B4
-	stw      r31, sCurrentVolume__13JKRFileLoader@sda21(r13)
-	lwz      r0, 0x48(r31)
-	subf     r0, r0, r3
-	srawi    r0, r0, 4
-	addze    r0, r0
-	stw      r0, sCurrentDirID__10JKRArchive@sda21(r13)
-
-lbl_8001B4B4:
-	lwz      r0, 0x14(r1)
-	mr       r3, r4
-	lwz      r31, 0xc(r1)
-	mtlr     r0
-	addi     r1, r1, 0x10
-	blr
-	*/
 }
 
 /*
@@ -376,47 +397,11 @@ bool JKRArchive::getDirEntry(JKRArchive::SDirEntry* dirEntry, unsigned long p2) 
 	if (!fileEntry) {
 		return false;
 	}
-	char** names  = _54;
+	char* names   = (char*)_54;
 	dirEntry->_00 = fileEntry->_04 >> 0x18;
 	dirEntry->_02 = fileEntry->_00;
-	dirEntry->_04 = names[fileEntry->_04 & 0xFFFFFF];
+	dirEntry->_04 = names + (fileEntry->_04 & 0xFFFFFF);
 	return true;
-	/*
-	stwu     r1, -0x10(r1)
-	mflr     r0
-	stw      r0, 0x14(r1)
-	stw      r31, 0xc(r1)
-	mr       r31, r4
-	mr       r4, r5
-	stw      r30, 8(r1)
-	mr       r30, r3
-	bl       findIdxResource__10JKRArchiveCFUl
-	cmplwi   r3, 0
-	bne      lbl_8001B500
-	li       r3, 0
-	b        lbl_8001B52C
-
-lbl_8001B500:
-	lwz      r0, 4(r3)
-	lwz      r4, 0x54(r30)
-	srwi     r0, r0, 0x18
-	stb      r0, 0(r31)
-	lhz      r0, 0(r3)
-	sth      r0, 2(r31)
-	lwz      r0, 4(r3)
-	li       r3, 1
-	clrlwi   r0, r0, 8
-	add      r0, r4, r0
-	stw      r0, 4(r31)
-
-lbl_8001B52C:
-	lwz      r0, 0x14(r1)
-	lwz      r31, 0xc(r1)
-	lwz      r30, 8(r1)
-	mtlr     r0
-	addi     r1, r1, 0x10
-	blr
-	*/
 }
 
 /*
@@ -424,15 +409,19 @@ lbl_8001B52C:
  * Address:	8001B544
  * Size:	0000B8
  */
-void* JKRArchive::getGlbResource(unsigned long p1, const char* p2, JKRArchive* archive)
+void* JKRArchive::getGlbResource(unsigned long type, const char* name, JKRArchive* archive)
 {
-	// JSULink<JKRFileLoader>* link = sVolumeList.getHead();
-	// void* resource;
-	// if (archive == nullptr) {
-	// 	while (link != nullptr && (link->getValue()->m_magicWord != 'RARC' || ((resource = link->getValue()->getResource(p1, p2)) !=
-	// nullptr))) { 		link = ();
-	// 	}
-	// }
+	void* resource;
+	if (archive != nullptr) {
+		resource = archive->getResource(type, name);
+	} else {
+		for (JSULink<JKRFileLoader>* link = sVolumeList.getFirst(); link != nullptr; link = link->getNext()) {
+			if (link->getObject()->m_magicWord == 'RARC' && (resource = link->getObject()->getResource(type, name))) {
+				break;
+			}
+		}
+	}
+	return resource;
 	/*
 	stwu     r1, -0x20(r1)
 	mflr     r0
@@ -499,6 +488,7 @@ lbl_8001B5E0:
  * --INFO--
  * Address:	8001B5FC
  * Size:	00007C
+ * getResource__10JKRArchiveFPCc
  */
 void* JKRArchive::getResource(const char* path)
 {
@@ -509,53 +499,13 @@ void* JKRArchive::getResource(const char* path)
 		fileEntry = findFsResource(path, sCurrentDirID);
 	}
 	return (fileEntry != nullptr) ? (void*)fetchResource(fileEntry, nullptr) : nullptr;
-	/*
-	stwu     r1, -0x10(r1)
-	mflr     r0
-	stw      r0, 0x14(r1)
-	lbz      r0, 0(r4)
-	stw      r31, 0xc(r1)
-	mr       r31, r3
-	cmpwi    r0, 0x2f
-	bne      lbl_8001B630
-	addi     r4, r4, 1
-	li       r5, 0
-	bl       findFsResource__10JKRArchiveCFPCcUl
-	mr       r4, r3
-	b        lbl_8001B63C
-
-lbl_8001B630:
-	lwz      r5, sCurrentDirID__10JKRArchive@sda21(r13)
-	bl       findFsResource__10JKRArchiveCFPCcUl
-	mr       r4, r3
-
-lbl_8001B63C:
-	cmplwi   r4, 0
-	beq      lbl_8001B660
-	lwz      r12, 0(r31)
-	mr       r3, r31
-	li       r5, 0
-	lwz      r12, 0x40(r12)
-	mtctr    r12
-	bctrl
-	b        lbl_8001B664
-
-lbl_8001B660:
-	li       r3, 0
-
-lbl_8001B664:
-	lwz      r0, 0x14(r1)
-	lwz      r31, 0xc(r1)
-	mtlr     r0
-	addi     r1, r1, 0x10
-	blr
-	*/
 }
 
 /*
  * --INFO--
  * Address:	8001B678
  * Size:	000080
+ * getResource__10JKRArchiveFUlPCc
  */
 void* JKRArchive::getResource(unsigned long type, const char* name)
 {
@@ -566,50 +516,6 @@ void* JKRArchive::getResource(unsigned long type, const char* name)
 		fileEntry = findTypeResource(type, name);
 	}
 	return (fileEntry != nullptr) ? (void*)fetchResource(fileEntry, nullptr) : nullptr;
-	/*
-	stwu     r1, -0x10(r1)
-	mflr     r0
-	cmplwi   r4, 0
-	stw      r0, 0x14(r1)
-	stw      r31, 0xc(r1)
-	mr       r31, r3
-	beq      lbl_8001B6A0
-	addis    r0, r4, 0xc0c1
-	cmplwi   r0, 0x3f3f
-	bne      lbl_8001B6B4
-
-lbl_8001B6A0:
-	mr       r3, r31
-	mr       r4, r5
-	bl       findNameResource__10JKRArchiveCFPCc
-	mr       r4, r3
-	b        lbl_8001B6BC
-
-lbl_8001B6B4:
-	bl       findTypeResource__10JKRArchiveCFUlPCc
-	mr       r4, r3
-
-lbl_8001B6BC:
-	cmplwi   r4, 0
-	beq      lbl_8001B6E0
-	lwz      r12, 0(r31)
-	mr       r3, r31
-	li       r5, 0
-	lwz      r12, 0x40(r12)
-	mtctr    r12
-	bctrl
-	b        lbl_8001B6E4
-
-lbl_8001B6E0:
-	li       r3, 0
-
-lbl_8001B6E4:
-	lwz      r0, 0x14(r1)
-	lwz      r31, 0xc(r1)
-	mtlr     r0
-	addi     r1, r1, 0x10
-	blr
-	*/
 }
 
 /*
@@ -621,39 +527,13 @@ void* JKRArchive::getIdxResource(unsigned long index)
 {
 	SDIFileEntry* fileEntry = findIdxResource(index);
 	return (fileEntry != nullptr) ? (void*)fetchResource(fileEntry, nullptr) : nullptr;
-	/*
-	stwu     r1, -0x10(r1)
-	mflr     r0
-	stw      r0, 0x14(r1)
-	stw      r31, 0xc(r1)
-	mr       r31, r3
-	bl       findIdxResource__10JKRArchiveCFUl
-	or.      r4, r3, r3
-	beq      lbl_8001B734
-	lwz      r12, 0(r31)
-	mr       r3, r31
-	li       r5, 0
-	lwz      r12, 0x40(r12)
-	mtctr    r12
-	bctrl
-	b        lbl_8001B738
-
-lbl_8001B734:
-	li       r3, 0
-
-lbl_8001B738:
-	lwz      r0, 0x14(r1)
-	lwz      r31, 0xc(r1)
-	mtlr     r0
-	addi     r1, r1, 0x10
-	blr
-	*/
 }
 
 /*
  * --INFO--
  * Address:	8001B74C
  * Size:	0000AC
+ * readResource__10JKRArchiveFPvUlUlPCc
  */
 u32 JKRArchive::readResource(void* p1, unsigned long p2, unsigned long type, const char* name)
 {
@@ -804,6 +684,7 @@ lbl_8001B880:
  * --INFO--
  * Address:	8001B89C
  * Size:	00007C
+ * readResource__10JKRArchiveFPvUlUs
  */
 u32 JKRArchive::readResource(void* p1, unsigned long p2, unsigned short index)
 {
@@ -861,70 +742,23 @@ lbl_8001B8FC:
  */
 void JKRArchive::removeResourceAll()
 {
-	// if (_44 != nullptr && m_mountMode != EMM_Unk1) {
-	// 	SDIFileEntry* entry = m_fileEntries;
-	// 	for (int i = 0; i < _44->_08; i++) {
-	// 		if (entry->_10 != nullptr) {
-	// 			JKRHeap::free(entry->_10, _38);
-	// 			entry->_10 = nullptr;
-	// 		}
-	// 		entry++;
-	// 	}
-	// }
-	/*
-	stwu     r1, -0x20(r1)
-	mflr     r0
-	stw      r0, 0x24(r1)
-	stw      r31, 0x1c(r1)
-	stw      r30, 0x18(r1)
-	stw      r29, 0x14(r1)
-	stw      r28, 0x10(r1)
-	mr       r28, r3
-	lwz      r0, 0x44(r3)
-	cmplwi   r0, 0
-	beq      lbl_8001B990
-	lbz      r0, 0x3c(r28)
-	cmplwi   r0, 1
-	beq      lbl_8001B990
-	lwz      r30, 0x4c(r28)
-	li       r29, 0
-	li       r31, 0
-	b        lbl_8001B980
-
-lbl_8001B960:
-	lwz      r3, 0x10(r30)
-	cmplwi   r3, 0
-	beq      lbl_8001B978
-	lwz      r4, 0x38(r28)
-	bl       free__7JKRHeapFPvP7JKRHeap
-	stw      r31, 0x10(r30)
-
-lbl_8001B978:
-	addi     r30, r30, 0x14
-	addi     r29, r29, 1
-
-lbl_8001B980:
-	lwz      r3, 0x44(r28)
-	lwz      r0, 8(r3)
-	cmplw    r29, r0
-	blt      lbl_8001B960
-
-lbl_8001B990:
-	lwz      r0, 0x24(r1)
-	lwz      r31, 0x1c(r1)
-	lwz      r30, 0x18(r1)
-	lwz      r29, 0x14(r1)
-	lwz      r28, 0x10(r1)
-	mtlr     r0
-	addi     r1, r1, 0x20
-	blr
-	*/
+	if (_44 != nullptr && m_mountMode != EMM_Mem) {
+		SDIFileEntry* entry = m_fileEntries;
+		for (int i = 0; i < _44->_08; i++) {
+			if (entry->_10 != nullptr) {
+				JKRHeap::free(entry->_10, _38);
+				entry->_10 = nullptr;
+			}
+			entry++;
+		}
+	}
 }
 
 /*
  * --INFO--
  * Address:	8001B9B0
  * Size:	000060
+ * removeResource__10JKRArchiveFPv
  */
 bool JKRArchive::removeResource(void* resource)
 {
@@ -970,35 +804,16 @@ lbl_8001B9F8:
  * --INFO--
  * Address:	8001BA10
  * Size:	00003C
+ * detachResource__10JKRArchiveFPv
  */
 bool JKRArchive::detachResource(void* resource)
 {
 	SDIFileEntry* entry = findPtrResource(resource);
-	if (entry != nullptr) {
-		entry->_10 = nullptr;
+	if (entry == nullptr) {
+		return false;
 	}
-	return (entry != nullptr);
-	/*
-	stwu     r1, -0x10(r1)
-	mflr     r0
-	stw      r0, 0x14(r1)
-	bl       findPtrResource__10JKRArchiveCFPCv
-	cmplwi   r3, 0
-	bne      lbl_8001BA30
-	li       r3, 0
-	b        lbl_8001BA3C
-
-lbl_8001BA30:
-	li       r0, 0
-	stw      r0, 0x10(r3)
-	li       r3, 1
-
-lbl_8001BA3C:
-	lwz      r0, 0x14(r1)
-	mtlr     r0
-	addi     r1, r1, 0x10
-	blr
-	*/
+	entry->_10 = nullptr;
+	return true;
 }
 
 /*
@@ -1009,7 +824,7 @@ lbl_8001BA3C:
 long JKRArchive::getResSize(const void* resource) const
 {
 	SDIFileEntry* entry = findPtrResource(resource);
-	return (entry == nullptr) ? -1 : entry->m_size;
+	return (entry == nullptr) ? -1 : entry->getSize();
 }
 
 /*
@@ -1017,44 +832,19 @@ long JKRArchive::getResSize(const void* resource) const
  * Address:	8001BA80
  * Size:	000060
  */
-int JKRArchive::countFile(const char*) const
+u16 JKRArchive::countFile(const char* path) const
 {
-	/*
-	stwu     r1, -0x10(r1)
-	mflr     r0
-	stw      r0, 0x14(r1)
-	lbz      r0, 0(r4)
-	cmpwi    r0, 0x2f
-	bne      lbl_8001BAB4
-	lbzu     r0, 1(r4)
-	extsb.   r0, r0
-	bne      lbl_8001BAA8
-	li       r4, 0
-
-lbl_8001BAA8:
-	li       r5, 0
-	bl       findDirectory__10JKRArchiveCFPCcUl
-	b        lbl_8001BABC
-
-lbl_8001BAB4:
-	lwz      r5, sCurrentDirID__10JKRArchive@sda21(r13)
-	bl       findDirectory__10JKRArchiveCFPCcUl
-
-lbl_8001BABC:
-	cmplwi   r3, 0
-	beq      lbl_8001BACC
-	lhz      r3, 0xa(r3)
-	b        lbl_8001BAD0
-
-lbl_8001BACC:
-	li       r3, 0
-
-lbl_8001BAD0:
-	lwz      r0, 0x14(r1)
-	mtlr     r0
-	addi     r1, r1, 0x10
-	blr
-	*/
+	SDirEntry* dirEntry;
+	if (*path == '/') {
+		const char* pathPtr = path + 1;
+		if (*pathPtr == '\0') {
+			pathPtr = nullptr;
+		}
+		dirEntry = findDirectory(pathPtr, 0);
+	} else {
+		dirEntry = findDirectory(path, sCurrentDirID);
+	}
+	return (dirEntry != nullptr) ? dirEntry->_0A : 0;
 }
 
 /*
@@ -1062,8 +852,22 @@ lbl_8001BAD0:
  * Address:	8001BAE0
  * Size:	0000AC
  */
-unkptr JKRArchive::getFirstFile(const char*) const
+JKRFileFinder* JKRArchive::getFirstFile(const char* path) const
 {
+	SDirEntry* dirEntry;
+	if (*path == '/') {
+		const char* pathPtr = path + 1;
+		if (*pathPtr == '\0') {
+			pathPtr = nullptr;
+		}
+		dirEntry = findDirectory(pathPtr, 0);
+	} else {
+		dirEntry = findDirectory(path, sCurrentDirID);
+	}
+	JKRArcFinder* finder = (dirEntry != nullptr) ? new (JKRHeap::sSystemHeap, 0)
+	                               JKRArcFinder(const_cast<JKRArchive*>(this), dirEntry->_0C, dirEntry->_0A)
+	                                             : nullptr;
+	return finder;
 	/*
 	stwu     r1, -0x10(r1)
 	mflr     r0
@@ -1128,4 +932,4 @@ lbl_8001BB74:
  * Address:	8001BB8C
  * Size:	00002C
  */
-long JKRArchive::getExpandedResSize(const void* resource) const { return getResSize(resource); }
+u32 JKRArchive::getExpandedResSize(const void* resource) const { return getResSize(resource); }

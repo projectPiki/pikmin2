@@ -1,3 +1,4 @@
+#include "Dolphin/os.h"
 #include "types.h"
 #include "Dolphin/dvd.h"
 #include "JSystem/JKR/JKRFile.h"
@@ -431,7 +432,7 @@ long JKRDvdFile::sync()
 {
 	OSMessage buffer[1];
 	OSLockMutex(&_1C);
-	OSReceiveMessage(&_C0, buffer, MSG_QUEUE_SHOULD_BLOCK);
+	OSReceiveMessage(&_C0, buffer, OS_MESSAGE_BLOCKING);
 	_F4 = nullptr;
 	OSUnlockMutex(&_1C);
 	return (u32)*buffer;

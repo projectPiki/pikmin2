@@ -1,4 +1,5 @@
 #include "types.h"
+#include "JSystem/JKR/JKRHeap.h"
 
 /*
     Generated from dpostproc
@@ -138,7 +139,7 @@
  * Address:	8001FE48
  * Size:	000080
  */
-void JKRExpHeap::createRoot(int, bool)
+JKRExpHeap* JKRExpHeap::createRoot(int, bool)
 {
 	/*
 	stwu     r1, -0x20(r1)
@@ -185,7 +186,7 @@ lbl_8001FEA8:
  * Address:	8001FEC8
  * Size:	0000E4
  */
-void JKRExpHeap::create(unsigned long, JKRHeap*, bool)
+JKRExpHeap* JKRExpHeap::create(unsigned long, JKRHeap*, bool)
 {
 	/*
 	stwu     r1, -0x20(r1)
@@ -404,7 +405,7 @@ lbl_80020114:
  * Address:	80020130
  * Size:	00011C
  */
-void JKRExpHeap::do_alloc(unsigned long, int)
+void* JKRExpHeap::do_alloc(unsigned long, int)
 {
 	/*
 	stwu     r1, -0x20(r1)
@@ -498,7 +499,7 @@ lbl_80020220:
  * Address:	8002024C
  * Size:	000254
  */
-void JKRExpHeap::allocFromHead(unsigned long, int)
+u32 JKRExpHeap::allocFromHead(unsigned long, int)
 {
 	/*
 	stwu     r1, -0x30(r1)
@@ -693,7 +694,7 @@ lbl_8002048C:
  * Address:	800204A0
  * Size:	0000E4
  */
-void JKRExpHeap::allocFromHead(unsigned long)
+u32 JKRExpHeap::allocFromHead(unsigned long)
 {
 	/*
 	stwu     r1, -0x10(r1)
@@ -778,7 +779,7 @@ lbl_8002056C:
  * Address:	80020584
  * Size:	000158
  */
-void JKRExpHeap::allocFromTail(unsigned long, int)
+u32 JKRExpHeap::allocFromTail(unsigned long, int)
 {
 	/*
 	stwu     r1, -0x20(r1)
@@ -894,7 +895,7 @@ lbl_800206C8:
  * Address:	800206DC
  * Size:	0000E0
  */
-void JKRExpHeap::allocFromTail(unsigned long)
+u32 JKRExpHeap::allocFromTail(unsigned long)
 {
 	/*
 	stwu     r1, -0x20(r1)
@@ -1022,7 +1023,7 @@ lbl_80020810:
  * Address:	80020830
  * Size:	000094
  */
-void JKRExpHeap::freeGroup(unsigned char)
+int JKRExpHeap::freeGroup(unsigned char)
 {
 	/*
 	stwu     r1, -0x20(r1)
@@ -1179,7 +1180,7 @@ void JKRExpHeap::do_fillFreeArea() { }
  * Address:	800209D4
  * Size:	000058
  */
-void JKRExpHeap::do_changeGroupID(unsigned char)
+u8 JKRExpHeap::do_changeGroupID(unsigned char)
 {
 	/*
 	stwu     r1, -0x20(r1)
@@ -1212,7 +1213,7 @@ void JKRExpHeap::do_changeGroupID(unsigned char)
  * Address:	80020A2C
  * Size:	0001BC
  */
-void JKRExpHeap::do_resize(void*, unsigned long)
+int JKRExpHeap::do_resize(void*, unsigned long)
 {
 	/*
 	stwu     r1, -0x20(r1)
@@ -1358,7 +1359,7 @@ lbl_80020BC8:
  * Address:	80020BE8
  * Size:	000088
  */
-void JKRExpHeap::do_getSize(void*)
+int JKRExpHeap::do_getSize(void*)
 {
 	/*
 	stwu     r1, -0x20(r1)
@@ -1409,7 +1410,7 @@ lbl_80020C54:
  * Address:	80020C70
  * Size:	00006C
  */
-void JKRExpHeap::do_getFreeSize()
+u32 JKRExpHeap::do_getFreeSize()
 {
 	/*
 	stwu     r1, -0x10(r1)
@@ -1453,7 +1454,7 @@ lbl_80020CB0:
  * Address:	80020CDC
  * Size:	000074
  */
-void JKRExpHeap::do_getMaxFreeBlock()
+void* JKRExpHeap::do_getMaxFreeBlock()
 {
 	/*
 	stwu     r1, -0x10(r1)
@@ -1499,7 +1500,7 @@ lbl_80020D24:
  * Address:	80020D50
  * Size:	000064
  */
-void JKRExpHeap::do_getTotalFreeSize()
+u32 JKRExpHeap::do_getTotalFreeSize()
 {
 	/*
 	stwu     r1, -0x10(r1)
@@ -1539,7 +1540,7 @@ lbl_80020D88:
  * Address:	80020DB4
  * Size:	000098
  */
-void JKRExpHeap::appendUsedList(JKRExpHeap::CMemBlock*)
+u32 JKRExpHeap::appendUsedList(JKRExpHeap::CMemBlock*)
 {
 	/*
 	stwu     r1, -0x10(r1)
@@ -1912,7 +1913,7 @@ lbl_800211A0:
  * Address:	800211B4
  * Size:	0001E0
  */
-void JKRExpHeap::check()
+bool JKRExpHeap::check()
 {
 	/*
 	stwu     r1, -0x20(r1)
@@ -2071,7 +2072,7 @@ lbl_80021374:
  * Address:	80021394
  * Size:	0001C8
  */
-void JKRExpHeap::dump()
+bool JKRExpHeap::dump()
 {
 	/*
 	stwu     r1, -0x40(r1)
@@ -2214,7 +2215,7 @@ lbl_800214E4:
  * Address:	8002155C
  * Size:	0001F8
  */
-void JKRExpHeap::dump_sort()
+bool JKRExpHeap::dump_sort()
 {
 	/*
 	stwu     r1, -0x40(r1)
@@ -2393,7 +2394,7 @@ void JKRExpHeap::CMemBlock::initiate(JKRExpHeap::CMemBlock*, JKRExpHeap::CMemBlo
  * Address:	80021774
  * Size:	000044
  */
-void JKRExpHeap::CMemBlock::allocFore(unsigned long, unsigned char, unsigned char, unsigned char, unsigned char)
+u32 JKRExpHeap::CMemBlock::allocFore(unsigned long, unsigned char, unsigned char, unsigned char, unsigned char)
 {
 	/*
 	.loc_0x0:
@@ -2424,7 +2425,7 @@ void JKRExpHeap::CMemBlock::allocFore(unsigned long, unsigned char, unsigned cha
  * Address:	800217B8
  * Size:	000058
  */
-void JKRExpHeap::CMemBlock::allocBack(unsigned long, unsigned char, unsigned char, unsigned char, unsigned char)
+u32 JKRExpHeap::CMemBlock::allocBack(unsigned long, unsigned char, unsigned char, unsigned char, unsigned char)
 {
 	/*
 	.loc_0x0:
@@ -2505,7 +2506,7 @@ lbl_80021850:
  * Address:	80021870
  * Size:	00001C
  */
-void JKRExpHeap::CMemBlock::getHeapBlock(void*)
+u32 JKRExpHeap::CMemBlock::getHeapBlock(void*)
 {
 	/*
 	cmplwi   r3, 0
@@ -2641,7 +2642,7 @@ void JKRExpHeap::state_compare(const JKRHeap::TState&, const JKRHeap::TState&) c
  * Address:	800219B0
  * Size:	00000C
  */
-void JKRExpHeap::getHeapType()
+u32 JKRExpHeap::getHeapType()
 {
 	/*
 	lis      r3, 0x45585048@ha
@@ -2655,8 +2656,9 @@ void JKRExpHeap::getHeapType()
  * Address:	800219BC
  * Size:	000008
  */
-void JKRExpHeap::do_getCurrentGroupId()
+u8 JKRExpHeap::do_getCurrentGroupId()
 {
+	return m_currentGroupID;
 	/*
 	lbz      r3, 0x6d(r3)
 	blr
