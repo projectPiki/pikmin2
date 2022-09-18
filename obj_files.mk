@@ -840,7 +840,7 @@ NISHIMURA:=\
 	$(BUILD_DIR)/asm/plugProjectNishimuraU/SnakeCrowShadow.o\
 	$(BUILD_DIR)/asm/plugProjectNishimuraU/SnakeWholeShadow.o\
 	$(BUILD_DIR)/asm/plugProjectNishimuraU/BombOtakaraMgr.o\
-	$(BUILD_DIR)/asm/plugProjectNishimuraU/BombOtakara.o\
+	$(BUILD_DIR)/src/plugProjectNishimuraU/BombOtakara.o\
 	$(BUILD_DIR)/asm/plugProjectNishimuraU/DangoMushiState.o\
 	$(BUILD_DIR)/asm/plugProjectNishimuraU/DangoMushiMgr.o\
 	$(BUILD_DIR)/asm/plugProjectNishimuraU/DangoMushi.o\
