@@ -1,3 +1,7 @@
+#include "JSystem/JAS/JASBank.h"
+#include "JSystem/JAS/JASCalc.h"
+#include "JSystem/JAS/JASInst.h"
+#include "JSystem/JAS/JASOscillator.h"
 #include "types.h"
 
 /*
@@ -38,107 +42,38 @@
  * Size:	000044
  */
 JASBasicInst::JASBasicInst()
+    : _04(1.0f)
+    , _08(1.0f)
+    , m_effects(nullptr)
+    , m_effectCount(0)
+    , m_oscData(nullptr)
+    , m_oscCount(0)
+    , m_keymapCount(0)
+    , m_keymap(nullptr)
 {
-	/*
-	lis      r5, __vt__7JASInst@ha
-	lis      r4, __vt__12JASBasicInst@ha
-	addi     r0, r5, __vt__7JASInst@l
-	lfs      f0, lbl_80516CA8@sda21(r2)
-	stw      r0, 0(r3)
-	addi     r4, r4, __vt__12JASBasicInst@l
-	li       r0, 0
-	stw      r4, 0(r3)
-	stfs     f0, 4(r3)
-	stfs     f0, 8(r3)
-	stw      r0, 0xc(r3)
-	stw      r0, 0x10(r3)
-	stw      r0, 0x14(r3)
-	stw      r0, 0x18(r3)
-	stw      r0, 0x1c(r3)
-	stw      r0, 0x20(r3)
-	blr
-	*/
 }
 
 /*
  * --INFO--
  * Address:	800998CC
  * Size:	000048
+ * __dt__7JASInstFv
  */
-JASInst::~JASInst()
-{
-	/*
-	stwu     r1, -0x10(r1)
-	mflr     r0
-	stw      r0, 0x14(r1)
-	stw      r31, 0xc(r1)
-	or.      r31, r3, r3
-	beq      lbl_800998FC
-	lis      r5, __vt__7JASInst@ha
-	extsh.   r0, r4
-	addi     r0, r5, __vt__7JASInst@l
-	stw      r0, 0(r31)
-	ble      lbl_800998FC
-	bl       __dl__FPv
-
-lbl_800998FC:
-	lwz      r0, 0x14(r1)
-	mr       r3, r31
-	lwz      r31, 0xc(r1)
-	mtlr     r0
-	addi     r1, r1, 0x10
-	blr
-	*/
-}
+// JASInst::~JASInst()
+// {
+// }
 
 /*
  * --INFO--
  * Address:	80099914
  * Size:	00008C
+ * __dt__12JASBasicInstFv
  */
 JASBasicInst::~JASBasicInst()
 {
-	/*
-	stwu     r1, -0x10(r1)
-	mflr     r0
-	stw      r0, 0x14(r1)
-	stw      r31, 0xc(r1)
-	mr       r31, r4
-	stw      r30, 8(r1)
-	or.      r30, r3, r3
-	beq      lbl_80099984
-	lis      r4, __vt__12JASBasicInst@ha
-	lis      r3, __dt__Q212JASBasicInst7TKeymapFv@ha
-	addi     r0, r4, __vt__12JASBasicInst@l
-	stw      r0, 0(r30)
-	addi     r4, r3, __dt__Q212JASBasicInst7TKeymapFv@l
-	lwz      r3, 0x20(r30)
-	bl       __destroy_new_array
-	lwz      r3, 0xc(r30)
-	bl       __dla__FPv
-	lwz      r3, 0x14(r30)
-	bl       __dla__FPv
-	cmplwi   r30, 0
-	beq      lbl_80099974
-	lis      r3, __vt__7JASInst@ha
-	addi     r0, r3, __vt__7JASInst@l
-	stw      r0, 0(r30)
-
-lbl_80099974:
-	extsh.   r0, r31
-	ble      lbl_80099984
-	mr       r3, r30
-	bl       __dl__FPv
-
-lbl_80099984:
-	lwz      r0, 0x14(r1)
-	mr       r3, r30
-	lwz      r31, 0xc(r1)
-	lwz      r30, 8(r1)
-	mtlr     r0
-	addi     r1, r1, 0x10
-	blr
-	*/
+	delete[] m_keymap;
+	delete[] m_effects;
+	delete[] m_oscData;
 }
 
 /*
@@ -156,7 +91,7 @@ void JASBasicInst::searchKeymap(int) const
  * Address:	800999A0
  * Size:	0001E8
  */
-void JASBasicInst::getParam(int, int, JASInstParam*) const
+bool JASBasicInst::getParam(int, int, JASInstParam*) const
 {
 	/*
 	stwu     r1, -0x30(r1)
@@ -323,56 +258,18 @@ lbl_80099B74:
  * Address:	80099B88
  * Size:	000008
  */
-void JASBasicInst::getKeymapIndex(int) const
-{
-	/*
-	mr       r3, r4
-	blr
-	*/
-}
+int JASBasicInst::getKeymapIndex(int index) const { return index; }
 
 /*
  * --INFO--
  * Address:	80099B90
  * Size:	000084
  */
-void JASBasicInst::setKeyRegionCount(unsigned long)
+void JASBasicInst::setKeyRegionCount(u32 count)
 {
-	/*
-	stwu     r1, -0x10(r1)
-	mflr     r0
-	stw      r0, 0x14(r1)
-	stw      r31, 0xc(r1)
-	mr       r31, r4
-	stw      r30, 8(r1)
-	mr       r30, r3
-	lis      r3, __dt__Q212JASBasicInst7TKeymapFv@ha
-	addi     r0, r3, __dt__Q212JASBasicInst7TKeymapFv@l
-	lwz      r3, 0x20(r30)
-	mr       r4, r0
-	bl       __destroy_new_array
-	bl       getCurrentHeap__7JASBankFv
-	mulli    r6, r31, 0xc
-	mr       r4, r3
-	li       r5, 0
-	addi     r3, r6, 0x10
-	bl       __nwa__FUlP7JKRHeapi
-	lis      r4, __ct__Q212JASBasicInst7TKeymapFv@ha
-	lis      r5, __dt__Q212JASBasicInst7TKeymapFv@ha
-	addi     r4, r4, __ct__Q212JASBasicInst7TKeymapFv@l
-	mr       r7, r31
-	addi     r5, r5, __dt__Q212JASBasicInst7TKeymapFv@l
-	li       r6, 0xc
-	bl       __construct_new_array
-	stw      r3, 0x20(r30)
-	stw      r31, 0x1c(r30)
-	lwz      r0, 0x14(r1)
-	lwz      r31, 0xc(r1)
-	lwz      r30, 8(r1)
-	mtlr     r0
-	addi     r1, r1, 0x10
-	blr
-	*/
+	delete[] m_keymap;
+	m_keymap      = new (JASBank::getCurrentHeap(), 0) TKeymap[count];
+	m_keymapCount = count;
 }
 
 /*
@@ -382,14 +279,9 @@ void JASBasicInst::setKeyRegionCount(unsigned long)
  */
 JASBasicInst::TKeymap::TKeymap(void)
 {
-	/*
-	li       r4, -1
-	li       r0, 0
-	stw      r4, 0(r3)
-	stw      r0, 4(r3)
-	stw      r0, 8(r3)
-	blr
-	*/
+	_00 = -1;
+	_04 = 0;
+	_08 = nullptr;
 }
 
 /*
@@ -397,69 +289,35 @@ JASBasicInst::TKeymap::TKeymap(void)
  * Address:	80099C2C
  * Size:	000078
  */
-void JASBasicInst::setEffectCount(unsigned long)
+void JASBasicInst::setEffectCount(u32 count)
 {
-	/*
-	stwu     r1, -0x10(r1)
-	mflr     r0
-	stw      r0, 0x14(r1)
-	stw      r31, 0xc(r1)
-	mr       r31, r4
-	stw      r30, 8(r1)
-	mr       r30, r3
-	lwz      r3, 0xc(r3)
-	bl       __dla__FPv
-	cmplwi   r31, 0
-	stw      r31, 0x10(r30)
-	bne      lbl_80099C68
-	li       r0, 0
-	stw      r0, 0xc(r30)
-	b        lbl_80099C8C
-
-lbl_80099C68:
-	bl       getCurrentHeap__7JASBankFv
-	mr       r4, r3
-	slwi     r3, r31, 2
-	li       r5, 0
-	bl       __nwa__FUlP7JKRHeapi
-	stw      r3, 0xc(r30)
-	slwi     r4, r31, 2
-	lwz      r3, 0xc(r30)
-	bl       bzero__7JASCalcFPvUl
-
-lbl_80099C8C:
-	lwz      r0, 0x14(r1)
-	lwz      r31, 0xc(r1)
-	lwz      r30, 8(r1)
-	mtlr     r0
-	addi     r1, r1, 0x10
-	blr
-	*/
+	delete[] m_effects;
+	m_effectCount = count;
+	if (count == 0) {
+		m_effects = nullptr;
+	} else {
+		m_effects = new (JASBank::getCurrentHeap(), 0) JASInstEffect*[count];
+		JASCalc::bzero(m_effects, sizeof(JASInstEffect*) * count);
+	}
 }
 
 /*
  * --INFO--
  * Address:	80099CA4
  * Size:	000010
+ * setEffect__12JASBasicInstFiP13JASInstEffect
  */
-void JASBasicInst::setEffect(int, JASInstEffect*)
-{
-	/*
-	lwz      r3, 0xc(r3)
-	slwi     r0, r4, 2
-	stwx     r5, r3, r0
-	blr
-	*/
-}
+void JASBasicInst::setEffect(int index, JASInstEffect* effect) { m_effects[index] = effect; }
 
 /*
  * --INFO--
  * Address:	........
  * Size:	000024
  */
-void JASBasicInst::getEffect(int)
+JASInstEffect* JASBasicInst::getEffect(int index)
 {
 	// UNUSED FUNCTION
+	return (index >= m_effectCount) ? nullptr : m_effects[index];
 }
 
 /*
@@ -467,143 +325,71 @@ void JASBasicInst::getEffect(int)
  * Address:	80099CB4
  * Size:	000078
  */
-void JASBasicInst::setOscCount(unsigned long)
+void JASBasicInst::setOscCount(u32 count)
 {
-	/*
-	stwu     r1, -0x10(r1)
-	mflr     r0
-	stw      r0, 0x14(r1)
-	stw      r31, 0xc(r1)
-	mr       r31, r4
-	stw      r30, 8(r1)
-	mr       r30, r3
-	lwz      r3, 0x14(r3)
-	bl       __dla__FPv
-	cmplwi   r31, 0
-	stw      r31, 0x18(r30)
-	bne      lbl_80099CF0
-	li       r0, 0
-	stw      r0, 0x14(r30)
-	b        lbl_80099D14
-
-lbl_80099CF0:
-	bl       getCurrentHeap__7JASBankFv
-	mr       r4, r3
-	slwi     r3, r31, 2
-	li       r5, 0
-	bl       __nwa__FUlP7JKRHeapi
-	stw      r3, 0x14(r30)
-	slwi     r4, r31, 2
-	lwz      r3, 0x14(r30)
-	bl       bzero__7JASCalcFPvUl
-
-lbl_80099D14:
-	lwz      r0, 0x14(r1)
-	lwz      r31, 0xc(r1)
-	lwz      r30, 8(r1)
-	mtlr     r0
-	addi     r1, r1, 0x10
-	blr
-	*/
+	delete[] m_oscData;
+	m_oscCount = count;
+	if (count == 0) {
+		m_oscData = nullptr;
+	} else {
+		m_oscData = new (JASBank::getCurrentHeap(), 0) JASOscillator::Data*[count];
+		JASCalc::bzero(m_oscData, sizeof(JASOscillator::Data*) * count);
+	}
 }
 
 /*
  * --INFO--
  * Address:	80099D2C
  * Size:	000010
+ * setOsc__12JASBasicInstFiPQ213JASOscillator4Data
  */
-void JASBasicInst::setOsc(int, JASOscillator::Data*)
-{
-	/*
-	lwz      r3, 0x14(r3)
-	slwi     r0, r4, 2
-	stwx     r5, r3, r0
-	blr
-	*/
-}
+void JASBasicInst::setOsc(int index, JASOscillator::Data* osc) { m_oscData[index] = osc; }
 
 /*
  * --INFO--
  * Address:	........
  * Size:	000024
  */
-void JASBasicInst::getOsc(int)
+JASOscillator::Data* JASBasicInst::getOsc(int index)
 {
 	// UNUSED FUNCTION
+	return (index >= m_oscCount) ? nullptr : m_oscData[index];
 }
 
 /*
  * --INFO--
  * Address:	80099D3C
  * Size:	000024
+ * getKeyRegion__12JASBasicInstFi
  */
-void JASBasicInst::getKeyRegion(int)
-{
-	/*
-	lwz      r0, 0x1c(r3)
-	cmplw    r4, r0
-	blt      lbl_80099D50
-	li       r3, 0
-	blr
-
-lbl_80099D50:
-	mulli    r0, r4, 0xc
-	lwz      r3, 0x20(r3)
-	add      r3, r3, r0
-	blr
-	*/
-}
+JASBasicInst::TKeymap* JASBasicInst::getKeyRegion(int index) { return (index >= m_keymapCount) ? nullptr : m_keymap + index; }
 
 /*
  * --INFO--
  * Address:	........
  * Size:	000024
+ * getKeyRegion__12JASBasicInstCFi
  */
-void JASBasicInst::getKeyRegion(int) const
+JASBasicInst::TKeymap* JASBasicInst::getKeyRegion(int index) const
 {
 	// UNUSED FUNCTION
+	return (index >= m_keymapCount) ? nullptr : m_keymap + index;
 }
 
 /*
  * --INFO--
  * Address:	80099D60
  * Size:	000054
+ * __dt__Q212JASBasicInst7TKeymapFv
  */
-JASBasicInst::TKeymap::~TKeymap(void)
-{
-	/*
-	stwu     r1, -0x10(r1)
-	mflr     r0
-	stw      r0, 0x14(r1)
-	stw      r31, 0xc(r1)
-	mr       r31, r4
-	stw      r30, 8(r1)
-	or.      r30, r3, r3
-	beq      lbl_80099D98
-	lwz      r3, 8(r30)
-	bl       __dla__FPv
-	extsh.   r0, r31
-	ble      lbl_80099D98
-	mr       r3, r30
-	bl       __dl__FPv
-
-lbl_80099D98:
-	lwz      r0, 0x14(r1)
-	mr       r3, r30
-	lwz      r31, 0xc(r1)
-	lwz      r30, 8(r1)
-	mtlr     r0
-	addi     r1, r1, 0x10
-	blr
-	*/
-}
+JASBasicInst::TKeymap::~TKeymap() { delete[] _08; }
 
 /*
  * --INFO--
  * Address:	80099DB4
  * Size:	000058
  */
-void JASBasicInst::TKeymap::setVeloRegionCount(unsigned long)
+void JASBasicInst::TKeymap::setVeloRegionCount(u32 count)
 {
 	/*
 	stwu     r1, -0x10(r1)
@@ -635,9 +421,11 @@ void JASBasicInst::TKeymap::setVeloRegionCount(unsigned long)
  * --INFO--
  * Address:	80099E0C
  * Size:	000024
+ * getVeloRegion__Q212JASBasicInst7TKeymapFi
  */
-void JASBasicInst::TKeymap::getVeloRegion(int)
+void JASBasicInst::TKeymap::getVeloRegion(int index)
 {
+	// return (index >= _04) ? nullptr : _08 + index;
 	/*
 	lwz      r0, 4(r3)
 	cmplw    r4, r0
@@ -657,9 +445,11 @@ lbl_80099E20:
  * --INFO--
  * Address:	80099E30
  * Size:	000024
+ * getVeloRegion__Q212JASBasicInst7TKeymapCFi
  */
-void JASBasicInst::TKeymap::getVeloRegion(const(int))
+void JASBasicInst::TKeymap::getVeloRegion(int) const
 {
+	// return (index >= _04) ? nullptr : _08 + index;
 	/*
 	lwz      r0, 4(r3)
 	cmplw    r4, r0
@@ -680,11 +470,6 @@ lbl_80099E44:
  * Address:	80099E54
  * Size:	00000C
  */
-void JASBasicInst::getType() const
-{
-	/*
-	lis      r3, 0x42534943@ha
-	addi     r3, r3, 0x42534943@l
-	blr
-	*/
-}
+// u32 JASBasicInst::getType() const
+// {
+// }

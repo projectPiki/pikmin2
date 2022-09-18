@@ -1,3 +1,6 @@
+#include "JSystem/JAS/JASBank.h"
+#include "JSystem/JAS/JASCalc.h"
+#include "JSystem/JAS/JASInst.h"
 #include "types.h"
 
 /*
@@ -24,182 +27,69 @@
  * --INFO--
  * Address:	800996FC
  * Size:	00002C
+ * __ct__12JASBasicBankFv
  */
 JASBasicBank::JASBasicBank()
+    : JASBank()
+    , m_insts(nullptr)
+    , m_instCount(0)
 {
-	/*
-	lis      r6, __vt__7JASBank@ha
-	lis      r4, __vt__12JASBasicBank@ha
-	addi     r6, r6, __vt__7JASBank@l
-	li       r5, 0
-	stw      r6, 0(r3)
-	addi     r0, r4, __vt__12JASBasicBank@l
-	stw      r5, 4(r3)
-	stw      r0, 0(r3)
-	stw      r5, 8(r3)
-	stw      r5, 0xc(r3)
-	blr
-	*/
 }
 
 /*
  * --INFO--
  * Address:	80099728
  * Size:	000048
+ * __dt__7JASBankFv
  */
-JASBank::~JASBank()
-{
-	/*
-	stwu     r1, -0x10(r1)
-	mflr     r0
-	stw      r0, 0x14(r1)
-	stw      r31, 0xc(r1)
-	or.      r31, r3, r3
-	beq      lbl_80099758
-	lis      r5, __vt__7JASBank@ha
-	extsh.   r0, r4
-	addi     r0, r5, __vt__7JASBank@l
-	stw      r0, 0(r31)
-	ble      lbl_80099758
-	bl       __dl__FPv
-
-lbl_80099758:
-	lwz      r0, 0x14(r1)
-	mr       r3, r31
-	lwz      r31, 0xc(r1)
-	mtlr     r0
-	addi     r1, r1, 0x10
-	blr
-	*/
-}
+// JASBank::~JASBank()
+// {
+// }
 
 /*
  * --INFO--
  * Address:	80099770
  * Size:	000074
+ * __dt__12JASBasicBankFv
  */
-JASBasicBank::~JASBasicBank()
-{
-	/*
-	stwu     r1, -0x10(r1)
-	mflr     r0
-	stw      r0, 0x14(r1)
-	stw      r31, 0xc(r1)
-	mr       r31, r4
-	stw      r30, 8(r1)
-	or.      r30, r3, r3
-	beq      lbl_800997C8
-	lis      r3, __vt__12JASBasicBank@ha
-	addi     r0, r3, __vt__12JASBasicBank@l
-	stw      r0, 0(r30)
-	lwz      r3, 8(r30)
-	bl       __dla__FPv
-	cmplwi   r30, 0
-	beq      lbl_800997B8
-	lis      r3, __vt__7JASBank@ha
-	addi     r0, r3, __vt__7JASBank@l
-	stw      r0, 0(r30)
-
-lbl_800997B8:
-	extsh.   r0, r31
-	ble      lbl_800997C8
-	mr       r3, r30
-	bl       __dl__FPv
-
-lbl_800997C8:
-	lwz      r0, 0x14(r1)
-	mr       r3, r30
-	lwz      r31, 0xc(r1)
-	lwz      r30, 8(r1)
-	mtlr     r0
-	addi     r1, r1, 0x10
-	blr
-	*/
-}
+JASBasicBank::~JASBasicBank() { delete[] m_insts; }
 
 /*
  * --INFO--
  * Address:	800997E4
  * Size:	000064
+ * setInstCount__12JASBasicBankFUl
  */
-void JASBasicBank::setInstCount(unsigned long)
+void JASBasicBank::setInstCount(u32 count)
 {
-	/*
-	stwu     r1, -0x10(r1)
-	mflr     r0
-	stw      r0, 0x14(r1)
-	stw      r31, 0xc(r1)
-	mr       r31, r4
-	stw      r30, 8(r1)
-	mr       r30, r3
-	lwz      r3, 8(r3)
-	bl       __dla__FPv
-	bl       getCurrentHeap__7JASBankFv
-	mr       r4, r3
-	slwi     r3, r31, 2
-	li       r5, 0
-	bl       __nwa__FUlP7JKRHeapi
-	stw      r3, 8(r30)
-	slwi     r4, r31, 2
-	lwz      r3, 8(r30)
-	bl       bzero__7JASCalcFPvUl
-	stw      r31, 0xc(r30)
-	lwz      r0, 0x14(r1)
-	lwz      r31, 0xc(r1)
-	lwz      r30, 8(r1)
-	mtlr     r0
-	addi     r1, r1, 0x10
-	blr
-	*/
+	delete[] m_insts;
+	m_insts = new (getCurrentHeap(), 0) JASInst*[count];
+	JASCalc::bzero(m_insts, sizeof(JASInst*) * count);
+	m_instCount = count;
 }
 
 /*
  * --INFO--
  * Address:	80099848
  * Size:	000010
+ * setInst__12JASBasicBankFiP7JASInst
  */
-void JASBasicBank::setInst(int, JASInst*)
-{
-	/*
-	lwz      r3, 8(r3)
-	slwi     r0, r4, 2
-	stwx     r5, r3, r0
-	blr
-	*/
-}
+void JASBasicBank::setInst(int index, JASInst* inst) { m_insts[index] = inst; }
 
 /*
  * --INFO--
  * Address:	80099858
  * Size:	000024
+ * getInst__12JASBasicBankCFi
  */
-void JASBasicBank::getInst(int) const
-{
-	/*
-	lwz      r0, 0xc(r3)
-	cmplw    r4, r0
-	blt      lbl_8009986C
-	li       r3, 0
-	blr
-
-lbl_8009986C:
-	lwz      r3, 8(r3)
-	slwi     r0, r4, 2
-	lwzx     r3, r3, r0
-	blr
-	*/
-}
+JASInst* JASBasicBank::getInst(int index) const { return (index >= m_instCount) ? nullptr : m_insts[index]; }
 
 /*
  * --INFO--
  * Address:	8009987C
  * Size:	00000C
+ * getType__12JASBasicBankCFv
  */
-void JASBasicBank::getType() const
-{
-	/*
-	lis      r3, 0x42534943@ha
-	addi     r3, r3, 0x42534943@l
-	blr
-	*/
-}
+// u32 JASBasicBank::getType() const
+// {
+// }

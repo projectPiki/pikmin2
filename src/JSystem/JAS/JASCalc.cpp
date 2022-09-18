@@ -1,3 +1,4 @@
+#include "JSystem/JAS/JASCalc.h"
 #include "types.h"
 
 /*
@@ -579,22 +580,22 @@ void JASCalc::fft(float*, float*, unsigned long, long)
  * Address:	800A64D8
  * Size:	000028
  */
-void JASCalc::clamp<short, long>(long)
-{
-	/*
-	cmpwi    r3, -32768
-	bgt      lbl_800A64E8
-	li       r3, -32768
-	blr
+// short JASCalc::clamp<short, long>(long p1)
+// {
+// 	/*
+// 	cmpwi    r3, -32768
+// 	bgt      lbl_800A64E8
+// 	li       r3, -32768
+// 	blr
 
-lbl_800A64E8:
-	cmpwi    r3, 0x7fff
-	li       r0, 0x7fff
-	bge      lbl_800A64F8
-	extsh    r0, r3
+// lbl_800A64E8:
+// 	cmpwi    r3, 0x7fff
+// 	li       r0, 0x7fff
+// 	bge      lbl_800A64F8
+// 	extsh    r0, r3
 
-lbl_800A64F8:
-	mr       r3, r0
-	blr
-	*/
-}
+// lbl_800A64F8:
+// 	mr       r3, r0
+// 	blr
+// 	*/
+// }

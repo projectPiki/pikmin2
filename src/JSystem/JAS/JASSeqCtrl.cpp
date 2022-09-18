@@ -1,3 +1,4 @@
+#include "JSystem/JAS/JASSeqCtrl.h"
 #include "types.h"
 
 /*
@@ -129,7 +130,7 @@ lbl_8009C960:
  * Address:	8009C968
  * Size:	000038
  */
-void JASSeqCtrl::callIntr(void*)
+bool JASSeqCtrl::callIntr(void*)
 {
 	/*
 	lwz      r0, 0x44(r3)

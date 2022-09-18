@@ -1,3 +1,4 @@
+#include "JSystem/JAS/JASTrack.h"
 #include "types.h"
 
 /*
@@ -16,28 +17,18 @@
  * Size:	00004C
  */
 JASOuterParam::JASOuterParam()
+    : m_outerSwitch(0)
+    , m_outerUpdate(0)
+    , _04(0.0f)
+    , _08(0.0f)
+    , _0C(0.0f)
+    , _10(0.0f)
+    , _14(0.0f)
+    , _18(0.0f)
 {
-	/*
-	li       r0, 0
-	lfs      f0, lbl_80516D10@sda21(r2)
-	sth      r0, 0(r3)
-	sth      r0, 2(r3)
-	stfs     f0, 4(r3)
-	stfs     f0, 8(r3)
-	stfs     f0, 0xc(r3)
-	stfs     f0, 0x10(r3)
-	stfs     f0, 0x14(r3)
-	stfs     f0, 0x18(r3)
-	sth      r0, 0x1c(r3)
-	sth      r0, 0x1e(r3)
-	sth      r0, 0x20(r3)
-	sth      r0, 0x22(r3)
-	sth      r0, 0x24(r3)
-	sth      r0, 0x26(r3)
-	sth      r0, 0x28(r3)
-	sth      r0, 0x2a(r3)
-	blr
-	*/
+	for (int i = 0; i < 8; i++) {
+		m_firFilter[i] = 0;
+	}
 }
 
 /*
@@ -47,12 +38,8 @@ JASOuterParam::JASOuterParam()
  */
 void JASOuterParam::initExtBuffer()
 {
-	/*
-	li       r0, 0
-	sth      r0, 0(r3)
-	sth      r0, 2(r3)
-	blr
-	*/
+	m_outerSwitch = 0;
+	m_outerUpdate = 0;
 }
 
 /*
@@ -60,10 +47,10 @@ void JASOuterParam::initExtBuffer()
  * Address:	8009C45C
  * Size:	000008
  */
-void JASOuterParam::setOuterSwitch(unsigned short a1)
+void JASOuterParam::setOuterSwitch(u16 newValue)
 {
 	// Generated from sth r4, 0x0(r3)
-	_00 = a1;
+	m_outerSwitch = newValue;
 }
 
 /*
@@ -71,9 +58,10 @@ void JASOuterParam::setOuterSwitch(unsigned short a1)
  * Address:	........
  * Size:	000008
  */
-void JASOuterParam::getSwitch()
+u16 JASOuterParam::getSwitch()
 {
 	// UNUSED FUNCTION
+	return m_outerSwitch;
 }
 
 /*
@@ -81,28 +69,17 @@ void JASOuterParam::getSwitch()
  * Address:	8009C464
  * Size:	00001C
  */
-void JASOuterParam::checkOuterSwitch(unsigned short)
-{
-	/*
-	lhz      r3, 0(r3)
-	clrlwi   r0, r4, 0x10
-	and      r3, r3, r0
-	neg      r0, r3
-	or       r0, r0, r3
-	srwi     r3, r0, 0x1f
-	blr
-	*/
-}
+bool JASOuterParam::checkOuterSwitch(u16 p1) { return m_outerSwitch & p1; }
 
 /*
  * --INFO--
  * Address:	8009C480
  * Size:	000008
  */
-void JASOuterParam::setOuterUpdate(unsigned short a1)
+void JASOuterParam::setOuterUpdate(u16 newValue)
 {
 	// Generated from sth r4, 0x2(r3)
-	_02 = a1;
+	m_outerUpdate = newValue;
 }
 
 /*
@@ -110,22 +87,17 @@ void JASOuterParam::setOuterUpdate(unsigned short a1)
  * Address:	8009C488
  * Size:	000008
  */
-void JASOuterParam::getOuterUpdate()
-{
-	/*
-	lhz      r3, 2(r3)
-	blr
-	*/
-}
+u16 JASOuterParam::getOuterUpdate() { return m_outerUpdate; }
 
 /*
  * --INFO--
  * Address:	........
  * Size:	000010
  */
-void JASOuterParam::setIntFirFilter(short, unsigned char)
+void JASOuterParam::setIntFirFilter(short newValue, unsigned char index)
 {
 	// UNUSED FUNCTION
+	m_firFilter[index] = newValue;
 }
 
 /*
@@ -133,82 +105,40 @@ void JASOuterParam::setIntFirFilter(short, unsigned char)
  * Address:	8009C490
  * Size:	000010
  */
-void JASOuterParam::getIntFirFilter(unsigned char)
-{
-	/*
-	rlwinm   r0, r4, 1, 0x17, 0x1e
-	add      r3, r3, r0
-	lha      r3, 0x1c(r3)
-	blr
-	*/
-}
+s16 JASOuterParam::getIntFirFilter(u8 index) { return m_firFilter[index]; }
 
 /*
  * --INFO--
  * Address:	8009C4A0
  * Size:	00009C
  */
-void JASOuterParam::setParam(unsigned char, float)
+void JASOuterParam::setParam(u8 p1, float p2)
 {
-	/*
-	clrlwi   r0, r4, 0x18
-	cmpwi    r0, 8
-	beq      lbl_8009C510
-	bge      lbl_8009C4D8
-	cmpwi    r0, 3
-	beqlr
-	bge      lbl_8009C4CC
-	cmpwi    r0, 1
-	beq      lbl_8009C4F0
-	bge      lbl_8009C4F8
-	blr
-
-lbl_8009C4CC:
-	cmpwi    r0, 5
-	bgelr
-	b        lbl_8009C500
-
-lbl_8009C4D8:
-	cmpwi    r0, 0x40
-	beq      lbl_8009C518
-	bgelr
-	cmpwi    r0, 0x10
-	beq      lbl_8009C508
-	blr
-
-lbl_8009C4F0:
-	addi     r5, r3, 4
-	b        lbl_8009C524
-
-lbl_8009C4F8:
-	addi     r5, r3, 8
-	b        lbl_8009C524
-
-lbl_8009C500:
-	addi     r5, r3, 0xc
-	b        lbl_8009C524
-
-lbl_8009C508:
-	addi     r5, r3, 0x10
-	b        lbl_8009C524
-
-lbl_8009C510:
-	addi     r5, r3, 0x14
-	b        lbl_8009C524
-
-lbl_8009C518:
-	addi     r5, r3, 0x18
-	b        lbl_8009C524
-	blr
-
-lbl_8009C524:
-	stfs     f1, 0(r5)
-	clrlwi   r0, r4, 0x18
-	lhz      r4, 2(r3)
-	or       r0, r4, r0
-	sth      r0, 2(r3)
-	blr
-	*/
+	float* v1;
+	switch (p1) {
+	case 1:
+		v1 = &_04;
+		break;
+	case 2:
+		v1 = &_08;
+		break;
+	case 4:
+		v1 = &_0C;
+		break;
+	case 16:
+		v1 = &_10;
+		break;
+	case 8:
+		v1 = &_14;
+		break;
+	case 64:
+		v1 = &_18;
+		break;
+	default:
+		return;
+	}
+	*v1 = p2;
+	m_outerUpdate |= p1;
 }
 
 /*
@@ -216,17 +146,10 @@ lbl_8009C524:
  * Address:	8009C53C
  * Size:	00001C
  */
-void JASOuterParam::onSwitch(unsigned short)
+void JASOuterParam::onSwitch(u16 p1)
 {
-	/*
-	lhz      r0, 0(r3)
-	or       r0, r0, r4
-	sth      r0, 0(r3)
-	lhz      r0, 2(r3)
-	or       r0, r0, r4
-	sth      r0, 2(r3)
-	blr
-	*/
+	m_outerSwitch |= p1;
+	m_outerUpdate |= p1;
 }
 
 /*
@@ -234,31 +157,11 @@ void JASOuterParam::onSwitch(unsigned short)
  * Address:	8009C558
  * Size:	00005C
  */
-void JASOuterParam::setFirFilter(short*)
+void JASOuterParam::setFirFilter(short* p1)
 {
-	/*
-	lhz      r0, 2(r3)
-	ori      r0, r0, 0x80
-	sth      r0, 2(r3)
-	lhz      r0, 0(r3)
-	ori      r0, r0, 0x80
-	sth      r0, 0(r3)
-	lha      r0, 0(r4)
-	sth      r0, 0x1c(r3)
-	lha      r0, 2(r4)
-	sth      r0, 0x1e(r3)
-	lha      r0, 4(r4)
-	sth      r0, 0x20(r3)
-	lha      r0, 6(r4)
-	sth      r0, 0x22(r3)
-	lha      r0, 8(r4)
-	sth      r0, 0x24(r3)
-	lha      r0, 0xa(r4)
-	sth      r0, 0x26(r3)
-	lha      r0, 0xc(r4)
-	sth      r0, 0x28(r3)
-	lha      r0, 0xe(r4)
-	sth      r0, 0x2a(r3)
-	blr
-	*/
+	m_outerUpdate |= 0x80;
+	m_outerSwitch |= 0x80;
+	for (int i = 0; i < 8; i++) {
+		m_firFilter[i] = p1[i];
+	}
 }

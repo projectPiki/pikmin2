@@ -83,17 +83,17 @@ float OuterParamTask::getPreParam(JASTrack& track)
 {
 	switch (_30) {
 	case 0x1:
-		return track._33C->_04;
+		return track.m_extBuffer->_04;
 	case 0x2:
-		return track._33C->_08;
+		return track.m_extBuffer->_08;
 	case 0x4:
-		return track._33C->_0C;
+		return track.m_extBuffer->_0C;
 	case 0x10:
-		return track._33C->_10;
+		return track.m_extBuffer->_10;
 	case 0x8:
-		return track._33C->_14;
+		return track.m_extBuffer->_14;
 	case 0x40:
-		return track._33C->_18;
+		return track.m_extBuffer->_18;
 	default:
 		JUT_PANICLINE(135, "P2Assert");
 		return 0.0f;
@@ -115,8 +115,8 @@ void OuterParamTask::timeTask(JASTrack& track, float param)
 		}
 	}
 
-	track._33C->onSwitch(_30);
-	track._33C->setParam(_30, param);
+	track.m_extBuffer->onSwitch(_30);
+	track.m_extBuffer->setParam(_30, param);
 }
 
 /*

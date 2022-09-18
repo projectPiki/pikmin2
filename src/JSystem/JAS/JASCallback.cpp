@@ -1,3 +1,5 @@
+#include "Dolphin/os.h"
+#include "JSystem/JAS/JASCallbackMgr.h"
 #include "types.h"
 
 /*
@@ -9,8 +11,19 @@
  * Address:	800A6500
  * Size:	00009C
  */
-void JASCallbackMgr::regist(long (*)(void*), void*)
+bool JASCallbackMgr::regist(JASCallback* function, void* argument)
 {
+	int interrupts = OSDisableInterrupts();
+	for (int i = 0; i < 0x10; i++) {
+		if (m_callbacks[i].m_function == nullptr) {
+			m_callbacks[i].m_function = function;
+			m_callbacks[i].m_argument = argument;
+			OSRestoreInterrupts(interrupts);
+			return true;
+		}
+	}
+	OSRestoreInterrupts(interrupts);
+	return false;
 	/*
 	stwu     r1, -0x20(r1)
 	mflr     r0
@@ -65,8 +78,31 @@ lbl_800A6580:
  * Address:	800A659C
  * Size:	000110
  */
-void JASCallbackMgr::reject(long (*)(void*), void*)
+bool JASCallbackMgr::reject(JASCallback* function, void* argument)
 {
+	bool didRejectAtLeastOne = false;
+	int interrupts           = OSDisableInterrupts();
+	for (int i = 0; i < 0x10; i++) {
+		// TCallback* cb = &m_callbacks[i];
+		// if (cb->isMatch(function, argument)) {
+		// if (cb->m_function == function && cb->m_argument == argument) {
+		// 	didRejectAtLeastOne = true;
+		// 	cb->clear();
+		// }
+		TCallback* cb = &m_callbacks[i];
+		if (cb->m_function == function && cb->m_argument == argument) {
+			didRejectAtLeastOne = true;
+			cb->m_function      = nullptr;
+			cb->m_argument      = nullptr;
+		}
+		// if (m_callbacks[i].m_function == function && m_callbacks[i].m_argument == argument) {
+		// 	m_callbacks[i].m_function = nullptr;
+		// 	m_callbacks[i].m_argument = nullptr;
+		// 	didRejectAtLeastOne = true;
+		// }
+	}
+	OSRestoreInterrupts(interrupts);
+	return didRejectAtLeastOne;
 	/*
 	stwu     r1, -0x20(r1)
 	mflr     r0
@@ -154,7 +190,7 @@ lbl_800A6674:
  * Address:	........
  * Size:	000134
  */
-void JASCallbackMgr::reject(long (*)(void*))
+bool JASCallbackMgr::reject(JASCallback*)
 {
 	// UNUSED FUNCTION
 }
@@ -166,40 +202,11 @@ void JASCallbackMgr::reject(long (*)(void*))
  */
 void JASCallbackMgr::callback()
 {
-	/*
-	stwu     r1, -0x20(r1)
-	mflr     r0
-	stw      r0, 0x24(r1)
-	stw      r31, 0x1c(r1)
-	li       r31, 0
-	stw      r30, 0x18(r1)
-	mr       r30, r3
-	stw      r29, 0x14(r1)
-	li       r29, 0
-
-lbl_800A66D0:
-	lwz      r12, 0(r30)
-	cmplwi   r12, 0
-	beq      lbl_800A66F8
-	lwz      r3, 4(r30)
-	mtctr    r12
-	bctrl
-	cmpwi    r3, 0
-	bge      lbl_800A66F8
-	stw      r31, 0(r30)
-	stw      r31, 4(r30)
-
-lbl_800A66F8:
-	addi     r29, r29, 1
-	addi     r30, r30, 8
-	cmpwi    r29, 0x10
-	blt      lbl_800A66D0
-	lwz      r0, 0x24(r1)
-	lwz      r31, 0x1c(r1)
-	lwz      r30, 0x18(r1)
-	lwz      r29, 0x14(r1)
-	mtlr     r0
-	addi     r1, r1, 0x20
-	blr
-	*/
+	for (int i = 0; i < 0x10; i++) {
+		TCallback* cb = &m_callbacks[i];
+		if (cb->m_function && cb->m_function(cb->m_argument) < 0) {
+			cb->m_function = nullptr;
+			cb->m_argument = nullptr;
+		}
+	}
 }
