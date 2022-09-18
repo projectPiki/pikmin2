@@ -1,11 +1,17 @@
 #include "types.h"
+#include "JSystem/DSP.h"
+
+static volatile int flag;
+// static u32 waitflag;
+// static u32 d_waitflag;
+static u16 DSP_MIXERLEVEL = 0x4000;
 
 /*
  * --INFO--
  * Address:	........
  * Size:	000024
  */
-void DSPSendCommands(unsigned long*, unsigned long)
+void DSPSendCommands(unsigned long* p1, unsigned long p2)
 {
 	// UNUSED FUNCTION
 }
@@ -15,7 +21,7 @@ void DSPSendCommands(unsigned long*, unsigned long)
  * Address:	........
  * Size:	000038
  */
-void DSPReleaseHalt3(unsigned long, unsigned short)
+void DSPReleaseHalt3(unsigned long p1, unsigned short p2)
 {
 	// UNUSED FUNCTION
 }
@@ -29,7 +35,7 @@ void DSPReleaseHalt2(unsigned long msg)
 {
 	unsigned long msgs[5];
 	msgs[0] = (msg << 16) | DSP_CreateMap2(msg);
-	DSPSendCommands2(&msgs, 0, NULL);
+	DSPSendCommands2(msgs, 0, NULL);
 
 	/*
 	.loc_0x0:
@@ -79,7 +85,7 @@ void DSPWaitFinish()
  * Address:	........
  * Size:	000040
  */
-void Dswap(unsigned long, unsigned long, unsigned long)
+void Dswap(unsigned long p1, unsigned long p2, unsigned long p3)
 {
 	// UNUSED FUNCTION
 }
@@ -89,7 +95,7 @@ void Dswap(unsigned long, unsigned long, unsigned long)
  * Address:	........
  * Size:	000048
  */
-void Dmix(unsigned long, unsigned long, unsigned long, short)
+void Dmix(unsigned long p1, unsigned long p2, unsigned long p3, short p4)
 {
 	// UNUSED FUNCTION
 }
@@ -99,7 +105,7 @@ void Dmix(unsigned long, unsigned long, unsigned long, short)
  * Address:	........
  * Size:	000040
  */
-void Dcopy(unsigned long, unsigned long, unsigned long)
+void Dcopy(unsigned long p1, unsigned long p2, unsigned long p3)
 {
 	// UNUSED FUNCTION
 }
@@ -109,7 +115,7 @@ void Dcopy(unsigned long, unsigned long, unsigned long)
  * Address:	........
  * Size:	000044
  */
-void DloadBuffer1(unsigned long, unsigned long)
+void DloadBuffer1(unsigned long p1, unsigned long p2)
 {
 	// UNUSED FUNCTION
 }
@@ -119,7 +125,7 @@ void DloadBuffer1(unsigned long, unsigned long)
  * Address:	........
  * Size:	000040
  */
-void DloadBuffer(unsigned long, unsigned long, unsigned long)
+void DloadBuffer(u32 p1, u32 p2, u32 p3)
 {
 	// UNUSED FUNCTION
 }
@@ -129,7 +135,7 @@ void DloadBuffer(unsigned long, unsigned long, unsigned long)
  * Address:	........
  * Size:	000044
  */
-void DsaveBuffer(unsigned short, unsigned long, unsigned long)
+void DsaveBuffer(unsigned short p1, unsigned long p2, unsigned long p3)
 {
 	// UNUSED FUNCTION
 }
@@ -139,7 +145,7 @@ void DsaveBuffer(unsigned short, unsigned long, unsigned long)
  * Address:	800AA7C0
  * Size:	00000C
  */
-void setup_callback(unsigned short)
+void setup_callback(unsigned short p1)
 {
 	flag = 0;
 	/*
@@ -155,8 +161,18 @@ void setup_callback(unsigned short)
  * Address:	800AA7E0
  * Size:	000064
  */
-void DsetupTable(unsigned long, unsigned long, unsigned long, unsigned long, unsigned long)
+void DsetupTable(unsigned long p1, unsigned long p2, unsigned long p3, unsigned long p4, unsigned long p5)
 {
+	u32 commands[5];
+	commands[0] = p1 & 0xFFFF | 0x81000000;
+	commands[1] = p2;
+	commands[2] = p3;
+	commands[3] = p4;
+	commands[4] = p5;
+	flag        = 1;
+	DSPSendCommands2(commands, 5, setup_callback);
+	while (flag != 0)
+		;
 	/*
 	.loc_0x0:
 	  stwu      r1, -0x20(r1)
@@ -194,29 +210,14 @@ void DsetupTable(unsigned long, unsigned long, unsigned long, unsigned long, uns
  * Address:	800AA860
  * Size:	000024
  */
-void DsetMixerLevel(float amt)
-{
-	DSP_MIXERLEVEL = 4096.0f * amt;
-	/*
-	.loc_0x0:
-	  lfs       f0, -0x7490(r2)
-	  stwu      r1, -0x10(r1)
-	  fmuls     f0, f0, f1
-	  fctiwz    f0, f0
-	  stfd      f0, 0x8(r1)
-	  lwz       r0, 0xC(r1)
-	  sth       r0, -0x7EC8(r13)
-	  addi      r1, r1, 0x10
-	  blr
-	*/
-}
+void DsetMixerLevel(float mixerLevel) { DSP_MIXERLEVEL = 4096.0f * mixerLevel; }
 
 /*
  * --INFO--
  * Address:	800AA8A0
  * Size:	000048
  */
-void DsyncFrame(unsigned long, unsigned long, unsigned long)
+void DsyncFrame(unsigned long p1, unsigned long p2, unsigned long p3)
 {
 	/*
 	.loc_0x0:
@@ -246,7 +247,7 @@ void DsyncFrame(unsigned long, unsigned long, unsigned long)
  * Address:	........
  * Size:	00000C
  */
-void wait_callback(unsigned short)
+void wait_callback(unsigned short p1)
 {
 	// UNUSED FUNCTION
 }
@@ -266,7 +267,7 @@ void DwaitFrame()
  * Address:	........
  * Size:	00003C
  */
-void DiplSec(unsigned long, void (*)(unsigned short))
+void DiplSec(unsigned long p1, void (*p2)(unsigned short))
 {
 	// UNUSED FUNCTION
 }
@@ -276,7 +277,7 @@ void DiplSec(unsigned long, void (*)(unsigned short))
  * Address:	........
  * Size:	00003C
  */
-void DagbSec(unsigned long, void (*)(unsigned short))
+void DagbSec(unsigned long p1, void (*p2)(unsigned short))
 {
 	// UNUSED FUNCTION
 }
@@ -286,7 +287,7 @@ void DagbSec(unsigned long, void (*)(unsigned short))
  * Address:	........
  * Size:	00000C
  */
-void dummy_callback(unsigned short)
+void dummy_callback(unsigned short p1)
 {
 	// UNUSED FUNCTION
 }
@@ -296,7 +297,7 @@ void dummy_callback(unsigned short)
  * Address:	........
  * Size:	000054
  */
-void DsetDolbyDelay(unsigned long, unsigned short)
+void DsetDolbyDelay(unsigned long p1, unsigned short p2)
 {
 	// UNUSED FUNCTION
 }

@@ -1,3 +1,6 @@
+#include "Dolphin/gx.h"
+#include "JSystem/JPA/JPAEmitter.h"
+#include "JSystem/JPA/JPAShape.h"
 #include "types.h"
 
 /*
@@ -190,8 +193,9 @@
  * Address:	8008B114
  * Size:	00003C
  */
-void JPASetPointSize(JPAEmitterWorkData*)
+void JPASetPointSize(JPAEmitterWorkData* workData)
 {
+	GXSetPointSize(workData->_144 * 25.0f, 5);
 	/*
 	stwu     r1, -0x10(r1)
 	mflr     r0
@@ -216,8 +220,9 @@ void JPASetPointSize(JPAEmitterWorkData*)
  * Address:	8008B150
  * Size:	00003C
  */
-void JPASetLineWidth(JPAEmitterWorkData*)
+void JPASetLineWidth(JPAEmitterWorkData* workData)
 {
+	GXSetLineWidth(workData->_144 * 25.0f, 5);
 	/*
 	stwu     r1, -0x10(r1)
 	mflr     r0
@@ -242,8 +247,9 @@ void JPASetLineWidth(JPAEmitterWorkData*)
  * Address:	8008B18C
  * Size:	000044
  */
-void JPASetPointSize(JPAEmitterWorkData*, JPABaseParticle*)
+void JPASetPointSize(JPAEmitterWorkData* workData, JPABaseParticle* particle)
 {
+	GXSetPointSize(particle->_60 * workData->_144 * 25.0f, 5);
 	/*
 	stwu     r1, -0x10(r1)
 	mflr     r0
@@ -952,10 +958,11 @@ void JPACalcClrIdxReverse(JPAEmitterWorkData*, JPABaseParticle*)
  * Address:	8008B9D4
  * Size:	00000C
  */
-void JPACalcClrIdxMerge(JPAEmitterWorkData*)
+void JPACalcClrIdxMerge(JPAEmitterWorkData* workData)
 {
 	// Generated from sth r0, 0x214(r3)
-	_214 = 0;
+	// _214 = 0;
+	workData->_214 = 0;
 }
 
 /*
@@ -1002,10 +1009,11 @@ void JPACalcClrIdxMerge(JPAEmitterWorkData*, JPABaseParticle*)
  * Address:	8008BA50
  * Size:	00000C
  */
-void JPACalcClrIdxRandom(JPAEmitterWorkData*)
+void JPACalcClrIdxRandom(JPAEmitterWorkData* workData)
 {
 	// Generated from sth r0, 0x214(r3)
-	_214 = 0;
+	// _214 = 0;
+	workData->_214 = 0;
 }
 
 /*

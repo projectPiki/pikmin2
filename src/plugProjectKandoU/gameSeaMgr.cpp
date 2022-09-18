@@ -1262,9 +1262,9 @@ SeaMgr::SeaMgr(void)
 	// if (Game::gameSystem != nullptr && !(Game::gameSystem->m_mode == GSM_VERSUS_MODE || Game::gameSystem->m_mode ==
 	// GSM_TWO_PLAYER_CHALLENGE)) {
 	if (Game::gameSystem != nullptr && !Game::gameSystem->isMultiplayerMode()) {
-		archive = JKRArchive::mount("user/Kando/map/waterbox.szs", JKRArchive::EMM_Unk1, nullptr, JKRArchive::EMD_Unk1);
+		archive = JKRArchive::mount("user/Kando/map/waterbox.szs", JKRArchive::EMM_Mem, nullptr, JKRArchive::EMD_Unk1);
 	} else {
-		archive = JKRArchive::mount("user/Kando/map/waterbox2p.szs", JKRArchive::EMM_Unk1, nullptr, JKRArchive::EMD_Unk1);
+		archive = JKRArchive::mount("user/Kando/map/waterbox2p.szs", JKRArchive::EMM_Mem, nullptr, JKRArchive::EMD_Unk1);
 	}
 	P2ASSERTLINE(527, archive != nullptr);
 

@@ -86,3 +86,5 @@ void SysTimers::_start(char*, bool) { }
  * Size:	000004
  */
 void SysTimers::_stop(char*) { }
+<<<<<<< HEAD
+=======

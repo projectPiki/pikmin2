@@ -182,7 +182,7 @@ J2DPane::J2DPane()
 void J2DPane::calcMtx()
 {
 	if (m_tree.m_link.m_list) {
-		makeMatrix(_0D4[0], _0D4[1]);
+		makeMatrix(_0D4.x, _0D4.y);
 	}
 }
 

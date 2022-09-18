@@ -89,9 +89,9 @@ template <typename T> struct JSULink : public JSUPtrLink {
  * @size{0x1C}
  */
 template <typename T> struct JSUTree : public JSUList<T>, public JSULink<T> {
-	inline JSUTree(void* owner)
-	    : JSUList()
-	    , JSULink(owner) {};
+	inline JSUTree(T* owner)
+	    : JSUList<T>()
+	    , JSULink<T>(owner) {};
 
 	bool appendChild(JSUTree<T>* child) { return this->append(child); }
 	bool removeChild(JSUTree<T>* child) { return this->remove(child); }

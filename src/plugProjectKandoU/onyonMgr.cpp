@@ -1714,7 +1714,7 @@ void Onyon::closeUFO(void)
  * Address:	801754AC
  * Size:	0000E4
  */
-void Onyon::isSuckReady(void)
+bool Onyon::isSuckReady(void)
 {
 	/*
 	stwu     r1, -0x10(r1)

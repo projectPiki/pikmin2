@@ -933,7 +933,7 @@ void cbForReadAsync(void)
  * Address:	800DCA80
  * Size:	000118
  */
-void DVDReadPrio(void)
+int DVDReadPrio(struct DVDPlayer* player, void* readBuffer, s32 byteCount, u32 startOffset, s32 queueIndex)
 {
 	/*
 	.loc_0x0:

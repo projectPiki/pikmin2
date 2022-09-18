@@ -1,3 +1,4 @@
+#include "Game/FieldVtxColorMgr.h"
 #include "types.h"
 
 /*
@@ -986,7 +987,7 @@ lbl_80122EB0:
  * Address:	80122EC4
  * Size:	000128
  */
-void FieldVtxColorMgr::createNewControl(Vector3f&, float, float)
+FieldVtxColorControl* FieldVtxColorMgr::createNewControl(Vector3f&, float, float)
 {
 	/*
 	stwu     r1, -0x40(r1)
@@ -1302,11 +1303,11 @@ lbl_80123254:
  * Address:	80123270
  * Size:	000008
  */
-FieldVtxColorMgr::@12 @~FieldVtxColorMgr()
-{
-	/*
-	addi     r3, r3, -12
-	b        __dt__Q24Game16FieldVtxColorMgrFv
-	*/
-}
+// FieldVtxColorMgr::@12 @~FieldVtxColorMgr()
+// {
+// 	/*
+// 	addi     r3, r3, -12
+// 	b        __dt__Q24Game16FieldVtxColorMgrFv
+// 	*/
+// }
 } // namespace Game

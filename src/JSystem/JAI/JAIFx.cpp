@@ -1,4 +1,8 @@
+#include "Dolphin/os.h"
+#include "JSystem/JAI/JAIBasic.h"
 #include "JSystem/JAI/JAInter.h"
+#include "JSystem/JAI/JAInter/Fx.h"
+#include "JSystem/JAS/JASDsp.h"
 #include "types.h"
 
 /*
@@ -22,13 +26,38 @@
         .skip 0x8
 */
 
+JAInter::Fx::Init* JAInter::Fx::initOnCodeFxScene;
+u8 JAInter::Fx::mSceneMax;
+u32* JAInter::Fx::mBufferSizeMax;
+s16** JAInter::Fx::mBufferPointer;
+JASDsp::FxlineConfig_** JAInter::Fx::mFxconfigTable;
+
 /*
  * --INFO--
  * Address:	800AD6CC
  * Size:	000160
  */
-void JAInter::Fx::init(void)
+void JAInter::Fx::init()
 {
+	if (initOnCodeFxScene != nullptr) {
+		mBufferSizeMax = new (JAIBasic::msCurrentHeap, 4) u32[4];
+		mBufferPointer = new (JAIBasic::msCurrentHeap, 4) short*[4];
+		Init* init     = initOnCodeFxScene;
+		setSceneMax(init->m_sceneMax);
+		setBufferMax(init->m_bufferMax1, init->m_bufferMax2, init->m_bufferMax3, init->m_bufferMax4);
+		JKRHeap* heap = JAIBasic::msCurrentHeap;
+		setTablePointer(new (heap, 0x20) void*[getSceneMax()]);
+		for (u8 i = 0; i < getSceneMax(); i++) {
+			setScenePointer(i, reinterpret_cast<u8*>(initOnCodeFxScene) + initOnCodeFxScene->m_scenePointerOffsets[i]);
+		}
+		for (u8 i = 0; i < 4; i++) {
+			if (getBufferSizeMax(i) != 0) {
+				heap = JAIBasic::msCurrentHeap;
+				setBufferPointer(i, new (heap, 0x20) short[0xA0 * getBufferSizeMax(i)]);
+				JASDsp::setFXLine(i, getBufferPointer(i), *(getFxconfigTable() + i));
+			}
+		}
+	}
 	/*
 	stwu     r1, -0x20(r1)
 	mflr     r0
@@ -138,33 +167,19 @@ lbl_800AD810:
  * Address:	800AD82C
  * Size:	000008
  */
-void JAInter::Fx::setSceneMax(unsigned char)
-{
-	/*
-	stb      r3, mSceneMax__Q27JAInter2Fx@sda21(r13)
-	blr
-	*/
-}
+void JAInter::Fx::setSceneMax(u8 sceneMax) { mSceneMax = sceneMax; }
 
 /*
  * --INFO--
  * Address:	800AD834
  * Size:	000024
  */
-void JAInter::Fx::setBufferMax(unsigned long, unsigned long, unsigned long, unsigned long)
+void JAInter::Fx::setBufferMax(u32 max1, u32 max2, u32 max3, u32 max4)
 {
-	/*
-	.loc_0x0:
-	  lwz       r7, -0x7458(r13)
-	  stw       r3, 0x0(r7)
-	  lwz       r3, -0x7458(r13)
-	  stw       r4, 0x4(r3)
-	  lwz       r3, -0x7458(r13)
-	  stw       r5, 0x8(r3)
-	  lwz       r3, -0x7458(r13)
-	  stw       r6, 0xC(r3)
-	  blr
-	*/
+	mBufferSizeMax[0] = max1;
+	mBufferSizeMax[1] = max2;
+	mBufferSizeMax[2] = max3;
+	mBufferSizeMax[3] = max4;
 }
 
 /*
@@ -172,42 +187,23 @@ void JAInter::Fx::setBufferMax(unsigned long, unsigned long, unsigned long, unsi
  * Address:	800AD858
  * Size:	000008
  */
-void JAInter::Fx::setTablePointer(void**)
-{
-	/*
-	stw      r3, mFxconfigTable__Q27JAInter2Fx@sda21(r13)
-	blr
-	*/
-}
+void JAInter::Fx::setTablePointer(void** tablePointer) { mFxconfigTable = reinterpret_cast<JASDsp::FxlineConfig_**>(tablePointer); }
 
 /*
  * --INFO--
  * Address:	800AD860
  * Size:	000010
  */
-void JAInter::Fx::setBufferPointer(unsigned char, short*)
-{
-	/*
-	lwz      r5, mBufferPointer__Q27JAInter2Fx@sda21(r13)
-	rlwinm   r0, r3, 2, 0x16, 0x1d
-	stwx     r4, r5, r0
-	blr
-	*/
-}
+void JAInter::Fx::setBufferPointer(u8 index, s16* bufferPointer) { mBufferPointer[index] = bufferPointer; }
 
 /*
  * --INFO--
  * Address:	800AD870
  * Size:	000010
  */
-void JAInter::Fx::setScenePointer(unsigned char, void*)
+void JAInter::Fx::setScenePointer(u8 index, void* scenePointer)
 {
-	/*
-	lwz      r5, mFxconfigTable__Q27JAInter2Fx@sda21(r13)
-	rlwinm   r0, r3, 2, 0x16, 0x1d
-	stwx     r4, r5, r0
-	blr
-	*/
+	mFxconfigTable[index] = static_cast<JASDsp::FxlineConfig_*>(scenePointer);
 }
 
 /*
@@ -215,65 +211,43 @@ void JAInter::Fx::setScenePointer(unsigned char, void*)
  * Address:	800AD880
  * Size:	000008
  */
-void JAInter::Fx::getSceneMax(void)
-{
-	/*
-	lbz      r3, mSceneMax__Q27JAInter2Fx@sda21(r13)
-	blr
-	*/
-}
+u8 JAInter::Fx::getSceneMax(void) { return mSceneMax; }
 
 /*
  * --INFO--
  * Address:	800AD888
  * Size:	000010
  */
-void JAInter::Fx::getBufferSizeMax(unsigned char)
-{
-	/*
-	lwz      r4, mBufferSizeMax__Q27JAInter2Fx@sda21(r13)
-	rlwinm   r0, r3, 2, 0x16, 0x1d
-	lwzx     r3, r4, r0
-	blr
-	*/
-}
+u32 JAInter::Fx::getBufferSizeMax(u8 index) { return mBufferSizeMax[index]; }
 
 /*
  * --INFO--
  * Address:	800AD898
  * Size:	000010
  */
-void JAInter::Fx::getBufferPointer(unsigned char)
-{
-	/*
-	lwz      r4, mBufferPointer__Q27JAInter2Fx@sda21(r13)
-	rlwinm   r0, r3, 2, 0x16, 0x1d
-	lwzx     r3, r4, r0
-	blr
-	*/
-}
+s16* JAInter::Fx::getBufferPointer(u8 index) { return mBufferPointer[index]; }
 
 /*
  * --INFO--
  * Address:	800AD8A8
  * Size:	000008
  */
-void JAInter::Fx::getFxconfigTable(void)
-{
-	/*
-	lwz      r3, mFxconfigTable__Q27JAInter2Fx@sda21(r13)
-	blr
-	*/
-}
+JASDsp::FxlineConfig_** JAInter::Fx::getFxconfigTable() { return mFxconfigTable; }
 
 /*
  * --INFO--
  * Address:	........
  * Size:	000080
  */
-void JAInter::Fx::clearBuffer(unsigned char)
+void JAInter::Fx::clearBuffer(u8 index)
 {
 	// UNUSED FUNCTION
+	if (mBufferPointer != nullptr) {
+		for (u32 i = 0; i < (mBufferSizeMax[index] * 0xA0) / 2; i++) {
+			mBufferPointer[index][i] = 0;
+		}
+		DCFlushRange(mBufferPointer[index], (mBufferSizeMax[index] * 0xA0) >> 1);
+	}
 }
 
 /*
@@ -281,58 +255,9 @@ void JAInter::Fx::clearBuffer(unsigned char)
  * Address:	800AD8B0
  * Size:	0000A0
  */
-void JAInter::Fx::clearAllBuffer(void)
+void JAInter::Fx::clearAllBuffer()
 {
-	/*
-	stwu     r1, -0x10(r1)
-	mflr     r0
-	stw      r0, 0x14(r1)
-	stw      r31, 0xc(r1)
-	li       r31, 0
-	b        lbl_800AD930
-
-lbl_800AD8C8:
-	lwz      r0, mBufferPointer__Q27JAInter2Fx@sda21(r13)
-	cmplwi   r0, 0
-	beq      lbl_800AD92C
-	li       r5, 0
-	rlwinm   r7, r31, 2, 0x16, 0x1d
-	mr       r6, r5
-	mr       r4, r5
-	b        lbl_800AD8FC
-
-lbl_800AD8E8:
-	lwz      r0, mBufferPointer__Q27JAInter2Fx@sda21(r13)
-	addi     r5, r5, 1
-	lwzx     r3, r7, r0
-	sthx     r4, r3, r6
-	addi     r6, r6, 2
-
-lbl_800AD8FC:
-	lwz      r3, mBufferSizeMax__Q27JAInter2Fx@sda21(r13)
-	lwzx     r0, r7, r3
-	mulli    r0, r0, 0xa0
-	srwi     r0, r0, 1
-	cmplw    r5, r0
-	blt      lbl_800AD8E8
-	lwzx     r0, r3, r7
-	lwz      r3, mBufferPointer__Q27JAInter2Fx@sda21(r13)
-	mulli    r0, r0, 0xa0
-	lwzx     r3, r3, r7
-	srwi     r4, r0, 1
-	bl       DCFlushRange
-
-lbl_800AD92C:
-	addi     r31, r31, 1
-
-lbl_800AD930:
-	clrlwi   r0, r31, 0x18
-	cmplwi   r0, 4
-	blt      lbl_800AD8C8
-	lwz      r0, 0x14(r1)
-	lwz      r31, 0xc(r1)
-	mtlr     r0
-	addi     r1, r1, 0x10
-	blr
-	*/
+	for (u8 i = 0; i < 4; i++) {
+		clearBuffer(i);
+	}
 }

@@ -1,4 +1,7 @@
 #include "JSystem/JAI/JAIBasic.h"
+#include "JSystem/JAI/JAInter.h"
+#include "JSystem/JAI/JAInter/BankWave.h"
+#include "JSystem/JAI/JAInter/Fx.h"
 #include "types.h"
 
 /*
@@ -119,38 +122,14 @@ JAIBasic::JAIBasic()
  * Address:	800AC1D4
  * Size:	000020
  */
-void JAIBasic::initDriver(JKRSolidHeap*, unsigned long, unsigned char)
-{
-	/*
-	stwu     r1, -0x10(r1)
-	mflr     r0
-	stw      r0, 0x14(r1)
-	bl       initAudioThread__8JAIBasicFP12JKRSolidHeapUlUc
-	lwz      r0, 0x14(r1)
-	mtlr     r0
-	addi     r1, r1, 0x10
-	blr
-	*/
-}
+void JAIBasic::initDriver(JKRSolidHeap* heap, unsigned long p2, unsigned char p3) { initAudioThread(heap, p2, p3); }
 
 /*
  * --INFO--
  * Address:	800AC1F4
  * Size:	000020
  */
-void JAIBasic::initInterface(unsigned char)
-{
-	/*
-	stwu     r1, -0x10(r1)
-	mflr     r0
-	stw      r0, 0x14(r1)
-	bl       initInterfaceMain__8JAIBasicFv
-	lwz      r0, 0x14(r1)
-	mtlr     r0
-	addi     r1, r1, 0x10
-	blr
-	*/
-}
+void JAIBasic::initInterface(unsigned char) { initInterfaceMain(); }
 
 /*
  * --INFO--
@@ -169,6 +148,18 @@ void JAIBasic::bootDSP()
  */
 void JAIBasic::initInterfaceMain()
 {
+	// initHeap();
+	// initResourcePath();
+	// initArchive();
+	// if (initReadFile()) {
+	// 	if (-1 < _0E && JAInter::BankWave::firstLoadCallback != nullptr) {
+	// 		JAInter::BankWave::firstLoadCallback();
+	// 	}
+	// }
+	// JAInter::DummyObjectMgr::init();
+	// JAInter::Fx::init();
+	// JAInter::SequenceMgr::init();
+	// JAInter::SeMgr::init();
 	/*
 	stwu     r1, -0x10(r1)
 	mflr     r0
@@ -563,16 +554,17 @@ lbl_800AC678:
  * Address:	800AC690
  * Size:	000014
  */
-void JAInter::Camera::__defctor(void)
-{
-	/*
-	li       r0, 0
-	stw      r0, 0(r3)
-	stw      r0, 4(r3)
-	stw      r0, 8(r3)
-	blr
-	*/
-}
+// void JAInter::Camera::__defctor(void)
+// {
+#warning JAInter::Camera::__defctor not implemented
+// 	/*
+// 	li       r0, 0
+// 	stw      r0, 0(r3)
+// 	stw      r0, 4(r3)
+// 	stw      r0, 8(r3)
+// 	blr
+// 	*/
+// }
 
 /*
  * --INFO--
@@ -590,7 +582,7 @@ void JAIBasic::setInitFileLoadSwitch(unsigned char a1)
  * Address:	800AC6AC
  * Size:	00006C
  */
-void JAIBasic::initReadFile()
+bool JAIBasic::initReadFile()
 {
 	/*
 	stwu     r1, -0x10(r1)

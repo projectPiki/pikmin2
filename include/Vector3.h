@@ -43,6 +43,23 @@ template <typename T> struct Vector3 {
 		z = other.z;
 	}
 
+	// /**
+	//  * @fabricated
+	//  */
+	// inline Vector3<T> operator-(const Vector3<T>& other) const {
+	// 	return Vector3<T>(x - other.x, y - other.y, z - other.z);
+	// }
+
+	/**
+	 * @fabricated
+	 */
+	inline Vector3<T> operator*(const Vector3<T>& other) const { return Vector3<T>(x * other.x, y * other.y, z * other.z); }
+
+	/**
+	 * @fabricated
+	 */
+	inline float magnitude() { return x + y + z; }
+
 	/**
 	 * @fabricated
 	 */
@@ -99,8 +116,56 @@ template <typename T> struct Vector3 {
 		this->y -= other.y;
 		this->z -= other.z;
 	}
-	inline T distance(Vector3<T>&);
+
 	float length() const;
+// TODO: Verify
+#pragma optimizewithasm off
+	inline float distance(register Vector3& them)
+	{
+		register Vector3* me = this;
+		register float vv0;
+		register float vv1;
+		register float vv2;
+		register float vv3;
+		register float vv4;
+		asm {
+			lfs vv1, 4(me)
+			lfs vv0, 4(them)
+			lfs vv3, 0(me)
+			fsubs vv4, vv1, vv0
+			lfs vv2, 0(them)
+			lfs vv1, 8(me)
+			lfs vv0, 8(them)
+			fsubs vv3, vv3, vv2
+			fmuls vv2, vv4, vv4
+			fsubs vv4, vv1, vv0
+			lfs vv0, 0.0f
+			fmadds vv1, vv3, vv3, vv2
+			fmuls vv2, vv4, vv4
+			fadds vv1, vv2, vv1
+			fcmpo cr0, vv1, vv0
+			ble end
+			blelr
+			frsqrte vv0, vv1
+			fmuls vv1, vv0, vv1
+		}
+		return vv1;
+		asm {
+			end:
+			fmr vv1, vv0
+		}
+		return vv1;
+	}
+#pragma optimizewithasm reset
+	// inline T distance(Vector3<T>& other)
+	// {
+	// 	T magnitude = ((*this) * (other)).magnitude();
+	// 	if (magnitude <= 0.0f) {
+	// 		return 0.0f;
+	// 	}
+	// 	return pikmin2_sqrtf(magnitude);
+	// }
+
 	float normalise();
 
 	void read(Stream&);
@@ -160,7 +225,7 @@ inline f32 Vector3f::length() const
 	return 0.0f;
 }
 
-inline f32 Vector3f::normalise()
+template <> inline f32 Vector3f::normalise()
 {
 	f32 len = length();
 

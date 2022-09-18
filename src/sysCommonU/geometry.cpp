@@ -8,6 +8,7 @@
 #include "Sys/Tube.h"
 #include "Game/CurrTriInfo.h"
 #include "Vector3.h"
+#include "sysMath.h"
 #include "types.h"
 
 /*

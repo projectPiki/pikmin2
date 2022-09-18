@@ -1,3 +1,8 @@
+#include "Dolphin/string.h"
+#include "JSystem/JPA/JPABlock.h"
+#include "JSystem/JPA/JPAResource.h"
+#include "JSystem/JUT/JUTTexture.h"
+#include "JSystem/ResTIMG.h"
 #include "types.h"
 
 /*
@@ -19,8 +24,16 @@ JPAResourceManager::JPAResourceManager(unsigned short, unsigned short, JKRHeap*)
  * Address:	800984D0
  * Size:	000058
  */
-JPAResourceManager::JPAResourceManager(const void*, JKRHeap*)
+JPAResourceManager::JPAResourceManager(const void* p1, JKRHeap* heap)
+    : m_resources(nullptr)
+    , m_textures(nullptr)
+    , _0C(0)
+    , m_resourceCount(0)
+    , _10(0)
+    , m_textureCount(0)
 {
+	m_heap = heap;
+	JPAResourceLoader loader((const u8*)p1, this);
 	/*
 	stwu     r1, -0x20(r1)
 	mflr     r0
@@ -82,30 +95,15 @@ JPAResourceLoader::~JPAResourceLoader()
  * Address:	80098528
  * Size:	000040
  */
-void JPAResourceManager::getResource(unsigned short) const
+JPAResource* JPAResourceManager::getResource(unsigned short p1) const
 {
-	/*
-	lhz      r6, 0xe(r3)
-	clrlwi   r4, r4, 0x10
-	lwz      r5, 4(r3)
-	li       r7, 0
-	b        lbl_80098554
-
-lbl_8009853C:
-	rlwinm   r0, r7, 2, 0xe, 0x1d
-	lwzx     r3, r5, r0
-	lhz      r0, 0x3c(r3)
-	cmplw    r4, r0
-	beqlr
-	addi     r7, r7, 1
-
-lbl_80098554:
-	clrlwi   r0, r7, 0x10
-	cmplw    r0, r6
-	blt      lbl_8009853C
-	li       r3, 0
-	blr
-	*/
+	for (u16 i = 0; i < m_resourceCount; i++) {
+		JPAResource* resource = m_resources[i];
+		if (p1 == resource->_3C) {
+			return resource;
+		}
+	}
+	return nullptr;
 }
 
 /*
@@ -123,8 +121,16 @@ void JPAResourceManager::checkUserIndexDuplication(unsigned short) const
  * Address:	80098568
  * Size:	00009C
  */
-void JPAResourceManager::swapTexture(const ResTIMG*, const char*)
+ResTIMG* JPAResourceManager::swapTexture(const ResTIMG* p1, const char* p2)
 {
+	for (int i = 0; i < m_textureCount; i++) {
+		if (strcmp(p2, (const char*)(m_textures[i]->_44 + 0xc)) == 0) {
+			ResTIMG* timg = m_textures[i]->m_texture._20;
+			m_textures[i]->m_texture.storeTIMG(p1, (u8)'\0');
+			return timg;
+		}
+	}
+	return nullptr;
 	/*
 	stwu     r1, -0x20(r1)
 	mflr     r0
@@ -181,18 +187,10 @@ lbl_800985EC:
  * Address:	80098604
  * Size:	000020
  */
-void JPAResourceManager::registRes(JPAResource*)
+void JPAResourceManager::registRes(JPAResource* resource)
 {
-	/*
-	lhz      r0, 0xe(r3)
-	lwz      r5, 4(r3)
-	slwi     r0, r0, 2
-	stwx     r4, r5, r0
-	lhz      r4, 0xe(r3)
-	addi     r0, r4, 1
-	sth      r0, 0xe(r3)
-	blr
-	*/
+	m_resources[m_resourceCount] = resource;
+	m_resourceCount++;
 }
 
 /*
@@ -200,18 +198,10 @@ void JPAResourceManager::registRes(JPAResource*)
  * Address:	80098624
  * Size:	000020
  */
-void JPAResourceManager::registTex(JPATexture*)
+void JPAResourceManager::registTex(JPATexture* texture)
 {
-	/*
-	lhz      r0, 0x12(r3)
-	lwz      r5, 8(r3)
-	slwi     r0, r0, 2
-	stwx     r4, r5, r0
-	lhz      r4, 0x12(r3)
-	addi     r0, r4, 1
-	sth      r0, 0x12(r3)
-	blr
-	*/
+	m_textures[m_textureCount] = texture;
+	m_textureCount++;
 }
 
 /*
@@ -229,8 +219,13 @@ void JPAResourceManager::registTexDupCheck(const unsigned char*, JKRHeap*)
  * Address:	80098644
  * Size:	00005C
  */
-void JPAResourceManager::getResUserWork(unsigned short) const
+void* JPAResourceManager::getResUserWork(unsigned short p1) const
 {
+	JPAResource* resource = getResource(p1);
+	if (resource == nullptr) {
+		return nullptr;
+	}
+	return (resource->_2C->m_data + 0xC);
 	/*
 	lhz      r7, 0xe(r3)
 	clrlwi   r4, r4, 0x10

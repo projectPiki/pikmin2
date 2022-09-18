@@ -1,12 +1,41 @@
-
+#include "Dolphin/gba.h"
+#include "Dolphin/os.h"
 
 /*
  * --INFO--
  * Address:	800FEF58
  * Size:	0000DC
  */
-void __GBAHandler(void)
+void __GBAHandler(int portIndex, u32 p2, OSContext* context)
 {
+	GBASyncCallback syncCallback;
+	GBAProcHandler procHandler;
+	GBA* gba = &__GBA[portIndex];
+	int _unused1;
+	int _unused2;
+	OSContext syncContext;
+	int _unused3;
+	if (__GBAReset == FALSE) {
+		if (p2 & 0xF) {
+			gba->_20 = 1;
+		} else {
+			gba->_20 = 0;
+		}
+		procHandler = gba->_38;
+		if (procHandler != nullptr) {
+			gba->_38 = nullptr;
+			procHandler(portIndex);
+		}
+		if (gba->m_syncCallback != nullptr) {
+			OSClearContext(&syncContext);
+			OSSetCurrentContext(&syncContext);
+			syncCallback = gba->m_syncCallback;
+			gba->m_syncCallback = nullptr;
+			syncCallback(portIndex, gba->_20);
+			OSClearContext(&syncContext);
+			OSSetCurrentContext(context);
+		}
+	}
 	/*
 	.loc_0x0:
 	  mflr      r0
@@ -80,24 +109,9 @@ void __GBAHandler(void)
  * Address:	800FF034
  * Size:	000034
  */
-void __GBASyncCallback(void)
+void __GBASyncCallback(int portIndex, int p2)
 {
-	/*
-	.loc_0x0:
-	  mflr      r0
-	  lis       r4, 0x804F
-	  stw       r0, 0x4(r1)
-	  rlwinm    r3,r3,8,0,23
-	  addi      r0, r4, 0x75C0
-	  add       r3, r0, r3
-	  stwu      r1, -0x8(r1)
-	  addi      r3, r3, 0x24
-	  bl        -0xC67C
-	  lwz       r0, 0xC(r1)
-	  addi      r1, r1, 0x8
-	  mtlr      r0
-	  blr
-	*/
+	OSWakeupThread(&__GBA[portIndex]._24);
 }
 
 /*
@@ -105,8 +119,18 @@ void __GBASyncCallback(void)
  * Address:	800FF068
  * Size:	00006C
  */
-void __GBASync(void)
+int __GBASync(int portIndex)
 {
+	int result;
+	GBA* gba = &__GBA[portIndex];
+	int interrupts = OSDisableInterrupts();
+	while (gba->m_syncCallback != nullptr) {
+		OSSleepThread(&gba->_24);
+	}
+	result = gba->_20;
+	OSRestoreInterrupts(interrupts);
+	return result;
+
 	/*
 	.loc_0x0:
 	  mflr      r0
@@ -148,7 +172,7 @@ void __GBASync(void)
  * Address:	800FF0D4
  * Size:	000124
  */
-void TypeAndStatusCallback(void)
+void TypeAndStatusCallback(int portIndex, u32 flags)
 {
 	/*
 	.loc_0x0:
@@ -243,7 +267,7 @@ void TypeAndStatusCallback(void)
  * Address:	800FF1F8
  * Size:	000074
  */
-void __GBATransfer(void)
+unknown __GBATransfer(int, unknown, unknown, GBAProcHandler)
 {
 	/*
 	.loc_0x0:

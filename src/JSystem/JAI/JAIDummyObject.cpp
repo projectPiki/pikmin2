@@ -1,3 +1,6 @@
+#include "JSystem/JAI/JAIBasic.h"
+#include "JSystem/JAI/JAIGlobalParameter.h"
+#include "JSystem/JAI/JAInter.h"
 #include "types.h"
 
 /*
@@ -20,8 +23,20 @@
  * Address:	800AD490
  * Size:	0000DC
  */
-void JAInter::DummyObjectMgr::init(void)
+void JAInter::DummyObjectMgr::init()
 {
+	deadObjectFreePointer   = new (JAIBasic::msCurrentHeap, 0x20) DummyObject[JAIGlobalParameter::getParamDummyObjectMax()];
+	deadObjectUsedPointer   = nullptr;
+	deadObjectObject        = deadObjectFreePointer;
+	deadObjectObject[0]._00 = nullptr;
+	deadObjectObject[0]._04 = deadObjectObject + 1;
+	u32 i;
+	for (i = 1; i < JAIGlobalParameter::getParamDummyObjectMax() - 1; i++) {
+		deadObjectObject[i]._00 = &deadObjectObject[i - 1];
+		deadObjectObject[i]._04 = &deadObjectObject[i + 1];
+	}
+	deadObjectObject[i]._00 = &deadObjectObject[i - 1];
+	deadObjectObject[i]._04 = nullptr;
 	/*
 	stwu     r1, -0x10(r1)
 	mflr     r0
@@ -90,7 +105,7 @@ lbl_800AD51C:
  * Address:	800AD56C
  * Size:	000068
  */
-void JAInter::DummyObjectMgr::getPointer(unsigned long)
+JAInter::DummyObjectMgr::DummyObject* JAInter::DummyObjectMgr::getPointer(u32)
 {
 	/*
 	lwz      r0, deadObjectFreePointer__Q27JAInter14DummyObjectMgr@sda21(r13)

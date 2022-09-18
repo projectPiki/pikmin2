@@ -138,6 +138,12 @@ void EGEBox2f::in(Vector2f* point, float margin)
  */
 bool EGECircle2f::isOut(Vector2f& point)
 {
+	// float distanceFromCenter = temppikmin2_sqrtf(SQUARE(point.x - m_center.x) + SQUARE(point.y - m_center.y));
+	// if (m_radius < distanceFromCenter) {
+	if (m_radius < somesqrtfefunc(SQUARE(point.x - m_center.x) + SQUARE(point.y - m_center.y))) {
+		return true;
+	}
+	return false;
 	/*
 	lfs      f1, 4(r4)
 	lfs      f0, 4(r3)

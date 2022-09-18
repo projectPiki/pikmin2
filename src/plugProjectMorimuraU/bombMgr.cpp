@@ -1,4 +1,5 @@
 #include "types.h"
+#include "Game/Entities/Bomb.h"
 
 /*
     Generated from dpostproc

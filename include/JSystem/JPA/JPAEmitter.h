@@ -4,6 +4,9 @@
 #include "Dolphin/gx.h"
 #include "Dolphin/mtx.h"
 #include "JSystem/JGeometry.h"
+#include "JSystem/JMath.h"
+#include "JSystem/JPA/JPANode.h"
+#include "JSystem/JPA/JPAResource.h"
 #include "JSystem/JSupport/JSUList.h"
 #include "JSystem/JUT/TColor.h"
 #include "types.h"
@@ -13,6 +16,7 @@ struct JPAEmitterWorkData;
 struct JPAEmitterManager;
 struct JPAEmitterCallBack;
 struct JPAParticleCallBack;
+struct JPADrawInfo;
 
 struct JPABaseParticle {
 	void init_p(JPAEmitterWorkData*);
@@ -25,6 +29,7 @@ struct JPABaseParticle {
 	float getCalcCurrentPositionZ(const JPABaseEmitter*) const;
 
 	// unused/inlined:
+	~JPABaseParticle();
 	float getWidth(const JPABaseEmitter*) const;
 	float getHeight(const JPABaseEmitter*) const;
 
@@ -44,7 +49,7 @@ struct JPABaseParticle {
 	float _74;                    // _74
 	unknown _78;                  // _78
 	uint _7C;                     // _7C
-	u16 _80;                      // _80
+	s16 _80;                      // _80
 	u16 _82;                      // _82
 	float _84;                    // _84
 	s16 _88;                      // _88
@@ -82,40 +87,51 @@ struct JPABaseEmitter {
 	int getDrawCount() const;
 	void loadTexture(unsigned char, _GXTexMapID);
 
-	float _00;                // _00
-	float _04;                // _04
-	float _08;                // _08
-	JGeometry::TVec3f _0C;    // _0C
-	JGeometry::TVec3f _18;    // _18
-	s32 _24;                  // _24
-	float _28;                // _28
-	float _2C;                // _2C
-	float _30;                // _30
-	u8 _34[0xC];              // _34
-	float _40;                // _40
-	u8 _44[4];                // _44
-	float _48;                // _48
-	u16 _4C;                  // _4C
-	u16 _4E;                  // _4E
-	u16 _50;                  // _50
-	s32 : 0;                  // reset alignment to _54
-	u16 _54;                  // _54
-	JSUPtrLink _58;           // _58
-	Mtx _68;                  // _68
-	JGeometry::TVec3f _98;    // _98
-	JGeometry::TVec3f _A4;    // _A4
-	float _B0;                // _B0
-	float _B4;                // _B4
-	u8 _B8;                   // _B8
-	u8 _B9;                   // _B9
-	u8 _BA;                   // _BA
-	u8 _BB;                   // _BB
-	JUtility::TColor m_color; // _BC
-	s32 : 0;                  // reset alignment to _C0
-	u8 _C0[4];                // _C0
-	u32 _C4;                  // _C4
-	unkptr _C8;               // _C8
-	unkptr _CC;               // _CC
+	/**
+	 * @fabricated
+	 */
+	void setFlag(u32 flag) { _F4 = _F4 | flag; }
+	/**
+	 * @fabricated
+	 */
+	bool isFlag(u32 flag) { return _F4 & flag; }
+	bool is100() { return _F4 & 0x100; }
+
+	float _00;                  // _00
+	float _04;                  // _04
+	float _08;                  // _08
+	JGeometry::TVec3f _0C;      // _0C
+	JGeometry::TVec3f _18;      // _18
+	s32 _24;                    // _24
+	float _28;                  // _28
+	float _2C;                  // _2C
+	float _30;                  // _30
+	float _34;                  // _34
+	u8 _38[0x8];                // _38
+	float _40;                  // _40
+	u8 _44[4];                  // _44
+	float _48;                  // _48
+	u16 _4C;                    // _4C
+	u16 _4E;                    // _4E
+	u16 _50;                    // _50
+	u16 _52;                    // _52
+	u16 _54;                    // _54
+	JSUPtrLink _58;             // _58
+	Mtx _68;                    // _68
+	JGeometry::TVec3f _98;      // _98
+	JGeometry::TVec3f _A4;      // _A4
+	float _B0;                  // _B0
+	float _B4;                  // _B4
+	u8 _B8;                     // _B8
+	u8 _B9;                     // _B9
+	u8 _BA;                     // _BA
+	u8 _BB;                     // _BB
+	JUtility::TColor m_color;   // _BC
+	s32 : 0;                    // reset alignment to _C0
+	u8 _C0[4];                  // _C0
+	JMath::TRandom_fast_ m_rng; // _C4
+	unkptr _C8;                 // _C8
+	unkptr _CC;                 // _CC
 	// JPANode<JPABaseParticle>* _C8; // _C8
 	// JPANode<JPABaseParticle>* _CC; // _CC
 	s32 _D0;    // _D0
@@ -131,7 +147,7 @@ struct JPABaseEmitter {
 	u32 _F4;                                 // _F4
 	float _F8;                               // _F8
 	float _FC;                               // _FC
-	s32 _100;                                // _100
+	u32 _100;                                // _100
 	s16 _104;                                // _104
 	s16 _106;                                // _106
 	JUtility::TColor _108;                   // _108
@@ -150,14 +166,79 @@ struct JPAEmitterCallBack {
 	virtual void drawAfter(JPABaseEmitter*);    // _10
 };
 
+/**
+ * @size{0x218}
+ */
 struct JPAEmitterWorkData {
-	u8 _00[0x218];
+	JPABaseEmitter* m_emitter;         // _00
+	JPAResource* m_resource;           // _04
+	JPAResourceManager* m_resourceMgr; // _08
+	u32 _0C;                           // _0C
+	JGeometry::TVec3f _10;             // _10
+	JGeometry::TVec3f _1C;             // _1C
+	JGeometry::TVec3f _28;             // _28
+	float _34;                         // _34
+	float _38;                         // _38
+	float _3C;                         // _3C
+	int m_createNumber;                // _40;
+	u32 _44;                           // _44
+	Mtx _48;                           // _48
+	Mtx _78;                           // _78
+	Mtx _A8;                           // _A8
+	Mtx _D8;                           // _D8
+	JGeometry::TVec3f _108;            // _108
+	float _114;                        // _114
+	float _118;                        // _118
+	float _11C;                        // _11C
+	JGeometry::TVec3f _120;            // _120
+	JGeometry::TVec3f _12C;            // _120
+	JGeometry::TVec3f _138;            // _138
+	float _144;                        // _144
+	float _148;                        // _148
+	float _14C;                        // _14C
+	float _150;                        // _150
+	Mtx _154;                          // _154
+	Mtx _184;                          // _184
+	Mtx _1B4;                          // _1B4
+	JPANode<JPABaseParticle>* _1E4;    // _1E4
+	JPANode<JPABaseParticle>* _1E8;    // _1E8
+	int _1EC;                          // _1EC
+	int _1F0;                          // _1F0
+	int _1F4;                          // _1F4
+	int _1F8;                          // _1F8
+	float _1FC;                        // _1FC
+	int _200;                          // _200
+	int _204;                          // _204
+	int _208;                          // _208
+	int _20C;                          // _20C
+	int _210;                          // _210
+	short _214;                        // _214
+	u8 _216;                           // _216
 };
 
 /**
  * @size{0x30}
  */
 struct JPAEmitterManager {
+	JPAEmitterManager(u32, u32, JKRHeap*, u8, u8);
+
+	void createSimpleEmitterID(const JGeometry::TVec3f&, u16, u8, u8, JPAEmitterCallBack*, JPAParticleCallBack*);
+	void calc();
+	void draw(const JPADrawInfo*, u8);
+	void forceDeleteAllEmitter();
+	void forceDeleteGroupEmitter(u8);
+	void forceDeleteEmitter(JPABaseEmitter*);
+	static void entryResourceManager(JPAResourceManager*, u8);
+	void clearResourceManager(u8);
+	void calcYBBCam();
+
+	// unused/inlined:
+	void createSimpleEmitter(const JGeometry::TVec3f&, u16, JPAEmitterCallBack*, JPAParticleCallBack*);
+	void calc(u8);
+	void draw(float (*)[4], u8);
+	void draw(const JPADrawInfo*);
+	void draw(float (*)[4]);
+
 	JSUList<JPABaseEmitter>* _00; // _00
 	JSUPtrList _04;               // _04
 	unkptr _10;

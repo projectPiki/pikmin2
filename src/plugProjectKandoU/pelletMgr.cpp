@@ -4629,6 +4629,7 @@ void Pellet::onSlotStickEnd(Creature* creature, short slot)
  * --INFO--
  * Address:	........
  * Size:	00018C
+ * calcStickSlotLocal__Q24Game6PelletFsR10Vector3f
  */
 // void calcStickSlotLocal__Q24Game6PelletFsR10Vector3f(void)
 // {
@@ -5968,7 +5969,7 @@ void PelletIterator::setFirst()
  */
 PelletMgr::PelletMgr()
 {
-	m_name              = "ƒyƒŒƒbƒgƒ}ƒl[ƒWƒƒ"; // pellet manager
+	m_name              = "ï¿½yï¿½ï¿½ï¿½bï¿½gï¿½}ï¿½lï¿½[ï¿½Wï¿½ï¿½"; // pellet manager
 	m_movieDrawDisabled = false;
 }
 
@@ -6120,6 +6121,7 @@ void Game::PelletMgr::setupResources()
  * --INFO--
  * Address:	........
  * Size:	00050C
+ * calcNearestTreasure__Q24Game9PelletMgrFR10Vector3<f>f
  */
 // void calcNearestTreasure__Q24Game9PelletMgrFR10Vector3f f(void)
 // {
@@ -6433,7 +6435,7 @@ void PelletMgr::OtakaraItemCode::write(Stream& stream)
 {
 	stream.textWriteTab(stream.m_tabCount);
 	stream.writeShort(m_value);
-	stream.textWriteText("# ‚¨•óƒAƒCƒeƒ€ƒR[ƒh\r\n");
+	stream.textWriteText("# ï¿½ï¿½ï¿½ï¿½Aï¿½Cï¿½eï¿½ï¿½ï¿½Rï¿½[ï¿½h\r\n");
 }
 
 /*
@@ -7533,6 +7535,7 @@ namespace Game {
  * --INFO--
  * Address:	8016F9BC
  * Size:	000008
+ * generatorBirth__Q24Game13BasePelletMgrFR10Vector3<f>R10Vector3<f>PQ24Game13GenPelletParm
  */
 // WEAK - in header
 // Pellet* BasePelletMgr::generatorBirth(Vector3f&, Vector3f&, GenPelletParm*) { return nullptr; }
@@ -8059,10 +8062,13 @@ lbl_80170018:
 
 namespace Game {
 
+namespace Game {
+
 /*
  * --INFO--
  * Address:	80170048
  * Size:	000044
+ * onSetPosition__Q24Game6PelletFR10Vector3<f>
  */
 void Pellet::onSetPosition(Vector3f&)
 {
@@ -8204,8 +8210,6 @@ void Pellet::onSetPosition(Vector3f&)
 // void CreatureObj::onCalcOn(void) { }
 
 namespace Game {
-
-} // namespace Game
 
 /*
  * --INFO--

@@ -6351,7 +6351,7 @@ void PSPause_StartMenuOff()
  * Address:	8046BB68
  * Size:	0000EC
  */
-void PSPauseOn(unsigned char, unsigned char)
+void PSPauseOn(uchar, uchar)
 {
 	/*
 	stwu     r1, -0x20(r1)

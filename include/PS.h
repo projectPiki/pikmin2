@@ -7,7 +7,11 @@ struct Vec;
 
 namespace Game {
 struct EnemyBase;
-}
+} // namespace Game
+
+namespace PSM {
+struct Creature;
+} // namespace PSM
 
 void PSChangeBgm_ChallengeGame();
 
@@ -30,5 +34,7 @@ void PSStartTreasureLaderSE(float);
 void PSStartTresureLaderNoiseSE(u8, float, float);
 void PSMuteSE_on2D();
 void PSMuteOffSE_on2D();
+
+unknown PSPlayCaveHoleSound(PSM::Creature*);
 
 #endif

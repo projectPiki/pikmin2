@@ -11,7 +11,7 @@
 #include "Game/EnemyBase.h"
 #include "Game/enemyInfo.h"
 #include "Game/EnemyPelletInfo.h"
-#include "Game/pelletMgr.h"
+#include "Game/PelletMgr.h"
 
 struct J3DModelData;
 

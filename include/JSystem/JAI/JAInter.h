@@ -3,16 +3,19 @@
 
 #include "JSystem/JAI/JAInter/MoveParaSet.h"
 #include "JSystem/JAS/JASTrack.h"
+#include "JSystem/JGeometry.h"
 #include "types.h"
 #include "Dolphin/mtx.h"
 
 struct JAISequence;
+struct JAISound;
 
 namespace JAInter {
+struct DummyVec;
 
 namespace SequenceMgr {
-struct CustomHeapInfo {
-};
+struct CustomHeapInfo { };
+void init();
 } // namespace SequenceMgr
 
 struct Actor {
@@ -54,17 +57,41 @@ struct Camera {
 	Mtx* m_mtx;  // _08
 };
 
-struct HeapBlock {
+struct DummyObjectMgr {
+	/**
+	 * @fabricated
+	 * @size{0x1C}
+	 */
+	struct DummyObject {
+		inline DummyObject() {};
+		DummyObject* _00;      // _00
+		DummyObject* _04;      // _04
+		JAISound* m_sound;     // _08
+		JGeometry::TVec3f _0C; // _0C
+		u32 _18;               // _18
+	};
+
+	static void init();
+	static DummyObject* getPointer(u32);
+	static void check();
+
+	// Unused/inlined:
+	void releasePointer(DummyVec*);
+
+	static DummyObject* deadObjectObject;
+	static DummyObject* deadObjectFreePointer;
+	static DummyObject* deadObjectUsedPointer;
 };
 
-struct LinkSound {
-};
+struct DummyVec { };
 
-struct MuteBit {
-};
+struct HeapBlock { };
 
-struct PlayerParameter {
-};
+struct LinkSound { };
+
+struct MuteBit { };
+
+struct PlayerParameter { };
 
 struct SeParameter {
 	SeParameter();

@@ -1,4 +1,7 @@
-#include "types.h"
+#include "Dolphin/mtx.h"
+#include "JSystem/JPA/JPABlock.h"
+#include "JSystem/JPA/JPAEmitter.h"
+#include "JSystem/JPA/JPAResource.h"
 
 /*
     Generated from dpostproc
@@ -58,8 +61,11 @@ lbl_8008FCCC:
  * Address:	8008FCE4
  * Size:	00035C
  */
-void JPABaseEmitter::init(JPAEmitterManager*, JPAResource*)
+void JPABaseEmitter::init(JPAEmitterManager* manager, JPAResource* resource)
 {
+	m_manager  = manager;
+	m_resource = resource;
+	m_resource->_2C->m_data;
 	/*
 	stwu     r1, -0x10(r1)
 	mflr     r0
@@ -290,7 +296,7 @@ lbl_8008FE08:
  * Address:	80090040
  * Size:	00011C
  */
-void JPABaseEmitter::createParticle()
+JPABaseParticle* JPABaseEmitter::createParticle()
 {
 	/*
 	stwu     r1, -0x10(r1)
@@ -384,7 +390,7 @@ lbl_80090144:
  * Address:	8009015C
  * Size:	0000FC
  */
-void JPABaseEmitter::createChild(JPABaseParticle*)
+JPABaseParticle* JPABaseEmitter::createChild(JPABaseParticle*)
 {
 	/*
 	stwu     r1, -0x10(r1)
@@ -598,30 +604,15 @@ lbl_800903BC:
  * Address:	800903CC
  * Size:	000040
  */
-void JPABaseEmitter::processTillStartFrame()
+bool JPABaseEmitter::processTillStartFrame()
 {
-	/*
-	lwz      r4, 0xe8(r3)
-	lha      r5, 0x104(r3)
-	lwz      r4, 0x2c(r4)
-	lwz      r4, 0(r4)
-	lha      r0, 0x70(r4)
-	cmpw     r5, r0
-	blt      lbl_800903F0
-	li       r3, 1
-	blr
-
-lbl_800903F0:
-	lwz      r0, 0xf4(r3)
-	rlwinm.  r0, r0, 0, 0x1e, 0x1e
-	bne      lbl_80090404
-	addi     r0, r5, 1
-	sth      r0, 0x104(r3)
-
-lbl_80090404:
-	li       r3, 0
-	blr
-	*/
+	if (_104 >= m_resource->_2C->castData()->_70) {
+		return true;
+	}
+	if ((_F4 & 2) == 0) {
+		_104++;
+	}
+	return false;
 }
 
 /*
@@ -629,8 +620,30 @@ lbl_80090404:
  * Address:	8009040C
  * Size:	00009C
  */
-void JPABaseEmitter::processTermination()
+bool JPABaseEmitter::processTermination()
 {
+	if (is100()) {
+		// if ((_F4 & 0x100) != 0) {
+		return true;
+	}
+	if (_24 == 0) {
+		return false;
+	}
+	if (_24 < 0) {
+		setFlag(8);
+		// _F4 = _F4 | 8;
+		return !(_D0 + _DC);
+	}
+	if (_100 >= _24) {
+		setFlag(8);
+		// _F4 = _F4 | 8;
+		if (isFlag(0x40)) {
+			// if ((_F4 & 0x40) != 0) {
+			return false;
+		}
+		return !(_D0 + _DC);
+	}
+	return false;
 	/*
 	lwz      r0, 0xf4(r3)
 	rlwinm.  r0, r0, 0, 0x17, 0x17
@@ -689,42 +702,15 @@ lbl_800904A0:
  * Address:	800904A8
  * Size:	000080
  */
-void JPABaseEmitter::calcEmitterGlobalPosition(JGeometry::TVec3<float>*) const
+void JPABaseEmitter::calcEmitterGlobalPosition(JGeometry::TVec3<float>* p1) const
 {
-	/*
-	stwu     r1, -0x40(r1)
-	mflr     r0
-	lfs      f1, 0x98(r3)
-	stw      r0, 0x44(r1)
-	stw      r31, 0x3c(r1)
-	mr       r31, r4
-	stw      r30, 0x38(r1)
-	mr       r30, r3
-	lfs      f2, 0x9c(r30)
-	addi     r3, r1, 8
-	lfs      f3, 0xa0(r30)
-	bl       PSMTXScale
-	addi     r4, r1, 8
-	addi     r3, r30, 0x68
-	mr       r5, r4
-	bl       PSMTXConcat
-	lfs      f2, 0xa4(r30)
-	mr       r5, r31
-	lfs      f1, 0xa8(r30)
-	addi     r3, r1, 8
-	lfs      f0, 0xac(r30)
-	addi     r4, r30, 0xc
-	stfs     f2, 0x14(r1)
-	stfs     f1, 0x24(r1)
-	stfs     f0, 0x34(r1)
-	bl       PSMTXMultVec
-	lwz      r0, 0x44(r1)
-	lwz      r31, 0x3c(r1)
-	lwz      r30, 0x38(r1)
-	mtlr     r0
-	addi     r1, r1, 0x40
-	blr
-	*/
+	Mtx mtx;
+	PSMTXScale(mtx, _98.x, _98.y, _98.z);
+	PSMTXConcat(_68, mtx, mtx);
+	mtx[0][3] = _A4.x;
+	mtx[1][3] = _A4.y;
+	mtx[2][3] = _A4.z;
+	PSMTXMultVec(mtx, (Vec*)&_0C, (Vec*)p1);
 }
 
 /*
@@ -762,22 +748,14 @@ void JPABaseEmitter::getEmitterAxisZ(JGeometry::TVec3<float>*) const
  * Address:	80090528
  * Size:	000010
  */
-void JPABaseEmitter::getCurrentCreateNumber() const
-{
-	/*
-	lwz      r3, 0xe4(r3)
-	lwz      r3, 0x20(r3)
-	lwz      r3, 0x40(r3)
-	blr
-	*/
-}
+int JPABaseEmitter::getCurrentCreateNumber() const { return m_manager->_20->m_createNumber; }
 
 /*
  * --INFO--
  * Address:	........
  * Size:	000010
  */
-void JPABaseEmitter::getDrawCount() const
+int JPABaseEmitter::getDrawCount() const
 {
 	// UNUSED FUNCTION
 }

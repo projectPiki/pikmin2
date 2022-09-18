@@ -26,11 +26,11 @@ struct Mgr {
 
 	void* aramToMainRam(char const*, unsigned char*, unsigned long, unsigned long, JKRExpandSwitch, unsigned long, JKRHeap*,
 	                    JKRDvdRipper::EAllocDirection, int, unsigned long*);
-
+	void dump();
 	u32 dvdToAram(char const*, bool);
 	Node* search(char const* name);
 
-	CNode m_node; // _00
+	Node m_node; // _00
 };
 }; // namespace ARAM
 extern ARAM::Mgr* gAramMgr;

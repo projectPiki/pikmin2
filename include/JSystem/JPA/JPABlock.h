@@ -14,6 +14,30 @@ typedef void JPAVolumeFunc(JPAEmitterWorkData*);
  * @size{0x8}
  */
 struct JPADynamicsBlock {
+	/**
+	 * @fabricated
+	 */
+	struct Data {
+		u8 _00[0x8];  // _00
+		u32 _08;      // _08
+		u8 _0C[0x48]; // _0C
+		float _54;    // _54
+		u8 _58[0x18]; // _58
+		s16 _70;      // _70
+	};
+
+	JPADynamicsBlock(const unsigned char*);
+	void init();
+	void create(JPAEmitterWorkData*);
+
+	/**
+	 * @fabricated
+	 */
+	inline const Data* castData() const { return reinterpret_cast<const Data*>(m_data); }
+
+	// unused/inlined:
+	void init_jpa(const unsigned char*, JKRHeap*);
+
 	u8* m_data;                      // _00
 	JPAVolumeFunc* m_volumeFunction; // _04
 };

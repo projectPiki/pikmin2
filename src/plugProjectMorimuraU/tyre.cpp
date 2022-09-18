@@ -1,4 +1,5 @@
 #include "types.h"
+#include "Game/Entities/Tyre.h"
 
 /*
     Generated from dpostproc
@@ -425,14 +426,13 @@ void Tyre::Obj::setParameters(void)
 	*/
 }
 
-} // namespace Game
-
 /*
  * --INFO--
  * Address:	803AC380
  * Size:	000020
  */
-void birth__Q34Game4Tyre3ObjFR10Vector3f f(void)
+// void birth__Q34Game4Tyre3ObjFR10Vector3f f(void)
+Creature* Tyre::Obj::birth(Vector3f&, float) const
 {
 	/*
 	stwu     r1, -0x10(r1)
@@ -445,8 +445,6 @@ void birth__Q34Game4Tyre3ObjFR10Vector3f f(void)
 	blr
 	*/
 }
-
-namespace Game {
 
 /*
  * --INFO--

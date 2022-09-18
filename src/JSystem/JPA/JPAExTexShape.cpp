@@ -1,6 +1,7 @@
 #include "types.h"
 #include "JSystem/JPA/JPAShape.h"
 #include "JSystem/JPA/JPAEmitter.h"
+#include "Dolphin/gx.h"
 
 // TODO: replace GX functions with proper enumerated values
 // also, actually work out the types of JPAEmitterWorkData

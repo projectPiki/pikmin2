@@ -1,4 +1,5 @@
 #include "types.h"
+#include "Game/Entities/Egg.h"
 
 /*
     Generated from dpostproc
@@ -543,7 +544,7 @@ lbl_8034B988:
  * Address:	8034B9A4
  * Size:	000008
  */
-u32 Egg::Mgr::getEnemyTypeID(void) { return 0x25; }
+u32 Egg::Mgr::getEnemyTypeID(void) { return EnemyID_Egg; }
 
 /*
  * --INFO--

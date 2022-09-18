@@ -647,7 +647,7 @@ void System::enableCPULockDetector(int)
  * Address:	8042232C
  * Size:	000018
  */
-void System::disableCPULockDetector()
+int System::disableCPULockDetector()
 {
 	/*
 	    lwz      r4, 0x20(r3)

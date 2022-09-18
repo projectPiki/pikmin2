@@ -211,15 +211,23 @@ void* Mgr::aramToMainRam(char const* name, unsigned char* a2, unsigned long a3, 
 
 	return mem;
 }
-} // namespace ARAM
 
 /*
-* --INFO--
-* Address:	80432FC8
-* Size:	0000A0
-
-void ARAM::Mgr::dump(void)
+ * --INFO--
+ * Address:	80432FC8
+ * Size:	0000A0
+ */
+void ARAM::Mgr::dump()
 {
+	u32 min = 0;
+	JKRAram::sAramObject->m_aramHeap->getFreeSize();
+	JKRAram::sAramObject->m_aramHeap->getFreeSize();
+	u32 max = 0xFFFFFFFF;
+	FOREACH_NODE(Node, m_node.m_child, node) {
+		u32 v1 = (node->m_status) ? node->m_status->_18 : 0;
+		max = MIN(max, v1);
+		min = MAX(min, v1);
+	}
 /*
 stwu     r1, -0x20(r1)
 mflr     r0
@@ -273,15 +281,15 @@ lwz      r29, 0x14(r1)
 mtlr     r0
 addi     r1, r1, 0x20
 blr
-
+*/
 }
 
 /*
-* --INFO--
-* Address:	80433068
-* Size:	000070
-
-void ARAM::Mgr::search(char const*)
+ * --INFO--
+ * Address:	80433068
+ * Size:	000070
+ */
+Node* ARAM::Mgr::search(char const*)
 {
 /*
 stwu     r1, -0x20(r1)
@@ -320,6 +328,6 @@ lwz      r29, 0x14(r1)
 mtlr     r0
 addi     r1, r1, 0x20
 blr
-
-}
 */
+}
+} // namespace ARAM

@@ -69,12 +69,14 @@
 */
 
 // sinit
-// Game::BirthMgr::bleh Game::BirthMgr::mToday;
-// Game::BirthCounter Game::BirthMgr::mCave;
-// Game::BirthCounter Game::BirthMgr::mTotal;
-// Game::DeathCounter Game::DeathMgr::mToday;
-// Game::DeathCounter Game::DeathMgr::mCave;
-// Game::DeathCounter Game::DeathMgr::mTotal;
+extern Game::BirthTodayCounter Game::BirthMgr::mToday;
+extern Game::BirthCounter Game::BirthMgr::mCave;
+extern Game::BirthCounter Game::BirthMgr::mTotal;
+extern Game::DeathCounter Game::DeathMgr::mToday;
+extern Game::DeathCounter Game::DeathMgr::mCave;
+extern Game::DeathCounter Game::DeathMgr::mTotal;
+
+int Game::DeathMgr::mSoundDeathCount;
 
 namespace Game {
 
@@ -170,7 +172,7 @@ BirthMgr::BirthMgr(void)
  */
 void BirthMgr::clear(void)
 {
-	mToday.counter.reset();
+	mToday.reset();
 	mCave.reset();
 	mTotal.reset();
 }
@@ -216,9 +218,9 @@ void BirthMgr::dec(int pikiColor)
  */
 void BirthMgr::inc_today(int pikiColor)
 {
-	mToday.counter(pikiColor)++;
+	mToday(pikiColor)++;
 	if (pikiColor != LastStoredPikiColor + 1) {
-		mToday.counter(LastStoredPikiColor + 1)++;
+		mToday(LastStoredPikiColor + 1)++;
 	}
 }
 
@@ -242,9 +244,9 @@ void BirthMgr::inc_cave(int pikiColor)
  */
 void BirthMgr::dec_today(int pikiColor)
 {
-	mToday.counter(pikiColor)--;
+	mToday(pikiColor)--;
 	if (pikiColor != LastStoredPikiColor + 1) {
-		mToday.counter(LastStoredPikiColor + 1)--;
+		mToday(LastStoredPikiColor + 1)--;
 	}
 }
 
@@ -269,7 +271,7 @@ void BirthMgr::dec_cave(int pikiColor)
 void BirthMgr::account_cave(void)
 {
 	for (int i = 0; i < 6; i++) {
-		mToday.counter(i) += mCave(i);
+		mToday(i) += mCave(i);
 	}
 	mCave.reset();
 }
@@ -282,16 +284,16 @@ void BirthMgr::account_cave(void)
 void BirthMgr::account_today_adjust(void)
 {
 	for (int i = 0; i < 5; i++) {
-		if (mToday.counter(i) < 0) {
-			mTotal(i) += mToday.counter(i);
-			mToday.counter(i) = 0;
+		if (mToday(i) < 0) {
+			mTotal(i) += mToday(i);
+			mToday(i) = 0;
 		}
 	}
 	int a = 0;
 	for (int i = 0; i < 5; i++) {
-		a += mToday.counter(i);
+		a += mToday(i);
 	}
-	mToday.counter(5) = a;
+	mToday(5) = a;
 }
 
 /*
@@ -303,14 +305,14 @@ void BirthMgr::account_today_adjust(void)
 void BirthMgr::account_today(void)
 {
 	for (int i = 0; i < 6; i++) {
-		mTotal(i) += mToday.counter(i);
+		mTotal(i) += mToday(i);
 	}
 	int a = 0;
 	for (int i = 0; i < 5; i++) {
 		a += mTotal(i);
 	}
-	mToday.counter(5) = a;
-	mToday.counter.reset();
+	mToday(5) = a;
+	mToday.reset();
 }
 
 /*
@@ -332,7 +334,7 @@ int BirthMgr::get_cave(int pikiColor)
 int BirthMgr::get_today(int pikiColor)
 {
 	// UNUSED FUNCTION
-	return mToday.counter(pikiColor);
+	return mToday(pikiColor);
 }
 
 /*
@@ -351,7 +353,7 @@ int BirthMgr::get_total(int pikiColor) { return mTotal(pikiColor); }
 void BirthMgr::read(Stream& input)
 {
 	mCave.read(input);
-	mToday.counter.read(input);
+	mToday.read(input);
 	mTotal.read(input);
 }
 
@@ -364,7 +366,7 @@ void BirthMgr::read(Stream& input)
 void BirthMgr::write(Stream& output)
 {
 	mCave.write(output);
-	mToday.counter.write(output);
+	mToday.write(output);
 	mTotal.write(output);
 }
 

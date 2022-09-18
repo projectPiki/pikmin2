@@ -49,6 +49,7 @@ BOOL DVDClose(struct DVDPlayer*);
 int DVDCancel(struct DVDPlayer*); // Definitely int; returns -1 on failure.
 void DVDResume();
 void DVDReset();
+int DVDReadPrio(struct DVDPlayer* player, void* readBuffer, s32 byteCount, u32 startOffset, s32 queueIndex);
 BOOL DVDReadAsyncPrio(struct DVDPlayer*, void*, long, long, DVDDoneReadCallback*, int);
 BOOL DVDReadAbsAsyncPrio(struct DVDPlayer* player, void* readBuffer, long byteCount, u8* startAddress,
                          DVDDoneReadCallback* doneReadCallback, int queueIndex);

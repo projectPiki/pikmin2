@@ -470,6 +470,9 @@ struct OSThread {
 
 	u8* stackBase; // the thread's designated stack (high address)
 	u32* stackEnd; // last word of stack (low address)
+	unknown _30C;
+	unknown _310;
+	unknown _314;
 };
 
 struct OSMessage {

@@ -53,12 +53,41 @@ struct JPAExTexShape {
  * @size{0x1C}
  */
 struct JPAExtraShape {
+	// /**
+	//  * @fabricated
+	//  */
+	struct Data {
+		u8 _00[0xC];
+		float _0C;
+		float _10;
+		float _14;
+		float _18;
+		float _1C;
+		float _20;
+		u8 _24[4];
+		s16 _28;
+		s16 _2A;
+		float _2C;
+		float _30;
+		float _34;
+		float _38;
+		float _3C;
+		float _40;
+		u8 _44[4];
+		float _48;
+	};
+
 	JPAExtraShape(const u8*);
 
 	void init();
 
 	// Unused/inlined:
 	void init_jpa(const u8*, JKRHeap*);
+
+	/**
+	 * @fabricated
+	 */
+	inline const Data* castData() const { return reinterpret_cast<const Data*>(m_data); }
 
 	const u8* m_data; // _00
 	float _04;        // _04
@@ -149,6 +178,6 @@ void JPACalcAlphaAnm(JPAEmitterWorkData*, JPABaseParticle*);
 void JPACalcAlphaFlickAnm(JPAEmitterWorkData*, JPABaseParticle*);
 
 // In JPAExTexShape.cpp:
-void JPALoadExTex(JPAEmitterWorkData*);
+u32 JPALoadExTex(JPAEmitterWorkData*);
 
 #endif

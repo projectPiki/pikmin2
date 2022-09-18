@@ -1,3 +1,4 @@
+#include "Game/Navi.h"
 #include "types.h"
 
 /*
@@ -45,27 +46,15 @@
 namespace Game {
 
 /*
+ * __ct
  * --INFO--
  * Address:	80165088
  * Size:	000034
  */
-NaviWhistle::NaviWhistle(Game::Navi*)
+NaviWhistle::NaviWhistle(Game::Navi* navi)
+    : m_navi(navi)
 {
-	/*
-	stwu     r1, -0x10(r1)
-	mflr     r0
-	stw      r0, 0x14(r1)
-	stw      r31, 0xc(r1)
-	mr       r31, r3
-	stw      r4, 0x34(r3)
-	bl       init__Q24Game11NaviWhistleFv
-	lwz      r0, 0x14(r1)
-	mr       r3, r31
-	lwz      r31, 0xc(r1)
-	mtlr     r0
-	addi     r1, r1, 0x10
-	blr
-	*/
+	init();
 }
 
 /*
@@ -73,8 +62,12 @@ NaviWhistle::NaviWhistle(Game::Navi*)
  * Address:	801650BC
  * Size:	000128
  */
-void NaviWhistle::init(void)
+void NaviWhistle::init()
 {
+	_28 = 0;
+	_24 = 10.0f;
+	_2C = 0.0f;
+	_38.set(0xFF, 0x96, , u8 alpha)
 	/*
 	stwu     r1, -0x30(r1)
 	mflr     r0
@@ -596,14 +589,12 @@ lbl_80165704:
 	*/
 }
 
-} // namespace Game
-
 /*
  * --INFO--
  * Address:	80165718
  * Size:	0001D4
  */
-void update__Q24Game11NaviWhistleFR10Vector3f b(void)
+void NaviWhistle::update(Vector3f&, bool)
 {
 	/*
 	stwu     r1, -0x20(r1)
@@ -745,3 +736,4 @@ lbl_801658B4:
 	blr
 	*/
 }
+} // namespace Game

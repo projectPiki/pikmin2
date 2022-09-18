@@ -1,5 +1,6 @@
 #include "Game/gameGenerator.h"
 #include "Game/genItem.h"
+#include "Game/itemMgr.h"
 #include "types.h"
 
 /*
@@ -441,7 +442,7 @@ void BaseItemMgr::generatorWrite(Stream&, Game::GenItemParm*) { }
  * Address:	801AD0FC
  * Size:	00000C
  */
-void BaseItemMgr::generatorLocalVersion(void)
+u32 BaseItemMgr::generatorLocalVersion(void)
 {
 	/*
 	lis      r3, 0x30303030@ha
@@ -618,7 +619,7 @@ Creature* GenItem::generate(Game::Generator*)
  * Address:	801AD2D4
  * Size:	0000A4
  */
-void GenItem::birth(Game::GenArg*)
+Creature* GenItem::birth(Game::GenArg*)
 {
 	/*
 	stwu     r1, -0x20(r1)

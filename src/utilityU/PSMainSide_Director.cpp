@@ -1,4 +1,5 @@
 #include "types.h"
+#include "PSSystem/Director.h"
 
 /*
     Generated from dpostproc

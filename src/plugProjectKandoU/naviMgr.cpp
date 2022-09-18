@@ -1,3 +1,5 @@
+#include "Game/Navi.h"
+#include "SysShape/Model.h"
 #include "types.h"
 
 /*
@@ -2310,7 +2312,7 @@ lbl_8015A8B4:
  * Address:	........
  * Size:	000020
  */
-void NaviMgr::init(void)
+unknown NaviMgr::init(void)
 {
 	// UNUSED FUNCTION
 }
@@ -2530,7 +2532,7 @@ lbl_8015AAB0:
  * Address:	8015AB24
  * Size:	0000FC
  */
-void NaviMgr::birth(void)
+Navi* NaviMgr::birth()
 {
 	/*
 	stwu     r1, -0x20(r1)
@@ -2614,7 +2616,7 @@ lbl_8015ABF0:
  * Address:	8015AC20
  * Size:	00009C
  */
-void NaviMgr::getActiveNavi(void)
+Navi* NaviMgr::getActiveNavi()
 {
 	/*
 	stwu     r1, -0x10(r1)
@@ -2766,7 +2768,7 @@ void NaviParms::read(Stream&)
  * Address:	8015ADC8
  * Size:	000264
  */
-void NaviMgr::load(void)
+void NaviMgr::load()
 {
 	/*
 	stwu     r1, -0x20(r1)
@@ -2939,7 +2941,7 @@ lbl_8015AED8:
  * Address:	8015B02C
  * Size:	000064
  */
-void NaviMgr::createModel(int)
+SysShape::Model* NaviMgr::createModel(int)
 {
 	/*
 	stwu     r1, -0x10(r1)
@@ -2977,7 +2979,7 @@ lbl_8015B074:
  * Address:	8015B090
  * Size:	0000D4
  */
-void NaviMgr::loadResources_float(void)
+void NaviMgr::loadResources_float()
 {
 	/*
 	stwu     r1, -0x10(r1)
@@ -3050,7 +3052,7 @@ lbl_8015B138:
  * Address:	8015B164
  * Size:	00008C
  */
-void NaviMgr::getAliveCount(void)
+int NaviMgr::getAliveCount()
 {
 	/*
 	stwu     r1, -0x20(r1)
@@ -3102,7 +3104,7 @@ lbl_8015B1C0:
  * Address:	........
  * Size:	000090
  */
-void NaviMgr::getSurviveNavi(void)
+Navi* NaviMgr::getSurviveNavi()
 {
 	// UNUSED FUNCTION
 }
@@ -3112,7 +3114,7 @@ void NaviMgr::getSurviveNavi(void)
  * Address:	8015B1F0
  * Size:	000018
  */
-void NaviMgr::clearDeadCount(void)
+void NaviMgr::clearDeadCount()
 {
 	/*
 	li       r4, 0
@@ -3176,7 +3178,7 @@ lbl_8015B270:
  * Address:	8015B280
  * Size:	00004C
  */
-void NaviMgr::getDeadOrima(int)
+Navi* NaviMgr::getDeadOrima(int)
 {
 	/*
 	stwu     r1, -0x10(r1)
@@ -3210,7 +3212,7 @@ lbl_8015B2BC:
  * Address:	8015B2CC
  * Size:	0000EC
  */
-void NaviMgr::getAliveOrima(int)
+Navi* NaviMgr::getAliveOrima(int)
 {
 	/*
 	stwu     r1, -0x10(r1)
@@ -3824,7 +3826,7 @@ lbl_8015BA04:
  * Address:	........
  * Size:	000074
  */
-void NaviMgr::draw2d(J2DGrafContext&)
+unknown NaviMgr::draw2d(J2DGrafContext&)
 {
 	// UNUSED FUNCTION
 }
@@ -3841,7 +3843,7 @@ void NaviMgr::setupSoundViewerAndBas(void) { }
  * Address:	8015BA24
  * Size:	000008
  */
-void NaviMgr::getMgrName(void)
+char* NaviMgr::getMgrName()
 {
 	/*
 	addi     r3, r2, lbl_80518750@sda21
@@ -3854,7 +3856,7 @@ void NaviMgr::getMgrName(void)
  * Address:	8015BA2C
  * Size:	000008
  */
-u32 NaviMgr::frozenable(void) { return 0x0; }
+bool NaviMgr::frozenable() { return false; }
 
 } // namespace Game
 

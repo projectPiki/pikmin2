@@ -1,3 +1,4 @@
+#include "Game/Navi.h"
 #include "types.h"
 
 /*

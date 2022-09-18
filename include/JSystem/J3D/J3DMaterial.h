@@ -39,16 +39,16 @@ struct J3DMaterial {
 
 	~J3DMaterial();
 
-	virtual void calc(const float (*)[4]);           // _00
-	virtual void calcDiffTexMtx(const float (*)[4]); // _04
-	virtual void makeDisplayList();                  // _08
-	virtual void makeSharedDisplayList();            // _0C
-	virtual void load();                             // _10
-	virtual void loadSharedDL();                     // _14
-	virtual void patch();                            // _18
-	virtual void diff(u32);                          // _1C
-	virtual void reset();                            // _20
-	virtual void change();                           // _24
+	virtual void calc(const float (*)[4]);           // _08
+	virtual void calcDiffTexMtx(const float (*)[4]); // _0C
+	virtual void makeDisplayList();                  // _10
+	virtual void makeSharedDisplayList();            // _14
+	virtual void load();                             // _18
+	virtual void loadSharedDL();                     // _1C
+	virtual void patch();                            // _20
+	virtual void diff(u32);                          // _24
+	virtual void reset();                            // _28
+	virtual void change();                           // _2C
 
 	void calcCurrentMtx();
 	static u32 calcSizeColorBlock(u32);

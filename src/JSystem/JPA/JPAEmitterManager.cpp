@@ -1,4 +1,5 @@
-#include "types.h"
+#include "JSystem/JKR/JKRHeap.h"
+#include "JSystem/JPA/JPAEmitter.h"
 
 /*
     Generated from dpostproc

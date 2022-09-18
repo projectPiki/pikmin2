@@ -1,3 +1,5 @@
+#include "Sys/MatBaseAnimation.h"
+#include "Sys/MatBaseAnimator.h"
 #include "types.h"
 
 /*
@@ -279,7 +281,7 @@ void MatTexAnimation::set(void)
  * Address:	80434214
  * Size:	00002C
  */
-void MatTexAnimation::remove(void)
+bool MatTexAnimation::remove(void)
 {
 	/*
 	stwu     r1, -0x10(r1)
@@ -395,7 +397,7 @@ void MatTevRegAnimation::set(void)
  * Address:	80434328
  * Size:	00002C
  */
-void MatTevRegAnimation::remove(void)
+bool MatTevRegAnimation::remove(void)
 {
 	/*
 	stwu     r1, -0x10(r1)
@@ -1050,7 +1052,7 @@ void MatBaseAnimator::onStart(void) { }
  * Address:	80434AB0
  * Size:	000008
  */
-void MatTevRegAnimation::getAnmBase(void)
+J3DAnmBase* MatTevRegAnimation::getAnmBase(void)
 {
 	/*
 	lwz      r3, 8(r3)
@@ -1063,7 +1065,7 @@ void MatTevRegAnimation::getAnmBase(void)
  * Address:	80434AB8
  * Size:	000008
  */
-void MatTexAnimation::getAnmBase(void)
+J3DAnmBase* MatTexAnimation::getAnmBase(void)
 {
 	/*
 	lwz      r3, 8(r3)

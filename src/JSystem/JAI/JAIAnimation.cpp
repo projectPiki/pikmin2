@@ -1,3 +1,5 @@
+#include "JSystem/JAI/JAIAnimeSound.h"
+#include "JSystem/JAI/JAIBasic.h"
 #include "types.h"
 
 /*
@@ -1220,37 +1222,37 @@ void JAIAnimeSound::setSpeedModifySound(JAISound*, JAIAnimeFrameSoundData*, floa
  * Address:	800ABDD8
  * Size:	000060
  */
-JAIAnimeSound::~JAIAnimeSound()
-{
-	/*
-	stwu     r1, -0x10(r1)
-	mflr     r0
-	stw      r0, 0x14(r1)
-	stw      r31, 0xc(r1)
-	mr       r31, r4
-	stw      r30, 8(r1)
-	or.      r30, r3, r3
-	beq      lbl_800ABE1C
-	lis      r5, __vt__13JAIAnimeSound@ha
-	li       r4, 0
-	addi     r0, r5, __vt__13JAIAnimeSound@l
-	stw      r0, 0(r30)
-	bl       __dt__Q27JAInter6ObjectFv
-	extsh.   r0, r31
-	ble      lbl_800ABE1C
-	mr       r3, r30
-	bl       __dl__FPv
+// JAIAnimeSound::~JAIAnimeSound()
+// {
+// 	/*
+// 	stwu     r1, -0x10(r1)
+// 	mflr     r0
+// 	stw      r0, 0x14(r1)
+// 	stw      r31, 0xc(r1)
+// 	mr       r31, r4
+// 	stw      r30, 8(r1)
+// 	or.      r30, r3, r3
+// 	beq      lbl_800ABE1C
+// 	lis      r5, __vt__13JAIAnimeSound@ha
+// 	li       r4, 0
+// 	addi     r0, r5, __vt__13JAIAnimeSound@l
+// 	stw      r0, 0(r30)
+// 	bl       __dt__Q27JAInter6ObjectFv
+// 	extsh.   r0, r31
+// 	ble      lbl_800ABE1C
+// 	mr       r3, r30
+// 	bl       __dl__FPv
 
-lbl_800ABE1C:
-	lwz      r0, 0x14(r1)
-	mr       r3, r30
-	lwz      r31, 0xc(r1)
-	lwz      r30, 8(r1)
-	mtlr     r0
-	addi     r1, r1, 0x10
-	blr
-	*/
-}
+// lbl_800ABE1C:
+// 	lwz      r0, 0x14(r1)
+// 	mr       r3, r30
+// 	lwz      r31, 0xc(r1)
+// 	lwz      r30, 8(r1)
+// 	mtlr     r0
+// 	addi     r1, r1, 0x10
+// 	blr
+// 	*/
+// }
 
 /*
  * --INFO--

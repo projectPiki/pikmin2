@@ -67,6 +67,8 @@ typedef u32 unknown;
 // Align object to num bytes (num should be power of two)
 #define ATTRIBUTE_ALIGN(num) __attribute__((aligned(num)))
 
+#define IS_FLAG_SET(flags, bitsFromLSB) (((flags) >> (bitsFromLSB)&1))
+
 // For functions that return 0 on a success and -1 on failure
 #ifndef EXIT_SUCCESS
 #define EXIT_SUCCESS 0
@@ -77,5 +79,15 @@ typedef u32 unknown;
 	if (!(cond)) {        \
 		while (true) { }  \
 	}
+
+#ifndef MAX
+//! Get the maximum of two values
+#define MAX(a, b) (((a) > (b)) ? (a) : (b))
+#endif
+
+#ifndef MIN
+//! Get the minimum of two values
+#define MIN(a, b) (((a) < (b)) ? (a) : (b))
+#endif
 
 #endif

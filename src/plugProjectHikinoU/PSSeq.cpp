@@ -5457,7 +5457,7 @@ void BankRandTask::timeTask(JASTrack&, float)
  * Address:	80334224
  * Size:	00000C
  */
-void BankRandTask::getPreParam(JASTrack&)
+float BankRandTask::getPreParam(JASTrack&)
 {
 	/*
 	lwz      r3, sInstance__Q28PSSystem11BankRandPrm@sda21(r13)

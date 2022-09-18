@@ -193,6 +193,21 @@ float qdist2(float x1, float y1, float x2, float y2)
 	return dist;
 }
 
+float _qdist3(float x1, float y1, float z1, float x2, float y2, float z2)
+{
+	float xdiff = (x2 - x1);
+	float ydiff = (y2 - y1);
+	float zdiff = (z2 - z1);
+
+	return pikmin2_sqrtf(((xdiff * xdiff) + (ydiff * ydiff) + (zdiff * zdiff)));
+	// float dist = ((xdiff * xdiff) + (ydiff * ydiff) + (zdiff * zdiff));
+	// if (dist > 0.0f) {
+	// 	volatile float calcDist = dist * (__frsqrte(dist));
+	// 	dist                    = calcDist;
+	// }
+	// return dist;
+}
+
 extern float lbl_805201D4; // 0.0
 
 /*

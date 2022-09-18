@@ -1,5 +1,7 @@
 #include "Dolphin/trk.h"
+
 BOOL gTRKBigEndian;
+
 /*
  * --INFO--
  * Address:	........

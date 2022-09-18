@@ -18,6 +18,7 @@
 #include "Game/shadowMgr.h"
 #include "Graphics.h"
 #include "IDelegate.h"
+#include "JSystem/J2D/J2DTypes.h"
 #include "JSystem/JFW/JFWDisplay.h"
 #include "JSystem/JKR/JKRDvdRipper.h"
 #include "JSystem/JUT/JUTException.h"
@@ -30,6 +31,7 @@
 #include "types.h"
 #include "wipe.h"
 #include "nans.h"
+#include "SysTimers.h"
 
 /*
     Generated from dpostproc

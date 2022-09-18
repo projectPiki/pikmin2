@@ -2,6 +2,8 @@
 #define _JSYSTEM_JPA_JPARESOURCE_H
 
 #include "types.h"
+#include "JSystem/JKR/JKRHeap.h"
+#include "JSystem/JPA/JPATexture.h"
 
 typedef void JPAFunctionA(struct JPAEmitterWorkData*);
 typedef void JPAFunctionB(struct JPAEmitterWorkData*, struct JPABaseParticle*);
@@ -10,6 +12,22 @@ typedef void JPAFunctionB(struct JPAEmitterWorkData*, struct JPABaseParticle*);
  * @size{0x48}
  */
 struct JPAResource {
+	JPAResource();
+
+	void init(JKRHeap*);
+	void calc(JPAEmitterWorkData*, struct JPABaseEmitter*);
+	void draw(JPAEmitterWorkData*, JPABaseEmitter*);
+	void drawP(JPAEmitterWorkData*);
+	void drawC(JPAEmitterWorkData*);
+	void setPTev();
+	void setCTev(JPAEmitterWorkData*);
+	void calc_p(JPAEmitterWorkData*, JPABaseParticle*);
+	void calc_c(JPAEmitterWorkData*, JPABaseParticle*);
+	void calcField(JPAEmitterWorkData*, JPABaseParticle*);
+	void calcKey(JPAEmitterWorkData*);
+	void calcWorkData_c(JPAEmitterWorkData*);
+	void calcWorkData_d(JPAEmitterWorkData*);
+
 	JPAFunctionA** _00;           // _00
 	JPAFunctionA** _04;           // _04
 	JPAFunctionA** _08;           // _08
@@ -25,7 +43,7 @@ struct JPAResource {
 	unkptr _30;                   // _30
 	struct JPAKeyBlock** _34;     // _34
 	u8 _38[4];                    // _38
-	short _3C;                    // _3C
+	u16 _3C;                      // _3C
 	u8 _3E;                       // _3E
 	u8 _3F;                       // _3F
 	u8 _40;                       // _40
@@ -39,20 +57,43 @@ struct JPAResource {
 	u8 _48;                       // _48
 };
 
-struct JPAResourceLoader {
-};
-
 /**
  * @size{0x14}
  */
 struct JPAResourceManager {
-	struct JKRHeap* m_heap;         // _00
+	JPAResourceManager(unsigned short, unsigned short, JKRHeap*); // unused/inlined
+	JPAResourceManager(const void*, JKRHeap*);
+
+	JPAResource* getResource(unsigned short) const;
+	ResTIMG* swapTexture(const ResTIMG*, const char*);
+	void registRes(JPAResource*);
+	void registTex(JPATexture*);
+	void* getResUserWork(unsigned short) const;
+
+	// unused/inlined:
+	void load(const char*, unsigned short);
+	void load(const void*, unsigned short);
+	void checkUserIndexDuplication(unsigned short) const;
+	void registTexDupCheck(const unsigned char*, JKRHeap*);
+
+	JKRHeap* m_heap;                // _00
 	JPAResource** m_resources;      // _04
 	struct JPATexture** m_textures; // _08
 	s16 _0C;                        // _0C
 	u16 m_resourceCount;            // _0E
 	s16 _10;                        // _10
 	u16 m_textureCount;             // _12
+};
+
+struct JPAResourceLoader {
+	JPAResourceLoader(const unsigned char*, JPAResourceManager*, unsigned short); // unused/inlined
+	JPAResourceLoader(const u8*, JPAResourceManager*);
+
+	void load_jpc(const unsigned char*, JPAResourceManager*);
+
+	// unused/inlined:
+	~JPAResourceLoader();
+	void load_jpa(const unsigned char*, JPAResourceManager*, unsigned short);
 };
 
 #endif
