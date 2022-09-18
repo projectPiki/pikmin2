@@ -1,3 +1,7 @@
+#include "Dolphin/os.h"
+#include "JSystem/DSP.h"
+#include "JSystem/JAS/JASDsp.h"
+#include "JSystem/JAS/JASHeap.h"
 #include "types.h"
 
 /*
@@ -391,38 +395,22 @@
         .skip 0x3
 */
 
+static const u16 connect_table[12] = {
+	0x000, 0xD00, 0xD60, 0xDC0, 0xE20, 0xE80, 0xEE0, 0xCA0, 0xF40, 0xFA0, 0xB00,
+};
+
 /*
  * --INFO--
  * Address:	800A5310
  * Size:	00004C
  */
-void JASDsp::boot(void (*)(void*))
+void JASDsp::boot(void (*p1)(void*))
 {
-	/*
-	stwu     r1, -0x10(r1)
-	mflr     r0
-	stw      r0, 0x14(r1)
-	lbz      r0, init$390@sda21(r13)
-	extsb.   r0, r0
-	bne      lbl_800A5334
-	li       r0, 1
-	stb      r0, first$389@sda21(r13)
-	stb      r0, init$390@sda21(r13)
-
-lbl_800A5334:
-	lbz      r0, first$389@sda21(r13)
-	cmplwi   r0, 0
-	beq      lbl_800A534C
-	bl       DspBoot__FPFPv_v
-	li       r0, 0
-	stb      r0, first$389@sda21(r13)
-
-lbl_800A534C:
-	lwz      r0, 0x14(r1)
-	mtlr     r0
-	addi     r1, r1, 0x10
-	blr
-	*/
+	static bool first = true;
+	if (first) {
+		DspBoot(p1);
+		first = false;
+	}
 }
 
 /*
@@ -430,46 +418,23 @@ lbl_800A534C:
  * Address:	800A535C
  * Size:	000020
  */
-void JASDsp::releaseHalt(unsigned long)
-{
-	/*
-	stwu     r1, -0x10(r1)
-	mflr     r0
-	stw      r0, 0x14(r1)
-	bl       DSPReleaseHalt2__FUl
-	lwz      r0, 0x14(r1)
-	mtlr     r0
-	addi     r1, r1, 0x10
-	blr
-	*/
-}
+void JASDsp::releaseHalt(u32 p1) { DSPReleaseHalt2(p1); }
 
 /*
  * --INFO--
  * Address:	800A537C
  * Size:	000020
  */
-void JASDsp::finishWork(unsigned short)
-{
-	/*
-	stwu     r1, -0x10(r1)
-	mflr     r0
-	stw      r0, 0x14(r1)
-	bl       DspFinishWork__FUs
-	lwz      r0, 0x14(r1)
-	mtlr     r0
-	addi     r1, r1, 0x10
-	blr
-	*/
-}
+void JASDsp::finishWork(u16 p1) { DspFinishWork(p1); }
 
 /*
  * --INFO--
  * Address:	800A539C
  * Size:	000020
  */
-void JASDsp::syncFrame(unsigned long, unsigned long, unsigned long)
+void JASDsp::syncFrame(u32 p1, u32 p2, u32 p3)
 {
+	// DsyncFrame2(p1, p2, p3);
 	/*
 	stwu     r1, -0x10(r1)
 	mflr     r0
@@ -487,19 +452,10 @@ void JASDsp::syncFrame(unsigned long, unsigned long, unsigned long)
  * Address:	800A53BC
  * Size:	000024
  */
-void JASDsp::setDSPMixerLevel(float)
+void JASDsp::setDSPMixerLevel(float dspMixerLevel)
 {
-	/*
-	stwu     r1, -0x10(r1)
-	mflr     r0
-	stw      r0, 0x14(r1)
-	stfs     f1, sDSPVolume__6JASDsp@sda21(r13)
-	bl       DsetMixerLevel__Ff
-	lwz      r0, 0x14(r1)
-	mtlr     r0
-	addi     r1, r1, 0x10
-	blr
-	*/
+	sDSPVolume = dspMixerLevel;
+	DsetMixerLevel(dspMixerLevel);
 }
 
 /*
@@ -507,20 +463,14 @@ void JASDsp::setDSPMixerLevel(float)
  * Address:	800A53E0
  * Size:	000008
  */
-void JASDsp::getDSPMixerLevel()
-{
-	/*
-	lfs      f1, sDSPVolume__6JASDsp@sda21(r13)
-	blr
-	*/
-}
+float JASDsp::getDSPMixerLevel() { return sDSPVolume; }
 
 /*
  * --INFO--
  * Address:	800A53E8
  * Size:	000010
  */
-void JASDsp::getDSPHandle(int)
+JASDsp::TChannel* JASDsp::getDSPHandle(int index)
 {
 	/*
 	mulli    r0, r3, 0x180
@@ -585,21 +535,7 @@ void JASDsp::cacheChannelAll()
  * Address:	800A53F8
  * Size:	000028
  */
-void JASDsp::invalChannelAll()
-{
-	/*
-	stwu     r1, -0x10(r1)
-	mflr     r0
-	li       r4, 0x6000
-	stw      r0, 0x14(r1)
-	lwz      r3, CH_BUF__6JASDsp@sda21(r13)
-	bl       DCInvalidateRange
-	lwz      r0, 0x14(r1)
-	mtlr     r0
-	addi     r1, r1, 0x10
-	blr
-	*/
-}
+void JASDsp::invalChannelAll() { DCInvalidateRange(CH_BUF, sizeof(u8) * 0x6000); }
 
 /*
  * --INFO--
@@ -608,6 +544,16 @@ void JASDsp::invalChannelAll()
  */
 void JASDsp::initBuffer()
 {
+	// CH_BUF = new(JASDram, 0x20) u8[0x6000];
+	// FX_BUF = new(JASDram, 0x20) u16[0x40];
+	// JASCalc::bzero(CH_BUF, sizeof(u8)*0x6000);
+	// JASCalc::bzero(FX_BUF, sizeof(u16)*0x40);
+	// for (int i = 0; i < 4; i++) {
+	// 	setFXLine(i, nullptr, nullptr);
+	// }
+	// DsetupTable(0x40, CH_BUF, DSPRES_FILTER, DSPADPCM_FILTER, FX_BUF);
+	// DCFlushRange(CH_BUF, sizeof(u8)*0x6000);
+	// DCFlushRange(FX_BUF, sizeof(u16)*0x40);
 	/*
 	stwu     r1, -0x10(r1)
 	mflr     r0
@@ -808,8 +754,15 @@ void JASDsp::changeFXLineParam(unsigned char, unsigned char, unsigned long)
  * Address:	800A5638
  * Size:	00003C
  */
-void JASDsp::TChannel::init(void)
+void JASDsp::TChannel::init()
 {
+	m_pauseFlag = 0;
+	_02         = 0;
+	_10A        = 0;
+	_00         = 0;
+	_58         = 0;
+	_68         = 0;
+	initFilter();
 	/*
 	stwu     r1, -0x10(r1)
 	mflr     r0
@@ -834,8 +787,23 @@ void JASDsp::TChannel::init(void)
  * Address:	800A5674
  * Size:	0000A0
  */
-void JASDsp::TChannel::playStart(void)
+void JASDsp::TChannel::playStart()
 {
+	int count = 0x14;
+	_10C      = 0;
+	_60       = 0;
+	_08       = 1;
+	_66       = 0;
+	for (int i = 0; i < 4; i++) {
+		_78[i] = 0;
+		_A8[i] = 0;
+	}
+	if (0 < count) {
+		for (int i = 0; i < count; i++) {
+			_80[i] = 0;
+		}
+	}
+	_00 = 1;
 	/*
 	li       r4, 0
 	li       r5, 0
@@ -898,14 +866,10 @@ void JASDsp::TChannel::playStop(void)
  * Address:	800A5720
  * Size:	000010
  */
-void JASDsp::TChannel::replyFinishRequest(void)
+void JASDsp::TChannel::replyFinishRequest()
 {
-	/*
-	li       r0, 0
-	sth      r0, 2(r3)
-	sth      r0, 0(r3)
-	blr
-	*/
+	_02 = 0;
+	_00 = 0;
 }
 
 /*
@@ -924,7 +888,7 @@ void JASDsp::TChannel::forceStop(void)
  * Address:	........
  * Size:	000014
  */
-void JASDsp::TChannel::isActive() const
+bool JASDsp::TChannel::isActive() const
 {
 	// UNUSED FUNCTION
 }
@@ -934,23 +898,14 @@ void JASDsp::TChannel::isActive() const
  * Address:	800A573C
  * Size:	000014
  */
-void JASDsp::TChannel::isFinish() const
-{
-	/*
-	lhz      r3, 2(r3)
-	neg      r0, r3
-	or       r0, r0, r3
-	srwi     r3, r0, 0x1f
-	blr
-	*/
-}
+bool JASDsp::TChannel::isFinish() const { return (_02 != 0); }
 
 /*
  * --INFO--
  * Address:	........
  * Size:	000008
  */
-void JASDsp::TChannel::getBlockCounter() const
+u16 JASDsp::TChannel::getBlockCounter() const
 {
 	// UNUSED FUNCTION
 }
@@ -960,7 +915,7 @@ void JASDsp::TChannel::getBlockCounter() const
  * Address:	........
  * Size:	000008
  */
-void JASDsp::TChannel::getRemainSamples() const
+u16 JASDsp::TChannel::getRemainSamples() const
 {
 	// UNUSED FUNCTION
 }
@@ -1080,16 +1035,11 @@ void JASDsp::TChannel::setWaveInfo(JASWaveInfo const&, unsigned long, unsigned l
  * Address:	800A58A0
  * Size:	000018
  */
-void JASDsp::TChannel::setOscInfo(unsigned long)
+void JASDsp::TChannel::setOscInfo(u32 p1)
 {
-	/*
-	li       r5, 0
-	li       r0, 0x10
-	stw      r5, 0x118(r3)
-	sth      r0, 0x64(r3)
-	sth      r4, 0x100(r3)
-	blr
-	*/
+	_118 = 0;
+	_64  = 0x10;
+	_100 = p1;
 }
 
 /*
@@ -1097,8 +1047,14 @@ void JASDsp::TChannel::setOscInfo(unsigned long)
  * Address:	800A58B8
  * Size:	00002C
  */
-void JASDsp::TChannel::initAutoMixer(void)
+void JASDsp::TChannel::initAutoMixer()
 {
+	if (_58) {
+		_54 = _56;
+	} else {
+		_54 = 0;
+		_58 = 1;
+	}
 	/*
 	lhz      r0, 0x58(r3)
 	cmplwi   r0, 0
@@ -1121,22 +1077,12 @@ lbl_800A58D0:
  * Address:	800A58E4
  * Size:	00002C
  */
-void JASDsp::TChannel::setAutoMixer(unsigned short, unsigned char, unsigned char, unsigned char, unsigned char)
+void JASDsp::TChannel::setAutoMixer(u16 p1, u8 p2, u8 p3, u8 p4, u8 p5)
 {
-	/*
-	.loc_0x0:
-	  rlwinm    r9,r6,0,24,31
-	  rlwinm    r8,r7,8,16,23
-	  rlwimi    r9,r5,8,16,23
-	  rlwinm    r6,r7,1,23,30
-	  sth       r9, 0x50(r3)
-	  or        r5, r8, r6
-	  li        r0, 0x1
-	  sth       r5, 0x52(r3)
-	  sth       r4, 0x56(r3)
-	  sth       r0, 0x58(r3)
-	  blr
-	*/
+	_50 = (p2 << 8) | p3;
+	_52 = (p4 << 8) | (p4 << 1);
+	_56 = p1;
+	_58 = 1;
 }
 
 /*
@@ -1174,18 +1120,12 @@ void JASDsp::TChannel::updateAMFX(unsigned char)
  * Address:	800A5910
  * Size:	000018
  */
-void JASDsp::TChannel::setPitch(unsigned short)
+void JASDsp::TChannel::setPitch(u16 pitch)
 {
-	/*
-	clrlwi   r0, r4, 0x10
-	cmplwi   r0, 0x7fff
-	blt      lbl_800A5920
-	li       r4, 0x7fff
-
-lbl_800A5920:
-	sth      r4, 4(r3)
-	blr
-	*/
+	if (0x7FFF <= pitch) {
+		pitch = 0x7FFF;
+	}
+	m_pitch = pitch;
 }
 
 /*
@@ -1193,32 +1133,19 @@ lbl_800A5920:
  * Address:	800A5928
  * Size:	00000C
  */
-void JASDsp::TChannel::setMixerInitDelayMax(unsigned char)
-{
-	/*
-	clrlwi   r0, r4, 0x18
-	sth      r0, 0xe(r3)
-	blr
-	*/
-}
+void JASDsp::TChannel::setMixerInitDelayMax(u8 mixerInitDelayMax) { m_mixerInitDelayMax = mixerInitDelayMax; }
 
 /*
  * --INFO--
  * Address:	800A5934
  * Size:	000020
  */
-void JASDsp::TChannel::setMixerInitVolume(unsigned char, short)
+void JASDsp::TChannel::setMixerInitVolume(u8 index, s16 volume)
 {
-	/*
-	rlwinm   r4, r4, 3, 0x15, 0x1c
-	li       r0, 0
-	addi     r4, r4, 0x10
-	add      r4, r3, r4
-	sth      r5, 4(r4)
-	sth      r5, 2(r4)
-	sth      r0, 6(r4)
-	blr
-	*/
+	TChannel_0x10* mixer = _10 + index;
+	mixer->_04           = volume;
+	mixer->_02           = volume;
+	mixer->_06           = 0;
 }
 
 /*
@@ -1226,16 +1153,10 @@ void JASDsp::TChannel::setMixerInitVolume(unsigned char, short)
  * Address:	800A5954
  * Size:	000018
  */
-void JASDsp::TChannel::setMixerInitDelaySamples(unsigned char, unsigned char)
+void JASDsp::TChannel::setMixerInitDelaySamples(u8 index, u8 samples)
 {
-	/*
-	rlwinm   r4, r4, 3, 0x15, 0x1c
-	rlwinm   r6, r5, 8, 0x10, 0x17
-	rlwimi   r6, r5, 0, 0x18, 0x1f
-	addi     r0, r4, 0x16
-	sthx     r6, r3, r0
-	blr
-	*/
+	TChannel_0x10* mixer = _10 + index;
+	mixer->_06           = (samples << 8) | samples;
 }
 
 /*
@@ -1243,18 +1164,10 @@ void JASDsp::TChannel::setMixerInitDelaySamples(unsigned char, unsigned char)
  * Address:	800A596C
  * Size:	000020
  */
-void JASDsp::TChannel::setMixerDelaySamples(unsigned char, unsigned char)
+void JASDsp::TChannel::setMixerDelaySamples(u8 index, u8 samples)
 {
-	/*
-	rlwinm   r4, r4, 3, 0x15, 0x1c
-	addi     r4, r4, 0x10
-	add      r4, r3, r4
-	lhz      r0, 6(r4)
-	clrlwi   r0, r0, 0x18
-	rlwimi   r0, r5, 8, 0x10, 0x17
-	sth      r0, 6(r4)
-	blr
-	*/
+	TChannel_0x10* mixer = _10 + index;
+	mixer->_06           = (samples << 8) | (mixer->_06 & 0xFF);
 }
 
 /*
@@ -1262,21 +1175,14 @@ void JASDsp::TChannel::setMixerDelaySamples(unsigned char, unsigned char)
  * Address:	800A598C
  * Size:	00002C
  */
-void JASDsp::TChannel::setMixerVolume(unsigned char, short)
+void JASDsp::TChannel::setMixerVolume(u8 index, short volume)
 {
-	/*
-	lhz      r0, 0x10a(r3)
-	cmplwi   r0, 0
-	bnelr
-	rlwinm   r4, r4, 3, 0x15, 0x1c
-	addi     r4, r4, 0x10
-	add      r4, r3, r4
-	sth      r5, 2(r4)
-	lhz      r0, 6(r4)
-	clrlwi   r0, r0, 0x18
-	sth      r0, 6(r4)
-	blr
-	*/
+	if (_10A != 0) {
+		return;
+	}
+	TChannel_0x10* mixer = _10 + index;
+	mixer->_02           = volume;
+	mixer->_06 &= 0xFF;
 }
 
 /*
@@ -1284,14 +1190,7 @@ void JASDsp::TChannel::setMixerVolume(unsigned char, short)
  * Address:	800A59B8
  * Size:	00000C
  */
-void JASDsp::TChannel::setPauseFlag(unsigned char)
-{
-	/*
-	clrlwi   r0, r4, 0x18
-	sth      r0, 0xc(r3)
-	blr
-	*/
-}
+void JASDsp::TChannel::setPauseFlag(u8 pauseFlag) { m_pauseFlag = pauseFlag; }
 
 /*
  * --INFO--
@@ -1318,28 +1217,17 @@ void JASDsp::TChannel::flush(void)
  * Address:	800A59E8
  * Size:	000048
  */
-void JASDsp::TChannel::initFilter(void)
+void JASDsp::TChannel::initFilter()
 {
-	/*
-	li       r4, 0
-	li       r0, 0x7fff
-	sth      r4, 0x120(r3)
-	sth      r4, 0x122(r3)
-	sth      r4, 0x124(r3)
-	sth      r4, 0x126(r3)
-	sth      r4, 0x128(r3)
-	sth      r4, 0x12a(r3)
-	sth      r4, 0x12c(r3)
-	sth      r4, 0x12e(r3)
-	sth      r0, 0x120(r3)
-	sth      r4, 0x148(r3)
-	sth      r4, 0x14a(r3)
-	sth      r4, 0x14c(r3)
-	sth      r4, 0x14e(r3)
-	sth      r0, 0x148(r3)
-	sth      r4, 0x150(r3)
-	blr
-	*/
+	for (int i = 0; i < 8; i++) {
+		m_fir8FilterParam[i] = 0;
+	}
+	m_fir8FilterParam[0] = 0x7FFF;
+	for (int i = 0; i < 4; i++) {
+		m_iirFilterParam[i] = 0;
+	}
+	m_iirFilterParam[0] = 0x7FFF;
+	m_distFilter        = 0;
 }
 
 /*
@@ -1376,19 +1264,11 @@ lbl_800A5A58:
  * Address:	800A5A68
  * Size:	000024
  */
-void JASDsp::TChannel::setIIRFilterParam(short*)
+void JASDsp::TChannel::setIIRFilterParam(short* p1)
 {
-	/*
-	lha      r0, 0(r4)
-	sth      r0, 0x148(r3)
-	lha      r0, 2(r4)
-	sth      r0, 0x14a(r3)
-	lha      r0, 4(r4)
-	sth      r0, 0x14c(r3)
-	lha      r0, 6(r4)
-	sth      r0, 0x14e(r3)
-	blr
-	*/
+	for (int i = 0; i < 4; i++) {
+		m_iirFilterParam[i] = p1[i];
+	}
 }
 
 /*
@@ -1396,27 +1276,11 @@ void JASDsp::TChannel::setIIRFilterParam(short*)
  * Address:	800A5A8C
  * Size:	000044
  */
-void JASDsp::TChannel::setFIR8FilterParam(short*)
+void JASDsp::TChannel::setFIR8FilterParam(short* p1)
 {
-	/*
-	lha      r0, 0(r4)
-	sth      r0, 0x120(r3)
-	lha      r0, 2(r4)
-	sth      r0, 0x122(r3)
-	lha      r0, 4(r4)
-	sth      r0, 0x124(r3)
-	lha      r0, 6(r4)
-	sth      r0, 0x126(r3)
-	lha      r0, 8(r4)
-	sth      r0, 0x128(r3)
-	lha      r0, 0xa(r4)
-	sth      r0, 0x12a(r3)
-	lha      r0, 0xc(r4)
-	sth      r0, 0x12c(r3)
-	lha      r0, 0xe(r4)
-	sth      r0, 0x12e(r3)
-	blr
-	*/
+	for (int i = 0; i < 8; i++) {
+		m_fir8FilterParam[i] = p1[i];
+	}
 }
 
 /*
@@ -1424,10 +1288,10 @@ void JASDsp::TChannel::setFIR8FilterParam(short*)
  * Address:	800A5AD0
  * Size:	000008
  */
-void JASDsp::TChannel::setDistFilter(short a1)
+void JASDsp::TChannel::setDistFilter(s16 distFilter)
 {
 	// Generated from sth r4, 0x150(r3)
-	_150 = a1;
+	m_distFilter = distFilter;
 }
 
 /*
@@ -1435,18 +1299,10 @@ void JASDsp::TChannel::setDistFilter(short a1)
  * Address:	800A5AD8
  * Size:	000020
  */
-void JASDsp::TChannel::setBusConnect(unsigned char, unsigned char)
+void JASDsp::TChannel::setBusConnect(u8 index, u8 p2)
 {
-	/*
-	lis      r6, connect_table$774@ha
-	rlwinm   r4, r4, 3, 0x15, 0x1c
-	rlwinm   r7, r5, 1, 0x17, 0x1e
-	addi     r5, r6, connect_table$774@l
-	addi     r0, r4, 0x10
-	lhzx     r4, r5, r7
-	sthx     r4, r3, r0
-	blr
-	*/
+	TChannel_0x10* mixer = _10 + index;
+	mixer->_00           = connect_table[p2];
 }
 
 /*
@@ -1454,7 +1310,7 @@ void JASDsp::TChannel::setBusConnect(unsigned char, unsigned char)
  * Address:	800A5AF8
  * Size:	000090
  */
-void DSP_CreateMap2(unsigned long)
+void DSP_CreateMap2(u32 p1)
 {
 	/*
 	slwi     r0, r3, 4

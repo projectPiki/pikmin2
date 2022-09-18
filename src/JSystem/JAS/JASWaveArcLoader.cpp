@@ -1,3 +1,4 @@
+#include "JSystem/JAS/JASHeap.h"
 #include "types.h"
 
 /*
@@ -695,4 +696,4 @@ lbl_8009C00C:
  * Address:	8009C02C
  * Size:	000004
  */
-void JASDisposer::onDispose() { }
+// void JASDisposer::onDispose() { }

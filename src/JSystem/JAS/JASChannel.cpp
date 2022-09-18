@@ -1,3 +1,6 @@
+#include "JSystem/JAS/JASChannel.h"
+#include "JSystem/JAS/JASOscillator.h"
+#include "JSystem/JSupport/JSUList.h"
 #include "types.h"
 
 /*
@@ -115,101 +118,45 @@
  * Address:	800A3204
  * Size:	000160
  */
-JASChannel::JASChannel(void (*)(unsigned long, JASChannel*, JASDsp::TChannel*, void*), void*)
+JASChannel::JASChannel(Callback* callback, void* p2)
+    : JSUPtrLink(this)
+    , _18(0)
+    , _20(nullptr)
+    , _24(callback)
+    , _28(p2)
+    , _2C(0)
+    , _30()
+    , _C0(1.0f)
+    , _C4(0)
+    , _C8(0)
+    , _F8(1.0f)
+    , _FC(1.0f)
 {
-	/*
-	.loc_0x0:
-	  stwu      r1, -0x20(r1)
-	  mflr      r0
-	  stw       r0, 0x24(r1)
-	  stw       r31, 0x1C(r1)
-	  mr        r31, r3
-	  stw       r30, 0x18(r1)
-	  mr        r30, r4
-	  mr        r4, r31
-	  stw       r29, 0x14(r1)
-	  mr        r29, r5
-	  bl        -0x7CA74
-	  lis       r3, 0x804A
-	  lis       r4, 0x804A
-	  addi      r0, r3, 0x4430
-	  li        r6, 0x20
-	  stw       r0, 0x10(r31)
-	  addi      r5, r4, 0x4418
-	  lis       r3, 0x800A
-	  li        r0, 0
-	  stw       r5, 0x14(r31)
-	  addi      r5, r5, 0x8
-	  addi      r4, r3, 0x3364
-	  addi      r3, r31, 0x30
-	  stw       r5, 0x10(r31)
-	  li        r5, 0
-	  li        r7, 0x4
-	  stw       r0, 0x18(r31)
-	  stw       r0, 0x20(r31)
-	  stw       r30, 0x24(r31)
-	  stw       r29, 0x28(r31)
-	  stw       r0, 0x2C(r31)
-	  bl        0x1E5BC
-	  lfs       f2, -0x7550(r2)
-	  li        r30, 0
-	  lfs       f1, -0x754C(r2)
-	  li        r8, 0x150
-	  stfs      f2, 0xC0(r31)
-	  li        r7, 0x210
-	  lfs       f0, -0x7548(r2)
-	  li        r6, 0x352
-	  stw       r30, 0xC4(r31)
-	  li        r5, 0x412
-	  li        r4, 0x13F
-	  li        r3, 0x1A
-	  stw       r30, 0xC8(r31)
-	  li        r0, 0x1
-	  li        r29, 0
-	  stfs      f2, 0xF8(r31)
-	  stfs      f2, 0xFC(r31)
-	  stw       r30, 0xE8(r31)
-	  stb       r30, 0xE4(r31)
-	  stw       r30, 0xEC(r31)
-	  stfs      f1, 0xCC(r31)
-	  stfs      f0, 0xD4(r31)
-	  stfs      f0, 0xDC(r31)
-	  stfs      f1, 0xD0(r31)
-	  stfs      f0, 0xD8(r31)
-	  stfs      f0, 0xE0(r31)
-	  sth       r8, 0xB0(r31)
-	  sth       r7, 0xB2(r31)
-	  sth       r6, 0xB4(r31)
-	  sth       r5, 0xB6(r31)
-	  sth       r30, 0xB8(r31)
-	  sth       r30, 0xBA(r31)
-	  sth       r4, 0xBC(r31)
-	  stb       r3, 0x108(r31)
-	  stb       r0, 0x109(r31)
-	  stb       r0, 0x10A(r31)
-
-	.loc_0x110:
-	  addi      r3, r30, 0x30
-	  add       r3, r31, r3
-	  bl        -0x7A4
-	  addi      r29, r29, 0x1
-	  addi      r30, r30, 0x20
-	  cmplwi    r29, 0x4
-	  blt+      .loc_0x110
-	  lfs       f0, -0x7550(r2)
-	  li        r0, 0
-	  mr        r3, r31
-	  stfs      f0, 0x100(r31)
-	  stfs      f0, 0x104(r31)
-	  stb       r0, 0x1C(r31)
-	  lwz       r31, 0x1C(r1)
-	  lwz       r30, 0x18(r1)
-	  lwz       r29, 0x14(r1)
-	  lwz       r0, 0x24(r1)
-	  mtlr      r0
-	  addi      r1, r1, 0x20
-	  blr
-	*/
+	_E8    = nullptr;
+	_E4    = 0;
+	_EC    = 0;
+	_CC    = 0.5f;
+	_D4    = 0.0f;
+	_DC    = 0.0f;
+	_D0    = 0.5f;
+	_D8    = 0.0f;
+	_E0    = 0.0f;
+	_B0[0] = 0x150;
+	_B2    = 0x210;
+	_B4    = 0x352;
+	_B6    = 0x412;
+	_B8    = 0;
+	_BA    = 0;
+	_BC    = 0x13F;
+	_108   = 0x1A;
+	_109   = 1;
+	_10A   = 1;
+	for (u32 i = 0; i < 4; i++) {
+		_30[i].init();
+	}
+	_100 = 1.0f;
+	_104 = 1.0f;
+	_1C  = 0;
 }
 
 /*
@@ -217,94 +164,78 @@ JASChannel::JASChannel(void (*)(unsigned long, JASChannel*, JASDsp::TChannel*, v
  * Address:	800A3364
  * Size:	000030
  */
-JASOscillator::JASOscillator()
-{
-	/*
-	stwu     r1, -0x10(r1)
-	mflr     r0
-	stw      r0, 0x14(r1)
-	stw      r31, 0xc(r1)
-	mr       r31, r3
-	bl       init__13JASOscillatorFv
-	lwz      r0, 0x14(r1)
-	mr       r3, r31
-	lwz      r31, 0xc(r1)
-	mtlr     r0
-	addi     r1, r1, 0x10
-	blr
-	*/
-}
+JASOscillator::JASOscillator() { init(); }
 
 /*
  * --INFO--
  * Address:	800A3394
  * Size:	0000A4
  */
-void JASPoolAllocObject<JASChannel, JASCreationPolicy::NewFromRootHeap, JASThreadingModel::SingleThreaded>::~JASPoolAllocObject()
-{
-	/*
-	.loc_0x0:
-	  stwu      r1, -0x20(r1)
-	  mflr      r0
-	  stw       r0, 0x24(r1)
-	  stw       r31, 0x1C(r1)
-	  stw       r30, 0x18(r1)
-	  mr.       r30, r3
-	  beq-      .loc_0x88
-	  lis       r3, 0x804A
-	  extsh.    r0, r4
-	  addi      r0, r3, 0x4430
-	  stw       r0, 0x0(r30)
-	  ble-      .loc_0x88
-	  lwz       r0, -0x75DC(r13)
-	  cmplwi    r0, 0
-	  bne-      .loc_0x78
-	  bl        0x4B868
-	  lwz       r0, -0x75DC(r13)
-	  stw       r3, 0x8(r1)
-	  cmplwi    r0, 0
-	  bne-      .loc_0x70
-	  lwz       r4, -0x7548(r13)
-	  li        r3, 0xC
-	  li        r5, 0
-	  bl        -0x7F4B0
-	  mr.       r31, r3
-	  beq-      .loc_0x6C
-	  bl        0x3D88
+// void JASPoolAllocObject<JASChannel, JASCreationPolicy::NewFromRootHeap, JASThreadingModel::SingleThreaded>::~JASPoolAllocObject()
+// {
+// 	/*
+// 	.loc_0x0:
+// 	  stwu      r1, -0x20(r1)
+// 	  mflr      r0
+// 	  stw       r0, 0x24(r1)
+// 	  stw       r31, 0x1C(r1)
+// 	  stw       r30, 0x18(r1)
+// 	  mr.       r30, r3
+// 	  beq-      .loc_0x88
+// 	  lis       r3, 0x804A
+// 	  extsh.    r0, r4
+// 	  addi      r0, r3, 0x4430
+// 	  stw       r0, 0x0(r30)
+// 	  ble-      .loc_0x88
+// 	  lwz       r0, -0x75DC(r13)
+// 	  cmplwi    r0, 0
+// 	  bne-      .loc_0x78
+// 	  bl        0x4B868
+// 	  lwz       r0, -0x75DC(r13)
+// 	  stw       r3, 0x8(r1)
+// 	  cmplwi    r0, 0
+// 	  bne-      .loc_0x70
+// 	  lwz       r4, -0x7548(r13)
+// 	  li        r3, 0xC
+// 	  li        r5, 0
+// 	  bl        -0x7F4B0
+// 	  mr.       r31, r3
+// 	  beq-      .loc_0x6C
+// 	  bl        0x3D88
 
-	.loc_0x6C:
-	  stw       r31, -0x75DC(r13)
+// 	.loc_0x6C:
+// 	  stw       r31, -0x75DC(r13)
 
-	.loc_0x70:
-	  lwz       r3, 0x8(r1)
-	  bl        0x4B858
+// 	.loc_0x70:
+// 	  lwz       r3, 0x8(r1)
+// 	  bl        0x4B858
 
-	.loc_0x78:
-	  lwz       r3, -0x75DC(r13)
-	  mr        r4, r30
-	  li        r5, 0x4
-	  bl        0x3E58
+// 	.loc_0x78:
+// 	  lwz       r3, -0x75DC(r13)
+// 	  mr        r4, r30
+// 	  li        r5, 0x4
+// 	  bl        0x3E58
 
-	.loc_0x88:
-	  lwz       r0, 0x24(r1)
-	  mr        r3, r30
-	  lwz       r31, 0x1C(r1)
-	  lwz       r30, 0x18(r1)
-	  mtlr      r0
-	  addi      r1, r1, 0x20
-	  blr
-	*/
-}
+// 	.loc_0x88:
+// 	  lwz       r0, 0x24(r1)
+// 	  mr        r3, r30
+// 	  lwz       r31, 0x1C(r1)
+// 	  lwz       r30, 0x18(r1)
+// 	  mtlr      r0
+// 	  addi      r1, r1, 0x20
+// 	  blr
+// 	*/
+// }
 
 /*
  * --INFO--
  * Address:	........
  * Size:	000054
  */
-void JSULink<JASChannel>::~JSULink()
-{
-	// UNUSED FUNCTION
-}
+// void JSULink<JASChannel>::~JSULink()
+// {
+// 	// UNUSED FUNCTION
+// }
 
 /*
  * --INFO--
@@ -411,39 +342,14 @@ lbl_800A3528:
  * Address:	800A3544
  * Size:	000034
  */
-void JASChannel::setOscInit(int, const JASOscillator::Data*)
-{
-	/*
-	stwu     r1, -0x10(r1)
-	mflr     r0
-	slwi     r4, r4, 5
-	stw      r0, 0x14(r1)
-	mr       r0, r3
-	addi     r3, r4, 0x30
-	mr       r4, r5
-	add      r3, r0, r3
-	bl       initStart__13JASOscillatorFPCQ213JASOscillator4Data
-	lwz      r0, 0x14(r1)
-	mtlr     r0
-	addi     r1, r1, 0x10
-	blr
-	*/
-}
+void JASChannel::setOscInit(int index, const JASOscillator::Data* data) { _30[index].initStart(data); }
 
 /*
  * --INFO--
  * Address:	800A3578
  * Size:	000010
  */
-void JASChannel::setMixConfig(int, unsigned short)
-{
-	/*
-	slwi     r0, r4, 1
-	add      r3, r3, r0
-	sth      r5, 0xb0(r3)
-	blr
-	*/
-}
+void JASChannel::setMixConfig(int index, unsigned short mixConfig) { _B0[index] = mixConfig; }
 
 /*
  * --INFO--
@@ -453,7 +359,7 @@ void JASChannel::setMixConfig(int, unsigned short)
 void JASChannel::directReleaseOsc(unsigned short a1)
 {
 	// Generated from sth r4, 0x4A(r3)
-	_4A = a1;
+	_30[0]._1A = a1;
 }
 
 /*
@@ -461,7 +367,7 @@ void JASChannel::directReleaseOsc(unsigned short a1)
  * Address:	........
  * Size:	0000DC
  */
-void JASChannel::effectOsc(int, JASChannel::EffectOscParam*)
+void JASChannel::effectOsc(int index, EffectOscParam* param)
 {
 	// UNUSED FUNCTION
 }
@@ -471,28 +377,18 @@ void JASChannel::effectOsc(int, JASChannel::EffectOscParam*)
  * Address:	800A3590
  * Size:	000048
  */
-void JASChannel::copyOsc(int, JASOscillator::Data*)
+void JASChannel::copyOsc(int index, JASOscillator::Data* toData)
 {
-	/*
-	slwi     r0, r4, 5
-	add      r3, r3, r0
-	lwz      r3, 0x30(r3)
-	cmplwi   r3, 0
-	beqlr
-	lwz      r0, 0(r3)
-	stw      r0, 0(r5)
-	lfs      f0, 4(r3)
-	stfs     f0, 4(r5)
-	lwz      r0, 8(r3)
-	stw      r0, 8(r5)
-	lwz      r0, 0xc(r3)
-	stw      r0, 0xc(r5)
-	lfs      f0, 0x10(r3)
-	stfs     f0, 0x10(r5)
-	lfs      f0, 0x14(r3)
-	stfs     f0, 0x14(r5)
-	blr
-	*/
+	const JASOscillator::Data* fromData = _30[index].m_data;
+	if (!fromData) {
+		return;
+	}
+	toData->_00 = fromData->_00;
+	toData->_04 = fromData->_04;
+	toData->_08 = fromData->_08;
+	toData->_0C = fromData->_0C;
+	toData->_10 = fromData->_10;
+	toData->_14 = fromData->_14;
 }
 
 /*
@@ -500,24 +396,7 @@ void JASChannel::copyOsc(int, JASOscillator::Data*)
  * Address:	800A35D8
  * Size:	000034
  */
-void JASChannel::overwriteOsc(int, JASOscillator::Data*)
-{
-	/*
-	stwu     r1, -0x10(r1)
-	mflr     r0
-	slwi     r4, r4, 5
-	stw      r0, 0x14(r1)
-	mr       r0, r3
-	addi     r3, r4, 0x30
-	mr       r4, r5
-	add      r3, r0, r3
-	bl       initStart__13JASOscillatorFPCQ213JASOscillator4Data
-	lwz      r0, 0x14(r1)
-	mtlr     r0
-	addi     r1, r1, 0x10
-	blr
-	*/
-}
+void JASChannel::overwriteOsc(int index, JASOscillator::Data* data) { _30[index].initStart(data); }
 
 /*
  * --INFO--
@@ -590,19 +469,12 @@ void JASChannel::setPauseFlag(bool a1)
  * Address:	800A369C
  * Size:	000024
  */
-void JASChannel::setPanPower(float, float, float)
+void JASChannel::setPanPower(float p1, float p2, float p3)
 {
-	/*
-	fadds    f0, f1, f2
-	fadds    f4, f3, f0
-	fdivs    f0, f1, f4
-	fdivs    f1, f2, f4
-	stfs     f0, 0x10c(r3)
-	fdivs    f0, f3, f4
-	stfs     f1, 0x110(r3)
-	stfs     f0, 0x114(r3)
-	blr
-	*/
+	float divisor = p1 + p2 + p3;
+	_10C          = p1 / divisor;
+	_110          = p2 / divisor;
+	_114          = p3 / divisor;
 }
 
 /*
@@ -2121,6 +1993,8 @@ lbl_800A47B8:
  */
 void JASChannel::free()
 {
+	_24 = nullptr;
+	_28 = nullptr;
 	/*
 	li       r0, 0
 	stw      r0, 0x24(r3)
@@ -2134,10 +2008,10 @@ void JASChannel::free()
  * Address:	800A47D0
  * Size:	000008
  */
-void JASChannel::@16 @__dt()
-{
-	/*
-	addi     r3, r3, -16
-	b        __dt__10JASChannelFv
-	*/
-}
+// void JASChannel::@16 @__dt()
+// {
+// 	/*
+// 	addi     r3, r3, -16
+// 	b        __dt__10JASChannelFv
+// 	*/
+// }

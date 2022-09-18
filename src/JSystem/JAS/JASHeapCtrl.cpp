@@ -1,3 +1,10 @@
+#include "Dolphin/os.h"
+#include "JSystem/JAS/JASGenericMemPool.h"
+#include "JSystem/JAS/JASHeap.h"
+#include "JSystem/JAS/JASKernel.h"
+#include "JSystem/JAS/JASMutexLock.h"
+#include "JSystem/JKR/JKRHeap.h"
+#include "JSystem/JSupport/JSUList.h"
 #include "types.h"
 
 /*
@@ -26,39 +33,14 @@
  * Address:	800A6A9C
  * Size:	000074
  */
-JASHeap::JASHeap(JASDisposer*)
+JASHeap::JASHeap(JASDisposer* disposer)
+    : m_tree(this)
+    , m_disposer(disposer)
+    , _38(nullptr)
+    , _3C(0)
+    , _40(0)
 {
-	/*
-	stwu     r1, -0x20(r1)
-	mflr     r0
-	stw      r0, 0x24(r1)
-	stw      r31, 0x1c(r1)
-	mr       r31, r4
-	stw      r30, 0x18(r1)
-	stw      r29, 0x14(r1)
-	mr       r29, r3
-	mr       r0, r29
-	mr       r30, r0
-	bl       initiate__10JSUPtrListFv
-	mr       r4, r29
-	addi     r3, r30, 0xc
-	bl       __ct__10JSUPtrLinkFPv
-	stw      r31, 0x34(r29)
-	li       r0, 0
-	addi     r3, r29, 0x1c
-	stw      r0, 0x38(r29)
-	stw      r0, 0x3c(r29)
-	stw      r0, 0x40(r29)
-	bl       OSInitMutex
-	lwz      r0, 0x24(r1)
-	mr       r3, r29
-	lwz      r31, 0x1c(r1)
-	lwz      r30, 0x18(r1)
-	lwz      r29, 0x14(r1)
-	mtlr     r0
-	addi     r1, r1, 0x20
-	blr
-	*/
+	OSInitMutex(&m_mutexObject);
 }
 
 /*
@@ -66,30 +48,30 @@ JASHeap::JASHeap(JASDisposer*)
  * Address:	........
  * Size:	000074
  */
-void JSUTree<JASHeap>::~JSUTree()
-{
-	// UNUSED FUNCTION
-}
+// void JSUTree<JASHeap>::~JSUTree()
+// {
+// 	// UNUSED FUNCTION
+// }
 
 /*
  * --INFO--
  * Address:	........
  * Size:	000054
  */
-void JSULink<JASHeap>::~JSULink()
-{
-	// UNUSED FUNCTION
-}
+// void JSULink<JASHeap>::~JSULink()
+// {
+// 	// UNUSED FUNCTION
+// }
 
 /*
  * --INFO--
  * Address:	........
  * Size:	000054
  */
-void JSUList<JASHeap>::~JSUList()
-{
-	// UNUSED FUNCTION
-}
+// void JSUList<JASHeap>::~JSUList()
+// {
+// 	// UNUSED FUNCTION
+// }
 
 /*
  * --INFO--
@@ -116,7 +98,7 @@ void JASHeap::initRootHeap(void*, unsigned long)
  * Address:	800A6B10
  * Size:	0001D0
  */
-void JASHeap::alloc(JASHeap*, unsigned long)
+void* JASHeap::alloc(JASHeap*, unsigned long)
 {
 	/*
 	stwu     r1, -0x30(r1)
@@ -265,7 +247,7 @@ lbl_800A6CCC:
  * Address:	800A6CE0
  * Size:	0000E8
  */
-void JASHeap::allocTail(JASHeap*, unsigned long)
+void* JASHeap::allocTail(JASHeap*, unsigned long)
 {
 	/*
 	stwu     r1, -0x30(r1)
@@ -342,7 +324,7 @@ lbl_800A6DB4:
  * Address:	........
  * Size:	0000EC
  */
-void JASHeap::allocAll(JASHeap*)
+void* JASHeap::allocAll(JASHeap*)
 {
 	// UNUSED FUNCTION
 }
@@ -478,7 +460,7 @@ void JASHeap::freeAll()
  * Address:	........
  * Size:	0000A8
  */
-void JASHeap::getTotalFreeSize() const
+int JASHeap::getTotalFreeSize() const
 {
 	// UNUSED FUNCTION
 }
@@ -488,7 +470,7 @@ void JASHeap::getTotalFreeSize() const
  * Address:	........
  * Size:	0000BC
  */
-void JASHeap::getFreeSize() const
+int JASHeap::getFreeSize() const
 {
 	// UNUSED FUNCTION
 }
@@ -518,60 +500,60 @@ void JASHeap::dump(int)
  * Address:	........
  * Size:	000014
  */
-void JSUTree<JASHeap>::getNextChild() const
-{
-	// UNUSED FUNCTION
-}
+// void JSUTree<JASHeap>::getNextChild() const
+// {
+// 	// UNUSED FUNCTION
+// }
 
 /*
  * --INFO--
  * Address:	........
  * Size:	000018
  */
-void JSUTreeIterator<JASHeap>::operator!=(const JSUTree<JASHeap>*) const
-{
-	// UNUSED FUNCTION
-}
+// void JSUTreeIterator<JASHeap>::operator!=(const JSUTree<JASHeap>*) const
+// {
+// 	// UNUSED FUNCTION
+// }
 
 /*
  * --INFO--
  * Address:	........
  * Size:	000008
  */
-void JSUTree<JASHeap>::getEndChild() const
-{
-	// UNUSED FUNCTION
-}
+// void JSUTree<JASHeap>::getEndChild() const
+// {
+// 	// UNUSED FUNCTION
+// }
 
 /*
  * --INFO--
  * Address:	........
  * Size:	00001C
  */
-void JSUTreeIterator<JASHeap>::operator++()
-{
-	// UNUSED FUNCTION
-}
+// void JSUTreeIterator<JASHeap>::operator++()
+// {
+// 	// UNUSED FUNCTION
+// }
 
 /*
  * --INFO--
  * Address:	........
  * Size:	000008
  */
-void JSUTreeIterator<JASHeap>::JSUTreeIterator(JSUTree<JASHeap>*)
-{
-	// UNUSED FUNCTION
-}
+// void JSUTreeIterator<JASHeap>::JSUTreeIterator(JSUTree<JASHeap>*)
+// {
+// 	// UNUSED FUNCTION
+// }
 
 /*
  * --INFO--
  * Address:	........
  * Size:	000008
  */
-void JSUTree<JASHeap>::getParent() const
-{
-	// UNUSED FUNCTION
-}
+// void JSUTree<JASHeap>::getParent() const
+// {
+// 	// UNUSED FUNCTION
+// }
 
 /*
  * --INFO--
@@ -588,30 +570,30 @@ JASMutexLock::JASMutexLock(OSMutex*)
  * Address:	........
  * Size:	00000C
  */
-void JSUTreeIterator<JASHeap>::operator->() const
-{
-	// UNUSED FUNCTION
-}
+// void JSUTreeIterator<JASHeap>::operator->() const
+// {
+// 	// UNUSED FUNCTION
+// }
 
 /*
  * --INFO--
  * Address:	........
  * Size:	000014
  */
-void JSUTree<JASHeap>::getFirstChild() const
-{
-	// UNUSED FUNCTION
-}
+// void JSUTree<JASHeap>::getFirstChild() const
+// {
+// 	// UNUSED FUNCTION
+// }
 
 /*
  * --INFO--
  * Address:	........
  * Size:	000008
  */
-void JSUTree<JASHeap>::getObject() const
-{
-	// UNUSED FUNCTION
-}
+// void JSUTree<JASHeap>::getObject() const
+// {
+// 	// UNUSED FUNCTION
+// }
 
 /*
  * --INFO--
@@ -753,7 +735,7 @@ lbl_800A7044:
  * Address:	800A7058
  * Size:	0000C4
  */
-void JASHeap::getTailOffset()
+int JASHeap::getTailOffset()
 {
 	/*
 	stwu     r1, -0x20(r1)
@@ -825,7 +807,7 @@ lbl_800A70F8:
  * Address:	800A711C
  * Size:	000068
  */
-void JASHeap::getCurOffset()
+int JASHeap::getCurOffset()
 {
 	/*
 	stwu     r1, -0x20(r1)
@@ -866,20 +848,20 @@ lbl_800A7164:
  * Address:	........
  * Size:	00001C
  */
-JASSolidHeap::JASSolidHeap()
-{
-	// UNUSED FUNCTION
-}
+// JASSolidHeap::JASSolidHeap()
+// {
+// 	// UNUSED FUNCTION
+// }
 
 /*
  * --INFO--
  * Address:	........
  * Size:	000030
  */
-JASSolidHeap::JASSolidHeap(unsigned char*, unsigned long)
-{
-	// UNUSED FUNCTION
-}
+// JASSolidHeap::JASSolidHeap(unsigned char*, unsigned long)
+// {
+// 	// UNUSED FUNCTION
+// }
 
 /*
  * --INFO--
@@ -896,7 +878,7 @@ void JASSolidHeap::init(unsigned char*, unsigned long)
  * Address:	........
  * Size:	000050
  */
-void JASSolidHeap::alloc(unsigned long)
+void* JASSolidHeap::alloc(unsigned long)
 {
 	// UNUSED FUNCTION
 }
@@ -1016,7 +998,7 @@ lbl_800A71F8:
  * Address:	800A722C
  * Size:	000044
  */
-void JASGenericMemPool::alloc(unsigned long)
+void* JASGenericMemPool::alloc(unsigned long)
 {
 	/*
 	lwz      r5, 0(r3)
@@ -1175,8 +1157,9 @@ void JASKernel::getRootHeap()
  * Address:	800A73BC
  * Size:	000008
  */
-void JASKernel::getSystemHeap()
+JKRExpHeap* JASKernel::getSystemHeap()
 {
+	return sSystemHeap;
 	/*
 	lwz      r3, sSystemHeap__9JASKernel@sda21(r13)
 	blr
@@ -1188,8 +1171,9 @@ void JASKernel::getSystemHeap()
  * Address:	800A73C4
  * Size:	000008
  */
-void JASKernel::getCommandHeap()
+JASHeap* JASKernel::getCommandHeap()
 {
+	return sCommandHeap;
 	/*
 	lwz      r3, sCommandHeap__9JASKernel@sda21(r13)
 	blr
@@ -1243,8 +1227,9 @@ void JASKernel::setupAramHeap(unsigned long, unsigned long)
  * Address:	800A7448
  * Size:	00000C
  */
-void JASKernel::getAramHeap()
+JASHeap* JASKernel::getAramHeap()
 {
+	return audioAramHeap;
 	/*
 	lis      r3, audioAramHeap__9JASKernel@ha
 	addi     r3, r3, audioAramHeap__9JASKernel@l
@@ -1257,7 +1242,7 @@ void JASKernel::getAramHeap()
  * Address:	........
  * Size:	0000C4
  */
-void JASKernel::getAramFreeSize()
+int JASKernel::getAramFreeSize()
 {
 	// UNUSED FUNCTION
 }
@@ -1267,7 +1252,7 @@ void JASKernel::getAramFreeSize()
  * Address:	........
  * Size:	000010
  */
-void JASKernel::getAramSize()
+int JASKernel::getAramSize()
 {
 	// UNUSED FUNCTION
 }

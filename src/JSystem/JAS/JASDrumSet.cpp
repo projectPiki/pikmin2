@@ -1,3 +1,8 @@
+#include "JSystem/JAS/JASDrumSet.h"
+#include "JSystem/JAS/JASBank.h"
+#include "JSystem/JAS/JASCalc.h"
+#include "JSystem/JAS/JASInst.h"
+#include "JSystem/JAS/JASOscillator.h"
 #include "types.h"
 
 /*
@@ -38,13 +43,64 @@
         .4byte 0x00000000
 */
 
+static JASOscillator::Data osc;
+
 /*
  * --INFO--
  * Address:	8009B0B8
  * Size:	0001FC
  */
-void JASDrumSet::getParam(int, int, JASInstParam*) const
+bool JASDrumSet::getParam(int percIndex, int p2, JASInstParam* instParam) const
 {
+	if (percIndex >= 0x80U) {
+		return false;
+	}
+	const TPerc* perc = getPerc(percIndex);
+	instParam->_00    = 0;
+	instParam->_24    = 1;
+	instParam->_10    = perc->_00;
+	instParam->_14    = perc->_04;
+	instParam->_18    = perc->_08;
+	instParam->_26    = perc->m_release;
+	// static const float osc[6] = { 0.0f, 1.0f, 0.0f, 0.0f, 1.0f, 0.0f };
+	// static JASOscillator::Data osc;
+	osc                              = { 0, 1.0f, nullptr, nullptr, 1.0f, 0.0f };
+	static JASOscillator::Data* oscp = &osc;
+	instParam->m_oscData             = oscp;
+	instParam->_0C                   = 1;
+	for (u32 i = 0; i < perc->m_effectCount; i++) {
+		JASInstEffect* effect = perc->m_effects[i];
+		if (effect != nullptr) {
+			f32 y = effect->getY(percIndex, p2);
+			switch (effect->m_target) {
+			case 0:
+				instParam->_10 *= y;
+				break;
+			case 1:
+				instParam->_14 *= y;
+				break;
+			case 2:
+				instParam->_18 += y - 0.5; // double, not float
+				break;
+			case 3:
+				instParam->_1C += y;
+				break;
+			case 4:
+				instParam->_20 += y;
+				break;
+			}
+		}
+	}
+	for (u32 i = 0; i < perc->m_veloRegionCount; i++) {
+		const TVeloRegion* veloRegion = perc->getVeloRegion(i);
+		if (p2 <= veloRegion->_00) {
+			instParam->_10 *= veloRegion->_08;
+			instParam->_14 *= veloRegion->_0C;
+			instParam->_04 = veloRegion->_04;
+			return true;
+		}
+	}
+	return false;
 	/*
 	stwu     r1, -0x30(r1)
 	mflr     r0
@@ -210,86 +266,50 @@ lbl_8009B2A0:
  * --INFO--
  * Address:	8009B2B4
  * Size:	000014
+ * getPerc__10JASDrumSetFi
  */
-void JASDrumSet::getPerc(int)
-{
-	/*
-	slwi     r4, r4, 5
-	mr       r0, r3
-	addi     r3, r4, 4
-	add      r3, r0, r3
-	blr
-	*/
-}
+JASDrumSet::TPerc* JASDrumSet::getPerc(int index) { return m_percs + index; }
 
 /*
  * --INFO--
  * Address:	........
  * Size:	000014
+ * getPerc__10JASDrumSetCFi
  */
-void JASDrumSet::getPerc(int) const
-{
-	// UNUSED FUNCTION
-}
+// const JASDrumSet::TPerc* JASDrumSet::getPerc(int index) const
+// {
+// 	// UNUSED FUNCTION
+// 	return m_percs + index;
+// }
 
 /*
  * --INFO--
  * Address:	8009B2C8
  * Size:	000034
+ * __ct__Q210JASDrumSet5TPercFv
  */
-JASDrumSet::TPerc::TPerc(void)
+JASDrumSet::TPerc::TPerc()
+    : _00(1.0f)
+    , _04(1.0f)
+    , _08(0.5f)
+    , m_release(1000)
+    , m_effects(nullptr)
+    , m_effectCount(0)
+    , m_veloRegionCount(0)
+    , m_veloRegions(nullptr)
 {
-	/*
-	lfs      f1, lbl_80516CD8@sda21(r2)
-	li       r4, 0x3e8
-	lfs      f0, lbl_80516CE8@sda21(r2)
-	li       r0, 0
-	stfs     f1, 0(r3)
-	stfs     f1, 4(r3)
-	stfs     f0, 8(r3)
-	sth      r4, 0xc(r3)
-	stw      r0, 0x10(r3)
-	stw      r0, 0x14(r3)
-	stw      r0, 0x18(r3)
-	stw      r0, 0x1c(r3)
-	blr
-	*/
 }
 
 /*
  * --INFO--
  * Address:	8009B2FC
  * Size:	00005C
+ * __dt__Q210JASDrumSet5TPercFv
  */
-JASDrumSet::TPerc::~TPerc(void)
+JASDrumSet::TPerc::~TPerc()
 {
-	/*
-	stwu     r1, -0x10(r1)
-	mflr     r0
-	stw      r0, 0x14(r1)
-	stw      r31, 0xc(r1)
-	mr       r31, r4
-	stw      r30, 8(r1)
-	or.      r30, r3, r3
-	beq      lbl_8009B33C
-	lwz      r3, 0x10(r30)
-	bl       __dla__FPv
-	lwz      r3, 0x1c(r30)
-	bl       __dla__FPv
-	extsh.   r0, r31
-	ble      lbl_8009B33C
-	mr       r3, r30
-	bl       __dl__FPv
-
-lbl_8009B33C:
-	lwz      r0, 0x14(r1)
-	mr       r3, r30
-	lwz      r31, 0xc(r1)
-	lwz      r30, 8(r1)
-	mtlr     r0
-	addi     r1, r1, 0x10
-	blr
-	*/
+	delete[] m_effects;
+	delete[] m_veloRegions;
 }
 
 /*
@@ -297,44 +317,16 @@ lbl_8009B33C:
  * Address:	8009B358
  * Size:	000078
  */
-void JASDrumSet::TPerc::setEffectCount(unsigned long)
+void JASDrumSet::TPerc::setEffectCount(u32 count)
 {
-	/*
-	stwu     r1, -0x10(r1)
-	mflr     r0
-	stw      r0, 0x14(r1)
-	stw      r31, 0xc(r1)
-	mr       r31, r4
-	stw      r30, 8(r1)
-	mr       r30, r3
-	lwz      r3, 0x10(r3)
-	bl       __dla__FPv
-	cmplwi   r31, 0
-	stw      r31, 0x14(r30)
-	bne      lbl_8009B394
-	li       r0, 0
-	stw      r0, 0x10(r30)
-	b        lbl_8009B3B8
-
-lbl_8009B394:
-	bl       getCurrentHeap__7JASBankFv
-	mr       r4, r3
-	slwi     r3, r31, 2
-	li       r5, 0
-	bl       __nwa__FUlP7JKRHeapi
-	stw      r3, 0x10(r30)
-	slwi     r4, r31, 2
-	lwz      r3, 0x10(r30)
-	bl       bzero__7JASCalcFPvUl
-
-lbl_8009B3B8:
-	lwz      r0, 0x14(r1)
-	lwz      r31, 0xc(r1)
-	lwz      r30, 8(r1)
-	mtlr     r0
-	addi     r1, r1, 0x10
-	blr
-	*/
+	delete[] m_effects;
+	m_effectCount = count;
+	if (count == 0) {
+		m_effects = nullptr;
+	} else {
+		m_effects = new (JASBank::getCurrentHeap(), 0) JASInstEffect*[count];
+		JASCalc::bzero(m_effects, sizeof(JASInstEffect*) * count);
+	}
 }
 
 /*
@@ -342,153 +334,79 @@ lbl_8009B3B8:
  * Address:	8009B3D0
  * Size:	000058
  */
-void JASDrumSet::TPerc::setVeloRegionCount(unsigned long)
+void JASDrumSet::TPerc::setVeloRegionCount(u32 count)
 {
-	/*
-	stwu     r1, -0x10(r1)
-	mflr     r0
-	stw      r0, 0x14(r1)
-	stw      r31, 0xc(r1)
-	mr       r31, r4
-	stw      r30, 8(r1)
-	mr       r30, r3
-	lwz      r3, 0x1c(r3)
-	bl       __dla__FPv
-	bl       getCurrentHeap__7JASBankFv
-	mr       r4, r3
-	slwi     r3, r31, 4
-	li       r5, 0
-	bl       __nwa__FUlP7JKRHeapi
-	stw      r3, 0x1c(r30)
-	stw      r31, 0x18(r30)
-	lwz      r0, 0x14(r1)
-	lwz      r31, 0xc(r1)
-	lwz      r30, 8(r1)
-	mtlr     r0
-	addi     r1, r1, 0x10
-	blr
-	*/
+	delete[] m_veloRegions;
+	m_veloRegions     = new (JASBank::getCurrentHeap(), 0) TVeloRegion[count];
+	m_veloRegionCount = count;
 }
 
 /*
  * --INFO--
  * Address:	8009B428
  * Size:	000010
+ * getVeloRegion__Q210JASDrumSet5TPercFi
  */
-void JASDrumSet::TPerc::getVeloRegion(int)
-{
-	/*
-	lwz      r3, 0x1c(r3)
-	slwi     r0, r4, 4
-	add      r3, r3, r0
-	blr
-	*/
-}
+JASInst::TVeloRegion* JASDrumSet::TPerc::getVeloRegion(int index) { return m_veloRegions + index; }
 
 /*
  * --INFO--
  * Address:	........
  * Size:	000010
+ * getVeloRegion__Q210JASDrumSet5TPercCFi
  */
-void JASDrumSet::TPerc::getVeloRegion(const(int))
-{
-	// UNUSED FUNCTION
-}
+// const JASInst::TVeloRegion* JASDrumSet::TPerc::getVeloRegion(int index) const
+// {
+// 	// UNUSED FUNCTION
+// 	return m_veloRegions + index;
+// }
 
 /*
  * --INFO--
  * Address:	8009B438
  * Size:	000010
+ * setEffect__Q210JASDrumSet5TPercFiP13JASInstEffect
  */
-void JASDrumSet::TPerc::setEffect(int, JASInstEffect*)
-{
-	/*
-	lwz      r3, 0x10(r3)
-	slwi     r0, r4, 2
-	stwx     r5, r3, r0
-	blr
-	*/
-}
+void JASDrumSet::TPerc::setEffect(int index, JASInstEffect* effect) { m_effects[index] = effect; }
 
 /*
  * --INFO--
  * Address:	........
  * Size:	000024
+ * getEffect__Q210JASDrumSet5TPercFi
  */
-void JASDrumSet::TPerc::getEffect(int)
-{
-	// UNUSED FUNCTION
-}
+// JASInstEffect* JASDrumSet::TPerc::getEffect(int index)
+// {
+// 	// UNUSED FUNCTION
+// 	return m_effects[index];
+// }
 
 /*
  * --INFO--
  * Address:	8009B448
  * Size:	000008
  */
-void JASDrumSet::TPerc::setRelease(unsigned long a1)
+void JASDrumSet::TPerc::setRelease(u32 release)
 {
 	// Generated from sth r4, 0xC(r3)
-	_0C = a1;
+	m_release = release;
 }
 
 /*
  * --INFO--
  * Address:	8009B450
  * Size:	000084
+ * __dt__10JASDrumSetFv
  */
-JASDrumSet::~JASDrumSet()
-{
-	/*
-	stwu     r1, -0x10(r1)
-	mflr     r0
-	stw      r0, 0x14(r1)
-	stw      r31, 0xc(r1)
-	mr       r31, r4
-	stw      r30, 8(r1)
-	or.      r30, r3, r3
-	beq      lbl_8009B4B8
-	lis      r3, __vt__10JASDrumSet@ha
-	lis      r4, __dt__Q210JASDrumSet5TPercFv@ha
-	addi     r0, r3, __vt__10JASDrumSet@l
-	li       r5, 0x20
-	stw      r0, 0(r30)
-	addi     r3, r30, 4
-	addi     r4, r4, __dt__Q210JASDrumSet5TPercFv@l
-	li       r6, 0x80
-	bl       __destroy_arr
-	cmplwi   r30, 0
-	beq      lbl_8009B4A8
-	lis      r3, __vt__7JASInst@ha
-	addi     r0, r3, __vt__7JASInst@l
-	stw      r0, 0(r30)
-
-lbl_8009B4A8:
-	extsh.   r0, r31
-	ble      lbl_8009B4B8
-	mr       r3, r30
-	bl       __dl__FPv
-
-lbl_8009B4B8:
-	lwz      r0, 0x14(r1)
-	mr       r3, r30
-	lwz      r31, 0xc(r1)
-	lwz      r30, 8(r1)
-	mtlr     r0
-	addi     r1, r1, 0x10
-	blr
-	*/
-}
+// JASDrumSet::~JASDrumSet()
+// {
+// }
 
 /*
  * --INFO--
  * Address:	8009B4D4
  * Size:	00000C
  */
-void JASDrumSet::getType() const
-{
-	/*
-	lis      r3, 0x50455243@ha
-	addi     r3, r3, 0x50455243@l
-	blr
-	*/
-}
+// u32 JASDrumSet::getType() const
+// {
+// }

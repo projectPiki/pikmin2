@@ -1,3 +1,4 @@
+#include "JSystem/JAS/JASOscillator.h"
 #include "types.h"
 
 /*
@@ -109,21 +110,16 @@
  */
 void JASOscillator::init()
 {
-	/*
-	li       r0, 0
-	lfs      f0, lbl_80516DD8@sda21(r2)
-	stw      r0, 0(r3)
-	stb      r0, 0x1c(r3)
-	stb      r0, 0x1d(r3)
-	sth      r0, 0x18(r3)
-	stfs     f0, 4(r3)
-	stfs     f0, 8(r3)
-	stfs     f0, 0xc(r3)
-	stfs     f0, 0x10(r3)
-	sth      r0, 0x1a(r3)
-	stfs     f0, 0x14(r3)
-	blr
-	*/
+	m_data = nullptr;
+	_1C    = 0;
+	_1D    = 0;
+	_18    = 0;
+	_04    = 0.0f;
+	_08    = 0.0f;
+	_0C    = 0.0f;
+	_10    = 0.0f;
+	_1A    = 0;
+	_14    = 0.0f;
 }
 
 /*
@@ -131,50 +127,24 @@ void JASOscillator::init()
  * Address:	800A2BAC
  * Size:	000088
  */
-void JASOscillator::initStart(const JASOscillator::Data*)
+void JASOscillator::initStart(const Data* data)
 {
-	/*
-	stwu     r1, -0x10(r1)
-	mflr     r0
-	cmplwi   r4, 0
-	stw      r0, 0x14(r1)
-	bne      lbl_800A2BCC
-	li       r0, 0
-	stb      r0, 0x1c(r3)
-	b        lbl_800A2C24
-
-lbl_800A2BCC:
-	li       r0, 1
-	li       r5, 0
-	stb      r0, 0x1c(r3)
-	stw      r4, 0(r3)
-	sth      r5, 0x1a(r3)
-	lwz      r4, 0(r3)
-	lwz      r0, 8(r4)
-	cmplwi   r0, 0
-	bne      lbl_800A2BFC
-	lfs      f0, lbl_80516DD8@sda21(r2)
-	stfs     f0, 8(r3)
-	b        lbl_800A2C24
-
-lbl_800A2BFC:
-	sth      r5, 0x18(r3)
-	lfs      f0, lbl_80516DD8@sda21(r2)
-	stfs     f0, 4(r3)
-	stfs     f0, 0xc(r3)
-	lwz      r4, 0(r3)
-	lfs      f1, 4(r3)
-	lfs      f0, 4(r4)
-	fsubs    f0, f1, f0
-	stfs     f0, 4(r3)
-	bl       incCounter__13JASOscillatorFv
-
-lbl_800A2C24:
-	lwz      r0, 0x14(r1)
-	mtlr     r0
-	addi     r1, r1, 0x10
-	blr
-	*/
+	if (!data) {
+		_1C = 0;
+	} else {
+		_1C    = 1;
+		m_data = data;
+		_1A    = 0;
+		if (!m_data->_08) {
+			_08 = 0.0f;
+		} else {
+			_18 = 0;
+			_04 = 0.0f;
+			_0C = 0.0f;
+			_04 -= m_data->_04;
+			incCounter();
+		}
+	}
 }
 
 /*
@@ -184,76 +154,31 @@ lbl_800A2C24:
  */
 void JASOscillator::incCounter()
 {
-	/*
-	stwu     r1, -0x10(r1)
-	mflr     r0
-	stw      r0, 0x14(r1)
-	lbz      r5, 0x1c(r3)
-	cmpwi    r5, 1
-	beq      lbl_800A2C68
-	bge      lbl_800A2C5C
-	cmpwi    r5, 0
-	bge      lbl_800A2CEC
-	b        lbl_800A2C68
-
-lbl_800A2C5C:
-	cmpwi    r5, 3
-	bge      lbl_800A2C68
-	b        lbl_800A2CEC
-
-lbl_800A2C68:
-	cmplwi   r5, 3
-	bne      lbl_800A2C7C
-	lwz      r4, 0(r3)
-	lwz      r4, 0xc(r4)
-	b        lbl_800A2C9C
-
-lbl_800A2C7C:
-	cmplwi   r5, 4
-	bne      lbl_800A2C94
-	lis      r4, oscTableForceStop__13JASOscillator@ha
-	addi     r0, r4, oscTableForceStop__13JASOscillator@l
-	mr       r4, r0
-	b        lbl_800A2C9C
-
-lbl_800A2C94:
-	lwz      r4, 0(r3)
-	lwz      r4, 8(r4)
-
-lbl_800A2C9C:
-	cmplwi   r4, 0
-	bne      lbl_800A2CB8
-	cmplwi   r5, 5
-	beq      lbl_800A2CB8
-	lfs      f0, lbl_80516DDC@sda21(r2)
-	stfs     f0, 8(r3)
-	b        lbl_800A2CEC
-
-lbl_800A2CB8:
-	cmplwi   r5, 4
-	bne      lbl_800A2CD4
-	lfs      f1, 4(r3)
-	lfs      f0, lbl_80516DDC@sda21(r2)
-	fsubs    f0, f1, f0
-	stfs     f0, 4(r3)
-	b        lbl_800A2CE8
-
-lbl_800A2CD4:
-	lwz      r5, 0(r3)
-	lfs      f1, 4(r3)
-	lfs      f0, 4(r5)
-	fsubs    f0, f1, f0
-	stfs     f0, 4(r3)
-
-lbl_800A2CE8:
-	bl       calc__13JASOscillatorFPCs
-
-lbl_800A2CEC:
-	lwz      r0, 0x14(r1)
-	mtlr     r0
-	addi     r1, r1, 0x10
-	blr
-	*/
+	const short* v1;
+	switch (_1C) {
+	case 0:
+	case 2:
+		return;
+	case 1:
+		break;
+	}
+	if (_1C == 3) {
+		v1 = m_data->_0C;
+	} else if (_1C == 4) {
+		v1 = oscTableForceStop;
+	} else {
+		v1 = m_data->_08;
+	}
+	if (v1 == nullptr && _1C != 5) {
+		_08 = 1.0f;
+	} else {
+		if (_1C == 4) {
+			_04 -= 1.0f;
+		} else {
+			_04 -= m_data->_04;
+		}
+		calc(v1);
+	}
 }
 
 /*
@@ -261,23 +186,12 @@ lbl_800A2CEC:
  * Address:	800A2CFC
  * Size:	00002C
  */
-void JASOscillator::getValue() const
+f32 JASOscillator::getValue() const
 {
-	/*
-	lbz      r0, 0x1c(r3)
-	cmplwi   r0, 0
-	bne      lbl_800A2D10
-	lfs      f1, lbl_80516DDC@sda21(r2)
-	blr
-
-lbl_800A2D10:
-	lwz      r4, 0(r3)
-	lfs      f2, 8(r3)
-	lfs      f1, 0x10(r4)
-	lfs      f0, 0x14(r4)
-	fmadds   f1, f2, f1, f0
-	blr
-	*/
+	if (_1C == 0) {
+		return 1.0f;
+	}
+	return _08 * m_data->_10 + m_data->_14;
 }
 
 /*
@@ -412,7 +326,7 @@ lbl_800A2E74:
  * Address:	800A2E90
  * Size:	000374
  */
-void JASOscillator::calc(const short*)
+f32 JASOscillator::calc(const short*)
 {
 	/*
 	stwu     r1, -0x50(r1)

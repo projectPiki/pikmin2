@@ -11,7 +11,7 @@ struct JASSeqCtrl {
 	void start(void*, u32);
 	void loopEnd();
 	void waitCountDown();
-	void callIntr(void*);
+	bool callIntr(void*);
 	void retIntr();
 	void get16(u32) const;
 	void get24(u32) const;
@@ -19,7 +19,8 @@ struct JASSeqCtrl {
 	void read16();
 	void read24();
 
-	// void read32(); - unused/inlined
+	// unused/inlined
+	void read32();
 
 	void* _00; // _00 - unknown ptr
 	u8* _04;   // _04
