@@ -4,12 +4,14 @@
 #include "types.h"
 
 struct J3DFrameCtrl {
-	virtual ~J3DFrameCtrl(); // _00
+	virtual ~J3DFrameCtrl(); // _08 (weak)
 
+	void init(short);
 	void update();
 
 	// _00 VTBL
 	u8 m_attr; // _04
+	u8 _05;    // _05
 	// TODO: Rename to m_startFrame
 	short _06; // _06
 	// TODO: Rename to m_endFrame

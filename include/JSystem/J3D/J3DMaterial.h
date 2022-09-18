@@ -1,6 +1,7 @@
 #ifndef _JSYSTEM_J3D_J3DMATERIAL_H
 #define _JSYSTEM_J3D_J3DMATERIAL_H
 
+#include "JSystem/J3D/J3DTevColorAnm.h"
 #include "JSystem/J3D/J3DTypes.h"
 #include "JSystem/J3D/J3DTexture.h"
 #include "types.h"
@@ -16,7 +17,6 @@ struct J3DMaterialAnm;
 struct J3DPEBlock;
 struct J3DShape;
 struct J3DTevBlock;
-struct J3DTevColorAnm;
 struct J3DTexGenBlock;
 struct J3DTexMtxAnm;
 struct J3DTexture;
@@ -26,7 +26,17 @@ struct JUTNameTab;
  * @size{0x4C}
  */
 struct J3DMaterial {
-	J3DMaterial();
+	/**
+	 * @reifiedAddress{80070C54}
+	 * @reifiedFile{JSystem/J3D/J3DModelLoader.cpp}
+	 */
+	inline J3DMaterial()
+	    : _40(0x3CF3CF00)
+	    , _44(0x00F3CF3C)
+	{
+		initialize();
+	}
+
 	~J3DMaterial();
 
 	virtual void calc(const float (*)[4]);           // _00
@@ -41,36 +51,39 @@ struct J3DMaterial {
 	virtual void change();                           // _24
 
 	void calcCurrentMtx();
-	u32 calcSizePEBlock(J3DModelLoaderFlags, u32);
-	u32 calcSizeTevBlock(int);
-	u32 calcSizeTexGenBlock(J3DModelLoaderFlags);
+	static u32 calcSizeColorBlock(u32);
+	static u32 calcSizeIndBlock(int);
+	static u32 calcSizePEBlock(J3DModelLoaderFlags, u32);
+	static u32 calcSizeTexGenBlock(u32);
+	static u32 calcSizeTevBlock(int);
 	u32 countDLSize();
-	J3DColorBlock* createColorBlock(u32);
-	J3DIndBlock* createIndBlock(int);
-	J3DPEBlock* createPEBlock(u32, u32);
-	J3DTevBlock* createTevBlock(int);
-	J3DTexGenBlock* createTexGenBlock(u32);
+	static J3DColorBlock* createColorBlock(u32);
+	static J3DIndBlock* createIndBlock(int);
+	static J3DPEBlock* createPEBlock(u32, u32);
+	static J3DTevBlock* createTevBlock(int);
+	static J3DTexGenBlock* createTexGenBlock(u32);
 	void initialize();
 	int newSharedDisplayList(u32);
 	int newSingleSharedDisplayList(u32);
 	void setCurrentMtx();
 
 	// VTBL _00
-	J3DMaterial* _04;              // _04
-	J3DShape* m_shape;             // _08
-	J3DJoint* m_joint;             // _0C
-	u32 _10;                       // _10
-	short _14;                     // _14
-	u32 _18;                       // _18
-	u8 _1C[4];                     // _1C
-	J3DDisplayListObj* _20;        // _20
+	J3DMaterial* _04;  // _04
+	J3DShape* m_shape; // _08
+	J3DJoint* m_joint; // _0C
+	u32 _10;           // _10
+	short _14;         // _14
+	u32 _18;           // _18
+	u8 _1C[4];         // _1C
+	/* RAM address of display list divided by 16? */
+	u32 _20;                       // _20
 	J3DColorBlock* m_colorBlock;   // _24
 	J3DTexGenBlock* m_texGenBlock; // _28
 	J3DTevBlock* m_tevBlock;       // _2C
 	J3DIndBlock* m_indBlock;       // _30
 	J3DPEBlock* m_peBlock;         // _34
 	J3DMaterial* _38;              // _38
-	J3DMaterialAnm* m_anm;         // _3C
+	J3DMaterialAnm* _3C;           // _3C
 	u32 _40;                       // _40
 	u32 _44;                       // _44
 	J3DDisplayListObj* _48;        // _48
@@ -127,6 +140,7 @@ struct J3DMaterialTable {
 	void removeTexMtxAnimator(J3DAnmTextureSRTKey*);
 
 	void allocTevRegAnimator(J3DAnmTevRegKey*, J3DTevColorAnm**);
+	void allocTevRegAnimator(J3DAnmTevRegKey*, J3DTevColorAnm**, J3DTevKColorAnm**);
 	void entryTevRegAnimator(J3DAnmTevRegKey*);
 	void removeTevRegAnimator(J3DAnmTevRegKey*);
 

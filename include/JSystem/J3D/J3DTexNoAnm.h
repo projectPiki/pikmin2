@@ -4,6 +4,8 @@
 #include "types.h"
 
 struct J3DTexNoAnm {
+	J3DTexNoAnm();
+
 	u32 _00; // _00
 	u32 _04; // _04
 	u32 _08; // _08

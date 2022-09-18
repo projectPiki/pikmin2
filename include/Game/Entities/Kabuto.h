@@ -7,6 +7,7 @@
 #include "Game/EnemyParmsBase.h"
 #include "Game/WalkSmokeEffect.h"
 #include "JSystem/J3D/J3DModel.h"
+#include "JSystem/J3D/J3DModelLoader.h"
 #include "efx/TKkabuto.h"
 
 /**

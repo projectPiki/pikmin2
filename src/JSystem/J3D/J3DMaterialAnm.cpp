@@ -1,3 +1,5 @@
+#include "JSystem/J3D/J3DTevBlock.h"
+#include "JSystem/J3D/J3DTypes.h"
 #include "types.h"
 
 /*
@@ -216,14 +218,14 @@ lbl_8006A320:
  * Address:	8006A350
  * Size:	000008
  */
-u32 J3DTevBlock::getTevKColor(unsigned long) { return 0x0; }
+J3DGXColor J3DTevBlock::getTevKColor(unsigned long) { return 0x0; }
 
 /*
  * --INFO--
  * Address:	8006A358
  * Size:	000008
  */
-u32 J3DTevBlock::getTevColor(unsigned long) { return 0x0; }
+J3DGXColor J3DTevBlock::getTevColor(unsigned long) { return 0x0; }
 
 /*
  * --INFO--

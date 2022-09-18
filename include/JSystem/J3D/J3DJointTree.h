@@ -19,7 +19,11 @@ struct J3DJointTree {
 	J3DJointTree();
 
 	virtual void calc(J3DMtxBuffer*, const Vec&, const float (&)[3][4]); // _08
-	virtual ~J3DJointTree();                                             // _0C (weak)
+	/**
+	 * @reifiedAddress{80083874}
+	 * @reifiedFile{JSystem/J3D/J3DModelData.cpp}
+	 */
+	virtual ~J3DJointTree() {}; // _0C (weak)
 
 	// virtual void _010() = 0;                                              // _010
 
@@ -37,11 +41,11 @@ struct J3DJointTree {
 	J3DJoint** m_joints;      // _18
 	u16 m_jointCnt;           // _1C
 	u16 m_envelopeCnt;        // _1E
-	u32 _20;                  // _20
+	u8* _20;                  // _20
 	u32 m_maxBillBoardCnt;    // _24
-	s8* _28;                  // _28
-	u16* _2C;                 // _2C
-	u32 _30;                  // _30
+	float* _28;               // _28
+	Mtx* _2C;                 // _2C
+	u16* _30;                 // _30
 	J3DDrawMtxData m_mtxData; // _34
 	u32 _40;                  // _40
 	JUTNameTab* m_nametab;    // _44
