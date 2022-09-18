@@ -864,11 +864,15 @@ void __GXSendFlushPrim();
 
 void GXFlush();
 void GXSetNumTexGens(u8);
+void GXInitLightPos(struct GXLightObj* lt_obj, f32 x, f32 y, f32 z );
+void GXInitLightColor(struct GXLightObj* lt_obj, GXColor color );
+void GXLoadLightObjImm(struct GXLightObj* lt_obj, GXLightID light );
+void GXLoadLightObjIndx(u32 lt_obj_indx, GXLightID light );
+void GXSetChanAmbColor(GXChannelID chan, GXColor amb_color );
+void GXSetChanMatColor(GXChannelID chan, GXColor mat_color );
 void GXSetNumChans(u32);
 void GXSetChanCtrl(GXChannelID chan, GXBool enable, GXColorSrc amb_src, GXColorSrc mat_src, GXLightID light_mask, GXDiffuseFn diff_fn,
                    GXAttnFn attn_fn);
-void GXSetChanAmbColor(s32, GXColor); // params might not be right
-void GXSetChanMatColor(s32, GXColor); // params might not be right
 void GXSetNumIndStages(u8 num);
 void GXSetNumTevStages(u32);
 void GXSetTevDirect(GXTevStageID);

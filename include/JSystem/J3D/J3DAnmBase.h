@@ -44,7 +44,7 @@ struct J3DAnmBase {
 	virtual ~J3DAnmBase();                  // _08 (weak)
 	virtual J3DAnmKind getKind() const = 0; // _0C
 
-	// vtable _00
+	// _00 VTBL
 	u8 _04;    // _04
 	u8 _05;    // _05
 	s16 _06;   // _06
