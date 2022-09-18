@@ -47,21 +47,23 @@ void Obj::changeMaterial()
  */
 void Obj::interactCreature(Creature* creature)
 {
-	Vector3f position = creature->getPosition();
-	Vector3f sep      = position - m_position;
-	sep.y             = 0.0f;
+	// Get direction from US -> Creature, then make it normalise it to a unit direction
+	Vector3f direction = creature->getPosition() - m_position;
+	direction.y        = 0.0f;
+	_normalise(direction);
 
-	_normalise(sep);
-
+	// Then scale the direction based on fp14's value
 	f32 scaling = static_cast<OtakaraBase::Parms*>(m_parms)->m_general.m_fp14.m_value;
-	sep.x *= scaling;
-	sep.z *= scaling;
+	direction.x *= scaling;
+	direction.z *= scaling;
 
+	// If the creature is a Pikmin, change the up/down direction to fp26
 	if (creature->isPiki()) {
-		sep.y = static_cast<OtakaraBase::Parms*>(m_parms)->m_general.m_fp26.m_value;
+		direction.y = static_cast<OtakaraBase::Parms*>(m_parms)->m_general.m_fp26.m_value;
 	}
 
-	InteractDenki denki(this, static_cast<OtakaraBase::Parms*>(m_parms)->m_general.m_attackDamage.m_value, &sep);
+	// Start the interaction
+	InteractDenki denki(this, static_cast<OtakaraBase::Parms*>(m_parms)->m_general.m_attackDamage.m_value, &direction);
 	creature->stimulate(denki);
 }
 
@@ -79,8 +81,8 @@ void Obj::createEffect() { m_efxChargeElec = new efx::TOtaChargeelec; }
  */
 void Obj::setupEffect()
 {
-	Matrixf* mat = m_model->getJoint("center")->getWorldMatrix();
-	m_efxChargeElec->setMtxptr(mat->m_matrix.mtxView);
+	Matrixf* centerJointMtx = m_model->getJoint("center")->getWorldMatrix();
+	m_efxChargeElec->setMtxptr(centerJointMtx->m_matrix.mtxView);
 }
 
 /*

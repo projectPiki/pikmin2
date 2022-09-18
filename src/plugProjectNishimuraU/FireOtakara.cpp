@@ -66,8 +66,8 @@ void Obj::createEffect() { m_efxChargeFire = new efx::TOtaChargefire; }
  */
 void Obj::setupEffect()
 {
-	Matrixf* mat = m_model->getJoint("center")->getWorldMatrix();
-	m_efxChargeFire->setMtxptr(mat->m_matrix.mtxView);
+	Matrixf* centerJointMtx = m_model->getJoint("center")->getWorldMatrix();
+	m_efxChargeFire->setMtxptr(centerJointMtx->m_matrix.mtxView);
 }
 
 /*

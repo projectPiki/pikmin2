@@ -67,8 +67,8 @@ void Obj::createEffect() { m_efxChargeWater = new efx::TOtaChargewat; }
  */
 void Obj::setupEffect()
 {
-	Matrixf* mat = m_model->getJoint("center")->getWorldMatrix();
-	m_efxChargeWater->setMtxptr(mat->m_matrix.mtxView);
+	Matrixf* centerJointMtx = m_model->getJoint("center")->getWorldMatrix();
+	m_efxChargeWater->setMtxptr(centerJointMtx->m_matrix.mtxView);
 }
 
 /*

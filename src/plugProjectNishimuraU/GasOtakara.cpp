@@ -66,8 +66,8 @@ void Obj::createEffect() { m_efxChargeGas = new efx::TOtaChargegas; }
  */
 void Obj::setupEffect()
 {
-	Matrixf* mat = m_model->getJoint("center")->getWorldMatrix();
-	m_efxChargeGas->setMtxptr(mat->m_matrix.mtxView);
+	Matrixf* centerJointMtx = m_model->getJoint("center")->getWorldMatrix();
+	m_efxChargeGas->setMtxptr(centerJointMtx->m_matrix.mtxView);
 }
 
 /*

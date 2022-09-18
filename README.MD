@@ -41,7 +41,7 @@ pikmin2.usa.dol: `sha1: 90d328bf8f190c90472e8c19e7e53c6ad0fe0d1a`
 1. Download GC_WII_COMPILERS.zip from (https://cdn.discordapp.com/attachments/727918646525165659/917185027656286218/GC_WII_COMPILERS.zip) and extract the GC folder to tools/mwcc_compiler/. 
 	- This folder should be made by the user.
 2. Run `make -j` in a command prompt or terminal.
-	- -j Allows make to use multiple threads, speeding up the process.
+	- -j Allows `make` to use multiple threads, speeding up the process.
 
 * OPTIONAL:
 	- Obtain a clean DOL of Pikmin 2 USA 1.0 and place it in the base working directory and rename it to `baserom.dol`.

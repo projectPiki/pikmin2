@@ -89,7 +89,7 @@ struct Obj : public EnemyBase {
 	int _2C0;             // _2C0
 	f32 _2C4;             // _2C4, timer?
 	f32 _2C8;             // _2C8
-	f32 _2CC;             // _2CC, timer?
+	f32 m_escapeSfxTimer; // _2CC
 	u8 _2D0;              // _2D0
 	Vector3f _2D4;        // _2D4
 	Creature* m_treasure; // _2E0
