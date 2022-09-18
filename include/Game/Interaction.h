@@ -63,11 +63,18 @@ struct InteractBreakBridge : public Interaction {
 };
 
 struct InteractBubble : public Interaction {
+	inline InteractBubble(Creature* parent, f32 damage)
+	    : Interaction(parent)
+	{
+		m_damage = damage;
+	}
+
 	virtual bool actPiki(Piki*); // _0C
 	virtual bool actNavi(Navi*); // _10
 
-	// _00 VTBL
-	// _04 Parent
+	// _00 		= VTBL
+	// _04 		= Interaction
+	f32 m_damage; // _08
 };
 
 struct InteractDope : public Interaction {
@@ -96,7 +103,7 @@ struct InteractFire : public Interaction {
 	inline InteractFire(Creature* parent, f32 damage)
 	    : Interaction(parent)
 	{
-		_08 = damage;
+		m_damage = damage;
 	}
 
 	virtual bool actPiki(Piki*); // _0C
@@ -104,7 +111,7 @@ struct InteractFire : public Interaction {
 
 	// _00		= VTBL
 	// _00-_04	= Interaction
-	f32 _08; // _08
+	f32 m_damage; // _08
 };
 
 struct InteractFlick : public Interaction {
@@ -145,6 +152,21 @@ struct InteractFue : public Interaction {
 	// _00 VTBL
 	u8 _08; // _08
 	u8 _09; // _09
+};
+
+struct InteractGas : public Interaction {
+	inline InteractGas(Creature* parent, f32 damage)
+	    : Interaction(parent)
+	{
+		m_damage = damage;
+	}
+
+	virtual bool actPiki(Piki*); // _0C
+	virtual bool actNavi(Navi*); // _10
+
+	// _00		= VTBL
+	// _00-_04	= Interaction
+	f32 m_damage; // _08
 };
 
 struct InteractGotKey : public Interaction {
@@ -225,7 +247,7 @@ struct InteractWind : public Interaction {
 	inline InteractWind(Creature* parent, f32 force, Vector3f* direction)
 	    : Interaction(parent)
 	{
-		_08           = force;
+		m_damage      = force;
 		m_direction.x = direction->x;
 		m_direction.y = direction->y;
 		m_direction.z = direction->z;
@@ -236,7 +258,7 @@ struct InteractWind : public Interaction {
 
 	// _00		= VTBL
 	// _00-_04	= Interaction
-	f32 _08;              // _08, damage or force?
+	f32 m_damage;         // _08, damage or force?
 	Vector3f m_direction; // _0C
 };
 

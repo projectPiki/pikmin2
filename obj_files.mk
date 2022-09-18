@@ -780,9 +780,9 @@ NISHIMURA:=\
 	$(BUILD_DIR)/asm/plugProjectNishimuraU/FireOtakaraMgr.o\
 	$(BUILD_DIR)/src/plugProjectNishimuraU/FireOtakara.o\
 	$(BUILD_DIR)/asm/plugProjectNishimuraU/WaterOtakaraMgr.o\
-	$(BUILD_DIR)/asm/plugProjectNishimuraU/WaterOtakara.o\
+	$(BUILD_DIR)/src/plugProjectNishimuraU/WaterOtakara.o\
 	$(BUILD_DIR)/asm/plugProjectNishimuraU/GasOtakaraMgr.o\
-	$(BUILD_DIR)/asm/plugProjectNishimuraU/GasOtakara.o\
+	$(BUILD_DIR)/src/plugProjectNishimuraU/GasOtakara.o\
 	$(BUILD_DIR)/asm/plugProjectNishimuraU/ElecOtakaraMgr.o\
 	$(BUILD_DIR)/src/plugProjectNishimuraU/ElecOtakara.o\
 	$(BUILD_DIR)/asm/plugProjectNishimuraU/ImomushiState.o\
