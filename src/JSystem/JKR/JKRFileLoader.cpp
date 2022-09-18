@@ -1,4 +1,7 @@
 #include "JSystem/JKR/JKRFileLoader.h"
+#include "Dolphin/ctype.h"
+#include "Dolphin/string.h"
+#include "JSystem/JKR/JKRArchive.h"
 #include "types.h"
 
 /*
@@ -50,89 +53,34 @@
         .4byte 0x00000000
 */
 
+static const char* rootPath = "/";
+JSUList<JKRFileLoader> JKRFileLoader::sVolumeList;
+
 /*
  * --INFO--
  * Address:	80022E98
  * Size:	000058
  */
 JKRFileLoader::JKRFileLoader()
+    : JKRDisposer()
+    , _18(this)
+    , _28(nullptr)
+    , m_magicWord(0)
+    , m_mountCount(0)
 {
-	/*
-	stwu     r1, -0x10(r1)
-	mflr     r0
-	stw      r0, 0x14(r1)
-	stw      r31, 0xc(r1)
-	mr       r31, r3
-	bl       __ct__11JKRDisposerFv
-	lis      r3, __vt__13JKRFileLoader@ha
-	mr       r4, r31
-	addi     r0, r3, __vt__13JKRFileLoader@l
-	addi     r3, r31, 0x18
-	stw      r0, 0(r31)
-	bl       __ct__10JSUPtrLinkFPv
-	li       r0, 0
-	mr       r3, r31
-	stw      r0, 0x28(r31)
-	stw      r0, 0x2c(r31)
-	stw      r0, 0x34(r31)
-	lwz      r31, 0xc(r1)
-	lwz      r0, 0x14(r1)
-	mtlr     r0
-	addi     r1, r1, 0x10
-	blr
-	*/
 }
 
 /*
  * --INFO--
  * Address:	80022EF0
  * Size:	00008C
+ * __dt__13JKRFileLoaderFv
  */
 JKRFileLoader::~JKRFileLoader()
 {
-	/*
-	stwu     r1, -0x10(r1)
-	mflr     r0
-	stw      r0, 0x14(r1)
-	stw      r31, 0xc(r1)
-	mr       r31, r4
-	stw      r30, 8(r1)
-	or.      r30, r3, r3
-	beq      lbl_80022F60
-	lis      r3, __vt__13JKRFileLoader@ha
-	addi     r0, r3, __vt__13JKRFileLoader@l
-	stw      r0, 0(r30)
-	lwz      r0, sCurrentVolume__13JKRFileLoader@sda21(r13)
-	cmplw    r0, r30
-	bne      lbl_80022F30
-	li       r0, 0
-	stw      r0, sCurrentVolume__13JKRFileLoader@sda21(r13)
-
-lbl_80022F30:
-	addic.   r0, r30, 0x18
-	beq      lbl_80022F44
-	addi     r3, r30, 0x18
-	li       r4, 0
-	bl       __dt__10JSUPtrLinkFv
-
-lbl_80022F44:
-	mr       r3, r30
-	li       r4, 0
-	bl       __dt__11JKRDisposerFv
-	extsh.   r0, r31
-	ble      lbl_80022F60
-	mr       r3, r30
-	bl       __dl__FPv
-
-lbl_80022F60:
-	lwz      r0, 0x14(r1)
-	mr       r3, r30
-	lwz      r31, 0xc(r1)
-	lwz      r30, 8(r1)
-	mtlr     r0
-	addi     r1, r1, 0x10
-	blr
-	*/
+	if (sCurrentVolume == this) {
+		sCurrentVolume = nullptr;
+	}
 }
 
 /*
@@ -142,121 +90,47 @@ lbl_80022F60:
  */
 void JKRFileLoader::unmount()
 {
-	/*
-	stwu     r1, -0x10(r1)
-	mflr     r0
-	stw      r0, 0x14(r1)
-	lwz      r4, 0x34(r3)
-	cmplwi   r4, 0
-	beq      lbl_80022FBC
-	addic.   r0, r4, -1
-	stw      r0, 0x34(r3)
-	bne      lbl_80022FBC
-	cmplwi   r3, 0
-	beq      lbl_80022FBC
-	lwz      r12, 0(r3)
-	li       r4, 1
-	lwz      r12, 8(r12)
-	mtctr    r12
-	bctrl
-
-lbl_80022FBC:
-	lwz      r0, 0x14(r1)
-	mtlr     r0
-	addi     r1, r1, 0x10
-	blr
-	*/
+	if (m_mountCount != 0) {
+		if (--m_mountCount == 0) {
+			delete this;
+		}
+	}
 }
 
 /*
  * --INFO--
  * Address:	80022FCC
  * Size:	00004C
+ * getGlbResource__13JKRFileLoaderFPCc
  */
-void* JKRFileLoader::getGlbResource(const char*)
+void* JKRFileLoader::getGlbResource(const char* path)
 {
-	/*
-	stwu     r1, -0x10(r1)
-	mflr     r0
-	stw      r0, 0x14(r1)
-	stw      r3, 8(r1)
-	addi     r3, r1, 8
-	bl       findVolume__13JKRFileLoaderFPPCc
-	cmplwi   r3, 0
-	bne      lbl_80022FF4
-	li       r3, 0
-	b        lbl_80023008
-
-lbl_80022FF4:
-	lwz      r12, 0(r3)
-	lwz      r4, 8(r1)
-	lwz      r12, 0x14(r12)
-	mtctr    r12
-	bctrl
-
-lbl_80023008:
-	lwz      r0, 0x14(r1)
-	mtlr     r0
-	addi     r1, r1, 0x10
-	blr
-	*/
+	const char* components[2];
+	components[0]         = path;
+	JKRFileLoader* loader = findVolume(components);
+	return (loader == nullptr) ? nullptr : loader->getResource(components[0]);
 }
 
 /*
  * --INFO--
  * Address:	80023018
  * Size:	000098
+ * getGlbResource__13JKRFileLoaderFPCcP13JKRFileLoader
  */
-void* JKRFileLoader::getGlbResource(const char*, JKRFileLoader*)
+void* JKRFileLoader::getGlbResource(const char* p1, JKRFileLoader* p2)
 {
-	/*
-	stwu     r1, -0x10(r1)
-	mflr     r0
-	cmplwi   r4, 0
-	stw      r0, 0x14(r1)
-	stw      r31, 0xc(r1)
-	stw      r30, 8(r1)
-	mr       r30, r3
-	li       r3, 0
-	beq      lbl_8002305C
-	mr       r3, r4
-	mr       r5, r30
-	lwz      r12, 0(r4)
-	li       r4, 0
-	lwz      r12, 0x18(r12)
-	mtctr    r12
-	bctrl
-	b        lbl_80023098
-
-lbl_8002305C:
-	lis      r4, sVolumeList__13JKRFileLoader@ha
-	lwz      r31, sVolumeList__13JKRFileLoader@l(r4)
-	b        lbl_80023090
-
-lbl_80023068:
-	lwz      r3, 0(r31)
-	mr       r5, r30
-	li       r4, 0
-	lwz      r12, 0(r3)
-	lwz      r12, 0x18(r12)
-	mtctr    r12
-	bctrl
-	cmplwi   r3, 0
-	bne      lbl_80023098
-	lwz      r31, 0xc(r31)
-
-lbl_80023090:
-	cmplwi   r31, 0
-	bne      lbl_80023068
-
-lbl_80023098:
-	lwz      r0, 0x14(r1)
-	lwz      r31, 0xc(r1)
-	lwz      r30, 8(r1)
-	mtlr     r0
-	addi     r1, r1, 0x10
-	blr
-	*/
+	void* resource = nullptr;
+	if (p2) {
+		resource = p2->getResource(0, p1);
+	} else {
+		for (JSULink<JKRFileLoader>* link = sVolumeList.getFirst(); link != nullptr; link = link->getNext()) {
+			resource = link->getObject()->getResource(0, p1);
+			if (resource) {
+				break;
+			}
+		}
+	}
+	return resource;
 }
 
 /*
@@ -264,8 +138,22 @@ lbl_80023098:
  * Address:	800230B0
  * Size:	00008C
  */
-JKRArchive* JKRFileLoader::findVolume(const char**)
+JKRFileLoader* JKRFileLoader::findVolume(const char** components)
 {
+	// TODO: Should this be 0x101 or 0x102?
+	char nameBuffer[0x104];
+	if (*components[0] != '/') {
+		return sCurrentVolume;
+	}
+	fetchVolumeName(nameBuffer, 0x101, components[0]);
+	components[0] = nameBuffer;
+	// TODO: Link shenanigans
+	for (JSULink<JKRFileLoader>* link = sVolumeList.getFirst(); link != nullptr; link = link->getNext()) {
+		if (strcmp(nameBuffer, link->getObject()->_28) == 0) {
+			return link->getObject();
+		}
+	}
+	return nullptr;
 	/*
 	stwu     r1, -0x120(r1)
 	mflr     r0
@@ -320,8 +208,20 @@ lbl_80023128:
  * Address:	8002313C
  * Size:	0000E0
  */
-void JKRFileLoader::fetchVolumeName(char*, long, const char*)
+void JKRFileLoader::fetchVolumeName(char* nameBuffer, long bufferLength, const char* path)
 {
+	if (strcmp(path, "/") == 0) {
+		strcpy(nameBuffer, rootPath);
+	} else {
+		for (const char* v1 = path + 1; *v1 != '\0' && *v1 != '/'; v1++) {
+			if (1 < bufferLength) {
+				*nameBuffer = (*v1 == -1) ? -1 : tolower(*v1);
+				nameBuffer++;
+				bufferLength--;
+			}
+		}
+		*nameBuffer = '\0';
+	}
 	/*
 	stwu     r1, -0x20(r1)
 	mflr     r0
@@ -405,59 +305,59 @@ lbl_80023200:
  * Address:	8002321C
  * Size:	000044
  */
-void __sinit_JKRFileLoader_cpp(void)
-{
-	/*
-	stwu     r1, -0x10(r1)
-	mflr     r0
-	lis      r3, sVolumeList__13JKRFileLoader@ha
-	stw      r0, 0x14(r1)
-	addi     r3, r3, sVolumeList__13JKRFileLoader@l
-	bl       initiate__10JSUPtrListFv
-	lis      r3, sVolumeList__13JKRFileLoader@ha
-	lis      r4, "__dt__24JSUList<13JKRFileLoader>Fv"@ha
-	lis      r5, lbl_804EFFA0@ha
-	addi     r3, r3, sVolumeList__13JKRFileLoader@l
-	addi     r4, r4, "__dt__24JSUList<13JKRFileLoader>Fv"@l
-	addi     r5, r5, lbl_804EFFA0@l
-	bl       __register_global_object
-	lwz      r0, 0x14(r1)
-	mtlr     r0
-	addi     r1, r1, 0x10
-	blr
-	*/
-}
+// void __sinit_JKRFileLoader_cpp(void)
+// {
+// 	/*
+// 	stwu     r1, -0x10(r1)
+// 	mflr     r0
+// 	lis      r3, sVolumeList__13JKRFileLoader@ha
+// 	stw      r0, 0x14(r1)
+// 	addi     r3, r3, sVolumeList__13JKRFileLoader@l
+// 	bl       initiate__10JSUPtrListFv
+// 	lis      r3, sVolumeList__13JKRFileLoader@ha
+// 	lis      r4, "__dt__24JSUList<13JKRFileLoader>Fv"@ha
+// 	lis      r5, lbl_804EFFA0@ha
+// 	addi     r3, r3, sVolumeList__13JKRFileLoader@l
+// 	addi     r4, r4, "__dt__24JSUList<13JKRFileLoader>Fv"@l
+// 	addi     r5, r5, lbl_804EFFA0@l
+// 	bl       __register_global_object
+// 	lwz      r0, 0x14(r1)
+// 	mtlr     r0
+// 	addi     r1, r1, 0x10
+// 	blr
+// 	*/
+// }
 
 /*
  * --INFO--
  * Address:	80023260
  * Size:	000054
  */
-void JSUList<JKRFileLoader>::~JSUList()
-{
-	/*
-	stwu     r1, -0x10(r1)
-	mflr     r0
-	stw      r0, 0x14(r1)
-	stw      r31, 0xc(r1)
-	mr       r31, r4
-	stw      r30, 8(r1)
-	or.      r30, r3, r3
-	beq      lbl_80023298
-	li       r4, 0
-	bl       __dt__10JSUPtrListFv
-	extsh.   r0, r31
-	ble      lbl_80023298
-	mr       r3, r30
-	bl       __dl__FPv
+// void JSUList<JKRFileLoader>::~JSUList()
+// {
+// 	/*
+// 	stwu     r1, -0x10(r1)
+// 	mflr     r0
+// 	stw      r0, 0x14(r1)
+// 	stw      r31, 0xc(r1)
+// 	mr       r31, r4
+// 	stw      r30, 8(r1)
+// 	or.      r30, r3, r3
+// 	beq      lbl_80023298
+// 	li       r4, 0
+// 	bl       __dt__10JSUPtrListFv
+// 	extsh.   r0, r31
+// 	ble      lbl_80023298
+// 	mr       r3, r30
+// 	bl       __dl__FPv
 
-lbl_80023298:
-	lwz      r0, 0x14(r1)
-	mr       r3, r30
-	lwz      r31, 0xc(r1)
-	lwz      r30, 8(r1)
-	mtlr     r0
-	addi     r1, r1, 0x10
-	blr
-	*/
-}
+// lbl_80023298:
+// 	lwz      r0, 0x14(r1)
+// 	mr       r3, r30
+// 	lwz      r31, 0xc(r1)
+// 	lwz      r30, 8(r1)
+// 	mtlr     r0
+// 	addi     r1, r1, 0x10
+// 	blr
+// 	*/
+// }

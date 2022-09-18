@@ -1,4 +1,9 @@
+#include "Dolphin/os.h"
+#include "JSystem/JKR/JKRDecomp.h"
+#include "JSystem/JKR/JKRDvdRipper.h"
+#include "JSystem/JUT/JUTException.h"
 #include "types.h"
+#include "JSystem/JKR/JKRArchive.h"
 
 /*
     Generated from dpostproc
@@ -60,8 +65,17 @@
  * Address:	8001E57C
  * Size:	0000B0
  */
-JKRDvdArchive::JKRDvdArchive(long, JKRArchive::EMountDirection)
+JKRDvdArchive::JKRDvdArchive(long entryNum, JKRArchive::EMountDirection mountDirection)
+    : JKRArchive(entryNum, EMM_Dvd)
+    , _60(mountDirection)
 {
+	if (open(entryNum) != false) {
+		m_magicWord = 'RARC';
+		_28         = _48->_04 + _54;
+		sVolumeList.prepend(&_18);
+		_30 = 1;
+	}
+
 	/*
 	stwu     r1, -0x20(r1)
 	mflr     r0
@@ -221,7 +235,7 @@ lbl_8001E734:
  * Address:	8001E758
  * Size:	0002AC
  */
-void JKRDvdArchive::open(long)
+bool JKRDvdArchive::open(long)
 {
 	/*
 	stwu     r1, -0x20(r1)
@@ -434,205 +448,143 @@ lbl_8001E9E4:
  * --INFO--
  * Address:	8001EA04
  * Size:	000128
+ * fetchResource__13JKRDvdArchiveFPQ210JKRArchive12SDIFileEntryPUl
  */
-void JKRDvdArchive::fetchResource(JKRArchive::SDIFileEntry*, unsigned long*)
+void* JKRDvdArchive::fetchResource(JKRArchive::SDIFileEntry* entry, unsigned long* outSize)
 {
-	/*
-	stwu     r1, -0x20(r1)
-	mflr     r0
-	stw      r0, 0x24(r1)
-	stw      r31, 0x1c(r1)
-	stw      r30, 0x18(r1)
-	or.      r30, r5, r5
-	stw      r29, 0x14(r1)
-	mr       r29, r4
-	stw      r28, 0x10(r1)
-	mr       r28, r3
-	bne      lbl_8001EA34
-	addi     r30, r1, 0xc
-
-lbl_8001EA34:
-	lwz      r3, 4(r29)
-	rlwinm.  r0, r3, 8, 0x1d, 0x1d
-	srwi     r3, r3, 0x18
-	bne      lbl_8001EA4C
-	li       r31, 0
-	b        lbl_8001EA60
-
-lbl_8001EA4C:
-	rlwinm.  r0, r3, 0, 0x18, 0x18
-	beq      lbl_8001EA5C
-	li       r31, 2
-	b        lbl_8001EA60
-
-lbl_8001EA5C:
-	li       r31, 1
-
-lbl_8001EA60:
-	lwz      r0, 0x10(r29)
-	cmplwi   r0, 0
-	bne      lbl_8001EAD8
-	lwz      r4, 0x64(r28)
-	mr       r7, r31
-	lwz      r0, 8(r29)
-	addi     r9, r1, 8
-	lwz      r3, 0x40(r28)
-	lwz      r5, 0xc(r29)
-	add      r4, r4, r0
-	lwz      r6, 0x38(r28)
-	lwz      r8, 0x5c(r28)
-	bl       fetchResource_subroutine__13JKRDvdArchiveFlUlUlP7JKRHeapiiPPUc
-	cmplwi   r3, 0
-	stw      r3, 0(r30)
-	bne      lbl_8001EAA8
-	li       r3, 0
-	b        lbl_8001EB0C
-
-lbl_8001EAA8:
-	lwz      r0, 8(r1)
-	cmpwi    r31, 2
-	stw      r0, 0x10(r29)
-	bne      lbl_8001EB08
-	mr       r3, r28
-	mr       r4, r29
-	lwz      r12, 0(r28)
-	lwz      r5, 0(r30)
-	lwz      r12, 0x48(r12)
-	mtctr    r12
-	bctrl
-	b        lbl_8001EB08
-
-lbl_8001EAD8:
-	cmpwi    r31, 2
-	bne      lbl_8001EB00
-	mr       r3, r28
-	mr       r4, r29
-	lwz      r12, 0(r28)
-	lwz      r12, 0x4c(r12)
-	mtctr    r12
-	bctrl
-	stw      r3, 0(r30)
-	b        lbl_8001EB08
-
-lbl_8001EB00:
-	lwz      r0, 0xc(r29)
-	stw      r0, 0(r30)
-
-lbl_8001EB08:
-	lwz      r3, 0x10(r29)
-
-lbl_8001EB0C:
-	lwz      r0, 0x24(r1)
-	lwz      r31, 0x1c(r1)
-	lwz      r30, 0x18(r1)
-	lwz      r29, 0x14(r1)
-	lwz      r28, 0x10(r1)
-	mtlr     r0
-	addi     r1, r1, 0x20
-	blr
-	*/
+	u32 size;
+	if (outSize == nullptr) {
+		outSize = &size;
+	}
+	int v1;
+	if (!entry->getFlag04()) {
+		v1 = 0;
+	} else if (entry->getFlag80()) {
+		v1 = 2;
+	} else {
+		v1 = 1;
+	}
+	if (entry->_10 == nullptr) {
+		u8* v2;
+		if ((*outSize = fetchResource_subroutine(_40, _64 + entry->_08, entry->getSize(), _38, v1, _5C, &v2)) == 0) {
+			return nullptr;
+		}
+		entry->_10 = v2;
+		if (v1 == 2) {
+			setExpandSize(entry, *outSize);
+		}
+	} else if (v1 == 2) {
+		*outSize = getExpandSize(entry);
+	} else {
+		*outSize = entry->getSize();
+	}
+	return entry->_10;
 }
 
 /*
  * --INFO--
  * Address:	8001EB2C
  * Size:	0000FC
+ * fetchResource__13JKRDvdArchiveFPvUlPQ210JKRArchive12SDIFileEntryPUl
  */
-void JKRDvdArchive::fetchResource(void*, unsigned long, JKRArchive::SDIFileEntry*, unsigned long*)
+void* JKRDvdArchive::fetchResource(void* resourceBuffer, unsigned long bufferSize, JKRArchive::SDIFileEntry* entry, unsigned long* resSize)
 {
-	/*
-	.loc_0x0:
-	  stwu      r1, -0x20(r1)
-	  mflr      r0
-	  mr        r9, r3
-	  stw       r0, 0x24(r1)
-	  stmw      r27, 0xC(r1)
-	  mr        r29, r6
-	  mr        r27, r4
-	  mr        r28, r5
-	  mr        r30, r7
-	  lwz       r3, 0x4(r6)
-	  lwz       r6, 0xC(r6)
-	  rlwinm.   r0,r3,8,29,29
-	  mr        r31, r6
-	  rlwinm    r0,r3,8,24,31
-	  bne-      .loc_0x44
-	  li        r8, 0
-	  b         .loc_0x58
-
-	.loc_0x44:
-	  rlwinm.   r0,r0,0,24,24
-	  beq-      .loc_0x54
-	  li        r8, 0x2
-	  b         .loc_0x58
-
-	.loc_0x54:
-	  li        r8, 0x1
-
-	.loc_0x58:
-	  lwz       r0, 0x10(r29)
-	  cmplwi    r0, 0
-	  bne-      .loc_0x90
-	  lwz       r4, 0x64(r9)
-	  mr        r5, r6
-	  lwz       r0, 0x8(r29)
-	  mr        r6, r27
-	  lwz       r3, 0x40(r9)
-	  rlwinm    r7,r28,0,0,26
-	  lwz       r9, 0x5C(r9)
-	  add       r4, r4, r0
-	  bl        .loc_0xFC
-	  mr        r31, r3
-	  b         .loc_0xD8
-
-	.loc_0x90:
-	  cmpwi     r8, 0x2
-	  bne-      .loc_0xBC
-	  mr        r3, r9
-	  mr        r4, r29
-	  lwz       r12, 0x0(r9)
-	  lwz       r12, 0x4C(r12)
-	  mtctr     r12
-	  bctrl
-	  cmplwi    r3, 0
-	  beq-      .loc_0xBC
-	  mr        r31, r3
-
-	.loc_0xBC:
-	  cmplw     r31, r28
-	  ble-      .loc_0xC8
-	  mr        r31, r28
-
-	.loc_0xC8:
-	  lwz       r4, 0x10(r29)
-	  mr        r3, r27
-	  mr        r5, r31
-	  bl        0x51C4
-
-	.loc_0xD8:
-	  cmplwi    r30, 0
-	  beq-      .loc_0xE4
-	  stw       r31, 0x0(r30)
-
-	.loc_0xE4:
-	  mr        r3, r27
-	  lmw       r27, 0xC(r1)
-	  lwz       r0, 0x24(r1)
-	  mtlr      r0
-	  addi      r1, r1, 0x20
-	  blr
-
-	.loc_0xFC:
-	*/
+	int v1;
+	u32 size = entry->getSize();
+	if (!entry->getFlag04()) {
+		v1 = 0;
+	} else if (entry->getFlag80()) {
+		v1 = 2;
+	} else {
+		v1 = 1;
+	}
+	if (entry->_10 == nullptr) {
+		size = fetchResource_subroutine(_40, _64 + entry->_08, size, (u8*)resourceBuffer, ALIGN_PREV(bufferSize, 0x20), v1, _5C);
+	} else {
+		if (v1 == 2) {
+			u32 expandSize = getExpandSize(entry);
+			if (expandSize != 0) {
+				size = expandSize;
+			}
+		}
+		if (size > bufferSize) {
+			size = bufferSize;
+		}
+		JKRHeap::copyMemory(resourceBuffer, entry->_10, size);
+	}
+	if (resSize != nullptr) {
+		*resSize = size;
+	}
+	return resourceBuffer;
 }
 
 /*
  * --INFO--
  * Address:	8001EC28
  * Size:	000200
+ * fetchResource_subroutine__13JKRDvdArchiveFlUlUlPUcUlii
  */
-void JKRDvdArchive::fetchResource_subroutine(long, unsigned long, unsigned long, unsigned char*, unsigned long, int, int)
+u32 JKRDvdArchive::fetchResource_subroutine(long p1, unsigned long p2, unsigned long fileSize, unsigned char* buffer,
+                                            unsigned long bufferSize, int p6, int p7)
 {
+	u32 alignedFileSize   = ALIGN_NEXT(fileSize, 0x20);
+	u32 alignedBufferSize = ALIGN_PREV(bufferSize, 0x20);
+	// u8 szpHeader[0x20];
+	// u32 headerValue1;
+	switch (p7) {
+	case 0:
+		switch (p6) {
+		case 0:
+			if (alignedFileSize > alignedBufferSize) {
+				alignedFileSize = alignedBufferSize;
+			}
+			JKRDvdRipper::loadToMainRAM(p1, buffer, Switch_0, alignedFileSize, nullptr, JKRDvdRipper::ALLOC_DIR_TOP, p2, nullptr, nullptr);
+			DCInvalidateRange(buffer, alignedFileSize);
+			return alignedFileSize;
+		case 1:
+		case 2: {
+			// SZPHeader szpHeader;
+			// JKRDvdRipper::loadToMainRAM(p1, (u8*)&szpHeader, Switch_2, sizeof(SZPHeader), nullptr, JKRDvdRipper::ALLOC_DIR_TOP,
+			// ALIGN_NEXT(p2, 0x20), nullptr, nullptr); DCInvalidateRange(&szpHeader, sizeof(SZPHeader)); u32 headerValue1 =
+			// szpHeader.data[1].getU32FromBigEndianBytes(); JKRDvdRipper::loadToMainRAM(p1, szpHeader, Switch_2, 0x20, nullptr,
+			// JKRDvdRipper::ALLOC_DIR_TOP, ALIGN_PREV(p2, 0x20), nullptr, nullptr); DCInvalidateRange(szpHeader, 0x20); u32 headerValue1 =
+			// getU32FromBigEndianBytes(szpHeader, 4); headerValue1 = EXTRACT_TO_UINT(szpHeader, 7, 6, 5, 4);
+			SZPHeader szpHeader;
+			JKRDvdRipper::loadToMainRAM(p1, (u8*)&szpHeader, Switch_2, sizeof(SZPHeader), nullptr, JKRDvdRipper::ALLOC_DIR_TOP,
+			                            ALIGN_NEXT(p2, 0x20), nullptr, nullptr);
+			DCInvalidateRange(&szpHeader, sizeof(SZPHeader));
+			u32 headerValue1  = szpHeader.getValue1();
+			u32 remainingSize = ALIGN_NEXT(headerValue1, 0x20);
+			if (remainingSize > alignedBufferSize) {
+				remainingSize = alignedBufferSize;
+			}
+			JKRDvdRipper::loadToMainRAM(p1, buffer, Switch_1, remainingSize, nullptr, JKRDvdRipper::ALLOC_DIR_TOP, ALIGN_NEXT(p2, 0x20),
+			                            nullptr, nullptr);
+			DCInvalidateRange(buffer, remainingSize);
+			return headerValue1;
+			break;
+		}
+		default:
+			break;
+		}
+	case 2:
+		if (fileSize > alignedBufferSize) {
+			fileSize = alignedBufferSize;
+		}
+		JKRDvdRipper::loadToMainRAM(p1, buffer, Switch_1, fileSize, nullptr, JKRDvdRipper::ALLOC_DIR_TOP, p2, nullptr, nullptr);
+		DCInvalidateRange(buffer, fileSize);
+		return fileSize;
+		break;
+	case 1:
+		OSErrorLine(649, "Sorry, not prepared for SZP archive.\n");
+		return 0;
+		break;
+	default:
+		break;
+	}
+	OSErrorLine(655, ":::??? bad sequence\n");
+	return 0;
+
 	/*
 	.loc_0x0:
 	  stwu      r1, -0x70(r1)
@@ -792,9 +744,64 @@ void JKRDvdArchive::fetchResource_subroutine(long, unsigned long, unsigned long,
  * --INFO--
  * Address:	8001EE28
  * Size:	00021C
+ * fetchResource_subroutine__13JKRDvdArchiveFlUlUlP7JKRHeapiiPPUc
  */
-void JKRDvdArchive::fetchResource_subroutine(long, unsigned long, unsigned long, JKRHeap*, int, int, unsigned char**)
+u32 JKRDvdArchive::fetchResource_subroutine(long p1, unsigned long p2, unsigned long fileSize, JKRHeap* heap, int p5, int p6,
+                                            unsigned char** p7)
 {
+	u32 alignedFileSize = ALIGN_NEXT(fileSize, 0x20);
+	// u8 szpHeader[0x20];
+	// u32 headerValue1;
+	switch (p6) {
+	case 0:
+		switch (p5) {
+		case 0:
+			// u8* buffer = new(heap, alignedFileSize) u8[0x20];
+			u8* buffer = (u8*)JKRHeap::alloc(alignedFileSize, 0x20, heap);
+			JKRDvdRipper::loadToMainRAM(p1, buffer, Switch_0, alignedFileSize, nullptr, JKRDvdRipper::ALLOC_DIR_TOP, p2, nullptr, nullptr);
+			DCInvalidateRange(buffer, alignedFileSize);
+			*p7 = buffer;
+			return alignedFileSize;
+		case 1:
+		case 2:
+			// SZPHeader szpHeader;
+			// JKRDvdRipper::loadToMainRAM(p1, (u8*)&szpHeader, Switch_2, sizeof(SZPHeader), nullptr, JKRDvdRipper::ALLOC_DIR_TOP,
+			// ALIGN_NEXT(p2, 0x20), nullptr, nullptr); DCInvalidateRange(&szpHeader, sizeof(SZPHeader)); u32 headerValue1 =
+			// szpHeader.data[1].getU32FromBigEndianBytes(); JKRDvdRipper::loadToMainRAM(p1, szpHeader, Switch_2, 0x20, nullptr,
+			// JKRDvdRipper::ALLOC_DIR_TOP, ALIGN_PREV(p2, 0x20), nullptr, nullptr); DCInvalidateRange(szpHeader, 0x20); u32 headerValue1 =
+			// getU32FromBigEndianBytes(szpHeader, 4); headerValue1 = EXTRACT_TO_UINT(szpHeader, 7, 6, 5, 4);
+			SZPHeader szpHeader;
+			JKRDvdRipper::loadToMainRAM(p1, (u8*)&szpHeader, Switch_2, sizeof(SZPHeader), nullptr, JKRDvdRipper::ALLOC_DIR_TOP,
+			                            ALIGN_NEXT(p2, 0x20), nullptr, nullptr);
+			DCInvalidateRange(&szpHeader, sizeof(SZPHeader));
+			u32 headerValue1 = szpHeader.getValue1();
+			// buffer = new(heap, headerValue1) u8[0x20];
+			buffer = (u8*)JKRHeap::alloc(headerValue1, 0x20, heap);
+			JKRDvdRipper::loadToMainRAM(p1, buffer, Switch_1, headerValue1, nullptr, JKRDvdRipper::ALLOC_DIR_TOP, p2, nullptr, nullptr);
+			DCInvalidateRange(buffer, headerValue1);
+			*p7 = buffer;
+			return headerValue1;
+			break;
+		default:
+			break;
+		}
+	case 2:
+		// u8* buffer = new(heap, alignedFileSize) u8[0x20];
+		u8* buffer = (u8*)JKRHeap::alloc(alignedFileSize, 0x20, heap);
+		JKRDvdRipper::loadToMainRAM(p1, buffer, Switch_1, fileSize, nullptr, JKRDvdRipper::ALLOC_DIR_TOP, p2, nullptr, nullptr);
+		DCInvalidateRange(buffer, fileSize);
+		*p7 = buffer;
+		return alignedFileSize;
+		break;
+	case 1:
+		OSErrorLine(756, "Sorry, not prepared for SZP archive.\n");
+		return 0;
+		break;
+	default:
+		break;
+	}
+	OSErrorLine(761, ":::??? bad sequence\n");
+	return 0;
 	/*
 	.loc_0x0:
 	  stwu      r1, -0x70(r1)
@@ -955,8 +962,9 @@ void JKRDvdArchive::fetchResource_subroutine(long, unsigned long, unsigned long,
  * --INFO--
  * Address:	8001F044
  * Size:	000144
+ * getExpandedResSize__13JKRDvdArchiveCFPCv
  */
-void JKRDvdArchive::getExpandedResSize(const void*) const
+u32 JKRDvdArchive::getExpandedResSize(const void* resource) const
 {
 	/*
 	stwu     r1, -0x60(r1)

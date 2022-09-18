@@ -1,3 +1,11 @@
+#include "JSystem/JKR/JKRDvdRipper.h"
+#include "Dolphin/dvd.h"
+#include "Dolphin/os.h"
+#include "Dolphin/stl.h"
+#include "Dolphin/vi.h"
+#include "JSystem/JKR/Aram.h"
+#include "JSystem/JKR/JKRDecomp.h"
+#include "JSystem/JKR/JKRFile.h"
 #include "types.h"
 
 /*
@@ -95,140 +103,118 @@
         .skip 0x8
 */
 
+u8* firstSrcData();
+int decompSZS_subroutine(unsigned char*, unsigned char*);
+
+static u8* szpBuf;
+static u8* szpEnd;
+static u8* refBuf;
+static u8* refEnd;
+static u8* refCurrent;
+static u32 srcOffset;
+static long transLeft;
+static u8* srcLimit;
+static JKRDvdFile* srcFile;
+static u32 fileOffset;
+static u32 readCount;
+static u32 maxDest;
+static bool isInitMutex;
+static u32* tsPtr;
+static u32 tsArea;
+
+JSUList<JKRDMCommand> JKRDvdRipper::sDvdAsyncList;
+
 /*
  * --INFO--
  * Address:	8001F188
  * Size:	0000B4
+ * loadToMainRAM__12JKRDvdRipperFPCcPUc15JKRExpandSwitchUlP7JKRHeapQ212JKRDvdRipper15EAllocDirectionUlPiPUl
  */
-void JKRDvdRipper::loadToMainRAM(const char*, unsigned char*, JKRExpandSwitch, unsigned long, JKRHeap*, JKRDvdRipper::EAllocDirection,
-                                 unsigned long, int*, unsigned long*)
+void* JKRDvdRipper::loadToMainRAM(const char* path, unsigned char* p2, JKRExpandSwitch expSwitch, unsigned long p4, JKRHeap* heap,
+                                  EAllocDirection allocDir, unsigned long p7, int* p8, unsigned long* p9)
 {
-	/*
-	.loc_0x0:
-	  stwu      r1, -0x130(r1)
-	  mflr      r0
-	  stw       r0, 0x134(r1)
-	  stmw      r23, 0x10C(r1)
-	  mr        r23, r3
-	  lwz       r31, 0x138(r1)
-	  mr        r24, r4
-	  mr        r25, r5
-	  mr        r26, r6
-	  mr        r27, r7
-	  mr        r28, r8
-	  mr        r29, r9
-	  mr        r30, r10
-	  addi      r3, r1, 0x10
-	  bl        -0x2108
-	  mr        r4, r23
-	  addi      r3, r1, 0x10
-	  bl        -0x1E38
-	  rlwinm.   r0,r3,0,24,31
-	  bne-      .loc_0x64
-	  addi      r3, r1, 0x10
-	  li        r4, -0x1
-	  bl        -0x1F54
-	  li        r3, 0
-	  b         .loc_0xA0
-
-	.loc_0x64:
-	  stw       r31, 0x8(r1)
-	  mr        r4, r24
-	  mr        r5, r25
-	  mr        r6, r26
-	  mr        r7, r27
-	  mr        r8, r28
-	  mr        r9, r29
-	  mr        r10, r30
-	  addi      r3, r1, 0x10
-	  bl        0xE0
-	  mr        r31, r3
-	  addi      r3, r1, 0x10
-	  li        r4, -0x1
-	  bl        -0x1F94
-	  mr        r3, r31
-
-	.loc_0xA0:
-	  lmw       r23, 0x10C(r1)
-	  lwz       r0, 0x134(r1)
-	  mtlr      r0
-	  addi      r1, r1, 0x130
-	  blr
-	*/
+	JKRDvdFile file;
+	if (!file.open(path)) {
+		return nullptr;
+	} else {
+		return loadToMainRAM(&file, p2, expSwitch, p4, heap, allocDir, p7, p8, p9);
+	}
 }
 
 /*
  * --INFO--
  * Address:	8001F23C
  * Size:	0000B4
+ * loadToMainRAM__12JKRDvdRipperFlPUc15JKRExpandSwitchUlP7JKRHeapQ212JKRDvdRipper15EAllocDirectionUlPiPUl
  */
-void JKRDvdRipper::loadToMainRAM(long, unsigned char*, JKRExpandSwitch, unsigned long, JKRHeap*, JKRDvdRipper::EAllocDirection,
-                                 unsigned long, int*, unsigned long*)
+void* JKRDvdRipper::loadToMainRAM(long inode, unsigned char* p2, JKRExpandSwitch expSwitch, unsigned long p4, JKRHeap* heap,
+                                  EAllocDirection allocDir, unsigned long p7, int* p8, unsigned long* p9)
 {
-	/*
-	.loc_0x0:
-	  stwu      r1, -0x130(r1)
-	  mflr      r0
-	  stw       r0, 0x134(r1)
-	  stmw      r23, 0x10C(r1)
-	  mr        r23, r3
-	  lwz       r31, 0x138(r1)
-	  mr        r24, r4
-	  mr        r25, r5
-	  mr        r26, r6
-	  mr        r27, r7
-	  mr        r28, r8
-	  mr        r29, r9
-	  mr        r30, r10
-	  addi      r3, r1, 0x10
-	  bl        -0x21BC
-	  mr        r4, r23
-	  addi      r3, r1, 0x10
-	  bl        -0x1E74
-	  rlwinm.   r0,r3,0,24,31
-	  bne-      .loc_0x64
-	  addi      r3, r1, 0x10
-	  li        r4, -0x1
-	  bl        -0x2008
-	  li        r3, 0
-	  b         .loc_0xA0
-
-	.loc_0x64:
-	  stw       r31, 0x8(r1)
-	  mr        r4, r24
-	  mr        r5, r25
-	  mr        r6, r26
-	  mr        r7, r27
-	  mr        r8, r28
-	  mr        r9, r29
-	  mr        r10, r30
-	  addi      r3, r1, 0x10
-	  bl        .loc_0xB4
-	  mr        r31, r3
-	  addi      r3, r1, 0x10
-	  li        r4, -0x1
-	  bl        -0x2048
-	  mr        r3, r31
-
-	.loc_0xA0:
-	  lmw       r23, 0x10C(r1)
-	  lwz       r0, 0x134(r1)
-	  mtlr      r0
-	  addi      r1, r1, 0x130
-	  blr
-
-	.loc_0xB4:
-	*/
+	JKRDvdFile file;
+	if (!file.open(inode)) {
+		return nullptr;
+	} else {
+		return loadToMainRAM(&file, p2, expSwitch, p4, heap, allocDir, p7, p8, p9);
+	}
 }
 
 /*
  * --INFO--
  * Address:	8001F2F0
  * Size:	0004AC
+ * loadToMainRAM__12JKRDvdRipperFP10JKRDvdFilePUc15JKRExpandSwitchUlP7JKRHeapQ212JKRDvdRipper15EAllocDirectionUlPiPUl
  */
-void JKRDvdRipper::loadToMainRAM(JKRDvdFile*, unsigned char*, JKRExpandSwitch, unsigned long, JKRHeap*, JKRDvdRipper::EAllocDirection,
-                                 unsigned long, int*, unsigned long*)
+void* JKRDvdRipper::loadToMainRAM(JKRDvdFile* file, unsigned char* p2, JKRExpandSwitch expSwitch, unsigned long p4, JKRHeap* heap,
+                                  EAllocDirection allocDir, unsigned long p7, int* p8, unsigned long* p9)
 {
+	// JKRDecomp::CompressionMode compressionMode;
+	// u32 v2;
+	// bool v3;
+	// u8* memptr;
+	// u32 byteCount = ALIGN_NEXT(file->getFileSize(), 0x20);
+	// if (expSwitch == Switch_1) {
+	// 	SZPHeader buffer;
+	// 	while (true) {
+	// 		int v1 = DVDReadPrio(&file->m_dvdPlayer, &buffer, sizeof(buffer), 0, 2);
+	// 		if (v1 >= 0) {
+	// 			break;
+	// 		}
+	// 		if (v1 == -3 || errorRetry == false) {
+	// 			return nullptr;
+	// 		}
+	// 		VIWaitForRetrace();
+	// 	}
+	// 	DCInvalidateRange(&buffer, 0x20);
+	// 	compressionMode = JKRDecomp::checkCompressed((u8*)&buffer);
+	// 	v2 = buffer.getValue1();
+	// }
+	// if (p8 != nullptr) {
+	// 	*p8 =  compressionMode;
+	// }
+	// if (expSwitch == Switch_1 && compressionMode != JKRDecomp::NOT_COMPRESSED) {
+	// 	if (p4 != 0 && p4 < v2) {
+	// 		v2 = p4;
+	// 	}
+	// 	if (p2 == nullptr) {
+	// 		p2 = (u8*)JKRHeap::alloc(v2, (allocDir == ALLOC_DIR_TOP) ? 0x20 : -0x20, heap);
+	// 		v3 = true;
+	// 	}
+	// 	if (p2 == nullptr) {
+	// 		return nullptr;
+	// 	}
+	// 	if (compressionMode == JKRDecomp::YAY0) {
+	// 		memptr = (u8*)JKRHeap::alloc(byteCount, 0x20, heap);
+	// 		if (memptr == nullptr && v3) {
+	// 			JKRHeap::free(p2, nullptr);
+	// 			return nullptr;
+	// 		}
+	// 	}
+	// } else {
+	// 	if (p2 == nullptr)  {
+
+	// 	}
+	// }
+
 	/*
 	.loc_0x0:
 	  stwu      r1, -0xD0(r1)
@@ -630,8 +616,45 @@ void JKRDvdRipper::loadToMainRAM(JKRDvdFile*, unsigned char*, JKRExpandSwitch, u
  * Address:	8001F79C
  * Size:	000174
  */
-void JKRDecompressFromDVD(JKRDvdFile*, void*, unsigned long, unsigned long, unsigned long, unsigned long, unsigned long*)
+int JKRDecompressFromDVD(JKRDvdFile* file, void* p2, unsigned long p3, unsigned long inMaxDest, unsigned long inFileOffset,
+                         unsigned long inSrcOffset, unsigned long* inTsPtr)
 {
+	int interrupts = OSDisableInterrupts();
+	if (isInitMutex == false) {
+		OSInitMutex(&decompMutex);
+		isInitMutex = true;
+	}
+	OSRestoreInterrupts(interrupts);
+	OSLockMutex(&decompMutex);
+	szpBuf = (u8*)JKRHeap::sSystemHeap->alloc(JKRDvdRipper::sSZSBufferSize, -0x20);
+	szpEnd = szpBuf + JKRDvdRipper::sSZSBufferSize;
+	if (inFileOffset != 0) {
+		refBuf     = (u8*)JKRHeap::sSystemHeap->alloc(0x1120, -4);
+		refEnd     = refBuf + 0x1120;
+		refCurrent = refBuf;
+	} else {
+		refBuf = nullptr;
+	}
+	transLeft = p3 - inSrcOffset;
+	readCount = 0;
+	if (inTsPtr == 0) {
+		inTsPtr = &tsArea;
+	}
+	srcOffset  = inSrcOffset;
+	srcFile    = file;
+	fileOffset = inFileOffset;
+	maxDest    = inMaxDest;
+	tsPtr      = inTsPtr;
+	*inTsPtr   = 0;
+	u8* data   = firstSrcData();
+	int result = (data != nullptr) ? decompSZS_subroutine(data, (u8*)p2) : -1;
+	JKRHeap::free(szpBuf, nullptr);
+	if (refBuf != nullptr) {
+		JKRHeap::free(refBuf, nullptr);
+	}
+	DCStoreRangeNoSync(p2, *tsPtr);
+	OSUnlockMutex(&decompMutex);
+	return result;
 	/*
 	.loc_0x0:
 	  stwu      r1, -0x30(r1)
@@ -753,7 +776,7 @@ void JKRDecompressFromDVD(JKRDvdFile*, void*, unsigned long, unsigned long, unsi
  * Address:	8001F910
  * Size:	0002B8
  */
-void decompSZS_subroutine(unsigned char*, unsigned char*)
+int decompSZS_subroutine(unsigned char*, unsigned char*)
 {
 	/*
 	stwu     r1, -0x20(r1)
@@ -984,8 +1007,28 @@ lbl_8001FBAC:
  * Address:	8001FBC8
  * Size:	0000D4
  */
-void firstSrcData()
+u8* firstSrcData()
 {
+	srcLimit      = szpEnd - 0x19;
+	u32 byteCount = MIN(transLeft, (u32)(szpEnd - szpBuf));
+	// u32 byteCount;
+	// if (transLeft < byteCount) {
+	// 	byteCount = transLeft;
+	// }
+	while (true) {
+		int result = DVDReadPrio(&srcFile->m_dvdPlayer, szpBuf, byteCount, srcOffset, 2);
+		if (0 <= result) {
+			break;
+		}
+		if (result == -3 || JKRDvdRipper::errorRetry == false) {
+			return nullptr;
+		}
+		VIWaitForRetrace();
+	}
+	DCInvalidateRange(szpBuf, byteCount);
+	srcOffset += byteCount;
+	transLeft -= byteCount;
+	return szpBuf;
 	/*
 	stwu     r1, -0x20(r1)
 	mflr     r0
@@ -1060,8 +1103,38 @@ lbl_8001FC80:
  * Address:	8001FC9C
  * Size:	00010C
  */
-void nextSrcData(unsigned char*)
+u8* nextSrcData(unsigned char* p1)
 {
+	u32 limit = szpEnd - p1;
+	u8* buf   = szpBuf;
+	if ((limit & 0x1F) != 0) {
+		buf = szpBuf + (0x20 - (limit & 0x1F));
+	}
+	memcpy(buf, p1, limit);
+	u8* memptr    = buf + limit;
+	u32 byteCount = MIN(transLeft, (u32)(szpEnd - memptr));
+	// u32 byteCount = szpEnd - memptr;
+	// if (transLeft < byteCount) {
+	// 	byteCount = transLeft;
+	// }
+	while (true) {
+		int result = DVDReadPrio(&srcFile->m_dvdPlayer, memptr, byteCount, srcOffset, 2);
+		if (0 <= result) {
+			break;
+		}
+		// if (result == -3 || JKRDvdRipper::errorRetry == false) {
+		if (result == -3) {
+			return nullptr;
+		}
+		VIWaitForRetrace();
+	}
+	DCInvalidateRange(szpBuf, byteCount);
+	if (transLeft - byteCount == 0) {
+		srcLimit = memptr + byteCount;
+	}
+	srcOffset += byteCount;
+	transLeft -= byteCount;
+	return szpBuf;
 	/*
 	stwu     r1, -0x20(r1)
 	mflr     r0
@@ -1156,72 +1229,66 @@ lbl_8001FD88:
  * Address:	8001FDA8
  * Size:	000008
  */
-void JKRDvdRipper::isErrorRetry()
-{
-	/*
-	lbz      r3, errorRetry__12JKRDvdRipper@sda21(r13)
-	blr
-	*/
-}
+bool JKRDvdRipper::isErrorRetry() { return errorRetry; }
 
-/*
- * --INFO--
- * Address:	8001FDB0
- * Size:	000044
- */
-void __sinit_JKRDvdRipper_cpp(void)
-{
-	/*
-	stwu     r1, -0x10(r1)
-	mflr     r0
-	lis      r3, sDvdAsyncList__12JKRDvdRipper@ha
-	stw      r0, 0x14(r1)
-	addi     r3, r3, sDvdAsyncList__12JKRDvdRipper@l
-	bl       initiate__10JSUPtrListFv
-	lis      r3, sDvdAsyncList__12JKRDvdRipper@ha
-	lis      r4, "__dt__23JSUList<12JKRDMCommand>Fv"@ha
-	lis      r5, lbl_804EFF78@ha
-	addi     r3, r3, sDvdAsyncList__12JKRDvdRipper@l
-	addi     r4, r4, "__dt__23JSUList<12JKRDMCommand>Fv"@l
-	addi     r5, r5, lbl_804EFF78@l
-	bl       __register_global_object
-	lwz      r0, 0x14(r1)
-	mtlr     r0
-	addi     r1, r1, 0x10
-	blr
-	*/
-}
+// /*
+//  * --INFO--
+//  * Address:	8001FDB0
+//  * Size:	000044
+//  */
+// void __sinit_JKRDvdRipper_cpp(void)
+// {
+// 	/*
+// 	stwu     r1, -0x10(r1)
+// 	mflr     r0
+// 	lis      r3, sDvdAsyncList__12JKRDvdRipper@ha
+// 	stw      r0, 0x14(r1)
+// 	addi     r3, r3, sDvdAsyncList__12JKRDvdRipper@l
+// 	bl       initiate__10JSUPtrListFv
+// 	lis      r3, sDvdAsyncList__12JKRDvdRipper@ha
+// 	lis      r4, "__dt__23JSUList<12JKRDMCommand>Fv"@ha
+// 	lis      r5, lbl_804EFF78@ha
+// 	addi     r3, r3, sDvdAsyncList__12JKRDvdRipper@l
+// 	addi     r4, r4, "__dt__23JSUList<12JKRDMCommand>Fv"@l
+// 	addi     r5, r5, lbl_804EFF78@l
+// 	bl       __register_global_object
+// 	lwz      r0, 0x14(r1)
+// 	mtlr     r0
+// 	addi     r1, r1, 0x10
+// 	blr
+// 	*/
+// }
 
-/*
- * --INFO--
- * Address:	8001FDF4
- * Size:	000054
- */
-void JSUList<JKRDMCommand>::~JSUList()
-{
-	/*
-	stwu     r1, -0x10(r1)
-	mflr     r0
-	stw      r0, 0x14(r1)
-	stw      r31, 0xc(r1)
-	mr       r31, r4
-	stw      r30, 8(r1)
-	or.      r30, r3, r3
-	beq      lbl_8001FE2C
-	li       r4, 0
-	bl       __dt__10JSUPtrListFv
-	extsh.   r0, r31
-	ble      lbl_8001FE2C
-	mr       r3, r30
-	bl       __dl__FPv
+// /*
+//  * --INFO--
+//  * Address:	8001FDF4
+//  * Size:	000054
+//  */
+// void JSUList<JKRDMCommand>::~JSUList()
+// {
+// 	/*
+// 	stwu     r1, -0x10(r1)
+// 	mflr     r0
+// 	stw      r0, 0x14(r1)
+// 	stw      r31, 0xc(r1)
+// 	mr       r31, r4
+// 	stw      r30, 8(r1)
+// 	or.      r30, r3, r3
+// 	beq      lbl_8001FE2C
+// 	li       r4, 0
+// 	bl       __dt__10JSUPtrListFv
+// 	extsh.   r0, r31
+// 	ble      lbl_8001FE2C
+// 	mr       r3, r30
+// 	bl       __dl__FPv
 
-lbl_8001FE2C:
-	lwz      r0, 0x14(r1)
-	mr       r3, r30
-	lwz      r31, 0xc(r1)
-	lwz      r30, 8(r1)
-	mtlr     r0
-	addi     r1, r1, 0x10
-	blr
-	*/
-}
+// lbl_8001FE2C:
+// 	lwz      r0, 0x14(r1)
+// 	mr       r3, r30
+// 	lwz      r31, 0xc(r1)
+// 	lwz      r30, 8(r1)
+// 	mtlr     r0
+// 	addi     r1, r1, 0x10
+// 	blr
+// 	*/
+// }
