@@ -7,6 +7,7 @@
 namespace Game {
 struct Creature;
 struct Piki;
+struct Navi;
 } // namespace Game
 
 template <typename T> struct Condition;
@@ -14,7 +15,9 @@ template <typename T> struct Condition;
 namespace Game {
 namespace EnemyFunc {
 
-void flickStickPikmin(Game::Creature*, float, float, float, float, Condition<Game::Piki>*);
+void flickStickPikmin(Creature*, f32, f32, f32, f32, Condition<Piki>*);
+Creature* getNearestPikminOrNavi(Creature*, f32, f32, f32*, Condition<Navi>*, Condition<Piki>*);
+Navi* getNearestNavi(Creature*, f32, f32, f32*, Condition<Navi>*);
 
 } // namespace EnemyFunc
 } // namespace Game

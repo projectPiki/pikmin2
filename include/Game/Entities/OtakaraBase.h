@@ -28,16 +28,19 @@ struct Obj : public EnemyBase {
 	virtual void onInit(CreatureInitArg*);                   // _30
 	virtual void onKill(CreatureKillArg*);                   // _34
 	virtual void doDirectDraw(Graphics&);                    // _50
-	virtual f32 getCellRadius();                             // _58 (weak)
+	virtual f32 getCellRadius() { return m_cellRadius; }     // _58 (weak)
 	virtual void getShadowParam(ShadowParam&);               // _134
-	virtual ~Obj();                                          // _1BC (weak)
+	virtual ~Obj() { }                                       // _1BC (weak)
 	virtual void setInitialSetting(EnemyInitialParamBase*);  // _1C4
 	virtual void doUpdate();                                 // _1CC
 	virtual void doUpdateCommon();                           // _1D0
 	virtual void doAnimationCullingOff();                    // _1DC
 	virtual void doDebugDraw(Graphics&);                     // _1EC
 	virtual void changeMaterial() = 0;                       // _200
-	virtual EnemyTypeID::EEnemyTypeID getEnemyTypeID();      // _258 (weak)
+	virtual EnemyTypeID::EEnemyTypeID getEnemyTypeID()       // _258 (weak)
+	{
+		return EnemyTypeID::EnemyID_FireOtakara;
+	}
 	virtual bool damageCallBack(Creature*, f32, CollPart*);  // _278
 	virtual bool hipdropCallBack(Creature*, f32, CollPart*); // _284
 	virtual bool earthquakeCallBack(Creature*, f32);         // _28C
@@ -51,37 +54,37 @@ struct Obj : public EnemyBase {
 	virtual void startCarcassMotion();                       // _2C4
 	virtual void doStartWaitingBirthTypeDrop();              // _2E0
 	virtual void doFinishWaitingBirthTypeDrop();             // _2E4
-	virtual f32 getDownSmokeScale();                         // _2EC (weak)
+	virtual f32 getDownSmokeScale() { return 0.7f; }         // _2EC (weak)
 	virtual void doStartMovie();                             // _2F0
 	virtual void doEndMovie();                               // _2F4
 	virtual void setFSM(FSM*);                               // _2F8
-	virtual void interactCreature(Creature*);                // _2FC (weak)
-	virtual void createEffect();                             // _300 (weak)
-	virtual void setupEffect();                              // _304 (weak)
+	virtual void interactCreature(Creature*) { }             // _2FC (weak)
+	virtual void createEffect() { }                          // _300 (weak)
+	virtual void setupEffect() { }                           // _304 (weak)
 	virtual void startChargeEffect();                        // _308 (weak)
 	virtual void finishChargeEffect();                       // _30C (weak)
 	virtual void createDisChargeEffect();                    // _310 (weak)
-	virtual void effectDrawOn();                             // _314 (weak)
-	virtual void effectDrawOff();                            // _318 (weak)
+	virtual void effectDrawOn() { }                          // _314 (weak)
+	virtual void effectDrawOff() { }                         // _318 (weak)
 	virtual void startEscapeSE();                            // _31C
-	virtual void startDisChargeSE();                         // _320 (weak)
+	virtual void startDisChargeSE() { }                      // _320 (weak)
 	//////////////// VTABLE END
 
-	void isMovePositionSet(bool);
-	void getNearestTreasure();
-	void getTargetPosition(Creature*);
+	bool isMovePositionSet(bool);
+	Pellet* getNearestTreasure();
+	Vector3f getTargetPosition(Creature*);
 	void resetTreasure();
-	void isTakeTreasure();
+	bool isTakeTreasure();
 	void takeTreasure();
-	void fallTreasure(bool);
-	void isDropTreasure();
+	bool fallTreasure(bool);
+	bool isDropTreasure();
 	void damageTreasure(f32);
 	void attackTarget();
 	void createTreasureFallEffect();
 	void initBombOtakara();
-	void isTransitChaseState();
-	void stimulateBomb();
-	void getChaseTargetCreature();
+	bool isTransitChaseState();
+	bool stimulateBomb();
+	Creature* getChaseTargetCreature();
 
 	// _00 		= VTBL
 	// _00-_2BC	= EnemyBase
@@ -91,12 +94,12 @@ struct Obj : public EnemyBase {
 	f32 _2C8;             // _2C8
 	f32 m_escapeSfxTimer; // _2CC
 	u8 _2D0;              // _2D0
-	Vector3f _2D4;        // _2D4
+	Vector3f m_movePosition;        // _2D4
 	Creature* m_treasure; // _2E0
 	f32 m_treasureHealth; // _2E4
 	f32 _2E8;             // _2E8, timer?
 	f32 _2EC;             // _2EC
-	f32 _2F0;             // _2F0, cell radius?
+	f32 m_cellRadius;     // _2F0
 	                      // _2F4 = PelletView
 };
 
