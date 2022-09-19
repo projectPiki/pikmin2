@@ -305,6 +305,9 @@
         .4byte 0x00000000
 */
 
+#include "Game/Entities/Sarai.h"
+#include "Game/MapMgr.h"
+
 namespace Game {
 
 /*
@@ -314,92 +317,8 @@ namespace Game {
  */
 Sarai::Obj::Obj()
 {
-	/*
-	stwu     r1, -0x10(r1)
-	mflr     r0
-	stw      r0, 0x14(r1)
-	extsh.   r0, r4
-	stw      r31, 0xc(r1)
-	mr       r31, r3
-	stw      r30, 8(r1)
-	beq      lbl_80272C04
-	addi     r0, r31, 0x2d8
-	lis      r3, __vt__Q24Game10PelletView@ha
-	stw      r0, 0x17c(r31)
-	addi     r3, r3, __vt__Q24Game10PelletView@l
-	li       r0, 0
-	stw      r3, 0x2d8(r31)
-	stw      r0, 0x2dc(r31)
-	stw      r0, 0x2e0(r31)
-
-lbl_80272C04:
-	mr       r3, r31
-	li       r4, 0
-	bl       __ct__Q24Game9EnemyBaseFv
-	lis      r3, __vt__Q34Game5Sarai3Obj@ha
-	addi     r0, r31, 0x2d8
-	addi     r5, r3, __vt__Q34Game5Sarai3Obj@l
-	addi     r3, r31, 0x2c4
-	stw      r5, 0(r31)
-	addi     r4, r5, 0x1b0
-	addi     r5, r5, 0x30c
-	stw      r4, 0x178(r31)
-	lwz      r4, 0x17c(r31)
-	stw      r5, 0(r4)
-	lwz      r4, 0x17c(r31)
-	subf     r0, r4, r0
-	stw      r0, 0xc(r4)
-	bl       __ct__10MouthSlotsFv
-	li       r3, 0x2c
-	bl       __nw__FUl
-	or.      r30, r3, r3
-	beq      lbl_80272C98
-	bl       __ct__Q24Game17EnemyAnimatorBaseFv
-	lis      r3, __vt__Q34Game5Sarai14ProperAnimator@ha
-	lis      r4, __vt__Q28SysShape12BaseAnimator@ha
-	addi     r0, r3, __vt__Q34Game5Sarai14ProperAnimator@l
-	lis      r3, __vt__Q28SysShape8Animator@ha
-	stw      r0, 0(r30)
-	addi     r4, r4, __vt__Q28SysShape12BaseAnimator@l
-	addi     r3, r3, __vt__Q28SysShape8Animator@l
-	li       r0, 0
-	stw      r4, 0x10(r30)
-	stw      r3, 0x10(r30)
-	stb      r0, 0x28(r30)
-	stw      r0, 0x1c(r30)
-	stw      r0, 0x14(r30)
-	stb      r0, 0x28(r30)
-	stw      r0, 0x20(r30)
-
-lbl_80272C98:
-	stw      r30, 0x184(r31)
-	li       r3, 0x1c
-	bl       __nw__FUl
-	or.      r4, r3, r3
-	beq      lbl_80272CCC
-	lis      r5, __vt__Q24Game17EnemyStateMachine@ha
-	lis      r3, __vt__Q34Game5Sarai3FSM@ha
-	addi     r0, r5, __vt__Q24Game17EnemyStateMachine@l
-	li       r5, -1
-	stw      r0, 0(r4)
-	addi     r0, r3, __vt__Q34Game5Sarai3FSM@l
-	stw      r5, 0x18(r4)
-	stw      r0, 0(r4)
-
-lbl_80272CCC:
-	lwz      r12, 0(r31)
-	mr       r3, r31
-	lwz      r12, 0x2f8(r12)
-	mtctr    r12
-	bctrl
-	lwz      r0, 0x14(r1)
-	mr       r3, r31
-	lwz      r31, 0xc(r1)
-	lwz      r30, 8(r1)
-	mtlr     r0
-	addi     r1, r1, 0x10
-	blr
-	*/
+	m_animator = new Sarai::ProperAnimator;
+	setFSM(new Sarai::FSM);
 }
 
 /*
@@ -414,40 +333,16 @@ void Sarai::Obj::setInitialSetting(Game::EnemyInitialParamBase*) { }
  * Address:	80272D00
  * Size:	000078
  */
-void Sarai::Obj::onInit(Game::CreatureInitArg*)
+void Sarai::Obj::onInit(Game::CreatureInitArg* arg)
 {
-	/*
-	stwu     r1, -0x10(r1)
-	mflr     r0
-	stw      r0, 0x14(r1)
-	stw      r31, 0xc(r1)
-	mr       r31, r3
-	bl       onInit__Q24Game9EnemyBaseFPQ24Game15CreatureInitArg
-	lwz      r0, 0x1e0(r31)
-	mr       r3, r31
-	lfs      f0, lbl_8051B1F8@sda21(r2)
-	ori      r0, r0, 4
-	lfs      f1, lbl_8051B1FC@sda21(r2)
-	stw      r0, 0x1e0(r31)
-	stfs     f0, 0x2c0(r31)
-	lwz      r12, 0(r31)
-	lwz      r12, 0x308(r12)
-	mtctr    r12
-	bctrl
-	lwz      r3, 0x2bc(r31)
-	mr       r4, r31
-	li       r5, 6
-	li       r6, 0
-	lwz      r12, 0(r3)
-	lwz      r12, 0xc(r12)
-	mtctr    r12
-	bctrl
-	lwz      r0, 0x14(r1)
-	lwz      r31, 0xc(r1)
-	mtlr     r0
-	addi     r1, r1, 0x10
-	blr
-	*/
+	EnemyBase::onInit(arg);
+
+	setEvent(0, EB_3);
+
+	_2C0 = 0.0f;
+	resetAttackableTimer(12800.0f);
+
+	m_fsm->start(this, 6, nullptr);
 }
 
 /*
@@ -457,26 +352,8 @@ void Sarai::Obj::onInit(Game::CreatureInitArg*)
  */
 void Sarai::Obj::doUpdate()
 {
-	/*
-	stwu     r1, -0x10(r1)
-	mflr     r0
-	stw      r0, 0x14(r1)
-	stw      r31, 0xc(r1)
-	mr       r31, r3
-	mr       r4, r31
-	lwz      r3, 0x2bc(r3)
-	lwz      r12, 0(r3)
-	lwz      r12, 0x10(r12)
-	mtctr    r12
-	bctrl
-	addi     r3, r31, 0x2c4
-	bl       update__10MouthSlotsFv
-	lwz      r0, 0x14(r1)
-	lwz      r31, 0xc(r1)
-	mtlr     r0
-	addi     r1, r1, 0x10
-	blr
-	*/
+	m_fsm->exec(this);
+	m_mouthSlots.update();
 }
 
 /*
@@ -484,29 +361,11 @@ void Sarai::Obj::doUpdate()
  * Address:	80272DC0
  * Size:	00004C
  */
-void Sarai::Obj::setFSM(Game::Sarai::FSM*)
+void Sarai::Obj::setFSM(Game::Sarai::FSM* fsm)
 {
-	/*
-	stwu     r1, -0x10(r1)
-	mflr     r0
-	stw      r0, 0x14(r1)
-	stw      r31, 0xc(r1)
-	mr       r31, r3
-	stw      r4, 0x2bc(r3)
-	mr       r4, r31
-	lwz      r3, 0x2bc(r3)
-	lwz      r12, 0(r3)
-	lwz      r12, 8(r12)
-	mtctr    r12
-	bctrl
-	li       r0, 0
-	stw      r0, 0x2b4(r31)
-	lwz      r0, 0x14(r1)
-	lwz      r31, 0xc(r1)
-	mtlr     r0
-	addi     r1, r1, 0x10
-	blr
-	*/
+	m_fsm = fsm;
+	m_fsm->init(this);
+	m_currentLifecycleState = nullptr;
 }
 
 /*
@@ -521,119 +380,38 @@ void Sarai::Obj::doDirectDraw(Graphics&) { }
  * Address:	80272E10
  * Size:	000020
  */
-void Sarai::Obj::doDebugDraw(Graphics&)
-{
-	/*
-	stwu     r1, -0x10(r1)
-	mflr     r0
-	stw      r0, 0x14(r1)
-	bl       doDebugDraw__Q24Game9EnemyBaseFR8Graphics
-	lwz      r0, 0x14(r1)
-	mtlr     r0
-	addi     r1, r1, 0x10
-	blr
-	*/
-}
+void Sarai::Obj::doDebugDraw(Graphics& gfx) { EnemyBase::doDebugDraw(gfx); }
 
 /*
  * --INFO--
  * Address:	80272E30
  * Size:	000140
  */
-void Sarai::Obj::getShadowParam(Game::ShadowParam&)
+void Sarai::Obj::getShadowParam(Game::ShadowParam& shadowParam)
 {
-	/*
-	stwu     r1, -0x10(r1)
-	mflr     r0
-	stw      r0, 0x14(r1)
-	stw      r31, 0xc(r1)
-	mr       r31, r4
-	addi     r4, r2, lbl_8051B200@sda21
-	stw      r30, 8(r1)
-	mr       r30, r3
-	lwz      r3, 0x174(r3)
-	bl       getJoint__Q28SysShape5ModelFPc
-	bl       getWorldMatrix__Q28SysShape5JointFv
-	lfs      f2, 0x2c(r3)
-	lfs      f1, 0x1c(r3)
-	lfs      f0, 0xc(r3)
-	mr       r3, r30
-	stfs     f0, 0(r31)
-	stfs     f1, 4(r31)
-	stfs     f2, 8(r31)
-	lwz      r12, 0(r30)
-	lwz      r12, 0xa8(r12)
-	mtctr    r12
-	bctrl
-	clrlwi.  r0, r3, 0x18
-	beq      lbl_80272F24
-	mr       r3, r30
-	bl       getStateID__Q24Game9EnemyBaseFv
-	addi     r0, r3, -1
-	cmplwi   r0, 1
-	ble      lbl_80272EAC
-	cmpwi    r3, 3
-	bne      lbl_80272ED4
+	Matrixf* bodyMtx = m_model->getJoint("bodyjnt")->getWorldMatrix();
+	bodyMtx->getPosition(shadowParam.m_position);
 
-lbl_80272EAC:
-	lfs      f2, 4(r31)
-	lfs      f0, lbl_8051B208@sda21(r2)
-	lfs      f1, lbl_8051B20C@sda21(r2)
-	fsubs    f0, f2, f0
-	stfs     f0, 4(r31)
-	lwz      r3, 0xc0(r30)
-	lfs      f0, 0x81c(r3)
-	fadds    f0, f1, f0
-	stfs     f0, 0x18(r31)
-	b        lbl_80272F3C
+	if (isAlive()) {
+		s32 stateId = getStateID();
 
-lbl_80272ED4:
-	lwz      r0, 0xc8(r30)
-	cmplwi   r0, 0
-	beq      lbl_80272EFC
-	lfs      f2, 4(r31)
-	lfs      f1, lbl_8051B208@sda21(r2)
-	lfs      f0, lbl_8051B210@sda21(r2)
-	fsubs    f1, f2, f1
-	stfs     f1, 4(r31)
-	stfs     f0, 0x18(r31)
-	b        lbl_80272F3C
+		if (((u32)stateId - 1) <= 1 || stateId == 3) {
+			shadowParam.m_position.y -= 5.0f;
+			shadowParam.m_boundingSphere.m_radius = 100.0f + static_cast<Parms*>(m_parms)->m_properParms.m_fp01.m_value;
+		} else if (_0C8) {
+			shadowParam.m_position.y -= 5.0f;
+			shadowParam.m_boundingSphere.m_radius = 50.0f;
+		} else {
+			shadowParam.m_position.y -= 20.0f;
+			shadowParam.m_boundingSphere.m_radius = 100.0f + static_cast<Parms*>(m_parms)->m_properParms.m_fp01.m_value;
+		}
+	} else {
+		shadowParam.m_position.y              = 2.5f + m_position.y;
+		shadowParam.m_boundingSphere.m_radius = 25.0f;
+	}
 
-lbl_80272EFC:
-	lfs      f2, 4(r31)
-	lfs      f0, lbl_8051B214@sda21(r2)
-	lfs      f1, lbl_8051B20C@sda21(r2)
-	fsubs    f0, f2, f0
-	stfs     f0, 4(r31)
-	lwz      r3, 0xc0(r30)
-	lfs      f0, 0x81c(r3)
-	fadds    f0, f1, f0
-	stfs     f0, 0x18(r31)
-	b        lbl_80272F3C
-
-lbl_80272F24:
-	lfs      f2, lbl_8051B218@sda21(r2)
-	lfs      f1, 0x190(r30)
-	lfs      f0, lbl_8051B21C@sda21(r2)
-	fadds    f1, f2, f1
-	stfs     f1, 4(r31)
-	stfs     f0, 0x18(r31)
-
-lbl_80272F3C:
-	lfs      f2, lbl_8051B1F8@sda21(r2)
-	lfs      f1, lbl_8051B220@sda21(r2)
-	stfs     f2, 0xc(r31)
-	lfs      f0, lbl_8051B224@sda21(r2)
-	stfs     f1, 0x10(r31)
-	stfs     f2, 0x14(r31)
-	stfs     f0, 0x1c(r31)
-	lwz      r31, 0xc(r1)
-	lwz      r30, 8(r1)
-	lwz      r0, 0x14(r1)
-	mtlr     r0
-	addi     r1, r1, 0x10
-	blr
-	*/
+	shadowParam.m_boundingSphere.m_position = Vector3f(0.0f, 1.0f, 0.0f);
+	shadowParam._1C                         = 12.5f;
 }
 
 /*
@@ -643,21 +421,8 @@ lbl_80272F3C:
  */
 void Sarai::Obj::doStartStoneState()
 {
-	/*
-	stwu     r1, -0x10(r1)
-	mflr     r0
-	stw      r0, 0x14(r1)
-	stw      r31, 0xc(r1)
-	mr       r31, r3
-	bl       doStartStoneState__Q24Game9EnemyBaseFv
-	mr       r3, r31
-	bl       flickStickTarget__Q34Game5Sarai3ObjFv
-	lwz      r0, 0x14(r1)
-	lwz      r31, 0xc(r1)
-	mtlr     r0
-	addi     r1, r1, 0x10
-	blr
-	*/
+	EnemyBase::doStartStoneState();
+	flickStickTarget();
 }
 
 /*
@@ -667,33 +432,12 @@ void Sarai::Obj::doStartStoneState()
  */
 void Sarai::Obj::doFinishStoneState()
 {
-	/*
-	stwu     r1, -0x10(r1)
-	mflr     r0
-	stw      r0, 0x14(r1)
-	stw      r31, 0xc(r1)
-	mr       r31, r3
-	bl       doFinishStoneState__Q24Game9EnemyBaseFv
-	mr       r3, r31
-	bl       getStateID__Q24Game9EnemyBaseFv
-	cmpwi    r3, 3
-	blt      lbl_80272FEC
-	lwz      r3, 0x2bc(r31)
-	mr       r4, r31
-	li       r5, 3
-	li       r6, 0
-	lwz      r12, 0(r3)
-	lwz      r12, 0x14(r12)
-	mtctr    r12
-	bctrl
+	EnemyBase::doFinishStoneState();
 
-lbl_80272FEC:
-	lwz      r0, 0x14(r1)
-	lwz      r31, 0xc(r1)
-	mtlr     r0
-	addi     r1, r1, 0x10
-	blr
-	*/
+	s32 stateId = getStateID();
+	if (stateId >= 3) {
+		m_fsm->transit(this, 3, nullptr);
+	}
 }
 
 /*
@@ -701,21 +445,7 @@ lbl_80272FEC:
  * Address:	80273000
  * Size:	000028
  */
-void Sarai::Obj::startCarcassMotion()
-{
-	/*
-	stwu     r1, -0x10(r1)
-	mflr     r0
-	li       r4, 0xb
-	li       r5, 0
-	stw      r0, 0x14(r1)
-	bl       startMotion__Q24Game9EnemyBaseFiPQ28SysShape14MotionListener
-	lwz      r0, 0x14(r1)
-	mtlr     r0
-	addi     r1, r1, 0x10
-	blr
-	*/
-}
+void Sarai::Obj::startCarcassMotion() { EnemyBase::startMotion(11, nullptr); }
 
 /*
  * --INFO--
@@ -724,139 +454,42 @@ void Sarai::Obj::startCarcassMotion()
  */
 void Sarai::Obj::initMouthSlots()
 {
-	/*
-	stwu     r1, -0x20(r1)
-	mflr     r0
-	stw      r0, 0x24(r1)
-	stfd     f31, 0x10(r1)
-	psq_st   f31, 24(r1), 0, qr0
-	stw      r31, 0xc(r1)
-	stw      r30, 8(r1)
-	mr       r30, r3
-	li       r4, 2
-	addi     r3, r30, 0x2c4
-	bl       alloc__10MouthSlotsFi
-	lis      r3, lbl_80486C50@ha
-	lwz      r5, 0x174(r30)
-	addi     r6, r3, lbl_80486C50@l
-	li       r4, 0
-	addi     r3, r30, 0x2c4
-	bl       setup__10MouthSlotsFiPQ28SysShape5ModelPc
-	lis      r3, lbl_80486C5C@ha
-	lwz      r5, 0x174(r30)
-	addi     r6, r3, lbl_80486C5C@l
-	li       r4, 1
-	addi     r3, r30, 0x2c4
-	bl       setup__10MouthSlotsFiPQ28SysShape5ModelPc
-	lfs      f31, lbl_8051B228@sda21(r2)
-	li       r31, 0
-	b        lbl_802730A4
+	m_mouthSlots.alloc(2);
+	m_mouthSlots.setup(0, m_model, "rkamujnt");
+	m_mouthSlots.setup(1, m_model, "lkamujnt");
 
-lbl_80273090:
-	mr       r4, r31
-	addi     r3, r30, 0x2c4
-	bl       getSlot__10MouthSlotsFi
-	stfs     f31, 0x1c(r3)
-	addi     r31, r31, 1
-
-lbl_802730A4:
-	lwz      r0, 0x2c4(r30)
-	cmpw     r31, r0
-	blt      lbl_80273090
-	psq_l    f31, 24(r1), 0, qr0
-	lwz      r0, 0x24(r1)
-	lfd      f31, 0x10(r1)
-	lwz      r31, 0xc(r1)
-	lwz      r30, 8(r1)
-	mtlr     r0
-	addi     r1, r1, 0x20
-	blr
-	*/
+	for (int i = 0; i < m_mouthSlots.m_max; i++) {
+		m_mouthSlots.getSlot(i)->_1C = 15.0f;
+	}
 }
 
 /*
  * --INFO--
  * Address:	802730D0
  * Size:	000108
+ * TODO:	https://decomp.me/scratch/OEixe
  */
-void Sarai::Obj::setHeightVelocity()
+f32 Sarai::Obj::setHeightVelocity()
 {
-	/*
-	stwu     r1, -0x40(r1)
-	mflr     r0
-	stw      r0, 0x44(r1)
-	stfd     f31, 0x30(r1)
-	psq_st   f31, 56(r1), 0, qr0
-	stfd     f30, 0x20(r1)
-	psq_st   f30, 40(r1), 0, qr0
-	stw      r31, 0x1c(r1)
-	mr       r31, r3
-	lwz      r3, 0x1f4(r3)
-	cmpwi    r3, 0
-	bge      lbl_80273108
-	li       r0, 0
-	b        lbl_80273118
+	int stickCount         = m_stickPikminCount;
+	int pikminWeightFactor = (stickCount < 0) ? (0) : (stickCount <= 5 ? (stickCount) : (5));
 
-lbl_80273108:
-	cmpwi    r3, 5
-	li       r0, 5
-	bgt      lbl_80273118
-	mr       r0, r3
+	float p2 = static_cast<Parms*>(m_parms)->m_properParms.m_fp11.m_value;
+	float p4 = static_cast<Parms*>(m_parms)->m_properParms.m_fp12.m_value;
 
-lbl_80273118:
-	xoris    r3, r0, 0x8000
-	lis      r0, 0x4330
-	stw      r3, 0xc(r1)
-	addi     r4, r31, 0x18c
-	lwz      r5, 0xc0(r31)
-	stw      r0, 8(r1)
-	lfd      f1, lbl_8051B230@sda21(r2)
-	lfd      f0, 8(r1)
-	lfs      f4, lbl_8051B208@sda21(r2)
-	fsubs    f1, f0, f1
-	lwz      r3, mapMgr__4Game@sda21(r13)
-	lfs      f0, 0x934(r5)
-	lwz      r12, 4(r3)
-	fsubs    f3, f4, f1
-	lfs      f2, 0x90c(r5)
-	fdivs    f1, f1, f4
-	lwz      r12, 0x28(r12)
-	fdivs    f3, f3, f4
-	fmuls    f0, f1, f0
-	fmadds   f30, f3, f2, f0
-	mtctr    r12
-	bctrl
-	fmr      f31, f1
-	mr       r3, r31
-	bl       getCatchTargetNum__Q34Game5Sarai3ObjFv
-	cmpwi    r3, 0
-	beq      lbl_80273190
-	lwz      r3, 0xc0(r31)
-	lfs      f0, 0x844(r3)
-	b        lbl_80273198
+	float amt = ((5.0f - pikminWeightFactor / 5.0f) * p2) + (pikminWeightFactor / 5.0f) * p4;
 
-lbl_80273190:
-	lwz      r3, 0xc0(r31)
-	lfs      f0, 0x81c(r3)
+	float mapPosY = mapMgr->getMinY(m_position);
+	float mapOffset;
+	if (getCatchTargetNum()) {
+		mapOffset = static_cast<Parms*>(m_parms)->m_properParms.m_fp02.m_value;
+	} else {
+		mapOffset = static_cast<Parms*>(m_parms)->m_properParms.m_fp01.m_value;
+	}
 
-lbl_80273198:
-	fadds    f1, f31, f0
-	lfs      f0, 0x190(r31)
-	fsubs    f0, f1, f0
-	fmuls    f0, f30, f0
-	stfs     f0, 0x1cc(r31)
-	lfs      f0, 0x190(r31)
-	fsubs    f1, f0, f31
-	psq_l    f31, 56(r1), 0, qr0
-	lfd      f31, 0x30(r1)
-	psq_l    f30, 40(r1), 0, qr0
-	lfd      f30, 0x20(r1)
-	lwz      r0, 0x44(r1)
-	lwz      r31, 0x1c(r1)
-	mtlr     r0
-	addi     r1, r1, 0x40
-	blr
-	*/
+	m_velocity.y = amt * ((mapPosY + mapOffset) - m_position.y);
+
+	return m_position.y - mapPosY;
 }
 
 /*
@@ -1221,8 +854,9 @@ lbl_80273658:
  * Address:	8027369C
  * Size:	00007C
  */
-void Sarai::Obj::getCatchTargetNum()
+s32 Sarai::Obj::getCatchTargetNum()
 {
+	return false;
 	/*
 	stwu     r1, -0x20(r1)
 	mflr     r0
@@ -1783,73 +1417,5 @@ void Sarai::Obj::catchTarget()
  * Address:	80273D80
  * Size:	000044
  */
-void Sarai::Obj::createDownEffect()
-{
-	/*
-	stwu     r1, -0x10(r1)
-	mflr     r0
-	stw      r0, 0x14(r1)
-	stw      r31, 0xc(r1)
-	mr       r31, r3
-	lwz      r12, 0(r3)
-	lwz      r12, 0x2ec(r12)
-	mtctr    r12
-	bctrl
-	mr       r3, r31
-	addi     r4, r31, 0x18c
-	bl       "createBounceEffect__Q24Game9EnemyBaseFRC10Vector3<f>f"
-	lwz      r0, 0x14(r1)
-	lwz      r31, 0xc(r1)
-	mtlr     r0
-	addi     r1, r1, 0x10
-	blr
-	*/
-}
-
-/*
- * --INFO--
- * Address:	80273DC4
- * Size:	000008
- */
-void Sarai::Obj::getDownSmokeScale()
-{
-	/*
-	lfs      f1, lbl_8051B260@sda21(r2)
-	blr
-	*/
-}
-
-/*
- * --INFO--
- * Address:	80273DCC
- * Size:	000004
- */
-void Sarai::Obj::inWaterCallback(Game::WaterBox*) { }
-
-/*
- * --INFO--
- * Address:	80273DD0
- * Size:	000004
- */
-void Sarai::Obj::outWaterCallback() { }
-
-/*
- * --INFO--
- * Address:	80273DD4
- * Size:	000008
- */
-void Sarai::Obj::getMouthSlots()
-{
-	/*
-	addi     r3, r3, 0x2c4
-	blr
-	*/
-}
-
-/*
- * --INFO--
- * Address:	80273DDC
- * Size:	000008
- */
-u32 Sarai::Obj::getEnemyTypeID() { return 0x17; }
+void Sarai::Obj::createDownEffect() { EnemyBase::createBounceEffect(m_position, getDownSmokeScale()); }
 } // namespace Game
