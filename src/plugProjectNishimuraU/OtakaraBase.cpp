@@ -525,7 +525,23 @@ lbl_802B6E70:
  */
 Vector3f Obj::getTargetPosition(Creature* target)
 {
-	return Vector3f::zero;
+	Vector3f otakaraPosition = getPosition();
+	Vector3f targetPosition = target->getPosition();
+	Vector3f sep = otakaraPosition - targetPosition;
+
+	_normalise(sep);
+	Parms* parms = static_cast<Parms*>(m_parms);
+	sep *= parms->m_general.m_moveSpeed.m_value;
+
+	sep += otakaraPosition;
+
+	f32 territory = parms->m_general.m_territoryRadius.m_value;
+	if ((sep.x * sep.x + sep.z * sep.z) < SQUARE(territory)) {
+		_normalise(sep);
+		sep *= territory;
+		sep += m_homePosition;
+	}
+	return sep;
 	/*
 	stwu     r1, -0x60(r1)
 	mflr     r0
@@ -688,6 +704,10 @@ void Obj::resetTreasure()
  */
 bool Obj::isTakeTreasure()
 {
+	if (m_targetCreature != nullptr) {
+		Vector3f targetPos = m_targetCreature->getPosition();
+
+	}
 	return false;
 	/*
 	stwu     r1, -0x50(r1)
@@ -951,8 +971,14 @@ lbl_802B7428:
  * Address:	802B745C
  * Size:	0000F8
  */
-bool Obj::fallTreasure(bool)
+bool Obj::fallTreasure(bool check)
 {
+	if (m_targetCreature != nullptr) {
+		m_targetCreature->endCapture();
+		if (check) {
+			
+		}
+	}
 	return false;
 	/*
 	stwu     r1, -0x20(r1)
