@@ -9,6 +9,12 @@ struct JPABaseEmitter;
 
 namespace efx {
 struct TSimple1 : public TBase {
+	TSimple1(u16 effectID) 
+	{
+		m_effectIDs[0] = effectID;
+		m_emitters[0] = nullptr;
+	}
+	
 	TSimple1(u16 effectID, JPABaseEmitter* emitter)
 	{
 		m_effectIDs[0] = effectID;

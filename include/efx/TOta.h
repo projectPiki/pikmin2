@@ -84,7 +84,12 @@ struct TOtaWat : public TSimple4 {
 	// _00-_1C  = TSimple4
 };
 
-struct TOtaPartsOff : public TSimple1 {
+struct TOtaPartsoff : public TSimple1 {
+	inline TOtaPartsoff()
+	    : TSimple1(0x27F)
+	{
+	}
+
 	virtual void create(Arg*); // _08
 
 	// _00      = VTBL

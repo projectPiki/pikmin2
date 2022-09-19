@@ -3,6 +3,7 @@
 #include "Game/EnemyFunc.h"
 #include "Game/generalEnemyMgr.h"
 #include "Game/ConditionNotStick.h"
+#include "efx/TOta.h"
 
 namespace Game {
 namespace OtakaraBase {
@@ -1065,7 +1066,7 @@ void Obj::damageTreasure(f32 damage)
  * Address:	802B75D0
  * Size:	0001A8
  */
-void OtakaraBase::Obj::attackTarget()
+void Obj::attackTarget()
 {
 	/*
 	stwu     r1, -0xd0(r1)
@@ -1190,8 +1191,20 @@ lbl_802B7738:
  * Address:	802B777C
  * Size:	000134
  */
-void OtakaraBase::Obj::createTreasureFallEffect()
+void Obj::createTreasureFallEffect()
 {
+	Matrixf* mtx = m_model->getJoint("center")->getWorldMatrix();
+	f32 scale = 0.0285f * (m_cellRadius - 10.0f);
+	Vector3f translation = Vector3f(mtx->m_matrix.structView.tx, mtx->m_matrix.structView.ty, mtx->m_matrix.structView.tz);
+	// mtx->getTranslation(translation);
+	if (scale < 1.0f) {
+		scale = 0.5f * (1.0f + scale);
+	}
+	efx::ArgScale arg (translation, scale);
+	efx::TOtaPartsoff treasureFallFX;
+
+	treasureFallFX.create(&arg);
+	getJAIObject()->startSound(PSSE_EN_OTAKARA_DROP_ITEM, 0);
 	/*
 	stwu     r1, -0x50(r1)
 	mflr     r0
@@ -1280,48 +1293,16 @@ lbl_802B77E4:
  * Address:	802B78B0
  * Size:	000088
  */
-void OtakaraBase::Obj::startEscapeSE()
+void Obj::startEscapeSE()
 {
-	/*
-	stwu     r1, -0x10(r1)
-	mflr     r0
-	stw      r0, 0x14(r1)
-	stw      r31, 0xc(r1)
-	mr       r31, r3
-	lwz      r0, 0x230(r3)
-	cmplwi   r0, 0
-	bne      lbl_802B7924
-	lfs      f1, 0x2cc(r31)
-	lfs      f0, lbl_8051C2D8@sda21(r2)
-	fcmpo    cr0, f1, f0
-	ble      lbl_802B7914
-	lwz      r12, 0(r3)
-	lwz      r12, 0xf4(r12)
-	mtctr    r12
-	bctrl
-	lwz      r12, 0(r3)
-	li       r4, 0x58f0
-	li       r5, 0
-	lwz      r12, 0xc(r12)
-	mtctr    r12
-	bctrl
-	lfs      f0, lbl_8051C290@sda21(r2)
-	stfs     f0, 0x2cc(r31)
-	b        lbl_802B7924
-
-lbl_802B7914:
-	lwz      r3, sys@sda21(r13)
-	lfs      f0, 0x54(r3)
-	fadds    f0, f1, f0
-	stfs     f0, 0x2cc(r31)
-
-lbl_802B7924:
-	lwz      r0, 0x14(r1)
-	lwz      r31, 0xc(r1)
-	mtlr     r0
-	addi     r1, r1, 0x10
-	blr
-	*/
+	if (m_targetCreature == nullptr) {
+		if (m_escapeSfxTimer > 3.0f) {
+			getJAIObject()->startSound(PSSE_EN_OTAKARA_STANDUP, 0);
+			m_escapeSfxTimer = 0.0f;
+		} else {
+			m_escapeSfxTimer += sys->m_secondsPerFrame;
+		}
+	}
 }
 
 /*
