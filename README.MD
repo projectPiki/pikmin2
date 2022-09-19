@@ -248,7 +248,10 @@ pikmin2.usa.dol: `sha1: 90d328bf8f190c90472e8c19e7e53c6ad0fe0d1a`
 	- <a href="https://github.com/projectPiki/pikmin2/tree/main/src/JSystem/JAD/JADHioNode.cpp">JSystem/JAD/JADHioNode.cpp</a>
 	- <a href="https://github.com/projectPiki/pikmin2/tree/main/src/JSystem/JAI/JAIConst.cpp">JSystem/JAI/JAIConst.cpp</a>
 	- <a href="https://github.com/projectPiki/pikmin2/tree/main/src/JSystem/JAS/JASBank.cpp">JSystem/JAS/JASBank.cpp</a>
+	- <a href="https://github.com/projectPiki/pikmin2/tree/main/src/JSystem/JAS/JASChannelUpdater.cpp">JSystem/JAS/JASChannelUpdater.cpp</a>
 	- <a href="https://github.com/projectPiki/pikmin2/tree/main/src/JSystem/JAS/JASInstEffect.cpp">JSystem/JAS/JASInstEffect.cpp</a>
+	- <a href="https://github.com/projectPiki/pikmin2/tree/main/src/JSystem/JAS/JASOuterParam.cpp">JSystem/JAS/JASOuterParam.cpp</a>
+	- <a href="https://github.com/projectPiki/pikmin2/tree/main/src/JSystem/JAS/JASTrackPort.cpp">JSystem/JAS/JASTrackPort.cpp</a>
 	- <a href="https://github.com/projectPiki/pikmin2/tree/main/src/JSystem/JAS/JASWaveBank.cpp">JSystem/JAS/JASWaveBank.cpp</a>
 	- <a href="https://github.com/projectPiki/pikmin2/tree/main/src/JSystem/JKR/JKRAramStream.cpp">JSystem/JKR/JKRAramStream.cpp</a>
 	- <a href="https://github.com/projectPiki/pikmin2/tree/main/src/JSystem/JKR/JKRDisposer.cpp">JSystem/JKR/JKRDisposer.cpp</a>
