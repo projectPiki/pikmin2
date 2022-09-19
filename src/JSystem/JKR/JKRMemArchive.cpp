@@ -1,3 +1,9 @@
+#include "Dolphin/os.h"
+#include "Dolphin/stl.h"
+#include "JSystem/JKR/JKRArchive.h"
+#include "JSystem/JKR/JKRDvdRipper.h"
+#include "JSystem/JKR/JKRHeap.h"
+#include "JSystem/JUT/JUTException.h"
 #include "types.h"
 
 /*
@@ -43,9 +49,19 @@
  * --INFO--
  * Address:	80024644
  * Size:	0000BC
+ * __ct__13JKRMemArchiveFlQ210JKRArchive15EMountDirection
  */
-JKRMemArchive::JKRMemArchive(long, JKRArchive::EMountDirection)
+JKRMemArchive::JKRMemArchive(long p1, JKRArchive::EMountDirection mountDirection)
+    : JKRArchive(p1, EMM_Mem)
 {
+	_30              = 0;
+	m_mountDirection = mountDirection;
+	if (open(p1, m_mountDirection)) {
+		m_magicWord = 'RARC';
+		_28         = _54 + _48->_04;
+		sVolumeList.prepend(&_18);
+		_30 = 1;
+	}
 	/*
 	stwu     r1, -0x20(r1)
 	mflr     r0
@@ -105,9 +121,18 @@ lbl_800246E4:
  * --INFO--
  * Address:	80024700
  * Size:	0000C8
+ * __ct__13JKRMemArchiveFPvUl15JKRMemBreakFlag
  */
-JKRMemArchive::JKRMemArchive(void*, unsigned long, JKRMemBreakFlag)
+JKRMemArchive::JKRMemArchive(void* p1, unsigned long p2, JKRMemBreakFlag flag)
+    : JKRArchive((long)p1, EMM_Mem)
 {
+	_30 = 0;
+	if (open(p1, p2, flag)) {
+		m_magicWord = 'RARC';
+		_28         = _54 + _48->_04;
+		sVolumeList.prepend(&_18);
+		_30 = 1;
+	}
 	/*
 	stwu     r1, -0x20(r1)
 	mflr     r0
@@ -230,8 +255,44 @@ lbl_80024854:
  * Address:	80024870
  * Size:	000168
  */
-void JKRMemArchive::open(long, JKRArchive::EMountDirection)
+bool JKRMemArchive::open(long p1, EMountDirection mountDirection)
 {
+	_64              = nullptr;
+	_44              = nullptr;
+	_68              = nullptr;
+	_48              = nullptr;
+	m_fileEntries    = nullptr;
+	_54              = 0;
+	_6C              = 0;
+	m_mountDirection = mountDirection;
+	if (m_mountDirection == EMD_Unk1) {
+		u32 v1;
+		_64 = (JKRMemArchive_64*)JKRDvdRipper::loadToMainRAM(p1, nullptr, Switch_1, 0, _38, JKRDvdRipper::ALLOC_DIR_TOP, 0, &_5C, &v1);
+		if (_64) {
+			DCInvalidateRange(_64, v1);
+		}
+	} else {
+		u32 v1;
+		_64 = (JKRMemArchive_64*)JKRDvdRipper::loadToMainRAM(p1, nullptr, Switch_1, 0, _38, JKRDvdRipper::ALLOC_DIR_BOTTOM, 0, &_5C, &v1);
+		if (_64) {
+			DCInvalidateRange(_64, v1);
+		}
+	}
+	if (_64 == nullptr) {
+		m_mountMode = EMM_Unk0;
+	} else {
+		_44           = (JKRArchive_44*)((u8*)_64 + _64->_08);
+		_48           = (SDirEntry*)((u8*)_44 + _44->m_offsetOfDirEntry);
+		m_fileEntries = (SDIFileEntry*)((u8*)_44 + _44->m_offsetOfFileEntry);
+		_54           = (s32)((u8*)_44 + _44->_14);
+		// u32 v1 = _64->_0C + _64->_08;
+		// u32 v1 = _64->_08 + _64->_0C;
+		// _68 = v1 + (u8*)_64;
+		// TODO: funny regswap
+		_68 = (u8*)_64 + _64->_0C + _64->_08;
+		_6C = 1;
+	}
+	return (m_mountMode != EMM_Unk0);
 	/*
 	stwu     r1, -0x20(r1)
 	mflr     r0
@@ -340,9 +401,24 @@ lbl_800249B4:
  * --INFO--
  * Address:	800249D8
  * Size:	0000AC
+ * open__13JKRMemArchiveFPvUl15JKRMemBreakFlag
  */
-void JKRMemArchive::open(void*, unsigned long, JKRMemBreakFlag)
+bool JKRMemArchive::open(void* p1, unsigned long p2, JKRMemBreakFlag p3)
 {
+	_64           = (JKRMemArchive_64*)p1;
+	_44           = (JKRArchive_44*)((u8*)_64 + _64->_08);
+	_48           = (SDirEntry*)((u8*)_44 + _44->m_offsetOfDirEntry);
+	m_fileEntries = (SDIFileEntry*)((u8*)_44 + _44->m_offsetOfFileEntry);
+	_54           = (s32)((u8*)_44 + _44->_14);
+	// u32 v1 = _64->_0C + _64->_08;
+	// u32 v1 = _64->_08 + _64->_0C;
+	// _68 = v1 + (u8*)_64;
+	// TODO: funny regswap
+	_68 = (u8*)_64 + _64->_0C + _64->_08;
+	_6C = p3 == MBF_1;
+	_38 = JKRHeap::findFromRoot(p1);
+	_5C = 0;
+	return true;
 	/*
 	stwu     r1, -0x10(r1)
 	mflr     r0
@@ -394,36 +470,26 @@ void JKRMemArchive::open(void*, unsigned long, JKRMemBreakFlag)
  * --INFO--
  * Address:	80024A84
  * Size:	000034
+ * fetchResource__13JKRMemArchiveFPQ210JKRArchive12SDIFileEntryPUl
  */
-void JKRMemArchive::fetchResource(JKRArchive::SDIFileEntry*, unsigned long*)
+void* JKRMemArchive::fetchResource(JKRArchive::SDIFileEntry* entry, unsigned long* outSize)
 {
-	/*
-	lwz      r0, 0x10(r4)
-	cmplwi   r0, 0
-	bne      lbl_80024AA0
-	lwz      r3, 0x68(r3)
-	lwz      r0, 8(r4)
-	add      r0, r3, r0
-	stw      r0, 0x10(r4)
-
-lbl_80024AA0:
-	cmplwi   r5, 0
-	beq      lbl_80024AB0
-	lwz      r0, 0xc(r4)
-	stw      r0, 0(r5)
-
-lbl_80024AB0:
-	lwz      r3, 0x10(r4)
-	blr
-	*/
+	if (entry->_10 == nullptr) {
+		entry->_10 = _68 + entry->_08;
+	}
+	if (outSize != nullptr) {
+		*outSize = entry->m_size;
+	}
+	return entry->_10;
 }
 
 /*
  * --INFO--
  * Address:	80024AB8
  * Size:	0000C8
+ * fetchResource__13JKRMemArchiveFPvUlPQ210JKRArchive12SDIFileEntryPUl
  */
-void JKRMemArchive::fetchResource(void*, unsigned long, JKRArchive::SDIFileEntry*, unsigned long*)
+void* JKRMemArchive::fetchResource(void*, unsigned long, JKRArchive::SDIFileEntry*, unsigned long*)
 {
 	/*
 	.loc_0x0:
@@ -494,71 +560,42 @@ void JKRMemArchive::fetchResource(void*, unsigned long, JKRArchive::SDIFileEntry
 	*/
 }
 
-/*
+/**
  * --INFO--
  * Address:	80024B80
  * Size:	000050
+ * @warning This method does not actually iterate through m_fileEntries. This feels like a bug.
  */
 void JKRMemArchive::removeResourceAll()
 {
-	/*
-	lwz      r0, 0x44(r3)
-	cmplwi   r0, 0
-	beqlr
-	lbz      r0, 0x3c(r3)
-	cmplwi   r0, 1
-	beqlr
-	lwz      r6, 0x4c(r3)
-	li       r7, 0
-	li       r5, 0
-	b        lbl_80024BBC
-
-lbl_80024BA8:
-	lwz      r0, 0x10(r6)
-	cmplwi   r0, 0
-	beq      lbl_80024BB8
-	stw      r5, 0x10(r6)
-
-lbl_80024BB8:
-	addi     r7, r7, 1
-
-lbl_80024BBC:
-	lwz      r4, 0x44(r3)
-	lwz      r0, 8(r4)
-	cmplw    r7, r0
-	blt      lbl_80024BA8
-	blr
-	*/
+	if (_44 == nullptr) {
+		return;
+	}
+	if (m_mountMode == EMM_Mem) {
+		return;
+	}
+	SDIFileEntry* entry = m_fileEntries;
+	for (u32 i = 0; i < _44->_08; i++) {
+		if (entry->_10 != nullptr) {
+			entry->_10 = nullptr;
+		}
+	}
 }
 
 /*
  * --INFO--
  * Address:	80024BD0
  * Size:	00003C
+ * removeResource__13JKRMemArchiveFPv
  */
-void JKRMemArchive::removeResource(void*)
+bool JKRMemArchive::removeResource(void* p1)
 {
-	/*
-	stwu     r1, -0x10(r1)
-	mflr     r0
-	stw      r0, 0x14(r1)
-	bl       findPtrResource__10JKRArchiveCFPCv
-	cmplwi   r3, 0
-	bne      lbl_80024BF0
-	li       r3, 0
-	b        lbl_80024BFC
-
-lbl_80024BF0:
-	li       r0, 0
-	stw      r0, 0x10(r3)
-	li       r3, 1
-
-lbl_80024BFC:
-	lwz      r0, 0x14(r1)
-	mtlr     r0
-	addi     r1, r1, 0x10
-	blr
-	*/
+	SDIFileEntry* entry = findPtrResource(p1);
+	if (!entry) {
+		return false;
+	}
+	entry->_10 = nullptr;
+	return true;
 }
 
 /*
@@ -566,8 +603,27 @@ lbl_80024BFC:
  * Address:	80024C0C
  * Size:	0000D4
  */
-void JKRMemArchive::fetchResource_subroutine(unsigned char*, unsigned long, unsigned char*, unsigned long, int)
+u32 JKRMemArchive::fetchResource_subroutine(unsigned char* p1, unsigned long p2, unsigned char* p3, unsigned long p4, int p5)
 {
+	switch (p5) {
+	case 0:
+		if (p2 > p4) {
+			p2 = p4;
+		}
+		memcpy(p3, p1, p2);
+		break;
+	case 1:
+	case 2: {
+		u8* p = (u8*)p1;
+		p2    = MIN(p2, p[4] << 0x18 | p[5] << 0x10 | p[6] << 8 | p[7]);
+		// JKRDecomp::orderSync(p1, p3, p2, 0);
+		break;
+	}
+	default:
+		JUT_PANICLINE(723, ":::??? bad sequence\n");
+		return 0;
+	}
+	return p2;
 	/*
 	.loc_0x0:
 	  stwu      r1, -0x10(r1)
@@ -643,50 +699,15 @@ void JKRMemArchive::fetchResource_subroutine(unsigned char*, unsigned long, unsi
  * Address:	80024CE0
  * Size:	000090
  */
-void JKRMemArchive::getExpandedResSize(const void*) const
+u32 JKRMemArchive::getExpandedResSize(const void* p1) const
 {
-	/*
-	stwu     r1, -0x10(r1)
-	mflr     r0
-	stw      r0, 0x14(r1)
-	stw      r31, 0xc(r1)
-	mr       r31, r4
-	stw      r30, 8(r1)
-	mr       r30, r3
-	bl       findPtrResource__10JKRArchiveCFPCv
-	cmplwi   r3, 0
-	bne      lbl_80024D10
-	li       r3, -1
-	b        lbl_80024D58
-
-lbl_80024D10:
-	lwz      r0, 4(r3)
-	rlwinm.  r0, r0, 8, 0x1d, 0x1d
-	bne      lbl_80024D38
-	mr       r3, r30
-	mr       r4, r31
-	lwz      r12, 0(r30)
-	lwz      r12, 0x30(r12)
-	mtctr    r12
-	bctrl
-	b        lbl_80024D58
-
-lbl_80024D38:
-	lbz      r0, 5(r31)
-	lbz      r3, 4(r31)
-	slwi     r0, r0, 0x10
-	lbz      r4, 6(r31)
-	rlwimi   r0, r3, 0x18, 0, 7
-	lbz      r5, 7(r31)
-	rlwimi   r0, r4, 8, 0x10, 0x17
-	or       r3, r5, r0
-
-lbl_80024D58:
-	lwz      r0, 0x14(r1)
-	lwz      r31, 0xc(r1)
-	lwz      r30, 8(r1)
-	mtlr     r0
-	addi     r1, r1, 0x10
-	blr
-	*/
+	SDIFileEntry* entry = findPtrResource(p1);
+	if (entry == nullptr) {
+		return -1;
+	} else if ((entry->_04 >> 0x18 & 4) == 0) {
+		return getResSize(p1);
+	} else {
+		u8* p = (u8*)p1;
+		return p[4] << 0x18 | p[5] << 0x10 | p[6] << 8 | p[7];
+	}
 }

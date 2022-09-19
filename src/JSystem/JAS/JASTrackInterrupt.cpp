@@ -1,3 +1,4 @@
+#include "JSystem/JAS/JASTrack.h"
 #include "types.h"
 
 /*
@@ -11,25 +12,15 @@
  */
 void JASIntrMgr::init()
 {
-	/*
-	li       r4, 1
-	li       r0, 0
-	stb      r4, 0(r3)
-	stb      r0, 1(r3)
-	stb      r0, 2(r3)
-	stb      r0, 3(r3)
-	stw      r0, 4(r3)
-	stw      r0, 8(r3)
-	stw      r0, 0xc(r3)
-	stw      r0, 0x10(r3)
-	stw      r0, 0x14(r3)
-	stw      r0, 0x18(r3)
-	stw      r0, 0x1c(r3)
-	stw      r0, 0x20(r3)
-	stw      r0, 0x24(r3)
-	stw      r0, 0x28(r3)
-	blr
-	*/
+	_00 = 1;
+	_01 = 0;
+	_02 = 0;
+	_03 = 0;
+	_04 = 0;
+	_08 = 0;
+	for (int i = 0; i < 8; i++) {
+		_0C[i] = nullptr;
+	}
 }
 
 /*
@@ -37,19 +28,12 @@ void JASIntrMgr::init()
  * Address:	800A2A3C
  * Size:	000024
  */
-void JASIntrMgr::request(unsigned long)
+void JASIntrMgr::request(u32 interrupt)
 {
-	/*
-	li       r0, 1
-	lbz      r5, 2(r3)
-	slw      r4, r0, r4
-	and.     r0, r5, r4
-	beqlr
-	lbz      r0, 1(r3)
-	or       r0, r0, r4
-	stb      r0, 1(r3)
-	blr
-	*/
+	if ((_02 & (1 << interrupt)) == 0) {
+		return;
+	}
+	_01 |= 1 << interrupt;
 }
 
 /*
@@ -57,19 +41,10 @@ void JASIntrMgr::request(unsigned long)
  * Address:	800A2A60
  * Size:	000024
  */
-void JASIntrMgr::setIntr(unsigned long, void*)
+void JASIntrMgr::setIntr(u32 interrupt, void* data)
 {
-	/*
-	li       r0, 1
-	lbz      r7, 2(r3)
-	slw      r6, r0, r4
-	slwi     r0, r4, 2
-	or       r4, r7, r6
-	stb      r4, 2(r3)
-	add      r3, r3, r0
-	stw      r5, 0xc(r3)
-	blr
-	*/
+	_02 |= 1 << interrupt;
+	_0C[interrupt] = data;
 }
 
 /*
@@ -77,25 +52,25 @@ void JASIntrMgr::setIntr(unsigned long, void*)
  * Address:	800A2A84
  * Size:	000018
  */
-void JASIntrMgr::resetInter(unsigned long)
-{
-	/*
-	li       r0, 1
-	lbz      r5, 2(r3)
-	slw      r0, r0, r4
-	andc     r0, r5, r0
-	stb      r0, 2(r3)
-	blr
-	*/
-}
+void JASIntrMgr::resetInter(u32 interrupt) { _02 &= ~(1 << interrupt); }
 
 /*
  * --INFO--
  * Address:	800A2A9C
  * Size:	00006C
  */
-void JASIntrMgr::checkIntr()
+void* JASIntrMgr::checkIntr()
 {
+	if (_00 == 0) {
+		return nullptr;
+	}
+	for (u32 i = 0, v1 = _02 & _01; v1 != 0; v1 >>= 1) {
+		if (v1 & 1) {
+			_01 &= ~(1 << i);
+			return _0C[i];
+		}
+	}
+	return nullptr;
 	/*
 	lbz      r0, 0(r3)
 	cmplwi   r0, 0
@@ -142,38 +117,24 @@ lbl_800A2AF8:
  */
 void JASIntrMgr::timerProcess()
 {
-	/*
-	lwz      r4, 4(r3)
-	cmplwi   r4, 0
-	beqlr
-	addi     r0, r4, -1
-	stw      r0, 4(r3)
-	lwz      r0, 4(r3)
-	cmplwi   r0, 0
-	bnelr
-	lbz      r0, 2(r3)
-	rlwinm.  r0, r0, 0, 0x19, 0x19
-	beq      lbl_800A2B40
-	lbz      r0, 1(r3)
-	ori      r0, r0, 0x40
-	stb      r0, 1(r3)
-
-lbl_800A2B40:
-	lbz      r4, 3(r3)
-	cmplwi   r4, 0
-	beq      lbl_800A2B6C
-	addi     r0, r4, -1
-	stb      r0, 3(r3)
-	lbz      r0, 3(r3)
-	cmplwi   r0, 0
-	beqlr
-	lwz      r0, 8(r3)
-	stw      r0, 4(r3)
-	blr
-
-lbl_800A2B6C:
-	lwz      r0, 8(r3)
-	stw      r0, 4(r3)
-	blr
-	*/
+	if (_04 == 0) {
+		return;
+	}
+	_04--;
+	if (_04 != 0) {
+		return;
+	}
+	if ((_02 & 0x40) != 0) {
+		_01 |= 0x40;
+	}
+	if (_03) {
+		_03--;
+		if (_03 == 0) {
+			return;
+		}
+		_04 = _08;
+		return;
+	}
+	_04 = _08;
+	return;
 }

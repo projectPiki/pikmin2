@@ -16,13 +16,13 @@ struct JKRThread : public JKRDisposer {
 	JKRThread(OSThread*, int);
 
 	virtual ~JKRThread(); // _08
-	virtual void run();   // _0C (weak)
+	virtual void* run();  // _0C (weak)
 
 	void setCommon_mesgQueue(JKRHeap*, int);
-	void setCommon_heapSpecified(JKRHeap*, unsigned long, int);
-	void* start(void*);
+	BOOL setCommon_heapSpecified(JKRHeap*, unsigned long, int);
+	static void* start(void*);
 
-	JSUPtrLink m_link;         // _18
+	JSULink<JKRThread> m_link; // _18
 	JKRHeap* m_heap;           // _28
 	OSThread* m_thread;        // _2C
 	OSMessageQueue m_msgQueue; // _30
@@ -46,8 +46,8 @@ struct JKRThread : public JKRDisposer {
  */
 struct JKRTask : public JKRThread {
 	typedef void RequestCallback(void*);
-	virtual ~JKRTask(); // _08
-	virtual void run(); // _0C
+	virtual ~JKRTask();  // _08
+	virtual void* run(); // _0C
 
 	static JKRTask* create(int, int, unsigned long, JKRHeap*);
 

@@ -7,6 +7,17 @@
  * @size = 0x30
  */
 struct JASRegisterParam {
+	JASRegisterParam();
+
+	void init();
+	void inherit(const JASRegisterParam&);
+	u8 getBankNumber() const;
+	u8 getProgramNumber() const;
+
+	// unused/inlined:
+	void setFlag(u16);
+	void setBankNumber(u8);
+
 	u16 _00[6]; // _00 - unknown
 	u16 _0C;    // _0C - bankAndProgramNumber?
 	u16 _0E;    // _0E - unknown

@@ -1,4 +1,8 @@
+#include "Dolphin/os.h"
 #include "JSystem/JKR/Aram.h"
+#include "JSystem/JKR/JKRDecomp.h"
+#include "JSystem/JKR/JKRHeap.h"
+#include "JSystem/JKR/JKRThread.h"
 #include "types.h"
 
 /*
@@ -145,8 +149,15 @@
  * Address:	80017A10
  * Size:	000094
  */
-JKRAram* JKRAram::create(u32, u32, long, long, long)
+JKRAram* JKRAram::create(u32 p1, u32 p2, long p3, long p4, long p5)
 {
+	if (!sAramObject) {
+		sAramObject = new (JKRHeap::sSystemHeap, 0) JKRAram(p1, p2, p5);
+	}
+	JKRAramStream::create(p3);
+	JKRDecomp::create(p4);
+	OSResumeThread(sAramObject->m_thread);
+	return sAramObject;
 	/*
 	stwu     r1, -0x20(r1)
 	mflr     r0
@@ -197,8 +208,28 @@ lbl_80017A70:
  * Address:	80017AA4
  * Size:	00011C
  */
-JKRAram::JKRAram(u32, u32, long)
+JKRAram::JKRAram(u32 p1, u32 p2, long threadPriority)
+    : JKRThread(0x4000, 0x10, threadPriority)
 {
+	void* arStackPointer = ARInit(&m_blockLength, 3);
+	ARQInit();
+	u32 size = ARGetSize();
+	_80      = p1;
+	if (p2 == 0xFFFFFFFF) {
+		_88 = (size - p1) - (s32)arStackPointer;
+		_90 = 0;
+	} else {
+		_88 = p2;
+		_90 = (size - (p1 + p2)) - (s32)arStackPointer;
+	}
+	_7C = ARAlloc(_80);
+	_84 = ARAlloc(_88);
+	if (_90) {
+		_8C = ARAlloc(_90);
+	} else {
+		_8C = 0;
+	}
+	m_aramHeap = new (JKRHeap::sSystemHeap, 0) JKRAramHeap(_84, _88);
 	/*
 	stwu     r1, -0x20(r1)
 	mflr     r0

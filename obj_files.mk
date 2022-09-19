@@ -183,8 +183,8 @@ JSYSTEM:=\
 	$(BUILD_DIR)/src/JSystem/JAS/JASWaveBank.o\
 	$(BUILD_DIR)/asm/JSystem/JAS/JASWaveBankMgr.o\
 	$(BUILD_DIR)/src/JSystem/JAS/JASBank.o\
-	$(BUILD_DIR)/asm/JSystem/JAS/JASTrackPort.o\
-	$(BUILD_DIR)/asm/JSystem/JAS/JASOuterParam.o\
+	$(BUILD_DIR)/src/JSystem/JAS/JASTrackPort.o\
+	$(BUILD_DIR)/src/JSystem/JAS/JASOuterParam.o\
 	$(BUILD_DIR)/asm/JSystem/JAS/JASPlayer_impl.o\
 	$(BUILD_DIR)/asm/JSystem/JAS/JASRegisterParam.o\
 	$(BUILD_DIR)/asm/JSystem/JAS/JASSeqCtrl.o\
@@ -206,7 +206,7 @@ JSYSTEM:=\
 	$(BUILD_DIR)/asm/JSystem/JAS/JASResArcLoader.o\
 	$(BUILD_DIR)/asm/JSystem/JAS/JASReport.o\
 	$(BUILD_DIR)/asm/JSystem/JAS/JASAiCtrl.o\
-	$(BUILD_DIR)/asm/JSystem/JAS/JASChannelUpdater.o\
+	$(BUILD_DIR)/src/JSystem/JAS/JASChannelUpdater.o\
 	$(BUILD_DIR)/asm/JSystem/JAS/JASTaskThread.o\
 	$(BUILD_DIR)/asm/JSystem/JAS/JASAramStream.o\
 	$(BUILD_DIR)/asm/JSystem/dsp/dspproc.o\

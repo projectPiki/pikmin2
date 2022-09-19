@@ -1,3 +1,7 @@
+#include "JSystem/JAS/JASBNKParser.h"
+#include "JSystem/JAS/JASBank.h"
+#include "JSystem/JKR/JKRDisposer.h"
+#include "JSystem/JSupport/JSU.h"
 #include "types.h"
 
 /*
@@ -42,8 +46,15 @@
  * Address:	8009A7DC
  * Size:	0006D0
  */
-void JASBNKParser::createBasicBank(void*)
+JASBasicBank* JASBNKParser::createBasicBank(void* stream)
 {
+	JKRHeap* heap      = JASBank::getCurrentHeap();
+	u32 freeSize       = heap->getFreeSize();
+	JASBasicBank* bank = new (heap, 0) JASBasicBank();
+	if (bank == nullptr) {
+		return nullptr;
+	}
+	bank->setInstCount(0x100);
 	/*
 	stwu     r1, -0x60(r1)
 	mflr     r0
@@ -558,7 +569,7 @@ lbl_8009AE98:
  * Address:	8009AEAC
  * Size:	000120
  */
-void JASBNKParser::findOscPtr(JASBasicBank*, JASBNKParser::THeader*, JASBNKParser::TOsc*)
+JASOscillator::Data* JASBNKParser::findOscPtr(JASBasicBank*, JASBNKParser::THeader*, JASBNKParser::TOsc*)
 {
 	/*
 	.loc_0x0:
@@ -652,7 +663,7 @@ void JASBNKParser::findOscPtr(JASBasicBank*, JASBNKParser::THeader*, JASBNKParse
  * Address:	8009AFCC
  * Size:	000014
  */
-void JASBNKParser::getOscTableEndPtr(short*)
+unkptr JASBNKParser::getOscTableEndPtr(short*)
 {
 	/*
 	lha      r0, 0(r3)
@@ -668,7 +679,7 @@ void JASBNKParser::getOscTableEndPtr(short*)
  * Address:	........
  * Size:	000008
  */
-void JASBNKParser::getUsedHeapSize()
+u32 JASBNKParser::getUsedHeapSize()
 {
 	// UNUSED FUNCTION
 }
@@ -678,168 +689,168 @@ void JASBNKParser::getUsedHeapSize()
  * Address:	8009AFE0
  * Size:	000018
  */
-void JSUConvertOffsetToPtr<JASBNKParser::TPmap>(const void*, unsigned long)
-{
-	/*
-	cmplwi   r4, 0
-	bne      lbl_8009AFF0
-	li       r3, 0
-	blr
+// void JSUConvertOffsetToPtr<JASBNKParser::TPmap>(const void*, unsigned long)
+// {
+// 	/*
+// 	cmplwi   r4, 0
+// 	bne      lbl_8009AFF0
+// 	li       r3, 0
+// 	blr
 
-lbl_8009AFF0:
-	add      r3, r3, r4
-	blr
-	*/
-}
+// lbl_8009AFF0:
+// 	add      r3, r3, r4
+// 	blr
+// 	*/
+// }
 
 /*
  * --INFO--
  * Address:	8009AFF8
  * Size:	000018
  */
-void JSUConvertOffsetToPtr<JASBNKParser::TPerc>(const void*, unsigned long)
-{
-	/*
-	cmplwi   r4, 0
-	bne      lbl_8009B008
-	li       r3, 0
-	blr
+// void JSUConvertOffsetToPtr<JASBNKParser::TPerc>(const void*, unsigned long)
+// {
+// 	/*
+// 	cmplwi   r4, 0
+// 	bne      lbl_8009B008
+// 	li       r3, 0
+// 	blr
 
-lbl_8009B008:
-	add      r3, r3, r4
-	blr
-	*/
-}
+// lbl_8009B008:
+// 	add      r3, r3, r4
+// 	blr
+// 	*/
+// }
 
 /*
  * --INFO--
  * Address:	8009B010
  * Size:	000018
  */
-void JSUConvertOffsetToPtr<JASBNKParser::TVmap>(const void*, unsigned long)
-{
-	/*
-	cmplwi   r4, 0
-	bne      lbl_8009B020
-	li       r3, 0
-	blr
+// void JSUConvertOffsetToPtr<JASBNKParser::TVmap>(const void*, unsigned long)
+// {
+// 	/*
+// 	cmplwi   r4, 0
+// 	bne      lbl_8009B020
+// 	li       r3, 0
+// 	blr
 
-lbl_8009B020:
-	add      r3, r3, r4
-	blr
-	*/
-}
+// lbl_8009B020:
+// 	add      r3, r3, r4
+// 	blr
+// 	*/
+// }
 
 /*
  * --INFO--
  * Address:	8009B028
  * Size:	000018
  */
-void JSUConvertOffsetToPtr<JASBNKParser::TKeymap>(const void*, unsigned long)
-{
-	/*
-	cmplwi   r4, 0
-	bne      lbl_8009B038
-	li       r3, 0
-	blr
+// void JSUConvertOffsetToPtr<JASBNKParser::TKeymap>(const void*, unsigned long)
+// {
+// 	/*
+// 	cmplwi   r4, 0
+// 	bne      lbl_8009B038
+// 	li       r3, 0
+// 	blr
 
-lbl_8009B038:
-	add      r3, r3, r4
-	blr
-	*/
-}
+// lbl_8009B038:
+// 	add      r3, r3, r4
+// 	blr
+// 	*/
+// }
 
 /*
  * --INFO--
  * Address:	8009B040
  * Size:	000018
  */
-void JSUConvertOffsetToPtr<JASBNKParser::TSense>(const void*, unsigned long)
-{
-	/*
-	cmplwi   r4, 0
-	bne      lbl_8009B050
-	li       r3, 0
-	blr
+// void JSUConvertOffsetToPtr<JASBNKParser::TSense>(const void*, unsigned long)
+// {
+// 	/*
+// 	cmplwi   r4, 0
+// 	bne      lbl_8009B050
+// 	li       r3, 0
+// 	blr
 
-lbl_8009B050:
-	add      r3, r3, r4
-	blr
-	*/
-}
+// lbl_8009B050:
+// 	add      r3, r3, r4
+// 	blr
+// 	*/
+// }
 
 /*
  * --INFO--
  * Address:	8009B058
  * Size:	000018
  */
-void JSUConvertOffsetToPtr<JASBNKParser::TRand>(const void*, unsigned long)
-{
-	/*
-	cmplwi   r4, 0
-	bne      lbl_8009B068
-	li       r3, 0
-	blr
+// void JSUConvertOffsetToPtr<JASBNKParser::TRand>(const void*, unsigned long)
+// {
+// 	/*
+// 	cmplwi   r4, 0
+// 	bne      lbl_8009B068
+// 	li       r3, 0
+// 	blr
 
-lbl_8009B068:
-	add      r3, r3, r4
-	blr
-	*/
-}
+// lbl_8009B068:
+// 	add      r3, r3, r4
+// 	blr
+// 	*/
+// }
 
 /*
  * --INFO--
  * Address:	8009B070
  * Size:	000018
  */
-void JSUConvertOffsetToPtr<short>(const void*, unsigned long)
-{
-	/*
-	cmplwi   r4, 0
-	bne      lbl_8009B080
-	li       r3, 0
-	blr
+// void JSUConvertOffsetToPtr<short>(const void*, unsigned long)
+// {
+// 	/*
+// 	cmplwi   r4, 0
+// 	bne      lbl_8009B080
+// 	li       r3, 0
+// 	blr
 
-lbl_8009B080:
-	add      r3, r3, r4
-	blr
-	*/
-}
+// lbl_8009B080:
+// 	add      r3, r3, r4
+// 	blr
+// 	*/
+// }
 
 /*
  * --INFO--
  * Address:	8009B088
  * Size:	000018
  */
-void JSUConvertOffsetToPtr<JASBNKParser::TOsc>(const void*, unsigned long)
-{
-	/*
-	cmplwi   r4, 0
-	bne      lbl_8009B098
-	li       r3, 0
-	blr
+// void JSUConvertOffsetToPtr<JASBNKParser::TOsc>(const void*, unsigned long)
+// {
+// 	/*
+// 	cmplwi   r4, 0
+// 	bne      lbl_8009B098
+// 	li       r3, 0
+// 	blr
 
-lbl_8009B098:
-	add      r3, r3, r4
-	blr
-	*/
-}
+// lbl_8009B098:
+// 	add      r3, r3, r4
+// 	blr
+// 	*/
+// }
 
 /*
  * --INFO--
  * Address:	8009B0A0
  * Size:	000018
  */
-void JSUConvertOffsetToPtr<JASBNKParser::TInst>(const void*, unsigned long)
-{
-	/*
-	cmplwi   r4, 0
-	bne      lbl_8009B0B0
-	li       r3, 0
-	blr
+// void JSUConvertOffsetToPtr<JASBNKParser::TInst>(const void*, unsigned long)
+// {
+// 	/*
+// 	cmplwi   r4, 0
+// 	bne      lbl_8009B0B0
+// 	li       r3, 0
+// 	blr
 
-lbl_8009B0B0:
-	add      r3, r3, r4
-	blr
-	*/
-}
+// lbl_8009B0B0:
+// 	add      r3, r3, r4
+// 	blr
+// 	*/
+// }

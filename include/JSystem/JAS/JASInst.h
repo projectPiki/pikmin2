@@ -63,28 +63,53 @@ struct JASInstSense : public JASInstEffect {
  */
 struct JASInstParam {
 	u8 _00;                         // _00
-	u8 _01[0x7];                    // _01 - unknown/padding
+	u32 _04;                        // _04
 	JASOscillator::Data* m_oscData; // _08
 	int _0C;                        // _0C - possibly oscillator count?
 	float _10;                      // _10
 	float _14;                      // _14
 	float _18;                      // _18
-	u8 _1C[0x4];                    // _1C - unknown
+	float _1C;                      // _1C
 	float _20;                      // _20
 	u8 _24;                         // _24
 	u8 _25;                         // _25
 	short _26;                      // _26
 };
 
+/**
+ * @size{0x4}
+ */
 struct JASInst {
-	virtual ~JASInst();                                       // _08 (weak)
-	virtual void getParam(int, int, JASInstParam*) const = 0; // _0C
-	virtual void getType() const                         = 0; // _10
-	virtual void getKeymapIndex(int) const               = 0; // _14
+	/**
+	 * @fabricated
+	 * @size{0x10}
+	 */
+	struct TVeloRegion {
+		s32 _00;
+		u32 _04;
+		f32 _08;
+		f32 _0C;
+	};
+
+	/**
+	 * @reifiedAddress{800998CC}
+	 * @reifiedFile{JSystem/JAS/JASBasicInst.cpp}
+	 */
+	virtual ~JASInst() {};                                    // _08 (weak)
+	virtual bool getParam(int, int, JASInstParam*) const = 0; // _0C
+	virtual u32 getType() const                          = 0; // _10
+	virtual int getKeymapIndex(int) const                = 0; // _14
 };
 
 struct JASBasicInst : public JASInst {
 	struct TKeymap {
+		TKeymap();
+		~TKeymap();
+
+		void setVeloRegionCount(u32);
+		void getVeloRegion(int);
+		void getVeloRegion(int) const;
+
 		int _00;   // _00
 		uint _04;  // _04 - velo region count?
 		void* _08; // _08 - velo region pointer?
@@ -93,21 +118,31 @@ struct JASBasicInst : public JASInst {
 	JASBasicInst();
 
 	virtual ~JASBasicInst();                              // _08
-	virtual void getParam(int, int, JASInstParam*) const; // _0C
-	virtual void getType() const;                         // _10 (weak)
-	virtual void getKeymapIndex(int) const;               // _14
+	virtual bool getParam(int, int, JASInstParam*) const; // _0C
+	/**
+	 * @reifiedAddress{80099E54}
+	 * @reifiedFile{JSystem/JAS/JASBasicInst.cpp}
+	 */
+	virtual u32 getType() const { return 'BSIC'; } // _10 (weak)
+	virtual int getKeymapIndex(int) const;         // _14
 
 	void setKeyRegionCount(u32);
 	void setEffectCount(u32);
 	void setEffect(int, JASInstEffect*);
 	void setOscCount(u32);
 	void setOsc(int, JASOscillator::Data*);
-	void getKeyRegion(int);
+	TKeymap* getKeyRegion(int);
+
+	// unused/inlined:
+	void searchKeymap(int) const;
+	JASInstEffect* getEffect(int);
+	JASOscillator::Data* getOsc(int);
+	TKeymap* getKeyRegion(int) const;
 
 	// _00 = VTABLE
 	float _04;                       // _04
 	float _08;                       // _08
-	JASInstEffect* m_effects;        // _0C
+	JASInstEffect** m_effects;       // _0C
 	u32 m_effectCount;               // _10
 	JASOscillator::Data** m_oscData; // _14
 	u32 m_oscCount;                  // _18

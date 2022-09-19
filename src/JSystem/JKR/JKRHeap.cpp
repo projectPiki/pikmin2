@@ -94,10 +94,10 @@ typedef void Destructor(void*, short);
 #define INVOKE_VIRT_DTOR(o, v) (((*(Destructor***)(o))[2])((o), (v)))
 
 /*
- * __ct__
  * --INFO--
  * Address:	800232B4
  * Size:	000124
+ * __ct__7JKRHeapFPvUlP7JKRHeapb
  */
 JKRHeap::JKRHeap(void* startPtr, u32 size, JKRHeap* parentHeap, bool shouldSetErrorHandlerMaybe)
     : _40()
@@ -412,13 +412,6 @@ JKRHeap* JKRHeap::becomeSystemHeap()
 	JKRHeap* old = sSystemHeap;
 	sSystemHeap  = this;
 	return old;
-	/*
-	.loc_0x0:
-	  lwz       r0, -0x77D8(r13)
-	  stw       r3, -0x77D8(r13)
-	  mr        r3, r0
-	  blr
-	*/
 }
 
 /*
@@ -431,13 +424,6 @@ JKRHeap* JKRHeap::becomeCurrentHeap()
 	JKRHeap* old = sCurrentHeap;
 	sCurrentHeap = this;
 	return old;
-	/*
-	.loc_0x0:
-	  lwz       r0, -0x77D4(r13)
-	  stw       r3, -0x77D4(r13)
-	  mr        r3, r0
-	  blr
-	*/
 }
 
 /*
@@ -445,24 +431,7 @@ JKRHeap* JKRHeap::becomeCurrentHeap()
  * Address:	800235B4
  * Size:	00002C
  */
-void JKRHeap::destroy()
-{
-	do_destroy();
-	/*
-	.loc_0x0:
-	  stwu      r1, -0x10(r1)
-	  mflr      r0
-	  stw       r0, 0x14(r1)
-	  lwz       r12, 0x0(r3)
-	  lwz       r12, 0x20(r12)
-	  mtctr     r12
-	  bctrl
-	  lwz       r0, 0x14(r1)
-	  mtlr      r0
-	  addi      r1, r1, 0x10
-	  blr
-	*/
-}
+void JKRHeap::destroy() { do_destroy(); }
 
 /*
  * --INFO--
@@ -480,41 +449,6 @@ void* JKRHeap::alloc(u32 byteCount, int padding, JKRHeap* heap)
 		memory = nullptr;
 	}
 	return memory;
-	/*
-	.loc_0x0:
-	  stwu      r1, -0x10(r1)
-	  mflr      r0
-	  cmplwi    r5, 0
-	  mr        r6, r3
-	  stw       r0, 0x14(r1)
-	  mr        r0, r4
-	  beq-      .loc_0x30
-	  mr        r3, r5
-	  mr        r4, r6
-	  mr        r5, r0
-	  bl        .loc_0x60
-	  b         .loc_0x50
-
-	.loc_0x30:
-	  lwz       r3, -0x77D4(r13)
-	  cmplwi    r3, 0
-	  beq-      .loc_0x4C
-	  mr        r4, r6
-	  mr        r5, r0
-	  bl        .loc_0x60
-	  b         .loc_0x50
-
-	.loc_0x4C:
-	  li        r3, 0
-
-	.loc_0x50:
-	  lwz       r0, 0x14(r1)
-	  mtlr      r0
-	  addi      r1, r1, 0x10
-	  blr
-
-	.loc_0x60:
-	*/
 }
 
 /*
@@ -551,33 +485,6 @@ void JKRHeap::free(void* memory, JKRHeap* heap)
 	if ((heap) || (heap = findFromRoot(memory), heap)) {
 		heap->free(memory);
 	}
-	/*
-	.loc_0x0:
-	  stwu      r1, -0x10(r1)
-	  mflr      r0
-	  cmplwi    r4, 0
-	  stw       r0, 0x14(r1)
-	  stw       r31, 0xC(r1)
-	  mr        r31, r3
-	  bne-      .loc_0x28
-	  bl        0x26C
-	  mr.       r4, r3
-	  beq-      .loc_0x34
-
-	.loc_0x28:
-	  mr        r3, r4
-	  mr        r4, r31
-	  bl        .loc_0x48
-
-	.loc_0x34:
-	  lwz       r0, 0x14(r1)
-	  lwz       r31, 0xC(r1)
-	  mtlr      r0
-	  addi      r1, r1, 0x10
-	  blr
-
-	.loc_0x48:
-	*/
 }
 
 /*
@@ -650,190 +557,63 @@ void JKRHeap::callAllDisposer()
  * Address:	80023730
  * Size:	00002C
  */
-void JKRHeap::freeAll()
-{
-	do_freeAll();
-	/*
-	.loc_0x0:
-	  stwu      r1, -0x10(r1)
-	  mflr      r0
-	  stw       r0, 0x14(r1)
-	  lwz       r12, 0x0(r3)
-	  lwz       r12, 0x2C(r12)
-	  mtctr     r12
-	  bctrl
-	  lwz       r0, 0x14(r1)
-	  mtlr      r0
-	  addi      r1, r1, 0x10
-	  blr
-	*/
-}
+void JKRHeap::freeAll() { do_freeAll(); }
 
 /*
  * --INFO--
  * Address:	8002375C
  * Size:	00002C
  */
-void JKRHeap::freeTail()
-{
-	do_freeTail();
-	/*
-	.loc_0x0:
-	  stwu      r1, -0x10(r1)
-	  mflr      r0
-	  stw       r0, 0x14(r1)
-	  lwz       r12, 0x0(r3)
-	  lwz       r12, 0x30(r12)
-	  mtctr     r12
-	  bctrl
-	  lwz       r0, 0x14(r1)
-	  mtlr      r0
-	  addi      r1, r1, 0x10
-	  blr
-	*/
-}
+void JKRHeap::freeTail() { do_freeTail(); }
 
 /*
  * --INFO--
  * Address:	80023788
  * Size:	00002C
  */
-void JKRHeap::resize(void* memoryBlock, u32 newSize)
-{
-	do_resize(memoryBlock, newSize);
-	/*
-	.loc_0x0:
-	  stwu      r1, -0x10(r1)
-	  mflr      r0
-	  stw       r0, 0x14(r1)
-	  lwz       r12, 0x0(r3)
-	  lwz       r12, 0x38(r12)
-	  mtctr     r12
-	  bctrl
-	  lwz       r0, 0x14(r1)
-	  mtlr      r0
-	  addi      r1, r1, 0x10
-	  blr
-	*/
-}
+void JKRHeap::resize(void* memoryBlock, u32 newSize) { do_resize(memoryBlock, newSize); }
 
 /*
  * --INFO--
  * Address:	800237B4
  * Size:	00002C
  */
-u32 JKRHeap::getFreeSize()
-{
-	return do_getFreeSize();
-	/*
-	.loc_0x0:
-	  stwu      r1, -0x10(r1)
-	  mflr      r0
-	  stw       r0, 0x14(r1)
-	  lwz       r12, 0x0(r3)
-	  lwz       r12, 0x40(r12)
-	  mtctr     r12
-	  bctrl
-	  lwz       r0, 0x14(r1)
-	  mtlr      r0
-	  addi      r1, r1, 0x10
-	  blr
-	*/
-}
+u32 JKRHeap::getFreeSize() { return do_getFreeSize(); }
 
 /*
  * --INFO--
  * Address:	800237E0
  * Size:	00002C
  */
-i32 JKRHeap::getTotalFreeSize()
-{
-	return do_getTotalFreeSize();
-	/*
-	.loc_0x0:
-	  stwu      r1, -0x10(r1)
-	  mflr      r0
-	  stw       r0, 0x14(r1)
-	  lwz       r12, 0x0(r3)
-	  lwz       r12, 0x48(r12)
-	  mtctr     r12
-	  bctrl
-	  lwz       r0, 0x14(r1)
-	  mtlr      r0
-	  addi      r1, r1, 0x10
-	  blr
-	*/
-}
+u32 JKRHeap::getTotalFreeSize() { return do_getTotalFreeSize(); }
 
 /*
  * --INFO--
  * Address:	8002380C
  * Size:	00002C
  */
-u8 JKRHeap::changeGroupID(u8 newGroupID)
-{
-	return do_changeGroupID(newGroupID);
-	/*
-	.loc_0x0:
-	  stwu      r1, -0x10(r1)
-	  mflr      r0
-	  stw       r0, 0x14(r1)
-	  lwz       r12, 0x0(r3)
-	  lwz       r12, 0x4C(r12)
-	  mtctr     r12
-	  bctrl
-	  lwz       r0, 0x14(r1)
-	  mtlr      r0
-	  addi      r1, r1, 0x10
-	  blr
-	*/
-}
+u8 JKRHeap::changeGroupID(u8 newGroupID) { return do_changeGroupID(newGroupID); }
 
 /*
  * --INFO--
  * Address:	80023838
  * Size:	000008
  */
-u8 JKRHeap::do_changeGroupID(u8 newGroupID)
-{
-	return 0;
-	return 0x0;
-}
+u8 JKRHeap::do_changeGroupID(u8 newGroupID) { return 0; }
 
 /*
  * --INFO--
  * Address:	80023840
  * Size:	00002C
  */
-u8 JKRHeap::getCurrentGroupId()
-{
-	return do_getCurrentGroupId();
-	/*
-	.loc_0x0:
-	  stwu      r1, -0x10(r1)
-	  mflr      r0
-	  stw       r0, 0x14(r1)
-	  lwz       r12, 0x0(r3)
-	  lwz       r12, 0x50(r12)
-	  mtctr     r12
-	  bctrl
-	  lwz       r0, 0x14(r1)
-	  mtlr      r0
-	  addi      r1, r1, 0x10
-	  blr
-	*/
-}
+u8 JKRHeap::getCurrentGroupId() { return do_getCurrentGroupId(); }
 
 /*
  * --INFO--
  * Address:	8002386C
  * Size:	000008
  */
-u8 JKRHeap::do_getCurrentGroupId()
-{
-	return 0;
-	return 0x0;
-}
+u8 JKRHeap::do_getCurrentGroupId() { return 0; }
 
 /*
  * TODO: What does p1 mean? Alignment?
@@ -901,36 +681,13 @@ JKRHeap* JKRHeap::findFromRoot(void* memory)
 	// return findings;
 	// // Above isn't tested, but this is cleaner:
 	return (sRootHeap) ? sRootHeap->find(memory) : nullptr;
-	/*
-	.loc_0x0:
-	  stwu      r1, -0x10(r1)
-	  mflr      r0
-	  mr        r4, r3
-	  stw       r0, 0x14(r1)
-	  lwz       r0, -0x77D0(r13)
-	  cmplwi    r0, 0
-	  beq-      .loc_0x28
-	  mr        r3, r0
-	  bl        .loc_0x3C
-	  b         .loc_0x2C
-
-	.loc_0x28:
-	  li        r3, 0
-
-	.loc_0x2C:
-	  lwz       r0, 0x14(r1)
-	  mtlr      r0
-	  addi      r1, r1, 0x10
-	  blr
-
-	.loc_0x3C:
-	*/
 }
 
 /*
  * --INFO--
  * Address:	80023930
  * Size:	000270
+ * find__7JKRHeapCFPv
  */
 JKRHeap* JKRHeap::find(void* memory) const
 {
@@ -1175,19 +932,19 @@ JKRHeap* JKRHeap::find(void* memory) const
  * Address:	80023BA0
  * Size:	000014
  */
-template <> JKRHeap* JSUTree<JKRHeap>::getNextChild() const
-{
-	JSUPtrLink* next = m_link.m_next;
-	return (next) ? (JKRHeap*)next[-1].m_list : nullptr;
-	/*
-	.loc_0x0:
-	  lwz       r3, 0x18(r3)
-	  cmplwi    r3, 0
-	  beqlr-
-	  subi      r3, r3, 0xC
-	  blr
-	*/
-}
+// template <> JKRHeap* JSUTree<JKRHeap>::getNextChild() const
+// {
+// 	JSUPtrLink* next = m_link.m_next;
+// 	return (next) ? (JKRHeap*)next[-1].m_list : nullptr;
+// 	/*
+// 	.loc_0x0:
+// 	  lwz       r3, 0x18(r3)
+// 	  cmplwi    r3, 0
+// 	  beqlr-
+// 	  subi      r3, r3, 0xC
+// 	  blr
+// 	*/
+// }
 
 /*
  * --INFO--
@@ -1212,14 +969,14 @@ template <> bool JSUTreeIterator<JKRHeap>::operator!=(const JSUTree<JKRHeap>*) c
  * Address:	80023BCC
  * Size:	000008
  */
-template <> JKRHeap* JSUTree<JKRHeap>::getEndChild() const { return nullptr; }
+template <> JSUTree<JKRHeap>* JSUTree<JKRHeap>::getEndChild() const { return nullptr; }
 
 /*
  * --INFO--
  * Address:	80023BD4
  * Size:	00001C
  */
-template <> void JSUTreeIterator<JKRHeap>::operator++()
+template <> JSUTreeIterator<JKRHeap>& JSUTreeIterator<JKRHeap>::operator++()
 {
 	/*
 	lwz      r4, 0(r3)
@@ -1239,7 +996,7 @@ lbl_80023BE8:
  * Address:	80023BF0
  * Size:	00000C
  */
-template <> JKRHeap* JSUTreeIterator<JKRHeap>::operator->() const { return (JKRHeap*)m_tree->m_link.m_value; }
+template <> JKRHeap* JSUTreeIterator<JKRHeap>::operator->() const { return getObject(); }
 
 /*
  * --INFO--
@@ -1257,14 +1014,14 @@ JSUTreeIterator<JKRHeap>::JSUTreeIterator(JSUTree<JKRHeap>* tree)
  * Address:	80023C04
  * Size:	000008
  */
-template <> int JSUTree<JKRHeap>::getNumChildren() const { return m_list.m_linkCount; }
+template <> int JSUTree<JKRHeap>::getNumChildren() const { return getNumLinks(); }
 
 /*
  * --INFO--
  * Address:	80023C0C
  * Size:	000014
  */
-template <> JKRHeap* JSUTree<JKRHeap>::getFirstChild() const
+template <> JSUTree<JKRHeap>* JSUTree<JKRHeap>::getFirstChild() const
 {
 	/*
 	lwz      r3, 0(r3)
@@ -1280,7 +1037,7 @@ template <> JKRHeap* JSUTree<JKRHeap>::getFirstChild() const
  * Address:	80023C20
  * Size:	000008
  */
-JSUPtrLink* JSUPtrList::getFirstLink() const { return m_head; }
+// JSUPtrLink* JSUPtrList::getFirstLink() const { return m_head; }
 
 /*
  * --INFO--
@@ -1423,6 +1180,7 @@ lbl_80023D4C:
  * --INFO--
  * Address:	80023D74
  * Size:	000050
+ * dispose__7JKRHeapFv
  */
 void JKRHeap::dispose()
 {
@@ -1519,8 +1277,7 @@ lbl_80023E38:
  */
 void JKRDefaultMemoryErrorRoutine(void*, unsigned long, int)
 {
-#line 791
-	OSError("abort\n");
+	OSErrorLine(791, "abort\n");
 	/*
 	.loc_0x0:
 	  stwu      r1, -0x10(r1)
@@ -1552,105 +1309,29 @@ JKRHeapErrorHandler* JKRHeap::setErrorHandler(JKRHeapErrorHandler* newHandler)
 	}
 	mErrorHandler = newHandler;
 	return oldHandler;
-	/*
-	.loc_0x0:
-	  cmplwi    r3, 0
-	  lwz       r0, -0x77CC(r13)
-	  bne-      .loc_0x14
-	  lis       r3, 0x8002
-	  addi      r3, r3, 0x3E50
-
-	.loc_0x14:
-	  stw       r3, -0x77CC(r13)
-	  mr        r3, r0
-	  blr
-	*/
 }
 
 /*
  * --INFO--
  * Address:	80023EA4
  * Size:	00004C
+ * __nw__FUl
  */
-void* operator new(u32 byteCount)
-{
-	return (JKRHeap::sCurrentHeap) ? JKRHeap::sCurrentHeap->do_alloc(byteCount, 4) : nullptr;
-	// void* memory;
-	// if (JKRHeap::sCurrentHeap) {
-	// 	memory = JKRHeap::sCurrentHeap->do_alloc(byteCount, 4);
-	// } else {
-	// 	memory = nullptr;
-	// }
-	// return memory;
-	/*
-	.loc_0x0:
-	  stwu      r1, -0x10(r1)
-	  mflr      r0
-	  mr        r4, r3
-	  stw       r0, 0x14(r1)
-	  lwz       r0, -0x77D4(r13)
-	  cmplwi    r0, 0
-	  beq-      .loc_0x38
-	  mr        r3, r0
-	  li        r5, 0x4
-	  lwz       r12, 0x0(r3)
-	  lwz       r12, 0x24(r12)
-	  mtctr     r12
-	  bctrl
-	  b         .loc_0x3C
-
-	.loc_0x38:
-	  li        r3, 0
-
-	.loc_0x3C:
-	  lwz       r0, 0x14(r1)
-	  mtlr      r0
-	  addi      r1, r1, 0x10
-	  blr
-	*/
-}
+void* operator new(u32 byteCount) { return (JKRHeap::sCurrentHeap) ? JKRHeap::sCurrentHeap->do_alloc(byteCount, 4) : nullptr; }
 
 /*
  * --INFO--
  * Address:	80023EF0
  * Size:	000050
+ * __nw__FUli
  */
-void* operator new(u32 byteCount, int p2)
-{
-	return (JKRHeap::sCurrentHeap) ? JKRHeap::sCurrentHeap->do_alloc(byteCount, p2) : nullptr;
-	/*
-	.loc_0x0:
-	  stwu      r1, -0x10(r1)
-	  mflr      r0
-	  mr        r6, r3
-	  mr        r5, r4
-	  stw       r0, 0x14(r1)
-	  lwz       r0, -0x77D4(r13)
-	  cmplwi    r0, 0
-	  beq-      .loc_0x3C
-	  mr        r3, r0
-	  mr        r4, r6
-	  lwz       r12, 0x0(r3)
-	  lwz       r12, 0x24(r12)
-	  mtctr     r12
-	  bctrl
-	  b         .loc_0x40
-
-	.loc_0x3C:
-	  li        r3, 0
-
-	.loc_0x40:
-	  lwz       r0, 0x14(r1)
-	  mtlr      r0
-	  addi      r1, r1, 0x10
-	  blr
-	*/
-}
+void* operator new(u32 byteCount, int p2) { return (JKRHeap::sCurrentHeap) ? JKRHeap::sCurrentHeap->do_alloc(byteCount, p2) : nullptr; }
 
 /*
  * --INFO--
  * Address:	80023F40
  * Size:	00006C
+ * __nw__FUlP7JKRHeapi
  */
 void* operator new(u32 byteCount, JKRHeap* heap, int p3)
 {
@@ -1659,121 +1340,29 @@ void* operator new(u32 byteCount, JKRHeap* heap, int p3)
 	} else {
 		return (JKRHeap::sCurrentHeap) ? JKRHeap::sCurrentHeap->do_alloc(byteCount, p3) : nullptr;
 	}
-	/*
-	.loc_0x0:
-	  stwu      r1, -0x10(r1)
-	  mflr      r0
-	  cmplwi    r4, 0
-	  stw       r0, 0x14(r1)
-	  mr        r0, r3
-	  beq-      .loc_0x34
-	  mr        r3, r4
-	  mr        r4, r0
-	  lwz       r12, 0x0(r3)
-	  lwz       r12, 0x24(r12)
-	  mtctr     r12
-	  bctrl
-	  b         .loc_0x5C
-
-	.loc_0x34:
-	  lwz       r3, -0x77D4(r13)
-	  cmplwi    r3, 0
-	  beq-      .loc_0x58
-	  lwz       r12, 0x0(r3)
-	  mr        r4, r0
-	  lwz       r12, 0x24(r12)
-	  mtctr     r12
-	  bctrl
-	  b         .loc_0x5C
-
-	.loc_0x58:
-	  li        r3, 0
-
-	.loc_0x5C:
-	  lwz       r0, 0x14(r1)
-	  mtlr      r0
-	  addi      r1, r1, 0x10
-	  blr
-	*/
 }
 
 /*
  * --INFO--
  * Address:	80023FAC
  * Size:	00004C
+ * __nwa__FUl
  */
-void* operator new[](u32 byteCount)
-{
-	return (JKRHeap::sCurrentHeap) ? JKRHeap::sCurrentHeap->do_alloc(byteCount, 4) : nullptr;
-	/*
-	.loc_0x0:
-	  stwu      r1, -0x10(r1)
-	  mflr      r0
-	  mr        r4, r3
-	  stw       r0, 0x14(r1)
-	  lwz       r0, -0x77D4(r13)
-	  cmplwi    r0, 0
-	  beq-      .loc_0x38
-	  mr        r3, r0
-	  li        r5, 0x4
-	  lwz       r12, 0x0(r3)
-	  lwz       r12, 0x24(r12)
-	  mtctr     r12
-	  bctrl
-	  b         .loc_0x3C
-
-	.loc_0x38:
-	  li        r3, 0
-
-	.loc_0x3C:
-	  lwz       r0, 0x14(r1)
-	  mtlr      r0
-	  addi      r1, r1, 0x10
-	  blr
-	*/
-}
+void* operator new[](u32 byteCount) { return (JKRHeap::sCurrentHeap) ? JKRHeap::sCurrentHeap->do_alloc(byteCount, 4) : nullptr; }
 
 /*
  * --INFO--
  * Address:	80023FF8
  * Size:	000050
+ * __nwa__FUli
  */
-void* operator new[](u32 byteCount, int p2)
-{
-	return (JKRHeap::sCurrentHeap) ? JKRHeap::sCurrentHeap->do_alloc(byteCount, p2) : nullptr;
-	/*
-	.loc_0x0:
-	  stwu      r1, -0x10(r1)
-	  mflr      r0
-	  mr        r6, r3
-	  mr        r5, r4
-	  stw       r0, 0x14(r1)
-	  lwz       r0, -0x77D4(r13)
-	  cmplwi    r0, 0
-	  beq-      .loc_0x3C
-	  mr        r3, r0
-	  mr        r4, r6
-	  lwz       r12, 0x0(r3)
-	  lwz       r12, 0x24(r12)
-	  mtctr     r12
-	  bctrl
-	  b         .loc_0x40
-
-	.loc_0x3C:
-	  li        r3, 0
-
-	.loc_0x40:
-	  lwz       r0, 0x14(r1)
-	  mtlr      r0
-	  addi      r1, r1, 0x10
-	  blr
-	*/
-}
+void* operator new[](u32 byteCount, int p2) { return (JKRHeap::sCurrentHeap) ? JKRHeap::sCurrentHeap->do_alloc(byteCount, p2) : nullptr; }
 
 /*
  * --INFO--
  * Address:	80024048
  * Size:	00006C
+ * __nwa__FUlP7JKRHeapi
  */
 void* operator new[](u32 byteCount, JKRHeap* heap, int p3)
 {
@@ -1782,48 +1371,13 @@ void* operator new[](u32 byteCount, JKRHeap* heap, int p3)
 	} else {
 		return (JKRHeap::sCurrentHeap) ? JKRHeap::sCurrentHeap->do_alloc(byteCount, p3) : nullptr;
 	}
-	/*
-	.loc_0x0:
-	  stwu      r1, -0x10(r1)
-	  mflr      r0
-	  cmplwi    r4, 0
-	  stw       r0, 0x14(r1)
-	  mr        r0, r3
-	  beq-      .loc_0x34
-	  mr        r3, r4
-	  mr        r4, r0
-	  lwz       r12, 0x0(r3)
-	  lwz       r12, 0x24(r12)
-	  mtctr     r12
-	  bctrl
-	  b         .loc_0x5C
-
-	.loc_0x34:
-	  lwz       r3, -0x77D4(r13)
-	  cmplwi    r3, 0
-	  beq-      .loc_0x58
-	  lwz       r12, 0x0(r3)
-	  mr        r4, r0
-	  lwz       r12, 0x24(r12)
-	  mtctr     r12
-	  bctrl
-	  b         .loc_0x5C
-
-	.loc_0x58:
-	  li        r3, 0
-
-	.loc_0x5C:
-	  lwz       r0, 0x14(r1)
-	  mtlr      r0
-	  addi      r1, r1, 0x10
-	  blr
-	*/
 }
 
 /*
  * --INFO--
  * Address:	800240B4
  * Size:	000024
+ * __dl__FPv
  */
 void operator delete(void* memory)
 {
@@ -1846,6 +1400,7 @@ void operator delete(void* memory)
  * --INFO--
  * Address:	800240D8
  * Size:	000024
+ * __dla__FPv
  */
 void operator delete[](void* memory)
 {
@@ -1866,8 +1421,39 @@ void operator delete[](void* memory)
 
 /*
  * --INFO--
+ * Address:	........
+ * Size:	00007C
+ */
+JKRHeap::TState::TState(const JKRHeap::TState::TArgument& arg, const JKRHeap::TState::TLocation& location)
+{
+	// UNUSED FUNCTION
+}
+
+/*
+ * --INFO--
+ * Address:	........
+ * Size:	000080
+ */
+JKRHeap::TState::TState(const JKRHeap::TState& other, bool p2)
+{
+	// UNUSED FUNCTION
+}
+
+/*
+ * --INFO--
+ * Address:	........
+ * Size:	000080
+ */
+JKRHeap::TState::TState(const JKRHeap::TState& other, const JKRHeap::TState::TLocation& location, bool p3)
+{
+	// UNUSED FUNCTION
+}
+
+/*
+ * --INFO--
  * Address:	800240FC
  * Size:	000414
+ * __dt__Q27JKRHeap6TStateFv
  */
 JKRHeap::TState::~TState()
 {
@@ -2225,6 +1811,7 @@ bool JKRHeap::TState::isVerbose() { return bVerbose; }
  * --INFO--
  * Address:	8002454C
  * Size:	000080
+ *  __ct__Q27JKRHeap6TStateFPC7JKRHeapUlb
  */
 JKRHeap::TState::TState(const JKRHeap* heap, u32 id, bool isCompareOnDestructed)
     : _00(0)
@@ -2236,45 +1823,6 @@ JKRHeap::TState::TState(const JKRHeap* heap, u32 id, bool isCompareOnDestructed)
     , _20(-1)
 {
 	m_heap->state_register(this, m_id);
-	/*
-	.loc_0x0:
-	  stwu      r1, -0x10(r1)
-	  mflr      r0
-	  cmplwi    r4, 0
-	  stw       r0, 0x14(r1)
-	  li        r0, 0
-	  stw       r31, 0xC(r1)
-	  mr        r31, r3
-	  stw       r0, 0x0(r3)
-	  stw       r0, 0x4(r3)
-	  beq-      .loc_0x2C
-	  b         .loc_0x30
-
-	.loc_0x2C:
-	  lwz       r4, -0x77D4(r13)
-
-	.loc_0x30:
-	  stw       r4, 0x10(r31)
-	  li        r3, 0
-	  li        r0, -0x1
-	  mr        r4, r31
-	  stw       r5, 0x14(r31)
-	  stb       r6, 0x18(r31)
-	  stw       r3, 0x1C(r31)
-	  stw       r0, 0x20(r31)
-	  lwz       r3, 0x10(r31)
-	  lwz       r5, 0x14(r31)
-	  lwz       r12, 0x0(r3)
-	  lwz       r12, 0x54(r12)
-	  mtctr     r12
-	  bctrl
-	  lwz       r0, 0x14(r1)
-	  mr        r3, r31
-	  lwz       r31, 0xC(r1)
-	  mtlr      r0
-	  addi      r1, r1, 0x10
-	  blr
-	*/
 }
 
 /*
@@ -2299,27 +1847,13 @@ JKRHeap::TState::TLocation::TLocation()
  * --INFO--
  * Address:	800245E8
  * Size:	000020
+ * __ct__Q37JKRHeap6TState9TArgumentFPC7JKRHeapUlb
  */
 JKRHeap::TState::TArgument::TArgument(const JKRHeap* heap, u32 p2, bool p3)
     : m_heap((heap) ? heap : JKRHeap::sCurrentHeap)
     , _04(p2)
     , _08(p3)
 {
-	/*
-	.loc_0x0:
-	  cmplwi    r4, 0
-	  beq-      .loc_0xC
-	  b         .loc_0x10
-
-	.loc_0xC:
-	  lwz       r4, -0x77D4(r13)
-
-	.loc_0x10:
-	  stw       r4, 0x0(r3)
-	  stw       r5, 0x4(r3)
-	  stb       r6, 0x8(r3)
-	  blr
-	*/
 }
 
 /*
