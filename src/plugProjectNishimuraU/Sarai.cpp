@@ -467,27 +467,35 @@ void Sarai::Obj::initMouthSlots()
  * --INFO--
  * Address:	802730D0
  * Size:	000108
- * TODO:	https://decomp.me/scratch/OEixe
  */
 f32 Sarai::Obj::setHeightVelocity()
 {
-	int stickCount         = m_stickPikminCount;
-	int pikminWeightFactor = (stickCount < 0) ? (0) : (stickCount <= 5 ? (stickCount) : (5));
+	// The maximum amount of Pikmin that can have an effect on the upward velocity of the Sarai
+#define MAX_PIKMIN_STUCK_FACTOR 5
 
-	float p2 = static_cast<Parms*>(m_parms)->m_properParms.m_fp11.m_value;
-	float p4 = static_cast<Parms*>(m_parms)->m_properParms.m_fp12.m_value;
+	// Calculate the weight factor based on Pikmin stuck
+	int pikminWeightFactor = (m_stickPikminCount < 0)
+	                             ? (0)
+	                             : (m_stickPikminCount <= MAX_PIKMIN_STUCK_FACTOR ? (m_stickPikminCount) : (MAX_PIKMIN_STUCK_FACTOR));
 
-	float amt = ((5.0f - pikminWeightFactor / 5.0f) * p2) + (pikminWeightFactor / 5.0f) * p4;
+	float riseFactor     = static_cast<Parms*>(m_parms)->m_properParms.m_fp11.m_value;
+	float climbingFactor = static_cast<Parms*>(m_parms)->m_properParms.m_fp12.m_value;
+	f32 weight           = pikminWeightFactor;
 
+	// Custom linear interpolation (https://en.wikipedia.org/wiki/Linear_interpolation)
+	// lerp v0, v1, t -> (1 - t) * v0 + t * v1
+	float velFactor = (((MAX_PIKMIN_STUCK_FACTOR - weight) / MAX_PIKMIN_STUCK_FACTOR) * riseFactor)
+	                  + (weight / MAX_PIKMIN_STUCK_FACTOR) * climbingFactor;
+
+	// Get the Y position of the map model (equivalent to a downwards raycast)
 	float mapPosY = mapMgr->getMinY(m_position);
-	float mapOffset;
-	if (getCatchTargetNum()) {
-		mapOffset = static_cast<Parms*>(m_parms)->m_properParms.m_fp02.m_value;
-	} else {
-		mapOffset = static_cast<Parms*>(m_parms)->m_properParms.m_fp01.m_value;
-	}
 
-	m_velocity.y = amt * ((mapPosY + mapOffset) - m_position.y);
+	// Get intended flight height
+	float flightHeight = getCatchTargetNum() ? static_cast<Parms*>(m_parms)->m_properParms.m_fp02.m_value  // Grab flight height
+	                                         : static_cast<Parms*>(m_parms)->m_properParms.m_fp01.m_value; // Normal flight height
+
+	// Upward velocity is offset by map height
+	m_velocity.y = velFactor * ((mapPosY + flightHeight) - m_position.y);
 
 	return m_position.y - mapPosY;
 }
