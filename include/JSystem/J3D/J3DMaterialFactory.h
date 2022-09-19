@@ -3,13 +3,7 @@
 
 #include "Dolphin/gx.h"
 #include "JSystem/J3D/J3DFileBlock.h"
-#include "JSystem/J3D/J3DGXColor.h"
-#include "JSystem/J3D/J3DInd.h"
 #include "JSystem/J3D/J3DMaterial.h"
-#include "JSystem/J3D/J3DPE.h"
-#include "JSystem/J3D/J3DTexMtx.h"
-#include "JSystem/J3D/J3DTevBlock.h"
-#include "JSystem/J3D/J3DTypes.h"
 #include "types.h"
 
 struct J3DAlphaCompInfo {
@@ -28,13 +22,9 @@ struct J3DColorChanInfo {
 };
 
 struct J3DCurrentMtxInfo {
-	u32 _00; // _00
-	u32 _04; // _04
 };
 
 struct J3DDisplayListInit {
-	u32 _00; // _00
-	u32 _04; // _04
 };
 
 struct J3DFogInfo {
@@ -59,13 +49,6 @@ struct J3DLightInfo {
 };
 
 struct J3DPatchingInfo {
-	u16 _00;   // _00
-	u16 _02;   // _02
-	u16 _04;   // _04
-	u16 _06;   // _06
-	u16 _08;   // _08
-	u16 _0A;   // _0A
-	u8 _0C[4]; // _0C
 };
 
 struct J3DTevOrderInfo {
@@ -75,13 +58,20 @@ struct J3DTevOrderInfo {
 };
 
 struct J3DTevStageInfo {
-	u8 _00[0x14]; // _00
+	u8 _00[0x13]; // _00
 };
 
-// extern const J3DTevSwapModeInfo j3dDefaultTevSwapMode;
-extern J3DTevSwapModeInfo j3dDefaultTevSwapMode;
+struct J3DTevSwapModeInfo {
+	u32 _00;
+};
 
 struct J3DTevSwapModeTableInfo {
+};
+
+struct J3DTexCoordInfo {
+	u8 _00; // _00
+	u8 _01; // _01
+	u8 _02; // _02
 };
 
 struct J3DTexCoord2Info {
@@ -126,33 +116,7 @@ struct J3DZModeInfo {
  * @size{0x14C}
  */
 struct J3DMaterialInitData {
-	u8 _00;                            // _00
-	u8 _01;                            // _01
-	u8 _02;                            // _02
-	u8 _03;                            // _03
-	u8 _04;                            // _04
-	u8 _05;                            // _05
-	u8 _06;                            // _06
-	u8 _07;                            // _07
-	u16 m_matColorIndices[2];          // _08 - guessed length
-	u16 m_colorChanIndices[4];         // _0C - guessed length
-	u16 m_ambColorIndices[10];         // _14 - guessed length
-	u16 m_texCoordInfoIndices[16];     // _28 - guessed length
-	u16 m_texMtxIndices[8];            // _48 - guessed length
-	u8 _58[0x2C];                      // _58 - unknown
-	u16 m_texNoIndices[8];             // _84 - guessed length
-	u16 m_tevKColorIndices[4];         // _94 - guessed length
-	u8 m_tevKColorSelIndices[4];       // _9C - unknown length
-	u8 _A0[0x1C];                      // _A0 - unknown
-	u16 m_tevOrderInfoIndices[16];     // _BC - guessed length
-	u16 m_tevColorIndices[4];          // _DC - guessed length
-	u16 m_tevStageIndices[16];         // _E4 - guessed length
-	u16 _104[16];                      // _104 - guessed length
-	u16 m_tevSwapModeTableIndices[16]; // _124 - guessed length
-	u16 m_fogInfoIndex;                // _144
-	u16 m_alphaCompInfoIndex;          // _146
-	u16 m_blendInfoIndex;              // _148
-	u16 m_nbtScaleInfoIndex;           // _14A
+	u8 _00[0x14C]; // _00
 };
 
 struct J3DMaterialFactory {
@@ -170,44 +134,36 @@ struct J3DMaterialFactory {
 	J3DMaterial* createNormalMaterial(J3DMaterial*, int, u32) const;
 	J3DLockedMaterial* createLockedMaterial(J3DMaterial*, int, u32) const;
 	J3DPatchedMaterial* createPatchedMaterial(J3DMaterial*, int, unsigned long) const;
-	J3DAlphaComp newAlphaComp(int) const;
-	J3DGXColor newAmbColor(int, int) const;
-	J3DBlend newBlend(int) const;
-	J3DColorChan newColorChan(int, int) const;
-	u8 newColorChanNum(int) const;
-	GXCullMode newCullMode(int) const;
-	u8 newDither(int) const;
-	J3DFog newFog(int) const;
-	J3DIndTexCoordScale newIndTexCoordScale(int, int) const;
-	J3DIndTexMtx newIndTexMtx(int, int) const;
-	J3DIndTexOrder newIndTexOrder(int, int) const;
-	u8 newIndTexStageNum(int) const;
-	J3DIndTevStage newIndTevStage(int, int) const;
-	J3DGXColor newMatColor(int, int) const;
-	J3DNBTScale newNBTScale(int) const;
-	J3DGXColorS10 newTevColor(int, int) const;
-	J3DGXColor newTevKColor(int, int) const;
-	J3DTevOrder newTevOrder(int, int) const;
-	J3DTevStage newTevStage(int, int) const;
-	u8 newTevStageNum(int) const;
-	J3DTevSwapModeTable newTevSwapModeTable(int, int) const;
-	J3DTexCoord newTexCoord(int, int) const;
-	u8 newTexGenNum(int) const;
-	J3DTexMtx newTexMtx(int, int) const;
-	u16 newTexNo(int, int) const;
-	u8 newZCompLoc(int) const;
-	J3DZMode newZMode(int) const;
+	void newAlphaComp(int) const;
+	void newAmbColor(int, int) const;
+	void newBlend(int) const;
+	void newColorChan(int, int) const;
+	void newColorChanNum(int) const;
+	void newCullMode(int) const;
+	void newDither(int) const;
+	void newFog(int) const;
+	void newIndTexCoordScale(int, int) const;
+	void newIndTexMtx(int, int) const;
+	void newIndTexOrder(int, int) const;
+	void newIndTexStageNum(int) const;
+	void newIndTevStage(int, int) const;
+	void newMatColor(int, int) const;
+	void newNBTScale(int) const;
+	void newTevColor(int, int) const;
+	void newTevKColor(int, int) const;
+	void newTevOrder(int, int) const;
+	void newTevStage(int, int) const;
+	void newTevStageNum(int) const;
+	void newTevSwapModeTable(int, int) const;
+	void newTexCoord(int, int) const;
+	void newTexGenNum(int) const;
+	void newTexMtx(int, int) const;
+	void newTexNo(int, int) const;
+	void newZCompLoc(int) const;
+	void newZMode(int) const;
 	void modifyPatchedCurrentMtx(J3DMaterial*, int) const;
 
-	/** @fabricated */
-	// inline s32 getMaterialInitDataIndex(s32 initDataIndexIndex) const { return _08[initDataIndexIndex]; }
-	inline J3DMaterialInitData& getMaterialInitData(s32 index) const { return _04[_08[index]]; }
-
-	// unused/inlined:
-	// inline J3DMaterialInitData& getMaterialInitData(u16 initDataIndexIndex) const { return _04[_08[initDataIndexIndex]]; }
-	// J3DMaterialInitData& getMaterialInitData(u16 initDataIndexIndex) const;
-
-	u16 _00; // _00
+	u8 _00[4]; // _00
 
 	J3DMaterialInitData* _04;     // _04
 	u16* _08;                     // _08

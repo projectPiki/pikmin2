@@ -501,7 +501,7 @@ typedef enum {
 enum OS_THREAD_STATE { OS_THREAD_STATE_READY = 1, OS_THREAD_STATE_RUNNING = 2, OS_THREAD_STATE_WAITING = 4, OS_THREAD_STATE_MORIBUND = 8 };
 
 // Thread priorities
-#define OS_PRIORITY_MIN  0 // highest
+#define OS_PRIORITY_MIN  0  // highest
 #define OS_PRIORITY_MAX  31 // lowest
 #define OS_PRIORITY_IDLE OS_PRIORITY_MAX
 
