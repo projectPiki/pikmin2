@@ -3,6 +3,7 @@
 
 #include "types.h"
 #include "Dolphin/gx.h"
+#include "Dolphin/gx.h"
 
 struct J3DGXColor : public GXColor {
 	J3DGXColor() { }
