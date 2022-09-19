@@ -10,29 +10,6 @@ struct JKRArchive;
 struct Stream;
 
 namespace Game {
-// struct CreatureParmsBase {
-// struct Property : public Parameters {
-// 	Property()
-// 	    : Parameters(nullptr, "Creature::Property")
-// 	    , m_friction(this, 's000', "friction(not used)", 0.5f, 0.0f, 1.0f)
-// 	    , m_wallReflection(this, 's001', "wallReflection", 0.5f, 0.0f, 1.0f)
-// 	    , m_faceDirAdjust(this, 's002', "faceDirAdjust", 0.25f, 0.0f, 1.0f)
-// 	    , m_accel(this, 's003', "accel", 0.1f, 0.01f, 2.0f)
-// 	    , m_bounceFactor(this, 's004', "bounceFactor", 0.3f, 0.01f, 2.0f)
-// 	{
-// 	}
-// 	Parm<float> m_friction;       // _0C
-// 	Parm<float> m_wallReflection; // _34
-// 	Parm<float> m_faceDirAdjust;  // _5C
-// 	Parm<float> m_accel;          // _84
-// 	Parm<float> m_bounceFactor;   // _AC
-// };
-
-// 	CreatureParmsBase()
-// 		: m_creatureParms() {};
-
-// 	Property m_creatureParms;
-// };
 struct CreatureProperty {
 	struct Property : public Parameters {
 		Property()
@@ -44,11 +21,11 @@ struct CreatureProperty {
 		    , m_bounceFactor(this, 's004', "bounceFactor", 0.3f, 0.01f, 2.0f)
 		{
 		}
-		Parm<float> m_friction;       // _0C
-		Parm<float> m_wallReflection; // _34
-		Parm<float> m_faceDirAdjust;  // _5C
-		Parm<float> m_accel;          // _84
-		Parm<float> m_bounceFactor;   // _AC
+		Parm<f32> m_friction;       // _0C
+		Parm<f32> m_wallReflection; // _34
+		Parm<f32> m_faceDirAdjust;  // _5C
+		Parm<f32> m_accel;          // _84
+		Parm<f32> m_bounceFactor;   // _AC
 	};
 	CreatureProperty()
 	    : m_props() {};
@@ -118,51 +95,51 @@ struct EnemyParmsBase : public CreatureParms {
 		{
 		}
 
-		Parm<float> m_health;
-		Parm<float> m_lifeMeterHeight;
-		Parm<float> m_regenerationRate;
-		Parm<float> m_fp30;
-		Parm<float> m_fp01;
-		Parm<float> m_cellRadius;
-		Parm<float> m_pikminDamageRadius;
-		Parm<float> m_offCameraRadius;
-		Parm<float> m_horizontalDamageScale;
-		Parm<float> m_verticalDamageScale;
-		Parm<float> m_damageScaleDuration;
-		Parm<float> m_fp05;
-		Parm<float> m_moveSpeed;
-		Parm<float> m_rotationalAccel;
-		Parm<float> m_rotationalSpeed;
-		Parm<float> m_territoryRadius;
-		Parm<float> m_homeRadius;
-		Parm<float> m_privateRadius;
-		Parm<float> m_sightRadius;
-		Parm<float> m_fp25;
-		Parm<float> m_fov;
-		Parm<float> m_fp14;
-		Parm<float> m_fp26;
-		Parm<float> m_fp15;
-		Parm<float> m_shakeKnockback;
-		Parm<float> m_shakeDamage;
-		Parm<float> m_shakeRange;
-		Parm<float> m_shakeRateMaybe;
-		Parm<float> m_fp20;
-		Parm<float> m_fp21;
-		Parm<float> m_fp22;
-		Parm<float> m_fp23;
-		Parm<float> m_attackDamage;
-		Parm<float> m_fp29;
-		Parm<float> m_stoneDuration;
-		Parm<float> m_purplePikminHipDropDamage;
-		Parm<float> m_purplePikminStunChance;
-		Parm<float> m_purplePikminStunTime;
-		Parm<int> m_ip01;
-		Parm<int> m_ip02;
-		Parm<int> m_ip03;
-		Parm<int> m_ip04;
-		Parm<int> m_ip05;
-		Parm<int> m_ip06;
-		Parm<int> m_ip07;
+		Parm<f32> m_health;                    // _0EC
+		Parm<f32> m_lifeMeterHeight;           // _114
+		Parm<f32> m_regenerationRate;          // _13C
+		Parm<f32> m_fp30;                      // _164, 'vigilant life'
+		Parm<f32> m_fp01;                      // _18C, 'match with the map'
+		Parm<f32> m_cellRadius;                // _1B4
+		Parm<f32> m_pikminDamageRadius;        // _1DC
+		Parm<f32> m_offCameraRadius;           // _204
+		Parm<f32> m_horizontalDamageScale;     // _22C
+		Parm<f32> m_verticalDamageScale;       // _254
+		Parm<f32> m_damageScaleDuration;       // _27C
+		Parm<f32> m_fp05;                      // _2A4, 'mass'
+		Parm<f32> m_moveSpeed;                 // _2CC
+		Parm<f32> m_rotationalAccel;           // _2F4
+		Parm<f32> m_rotationalSpeed;           // _31C
+		Parm<f32> m_territoryRadius;           // _344
+		Parm<f32> m_homeRadius;                // _36C
+		Parm<f32> m_privateRadius;             // _394
+		Parm<f32> m_sightRadius;               // _3BC
+		Parm<f32> m_fp25;                      // _3E4, 'visibility height'
+		Parm<f32> m_fov;                       // _40C
+		Parm<f32> m_fp14;                      // _434, 'search distance'
+		Parm<f32> m_fp26;                      // _45C, 'search height'
+		Parm<f32> m_fp15;                      // _484, 'search angle'
+		Parm<f32> m_shakeKnockback;            // _4AC
+		Parm<f32> m_shakeDamage;               // _4D4
+		Parm<f32> m_shakeRange;                // _4FC
+		Parm<f32> m_shakeRateMaybe;            // _524
+		Parm<f32> m_fp20;                      // _54C, 'attack range'
+		Parm<f32> m_fp21;                      // _574, 'possibly attack angle'
+		Parm<f32> m_fp22;                      // _59C, 'attack hit range'
+		Parm<f32> m_fp23;                      // _5C4, 'attack hit angle'
+		Parm<f32> m_attackDamage;              // _5EC
+		Parm<f32> m_fp29;                      // _614, 'alert time'
+		Parm<f32> m_stoneDuration;             // _63C
+		Parm<f32> m_purplePikminHipDropDamage; // _664
+		Parm<f32> m_purplePikminStunChance;    // _68C
+		Parm<f32> m_purplePikminStunTime;      // _6B4
+		Parm<int> m_ip01;                      // _6DC, 'shake off blow A'
+		Parm<int> m_ip02;                      // _704, 'shake off sticking 1'
+		Parm<int> m_ip03;                      // _72C, 'shake off blow B'
+		Parm<int> m_ip04;                      // _754, 'shake off sticking 2'
+		Parm<int> m_ip05;                      // _77C, 'shake off blow C'
+		Parm<int> m_ip06;                      // _7A4, 'shake off sticking 3'
+		Parm<int> m_ip07;                      // _7CC, 'shake off blow D'
 	};
 
 	EnemyParmsBase()

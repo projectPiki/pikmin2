@@ -25,19 +25,19 @@ struct Obj : public EnemyBase {
 	Obj();
 
 	//////////////// VTABLE
-	virtual void onInit(CreatureInitArg*);                   // _30
-	virtual void onKill(CreatureKillArg*);                   // _34
-	virtual void doDirectDraw(Graphics&);                    // _50
-	virtual f32 getCellRadius() { return m_cellRadius; }     // _58 (weak)
-	virtual void getShadowParam(ShadowParam&);               // _134
-	virtual ~Obj() { }                                       // _1BC (weak)
-	virtual void setInitialSetting(EnemyInitialParamBase*);  // _1C4
-	virtual void doUpdate();                                 // _1CC
-	virtual void doUpdateCommon();                           // _1D0
-	virtual void doAnimationCullingOff();                    // _1DC
-	virtual void doDebugDraw(Graphics&);                     // _1EC
-	virtual void changeMaterial() = 0;                       // _200
-	virtual EnemyTypeID::EEnemyTypeID getEnemyTypeID()       // _258 (weak)
+	virtual void onInit(CreatureInitArg*);                  // _30
+	virtual void onKill(CreatureKillArg*);                  // _34
+	virtual void doDirectDraw(Graphics&);                   // _50
+	virtual f32 getCellRadius() { return m_cellRadius; }    // _58 (weak)
+	virtual void getShadowParam(ShadowParam&);              // _134
+	virtual ~Obj() { }                                      // _1BC (weak)
+	virtual void setInitialSetting(EnemyInitialParamBase*); // _1C4
+	virtual void doUpdate();                                // _1CC
+	virtual void doUpdateCommon();                          // _1D0
+	virtual void doAnimationCullingOff();                   // _1DC
+	virtual void doDebugDraw(Graphics&);                    // _1EC
+	virtual void changeMaterial() = 0;                      // _200
+	virtual EnemyTypeID::EEnemyTypeID getEnemyTypeID()      // _258 (weak)
 	{
 		return EnemyTypeID::EnemyID_FireOtakara;
 	}
@@ -86,21 +86,23 @@ struct Obj : public EnemyBase {
 	bool stimulateBomb();
 	Creature* getChaseTargetCreature();
 
+	inline void getScaledRadius(f32 scale, f32* radius) { *radius = scale * (m_cellRadius - 10.0f); }
+
 	// _00 		= VTBL
 	// _00-_2BC	= EnemyBase
-	FSM* m_FSM;           // _2BC
-	int _2C0;             // _2C0
-	f32 _2C4;             // _2C4, timer?
-	f32 _2C8;             // _2C8
-	f32 m_escapeSfxTimer; // _2CC
-	u8 _2D0;              // _2D0
-	Vector3f m_movePosition;        // _2D4
-	Creature* m_treasure; // _2E0
-	f32 m_treasureHealth; // _2E4
-	f32 _2E8;             // _2E8, timer?
-	f32 _2EC;             // _2EC
-	f32 m_cellRadius;     // _2F0
-	                      // _2F4 = PelletView
+	FSM* m_FSM;              // _2BC
+	int _2C0;                // _2C0
+	f32 _2C4;                // _2C4, timer?
+	f32 _2C8;                // _2C8
+	f32 m_escapeSfxTimer;    // _2CC
+	u8 _2D0;                 // _2D0
+	Vector3f m_movePosition; // _2D4
+	Creature* m_treasure;    // _2E0
+	f32 m_treasureHealth;    // _2E4
+	f32 _2E8;                // _2E8, timer?
+	f32 _2EC;                // _2EC
+	f32 m_cellRadius;        // _2F0
+	                         // _2F4 = PelletView
 };
 
 struct Mgr : public EnemyMgrBase {

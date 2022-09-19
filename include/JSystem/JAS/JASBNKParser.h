@@ -6,7 +6,8 @@
 #include "types.h"
 
 namespace JASBNKParser {
-struct THeader { };
+struct THeader {
+};
 
 struct TInst {
 	u8 _00[8];              // _00

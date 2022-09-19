@@ -66,7 +66,8 @@ struct J3DAnmTransformFullData : J3DAnmFullData {
 	void* _1C;   // _1C
 	void* _20;   // _20
 };
-struct J3DAnmTransformFullTable { };
+struct J3DAnmTransformFullTable {
+};
 
 /**
  * @size{0x28}
@@ -96,7 +97,9 @@ struct J3DAnmTransformKey : public J3DAnmTransform {
 	J3DAnmTransformKeyTable* _24; // _24
 };
 
-struct J3DAnmTransformKeyData : public J3DAnmKeyTableBase { };
-struct J3DAnmTransformKeyTable : public J3DAnmKeyTableBase { };
+struct J3DAnmTransformKeyData : public J3DAnmKeyTableBase {
+};
+struct J3DAnmTransformKeyTable : public J3DAnmKeyTableBase {
+};
 
 #endif

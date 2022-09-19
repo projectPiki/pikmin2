@@ -21,9 +21,11 @@ struct J3DColorChanInfo {
 	u8 _00[0x8]; // _00
 };
 
-struct J3DCurrentMtxInfo { };
+struct J3DCurrentMtxInfo {
+};
 
-struct J3DDisplayListInit { };
+struct J3DDisplayListInit {
+};
 
 struct J3DFogInfo {
 	u8 _00;       // _00
@@ -43,9 +45,11 @@ struct J3DIndInitData {
 	u8 _00[0x88]; // _00
 };
 
-struct J3DLightInfo { };
+struct J3DLightInfo {
+};
 
-struct J3DPatchingInfo { };
+struct J3DPatchingInfo {
+};
 
 struct J3DTevOrderInfo {
 	u8 m_texCoordID; // _00
@@ -61,7 +65,8 @@ struct J3DTevSwapModeInfo {
 	u32 _00;
 };
 
-struct J3DTevSwapModeTableInfo { };
+struct J3DTevSwapModeTableInfo {
+};
 
 struct J3DTexCoordInfo {
 	u8 _00; // _00
@@ -69,7 +74,8 @@ struct J3DTexCoordInfo {
 	u8 _02; // _02
 };
 
-struct J3DTexCoord2Info { };
+struct J3DTexCoord2Info {
+};
 
 struct J3DTexMtxInfo {
 	u8 _00;    // _00

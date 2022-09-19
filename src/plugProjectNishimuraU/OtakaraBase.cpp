@@ -38,8 +38,8 @@ void Obj::onInit(CreatureInitArg* initArg)
 	_2C0 = -1;
 	_2C4 = 0.0f;
 	resetTreasure();
-	_2D0 = 0;
-	_2C8 = 12800.0f;
+	_2D0             = 0;
+	_2C8             = 12800.0f;
 	m_escapeSfxTimer = 0.0f;
 	setupEffect();
 
@@ -94,11 +94,11 @@ void Obj::doUpdateCommon()
 		if (m_targetCreature != nullptr) {
 			if (!m_targetCreature->isAlive()) {
 				m_targetCreature = nullptr;
-				m_health = 0.0f;
+				m_health         = 0.0f;
 			} else if (m_targetCreature->isStickTo()) {
 				m_targetCreature->endCapture();
 				m_targetCreature = nullptr;
-				m_health = 0.0f;
+				m_health         = 0.0f;
 			}
 		} else {
 			m_health = 0.0f;
@@ -159,7 +159,7 @@ void Obj::setFSM(FSM* fsm)
  */
 void Obj::getShadowParam(ShadowParam& shadowParam)
 {
-	Matrixf* mat = m_model->getJoint("otakara")->getWorldMatrix();
+	Matrixf* mat           = m_model->getJoint("otakara")->getWorldMatrix();
 	shadowParam.m_position = Vector3f(mat->m_matrix.mtxView[0][3], mat->m_matrix.mtxView[1][3], mat->m_matrix.mtxView[2][3]);
 	shadowParam.m_position.y -= 5.0f;
 
@@ -374,13 +374,13 @@ bool OtakaraBase::Obj::isMovePositionSet(bool ignoringTreasures)
 	}
 
 	if (target != nullptr) {
-		m_movePosition = target->getPosition();
+		m_movePosition   = target->getPosition();
 		m_targetCreature = target;
 	} else {
-		ConditionNotStickClientAndItem condition (this, m_treasure);
+		ConditionNotStickClientAndItem condition(this, m_treasure);
 		Parms* parms = static_cast<Parms*>(m_parms);
-		target = EnemyFunc::getNearestPikminOrNavi(this, parms->m_general.m_fov.m_value, 
-											parms->m_general.m_sightRadius.m_value, nullptr, nullptr, &condition);
+		target = EnemyFunc::getNearestPikminOrNavi(this, parms->m_general.m_fov.m_value, parms->m_general.m_sightRadius.m_value, nullptr,
+		                                           nullptr, &condition);
 		if (target != nullptr) {
 			m_movePosition = getTargetPosition(target);
 		}
@@ -401,7 +401,31 @@ bool OtakaraBase::Obj::isMovePositionSet(bool ignoringTreasures)
  */
 Pellet* OtakaraBase::Obj::getNearestTreasure()
 {
-	return nullptr;
+	Pellet* treasure = nullptr;
+	f32 sightRadius  = static_cast<Parms*>(m_parms)->m_general.m_sightRadius.m_value;
+	f32 minDist      = sightRadius * sightRadius;
+	PelletIterator iterator;
+	iterator.first();
+
+	while (!iterator.isDone()) {
+		Pellet* pellet = (Pellet*)(*iterator);
+		if (pellet->isAlive() && (pellet->m_captureMatrix == nullptr && pellet->isPickable())) {
+			Vector3f position = pellet->getPosition();
+			Vector3f sep      = position - m_homePosition;
+			f32 territory     = static_cast<Parms*>(m_parms)->m_general.m_territoryRadius.m_value;
+			if ((SQUARE(sep.x) + SQUARE(sep.z)) < SQUARE(territory)) {
+				Vector3f sep2 = m_position;
+				sep2 -= position;
+				f32 dist2D = SQUARE(sep2.x) + SQUARE(sep2.z);
+				if (dist2D < minDist) {
+					treasure = pellet;
+					minDist  = dist2D;
+				}
+			}
+		}
+		iterator.next();
+	}
+	return treasure;
 	/*
 	stwu     r1, -0x50(r1)
 	mflr     r0
@@ -641,46 +665,20 @@ lbl_802B7030:
  */
 void Obj::resetTreasure()
 {
-	/*
-	stwu     r1, -0x10(r1)
-	mflr     r0
-	lfs      f0, lbl_8051C290@sda21(r2)
-	stw      r0, 0x14(r1)
-	li       r0, 0
-	stw      r31, 0xc(r1)
-	mr       r31, r3
-	stw      r0, 0x2e0(r3)
-	lis      r3, 0x626F6479@ha
-	addi     r4, r3, 0x626F6479@l
-	stfs     f0, 0x2e4(r31)
-	stfs     f0, 0x2ec(r31)
-	lwz      r3, 0xc0(r31)
-	lfs      f0, 0x1cc(r3)
-	stfs     f0, 0x2f0(r31)
-	lwz      r3, 0x114(r31)
-	bl       getCollPart__8CollTreeFUl
-	lfs      f0, lbl_8051C2B8@sda21(r2)
-	li       r4, 0
-	lfs      f2, lbl_8051C290@sda21(r2)
-	stfs     f0, 0x1c(r3)
-	lfs      f0, lbl_8051C2BC@sda21(r2)
-	fmr      f3, f2
-	stfs     f2, 0x24(r3)
-	mr       r3, r31
-	lfs      f1, lbl_8051C298@sda21(r2)
-	lwz      r5, 0x114(r31)
-	lfs      f4, lbl_8051C2C0@sda21(r2)
-	lwz      r5, 0(r5)
-	stfs     f0, 0x1c(r5)
-	stfs     f2, 0x24(r5)
-	bl
-	"flickStickPikmin__Q24Game9EnemyFuncFPQ24Game8CreatureffffP23Condition<Q24Game4Piki>"
-	lwz      r0, 0x14(r1)
-	lwz      r31, 0xc(r1)
-	mtlr     r0
-	addi     r1, r1, 0x10
-	blr
-	*/
+	m_treasure       = nullptr;
+	m_treasureHealth = 0.0f;
+	_2EC             = 0.0f;
+	m_cellRadius     = static_cast<Parms*>(m_parms)->m_general.m_cellRadius.m_value;
+
+	CollPart* collpart = m_collTree->getCollPart(0x626F6479);
+	collpart->_1C      = 10.0f;
+	collpart->_20.y    = 0.0f;
+
+	CollPart* basepart = m_collTree->m_part;
+	basepart->_1C      = 20.0f;
+	basepart->_20.y    = 0.0f;
+
+	EnemyFunc::flickStickPikmin(this, 1.0f, 0.0f, 0.0f, -1000.0f, nullptr);
 }
 
 /*
@@ -1037,7 +1035,7 @@ lbl_802B753C:
 bool Obj::isDropTreasure()
 {
 	// != 0.0f gives incorrect asm smh
-	if ((m_treasureHealth) && (m_treasureHealth > 0.0f)) { 
+	if ((m_treasureHealth) && (m_treasureHealth > 0.0f)) {
 		return false;
 	}
 	return true;
@@ -1193,99 +1191,19 @@ lbl_802B7738:
  */
 void Obj::createTreasureFallEffect()
 {
-	Matrixf* mtx = m_model->getJoint("center")->getWorldMatrix();
-	f32 scale = 0.0285f * (m_cellRadius - 10.0f);
+	Matrixf* mtx         = m_model->getJoint("center")->getWorldMatrix();
 	Vector3f translation = Vector3f(mtx->m_matrix.structView.tx, mtx->m_matrix.structView.ty, mtx->m_matrix.structView.tz);
-	// mtx->getTranslation(translation);
+
+	f32 scale = 0.0285f * (m_cellRadius - 10.0f);
 	if (scale < 1.0f) {
 		scale = 0.5f * (1.0f + scale);
 	}
-	efx::ArgScale arg (translation, scale);
+
+	efx::ArgScale arg(translation, scale);
 	efx::TOtaPartsoff treasureFallFX;
 
 	treasureFallFX.create(&arg);
 	getJAIObject()->startSound(PSSE_EN_OTAKARA_DROP_ITEM, 0);
-	/*
-	stwu     r1, -0x50(r1)
-	mflr     r0
-	addi     r4, r2, lbl_8051C2CC@sda21
-	stw      r0, 0x54(r1)
-	stw      r31, 0x4c(r1)
-	mr       r31, r3
-	lwz      r3, 0x174(r3)
-	bl       getJoint__Q28SysShape5ModelFPc
-	bl       getWorldMatrix__Q28SysShape5JointFv
-	lfs      f1, 0x2f0(r31)
-	lfs      f0, lbl_8051C2B8@sda21(r2)
-	lfs      f4, 0xc(r3)
-	fsubs    f0, f1, f0
-	lfs      f1, lbl_8051C2D4@sda21(r2)
-	lfs      f3, 0x1c(r3)
-	lfs      f2, 0x2c(r3)
-	fmuls    f5, f1, f0
-	lfs      f0, lbl_8051C298@sda21(r2)
-	stfs     f4, 0x20(r1)
-	fcmpo    cr0, f5, f0
-	stfs     f3, 0x24(r1)
-	stfs     f2, 0x28(r1)
-	bge      lbl_802B77E4
-	fadds    f0, f0, f5
-	lfs      f1, lbl_8051C2C4@sda21(r2)
-	fmuls    f5, f1, f0
-
-lbl_802B77E4:
-	lwz      r4, 0x20(r1)
-	lis      r3, __vt__Q23efx5TBase@ha
-	lwz      r6, 0x24(r1)
-	addi     r0, r3, __vt__Q23efx5TBase@l
-	lwz      r5, 0x28(r1)
-	lis      r3, __vt__Q23efx3Arg@ha
-	stw      r4, 8(r1)
-	lis      r4, __vt__Q23efx8TSimple1@ha
-	addi     r9, r3, __vt__Q23efx3Arg@l
-	lis      r8, __vt__Q23efx8ArgScale@ha
-	stw      r6, 0xc(r1)
-	lis      r3, __vt__Q23efx12TOtaPartsoff@ha
-	lfs      f2, 8(r1)
-	li       r6, 0x27f
-	stw      r5, 0x10(r1)
-	li       r5, 0
-	lfs      f1, 0xc(r1)
-	addi     r7, r4, __vt__Q23efx8TSimple1@l
-	stw      r0, 0x14(r1)
-	addi     r8, r8, __vt__Q23efx8ArgScale@l
-	lfs      f0, 0x10(r1)
-	addi     r0, r3, __vt__Q23efx12TOtaPartsoff@l
-	stw      r9, 0x2c(r1)
-	addi     r3, r1, 0x14
-	addi     r4, r1, 0x2c
-	stw      r7, 0x14(r1)
-	stfs     f2, 0x30(r1)
-	stfs     f1, 0x34(r1)
-	stfs     f0, 0x38(r1)
-	stw      r8, 0x2c(r1)
-	stfs     f5, 0x3c(r1)
-	sth      r6, 0x18(r1)
-	stw      r5, 0x1c(r1)
-	stw      r0, 0x14(r1)
-	bl       create__Q23efx12TOtaPartsoffFPQ23efx3Arg
-	mr       r3, r31
-	lwz      r12, 0(r31)
-	lwz      r12, 0xf4(r12)
-	mtctr    r12
-	bctrl
-	lwz      r12, 0(r3)
-	li       r4, 0x5967
-	li       r5, 0
-	lwz      r12, 0xc(r12)
-	mtctr    r12
-	bctrl
-	lwz      r0, 0x54(r1)
-	lwz      r31, 0x4c(r1)
-	mtlr     r0
-	addi     r1, r1, 0x50
-	blr
-	*/
 }
 
 /*
@@ -1317,20 +1235,20 @@ void Obj::initBombOtakara()
 		if (mgr != nullptr) {
 			EnemyBirthArg birthArg;
 			birthArg.m_faceDir = m_faceDir;
-			m_targetCreature = mgr->birth(birthArg);
+			m_targetCreature   = mgr->birth(birthArg);
 			if (m_targetCreature != nullptr) {
 				m_targetCreature->init(nullptr);
 				m_targetCreature->startCapture(m_model->getJoint("otakara")->getWorldMatrix());
 				static_cast<Bomb::Obj*>(m_targetCreature)->m_otakara = this;
-				_2EC = 10.0f;
-				m_cellRadius = 25.0f;
+				_2EC                                                 = 10.0f;
+				m_cellRadius                                         = 25.0f;
 
 				CollPart* collpart = m_collTree->getCollPart(0x626F6479);
-				collpart->_1C = 15.0f;
-				collpart->_20.y = _2EC;
+				collpart->_1C      = 15.0f;
+				collpart->_20.y    = _2EC;
 				CollPart* basepart = m_collTree->m_part;
-				basepart->_1C = 25.0f;
-				basepart->_20.y = _2EC;
+				basepart->_1C      = 25.0f;
+				basepart->_20.y    = _2EC;
 			}
 		}
 	}
@@ -1348,8 +1266,7 @@ bool Obj::isTransitChaseState()
 	}
 
 	Parms* parms = static_cast<Parms*>(m_parms);
-	Navi* navi = EnemyFunc::getNearestNavi(this, parms->m_general.m_fov.m_value, 
-											parms->m_general.m_sightRadius.m_value, nullptr, nullptr);
+	Navi* navi = EnemyFunc::getNearestNavi(this, parms->m_general.m_fov.m_value, parms->m_general.m_sightRadius.m_value, nullptr, nullptr);
 	return (navi != nullptr);
 }
 
@@ -1377,8 +1294,8 @@ bool Obj::stimulateBomb()
 Creature* Obj::getChaseTargetCreature()
 {
 	Parms* parms = static_cast<Parms*>(m_parms);
-	return EnemyFunc::getNearestPikminOrNavi(this, parms->m_general.m_fov.m_value, 
-											parms->m_general.m_sightRadius.m_value, nullptr, nullptr, nullptr);
+	return EnemyFunc::getNearestPikminOrNavi(this, parms->m_general.m_fov.m_value, parms->m_general.m_sightRadius.m_value, nullptr, nullptr,
+	                                         nullptr);
 }
 } // namespace OtakaraBase
 } // namespace Game
