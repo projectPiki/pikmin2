@@ -4,13 +4,14 @@
 #include "JSystem/JMath.h"
 #include "Dolphin/math.h"
 
-float pikmin2_sinf(float x);
-float pikmin2_cosf(float x);
-float pikmin2_atan2f(float x, float y);
-float pikmin2_sqrtf(float x);
-float roundAng(float x);
+f32 pikmin2_sinf(f32 x);
+f32 pikmin2_cosf(f32 x);
+f32 pikmin2_atan2f(f32 x, f32 y);
+f32 pikmin2_sqrtf(f32 x);
+f32 roundAng(f32 x);
+f32 angDist(f32 x, f32 y);
 
-float qdist2(float, float, float, float);
+f32 qdist2(f32, f32, f32, f32);
 
 // TODO: This should be in the cpp file. Move it there when libraries are a thing.
 /*
@@ -19,15 +20,15 @@ float qdist2(float, float, float, float);
  * Size:	000044
  * 17(dec) instructions
  */
-inline float qdist3(float x1, float y1, float z1, float x2, float y2, float z2)
+inline f32 qdist3(f32 x1, f32 y1, f32 z1, f32 x2, f32 y2, f32 z2)
 {
-	float xdiff = (x2 - x1);
-	float ydiff = (y2 - y1);
-	float zdiff = (z2 - z1);
+	f32 xdiff = (x2 - x1);
+	f32 ydiff = (y2 - y1);
+	f32 zdiff = (z2 - z1);
 
-	float dist = ((xdiff * xdiff) + (ydiff * ydiff) + (zdiff * zdiff));
+	f32 dist = ((xdiff * xdiff) + (ydiff * ydiff) + (zdiff * zdiff));
 	if (dist > 0.0f) {
-		volatile float calcDist = dist * (__frsqrte(dist));
+		volatile f32 calcDist = dist * (__frsqrte(dist));
 		dist                    = calcDist;
 	}
 	return dist;

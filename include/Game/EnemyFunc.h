@@ -6,6 +6,7 @@
 
 namespace Game {
 struct Creature;
+struct EnemyBase;
 struct Piki;
 struct Navi;
 } // namespace Game
@@ -18,6 +19,8 @@ namespace EnemyFunc {
 void flickStickPikmin(Creature*, f32, f32, f32, f32, Condition<Piki>*);
 Creature* getNearestPikminOrNavi(Creature*, f32, f32, f32*, Condition<Navi>*, Condition<Piki>*);
 Navi* getNearestNavi(Creature*, f32, f32, f32*, Condition<Navi>*);
+bool isStartFlick(EnemyBase*, bool);
+void walkToTarget(EnemyBase*, Vector3f&, f32, f32, f32);
 
 } // namespace EnemyFunc
 } // namespace Game

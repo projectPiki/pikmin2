@@ -19,6 +19,24 @@
 
 namespace Game {
 namespace OtakaraBase {
+enum StateID {
+	OTA_Null = -1,
+	OTA_Dead = 0,
+	OTA_Flick = 1,
+	OTA_Wait = 2,
+	OTA_Move = 3,
+	OTA_Turn = 4,
+	OTA_Take = 5,
+	OTA_ItemWait = 6,
+	OTA_ItemMove = 7,
+	OTA_ItemTurn = 8,
+	OTA_ItemFlick = 9,
+	OTA_ItemDrop = 10,
+	OTA_BombWait = 11,
+	OTA_BombMove = 12,
+	OTA_BombTurn = 13,
+};
+
 struct FSM;
 
 struct Obj : public EnemyBase {
@@ -61,9 +79,9 @@ struct Obj : public EnemyBase {
 	virtual void interactCreature(Creature*) { }             // _2FC (weak)
 	virtual void createEffect() { }                          // _300 (weak)
 	virtual void setupEffect() { }                           // _304 (weak)
-	virtual void startChargeEffect();                        // _308 (weak)
-	virtual void finishChargeEffect();                       // _30C (weak)
-	virtual void createDisChargeEffect();                    // _310 (weak)
+	virtual void startChargeEffect() { }                     // _308 (weak)
+	virtual void finishChargeEffect() { }                    // _30C (weak)
+	virtual void createDisChargeEffect() { }                 // _310 (weak)
 	virtual void effectDrawOn() { }                          // _314 (weak)
 	virtual void effectDrawOff() { }                         // _318 (weak)
 	virtual void startEscapeSE();                            // _31C
@@ -91,7 +109,7 @@ struct Obj : public EnemyBase {
 	// _00 		= VTBL
 	// _00-_2BC	= EnemyBase
 	FSM* m_FSM;              // _2BC
-	int _2C0;                // _2C0
+	StateID m_nextState;     // _2C0
 	f32 _2C4;                // _2C4, timer?
 	f32 _2C8;                // _2C8
 	f32 m_escapeSfxTimer;    // _2CC
@@ -159,11 +177,22 @@ struct FSM : public EnemyStateMachine {
 };
 
 struct State : public EnemyFSMState {
+	inline State(int stateID, const char* name)
+	    : EnemyFSMState(stateID)
+	{
+		m_name = name;
+	}
+
 	// _00		= VTBL
 	// _00-_10 	= EnemyFSMState
 };
 
 struct StateBombMove : public State {
+	inline StateBombMove()
+	    : State(OTA_BombMove, "bombmove")
+	{
+	}
+
 	virtual void init(EnemyBase*, StateArg*); // _08
 	virtual void exec(EnemyBase*);            // _0C
 	virtual void cleanup(EnemyBase*);         // _10
@@ -173,6 +202,11 @@ struct StateBombMove : public State {
 };
 
 struct StateBombTurn : public State {
+	inline StateBombTurn()
+	    : State(OTA_BombTurn, "bombturn")
+	{
+	}
+
 	virtual void init(EnemyBase*, StateArg*); // _08
 	virtual void exec(EnemyBase*);            // _0C
 	virtual void cleanup(EnemyBase*);         // _10
@@ -182,6 +216,11 @@ struct StateBombTurn : public State {
 };
 
 struct StateBombWait : public State {
+	inline StateBombWait()
+	    : State(OTA_BombWait, "bombwait")
+	{
+	}
+
 	virtual void init(EnemyBase*, StateArg*); // _08
 	virtual void exec(EnemyBase*);            // _0C
 	virtual void cleanup(EnemyBase*);         // _10
@@ -191,6 +230,11 @@ struct StateBombWait : public State {
 };
 
 struct StateDead : public State {
+	inline StateDead()
+	    : State(OTA_Dead, "dead")
+	{
+	}
+
 	virtual void init(EnemyBase*, StateArg*); // _08
 	virtual void exec(EnemyBase*);            // _0C
 	virtual void cleanup(EnemyBase*);         // _10
@@ -200,6 +244,11 @@ struct StateDead : public State {
 };
 
 struct StateFlick : public State {
+	inline StateFlick()
+	    : State(OTA_Flick, "flick")
+	{
+	}
+
 	virtual void init(EnemyBase*, StateArg*); // _08
 	virtual void exec(EnemyBase*);            // _0C
 	virtual void cleanup(EnemyBase*);         // _10
@@ -209,6 +258,11 @@ struct StateFlick : public State {
 };
 
 struct StateItemDrop : public State {
+	inline StateItemDrop()
+	    : State(OTA_ItemDrop, "itemdrop")
+	{
+	}
+
 	virtual void init(EnemyBase*, StateArg*); // _08
 	virtual void exec(EnemyBase*);            // _0C
 	virtual void cleanup(EnemyBase*);         // _10
@@ -218,6 +272,11 @@ struct StateItemDrop : public State {
 };
 
 struct StateItemFlick : public State {
+	inline StateItemFlick()
+	    : State(OTA_ItemFlick, "itemflick")
+	{
+	}
+
 	virtual void init(EnemyBase*, StateArg*); // _08
 	virtual void exec(EnemyBase*);            // _0C
 	virtual void cleanup(EnemyBase*);         // _10
@@ -227,6 +286,11 @@ struct StateItemFlick : public State {
 };
 
 struct StateItemMove : public State {
+	inline StateItemMove()
+	    : State(OTA_ItemMove, "itemmove")
+	{
+	}
+
 	virtual void init(EnemyBase*, StateArg*); // _08
 	virtual void exec(EnemyBase*);            // _0C
 	virtual void cleanup(EnemyBase*);         // _10
@@ -236,6 +300,11 @@ struct StateItemMove : public State {
 };
 
 struct StateItemTurn : public State {
+	inline StateItemTurn()
+	    : State(OTA_ItemTurn, "itemturn")
+	{
+	}
+
 	virtual void init(EnemyBase*, StateArg*); // _08
 	virtual void exec(EnemyBase*);            // _0C
 	virtual void cleanup(EnemyBase*);         // _10
@@ -245,6 +314,11 @@ struct StateItemTurn : public State {
 };
 
 struct StateItemWait : public State {
+	inline StateItemWait()
+	    : State(OTA_ItemWait, "itemwait")
+	{
+	}
+
 	virtual void init(EnemyBase*, StateArg*); // _08
 	virtual void exec(EnemyBase*);            // _0C
 	virtual void cleanup(EnemyBase*);         // _10
@@ -254,6 +328,11 @@ struct StateItemWait : public State {
 };
 
 struct StateMove : public State {
+	inline StateMove()
+	    : State(OTA_Move, "move")
+	{
+	}
+
 	virtual void init(EnemyBase*, StateArg*); // _08
 	virtual void exec(EnemyBase*);            // _0C
 	virtual void cleanup(EnemyBase*);         // _10
@@ -263,6 +342,11 @@ struct StateMove : public State {
 };
 
 struct StateTake : public State {
+	inline StateTake()
+	    : State(OTA_Take, "take")
+	{
+	}
+
 	virtual void init(EnemyBase*, StateArg*); // _08
 	virtual void exec(EnemyBase*);            // _0C
 	virtual void cleanup(EnemyBase*);         // _10
@@ -272,6 +356,11 @@ struct StateTake : public State {
 };
 
 struct StateTurn : public State {
+	inline StateTurn()
+	    : State(OTA_Turn, "turn")
+	{
+	}
+
 	virtual void init(EnemyBase*, StateArg*); // _08
 	virtual void exec(EnemyBase*);            // _0C
 	virtual void cleanup(EnemyBase*);         // _10
@@ -281,6 +370,11 @@ struct StateTurn : public State {
 };
 
 struct StateWait : public State {
+	inline StateWait()
+	    : State(OTA_Wait, "wait")
+	{
+	}
+
 	virtual void init(EnemyBase*, StateArg*); // _08
 	virtual void exec(EnemyBase*);            // _0C
 	virtual void cleanup(EnemyBase*);         // _10

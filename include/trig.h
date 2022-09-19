@@ -40,4 +40,9 @@ inline float pikmin2_acos(float x)
 	}
 }
 
+inline f32 angXZ(f32 x, f32 z, Vector3f& vec) {
+	Vector3f pos = vec;
+	return roundAng(JMath::atanTable_.atan2_(x - pos.x, z - pos.z));
+}
+
 #endif
