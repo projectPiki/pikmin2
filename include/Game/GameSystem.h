@@ -67,7 +67,7 @@ struct GameSystem : public NodeObjectMgr<GenericObjectMgr> {
 	u8 _3C;                     // _3C /* bitfield */
 	TimeMgr* m_timeMgr;         // _40
 	GameSystemMode m_mode;      // _44
-	u8 m_isInCaveMaybe;         // _48
+	u8 m_inCave;                // _48
 	u8 _49;                     // _49
 	bool m_isFrozen;            // _4A
 	bool m_isPaused;            // _4B

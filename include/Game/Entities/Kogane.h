@@ -64,9 +64,9 @@ struct Obj : public EnemyBase {
 	void resetAppearTimer();
 	void isAppear();
 	void resetMoveTimer(f32, f32);
-	void createTreasureItem();
-	void createPellet(int, int);
-	void createDoping(u8, int);
+	bool createTreasureItem();
+	void createPellet(int initArg, int amount);
+	void createDoping(u8 initArg, int amount);
 
 	// _00 		= VTBL
 	// _00-_2BC	= EnemyBase

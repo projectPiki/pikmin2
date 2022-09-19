@@ -12,11 +12,11 @@ namespace Koganemushi {
 struct Obj : public Kogane::Obj {
 	Obj();
 
-	virtual ~Obj();                                     // _1BC (weak)
-	virtual void changeMaterial();                      // _200
-	virtual EnemyTypeID::EEnemyTypeID getEnemyTypeID(); // _258 (weak)
-	virtual void createItem();                          // _2FC
-	virtual void createPressSENormal();                 // _318
+	virtual ~Obj() { }                                                                         // _1BC (weak)
+	virtual void changeMaterial();                                                             // _200
+	virtual EnemyTypeID::EEnemyTypeID getEnemyTypeID() { return EnemyTypeID::EnemyID_Kogane; } // _258 (weak)
+	virtual void createItem();                                                                 // _2FC
+	virtual void createPressSENormal();                                                        // _318
 
 	// _00 		= VTBL
 	// _00-_2DC	= Kogane::Obj
@@ -31,7 +31,7 @@ struct Mgr : public Kogane::Mgr {
 	virtual void doAlloc();                             // _A8
 	virtual EnemyTypeID::EEnemyTypeID getEnemyTypeID(); // _AC (weak)
 	virtual void loadTexData();                         // _D0
-	virtual void getChangeTexture();                    // _E0 (weak)
+	virtual ResTIMG* getChangeTexture();                // _E0 (weak)
 
 	// _00 		= VTBL
 	// _00-_44	= EnemyMgrBase
