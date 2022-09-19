@@ -750,7 +750,7 @@ NISHIMURA:=\
 	$(BUILD_DIR)/asm/plugProjectNishimuraU/FuefukiMgr.o\
 	$(BUILD_DIR)/asm/plugProjectNishimuraU/Fuefuki.o\
 	$(BUILD_DIR)/asm/plugProjectNishimuraU/KoganemushiMgr.o\
-	$(BUILD_DIR)/asm/plugProjectNishimuraU/Koganemushi.o\
+	$(BUILD_DIR)/src/plugProjectNishimuraU/Koganemushi.o\
 	$(BUILD_DIR)/asm/plugProjectNishimuraU/FtankMgr.o\
 	$(BUILD_DIR)/asm/plugProjectNishimuraU/Ftank.o\
 	$(BUILD_DIR)/src/plugProjectNishimuraU/RandPlantUnit.o\

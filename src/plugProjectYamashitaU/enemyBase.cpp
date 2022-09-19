@@ -3841,7 +3841,7 @@ void EnemyBase::throwupItem()
 		     || id == EnemyTypeID::EnemyID_UmiMushiBlind || id == EnemyTypeID::EnemyID_BlackMan || id == EnemyTypeID::EnemyID_DangoMushi
 		     || id == EnemyTypeID::EnemyID_BigFoot || id == EnemyTypeID::EnemyID_SnakeWhole || id == EnemyTypeID::EnemyID_UmiMushi
 		     || id == EnemyTypeID::EnemyID_BigTreasure)
-		    && gameSystem != nullptr && gameSystem->m_mode == GSM_STORY_MODE && gameSystem->m_isInCaveMaybe && Cave::randMapMgr != nullptr
+		    && gameSystem != nullptr && gameSystem->m_mode == GSM_STORY_MODE && gameSystem->m_inCave && Cave::randMapMgr != nullptr
 		    && Cave::randMapMgr->isLastFloor()) {
 			pelletInitArg._1D = true;
 		}

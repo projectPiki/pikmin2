@@ -184,7 +184,7 @@ void BirthMgr::clear(void)
 void BirthMgr::inc(int pikiColor)
 {
 	if (0 <= pikiColor && pikiColor <= LastStoredPikiColor) {
-		if (gameSystem->m_isInCaveMaybe) {
+		if (gameSystem->m_inCave) {
 			inc_cave(pikiColor);
 		} else {
 			inc_today(pikiColor);
@@ -477,7 +477,7 @@ void DeathMgr::clear(void)
 void DeathMgr::inc(int cod)
 {
 	if (gameSystem == nullptr || (gameSystem->_3C & 0x10) == 0 || cod == DeathCounter::COD_Unknown2 || cod == DeathCounter::COD_All) {
-		if (gameSystem->m_isInCaveMaybe) {
+		if (gameSystem->m_inCave) {
 			inc_cave(cod);
 		} else {
 			inc_today(cod);
