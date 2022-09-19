@@ -37,7 +37,7 @@ struct DvdThread : public AppThread {
 	DvdThread(u32, int, int);
 
 	virtual ~DvdThread(); // _08 (weak)
-	virtual void run();   // _0C
+	virtual void* run();  // _0C
 
 	void loadArchive(DvdThreadCommand*);
 	void loadFile(DvdThreadCommand*);

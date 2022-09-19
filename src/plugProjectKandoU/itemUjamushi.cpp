@@ -1219,34 +1219,6 @@
         .skip 0x8
 */
 
-
-inline float pikmin2_sqrtf(register float x)
-{
-	if (x > lbl_80520270) {
-		register float reg_f0;
-		asm {
-            frsqrte reg_f0, x
-		}
-		return reg_f0 * x;
-	}
-	return x;
-}
-
-// length__
-template<> float Vector3f::length() const
-{
-	Vector3f temp(x * x, y*y, z*z);
-
-	if (temp.magnitude() <= 0.0f) {
-		return 0.0f;
-	}
-	float mag = temp.magnitude();
-	if (mag > 0.0f) {
-	return __frsqrte(mag);
-	}
-		return mag;
-}
-
 #if NOPE
 namespace Game {
 

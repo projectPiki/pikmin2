@@ -1,4 +1,5 @@
 #include "Game/Navi.h"
+#include "JSystem/JMath.h"
 #include "types.h"
 
 /*
@@ -61,13 +62,21 @@ NaviWhistle::NaviWhistle(Game::Navi* navi)
  * --INFO--
  * Address:	801650BC
  * Size:	000128
+ * TODO: Needs NaviParms
  */
 void NaviWhistle::init()
 {
-	_28 = 0;
-	_24 = 10.0f;
-	_2C = 0.0f;
-	_38.set(0xFF, 0x96, , u8 alpha)
+	_28                                           = 0;
+	_24                                           = 10.0f;
+	_2C                                           = 0.0f;
+	_38                                           = Color4(0xFF, 0x96, 0x00, 0x78);
+	float faceDir                                 = m_navi->getFaceDir();
+	float v1                                      = 0.5f /* * static_cast<NaviParms*>(m_navi->m_parms)->m_p046() */;
+	const JMath::TSinCosTable<2048, float>* table = JMath::getSinCosTable();
+	float cos                                     = table->cos(faceDir);
+	float sin                                     = table->sin(faceDir);
+	_00                                           = Vector3f(v1 * sin, 0.0f, v1 * cos);
+	updatePosition();
 	/*
 	stwu     r1, -0x30(r1)
 	mflr     r0
