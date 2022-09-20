@@ -526,8 +526,8 @@ lbl_802B6E70:
 Vector3f Obj::getTargetPosition(Creature* target)
 {
 	Vector3f otakaraPosition = getPosition();
-	Vector3f targetPosition = target->getPosition();
-	Vector3f sep = otakaraPosition - targetPosition;
+	Vector3f targetPosition  = target->getPosition();
+	Vector3f sep             = otakaraPosition - targetPosition;
 
 	_normalise(sep);
 	Parms* parms = static_cast<Parms*>(m_parms);
@@ -706,7 +706,6 @@ bool Obj::isTakeTreasure()
 {
 	if (m_targetCreature != nullptr) {
 		Vector3f targetPos = m_targetCreature->getPosition();
-
 	}
 	return false;
 	/*
@@ -975,9 +974,7 @@ bool Obj::fallTreasure(bool check)
 {
 	if (m_targetCreature != nullptr) {
 		m_targetCreature->endCapture();
-		if (check) {
-			
-		}
+		if (check) { }
 	}
 	return false;
 	/*

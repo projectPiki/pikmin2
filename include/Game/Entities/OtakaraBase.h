@@ -20,21 +20,21 @@
 namespace Game {
 namespace OtakaraBase {
 enum StateID {
-	OTA_Null = -1,
-	OTA_Dead = 0,
-	OTA_Flick = 1,
-	OTA_Wait = 2,
-	OTA_Move = 3,
-	OTA_Turn = 4,
-	OTA_Take = 5,
-	OTA_ItemWait = 6,
-	OTA_ItemMove = 7,
-	OTA_ItemTurn = 8,
+	OTA_Null      = -1,
+	OTA_Dead      = 0,
+	OTA_Flick     = 1,
+	OTA_Wait      = 2,
+	OTA_Move      = 3,
+	OTA_Turn      = 4,
+	OTA_Take      = 5,
+	OTA_ItemWait  = 6,
+	OTA_ItemMove  = 7,
+	OTA_ItemTurn  = 8,
 	OTA_ItemFlick = 9,
-	OTA_ItemDrop = 10,
-	OTA_BombWait = 11,
-	OTA_BombMove = 12,
-	OTA_BombTurn = 13,
+	OTA_ItemDrop  = 10,
+	OTA_BombWait  = 11,
+	OTA_BombMove  = 12,
+	OTA_BombTurn  = 13,
 };
 
 struct FSM;
@@ -105,6 +105,8 @@ struct Obj : public EnemyBase {
 	Creature* getChaseTargetCreature();
 
 	inline void getScaledRadius(f32 scale, f32* radius) { *radius = scale * (m_cellRadius - 10.0f); }
+
+	inline f32 changeFaceDir(Vector2f& XZ);
 
 	// _00 		= VTBL
 	// _00-_2BC	= EnemyBase
@@ -189,7 +191,7 @@ struct State : public EnemyFSMState {
 
 struct StateBombMove : public State {
 	inline StateBombMove()
-	    : State(OTA_BombMove, "bombmove")
+	    : State(OTA_BombMove, "bombflick") // wrong name by devs?
 	{
 	}
 
@@ -203,7 +205,7 @@ struct StateBombMove : public State {
 
 struct StateBombTurn : public State {
 	inline StateBombTurn()
-	    : State(OTA_BombTurn, "bombturn")
+	    : State(OTA_BombTurn, "bombdrop") // wrong name by devs?
 	{
 	}
 
@@ -217,7 +219,7 @@ struct StateBombTurn : public State {
 
 struct StateBombWait : public State {
 	inline StateBombWait()
-	    : State(OTA_BombWait, "bombwait")
+	    : State(OTA_BombWait, "bombturn") // wrong name by devs?
 	{
 	}
 
@@ -382,6 +384,37 @@ struct StateWait : public State {
 	// _00		= VTBL
 	// _00-_10 	= EnemyFSMState
 };
+
+// dumb inline for StateTurn::exec, StateItemTurn::exec, StateBombTurn::exec
+inline f32 Obj::changeFaceDir(Vector2f& XZ)
+{
+	f32 approxSpeed;
+	f32 rotSpeed;
+	f32 rotAccel;
+	f32 x;
+	f32 z;
+
+	Parms* parms = static_cast<Parms*>(m_parms);
+	rotSpeed     = parms->m_general.m_rotationalSpeed.m_value;
+	rotAccel     = parms->m_general.m_rotationalAccel.m_value;
+
+	Vector3f pos = getPosition();
+	x            = XZ.x;
+	z            = XZ.y;
+
+	f32 angleDist = angDist(_angXZ(x, z, pos.x, pos.z), getFaceDir());
+
+	f32 limit   = (DEG2RAD * rotSpeed) * PI;
+	approxSpeed = angleDist * rotAccel;
+	if (FABS(approxSpeed) > limit) {
+		approxSpeed = (approxSpeed > 0.0f) ? limit : -limit;
+	}
+
+	m_faceDir           = roundAng(approxSpeed + getFaceDir());
+	_1A4.m_matrix[0][1] = m_faceDir;
+	return angleDist;
+}
+
 /////////////////////////////////////////////////////////////////
 } // namespace OtakaraBase
 } // namespace Game
