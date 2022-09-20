@@ -36,12 +36,21 @@ static float sLODRadius[4] = { 45.0f, 60.0f, 103.0f, 133.0f };
 } // namespace Pelplant
 } // namespace Game
 
-inline void _Print(char* format, ...)
+static void _Print(char* format, ...)
 {
 	OSReport(__FILE__);
 	OSReport("/enemy/data/pelplant"); // unused/used in print inline probably
 	OSReport("/enemy/parm/pelplant"); // unused/used in print inline probably
+	OSReport((char*)(u32)-325.9493f);
+	OSReport((char*)(u32)325.9493f);
 }
+
+const f32 negTrig = -325.9493f;
+const f32 posTrig = 325.9493f;
+
+static f32 negSin(f32 x) { return -JMath::sincosTable_.m_table[((int)(x *= -325.9493f) & 0x7ffU)].first; }
+
+static f32 posSin(f32 x) { return JMath::sincosTable_.m_table[((int)(x *= 325.9493f) & 0x7ffU)].first; }
 
 namespace Game {
 
@@ -53,9 +62,16 @@ namespace Pelplant {
  */
 float BlendAccelerationFunc::getValue(float p1)
 {
-	float sinTheta = pikmin2_sinf(TAU * (3.0f * -p1));
-	float value    = (0.5f * (1.0f - p1));
-	value          = (value * sinTheta) + p1;
+	f32 x = TAU * (3.0f * -p1);
+	f32 sinTheta;
+	if (x < 0.0f) {
+		sinTheta = negSin(x);
+	} else {
+		sinTheta = posSin(x);
+	}
+	// float sinTheta = pikmin2_sinf(TAU * (3.0f * -p1));
+	float value = (0.5f * (1.0f - p1));
+	value       = (value * sinTheta) + p1;
 	if (value > 1.0f) {
 		return 1.0f;
 	}
@@ -165,28 +181,6 @@ Obj::Obj()
 
 /*
  * --INFO--
- * Address:	8010881C
- * Size:	00004C
- */
-// WEAK - in header
-// void Pelplant::Obj::setFSM(Game::Pelplant::FSM* fsm)
-// {
-// 	m_fsm = fsm;
-// 	m_fsm->init(this);
-// 	m_currentLifecycleState = nullptr;
-// }
-
-/*
- * __dt__Q24Game22EnemyBlendAnimatorBaseFv
- * --INFO--
- * Address:	80108868
- * Size:	00005C
- */
-// WEAK - in header
-// EnemyBlendAnimatorBase::~EnemyBlendAnimatorBase() { }
-
-/*
- * --INFO--
  * Address:	801088C4
  * Size:	000034
  */
@@ -271,10 +265,9 @@ void Obj::getShadowParam(Game::ShadowParam& param)
 	}
 
 	param.m_boundingSphere.m_radius = 50.0f;
-
-	Vector3f vec((*_2C4)(0, 0), (*_2C4)(0, 1), (*_2C4)(0, 2));
-	Vector3f newVec = vec;
-	float sum       = newVec.x;
+	Vector3f newVec;
+	_2C4->getRow(0, newVec);
+	float sum = newVec.x;
 	newVec.y *= newVec.y;
 	newVec.z *= newVec.z;
 	sum *= newVec.x;
@@ -336,27 +329,12 @@ float Obj::getHeadScale()
  * Address:	........
  * Size:	00009C
  */
-inline void Obj::getNeckScale(Vector3f* scale)
+void Obj::getNeckScale(Vector3f* scale)
 {
-	float neckScale;
-	switch (m_pelletSize) {
-	case 1:
-		neckScale = 12.0f;
-		break;
-	case 5:
-		neckScale = 12.0f;
-		break;
-	case 10:
-		neckScale = 12.0f;
-		break;
-	case 20:
-		neckScale = 12.0f;
-		break;
-	default:
-		JUT_PANICLINE(663, "Unknown Pellet size. %d \n", m_pelletSize);
-		break;
-	}
-	*scale = Vector3f(neckScale, 0.0f, 0.0f);
+	f32 x  = 1.5;
+	f32 y  = 0.85;
+	f32 z  = 0.75;
+	*scale = Vector3f(x, y, z);
 }
 
 /*
@@ -377,7 +355,26 @@ void Obj::doAnimation()
 
 	if (m_pellet != nullptr) {
 		Vector3f translation;
-		getNeckScale(&translation);
+		float neckScale;
+		switch (m_pelletSize) {
+		case 1:
+			neckScale = 12.0f;
+			break;
+		case 5:
+			neckScale = 12.0f;
+			break;
+		case 10:
+			neckScale = 12.0f;
+			break;
+		case 20:
+			neckScale = 12.0f;
+			break;
+		default:
+			JUT_PANICLINE(663, "Unknown Pellet size. %d \n", m_pelletSize);
+			break;
+		}
+
+		translation = Vector3f(neckScale, 0.0f, 0.0f);
 
 		Vector3f rotation(0.0f, HALF_PI, -HALF_PI);
 
@@ -519,14 +516,6 @@ bool Obj::damageCallBack(Game::Creature* source, float damage, CollPart* part)
 
 /*
  * --INFO--
- * Address:	8010927C
- * Size:	00000C
- */
-// WEAK - in header
-// bool Obj::isLivingThing() { return (_2C8 >> 1 & 1); }
-
-/*
- * --INFO--
  * Address:	80109288
  * Size:	000078
  */
@@ -640,116 +629,11 @@ Mgr::Mgr(int p1, unsigned char p2)
 }
 
 /*
- * __dt__Q24Game12EnemyMgrBaseFv
- * --INFO--
- * Address:	801095A4
- * Size:	000098
- */
-// WEAK - in header
-// EnemyMgrBase::~EnemyMgrBase() { }
-
-/*
  * --INFO--
  * Address:	8010963C
  * Size:	000048
  */
 void Mgr::doAlloc() { init(new Parms); }
-
-/*
- * __ct__Q34Game8Pelplant5ParmsFv
- * --INFO--
- * Address:	80109684
- * Size:	000118
- */
-// WEAK - in header
-// Pelplant::Parms::Parms()
-//     : EnemyParmsBase()
-//     , m_pelplantParms()
-// { }
-
-/*
- * __ct__Q24Game14EnemyParmsBaseFv
- * --INFO--
- * Address:	8010979C
- * Size:	0001D4
- */
-// WEAK - in header
-// EnemyParmsBase::EnemyParmsBase()
-// {
-// 	m_flags[0].clear();
-//  m_flags[1].clear();
-// }
-
-/*
- * __ct__Q34Game14EnemyParmsBase5ParmsFv
- * --INFO--
- * Address:	80109970
- * Size:	000AE0
- */
-// WEAK - in header
-// EnemyParmsBase::Parms::Parms()
-// : Parameters(nullptr, "EnemyParmsBase")
-// , m_health(this, 'fp00', "ライフ", 100.0f, 0.0f, 99999.0f)    // life
-// , m_lifeMeterHeight(this, 'fp27', "ライフの高さ", 50.0f, 0.0f, 1000.0f) // height of life
-// , m_regenerationRate(this, 'fp31', "ライフ回復率", 0.01f, 0.0f, 1.0f) // life recovery rate
-// , m_fp30(this, 'fp30', "警戒ライフ", 30.0f, 0.0f, 99999.0f) // 'vigilant life'
-// , m_fp01(this, 'fp01', "マップとの当り", 40.0f, 0.0f, 100.0f) // 'match with the map'
-// , m_cellRadius(this, 'fp33', "マップとのあたりポリゴンの選定", 40.0f, 0.0f, 500.0f) // 'selection of map-related polygons'
-// , m_pikminDamageRadius(this, 'fp34', "ピクミンとのあたり", 40.0f, 0.0f, 500.0f) // 'about pikmin'
-// , m_offCameraRadius(this, 'fp32', "LOD半径", 40.0f, 0.0f, 500.0f) // LOD radius
-// , m_horizontalDamageScale(this, 'fp02', "ダメージスケールXZ", 0.2f, 0.0f, 1.0f) // damage scale XZ
-// , m_verticalDamageScale(this, 'fp03', "ダメージスケールY", 0.25f, 0.0f, 1.0f) // damage scale Y
-// , m_damageScaleDuration(this, 'fp04', "ダメージフレーム", 0.35f, 0.0f, 1.0f) // 'damage frame'
-// , m_fp05(this, 'fp05', "質量", 1.0f, 0.0f, 100.0f) // mass
-// , m_moveSpeed(this, 'fp06', "速度", 80.0f, 0.0f, 1000.0f) // speed
-// , m_rotationalAccel(this, 'fp08', "回転速度率", 0.1f, 0.0f, 1.0f) // rotation speed rate
-// , m_rotationalSpeed(this, 'fp28', "回転最大速度", 10.0f, 0.0f, 360.0f) // maximum rotation speed
-// , m_territoryRadius(this, 'fp09', "テリトリー", 200.0f, 1.0f, 1000.0f) // territory
-// , m_homeRadius(this, 'fp10', "ホーム範囲", 15.0f, 1.0f, 1000.0f) // home range
-// , m_privateRadius(this, 'fp11', "プライベート距離", 70.0f, 0.0f, 1000.0f) // private distance
-// , m_sightRadius(this, 'fp12', "視界距離", 200.0f, 0.0f, 1000.0f) // sight distance
-// , m_fp25(this, 'fp25', "視界高", 50.0f, 0.0f, 1000.0f) // visibility height
-// , m_fov(this, 'fp13', "視界角度", 90.0f, 0.0f, 180.0f) // view angle
-// , m_fp14(this, 'fp14', "探索距離", 200.0f, 0.0f, 1000.0f) // search distance
-// , m_fp26(this, 'fp26', "探索高", 50.0f, 0.0f, 1000.0f) // search height
-// , m_fp15(this, 'fp15', "探索角度", 120.0f, 0.0f, 180.0f) // search angle
-// , m_shakeKnockback(this, 'fp17', "振り払い力", 300.0f, 0.0f, 1000.0f) // shake off power
-// , m_shakeDamage(this, 'fp18', "振り払いダメージ", 0.0f, 0.0f, 1000.0f) // shake off damage
-// , m_shakeRange(this, 'fp19', "振り払い範囲", 120.0f, 0.0f, 1000.0f) // shake off range
-// , m_shakeRateMaybe(this, 'fp16', "振り払い率", 1.0f, 0.0f, 1.0f) // shake off rate
-// , m_fp20(this, 'fp20', "攻撃可能範囲", 70.0f, 0.0f, 1000.0f) // attack range
-// , m_fp21(this, 'fp21', "攻撃可能角度", 15.0f, 0.0f, 180.0f) // 'possible attack angle'
-// , m_fp22(this, 'fp22', "攻撃ヒット範囲", 70.0f, 0.0f, 1000.0f) // attack hit range
-// , m_fp23(this, 'fp23', "攻撃ヒット角度", 15.0f, 0.0f, 180.0f) // attack hit angle
-// , m_attackDamage(this, 'fp24', "攻撃力", 10.0f, 0.0f, 1000.0f) // attack power
-// , m_fp29(this, 'fp29', "警戒時間", 15.0f, 0.0f, 99.0f) // alert time
-// , m_stoneDuration(this, 'fp35', "石化時間", 1.0f, 0.0f, 60.0f) // stone time
-// , m_purplePikminHipDropDamage(this, 'fp36', "ヒップドロップダメージ", 10.0f, 0.0f, 1000.0f) // hip drop damage
-// , m_purplePikminStunChance(this, 'fp37', "地震気絶確立", 0.05f, 0.0f, 1.0f) // earthquake faint probability
-// , m_purplePikminStunTime(this, 'fp38', "地震気絶時間", 10.0f, 0.0f, 60.0f) // earthquake faint time
-// , m_ip01(this, 'ip01', "振り払い打撃Ａ", 3, 0, 200) // shake off blow A
-// , m_ip02(this, 'ip02', "振り払い張付１", 3, 0, 100) // shake off sticking 1
-// , m_ip03(this, 'ip03', "振り払い打撃Ｂ", 8, 0, 200) // shake off blow B
-// , m_ip04(this, 'ip04', "振り払い張付２", 5, 0, 100) // shake off sticking 2
-// , m_ip05(this, 'ip05', "振り払い打撃Ｃ", 15, 0, 200) // shake off blow C
-// , m_ip06(this, 'ip06', "振り払い張付３", 10, 0, 100) // shake off sticking 3
-// , m_ip07(this, 'ip07', "振り払い打撃Ｄ", 30, 0, 200) // shake off blow D
-// { }
-
-/*
- * --INFO--
- * Address:	8010A450
- * Size:	000010
- */
-// BitFlag<unsigned short>::BitFlag()
-// {
-// 	/*
-// 	li       r0, 0
-// 	stb      r0, 0(r3)
-// 	stb      r0, 1(r3)
-// 	blr
-// 	*/
-// }
 
 /*
  * birth__Q34Game8Pelplant3MgrFRQ24Game13EnemyBirthArg
@@ -805,455 +689,3 @@ void Obj::doGetLifeGaugeParam(Game::LifeGaugeParam& param)
 
 } // namespace Pelplant
 } // namespace Game
-
-/*
- * __dt__Q34Game8Pelplant3MgrFv
- * --INFO--
- * Address:	8010A598
- * Size:	0000B0
- */
-// WEAK - in header
-// Pelplant::Mgr::~Mgr() { }
-
-/*
- * --INFO--
- * Address:	8010A648
- * Size:	000008
- */
-// WEAK - in header
-// EnemyTypeID::EEnemyTypeID Pelplant::Mgr::getEnemyTypeID() { return EnemyTypeID::EnemyID_Pelplant; }
-
-/*
- * --INFO--
- * Address:	8010A650
- * Size:	000060
- */
-// WEAK - in header
-// void Pelplant::Mgr::createObj(int count) { m_objects = new Obj[count]; }
-
-/*
- * __dt__Q34Game8Pelplant3ObjFv
- * --INFO--
- * Address:	8010A6B0
- * Size:	0000BC
- */
-// WEAK - in header
-// Pelplant::Obj::~Obj() { }
-
-/*
- * getEnemy__Q34Game8Pelplant3MgrFi
- * --INFO--
- * Address:	8010A76C
- * Size:	000010
- */
-// WEAK - in header
-// EnemyBase* Pelplant::Mgr::getEnemy(int index) { return &m_objects[index]; }
-
-/*
- * --INFO--
- * Address:	8010A77C
- * Size:	000004
- */
-// WEAK - in header
-// void Pelplant::Mgr::initStoneSetting() { }
-
-/*
- * get__Q24Game12EnemyMgrBaseFPv
- * --INFO--
- * Address:	8010A780
- * Size:	00002C
- */
-// WEAK - in header
-// void EnemyMgrBase::get(void*)
-// {
-// }
-
-/*
- * getJ3DModelData__Q24Game12EnemyMgrBaseCFv
- * --INFO--
- * Address:	8010A7AC
- * Size:	000008
- */
-// J3DModelData* EnemyMgrBase::getJ3DModelData() const
-// {
-// }
-
-/*
- * getGenerator__Q24Game12EnemyMgrBaseCFv
- * --INFO--
- * Address:	8010A7B4
- * Size:	000008
- */
-// EnemyGeneratorBase* EnemyMgrBase::getGenerator() const
-// {
-// }
-
-/*
- * getMaxObjects__Q24Game12EnemyMgrBaseCFv
- * --INFO--
- * Address:	8010A7BC
- * Size:	000008
- */
-// int EnemyMgrBase::getMaxObjects() const
-// {
-// }
-
-/*
- * doSimpleDraw__16GenericObjectMgrFP8Viewport
- * --INFO--
- * Address:	8010A7C4
- * Size:	000004
- */
-// void GenericObjectMgr::doSimpleDraw(Viewport*) { }
-
-/*
- * loadResources__16GenericObjectMgrFv
- * --INFO--
- * Address:	8010A7C8
- * Size:	000004
- */
-// void GenericObjectMgr::loadResources() { }
-
-/*
- * resetMgr__16GenericObjectMgrFv
- * --INFO--
- * Address:	8010A7CC
- * Size:	000004
- */
-// void GenericObjectMgr::resetMgr() { }
-
-/*
- * pausable__16GenericObjectMgrFv
- * --INFO--
- * Address:	8010A7D0
- * Size:	000008
- */
-// bool GenericObjectMgr::pausable() { return true; }
-
-/*
- * frozenable__16GenericObjectMgrFv
- * --INFO--
- * Address:	8010A7D8
- * Size:	000008
- */
-// bool GenericObjectMgr::frozenable() { return true; }
-
-/*
- * getMatrixLoadType__16GenericObjectMgrFv
- * --INFO--
- * Address:	8010A7E0
- * Size:	000008
- */
-// u32 GenericObjectMgr::getMatrixLoadType() { return 0x0; }
-
-/**
- * getEnd__Q24Game12EnemyMgrBaseFv
- * --INFO--
- * Address:	8010A7E8
- * Size:	000008
- */
-// void* EnemyMgrBase::getEnd()
-// {
-// }
-
-/*
- * getStart__Q24Game12EnemyMgrBaseFv
- * --INFO--
- * Address:	8010A7F0
- * Size:	000030
- */
-// void* EnemyMgrBase::getStart()
-// {
-// }
-
-/*
- * getObject__Q24Game12EnemyMgrBaseFPv
- * --INFO--
- * Address:	8010A820
- * Size:	00002C
- */
-// void* EnemyMgrBase::getObject(void* index)
-// {
-// }
-
-/*
- * read__Q24Game14EnemyParmsBaseFR6Stream
- * --INFO--
- * Address:	8010A84C
- * Size:	000044
- */
-// void EnemyParmsBase::read(Stream&)
-// {
-// }
-
-/*
- * read__Q24Game13CreatureParmsFR6Stream
- * --INFO--
- * Address:	8010A890
- * Size:	000020
- */
-// void CreatureParms::read(Stream&)
-// {
-// }
-
-/*
- * read__Q34Game8Pelplant5ParmsFR6Stream
- * --INFO--
- * Address:	8010A8B0
- * Size:	000050
- */
-// void Pelplant::Parms::read(Stream& input)
-// {
-// }
-
-/*
- * __dt__16GenericContainerFv
- * --INFO--
- * Address:	8010A900
- * Size:	000060
- */
-// GenericContainer::~GenericContainer()
-// {
-// }
-
-/*
- * __dt__Q24Game13IEnemyMgrBaseFv
- * --INFO--
- * Address:	8010A960
- * Size:	000080
- */
-// IEnemyMgrBase::~IEnemyMgrBase()
-// {
-// }
-
-/*
- * __dt__Q34Game8Pelplant14ProperAnimatorFv
- * --INFO--
- * Address:	8010A9E0
- * Size:	00006C
- */
-// Pelplant::ProperAnimator::~ProperAnimator()
-// {
-// }
-
-/*
- * animate__Q24Game22EnemyBlendAnimatorBaseFif
- * --INFO--
- * Address:	8010AA4C
- * Size:	000020
- */
-// void EnemyBlendAnimatorBase::animate(int, float)
-// {
-// }
-
-/*
- * getTypeID__Q24Game22EnemyBlendAnimatorBaseFv
- * --INFO--
- * Address:	8010AA6C
- * Size:	00000C
- */
-// void EnemyBlendAnimatorBase::getTypeID()
-// {
-// }
-
-/*
- * getEnemyTypeID__Q34Game8Pelplant3ObjFv
- * --INFO--
- * Address:	8010AA78
- * Size:	000008
- */
-// WEAK - in header
-// EnemyTypeID::EEnemyTypeID Pelplant::Obj::getEnemyTypeID() { return EnemyTypeID::EnemyID_Pelplant; }
-
-/*
- * size__7Parm<i>Fv
- * --INFO--
- * Address:	8010AA80
- * Size:	000008
- */
-// u32 Parm<int>::size() { return 0x4; }
-
-/*
- * size__7Parm<f>Fv
- * --INFO--
- * Address:	8010AA88
- * Size:	000008
- */
-// u32 Parm<float>::size() { return 0x4; }
-
-// namespace Game {
-
-// /*
-//  * --INFO--
-//  * Address:	8010AA90
-//  * Size:	000014
-//  */
-// void EnemyBase::@728 @12 @viewOnPelletKilled()
-// {
-// 	/*
-// 	li       r11, 0xc
-// 	lwzx     r11, r3, r11
-// 	add      r3, r3, r11
-// 	addi     r3, r3, -728
-// 	b        viewOnPelletKilled__Q24Game9EnemyBaseFv
-// 	*/
-// }
-
-// /*
-//  * --INFO--
-//  * Address:	8010AAA4
-//  * Size:	000014
-//  */
-// void EnemyBase::@728 @12 @viewStartCarryMotion()
-// {
-// 	/*
-// 	li       r11, 0xc
-// 	lwzx     r11, r3, r11
-// 	add      r3, r3, r11
-// 	addi     r3, r3, -728
-// 	b        viewStartCarryMotion__Q24Game9EnemyBaseFv
-// 	*/
-// }
-
-// /*
-//  * --INFO--
-//  * Address:	8010AAB8
-//  * Size:	000014
-//  */
-// void EnemyBase::@728 @12 @viewStartPreCarryMotion()
-// {
-// 	/*
-// 	li       r11, 0xc
-// 	lwzx     r11, r3, r11
-// 	add      r3, r3, r11
-// 	addi     r3, r3, -728
-// 	b        viewStartPreCarryMotion__Q24Game9EnemyBaseFv
-// 	*/
-// }
-
-// /*
-//  * --INFO--
-//  * Address:	8010AACC
-//  * Size:	000014
-//  */
-// void EnemyBase::@728 @12 @view_finish_carrymotion()
-// {
-// 	/*
-// 	li       r11, 0xc
-// 	lwzx     r11, r3, r11
-// 	add      r3, r3, r11
-// 	addi     r3, r3, -728
-// 	b        view_finish_carrymotion__Q24Game9EnemyBaseFv
-// 	*/
-// }
-
-// /*
-//  * --INFO--
-//  * Address:	8010AAE0
-//  * Size:	000014
-//  */
-// void EnemyBase::@728 @12 @view_start_carrymotion()
-// {
-// 	/*
-// 	li       r11, 0xc
-// 	lwzx     r11, r3, r11
-// 	add      r3, r3, r11
-// 	addi     r3, r3, -728
-// 	b        view_start_carrymotion__Q24Game9EnemyBaseFv
-// 	*/
-// }
-
-// /*
-//  * --INFO--
-//  * Address:	8010AAF4
-//  * Size:	000014
-//  */
-// void EnemyBase::@728 @12 @viewGetShape()
-// {
-// 	/*
-// 	li       r11, 0xc
-// 	lwzx     r11, r3, r11
-// 	add      r3, r3, r11
-// 	addi     r3, r3, -728
-// 	b        viewGetShape__Q24Game9EnemyBaseFv
-// 	*/
-// }
-
-// /*
-//  * --INFO--
-//  * Address:	8010AB08
-//  * Size:	000008
-//  */
-// IEnemyMgrBase::@4 @~IEnemyMgrBase()
-// {
-// 	/*
-// 	addi     r3, r3, -4
-// 	b        __dt__Q24Game13IEnemyMgrBaseFv
-// 	*/
-// }
-
-// /*
-//  * --INFO--
-//  * Address:	8010AB10
-//  * Size:	000008
-//  */
-// Pelplant::Mgr::@4 @~Mgr()
-// {
-// 	/*
-// 	addi     r3, r3, -4
-// 	b        __dt__Q34Game8Pelplant3MgrFv
-// 	*/
-// }
-
-// /*
-//  * --INFO--
-//  * Address:	8010AB18
-//  * Size:	000008
-//  */
-// void EnemyMgrBase::@4 @getEnd()
-// {
-// 	/*
-// 	addi     r3, r3, -4
-// 	b        getEnd__Q24Game12EnemyMgrBaseFv
-// 	*/
-// }
-
-// /*
-//  * --INFO--
-//  * Address:	8010AB20
-//  * Size:	000008
-//  */
-// void EnemyMgrBase::@4 @getStart()
-// {
-// 	/*
-// 	addi     r3, r3, -4
-// 	b        getStart__Q24Game12EnemyMgrBaseFv
-// 	*/
-// }
-
-// /*
-//  * --INFO--
-//  * Address:	8010AB28
-//  * Size:	000008
-//  */
-// void EnemyMgrBase::@4 @getNext(void*)
-// {
-// 	/*
-// 	addi     r3, r3, -4
-// 	b        getNext__Q24Game12EnemyMgrBaseFPv
-// 	*/
-// }
-
-// /*
-//  * --INFO--
-//  * Address:	8010AB30
-//  * Size:	000008
-//  */
-// void EnemyMgrBase::@4 @getObject(void*)
-// {
-// 	/*
-// 	addi     r3, r3, -4
-// 	b        getObject__Q24Game12EnemyMgrBaseFPv
-// 	*/
-// }
-// } // namespace Game

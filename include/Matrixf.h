@@ -62,6 +62,13 @@ struct Matrixf {
 	 */
 	void getTranslation(Vector3f& translation) { getBasis(3, translation); }
 
+	void getRow(int p1, Vector3f& p2)
+	{
+		p2.x = (*this)(p1, 0);
+		p2.y = (*this)(p1, 1);
+		p2.z = (*this)(p1, 2);
+	}
+
 	/**
 	 * @fabricated
 	 */

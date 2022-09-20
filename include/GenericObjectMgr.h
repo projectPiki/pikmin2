@@ -17,7 +17,7 @@ struct GenericObject {
 
 struct GenericObjectMgr {
 	virtual void doAnimation() = 0;           // _08
-	virtual void doEntry();                   // _0C (weak)
+	virtual void doEntry() { }                // _0C (weak)
 	virtual void doSetView(int)          = 0; // _10
 	virtual void doViewCalc()            = 0; // _14
 	virtual void doSimulation(float)     = 0; // _18

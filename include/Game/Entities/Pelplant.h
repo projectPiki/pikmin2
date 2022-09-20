@@ -81,12 +81,10 @@ struct Obj : public EnemyBase {
 	void setPelletColor(u16, bool);
 	float getHeadScale();
 	void updateLODSphereRadius(int);
+	void getNeckScale(Vector3f*);
 
 	static unknown headJointCallBack(J3DJoint*, int);
 	static unknown neckJointCallBack(J3DJoint*, int);
-
-	// Inlined:
-	void getNeckScale(Vector3f*);
 
 	static Obj* sCurrentObj;
 
