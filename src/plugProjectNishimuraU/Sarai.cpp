@@ -307,6 +307,7 @@
 
 #include "Game/Entities/Sarai.h"
 #include "Game/MapMgr.h"
+#include "JSystem/JMath.h"
 
 namespace Game {
 
@@ -507,160 +508,25 @@ f32 Sarai::Obj::setHeightVelocity()
  */
 void Sarai::Obj::setRandTarget()
 {
-	/*
-	stwu     r1, -0x50(r1)
-	mflr     r0
-	stw      r0, 0x54(r1)
-	stfd     f31, 0x40(r1)
-	psq_st   f31, 72(r1), 0, qr0
-	stfd     f30, 0x30(r1)
-	psq_st   f30, 56(r1), 0, qr0
-	stw      r31, 0x2c(r1)
-	mr       r31, r3
-	bl       getCatchTargetNum__Q34Game5Sarai3ObjFv
-	cmpwi    r3, 0
-	beq      lbl_80273244
-	lwz      r3, 0xc0(r31)
-	lfs      f30, 0x384(r3)
-	bl       rand
-	xoris    r3, r3, 0x8000
-	lis      r0, 0x4330
-	stw      r3, 0xc(r1)
-	lfd      f2, lbl_8051B230@sda21(r2)
-	stw      r0, 8(r1)
-	lfs      f0, lbl_8051B238@sda21(r2)
-	lfd      f1, 8(r1)
-	fsubs    f1, f1, f2
-	fmuls    f1, f30, f1
-	fdivs    f0, f1, f0
-	fmr      f31, f0
-	b        lbl_802732DC
+	// Set's a random target near the home radius, if in a cave then completely random
+	float radius;
+	if (getCatchTargetNum()) {
+		radius = randFloatR(static_cast<Parms*>(m_parms)->m_general.m_homeRadius.m_value);
+	} else if (gameSystem && gameSystem->m_inCave) {
+		radius = 50.0f + randFloatR(50.0f);
+	} else {
+		radius = static_cast<Parms*>(m_parms)->m_general.m_homeRadius.m_value
+		         + randFloatR(static_cast<Parms*>(m_parms)->m_general.m_territoryRadius.m_value
+		                      - static_cast<Parms*>(m_parms)->m_general.m_homeRadius.m_value);
+	}
 
-lbl_80273244:
-	lwz      r3, gameSystem__4Game@sda21(r13)
-	cmplwi   r3, 0
-	beq      lbl_80273294
-	lbz      r0, 0x48(r3)
-	cmplwi   r0, 0
-	beq      lbl_80273294
-	bl       rand
-	xoris    r3, r3, 0x8000
-	lis      r0, 0x4330
-	stw      r3, 0xc(r1)
-	lfd      f3, lbl_8051B230@sda21(r2)
-	stw      r0, 8(r1)
-	lfs      f2, lbl_8051B210@sda21(r2)
-	lfd      f1, 8(r1)
-	lfs      f0, lbl_8051B238@sda21(r2)
-	fsubs    f1, f1, f3
-	fmuls    f1, f2, f1
-	fdivs    f0, f1, f0
-	fadds    f31, f2, f0
-	b        lbl_802732DC
+	// Get the direction from the home position towards our position
+	float dirToHomePosition = JMath::atanTable_.atan2_(m_position.x - m_homePosition.x, m_position.z - m_homePosition.z);
 
-lbl_80273294:
-	lwz      r3, 0xc0(r31)
-	lfs      f1, 0x35c(r3)
-	lfs      f0, 0x384(r3)
-	fsubs    f30, f1, f0
-	bl       rand
-	xoris    r3, r3, 0x8000
-	lis      r0, 0x4330
-	stw      r3, 0xc(r1)
-	lwz      r3, 0xc0(r31)
-	stw      r0, 8(r1)
-	lfd      f2, lbl_8051B230@sda21(r2)
-	lfd      f0, 8(r1)
-	lfs      f1, lbl_8051B238@sda21(r2)
-	fsubs    f2, f0, f2
-	lfs      f0, 0x384(r3)
-	fmuls    f2, f30, f2
-	fdivs    f1, f2, f1
-	fadds    f31, f0, f1
-
-lbl_802732DC:
-	lfs      f3, 0x18c(r31)
-	lis      r3, atanTable___5JMath@ha
-	lfs      f1, 0x198(r31)
-	addi     r3, r3, atanTable___5JMath@l
-	lfs      f2, 0x194(r31)
-	lfs      f0, 0x1a0(r31)
-	fsubs    f1, f3, f1
-	fsubs    f2, f2, f0
-	bl       "atan2___Q25JMath18TAtanTable<1024,f>CFff"
-	fmr      f30, f1
-	bl       rand
-	xoris    r3, r3, 0x8000
-	lis      r0, 0x4330
-	stw      r3, 0xc(r1)
-	lfd      f2, lbl_8051B230@sda21(r2)
-	stw      r0, 8(r1)
-	lfs      f3, lbl_8051B23C@sda21(r2)
-	lfd      f0, 8(r1)
-	lfs      f1, lbl_8051B238@sda21(r2)
-	fsubs    f4, f0, f2
-	lfs      f2, lbl_8051B240@sda21(r2)
-	lfs      f0, lbl_8051B1F8@sda21(r2)
-	fmuls    f3, f3, f4
-	fdivs    f1, f3, f1
-	fadds    f1, f30, f1
-	fadds    f5, f2, f1
-	fmr      f1, f5
-	fcmpo    cr0, f5, f0
-	bge      lbl_80273354
-	fneg     f1, f5
-
-lbl_80273354:
-	lfs      f3, lbl_8051B244@sda21(r2)
-	lis      r3, sincosTable___5JMath@ha
-	lfs      f0, lbl_8051B1F8@sda21(r2)
-	addi     r4, r3, sincosTable___5JMath@l
-	fmuls    f2, f1, f3
-	lfs      f1, 0x1a0(r31)
-	fcmpo    cr0, f5, f0
-	lfs      f4, 0x19c(r31)
-	fctiwz   f0, f2
-	stfd     f0, 0x10(r1)
-	lwz      r0, 0x14(r1)
-	rlwinm   r0, r0, 3, 0x12, 0x1c
-	add      r3, r4, r0
-	lfs      f0, 4(r3)
-	fmadds   f2, f31, f0, f1
-	bge      lbl_802733B8
-	lfs      f0, lbl_8051B248@sda21(r2)
-	fmuls    f0, f5, f0
-	fctiwz   f0, f0
-	stfd     f0, 0x18(r1)
-	lwz      r0, 0x1c(r1)
-	rlwinm   r0, r0, 3, 0x12, 0x1c
-	lfsx     f0, r4, r0
-	fneg     f1, f0
-	b        lbl_802733D0
-
-lbl_802733B8:
-	fmuls    f0, f5, f3
-	fctiwz   f0, f0
-	stfd     f0, 0x20(r1)
-	lwz      r0, 0x24(r1)
-	rlwinm   r0, r0, 3, 0x12, 0x1c
-	lfsx     f1, r4, r0
-
-lbl_802733D0:
-	lfs      f0, 0x198(r31)
-	fmadds   f0, f31, f1, f0
-	stfs     f0, 0x2cc(r31)
-	stfs     f4, 0x2d0(r31)
-	stfs     f2, 0x2d4(r31)
-	psq_l    f31, 72(r1), 0, qr0
-	lfd      f31, 0x40(r1)
-	psq_l    f30, 56(r1), 0, qr0
-	lfd      f30, 0x30(r1)
-	lwz      r0, 0x54(r1)
-	lwz      r31, 0x2c(r1)
-	mtlr     r0
-	addi     r1, r1, 0x50
-	blr
-	*/
+	// Randomise the angle a bit and set the target position
+	float rngAngle = HALF_PI + (dirToHomePosition + randFloatR(PI));
+	m_targetPos    = Vector3f((radius * pikmin2_sinf(rngAngle)) + m_homePosition.x, m_homePosition.y,
+	                          (radius * pikmin2_cosf(rngAngle)) + m_homePosition.z);
 }
 
 /*

@@ -58,9 +58,7 @@ struct Obj : public EnemyBase {
 	u8 _2BC[0x4];            // _2BC, unknown
 	f32 _2C0;                // _2C0
 	MouthSlots m_mouthSlots; // _2C4
-	f32 _2CC;                // _2CC, may be a Vector3f with _2D0 and _2D4
-	f32 _2D0;                // _2D0
-	f32 _2D4;                // _2D4
+	Vector3f m_targetPos;    // _2CC
 	                         // _2D8 = PelletView
 };
 
