@@ -10,6 +10,7 @@
 #include "GenericObjectMgr.h"
 #include "SysShape/AnimMgr.h"
 #include "Game/EnemyBase.h"
+#include "JSystem/J3D/J3DModelLoader.h"
 #include "Vector3.h"
 
 struct CollPartFactory;
@@ -194,14 +195,17 @@ struct EnemyMgrBase : public IEnemyMgrBase {
 };
 
 struct EnemyMgrBaseAlwaysMovieActor : public EnemyMgrBase {
-	inline EnemyMgrBaseAlwaysMovieActor(int, u8); // probably necessary?
+	inline EnemyMgrBaseAlwaysMovieActor(int p1, u8 p2)
+	    : EnemyMgrBase(p1, p2)
+	{
+	}
 
-	virtual void doAnimation();              // _08 (weak)
-	virtual void doEntry();                  // _0C (weak)
-	virtual void doSimulation(f32);          // _18 (weak)
-	virtual void doDirectDraw(Graphics&);    // _1C (weak)
-	virtual ~EnemyMgrBaseAlwaysMovieActor(); // _58 (weak)
-	virtual bool isAlwaysMovieActor();       // _9C (weak)
+	virtual void doAnimation();                 // _08 (weak)
+	virtual void doEntry();                     // _0C (weak)
+	virtual void doSimulation(f32);             // _18 (weak)
+	virtual void doDirectDraw(Graphics&);       // _1C (weak)
+	virtual ~EnemyMgrBaseAlwaysMovieActor() { } // _58 (weak)
+	virtual bool isAlwaysMovieActor();          // _9C (weak)
 
 	// _00		= VTABLE
 	// _00-_44	= EnemyMgrBase
