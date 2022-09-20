@@ -399,6 +399,37 @@ struct StateWait : public State {
 	// _00		= VTBL
 	// _00-_10 	= EnemyFSMState
 };
+
+// dumb inline for StateTurn::exec, StateItemTurn::exec, StateBombTurn::exec
+inline f32 Obj::changeFaceDir(Vector2f& XZ)
+{
+	f32 approxSpeed;
+	f32 rotSpeed;
+	f32 rotAccel;
+	f32 x;
+	f32 z;
+
+	Parms* parms = static_cast<Parms*>(m_parms);
+	rotSpeed     = parms->m_general.m_rotationalSpeed.m_value;
+	rotAccel     = parms->m_general.m_rotationalAccel.m_value;
+
+	Vector3f pos = getPosition();
+	x            = XZ.x;
+	z            = XZ.y;
+
+	f32 angleDist = angDist(_angXZ(x, z, pos.x, pos.z), getFaceDir());
+
+	f32 limit   = (DEG2RAD * rotSpeed) * PI;
+	approxSpeed = angleDist * rotAccel;
+	if (FABS(approxSpeed) > limit) {
+		approxSpeed = (approxSpeed > 0.0f) ? limit : -limit;
+	}
+
+	m_faceDir           = roundAng(approxSpeed + getFaceDir());
+	_1A4.m_matrix[0][1] = m_faceDir;
+	return angleDist;
+}
+
 /////////////////////////////////////////////////////////////////
 } // namespace OtakaraBase
 } // namespace Game
