@@ -174,7 +174,7 @@ struct J3DColorBlockLightOn : public J3DColorBlock {
 };
 
 struct J3DColorBlockNull : public J3DColorBlock {
-	virtual JBlockType getType();    // _2C (weak)
+	virtual JBlockType getType(); // _2C (weak)
 	/**
 	 * @reifiedAddress{8006F664}
 	 * @reifiedFile{JSystem/J3D/J3DMaterialFactory.cpp}

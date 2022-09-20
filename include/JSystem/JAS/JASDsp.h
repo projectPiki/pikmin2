@@ -94,7 +94,8 @@ struct TChannel {
 	short m_distFilter;       // _150
 };
 
-struct FxlineConfig_ { };
+struct FxlineConfig_ {
+};
 
 void boot(void (*)(void*));
 void releaseHalt(u32);

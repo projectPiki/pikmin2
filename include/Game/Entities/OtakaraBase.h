@@ -19,25 +19,46 @@
 
 namespace Game {
 namespace OtakaraBase {
+enum StateID {
+	OTA_Null      = -1,
+	OTA_Dead      = 0,
+	OTA_Flick     = 1,
+	OTA_Wait      = 2,
+	OTA_Move      = 3,
+	OTA_Turn      = 4,
+	OTA_Take      = 5,
+	OTA_ItemWait  = 6,
+	OTA_ItemMove  = 7,
+	OTA_ItemTurn  = 8,
+	OTA_ItemFlick = 9,
+	OTA_ItemDrop  = 10,
+	OTA_BombWait  = 11,
+	OTA_BombMove  = 12,
+	OTA_BombTurn  = 13,
+};
+
 struct FSM;
 
 struct Obj : public EnemyBase {
 	Obj();
 
 	//////////////// VTABLE
-	virtual void onInit(CreatureInitArg*);                   // _30
-	virtual void onKill(CreatureKillArg*);                   // _34
-	virtual void doDirectDraw(Graphics&);                    // _50
-	virtual f32 getCellRadius();                             // _58 (weak)
-	virtual void getShadowParam(ShadowParam&);               // _134
-	virtual ~Obj();                                          // _1BC (weak)
-	virtual void setInitialSetting(EnemyInitialParamBase*);  // _1C4
-	virtual void doUpdate();                                 // _1CC
-	virtual void doUpdateCommon();                           // _1D0
-	virtual void doAnimationCullingOff();                    // _1DC
-	virtual void doDebugDraw(Graphics&);                     // _1EC
-	virtual void changeMaterial() = 0;                       // _200
-	virtual EnemyTypeID::EEnemyTypeID getEnemyTypeID();      // _258 (weak)
+	virtual void onInit(CreatureInitArg*);                  // _30
+	virtual void onKill(CreatureKillArg*);                  // _34
+	virtual void doDirectDraw(Graphics&);                   // _50
+	virtual f32 getCellRadius() { return m_cellRadius; }    // _58 (weak)
+	virtual void getShadowParam(ShadowParam&);              // _134
+	virtual ~Obj() { }                                      // _1BC (weak)
+	virtual void setInitialSetting(EnemyInitialParamBase*); // _1C4
+	virtual void doUpdate();                                // _1CC
+	virtual void doUpdateCommon();                          // _1D0
+	virtual void doAnimationCullingOff();                   // _1DC
+	virtual void doDebugDraw(Graphics&);                    // _1EC
+	virtual void changeMaterial() = 0;                      // _200
+	virtual EnemyTypeID::EEnemyTypeID getEnemyTypeID()      // _258 (weak)
+	{
+		return EnemyTypeID::EnemyID_FireOtakara;
+	}
 	virtual bool damageCallBack(Creature*, f32, CollPart*);  // _278
 	virtual bool hipdropCallBack(Creature*, f32, CollPart*); // _284
 	virtual bool earthquakeCallBack(Creature*, f32);         // _28C
@@ -51,53 +72,57 @@ struct Obj : public EnemyBase {
 	virtual void startCarcassMotion();                       // _2C4
 	virtual void doStartWaitingBirthTypeDrop();              // _2E0
 	virtual void doFinishWaitingBirthTypeDrop();             // _2E4
-	virtual f32 getDownSmokeScale();                         // _2EC (weak)
+	virtual f32 getDownSmokeScale() { return 0.7f; }         // _2EC (weak)
 	virtual void doStartMovie();                             // _2F0
 	virtual void doEndMovie();                               // _2F4
 	virtual void setFSM(FSM*);                               // _2F8
-	virtual void interactCreature(Creature*);                // _2FC (weak)
-	virtual void createEffect();                             // _300 (weak)
-	virtual void setupEffect();                              // _304 (weak)
-	virtual void startChargeEffect();                        // _308 (weak)
-	virtual void finishChargeEffect();                       // _30C (weak)
-	virtual void createDisChargeEffect();                    // _310 (weak)
-	virtual void effectDrawOn();                             // _314 (weak)
-	virtual void effectDrawOff();                            // _318 (weak)
+	virtual void interactCreature(Creature*) { }             // _2FC (weak)
+	virtual void createEffect() { }                          // _300 (weak)
+	virtual void setupEffect() { }                           // _304 (weak)
+	virtual void startChargeEffect() { }                     // _308 (weak)
+	virtual void finishChargeEffect() { }                    // _30C (weak)
+	virtual void createDisChargeEffect() { }                 // _310 (weak)
+	virtual void effectDrawOn() { }                          // _314 (weak)
+	virtual void effectDrawOff() { }                         // _318 (weak)
 	virtual void startEscapeSE();                            // _31C
-	virtual void startDisChargeSE();                         // _320 (weak)
+	virtual void startDisChargeSE() { }                      // _320 (weak)
 	//////////////// VTABLE END
 
-	void isMovePositionSet(bool);
-	void getNearestTreasure();
-	void getTargetPosition(Creature*);
+	bool isMovePositionSet(bool);
+	Pellet* getNearestTreasure();
+	Vector3f getTargetPosition(Creature*);
 	void resetTreasure();
-	void isTakeTreasure();
+	bool isTakeTreasure();
 	void takeTreasure();
-	void fallTreasure(bool);
-	void isDropTreasure();
+	bool fallTreasure(bool);
+	bool isDropTreasure();
 	void damageTreasure(f32);
 	void attackTarget();
 	void createTreasureFallEffect();
 	void initBombOtakara();
-	void isTransitChaseState();
-	void stimulateBomb();
-	void getChaseTargetCreature();
+	bool isTransitChaseState();
+	bool stimulateBomb();
+	Creature* getChaseTargetCreature();
+
+	inline void getScaledRadius(f32 scale, f32* radius) { *radius = scale * (m_cellRadius - 10.0f); }
+
+	inline f32 changeFaceDir(Vector2f& XZ);
 
 	// _00 		= VTBL
 	// _00-_2BC	= EnemyBase
-	FSM* m_FSM;           // _2BC
-	int _2C0;             // _2C0
-	f32 _2C4;             // _2C4, timer?
-	f32 _2C8;             // _2C8
-	f32 m_escapeSfxTimer; // _2CC
-	u8 _2D0;              // _2D0
-	Vector3f _2D4;        // _2D4
-	Creature* m_treasure; // _2E0
-	f32 m_treasureHealth; // _2E4
-	f32 _2E8;             // _2E8, timer?
-	f32 _2EC;             // _2EC
-	f32 _2F0;             // _2F0, cell radius?
-	                      // _2F4 = PelletView
+	FSM* m_FSM;              // _2BC
+	StateID m_nextState;     // _2C0
+	f32 _2C4;                // _2C4, timer?
+	f32 _2C8;                // _2C8
+	f32 m_escapeSfxTimer;    // _2CC
+	u8 _2D0;                 // _2D0
+	Vector3f m_movePosition; // _2D4
+	Creature* m_treasure;    // _2E0
+	f32 m_treasureHealth;    // _2E4
+	f32 _2E8;                // _2E8, timer?
+	f32 _2EC;                // _2EC
+	f32 m_cellRadius;        // _2F0
+	                         // _2F4 = PelletView
 };
 
 struct Mgr : public EnemyMgrBase {
@@ -154,11 +179,22 @@ struct FSM : public EnemyStateMachine {
 };
 
 struct State : public EnemyFSMState {
+	inline State(int stateID, const char* name)
+	    : EnemyFSMState(stateID)
+	{
+		m_name = name;
+	}
+
 	// _00		= VTBL
 	// _00-_10 	= EnemyFSMState
 };
 
 struct StateBombMove : public State {
+	inline StateBombMove()
+	    : State(OTA_BombMove, "bombflick") // wrong name by devs?
+	{
+	}
+
 	virtual void init(EnemyBase*, StateArg*); // _08
 	virtual void exec(EnemyBase*);            // _0C
 	virtual void cleanup(EnemyBase*);         // _10
@@ -168,6 +204,11 @@ struct StateBombMove : public State {
 };
 
 struct StateBombTurn : public State {
+	inline StateBombTurn()
+	    : State(OTA_BombTurn, "bombdrop") // wrong name by devs?
+	{
+	}
+
 	virtual void init(EnemyBase*, StateArg*); // _08
 	virtual void exec(EnemyBase*);            // _0C
 	virtual void cleanup(EnemyBase*);         // _10
@@ -177,6 +218,11 @@ struct StateBombTurn : public State {
 };
 
 struct StateBombWait : public State {
+	inline StateBombWait()
+	    : State(OTA_BombWait, "bombturn") // wrong name by devs?
+	{
+	}
+
 	virtual void init(EnemyBase*, StateArg*); // _08
 	virtual void exec(EnemyBase*);            // _0C
 	virtual void cleanup(EnemyBase*);         // _10
@@ -186,6 +232,11 @@ struct StateBombWait : public State {
 };
 
 struct StateDead : public State {
+	inline StateDead()
+	    : State(OTA_Dead, "dead")
+	{
+	}
+
 	virtual void init(EnemyBase*, StateArg*); // _08
 	virtual void exec(EnemyBase*);            // _0C
 	virtual void cleanup(EnemyBase*);         // _10
@@ -195,6 +246,11 @@ struct StateDead : public State {
 };
 
 struct StateFlick : public State {
+	inline StateFlick()
+	    : State(OTA_Flick, "flick")
+	{
+	}
+
 	virtual void init(EnemyBase*, StateArg*); // _08
 	virtual void exec(EnemyBase*);            // _0C
 	virtual void cleanup(EnemyBase*);         // _10
@@ -204,6 +260,11 @@ struct StateFlick : public State {
 };
 
 struct StateItemDrop : public State {
+	inline StateItemDrop()
+	    : State(OTA_ItemDrop, "itemdrop")
+	{
+	}
+
 	virtual void init(EnemyBase*, StateArg*); // _08
 	virtual void exec(EnemyBase*);            // _0C
 	virtual void cleanup(EnemyBase*);         // _10
@@ -213,6 +274,11 @@ struct StateItemDrop : public State {
 };
 
 struct StateItemFlick : public State {
+	inline StateItemFlick()
+	    : State(OTA_ItemFlick, "itemflick")
+	{
+	}
+
 	virtual void init(EnemyBase*, StateArg*); // _08
 	virtual void exec(EnemyBase*);            // _0C
 	virtual void cleanup(EnemyBase*);         // _10
@@ -222,6 +288,11 @@ struct StateItemFlick : public State {
 };
 
 struct StateItemMove : public State {
+	inline StateItemMove()
+	    : State(OTA_ItemMove, "itemmove")
+	{
+	}
+
 	virtual void init(EnemyBase*, StateArg*); // _08
 	virtual void exec(EnemyBase*);            // _0C
 	virtual void cleanup(EnemyBase*);         // _10
@@ -231,6 +302,11 @@ struct StateItemMove : public State {
 };
 
 struct StateItemTurn : public State {
+	inline StateItemTurn()
+	    : State(OTA_ItemTurn, "itemturn")
+	{
+	}
+
 	virtual void init(EnemyBase*, StateArg*); // _08
 	virtual void exec(EnemyBase*);            // _0C
 	virtual void cleanup(EnemyBase*);         // _10
@@ -240,6 +316,11 @@ struct StateItemTurn : public State {
 };
 
 struct StateItemWait : public State {
+	inline StateItemWait()
+	    : State(OTA_ItemWait, "itemwait")
+	{
+	}
+
 	virtual void init(EnemyBase*, StateArg*); // _08
 	virtual void exec(EnemyBase*);            // _0C
 	virtual void cleanup(EnemyBase*);         // _10
@@ -249,6 +330,11 @@ struct StateItemWait : public State {
 };
 
 struct StateMove : public State {
+	inline StateMove()
+	    : State(OTA_Move, "move")
+	{
+	}
+
 	virtual void init(EnemyBase*, StateArg*); // _08
 	virtual void exec(EnemyBase*);            // _0C
 	virtual void cleanup(EnemyBase*);         // _10
@@ -258,6 +344,11 @@ struct StateMove : public State {
 };
 
 struct StateTake : public State {
+	inline StateTake()
+	    : State(OTA_Take, "take")
+	{
+	}
+
 	virtual void init(EnemyBase*, StateArg*); // _08
 	virtual void exec(EnemyBase*);            // _0C
 	virtual void cleanup(EnemyBase*);         // _10
@@ -267,6 +358,11 @@ struct StateTake : public State {
 };
 
 struct StateTurn : public State {
+	inline StateTurn()
+	    : State(OTA_Turn, "turn")
+	{
+	}
+
 	virtual void init(EnemyBase*, StateArg*); // _08
 	virtual void exec(EnemyBase*);            // _0C
 	virtual void cleanup(EnemyBase*);         // _10
@@ -276,6 +372,11 @@ struct StateTurn : public State {
 };
 
 struct StateWait : public State {
+	inline StateWait()
+	    : State(OTA_Wait, "wait")
+	{
+	}
+
 	virtual void init(EnemyBase*, StateArg*); // _08
 	virtual void exec(EnemyBase*);            // _0C
 	virtual void cleanup(EnemyBase*);         // _10
@@ -283,6 +384,37 @@ struct StateWait : public State {
 	// _00		= VTBL
 	// _00-_10 	= EnemyFSMState
 };
+
+// dumb inline for StateTurn::exec, StateItemTurn::exec, StateBombTurn::exec
+inline f32 Obj::changeFaceDir(Vector2f& XZ)
+{
+	f32 approxSpeed;
+	f32 rotSpeed;
+	f32 rotAccel;
+	f32 x;
+	f32 z;
+
+	Parms* parms = static_cast<Parms*>(m_parms);
+	rotSpeed     = parms->m_general.m_rotationalSpeed.m_value;
+	rotAccel     = parms->m_general.m_rotationalAccel.m_value;
+
+	Vector3f pos = getPosition();
+	x            = XZ.x;
+	z            = XZ.y;
+
+	f32 angleDist = angDist(_angXZ(x, z, pos.x, pos.z), getFaceDir());
+
+	f32 limit   = (DEG2RAD * rotSpeed) * PI;
+	approxSpeed = angleDist * rotAccel;
+	if (FABS(approxSpeed) > limit) {
+		approxSpeed = (approxSpeed > 0.0f) ? limit : -limit;
+	}
+
+	m_faceDir           = roundAng(approxSpeed + getFaceDir());
+	_1A4.m_matrix[0][1] = m_faceDir;
+	return angleDist;
+}
+
 /////////////////////////////////////////////////////////////////
 } // namespace OtakaraBase
 } // namespace Game

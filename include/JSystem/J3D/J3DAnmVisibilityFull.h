@@ -40,6 +40,7 @@ struct J3DAnmVisibilityFullData : J3DAnmFullData {
 	void* _10; // _10
 	void* _14; // _14
 };
-struct J3DAnmVisibilityFullTable { };
+struct J3DAnmVisibilityFullTable {
+};
 
 #endif

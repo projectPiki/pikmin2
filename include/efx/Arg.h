@@ -54,9 +54,9 @@ struct ArgEnemyType : public Arg {
 
 struct ArgScale : public Arg {
 	ArgScale(Vector3f position, float scale)
-	    : m_scale(scale)
-	    , Arg(position)
+	    : Arg(position)
 	{
+		m_scale = scale;
 	}
 	/**
 	 * @reifiedAddress{80107C44}

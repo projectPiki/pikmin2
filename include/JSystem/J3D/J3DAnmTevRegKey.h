@@ -79,7 +79,8 @@ struct J3DAnmTevRegKey : public J3DAnmBase {
 	s16* _6C;                // _6C
 };
 
-struct J3DAnmTevRegKeyData { };
+struct J3DAnmTevRegKeyData {
+};
 
 /**
  * @size{0x1C}

@@ -76,6 +76,7 @@ struct J3DAnmTextureSRTKey : public J3DAnmBase {
 	u32 _78;                      // _78
 };
 
-struct J3DAnmTextureSRTKeyData { };
+struct J3DAnmTextureSRTKeyData {
+};
 
 #endif
