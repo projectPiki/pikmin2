@@ -11,10 +11,10 @@ namespace Tyre {
 void Tyre::FSM::init(EnemyBase* enemy)
 {
 	create(4);
-	registerState(new StateMove(0));
-	registerState(new StateLand(1));
-	registerState(new StateFreeze(2));
-	registerState(new StateDead(3));
+	registerState(new StateMove(TYRE_Move));
+	registerState(new StateLand(TYRE_Land));
+	registerState(new StateFreeze(TYRE_Freeze));
+	registerState(new StateDead(TYRE_Dead));
 }
 
 /*

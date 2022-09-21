@@ -9,23 +9,23 @@
  * --Header for Plant Classes (Plants)--
  * Plants       = Base Plants Class
  * Derived classes:
- * Chiyogami		= Chiyogami Paper
- * Clover			  = Clover
- * DiodeGreen		= Glowstem (Green)
- * DiodeRed			= Glowstem (Red)
+ * Chiyogami    = Chiyogami Paper
+ * Clover       = Clover
+ * DiodeGreen   = Glowstem (Green)
+ * DiodeRed     = Glowstem (Red)
  * HikariKinoko = Common Glowcap
- * KareOoinu_l	= Figwort (Brown, Large)
- * KareOoinu_s	= Figwort (Brown, Small)
- * Margaret			= Margaret
- * Nekojarashi	= Foxtail
- * Ooinu_l			= Figwort (Red, Large)
- * Ooinu_s			= Figwort (Red, Small)
- * Tanpopo			= Dandelion
- * Tukushi			= Horsetail
- * Wakame_l			= Shoot (Large)
- * Wakame_s			= Shoot (Small)
- * Watage			  = Seeding Dandelion
- * Zenmai			  = Fiddlehead
+ * KareOoinu_l  = Figwort (Brown, Large)
+ * KareOoinu_s  = Figwort (Brown, Small)
+ * Margaret     = Margaret
+ * Nekojarashi  = Foxtail
+ * Ooinu_l      = Figwort (Red, Large)
+ * Ooinu_s      = Figwort (Red, Small)
+ * Tanpopo      = Dandelion
+ * Tukushi      = Horsetail
+ * Wakame_l     = Shoot (Large)
+ * Wakame_s     = Shoot (Small)
+ * Watage       = Seeding Dandelion
+ * Zenmai       = Fiddlehead
  */
 
 namespace Game {
