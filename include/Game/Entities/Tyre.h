@@ -80,7 +80,7 @@ struct Obj : public EnemyBase {
 
 	// _00 		= VTBL
 	// _00-_2BC	= EnemyBase
-	u8 _2BC[0x4];                   // _2BC, unknown
+	EnemyBase* _2BC;                // _2BC, possibly wraith pointer?
 	f32 _2C0;                       // _2C0
 	f32 _2C4;                       // _2C4
 	u8 _2C8[0x4];                   // _2C8
@@ -174,6 +174,13 @@ struct TyreShadowMgr {
 
 /////////////////////////////////////////////////////////////////
 // STATE MACHINE DEFINITIONS
+enum StateID {
+	TYRE_Move   = 0,
+	TYRE_Land   = 1,
+	TYRE_Freeze = 2,
+	TYRE_Dead   = 3,
+};
+
 struct FSM : public EnemyStateMachine {
 	virtual void init(EnemyBase*); // _08
 
@@ -182,14 +189,17 @@ struct FSM : public EnemyStateMachine {
 };
 
 struct State : public EnemyFSMState {
-	inline State(int); // likely
+	inline State(int stateID)
+	    : EnemyFSMState(stateID)
+	{
+	}
 
 	// _00		= VTBL
 	// _00-_10 	= EnemyFSMState
 };
 
 struct StateDead : public State {
-	StateDead(int);
+	StateDead(int stateID);
 
 	virtual void init(EnemyBase*, StateArg*); // _08
 	virtual void exec(EnemyBase*);            // _0C
@@ -199,17 +209,18 @@ struct StateDead : public State {
 };
 
 struct StateFreeze : public State {
-	StateFreeze(int);
+	StateFreeze(int stateID);
 
 	virtual void init(EnemyBase*, StateArg*); // _08
 	virtual void exec(EnemyBase*);            // _0C
 
 	// _00		= VTBL
 	// _00-_10 	= EnemyFSMState
+	u32 _10; // _10
 };
 
 struct StateLand : public State {
-	StateLand(int);
+	StateLand(int stateID);
 
 	virtual void init(EnemyBase*, StateArg*); // _08
 	virtual void exec(EnemyBase*);            // _0C
@@ -219,7 +230,7 @@ struct StateLand : public State {
 };
 
 struct StateMove : public State {
-	StateMove(int);
+	StateMove(int stateID);
 
 	virtual void init(EnemyBase*, StateArg*); // _08
 	virtual void exec(EnemyBase*);            // _0C

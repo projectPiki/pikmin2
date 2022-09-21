@@ -1012,7 +1012,7 @@ MORIMURA:=\
 	$(BUILD_DIR)/src/plugProjectMorimuraU/blackManAnimator.o\
 	$(BUILD_DIR)/asm/plugProjectMorimuraU/blackManMgr.o\
 	$(BUILD_DIR)/asm/plugProjectMorimuraU/blackMan.o\
-	$(BUILD_DIR)/asm/plugProjectMorimuraU/tyreState.o\
+	$(BUILD_DIR)/src/plugProjectMorimuraU/tyreState.o\
 	$(BUILD_DIR)/src/plugProjectMorimuraU/tyreAnimator.o\
 	$(BUILD_DIR)/asm/plugProjectMorimuraU/tyreMgr.o\
 	$(BUILD_DIR)/asm/plugProjectMorimuraU/tyre.o\
