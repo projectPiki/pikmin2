@@ -36,8 +36,8 @@ struct J3DAnmBase {
 	inline J3DAnmBase()
 	    : _04(0)
 	    , _05(0)
-	    , _06(0)
-	    , _08(0.0f)
+	    , m_time(0)
+	    , m_fTime(0.0f)
 	{
 	}
 
@@ -45,10 +45,10 @@ struct J3DAnmBase {
 	virtual J3DAnmKind getKind() const = 0; // _0C
 
 	// _00 VTBL
-	u8 _04;    // _04
-	u8 _05;    // _05
-	s16 _06;   // _06
-	float _08; // _08
+	u8 _04;        // _04
+	u8 _05;        // _05
+	s16 m_time;    // _06
+	float m_fTime; // _08
 };
 
 /**
