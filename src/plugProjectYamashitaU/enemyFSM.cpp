@@ -2,43 +2,6 @@
 #include "Game/EnemyStateMachine.h"
 #include "types.h"
 
-/*
-    Generated from dpostproc
-
-    .section .data, "wa"  # 0x8049E220 - 0x804EFC20
-    .global __vt__Q24Game17EnemyStateMachine
-    __vt__Q24Game17EnemyStateMachine:
-        .4byte 0
-        .4byte 0
-        .4byte init__Q24Game17EnemyStateMachineFPQ24Game9EnemyBase
-        .4byte
-   start__Q24Game17EnemyStateMachineFPQ24Game9EnemyBaseiPQ24Game8StateArg .4byte
-   exec__Q24Game17EnemyStateMachineFPQ24Game9EnemyBase .4byte
-   transit__Q24Game17EnemyStateMachineFPQ24Game9EnemyBaseiPQ24Game8StateArg
-        .4byte
-   doDirectDraw__Q24Game17EnemyStateMachineFPQ24Game9EnemyBaseR8Graphics .4byte
-   getCurrState__Q24Game17EnemyStateMachineFPQ24Game9EnemyBase .4byte
-   setCurrState__Q24Game17EnemyStateMachineFPQ24Game9EnemyBasePQ24Game13EnemyFSMState
-    .global __vt__Q24Game13EnemyFSMState
-    __vt__Q24Game13EnemyFSMState:
-        .4byte 0
-        .4byte 0
-        .4byte init__Q24Game13EnemyFSMStateFPQ24Game9EnemyBasePQ24Game8StateArg
-        .4byte exec__Q24Game13EnemyFSMStateFPQ24Game9EnemyBase
-        .4byte cleanup__Q24Game13EnemyFSMStateFPQ24Game9EnemyBase
-        .4byte resume__Q24Game13EnemyFSMStateFPQ24Game9EnemyBase
-        .4byte restart__Q24Game13EnemyFSMStateFPQ24Game9EnemyBase
-        .4byte
-   transit__Q24Game13EnemyFSMStateFPQ24Game9EnemyBaseiPQ24Game8StateArg .4byte
-   doDirectDraw__Q24Game13EnemyFSMStateFPQ24Game9EnemyBaseR8Graphics
-
-    .section .sdata2, "a"     # 0x80516360 - 0x80520E40
-    .global lbl_80518148
-    lbl_80518148:
-        .4byte 0x6E6F206E
-        .4byte 0x616D6500
-*/
-
 namespace Game {
 
 /*
@@ -176,12 +139,12 @@ const char* EnemyStateMachine::getCurrName(EnemyBase* obj)
  */
 void EnemyStateMachine::transit(EnemyBase* obj, int id, StateArg* arg)
 {
-	// TODO: Is it possible to optimize out the repeated calls to getCurrState?
 	int index = m_idToIndexArray[id];
 	if (getCurrState(obj) != nullptr) {
 		getCurrState(obj)->cleanup(obj);
 		m_previousID = getCurrState(obj)->m_stateID;
 	}
+
 	ASSERT_HANG(index < m_limit);
 	setCurrState(obj, m_states[index]);
 	getCurrState(obj)->init(obj, arg);
