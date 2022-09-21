@@ -228,6 +228,7 @@ pikmin2.usa.dol: `sha1: 90d328bf8f190c90472e8c19e7e53c6ad0fe0d1a`
 	- <a href="https://github.com/projectPiki/pikmin2/tree/main/src/plugProjectYamashitaU/enemyFSM.cpp">plugProjectYamashitaU/enemyFSM.cpp</a>
 	- <a href="https://github.com/projectPiki/pikmin2/tree/main/src/plugProjectYamashitaU/enemyInfo.cpp">plugProjectYamashitaU/enemyInfo.cpp</a>
 	- <a href="https://github.com/projectPiki/pikmin2/tree/main/src/plugProjectYamashitaU/enemyInteractActions.cpp">plugProjectYamashitaU/enemyInteractActions.cpp</a>
+	- <a href="https://github.com/projectPiki/pikmin2/tree/main/src/plugProjectYamashitaU/enemyInteractBattle.cpp">plugProjectYamashitaU/enemyInteractBattle.cpp</a>
 	- <a href="https://github.com/projectPiki/pikmin2/tree/main/src/plugProjectYamashitaU/enemyMgrBase.cpp">plugProjectYamashitaU/enemyMgrBase.cpp</a>
 	- <a href="https://github.com/projectPiki/pikmin2/tree/main/src/plugProjectYamashitaU/enemyParmsBase.cpp">plugProjectYamashitaU/enemyParmsBase.cpp</a>
 	- <a href="https://github.com/projectPiki/pikmin2/tree/main/src/plugProjectYamashitaU/enemyPelletInfo.cpp">plugProjectYamashitaU/enemyPelletInfo.cpp</a>
