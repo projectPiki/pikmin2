@@ -471,7 +471,7 @@ YAMASHITA:=\
 	$(BUILD_DIR)/asm/plugProjectYamashitaU/YellowKochappyMgr.o\
 	$(BUILD_DIR)/asm/plugProjectYamashitaU/KochappyBaseMgr.o\
 	$(BUILD_DIR)/asm/plugProjectYamashitaU/KochappyBase.o\
-	$(BUILD_DIR)/asm/plugProjectYamashitaU/enemyBlendAnimatorBase.o\
+	$(BUILD_DIR)/src/plugProjectYamashitaU/enemyBlendAnimatorBase.o\
 	$(BUILD_DIR)/src/plugProjectYamashitaU/enemyPelletInfo.o\
 	$(BUILD_DIR)/asm/plugProjectYamashitaU/enemyEffectNode.o\
 	$(BUILD_DIR)/src/plugProjectYamashitaU/enemyMgrBase.o\

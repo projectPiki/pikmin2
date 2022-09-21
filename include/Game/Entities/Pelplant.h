@@ -217,16 +217,16 @@ struct ProperAnimator : public EnemyBlendAnimatorBase {
 /////////////////////////////////////////////////////////////////
 // STATE MACHINE DEFINITIONS
 enum StateID {
-	PELPLANT_WaitSmall = 0,
-	PELPLANT_WaitMiddle = 1,
-	PELPLANT_WaitBig = 2,
-	PELPLANT_Grow1	= 3,
-	PELPLANT_Grow2  = 4,
-	PELPLANT_Damage = 5,
-	PELPLANT_Dead = 6,
-	PELPLANT_WitherBig = 7,
+	PELPLANT_WaitSmall    = 0,
+	PELPLANT_WaitMiddle   = 1,
+	PELPLANT_WaitBig      = 2,
+	PELPLANT_Grow1        = 3,
+	PELPLANT_Grow2        = 4,
+	PELPLANT_Damage       = 5,
+	PELPLANT_Dead         = 6,
+	PELPLANT_WitherBig    = 7,
 	PELPLANT_WitherMiddle = 8,
-	PELPLANT_WitherSmall = 9,
+	PELPLANT_WitherSmall  = 9,
 };
 
 struct State : public EnemyFSMState {

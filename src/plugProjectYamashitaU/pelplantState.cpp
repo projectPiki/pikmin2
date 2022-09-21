@@ -42,10 +42,10 @@ void FSM::init(EnemyBase* enemy)
  * Size:	000040
  */
 StateBlendAnim::StateBlendAnim(int stateID, int a, int b, int c)
-		: State(stateID)
-		, _10(a)
-		, _14(b)
-		, _18(c)
+    : State(stateID)
+    , _10(a)
+    , _14(b)
+    , _18(c)
 {
 }
 

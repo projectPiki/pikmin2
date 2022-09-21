@@ -21,8 +21,8 @@ struct EnemyAnimatorBase {
 	 * @brief Runs the animate function of an inherited animator based on the frame count. The progress will reverse if it reaches the end
 	 * and will playback forwards if it reaches the start.
 	 */
-	virtual void animate(float currentFrame);                    // _18
-	virtual void animate(int animatorIndex, float currentFrame); // _1C (weak)
+	virtual void animate(f32 currentFrame);                    // _18
+	virtual void animate(int animatorIndex, f32 currentFrame); // _1C (weak)
 
 	virtual void resetAnimSpeed() { m_animSpeed = defaultAnimSpeed; } // _20 (weak)
 	virtual u32 getTypeID() { return 'base'; }                        // _24 (weak)
@@ -50,12 +50,12 @@ struct EnemyBlendAnimatorBase : public EnemyAnimatorBase {
 	virtual void setAnimMgr(SysShape::AnimMgr*);  // _0C
 	virtual SysShape::Animator& getAnimator();    // _10
 	virtual SysShape::Animator& getAnimator(int); // _14
-	virtual void animate(float);                  // _18
+	virtual void animate(f32);                    // _18
 	/**
 	 * @reifiedAddress{8010AA4C}
 	 * @reifiedFile{plugProjectYamashitaU/pelplant.cpp}
 	 */
-	virtual void animate(int p1, float p2) // _1C (weak)
+	virtual void animate(int p1, f32 p2) // _1C (weak)
 	{
 		EnemyAnimatorBase::animate(p1, p2);
 	}
@@ -66,9 +66,9 @@ struct EnemyBlendAnimatorBase : public EnemyAnimatorBase {
 	 */
 	virtual u32 getTypeID() { return 'blnd'; } // _24 (weak)
 
-	void startBlend(int, int, SysShape::BlendFunction*, float, SysShape::MotionListener*);
+	void startBlend(int, int, SysShape::BlendFunction*, f32, SysShape::MotionListener*);
 	void endBlend();
-	void animate(SysShape::BlendFunction*, float, float, float);
+	void animate(SysShape::BlendFunction*, f32, f32, f32);
 
 	SysShape::BlendAnimator m_animator; // _10
 
