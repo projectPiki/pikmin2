@@ -27,7 +27,7 @@ void Obj::changeMaterial()
 
 	ResTIMG* newTexture;
 	J3DTexture* j3dTexture = m_model->m_j3dModel->m_modelData->m_materialTable.m_texture;
-	newTexture             = j3dTexture->_04;
+	newTexture             = &j3dTexture->_04->_00;
 
 	texture->copyTo(newTexture);
 
