@@ -77,7 +77,7 @@ struct IEnemyMgrBase : public GenericObjectMgr, public GenericContainer {
  * @size{0x44}
  */
 struct EnemyMgrBase : public IEnemyMgrBase {
-	EnemyMgrBase(int, u8);
+	EnemyMgrBase(int objLimit, u8 modelType);
 
 	// vtable 1 (GenericObjectMgr, _00, _08-_38)
 	virtual void doAnimation();           // _08
@@ -158,7 +158,7 @@ struct EnemyMgrBase : public IEnemyMgrBase {
 	virtual void doAlloc() { }                         // _A8 (weak)
 	virtual EnemyTypeID::EEnemyTypeID getEnemyTypeID() // _AC (weak)
 	{
-		return (EnemyTypeID::EEnemyTypeID)-1;
+		return EnemyTypeID::EnemyID_NULL;
 	}
 	virtual SysShape::Model* createModel();           // _B0
 	virtual void initParms();                         // _B4
@@ -188,7 +188,7 @@ struct EnemyMgrBase : public IEnemyMgrBase {
 		EnemyBase* enemy = nullptr;
 		for (int i = 0; i < m_objLimit; i++) {
 			EnemyBase* currEnemy = getEnemy(i);
-			if (id == currEnemy->getEnemyTypeID() && !(currEnemy->m_events.m_flags[0].typeView & 0x10000000)) {
+			if (id == currEnemy->getEnemyTypeID() && !(currEnemy->isEvent(0, EB_Alive))) {
 				enemy = currEnemy;
 				break;
 			}
@@ -210,8 +210,8 @@ struct EnemyMgrBase : public IEnemyMgrBase {
 };
 
 struct EnemyMgrBaseAlwaysMovieActor : public EnemyMgrBase {
-	inline EnemyMgrBaseAlwaysMovieActor(int p1, u8 p2)
-	    : EnemyMgrBase(p1, p2)
+	inline EnemyMgrBaseAlwaysMovieActor(int objLimit, u8 modelType)
+	    : EnemyMgrBase(objLimit, modelType)
 	{
 	}
 

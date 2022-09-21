@@ -474,7 +474,7 @@ YAMASHITA:=\
 	$(BUILD_DIR)/asm/plugProjectYamashitaU/enemyBlendAnimatorBase.o\
 	$(BUILD_DIR)/src/plugProjectYamashitaU/enemyPelletInfo.o\
 	$(BUILD_DIR)/asm/plugProjectYamashitaU/enemyEffectNode.o\
-	$(BUILD_DIR)/asm/plugProjectYamashitaU/enemyMgrBase.o\
+	$(BUILD_DIR)/src/plugProjectYamashitaU/enemyMgrBase.o\
 	$(BUILD_DIR)/asm/plugProjectYamashitaU/enemyFSM.o\
 	$(BUILD_DIR)/asm/plugProjectYamashitaU/singleGS_ZukanParms.o\
 	$(BUILD_DIR)/src/plugProjectYamashitaU/treasureLightMgr.o\

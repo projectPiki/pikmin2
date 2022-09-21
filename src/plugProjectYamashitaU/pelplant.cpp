@@ -250,7 +250,7 @@ void Obj::doDebugDraw(Graphics& graphics)
  * Address:	80108B10
  * Size:	0000C0
  */
-void Obj::getShadowParam(Game::ShadowParam& param)
+void Obj::getShadowParam(ShadowParam& param)
 {
 	param.m_position = m_position;
 	param.m_position.y += 2.0f;
@@ -503,7 +503,7 @@ void Obj::attachPellet()
  * Address:	801091E4
  * Size:	000098
  */
-bool Obj::damageCallBack(Game::Creature* source, float damage, CollPart* part)
+bool Obj::damageCallBack(Creature* source, float damage, CollPart* part)
 {
 	if (isLivingThing()) {
 		addDamage(damage, 1.0f);
@@ -519,7 +519,7 @@ bool Obj::damageCallBack(Game::Creature* source, float damage, CollPart* part)
  * Address:	80109288
  * Size:	000078
  */
-bool Obj::farmCallBack(Game::Creature* p1, float p2)
+bool Obj::farmCallBack(Creature* p1, float p2)
 {
 	m_farmPow = (char)((p2 >= 0.0f) ? p2 + 0.5f : p2 - 0.5f);
 	if (m_farmPow < 0) {
@@ -536,7 +536,7 @@ bool Obj::farmCallBack(Game::Creature* p1, float p2)
  * Address:	80109300
  * Size:	000060
  */
-void Obj::onStickStart(Game::Creature* other)
+void Obj::onStickStart(Creature* other)
 {
 	EnemyBase::onStickStart(other);
 	if (other->_0F8 && other->_0F8->_3C.getStrID()[3] == '0') {
@@ -641,14 +641,14 @@ void Mgr::doAlloc() { init(new Parms); }
  * Address:	8010A460
  * Size:	000020
  */
-EnemyBase* Mgr::birth(Game::EnemyBirthArg& arg) { return EnemyMgrBase::birth(arg); }
+EnemyBase* Mgr::birth(EnemyBirthArg& arg) { return EnemyMgrBase::birth(arg); }
 
 /*
  * --INFO--
  * Address:	8010A480
  * Size:	0000D0
  */
-void Obj::onInit(Game::CreatureInitArg* arg)
+void Obj::onInit(CreatureInitArg* arg)
 {
 	EnemyBase::onInit(arg);
 	_2C0 = 0.0f;
@@ -679,7 +679,7 @@ void Obj::onInit(Game::CreatureInitArg* arg)
  * Address:	8010A550
  * Size:	000048
  */
-void Obj::doGetLifeGaugeParam(Game::LifeGaugeParam& param)
+void Obj::doGetLifeGaugeParam(LifeGaugeParam& param)
 {
 	_2C4->getTranslation(param.m_position);
 	param.m_position.y += 60.0f;

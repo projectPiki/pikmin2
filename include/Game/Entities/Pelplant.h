@@ -46,7 +46,7 @@ struct Obj : public EnemyBase {
 	// vtable 1 (Creature, _00, _08-_1AC)
 	virtual void onInit(CreatureInitArg*); // _030
 	virtual void doAnimation();            // _03C
-	virtual void doSimulation(float);      // _04C
+	virtual void doSimulation(f32);      // _04C
 	virtual void doDirectDraw(Graphics&);  // _050
 	virtual bool isLivingThing()           // _0D4 (weak)
 	{
@@ -56,7 +56,7 @@ struct Obj : public EnemyBase {
 	virtual void onStickStart(Creature*);      // _158
 	// vtable 2 (MotionListener+EnemyBase+self, _00, _1BC-1D0)
 	virtual ~Obj() { }                                      // _1BC (weak)
-	virtual void birth(Vector3f&, float);                   // _1C0
+	virtual void birth(Vector3f&, f32);                   // _1C0
 	virtual void setInitialSetting(EnemyInitialParamBase*); // _1C4
 	virtual void doUpdate();                                // _1CC
 	virtual void doAnimationUpdateAnimator();               // _1D8
@@ -66,8 +66,8 @@ struct Obj : public EnemyBase {
 		return EnemyTypeID::EnemyID_Pelplant;
 	}
 	virtual void doGetLifeGaugeParam(LifeGaugeParam&);        // _260
-	virtual bool damageCallBack(Creature*, float, CollPart*); // _278
-	virtual bool farmCallBack(Creature*, float);              // _290
+	virtual bool damageCallBack(Creature*, f32, CollPart*); // _278
+	virtual bool farmCallBack(Creature*, f32);              // _290
 	virtual void setFSM(FSM* fsm)                             // _2F8 (weak)
 	{
 		m_fsm = fsm;

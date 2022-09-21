@@ -65,7 +65,7 @@ namespace EnemyBaseFSM {
  */
 void State::animation(Game::EnemyBase* enemy)
 {
-	if (enemy->isEvent(0, EB_29)) {
+	if (enemy->isEvent(0, EB_Alive)) {
 		GeneralEnemyMgr::mTotalCount++;
 
 		bool fxExists = enemy->isCullingOff();
@@ -940,7 +940,7 @@ void EnemyBase::onInit(Game::CreatureInitArg* arg)
 	m_eventBuffer.m_flags[0].clear();
 	m_eventBuffer.m_flags[1].clear();
 
-	setEvent(0, EB_29);
+	setEvent(0, EB_Alive);
 	setEvent(0, EB_Flying);
 	setEvent(0, EB_DropMassSet);
 	setEvent(0, EB_Cullable);
@@ -1859,7 +1859,7 @@ void EnemyBase::setZukanVisible(bool arg)
  */
 void EnemyBase::birth(Vector3f& pos, float faceDir)
 {
-	setEvent(0, EB_29);
+	setEvent(0, EB_Alive);
 	m_inPiklopedia = true;
 	setPosition(pos, false);
 	m_homePosition.x    = pos.x;
@@ -3233,7 +3233,7 @@ void EnemyBase::doSimulationConstraint(float arg)
  */
 void EnemyBase::gotoHell()
 {
-	if (isEvent(0, EB_29)) {
+	if (isEvent(0, EB_Alive)) {
 		throwupItem();
 		EnemyKillArg killArg(0x70000000);
 		kill(&killArg);
