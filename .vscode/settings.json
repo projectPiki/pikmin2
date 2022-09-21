@@ -1,0 +1,14 @@
+{
+  "[c]": {
+    "files.encoding": "shiftjis",
+    "editor.defaultFormatter": "xaver.clang-format"
+  },
+  "[cpp]": {
+    "files.encoding": "shiftjis",
+    "editor.defaultFormatter": "xaver.clang-format"
+  },
+  "editor.tabSize": 2,
+  "files.associations": {
+    "source_location": "cpp"
+  }
+}
