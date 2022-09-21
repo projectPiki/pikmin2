@@ -1,32 +1,9 @@
 #include "Game/updateMgr.h"
 #include "JSystem/JUT/JUTException.h"
 
-/*
-    Generated from dpostproc
-
-    .section .rodata  # 0x804732E0 - 0x8049E220
-    .global lbl_8047F048
-    lbl_8047F048:
-        .4byte 0x75706461
-        .4byte 0x74654D67
-        .4byte 0x722E6370
-        .4byte 0x70000000
-    .global lbl_8047F058
-    lbl_8047F058:
-        .4byte 0x6D61696C
-        .4byte 0x20746F20
-        .4byte 0x5B25642D
-        .4byte 0x25645D20
-        .4byte 0x25640A00
-        .4byte 0x00000000
-
-    .section .sbss # 0x80514D80 - 0x80516360
-    .global collisionUpdateMgr__4Game
-    collisionUpdateMgr__4Game:
-        .skip 0x8
-*/
-
 namespace Game {
+
+UpdateMgr* collisionUpdateMgr;
 
 /*
  * --INFO--
@@ -117,8 +94,6 @@ void UpdateMgr::update(void)
 	_10 = 0;
 }
 
-#if NOPE
-
 /*
  * updatable__Q24Game9UpdateMgrFPQ24Game13UpdateContext
  * --INFO--
@@ -130,22 +105,7 @@ bool UpdateMgr::updatable(UpdateContext* context)
 	if (context == nullptr) {
 		return false;
 	}
-	return (_10 - context->_04) == false;
-	/*
-	.loc_0x0:
-	  cmplwi    r4, 0
-	  bne-      .loc_0x10
-	  li        r3, 0
-	  blr
-
-	.loc_0x10:
-	  lwz       r4, 0x4(r4)
-	  lwz       r0, 0x10(r3)
-	  sub       r0, r0, r4
-	  cntlzw    r0, r0
-	  rlwinm    r3,r0,27,24,31
-	  blr
-	*/
+	return (u8)(context->_04 == _10);
 }
 
 /*
@@ -217,25 +177,4 @@ void UpdateMgr::removeClient(UpdateContext* context)
 		context->_04 = -1;
 	}
 }
-
-/*
- * --INFO--
- * Address:	........
- * Size:	000004
- */
-void UpdateMgr::balanceClient(UpdateContext*)
-{
-	// UNUSED FUNCTION
-}
-
-/*
- * --INFO--
- * Address:	........
- * Size:	000004
- */
-void UpdateMgr::showInfo(Graphics&, int, int)
-{
-	// UNUSED FUNCTION
-}
-#endif
 } // namespace Game
