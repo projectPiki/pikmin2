@@ -309,6 +309,7 @@
 #include "Game/MapMgr.h"
 #include "Game/EnemyFunc.h"
 #include "Game/Stickers.h"
+#include "Game/PikiMgr.h"
 #include "JSystem/JMath.h"
 
 namespace Game {
@@ -566,59 +567,17 @@ void Sarai::Obj::fallMeckGround()
  * Address:	8027369C
  * Size:	00007C
  */
-s32 Sarai::Obj::getCatchTargetNum()
+int Sarai::Obj::getCatchTargetNum()
 {
-	s32 targetNum = 0;
-	int max       = m_mouthSlots.m_max;
-	s32 i         = 0;
-
-	do {
-		if (m_mouthSlots.getSlot(i)->_64) {
-			targetNum++;
+	int max   = m_mouthSlots.m_max;
+	int count = 0;
+	for (int i = 0; i < max; i++) {
+		if (m_mouthSlots.getSlot(i)->m_stuckCreature != nullptr) {
+			count++;
 		}
+	}
 
-	} while (++i < max);
-
-	return targetNum;
-	/*
-	stwu     r1, -0x20(r1)
-	mflr     r0
-	stw      r0, 0x24(r1)
-	stw      r31, 0x1c(r1)
-	stw      r30, 0x18(r1)
-	li       r30, 0
-	stw      r29, 0x14(r1)
-	li       r29, 0
-	stw      r28, 0x10(r1)
-	mr       r28, r3
-	lwz      r31, 0x2c4(r3)
-	b        lbl_802736EC
-
-lbl_802736CC:
-	mr       r4, r29
-	addi     r3, r28, 0x2c4
-	bl       getSlot__10MouthSlotsFi
-	lwz      r0, 0x64(r3)
-	cmplwi   r0, 0
-	beq      lbl_802736E8
-	addi     r30, r30, 1
-
-lbl_802736E8:
-	addi     r29, r29, 1
-
-lbl_802736EC:
-	cmpw     r29, r31
-	blt      lbl_802736CC
-	lwz      r0, 0x24(r1)
-	mr       r3, r30
-	lwz      r31, 0x1c(r1)
-	lwz      r30, 0x18(r1)
-	lwz      r29, 0x14(r1)
-	lwz      r28, 0x10(r1)
-	mtlr     r0
-	addi     r1, r1, 0x20
-	blr
-	*/
+	return count;
 }
 
 /*
@@ -651,188 +610,39 @@ s32 Sarai::Obj::getNextStateOnHeight()
 
 		float va1 = static_cast<Parms*>(m_parms)->m_properParms.m_fp21.m_value;
 		float va2 = static_cast<Parms*>(m_parms)->m_properParms.m_fp22.m_value;
-		s32 iv1   = v1;
 
-		float f4 = 4.0f - (iv1 * 0.25f);
-		float f5 = (iv1 * 0.25f);
+		f32 fv1  = v1;
+		float f4 = (4.0f - fv1) / 4;
+		float f5 = (fv1 / 4);
 
-		float a = ((4.0f * f4) * va1) + (f5 * va2);
+		float a = (f4 * va1) + (f5 * va2);
+
 		if (randFloatR(1.0f) < a) {
 			return 4;
+		} else {
+			return 1;
 		}
 	}
 
 	return -1;
-
-	/*
-stwu     r1, -0x30(r1)
-mflr     r0
-stw      r0, 0x34(r1)
-stfd     f31, 0x20(r1)
-psq_st   f31, 40(r1), 0, qr0
-stw      r31, 0x1c(r1)
-stw      r30, 0x18(r1)
-mr       r30, r3
-lfs      f0, lbl_8051B1F8@sda21(r2)
-lfs      f1, 0x200(r3)
-fcmpo    cr0, f1, f0
-cror     2, 0, 2
-bne      lbl_80273754
-li       r3, 1
-b        lbl_8027383C
-
-lbl_80273754:
-lwz      r12, 0(r3)
-lwz      r12, 0x2fc(r12)
-mtctr    r12
-bctrl
-or.      r31, r3, r3
-beq      lbl_80273838
-mr       r3, r30
-li       r4, 3
-bl       getStickPikminColorNum__Q24Game9EnemyFuncFPQ24Game8Creaturei
-cmpwi    r3, 0
-ble      lbl_80273788
-li       r3, 1
-b        lbl_8027383C
-
-lbl_80273788:
-addic.   r0, r31, -1
-bge      lbl_80273798
-li       r3, 0
-b        lbl_802737AC
-
-lbl_80273798:
-addi     r0, r31, -1
-li       r3, 4
-cmpwi    r0, 4
-bgt      lbl_802737AC
-mr       r3, r0
-
-lbl_802737AC:
-xoris    r3, r3, 0x8000
-lis      r0, 0x4330
-stw      r3, 0xc(r1)
-lwz      r3, 0xc0(r30)
-stw      r0, 8(r1)
-lfd      f2, lbl_8051B230@sda21(r2)
-lfd      f0, 8(r1)
-lfs      f1, lbl_8051B24C@sda21(r2)
-fsubs    f5, f0, f2
-lfs      f3, lbl_8051B250@sda21(r2)
-lfs      f0, 0x984(r3)
-lfs      f2, 0x95c(r3)
-fsubs    f4, f1, f5
-fmuls    f1, f5, f3
-fmuls    f3, f4, f3
-fmuls    f0, f1, f0
-fmadds   f31, f3, f2, f0
-bl       rand
-xoris    r3, r3, 0x8000
-lis      r0, 0x4330
-stw      r3, 0x14(r1)
-lfd      f3, lbl_8051B230@sda21(r2)
-stw      r0, 0x10(r1)
-lfs      f1, lbl_8051B220@sda21(r2)
-lfd      f2, 0x10(r1)
-lfs      f0, lbl_8051B238@sda21(r2)
-fsubs    f2, f2, f3
-fmuls    f1, f1, f2
-fdivs    f0, f1, f0
-fcmpo    cr0, f0, f31
-bge      lbl_80273830
-li       r3, 4
-b        lbl_8027383C
-
-lbl_80273830:
-li       r3, 1
-b        lbl_8027383C
-
-lbl_80273838:
-li       r3, -1
-
-lbl_8027383C:
-psq_l    f31, 40(r1), 0, qr0
-lwz      r0, 0x34(r1)
-lfd      f31, 0x20(r1)
-lwz      r31, 0x1c(r1)
-lwz      r30, 0x18(r1)
-mtlr     r0
-addi     r1, r1, 0x30
-blr
-*/
 }
 
 /*
  * --INFO--
  * Address:	8027385C
  * Size:	0000B0
- * TODO: mr r3,r29 after interactflick & regswaps between r0 and r3
  */
 void Sarai::Obj::flickStickTarget()
 {
 	int max = m_mouthSlots.m_max;
 	for (int i = 0; i < max; i++) {
-		MouthCollPart* part;
-		part = m_mouthSlots.getSlot(i);
-		if (part->_64) {
+		Creature* creature = m_mouthSlots.getSlot(i)->m_stuckCreature;
+
+		if (creature) {
 			InteractFlick flick(this, 10.0f, 0.0f, -1000.0f);
-			stimulate(flick);
+			creature->stimulate(flick);
 		}
 	}
-
-	/*
-	stwu     r1, -0x30(r1)
-	mflr     r0
-	stw      r0, 0x34(r1)
-	stw      r31, 0x2c(r1)
-	stw      r30, 0x28(r1)
-	li       r30, 0
-	stw      r29, 0x24(r1)
-	mr       r29, r3
-	lwz      r31, 0x2c4(r3)
-	b        lbl_802738E8
-
-lbl_80273884:
-	mr       r4, r30
-	addi     r3, r29, 0x2c4
-	bl       getSlot__10MouthSlotsFi
-	lwz      r3, 0x64(r3)
-	cmplwi   r3, 0
-	beq      lbl_802738E4
-	lis      r4, __vt__Q24Game11Interaction@ha
-	lfs      f2, lbl_8051B254@sda21(r2)
-	addi     r0, r4, __vt__Q24Game11Interaction@l
-	lfs      f1, lbl_8051B1F8@sda21(r2)
-	lfs      f0, lbl_8051B258@sda21(r2)
-	lis      r4, __vt__Q24Game13InteractFlick@ha
-	stw      r0, 8(r1)
-	addi     r0, r4, __vt__Q24Game13InteractFlick@l
-	addi     r4, r1, 8
-	stw      r29, 0xc(r1)
-	stw      r0, 8(r1)
-	stfs     f2, 0x10(r1)
-	stfs     f1, 0x14(r1)
-	stfs     f0, 0x18(r1)
-	lwz      r12, 0(r3)
-	lwz      r12, 0x1a4(r12)
-	mtctr    r12
-	bctrl
-
-lbl_802738E4:
-	addi     r30, r30, 1
-
-lbl_802738E8:
-	cmpw     r30, r31
-	blt      lbl_80273884
-	lwz      r0, 0x34(r1)
-	lwz      r31, 0x2c(r1)
-	lwz      r30, 0x28(r1)
-	lwz      r29, 0x24(r1)
-	mtlr     r0
-	addi     r1, r1, 0x30
-	blr
-	*/
 }
 
 /*
@@ -840,67 +650,41 @@ lbl_802738E8:
  * Address:	8027390C
  * Size:	000080
  */
-s32 Sarai::Obj::getStickPikminNum()
-{
-	int i     = 0;
-	int count = i;
-	int max   = m_mouthSlots.m_max;
-	for (; i < max; i++) {
-		if (m_mouthSlots.getSlot(i)->_64) {
-			count++;
-		}
-	}
-
-	return m_stickPikminCount - count;
-	/*
-	stwu     r1, -0x20(r1)
-	mflr     r0
-	stw      r0, 0x24(r1)
-	stw      r31, 0x1c(r1)
-	stw      r30, 0x18(r1)
-	li       r30, 0
-	mr       r31, r30
-	stw      r29, 0x14(r1)
-	stw      r28, 0x10(r1)
-	mr       r28, r3
-	lwz      r29, 0x2c4(r3)
-	b        lbl_8027395C
-
-lbl_8027393C:
-	mr       r4, r31
-	addi     r3, r28, 0x2c4
-	bl       getSlot__10MouthSlotsFi
-	lwz      r0, 0x64(r3)
-	cmplwi   r0, 0
-	beq      lbl_80273958
-	addi     r30, r30, 1
-
-lbl_80273958:
-	addi     r31, r31, 1
-
-lbl_8027395C:
-	cmpw     r31, r29
-	blt      lbl_8027393C
-	lwz      r0, 0x1f4(r28)
-	lwz      r31, 0x1c(r1)
-	subf     r3, r30, r0
-	lwz      r0, 0x24(r1)
-	lwz      r30, 0x18(r1)
-	lwz      r29, 0x14(r1)
-	lwz      r28, 0x10(r1)
-	mtlr     r0
-	addi     r1, r1, 0x20
-	blr
-	*/
-}
+s32 Sarai::Obj::getStickPikminNum() { return m_stickPikminCount - getCatchTargetNum(); }
 
 /*
  * --INFO--
  * Address:	8027398C
  * Size:	0003D0
  */
-void Sarai::Obj::getAttackableTarget()
+Piki* Sarai::Obj::getAttackableTarget()
 {
+	float zDist = m_position.z - m_homePosition.z;
+	float xDist = m_position.x - m_homePosition.x;
+	if (SQUARE(zDist) + SQUARE(xDist) < SQUARE(static_cast<Parms*>(m_parms)->m_general.m_homeRadius.m_value)) {
+		Iterator<Piki> iterator(pikiMgr, pikiMgr->getStart());
+
+		f32 maxAngle = PI * (DEG2RAD * static_cast<Parms*>(m_parms)->m_general.m_privateRadius.m_value);
+		f32 maxDist  = static_cast<Parms*>(m_parms)->m_general.m_sightRadius.m_value;
+
+		for (iterator.first(); iterator.m_index != iterator.m_container->getEnd(); iterator.next()) {
+			Piki* c = iterator.m_container->get(iterator.m_index);
+
+			if (c->isAlive() && c->isPikmin() && !c->isStickToMouth() && c->m_sticker != this && c->_0C8) {
+				Vector3f pikiPos = c->getPosition();
+				Vector3f thisPos = getPosition();
+
+				f32 angleToPiki = JMath::atanTable_.atan2_(pikiPos.x - thisPos.x, pikiPos.z - thisPos.z);
+
+				if (FABS(angDist(roundAng(angleToPiki), getFaceDir()) <= maxAngle)) {
+					return c;
+				}
+			}
+		}
+	}
+
+	return nullptr;
+
 	/*
 	stwu     r1, -0x90(r1)
 	mflr     r0

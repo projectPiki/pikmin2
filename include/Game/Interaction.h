@@ -115,11 +115,11 @@ struct InteractFire : public Interaction {
 };
 
 struct InteractFlick : public Interaction {
-	InteractFlick(Creature* parent, f32 knockback, f32 damage, f32 a_10)
+	InteractFlick(Creature* parent, f32 a, f32 b, f32 c)
 	    : Interaction(parent)
-	    , m_knockback(knockback)
-	    , m_damage(damage)
-	    , _10(a_10)
+	    , m_knockback(a)
+	    , m_damage(b)
+	    , _10(c)
 	{
 	}
 
