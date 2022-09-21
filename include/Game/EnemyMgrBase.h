@@ -10,6 +10,7 @@
 #include "GenericObjectMgr.h"
 #include "SysShape/AnimMgr.h"
 #include "Game/EnemyBase.h"
+#include "JSystem/J3D/J3DModelLoader.h"
 #include "Vector3.h"
 
 struct CollPartFactory;
@@ -51,7 +52,22 @@ struct IEnemyMgrBase : public GenericObjectMgr, public GenericContainer {
 	 * @reifiedAddress{8010A960}
 	 * @reifiedFile{plugProjectYamashitaU/pelplant.cpp}
 	 */
-	virtual ~IEnemyMgrBase() { } // 58 (weak)
+	virtual ~IEnemyMgrBase() { }                          // _58 (weak)
+	virtual void* getObject(void*)                   = 0; // _5C
+	virtual void* getNext(void*)                     = 0; // _60
+	virtual void* getStart()                         = 0; // _64
+	virtual void* getEnd()                           = 0; // _68
+	virtual void alloc()                             = 0; // _6C
+	virtual EnemyBase* birth(EnemyBirthArg&)         = 0; // _70
+	virtual J3DModelData* getJ3DModelData() const    = 0; // _74
+	virtual EnemyGeneratorBase* getGenerator() const = 0; // _78
+	virtual void killAll(CreatureKillArg*)           = 0; // _7C
+	virtual void setupSoundViewerAndBas()            = 0; // _80
+	virtual void setDebugParm(u32)                   = 0; // _84
+	virtual void resetDebugParm(u32)                 = 0; // _88
+	virtual int getMaxObjects() const                = 0; // _8C
+	virtual void startMovie()                        = 0; // _90
+	virtual void endMovie()                          = 0; // _94
 
 	// _00		= VTABLE
 	// _04-_1C	= GenericContainer
@@ -61,7 +77,7 @@ struct IEnemyMgrBase : public GenericObjectMgr, public GenericContainer {
  * @size{0x44}
  */
 struct EnemyMgrBase : public IEnemyMgrBase {
-	EnemyMgrBase(int, u8);
+	EnemyMgrBase(int objLimit, u8 modelType);
 
 	// vtable 1 (GenericObjectMgr, _00, _08-_38)
 	virtual void doAnimation();           // _08
@@ -78,7 +94,7 @@ struct EnemyMgrBase : public IEnemyMgrBase {
 	 * @reifiedFile{plugProjectYamashitaU/pelplant.cpp}
 	 */
 	virtual void* getObject(void* index) { return get(index); }; // _5C (weak)
-	virtual void* getNext(void*);                                // _60 (weak)
+	virtual void* getNext(void* index);                          // _60
 	/**
 	 * @reifiedAddress{8010A7F0}
 	 * @reifiedFile{plugProjectYamashitaU/pelplant.cpp}
@@ -139,10 +155,10 @@ struct EnemyMgrBase : public IEnemyMgrBase {
 	}
 	virtual void createObj(int)      = 0;              // _A0
 	virtual EnemyBase* getEnemy(int) = 0;              // _A4
-	virtual void doAlloc();                            // _A8 (weak)
+	virtual void doAlloc() { }                         // _A8 (weak)
 	virtual EnemyTypeID::EEnemyTypeID getEnemyTypeID() // _AC (weak)
 	{
-		return (EnemyTypeID::EEnemyTypeID)-1;
+		return EnemyTypeID::EnemyID_NULL;
 	}
 	virtual SysShape::Model* createModel();           // _B0
 	virtual void initParms();                         // _B4
@@ -172,7 +188,7 @@ struct EnemyMgrBase : public IEnemyMgrBase {
 		EnemyBase* enemy = nullptr;
 		for (int i = 0; i < m_objLimit; i++) {
 			EnemyBase* currEnemy = getEnemy(i);
-			if (id == currEnemy->getEnemyTypeID() && !(currEnemy->m_events.m_flags[0].typeView & 0x10000000)) {
+			if (id == currEnemy->getEnemyTypeID() && !(currEnemy->isEvent(0, EB_Alive))) {
 				enemy = currEnemy;
 				break;
 			}
@@ -194,14 +210,17 @@ struct EnemyMgrBase : public IEnemyMgrBase {
 };
 
 struct EnemyMgrBaseAlwaysMovieActor : public EnemyMgrBase {
-	inline EnemyMgrBaseAlwaysMovieActor(int, u8); // probably necessary?
+	inline EnemyMgrBaseAlwaysMovieActor(int objLimit, u8 modelType)
+	    : EnemyMgrBase(objLimit, modelType)
+	{
+	}
 
-	virtual void doAnimation();              // _08 (weak)
-	virtual void doEntry();                  // _0C (weak)
-	virtual void doSimulation(f32);          // _18 (weak)
-	virtual void doDirectDraw(Graphics&);    // _1C (weak)
-	virtual ~EnemyMgrBaseAlwaysMovieActor(); // _58 (weak)
-	virtual bool isAlwaysMovieActor();       // _9C (weak)
+	virtual void doAnimation();                 // _08 (weak)
+	virtual void doEntry();                     // _0C (weak)
+	virtual void doSimulation(f32);             // _18 (weak)
+	virtual void doDirectDraw(Graphics&);       // _1C (weak)
+	virtual ~EnemyMgrBaseAlwaysMovieActor() { } // _58 (weak)
+	virtual bool isAlwaysMovieActor();          // _9C (weak)
 
 	// _00		= VTABLE
 	// _00-_44	= EnemyMgrBase

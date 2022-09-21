@@ -14,9 +14,12 @@ namespace BlueChappy {
 struct Obj : public ChappyBase::Obj {
 	Obj();
 
-	virtual ~Obj();                                     // _1BC (weak)
-	virtual void changeMaterial();                      // _200
-	virtual EnemyTypeID::EEnemyTypeID getEnemyTypeID(); // _258 (weak)
+	virtual ~Obj() { }                                 // _1BC (weak)
+	virtual void changeMaterial();                     // _200
+	virtual EnemyTypeID::EEnemyTypeID getEnemyTypeID() // _258 (weak)
+	{
+		return EnemyTypeID::EnemyID_BlueChappy;
+	}
 
 	// _00 		= VTBL
 	// _00-_2E4	= ChappyBase::Obj
@@ -33,8 +36,8 @@ struct Mgr : public ChappyBase::Mgr {
 	virtual EnemyTypeID::EEnemyTypeID getEnemyTypeID(); // _AC (weak)
 	virtual SysShape::Model* createModel();             // _B0
 	virtual void loadTexData();                         // _D0
-	virtual void getChangeTexture0();                   // _E0 (weak)
-	virtual void getChangeTexture1();                   // _E4 (weak)
+	virtual ResTIMG* getChangeTexture0();               // _E0 (weak)
+	virtual ResTIMG* getChangeTexture1();               // _E4 (weak)
 	//////////////// VTABLE END
 
 	// _00 		= VTBL

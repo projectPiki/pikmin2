@@ -79,7 +79,7 @@ struct GeneralEnemyMgr : public GenericObjectMgr, public CNode {
 
 	// _00		= (GenericObjectMgr) VTABLE
 	// _04-_1C	= CNode
-	CNode _04;                                 // _04
+	// CNode _04;                                 // _04
 	u8 _1C;                                    // _1C
 	EnemyMgrNode _20;                          // _20
 	u8 _44[4];                                 // _44

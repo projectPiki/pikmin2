@@ -14,9 +14,12 @@ namespace BlueKochappy {
 struct Obj : public KochappyBase::Obj {
 	Obj();
 
-	virtual ~Obj();                                     // _1BC (weak)
-	virtual void changeMaterial();                      // _200
-	virtual EnemyTypeID::EEnemyTypeID getEnemyTypeID(); // _258 (weak)
+	virtual ~Obj() { }                                 // _1BC (weak)
+	virtual void changeMaterial();                     // _200
+	virtual EnemyTypeID::EEnemyTypeID getEnemyTypeID() // _258 (weak)
+	{
+		return EnemyTypeID::EnemyID_BlueKochappy;
+	}
 
 	// _00 		= VTBL
 	// _00-_2D4	= KochappyBase::Obj
@@ -32,7 +35,7 @@ struct Mgr : public KochappyBase::Mgr {
 	virtual void doAlloc();                             // _A8
 	virtual EnemyTypeID::EEnemyTypeID getEnemyTypeID(); // _AC (weak)
 	virtual void loadTexData();                         // _D0
-	virtual void getChangeTexture();                    // _E0 (weak)
+	virtual ResTIMG* getChangeTexture();                // _E0 (weak)
 	                                                    //////////////// VTABLE END
 
 	// _00 		= VTBL

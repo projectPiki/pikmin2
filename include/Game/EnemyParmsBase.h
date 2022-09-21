@@ -75,13 +75,13 @@ struct EnemyParmsBase : public CreatureParms {
 		    , m_shakeDamage(this, 'fp18', "U‚è•¥‚¢ƒ_ƒ[ƒW", 0.0f, 0.0f, 1000.0f)              // shake off damage
 		    , m_shakeRange(this, 'fp19', "U‚è•¥‚¢”ÍˆÍ", 120.0f, 0.0f, 1000.0f)                 // shake off range
 		    , m_shakeRateMaybe(this, 'fp16', "U‚è•¥‚¢—¦", 1.0f, 0.0f, 1.0f)                    // shake off rate
-		    , m_fp20(this, 'fp20', "UŒ‚‰Â”\”ÍˆÍ", 70.0f, 0.0f, 1000.0f)                        // attack range
-		    , m_fp21(this, 'fp21', "UŒ‚‰Â”\Šp“x", 15.0f, 0.0f, 180.0f)                         // 'possible attack angle'
-		    , m_fp22(this, 'fp22', "UŒ‚ƒqƒbƒg”ÍˆÍ", 70.0f, 0.0f, 1000.0f)                      // attack hit range
-		    , m_fp23(this, 'fp23', "UŒ‚ƒqƒbƒgŠp“x", 15.0f, 0.0f, 180.0f)                       // attack hit angle
-		    , m_attackDamage(this, 'fp24', "UŒ‚—Í", 10.0f, 0.0f, 1000.0f)                      // attack power
-		    , m_fp29(this, 'fp29', "Œx‰úŠÔ", 15.0f, 0.0f, 99.0f)                              // alert time
-		    , m_stoneDuration(this, 'fp35', "Î‰»ŠÔ", 1.0f, 0.0f, 60.0f)                      // stone time
+		    , m_fp20(this, 'fp20', "UŒ‚‰Â”\\”ÍˆÍ", 70.0f, 0.0f, 1000.0f)                       // attack range - SHIFT-JIS IS WRONG
+		    , m_fp21(this, 'fp21', "UŒ‚‰Â”\\Šp“x", 15.0f, 0.0f, 180.0f)   // 'possible attack angle' - SHIFT-JIS IS WRONG
+		    , m_fp22(this, 'fp22', "UŒ‚ƒqƒbƒg”ÍˆÍ", 70.0f, 0.0f, 1000.0f) // attack hit range
+		    , m_fp23(this, 'fp23', "UŒ‚ƒqƒbƒgŠp“x", 15.0f, 0.0f, 180.0f)  // attack hit angle
+		    , m_attackDamage(this, 'fp24', "UŒ‚—Í", 10.0f, 0.0f, 1000.0f) // attack power
+		    , m_fp29(this, 'fp29', "Œx‰úŠÔ", 15.0f, 0.0f, 99.0f)         // alert time
+		    , m_stoneDuration(this, 'fp35', "Î‰»ŠÔ", 1.0f, 0.0f, 60.0f) // stone time
 		    , m_purplePikminHipDropDamage(this, 'fp36', "ƒqƒbƒvƒhƒƒbƒvƒ_ƒ[ƒW", 10.0f, 0.0f, 1000.0f) // hip drop damage
 		    , m_purplePikminStunChance(this, 'fp37', "’nk‹CâŠm—§", 0.05f, 0.0f, 1.0f)                 // earthquake faint probability
 		    , m_purplePikminStunTime(this, 'fp38', "’nk‹CâŠÔ", 10.0f, 0.0f, 60.0f)                  // earthquake faint time

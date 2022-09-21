@@ -38,6 +38,7 @@ enum EBitterDropType { // ID
 struct EnemyTypeID {
 	// clang-format off
 enum EEnemyTypeID {//ID      Common Name
+    EnemyID_NULL           = -1,  // ID not set
     EnemyID_Pelplant       = 0,	  // Pellet Posy
     EnemyID_Kochappy       = 1,	  // Dwarf Red Bulborb
     EnemyID_Chappy         = 2,	  // Red Bulborb

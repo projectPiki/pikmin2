@@ -88,8 +88,10 @@ struct InteractDrop : public Interaction {
 	virtual bool actEnemy(EnemyBase*); // _14
 };
 
-struct InteractEarthquake : public InteractAttack {
+struct InteractEarthquake : public Interaction {
 	virtual bool actEnemy(EnemyBase*); // _14
+
+	f32 _08; // _08
 };
 
 struct InteractEat : public Interaction {
@@ -133,8 +135,11 @@ struct InteractFlockAttack : public Interaction {
 	Vector3f _14; // _14
 };
 
-struct InteractFlyCollision : public InteractAttack {
+struct InteractFlyCollision : public Interaction {
 	virtual bool actEnemy(EnemyBase*); // _14
+
+	f32 _08;              // _08
+	CollPart* m_collPart; // _0C
 };
 
 struct InteractFue : public Interaction {
@@ -201,10 +206,14 @@ struct InteractMattuan : public Interaction {
 	float _08; // _08
 };
 
-struct InteractPress : public InteractAttack {
+struct InteractPress : public Interaction {
+	// vtable requires this order to spawn in correct TU
+	virtual bool actEnemy(EnemyBase*); // _14
 	virtual bool actPiki(Piki*);       // _0C
 	virtual bool actNavi(Navi*);       // _10
-	virtual bool actEnemy(EnemyBase*); // _14
+
+	f32 _08;                     // _08
+	struct CollPart* m_collPart; // _0C
 };
 
 struct InteractSwallow : public InteractAttack {

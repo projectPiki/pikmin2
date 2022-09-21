@@ -81,11 +81,11 @@ enum EnemyEvent {
 	EB_22               = 0x200000,
 	EB_BitterImmune     = 0x400000, // immune to being bittered
 	EB_24               = 0x800000,
-	EB_PS1              = 0x1000000, // sound-related
-	EB_PS2              = 0x2000000, // sound-related
-	EB_PS3              = 0x4000000, // sound-related
-	EB_PS4              = 0x8000000, // sound-related
-	EB_29               = 0x10000000,
+	EB_PS1              = 0x1000000,  // sound-related
+	EB_PS2              = 0x2000000,  // sound-related
+	EB_PS3              = 0x4000000,  // sound-related
+	EB_PS4              = 0x8000000,  // sound-related
+	EB_Alive            = 0x10000000, // is alive/can be killed
 	EB_30               = 0x20000000,
 	EB_31               = 0x40000000,
 	EB_32               = 0x80000000

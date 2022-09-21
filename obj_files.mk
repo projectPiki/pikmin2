@@ -428,8 +428,8 @@ DOLPHIN:=\
 YAMASHITA:=\
 	$(BUILD_DIR)/asm/plugProjectYamashitaU/enemyBase.o\
 	$(BUILD_DIR)/asm/plugProjectYamashitaU/pelplant.o\
-	$(BUILD_DIR)/asm/plugProjectYamashitaU/pelplantState.o\
-	$(BUILD_DIR)/asm/plugProjectYamashitaU/enemyInteractBattle.o\
+	$(BUILD_DIR)/src/plugProjectYamashitaU/pelplantState.o\
+	$(BUILD_DIR)/src/plugProjectYamashitaU/enemyInteractBattle.o\
 	$(BUILD_DIR)/asm/plugProjectYamashitaU/generalEnemyMgr.o\
 	$(BUILD_DIR)/src/plugProjectYamashitaU/kochappyAnimator.o\
 	$(BUILD_DIR)/asm/plugProjectYamashitaU/kochappy.o\
@@ -458,24 +458,24 @@ YAMASHITA:=\
 	$(BUILD_DIR)/asm/plugProjectYamashitaU/enemyStoneDrawInfo.o\
 	$(BUILD_DIR)/asm/plugProjectYamashitaU/enemyStoneObj.o\
 	$(BUILD_DIR)/src/plugProjectYamashitaU/enemyParmsBase.o\
-	$(BUILD_DIR)/asm/plugProjectYamashitaU/walkSmokeEffect.o\
+	$(BUILD_DIR)/src/plugProjectYamashitaU/walkSmokeEffect.o\
 	$(BUILD_DIR)/asm/plugProjectYamashitaU/ChappyBaseMgr.o\
 	$(BUILD_DIR)/asm/plugProjectYamashitaU/ChappyBase.o\
 	$(BUILD_DIR)/asm/plugProjectYamashitaU/BlueChappyMgr.o\
-	$(BUILD_DIR)/asm/plugProjectYamashitaU/BlueChappy.o\
+	$(BUILD_DIR)/src/plugProjectYamashitaU/BlueChappy.o\
 	$(BUILD_DIR)/asm/plugProjectYamashitaU/YellowChappyMgr.o\
 	$(BUILD_DIR)/asm/plugProjectYamashitaU/YellowChappy.o\
 	$(BUILD_DIR)/asm/plugProjectYamashitaU/BlueKochappyMgr.o\
-	$(BUILD_DIR)/asm/plugProjectYamashitaU/BlueKochappy.o\
-	$(BUILD_DIR)/asm/plugProjectYamashitaU/YellowKochappy.o\
+	$(BUILD_DIR)/src/plugProjectYamashitaU/BlueKochappy.o\
+	$(BUILD_DIR)/src/plugProjectYamashitaU/YellowKochappy.o\
 	$(BUILD_DIR)/asm/plugProjectYamashitaU/YellowKochappyMgr.o\
 	$(BUILD_DIR)/asm/plugProjectYamashitaU/KochappyBaseMgr.o\
 	$(BUILD_DIR)/asm/plugProjectYamashitaU/KochappyBase.o\
-	$(BUILD_DIR)/asm/plugProjectYamashitaU/enemyBlendAnimatorBase.o\
+	$(BUILD_DIR)/src/plugProjectYamashitaU/enemyBlendAnimatorBase.o\
 	$(BUILD_DIR)/src/plugProjectYamashitaU/enemyPelletInfo.o\
 	$(BUILD_DIR)/asm/plugProjectYamashitaU/enemyEffectNode.o\
-	$(BUILD_DIR)/asm/plugProjectYamashitaU/enemyMgrBase.o\
-	$(BUILD_DIR)/asm/plugProjectYamashitaU/enemyFSM.o\
+	$(BUILD_DIR)/src/plugProjectYamashitaU/enemyMgrBase.o\
+	$(BUILD_DIR)/src/plugProjectYamashitaU/enemyFSM.o\
 	$(BUILD_DIR)/asm/plugProjectYamashitaU/singleGS_ZukanParms.o\
 	$(BUILD_DIR)/src/plugProjectYamashitaU/treasureLightMgr.o\
 	$(BUILD_DIR)/asm/plugProjectYamashitaU/effectAnimator.o\
@@ -506,7 +506,6 @@ KANDO:=\
 	$(BUILD_DIR)/asm/plugProjectKandoU/interactPiki.o\
 	$(BUILD_DIR)/asm/plugProjectKandoU/gameCPlate.o\
 	$(BUILD_DIR)/src/plugProjectKandoU/updateMgr.o\
-	$(BUILD_DIR)/asm/plugProjectKandoU/updateMgr.o\
 	$(BUILD_DIR)/asm/plugProjectKandoU/aiAction.o\
 	$(BUILD_DIR)/asm/plugProjectKandoU/aiPrimitives.o\
 	$(BUILD_DIR)/asm/plugProjectKandoU/aiFormation.o\
@@ -1013,7 +1012,7 @@ MORIMURA:=\
 	$(BUILD_DIR)/src/plugProjectMorimuraU/blackManAnimator.o\
 	$(BUILD_DIR)/asm/plugProjectMorimuraU/blackManMgr.o\
 	$(BUILD_DIR)/asm/plugProjectMorimuraU/blackMan.o\
-	$(BUILD_DIR)/asm/plugProjectMorimuraU/tyreState.o\
+	$(BUILD_DIR)/src/plugProjectMorimuraU/tyreState.o\
 	$(BUILD_DIR)/src/plugProjectMorimuraU/tyreAnimator.o\
 	$(BUILD_DIR)/asm/plugProjectMorimuraU/tyreMgr.o\
 	$(BUILD_DIR)/asm/plugProjectMorimuraU/tyre.o\

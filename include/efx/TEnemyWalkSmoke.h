@@ -8,15 +8,15 @@
 
 namespace efx {
 struct TEnemyWalkSmoke : public TBase {
-	inline TEnemyWalkSmoke();
+	inline TEnemyWalkSmoke() { }
 
 	virtual bool create(Arg*); // _08
 	virtual void forceKill();  // _0C (weak)
 	virtual void fade();       // _10 (weak)
 
 	// _00      = VTABLE
-	u8 _04[0xC];  // _04 - unknown
-	Vector3f _10; // _10
+	// Vector3f* _04;  // _04 - unknown
+	// Vector3f _10; // _10
 };
 
 struct TEnemyWalkSmokeS : public TSimple1 {

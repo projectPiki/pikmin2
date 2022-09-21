@@ -16,11 +16,11 @@ namespace Game {
  * Size:	000070
  */
 EnemyBirthArg::EnemyBirthArg()
-    : m_position(0.0f)
+    : m_position(Vector3f(0.0f))
     , m_faceDir(0.0f)
     , m_tekiBirthType(0)
     , m_generator(nullptr)
-    , m_typeID((EnemyTypeID::EEnemyTypeID)-1)
+    , m_typeID(EnemyTypeID::EnemyID_NULL)
     , _2C(0.0f)
     , _30(1)
 {
@@ -54,7 +54,7 @@ void EnemyMgrBase::startMovie()
 {
 	for (int i = 0; i < m_objLimit; i++) {
 		EnemyBase* enemy = getEnemy(i);
-		if (enemy->m_events.m_flags[0].typeView & 0x10000000) {
+		if (enemy->isEvent(0, EB_Alive)) {
 			enemy->startMovie();
 		}
 	}
@@ -69,7 +69,7 @@ void EnemyMgrBase::endMovie()
 {
 	for (int i = 0; i < m_objLimit; i++) {
 		EnemyBase* enemy = getEnemy(i);
-		if (enemy->m_events.m_flags[0].typeView & 0x10000000) {
+		if (enemy->isEvent(0, EB_Alive)) {
 			enemy->endMovie();
 		}
 	}
@@ -102,7 +102,7 @@ void EnemyMgrBase::doAnimation()
 {
 	for (int i = 0; i < m_objLimit; i++) {
 		EnemyBase* enemy = getEnemy(i);
-		if (enemy->m_events.m_flags[0].typeView & 0x10000000 && (!(generalEnemyMgr->_1C & 1) || enemy->isMovieActor())) {
+		if (enemy->isEvent(0, EB_Alive) && (!(generalEnemyMgr->_1C & 1) || enemy->isMovieActor())) {
 			sys->m_timers->_start("e-upd", true);
 			enemy->update();
 			sys->m_timers->_stop("e-upd");
@@ -123,7 +123,7 @@ void EnemyMgrBase::doEntry()
 {
 	for (int i = 0; i < m_objLimit; i++) {
 		EnemyBase* enemy = getEnemy(i);
-		if (enemy->m_events.m_flags[0].typeView & 0x10000000 && (!(generalEnemyMgr->_1C & 1) || enemy->isMovieActor())) {
+		if (enemy->isEvent(0, EB_Alive) && (!(generalEnemyMgr->_1C & 1) || enemy->isMovieActor())) {
 			enemy->doEntry();
 		}
 	}
@@ -138,7 +138,7 @@ void EnemyMgrBase::doSetView(int viewport)
 {
 	for (int i = 0; i < m_objLimit; i++) {
 		EnemyBase* enemy = getEnemy(i);
-		if (enemy->m_events.m_flags[0].typeView & 0x10000000) {
+		if (enemy->isEvent(0, EB_Alive)) {
 			enemy->doSetView(viewport);
 		}
 	}
@@ -153,7 +153,7 @@ void EnemyMgrBase::doViewCalc()
 {
 	for (int i = 0; i < m_objLimit; i++) {
 		EnemyBase* enemy = getEnemy(i);
-		if (enemy->m_events.m_flags[0].typeView & 0x10000000) {
+		if (enemy->isEvent(0, EB_Alive)) {
 			enemy->doViewCalc();
 		}
 	}
@@ -171,7 +171,7 @@ void EnemyMgrBase::doSimulation(float arg)
 		if (enemy->m_pellet != nullptr) {
 			enemy->doSimulationCarcass(arg);
 		} else {
-			if (enemy->m_events.m_flags[0].typeView & 0x10000000 && (!(generalEnemyMgr->_1C & 1) || enemy->isMovieActor())) {
+			if (enemy->isEvent(0, EB_Alive) && (!(generalEnemyMgr->_1C & 1) || enemy->isMovieActor())) {
 				enemy->doSimulation(arg);
 			}
 		}
@@ -187,7 +187,7 @@ void EnemyMgrBase::doDirectDraw(Graphics& graphics)
 {
 	for (int i = 0; i < m_objLimit; i++) {
 		EnemyBase* enemy = getEnemy(i);
-		if (enemy->m_events.m_flags[0].typeView & 0x10000000 && (!(generalEnemyMgr->_1C & 1) || enemy->isMovieActor())) {
+		if (enemy->isEvent(0, EB_Alive) && (!(generalEnemyMgr->_1C & 1) || enemy->isMovieActor())) {
 			enemy->doDirectDraw(graphics);
 		}
 	}
@@ -201,7 +201,7 @@ void EnemyMgrBase::doDirectDraw(Graphics& graphics)
 void* EnemyMgrBase::getNext(void* object)
 {
 	for (int i = (int)object + 1; i < m_objLimit; i++) {
-		if (getEnemy(i)->m_events.m_flags[0].typeView & 0x10000000) {
+		if (getEnemy(i)->isEvent(0, EB_Alive)) {
 			return (void*)i;
 		}
 	}
@@ -255,25 +255,17 @@ EnemyBase* EnemyMgrBase::birth(Game::EnemyBirthArg& arg)
 
 /*
  * --INFO--
- * Address:	8012F54C
- * Size:	000008
- */
-// WEAK
-// EnemyTypeID::EEnemyTypeID EnemyMgrBase::getEnemyTypeID() { return -0x1; }
-
-/*
- * --INFO--
  * Address:	8012F554
  * Size:	000164
  */
 void EnemyMgrBase::kill(EnemyBase* enemy)
 {
-	if (enemy->m_events.m_flags[0].typeView & 0x10000000) {
+	if (enemy->isEvent(0, EB_Alive)) {
 		EnemyBase* currEnemy;
 		for (int i = 0; i < m_objLimit; i++) {
 			currEnemy = getEnemy(i);
 			if (currEnemy == enemy) {
-				currEnemy->m_events.m_flags[0].typeView &= ~0x10000000;
+				currEnemy->resetEvent(0, EB_Alive);
 				m_objCount--;
 				break;
 			}
@@ -298,7 +290,7 @@ void EnemyMgrBase::killAll(CreatureKillArg* arg)
 {
 	for (int i = 0; i < m_objLimit; i++) {
 		EnemyBase* enemy = getEnemy(i);
-		if (enemy->m_events.m_flags[0].typeView & 0x10000000) {
+		if (enemy->isEvent(0, EB_Alive)) {
 			enemy->kill(arg);
 		}
 	}
@@ -315,7 +307,7 @@ void EnemyMgrBase::killAll(CreatureKillArg* arg)
  */
 bool EnemyMgrBase::isValidEnemyTypeID()
 {
-	const bool result = (getEnemyTypeID() != -1);
+	const bool result = (getEnemyTypeID() != EnemyTypeID::EnemyID_NULL);
 	return result;
 }
 
@@ -644,7 +636,7 @@ void EnemyMgrBase::doAnimationAlwaysMovieActor()
 {
 	for (int i = 0; i < m_objLimit; i++) {
 		EnemyBase* enemy = getEnemy(i);
-		if (enemy->m_events.m_flags[0].typeView & 0x10000000) {
+		if (enemy->isEvent(0, EB_Alive)) {
 			sys->m_timers->_start("e-upd", true);
 			enemy->update();
 			sys->m_timers->_stop("e-upd");
@@ -665,7 +657,7 @@ void EnemyMgrBase::doEntryAlwaysMovieActor()
 {
 	for (int i = 0; i < m_objLimit; i++) {
 		EnemyBase* enemy = getEnemy(i);
-		if (enemy->m_events.m_flags[0].typeView & 0x10000000) {
+		if (enemy->isEvent(0, EB_Alive)) {
 			enemy->doEntry();
 		}
 	}
@@ -680,7 +672,7 @@ void EnemyMgrBase::doSimulationAlwaysMovieActor(float arg)
 {
 	for (int i = 0; i < m_objLimit; i++) {
 		EnemyBase* enemy = getEnemy(i);
-		if ((enemy->m_events.m_flags[0].typeView & 0x10000000) && (enemy->m_pellet == nullptr)) {
+		if ((enemy->isEvent(0, EB_Alive)) && (enemy->m_pellet == nullptr)) {
 			enemy->doSimulation(arg);
 		}
 	}
@@ -695,7 +687,7 @@ void EnemyMgrBase::doDirectDrawAlwaysMovieActor(Graphics& graphics)
 {
 	for (int i = 0; i < m_objLimit; i++) {
 		EnemyBase* enemy = getEnemy(i);
-		if (enemy->m_events.m_flags[0].typeView & 0x10000000) {
+		if (enemy->isEvent(0, EB_Alive)) {
 			enemy->doDirectDraw(graphics);
 		}
 	}

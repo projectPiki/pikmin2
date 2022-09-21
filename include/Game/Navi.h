@@ -13,7 +13,7 @@
 #include "Game/PelletView.h"
 #include "Game/StateMachine.h"
 #include "Game/GameSystem.h"
-#include "Game/PlayData.h"
+#include "Game/gamePlayData.h"
 
 #include "JSystem/JAI/JAInter/Object.h"
 #include "SysShape/Joint.h"

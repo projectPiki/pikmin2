@@ -92,12 +92,12 @@ SysShape::Model* Mgr::createModel()
 	return model;
 }
 
-void kabutoMgrFakeFunc(Mgr* mgr)
-{
-	mgr->createModel();
-	mgr->getEnemyTypeID();
-	mgr->~Mgr();
-}
+// void kabutoMgrFakeFunc(Mgr* mgr)
+// {
+// 	mgr->createModel();
+// 	mgr->getEnemyTypeID();
+// 	mgr->~Mgr();
+// }
 
 } // namespace Kabuto
 } // namespace Game

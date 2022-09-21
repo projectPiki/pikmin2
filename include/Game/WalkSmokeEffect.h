@@ -20,9 +20,11 @@ namespace WalkSmokeEffect {
 struct Obj {
 	Obj();
 
-	// unused/inlined
-	void init(Matrixf*, float);
+	// inlined
 	void update(EnemyBase*);
+
+	// unused
+	void init(Matrixf*, float);
 	void draw(Graphics&);
 
 	bool _00;            // _00

@@ -54,7 +54,11 @@ struct ResTIMG {
 	u8 _19;                  // _19, unknown
 	short _1A;               // _1A
 	int m_imageDataOffset;   // _1C
-	u8 _20[4];               // _20
+};
+
+struct ResTIMGPair {
+	ResTIMG _00;
+	ResTIMG _20;
 };
 
 #endif

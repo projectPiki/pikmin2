@@ -126,6 +126,7 @@ pikmin2.usa.dol: `sha1: 90d328bf8f190c90472e8c19e7e53c6ad0fe0d1a`
 	- <a href="https://github.com/projectPiki/pikmin2/tree/main/src/plugProjectKandoU/pikiAnimator.cpp">plugProjectKandoU/pikiAnimator.cpp</a>
 	- <a href="https://github.com/projectPiki/pikmin2/tree/main/src/plugProjectKandoU/pikiContainer.cpp">plugProjectKandoU/pikiContainer.cpp</a>
 	- <a href="https://github.com/projectPiki/pikmin2/tree/main/src/plugProjectKandoU/sweepPrune.cpp">plugProjectKandoU/sweepPrune.cpp</a>
+	- <a href="https://github.com/projectPiki/pikmin2/tree/main/src/plugProjectKandoU/updateMgr.cpp">plugProjectKandoU/updateMgr.cpp</a>
 	- <a href="https://github.com/projectPiki/pikmin2/tree/main/src/plugProjectKandoU/vsCoinOtakaraName.cpp">plugProjectKandoU/vsCoinOtakaraName.cpp</a>
 	- <a href="https://github.com/projectPiki/pikmin2/tree/main/src/plugProjectKandoU/vsFifo.cpp">plugProjectKandoU/vsFifo.cpp</a>
 	- <a href="https://github.com/projectPiki/pikmin2/tree/main/src/plugProjectKandoU/vsTekiMgr.cpp">plugProjectKandoU/vsTekiMgr.cpp</a>
@@ -153,6 +154,7 @@ pikmin2.usa.dol: `sha1: 90d328bf8f190c90472e8c19e7e53c6ad0fe0d1a`
 	- <a href="https://github.com/projectPiki/pikmin2/tree/main/src/plugProjectMorimuraU/tamagoMushiAnimator.cpp">plugProjectMorimuraU/tamagoMushiAnimator.cpp</a>
 	- <a href="https://github.com/projectPiki/pikmin2/tree/main/src/plugProjectMorimuraU/testBase.cpp">plugProjectMorimuraU/testBase.cpp</a>
 	- <a href="https://github.com/projectPiki/pikmin2/tree/main/src/plugProjectMorimuraU/tyreAnimator.cpp">plugProjectMorimuraU/tyreAnimator.cpp</a>
+	- <a href="https://github.com/projectPiki/pikmin2/tree/main/src/plugProjectMorimuraU/tyreState.cpp">plugProjectMorimuraU/tyreState.cpp</a>
 	- <a href="https://github.com/projectPiki/pikmin2/tree/main/src/plugProjectMorimuraU/umiMushiAnimator.cpp">plugProjectMorimuraU/umiMushiAnimator.cpp</a>
 - plugProjectNishimuraU
 	- <a href="https://github.com/projectPiki/pikmin2/tree/main/src/plugProjectNishimuraU/ArmorAnimator.cpp">plugProjectNishimuraU/ArmorAnimator.cpp</a>
@@ -222,17 +224,26 @@ pikmin2.usa.dol: `sha1: 90d328bf8f190c90472e8c19e7e53c6ad0fe0d1a`
 	- <a href="https://github.com/projectPiki/pikmin2/tree/main/src/plugProjectNishimuraU/UjibAnimator.cpp">plugProjectNishimuraU/UjibAnimator.cpp</a>
 	- <a href="https://github.com/projectPiki/pikmin2/tree/main/src/plugProjectNishimuraU/WaterOtakara.cpp">plugProjectNishimuraU/WaterOtakara.cpp</a>
 - plugProjectYamashitaU
+	- <a href="https://github.com/projectPiki/pikmin2/tree/main/src/plugProjectYamashitaU/BlueChappy.cpp">plugProjectYamashitaU/BlueChappy.cpp</a>
+	- <a href="https://github.com/projectPiki/pikmin2/tree/main/src/plugProjectYamashitaU/BlueKochappy.cpp">plugProjectYamashitaU/BlueKochappy.cpp</a>
 	- <a href="https://github.com/projectPiki/pikmin2/tree/main/src/plugProjectYamashitaU/chappyAnimator.cpp">plugProjectYamashitaU/chappyAnimator.cpp</a>
 	- <a href="https://github.com/projectPiki/pikmin2/tree/main/src/plugProjectYamashitaU/enemyAnimatorBase.cpp">plugProjectYamashitaU/enemyAnimatorBase.cpp</a>
+	- <a href="https://github.com/projectPiki/pikmin2/tree/main/src/plugProjectYamashitaU/enemyBlendAnimatorBase.cpp">plugProjectYamashitaU/enemyBlendAnimatorBase.cpp</a>
+	- <a href="https://github.com/projectPiki/pikmin2/tree/main/src/plugProjectYamashitaU/enemyFSM.cpp">plugProjectYamashitaU/enemyFSM.cpp</a>
 	- <a href="https://github.com/projectPiki/pikmin2/tree/main/src/plugProjectYamashitaU/enemyInfo.cpp">plugProjectYamashitaU/enemyInfo.cpp</a>
 	- <a href="https://github.com/projectPiki/pikmin2/tree/main/src/plugProjectYamashitaU/enemyInteractActions.cpp">plugProjectYamashitaU/enemyInteractActions.cpp</a>
+	- <a href="https://github.com/projectPiki/pikmin2/tree/main/src/plugProjectYamashitaU/enemyInteractBattle.cpp">plugProjectYamashitaU/enemyInteractBattle.cpp</a>
+	- <a href="https://github.com/projectPiki/pikmin2/tree/main/src/plugProjectYamashitaU/enemyMgrBase.cpp">plugProjectYamashitaU/enemyMgrBase.cpp</a>
 	- <a href="https://github.com/projectPiki/pikmin2/tree/main/src/plugProjectYamashitaU/enemyParmsBase.cpp">plugProjectYamashitaU/enemyParmsBase.cpp</a>
 	- <a href="https://github.com/projectPiki/pikmin2/tree/main/src/plugProjectYamashitaU/enemyPelletInfo.cpp">plugProjectYamashitaU/enemyPelletInfo.cpp</a>
 	- <a href="https://github.com/projectPiki/pikmin2/tree/main/src/plugProjectYamashitaU/enemyStoenInfo.cpp">plugProjectYamashitaU/enemyStoenInfo.cpp</a>
 	- <a href="https://github.com/projectPiki/pikmin2/tree/main/src/plugProjectYamashitaU/kochappyAnimator.cpp">plugProjectYamashitaU/kochappyAnimator.cpp</a>
 	- <a href="https://github.com/projectPiki/pikmin2/tree/main/src/plugProjectYamashitaU/pelplantGenerator.cpp">plugProjectYamashitaU/pelplantGenerator.cpp</a>
+	- <a href="https://github.com/projectPiki/pikmin2/tree/main/src/plugProjectYamashitaU/pelplantState.cpp">plugProjectYamashitaU/pelplantState.cpp</a>
 	- <a href="https://github.com/projectPiki/pikmin2/tree/main/src/plugProjectYamashitaU/timeMgr.cpp">plugProjectYamashitaU/timeMgr.cpp</a>
 	- <a href="https://github.com/projectPiki/pikmin2/tree/main/src/plugProjectYamashitaU/treasureLightMgr.cpp">plugProjectYamashitaU/treasureLightMgr.cpp</a>
+	- <a href="https://github.com/projectPiki/pikmin2/tree/main/src/plugProjectYamashitaU/walkSmokeEffect.cpp">plugProjectYamashitaU/walkSmokeEffect.cpp</a>
+	- <a href="https://github.com/projectPiki/pikmin2/tree/main/src/plugProjectYamashitaU/YellowKochappy.cpp">plugProjectYamashitaU/YellowKochappy.cpp</a>
 - JSystem
 	- <a href="https://github.com/projectPiki/pikmin2/tree/main/src/JSystem/data.cpp">JSystem/data.cpp</a>
 	- <a href="https://github.com/projectPiki/pikmin2/tree/main/src/JSystem/J2D/J2DGrafContext.cpp">JSystem/J2D/J2DGrafContext.cpp</a>
@@ -291,7 +302,6 @@ pikmin2.usa.dol: `sha1: 90d328bf8f190c90472e8c19e7e53c6ad0fe0d1a`
 - plugProjectKandoU
 	- <a href="https://github.com/projectPiki/pikmin2/tree/main/src/plugProjectKandoU/gamePlatMgr.cpp" >plugProjectKandoU/gamePlatMgr.cpp</a>
 	- <a href="https://github.com/projectPiki/pikmin2/tree/main/src/plugProjectKandoU/routeMgr.cpp" >plugProjectKandoU/routeMgr.cpp</a>
-	- <a href="https://github.com/projectPiki/pikmin2/tree/main/src/plugProjectKandoU/updateMgr.cpp" >plugProjectKandoU/updateMgr.cpp</a>
 - plugProjectHikinoU
 - plugProjectEbisawaU
 - plugProjectMorimuraU
