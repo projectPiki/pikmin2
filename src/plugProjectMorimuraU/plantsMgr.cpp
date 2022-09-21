@@ -1,17 +1,4 @@
-#include "Game/Entities/Plants.h"
-#include "Game/Entities/Chiyogami.h"
-#include "Game/Entities/Clover.h"
-#include "Game/Entities/Diode.h"
-#include "Game/Entities/HikariKinoko.h"
-#include "Game/Entities/KareOoinu.h"
-#include "Game/Entities/Margaret.h"
-#include "Game/Entities/Nekojarashi.h"
-#include "Game/Entities/Ooinu.h"
-#include "Game/Entities/Tanpopo.h"
-#include "Game/Entities/Tukushi.h"
-#include "Game/Entities/Wakame.h"
-#include "Game/Entities/Watage.h"
-#include "Game/Entities/Zenmai.h"
+#include "Game/plantsMgr.h"
 
 namespace Game {
 /*
