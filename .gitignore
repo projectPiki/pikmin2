@@ -32,6 +32,7 @@ errors.txt
 output.asm
 Debug/
 .vs/
+.vscode/*.log
 
 ctx.c
 out-ok.txt
