@@ -41,12 +41,7 @@ static void _Print(char* format, ...)
 	OSReport(__FILE__);
 	OSReport("/enemy/data/pelplant"); // unused/used in print inline probably
 	OSReport("/enemy/parm/pelplant"); // unused/used in print inline probably
-	OSReport((char*)(u32)-325.9493f);
-	OSReport((char*)(u32)325.9493f);
 }
-
-const f32 negTrig = -325.9493f;
-const f32 posTrig = 325.9493f;
 
 static f32 negSin(f32 x) { return -JMath::sincosTable_.m_table[((int)(x *= -325.9493f) & 0x7ffU)].first; }
 
@@ -69,7 +64,6 @@ float BlendAccelerationFunc::getValue(float p1)
 	} else {
 		sinTheta = posSin(x);
 	}
-	// float sinTheta = pikmin2_sinf(TAU * (3.0f * -p1));
 	float value = (0.5f * (1.0f - p1));
 	value       = (value * sinTheta) + p1;
 	if (value > 1.0f) {

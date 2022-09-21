@@ -232,6 +232,7 @@ pikmin2.usa.dol: `sha1: 90d328bf8f190c90472e8c19e7e53c6ad0fe0d1a`
 	- <a href="https://github.com/projectPiki/pikmin2/tree/main/src/plugProjectYamashitaU/enemyStoenInfo.cpp">plugProjectYamashitaU/enemyStoenInfo.cpp</a>
 	- <a href="https://github.com/projectPiki/pikmin2/tree/main/src/plugProjectYamashitaU/kochappyAnimator.cpp">plugProjectYamashitaU/kochappyAnimator.cpp</a>
 	- <a href="https://github.com/projectPiki/pikmin2/tree/main/src/plugProjectYamashitaU/pelplantGenerator.cpp">plugProjectYamashitaU/pelplantGenerator.cpp</a>
+	- <a href="https://github.com/projectPiki/pikmin2/tree/main/src/plugProjectYamashitaU/pelplantState.cpp">plugProjectYamashitaU/pelplantState.cpp</a>
 	- <a href="https://github.com/projectPiki/pikmin2/tree/main/src/plugProjectYamashitaU/timeMgr.cpp">plugProjectYamashitaU/timeMgr.cpp</a>
 	- <a href="https://github.com/projectPiki/pikmin2/tree/main/src/plugProjectYamashitaU/treasureLightMgr.cpp">plugProjectYamashitaU/treasureLightMgr.cpp</a>
 - JSystem

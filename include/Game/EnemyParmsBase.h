@@ -75,8 +75,8 @@ struct EnemyParmsBase : public CreatureParms {
 		    , m_shakeDamage(this, 'fp18', "U‚è•¥‚¢ƒ_ƒ[ƒW", 0.0f, 0.0f, 1000.0f)              // shake off damage
 		    , m_shakeRange(this, 'fp19', "U‚è•¥‚¢”ÍˆÍ", 120.0f, 0.0f, 1000.0f)                 // shake off range
 		    , m_shakeRateMaybe(this, 'fp16', "U‚è•¥‚¢—¦", 1.0f, 0.0f, 1.0f)                    // shake off rate
-		    , m_fp20(this, 'fp20', "UŒ‚‰Â”\\”ÍˆÍ", 70.0f, 0.0f, 1000.0f)                        // attack range - SHIFT-JIS IS WRONG
-		    , m_fp21(this, 'fp21', "UŒ‚‰Â”\\Šp“x", 15.0f, 0.0f, 180.0f)    // 'possible attack angle' - SHIFT-JIS IS WRONG
+		    , m_fp20(this, 'fp20', "UŒ‚‰Â”\\”ÍˆÍ", 70.0f, 0.0f, 1000.0f)                       // attack range - SHIFT-JIS IS WRONG
+		    , m_fp21(this, 'fp21', "UŒ‚‰Â”\\Šp“x", 15.0f, 0.0f, 180.0f)   // 'possible attack angle' - SHIFT-JIS IS WRONG
 		    , m_fp22(this, 'fp22', "UŒ‚ƒqƒbƒg”ÍˆÍ", 70.0f, 0.0f, 1000.0f) // attack hit range
 		    , m_fp23(this, 'fp23', "UŒ‚ƒqƒbƒgŠp“x", 15.0f, 0.0f, 180.0f)  // attack hit angle
 		    , m_attackDamage(this, 'fp24', "UŒ‚—Í", 10.0f, 0.0f, 1000.0f) // attack power

@@ -19,19 +19,34 @@ void FSM::init(EnemyBase* enemy)
 {
 	create(10);
 
-	registerState(new StateWait(0, 0));
-	registerState(new StateWait(1, 1));
-	registerState(new StateWait(2, 2));
+	registerState(new StateWait(PELPLANT_WaitSmall, 0));
+	registerState(new StateWait(PELPLANT_WaitMiddle, 1));
+	registerState(new StateWait(PELPLANT_WaitBig, 2));
 
-	registerState(new StateGrow(3, 2, 1));
-	registerState(new StateGrow(4, 3, 2));
+	registerState(new StateGrow(PELPLANT_Grow1, 2, 1));
+	registerState(new StateGrow(PELPLANT_Grow2, 3, 2));
 
-	registerState(new StateDamage(5, 0));
-	registerState(new StateDead(6, 1));
+	registerState(new StateDamage(PELPLANT_Damage, 0));
+	registerState(new StateDead(PELPLANT_Dead, 1));
 
-	registerState(new StateWither(7, 0, 6, 4));
-	registerState(new StateWither(8, 0, 5, 4));
-	registerState(new StateWither(9, 0, 4, 4));
+	registerState(new StateWither(PELPLANT_WitherBig, 0, 6, 4));
+	registerState(new StateWither(PELPLANT_WitherMiddle, 0, 5, 4));
+	registerState(new StateWither(PELPLANT_WitherSmall, 0, 4, 4));
+}
+
+/*
+ * --INLINED--
+ * NB: required to generate vtables in correct order.
+ * --INFO--
+ * Address:	........
+ * Size:	000040
+ */
+StateBlendAnim::StateBlendAnim(int stateID, int a, int b, int c)
+		: State(stateID)
+		, _10(a)
+		, _14(b)
+		, _18(c)
+{
 }
 
 /*
@@ -69,13 +84,13 @@ StateWither::StateWither(int stateID, int p1, int p2, int p3)
     : StateBlendAnim(stateID, p1, p2, p3)
 {
 	switch (stateID) {
-	case 7:
+	case PELPLANT_WitherBig:
 		m_name = "wither_big";
 		return;
-	case 8:
+	case PELPLANT_WitherMiddle:
 		m_name = "wither_Middle";
 		return;
-	case 9:
+	case PELPLANT_WitherSmall:
 		m_name = "wither_Small";
 		return;
 	}
@@ -102,7 +117,7 @@ void StateWither::exec(EnemyBase* enemy)
 {
 	if (enemy->m_animKeyEvent->m_running != 0) {
 		switch (enemy->m_animKeyEvent->m_type) {
-		case 0x7D0:
+		case 2000:
 			enemy->endBlend();
 			transit(enemy, _10, 0);
 		}
@@ -188,7 +203,7 @@ void StateWait::exec(EnemyBase* enemy)
 
 	if (enemy->m_animKeyEvent->m_running != 0) {
 		switch (enemy->m_animKeyEvent->m_type) {
-		case 0x3E8:
+		case 1000:
 		case 1:
 			float growth;
 			if (gameSystem->m_mode == GSM_PIKLOPEDIA) {
@@ -326,7 +341,7 @@ void StateGrow::exec(EnemyBase* enemy)
 {
 	if (enemy->m_animKeyEvent->m_running != 0) {
 		switch (enemy->m_animKeyEvent->m_type) {
-		case 0x3E8:
+		case 1000:
 		case 1:
 			transit(enemy, _14, 0);
 		}

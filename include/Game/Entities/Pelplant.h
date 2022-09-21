@@ -46,7 +46,7 @@ struct Obj : public EnemyBase {
 	// vtable 1 (Creature, _00, _08-_1AC)
 	virtual void onInit(CreatureInitArg*); // _030
 	virtual void doAnimation();            // _03C
-	virtual void doSimulation(f32);      // _04C
+	virtual void doSimulation(f32);        // _04C
 	virtual void doDirectDraw(Graphics&);  // _050
 	virtual bool isLivingThing()           // _0D4 (weak)
 	{
@@ -56,7 +56,7 @@ struct Obj : public EnemyBase {
 	virtual void onStickStart(Creature*);      // _158
 	// vtable 2 (MotionListener+EnemyBase+self, _00, _1BC-1D0)
 	virtual ~Obj() { }                                      // _1BC (weak)
-	virtual void birth(Vector3f&, f32);                   // _1C0
+	virtual void birth(Vector3f&, f32);                     // _1C0
 	virtual void setInitialSetting(EnemyInitialParamBase*); // _1C4
 	virtual void doUpdate();                                // _1CC
 	virtual void doAnimationUpdateAnimator();               // _1D8
@@ -65,10 +65,10 @@ struct Obj : public EnemyBase {
 	{
 		return EnemyTypeID::EnemyID_Pelplant;
 	}
-	virtual void doGetLifeGaugeParam(LifeGaugeParam&);        // _260
+	virtual void doGetLifeGaugeParam(LifeGaugeParam&);      // _260
 	virtual bool damageCallBack(Creature*, f32, CollPart*); // _278
 	virtual bool farmCallBack(Creature*, f32);              // _290
-	virtual void setFSM(FSM* fsm)                             // _2F8 (weak)
+	virtual void setFSM(FSM* fsm)                           // _2F8 (weak)
 	{
 		m_fsm = fsm;
 		m_fsm->init(this);
@@ -216,6 +216,19 @@ struct ProperAnimator : public EnemyBlendAnimatorBase {
 
 /////////////////////////////////////////////////////////////////
 // STATE MACHINE DEFINITIONS
+enum StateID {
+	PELPLANT_WaitSmall = 0,
+	PELPLANT_WaitMiddle = 1,
+	PELPLANT_WaitBig = 2,
+	PELPLANT_Grow1	= 3,
+	PELPLANT_Grow2  = 4,
+	PELPLANT_Damage = 5,
+	PELPLANT_Dead = 6,
+	PELPLANT_WitherBig = 7,
+	PELPLANT_WitherMiddle = 8,
+	PELPLANT_WitherSmall = 9,
+};
+
 struct State : public EnemyFSMState {
 	inline State(int stateID)
 	    : EnemyFSMState(stateID)
@@ -229,13 +242,7 @@ struct State : public EnemyFSMState {
 };
 
 struct StateBlendAnim : public State {
-	inline StateBlendAnim(int stateID, int a, int b, int c)
-	    : State(stateID)
-	    , _10(a)
-	    , _14(b)
-	    , _18(c)
-	{
-	}
+	StateBlendAnim(int stateID, int a, int b, int c);
 
 	virtual void init(EnemyBase*, StateArg*); // _08
 	virtual void exec(EnemyBase*);            // _0C
