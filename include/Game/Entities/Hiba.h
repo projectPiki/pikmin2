@@ -25,14 +25,17 @@ struct Obj : public EnemyBase {
 	Obj();
 
 	//////////////// VTABLE
-	virtual void onInit(CreatureInitArg*);                  // _30
-	virtual void doSimulation(f32);                         // _4C (weak)
-	virtual void doDirectDraw(Graphics&);                   // _50
-	virtual void inWaterCallback(WaterBox*);                // _84 (weak)
-	virtual void outWaterCallback();                        // _88 (weak)
-	virtual bool isLivingThing();                           // _D4 (weak)
+	virtual void onInit(CreatureInitArg*);      // _30
+	virtual void doSimulation(f32) { }          // _4C (weak)
+	virtual void doDirectDraw(Graphics&);       // _50
+	virtual void inWaterCallback(WaterBox*) { } // _84 (weak)
+	virtual void outWaterCallback() { }         // _88 (weak)
+	virtual bool isLivingThing()                // _D4 (weak)
+	{
+		return m_isAlive;
+	}
 	virtual void getShadowParam(ShadowParam&);              // _134
-	virtual ~Obj();                                         // _1BC (weak)
+	virtual ~Obj() { }                                      // _1BC (weak)
 	virtual void setInitialSetting(EnemyInitialParamBase*); // _1C4
 	virtual void doUpdate();                                // _1CC
 	virtual void doDebugDraw(Graphics&);                    // _1EC
@@ -44,7 +47,7 @@ struct Obj : public EnemyBase {
 	virtual bool pressCallBack(Creature*, f32, CollPart*);   // _27C
 	virtual bool hipdropCallBack(Creature*, f32, CollPart*); // _284
 	virtual bool bombCallBack(Creature*, Vector3f&, f32);    // _294
-	virtual void lifeRecover();                              // _2C0 (weak)
+	virtual void lifeRecover() { }                           // _2C0 (weak)
 	virtual void setFSM(FSM*);                               // _2F8
 	//////////////// VTABLE END
 

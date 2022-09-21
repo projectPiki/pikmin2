@@ -218,20 +218,16 @@ __vt__Q34Game4Hiba3Obj:
 
 .section .sdata2, "a"     # 0x80516360 - 0x80520E40
 .balign 8
-.global lbl_8051B020
 lbl_8051B020:
-	.4byte 0x00000000
-.global lbl_8051B024
+	.float 0.0
 lbl_8051B024:
-	.4byte 0x47000000
-.global lbl_8051B028
+	.float 32768.0
+.balign 8
 lbl_8051B028:
 	.4byte 0x43300000
 	.4byte 0x80000000
-.global lbl_8051B030
 lbl_8051B030:
 	.float 1.0
-	.4byte 0x00000000
 
 .section .text, "ax"  # 0x800056C0 - 0x80472F00
 .global __ct__Q34Game4Hiba3ObjFv
