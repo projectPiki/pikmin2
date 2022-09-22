@@ -41,14 +41,14 @@ struct QueenShadowMgr;
 struct FSM;
 
 enum StateID {
-	QUEEN_NULL = -1,
-	QUEEN_Dead = 0,
-	QUEEN_Sleep = 1,
-	QUEEN_Wait = 2,
-	QUEEN_Damage = 3,
-	QUEEN_Flick = 4,
+	QUEEN_NULL    = -1,
+	QUEEN_Dead    = 0,
+	QUEEN_Sleep   = 1,
+	QUEEN_Wait    = 2,
+	QUEEN_Damage  = 3,
+	QUEEN_Flick   = 4,
 	QUEEN_Rolling = 5,
-	QUEEN_Born = 6,
+	QUEEN_Born    = 6,
 };
 
 struct Obj : public EnemyBase {
@@ -224,7 +224,7 @@ struct FSM : public EnemyStateMachine {
 
 struct State : public EnemyFSMState {
 	inline State(int stateID, char* name)
-		: EnemyFSMState(stateID)
+	    : EnemyFSMState(stateID)
 	{
 		m_name = name;
 	}
@@ -235,7 +235,7 @@ struct State : public EnemyFSMState {
 
 struct StateBorn : public State {
 	inline StateBorn()
-		: State(QUEEN_Born, "born")
+	    : State(QUEEN_Born, "born")
 	{
 	}
 
@@ -249,7 +249,7 @@ struct StateBorn : public State {
 
 struct StateDamage : public State {
 	inline StateDamage()
-		: State(QUEEN_Damage, "damage")
+	    : State(QUEEN_Damage, "damage")
 	{
 	}
 
@@ -263,7 +263,7 @@ struct StateDamage : public State {
 
 struct StateDead : public State {
 	inline StateDead()
-		: State(QUEEN_Dead, "dead")
+	    : State(QUEEN_Dead, "dead")
 	{
 	}
 
@@ -277,7 +277,7 @@ struct StateDead : public State {
 
 struct StateFlick : public State {
 	inline StateFlick()
-		: State(QUEEN_Flick, "flick")
+	    : State(QUEEN_Flick, "flick")
 	{
 	}
 
@@ -291,7 +291,7 @@ struct StateFlick : public State {
 
 struct StateRolling : public State {
 	inline StateRolling()
-		: State(QUEEN_Rolling, "rolling")
+	    : State(QUEEN_Rolling, "rolling")
 	{
 	}
 
@@ -305,7 +305,7 @@ struct StateRolling : public State {
 
 struct StateSleep : public State {
 	inline StateSleep()
-		: State(QUEEN_Sleep, "sleep")
+	    : State(QUEEN_Sleep, "sleep")
 	{
 	}
 
@@ -319,7 +319,7 @@ struct StateSleep : public State {
 
 struct StateWait : public State {
 	inline StateWait()
-		: State(QUEEN_Wait, "wait")
+	    : State(QUEEN_Wait, "wait")
 	{
 	}
 
