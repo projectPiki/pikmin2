@@ -11,14 +11,14 @@
 
 #include "PikiAI.h"
 
-// TODO: Matching but MotionListener VTBL generates, when that's fixed. Link it.
+namespace PikiAI {
 
 /*
  * --INFO--
  * Address:	8019FF38
  * Size:	0000D0
  */
-PikiAI::ActFree::ActFree(Game::Piki* parent)
+ActFree::ActFree(Game::Piki* parent)
     : Action(parent)
     , m_actGather(new ActGather(parent))
     , m_actBore(new ActBore(parent))
@@ -31,20 +31,19 @@ PikiAI::ActFree::ActFree(Game::Piki* parent)
  * Address:	801A0008
  * Size:	000190
  */
-void PikiAI::ActFree::init(PikiAI::ActionArg* arg)
+void ActFree::init(ActionArg* arg)
 {
 	m_parent->m_navi = nullptr;
 	m_parent->m_soundObj->becomeFree();
 
-	PikiAI::ActFreeArg* freeArg = (PikiAI::ActFreeArg*)arg;
+	ActFreeArg* freeArg = (ActFreeArg*)arg;
 
 	m_state = PIKIAI_FREE_DEFAULT;
 	if (freeArg) {
-		char* name     = arg->getName();
-		bool isFreeArg = strcmp("ActFreeArg", name) == 0;
-		P2ASSERTLINE(119, !isFreeArg);
+		bool isFreeArg = strcmp("ActFreeArg", arg->getName()) == 0;
+		P2ASSERTLINE(119, isFreeArg);
 
-		freeArg = (PikiAI::ActFreeArg*)arg;
+		freeArg = (ActFreeArg*)arg;
 		if (freeArg->_04) {
 			m_state = PIKIAI_FREE_GATHER;
 		}
@@ -56,8 +55,8 @@ void PikiAI::ActFree::init(PikiAI::ActionArg* arg)
 		m_actGather->init(&gatherArg);
 		break;
 	default:
-		m_parent->startMotion(31, 31, 0, 0);
-		m_parent->m_velocity = Vector3f(0, 0, 0);
+		m_parent->startMotion(31, 31, nullptr, nullptr);
+		m_parent->m_velocity = Vector3f(0.0f);
 		break;
 	}
 
@@ -73,7 +72,7 @@ void PikiAI::ActFree::init(PikiAI::ActionArg* arg)
  * Address:	801A0198
  * Size:	0001D0
  */
-s32 PikiAI::ActFree::exec(void)
+s32 ActFree::exec()
 {
 	switch (m_state) {
 	case PIKIAI_FREE_GATHER: {
@@ -108,7 +107,7 @@ s32 PikiAI::ActFree::exec(void)
 
 	default: {
 		// We aren't moving anywhere anymore
-		m_parent->m_velocity = Vector3f(0, 0, 0);
+		m_parent->m_velocity = Vector3f(0.0f);
 
 		Game::Piki::InvokeAIFreeArg invokeArg(0, 0);
 		if (m_parent->invokeAIFree(invokeArg)) {
@@ -135,7 +134,7 @@ s32 PikiAI::ActFree::exec(void)
  * Address:	801A0368
  * Size:	00004C
  */
-void PikiAI::ActFree::cleanup(void)
+void ActFree::cleanup()
 {
 	m_parent->setFreeLightEffect(false);
 	m_parent->attachRadar(false);
@@ -147,20 +146,20 @@ void PikiAI::ActFree::cleanup(void)
  * Address:	801A03B4
  * Size:	000004
  */
-void PikiAI::ActFree::onKeyEvent(SysShape::KeyEvent const&) { }
+void ActFree::onKeyEvent(SysShape::KeyEvent const&) { }
 
 /*
  * --INFO--
  * Address:	801A03B8
  * Size:	0000EC
  */
-void PikiAI::ActFree::collisionCallback(Game::Piki* piki, Game::CollEvent& event)
+void ActFree::collisionCallback(Game::Piki* piki, Game::CollEvent& event)
 {
 	if (!event.m_collidingCreature->isNavi()) {
 		return;
 	}
 
-	Game::Navi* navi = (Game::Navi*)event.m_collidingCreature;
+	Game::Navi* navi = static_cast<Game::Navi*>(event.m_collidingCreature);
 	if (!navi->isAlive()) {
 		return;
 	}
@@ -188,18 +187,13 @@ const char str_LINK[] = "ActionArg";
  * Address:	801A04A4
  * Size:	00000C
  */
-char* PikiAI::GatherActionArg::getName() { return "GatherActionArg"; }
+char* GatherActionArg::getName() { return "GatherActionArg"; }
 
 /*
  * --INFO--
  * Address:	801A04B0
  * Size:	000008
  */
-u32 PikiAI::ActFree::getNextAIType() { return PIKIAI_FREE_BORE; }
+u32 ActFree::getNextAIType() { return PIKIAI_FREE_BORE; }
 
-/*
- * --INFO--
- * Address:	801A04B8
- * Size:	000014
- */
-// void @32 @4 @PikiAI::ActFree::onKeyEvent(SysShape::KeyEvent const&)
+} // namespace PikiAI
