@@ -27,11 +27,11 @@ struct BeatMgr {
  * @size 0x2C
  */
 struct SeqTrackBase {
-	virtual void update();        // _08
+	virtual bool update();        // _08
 	virtual void init(JASTrack*); // _0C
 	virtual void onStopSeq() = 0; // _10
 
-	TaskEntryMgr getTaskEntryList();
+	TaskEntryMgr* getTaskEntryList();
 
 	TaskEntryMgr m_taskEntryMgr; // _04
 };
@@ -42,10 +42,10 @@ struct SeqTrackBase {
 struct SeqTrackRoot : public SeqTrackBase {
 	SeqTrackRoot();
 
-	virtual void update() // _08 (weak)
+	virtual bool update() // _08 (weak)
 	{
 		m_beatMgr.proc();
-		SeqTrackBase::update();
+		return SeqTrackBase::update();
 	}
 	virtual void init(JASTrack*); // _0C
 	virtual void onStopSeq();     // _10

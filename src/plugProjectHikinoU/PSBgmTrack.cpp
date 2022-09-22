@@ -11,9 +11,9 @@ namespace PSSystem {
 void BeatMgr::proc()
 {
 	if (_00 & 0x40) {
-		_00 = _00 & 1;
+		_00 &= 1;
 	} else if (_00 & 0x80) {
-		_00 = _00 | 0x40;
+		_00 |= 0x40;
 	}
 }
 
@@ -22,7 +22,11 @@ void BeatMgr::proc()
  * Address:	803422D4
  * Size:	000028
  */
-void SeqTrackBase::update() { m_taskEntryMgr.update(); }
+bool SeqTrackBase::update()
+{
+	m_taskEntryMgr.update();
+	return false;
+}
 
 /*
  * --INFO--
@@ -36,7 +40,7 @@ void SeqTrackBase::init(JASTrack* track) { m_taskEntryMgr._24 = track; }
  * Address:	80342304
  * Size:	000008
  */
-TaskEntryMgr SeqTrackBase::getTaskEntryList() { return m_taskEntryMgr; }
+TaskEntryMgr* SeqTrackBase::getTaskEntryList() { return &m_taskEntryMgr; }
 
 /*
  * --INFO--
@@ -45,15 +49,10 @@ TaskEntryMgr SeqTrackBase::getTaskEntryList() { return m_taskEntryMgr; }
  * __ct__Q28PSSystem12SeqTrackRootFv
  */
 SeqTrackRoot::SeqTrackRoot()
-    : SeqTrackBase()
-    , _34(2.0f)
+    : _34(2.0f)
     , _38(0)
-    , m_beatMgr()
     , _3E(0x3C)
-    , _40()
     , _100(2)
-    , _16C()
-    , _20C()
 {
 }
 
@@ -143,11 +142,7 @@ u16 SeqTrackRoot::beatUpdate()
  * __ct__Q28PSSystem13SeqTrackChildFRCQ28PSSystem12SeqTrackRoot
  */
 SeqTrackChild::SeqTrackChild(const PSSystem::SeqTrackRoot&)
-    : SeqTrackBase()
-    , _2C()
-    , _12C()
-    , _1B8(1)
-    , _224()
+    : _1B8(1)
 {
 }
 
