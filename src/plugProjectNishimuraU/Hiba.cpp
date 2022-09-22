@@ -1,5 +1,6 @@
 #include "types.h"
 #include "Game/Entities/Hiba.h"
+#include "efx/THibaFire.h"
 
 namespace Game {
 namespace Hiba {
@@ -21,25 +22,32 @@ Obj::Obj()
  * Address:	8026BFC4
  * Size:	000004
  */
-void Obj::setInitialSetting(Game::EnemyInitialParamBase*) { }
+void Obj::setInitialSetting(EnemyInitialParamBase*) { }
 
 /*
  * --INFO--
  * Address:	8026BFC8
  * Size:	0000F8
  */
-void Obj::onInit(Game::CreatureInitArg* args) // not matching yet
+void Obj::onInit(CreatureInitArg* args)
 {
 	EnemyBase::onInit(args);
-	m_events.m_flags[0].typeView &= 0xFFFFEFFF;
-	m_events.m_flags[0].typeView &= 0xFFFFFF7F;
-	m_events.m_flags[0].typeView &= 0xFFFFFEFF;
+	resetEvent(0, EB_13);
+	resetEvent(0, EB_LeaveCarcass);
+	resetEvent(0, EB_9);
 	hardConstraintOn();
-	m_events.m_flags[0].typeView |= 0x00400000;
+	setEvent(0, EB_BitterImmune);
+
 	setEmotionNone();
 	shadowMgr->killShadow(this);
 	m_timer   = 0.0f;
 	m_isAlive = true;
+	setupLodParms();
+
+	f32 r = randWeightFloat(static_cast<Parms*>(m_parms)->m_properParms.m_waitTime.m_value);
+	StateArg arg;
+	arg._00.f32 = r;
+	m_FSM->start(this, 1, &arg);
 }
 
 /*
@@ -82,9 +90,7 @@ void Obj::setFSM(FSM* fsm)
  */
 void Obj::getShadowParam(ShadowParam& shadowParam)
 {
-	shadowParam.m_position.x                = m_position.x;
-	shadowParam.m_position.y                = m_position.y;
-	shadowParam.m_position.z                = m_position.z;
+	shadowParam.m_position 								  = m_position;
 	shadowParam.m_boundingSphere.m_position = Vector3f(0.0f, 1.0f, 0.0f);
 	shadowParam.m_boundingSphere.m_radius   = 0.0f;
 	shadowParam._1C                         = 0.0f;
@@ -97,43 +103,11 @@ void Obj::getShadowParam(ShadowParam& shadowParam)
  */
 bool Obj::damageCallBack(Creature* creature, f32 damage, CollPart* collpart)
 {
-	/*
-	stwu     r1, -0x20(r1)
-	mflr     r0
-	stw      r0, 0x24(r1)
-	stfd     f31, 0x10(r1)
-	psq_st   f31, 24(r1), 0, qr0
-	stw      r31, 0xc(r1)
-	fmr      f31, f1
-	cmplwi   r4, 0
-	mr       r31, r3
-	beq      lbl_8026C1F8
-	mr       r3, r4
-	lwz      r12, 0(r4)
-	lwz      r12, 0x1c(r12)
-	mtctr    r12
-	bctrl
-	clrlwi.  r0, r3, 0x18
-	bne      lbl_8026C1F8
-	fmr      f1, f31
-	lfs      f2, lbl_8051B030@sda21(r2)
-	mr       r3, r31
-	bl       addDamage__Q24Game9EnemyBaseFff
-	li       r3, 1
-	b        lbl_8026C1FC
-
-lbl_8026C1F8:
-	li       r3, 0
-
-lbl_8026C1FC:
-	psq_l    f31, 24(r1), 0, qr0
-	lwz      r0, 0x24(r1)
-	lfd      f31, 0x10(r1)
-	lwz      r31, 0xc(r1)
-	mtlr     r0
-	addi     r1, r1, 0x20
-	blr
-	*/
+	if ((creature != nullptr) && !creature->isNavi()) {
+		addDamage(damage, 1.0f);
+		return true;
+	}
+	return false;
 }
 
 /*
@@ -176,6 +150,40 @@ bool Obj::bombCallBack(Creature* creature, Vector3f& vec, f32 damage)
  */
 void Obj::interactFireAttack()
 {
+	Parms* parms = static_cast<Parms*>(m_parms);
+	f32 angle;
+	f32 range;
+
+	range = parms->m_general.m_fp20.m_value;
+	angle = parms->m_general.m_fp21.m_value;
+
+	f32 max = m_position.y + range;
+	f32 min = m_position.y - angle;
+
+	f32 radius = parms->m_general.m_fp22.m_value;
+	Sys::Sphere sphere(m_position, radius);
+
+	f32 radSqr = SQUARE(radius);
+	CellIteratorArg arg(sphere);
+	arg._1C = 1;
+
+	CellIterator iterator(arg);
+	iterator.first();
+
+	while (!iterator.isDone()) {
+		Creature* creature = (Creature*)(*iterator);
+		if (creature->isAlive() && (creature->isNavi() || creature->isPiki())) {
+			Vector3f position = creature->getPosition();
+			if ((max > position.y) && (min < position.y)) {
+				Vector3f diff = m_position - position;
+				if (SQUARE(diff.x) + SQUARE(diff.z) < radSqr) {
+					InteractFire fire(this, static_cast<Parms*>(m_parms)->m_general.m_attackDamage.m_value);
+					creature->stimulate(fire);
+				}
+			}
+		}
+		iterator.next();
+	}
 	/*
 	stwu     r1, -0xd0(r1)
 	mflr     r0
@@ -311,17 +319,9 @@ lbl_8026C43C:
  */
 void Obj::setupLodParms()
 {
-	/*
-	lwz      r4, 0xc0(r3)
-	li       r0, 0
-	lfs      f0, 0x894(r4)
-	stfs     f0, 0x264(r3)
-	lwz      r4, 0xc0(r3)
-	lfs      f0, 0x8bc(r4)
-	stfs     f0, 0x268(r3)
-	stb      r0, 0x26c(r3)
-	blr
-	*/
+	m_lodParm.m_far        = static_cast<Parms*>(m_parms)->m_properParms.m_lodNear.m_value;
+	m_lodParm.m_close      = static_cast<Parms*>(m_parms)->m_properParms.m_lodMiddle.m_value;
+	m_lodParm.m_isCylinder = false;
 }
 
 /*
@@ -329,60 +329,14 @@ void Obj::setupLodParms()
  * Address:	8026C4A0
  * Size:	00002C
  */
-void Obj::updateEfxLod()
-{
-	/*
-	stwu     r1, -0x10(r1)
-	mflr     r0
-	stw      r0, 0x14(r1)
-	lbz      r0, 0xd8(r3)
-	lwz      r3, 0x2c8(r3)
-	clrlwi   r4, r0, 0x1e
-	bl       setRateLOD__Q23efx9THibaFireFi
-	lwz      r0, 0x14(r1)
-	mtlr     r0
-	addi     r1, r1, 0x10
-	blr
-	*/
-}
+void Obj::updateEfxLod() { m_efxFire->setRateLOD(m_lod.m_flags & (AILOD::IsMid | AILOD::IsFar)); }
 
 /*
  * --INFO--
  * Address:	8026C4CC
  * Size:	000064
  */
-void Obj::createEffect()
-{
-	/*
-	stwu     r1, -0x10(r1)
-	mflr     r0
-	stw      r0, 0x14(r1)
-	stw      r31, 0xc(r1)
-	stw      r30, 8(r1)
-	mr       r30, r3
-	li       r3, 0x44
-	bl       __nw__FUl
-	or.      r31, r3, r3
-	beq      lbl_8026C514
-	li       r4, 0xab
-	li       r5, 0xac
-	li       r6, 0xad
-	li       r7, 0xae
-	bl       __ct__Q23efx9TForever4FUsUsUsUs
-	lis      r3, __vt__Q23efx9THibaFire@ha
-	addi     r0, r3, __vt__Q23efx9THibaFire@l
-	stw      r0, 0(r31)
-
-lbl_8026C514:
-	stw      r31, 0x2c8(r30)
-	lwz      r0, 0x14(r1)
-	lwz      r31, 0xc(r1)
-	lwz      r30, 8(r1)
-	mtlr     r0
-	addi     r1, r1, 0x10
-	blr
-	*/
-}
+void Obj::createEffect() { m_efxFire = new efx::THibaFire; }
 
 /*
  * --INFO--
@@ -391,30 +345,8 @@ lbl_8026C514:
  */
 void Obj::startFireEffect()
 {
-	/*
-	stwu     r1, -0x20(r1)
-	mflr     r0
-	lis      r4, __vt__Q23efx3Arg@ha
-	stw      r0, 0x24(r1)
-	addi     r0, r4, __vt__Q23efx3Arg@l
-	addi     r4, r1, 8
-	stw      r0, 8(r1)
-	lfs      f0, 0x18c(r3)
-	stfs     f0, 0xc(r1)
-	lfs      f0, 0x190(r3)
-	stfs     f0, 0x10(r1)
-	lfs      f0, 0x194(r3)
-	stfs     f0, 0x14(r1)
-	lwz      r3, 0x2c8(r3)
-	lwz      r12, 0(r3)
-	lwz      r12, 8(r12)
-	mtctr    r12
-	bctrl
-	lwz      r0, 0x24(r1)
-	mtlr     r0
-	addi     r1, r1, 0x20
-	blr
-	*/
+	efx::Arg arg(m_position);
+	m_efxFire->create(&arg);
 }
 
 /*
@@ -422,23 +354,7 @@ void Obj::startFireEffect()
  * Address:	8026C588
  * Size:	000030
  */
-void Obj::finishFireEffect()
-{
-	/*
-	stwu     r1, -0x10(r1)
-	mflr     r0
-	stw      r0, 0x14(r1)
-	lwz      r3, 0x2c8(r3)
-	lwz      r12, 0(r3)
-	lwz      r12, 0x10(r12)
-	mtctr    r12
-	bctrl
-	lwz      r0, 0x14(r1)
-	mtlr     r0
-	addi     r1, r1, 0x10
-	blr
-	*/
-}
+void Obj::finishFireEffect() { m_efxFire->fade(); }
 
 /*
  * --INFO--
@@ -447,27 +363,10 @@ void Obj::finishFireEffect()
  */
 void Obj::generatorKill()
 {
-	/*
-	stwu     r1, -0x10(r1)
-	mflr     r0
-	stw      r0, 0x14(r1)
-	stw      r31, 0xc(r1)
-	mr       r31, r3
-	lwz      r3, 0xc4(r3)
-	cmplwi   r3, 0
-	beq      lbl_8026C5E8
-	mr       r4, r31
-	bl       informDeath__Q24Game9GeneratorFPQ24Game8Creature
-	li       r0, 0
-	stw      r0, 0xc4(r31)
-
-lbl_8026C5E8:
-	lwz      r0, 0x14(r1)
-	lwz      r31, 0xc(r1)
-	mtlr     r0
-	addi     r1, r1, 0x10
-	blr
-	*/
+	if (m_generator != nullptr) {
+		m_generator->informDeath(this);
+		m_generator = nullptr;
+	}
 }
 
 } // namespace Hiba
