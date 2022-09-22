@@ -23,7 +23,7 @@ struct Obj : public KumaChappy::Obj {
 	virtual void initWalkSmokeEffect();                 // _230
 	virtual EnemyTypeID::EEnemyTypeID getEnemyTypeID(); // _258 (weak)
 	virtual void doGetLifeGaugeParam(LifeGaugeParam&);  // _260
-	virtual void doBecomeCarcass();                     // _2D0
+	virtual bool doBecomeCarcass();                     // _2D0
 	virtual f32 getDownSmokeScale();                    // _2EC (weak)
 	virtual void createChappyRelation();                // _2FC (weak)
 	virtual void getChappyRelation();                   // _300 (weak)
@@ -40,7 +40,7 @@ struct Obj : public KumaChappy::Obj {
 	                        // _2FC = PelletView
 };
 
-struct Mgr : public EnemyBaseMgr {
+struct Mgr : public EnemyMgrBase {
 	Mgr(int, u8);
 
 	//////////////// VTABLE

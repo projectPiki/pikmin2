@@ -41,3 +41,5 @@ struct Mgr : public EnemyMgrBase {
 };
 } // namespace Demon
 } // namespace Game
+
+#endif

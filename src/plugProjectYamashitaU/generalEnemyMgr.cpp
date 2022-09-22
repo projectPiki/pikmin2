@@ -1,263 +1,72 @@
-#include "types.h"
-
 #include "Game/generalEnemyMgr.h"
-
-/*
-    Generated from dpostproc
-
-    .section .rodata  # 0x804732E0 - 0x8049E220
-    .global lbl_8047AA70
-    lbl_8047AA70:
-        .asciz "enemyBase"
-        .skip 2
-        .4byte 0x837D836C
-        .4byte 0x815B8357
-        .4byte 0x8383836D
-        .4byte 0x815B8368
-        .4byte 0x00000000
-        .asciz "GeneralEnemyMgr"
-        .4byte 0x9347837D
-        .4byte 0x836C815B
-        .4byte 0x83578383
-        .4byte 0x00000000
-        .asciz "enemyHeap"
-        .skip 2
-    .global lbl_8047AABC
-    lbl_8047AABC:
-        .asciz "generalEnemyMgr.cpp"
-    .global lbl_8047AAD0
-    lbl_8047AAD0:
-        .asciz "P2Assert"
-        .skip 3
-        .asciz "/enemy/parm/enemyParms.szs"
-        .skip 1
-        .asciz "allocateEnemys"
-        .skip 1
-        .asciz "EnemyKillArg"
-        .skip 3
-        .asciz "CreatureKillArg"
-
-    .section .data, "wa"  # 0x8049E220 - 0x804EFC20
-    .global lbl_804AB390
-    lbl_804AB390:
-        .4byte lbl_8010BDB8
-        .4byte lbl_8010BDE0
-        .4byte lbl_8010BE58
-        .4byte lbl_8010CC34
-        .4byte lbl_8010CC34
-        .4byte lbl_8010CC34
-        .4byte lbl_8010CC34
-        .4byte lbl_8010CC34
-        .4byte lbl_8010CC34
-        .4byte lbl_8010BF20
-        .4byte lbl_8010BF48
-        .4byte lbl_8010BF70
-        .4byte lbl_8010C010
-        .4byte lbl_8010C038
-        .4byte lbl_8010C060
-        .4byte lbl_8010C088
-        .4byte lbl_8010BF98
-        .4byte lbl_8010BEF8
-        .4byte lbl_8010BFC0
-        .4byte lbl_8010BFE8
-        .4byte lbl_8010C0B0
-        .4byte lbl_8010C0D8
-        .4byte lbl_8010C100
-        .4byte lbl_8010C128
-        .4byte lbl_8010C150
-        .4byte lbl_8010C178
-        .4byte lbl_8010C1A0
-        .4byte lbl_8010C1C8
-        .4byte lbl_8010C1F0
-        .4byte lbl_8010C218
-        .4byte lbl_8010C240
-        .4byte lbl_8010C268
-        .4byte lbl_8010C290
-        .4byte lbl_8010C2B8
-        .4byte lbl_8010C2E0
-        .4byte lbl_8010C308
-        .4byte lbl_8010C330
-        .4byte lbl_8010C358
-        .4byte lbl_8010C380
-        .4byte lbl_8010CC34
-        .4byte lbl_8010C3A8
-        .4byte lbl_8010C3F8
-        .4byte lbl_8010BE80
-        .4byte lbl_8010BEA8
-        .4byte lbl_8010BE08
-        .4byte lbl_8010BE30
-        .4byte lbl_8010C420
-        .4byte lbl_8010C448
-        .4byte lbl_8010C470
-        .4byte lbl_8010C498
-        .4byte lbl_8010C4E8
-        .4byte lbl_8010C538
-        .4byte lbl_8010C560
-        .4byte lbl_8010C6C8
-        .4byte lbl_8010C6F0
-        .4byte lbl_8010C718
-        .4byte lbl_8010C740
-        .4byte lbl_8010C768
-        .4byte lbl_8010C790
-        .4byte lbl_8010C7B8
-        .4byte lbl_8010C7E0
-        .4byte lbl_8010C808
-        .4byte lbl_8010C830
-        .4byte lbl_8010C880
-        .4byte lbl_8010CC34
-        .4byte lbl_8010C8A8
-        .4byte lbl_8010C8D0
-        .4byte lbl_8010C8F8
-        .4byte lbl_8010C920
-        .4byte lbl_8010C96C
-        .4byte lbl_8010C994
-        .4byte lbl_8010CC34
-        .4byte lbl_8010C9E4
-        .4byte lbl_8010CA0C
-        .4byte lbl_8010CC34
-        .4byte lbl_8010CA34
-        .4byte lbl_8010CAAC
-        .4byte lbl_8010CAD4
-        .4byte lbl_8010CB20
-        .4byte lbl_8010CB70
-        .4byte lbl_8010C588
-        .4byte lbl_8010C5B0
-        .4byte lbl_8010BED0
-        .4byte lbl_8010C3D0
-        .4byte lbl_8010CB98
-        .4byte lbl_8010C5D8
-        .4byte lbl_8010C600
-        .4byte lbl_8010C628
-        .4byte lbl_8010C650
-        .4byte lbl_8010C678
-        .4byte lbl_8010C6A0
-        .4byte lbl_8010C4C0
-        .4byte lbl_8010C510
-        .4byte lbl_8010C858
-        .4byte lbl_8010CC10
-        .4byte lbl_8010CA5C
-        .4byte lbl_8010CA84
-        .4byte lbl_8010CB48
-        .4byte lbl_8010CBE8
-        .4byte lbl_8010CBC0
-        .4byte lbl_8010C9BC
-    .global __vt__Q24Game15GeneralEnemyMgr
-    __vt__Q24Game15GeneralEnemyMgr:
-        .4byte 0
-        .4byte 0
-        .4byte doAnimation__Q24Game15GeneralEnemyMgrFv
-        .4byte doEntry__Q24Game15GeneralEnemyMgrFv
-        .4byte doSetView__Q24Game15GeneralEnemyMgrFi
-        .4byte doViewCalc__Q24Game15GeneralEnemyMgrFv
-        .4byte doSimulation__Q24Game15GeneralEnemyMgrFf
-        .4byte doDirectDraw__Q24Game15GeneralEnemyMgrFR8Graphics
-        .4byte doSimpleDraw__Q24Game15GeneralEnemyMgrFP8Viewport
-        .4byte loadResources__16GenericObjectMgrFv
-        .4byte resetMgr__16GenericObjectMgrFv
-        .4byte pausable__16GenericObjectMgrFv
-        .4byte frozenable__16GenericObjectMgrFv
-        .4byte getMatrixLoadType__16GenericObjectMgrFv
-        .4byte 0
-        .4byte 0
-        .4byte "@4@__dt__Q24Game15GeneralEnemyMgrFv"
-        .4byte getChildCount__5CNodeFv
-        .4byte __dt__Q24Game15GeneralEnemyMgrFv
-    .global __vt__Q24Game12EnemyMgrNode
-    __vt__Q24Game12EnemyMgrNode:
-        .4byte 0
-        .4byte 0
-        .4byte __dt__Q24Game12EnemyMgrNodeFv
-        .4byte getChildCount__5CNodeFv
-        .4byte 0
-        .4byte 0
-        .4byte "@24@doAnimation__Q24Game12EnemyMgrNodeFv"
-        .4byte "@24@doEntry__Q24Game12EnemyMgrNodeFv"
-        .4byte "@24@doSetView__Q24Game12EnemyMgrNodeFi"
-        .4byte "@24@doViewCalc__Q24Game12EnemyMgrNodeFv"
-        .4byte "@24@doSimulation__Q24Game12EnemyMgrNodeFf"
-        .4byte "@24@doDirectDraw__Q24Game12EnemyMgrNodeFR8Graphics"
-        .4byte "@24@doSimpleDraw__Q24Game12EnemyMgrNodeFP8Viewport"
-        .4byte loadResources__16GenericObjectMgrFv
-        .4byte resetMgr__16GenericObjectMgrFv
-        .4byte pausable__16GenericObjectMgrFv
-        .4byte frozenable__16GenericObjectMgrFv
-        .4byte "@24@getMatrixLoadType__Q24Game12EnemyMgrNodeFv"
-        .4byte doAnimation__Q24Game12EnemyMgrNodeFv
-        .4byte doEntry__Q24Game12EnemyMgrNodeFv
-        .4byte doSetView__Q24Game12EnemyMgrNodeFi
-        .4byte doViewCalc__Q24Game12EnemyMgrNodeFv
-        .4byte doSimulation__Q24Game12EnemyMgrNodeFf
-        .4byte doDirectDraw__Q24Game12EnemyMgrNodeFR8Graphics
-        .4byte doSimpleDraw__Q24Game12EnemyMgrNodeFP8Viewport
-        .4byte killAll__Q24Game12EnemyMgrNodeFPQ24Game15CreatureKillArg
-        .4byte setupSoundViewerAndBas__Q24Game12EnemyMgrNodeFv
-        .4byte setDebugParm__Q24Game12EnemyMgrNodeFUl
-        .4byte resetDebugParm__Q24Game12EnemyMgrNodeFUl
-        .4byte startMovie__Q24Game12EnemyMgrNodeFv
-        .4byte endMovie__Q24Game12EnemyMgrNodeFv
-        .4byte getMatrixLoadType__Q24Game12EnemyMgrNodeFv
-    .global __vt__16GenericObjectMgr
-    __vt__16GenericObjectMgr:
-        .4byte 0
-        .4byte 0
-        .4byte 0
-        .4byte doEntry__16GenericObjectMgrFv
-        .4byte 0
-        .4byte 0
-        .4byte 0
-        .4byte 0
-        .4byte doSimpleDraw__16GenericObjectMgrFP8Viewport
-        .4byte loadResources__16GenericObjectMgrFv
-        .4byte resetMgr__16GenericObjectMgrFv
-        .4byte pausable__16GenericObjectMgrFv
-        .4byte frozenable__16GenericObjectMgrFv
-        .4byte getMatrixLoadType__16GenericObjectMgrFv
-
-    .section .sbss # 0x80514D80 - 0x80516360
-    .global generalEnemyMgr__4Game
-    generalEnemyMgr__4Game:
-        .skip 0x4
-    .global mCullCount__Q24Game15GeneralEnemyMgr
-    mCullCount__Q24Game15GeneralEnemyMgr:
-        .skip 0x4
-    .global mTotalCount__Q24Game15GeneralEnemyMgr
-    mTotalCount__Q24Game15GeneralEnemyMgr:
-        .skip 0x8
-
-    .section .sdata2, "a"     # 0x80516360 - 0x80520E40
-    .global lbl_805179A0
-    lbl_805179A0:
-        .4byte 0x646F6154
-        .4byte 0x454B4900
-    .global lbl_805179A8
-    lbl_805179A8:
-        .4byte 0x47000000
-    .global lbl_805179AC
-    lbl_805179AC:
-        .4byte 0x40C90FDB
-    .global lbl_805179B0
-    lbl_805179B0:
-        .4byte 0x00000000
-    .global lbl_805179B4
-    lbl_805179B4:
-        .4byte 0x43A2F983
-    .global lbl_805179B8
-    lbl_805179B8:
-        .4byte 0xC3A2F983
-    .global lbl_805179BC
-    lbl_805179BC:
-        .4byte 0x40400000
-    .global lbl_805179C0
-    lbl_805179C0:
-        .float 0.5
-    .global lbl_805179C4
-    lbl_805179C4:
-        .4byte 0x40E00000
-    .global lbl_805179C8
-    lbl_805179C8:
-        .4byte 0x43300000
-        .4byte 0x80000000
-*/
+#include "Game/Entities/Armor.h"
+#include "Game/Entities/Baby.h"
+#include "Game/Entities/BigFoot.h"
+#include "Game/Entities/BigTreasure.h"
+#include "Game/Entities/BlackMan.h"
+#include "Game/Entities/BlueChappy.h"
+#include "Game/Entities/BlueKochappy.h"
+#include "Game/Entities/Bomb.h"
+#include "Game/Entities/BombOtakara.h"
+#include "Game/Entities/BombSarai.h"
+#include "Game/Entities/Catfish.h"
+#include "Game/Entities/Chappy.h"
+#include "Game/Entities/Damagumo.h"
+#include "Game/Entities/DangoMushi.h"
+#include "Game/Entities/Demon.h"
+#include "Game/Entities/Egg.h"
+#include "Game/Entities/ElecBug.h"
+#include "Game/Entities/ElecHiba.h"
+#include "Game/Entities/ElecOtakara.h"
+#include "Game/Entities/Fart.h"
+#include "Game/Entities/FireChappy.h"
+#include "Game/Entities/FireOtakara.h"
+#include "Game/Entities/Frog.h"
+#include "Game/Entities/Fuefuki.h"
+#include "Game/Entities/GasHiba.h"
+#include "Game/Entities/GasOtakara.h"
+#include "Game/Entities/Hana.h"
+#include "Game/Entities/Hanachirashi.h"
+#include "Game/Entities/Hiba.h"
+#include "Game/Entities/Houdai.h"
+#include "Game/Entities/Imomushi.h"
+#include "Game/Entities/Jigumo.h"
+#include "Game/Entities/Kabuto.h"
+#include "Game/Entities/KingChappy.h"
+#include "Game/Entities/Kochappy.h"
+#include "Game/Entities/Koganemushi.h"
+#include "Game/Entities/KumaKochappy.h"
+#include "Game/Entities/Kurage.h"
+#include "Game/Entities/LeafChappy.h"
+#include "Game/Entities/Mar.h"
+#include "Game/Entities/MaroFrog.h"
+#include "Game/Entities/MiniHoudai.h"
+#include "Game/Entities/Miulin.h"
+#include "Game/Entities/Nest.h"
+#include "Game/Entities/OniKurage.h"
+#include "Game/Entities/OoPanModoki.h"
+#include "Game/Entities/PanModoki.h"
+#include "Game/Entities/Pelplant.h"
+#include "Game/Entities/Pom.h"
+#include "Game/Entities/Queen.h"
+#include "Game/Entities/Qurione.h"
+#include "Game/Entities/Rock.h"
+#include "Game/Entities/ShijimiChou.h"
+#include "Game/Entities/SnakeCrow.h"
+#include "Game/Entities/SnakeWhole.h"
+#include "Game/Entities/Sokkuri.h"
+#include "Game/Entities/Tadpole.h"
+#include "Game/Entities/TamagoMushi.h"
+#include "Game/Entities/Tank.h"
+#include "Game/Entities/Tobi.h"
+#include "Game/Entities/Tyre.h"
+#include "Game/Entities/Ujia.h"
+#include "Game/Entities/Ujib.h"
+#include "Game/Entities/UmiMushi.h"
+#include "Game/Entities/WaterOtakara.h"
+#include "Game/Entities/Wealthy.h"
+#include "Game/Entities/YellowChappy.h"
+#include "Game/Entities/YellowKochappy.h"
 
 namespace Game {
 
@@ -266,8 +75,67 @@ namespace Game {
  * Address:	8010BD3C
  * Size:	000FAC
  */
-void GeneralEnemyMgr::createEnemyMgr(unsigned char, int, int)
+void GeneralEnemyMgr::createEnemyMgr(u8 type, int enemyID, int objLimit)
 {
+	EnemyInfoFunc::getEnemyInfo(enemyID, 0xFFFF);
+	char* name = getEnemyName(enemyID, 0xFFFF);
+	sys->heapStatusStart(name, nullptr);
+	if (enemyID > 100) {
+		return;
+	}
+
+	EnemyMgrBase* mgr;
+	switch (enemyID) {
+	case EnemyTypeID::EnemyID_Pelplant:
+		mgr = new Pelplant::Mgr(objLimit, type);
+		break;
+	case EnemyTypeID::EnemyID_Kochappy:
+		mgr = new Kochappy::Mgr(objLimit, type);
+		break;
+	case EnemyTypeID::EnemyID_BlueKochappy:
+		mgr = new BlueKochappy::Mgr(objLimit, type);
+		break;
+	case EnemyTypeID::EnemyID_YellowKochappy:
+		mgr = new YellowKochappy::Mgr(objLimit, type);
+		break;
+	case EnemyTypeID::EnemyID_Chappy:
+		mgr = new Chappy::Mgr(objLimit, type);
+		break;
+	case EnemyTypeID::EnemyID_BlueChappy:
+		mgr = new BlueChappy::Mgr(objLimit, type);
+		break;
+	case EnemyTypeID::EnemyID_YellowChappy:
+		mgr = new YellowChappy::Mgr(objLimit, type);
+		break;
+	case EnemyTypeID::EnemyID_Pom:
+		mgr = new Pom::Mgr(objLimit, type);
+		break;
+	case EnemyTypeID::EnemyID_Frog:
+		mgr = new Frog::Mgr(objLimit, type);
+		break;
+	case EnemyTypeID::EnemyID_Kogane:
+		mgr = new Koganemushi::Mgr(objLimit, type);
+		break;
+	case EnemyTypeID::EnemyID_Wealthy:
+		mgr = new Wealthy::Mgr(objLimit, type);
+		break;
+	case EnemyTypeID::EnemyID_Fart:
+		mgr = new Fart::Mgr(objLimit, type);
+		break;
+	case EnemyTypeID::EnemyID_Qurione:
+		mgr = new Qurione::Mgr(objLimit, type);
+		break;
+	case EnemyTypeID::EnemyID_MaroFrog:
+		mgr = new MaroFrog::Mgr(objLimit, type);
+		break;
+	case EnemyTypeID::EnemyID_Rock:
+		mgr = new Rock::Mgr(objLimit, type);
+		break;
+	}
+
+	mgr->alloc();
+	_20.add(new EnemyMgrNode);
+	sys->heapStatusEnd(name);
 	/*
 	stwu     r1, -0x20(r1)
 	mflr     r0
@@ -1751,7 +1619,33 @@ lbl_8010CCC0:
  * Size:	0001BC
  */
 GeneralEnemyMgr::GeneralEnemyMgr()
+	: _1C(0)
+	, m_enemyNumList(nullptr)
+	, m_heap(nullptr)
 {
+	sys->heapStatusStart("GeneralEnemyMgr", nullptr);
+	m_name = "敵マネージャ"; // enemy manager
+	m_enemyNumList = new EnemyTypeID[gEnemyInfoNum];
+
+	setEnemyIDs();
+
+	if (m_enemyNumList != nullptr) {
+		setEnemyNums(0);
+	}
+	// for (int i = 0; i < gEnemyInfoNum; i++) {
+	// 	m_enemyNumList[i].m_enemyID = (EnemyTypeID::EEnemyTypeID) gEnemyInfo[i].m_id;
+	// }
+	// if (m_enemyNumList != nullptr) {
+	// 	for (int i = 0; i < gEnemyInfoNum; i++) {
+	// 		m_enemyNumList[i]._04 = i;
+	// 	}
+	// }
+
+	sys->heapStatusEnd("GeneralEnemyMgr");
+	resetEnemyNum();
+	m_flags.clear();
+	m_flags.typeView |= 0x1;
+	m_flags.typeView |= 0x2;
 	/*
 	stwu     r1, -0x10(r1)
 	mflr     r0
@@ -1879,45 +1773,6 @@ lbl_8010CE48:
 
 /*
  * --INFO--
- * Address:	8010CEA4
- * Size:	000068
- */
-EnemyMgrNode::~EnemyMgrNode()
-{
-	/*
-	stwu     r1, -0x10(r1)
-	mflr     r0
-	stw      r0, 0x14(r1)
-	stw      r31, 0xc(r1)
-	mr       r31, r4
-	stw      r30, 8(r1)
-	or.      r30, r3, r3
-	beq      lbl_8010CEF0
-	lis      r5, __vt__Q24Game12EnemyMgrNode@ha
-	li       r4, 0
-	addi     r5, r5, __vt__Q24Game12EnemyMgrNode@l
-	stw      r5, 0(r30)
-	addi     r0, r5, 0x10
-	stw      r0, 0x18(r30)
-	bl       __dt__5CNodeFv
-	extsh.   r0, r31
-	ble      lbl_8010CEF0
-	mr       r3, r30
-	bl       __dl__FPv
-
-lbl_8010CEF0:
-	lwz      r0, 0x14(r1)
-	mr       r3, r30
-	lwz      r31, 0xc(r1)
-	lwz      r30, 8(r1)
-	mtlr     r0
-	addi     r1, r1, 0x10
-	blr
-	*/
-}
-
-/*
- * --INFO--
  * Address:	8010CF0C
  * Size:	000078
  */
@@ -1963,29 +1818,6 @@ lbl_8010CF68:
 
 /*
  * --INFO--
- * Address:	8010CF84
- * Size:	000030
- */
-void EnemyMgrNode::killAll(Game::CreatureKillArg*)
-{
-	/*
-	stwu     r1, -0x10(r1)
-	mflr     r0
-	stw      r0, 0x14(r1)
-	lwz      r3, 0x20(r3)
-	lwz      r12, 0(r3)
-	lwz      r12, 0x7c(r12)
-	mtctr    r12
-	bctrl
-	lwz      r0, 0x14(r1)
-	mtlr     r0
-	addi     r1, r1, 0x10
-	blr
-	*/
-}
-
-/*
- * --INFO--
  * Address:	8010CFB4
  * Size:	00004C
  */
@@ -2012,29 +1844,6 @@ lbl_8010CFE4:
 	bne      lbl_8010CFCC
 	lwz      r0, 0x14(r1)
 	lwz      r31, 0xc(r1)
-	mtlr     r0
-	addi     r1, r1, 0x10
-	blr
-	*/
-}
-
-/*
- * --INFO--
- * Address:	8010D000
- * Size:	000030
- */
-void EnemyMgrNode::setupSoundViewerAndBas()
-{
-	/*
-	stwu     r1, -0x10(r1)
-	mflr     r0
-	stw      r0, 0x14(r1)
-	lwz      r3, 0x20(r3)
-	lwz      r12, 0(r3)
-	lwz      r12, 0x80(r12)
-	mtctr    r12
-	bctrl
-	lwz      r0, 0x14(r1)
 	mtlr     r0
 	addi     r1, r1, 0x10
 	blr
@@ -2095,29 +1904,6 @@ lbl_8010D098:
 
 /*
  * --INFO--
- * Address:	8010D0BC
- * Size:	000030
- */
-void EnemyMgrNode::doAnimation()
-{
-	/*
-	stwu     r1, -0x10(r1)
-	mflr     r0
-	stw      r0, 0x14(r1)
-	lwz      r3, 0x20(r3)
-	lwz      r12, 0(r3)
-	lwz      r12, 8(r12)
-	mtctr    r12
-	bctrl
-	lwz      r0, 0x14(r1)
-	mtlr     r0
-	addi     r1, r1, 0x10
-	blr
-	*/
-}
-
-/*
- * --INFO--
  * Address:	8010D0EC
  * Size:	000058
  */
@@ -2149,29 +1935,6 @@ lbl_8010D128:
 lbl_8010D130:
 	lwz      r0, 0x14(r1)
 	lwz      r31, 0xc(r1)
-	mtlr     r0
-	addi     r1, r1, 0x10
-	blr
-	*/
-}
-
-/*
- * --INFO--
- * Address:	8010D144
- * Size:	000030
- */
-void EnemyMgrNode::doEntry()
-{
-	/*
-	stwu     r1, -0x10(r1)
-	mflr     r0
-	stw      r0, 0x14(r1)
-	lwz      r3, 0x20(r3)
-	lwz      r12, 0(r3)
-	lwz      r12, 0xc(r12)
-	mtctr    r12
-	bctrl
-	lwz      r0, 0x14(r1)
 	mtlr     r0
 	addi     r1, r1, 0x10
 	blr
@@ -2223,29 +1986,6 @@ lbl_8010D1C4:
 
 /*
  * --INFO--
- * Address:	8010D1DC
- * Size:	000030
- */
-void EnemyMgrNode::doSetView(int)
-{
-	/*
-	stwu     r1, -0x10(r1)
-	mflr     r0
-	stw      r0, 0x14(r1)
-	lwz      r3, 0x20(r3)
-	lwz      r12, 0(r3)
-	lwz      r12, 0x10(r12)
-	mtctr    r12
-	bctrl
-	lwz      r0, 0x14(r1)
-	mtlr     r0
-	addi     r1, r1, 0x10
-	blr
-	*/
-}
-
-/*
- * --INFO--
  * Address:	8010D20C
  * Size:	000058
  */
@@ -2277,29 +2017,6 @@ lbl_8010D248:
 lbl_8010D250:
 	lwz      r0, 0x14(r1)
 	lwz      r31, 0xc(r1)
-	mtlr     r0
-	addi     r1, r1, 0x10
-	blr
-	*/
-}
-
-/*
- * --INFO--
- * Address:	8010D264
- * Size:	000030
- */
-void EnemyMgrNode::doViewCalc()
-{
-	/*
-	stwu     r1, -0x10(r1)
-	mflr     r0
-	stw      r0, 0x14(r1)
-	lwz      r3, 0x20(r3)
-	lwz      r12, 0(r3)
-	lwz      r12, 0x14(r12)
-	mtctr    r12
-	bctrl
-	lwz      r0, 0x14(r1)
 	mtlr     r0
 	addi     r1, r1, 0x10
 	blr
@@ -2351,29 +2068,6 @@ lbl_8010D2E4:
 
 /*
  * --INFO--
- * Address:	8010D2FC
- * Size:	000030
- */
-void EnemyMgrNode::doSimulation(float)
-{
-	/*
-	stwu     r1, -0x10(r1)
-	mflr     r0
-	stw      r0, 0x14(r1)
-	lwz      r3, 0x20(r3)
-	lwz      r12, 0(r3)
-	lwz      r12, 0x18(r12)
-	mtctr    r12
-	bctrl
-	lwz      r0, 0x14(r1)
-	mtlr     r0
-	addi     r1, r1, 0x10
-	blr
-	*/
-}
-
-/*
- * --INFO--
  * Address:	8010D32C
  * Size:	000068
  */
@@ -2409,29 +2103,6 @@ lbl_8010D37C:
 	lwz      r0, 0x14(r1)
 	lwz      r31, 0xc(r1)
 	lwz      r30, 8(r1)
-	mtlr     r0
-	addi     r1, r1, 0x10
-	blr
-	*/
-}
-
-/*
- * --INFO--
- * Address:	8010D394
- * Size:	000030
- */
-void EnemyMgrNode::doDirectDraw(Graphics&)
-{
-	/*
-	stwu     r1, -0x10(r1)
-	mflr     r0
-	stw      r0, 0x14(r1)
-	lwz      r3, 0x20(r3)
-	lwz      r12, 0(r3)
-	lwz      r12, 0x1c(r12)
-	mtctr    r12
-	bctrl
-	lwz      r0, 0x14(r1)
 	mtlr     r0
 	addi     r1, r1, 0x10
 	blr
@@ -2489,29 +2160,6 @@ lbl_8010D428:
 
 /*
  * --INFO--
- * Address:	8010D444
- * Size:	000030
- */
-void EnemyMgrNode::doSimpleDraw(Viewport*)
-{
-	/*
-	stwu     r1, -0x10(r1)
-	mflr     r0
-	stw      r0, 0x14(r1)
-	lwz      r3, 0x20(r3)
-	lwz      r12, 0(r3)
-	lwz      r12, 0x20(r12)
-	mtctr    r12
-	bctrl
-	lwz      r0, 0x14(r1)
-	mtlr     r0
-	addi     r1, r1, 0x10
-	blr
-	*/
-}
-
-/*
- * --INFO--
  * Address:	8010D474
  * Size:	00004C
  */
@@ -2547,8 +2195,9 @@ lbl_8010D4A8:
  * Address:	8010D4C0
  * Size:	0000BC
  */
-void GeneralEnemyMgr::birth(int, Game::EnemyBirthArg&)
+EnemyBase* GeneralEnemyMgr::birth(int, Game::EnemyBirthArg&)
 {
+	return nullptr;
 	/*
 	stwu     r1, -0x20(r1)
 	mflr     r0
@@ -2615,42 +2264,14 @@ lbl_8010D55C:
  * Address:	8010D57C
  * Size:	000028
  */
-void GeneralEnemyMgr::getEnemyName(int, int)
-{
-	/*
-	stwu     r1, -0x10(r1)
-	mflr     r0
-	mr       r3, r4
-	mr       r4, r5
-	stw      r0, 0x14(r1)
-	bl       getEnemyName__Q24Game13EnemyInfoFuncFii
-	lwz      r0, 0x14(r1)
-	mtlr     r0
-	addi     r1, r1, 0x10
-	blr
-	*/
-}
+char* GeneralEnemyMgr::getEnemyName(int p1, int p2) { return EnemyInfoFunc::getEnemyName(p1, p2); }
 
 /*
  * --INFO--
  * Address:	8010D5A4
  * Size:	000028
  */
-void GeneralEnemyMgr::getEnemyID(char*, int)
-{
-	/*
-	stwu     r1, -0x10(r1)
-	mflr     r0
-	mr       r3, r4
-	mr       r4, r5
-	stw      r0, 0x14(r1)
-	bl       getEnemyID__Q24Game13EnemyInfoFuncFPci
-	lwz      r0, 0x14(r1)
-	mtlr     r0
-	addi     r1, r1, 0x10
-	blr
-	*/
-}
+int GeneralEnemyMgr::getEnemyID(char* name, int p1) { return EnemyInfoFunc::getEnemyID(name, p1); }
 
 /*
  * --INFO--
@@ -3253,8 +2874,9 @@ lbl_8010DC80:
  * Address:	8010DCA4
  * Size:	000038
  */
-void GeneralEnemyMgr::getEnemyMgr(int)
+EnemyMgrBase* GeneralEnemyMgr::getEnemyMgr(int)
 {
+	return nullptr;
 	/*
 	lwz      r5, 0x30(r3)
 	li       r3, 0
@@ -3334,52 +2956,6 @@ lbl_8010DD58:
 lbl_8010DD60:
 	lwz      r0, 0x14(r1)
 	lwz      r31, 0xc(r1)
-	mtlr     r0
-	addi     r1, r1, 0x10
-	blr
-	*/
-}
-
-/*
- * --INFO--
- * Address:	8010DD74
- * Size:	000030
- */
-void EnemyMgrNode::endMovie()
-{
-	/*
-	stwu     r1, -0x10(r1)
-	mflr     r0
-	stw      r0, 0x14(r1)
-	lwz      r3, 0x20(r3)
-	lwz      r12, 0(r3)
-	lwz      r12, 0x94(r12)
-	mtctr    r12
-	bctrl
-	lwz      r0, 0x14(r1)
-	mtlr     r0
-	addi     r1, r1, 0x10
-	blr
-	*/
-}
-
-/*
- * --INFO--
- * Address:	8010DDA4
- * Size:	000030
- */
-void EnemyMgrNode::startMovie()
-{
-	/*
-	stwu     r1, -0x10(r1)
-	mflr     r0
-	stw      r0, 0x14(r1)
-	lwz      r3, 0x20(r3)
-	lwz      r12, 0(r3)
-	lwz      r12, 0x90(r12)
-	mtctr    r12
-	bctrl
-	lwz      r0, 0x14(r1)
 	mtlr     r0
 	addi     r1, r1, 0x10
 	blr
@@ -4887,249 +4463,6 @@ lbl_8010F104:
 	mtlr     r0
 	addi     r1, r1, 0x170
 	blr
-	*/
-}
-
-/*
- * --INFO--
- * Address:	8010F140
- * Size:	000030
- */
-void EnemyMgrNode::setDebugParm(unsigned long)
-{
-	/*
-	stwu     r1, -0x10(r1)
-	mflr     r0
-	stw      r0, 0x14(r1)
-	lwz      r3, 0x20(r3)
-	lwz      r12, 0(r3)
-	lwz      r12, 0x84(r12)
-	mtctr    r12
-	bctrl
-	lwz      r0, 0x14(r1)
-	mtlr     r0
-	addi     r1, r1, 0x10
-	blr
-	*/
-}
-
-/*
- * --INFO--
- * Address:	8010F170
- * Size:	000030
- */
-void EnemyMgrNode::resetDebugParm(unsigned long)
-{
-	/*
-	stwu     r1, -0x10(r1)
-	mflr     r0
-	stw      r0, 0x14(r1)
-	lwz      r3, 0x20(r3)
-	lwz      r12, 0(r3)
-	lwz      r12, 0x88(r12)
-	mtctr    r12
-	bctrl
-	lwz      r0, 0x14(r1)
-	mtlr     r0
-	addi     r1, r1, 0x10
-	blr
-	*/
-}
-
-/*
- * --INFO--
- * Address:	8010F1A0
- * Size:	0000B4
- */
-GeneralEnemyMgr::~GeneralEnemyMgr()
-{
-	/*
-	stwu     r1, -0x10(r1)
-	mflr     r0
-	stw      r0, 0x14(r1)
-	stw      r31, 0xc(r1)
-	mr       r31, r4
-	stw      r30, 8(r1)
-	or.      r30, r3, r3
-	beq      lbl_8010F238
-	lis      r3, __vt__Q24Game15GeneralEnemyMgr@ha
-	addic.   r0, r30, 0x58
-	addi     r3, r3, __vt__Q24Game15GeneralEnemyMgr@l
-	stw      r3, 0(r30)
-	addi     r0, r3, 0x38
-	stw      r0, 4(r30)
-	beq      lbl_8010F1F4
-	addi     r3, r30, 0x78
-	li       r4, -1
-	bl       __dt__5CNodeFv
-	addi     r3, r30, 0x60
-	li       r4, -1
-	bl       __dt__5CNodeFv
-
-lbl_8010F1F4:
-	addic.   r0, r30, 0x20
-	beq      lbl_8010F21C
-	lis      r4, __vt__Q24Game12EnemyMgrNode@ha
-	addi     r3, r30, 0x20
-	addi     r5, r4, __vt__Q24Game12EnemyMgrNode@l
-	li       r4, 0
-	stw      r5, 0x20(r30)
-	addi     r0, r5, 0x10
-	stw      r0, 0x38(r30)
-	bl       __dt__5CNodeFv
-
-lbl_8010F21C:
-	addi     r3, r30, 4
-	li       r4, 0
-	bl       __dt__5CNodeFv
-	extsh.   r0, r31
-	ble      lbl_8010F238
-	mr       r3, r30
-	bl       __dl__FPv
-
-lbl_8010F238:
-	lwz      r0, 0x14(r1)
-	mr       r3, r30
-	lwz      r31, 0xc(r1)
-	lwz      r30, 8(r1)
-	mtlr     r0
-	addi     r1, r1, 0x10
-	blr
-	*/
-}
-
-/*
- * --INFO--
- * Address:	8010F254
- * Size:	000008
- */
-u32 EnemyMgrNode::getMatrixLoadType() { return 0x1; }
-
-} // namespace Game
-
-/*
- * --INFO--
- * Address:	8010F25C
- * Size:	000004
- */
-void GenericObjectMgr::doEntry() { }
-
-namespace Game {
-
-/*
- * --INFO--
- * Address:	8010F260
- * Size:	000008
- */
-void EnemyMgrNode::@24 @getMatrixLoadType()
-{
-	/*
-	addi     r3, r3, -24
-	b        getMatrixLoadType__Q24Game12EnemyMgrNodeFv
-	*/
-}
-
-/*
- * --INFO--
- * Address:	8010F268
- * Size:	000008
- */
-void EnemyMgrNode::@24 @doSimpleDraw(Viewport*)
-{
-	/*
-	addi     r3, r3, -24
-	b        doSimpleDraw__Q24Game12EnemyMgrNodeFP8Viewport
-	*/
-}
-
-/*
- * --INFO--
- * Address:	8010F270
- * Size:	000008
- */
-void EnemyMgrNode::@24 @doDirectDraw(Graphics&)
-{
-	/*
-	addi     r3, r3, -24
-	b        doDirectDraw__Q24Game12EnemyMgrNodeFR8Graphics
-	*/
-}
-
-/*
- * --INFO--
- * Address:	8010F278
- * Size:	000008
- */
-void EnemyMgrNode::@24 @doSimulation(float)
-{
-	/*
-	addi     r3, r3, -24
-	b        doSimulation__Q24Game12EnemyMgrNodeFf
-	*/
-}
-
-/*
- * --INFO--
- * Address:	8010F280
- * Size:	000008
- */
-void EnemyMgrNode::@24 @doViewCalc()
-{
-	/*
-	addi     r3, r3, -24
-	b        doViewCalc__Q24Game12EnemyMgrNodeFv
-	*/
-}
-
-/*
- * --INFO--
- * Address:	8010F288
- * Size:	000008
- */
-void EnemyMgrNode::@24 @doSetView(int)
-{
-	/*
-	addi     r3, r3, -24
-	b        doSetView__Q24Game12EnemyMgrNodeFi
-	*/
-}
-
-/*
- * --INFO--
- * Address:	8010F290
- * Size:	000008
- */
-void EnemyMgrNode::@24 @doEntry()
-{
-	/*
-	addi     r3, r3, -24
-	b        doEntry__Q24Game12EnemyMgrNodeFv
-	*/
-}
-
-/*
- * --INFO--
- * Address:	8010F298
- * Size:	000008
- */
-void EnemyMgrNode::@24 @doAnimation()
-{
-	/*
-	addi     r3, r3, -24
-	b        doAnimation__Q24Game12EnemyMgrNodeFv
-	*/
-}
-
-/*
- * --INFO--
- * Address:	8010F2A0
- * Size:	000008
- */
-GeneralEnemyMgr::@4 @~GeneralEnemyMgr()
-{
-	/*
-	addi     r3, r3, -4
-	b        __dt__Q24Game15GeneralEnemyMgrFv
 	*/
 }
 } // namespace Game

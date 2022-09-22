@@ -143,6 +143,7 @@ enum EEnemyTypeID {//ID      Common Name
     EnemyID_UmiMushiBlind  = 101, // Toady Bloyster
 };
 EEnemyTypeID m_enemyID; // _00
+u8 _04;    // _04
 };
 // clang-format on
 
