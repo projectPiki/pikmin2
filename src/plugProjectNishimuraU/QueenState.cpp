@@ -1,383 +1,27 @@
-#include "types.h"
-
-/*
-    Generated from dpostproc
-
-    .section .ctors, "wa"  # 0x80472F00 - 0x804732C0
-    .4byte __sinit_QueenState_cpp
-
-    .section .data, "wa"  # 0x8049E220 - 0x804EFC20
-    .global lbl_804C9AB8
-    lbl_804C9AB8:
-        .4byte 0x00000000
-        .4byte 0x00000000
-        .4byte 0x00000000
-    .global __vt__Q34Game5Queen9StateBorn
-    __vt__Q34Game5Queen9StateBorn:
-        .4byte 0
-        .4byte 0
-        .4byte init__Q34Game5Queen9StateBornFPQ24Game9EnemyBasePQ24Game8StateArg
-        .4byte exec__Q34Game5Queen9StateBornFPQ24Game9EnemyBase
-        .4byte cleanup__Q34Game5Queen9StateBornFPQ24Game9EnemyBase
-        .4byte resume__Q24Game13EnemyFSMStateFPQ24Game9EnemyBase
-        .4byte restart__Q24Game13EnemyFSMStateFPQ24Game9EnemyBase
-        .4byte
-   transit__Q24Game13EnemyFSMStateFPQ24Game9EnemyBaseiPQ24Game8StateArg .4byte
-   doDirectDraw__Q24Game13EnemyFSMStateFPQ24Game9EnemyBaseR8Graphics .global
-   __vt__Q34Game5Queen12StateRolling
-    __vt__Q34Game5Queen12StateRolling:
-        .4byte 0
-        .4byte 0
-        .4byte
-   init__Q34Game5Queen12StateRollingFPQ24Game9EnemyBasePQ24Game8StateArg .4byte
-   exec__Q34Game5Queen12StateRollingFPQ24Game9EnemyBase .4byte
-   cleanup__Q34Game5Queen12StateRollingFPQ24Game9EnemyBase .4byte
-   resume__Q24Game13EnemyFSMStateFPQ24Game9EnemyBase .4byte
-   restart__Q24Game13EnemyFSMStateFPQ24Game9EnemyBase .4byte
-   transit__Q24Game13EnemyFSMStateFPQ24Game9EnemyBaseiPQ24Game8StateArg .4byte
-   doDirectDraw__Q24Game13EnemyFSMStateFPQ24Game9EnemyBaseR8Graphics .global
-   __vt__Q34Game5Queen10StateFlick
-    __vt__Q34Game5Queen10StateFlick:
-        .4byte 0
-        .4byte 0
-        .4byte
-   init__Q34Game5Queen10StateFlickFPQ24Game9EnemyBasePQ24Game8StateArg .4byte
-   exec__Q34Game5Queen10StateFlickFPQ24Game9EnemyBase .4byte
-   cleanup__Q34Game5Queen10StateFlickFPQ24Game9EnemyBase .4byte
-   resume__Q24Game13EnemyFSMStateFPQ24Game9EnemyBase .4byte
-   restart__Q24Game13EnemyFSMStateFPQ24Game9EnemyBase .4byte
-   transit__Q24Game13EnemyFSMStateFPQ24Game9EnemyBaseiPQ24Game8StateArg .4byte
-   doDirectDraw__Q24Game13EnemyFSMStateFPQ24Game9EnemyBaseR8Graphics .global
-   __vt__Q34Game5Queen11StateDamage
-    __vt__Q34Game5Queen11StateDamage:
-        .4byte 0
-        .4byte 0
-        .4byte
-   init__Q34Game5Queen11StateDamageFPQ24Game9EnemyBasePQ24Game8StateArg .4byte
-   exec__Q34Game5Queen11StateDamageFPQ24Game9EnemyBase .4byte
-   cleanup__Q34Game5Queen11StateDamageFPQ24Game9EnemyBase .4byte
-   resume__Q24Game13EnemyFSMStateFPQ24Game9EnemyBase .4byte
-   restart__Q24Game13EnemyFSMStateFPQ24Game9EnemyBase .4byte
-   transit__Q24Game13EnemyFSMStateFPQ24Game9EnemyBaseiPQ24Game8StateArg .4byte
-   doDirectDraw__Q24Game13EnemyFSMStateFPQ24Game9EnemyBaseR8Graphics .global
-   __vt__Q34Game5Queen9StateWait
-    __vt__Q34Game5Queen9StateWait:
-        .4byte 0
-        .4byte 0
-        .4byte init__Q34Game5Queen9StateWaitFPQ24Game9EnemyBasePQ24Game8StateArg
-        .4byte exec__Q34Game5Queen9StateWaitFPQ24Game9EnemyBase
-        .4byte cleanup__Q34Game5Queen9StateWaitFPQ24Game9EnemyBase
-        .4byte resume__Q24Game13EnemyFSMStateFPQ24Game9EnemyBase
-        .4byte restart__Q24Game13EnemyFSMStateFPQ24Game9EnemyBase
-        .4byte
-   transit__Q24Game13EnemyFSMStateFPQ24Game9EnemyBaseiPQ24Game8StateArg .4byte
-   doDirectDraw__Q24Game13EnemyFSMStateFPQ24Game9EnemyBaseR8Graphics .global
-   __vt__Q34Game5Queen10StateSleep
-    __vt__Q34Game5Queen10StateSleep:
-        .4byte 0
-        .4byte 0
-        .4byte
-   init__Q34Game5Queen10StateSleepFPQ24Game9EnemyBasePQ24Game8StateArg .4byte
-   exec__Q34Game5Queen10StateSleepFPQ24Game9EnemyBase .4byte
-   cleanup__Q34Game5Queen10StateSleepFPQ24Game9EnemyBase .4byte
-   resume__Q24Game13EnemyFSMStateFPQ24Game9EnemyBase .4byte
-   restart__Q24Game13EnemyFSMStateFPQ24Game9EnemyBase .4byte
-   transit__Q24Game13EnemyFSMStateFPQ24Game9EnemyBaseiPQ24Game8StateArg .4byte
-   doDirectDraw__Q24Game13EnemyFSMStateFPQ24Game9EnemyBaseR8Graphics .global
-   __vt__Q34Game5Queen9StateDead
-    __vt__Q34Game5Queen9StateDead:
-        .4byte 0
-        .4byte 0
-        .4byte init__Q34Game5Queen9StateDeadFPQ24Game9EnemyBasePQ24Game8StateArg
-        .4byte exec__Q34Game5Queen9StateDeadFPQ24Game9EnemyBase
-        .4byte cleanup__Q34Game5Queen9StateDeadFPQ24Game9EnemyBase
-        .4byte resume__Q24Game13EnemyFSMStateFPQ24Game9EnemyBase
-        .4byte restart__Q24Game13EnemyFSMStateFPQ24Game9EnemyBase
-        .4byte
-   transit__Q24Game13EnemyFSMStateFPQ24Game9EnemyBaseiPQ24Game8StateArg .4byte
-   doDirectDraw__Q24Game13EnemyFSMStateFPQ24Game9EnemyBaseR8Graphics .global
-   __vt__Q34Game5Queen5State
-    __vt__Q34Game5Queen5State:
-        .4byte 0
-        .4byte 0
-        .4byte init__Q24Game13EnemyFSMStateFPQ24Game9EnemyBasePQ24Game8StateArg
-        .4byte exec__Q24Game13EnemyFSMStateFPQ24Game9EnemyBase
-        .4byte cleanup__Q24Game13EnemyFSMStateFPQ24Game9EnemyBase
-        .4byte resume__Q24Game13EnemyFSMStateFPQ24Game9EnemyBase
-        .4byte restart__Q24Game13EnemyFSMStateFPQ24Game9EnemyBase
-        .4byte
-   transit__Q24Game13EnemyFSMStateFPQ24Game9EnemyBaseiPQ24Game8StateArg .4byte
-   doDirectDraw__Q24Game13EnemyFSMStateFPQ24Game9EnemyBaseR8Graphics .global
-   __vt__Q34Game5Queen3FSM
-    __vt__Q34Game5Queen3FSM:
-        .4byte 0
-        .4byte 0
-        .4byte init__Q34Game5Queen3FSMFPQ24Game9EnemyBase
-        .4byte
-   start__Q24Game17EnemyStateMachineFPQ24Game9EnemyBaseiPQ24Game8StateArg .4byte
-   exec__Q24Game17EnemyStateMachineFPQ24Game9EnemyBase .4byte
-   transit__Q24Game17EnemyStateMachineFPQ24Game9EnemyBaseiPQ24Game8StateArg
-        .4byte
-   doDirectDraw__Q24Game17EnemyStateMachineFPQ24Game9EnemyBaseR8Graphics .4byte
-   getCurrState__Q24Game17EnemyStateMachineFPQ24Game9EnemyBase .4byte
-   setCurrState__Q24Game17EnemyStateMachineFPQ24Game9EnemyBasePQ24Game13EnemyFSMState
-
-    .section .sbss # 0x80514D80 - 0x80516360
-    .global lbl_80515D48
-    lbl_80515D48:
-        .skip 0x4
-    .global lbl_80515D4C
-    lbl_80515D4C:
-        .skip 0x4
-
-    .section .sdata2, "a"     # 0x80516360 - 0x80520E40
-    .global lbl_8051B798
-    lbl_8051B798:
-        .4byte 0x64656164
-        .4byte 0x00000000
-    .global lbl_8051B7A0
-    lbl_8051B7A0:
-        .4byte 0x736C6565
-        .4byte 0x70000000
-    .global lbl_8051B7A8
-    lbl_8051B7A8:
-        .4byte 0x77616974
-        .4byte 0x00000000
-    .global lbl_8051B7B0
-    lbl_8051B7B0:
-        .4byte 0x64616D61
-        .4byte 0x67650000
-    .global lbl_8051B7B8
-    lbl_8051B7B8:
-        .4byte 0x666C6963
-        .4byte 0x6B000000
-    .global lbl_8051B7C0
-    lbl_8051B7C0:
-        .4byte 0x726F6C6C
-        .4byte 0x696E6700
-    .global lbl_8051B7C8
-    lbl_8051B7C8:
-        .4byte 0x626F726E
-        .4byte 0x00000000
-    .global lbl_8051B7D0
-    lbl_8051B7D0:
-        .4byte 0x00000000
-    .global lbl_8051B7D4
-    lbl_8051B7D4:
-        .4byte 0x41F00000
-    .global lbl_8051B7D8
-    lbl_8051B7D8:
-        .4byte 0x6C656674
-        .4byte 0x00000000
-    .global lbl_8051B7E0
-    lbl_8051B7E0:
-        .4byte 0x3FC90FDB
-    .global lbl_8051B7E4
-    lbl_8051B7E4:
-        .4byte 0xBFC90FDB
-    .global lbl_8051B7E8
-    lbl_8051B7E8:
-        .4byte 0x43A2F983
-    .global lbl_8051B7EC
-    lbl_8051B7EC:
-        .4byte 0xC3A2F983
-    .global lbl_8051B7F0
-    lbl_8051B7F0:
-        .4byte 0x41200000
-    .global lbl_8051B7F4
-    lbl_8051B7F4:
-        .float 1.0
-    .global lbl_8051B7F8
-    lbl_8051B7F8:
-        .4byte 0xC47A0000
-    .global lbl_8051B7FC
-    lbl_8051B7FC:
-        .4byte 0x42480000
-*/
+#include "Game/Entities/Queen.h"
+#include "Game/EnemyAnimKeyEvent.h"
+#include "Game/EnemyFunc.h"
+#include "Game/CameraMgr.h"
+#include "Game/rumble.h"
+#include "nans.h"
 
 namespace Game {
-
+namespace Queen {
 /*
  * --INFO--
  * Address:	80287B70
  * Size:	000278
  */
-void Queen::FSM::init(Game::EnemyBase*)
+void FSM::init(EnemyBase* enemy)
 {
-	/*
-	stwu     r1, -0x10(r1)
-	mflr     r0
-	li       r4, 7
-	stw      r0, 0x14(r1)
-	stw      r31, 0xc(r1)
-	mr       r31, r3
-	bl       create__Q24Game17EnemyStateMachineFi
-	li       r3, 0x10
-	bl       __nw__FUl
-	or.      r4, r3, r3
-	beq      lbl_80287BD4
-	lis      r3, __vt__Q24Game13EnemyFSMState@ha
-	lis      r5, __vt__Q34Game5Queen5State@ha
-	addi     r0, r3, __vt__Q24Game13EnemyFSMState@l
-	lis      r3, __vt__Q34Game5Queen9StateDead@ha
-	stw      r0, 0(r4)
-	li       r7, 0
-	addi     r6, r5, __vt__Q34Game5Queen5State@l
-	addi     r5, r2, lbl_8051B798@sda21
-	stw      r7, 4(r4)
-	addi     r0, r3, __vt__Q34Game5Queen9StateDead@l
-	stw      r7, 8(r4)
-	stw      r6, 0(r4)
-	stw      r5, 0xc(r4)
-	stw      r0, 0(r4)
-
-lbl_80287BD4:
-	mr       r3, r31
-	bl       registerState__Q24Game17EnemyStateMachineFPQ24Game13EnemyFSMState
-	li       r3, 0x10
-	bl       __nw__FUl
-	or.      r4, r3, r3
-	beq      lbl_80287C28
-	lis      r3, __vt__Q24Game13EnemyFSMState@ha
-	lis      r5, __vt__Q34Game5Queen5State@ha
-	addi     r0, r3, __vt__Q24Game13EnemyFSMState@l
-	lis      r3, __vt__Q34Game5Queen10StateSleep@ha
-	stw      r0, 0(r4)
-	li       r0, 1
-	li       r7, 0
-	addi     r6, r5, __vt__Q34Game5Queen5State@l
-	stw      r0, 4(r4)
-	addi     r5, r2, lbl_8051B7A0@sda21
-	addi     r0, r3, __vt__Q34Game5Queen10StateSleep@l
-	stw      r7, 8(r4)
-	stw      r6, 0(r4)
-	stw      r5, 0xc(r4)
-	stw      r0, 0(r4)
-
-lbl_80287C28:
-	mr       r3, r31
-	bl       registerState__Q24Game17EnemyStateMachineFPQ24Game13EnemyFSMState
-	li       r3, 0x10
-	bl       __nw__FUl
-	or.      r4, r3, r3
-	beq      lbl_80287C7C
-	lis      r3, __vt__Q24Game13EnemyFSMState@ha
-	lis      r5, __vt__Q34Game5Queen5State@ha
-	addi     r0, r3, __vt__Q24Game13EnemyFSMState@l
-	lis      r3, __vt__Q34Game5Queen9StateWait@ha
-	stw      r0, 0(r4)
-	li       r0, 2
-	li       r7, 0
-	addi     r6, r5, __vt__Q34Game5Queen5State@l
-	stw      r0, 4(r4)
-	addi     r5, r2, lbl_8051B7A8@sda21
-	addi     r0, r3, __vt__Q34Game5Queen9StateWait@l
-	stw      r7, 8(r4)
-	stw      r6, 0(r4)
-	stw      r5, 0xc(r4)
-	stw      r0, 0(r4)
-
-lbl_80287C7C:
-	mr       r3, r31
-	bl       registerState__Q24Game17EnemyStateMachineFPQ24Game13EnemyFSMState
-	li       r3, 0x10
-	bl       __nw__FUl
-	or.      r4, r3, r3
-	beq      lbl_80287CD0
-	lis      r3, __vt__Q24Game13EnemyFSMState@ha
-	lis      r5, __vt__Q34Game5Queen5State@ha
-	addi     r0, r3, __vt__Q24Game13EnemyFSMState@l
-	lis      r3, __vt__Q34Game5Queen11StateDamage@ha
-	stw      r0, 0(r4)
-	li       r0, 3
-	li       r7, 0
-	addi     r6, r5, __vt__Q34Game5Queen5State@l
-	stw      r0, 4(r4)
-	addi     r5, r2, lbl_8051B7B0@sda21
-	addi     r0, r3, __vt__Q34Game5Queen11StateDamage@l
-	stw      r7, 8(r4)
-	stw      r6, 0(r4)
-	stw      r5, 0xc(r4)
-	stw      r0, 0(r4)
-
-lbl_80287CD0:
-	mr       r3, r31
-	bl       registerState__Q24Game17EnemyStateMachineFPQ24Game13EnemyFSMState
-	li       r3, 0x10
-	bl       __nw__FUl
-	or.      r4, r3, r3
-	beq      lbl_80287D24
-	lis      r3, __vt__Q24Game13EnemyFSMState@ha
-	lis      r5, __vt__Q34Game5Queen5State@ha
-	addi     r0, r3, __vt__Q24Game13EnemyFSMState@l
-	lis      r3, __vt__Q34Game5Queen10StateFlick@ha
-	stw      r0, 0(r4)
-	li       r0, 4
-	li       r7, 0
-	addi     r6, r5, __vt__Q34Game5Queen5State@l
-	stw      r0, 4(r4)
-	addi     r5, r2, lbl_8051B7B8@sda21
-	addi     r0, r3, __vt__Q34Game5Queen10StateFlick@l
-	stw      r7, 8(r4)
-	stw      r6, 0(r4)
-	stw      r5, 0xc(r4)
-	stw      r0, 0(r4)
-
-lbl_80287D24:
-	mr       r3, r31
-	bl       registerState__Q24Game17EnemyStateMachineFPQ24Game13EnemyFSMState
-	li       r3, 0x10
-	bl       __nw__FUl
-	or.      r4, r3, r3
-	beq      lbl_80287D78
-	lis      r3, __vt__Q24Game13EnemyFSMState@ha
-	lis      r5, __vt__Q34Game5Queen5State@ha
-	addi     r0, r3, __vt__Q24Game13EnemyFSMState@l
-	lis      r3, __vt__Q34Game5Queen12StateRolling@ha
-	stw      r0, 0(r4)
-	li       r0, 5
-	li       r7, 0
-	addi     r6, r5, __vt__Q34Game5Queen5State@l
-	stw      r0, 4(r4)
-	addi     r5, r2, lbl_8051B7C0@sda21
-	addi     r0, r3, __vt__Q34Game5Queen12StateRolling@l
-	stw      r7, 8(r4)
-	stw      r6, 0(r4)
-	stw      r5, 0xc(r4)
-	stw      r0, 0(r4)
-
-lbl_80287D78:
-	mr       r3, r31
-	bl       registerState__Q24Game17EnemyStateMachineFPQ24Game13EnemyFSMState
-	li       r3, 0x10
-	bl       __nw__FUl
-	or.      r4, r3, r3
-	beq      lbl_80287DCC
-	lis      r3, __vt__Q24Game13EnemyFSMState@ha
-	lis      r5, __vt__Q34Game5Queen5State@ha
-	addi     r0, r3, __vt__Q24Game13EnemyFSMState@l
-	lis      r3, __vt__Q34Game5Queen9StateBorn@ha
-	stw      r0, 0(r4)
-	li       r0, 6
-	li       r7, 0
-	addi     r6, r5, __vt__Q34Game5Queen5State@l
-	stw      r0, 4(r4)
-	addi     r5, r2, lbl_8051B7C8@sda21
-	addi     r0, r3, __vt__Q34Game5Queen9StateBorn@l
-	stw      r7, 8(r4)
-	stw      r6, 0(r4)
-	stw      r5, 0xc(r4)
-	stw      r0, 0(r4)
-
-lbl_80287DCC:
-	mr       r3, r31
-	bl       registerState__Q24Game17EnemyStateMachineFPQ24Game13EnemyFSMState
-	lwz      r0, 0x14(r1)
-	lwz      r31, 0xc(r1)
-	mtlr     r0
-	addi     r1, r1, 0x10
-	blr
-	*/
+	create(7);
+	registerState(new StateDead);
+	registerState(new StateSleep);
+	registerState(new StateWait);
+	registerState(new StateDamage);
+	registerState(new StateFlick);
+	registerState(new StateRolling);
+	registerState(new StateBorn);
 }
 
 /*
@@ -385,32 +29,13 @@ lbl_80287DCC:
  * Address:	80287DE8
  * Size:	000058
  */
-void Queen::StateDead::init(Game::EnemyBase*, Game::StateArg*)
+void StateDead::init(EnemyBase* enemy, StateArg* stateArg)
 {
-	/*
-	stwu     r1, -0x10(r1)
-	mflr     r0
-	stw      r0, 0x14(r1)
-	stw      r31, 0xc(r1)
-	mr       r31, r4
-	mr       r3, r31
-	bl       createDeadEffect__Q34Game5Queen3ObjFv
-	lfs      f0, lbl_8051B7D0@sda21(r2)
-	mr       r3, r31
-	stfs     f0, 0x1d4(r31)
-	stfs     f0, 0x1d8(r31)
-	stfs     f0, 0x1dc(r31)
-	bl       deathProcedure__Q24Game9EnemyBaseFv
-	mr       r3, r31
-	li       r4, 0
-	li       r5, 0
-	bl       startMotion__Q24Game9EnemyBaseFiPQ28SysShape14MotionListener
-	lwz      r0, 0x14(r1)
-	lwz      r31, 0xc(r1)
-	mtlr     r0
-	addi     r1, r1, 0x10
-	blr
-	*/
+	Obj* queen = static_cast<Obj*>(enemy);
+	queen->createDeadEffect();
+	queen->m_velocity2 = Vector3f(0.0f);
+	queen->deathProcedure();
+	queen->startMotion(0, nullptr);
 }
 
 /*
@@ -418,60 +43,19 @@ void Queen::StateDead::init(Game::EnemyBase*, Game::StateArg*)
  * Address:	80287E40
  * Size:	0000B8
  */
-void Queen::StateDead::exec(Game::EnemyBase*)
+void StateDead::exec(EnemyBase* enemy)
 {
-	/*
-	stwu     r1, -0x30(r1)
-	mflr     r0
-	stw      r0, 0x34(r1)
-	stw      r31, 0x2c(r1)
-	mr       r31, r4
-	lwz      r3, 0x188(r4)
-	lbz      r0, 0x24(r3)
-	cmplwi   r0, 0
-	beq      lbl_80287EE4
-	lwz      r0, 0x1c(r3)
-	cmplwi   r0, 2
-	bne      lbl_80287EC8
-	lwz      r12, 0(r4)
-	addi     r3, r1, 8
-	lwz      r12, 8(r12)
-	mtctr    r12
-	bctrl
-	lfs      f2, 8(r1)
-	addi     r5, r1, 0x14
-	lfs      f1, 0xc(r1)
-	li       r4, 6
-	lfs      f0, 0x10(r1)
-	li       r6, 2
-	stfs     f2, 0x14(r1)
-	lwz      r3, cameraMgr__4Game@sda21(r13)
-	stfs     f1, 0x18(r1)
-	stfs     f0, 0x1c(r1)
-	bl       "startVibration__Q24Game9CameraMgrFiR10Vector3<f>i"
-	lwz      r3, rumbleMgr__4Game@sda21(r13)
-	addi     r5, r1, 0x14
-	li       r4, 0xe
-	li       r6, 2
-	bl       "startRumble__Q24Game9RumbleMgrFiR10Vector3<f>i"
-	b        lbl_80287EE4
-
-lbl_80287EC8:
-	cmplwi   r0, 0x3e8
-	bne      lbl_80287EE4
-	mr       r3, r31
-	bl       releaseJointShadow__Q34Game5Queen3ObjFv
-	mr       r3, r31
-	li       r4, 0
-	bl       kill__Q24Game8CreatureFPQ24Game15CreatureKillArg
-
-lbl_80287EE4:
-	lwz      r0, 0x34(r1)
-	lwz      r31, 0x2c(r1)
-	mtlr     r0
-	addi     r1, r1, 0x30
-	blr
-	*/
+	Obj* queen = static_cast<Obj*>(enemy);
+	if (queen->m_animKeyEvent->m_running != 0) {
+		if ((u32) queen->m_animKeyEvent->m_type == 2) {
+			Vector3f position = queen->getPosition();
+			cameraMgr->startVibration(6, position, 2);
+			rumbleMgr->startRumble(14, position, 2);
+		} else if ((u32) queen->m_animKeyEvent->m_type == 1000) {
+			queen->releaseJointShadow();
+			queen->kill(nullptr);
+		}
+	}
 }
 
 /*
@@ -479,45 +63,23 @@ lbl_80287EE4:
  * Address:	80287EF8
  * Size:	000004
  */
-void Queen::StateDead::cleanup(Game::EnemyBase*) { }
+void StateDead::cleanup(EnemyBase* enemy) { }
 
 /*
  * --INFO--
  * Address:	80287EFC
  * Size:	000070
  */
-void Queen::StateSleep::init(Game::EnemyBase*, Game::StateArg*)
+void StateSleep::init(EnemyBase* enemy, StateArg* stateArg)
 {
-	/*
-	stwu     r1, -0x10(r1)
-	mflr     r0
-	li       r3, -1
-	lfs      f0, lbl_8051B7D0@sda21(r2)
-	stw      r0, 0x14(r1)
-	li       r0, 0
-	stw      r31, 0xc(r1)
-	mr       r31, r4
-	stw      r3, 0x2d4(r4)
-	mr       r3, r31
-	stb      r0, 0x2c5(r4)
-	stfs     f0, 0x2c8(r4)
-	lfs      f0, 0x20c(r4)
-	stfs     f0, 0x2d0(r4)
-	bl       hardConstraintOn__Q24Game9EnemyBaseFv
-	lfs      f0, lbl_8051B7D0@sda21(r2)
-	mr       r3, r31
-	li       r4, 1
-	li       r5, 0
-	stfs     f0, 0x1d4(r31)
-	stfs     f0, 0x1d8(r31)
-	stfs     f0, 0x1dc(r31)
-	bl       startMotion__Q24Game9EnemyBaseFiPQ28SysShape14MotionListener
-	lwz      r0, 0x14(r1)
-	lwz      r31, 0xc(r1)
-	mtlr     r0
-	addi     r1, r1, 0x10
-	blr
-	*/
+	Obj* queen = static_cast<Obj*>(enemy);
+	queen->m_nextState = QUEEN_NULL;
+	queen->_2C5 = 0;
+	queen->m_waitTimer = 0.0f;
+	queen->_2D0 = queen->m_toFlick;
+	queen->hardConstraintOn();
+	queen->m_velocity2 = Vector3f(0.0f);
+	queen->startMotion(1, nullptr);
 }
 
 /*
@@ -525,113 +87,36 @@ void Queen::StateSleep::init(Game::EnemyBase*, Game::StateArg*)
  * Address:	80287F6C
  * Size:	000154
  */
-void Queen::StateSleep::exec(Game::EnemyBase*)
+void StateSleep::exec(EnemyBase* enemy)
 {
-	/*
-	stwu     r1, -0x10(r1)
-	mflr     r0
-	lfs      f0, lbl_8051B7D0@sda21(r2)
-	stw      r0, 0x14(r1)
-	stw      r31, 0xc(r1)
-	mr       r31, r4
-	stw      r30, 8(r1)
-	mr       r30, r3
-	lfs      f1, 0x200(r4)
-	fcmpo    cr0, f1, f0
-	cror     2, 0, 2
-	beq      lbl_80287FBC
-	mr       r3, r31
-	bl       isHitCounterUp__Q34Game5Queen3ObjFv
-	clrlwi.  r0, r3, 0x18
-	bne      lbl_80287FBC
-	mr       r3, r31
-	bl       isCreateBaby__Q34Game5Queen3ObjFv
-	clrlwi.  r0, r3, 0x18
-	beq      lbl_80287FC4
+	Obj* queen = static_cast<Obj*>(enemy);
+	if ((queen->m_health <= 0.0f) || (queen->isHitCounterUp()) || (queen->isCreateBaby())) {
+		queen->finishMotion();
+	}
 
-lbl_80287FBC:
-	mr       r3, r31
-	bl       finishMotion__Q24Game9EnemyBaseFv
+	if (queen->isFinishMotion()) {
+		if (queen->m_health <= 0.0f) {
+			queen->m_nextState = QUEEN_Dead;
+		} else if (EnemyFunc::isStartFlick(queen, false)) {
+			queen->m_nextState = QUEEN_Flick;
+		} else if (queen->m_stickPikminCount != 0) {
+			queen->m_nextState = QUEEN_Damage;
+		} else {
+			queen->m_nextState = QUEEN_Wait;
+		}
+	}
 
-lbl_80287FC4:
-	mr       r3, r31
-	bl       isFinishMotion__Q24Game9EnemyBaseFv
-	clrlwi.  r0, r3, 0x18
-	beq      lbl_80288034
-	lfs      f1, 0x200(r31)
-	lfs      f0, lbl_8051B7D0@sda21(r2)
-	fcmpo    cr0, f1, f0
-	cror     2, 0, 2
-	bne      lbl_80287FF4
-	li       r0, 0
-	stw      r0, 0x2d4(r31)
-	b        lbl_80288034
-
-lbl_80287FF4:
-	mr       r3, r31
-	li       r4, 0
-	bl       isStartFlick__Q24Game9EnemyFuncFPQ24Game9EnemyBaseb
-	clrlwi.  r0, r3, 0x18
-	beq      lbl_80288014
-	li       r0, 4
-	stw      r0, 0x2d4(r31)
-	b        lbl_80288034
-
-lbl_80288014:
-	lwz      r0, 0x1f4(r31)
-	cmpwi    r0, 0
-	beq      lbl_8028802C
-	li       r0, 3
-	stw      r0, 0x2d4(r31)
-	b        lbl_80288034
-
-lbl_8028802C:
-	li       r0, 2
-	stw      r0, 0x2d4(r31)
-
-lbl_80288034:
-	lwz      r3, 0x188(r31)
-	lbz      r0, 0x24(r3)
-	cmplwi   r0, 0
-	beq      lbl_802880A8
-	lwz      r0, 0x1c(r3)
-	cmplwi   r0, 0
-	bne      lbl_8028805C
-	mr       r3, r31
-	bl       startSleepEffect__Q34Game5Queen3ObjFv
-	b        lbl_802880A8
-
-lbl_8028805C:
-	cmplwi   r0, 2
-	bne      lbl_80288080
-	mr       r3, r31
-	bl       finishSleepEffect__Q34Game5Queen3ObjFv
-	mr       r3, r31
-	bl       createWakeUpEffect__Q34Game5Queen3ObjFv
-	mr       r3, r31
-	bl       setMidBossAppearBGM__Q34Game5Queen3ObjFv
-	b        lbl_802880A8
-
-lbl_80288080:
-	cmplwi   r0, 0x3e8
-	bne      lbl_802880A8
-	mr       r3, r30
-	mr       r4, r31
-	lwz      r12, 0(r30)
-	li       r6, 0
-	lwz      r5, 0x2d4(r31)
-	lwz      r12, 0x1c(r12)
-	mtctr    r12
-	bctrl
-
-lbl_802880A8:
-	lwz      r0, 0x14(r1)
-	lwz      r31, 0xc(r1)
-	lwz      r30, 8(r1)
-	mtlr     r0
-	addi     r1, r1, 0x10
-	blr
-	*/
+	if (queen->m_animKeyEvent->m_running != 0) {
+		if ((u32) queen->m_animKeyEvent->m_type == 0) {
+			queen->startSleepEffect();
+		} else if ((u32) queen->m_animKeyEvent->m_type == 2) {
+			queen->finishSleepEffect();
+			queen->createWakeUpEffect();
+			queen->setMidBossAppearBGM();
+		} else if ( (u32) queen->m_animKeyEvent->m_type == 1000) {
+			transit(queen, queen->m_nextState, nullptr);
+		}
+	}
 }
 
 /*
@@ -639,26 +124,12 @@ lbl_802880A8:
  * Address:	802880C0
  * Size:	000040
  */
-void Queen::StateSleep::cleanup(Game::EnemyBase*)
+void StateSleep::cleanup(EnemyBase* enemy)
 {
-	/*
-	stwu     r1, -0x10(r1)
-	mflr     r0
-	stw      r0, 0x14(r1)
-	stw      r31, 0xc(r1)
-	mr       r31, r4
-	mr       r3, r31
-	bl       hardConstraintOff__Q24Game9EnemyBaseFv
-	mr       r3, r31
-	bl       finishSleepEffect__Q34Game5Queen3ObjFv
-	mr       r3, r31
-	bl       setMidBossAppearBGM__Q34Game5Queen3ObjFv
-	lwz      r0, 0x14(r1)
-	lwz      r31, 0xc(r1)
-	mtlr     r0
-	addi     r1, r1, 0x10
-	blr
-	*/
+	Obj* queen = static_cast<Obj*>(enemy);
+	queen->hardConstraintOff();
+	queen->finishSleepEffect();
+	queen->setMidBossAppearBGM();
 }
 
 /*
@@ -666,38 +137,16 @@ void Queen::StateSleep::cleanup(Game::EnemyBase*)
  * Address:	80288100
  * Size:	000070
  */
-void Queen::StateWait::init(Game::EnemyBase*, Game::StateArg*)
+void StateWait::init(EnemyBase* enemy, StateArg* stateArg)
 {
-	/*
-	stwu     r1, -0x10(r1)
-	mflr     r0
-	li       r3, -1
-	lfs      f0, lbl_8051B7D0@sda21(r2)
-	stw      r0, 0x14(r1)
-	li       r0, 0
-	stw      r31, 0xc(r1)
-	mr       r31, r4
-	stw      r3, 0x2d4(r4)
-	mr       r3, r31
-	stb      r0, 0x2c5(r4)
-	stfs     f0, 0x2c8(r4)
-	lfs      f0, 0x20c(r4)
-	stfs     f0, 0x2d0(r4)
-	bl       hardConstraintOn__Q24Game9EnemyBaseFv
-	lfs      f0, lbl_8051B7D0@sda21(r2)
-	mr       r3, r31
-	li       r4, 2
-	li       r5, 0
-	stfs     f0, 0x1d4(r31)
-	stfs     f0, 0x1d8(r31)
-	stfs     f0, 0x1dc(r31)
-	bl       startMotion__Q24Game9EnemyBaseFiPQ28SysShape14MotionListener
-	lwz      r0, 0x14(r1)
-	lwz      r31, 0xc(r1)
-	mtlr     r0
-	addi     r1, r1, 0x10
-	blr
-	*/
+	Obj* queen = static_cast<Obj*>(enemy);
+	queen->m_nextState = QUEEN_NULL;
+	queen->_2C5 = 0;
+	queen->m_waitTimer = 0.0f;
+	queen->_2D0 = queen->m_toFlick;
+	queen->hardConstraintOn();
+	queen->m_velocity2 = Vector3f(0.0f);
+	queen->startMotion(2, nullptr);
 }
 
 /*
@@ -705,101 +154,39 @@ void Queen::StateWait::init(Game::EnemyBase*, Game::StateArg*)
  * Address:	80288170
  * Size:	00013C
  */
-void Queen::StateWait::exec(Game::EnemyBase*)
+void StateWait::exec(EnemyBase* enemy)
 {
-	/*
-	stwu     r1, -0x10(r1)
-	mflr     r0
-	stw      r0, 0x14(r1)
-	stw      r31, 0xc(r1)
-	mr       r31, r4
-	stw      r30, 8(r1)
-	mr       r30, r3
-	mr       r3, r31
-	bl       isCreateBaby__Q34Game5Queen3ObjFv
-	clrlwi.  r0, r3, 0x18
-	bne      lbl_802881BC
-	lfs      f1, 0x2c8(r31)
-	lfs      f0, lbl_8051B7D4@sda21(r2)
-	fcmpo    cr0, f1, f0
-	ble      lbl_802881BC
-	li       r0, 1
-	mr       r3, r31
-	stw      r0, 0x2d4(r31)
-	bl       finishMotion__Q24Game9EnemyBaseFv
+	Obj* queen = static_cast<Obj*>(enemy);
+	if (!queen->isCreateBaby() && (queen->m_waitTimer > 30.0f)) {
+		queen->m_nextState = QUEEN_Sleep;
+		queen->finishMotion();
+	}
 
-lbl_802881BC:
-	mr       r3, r31
-	bl       isHitCounterUp__Q34Game5Queen3ObjFv
-	clrlwi.  r0, r3, 0x18
-	beq      lbl_802881DC
-	li       r0, 3
-	mr       r3, r31
-	stw      r0, 0x2d4(r31)
-	bl       finishMotion__Q24Game9EnemyBaseFv
+	if (queen->isHitCounterUp()) {
+		queen->m_nextState = QUEEN_Damage;
+		queen->finishMotion();
+	}	
 
-lbl_802881DC:
-	mr       r3, r31
-	bl       isCreateBaby__Q34Game5Queen3ObjFv
-	clrlwi.  r0, r3, 0x18
-	beq      lbl_802881FC
-	li       r0, 6
-	mr       r3, r31
-	stw      r0, 0x2d4(r31)
-	bl       finishMotion__Q24Game9EnemyBaseFv
+	if (queen->isCreateBaby()) {
+		queen->m_nextState = QUEEN_Born;
+		queen->finishMotion();
+	}
 
-lbl_802881FC:
-	mr       r3, r31
-	li       r4, 0
-	bl       isStartFlick__Q24Game9EnemyFuncFPQ24Game9EnemyBaseb
-	clrlwi.  r0, r3, 0x18
-	beq      lbl_80288220
-	li       r0, 4
-	mr       r3, r31
-	stw      r0, 0x2d4(r31)
-	bl       finishMotion__Q24Game9EnemyBaseFv
+	if (EnemyFunc::isStartFlick(queen, false)) {
+		queen->m_nextState = QUEEN_Flick;
+		queen->finishMotion();
+	}
 
-lbl_80288220:
-	lfs      f1, 0x200(r31)
-	lfs      f0, lbl_8051B7D0@sda21(r2)
-	fcmpo    cr0, f1, f0
-	cror     2, 0, 2
-	bne      lbl_80288244
-	li       r0, 0
-	mr       r3, r31
-	stw      r0, 0x2d4(r31)
-	bl       finishMotion__Q24Game9EnemyBaseFv
+	if (queen->m_health <= 0.0f) {
+		queen->m_nextState = QUEEN_Dead;
+		queen->finishMotion();
+	}
 
-lbl_80288244:
-	lwz      r3, sys@sda21(r13)
-	lfs      f1, 0x2c8(r31)
-	lfs      f0, 0x54(r3)
-	fadds    f0, f1, f0
-	stfs     f0, 0x2c8(r31)
-	lwz      r3, 0x188(r31)
-	lbz      r0, 0x24(r3)
-	cmplwi   r0, 0
-	beq      lbl_80288294
-	lwz      r0, 0x1c(r3)
-	cmplwi   r0, 0x3e8
-	bne      lbl_80288294
-	mr       r3, r30
-	mr       r4, r31
-	lwz      r12, 0(r30)
-	li       r6, 0
-	lwz      r5, 0x2d4(r31)
-	lwz      r12, 0x1c(r12)
-	mtctr    r12
-	bctrl
+	queen->m_waitTimer += sys->m_secondsPerFrame;
 
-lbl_80288294:
-	lwz      r0, 0x14(r1)
-	lwz      r31, 0xc(r1)
-	lwz      r30, 8(r1)
-	mtlr     r0
-	addi     r1, r1, 0x10
-	blr
-	*/
+	if ((queen->m_animKeyEvent->m_running != 0) && ((u32) queen->m_animKeyEvent->m_type == 1000)) {
+		transit(queen, queen->m_nextState, nullptr);
+	}
 }
 
 /*
@@ -807,60 +194,24 @@ lbl_80288294:
  * Address:	802882AC
  * Size:	000024
  */
-void Queen::StateWait::cleanup(Game::EnemyBase*)
-{
-	/*
-	stwu     r1, -0x10(r1)
-	mflr     r0
-	mr       r3, r4
-	stw      r0, 0x14(r1)
-	bl       hardConstraintOff__Q24Game9EnemyBaseFv
-	lwz      r0, 0x14(r1)
-	mtlr     r0
-	addi     r1, r1, 0x10
-	blr
-	*/
-}
+void StateWait::cleanup(EnemyBase* enemy) { enemy->hardConstraintOff(); }
 
 /*
  * --INFO--
  * Address:	802882D0
  * Size:	000078
  */
-void Queen::StateDamage::init(Game::EnemyBase*, Game::StateArg*)
+void StateDamage::init(EnemyBase* enemy, StateArg* stateArg)
 {
-	/*
-	stwu     r1, -0x10(r1)
-	mflr     r0
-	li       r3, -1
-	lfs      f0, lbl_8051B7D0@sda21(r2)
-	stw      r0, 0x14(r1)
-	li       r0, 0
-	stw      r31, 0xc(r1)
-	mr       r31, r4
-	stw      r3, 0x2d4(r4)
-	mr       r3, r31
-	stb      r0, 0x2c5(r4)
-	stfs     f0, 0x2c8(r4)
-	bl       startDamageEffect__Q34Game5Queen3ObjFv
-	mr       r3, r31
-	bl       hardConstraintOn__Q24Game9EnemyBaseFv
-	lfs      f0, lbl_8051B7D0@sda21(r2)
-	mr       r3, r31
-	stfs     f0, 0x1d4(r31)
-	stfs     f0, 0x1d8(r31)
-	stfs     f0, 0x1dc(r31)
-	bl       setEmotionExcitement__Q24Game9EnemyBaseFv
-	mr       r3, r31
-	li       r4, 3
-	li       r5, 0
-	bl       startMotion__Q24Game9EnemyBaseFiPQ28SysShape14MotionListener
-	lwz      r0, 0x14(r1)
-	lwz      r31, 0xc(r1)
-	mtlr     r0
-	addi     r1, r1, 0x10
-	blr
-	*/
+	Obj* queen = static_cast<Obj*>(enemy);
+	queen->m_nextState = QUEEN_NULL;
+	queen->_2C5 = 0;
+	queen->m_waitTimer = 0.0f;
+	queen->startDamageEffect();
+	queen->hardConstraintOn();
+	queen->m_velocity2 = Vector3f(0.0f);
+	queen->setEmotionExcitement();
+	queen->startMotion(3, nullptr);
 }
 
 /*
@@ -868,81 +219,33 @@ void Queen::StateDamage::init(Game::EnemyBase*, Game::StateArg*)
  * Address:	80288348
  * Size:	0000F4
  */
-void Queen::StateDamage::exec(Game::EnemyBase*)
+void StateDamage::exec(EnemyBase* enemy)
 {
-	/*
-	stwu     r1, -0x10(r1)
-	mflr     r0
-	stw      r0, 0x14(r1)
-	stw      r31, 0xc(r1)
-	mr       r31, r4
-	stw      r30, 8(r1)
-	mr       r30, r3
-	mr       r3, r31
-	bl       isCreateBaby__Q34Game5Queen3ObjFv
-	clrlwi.  r0, r3, 0x18
-	beq      lbl_80288384
-	li       r0, 6
-	mr       r3, r31
-	stw      r0, 0x2d4(r31)
-	bl       finishMotion__Q24Game9EnemyBaseFv
+	Obj* queen = static_cast<Obj*>(enemy);
+	
+	if (queen->isCreateBaby()) {
+		queen->m_nextState = QUEEN_Born;
+		queen->finishMotion();
+	}
 
-lbl_80288384:
-	lwz      r0, 0x1f4(r31)
-	cmpwi    r0, 0
-	bne      lbl_802883A0
-	li       r0, 2
-	mr       r3, r31
-	stw      r0, 0x2d4(r31)
-	bl       finishMotion__Q24Game9EnemyBaseFv
+	if (queen->m_stickPikminCount == 0) {
+		queen->m_nextState = QUEEN_Wait;
+		queen->finishMotion();
+	}
 
-lbl_802883A0:
-	mr       r3, r31
-	li       r4, 0
-	bl       isStartFlick__Q24Game9EnemyFuncFPQ24Game9EnemyBaseb
-	clrlwi.  r0, r3, 0x18
-	beq      lbl_802883C4
-	li       r0, 4
-	mr       r3, r31
-	stw      r0, 0x2d4(r31)
-	bl       finishMotion__Q24Game9EnemyBaseFv
+	if (EnemyFunc::isStartFlick(queen, false)) {
+		queen->m_nextState = QUEEN_Flick;
+		queen->finishMotion();
+	}
 
-lbl_802883C4:
-	lfs      f1, 0x200(r31)
-	lfs      f0, lbl_8051B7D0@sda21(r2)
-	fcmpo    cr0, f1, f0
-	cror     2, 0, 2
-	bne      lbl_802883E8
-	li       r0, 0
-	mr       r3, r31
-	stw      r0, 0x2d4(r31)
-	bl       finishMotion__Q24Game9EnemyBaseFv
+	if (queen->m_health <= 0.0f) {
+		queen->m_nextState = QUEEN_Dead;
+		queen->finishMotion();
+	}
 
-lbl_802883E8:
-	lwz      r3, 0x188(r31)
-	lbz      r0, 0x24(r3)
-	cmplwi   r0, 0
-	beq      lbl_80288424
-	lwz      r0, 0x1c(r3)
-	cmplwi   r0, 0x3e8
-	bne      lbl_80288424
-	mr       r3, r30
-	mr       r4, r31
-	lwz      r12, 0(r30)
-	li       r6, 0
-	lwz      r5, 0x2d4(r31)
-	lwz      r12, 0x1c(r12)
-	mtctr    r12
-	bctrl
-
-lbl_80288424:
-	lwz      r0, 0x14(r1)
-	lwz      r31, 0xc(r1)
-	lwz      r30, 8(r1)
-	mtlr     r0
-	addi     r1, r1, 0x10
-	blr
-	*/
+	if ((queen->m_animKeyEvent->m_running != 0) && ((u32) queen->m_animKeyEvent->m_type == 1000)) {
+		transit(queen, queen->m_nextState, nullptr);
+	}
 }
 
 /*
@@ -950,26 +253,12 @@ lbl_80288424:
  * Address:	8028843C
  * Size:	000040
  */
-void Queen::StateDamage::cleanup(Game::EnemyBase*)
+void StateDamage::cleanup(EnemyBase* enemy)
 {
-	/*
-	stwu     r1, -0x10(r1)
-	mflr     r0
-	stw      r0, 0x14(r1)
-	stw      r31, 0xc(r1)
-	mr       r31, r4
-	mr       r3, r31
-	bl       hardConstraintOff__Q24Game9EnemyBaseFv
-	mr       r3, r31
-	bl       finishDamageEffect__Q34Game5Queen3ObjFv
-	mr       r3, r31
-	bl       setEmotionCaution__Q24Game9EnemyBaseFv
-	lwz      r0, 0x14(r1)
-	lwz      r31, 0xc(r1)
-	mtlr     r0
-	addi     r1, r1, 0x10
-	blr
-	*/
+	Obj* queen = static_cast<Obj*>(enemy);
+	queen->hardConstraintOff();
+	queen->finishDamageEffect();
+	queen->setEmotionCaution();
 }
 
 /*
@@ -977,42 +266,18 @@ void Queen::StateDamage::cleanup(Game::EnemyBase*)
  * Address:	8028847C
  * Size:	000080
  */
-void Queen::StateFlick::init(Game::EnemyBase*, Game::StateArg*)
+void StateFlick::init(EnemyBase* enemy, StateArg* stateArg)
 {
-	/*
-	stwu     r1, -0x10(r1)
-	mflr     r0
-	li       r3, -1
-	lfs      f0, lbl_8051B7D0@sda21(r2)
-	stw      r0, 0x14(r1)
-	li       r0, 0
-	stw      r31, 0xc(r1)
-	mr       r31, r4
-	stw      r3, 0x2d4(r4)
-	mr       r3, r31
-	stb      r0, 0x2c5(r4)
-	stfs     f0, 0x2c8(r4)
-	bl       createFlickEffect__Q34Game5Queen3ObjFv
-	mr       r3, r31
-	bl       hardConstraintOn__Q24Game9EnemyBaseFv
-	lfs      f0, lbl_8051B7D0@sda21(r2)
-	mr       r3, r31
-	stfs     f0, 0x1d4(r31)
-	stfs     f0, 0x1d8(r31)
-	stfs     f0, 0x1dc(r31)
-	bl       setEmotionExcitement__Q24Game9EnemyBaseFv
-	mr       r3, r31
-	li       r4, 4
-	li       r5, 0
-	bl       startMotion__Q24Game9EnemyBaseFiPQ28SysShape14MotionListener
-	mr       r3, r31
-	bl       startBossChargeBGM__Q34Game5Queen3ObjFv
-	lwz      r0, 0x14(r1)
-	lwz      r31, 0xc(r1)
-	mtlr     r0
-	addi     r1, r1, 0x10
-	blr
-	*/
+	Obj* queen = static_cast<Obj*>(enemy);
+	queen->m_nextState = QUEEN_NULL;
+	queen->_2C5 = 0;
+	queen->m_waitTimer = 0.0f;
+	queen->createFlickEffect();
+	queen->hardConstraintOn();
+	queen->m_velocity2 = Vector3f(0.0f);
+	queen->setEmotionExcitement();
+	queen->startMotion(4, nullptr);
+	queen->startBossChargeBGM();
 }
 
 /*
@@ -1020,81 +285,22 @@ void Queen::StateFlick::init(Game::EnemyBase*, Game::StateArg*)
  * Address:	802884FC
  * Size:	0000FC
  */
-void Queen::StateFlick::exec(Game::EnemyBase*)
+void StateFlick::exec(EnemyBase* enemy)
 {
-	/*
-	stwu     r1, -0x10(r1)
-	mflr     r0
-	stw      r0, 0x14(r1)
-	stw      r31, 0xc(r1)
-	mr       r31, r4
-	stw      r30, 8(r1)
-	mr       r30, r3
-	lwz      r5, 0x188(r4)
-	lbz      r0, 0x24(r5)
-	cmplwi   r0, 0
-	beq      lbl_802885E0
-	lwz      r0, 0x1c(r5)
-	cmplwi   r0, 2
-	bne      lbl_80288554
-	mr       r3, r31
-	lwz      r12, 0(r31)
-	lwz      r12, 0x64(r12)
-	mtctr    r12
-	bctrl
-	mr       r3, r31
-	bl       flickPikmin__Q34Game5Queen3ObjFf
-	b        lbl_802885E0
-
-lbl_80288554:
-	cmplwi   r0, 0x3e8
-	bne      lbl_802885E0
-	lfs      f1, 0x200(r31)
-	lfs      f0, lbl_8051B7D0@sda21(r2)
-	fcmpo    cr0, f1, f0
-	cror     2, 0, 2
-	bne      lbl_8028858C
-	lwz      r12, 0(r3)
-	li       r5, 0
-	li       r6, 0
-	lwz      r12, 0x1c(r12)
-	mtctr    r12
-	bctrl
-	b        lbl_802885E0
-
-lbl_8028858C:
-	mr       r3, r31
-	bl       isRollingAttackLeft__Q34Game5Queen3ObjFv
-	clrlwi.  r0, r3, 0x18
-	beq      lbl_802885C0
-	mr       r3, r30
-	mr       r4, r31
-	lwz      r12, 0(r30)
-	li       r5, 5
-	addi     r6, r2, lbl_8051B7D8@sda21
-	lwz      r12, 0x1c(r12)
-	mtctr    r12
-	bctrl
-	b        lbl_802885E0
-
-lbl_802885C0:
-	mr       r3, r30
-	mr       r4, r31
-	lwz      r12, 0(r30)
-	li       r5, 5
-	li       r6, 0
-	lwz      r12, 0x1c(r12)
-	mtctr    r12
-	bctrl
-
-lbl_802885E0:
-	lwz      r0, 0x14(r1)
-	lwz      r31, 0xc(r1)
-	lwz      r30, 8(r1)
-	mtlr     r0
-	addi     r1, r1, 0x10
-	blr
-	*/
+	Obj* queen = static_cast<Obj*>(enemy);
+	if (queen->m_animKeyEvent->m_running != 0) {
+		if ((u32) queen->m_animKeyEvent->m_type == 2) {
+			queen->flickPikmin(queen->getFaceDir());
+		} else if ((u32) queen->m_animKeyEvent->m_type == 1000) {
+			if (queen->m_health <= 0.0f) {
+				transit(queen, QUEEN_Dead, nullptr);
+			} else if (queen->isRollingAttackLeft()) {
+				transit(queen, QUEEN_Rolling, (StateArg*) "left");
+			} else {
+				transit(queen, QUEEN_Rolling, nullptr);
+			}
+		}
+	}
 }
 
 /*
@@ -1102,24 +308,10 @@ lbl_802885E0:
  * Address:	802885F8
  * Size:	000038
  */
-void Queen::StateFlick::cleanup(Game::EnemyBase*)
+void StateFlick::cleanup(EnemyBase* enemy)
 {
-	/*
-	stwu     r1, -0x10(r1)
-	mflr     r0
-	stw      r0, 0x14(r1)
-	stw      r31, 0xc(r1)
-	mr       r31, r4
-	mr       r3, r31
-	bl       hardConstraintOff__Q24Game9EnemyBaseFv
-	mr       r3, r31
-	bl       setEmotionCaution__Q24Game9EnemyBaseFv
-	lwz      r0, 0x14(r1)
-	lwz      r31, 0xc(r1)
-	mtlr     r0
-	addi     r1, r1, 0x10
-	blr
-	*/
+	enemy->hardConstraintOff();
+	enemy->setEmotionCaution();
 }
 
 /*
@@ -1127,48 +319,18 @@ void Queen::StateFlick::cleanup(Game::EnemyBase*)
  * Address:	80288630
  * Size:	000088
  */
-void Queen::StateRolling::init(Game::EnemyBase*, Game::StateArg*)
+void StateRolling::init(EnemyBase* enemy, StateArg* stateArg)
 {
-	/*
-	stwu     r1, -0x10(r1)
-	mflr     r0
-	li       r3, -1
-	lfs      f0, lbl_8051B7D0@sda21(r2)
-	stw      r0, 0x14(r1)
-	li       r0, 0
-	stw      r31, 0xc(r1)
-	mr       r31, r4
-	stw      r30, 8(r1)
-	mr       r30, r5
-	stw      r3, 0x2d4(r4)
-	mr       r3, r31
-	stb      r0, 0x2c2(r4)
-	stfs     f0, 0x1d4(r4)
-	stfs     f0, 0x1d8(r4)
-	stfs     f0, 0x1dc(r4)
-	bl       setEmotionExcitement__Q24Game9EnemyBaseFv
-	cmplwi   r30, 0
-	beq      lbl_80288690
-	mr       r3, r31
-	li       r4, 5
-	li       r5, 0
-	bl       startMotion__Q24Game9EnemyBaseFiPQ28SysShape14MotionListener
-	b        lbl_802886A0
-
-lbl_80288690:
-	mr       r3, r31
-	li       r4, 6
-	li       r5, 0
-	bl       startMotion__Q24Game9EnemyBaseFiPQ28SysShape14MotionListener
-
-lbl_802886A0:
-	lwz      r0, 0x14(r1)
-	lwz      r31, 0xc(r1)
-	lwz      r30, 8(r1)
-	mtlr     r0
-	addi     r1, r1, 0x10
-	blr
-	*/
+	Obj* queen = static_cast<Obj*>(enemy);
+	queen->m_nextState = QUEEN_NULL;
+	queen->_2C2 = 0;
+	queen->m_velocity2 = Vector3f(0.0f);
+	queen->setEmotionExcitement();
+	if (stateArg != nullptr) {
+		queen->startMotion(5, nullptr);
+	} else {
+		queen->startMotion(6, nullptr);
+	}
 }
 
 /*
@@ -1176,7 +338,7 @@ lbl_802886A0:
  * Address:	802886B8
  * Size:	0005BC
  */
-void Queen::StateRolling::exec(Game::EnemyBase*)
+void StateRolling::exec(EnemyBase* enemy)
 {
 	/*
 	stwu     r1, -0xa0(r1)
@@ -1606,29 +768,14 @@ lbl_80288C44:
  * Address:	80288C74
  * Size:	00004C
  */
-void Queen::StateRolling::cleanup(Game::EnemyBase*)
+void StateRolling::cleanup(EnemyBase* enemy)
 {
-	/*
-	stwu     r1, -0x10(r1)
-	mflr     r0
-	stw      r0, 0x14(r1)
-	stw      r31, 0xc(r1)
-	mr       r31, r4
-	mr       r3, r31
-	bl       setEmotionCaution__Q24Game9EnemyBaseFv
-	mr       r3, r31
-	bl       forceFinishRollingEffect__Q34Game5Queen3ObjFv
-	lfs      f0, lbl_8051B7D0@sda21(r2)
-	li       r0, 0
-	stfs     f0, 0x20c(r31)
-	stfs     f0, 0x2d0(r31)
-	stb      r0, 0x2c2(r31)
-	lwz      r31, 0xc(r1)
-	lwz      r0, 0x14(r1)
-	mtlr     r0
-	addi     r1, r1, 0x10
-	blr
-	*/
+	Obj* queen = static_cast<Obj*>(enemy);
+	queen->setEmotionCaution();
+	queen->forceFinishRollingEffect();
+	queen->m_toFlick = 0.0f;
+	queen->_2D0 = 0.0f;
+	queen->_2C2 = 0;
 }
 
 /*
@@ -1636,38 +783,16 @@ void Queen::StateRolling::cleanup(Game::EnemyBase*)
  * Address:	80288CC0
  * Size:	000070
  */
-void Queen::StateBorn::init(Game::EnemyBase*, Game::StateArg*)
+void StateBorn::init(EnemyBase* enemy, StateArg* stateArg)
 {
-	/*
-	stwu     r1, -0x10(r1)
-	mflr     r0
-	li       r3, -1
-	lfs      f0, lbl_8051B7D0@sda21(r2)
-	stw      r0, 0x14(r1)
-	li       r0, 0
-	stw      r31, 0xc(r1)
-	mr       r31, r4
-	stw      r3, 0x2d4(r4)
-	mr       r3, r31
-	stb      r0, 0x2c5(r4)
-	stfs     f0, 0x2c8(r4)
-	bl       hardConstraintOn__Q24Game9EnemyBaseFv
-	lfs      f0, lbl_8051B7D0@sda21(r2)
-	mr       r3, r31
-	li       r4, 7
-	li       r5, 0
-	stfs     f0, 0x1d4(r31)
-	stfs     f0, 0x1d8(r31)
-	stfs     f0, 0x1dc(r31)
-	bl       startMotion__Q24Game9EnemyBaseFiPQ28SysShape14MotionListener
-	mr       r3, r31
-	bl       setEmotionExcitement__Q24Game9EnemyBaseFv
-	lwz      r0, 0x14(r1)
-	lwz      r31, 0xc(r1)
-	mtlr     r0
-	addi     r1, r1, 0x10
-	blr
-	*/
+	Obj* queen = static_cast<Obj*>(enemy);
+	queen->m_nextState = QUEEN_NULL;
+	queen->_2C5 = 0;
+	queen->m_waitTimer = 0.0f;
+	queen->hardConstraintOn();
+	queen->m_velocity2 = Vector3f(0.0f);
+	queen->startMotion(7, nullptr);
+	queen->setEmotionExcitement();
 }
 
 /*
@@ -1675,58 +800,21 @@ void Queen::StateBorn::init(Game::EnemyBase*, Game::StateArg*)
  * Address:	80288D30
  * Size:	0000A8
  */
-void Queen::StateBorn::exec(Game::EnemyBase*)
+void StateBorn::exec(EnemyBase* enemy)
 {
-	/*
-	stwu     r1, -0x10(r1)
-	mflr     r0
-	stw      r0, 0x14(r1)
-	stw      r31, 0xc(r1)
-	mr       r31, r4
-	lwz      r5, 0x188(r4)
-	lbz      r0, 0x24(r5)
-	cmplwi   r0, 0
-	beq      lbl_80288DC4
-	lwz      r0, 0x1c(r5)
-	cmplwi   r0, 2
-	bne      lbl_80288D74
-	mr       r3, r31
-	bl       createBabyChappy__Q34Game5Queen3ObjFv
-	mr       r3, r31
-	bl       createBornEffect__Q34Game5Queen3ObjFv
-	b        lbl_80288DC4
-
-lbl_80288D74:
-	cmplwi   r0, 0x3e8
-	bne      lbl_80288DC4
-	lfs      f1, 0x200(r31)
-	lfs      f0, lbl_8051B7D0@sda21(r2)
-	fcmpo    cr0, f1, f0
-	cror     2, 0, 2
-	bne      lbl_80288DAC
-	lwz      r12, 0(r3)
-	li       r5, 0
-	li       r6, 0
-	lwz      r12, 0x1c(r12)
-	mtctr    r12
-	bctrl
-	b        lbl_80288DC4
-
-lbl_80288DAC:
-	lwz      r12, 0(r3)
-	li       r5, 2
-	li       r6, 0
-	lwz      r12, 0x1c(r12)
-	mtctr    r12
-	bctrl
-
-lbl_80288DC4:
-	lwz      r0, 0x14(r1)
-	lwz      r31, 0xc(r1)
-	mtlr     r0
-	addi     r1, r1, 0x10
-	blr
-	*/
+	Obj* queen = static_cast<Obj*>(enemy);
+	if (queen->m_animKeyEvent->m_running != 0) {
+		if ((u32) queen->m_animKeyEvent->m_type == 2) {
+			queen->createBabyChappy();
+			queen->createBornEffect();
+		} else if ((u32) queen->m_animKeyEvent->m_type == 1000) {
+			if (queen->m_health <= 0.0f) {
+				transit(queen, QUEEN_Dead, nullptr);
+			} else {
+				transit(queen, QUEEN_Wait, nullptr);
+			}
+		}
+	}
 }
 
 /*
@@ -1734,47 +822,13 @@ lbl_80288DC4:
  * Address:	80288DD8
  * Size:	000040
  */
-void Queen::StateBorn::cleanup(Game::EnemyBase*)
+void StateBorn::cleanup(EnemyBase* enemy)
 {
-	/*
-	stwu     r1, -0x10(r1)
-	mflr     r0
-	stw      r0, 0x14(r1)
-	stw      r31, 0xc(r1)
-	mr       r31, r4
-	mr       r3, r31
-	bl       hardConstraintOff__Q24Game9EnemyBaseFv
-	mr       r3, r31
-	bl       setEmotionCaution__Q24Game9EnemyBaseFv
-	lfs      f0, lbl_8051B7D0@sda21(r2)
-	stfs     f0, 0x2cc(r31)
-	lwz      r0, 0x14(r1)
-	lwz      r31, 0xc(r1)
-	mtlr     r0
-	addi     r1, r1, 0x10
-	blr
-	*/
+	Obj* queen = static_cast<Obj*>(enemy);
+	queen->hardConstraintOff();
+	queen->setEmotionCaution();
+	queen->_2CC = 0.0f;
 }
 
+} // namespace Queen
 } // namespace Game
-
-/*
- * --INFO--
- * Address:	80288E18
- * Size:	000028
- */
-void __sinit_QueenState_cpp(void)
-{
-	/*
-	lis      r4, __float_nan@ha
-	li       r0, -1
-	lfs      f0, __float_nan@l(r4)
-	lis      r3, lbl_804C9AB8@ha
-	stw      r0, lbl_80515D48@sda21(r13)
-	stfsu    f0, lbl_804C9AB8@l(r3)
-	stfs     f0, lbl_80515D4C@sda21(r13)
-	stfs     f0, 4(r3)
-	stfs     f0, 8(r3)
-	blr
-	*/
-}
