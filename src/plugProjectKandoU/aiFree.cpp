@@ -36,14 +36,14 @@ void ActFree::init(ActionArg* arg)
 	m_parent->m_navi = nullptr;
 	m_parent->m_soundObj->becomeFree();
 
-	ActFreeArg* freeArg = (ActFreeArg*)arg;
+	ActFreeArg* freeArg = static_cast<ActFreeArg*>(arg);
 
 	m_state = PIKIAI_FREE_DEFAULT;
 	if (freeArg) {
 		bool isFreeArg = strcmp("ActFreeArg", arg->getName()) == 0;
 		P2ASSERTLINE(119, isFreeArg);
 
-		freeArg = (ActFreeArg*)arg;
+		freeArg = static_cast<ActFreeArg*>(arg);
 		if (freeArg->_04) {
 			m_state = PIKIAI_FREE_GATHER;
 		}
