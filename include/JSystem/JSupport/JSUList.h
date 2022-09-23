@@ -28,7 +28,9 @@ struct JSUPtrLink {
  * @size{0xC}
  */
 struct JSUPtrList {
-	JSUPtrList(bool = true);
+	JSUPtrList() { initiate(); }
+
+	JSUPtrList(bool);
 
 	~JSUPtrList();
 	void initiate();

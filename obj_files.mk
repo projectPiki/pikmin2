@@ -952,7 +952,7 @@ HIKINO:=\
 	$(BUILD_DIR)/asm/plugProjectHikinoU/PSSe.o\
 	$(BUILD_DIR)/asm/plugProjectHikinoU/PSSeBase.o\
 	$(BUILD_DIR)/asm/plugProjectHikinoU/PSScene.o\
-	$(BUILD_DIR)/asm/plugProjectHikinoU/PSBgmTrack.o\
+	$(BUILD_DIR)/src/plugProjectHikinoU/PSBgmTrack.o\
 	$(BUILD_DIR)/asm/plugProjectHikinoU/PSDirector.o\
 
 MORIMURA:=\
