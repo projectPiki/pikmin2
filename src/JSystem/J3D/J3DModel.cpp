@@ -489,7 +489,7 @@ void J3DModel::calcDiffTexMtx()
 		J3DTexGenBlock* block  = m_modelData->m_shapeTable.getItem(i)->_04->m_texGenBlock;
 		for (u16 j = 0; j < 8; j++) {
 			J3DTexMtx* texMtx1      = block->getTexMtx(j);
-			J3DShapePacket_0x24* v1 = packet->_24;
+			J3DShapePacket_0x24* v1 = static_cast<J3DShapePacket_0x24*>(packet->_24);
 			if (texMtx1 && v1) {
 				PSMTXCopy(texMtx1->_64, v1->_00[j]);
 			}

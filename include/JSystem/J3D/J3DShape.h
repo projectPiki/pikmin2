@@ -1,6 +1,7 @@
 #ifndef _JSYSTEM_J3D_J3DSHAPE_H
 #define _JSYSTEM_J3D_J3DSHAPE_H
 
+#include "Dolphin/gx.h"
 #include "Dolphin/mtx.h"
 #include "types.h"
 
@@ -50,14 +51,10 @@ struct J3DShape {
 	u16 _0A;                       // _0A
 	u32 m_flags;                   // _0C
 	f32 _10;                       // _10
-	f32 _14;                       // _14
-	f32 _18;                       // _18
-	f32 _1C;                       // _1C
-	f32 _20;                       // _20
-	f32 _24;                       // _24
-	f32 _28;                       // _28
+	Vec _14;                       // _14
+	Vec _20;                       // _20
 	u8* _2C;                       // _2C
-	s32 _30;                       // _30
+	_GXVtxDescList* _30;           // _30
 	u8 m_mode;                     // _34
 	J3DShapeMtx** _38;             // _38
 	J3DShapeDraw** _3C;            // _3C
@@ -136,5 +133,51 @@ struct J3DShapeTable {
 	// TODO: Are subsequent JUTNameTab* and J3DVertexData in J3DModelData also
 	// part of this?
 };
+
+struct J3DShapeMtxMulti : public J3DShapeMtx {
+	virtual ~J3DShapeMtxMulti();                                             // _08 (weak)
+	virtual int getType() const;                                            // _0C (weak)
+	virtual int getUseMtxNum() const;                                       // _10 (weak)
+	virtual u16 getUseMtxIndex(unsigned short) const;                       // _14 (weak)
+	virtual void load() const;                                               // _18
+	virtual void calcNBTScale(const Vec&, float (*)[3][3], float (*)[3][3]); // _1C
+};
+
+struct J3DShapeMtxConcatView : public J3DShapeMtx {
+	virtual ~J3DShapeMtxConcatView();                                 // _08 (weak)
+	virtual int getType() const;                                      // _0C (weak)
+	virtual void load() const;                                        // _18
+	virtual void loadNrmMtx(int, unsigned short) const;               // _20 (weak)
+	virtual void loadNrmMtx(int, unsigned short, float (*)[4]) const; // _24
+
+	void loadMtxConcatView_PNGP(int, unsigned short) const;
+	void loadMtxConcatView_PCPU(int, unsigned short) const;
+	void loadMtxConcatView_NCPU(int, unsigned short) const;
+	void loadMtxConcatView_PNCPU(int, unsigned short) const;
+	void loadMtxConcatView_PNGP_LOD(int, unsigned short) const;
+};
+
+struct J3DShapeMtxMultiConcatView : public J3DShapeMtxConcatView {
+	virtual ~J3DShapeMtxMultiConcatView();                            // _08 (weak)
+	virtual int getType() const;                                     // _0C (weak)
+	virtual int getUseMtxNum() const;                                // _10 (weak)
+	virtual u16 getUseMtxIndex(unsigned short) const;                // _14 (weak)
+	virtual void load() const;                                        // _18
+	virtual void loadNrmMtx(int, unsigned short) const;               // _20 (weak)
+	virtual void loadNrmMtx(int, unsigned short, float (*)[4]) const; // _24
+};
+
+struct J3DShapeMtxBBoardConcatView : public J3DShapeMtxConcatView {
+	virtual ~J3DShapeMtxBBoardConcatView(); // _08 (weak)
+	virtual int getType() const;           // _0C (weak)
+	virtual void load() const;              // _18
+};
+
+struct J3DShapeMtxYBBoardConcatView : public J3DShapeMtxConcatView {
+	virtual ~J3DShapeMtxYBBoardConcatView(); // _08 (weak)
+	virtual int getType() const;            // _0C (weak)
+	virtual void load() const;               // _18
+};
+
 
 #endif

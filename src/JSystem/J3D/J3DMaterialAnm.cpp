@@ -1,4 +1,15 @@
+#include "Dolphin/gx.h"
+#include "JSystem/J3D/J3DAnmTevRegKey.h"
+#include "JSystem/J3D/J3DAnmTextureSRTKey.h"
+#include "JSystem/J3D/J3DColorBlock.h"
+#include "JSystem/J3D/J3DMatColorAnm.h"
+#include "JSystem/J3D/J3DMaterialAnm.h"
+#include "JSystem/J3D/J3DMaterial.h"
 #include "JSystem/J3D/J3DTevBlock.h"
+#include "JSystem/J3D/J3DTevColorAnm.h"
+#include "JSystem/J3D/J3DTexGenBlock.h"
+#include "JSystem/J3D/J3DTexMtx.h"
+#include "JSystem/J3D/J3DTexMtxAnm.h"
 #include "JSystem/J3D/J3DTypes.h"
 #include "types.h"
 
@@ -64,8 +75,83 @@ void J3DMaterialAnm::initialize()
  * Address:	8006A164
  * Size:	0001EC
  */
-void J3DMaterialAnm::calc(J3DMaterial*) const
+void J3DMaterialAnm::calc(J3DMaterial* material) const
 {
+	for (u32 i = 0; i < 2; i++) {
+		// const J3DMatColorAnm* matColorAnm = m_matColAnmList + i;
+		// if (matColorAnm->_02 != 0) {
+		// 	J3DGXColor* color = material->m_colorBlock->getMatColor(i);
+		// 	matColorAnm->m_anm->getColor(matColorAnm->_00, color);
+		// }
+		// if (m_matColAnmList[i]._02 != 0) {
+		// 	J3DGXColor* color = material->m_colorBlock->getMatColor(i);
+		// 	m_matColAnmList[i].m_anm->getColor(m_matColAnmList[i]._00, color);
+		// }
+
+		if (m_matColAnmList[i]._02 != 0) {
+			J3DGXColor* color = material->m_colorBlock->getMatColor(i);
+			u16 index = m_matColAnmList[i]._00;
+			m_matColAnmList[i].m_anm->getColor(index, color);
+		}
+	}
+	for (u32 i = 0; i < 8; i++) {
+		// const J3DTexNoAnm* texNoAnm = m_texNoAnmList + i;
+		// if (texNoAnm->_06 != 0) {
+		// 	u16 v1;
+		// 	texNoAnm->calc(&v1);
+		// 	material->m_tevBlock->setTexNo(i, v1);
+		// }
+		if (m_texNoAnmList[i]._06 != 0) {
+			u16 v1;
+			m_texNoAnmList[i].calc(&v1);
+			material->m_tevBlock->setTexNo(i, v1);
+		}
+	}
+	for (u32 i = 0; i < 3; i++) {
+		// const J3DTevColorAnm* tevColorAnm = m_tevColAnmList + i;
+		// if (tevColorAnm->_02 != 0) {
+		// 	GXColorS10* color = material->m_tevBlock->getTevColor(i);
+		// 	J3DAnmTevRegKey* anm = tevColorAnm->m_key;
+		// 	u16 index = tevColorAnm->m_index;
+		// 	anm->getTevColorReg(index, color);
+		// 	// m_tevColAnmList[i].m_key->getTevColorReg(m_tevColAnmList[i].m_index, material->m_tevBlock->getTevColor(i));
+		// }
+		if (m_tevColAnmList[i]._02 != 0) {
+			GXColorS10* color = material->m_tevBlock->getTevColor(i);
+			J3DAnmTevRegKey* anm = m_tevColAnmList[i].m_key;
+			u16 index = m_tevColAnmList[i].m_index;
+			anm->getTevColorReg(index, color);
+			// m_tevColAnmList[i].m_key->getTevColorReg(m_tevColAnmList[i].m_index, material->m_tevBlock->getTevColor(i));
+		}
+	}
+	for (u32 i = 0; i < 4; i++) {
+		if (m_tevKColAnmList[i]._02 != 0) {
+			GXColor* color = material->m_tevBlock->getTevKColor(i);
+			// J3DTevBlock* tevBlock = material->m_tevBlock;
+			// J3DAnmTevRegKey* anm = m_tevKColAnmList[i].m_key;
+			// anm->getTevKonstReg(m_tevKColAnmList[i].m_index, tevBlock->getTevKColor(i));
+			// anm->getTevKonstReg(m_tevKColAnmList[i].m_index, color);
+			// anm->getTevKonstReg(m_tevKColAnmList[i].m_index, material->m_tevBlock->getTevKColor(i));
+			m_tevKColAnmList[i].m_key->getTevKonstReg(m_tevKColAnmList[i].m_index, color);
+			// m_tevKColAnmList[i].m_key->getTevKonstReg(m_tevKColAnmList[i].m_index, material->m_tevBlock->getTevKColor(i));
+		}
+	}
+	for (u32 i = 0; i < 8; i++) {
+		// const J3DTexMtxAnm* texMtxAnm = m_texMtxAnmList + i;
+		// if (texMtxAnm->_02 != 0) {
+		// 	texMtxAnm->m_anm->calcTransform(texMtxAnm->m_anm->_08, texMtxAnm->m_index, &material->m_texGenBlock->getTexMtx(i)->m_srtInfo);
+		// }
+		if (m_texMtxAnmList[i]._02 != 0) {
+			J3DTextureSRTInfo* info = &material->m_texGenBlock->getTexMtx(i)->m_srtInfo;
+			J3DAnmTextureSRTKey* anm = m_texMtxAnmList[i].m_anm;
+			anm->calcTransform(anm->_08, m_texMtxAnmList[i].m_index, info);
+		}
+
+		// if (m_texMtxAnmList[i]._02 != 0) {
+		// 	m_texMtxAnmList[i].m_anm->calcTransform(m_texMtxAnmList[i].m_anm->_08, m_texMtxAnmList[i].m_index, &material->m_texGenBlock->getTexMtx(i)->m_srtInfo);
+		// }
+	}
+
 	/*
 	stwu     r1, -0x20(r1)
 	mflr     r0
@@ -218,29 +304,30 @@ lbl_8006A320:
  * Address:	8006A350
  * Size:	000008
  */
-J3DGXColor J3DTevBlock::getTevKColor(unsigned long) { return 0x0; }
+// J3DGXColor* J3DTevBlock::getTevKColor(unsigned long) { return 0x0; }
 
 /*
  * --INFO--
  * Address:	8006A358
  * Size:	000008
  */
-J3DGXColor J3DTevBlock::getTevColor(unsigned long) { return 0x0; }
+// J3DGXColorS10* J3DTevBlock::getTevColor(unsigned long) { return 0x0; }
 
 /*
  * --INFO--
  * Address:	8006A360
  * Size:	000004
  */
-void J3DTevBlock::setTexNo(unsigned long, unsigned short) { }
+// void J3DTevBlock::setTexNo(unsigned long, unsigned short) { }
 
 /*
  * --INFO--
  * Address:	8006A364
  * Size:	000030
  */
-void J3DTexNoAnm::calc(unsigned short*) const
+void J3DTexNoAnm::calc(u16* p1) const
 {
+	m_anm->getTexNo(_04, p1);
 	/*
 	stwu     r1, -0x10(r1)
 	mflr     r0

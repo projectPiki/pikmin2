@@ -135,12 +135,11 @@ struct J3DMaterialTable {
 
 	void clear();
 
-	void allocTexMtxAnimator(J3DAnmTextureSRTKey*, J3DTexMtxAnm**);
+	J3DErrType allocTexMtxAnimator(J3DAnmTextureSRTKey*, J3DTexMtxAnm**);
 	void entryTexMtxAnimator(J3DAnmTextureSRTKey*);
 	void removeTexMtxAnimator(J3DAnmTextureSRTKey*);
 
-	void allocTevRegAnimator(J3DAnmTevRegKey*, J3DTevColorAnm**);
-	void allocTevRegAnimator(J3DAnmTevRegKey*, J3DTevColorAnm**, J3DTevKColorAnm**);
+	J3DErrType allocTevRegAnimator(J3DAnmTevRegKey*, J3DTevColorAnm**, J3DTevKColorAnm**);
 	void entryTevRegAnimator(J3DAnmTevRegKey*);
 	void removeTevRegAnimator(J3DAnmTevRegKey*);
 

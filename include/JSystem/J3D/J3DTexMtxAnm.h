@@ -5,9 +5,11 @@
 
 struct J3DTexMtxAnm {
 	J3DTexMtxAnm();
+	~J3DTexMtxAnm();
 
-	u32 _00; // _00
-	u32 _04; // _04
+	u16 m_index;                       // _00
+	u16 _02;                           // _02
+	struct J3DAnmTextureSRTKey* m_anm; // _04
 };
 
 #endif

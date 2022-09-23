@@ -868,10 +868,10 @@ void J3DSys::reinitLighting()
 	// GXSetChanMatColor(4, &c);
 	// GXColor d = ColorWhite;
 	// GXSetChanMatColor(5, &d);
-	GXSetChanAmbColor(4, ColorBlack);
-	GXSetChanAmbColor(5, ColorBlack);
-	GXSetChanMatColor(4, ColorWhite);
-	GXSetChanMatColor(5, ColorWhite);
+	GXSetChanAmbColor(GX_COLOR0A0, ColorBlack);
+	GXSetChanAmbColor(GX_COLOR1A1, ColorBlack);
+	GXSetChanMatColor(GX_COLOR0A0, ColorWhite);
+	GXSetChanMatColor(GX_COLOR1A1, ColorWhite);
 }
 
 /*
@@ -1012,7 +1012,7 @@ void J3DSys::reinitTevStages()
 	GXSetTevSwapModeTable(GX_TEV_SWAP1, 0, 0, 0, 3);
 	GXSetTevSwapModeTable(GX_TEV_SWAP2, 1, 1, 1, 3);
 	GXSetTevSwapModeTable(GX_TEV_SWAP3, 2, 2, 2, 3);
-	GXSetAlphaCompare(7, 0, 0, 7, 0);
+	GXSetAlphaCompare(GX_ALWAYS, 0, GX_AOP_AND, GX_ALWAYS, 0);
 }
 
 /*

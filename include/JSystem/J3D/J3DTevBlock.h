@@ -8,42 +8,54 @@
 #include "types.h"
 
 struct J3DTevBlock {
-	virtual void reset(J3DTevBlock*);                    // _08 (weak)
-	virtual void load();                                 // _0C (weak)
-	virtual void diff(u32);                              // _10
-	virtual void diffTexNo();                            // _14 (weak)
-	virtual void diffTevReg();                           // _18 (weak)
-	virtual void diffTexCoordScale();                    // _1C (weak)
-	virtual void diffTevStage();                         // _20 (weak)
-	virtual void diffTevStageIndirect();                 // _24 (weak)
-	virtual void patch();                                // _28 (weak)
-	virtual void patchTexNo();                           // _2C (weak)
-	virtual void patchTevReg();                          // _30 (weak)
-	virtual void patchTexNoAndTexCoordScale();           // _34 (weak)
-	virtual void ptrToIndex()    = 0;                    // _38 (weak)
-	virtual void indexToPtr()    = 0;                    // _3C (weak)
-	virtual JBlockType getType() = 0;                    // _40 (weak)
-	virtual u32 countDLSize();                           // _44 (weak)
-	virtual void setTexNo(u32, const u16*);              // _48 (weak)
-	virtual void setTexNo(u32, u16);                     // _4C (weak)
+	virtual void reset(J3DTevBlock*);          // _08 (weak)
+	virtual void load();                       // _0C (weak)
+	virtual void diff(u32);                    // _10
+	virtual void diffTexNo();                  // _14 (weak)
+	virtual void diffTevReg();                 // _18 (weak)
+	virtual void diffTexCoordScale();          // _1C (weak)
+	virtual void diffTevStage();               // _20 (weak)
+	virtual void diffTevStageIndirect();       // _24 (weak)
+	virtual void patch();                      // _28 (weak)
+	virtual void patchTexNo();                 // _2C (weak)
+	virtual void patchTevReg();                // _30 (weak)
+	virtual void patchTexNoAndTexCoordScale(); // _34 (weak)
+	virtual void ptrToIndex()    = 0;          // _38 (weak)
+	virtual void indexToPtr()    = 0;          // _3C (weak)
+	virtual JBlockType getType() = 0;          // _40 (weak)
+	virtual u32 countDLSize();                 // _44 (weak)
+	virtual void setTexNo(u32, const u16*);    // _48 (weak)
+	/**
+	 * @reifiedAddress{8006A360}
+	 * @reifiedFile{JSystem/J3D/J3DMaterialAnm.cpp}
+	 */
+	virtual void setTexNo(u32, u16) {};                  // _4C (weak)
 	virtual u16 getTexNo(u32) const;                     // _50 (weak)
 	virtual void setTevOrder(u32, const J3DTevOrder*);   // _54 (weak)
 	virtual void setTevOrder(u32, J3DTevOrder);          // _58 (weak)
 	virtual J3DTevOrder* getTevOrder(u32);               // _5C (weak)
 	virtual void setTevColor(u32, const J3DGXColorS10*); // _60 (weak)
 	virtual void setTevColor(u32, J3DGXColorS10);        // _64 (weak)
-	virtual void getTevColor(u32);                       // _68 (weak)
-	virtual void setTevKColor(u32, const J3DGXColor*);   // _6C (weak)
-	virtual void setTevKColor(u32, J3DGXColor);          // _70 (weak)
-	virtual J3DGXColor getTevKColor(u32);                // _74 (weak)
-	virtual void setTevKColorSel(u32, const u8*);        // _78 (weak)
-	virtual void setTevKColorSel(u32, u8);               // _7C (weak)
-	virtual GXTevKColorSel getTevKColorSel(u32);         // _80 (weak)
-	virtual void setTevKAlphaSel(u32, const u8*);        // _84 (weak)
-	virtual void setTevKAlphaSel(u32, u8);               // _88 (weak)
-	virtual u8 getTevKAlphaSel(u32);                     // _8C (weak)
-	virtual void setTevStageNum(const u8*);              // _90 (weak)
-	virtual void setTevStageNum(u8);                     // _94 (weak)
+	/**
+	 * @reifiedAddress{8006A358}
+	 * @reifiedFile{JSystem/J3D/J3DMaterialAnm.cpp}
+	 */
+	virtual J3DGXColorS10* getTevColor(u32) { return nullptr; } // _68 (weak)
+	virtual void setTevKColor(u32, const J3DGXColor*);          // _6C (weak)
+	virtual void setTevKColor(u32, J3DGXColor);                 // _70 (weak)
+	/**
+	 * @reifiedAddress{8006A350}
+	 * @reifiedFile{JSystem/J3D/J3DMaterialAnm.cpp}
+	 */
+	virtual J3DGXColor* getTevKColor(u32) { return nullptr; } // _74 (weak)
+	virtual void setTevKColorSel(u32, const u8*);             // _78 (weak)
+	virtual void setTevKColorSel(u32, u8);                    // _7C (weak)
+	virtual GXTevKColorSel getTevKColorSel(u32);              // _80 (weak)
+	virtual void setTevKAlphaSel(u32, const u8*);             // _84 (weak)
+	virtual void setTevKAlphaSel(u32, u8);                    // _88 (weak)
+	virtual u8 getTevKAlphaSel(u32);                          // _8C (weak)
+	virtual void setTevStageNum(const u8*);                   // _90 (weak)
+	virtual void setTevStageNum(u8);                          // _94 (weak)
 	/**
 	 * @reifiedAddress{800602C8}
 	 * @reifiedFile{JSystem/J3D/J3DPacket.cpp}
@@ -51,7 +63,7 @@ struct J3DTevBlock {
 	virtual u8 getTevStageNum() const { return 1; };                   // _98 (weak)
 	virtual void setTevStage(u32, const J3DTevStage*);                 // _9C (weak)
 	virtual void setTevStage(u32, J3DTevStage);                        // _A0 (weak)
-	virtual void getTevStage(u32);                                     // _A4 (weak)
+	virtual J3DTevStage* getTevStage(u32);                             // _A4 (weak)
 	virtual void setTevSwapModeInfo(u32, const J3DTevSwapModeInfo*);   // _A8 (weak)
 	virtual void setTevSwapModeInfo(u32, J3DTevSwapModeInfo);          // _AC (weak)
 	virtual void setTevSwapModeTable(u32, const J3DTevSwapModeTable*); // _B0 (weak)
@@ -98,7 +110,7 @@ struct J3DTevBlock1 : public J3DTevBlock {
 	virtual u8 getTevStageNum() const;                       // _98 (weak)
 	virtual void setTevStage(u32, const J3DTevStage*);       // _9C (weak)
 	virtual void setTevStage(u32, J3DTevStage);              // _A0 (weak)
-	virtual void getTevStage(u32);                           // _A4 (weak)
+	virtual J3DTevStage* getTevStage(u32);                   // _A4 (weak)
 	virtual void setIndTevStage(u32, const J3DIndTevStage*); // _BC (weak)
 	virtual void setIndTevStage(u32, J3DIndTevStage);        // _C0 (weak)
 	virtual J3DIndTevStage* getIndTevStage(u32);             // _C4 (weak)
@@ -141,10 +153,10 @@ struct J3DTevBlock2 : public J3DTevBlock {
 	virtual J3DTevOrder* getTevOrder(u32);                             // _5C (weak)
 	virtual void setTevColor(u32, const J3DGXColorS10*);               // _60 (weak)
 	virtual void setTevColor(u32, J3DGXColorS10);                      // _64 (weak)
-	virtual void getTevColor(u32);                                     // _68 (weak)
+	virtual J3DGXColorS10* getTevColor(u32);                           // _68 (weak)
 	virtual void setTevKColor(u32, const J3DGXColor*);                 // _6C (weak)
 	virtual void setTevKColor(u32, J3DGXColor);                        // _70 (weak)
-	virtual J3DGXColor getTevKColor(u32);                              // _74 (weak)
+	virtual J3DGXColor* getTevKColor(u32);                             // _74 (weak)
 	virtual void setTevKColorSel(u32, const u8*);                      // _78 (weak)
 	virtual void setTevKColorSel(u32, u8);                             // _7C (weak)
 	virtual GXTevKColorSel getTevKColorSel(u32);                       // _80 (weak)
@@ -156,7 +168,7 @@ struct J3DTevBlock2 : public J3DTevBlock {
 	virtual u8 getTevStageNum() const;                                 // _98 (weak)
 	virtual void setTevStage(u32, const J3DTevStage*);                 // _9C (weak)
 	virtual void setTevStage(u32, J3DTevStage);                        // _A0 (weak)
-	virtual void getTevStage(u32);                                     // _A4 (weak)
+	virtual J3DTevStage* getTevStage(u32);                             // _A4 (weak)
 	virtual void setTevSwapModeInfo(u32, const J3DTevSwapModeInfo*);   // _A8 (weak)
 	virtual void setTevSwapModeInfo(u32, J3DTevSwapModeInfo);          // _AC (weak)
 	virtual void setTevSwapModeTable(u32, const J3DTevSwapModeTable*); // _B0 (weak)
@@ -213,10 +225,10 @@ struct J3DTevBlock4 : public J3DTevBlock {
 	virtual J3DTevOrder* getTevOrder(u32);                             // _5C (weak)
 	virtual void setTevColor(u32, const J3DGXColorS10*);               // _60 (weak)
 	virtual void setTevColor(u32, J3DGXColorS10);                      // _64 (weak)
-	virtual void getTevColor(u32);                                     // _68 (weak)
+	virtual J3DGXColorS10* getTevColor(u32);                           // _68 (weak)
 	virtual void setTevKColor(u32, const J3DGXColor*);                 // _6C (weak)
 	virtual void setTevKColor(u32, J3DGXColor);                        // _70 (weak)
-	virtual J3DGXColor getTevKColor(u32);                              // _74 (weak)
+	virtual J3DGXColor* getTevKColor(u32);                             // _74 (weak)
 	virtual void setTevKColorSel(u32, const u8*);                      // _78 (weak)
 	virtual void setTevKColorSel(u32, u8);                             // _7C (weak)
 	virtual GXTevKColorSel getTevKColorSel(u32);                       // _80 (weak)
@@ -228,7 +240,7 @@ struct J3DTevBlock4 : public J3DTevBlock {
 	virtual u8 getTevStageNum() const;                                 // _98 (weak)
 	virtual void setTevStage(u32, const J3DTevStage*);                 // _9C (weak)
 	virtual void setTevStage(u32, J3DTevStage);                        // _A0 (weak)
-	virtual void getTevStage(u32);                                     // _A4 (weak)
+	virtual J3DTevStage* getTevStage(u32);                             // _A4 (weak)
 	virtual void setTevSwapModeInfo(u32, const J3DTevSwapModeInfo*);   // _A8 (weak)
 	virtual void setTevSwapModeInfo(u32, J3DTevSwapModeInfo);          // _AC (weak)
 	virtual void setTevSwapModeTable(u32, const J3DTevSwapModeTable*); // _B0 (weak)
@@ -263,33 +275,41 @@ struct J3DTevBlock4 : public J3DTevBlock {
  * @size{0x174}
  */
 struct J3DTevBlock16 : public J3DTevBlock {
-	virtual void reset(J3DTevBlock*);                                  // _08
-	virtual void load();                                               // _0C
-	virtual void diffTexNo();                                          // _14
-	virtual void diffTevReg();                                         // _18
-	virtual void diffTexCoordScale();                                  // _1C
-	virtual void diffTevStage();                                       // _20
-	virtual void diffTevStageIndirect();                               // _24
-	virtual void patch();                                              // _28
-	virtual void patchTexNo();                                         // _2C
-	virtual void patchTevReg();                                        // _30
-	virtual void patchTexNoAndTexCoordScale();                         // _34
-	virtual void ptrToIndex();                                         // _38
-	virtual void indexToPtr();                                         // _3C (weak)
-	virtual JBlockType getType();                                      // _40 (weak)
-	virtual u32 countDLSize();                                         // _44
-	virtual void setTexNo(u32, const u16*);                            // _48 (weak)
-	virtual void setTexNo(u32, u16);                                   // _4C (weak)
-	virtual u16 getTexNo(u32) const;                                   // _50 (weak)
-	virtual void setTevOrder(u32, const J3DTevOrder*);                 // _54 (weak)
-	virtual void setTevOrder(u32, J3DTevOrder);                        // _58 (weak)
-	virtual J3DTevOrder* getTevOrder(u32);                             // _5C (weak)
-	virtual void setTevColor(u32, const J3DGXColorS10*);               // _60 (weak)
-	virtual void setTevColor(u32, J3DGXColorS10);                      // _64 (weak)
-	virtual void getTevColor(u32);                                     // _68 (weak)
-	virtual void setTevKColor(u32, const J3DGXColor*);                 // _6C (weak)
-	virtual void setTevKColor(u32, J3DGXColor);                        // _70 (weak)
-	virtual J3DGXColor getTevKColor(u32);                              // _74 (weak)
+	virtual void reset(J3DTevBlock*);                    // _08
+	virtual void load();                                 // _0C
+	virtual void diffTexNo();                            // _14
+	virtual void diffTevReg();                           // _18
+	virtual void diffTexCoordScale();                    // _1C
+	virtual void diffTevStage();                         // _20
+	virtual void diffTevStageIndirect();                 // _24
+	virtual void patch();                                // _28
+	virtual void patchTexNo();                           // _2C
+	virtual void patchTevReg();                          // _30
+	virtual void patchTexNoAndTexCoordScale();           // _34
+	virtual void ptrToIndex();                           // _38
+	virtual void indexToPtr();                           // _3C (weak)
+	virtual JBlockType getType();                        // _40 (weak)
+	virtual u32 countDLSize();                           // _44
+	virtual void setTexNo(u32, const u16*);              // _48 (weak)
+	virtual void setTexNo(u32, u16);                     // _4C (weak)
+	virtual u16 getTexNo(u32) const;                     // _50 (weak)
+	virtual void setTevOrder(u32, const J3DTevOrder*);   // _54 (weak)
+	virtual void setTevOrder(u32, J3DTevOrder);          // _58 (weak)
+	virtual J3DTevOrder* getTevOrder(u32);               // _5C (weak)
+	virtual void setTevColor(u32, const J3DGXColorS10*); // _60 (weak)
+	virtual void setTevColor(u32, J3DGXColorS10);        // _64 (weak)
+	/**
+	 * @reifiedAddress{8006A358}
+	 * @reifiedFile{JSystem/J3D/J3DMaterialAnm.cpp}
+	 */
+	virtual J3DGXColorS10* getTevColor(u32);           // _68 (weak)
+	virtual void setTevKColor(u32, const J3DGXColor*); // _6C (weak)
+	virtual void setTevKColor(u32, J3DGXColor);        // _70 (weak)
+	/**
+	 * @reifiedAddress{8006A350}
+	 * @reifiedFile{JSystem/J3D/J3DMaterialAnm.cpp}
+	 */
+	virtual J3DGXColor* getTevKColor(u32);                             // _74 (weak)
 	virtual void setTevKColorSel(u32, const u8*);                      // _78 (weak)
 	virtual void setTevKColorSel(u32, u8);                             // _7C (weak)
 	virtual GXTevKColorSel getTevKColorSel(u32);                       // _80 (weak)
@@ -301,7 +321,7 @@ struct J3DTevBlock16 : public J3DTevBlock {
 	virtual u8 getTevStageNum() const;                                 // _98 (weak)
 	virtual void setTevStage(u32, const J3DTevStage*);                 // _9C (weak)
 	virtual void setTevStage(u32, J3DTevStage);                        // _A0 (weak)
-	virtual void getTevStage(u32);                                     // _A4 (weak)
+	virtual J3DTevStage* getTevStage(u32);                             // _A4 (weak)
 	virtual void setTevSwapModeInfo(u32, const J3DTevSwapModeInfo*);   // _A8 (weak)
 	virtual void setTevSwapModeInfo(u32, J3DTevSwapModeInfo);          // _AC (weak)
 	virtual void setTevSwapModeTable(u32, const J3DTevSwapModeTable*); // _B0 (weak)
@@ -372,10 +392,10 @@ struct J3DTevBlockPatched : public J3DTevBlock {
 	virtual J3DTevOrder* getTevOrder(u32);                   // _5C (weak)
 	virtual void setTevColor(u32, const J3DGXColorS10*);     // _60 (weak)
 	virtual void setTevColor(u32, J3DGXColorS10);            // _64 (weak)
-	virtual void getTevColor(u32);                           // _68 (weak)
+	virtual J3DGXColorS10* getTevColor(u32);                 // _68 (weak)
 	virtual void setTevKColor(u32, const J3DGXColor*);       // _6C (weak)
 	virtual void setTevKColor(u32, J3DGXColor);              // _70 (weak)
-	virtual J3DGXColor getTevKColor(u32);                    // _74 (weak)
+	virtual J3DGXColor* getTevKColor(u32);                   // _74 (weak)
 	virtual void setTevKColorSel(u32, const u8*);            // _78 (weak)
 	virtual void setTevKColorSel(u32, u8);                   // _7C (weak)
 	virtual GXTevKColorSel getTevKColorSel(u32);             // _80 (weak)
@@ -384,7 +404,7 @@ struct J3DTevBlockPatched : public J3DTevBlock {
 	virtual u8 getTevStageNum() const;                       // _98 (weak)
 	virtual void setTevStage(u32, const J3DTevStage*);       // _9C (weak)
 	virtual void setTevStage(u32, J3DTevStage);              // _A0 (weak)
-	virtual void getTevStage(u32);                           // _A4 (weak)
+	virtual J3DTevStage* getTevStage(u32);                   // _A4 (weak)
 	virtual void setIndTevStage(u32, const J3DIndTevStage*); // _BC (weak)
 	virtual void setIndTevStage(u32, J3DIndTevStage);        // _C0 (weak)
 	virtual J3DIndTevStage* getIndTevStage(u32);             // _C4 (weak)

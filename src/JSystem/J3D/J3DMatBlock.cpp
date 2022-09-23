@@ -2,6 +2,7 @@
 #include "Dolphin/gx.h"
 #include "Dolphin/os.h"
 #include "JSystem/J3D/J3DColorBlock.h"
+#include "JSystem/J3D/J3DGXColor.h"
 #include "JSystem/J3D/J3DInd.h"
 #include "JSystem/J3D/J3DPE.h"
 #include "JSystem/J3D/J3DTevBlock.h"
@@ -2922,15 +2923,15 @@ void J3DColorBlockLightOff::patchMatColor()
 	*(++__GDCurrentDL->pDisplayListData) = 0x10;
 	*(++__GDCurrentDL->pDisplayListData) = 0x0C;
 	J3DGXColor color                     = _04[0];
-	*(++__GDCurrentDL->pDisplayListData) = color._03;
-	*(++__GDCurrentDL->pDisplayListData) = color._02;
-	*(++__GDCurrentDL->pDisplayListData) = color._01;
-	*(++__GDCurrentDL->pDisplayListData) = color._00;
+	*(++__GDCurrentDL->pDisplayListData) = color.a;
+	*(++__GDCurrentDL->pDisplayListData) = color.b;
+	*(++__GDCurrentDL->pDisplayListData) = color.g;
+	*(++__GDCurrentDL->pDisplayListData) = color.r;
 	color                                = _04[1];
-	*(++__GDCurrentDL->pDisplayListData) = color._03;
-	*(++__GDCurrentDL->pDisplayListData) = color._02;
-	*(++__GDCurrentDL->pDisplayListData) = color._01;
-	*(++__GDCurrentDL->pDisplayListData) = color._00;
+	*(++__GDCurrentDL->pDisplayListData) = color.a;
+	*(++__GDCurrentDL->pDisplayListData) = color.b;
+	*(++__GDCurrentDL->pDisplayListData) = color.g;
+	*(++__GDCurrentDL->pDisplayListData) = color.r;
 	DCStoreRange(data, __GDCurrentDL->pDisplayListData - data);
 	/*
 	stwu     r1, -0x10(r1)
@@ -14303,7 +14304,7 @@ void J3DTevBlock16::setTevColor(unsigned long, const J3DGXColorS10*)
  * Address:	80081CA8
  * Size:	000014
  */
-void J3DTevBlock16::getTevColor(unsigned long)
+J3DGXColorS10* J3DTevBlock16::getTevColor(unsigned long)
 {
 	/*
 	slwi     r4, r4, 3
@@ -14363,7 +14364,7 @@ void J3DTevBlock16::setTevKColor(unsigned long, const J3DGXColor*)
  * Address:	80081D14
  * Size:	000014
  */
-J3DGXColor J3DTevBlock16::getTevKColor(unsigned long)
+J3DGXColor* J3DTevBlock16::getTevKColor(unsigned long)
 {
 	/*
 	slwi     r4, r4, 2
@@ -14557,7 +14558,7 @@ void J3DTevBlock16::setTevStage(unsigned long, const J3DTevStage*)
  * Address:	80081E0C
  * Size:	000014
  */
-void J3DTevBlock16::getTevStage(unsigned long)
+J3DTevStage* J3DTevBlock16::getTevStage(unsigned long)
 {
 	/*
 	slwi     r4, r4, 3
@@ -15017,7 +15018,7 @@ void J3DTevBlock4::setTevColor(unsigned long, const J3DGXColorS10*)
  * Address:	80082108
  * Size:	000014
  */
-void J3DTevBlock4::getTevColor(unsigned long)
+J3DGXColorS10* J3DTevBlock4::getTevColor(unsigned long)
 {
 	/*
 	slwi     r4, r4, 3
@@ -15077,7 +15078,7 @@ void J3DTevBlock4::setTevKColor(unsigned long, const J3DGXColor*)
  * Address:	80082174
  * Size:	000014
  */
-J3DGXColor J3DTevBlock4::getTevKColor(unsigned long)
+J3DGXColor* J3DTevBlock4::getTevKColor(unsigned long)
 {
 	/*
 	slwi     r4, r4, 2
@@ -15271,7 +15272,7 @@ void J3DTevBlock4::setTevStage(unsigned long, const J3DTevStage*)
  * Address:	8008226C
  * Size:	000014
  */
-void J3DTevBlock4::getTevStage(unsigned long)
+J3DTevStage* J3DTevBlock4::getTevStage(unsigned long)
 {
 	/*
 	slwi     r4, r4, 3
@@ -15731,7 +15732,7 @@ void J3DTevBlock2::setTevColor(unsigned long, const J3DGXColorS10*)
  * Address:	80082568
  * Size:	000014
  */
-void J3DTevBlock2::getTevColor(unsigned long)
+J3DGXColorS10* J3DTevBlock2::getTevColor(unsigned long)
 {
 	/*
 	slwi     r4, r4, 3
@@ -15791,7 +15792,7 @@ void J3DTevBlock2::setTevKColor(unsigned long, const J3DGXColor*)
  * Address:	800825D4
  * Size:	000014
  */
-J3DGXColor J3DTevBlock2::getTevKColor(unsigned long)
+J3DGXColor* J3DTevBlock2::getTevKColor(unsigned long)
 {
 	/*
 	slwi     r4, r4, 2
@@ -15985,7 +15986,7 @@ void J3DTevBlock2::setTevStage(unsigned long, const J3DTevStage*)
  * Address:	800826CC
  * Size:	000014
  */
-void J3DTevBlock2::getTevStage(unsigned long)
+J3DTevStage* J3DTevBlock2::getTevStage(unsigned long)
 {
 	/*
 	slwi     r4, r4, 3
@@ -16474,7 +16475,7 @@ void J3DTevBlock1::setTevStage(unsigned long, const J3DTevStage*)
  * Address:	800829F8
  * Size:	000014
  */
-void J3DTevBlock1::getTevStage(unsigned long)
+J3DTevStage* J3DTevBlock1::getTevStage(unsigned long)
 {
 	/*
 	slwi     r4, r4, 3
@@ -16861,7 +16862,7 @@ void J3DTevBlockPatched::setTevStage(unsigned long, const J3DTevStage*)
  * Address:	80082C80
  * Size:	000014
  */
-void J3DTevBlockPatched::getTevStage(unsigned long)
+J3DTevStage* J3DTevBlockPatched::getTevStage(unsigned long)
 {
 	/*
 	slwi     r4, r4, 3
@@ -16969,7 +16970,7 @@ void J3DTevBlockPatched::setTevColor(unsigned long, const J3DGXColorS10*)
  * Address:	80082D28
  * Size:	000014
  */
-void J3DTevBlockPatched::getTevColor(unsigned long)
+J3DGXColorS10* J3DTevBlockPatched::getTevColor(unsigned long)
 {
 	/*
 	slwi     r4, r4, 3
@@ -17029,7 +17030,7 @@ void J3DTevBlockPatched::setTevKColor(unsigned long, const J3DGXColor*)
  * Address:	80082D94
  * Size:	000014
  */
-J3DGXColor J3DTevBlockPatched::getTevKColor(unsigned long)
+J3DGXColor* J3DTevBlockPatched::getTevKColor(unsigned long)
 {
 	/*
 	slwi     r4, r4, 2

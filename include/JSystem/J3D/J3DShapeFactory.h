@@ -9,7 +9,7 @@
 struct J3DShapeFactory {
 	J3DShapeFactory(const J3DShapeBlock&);
 
-	void create(int, u32, _GXVtxDescList*);
+	J3DShape* create(int, u32, _GXVtxDescList*);
 	J3DShapeMtx* newShapeMtx(u32, int, int) const;
 	J3DShapeDraw* newShapeDraw(int, int) const;
 	void allocVcdVatCmdBuffer(u32);

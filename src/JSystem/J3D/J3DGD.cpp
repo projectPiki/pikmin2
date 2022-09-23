@@ -1,3 +1,4 @@
+#include "Dolphin/gx.h"
 #include "types.h"
 
 /*

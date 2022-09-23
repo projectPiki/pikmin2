@@ -64,8 +64,11 @@
  * Address:	800AB0EC
  * Size:	00003C
  */
-void JAIAnimeSound::handleStop(unsigned char, unsigned long)
+void JAIAnimeSound::handleStop(u8 handleNo, u32 p2)
 {
+	// _40[handleNo] = 0;
+	// _44[handleNo]._00 = 0;
+	ObjectBase::handleStop(handleNo, p2);
 	/*
 	stwu     r1, -0x10(r1)
 	mflr     r0
@@ -90,8 +93,25 @@ void JAIAnimeSound::handleStop(unsigned char, unsigned long)
  * Address:	800AB128
  * Size:	000188
  */
-JAIAnimeSound::JAIAnimeSound(Vec*, JKRHeap*, unsigned char)
+JAIAnimeSound::JAIAnimeSound(Vec* p1, JKRHeap* heap, u8 p3)
+	: Object(p1, heap, p3)
+	, _48(0)
+	, _4C(0)
+	, _50(0)
+	, _54(0)
+	, _58(_4C ? 1 : 0)
+	, _68(0)
+	, _6C(0)
+	, m_soundData(nullptr)
 {
+	// if (_4C) {
+	// 	_58 = 1;
+	// } else {
+	// 	_58 = 0;
+	// }
+	// _68 = 0;
+	// _6C = 0;
+
 	/*
 	stwu     r1, -0x20(r1)
 	mflr     r0

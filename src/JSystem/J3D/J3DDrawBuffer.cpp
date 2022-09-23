@@ -1,3 +1,5 @@
+#include "JSystem/J3D/J3DDrawBuffer.h"
+#include "JSystem/J3D/J3DTevBlock.h"
 #include "types.h"
 
 /*
@@ -357,7 +359,7 @@ lbl_80065CB4:
  * Address:	80065CD4
  * Size:	00000C
  */
-void J3DTevBlock::getTexNo(unsigned long) const
+u16 J3DTevBlock::getTexNo(unsigned long) const
 {
 	/*
 	lis      r3, 0x0000FFFF@ha

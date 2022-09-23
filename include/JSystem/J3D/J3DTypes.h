@@ -6,7 +6,6 @@
 #include "JSystem/JMath.h"
 #include "types.h"
 
-typedef u32 J3DErrType;
 
 // TODO: Make a bitmask enum
 /**
@@ -70,6 +69,16 @@ enum JBlockType {
 	JBT_Tev8           = 'TVB8',
 	JBT_TevNull        = 'TVNL',
 	JBT_TevPatched     = 'TVPT'
+};
+
+enum J3DErrType {
+	JET_Success = 0,
+	JET_NoMatAnm,
+	JET_LockedModelData,
+	JET_NullBinRes,
+	JET_OutOfMemory,
+	JET_InvalidArg,
+	JET_InvalidData
 };
 
 struct J3DAlphaComp {
@@ -159,6 +168,14 @@ struct J3DTexCoord {
 	u8 _01;  // _01
 	u8 _02;  // _02
 	u16 _04; // _04
+};
+
+struct J3DTextureSRTInfo {
+	f32 m_scaleX; // _00 - name derived from J3DTexMtx[0x10]
+	f32 m_scaleY; // _04 - name derived from J3DTexMtx[0x14]
+	u16 _08;      // _08
+	f32 _0C;      // _0C
+	f32 _10;      // _10
 };
 
 struct J3DTransformInfo {

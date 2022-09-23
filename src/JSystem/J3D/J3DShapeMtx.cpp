@@ -2014,7 +2014,7 @@ lbl_80087598:
  * Address:	800875B0
  * Size:	00000C
  */
-void J3DShapeMtxYBBoardConcatView::getType() const
+int J3DShapeMtxYBBoardConcatView::getType() const
 {
 	/*
 	lis      r3, 0x534D5942@ha
@@ -2077,7 +2077,7 @@ lbl_80087614:
  * Address:	8008762C
  * Size:	00000C
  */
-void J3DShapeMtxBBoardConcatView::getType() const
+int J3DShapeMtxBBoardConcatView::getType() const
 {
 	/*
 	lis      r3, 0x534D4242@ha
@@ -2133,7 +2133,7 @@ lbl_8008768C:
  * Address:	800876A4
  * Size:	00000C
  */
-void J3DShapeMtxMultiConcatView::getType() const
+int J3DShapeMtxMultiConcatView::getType() const
 {
 	/*
 	lis      r3, 0x534D4D43@ha
@@ -2147,7 +2147,7 @@ void J3DShapeMtxMultiConcatView::getType() const
  * Address:	800876B0
  * Size:	000008
  */
-void J3DShapeMtxMultiConcatView::getUseMtxNum() const
+int J3DShapeMtxMultiConcatView::getUseMtxNum() const
 {
 	/*
 	lhz      r3, 8(r3)
@@ -2160,7 +2160,7 @@ void J3DShapeMtxMultiConcatView::getUseMtxNum() const
  * Address:	800876B8
  * Size:	000010
  */
-void J3DShapeMtxMultiConcatView::getUseMtxIndex(unsigned short) const
+u16 J3DShapeMtxMultiConcatView::getUseMtxIndex(unsigned short) const
 {
 	/*
 	lwz      r3, 0xc(r3)
@@ -2220,7 +2220,7 @@ lbl_80087710:
  * Address:	80087728
  * Size:	00000C
  */
-void J3DShapeMtxMulti::getType() const
+int J3DShapeMtxMulti::getType() const
 {
 	/*
 	lis      r3, 0x534D4D4C@ha
@@ -2234,7 +2234,7 @@ void J3DShapeMtxMulti::getType() const
  * Address:	80087734
  * Size:	000008
  */
-void J3DShapeMtxMulti::getUseMtxNum() const
+int J3DShapeMtxMulti::getUseMtxNum() const
 {
 	/*
 	lhz      r3, 8(r3)
@@ -2247,7 +2247,7 @@ void J3DShapeMtxMulti::getUseMtxNum() const
  * Address:	8008773C
  * Size:	000010
  */
-void J3DShapeMtxMulti::getUseMtxIndex(unsigned short) const
+u16 J3DShapeMtxMulti::getUseMtxIndex(unsigned short) const
 {
 	/*
 	lwz      r3, 0xc(r3)
@@ -2262,7 +2262,7 @@ void J3DShapeMtxMulti::getUseMtxIndex(unsigned short) const
  * Address:	8008774C
  * Size:	00000C
  */
-void J3DShapeMtxConcatView::getType() const
+int J3DShapeMtxConcatView::getType() const
 {
 	/*
 	lis      r3, 0x534D4356@ha

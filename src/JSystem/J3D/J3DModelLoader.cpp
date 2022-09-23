@@ -723,7 +723,7 @@ J3DModelData* J3DModelLoader::loadBinaryDisplayList(const void* stream, u32 flag
 			readMaterialDL((const J3DMaterialDLBlock*)nextBlock, flags);
 			modifyMaterial(flags);
 			break;
-		case J3DFBT_Material:
+		case J3DFBT_Material: {
 			m_materialBlock = (const J3DMaterialBlock*)nextBlock;
 			u32 matFlags    = flags & 0x3000000 | 0x50100000;
 			if ((flags & 0x3000) == 0) {
@@ -732,6 +732,7 @@ J3DModelData* J3DModelLoader::loadBinaryDisplayList(const void* stream, u32 flag
 				readPatchedMaterial((const J3DMaterialBlock*)nextBlock, matFlags);
 			}
 			break;
+		}
 		default:
 			break;
 		}

@@ -1304,7 +1304,7 @@ void J3DTevBlock::setTevKColor(unsigned long, J3DGXColor) { }
  * Address:	8006D15C
  * Size:	000008
  */
-u32 J3DTevBlock::getTevStage(unsigned long) { return 0x0; }
+J3DTevStage* J3DTevBlock::getTevStage(unsigned long) { return 0x0; }
 
 /*
  * --INFO--

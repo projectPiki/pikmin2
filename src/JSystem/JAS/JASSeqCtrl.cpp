@@ -12,32 +12,16 @@
  */
 void JASSeqCtrl::init()
 {
-	/*
-	li       r0, 0
-	stw      r0, 0(r3)
-	stw      r0, 4(r3)
-	stw      r0, 8(r3)
-	stw      r0, 0xc(r3)
-	stw      r0, 0x10(r3)
-	sth      r0, 0x30(r3)
-	stw      r0, 0x14(r3)
-	sth      r0, 0x32(r3)
-	stw      r0, 0x18(r3)
-	sth      r0, 0x34(r3)
-	stw      r0, 0x1c(r3)
-	sth      r0, 0x36(r3)
-	stw      r0, 0x20(r3)
-	sth      r0, 0x38(r3)
-	stw      r0, 0x24(r3)
-	sth      r0, 0x3a(r3)
-	stw      r0, 0x28(r3)
-	sth      r0, 0x3c(r3)
-	stw      r0, 0x2c(r3)
-	sth      r0, 0x3e(r3)
-	stw      r0, 0x40(r3)
-	stw      r0, 0x44(r3)
-	blr
-	*/
+	_00 = nullptr;
+	_04 = nullptr;
+	_08 = 0;
+	_0C = 0;
+	for (int i = 0; i < 8; i++) {
+		_10[i] = nullptr;
+		_30[i] = 0;
+	}
+	_40 = 0;
+	_44 = nullptr;
 }
 
 /*
@@ -45,15 +29,10 @@ void JASSeqCtrl::init()
  * Address:	8009C8B8
  * Size:	000014
  */
-void JASSeqCtrl::start(void*, unsigned long)
+void JASSeqCtrl::start(void* p1, u32 p2)
 {
-	/*
-	stw      r4, 0(r3)
-	lwz      r0, 0(r3)
-	add      r0, r0, r5
-	stw      r0, 4(r3)
-	blr
-	*/
+	_00 = static_cast<u8*>(p1);
+	_04 = _00 + p2;
 }
 
 /*
@@ -61,43 +40,23 @@ void JASSeqCtrl::start(void*, unsigned long)
  * Address:	8009C8CC
  * Size:	00006C
  */
-void JASSeqCtrl::loopEnd()
+bool JASSeqCtrl::loopEnd()
 {
-	/*
-	lwz      r0, 0xc(r3)
-	cmplwi   r0, 0
-	bne      lbl_8009C8E0
-	li       r3, 0
-	blr
-
-lbl_8009C8E0:
-	slwi     r0, r0, 1
-	add      r4, r3, r0
-	lhz      r5, 0x2e(r4)
-	cmplwi   r5, 0
-	beq      lbl_8009C8FC
-	addi     r0, r5, -1
-	clrlwi   r5, r0, 0x10
-
-lbl_8009C8FC:
-	clrlwi.  r0, r5, 0x10
-	bne      lbl_8009C918
-	lwz      r4, 0xc(r3)
-	addi     r0, r4, -1
-	stw      r0, 0xc(r3)
-	li       r3, 1
-	blr
-
-lbl_8009C918:
-	sth      r5, 0x2e(r4)
-	lwz      r0, 0xc(r3)
-	slwi     r0, r0, 2
-	add      r4, r3, r0
-	lwz      r0, 0xc(r4)
-	stw      r0, 4(r3)
-	li       r3, 1
-	blr
-	*/
+	u32 v1 = _0C;
+	if (v1 == 0) {
+		return false;
+	}
+	u16 v2 = _30[v1 - 1];
+	if (v2 != 0) {
+		v2--;
+	}
+	if (v2 == 0) {
+		_0C--;
+		return true;
+	}
+	_30[v1 - 1] = v2;
+	_04  = _10[_0C - 1];
+	return true;
 }
 
 /*
@@ -105,24 +64,15 @@ lbl_8009C918:
  * Address:	8009C938
  * Size:	000030
  */
-void JASSeqCtrl::waitCountDown()
+bool JASSeqCtrl::waitCountDown()
 {
-	/*
-	lwz      r4, 8(r3)
-	cmpwi    r4, 0
-	ble      lbl_8009C960
-	addi     r0, r4, -1
-	stw      r0, 8(r3)
-	lwz      r0, 8(r3)
-	cmpwi    r0, 0
-	beq      lbl_8009C960
-	li       r3, 0
-	blr
-
-lbl_8009C960:
-	li       r3, 1
-	blr
-	*/
+	if (0 < _08) {
+		_08--;
+		if (_08 != 0) {
+			return false;
+		}
+	}
+	return true;
 }
 
 /*
@@ -130,26 +80,16 @@ lbl_8009C960:
  * Address:	8009C968
  * Size:	000038
  */
-bool JASSeqCtrl::callIntr(void*)
+bool JASSeqCtrl::callIntr(void* p1)
 {
-	/*
-	lwz      r0, 0x44(r3)
-	cmplwi   r0, 0
-	beq      lbl_8009C97C
-	li       r3, 0
-	blr
-
-lbl_8009C97C:
-	lwz      r5, 4(r3)
-	li       r0, 0
-	stw      r5, 0x44(r3)
-	stw      r4, 4(r3)
-	lwz      r4, 8(r3)
-	stw      r4, 0x40(r3)
-	stw      r0, 8(r3)
-	li       r3, 1
-	blr
-	*/
+	if (_44 != nullptr) {
+		return false;
+	}
+	_44 = _04;
+	_04 = static_cast<u8*>(p1);
+	_40 = _08;
+	_08 = 0;
+	return true;
 }
 
 /*
@@ -157,25 +97,15 @@ lbl_8009C97C:
  * Address:	8009C9A0
  * Size:	000034
  */
-void JASSeqCtrl::retIntr()
+bool JASSeqCtrl::retIntr()
 {
-	/*
-	lwz      r0, 0x44(r3)
-	cmplwi   r0, 0
-	bne      lbl_8009C9B4
-	li       r3, 0
-	blr
-
-lbl_8009C9B4:
-	lwz      r4, 0x40(r3)
-	li       r0, 0
-	stw      r4, 8(r3)
-	lwz      r4, 0x44(r3)
-	stw      r4, 4(r3)
-	stw      r0, 0x44(r3)
-	li       r3, 1
-	blr
-	*/
+	if (_44 == nullptr) {
+		return false;
+	}
+	_08 = _40;
+	_04 = _44;
+	_44 = nullptr;
+	return true;
 }
 
 /*
@@ -183,8 +113,23 @@ lbl_8009C9B4:
  * Address:	8009C9D4
  * Size:	000018
  */
-void JASSeqCtrl::get16(unsigned long) const
+u16 JASSeqCtrl::get16(u32 p1) const
 {
+	u32 high = _00[p1++];
+	return _00[p1] + (high << 0x8);
+	// u32 high = ((u32)_00[p1++]) << 0x8;
+	// return _00[p1] + high;
+	// u32 high = _00[p1++] << 0x8;
+	// return _00[p1] + high;
+	// u32 high = _00[p1++] << 0x8;
+	// return high + _00[p1];
+	// u32 high = _00[p1++];
+	// u32 low = _00[p1];
+	// return (high << 0x8) + low;
+	// u32 high = _00[p1++];
+	// return (high << 0x8) + _00[p1];
+	// return ((u32)_00[p1++] << 0x8) + ((u32)_00[p1]);
+	// return ((u32)_00[p1] << 0x8) + ((u32)_00[p1+1]);
 	/*
 	lwz      r3, 0(r3)
 	addi     r0, r4, 1
@@ -200,7 +145,7 @@ void JASSeqCtrl::get16(unsigned long) const
  * Address:	8009C9EC
  * Size:	000028
  */
-void JASSeqCtrl::get24(unsigned long) const
+u32 JASSeqCtrl::get24(unsigned long) const
 {
 	/*
 	lwz      r5, 0(r3)
@@ -221,7 +166,7 @@ void JASSeqCtrl::get24(unsigned long) const
  * Address:	8009CA14
  * Size:	000038
  */
-void JASSeqCtrl::get32(unsigned long) const
+u32 JASSeqCtrl::get32(unsigned long) const
 {
 	/*
 	lwz      r6, 0(r3)
@@ -246,7 +191,7 @@ void JASSeqCtrl::get32(unsigned long) const
  * Address:	8009CA4C
  * Size:	000028
  */
-void JASSeqCtrl::read16()
+u16 JASSeqCtrl::read16()
 {
 	/*
 	lwz      r5, 4(r3)
@@ -267,7 +212,7 @@ void JASSeqCtrl::read16()
  * Address:	8009CA74
  * Size:	000044
  */
-void JASSeqCtrl::read24()
+u32 JASSeqCtrl::read24()
 {
 	/*
 	lwz      r4, 4(r3)
@@ -295,7 +240,7 @@ void JASSeqCtrl::read24()
  * Address:	........
  * Size:	00005C
  */
-void JASSeqCtrl::read32()
+u32 JASSeqCtrl::read32()
 {
 	// UNUSED FUNCTION
 }
