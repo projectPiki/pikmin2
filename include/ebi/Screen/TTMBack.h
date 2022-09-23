@@ -7,15 +7,14 @@
 namespace ebi {
 namespace Screen {
 struct TTMBack : public TScreenBase {
-	virtual void doSetArchive(JKRArchive*);             // _1C
-	virtual void doOpenScreen(ArgOpenTMBack*);          // _20
-	virtual void doCloseScreen(ArgClose*);              // _24
-	virtual void doInitWaitState();                     // _2C
-	virtual bool doUpdateStateOpen();                   // _30
-	virtual bool doUpdateStateWait();                   // _34
-	virtual bool doUpdateStateClose();                  // _38
-	virtual void doDraw();                              // _3C
-	virtual char* getName() { return "TNintendoLogo"; } // _40
+	virtual void doSetArchive(JKRArchive*);             // _24
+	virtual void doOpenScreen(ArgOpen*);                // _28
+	virtual void doCloseScreen(ArgClose*);              // _2C
+	virtual bool doUpdateStateOpen();                   // _38
+	virtual bool doUpdateStateWait();                   // _3C
+	virtual bool doUpdateStateClose();                  // _40
+	virtual void doDraw();                              // _44
+	virtual char* getName() { return "TNintendoLogo"; } // _48 (weak)
 
 	// _00 VTBL
 	P2DScreen::Mgr_tuning* m_mgrTuning; // _0C
