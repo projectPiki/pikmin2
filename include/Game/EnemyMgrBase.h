@@ -4,7 +4,7 @@
 #include "Container.h"
 #include "Game/EnemyPelletInfo.h"
 #include "Game/EnemyStone.h"
-#include "Game/PelletMgr.h"
+#include "Game/pelletMgr.h"
 #include "Game/enemyInfo.h"
 #include "Game/gameGenerator.h"
 #include "GenericObjectMgr.h"
