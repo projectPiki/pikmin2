@@ -1,24 +1,16 @@
-#include "types.h"
+#include "P2DScreen.h"
 
-#include "ebi/P2DScreen/Mgr.h"
-
-/*
-    Generated from dpostproc
-*/
-
-// Whole file is #ifdef'd out because it was meant
-// for a UI based on Windows, not for the GC
-
-// TODO: Link!
-namespace P2DScreen {
-/*
- * --INFO--
- * Address:	803F1A80
- * Size:	000084
+/* Whole file is #ifdef'd out because it was meant
+ * for a UI based on Windows, not for the GC.
+ * 
+ * The only thing in here left is the weak P2DScreen::Mgr dtor, so
+ * the fake function is here in place of the #ifdef'd stuff to gen it.
  */
-Mgr::~Mgr()
-{
-	// Automatically generated
+
+namespace P2DScreen {
+
+static void fakeInfoWindowFunc(Mgr* mgr) {
+    mgr->~Mgr();
 }
 
 } // namespace P2DScreen

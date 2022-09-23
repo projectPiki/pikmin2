@@ -1064,7 +1064,7 @@ EBISAWA:=\
 	$(BUILD_DIR)/asm/plugProjectEbisawaU/ebiOmakeMgr.o\
 	$(BUILD_DIR)/asm/plugProjectEbisawaU/ebiScreenOmakeCardE.o\
 	$(BUILD_DIR)/asm/plugProjectEbisawaU/ebiScreenOmakeGame.o\
-	$(BUILD_DIR)/asm/plugProjectEbisawaU/ebiScreenInfoWindow.o\
+	$(BUILD_DIR)/src/plugProjectEbisawaU/ebiScreenInfoWindow.o\
 
 KONO:=\
 	$(BUILD_DIR)/asm/plugProjectKonoU/khWorldMap.o\
