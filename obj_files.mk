@@ -593,7 +593,7 @@ KANDO:=\
 	$(BUILD_DIR)/asm/plugProjectKandoU/vsStageData.o\
 	$(BUILD_DIR)/asm/plugProjectKandoU/cellMgrParms.o\
 	$(BUILD_DIR)/asm/plugProjectKandoU/cellIterator.o\
-	$(BUILD_DIR)/asm/plugProjectKandoU/vsGS_VSGame.o\
+	$(BUILD_DIR)/src/plugProjectKandoU/vsGS_VSGame.o\
 	$(BUILD_DIR)/src/plugProjectKandoU/gameSoundEvent.o\
 	$(BUILD_DIR)/asm/plugProjectKandoU/aiBattle.o\
 	$(BUILD_DIR)/asm/plugProjectKandoU/gameDeathCount.o\

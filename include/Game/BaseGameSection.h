@@ -244,8 +244,13 @@ struct BaseGameSection : public BaseHIOSection {
 	JUTTexture* _168;                                     // _168
 	int m_texData1;                                       // _16C
 	int _170;                                             // _170
-	u8 _174[0xA8];                                        // _174
-	PikiContainer m_container;                            // _214
+	u8 _174[0xA0];                                        // _174
+// not sure where this goes, but it goes after m_texData1 and before m_container1.
+#if BUILDTARGET == USADEMO1
+	u8 _DemoPadding3[0x4];
+#endif
+	PikiContainer m_container1; // _214
+	PikiContainer m_container2; // _21C
 };
 } // namespace Game
 
