@@ -14,7 +14,7 @@ struct DispMemberDummy : public DispMemberBase {
 	 * @reifiedAddress{8030D844}
 	 * @reifiedFile{plugProjectOgawaU/testScene.cpp}
 	 */
-	virtual u32 getSize() // _00
+	virtual u32 getSize() // _08
 	{
 		return sizeof(DispMemberDummy);
 	}
@@ -23,7 +23,7 @@ struct DispMemberDummy : public DispMemberBase {
 	 * @reifiedAddress{8030D84C}
 	 * @reifiedFile{plugProjectOgawaU/testScene.cpp}
 	 */
-	virtual u32 getOwnerID() // _04
+	virtual u32 getOwnerID() // _0C
 	{
 		return OWNER_OGA;
 	}
@@ -32,7 +32,7 @@ struct DispMemberDummy : public DispMemberBase {
 	 * @reifiedAddress{8030D858}
 	 * @reifiedFile{plugProjectOgawaU/testScene.cpp}
 	 */
-	virtual u64 getMemberID() // _08
+	virtual u64 getMemberID() // _10
 	{
 		return MEMBER_DUMMY;
 	}

@@ -2,10 +2,13 @@
 #define _SCREEN_BASES_H
 
 #include "Dolphin/gx.h"
+#include "Dolphin/stl.h"
 #include "JSystem/JKR/JKRDisposer.h"
 #include "JSystem/JUT/TColor.h"
 #include "Resource.h"
 #include "Screen/Enums.h"
+#include "og/Screen/DispMemberDummy.h"
+#include "Graphics.h"
 #include "types.h"
 #include "CNode.h"
 
@@ -74,24 +77,29 @@ struct SceneBase {
 	SceneBase();
 	~SceneBase();
 
-	virtual SceneType getSceneType()     = 0;               // _00
-	virtual ScreenOwnerID getOwnerID()   = 0;               // _04
-	virtual ScreenMemberID getMemberID() = 0;               // _08
-	virtual bool isUseBackupSceneInfo();                    // _0C
-	virtual bool isDrawInDemo() const;                      // _10
-	virtual const char* getResName() const = 0;             // _14
-	virtual void doCreateObj(JKRArchive*)  = 0;             // _18
-	virtual void doUserCallBackFunc(Resource::MgrCommand*); // _1C
-	virtual void setPort(Graphics&);                        // _20
-	virtual void doUpdateActive();                          // _24
-	virtual bool doConfirmSetScene(SetSceneArg&);           // _28
-	virtual bool doConfirmStartScene(StartSceneArg*);       // _2C
-	virtual bool doConfirmEndScene(EndSceneArg*&);          // _30
-	virtual bool doStart(StartSceneArg*);                   // _34
-	virtual bool doEnd(EndSceneArg*);                       // _38
-	virtual bool setDefaultDispMember();                    // _3C
-	virtual void doSetBackupScene(SetSceneArg&);            // _40
-	virtual int doGetFinishState();                         // _44
+	virtual SceneType getSceneType()     = 0;                           // _08
+	virtual ScreenOwnerID getOwnerID()   = 0;                           // _0C
+	virtual ScreenMemberID getMemberID() = 0;                           // _10
+	virtual bool isUseBackupSceneInfo() { return false; }               // _14 (weak)
+	virtual bool isDrawInDemo() const { return true; }                  // _18 (weak)
+	virtual const char* getResName() const = 0;                         // _1C
+	virtual void doCreateObj(JKRArchive*)  = 0;                         // _20
+	virtual void doUserCallBackFunc(Resource::MgrCommand*);             // _24 (weak)
+	virtual void setPort(Graphics& gfx) { gfx.m_perspGraph.setPort(); } // _28 (weak)
+	virtual void doUpdateActive();                                      // _2C
+	virtual bool doConfirmSetScene(SetSceneArg&) { return true; }       // _30 (weak)
+	virtual bool doConfirmStartScene(StartSceneArg*) { return true; }   // _34 (weak)
+	virtual bool doConfirmEndScene(EndSceneArg*&) { return true; }      // _38 (weak)
+	virtual bool doStart(StartSceneArg*);                               // _3C
+	virtual bool doEnd(EndSceneArg*);                                   // _40
+	virtual bool setDefaultDispMember()                                 // _44 (weak)
+	{
+		og::Screen::DispMemberDummy disp;
+		memcpy(m_dispMemberBuffer, (void*)&disp, sizeof(disp));
+		return true;
+	}
+	virtual void doSetBackupScene(SetSceneArg&) { } // _48 (weak)
+	virtual int doGetFinishState() { return -3; }   // _4C (weak)
 
 	bool confirmEndScene(EndSceneArg*);
 	bool confirmSetScene(SetSceneArg&);

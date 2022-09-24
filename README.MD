@@ -110,6 +110,7 @@ pikmin2.usa.dol: `sha1: 90d328bf8f190c90472e8c19e7e53c6ad0fe0d1a`
 	- <a href="https://github.com/projectPiki/pikmin2/tree/main/src/plugProjectOgawaU/ogSceneWorldMapInfoWindow0.cpp">plugProjectOgawaU/ogSceneWorldMapInfoWindow0.cpp</a>
 	- <a href="https://github.com/projectPiki/pikmin2/tree/main/src/plugProjectOgawaU/ogScreen.cpp">plugProjectOgawaU/ogScreen.cpp</a>
 	- <a href="https://github.com/projectPiki/pikmin2/tree/main/src/plugProjectOgawaU/ogUtil.cpp">plugProjectOgawaU/ogUtil.cpp</a>
+	- <a href="https://github.com/projectPiki/pikmin2/tree/main/src/plugProjectOgawaU/testScene.cpp">plugProjectOgawaU/testScene.cpp</a>
 - plugProjectKandoU
 	- <a href="https://github.com/projectPiki/pikmin2/tree/main/src/plugProjectKandoU/aiConstants.cpp">plugProjectKandoU/aiConstants.cpp</a>
 	- <a href="https://github.com/projectPiki/pikmin2/tree/main/src/plugProjectKandoU/aiFree.cpp">plugProjectKandoU/aiFree.cpp</a>
