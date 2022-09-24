@@ -35,6 +35,7 @@ enum StateID {
 	OTA_BombWait  = 11,
 	OTA_BombMove  = 12,
 	OTA_BombTurn  = 13,
+	OTA_Count     = 14,
 };
 
 struct FSM;
@@ -142,7 +143,7 @@ struct Mgr : public EnemyMgrBase {
 
 struct Parms : public EnemyParmsBase {
 	struct ProperParms : Parameters {
-		inline ProperParms; // probably
+		// inline ProperParms; // probably
 
 		Parm<f32> m_fp01; // _804
 		Parm<f32> m_fp10; // _82C

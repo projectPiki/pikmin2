@@ -51,10 +51,11 @@ struct Obj : public EnemyBase {
 	// _00 		= VTBL
 	// _00-_2BC	= EnemyBase
 	FSM* m_FSM;              // _2BC
-	u8 _2C0;                 // _2C0
-	u8 _2C1;                 // _2C1
-	u8 _2C2[0x2];            // _2C2, padding probably
-	u8 _2C4[0xC];            // _2C4, unknown
+	bool _2C0;               // _2C0
+	u8 _2C1;                 // _2C1, possibly bool?
+	int _2C4;                // _2C4, eaten count?
+	int _2C8;                // _2C8, remaining count?
+	u32 _2CC;                // _2CC, unknown
 	MouthSlots m_mouthSlots; // _2D0
 	u8 _2D8[0xC];            // _2D8
 	f32 _2E4;                // _2E4, timer?
@@ -112,6 +113,16 @@ struct ProperAnimator : public EnemyAnimatorBase {
 
 /////////////////////////////////////////////////////////////////
 // STATE MACHINE DEFINITIONS
+enum StateID {
+	POM_Wait  = 0,
+	POM_Dead  = 1,
+	POM_Open  = 2,
+	POM_Close = 3,
+	POM_Shot  = 4,
+	POM_Swing = 5,
+	POM_Count = 6,
+};
+
 struct FSM : public EnemyStateMachine {
 	virtual void init(EnemyBase*); // _08
 
@@ -120,11 +131,22 @@ struct FSM : public EnemyStateMachine {
 };
 
 struct State : public EnemyFSMState {
+	inline State(u16 stateID, const char* name)
+	    : EnemyFSMState(stateID)
+	{
+		m_name = name;
+	}
+
 	// _00		= VTBL
 	// _00-_10 	= EnemyFSMState
 };
 
 struct StateClose : public State {
+	inline StateClose()
+	    : State(POM_Close, "close")
+	{
+	}
+
 	virtual void init(EnemyBase*, StateArg*); // _08
 	virtual void exec(EnemyBase*);            // _0C
 	virtual void cleanup(EnemyBase*);         // _10
@@ -134,6 +156,11 @@ struct StateClose : public State {
 };
 
 struct StateDead : public State {
+	inline StateDead()
+	    : State(POM_Dead, "dead")
+	{
+	}
+
 	virtual void init(EnemyBase*, StateArg*); // _08
 	virtual void exec(EnemyBase*);            // _0C
 	virtual void cleanup(EnemyBase*);         // _10
@@ -143,6 +170,11 @@ struct StateDead : public State {
 };
 
 struct StateOpen : public State {
+	inline StateOpen()
+	    : State(POM_Open, "open")
+	{
+	}
+
 	virtual void init(EnemyBase*, StateArg*); // _08
 	virtual void exec(EnemyBase*);            // _0C
 	virtual void cleanup(EnemyBase*);         // _10
@@ -152,6 +184,11 @@ struct StateOpen : public State {
 };
 
 struct StateShot : public State {
+	inline StateShot()
+	    : State(POM_Shot, "shot")
+	{
+	}
+
 	virtual void init(EnemyBase*, StateArg*); // _08
 	virtual void exec(EnemyBase*);            // _0C
 	virtual void cleanup(EnemyBase*);         // _10
@@ -161,6 +198,11 @@ struct StateShot : public State {
 };
 
 struct StateSwing : public State {
+	inline StateSwing()
+	    : State(POM_Swing, "swing")
+	{
+	}
+
 	virtual void init(EnemyBase*, StateArg*); // _08
 	virtual void exec(EnemyBase*);            // _0C
 	virtual void cleanup(EnemyBase*);         // _10
@@ -170,6 +212,11 @@ struct StateSwing : public State {
 };
 
 struct StateWait : public State {
+	inline StateWait()
+	    : State(POM_Wait, "wait")
+	{
+	}
+
 	virtual void init(EnemyBase*, StateArg*); // _08
 	virtual void exec(EnemyBase*);            // _0C
 	virtual void cleanup(EnemyBase*);         // _10

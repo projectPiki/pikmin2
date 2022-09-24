@@ -101,11 +101,9 @@ struct ProperAnimator : public EnemyAnimatorBase {
 
 /////////////////////////////////////////////////////////////////
 // STATE MACHINE DEFINITIONS
-struct EggState {
-	// TODO: does this really need to exist?
-	enum State {
-		Wait = 0,
-	};
+enum StateID {
+	EGG_Wait  = 0,
+	EGG_Count = 1,
 };
 
 struct FSM : public EnemyStateMachine {

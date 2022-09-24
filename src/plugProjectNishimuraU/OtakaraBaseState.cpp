@@ -14,7 +14,7 @@ const char basestatename[] = "246-OtakaraBaseState";
  */
 void FSM::init(EnemyBase* enemy)
 {
-	create(14);
+	create(OTA_Count);
 
 	registerState(new StateDead);
 	registerState(new StateFlick);

@@ -17,7 +17,7 @@ namespace Pelplant {
  */
 void FSM::init(EnemyBase* enemy)
 {
-	create(10);
+	create(PELPLANT_Count);
 
 	registerState(new StateWait(PELPLANT_WaitSmall, 0));
 	registerState(new StateWait(PELPLANT_WaitMiddle, 1));

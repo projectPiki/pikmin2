@@ -647,7 +647,7 @@ NISHIMURA:=\
 	$(BUILD_DIR)/src/plugProjectNishimuraU/PomAnimator.o\
 	$(BUILD_DIR)/asm/plugProjectNishimuraU/PomMgr.o\
 	$(BUILD_DIR)/asm/plugProjectNishimuraU/Pom.o\
-	$(BUILD_DIR)/asm/plugProjectNishimuraU/PomState.o\
+	$(BUILD_DIR)/src/plugProjectNishimuraU/PomState.o\
 	$(BUILD_DIR)/asm/plugProjectNishimuraU/FrogState.o\
 	$(BUILD_DIR)/src/plugProjectNishimuraU/FrogAnimator.o\
 	$(BUILD_DIR)/asm/plugProjectNishimuraU/FrogMgr.o\
