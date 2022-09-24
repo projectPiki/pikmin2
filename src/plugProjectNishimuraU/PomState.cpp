@@ -11,7 +11,7 @@ namespace Pom {
  */
 void FSM::init(EnemyBase* enemy)
 {
-	create(6);
+	create(POM_Count);
 	registerState(new StateWait);
 	registerState(new StateDead);
 	registerState(new StateOpen);

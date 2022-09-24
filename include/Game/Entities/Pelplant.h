@@ -227,6 +227,7 @@ enum StateID {
 	PELPLANT_WitherBig    = 7,
 	PELPLANT_WitherMiddle = 8,
 	PELPLANT_WitherSmall  = 9,
+	PELPLANT_Count        = 10,
 };
 
 struct State : public EnemyFSMState {

@@ -14,8 +14,8 @@ namespace Egg {
  */
 void FSM::init(Game::EnemyBase* base)
 {
-	create(1);
-	registerState(new StateWait(EggState::Wait));
+	create(EGG_Count);
+	registerState(new StateWait(EGG_Wait));
 }
 
 /*

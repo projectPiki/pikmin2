@@ -16,9 +16,9 @@ namespace Bomb {
  */
 void FSM::init(EnemyBase*)
 {
-	create(2);
-	registerState(new StateWait(0));
-	registerState(new StateBomb(1));
+	create(BOMB_Count);
+	registerState(new StateWait(BOMB_Wait));
+	registerState(new StateBomb(BOMB_Bomb));
 }
 
 /*
