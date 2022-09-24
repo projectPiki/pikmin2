@@ -54,7 +54,6 @@ struct EnemyMgrBase;
 struct WaterBox;
 struct LifeGaugeParam;
 struct Interaction;
-struct StateMachine;
 
 enum EnemyEvent {
 	EB_Vulnerable       = 0x1, // can take damage or not
