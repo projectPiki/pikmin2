@@ -262,7 +262,7 @@ struct InteractWind : public Interaction {
 
 struct InteractBomb : public InteractWind {
 	inline InteractBomb(Creature* parent, f32 force, Vector3f* direction)
-		: InteractWind(parent, force, direction)
+	    : InteractWind(parent, force, direction)
 	{
 	}
 

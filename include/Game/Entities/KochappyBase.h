@@ -14,20 +14,25 @@
 /**
  * --Header for Dwarf Bulborb Base Class--
  * Derived classes:
- * BlueKochappy		= Dwarf Orange Bulborb
- * Catfish			= Water Dumple
- * Kochappy			= Dwarf Red Bulborb
- * YellowKochappy 	= Dwarf Snowy Bulborb
+ * BlueKochappy   = Dwarf Orange Bulborb
+ * Catfish        = Water Dumple
+ * Kochappy       = Dwarf Red Bulborb
+ * YellowKochappy = Dwarf Snowy Bulborb
  */
 
 namespace Game {
 namespace KochappyBase {
-struct FSM;
+struct FSM : public EnemyStateMachine {
+	virtual void init(EnemyBase*); // _08
+
+	// _00		= VTBL
+	// _00-_1C	= EnemyStateMachine
+};
 
 struct Obj : public EnemyBase {
 	Obj();
 
-	//////////////// VTABLE
+	//////////////// VTABLE - Note: this order is needed for correct weak function ordering
 	virtual void onInit(CreatureInitArg*);                  // _30
 	virtual void doDirectDraw(Graphics&);                   // _50
 	virtual void bounceCallback(Sys::Triangle*);            // _E8
@@ -41,16 +46,27 @@ struct Obj : public EnemyBase {
 	virtual void initMouthSlots();                          // _22C
 	virtual void initWalkSmokeEffect();                     // _230
 	virtual WalkSmokeEffect::Mgr* getWalkSmokeEffectMgr();  // _234
-	virtual MouthSlots* getMouthSlots();                    // _25C (weak)
 	virtual bool pressCallBack(Creature*, f32, CollPart*);  // _27C
 	virtual void doStartStoneState();                       // _2A4
 	virtual void doFinishStoneState();                      // _2A8
 	virtual void startCarcassMotion();                      // _2C4
-	virtual float getDownSmokeScale();                      // _2EC (weak)
-	virtual void setFSM(FSM*);                              // _2F8 (weak)
-	virtual void setAnimationSpeed(f32);                    // _2FC (weak)
-	virtual void resetEnemyNonStone();                      // _300 (weak)
-	virtual void setEnemyNonStone();                        // _304 (weak)
+	virtual void setFSM(FSM* fsm)                           // _2F8 (weak)
+	{
+		m_FSM = fsm;
+		m_FSM->init(this);
+		m_currentLifecycleState = nullptr;
+	}
+	virtual void setAnimationSpeed(f32 speed) // _2FC (weak)
+	{
+		EnemyBase::setAnimSpeed(speed);
+	}
+	virtual MouthSlots* getMouthSlots() // _25C (weak)
+	{
+		return &m_mouthSlots;
+	}
+	virtual void resetEnemyNonStone() { }            // _300 (weak)
+	virtual void setEnemyNonStone() { }              // _304 (weak)
+	virtual f32 getDownSmokeScale() { return 0.4f; } // _2EC (weak)
 	//////////////// VTABLE END
 
 	// _00 		= VTBL
@@ -98,13 +114,6 @@ struct ProperAnimator : public EnemyAnimatorBase {
 
 /////////////////////////////////////////////////////////////////
 // STATE MACHINE DEFINITIONS
-struct FSM : public EnemyStateMachine {
-	virtual void init(EnemyBase*); // _08
-
-	// _00		= VTBL
-	// _00-_1C	= EnemyStateMachine
-};
-
 struct State : public EnemyFSMState {
 	inline State(int); // probably
 

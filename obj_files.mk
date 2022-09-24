@@ -432,7 +432,7 @@ YAMASHITA:=\
 	$(BUILD_DIR)/src/plugProjectYamashitaU/enemyInteractBattle.o\
 	$(BUILD_DIR)/asm/plugProjectYamashitaU/generalEnemyMgr.o\
 	$(BUILD_DIR)/src/plugProjectYamashitaU/kochappyAnimator.o\
-	$(BUILD_DIR)/asm/plugProjectYamashitaU/kochappy.o\
+	$(BUILD_DIR)/src/plugProjectYamashitaU/kochappy.o\
 	$(BUILD_DIR)/asm/plugProjectYamashitaU/kochappyState.o\
 	$(BUILD_DIR)/asm/plugProjectYamashitaU/kochappyMgr.o\
 	$(BUILD_DIR)/asm/plugProjectYamashitaU/enemyAction.o\

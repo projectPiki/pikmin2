@@ -61,7 +61,7 @@ struct Mgr : public ChappyBase::Mgr {
 	// _00 		= VTBL
 	// _00-_44	= EnemyMgrBase
 	ResTIMG* m_changeTexture0;           // _44
-	ResTIMG* m_changeTexture1;					 // _48
+	ResTIMG* m_changeTexture1;           // _48
 	Obj* m_obj;                          // _4C, an array of Objs
 	EffectAnimator::Mgr m_effectAnimMgr; // _50, pointer to this at _2EC in Obj
 };

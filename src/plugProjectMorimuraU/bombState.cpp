@@ -27,7 +27,7 @@ void FSM::init(EnemyBase*)
  * Size:	00003C
  */
 StateWait::StateWait(int stateID)
-	: State(stateID)
+    : State(stateID)
 {
 	m_name = "wait";
 }
@@ -89,7 +89,7 @@ void Bomb::StateWait::exec(EnemyBase* enemy)
  * Size:	00003C
  */
 StateBomb::StateBomb(int stateID)
-	: State(stateID)
+    : State(stateID)
 {
 	m_name = "bomb";
 }
@@ -125,37 +125,37 @@ void StateBomb::exec(EnemyBase* enemy)
 			Vector3f effectPos;
 			enemy->getCommonEffectPos(effectPos);
 			EnemyTypeID::EEnemyTypeID id = static_cast<Obj*>(enemy)->getEnemyTypeID();
-			efx::ArgEnemyType fxArg (effectPos, id, 1.0f);
+			efx::ArgEnemyType fxArg(effectPos, id, 1.0f);
 			efx::TBombrock bombEffect;
 			efx::TBombrockABCD* abcdPtr = &bombEffect.m_efxBombABCD;
 			efx::TBombrockEFGH* efghPtr = &bombEffect.m_efxBombEFGH;
-			
+
 			if (abcdPtr->create(&fxArg)) {
-					efghPtr->create(&fxArg);
+				efghPtr->create(&fxArg);
 			}
 			static_cast<Obj*>(enemy)->m_efxLight->forceKill();
 			enemy->m_soundObj->startSound(PSSE_PK_SE_BOMB, 0);
 
 			if (enemy->m_waterBox != nullptr) {
-					static_cast<Obj*>(enemy)->bombEffInWater();
+				static_cast<Obj*>(enemy)->bombEffInWater();
 			}
 
 			cameraMgr->startVibration(12, effectPos, 2);
 			rumbleMgr->startRumble(15, effectPos, 2);
 
 			Vector3f position = enemy->getPosition();
-			Parms* parms = static_cast<Parms*>(enemy->m_parms);
-			f32 offset = parms->m_properParms._82C.m_value;
-			f32 max = position.y + offset;
-			f32 min = position.y - offset;
+			Parms* parms      = static_cast<Parms*>(enemy->m_parms);
+			f32 offset        = parms->m_properParms._82C.m_value;
+			f32 max           = position.y + offset;
+			f32 min           = position.y - offset;
 
 			Sys::Sphere sphere;
 			sphere.m_position = Vector3f(position);
-			sphere.m_radius = parms->m_general.m_fp22.m_value;
-			CellIteratorArg iteratorArg (sphere);
+			sphere.m_radius   = parms->m_general.m_fp22.m_value;
+			CellIteratorArg iteratorArg(sphere);
 			iteratorArg._14 = 1;
 
-			CellIterator iterator (iteratorArg);
+			CellIterator iterator(iteratorArg);
 
 			iterator.first();
 
@@ -167,8 +167,8 @@ void StateBomb::exec(EnemyBase* enemy)
 						if (creature->isTeki()) {
 
 							f32 weight = 1.0f;
-							f32 force = weight * static_cast<Parms*>(enemy->m_parms)->m_properParms._804.m_value;
-							InteractBomb interBomb (enemy, force, &Vector3f::zero);
+							f32 force  = weight * static_cast<Parms*>(enemy->m_parms)->m_properParms._804.m_value;
+							InteractBomb interBomb(enemy, force, &Vector3f::zero);
 
 							creature->stimulate(interBomb);
 
@@ -193,8 +193,8 @@ void StateBomb::exec(EnemyBase* enemy)
 							sep.y = pikiWeight;
 							sep.z *= pikiWeight;
 
-							InteractBomb interBomb (target, force, &sep);
-							
+							InteractBomb interBomb(target, force, &sep);
+
 							creature->stimulate(interBomb);
 						}
 					}

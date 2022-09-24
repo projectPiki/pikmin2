@@ -67,8 +67,8 @@ struct Obj : public EnemyBase {
 
 	// _00 		= VTBL
 	// _00-_2BC	= EnemyBase
-	u8 _2BC;                   			 // _2BC
-	u8 _2BD[0xF];										 // _2BD, unknown
+	u8 _2BC;                         // _2BC
+	u8 _2BD[0xF];                    // _2BD, unknown
 	OtakaraBase::Obj* m_otakara;     // _2CC
 	FSM* m_FSM;                      // _2D0
 	efx::TBombrockLight* m_efxLight; // _2D4
@@ -96,9 +96,9 @@ struct Parms : public EnemyParmsBase {
 		inline ProperParms(); // probably
 
 		Parm<f32> _804; // _804, type unsure
-		Parm<f32> _82C;	// _82C, type unsure
-		Parm<f32> _854;	// _854, type unsure
-		Parm<f32> _87C;	// _87C, type unsure
+		Parm<f32> _82C; // _82C, type unsure
+		Parm<f32> _854; // _854, type unsure
+		Parm<f32> _87C; // _87C, type unsure
 	};
 	Parms();
 
@@ -135,13 +135,13 @@ struct FSM : public EnemyStateMachine {
 
 struct State : public EnemyFSMState {
 	inline State(int stateID)
-		: EnemyFSMState(stateID)
+	    : EnemyFSMState(stateID)
 	{
 	}
 
 	// _00		= VTBL
 	// _00-_10 	= EnemyFSMState
-	int _10;	// _10, maybe counter? kills bomb if it reaches 200
+	int _10; // _10, maybe counter? kills bomb if it reaches 200
 };
 
 struct StateBomb : public State {

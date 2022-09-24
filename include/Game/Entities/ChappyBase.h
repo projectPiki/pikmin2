@@ -35,7 +35,7 @@ struct FSM : public EnemyStateMachine {
 struct Obj : public EnemyBase {
 	Obj();
 
-	//////////////// VTABLE
+	//////////////// VTABLE - Note: this order is needed for correct weak function ordering
 	virtual void onInit(CreatureInitArg*);                  // _30
 	virtual void doDirectDraw(Graphics&);                   // _50
 	virtual void collisionCallback(CollEvent&);             // _EC
@@ -66,24 +66,24 @@ struct Obj : public EnemyBase {
 		m_FSM->init(this);
 		m_currentLifecycleState = nullptr;
 	}
-	virtual bool isWakeup();                                // _2FC
-	virtual void setAnimationSpeed(f32 speed)               // _300 (weak)
+	virtual bool isWakeup();                  // _2FC
+	virtual void setAnimationSpeed(f32 speed) // _300 (weak)
 	{
 		EnemyBase::setAnimSpeed(speed);
 	}
-	virtual void flickAttackFail();                         // _304
-	virtual void flickStatePikmin();                        // _308
-	virtual void flickAttackBomb();                         // _30C
-	virtual void eatAttackPikmin();                         // _310
-	virtual void resetUnderGround() { }                     // _314 (weak)
-	virtual void setUnderGround() { }                       // _318 (weak)
-	virtual void createEffect();                            // _31C
-	virtual void setupEffect();                             // _320
-	virtual void startSleepEffect();                        // _324
-	virtual void finishSleepEffect();                       // _328
-	virtual void createFlickEffect() { }                    // _32C (weak)
-	virtual void createSmokeEffect() { }                    // _330 (weak)
-	virtual f32 getDownSmokeScale() { return 0.9f; }        // _2EC (weak)
+	virtual void flickAttackFail();                  // _304
+	virtual void flickStatePikmin();                 // _308
+	virtual void flickAttackBomb();                  // _30C
+	virtual void eatAttackPikmin();                  // _310
+	virtual void resetUnderGround() { }              // _314 (weak)
+	virtual void setUnderGround() { }                // _318 (weak)
+	virtual void createEffect();                     // _31C
+	virtual void setupEffect();                      // _320
+	virtual void startSleepEffect();                 // _324
+	virtual void finishSleepEffect();                // _328
+	virtual void createFlickEffect() { }             // _32C (weak)
+	virtual void createSmokeEffect() { }             // _330 (weak)
+	virtual f32 getDownSmokeScale() { return 0.9f; } // _2EC (weak)
 	//////////////// VTABLE END
 
 	// _00 		= VTBL

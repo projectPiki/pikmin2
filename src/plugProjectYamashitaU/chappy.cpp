@@ -1,13 +1,14 @@
 #include "Game/Entities/Chappy.h"
 
 namespace Game {
+namespace Chappy {
 
 /*
  * --INFO--
  * Address:	80115F90
  * Size:	000144
  */
-Chappy::Obj::Obj()
+Obj::Obj()
 {
 	m_animator = new ChappyBase::ProperAnimator;
 	setFSM(new ChappyBase::FSM);
@@ -19,7 +20,7 @@ Chappy::Obj::Obj()
  * Address:	801161DC
  * Size:	0002B0
  */
-void Chappy::Obj::changeMaterial()
+void Obj::changeMaterial()
 {
 	J3DModelData* modelData;
 	J3DModel* j3dModel = m_model->m_j3dModel;
@@ -55,4 +56,5 @@ void Chappy::Obj::changeMaterial()
 	}
 }
 
+} // namespace Chappy
 } // namespace Game

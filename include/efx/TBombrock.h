@@ -7,7 +7,7 @@
 namespace efx {
 struct TBombrockABCD : public TSimple4 {
 	inline TBombrockABCD()
-		: TSimple4(8, 9, 10, 11)
+	    : TSimple4(8, 9, 10, 11)
 	{
 	}
 
@@ -17,7 +17,7 @@ struct TBombrockABCD : public TSimple4 {
 
 struct TBombrockEFGH : public TSimple4 {
 	inline TBombrockEFGH()
-		: TSimple4(12, 13, 14, 15)
+	    : TSimple4(12, 13, 14, 15)
 	{
 	}
 
@@ -26,7 +26,7 @@ struct TBombrockEFGH : public TSimple4 {
 };
 
 struct TBombrock : public TBase {
-	inline TBombrock() {}
+	inline TBombrock() { }
 
 	virtual bool create(Arg* arg) // _08 (weak)
 	{
@@ -36,12 +36,12 @@ struct TBombrock : public TBase {
 		}
 		return result;
 	}
-	virtual void forceKill() { }  // _0C (weak)
-	virtual void fade() { }       // _10 (weak)
+	virtual void forceKill() { } // _0C (weak)
+	virtual void fade() { }      // _10 (weak)
 
 	// _00      = VTBL
-	TBombrockABCD m_efxBombABCD;	// _04
-	TBombrockEFGH m_efxBombEFGH;	// _20
+	TBombrockABCD m_efxBombABCD; // _04
+	TBombrockEFGH m_efxBombEFGH; // _20
 };
 
 struct TBombrockLight : public TChaseMtxT {

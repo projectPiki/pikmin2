@@ -72,7 +72,7 @@ void Obj::doUpdateCommon()
 	m_globalAlpha = alpha;
 	m_efxTest->setGlobalAlpha(m_globalAlpha);
 	m_efxTest->setGlobalDynamicsScale(m_scale);
-	
+
 	f32 frame = getMotionFrame();
 	int idx   = getCurrAnimIndex();
 	m_effectAnimMgr->update(m_efxTest, idx, frame);
