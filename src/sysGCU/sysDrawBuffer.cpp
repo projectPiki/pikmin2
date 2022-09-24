@@ -4,43 +4,6 @@
 #include "Sys/DrawBuffers.h"
 #include "types.h"
 
-/*
-    Generated from dpostproc
-
-    .section .rodata  # 0x804732E0 - 0x8049E220
-    .global lbl_8049BAD8
-    lbl_8049BAD8:
-        .4byte 0x73797344
-        .4byte 0x72617742
-        .4byte 0x75666665
-        .4byte 0x722E6370
-        .4byte 0x70000000
-    .global lbl_8049BAEC
-    lbl_8049BAEC:
-        .asciz "P2Assert"
-        .skip 3
-    .global lbl_8049BAF8
-    lbl_8049BAF8:
-        .4byte 0x44726177
-        .4byte 0x42756666
-        .4byte 0x65720000
-        .4byte 0x00000000
-
-    .section .data, "wa"  # 0x8049E220 - 0x804EFC20
-    .global __vt__Q23Sys11DrawBuffers
-    __vt__Q23Sys11DrawBuffers:
-        .4byte 0
-        .4byte 0
-        .4byte __dt__Q23Sys11DrawBuffersFv
-        .4byte getChildCount__5CNodeFv
-    .global __vt__Q23Sys10DrawBuffer
-    __vt__Q23Sys10DrawBuffer:
-        .4byte 0
-        .4byte 0
-        .4byte __dt__Q23Sys10DrawBufferFv
-        .4byte getChildCount__5CNodeFv
-*/
-
 namespace Sys {
 
 /*
@@ -49,14 +12,10 @@ namespace Sys {
  * Size:	00005C
  */
 DrawBuffer::DrawBuffer()
-    : CNode()
 {
-	_18.byteView[0] = 0;
-	_18.byteView[1] = 0;
-	_18.byteView[0] = 0;
-	_18.byteView[1] = 0;
-	_1C             = nullptr;
-	_20             = -1;
+	_18.clear();
+	_1C = nullptr;
+	_20 = -1;
 }
 
 /*
@@ -120,7 +79,6 @@ void DrawBuffer::frameInit()
  * Size:	000054
  */
 DrawBuffers::DrawBuffers()
-    : CNode()
 {
 	m_buffers = nullptr;
 	m_count   = 0;

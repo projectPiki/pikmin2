@@ -253,6 +253,14 @@ struct Navi : public FakePiki, virtual public PelletView {
 	void updateThrowDisable();
 	void useDope(int);
 
+	inline void setCalcs()
+	{
+		SysShape::Model* model = m_model;
+		model->loopTimer();
+		model->m_j3dModel->m_modelData->m_jointTree.m_joints[0]->m_mtxCalc
+		    = static_cast<J3DMtxCalcAnmBase*>(m_animator.m_animator2.getCalc());
+	}
+
 	// FakePiki: _000 - _24C
 	// MotionListener: _24C - _250
 	// ptr to PelletView: _250

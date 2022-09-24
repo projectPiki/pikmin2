@@ -432,11 +432,11 @@ YAMASHITA:=\
 	$(BUILD_DIR)/src/plugProjectYamashitaU/enemyInteractBattle.o\
 	$(BUILD_DIR)/asm/plugProjectYamashitaU/generalEnemyMgr.o\
 	$(BUILD_DIR)/src/plugProjectYamashitaU/kochappyAnimator.o\
-	$(BUILD_DIR)/asm/plugProjectYamashitaU/kochappy.o\
+	$(BUILD_DIR)/src/plugProjectYamashitaU/kochappy.o\
 	$(BUILD_DIR)/asm/plugProjectYamashitaU/kochappyState.o\
 	$(BUILD_DIR)/asm/plugProjectYamashitaU/kochappyMgr.o\
 	$(BUILD_DIR)/asm/plugProjectYamashitaU/enemyAction.o\
-	$(BUILD_DIR)/asm/plugProjectYamashitaU/chappy.o\
+	$(BUILD_DIR)/src/plugProjectYamashitaU/chappy.o\
 	$(BUILD_DIR)/asm/plugProjectYamashitaU/chappyState.o\
 	$(BUILD_DIR)/src/plugProjectYamashitaU/chappyAnimator.o\
 	$(BUILD_DIR)/asm/plugProjectYamashitaU/chappyMgr.o\
@@ -464,7 +464,7 @@ YAMASHITA:=\
 	$(BUILD_DIR)/asm/plugProjectYamashitaU/BlueChappyMgr.o\
 	$(BUILD_DIR)/src/plugProjectYamashitaU/BlueChappy.o\
 	$(BUILD_DIR)/asm/plugProjectYamashitaU/YellowChappyMgr.o\
-	$(BUILD_DIR)/asm/plugProjectYamashitaU/YellowChappy.o\
+	$(BUILD_DIR)/src/plugProjectYamashitaU/YellowChappy.o\
 	$(BUILD_DIR)/asm/plugProjectYamashitaU/BlueKochappyMgr.o\
 	$(BUILD_DIR)/src/plugProjectYamashitaU/BlueKochappy.o\
 	$(BUILD_DIR)/src/plugProjectYamashitaU/YellowKochappy.o\
@@ -520,7 +520,7 @@ KANDO:=\
 	$(BUILD_DIR)/asm/plugProjectKandoU/dynCreature.o\
 	$(BUILD_DIR)/asm/plugProjectKandoU/gameGenerator.o\
 	$(BUILD_DIR)/asm/plugProjectKandoU/genPiki.o\
-	$(BUILD_DIR)/asm/plugProjectKandoU/genNavi.o\
+	$(BUILD_DIR)/src/plugProjectKandoU/genNavi.o\
 	$(BUILD_DIR)/asm/plugProjectKandoU/genItem.o\
 	$(BUILD_DIR)/src/plugProjectKandoU/gameStages.o\
 	$(BUILD_DIR)/asm/plugProjectKandoU/gameSeaMgr.o\
@@ -593,12 +593,12 @@ KANDO:=\
 	$(BUILD_DIR)/asm/plugProjectKandoU/vsStageData.o\
 	$(BUILD_DIR)/asm/plugProjectKandoU/cellMgrParms.o\
 	$(BUILD_DIR)/asm/plugProjectKandoU/cellIterator.o\
-	$(BUILD_DIR)/asm/plugProjectKandoU/vsGS_VSGame.o\
+	$(BUILD_DIR)/src/plugProjectKandoU/vsGS_VSGame.o\
 	$(BUILD_DIR)/src/plugProjectKandoU/gameSoundEvent.o\
 	$(BUILD_DIR)/asm/plugProjectKandoU/aiBattle.o\
 	$(BUILD_DIR)/asm/plugProjectKandoU/gameDeathCount.o\
 	$(BUILD_DIR)/asm/plugProjectKandoU/aiBore.o\
-	$(BUILD_DIR)/asm/plugProjectKandoU/mapPartsView.o\
+	$(BUILD_DIR)/src/plugProjectKandoU/mapPartsView.o\
 	$(BUILD_DIR)/asm/plugProjectKandoU/singleGS_Ending.o\
 	$(BUILD_DIR)/src/plugProjectKandoU/gameIconTexture.o\
 	$(BUILD_DIR)/asm/plugProjectKandoU/gameTekiStat.o\
@@ -874,7 +874,7 @@ OGAWA:=\
 	$(BUILD_DIR)/asm/plugProjectOgawaU/ogCounterRV.o\
 	$(BUILD_DIR)/asm/plugProjectOgawaU/ogSE.o\
 	$(BUILD_DIR)/asm/plugProjectOgawaU/ogCounterDay.o\
-	$(BUILD_DIR)/asm/plugProjectOgawaU/testScene.o\
+	$(BUILD_DIR)/src/plugProjectOgawaU/testScene.o\
 	$(BUILD_DIR)/asm/plugProjectOgawaU/testObj.o\
 	$(BUILD_DIR)/asm/plugProjectOgawaU/ogSceneGround.o\
 	$(BUILD_DIR)/asm/plugProjectOgawaU/ogObjGround.o\
@@ -919,7 +919,7 @@ OGAWA:=\
 	$(BUILD_DIR)/src/plugProjectOgawaU/ogSceneVs.o\
 	$(BUILD_DIR)/asm/plugProjectOgawaU/ogObjChallenge1P.o\
 	$(BUILD_DIR)/asm/plugProjectOgawaU/ogSceneChallenge1P.o\
-	$(BUILD_DIR)/asm/plugProjectOgawaU/ogScaleMgr.o\
+	$(BUILD_DIR)/src/plugProjectOgawaU/ogScaleMgr.o\
 	$(BUILD_DIR)/asm/plugProjectOgawaU/ogObjSMenuPauseVs.o\
 	$(BUILD_DIR)/src/plugProjectOgawaU/ogSceneSMenuPauseVs.o\
 	$(BUILD_DIR)/asm/plugProjectOgawaU/ogFuriko.o\
@@ -960,7 +960,7 @@ MORIMURA:=\
 	$(BUILD_DIR)/asm/plugProjectMorimuraU/hurryUp2D.o\
 	$(BUILD_DIR)/asm/plugProjectMorimuraU/gameOver2D.o\
 	$(BUILD_DIR)/src/plugProjectMorimuraU/testBase.o\
-	$(BUILD_DIR)/asm/plugProjectMorimuraU/bombState.o\
+	$(BUILD_DIR)/src/plugProjectMorimuraU/bombState.o\
 	$(BUILD_DIR)/src/plugProjectMorimuraU/bombAnimator.o\
 	$(BUILD_DIR)/asm/plugProjectMorimuraU/bombMgr.o\
 	$(BUILD_DIR)/asm/plugProjectMorimuraU/bomb.o\
@@ -1064,7 +1064,7 @@ EBISAWA:=\
 	$(BUILD_DIR)/asm/plugProjectEbisawaU/ebiOmakeMgr.o\
 	$(BUILD_DIR)/asm/plugProjectEbisawaU/ebiScreenOmakeCardE.o\
 	$(BUILD_DIR)/asm/plugProjectEbisawaU/ebiScreenOmakeGame.o\
-	$(BUILD_DIR)/asm/plugProjectEbisawaU/ebiScreenInfoWindow.o\
+	$(BUILD_DIR)/src/plugProjectEbisawaU/ebiScreenInfoWindow.o\
 
 KONO:=\
 	$(BUILD_DIR)/asm/plugProjectKonoU/khWorldMap.o\
@@ -1172,7 +1172,7 @@ GC:=\
 	$(BUILD_DIR)/asm/sysGCU/JSTObjectParticleActor.o\
 	$(BUILD_DIR)/asm/sysGCU/moviePlayerAudio.o\
 	$(BUILD_DIR)/asm/sysGCU/illustratedBookMessage.o\
-	$(BUILD_DIR)/asm/sysGCU/sysDrawBuffer.o\
+	$(BUILD_DIR)/src/sysGCU/sysDrawBuffer.o\
 	$(BUILD_DIR)/src/sysGCU/dvdErrorMessage.o\
 	$(BUILD_DIR)/asm/sysGCU/pikmin2AramMgr.o\
 	$(BUILD_DIR)/src/sysGCU/messageAnalyzer.o\

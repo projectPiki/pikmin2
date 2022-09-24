@@ -64,6 +64,14 @@ struct Model : MtxObject {
 		j3dModel->lock();
 	}
 
+	inline void loopTimer()
+	{
+		int count = m_jointCount;
+		while (count > 0) {
+			count--;
+		}
+	}
+
 	// VTBL _00
 	u8 _04;               // _04
 	u8 _05;               // _05

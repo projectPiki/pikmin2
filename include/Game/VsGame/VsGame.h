@@ -8,6 +8,7 @@
 #include "Game/PikiContainer.h"
 #include "Game/StateMachine.h"
 #include "Game/VsGameSection.h"
+#include "Game/EnemyBase.h"
 
 struct JUTTexture;
 struct LightObj;
@@ -165,6 +166,9 @@ struct State : public FSMState<VsGameSection> {
 struct GameState : public State {
 	GameState();
 
+	virtual void init(VsGameSection*, StateArg*);                      // _08
+	virtual void exec(VsGameSection*);                                 // _0C
+	virtual void cleanup(VsGameSection*);                              // _10
 	virtual void draw(VsGameSection*, Graphics&);                      // _20
 	virtual void pre2dDraw(Graphics&, VsGameSection*);                 // _24
 	virtual void onOrimaDown(VsGameSection*, int);                     // _28

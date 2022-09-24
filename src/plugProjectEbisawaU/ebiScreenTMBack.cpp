@@ -129,7 +129,7 @@ void TTMBack::doDraw()
 
 	J2DPerspGraph* context = &gfx->m_perspGraph;
 	context->setPort();
-	
+
 	m_mgrTuning->draw(*gfx, *context);
 }
 
@@ -165,7 +165,7 @@ bool TNintendoLogo::doUpdateStateWait()
  * Size:	000074
  */
 void TNintendoLogo::doDraw()
-{	
+{
 	Graphics* gfx = sys->m_gfx;
 
 	J2DPerspGraph* context = &gfx->m_perspGraph;

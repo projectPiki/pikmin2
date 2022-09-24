@@ -6,10 +6,11 @@
 
 struct PikiAnimator {
 	PikiAnimator();
+
 	void setAnimMgr(SysShape::AnimMgr* mgr);
 
-	SysShape::Animator _00; // _00
-	SysShape::Animator _1C; // _1C
+	SysShape::Animator m_animator1; // _00
+	SysShape::Animator m_animator2; // _1C
 };
 
 #endif

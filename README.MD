@@ -80,6 +80,7 @@ pikmin2.usa.dol: `sha1: 90d328bf8f190c90472e8c19e7e53c6ad0fe0d1a`
 	- <a href="https://github.com/projectPiki/pikmin2/tree/main/src/sysGCU/resourceMgr2D.cpp">sysGCU/resourceMgr2D.cpp</a>
 	- <a href="https://github.com/projectPiki/pikmin2/tree/main/src/sysGCU/rootMenuSection.cpp">sysGCU/rootMenuSection.cpp</a>
 	- <a href="https://github.com/projectPiki/pikmin2/tree/main/src/sysGCU/simpleMessage.cpp">sysGCU/simpleMessage.cpp</a>
+	- <a href="https://github.com/projectPiki/pikmin2/tree/main/src/sysGCU/sysDrawBuffer.cpp">sysGCU/sysDrawBuffer.cpp</a>
 	- <a href="https://github.com/projectPiki/pikmin2/tree/main/src/sysGCU/THPDraw.c">sysGCU/THPDraw.c</a>
 - sysCommonU
 	- <a href="https://github.com/projectPiki/pikmin2/tree/main/src/sysCommonU/geomClone.cpp">sysCommonU/geomClone.cpp</a>
@@ -99,6 +100,7 @@ pikmin2.usa.dol: `sha1: 90d328bf8f190c90472e8c19e7e53c6ad0fe0d1a`
 	- <a href="https://github.com/projectPiki/pikmin2/tree/main/src/plugProjectOgawaU/ogAngleMgr.cpp">plugProjectOgawaU/ogAngleMgr.cpp</a>
 	- <a href="https://github.com/projectPiki/pikmin2/tree/main/src/plugProjectOgawaU/ogCounter.cpp">plugProjectOgawaU/ogCounter.cpp</a>
 	- <a href="https://github.com/projectPiki/pikmin2/tree/main/src/plugProjectOgawaU/ogLib2D.cpp">plugProjectOgawaU/ogLib2D.cpp</a>
+	- <a href="https://github.com/projectPiki/pikmin2/tree/main/src/plugProjectOgawaU/ogScaleMgr.cpp">plugProjectOgawaU/ogScaleMgr.cpp</a>
 	- <a href="https://github.com/projectPiki/pikmin2/tree/main/src/plugProjectOgawaU/ogSceneAnaDemo.cpp">plugProjectOgawaU/ogSceneAnaDemo.cpp</a>
 	- <a href="https://github.com/projectPiki/pikmin2/tree/main/src/plugProjectOgawaU/ogSceneCave.cpp">plugProjectOgawaU/ogSceneCave.cpp</a>
 	- <a href="https://github.com/projectPiki/pikmin2/tree/main/src/plugProjectOgawaU/ogSceneChallengeBase.cpp">plugProjectOgawaU/ogSceneChallengeBase.cpp</a>
@@ -109,6 +111,7 @@ pikmin2.usa.dol: `sha1: 90d328bf8f190c90472e8c19e7e53c6ad0fe0d1a`
 	- <a href="https://github.com/projectPiki/pikmin2/tree/main/src/plugProjectOgawaU/ogSceneWorldMapInfoWindow0.cpp">plugProjectOgawaU/ogSceneWorldMapInfoWindow0.cpp</a>
 	- <a href="https://github.com/projectPiki/pikmin2/tree/main/src/plugProjectOgawaU/ogScreen.cpp">plugProjectOgawaU/ogScreen.cpp</a>
 	- <a href="https://github.com/projectPiki/pikmin2/tree/main/src/plugProjectOgawaU/ogUtil.cpp">plugProjectOgawaU/ogUtil.cpp</a>
+	- <a href="https://github.com/projectPiki/pikmin2/tree/main/src/plugProjectOgawaU/testScene.cpp">plugProjectOgawaU/testScene.cpp</a>
 - plugProjectKandoU
 	- <a href="https://github.com/projectPiki/pikmin2/tree/main/src/plugProjectKandoU/aiConstants.cpp">plugProjectKandoU/aiConstants.cpp</a>
 	- <a href="https://github.com/projectPiki/pikmin2/tree/main/src/plugProjectKandoU/aiFree.cpp">plugProjectKandoU/aiFree.cpp</a>
@@ -119,8 +122,10 @@ pikmin2.usa.dol: `sha1: 90d328bf8f190c90472e8c19e7e53c6ad0fe0d1a`
 	- <a href="https://github.com/projectPiki/pikmin2/tree/main/src/plugProjectKandoU/gameIconTexture.cpp">plugProjectKandoU/gameIconTexture.cpp</a>
 	- <a href="https://github.com/projectPiki/pikmin2/tree/main/src/plugProjectKandoU/gameSoundEvent.cpp">plugProjectKandoU/gameSoundEvent.cpp</a>
 	- <a href="https://github.com/projectPiki/pikmin2/tree/main/src/plugProjectKandoU/gameStages.cpp">plugProjectKandoU/gameStages.cpp</a>
+	- <a href="https://github.com/projectPiki/pikmin2/tree/main/src/plugProjectKandoU/genNavi.cpp">plugProjectKandoU/genNavi.cpp</a>
 	- <a href="https://github.com/projectPiki/pikmin2/tree/main/src/plugProjectKandoU/interactBattle.cpp">plugProjectKandoU/interactBattle.cpp</a>
 	- <a href="https://github.com/projectPiki/pikmin2/tree/main/src/plugProjectKandoU/kandoLib.cpp">plugProjectKandoU/kandoLib.cpp</a>
+	- <a href="https://github.com/projectPiki/pikmin2/tree/main/src/plugProjectKandoU/mapPartsView.cpp">plugProjectKandoU/mapPartsView.cpp</a>
 	- <a href="https://github.com/projectPiki/pikmin2/tree/main/src/plugProjectKandoU/objectTypes.cpp">plugProjectKandoU/objectTypes.cpp</a>
 	- <a href="https://github.com/projectPiki/pikmin2/tree/main/src/plugProjectKandoU/pelletCarry.cpp">plugProjectKandoU/pelletCarry.cpp</a>
 	- <a href="https://github.com/projectPiki/pikmin2/tree/main/src/plugProjectKandoU/pelletConfig.cpp">plugProjectKandoU/pelletConfig.cpp</a>
@@ -130,6 +135,7 @@ pikmin2.usa.dol: `sha1: 90d328bf8f190c90472e8c19e7e53c6ad0fe0d1a`
 	- <a href="https://github.com/projectPiki/pikmin2/tree/main/src/plugProjectKandoU/updateMgr.cpp">plugProjectKandoU/updateMgr.cpp</a>
 	- <a href="https://github.com/projectPiki/pikmin2/tree/main/src/plugProjectKandoU/vsCoinOtakaraName.cpp">plugProjectKandoU/vsCoinOtakaraName.cpp</a>
 	- <a href="https://github.com/projectPiki/pikmin2/tree/main/src/plugProjectKandoU/vsFifo.cpp">plugProjectKandoU/vsFifo.cpp</a>
+	- <a href="https://github.com/projectPiki/pikmin2/tree/main/src/plugProjectKandoU/vsGS_VSGame.cpp">plugProjectKandoU/vsGS_VSGame.cpp</a>
 	- <a href="https://github.com/projectPiki/pikmin2/tree/main/src/plugProjectKandoU/vsTekiMgr.cpp">plugProjectKandoU/vsTekiMgr.cpp</a>
 - plugProjectHikinoU
 	- <a href="https://github.com/projectPiki/pikmin2/tree/main/src/plugProjectHikinoU/PSAutoBgm_MeloArranger.cpp">plugProjectHikinoU/PSAutoBgm_MeloArranger.cpp</a>
@@ -141,11 +147,13 @@ pikmin2.usa.dol: `sha1: 90d328bf8f190c90472e8c19e7e53c6ad0fe0d1a`
 	- <a href="https://github.com/projectPiki/pikmin2/tree/main/src/plugProjectEbisawaU/ebiP2TitleCamera.cpp">plugProjectEbisawaU/ebiP2TitleCamera.cpp</a>
 	- <a href="https://github.com/projectPiki/pikmin2/tree/main/src/plugProjectEbisawaU/ebiP2TitleFog.cpp">plugProjectEbisawaU/ebiP2TitleFog.cpp</a>
 	- <a href="https://github.com/projectPiki/pikmin2/tree/main/src/plugProjectEbisawaU/ebiScreenFramework.cpp">plugProjectEbisawaU/ebiScreenFramework.cpp</a>
+	- <a href="https://github.com/projectPiki/pikmin2/tree/main/src/plugProjectEbisawaU/ebiScreenInfoWindow.cpp">plugProjectEbisawaU/ebiScreenInfoWindow.cpp</a>
 	- <a href="https://github.com/projectPiki/pikmin2/tree/main/src/plugProjectEbisawaU/ebiScreenTMBack.cpp">plugProjectEbisawaU/ebiScreenTMBack.cpp</a>
 	- <a href="https://github.com/projectPiki/pikmin2/tree/main/src/plugProjectEbisawaU/efx2dBase.cpp">plugProjectEbisawaU/efx2dBase.cpp</a>
 - plugProjectMorimuraU
 	- <a href="https://github.com/projectPiki/pikmin2/tree/main/src/plugProjectMorimuraU/blackManAnimator.cpp">plugProjectMorimuraU/blackManAnimator.cpp</a>
 	- <a href="https://github.com/projectPiki/pikmin2/tree/main/src/plugProjectMorimuraU/bombAnimator.cpp">plugProjectMorimuraU/bombAnimator.cpp</a>
+	- <a href="https://github.com/projectPiki/pikmin2/tree/main/src/plugProjectMorimuraU/bombState.cpp">plugProjectMorimuraU/bombState.cpp</a>
 	- <a href="https://github.com/projectPiki/pikmin2/tree/main/src/plugProjectMorimuraU/eggAnimator.cpp">plugProjectMorimuraU/eggAnimator.cpp</a>
 	- <a href="https://github.com/projectPiki/pikmin2/tree/main/src/plugProjectMorimuraU/eggState.cpp">plugProjectMorimuraU/eggState.cpp</a>
 	- <a href="https://github.com/projectPiki/pikmin2/tree/main/src/plugProjectMorimuraU/enemyNest.cpp">plugProjectMorimuraU/enemyNest.cpp</a>
@@ -229,6 +237,7 @@ pikmin2.usa.dol: `sha1: 90d328bf8f190c90472e8c19e7e53c6ad0fe0d1a`
 - plugProjectYamashitaU
 	- <a href="https://github.com/projectPiki/pikmin2/tree/main/src/plugProjectYamashitaU/BlueChappy.cpp">plugProjectYamashitaU/BlueChappy.cpp</a>
 	- <a href="https://github.com/projectPiki/pikmin2/tree/main/src/plugProjectYamashitaU/BlueKochappy.cpp">plugProjectYamashitaU/BlueKochappy.cpp</a>
+	- <a href="https://github.com/projectPiki/pikmin2/tree/main/src/plugProjectYamashitaU/chappy.cpp">plugProjectYamashitaU/chappy.cpp</a>
 	- <a href="https://github.com/projectPiki/pikmin2/tree/main/src/plugProjectYamashitaU/chappyAnimator.cpp">plugProjectYamashitaU/chappyAnimator.cpp</a>
 	- <a href="https://github.com/projectPiki/pikmin2/tree/main/src/plugProjectYamashitaU/enemyAnimatorBase.cpp">plugProjectYamashitaU/enemyAnimatorBase.cpp</a>
 	- <a href="https://github.com/projectPiki/pikmin2/tree/main/src/plugProjectYamashitaU/enemyBlendAnimatorBase.cpp">plugProjectYamashitaU/enemyBlendAnimatorBase.cpp</a>
@@ -240,12 +249,14 @@ pikmin2.usa.dol: `sha1: 90d328bf8f190c90472e8c19e7e53c6ad0fe0d1a`
 	- <a href="https://github.com/projectPiki/pikmin2/tree/main/src/plugProjectYamashitaU/enemyParmsBase.cpp">plugProjectYamashitaU/enemyParmsBase.cpp</a>
 	- <a href="https://github.com/projectPiki/pikmin2/tree/main/src/plugProjectYamashitaU/enemyPelletInfo.cpp">plugProjectYamashitaU/enemyPelletInfo.cpp</a>
 	- <a href="https://github.com/projectPiki/pikmin2/tree/main/src/plugProjectYamashitaU/enemyStoenInfo.cpp">plugProjectYamashitaU/enemyStoenInfo.cpp</a>
+	- <a href="https://github.com/projectPiki/pikmin2/tree/main/src/plugProjectYamashitaU/kochappy.cpp">plugProjectYamashitaU/kochappy.cpp</a>
 	- <a href="https://github.com/projectPiki/pikmin2/tree/main/src/plugProjectYamashitaU/kochappyAnimator.cpp">plugProjectYamashitaU/kochappyAnimator.cpp</a>
 	- <a href="https://github.com/projectPiki/pikmin2/tree/main/src/plugProjectYamashitaU/pelplantGenerator.cpp">plugProjectYamashitaU/pelplantGenerator.cpp</a>
 	- <a href="https://github.com/projectPiki/pikmin2/tree/main/src/plugProjectYamashitaU/pelplantState.cpp">plugProjectYamashitaU/pelplantState.cpp</a>
 	- <a href="https://github.com/projectPiki/pikmin2/tree/main/src/plugProjectYamashitaU/timeMgr.cpp">plugProjectYamashitaU/timeMgr.cpp</a>
 	- <a href="https://github.com/projectPiki/pikmin2/tree/main/src/plugProjectYamashitaU/treasureLightMgr.cpp">plugProjectYamashitaU/treasureLightMgr.cpp</a>
 	- <a href="https://github.com/projectPiki/pikmin2/tree/main/src/plugProjectYamashitaU/walkSmokeEffect.cpp">plugProjectYamashitaU/walkSmokeEffect.cpp</a>
+	- <a href="https://github.com/projectPiki/pikmin2/tree/main/src/plugProjectYamashitaU/YellowChappy.cpp">plugProjectYamashitaU/YellowChappy.cpp</a>
 	- <a href="https://github.com/projectPiki/pikmin2/tree/main/src/plugProjectYamashitaU/YellowKochappy.cpp">plugProjectYamashitaU/YellowKochappy.cpp</a>
 - JSystem
 	- <a href="https://github.com/projectPiki/pikmin2/tree/main/src/JSystem/data.cpp">JSystem/data.cpp</a>

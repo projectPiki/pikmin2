@@ -98,7 +98,7 @@ bool InteractBomb::actEnemy(Game::EnemyBase* enemy)
 {
 	bool callback = false;
 	if (!enemy->isBeforeAppearState()) {
-		callback = enemy->bombCallBack(m_creature, m_velocity, m_damage);
+		callback = enemy->bombCallBack(m_creature, m_direction, m_damage);
 	}
 	return callback;
 }

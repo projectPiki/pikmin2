@@ -21,27 +21,27 @@ struct TChaseMtx : public TSync {
 };
 
 struct TChaseMtx2 : public TSyncGroup2<TChaseMtx> {
-	TChaseMtx2(float (*)[4], u16, u16);
+	TChaseMtx2(Mtx, u16, u16);
 
-	void setMtxptr(float (*)[4]);
+	void setMtxptr(Mtx);
 
 	// _00		= VTBL
 	// _00-_2C	= TSyncGroup2<TChaseMtx>
 };
 
 struct TChaseMtx3 : public TSyncGroup3<TChaseMtx> {
-	TChaseMtx3(float (*)[4], u16, u16, u16);
+	TChaseMtx3(Mtx, u16, u16, u16);
 
-	void setMtxptr(float (*)[4]);
+	void setMtxptr(Mtx);
 
 	// _00		= VTBL
 	// _00-_40	= TSyncGroup3<TChaseMtx>
 };
 
 struct TChaseMtx4 : public TSyncGroup4<TChaseMtx> {
-	TChaseMtx4(float (*)[4], u16, u16, u16, u16);
+	TChaseMtx4(Mtx, u16, u16, u16, u16);
 
-	void setMtxptr(float (*)[4]);
+	void setMtxptr(Mtx);
 
 	// _00		= VTBL
 	// _00-_54	= TSyncGroup4<TChaseMtx>
@@ -49,18 +49,18 @@ struct TChaseMtx4 : public TSyncGroup4<TChaseMtx> {
 
 struct TChaseMtx5 : public TSyncGroup5<TChaseMtx> {
 	// unused struct?
-	TChaseMtx5(float (*)[4], u16, u16, u16, u16, u16);
+	TChaseMtx5(Mtx, u16, u16, u16, u16, u16);
 
-	void setMtxptr(float (*)[4]);
+	void setMtxptr(Mtx);
 
 	// _00		= VTBL
 	// _00-_68	= TSyncGroup5<TChaseMtx>
 };
 
 struct TChaseMtx6 : public TSyncGroup6<TChaseMtx> {
-	TChaseMtx6(float (*)[4], u16, u16, u16, u16, u16, u16);
+	TChaseMtx6(Mtx, u16, u16, u16, u16, u16, u16);
 
-	void setMtxptr(float (*)[4]);
+	void setMtxptr(Mtx);
 
 	// _00		= VTBL
 	// _00-_7C	= TSyncGroup6<TChaseMtx>
@@ -91,18 +91,18 @@ struct TChaseMtxT2 : public TSyncGroup2<TChaseMtxT> {
 
 struct TChaseMtxT3 : public TSyncGroup3<TChaseMtxT> {
 	// unused struct?
-	TChaseMtxT3(float (*)[4], u16, u16, u16);
+	TChaseMtxT3(Mtx, u16, u16, u16);
 
-	void setMtxptr(float (*)[4]);
+	void setMtxptr(Mtx);
 
 	// _00		= VTBL
 	// _00-_40	= TSyncGroup3<TChaseMtx>
 };
 
 struct TChaseMtxT4 : public TSyncGroup4<TChaseMtxT> {
-	TChaseMtxT4(float (*)[4], u16, u16, u16, u16);
+	TChaseMtxT4(Mtx, u16, u16, u16, u16);
 
-	void setMtxptr(float (*)[4]);
+	void setMtxptr(Mtx);
 
 	// _00		= VTBL
 	// _00-_54	= TSyncGroup4<TChaseMtx>

@@ -45,6 +45,11 @@ struct Model;
 namespace Game {
 // Size: 0x24
 struct DoorLink : public CNode {
+	DoorLink()
+	{
+		m_dist     = 0.0f;
+		m_tekiFlag = 1;
+	}
 	void read(Stream&);
 	void write(Stream&);
 
@@ -55,6 +60,13 @@ struct DoorLink : public CNode {
 
 // Size: 0x50
 struct Door : public CNode {
+	Door()
+	{
+		m_linkCount = 0;
+		m_dir       = 0;
+		m_offs      = 0;
+	}
+
 	DoorLink* getLink(int);
 	void read(Stream&);
 	void write(Stream&);
@@ -108,14 +120,14 @@ struct PartsView : public CNode {
 	PartsView();
 	PartsView(MapUnit*, u8*);
 
-	virtual ~PartsView();                 // _00
-	virtual void constructor();           // _08
-	virtual void doAnimation();           // _0C
-	virtual void doEntry();               // _10
-	virtual void doSetView(int);          // _14
-	virtual void doViewCalc();            // _18
-	virtual void doSimulation(float);     // _1C
-	virtual void doDirectDraw(Graphics&); // _20
+	virtual ~PartsView() { }              // _08 (weak)
+	virtual void constructor() { }        // _10 (weak)
+	virtual void doAnimation();           // _14
+	virtual void doEntry();               // _18
+	virtual void doSetView(int);          // _1C
+	virtual void doViewCalc();            // _20
+	virtual void doSimulation(float) { }  // _24 (weak)
+	virtual void doDirectDraw(Graphics&); // _28
 
 	void getHalfX();
 	void getOffset();
@@ -125,8 +137,8 @@ struct PartsView : public CNode {
 	MapUnit* m_mapUnit;       // _018
 	SysShape::Model* m_model; // _01C
 	Mtx _20;                  // _020
-	u32 _50;                  // _050
-	u32 _54;                  // _054
+	f32 _50;                  // _050
+	f32 _54;                  // _054
 	u32 _58;                  // _058
 	u32 _5C;                  // _05C
 	u32 _60;                  // _060
@@ -134,7 +146,7 @@ struct PartsView : public CNode {
 
 	// 0=dead end, 1=room, 2=hallway ??? NOT SURE
 	u16 m_unitKind;               // _06C
-	Vector2<u8> _6E;              // _06E
+	BitFlag<u16> _6E;             // _06E
 	EditorRouteMgr m_routeMgr;    // _070
 	AStarContext m_aStarContext;  // _0AC
 	AStarPathfinder m_pathFinder; // _110
