@@ -45,17 +45,6 @@ struct InteractAttack : public Interaction {
 	struct CollPart* m_collPart; // _0C
 };
 
-struct InteractBomb : public Interaction {
-	virtual bool actPiki(Piki*);       // _0C
-	virtual bool actNavi(Navi*);       // _10
-	virtual bool actEnemy(EnemyBase*); // _14
-
-	// _00 VTBL
-	// _04 Parent
-	float m_damage;      // _08
-	Vector3f m_velocity; // _0C
-};
-
 struct InteractBreakBridge : public Interaction {
 	virtual bool actItem(BaseItem*); // _20
 
@@ -269,6 +258,20 @@ struct InteractWind : public Interaction {
 	// _00-_04	= Interaction
 	f32 m_damage;         // _08, damage or force?
 	Vector3f m_direction; // _0C
+};
+
+struct InteractBomb : public InteractWind {
+	inline InteractBomb(Creature* parent, f32 force, Vector3f* direction)
+		: InteractWind(parent, force, direction)
+	{
+	}
+
+	virtual bool actPiki(Piki*);       // _0C
+	virtual bool actNavi(Navi*);       // _10
+	virtual bool actEnemy(EnemyBase*); // _14
+
+	// _00 			= VTBL
+	// _00-_18 	= InteractWind
 };
 
 struct InteractDenki : public InteractWind {

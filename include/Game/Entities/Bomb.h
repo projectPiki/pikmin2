@@ -63,11 +63,12 @@ struct Obj : public EnemyBase {
 	void forceBomb();
 	void bombEffInWater();
 	void canEat();
-	void isAnimStart();
+	bool isAnimStart();
 
 	// _00 		= VTBL
 	// _00-_2BC	= EnemyBase
-	u8 _2BC[0x10];                   // _2BC, unknown
+	u8 _2BC;                   			 // _2BC
+	u8 _2BD[0xF];										 // _2BD, unknown
 	OtakaraBase::Obj* m_otakara;     // _2CC
 	FSM* m_FSM;                      // _2D0
 	efx::TBombrockLight* m_efxLight; // _2D4
@@ -94,7 +95,10 @@ struct Parms : public EnemyParmsBase {
 	struct ProperParms : public Parameters {
 		inline ProperParms(); // probably
 
-		u8 _804[0xA0]; // _804, probably 4 Parm<T>s
+		Parm<f32> _804; // _804, type unsure
+		Parm<f32> _82C;	// _82C, type unsure
+		Parm<f32> _854;	// _854, type unsure
+		Parm<f32> _87C;	// _87C, type unsure
 	};
 	Parms();
 
@@ -117,6 +121,11 @@ struct ProperAnimator : public EnemyAnimatorBase {
 
 /////////////////////////////////////////////////////////////////
 // STATE MACHINE DEFINITIONS
+enum StateID {
+	BOMB_Wait = 0,
+	BOMB_Bomb = 1,
+};
+
 struct FSM : public EnemyStateMachine {
 	virtual void init(EnemyBase*); // _08
 
@@ -125,13 +134,17 @@ struct FSM : public EnemyStateMachine {
 };
 
 struct State : public EnemyFSMState {
-	inline State(int); // probably
+	inline State(int stateID)
+		: EnemyFSMState(stateID)
+	{
+	}
 
 	// _00		= VTBL
 	// _00-_10 	= EnemyFSMState
+	int _10;	// _10, maybe counter? kills bomb if it reaches 200
 };
 
-struct StateBomb : public EnemyFSMState {
+struct StateBomb : public State {
 	StateBomb(int);
 
 	virtual void init(EnemyBase*, StateArg*); // _08
@@ -141,7 +154,7 @@ struct StateBomb : public EnemyFSMState {
 	// _00-_10 	= EnemyFSMState
 };
 
-struct StateWait : public EnemyFSMState {
+struct StateWait : public State {
 	StateWait(int);
 
 	virtual void init(EnemyBase*, StateArg*); // _08

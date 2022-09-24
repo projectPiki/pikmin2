@@ -171,4 +171,17 @@ inline void _normalise(Vector3f& vec)
 		vec.z *= norm;
 	}
 }
+
+inline void _normaliseXZ(Vector3f& vec)
+{
+	Vector2f sqr(vec.z * vec.z, vec.x * vec.x + vec.y * vec.y);
+	f32 length = sqr.x + sqr.y;
+	_sqrtf(length, &length);
+
+	if (length > 0.0f) {
+		f32 norm = 1.0f / length;
+		vec.x *= norm;
+		vec.z *= norm;
+	}
+}
 #endif
