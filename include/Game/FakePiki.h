@@ -6,12 +6,9 @@
 #include "SysShape/MotionListener.h"
 #include "Game/shadowMgr.h"
 #include "Vector3.h"
+#include "PikiAnimator.h"
 
 struct J3DJoint;
-
-struct PikiAnimator {
-	SysShape::Animator m_animators[2];
-};
 
 namespace Game {
 struct IPikiAnims {

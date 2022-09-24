@@ -2,6 +2,7 @@
 #define _SYSSHAPE_ANIMATOR_H
 
 #include "types.h"
+#include "SysShape/AnimInfo.h"
 
 struct J3DMtxCalc;
 
@@ -33,13 +34,16 @@ struct Animator : public BaseAnimator {
 		m_animMgr  = nullptr;
 	}
 
-	virtual J3DMtxCalc* getCalc(); // _08
-	virtual void animate(float);   // _0C
+	virtual J3DMtxCalc* getCalc() // _08
+	{
+		return (m_animInfo != nullptr) ? m_animInfo->m_calc : nullptr;
+	}
+	virtual void animate(f32); // _0C
 
 	void startAnim(int, MotionListener*);
 	void startExAnim(AnimInfo*);
 	bool assertValid(Model*);
-	void setCurrFrame(float);
+	void setCurrFrame(f32);
 	void setFrameByKeyType(unsigned long);
 	void setLastFrame();
 
@@ -52,7 +56,7 @@ struct Animator : public BaseAnimator {
 };
 
 struct BlendFunction {
-	virtual float getValue(float) = 0; // _08
+	virtual float getValue(f32) = 0; // _08
 };
 
 struct BlendLinearFun : public BlendFunction {
@@ -60,7 +64,7 @@ struct BlendLinearFun : public BlendFunction {
 	 * @reifiedAddress{8012E324}
 	 * @reifiedFile{plugProjectYamashitaU/enemyBlendAnimatorBase.cpp}
 	 */
-	virtual float getValue(float value) // _08 (weak)
+	virtual f32 getValue(f32 value) // _08 (weak)
 	{
 		return value;
 	}
@@ -71,7 +75,7 @@ struct BlendQuadraticFunc : public BlendFunction {
 	 * @reifiedAddress{8012E344}
 	 * @reifiedFile{plugProjectYamashitaU/enemyBlendAnimatorBase.cpp}
 	 */
-	virtual float getValue(float value) // _08 (weak)
+	virtual f32 getValue(f32 value) // _08 (weak)
 	{
 		return value * value;
 	}
@@ -86,13 +90,13 @@ struct BlendAnimator : public BaseAnimator {
 	virtual J3DMtxCalc* getCalc(); // _08
 
 	void setAnimMgr(AnimMgr*);
-	void startBlend(BlendFunction*, float, MotionListener*);
+	void startBlend(BlendFunction*, f32, MotionListener*);
 	void endBlend();
-	void animate(BlendFunction*, float, float, float);
+	void animate(BlendFunction*, f32, f32, f32);
 
 	Animator m_animators[2];          // _04
-	float _3C;                        // _3C
-	float _40;                        // _40
+	f32 _3C;                          // _3C
+	f32 _40;                          // _40
 	MotionListener* m_motionListener; // _44
 	u8 _48;                           // _48
 	u8 _49;                           // _49
