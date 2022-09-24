@@ -29,11 +29,11 @@ struct DrawBuffer : public CNode {
 	void draw();
 	void frameInit();
 
-	BitFlag<unsigned short> _18; // _18
-	J3DDrawBuffer* _1C;          // _1C
-	int _20;                     // _20
-	u32 _24;                     // _24
-	u32 _28;                     // _28
+	BitFlag<u16> _18;   // _18
+	J3DDrawBuffer* _1C; // _1C
+	int _20;            // _20
+	u32 _24;            // _24
+	u32 _28;            // _28
 };
 
 /**

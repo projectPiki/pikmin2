@@ -1172,7 +1172,7 @@ GC:=\
 	$(BUILD_DIR)/asm/sysGCU/JSTObjectParticleActor.o\
 	$(BUILD_DIR)/asm/sysGCU/moviePlayerAudio.o\
 	$(BUILD_DIR)/asm/sysGCU/illustratedBookMessage.o\
-	$(BUILD_DIR)/asm/sysGCU/sysDrawBuffer.o\
+	$(BUILD_DIR)/src/sysGCU/sysDrawBuffer.o\
 	$(BUILD_DIR)/src/sysGCU/dvdErrorMessage.o\
 	$(BUILD_DIR)/asm/sysGCU/pikmin2AramMgr.o\
 	$(BUILD_DIR)/src/sysGCU/messageAnalyzer.o\
