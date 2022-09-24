@@ -11,10 +11,10 @@
 /**
  * --Header for Bulborb Base Class--
  * Derived classes:
- * BlueChappy	= Orange Bulborb
- * Chappy		= Red Bulborb
- * FireChappy 	= Fiery Bulblax
- * Hana			= Creeping Chrysanthemum
+ * BlueChappy   = Orange Bulborb
+ * Chappy       = Red Bulborb
+ * FireChappy   = Fiery Bulblax
+ * Hana         = Creeping Chrysanthemum
  * YellowChappy = Hairy Bulborb
  */
 
@@ -25,7 +25,12 @@ struct THanachoN;
 
 namespace Game {
 namespace ChappyBase {
-struct FSM;
+struct FSM : public EnemyStateMachine {
+	virtual void init(EnemyBase*); // _08
+
+	// _00		= VTBL
+	// _00-_1C	= EnemyStateMachine
+};
 
 struct Obj : public EnemyBase {
 	Obj();
@@ -35,7 +40,7 @@ struct Obj : public EnemyBase {
 	virtual void doDirectDraw(Graphics&);                   // _50
 	virtual void collisionCallback(CollEvent&);             // _EC
 	virtual void getShadowParam(ShadowParam&);              // _134
-	virtual ~Obj();                                         // _1BC (weak)
+	virtual ~Obj() { }                                      // _1BC (weak)
 	virtual void birth(Vector3f&, f32);                     // _1C0
 	virtual void setInitialSetting(EnemyInitialParamBase*); // _1C4
 	virtual void doUpdate();                                // _1CC
@@ -47,27 +52,38 @@ struct Obj : public EnemyBase {
 	virtual WalkSmokeEffect::Mgr* getWalkSmokeEffectMgr();  // _234
 	virtual void setCollEvent(CollEvent&);                  // _240
 	virtual EnemyTypeID::EEnemyTypeID getEnemyTypeID() = 0; // _258
-	virtual MouthSlots* getMouthSlots();                    // _25C (weak)
+	virtual MouthSlots* getMouthSlots()                     // _25C (weak)
+	{
+		return &m_mouthSlots;
+	}
 	virtual bool damageCallBack(Creature*, f32, CollPart*); // _278
 	virtual void doStartStoneState();                       // _2A4
 	virtual void doFinishStoneState();                      // _2A8
 	virtual void startCarcassMotion();                      // _2C4
-	virtual f32 getDownSmokeScale();                        // _2EC (weak)
-	virtual void setFSM(FSM*);                              // _2F8 (weak)
+	virtual void setFSM(FSM* fsm)                           // _2F8 (weak)
+	{
+		m_FSM = fsm;
+		m_FSM->init(this);
+		m_currentLifecycleState = nullptr;
+	}
 	virtual bool isWakeup();                                // _2FC
-	virtual void setAnimationSpeed(f32);                    // _300 (weak)
+	virtual void setAnimationSpeed(f32 speed)               // _300 (weak)
+	{
+		EnemyBase::setAnimSpeed(speed);
+	}
 	virtual void flickAttackFail();                         // _304
 	virtual void flickStatePikmin();                        // _308
 	virtual void flickAttackBomb();                         // _30C
 	virtual void eatAttackPikmin();                         // _310
-	virtual void resetUnderGround();                        // _314 (weak)
-	virtual void setUnderGround();                          // _318 (weak)
+	virtual void resetUnderGround() { }                     // _314 (weak)
+	virtual void setUnderGround() { }                       // _318 (weak)
 	virtual void createEffect();                            // _31C
 	virtual void setupEffect();                             // _320
 	virtual void startSleepEffect();                        // _324
 	virtual void finishSleepEffect();                       // _328
-	virtual void createFlickEffect();                       // _32C (weak)
-	virtual void createSmokeEffect();                       // _330 (weak)
+	virtual void createFlickEffect() { }                    // _32C (weak)
+	virtual void createSmokeEffect() { }                    // _330 (weak)
+	virtual f32 getDownSmokeScale() { return 0.9f; }        // _2EC (weak)
 	//////////////// VTABLE END
 
 	// _00 		= VTBL
@@ -118,13 +134,6 @@ struct ProperAnimator : public EnemyAnimatorBase {
 
 /////////////////////////////////////////////////////////////////
 // STATE MACHINE DEFINITIONS
-struct FSM : public EnemyStateMachine {
-	virtual void init(EnemyBase*); // _08
-
-	// _00		= VTBL
-	// _00-_1C	= EnemyStateMachine
-};
-
 struct State : public EnemyFSMState {
 	inline State(int); // probably
 
