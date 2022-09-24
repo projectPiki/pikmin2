@@ -21,9 +21,9 @@ struct TSimple1 : public TBase {
 		m_emitters[0]  = emitter;
 	}
 
-	virtual bool create(Arg*); // _08
-	virtual void forceKill();  // _0C (weak)
-	virtual void fade();       // _10 (weak)
+	virtual bool create(Arg*);   // _08
+	virtual void forceKill() { } // _0C (weak)
+	virtual void fade() { }      // _10 (weak)
 
 	// _00 VTBL
 	u16 m_effectIDs[1];            // _04

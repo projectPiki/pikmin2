@@ -464,7 +464,7 @@ YAMASHITA:=\
 	$(BUILD_DIR)/asm/plugProjectYamashitaU/BlueChappyMgr.o\
 	$(BUILD_DIR)/src/plugProjectYamashitaU/BlueChappy.o\
 	$(BUILD_DIR)/asm/plugProjectYamashitaU/YellowChappyMgr.o\
-	$(BUILD_DIR)/asm/plugProjectYamashitaU/YellowChappy.o\
+	$(BUILD_DIR)/src/plugProjectYamashitaU/YellowChappy.o\
 	$(BUILD_DIR)/asm/plugProjectYamashitaU/BlueKochappyMgr.o\
 	$(BUILD_DIR)/src/plugProjectYamashitaU/BlueKochappy.o\
 	$(BUILD_DIR)/src/plugProjectYamashitaU/YellowKochappy.o\

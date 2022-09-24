@@ -6,6 +6,12 @@
 
 namespace efx {
 struct TSimpleMtx1 : public TSimple1 {
+	inline TSimpleMtx1(Matrixf* mat, u16 effectID)
+	    : TSimple1(effectID)
+	{
+		m_mtx = mat;
+	}
+
 	virtual bool create(Arg*); // _08
 
 	// _00		= VTBL
