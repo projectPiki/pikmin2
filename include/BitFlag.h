@@ -2,6 +2,7 @@
 #define _BITFLAG_H
 
 #include "types.h"
+#include "stream.h"
 
 template <typename T> struct BitFlag {
 	BitFlag()
@@ -15,6 +16,13 @@ template <typename T> struct BitFlag {
 	{
 		for (int i = 0; i < sizeof(T); i++) {
 			byteView[i] = 0;
+		}
+	}
+
+	inline void readBytes(Stream& stream)
+	{
+		for (int i = 0; i < sizeof(T); i++) {
+			byteView[i] = stream.readByte();
 		}
 	}
 

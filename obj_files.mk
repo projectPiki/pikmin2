@@ -598,7 +598,7 @@ KANDO:=\
 	$(BUILD_DIR)/asm/plugProjectKandoU/aiBattle.o\
 	$(BUILD_DIR)/asm/plugProjectKandoU/gameDeathCount.o\
 	$(BUILD_DIR)/asm/plugProjectKandoU/aiBore.o\
-	$(BUILD_DIR)/asm/plugProjectKandoU/mapPartsView.o\
+	$(BUILD_DIR)/src/plugProjectKandoU/mapPartsView.o\
 	$(BUILD_DIR)/asm/plugProjectKandoU/singleGS_Ending.o\
 	$(BUILD_DIR)/src/plugProjectKandoU/gameIconTexture.o\
 	$(BUILD_DIR)/asm/plugProjectKandoU/gameTekiStat.o\

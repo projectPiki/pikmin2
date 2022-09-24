@@ -9,8 +9,12 @@ namespace Game {
 struct RouteMgr;
 }
 namespace Game {
+namespace PathfindContext {
+extern Game::RouteMgr* routeMgr;
+} // namespace PathfindContext
 struct PathfindRequest {
 };
+
 struct PathNode {
 	void initNode();
 	void add(PathNode*);
@@ -30,12 +34,23 @@ struct PathNode {
 };
 
 struct AStarContext {
-	inline AStarContext();
+	AStarContext()
+	{
+		_04                       = 0;
+		_02                       = -1;
+		_00                       = -1;
+		PathfindContext::routeMgr = nullptr;
+		_60                       = 0;
+	}
 	void init(RouteMgr*, int);
 	void getNode(short);
 	void makepath(PathNode*, PathNode**);
 
-	u8 _00[0x64]; // _00
+	s16 _00;      // _00
+	s16 _02;      // _02
+	u8 _04;       // _04
+	u8 _05[0x5A]; // _05, unknown
+	u32 _60;      // _60
 };
 
 struct AStarPathfinder {
