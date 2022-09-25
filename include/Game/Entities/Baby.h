@@ -47,7 +47,7 @@ struct Obj : public EnemyBase {
 	virtual void setFSM(FSM*);                               // _2F8
 	//////////////// VTABLE END
 
-	void getSlotPikiNum();
+	int getSlotPikiNum();
 	void resetRandTargetPosition();
 	void resetZukanAnimationFrame();
 	void moveNoTarget();
@@ -110,6 +110,15 @@ struct ProperAnimator : public EnemyAnimatorBase {
 
 /////////////////////////////////////////////////////////////////
 // STATE MACHINE DEFINITIONS
+enum StateID {
+	BABY_Dead   = 0,
+	BABY_Press  = 1,
+	BABY_Born   = 2,
+	BABY_Move   = 3,
+	BABY_Attack = 4,
+	BABY_Count  = 5,
+};
+
 struct FSM : public EnemyStateMachine {
 	virtual void init(EnemyBase*); // _08
 
@@ -118,11 +127,22 @@ struct FSM : public EnemyStateMachine {
 };
 
 struct State : public EnemyFSMState {
+	inline State(u16 stateID, const char* name)
+	    : EnemyFSMState(stateID)
+	{
+		m_name = name;
+	}
+
 	// _00		= VTBL
 	// _00-_10 	= EnemyFSMState
 };
 
-struct StateAttack : public EnemyFSMState {
+struct StateAttack : public State {
+	inline StateAttack()
+	    : State(BABY_Attack, "attack")
+	{
+	}
+
 	virtual void init(EnemyBase*, StateArg*); // _08
 	virtual void exec(EnemyBase*);            // _0C
 	virtual void cleanup(EnemyBase*);         // _10
@@ -131,7 +151,12 @@ struct StateAttack : public EnemyFSMState {
 	// _00-_10 	= EnemyFSMState
 };
 
-struct StateBorn : public EnemyFSMState {
+struct StateBorn : public State {
+	inline StateBorn()
+	    : State(BABY_Born, "born")
+	{
+	}
+
 	virtual void init(EnemyBase*, StateArg*); // _08
 	virtual void exec(EnemyBase*);            // _0C
 	virtual void cleanup(EnemyBase*);         // _10
@@ -140,7 +165,12 @@ struct StateBorn : public EnemyFSMState {
 	// _00-_10 	= EnemyFSMState
 };
 
-struct StateDead : public EnemyFSMState {
+struct StateDead : public State {
+	inline StateDead()
+	    : State(BABY_Dead, "dead")
+	{
+	}
+
 	virtual void init(EnemyBase*, StateArg*); // _08
 	virtual void exec(EnemyBase*);            // _0C
 	virtual void cleanup(EnemyBase*);         // _10
@@ -149,7 +179,12 @@ struct StateDead : public EnemyFSMState {
 	// _00-_10 	= EnemyFSMState
 };
 
-struct StateMove : public EnemyFSMState {
+struct StateMove : public State {
+	inline StateMove()
+	    : State(BABY_Move, "move")
+	{
+	}
+
 	virtual void init(EnemyBase*, StateArg*); // _08
 	virtual void exec(EnemyBase*);            // _0C
 	virtual void cleanup(EnemyBase*);         // _10
@@ -158,7 +193,12 @@ struct StateMove : public EnemyFSMState {
 	// _00-_10 	= EnemyFSMState
 };
 
-struct StatePress : public EnemyFSMState {
+struct StatePress : public State {
+	inline StatePress()
+	    : State(BABY_Press, "press")
+	{
+	}
+
 	virtual void init(EnemyBase*, StateArg*); // _08
 	virtual void exec(EnemyBase*);            // _0C
 	virtual void cleanup(EnemyBase*);         // _10
