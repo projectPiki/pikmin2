@@ -129,7 +129,7 @@ struct GeneralEnemyMgr : public GenericObjectMgr, public CNode {
 	void resetEnemyNum();
 	void addEnemyNum(int, u8, GenObjectEnemy*);
 	void getEnemyNum(int, bool);
-	void useHeap();
+	JKRHeap* useHeap();
 	EnemyMgrBase* getEnemyMgr(int);
 	void setMovieDraw(bool);
 	void prepareDayendEnemies();

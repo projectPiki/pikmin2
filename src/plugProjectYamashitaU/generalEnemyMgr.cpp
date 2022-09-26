@@ -573,73 +573,25 @@ J3DModelData* GeneralEnemyMgr::getJ3DModelData(int idx)
  * Address:	8010D4C0
  * Size:	0000BC
  */
-EnemyBase* GeneralEnemyMgr::birth(int idx, EnemyBirthArg& birthArg)
+EnemyBase* GeneralEnemyMgr::birth(int enemyID, EnemyBirthArg& birthArg)
 {
 	EnemyBase* enemy = nullptr;
+
+	int idx = -1;
+	for (int i = 0; i < gEnemyInfoNum; i++) {
+		char id = gEnemyInfo[i].m_id;
+		if (id == enemyID) {
+			idx = (gEnemyInfo[i].m_flags & 1) ? enemyID : gEnemyInfo[i].m_parentID;
+		}
+	}
+
 	IEnemyMgrBase* base = getIEnemyMgrBase(idx);
 	if (base != nullptr) {
+		birthArg.m_typeID = (EnemyTypeID::EEnemyTypeID) enemyID;
 		enemy = base->birth(birthArg);
 	}
+
 	return enemy;
-	/*
-	stwu     r1, -0x20(r1)
-	mflr     r0
-	lis      r6, gEnemyInfo__4Game@ha
-	stw      r0, 0x24(r1)
-	addi     r6, r6, gEnemyInfo__4Game@l
-	stw      r31, 0x1c(r1)
-	li       r31, 0
-	stw      r30, 0x18(r1)
-	mr       r30, r5
-	stw      r29, 0x14(r1)
-	mr       r29, r4
-	li       r4, -1
-	lwz      r0, gEnemyInfoNum__4Game@sda21(r13)
-	mtctr    r0
-	cmpwi    r0, 0
-	ble      lbl_8010D534
-
-lbl_8010D500:
-	lbz      r0, 4(r6)
-	extsb    r0, r0
-	cmpw     r0, r29
-	bne      lbl_8010D52C
-	lhz      r0, 8(r6)
-	clrlwi.  r0, r0, 0x1f
-	beq      lbl_8010D524
-	mr       r4, r29
-	b        lbl_8010D52C
-
-lbl_8010D524:
-	lbz      r4, 5(r6)
-	extsb    r4, r4
-
-lbl_8010D52C:
-	addi     r6, r6, 0x34
-	bdnz     lbl_8010D500
-
-lbl_8010D534:
-	bl       getIEnemyMgrBase__Q24Game15GeneralEnemyMgrFi
-	cmplwi   r3, 0
-	beq      lbl_8010D55C
-	stw      r29, 0x28(r30)
-	mr       r4, r30
-	lwz      r12, 0(r3)
-	lwz      r12, 0x70(r12)
-	mtctr    r12
-	bctrl
-	mr       r31, r3
-
-lbl_8010D55C:
-	lwz      r0, 0x24(r1)
-	mr       r3, r31
-	lwz      r31, 0x1c(r1)
-	lwz      r30, 0x18(r1)
-	lwz      r29, 0x14(r1)
-	mtlr     r0
-	addi     r1, r1, 0x20
-	blr
-	*/
 }
 
 /*
@@ -1169,61 +1121,16 @@ lbl_8010DBDC:
  * Address:	8010DBF0
  * Size:	0000B4
  */
-void GeneralEnemyMgr::useHeap()
+JKRHeap* GeneralEnemyMgr::useHeap()
 {
-	/*
-	stwu     r1, -0x20(r1)
-	mflr     r0
-	lis      r4, __vt__Q24Game15CreatureKillArg@ha
-	li       r5, 0
-	stw      r0, 0x24(r1)
-	addi     r0, r4, __vt__Q24Game15CreatureKillArg@l
-	lis      r4, __vt__Q24Game12EnemyKillArg@ha
-	stw      r31, 0x1c(r1)
-	addi     r4, r4, __vt__Q24Game12EnemyKillArg@l
-	stw      r30, 0x18(r1)
-	mr       r30, r3
-	stw      r0, 8(r1)
-	oris     r0, r5, 0x7000
-	stw      r5, 0xc(r1)
-	stw      r4, 8(r1)
-	stw      r0, 0xc(r1)
-	lwz      r31, 0x30(r3)
-	b        lbl_8010DC54
+	killAll();
 
-lbl_8010DC38:
-	mr       r3, r31
-	addi     r4, r1, 8
-	lwz      r12, 0(r31)
-	lwz      r12, 0x64(r12)
-	mtctr    r12
-	bctrl
-	lwz      r31, 4(r31)
-
-lbl_8010DC54:
-	cmplwi   r31, 0
-	bne      lbl_8010DC38
-	lwz      r3, 0x4c(r30)
-	cmplwi   r3, 0
-	beq      lbl_8010DC80
-	bl       freeAll__7JKRHeapFv
-	li       r0, 0
-	stw      r0, 0x30(r30)
-	stw      r0, 0x2c(r30)
-	stw      r0, 0x28(r30)
-	stw      r0, 0x24(r30)
-
-lbl_8010DC80:
-	li       r0, 0
-	stw      r0, 0x14(r30)
-	lwz      r3, 0x4c(r30)
-	lwz      r31, 0x1c(r1)
-	lwz      r30, 0x18(r1)
-	lwz      r0, 0x24(r1)
-	mtlr     r0
-	addi     r1, r1, 0x20
-	blr
-	*/
+	if (m_heap != 0) {
+		m_heap->freeAll();
+		_20.clearRelations();
+	}
+	m_child = nullptr;
+	return m_heap;
 }
 
 /*
@@ -1245,60 +1152,21 @@ EnemyMgrBase* GeneralEnemyMgr::getEnemyMgr(int enemyID)
  * Address:	8010DCDC
  * Size:	000098
  */
-void GeneralEnemyMgr::setMovieDraw(bool)
+void GeneralEnemyMgr::setMovieDraw(bool isEndMovie)
 {
-	/*
-	stwu     r1, -0x10(r1)
-	mflr     r0
-	stw      r0, 0x14(r1)
-	clrlwi.  r0, r4, 0x18
-	stw      r31, 0xc(r1)
-	bne      lbl_8010DD2C
-	lbz      r0, 0x1c(r3)
-	ori      r0, r0, 1
-	stb      r0, 0x1c(r3)
-	lwz      r31, 0x30(r3)
-	b        lbl_8010DD20
-
-lbl_8010DD08:
-	mr       r3, r31
-	lwz      r12, 0(r31)
-	lwz      r12, 0x74(r12)
-	mtctr    r12
-	bctrl
-	lwz      r31, 4(r31)
-
-lbl_8010DD20:
-	cmplwi   r31, 0
-	bne      lbl_8010DD08
-	b        lbl_8010DD60
-
-lbl_8010DD2C:
-	lbz      r0, 0x1c(r3)
-	rlwinm   r0, r0, 0, 0x18, 0x1e
-	stb      r0, 0x1c(r3)
-	lwz      r31, 0x30(r3)
-	b        lbl_8010DD58
-
-lbl_8010DD40:
-	mr       r3, r31
-	lwz      r12, 0(r31)
-	lwz      r12, 0x78(r12)
-	mtctr    r12
-	bctrl
-	lwz      r31, 4(r31)
-
-lbl_8010DD58:
-	cmplwi   r31, 0
-	bne      lbl_8010DD40
-
-lbl_8010DD60:
-	lwz      r0, 0x14(r1)
-	lwz      r31, 0xc(r1)
-	mtlr     r0
-	addi     r1, r1, 0x10
-	blr
-	*/
+	if (!isEndMovie) {
+		_1C |= 0x1;
+		EnemyMgrNode* childNode = static_cast<EnemyMgrNode*>(_20.m_child);
+		for (childNode; childNode != nullptr; childNode = static_cast<EnemyMgrNode*>(childNode->m_next)) {
+			childNode->startMovie();
+		}
+	} else {
+		_1C &= ~0x1;
+		EnemyMgrNode* childNode = static_cast<EnemyMgrNode*>(_20.m_child);
+		for (childNode; childNode != nullptr; childNode = static_cast<EnemyMgrNode*>(childNode->m_next)) {
+			childNode->endMovie();
+		}
+	}
 }
 
 /*
