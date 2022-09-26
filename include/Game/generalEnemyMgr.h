@@ -14,6 +14,16 @@ struct CreatureKillArg;
 
 struct EnemyMgrNode : public CNode, GenericObjectMgr {
 	inline EnemyMgrNode()
+		: CNode("マネージャノード")
+		, m_enemyID(EnemyTypeID::EnemyID_NULL)
+		, m_mgr(nullptr)
+	{
+	}
+
+	inline EnemyMgrNode(int enemyID, char* name, EnemyMgrBase* mgr)
+		: CNode(name)
+		, m_enemyID((EnemyTypeID::EEnemyTypeID) enemyID)
+		, m_mgr(mgr)
 	{
 		// clearRelations();
 
@@ -110,14 +120,14 @@ struct GeneralEnemyMgr : public GenericObjectMgr, public CNode {
 	void createEnemyMgr(u8, int, int);
 	void killAll();
 	void setupSoundViewerAndBas();
-	void getJ3DModelData(int);
-	EnemyBase* birth(int, Game::EnemyBirthArg&);
+	J3DModelData* getJ3DModelData(int);
+	EnemyBase* birth(int, EnemyBirthArg&);
 	char* getEnemyName(int, int);
 	int getEnemyID(char*, int);
-	void getIEnemyMgrBase(int);
+	IEnemyMgrBase* getIEnemyMgrBase(int);
 	void allocateEnemys(u8, int);
 	void resetEnemyNum();
-	void addEnemyNum(int, u8, Game::GenObjectEnemy*);
+	void addEnemyNum(int, u8, GenObjectEnemy*);
 	void getEnemyNum(int, bool);
 	void useHeap();
 	EnemyMgrBase* getEnemyMgr(int);

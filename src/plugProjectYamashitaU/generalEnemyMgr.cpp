@@ -67,1550 +67,323 @@
 #include "Game/Entities/Wealthy.h"
 #include "Game/Entities/YellowChappy.h"
 #include "Game/Entities/YellowKochappy.h"
+#include "Game/plantsMgr.h"
+
+
+static const char matchText[] = "enemyBase";
 
 namespace Game {
+
+GeneralEnemyMgr* generalEnemyMgr;
+int GeneralEnemyMgr::mCullCount;
+int GeneralEnemyMgr::mTotalCount;
 
 /*
  * --INFO--
  * Address:	8010BD3C
  * Size:	000FAC
  */
-void GeneralEnemyMgr::createEnemyMgr(u8 type, int enemyID, int objLimit)
+void GeneralEnemyMgr::createEnemyMgr(u8 type, int enemyID, int limit)
 {
+	// int limit = objLimit;
 	EnemyInfoFunc::getEnemyInfo(enemyID, 0xFFFF);
 	char* name = getEnemyName(enemyID, 0xFFFF);
 	sys->heapStatusStart(name, nullptr);
-	if (enemyID > 100) {
-		return;
-	}
+
+
 
 	EnemyMgrBase* mgr;
+
 	switch (enemyID) {
 	case EnemyTypeID::EnemyID_Pelplant:
-		mgr = new Pelplant::Mgr(objLimit, type);
+		mgr = new Pelplant::Mgr(limit, type);
 		break;
 	case EnemyTypeID::EnemyID_Kochappy:
-		mgr = new Kochappy::Mgr(objLimit, type);
+		mgr = new Kochappy::Mgr(limit, type);
 		break;
 	case EnemyTypeID::EnemyID_BlueKochappy:
-		mgr = new BlueKochappy::Mgr(objLimit, type);
+		mgr = new BlueKochappy::Mgr(limit, type);
 		break;
 	case EnemyTypeID::EnemyID_YellowKochappy:
-		mgr = new YellowKochappy::Mgr(objLimit, type);
+		mgr = new YellowKochappy::Mgr(limit, type);
 		break;
 	case EnemyTypeID::EnemyID_Chappy:
-		mgr = new Chappy::Mgr(objLimit, type);
+		mgr = new Chappy::Mgr(limit, type);
 		break;
 	case EnemyTypeID::EnemyID_BlueChappy:
-		mgr = new BlueChappy::Mgr(objLimit, type);
+		mgr = new BlueChappy::Mgr(limit, type);
 		break;
 	case EnemyTypeID::EnemyID_YellowChappy:
-		mgr = new YellowChappy::Mgr(objLimit, type);
+		mgr = new YellowChappy::Mgr(limit, type);
 		break;
 	case EnemyTypeID::EnemyID_Pom:
-		mgr = new Pom::Mgr(objLimit, type);
+		mgr = new Pom::Mgr(limit, type);
 		break;
 	case EnemyTypeID::EnemyID_Frog:
-		mgr = new Frog::Mgr(objLimit, type);
+		mgr = new Frog::Mgr(limit, type);
 		break;
 	case EnemyTypeID::EnemyID_Kogane:
-		mgr = new Koganemushi::Mgr(objLimit, type);
+		mgr = new Koganemushi::Mgr(limit, type);
 		break;
 	case EnemyTypeID::EnemyID_Wealthy:
-		mgr = new Wealthy::Mgr(objLimit, type);
+		mgr = new Wealthy::Mgr(limit, type);
 		break;
 	case EnemyTypeID::EnemyID_Fart:
-		mgr = new Fart::Mgr(objLimit, type);
+		mgr = new Fart::Mgr(limit, type);
 		break;
 	case EnemyTypeID::EnemyID_Qurione:
-		mgr = new Qurione::Mgr(objLimit, type);
+		mgr = new Qurione::Mgr(limit, type);
 		break;
 	case EnemyTypeID::EnemyID_MaroFrog:
-		mgr = new MaroFrog::Mgr(objLimit, type);
+		mgr = new MaroFrog::Mgr(limit, type);
 		break;
 	case EnemyTypeID::EnemyID_Rock:
-		mgr = new Rock::Mgr(objLimit, type);
+		mgr = new Rock::Mgr(limit, type);
+		break;
+	case EnemyTypeID::EnemyID_UjiA:
+		mgr = new Ujia::Mgr(limit, type);
+		break;
+	case EnemyTypeID::EnemyID_UjiB:
+		mgr = new Ujib::Mgr(limit, type);
+		break;
+	case EnemyTypeID::EnemyID_Tobi:
+		mgr = new Tobi::Mgr(limit, type);
+		break;
+	case EnemyTypeID::EnemyID_Armor:
+		mgr = new Armor::Mgr(limit, type);
+		break;
+	case EnemyTypeID::EnemyID_Hiba:
+		mgr = new Hiba::Mgr(limit, type);
+		break;
+	case EnemyTypeID::EnemyID_GasHiba:
+		mgr = new GasHiba::Mgr(limit, type);
+		break;
+	case EnemyTypeID::EnemyID_ElecHiba:
+		mgr = new ElecHiba::Mgr(limit, type);
+		break;
+	case EnemyTypeID::EnemyID_Sarai:
+		mgr = new Sarai::Mgr(limit, type);
+		break;
+	case EnemyTypeID::EnemyID_Tank:
+		mgr = new Ftank::Mgr(limit, type);
+		break;
+	case EnemyTypeID::EnemyID_Wtank:
+		mgr = new Wtank::Mgr(limit, type);
+		break;
+	case EnemyTypeID::EnemyID_Catfish:
+		mgr = new Catfish::Mgr(limit, type);
+		break;
+	case EnemyTypeID::EnemyID_Tadpole:
+		mgr = new Tadpole::Mgr(limit, type);
+		break;
+	case EnemyTypeID::EnemyID_ElecBug:
+		mgr = new ElecBug::Mgr(limit, type);
+		break;
+	case EnemyTypeID::EnemyID_Mar:
+		mgr = new Mar::Mgr(limit, type);
+		break;
+	case EnemyTypeID::EnemyID_Queen:
+		mgr = new Queen::Mgr(limit, type);
+		break;
+	case EnemyTypeID::EnemyID_Baby:
+		mgr = new Baby::Mgr(limit, type);
+		break;
+	case EnemyTypeID::EnemyID_Demon:
+		mgr = new Demon::Mgr(limit, type);
+		break;
+	case EnemyTypeID::EnemyID_FireChappy:
+		mgr = new FireChappy::Mgr(limit, type);
+		break;
+	case EnemyTypeID::EnemyID_SnakeCrow:
+		mgr = new SnakeCrow::Mgr(limit, type);
+		break;
+	case EnemyTypeID::EnemyID_KumaChappy:
+		mgr = new KumaChappy::Mgr(limit, type);
+		break;
+	case EnemyTypeID::EnemyID_Bomb:
+		mgr = new Bomb::Mgr(limit, type);
+		break;
+	case EnemyTypeID::EnemyID_Egg:
+		mgr = new Egg::Mgr(limit, type);
+		break;
+	case EnemyTypeID::EnemyID_PanModoki:
+		mgr = new PanModoki::Mgr(limit, type);
+		break;
+	case EnemyTypeID::EnemyID_OoPanModoki:
+		mgr = new OoPanModoki::Mgr(limit, type);
+		break;
+	case EnemyTypeID::EnemyID_PanHouse:
+		mgr = new Nest::Mgr(limit, type);
+		break;
+	case EnemyTypeID::EnemyID_Fuefuki:
+		mgr = new Fuefuki::Mgr(limit, type);
+		break;
+	case EnemyTypeID::EnemyID_Tanpopo:
+		mgr = new Tanpopo::Mgr(limit, type);
+		break;
+	case EnemyTypeID::EnemyID_Clover:
+		mgr = new Clover::Mgr(limit, type);
+		break;
+	case EnemyTypeID::EnemyID_HikariKinoko:
+		mgr = new HikariKinoko::Mgr(limit, type);
+		break;
+	case EnemyTypeID::EnemyID_Ooinu_s:
+		mgr = new Ooinu_s::Mgr(limit, type);
+		break;
+	case EnemyTypeID::EnemyID_KareOoinu_s:
+		mgr = new KareOoinu_s::Mgr(limit, type);
+		break;
+	case EnemyTypeID::EnemyID_Ooinu_l:
+		mgr = new Ooinu_l::Mgr(limit, type);
+		break;
+	case EnemyTypeID::EnemyID_KareOoinu_l:
+		mgr = new KareOoinu_l::Mgr(limit, type);
+		break;
+	case EnemyTypeID::EnemyID_Wakame_s:
+		mgr = new Wakame_s::Mgr(limit, type);
+		break;
+	case EnemyTypeID::EnemyID_Wakame_l:
+		mgr = new Wakame_l::Mgr(limit, type);
+		break;
+	case EnemyTypeID::EnemyID_Tukushi:
+		mgr = new Tukushi::Mgr(limit, type);
+		break;
+	case EnemyTypeID::EnemyID_Watage:
+		mgr = new Watage::Mgr(limit, type);
+		break;
+	case EnemyTypeID::EnemyID_DaiodoRed:
+		mgr = new DiodeRed::Mgr(limit, type);
+		break;
+	case EnemyTypeID::EnemyID_DaiodoGreen:
+		mgr = new DiodeGreen::Mgr(limit, type);
+		break;
+	case EnemyTypeID::EnemyID_Magaret:
+		mgr = new Margaret::Mgr(limit, type);
+		break;
+	case EnemyTypeID::EnemyID_Nekojarashi:
+		mgr = new Nekojarashi::Mgr(limit, type);
+		break;
+	case EnemyTypeID::EnemyID_Chiyogami:
+		mgr = new Chiyogami::Mgr(limit, type);
+		break;
+	case EnemyTypeID::EnemyID_Zenmai:
+		mgr = new Zenmai::Mgr(limit, type);
+		break;
+	case EnemyTypeID::EnemyID_KingChappy:
+		mgr = new KingChappy::Mgr(limit, type);
+		break;
+	case EnemyTypeID::EnemyID_Miulin:
+		mgr = new Miulin::Mgr(limit, type);
+		break;
+	case EnemyTypeID::EnemyID_Hanachirashi:
+		mgr = new Hanachirashi::Mgr(limit, type);
+		break;
+	case EnemyTypeID::EnemyID_Damagumo:
+		mgr = new Damagumo::Mgr(limit, type);
+		break;
+	case EnemyTypeID::EnemyID_Kurage:
+		mgr = new Kurage::Mgr(limit, type);
+		break;
+	case EnemyTypeID::EnemyID_BombSarai:
+		mgr = new BombSarai::Mgr(limit, type);
+		break;
+	case EnemyTypeID::EnemyID_FireOtakara:
+		mgr = new FireOtakara::Mgr(limit, type);
+		break;
+	case EnemyTypeID::EnemyID_WaterOtakara:
+		mgr = new WaterOtakara::Mgr(limit, type);
+		break;
+	case EnemyTypeID::EnemyID_GasOtakara:
+		mgr = new GasOtakara::Mgr(limit, type);
+		break;
+	case EnemyTypeID::EnemyID_ElecOtakara:
+		mgr = new ElecOtakara::Mgr(limit, type);
+		break;
+	case EnemyTypeID::EnemyID_BombOtakara:
+		mgr = new BombOtakara::Mgr(limit, type);
+		break;
+	case EnemyTypeID::EnemyID_Jigumo:
+		mgr = new Jigumo::Mgr(limit, type);
+		break;
+	case EnemyTypeID::EnemyID_Imomushi:
+		mgr = new Imomushi::Mgr(limit, type);
+		break;
+	case EnemyTypeID::EnemyID_Houdai:
+		mgr = new Houdai::Mgr(limit, type);
+		break;
+	case EnemyTypeID::EnemyID_LeafChappy:
+		mgr = new LeafChappy::Mgr(limit, type);
+		break;
+	case EnemyTypeID::EnemyID_TamagoMushi:
+		if ((gameSystem != nullptr) && (gameSystem->m_inCave == 0)) {
+			limit = 10;
+		} else {
+			limit = 30;
+		}
+		mgr = new TamagoMushi::Mgr(limit, type);
+		break;
+	case EnemyTypeID::EnemyID_BigFoot:
+		mgr = new BigFoot::Mgr(limit, type);
+		break;
+	case EnemyTypeID::EnemyID_SnakeWhole:
+		mgr = new SnakeWhole::Mgr(limit, type);
+		break;
+	case EnemyTypeID::EnemyID_UmiMushiBase:
+		mgr = new UmiMushi::Mgr(limit, type);
+		break;
+	case EnemyTypeID::EnemyID_OniKurage:
+		mgr = new OniKurage::Mgr(limit, type);
+		break;
+	case EnemyTypeID::EnemyID_BigTreasure:
+		mgr = new BigTreasure::Mgr(limit, type);
+		break;
+	case EnemyTypeID::EnemyID_Kabuto:
+		mgr = new GreenKabuto::Mgr(limit, type);
+		break;
+	case EnemyTypeID::EnemyID_Rkabuto:
+		mgr = new RedKabuto::Mgr(limit, type);
+		break;
+	case EnemyTypeID::EnemyID_Fkabuto:
+		mgr = new FixKabuto::Mgr(limit, type);
+		break;
+	case EnemyTypeID::EnemyID_KumaKochappy:
+		mgr = new KumaKochappy::Mgr(limit, type);
+		break;
+	case EnemyTypeID::EnemyID_ShijimiChou:
+		if ((gameSystem != nullptr) && (gameSystem->m_inCave == 0)) {
+			limit = 10;
+		} else {
+			limit = 25;
+		}
+		mgr = new ShijimiChou::Mgr(limit, type);
+		break;
+	case EnemyTypeID::EnemyID_MiniHoudai:
+		mgr = new NormMiniHoudai::Mgr(limit, type);
+		break;
+	case EnemyTypeID::EnemyID_FminiHoudai:
+		mgr = new FixMiniHoudai::Mgr(limit, type);
+		break;
+	case EnemyTypeID::EnemyID_Sokkuri:
+		mgr = new Sokkuri::Mgr(limit, type);
+		break;
+	case EnemyTypeID::EnemyID_Hana:
+		mgr = new Hana::Mgr(limit, type);
+		break;
+	case EnemyTypeID::EnemyID_BlackMan:
+		mgr = new BlackMan::Mgr(limit, type);
+		break;
+	case EnemyTypeID::EnemyID_Tyre:
+		mgr = new Tyre::Mgr(limit, type);
+		break;
+	case EnemyTypeID::EnemyID_DangoMushi:
+		mgr = new DangoMushi::Mgr(limit, type);
 		break;
 	}
 
 	mgr->alloc();
-	_20.add(new EnemyMgrNode);
+	_20.add(new EnemyMgrNode(enemyID, name, mgr));
+	add(mgr);
 	sys->heapStatusEnd(name);
-	/*
-	stwu     r1, -0x20(r1)
-	mflr     r0
-	stw      r0, 0x24(r1)
-	stmw     r26, 8(r1)
-	mr       r29, r5
-	mr       r28, r3
-	lis      r5, 0x0000FFFF@ha
-	mr       r30, r4
-	mr       r31, r6
-	mr       r3, r29
-	addi     r4, r5, 0x0000FFFF@l
-	bl       getEnemyInfo__Q24Game13EnemyInfoFuncFii
-	lis      r5, 0x0000FFFF@ha
-	mr       r3, r28
-	mr       r4, r29
-	addi     r5, r5, 0x0000FFFF@l
-	bl       getEnemyName__Q24Game15GeneralEnemyMgrFii
-	mr       r0, r3
-	lwz      r3, sys@sda21(r13)
-	mr       r27, r0
-	li       r5, 0
-	mr       r4, r27
-	bl       heapStatusStart__6SystemFPcP7JKRHeap
-	cmplwi   r29, 0x64
-	bgt      lbl_8010CC34
-	lis      r3, lbl_804AB390@ha
-	slwi     r0, r29, 2
-	addi     r3, r3, lbl_804AB390@l
-	lwzx     r0, r3, r0
-	mtctr    r0
-	bctr
-	.global  lbl_8010BDB8
-
-lbl_8010BDB8:
-	li       r3, 0x48
-	bl       __nw__FUl
-	or.      r0, r3, r3
-	beq      lbl_8010BDD8
-	mr       r4, r31
-	mr       r5, r30
-	bl       __ct__Q34Game8Pelplant3MgrFiUc
-	mr       r0, r3
-
-lbl_8010BDD8:
-	mr       r26, r0
-	b        lbl_8010CC34
-	.global  lbl_8010BDE0
-
-lbl_8010BDE0:
-	li       r3, 0x4c
-	bl       __nw__FUl
-	or.      r0, r3, r3
-	beq      lbl_8010BE00
-	mr       r4, r31
-	mr       r5, r30
-	bl       __ct__Q34Game8Kochappy3MgrFiUc
-	mr       r0, r3
-
-lbl_8010BE00:
-	mr       r26, r0
-	b        lbl_8010CC34
-	.global  lbl_8010BE08
-
-lbl_8010BE08:
-	li       r3, 0x4c
-	bl       __nw__FUl
-	or.      r0, r3, r3
-	beq      lbl_8010BE28
-	mr       r4, r31
-	mr       r5, r30
-	bl       __ct__Q34Game12BlueKochappy3MgrFiUc
-	mr       r0, r3
-
-lbl_8010BE28:
-	mr       r26, r0
-	b        lbl_8010CC34
-	.global  lbl_8010BE30
-
-lbl_8010BE30:
-	li       r3, 0x4c
-	bl       __nw__FUl
-	or.      r0, r3, r3
-	beq      lbl_8010BE50
-	mr       r4, r31
-	mr       r5, r30
-	bl       __ct__Q34Game14YellowKochappy3MgrFiUc
-	mr       r0, r3
-
-lbl_8010BE50:
-	mr       r26, r0
-	b        lbl_8010CC34
-	.global  lbl_8010BE58
-
-lbl_8010BE58:
-	li       r3, 0x50
-	bl       __nw__FUl
-	or.      r0, r3, r3
-	beq      lbl_8010BE78
-	mr       r4, r31
-	mr       r5, r30
-	bl       __ct__Q34Game6Chappy3MgrFiUc
-	mr       r0, r3
-
-lbl_8010BE78:
-	mr       r26, r0
-	b        lbl_8010CC34
-	.global  lbl_8010BE80
-
-lbl_8010BE80:
-	li       r3, 0x50
-	bl       __nw__FUl
-	or.      r0, r3, r3
-	beq      lbl_8010BEA0
-	mr       r4, r31
-	mr       r5, r30
-	bl       __ct__Q34Game10BlueChappy3MgrFiUc
-	mr       r0, r3
-
-lbl_8010BEA0:
-	mr       r26, r0
-	b        lbl_8010CC34
-	.global  lbl_8010BEA8
-
-lbl_8010BEA8:
-	li       r3, 0x54
-	bl       __nw__FUl
-	or.      r0, r3, r3
-	beq      lbl_8010BEC8
-	mr       r4, r31
-	mr       r5, r30
-	bl       __ct__Q34Game12YellowChappy3MgrFiUc
-	mr       r0, r3
-
-lbl_8010BEC8:
-	mr       r26, r0
-	b        lbl_8010CC34
-	.global  lbl_8010BED0
-
-lbl_8010BED0:
-	li       r3, 0x48
-	bl       __nw__FUl
-	or.      r0, r3, r3
-	beq      lbl_8010BEF0
-	mr       r4, r31
-	mr       r5, r30
-	bl       __ct__Q34Game3Pom3MgrFiUc
-	mr       r0, r3
-
-lbl_8010BEF0:
-	mr       r26, r0
-	b        lbl_8010CC34
-	.global  lbl_8010BEF8
-
-lbl_8010BEF8:
-	li       r3, 0x48
-	bl       __nw__FUl
-	or.      r0, r3, r3
-	beq      lbl_8010BF18
-	mr       r4, r31
-	mr       r5, r30
-	bl       __ct__Q34Game4Frog3MgrFiUc
-	mr       r0, r3
-
-lbl_8010BF18:
-	mr       r26, r0
-	b        lbl_8010CC34
-	.global  lbl_8010BF20
-
-lbl_8010BF20:
-	li       r3, 0x4c
-	bl       __nw__FUl
-	or.      r0, r3, r3
-	beq      lbl_8010BF40
-	mr       r4, r31
-	mr       r5, r30
-	bl       __ct__Q34Game11Koganemushi3MgrFiUc
-	mr       r0, r3
-
-lbl_8010BF40:
-	mr       r26, r0
-	b        lbl_8010CC34
-	.global  lbl_8010BF48
-
-lbl_8010BF48:
-	li       r3, 0x4c
-	bl       __nw__FUl
-	or.      r0, r3, r3
-	beq      lbl_8010BF68
-	mr       r4, r31
-	mr       r5, r30
-	bl       __ct__Q34Game7Wealthy3MgrFiUc
-	mr       r0, r3
-
-lbl_8010BF68:
-	mr       r26, r0
-	b        lbl_8010CC34
-	.global  lbl_8010BF70
-
-lbl_8010BF70:
-	li       r3, 0x4c
-	bl       __nw__FUl
-	or.      r0, r3, r3
-	beq      lbl_8010BF90
-	mr       r4, r31
-	mr       r5, r30
-	bl       __ct__Q34Game4Fart3MgrFiUc
-	mr       r0, r3
-
-lbl_8010BF90:
-	mr       r26, r0
-	b        lbl_8010CC34
-	.global  lbl_8010BF98
-
-lbl_8010BF98:
-	li       r3, 0x48
-	bl       __nw__FUl
-	or.      r0, r3, r3
-	beq      lbl_8010BFB8
-	mr       r4, r31
-	mr       r5, r30
-	bl       __ct__Q34Game7Qurione3MgrFiUc
-	mr       r0, r3
-
-lbl_8010BFB8:
-	mr       r26, r0
-	b        lbl_8010CC34
-	.global  lbl_8010BFC0
-
-lbl_8010BFC0:
-	li       r3, 0x48
-	bl       __nw__FUl
-	or.      r0, r3, r3
-	beq      lbl_8010BFE0
-	mr       r4, r31
-	mr       r5, r30
-	bl       __ct__Q34Game8MaroFrog3MgrFiUc
-	mr       r0, r3
-
-lbl_8010BFE0:
-	mr       r26, r0
-	b        lbl_8010CC34
-	.global  lbl_8010BFE8
-
-lbl_8010BFE8:
-	li       r3, 0x48
-	bl       __nw__FUl
-	or.      r0, r3, r3
-	beq      lbl_8010C008
-	mr       r4, r31
-	mr       r5, r30
-	bl       __ct__Q34Game4Rock3MgrFiUc
-	mr       r0, r3
-
-lbl_8010C008:
-	mr       r26, r0
-	b        lbl_8010CC34
-	.global  lbl_8010C010
-
-lbl_8010C010:
-	li       r3, 0x48
-	bl       __nw__FUl
-	or.      r0, r3, r3
-	beq      lbl_8010C030
-	mr       r4, r31
-	mr       r5, r30
-	bl       __ct__Q34Game4Ujia3MgrFiUc
-	mr       r0, r3
-
-lbl_8010C030:
-	mr       r26, r0
-	b        lbl_8010CC34
-	.global  lbl_8010C038
-
-lbl_8010C038:
-	li       r3, 0x48
-	bl       __nw__FUl
-	or.      r0, r3, r3
-	beq      lbl_8010C058
-	mr       r4, r31
-	mr       r5, r30
-	bl       __ct__Q34Game4Ujib3MgrFiUc
-	mr       r0, r3
-
-lbl_8010C058:
-	mr       r26, r0
-	b        lbl_8010CC34
-	.global  lbl_8010C060
-
-lbl_8010C060:
-	li       r3, 0x48
-	bl       __nw__FUl
-	or.      r0, r3, r3
-	beq      lbl_8010C080
-	mr       r4, r31
-	mr       r5, r30
-	bl       __ct__Q34Game4Tobi3MgrFiUc
-	mr       r0, r3
-
-lbl_8010C080:
-	mr       r26, r0
-	b        lbl_8010CC34
-	.global  lbl_8010C088
-
-lbl_8010C088:
-	li       r3, 0x48
-	bl       __nw__FUl
-	or.      r0, r3, r3
-	beq      lbl_8010C0A8
-	mr       r4, r31
-	mr       r5, r30
-	bl       __ct__Q34Game5Armor3MgrFiUc
-	mr       r0, r3
-
-lbl_8010C0A8:
-	mr       r26, r0
-	b        lbl_8010CC34
-	.global  lbl_8010C0B0
-
-lbl_8010C0B0:
-	li       r3, 0x48
-	bl       __nw__FUl
-	or.      r0, r3, r3
-	beq      lbl_8010C0D0
-	mr       r4, r31
-	mr       r5, r30
-	bl       __ct__Q34Game4Hiba3MgrFiUc
-	mr       r0, r3
-
-lbl_8010C0D0:
-	mr       r26, r0
-	b        lbl_8010CC34
-	.global  lbl_8010C0D8
-
-lbl_8010C0D8:
-	li       r3, 0x48
-	bl       __nw__FUl
-	or.      r0, r3, r3
-	beq      lbl_8010C0F8
-	mr       r4, r31
-	mr       r5, r30
-	bl       __ct__Q34Game7GasHiba3MgrFiUc
-	mr       r0, r3
-
-lbl_8010C0F8:
-	mr       r26, r0
-	b        lbl_8010CC34
-	.global  lbl_8010C100
-
-lbl_8010C100:
-	li       r3, 0x48
-	bl       __nw__FUl
-	or.      r0, r3, r3
-	beq      lbl_8010C120
-	mr       r4, r31
-	mr       r5, r30
-	bl       __ct__Q34Game8ElecHiba3MgrFiUc
-	mr       r0, r3
-
-lbl_8010C120:
-	mr       r26, r0
-	b        lbl_8010CC34
-	.global  lbl_8010C128
-
-lbl_8010C128:
-	li       r3, 0x48
-	bl       __nw__FUl
-	or.      r0, r3, r3
-	beq      lbl_8010C148
-	mr       r4, r31
-	mr       r5, r30
-	bl       __ct__Q34Game5Sarai3MgrFiUc
-	mr       r0, r3
-
-lbl_8010C148:
-	mr       r26, r0
-	b        lbl_8010CC34
-	.global  lbl_8010C150
-
-lbl_8010C150:
-	li       r3, 0x4c
-	bl       __nw__FUl
-	or.      r0, r3, r3
-	beq      lbl_8010C170
-	mr       r4, r31
-	mr       r5, r30
-	bl       __ct__Q34Game5Ftank3MgrFiUc
-	mr       r0, r3
-
-lbl_8010C170:
-	mr       r26, r0
-	b        lbl_8010CC34
-	.global  lbl_8010C178
-
-lbl_8010C178:
-	li       r3, 0x4c
-	bl       __nw__FUl
-	or.      r0, r3, r3
-	beq      lbl_8010C198
-	mr       r4, r31
-	mr       r5, r30
-	bl       __ct__Q34Game5Wtank3MgrFiUc
-	mr       r0, r3
-
-lbl_8010C198:
-	mr       r26, r0
-	b        lbl_8010CC34
-	.global  lbl_8010C1A0
-
-lbl_8010C1A0:
-	li       r3, 0x48
-	bl       __nw__FUl
-	or.      r0, r3, r3
-	beq      lbl_8010C1C0
-	mr       r4, r31
-	mr       r5, r30
-	bl       __ct__Q34Game7Catfish3MgrFiUc
-	mr       r0, r3
-
-lbl_8010C1C0:
-	mr       r26, r0
-	b        lbl_8010CC34
-	.global  lbl_8010C1C8
-
-lbl_8010C1C8:
-	li       r3, 0x48
-	bl       __nw__FUl
-	or.      r0, r3, r3
-	beq      lbl_8010C1E8
-	mr       r4, r31
-	mr       r5, r30
-	bl       __ct__Q34Game7Tadpole3MgrFiUc
-	mr       r0, r3
-
-lbl_8010C1E8:
-	mr       r26, r0
-	b        lbl_8010CC34
-	.global  lbl_8010C1F0
-
-lbl_8010C1F0:
-	li       r3, 0x48
-	bl       __nw__FUl
-	or.      r0, r3, r3
-	beq      lbl_8010C210
-	mr       r4, r31
-	mr       r5, r30
-	bl       __ct__Q34Game7ElecBug3MgrFiUc
-	mr       r0, r3
-
-lbl_8010C210:
-	mr       r26, r0
-	b        lbl_8010CC34
-	.global  lbl_8010C218
-
-lbl_8010C218:
-	li       r3, 0x50
-	bl       __nw__FUl
-	or.      r0, r3, r3
-	beq      lbl_8010C238
-	mr       r4, r31
-	mr       r5, r30
-	bl       __ct__Q34Game3Mar3MgrFiUc
-	mr       r0, r3
-
-lbl_8010C238:
-	mr       r26, r0
-	b        lbl_8010CC34
-	.global  lbl_8010C240
-
-lbl_8010C240:
-	li       r3, 0x4c
-	bl       __nw__FUl
-	or.      r0, r3, r3
-	beq      lbl_8010C260
-	mr       r4, r31
-	mr       r5, r30
-	bl       __ct__Q34Game5Queen3MgrFiUc
-	mr       r0, r3
-
-lbl_8010C260:
-	mr       r26, r0
-	b        lbl_8010CC34
-	.global  lbl_8010C268
-
-lbl_8010C268:
-	li       r3, 0x48
-	bl       __nw__FUl
-	or.      r0, r3, r3
-	beq      lbl_8010C288
-	mr       r4, r31
-	mr       r5, r30
-	bl       __ct__Q34Game4Baby3MgrFiUc
-	mr       r0, r3
-
-lbl_8010C288:
-	mr       r26, r0
-	b        lbl_8010CC34
-	.global  lbl_8010C290
-
-lbl_8010C290:
-	li       r3, 0x48
-	bl       __nw__FUl
-	or.      r0, r3, r3
-	beq      lbl_8010C2B0
-	mr       r4, r31
-	mr       r5, r30
-	bl       __ct__Q34Game5Demon3MgrFiUc
-	mr       r0, r3
-
-lbl_8010C2B0:
-	mr       r26, r0
-	b        lbl_8010CC34
-	.global  lbl_8010C2B8
-
-lbl_8010C2B8:
-	li       r3, 0x50
-	bl       __nw__FUl
-	or.      r0, r3, r3
-	beq      lbl_8010C2D8
-	mr       r4, r31
-	mr       r5, r30
-	bl       __ct__Q34Game10FireChappy3MgrFiUc
-	mr       r0, r3
-
-lbl_8010C2D8:
-	mr       r26, r0
-	b        lbl_8010CC34
-	.global  lbl_8010C2E0
-
-lbl_8010C2E0:
-	li       r3, 0x48
-	bl       __nw__FUl
-	or.      r0, r3, r3
-	beq      lbl_8010C300
-	mr       r4, r31
-	mr       r5, r30
-	bl       __ct__Q34Game9SnakeCrow3MgrFiUc
-	mr       r0, r3
-
-lbl_8010C300:
-	mr       r26, r0
-	b        lbl_8010CC34
-	.global  lbl_8010C308
-
-lbl_8010C308:
-	li       r3, 0x48
-	bl       __nw__FUl
-	or.      r0, r3, r3
-	beq      lbl_8010C328
-	mr       r4, r31
-	mr       r5, r30
-	bl       __ct__Q34Game10KumaChappy3MgrFiUc
-	mr       r0, r3
-
-lbl_8010C328:
-	mr       r26, r0
-	b        lbl_8010CC34
-	.global  lbl_8010C330
-
-lbl_8010C330:
-	li       r3, 0x48
-	bl       __nw__FUl
-	or.      r0, r3, r3
-	beq      lbl_8010C350
-	mr       r4, r31
-	mr       r5, r30
-	bl       __ct__Q34Game4Bomb3MgrFiUc
-	mr       r0, r3
-
-lbl_8010C350:
-	mr       r26, r0
-	b        lbl_8010CC34
-	.global  lbl_8010C358
-
-lbl_8010C358:
-	li       r3, 0x48
-	bl       __nw__FUl
-	or.      r0, r3, r3
-	beq      lbl_8010C378
-	mr       r4, r31
-	mr       r5, r30
-	bl       __ct__Q34Game3Egg3MgrFiUc
-	mr       r0, r3
-
-lbl_8010C378:
-	mr       r26, r0
-	b        lbl_8010CC34
-	.global  lbl_8010C380
-
-lbl_8010C380:
-	li       r3, 0x48
-	bl       __nw__FUl
-	or.      r0, r3, r3
-	beq      lbl_8010C3A0
-	mr       r4, r31
-	mr       r5, r30
-	bl       __ct__Q34Game9PanModoki3MgrFiUc
-	mr       r0, r3
-
-lbl_8010C3A0:
-	mr       r26, r0
-	b        lbl_8010CC34
-	.global  lbl_8010C3A8
-
-lbl_8010C3A8:
-	li       r3, 0x48
-	bl       __nw__FUl
-	or.      r0, r3, r3
-	beq      lbl_8010C3C8
-	mr       r4, r31
-	mr       r5, r30
-	bl       __ct__Q34Game11OoPanModoki3MgrFiUc
-	mr       r0, r3
-
-lbl_8010C3C8:
-	mr       r26, r0
-	b        lbl_8010CC34
-	.global  lbl_8010C3D0
-
-lbl_8010C3D0:
-	li       r3, 0x4c
-	bl       __nw__FUl
-	or.      r0, r3, r3
-	beq      lbl_8010C3F0
-	mr       r4, r31
-	mr       r5, r30
-	bl       __ct__Q34Game4Nest3MgrFiUc
-	mr       r0, r3
-
-lbl_8010C3F0:
-	mr       r26, r0
-	b        lbl_8010CC34
-	.global  lbl_8010C3F8
-
-lbl_8010C3F8:
-	li       r3, 0x48
-	bl       __nw__FUl
-	or.      r0, r3, r3
-	beq      lbl_8010C418
-	mr       r4, r31
-	mr       r5, r30
-	bl       __ct__Q34Game7Fuefuki3MgrFiUc
-	mr       r0, r3
-
-lbl_8010C418:
-	mr       r26, r0
-	b        lbl_8010CC34
-	.global  lbl_8010C420
-
-lbl_8010C420:
-	li       r3, 0x48
-	bl       __nw__FUl
-	or.      r0, r3, r3
-	beq      lbl_8010C440
-	mr       r4, r31
-	mr       r5, r30
-	bl       __ct__Q34Game7Tanpopo3MgrFiUc
-	mr       r0, r3
-
-lbl_8010C440:
-	mr       r26, r0
-	b        lbl_8010CC34
-	.global  lbl_8010C448
-
-lbl_8010C448:
-	li       r3, 0x48
-	bl       __nw__FUl
-	or.      r0, r3, r3
-	beq      lbl_8010C468
-	mr       r4, r31
-	mr       r5, r30
-	bl       __ct__Q34Game6Clover3MgrFiUc
-	mr       r0, r3
-
-lbl_8010C468:
-	mr       r26, r0
-	b        lbl_8010CC34
-	.global  lbl_8010C470
-
-lbl_8010C470:
-	li       r3, 0x48
-	bl       __nw__FUl
-	or.      r0, r3, r3
-	beq      lbl_8010C490
-	mr       r4, r31
-	mr       r5, r30
-	bl       __ct__Q34Game12HikariKinoko3MgrFiUc
-	mr       r0, r3
-
-lbl_8010C490:
-	mr       r26, r0
-	b        lbl_8010CC34
-	.global  lbl_8010C498
-
-lbl_8010C498:
-	li       r3, 0x48
-	bl       __nw__FUl
-	or.      r0, r3, r3
-	beq      lbl_8010C4B8
-	mr       r4, r31
-	mr       r5, r30
-	bl       __ct__Q34Game7Ooinu_s3MgrFiUc
-	mr       r0, r3
-
-lbl_8010C4B8:
-	mr       r26, r0
-	b        lbl_8010CC34
-	.global  lbl_8010C4C0
-
-lbl_8010C4C0:
-	li       r3, 0x48
-	bl       __nw__FUl
-	or.      r0, r3, r3
-	beq      lbl_8010C4E0
-	mr       r4, r31
-	mr       r5, r30
-	bl       __ct__Q34Game11KareOoinu_s3MgrFiUc
-	mr       r0, r3
-
-lbl_8010C4E0:
-	mr       r26, r0
-	b        lbl_8010CC34
-	.global  lbl_8010C4E8
-
-lbl_8010C4E8:
-	li       r3, 0x48
-	bl       __nw__FUl
-	or.      r0, r3, r3
-	beq      lbl_8010C508
-	mr       r4, r31
-	mr       r5, r30
-	bl       __ct__Q34Game7Ooinu_l3MgrFiUc
-	mr       r0, r3
-
-lbl_8010C508:
-	mr       r26, r0
-	b        lbl_8010CC34
-	.global  lbl_8010C510
-
-lbl_8010C510:
-	li       r3, 0x48
-	bl       __nw__FUl
-	or.      r0, r3, r3
-	beq      lbl_8010C530
-	mr       r4, r31
-	mr       r5, r30
-	bl       __ct__Q34Game11KareOoinu_l3MgrFiUc
-	mr       r0, r3
-
-lbl_8010C530:
-	mr       r26, r0
-	b        lbl_8010CC34
-	.global  lbl_8010C538
-
-lbl_8010C538:
-	li       r3, 0x48
-	bl       __nw__FUl
-	or.      r0, r3, r3
-	beq      lbl_8010C558
-	mr       r4, r31
-	mr       r5, r30
-	bl       __ct__Q34Game8Wakame_s3MgrFiUc
-	mr       r0, r3
-
-lbl_8010C558:
-	mr       r26, r0
-	b        lbl_8010CC34
-	.global  lbl_8010C560
-
-lbl_8010C560:
-	li       r3, 0x48
-	bl       __nw__FUl
-	or.      r0, r3, r3
-	beq      lbl_8010C580
-	mr       r4, r31
-	mr       r5, r30
-	bl       __ct__Q34Game8Wakame_l3MgrFiUc
-	mr       r0, r3
-
-lbl_8010C580:
-	mr       r26, r0
-	b        lbl_8010CC34
-	.global  lbl_8010C588
-
-lbl_8010C588:
-	li       r3, 0x48
-	bl       __nw__FUl
-	or.      r0, r3, r3
-	beq      lbl_8010C5A8
-	mr       r4, r31
-	mr       r5, r30
-	bl       __ct__Q34Game7Tukushi3MgrFiUc
-	mr       r0, r3
-
-lbl_8010C5A8:
-	mr       r26, r0
-	b        lbl_8010CC34
-	.global  lbl_8010C5B0
-
-lbl_8010C5B0:
-	li       r3, 0x48
-	bl       __nw__FUl
-	or.      r0, r3, r3
-	beq      lbl_8010C5D0
-	mr       r4, r31
-	mr       r5, r30
-	bl       __ct__Q34Game6Watage3MgrFiUc
-	mr       r0, r3
-
-lbl_8010C5D0:
-	mr       r26, r0
-	b        lbl_8010CC34
-	.global  lbl_8010C5D8
-
-lbl_8010C5D8:
-	li       r3, 0x48
-	bl       __nw__FUl
-	or.      r0, r3, r3
-	beq      lbl_8010C5F8
-	mr       r4, r31
-	mr       r5, r30
-	bl       __ct__Q34Game8DiodeRed3MgrFiUc
-	mr       r0, r3
-
-lbl_8010C5F8:
-	mr       r26, r0
-	b        lbl_8010CC34
-	.global  lbl_8010C600
-
-lbl_8010C600:
-	li       r3, 0x48
-	bl       __nw__FUl
-	or.      r0, r3, r3
-	beq      lbl_8010C620
-	mr       r4, r31
-	mr       r5, r30
-	bl       __ct__Q34Game10DiodeGreen3MgrFiUc
-	mr       r0, r3
-
-lbl_8010C620:
-	mr       r26, r0
-	b        lbl_8010CC34
-	.global  lbl_8010C628
-
-lbl_8010C628:
-	li       r3, 0x48
-	bl       __nw__FUl
-	or.      r0, r3, r3
-	beq      lbl_8010C648
-	mr       r4, r31
-	mr       r5, r30
-	bl       __ct__Q34Game8Margaret3MgrFiUc
-	mr       r0, r3
-
-lbl_8010C648:
-	mr       r26, r0
-	b        lbl_8010CC34
-	.global  lbl_8010C650
-
-lbl_8010C650:
-	li       r3, 0x48
-	bl       __nw__FUl
-	or.      r0, r3, r3
-	beq      lbl_8010C670
-	mr       r4, r31
-	mr       r5, r30
-	bl       __ct__Q34Game11Nekojarashi3MgrFiUc
-	mr       r0, r3
-
-lbl_8010C670:
-	mr       r26, r0
-	b        lbl_8010CC34
-	.global  lbl_8010C678
-
-lbl_8010C678:
-	li       r3, 0x48
-	bl       __nw__FUl
-	or.      r0, r3, r3
-	beq      lbl_8010C698
-	mr       r4, r31
-	mr       r5, r30
-	bl       __ct__Q34Game9Chiyogami3MgrFiUc
-	mr       r0, r3
-
-lbl_8010C698:
-	mr       r26, r0
-	b        lbl_8010CC34
-	.global  lbl_8010C6A0
-
-lbl_8010C6A0:
-	li       r3, 0x48
-	bl       __nw__FUl
-	or.      r0, r3, r3
-	beq      lbl_8010C6C0
-	mr       r4, r31
-	mr       r5, r30
-	bl       __ct__Q34Game6Zenmai3MgrFiUc
-	mr       r0, r3
-
-lbl_8010C6C0:
-	mr       r26, r0
-	b        lbl_8010CC34
-	.global  lbl_8010C6C8
-
-lbl_8010C6C8:
-	li       r3, 0x48
-	bl       __nw__FUl
-	or.      r0, r3, r3
-	beq      lbl_8010C6E8
-	mr       r4, r31
-	mr       r5, r30
-	bl       __ct__Q34Game10KingChappy3MgrFiUc
-	mr       r0, r3
-
-lbl_8010C6E8:
-	mr       r26, r0
-	b        lbl_8010CC34
-	.global  lbl_8010C6F0
-
-lbl_8010C6F0:
-	li       r3, 0x48
-	bl       __nw__FUl
-	or.      r0, r3, r3
-	beq      lbl_8010C710
-	mr       r4, r31
-	mr       r5, r30
-	bl       __ct__Q34Game6Miulin3MgrFiUc
-	mr       r0, r3
-
-lbl_8010C710:
-	mr       r26, r0
-	b        lbl_8010CC34
-	.global  lbl_8010C718
-
-lbl_8010C718:
-	li       r3, 0x50
-	bl       __nw__FUl
-	or.      r0, r3, r3
-	beq      lbl_8010C738
-	mr       r4, r31
-	mr       r5, r30
-	bl       __ct__Q34Game12Hanachirashi3MgrFiUc
-	mr       r0, r3
-
-lbl_8010C738:
-	mr       r26, r0
-	b        lbl_8010CC34
-	.global  lbl_8010C740
-
-lbl_8010C740:
-	li       r3, 0x50
-	bl       __nw__FUl
-	or.      r0, r3, r3
-	beq      lbl_8010C760
-	mr       r4, r31
-	mr       r5, r30
-	bl       __ct__Q34Game8Damagumo3MgrFiUc
-	mr       r0, r3
-
-lbl_8010C760:
-	mr       r26, r0
-	b        lbl_8010CC34
-	.global  lbl_8010C768
-
-lbl_8010C768:
-	li       r3, 0x48
-	bl       __nw__FUl
-	or.      r0, r3, r3
-	beq      lbl_8010C788
-	mr       r4, r31
-	mr       r5, r30
-	bl       __ct__Q34Game6Kurage3MgrFiUc
-	mr       r0, r3
-
-lbl_8010C788:
-	mr       r26, r0
-	b        lbl_8010CC34
-	.global  lbl_8010C790
-
-lbl_8010C790:
-	li       r3, 0x48
-	bl       __nw__FUl
-	or.      r0, r3, r3
-	beq      lbl_8010C7B0
-	mr       r4, r31
-	mr       r5, r30
-	bl       __ct__Q34Game9BombSarai3MgrFiUc
-	mr       r0, r3
-
-lbl_8010C7B0:
-	mr       r26, r0
-	b        lbl_8010CC34
-	.global  lbl_8010C7B8
-
-lbl_8010C7B8:
-	li       r3, 0x4c
-	bl       __nw__FUl
-	or.      r0, r3, r3
-	beq      lbl_8010C7D8
-	mr       r4, r31
-	mr       r5, r30
-	bl       __ct__Q34Game11FireOtakara3MgrFiUc
-	mr       r0, r3
-
-lbl_8010C7D8:
-	mr       r26, r0
-	b        lbl_8010CC34
-	.global  lbl_8010C7E0
-
-lbl_8010C7E0:
-	li       r3, 0x4c
-	bl       __nw__FUl
-	or.      r0, r3, r3
-	beq      lbl_8010C800
-	mr       r4, r31
-	mr       r5, r30
-	bl       __ct__Q34Game12WaterOtakara3MgrFiUc
-	mr       r0, r3
-
-lbl_8010C800:
-	mr       r26, r0
-	b        lbl_8010CC34
-	.global  lbl_8010C808
-
-lbl_8010C808:
-	li       r3, 0x4c
-	bl       __nw__FUl
-	or.      r0, r3, r3
-	beq      lbl_8010C828
-	mr       r4, r31
-	mr       r5, r30
-	bl       __ct__Q34Game10GasOtakara3MgrFiUc
-	mr       r0, r3
-
-lbl_8010C828:
-	mr       r26, r0
-	b        lbl_8010CC34
-	.global  lbl_8010C830
-
-lbl_8010C830:
-	li       r3, 0x4c
-	bl       __nw__FUl
-	or.      r0, r3, r3
-	beq      lbl_8010C850
-	mr       r4, r31
-	mr       r5, r30
-	bl       __ct__Q34Game11ElecOtakara3MgrFiUc
-	mr       r0, r3
-
-lbl_8010C850:
-	mr       r26, r0
-	b        lbl_8010CC34
-	.global  lbl_8010C858
-
-lbl_8010C858:
-	li       r3, 0x4c
-	bl       __nw__FUl
-	or.      r0, r3, r3
-	beq      lbl_8010C878
-	mr       r4, r31
-	mr       r5, r30
-	bl       __ct__Q34Game11BombOtakara3MgrFiUc
-	mr       r0, r3
-
-lbl_8010C878:
-	mr       r26, r0
-	b        lbl_8010CC34
-	.global  lbl_8010C880
-
-lbl_8010C880:
-	li       r3, 0x48
-	bl       __nw__FUl
-	or.      r0, r3, r3
-	beq      lbl_8010C8A0
-	mr       r4, r31
-	mr       r5, r30
-	bl       __ct__Q34Game6Jigumo3MgrFiUc
-	mr       r0, r3
-
-lbl_8010C8A0:
-	mr       r26, r0
-	b        lbl_8010CC34
-	.global  lbl_8010C8A8
-
-lbl_8010C8A8:
-	li       r3, 0x48
-	bl       __nw__FUl
-	or.      r0, r3, r3
-	beq      lbl_8010C8C8
-	mr       r4, r31
-	mr       r5, r30
-	bl       __ct__Q34Game8Imomushi3MgrFiUc
-	mr       r0, r3
-
-lbl_8010C8C8:
-	mr       r26, r0
-	b        lbl_8010CC34
-	.global  lbl_8010C8D0
-
-lbl_8010C8D0:
-	li       r3, 0x48
-	bl       __nw__FUl
-	or.      r0, r3, r3
-	beq      lbl_8010C8F0
-	mr       r4, r31
-	mr       r5, r30
-	bl       __ct__Q34Game6Houdai3MgrFiUc
-	mr       r0, r3
-
-lbl_8010C8F0:
-	mr       r26, r0
-	b        lbl_8010CC34
-	.global  lbl_8010C8F8
-
-lbl_8010C8F8:
-	li       r3, 0x48
-	bl       __nw__FUl
-	or.      r0, r3, r3
-	beq      lbl_8010C918
-	mr       r4, r31
-	mr       r5, r30
-	bl       __ct__Q34Game10LeafChappy3MgrFiUc
-	mr       r0, r3
-
-lbl_8010C918:
-	mr       r26, r0
-	b        lbl_8010CC34
-	.global  lbl_8010C920
-
-lbl_8010C920:
-	lwz      r3, gameSystem__4Game@sda21(r13)
-	cmplwi   r3, 0
-	beq      lbl_8010C940
-	lbz      r0, 0x48(r3)
-	cmplwi   r0, 0
-	bne      lbl_8010C940
-	li       r31, 0xa
-	b        lbl_8010C944
-
-lbl_8010C940:
-	li       r31, 0x1e
-
-lbl_8010C944:
-	li       r3, 0x4c
-	bl       __nw__FUl
-	or.      r0, r3, r3
-	beq      lbl_8010C964
-	mr       r4, r31
-	mr       r5, r30
-	bl       __ct__Q34Game11TamagoMushi3MgrFiUc
-	mr       r0, r3
-
-lbl_8010C964:
-	mr       r26, r0
-	b        lbl_8010CC34
-	.global  lbl_8010C96C
-
-lbl_8010C96C:
-	li       r3, 0x4c
-	bl       __nw__FUl
-	or.      r0, r3, r3
-	beq      lbl_8010C98C
-	mr       r4, r31
-	mr       r5, r30
-	bl       __ct__Q34Game7BigFoot3MgrFiUc
-	mr       r0, r3
-
-lbl_8010C98C:
-	mr       r26, r0
-	b        lbl_8010CC34
-	.global  lbl_8010C994
-
-lbl_8010C994:
-	li       r3, 0x48
-	bl       __nw__FUl
-	or.      r0, r3, r3
-	beq      lbl_8010C9B4
-	mr       r4, r31
-	mr       r5, r30
-	bl       __ct__Q34Game10SnakeWhole3MgrFiUc
-	mr       r0, r3
-
-lbl_8010C9B4:
-	mr       r26, r0
-	b        lbl_8010CC34
-	.global  lbl_8010C9BC
-
-lbl_8010C9BC:
-	li       r3, 0x4c
-	bl       __nw__FUl
-	or.      r0, r3, r3
-	beq      lbl_8010C9DC
-	mr       r4, r31
-	mr       r5, r30
-	bl       __ct__Q34Game8UmiMushi3MgrFiUc
-	mr       r0, r3
-
-lbl_8010C9DC:
-	mr       r26, r0
-	b        lbl_8010CC34
-	.global  lbl_8010C9E4
-
-lbl_8010C9E4:
-	li       r3, 0x48
-	bl       __nw__FUl
-	or.      r0, r3, r3
-	beq      lbl_8010CA04
-	mr       r4, r31
-	mr       r5, r30
-	bl       __ct__Q34Game9OniKurage3MgrFiUc
-	mr       r0, r3
-
-lbl_8010CA04:
-	mr       r26, r0
-	b        lbl_8010CC34
-	.global  lbl_8010CA0C
-
-lbl_8010CA0C:
-	li       r3, 0x48
-	bl       __nw__FUl
-	or.      r0, r3, r3
-	beq      lbl_8010CA2C
-	mr       r4, r31
-	mr       r5, r30
-	bl       __ct__Q34Game11BigTreasure3MgrFiUc
-	mr       r0, r3
-
-lbl_8010CA2C:
-	mr       r26, r0
-	b        lbl_8010CC34
-	.global  lbl_8010CA34
-
-lbl_8010CA34:
-	li       r3, 0x4c
-	bl       __nw__FUl
-	or.      r0, r3, r3
-	beq      lbl_8010CA54
-	mr       r4, r31
-	mr       r5, r30
-	bl       __ct__Q34Game11GreenKabuto3MgrFiUc
-	mr       r0, r3
-
-lbl_8010CA54:
-	mr       r26, r0
-	b        lbl_8010CC34
-	.global  lbl_8010CA5C
-
-lbl_8010CA5C:
-	li       r3, 0x4c
-	bl       __nw__FUl
-	or.      r0, r3, r3
-	beq      lbl_8010CA7C
-	mr       r4, r31
-	mr       r5, r30
-	bl       __ct__Q34Game9RedKabuto3MgrFiUc
-	mr       r0, r3
-
-lbl_8010CA7C:
-	mr       r26, r0
-	b        lbl_8010CC34
-	.global  lbl_8010CA84
-
-lbl_8010CA84:
-	li       r3, 0x4c
-	bl       __nw__FUl
-	or.      r0, r3, r3
-	beq      lbl_8010CAA4
-	mr       r4, r31
-	mr       r5, r30
-	bl       __ct__Q34Game9FixKabuto3MgrFiUc
-	mr       r0, r3
-
-lbl_8010CAA4:
-	mr       r26, r0
-	b        lbl_8010CC34
-	.global  lbl_8010CAAC
-
-lbl_8010CAAC:
-	li       r3, 0x48
-	bl       __nw__FUl
-	or.      r0, r3, r3
-	beq      lbl_8010CACC
-	mr       r4, r31
-	mr       r5, r30
-	bl       __ct__Q34Game12KumaKochappy3MgrFiUc
-	mr       r0, r3
-
-lbl_8010CACC:
-	mr       r26, r0
-	b        lbl_8010CC34
-	.global  lbl_8010CAD4
-
-lbl_8010CAD4:
-	lwz      r3, gameSystem__4Game@sda21(r13)
-	cmplwi   r3, 0
-	beq      lbl_8010CAF4
-	lbz      r0, 0x48(r3)
-	cmplwi   r0, 0
-	bne      lbl_8010CAF4
-	li       r26, 0xa
-	b        lbl_8010CAF8
-
-lbl_8010CAF4:
-	li       r26, 0x19
-
-lbl_8010CAF8:
-	li       r3, 0x54
-	bl       __nw__FUl
-	or.      r0, r3, r3
-	beq      lbl_8010CB18
-	mr       r4, r26
-	mr       r5, r30
-	bl       __ct__Q34Game11ShijimiChou3MgrFiUc
-	mr       r0, r3
-
-lbl_8010CB18:
-	mr       r26, r0
-	b        lbl_8010CC34
-	.global  lbl_8010CB20
-
-lbl_8010CB20:
-	li       r3, 0x48
-	bl       __nw__FUl
-	or.      r0, r3, r3
-	beq      lbl_8010CB40
-	mr       r4, r31
-	mr       r5, r30
-	bl       __ct__Q34Game14NormMiniHoudai3MgrFiUc
-	mr       r0, r3
-
-lbl_8010CB40:
-	mr       r26, r0
-	b        lbl_8010CC34
-	.global  lbl_8010CB48
-
-lbl_8010CB48:
-	li       r3, 0x48
-	bl       __nw__FUl
-	or.      r0, r3, r3
-	beq      lbl_8010CB68
-	mr       r4, r31
-	mr       r5, r30
-	bl       __ct__Q34Game13FixMiniHoudai3MgrFiUc
-	mr       r0, r3
-
-lbl_8010CB68:
-	mr       r26, r0
-	b        lbl_8010CC34
-	.global  lbl_8010CB70
-
-lbl_8010CB70:
-	li       r3, 0x48
-	bl       __nw__FUl
-	or.      r0, r3, r3
-	beq      lbl_8010CB90
-	mr       r4, r31
-	mr       r5, r30
-	bl       __ct__Q34Game7Sokkuri3MgrFiUc
-	mr       r0, r3
-
-lbl_8010CB90:
-	mr       r26, r0
-	b        lbl_8010CC34
-	.global  lbl_8010CB98
-
-lbl_8010CB98:
-	li       r3, 0x48
-	bl       __nw__FUl
-	or.      r0, r3, r3
-	beq      lbl_8010CBB8
-	mr       r4, r31
-	mr       r5, r30
-	bl       __ct__Q34Game4Hana3MgrFiUc
-	mr       r0, r3
-
-lbl_8010CBB8:
-	mr       r26, r0
-	b        lbl_8010CC34
-	.global  lbl_8010CBC0
-
-lbl_8010CBC0:
-	li       r3, 0x4c
-	bl       __nw__FUl
-	or.      r0, r3, r3
-	beq      lbl_8010CBE0
-	mr       r4, r31
-	mr       r5, r30
-	bl       __ct__Q34Game8BlackMan3MgrFiUc
-	mr       r0, r3
-
-lbl_8010CBE0:
-	mr       r26, r0
-	b        lbl_8010CC34
-	.global  lbl_8010CBE8
-
-lbl_8010CBE8:
-	li       r3, 0x48
-	bl       __nw__FUl
-	or.      r0, r3, r3
-	beq      lbl_8010CC08
-	mr       r4, r31
-	mr       r5, r30
-	bl       __ct__Q34Game4Tyre3MgrFiUc
-	mr       r0, r3
-
-lbl_8010CC08:
-	mr       r26, r0
-	b        lbl_8010CC34
-	.global  lbl_8010CC10
-
-lbl_8010CC10:
-	li       r3, 0x4c
-	bl       __nw__FUl
-	or.      r0, r3, r3
-	beq      lbl_8010CC30
-	mr       r4, r31
-	mr       r5, r30
-	bl       __ct__Q34Game10DangoMushi3MgrFiUc
-	mr       r0, r3
-
-lbl_8010CC30:
-	mr       r26, r0
-	.global  lbl_8010CC34
-
-lbl_8010CC34:
-	mr       r3, r26
-	lwz      r12, 0(r26)
-	lwz      r12, 0x6c(r12)
-	mtctr    r12
-	bctrl
-	li       r3, 0x24
-	bl       __nw__FUl
-	cmplwi   r3, 0
-	beq      lbl_8010CCA4
-	lis      r4, __vt__5CNode@ha
-	lis      r5, __vt__16GenericObjectMgr@ha
-	addi     r0, r4, __vt__5CNode@l
-	lis      r4, __vt__Q24Game12EnemyMgrNode@ha
-	stw      r0, 0(r3)
-	li       r6, 0
-	addi     r4, r4, __vt__Q24Game12EnemyMgrNode@l
-	addi     r5, r5, __vt__16GenericObjectMgr@l
-	stw      r6, 0x10(r3)
-	addi     r0, r4, 0x10
-	stw      r6, 0xc(r3)
-	stw      r6, 8(r3)
-	stw      r6, 4(r3)
-	stw      r27, 0x14(r3)
-	stw      r5, 0x18(r3)
-	stw      r4, 0(r3)
-	stw      r0, 0x18(r3)
-	stw      r29, 0x1c(r3)
-	stw      r26, 0x20(r3)
-
-lbl_8010CCA4:
-	mr       r4, r3
-	addi     r3, r28, 0x20
-	bl       add__5CNodeFP5CNode
-	cmplwi   r26, 0
-	mr       r4, r26
-	beq      lbl_8010CCC0
-	addi     r4, r26, 4
-
-lbl_8010CCC0:
-	addi     r3, r28, 4
-	bl       add__5CNodeFP5CNode
-	lwz      r3, sys@sda21(r13)
-	mr       r4, r27
-	bl       heapStatusEnd__6SystemFPc
-	lmw      r26, 8(r1)
-	lwz      r0, 0x24(r1)
-	mtlr     r0
-	addi     r1, r1, 0x20
-	blr
-	*/
 }
 
 /*
@@ -1632,143 +405,12 @@ GeneralEnemyMgr::GeneralEnemyMgr()
 	if (m_enemyNumList != nullptr) {
 		setEnemyNums(0);
 	}
-	// for (int i = 0; i < gEnemyInfoNum; i++) {
-	// 	m_enemyNumList[i].m_enemyID = (EnemyTypeID::EEnemyTypeID) gEnemyInfo[i].m_id;
-	// }
-	// if (m_enemyNumList != nullptr) {
-	// 	for (int i = 0; i < gEnemyInfoNum; i++) {
-	// 		m_enemyNumList[i]._04 = i;
-	// 	}
-	// }
 
 	sys->heapStatusEnd("GeneralEnemyMgr");
 	resetEnemyNum();
 	m_flags.clear();
 	m_flags.typeView |= 0x1;
 	m_flags.typeView |= 0x2;
-	/*
-	stwu     r1, -0x10(r1)
-	mflr     r0
-	lis      r4, __vt__16GenericObjectMgr@ha
-	stw      r0, 0x14(r1)
-	addi     r0, r4, __vt__16GenericObjectMgr@l
-	stw      r31, 0xc(r1)
-	stw      r30, 8(r1)
-	mr       r30, r3
-	lis      r3, lbl_8047AA70@ha
-	stw      r0, 0(r30)
-	addi     r31, r3, lbl_8047AA70@l
-	addi     r3, r30, 4
-	bl       __ct__5CNodeFv
-	lis      r3, __vt__Q24Game15GeneralEnemyMgr@ha
-	lis      r6, __vt__5CNode@ha
-	addi     r3, r3, __vt__Q24Game15GeneralEnemyMgr@l
-	lis      r4, __vt__16GenericObjectMgr@ha
-	stw      r3, 0(r30)
-	addi     r0, r3, 0x38
-	lis      r3, __vt__Q24Game12EnemyMgrNode@ha
-	li       r8, 0
-	stw      r0, 4(r30)
-	addi     r5, r3, __vt__Q24Game12EnemyMgrNode@l
-	addi     r3, r6, __vt__5CNode@l
-	addi     r7, r31, 0xc
-	stb      r8, 0x1c(r30)
-	addi     r6, r4, __vt__16GenericObjectMgr@l
-	addi     r4, r5, 0x10
-	li       r0, -1
-	stw      r3, 0x20(r30)
-	addi     r3, r30, 0x58
-	stw      r8, 0x30(r30)
-	stw      r8, 0x2c(r30)
-	stw      r8, 0x28(r30)
-	stw      r8, 0x24(r30)
-	stw      r7, 0x34(r30)
-	stw      r6, 0x38(r30)
-	stw      r5, 0x20(r30)
-	stw      r4, 0x38(r30)
-	stw      r0, 0x3c(r30)
-	stw      r8, 0x40(r30)
-	stw      r8, 0x48(r30)
-	stw      r8, 0x4c(r30)
-	stb      r8, 0x54(r30)
-	stb      r8, 0x55(r30)
-	stb      r8, 0x56(r30)
-	stb      r8, 0x57(r30)
-	bl       __ct__Q34Game10EnemyStone3MgrFv
-	lwz      r3, sys@sda21(r13)
-	addi     r4, r31, 0x20
-	li       r5, 0
-	bl       heapStatusStart__6SystemFPcP7JKRHeap
-	addi     r0, r31, 0x30
-	stw      r0, 0x18(r30)
-	lwz      r0, gEnemyInfoNum__4Game@sda21(r13)
-	slwi     r3, r0, 3
-	bl       __nwa__FUl
-	lis      r4, gEnemyInfo__4Game@ha
-	li       r5, 0
-	stw      r3, 0x48(r30)
-	addi     r4, r4, gEnemyInfo__4Game@l
-	mr       r6, r5
-	b        lbl_8010CE00
-
-lbl_8010CDE4:
-	lbz      r0, 4(r4)
-	addi     r4, r4, 0x34
-	lwz      r3, 0x48(r30)
-	addi     r5, r5, 1
-	extsb    r0, r0
-	stwx     r0, r3, r6
-	addi     r6, r6, 8
-
-lbl_8010CE00:
-	lwz      r0, gEnemyInfoNum__4Game@sda21(r13)
-	cmpw     r5, r0
-	blt      lbl_8010CDE4
-	lwz      r0, 0x48(r30)
-	cmplwi   r0, 0
-	beq      lbl_8010CE48
-	li       r5, 0
-	mr       r6, r5
-	mr       r4, r5
-	b        lbl_8010CE3C
-
-lbl_8010CE28:
-	lwz      r3, 0x48(r30)
-	addi     r0, r6, 4
-	addi     r6, r6, 8
-	addi     r5, r5, 1
-	stbx     r4, r3, r0
-
-lbl_8010CE3C:
-	lwz      r0, gEnemyInfoNum__4Game@sda21(r13)
-	cmpw     r5, r0
-	blt      lbl_8010CE28
-
-lbl_8010CE48:
-	lwz      r3, sys@sda21(r13)
-	addi     r4, r31, 0x20
-	bl       heapStatusEnd__6SystemFPc
-	mr       r3, r30
-	bl       resetEnemyNum__Q24Game15GeneralEnemyMgrFv
-	li       r0, 0
-	mr       r3, r30
-	stb      r0, 0x54(r30)
-	stb      r0, 0x55(r30)
-	stb      r0, 0x56(r30)
-	stb      r0, 0x57(r30)
-	lwz      r0, 0x54(r30)
-	ori      r0, r0, 1
-	stw      r0, 0x54(r30)
-	lwz      r0, 0x54(r30)
-	ori      r0, r0, 2
-	stw      r0, 0x54(r30)
-	lwz      r31, 0xc(r1)
-	lwz      r30, 8(r1)
-	lwz      r0, 0x14(r1)
-	mtlr     r0
-	addi     r1, r1, 0x10
-	blr
-	*/
 }
 
 /*
@@ -1778,42 +420,13 @@ lbl_8010CE48:
  */
 void GeneralEnemyMgr::killAll()
 {
-	/*
-	stwu     r1, -0x20(r1)
-	mflr     r0
-	lis      r4, __vt__Q24Game15CreatureKillArg@ha
-	li       r5, 0
-	stw      r0, 0x24(r1)
-	addi     r0, r4, __vt__Q24Game15CreatureKillArg@l
-	lis      r4, __vt__Q24Game12EnemyKillArg@ha
-	stw      r31, 0x1c(r1)
-	addi     r4, r4, __vt__Q24Game12EnemyKillArg@l
-	stw      r0, 8(r1)
-	oris     r0, r5, 0x7000
-	stw      r5, 0xc(r1)
-	stw      r4, 8(r1)
-	stw      r0, 0xc(r1)
-	lwz      r31, 0x30(r3)
-	b        lbl_8010CF68
+	EnemyKillArg killArg (0);
+	killArg._04 |= 0x70000000;
 
-lbl_8010CF4C:
-	mr       r3, r31
-	addi     r4, r1, 8
-	lwz      r12, 0(r31)
-	lwz      r12, 0x64(r12)
-	mtctr    r12
-	bctrl
-	lwz      r31, 4(r31)
-
-lbl_8010CF68:
-	cmplwi   r31, 0
-	bne      lbl_8010CF4C
-	lwz      r0, 0x24(r1)
-	lwz      r31, 0x1c(r1)
-	mtlr     r0
-	addi     r1, r1, 0x20
-	blr
-	*/
+	EnemyMgrNode* childNode = static_cast<EnemyMgrNode*>(_20.m_child);
+	for (childNode; childNode != nullptr; childNode = static_cast<EnemyMgrNode*>(childNode->m_next)) {
+		childNode->killAll(&killArg);
+	}
 }
 
 /*
@@ -1823,31 +436,10 @@ lbl_8010CF68:
  */
 void GeneralEnemyMgr::setupSoundViewerAndBas()
 {
-	/*
-	stwu     r1, -0x10(r1)
-	mflr     r0
-	stw      r0, 0x14(r1)
-	stw      r31, 0xc(r1)
-	lwz      r31, 0x30(r3)
-	b        lbl_8010CFE4
-
-lbl_8010CFCC:
-	mr       r3, r31
-	lwz      r12, 0(r31)
-	lwz      r12, 0x68(r12)
-	mtctr    r12
-	bctrl
-	lwz      r31, 4(r31)
-
-lbl_8010CFE4:
-	cmplwi   r31, 0
-	bne      lbl_8010CFCC
-	lwz      r0, 0x14(r1)
-	lwz      r31, 0xc(r1)
-	mtlr     r0
-	addi     r1, r1, 0x10
-	blr
-	*/
+	EnemyMgrNode* childNode = static_cast<EnemyMgrNode*>(_20.m_child);
+	for (childNode; childNode != nullptr; childNode = static_cast<EnemyMgrNode*>(childNode->m_next)) {
+		childNode->setupSoundViewerAndBas();
+	}
 }
 
 /*
@@ -1857,49 +449,16 @@ lbl_8010CFE4:
  */
 void GeneralEnemyMgr::doAnimation()
 {
-	/*
-	stwu     r1, -0x10(r1)
-	mflr     r0
-	addi     r4, r2, lbl_805179A0@sda21
-	li       r5, 1
-	stw      r0, 0x14(r1)
-	li       r0, 0
-	stw      r31, 0xc(r1)
-	mr       r31, r3
-	lwz      r6, sys@sda21(r13)
-	stw      r0, mCullCount__Q24Game15GeneralEnemyMgr@sda21(r13)
-	stw      r0, mTotalCount__Q24Game15GeneralEnemyMgr@sda21(r13)
-	lwz      r3, 0x28(r6)
-	bl       _start__9SysTimersFPcb
-	lwz      r0, 0x54(r31)
-	clrlwi.  r0, r0, 0x1f
-	beq      lbl_8010D098
-	lwz      r31, 0x30(r31)
-	b        lbl_8010D090
-
-lbl_8010D078:
-	mr       r3, r31
-	lwz      r12, 0(r31)
-	lwz      r12, 0x48(r12)
-	mtctr    r12
-	bctrl
-	lwz      r31, 4(r31)
-
-lbl_8010D090:
-	cmplwi   r31, 0
-	bne      lbl_8010D078
-
-lbl_8010D098:
-	lwz      r3, sys@sda21(r13)
-	addi     r4, r2, lbl_805179A0@sda21
-	lwz      r3, 0x28(r3)
-	bl       _stop__9SysTimersFPc
-	lwz      r0, 0x14(r1)
-	lwz      r31, 0xc(r1)
-	mtlr     r0
-	addi     r1, r1, 0x10
-	blr
-	*/
+	mCullCount = 0;
+	mTotalCount = 0;
+	sys->m_timers->_start("doaTEKI", true);
+	if (m_flags.typeView & 0x1) {
+		EnemyMgrNode* childNode = static_cast<EnemyMgrNode*>(_20.m_child);
+		for (childNode; childNode != nullptr; childNode = static_cast<EnemyMgrNode*>(childNode->m_next)) {
+			childNode->doAnimation();
+		}
+	}
+	sys->m_timers->_stop("doaTEKI");
 }
 
 /*
@@ -1909,36 +468,12 @@ lbl_8010D098:
  */
 void GeneralEnemyMgr::doEntry()
 {
-	/*
-	stwu     r1, -0x10(r1)
-	mflr     r0
-	stw      r0, 0x14(r1)
-	stw      r31, 0xc(r1)
-	lwz      r0, 0x54(r3)
-	rlwinm.  r0, r0, 0, 0x1e, 0x1e
-	beq      lbl_8010D130
-	lwz      r31, 0x30(r3)
-	b        lbl_8010D128
-
-lbl_8010D110:
-	mr       r3, r31
-	lwz      r12, 0(r31)
-	lwz      r12, 0x4c(r12)
-	mtctr    r12
-	bctrl
-	lwz      r31, 4(r31)
-
-lbl_8010D128:
-	cmplwi   r31, 0
-	bne      lbl_8010D110
-
-lbl_8010D130:
-	lwz      r0, 0x14(r1)
-	lwz      r31, 0xc(r1)
-	mtlr     r0
-	addi     r1, r1, 0x10
-	blr
-	*/
+	if (m_flags.typeView & 0x2) {
+		EnemyMgrNode* childNode = static_cast<EnemyMgrNode*>(_20.m_child);
+		for (childNode; childNode != nullptr; childNode = static_cast<EnemyMgrNode*>(childNode->m_next)) {
+			childNode->doEntry();
+		}
+	}
 }
 
 /*
@@ -1946,42 +481,14 @@ lbl_8010D130:
  * Address:	8010D174
  * Size:	000068
  */
-void GeneralEnemyMgr::doSetView(int)
+void GeneralEnemyMgr::doSetView(int p1)
 {
-	/*
-	stwu     r1, -0x10(r1)
-	mflr     r0
-	stw      r0, 0x14(r1)
-	stw      r31, 0xc(r1)
-	stw      r30, 8(r1)
-	mr       r30, r4
-	lwz      r0, 0x54(r3)
-	rlwinm.  r0, r0, 0, 0x1e, 0x1e
-	beq      lbl_8010D1C4
-	lwz      r31, 0x30(r3)
-	b        lbl_8010D1BC
-
-lbl_8010D1A0:
-	mr       r3, r31
-	mr       r4, r30
-	lwz      r12, 0(r31)
-	lwz      r12, 0x50(r12)
-	mtctr    r12
-	bctrl
-	lwz      r31, 4(r31)
-
-lbl_8010D1BC:
-	cmplwi   r31, 0
-	bne      lbl_8010D1A0
-
-lbl_8010D1C4:
-	lwz      r0, 0x14(r1)
-	lwz      r31, 0xc(r1)
-	lwz      r30, 8(r1)
-	mtlr     r0
-	addi     r1, r1, 0x10
-	blr
-	*/
+	if (m_flags.typeView & 0x2) {
+		EnemyMgrNode* childNode = static_cast<EnemyMgrNode*>(_20.m_child);
+		for (childNode; childNode != nullptr; childNode = static_cast<EnemyMgrNode*>(childNode->m_next)) {
+			childNode->doSetView(p1);
+		}
+	}
 }
 
 /*
@@ -1991,36 +498,12 @@ lbl_8010D1C4:
  */
 void GeneralEnemyMgr::doViewCalc()
 {
-	/*
-	stwu     r1, -0x10(r1)
-	mflr     r0
-	stw      r0, 0x14(r1)
-	stw      r31, 0xc(r1)
-	lwz      r0, 0x54(r3)
-	rlwinm.  r0, r0, 0, 0x1e, 0x1e
-	beq      lbl_8010D250
-	lwz      r31, 0x30(r3)
-	b        lbl_8010D248
-
-lbl_8010D230:
-	mr       r3, r31
-	lwz      r12, 0(r31)
-	lwz      r12, 0x54(r12)
-	mtctr    r12
-	bctrl
-	lwz      r31, 4(r31)
-
-lbl_8010D248:
-	cmplwi   r31, 0
-	bne      lbl_8010D230
-
-lbl_8010D250:
-	lwz      r0, 0x14(r1)
-	lwz      r31, 0xc(r1)
-	mtlr     r0
-	addi     r1, r1, 0x10
-	blr
-	*/
+	if (m_flags.typeView & 0x2) {
+		EnemyMgrNode* childNode = static_cast<EnemyMgrNode*>(_20.m_child);
+		for (childNode; childNode != nullptr; childNode = static_cast<EnemyMgrNode*>(childNode->m_next)) {
+			childNode->doViewCalc();
+		}
+	}
 }
 
 /*
@@ -2028,42 +511,14 @@ lbl_8010D250:
  * Address:	8010D294
  * Size:	000068
  */
-void GeneralEnemyMgr::doSimulation(float)
+void GeneralEnemyMgr::doSimulation(f32 constraint)
 {
-	/*
-	stwu     r1, -0x20(r1)
-	mflr     r0
-	stw      r0, 0x24(r1)
-	stfd     f31, 0x18(r1)
-	fmr      f31, f1
-	stw      r31, 0x14(r1)
-	lwz      r0, 0x54(r3)
-	clrlwi.  r0, r0, 0x1f
-	beq      lbl_8010D2E4
-	lwz      r31, 0x30(r3)
-	b        lbl_8010D2DC
-
-lbl_8010D2C0:
-	mr       r3, r31
-	fmr      f1, f31
-	lwz      r12, 0(r31)
-	lwz      r12, 0x58(r12)
-	mtctr    r12
-	bctrl
-	lwz      r31, 4(r31)
-
-lbl_8010D2DC:
-	cmplwi   r31, 0
-	bne      lbl_8010D2C0
-
-lbl_8010D2E4:
-	lwz      r0, 0x24(r1)
-	lfd      f31, 0x18(r1)
-	lwz      r31, 0x14(r1)
-	mtlr     r0
-	addi     r1, r1, 0x20
-	blr
-	*/
+	if (m_flags.typeView & 0x1) {
+		EnemyMgrNode* childNode = static_cast<EnemyMgrNode*>(_20.m_child);
+		for (childNode; childNode != nullptr; childNode = static_cast<EnemyMgrNode*>(childNode->m_next)) {
+			childNode->doSimulation(constraint);
+		}
+	}
 }
 
 /*
@@ -2071,42 +526,14 @@ lbl_8010D2E4:
  * Address:	8010D32C
  * Size:	000068
  */
-void GeneralEnemyMgr::doDirectDraw(Graphics&)
+void GeneralEnemyMgr::doDirectDraw(Graphics& gfx)
 {
-	/*
-	stwu     r1, -0x10(r1)
-	mflr     r0
-	stw      r0, 0x14(r1)
-	stw      r31, 0xc(r1)
-	stw      r30, 8(r1)
-	mr       r30, r4
-	lwz      r0, 0x54(r3)
-	rlwinm.  r0, r0, 0, 0x1e, 0x1e
-	beq      lbl_8010D37C
-	lwz      r31, 0x30(r3)
-	b        lbl_8010D374
-
-lbl_8010D358:
-	mr       r3, r31
-	mr       r4, r30
-	lwz      r12, 0(r31)
-	lwz      r12, 0x5c(r12)
-	mtctr    r12
-	bctrl
-	lwz      r31, 4(r31)
-
-lbl_8010D374:
-	cmplwi   r31, 0
-	bne      lbl_8010D358
-
-lbl_8010D37C:
-	lwz      r0, 0x14(r1)
-	lwz      r31, 0xc(r1)
-	lwz      r30, 8(r1)
-	mtlr     r0
-	addi     r1, r1, 0x10
-	blr
-	*/
+	if (m_flags.typeView & 0x2) {
+		EnemyMgrNode* childNode = static_cast<EnemyMgrNode*>(_20.m_child);
+		for (childNode; childNode != nullptr; childNode = static_cast<EnemyMgrNode*>(childNode->m_next)) {
+			childNode->doDirectDraw(gfx);
+		}
+	}
 }
 
 /*
@@ -2114,48 +541,15 @@ lbl_8010D37C:
  * Address:	8010D3C4
  * Size:	000080
  */
-void GeneralEnemyMgr::doSimpleDraw(Viewport*)
+void GeneralEnemyMgr::doSimpleDraw(Viewport* viewport)
 {
-	/*
-	stwu     r1, -0x20(r1)
-	mflr     r0
-	stw      r0, 0x24(r1)
-	stw      r31, 0x1c(r1)
-	stw      r30, 0x18(r1)
-	mr       r30, r4
-	stw      r29, 0x14(r1)
-	mr       r29, r3
-	lwz      r0, 0x54(r3)
-	rlwinm.  r0, r0, 0, 0x1e, 0x1e
-	beq      lbl_8010D428
-	lwz      r31, 0x30(r29)
-	b        lbl_8010D414
-
-lbl_8010D3F8:
-	mr       r3, r31
-	mr       r4, r30
-	lwz      r12, 0(r31)
-	lwz      r12, 0x60(r12)
-	mtctr    r12
-	bctrl
-	lwz      r31, 4(r31)
-
-lbl_8010D414:
-	cmplwi   r31, 0
-	bne      lbl_8010D3F8
-	mr       r4, r30
-	addi     r3, r29, 0x58
-	bl       draw__Q34Game10EnemyStone3MgrFP8Viewport
-
-lbl_8010D428:
-	lwz      r0, 0x24(r1)
-	lwz      r31, 0x1c(r1)
-	lwz      r30, 0x18(r1)
-	lwz      r29, 0x14(r1)
-	mtlr     r0
-	addi     r1, r1, 0x20
-	blr
-	*/
+	if (m_flags.typeView & 0x2) {
+		EnemyMgrNode* childNode = static_cast<EnemyMgrNode*>(_20.m_child);
+		for (childNode; childNode != nullptr; childNode = static_cast<EnemyMgrNode*>(childNode->m_next)) {
+			childNode->doSimpleDraw(viewport);
+		}
+		m_stoneMgr.draw(viewport);
+	}
 }
 
 /*
@@ -2163,31 +557,15 @@ lbl_8010D428:
  * Address:	8010D474
  * Size:	00004C
  */
-void GeneralEnemyMgr::getJ3DModelData(int)
+J3DModelData* GeneralEnemyMgr::getJ3DModelData(int idx)
 {
-	/*
-	stwu     r1, -0x10(r1)
-	mflr     r0
-	stw      r0, 0x14(r1)
-	stw      r31, 0xc(r1)
-	li       r31, 0
-	bl       getIEnemyMgrBase__Q24Game15GeneralEnemyMgrFi
-	cmplwi   r3, 0
-	beq      lbl_8010D4A8
-	lwz      r12, 0(r3)
-	lwz      r12, 0x74(r12)
-	mtctr    r12
-	bctrl
-	mr       r31, r3
+	J3DModelData* modelData = nullptr;
+	IEnemyMgrBase* base = getIEnemyMgrBase(idx);
+	if (base != nullptr) {
+		modelData = base->getJ3DModelData();
+	}
 
-lbl_8010D4A8:
-	lwz      r0, 0x14(r1)
-	mr       r3, r31
-	lwz      r31, 0xc(r1)
-	mtlr     r0
-	addi     r1, r1, 0x10
-	blr
-	*/
+	return modelData;
 }
 
 /*
@@ -2195,9 +573,14 @@ lbl_8010D4A8:
  * Address:	8010D4C0
  * Size:	0000BC
  */
-EnemyBase* GeneralEnemyMgr::birth(int, Game::EnemyBirthArg&)
+EnemyBase* GeneralEnemyMgr::birth(int idx, EnemyBirthArg& birthArg)
 {
-	return nullptr;
+	EnemyBase* enemy = nullptr;
+	IEnemyMgrBase* base = getIEnemyMgrBase(idx);
+	if (base != nullptr) {
+		enemy = base->birth(birthArg);
+	}
+	return enemy;
 	/*
 	stwu     r1, -0x20(r1)
 	mflr     r0
@@ -2278,27 +661,18 @@ int GeneralEnemyMgr::getEnemyID(char* name, int p1) { return EnemyInfoFunc::getE
  * Address:	8010D5CC
  * Size:	00002C
  */
-void GeneralEnemyMgr::getIEnemyMgrBase(int)
+IEnemyMgrBase* GeneralEnemyMgr::getIEnemyMgrBase(int enemyID)
 {
-	/*
-	lwz      r5, 0x30(r3)
-	li       r3, 0
-	b        lbl_8010D5EC
+	IEnemyMgrBase* base = nullptr;
 
-lbl_8010D5D8:
-	lwz      r0, 0x1c(r5)
-	cmpw     r0, r4
-	bne      lbl_8010D5E8
-	lwz      r3, 0x20(r5)
+	EnemyMgrNode* childNode = static_cast<EnemyMgrNode*>(_20.m_child);
+	for (childNode; childNode != nullptr; childNode = static_cast<EnemyMgrNode*>(childNode->m_next)) {
+		if (childNode->m_enemyID == enemyID) {
+			base = childNode->m_mgr;
+		}
+	}
 
-lbl_8010D5E8:
-	lwz      r5, 4(r5)
-
-lbl_8010D5EC:
-	cmplwi   r5, 0
-	bne      lbl_8010D5D8
-	blr
-	*/
+	return base;
 }
 
 /*
@@ -2474,28 +848,11 @@ lbl_8010D7EC:
  */
 void GeneralEnemyMgr::resetEnemyNum()
 {
-	/*
-	lwz      r0, 0x48(r3)
-	cmplwi   r0, 0
-	beqlr
-	li       r6, 0
-	mr       r7, r6
-	mr       r5, r6
-	b        lbl_8010D844
+	if (m_enemyNumList == nullptr) {
+		return;
+	}
 
-lbl_8010D830:
-	lwz      r4, 0x48(r3)
-	addi     r0, r7, 4
-	addi     r7, r7, 8
-	addi     r6, r6, 1
-	stbx     r5, r4, r0
-
-lbl_8010D844:
-	lwz      r0, gEnemyInfoNum__4Game@sda21(r13)
-	cmpw     r6, r0
-	blt      lbl_8010D830
-	blr
-	*/
+	setEnemyNums(0);
 }
 
 /*
@@ -2874,31 +1231,13 @@ lbl_8010DC80:
  * Address:	8010DCA4
  * Size:	000038
  */
-EnemyMgrBase* GeneralEnemyMgr::getEnemyMgr(int)
+EnemyMgrBase* GeneralEnemyMgr::getEnemyMgr(int enemyID)
 {
-	return nullptr;
-	/*
-	lwz      r5, 0x30(r3)
-	li       r3, 0
-	b        lbl_8010DCC4
-
-lbl_8010DCB0:
-	lwz      r0, 0x1c(r5)
-	cmpw     r0, r4
-	bne      lbl_8010DCC0
-	lwz      r3, 0x20(r5)
-
-lbl_8010DCC0:
-	lwz      r5, 4(r5)
-
-lbl_8010DCC4:
-	cmplwi   r5, 0
-	bne      lbl_8010DCB0
-	cmplwi   r3, 0
-	bnelr
-	li       r3, 0
-	blr
-	*/
+	EnemyMgrBase* base = static_cast<EnemyMgrBase*>(getIEnemyMgrBase(enemyID));
+	if (base != nullptr) {
+		return base;
+	}
+	return nullptr;	
 }
 
 /*

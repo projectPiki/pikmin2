@@ -47,6 +47,7 @@ struct Mgr : public KochappyBase::Mgr {
 	// _00 		= VTBL
 	// _00-_44	= EnemyMgrBase
 	ResTIMG* m_changeTexture; // _44
+	Obj* m_obj;	// _48, array of Objs
 };
 
 } // namespace YellowKochappy
