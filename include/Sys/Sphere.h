@@ -8,12 +8,14 @@ struct Edge;
 // @size{0x10}
 struct Sphere {
 	inline Sphere() { }
-	// inline Sphere() : m_position(nullptr), m_radius() {};
+
 	Sphere(Vector3f& vec, float rad)
 	{
 		m_position = vec;
 		m_radius   = rad;
 	}
+
+	inline Sphere(const Vector3f& vec) { m_position = vec; }
 
 	bool intersect(Sphere&);
 	bool intersect(Sphere&, Vector3f&);
