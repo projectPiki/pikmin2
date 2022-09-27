@@ -145,8 +145,35 @@ struct GeneralEnemyMgr : public GenericObjectMgr, public CNode {
 	inline void setEnemyNums(int val)
 	{
 		for (int i = 0; i < gEnemyInfoNum; i++) {
-			m_enemyNumList[i]._04 = val;
+			m_enemyNumList[i].m_count = val;
 		}
+	}
+
+	inline u8 getEnemyCount(u8 num, int enemyID)
+	{
+		for (int i = num; i < gEnemyInfoNum; i++) {
+			if (enemyID == m_enemyNumList[i].m_enemyID) {
+				num = m_enemyNumList[i].m_count;
+				break;
+			}
+		}
+		return num;
+	}
+
+	inline u8 getTotalEnemyCount(u8 num, int enemyID)
+	{
+		if (m_enemyNumList != nullptr) {
+			int mgrID = getEnemyMgrID(enemyID);
+
+			for (int i = 0; i < gEnemyInfoNum; i++) {
+				EnemyTypeID* typeID = &m_enemyNumList[i];
+				int id              = ((u8)(enemyID == mgrID) != 0) ? getEnemyMgrID(typeID->m_enemyID) : typeID->m_enemyID;
+				if (id == enemyID) {
+					num += typeID->m_count;
+				}
+			}
+		}
+		return num;
 	}
 
 	// _00		= (GenericObjectMgr) VTABLE
@@ -169,10 +196,26 @@ extern GeneralEnemyMgr* generalEnemyMgr;
 }; // namespace Game
 
 template <typename T> struct GeneralMgrIterator {
+	GeneralMgrIterator(CNode* node)
+	{
+		m_node      = node;
+		m_condition = nullptr;
+		m_container = nullptr;
+		m_index     = nullptr;
+	}
+
+	void next();
 
 	void first();
-	void next();
+
 	void setFirst();
+
+	inline T* getObject() { return static_cast<T*>(m_container->getObject(m_index)); }
+
+	Container<T>* m_container; // _00
+	void* m_index;             // _04
+	CNode* m_node;             // _08
+	Condition<T>* m_condition; // _0C
 };
 
 #endif

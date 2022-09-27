@@ -574,14 +574,7 @@ J3DModelData* GeneralEnemyMgr::getJ3DModelData(int idx)
 EnemyBase* GeneralEnemyMgr::birth(int enemyID, EnemyBirthArg& birthArg)
 {
 	EnemyBase* enemy = nullptr;
-
-	int idx = -1;
-	for (int i = 0; i < gEnemyInfoNum; i++) {
-		char id = gEnemyInfo[i].m_id;
-		if (id == enemyID) {
-			idx = (gEnemyInfo[i].m_flags & 1) ? enemyID : gEnemyInfo[i].m_parentID;
-		}
-	}
+	int idx          = getEnemyMgrID(enemyID);
 
 	IEnemyMgrBase* base = getIEnemyMgrBase(idx);
 	if (base != nullptr) {
@@ -708,7 +701,7 @@ void GeneralEnemyMgr::addEnemyNum(int enemyID, u8 max, GenObjectEnemy* genObj)
 		if (m_enemyNumList != nullptr) {
 			for (int i = 0; i < gEnemyInfoNum; i++) {
 				if (enemyID == m_enemyNumList[i].m_enemyID) {
-					m_enemyNumList[i]._04 += mem;
+					m_enemyNumList[i].m_count += mem;
 					break;
 				}
 			}
@@ -716,6 +709,7 @@ void GeneralEnemyMgr::addEnemyNum(int enemyID, u8 max, GenObjectEnemy* genObj)
 
 		for (int i = 0; i < max; i++) {
 			switch (enemyID) {
+				// check if we're dealing with a plant that can spawn spectralids
 			case EnemyTypeID::EnemyID_Ooinu_l:
 			case EnemyTypeID::EnemyID_Tanpopo:
 			case EnemyTypeID::EnemyID_Magaret:
@@ -733,7 +727,7 @@ void GeneralEnemyMgr::addEnemyNum(int enemyID, u8 max, GenObjectEnemy* genObj)
 			default:
 				EnemyInfo* info = EnemyInfoFunc::getEnemyInfo(enemyID, 0xFFFF);
 				addEnemyNum(info->m_childID, info->m_childNum, nullptr);
-				
+				// check if we're dealing with crawbster, since we need to handle falling rock and egg spawns
 				if (enemyID == EnemyTypeID::EnemyID_DangoMushi) {
 					if (getEnemyNum(EnemyTypeID::EnemyID_Egg, true) < 10) {
 						addEnemyNum(EnemyTypeID::EnemyID_Egg, 10, nullptr);
@@ -742,6 +736,7 @@ void GeneralEnemyMgr::addEnemyNum(int enemyID, u8 max, GenObjectEnemy* genObj)
 						addEnemyNum(EnemyTypeID::EnemyID_Rock, 30, nullptr);
 					}
 
+					// check if we're dealing with empress, since we need to handle falling rock spawns
 				} else if ((enemyID == EnemyTypeID::EnemyID_Queen) && (getEnemyNum(EnemyTypeID::EnemyID_Rock, true) < 10)) {
 					addEnemyNum(EnemyTypeID::EnemyID_Rock, 10, nullptr);
 				}
@@ -921,8 +916,15 @@ lbl_8010DA6C:
  * Address:	8010DA80
  * Size:	000170
  */
-u8 GeneralEnemyMgr::getEnemyNum(int, bool)
+u8 GeneralEnemyMgr::getEnemyNum(int enemyID, bool check)
 {
+	u8 num = 0;
+	if (check) {
+		num = getTotalEnemyCount(num, enemyID);
+	} else {
+		num = getEnemyCount(num, enemyID);
+	}
+	return num;
 	/*
 	stwu     r1, -0x10(r1)
 	clrlwi.  r0, r5, 0x18
@@ -1111,95 +1113,31 @@ void GeneralEnemyMgr::setMovieDraw(bool isEndMovie)
  */
 void GeneralEnemyMgr::prepareDayendEnemies()
 {
-	/*
-	stwu     r1, -0x30(r1)
-	mflr     r0
-	stw      r0, 0x34(r1)
-	stw      r31, 0x2c(r1)
-	lis      r31, 1
-	stw      r30, 0x28(r1)
-	stw      r29, 0x24(r1)
-	mr       r29, r3
-	lwz      r30, 0x30(r3)
-	b        lbl_8010DE6C
+	EnemyMgrNode* childNode = static_cast<EnemyMgrNode*>(_20.m_child);
+	for (childNode; childNode != nullptr; childNode = static_cast<EnemyMgrNode*>(childNode->m_next)) {
 
-lbl_8010DDFC:
-	lwz      r3, 0x1c(r30)
-	addi     r4, r31, -1
-	bl       getEnemyInfo__Q24Game13EnemyInfoFuncFii
-	lwz      r4, 0x30(r29)
-	b        lbl_8010DE14
+		EnemyInfo* info = EnemyInfoFunc::getEnemyInfo(childNode->m_enemyID, 0xFFFF);
 
-lbl_8010DE10:
-	lwz      r4, 4(r4)
+		EnemyMgrNode* otherNode = static_cast<EnemyMgrNode*>(_20.m_child);
+		for (otherNode; otherNode != nullptr; otherNode = static_cast<EnemyMgrNode*>(otherNode->m_next)) { // ?? not sure why this is here
+		}
 
-lbl_8010DE14:
-	cmplwi   r4, 0
-	bne      lbl_8010DE10
-	lhz      r0, 8(r3)
-	rlwinm.  r0, r0, 0, 0x1b, 0x1b
-	beq      lbl_8010DE68
-	lis      r3, __vt__Q24Game15CreatureKillArg@ha
-	li       r4, 0
-	addi     r0, r3, __vt__Q24Game15CreatureKillArg@l
-	lis      r3, __vt__Q24Game12EnemyKillArg@ha
-	stw      r0, 8(r1)
-	addi     r5, r3, __vt__Q24Game12EnemyKillArg@l
-	oris     r0, r4, 0x7000
-	mr       r3, r30
-	stw      r4, 0xc(r1)
-	addi     r4, r1, 8
-	stw      r5, 8(r1)
-	stw      r0, 0xc(r1)
-	lwz      r12, 0(r30)
-	lwz      r12, 0x64(r12)
-	mtctr    r12
-	bctrl
+		if (info->m_flags & 0x10) {
+			EnemyKillArg killArg(0);
+			killArg._04 |= 0x70000000;
+			childNode->killAll(&killArg);
+		}
+	}
 
-lbl_8010DE68:
-	lwz      r30, 4(r30)
+	GeneralMgrIterator<EnemyBase> iterator(this);
 
-lbl_8010DE6C:
-	cmplwi   r30, 0
-	bne      lbl_8010DDFC
-	cmplwi   r29, 0
-	mr       r3, r29
-	beq      lbl_8010DE84
-	addi     r3, r29, 4
+	iterator.first();
 
-lbl_8010DE84:
-	li       r0, 0
-	stw      r3, 0x18(r1)
-	addi     r3, r1, 0x10
-	stw      r0, 0x1c(r1)
-	stw      r0, 0x10(r1)
-	stw      r0, 0x14(r1)
-	bl       "first__37GeneralMgrIterator<Q24Game9EnemyBase>Fv"
-	li       r31, 0
-	b        lbl_8010DEC8
-
-lbl_8010DEA8:
-	lwz      r12, 0(r3)
-	lwz      r4, 0x14(r1)
-	lwz      r12, 0x10(r12)
-	mtctr    r12
-	bctrl
-	stb      r31, 0x1f3(r3)
-	addi     r3, r1, 0x10
-	bl       "next__37GeneralMgrIterator<Q24Game9EnemyBase>Fv"
-
-lbl_8010DEC8:
-	lwz      r3, 0x10(r1)
-	cmplwi   r3, 0
-	bne      lbl_8010DEA8
-	lwz      r0, 0x34(r1)
-	lwz      r31, 0x2c(r1)
-	lwz      r30, 0x28(r1)
-	lwz      r29, 0x24(r1)
-	mtlr     r0
-	addi     r1, r1, 0x30
-	blr
-	*/
+	while (iterator.m_container != nullptr) {
+		EnemyBase* enemy      = iterator.getObject();
+		enemy->m_inPiklopedia = false;
+		iterator.next();
+	}
 }
 
 } // namespace Game
@@ -1209,88 +1147,27 @@ lbl_8010DEC8:
  * Address:	8010DEF0
  * Size:	000110
  */
+// WEAK but seems to live here? unsure. might be template shenanigans
 void GeneralMgrIterator<Game::EnemyBase>::next()
 {
-	/*
-	stwu     r1, -0x10(r1)
-	mflr     r0
-	stw      r0, 0x14(r1)
-	stw      r31, 0xc(r1)
-	mr       r31, r3
-	lwz      r0, 0xc(r3)
-	cmplwi   r0, 0
-	bne      lbl_8010DF30
-	lwz      r3, 0(r31)
-	lwz      r4, 4(r31)
-	lwz      r12, 0(r3)
-	lwz      r12, 0x14(r12)
-	mtctr    r12
-	bctrl
-	stw      r3, 4(r31)
-	b        lbl_8010DFB8
+	if (m_condition == nullptr) {
+		m_index = m_container->getNext(m_index);
+	} else {
+		m_index = m_container->getStart();
 
-lbl_8010DF30:
-	lwz      r3, 0(r31)
-	lwz      r12, 0(r3)
-	lwz      r12, 0x18(r12)
-	mtctr    r12
-	bctrl
-	stw      r3, 4(r31)
-	b        lbl_8010DF98
+		while (m_index != m_container->getEnd()) {
+			Game::EnemyBase* enemy = getObject();
+			if (m_condition->satisfy(enemy)) {
+				return;
+			}
+			m_container->getNext(m_index);
+		}
+	}
 
-lbl_8010DF4C:
-	lwz      r3, 0(r31)
-	lwz      r12, 0(r3)
-	lwz      r12, 0x10(r12)
-	mtctr    r12
-	bctrl
-	mr       r4, r3
-	lwz      r3, 0xc(r31)
-	lwz      r12, 0(r3)
-	lwz      r12, 8(r12)
-	mtctr    r12
-	bctrl
-	clrlwi.  r0, r3, 0x18
-	bne      lbl_8010DFEC
-	lwz      r3, 0(r31)
-	lwz      r4, 4(r31)
-	lwz      r12, 0(r3)
-	lwz      r12, 0x14(r12)
-	mtctr    r12
-	bctrl
-
-lbl_8010DF98:
-	lwz      r3, 0(r31)
-	lwz      r12, 0(r3)
-	lwz      r12, 0x1c(r12)
-	mtctr    r12
-	bctrl
-	lwz      r4, 4(r31)
-	cmplw    r4, r3
-	bne      lbl_8010DF4C
-
-lbl_8010DFB8:
-	lwz      r3, 0(r31)
-	lwz      r12, 0(r3)
-	lwz      r12, 0x1c(r12)
-	mtctr    r12
-	bctrl
-	lwz      r0, 4(r31)
-	cmplw    r0, r3
-	bne      lbl_8010DFEC
-	lwz      r4, 0(r31)
-	mr       r3, r31
-	lwz      r0, 4(r4)
-	stw      r0, 0(r31)
-	bl       "setFirst__37GeneralMgrIterator<Q24Game9EnemyBase>Fv"
-
-lbl_8010DFEC:
-	lwz      r0, 0x14(r1)
-	lwz      r31, 0xc(r1)
-	mtlr     r0
-	addi     r1, r1, 0x10
-	blr
-	*/
+	if (m_index == m_container->getEnd()) {
+		m_container = static_cast<Container<Game::EnemyBase>*>(m_container->m_next);
+		setFirst();
+	}
 }
 
 /*
@@ -1300,6 +1177,25 @@ lbl_8010DFEC:
  */
 void GeneralMgrIterator<Game::EnemyBase>::setFirst()
 {
+	if (m_container != nullptr) {
+		if (m_condition == nullptr) {
+			m_index = m_container->getStart();
+			if (m_index != m_container->getEnd()) {
+				return;
+			}
+		} else {
+			m_index = m_container->getStart();
+			while (m_index != m_container->getEnd()) {
+				if (!m_condition->satisfy(static_cast<Game::EnemyBase*>(m_container->getObject(m_index)))) {
+					return;
+				} else {
+					m_container->getNext(m_index);
+				}
+			}
+		}
+		setFirst();
+	}
+
 	/*
 	stwu     r1, -0x10(r1)
 	mflr     r0
@@ -1645,19 +1541,8 @@ lbl_8010E47C:
  */
 void GeneralMgrIterator<Game::EnemyBase>::first()
 {
-	/*
-	stwu     r1, -0x10(r1)
-	mflr     r0
-	stw      r0, 0x14(r1)
-	lwz      r4, 8(r3)
-	lwz      r0, 0x10(r4)
-	stw      r0, 0(r3)
-	bl       "setFirst__37GeneralMgrIterator<Q24Game9EnemyBase>Fv"
-	lwz      r0, 0x14(r1)
-	mtlr     r0
-	addi     r1, r1, 0x10
-	blr
-	*/
+	m_container = static_cast<Container<Game::EnemyBase>*>(m_node->m_child);
+	this->setFirst();
 }
 
 namespace Game {
