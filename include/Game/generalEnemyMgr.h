@@ -25,11 +25,6 @@ struct EnemyMgrNode : public CNode, GenericObjectMgr {
 	    , m_enemyID((EnemyTypeID::EEnemyTypeID)enemyID)
 	    , m_mgr(mgr)
 	{
-		// clearRelations();
-
-		// m_enemyID = EnemyTypeID::EnemyID_NULL;
-		// m_mgr = nullptr;
-		// m_name = "マネージャノード"; // manager node
 	}
 
 	// vtable 1 (CNode, _00, _08-_0C)
@@ -179,7 +174,7 @@ struct GeneralEnemyMgr : public GenericObjectMgr, public CNode {
 	// _00		= (GenericObjectMgr) VTABLE
 	// _04-_1C	= CNode
 	u8 _1C;                      // _1C
-	EnemyMgrNode _20;            // _20
+	EnemyMgrNode m_enemyMgrNode; // _20
 	u8 _44[4];                   // _44
 	EnemyTypeID* m_enemyNumList; // _48
 	JKRHeap* m_heap;             // _4C
