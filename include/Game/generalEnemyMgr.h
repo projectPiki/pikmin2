@@ -14,16 +14,16 @@ struct CreatureKillArg;
 
 struct EnemyMgrNode : public CNode, GenericObjectMgr {
 	inline EnemyMgrNode()
-		: CNode("マネージャノード")
-		, m_enemyID(EnemyTypeID::EnemyID_NULL)
-		, m_mgr(nullptr)
+	    : CNode("マネージャノード")
+	    , m_enemyID(EnemyTypeID::EnemyID_NULL)
+	    , m_mgr(nullptr)
 	{
 	}
 
 	inline EnemyMgrNode(int enemyID, char* name, EnemyMgrBase* mgr)
-		: CNode(name)
-		, m_enemyID((EnemyTypeID::EEnemyTypeID) enemyID)
-		, m_mgr(mgr)
+	    : CNode(name)
+	    , m_enemyID((EnemyTypeID::EEnemyTypeID)enemyID)
+	    , m_mgr(mgr)
 	{
 		// clearRelations();
 
@@ -38,59 +38,59 @@ struct EnemyMgrNode : public CNode, GenericObjectMgr {
 	// _18-_34 = thunks
 	// _34-_44 = GenericObjectMgr
 	// _44 = thunk
-	virtual void doAnimation()              // _48 (weak)
+	virtual void doAnimation() // _48 (weak)
 	{
 		m_mgr->doAnimation();
 	}
-	virtual void doEntry()                  // _4C (weak)
+	virtual void doEntry() // _4C (weak)
 	{
 		m_mgr->doEntry();
 	}
-	virtual void doSetView(int a)            // _50 (weak)
+	virtual void doSetView(int a) // _50 (weak)
 	{
 		m_mgr->doSetView(a);
 	}
-	virtual void doViewCalc()               // _54 (weak)
+	virtual void doViewCalc() // _54 (weak)
 	{
 		m_mgr->doViewCalc();
 	}
-	virtual void doSimulation(f32 constraint)       // _58 (weak)
+	virtual void doSimulation(f32 constraint) // _58 (weak)
 	{
 		m_mgr->doSimulation(constraint);
 	}
-	virtual void doDirectDraw(Graphics& gfx)   // _5C (weak)
+	virtual void doDirectDraw(Graphics& gfx) // _5C (weak)
 	{
 		m_mgr->doDirectDraw(gfx);
 	}
-	virtual void doSimpleDraw(Viewport* viewport)   // _60 (weak)
+	virtual void doSimpleDraw(Viewport* viewport) // _60 (weak)
 	{
 		m_mgr->doSimpleDraw(viewport);
 	}
-	virtual void killAll(CreatureKillArg* killArg)  // _64 (weak)
+	virtual void killAll(CreatureKillArg* killArg) // _64 (weak)
 	{
 		m_mgr->killAll(killArg);
 	}
-	virtual void setupSoundViewerAndBas()   // _68 (weak)
+	virtual void setupSoundViewerAndBas() // _68 (weak)
 	{
 		m_mgr->setupSoundViewerAndBas();
 	}
-	virtual void setDebugParm(u32 p1)         // _6C (weak)
+	virtual void setDebugParm(u32 p1) // _6C (weak)
 	{
 		m_mgr->setDebugParm(p1);
 	}
-	virtual void resetDebugParm(u32 p1)       // _70 (weak)
+	virtual void resetDebugParm(u32 p1) // _70 (weak)
 	{
 		m_mgr->resetDebugParm(p1);
 	}
-	virtual void startMovie()               // _74 (weak)
+	virtual void startMovie() // _74 (weak)
 	{
 		m_mgr->startMovie();
 	}
-	virtual void endMovie()                 // _78 (weak)
+	virtual void endMovie() // _78 (weak)
 	{
 		m_mgr->endMovie();
 	}
-	virtual u32 getMatrixLoadType() { return 1; }        // _7C (weak)
+	virtual u32 getMatrixLoadType() { return 1; } // _7C (weak)
 
 	// _00 		= (CNode) VTABLE
 	// _04-_18 	= CNode
@@ -128,7 +128,7 @@ struct GeneralEnemyMgr : public GenericObjectMgr, public CNode {
 	void allocateEnemys(u8, int);
 	void resetEnemyNum();
 	void addEnemyNum(int, u8, GenObjectEnemy*);
-	void getEnemyNum(int, bool);
+	u8 getEnemyNum(int, bool);
 	JKRHeap* useHeap();
 	EnemyMgrBase* getEnemyMgr(int);
 	void setMovieDraw(bool);
@@ -138,7 +138,7 @@ struct GeneralEnemyMgr : public GenericObjectMgr, public CNode {
 	inline void setEnemyIDs()
 	{
 		for (int i = 0; i < gEnemyInfoNum; i++) {
-			m_enemyNumList[i].m_enemyID = (EnemyTypeID::EEnemyTypeID) gEnemyInfo[i].m_id;
+			m_enemyNumList[i].m_enemyID = (EnemyTypeID::EEnemyTypeID)gEnemyInfo[i].m_id;
 		}
 	}
 
@@ -151,14 +151,14 @@ struct GeneralEnemyMgr : public GenericObjectMgr, public CNode {
 
 	// _00		= (GenericObjectMgr) VTABLE
 	// _04-_1C	= CNode
-	u8 _1C;                                    // _1C
-	EnemyMgrNode _20;                          // _20
-	u8 _44[4];                                 // _44
+	u8 _1C;                      // _1C
+	EnemyMgrNode _20;            // _20
+	u8 _44[4];                   // _44
 	EnemyTypeID* m_enemyNumList; // _48
-	JKRHeap* m_heap;                           // _4C
-	u32 m_heapSize;                            // _50
-	BitFlag<u32> m_flags;                      // _54
-	EnemyStone::Mgr m_stoneMgr;                // _58
+	JKRHeap* m_heap;             // _4C
+	u32 m_heapSize;              // _50
+	BitFlag<u32> m_flags;        // _54
+	EnemyStone::Mgr m_stoneMgr;  // _58
 
 	static int mTotalCount;
 	static int mCullCount;
@@ -168,13 +168,11 @@ extern GeneralEnemyMgr* generalEnemyMgr;
 
 }; // namespace Game
 
-
 template <typename T> struct GeneralMgrIterator {
 
 	void first();
 	void next();
 	void setFirst();
-
 };
 
 #endif

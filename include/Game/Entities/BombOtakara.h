@@ -50,7 +50,7 @@ struct Mgr : public OtakaraBase::Mgr {
 
 	// _00 		= VTBL
 	// _00-_48	= OtakaraBase::Mgr
-	Obj* m_obj;	// _48, array of Objs
+	Obj* m_obj; // _48, array of Objs
 };
 } // namespace BombOtakara
 } // namespace Game

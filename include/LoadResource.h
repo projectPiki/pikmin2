@@ -12,7 +12,7 @@ namespace LoadResource {
 struct Node : public CNode, JKRDisposer {
 	Node(char const*);
 
-	virtual ~Node(); // _00
+	virtual ~Node(); // _08
 
 	void dump();
 

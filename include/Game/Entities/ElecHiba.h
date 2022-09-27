@@ -107,7 +107,7 @@ struct Mgr : public EnemyMgrBaseAlwaysMovieActor {
 
 	// _00 		= VTBL
 	// _00-_44	= EnemyMgrBase
-	Obj* m_obj;	// _44, array of Objs
+	Obj* m_obj; // _44, array of Objs
 };
 
 struct Parms : public EnemyParmsBase {

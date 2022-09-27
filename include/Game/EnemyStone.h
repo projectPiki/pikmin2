@@ -88,10 +88,10 @@ struct Mgr {
 	void addDrawInfo(DrawInfo*);
 	// ~Mgr();
 
-	J3DModelData** _00;   // _00 - could be an array of pointers
-	BitFlag<u32> _04;     // _04
-	CNode m_drawInfo;     // _08 - treat as DrawInfo
-	CNode m_obj;          // _20 - treat as Obj
+	J3DModelData** _00; // _00 - could be an array of pointers
+	BitFlag<u32> _04;   // _04
+	CNode m_drawInfo;   // _08 - treat as DrawInfo
+	CNode m_obj;        // _20 - treat as Obj
 };
 
 } // namespace EnemyStone

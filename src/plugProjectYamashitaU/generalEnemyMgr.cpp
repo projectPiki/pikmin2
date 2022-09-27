@@ -68,7 +68,7 @@
 #include "Game/Entities/YellowChappy.h"
 #include "Game/Entities/YellowKochappy.h"
 #include "Game/plantsMgr.h"
-
+#include "LoadResource.h"
 
 static const char matchText[] = "enemyBase";
 
@@ -89,8 +89,6 @@ void GeneralEnemyMgr::createEnemyMgr(u8 type, int enemyID, int limit)
 	EnemyInfoFunc::getEnemyInfo(enemyID, 0xFFFF);
 	char* name = getEnemyName(enemyID, 0xFFFF);
 	sys->heapStatusStart(name, nullptr);
-
-
 
 	EnemyMgrBase* mgr;
 
@@ -392,12 +390,12 @@ void GeneralEnemyMgr::createEnemyMgr(u8 type, int enemyID, int limit)
  * Size:	0001BC
  */
 GeneralEnemyMgr::GeneralEnemyMgr()
-	: _1C(0)
-	, m_enemyNumList(nullptr)
-	, m_heap(nullptr)
+    : _1C(0)
+    , m_enemyNumList(nullptr)
+    , m_heap(nullptr)
 {
 	sys->heapStatusStart("GeneralEnemyMgr", nullptr);
-	m_name = "敵マネージャ"; // enemy manager
+	m_name         = "敵マネージャ"; // enemy manager
 	m_enemyNumList = new EnemyTypeID[gEnemyInfoNum];
 
 	setEnemyIDs();
@@ -420,7 +418,7 @@ GeneralEnemyMgr::GeneralEnemyMgr()
  */
 void GeneralEnemyMgr::killAll()
 {
-	EnemyKillArg killArg (0);
+	EnemyKillArg killArg(0);
 	killArg._04 |= 0x70000000;
 
 	EnemyMgrNode* childNode = static_cast<EnemyMgrNode*>(_20.m_child);
@@ -449,7 +447,7 @@ void GeneralEnemyMgr::setupSoundViewerAndBas()
  */
 void GeneralEnemyMgr::doAnimation()
 {
-	mCullCount = 0;
+	mCullCount  = 0;
 	mTotalCount = 0;
 	sys->m_timers->_start("doaTEKI", true);
 	if (m_flags.typeView & 0x1) {
@@ -560,7 +558,7 @@ void GeneralEnemyMgr::doSimpleDraw(Viewport* viewport)
 J3DModelData* GeneralEnemyMgr::getJ3DModelData(int idx)
 {
 	J3DModelData* modelData = nullptr;
-	IEnemyMgrBase* base = getIEnemyMgrBase(idx);
+	IEnemyMgrBase* base     = getIEnemyMgrBase(idx);
 	if (base != nullptr) {
 		modelData = base->getJ3DModelData();
 	}
@@ -587,8 +585,8 @@ EnemyBase* GeneralEnemyMgr::birth(int enemyID, EnemyBirthArg& birthArg)
 
 	IEnemyMgrBase* base = getIEnemyMgrBase(idx);
 	if (base != nullptr) {
-		birthArg.m_typeID = (EnemyTypeID::EEnemyTypeID) enemyID;
-		enemy = base->birth(birthArg);
+		birthArg.m_typeID = (EnemyTypeID::EEnemyTypeID)enemyID;
+		enemy             = base->birth(birthArg);
 	}
 
 	return enemy;
@@ -632,165 +630,55 @@ IEnemyMgrBase* GeneralEnemyMgr::getIEnemyMgrBase(int enemyID)
  * Address:	8010D5F8
  * Size:	00021C
  */
-void GeneralEnemyMgr::allocateEnemys(unsigned char, int)
+void GeneralEnemyMgr::allocateEnemys(u8 type, int heapSize)
 {
-	/*
-	stwu     r1, -0x60(r1)
-	mflr     r0
-	cmpwi    r5, 0
-	lis      r6, lbl_8047AA70@ha
-	stw      r0, 0x64(r1)
-	stmw     r25, 0x44(r1)
-	mr       r29, r3
-	mr       r30, r4
-	addi     r31, r6, lbl_8047AA70@l
-	bge      lbl_8010D684
-	lis      r3, 0x00200800@ha
-	addi     r0, r3, 0x00200800@l
-	stw      r0, 0x50(r29)
-	lwz      r3, gameSystem__4Game@sda21(r13)
-	cmplwi   r3, 0
-	beq      lbl_8010D688
-	lwz      r3, 0x44(r3)
-	li       r0, 0
-	cmpwi    r3, 2
-	beq      lbl_8010D650
-	cmpwi    r3, 3
-	bne      lbl_8010D654
+	if (heapSize < 0) {
+		m_heapSize = 0x00200800;
+		if (gameSystem != nullptr) {
+			if (gameSystem->isChallengeMode()) {
+				m_heapSize = 0x00177000;
+			} else if (gameSystem->m_mode == GSM_VERSUS_MODE) {
+				m_heapSize = 0x001C2000;
+			}
+		}
+	} else {
+		m_heapSize = heapSize;
+	}
 
-lbl_8010D650:
-	li       r0, 1
+	sys->heapStatusStart("enemyHeap", nullptr);
+	JKRHeap* currentHeap = getCurrentHeap();
+	m_heap               = JKRSolidHeap::create(m_heapSize, currentHeap, true);
+	m_heap->becomeCurrentHeap();
 
-lbl_8010D654:
-	clrlwi.  r0, r0, 0x18
-	beq      lbl_8010D66C
-	lis      r3, 0x00177000@ha
-	addi     r0, r3, 0x00177000@l
-	stw      r0, 0x50(r29)
-	b        lbl_8010D688
+	m_stoneMgr.loadResource();
 
-lbl_8010D66C:
-	cmpwi    r3, 1
-	bne      lbl_8010D688
-	lis      r3, 0x001C2000@ha
-	addi     r0, r3, 0x001C2000@l
-	stw      r0, 0x50(r29)
-	b        lbl_8010D688
+	P2ASSERTLINE(1844, currentHeap->getHeapType() == 'EXPH');
 
-lbl_8010D684:
-	stw      r5, 0x50(r29)
+	LoadResource::ArgAramOnly arg("enemy/parm/enemyParms.szs");
+	arg.m_heap = currentHeap;
+	arg._1C    = 2;
 
-lbl_8010D688:
-	lwz      r3, sys@sda21(r13)
-	addi     r4, r31, 0x40
-	li       r5, 0
-	bl       heapStatusStart__6SystemFPcP7JKRHeap
-	lwz      r27, sCurrentHeap__7JKRHeap@sda21(r13)
-	li       r5, 1
-	lwz      r3, 0x50(r29)
-	mr       r4, r27
-	bl       create__12JKRSolidHeapFUlP7JKRHeapb
-	stw      r3, 0x4c(r29)
-	lwz      r3, 0x4c(r29)
-	bl       becomeCurrentHeap__7JKRHeapFv
-	addi     r3, r29, 0x58
-	bl       loadResource__Q34Game10EnemyStone3MgrFv
-	mr       r3, r27
-	lwz      r12, 0(r27)
-	lwz      r12, 0x10(r12)
-	mtctr    r12
-	bctrl
-	addis    r0, r3, 0xbaa8
-	cmplwi   r0, 0x5048
-	beq      lbl_8010D6F4
-	addi     r3, r31, 0x4c
-	addi     r5, r31, 0x60
-	li       r4, 0x734
-	crclr    6
-	bl       panic_f__12JUTExceptionFPCciPCce
+	LoadResource::Node* resourceNode = gLoadResourceMgr->mountArchive(arg);
+	gParmArc                         = resourceNode->m_archive;
 
-lbl_8010D6F4:
-	addi     r3, r1, 8
-	addi     r4, r31, 0x6c
-	bl       __ct__Q212LoadResource11ArgAramOnlyFPCc
-	li       r0, 2
-	stw      r27, 0x20(r1)
-	lwz      r3, gLoadResourceMgr@sda21(r13)
-	addi     r4, r1, 8
-	stw      r0, 0x24(r1)
-	bl       mountArchive__Q212LoadResource3MgrFRQ212LoadResource3Arg
-	mr       r0, r3
-	lwz      r3, sys@sda21(r13)
-	mr       r26, r0
-	addi     r4, r31, 0x88
-	lwz      r0, 0x34(r26)
-	li       r5, 0
-	stw      r0, gParmArc__4Game@sda21(r13)
-	bl       heapStatusStart__6SystemFPcP7JKRHeap
-	lwz      r3, sys@sda21(r13)
-	bl       heapStatusIndividual__6SystemFv
-	lis      r3, gEnemyInfo__4Game@ha
-	li       r25, 0
-	addi     r28, r3, gEnemyInfo__4Game@l
-	b        lbl_8010D798
+	sys->heapStatusStart("allocateEnemys", nullptr);
+	sys->heapStatusIndividual();
 
-lbl_8010D750:
-	lbz      r4, 4(r28)
-	mr       r3, r29
-	li       r5, 1
-	extsb    r4, r4
-	bl       getEnemyNum__Q24Game15GeneralEnemyMgrFib
-	lhz      r0, 8(r28)
-	clrlwi   r6, r3, 0x18
-	clrlwi.  r0, r0, 0x1f
-	beq      lbl_8010D790
-	cmpwi    r6, 0
-	ble      lbl_8010D790
-	lbz      r5, 4(r28)
-	mr       r3, r29
-	mr       r4, r30
-	extsb    r5, r5
-	bl       createEnemyMgr__Q24Game15GeneralEnemyMgrFUcii
+	for (int i = 0; i < gEnemyInfoNum; i++) {
+		int enemyNum = getEnemyNum(gEnemyInfo[i].m_id, true);
+		if ((gEnemyInfo[i].m_flags & 0x1) && (enemyNum > 0)) {
+			createEnemyMgr(type, gEnemyInfo[i].m_id, enemyNum);
+		}
+	}
 
-lbl_8010D790:
-	addi     r28, r28, 0x34
-	addi     r25, r25, 1
+	sys->heapStatusNormal();
+	sys->heapStatusEnd("allocateEnemys");
+	currentHeap->becomeCurrentHeap();
+	m_heap->_69 = 1;
+	delete resourceNode;
 
-lbl_8010D798:
-	lwz      r0, gEnemyInfoNum__4Game@sda21(r13)
-	cmpw     r25, r0
-	blt      lbl_8010D750
-	lwz      r3, sys@sda21(r13)
-	bl       heapStatusNormal__6SystemFv
-	lwz      r3, sys@sda21(r13)
-	addi     r4, r31, 0x88
-	bl       heapStatusEnd__6SystemFPc
-	mr       r3, r27
-	bl       becomeCurrentHeap__7JKRHeapFv
-	lwz      r3, 0x4c(r29)
-	li       r0, 1
-	cmplwi   r26, 0
-	stb      r0, 0x69(r3)
-	beq      lbl_8010D7EC
-	mr       r3, r26
-	li       r4, 1
-	lwz      r12, 0(r26)
-	lwz      r12, 8(r12)
-	mtctr    r12
-	bctrl
-
-lbl_8010D7EC:
-	li       r0, 0
-	lwz      r3, sys@sda21(r13)
-	stw      r0, gParmArc__4Game@sda21(r13)
-	addi     r4, r31, 0x40
-	bl       heapStatusEnd__6SystemFPc
-	lmw      r25, 0x44(r1)
-	lwz      r0, 0x64(r1)
-	mtlr     r0
-	addi     r1, r1, 0x60
-	blr
-	*/
+	gParmArc = nullptr;
+	sys->heapStatusEnd("enemyHeap");
 }
 
 /*
@@ -812,8 +700,55 @@ void GeneralEnemyMgr::resetEnemyNum()
  * Address:	8010D854
  * Size:	00022C
  */
-void GeneralEnemyMgr::addEnemyNum(int, unsigned char, Game::GenObjectEnemy*)
+void GeneralEnemyMgr::addEnemyNum(int enemyID, u8 max, GenObjectEnemy* genObj)
 {
+	if (enemyID != -1) {
+
+		u8 mem = max * EnemyInfoFunc::getEnemyMember(enemyID, 0xFFFF);
+		if (m_enemyNumList != nullptr) {
+			for (int i = 0; i < gEnemyInfoNum; i++) {
+				if (enemyID == m_enemyNumList[i].m_enemyID) {
+					m_enemyNumList[i]._04 += mem;
+					break;
+				}
+			}
+		}
+
+		for (int i = 0; i < max; i++) {
+			switch (enemyID) {
+			case EnemyTypeID::EnemyID_Ooinu_l:
+			case EnemyTypeID::EnemyID_Tanpopo:
+			case EnemyTypeID::EnemyID_Magaret:
+				if (genObj != nullptr) {
+					EnemyPelletInfo pelletInfo;
+					pelletInfo = genObj->m_pelletInfo; // need an override on equals operator maybe?
+
+					if (pelletInfo.m_color == 0 && pelletInfo.m_size == 1) {
+						EnemyInfo* info = EnemyInfoFunc::getEnemyInfo(enemyID, 0xFFFF);
+						addEnemyNum(info->m_childID, info->m_childNum, nullptr);
+					}
+				}
+				break;
+
+			default:
+				EnemyInfo* info = EnemyInfoFunc::getEnemyInfo(enemyID, 0xFFFF);
+				addEnemyNum(info->m_childID, info->m_childNum, nullptr);
+				
+				if (enemyID == EnemyTypeID::EnemyID_DangoMushi) {
+					if (getEnemyNum(EnemyTypeID::EnemyID_Egg, true) < 10) {
+						addEnemyNum(EnemyTypeID::EnemyID_Egg, 10, nullptr);
+					}
+					if (getEnemyNum(EnemyTypeID::EnemyID_Rock, true) < 30) {
+						addEnemyNum(EnemyTypeID::EnemyID_Rock, 30, nullptr);
+					}
+
+				} else if ((enemyID == EnemyTypeID::EnemyID_Queen) && (getEnemyNum(EnemyTypeID::EnemyID_Rock, true) < 10)) {
+					addEnemyNum(EnemyTypeID::EnemyID_Rock, 10, nullptr);
+				}
+				break;
+			}
+		}
+	}
 	/*
 	stwu     r1, -0x30(r1)
 	mflr     r0
@@ -986,7 +921,7 @@ lbl_8010DA6C:
  * Address:	8010DA80
  * Size:	000170
  */
-void GeneralEnemyMgr::getEnemyNum(int, bool)
+u8 GeneralEnemyMgr::getEnemyNum(int, bool)
 {
 	/*
 	stwu     r1, -0x10(r1)
@@ -1144,7 +1079,7 @@ EnemyMgrBase* GeneralEnemyMgr::getEnemyMgr(int enemyID)
 	if (base != nullptr) {
 		return base;
 	}
-	return nullptr;	
+	return nullptr;
 }
 
 /*

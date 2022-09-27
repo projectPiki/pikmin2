@@ -38,7 +38,7 @@ struct Mgr : public EnemyMgrBase {
 
 	// _00 		= VTBL
 	// _00-_44	= EnemyMgrBase
-	Obj* m_obj;	// _44, array of Objs, probably
+	Obj* m_obj; // _44, array of Objs, probably
 };
 } // namespace Demon
 } // namespace Game
