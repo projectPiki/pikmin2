@@ -6,7 +6,7 @@
 
 namespace efx {
 struct TImoEat : public TChaseMtx {
-	virtual void create(Arg*); // _08
+	virtual bool create(Arg*); // _08
 	virtual ~TImoEat();        // _48 (weak)
 
 	// _00      = VTBL
@@ -14,7 +14,7 @@ struct TImoEat : public TChaseMtx {
 };
 
 struct TImoSmoke : public TChasePos {
-	virtual void create(Arg*); // _08
+	virtual bool create(Arg*); // _08
 	virtual ~TImoSmoke();      // _48 (weak)
 
 	// _00      = VTBL

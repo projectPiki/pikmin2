@@ -6,7 +6,7 @@
 
 namespace efx {
 struct TChouDown : public TChasePos {
-	virtual void create(Arg*); // _08
+	virtual bool create(Arg*); // _08
 	virtual ~TChouDown();      // _48 (weak)
 
 	// _00      = VTBL

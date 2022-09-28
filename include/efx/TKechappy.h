@@ -7,7 +7,7 @@
 namespace efx {
 struct TKechappyOff : public TSimpleMtx1 {
 	TKechappyOff(Matrixf* mat)
-	    : TSimpleMtx1(mat, 0x294)
+	    : TSimpleMtx1(mat, PID_KechappyOff)
 	{
 	}
 
@@ -17,7 +17,7 @@ struct TKechappyOff : public TSimpleMtx1 {
 
 struct TKechappyTest : public TChaseMtx3 {
 	TKechappyTest()
-	    : TChaseMtx3(0, 0x283, 0x284, 0x285)
+	    : TChaseMtx3(0, PID_KechappyTest_1, PID_KechappyTest_2, PID_KechappyTest_3)
 	{
 	}
 

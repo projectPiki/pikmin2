@@ -5,7 +5,7 @@
 
 namespace efx {
 struct Container : public TForever {
-	virtual void create(Arg*); // _08
+	virtual bool create(Arg*); // _08
 	virtual ~Container();      // _48 (weak)
 
 	// _00      = VTBL
@@ -13,7 +13,7 @@ struct Container : public TForever {
 };
 
 struct ContainerAct : public TForever2 {
-	virtual void create(Arg*); // _08
+	virtual bool create(Arg*); // _08
 
 	// _00      = VTBL
 	// _00-_24  = TForever2

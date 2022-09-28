@@ -29,7 +29,7 @@ struct TFueactBiri2 : public TFueactBiriBase {
 };
 
 struct TFueactCircle : public TBase, public JPAEmitterCallBack public JPAParticleCallBack {
-	virtual void create(Arg*);                               // _08
+	virtual bool create(Arg*);                               // _08
 	virtual void forceKill();                                // _0C (weak)
 	virtual void fade();                                     // _10 (weak)
 	virtual void execute(JPABaseEmitter*);                   // _44 (weak)
@@ -45,7 +45,7 @@ struct TFueactCircle : public TBase, public JPAEmitterCallBack public JPAParticl
 };
 
 struct TFueact : public TBase {
-	virtual void create(Arg*); // _08 (weak)
+	virtual bool create(Arg*); // _08 (weak)
 	virtual void forceKill();  // _0C (weak)
 	virtual void fade();       // _10 (weak)
 

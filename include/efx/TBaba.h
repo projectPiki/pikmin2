@@ -6,7 +6,7 @@
 
 namespace efx {
 struct TBabaFly_ver01 : public TChasePos {
-	virtual void create(Arg*); // _08
+	virtual bool create(Arg*); // _08
 	virtual ~TBabaFly_ver01(); // _48 (weak)
 
 	// _00      = VTBL
@@ -14,7 +14,7 @@ struct TBabaFly_ver01 : public TChasePos {
 };
 
 struct TBabaHe : public TSimple1 {
-	virtual void create(Arg*); // _08
+	virtual bool create(Arg*); // _08
 
 	// _00      = VTBL
 	// _00-_0C  = TSimple1

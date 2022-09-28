@@ -485,6 +485,12 @@ struct EnemyBase : public Creature, public SysShape::MotionListener, virtual pub
 		return constraint / static_cast<EnemyParmsBase*>(m_parms)->m_creatureProps.m_props.m_accel.m_value;
 	}
 
+	inline void getDistance2D(Vector3f& point, Vector2f& sep)
+	{
+		sep.x = m_position.x - point.x;
+		sep.y = m_position.z - point.z;
+	}
+
 	// Creature: _000 - _178
 	// MotionListener: _178 - _17C
 	// ptr to PelletView: _17C

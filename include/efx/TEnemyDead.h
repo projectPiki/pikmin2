@@ -6,8 +6,8 @@
 
 namespace efx {
 struct TEnemyDead : public TSimple1 {
-	inline TEnemyDead(u16 effectID, JPABaseEmitter* emitter)
-	    : TSimple1(effectID, emitter)
+	inline TEnemyDead()
+	    : TSimple1(PID_EnemyDead)
 	{
 	}
 
@@ -18,7 +18,7 @@ struct TEnemyDead : public TSimple1 {
 };
 
 struct TEnemyDead_ArgScale : public TSimple1 {
-	virtual void create(Arg*); // _08
+	virtual bool create(Arg*); // _08
 
 	// _00		= VTBL
 	// _00-_0C	= TSimple1

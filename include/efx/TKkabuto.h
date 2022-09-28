@@ -5,8 +5,8 @@
 
 namespace efx {
 struct TKkabutoRot : public TChasePos {
-	inline TKkabutoRot(u16 effectID, Vector3f* position = nullptr)
-	    : TChasePos(effectID, position)
+	inline TKkabutoRot(Vector3f* position = nullptr)
+	    : TChasePos(PID_KKabutoRot, position)
 	{
 	}
 
@@ -19,8 +19,8 @@ struct TKkabutoRot : public TChasePos {
 };
 
 struct TKkabutoWait : public TChasePos {
-	inline TKkabutoWait(u16 effectID, Vector3f* position = nullptr)
-	    : TChasePos(effectID, position)
+	inline TKkabutoWait(Vector3f* position = nullptr)
+	    : TChasePos(PID_KKabutoWait, position)
 	{
 	}
 

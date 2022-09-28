@@ -13,14 +13,14 @@ struct THdamaDeadbomb : public TChaseMtx4 {
 };
 
 struct THdamaDeadHahen1 : public TSimple1 {
-	virtual void create(Arg*); // _08
+	virtual bool create(Arg*); // _08
 
 	// _00		= VTBL
 	// _00-_0C	= TSimple1
 };
 
 struct THdamaDeadHahen2 : public TSimple2 {
-	virtual void create(Arg*); // _08
+	virtual bool create(Arg*); // _08
 
 	// _00		= VTBL
 	// _00-_10	= TSimple2
@@ -102,7 +102,7 @@ struct THdamaOpen : public TSimple1 {
 };
 
 struct THdamaShell : public TChasePos {
-	virtual void create(Arg*); // _08
+	virtual bool create(Arg*); // _08
 	virtual ~THdamaShell();    // _48 (weak)
 
 	// _00		= VTBL

@@ -9,7 +9,7 @@ struct TSync : public TBase, public JPAEmitterCallBack {
 	inline TSync()
 	    : TBase()
 	    , m_emitter(nullptr)
-	    , m_effectID(EID_Sync)
+	    , m_effectID(PID_SyncDefault)
 	    , m_flags(0)
 	{
 	}

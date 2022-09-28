@@ -6,7 +6,7 @@
 namespace efx {
 struct TEggdown : public TSimple1 {
 	TEggdown()
-	    : TSimple1(73, nullptr)
+	    : TSimple1(PID_EggDown)
 	{
 	}
 

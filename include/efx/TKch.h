@@ -4,17 +4,18 @@
 #include "efx/TSimple.h"
 #include "efx/TChasePos.h"
 #include "efx/TChaseMtx.h"
+#include "efx/TOneEmitter.h"
 
 namespace efx {
 struct TKchApSand : public TSimple3 {
-	virtual void create(Arg*); // _08
+	virtual bool create(Arg*); // _08
 
 	// _00      = VTBL
 	// _00-_18  = TSimple3
 };
 
 struct TKchApWat : public TSimple5 {
-	virtual void create(Arg*); // _08
+	virtual bool create(Arg*); // _08
 
 	// _00      = VTBL
 	// _00-_24  = TSimple5
@@ -37,7 +38,7 @@ struct TKchCryInd : public TChasePos2 {
 };
 
 struct TKchDamage : public TSimple4 {
-	virtual void create(Arg*); // _08
+	virtual bool create(Arg*); // _08
 
 	// _00      = VTBL
 	// _00-_1C  = TSimple4
@@ -65,14 +66,14 @@ struct TKchDiveWat : public TChasePosYRot3 {
 };
 
 struct TKchDownsmoke : public TSimple1 {
-	virtual void create(Arg*); // _08
+	virtual bool create(Arg*); // _08
 
 	// _00      = VTBL
 	// _00-_0C  = TSimple1
 };
 
 struct TKchFlickSand : public TSimple2 {
-	virtual void create(Arg*); // _08
+	virtual bool create(Arg*); // _08
 
 	// _00      = VTBL
 	// _00-_10  = TSimple2
@@ -88,7 +89,7 @@ struct TKchSmokeHana : public TChaseMtx {
 };
 
 struct TKchYodareBaseChaseMtx : public TChaseMtx {
-	virtual void create(Arg*);         // _08
+	virtual bool create(Arg*);         // _08
 	virtual void forceKill();          // _0C (weak)
 	virtual void fade();               // _10 (weak)
 	virtual void startDemoDrawOff();   // _40 (weak)

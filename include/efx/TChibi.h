@@ -32,7 +32,7 @@ struct TChibiDeadSe : public TSimpleMtx2 {
 };
 
 struct TChibiHit : public TSimple4 {
-	virtual void create(Arg*); // _08
+	virtual bool create(Arg*); // _08
 
 	// _00      = VTBL
 	// _00-_1C  = TSimple4

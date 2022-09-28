@@ -6,8 +6,8 @@
 
 namespace efx {
 struct TEnemyDownSmoke : public TSimple1 {
-	TEnemyDownSmoke(u16 effectID, float p2)
-	    : TSimple1(effectID, nullptr)
+	TEnemyDownSmoke(float p2)
+	    : TSimple1(PID_EnemyDownSmoke)
 	    , _0C(p2)
 	{
 	}

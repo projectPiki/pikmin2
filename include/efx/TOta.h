@@ -7,7 +7,7 @@
 namespace efx {
 struct TOtaChargeelec : public TChaseMtxT2 {
 	inline TOtaChargeelec()
-	    : TChaseMtxT2(0, 0x12C, 0x12D)
+	    : TChaseMtxT2(0, PID_OtaChargeelec_1, PID_OtaChargeelec_2)
 	{
 	}
 
@@ -17,7 +17,7 @@ struct TOtaChargeelec : public TChaseMtxT2 {
 
 struct TOtaChargefire : public TChaseMtxT2 {
 	inline TOtaChargefire()
-	    : TChaseMtxT2(0, 0x12E, 0x12F)
+	    : TChaseMtxT2(0, PID_OtaChargefire_1, PID_OtaChargefire_2)
 	{
 	}
 
@@ -27,7 +27,7 @@ struct TOtaChargefire : public TChaseMtxT2 {
 
 struct TOtaChargegas : public TChaseMtxT2 {
 	inline TOtaChargegas()
-	    : TChaseMtxT2(0, 0x130, 0x131)
+	    : TChaseMtxT2(0, PID_OtaChargegas_1, PID_OtaChargegas_2)
 	{
 	}
 
@@ -37,7 +37,7 @@ struct TOtaChargegas : public TChaseMtxT2 {
 
 struct TOtaChargewat : public TChaseMtxT2 {
 	inline TOtaChargewat()
-	    : TChaseMtxT2(0, 0x132, 0x133)
+	    : TChaseMtxT2(0, PID_OtaChargewat_1, PID_OtaChargewat_2)
 	{
 	}
 
@@ -47,7 +47,7 @@ struct TOtaChargewat : public TChaseMtxT2 {
 
 struct TOtaElec : public TSimple3 {
 	inline TOtaElec()
-	    : TSimple3(0x134, 0x135, 0x136)
+	    : TSimple3(PID_OtaElec_1, PID_OtaElec_2, PID_OtaElec_3)
 	{
 	}
 	// _00      = VTBL
@@ -56,7 +56,7 @@ struct TOtaElec : public TSimple3 {
 
 struct TOtaFire : public TSimple5 {
 	inline TOtaFire()
-	    : TSimple5(0x137, 0x138, 0x139, 0x13A, 0x13B)
+	    : TSimple5(PID_OtaFire_1, PID_OtaFire_2, PID_OtaFire_3, PID_OtaFire_4, PID_OtaFire_5)
 	{
 	}
 
@@ -66,7 +66,7 @@ struct TOtaFire : public TSimple5 {
 
 struct TOtaGas : public TSimple2 {
 	inline TOtaGas()
-	    : TSimple2(0x13C, 0x13D)
+	    : TSimple2(PID_OtaGas_1, PID_OtaGas_2)
 	{
 	}
 
@@ -76,7 +76,7 @@ struct TOtaGas : public TSimple2 {
 
 struct TOtaWat : public TSimple4 {
 	inline TOtaWat()
-	    : TSimple4(0x13E, 0x13F, 0x140, 0x141)
+	    : TSimple4(PID_OtaWat_1, PID_OtaWat_2, PID_OtaWat_3, PID_OtaWat_4)
 	{
 	}
 
@@ -86,11 +86,11 @@ struct TOtaWat : public TSimple4 {
 
 struct TOtaPartsoff : public TSimple1 {
 	inline TOtaPartsoff()
-	    : TSimple1(0x27F)
+	    : TSimple1(PID_OtaPartsOff)
 	{
 	}
 
-	virtual void create(Arg*); // _08
+	virtual bool create(Arg*); // _08
 
 	// _00      = VTBL
 	// _00-_0C  = TSimple1

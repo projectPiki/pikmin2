@@ -2288,7 +2288,7 @@ inline void EnemyBase::updateSpheres()
 void EnemyBase::createDropEffect(const Vector3f& position, float scale)
 {
 	efx::Arg enemyArg(position);
-	efx::TEnemyDownSmoke downSmoke(0x53, 1.0f);
+	efx::TEnemyDownSmoke downSmoke(1.0f);
 
 	downSmoke._0C = scale;
 	downSmoke.create(&enemyArg);
@@ -2311,7 +2311,7 @@ void EnemyBase::createSplashDownEffect(const Vector3f& position, float scale)
 	}
 
 	efx::ArgScale scaleArg(effectPosition, scale);
-	efx::TEnemyDownWat waterEffects(0x54, 0x55, 0x56);
+	efx::TEnemyDownWat waterEffects;
 
 	waterEffects.create(&scaleArg);
 	PSStartEnemyDownWatSE(this, scale);

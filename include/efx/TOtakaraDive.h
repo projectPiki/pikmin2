@@ -11,7 +11,7 @@ struct TOtakaraDive : public TSimple3 {
 	{
 	}
 
-	virtual void create(Arg*); // _08
+	virtual bool create(Arg*); // _08
 };
 
 } // namespace efx
