@@ -5,7 +5,7 @@
 
 namespace efx {
 struct TDenkiHiba : public TForever3 {
-	virtual void create(Arg*); // _08
+	virtual bool create(Arg*); // _08
 
 	// _00      = VTBL
 	// _00-_34  = TForever3
@@ -30,7 +30,7 @@ struct TDenkipoleSign : public TForever {
 };
 
 struct TDenkiHibaMgr : public TBase {
-	virtual void create(Arg*); // _08
+	virtual bool create(Arg*); // _08
 	virtual void forceKill();  // _0C
 	virtual void fade();       // _10
 

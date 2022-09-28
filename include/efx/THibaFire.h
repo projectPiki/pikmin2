@@ -6,7 +6,7 @@
 namespace efx {
 struct THibaFire : public TForever4 {
 	inline THibaFire()
-	    : TForever4(0xAB, 0xAC, 0xAD, 0xAE)
+	    : TForever4(PID_HibaFire_1, PID_HibaFire_2, PID_HibaFire_3, PID_HibaFire_4)
 	{
 	}
 

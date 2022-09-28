@@ -6,7 +6,7 @@
 namespace efx {
 struct WarpZone : public TForever4 {
 	inline WarpZone()
-	    : TForever4(0xAF, 0xB0, 0xB1, 0xB2)
+	    : TForever4(PID_WarpZone_1, PID_WarpZone_2, PID_WarpZone_3, PID_WarpZone_4)
 	{
 	}
 

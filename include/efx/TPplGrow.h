@@ -7,8 +7,8 @@
 
 namespace efx {
 struct TPplGrow1 : public TSimple2 {
-	inline TPplGrow1(u16 effectID1, u16 effectID2)
-	    : TSimple2(effectID1, effectID2)
+	inline TPplGrow1()
+	    : TSimple2(PID_PplGrow1_1, PID_PplGrow1_2)
 	{
 	}
 
@@ -16,8 +16,8 @@ struct TPplGrow1 : public TSimple2 {
 };
 
 struct TPplGrow2 : public TSimple3 {
-	inline TPplGrow2(u16 effectID1, u16 effectID2, u16 effectID3)
-	    : TSimple3(effectID1, effectID2, effectID3)
+	inline TPplGrow2()
+	    : TSimple3(PID_PplGrow2_1, PID_PplGrow2_2, PID_PplGrow2_3)
 	{
 	}
 
@@ -25,8 +25,8 @@ struct TPplGrow2 : public TSimple3 {
 };
 
 struct TPpl5Grow2 : public TSimple3 {
-	inline TPpl5Grow2(u16 effectID1, u16 effectID2, u16 effectID3)
-	    : TSimple3(effectID1, effectID2, effectID3)
+	inline TPpl5Grow2()
+	    : TSimple3(PID_PplGrow2_1, PID_PplGrow2_2, PID_Ppl5Grow2)
 	{
 	}
 
@@ -34,8 +34,8 @@ struct TPpl5Grow2 : public TSimple3 {
 };
 
 struct TPpl10Grow2 : public TSimple3 {
-	inline TPpl10Grow2(u16 effectID1, u16 effectID2, u16 effectID3)
-	    : TSimple3(effectID1, effectID2, effectID3)
+	inline TPpl10Grow2()
+	    : TSimple3(PID_PplGrow2_1, PID_PplGrow2_2, PID_Ppl10Grow2)
 	{
 	}
 
@@ -43,8 +43,8 @@ struct TPpl10Grow2 : public TSimple3 {
 };
 
 struct TPpl20Grow2 : public TSimple3 {
-	inline TPpl20Grow2(u16 effectID1, u16 effectID2, u16 effectID3)
-	    : TSimple3(effectID1, effectID2, effectID3)
+	inline TPpl20Grow2()
+	    : TSimple3(PID_PplGrow2_1, PID_PplGrow2_2, PID_Ppl20Grow2)
 	{
 	}
 

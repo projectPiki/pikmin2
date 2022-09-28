@@ -298,26 +298,26 @@ void StateGrow::init(EnemyBase* enemy, StateArg* stateArg)
 
 	switch (_14) {
 	case 1:
-		efx::TPplGrow1 grow1(0x187, 0x188);
+		efx::TPplGrow1 grow1;
 		grow1.create(&effectArg);
 		enemy->startMotion(_10, nullptr);
 		return;
 	case 2:
 		switch (static_cast<Obj*>(enemy)->m_pelletSize) {
 		case 1:
-			efx::TPplGrow2 grow2(0x189, 0x18A, 0x18B);
+			efx::TPplGrow2 grow2;
 			grow2.create(&effectArg);
 			break;
 		case 5:
-			efx::TPpl5Grow2 grow5(0x189, 0x18A, 0x25D);
+			efx::TPpl5Grow2 grow5;
 			grow5.create(&effectArg);
 			break;
 		case 10:
-			efx::TPpl10Grow2 grow10(0x189, 0x18A, 0x25B);
+			efx::TPpl10Grow2 grow10;
 			grow10.create(&effectArg);
 			break;
 		case 20:
-			efx::TPpl20Grow2 grow20(0x189, 0x18A, 0x25C);
+			efx::TPpl20Grow2 grow20;
 			grow20.create(&effectArg);
 			break;
 		}

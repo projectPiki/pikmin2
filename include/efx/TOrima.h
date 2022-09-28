@@ -8,7 +8,7 @@
 namespace efx {
 
 struct TOrimaLight : public TChaseMtx2 {
-	virtual void create(Arg*); // _08
+	virtual bool create(Arg*); // _08
 
 	// _00      = VTBL
 	// _00-_2C  = TChaseMtx2
@@ -16,7 +16,7 @@ struct TOrimaLight : public TChaseMtx2 {
 };
 
 struct TOrimaLightAct : public TChaseMtx2 {
-	virtual void create(Arg*); // _08
+	virtual bool create(Arg*); // _08
 
 	// _00      = VTBL
 	// _00-_2C  = TChaseMtx2

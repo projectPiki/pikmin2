@@ -61,8 +61,8 @@ void Obj::changeMaterial()
  */
 void Obj::createEffect()
 {
-	m_efxRot  = new efx::TKkabutoRot(EID_KkabutoRot, &m_position);
-	m_efxWait = new efx::TKkabutoWait(EID_KkabutoWait, &m_position);
+	m_efxRot  = new efx::TKkabutoRot(&m_position);
+	m_efxWait = new efx::TKkabutoWait(&m_position);
 }
 
 /*

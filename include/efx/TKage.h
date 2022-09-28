@@ -21,7 +21,7 @@ struct TKageDead1 : public TChaseMtx {
 };
 
 struct TKageDead2 : public TSimple1 {
-	virtual void create(Arg*); // _08
+	virtual bool create(Arg*); // _08
 
 	// _00      = VTBL
 	// _00-_0C  = TSimple1

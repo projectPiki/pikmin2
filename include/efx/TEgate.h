@@ -13,7 +13,7 @@ struct TEgateA : public TChaseMtx {
 };
 
 struct TEgateBC : public TForever2 {
-	virtual void create(Arg*); // _08
+	virtual bool create(Arg*); // _08
 
 	// _00      = VTBL
 	// _00-_24  = TForever2

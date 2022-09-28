@@ -7,7 +7,7 @@
 namespace efx {
 struct TBombrockABCD : public TSimple4 {
 	inline TBombrockABCD()
-	    : TSimple4(8, 9, 10, 11)
+	    : TSimple4(PID_BombrockABCD_1, PID_BombrockABCD_2, PID_BombrockABCD_3, PID_BombrockABCD_4)
 	{
 	}
 
@@ -17,7 +17,7 @@ struct TBombrockABCD : public TSimple4 {
 
 struct TBombrockEFGH : public TSimple4 {
 	inline TBombrockEFGH()
-	    : TSimple4(12, 13, 14, 15)
+	    : TSimple4(PID_BombrockEFGH_1, PID_BombrockEFGH_2, PID_BombrockEFGH_3, PID_BombrockEFGH_4)
 	{
 	}
 

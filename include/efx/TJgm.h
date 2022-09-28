@@ -7,21 +7,21 @@
 
 namespace efx {
 struct TJgmAttack : public TChasePos2 {
-	virtual void create(Arg*); // _08
+	virtual bool create(Arg*); // _08
 
 	// _00      = VTBL
 	// _00-_2C  = TChasePos2
 };
 
 struct TJgmAttackW : public TChasePosYRot3 {
-	virtual void create(Arg*); // _08
+	virtual bool create(Arg*); // _08
 
 	// _00      = VTBL
 	// _00-_4C  = TChasePosYRot3
 };
 
 struct TJgmBack : public TChasePos {
-	virtual void create(Arg*); // _08
+	virtual bool create(Arg*); // _08
 	virtual ~TJgmBack();       // _48 (weak)
 
 	// _00      = VTBL
@@ -29,7 +29,7 @@ struct TJgmBack : public TChasePos {
 };
 
 struct TJgmBackW : public TChasePosYRot2 {
-	virtual void create(Arg*); // _08
+	virtual bool create(Arg*); // _08
 
 	// _00      = VTBL
 	// _00-_34  = TChasePosYRot2

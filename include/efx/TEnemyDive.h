@@ -5,9 +5,11 @@
 
 namespace efx {
 struct TEnemyDive : public TSimple2 {
-	virtual void create(Arg*); // _08
+	virtual bool create(Arg*); // _08
 
 	// _00      = VTBL
 	// _00-_10  = TSimple2
 };
 } // namespace efx
+
+#endif

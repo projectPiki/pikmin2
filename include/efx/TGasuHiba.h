@@ -5,7 +5,7 @@
 
 namespace efx {
 struct TGasuHiba : public TForever2 {
-	virtual void create(Arg*); // _08
+	virtual bool create(Arg*); // _08
 
 	void setRateLOD(int);
 

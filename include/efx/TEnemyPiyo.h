@@ -6,7 +6,7 @@
 namespace efx {
 struct TEnemyPiyo : public TChasePos {
 	inline TEnemyPiyo()
-	    : TChasePos(EID_EnemyPiyo)
+	    : TChasePos(PID_EnemyPiyo)
 	{
 	}
 

@@ -5,7 +5,7 @@
 
 namespace efx {
 struct TCursor : public TBase {
-	virtual void create(Arg*); // _08
+	virtual bool create(Arg*); // _08
 	virtual void forceKill();  // _0C (weak)
 	virtual void fade();       // _10 (weak)
 

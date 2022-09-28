@@ -853,14 +853,14 @@ bool InteractEat::actPellet(Pellet* pellet)
 
 		// m_pelletColor apparently isn't just for onyon destination? maybe mislabeled.
 		if (pellet->m_pelletColor == 0) {
-			efx::TFruitsDownR spicy(0x65, 0x66);
+			efx::TFruitsDownR spicy;
 			spicy.create(&arg);
 		} else {
-			efx::TFruitsDownP bitter(0x63, 0x64);
+			efx::TFruitsDownP bitter;
 			bitter.create(&arg);
 		}
 
-		pellet->m_soundMgr->startSound(0x3842, 0);
+		pellet->m_soundMgr->startSound(PSSE_EV_FRUIT_POP, 0);
 		pellet->kill(nullptr);
 		return true;
 	}

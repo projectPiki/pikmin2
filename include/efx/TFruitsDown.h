@@ -7,15 +7,15 @@
 namespace efx {
 
 struct TFruitsDownR : public TSimple2 {
-	inline TFruitsDownR(u16 effectID1, u16 effectID2)
-	    : TSimple2(effectID1, effectID2)
+	inline TFruitsDownR()
+	    : TSimple2(PID_FruitsDownR_1, PID_FruitsDownR_2)
 	{
 	}
 };
 
 struct TFruitsDownP : public TSimple2 {
-	inline TFruitsDownP(u16 effectID1, u16 effectID2)
-	    : TSimple2(effectID1, effectID2)
+	inline TFruitsDownP()
+	    : TSimple2(PID_FruitsDownP_1, PID_FruitsDownP_2)
 	{
 	}
 };

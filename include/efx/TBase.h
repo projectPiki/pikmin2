@@ -6,13 +6,7 @@
 #include "efx/TCallBack_StaticClipping.h"
 #include "efx/Arg.h"
 #include "types.h"
-
-///////// EFFECT IDS
-#define EID_KkabutoRot  (0x287)
-#define EID_KkabutoWait (0x288)
-#define EID_EnemyPiyo   (0x291)
-#define EID_Sync        (0x2B2)
-/////////
+#include "ParticleID.h"
 
 namespace efx {
 struct TBase {

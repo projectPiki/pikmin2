@@ -15,7 +15,7 @@ struct TDangoAttack2 : public TChaseMtx {
 };
 
 struct TDangoCrash : public TSimple2 {
-	virtual void create(Arg*); // _08
+	virtual bool create(Arg*); // _08
 
 	// _00      = VTBL
 	// _00-_10  = TSimple2
@@ -47,7 +47,7 @@ struct TDangoRun : public TChasePos2 {
 };
 
 struct TDangoTurn : public TSimple2 {
-	virtual void create(Arg*); // _08
+	virtual bool create(Arg*); // _08
 
 	// _00      = VTBL
 	// _00-_10  = TSimple2
