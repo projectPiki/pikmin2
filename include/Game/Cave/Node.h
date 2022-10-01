@@ -218,6 +218,10 @@ struct MapNode : public CNode {
 	void getDoorGlobalDirection(int);
 	int getNumDoors();
 
+	inline MapNode* getChild() { return static_cast<MapNode*>(m_child); }
+
+	inline MapNode* getNext() { return static_cast<MapNode*>(m_next); }
+
 	UnitInfo* m_unitInfo; // _18
 
 	// types are EnemyNode, GateNode, ItemNode;

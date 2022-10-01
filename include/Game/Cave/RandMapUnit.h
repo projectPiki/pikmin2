@@ -19,6 +19,9 @@ struct MapNode;
  * @size{0x34}
  */
 struct MapUnitGenerator {
+
+	inline MapNode* getPlacedNodes() { return m_placedMapNodes; }
+
 	bool m_isFinalFloor;        // _00
 	bool m_hasEscapeFountain;   // _01
 	bool m_versusMode;          // _02
