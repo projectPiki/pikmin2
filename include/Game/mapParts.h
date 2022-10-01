@@ -71,6 +71,8 @@ struct Door : public CNode {
 	void read(Stream&);
 	void write(Stream&);
 
+	inline int getLinkCount() { return m_linkCount; }
+
 	u32 m_index;         // _18
 	int m_linkCount;     // _1C
 	DoorLink m_rootLink; // _20
@@ -145,7 +147,7 @@ struct PartsView : public CNode {
 	u8 _64[8];                // _064
 
 	// 0=dead end, 1=room, 2=hallway ??? NOT SURE
-	u16 m_unitKind;               // _06C
+	s16 m_unitKind;               // _06C
 	BitFlag<u16> _6E;             // _06E
 	EditorRouteMgr m_routeMgr;    // _070
 	AStarContext m_aStarContext;  // _0AC
@@ -157,6 +159,9 @@ struct PartsView : public CNode {
 
 struct MapUnitInterface : public PartsView {
 	MapUnitInterface();
+
+	inline int getDoorCount() { return m_doorCount; }
+
 	Door* getDoor(int);
 	void getCellSize(int&, int&);
 };
