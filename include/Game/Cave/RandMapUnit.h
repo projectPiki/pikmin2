@@ -9,7 +9,17 @@
 
 namespace Game {
 namespace Cave {
-struct EditMapUnit;
+struct EditMapUnit {
+	float _00; // _00
+	u32 _04;   // _04
+	u32 _08;   // _08
+	u32 _0C;   // _0C
+	u32 _10;   // _10
+	u32 _14;   // _14
+	u32 _18;   // _18
+	int _1C;   // _1C
+};
+
 struct EnemyNode;
 struct GateNode;
 struct ItemNode;
@@ -19,8 +29,25 @@ struct MapNode;
  * @size{0x34}
  */
 struct MapUnitGenerator {
+	MapUnitGenerator(MapUnitInterface*, int, FloorInfo*, bool, EditMapUnit*);
+
+	void createEditMapInfo(EditMapUnit*);
+	void createMemList(MapUnitInterface*, int);
+	bool isCreateList(MapUnitInterface*);
+	void memMapListSorting();
+	void createMapPartsList();
+	void createEnemyList();
+	void createCapEnemyList();
+	bool isPomGroup(TekiInfo*);
+	void createGateList();
+	void createItemList();
+	void createCaveLevel();
 
 	inline MapNode* getPlacedNodes() { return m_placedMapNodes; }
+
+	inline MapNode* getStartNode() { return m_mapNode->getChild(); }
+
+	inline MapNode* getMapNodeItem(int i) { return &m_mapNodeArr[i]; }
 
 	bool m_isFinalFloor;        // _00
 	bool m_hasEscapeFountain;   // _01
