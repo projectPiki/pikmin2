@@ -659,27 +659,33 @@ s32 Sarai::Obj::getStickPikminNum() { return m_stickPikminCount - getCatchTarget
  */
 Piki* Sarai::Obj::getAttackableTarget()
 {
-	float zDist = m_position.z - m_homePosition.z;
-	float xDist = m_position.x - m_homePosition.x;
-	if (SQUARE(zDist) + SQUARE(xDist) < SQUARE(static_cast<Parms*>(m_parms)->m_general.m_homeRadius.m_value)) {
-		Iterator<Piki> iterator(pikiMgr, pikiMgr->getStart());
+	Parms* parms  = static_cast<Parms*>(m_parms);
+	Vector3f dist = m_position - m_homePosition;
 
-		f32 maxAngle = PI * (DEG2RAD * static_cast<Parms*>(m_parms)->m_general.m_privateRadius.m_value);
-		f32 maxDist  = static_cast<Parms*>(m_parms)->m_general.m_sightRadius.m_value;
+	if (SQUARE(dist.x) + SQUARE(dist.z) < SQUARE(parms->m_general.m_territoryRadius.m_value)) {
+		f32 maxAngle = PI * (DEG2RAD * parms->m_general.m_fov.m_value);
+		f32 maxDist  = SQUARE(parms->m_general.m_sightRadius.m_value);
 
-		for (iterator.first(); iterator.m_index != iterator.m_container->getEnd(); iterator.next()) {
+		Iterator<Piki> iterator(pikiMgr);
+		iterator.first();
+		while (!iterator.isDone()) {
 			Piki* c = iterator.m_container->get(iterator.m_index);
 
 			if (c->isAlive() && c->isPikmin() && !c->isStickToMouth() && c->m_sticker != this && c->_0C8) {
+				// this angDist calc should probably be a bigger inline than just angXZ, but not sure.
 				Vector3f pikiPos = c->getPosition();
 				Vector3f thisPos = getPosition();
 
-				f32 angleToPiki = JMath::atanTable_.atan2_(pikiPos.x - thisPos.x, pikiPos.z - thisPos.z);
-
-				if (FABS(angDist(roundAng(angleToPiki), getFaceDir()) <= maxAngle)) {
-					return c;
+				f32 angleToPiki = angXZ(pikiPos, thisPos);
+				if (FABS(angDist(angleToPiki, getFaceDir())) <= maxAngle) {
+					Vector3f pos   = c->getPosition();
+					Vector3f delta = m_position - pos;
+					if (SQUARE(delta.x) + SQUARE(delta.z) < maxDist) {
+						return c;
+					}
 				}
 			}
+			iterator.next();
 		}
 	}
 
