@@ -1,174 +1,24 @@
-#include "types.h"
-
-/*
-    Generated from dpostproc
-
-    .section .ctors, "wa"  # 0x80472F00 - 0x804732C0
-    .4byte __sinit_RockState_cpp
-
-    .section .rodata  # 0x804732E0 - 0x8049E220
-    .global lbl_80485788
-    lbl_80485788:
-        .4byte 0x64726F70
-        .4byte 0x77616974
-        .4byte 0x00000000
-        .4byte 0x00000000
-
-    .section .data, "wa"  # 0x8049E220 - 0x804EFC20
-    .global lbl_804C3EB8
-    lbl_804C3EB8:
-        .4byte 0x00000000
-        .4byte 0x00000000
-        .4byte 0x00000000
-    .global __vt__Q34Game4Rock9StateDead
-    __vt__Q34Game4Rock9StateDead:
-        .4byte 0
-        .4byte 0
-        .4byte init__Q34Game4Rock9StateDeadFPQ24Game9EnemyBasePQ24Game8StateArg
-        .4byte exec__Q34Game4Rock9StateDeadFPQ24Game9EnemyBase
-        .4byte cleanup__Q34Game4Rock9StateDeadFPQ24Game9EnemyBase
-        .4byte resume__Q24Game13EnemyFSMStateFPQ24Game9EnemyBase
-        .4byte restart__Q24Game13EnemyFSMStateFPQ24Game9EnemyBase
-        .4byte
-   transit__Q24Game13EnemyFSMStateFPQ24Game9EnemyBaseiPQ24Game8StateArg .4byte
-   doDirectDraw__Q24Game13EnemyFSMStateFPQ24Game9EnemyBaseR8Graphics .global
-   __vt__Q34Game4Rock9StateMove
-    __vt__Q34Game4Rock9StateMove:
-        .4byte 0
-        .4byte 0
-        .4byte init__Q34Game4Rock9StateMoveFPQ24Game9EnemyBasePQ24Game8StateArg
-        .4byte exec__Q34Game4Rock9StateMoveFPQ24Game9EnemyBase
-        .4byte cleanup__Q34Game4Rock9StateMoveFPQ24Game9EnemyBase
-        .4byte resume__Q24Game13EnemyFSMStateFPQ24Game9EnemyBase
-        .4byte restart__Q24Game13EnemyFSMStateFPQ24Game9EnemyBase
-        .4byte
-   transit__Q24Game13EnemyFSMStateFPQ24Game9EnemyBaseiPQ24Game8StateArg .4byte
-   doDirectDraw__Q24Game13EnemyFSMStateFPQ24Game9EnemyBaseR8Graphics .global
-   __vt__Q34Game4Rock9StateFall
-    __vt__Q34Game4Rock9StateFall:
-        .4byte 0
-        .4byte 0
-        .4byte init__Q34Game4Rock9StateFallFPQ24Game9EnemyBasePQ24Game8StateArg
-        .4byte exec__Q34Game4Rock9StateFallFPQ24Game9EnemyBase
-        .4byte cleanup__Q34Game4Rock9StateFallFPQ24Game9EnemyBase
-        .4byte resume__Q24Game13EnemyFSMStateFPQ24Game9EnemyBase
-        .4byte restart__Q24Game13EnemyFSMStateFPQ24Game9EnemyBase
-        .4byte
-   transit__Q24Game13EnemyFSMStateFPQ24Game9EnemyBaseiPQ24Game8StateArg .4byte
-   doDirectDraw__Q24Game13EnemyFSMStateFPQ24Game9EnemyBaseR8Graphics .global
-   __vt__Q34Game4Rock13StateDropWait
-    __vt__Q34Game4Rock13StateDropWait:
-        .4byte 0
-        .4byte 0
-        .4byte
-   init__Q34Game4Rock13StateDropWaitFPQ24Game9EnemyBasePQ24Game8StateArg .4byte
-   exec__Q34Game4Rock13StateDropWaitFPQ24Game9EnemyBase .4byte
-   cleanup__Q34Game4Rock13StateDropWaitFPQ24Game9EnemyBase .4byte
-   resume__Q24Game13EnemyFSMStateFPQ24Game9EnemyBase .4byte
-   restart__Q24Game13EnemyFSMStateFPQ24Game9EnemyBase .4byte
-   transit__Q24Game13EnemyFSMStateFPQ24Game9EnemyBaseiPQ24Game8StateArg .4byte
-   doDirectDraw__Q24Game13EnemyFSMStateFPQ24Game9EnemyBaseR8Graphics .global
-   __vt__Q34Game4Rock11StateAppear
-    __vt__Q34Game4Rock11StateAppear:
-        .4byte 0
-        .4byte 0
-        .4byte
-   init__Q34Game4Rock11StateAppearFPQ24Game9EnemyBasePQ24Game8StateArg .4byte
-   exec__Q34Game4Rock11StateAppearFPQ24Game9EnemyBase .4byte
-   cleanup__Q34Game4Rock11StateAppearFPQ24Game9EnemyBase .4byte
-   resume__Q24Game13EnemyFSMStateFPQ24Game9EnemyBase .4byte
-   restart__Q24Game13EnemyFSMStateFPQ24Game9EnemyBase .4byte
-   transit__Q24Game13EnemyFSMStateFPQ24Game9EnemyBaseiPQ24Game8StateArg .4byte
-   doDirectDraw__Q24Game13EnemyFSMStateFPQ24Game9EnemyBaseR8Graphics .global
-   __vt__Q34Game4Rock9StateWait
-    __vt__Q34Game4Rock9StateWait:
-        .4byte 0
-        .4byte 0
-        .4byte init__Q34Game4Rock9StateWaitFPQ24Game9EnemyBasePQ24Game8StateArg
-        .4byte exec__Q34Game4Rock9StateWaitFPQ24Game9EnemyBase
-        .4byte cleanup__Q34Game4Rock9StateWaitFPQ24Game9EnemyBase
-        .4byte resume__Q24Game13EnemyFSMStateFPQ24Game9EnemyBase
-        .4byte restart__Q24Game13EnemyFSMStateFPQ24Game9EnemyBase
-        .4byte
-   transit__Q24Game13EnemyFSMStateFPQ24Game9EnemyBaseiPQ24Game8StateArg .4byte
-   doDirectDraw__Q24Game13EnemyFSMStateFPQ24Game9EnemyBaseR8Graphics .global
-   __vt__Q34Game4Rock5State
-    __vt__Q34Game4Rock5State:
-        .4byte 0
-        .4byte 0
-        .4byte init__Q24Game13EnemyFSMStateFPQ24Game9EnemyBasePQ24Game8StateArg
-        .4byte exec__Q24Game13EnemyFSMStateFPQ24Game9EnemyBase
-        .4byte cleanup__Q24Game13EnemyFSMStateFPQ24Game9EnemyBase
-        .4byte resume__Q24Game13EnemyFSMStateFPQ24Game9EnemyBase
-        .4byte restart__Q24Game13EnemyFSMStateFPQ24Game9EnemyBase
-        .4byte
-   transit__Q24Game13EnemyFSMStateFPQ24Game9EnemyBaseiPQ24Game8StateArg .4byte
-   doDirectDraw__Q24Game13EnemyFSMStateFPQ24Game9EnemyBaseR8Graphics .global
-   __vt__Q34Game4Rock3FSM
-    __vt__Q34Game4Rock3FSM:
-        .4byte 0
-        .4byte 0
-        .4byte init__Q34Game4Rock3FSMFPQ24Game9EnemyBase
-        .4byte
-   start__Q24Game17EnemyStateMachineFPQ24Game9EnemyBaseiPQ24Game8StateArg .4byte
-   exec__Q24Game17EnemyStateMachineFPQ24Game9EnemyBase .4byte
-   transit__Q24Game17EnemyStateMachineFPQ24Game9EnemyBaseiPQ24Game8StateArg
-        .4byte
-   doDirectDraw__Q24Game17EnemyStateMachineFPQ24Game9EnemyBaseR8Graphics .4byte
-   getCurrState__Q24Game17EnemyStateMachineFPQ24Game9EnemyBase .4byte
-   setCurrState__Q24Game17EnemyStateMachineFPQ24Game9EnemyBasePQ24Game13EnemyFSMState
-        .4byte 0
-
-    .section .sbss # 0x80514D80 - 0x80516360
-    .global lbl_80515D40
-    lbl_80515D40:
-        .skip 0x4
-    .global lbl_80515D44
-    lbl_80515D44:
-        .skip 0x4
-
-    .section .sdata2, "a"     # 0x80516360 - 0x80520E40
-    .global lbl_8051AD48
-    lbl_8051AD48:
-        .4byte 0x77616974
-        .4byte 0x00000000
-    .global lbl_8051AD50
-    lbl_8051AD50:
-        .4byte 0x61707065
-        .4byte 0x61720000
-    .global lbl_8051AD58
-    lbl_8051AD58:
-        .4byte 0x66616C6C
-        .4byte 0x00000000
-    .global lbl_8051AD60
-    lbl_8051AD60:
-        .4byte 0x6D6F7665
-        .4byte 0x00000000
-    .global lbl_8051AD68
-    lbl_8051AD68:
-        .4byte 0x64656164
-        .4byte 0x00000000
-    .global lbl_8051AD70
-    lbl_8051AD70:
-        .4byte 0x00000000
-    .global lbl_8051AD74
-    lbl_8051AD74:
-        .4byte 0x3FC00000
-    .global lbl_8051AD78
-    lbl_8051AD78:
-        .4byte 0x41700000
-        .4byte 0x00000000
-*/
+#include "Game/Entities/Rock.h"
+#include "Game/EnemyAnimKeyEvent.h"
+#include "nans.h"
 
 namespace Game {
+namespace Rock {
 
 /*
  * --INFO--
  * Address:	80261D8C
  * Size:	000228
  */
-void Rock::FSM::init(Game::EnemyBase*)
+void FSM::init(EnemyBase* enemy)
 {
+	create(ROCK_Count);
+	registerState(new StateWait);
+	registerState(new StateAppear);
+	registerState(new StateDropWait);
+	registerState(new StateFall);
+	registerState(new StateMove);
+	registerState(new StateDead);
 	/*
 	stwu     r1, -0x10(r1)
 	mflr     r0
@@ -328,7 +178,7 @@ lbl_80261F98:
  * Address:	80261FB4
  * Size:	000098
  */
-void Rock::StateWait::init(Game::EnemyBase*, Game::StateArg*)
+void StateWait::init(EnemyBase* enemy, StateArg* stateArg)
 {
 	/*
 	stwu     r1, -0x10(r1)
@@ -377,7 +227,7 @@ void Rock::StateWait::init(Game::EnemyBase*, Game::StateArg*)
  * Address:	8026204C
  * Size:	000108
  */
-void Rock::StateWait::exec(Game::EnemyBase*)
+void StateWait::exec(EnemyBase* enemy)
 {
 	/*
 	stwu     r1, -0x20(r1)
@@ -466,7 +316,7 @@ lbl_80262134:
  * Address:	80262154
  * Size:	000048
  */
-void Rock::StateWait::cleanup(Game::EnemyBase*)
+void StateWait::cleanup(EnemyBase* enemy)
 {
 	/*
 	stwu     r1, -0x10(r1)
@@ -495,7 +345,7 @@ void Rock::StateWait::cleanup(Game::EnemyBase*)
  * Address:	8026219C
  * Size:	000104
  */
-void Rock::StateAppear::init(Game::EnemyBase*, Game::StateArg*)
+void StateAppear::init(EnemyBase* enemy, StateArg* stateArg)
 {
 	/*
 	stwu     r1, -0x30(r1)
@@ -571,7 +421,7 @@ void Rock::StateAppear::init(Game::EnemyBase*, Game::StateArg*)
  * Address:	802622A0
  * Size:	000064
  */
-void Rock::StateAppear::exec(Game::EnemyBase*)
+void StateAppear::exec(EnemyBase* enemy)
 {
 	/*
 	stwu     r1, -0x10(r1)
@@ -609,7 +459,7 @@ lbl_802622EC:
  * Address:	80262304
  * Size:	00005C
  */
-void Rock::StateAppear::cleanup(Game::EnemyBase*)
+void StateAppear::cleanup(EnemyBase* enemy)
 {
 	/*
 	stwu     r1, -0x10(r1)
@@ -643,7 +493,7 @@ void Rock::StateAppear::cleanup(Game::EnemyBase*)
  * Address:	80262360
  * Size:	00002C
  */
-void Rock::StateDropWait::init(Game::EnemyBase*, Game::StateArg*)
+void StateDropWait::init(EnemyBase* enemy, StateArg* stateArg)
 {
 	/*
 	stwu     r1, -0x10(r1)
@@ -665,7 +515,7 @@ void Rock::StateDropWait::init(Game::EnemyBase*, Game::StateArg*)
  * Address:	8026238C
  * Size:	000034
  */
-void Rock::StateDropWait::exec(Game::EnemyBase*)
+void StateDropWait::exec(EnemyBase* enemy)
 {
 	/*
 	stwu     r1, -0x10(r1)
@@ -689,7 +539,7 @@ void Rock::StateDropWait::exec(Game::EnemyBase*)
  * Address:	802623C0
  * Size:	000058
  */
-void Rock::StateDropWait::cleanup(Game::EnemyBase*)
+void StateDropWait::cleanup(EnemyBase* enemy)
 {
 	/*
 	stwu     r1, -0x10(r1)
@@ -722,7 +572,7 @@ void Rock::StateDropWait::cleanup(Game::EnemyBase*)
  * Address:	80262418
  * Size:	000060
  */
-void Rock::StateFall::init(Game::EnemyBase*, Game::StateArg*)
+void StateFall::init(EnemyBase* enemy, StateArg* stateArg)
 {
 	/*
 	stwu     r1, -0x20(r1)
@@ -757,7 +607,7 @@ void Rock::StateFall::init(Game::EnemyBase*, Game::StateArg*)
  * Address:	80262478
  * Size:	000068
  */
-void Rock::StateFall::exec(Game::EnemyBase*)
+void StateFall::exec(EnemyBase* enemy)
 {
 	/*
 	stwu     r1, -0x10(r1)
@@ -798,7 +648,7 @@ lbl_802624D0:
  * Address:	802624E0
  * Size:	000094
  */
-void Rock::StateFall::cleanup(Game::EnemyBase*)
+void StateFall::cleanup(EnemyBase* enemy)
 {
 	/*
 	stwu     r1, -0x30(r1)
@@ -846,7 +696,7 @@ void Rock::StateFall::cleanup(Game::EnemyBase*)
  * Address:	80262574
  * Size:	00007C
  */
-void Rock::StateMove::init(Game::EnemyBase*, Game::StateArg*)
+void StateMove::init(EnemyBase* enemy, StateArg* stateArg)
 {
 	/*
 	stwu     r1, -0x10(r1)
@@ -892,7 +742,7 @@ lbl_802625DC:
  * Address:	802625F0
  * Size:	0000D0
  */
-void Rock::StateMove::exec(Game::EnemyBase*)
+void StateMove::exec(EnemyBase* enemy)
 {
 	/*
 	stwu     r1, -0x10(r1)
@@ -959,7 +809,7 @@ lbl_802626A8:
  * Address:	802626C0
  * Size:	00007C
  */
-void Rock::StateMove::cleanup(Game::EnemyBase*)
+void StateMove::cleanup(EnemyBase* enemy)
 {
 	/*
 	stwu     r1, -0x30(r1)
@@ -1001,7 +851,7 @@ void Rock::StateMove::cleanup(Game::EnemyBase*)
  * Address:	8026273C
  * Size:	000088
  */
-void Rock::StateDead::init(Game::EnemyBase*, Game::StateArg*)
+void StateDead::init(EnemyBase* enemy, StateArg* stateArg)
 {
 	/*
 	stwu     r1, -0x10(r1)
@@ -1046,7 +896,7 @@ void Rock::StateDead::init(Game::EnemyBase*, Game::StateArg*)
  * Address:	802627C4
  * Size:	00008C
  */
-void Rock::StateDead::exec(Game::EnemyBase*)
+void StateDead::exec(EnemyBase* enemy)
 {
 	/*
 	stwu     r1, -0x10(r1)
@@ -1096,27 +946,7 @@ lbl_8026283C:
  * Address:	80262850
  * Size:	000004
  */
-void Rock::StateDead::cleanup(Game::EnemyBase*) { }
+void StateDead::cleanup(EnemyBase* enemy) { }
 
+} // namespace Rock
 } // namespace Game
-
-/*
- * --INFO--
- * Address:	80262854
- * Size:	000028
- */
-void __sinit_RockState_cpp(void)
-{
-	/*
-	lis      r4, __float_nan@ha
-	li       r0, -1
-	lfs      f0, __float_nan@l(r4)
-	lis      r3, lbl_804C3EB8@ha
-	stw      r0, lbl_80515D40@sda21(r13)
-	stfsu    f0, lbl_804C3EB8@l(r3)
-	stfs     f0, lbl_80515D44@sda21(r13)
-	stfs     f0, 4(r3)
-	stfs     f0, 8(r3)
-	blr
-	*/
-}

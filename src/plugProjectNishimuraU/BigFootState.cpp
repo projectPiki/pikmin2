@@ -1,176 +1,24 @@
-#include "types.h"
-
-/*
-    Generated from dpostproc
-
-    .section .ctors, "wa"  # 0x80472F00 - 0x804732C0
-    .4byte __sinit_BigFootState_cpp
-
-    .section .data, "wa"  # 0x8049E220 - 0x804EFC20
-    .global lbl_804D1978
-    lbl_804D1978:
-        .4byte 0x00000000
-        .4byte 0x00000000
-        .4byte 0x00000000
-    .global __vt__Q34Game7BigFoot9StateWalk
-    __vt__Q34Game7BigFoot9StateWalk:
-        .4byte 0
-        .4byte 0
-        .4byte
-   init__Q34Game7BigFoot9StateWalkFPQ24Game9EnemyBasePQ24Game8StateArg .4byte
-   exec__Q34Game7BigFoot9StateWalkFPQ24Game9EnemyBase .4byte
-   cleanup__Q34Game7BigFoot9StateWalkFPQ24Game9EnemyBase .4byte
-   resume__Q24Game13EnemyFSMStateFPQ24Game9EnemyBase .4byte
-   restart__Q24Game13EnemyFSMStateFPQ24Game9EnemyBase .4byte
-   transit__Q24Game13EnemyFSMStateFPQ24Game9EnemyBaseiPQ24Game8StateArg .4byte
-   doDirectDraw__Q24Game13EnemyFSMStateFPQ24Game9EnemyBaseR8Graphics .global
-   __vt__Q34Game7BigFoot10StateFlick
-    __vt__Q34Game7BigFoot10StateFlick:
-        .4byte 0
-        .4byte 0
-        .4byte
-   init__Q34Game7BigFoot10StateFlickFPQ24Game9EnemyBasePQ24Game8StateArg .4byte
-   exec__Q34Game7BigFoot10StateFlickFPQ24Game9EnemyBase .4byte
-   cleanup__Q34Game7BigFoot10StateFlickFPQ24Game9EnemyBase .4byte
-   resume__Q24Game13EnemyFSMStateFPQ24Game9EnemyBase .4byte
-   restart__Q24Game13EnemyFSMStateFPQ24Game9EnemyBase .4byte
-   transit__Q24Game13EnemyFSMStateFPQ24Game9EnemyBaseiPQ24Game8StateArg .4byte
-   doDirectDraw__Q24Game13EnemyFSMStateFPQ24Game9EnemyBaseR8Graphics .global
-   __vt__Q34Game7BigFoot9StateWait
-    __vt__Q34Game7BigFoot9StateWait:
-        .4byte 0
-        .4byte 0
-        .4byte
-   init__Q34Game7BigFoot9StateWaitFPQ24Game9EnemyBasePQ24Game8StateArg .4byte
-   exec__Q34Game7BigFoot9StateWaitFPQ24Game9EnemyBase .4byte
-   cleanup__Q34Game7BigFoot9StateWaitFPQ24Game9EnemyBase .4byte
-   resume__Q24Game13EnemyFSMStateFPQ24Game9EnemyBase .4byte
-   restart__Q24Game13EnemyFSMStateFPQ24Game9EnemyBase .4byte
-   transit__Q24Game13EnemyFSMStateFPQ24Game9EnemyBaseiPQ24Game8StateArg .4byte
-   doDirectDraw__Q24Game13EnemyFSMStateFPQ24Game9EnemyBaseR8Graphics .global
-   __vt__Q34Game7BigFoot9StateLand
-    __vt__Q34Game7BigFoot9StateLand:
-        .4byte 0
-        .4byte 0
-        .4byte
-   init__Q34Game7BigFoot9StateLandFPQ24Game9EnemyBasePQ24Game8StateArg .4byte
-   exec__Q34Game7BigFoot9StateLandFPQ24Game9EnemyBase .4byte
-   cleanup__Q34Game7BigFoot9StateLandFPQ24Game9EnemyBase .4byte
-   resume__Q24Game13EnemyFSMStateFPQ24Game9EnemyBase .4byte
-   restart__Q24Game13EnemyFSMStateFPQ24Game9EnemyBase .4byte
-   transit__Q24Game13EnemyFSMStateFPQ24Game9EnemyBaseiPQ24Game8StateArg .4byte
-   doDirectDraw__Q24Game13EnemyFSMStateFPQ24Game9EnemyBaseR8Graphics .global
-   __vt__Q34Game7BigFoot9StateStay
-    __vt__Q34Game7BigFoot9StateStay:
-        .4byte 0
-        .4byte 0
-        .4byte
-   init__Q34Game7BigFoot9StateStayFPQ24Game9EnemyBasePQ24Game8StateArg .4byte
-   exec__Q34Game7BigFoot9StateStayFPQ24Game9EnemyBase .4byte
-   cleanup__Q34Game7BigFoot9StateStayFPQ24Game9EnemyBase .4byte
-   resume__Q24Game13EnemyFSMStateFPQ24Game9EnemyBase .4byte
-   restart__Q24Game13EnemyFSMStateFPQ24Game9EnemyBase .4byte
-   transit__Q24Game13EnemyFSMStateFPQ24Game9EnemyBaseiPQ24Game8StateArg .4byte
-   doDirectDraw__Q24Game13EnemyFSMStateFPQ24Game9EnemyBaseR8Graphics .global
-   __vt__Q34Game7BigFoot9StateDead
-    __vt__Q34Game7BigFoot9StateDead:
-        .4byte 0
-        .4byte 0
-        .4byte
-   init__Q34Game7BigFoot9StateDeadFPQ24Game9EnemyBasePQ24Game8StateArg .4byte
-   exec__Q34Game7BigFoot9StateDeadFPQ24Game9EnemyBase .4byte
-   cleanup__Q34Game7BigFoot9StateDeadFPQ24Game9EnemyBase .4byte
-   resume__Q24Game13EnemyFSMStateFPQ24Game9EnemyBase .4byte
-   restart__Q24Game13EnemyFSMStateFPQ24Game9EnemyBase .4byte
-   transit__Q24Game13EnemyFSMStateFPQ24Game9EnemyBaseiPQ24Game8StateArg .4byte
-   doDirectDraw__Q24Game13EnemyFSMStateFPQ24Game9EnemyBaseR8Graphics .global
-   __vt__Q34Game7BigFoot5State
-    __vt__Q34Game7BigFoot5State:
-        .4byte 0
-        .4byte 0
-        .4byte init__Q24Game13EnemyFSMStateFPQ24Game9EnemyBasePQ24Game8StateArg
-        .4byte exec__Q24Game13EnemyFSMStateFPQ24Game9EnemyBase
-        .4byte cleanup__Q24Game13EnemyFSMStateFPQ24Game9EnemyBase
-        .4byte resume__Q24Game13EnemyFSMStateFPQ24Game9EnemyBase
-        .4byte restart__Q24Game13EnemyFSMStateFPQ24Game9EnemyBase
-        .4byte
-   transit__Q24Game13EnemyFSMStateFPQ24Game9EnemyBaseiPQ24Game8StateArg .4byte
-   doDirectDraw__Q24Game13EnemyFSMStateFPQ24Game9EnemyBaseR8Graphics .global
-   __vt__Q34Game7BigFoot3FSM
-    __vt__Q34Game7BigFoot3FSM:
-        .4byte 0
-        .4byte 0
-        .4byte init__Q34Game7BigFoot3FSMFPQ24Game9EnemyBase
-        .4byte
-   start__Q24Game17EnemyStateMachineFPQ24Game9EnemyBaseiPQ24Game8StateArg .4byte
-   exec__Q24Game17EnemyStateMachineFPQ24Game9EnemyBase .4byte
-   transit__Q24Game17EnemyStateMachineFPQ24Game9EnemyBaseiPQ24Game8StateArg
-        .4byte
-   doDirectDraw__Q24Game17EnemyStateMachineFPQ24Game9EnemyBaseR8Graphics .4byte
-   getCurrState__Q24Game17EnemyStateMachineFPQ24Game9EnemyBase .4byte
-   setCurrState__Q24Game17EnemyStateMachineFPQ24Game9EnemyBasePQ24Game13EnemyFSMState
-        .4byte 0
-
-    .section .sbss # 0x80514D80 - 0x80516360
-    .global lbl_80515DA8
-    lbl_80515DA8:
-        .skip 0x4
-    .global lbl_80515DAC
-    lbl_80515DAC:
-        .skip 0x4
-
-    .section .sdata2, "a"     # 0x80516360 - 0x80520E40
-    .global lbl_8051C668
-    lbl_8051C668:
-        .4byte 0x64656164
-        .4byte 0x00000000
-    .global lbl_8051C670
-    lbl_8051C670:
-        .4byte 0x73746179
-        .4byte 0x00000000
-    .global lbl_8051C678
-    lbl_8051C678:
-        .4byte 0x6C616E64
-        .4byte 0x00000000
-    .global lbl_8051C680
-    lbl_8051C680:
-        .4byte 0x77616974
-        .4byte 0x00000000
-    .global lbl_8051C688
-    lbl_8051C688:
-        .4byte 0x666C6963
-        .4byte 0x6B000000
-    .global lbl_8051C690
-    lbl_8051C690:
-        .4byte 0x77616C6B
-        .4byte 0x00000000
-    .global lbl_8051C698
-    lbl_8051C698:
-        .4byte 0x00000000
-    .global lbl_8051C69C
-    lbl_8051C69C:
-        .4byte 0x3A83126F
-    .global lbl_8051C6A0
-    lbl_8051C6A0:
-        .float 1.0
-    .global lbl_8051C6A4
-    lbl_8051C6A4:
-        .4byte 0x40A00000
-    .global lbl_8051C6A8
-    lbl_8051C6A8:
-        .4byte 0xC47A0000
-        .4byte 0x00000000
-*/
+#include "Game/Entities/BigFoot.h"
+#include "Game/EnemyAnimKeyEvent.h"
+#include "nans.h"
 
 namespace Game {
+namespace BigFoot {
 
 /*
  * --INFO--
  * Address:	802C62E8
  * Size:	000224
  */
-void BigFoot::FSM::init(Game::EnemyBase*)
+void FSM::init(EnemyBase* enemy)
 {
+	create(BIGFOOT_Count);
+	registerState(new StateDead);
+	registerState(new StateStay);
+	registerState(new StateLand);
+	registerState(new StateWait);
+	registerState(new StateFlick);
+	registerState(new StateWalk);
 	/*
 	stwu     r1, -0x10(r1)
 	mflr     r0
@@ -329,7 +177,7 @@ lbl_802C64F0:
  * Address:	802C650C
  * Size:	0000CC
  */
-void BigFoot::StateDead::init(Game::EnemyBase*, Game::StateArg*)
+void StateDead::init(EnemyBase* enemy, StateArg* stateArg)
 {
 	/*
 	stwu     r1, -0x30(r1)
@@ -391,7 +239,7 @@ void BigFoot::StateDead::init(Game::EnemyBase*, Game::StateArg*)
  * Address:	802C65D8
  * Size:	000094
  */
-void BigFoot::StateDead::exec(Game::EnemyBase*)
+void StateDead::exec(EnemyBase* enemy)
 {
 	/*
 	stwu     r1, -0x10(r1)
@@ -445,14 +293,14 @@ lbl_802C6658:
  * Address:	802C666C
  * Size:	000004
  */
-void BigFoot::StateDead::cleanup(Game::EnemyBase*) { }
+void StateDead::cleanup(EnemyBase* enemy) { }
 
 /*
  * --INFO--
  * Address:	802C6670
  * Size:	000084
  */
-void BigFoot::StateStay::init(Game::EnemyBase*, Game::StateArg*)
+void StateStay::init(EnemyBase* enemy, StateArg* stateArg)
 {
 	/*
 	stwu     r1, -0x10(r1)
@@ -496,7 +344,7 @@ void BigFoot::StateStay::init(Game::EnemyBase*, Game::StateArg*)
  * Address:	802C66F4
  * Size:	0000B8
  */
-void BigFoot::StateStay::exec(Game::EnemyBase*)
+void StateStay::exec(EnemyBase* enemy)
 {
 	/*
 	stwu     r1, -0x20(r1)
@@ -563,14 +411,14 @@ lbl_802C678C:
  * Address:	802C67AC
  * Size:	000004
  */
-void BigFoot::StateStay::cleanup(Game::EnemyBase*) { }
+void StateStay::cleanup(EnemyBase* enemy) { }
 
 /*
  * --INFO--
  * Address:	802C67B0
  * Size:	0000B4
  */
-void BigFoot::StateLand::init(Game::EnemyBase*, Game::StateArg*)
+void StateLand::init(EnemyBase* enemy, StateArg* stateArg)
 {
 	/*
 	stwu     r1, -0x10(r1)
@@ -626,7 +474,7 @@ void BigFoot::StateLand::init(Game::EnemyBase*, Game::StateArg*)
  * Address:	802C6864
  * Size:	000178
  */
-void BigFoot::StateLand::exec(Game::EnemyBase*)
+void StateLand::exec(EnemyBase* enemy)
 {
 	/*
 	stwu     r1, -0x30(r1)
@@ -741,7 +589,7 @@ lbl_802C69C4:
  * Address:	802C69DC
  * Size:	00005C
  */
-void BigFoot::StateLand::cleanup(Game::EnemyBase*)
+void StateLand::cleanup(EnemyBase* enemy)
 {
 	/*
 	stwu     r1, -0x10(r1)
@@ -775,7 +623,7 @@ void BigFoot::StateLand::cleanup(Game::EnemyBase*)
  * Address:	802C6A38
  * Size:	000070
  */
-void BigFoot::StateWait::init(Game::EnemyBase*, Game::StateArg*)
+void StateWait::init(EnemyBase* enemy, StateArg* stateArg)
 {
 	/*
 	stwu     r1, -0x10(r1)
@@ -814,7 +662,7 @@ void BigFoot::StateWait::init(Game::EnemyBase*, Game::StateArg*)
  * Address:	802C6AA8
  * Size:	0000F4
  */
-void BigFoot::StateWait::exec(Game::EnemyBase*)
+void StateWait::exec(EnemyBase* enemy)
 {
 	/*
 	stwu     r1, -0x10(r1)
@@ -894,14 +742,14 @@ lbl_802C6B84:
  * Address:	802C6B9C
  * Size:	000004
  */
-void BigFoot::StateWait::cleanup(Game::EnemyBase*) { }
+void StateWait::cleanup(EnemyBase* enemy) { }
 
 /*
  * --INFO--
  * Address:	802C6BA0
  * Size:	00006C
  */
-void BigFoot::StateFlick::init(Game::EnemyBase*, Game::StateArg*)
+void StateFlick::init(EnemyBase* enemy, StateArg* stateArg)
 {
 	/*
 	stwu     r1, -0x10(r1)
@@ -939,7 +787,7 @@ void BigFoot::StateFlick::init(Game::EnemyBase*, Game::StateArg*)
  * Address:	802C6C0C
  * Size:	0000C0
  */
-void BigFoot::StateFlick::exec(Game::EnemyBase*)
+void StateFlick::exec(EnemyBase* enemy)
 {
 	/*
 	stwu     r1, -0x10(r1)
@@ -1005,7 +853,7 @@ lbl_802C6CB8:
  * Address:	802C6CCC
  * Size:	000048
  */
-void BigFoot::StateFlick::cleanup(Game::EnemyBase*)
+void StateFlick::cleanup(EnemyBase* enemy)
 {
 	/*
 	stwu     r1, -0x10(r1)
@@ -1034,7 +882,7 @@ void BigFoot::StateFlick::cleanup(Game::EnemyBase*)
  * Address:	802C6D14
  * Size:	000070
  */
-void BigFoot::StateWalk::init(Game::EnemyBase*, Game::StateArg*)
+void StateWalk::init(EnemyBase* enemy, StateArg* stateArg)
 {
 	/*
 	stwu     r1, -0x10(r1)
@@ -1075,7 +923,7 @@ lbl_802C6D70:
  * Address:	802C6D84
  * Size:	000100
  */
-void BigFoot::StateWalk::exec(Game::EnemyBase*)
+void StateWalk::exec(EnemyBase* enemy)
 {
 	/*
 	stwu     r1, -0x10(r1)
@@ -1158,7 +1006,7 @@ lbl_802C6E6C:
  * Address:	802C6E84
  * Size:	000038
  */
-void BigFoot::StateWalk::cleanup(Game::EnemyBase*)
+void StateWalk::cleanup(EnemyBase* enemy)
 {
 	/*
 	stwu     r1, -0x10(r1)
@@ -1180,25 +1028,5 @@ lbl_802C6EAC:
 	*/
 }
 
+} // namespace BigFoot
 } // namespace Game
-
-/*
- * --INFO--
- * Address:	802C6EBC
- * Size:	000028
- */
-void __sinit_BigFootState_cpp(void)
-{
-	/*
-	lis      r4, __float_nan@ha
-	li       r0, -1
-	lfs      f0, __float_nan@l(r4)
-	lis      r3, lbl_804D1978@ha
-	stw      r0, lbl_80515DA8@sda21(r13)
-	stfsu    f0, lbl_804D1978@l(r3)
-	stfs     f0, lbl_80515DAC@sda21(r13)
-	stfs     f0, 4(r3)
-	stfs     f0, 8(r3)
-	blr
-	*/
-}

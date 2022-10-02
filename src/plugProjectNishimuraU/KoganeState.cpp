@@ -1,268 +1,22 @@
-#include "types.h"
-
-/*
-    Generated from dpostproc
-
-    .section .rodata  # 0x804732E0 - 0x8049E220
-    .global lbl_80485380
-    lbl_80485380:
-        .4byte 0x64697361
-        .4byte 0x70706561
-        .4byte 0x72000000
-        .4byte 0x00000000
-
-    .section .data, "wa"  # 0x8049E220 - 0x804EFC20
-    .global __vt__Q34Game6Kogane10StatePress
-    __vt__Q34Game6Kogane10StatePress:
-        .4byte 0
-        .4byte 0
-        .4byte
-   init__Q34Game6Kogane10StatePressFPQ24Game9EnemyBasePQ24Game8StateArg .4byte
-   exec__Q34Game6Kogane10StatePressFPQ24Game9EnemyBase .4byte
-   cleanup__Q34Game6Kogane10StatePressFPQ24Game9EnemyBase .4byte
-   resume__Q24Game13EnemyFSMStateFPQ24Game9EnemyBase .4byte
-   restart__Q24Game13EnemyFSMStateFPQ24Game9EnemyBase .4byte
-   transit__Q24Game13EnemyFSMStateFPQ24Game9EnemyBaseiPQ24Game8StateArg .4byte
-   doDirectDraw__Q24Game13EnemyFSMStateFPQ24Game9EnemyBaseR8Graphics .global
-   __vt__Q34Game6Kogane9StateWait
-    __vt__Q34Game6Kogane9StateWait:
-        .4byte 0
-        .4byte 0
-        .4byte
-   init__Q34Game6Kogane9StateWaitFPQ24Game9EnemyBasePQ24Game8StateArg .4byte
-   exec__Q34Game6Kogane9StateWaitFPQ24Game9EnemyBase .4byte
-   cleanup__Q34Game6Kogane9StateWaitFPQ24Game9EnemyBase .4byte
-   resume__Q24Game13EnemyFSMStateFPQ24Game9EnemyBase .4byte
-   restart__Q24Game13EnemyFSMStateFPQ24Game9EnemyBase .4byte
-   transit__Q24Game13EnemyFSMStateFPQ24Game9EnemyBaseiPQ24Game8StateArg .4byte
-   doDirectDraw__Q24Game13EnemyFSMStateFPQ24Game9EnemyBaseR8Graphics .global
-   __vt__Q34Game6Kogane9StateMove
-    __vt__Q34Game6Kogane9StateMove:
-        .4byte 0
-        .4byte 0
-        .4byte
-   init__Q34Game6Kogane9StateMoveFPQ24Game9EnemyBasePQ24Game8StateArg .4byte
-   exec__Q34Game6Kogane9StateMoveFPQ24Game9EnemyBase .4byte
-   cleanup__Q34Game6Kogane9StateMoveFPQ24Game9EnemyBase .4byte
-   resume__Q24Game13EnemyFSMStateFPQ24Game9EnemyBase .4byte
-   restart__Q24Game13EnemyFSMStateFPQ24Game9EnemyBase .4byte
-   transit__Q24Game13EnemyFSMStateFPQ24Game9EnemyBaseiPQ24Game8StateArg .4byte
-   doDirectDraw__Q24Game13EnemyFSMStateFPQ24Game9EnemyBaseR8Graphics .global
-   __vt__Q34Game6Kogane14StateDisappear
-    __vt__Q34Game6Kogane14StateDisappear:
-        .4byte 0
-        .4byte 0
-        .4byte
-   init__Q34Game6Kogane14StateDisappearFPQ24Game9EnemyBasePQ24Game8StateArg
-        .4byte exec__Q34Game6Kogane14StateDisappearFPQ24Game9EnemyBase
-        .4byte cleanup__Q34Game6Kogane14StateDisappearFPQ24Game9EnemyBase
-        .4byte resume__Q24Game13EnemyFSMStateFPQ24Game9EnemyBase
-        .4byte restart__Q24Game13EnemyFSMStateFPQ24Game9EnemyBase
-        .4byte
-   transit__Q24Game13EnemyFSMStateFPQ24Game9EnemyBaseiPQ24Game8StateArg .4byte
-   doDirectDraw__Q24Game13EnemyFSMStateFPQ24Game9EnemyBaseR8Graphics .global
-   __vt__Q34Game6Kogane11StateAppear
-    __vt__Q34Game6Kogane11StateAppear:
-        .4byte 0
-        .4byte 0
-        .4byte
-   init__Q34Game6Kogane11StateAppearFPQ24Game9EnemyBasePQ24Game8StateArg .4byte
-   exec__Q34Game6Kogane11StateAppearFPQ24Game9EnemyBase .4byte
-   cleanup__Q34Game6Kogane11StateAppearFPQ24Game9EnemyBase .4byte
-   resume__Q24Game13EnemyFSMStateFPQ24Game9EnemyBase .4byte
-   restart__Q24Game13EnemyFSMStateFPQ24Game9EnemyBase .4byte
-   transit__Q24Game13EnemyFSMStateFPQ24Game9EnemyBaseiPQ24Game8StateArg .4byte
-   doDirectDraw__Q24Game13EnemyFSMStateFPQ24Game9EnemyBaseR8Graphics .global
-   __vt__Q34Game6Kogane5State
-    __vt__Q34Game6Kogane5State:
-        .4byte 0
-        .4byte 0
-        .4byte init__Q24Game13EnemyFSMStateFPQ24Game9EnemyBasePQ24Game8StateArg
-        .4byte exec__Q24Game13EnemyFSMStateFPQ24Game9EnemyBase
-        .4byte cleanup__Q24Game13EnemyFSMStateFPQ24Game9EnemyBase
-        .4byte resume__Q24Game13EnemyFSMStateFPQ24Game9EnemyBase
-        .4byte restart__Q24Game13EnemyFSMStateFPQ24Game9EnemyBase
-        .4byte
-   transit__Q24Game13EnemyFSMStateFPQ24Game9EnemyBaseiPQ24Game8StateArg .4byte
-   doDirectDraw__Q24Game13EnemyFSMStateFPQ24Game9EnemyBaseR8Graphics .global
-   __vt__Q34Game6Kogane3FSM
-    __vt__Q34Game6Kogane3FSM:
-        .4byte 0
-        .4byte 0
-        .4byte init__Q34Game6Kogane3FSMFPQ24Game9EnemyBase
-        .4byte
-   start__Q24Game17EnemyStateMachineFPQ24Game9EnemyBaseiPQ24Game8StateArg .4byte
-   exec__Q24Game17EnemyStateMachineFPQ24Game9EnemyBase .4byte
-   transit__Q24Game17EnemyStateMachineFPQ24Game9EnemyBaseiPQ24Game8StateArg
-        .4byte
-   doDirectDraw__Q24Game17EnemyStateMachineFPQ24Game9EnemyBaseR8Graphics .4byte
-   getCurrState__Q24Game17EnemyStateMachineFPQ24Game9EnemyBase .4byte
-   setCurrState__Q24Game17EnemyStateMachineFPQ24Game9EnemyBasePQ24Game13EnemyFSMState
-        .4byte 0
-
-    .section .sdata2, "a"     # 0x80516360 - 0x80520E40
-    .global lbl_8051ABF8
-    lbl_8051ABF8:
-        .4byte 0x61707065
-        .4byte 0x61720000
-    .global lbl_8051AC00
-    lbl_8051AC00:
-        .4byte 0x6D6F7665
-        .4byte 0x00000000
-    .global lbl_8051AC08
-    lbl_8051AC08:
-        .4byte 0x77616974
-        .4byte 0x00000000
-    .global lbl_8051AC10
-    lbl_8051AC10:
-        .4byte 0x70726573
-        .4byte 0x73000000
-    .global lbl_8051AC18
-    lbl_8051AC18:
-        .4byte 0x00000000
-    .global lbl_8051AC1C
-    lbl_8051AC1C:
-        .4byte 0x46480000
-*/
+#include "Game/Entities/Kogane.h"
+#include "Game/EnemyAnimKeyEvent.h"
 
 namespace Game {
+namespace Kogane {
 
 /*
  * --INFO--
  * Address:	8025CD48
  * Size:	0001D4
  */
-void Kogane::FSM::init(Game::EnemyBase*)
+void FSM::init(EnemyBase* enemy)
 {
-	/*
-	stwu     r1, -0x10(r1)
-	mflr     r0
-	li       r4, 5
-	stw      r0, 0x14(r1)
-	stw      r31, 0xc(r1)
-	mr       r31, r3
-	bl       create__Q24Game17EnemyStateMachineFi
-	li       r3, 0x10
-	bl       __nw__FUl
-	or.      r4, r3, r3
-	beq      lbl_8025CDAC
-	lis      r3, __vt__Q24Game13EnemyFSMState@ha
-	lis      r5, __vt__Q34Game6Kogane5State@ha
-	addi     r0, r3, __vt__Q24Game13EnemyFSMState@l
-	lis      r3, __vt__Q34Game6Kogane11StateAppear@ha
-	stw      r0, 0(r4)
-	li       r7, 0
-	addi     r6, r5, __vt__Q34Game6Kogane5State@l
-	addi     r5, r2, lbl_8051ABF8@sda21
-	stw      r7, 4(r4)
-	addi     r0, r3, __vt__Q34Game6Kogane11StateAppear@l
-	stw      r7, 8(r4)
-	stw      r6, 0(r4)
-	stw      r5, 0xc(r4)
-	stw      r0, 0(r4)
-
-lbl_8025CDAC:
-	mr       r3, r31
-	bl       registerState__Q24Game17EnemyStateMachineFPQ24Game13EnemyFSMState
-	li       r3, 0x10
-	bl       __nw__FUl
-	or.      r4, r3, r3
-	beq      lbl_8025CE04
-	lis      r3, __vt__Q24Game13EnemyFSMState@ha
-	lis      r6, __vt__Q34Game6Kogane5State@ha
-	addi     r0, r3, __vt__Q24Game13EnemyFSMState@l
-	lis      r5, lbl_80485380@ha
-	stw      r0, 0(r4)
-	li       r0, 1
-	lis      r3, __vt__Q34Game6Kogane14StateDisappear@ha
-	li       r7, 0
-	stw      r0, 4(r4)
-	addi     r6, r6, __vt__Q34Game6Kogane5State@l
-	addi     r5, r5, lbl_80485380@l
-	addi     r0, r3, __vt__Q34Game6Kogane14StateDisappear@l
-	stw      r7, 8(r4)
-	stw      r6, 0(r4)
-	stw      r5, 0xc(r4)
-	stw      r0, 0(r4)
-
-lbl_8025CE04:
-	mr       r3, r31
-	bl       registerState__Q24Game17EnemyStateMachineFPQ24Game13EnemyFSMState
-	li       r3, 0x10
-	bl       __nw__FUl
-	or.      r4, r3, r3
-	beq      lbl_8025CE58
-	lis      r3, __vt__Q24Game13EnemyFSMState@ha
-	lis      r5, __vt__Q34Game6Kogane5State@ha
-	addi     r0, r3, __vt__Q24Game13EnemyFSMState@l
-	lis      r3, __vt__Q34Game6Kogane9StateMove@ha
-	stw      r0, 0(r4)
-	li       r0, 2
-	li       r7, 0
-	addi     r6, r5, __vt__Q34Game6Kogane5State@l
-	stw      r0, 4(r4)
-	addi     r5, r2, lbl_8051AC00@sda21
-	addi     r0, r3, __vt__Q34Game6Kogane9StateMove@l
-	stw      r7, 8(r4)
-	stw      r6, 0(r4)
-	stw      r5, 0xc(r4)
-	stw      r0, 0(r4)
-
-lbl_8025CE58:
-	mr       r3, r31
-	bl       registerState__Q24Game17EnemyStateMachineFPQ24Game13EnemyFSMState
-	li       r3, 0x10
-	bl       __nw__FUl
-	or.      r4, r3, r3
-	beq      lbl_8025CEAC
-	lis      r3, __vt__Q24Game13EnemyFSMState@ha
-	lis      r5, __vt__Q34Game6Kogane5State@ha
-	addi     r0, r3, __vt__Q24Game13EnemyFSMState@l
-	lis      r3, __vt__Q34Game6Kogane9StateWait@ha
-	stw      r0, 0(r4)
-	li       r0, 3
-	li       r7, 0
-	addi     r6, r5, __vt__Q34Game6Kogane5State@l
-	stw      r0, 4(r4)
-	addi     r5, r2, lbl_8051AC08@sda21
-	addi     r0, r3, __vt__Q34Game6Kogane9StateWait@l
-	stw      r7, 8(r4)
-	stw      r6, 0(r4)
-	stw      r5, 0xc(r4)
-	stw      r0, 0(r4)
-
-lbl_8025CEAC:
-	mr       r3, r31
-	bl       registerState__Q24Game17EnemyStateMachineFPQ24Game13EnemyFSMState
-	li       r3, 0x10
-	bl       __nw__FUl
-	or.      r4, r3, r3
-	beq      lbl_8025CF00
-	lis      r3, __vt__Q24Game13EnemyFSMState@ha
-	lis      r5, __vt__Q34Game6Kogane5State@ha
-	addi     r0, r3, __vt__Q24Game13EnemyFSMState@l
-	lis      r3, __vt__Q34Game6Kogane10StatePress@ha
-	stw      r0, 0(r4)
-	li       r0, 4
-	li       r7, 0
-	addi     r6, r5, __vt__Q34Game6Kogane5State@l
-	stw      r0, 4(r4)
-	addi     r5, r2, lbl_8051AC10@sda21
-	addi     r0, r3, __vt__Q34Game6Kogane10StatePress@l
-	stw      r7, 8(r4)
-	stw      r6, 0(r4)
-	stw      r5, 0xc(r4)
-	stw      r0, 0(r4)
-
-lbl_8025CF00:
-	mr       r3, r31
-	bl       registerState__Q24Game17EnemyStateMachineFPQ24Game13EnemyFSMState
-	lwz      r0, 0x14(r1)
-	lwz      r31, 0xc(r1)
-	mtlr     r0
-	addi     r1, r1, 0x10
-	blr
-	*/
+	create(KOGANE_Count);
+	registerState(new StateAppear);
+	registerState(new StateDisappear);
+	registerState(new StateMove);
+	registerState(new StateWait);
+	registerState(new StatePress);
 }
 
 /*
@@ -270,48 +24,18 @@ lbl_8025CF00:
  * Address:	8025CF1C
  * Size:	000098
  */
-void Kogane::StateAppear::init(Game::EnemyBase*, Game::StateArg*)
+void StateAppear::init(EnemyBase* enemy, StateArg* stateArg)
 {
-	/*
-	stwu     r1, -0x10(r1)
-	mflr     r0
-	stw      r0, 0x14(r1)
-	mr       r0, r4
-	li       r4, 0
-	stw      r31, 0xc(r1)
-	mr       r31, r0
-	mr       r3, r31
-	lwz      r12, 0(r31)
-	lwz      r12, 0xa4(r12)
-	mtctr    r12
-	bctrl
-	lwz      r0, 0x1e0(r31)
-	mr       r3, r31
-	oris     r0, r0, 0x40
-	stw      r0, 0x1e0(r31)
-	bl       hardConstraintOn__Q24Game9EnemyBaseFv
-	lwz      r0, 0x1e0(r31)
-	mr       r3, r31
-	lfs      f0, lbl_8051AC18@sda21(r2)
-	li       r4, 0
-	rlwinm   r0, r0, 0, 0x11, 0xf
-	li       r5, 0
-	stw      r0, 0x1e0(r31)
-	lwz      r0, 0x1e0(r31)
-	oris     r0, r0, 0x4000
-	stw      r0, 0x1e0(r31)
-	stfs     f0, 0x1d4(r31)
-	stfs     f0, 0x1d8(r31)
-	stfs     f0, 0x1dc(r31)
-	bl       startMotion__Q24Game9EnemyBaseFiPQ28SysShape14MotionListener
-	mr       r3, r31
-	bl       stopMotion__Q24Game9EnemyBaseFv
-	lwz      r0, 0x14(r1)
-	lwz      r31, 0xc(r1)
-	mtlr     r0
-	addi     r1, r1, 0x10
-	blr
-	*/
+	Obj* kogane = static_cast<Obj*>(enemy);
+	kogane->setAtari(false);
+	kogane->setEvent(0, EB_BitterImmune);
+	kogane->hardConstraintOn();
+	kogane->resetEvent(0, EB_16);
+	kogane->setEvent(0, EB_31);
+
+	kogane->m_velocity2 = Vector3f(0.0f);
+	kogane->startMotion(0, nullptr);
+	kogane->stopMotion();
 }
 
 /*
@@ -319,37 +43,12 @@ void Kogane::StateAppear::init(Game::EnemyBase*, Game::StateArg*)
  * Address:	8025CFB4
  * Size:	000064
  */
-void Kogane::StateAppear::exec(Game::EnemyBase*)
+void StateAppear::exec(EnemyBase* enemy)
 {
-	/*
-	stwu     r1, -0x10(r1)
-	mflr     r0
-	stw      r0, 0x14(r1)
-	stw      r31, 0xc(r1)
-	mr       r31, r4
-	stw      r30, 8(r1)
-	mr       r30, r3
-	mr       r3, r31
-	bl       isAppear__Q34Game6Kogane3ObjFv
-	clrlwi.  r0, r3, 0x18
-	beq      lbl_8025D000
-	mr       r3, r30
-	mr       r4, r31
-	lwz      r12, 0(r30)
-	li       r5, 2
-	li       r6, 0
-	lwz      r12, 0x1c(r12)
-	mtctr    r12
-	bctrl
-
-lbl_8025D000:
-	lwz      r0, 0x14(r1)
-	lwz      r31, 0xc(r1)
-	lwz      r30, 8(r1)
-	mtlr     r0
-	addi     r1, r1, 0x10
-	blr
-	*/
+	Obj* kogane = static_cast<Obj*>(enemy);
+	if (kogane->isAppear()) {
+		transit(kogane, KOGANE_Move, nullptr);
+	}
 }
 
 /*
@@ -357,7 +56,7 @@ lbl_8025D000:
  * Address:	8025D018
  * Size:	0001A0
  */
-void Kogane::StateAppear::cleanup(Game::EnemyBase*)
+void StateAppear::cleanup(EnemyBase* enemy)
 {
 	/*
 	stwu     r1, -0x60(r1)
@@ -469,17 +168,10 @@ void Kogane::StateAppear::cleanup(Game::EnemyBase*)
 
 /*
  * --INFO--
- * Address:	8025D1B8
- * Size:	000004
- */
-void Kogane::Obj::startBodyEffect() { }
-
-/*
- * --INFO--
  * Address:	8025D1BC
  * Size:	000138
  */
-void Kogane::StateDisappear::init(Game::EnemyBase*, Game::StateArg*)
+void StateDisappear::init(EnemyBase* enemy, StateArg* stateArg)
 {
 	/*
 	stwu     r1, -0x60(r1)
@@ -565,17 +257,10 @@ void Kogane::StateDisappear::init(Game::EnemyBase*, Game::StateArg*)
 
 /*
  * --INFO--
- * Address:	8025D2F4
- * Size:	000004
- */
-void Kogane::Obj::finishBodyEffect() { }
-
-/*
- * --INFO--
  * Address:	8025D2F8
  * Size:	00006C
  */
-void Kogane::StateDisappear::exec(Game::EnemyBase*)
+void StateDisappear::exec(EnemyBase* enemy)
 {
 	/*
 	stwu     r1, -0x10(r1)
@@ -617,14 +302,14 @@ lbl_8025D350:
  * Address:	8025D364
  * Size:	000004
  */
-void Kogane::StateDisappear::cleanup(Game::EnemyBase*) { }
+void StateDisappear::cleanup(EnemyBase* enemy) { }
 
 /*
  * --INFO--
  * Address:	8025D368
  * Size:	00006C
  */
-void Kogane::StateMove::init(Game::EnemyBase*, Game::StateArg*)
+void StateMove::init(EnemyBase* enemy, StateArg* stateArg)
 {
 	/*
 	stwu     r1, -0x10(r1)
@@ -659,17 +344,10 @@ void Kogane::StateMove::init(Game::EnemyBase*, Game::StateArg*)
 
 /*
  * --INFO--
- * Address:	8025D3D4
- * Size:	000004
- */
-void Kogane::Obj::createFartEffect() { }
-
-/*
- * --INFO--
  * Address:	8025D3D8
  * Size:	000138
  */
-void Kogane::StateMove::exec(Game::EnemyBase*)
+void StateMove::exec(EnemyBase* enemy)
 {
 	/*
 	stwu     r1, -0x20(r1)
@@ -760,14 +438,14 @@ lbl_8025D4F8:
  * Address:	8025D510
  * Size:	000004
  */
-void Kogane::StateMove::cleanup(Game::EnemyBase*) { }
+void StateMove::cleanup(EnemyBase* enemy) { }
 
 /*
  * --INFO--
  * Address:	8025D514
  * Size:	00005C
  */
-void Kogane::StateWait::init(Game::EnemyBase*, Game::StateArg*)
+void StateWait::init(EnemyBase* enemy, StateArg* stateArg)
 {
 	/*
 	stwu     r1, -0x10(r1)
@@ -801,7 +479,7 @@ void Kogane::StateWait::init(Game::EnemyBase*, Game::StateArg*)
  * Address:	8025D570
  * Size:	0000BC
  */
-void Kogane::StateWait::exec(Game::EnemyBase*)
+void StateWait::exec(EnemyBase* enemy)
 {
 	/*
 	stwu     r1, -0x10(r1)
@@ -863,14 +541,14 @@ lbl_8025D614:
  * Address:	8025D62C
  * Size:	000004
  */
-void Kogane::StateWait::cleanup(Game::EnemyBase*) { }
+void StateWait::cleanup(EnemyBase* enemy) { }
 
 /*
  * --INFO--
  * Address:	8025D630
  * Size:	00011C
  */
-void Kogane::StatePress::init(Game::EnemyBase*, Game::StateArg*)
+void StatePress::init(EnemyBase* enemy, StateArg* stateArg)
 {
 	/*
 	stwu     r1, -0x60(r1)
@@ -949,17 +627,10 @@ void Kogane::StatePress::init(Game::EnemyBase*, Game::StateArg*)
 
 /*
  * --INFO--
- * Address:	8025D74C
- * Size:	000004
- */
-void Kogane::Obj::createPressSENormal() { }
-
-/*
- * --INFO--
  * Address:	8025D750
  * Size:	000130
  */
-void Kogane::StatePress::exec(Game::EnemyBase*)
+void StatePress::exec(EnemyBase* enemy)
 {
 	/*
 	stwu     r1, -0x10(r1)
@@ -1053,24 +724,10 @@ lbl_8025D868:
 
 /*
  * --INFO--
- * Address:	8025D880
- * Size:	000004
- */
-void Kogane::Obj::createItem() { }
-
-/*
- * --INFO--
- * Address:	8025D884
- * Size:	000004
- */
-void Kogane::Obj::createPressSESpecial() { }
-
-/*
- * --INFO--
  * Address:	8025D888
  * Size:	000010
  */
-void Kogane::StatePress::cleanup(Game::EnemyBase*)
+void StatePress::cleanup(EnemyBase* enemy)
 {
 	/*
 	lwz      r0, 0x1e0(r4)
@@ -1079,4 +736,6 @@ void Kogane::StatePress::cleanup(Game::EnemyBase*)
 	blr
 	*/
 }
+
+} // namespace Kogane
 } // namespace Game
