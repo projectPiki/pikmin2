@@ -6,6 +6,11 @@
 
 namespace efx {
 struct TBabyBecha : public TSimple1 {
+	inline TBabyBecha()
+	    : TSimple1(3)
+	{
+	}
+
 	// _00      = VTBL
 	// _00-_0C  = TSimple1
 };

@@ -40,6 +40,17 @@ namespace Queen {
 struct QueenShadowMgr;
 struct FSM;
 
+enum StateID {
+	QUEEN_NULL    = -1,
+	QUEEN_Dead    = 0,
+	QUEEN_Sleep   = 1,
+	QUEEN_Wait    = 2,
+	QUEEN_Damage  = 3,
+	QUEEN_Flick   = 4,
+	QUEEN_Rolling = 5,
+	QUEEN_Born    = 6,
+};
+
 struct Obj : public EnemyBase {
 	Obj();
 
@@ -72,12 +83,12 @@ struct Obj : public EnemyBase {
 
 	void rollingAttack();
 	void flickPikmin(f32);
-	void isRollingAttackLeft();
+	bool isRollingAttackLeft();
 	void createCrashFallRock();
 	void createBabyChappy();
 	void updateCreateBaby();
-	void isCreateBaby();
-	void isHitCounterUp();
+	bool isCreateBaby();
+	bool isHitCounterUp();
 	void resetJointShadow();
 	void releaseJointShadow();
 	void startBossChargeBGM();
@@ -113,10 +124,10 @@ struct Obj : public EnemyBase {
 	u8 _2C3;                                 // _2C3
 	u8 _2C4;                                 // _2C4
 	u8 _2C5;                                 // _2C5
-	f32 _2C8;                                // _2C8, timer?
+	f32 m_waitTimer;                         // _2C8
 	f32 _2CC;                                // _2CC, timer?
 	f32 _2D0;                                // _2D0
-	int _2D4;                                // _2D4
+	StateID m_nextState;                     // _2D4
 	QueenShadowMgr* m_shadowMgr;             // _2D8
 	Sys::MatLoopAnimator* m_matLoopAnimator; // _2DC
 	efx::TQueenLay* _2E0;                    // _2E0
@@ -212,11 +223,22 @@ struct FSM : public EnemyStateMachine {
 };
 
 struct State : public EnemyFSMState {
+	inline State(int stateID, char* name)
+	    : EnemyFSMState(stateID)
+	{
+		m_name = name;
+	}
+
 	// _00		= VTBL
 	// _00-_10 	= EnemyFSMState
 };
 
 struct StateBorn : public State {
+	inline StateBorn()
+	    : State(QUEEN_Born, "born")
+	{
+	}
+
 	virtual void init(EnemyBase*, StateArg*); // _08
 	virtual void exec(EnemyBase*);            // _0C
 	virtual void cleanup(EnemyBase*);         // _10
@@ -226,6 +248,11 @@ struct StateBorn : public State {
 };
 
 struct StateDamage : public State {
+	inline StateDamage()
+	    : State(QUEEN_Damage, "damage")
+	{
+	}
+
 	virtual void init(EnemyBase*, StateArg*); // _08
 	virtual void exec(EnemyBase*);            // _0C
 	virtual void cleanup(EnemyBase*);         // _10
@@ -235,6 +262,11 @@ struct StateDamage : public State {
 };
 
 struct StateDead : public State {
+	inline StateDead()
+	    : State(QUEEN_Dead, "dead")
+	{
+	}
+
 	virtual void init(EnemyBase*, StateArg*); // _08
 	virtual void exec(EnemyBase*);            // _0C
 	virtual void cleanup(EnemyBase*);         // _10
@@ -244,6 +276,11 @@ struct StateDead : public State {
 };
 
 struct StateFlick : public State {
+	inline StateFlick()
+	    : State(QUEEN_Flick, "flick")
+	{
+	}
+
 	virtual void init(EnemyBase*, StateArg*); // _08
 	virtual void exec(EnemyBase*);            // _0C
 	virtual void cleanup(EnemyBase*);         // _10
@@ -253,6 +290,11 @@ struct StateFlick : public State {
 };
 
 struct StateRolling : public State {
+	inline StateRolling()
+	    : State(QUEEN_Rolling, "rolling")
+	{
+	}
+
 	virtual void init(EnemyBase*, StateArg*); // _08
 	virtual void exec(EnemyBase*);            // _0C
 	virtual void cleanup(EnemyBase*);         // _10
@@ -262,6 +304,11 @@ struct StateRolling : public State {
 };
 
 struct StateSleep : public State {
+	inline StateSleep()
+	    : State(QUEEN_Sleep, "sleep")
+	{
+	}
+
 	virtual void init(EnemyBase*, StateArg*); // _08
 	virtual void exec(EnemyBase*);            // _0C
 	virtual void cleanup(EnemyBase*);         // _10
@@ -271,6 +318,11 @@ struct StateSleep : public State {
 };
 
 struct StateWait : public State {
+	inline StateWait()
+	    : State(QUEEN_Wait, "wait")
+	{
+	}
+
 	virtual void init(EnemyBase*, StateArg*); // _08
 	virtual void exec(EnemyBase*);            // _0C
 	virtual void cleanup(EnemyBase*);         // _10

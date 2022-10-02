@@ -127,6 +127,14 @@ inline Vector3f operator*=(const Vector3f& a, const float b) { return Vector3f(a
 
 inline float dot(const Vector3f& a, const Vector3f& b) { return a.x * b.x + a.y * b.y + a.z * b.z; }
 
+inline void weightVecXZ(Vector3f& vec, f32 weight)
+{
+	Vector3f temp = vec;
+	temp.x *= weight;
+	temp.z *= weight;
+	vec = temp;
+}
+
 inline f32 Vector3f::length() const
 {
 	f32 thing = x;

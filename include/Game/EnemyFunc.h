@@ -21,6 +21,9 @@ Creature* getNearestPikminOrNavi(Creature*, f32, f32, f32*, Condition<Navi>*, Co
 Navi* getNearestNavi(Creature*, f32, f32, f32*, Condition<Navi>*);
 bool isStartFlick(EnemyBase*, bool);
 void walkToTarget(EnemyBase*, Vector3f&, f32, f32, f32);
+void attackNavi(Creature*, f32, f32, f32, CollPart*, Condition<Navi>*);
+void eatPikmin(EnemyBase*, Condition<Piki>*);
+void swallowPikmin(Creature*, f32, Condition<Piki>*);
 
 } // namespace EnemyFunc
 } // namespace Game
