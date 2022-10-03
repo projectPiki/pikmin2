@@ -42,6 +42,17 @@ struct BigFootGroundCallBack;
 struct BigFootShadowMgr;
 struct FSM;
 
+enum StateID {
+	BIGFOOT_NULL  = -1,
+	BIGFOOT_Dead  = 0,
+	BIGFOOT_Stay  = 1,
+	BIGFOOT_Land  = 2,
+	BIGFOOT_Wait  = 3,
+	BIGFOOT_Flick = 4,
+	BIGFOOT_Walk  = 5,
+	BIGFOOT_Count = 6,
+};
+
 struct Obj : public EnemyBase {
 	Obj();
 
@@ -87,7 +98,7 @@ struct Obj : public EnemyBase {
 	void startIKMotion();
 	void finishIKMotion();
 	void forceFinishIKMotion();
-	void isFinishIKMotion();
+	bool isFinishIKMotion();
 	void startBlendMotion();
 	void finishBlendMotion();
 	void getTraceCentrePosition();
@@ -126,14 +137,14 @@ struct Obj : public EnemyBase {
 	// _00 		= VTBL
 	// _00-_2BC	= EnemyBase
 	FSM* m_FSM;                              // _2BC
-	f32 _2C0;                                // _2C0
-	int _2C4;                                // _2C4
+	f32 m_timer;                             // _2C0
+	StateID m_nextState;                     // _2C4
 	Vector3f m_targetPosition;               // _2C8
 	f32 _2D4;                                // _2D4
 	f32 m_flickWalkTimeMax;                  // _2D8
 	u8 _2DC;                                 // _2DC
 	u8 _2DD;                                 // _2DD
-	u8 _2DE;                                 // _2DE
+	bool m_isRaging;                         // _2DE, next walk cycle will be fast
 	IKSystemMgr* m_IKSystemMgr;              // _2E0
 	IKSystemParms* m_IKSystemParms;          // _2E4
 	BigFootGroundCallBack* m_groundCallBack; // _2E8
@@ -228,16 +239,6 @@ struct BigFootGroundCallBack : public JointGroundCallBack {
 
 /////////////////////////////////////////////////////////////////
 // STATE MACHINE DEFINITIONS
-enum StateID {
-	BIGFOOT_Dead  = 0,
-	BIGFOOT_Stay  = 1,
-	BIGFOOT_Land  = 2,
-	BIGFOOT_Wait  = 3,
-	BIGFOOT_Flick = 4,
-	BIGFOOT_Walk  = 5,
-	BIGFOOT_Count = 6,
-};
-
 struct FSM : public EnemyStateMachine {
 	virtual void init(EnemyBase*); // _08
 

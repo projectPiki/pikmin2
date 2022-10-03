@@ -796,7 +796,7 @@ NISHIMURA:=\
 	$(BUILD_DIR)/asm/plugProjectNishimuraU/HoudaiShotGun.o\
 	$(BUILD_DIR)/asm/plugProjectNishimuraU/LeafChappyMgr.o\
 	$(BUILD_DIR)/asm/plugProjectNishimuraU/LeafChappy.o\
-	$(BUILD_DIR)/asm/plugProjectNishimuraU/BigFootState.o\
+	$(BUILD_DIR)/src/plugProjectNishimuraU/BigFootState.o\
 	$(BUILD_DIR)/src/plugProjectNishimuraU/BigFootAnimator.o\
 	$(BUILD_DIR)/asm/plugProjectNishimuraU/BigFootMgr.o\
 	$(BUILD_DIR)/asm/plugProjectNishimuraU/BigFootShadow.o\
