@@ -667,7 +667,7 @@ NISHIMURA:=\
 	$(BUILD_DIR)/src/plugProjectNishimuraU/RumbleData.o\
 	$(BUILD_DIR)/asm/plugProjectNishimuraU/MaroFrogMgr.o\
 	$(BUILD_DIR)/asm/plugProjectNishimuraU/MaroFrog.o\
-	$(BUILD_DIR)/asm/plugProjectNishimuraU/RockState.o\
+	$(BUILD_DIR)/src/plugProjectNishimuraU/RockState.o\
 	$(BUILD_DIR)/src/plugProjectNishimuraU/RockAnimator.o\
 	$(BUILD_DIR)/asm/plugProjectNishimuraU/RockMgr.o\
 	$(BUILD_DIR)/asm/plugProjectNishimuraU/Rock.o\

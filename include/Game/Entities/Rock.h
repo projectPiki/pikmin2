@@ -72,8 +72,8 @@ struct Obj : public EnemyBase {
 	FSM* m_FSM;                      // _2BC
 	EnemyBase* m_sourceEnemy;        // _2C0
 	u8 _2C4;                         // _2C4, maybe isHoming?
-	f32 _2C8;                        // _2C8
-	f32 _2CC;                        // _2CC
+	f32 m_timer;                     // _2C8
+	f32 m_fallSpeed;                 // _2CC
 	f32 _2D0;                        // _2D0
 	f32 _2D4;                        // _2D4
 	efx::TRockRun* m_efxRun;         // _2D8
