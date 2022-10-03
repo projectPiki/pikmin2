@@ -229,12 +229,12 @@ struct BigFootGroundCallBack : public JointGroundCallBack {
 /////////////////////////////////////////////////////////////////
 // STATE MACHINE DEFINITIONS
 enum StateID {
-	BIGFOOT_Dead = 0,
-	BIGFOOT_Stay = 1,
-	BIGFOOT_Land = 2,
-	BIGFOOT_Wait = 3,
+	BIGFOOT_Dead  = 0,
+	BIGFOOT_Stay  = 1,
+	BIGFOOT_Land  = 2,
+	BIGFOOT_Wait  = 3,
 	BIGFOOT_Flick = 4,
-	BIGFOOT_Walk = 5,
+	BIGFOOT_Walk  = 5,
 	BIGFOOT_Count = 6,
 };
 
@@ -247,7 +247,7 @@ struct FSM : public EnemyStateMachine {
 
 struct State : public EnemyFSMState {
 	inline State(u16 stateID, const char* name)
-		: EnemyFSMState(stateID)
+	    : EnemyFSMState(stateID)
 	{
 		m_name = name;
 	}
@@ -258,7 +258,7 @@ struct State : public EnemyFSMState {
 
 struct StateDead : public State {
 	inline StateDead()
-		: State(BIGFOOT_Dead, "dead")
+	    : State(BIGFOOT_Dead, "dead")
 	{
 	}
 
@@ -272,10 +272,10 @@ struct StateDead : public State {
 
 struct StateFlick : public State {
 	inline StateFlick()
-		: State(BIGFOOT_Flick, "flick")
+	    : State(BIGFOOT_Flick, "flick")
 	{
 	}
-	
+
 	virtual void init(EnemyBase*, StateArg*); // _08
 	virtual void exec(EnemyBase*);            // _0C
 	virtual void cleanup(EnemyBase*);         // _10
@@ -286,10 +286,10 @@ struct StateFlick : public State {
 
 struct StateLand : public State {
 	inline StateLand()
-		: State(BIGFOOT_Land, "land")
+	    : State(BIGFOOT_Land, "land")
 	{
 	}
-	
+
 	virtual void init(EnemyBase*, StateArg*); // _08
 	virtual void exec(EnemyBase*);            // _0C
 	virtual void cleanup(EnemyBase*);         // _10
@@ -300,10 +300,10 @@ struct StateLand : public State {
 
 struct StateStay : public State {
 	inline StateStay()
-		: State(BIGFOOT_Stay, "stay")
+	    : State(BIGFOOT_Stay, "stay")
 	{
 	}
-	
+
 	virtual void init(EnemyBase*, StateArg*); // _08
 	virtual void exec(EnemyBase*);            // _0C
 	virtual void cleanup(EnemyBase*);         // _10
@@ -314,10 +314,10 @@ struct StateStay : public State {
 
 struct StateWait : public State {
 	inline StateWait()
-		: State(BIGFOOT_Wait, "wait")
+	    : State(BIGFOOT_Wait, "wait")
 	{
 	}
-	
+
 	virtual void init(EnemyBase*, StateArg*); // _08
 	virtual void exec(EnemyBase*);            // _0C
 	virtual void cleanup(EnemyBase*);         // _10
@@ -328,10 +328,10 @@ struct StateWait : public State {
 
 struct StateWalk : public State {
 	inline StateWalk()
-		: State(BIGFOOT_Walk, "walk")
+	    : State(BIGFOOT_Walk, "walk")
 	{
 	}
-	
+
 	virtual void init(EnemyBase*, StateArg*); // _08
 	virtual void exec(EnemyBase*);            // _0C
 	virtual void cleanup(EnemyBase*);         // _10

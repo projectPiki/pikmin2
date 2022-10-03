@@ -50,7 +50,7 @@ struct Obj : public EnemyBase {
 	virtual void setFSM(FSM*);                               // _2F8
 	//////////////// VTABLE END
 
-	void fallRockScaleUp();
+	bool fallRockScaleUp();
 	void moveRockScaleUp();
 	void initMoveVelocity();
 	void updateMoveVelocity();
@@ -146,13 +146,13 @@ struct ProperAnimator : public EnemyAnimatorBase {
 /////////////////////////////////////////////////////////////////
 // STATE MACHINE DEFINITIONS
 enum StateID {
-	ROCK_Wait = 0,
-	ROCK_Appear = 1,
+	ROCK_Wait     = 0,
+	ROCK_Appear   = 1,
 	ROCK_DropWait = 2,
-	ROCK_Fall = 3,
-	ROCK_Move = 4,
-	ROCK_Dead = 5,
-	ROCK_Count = 6,
+	ROCK_Fall     = 3,
+	ROCK_Move     = 4,
+	ROCK_Dead     = 5,
+	ROCK_Count    = 6,
 };
 
 struct FSM : public EnemyStateMachine {
@@ -164,7 +164,7 @@ struct FSM : public EnemyStateMachine {
 
 struct State : public EnemyFSMState {
 	inline State(u16 stateID, const char* name)
-		: EnemyFSMState(stateID)
+	    : EnemyFSMState(stateID)
 	{
 		m_name = name;
 	}
@@ -175,7 +175,7 @@ struct State : public EnemyFSMState {
 
 struct StateAppear : public State {
 	inline StateAppear()
-		: State(ROCK_Appear, "appear")
+	    : State(ROCK_Appear, "appear")
 	{
 	}
 
@@ -189,7 +189,7 @@ struct StateAppear : public State {
 
 struct StateDead : public State {
 	inline StateDead()
-		: State(ROCK_Dead, "dead")
+	    : State(ROCK_Dead, "dead")
 	{
 	}
 
@@ -203,7 +203,7 @@ struct StateDead : public State {
 
 struct StateDropWait : public State {
 	inline StateDropWait()
-		: State(ROCK_DropWait, "dropwait")
+	    : State(ROCK_DropWait, "dropwait")
 	{
 	}
 
@@ -217,7 +217,7 @@ struct StateDropWait : public State {
 
 struct StateFall : public State {
 	inline StateFall()
-		: State(ROCK_Fall, "fall")
+	    : State(ROCK_Fall, "fall")
 	{
 	}
 
@@ -231,7 +231,7 @@ struct StateFall : public State {
 
 struct StateMove : public State {
 	inline StateMove()
-		: State(ROCK_Move, "move")
+	    : State(ROCK_Move, "move")
 	{
 	}
 
@@ -245,7 +245,7 @@ struct StateMove : public State {
 
 struct StateWait : public State {
 	inline StateWait()
-		: State(ROCK_Wait, "wait")
+	    : State(ROCK_Wait, "wait")
 	{
 	}
 

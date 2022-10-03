@@ -56,10 +56,10 @@ struct Obj : public EnemyBase {
 	//////////////// VTABLE END
 
 	void transitDamageState(f32);
-	void transitDisappear();
+	bool transitDisappear();
 	void getBodyJointPos();
 	void koganeScaleUp();
-	void koganeScaleDown();
+	bool koganeScaleDown();
 	void setTargetPosition(Vector3f*);
 	void resetAppearTimer();
 	bool isAppear();
@@ -129,12 +129,12 @@ struct ProperAnimator : public EnemyAnimatorBase {
 /////////////////////////////////////////////////////////////////
 // STATE MACHINE DEFINITIONS
 enum StateID {
-	KOGANE_Appear = 0,
+	KOGANE_Appear    = 0,
 	KOGANE_Disappear = 1,
-	KOGANE_Move = 2,
-	KOGANE_Wait = 3,
-	KOGANE_Press = 4,
-	KOGANE_Count = 5,
+	KOGANE_Move      = 2,
+	KOGANE_Wait      = 3,
+	KOGANE_Press     = 4,
+	KOGANE_Count     = 5,
 };
 
 struct FSM : public EnemyStateMachine {
@@ -146,7 +146,7 @@ struct FSM : public EnemyStateMachine {
 
 struct State : public EnemyFSMState {
 	inline State(u16 stateID, const char* name)
-		: EnemyFSMState(stateID)
+	    : EnemyFSMState(stateID)
 	{
 		m_name = name;
 	}
@@ -157,7 +157,7 @@ struct State : public EnemyFSMState {
 
 struct StateAppear : public State {
 	inline StateAppear()
-		: State(KOGANE_Appear, "appear")
+	    : State(KOGANE_Appear, "appear")
 	{
 	}
 
@@ -171,10 +171,10 @@ struct StateAppear : public State {
 
 struct StateDisappear : public State {
 	inline StateDisappear()
-		: State(KOGANE_Disappear, "disappear")
+	    : State(KOGANE_Disappear, "disappear")
 	{
 	}
-	
+
 	virtual void init(EnemyBase*, StateArg*); // _08
 	virtual void exec(EnemyBase*);            // _0C
 	virtual void cleanup(EnemyBase*);         // _10
@@ -185,10 +185,10 @@ struct StateDisappear : public State {
 
 struct StateMove : public State {
 	inline StateMove()
-		: State(KOGANE_Move, "move")
+	    : State(KOGANE_Move, "move")
 	{
 	}
-	
+
 	virtual void init(EnemyBase*, StateArg*); // _08
 	virtual void exec(EnemyBase*);            // _0C
 	virtual void cleanup(EnemyBase*);         // _10
@@ -199,10 +199,10 @@ struct StateMove : public State {
 
 struct StatePress : public State {
 	inline StatePress()
-		: State(KOGANE_Press, "press")
+	    : State(KOGANE_Press, "press")
 	{
 	}
-	
+
 	virtual void init(EnemyBase*, StateArg*); // _08
 	virtual void exec(EnemyBase*);            // _0C
 	virtual void cleanup(EnemyBase*);         // _10
@@ -213,10 +213,10 @@ struct StatePress : public State {
 
 struct StateWait : public State {
 	inline StateWait()
-		: State(KOGANE_Wait, "wait")
+	    : State(KOGANE_Wait, "wait")
 	{
 	}
-	
+
 	virtual void init(EnemyBase*, StateArg*); // _08
 	virtual void exec(EnemyBase*);            // _0C
 	virtual void cleanup(EnemyBase*);         // _10

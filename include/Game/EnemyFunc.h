@@ -16,15 +16,27 @@ template <typename T> struct Condition;
 namespace Game {
 namespace EnemyFunc {
 
-void flickStickPikmin(Creature*, f32, f32, f32, f32, Condition<Piki>*);
-Creature* getNearestPikminOrNavi(Creature*, f32, f32, f32*, Condition<Navi>*, Condition<Piki>*);
 Navi* getNearestNavi(Creature*, f32, f32, f32*, Condition<Navi>*);
-bool isStartFlick(EnemyBase*, bool);
-void walkToTarget(EnemyBase*, Vector3f&, f32, f32, f32);
-void attackNavi(Creature*, f32, f32, f32, CollPart*, Condition<Navi>*);
+Piki* getNearestPikmin(Creature*, f32, f32, f32*, Condition<Piki>*);
+Creature* getNearestPikminOrNavi(Creature*, f32, f32, f32*, Condition<Navi>*, Condition<Piki>*);
+
+void flickStickPikmin(Creature*, f32, f32, f32, f32, Condition<Piki>*);
+void flickNearbyPikmin(Creature*, f32, f32, f32, f32, Condition<Piki>*);
+void flickNearbyNavi(Creature*, f32, f32, f32, f32, Condition<Navi>*);
+
 void eatPikmin(EnemyBase*, Condition<Piki>*);
 void swallowPikmin(Creature*, f32, Condition<Piki>*);
+void attackNavi(Creature*, f32, f32, f32, CollPart*, Condition<Navi>*);
 
+bool isStartFlick(EnemyBase*, bool);
+bool isTherePikmin(Creature*, f32, Condition<Piki>*);
+bool isThereOlimar(Creature*, f32, Condition<Navi>*);
+
+int getSurroundPikminNum(Creature*, f32, Condition<Piki>*);
+int getStickPikminColorNum(Creature*, int);
+
+void walkToTarget(EnemyBase*, Creature*, f32, f32, f32);
+void walkToTarget(EnemyBase*, Vector3f&, f32, f32, f32);
 } // namespace EnemyFunc
 } // namespace Game
 

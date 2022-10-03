@@ -656,7 +656,7 @@ NISHIMURA:=\
 	$(BUILD_DIR)/asm/plugProjectNishimuraU/Ujib.o\
 	$(BUILD_DIR)/asm/plugProjectNishimuraU/UjibState.o\
 	$(BUILD_DIR)/src/plugProjectNishimuraU/UjibAnimator.o\
-	$(BUILD_DIR)/asm/plugProjectNishimuraU/KoganeState.o\
+	$(BUILD_DIR)/src/plugProjectNishimuraU/KoganeState.o\
 	$(BUILD_DIR)/asm/plugProjectNishimuraU/KoganeMgr.o\
 	$(BUILD_DIR)/asm/plugProjectNishimuraU/Kogane.o\
 	$(BUILD_DIR)/src/plugProjectNishimuraU/KoganeAnimator.o\
