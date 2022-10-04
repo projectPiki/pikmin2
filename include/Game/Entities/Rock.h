@@ -50,7 +50,7 @@ struct Obj : public EnemyBase {
 	virtual void setFSM(FSM*);                               // _2F8
 	//////////////// VTABLE END
 
-	void fallRockScaleUp();
+	bool fallRockScaleUp();
 	void moveRockScaleUp();
 	void initMoveVelocity();
 	void updateMoveVelocity();
@@ -72,8 +72,8 @@ struct Obj : public EnemyBase {
 	FSM* m_FSM;                      // _2BC
 	EnemyBase* m_sourceEnemy;        // _2C0
 	u8 _2C4;                         // _2C4, maybe isHoming?
-	f32 _2C8;                        // _2C8
-	f32 _2CC;                        // _2CC
+	f32 m_timer;                     // _2C8
+	f32 m_fallSpeed;                 // _2CC
 	f32 _2D0;                        // _2D0
 	f32 _2D4;                        // _2D4
 	efx::TRockRun* m_efxRun;         // _2D8
@@ -145,6 +145,16 @@ struct ProperAnimator : public EnemyAnimatorBase {
 
 /////////////////////////////////////////////////////////////////
 // STATE MACHINE DEFINITIONS
+enum StateID {
+	ROCK_Wait     = 0,
+	ROCK_Appear   = 1,
+	ROCK_DropWait = 2,
+	ROCK_Fall     = 3,
+	ROCK_Move     = 4,
+	ROCK_Dead     = 5,
+	ROCK_Count    = 6,
+};
+
 struct FSM : public EnemyStateMachine {
 	virtual void init(EnemyBase*); // _08
 
@@ -153,11 +163,22 @@ struct FSM : public EnemyStateMachine {
 };
 
 struct State : public EnemyFSMState {
+	inline State(u16 stateID, const char* name)
+	    : EnemyFSMState(stateID)
+	{
+		m_name = name;
+	}
+
 	// _00		= VTBL
 	// _00-_10 	= EnemyFSMState
 };
 
 struct StateAppear : public State {
+	inline StateAppear()
+	    : State(ROCK_Appear, "appear")
+	{
+	}
+
 	virtual void init(EnemyBase*, StateArg*); // _08
 	virtual void exec(EnemyBase*);            // _0C
 	virtual void cleanup(EnemyBase*);         // _10
@@ -167,6 +188,11 @@ struct StateAppear : public State {
 };
 
 struct StateDead : public State {
+	inline StateDead()
+	    : State(ROCK_Dead, "dead")
+	{
+	}
+
 	virtual void init(EnemyBase*, StateArg*); // _08
 	virtual void exec(EnemyBase*);            // _0C
 	virtual void cleanup(EnemyBase*);         // _10
@@ -176,6 +202,11 @@ struct StateDead : public State {
 };
 
 struct StateDropWait : public State {
+	inline StateDropWait()
+	    : State(ROCK_DropWait, "dropwait")
+	{
+	}
+
 	virtual void init(EnemyBase*, StateArg*); // _08
 	virtual void exec(EnemyBase*);            // _0C
 	virtual void cleanup(EnemyBase*);         // _10
@@ -185,6 +216,11 @@ struct StateDropWait : public State {
 };
 
 struct StateFall : public State {
+	inline StateFall()
+	    : State(ROCK_Fall, "fall")
+	{
+	}
+
 	virtual void init(EnemyBase*, StateArg*); // _08
 	virtual void exec(EnemyBase*);            // _0C
 	virtual void cleanup(EnemyBase*);         // _10
@@ -194,6 +230,11 @@ struct StateFall : public State {
 };
 
 struct StateMove : public State {
+	inline StateMove()
+	    : State(ROCK_Move, "move")
+	{
+	}
+
 	virtual void init(EnemyBase*, StateArg*); // _08
 	virtual void exec(EnemyBase*);            // _0C
 	virtual void cleanup(EnemyBase*);         // _10
@@ -203,6 +244,11 @@ struct StateMove : public State {
 };
 
 struct StateWait : public State {
+	inline StateWait()
+	    : State(ROCK_Wait, "wait")
+	{
+	}
+
 	virtual void init(EnemyBase*, StateArg*); // _08
 	virtual void exec(EnemyBase*);            // _0C
 	virtual void cleanup(EnemyBase*);         // _10

@@ -1,327 +1,27 @@
-#include "types.h"
-
-/*
-    Generated from dpostproc
-
-    .section .ctors, "wa"  # 0x80472F00 - 0x804732C0
-    .4byte __sinit_BigFootState_cpp
-
-    .section .data, "wa"  # 0x8049E220 - 0x804EFC20
-    .global lbl_804D1978
-    lbl_804D1978:
-        .4byte 0x00000000
-        .4byte 0x00000000
-        .4byte 0x00000000
-    .global __vt__Q34Game7BigFoot9StateWalk
-    __vt__Q34Game7BigFoot9StateWalk:
-        .4byte 0
-        .4byte 0
-        .4byte
-   init__Q34Game7BigFoot9StateWalkFPQ24Game9EnemyBasePQ24Game8StateArg .4byte
-   exec__Q34Game7BigFoot9StateWalkFPQ24Game9EnemyBase .4byte
-   cleanup__Q34Game7BigFoot9StateWalkFPQ24Game9EnemyBase .4byte
-   resume__Q24Game13EnemyFSMStateFPQ24Game9EnemyBase .4byte
-   restart__Q24Game13EnemyFSMStateFPQ24Game9EnemyBase .4byte
-   transit__Q24Game13EnemyFSMStateFPQ24Game9EnemyBaseiPQ24Game8StateArg .4byte
-   doDirectDraw__Q24Game13EnemyFSMStateFPQ24Game9EnemyBaseR8Graphics .global
-   __vt__Q34Game7BigFoot10StateFlick
-    __vt__Q34Game7BigFoot10StateFlick:
-        .4byte 0
-        .4byte 0
-        .4byte
-   init__Q34Game7BigFoot10StateFlickFPQ24Game9EnemyBasePQ24Game8StateArg .4byte
-   exec__Q34Game7BigFoot10StateFlickFPQ24Game9EnemyBase .4byte
-   cleanup__Q34Game7BigFoot10StateFlickFPQ24Game9EnemyBase .4byte
-   resume__Q24Game13EnemyFSMStateFPQ24Game9EnemyBase .4byte
-   restart__Q24Game13EnemyFSMStateFPQ24Game9EnemyBase .4byte
-   transit__Q24Game13EnemyFSMStateFPQ24Game9EnemyBaseiPQ24Game8StateArg .4byte
-   doDirectDraw__Q24Game13EnemyFSMStateFPQ24Game9EnemyBaseR8Graphics .global
-   __vt__Q34Game7BigFoot9StateWait
-    __vt__Q34Game7BigFoot9StateWait:
-        .4byte 0
-        .4byte 0
-        .4byte
-   init__Q34Game7BigFoot9StateWaitFPQ24Game9EnemyBasePQ24Game8StateArg .4byte
-   exec__Q34Game7BigFoot9StateWaitFPQ24Game9EnemyBase .4byte
-   cleanup__Q34Game7BigFoot9StateWaitFPQ24Game9EnemyBase .4byte
-   resume__Q24Game13EnemyFSMStateFPQ24Game9EnemyBase .4byte
-   restart__Q24Game13EnemyFSMStateFPQ24Game9EnemyBase .4byte
-   transit__Q24Game13EnemyFSMStateFPQ24Game9EnemyBaseiPQ24Game8StateArg .4byte
-   doDirectDraw__Q24Game13EnemyFSMStateFPQ24Game9EnemyBaseR8Graphics .global
-   __vt__Q34Game7BigFoot9StateLand
-    __vt__Q34Game7BigFoot9StateLand:
-        .4byte 0
-        .4byte 0
-        .4byte
-   init__Q34Game7BigFoot9StateLandFPQ24Game9EnemyBasePQ24Game8StateArg .4byte
-   exec__Q34Game7BigFoot9StateLandFPQ24Game9EnemyBase .4byte
-   cleanup__Q34Game7BigFoot9StateLandFPQ24Game9EnemyBase .4byte
-   resume__Q24Game13EnemyFSMStateFPQ24Game9EnemyBase .4byte
-   restart__Q24Game13EnemyFSMStateFPQ24Game9EnemyBase .4byte
-   transit__Q24Game13EnemyFSMStateFPQ24Game9EnemyBaseiPQ24Game8StateArg .4byte
-   doDirectDraw__Q24Game13EnemyFSMStateFPQ24Game9EnemyBaseR8Graphics .global
-   __vt__Q34Game7BigFoot9StateStay
-    __vt__Q34Game7BigFoot9StateStay:
-        .4byte 0
-        .4byte 0
-        .4byte
-   init__Q34Game7BigFoot9StateStayFPQ24Game9EnemyBasePQ24Game8StateArg .4byte
-   exec__Q34Game7BigFoot9StateStayFPQ24Game9EnemyBase .4byte
-   cleanup__Q34Game7BigFoot9StateStayFPQ24Game9EnemyBase .4byte
-   resume__Q24Game13EnemyFSMStateFPQ24Game9EnemyBase .4byte
-   restart__Q24Game13EnemyFSMStateFPQ24Game9EnemyBase .4byte
-   transit__Q24Game13EnemyFSMStateFPQ24Game9EnemyBaseiPQ24Game8StateArg .4byte
-   doDirectDraw__Q24Game13EnemyFSMStateFPQ24Game9EnemyBaseR8Graphics .global
-   __vt__Q34Game7BigFoot9StateDead
-    __vt__Q34Game7BigFoot9StateDead:
-        .4byte 0
-        .4byte 0
-        .4byte
-   init__Q34Game7BigFoot9StateDeadFPQ24Game9EnemyBasePQ24Game8StateArg .4byte
-   exec__Q34Game7BigFoot9StateDeadFPQ24Game9EnemyBase .4byte
-   cleanup__Q34Game7BigFoot9StateDeadFPQ24Game9EnemyBase .4byte
-   resume__Q24Game13EnemyFSMStateFPQ24Game9EnemyBase .4byte
-   restart__Q24Game13EnemyFSMStateFPQ24Game9EnemyBase .4byte
-   transit__Q24Game13EnemyFSMStateFPQ24Game9EnemyBaseiPQ24Game8StateArg .4byte
-   doDirectDraw__Q24Game13EnemyFSMStateFPQ24Game9EnemyBaseR8Graphics .global
-   __vt__Q34Game7BigFoot5State
-    __vt__Q34Game7BigFoot5State:
-        .4byte 0
-        .4byte 0
-        .4byte init__Q24Game13EnemyFSMStateFPQ24Game9EnemyBasePQ24Game8StateArg
-        .4byte exec__Q24Game13EnemyFSMStateFPQ24Game9EnemyBase
-        .4byte cleanup__Q24Game13EnemyFSMStateFPQ24Game9EnemyBase
-        .4byte resume__Q24Game13EnemyFSMStateFPQ24Game9EnemyBase
-        .4byte restart__Q24Game13EnemyFSMStateFPQ24Game9EnemyBase
-        .4byte
-   transit__Q24Game13EnemyFSMStateFPQ24Game9EnemyBaseiPQ24Game8StateArg .4byte
-   doDirectDraw__Q24Game13EnemyFSMStateFPQ24Game9EnemyBaseR8Graphics .global
-   __vt__Q34Game7BigFoot3FSM
-    __vt__Q34Game7BigFoot3FSM:
-        .4byte 0
-        .4byte 0
-        .4byte init__Q34Game7BigFoot3FSMFPQ24Game9EnemyBase
-        .4byte
-   start__Q24Game17EnemyStateMachineFPQ24Game9EnemyBaseiPQ24Game8StateArg .4byte
-   exec__Q24Game17EnemyStateMachineFPQ24Game9EnemyBase .4byte
-   transit__Q24Game17EnemyStateMachineFPQ24Game9EnemyBaseiPQ24Game8StateArg
-        .4byte
-   doDirectDraw__Q24Game17EnemyStateMachineFPQ24Game9EnemyBaseR8Graphics .4byte
-   getCurrState__Q24Game17EnemyStateMachineFPQ24Game9EnemyBase .4byte
-   setCurrState__Q24Game17EnemyStateMachineFPQ24Game9EnemyBasePQ24Game13EnemyFSMState
-        .4byte 0
-
-    .section .sbss # 0x80514D80 - 0x80516360
-    .global lbl_80515DA8
-    lbl_80515DA8:
-        .skip 0x4
-    .global lbl_80515DAC
-    lbl_80515DAC:
-        .skip 0x4
-
-    .section .sdata2, "a"     # 0x80516360 - 0x80520E40
-    .global lbl_8051C668
-    lbl_8051C668:
-        .4byte 0x64656164
-        .4byte 0x00000000
-    .global lbl_8051C670
-    lbl_8051C670:
-        .4byte 0x73746179
-        .4byte 0x00000000
-    .global lbl_8051C678
-    lbl_8051C678:
-        .4byte 0x6C616E64
-        .4byte 0x00000000
-    .global lbl_8051C680
-    lbl_8051C680:
-        .4byte 0x77616974
-        .4byte 0x00000000
-    .global lbl_8051C688
-    lbl_8051C688:
-        .4byte 0x666C6963
-        .4byte 0x6B000000
-    .global lbl_8051C690
-    lbl_8051C690:
-        .4byte 0x77616C6B
-        .4byte 0x00000000
-    .global lbl_8051C698
-    lbl_8051C698:
-        .4byte 0x00000000
-    .global lbl_8051C69C
-    lbl_8051C69C:
-        .4byte 0x3A83126F
-    .global lbl_8051C6A0
-    lbl_8051C6A0:
-        .float 1.0
-    .global lbl_8051C6A4
-    lbl_8051C6A4:
-        .4byte 0x40A00000
-    .global lbl_8051C6A8
-    lbl_8051C6A8:
-        .4byte 0xC47A0000
-        .4byte 0x00000000
-*/
+#include "Game/Entities/BigFoot.h"
+#include "Game/EnemyAnimKeyEvent.h"
+#include "Game/EnemyFunc.h"
+#include "Game/CameraMgr.h"
+#include "Game/rumble.h"
+#include "nans.h"
 
 namespace Game {
+namespace BigFoot {
 
 /*
  * --INFO--
  * Address:	802C62E8
  * Size:	000224
  */
-void BigFoot::FSM::init(Game::EnemyBase*)
+void FSM::init(EnemyBase* enemy)
 {
-	/*
-	stwu     r1, -0x10(r1)
-	mflr     r0
-	li       r4, 6
-	stw      r0, 0x14(r1)
-	stw      r31, 0xc(r1)
-	mr       r31, r3
-	bl       create__Q24Game17EnemyStateMachineFi
-	li       r3, 0x10
-	bl       __nw__FUl
-	or.      r4, r3, r3
-	beq      lbl_802C634C
-	lis      r3, __vt__Q24Game13EnemyFSMState@ha
-	lis      r5, __vt__Q34Game7BigFoot5State@ha
-	addi     r0, r3, __vt__Q24Game13EnemyFSMState@l
-	lis      r3, __vt__Q34Game7BigFoot9StateDead@ha
-	stw      r0, 0(r4)
-	li       r7, 0
-	addi     r6, r5, __vt__Q34Game7BigFoot5State@l
-	addi     r5, r2, lbl_8051C668@sda21
-	stw      r7, 4(r4)
-	addi     r0, r3, __vt__Q34Game7BigFoot9StateDead@l
-	stw      r7, 8(r4)
-	stw      r6, 0(r4)
-	stw      r5, 0xc(r4)
-	stw      r0, 0(r4)
-
-lbl_802C634C:
-	mr       r3, r31
-	bl       registerState__Q24Game17EnemyStateMachineFPQ24Game13EnemyFSMState
-	li       r3, 0x10
-	bl       __nw__FUl
-	or.      r4, r3, r3
-	beq      lbl_802C63A0
-	lis      r3, __vt__Q24Game13EnemyFSMState@ha
-	lis      r5, __vt__Q34Game7BigFoot5State@ha
-	addi     r0, r3, __vt__Q24Game13EnemyFSMState@l
-	lis      r3, __vt__Q34Game7BigFoot9StateStay@ha
-	stw      r0, 0(r4)
-	li       r0, 1
-	li       r7, 0
-	addi     r6, r5, __vt__Q34Game7BigFoot5State@l
-	stw      r0, 4(r4)
-	addi     r5, r2, lbl_8051C670@sda21
-	addi     r0, r3, __vt__Q34Game7BigFoot9StateStay@l
-	stw      r7, 8(r4)
-	stw      r6, 0(r4)
-	stw      r5, 0xc(r4)
-	stw      r0, 0(r4)
-
-lbl_802C63A0:
-	mr       r3, r31
-	bl       registerState__Q24Game17EnemyStateMachineFPQ24Game13EnemyFSMState
-	li       r3, 0x10
-	bl       __nw__FUl
-	or.      r4, r3, r3
-	beq      lbl_802C63F4
-	lis      r3, __vt__Q24Game13EnemyFSMState@ha
-	lis      r5, __vt__Q34Game7BigFoot5State@ha
-	addi     r0, r3, __vt__Q24Game13EnemyFSMState@l
-	lis      r3, __vt__Q34Game7BigFoot9StateLand@ha
-	stw      r0, 0(r4)
-	li       r0, 2
-	li       r7, 0
-	addi     r6, r5, __vt__Q34Game7BigFoot5State@l
-	stw      r0, 4(r4)
-	addi     r5, r2, lbl_8051C678@sda21
-	addi     r0, r3, __vt__Q34Game7BigFoot9StateLand@l
-	stw      r7, 8(r4)
-	stw      r6, 0(r4)
-	stw      r5, 0xc(r4)
-	stw      r0, 0(r4)
-
-lbl_802C63F4:
-	mr       r3, r31
-	bl       registerState__Q24Game17EnemyStateMachineFPQ24Game13EnemyFSMState
-	li       r3, 0x10
-	bl       __nw__FUl
-	or.      r4, r3, r3
-	beq      lbl_802C6448
-	lis      r3, __vt__Q24Game13EnemyFSMState@ha
-	lis      r5, __vt__Q34Game7BigFoot5State@ha
-	addi     r0, r3, __vt__Q24Game13EnemyFSMState@l
-	lis      r3, __vt__Q34Game7BigFoot9StateWait@ha
-	stw      r0, 0(r4)
-	li       r0, 3
-	li       r7, 0
-	addi     r6, r5, __vt__Q34Game7BigFoot5State@l
-	stw      r0, 4(r4)
-	addi     r5, r2, lbl_8051C680@sda21
-	addi     r0, r3, __vt__Q34Game7BigFoot9StateWait@l
-	stw      r7, 8(r4)
-	stw      r6, 0(r4)
-	stw      r5, 0xc(r4)
-	stw      r0, 0(r4)
-
-lbl_802C6448:
-	mr       r3, r31
-	bl       registerState__Q24Game17EnemyStateMachineFPQ24Game13EnemyFSMState
-	li       r3, 0x10
-	bl       __nw__FUl
-	or.      r4, r3, r3
-	beq      lbl_802C649C
-	lis      r3, __vt__Q24Game13EnemyFSMState@ha
-	lis      r5, __vt__Q34Game7BigFoot5State@ha
-	addi     r0, r3, __vt__Q24Game13EnemyFSMState@l
-	lis      r3, __vt__Q34Game7BigFoot10StateFlick@ha
-	stw      r0, 0(r4)
-	li       r0, 4
-	li       r7, 0
-	addi     r6, r5, __vt__Q34Game7BigFoot5State@l
-	stw      r0, 4(r4)
-	addi     r5, r2, lbl_8051C688@sda21
-	addi     r0, r3, __vt__Q34Game7BigFoot10StateFlick@l
-	stw      r7, 8(r4)
-	stw      r6, 0(r4)
-	stw      r5, 0xc(r4)
-	stw      r0, 0(r4)
-
-lbl_802C649C:
-	mr       r3, r31
-	bl       registerState__Q24Game17EnemyStateMachineFPQ24Game13EnemyFSMState
-	li       r3, 0x10
-	bl       __nw__FUl
-	or.      r4, r3, r3
-	beq      lbl_802C64F0
-	lis      r3, __vt__Q24Game13EnemyFSMState@ha
-	lis      r5, __vt__Q34Game7BigFoot5State@ha
-	addi     r0, r3, __vt__Q24Game13EnemyFSMState@l
-	lis      r3, __vt__Q34Game7BigFoot9StateWalk@ha
-	stw      r0, 0(r4)
-	li       r0, 5
-	li       r7, 0
-	addi     r6, r5, __vt__Q34Game7BigFoot5State@l
-	stw      r0, 4(r4)
-	addi     r5, r2, lbl_8051C690@sda21
-	addi     r0, r3, __vt__Q34Game7BigFoot9StateWalk@l
-	stw      r7, 8(r4)
-	stw      r6, 0(r4)
-	stw      r5, 0xc(r4)
-	stw      r0, 0(r4)
-
-lbl_802C64F0:
-	mr       r3, r31
-	bl       registerState__Q24Game17EnemyStateMachineFPQ24Game13EnemyFSMState
-	lwz      r0, 0x14(r1)
-	lwz      r31, 0xc(r1)
-	mtlr     r0
-	addi     r1, r1, 0x10
-	blr
-	*/
+	create(BIGFOOT_Count);
+	registerState(new StateDead);
+	registerState(new StateStay);
+	registerState(new StateLand);
+	registerState(new StateWait);
+	registerState(new StateFlick);
+	registerState(new StateWalk);
 }
 
 /*
@@ -329,61 +29,21 @@ lbl_802C64F0:
  * Address:	802C650C
  * Size:	0000CC
  */
-void BigFoot::StateDead::init(Game::EnemyBase*, Game::StateArg*)
+void StateDead::init(EnemyBase* enemy, StateArg* stateArg)
 {
-	/*
-	stwu     r1, -0x30(r1)
-	mflr     r0
-	stw      r0, 0x34(r1)
-	stw      r31, 0x2c(r1)
-	mr       r31, r4
-	mr       r3, r31
-	bl       forceFinishIKMotion__Q34Game7BigFoot3ObjFv
-	mr       r3, r31
-	bl       startDeadEffect__Q34Game7BigFoot3ObjFv
-	mr       r3, r31
-	bl       deathProcedure__Q24Game9EnemyBaseFv
-	lwz      r0, 0x1e0(r31)
-	mr       r3, r31
-	lfs      f0, lbl_8051C698@sda21(r2)
-	rlwinm   r0, r0, 0, 0x1a, 0x18
-	stw      r0, 0x1e0(r31)
-	stfs     f0, 0x1d4(r31)
-	stfs     f0, 0x1d8(r31)
-	stfs     f0, 0x1dc(r31)
-	bl       setEmotionCaution__Q24Game9EnemyBaseFv
-	mr       r3, r31
-	li       r4, 0
-	li       r5, 0
-	bl       startMotion__Q24Game9EnemyBaseFiPQ28SysShape14MotionListener
-	mr       r4, r31
-	addi     r3, r1, 8
-	lwz      r12, 0(r31)
-	lwz      r12, 8(r12)
-	mtctr    r12
-	bctrl
-	lfs      f2, 8(r1)
-	addi     r5, r1, 0x14
-	lfs      f1, 0xc(r1)
-	li       r4, 0
-	lfs      f0, 0x10(r1)
-	li       r6, 2
-	stfs     f2, 0x14(r1)
-	lwz      r3, cameraMgr__4Game@sda21(r13)
-	stfs     f1, 0x18(r1)
-	stfs     f0, 0x1c(r1)
-	bl       "startVibration__Q24Game9CameraMgrFiR10Vector3<f>i"
-	lwz      r3, rumbleMgr__4Game@sda21(r13)
-	addi     r5, r1, 0x14
-	li       r4, 0xa
-	li       r6, 2
-	bl       "startRumble__Q24Game9RumbleMgrFiR10Vector3<f>i"
-	lwz      r0, 0x34(r1)
-	lwz      r31, 0x2c(r1)
-	mtlr     r0
-	addi     r1, r1, 0x30
-	blr
-	*/
+	Obj* bigfoot = static_cast<Obj*>(enemy);
+	bigfoot->forceFinishIKMotion();
+	bigfoot->startDeadEffect();
+	bigfoot->deathProcedure();
+	bigfoot->resetEvent(0, EB_Cullable);
+
+	bigfoot->m_velocity2 = 0.0f;
+	bigfoot->setEmotionCaution();
+	bigfoot->startMotion(0, nullptr);
+
+	Vector3f position = bigfoot->getPosition();
+	cameraMgr->startVibration(0, position, 2);
+	rumbleMgr->startRumble(10, position, 2);
 }
 
 /*
@@ -391,53 +51,21 @@ void BigFoot::StateDead::init(Game::EnemyBase*, Game::StateArg*)
  * Address:	802C65D8
  * Size:	000094
  */
-void BigFoot::StateDead::exec(Game::EnemyBase*)
+void StateDead::exec(EnemyBase* enemy)
 {
-	/*
-	stwu     r1, -0x10(r1)
-	mflr     r0
-	stw      r0, 0x14(r1)
-	stw      r31, 0xc(r1)
-	mr       r31, r4
-	mr       r3, r31
-	bl       updateDeadFurEffect__Q34Game7BigFoot3ObjFv
-	lwz      r3, 0x188(r31)
-	lbz      r0, 0x24(r3)
-	cmplwi   r0, 0
-	beq      lbl_802C6658
-	lwz      r0, 0x1c(r3)
-	cmplwi   r0, 2
-	bne      lbl_802C6630
-	mr       r3, r31
-	lwz      r12, 0(r31)
-	lwz      r12, 0x264(r12)
-	mtctr    r12
-	bctrl
-	mr       r3, r31
-	bl       createItemAndEnemy__Q34Game7BigFoot3ObjFv
-	b        lbl_802C6658
+	Obj* bigfoot = static_cast<Obj*>(enemy);
+	bigfoot->updateDeadFurEffect();
 
-lbl_802C6630:
-	cmplwi   r0, 3
-	bne      lbl_802C6644
-	li       r0, 1
-	stb      r0, 0x2dc(r31)
-	b        lbl_802C6658
-
-lbl_802C6644:
-	cmplwi   r0, 0x3e8
-	bne      lbl_802C6658
-	mr       r3, r31
-	li       r4, 0
-	bl       kill__Q24Game8CreatureFPQ24Game15CreatureKillArg
-
-lbl_802C6658:
-	lwz      r0, 0x14(r1)
-	lwz      r31, 0xc(r1)
-	mtlr     r0
-	addi     r1, r1, 0x10
-	blr
-	*/
+	if (bigfoot->m_animKeyEvent->m_running) {
+		if ((u32)bigfoot->m_animKeyEvent->m_type == 2) {
+			bigfoot->throwupItem();
+			bigfoot->createItemAndEnemy();
+		} else if ((u32)bigfoot->m_animKeyEvent->m_type == 3) {
+			bigfoot->_2DC = 1;
+		} else if ((u32)bigfoot->m_animKeyEvent->m_type == 1000) {
+			bigfoot->kill(nullptr);
+		}
+	}
 }
 
 /*
@@ -445,50 +73,25 @@ lbl_802C6658:
  * Address:	802C666C
  * Size:	000004
  */
-void BigFoot::StateDead::cleanup(Game::EnemyBase*) { }
+void StateDead::cleanup(EnemyBase* enemy) { }
 
 /*
  * --INFO--
  * Address:	802C6670
  * Size:	000084
  */
-void BigFoot::StateStay::init(Game::EnemyBase*, Game::StateArg*)
+void StateStay::init(EnemyBase* enemy, StateArg* stateArg)
 {
-	/*
-	stwu     r1, -0x10(r1)
-	mflr     r0
-	li       r3, -1
-	lfs      f0, lbl_8051C698@sda21(r2)
-	stw      r0, 0x14(r1)
-	li       r0, 0
-	li       r5, 0
-	stw      r31, 0xc(r1)
-	mr       r31, r4
-	stw      r3, 0x2c4(r4)
-	mr       r3, r31
-	li       r4, 1
-	lwz      r6, 0x1e0(r31)
-	oris     r6, r6, 0x40
-	stw      r6, 0x1e0(r31)
-	lwz      r6, 0x1e0(r31)
-	rlwinm   r6, r6, 0, 0x11, 0xf
-	stw      r6, 0x1e0(r31)
-	lwz      r6, 0x1e0(r31)
-	oris     r6, r6, 0x4000
-	stw      r6, 0x1e0(r31)
-	stw      r0, 0x230(r31)
-	stfs     f0, 0x1d4(r31)
-	stfs     f0, 0x1d8(r31)
-	stfs     f0, 0x1dc(r31)
-	bl       startMotion__Q24Game9EnemyBaseFiPQ28SysShape14MotionListener
-	mr       r3, r31
-	bl       stopMotion__Q24Game9EnemyBaseFv
-	lwz      r0, 0x14(r1)
-	lwz      r31, 0xc(r1)
-	mtlr     r0
-	addi     r1, r1, 0x10
-	blr
-	*/
+	Obj* bigfoot         = static_cast<Obj*>(enemy);
+	bigfoot->m_nextState = BIGFOOT_NULL;
+	bigfoot->setEvent(0, EB_BitterImmune);
+	bigfoot->resetEvent(0, EB_16);
+	bigfoot->setEvent(0, EB_31);
+	bigfoot->m_targetCreature = nullptr;
+
+	bigfoot->m_velocity2 = Vector3f(0.0f);
+	bigfoot->startMotion(1, nullptr);
+	bigfoot->stopMotion();
 }
 
 /*
@@ -496,66 +99,22 @@ void BigFoot::StateStay::init(Game::EnemyBase*, Game::StateArg*)
  * Address:	802C66F4
  * Size:	0000B8
  */
-void BigFoot::StateStay::exec(Game::EnemyBase*)
+void StateStay::exec(EnemyBase* enemy)
 {
-	/*
-	stwu     r1, -0x20(r1)
-	mflr     r0
-	stw      r0, 0x24(r1)
-	stfd     f31, 0x10(r1)
-	psq_st   f31, 24(r1), 0, qr0
-	stw      r31, 0xc(r1)
-	stw      r30, 8(r1)
-	mr       r31, r4
-	mr       r30, r3
-	lwz      r5, 0xc0(r31)
-	li       r4, 0
-	mr       r3, r31
-	lfs      f31, 0x3ac(r5)
-	fmr      f1, f31
-	bl
-"isThereOlimar__Q24Game9EnemyFuncFPQ24Game8CreaturefP23Condition<Q24Game4Navi>"
-	clrlwi.  r0, r3, 0x18
-	beq      lbl_802C6740
-	li       r0, 1
-	b        lbl_802C6764
+	Obj* bigfoot = static_cast<Obj*>(enemy);
+	bool isTarget;
+	f32 detectRadius = static_cast<Parms*>(bigfoot->m_parms)->m_general.m_privateRadius.m_value;
+	if (EnemyFunc::isThereOlimar(bigfoot, detectRadius, nullptr)) {
+		isTarget = true;
+	} else if (EnemyFunc::isTherePikmin(bigfoot, detectRadius, nullptr)) {
+		isTarget = true;
+	} else {
+		isTarget = false;
+	}
 
-lbl_802C6740:
-	fmr      f1, f31
-	mr       r3, r31
-	li       r4, 0
-	bl
-"isTherePikmin__Q24Game9EnemyFuncFPQ24Game8CreaturefP23Condition<Q24Game4Piki>"
-	clrlwi.  r0, r3, 0x18
-	beq      lbl_802C6760
-	li       r0, 1
-	b        lbl_802C6764
-
-lbl_802C6760:
-	li       r0, 0
-
-lbl_802C6764:
-	clrlwi.  r0, r0, 0x18
-	beq      lbl_802C678C
-	mr       r3, r30
-	mr       r4, r31
-	lwz      r12, 0(r30)
-	li       r5, 2
-	li       r6, 0
-	lwz      r12, 0x1c(r12)
-	mtctr    r12
-	bctrl
-
-lbl_802C678C:
-	psq_l    f31, 24(r1), 0, qr0
-	lwz      r0, 0x24(r1)
-	lfd      f31, 0x10(r1)
-	lwz      r31, 0xc(r1)
-	lwz      r30, 8(r1)
-	mtlr     r0
-	addi     r1, r1, 0x20
-	blr
-	*/
+	if (isTarget) {
+		transit(bigfoot, BIGFOOT_Land, nullptr);
+	}
 }
 
 /*
@@ -563,62 +122,32 @@ lbl_802C678C:
  * Address:	802C67AC
  * Size:	000004
  */
-void BigFoot::StateStay::cleanup(Game::EnemyBase*) { }
+void StateStay::cleanup(EnemyBase* enemy) { }
 
 /*
  * --INFO--
  * Address:	802C67B0
  * Size:	0000B4
  */
-void BigFoot::StateLand::init(Game::EnemyBase*, Game::StateArg*)
+void StateLand::init(EnemyBase* enemy, StateArg* stateArg)
 {
-	/*
-	stwu     r1, -0x10(r1)
-	mflr     r0
-	lfs      f0, lbl_8051C69C@sda21(r2)
-	stw      r0, 0x14(r1)
-	li       r0, -1
-	stw      r31, 0xc(r1)
-	mr       r31, r4
-	mr       r3, r31
-	stw      r0, 0x2c4(r4)
-	stfs     f0, 0x2d4(r4)
-	lwz      r0, 0x1e0(r4)
-	oris     r0, r0, 0x40
-	stw      r0, 0x1e0(r4)
-	lwz      r0, 0x1e0(r4)
-	rlwinm   r0, r0, 0, 0x1a, 0x18
-	stw      r0, 0x1e0(r4)
-	lwz      r0, 0x1e0(r4)
-	ori      r0, r0, 0x8000
-	stw      r0, 0x1e0(r4)
-	lwz      r0, 0x1e0(r4)
-	rlwinm   r0, r0, 0, 2, 0
-	stw      r0, 0x1e0(r4)
-	bl       setEmotionExcitement__Q24Game9EnemyBaseFv
-	li       r0, 0
-	lfs      f0, lbl_8051C698@sda21(r2)
-	stw      r0, 0x230(r31)
-	mr       r3, r31
-	li       r4, 1
-	li       r5, 0
-	stfs     f0, 0x1d4(r31)
-	stfs     f0, 0x1d8(r31)
-	stfs     f0, 0x1dc(r31)
-	bl       startMotion__Q24Game9EnemyBaseFiPQ28SysShape14MotionListener
-	lwz      r3, shadowMgr__4Game@sda21(r13)
-	mr       r4, r31
-	bl       addJointShadow__Q24Game9ShadowMgrFPQ24Game8Creature
-	lwz      r3, shadowMgr__4Game@sda21(r13)
-	mr       r4, r31
-	li       r5, 1
-	bl       setForceVisible__Q24Game9ShadowMgrFPQ24Game8Creatureb
-	lwz      r0, 0x14(r1)
-	lwz      r31, 0xc(r1)
-	mtlr     r0
-	addi     r1, r1, 0x10
-	blr
-	*/
+	Obj* bigfoot         = static_cast<Obj*>(enemy);
+	bigfoot->m_nextState = BIGFOOT_NULL;
+	bigfoot->_2D4        = 0.001f;
+
+	bigfoot->setEvent(0, EB_BitterImmune);
+	bigfoot->resetEvent(0, EB_Cullable);
+	bigfoot->setEvent(0, EB_16);
+	bigfoot->resetEvent(0, EB_31);
+
+	bigfoot->setEmotionExcitement();
+	bigfoot->m_targetCreature = nullptr;
+
+	bigfoot->m_velocity2 = Vector3f(0.0f);
+	bigfoot->startMotion(1, nullptr);
+
+	shadowMgr->addJointShadow(bigfoot);
+	shadowMgr->setForceVisible(bigfoot, true);
 }
 
 /*
@@ -626,114 +155,33 @@ void BigFoot::StateLand::init(Game::EnemyBase*, Game::StateArg*)
  * Address:	802C6864
  * Size:	000178
  */
-void BigFoot::StateLand::exec(Game::EnemyBase*)
+void StateLand::exec(EnemyBase* enemy)
 {
-	/*
-	stwu     r1, -0x30(r1)
-	mflr     r0
-	stw      r0, 0x34(r1)
-	stw      r31, 0x2c(r1)
-	mr       r31, r4
-	stw      r30, 0x28(r1)
-	mr       r30, r3
-	mr       r3, r31
-	bl       addShadowScale__Q34Game7BigFoot3ObjFv
-	lwz      r3, 0x188(r31)
-	lbz      r0, 0x24(r3)
-	cmplwi   r0, 0
-	beq      lbl_802C69C4
-	lwz      r0, 0x1c(r3)
-	cmplwi   r0, 2
-	bne      lbl_802C692C
-	lwz      r0, 0x1e0(r31)
-	li       r30, 0
-	rlwinm   r0, r0, 0, 0xa, 8
-	stw      r0, 0x1e0(r31)
+	Obj* bigfoot = static_cast<Obj*>(enemy);
+	bigfoot->addShadowScale();
 
-lbl_802C68B4:
-	lwz      r5, 0x280(r31)
-	mr       r3, r31
-	mr       r4, r30
-	bl       createOnGroundEffect__Q34Game7BigFoot3ObjFiPQ24Game8WaterBox
-	addi     r30, r30, 1
-	cmpwi    r30, 4
-	blt      lbl_802C68B4
-	mr       r4, r31
-	addi     r3, r1, 8
-	lwz      r12, 0(r31)
-	lwz      r12, 8(r12)
-	mtctr    r12
-	bctrl
-	lfs      f2, 8(r1)
-	addi     r5, r1, 0x14
-	lfs      f1, 0xc(r1)
-	li       r4, 0xf
-	lfs      f0, 0x10(r1)
-	li       r6, 2
-	stfs     f2, 0x14(r1)
-	lwz      r3, cameraMgr__4Game@sda21(r13)
-	stfs     f1, 0x18(r1)
-	stfs     f0, 0x1c(r1)
-	bl       "startVibration__Q24Game9CameraMgrFiR10Vector3<f>i"
-	lwz      r3, rumbleMgr__4Game@sda21(r13)
-	addi     r5, r1, 0x14
-	li       r4, 0xf
-	li       r6, 2
-	bl       "startRumble__Q24Game9RumbleMgrFiR10Vector3<f>i"
-	b        lbl_802C69C4
+	if (bigfoot->m_animKeyEvent->m_running) {
+		if ((u32)bigfoot->m_animKeyEvent->m_type == 2) {
+			bigfoot->resetEvent(0, EB_BitterImmune);
 
-lbl_802C692C:
-	cmplwi   r0, 0x3e8
-	bne      lbl_802C69C4
-	lfs      f1, 0x200(r31)
-	lfs      f0, lbl_8051C698@sda21(r2)
-	fcmpo    cr0, f1, f0
-	cror     2, 0, 2
-	bne      lbl_802C696C
-	mr       r3, r30
-	mr       r4, r31
-	lwz      r12, 0(r30)
-	li       r5, 0
-	li       r6, 0
-	lwz      r12, 0x1c(r12)
-	mtctr    r12
-	bctrl
-	b        lbl_802C69C4
+			for (int i = 0; i < 4; i++) {
+				bigfoot->createOnGroundEffect(i, bigfoot->m_waterBox);
+			}
 
-lbl_802C696C:
-	mr       r3, r31
-	li       r4, 0
-	bl       isStartFlick__Q24Game9EnemyFuncFPQ24Game9EnemyBaseb
-	clrlwi.  r0, r3, 0x18
-	beq      lbl_802C69A4
-	mr       r3, r30
-	mr       r4, r31
-	lwz      r12, 0(r30)
-	li       r5, 4
-	li       r6, 0
-	lwz      r12, 0x1c(r12)
-	mtctr    r12
-	bctrl
-	b        lbl_802C69C4
+			Vector3f position = bigfoot->getPosition();
+			cameraMgr->startVibration(15, position, 2);
+			rumbleMgr->startRumble(15, position, 2);
 
-lbl_802C69A4:
-	mr       r3, r30
-	mr       r4, r31
-	lwz      r12, 0(r30)
-	li       r5, 3
-	li       r6, 0
-	lwz      r12, 0x1c(r12)
-	mtctr    r12
-	bctrl
-
-lbl_802C69C4:
-	lwz      r0, 0x34(r1)
-	lwz      r31, 0x2c(r1)
-	lwz      r30, 0x28(r1)
-	mtlr     r0
-	addi     r1, r1, 0x30
-	blr
-	*/
+		} else if ((u32)bigfoot->m_animKeyEvent->m_type == 1000) {
+			if (bigfoot->m_health <= 0.0f) {
+				transit(bigfoot, BIGFOOT_Dead, nullptr);
+			} else if (EnemyFunc::isStartFlick(bigfoot, false)) {
+				transit(bigfoot, BIGFOOT_Flick, nullptr);
+			} else {
+				transit(bigfoot, BIGFOOT_Wait, nullptr);
+			}
+		}
+	}
 }
 
 /*
@@ -741,33 +189,14 @@ lbl_802C69C4:
  * Address:	802C69DC
  * Size:	00005C
  */
-void BigFoot::StateLand::cleanup(Game::EnemyBase*)
+void StateLand::cleanup(EnemyBase* enemy)
 {
-	/*
-	stwu     r1, -0x10(r1)
-	mflr     r0
-	stw      r0, 0x14(r1)
-	stw      r31, 0xc(r1)
-	mr       r31, r4
-	mr       r3, r31
-	bl       startProgramedIK__Q34Game7BigFoot3ObjFv
-	mr       r3, r31
-	bl       setBossAppearBGM__Q34Game7BigFoot3ObjFv
-	lwz      r0, 0x1e0(r31)
-	mr       r4, r31
-	lfs      f0, lbl_8051C6A0@sda21(r2)
-	li       r5, 0
-	ori      r0, r0, 0x40
-	stw      r0, 0x1e0(r31)
-	stfs     f0, 0x2d4(r31)
-	lwz      r3, shadowMgr__4Game@sda21(r13)
-	bl       setForceVisible__Q24Game9ShadowMgrFPQ24Game8Creatureb
-	lwz      r0, 0x14(r1)
-	lwz      r31, 0xc(r1)
-	mtlr     r0
-	addi     r1, r1, 0x10
-	blr
-	*/
+	Obj* bigfoot = static_cast<Obj*>(enemy);
+	bigfoot->startProgramedIK();
+	bigfoot->setBossAppearBGM();
+	bigfoot->setEvent(0, EB_Cullable);
+	bigfoot->_2D4 = 1.0f;
+	shadowMgr->setForceVisible(bigfoot, false);
 }
 
 /*
@@ -775,38 +204,16 @@ void BigFoot::StateLand::cleanup(Game::EnemyBase*)
  * Address:	802C6A38
  * Size:	000070
  */
-void BigFoot::StateWait::init(Game::EnemyBase*, Game::StateArg*)
+void StateWait::init(EnemyBase* enemy, StateArg* stateArg)
 {
-	/*
-	stwu     r1, -0x10(r1)
-	mflr     r0
-	lfs      f0, lbl_8051C698@sda21(r2)
-	stw      r0, 0x14(r1)
-	li       r0, -1
-	stw      r31, 0xc(r1)
-	mr       r31, r4
-	mr       r3, r31
-	stw      r0, 0x2c4(r4)
-	stfs     f0, 0x2c0(r4)
-	bl       resetFlickWalkTimeMax__Q34Game7BigFoot3ObjFv
-	mr       r3, r31
-	bl       setIKParameter__Q34Game7BigFoot3ObjFv
-	li       r0, 0
-	lfs      f0, lbl_8051C698@sda21(r2)
-	stw      r0, 0x230(r31)
-	mr       r3, r31
-	li       r4, 2
-	li       r5, 0
-	stfs     f0, 0x1d4(r31)
-	stfs     f0, 0x1d8(r31)
-	stfs     f0, 0x1dc(r31)
-	bl       startMotion__Q24Game9EnemyBaseFiPQ28SysShape14MotionListener
-	lwz      r0, 0x14(r1)
-	lwz      r31, 0xc(r1)
-	mtlr     r0
-	addi     r1, r1, 0x10
-	blr
-	*/
+	Obj* bigfoot         = static_cast<Obj*>(enemy);
+	bigfoot->m_nextState = BIGFOOT_NULL;
+	bigfoot->m_timer     = 0.0f;
+	bigfoot->resetFlickWalkTimeMax();
+	bigfoot->setIKParameter();
+	bigfoot->m_targetCreature = nullptr;
+	bigfoot->m_velocity2      = Vector3f(0.0f);
+	bigfoot->startMotion(2, nullptr);
 }
 
 /*
@@ -814,79 +221,25 @@ void BigFoot::StateWait::init(Game::EnemyBase*, Game::StateArg*)
  * Address:	802C6AA8
  * Size:	0000F4
  */
-void BigFoot::StateWait::exec(Game::EnemyBase*)
+void StateWait::exec(EnemyBase* enemy)
 {
-	/*
-	stwu     r1, -0x10(r1)
-	mflr     r0
-	lfs      f0, lbl_8051C698@sda21(r2)
-	stw      r0, 0x14(r1)
-	stw      r31, 0xc(r1)
-	mr       r31, r4
-	stw      r30, 8(r1)
-	mr       r30, r3
-	lwz      r5, sys@sda21(r13)
-	lfs      f2, 0x2c0(r4)
-	lfs      f1, 0x54(r5)
-	fadds    f1, f2, f1
-	stfs     f1, 0x2c0(r4)
-	lfs      f1, 0x200(r4)
-	fcmpo    cr0, f1, f0
-	cror     2, 0, 2
-	bne      lbl_802C6B00
-	li       r0, 0
-	mr       r3, r31
-	stw      r0, 0x2c4(r31)
-	bl       finishMotion__Q24Game9EnemyBaseFv
-	b        lbl_802C6B48
+	Obj* bigfoot = static_cast<Obj*>(enemy);
+	bigfoot->m_timer += sys->m_secondsPerFrame;
 
-lbl_802C6B00:
-	mr       r3, r31
-	li       r4, 0
-	bl       isStartFlick__Q24Game9EnemyFuncFPQ24Game9EnemyBaseb
-	clrlwi.  r0, r3, 0x18
-	beq      lbl_802C6B28
-	li       r0, 4
-	mr       r3, r31
-	stw      r0, 0x2c4(r31)
-	bl       finishMotion__Q24Game9EnemyBaseFv
-	b        lbl_802C6B48
+	if (bigfoot->m_health <= 0.0f) {
+		bigfoot->m_nextState = BIGFOOT_Dead;
+		bigfoot->finishMotion();
+	} else if (EnemyFunc::isStartFlick(bigfoot, false)) {
+		bigfoot->m_nextState = BIGFOOT_Flick;
+		bigfoot->finishMotion();
+	} else if (bigfoot->m_timer > 5.0f) {
+		bigfoot->m_nextState = BIGFOOT_Walk;
+		bigfoot->finishMotion();
+	}
 
-lbl_802C6B28:
-	lfs      f1, 0x2c0(r31)
-	lfs      f0, lbl_8051C6A4@sda21(r2)
-	fcmpo    cr0, f1, f0
-	ble      lbl_802C6B48
-	li       r0, 5
-	mr       r3, r31
-	stw      r0, 0x2c4(r31)
-	bl       finishMotion__Q24Game9EnemyBaseFv
-
-lbl_802C6B48:
-	lwz      r3, 0x188(r31)
-	lbz      r0, 0x24(r3)
-	cmplwi   r0, 0
-	beq      lbl_802C6B84
-	lwz      r0, 0x1c(r3)
-	cmplwi   r0, 0x3e8
-	bne      lbl_802C6B84
-	mr       r3, r30
-	mr       r4, r31
-	lwz      r12, 0(r30)
-	li       r6, 0
-	lwz      r5, 0x2c4(r31)
-	lwz      r12, 0x1c(r12)
-	mtctr    r12
-	bctrl
-
-lbl_802C6B84:
-	lwz      r0, 0x14(r1)
-	lwz      r31, 0xc(r1)
-	lwz      r30, 8(r1)
-	mtlr     r0
-	addi     r1, r1, 0x10
-	blr
-	*/
+	if (bigfoot->m_animKeyEvent->m_running && (u32)bigfoot->m_animKeyEvent->m_type == 1000) {
+		transit(bigfoot, bigfoot->m_nextState, nullptr);
+	}
 }
 
 /*
@@ -894,44 +247,24 @@ lbl_802C6B84:
  * Address:	802C6B9C
  * Size:	000004
  */
-void BigFoot::StateWait::cleanup(Game::EnemyBase*) { }
+void StateWait::cleanup(EnemyBase* enemy) { }
 
 /*
  * --INFO--
  * Address:	802C6BA0
  * Size:	00006C
  */
-void BigFoot::StateFlick::init(Game::EnemyBase*, Game::StateArg*)
+void StateFlick::init(EnemyBase* enemy, StateArg* stateArg)
 {
-	/*
-	stwu     r1, -0x10(r1)
-	mflr     r0
-	lfs      f0, lbl_8051C698@sda21(r2)
-	li       r5, 0
-	stw      r0, 0x14(r1)
-	li       r0, -1
-	stw      r31, 0xc(r1)
-	mr       r31, r4
-	mr       r3, r31
-	stw      r0, 0x2c4(r4)
-	li       r0, 0
-	li       r4, 3
-	stfs     f0, 0x2c0(r31)
-	stw      r0, 0x230(r31)
-	stfs     f0, 0x1d4(r31)
-	stfs     f0, 0x1d8(r31)
-	stfs     f0, 0x1dc(r31)
-	bl       startMotion__Q24Game9EnemyBaseFiPQ28SysShape14MotionListener
-	mr       r3, r31
-	bl       startBlendMotion__Q34Game7BigFoot3ObjFv
-	mr       r3, r31
-	bl       startBossChargeBGM__Q34Game7BigFoot3ObjFv
-	lwz      r0, 0x14(r1)
-	lwz      r31, 0xc(r1)
-	mtlr     r0
-	addi     r1, r1, 0x10
-	blr
-	*/
+	Obj* bigfoot              = static_cast<Obj*>(enemy);
+	bigfoot->m_nextState      = BIGFOOT_NULL;
+	bigfoot->m_timer          = 0.0f;
+	bigfoot->m_targetCreature = nullptr;
+	bigfoot->m_velocity2      = Vector3f(0.0f);
+
+	bigfoot->startMotion(3, nullptr);
+	bigfoot->startBlendMotion();
+	bigfoot->startBossChargeBGM();
 }
 
 /*
@@ -939,65 +272,23 @@ void BigFoot::StateFlick::init(Game::EnemyBase*, Game::StateArg*)
  * Address:	802C6C0C
  * Size:	0000C0
  */
-void BigFoot::StateFlick::exec(Game::EnemyBase*)
+void StateFlick::exec(EnemyBase* enemy)
 {
-	/*
-	stwu     r1, -0x10(r1)
-	mflr     r0
-	stw      r0, 0x14(r1)
-	stw      r31, 0xc(r1)
-	mr       r31, r4
-	lwz      r5, 0x188(r4)
-	lbz      r0, 0x24(r5)
-	cmplwi   r0, 0
-	beq      lbl_802C6CB8
-	lwz      r0, 0x1c(r5)
-	cmplwi   r0, 2
-	bne      lbl_802C6C68
-	lwz      r5, 0xc0(r31)
-	mr       r3, r31
-	lfs      f4, lbl_8051C6A8@sda21(r2)
-	li       r4, 0
-	lfs      f1, 0x53c(r5)
-	lfs      f2, 0x4c4(r5)
-	lfs      f3, 0x4ec(r5)
-	bl
-"flickStickPikmin__Q24Game9EnemyFuncFPQ24Game8CreatureffffP23Condition<Q24Game4Piki>"
-	lfs      f0, lbl_8051C698@sda21(r2)
-	stfs     f0, 0x20c(r31)
-	b        lbl_802C6CB8
-
-lbl_802C6C68:
-	cmplwi   r0, 0x3e8
-	bne      lbl_802C6CB8
-	lfs      f1, 0x200(r31)
-	lfs      f0, lbl_8051C698@sda21(r2)
-	fcmpo    cr0, f1, f0
-	cror     2, 0, 2
-	bne      lbl_802C6CA0
-	lwz      r12, 0(r3)
-	li       r5, 0
-	li       r6, 0
-	lwz      r12, 0x1c(r12)
-	mtctr    r12
-	bctrl
-	b        lbl_802C6CB8
-
-lbl_802C6CA0:
-	lwz      r12, 0(r3)
-	li       r5, 5
-	li       r6, 0
-	lwz      r12, 0x1c(r12)
-	mtctr    r12
-	bctrl
-
-lbl_802C6CB8:
-	lwz      r0, 0x14(r1)
-	lwz      r31, 0xc(r1)
-	mtlr     r0
-	addi     r1, r1, 0x10
-	blr
-	*/
+	Obj* bigfoot = static_cast<Obj*>(enemy);
+	if (bigfoot->m_animKeyEvent->m_running) {
+		if ((u32)bigfoot->m_animKeyEvent->m_type == 2) {
+			Parms* parms = static_cast<Parms*>(bigfoot->m_parms);
+			EnemyFunc::flickStickPikmin(bigfoot, parms->m_general.m_shakeRateMaybe.m_value, parms->m_general.m_shakeKnockback.m_value,
+			                            parms->m_general.m_shakeDamage.m_value, -1000.0, nullptr);
+			bigfoot->m_toFlick = 0.0f;
+		} else if ((u32)bigfoot->m_animKeyEvent->m_type == 1000) {
+			if (bigfoot->m_health <= 0.0f) {
+				transit(bigfoot, BIGFOOT_Dead, nullptr);
+			} else {
+				transit(bigfoot, BIGFOOT_Walk, nullptr);
+			}
+		}
+	}
 }
 
 /*
@@ -1005,28 +296,13 @@ lbl_802C6CB8:
  * Address:	802C6CCC
  * Size:	000048
  */
-void BigFoot::StateFlick::cleanup(Game::EnemyBase*)
+void StateFlick::cleanup(EnemyBase* enemy)
 {
-	/*
-	stwu     r1, -0x10(r1)
-	mflr     r0
-	stw      r0, 0x14(r1)
-	stw      r31, 0xc(r1)
-	mr       r31, r4
-	mr       r3, r31
-	bl       finishBlendMotion__Q34Game7BigFoot3ObjFv
-	mr       r3, r31
-	bl       setFlickWalkTimeMax__Q34Game7BigFoot3ObjFv
-	li       r0, 1
-	mr       r3, r31
-	stb      r0, 0x2de(r31)
-	bl       setIKParameter__Q34Game7BigFoot3ObjFv
-	lwz      r0, 0x14(r1)
-	lwz      r31, 0xc(r1)
-	mtlr     r0
-	addi     r1, r1, 0x10
-	blr
-	*/
+	Obj* bigfoot = static_cast<Obj*>(enemy);
+	bigfoot->finishBlendMotion();
+	bigfoot->setFlickWalkTimeMax();
+	bigfoot->m_isEnraged = true;
+	bigfoot->setIKParameter();
 }
 
 /*
@@ -1034,40 +310,19 @@ void BigFoot::StateFlick::cleanup(Game::EnemyBase*)
  * Address:	802C6D14
  * Size:	000070
  */
-void BigFoot::StateWalk::init(Game::EnemyBase*, Game::StateArg*)
+void StateWalk::init(EnemyBase* enemy, StateArg* stateArg)
 {
-	/*
-	stwu     r1, -0x10(r1)
-	mflr     r0
-	lfs      f0, lbl_8051C698@sda21(r2)
-	stw      r0, 0x14(r1)
-	li       r0, -1
-	stw      r31, 0xc(r1)
-	mr       r31, r4
-	mr       r3, r31
-	stw      r0, 0x2c4(r4)
-	li       r0, 0
-	stfs     f0, 0x2c0(r4)
-	stw      r0, 0x230(r4)
-	stfs     f0, 0x1d4(r4)
-	stfs     f0, 0x1d8(r4)
-	stfs     f0, 0x1dc(r4)
-	bl       startIKMotion__Q34Game7BigFoot3ObjFv
-	mr       r3, r31
-	bl       getTargetPosition__Q34Game7BigFoot3ObjFv
-	lbz      r0, 0x2de(r31)
-	cmplwi   r0, 0
-	beq      lbl_802C6D70
-	mr       r3, r31
-	bl       startBossAttackLoopBGM__Q34Game7BigFoot3ObjFv
+	Obj* bigfoot              = static_cast<Obj*>(enemy);
+	bigfoot->m_nextState      = BIGFOOT_NULL;
+	bigfoot->m_timer          = 0.0f;
+	bigfoot->m_targetCreature = nullptr;
+	bigfoot->m_velocity2      = Vector3f(0.0f);
+	bigfoot->startIKMotion();
+	bigfoot->getTargetPosition();
 
-lbl_802C6D70:
-	lwz      r0, 0x14(r1)
-	lwz      r31, 0xc(r1)
-	mtlr     r0
-	addi     r1, r1, 0x10
-	blr
-	*/
+	if (bigfoot->m_isEnraged) {
+		bigfoot->startBossAttackLoopBGM();
+	}
 }
 
 /*
@@ -1075,82 +330,26 @@ lbl_802C6D70:
  * Address:	802C6D84
  * Size:	000100
  */
-void BigFoot::StateWalk::exec(Game::EnemyBase*)
+void StateWalk::exec(EnemyBase* enemy)
 {
-	/*
-	stwu     r1, -0x10(r1)
-	mflr     r0
-	stw      r0, 0x14(r1)
-	stw      r31, 0xc(r1)
-	mr       r31, r4
-	stw      r30, 8(r1)
-	mr       r30, r3
-	mr       r3, r31
-	bl       getTargetPosition__Q34Game7BigFoot3ObjFv
-	lwz      r3, sys@sda21(r13)
-	lfs      f2, 0x2c0(r31)
-	lfs      f1, 0x54(r3)
-	lfs      f0, lbl_8051C698@sda21(r2)
-	fadds    f1, f2, f1
-	stfs     f1, 0x2c0(r31)
-	lfs      f1, 0x200(r31)
-	fcmpo    cr0, f1, f0
-	cror     2, 0, 2
-	bne      lbl_802C6DF4
-	mr       r3, r30
-	mr       r4, r31
-	lwz      r12, 0(r30)
-	li       r5, 0
-	li       r6, 0
-	lwz      r12, 0x1c(r12)
-	mtctr    r12
-	bctrl
-	b        lbl_802C6E6C
+	Obj* bigfoot = static_cast<Obj*>(enemy);
+	bigfoot->getTargetPosition();
+	bigfoot->m_timer += sys->m_secondsPerFrame;
+	if (bigfoot->m_health <= 0.0f) {
+		transit(bigfoot, BIGFOOT_Dead, nullptr);
+	} else {
+		if (EnemyFunc::isStartFlick(bigfoot, false)) {
+			bigfoot->m_nextState = BIGFOOT_Flick;
+			bigfoot->finishIKMotion();
+		} else if (bigfoot->m_timer > bigfoot->m_flickWalkTimeMax) {
+			bigfoot->m_nextState = BIGFOOT_Wait;
+			bigfoot->finishIKMotion();
+		}
 
-lbl_802C6DF4:
-	mr       r3, r31
-	li       r4, 0
-	bl       isStartFlick__Q24Game9EnemyFuncFPQ24Game9EnemyBaseb
-	clrlwi.  r0, r3, 0x18
-	beq      lbl_802C6E1C
-	li       r0, 4
-	mr       r3, r31
-	stw      r0, 0x2c4(r31)
-	bl       finishIKMotion__Q34Game7BigFoot3ObjFv
-	b        lbl_802C6E3C
-
-lbl_802C6E1C:
-	lfs      f1, 0x2c0(r31)
-	lfs      f0, 0x2d8(r31)
-	fcmpo    cr0, f1, f0
-	ble      lbl_802C6E3C
-	li       r0, 3
-	mr       r3, r31
-	stw      r0, 0x2c4(r31)
-	bl       finishIKMotion__Q34Game7BigFoot3ObjFv
-
-lbl_802C6E3C:
-	mr       r3, r31
-	bl       isFinishIKMotion__Q34Game7BigFoot3ObjFv
-	clrlwi.  r0, r3, 0x18
-	beq      lbl_802C6E6C
-	mr       r3, r30
-	mr       r4, r31
-	lwz      r12, 0(r30)
-	li       r6, 0
-	lwz      r5, 0x2c4(r31)
-	lwz      r12, 0x1c(r12)
-	mtctr    r12
-	bctrl
-
-lbl_802C6E6C:
-	lwz      r0, 0x14(r1)
-	lwz      r31, 0xc(r1)
-	lwz      r30, 8(r1)
-	mtlr     r0
-	addi     r1, r1, 0x10
-	blr
-	*/
+		if (bigfoot->isFinishIKMotion()) {
+			transit(bigfoot, bigfoot->m_nextState, nullptr);
+		}
+	}
 }
 
 /*
@@ -1158,47 +357,14 @@ lbl_802C6E6C:
  * Address:	802C6E84
  * Size:	000038
  */
-void BigFoot::StateWalk::cleanup(Game::EnemyBase*)
+void StateWalk::cleanup(EnemyBase* enemy)
 {
-	/*
-	stwu     r1, -0x10(r1)
-	mflr     r0
-	stw      r0, 0x14(r1)
-	lbz      r0, 0x2de(r4)
-	cmplwi   r0, 0
-	beq      lbl_802C6EAC
-	li       r0, 0
-	mr       r3, r4
-	stb      r0, 0x2de(r4)
-	bl       finishBossAttackLoopBGM__Q34Game7BigFoot3ObjFv
-
-lbl_802C6EAC:
-	lwz      r0, 0x14(r1)
-	mtlr     r0
-	addi     r1, r1, 0x10
-	blr
-	*/
+	Obj* bigfoot = static_cast<Obj*>(enemy);
+	if (bigfoot->m_isEnraged) {
+		bigfoot->m_isEnraged = false;
+		bigfoot->finishBossAttackLoopBGM();
+	}
 }
 
+} // namespace BigFoot
 } // namespace Game
-
-/*
- * --INFO--
- * Address:	802C6EBC
- * Size:	000028
- */
-void __sinit_BigFootState_cpp(void)
-{
-	/*
-	lis      r4, __float_nan@ha
-	li       r0, -1
-	lfs      f0, __float_nan@l(r4)
-	lis      r3, lbl_804D1978@ha
-	stw      r0, lbl_80515DA8@sda21(r13)
-	stfsu    f0, lbl_804D1978@l(r3)
-	stfs     f0, lbl_80515DAC@sda21(r13)
-	stfs     f0, 4(r3)
-	stfs     f0, 8(r3)
-	blr
-	*/
-}

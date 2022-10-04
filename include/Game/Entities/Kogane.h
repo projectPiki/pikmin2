@@ -44,25 +44,25 @@ struct Obj : public EnemyBase {
 	virtual void doStartMovie();                             // _2F0
 	virtual void doEndMovie();                               // _2F4
 	virtual void setFSM(FSM*);                               // _2F8
-	virtual void createItem();                               // _2FC (weak)
+	virtual void createItem() { }                            // _2FC (weak)
 	virtual void resetFartTimer();                           // _300 (weak)
-	virtual void startBodyEffect();                          // _304 (weak)
-	virtual void finishBodyEffect();                         // _308 (weak)
-	virtual void createFartEffect();                         // _30C (weak)
+	virtual void startBodyEffect() { }                       // _304 (weak)
+	virtual void finishBodyEffect() { }                      // _308 (weak)
+	virtual void createFartEffect() { }                      // _30C (weak)
 	virtual void effectDrawOn();                             // _310 (weak)
 	virtual void effectDrawOff();                            // _314 (weak)
-	virtual void createPressSENormal();                      // _318 (weak)
-	virtual void createPressSESpecial();                     // _31C (weak)
+	virtual void createPressSENormal() { }                   // _318 (weak)
+	virtual void createPressSESpecial() { }                  // _31C (weak)
 	//////////////// VTABLE END
 
 	void transitDamageState(f32);
-	void transitDisappear();
+	bool transitDisappear();
 	void getBodyJointPos();
 	void koganeScaleUp();
-	void koganeScaleDown();
+	bool koganeScaleDown();
 	void setTargetPosition(Vector3f*);
 	void resetAppearTimer();
-	void isAppear();
+	bool isAppear();
 	void resetMoveTimer(f32, f32);
 	bool createTreasureItem();
 	void createPellet(int initArg, int amount);
@@ -128,6 +128,15 @@ struct ProperAnimator : public EnemyAnimatorBase {
 
 /////////////////////////////////////////////////////////////////
 // STATE MACHINE DEFINITIONS
+enum StateID {
+	KOGANE_Appear    = 0,
+	KOGANE_Disappear = 1,
+	KOGANE_Move      = 2,
+	KOGANE_Wait      = 3,
+	KOGANE_Press     = 4,
+	KOGANE_Count     = 5,
+};
+
 struct FSM : public EnemyStateMachine {
 	virtual void init(EnemyBase*); // _08
 
@@ -136,11 +145,22 @@ struct FSM : public EnemyStateMachine {
 };
 
 struct State : public EnemyFSMState {
+	inline State(u16 stateID, const char* name)
+	    : EnemyFSMState(stateID)
+	{
+		m_name = name;
+	}
+
 	// _00		= VTBL
 	// _00-_10 	= EnemyFSMState
 };
 
 struct StateAppear : public State {
+	inline StateAppear()
+	    : State(KOGANE_Appear, "appear")
+	{
+	}
+
 	virtual void init(EnemyBase*, StateArg*); // _08
 	virtual void exec(EnemyBase*);            // _0C
 	virtual void cleanup(EnemyBase*);         // _10
@@ -150,6 +170,11 @@ struct StateAppear : public State {
 };
 
 struct StateDisappear : public State {
+	inline StateDisappear()
+	    : State(KOGANE_Disappear, "disappear")
+	{
+	}
+
 	virtual void init(EnemyBase*, StateArg*); // _08
 	virtual void exec(EnemyBase*);            // _0C
 	virtual void cleanup(EnemyBase*);         // _10
@@ -159,6 +184,11 @@ struct StateDisappear : public State {
 };
 
 struct StateMove : public State {
+	inline StateMove()
+	    : State(KOGANE_Move, "move")
+	{
+	}
+
 	virtual void init(EnemyBase*, StateArg*); // _08
 	virtual void exec(EnemyBase*);            // _0C
 	virtual void cleanup(EnemyBase*);         // _10
@@ -168,6 +198,11 @@ struct StateMove : public State {
 };
 
 struct StatePress : public State {
+	inline StatePress()
+	    : State(KOGANE_Press, "press")
+	{
+	}
+
 	virtual void init(EnemyBase*, StateArg*); // _08
 	virtual void exec(EnemyBase*);            // _0C
 	virtual void cleanup(EnemyBase*);         // _10
@@ -177,6 +212,11 @@ struct StatePress : public State {
 };
 
 struct StateWait : public State {
+	inline StateWait()
+	    : State(KOGANE_Wait, "wait")
+	{
+	}
+
 	virtual void init(EnemyBase*, StateArg*); // _08
 	virtual void exec(EnemyBase*);            // _0C
 	virtual void cleanup(EnemyBase*);         // _10

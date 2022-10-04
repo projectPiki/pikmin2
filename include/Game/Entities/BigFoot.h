@@ -42,6 +42,17 @@ struct BigFootGroundCallBack;
 struct BigFootShadowMgr;
 struct FSM;
 
+enum StateID {
+	BIGFOOT_NULL  = -1,
+	BIGFOOT_Dead  = 0,
+	BIGFOOT_Stay  = 1,
+	BIGFOOT_Land  = 2,
+	BIGFOOT_Wait  = 3,
+	BIGFOOT_Flick = 4,
+	BIGFOOT_Walk  = 5,
+	BIGFOOT_Count = 6,
+};
+
 struct Obj : public EnemyBase {
 	Obj();
 
@@ -87,7 +98,7 @@ struct Obj : public EnemyBase {
 	void startIKMotion();
 	void finishIKMotion();
 	void forceFinishIKMotion();
-	void isFinishIKMotion();
+	bool isFinishIKMotion();
 	void startBlendMotion();
 	void finishBlendMotion();
 	void getTraceCentrePosition();
@@ -126,14 +137,14 @@ struct Obj : public EnemyBase {
 	// _00 		= VTBL
 	// _00-_2BC	= EnemyBase
 	FSM* m_FSM;                              // _2BC
-	f32 _2C0;                                // _2C0
-	int _2C4;                                // _2C4
+	f32 m_timer;                             // _2C0
+	StateID m_nextState;                     // _2C4
 	Vector3f m_targetPosition;               // _2C8
 	f32 _2D4;                                // _2D4
 	f32 m_flickWalkTimeMax;                  // _2D8
 	u8 _2DC;                                 // _2DC
 	u8 _2DD;                                 // _2DD
-	u8 _2DE;                                 // _2DE
+	bool m_isEnraged;                        // _2DE, next walk cycle will be fast
 	IKSystemMgr* m_IKSystemMgr;              // _2E0
 	IKSystemParms* m_IKSystemParms;          // _2E4
 	BigFootGroundCallBack* m_groundCallBack; // _2E8
@@ -236,11 +247,22 @@ struct FSM : public EnemyStateMachine {
 };
 
 struct State : public EnemyFSMState {
+	inline State(u16 stateID, const char* name)
+	    : EnemyFSMState(stateID)
+	{
+		m_name = name;
+	}
+
 	// _00		= VTBL
 	// _00-_10 	= EnemyFSMState
 };
 
 struct StateDead : public State {
+	inline StateDead()
+	    : State(BIGFOOT_Dead, "dead")
+	{
+	}
+
 	virtual void init(EnemyBase*, StateArg*); // _08
 	virtual void exec(EnemyBase*);            // _0C
 	virtual void cleanup(EnemyBase*);         // _10
@@ -250,6 +272,11 @@ struct StateDead : public State {
 };
 
 struct StateFlick : public State {
+	inline StateFlick()
+	    : State(BIGFOOT_Flick, "flick")
+	{
+	}
+
 	virtual void init(EnemyBase*, StateArg*); // _08
 	virtual void exec(EnemyBase*);            // _0C
 	virtual void cleanup(EnemyBase*);         // _10
@@ -259,6 +286,11 @@ struct StateFlick : public State {
 };
 
 struct StateLand : public State {
+	inline StateLand()
+	    : State(BIGFOOT_Land, "land")
+	{
+	}
+
 	virtual void init(EnemyBase*, StateArg*); // _08
 	virtual void exec(EnemyBase*);            // _0C
 	virtual void cleanup(EnemyBase*);         // _10
@@ -268,6 +300,11 @@ struct StateLand : public State {
 };
 
 struct StateStay : public State {
+	inline StateStay()
+	    : State(BIGFOOT_Stay, "stay")
+	{
+	}
+
 	virtual void init(EnemyBase*, StateArg*); // _08
 	virtual void exec(EnemyBase*);            // _0C
 	virtual void cleanup(EnemyBase*);         // _10
@@ -277,6 +314,11 @@ struct StateStay : public State {
 };
 
 struct StateWait : public State {
+	inline StateWait()
+	    : State(BIGFOOT_Wait, "wait")
+	{
+	}
+
 	virtual void init(EnemyBase*, StateArg*); // _08
 	virtual void exec(EnemyBase*);            // _0C
 	virtual void cleanup(EnemyBase*);         // _10
@@ -286,6 +328,11 @@ struct StateWait : public State {
 };
 
 struct StateWalk : public State {
+	inline StateWalk()
+	    : State(BIGFOOT_Walk, "walk")
+	{
+	}
+
 	virtual void init(EnemyBase*, StateArg*); // _08
 	virtual void exec(EnemyBase*);            // _0C
 	virtual void cleanup(EnemyBase*);         // _10

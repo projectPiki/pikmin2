@@ -656,7 +656,7 @@ NISHIMURA:=\
 	$(BUILD_DIR)/asm/plugProjectNishimuraU/Ujib.o\
 	$(BUILD_DIR)/asm/plugProjectNishimuraU/UjibState.o\
 	$(BUILD_DIR)/src/plugProjectNishimuraU/UjibAnimator.o\
-	$(BUILD_DIR)/asm/plugProjectNishimuraU/KoganeState.o\
+	$(BUILD_DIR)/src/plugProjectNishimuraU/KoganeState.o\
 	$(BUILD_DIR)/asm/plugProjectNishimuraU/KoganeMgr.o\
 	$(BUILD_DIR)/asm/plugProjectNishimuraU/Kogane.o\
 	$(BUILD_DIR)/src/plugProjectNishimuraU/KoganeAnimator.o\
@@ -667,7 +667,7 @@ NISHIMURA:=\
 	$(BUILD_DIR)/src/plugProjectNishimuraU/RumbleData.o\
 	$(BUILD_DIR)/asm/plugProjectNishimuraU/MaroFrogMgr.o\
 	$(BUILD_DIR)/asm/plugProjectNishimuraU/MaroFrog.o\
-	$(BUILD_DIR)/asm/plugProjectNishimuraU/RockState.o\
+	$(BUILD_DIR)/src/plugProjectNishimuraU/RockState.o\
 	$(BUILD_DIR)/src/plugProjectNishimuraU/RockAnimator.o\
 	$(BUILD_DIR)/asm/plugProjectNishimuraU/RockMgr.o\
 	$(BUILD_DIR)/asm/plugProjectNishimuraU/Rock.o\
@@ -796,7 +796,7 @@ NISHIMURA:=\
 	$(BUILD_DIR)/asm/plugProjectNishimuraU/HoudaiShotGun.o\
 	$(BUILD_DIR)/asm/plugProjectNishimuraU/LeafChappyMgr.o\
 	$(BUILD_DIR)/asm/plugProjectNishimuraU/LeafChappy.o\
-	$(BUILD_DIR)/asm/plugProjectNishimuraU/BigFootState.o\
+	$(BUILD_DIR)/src/plugProjectNishimuraU/BigFootState.o\
 	$(BUILD_DIR)/src/plugProjectNishimuraU/BigFootAnimator.o\
 	$(BUILD_DIR)/asm/plugProjectNishimuraU/BigFootMgr.o\
 	$(BUILD_DIR)/asm/plugProjectNishimuraU/BigFootShadow.o\
