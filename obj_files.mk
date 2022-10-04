@@ -757,7 +757,7 @@ NISHIMURA:=\
 	$(BUILD_DIR)/src/plugProjectNishimuraU/HanachirashiAnimator.o\
 	$(BUILD_DIR)/asm/plugProjectNishimuraU/HanachirashiMgr.o\
 	$(BUILD_DIR)/asm/plugProjectNishimuraU/Hanachirashi.o\
-	$(BUILD_DIR)/asm/plugProjectNishimuraU/DamagumoState.o\
+	$(BUILD_DIR)/src/plugProjectNishimuraU/DamagumoState.o\
 	$(BUILD_DIR)/src/plugProjectNishimuraU/DamagumoAnimator.o\
 	$(BUILD_DIR)/asm/plugProjectNishimuraU/DamagumoMgr.o\
 	$(BUILD_DIR)/asm/plugProjectNishimuraU/Damagumo.o\

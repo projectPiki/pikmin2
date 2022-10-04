@@ -39,6 +39,17 @@ struct DamagumoGroundCallBack;
 struct DamagumoShadowMgr;
 struct FSM;
 
+enum StateID {
+	DAMAGUMO_NULL  = -1,
+	DAMAGUMO_Dead  = 0,
+	DAMAGUMO_Stay  = 1,
+	DAMAGUMO_Land  = 2,
+	DAMAGUMO_Wait  = 3,
+	DAMAGUMO_Flick = 4,
+	DAMAGUMO_Walk  = 5,
+	DAMAGUMO_Count = 6,
+};
+
 struct Obj : public EnemyBase {
 	Obj();
 
@@ -82,7 +93,7 @@ struct Obj : public EnemyBase {
 	void startIKMotion();
 	void finishIKMotion();
 	void forceFinishIKMotion();
-	void isFinishIKMotion();
+	bool isFinishIKMotion();
 	void startBlendMotion();
 	void finishBlendMotion();
 	void getTraceCentrePosition();
@@ -114,9 +125,9 @@ struct Obj : public EnemyBase {
 	// _00 		= VTBL
 	// _00-_2BC	= EnemyBase
 	FSM* m_FSM;                               // _2BC
-	f32 _2C0;                                 // _2C0
-	f32 _2C4;                                 // _2C4
-	int _2C8;                                 // _2C8
+	f32 m_timer;                              // _2C0, how long BLL has been in wait or walk state
+	f32 m_randMinTime;                        // _2C4, how long each phase lasts - 1.75-3.5s for wait, 3.25-6.5s for walk
+	int m_nextState;                          // _2C8
 	Vector3f m_targetPosition;                // _2CC
 	f32 _2D8;                                 // _2D8
 	u8 _2DC;                                  // _2DC
@@ -211,11 +222,22 @@ struct FSM : public EnemyStateMachine {
 };
 
 struct State : public EnemyFSMState {
+	inline State(u16 stateID, const char* name)
+	    : EnemyFSMState(stateID)
+	{
+		m_name = name;
+	}
+
 	// _00		= VTBL
 	// _00-_10 	= EnemyFSMState
 };
 
 struct StateDead : public State {
+	inline StateDead()
+	    : State(DAMAGUMO_Dead, "dead")
+	{
+	}
+
 	virtual void init(EnemyBase*, StateArg*); // _08
 	virtual void exec(EnemyBase*);            // _0C
 	virtual void cleanup(EnemyBase*);         // _10
@@ -225,6 +247,11 @@ struct StateDead : public State {
 };
 
 struct StateFlick : public State {
+	inline StateFlick()
+	    : State(DAMAGUMO_Flick, "flick")
+	{
+	}
+
 	virtual void init(EnemyBase*, StateArg*); // _08
 	virtual void exec(EnemyBase*);            // _0C
 	virtual void cleanup(EnemyBase*);         // _10
@@ -234,6 +261,11 @@ struct StateFlick : public State {
 };
 
 struct StateLand : public State {
+	inline StateLand()
+	    : State(DAMAGUMO_Land, "land")
+	{
+	}
+
 	virtual void init(EnemyBase*, StateArg*); // _08
 	virtual void exec(EnemyBase*);            // _0C
 	virtual void cleanup(EnemyBase*);         // _10
@@ -243,6 +275,11 @@ struct StateLand : public State {
 };
 
 struct StateStay : public State {
+	inline StateStay()
+	    : State(DAMAGUMO_Stay, "stay")
+	{
+	}
+
 	virtual void init(EnemyBase*, StateArg*); // _08
 	virtual void exec(EnemyBase*);            // _0C
 	virtual void cleanup(EnemyBase*);         // _10
@@ -252,6 +289,11 @@ struct StateStay : public State {
 };
 
 struct StateWait : public State {
+	inline StateWait()
+	    : State(DAMAGUMO_Wait, "wait")
+	{
+	}
+
 	virtual void init(EnemyBase*, StateArg*); // _08
 	virtual void exec(EnemyBase*);            // _0C
 	virtual void cleanup(EnemyBase*);         // _10
@@ -261,6 +303,11 @@ struct StateWait : public State {
 };
 
 struct StateWalk : public State {
+	inline StateWalk()
+	    : State(DAMAGUMO_Walk, "walk")
+	{
+	}
+
 	virtual void init(EnemyBase*, StateArg*); // _08
 	virtual void exec(EnemyBase*);            // _0C
 	virtual void cleanup(EnemyBase*);         // _10
