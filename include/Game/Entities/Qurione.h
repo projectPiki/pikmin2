@@ -54,8 +54,8 @@ struct Obj : public EnemyBase {
 	void moveFaceDir();
 	void addPitchRatio();
 	void resetUtilityTimer();
-	void isAppear();
-	void isFlyKill();
+	bool isAppear();
+	bool isFlyKill();
 	void attachItem();
 	void dropItem();
 	void addQurioneScale();
@@ -71,15 +71,17 @@ struct Obj : public EnemyBase {
 	void effectDrawOn();
 	void effectDrawOff();
 
+	inline f32 getMoveRadius() { return m_moveRadius; }
+
 	// _00 		= VTBL
 	// _00-_2BC	= EnemyBase
 	FSM* m_FSM;                      // _2BC
 	f32 m_qurioneScale;              // _2C0
-	f32 _2C4;                        // _2C4
+	f32 m_moveRadius;                // _2C4
 	f32 _2C8;                        // _2C8
 	f32 m_utilityTimer;              // _2CC
-	int _2D0;                        // _2D0
-	Vector3f _2D4[2];                // _2D4
+	int m_spawnIndex;                // _2D0, 0 = 'start', 1 = 'end'
+	Vector3f m_spawnPositions[2];    // _2D4, spawn positions, 0 = 'start', 1 = 'end'
 	Egg::Obj* m_egg;                 // _2EC
 	efx::TQuriGlow* m_efxGlow;       // _2F0
 	efx::TQuriApp* m_efxAppear;      // _2F4
@@ -152,6 +154,16 @@ struct ProperAnimator : public EnemyAnimatorBase {
 
 /////////////////////////////////////////////////////////////////
 // STATE MACHINE DEFINITIONS
+enum StateID {
+	QURIONE_Stay      = 0,
+	QURIONE_Appear    = 1,
+	QURIONE_Disappear = 2,
+	QURIONE_Move      = 3,
+	QURIONE_Drop      = 4,
+	QURIONE_Dead      = 5,
+	QURIONE_Count     = 6,
+};
+
 struct FSM : public EnemyStateMachine {
 	virtual void init(EnemyBase*); // _08
 
@@ -160,11 +172,22 @@ struct FSM : public EnemyStateMachine {
 };
 
 struct State : public EnemyFSMState {
+	inline State(u16 stateID, const char* name)
+	    : EnemyFSMState(stateID)
+	{
+		m_name = name;
+	}
+
 	// _00		= VTBL
 	// _00-_10 	= EnemyFSMState
 };
 
 struct StateAppear : public State {
+	inline StateAppear()
+	    : State(QURIONE_Appear, "appear")
+	{
+	}
+
 	virtual void init(EnemyBase*, StateArg*); // _08
 	virtual void exec(EnemyBase*);            // _0C
 	virtual void cleanup(EnemyBase*);         // _10
@@ -174,6 +197,11 @@ struct StateAppear : public State {
 };
 
 struct StateDead : public State {
+	inline StateDead()
+	    : State(QURIONE_Dead, "dead")
+	{
+	}
+
 	virtual void init(EnemyBase*, StateArg*); // _08
 	virtual void exec(EnemyBase*);            // _0C
 	virtual void cleanup(EnemyBase*);         // _10
@@ -183,6 +211,11 @@ struct StateDead : public State {
 };
 
 struct StateDisappear : public State {
+	inline StateDisappear()
+	    : State(QURIONE_Disappear, "disappear")
+	{
+	}
+
 	virtual void init(EnemyBase*, StateArg*); // _08
 	virtual void exec(EnemyBase*);            // _0C
 	virtual void cleanup(EnemyBase*);         // _10
@@ -192,6 +225,11 @@ struct StateDisappear : public State {
 };
 
 struct StateDrop : public State {
+	inline StateDrop()
+	    : State(QURIONE_Drop, "drop")
+	{
+	}
+
 	virtual void init(EnemyBase*, StateArg*); // _08
 	virtual void exec(EnemyBase*);            // _0C
 	virtual void cleanup(EnemyBase*);         // _10
@@ -201,6 +239,11 @@ struct StateDrop : public State {
 };
 
 struct StateMove : public State {
+	inline StateMove()
+	    : State(QURIONE_Move, "move")
+	{
+	}
+
 	virtual void init(EnemyBase*, StateArg*); // _08
 	virtual void exec(EnemyBase*);            // _0C
 	virtual void cleanup(EnemyBase*);         // _10
@@ -210,6 +253,11 @@ struct StateMove : public State {
 };
 
 struct StateStay : public State {
+	inline StateStay()
+	    : State(QURIONE_Stay, "stay")
+	{
+	}
+
 	virtual void init(EnemyBase*, StateArg*); // _08
 	virtual void exec(EnemyBase*);            // _0C
 	virtual void cleanup(EnemyBase*);         // _10

@@ -660,7 +660,7 @@ NISHIMURA:=\
 	$(BUILD_DIR)/asm/plugProjectNishimuraU/KoganeMgr.o\
 	$(BUILD_DIR)/asm/plugProjectNishimuraU/Kogane.o\
 	$(BUILD_DIR)/src/plugProjectNishimuraU/KoganeAnimator.o\
-	$(BUILD_DIR)/asm/plugProjectNishimuraU/QurioneState.o\
+	$(BUILD_DIR)/src/plugProjectNishimuraU/QurioneState.o\
 	$(BUILD_DIR)/asm/plugProjectNishimuraU/QurioneMgr.o\
 	$(BUILD_DIR)/asm/plugProjectNishimuraU/Qurione.o\
 	$(BUILD_DIR)/src/plugProjectNishimuraU/QurioneAnimator.o\
