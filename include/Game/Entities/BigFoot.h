@@ -144,7 +144,7 @@ struct Obj : public EnemyBase {
 	f32 m_flickWalkTimeMax;                  // _2D8
 	u8 _2DC;                                 // _2DC
 	u8 _2DD;                                 // _2DD
-	bool m_isRaging;                         // _2DE, next walk cycle will be fast
+	bool m_isEnraged;                        // _2DE, next walk cycle will be fast
 	IKSystemMgr* m_IKSystemMgr;              // _2E0
 	IKSystemParms* m_IKSystemParms;          // _2E4
 	BigFootGroundCallBack* m_groundCallBack; // _2E8
