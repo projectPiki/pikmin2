@@ -16,6 +16,20 @@ namespace Game {
 namespace Sokkuri {
 struct FSM;
 
+enum StateID {
+	SOKKURI_NULL       = -1,
+	SOKKURI_Dead       = 0,
+	SOKKURI_Press      = 1,
+	SOKKURI_Stay       = 2,
+	SOKKURI_Appear     = 3,
+	SOKKURI_Disappear  = 4,
+	SOKKURI_Wait       = 5,
+	SOKKURI_MoveGround = 6,
+	SOKKURI_MoveWater  = 7,
+	SOKKURI_Flick      = 8,
+	SOKKURI_Count      = 9,
+};
+
 struct Obj : public EnemyBase {
 	Obj();
 
@@ -41,8 +55,8 @@ struct Obj : public EnemyBase {
 	virtual void setFSM(FSM*);                               // _2F8
 	//////////////// VTABLE END
 
-	void isAppear();
-	void isDisappear();
+	bool isAppear();
+	bool isDisappear();
 	void setNextMoveInfo();
 	void updateMoveState();
 	void resetMoveVelocity();
@@ -52,13 +66,13 @@ struct Obj : public EnemyBase {
 
 	// _00 		= VTBL
 	// _00-_2BC	= EnemyBase
-	FSM* m_FSM;    // _2BC
-	u8 _2C0[0x4];  // _2C0, unknown
-	f32 _2C4;      // _2C4
-	int _2C8;      // _2C8
-	f32 _2CC;      // _2CC
-	Vector3f _2D0; // _2D0
-	               // _2DC = PelletView
+	FSM* m_FSM;                // _2BC
+	bool _2C0;                 // _2C0, unknown
+	f32 m_timer;               // _2C4
+	StateID m_nextState;       // _2C8
+	f32 _2CC;                  // _2CC
+	Vector3f m_targetPosition; // _2D0
+	                           // _2DC = PelletView
 };
 
 struct Mgr : public EnemyMgrBase {
@@ -122,11 +136,22 @@ struct FSM : public EnemyStateMachine {
 };
 
 struct State : public EnemyFSMState {
+	inline State(u16 stateID, const char* name)
+	    : EnemyFSMState(stateID)
+	{
+		m_name = name;
+	}
+
 	// _00		= VTBL
 	// _00-_10 	= EnemyFSMState
 };
 
 struct StateAppear : public State {
+	inline StateAppear()
+	    : State(SOKKURI_Appear, "appear")
+	{
+	}
+
 	virtual void init(EnemyBase*, StateArg*); // _08
 	virtual void exec(EnemyBase*);            // _0C
 	virtual void cleanup(EnemyBase*);         // _10
@@ -136,6 +161,11 @@ struct StateAppear : public State {
 };
 
 struct StateDead : public State {
+	inline StateDead()
+	    : State(SOKKURI_Dead, "dead")
+	{
+	}
+
 	virtual void init(EnemyBase*, StateArg*); // _08
 	virtual void exec(EnemyBase*);            // _0C
 	virtual void cleanup(EnemyBase*);         // _10
@@ -145,6 +175,11 @@ struct StateDead : public State {
 };
 
 struct StateDisappear : public State {
+	inline StateDisappear()
+	    : State(SOKKURI_Disappear, "disappear")
+	{
+	}
+
 	virtual void init(EnemyBase*, StateArg*); // _08
 	virtual void exec(EnemyBase*);            // _0C
 	virtual void cleanup(EnemyBase*);         // _10
@@ -154,6 +189,11 @@ struct StateDisappear : public State {
 };
 
 struct StateFlick : public State {
+	inline StateFlick()
+	    : State(SOKKURI_Flick, "flick")
+	{
+	}
+
 	virtual void init(EnemyBase*, StateArg*); // _08
 	virtual void exec(EnemyBase*);            // _0C
 	virtual void cleanup(EnemyBase*);         // _10
@@ -163,6 +203,11 @@ struct StateFlick : public State {
 };
 
 struct StateMoveGround : public State {
+	inline StateMoveGround()
+	    : State(SOKKURI_MoveGround, "moveground")
+	{
+	}
+
 	virtual void init(EnemyBase*, StateArg*); // _08
 	virtual void exec(EnemyBase*);            // _0C
 	virtual void cleanup(EnemyBase*);         // _10
@@ -172,6 +217,11 @@ struct StateMoveGround : public State {
 };
 
 struct StateMoveWater : public State {
+	inline StateMoveWater()
+	    : State(SOKKURI_MoveWater, "movewater")
+	{
+	}
+
 	virtual void init(EnemyBase*, StateArg*); // _08
 	virtual void exec(EnemyBase*);            // _0C
 	virtual void cleanup(EnemyBase*);         // _10
@@ -181,6 +231,11 @@ struct StateMoveWater : public State {
 };
 
 struct StatePress : public State {
+	inline StatePress()
+	    : State(SOKKURI_Press, "press")
+	{
+	}
+
 	virtual void init(EnemyBase*, StateArg*); // _08
 	virtual void exec(EnemyBase*);            // _0C
 	virtual void cleanup(EnemyBase*);         // _10
@@ -190,6 +245,11 @@ struct StatePress : public State {
 };
 
 struct StateStay : public State {
+	inline StateStay()
+	    : State(SOKKURI_Stay, "stay")
+	{
+	}
+
 	virtual void init(EnemyBase*, StateArg*); // _08
 	virtual void exec(EnemyBase*);            // _0C
 	virtual void cleanup(EnemyBase*);         // _10
@@ -199,6 +259,11 @@ struct StateStay : public State {
 };
 
 struct StateWait : public State {
+	inline StateWait()
+	    : State(SOKKURI_Wait, "wait")
+	{
+	}
+
 	virtual void init(EnemyBase*, StateArg*); // _08
 	virtual void exec(EnemyBase*);            // _0C
 	virtual void cleanup(EnemyBase*);         // _10

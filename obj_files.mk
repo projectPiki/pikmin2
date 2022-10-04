@@ -757,7 +757,7 @@ NISHIMURA:=\
 	$(BUILD_DIR)/src/plugProjectNishimuraU/HanachirashiAnimator.o\
 	$(BUILD_DIR)/asm/plugProjectNishimuraU/HanachirashiMgr.o\
 	$(BUILD_DIR)/asm/plugProjectNishimuraU/Hanachirashi.o\
-	$(BUILD_DIR)/asm/plugProjectNishimuraU/DamagumoState.o\
+	$(BUILD_DIR)/src/plugProjectNishimuraU/DamagumoState.o\
 	$(BUILD_DIR)/src/plugProjectNishimuraU/DamagumoAnimator.o\
 	$(BUILD_DIR)/asm/plugProjectNishimuraU/DamagumoMgr.o\
 	$(BUILD_DIR)/asm/plugProjectNishimuraU/Damagumo.o\
@@ -827,7 +827,7 @@ NISHIMURA:=\
 	$(BUILD_DIR)/asm/plugProjectNishimuraU/MiniHoudaiMgr.o\
 	$(BUILD_DIR)/asm/plugProjectNishimuraU/MiniHoudai.o\
 	$(BUILD_DIR)/asm/plugProjectNishimuraU/MiniHoudaiShotGun.o\
-	$(BUILD_DIR)/asm/plugProjectNishimuraU/SokkuriState.o\
+	$(BUILD_DIR)/src/plugProjectNishimuraU/SokkuriState.o\
 	$(BUILD_DIR)/src/plugProjectNishimuraU/SokkuriAnimator.o\
 	$(BUILD_DIR)/asm/plugProjectNishimuraU/SokkuriMgr.o\
 	$(BUILD_DIR)/asm/plugProjectNishimuraU/Sokkuri.o\
