@@ -39,6 +39,18 @@ struct HoudaiShadowMgr;
 struct HoudaiShotGunMgr;
 struct FSM;
 
+enum StateID {
+	HOUDAI_NULL  = -1,
+	HOUDAI_Dead  = 0,
+	HOUDAI_Stay  = 1,
+	HOUDAI_Land  = 2,
+	HOUDAI_Wait  = 3,
+	HOUDAI_Flick = 4,
+	HOUDAI_Walk  = 5,
+	HOUDAI_Shot  = 6,
+	HOUDAI_Count = 7,
+};
+
 struct Obj : public EnemyBase {
 	Obj();
 
@@ -83,7 +95,7 @@ struct Obj : public EnemyBase {
 	void startIKMotion();
 	void finishIKMotion();
 	void forceFinishIKMotion();
-	void isFinishIKMotion();
+	bool isFinishIKMotion();
 	void startBlendMotion();
 	void finishBlendMotion();
 	void getTraceCentrePosition();
@@ -93,7 +105,7 @@ struct Obj : public EnemyBase {
 	void setShotGunEmitKeepTimerOn();
 	void setShotGunEmitKeepTimerOff();
 	void updateShotGunTimer();
-	void isTransitShotGunState();
+	bool isTransitShotGunState();
 	void createShotGun();
 	void setupShotGun();
 	void setShotGunTarget(Vector3f&);
@@ -103,9 +115,9 @@ struct Obj : public EnemyBase {
 	void doUpdateCommonShotGun();
 	void startShotGunRotation();
 	void finishShotGunRotation();
-	void isShotGunRotation();
-	void isShotGunLockOn();
-	void isFinishShotGun();
+	bool isShotGunRotation();
+	bool isShotGunLockOn();
+	bool isFinishShotGun();
 	void emitShotGun();
 	void forceFinishShotGun();
 	void setupCollision();
@@ -141,11 +153,11 @@ struct Obj : public EnemyBase {
 	// _00 		= VTBL
 	// _00-_2BC	= EnemyBase
 	FSM* m_FSM;                             // _2BC
-	f32 _2C0;                               // _2C0, timer?
-	f32 _2C4;                               // _2C4
+	f32 m_timer;                            // _2C0, how long MAL has been in wait or walk state
+	f32 m_randMinTime;                      // _2C4, how long each phase lasts - 1.5-3s for wait, 3.5-7s for walk
 	f32 _2C8;                               // _2C8, shotgun timer?
 	f32 _2CC;                               // _2CC, timer?
-	int _2D0;                               // _2D0
+	StateID m_nextState;                    // _2D0
 	Vector3f m_targetPosition;              // _2D4
 	Vector3f m_shotGunTargetPosition;       // _2E0
 	u8 _2EC;                                // _2EC
@@ -301,11 +313,22 @@ struct FSM : public EnemyStateMachine {
 };
 
 struct State : public EnemyFSMState {
+	inline State(u16 stateID, const char* name)
+	    : EnemyFSMState(stateID)
+	{
+		m_name = name;
+	}
+
 	// _00		= VTBL
 	// _00-_10 	= EnemyFSMState
 };
 
 struct StateDead : public State {
+	inline StateDead()
+	    : State(HOUDAI_Dead, "dead")
+	{
+	}
+
 	virtual void init(EnemyBase*, StateArg*); // _08
 	virtual void exec(EnemyBase*);            // _0C
 	virtual void cleanup(EnemyBase*);         // _10
@@ -315,6 +338,11 @@ struct StateDead : public State {
 };
 
 struct StateFlick : public State {
+	inline StateFlick()
+	    : State(HOUDAI_Flick, "flick")
+	{
+	}
+
 	virtual void init(EnemyBase*, StateArg*); // _08
 	virtual void exec(EnemyBase*);            // _0C
 	virtual void cleanup(EnemyBase*);         // _10
@@ -324,6 +352,11 @@ struct StateFlick : public State {
 };
 
 struct StateLand : public State {
+	inline StateLand()
+	    : State(HOUDAI_Land, "land")
+	{
+	}
+
 	virtual void init(EnemyBase*, StateArg*); // _08
 	virtual void exec(EnemyBase*);            // _0C
 	virtual void cleanup(EnemyBase*);         // _10
@@ -333,6 +366,11 @@ struct StateLand : public State {
 };
 
 struct StateShot : public State {
+	inline StateShot()
+	    : State(HOUDAI_Shot, "shot")
+	{
+	}
+
 	virtual void init(EnemyBase*, StateArg*); // _08
 	virtual void exec(EnemyBase*);            // _0C
 	virtual void cleanup(EnemyBase*);         // _10
@@ -342,6 +380,11 @@ struct StateShot : public State {
 };
 
 struct StateStay : public State {
+	inline StateStay()
+	    : State(HOUDAI_Stay, "stay")
+	{
+	}
+
 	virtual void init(EnemyBase*, StateArg*); // _08
 	virtual void exec(EnemyBase*);            // _0C
 	virtual void cleanup(EnemyBase*);         // _10
@@ -351,6 +394,11 @@ struct StateStay : public State {
 };
 
 struct StateWait : public State {
+	inline StateWait()
+	    : State(HOUDAI_Wait, "wait")
+	{
+	}
+
 	virtual void init(EnemyBase*, StateArg*); // _08
 	virtual void exec(EnemyBase*);            // _0C
 	virtual void cleanup(EnemyBase*);         // _10
@@ -360,6 +408,11 @@ struct StateWait : public State {
 };
 
 struct StateWalk : public State {
+	inline StateWalk()
+	    : State(HOUDAI_Walk, "walk")
+	{
+	}
+
 	virtual void init(EnemyBase*, StateArg*); // _08
 	virtual void exec(EnemyBase*);            // _0C
 	virtual void cleanup(EnemyBase*);         // _10
