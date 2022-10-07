@@ -7,8 +7,6 @@
 extern "C" {
 #endif // ifdef __cplusplus
 
-typedef struct GDCurrentDL;
-
 typedef struct GDCurrentDL {
 	u8* begin;
 	s32 length;
@@ -16,7 +14,7 @@ typedef struct GDCurrentDL {
 	u8* end;
 } GDCurrentDL;
 
-GDCurrentDL* __GDCurrentDL = (GDCurrentDL*)NULL;
+extern GDCurrentDL* __GDCurrentDL;
 
 void GDInitGDLObj(struct GDCurrentDL* GDL_Obj, u8* param_2, s32 param_3);
 void GDFlushCurrToMem(void);

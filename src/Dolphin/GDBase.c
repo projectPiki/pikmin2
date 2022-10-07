@@ -2,6 +2,8 @@
 #include "Dolphin/os.h"
 #include "Dolphin/gd.h"
 
+GDCurrentDL* __GDCurrentDL = (GDCurrentDL*)NULL;
+
 /*
  * --INFO--
  * Address:	800E1B04
