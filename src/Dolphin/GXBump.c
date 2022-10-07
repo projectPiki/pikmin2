@@ -35,59 +35,63 @@ void GXSetTevIndirect(GXTevStageID tevStage, GXIndTexStageID texStage, GXIndTexF
  * Size:	000178
  */
 // modified from Open_RVL
-void GXSetIndTexMtx(GXIndTexMtxID id, const f32 mtx[6], u8 r5)
+void GXSetIndTexMtx(GXIndTexMtxID id, const f32 mtx[6], s8 scale_exp)
 {
-    u32 val;
-    u32 field;
-    float mtx2[6];
+	u32 val;
+	u32 field;
+	float mtx2[6];
 
-    switch (id) {
-    case GX_IND_TEX_MTX_ID_1:
-    case GX_IND_TEX_MTX_ID_2:
-    case GX_IND_TEX_MTX_ID_3:
-        val = id - 1;
-        break;
-    case GX_IND_TEX_MTX_ID_5:
-    case GX_IND_TEX_MTX_ID_6:
-    case GX_IND_TEX_MTX_ID_7:
-        val = id - 5;
-        break;
-    case GX_IND_TEX_MTX_ID_9:
-    case GX_IND_TEX_MTX_ID_10:
-    case GX_IND_TEX_MTX_ID_11:
-        val = id - 9;
-        break;
-    case GX_IND_TEX_MTX_ID_4:
-    case GX_IND_TEX_MTX_ID_8:
-    default:
-        val = 0;
-    }
-    
-    field = 0;
-    GX_BITFIELD_SET(field, 21, 11, 1024.0f * mtx[0]);
-    GX_BITFIELD_SET(field, 10, 11, 1024.0f * mtx[3]);
-    GX_BITFIELD_SET(field, 8, 2, (((s8)(r5 + (u8)0x11)) >> 0) & 0b11);
-    GX_BITFIELD_SET(field, 0, 8, val * 3 + 6);
-    GXWGFifo.s8 = 0x61;
-    GXWGFifo.s32 = field;
+	// scale_exp range is -17..46
+	// we need it in range 0..63
+	scale_exp += 17;
 
-    field = 0;
-    GX_BITFIELD_SET(field, 21, 11, 1024.0f * mtx[1]);
-    GX_BITFIELD_SET(field, 10, 11, 1024.0f * mtx[4]);
-    GX_BITFIELD_SET(field, 8, 2, (((s8)(r5 + (u8)0x11)) >> 2) & 0b11);
-    GX_BITFIELD_SET(field, 0, 8, val * 3 + 7);
-    GXWGFifo.u8 = 0x61;
-    GXWGFifo.s32 = field;
+	switch (id) {
+	case GX_IND_TEX_MTX_ID_1:
+	case GX_IND_TEX_MTX_ID_2:
+	case GX_IND_TEX_MTX_ID_3:
+		val = id - 1;
+		break;
+	case GX_IND_TEX_MTX_ID_5:
+	case GX_IND_TEX_MTX_ID_6:
+	case GX_IND_TEX_MTX_ID_7:
+		val = id - 5;
+		break;
+	case GX_IND_TEX_MTX_ID_9:
+	case GX_IND_TEX_MTX_ID_10:
+	case GX_IND_TEX_MTX_ID_11:
+		val = id - 9;
+		break;
+	case GX_IND_TEX_MTX_ID_4:
+	case GX_IND_TEX_MTX_ID_8:
+	default:
+		val = 0;
+	}
 
-    field = 0;
-    GX_BITFIELD_SET(field, 21, 11, 1024.0f * mtx[2]);
-    GX_BITFIELD_SET(field, 10, 11, 1024.0f * mtx[5]);
-    GX_BITFIELD_SET(field, 8, 2, (((s8)(r5 + (u8)0x11)) >> 4) & 0b11);
-    GX_BITFIELD_SET(field, 0, 8, val * 3 + 8);
-    GXWGFifo.u8 = 0x61;
-    GXWGFifo.s32 = field;
+	field = 0;
+	GX_BITFIELD_SET(field, 21, 11, 1024.0f * mtx[0]);
+	GX_BITFIELD_SET(field, 10, 11, 1024.0f * mtx[3]);
+	GX_BITFIELD_SET(field, 8, 2, (scale_exp >> 0) & 3);
+	GX_BITFIELD_SET(field, 0, 8, val * 3 + 6);
+	GXWGFifo.s8  = 0x61;
+	GXWGFifo.s32 = field;
 
-    __GXData->_000[1] = 0;
+	field = 0;
+	GX_BITFIELD_SET(field, 21, 11, 1024.0f * mtx[1]);
+	GX_BITFIELD_SET(field, 10, 11, 1024.0f * mtx[4]);
+	GX_BITFIELD_SET(field, 8, 2, (scale_exp >> 2) & 3);
+	GX_BITFIELD_SET(field, 0, 8, val * 3 + 7);
+	GXWGFifo.u8  = 0x61;
+	GXWGFifo.s32 = field;
+
+	field = 0;
+	GX_BITFIELD_SET(field, 21, 11, 1024.0f * mtx[2]);
+	GX_BITFIELD_SET(field, 10, 11, 1024.0f * mtx[5]);
+	GX_BITFIELD_SET(field, 8, 2, (scale_exp >> 4) & 3);
+	GX_BITFIELD_SET(field, 0, 8, val * 3 + 8);
+	GXWGFifo.u8  = 0x61;
+	GXWGFifo.s32 = field;
+
+	__GXData->_000[1] = 0;
 }
 
 /*
@@ -145,41 +149,41 @@ void GXSetIndTexCoordScale(GXIndTexStageID stage, GXIndTexScale scaleS, GXIndTex
 // modified from Open_RVL
 void GXSetIndTexOrder(GXIndTexStageID stage, GXTexCoordID coord, GXTexMapID map)
 {
-    GXData* data;
-    if (map == 0xFF) {
-        map = GX_TEXMAP0;
-    }
+	GXData* data;
+	if (map == 0xFF) {
+		map = GX_TEXMAP0;
+	}
 
-    if (coord == 0xFF) {
-        coord = GX_TEXCOORD0;
-    }
+	if (coord == 0xFF) {
+		coord = GX_TEXCOORD0;
+	}
 
-    switch (stage) {
-    case GX_IND_TEX_STAGE_ID_0:
-        data = __GXData;
-        GX_BITFIELD_SET(data->_120, 29, 3, map);
-        GX_BITFIELD_SET(data->_120, 26, 3, coord);
-        break;
-    case GX_IND_TEX_STAGE_ID_1:
-        data = __GXData;
-        GX_BITFIELD_SET(data->_120, 23, 3, map);
-        GX_BITFIELD_SET(data->_120, 20, 3, coord);
-        break;
-    case GX_IND_TEX_STAGE_ID_2:
-        data = __GXData;
-        GX_BITFIELD_SET(data->_120, 17, 3, map);
-        GX_BITFIELD_SET(data->_120, 14, 3, coord);
-        break;
-    case GX_IND_TEX_STAGE_ID_3:
-        data = __GXData;
-        GX_BITFIELD_SET(data->_120, 11, 3, map);
-        GX_BITFIELD_SET(data->_120, 8, 3, coord);
-        break;
-    }
+	switch (stage) {
+	case GX_IND_TEX_STAGE_ID_0:
+		data = __GXData;
+		GX_BITFIELD_SET(data->_120, 29, 3, map);
+		GX_BITFIELD_SET(data->_120, 26, 3, coord);
+		break;
+	case GX_IND_TEX_STAGE_ID_1:
+		data = __GXData;
+		GX_BITFIELD_SET(data->_120, 23, 3, map);
+		GX_BITFIELD_SET(data->_120, 20, 3, coord);
+		break;
+	case GX_IND_TEX_STAGE_ID_2:
+		data = __GXData;
+		GX_BITFIELD_SET(data->_120, 17, 3, map);
+		GX_BITFIELD_SET(data->_120, 14, 3, coord);
+		break;
+	case GX_IND_TEX_STAGE_ID_3:
+		data = __GXData;
+		GX_BITFIELD_SET(data->_120, 11, 3, map);
+		GX_BITFIELD_SET(data->_120, 8, 3, coord);
+		break;
+	}
 
-    GXWGFifo.u8 = 0x61;
-    GXWGFifo.s32 = __GXData->_120;
-    GXSetWasteFlags();
+	GXWGFifo.u8  = 0x61;
+	GXWGFifo.s32 = __GXData->_120;
+	GXSetWasteFlags();
 }
 
 /*
@@ -214,12 +218,10 @@ void GXSetTevDirect(GXTevStageID stage)
  */
 void GXSetTevIndWarp(GXTevStageID stage, GXIndTexStageID indStage, u8 arg2, u8 arg3, GXIndTexMtxID arg4)
 {
-    GXIndTexWrap wrapVal = (GXIndTexWrap) ((arg3) ? 6 : 0);
+	GXIndTexWrap wrapVal = (GXIndTexWrap)((arg3) ? 6 : 0);
 
-    GXSetTevIndirect(stage, indStage, GX_IND_TEX_FMT_0,
-                    (GXIndTexBiasSel) ((arg2) ? 7 : 0), arg4,
-                     wrapVal, wrapVal, FALSE, FALSE,
-                     GX_IND_TEX_ALPHA_SEL_0);
+	GXSetTevIndirect(stage, indStage, GX_IND_TEX_FMT_0, (GXIndTexBiasSel)((arg2) ? 7 : 0), arg4, wrapVal, wrapVal, FALSE, FALSE,
+	                 GX_IND_TEX_ALPHA_SEL_0);
 }
 
 /*

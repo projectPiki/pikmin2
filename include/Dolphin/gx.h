@@ -1062,10 +1062,11 @@ volatile PPCWGPipe GXWGFifo : GXFIFO_ADDR;
 volatile PPCWGPipe GXWGFifo;
 #endif
 
-inline void GXSetWasteFlags() {
-    GXData* data = __GXData;
-    data->_5AC |= 0x3;
-    data->_000[1] = 0;
+inline void GXSetWasteFlags()
+{
+	GXData* data = __GXData;
+	data->_5AC |= 0x3;
+	data->_000[1] = 0;
 }
 
 static inline void GXPosition2f32(const f32 x, const f32 y)
