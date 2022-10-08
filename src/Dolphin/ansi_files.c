@@ -13,96 +13,104 @@ extern int __read_console(u32, u32, u32*);
 extern BOOL __write_console(s32, s32, s32*, s32);
 extern int __close_console(u32);
 
-FILE __files[4] = { { 0,
-	                  0,
-	                  1,
-	                  1,
-	                  2,
-	                  0,
-	                  0,
-	                  0,
-	                  0,
-	                  0,
-	                  0,
-	                  0,
-	                  0,
-	                  0,
-	                  0,
-	                  0,
-	                  0,
-	                  &stdin_buff,
-	                  sizeof(stdin_buff),
-	                  &stdin_buff,
-	                  0,
-	                  0,
-	                  0,
-	                  0,
-	                  0,
-	                  &__read_console,
-	                  &__write_console,
-	                  &__close_console,
-	                  0,
-	                  &__files[1] },
-	                { 1,
-	                  0,
-	                  2,
-	                  1,
-	                  2,
-	                  0,
-	                  0,
-	                  0,
-	                  0,
-	                  0,
-	                  0,
-	                  0,
-	                  0,
-	                  0,
-	                  0,
-	                  0,
-	                  0,
-	                  &stdout_buff,
-	                  sizeof(stdout_buff),
-	                  &stdout_buff,
-	                  0,
-	                  0,
-	                  0,
-	                  0,
-	                  0,
-	                  &__read_console,
-	                  &__write_console,
-	                  &__close_console,
-	                  0,
-	                  &__files[2] },
-	                { 2,
-	                  0,
-	                  2,
-	                  0,
-	                  2,
-	                  0,
-	                  0,
-	                  0,
-	                  0,
-	                  0,
-	                  0,
-	                  0,
-	                  0,
-	                  0,
-	                  0,
-	                  0,
-	                  0,
-	                  &stderr_buff,
-	                  sizeof(stderr_buff),
-	                  &stderr_buff,
-	                  0,
-	                  0,
-	                  0,
-	                  0,
-	                  0,
-	                  &__read_console,
-	                  &__write_console,
-	                  &__close_console,
-	                  0,
-	                  &__files[3] } };
+// clang-format off
+FILE __files[4] = 
+{ 
+	{ 0,
+		0,
+		1,
+		1,
+		2,
+		0,
+		0,
+		0,
+		0,
+		0,
+		0,
+		0,
+		0,
+		0,
+		0,
+		0,
+		0,
+		&stdin_buff,
+		sizeof(stdin_buff),
+		&stdin_buff,
+		0,
+		0,
+		0,
+		0,
+		0,
+		&__read_console,
+		&__write_console,
+		&__close_console,
+		0,
+		&__files[1] 
+	},
+	{ 1,
+		0,
+		2,
+		1,
+		2,
+		0,
+		0,
+		0,
+		0,
+		0,
+		0,
+		0,
+		0,
+		0,
+		0,
+		0,
+		0,
+		&stdout_buff,
+		sizeof(stdout_buff),
+		&stdout_buff,
+		0,
+		0,
+		0,
+		0,
+		0,
+		&__read_console,
+		&__write_console,
+		&__close_console,
+		0,
+		&__files[2] 
+	},
+	{ 2,
+		0,
+		2,
+		0,
+		2,
+		0,
+		0,
+		0,
+		0,
+		0,
+		0,
+		0,
+		0,
+		0,
+		0,
+		0,
+		0,
+		&stderr_buff,
+		sizeof(stderr_buff),
+		&stderr_buff,
+		0,
+		0,
+		0,
+		0,
+		0,
+		&__read_console,
+		&__write_console,
+		&__close_console,
+		0,
+		&__files[3] 
+	} 
+};
+// clang-format on
 
 /*
  * --INFO--
@@ -126,10 +134,10 @@ u32 __flush_all(void)
 	FILE* __stream;
 	__stream = &__files[0];
 	while (__stream) {
-		if ((__stream->mode.file_kind) && (fflush(__stream))) {
+		if ((__stream->m_mode.file_kind) && (fflush(__stream))) {
 			retval = -1;
 		}
-		__stream = __stream->next_file_struct;
+		__stream = __stream->m_nextFile;
 	};
 	return retval;
 }
@@ -147,18 +155,18 @@ void __close_all(void)
 	__begin_critical_region(2);
 
 	while (p != nullptr) {
-		if (p->mode.file_kind != __closed_file) {
+		if (p->m_mode.file_kind != __closed_file) {
 			fclose(p);
 		}
 
 		plast = p;
-		p     = p->next_file_struct;
-		if (plast->is_dynamically_allocated)
+		p     = p->m_nextFile;
+		if (plast->m_isDynamicallyAllocated)
 			free(plast);
 		else {
-			plast->mode.file_kind = __unavailable_file;
-			if ((p != NULL) && p->is_dynamically_allocated)
-				plast->next_file_struct = nullptr;
+			plast->m_mode.file_kind = __unavailable_file;
+			if ((p != NULL) && p->m_isDynamicallyAllocated)
+				plast->m_nextFile = nullptr;
 		}
 	}
 
