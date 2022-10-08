@@ -3,19 +3,17 @@
 
 #include "types.h"
 
-typedef struct DestructorChain
-{
-    DestructorChain* next;
-    void* destructor;
-    void* object;
+typedef struct DestructorChain {
+	DestructorChain* next;
+	void* destructor;
+	void* object;
 } DestructorChain;
 
-typedef struct __eti_init_info
-{
-    void *eti_start;
-    void *eti_end;
-    void *code_start;
-    unsigned long code_size;
+typedef struct __eti_init_info {
+	void* eti_start;
+	void* eti_end;
+	void* code_start;
+	unsigned long code_size;
 } __eti_init_info;
 
 #ifdef __cplusplus
