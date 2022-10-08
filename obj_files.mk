@@ -378,7 +378,7 @@ DOLPHIN:=\
 	$(BUILD_DIR)/asm/Dolphin/GXFrameBuf.o\
 	$(BUILD_DIR)/asm/Dolphin/GXLight.o\
 	$(BUILD_DIR)/asm/Dolphin/GXTexture.o\
-	$(BUILD_DIR)/asm/Dolphin/GXBump.o\
+	$(BUILD_DIR)/src/Dolphin/GXBump.o\
 	$(BUILD_DIR)/asm/Dolphin/GXTev.o\
 	$(BUILD_DIR)/asm/Dolphin/GXPixel.o\
 	$(BUILD_DIR)/asm/Dolphin/GXDisplayList.o\
