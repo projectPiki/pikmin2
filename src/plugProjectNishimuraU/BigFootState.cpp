@@ -206,9 +206,9 @@ void StateLand::cleanup(EnemyBase* enemy)
  */
 void StateWait::init(EnemyBase* enemy, StateArg* stateArg)
 {
-	Obj* bigfoot         = static_cast<Obj*>(enemy);
-	bigfoot->m_nextState = BIGFOOT_NULL;
-	bigfoot->m_timer     = 0.0f;
+	Obj* bigfoot          = static_cast<Obj*>(enemy);
+	bigfoot->m_nextState  = BIGFOOT_NULL;
+	bigfoot->m_stateTimer = 0.0f;
 	bigfoot->resetFlickWalkTimeMax();
 	bigfoot->setIKParameter();
 	bigfoot->m_targetCreature = nullptr;
@@ -224,7 +224,7 @@ void StateWait::init(EnemyBase* enemy, StateArg* stateArg)
 void StateWait::exec(EnemyBase* enemy)
 {
 	Obj* bigfoot = static_cast<Obj*>(enemy);
-	bigfoot->m_timer += sys->m_secondsPerFrame;
+	bigfoot->m_stateTimer += sys->m_secondsPerFrame;
 
 	if (bigfoot->m_health <= 0.0f) {
 		bigfoot->m_nextState = BIGFOOT_Dead;
@@ -232,7 +232,7 @@ void StateWait::exec(EnemyBase* enemy)
 	} else if (EnemyFunc::isStartFlick(bigfoot, false)) {
 		bigfoot->m_nextState = BIGFOOT_Flick;
 		bigfoot->finishMotion();
-	} else if (bigfoot->m_timer > 5.0f) {
+	} else if (bigfoot->m_stateTimer > 5.0f) {
 		bigfoot->m_nextState = BIGFOOT_Walk;
 		bigfoot->finishMotion();
 	}
@@ -258,7 +258,7 @@ void StateFlick::init(EnemyBase* enemy, StateArg* stateArg)
 {
 	Obj* bigfoot              = static_cast<Obj*>(enemy);
 	bigfoot->m_nextState      = BIGFOOT_NULL;
-	bigfoot->m_timer          = 0.0f;
+	bigfoot->m_stateTimer     = 0.0f;
 	bigfoot->m_targetCreature = nullptr;
 	bigfoot->m_velocity2      = Vector3f(0.0f);
 
@@ -314,7 +314,7 @@ void StateWalk::init(EnemyBase* enemy, StateArg* stateArg)
 {
 	Obj* bigfoot              = static_cast<Obj*>(enemy);
 	bigfoot->m_nextState      = BIGFOOT_NULL;
-	bigfoot->m_timer          = 0.0f;
+	bigfoot->m_stateTimer     = 0.0f;
 	bigfoot->m_targetCreature = nullptr;
 	bigfoot->m_velocity2      = Vector3f(0.0f);
 	bigfoot->startIKMotion();
@@ -334,14 +334,14 @@ void StateWalk::exec(EnemyBase* enemy)
 {
 	Obj* bigfoot = static_cast<Obj*>(enemy);
 	bigfoot->getTargetPosition();
-	bigfoot->m_timer += sys->m_secondsPerFrame;
+	bigfoot->m_stateTimer += sys->m_secondsPerFrame;
 	if (bigfoot->m_health <= 0.0f) {
 		transit(bigfoot, BIGFOOT_Dead, nullptr);
 	} else {
 		if (EnemyFunc::isStartFlick(bigfoot, false)) {
 			bigfoot->m_nextState = BIGFOOT_Flick;
 			bigfoot->finishIKMotion();
-		} else if (bigfoot->m_timer > bigfoot->m_flickWalkTimeMax) {
+		} else if (bigfoot->m_stateTimer > bigfoot->m_flickWalkTimeMax) {
 			bigfoot->m_nextState = BIGFOOT_Wait;
 			bigfoot->finishIKMotion();
 		}
