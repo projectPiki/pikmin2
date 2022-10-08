@@ -125,8 +125,8 @@ struct Obj : public EnemyBase {
 	// _00 		= VTBL
 	// _00-_2BC	= EnemyBase
 	FSM* m_FSM;                               // _2BC
-	f32 m_timer;                              // _2C0, how long BLL has been in wait or walk state
-	f32 m_randMinTime;                        // _2C4, how long each phase lasts - 1.75-3.5s for wait, 3.25-6.5s for walk
+	f32 m_stateTimer;                         // _2C0, how long BLL has been in wait or walk state
+	f32 m_stateDuration;                      // _2C4, how long each phase lasts - 1.75-3.5s for wait, 3.25-6.5s for walk
 	int m_nextState;                          // _2C8
 	Vector3f m_targetPosition;                // _2CC
 	f32 _2D8;                                 // _2D8
