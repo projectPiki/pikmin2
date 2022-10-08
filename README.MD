@@ -163,6 +163,7 @@ pikmin2.usa.dol: `sha1: 90d328bf8f190c90472e8c19e7e53c6ad0fe0d1a`
 	- <a href="https://github.com/projectPiki/pikmin2/tree/main/src/plugProjectMorimuraU/plantsAnimator.cpp">plugProjectMorimuraU/plantsAnimator.cpp</a>
 	- <a href="https://github.com/projectPiki/pikmin2/tree/main/src/plugProjectMorimuraU/shijimiChouAnimator.cpp">plugProjectMorimuraU/shijimiChouAnimator.cpp</a>
 	- <a href="https://github.com/projectPiki/pikmin2/tree/main/src/plugProjectMorimuraU/tamagoMushiAnimator.cpp">plugProjectMorimuraU/tamagoMushiAnimator.cpp</a>
+	- <a href="https://github.com/projectPiki/pikmin2/tree/main/src/plugProjectMorimuraU/tamagoMushiState.cpp">plugProjectMorimuraU/tamagoMushiState.cpp</a>
 	- <a href="https://github.com/projectPiki/pikmin2/tree/main/src/plugProjectMorimuraU/testBase.cpp">plugProjectMorimuraU/testBase.cpp</a>
 	- <a href="https://github.com/projectPiki/pikmin2/tree/main/src/plugProjectMorimuraU/tyreAnimator.cpp">plugProjectMorimuraU/tyreAnimator.cpp</a>
 	- <a href="https://github.com/projectPiki/pikmin2/tree/main/src/plugProjectMorimuraU/tyreState.cpp">plugProjectMorimuraU/tyreState.cpp</a>

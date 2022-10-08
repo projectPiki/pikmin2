@@ -49,13 +49,13 @@ struct Obj : public EnemyBase {
 	void walkFunc();
 	void setGoalRandom();
 	void setGoalDirect(Vector3f&);
-	void turnFunc();
-	void isReachToGoal(f32);
+	bool turnFunc();
+	bool isReachToGoal(f32);
 	void resetWalkParm();
 	void setLeader(Obj*);
 	void setTypeBall();
 	void appearPanic();
-	void isFound();
+	bool isFound();
 	void createFellow();
 	void ballMove();
 	void createHideEffect();
@@ -140,6 +140,16 @@ struct ProperAnimator : public EnemyAnimatorBase {
 
 /////////////////////////////////////////////////////////////////
 // STATE MACHINE DEFINITIONS
+enum StateID {
+	TAMAGOMUSHI_Walk   = 0,
+	TAMAGOMUSHI_Turn   = 1,
+	TAMAGOMUSHI_Appear = 2,
+	TAMAGOMUSHI_Hide   = 3,
+	TAMAGOMUSHI_Dead   = 4,
+	TAMAGOMUSHI_Wait   = 5,
+	TAMAGOMUSHI_Count  = 6,
+};
+
 struct FSM : public EnemyStateMachine {
 	virtual void init(EnemyBase*); // _08
 
@@ -148,6 +158,11 @@ struct FSM : public EnemyStateMachine {
 };
 
 struct State : public EnemyFSMState {
+	inline State(int stateID)
+	    : EnemyFSMState(stateID)
+	{
+	}
+
 	// _00		= VTBL
 	// _00-_10 	= EnemyFSMState
 };
@@ -160,6 +175,11 @@ struct StateAppear : public State {
 
 	// _00		= VTBL
 	// _00-_10 	= EnemyFSMState
+	bool _10;          // _10
+	int _14;           // _14
+	int _18;           // _18
+	f32 m_appearFrame; // _1C
+	bool _20;          // _20, unknown
 };
 
 struct StateDead : public State {
@@ -210,6 +230,8 @@ struct StateWalk : public State {
 
 	// _00		= VTBL
 	// _00-_10 	= EnemyFSMState
+	int _10; // _10, unknown
+	int _14; // _14, unknown
 };
 
 /////////////////////////////////////////////////////////////////
