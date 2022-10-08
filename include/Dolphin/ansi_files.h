@@ -10,25 +10,26 @@ typedef struct _IO_FILE _IO_FILE, *P_IO_FILE;
 
 enum __file_kinds { __closed_file, __disk_file, __console_file, __unavailable_file };
 
-typedef struct {
-	unsigned int open_mode : 2;
-	unsigned int io_mode : 3;
-	unsigned int buffer_mode : 2;
-	unsigned int file_kind : 3; /*- mm 980708 -*/
+typedef struct __file_modes {
+	uint open_mode : 2;
+	uint io_mode : 3;
+	uint buffer_mode : 2;
+	uint file_kind : 3;
 
 #if _MSL_WIDE_CHAR
-	unsigned int file_orientation : 2;
+	uint file_orientation : 2;
 #endif /* _MSL_WIDE_CHAR */
 
-	unsigned int binary_io : 1;
-} __file_modes;
+	uint binary_io : 1;
+} file_modes;
 
-typedef struct {
-	unsigned int io_state : 3;
-	unsigned int free_buffer : 1;
-	unsigned char eof;
-	unsigned char error;
-} __file_state;
+typedef struct __file_states {
+	uint io_state : 3;
+	uint free_buffer : 1;
+
+	u8 eof;
+	u8 error;
+} file_states;
 
 typedef void* __ref_con;
 typedef void (*__idle_proc)(void);
@@ -39,23 +40,28 @@ typedef int (*__close_proc)(__file_handle file);
 #define __ungetc_buffer_size 2
 
 struct _IO_FILE {
-	__file_handle handle;
-	__file_modes mode;
-	__file_state state;
-
-	unsigned char is_dynamically_allocated; /*- mm 981007 -*/
-
-	unsigned char char_buffer;
-	unsigned char char_buffer_overflow;
-	unsigned char ungetc_buffer[__ungetc_buffer_size];
-	u32 padding[2];
-	void* buff1;
-	u32 buffsize;
-	void* buff2;
-	u32 padding2[5];
-	void* io[3];
-	u32 unknown;
-	struct _IO_FILE* next_file_struct;
+	__file_handle m_handle;                  // _00
+	file_modes m_mode;                       // _04
+	file_states m_state;                     // _08
+	u8 m_isDynamicallyAllocated;             // _0C
+	u8 m_charBuffer;                         // _0D
+	u8 m_charBufferOverflow;                 // _0E
+	u8 m_ungetcBuffer[__ungetc_buffer_size]; // _0F
+	u16 m_ungetcWideBuffer[2];               // _12
+	uint m_position;                         // _18
+	u8* m_buffer;                            // _1C
+	u32 m_bufferSize;                        // _20
+	u8* m_bufferPtr;                         // _24
+	uint m_bufferLength;                     // _28
+	uint m_bufferAlignment;                  // _2C
+	uint m_bufferLength2;                    // _30
+	uint m_bufferPosition;                   // _34
+	void* m_positionFunc;                    // _38
+	void* m_readFunc;                        // _3C
+	void* m_writeFunc;                       // _40
+	void* m_closeFunc;                       // _44
+	void* _48;                               // _48, unknown
+	_IO_FILE* m_nextFile;                    // _4C
 };
 
 typedef struct _IO_FILE FILE;

@@ -1,4 +1,8 @@
-
+#include "types.h"
+#include "Dolphin/critical_regions.h"
+#include "Dolphin/FILE_POS.h"
+#include "Dolphin/bufferstruct.h"
+#include "errno.h"
 
 /*
  * --INFO--
@@ -25,40 +29,13 @@ void fsetpos(void)
  * Address:	800C6904
  * Size:	00006C
  */
-void fseek(void)
+int fseek(FILE* file, u32 offset, int whence)
 {
-	/*
-	.loc_0x0:
-	  stwu      r1, -0x20(r1)
-	  mflr      r0
-	  stw       r0, 0x24(r1)
-	  stw       r31, 0x1C(r1)
-	  mr        r31, r5
-	  stw       r30, 0x18(r1)
-	  mr        r30, r4
-	  stw       r29, 0x14(r1)
-	  mr        r29, r3
-	  li        r3, 0x2
-	  bl        -0x6D0
-	  mr        r3, r29
-	  mr        r4, r30
-	  mr        r5, r31
-	  bl        .loc_0x6C
-	  mr        r0, r3
-	  li        r3, 0x2
-	  mr        r31, r0
-	  bl        -0x6F4
-	  lwz       r0, 0x24(r1)
-	  mr        r3, r31
-	  lwz       r31, 0x1C(r1)
-	  lwz       r30, 0x18(r1)
-	  lwz       r29, 0x14(r1)
-	  mtlr      r0
-	  addi      r1, r1, 0x20
-	  blr
-
-	.loc_0x6C:
-	*/
+	int code;
+	__begin_critical_region(2);
+	code = _fseek(file, offset, whence); // 0 if successful, -1 if error
+	__end_critical_region(2);
+	return code;
 }
 
 /*
@@ -66,7 +43,7 @@ void fseek(void)
  * Address:	800C6970
  * Size:	000270
  */
-void _fseek(void)
+int _fseek(FILE* file, u32 offset, int whence)
 {
 	/*
 	.loc_0x0:

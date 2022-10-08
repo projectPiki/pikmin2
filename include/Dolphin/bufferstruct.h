@@ -2,6 +2,8 @@
 #define _DOLPHIN_BUFFERSTRUCT_H
 
 #include "types.h"
+#include "Dolphin/ansi_files.h"
+
 typedef struct bufferStruct bufferStruct, *PbufferStruct;
 
 struct bufferStruct {
@@ -52,4 +54,16 @@ struct bufferStruct {
 	u8 field44_0x47;
 	u32 field45_0x48;
 };
+
+#ifdef __cplusplus
+extern "C" {
+#endif // ifdef __cplusplus
+
+s32 __flush_buffer(FILE* param_1, u32* param_2);
+void __prep_buffer(FILE* param_1);
+
+#ifdef __cplusplus
+};
+#endif // ifdef __cplusplus
+
 #endif

@@ -91,21 +91,22 @@ inline int __fpclassifyd(double x)
 
 #define isfinite(x) ((fpclassify(x) > 2))
 
-inline f32 dolsqrtf(f32 x) { // regswaps still
-    volatile f32 y;
-    if (x > 0.0f) {
-        f64 guess = __frsqrte(x);
-        f64 intermediate = guess * guess * x;
-        guess = 0.5 * guess * (3.0 - intermediate);
-        intermediate = guess * guess * x;
-        guess = 0.5 * guess * (3.0 - intermediate);
-        intermediate = guess * guess * x;
-        guess = 0.5 * guess * (3.0 - intermediate);
-        y = x * guess;
-        return y;
-    } else {
-        return x;
-    } 
+inline f32 dolsqrtf(f32 x)
+{ // regswaps still
+	volatile f32 y;
+	if (x > 0.0f) {
+		f64 guess        = __frsqrte(x);
+		f64 intermediate = guess * guess * x;
+		guess            = 0.5 * guess * (3.0 - intermediate);
+		intermediate     = guess * guess * x;
+		guess            = 0.5 * guess * (3.0 - intermediate);
+		intermediate     = guess * guess * x;
+		guess            = 0.5 * guess * (3.0 - intermediate);
+		y                = x * guess;
+		return y;
+	} else {
+		return x;
+	}
 }
 
 #endif
