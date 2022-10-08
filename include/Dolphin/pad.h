@@ -41,6 +41,7 @@ typedef struct PADStatus {
 #define PAD_CHAN1 1
 #define PAD_CHAN2 2
 #define PAD_CHAN3 3
+#define PAD_CHANMAX 4
 
 #define PAD_CHAN0_BIT 0x80000000
 #define PAD_CHAN1_BIT 0x40000000
