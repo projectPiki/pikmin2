@@ -5,26 +5,6 @@
 
 /*
  * --INFO--
- * Address:	........
- * Size:	000058
- */
-void rewind(void)
-{
-	// UNUSED FUNCTION
-}
-
-/*
- * --INFO--
- * Address:	........
- * Size:	000060
- */
-void fsetpos(void)
-{
-	// UNUSED FUNCTION
-}
-
-/*
- * --INFO--
  * Address:	800C6904
  * Size:	00006C
  */
@@ -50,7 +30,7 @@ int _fseek(FILE* stream, u32 offset, int whence)
 	u32 state;
 	int buffLen;
 
-	u8* ptr;
+	char* ptr;
 
 	if (stream->m_mode.file_kind != 1 || stream->m_state.error != 0) {
 		errno = 0x28;
@@ -113,7 +93,7 @@ int _fseek(FILE* stream, u32 offset, int whence)
 	}
 
 	if (stream->m_state.io_state == 0) {
-		if (stream->positionFunc != nullptr && (int)stream->positionFunc(stream->m_handle, &offset, whence, stream->_48)) {
+		if (stream->positionFunc != nullptr && (int)stream->positionFunc(stream->m_handle, offset, whence, stream->_48)) {
 			stream->m_state.error  = 1;
 			stream->m_bufferLength = 0;
 			errno                  = 0x28;
@@ -130,16 +110,6 @@ int _fseek(FILE* stream, u32 offset, int whence)
 
 /*
  * --INFO--
- * Address:	........
- * Size:	0000F8
- */
-void fgetpos(void)
-{
-	// UNUSED FUNCTION
-}
-
-/*
- * --INFO--
  * Address:	800C6BE0
  * Size:	0000E4
  */
@@ -150,7 +120,7 @@ int ftell(FILE* stream)
 	int adjust;
 	u32 state;
 	int buffLen;
-	u8* ptr;
+	char* ptr;
 
 	__begin_critical_region(2);
 	adjust = 0;

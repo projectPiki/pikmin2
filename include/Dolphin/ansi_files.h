@@ -59,23 +59,24 @@ struct _IO_FILE {
 	int (*positionFunc)(u32, u32, u32, void*); // _38
 	int (*readFunc)();                         // _3C
 	int (*writeFunc)(u32, char*, u32*, void*); // _40
-	int (*closeFunc)();                        // _44
+	int (*closeFunc)(u32);                     // _44
 	void* _48;                                 // _48, unknown
 	_IO_FILE* m_nextFile;                      // _4C
 };
 
 typedef struct _IO_FILE FILE;
 
-extern int fflush(FILE* __stream);
-extern void free(FILE* __stream);
 extern FILE __files[4];
 
 #ifdef __cplusplus
 extern "C" {
 #endif // ifdef __cplusplus
 
+int fflush(FILE* __stream);
+void free(void*);
 int __flush_buffer(FILE* file, u32* length);
 void __prep_buffer(FILE* file);
+u32 __flush_all();
 
 #ifdef __cplusplus
 };

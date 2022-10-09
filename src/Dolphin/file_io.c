@@ -1,225 +1,56 @@
-
-
-/*
- * --INFO--
- * Address:	........
- * Size:	000050
- */
-void __msl_strdup(void)
-{
-	// UNUSED FUNCTION
-}
-
-/*
- * --INFO--
- * Address:	........
- * Size:	0000EC
- */
-void __msl_itoa(void)
-{
-	// UNUSED FUNCTION
-}
-
-/*
- * --INFO--
- * Address:	........
- * Size:	000074
- */
-void __msl_strrev(void)
-{
-	// UNUSED FUNCTION
-}
-
-/*
- * --INFO--
- * Address:	........
- * Size:	0000A4
- */
-void __msl_strnicmp(void)
-{
-	// UNUSED FUNCTION
-}
-
-/*
- * --INFO--
- * Address:	........
- * Size:	000008
- */
-void __set_idle_proc(void)
-{
-	// UNUSED FUNCTION
-}
-
-/*
- * --INFO--
- * Address:	........
- * Size:	00017C
- */
-void __get_file_modes(void)
-{
-	// UNUSED FUNCTION
-}
-
-/*
- * --INFO--
- * Address:	........
- * Size:	0001D8
- */
-void __handle_reopen(void)
-{
-	// UNUSED FUNCTION
-}
-
-/*
- * --INFO--
- * Address:	........
- * Size:	0001EC
- */
-void __handle_open(void)
-{
-	// UNUSED FUNCTION
-}
-
-/*
- * --INFO--
- * Address:	........
- * Size:	000044
- */
-void __reopen(void)
-{
-	// UNUSED FUNCTION
-}
-
-/*
- * --INFO--
- * Address:	........
- * Size:	00023C
- */
-void freopen(void)
-{
-	// UNUSED FUNCTION
-}
-
-/*
- * --INFO--
- * Address:	........
- * Size:	000250
- */
-void fopen(void)
-{
-	// UNUSED FUNCTION
-}
+#include "types.h"
+#include "Dolphin/ansi_files.h"
 
 /*
  * --INFO--
  * Address:	800C6610
  * Size:	000138
  */
-void fflush(void)
+int fflush(FILE* stream)
 {
-	/*
-	.loc_0x0:
-	  stwu      r1, -0x10(r1)
-	  mflr      r0
-	  stw       r0, 0x14(r1)
-	  stw       r31, 0xC(r1)
-	  mr.       r31, r3
-	  stw       r30, 0x8(r1)
-	  bne-      .loc_0x24
-	  bl        -0x3C28
-	  b         .loc_0x120
+	int pos;
 
-	.loc_0x24:
-	  lbz       r0, 0xA(r31)
-	  cmplwi    r0, 0
-	  bne-      .loc_0x3C
-	  lhz       r0, 0x4(r31)
-	  rlwinm.   r0,r0,26,29,31
-	  bne-      .loc_0x44
+	if (stream == nullptr) {
+		return __flush_all();
+	}
 
-	.loc_0x3C:
-	  li        r3, -0x1
-	  b         .loc_0x120
+	if (stream->m_state.error != 0 || stream->m_mode.file_kind == __closed_file) {
+		return -1;
+	}
 
-	.loc_0x44:
-	  lbz       r0, 0x4(r31)
-	  rlwinm    r0,r0,29,29,31
-	  cmplwi    r0, 0x1
-	  bne-      .loc_0x5C
-	  li        r3, 0
-	  b         .loc_0x120
+	if (stream->m_mode.io_mode == 1) {
+		return 0;
+	}
 
-	.loc_0x5C:
-	  lbz       r3, 0x8(r31)
-	  rlwinm    r0,r3,27,29,31
-	  cmplwi    r0, 0x3
-	  blt-      .loc_0x78
-	  li        r0, 0x2
-	  rlwimi    r3,r0,5,24,26
-	  stb       r3, 0x8(r31)
+	if (stream->m_state.io_state >= 3) {
+		stream->m_state.io_state = 2;
+	}
 
-	.loc_0x78:
-	  lbz       r0, 0x8(r31)
-	  rlwinm    r0,r0,27,29,31
-	  cmplwi    r0, 0x2
-	  bne-      .loc_0x90
-	  li        r0, 0
-	  stw       r0, 0x28(r31)
+	if (stream->m_state.io_state == 2) {
+		stream->m_bufferLength = 0;
+	}
 
-	.loc_0x90:
-	  lbz       r4, 0x8(r31)
-	  rlwinm    r0,r4,27,29,31
-	  cmplwi    r0, 0x1
-	  beq-      .loc_0xB4
-	  li        r0, 0
-	  li        r3, 0
-	  rlwimi    r4,r0,5,24,26
-	  stb       r4, 0x8(r31)
-	  b         .loc_0x120
+	if (stream->m_state.io_state != 1) {
+		stream->m_state.io_state = 0;
+		return 0;
+	}
 
-	.loc_0xB4:
-	  lhz       r0, 0x4(r31)
-	  rlwinm    r0,r0,26,29,31
-	  cmplwi    r0, 0x1
-	  beq-      .loc_0xCC
-	  li        r30, 0
-	  b         .loc_0xD8
+	if (stream->m_mode.file_kind != __disk_file) {
+		pos = 0;
+	} else {
+		pos = ftell(stream);
+	}
 
-	.loc_0xCC:
-	  mr        r3, r31
-	  bl        0x500
-	  mr        r30, r3
+	if (__flush_buffer(stream, 0) != 0) {
+		stream->m_state.error  = 1;
+		stream->m_bufferLength = 0;
+		return -1;
+	}
 
-	.loc_0xD8:
-	  mr        r3, r31
-	  li        r4, 0
-	  bl        -0x590
-	  cmpwi     r3, 0
-	  beq-      .loc_0x104
-	  li        r3, 0x1
-	  li        r0, 0
-	  stb       r3, 0xA(r31)
-	  li        r3, -0x1
-	  stw       r0, 0x28(r31)
-	  b         .loc_0x120
-
-	.loc_0x104:
-	  lbz       r0, 0x8(r31)
-	  li        r4, 0
-	  rlwimi    r0,r4,5,24,26
-	  li        r3, 0
-	  stb       r0, 0x8(r31)
-	  stw       r30, 0x18(r31)
-	  stw       r4, 0x28(r31)
-
-	.loc_0x120:
-	  lwz       r0, 0x14(r1)
-	  lwz       r31, 0xC(r1)
-	  lwz       r30, 0x8(r1)
-	  mtlr      r0
-	  addi      r1, r1, 0x10
-	  blr
-	*/
+	stream->m_state.io_state = 0;
+	stream->m_position       = pos;
+	stream->m_bufferLength   = 0;
+	return 0;
 }
 
 /*
@@ -227,8 +58,70 @@ void fflush(void)
  * Address:	800C6748
  * Size:	0001BC
  */
-void fclose(void)
+// small issues near the end
+int fclose(FILE* stream)
 {
+	int closeVal;
+	s32 var_r29;
+	s32 var_r30;
+	s32 var_r3;
+	u32 temp_r3;
+	u8 temp_r3_2;
+	u8 temp_r3_3;
+
+	if (stream == nullptr) {
+		return -1;
+	}
+
+	if (stream->m_mode.file_kind == __closed_file) {
+		return 0;
+	}
+
+	if (stream == nullptr) {
+		var_r29 = __flush_all();
+	} else if ((stream->m_state.error != 0) || (stream->m_mode.file_kind == __closed_file)) {
+		var_r29 = -1;
+	} else if (stream->m_mode.io_mode == 1) {
+		var_r29 = 0;
+	} else {
+		if (stream->m_state.io_state >= 3U) {
+			stream->m_state.io_state = 2;
+		}
+		if (stream->m_state.io_state == 2) {
+			stream->m_bufferLength = 0;
+		}
+
+		if (stream->m_state.io_state != 1) {
+			var_r29                  = 0;
+			stream->m_state.io_state = 0;
+		} else {
+			if (stream->m_mode.file_kind != __disk_file) {
+				var_r30 = 0;
+			} else {
+				var_r30 = ftell(stream);
+			}
+			if (__flush_buffer(stream, 0) != 0) {
+				stream->m_state.error  = 1;
+				var_r29                = -1;
+				stream->m_bufferLength = 0;
+			} else {
+				var_r29                  = 0;
+				stream->m_state.io_state = 0;
+				stream->m_position       = var_r30;
+				stream->m_bufferLength   = 0;
+			}
+		}
+	}
+
+	closeVal                 = stream->closeFunc(stream->m_handle);
+	stream->m_mode.file_kind = __closed_file;
+	stream->m_handle         = 0;
+
+	if (stream->m_state.free_buffer & 1) {
+		free(stream->m_buffer);
+	}
+
+	return ((var_r29 != 0) || (closeVal != 0)) != 0;
 	/*
 	.loc_0x0:
 	  stwu      r1, -0x20(r1)
@@ -377,44 +270,4 @@ void fclose(void)
 	  addi      r1, r1, 0x20
 	  blr
 	*/
-}
-
-/*
- * --INFO--
- * Address:	........
- * Size:	000084
- */
-void tmpfile(void)
-{
-	// UNUSED FUNCTION
-}
-
-/*
- * --INFO--
- * Address:	........
- * Size:	000054
- */
-void tmpnam(void)
-{
-	// UNUSED FUNCTION
-}
-
-/*
- * --INFO--
- * Address:	........
- * Size:	00002C
- */
-void rename(void)
-{
-	// UNUSED FUNCTION
-}
-
-/*
- * --INFO--
- * Address:	........
- * Size:	00002C
- */
-void remove(void)
-{
-	// UNUSED FUNCTION
 }

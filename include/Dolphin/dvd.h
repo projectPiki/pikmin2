@@ -4,6 +4,11 @@
 #include "types.h"
 #include "Dolphin/os.h"
 
+struct DVDQueue {
+	struct DVDQueue* m_head; // _00
+	struct DVDQueue* m_tail; // _04
+};
+
 #ifdef __cplusplus
 extern "C" {
 #endif // ifdef __cplusplus
