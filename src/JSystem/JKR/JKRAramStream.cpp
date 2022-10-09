@@ -111,7 +111,7 @@ void* JKRAramStream::run(void)
 	OSInitMessageQueue(&JKRAramStream::sMessageQueue, (void**)JKRAramStream::sMessageBuffer,
 	                   ARRAY_SIZE(sMessageBuffer)); // jank cast to void** to satisfy prototype
 	while (true) {
-		OSReceiveMessage(&JKRAramStream::sMessageQueue, &result, OS_MESSAGE_BLOCKING);
+		OSReceiveMessage(&JKRAramStream::sMessageQueue, (void**)&result, OS_MESSAGE_BLOCKING);
 		JKRAramStreamCommand* command = static_cast<JKRAramStreamCommand*>(result.message);
 		switch (command->type) {
 		case ECT_READ:

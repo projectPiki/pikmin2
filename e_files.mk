@@ -7,4 +7,5 @@ EPILOGUE_UNSCHEDULED:=\
 	$(EPILOGUE_DIR)/src/Dolphin/OSAudioSystem.o\
 	$(EPILOGUE_DIR)/src/Dolphin/OS.o\
 	$(EPILOGUE_DIR)/src/Dolphin/OSCache.o\
+	$(EPILOGUE_DIR)/src/Dolphin/OSMessage.o\
 	$(EPILOGUE_DIR)/src/Dolphin/GBAWrite.o\

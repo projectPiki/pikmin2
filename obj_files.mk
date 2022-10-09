@@ -400,7 +400,7 @@ DOLPHIN:=\
 	$(BUILD_DIR)/asm/Dolphin/OSFont.o\
 	$(BUILD_DIR)/asm/Dolphin/OSInterrupt.o\
 	$(BUILD_DIR)/src/Dolphin/OSLink.o\
-	$(BUILD_DIR)/asm/Dolphin/OSMessage.o\
+	$(BUILD_DIR)/src/Dolphin/OSMessage.o\
 	$(BUILD_DIR)/asm/Dolphin/OSMemory.o\
 	$(BUILD_DIR)/asm/Dolphin/OSMutex.o\
 	$(BUILD_DIR)/asm/Dolphin/OSReboot.o\
