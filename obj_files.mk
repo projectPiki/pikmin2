@@ -407,7 +407,7 @@ DOLPHIN:=\
 	$(BUILD_DIR)/asm/Dolphin/OSReset.o\
 	$(BUILD_DIR)/asm/Dolphin/OSResetSW.o\
 	$(BUILD_DIR)/asm/Dolphin/OSRtc.o\
-	$(BUILD_DIR)/asm/Dolphin/OSSync.o\
+	$(BUILD_DIR)/src/Dolphin/OSSync.o\
 	$(BUILD_DIR)/asm/Dolphin/OSThread.o\
 	$(BUILD_DIR)/asm/Dolphin/OSTime.o\
 	$(BUILD_DIR)/asm/Dolphin/__mem.o\

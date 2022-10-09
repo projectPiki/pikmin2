@@ -159,6 +159,7 @@ $(BUILD_DIR)/src/Dolphin/OSAudioSystem.o: MWCC_VERSION := 1.2.5
 $(BUILD_DIR)/src/Dolphin/OSAlloc.o: MWCC_VERSION := 1.2.5
 $(BUILD_DIR)/src/Dolphin/OS.o: MWCC_VERSION := 1.2.5
 $(BUILD_DIR)/src/Dolphin/OSCache.o: MWCC_VERSION := 1.2.5
+$(BUILD_DIR)/src/Dolphin/OSSync.o: MWCC_VERSION := 1.2.5
 
 # Dirty hack to overwrite sdata
 # It seems TRK-related files need -sdata 0
