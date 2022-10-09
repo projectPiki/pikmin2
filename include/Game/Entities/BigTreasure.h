@@ -48,6 +48,23 @@ struct BigTreasureShadowMgr;
 struct BigTreasureAttackMgr;
 struct FSM;
 
+enum StateID {
+	BIGTREASURE_NULL      = -1,
+	BIGTREASURE_Dead      = 0,
+	BIGTREASURE_Stay      = 1,
+	BIGTREASURE_Land      = 2,
+	BIGTREASURE_Wait      = 3,
+	BIGTREASURE_ItemWait  = 4,
+	BIGTREASURE_Flick     = 5,
+	BIGTREASURE_PreAttack = 6,
+	BIGTREASURE_Attack    = 7,
+	BIGTREASURE_PutItem   = 8,
+	BIGTREASURE_DropItem  = 9,
+	BIGTREASURE_Walk      = 10,
+	BIGTREASURE_ItemWalk  = 11,
+	BIGTREASURE_Count     = 12,
+};
+
 struct Obj : public EnemyBase {
 	Obj();
 
@@ -81,7 +98,7 @@ struct Obj : public EnemyBase {
 	//////////////// VTABLE END
 
 	void resetAttackLimitTimer();
-	void isAttackLimitTime();
+	bool isAttackLimitTime();
 	void getTargetPosition();
 	void createIKSystem();
 	void setupIKSystem();
@@ -94,7 +111,7 @@ struct Obj : public EnemyBase {
 	void startIKMotion();
 	void finishIKMotion();
 	void forceFinishIKMotion();
-	void isFinishIKMotion();
+	bool isFinishIKMotion();
 	void startBlendMotion();
 	void finishBlendMotion();
 	void checkJointScaleOn();
@@ -108,8 +125,8 @@ struct Obj : public EnemyBase {
 	void updateTreasure();
 	void dropTreasure();
 	void dropTreasure(int);
-	void isCapturedTreasure();
-	void isCapturedTreasure(int);
+	bool isCapturedTreasure();
+	bool isCapturedTreasure(int);
 	void getCapturedTreasureNum();
 	void addTreasureDamage(int, f32);
 	void flickStickCollPartPikmin(CollPart*);
@@ -120,13 +137,13 @@ struct Obj : public EnemyBase {
 	void startAttack();
 	void finishAttack();
 	void setTreasureAttack();
-	void getPreAttackAnimIndex();
-	void getAttackAnimIndex();
-	void getPutItemAnimIndex();
-	void getFireAttackAnimIndex();
-	void getPreAttackTimeMax();
-	void getAttackTimeMax();
-	void isNormalAttack(int);
+	int getPreAttackAnimIndex();
+	int getAttackAnimIndex();
+	int getPutItemAnimIndex();
+	int getFireAttackAnimIndex();
+	f32 getPreAttackTimeMax();
+	f32 getAttackTimeMax();
+	bool isNormalAttack(int);
 	void resetMaterialColor();
 	void resetTargetMatBodyColor(bool);
 	void resetCurrentMatBodyColor();
@@ -137,7 +154,7 @@ struct Obj : public EnemyBase {
 	void updateMaterialColor();
 	void startBlendAnimation(int, bool);
 	void endBlendAnimation();
-	void getCurrAnimationIndex();
+	int getCurrAnimationIndex();
 	void startBossChargeBGM();
 	void startBossAttackBGM();
 	void finishBossAttackBGM();
@@ -170,14 +187,14 @@ struct Obj : public EnemyBase {
 	void effectDrawOn();
 	void effectDrawOff();
 	void subShadowScale();
-	void startBigTreasureBootUpDemo();
+	bool startBigTreasureBootUpDemo();
 
 	// _00 		= VTBL
 	// _00-_2BC	= EnemyBase
 	FSM* m_FSM;                                  // _2BC
-	f32 _2C0;                                    // _2C0, state timer?
+	f32 m_stateTimer;                            // _2C0
 	f32 _2C4;                                    // _2C4, attack timer?
-	int _2C8;                                    // _2C8, state ID?
+	StateID m_nextState;                         // _2C8
 	Vector3f _2CC;                               // _2CC, target position?
 	f32 _2D8;                                    // _2D8, timer of some sort?
 	u8 _2DC[0x8];                                // _2DC, unknown
@@ -195,7 +212,7 @@ struct Obj : public EnemyBase {
 	u8 _3EC[0xC];                                // _3EC, unknown
 	CollPart* _3F8;                              // _3F8
 	u8 _3FC[0xC];                                // _3FC
-	u32 m_attackIndex;                           // _408, enum TitanDweevilAttack?
+	int m_attackIndex;                           // _408, enum TitanDweevilAttack?
 	u8 _40C[0x8];                                // _40C, unknown
 	J3DGXColorS10 _414;                          // _414
 	int _41C;                                    // _41C
@@ -433,7 +450,7 @@ struct BigTreasureWaterAttack : public CNode {
 	BigTreasureAttackData* m_attackData; // _1C
 	Vector3f _20;                        // _24
 	Vector3f _2C;                        // _30
-	TChasePos4* _38;                     // _38, OootaWbomb?
+	efx::TChasePos4* _38;                // _38, OootaWbomb?
 };
 
 struct BigTreasureAttackMgr {
@@ -495,11 +512,22 @@ struct FSM : public EnemyStateMachine {
 };
 
 struct State : public EnemyFSMState {
+	inline State(int stateID, const char* name)
+	    : EnemyFSMState(stateID)
+	{
+		m_name = name;
+	}
+
 	// _00		= VTBL
 	// _00-_10 	= EnemyFSMState
 };
 
 struct StateAttack : public State {
+	inline StateAttack()
+	    : State(BIGTREASURE_Attack, "attack")
+	{
+	}
+
 	virtual void init(EnemyBase*, StateArg*); // _08
 	virtual void exec(EnemyBase*);            // _0C
 	virtual void cleanup(EnemyBase*);         // _10
@@ -509,6 +537,11 @@ struct StateAttack : public State {
 };
 
 struct StateDead : public State {
+	inline StateDead()
+	    : State(BIGTREASURE_Dead, "dead")
+	{
+	}
+
 	virtual void init(EnemyBase*, StateArg*); // _08
 	virtual void exec(EnemyBase*);            // _0C
 	virtual void cleanup(EnemyBase*);         // _10
@@ -518,6 +551,11 @@ struct StateDead : public State {
 };
 
 struct StateDropItem : public State {
+	inline StateDropItem()
+	    : State(BIGTREASURE_DropItem, "dropitem")
+	{
+	}
+
 	virtual void init(EnemyBase*, StateArg*); // _08
 	virtual void exec(EnemyBase*);            // _0C
 	virtual void cleanup(EnemyBase*);         // _10
@@ -527,6 +565,11 @@ struct StateDropItem : public State {
 };
 
 struct StateFlick : public State {
+	inline StateFlick()
+	    : State(BIGTREASURE_Flick, "flick")
+	{
+	}
+
 	virtual void init(EnemyBase*, StateArg*); // _08
 	virtual void exec(EnemyBase*);            // _0C
 	virtual void cleanup(EnemyBase*);         // _10
@@ -536,6 +579,11 @@ struct StateFlick : public State {
 };
 
 struct StateItemWait : public State {
+	inline StateItemWait()
+	    : State(BIGTREASURE_ItemWait, "itemwait")
+	{
+	}
+
 	virtual void init(EnemyBase*, StateArg*); // _08
 	virtual void exec(EnemyBase*);            // _0C
 	virtual void cleanup(EnemyBase*);         // _10
@@ -545,6 +593,11 @@ struct StateItemWait : public State {
 };
 
 struct StateItemWalk : public State {
+	inline StateItemWalk()
+	    : State(BIGTREASURE_ItemWalk, "itemwalk")
+	{
+	}
+
 	virtual void init(EnemyBase*, StateArg*); // _08
 	virtual void exec(EnemyBase*);            // _0C
 	virtual void cleanup(EnemyBase*);         // _10
@@ -554,6 +607,11 @@ struct StateItemWalk : public State {
 };
 
 struct StateLand : public State {
+	inline StateLand()
+	    : State(BIGTREASURE_Land, "land")
+	{
+	}
+
 	virtual void init(EnemyBase*, StateArg*); // _08
 	virtual void exec(EnemyBase*);            // _0C
 	virtual void cleanup(EnemyBase*);         // _10
@@ -563,6 +621,11 @@ struct StateLand : public State {
 };
 
 struct StatePreAttack : public State {
+	inline StatePreAttack()
+	    : State(BIGTREASURE_PreAttack, "preattack")
+	{
+	}
+
 	virtual void init(EnemyBase*, StateArg*); // _08
 	virtual void exec(EnemyBase*);            // _0C
 	virtual void cleanup(EnemyBase*);         // _10
@@ -572,6 +635,11 @@ struct StatePreAttack : public State {
 };
 
 struct StatePutItem : public State {
+	inline StatePutItem()
+	    : State(BIGTREASURE_PutItem, "putitem")
+	{
+	}
+
 	virtual void init(EnemyBase*, StateArg*); // _08
 	virtual void exec(EnemyBase*);            // _0C
 	virtual void cleanup(EnemyBase*);         // _10
@@ -581,6 +649,11 @@ struct StatePutItem : public State {
 };
 
 struct StateStay : public State {
+	inline StateStay()
+	    : State(BIGTREASURE_Stay, "stay")
+	{
+	}
+
 	virtual void init(EnemyBase*, StateArg*); // _08
 	virtual void exec(EnemyBase*);            // _0C
 	virtual void cleanup(EnemyBase*);         // _10
@@ -590,6 +663,11 @@ struct StateStay : public State {
 };
 
 struct StateWait : public State {
+	inline StateWait()
+	    : State(BIGTREASURE_Wait, "wait")
+	{
+	}
+
 	virtual void init(EnemyBase*, StateArg*); // _08
 	virtual void exec(EnemyBase*);            // _0C
 	virtual void cleanup(EnemyBase*);         // _10
@@ -599,6 +677,11 @@ struct StateWait : public State {
 };
 
 struct StateWalk : public State {
+	inline StateWalk()
+	    : State(BIGTREASURE_Walk, "walk")
+	{
+	}
+
 	virtual void init(EnemyBase*, StateArg*); // _08
 	virtual void exec(EnemyBase*);            // _0C
 	virtual void cleanup(EnemyBase*);         // _10

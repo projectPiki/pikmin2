@@ -810,7 +810,7 @@ NISHIMURA:=\
 	$(BUILD_DIR)/src/plugProjectNishimuraU/OniKurageAnimator.o\
 	$(BUILD_DIR)/asm/plugProjectNishimuraU/OniKurageMgr.o\
 	$(BUILD_DIR)/asm/plugProjectNishimuraU/OniKurage.o\
-	$(BUILD_DIR)/asm/plugProjectNishimuraU/BigTreasureState.o\
+	$(BUILD_DIR)/src/plugProjectNishimuraU/BigTreasureState.o\
 	$(BUILD_DIR)/asm/plugProjectNishimuraU/BigTreasureMgr.o\
 	$(BUILD_DIR)/asm/plugProjectNishimuraU/BigTreasureShadow.o\
 	$(BUILD_DIR)/asm/plugProjectNishimuraU/BigTreasure.o\
