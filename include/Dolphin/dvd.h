@@ -67,8 +67,8 @@ BOOL DVDCompareDiskID(DVDDiskID*, DVDDiskID*);
 int DVDGetDriveStatus();
 int DVDGetCommandBlockStatus(struct DVDPlayer*);
 
-BOOL __DVDPushWaitingQueue(int, struct DVDPlayer*);
-struct DVDPlayer* __DVDPopWaitingQueue();
+BOOL __DVDPushWaitingQueue(int, struct DVDQueue*);
+struct DVDQueue* __DVDPopWaitingQueue();
 BOOL __DVDCheckWaitingQueue();
 void __DVDClearWaitingQueue();
 

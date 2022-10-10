@@ -361,7 +361,7 @@ DOLPHIN:=\
 	$(BUILD_DIR)/asm/Dolphin/dvdlow.o\
 	$(BUILD_DIR)/asm/Dolphin/dvdfs.o\
 	$(BUILD_DIR)/asm/Dolphin/dvd.o\
-	$(BUILD_DIR)/asm/Dolphin/dvdqueue.o\
+	$(BUILD_DIR)/src/Dolphin/dvdqueue.o\
 	$(BUILD_DIR)/src/Dolphin/dvderror.o\
 	$(BUILD_DIR)/src/Dolphin/dvdidutils.o\
 	$(BUILD_DIR)/src/Dolphin/dvdFatal.o\
