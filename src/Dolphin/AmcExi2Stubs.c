@@ -6,7 +6,7 @@
  * Address:	800D2644
  * Size:	000004
  */
-void EXI2_Init(s32 a, s32 b) { return; }
+void EXI2_Init(volatile unsigned char** inputPendingPtrRef, AmcEXICallback monitorCallback) { return; }
 
 /*
  * --INFO--
@@ -20,21 +20,21 @@ void EXI2_EnableInterrupts() { return; }
  * Address:	800D264C
  * Size:	000008
  */
-BOOL EXI2_Poll() { return FALSE; }
+int EXI2_Poll() { return 0; }
 
 /*
  * --INFO--
  * Address:	800D2654
  * Size:	000008
  */
-BOOL EXI2_ReadN(u8* a, int b) { return FALSE; }
+AmcExiError EXI2_ReadN(void* bytes, u32 length) { return AMC_EXI_NO_ERROR; }
 
 /*
  * --INFO--
  * Address:	800D265C
  * Size:	000008
  */
-BOOL EXI2_WriteN(u32 a, u32 b) { return FALSE; }
+AmcExiError EXI2_WriteN(const void* bytes, u32 length) { return AMC_EXI_NO_ERROR; }
 
 /*
  * --INFO--

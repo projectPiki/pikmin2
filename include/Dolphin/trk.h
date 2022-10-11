@@ -170,7 +170,6 @@ TRKResult TRKInitializeSerialHandler();
 TRKResult TRKInitializeTarget();
 
 /* EXI2 */
-#define EXI2_Init(inputFlagPtr, mtrCallback) DBInitComm(inputFlagPtr, mtrCallback);
 void UnreserveEXI2Port(void);
 void ReserveEXI2Port(void);
 

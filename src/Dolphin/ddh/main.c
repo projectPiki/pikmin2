@@ -68,26 +68,26 @@ BOOL ddh_cc_pre_continue()
  * Address:	800C0D2C
  * Size:	0000C0
  */
-int ddh_cc_write(u32 hex, int n_bytes)
+int ddh_cc_write(u32 bytes, u32 length)
 {
 	int exi2Len;
 	int n_copy;
 	u32 hexCopy;
 
-	hexCopy = hex;
-	n_copy  = n_bytes;
+	hexCopy = bytes;
+	n_copy  = length;
 
 	if (gIsInitialized == FALSE) {
 		MWTRACE(8, "cc not initialized\n");
 		return -0x2711;
 	}
 
-	MWTRACE(8, "cc_write : Output data 0x%08x %ld bytes\n", hex, n_bytes);
+	MWTRACE(8, "cc_write : Output data 0x%08x %ld bytes\n", bytes, length);
 
 	while (n_copy > 0) {
 		MWTRACE(1, "cc_write sending %ld bytes\n", n_copy);
-		exi2Len = EXI2_WriteN(hexCopy, n_copy);
-		if (exi2Len == 0) {
+		exi2Len = EXI2_WriteN((const void*)hexCopy, n_copy);
+		if (exi2Len == AMC_EXI_NO_ERROR) {
 			break;
 		}
 		hexCopy += exi2Len;
@@ -243,10 +243,10 @@ BOOL ddh_cc_shutdown() { return FALSE; }
  * Address:	800C0F0C
  * Size:	000088
  */
-BOOL ddh_cc_initialize(int arg0, int arg1)
+BOOL ddh_cc_initialize(vu8** inputPendingPtrRef, AmcEXICallback monitorCallback)
 {
 	MWTRACE(1, "CALLING EXI2_Init\n");
-	EXI2_Init(arg0, arg1);
+	EXI2_Init(inputPendingPtrRef, monitorCallback);
 	MWTRACE(1, "DONE CALLING EXI2_Init\n");
 	CircleBufferInitialize(&gRecvCB, &gRecvBuf, 0x800);
 	return FALSE;
