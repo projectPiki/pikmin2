@@ -46,6 +46,7 @@
 #include "PSM/EnemyBase.h"
 #include "PSM/EnemyBoss.h"
 #include "PSGame/Global.h"
+#include "PSSystem/PSSystemIF.h"
 #include "Sys/Sphere.h"
 #include "SysShape/AnimInfo.h"
 #include "SysShape/AnimMgr.h"
@@ -55,8 +56,22 @@
 #include "Radar.h"
 #include "types.h"
 #include "Vector3.h"
+#include "nans.h"
+
+JKRArchive* Game::gParmArc;
+PSGame::BASARC* PSSystem::ArcMgr<PSGame::BASARC>::sInstance;
 
 namespace Game {
+
+static const int someEBArray[3] = { 0, 0, 0 };
+/*
+ * Unused. Just here to make the rodata line up.
+ * --INFO--
+ * Address: ........
+ * Size:  0000e4
+ */
+static void _Print(char* format, ...) { OSReport(format, "enemyBase"); }
+
 namespace EnemyBaseFSM {
 /*
  * --INFO--
@@ -439,7 +454,6 @@ void EnemyBaseFSM::FitState::updateCullingOff(Game::EnemyBase* enemy)
  * Address:	80100328
  * Size:	000150
  */
-// WIP: https://decomp.me/scratch/adCWV
 void EnemyBaseFSM::FitState::init(Game::EnemyBase* enemy, Game::StateArg* arg)
 {
 	enemy->doUpdate();
@@ -1053,6 +1067,38 @@ void EnemyBase::setCarcassArg(PelletViewArg& carcassArg)
 	carcassArg.m_enemy     = this;
 }
 
+void EnemyBase::becomeCarcass(bool check)
+{
+	if (m_heldPellet != nullptr) {
+		InteractMattuan interactMatt(this, 2.5f);
+
+		m_heldPellet->stimulate(interactMatt);
+		m_heldPellet = nullptr;
+	}
+
+	m_soundObj->setKilled();
+	if (check) {
+		if (lifeGaugeMgr != nullptr) {
+			lifeGaugeMgr->inactiveLifeGauge(this);
+		}
+
+		if (shadowMgr != nullptr) {
+			shadowMgr->delShadow(this);
+		}
+
+		fadeEffects();
+
+		m_emotion = 0;
+
+		if (PSGetDirectedMainBgm()) {
+			m_soundObj->battleOff();
+		}
+
+		m_soundObj->setAnime((JAIAnimeSoundData*)NULL, 1, 0.0f, 0.0f);
+		m_mgr->kill(this);
+	}
+}
+
 /*
  * --INFO--
  * Address:	80101EDC
@@ -1073,8 +1119,143 @@ void EnemyBase::doUpdateCarcass() { }
  * Size:	0009EC
  */
 // WIP: https://decomp.me/scratch/vSUKZ
-void EnemyBase::onKill(Game::CreatureKillArg*)
+void EnemyBase::onKill(CreatureKillArg* inputArg)
 {
+	getCreatureName();
+	getCreatureID();
+
+	CreatureKillArg* killArg = nullptr; // killArg
+	if (inputArg != NULL) {
+		// inputArg->getName();
+		if (strcmp(inputArg->getName(), "EnemyKillArg") == 0) {
+			killArg = inputArg;
+		}
+	}
+
+	endStick();
+
+	if (((killArg == nullptr) || !(killArg->_04 & 0x10000000)) && (isEvent(0, EB_9))) {
+		Vector3f effectPos;
+		getCommonEffectPos(effectPos); // sp80, 4C
+		float scaleMod                    = m_scaleModifier;
+		EnemyTypeID::EEnemyTypeID enemyID = getEnemyTypeID();
+		Vector3f position;
+		__memcpy(&position, &effectPos, sizeof(Vector3f));
+
+		efx::ArgEnemyType efxArg(position, enemyID, scaleMod); // sp8C
+		efx::TEnemyDead efxDead;                               // sp74
+
+		efxDead.create((efx::Arg*)&efxArg);
+		PSStartEnemyGhostSE(this, 0.0f);
+	}
+
+	if ((killArg == nullptr) || !(killArg->_04 & 0x40000000)) {
+		if (isEvent(0, EB_Bittered)) {
+			m_enemyStoneObj->dead();
+			deathProcedure();
+			resetEvent(0, EB_Bittered); // 0xFFFFFDFF
+			constraintOff();
+			if (ItemHoney::mgr != nullptr) {
+				s8 bitterDrop = (s8)EnemyInfoFunc::getEnemyInfo(getEnemyTypeID(), 0xFFFF)->m_bitterDrops;
+				float scaledChance;
+				float dropChance;
+				int dropRolls;
+
+				switch (bitterDrop) {
+				case 0:
+					dropChance = 0.99f;
+					dropRolls  = 1;
+					break;
+				case 1:
+				case 2:
+					dropChance = 0.9f;
+					dropRolls  = 1;
+					break;
+				case 3:
+					dropChance = 0.9f;
+					dropRolls  = 3;
+					break;
+				case 6:
+				case 7:
+					dropChance = 0.85f;
+					dropRolls  = 5;
+					break;
+				case 8:
+					dropChance = 0.0f;
+					dropRolls  = 10;
+					break;
+				default:
+					dropChance = 1.0f;
+					dropRolls  = 0;
+					break;
+				}
+
+				scaledChance = (0.5f * (1.0f - dropChance)) + dropChance;
+
+				for (int i = 0; i < dropRolls; i++) {
+					float randRoll = randFloat();
+					u8 honeyByte;
+					if (randRoll < dropChance) {
+						honeyByte = 0;
+					} else if (randRoll < scaledChance) {
+						honeyByte = 1;
+					} else {
+						honeyByte = 2;
+					}
+					Sys::Sphere ball; // sp64
+					getBoundingSphere(ball);
+
+					ItemHoney::InitArg honeyArg(honeyByte, 0);
+					ItemHoney::Item* drop = ItemHoney::mgr->birth();
+
+					if (drop != nullptr) {
+						drop->init((CreatureInitArg*)&honeyArg);
+						drop->setPosition(ball.m_position, false);
+						float theta    = TAU * randFloat(); // temp_f6
+						float scale    = 1.0f + ((f32)dropRolls / 10.0f);
+						float cosTheta = scale * (50.0f * pikmin2_cosf(theta));
+						float sinTheta = scale * (50.0f * pikmin2_sinf(theta));
+
+						Vector3f dropVelocity; // sp58
+						dropVelocity.x = sinTheta;
+						dropVelocity.y = 250.0f * scale;
+						dropVelocity.z = cosTheta;
+
+						drop->setVelocity(dropVelocity);
+					}
+				}
+			}
+			becomeCarcass(true);
+
+		} else if ((0.0f == _2AC) && (isEvent(0, EB_LeaveCarcass)) && ((killArg == nullptr) || !(killArg->_04 & 0x20000000))) {
+			if (m_pellet == nullptr) {
+				PelletViewArg pvArg;
+				setCarcassArg(pvArg);
+				if (becomePellet(&pvArg) == 0) {
+					becomeCarcass(true);
+
+				} else {
+					lifeGaugeMgr->inactiveLifeGauge(this);
+					m_emotion = 0;
+					if (PSGetDirectedMainBgm()) {
+						m_soundObj->battleOff();
+					}
+					doBecomeCarcass();
+				}
+			}
+			becomeCarcass(false);
+
+		} else {
+			becomeCarcass(true);
+		}
+		setZukanVisible(true);
+		return;
+	}
+	if (isEvent(0, EB_Bittered)) {
+		m_enemyStoneObj->dead();
+	}
+
+	becomeCarcass(true);
 	/*
 	.loc_0x0:
 	  stwu      r1, -0x150(r1)
@@ -3484,8 +3665,86 @@ void EnemyBase::lifeRecover()
  * Address:	801053C0
  * Size:	00033C
  */
-void EnemyBase::scaleDamageAnim()
+void Game::EnemyBase::scaleDamageAnim()
 {
+	if ((isEvent(0, EB_Flying)) || (0.0f != _210)) {
+		if (0.0f == _210) {
+			if (isEvent(0, EB_Damage)) {
+				_210 = _210 + sys->m_secondsPerFrame;
+			}
+
+		} else {
+			float horizontalModifier = 0.0f;
+			float scaleDuration      = static_cast<EnemyParmsBase*>(m_parms)->m_general.m_damageScaleDuration.m_value;
+			float factor;
+
+			if (isEvent(0, EB_20)) {
+				factor = 2.5f;
+			} else {
+				factor = 1.0f;
+			}
+
+			if (isEvent(0, EB_15)) {
+				_210 += 0.5f * sys->m_secondsPerFrame;
+			} else {
+				_210 += sys->m_secondsPerFrame;
+			}
+
+			if (isEvent(0, EB_Bittered)) {
+
+				if (_210 > scaleDuration) {
+					finishScaleDamageAnim();
+				} else {
+					horizontalModifier = 1.0f - getModifier(scaleDuration);
+				}
+
+				float sin1        = pikmin2_sinf(TAU * horizontalModifier);
+				float otherFactor = 0.03490659f * factor; // reordered?
+				sin1 *= otherFactor;
+				_1A4.m_matrix[1][0] = horizontalModifier * sin1;
+
+				_1A4.m_matrix[1][1] = 0.0f;
+
+				sin1        = pikmin2_sinf(TAU * (2.0f * horizontalModifier)); // regswap
+				otherFactor = 0.043633234f * factor;
+				otherFactor *= sin1;
+				_1A4.m_matrix[1][2] = horizontalModifier * otherFactor;
+
+				float scaleVal = m_scaleModifier;
+				m_scale.z      = scaleVal;
+				m_scale.y      = scaleVal;
+				m_scale.x      = scaleVal;
+				return;
+			}
+
+			if (_210 > scaleDuration) {
+				finishScaleDamageAnim();
+			} else {
+				const float sin3   = pikmin2_sinf(TAU * getModifier(scaleDuration)); // do we need this var?
+				horizontalModifier = 1.0f - getModifier(scaleDuration);
+				horizontalModifier *= sin3;
+			}
+
+			if (isEvent(0, EB_15)) {
+				horizontalModifier *= 2.0f;
+			}
+
+			float xzScale
+			    = horizontalModifier * (factor * static_cast<EnemyParmsBase*>(m_parms)->m_general.m_horizontalDamageScale.m_value);
+			if (isEvent(0, EB_20)) {
+				m_scale.x = m_scaleModifier + xzScale;
+				m_scale.y = -((horizontalModifier * static_cast<EnemyParmsBase*>(m_parms)->m_general.m_verticalDamageScale.m_value)
+				              - m_scaleModifier);
+				m_scale.z = m_scaleModifier + xzScale;
+				return;
+			}
+
+			m_scale.x = m_scaleModifier - xzScale;
+			m_scale.y
+			    = (horizontalModifier * static_cast<EnemyParmsBase*>(m_parms)->m_general.m_verticalDamageScale.m_value) + m_scaleModifier;
+			m_scale.z = m_scaleModifier - xzScale;
+		}
+	}
 	/*
 	.loc_0x0:
 	    stwu      r1, -0x50(r1)
@@ -4066,8 +4325,12 @@ bool EnemyBase::hipdropCallBack(Game::Creature* sourceCreature, float damage, Co
 
 	setEvent(0, EB_20);
 	if (_0C8 != 0) {
-		createSplashDownEffect(m_position, getDownSmokeScale());
-		createDropEffect(m_position, getDownSmokeScale());
+		float downSmokeScale = getDownSmokeScale();
+		if (m_waterBox != nullptr) {
+			createSplashDownEffect(m_position, downSmokeScale);
+		} else {
+			createDropEffect(m_position, downSmokeScale);
+		}
 	}
 	return false;
 	/*
@@ -4688,9 +4951,43 @@ bool EnemyBase::needShadow()
  * Address:	801074D0
  * Size:	000234
  */
-// WIP: https://decomp.me/scratch/fauDT
-bool EnemyBase::eatWhitePikminCallBack(Game::Creature*, float)
+bool EnemyBase::eatWhitePikminCallBack(Creature* creature, f32 damage)
 {
+	addDamage(damage, 0.0f);
+
+	if (!(isEvent(0, EB_15))) {
+		setEvent(0, EB_15);
+
+		_210 = sys->m_secondsPerFrame;
+
+		for (int i = 0; i < m_enemyStoneObj->m_info->m_infoCnt; i++) {
+			EnemyStone::DrawInfo drawInfo(false);
+			EnemyStone::ObjInfo* objInfo = &m_enemyStoneObj->m_info->m_infoArr[i];
+			char* jointName              = objInfo->m_name;
+			SysShape::Joint* joint       = m_model->getJoint(jointName);
+			drawInfo._44                 = joint->getWorldMatrix();
+			drawInfo._40                 = objInfo;
+			Vector3f effectPosition;
+			float scale;
+			if (drawInfo.getPosAndScale(&effectPosition, &scale)) {
+				scale *= m_scaleModifier;
+				efx::ArgScale arg(effectPosition, scale);
+				switch (drawInfo._40->_04) {
+				case 0:
+					efx::TEnemyPoisonL poisonL;
+					poisonL.create(&arg);
+					break;
+				case 1:
+					efx::TEnemyPoisonS poisonS;
+					poisonS.create(&arg);
+					break;
+				}
+			}
+		}
+
+		m_soundObj->startSound(0x5807, false);
+	}
+	return true;
 	/*
 	.loc_0x0:
 	    stwu      r1, -0xB0(r1)

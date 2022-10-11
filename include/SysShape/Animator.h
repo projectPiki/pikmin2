@@ -17,7 +17,6 @@ struct BaseAnimator {
 	BaseAnimator() { }
 
 	virtual J3DMtxCalc* getCalc() = 0; // _08
-	                                   // virtual void animate(float) 	= 0; 	// _0C
 };
 
 /**

@@ -459,7 +459,7 @@ struct EnemyBase : public Creature, public SysShape::MotionListener, virtual pub
 
 	void resetCollEvent();
 
-	void becomeCarcass();
+	void becomeCarcass(bool);
 
 	inline void getSeparation(Creature* creature, Vector2f& sep)
 	{
@@ -545,6 +545,8 @@ struct EnemyBase : public Creature, public SysShape::MotionListener, virtual pub
 		_1A4.m_matrix[0][1] = m_faceDir;
 		return angleDist;
 	}
+
+	inline f32 getModifier(f32 scale) { return (_210 / scale); }
 
 	// Creature: _000 - _178
 	// MotionListener: _178 - _17C
