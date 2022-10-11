@@ -28,6 +28,8 @@ extern "C" {
 #define HALF_PI  1.5707964f
 #define THIRD_PI 1.0471976f
 
+#define SIN_2_5 0.43633234f
+
 #define DEG2RAD (1.0f / 180.0f)
 
 double cos(double);

@@ -43,6 +43,22 @@ namespace SnakeWhole {
 struct SnakeWholeShadowMgr;
 struct FSM;
 
+enum StateID {
+	SNAKEWHOLE_NULL      = -1,
+	SNAKEWHOLE_Dead      = 0,
+	SNAKEWHOLE_Stay      = 1,
+	SNAKEWHOLE_Appear1   = 2,
+	SNAKEWHOLE_Appear2   = 3,
+	SNAKEWHOLE_Disappear = 4,
+	SNAKEWHOLE_Wait      = 5,
+	SNAKEWHOLE_Walk      = 6,
+	SNAKEWHOLE_Home      = 7,
+	SNAKEWHOLE_Attack    = 8,
+	SNAKEWHOLE_Eat       = 9,
+	SNAKEWHOLE_Struggle  = 10,
+	SNAKEWHOLE_Count     = 11,
+};
+
 struct Obj : public EnemyBase {
 	Obj();
 
@@ -79,19 +95,19 @@ struct Obj : public EnemyBase {
 	virtual void setFSM(FSM*);                              // _2F8
 	//////////////// VTABLE END
 
-	void isOutTerritory();
-	void isInHomeRange();
+	bool isOutTerritory();
+	bool isInHomeRange();
 	void setJumpMove(Vector3f&);
 	void updateFace();
 	void updateConstraint();
 	void appearNearByTarget(Creature*);
 	void setAttackPosition();
-	void getAttackPiki(int);
-	void getAttackNavi(int);
-	void getSearchedTarget();
-	void getSwallowSlot();
-	void isSwallowPikmin();
-	void getStickHeadPikmin();
+	Piki* getAttackPiki(int);
+	Navi* getAttackNavi(int);
+	Creature* getSearchedTarget();
+	CollPart* getSwallowSlot();
+	bool isSwallowPikmin();
+	int getStickHeadPikmin();
 	void createJointCallBack();
 	void setupJointCallBack();
 	void doAnimationJointCallBack();
@@ -125,12 +141,12 @@ struct Obj : public EnemyBase {
 	// _00-_2BC	= EnemyBase
 	FSM* m_FSM;                       // _2BC
 	bool m_isUnderground;             // _2C0
-	u8 _2C1;                          // _2C1
+	bool _2C1;                        // _2C1, isOnGround? hasLanded?
 	u8 _2C2;                          // _2C2
 	u8 _2C3;                          // _2C3
-	f32 _2C4;                         // _2C4
+	f32 m_stateTimer;                 // _2C4
 	f32 _2C8;                         // _2C8
-	int _2CC;                         // _2CC
+	StateID m_nextState;              // _2CC
 	MouthSlots m_mouthSlots;          // _2D0
 	Vector3f _2D8;                    // _2D8
 	int _2E4;                         // _2E4
@@ -201,11 +217,22 @@ struct FSM : public EnemyStateMachine {
 };
 
 struct State : public EnemyFSMState {
+	inline State(int stateID, const char* name)
+	    : EnemyFSMState(stateID)
+	{
+		m_name = name;
+	}
+
 	// _00		= VTBL
 	// _00-_10 	= EnemyFSMState
 };
 
 struct StateAppear1 : public State {
+	inline StateAppear1()
+	    : State(SNAKEWHOLE_Appear1, "appear1")
+	{
+	}
+
 	virtual void init(EnemyBase*, StateArg*); // _08
 	virtual void exec(EnemyBase*);            // _0C
 	virtual void cleanup(EnemyBase*);         // _10
@@ -215,6 +242,11 @@ struct StateAppear1 : public State {
 };
 
 struct StateAppear2 : public State {
+	inline StateAppear2()
+	    : State(SNAKEWHOLE_Appear2, "appear2")
+	{
+	}
+
 	virtual void init(EnemyBase*, StateArg*); // _08
 	virtual void exec(EnemyBase*);            // _0C
 	virtual void cleanup(EnemyBase*);         // _10
@@ -224,6 +256,11 @@ struct StateAppear2 : public State {
 };
 
 struct StateAttack : public State {
+	inline StateAttack()
+	    : State(SNAKEWHOLE_Attack, "attack")
+	{
+	}
+
 	virtual void init(EnemyBase*, StateArg*); // _08
 	virtual void exec(EnemyBase*);            // _0C
 	virtual void cleanup(EnemyBase*);         // _10
@@ -233,6 +270,11 @@ struct StateAttack : public State {
 };
 
 struct StateDead : public State {
+	inline StateDead()
+	    : State(SNAKEWHOLE_Dead, "dead")
+	{
+	}
+
 	virtual void init(EnemyBase*, StateArg*); // _08
 	virtual void exec(EnemyBase*);            // _0C
 	virtual void cleanup(EnemyBase*);         // _10
@@ -242,6 +284,11 @@ struct StateDead : public State {
 };
 
 struct StateDisappear : public State {
+	inline StateDisappear()
+	    : State(SNAKEWHOLE_Disappear, "disappear")
+	{
+	}
+
 	virtual void init(EnemyBase*, StateArg*); // _08
 	virtual void exec(EnemyBase*);            // _0C
 	virtual void cleanup(EnemyBase*);         // _10
@@ -251,6 +298,11 @@ struct StateDisappear : public State {
 };
 
 struct StateEat : public State {
+	inline StateEat()
+	    : State(SNAKEWHOLE_Eat, "eat")
+	{
+	}
+
 	virtual void init(EnemyBase*, StateArg*); // _08
 	virtual void exec(EnemyBase*);            // _0C
 	virtual void cleanup(EnemyBase*);         // _10
@@ -260,6 +312,11 @@ struct StateEat : public State {
 };
 
 struct StateHome : public State {
+	inline StateHome()
+	    : State(SNAKEWHOLE_Home, "home")
+	{
+	}
+
 	virtual void init(EnemyBase*, StateArg*); // _08
 	virtual void exec(EnemyBase*);            // _0C
 	virtual void cleanup(EnemyBase*);         // _10
@@ -269,6 +326,11 @@ struct StateHome : public State {
 };
 
 struct StateStay : public State {
+	inline StateStay()
+	    : State(SNAKEWHOLE_Stay, "stay")
+	{
+	}
+
 	virtual void init(EnemyBase*, StateArg*); // _08
 	virtual void exec(EnemyBase*);            // _0C
 	virtual void cleanup(EnemyBase*);         // _10
@@ -278,6 +340,11 @@ struct StateStay : public State {
 };
 
 struct StateStruggle : public State {
+	inline StateStruggle()
+	    : State(SNAKEWHOLE_Struggle, "struggle")
+	{
+	}
+
 	virtual void init(EnemyBase*, StateArg*); // _08
 	virtual void exec(EnemyBase*);            // _0C
 	virtual void cleanup(EnemyBase*);         // _10
@@ -287,6 +354,11 @@ struct StateStruggle : public State {
 };
 
 struct StateWait : public State {
+	inline StateWait()
+	    : State(SNAKEWHOLE_Wait, "wait")
+	{
+	}
+
 	virtual void init(EnemyBase*, StateArg*); // _08
 	virtual void exec(EnemyBase*);            // _0C
 	virtual void cleanup(EnemyBase*);         // _10
@@ -296,6 +368,11 @@ struct StateWait : public State {
 };
 
 struct StateWalk : public State {
+	inline StateWalk()
+	    : State(SNAKEWHOLE_Walk, "walk")
+	{
+	}
+
 	virtual void init(EnemyBase*, StateArg*); // _08
 	virtual void exec(EnemyBase*);            // _0C
 	virtual void cleanup(EnemyBase*);         // _10

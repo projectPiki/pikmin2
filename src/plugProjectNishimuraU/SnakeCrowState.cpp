@@ -1,484 +1,35 @@
-#include "types.h"
-
-/*
-    Generated from dpostproc
-
-    .section .ctors, "wa"  # 0x80472F00 - 0x804732C0
-    .4byte __sinit_SnakeCrowState_cpp
-
-    .section .rodata  # 0x804732E0 - 0x8049E220
-    .global lbl_804883D8
-    lbl_804883D8:
-        .asciz "disappear"
-        .skip 2
-    .global lbl_804883E4
-    lbl_804883E4:
-        .asciz "struggle"
-        .skip 3
-
-    .section .data, "wa"  # 0x8049E220 - 0x804EFC20
-    .global lbl_804CB2A8
-    lbl_804CB2A8:
-        .4byte 0x00000000
-        .4byte 0x00000000
-        .4byte 0x00000000
-    .global __vt__Q34Game9SnakeCrow13StateStruggle
-    __vt__Q34Game9SnakeCrow13StateStruggle:
-        .4byte 0
-        .4byte 0
-        .4byte
-   init__Q34Game9SnakeCrow13StateStruggleFPQ24Game9EnemyBasePQ24Game8StateArg
-        .4byte exec__Q34Game9SnakeCrow13StateStruggleFPQ24Game9EnemyBase
-        .4byte cleanup__Q34Game9SnakeCrow13StateStruggleFPQ24Game9EnemyBase
-        .4byte resume__Q24Game13EnemyFSMStateFPQ24Game9EnemyBase
-        .4byte restart__Q24Game13EnemyFSMStateFPQ24Game9EnemyBase
-        .4byte
-   transit__Q24Game13EnemyFSMStateFPQ24Game9EnemyBaseiPQ24Game8StateArg .4byte
-   doDirectDraw__Q24Game13EnemyFSMStateFPQ24Game9EnemyBaseR8Graphics .global
-   __vt__Q34Game9SnakeCrow8StateEat
-    __vt__Q34Game9SnakeCrow8StateEat:
-        .4byte 0
-        .4byte 0
-        .4byte
-   init__Q34Game9SnakeCrow8StateEatFPQ24Game9EnemyBasePQ24Game8StateArg .4byte
-   exec__Q34Game9SnakeCrow8StateEatFPQ24Game9EnemyBase .4byte
-   cleanup__Q34Game9SnakeCrow8StateEatFPQ24Game9EnemyBase .4byte
-   resume__Q24Game13EnemyFSMStateFPQ24Game9EnemyBase .4byte
-   restart__Q24Game13EnemyFSMStateFPQ24Game9EnemyBase .4byte
-   transit__Q24Game13EnemyFSMStateFPQ24Game9EnemyBaseiPQ24Game8StateArg .4byte
-   doDirectDraw__Q24Game13EnemyFSMStateFPQ24Game9EnemyBaseR8Graphics .global
-   __vt__Q34Game9SnakeCrow11StateAttack
-    __vt__Q34Game9SnakeCrow11StateAttack:
-        .4byte 0
-        .4byte 0
-        .4byte
-   init__Q34Game9SnakeCrow11StateAttackFPQ24Game9EnemyBasePQ24Game8StateArg
-        .4byte exec__Q34Game9SnakeCrow11StateAttackFPQ24Game9EnemyBase
-        .4byte cleanup__Q34Game9SnakeCrow11StateAttackFPQ24Game9EnemyBase
-        .4byte resume__Q24Game13EnemyFSMStateFPQ24Game9EnemyBase
-        .4byte restart__Q24Game13EnemyFSMStateFPQ24Game9EnemyBase
-        .4byte
-   transit__Q24Game13EnemyFSMStateFPQ24Game9EnemyBaseiPQ24Game8StateArg .4byte
-   doDirectDraw__Q24Game13EnemyFSMStateFPQ24Game9EnemyBaseR8Graphics .global
-   __vt__Q34Game9SnakeCrow9StateWait
-    __vt__Q34Game9SnakeCrow9StateWait:
-        .4byte 0
-        .4byte 0
-        .4byte
-   init__Q34Game9SnakeCrow9StateWaitFPQ24Game9EnemyBasePQ24Game8StateArg .4byte
-   exec__Q34Game9SnakeCrow9StateWaitFPQ24Game9EnemyBase .4byte
-   cleanup__Q34Game9SnakeCrow9StateWaitFPQ24Game9EnemyBase .4byte
-   resume__Q24Game13EnemyFSMStateFPQ24Game9EnemyBase .4byte
-   restart__Q24Game13EnemyFSMStateFPQ24Game9EnemyBase .4byte
-   transit__Q24Game13EnemyFSMStateFPQ24Game9EnemyBaseiPQ24Game8StateArg .4byte
-   doDirectDraw__Q24Game13EnemyFSMStateFPQ24Game9EnemyBaseR8Graphics .global
-   __vt__Q23efx14THebiAphd_dive
-    __vt__Q23efx14THebiAphd_dive:
-        .4byte 0
-        .4byte 0
-        .4byte create__Q23efx14THebiAphd_baseFPQ23efx3Arg
-        .4byte forceKill__Q23efx8TSimple4Fv
-        .4byte fade__Q23efx8TSimple4Fv
-    .global __vt__Q34Game9SnakeCrow14StateDisappear
-    __vt__Q34Game9SnakeCrow14StateDisappear:
-        .4byte 0
-        .4byte 0
-        .4byte
-   init__Q34Game9SnakeCrow14StateDisappearFPQ24Game9EnemyBasePQ24Game8StateArg
-        .4byte exec__Q34Game9SnakeCrow14StateDisappearFPQ24Game9EnemyBase
-        .4byte cleanup__Q34Game9SnakeCrow14StateDisappearFPQ24Game9EnemyBase
-        .4byte resume__Q24Game13EnemyFSMStateFPQ24Game9EnemyBase
-        .4byte restart__Q24Game13EnemyFSMStateFPQ24Game9EnemyBase
-        .4byte
-   transit__Q24Game13EnemyFSMStateFPQ24Game9EnemyBaseiPQ24Game8StateArg .4byte
-   doDirectDraw__Q24Game13EnemyFSMStateFPQ24Game9EnemyBaseR8Graphics .global
-   __vt__Q34Game9SnakeCrow12StateAppear2
-    __vt__Q34Game9SnakeCrow12StateAppear2:
-        .4byte 0
-        .4byte 0
-        .4byte
-   init__Q34Game9SnakeCrow12StateAppear2FPQ24Game9EnemyBasePQ24Game8StateArg
-        .4byte exec__Q34Game9SnakeCrow12StateAppear2FPQ24Game9EnemyBase
-        .4byte cleanup__Q34Game9SnakeCrow12StateAppear2FPQ24Game9EnemyBase
-        .4byte resume__Q24Game13EnemyFSMStateFPQ24Game9EnemyBase
-        .4byte restart__Q24Game13EnemyFSMStateFPQ24Game9EnemyBase
-        .4byte
-   transit__Q24Game13EnemyFSMStateFPQ24Game9EnemyBaseiPQ24Game8StateArg .4byte
-   doDirectDraw__Q24Game13EnemyFSMStateFPQ24Game9EnemyBaseR8Graphics .global
-   __vt__Q34Game9SnakeCrow12StateAppear1
-    __vt__Q34Game9SnakeCrow12StateAppear1:
-        .4byte 0
-        .4byte 0
-        .4byte
-   init__Q34Game9SnakeCrow12StateAppear1FPQ24Game9EnemyBasePQ24Game8StateArg
-        .4byte exec__Q34Game9SnakeCrow12StateAppear1FPQ24Game9EnemyBase
-        .4byte cleanup__Q34Game9SnakeCrow12StateAppear1FPQ24Game9EnemyBase
-        .4byte resume__Q24Game13EnemyFSMStateFPQ24Game9EnemyBase
-        .4byte restart__Q24Game13EnemyFSMStateFPQ24Game9EnemyBase
-        .4byte
-   transit__Q24Game13EnemyFSMStateFPQ24Game9EnemyBaseiPQ24Game8StateArg .4byte
-   doDirectDraw__Q24Game13EnemyFSMStateFPQ24Game9EnemyBaseR8Graphics .global
-   __vt__Q34Game9SnakeCrow9StateStay
-    __vt__Q34Game9SnakeCrow9StateStay:
-        .4byte 0
-        .4byte 0
-        .4byte
-   init__Q34Game9SnakeCrow9StateStayFPQ24Game9EnemyBasePQ24Game8StateArg .4byte
-   exec__Q34Game9SnakeCrow9StateStayFPQ24Game9EnemyBase .4byte
-   cleanup__Q34Game9SnakeCrow9StateStayFPQ24Game9EnemyBase .4byte
-   resume__Q24Game13EnemyFSMStateFPQ24Game9EnemyBase .4byte
-   restart__Q24Game13EnemyFSMStateFPQ24Game9EnemyBase .4byte
-   transit__Q24Game13EnemyFSMStateFPQ24Game9EnemyBaseiPQ24Game8StateArg .4byte
-   doDirectDraw__Q24Game13EnemyFSMStateFPQ24Game9EnemyBaseR8Graphics .global
-   __vt__Q34Game9SnakeCrow9StateDead
-    __vt__Q34Game9SnakeCrow9StateDead:
-        .4byte 0
-        .4byte 0
-        .4byte
-   init__Q34Game9SnakeCrow9StateDeadFPQ24Game9EnemyBasePQ24Game8StateArg .4byte
-   exec__Q34Game9SnakeCrow9StateDeadFPQ24Game9EnemyBase .4byte
-   cleanup__Q34Game9SnakeCrow9StateDeadFPQ24Game9EnemyBase .4byte
-   resume__Q24Game13EnemyFSMStateFPQ24Game9EnemyBase .4byte
-   restart__Q24Game13EnemyFSMStateFPQ24Game9EnemyBase .4byte
-   transit__Q24Game13EnemyFSMStateFPQ24Game9EnemyBaseiPQ24Game8StateArg .4byte
-   doDirectDraw__Q24Game13EnemyFSMStateFPQ24Game9EnemyBaseR8Graphics .global
-   __vt__Q34Game9SnakeCrow5State
-    __vt__Q34Game9SnakeCrow5State:
-        .4byte 0
-        .4byte 0
-        .4byte init__Q24Game13EnemyFSMStateFPQ24Game9EnemyBasePQ24Game8StateArg
-        .4byte exec__Q24Game13EnemyFSMStateFPQ24Game9EnemyBase
-        .4byte cleanup__Q24Game13EnemyFSMStateFPQ24Game9EnemyBase
-        .4byte resume__Q24Game13EnemyFSMStateFPQ24Game9EnemyBase
-        .4byte restart__Q24Game13EnemyFSMStateFPQ24Game9EnemyBase
-        .4byte
-   transit__Q24Game13EnemyFSMStateFPQ24Game9EnemyBaseiPQ24Game8StateArg .4byte
-   doDirectDraw__Q24Game13EnemyFSMStateFPQ24Game9EnemyBaseR8Graphics .global
-   __vt__Q34Game9SnakeCrow3FSM
-    __vt__Q34Game9SnakeCrow3FSM:
-        .4byte 0
-        .4byte 0
-        .4byte init__Q34Game9SnakeCrow3FSMFPQ24Game9EnemyBase
-        .4byte
-   start__Q24Game17EnemyStateMachineFPQ24Game9EnemyBaseiPQ24Game8StateArg .4byte
-   exec__Q24Game17EnemyStateMachineFPQ24Game9EnemyBase .4byte
-   transit__Q24Game17EnemyStateMachineFPQ24Game9EnemyBaseiPQ24Game8StateArg
-        .4byte
-   doDirectDraw__Q24Game17EnemyStateMachineFPQ24Game9EnemyBaseR8Graphics .4byte
-   getCurrState__Q24Game17EnemyStateMachineFPQ24Game9EnemyBase .4byte
-   setCurrState__Q24Game17EnemyStateMachineFPQ24Game9EnemyBasePQ24Game13EnemyFSMState
-        .4byte 0
-
-    .section .sbss # 0x80514D80 - 0x80516360
-    .global lbl_80515D58
-    lbl_80515D58:
-        .skip 0x4
-    .global lbl_80515D5C
-    lbl_80515D5C:
-        .skip 0x4
-
-    .section .sdata2, "a"     # 0x80516360 - 0x80520E40
-    .global lbl_8051B9F8
-    lbl_8051B9F8:
-        .4byte 0x64656164
-        .4byte 0x00000000
-    .global lbl_8051BA00
-    lbl_8051BA00:
-        .4byte 0x73746179
-        .4byte 0x00000000
-    .global lbl_8051BA08
-    lbl_8051BA08:
-        .4byte 0x61707065
-        .4byte 0x61723100
-    .global lbl_8051BA10
-    lbl_8051BA10:
-        .4byte 0x61707065
-        .4byte 0x61723200
-    .global lbl_8051BA18
-    lbl_8051BA18:
-        .4byte 0x77616974
-        .4byte 0x00000000
-    .global lbl_8051BA20
-    lbl_8051BA20:
-        .4byte 0x61747461
-        .4byte 0x636B0000
-    .global lbl_8051BA28
-    lbl_8051BA28:
-        .4byte 0x65617400
-    .global lbl_8051BA2C
-    lbl_8051BA2C:
-        .4byte 0x00000000
-    .global lbl_8051BA30
-    lbl_8051BA30:
-        .4byte 0x3F266666
-    .global lbl_8051BA34
-    lbl_8051BA34:
-        .float 0.5
-    .global lbl_8051BA38
-    lbl_8051BA38:
-        .4byte 0x481C4000
-    .global lbl_8051BA3C
-    lbl_8051BA3C:
-        .float 1.0
-    .global lbl_8051BA40
-    lbl_8051BA40:
-        .4byte 0x47000000
-        .4byte 0x00000000
-    .global lbl_8051BA48
-    lbl_8051BA48:
-        .4byte 0x43300000
-        .4byte 0x80000000
-    .global lbl_8051BA50
-    lbl_8051BA50:
-        .4byte 0xC47A0000
-    .global lbl_8051BA54
-    lbl_8051BA54:
-        .4byte 0x41200000
-    .global lbl_8051BA58
-    lbl_8051BA58:
-        .4byte 0x40490FDB
-    .global lbl_8051BA5C
-    lbl_8051BA5C:
-        .4byte 0x3BB60B61
-    .global lbl_8051BA60
-    lbl_8051BA60:
-        .4byte 0x3EDF66F4
-    .global lbl_8051BA64
-    lbl_8051BA64:
-        .4byte 0x3FC00000
-*/
+#include "Game/Entities/SnakeCrow.h"
+#include "Game/EnemyAnimKeyEvent.h"
+#include "Game/EnemyFunc.h"
+#include "Game/CameraMgr.h"
+#include "Game/rumble.h"
+#include "Game/PikiMgr.h"
+#include "Game/Navi.h"
+#include "Game/Interaction.h"
+#include "efx/THebi.h"
+#include "Iterator.h"
+#include "nans.h"
 
 namespace Game {
+namespace SnakeCrow {
 
 /*
  * --INFO--
  * Address:	80290724
  * Size:	000328
  */
-void SnakeCrow::FSM::init(Game::EnemyBase*)
+void FSM::init(EnemyBase* enemy)
 {
-	/*
-	stwu     r1, -0x10(r1)
-	mflr     r0
-	li       r4, 9
-	stw      r0, 0x14(r1)
-	stw      r31, 0xc(r1)
-	mr       r31, r3
-	bl       create__Q24Game17EnemyStateMachineFi
-	li       r3, 0x10
-	bl       __nw__FUl
-	or.      r4, r3, r3
-	beq      lbl_80290788
-	lis      r3, __vt__Q24Game13EnemyFSMState@ha
-	lis      r5, __vt__Q34Game9SnakeCrow5State@ha
-	addi     r0, r3, __vt__Q24Game13EnemyFSMState@l
-	lis      r3, __vt__Q34Game9SnakeCrow9StateDead@ha
-	stw      r0, 0(r4)
-	li       r7, 0
-	addi     r6, r5, __vt__Q34Game9SnakeCrow5State@l
-	addi     r5, r2, lbl_8051B9F8@sda21
-	stw      r7, 4(r4)
-	addi     r0, r3, __vt__Q34Game9SnakeCrow9StateDead@l
-	stw      r7, 8(r4)
-	stw      r6, 0(r4)
-	stw      r5, 0xc(r4)
-	stw      r0, 0(r4)
-
-lbl_80290788:
-	mr       r3, r31
-	bl       registerState__Q24Game17EnemyStateMachineFPQ24Game13EnemyFSMState
-	li       r3, 0x10
-	bl       __nw__FUl
-	or.      r4, r3, r3
-	beq      lbl_802907DC
-	lis      r3, __vt__Q24Game13EnemyFSMState@ha
-	lis      r5, __vt__Q34Game9SnakeCrow5State@ha
-	addi     r0, r3, __vt__Q24Game13EnemyFSMState@l
-	lis      r3, __vt__Q34Game9SnakeCrow9StateStay@ha
-	stw      r0, 0(r4)
-	li       r0, 1
-	li       r7, 0
-	addi     r6, r5, __vt__Q34Game9SnakeCrow5State@l
-	stw      r0, 4(r4)
-	addi     r5, r2, lbl_8051BA00@sda21
-	addi     r0, r3, __vt__Q34Game9SnakeCrow9StateStay@l
-	stw      r7, 8(r4)
-	stw      r6, 0(r4)
-	stw      r5, 0xc(r4)
-	stw      r0, 0(r4)
-
-lbl_802907DC:
-	mr       r3, r31
-	bl       registerState__Q24Game17EnemyStateMachineFPQ24Game13EnemyFSMState
-	li       r3, 0x10
-	bl       __nw__FUl
-	or.      r4, r3, r3
-	beq      lbl_80290830
-	lis      r3, __vt__Q24Game13EnemyFSMState@ha
-	lis      r5, __vt__Q34Game9SnakeCrow5State@ha
-	addi     r0, r3, __vt__Q24Game13EnemyFSMState@l
-	lis      r3, __vt__Q34Game9SnakeCrow12StateAppear1@ha
-	stw      r0, 0(r4)
-	li       r0, 2
-	li       r7, 0
-	addi     r6, r5, __vt__Q34Game9SnakeCrow5State@l
-	stw      r0, 4(r4)
-	addi     r5, r2, lbl_8051BA08@sda21
-	addi     r0, r3, __vt__Q34Game9SnakeCrow12StateAppear1@l
-	stw      r7, 8(r4)
-	stw      r6, 0(r4)
-	stw      r5, 0xc(r4)
-	stw      r0, 0(r4)
-
-lbl_80290830:
-	mr       r3, r31
-	bl       registerState__Q24Game17EnemyStateMachineFPQ24Game13EnemyFSMState
-	li       r3, 0x10
-	bl       __nw__FUl
-	or.      r4, r3, r3
-	beq      lbl_80290884
-	lis      r3, __vt__Q24Game13EnemyFSMState@ha
-	lis      r5, __vt__Q34Game9SnakeCrow5State@ha
-	addi     r0, r3, __vt__Q24Game13EnemyFSMState@l
-	lis      r3, __vt__Q34Game9SnakeCrow12StateAppear2@ha
-	stw      r0, 0(r4)
-	li       r0, 3
-	li       r7, 0
-	addi     r6, r5, __vt__Q34Game9SnakeCrow5State@l
-	stw      r0, 4(r4)
-	addi     r5, r2, lbl_8051BA10@sda21
-	addi     r0, r3, __vt__Q34Game9SnakeCrow12StateAppear2@l
-	stw      r7, 8(r4)
-	stw      r6, 0(r4)
-	stw      r5, 0xc(r4)
-	stw      r0, 0(r4)
-
-lbl_80290884:
-	mr       r3, r31
-	bl       registerState__Q24Game17EnemyStateMachineFPQ24Game13EnemyFSMState
-	li       r3, 0x10
-	bl       __nw__FUl
-	or.      r4, r3, r3
-	beq      lbl_802908DC
-	lis      r3, __vt__Q24Game13EnemyFSMState@ha
-	lis      r6, __vt__Q34Game9SnakeCrow5State@ha
-	addi     r0, r3, __vt__Q24Game13EnemyFSMState@l
-	lis      r5, lbl_804883D8@ha
-	stw      r0, 0(r4)
-	li       r0, 4
-	lis      r3, __vt__Q34Game9SnakeCrow14StateDisappear@ha
-	li       r7, 0
-	stw      r0, 4(r4)
-	addi     r6, r6, __vt__Q34Game9SnakeCrow5State@l
-	addi     r5, r5, lbl_804883D8@l
-	addi     r0, r3, __vt__Q34Game9SnakeCrow14StateDisappear@l
-	stw      r7, 8(r4)
-	stw      r6, 0(r4)
-	stw      r5, 0xc(r4)
-	stw      r0, 0(r4)
-
-lbl_802908DC:
-	mr       r3, r31
-	bl       registerState__Q24Game17EnemyStateMachineFPQ24Game13EnemyFSMState
-	li       r3, 0x10
-	bl       __nw__FUl
-	or.      r4, r3, r3
-	beq      lbl_80290930
-	lis      r3, __vt__Q24Game13EnemyFSMState@ha
-	lis      r5, __vt__Q34Game9SnakeCrow5State@ha
-	addi     r0, r3, __vt__Q24Game13EnemyFSMState@l
-	lis      r3, __vt__Q34Game9SnakeCrow9StateWait@ha
-	stw      r0, 0(r4)
-	li       r0, 5
-	li       r7, 0
-	addi     r6, r5, __vt__Q34Game9SnakeCrow5State@l
-	stw      r0, 4(r4)
-	addi     r5, r2, lbl_8051BA18@sda21
-	addi     r0, r3, __vt__Q34Game9SnakeCrow9StateWait@l
-	stw      r7, 8(r4)
-	stw      r6, 0(r4)
-	stw      r5, 0xc(r4)
-	stw      r0, 0(r4)
-
-lbl_80290930:
-	mr       r3, r31
-	bl       registerState__Q24Game17EnemyStateMachineFPQ24Game13EnemyFSMState
-	li       r3, 0x10
-	bl       __nw__FUl
-	or.      r4, r3, r3
-	beq      lbl_80290984
-	lis      r3, __vt__Q24Game13EnemyFSMState@ha
-	lis      r5, __vt__Q34Game9SnakeCrow5State@ha
-	addi     r0, r3, __vt__Q24Game13EnemyFSMState@l
-	lis      r3, __vt__Q34Game9SnakeCrow11StateAttack@ha
-	stw      r0, 0(r4)
-	li       r0, 6
-	li       r7, 0
-	addi     r6, r5, __vt__Q34Game9SnakeCrow5State@l
-	stw      r0, 4(r4)
-	addi     r5, r2, lbl_8051BA20@sda21
-	addi     r0, r3, __vt__Q34Game9SnakeCrow11StateAttack@l
-	stw      r7, 8(r4)
-	stw      r6, 0(r4)
-	stw      r5, 0xc(r4)
-	stw      r0, 0(r4)
-
-lbl_80290984:
-	mr       r3, r31
-	bl       registerState__Q24Game17EnemyStateMachineFPQ24Game13EnemyFSMState
-	li       r3, 0x10
-	bl       __nw__FUl
-	or.      r4, r3, r3
-	beq      lbl_802909D8
-	lis      r3, __vt__Q24Game13EnemyFSMState@ha
-	lis      r5, __vt__Q34Game9SnakeCrow5State@ha
-	addi     r0, r3, __vt__Q24Game13EnemyFSMState@l
-	lis      r3, __vt__Q34Game9SnakeCrow8StateEat@ha
-	stw      r0, 0(r4)
-	li       r0, 7
-	li       r7, 0
-	addi     r6, r5, __vt__Q34Game9SnakeCrow5State@l
-	stw      r0, 4(r4)
-	addi     r5, r2, lbl_8051BA28@sda21
-	addi     r0, r3, __vt__Q34Game9SnakeCrow8StateEat@l
-	stw      r7, 8(r4)
-	stw      r6, 0(r4)
-	stw      r5, 0xc(r4)
-	stw      r0, 0(r4)
-
-lbl_802909D8:
-	mr       r3, r31
-	bl       registerState__Q24Game17EnemyStateMachineFPQ24Game13EnemyFSMState
-	li       r3, 0x10
-	bl       __nw__FUl
-	or.      r4, r3, r3
-	beq      lbl_80290A30
-	lis      r3, __vt__Q24Game13EnemyFSMState@ha
-	lis      r6, __vt__Q34Game9SnakeCrow5State@ha
-	addi     r0, r3, __vt__Q24Game13EnemyFSMState@l
-	lis      r5, lbl_804883E4@ha
-	stw      r0, 0(r4)
-	li       r0, 8
-	lis      r3, __vt__Q34Game9SnakeCrow13StateStruggle@ha
-	li       r7, 0
-	stw      r0, 4(r4)
-	addi     r6, r6, __vt__Q34Game9SnakeCrow5State@l
-	addi     r5, r5, lbl_804883E4@l
-	addi     r0, r3, __vt__Q34Game9SnakeCrow13StateStruggle@l
-	stw      r7, 8(r4)
-	stw      r6, 0(r4)
-	stw      r5, 0xc(r4)
-	stw      r0, 0(r4)
-
-lbl_80290A30:
-	mr       r3, r31
-	bl       registerState__Q24Game17EnemyStateMachineFPQ24Game13EnemyFSMState
-	lwz      r0, 0x14(r1)
-	lwz      r31, 0xc(r1)
-	mtlr     r0
-	addi     r1, r1, 0x10
-	blr
-	*/
+	create(SNAKECROW_Count);
+	registerState(new StateDead);
+	registerState(new StateStay);
+	registerState(new StateAppear1);
+	registerState(new StateAppear2);
+	registerState(new StateDisappear);
+	registerState(new StateWait);
+	registerState(new StateAttack);
+	registerState(new StateEat);
+	registerState(new StateStruggle);
 }
 
 /*
@@ -486,59 +37,19 @@ lbl_80290A30:
  * Address:	80290A4C
  * Size:	0000C4
  */
-void SnakeCrow::StateDead::init(Game::EnemyBase*, Game::StateArg*)
+void StateDead::init(EnemyBase* enemy, StateArg* stateArg)
 {
-	/*
-	stwu     r1, -0x30(r1)
-	mflr     r0
-	stw      r0, 0x34(r1)
-	stw      r31, 0x2c(r1)
-	mr       r31, r4
-	mr       r3, r31
-	bl       deathProcedure__Q24Game9EnemyBaseFv
-	lwz      r0, 0x1e0(r31)
-	mr       r3, r31
-	lfs      f0, lbl_8051BA2C@sda21(r2)
-	rlwinm   r0, r0, 0, 0x1a, 0x18
-	stw      r0, 0x1e0(r31)
-	stfs     f0, 0x1d4(r31)
-	stfs     f0, 0x1d8(r31)
-	stfs     f0, 0x1dc(r31)
-	bl       setEmotionCaution__Q24Game9EnemyBaseFv
-	mr       r3, r31
-	li       r4, 0
-	li       r5, 0
-	bl       startMotion__Q24Game9EnemyBaseFiPQ28SysShape14MotionListener
-	mr       r3, r31
-	bl       createDeadStartEffect__Q34Game9SnakeCrow3ObjFv
-	mr       r4, r31
-	addi     r3, r1, 8
-	lwz      r12, 0(r31)
-	lwz      r12, 8(r12)
-	mtctr    r12
-	bctrl
-	lfs      f2, 8(r1)
-	addi     r5, r1, 0x14
-	lfs      f1, 0xc(r1)
-	li       r4, 0
-	lfs      f0, 0x10(r1)
-	li       r6, 2
-	stfs     f2, 0x14(r1)
-	lwz      r3, cameraMgr__4Game@sda21(r13)
-	stfs     f1, 0x18(r1)
-	stfs     f0, 0x1c(r1)
-	bl       "startVibration__Q24Game9CameraMgrFiR10Vector3<f>i"
-	lwz      r3, rumbleMgr__4Game@sda21(r13)
-	addi     r5, r1, 0x14
-	li       r4, 0xd
-	li       r6, 2
-	bl       "startRumble__Q24Game9RumbleMgrFiR10Vector3<f>i"
-	lwz      r0, 0x34(r1)
-	lwz      r31, 0x2c(r1)
-	mtlr     r0
-	addi     r1, r1, 0x30
-	blr
-	*/
+	Obj* snagret = static_cast<Obj*>(enemy);
+	snagret->deathProcedure();
+	snagret->resetEvent(0, EB_Cullable);
+	snagret->m_velocity2 = Vector3f(0.0f);
+	snagret->setEmotionCaution();
+	snagret->startMotion(0, nullptr);
+	snagret->createDeadStartEffect();
+
+	Vector3f position = snagret->getPosition();
+	cameraMgr->startVibration(0, position, 2);
+	rumbleMgr->startRumble(13, position, 2);
 }
 
 /*
@@ -546,112 +57,35 @@ void SnakeCrow::StateDead::init(Game::EnemyBase*, Game::StateArg*)
  * Address:	80290B10
  * Size:	000170
  */
-void SnakeCrow::StateDead::exec(Game::EnemyBase*)
+void StateDead::exec(EnemyBase* enemy)
 {
-	/*
-	stwu     r1, -0x40(r1)
-	mflr     r0
-	stw      r0, 0x44(r1)
-	stw      r31, 0x3c(r1)
-	mr       r31, r4
-	lwz      r3, 0x188(r4)
-	lbz      r0, 0x24(r3)
-	cmplwi   r0, 0
-	beq      lbl_80290C6C
-	lwz      r0, 0x1c(r3)
-	cmplwi   r0, 2
-	bne      lbl_80290B50
-	lfs      f1, lbl_8051BA30@sda21(r2)
-	mr       r3, r31
-	bl       createDownHeadEffect__Q34Game9SnakeCrow3ObjFf
-	b        lbl_80290C6C
+	Obj* snagret = static_cast<Obj*>(enemy);
+	if (snagret->m_animKeyEvent->m_running) {
+		if ((u32)snagret->m_animKeyEvent->m_type == 2) {
+			snagret->createDownHeadEffect(0.65f);
 
-lbl_80290B50:
-	cmplwi   r0, 3
-	bne      lbl_80290BE0
-	mr       r3, r31
-	bl       deleteJointShadow__Q34Game9SnakeCrow3ObjFv
-	mr       r3, r31
-	bl       createDeadFinishEffect__Q34Game9SnakeCrow3ObjFv
-	mr       r3, r31
-	bl       finishWaitEffect__Q34Game9SnakeCrow3ObjFv
-	mr       r3, r31
-	lwz      r12, 0(r31)
-	lwz      r12, 0x264(r12)
-	mtctr    r12
-	bctrl
-	mr       r4, r31
-	addi     r3, r1, 0x14
-	lwz      r12, 0(r31)
-	lwz      r12, 8(r12)
-	mtctr    r12
-	bctrl
-	lfs      f2, 0x14(r1)
-	addi     r5, r1, 0x2c
-	lfs      f1, 0x18(r1)
-	li       r4, 0
-	lfs      f0, 0x1c(r1)
-	li       r6, 2
-	stfs     f2, 0x2c(r1)
-	lwz      r3, cameraMgr__4Game@sda21(r13)
-	stfs     f1, 0x30(r1)
-	stfs     f0, 0x34(r1)
-	bl       "startVibration__Q24Game9CameraMgrFiR10Vector3<f>i"
-	lwz      r3, rumbleMgr__4Game@sda21(r13)
-	addi     r5, r1, 0x2c
-	li       r4, 0xb
-	li       r6, 2
-	bl       "startRumble__Q24Game9RumbleMgrFiR10Vector3<f>i"
-	b        lbl_80290C6C
+		} else if ((u32)snagret->m_animKeyEvent->m_type == 3) {
+			snagret->deleteJointShadow();
+			snagret->createDeadFinishEffect();
+			snagret->finishWaitEffect();
+			snagret->throwupItem();
 
-lbl_80290BE0:
-	cmplwi   r0, 4
-	bne      lbl_80290BF8
-	lfs      f1, lbl_8051BA34@sda21(r2)
-	mr       r3, r31
-	bl       createDownHeadEffect__Q34Game9SnakeCrow3ObjFf
-	b        lbl_80290C6C
+			Vector3f position = snagret->getPosition();
+			cameraMgr->startVibration(0, position, 2);
+			rumbleMgr->startRumble(11, position, 2);
 
-lbl_80290BF8:
-	cmplwi   r0, 5
-	bne      lbl_80290C58
-	lwz      r12, 0(r4)
-	addi     r3, r1, 8
-	lwz      r12, 8(r12)
-	mtctr    r12
-	bctrl
-	lfs      f2, 8(r1)
-	addi     r5, r1, 0x20
-	lfs      f1, 0xc(r1)
-	li       r4, 8
-	lfs      f0, 0x10(r1)
-	li       r6, 2
-	stfs     f2, 0x20(r1)
-	lwz      r3, cameraMgr__4Game@sda21(r13)
-	stfs     f1, 0x24(r1)
-	stfs     f0, 0x28(r1)
-	bl       "startVibration__Q24Game9CameraMgrFiR10Vector3<f>i"
-	lwz      r3, rumbleMgr__4Game@sda21(r13)
-	addi     r5, r1, 0x20
-	li       r4, 0xd
-	li       r6, 2
-	bl       "startRumble__Q24Game9RumbleMgrFiR10Vector3<f>i"
-	b        lbl_80290C6C
+		} else if ((u32)snagret->m_animKeyEvent->m_type == 4) {
+			snagret->createDownHeadEffect(0.5f);
 
-lbl_80290C58:
-	cmplwi   r0, 0x3e8
-	bne      lbl_80290C6C
-	mr       r3, r31
-	li       r4, 0
-	bl       kill__Q24Game8CreatureFPQ24Game15CreatureKillArg
+		} else if ((u32)snagret->m_animKeyEvent->m_type == 5) {
+			Vector3f position = snagret->getPosition();
+			cameraMgr->startVibration(8, position, 2);
+			rumbleMgr->startRumble(13, position, 2);
 
-lbl_80290C6C:
-	lwz      r0, 0x44(r1)
-	lwz      r31, 0x3c(r1)
-	mtlr     r0
-	addi     r1, r1, 0x40
-	blr
-	*/
+		} else if ((u32)snagret->m_animKeyEvent->m_type == 1000) {
+			snagret->kill(nullptr);
+		}
+	}
 }
 
 /*
@@ -659,92 +93,36 @@ lbl_80290C6C:
  * Address:	80290C80
  * Size:	000004
  */
-void SnakeCrow::StateDead::cleanup(Game::EnemyBase*) { }
+void StateDead::cleanup(EnemyBase* enemy) { }
 
 /*
  * --INFO--
  * Address:	80290C84
  * Size:	000124
  */
-void SnakeCrow::StateStay::init(Game::EnemyBase*, Game::StateArg*)
+void StateStay::init(EnemyBase* enemy, StateArg* stateArg)
 {
-	/*
-	stwu     r1, -0x30(r1)
-	mflr     r0
-	lfs      f0, lbl_8051BA2C@sda21(r2)
-	stw      r0, 0x34(r1)
-	stw      r31, 0x2c(r1)
-	mr       r31, r4
-	mr       r3, r31
-	stfs     f0, 0x2c4(r4)
-	bl       finishJointShadow__Q34Game9SnakeCrow3ObjFv
-	mr       r4, r31
-	addi     r3, r1, 8
-	lwz      r12, 0(r31)
-	lwz      r12, 8(r12)
-	mtctr    r12
-	bctrl
-	lfs      f2, 8(r1)
-	mr       r3, r31
-	lfs      f1, 0xc(r1)
-	addi     r4, r1, 0x14
-	lfs      f0, 0x10(r1)
-	stfs     f2, 0x14(r1)
-	stfs     f1, 0x18(r1)
-	stfs     f0, 0x1c(r1)
-	lwz      r12, 0(r31)
-	lwz      r12, 0x70(r12)
-	mtctr    r12
-	bctrl
-	mr       r3, r31
-	li       r4, 0
-	lwz      r12, 0(r31)
-	lwz      r12, 0xa4(r12)
-	mtctr    r12
-	bctrl
-	lwz      r4, 0x1e0(r31)
-	li       r0, 1
-	lfs      f0, lbl_8051BA2C@sda21(r2)
-	mr       r3, r31
-	ori      r5, r4, 1
-	li       r4, 1
-	stw      r5, 0x1e0(r31)
-	li       r5, 0
-	stb      r0, 0x2c0(r31)
-	lwz      r0, 0x1e0(r31)
-	oris     r0, r0, 0x40
-	stw      r0, 0x1e0(r31)
-	lwz      r0, 0x1e0(r31)
-	rlwinm   r0, r0, 0, 0x11, 0xf
-	stw      r0, 0x1e0(r31)
-	lwz      r0, 0x1e0(r31)
-	oris     r0, r0, 0x4000
-	stw      r0, 0x1e0(r31)
-	lwz      r0, 0x1e0(r31)
-	rlwinm   r0, r0, 0, 0x15, 0x13
-	stw      r0, 0x1e0(r31)
-	stfs     f0, 0x1d4(r31)
-	stfs     f0, 0x1d8(r31)
-	stfs     f0, 0x1dc(r31)
-	bl       startMotion__Q24Game9EnemyBaseFiPQ28SysShape14MotionListener
-	mr       r3, r31
-	bl       stopMotion__Q24Game9EnemyBaseFv
-	lwz      r0, 0x280(r31)
-	cmplwi   r0, 0
-	beq      lbl_80290D94
-	mr       r3, r31
-	lwz      r12, 0(r31)
-	lwz      r12, 0x254(r12)
-	mtctr    r12
-	bctrl
+	Obj* snagret          = static_cast<Obj*>(enemy);
+	snagret->m_stateTimer = 0.0f;
+	snagret->finishJointShadow();
 
-lbl_80290D94:
-	lwz      r0, 0x34(r1)
-	lwz      r31, 0x2c(r1)
-	mtlr     r0
-	addi     r1, r1, 0x30
-	blr
-	*/
+	Vector3f position = snagret->getPosition();
+	snagret->onSetPosition(position);
+	snagret->setAtari(false);
+	snagret->setEvent(0, EB_Vulnerable);
+	snagret->m_isUnderground = true;
+	snagret->setEvent(0, EB_BitterImmune);
+	snagret->resetEvent(0, EB_16);
+	snagret->setEvent(0, EB_31);
+	snagret->resetEvent(0, EB_LifegaugeVisible);
+
+	snagret->m_velocity2 = Vector3f(0.0f);
+	snagret->startMotion(1, nullptr);
+	snagret->stopMotion();
+
+	if (snagret->m_waterBox != nullptr) {
+		snagret->fadeEfxHamon();
+	}
 }
 
 /*
@@ -752,8 +130,82 @@ lbl_80290D94:
  * Address:	80290DA8
  * Size:	000618
  */
-void SnakeCrow::StateStay::exec(Game::EnemyBase*)
+void StateStay::exec(EnemyBase* enemy)
 {
+	Obj* snagret     = static_cast<Obj*>(enemy);
+	Creature* target = nullptr;
+	Parms* parms     = static_cast<Parms*>(snagret->m_parms);
+	if (snagret->m_stateTimer > parms->m_properParms._854.m_value) {
+		f32 territory    = parms->m_general.m_territoryRadius.m_value;
+		Vector3f homePos = Vector3f(snagret->m_homePosition);
+		f32 tSqr         = territory * territory;
+
+		Iterator<Piki> pikiIterator(pikiMgr);
+		bool targetNotFound = true;
+		pikiIterator.first();
+
+		while (!pikiIterator.isDone()) {
+			Piki* piki = (*pikiIterator);
+			if (piki->isAlive() && piki->isPikmin() && !piki->isStickToMouth()) {
+				Vector3f pikiPos = piki->getPosition();
+				Vector3f diff    = homePos - pikiPos;
+				f32 sqrDist      = SQUARE(diff.x) + SQUARE(diff.y) + SQUARE(diff.z);
+				if (sqrDist < tSqr) {
+					target         = piki;
+					targetNotFound = false;
+				} else if (sqrDist < 160000.0f) {
+					targetNotFound = false;
+				}
+			}
+
+			if (target != nullptr) {
+				break;
+			}
+			pikiIterator.next();
+		}
+
+		if (target == nullptr) {
+			Iterator<Navi> naviIterator(naviMgr);
+			naviIterator.first();
+
+			while (!naviIterator.isDone()) {
+				Navi* navi = (*naviIterator);
+				if (navi->isAlive()) {
+					Vector3f naviPos = navi->getPosition();
+					Vector3f diff    = homePos - naviPos;
+					f32 sqrDist      = SQUARE(diff.x) + SQUARE(diff.y) + SQUARE(diff.z);
+					if (sqrDist < tSqr) {
+						target         = navi;
+						targetNotFound = false;
+					} else if (sqrDist < 160000.0f) {
+						targetNotFound = false;
+					}
+				}
+
+				if (target != nullptr) {
+					break;
+				}
+				naviIterator.next();
+			}
+		}
+
+		if (targetNotFound) {
+			snagret->resetBossAppearBGM();
+		}
+	}
+
+	snagret->m_stateTimer += sys->m_secondsPerFrame;
+	if (target != nullptr) {
+		snagret->m_targetCreature = target;
+		snagret->appearNearByTarget(target);
+		snagret->setBossAppearBGM();
+		Parms* parms = static_cast<Parms*>(snagret->m_parms);
+		if (randWeightFloat(1.0f) < parms->m_properParms._804.m_value) {
+			transit(snagret, SNAKECROW_Appear1, nullptr);
+		} else {
+			transit(snagret, SNAKECROW_Appear2, nullptr);
+		}
+	}
 	/*
 	stwu     r1, -0xa0(r1)
 	mflr     r0
@@ -1203,46 +655,17 @@ lbl_8029138C:
  * Address:	802913C0
  * Size:	000090
  */
-void SnakeCrow::StateStay::cleanup(Game::EnemyBase*)
+void StateStay::cleanup(EnemyBase* enemy)
 {
-	/*
-	stwu     r1, -0x10(r1)
-	mflr     r0
-	stw      r0, 0x14(r1)
-	mr       r0, r4
-	li       r4, 1
-	stw      r31, 0xc(r1)
-	mr       r31, r0
-	mr       r3, r31
-	lwz      r12, 0(r31)
-	lwz      r12, 0xa4(r12)
-	mtctr    r12
-	bctrl
-	lwz      r4, 0x1e0(r31)
-	li       r0, 0
-	mr       r3, r31
-	rlwinm   r4, r4, 0, 0, 0x1e
-	stw      r4, 0x1e0(r31)
-	stb      r0, 0x2c0(r31)
-	lwz      r0, 0x1e0(r31)
-	rlwinm   r0, r0, 0, 0xa, 8
-	stw      r0, 0x1e0(r31)
-	lwz      r0, 0x1e0(r31)
-	ori      r0, r0, 0x8000
-	stw      r0, 0x1e0(r31)
-	lwz      r0, 0x1e0(r31)
-	rlwinm   r0, r0, 0, 2, 0
-	stw      r0, 0x1e0(r31)
-	lwz      r0, 0x1e0(r31)
-	ori      r0, r0, 0x800
-	stw      r0, 0x1e0(r31)
-	bl       lifeIncrement__Q34Game9SnakeCrow3ObjFv
-	lwz      r0, 0x14(r1)
-	lwz      r31, 0xc(r1)
-	mtlr     r0
-	addi     r1, r1, 0x10
-	blr
-	*/
+	Obj* snagret = static_cast<Obj*>(enemy);
+	snagret->setAtari(true);
+	snagret->resetEvent(0, EB_Vulnerable);
+	snagret->m_isUnderground = false;
+	snagret->resetEvent(0, EB_BitterImmune);
+	snagret->setEvent(0, EB_16);
+	snagret->resetEvent(0, EB_31);
+	snagret->setEvent(0, EB_LifegaugeVisible);
+	snagret->lifeIncrement();
 }
 
 /*
@@ -1250,61 +673,19 @@ void SnakeCrow::StateStay::cleanup(Game::EnemyBase*)
  * Address:	80291450
  * Size:	0000CC
  */
-void SnakeCrow::StateAppear1::init(Game::EnemyBase*, Game::StateArg*)
+void StateAppear1::init(EnemyBase* enemy, StateArg* stateArg)
 {
-	/*
-	stwu     r1, -0x30(r1)
-	mflr     r0
-	lfs      f0, lbl_8051BA2C@sda21(r2)
-	stw      r0, 0x34(r1)
-	stw      r31, 0x2c(r1)
-	mr       r31, r4
-	mr       r3, r31
-	lwz      r0, 0x1e0(r4)
-	oris     r0, r0, 0x20
-	stw      r0, 0x1e0(r4)
-	lwz      r0, 0x1e0(r4)
-	rlwinm   r0, r0, 0, 0x1a, 0x18
-	stw      r0, 0x1e0(r4)
-	stfs     f0, 0x1d4(r4)
-	stfs     f0, 0x1d8(r4)
-	stfs     f0, 0x1dc(r4)
-	bl       setEmotionExcitement__Q24Game9EnemyBaseFv
-	mr       r3, r31
-	li       r4, 1
-	li       r5, 0
-	bl       startMotion__Q24Game9EnemyBaseFiPQ28SysShape14MotionListener
-	mr       r3, r31
-	li       r4, 0
-	bl       createAppearEffect__Q34Game9SnakeCrow3ObjFi
-	mr       r4, r31
-	addi     r3, r1, 8
-	lwz      r12, 0(r31)
-	lwz      r12, 8(r12)
-	mtctr    r12
-	bctrl
-	lfs      f2, 8(r1)
-	addi     r5, r1, 0x14
-	lfs      f1, 0xc(r1)
-	li       r4, 6
-	lfs      f0, 0x10(r1)
-	li       r6, 2
-	stfs     f2, 0x14(r1)
-	lwz      r3, cameraMgr__4Game@sda21(r13)
-	stfs     f1, 0x18(r1)
-	stfs     f0, 0x1c(r1)
-	bl       "startVibration__Q24Game9CameraMgrFiR10Vector3<f>i"
-	lwz      r3, rumbleMgr__4Game@sda21(r13)
-	addi     r5, r1, 0x14
-	li       r4, 0xf
-	li       r6, 2
-	bl       "startRumble__Q24Game9RumbleMgrFiR10Vector3<f>i"
-	lwz      r0, 0x34(r1)
-	lwz      r31, 0x2c(r1)
-	mtlr     r0
-	addi     r1, r1, 0x30
-	blr
-	*/
+	Obj* snagret = static_cast<Obj*>(enemy);
+	snagret->setEvent(0, EB_22);
+	snagret->resetEvent(0, EB_Cullable);
+	snagret->m_velocity2 = Vector3f(0.0f);
+	snagret->setEmotionExcitement();
+	snagret->startMotion(1, nullptr);
+	snagret->createAppearEffect(0);
+
+	Vector3f position = snagret->getPosition();
+	cameraMgr->startVibration(6, position, 2);
+	rumbleMgr->startRumble(15, position, 2);
 }
 
 /*
@@ -1312,108 +693,33 @@ void SnakeCrow::StateAppear1::init(Game::EnemyBase*, Game::StateArg*)
  * Address:	8029151C
  * Size:	000158
  */
-void SnakeCrow::StateAppear1::exec(Game::EnemyBase*)
+void StateAppear1::exec(EnemyBase* enemy)
 {
-	/*
-	stwu     r1, -0x10(r1)
-	mflr     r0
-	stw      r0, 0x14(r1)
-	stw      r31, 0xc(r1)
-	mr       r31, r4
-	stw      r30, 8(r1)
-	mr       r30, r3
-	lwz      r3, 0x188(r4)
-	lbz      r0, 0x24(r3)
-	cmplwi   r0, 0
-	beq      lbl_8029165C
-	lwz      r0, 0x1c(r3)
-	cmplwi   r0, 2
-	bne      lbl_80291574
-	lwz      r0, 0x1e0(r31)
-	mr       r3, r31
-	rlwinm   r0, r0, 0, 0xb, 9
-	stw      r0, 0x1e0(r31)
-	bl       startBossAttackBGM__Q34Game9SnakeCrow3ObjFv
-	mr       r3, r31
-	bl       startJointShadow__Q34Game9SnakeCrow3ObjFv
-	b        lbl_8029165C
+	Obj* snagret = static_cast<Obj*>(enemy);
+	if (snagret->m_animKeyEvent->m_running) {
+		if ((u32)snagret->m_animKeyEvent->m_type == 2) {
+			snagret->resetEvent(0, EB_22);
+			snagret->startBossAttackBGM();
+			snagret->startJointShadow();
 
-lbl_80291574:
-	cmplwi   r0, 0x3e8
-	bne      lbl_8029165C
-	mr       r3, r31
-	bl       setAttackPosition__Q34Game9SnakeCrow3ObjFv
-	lfs      f1, 0x200(r31)
-	lfs      f0, lbl_8051BA2C@sda21(r2)
-	fcmpo    cr0, f1, f0
-	cror     2, 0, 2
-	bne      lbl_802915BC
-	mr       r3, r30
-	mr       r4, r31
-	lwz      r12, 0(r30)
-	li       r5, 0
-	li       r6, 0
-	lwz      r12, 0x1c(r12)
-	mtctr    r12
-	bctrl
-	b        lbl_8029165C
+		} else if ((u32)snagret->m_animKeyEvent->m_type == 1000) {
+			snagret->setAttackPosition();
+			if (snagret->m_health <= 0.0f) {
+				transit(snagret, SNAKECROW_Dead, nullptr);
+				return;
+			}
 
-lbl_802915BC:
-	mr       r3, r31
-	li       r4, 5
-	bl       getAttackPiki__Q34Game9SnakeCrow3ObjFi
-	cmplwi   r3, 0
-	bne      lbl_802915E4
-	mr       r3, r31
-	li       r4, 5
-	bl       getAttackNavi__Q34Game9SnakeCrow3ObjFi
-	cmplwi   r3, 0
-	beq      lbl_8029163C
-
-lbl_802915E4:
-	mr       r3, r31
-	bl       getStickHeadPikmin__Q34Game9SnakeCrow3ObjFv
-	cmpwi    r3, 0
-	beq      lbl_80291618
-	mr       r3, r30
-	mr       r4, r31
-	lwz      r12, 0(r30)
-	li       r5, 8
-	li       r6, 0
-	lwz      r12, 0x1c(r12)
-	mtctr    r12
-	bctrl
-	b        lbl_8029165C
-
-lbl_80291618:
-	mr       r3, r30
-	mr       r4, r31
-	lwz      r12, 0(r30)
-	li       r5, 6
-	li       r6, 0
-	lwz      r12, 0x1c(r12)
-	mtctr    r12
-	bctrl
-	b        lbl_8029165C
-
-lbl_8029163C:
-	mr       r3, r30
-	mr       r4, r31
-	lwz      r12, 0(r30)
-	li       r5, 5
-	li       r6, 0
-	lwz      r12, 0x1c(r12)
-	mtctr    r12
-	bctrl
-
-lbl_8029165C:
-	lwz      r0, 0x14(r1)
-	lwz      r31, 0xc(r1)
-	lwz      r30, 8(r1)
-	mtlr     r0
-	addi     r1, r1, 0x10
-	blr
-	*/
+			if (snagret->getAttackPiki(5) != nullptr || snagret->getAttackNavi(5) != nullptr) {
+				if (snagret->getStickHeadPikmin() != 0) {
+					transit(snagret, SNAKECROW_Struggle, nullptr);
+				} else {
+					transit(snagret, SNAKECROW_Attack, nullptr);
+				}
+			} else {
+				transit(snagret, SNAKECROW_Wait, nullptr);
+			}
+		}
+	}
 }
 
 /*
@@ -1421,38 +727,16 @@ lbl_8029165C:
  * Address:	80291674
  * Size:	000068
  */
-void SnakeCrow::StateAppear1::cleanup(Game::EnemyBase*)
+void StateAppear1::cleanup(EnemyBase* enemy)
 {
-	/*
-	stwu     r1, -0x10(r1)
-	mflr     r0
-	stw      r0, 0x14(r1)
-	stw      r31, 0xc(r1)
-	mr       r31, r4
-	mr       r3, r31
-	lwz      r0, 0x1e0(r4)
-	rlwinm   r0, r0, 0, 0xb, 9
-	stw      r0, 0x1e0(r4)
-	lwz      r0, 0x1e0(r4)
-	ori      r0, r0, 0x40
-	stw      r0, 0x1e0(r4)
-	bl       startWaitEffect__Q34Game9SnakeCrow3ObjFv
-	lwz      r0, 0x280(r31)
-	cmplwi   r0, 0
-	beq      lbl_802916C8
-	mr       r3, r31
-	lwz      r12, 0(r31)
-	lwz      r12, 0x250(r12)
-	mtctr    r12
-	bctrl
+	Obj* snagret = static_cast<Obj*>(enemy);
+	snagret->resetEvent(0, EB_22);
+	snagret->setEvent(0, EB_Cullable);
+	snagret->startWaitEffect();
 
-lbl_802916C8:
-	lwz      r0, 0x14(r1)
-	lwz      r31, 0xc(r1)
-	mtlr     r0
-	addi     r1, r1, 0x10
-	blr
-	*/
+	if (snagret->m_waterBox != nullptr) {
+		snagret->createEfxHamon();
+	}
 }
 
 /*
@@ -1460,61 +744,19 @@ lbl_802916C8:
  * Address:	802916DC
  * Size:	0000CC
  */
-void SnakeCrow::StateAppear2::init(Game::EnemyBase*, Game::StateArg*)
+void StateAppear2::init(EnemyBase* enemy, StateArg* stateArg)
 {
-	/*
-	stwu     r1, -0x30(r1)
-	mflr     r0
-	lfs      f0, lbl_8051BA2C@sda21(r2)
-	stw      r0, 0x34(r1)
-	stw      r31, 0x2c(r1)
-	mr       r31, r4
-	mr       r3, r31
-	lwz      r0, 0x1e0(r4)
-	oris     r0, r0, 0x20
-	stw      r0, 0x1e0(r4)
-	lwz      r0, 0x1e0(r4)
-	rlwinm   r0, r0, 0, 0x1a, 0x18
-	stw      r0, 0x1e0(r4)
-	stfs     f0, 0x1d4(r4)
-	stfs     f0, 0x1d8(r4)
-	stfs     f0, 0x1dc(r4)
-	bl       setEmotionExcitement__Q24Game9EnemyBaseFv
-	mr       r3, r31
-	li       r4, 2
-	li       r5, 0
-	bl       startMotion__Q24Game9EnemyBaseFiPQ28SysShape14MotionListener
-	mr       r3, r31
-	li       r4, 1
-	bl       createAppearEffect__Q34Game9SnakeCrow3ObjFi
-	mr       r4, r31
-	addi     r3, r1, 8
-	lwz      r12, 0(r31)
-	lwz      r12, 8(r12)
-	mtctr    r12
-	bctrl
-	lfs      f2, 8(r1)
-	addi     r5, r1, 0x14
-	lfs      f1, 0xc(r1)
-	li       r4, 8
-	lfs      f0, 0x10(r1)
-	li       r6, 2
-	stfs     f2, 0x14(r1)
-	lwz      r3, cameraMgr__4Game@sda21(r13)
-	stfs     f1, 0x18(r1)
-	stfs     f0, 0x1c(r1)
-	bl       "startVibration__Q24Game9CameraMgrFiR10Vector3<f>i"
-	lwz      r3, rumbleMgr__4Game@sda21(r13)
-	addi     r5, r1, 0x14
-	li       r4, 0xc
-	li       r6, 2
-	bl       "startRumble__Q24Game9RumbleMgrFiR10Vector3<f>i"
-	lwz      r0, 0x34(r1)
-	lwz      r31, 0x2c(r1)
-	mtlr     r0
-	addi     r1, r1, 0x30
-	blr
-	*/
+	Obj* snagret = static_cast<Obj*>(enemy);
+	snagret->setEvent(0, EB_22);
+	snagret->resetEvent(0, EB_Cullable);
+	snagret->m_velocity2 = Vector3f(0.0f);
+	snagret->setEmotionExcitement();
+	snagret->startMotion(2, nullptr);
+	snagret->createAppearEffect(1);
+
+	Vector3f position = snagret->getPosition();
+	cameraMgr->startVibration(8, position, 2);
+	rumbleMgr->startRumble(12, position, 2);
 }
 
 /*
@@ -1522,169 +764,46 @@ void SnakeCrow::StateAppear2::init(Game::EnemyBase*, Game::StateArg*)
  * Address:	802917A8
  * Size:	000234
  */
-void SnakeCrow::StateAppear2::exec(Game::EnemyBase*)
+void StateAppear2::exec(EnemyBase* enemy)
 {
-	/*
-	stwu     r1, -0x40(r1)
-	mflr     r0
-	stw      r0, 0x44(r1)
-	stw      r31, 0x3c(r1)
-	mr       r31, r4
-	stw      r30, 0x38(r1)
-	mr       r30, r3
-	lwz      r3, 0x188(r4)
-	lbz      r0, 0x24(r3)
-	cmplwi   r0, 0
-	beq      lbl_802919C4
-	lwz      r0, 0x1c(r3)
-	cmplwi   r0, 2
-	bne      lbl_802917F8
-	lwz      r0, 0x1e0(r31)
-	mr       r3, r31
-	rlwinm   r0, r0, 0, 0xb, 9
-	stw      r0, 0x1e0(r31)
-	bl       startJointShadow__Q34Game9SnakeCrow3ObjFv
-	b        lbl_802919C4
+	Obj* snagret = static_cast<Obj*>(enemy);
+	if (snagret->m_animKeyEvent->m_running) {
+		if ((u32)snagret->m_animKeyEvent->m_type == 2) {
+			snagret->resetEvent(0, EB_22);
+			snagret->startJointShadow();
 
-lbl_802917F8:
-	cmplwi   r0, 3
-	bne      lbl_8029180C
-	mr       r3, r31
-	bl       startBossAttackBGM__Q34Game9SnakeCrow3ObjFv
-	b        lbl_802919C4
+		} else if ((u32)snagret->m_animKeyEvent->m_type == 3) {
+			snagret->startBossAttackBGM();
 
-lbl_8029180C:
-	cmplwi   r0, 4
-	bne      lbl_8029187C
-	mr       r3, r31
-	li       r4, 2
-	bl       createAppearEffect__Q34Game9SnakeCrow3ObjFi
-	mr       r4, r31
-	addi     r3, r1, 0x14
-	lwz      r12, 0(r31)
-	lwz      r12, 8(r12)
-	mtctr    r12
-	bctrl
-	lfs      f2, 0x14(r1)
-	addi     r5, r1, 0x2c
-	lfs      f1, 0x18(r1)
-	li       r4, 3
-	lfs      f0, 0x1c(r1)
-	li       r6, 2
-	stfs     f2, 0x2c(r1)
-	lwz      r3, cameraMgr__4Game@sda21(r13)
-	stfs     f1, 0x30(r1)
-	stfs     f0, 0x34(r1)
-	bl       "startVibration__Q24Game9CameraMgrFiR10Vector3<f>i"
-	lwz      r3, rumbleMgr__4Game@sda21(r13)
-	addi     r5, r1, 0x2c
-	li       r4, 0xb
-	li       r6, 2
-	bl       "startRumble__Q24Game9RumbleMgrFiR10Vector3<f>i"
-	b        lbl_802919C4
+		} else if ((u32)snagret->m_animKeyEvent->m_type == 4) {
+			snagret->createAppearEffect(2);
+			Vector3f position = snagret->getPosition();
+			cameraMgr->startVibration(3, position, 2);
+			rumbleMgr->startRumble(11, position, 2);
 
-lbl_8029187C:
-	cmplwi   r0, 5
-	bne      lbl_802918DC
-	lwz      r12, 0(r4)
-	addi     r3, r1, 8
-	lwz      r12, 8(r12)
-	mtctr    r12
-	bctrl
-	lfs      f2, 8(r1)
-	addi     r5, r1, 0x20
-	lfs      f1, 0xc(r1)
-	li       r4, 3
-	lfs      f0, 0x10(r1)
-	li       r6, 2
-	stfs     f2, 0x20(r1)
-	lwz      r3, cameraMgr__4Game@sda21(r13)
-	stfs     f1, 0x24(r1)
-	stfs     f0, 0x28(r1)
-	bl       "startVibration__Q24Game9CameraMgrFiR10Vector3<f>i"
-	lwz      r3, rumbleMgr__4Game@sda21(r13)
-	addi     r5, r1, 0x20
-	li       r4, 0xb
-	li       r6, 2
-	bl       "startRumble__Q24Game9RumbleMgrFiR10Vector3<f>i"
-	b        lbl_802919C4
+		} else if ((u32)snagret->m_animKeyEvent->m_type == 5) {
+			Vector3f position = snagret->getPosition();
+			cameraMgr->startVibration(3, position, 2);
+			rumbleMgr->startRumble(11, position, 2);
 
-lbl_802918DC:
-	cmplwi   r0, 0x3e8
-	bne      lbl_802919C4
-	mr       r3, r31
-	bl       setAttackPosition__Q34Game9SnakeCrow3ObjFv
-	lfs      f1, 0x200(r31)
-	lfs      f0, lbl_8051BA2C@sda21(r2)
-	fcmpo    cr0, f1, f0
-	cror     2, 0, 2
-	bne      lbl_80291924
-	mr       r3, r30
-	mr       r4, r31
-	lwz      r12, 0(r30)
-	li       r5, 0
-	li       r6, 0
-	lwz      r12, 0x1c(r12)
-	mtctr    r12
-	bctrl
-	b        lbl_802919C4
+		} else if ((u32)snagret->m_animKeyEvent->m_type == 1000) {
+			snagret->setAttackPosition();
+			if (snagret->m_health <= 0.0f) {
+				transit(snagret, SNAKECROW_Dead, nullptr);
+				return;
+			}
 
-lbl_80291924:
-	mr       r3, r31
-	li       r4, 5
-	bl       getAttackPiki__Q34Game9SnakeCrow3ObjFi
-	cmplwi   r3, 0
-	bne      lbl_8029194C
-	mr       r3, r31
-	li       r4, 5
-	bl       getAttackNavi__Q34Game9SnakeCrow3ObjFi
-	cmplwi   r3, 0
-	beq      lbl_802919A4
-
-lbl_8029194C:
-	mr       r3, r31
-	bl       getStickHeadPikmin__Q34Game9SnakeCrow3ObjFv
-	cmpwi    r3, 0
-	beq      lbl_80291980
-	mr       r3, r30
-	mr       r4, r31
-	lwz      r12, 0(r30)
-	li       r5, 8
-	li       r6, 0
-	lwz      r12, 0x1c(r12)
-	mtctr    r12
-	bctrl
-	b        lbl_802919C4
-
-lbl_80291980:
-	mr       r3, r30
-	mr       r4, r31
-	lwz      r12, 0(r30)
-	li       r5, 6
-	li       r6, 0
-	lwz      r12, 0x1c(r12)
-	mtctr    r12
-	bctrl
-	b        lbl_802919C4
-
-lbl_802919A4:
-	mr       r3, r30
-	mr       r4, r31
-	lwz      r12, 0(r30)
-	li       r5, 5
-	li       r6, 0
-	lwz      r12, 0x1c(r12)
-	mtctr    r12
-	bctrl
-
-lbl_802919C4:
-	lwz      r0, 0x44(r1)
-	lwz      r31, 0x3c(r1)
-	lwz      r30, 0x38(r1)
-	mtlr     r0
-	addi     r1, r1, 0x40
-	blr
-	*/
+			if (snagret->getAttackPiki(5) != nullptr || snagret->getAttackNavi(5) != nullptr) {
+				if (snagret->getStickHeadPikmin() != 0) {
+					transit(snagret, SNAKECROW_Struggle, nullptr);
+				} else {
+					transit(snagret, SNAKECROW_Attack, nullptr);
+				}
+			} else {
+				transit(snagret, SNAKECROW_Wait, nullptr);
+			}
+		}
+	}
 }
 
 /*
@@ -1692,38 +811,16 @@ lbl_802919C4:
  * Address:	802919DC
  * Size:	000068
  */
-void SnakeCrow::StateAppear2::cleanup(Game::EnemyBase*)
+void StateAppear2::cleanup(EnemyBase* enemy)
 {
-	/*
-	stwu     r1, -0x10(r1)
-	mflr     r0
-	stw      r0, 0x14(r1)
-	stw      r31, 0xc(r1)
-	mr       r31, r4
-	mr       r3, r31
-	lwz      r0, 0x1e0(r4)
-	rlwinm   r0, r0, 0, 0xb, 9
-	stw      r0, 0x1e0(r4)
-	lwz      r0, 0x1e0(r4)
-	ori      r0, r0, 0x40
-	stw      r0, 0x1e0(r4)
-	bl       startWaitEffect__Q34Game9SnakeCrow3ObjFv
-	lwz      r0, 0x280(r31)
-	cmplwi   r0, 0
-	beq      lbl_80291A30
-	mr       r3, r31
-	lwz      r12, 0(r31)
-	lwz      r12, 0x250(r12)
-	mtctr    r12
-	bctrl
+	Obj* snagret = static_cast<Obj*>(enemy);
+	snagret->resetEvent(0, EB_22);
+	snagret->setEvent(0, EB_Cullable);
+	snagret->startWaitEffect();
 
-lbl_80291A30:
-	lwz      r0, 0x14(r1)
-	lwz      r31, 0xc(r1)
-	mtlr     r0
-	addi     r1, r1, 0x10
-	blr
-	*/
+	if (snagret->m_waterBox != nullptr) {
+		snagret->createEfxHamon();
+	}
 }
 
 /*
@@ -1731,90 +828,20 @@ lbl_80291A30:
  * Address:	80291A44
  * Size:	000140
  */
-void SnakeCrow::StateDisappear::init(Game::EnemyBase*, Game::StateArg*)
+void StateDisappear::init(EnemyBase* enemy, StateArg* stateArg)
 {
-	/*
-	stwu     r1, -0x60(r1)
-	mflr     r0
-	stw      r0, 0x64(r1)
-	addi     r3, r1, 8
-	stw      r31, 0x5c(r1)
-	mr       r31, r4
-	lwz      r12, 0(r4)
-	lwz      r12, 8(r12)
-	mtctr    r12
-	bctrl
-	lis      r3, __vt__Q23efx5TBase@ha
-	li       r6, 0
-	addi     r0, r3, __vt__Q23efx5TBase@l
-	lfs      f2, 8(r1)
-	lis      r3, __vt__Q23efx8TSimple4@ha
-	stw      r0, 0x30(r1)
-	addi     r0, r3, __vt__Q23efx8TSimple4@l
-	lfs      f1, 0xc(r1)
-	lis      r3, __vt__Q23efx14THebiAphd_base@ha
-	stw      r0, 0x30(r1)
-	addi     r0, r3, __vt__Q23efx14THebiAphd_base@l
-	lfs      f0, 0x10(r1)
-	lis      r4, __vt__Q23efx3Arg@ha
-	lis      r3, __vt__Q23efx14THebiAphd_dive@ha
-	addi     r11, r4, __vt__Q23efx3Arg@l
-	li       r10, 0xa0
-	li       r9, 0xa1
-	li       r8, 0xa2
-	li       r7, 0xa3
-	li       r5, 0x1e
-	stw      r0, 0x30(r1)
-	addi     r0, r3, __vt__Q23efx14THebiAphd_dive@l
-	addi     r3, r1, 0x30
-	addi     r4, r1, 0x14
-	stfs     f2, 0x24(r1)
-	stfs     f1, 0x28(r1)
-	stfs     f0, 0x2c(r1)
-	stw      r11, 0x14(r1)
-	stfs     f2, 0x18(r1)
-	stfs     f1, 0x1c(r1)
-	stfs     f0, 0x20(r1)
-	sth      r10, 0x34(r1)
-	sth      r9, 0x36(r1)
-	sth      r8, 0x38(r1)
-	sth      r7, 0x3a(r1)
-	stw      r6, 0x3c(r1)
-	stw      r6, 0x40(r1)
-	stw      r6, 0x44(r1)
-	stw      r6, 0x48(r1)
-	stw      r5, 0x4c(r1)
-	stw      r0, 0x30(r1)
-	bl       create__Q23efx14THebiAphd_baseFPQ23efx3Arg
-	lwz      r0, 0x1e0(r31)
-	mr       r3, r31
-	lfs      f0, lbl_8051BA2C@sda21(r2)
-	rlwinm   r0, r0, 0, 0x1a, 0x18
-	stw      r0, 0x1e0(r31)
-	stfs     f0, 0x1d4(r31)
-	stfs     f0, 0x1d8(r31)
-	stfs     f0, 0x1dc(r31)
-	bl       setEmotionCaution__Q24Game9EnemyBaseFv
-	mr       r3, r31
-	li       r4, 3
-	li       r5, 0
-	bl       startMotion__Q24Game9EnemyBaseFiPQ28SysShape14MotionListener
-	lwz      r3, cameraMgr__4Game@sda21(r13)
-	addi     r5, r1, 0x24
-	li       r4, 6
-	li       r6, 2
-	bl       "startVibration__Q24Game9CameraMgrFiR10Vector3<f>i"
-	lwz      r3, rumbleMgr__4Game@sda21(r13)
-	addi     r5, r1, 0x24
-	li       r4, 0xe
-	li       r6, 2
-	bl       "startRumble__Q24Game9RumbleMgrFiR10Vector3<f>i"
-	lwz      r0, 0x64(r1)
-	lwz      r31, 0x5c(r1)
-	mtlr     r0
-	addi     r1, r1, 0x60
-	blr
-	*/
+	// Obj* snagret = static_cast<Obj*>(enemy);
+	Vector3f position = enemy->getPosition();
+	efx::Arg fxArg(position);
+	efx::THebiAphd_dive diveFx;
+	diveFx.create(&fxArg);
+
+	enemy->resetEvent(0, EB_Cullable);
+	enemy->m_velocity2 = Vector3f(0.0f);
+	enemy->setEmotionCaution();
+	enemy->startMotion(3, nullptr);
+	cameraMgr->startVibration(6, position, 2);
+	rumbleMgr->startRumble(14, position, 2);
 }
 
 /*
@@ -1822,85 +849,35 @@ void SnakeCrow::StateDisappear::init(Game::EnemyBase*, Game::StateArg*)
  * Address:	80291B84
  * Size:	000108
  */
-void SnakeCrow::StateDisappear::exec(Game::EnemyBase*)
+void StateDisappear::exec(EnemyBase* enemy)
 {
-	/*
-	stwu     r1, -0x10(r1)
-	mflr     r0
-	stw      r0, 0x14(r1)
-	stw      r31, 0xc(r1)
-	mr       r31, r4
-	lwz      r5, 0x188(r4)
-	lbz      r0, 0x24(r5)
-	cmplwi   r0, 0
-	beq      lbl_80291C78
-	lwz      r0, 0x1c(r5)
-	cmplwi   r0, 2
-	bne      lbl_80291C28
-	lwz      r5, 0xc0(r31)
-	mr       r3, r31
-	lfs      f4, lbl_8051BA50@sda21(r2)
-	li       r4, 0
-	lfs      f1, 0x514(r5)
-	lfs      f2, 0x4c4(r5)
-	lfs      f3, 0x4ec(r5)
-	bl
-"flickNearbyNavi__Q24Game9EnemyFuncFPQ24Game8CreatureffffP23Condition<Q24Game4Navi>"
-	lwz      r5, 0xc0(r31)
-	mr       r3, r31
-	lfs      f4, lbl_8051BA50@sda21(r2)
-	li       r4, 0
-	lfs      f1, 0x514(r5)
-	lfs      f2, 0x4c4(r5)
-	lfs      f3, 0x4ec(r5)
-	bl
-"flickNearbyPikmin__Q24Game9EnemyFuncFPQ24Game8CreatureffffP23Condition<Q24Game4Piki>"
-	lwz      r5, 0xc0(r31)
-	mr       r3, r31
-	lfs      f4, lbl_8051BA50@sda21(r2)
-	li       r4, 0
-	lfs      f1, 0x53c(r5)
-	lfs      f2, 0x4c4(r5)
-	lfs      f3, 0x4ec(r5)
-	bl
-"flickStickPikmin__Q24Game9EnemyFuncFPQ24Game8CreatureffffP23Condition<Q24Game4Piki>"
-	mr       r3, r31
-	bl       finishWaitEffect__Q34Game9SnakeCrow3ObjFv
-	mr       r3, r31
-	bl       startBossFlickBGM__Q34Game9SnakeCrow3ObjFv
-	b        lbl_80291C78
+	Obj* snagret = static_cast<Obj*>(enemy);
 
-lbl_80291C28:
-	cmplwi   r0, 3
-	bne      lbl_80291C58
-	li       r0, 1
-	lfs      f0, lbl_8051BA2C@sda21(r2)
-	stb      r0, 0x2c0(r31)
-	mr       r3, r31
-	lwz      r0, 0x1e0(r31)
-	oris     r0, r0, 0x40
-	stw      r0, 0x1e0(r31)
-	stfs     f0, 0x20c(r31)
-	bl       finishJointShadow__Q34Game9SnakeCrow3ObjFv
-	b        lbl_80291C78
+	if (snagret->m_animKeyEvent->m_running) {
+		if ((u32)snagret->m_animKeyEvent->m_type == 2) {
+			Parms* parms1 = static_cast<Parms*>(snagret->m_parms);
+			EnemyFunc::flickNearbyNavi(snagret, parms1->m_general.m_shakeRange.m_value, parms1->m_general.m_shakeKnockback.m_value,
+			                           parms1->m_general.m_shakeDamage.m_value, -1000.0f, nullptr);
+			Parms* parms2 = static_cast<Parms*>(snagret->m_parms);
+			EnemyFunc::flickNearbyPikmin(snagret, parms2->m_general.m_shakeRange.m_value, parms2->m_general.m_shakeKnockback.m_value,
+			                             parms2->m_general.m_shakeDamage.m_value, -1000.0f, nullptr);
 
-lbl_80291C58:
-	cmplwi   r0, 0x3e8
-	bne      lbl_80291C78
-	lwz      r12, 0(r3)
-	li       r5, 1
-	li       r6, 0
-	lwz      r12, 0x1c(r12)
-	mtctr    r12
-	bctrl
+			Parms* parms3 = static_cast<Parms*>(snagret->m_parms);
+			EnemyFunc::flickStickPikmin(snagret, parms3->m_general.m_shakeRateMaybe.m_value, parms3->m_general.m_shakeKnockback.m_value,
+			                            parms3->m_general.m_shakeDamage.m_value, -1000.0f, nullptr);
+			snagret->finishWaitEffect();
+			snagret->startBossFlickBGM();
 
-lbl_80291C78:
-	lwz      r0, 0x14(r1)
-	lwz      r31, 0xc(r1)
-	mtlr     r0
-	addi     r1, r1, 0x10
-	blr
-	*/
+		} else if ((u32)snagret->m_animKeyEvent->m_type == 3) {
+			snagret->m_isUnderground = true;
+			snagret->setEvent(0, EB_BitterImmune);
+			snagret->m_toFlick = 0.0f;
+			snagret->finishJointShadow();
+
+		} else if ((u32)snagret->m_animKeyEvent->m_type == 1000) {
+			transit(snagret, SNAKECROW_Stay, nullptr);
+		}
+	}
 }
 
 /*
@@ -1908,36 +885,13 @@ lbl_80291C78:
  * Address:	80291C8C
  * Size:	000064
  */
-void SnakeCrow::StateDisappear::cleanup(Game::EnemyBase*)
+void StateDisappear::cleanup(EnemyBase* enemy)
 {
-	/*
-	stwu     r1, -0x10(r1)
-	mflr     r0
-	lfs      f1, lbl_8051BA3C@sda21(r2)
-	stw      r0, 0x14(r1)
-	lfs      f2, lbl_8051BA54@sda21(r2)
-	stw      r31, 0xc(r1)
-	mr       r31, r4
-	lfs      f3, lbl_8051BA2C@sda21(r2)
-	mr       r3, r31
-	lfs      f4, lbl_8051BA50@sda21(r2)
-	li       r4, 0
-	bl
-	"flickStickPikmin__Q24Game9EnemyFuncFPQ24Game8CreatureffffP23Condition<Q24Game4Piki>"
-	li       r0, 0
-	stb      r0, 0x2c0(r31)
-	lwz      r0, 0x1e0(r31)
-	rlwinm   r0, r0, 0, 0xa, 8
-	stw      r0, 0x1e0(r31)
-	lwz      r0, 0x1e0(r31)
-	ori      r0, r0, 0x40
-	stw      r0, 0x1e0(r31)
-	lwz      r31, 0xc(r1)
-	lwz      r0, 0x14(r1)
-	mtlr     r0
-	addi     r1, r1, 0x10
-	blr
-	*/
+	Obj* snagret = static_cast<Obj*>(enemy);
+	EnemyFunc::flickStickPikmin(snagret, 1.0f, 10.0f, 0.0f, -1000.0f, nullptr);
+	snagret->m_isUnderground = false;
+	snagret->resetEvent(0, EB_BitterImmune);
+	snagret->setEvent(0, EB_Cullable);
 }
 
 /*
@@ -1945,28 +899,13 @@ void SnakeCrow::StateDisappear::cleanup(Game::EnemyBase*)
  * Address:	80291CF0
  * Size:	000048
  */
-void SnakeCrow::StateWait::init(Game::EnemyBase*, Game::StateArg*)
+void StateWait::init(EnemyBase* enemy, StateArg* stateArg)
 {
-	/*
-	stwu     r1, -0x10(r1)
-	mflr     r0
-	lfs      f0, lbl_8051BA2C@sda21(r2)
-	mr       r3, r4
-	stw      r0, 0x14(r1)
-	li       r0, 0
-	li       r5, 0
-	stfs     f0, 0x2c4(r4)
-	li       r4, 9
-	stw      r0, 0x230(r3)
-	stfs     f0, 0x1d4(r3)
-	stfs     f0, 0x1d8(r3)
-	stfs     f0, 0x1dc(r3)
-	bl       startMotion__Q24Game9EnemyBaseFiPQ28SysShape14MotionListener
-	lwz      r0, 0x14(r1)
-	mtlr     r0
-	addi     r1, r1, 0x10
-	blr
-	*/
+	Obj* snagret              = static_cast<Obj*>(enemy);
+	snagret->m_stateTimer     = 0.0f;
+	snagret->m_targetCreature = nullptr;
+	snagret->m_velocity2      = Vector3f(0.0f);
+	snagret->startMotion(9, nullptr);
 }
 
 /*
@@ -1974,8 +913,112 @@ void SnakeCrow::StateWait::init(Game::EnemyBase*, Game::StateArg*)
  * Address:	80291D38
  * Size:	0006C0
  */
-void SnakeCrow::StateWait::exec(Game::EnemyBase*)
+void StateWait::exec(EnemyBase* enemy)
 {
+	Obj* snagret = static_cast<Obj*>(enemy);
+	Creature* target;
+	Creature* previousTarget = snagret->m_targetCreature;
+	if (previousTarget != nullptr) {
+		if (previousTarget->isAlive() && !previousTarget->isStickToMouth() && previousTarget->m_sticker != snagret) {
+			f32 approxSpeed;
+			EnemyParmsBase* parms = static_cast<EnemyParmsBase*>(snagret->m_parms);
+			f32 fov               = parms->m_general.m_fov.m_value;
+			f32 visionHeight      = parms->m_general.m_fp25.m_value;
+			f32 sightRadius       = parms->m_general.m_sightRadius.m_value;
+			f32 privRadius        = parms->m_general.m_privateRadius.m_value;
+			Vector3f creaturePos  = previousTarget->getPosition();
+			Vector3f pos          = snagret->getPosition();
+
+			f32 angleDist = angDist(angXZ(creaturePos, pos), snagret->getFaceDir());
+
+			f32 xDiff   = previousTarget->getPosition().x - snagret->getPosition().x;
+			f32 yDiff   = previousTarget->getPosition().y - snagret->getPosition().y;
+			f32 zDiff   = previousTarget->getPosition().z - snagret->getPosition().z;
+			bool check1 = true;
+			bool check2 = false;
+
+			f32 dist2D = SQUARE(xDiff) + SQUARE(zDiff);
+			if (dist2D > SQUARE(privRadius)) {
+				bool check3 = false;
+				if (dist2D > SQUARE(sightRadius) && (FABS(yDiff) < visionHeight)) {
+					check3 = true;
+				}
+				if (check3) {
+					check2 = true;
+				}
+			}
+
+			if (!check2 && (FABS(angleDist) <= (DEG2RAD * fov) * PI) != 0) {
+				check1 = false;
+			}
+
+			if (check1) {
+				target = nullptr;
+			} else {
+				Parms* parms2 = static_cast<Parms*>(snagret->m_parms);
+				target        = EnemyFunc::getNearestPikminOrNavi(snagret, parms2->m_general.m_fov.m_value,
+                                                           parms2->m_general.m_sightRadius.m_value, nullptr, nullptr, nullptr);
+			}
+
+		} else {
+			Parms* parms = static_cast<Parms*>(snagret->m_parms);
+			target = EnemyFunc::getNearestPikminOrNavi(snagret, parms->m_general.m_fov.m_value, parms->m_general.m_sightRadius.m_value,
+			                                           nullptr, nullptr, nullptr);
+		}
+
+	} else {
+		Parms* parms = static_cast<Parms*>(snagret->m_parms);
+		target = EnemyFunc::getNearestPikminOrNavi(snagret, parms->m_general.m_fov.m_value, parms->m_general.m_sightRadius.m_value, nullptr,
+		                                           nullptr, nullptr);
+	}
+
+	if (target != nullptr) {
+		snagret->m_stateTimer = 0.0f;
+		f32 angleDist         = snagret->changeFaceDir(target);
+
+		if (FABS(angleDist) <= SIN_2_5) {
+			snagret->finishRotateEffect();
+
+		} else {
+			snagret->startRotateEffect();
+			snagret->getJAIObject()->startSound(PSSE_EN_SNAKE_TURN, 0);
+		}
+
+	} else {
+		snagret->m_stateTimer += sys->m_secondsPerFrame;
+	}
+
+	if (!snagret->isFinishMotion()) {
+		if (snagret->m_health <= 0.0f || snagret->m_stateTimer > static_cast<Parms*>(snagret->m_parms)->m_properParms._82C.m_value
+		    || EnemyFunc::isStartFlick(snagret, false) || snagret->getAttackPiki(5) != nullptr || snagret->getAttackNavi(5) != nullptr) {
+			snagret->finishMotion();
+		}
+	}
+
+	if (snagret->m_animKeyEvent->m_running) {
+		if ((u32)snagret->m_animKeyEvent->m_type == 1000) {
+			if (snagret->m_health <= 0.0f) {
+				transit(snagret, SNAKECROW_Dead, nullptr);
+				return;
+			}
+
+			Parms* parms = static_cast<Parms*>(snagret->m_parms);
+			if (snagret->m_stateTimer > parms->m_properParms._82C.m_value || EnemyFunc::isStartFlick(snagret, false)) {
+				transit(snagret, SNAKECROW_Disappear, nullptr);
+				return;
+			}
+
+			if (snagret->getAttackPiki(5) != nullptr || snagret->getAttackNavi(5) != nullptr) {
+				if (snagret->getStickHeadPikmin() != 0) {
+					transit(snagret, SNAKECROW_Struggle, nullptr);
+				} else {
+					transit(snagret, SNAKECROW_Attack, nullptr);
+				}
+			} else {
+				transit(snagret, SNAKECROW_Wait, nullptr);
+			}
+		}
+	}
 	/*
 	stwu     r1, -0x140(r1)
 	mflr     r0
@@ -2462,19 +1505,10 @@ lbl_8029239C:
  * Address:	802923F8
  * Size:	000024
  */
-void SnakeCrow::StateWait::cleanup(Game::EnemyBase*)
+void StateWait::cleanup(EnemyBase* enemy)
 {
-	/*
-	stwu     r1, -0x10(r1)
-	mflr     r0
-	mr       r3, r4
-	stw      r0, 0x14(r1)
-	bl       finishRotateEffect__Q34Game9SnakeCrow3ObjFv
-	lwz      r0, 0x14(r1)
-	mtlr     r0
-	addi     r1, r1, 0x10
-	blr
-	*/
+	Obj* snagret = static_cast<Obj*>(enemy);
+	snagret->finishRotateEffect();
 }
 
 /*
@@ -2482,29 +1516,12 @@ void SnakeCrow::StateWait::cleanup(Game::EnemyBase*)
  * Address:	8029241C
  * Size:	00004C
  */
-void SnakeCrow::StateAttack::init(Game::EnemyBase*, Game::StateArg*)
+void StateAttack::init(EnemyBase* enemy, StateArg* stateArg)
 {
-	/*
-	stwu     r1, -0x10(r1)
-	mflr     r0
-	lfs      f0, lbl_8051BA2C@sda21(r2)
-	mr       r3, r4
-	stw      r0, 0x14(r1)
-	li       r5, 0
-	lwz      r0, 0x1e0(r4)
-	rlwinm   r0, r0, 0, 0x1a, 0x18
-	stw      r0, 0x1e0(r4)
-	stfs     f0, 0x1d4(r4)
-	stfs     f0, 0x1d8(r4)
-	stfs     f0, 0x1dc(r4)
-	lwz      r4, 0x2d4(r4)
-	addi     r4, r4, 4
-	bl       startMotion__Q24Game9EnemyBaseFiPQ28SysShape14MotionListener
-	lwz      r0, 0x14(r1)
-	mtlr     r0
-	addi     r1, r1, 0x10
-	blr
-	*/
+	Obj* snagret = static_cast<Obj*>(enemy);
+	snagret->resetEvent(0, EB_Cullable);
+	snagret->m_velocity2 = Vector3f(0.0f);
+	snagret->startMotion(snagret->_2D4 + 4, nullptr);
 }
 
 /*
@@ -2512,249 +1529,84 @@ void SnakeCrow::StateAttack::init(Game::EnemyBase*, Game::StateArg*)
  * Address:	80292468
  * Size:	000334
  */
-void SnakeCrow::StateAttack::exec(Game::EnemyBase*)
+void StateAttack::exec(EnemyBase* enemy)
 {
-	/*
-	stwu     r1, -0x40(r1)
-	mflr     r0
-	stw      r0, 0x44(r1)
-	stw      r31, 0x3c(r1)
-	mr       r31, r4
-	stw      r30, 0x38(r1)
-	stw      r29, 0x34(r1)
-	mr       r29, r3
-	mr       r3, r31
-	bl       isFinishMotion__Q24Game9EnemyBaseFv
-	clrlwi.  r0, r3, 0x18
-	bne      lbl_802924A0
-	mr       r3, r31
-	bl       setAttackPosition__Q34Game9SnakeCrow3ObjFv
+	Obj* snagret = static_cast<Obj*>(enemy);
+	if (!snagret->isFinishMotion()) {
+		snagret->setAttackPosition();
+	}
 
-lbl_802924A0:
-	lfs      f1, 0x200(r31)
-	lfs      f0, lbl_8051BA2C@sda21(r2)
-	fcmpo    cr0, f1, f0
-	cror     2, 0, 2
-	bne      lbl_802924BC
-	mr       r3, r31
-	bl       finishMotion__Q24Game9EnemyBaseFv
+	if (snagret->m_health <= 0.0f) {
+		snagret->finishMotion();
+	}
 
-lbl_802924BC:
-	lwz      r3, 0x188(r31)
-	lbz      r0, 0x24(r3)
-	cmplwi   r0, 0
-	beq      lbl_80292780
-	lwz      r0, 0x1c(r3)
-	cmplwi   r0, 2
-	bne      lbl_802924E4
-	mr       r3, r31
-	bl       startJointCallBack__Q34Game9SnakeCrow3ObjFv
-	b        lbl_80292780
+	if (snagret->m_animKeyEvent->m_running) {
+		if ((u32)snagret->m_animKeyEvent->m_type == 2) {
+			snagret->startJointCallBack();
 
-lbl_802924E4:
-	cmplwi   r0, 3
-	bne      lbl_802925D0
-	lwz      r30, 0x2d4(r31)
-	mr       r3, r31
-	mr       r4, r30
-	bl       getAttackPiki__Q34Game9SnakeCrow3ObjFi
-	or.      r29, r3, r3
-	beq      lbl_80292564
-	mr       r3, r31
-	bl       getSwallowSlot__Q34Game9SnakeCrow3ObjFv
-	lis      r5, __vt__Q24Game11Interaction@ha
-	lis      r4, __vt__Q24Game14InteractAttack@ha
-	addi     r0, r5, __vt__Q24Game11Interaction@l
-	lfs      f0, lbl_8051BA3C@sda21(r2)
-	stw      r0, 0x18(r1)
-	addi     r5, r4, __vt__Q24Game14InteractAttack@l
-	lis      r4, __vt__Q24Game15InteractSwallow@ha
-	li       r0, 0
-	stw      r5, 0x18(r1)
-	addi     r5, r4, __vt__Q24Game15InteractSwallow@l
-	addi     r4, r1, 0x18
-	stw      r3, 0x24(r1)
-	mr       r3, r29
-	stw      r31, 0x1c(r1)
-	stfs     f0, 0x20(r1)
-	stw      r5, 0x18(r1)
-	stw      r0, 0x28(r1)
-	lwz      r12, 0(r29)
-	lwz      r12, 0x1a4(r12)
-	mtctr    r12
-	bctrl
-	b        lbl_802925C4
+		} else if ((u32)snagret->m_animKeyEvent->m_type == 3) {
+			int idx    = snagret->_2D4;
+			Piki* piki = snagret->getAttackPiki(idx);
 
-lbl_80292564:
-	mr       r3, r31
-	mr       r4, r30
-	bl       getAttackNavi__Q34Game9SnakeCrow3ObjFi
-	cmplwi   r3, 0
-	beq      lbl_802925BC
-	lwz      r6, 0xc0(r31)
-	lis      r5, __vt__Q24Game11Interaction@ha
-	lis      r4, __vt__Q24Game14InteractAttack@ha
-	li       r0, 0
-	lfs      f0, 0x604(r6)
-	addi     r6, r5, __vt__Q24Game11Interaction@l
-	addi     r5, r4, __vt__Q24Game14InteractAttack@l
-	addi     r4, r1, 8
-	stw      r6, 8(r1)
-	stw      r31, 0xc(r1)
-	stw      r5, 8(r1)
-	stfs     f0, 0x10(r1)
-	stw      r0, 0x14(r1)
-	lwz      r12, 0(r3)
-	lwz      r12, 0x1a4(r12)
-	mtctr    r12
-	bctrl
+			if (piki != nullptr) {
+				CollPart* slot = snagret->getSwallowSlot();
+				InteractSwallow swallow(snagret, 1.0f, slot, 0);
+				piki->stimulate(swallow);
 
-lbl_802925BC:
-	mr       r3, r31
-	bl       finishMotion__Q24Game9EnemyBaseFv
+			} else {
+				Navi* navi = snagret->getAttackNavi(idx);
 
-lbl_802925C4:
-	mr       r3, r31
-	bl       returnJointCallBack__Q34Game9SnakeCrow3ObjFv
-	b        lbl_80292780
+				if (navi != nullptr) {
+					Parms* parms = static_cast<Parms*>(snagret->m_parms);
+					InteractAttack attack(snagret, parms->m_general.m_attackDamage.m_value, nullptr);
+					navi->stimulate(attack);
+				}
 
-lbl_802925D0:
-	cmplwi   r0, 4
-	bne      lbl_80292668
-	mr       r3, r31
-	bl       isFinishMotion__Q24Game9EnemyBaseFv
-	clrlwi.  r0, r3, 0x18
-	bne      lbl_8029265C
-	mr       r3, r31
-	bl       getSwallowSlot__Q34Game9SnakeCrow3ObjFv
-	cmplwi   r3, 0
-	beq      lbl_8029265C
-	mr       r3, r31
-	li       r4, 5
-	bl       getAttackPiki__Q34Game9SnakeCrow3ObjFi
-	cmplwi   r3, 0
-	bne      lbl_80292620
-	mr       r3, r31
-	li       r4, 5
-	bl       getAttackNavi__Q34Game9SnakeCrow3ObjFi
-	cmplwi   r3, 0
-	beq      lbl_80292650
+				snagret->finishMotion();
+			}
 
-lbl_80292620:
-	lwz      r4, 0x2d4(r31)
-	mr       r3, r31
-	li       r5, 0
-	addi     r4, r4, 4
-	bl       startMotion__Q24Game9EnemyBaseFiPQ28SysShape14MotionListener
-	mr       r3, r31
-	bl       getFirstKeyFrame__Q24Game9EnemyBaseFv
-	mr       r3, r31
-	bl       setMotionFrame__Q24Game9EnemyBaseFf
-	mr       r3, r31
-	bl       startJointCallBack__Q34Game9SnakeCrow3ObjFv
-	b        lbl_80292780
+			snagret->returnJointCallBack();
 
-lbl_80292650:
-	mr       r3, r31
-	bl       finishJointCallBack__Q34Game9SnakeCrow3ObjFv
-	b        lbl_80292780
+		} else if ((u32)snagret->m_animKeyEvent->m_type == 4) {
 
-lbl_8029265C:
-	mr       r3, r31
-	bl       finishJointCallBack__Q34Game9SnakeCrow3ObjFv
-	b        lbl_80292780
+			if (!snagret->isFinishMotion() && snagret->getSwallowSlot() != nullptr) {
 
-lbl_80292668:
-	cmplwi   r0, 0x3e8
-	bne      lbl_80292780
-	lfs      f1, 0x200(r31)
-	lfs      f0, lbl_8051BA2C@sda21(r2)
-	fcmpo    cr0, f1, f0
-	cror     2, 0, 2
-	bne      lbl_802926A8
-	mr       r3, r29
-	mr       r4, r31
-	lwz      r12, 0(r29)
-	li       r5, 0
-	li       r6, 0
-	lwz      r12, 0x1c(r12)
-	mtctr    r12
-	bctrl
-	b        lbl_80292780
+				if (snagret->getAttackPiki(5) != nullptr || snagret->getAttackNavi(5) != nullptr) {
+					snagret->startMotion(snagret->_2D4 + 4, nullptr);
+					snagret->setMotionFrame(snagret->getFirstKeyFrame());
+					snagret->startJointCallBack();
 
-lbl_802926A8:
-	mr       r3, r31
-	bl       isSwallowPikmin__Q34Game9SnakeCrow3ObjFv
-	clrlwi.  r0, r3, 0x18
-	beq      lbl_802926DC
-	mr       r3, r29
-	mr       r4, r31
-	lwz      r12, 0(r29)
-	li       r5, 7
-	li       r6, 0
-	lwz      r12, 0x1c(r12)
-	mtctr    r12
-	bctrl
-	b        lbl_80292780
+				} else {
+					snagret->finishJointCallBack();
+				}
 
-lbl_802926DC:
-	mr       r3, r31
-	li       r4, 0
-	bl       isStartFlick__Q24Game9EnemyFuncFPQ24Game9EnemyBaseb
-	clrlwi.  r0, r3, 0x18
-	beq      lbl_80292714
-	mr       r3, r29
-	mr       r4, r31
-	lwz      r12, 0(r29)
-	li       r5, 4
-	li       r6, 0
-	lwz      r12, 0x1c(r12)
-	mtctr    r12
-	bctrl
-	b        lbl_80292780
+			} else {
+				snagret->finishJointCallBack();
+			}
 
-lbl_80292714:
-	mr       r3, r31
-	li       r4, 5
-	bl       getAttackPiki__Q34Game9SnakeCrow3ObjFi
-	cmplwi   r3, 0
-	bne      lbl_8029273C
-	mr       r3, r31
-	li       r4, 5
-	bl       getAttackNavi__Q34Game9SnakeCrow3ObjFi
-	cmplwi   r3, 0
-	beq      lbl_80292760
+		} else if ((u32)snagret->m_animKeyEvent->m_type == 1000) {
+			if (snagret->m_health <= 0.0f) {
+				transit(snagret, SNAKECROW_Dead, nullptr);
+				return;
+			}
 
-lbl_8029273C:
-	mr       r3, r29
-	mr       r4, r31
-	lwz      r12, 0(r29)
-	li       r5, 6
-	li       r6, 0
-	lwz      r12, 0x1c(r12)
-	mtctr    r12
-	bctrl
-	b        lbl_80292780
+			if (snagret->isSwallowPikmin()) {
+				transit(snagret, SNAKECROW_Eat, nullptr);
+				return;
+			}
 
-lbl_80292760:
-	mr       r3, r29
-	mr       r4, r31
-	lwz      r12, 0(r29)
-	li       r5, 5
-	li       r6, 0
-	lwz      r12, 0x1c(r12)
-	mtctr    r12
-	bctrl
+			if (EnemyFunc::isStartFlick(snagret, false)) {
+				transit(snagret, SNAKECROW_Disappear, nullptr);
+				return;
+			}
 
-lbl_80292780:
-	lwz      r0, 0x44(r1)
-	lwz      r31, 0x3c(r1)
-	lwz      r30, 0x38(r1)
-	lwz      r29, 0x34(r1)
-	mtlr     r0
-	addi     r1, r1, 0x40
-	blr
-	*/
+			if (snagret->getAttackPiki(5) != nullptr || snagret->getAttackNavi(5) != nullptr) {
+				transit(snagret, SNAKECROW_Attack, nullptr);
+			} else {
+				transit(snagret, SNAKECROW_Wait, nullptr);
+			}
+		}
+	}
 }
 
 /*
@@ -2762,40 +1614,17 @@ lbl_80292780:
  * Address:	8029279C
  * Size:	000010
  */
-void SnakeCrow::StateAttack::cleanup(Game::EnemyBase*)
-{
-	/*
-	lwz      r0, 0x1e0(r4)
-	ori      r0, r0, 0x40
-	stw      r0, 0x1e0(r4)
-	blr
-	*/
-}
+void StateAttack::cleanup(EnemyBase* enemy) { enemy->setEvent(0, EB_Cullable); }
 
 /*
  * --INFO--
  * Address:	802927AC
  * Size:	00003C
  */
-void SnakeCrow::StateEat::init(Game::EnemyBase*, Game::StateArg*)
+void StateEat::init(EnemyBase* enemy, StateArg* stateArg)
 {
-	/*
-	stwu     r1, -0x10(r1)
-	mflr     r0
-	mr       r3, r4
-	lfs      f0, lbl_8051BA2C@sda21(r2)
-	stw      r0, 0x14(r1)
-	li       r4, 0xa
-	li       r5, 0
-	stfs     f0, 0x1d4(r3)
-	stfs     f0, 0x1d8(r3)
-	stfs     f0, 0x1dc(r3)
-	bl       startMotion__Q24Game9EnemyBaseFiPQ28SysShape14MotionListener
-	lwz      r0, 0x14(r1)
-	mtlr     r0
-	addi     r1, r1, 0x10
-	blr
-	*/
+	enemy->m_velocity2 = Vector3f(0.0f);
+	enemy->startMotion(10, nullptr);
 }
 
 /*
@@ -2803,119 +1632,36 @@ void SnakeCrow::StateEat::init(Game::EnemyBase*, Game::StateArg*)
  * Address:	802927E8
  * Size:	000178
  */
-void SnakeCrow::StateEat::exec(Game::EnemyBase*)
+void StateEat::exec(EnemyBase* enemy)
 {
-	/*
-	stwu     r1, -0x10(r1)
-	mflr     r0
-	stw      r0, 0x14(r1)
-	stw      r31, 0xc(r1)
-	mr       r31, r4
-	stw      r30, 8(r1)
-	mr       r30, r3
-	lwz      r5, 0x188(r4)
-	lbz      r0, 0x24(r5)
-	cmplwi   r0, 0
-	beq      lbl_80292948
-	lwz      r0, 0x1c(r5)
-	cmplwi   r0, 2
-	bne      lbl_80292838
-	lwz      r5, 0xc0(r31)
-	mr       r3, r31
-	li       r4, 0
-	lfs      f1, 0x894(r5)
-	bl
-"swallowPikmin__Q24Game9EnemyFuncFPQ24Game8CreaturefP23Condition<Q24Game4Piki>"
-	b        lbl_80292948
+	Obj* snagret = static_cast<Obj*>(enemy);
+	if (snagret->m_animKeyEvent->m_running) {
+		if ((u32)snagret->m_animKeyEvent->m_type == 2) {
+			Parms* parms = static_cast<Parms*>(snagret->m_parms);
+			EnemyFunc::swallowPikmin(snagret, parms->m_properParms._87C.m_value, nullptr);
 
-lbl_80292838:
-	cmplwi   r0, 0x3e8
-	bne      lbl_80292948
-	lfs      f1, 0x200(r31)
-	lfs      f0, lbl_8051BA2C@sda21(r2)
-	fcmpo    cr0, f1, f0
-	cror     2, 0, 2
-	bne      lbl_80292870
-	lwz      r12, 0(r3)
-	li       r5, 0
-	li       r6, 0
-	lwz      r12, 0x1c(r12)
-	mtctr    r12
-	bctrl
-	b        lbl_80292948
+		} else if ((u32)snagret->m_animKeyEvent->m_type == 1000) {
+			if (snagret->m_health <= 0.0f) {
+				transit(snagret, SNAKECROW_Dead, nullptr);
+				return;
+			}
 
-lbl_80292870:
-	mr       r3, r31
-	li       r4, 0
-	bl       isStartFlick__Q24Game9EnemyFuncFPQ24Game9EnemyBaseb
-	clrlwi.  r0, r3, 0x18
-	beq      lbl_802928A8
-	mr       r3, r30
-	mr       r4, r31
-	lwz      r12, 0(r30)
-	li       r5, 4
-	li       r6, 0
-	lwz      r12, 0x1c(r12)
-	mtctr    r12
-	bctrl
-	b        lbl_80292948
+			if (EnemyFunc::isStartFlick(snagret, false)) {
+				transit(snagret, SNAKECROW_Disappear, nullptr);
+				return;
+			}
 
-lbl_802928A8:
-	mr       r3, r31
-	li       r4, 5
-	bl       getAttackPiki__Q34Game9SnakeCrow3ObjFi
-	cmplwi   r3, 0
-	bne      lbl_802928D0
-	mr       r3, r31
-	li       r4, 5
-	bl       getAttackNavi__Q34Game9SnakeCrow3ObjFi
-	cmplwi   r3, 0
-	beq      lbl_80292928
-
-lbl_802928D0:
-	mr       r3, r31
-	bl       getStickHeadPikmin__Q34Game9SnakeCrow3ObjFv
-	cmpwi    r3, 0
-	beq      lbl_80292904
-	mr       r3, r30
-	mr       r4, r31
-	lwz      r12, 0(r30)
-	li       r5, 8
-	li       r6, 0
-	lwz      r12, 0x1c(r12)
-	mtctr    r12
-	bctrl
-	b        lbl_80292948
-
-lbl_80292904:
-	mr       r3, r30
-	mr       r4, r31
-	lwz      r12, 0(r30)
-	li       r5, 6
-	li       r6, 0
-	lwz      r12, 0x1c(r12)
-	mtctr    r12
-	bctrl
-	b        lbl_80292948
-
-lbl_80292928:
-	mr       r3, r30
-	mr       r4, r31
-	lwz      r12, 0(r30)
-	li       r5, 5
-	li       r6, 0
-	lwz      r12, 0x1c(r12)
-	mtctr    r12
-	bctrl
-
-lbl_80292948:
-	lwz      r0, 0x14(r1)
-	lwz      r31, 0xc(r1)
-	lwz      r30, 8(r1)
-	mtlr     r0
-	addi     r1, r1, 0x10
-	blr
-	*/
+			if (snagret->getAttackPiki(5) != nullptr || snagret->getAttackNavi(5) != nullptr) {
+				if (snagret->getStickHeadPikmin() != 0) {
+					transit(snagret, SNAKECROW_Struggle, nullptr);
+				} else {
+					transit(snagret, SNAKECROW_Attack, nullptr);
+				}
+			} else {
+				transit(snagret, SNAKECROW_Wait, nullptr);
+			}
+		}
+	}
 }
 
 /*
@@ -2923,33 +1669,19 @@ lbl_80292948:
  * Address:	80292960
  * Size:	000004
  */
-void SnakeCrow::StateEat::cleanup(Game::EnemyBase*) { }
+void StateEat::cleanup(EnemyBase* enemy) { }
 
 /*
  * --INFO--
  * Address:	80292964
  * Size:	000040
  */
-void SnakeCrow::StateStruggle::init(Game::EnemyBase*, Game::StateArg*)
+void StateStruggle::init(EnemyBase* enemy, StateArg* stateArg)
 {
-	/*
-	stwu     r1, -0x10(r1)
-	mflr     r0
-	mr       r3, r4
-	lfs      f0, lbl_8051BA2C@sda21(r2)
-	stw      r0, 0x14(r1)
-	li       r4, 0xb
-	li       r5, 0
-	stfs     f0, 0x2c4(r3)
-	stfs     f0, 0x1d4(r3)
-	stfs     f0, 0x1d8(r3)
-	stfs     f0, 0x1dc(r3)
-	bl       startMotion__Q24Game9EnemyBaseFiPQ28SysShape14MotionListener
-	lwz      r0, 0x14(r1)
-	mtlr     r0
-	addi     r1, r1, 0x10
-	blr
-	*/
+	Obj* snagret          = static_cast<Obj*>(enemy);
+	snagret->m_stateTimer = 0.0f;
+	snagret->m_velocity2  = Vector3f(0.0f);
+	snagret->startMotion(11, nullptr);
 }
 
 /*
@@ -2957,108 +1689,31 @@ void SnakeCrow::StateStruggle::init(Game::EnemyBase*, Game::StateArg*)
  * Address:	802929A4
  * Size:	000158
  */
-void SnakeCrow::StateStruggle::exec(Game::EnemyBase*)
+void StateStruggle::exec(EnemyBase* enemy)
 {
-	/*
-	stwu     r1, -0x10(r1)
-	mflr     r0
-	lfs      f0, lbl_8051BA64@sda21(r2)
-	stw      r0, 0x14(r1)
-	stw      r31, 0xc(r1)
-	mr       r31, r4
-	stw      r30, 8(r1)
-	mr       r30, r3
-	lfs      f1, 0x2c4(r4)
-	fcmpo    cr0, f1, f0
-	ble      lbl_802929D8
-	mr       r3, r31
-	bl       finishMotion__Q24Game9EnemyBaseFv
+	Obj* snagret = static_cast<Obj*>(enemy);
+	if (snagret->m_stateTimer > 1.5f) {
+		snagret->finishMotion();
+	}
 
-lbl_802929D8:
-	lwz      r3, sys@sda21(r13)
-	lfs      f1, 0x2c4(r31)
-	lfs      f0, 0x54(r3)
-	fadds    f0, f1, f0
-	stfs     f0, 0x2c4(r31)
-	lwz      r3, 0x188(r31)
-	lbz      r0, 0x24(r3)
-	cmplwi   r0, 0
-	beq      lbl_80292AE4
-	lwz      r0, 0x1c(r3)
-	cmplwi   r0, 0x3e8
-	bne      lbl_80292AE4
-	lfs      f1, 0x200(r31)
-	lfs      f0, lbl_8051BA2C@sda21(r2)
-	fcmpo    cr0, f1, f0
-	cror     2, 0, 2
-	bne      lbl_80292A40
-	mr       r3, r30
-	mr       r4, r31
-	lwz      r12, 0(r30)
-	li       r5, 0
-	li       r6, 0
-	lwz      r12, 0x1c(r12)
-	mtctr    r12
-	bctrl
-	b        lbl_80292AE4
+	snagret->m_stateTimer += sys->m_secondsPerFrame;
+	if (snagret->m_animKeyEvent->m_running && (u32)snagret->m_animKeyEvent->m_type == 1000) {
+		if (snagret->m_health <= 0.0f) {
+			transit(snagret, SNAKECROW_Dead, nullptr);
+			return;
+		}
 
-lbl_80292A40:
-	mr       r3, r31
-	li       r4, 0
-	bl       isStartFlick__Q24Game9EnemyFuncFPQ24Game9EnemyBaseb
-	clrlwi.  r0, r3, 0x18
-	beq      lbl_80292A78
-	mr       r3, r30
-	mr       r4, r31
-	lwz      r12, 0(r30)
-	li       r5, 4
-	li       r6, 0
-	lwz      r12, 0x1c(r12)
-	mtctr    r12
-	bctrl
-	b        lbl_80292AE4
+		if (EnemyFunc::isStartFlick(snagret, false)) {
+			transit(snagret, SNAKECROW_Disappear, nullptr);
+			return;
+		}
 
-lbl_80292A78:
-	mr       r3, r31
-	li       r4, 5
-	bl       getAttackPiki__Q34Game9SnakeCrow3ObjFi
-	cmplwi   r3, 0
-	bne      lbl_80292AA0
-	mr       r3, r31
-	li       r4, 5
-	bl       getAttackNavi__Q34Game9SnakeCrow3ObjFi
-	cmplwi   r3, 0
-	beq      lbl_80292AC4
-
-lbl_80292AA0:
-	mr       r3, r30
-	mr       r4, r31
-	lwz      r12, 0(r30)
-	li       r5, 6
-	li       r6, 0
-	lwz      r12, 0x1c(r12)
-	mtctr    r12
-	bctrl
-	b        lbl_80292AE4
-
-lbl_80292AC4:
-	mr       r3, r30
-	mr       r4, r31
-	lwz      r12, 0(r30)
-	li       r5, 5
-	li       r6, 0
-	lwz      r12, 0x1c(r12)
-	mtctr    r12
-	bctrl
-
-lbl_80292AE4:
-	lwz      r0, 0x14(r1)
-	lwz      r31, 0xc(r1)
-	lwz      r30, 8(r1)
-	mtlr     r0
-	addi     r1, r1, 0x10
-	blr
-	*/
+		if (snagret->getAttackPiki(5) != nullptr || snagret->getAttackNavi(5) != nullptr) {
+			transit(snagret, SNAKECROW_Attack, nullptr);
+		} else {
+			transit(snagret, SNAKECROW_Wait, nullptr);
+		}
+	}
 }
 
 /*
@@ -3066,27 +1721,7 @@ lbl_80292AE4:
  * Address:	80292AFC
  * Size:	000004
  */
-void SnakeCrow::StateStruggle::cleanup(Game::EnemyBase*) { }
+void StateStruggle::cleanup(EnemyBase* enemy) { }
 
+} // namespace SnakeCrow
 } // namespace Game
-
-/*
- * --INFO--
- * Address:	80292B00
- * Size:	000028
- */
-void __sinit_SnakeCrowState_cpp(void)
-{
-	/*
-	lis      r4, __float_nan@ha
-	li       r0, -1
-	lfs      f0, __float_nan@l(r4)
-	lis      r3, lbl_804CB2A8@ha
-	stw      r0, lbl_80515D58@sda21(r13)
-	stfsu    f0, lbl_804CB2A8@l(r3)
-	stfs     f0, lbl_80515D5C@sda21(r13)
-	stfs     f0, 4(r3)
-	stfs     f0, 8(r3)
-	blr
-	*/
-}

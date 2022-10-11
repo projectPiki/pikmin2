@@ -1,6 +1,7 @@
 #ifndef _GAME_INTERACTION_H
 #define _GAME_INTERACTION_H
 
+#include "CollInfo.h"
 #include "Vector3.h"
 #include "types.h"
 
@@ -36,6 +37,13 @@ struct InteractAbsorb : public Interaction {
 };
 
 struct InteractAttack : public Interaction {
+	inline InteractAttack(Creature* parent, f32 damage, CollPart* collpart)
+	    : Interaction(parent)
+	{
+		_08        = damage;
+		m_collPart = collpart;
+	}
+
 	virtual bool actCommon(Creature*);
 	virtual bool actNavi(Navi*);
 	virtual bool actEnemy(EnemyBase*);
@@ -206,6 +214,12 @@ struct InteractPress : public Interaction {
 };
 
 struct InteractSwallow : public InteractAttack {
+	inline InteractSwallow(Creature* parent, f32 damage, CollPart* collpart, int p1)
+	    : InteractAttack(parent, damage, collpart)
+	{
+		_10 = p1;
+	}
+
 	virtual bool actCommon(Creature*); // _08
 	virtual bool actPiki(Piki*);       // _0C
 
