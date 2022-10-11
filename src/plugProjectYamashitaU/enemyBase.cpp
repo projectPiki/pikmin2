@@ -1139,11 +1139,9 @@ void EnemyBase::onKill(CreatureKillArg* inputArg)
 		getCommonEffectPos(effectPos); // sp80, 4C
 		float scaleMod                    = m_scaleModifier;
 		EnemyTypeID::EEnemyTypeID enemyID = getEnemyTypeID();
-		Vector3f position;
-		__memcpy(&position, &effectPos, sizeof(Vector3f));
 
-		efx::ArgEnemyType efxArg(position, enemyID, scaleMod); // sp8C
-		efx::TEnemyDead efxDead;                               // sp74
+		efx::ArgEnemyType efxArg(effectPos, enemyID, scaleMod);
+		efx::TEnemyDead efxDead;
 
 		efxDead.create((efx::Arg*)&efxArg);
 		PSStartEnemyGhostSE(this, 0.0f);
@@ -2543,8 +2541,6 @@ void EnemyBase::inWaterCallback(Game::WaterBox* water)
  * Address:	80103FFC
  * Size:	00028C
  */
-// WIP: https://decomp.me/scratch/kkYEd
-// single regswap lmao
 void EnemyBase::finishDropping(bool heightCheck)
 {
 	if (isEvent(1, EB2_5)) {
@@ -2560,195 +2556,11 @@ void EnemyBase::finishDropping(bool heightCheck)
 			}
 		}
 
-		float downSmokeScale = getDownSmokeScale();
-
-		if (m_waterBox != nullptr) {
-			createSplashDownEffect(pos, downSmokeScale);
-		} else {
-			createDropEffect(pos, downSmokeScale);
-		}
+		createBounceEffect(pos, getDownSmokeScale());
 
 		resetEvent(1, EB2_5);
 		m_velocity = 0.0f;
 	}
-	/*
-	.loc_0x0:
-	    stwu      r1, -0xB0(r1)
-	    mflr      r0
-	    stw       r0, 0xB4(r1)
-	    stfd      f31, 0xA0(r1)
-	    psq_st    f31,0xA8(r1),0,0
-	    stfd      f30, 0x90(r1)
-	    psq_st    f30,0x98(r1),0,0
-	    stw       r31, 0x8C(r1)
-	    stw       r30, 0x88(r1)
-	    lwz       r0, 0x1E4(r3)
-	    mr        r31, r3
-	    mr        r30, r4
-	    rlwinm.   r0,r0,0,27,27
-	    beq-      .loc_0x264
-	    lfs       f1, -0x6BB0(r2)
-	    lfs       f2, -0x6B9C(r2)
-	    bl        0x1FF0
-	    lwz       r0, 0x1E0(r31)
-	    mr        r3, r31
-	    addi      r4, r1, 0x4C
-	    oris      r0, r0, 0x8
-	    stw       r0, 0x1E0(r31)
-	    lwz       r12, 0x0(r31)
-	    lwz       r12, 0x10(r12)
-	    mtctr     r12
-	    bctrl
-	    lfs       f2, 0x4C(r1)
-	    rlwinm.   r0,r30,0,24,31
-	    lfs       f1, 0x50(r1)
-	    lfs       f0, 0x54(r1)
-	    stfs      f2, 0x40(r1)
-	    stfs      f1, 0x44(r1)
-	    stfs      f0, 0x48(r1)
-	    beq-      .loc_0xAC
-	    lwz       r3, -0x6CF8(r13)
-	    cmplwi    r3, 0
-	    beq-      .loc_0xAC
-	    lwz       r12, 0x4(r3)
-	    addi      r4, r1, 0x40
-	    lwz       r12, 0x28(r12)
-	    mtctr     r12
-	    bctrl
-	    stfs      f1, 0x44(r1)
-
-	.loc_0xAC:
-	    mr        r3, r31
-	    lwz       r12, 0x0(r31)
-	    lwz       r12, 0x2EC(r12)
-	    mtctr     r12
-	    bctrl
-	    lwz       r3, 0x280(r31)
-	    fmr       f31, f1
-	    cmplwi    r3, 0
-	    beq-      .loc_0x1CC
-	    beq-      .loc_0x100
-	    lwz       r12, 0x0(r3)
-	    lfs       f30, 0x48(r1)
-	    lwz       r12, 0x14(r12)
-	    mtctr     r12
-	    bctrl
-	    lfs       f1, 0x0(r3)
-	    lfs       f0, 0x40(r1)
-	    stfs      f1, 0x2C(r1)
-	    stfs      f0, 0x28(r1)
-	    stfs      f30, 0x30(r1)
-	    b         .loc_0x118
-
-	.loc_0x100:
-	    lfs       f2, 0x40(r1)
-	    lfs       f1, 0x44(r1)
-	    lfs       f0, 0x48(r1)
-	    stfs      f2, 0x28(r1)
-	    stfs      f1, 0x2C(r1)
-	    stfs      f0, 0x30(r1)
-
-	.loc_0x118:
-	    lwz       r4, 0x28(r1)
-	    lis       r3, 0x804B
-	    lwz       r7, 0x2C(r1)
-	    subi      r0, r3, 0x5808
-	    lwz       r6, 0x30(r1)
-	    lis       r3, 0x804B
-	    stw       r4, 0x34(r1)
-	    lis       r4, 0x804E
-	    subi      r11, r3, 0x5814
-	    lis       r10, 0x804B
-	    li        r5, 0
-	    stw       r7, 0x38(r1)
-	    lfs       f2, 0x34(r1)
-	    lis       r3, 0x804F
-	    stw       r6, 0x3C(r1)
-	    li        r8, 0x54
-	    lfs       f1, 0x38(r1)
-	    li        r7, 0x55
-	    lfs       f0, 0x3C(r1)
-	    li        r6, 0x56
-	    stw       r0, 0x70(r1)
-	    addi      r9, r4, 0x6A50
-	    subi      r10, r10, 0x5D24
-	    subi      r0, r3, 0x7A04
-	    stw       r11, 0x5C(r1)
-	    addi      r3, r1, 0x70
-	    addi      r4, r1, 0x5C
-	    stw       r9, 0x70(r1)
-	    stfs      f2, 0x60(r1)
-	    stfs      f1, 0x64(r1)
-	    stfs      f0, 0x68(r1)
-	    stw       r10, 0x5C(r1)
-	    stfs      f31, 0x6C(r1)
-	    sth       r8, 0x74(r1)
-	    sth       r7, 0x76(r1)
-	    sth       r6, 0x78(r1)
-	    stw       r5, 0x7C(r1)
-	    stw       r5, 0x80(r1)
-	    stw       r5, 0x84(r1)
-	    stw       r0, 0x70(r1)
-	    bl        0x2C4618
-	    fmr       f1, f31
-	    mr        r3, r31
-	    bl        0x36A680
-	    b         .loc_0x248
-
-	.loc_0x1CC:
-	    lis       r3, 0x804B
-	    lfs       f0, -0x6B9C(r2)
-	    subi      r0, r3, 0x5808
-	    lis       r3, 0x804E
-	    stw       r0, 0x18(r1)
-	    addi      r0, r3, 0x6A78
-	    lfs       f2, 0x40(r1)
-	    lis       r4, 0x804B
-	    stfs      f0, 0x24(r1)
-	    lis       r3, 0x804F
-	    lfs       f1, 0x44(r1)
-	    subi      r4, r4, 0x5814
-	    lfs       f0, 0x48(r1)
-	    li        r6, 0x53
-	    li        r5, 0
-	    stw       r0, 0x18(r1)
-	    subi      r0, r3, 0x79F0
-	    addi      r3, r1, 0x18
-	    stw       r4, 0x8(r1)
-	    addi      r4, r1, 0x8
-	    stfs      f2, 0xC(r1)
-	    stfs      f1, 0x10(r1)
-	    stfs      f0, 0x14(r1)
-	    sth       r6, 0x1C(r1)
-	    stw       r5, 0x20(r1)
-	    stw       r0, 0x18(r1)
-	    stfs      f31, 0x24(r1)
-	    bl        0x2C4530
-	    fmr       f1, f31
-	    mr        r3, r31
-	    bl        0x36A450
-
-	.loc_0x248:
-	    lwz       r0, 0x1E4(r31)
-	    lfs       f0, -0x6BB0(r2)
-	    rlwinm    r0,r0,0,28,26
-	    stw       r0, 0x1E4(r31)
-	    stfs      f0, 0x1C8(r31)
-	    stfs      f0, 0x1CC(r31)
-	    stfs      f0, 0x1D0(r31)
-
-	.loc_0x264:
-	    psq_l     f31,0xA8(r1),0,0
-	    lfd       f31, 0xA0(r1)
-	    psq_l     f30,0x98(r1),0,0
-	    lfd       f30, 0x90(r1)
-	    lwz       r31, 0x8C(r1)
-	    lwz       r0, 0xB4(r1)
-	    lwz       r30, 0x88(r1)
-	    mtlr      r0
-	    addi      r1, r1, 0xB0
-	    blr
-	*/
 }
 
 /*
@@ -2812,7 +2624,6 @@ void EnemyBase::collisionMapAndPlat(float constraint)
 
 		m_velocity = vec;
 
-		// these regswaps will resolve once normalise and length are matched
 		float velocityNorm = m_velocity.normalise();
 		float _11CNorm     = _11C.length();
 
@@ -3720,9 +3531,7 @@ void Game::EnemyBase::scaleDamageAnim()
 			if (_210 > scaleDuration) {
 				finishScaleDamageAnim();
 			} else {
-				const float sin3   = pikmin2_sinf(TAU * getModifier(scaleDuration)); // do we need this var?
-				horizontalModifier = 1.0f - getModifier(scaleDuration);
-				horizontalModifier *= sin3;
+				horizontalModifier = pikmin2_sinf(TAU * getModifier(scaleDuration)) * (1.0f - getModifier(scaleDuration));
 			}
 
 			if (isEvent(0, EB_15)) {
@@ -4310,7 +4119,6 @@ bool EnemyBase::flyCollisionCallBack(Game::Creature*, float, CollPart*) { return
  * Address:	801060C4
  * Size:	000248
  */
-// WIP: https://decomp.me/scratch/q8OtK - needs correct createSplashDownEffect inline
 bool EnemyBase::hipdropCallBack(Game::Creature* sourceCreature, float damage, CollPart* p3)
 {
 	float purpleDamage = static_cast<EnemyParmsBase*>(m_parms)->m_general.m_purplePikminHipDropDamage();
@@ -4325,175 +4133,9 @@ bool EnemyBase::hipdropCallBack(Game::Creature* sourceCreature, float damage, Co
 
 	setEvent(0, EB_20);
 	if (_0C8 != 0) {
-		float downSmokeScale = getDownSmokeScale();
-		if (m_waterBox != nullptr) {
-			createSplashDownEffect(m_position, downSmokeScale);
-		} else {
-			createDropEffect(m_position, downSmokeScale);
-		}
+		createBounceEffect(m_position, getDownSmokeScale());
 	}
 	return false;
-	/*
-	.loc_0x0:
-	    stwu      r1, -0xA0(r1)
-	    mflr      r0
-	    stw       r0, 0xA4(r1)
-	    stfd      f31, 0x90(r1)
-	    psq_st    f31,0x98(r1),0,0
-	    stfd      f30, 0x80(r1)
-	    psq_st    f30,0x88(r1),0,0
-	    stw       r31, 0x7C(r1)
-	    lwz       r0, 0x1E0(r3)
-	    mr        r31, r3
-	    lwz       r3, 0xC0(r3)
-	    rlwinm.   r0,r0,0,31,31
-	    lfs       f1, 0x67C(r3)
-	    bne-      .loc_0x6C
-	    lfs       f0, 0x208(r31)
-	    fadds     f0, f0, f1
-	    stfs      f0, 0x208(r31)
-	    lwz       r0, 0x1E0(r31)
-	    rlwinm.   r0,r0,0,26,26
-	    beq-      .loc_0x60
-	    lfs       f1, 0x20C(r31)
-	    lfs       f0, -0x6B9C(r2)
-	    fadds     f0, f1, f0
-	    stfs      f0, 0x20C(r31)
-
-	.loc_0x60:
-	    lwz       r0, 0x1E0(r31)
-	    ori       r0, r0, 0x2
-	    stw       r0, 0x1E0(r31)
-
-	.loc_0x6C:
-	    lwz       r0, 0x1E0(r31)
-	    oris      r0, r0, 0x8
-	    stw       r0, 0x1E0(r31)
-	    lwz       r0, 0xC8(r31)
-	    cmplwi    r0, 0
-	    beq-      .loc_0x220
-	    mr        r3, r31
-	    lwz       r12, 0x0(r31)
-	    lwz       r12, 0x2EC(r12)
-	    mtctr     r12
-	    bctrl
-	    lwz       r3, 0x280(r31)
-	    fmr       f31, f1
-	    cmplwi    r3, 0
-	    beq-      .loc_0x1A4
-	    beq-      .loc_0xD8
-	    lwz       r12, 0x0(r3)
-	    lfs       f30, 0x194(r31)
-	    lwz       r12, 0x14(r12)
-	    mtctr     r12
-	    bctrl
-	    lfs       f1, 0x0(r3)
-	    lfs       f0, 0x18C(r31)
-	    stfs      f1, 0x2C(r1)
-	    stfs      f0, 0x28(r1)
-	    stfs      f30, 0x30(r1)
-	    b         .loc_0xF0
-
-	.loc_0xD8:
-	    lfs       f2, 0x18C(r31)
-	    lfs       f1, 0x190(r31)
-	    lfs       f0, 0x194(r31)
-	    stfs      f2, 0x28(r1)
-	    stfs      f1, 0x2C(r1)
-	    stfs      f0, 0x30(r1)
-
-	.loc_0xF0:
-	    lwz       r4, 0x28(r1)
-	    lis       r3, 0x804B
-	    lwz       r7, 0x2C(r1)
-	    subi      r0, r3, 0x5808
-	    lwz       r6, 0x30(r1)
-	    lis       r3, 0x804B
-	    stw       r4, 0x34(r1)
-	    lis       r4, 0x804E
-	    subi      r11, r3, 0x5814
-	    lis       r10, 0x804B
-	    li        r5, 0
-	    stw       r7, 0x38(r1)
-	    lfs       f2, 0x34(r1)
-	    lis       r3, 0x804F
-	    stw       r6, 0x3C(r1)
-	    li        r8, 0x54
-	    lfs       f1, 0x38(r1)
-	    li        r7, 0x55
-	    lfs       f0, 0x3C(r1)
-	    li        r6, 0x56
-	    stw       r0, 0x54(r1)
-	    addi      r9, r4, 0x6A50
-	    subi      r10, r10, 0x5D24
-	    subi      r0, r3, 0x7A04
-	    stw       r11, 0x40(r1)
-	    addi      r3, r1, 0x54
-	    addi      r4, r1, 0x40
-	    stw       r9, 0x54(r1)
-	    stfs      f2, 0x44(r1)
-	    stfs      f1, 0x48(r1)
-	    stfs      f0, 0x4C(r1)
-	    stw       r10, 0x40(r1)
-	    stfs      f31, 0x50(r1)
-	    sth       r8, 0x58(r1)
-	    sth       r7, 0x5A(r1)
-	    sth       r6, 0x5C(r1)
-	    stw       r5, 0x60(r1)
-	    stw       r5, 0x64(r1)
-	    stw       r5, 0x68(r1)
-	    stw       r0, 0x54(r1)
-	    bl        0x2C2578
-	    fmr       f1, f31
-	    mr        r3, r31
-	    bl        0x3685E0
-	    b         .loc_0x220
-
-	.loc_0x1A4:
-	    lis       r3, 0x804B
-	    lis       r5, 0x804B
-	    subi      r0, r3, 0x5814
-	    lis       r4, 0x804E
-	    stw       r0, 0x8(r1)
-	    lis       r3, 0x804F
-	    subi      r8, r5, 0x5808
-	    lfs       f0, -0x6B9C(r2)
-	    lfs       f1, 0x18C(r31)
-	    addi      r7, r4, 0x6A78
-	    subi      r0, r3, 0x79F0
-	    li        r6, 0x53
-	    stfs      f1, 0xC(r1)
-	    li        r5, 0
-	    addi      r3, r1, 0x18
-	    addi      r4, r1, 0x8
-	    lfs       f1, 0x190(r31)
-	    stfs      f1, 0x10(r1)
-	    lfs       f1, 0x194(r31)
-	    stw       r8, 0x18(r1)
-	    stw       r7, 0x18(r1)
-	    stfs      f0, 0x24(r1)
-	    stfs      f1, 0x14(r1)
-	    sth       r6, 0x1C(r1)
-	    stw       r5, 0x20(r1)
-	    stw       r0, 0x18(r1)
-	    stfs      f31, 0x24(r1)
-	    bl        0x2C2490
-	    fmr       f1, f31
-	    mr        r3, r31
-	    bl        0x3683B0
-
-	.loc_0x220:
-	    li        r3, 0
-	    psq_l     f31,0x98(r1),0,0
-	    lfd       f31, 0x90(r1)
-	    psq_l     f30,0x88(r1),0,0
-	    lfd       f30, 0x80(r1)
-	    lwz       r0, 0xA4(r1)
-	    lwz       r31, 0x7C(r1)
-	    mtlr      r0
-	    addi      r1, r1, 0xA0
-	    blr
-	*/
 }
 
 /*
