@@ -764,7 +764,7 @@ NISHIMURA:=\
 	$(BUILD_DIR)/asm/plugProjectNishimuraU/IKSystemMgr.o\
 	$(BUILD_DIR)/asm/plugProjectNishimuraU/IKSystemBase.o\
 	$(BUILD_DIR)/asm/plugProjectNishimuraU/DamagumoShadow.o\
-	$(BUILD_DIR)/asm/plugProjectNishimuraU/KurageState.o\
+	$(BUILD_DIR)/src/plugProjectNishimuraU/KurageState.o\
 	$(BUILD_DIR)/src/plugProjectNishimuraU/KurageAnimator.o\
 	$(BUILD_DIR)/asm/plugProjectNishimuraU/KurageMgr.o\
 	$(BUILD_DIR)/asm/plugProjectNishimuraU/Kurage.o\
@@ -806,7 +806,7 @@ NISHIMURA:=\
 	$(BUILD_DIR)/asm/plugProjectNishimuraU/SnakeWholeMgr.o\
 	$(BUILD_DIR)/asm/plugProjectNishimuraU/SnakeWhole.o\
 	$(BUILD_DIR)/asm/plugProjectNishimuraU/SnakeJointMgr.o\
-	$(BUILD_DIR)/asm/plugProjectNishimuraU/OniKurageState.o\
+	$(BUILD_DIR)/src/plugProjectNishimuraU/OniKurageState.o\
 	$(BUILD_DIR)/src/plugProjectNishimuraU/OniKurageAnimator.o\
 	$(BUILD_DIR)/asm/plugProjectNishimuraU/OniKurageMgr.o\
 	$(BUILD_DIR)/asm/plugProjectNishimuraU/OniKurage.o\

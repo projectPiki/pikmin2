@@ -192,4 +192,11 @@ inline void _normaliseXZ(Vector3f& vec)
 		vec.z *= norm;
 	}
 }
+
+inline f32 sqrDistanceXZ(Vector3f& vec1, Vector3f& vec2)
+{
+	f32 x = vec1.x - vec2.x;
+	f32 z = vec1.z - vec2.z;
+	return x * x + z * z;
+}
 #endif

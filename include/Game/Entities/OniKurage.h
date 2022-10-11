@@ -16,6 +16,23 @@ namespace Game {
 namespace OniKurage {
 struct FSM;
 
+enum StateID {
+	ONIKURAGE_NULL        = -1,
+	ONIKURAGE_Dead        = 0,
+	ONIKURAGE_Wait        = 1,
+	ONIKURAGE_Move        = 2,
+	ONIKURAGE_Chase       = 3,
+	ONIKURAGE_Attack      = 4,
+	ONIKURAGE_Fall        = 5,
+	ONIKURAGE_Drop        = 6,
+	ONIKURAGE_Land        = 7,
+	ONIKURAGE_Ground      = 8,
+	ONIKURAGE_TakeOff     = 9,
+	ONIKURAGE_FlyFlick    = 10,
+	ONIKURAGE_GroundFlick = 11,
+	ONIKURAGE_Count       = 12,
+};
+
 struct Obj : public EnemyBase {
 	Obj();
 
@@ -45,22 +62,22 @@ struct Obj : public EnemyBase {
 	virtual void setFSM(FSM*);                              // _2F8
 	//////////////// VTABLE END
 
-	void setHeightVelocity(f32, f32);
+	f32 setHeightVelocity(f32, f32);
 	void setRandTarget();
-	void getMovePitchOffset();
-	void getAttackPitchOffset();
-	void getFlickPitchOffset();
-	void getTakeOffPitchOffset();
-	void getFallPitchOffset(f32);
+	f32 getMovePitchOffset();
+	f32 getAttackPitchOffset();
+	f32 getFlickPitchOffset();
+	f32 getTakeOffPitchOffset();
+	f32 getFallPitchOffset(f32);
 	void updateFallTimer();
-	void getFlyingNextState();
-	void getSearchedTarget(f32);
-	void isSuck(f32, Creature*);
-	void suckPikmin(f32);
-	void suckNavi(f32);
+	StateID getFlyingNextState();
+	Creature* getSearchedTarget(f32);
+	bool isSuck(f32, Creature*);
+	bool suckPikmin(f32);
+	bool suckNavi(f32);
 	void updateCollPartOffset();
-	void isFinishNaviSuck();
-	void isNaviSucked();
+	bool isFinishNaviSuck();
+	bool isNaviSucked();
 	void flickStickNavi(bool);
 	void escapeCheckNavi();
 	void createEffect();
@@ -80,11 +97,17 @@ struct Obj : public EnemyBase {
 
 	// _00 		= VTBL
 	// _00-_2BC	= EnemyBase
-	FSM* m_FSM;              // _2BC
-	u8 _2C0[0x24];           // _2C0, unknown
-	MouthSlots m_mouthSlots; // _2E4
-	u8 _2EC[0x24];           // _2EC, unknown
-	                         // _310 = PelletView
+	FSM* m_FSM;                // _2BC
+	StateID m_nextState;       // _2C0
+	f32 m_stateTimer;          // _2C4
+	f32 _2C8;                  // _2C8
+	f32 m_fallTimer;           // _2CC
+	Vector3f m_targetPosition; // _2D0
+	bool m_isSucking;          // _2DC
+	int _2E0;                  // _2E0
+	MouthSlots m_mouthSlots;   // _2E4
+	u8 _2EC[0x24];             // _2EC, unknown
+	                           // _310 = PelletView
 };
 
 struct Mgr : public EnemyMgrBase {
@@ -146,11 +169,22 @@ struct FSM : public EnemyStateMachine {
 };
 
 struct State : public EnemyFSMState {
+	inline State(u16 stateID, const char* name)
+	    : EnemyFSMState(stateID)
+	{
+		m_name = name;
+	}
+
 	// _00		= VTBL
 	// _00-_10 	= EnemyFSMState
 };
 
 struct StateAttack : public State {
+	inline StateAttack()
+	    : State(ONIKURAGE_Attack, "attack")
+	{
+	}
+
 	virtual void init(EnemyBase*, StateArg*); // _08
 	virtual void exec(EnemyBase*);            // _0C
 	virtual void cleanup(EnemyBase*);         // _10
@@ -160,6 +194,11 @@ struct StateAttack : public State {
 };
 
 struct StateChase : public State {
+	inline StateChase()
+	    : State(ONIKURAGE_Chase, "chase")
+	{
+	}
+
 	virtual void init(EnemyBase*, StateArg*); // _08
 	virtual void exec(EnemyBase*);            // _0C
 	virtual void cleanup(EnemyBase*);         // _10
@@ -169,6 +208,11 @@ struct StateChase : public State {
 };
 
 struct StateDead : public State {
+	inline StateDead()
+	    : State(ONIKURAGE_Dead, "dead")
+	{
+	}
+
 	virtual void init(EnemyBase*, StateArg*); // _08
 	virtual void exec(EnemyBase*);            // _0C
 	virtual void cleanup(EnemyBase*);         // _10
@@ -178,6 +222,11 @@ struct StateDead : public State {
 };
 
 struct StateDrop : public State {
+	inline StateDrop()
+	    : State(ONIKURAGE_Drop, "drop")
+	{
+	}
+
 	virtual void init(EnemyBase*, StateArg*); // _08
 	virtual void exec(EnemyBase*);            // _0C
 	virtual void cleanup(EnemyBase*);         // _10
@@ -187,6 +236,11 @@ struct StateDrop : public State {
 };
 
 struct StateFall : public State {
+	inline StateFall()
+	    : State(ONIKURAGE_Fall, "fall")
+	{
+	}
+
 	virtual void init(EnemyBase*, StateArg*); // _08
 	virtual void exec(EnemyBase*);            // _0C
 	virtual void cleanup(EnemyBase*);         // _10
@@ -196,6 +250,11 @@ struct StateFall : public State {
 };
 
 struct StateFlyFlick : public State {
+	inline StateFlyFlick()
+	    : State(ONIKURAGE_FlyFlick, "flyflick")
+	{
+	}
+
 	virtual void init(EnemyBase*, StateArg*); // _08
 	virtual void exec(EnemyBase*);            // _0C
 	virtual void cleanup(EnemyBase*);         // _10
@@ -205,6 +264,11 @@ struct StateFlyFlick : public State {
 };
 
 struct StateGround : public State {
+	inline StateGround()
+	    : State(ONIKURAGE_Ground, "ground")
+	{
+	}
+
 	virtual void init(EnemyBase*, StateArg*); // _08
 	virtual void exec(EnemyBase*);            // _0C
 	virtual void cleanup(EnemyBase*);         // _10
@@ -214,6 +278,11 @@ struct StateGround : public State {
 };
 
 struct StateGroundFlick : public State {
+	inline StateGroundFlick()
+	    : State(ONIKURAGE_GroundFlick, "groundflick")
+	{
+	}
+
 	virtual void init(EnemyBase*, StateArg*); // _08
 	virtual void exec(EnemyBase*);            // _0C
 	virtual void cleanup(EnemyBase*);         // _10
@@ -223,6 +292,11 @@ struct StateGroundFlick : public State {
 };
 
 struct StateLand : public State {
+	inline StateLand()
+	    : State(ONIKURAGE_Land, "land")
+	{
+	}
+
 	virtual void init(EnemyBase*, StateArg*); // _08
 	virtual void exec(EnemyBase*);            // _0C
 	virtual void cleanup(EnemyBase*);         // _10
@@ -232,6 +306,11 @@ struct StateLand : public State {
 };
 
 struct StateMove : public State {
+	inline StateMove()
+	    : State(ONIKURAGE_Move, "move")
+	{
+	}
+
 	virtual void init(EnemyBase*, StateArg*); // _08
 	virtual void exec(EnemyBase*);            // _0C
 	virtual void cleanup(EnemyBase*);         // _10
@@ -241,6 +320,11 @@ struct StateMove : public State {
 };
 
 struct StateTakeOff : public State {
+	inline StateTakeOff()
+	    : State(ONIKURAGE_TakeOff, "takeoff")
+	{
+	}
+
 	virtual void init(EnemyBase*, StateArg*); // _08
 	virtual void exec(EnemyBase*);            // _0C
 	virtual void cleanup(EnemyBase*);         // _10
@@ -250,6 +334,11 @@ struct StateTakeOff : public State {
 };
 
 struct StateWait : public State {
+	inline StateWait()
+	    : State(ONIKURAGE_Wait, "wait")
+	{
+	}
+
 	virtual void init(EnemyBase*, StateArg*); // _08
 	virtual void exec(EnemyBase*);            // _0C
 	virtual void cleanup(EnemyBase*);         // _10
