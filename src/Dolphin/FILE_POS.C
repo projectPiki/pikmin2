@@ -1,6 +1,6 @@
 #include "types.h"
 
-#ifndef _DOLPHIN_ANSI_FILES_H
+#ifndef _MSL_WIDE_CHAR
 #define _MSL_WIDE_CHAR
 #endif
 
