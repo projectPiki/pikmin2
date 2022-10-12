@@ -12,6 +12,13 @@ struct TChaseMtx : public TSync {
 	{
 	}
 
+	inline TChaseMtx(u16 effectID, Matrixf* mtx) // probably
+	    : TSync()
+	    , m_mtx(mtx)
+	{
+		m_effectID = effectID;
+	}
+
 	virtual void doExecuteEmitterOperation(JPABaseEmitter*); // _38
 	virtual ~TChaseMtx();                                    // _48 (weak)
 
@@ -70,6 +77,13 @@ struct TChaseMtxT : public TSync {
 	TChaseMtxT()
 	    : TSync()
 	{
+	}
+
+	inline TChaseMtxT(u16 effectID) // probably
+	    : TSync()
+	    , m_mtx(nullptr)
+	{
+		m_effectID = effectID;
 	}
 
 	virtual void doExecuteEmitterOperation(JPABaseEmitter*); // _38

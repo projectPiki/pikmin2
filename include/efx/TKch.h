@@ -7,6 +7,14 @@
 #include "efx/TOneEmitter.h"
 
 namespace efx {
+struct TParticleCallBack_KchYodare : public JPAParticleCallBack {
+	virtual ~TParticleCallBack_KchYodare();                  // _08 (weak)
+	virtual void execute(JPABaseEmitter*, JPABaseParticle*); // _0C
+	virtual void init(JPABaseEmitter*, JPABaseParticle*);    // _14
+
+	// _00 = VTBL
+};
+
 struct TKchApSand : public TSimple3 {
 	virtual bool create(Arg*); // _08
 

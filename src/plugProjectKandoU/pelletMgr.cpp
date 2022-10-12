@@ -26,7 +26,7 @@
 #include "Game/AIConstants.h"
 #include "Game/BaseHIOParms.h"
 #include "efx/TFruitsDown.h"
-#include "efx/TOtakaraDive.h"
+#include "efx/TOtakara.h"
 #include "PSM/Otakara.h"
 #include "PSM/Scene.h"
 #include "PSSystem/PSGame.h"

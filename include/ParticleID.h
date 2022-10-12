@@ -573,7 +573,7 @@
 
 #define PID_Watage (0x1E4) // seeding dandelion seeds
 
-#define PID_PkAp_3 (0x1E5) // pikmin appear 3 ?
+#define PID_WeedPull (0x1E5) // pikmin pull nectar grass
 
 #define PID_YakiBody_1 (0x1E6) // fiery bulblax fire sphere
 #define PID_YakiBody_2 (0x1E7) // fiery bulblax fire blades (like grass)

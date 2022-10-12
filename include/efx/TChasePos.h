@@ -57,6 +57,13 @@ struct TChasePos4 : public TSyncGroup4<TChasePos> {
 };
 
 struct TChasePosPos : public TSync {
+	inline TChasePosPos(u16 effectID, Vector3f* position = nullptr, Vector3f* position2 = nullptr)
+	    : TSync()
+	    , _10(position)
+	    , _14(position2)
+	{
+		m_effectID = effectID;
+	}
 
 	// vtable 1 (TBase)
 	// vtable 2 (JPAEmitterCallBack + self)
@@ -71,6 +78,15 @@ struct TChasePosPos : public TSync {
 
 struct TChasePosPosLocalYScale : public TSync {
 	TChasePosPosLocalYScale();
+
+	inline TChasePosPosLocalYScale(u16 effectID)
+	    : TSync()
+	    , _10(nullptr)
+	    , _14(nullptr)
+	    , _18(0.0f)
+	{
+		m_effectID = effectID;
+	}
 
 	// vtable 1 (TBase)
 	// 		_08-_14
@@ -105,6 +121,15 @@ struct TChasePosPosLocalYScale3 : public TSyncGroup3<TChasePosPosLocalYScale> {
 
 struct TChasePosPosLocalZScale : public TSync {
 	TChasePosPosLocalZScale();
+
+	inline TChasePosPosLocalZScale(u16 effectID) // probably
+	    : TSync()
+	    , _10(nullptr)
+	    , _14(nullptr)
+	    , _18(0.0f)
+	{
+		m_effectID = effectID;
+	}
 
 	// vtable 1 (TBase)
 	// vtable 2 (JPAEmitterCallBack + self)

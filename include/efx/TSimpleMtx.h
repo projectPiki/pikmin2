@@ -20,6 +20,12 @@ struct TSimpleMtx1 : public TSimple1 {
 };
 
 struct TSimpleMtx2 : public TSimple2 {
+	inline TSimpleMtx2(Matrixf* mat, u16 effectID1, u16 effectID2)
+	    : TSimple2(effectID1, effectID2)
+	{
+		m_mtx = mat;
+	}
+
 	virtual bool create(Arg*); // _08
 
 	// _00		= VTBL
@@ -28,6 +34,12 @@ struct TSimpleMtx2 : public TSimple2 {
 };
 
 struct TSimpleMtx3 : public TSimple3 {
+	inline TSimpleMtx3(Matrixf* mat, u16 effectID1, u16 effectID2, u16 effectID3)
+	    : TSimple3(effectID1, effectID2, effectID3)
+	{
+		m_mtx = mat;
+	}
+
 	virtual bool create(Arg*); // _08
 
 	// _00		= VTBL
@@ -36,6 +48,12 @@ struct TSimpleMtx3 : public TSimple3 {
 };
 
 struct TSimpleMtx4 : public TSimple4 {
+	inline TSimpleMtx4(Matrixf* mat, u16 effectID1, u16 effectID2, u16 effectID3, u16 effectID4)
+	    : TSimple4(effectID1, effectID2, effectID3, effectID4)
+	{
+		m_mtx = mat;
+	}
+
 	virtual bool create(Arg*); // _08
 
 	// _00		= VTBL

@@ -55,6 +55,13 @@ struct TOneEmitterChasePos : public TBase, public JPAEmitterCallBack {
 };
 
 struct TOneEmitterSimple : public TBase, public JPAEmitterCallBack {
+	inline TOneEmitterSimple(u16 effectID) // something like this, may need reordering
+	    : m_emitter(nullptr)
+	    , m_effectID(effectID)
+	    , _14(0)
+	{
+	}
+
 	// vtable 1 (TBase)
 	virtual bool create(Arg*); // _08
 	virtual void forceKill();  // _0C (weak)
@@ -69,7 +76,7 @@ struct TOneEmitterSimple : public TBase, public JPAEmitterCallBack {
 	// _04-_08	= JPAEmitterCallBack
 	JPABaseEmitter* m_emitter; // _08
 	u16 m_effectID;            // _0C
-	Vector3f** _10;            // _10
+	Vector3f* _10;             // _10
 	int _14;                   // _14
 };
 } // namespace efx

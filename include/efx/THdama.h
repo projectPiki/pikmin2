@@ -5,6 +5,7 @@
 #include "efx/TSimpleMtx.h"
 #include "efx/TChasePos.h"
 #include "efx/TChaseMtx.h"
+#include "efx/TForever.h"
 
 namespace efx {
 struct THdamaDeadbomb : public TChaseMtx4 {
@@ -36,7 +37,7 @@ struct THdamaDeadSteamT : public TSimple1 {
 	// _00-_0C	= TSimple1
 };
 
-struct THdamaHahen : public TChasPosPos {
+struct THdamaHahen : public TChasePosPos {
 	virtual ~THdamaHahen(); // _48 (weak)
 
 	// _00		= VTBL

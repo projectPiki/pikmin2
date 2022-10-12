@@ -8,6 +8,12 @@ namespace efx {
 struct TForever : public TSync {
 	TForever();
 
+	inline TForever(u16 effectID) // probably
+	    : TSync()
+	{
+		m_effectID = effectID;
+	}
+
 	virtual void doExecuteEmitterOperation(JPABaseEmitter*); // _38 (weak)
 	virtual ~TForever();                                     // _48 (weak, thunk at _1C)
 

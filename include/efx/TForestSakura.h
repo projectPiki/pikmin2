@@ -5,7 +5,12 @@
 
 namespace efx {
 struct TForestSakura : public TChasePos {
-	virtual void ~TForestSakura(); // _48 (weak)
+	inline TForestSakura()
+	    : TChasePos(PID_ForestSakura, nullptr)
+	{
+	}
+
+	virtual ~TForestSakura(); // _48 (weak)
 
 	// _00      = VTBL
 	// _00-_14  = TChasePos
