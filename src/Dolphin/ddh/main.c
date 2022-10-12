@@ -2,9 +2,15 @@
 #include "Dolphin/trk.h"
 #include "Dolphin/AmcExi2Stubs.h"
 
-static char gRecvBuf[0x800];
-static char gRecvCB[0x20];
+char gRecvBuf[0x800];
+char gRecvCB[0x20];
 static BOOL gIsInitialized;
+
+static makeDDHBSSOrderingWork()
+{
+	u8 buff[0x800];
+	memcpy(buff, gRecvBuf, 0x800);
+}
 
 /*
  * --INFO--
@@ -102,11 +108,13 @@ int ddh_cc_write(u32 bytes, u32 length)
  * Address:	800C0DEC
  * Size:	0000EC
  */
-u32 ddh_cc_read(int arg0, int arg1)
+u32 ddh_cc_read(int arg0, u32 arg1)
 {
 	u8 buff[0x800];
-	int poll;
+	int p1;
 	u32 retval;
+	int p2;
+	int poll;
 
 	retval = 0;
 	if (!gIsInitialized) {
@@ -115,7 +123,9 @@ u32 ddh_cc_read(int arg0, int arg1)
 
 	MWTRACE(1, "Expected packet size : 0x%08x (%ld)\n", arg1, arg1);
 
-	while ((u32)CBGetBytesAvailableForRead(&gRecvCB) < arg1) {
+	p1 = arg1;
+	p2 = arg1;
+	while ((u32)CBGetBytesAvailableForRead(&gRecvCB) < p2) {
 		retval = 0;
 		poll   = EXI2_Poll();
 		if (poll != 0) {
@@ -127,86 +137,12 @@ u32 ddh_cc_read(int arg0, int arg1)
 	}
 
 	if (retval == 0) {
-		CircleBufferReadBytes(&gRecvCB, arg0, arg1);
+		CircleBufferReadBytes(&gRecvCB, arg0, p1);
 	} else {
 		MWTRACE(8, "cc_read : error reading bytes from EXI2 %ld\n", retval);
 	}
 
 	return retval;
-	/*
-	.loc_0x0:
-	  stwu      r1, -0x820(r1)
-	  mflr      r0
-	  stw       r0, 0x824(r1)
-	  stmw      r27, 0x80C(r1)
-	  mr        r27, r3
-	  mr        r30, r4
-	  li        r29, 0
-	  lwz       r0, -0x7370(r13)
-	  cmpwi     r0, 0
-	  bne-      .loc_0x30
-	  li        r3, -0x2711
-	  b         .loc_0xD8
-
-	.loc_0x30:
-	  lis       r3, 0x8048
-	  mr        r5, r30
-	  subi      r4, r3, 0x6254
-	  mr        r6, r30
-	  li        r3, 0x1
-	  crclr     6, 0x6
-	  bl        0x714
-	  lis       r3, 0x804F
-	  addi      r31, r3, 0x5020
-	  b         .loc_0x8C
-
-	.loc_0x58:
-	  li        r29, 0
-	  bl        0x11804
-	  mr.       r28, r3
-	  beq-      .loc_0x8C
-	  mr        r4, r28
-	  addi      r3, r1, 0x8
-	  bl        0x117F8
-	  mr.       r29, r3
-	  bne-      .loc_0x8C
-	  mr        r3, r31
-	  mr        r5, r28
-	  addi      r4, r1, 0x8
-	  bl        0x228
-
-	.loc_0x8C:
-	  mr        r3, r31
-	  bl        0x378
-	  cmplw     r3, r30
-	  blt+      .loc_0x58
-	  cmplwi    r29, 0
-	  bne-      .loc_0xBC
-	  lis       r3, 0x804F
-	  mr        r4, r27
-	  addi      r3, r3, 0x5020
-	  mr        r5, r30
-	  bl        0xF4
-	  b         .loc_0xD4
-
-	.loc_0xBC:
-	  lis       r3, 0x8048
-	  mr        r5, r29
-	  subi      r4, r3, 0x622C
-	  li        r3, 0x8
-	  crclr     6, 0x6
-	  bl        0x68C
-
-	.loc_0xD4:
-	  mr        r3, r29
-
-	.loc_0xD8:
-	  lmw       r27, 0x80C(r1)
-	  lwz       r0, 0x824(r1)
-	  mtlr      r0
-	  addi      r1, r1, 0x820
-	  blr
-	*/
 }
 
 /*
@@ -214,14 +150,14 @@ u32 ddh_cc_read(int arg0, int arg1)
  * Address:	800C0ED8
  * Size:	000008
  */
-BOOL ddh_cc_close(void) { return FALSE; }
+BOOL ddh_cc_close() { return FALSE; }
 
 /*
  * --INFO--
  * Address:	800C0EE0
  * Size:	000024
  */
-BOOL ddh_cc_open()
+int ddh_cc_open()
 {
 	if (gIsInitialized) {
 		return -0x2715;

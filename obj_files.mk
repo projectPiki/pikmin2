@@ -261,9 +261,9 @@ DOLPHIN:=\
 	$(BUILD_DIR)/src/Dolphin/target_options.o\
 	$(BUILD_DIR)/asm/Dolphin/mslsupp.o\
 	$(BUILD_DIR)/src/Dolphin/UDP_Stubs.o\
-	$(BUILD_DIR)/asm/Dolphin/ddh/main.o\
+	$(BUILD_DIR)/src/Dolphin/ddh/main.o\
 	$(BUILD_DIR)/asm/Dolphin/CircleBuffer.o\
-	$(BUILD_DIR)/asm/Dolphin/main.o\
+	$(BUILD_DIR)/src/Dolphin/main.o\
 	$(BUILD_DIR)/src/Dolphin/MWTrace.o\
 	$(BUILD_DIR)/src/Dolphin/MWCriticalSection_gc.o\
 	$(BUILD_DIR)/src/Dolphin/__va_arg.o\
