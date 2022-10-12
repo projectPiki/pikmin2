@@ -259,6 +259,12 @@ $(BUILD_DIR)/%.o: %.s
 	$(QUIET) mkdir -p $(dir $@)
 	$(QUIET) $(AS) $(ASFLAGS) -o $@ $<
 
+# for files with capitalized .C extension
+$(BUILD_DIR)/%.o: %.C
+	@echo "Compiling " $<
+	$(QUIET) mkdir -p $(dir $@)
+	$(QUIET) $(CC) $(CFLAGS) -c -o $(dir $@) $<
+
 $(BUILD_DIR)/%.o: %.c
 	@echo "Compiling " $<
 	$(QUIET) mkdir -p $(dir $@)

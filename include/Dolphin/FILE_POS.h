@@ -16,6 +16,7 @@ extern "C" {
 int fseek(FILE* stream, u32 offset, int whence);
 int _fseek(FILE* stream, u32 offset, int whence);
 int ftell(FILE* stream);
+int _ftell(FILE* stream);
 
 #ifdef __cplusplus
 };

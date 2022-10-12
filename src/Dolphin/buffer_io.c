@@ -6,9 +6,9 @@
  * Address:	800C6160
  * Size:	0000C4
  */
-int __flush_buffer(FILE* file, u32* length)
+int __flush_buffer(FILE* file, size_t* length)
 {
-	u32 bufferLen;
+	size_t bufferLen;
 	int writeCode;
 
 	bufferLen = file->m_bufferPtr - file->m_buffer;
@@ -21,7 +21,7 @@ int __flush_buffer(FILE* file, u32* length)
 		if (writeCode != 0) {
 			return writeCode;
 		}
-		file->m_position = file->m_position + file->m_bufferLength;
+		file->m_position += file->m_bufferLength;
 	}
 
 	file->m_bufferPtr      = file->m_buffer;
