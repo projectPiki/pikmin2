@@ -28,7 +28,7 @@ struct TFueactBiri2 : public TFueactBiriBase {
 	// _00-_18  = TFueactBiriBase
 };
 
-struct TFueactCircle : public TBase, public JPAEmitterCallBack public JPAParticleCallBack {
+struct TFueactCircle : public TBase, public JPAEmitterCallBack, public JPAParticleCallBack {
 	virtual bool create(Arg*);                               // _08
 	virtual void forceKill();                                // _0C (weak)
 	virtual void fade();                                     // _10 (weak)

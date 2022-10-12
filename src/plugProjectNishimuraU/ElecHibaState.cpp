@@ -98,7 +98,7 @@ void StateWait::init(EnemyBase* enemy, StateArg* stateArg)
 	Obj* elecHiba = static_cast<Obj*>(enemy);
 
 	if (stateArg != nullptr) {
-		elecHiba->m_waitTimer = stateArg->_00.f32;
+		elecHiba->m_waitTimer = stateArg->m_value.asFloat;
 	} else {
 		elecHiba->m_waitTimer = 0.0f;
 	}

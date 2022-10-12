@@ -527,7 +527,7 @@ void EarthquakeState::init(Game::EnemyBase* enemy, Game::StateArg* arg)
 	enemy->doUpdate();
 	enemy->setEvent(1, EB2_1);
 	enemy->stopMotion();
-	enemy->doStartEarthquakeState(arg->_00.f32);
+	enemy->doStartEarthquakeState(arg->m_value.asFloat);
 	this->_10 = 0;
 }
 
@@ -4178,7 +4178,7 @@ bool EnemyBase::earthquakeCallBack(Game::Creature* creature, float p1)
 		if (!(isEvent(0, EB_HardConstraint)) && !(isEvent(0, EB_Bittered))) {
 			if (((isEvent(0, EB_22)) || (isEvent(0, EB_BitterImmune))) == false) {
 				StateArg transitArg;
-				transitArg._00.f32 = p1;
+				transitArg.m_value.asFloat = p1;
 				m_lifecycleFSM->transit(this, EnemyBaseFSM::EBS_Earthquake, &transitArg);
 			}
 		}

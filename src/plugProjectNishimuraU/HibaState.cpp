@@ -73,7 +73,7 @@ void StateWait::init(EnemyBase* enemy, StateArg* stateArg)
 	Obj* hiba = static_cast<Obj*>(enemy);
 
 	if (stateArg != nullptr) {
-		hiba->m_timer = stateArg->_00.f32;
+		hiba->m_timer = stateArg->m_value.asFloat;
 	} else {
 		hiba->m_timer = 0.0f;
 	}
