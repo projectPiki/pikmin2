@@ -17,22 +17,25 @@ struct StateArg {
 	union {
 		f32 f32;
 		void* ptr;
-	} _00; // _00 - EarthquakeState::init requires this to be a float - could be a union or bitflag?
-	       // short _04; // _04
+		u8 bytes[4];
+	} _00; // _00
 };
 
 template <typename T> struct FSMState {
 	inline FSMState(int id)
 	    : m_id(id)
-	    , m_stateMachine(nullptr) {};
-	virtual void init(T*, StateArg*);         // _00
-	virtual void exec(T*);                    // _04
-	virtual void cleanup(T*);                 // _08
-	virtual void resume(T*);                  // _0C
-	virtual void restart(T*);                 // _10
-	virtual void transit(T*, int, StateArg*); // _14
+	    , m_stateMachine(nullptr)
+	{
+	}
 
-	// VTBL _00
+	virtual void init(T*, StateArg*);         // _08
+	virtual void exec(T*);                    // _0C
+	virtual void cleanup(T*);                 // _10
+	virtual void resume(T*);                  // _14
+	virtual void restart(T*);                 // _18
+	virtual void transit(T*, int, StateArg*); // _1C
+
+	// _00 = VTBL
 	int m_id;                        // _04
 	StateMachine<T>* m_stateMachine; // _08
 };

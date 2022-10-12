@@ -3,8 +3,9 @@
 
 #include "Game/WaterBox.h"
 #include "Game/Creature.h"
-#include "SysShape/MotionListener.h"
+#include "Game/EnemyParmsBase.h"
 #include "Game/shadowMgr.h"
+#include "SysShape/MotionListener.h"
 #include "Vector3.h"
 #include "PikiAnimator.h"
 
@@ -91,8 +92,8 @@ struct FakePiki : public Creature, public SysShape::MotionListener {
 	virtual void getBoundingSphere(Sys::Sphere&);     // _10 (weak)
 	virtual void doAnimation();                       // _3C
 	virtual void doEntry();                           // _40
-	virtual void doSimulation(float);                 // _4C
-	virtual float getFaceDir();                       // _64 (weak)
+	virtual void doSimulation(f32);                   // _4C
+	virtual f32 getFaceDir();                         // _64 (weak)
 	virtual void setVelocity(Vector3f&);              // _68 (weak)
 	virtual Vector3f getVelocity();                   // _6C (weak)
 	virtual void onSetPosition(Vector3f&);            // _70 (weak)
@@ -101,29 +102,29 @@ struct FakePiki : public Creature, public SysShape::MotionListener {
 	virtual void outWaterCallback();                  // _88 (weak)
 	virtual bool inWater();                           // _8C (weak)
 	virtual Vector3f* getSound_PosPtr();              // _100 (weak)
-	virtual void movieSetFaceDir(float);              // _128
+	virtual void movieSetFaceDir(f32);                // _128
 	virtual void getVelocityAt(Vector3f&, Vector3f&); // _184 (weak)
 	// vtable 2 (MotionListener + self)
 	// virtual void onKeyEvent(const SysShape::KeyEvent&); thunk // 1B8
-	virtual int getDownfloorMass();             // _1BC (weak)
-	virtual bool isPikmin();                    // _1C0 (weak)
-	virtual void doColorChange();               // _1C4 (weak)
-	virtual void doDebugDL();                   // _1C8 (weak)
-	virtual void update();                      // _1CC (weak)
-	virtual void move(float);                   // _1D0
-	virtual bool useMoveRotation();             // _1D4 (weak)
-	virtual void setMoveRotation(bool);         // _1D8 (weak)
-	virtual void useUpdateTrMatrix();           // _1DC (weak)
-	virtual void setUpdateTrMatrix(bool);       // _1E0 (weak)
-	virtual void useMoveVelocity();             // _1E4 (weak)
-	virtual void setMoveVelocity(bool);         // _1E8 (weak)
-	virtual void useMapCollision();             // _1EC (weak)
-	virtual void setMapCollision(bool);         // _1F0 (weak)
-	virtual bool isZikatu();                    // _1F4 (weak)
-	virtual void setZikatu(bool);               // _1F8 (weak)
-	virtual bool wasZikatu();                   // _1FC (weak)
-	virtual float getMapCollisionRadius();      // _200 (weak)
-	virtual void wallCallback(Vector3<float>&); // _204 (weak)
+	virtual int getDownfloorMass();           // _1BC (weak)
+	virtual bool isPikmin();                  // _1C0 (weak)
+	virtual void doColorChange();             // _1C4 (weak)
+	virtual void doDebugDL();                 // _1C8 (weak)
+	virtual void update();                    // _1CC (weak)
+	virtual void move(f32);                   // _1D0
+	virtual bool useMoveRotation();           // _1D4 (weak)
+	virtual void setMoveRotation(bool);       // _1D8 (weak)
+	virtual void useUpdateTrMatrix();         // _1DC (weak)
+	virtual void setUpdateTrMatrix(bool);     // _1E0 (weak)
+	virtual void useMoveVelocity();           // _1E4 (weak)
+	virtual void setMoveVelocity(bool);       // _1E8 (weak)
+	virtual void useMapCollision();           // _1EC (weak)
+	virtual void setMapCollision(bool);       // _1F0 (weak)
+	virtual bool isZikatu();                  // _1F4 (weak)
+	virtual void setZikatu(bool);             // _1F8 (weak)
+	virtual bool wasZikatu();                 // _1FC (weak)
+	virtual f32 getMapCollisionRadius();      // _200 (weak)
+	virtual void wallCallback(Vector3<f32>&); // _204 (weak)
 	virtual void startMotion(int, int, SysShape::MotionListener*,
 	                         SysShape::MotionListener*); // _208
 	virtual void onKeyEvent(const SysShape::KeyEvent&);  // _20C (weak)
@@ -163,16 +164,17 @@ struct FakePiki : public Creature, public SysShape::MotionListener {
 
 	bool debugShapeDL(char*);
 
-	// Creature: _000 - _178
-	// MotionListener: _178 - _17C
-	float _180;                         // _180
+	// _000      = VTBL
+	// _000-_178 = Creature
+	// _178-_180 = MotionListener
+	f32 _180;                           // _180
 	u8 _184[4];                         // _184
 	IDelegate* m_doAnimCallback;        // _188
 	short m_roomIndex;                  // _18C
 	WaterBox* m_waterBox;               // _190
 	CollPart* m_stomachCaptureCollPart; // _194
-	float m_neckTheta;                  // _198
-	float m_neckPhi;                    // _19C
+	f32 m_neckTheta;                    // _198
+	f32 m_neckPhi;                      // _19C
 	u32 _1A0;                           // _1A0
 	u8 _1A4;                            // _1A4
 	Creature* m_lookAtTargetCreature;   // _1A8
@@ -180,15 +182,43 @@ struct FakePiki : public Creature, public SysShape::MotionListener {
 	PikiAnimator m_animator;            // _1AC
 	Vector3f m_velocity;                // _1E4
 	Vector3f _1F0;                      // _1F0
-	float m_faceDir;                    // _1FC
+	f32 m_faceDir;                      // _1FC
 	Vector3f m_position2;               // _200
-	Game::ShadowParam m_shadowParam;    // _20C
+	ShadowParam m_shadowParam;          // _20C
 	u8 _22C[8];                         // _22C
-	float m_animSpeed;                  // _234
+	f32 m_animSpeed;                    // _234
 	Vector3f _238;                      // _238
-	float m_faceDirOffset;              // _244
+	f32 m_faceDirOffset;                // _244
 	Sys::Triangle* _248;                // _248
 };
+
+struct FakePikiParms : public CreatureParms {
+	struct Parms : public Parameters {
+		Parms(); // _(weak)
+
+		// _DC-_E8 = Parameters
+		Parm<f32> _0E8; // _0E8
+		Parm<f32> _110; // _110
+		Parm<f32> _138; // _138
+		Parm<f32> _160; // _160
+		Parm<f32> _188; // _188
+		Parm<f32> _1B0; // _1B0
+		Parm<f32> _1D8; // _1D8
+		Parm<f32> _200; // _200
+		Parm<f32> _228; // _228
+		Parm<f32> _250; // _250
+		                // _278 = IParameters ptr
+	};
+
+	FakePikiParms(); // (weak)
+
+	virtual void read(Stream&); // _08 (weak)
+
+	// _00-_D8 = CreatureParms
+	// _D8 		 = VTBL
+	Parms m_fakePikiParms; // _DC
+};
+
 } // namespace Game
 
 #endif

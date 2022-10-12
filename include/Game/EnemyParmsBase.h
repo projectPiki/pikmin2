@@ -27,20 +27,25 @@ struct CreatureProperty {
 		Parm<f32> m_accel;          // _84
 		Parm<f32> m_bounceFactor;   // _AC
 	};
+
 	CreatureProperty()
-	    : m_props() {};
-	Property m_props;
+	    : m_props()
+	{
+	}
+
+	Property m_props; // _00
 };
 
 struct CreatureParms {
 	CreatureParms() {};
 
-	CreatureProperty m_creatureProps;
+	// _D8 = VTBL (i.e. after m_creatureProps)
+	CreatureProperty m_creatureProps; // _00
 
 	virtual void read(Stream& input) // _08 (weak)
 	{
 		m_creatureProps.m_props.read(input);
-	};
+	}
 };
 
 struct EnemyParmsBase : public CreatureParms {
@@ -158,6 +163,8 @@ struct EnemyParmsBase : public CreatureParms {
 		m_general.read(input);
 	}
 
+	// _00-_D8 = CreatureParms
+	// _D8		 = VTBL
 	BitFlag<u16> m_flags[2]; // _DC
 	Parms m_general;         // _E0
 };

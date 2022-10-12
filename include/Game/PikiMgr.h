@@ -8,9 +8,9 @@
 #include "MonoObjectMgr.h"
 
 #include "Game/Piki.h"
+#include "Game/PikiParms.h"
 
 struct J3DModelData;
-struct PikiParms;
 struct UpdateMgr;
 struct JKRArchive;
 
@@ -21,23 +21,22 @@ struct ModelMgr;
 namespace Game {
 struct PikiContainer;
 
-struct PikiMgr : public MonoObjectMgr<Game::Piki> {
+struct PikiMgr : public MonoObjectMgr<Piki> {
 	PikiMgr();
 
 	// vtable 1
-	virtual ~PikiMgr(); // _00
-
+	virtual ~PikiMgr(); // _08 (weak)
 	// vtable 2
-	virtual void doAnimation();           // _30
-	virtual void doEntry();               // _34
-	virtual Piki* birth();                // _48
-	virtual void resetMgr();              // _4C
-	virtual void onAlloc();               // _54
-	virtual void doSimpleDraw(Viewport*); // _58
-	virtual u32 getMatrixLoadType();      // _5C
-	virtual void getMgrName();            // _60
-	virtual void loadResources();         // _64
-	virtual void loadResources(int);      // _68
+	virtual void doAnimation();           // _64 (weak)
+	virtual void doEntry();               // _68 (weak)
+	virtual Piki* birth();                // _7C
+	virtual void resetMgr();              // _80 (weak)
+	virtual void onAlloc();               // _88
+	virtual void doSimpleDraw(Viewport*); // _8C (weak)
+	virtual u32 getMatrixLoadType();      // _90 (weak)
+	virtual void getMgrName();            // _94 (weak)
+	virtual void loadResources();         // _98 (weak)
+	virtual void loadResources(int);      // _9C
 
 	void init();
 	void setupPiki(Piki*);
@@ -55,7 +54,7 @@ struct PikiMgr : public MonoObjectMgr<Game::Piki> {
 	void clearStorePikmins();
 	void saveStorePikmins(Condition<Piki>*);
 	void getStorePikmin(int, int);
-	void moveAllPikmins(Vector3f&, float, Condition<Piki>*);
+	void moveAllPikmins(Vector3f&, f32, Condition<Piki>*);
 	void forceEnterPikmins(u8);
 	void killDayEndPikmins(PikiContainer&);
 	void killAllPikmins();
