@@ -2,14 +2,14 @@
 #include "Dolphin/trk.h"
 #include "Dolphin/AmcExi2Stubs.h"
 
-static char gRecvBuf_1[0x500];
-static char gRecvCB_1[0x20];
+static char gRecvBuf[0x500];
+static char gRecvCB[0x20];
 static BOOL gIsInitialized;
 
 static makeMainBSSOrderingWork()
 {
 	u8 buff[0x500];
-	memcpy(buff, gRecvBuf_1, 0x500);
+	memcpy(buff, gRecvBuf, 0x500);
 }
 
 /*
@@ -17,10 +17,10 @@ static makeMainBSSOrderingWork()
  * Address:	800C11FC
  * Size:	000024
  */
-BOOL gdev_cc_initinterrupts() 
+BOOL gdev_cc_initinterrupts()
 {
-    DBInitInterrupts();
-    return FALSE;
+	DBInitInterrupts();
+	return FALSE;
 }
 
 /*
@@ -28,7 +28,7 @@ BOOL gdev_cc_initinterrupts()
  * Address:	800C1220
  * Size:	000070
  */
-int gdev_cc_peek() 
+int gdev_cc_peek()
 {
 	int poll;
 	u8 buff[0x500];
@@ -39,7 +39,7 @@ int gdev_cc_peek()
 	}
 
 	if (DBRead(buff, poll) == 0) {
-		CircleBufferWriteBytes(gRecvCB_1, buff, poll);
+		CircleBufferWriteBytes(gRecvCB, buff, poll);
 	} else {
 		return -0x2719;
 	}
@@ -52,10 +52,10 @@ int gdev_cc_peek()
  * Address:	800C1290
  * Size:	000024
  */
-BOOL gdev_cc_post_stop() 
+BOOL gdev_cc_post_stop()
 {
-    DBOpen();
-    return FALSE;
+	DBOpen();
+	return FALSE;
 }
 
 /*
@@ -63,10 +63,10 @@ BOOL gdev_cc_post_stop()
  * Address:	800C12B4
  * Size:	000024
  */
-BOOL gdev_cc_pre_continue() 
+BOOL gdev_cc_pre_continue()
 {
-    DBClose();
-    return FALSE;
+	DBClose();
+	return FALSE;
 }
 
 /*
@@ -74,7 +74,7 @@ BOOL gdev_cc_pre_continue()
  * Address:	800C12D8
  * Size:	0000C0
  */
-int gdev_cc_write(int bytes, int length) 
+int gdev_cc_write(int bytes, int length)
 {
 	int exi2Len;
 	int n_copy;
@@ -108,13 +108,13 @@ int gdev_cc_write(int bytes, int length)
  * Address:	800C1398
  * Size:	0000F4
  */
-u32 gdev_cc_read(int arg0, u32 arg1) 
+u32 gdev_cc_read(int arg0, u32 arg1)
 {
-    u8 buff[0x500];
-    int p1;
+	u8 buff[0x500];
+	int p1;
 	u32 retval;
-    int p2;
-	int poll;    
+	int p2;
+	int poll;
 	retval = 0;
 	if (!gIsInitialized) {
 		return -0x2711;
@@ -122,21 +122,21 @@ u32 gdev_cc_read(int arg0, u32 arg1)
 
 	MWTRACE(1, "Expected packet size : 0x%08x (%ld)\n", arg1, arg1);
 
-    p1 = arg1;
-    p2 = arg1;
-	while ((u32)CBGetBytesAvailableForRead(&gRecvCB_1) < p2) {
+	p1 = arg1;
+	p2 = arg1;
+	while ((u32)CBGetBytesAvailableForRead(&gRecvCB) < p2) {
 		retval = 0;
 		poll   = DBQueryData();
 		if (poll != 0) {
 			retval = DBRead(buff, p2);
 			if (retval == 0) {
-				CircleBufferWriteBytes(&gRecvCB_1, buff, poll);
+				CircleBufferWriteBytes(&gRecvCB, buff, poll);
 			}
 		}
 	}
 
 	if (retval == 0) {
-		CircleBufferReadBytes(&gRecvCB_1, arg0, p1);
+		CircleBufferReadBytes(&gRecvCB, arg0, p1);
 	} else {
 		MWTRACE(8, "cc_read : error reading bytes from EXI2 %ld\n", retval);
 	}
@@ -156,7 +156,7 @@ BOOL gdev_cc_close() { return FALSE; }
  * Address:	800C1494
  * Size:	000024
  */
-int gdev_cc_open() 
+int gdev_cc_open()
 {
 	if (gIsInitialized) {
 		return -0x2715;
@@ -178,11 +178,11 @@ BOOL gdev_cc_shutdown() { return FALSE; }
  * Address:	800C14C0
  * Size:	000088
  */
-BOOL gdev_cc_initialize(vu8** inputPendingPtrRef, AmcEXICallback monitorCallback) 
+BOOL gdev_cc_initialize(vu8** inputPendingPtrRef, AmcEXICallback monitorCallback)
 {
 	MWTRACE(1, "CALLING EXI2_Init\n");
 	DBInitComm(inputPendingPtrRef, monitorCallback);
 	MWTRACE(1, "DONE CALLING EXI2_Init\n");
-	CircleBufferInitialize(&gRecvCB_1, &gRecvBuf_1, 0x500);
-    return FALSE;
+	CircleBufferInitialize(&gRecvCB, &gRecvBuf, 0x500);
+	return FALSE;
 }

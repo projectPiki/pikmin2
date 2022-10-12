@@ -2,8 +2,8 @@
 #include "Dolphin/trk.h"
 #include "Dolphin/AmcExi2Stubs.h"
 
-char gRecvBuf[0x800];
-char gRecvCB[0x20];
+static char gRecvBuf[0x800];
+static char gRecvCB[0x20];
 static BOOL gIsInitialized;
 
 static makeDDHBSSOrderingWork()
