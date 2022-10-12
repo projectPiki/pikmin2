@@ -550,8 +550,8 @@
 #define PID_UjinkoAp_1 (0x1CE) // sheargrub appear 1
 #define PID_UjinkoAp_2 (0x1CF) // sheargrub appear 2
 #define PID_UjinkoEat  (0x1D0) // sheargrub eat
-#define PID_UjinkHd_1  (0x1D1) // sheargrub ?
-#define PID_UjinkHd_2  (0x1D2) // sheargrub ?
+#define PID_UjinkoHd_1 (0x1D1) // sheargrub ?
+#define PID_UjinkoHd_2 (0x1D2) // sheargrub ?
 
 #define PID_UmiAttack     (0x1D3) // bloyster attack
 #define PID_UmiDeadAwa    (0x1D4) // bloyster death ?
