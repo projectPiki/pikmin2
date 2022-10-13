@@ -69,7 +69,7 @@ struct Obj : public EnemyBase {
 	void resetZukanStateTimer();
 	void resetStickDiff();
 	void setStickDiff(f32, f32);
-	void getRandFruitsPlant();
+	Creature* getRandFruitsPlant();
 	void startClimbPlant(CollPart*);
 	void moveStickTube();
 	void moveStickSphere();
