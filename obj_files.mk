@@ -285,7 +285,7 @@ DOLPHIN:=\
 	$(BUILD_DIR)/src/Dolphin/ctype.o\
 	$(BUILD_DIR)/asm/Dolphin/direct_io.o\
 	$(BUILD_DIR)/src/Dolphin/errno.o\
-	$(BUILD_DIR)/asm/Dolphin/file_io.o\
+	$(BUILD_DIR)/src/Dolphin/file_io.o\
 	$(BUILD_DIR)/src/Dolphin/FILE_POS.o\
 	$(BUILD_DIR)/src/Dolphin/locale.o\
 	$(BUILD_DIR)/src/Dolphin/mbstring.o\
