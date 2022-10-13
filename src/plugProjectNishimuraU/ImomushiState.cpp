@@ -93,8 +93,8 @@ void StateFallDive::exec(EnemyBase* enemy)
 	Obj* imomushi = static_cast<Obj*>(enemy);
 	Vector3f vel  = imomushi->getVelocity();
 	Vector3f pos  = imomushi->getPosition();
-
-	if ((pos.y - mapMgr->getMinY(pos) > 25.0f) || (vel.y < 0.0f)) { // misordered instructions
+	f32 minY      = mapMgr->getMinY(pos);
+	if ((vel.y > 0.0f) || (pos.y - minY) < 25.0f) {
 		imomushi->finishMotion();
 	}
 	if (imomushi->m_animKeyEvent->m_running && (u32)imomushi->m_animKeyEvent->m_type == 1000) {
@@ -104,96 +104,6 @@ void StateFallDive::exec(EnemyBase* enemy)
 			transit(imomushi, IMOMUSHI_GoHome, nullptr);
 		}
 	}
-	/*
-	stwu     r1, -0x50(r1)
-	mflr     r0
-	stw      r0, 0x54(r1)
-	stfd     f31, 0x40(r1)
-	psq_st   f31, 72(r1), 0, qr0
-	stw      r31, 0x3c(r1)
-	stw      r30, 0x38(r1)
-	lwz      r12, 0(r4)
-	mr       r30, r3
-	addi     r3, r1, 0x14
-	mr       r31, r4
-	lwz      r12, 0x6c(r12)
-	mtctr    r12
-	bctrl
-	mr       r4, r31
-	addi     r3, r1, 8
-	lwz      r12, 0(r31)
-	lfs      f31, 0x18(r1)
-	lwz      r12, 8(r12)
-	mtctr    r12
-	bctrl
-	lfs      f2, 8(r1)
-	addi     r4, r1, 0x20
-	lfs      f1, 0xc(r1)
-	lfs      f0, 0x10(r1)
-	stfs     f2, 0x20(r1)
-	lwz      r3, mapMgr__4Game@sda21(r13)
-	stfs     f1, 0x24(r1)
-	stfs     f0, 0x28(r1)
-	lwz      r12, 4(r3)
-	lwz      r12, 0x28(r12)
-	mtctr    r12
-	bctrl
-	lfs      f0, lbl_8051C378@sda21(r2)
-	fcmpo    cr0, f31, f0
-	bgt      lbl_802BA734
-	lfs      f2, 0x24(r1)
-	lfs      f0, lbl_8051C37C@sda21(r2)
-	fsubs    f1, f2, f1
-	fcmpo    cr0, f1, f0
-	bge      lbl_802BA73C
-
-lbl_802BA734:
-	mr       r3, r31
-	bl       finishMotion__Q24Game9EnemyBaseFv
-
-lbl_802BA73C:
-	lwz      r3, 0x188(r31)
-	lbz      r0, 0x24(r3)
-	cmplwi   r0, 0
-	beq      lbl_802BA7B0
-	lwz      r0, 0x1c(r3)
-	cmplwi   r0, 0x3e8
-	bne      lbl_802BA7B0
-	lfs      f1, 0x200(r31)
-	lfs      f0, lbl_8051C378@sda21(r2)
-	fcmpo    cr0, f1, f0
-	cror     2, 0, 2
-	bne      lbl_802BA790
-	mr       r3, r30
-	mr       r4, r31
-	lwz      r12, 0(r30)
-	li       r5, 0
-	li       r6, 0
-	lwz      r12, 0x1c(r12)
-	mtctr    r12
-	bctrl
-	b        lbl_802BA7B0
-
-lbl_802BA790:
-	mr       r3, r30
-	mr       r4, r31
-	lwz      r12, 0(r30)
-	li       r5, 8
-	li       r6, 0
-	lwz      r12, 0x1c(r12)
-	mtctr    r12
-	bctrl
-
-lbl_802BA7B0:
-	psq_l    f31, 72(r1), 0, qr0
-	lwz      r0, 0x54(r1)
-	lfd      f31, 0x40(r1)
-	lwz      r31, 0x3c(r1)
-	lwz      r30, 0x38(r1)
-	mtlr     r0
-	addi     r1, r1, 0x50
-	blr
-	*/
 }
 
 /*
@@ -1715,7 +1625,7 @@ void StateZukanMove::init(EnemyBase* enemy, StateArg* stateArg)
 void StateZukanMove::exec(EnemyBase* enemy)
 {
 	Obj* imomushi   = static_cast<Obj*>(enemy);
-	Vector3f target = imomushi->m_zukanTargetPosition; // mismatch here
+	Vector3f target = Vector3f(imomushi->m_zukanTargetPosition);
 	Parms* parms    = static_cast<Parms*>(imomushi->m_parms);
 	EnemyFunc::walkToTarget(imomushi, target, parms->m_general.m_moveSpeed.m_value, parms->m_general.m_rotationalAccel.m_value,
 	                        parms->m_general.m_rotationalSpeed.m_value);
