@@ -527,7 +527,8 @@ void EarthquakeState::init(Game::EnemyBase* enemy, Game::StateArg* arg)
 	enemy->doUpdate();
 	enemy->setEvent(1, EB2_1);
 	enemy->stopMotion();
-	enemy->doStartEarthquakeState(arg->m_value.asFloat);
+	EarthquakeStateArg* eqArg = static_cast<EarthquakeStateArg*>(arg);
+	enemy->doStartEarthquakeState(eqArg->m_bounceFactor);
 	this->_10 = 0;
 }
 
@@ -4172,14 +4173,14 @@ bool EnemyBase::checkBirthTypeDropEarthquake()
  * Address:	801063C4
  * Size:	0000EC
  */
-bool EnemyBase::earthquakeCallBack(Game::Creature* creature, float p1)
+bool EnemyBase::earthquakeCallBack(Game::Creature* creature, float bounceFactor)
 {
 	if (_0C8 && !(m_health <= 0.0f) && !isFlying() && isAlive()) {
 		if (!(isEvent(0, EB_HardConstraint)) && !(isEvent(0, EB_Bittered))) {
 			if (((isEvent(0, EB_22)) || (isEvent(0, EB_BitterImmune))) == false) {
-				StateArg transitArg;
-				transitArg.m_value.asFloat = p1;
-				m_lifecycleFSM->transit(this, EnemyBaseFSM::EBS_Earthquake, &transitArg);
+				EarthquakeStateArg eqArg;
+				eqArg.m_bounceFactor = bounceFactor;
+				m_lifecycleFSM->transit(this, EnemyBaseFSM::EBS_Earthquake, &eqArg);
 			}
 		}
 	}

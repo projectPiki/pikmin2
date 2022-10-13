@@ -70,10 +70,10 @@ void StateDead::cleanup(EnemyBase*) { }
  */
 void StateWait::init(EnemyBase* enemy, StateArg* stateArg)
 {
-	Obj* hiba = static_cast<Obj*>(enemy);
-
+	Obj* hiba         = static_cast<Obj*>(enemy);
+	WaitStateArg* arg = static_cast<WaitStateArg*>(stateArg);
 	if (stateArg != nullptr) {
-		hiba->m_timer = stateArg->m_value.asFloat;
+		hiba->m_timer = arg->m_waitTimer;
 	} else {
 		hiba->m_timer = 0.0f;
 	}

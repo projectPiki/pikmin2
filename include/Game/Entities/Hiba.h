@@ -128,6 +128,10 @@ struct FSM : public EnemyStateMachine {
 	// _00-_1C	= EnemyStateMachine
 };
 
+struct WaitStateArg : public StateArg {
+	f32 m_waitTimer; // _00
+};
+
 struct State : public EnemyFSMState {
 	inline State(int stateID, const char* name)
 	    : EnemyFSMState(stateID)

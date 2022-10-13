@@ -52,6 +52,23 @@ enum PikiStateID {
 	PIKISTATE_Count,
 };
 
+struct FountainonStateArg : public StateArg {
+	Vector3f m_position; // _00
+};
+
+struct HoleinStateArg : public StateArg {
+	Vector3f m_position; // _00
+};
+
+struct NukareStateArg : public StateArg {
+	bool _00;     // _00
+	Navi* m_navi; // _04
+};
+
+struct SwallowedStateArg : public StateArg {
+	int m_animIdx; // _00
+};
+
 struct PikiState : public FSMState<Piki> {
 	inline PikiState(int stateID, char* name) // likely, may need adjusting
 	    : FSMState(stateID)
@@ -386,7 +403,12 @@ struct PikiFountainonState : public PikiState {
 
 	// _00     = VTBL
 	// _00-_10 = PikiState
-	u8 _10[0x24]; // _10, unknown
+	// u8 _10[0x24]; // _10, unknown
+	Vector3f _10;    // _10
+	Vector3f _1C;    // _1C
+	f32 _28;         // _28, length?
+	f32 _2C;         // _2C, timer?
+	f32 m_countdown; // _30
 };
 
 struct PikiGoHangState : public PikiState {
@@ -475,7 +497,15 @@ struct PikiHoleinState : public PikiState {
 
 	// _00     = VTBL
 	// _00-_10 = PikiState
-	u8 _10[0x3C]; // _10, unknown
+	Vector3f _10;        // _10
+	Vector3f _1C;        // _1C
+	f32 _28;             // _28, length?
+	f32 _2C;             // _2C, timer?
+	f32 m_countdown;     // _30
+	bool _34;            // _34
+	Vector3f m_position; // _38
+	u8 _44;              // _44
+	f32 m_scale;         // _48
 };
 
 struct PikiKokeDamageState : public PikiState {
@@ -546,7 +576,9 @@ struct PikiNukareState : public PikiState {
 
 	// _00     = VTBL
 	// _00-_10 = PikiState
-	u8 _10[0x8]; // _10, unknown
+	Navi* m_navi;  // _10
+	bool _14;      // _14
+	s16 m_animIdx; // _16
 };
 
 struct PikiPanicState : public PikiState {
@@ -644,7 +676,8 @@ struct PikiTaneState : public PikiState {
 
 	// _00     = VTBL
 	// _00-_10 = PikiState
-	u8 _10[0x8]; // _10, unknown
+	f32 _10; // _10
+	f32 _14; // _14
 };
 
 struct PikiWalkState : public PikiState {

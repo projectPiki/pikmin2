@@ -85,7 +85,7 @@ struct PikiFSM : public StateMachine<Piki> {
 	int m_stateID; // _1C, state ID?
 };
 
-struct Piki : public FakePiki, public SysShape::MotionListener {
+struct Piki : public FakePiki {
 	struct InvokeAIFreeArg {
 		InvokeAIFreeArg(u8 a, u8 b)
 		    : _00(a)
@@ -192,7 +192,8 @@ struct Piki : public FakePiki, public SysShape::MotionListener {
 	void updateColor();
 
 	// _000			 = VTBL
-	// _000-_250 = FakePiki
+	// _000-_24C = FakePiki
+	u32 _24C;                         // _24C
 	PSM::Piki* m_soundObj;            // _250
 	f32 m_targetLookAngle;            // _254
 	::efx::TPkEffect* m_effectsObj;   // _258

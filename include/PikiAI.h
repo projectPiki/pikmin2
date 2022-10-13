@@ -59,7 +59,9 @@ struct ActTransport;
 struct ActWeed;
 
 struct ActionArg {
-	virtual char* getName() = 0; // _08
+	virtual char* getName(); // _08 (weak)
+
+	// _00 = VTBL
 };
 
 struct Action {
@@ -665,11 +667,33 @@ struct ActWeed : public Action {
 	// _0C
 };
 
-struct ClimbActionArg : public ActionArg {
+struct CreatureActionArg : public ActionArg {
+	inline CreatureActionArg(Game::Creature* creature)
+	    : m_creature(creature)
+	{
+	}
+
 	virtual char* getName(); // _08 (weak)
+
+	// _00 = VTBL
+	Game::Creature* m_creature; // _04
 };
 
-struct CreatureActionArg : public ActionArg {
+struct ActFormationInitArg : public CreatureActionArg {
+	inline ActFormationInitArg(Game::Creature* creature, u8 b1, u8 b2)
+	    : CreatureActionArg(creature)
+	    , _08(b1)
+	    , _09(b2)
+	{
+	}
+
+	// _00     = VTBL
+	// _00-_08 = CreatureActionArg
+	u8 _08; // _08
+	u8 _09; // _09
+};
+
+struct ClimbActionArg : public ActionArg {
 	virtual char* getName(); // _08 (weak)
 };
 

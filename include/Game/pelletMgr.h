@@ -468,12 +468,12 @@ struct PelletFSM : public StateMachine<Pellet> {
 };
 
 struct PelletGoalStateArg : public StateArg {
-	inline PelletGoalStateArg(Creature* creature) { m_value.asPtr = creature; }
+	inline PelletGoalStateArg(Creature* creature) { m_creature = creature; }
+
+	Creature* m_creature; // _00
+	// _04 = VTBL
 
 	virtual char* getName() { return "PelletGoalStateArg"; } // _08 (weak)
-
-	// _00 = StateArg
-	// _04 = VTBL
 };
 
 struct PelletState : public FSMState<Pellet> {

@@ -7,6 +7,11 @@
 
 namespace Game {
 
+struct FollowStateArg : public StateArg {
+	bool _00; // _00
+	bool _01; // _01
+};
+
 struct NaviState : public FSMState<Navi> {
 	inline NaviState(int stateID) // likely
 	    : FSMState(stateID)

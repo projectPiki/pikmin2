@@ -95,10 +95,10 @@ void StateDead::cleanup(EnemyBase* enemy) { }
  */
 void StateWait::init(EnemyBase* enemy, StateArg* stateArg)
 {
-	Obj* elecHiba = static_cast<Obj*>(enemy);
-
-	if (stateArg != nullptr) {
-		elecHiba->m_waitTimer = stateArg->m_value.asFloat;
+	Obj* elecHiba     = static_cast<Obj*>(enemy);
+	WaitStateArg* arg = static_cast<WaitStateArg*>(stateArg);
+	if (arg != nullptr) {
+		elecHiba->m_waitTimer = arg->m_waitTimer;
 	} else {
 		elecHiba->m_waitTimer = 0.0f;
 	}

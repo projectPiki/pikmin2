@@ -182,7 +182,7 @@ lbl_8022ED4C:
 #ifdef LINK_FINISHED
 void PikiAI::ActBattle::emotion_success(void)
 {
-	Game::StateArg arg;
+	Game::StateArg arg; // will need to create new derived StateArg struct for this eventually
 	arg._00[0] = 1;
 	m_piki->m_fsm->transit(m_piki, 19, &arg);
 }

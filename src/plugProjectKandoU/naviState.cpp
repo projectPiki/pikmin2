@@ -5134,7 +5134,7 @@ void NaviFollowState::exec(Navi* navi)
 								}
 							} else {
 								navi->turnTo(targetPos.m_position);
-								StateArg arg; // set 0x0 and 0x1 to 1
+								StateArg arg; // set 0x0 and 0x1 to 1 - need to make this use FollowStateArg eventually
 								transit(navi, 2, &arg);
 							}
 						}

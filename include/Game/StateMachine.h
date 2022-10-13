@@ -6,12 +6,8 @@
 namespace Game {
 template <typename T> struct StateMachine;
 
+// if it gets used, it's a derived struct.
 struct StateArg {
-	union {
-		f32 asFloat;
-		void* asPtr;
-		u8 asBytes[4];
-	} m_value; // _00
 };
 
 template <typename T> struct FSMState {

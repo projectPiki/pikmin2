@@ -45,8 +45,8 @@ void Obj::onInit(CreatureInitArg* args)
 	setupLodParms();
 
 	f32 r = randWeightFloat(static_cast<Parms*>(m_parms)->m_properParms.m_waitTime.m_value);
-	StateArg arg;
-	arg.m_value.asFloat = r;
+	WaitStateArg arg;
+	arg.m_waitTimer = r;
 	m_FSM->start(this, HIBA_Wait, &arg);
 }
 

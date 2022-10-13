@@ -222,6 +222,10 @@ struct FSM : public EnemyStateMachine {
 	// _00-_1C	= EnemyStateMachine
 };
 
+struct RollingStateArg : public StateArg {
+	u32 _00; // _00, unknown size/type
+};
+
 struct State : public EnemyFSMState {
 	inline State(int stateID, char* name)
 	    : EnemyFSMState(stateID)

@@ -601,6 +601,10 @@ struct EnemyBase : public Creature, public SysShape::MotionListener, virtual pub
 	                                             // PelletView: _2BC - _2C8
 };
 
+struct EarthquakeStateArg : public StateArg {
+	f32 m_bounceFactor; // _00, weighting to scale vertical velocity by
+};
+
 namespace EnemyBaseFSM {
 enum StateID {
 	EBS_Drop = 0,
