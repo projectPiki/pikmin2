@@ -93,9 +93,12 @@ struct Obj : public EnemyBase {
 	u8 _2C0[0x4];                   // _2C0, unknown
 	StateID m_nextState;            // _2C4
 	f32 _2C8;                       // _2C8
-	u8 _2CC[0x24];                  // _2CC, unknown
+	u8 _2CC[0xC];                   // _2CC, unknown
+	Vector3f _2D8;                  // _2D8
+	Vector3f _2E4;                  // _2E4
 	Vector3f m_zukanTargetPosition; // _2F0
-	u8 _2FC[0x14];                  // _2FC, unknown
+	f32 _2FC;                       // _2FC
+	u8 _300[0x10];                  // _300, unknown
 	                                // _310 = PelletView
 };
 

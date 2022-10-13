@@ -932,6 +932,21 @@ void StateGoHome::cleanup(EnemyBase* enemy)
  */
 void StateClimb::init(EnemyBase* enemy, StateArg* stateArg)
 {
+	Obj* imomushi         = static_cast<Obj*>(enemy);
+	imomushi->m_nextState = IMOMUSHI_NULL;
+	Vector3f pos          = imomushi->getPosition();
+	imomushi->setStickDiff(pos.x, pos.z);
+	imomushi->startClimbPlant(static_cast<CollPart*>(imomushi->m_targetCreature->m_collTree->m_part->m_child));
+	imomushi->m_velocity2 = Vector3f(0.0f);
+	imomushi->startMotion(4, nullptr);
+
+	f32 faceDir = imomushi->getFaceDir(); // slight misordering here but should be equivalent
+	f32 cos     = pikmin2_cosf(faceDir);
+	f32 sin     = pikmin2_sinf(faceDir);
+
+	imomushi->_2D8 = Vector3f(sin, 0.01f, cos);
+	imomushi->_2E4 = Vector3f(-sin, 0.0f, -cos);
+
 	/*
 	stwu     r1, -0x40(r1)
 	mflr     r0
@@ -1032,112 +1047,41 @@ lbl_802BB39C:
  */
 void StateClimb::exec(EnemyBase* enemy)
 {
-	/*
-	stwu     r1, -0x10(r1)
-	mflr     r0
-	lfs      f0, lbl_8051C378@sda21(r2)
-	stw      r0, 0x14(r1)
-	stw      r31, 0xc(r1)
-	mr       r31, r4
-	stw      r30, 8(r1)
-	mr       r30, r3
-	lfs      f1, 0x200(r4)
-	fcmpo    cr0, f1, f0
-	cror     2, 0, 2
-	bne      lbl_802BB424
-	lwz      r12, 0(r3)
-	li       r5, 2
-	li       r6, 0
-	lwz      r12, 0x1c(r12)
-	mtctr    r12
-	bctrl
-	b        lbl_802BB530
+	Obj* imomushi = static_cast<Obj*>(enemy);
+	if (imomushi->m_health <= 0.0f) {
+		transit(imomushi, IMOMUSHI_FallDive, nullptr);
+		return;
+	}
 
-lbl_802BB424:
-	mr       r3, r31
-	bl       isStickToFall__Q34Game8Imomushi3ObjFv
-	clrlwi.  r0, r3, 0x18
-	beq      lbl_802BB458
-	mr       r3, r30
-	mr       r4, r31
-	lwz      r12, 0(r30)
-	li       r5, 3
-	li       r6, 0
-	lwz      r12, 0x1c(r12)
-	mtctr    r12
-	bctrl
-	b        lbl_802BB530
+	if (imomushi->isStickToFall()) {
+		transit(imomushi, IMOMUSHI_FallMove, nullptr);
+		return;
+	}
 
-lbl_802BB458:
-	mr       r3, r31
-	bl       isFinishMotion__Q24Game9EnemyBaseFv
-	clrlwi.  r0, r3, 0x18
-	bne      lbl_802BB4F4
-	mr       r3, r31
-	bl       moveStickTube__Q34Game8Imomushi3ObjFv
-	lfs      f1, 0x2fc(r31)
-	lfs      f0, lbl_8051C394@sda21(r2)
-	lfs      f2, 0x108(r31)
-	fsubs    f0, f0, f1
-	fcmpo    cr0, f2, f0
-	ble      lbl_802BB4C4
-	lwz      r3, 0xf8(r31)
-	lwz      r4, 0x10(r3)
-	cmplwi   r4, 0
-	beq      lbl_802BB4B0
-	lbz      r0, 0x58(r4)
-	cmplwi   r0, 2
-	bne      lbl_802BB4B0
-	mr       r3, r31
-	bl       startClimbPlant__Q34Game8Imomushi3ObjFP8CollPart
-	b        lbl_802BB4F4
+	if (!imomushi->isFinishMotion()) {
+		imomushi->moveStickTube();
 
-lbl_802BB4B0:
-	li       r0, 9
-	mr       r3, r31
-	stw      r0, 0x2c4(r31)
-	bl       finishMotion__Q24Game9EnemyBaseFv
-	b        lbl_802BB4F4
+		f32 val  = imomushi->_2FC;
+		f32 yval = imomushi->_104.y;
+		if (yval > 1.0f - val) {
+			CollPart* childPart = static_cast<CollPart*>(imomushi->_0F8->m_child);
+			if (childPart != nullptr && childPart->m_hasCollPart == 2) {
+				imomushi->startClimbPlant(childPart);
+			} else {
+				imomushi->m_nextState = IMOMUSHI_Attack;
+				imomushi->finishMotion();
+			}
+		} else if (yval < -val) {
+			CollPart* parentPart = static_cast<CollPart*>(imomushi->_0F8->m_parent);
+			if (parentPart != nullptr && parentPart->m_hasCollPart == 2) {
+				imomushi->startClimbPlant(parentPart);
+			}
+		}
+	}
 
-lbl_802BB4C4:
-	fneg     f0, f1
-	fcmpo    cr0, f2, f0
-	bge      lbl_802BB4F4
-	lwz      r3, 0xf8(r31)
-	lwz      r4, 0xc(r3)
-	cmplwi   r4, 0
-	beq      lbl_802BB4F4
-	lbz      r0, 0x58(r4)
-	cmplwi   r0, 2
-	bne      lbl_802BB4F4
-	mr       r3, r31
-	bl       startClimbPlant__Q34Game8Imomushi3ObjFP8CollPart
-
-lbl_802BB4F4:
-	lwz      r3, 0x188(r31)
-	lbz      r0, 0x24(r3)
-	cmplwi   r0, 0
-	beq      lbl_802BB530
-	lwz      r0, 0x1c(r3)
-	cmplwi   r0, 0x3e8
-	bne      lbl_802BB530
-	mr       r3, r30
-	mr       r4, r31
-	lwz      r12, 0(r30)
-	li       r6, 0
-	lwz      r5, 0x2c4(r31)
-	lwz      r12, 0x1c(r12)
-	mtctr    r12
-	bctrl
-
-lbl_802BB530:
-	lwz      r0, 0x14(r1)
-	lwz      r31, 0xc(r1)
-	lwz      r30, 8(r1)
-	mtlr     r0
-	addi     r1, r1, 0x10
-	blr
-	*/
+	if (imomushi->m_animKeyEvent->m_running && (u32)imomushi->m_animKeyEvent->m_type == 1000) {
+		transit(imomushi, imomushi->m_nextState, nullptr);
+	}
 }
 
 /*
