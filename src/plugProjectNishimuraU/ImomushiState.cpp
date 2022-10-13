@@ -577,26 +577,10 @@ void StateDive::cleanup(EnemyBase* enemy)
  */
 void StateMove::init(EnemyBase* enemy, StateArg* stateArg)
 {
-	/*
-	stwu     r1, -0x10(r1)
-	mflr     r0
-	li       r5, 0
-	stw      r0, 0x14(r1)
-	li       r0, -1
-	stw      r31, 0xc(r1)
-	mr       r31, r4
-	li       r4, 3
-	stw      r0, 0x2c4(r31)
-	mr       r3, r31
-	bl       startMotion__Q24Game9EnemyBaseFiPQ28SysShape14MotionListener
-	mr       r3, r31
-	bl       startMoveTraceEffect__Q34Game8Imomushi3ObjFv
-	lwz      r0, 0x14(r1)
-	lwz      r31, 0xc(r1)
-	mtlr     r0
-	addi     r1, r1, 0x10
-	blr
-	*/
+	Obj* imomushi         = static_cast<Obj*>(enemy);
+	imomushi->m_nextState = IMOMUSHI_NULL;
+	imomushi->startMotion(3, nullptr);
+	imomushi->startMoveTraceEffect();
 }
 
 /*
