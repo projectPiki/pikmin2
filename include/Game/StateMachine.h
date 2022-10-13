@@ -21,12 +21,15 @@ template <typename T> struct FSMState {
 	{
 	}
 
-	virtual void init(T*, StateArg*);         // _08
-	virtual void exec(T*);                    // _0C
-	virtual void cleanup(T*);                 // _10
-	virtual void resume(T*);                  // _14
-	virtual void restart(T*);                 // _18
-	virtual void transit(T*, int, StateArg*); // _1C
+	virtual void init(T*, StateArg*);                             // _08
+	virtual void exec(T*);                                        // _0C
+	virtual void cleanup(T*);                                     // _10
+	virtual void resume(T*);                                      // _14
+	virtual void restart(T*);                                     // _18
+	virtual void transit(T* obj, int stateID, StateArg* stateArg) // _1C
+	{
+		m_stateMachine->transit(obj, stateID, stateArg);
+	}
 
 	// _00 = VTBL
 	int m_id;                        // _04

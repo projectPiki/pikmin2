@@ -17,6 +17,7 @@ struct TPkEffect;
 namespace PikiAI {
 struct Brain;
 struct ActTransportArg;
+struct Action;
 } // namespace PikiAI
 
 namespace Sys {
@@ -27,12 +28,6 @@ namespace SysShape {
 struct AnimInfo;
 struct Joint;
 } // namespace SysShape
-
-namespace PSGame {
-namespace SeMgr {
-struct SetSeId;
-} // namespace SeMgr
-} // namespace PSGame
 
 namespace Game {
 struct Navi;
@@ -87,11 +82,9 @@ struct PikiFSM : public StateMachine<Piki> {
 
 	// _00			= VTBL
 	// _00-_1C	= StateMachine
-	int _1C; // _1C, state ID?
+	int m_stateID; // _1C, state ID?
 };
 
-// not convinced this actually re-inherits MotionListener
-// but haven't gone down the rabbit hole of checking properly
 struct Piki : public FakePiki, public SysShape::MotionListener {
 	struct InvokeAIFreeArg {
 		InvokeAIFreeArg(u8 a, u8 b)
@@ -161,7 +154,7 @@ struct Piki : public FakePiki, public SysShape::MotionListener {
 	bool gasInvicible();
 	void getAttackDamage();
 	f32 getBaseScale();
-	void getCurrAction();
+	PikiAI::Action* getCurrAction();
 	int getCurrActionID();
 	int getFormationSlotID();
 	f32 getPelletCarryPower();

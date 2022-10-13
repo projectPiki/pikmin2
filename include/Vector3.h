@@ -64,6 +64,14 @@ template <typename T> struct Vector3 {
 		vec.y = y;
 		vec.z = z;
 	}
+
+	inline void negate()
+	{
+		x *= -1.0f;
+		y *= -1.0f;
+		z *= -1.0f;
+	}
+
 	// 	inline Vector3& operator+(const Vector3 other) {
 	//     Vector3 newVector = *this;
 	//     x += other.x;

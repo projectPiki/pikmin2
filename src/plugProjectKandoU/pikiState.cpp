@@ -1,2503 +1,73 @@
-#include "types.h"
-
-/*
-    Generated from dpostproc
-
-    .section .ctors, "wa"  # 0x80472F00 - 0x804732C0
-    .4byte __sinit_pikiState_cpp
-
-    .section .rodata  # 0x804732E0 - 0x8049E220
-    .global lbl_8047EBE8
-    lbl_8047EBE8:
-        .4byte 0x00000000
-        .4byte 0x00000000
-        .4byte 0x00000000
-        .4byte 0x70696B69
-        .4byte 0x53746174
-        .4byte 0x65000000
-        .4byte 0x44454D4F
-        .4byte 0x57414954
-        .4byte 0x00000000
-        .4byte 0x57415445
-        .4byte 0x5248414E
-        .4byte 0x47454400
-        .4byte 0x4B4F4B45
-        .4byte 0x44414D41
-        .4byte 0x47450000
-        .4byte 0x5357414C
-        .4byte 0x4C4F5745
-        .4byte 0x44000000
-        .4byte 0x4155544F
-        .4byte 0x4E554B49
-        .4byte 0x00000000
-        .4byte 0x44454E4B
-        .4byte 0x495F4459
-        .4byte 0x494E4700
-        .4byte 0x46414C4C
-        .4byte 0x4D45434B
-        .4byte 0x00000000
-        .4byte 0x464F554E
-        .4byte 0x5441494E
-        .4byte 0x4F4E0000
-    .global lbl_8047EC60
-    lbl_8047EC60:
-        .4byte 0x70696B69
-        .4byte 0x53746174
-        .4byte 0x652E6370
-        .4byte 0x70000000
-        .4byte 0x2A547261
-        .4byte 0x6E736974
-        .4byte 0x28256429
-        .4byte 0x28256429
-        .4byte 0x0A282573
-        .4byte 0x293D3E28
-        .4byte 0x2573290A
-        .4byte 0x00000000
-        .4byte 0x2D2D2D2D
-        .4byte 0x2D2D2D2D
-        .4byte 0x2D2D2082
-        .4byte 0xBE82DF82
-        .4byte 0xBE82E681
-        .4byte 0x600A0000
-    .global lbl_8047ECA8
-    lbl_8047ECA8:
-        .4byte 0x6E656564
-        .4byte 0x20486F6C
-        .4byte 0x65696E53
-        .4byte 0x74617465
-        .4byte 0x41726720
-        .4byte 0x210A0000
-    .global lbl_8047ECC0
-    lbl_8047ECC0:
-        .4byte 0x6E656564
-        .4byte 0x20466F75
-        .4byte 0x6E746169
-        .4byte 0x6E6F6E53
-        .4byte 0x74617465
-        .4byte 0x41726720
-        .4byte 0x210A0000
-    .global lbl_8047ECDC
-    lbl_8047ECDC:
-        .asciz "P2Assert"
-        .skip 3
-        .4byte 0x6765744E
-        .4byte 0x61766928
-        .4byte 0x293A7075
-        .4byte 0x6C6C5700
-        .4byte 0x6765744E
-        .4byte 0x61766928
-        .4byte 0x293A5075
-        .4byte 0x6C6C0000
-    .global lbl_8047ED08
-    lbl_8047ED08:
-        .4byte 0x7831365F
-        .4byte 0x68696261
-        .4byte 0x00000000
-    .global lbl_8047ED14
-    lbl_8047ED14:
-        .4byte 0x7330395F
-        .4byte 0x686F6C65
-        .4byte 0x696E0000
-    .global lbl_8047ED20
-    lbl_8047ED20:
-        .4byte 0x6E6F7420
-        .4byte 0x74656B69
-        .4byte 0x20282573
-        .4byte 0x29210000
-        .4byte 0x43726561
-        .4byte 0x74757265
-        .4byte 0x00000000
-    .global lbl_8047ED3C
-    lbl_8047ED3C:
-        .4byte 0x666C6963
-        .4byte 0x6B3A696E
-        .4byte 0x69743A65
-        .4byte 0x72617365
-        .4byte 0x0A000000
-    .global lbl_8047ED50
-    lbl_8047ED50:
-        .4byte 0x666C6963
-        .4byte 0x6B3A6578
-        .4byte 0x65633A65
-        .4byte 0x72617365
-        .4byte 0x0A000000
-    .global lbl_8047ED64
-    lbl_8047ED64:
-        .4byte 0x666C6963
-        .4byte 0x6B206E65
-        .4byte 0x65647320
-        .4byte 0x50696B69
-        .4byte 0x426C6F77
-        .4byte 0x496E6974
-        .4byte 0x41726720
-        .4byte 0x210A0000
-        .4byte 0x00000033
-        .4byte 0x3EA8F5C3
-        .4byte 0x00000032
-        .4byte 0x3EA8F5C3
-        .4byte 0x00000034
-        .4byte 0x3EA8F5C3
-        .4byte 0x00000033
-        .4byte 0x3EA8F5C3
-        .4byte 0x00000032
-        .4byte 0x3EA8F5C3
-        .4byte 0x00000034
-        .4byte 0x3EA8F5C3
-        .4byte 0x00000035
-        .float 0.5
-        .4byte 0x00000036
-        .float 0.5
-        .4byte 0x0000000C
-        .float 0.5
-        .4byte 0x00000036
-        .float 0.5
-        .4byte 0x72617043
-        .4byte 0x6E742082
-        .4byte 0xCC8E6782
-        .4byte 0xA295FB82
-        .4byte 0xAA82E682
-        .4byte 0xAD82C882
-        .4byte 0xCC82C593
-        .4byte 0x808C8B92
-        .4byte 0x86212028
-        .4byte 0x52415054
-        .4byte 0x55524529
-        .4byte 0x0A000000
-    .global lbl_8047EE04
-    lbl_8047EE04:
-        .4byte 0x6733345F
-        .4byte 0x79656C6C
-        .4byte 0x6F775F65
-        .4byte 0x78747261
-        .4byte 0x63740000
-    .global lbl_8047EE18
-    lbl_8047EE18:
-        .4byte 0x41637443
-        .4byte 0x726F7041
-        .4byte 0x72670000
-        .4byte 0x4974656D
-        .4byte 0x50696B69
-        .4byte 0x48656164
-        .4byte 0x3A3A496E
-        .4byte 0x69744172
-        .4byte 0x67000000
-        .4byte 0x4974656D
-        .4byte 0x496E6974
-        .4byte 0x41726700
-        .4byte 0x50696B69
-        .4byte 0x4B696C6C
-        .4byte 0x41726700
-        .4byte 0x43726561
-        .4byte 0x74757265
-        .4byte 0x4B696C6C
-        .4byte 0x41726700
-        .4byte 0x41726753
-        .4byte 0x63616C65
-        .4byte 0x00000000
-        .4byte 0x43726561
-        .4byte 0x74757265
-        .4byte 0x41637469
-        .4byte 0x6F6E4172
-        .4byte 0x67000000
-        .4byte 0x41637469
-        .4byte 0x6F6E4172
-        .4byte 0x67000000
-
-    .section .data, "wa"  # 0x8049E220 - 0x804EFC20
-    .global lbl_804B37D0
-    lbl_804B37D0:
-        .4byte 0x00000000
-        .4byte 0x00000000
-        .4byte 0x00000000
-    .global lbl_804B37DC
-    lbl_804B37DC:
-        .4byte lbl_80191690
-        .4byte lbl_80191704
-        .4byte lbl_80191778
-        .4byte lbl_80191840
-        .4byte lbl_801917DC
-        .4byte lbl_8019187C
-        .4byte lbl_801918B8
-        .4byte lbl_801918F4
-        .4byte lbl_80191930
-    .global __vt__Q24Game15PikiEscapeState
-    __vt__Q24Game15PikiEscapeState:
-        .4byte 0
-        .4byte 0
-        .4byte init__Q24Game15PikiEscapeStateFPQ24Game4PikiPQ24Game8StateArg
-        .4byte exec__Q24Game15PikiEscapeStateFPQ24Game4Piki
-        .4byte cleanup__Q24Game15PikiEscapeStateFPQ24Game4Piki
-        .4byte "resume__Q24Game22FSMState<Q24Game4Piki>FPQ24Game4Piki"
-        .4byte "restart__Q24Game22FSMState<Q24Game4Piki>FPQ24Game4Piki"
-        .4byte
-   "transit__Q24Game22FSMState<Q24Game4Piki>FPQ24Game4PikiiPQ24Game8StateArg"
-        .4byte ignoreAtari__Q24Game9PikiStateFPQ24Game4PikiPQ24Game8Creature
-        .4byte bounceCallback__Q24Game9PikiStateFPQ24Game4PikiPQ23Sys8Triangle
-        .4byte
-   collisionCallback__Q24Game9PikiStateFPQ24Game4PikiRQ24Game9CollEvent .4byte
-   platCallback__Q24Game9PikiStateFPQ24Game4PikiRQ24Game9PlatEvent .4byte
-   onKeyEvent__Q24Game15PikiEscapeStateFPQ24Game4PikiRCQ28SysShape8KeyEvent
-        .4byte getInfo__Q24Game9PikiStateFPc
-        .4byte outWaterCallback__Q24Game9PikiStateFPQ24Game4Piki
-        .4byte "wallCallback__Q24Game9PikiStateFPQ24Game4PikiR10Vector3<f>"
-        .4byte invincible__Q24Game9PikiStateFPQ24Game4Piki
-        .4byte callable__Q24Game15PikiEscapeStateFv
-        .4byte aiActive__Q24Game9PikiStateFv
-        .4byte dopable__Q24Game9PikiStateFv
-        .4byte releasable__Q24Game9PikiStateFv
-        .4byte throwable__Q24Game9PikiStateFv
-        .4byte dead__Q24Game9PikiStateFv
-        .4byte battleOK__Q24Game9PikiStateFv
-        .4byte pressable__Q24Game9PikiStateFv
-        .4byte transittable__Q24Game9PikiStateFi
-        .4byte soft_transittable__Q24Game9PikiStateFi
-        .4byte onFlute__Q24Game9PikiStateFPQ24Game4PikiPQ24Game4Navi
-        .4byte dump__Q24Game9PikiStateFv
-    .global __vt__Q24Game15PikiGrowupState
-    __vt__Q24Game15PikiGrowupState:
-        .4byte 0
-        .4byte 0
-        .4byte init__Q24Game15PikiGrowupStateFPQ24Game4PikiPQ24Game8StateArg
-        .4byte exec__Q24Game15PikiGrowupStateFPQ24Game4Piki
-        .4byte cleanup__Q24Game15PikiGrowupStateFPQ24Game4Piki
-        .4byte "resume__Q24Game22FSMState<Q24Game4Piki>FPQ24Game4Piki"
-        .4byte "restart__Q24Game22FSMState<Q24Game4Piki>FPQ24Game4Piki"
-        .4byte
-   "transit__Q24Game22FSMState<Q24Game4Piki>FPQ24Game4PikiiPQ24Game8StateArg"
-        .4byte ignoreAtari__Q24Game9PikiStateFPQ24Game4PikiPQ24Game8Creature
-        .4byte bounceCallback__Q24Game9PikiStateFPQ24Game4PikiPQ23Sys8Triangle
-        .4byte
-   collisionCallback__Q24Game9PikiStateFPQ24Game4PikiRQ24Game9CollEvent .4byte
-   platCallback__Q24Game9PikiStateFPQ24Game4PikiRQ24Game9PlatEvent .4byte
-   onKeyEvent__Q24Game15PikiGrowupStateFPQ24Game4PikiRCQ28SysShape8KeyEvent
-        .4byte getInfo__Q24Game9PikiStateFPc
-        .4byte outWaterCallback__Q24Game9PikiStateFPQ24Game4Piki
-        .4byte "wallCallback__Q24Game9PikiStateFPQ24Game4PikiR10Vector3<f>"
-        .4byte invincible__Q24Game9PikiStateFPQ24Game4Piki
-        .4byte callable__Q24Game9PikiStateFv
-        .4byte aiActive__Q24Game9PikiStateFv
-        .4byte dopable__Q24Game9PikiStateFv
-        .4byte releasable__Q24Game9PikiStateFv
-        .4byte throwable__Q24Game9PikiStateFv
-        .4byte dead__Q24Game9PikiStateFv
-        .4byte battleOK__Q24Game9PikiStateFv
-        .4byte pressable__Q24Game9PikiStateFv
-        .4byte transittable__Q24Game9PikiStateFi
-        .4byte soft_transittable__Q24Game9PikiStateFi
-        .4byte onFlute__Q24Game9PikiStateFPQ24Game4PikiPQ24Game4Navi
-        .4byte dump__Q24Game9PikiStateFv
-    .global __vt__Q24Game15PikiAbsorbState
-    __vt__Q24Game15PikiAbsorbState:
-        .4byte 0
-        .4byte 0
-        .4byte init__Q24Game15PikiAbsorbStateFPQ24Game4PikiPQ24Game8StateArg
-        .4byte exec__Q24Game15PikiAbsorbStateFPQ24Game4Piki
-        .4byte cleanup__Q24Game15PikiAbsorbStateFPQ24Game4Piki
-        .4byte "resume__Q24Game22FSMState<Q24Game4Piki>FPQ24Game4Piki"
-        .4byte "restart__Q24Game22FSMState<Q24Game4Piki>FPQ24Game4Piki"
-        .4byte
-   "transit__Q24Game22FSMState<Q24Game4Piki>FPQ24Game4PikiiPQ24Game8StateArg"
-        .4byte ignoreAtari__Q24Game9PikiStateFPQ24Game4PikiPQ24Game8Creature
-        .4byte bounceCallback__Q24Game9PikiStateFPQ24Game4PikiPQ23Sys8Triangle
-        .4byte
-   collisionCallback__Q24Game9PikiStateFPQ24Game4PikiRQ24Game9CollEvent .4byte
-   platCallback__Q24Game9PikiStateFPQ24Game4PikiRQ24Game9PlatEvent .4byte
-   onKeyEvent__Q24Game15PikiAbsorbStateFPQ24Game4PikiRCQ28SysShape8KeyEvent
-        .4byte getInfo__Q24Game9PikiStateFPc
-        .4byte outWaterCallback__Q24Game9PikiStateFPQ24Game4Piki
-        .4byte "wallCallback__Q24Game9PikiStateFPQ24Game4PikiR10Vector3<f>"
-        .4byte invincible__Q24Game9PikiStateFPQ24Game4Piki
-        .4byte callable__Q24Game9PikiStateFv
-        .4byte aiActive__Q24Game9PikiStateFv
-        .4byte dopable__Q24Game9PikiStateFv
-        .4byte releasable__Q24Game9PikiStateFv
-        .4byte throwable__Q24Game9PikiStateFv
-        .4byte dead__Q24Game9PikiStateFv
-        .4byte battleOK__Q24Game9PikiStateFv
-        .4byte pressable__Q24Game9PikiStateFv
-        .4byte transittable__Q24Game9PikiStateFi
-        .4byte soft_transittable__Q24Game9PikiStateFi
-        .4byte onFlute__Q24Game9PikiStateFPQ24Game4PikiPQ24Game4Navi
-        .4byte dump__Q24Game9PikiStateFv
-    .global __vt__Q24Game16PikiEmotionState
-    __vt__Q24Game16PikiEmotionState:
-        .4byte 0
-        .4byte 0
-        .4byte init__Q24Game16PikiEmotionStateFPQ24Game4PikiPQ24Game8StateArg
-        .4byte exec__Q24Game16PikiEmotionStateFPQ24Game4Piki
-        .4byte cleanup__Q24Game16PikiEmotionStateFPQ24Game4Piki
-        .4byte "resume__Q24Game22FSMState<Q24Game4Piki>FPQ24Game4Piki"
-        .4byte "restart__Q24Game22FSMState<Q24Game4Piki>FPQ24Game4Piki"
-        .4byte
-   "transit__Q24Game22FSMState<Q24Game4Piki>FPQ24Game4PikiiPQ24Game8StateArg"
-        .4byte ignoreAtari__Q24Game9PikiStateFPQ24Game4PikiPQ24Game8Creature
-        .4byte bounceCallback__Q24Game9PikiStateFPQ24Game4PikiPQ23Sys8Triangle
-        .4byte
-   collisionCallback__Q24Game9PikiStateFPQ24Game4PikiRQ24Game9CollEvent .4byte
-   platCallback__Q24Game9PikiStateFPQ24Game4PikiRQ24Game9PlatEvent .4byte
-   onKeyEvent__Q24Game16PikiEmotionStateFPQ24Game4PikiRCQ28SysShape8KeyEvent
-        .4byte getInfo__Q24Game9PikiStateFPc
-        .4byte outWaterCallback__Q24Game9PikiStateFPQ24Game4Piki
-        .4byte "wallCallback__Q24Game9PikiStateFPQ24Game4PikiR10Vector3<f>"
-        .4byte invincible__Q24Game9PikiStateFPQ24Game4Piki
-        .4byte callable__Q24Game16PikiEmotionStateFv
-        .4byte aiActive__Q24Game9PikiStateFv
-        .4byte dopable__Q24Game9PikiStateFv
-        .4byte releasable__Q24Game9PikiStateFv
-        .4byte throwable__Q24Game9PikiStateFv
-        .4byte dead__Q24Game9PikiStateFv
-        .4byte battleOK__Q24Game9PikiStateFv
-        .4byte pressable__Q24Game9PikiStateFv
-        .4byte transittable__Q24Game9PikiStateFi
-        .4byte soft_transittable__Q24Game9PikiStateFi
-        .4byte onFlute__Q24Game9PikiStateFPQ24Game4PikiPQ24Game4Navi
-        .4byte dump__Q24Game9PikiStateFv
-    .global __vt__Q24Game14PikiDrownState
-    __vt__Q24Game14PikiDrownState:
-        .4byte 0
-        .4byte 0
-        .4byte init__Q24Game14PikiDrownStateFPQ24Game4PikiPQ24Game8StateArg
-        .4byte exec__Q24Game14PikiDrownStateFPQ24Game4Piki
-        .4byte cleanup__Q24Game14PikiDrownStateFPQ24Game4Piki
-        .4byte "resume__Q24Game22FSMState<Q24Game4Piki>FPQ24Game4Piki"
-        .4byte "restart__Q24Game22FSMState<Q24Game4Piki>FPQ24Game4Piki"
-        .4byte
-   "transit__Q24Game22FSMState<Q24Game4Piki>FPQ24Game4PikiiPQ24Game8StateArg"
-        .4byte ignoreAtari__Q24Game9PikiStateFPQ24Game4PikiPQ24Game8Creature
-        .4byte bounceCallback__Q24Game9PikiStateFPQ24Game4PikiPQ23Sys8Triangle
-        .4byte
-   collisionCallback__Q24Game9PikiStateFPQ24Game4PikiRQ24Game9CollEvent .4byte
-   platCallback__Q24Game9PikiStateFPQ24Game4PikiRQ24Game9PlatEvent .4byte
-   onKeyEvent__Q24Game14PikiDrownStateFPQ24Game4PikiRCQ28SysShape8KeyEvent
-        .4byte getInfo__Q24Game9PikiStateFPc
-        .4byte outWaterCallback__Q24Game14PikiDrownStateFPQ24Game4Piki
-        .4byte "wallCallback__Q24Game9PikiStateFPQ24Game4PikiR10Vector3<f>"
-        .4byte invincible__Q24Game9PikiStateFPQ24Game4Piki
-        .4byte callable__Q24Game9PikiStateFv
-        .4byte aiActive__Q24Game9PikiStateFv
-        .4byte dopable__Q24Game9PikiStateFv
-        .4byte releasable__Q24Game9PikiStateFv
-        .4byte throwable__Q24Game9PikiStateFv
-        .4byte dead__Q24Game9PikiStateFv
-        .4byte battleOK__Q24Game9PikiStateFv
-        .4byte pressable__Q24Game9PikiStateFv
-        .4byte transittable__Q24Game9PikiStateFi
-        .4byte soft_transittable__Q24Game14PikiDrownStateFi
-        .4byte onFlute__Q24Game14PikiDrownStateFPQ24Game4PikiPQ24Game4Navi
-        .4byte dump__Q24Game9PikiStateFv
-    .global __vt__Q24Game13PikiKokeState
-    __vt__Q24Game13PikiKokeState:
-        .4byte 0
-        .4byte 0
-        .4byte init__Q24Game13PikiKokeStateFPQ24Game4PikiPQ24Game8StateArg
-        .4byte exec__Q24Game13PikiKokeStateFPQ24Game4Piki
-        .4byte cleanup__Q24Game13PikiKokeStateFPQ24Game4Piki
-        .4byte "resume__Q24Game22FSMState<Q24Game4Piki>FPQ24Game4Piki"
-        .4byte "restart__Q24Game22FSMState<Q24Game4Piki>FPQ24Game4Piki"
-        .4byte
-   "transit__Q24Game22FSMState<Q24Game4Piki>FPQ24Game4PikiiPQ24Game8StateArg"
-        .4byte ignoreAtari__Q24Game9PikiStateFPQ24Game4PikiPQ24Game8Creature
-        .4byte bounceCallback__Q24Game9PikiStateFPQ24Game4PikiPQ23Sys8Triangle
-        .4byte
-   collisionCallback__Q24Game9PikiStateFPQ24Game4PikiRQ24Game9CollEvent .4byte
-   platCallback__Q24Game9PikiStateFPQ24Game4PikiRQ24Game9PlatEvent .4byte
-   onKeyEvent__Q24Game13PikiKokeStateFPQ24Game4PikiRCQ28SysShape8KeyEvent .4byte
-   getInfo__Q24Game9PikiStateFPc .4byte
-   outWaterCallback__Q24Game9PikiStateFPQ24Game4Piki .4byte
-   "wallCallback__Q24Game9PikiStateFPQ24Game4PikiR10Vector3<f>" .4byte
-   invincible__Q24Game9PikiStateFPQ24Game4Piki .4byte
-   callable__Q24Game13PikiKokeStateFv .4byte aiActive__Q24Game9PikiStateFv
-        .4byte dopable__Q24Game9PikiStateFv
-        .4byte releasable__Q24Game9PikiStateFv
-        .4byte throwable__Q24Game9PikiStateFv
-        .4byte dead__Q24Game9PikiStateFv
-        .4byte battleOK__Q24Game9PikiStateFv
-        .4byte pressable__Q24Game9PikiStateFv
-        .4byte transittable__Q24Game9PikiStateFi
-        .4byte soft_transittable__Q24Game9PikiStateFi
-        .4byte onFlute__Q24Game13PikiKokeStateFPQ24Game4PikiPQ24Game4Navi
-        .4byte dump__Q24Game9PikiStateFv
-    .global __vt__Q24Game19PikiKokeDamageState
-    __vt__Q24Game19PikiKokeDamageState:
-        .4byte 0
-        .4byte 0
-        .4byte init__Q24Game19PikiKokeDamageStateFPQ24Game4PikiPQ24Game8StateArg
-        .4byte exec__Q24Game19PikiKokeDamageStateFPQ24Game4Piki
-        .4byte cleanup__Q24Game19PikiKokeDamageStateFPQ24Game4Piki
-        .4byte "resume__Q24Game22FSMState<Q24Game4Piki>FPQ24Game4Piki"
-        .4byte "restart__Q24Game22FSMState<Q24Game4Piki>FPQ24Game4Piki"
-        .4byte
-   "transit__Q24Game22FSMState<Q24Game4Piki>FPQ24Game4PikiiPQ24Game8StateArg"
-        .4byte ignoreAtari__Q24Game9PikiStateFPQ24Game4PikiPQ24Game8Creature
-        .4byte bounceCallback__Q24Game9PikiStateFPQ24Game4PikiPQ23Sys8Triangle
-        .4byte
-   collisionCallback__Q24Game9PikiStateFPQ24Game4PikiRQ24Game9CollEvent .4byte
-   platCallback__Q24Game9PikiStateFPQ24Game4PikiRQ24Game9PlatEvent .4byte
-   onKeyEvent__Q24Game19PikiKokeDamageStateFPQ24Game4PikiRCQ28SysShape8KeyEvent
-        .4byte getInfo__Q24Game9PikiStateFPc
-        .4byte outWaterCallback__Q24Game9PikiStateFPQ24Game4Piki
-        .4byte "wallCallback__Q24Game9PikiStateFPQ24Game4PikiR10Vector3<f>"
-        .4byte invincible__Q24Game9PikiStateFPQ24Game4Piki
-        .4byte callable__Q24Game19PikiKokeDamageStateFv
-        .4byte aiActive__Q24Game9PikiStateFv
-        .4byte dopable__Q24Game9PikiStateFv
-        .4byte releasable__Q24Game9PikiStateFv
-        .4byte throwable__Q24Game9PikiStateFv
-        .4byte dead__Q24Game9PikiStateFv
-        .4byte battleOK__Q24Game9PikiStateFv
-        .4byte pressable__Q24Game9PikiStateFv
-        .4byte transittable__Q24Game9PikiStateFi
-        .4byte soft_transittable__Q24Game9PikiStateFi
-        .4byte onFlute__Q24Game19PikiKokeDamageStateFPQ24Game4PikiPQ24Game4Navi
-        .4byte dump__Q24Game9PikiStateFv
-    .global __vt__Q24Game13PikiBlowState
-    __vt__Q24Game13PikiBlowState:
-        .4byte 0
-        .4byte 0
-        .4byte init__Q24Game13PikiBlowStateFPQ24Game4PikiPQ24Game8StateArg
-        .4byte exec__Q24Game13PikiBlowStateFPQ24Game4Piki
-        .4byte cleanup__Q24Game13PikiBlowStateFPQ24Game4Piki
-        .4byte "resume__Q24Game22FSMState<Q24Game4Piki>FPQ24Game4Piki"
-        .4byte "restart__Q24Game22FSMState<Q24Game4Piki>FPQ24Game4Piki"
-        .4byte
-   "transit__Q24Game22FSMState<Q24Game4Piki>FPQ24Game4PikiiPQ24Game8StateArg"
-        .4byte ignoreAtari__Q24Game9PikiStateFPQ24Game4PikiPQ24Game8Creature
-        .4byte
-   bounceCallback__Q24Game13PikiBlowStateFPQ24Game4PikiPQ23Sys8Triangle .4byte
-   collisionCallback__Q24Game9PikiStateFPQ24Game4PikiRQ24Game9CollEvent .4byte
-   platCallback__Q24Game9PikiStateFPQ24Game4PikiRQ24Game9PlatEvent .4byte
-   onKeyEvent__Q24Game13PikiBlowStateFPQ24Game4PikiRCQ28SysShape8KeyEvent .4byte
-   getInfo__Q24Game9PikiStateFPc .4byte
-   outWaterCallback__Q24Game9PikiStateFPQ24Game4Piki .4byte
-   "wallCallback__Q24Game9PikiStateFPQ24Game4PikiR10Vector3<f>" .4byte
-   invincible__Q24Game9PikiStateFPQ24Game4Piki .4byte
-   callable__Q24Game13PikiBlowStateFv .4byte aiActive__Q24Game9PikiStateFv
-        .4byte dopable__Q24Game9PikiStateFv
-        .4byte releasable__Q24Game9PikiStateFv
-        .4byte throwable__Q24Game9PikiStateFv
-        .4byte dead__Q24Game9PikiStateFv
-        .4byte battleOK__Q24Game9PikiStateFv
-        .4byte pressable__Q24Game13PikiBlowStateFv
-        .4byte transittable__Q24Game9PikiStateFi
-        .4byte soft_transittable__Q24Game9PikiStateFi
-        .4byte onFlute__Q24Game13PikiBlowStateFPQ24Game4PikiPQ24Game4Navi
-        .4byte dump__Q24Game9PikiStateFv
-    .global __vt__Q24Game14PikiFlickState
-    __vt__Q24Game14PikiFlickState:
-        .4byte 0
-        .4byte 0
-        .4byte init__Q24Game14PikiFlickStateFPQ24Game4PikiPQ24Game8StateArg
-        .4byte exec__Q24Game14PikiFlickStateFPQ24Game4Piki
-        .4byte cleanup__Q24Game14PikiFlickStateFPQ24Game4Piki
-        .4byte "resume__Q24Game22FSMState<Q24Game4Piki>FPQ24Game4Piki"
-        .4byte "restart__Q24Game22FSMState<Q24Game4Piki>FPQ24Game4Piki"
-        .4byte
-   "transit__Q24Game22FSMState<Q24Game4Piki>FPQ24Game4PikiiPQ24Game8StateArg"
-        .4byte ignoreAtari__Q24Game9PikiStateFPQ24Game4PikiPQ24Game8Creature
-        .4byte bounceCallback__Q24Game9PikiStateFPQ24Game4PikiPQ23Sys8Triangle
-        .4byte
-   collisionCallback__Q24Game9PikiStateFPQ24Game4PikiRQ24Game9CollEvent .4byte
-   platCallback__Q24Game9PikiStateFPQ24Game4PikiRQ24Game9PlatEvent .4byte
-   onKeyEvent__Q24Game9PikiStateFPQ24Game4PikiRCQ28SysShape8KeyEvent .4byte
-   getInfo__Q24Game9PikiStateFPc .4byte
-   outWaterCallback__Q24Game9PikiStateFPQ24Game4Piki .4byte
-   "wallCallback__Q24Game9PikiStateFPQ24Game4PikiR10Vector3<f>" .4byte
-   invincible__Q24Game9PikiStateFPQ24Game4Piki .4byte
-   callable__Q24Game14PikiFlickStateFv .4byte aiActive__Q24Game9PikiStateFv
-        .4byte dopable__Q24Game9PikiStateFv
-        .4byte releasable__Q24Game9PikiStateFv
-        .4byte throwable__Q24Game9PikiStateFv
-        .4byte dead__Q24Game9PikiStateFv
-        .4byte battleOK__Q24Game9PikiStateFv
-        .4byte pressable__Q24Game9PikiStateFv
-        .4byte transittable__Q24Game9PikiStateFi
-        .4byte soft_transittable__Q24Game9PikiStateFi
-        .4byte onFlute__Q24Game14PikiFlickStateFPQ24Game4PikiPQ24Game4Navi
-        .4byte dump__Q24Game9PikiStateFv
-        .4byte onKeyEvent__Q24Game14PikiFlickStateFRCQ28SysShape8KeyEvent
-        .4byte 0
-        .4byte 0
-        .4byte
-   "@48@4@onKeyEvent__Q24Game14PikiFlickStateFRCQ28SysShape8KeyEvent" .global
-   __vt__Q26PikiAI10ActCropArg
-    __vt__Q26PikiAI10ActCropArg:
-        .4byte 0
-        .4byte 0
-        .4byte getName__Q26PikiAI10ActCropArgFv
-    .global __vt__Q24Game15PikiFlyingState
-    __vt__Q24Game15PikiFlyingState:
-        .4byte 0
-        .4byte 0
-        .4byte init__Q24Game15PikiFlyingStateFPQ24Game4PikiPQ24Game8StateArg
-        .4byte exec__Q24Game15PikiFlyingStateFPQ24Game4Piki
-        .4byte cleanup__Q24Game15PikiFlyingStateFPQ24Game4Piki
-        .4byte "resume__Q24Game22FSMState<Q24Game4Piki>FPQ24Game4Piki"
-        .4byte "restart__Q24Game22FSMState<Q24Game4Piki>FPQ24Game4Piki"
-        .4byte
-   "transit__Q24Game22FSMState<Q24Game4Piki>FPQ24Game4PikiiPQ24Game8StateArg"
-        .4byte
-   ignoreAtari__Q24Game15PikiFlyingStateFPQ24Game4PikiPQ24Game8Creature .4byte
-   bounceCallback__Q24Game15PikiFlyingStateFPQ24Game4PikiPQ23Sys8Triangle .4byte
-   collisionCallback__Q24Game15PikiFlyingStateFPQ24Game4PikiRQ24Game9CollEvent
-        .4byte platCallback__Q24Game9PikiStateFPQ24Game4PikiRQ24Game9PlatEvent
-        .4byte onKeyEvent__Q24Game9PikiStateFPQ24Game4PikiRCQ28SysShape8KeyEvent
-        .4byte getInfo__Q24Game9PikiStateFPc
-        .4byte outWaterCallback__Q24Game9PikiStateFPQ24Game4Piki
-        .4byte "wallCallback__Q24Game9PikiStateFPQ24Game4PikiR10Vector3<f>"
-        .4byte invincible__Q24Game9PikiStateFPQ24Game4Piki
-        .4byte callable__Q24Game15PikiFlyingStateFv
-        .4byte aiActive__Q24Game9PikiStateFv
-        .4byte dopable__Q24Game9PikiStateFv
-        .4byte releasable__Q24Game9PikiStateFv
-        .4byte throwable__Q24Game9PikiStateFv
-        .4byte dead__Q24Game9PikiStateFv
-        .4byte battleOK__Q24Game9PikiStateFv
-        .4byte pressable__Q24Game9PikiStateFv
-        .4byte transittable__Q24Game9PikiStateFi
-        .4byte soft_transittable__Q24Game9PikiStateFi
-        .4byte onFlute__Q24Game9PikiStateFPQ24Game4PikiPQ24Game4Navi
-        .4byte dump__Q24Game9PikiStateFv
-        .4byte stopEffect__Q24Game15PikiFlyingStateFv
-        .4byte restartEffect__Q24Game15PikiFlyingStateFv
-    .global __vt__Q24Game16PikiSuikomiState
-    __vt__Q24Game16PikiSuikomiState:
-        .4byte 0
-        .4byte 0
-        .4byte init__Q24Game16PikiSuikomiStateFPQ24Game4PikiPQ24Game8StateArg
-        .4byte exec__Q24Game16PikiSuikomiStateFPQ24Game4Piki
-        .4byte cleanup__Q24Game16PikiSuikomiStateFPQ24Game4Piki
-        .4byte "resume__Q24Game22FSMState<Q24Game4Piki>FPQ24Game4Piki"
-        .4byte "restart__Q24Game22FSMState<Q24Game4Piki>FPQ24Game4Piki"
-        .4byte
-   "transit__Q24Game22FSMState<Q24Game4Piki>FPQ24Game4PikiiPQ24Game8StateArg"
-        .4byte
-   ignoreAtari__Q24Game16PikiSuikomiStateFPQ24Game4PikiPQ24Game8Creature .4byte
-   bounceCallback__Q24Game9PikiStateFPQ24Game4PikiPQ23Sys8Triangle .4byte
-   collisionCallback__Q24Game9PikiStateFPQ24Game4PikiRQ24Game9CollEvent .4byte
-   platCallback__Q24Game9PikiStateFPQ24Game4PikiRQ24Game9PlatEvent .4byte
-   onKeyEvent__Q24Game16PikiSuikomiStateFPQ24Game4PikiRCQ28SysShape8KeyEvent
-        .4byte getInfo__Q24Game9PikiStateFPc
-        .4byte outWaterCallback__Q24Game9PikiStateFPQ24Game4Piki
-        .4byte "wallCallback__Q24Game9PikiStateFPQ24Game4PikiR10Vector3<f>"
-        .4byte invincible__Q24Game9PikiStateFPQ24Game4Piki
-        .4byte callable__Q24Game9PikiStateFv
-        .4byte aiActive__Q24Game9PikiStateFv
-        .4byte dopable__Q24Game9PikiStateFv
-        .4byte releasable__Q24Game9PikiStateFv
-        .4byte throwable__Q24Game9PikiStateFv
-        .4byte dead__Q24Game9PikiStateFv
-        .4byte battleOK__Q24Game9PikiStateFv
-        .4byte pressable__Q24Game16PikiSuikomiStateFv
-        .4byte transittable__Q24Game9PikiStateFi
-        .4byte soft_transittable__Q24Game9PikiStateFi
-        .4byte onFlute__Q24Game9PikiStateFPQ24Game4PikiPQ24Game4Navi
-        .4byte dump__Q24Game9PikiStateFv
-    .global __vt__Q24Game17PikiFallMeckState
-    __vt__Q24Game17PikiFallMeckState:
-        .4byte 0
-        .4byte 0
-        .4byte init__Q24Game17PikiFallMeckStateFPQ24Game4PikiPQ24Game8StateArg
-        .4byte exec__Q24Game17PikiFallMeckStateFPQ24Game4Piki
-        .4byte cleanup__Q24Game17PikiFallMeckStateFPQ24Game4Piki
-        .4byte "resume__Q24Game22FSMState<Q24Game4Piki>FPQ24Game4Piki"
-        .4byte "restart__Q24Game22FSMState<Q24Game4Piki>FPQ24Game4Piki"
-        .4byte
-   "transit__Q24Game22FSMState<Q24Game4Piki>FPQ24Game4PikiiPQ24Game8StateArg"
-        .4byte ignoreAtari__Q24Game9PikiStateFPQ24Game4PikiPQ24Game8Creature
-        .4byte
-   bounceCallback__Q24Game17PikiFallMeckStateFPQ24Game4PikiPQ23Sys8Triangle
-        .4byte
-   collisionCallback__Q24Game17PikiFallMeckStateFPQ24Game4PikiRQ24Game9CollEvent
-        .4byte
-   platCallback__Q24Game17PikiFallMeckStateFPQ24Game4PikiRQ24Game9PlatEvent
-        .4byte onKeyEvent__Q24Game9PikiStateFPQ24Game4PikiRCQ28SysShape8KeyEvent
-        .4byte getInfo__Q24Game9PikiStateFPc
-        .4byte outWaterCallback__Q24Game9PikiStateFPQ24Game4Piki
-        .4byte "wallCallback__Q24Game9PikiStateFPQ24Game4PikiR10Vector3<f>"
-        .4byte invincible__Q24Game9PikiStateFPQ24Game4Piki
-        .4byte callable__Q24Game9PikiStateFv
-        .4byte aiActive__Q24Game9PikiStateFv
-        .4byte dopable__Q24Game9PikiStateFv
-        .4byte releasable__Q24Game9PikiStateFv
-        .4byte throwable__Q24Game9PikiStateFv
-        .4byte dead__Q24Game9PikiStateFv
-        .4byte battleOK__Q24Game9PikiStateFv
-        .4byte pressable__Q24Game17PikiFallMeckStateFv
-        .4byte transittable__Q24Game9PikiStateFi
-        .4byte soft_transittable__Q24Game9PikiStateFi
-        .4byte onFlute__Q24Game9PikiStateFPQ24Game4PikiPQ24Game4Navi
-        .4byte dump__Q24Game9PikiStateFv
-    .global __vt__Q24Game16PikiHipDropState
-    __vt__Q24Game16PikiHipDropState:
-        .4byte 0
-        .4byte 0
-        .4byte init__Q24Game16PikiHipDropStateFPQ24Game4PikiPQ24Game8StateArg
-        .4byte exec__Q24Game16PikiHipDropStateFPQ24Game4Piki
-        .4byte cleanup__Q24Game16PikiHipDropStateFPQ24Game4Piki
-        .4byte "resume__Q24Game22FSMState<Q24Game4Piki>FPQ24Game4Piki"
-        .4byte "restart__Q24Game22FSMState<Q24Game4Piki>FPQ24Game4Piki"
-        .4byte
-   "transit__Q24Game22FSMState<Q24Game4Piki>FPQ24Game4PikiiPQ24Game8StateArg"
-        .4byte ignoreAtari__Q24Game9PikiStateFPQ24Game4PikiPQ24Game8Creature
-        .4byte
-   bounceCallback__Q24Game16PikiHipDropStateFPQ24Game4PikiPQ23Sys8Triangle
-        .4byte
-   collisionCallback__Q24Game16PikiHipDropStateFPQ24Game4PikiRQ24Game9CollEvent
-        .4byte
-   platCallback__Q24Game16PikiHipDropStateFPQ24Game4PikiRQ24Game9PlatEvent
-        .4byte
-   onKeyEvent__Q24Game16PikiHipDropStateFPQ24Game4PikiRCQ28SysShape8KeyEvent
-        .4byte getInfo__Q24Game9PikiStateFPc
-        .4byte outWaterCallback__Q24Game9PikiStateFPQ24Game4Piki
-        .4byte "wallCallback__Q24Game9PikiStateFPQ24Game4PikiR10Vector3<f>"
-        .4byte invincible__Q24Game9PikiStateFPQ24Game4Piki
-        .4byte callable__Q24Game9PikiStateFv
-        .4byte aiActive__Q24Game9PikiStateFv
-        .4byte dopable__Q24Game9PikiStateFv
-        .4byte releasable__Q24Game9PikiStateFv
-        .4byte throwable__Q24Game9PikiStateFv
-        .4byte dead__Q24Game9PikiStateFv
-        .4byte battleOK__Q24Game9PikiStateFv
-        .4byte pressable__Q24Game9PikiStateFv
-        .4byte transittable__Q24Game9PikiStateFi
-        .4byte soft_transittable__Q24Game9PikiStateFi
-        .4byte onFlute__Q24Game9PikiStateFPQ24Game4PikiPQ24Game4Navi
-        .4byte dump__Q24Game9PikiStateFv
-    .global __vt__Q24Game20PikiWaterHangedState
-    __vt__Q24Game20PikiWaterHangedState:
-        .4byte 0
-        .4byte 0
-        .4byte
-   init__Q24Game20PikiWaterHangedStateFPQ24Game4PikiPQ24Game8StateArg .4byte
-   exec__Q24Game20PikiWaterHangedStateFPQ24Game4Piki .4byte
-   cleanup__Q24Game20PikiWaterHangedStateFPQ24Game4Piki .4byte
-   "resume__Q24Game22FSMState<Q24Game4Piki>FPQ24Game4Piki" .4byte
-   "restart__Q24Game22FSMState<Q24Game4Piki>FPQ24Game4Piki" .4byte
-   "transit__Q24Game22FSMState<Q24Game4Piki>FPQ24Game4PikiiPQ24Game8StateArg"
-        .4byte
-   ignoreAtari__Q24Game20PikiWaterHangedStateFPQ24Game4PikiPQ24Game8Creature
-        .4byte bounceCallback__Q24Game9PikiStateFPQ24Game4PikiPQ23Sys8Triangle
-        .4byte
-   collisionCallback__Q24Game9PikiStateFPQ24Game4PikiRQ24Game9CollEvent .4byte
-   platCallback__Q24Game9PikiStateFPQ24Game4PikiRQ24Game9PlatEvent .4byte
-   onKeyEvent__Q24Game9PikiStateFPQ24Game4PikiRCQ28SysShape8KeyEvent .4byte
-   getInfo__Q24Game9PikiStateFPc .4byte
-   outWaterCallback__Q24Game9PikiStateFPQ24Game4Piki .4byte
-   "wallCallback__Q24Game9PikiStateFPQ24Game4PikiR10Vector3<f>" .4byte
-   invincible__Q24Game9PikiStateFPQ24Game4Piki .4byte
-   callable__Q24Game9PikiStateFv .4byte aiActive__Q24Game9PikiStateFv .4byte
-   dopable__Q24Game9PikiStateFv .4byte releasable__Q24Game9PikiStateFv .4byte
-   throwable__Q24Game20PikiWaterHangedStateFv .4byte dead__Q24Game9PikiStateFv
-        .4byte battleOK__Q24Game9PikiStateFv
-        .4byte pressable__Q24Game9PikiStateFv
-        .4byte transittable__Q24Game9PikiStateFi
-        .4byte soft_transittable__Q24Game9PikiStateFi
-        .4byte onFlute__Q24Game9PikiStateFPQ24Game4PikiPQ24Game4Navi
-        .4byte dump__Q24Game9PikiStateFv
-        .4byte onKeyEvent__Q24Game20PikiWaterHangedStateFRCQ28SysShape8KeyEvent
-        .4byte 0
-        .4byte 0
-        .4byte
-   "@24@4@onKeyEvent__Q24Game20PikiWaterHangedStateFRCQ28SysShape8KeyEvent"
-    .global __vt__Q24Game15PikiHangedState
-    __vt__Q24Game15PikiHangedState:
-        .4byte 0
-        .4byte 0
-        .4byte init__Q24Game15PikiHangedStateFPQ24Game4PikiPQ24Game8StateArg
-        .4byte exec__Q24Game15PikiHangedStateFPQ24Game4Piki
-        .4byte cleanup__Q24Game15PikiHangedStateFPQ24Game4Piki
-        .4byte "resume__Q24Game22FSMState<Q24Game4Piki>FPQ24Game4Piki"
-        .4byte "restart__Q24Game22FSMState<Q24Game4Piki>FPQ24Game4Piki"
-        .4byte
-   "transit__Q24Game22FSMState<Q24Game4Piki>FPQ24Game4PikiiPQ24Game8StateArg"
-        .4byte
-   ignoreAtari__Q24Game15PikiHangedStateFPQ24Game4PikiPQ24Game8Creature .4byte
-   bounceCallback__Q24Game9PikiStateFPQ24Game4PikiPQ23Sys8Triangle .4byte
-   collisionCallback__Q24Game9PikiStateFPQ24Game4PikiRQ24Game9CollEvent .4byte
-   platCallback__Q24Game9PikiStateFPQ24Game4PikiRQ24Game9PlatEvent .4byte
-   onKeyEvent__Q24Game9PikiStateFPQ24Game4PikiRCQ28SysShape8KeyEvent .4byte
-   getInfo__Q24Game9PikiStateFPc .4byte
-   outWaterCallback__Q24Game9PikiStateFPQ24Game4Piki .4byte
-   "wallCallback__Q24Game9PikiStateFPQ24Game4PikiR10Vector3<f>" .4byte
-   invincible__Q24Game9PikiStateFPQ24Game4Piki .4byte
-   callable__Q24Game9PikiStateFv .4byte aiActive__Q24Game9PikiStateFv .4byte
-   dopable__Q24Game9PikiStateFv .4byte releasable__Q24Game9PikiStateFv .4byte
-   throwable__Q24Game15PikiHangedStateFv .4byte dead__Q24Game9PikiStateFv .4byte
-   battleOK__Q24Game9PikiStateFv .4byte pressable__Q24Game9PikiStateFv .4byte
-   transittable__Q24Game9PikiStateFi .4byte
-   soft_transittable__Q24Game9PikiStateFi .4byte
-   onFlute__Q24Game9PikiStateFPQ24Game4PikiPQ24Game4Navi .4byte
-   dump__Q24Game9PikiStateFv .4byte
-   onKeyEvent__Q24Game15PikiHangedStateFRCQ28SysShape8KeyEvent .4byte 0 .4byte 0
-        .4byte
-   "@20@4@onKeyEvent__Q24Game15PikiHangedStateFRCQ28SysShape8KeyEvent" .global
-   __vt__Q24Game15PikiGoHangState
-    __vt__Q24Game15PikiGoHangState:
-        .4byte 0
-        .4byte 0
-        .4byte init__Q24Game15PikiGoHangStateFPQ24Game4PikiPQ24Game8StateArg
-        .4byte exec__Q24Game15PikiGoHangStateFPQ24Game4Piki
-        .4byte cleanup__Q24Game15PikiGoHangStateFPQ24Game4Piki
-        .4byte "resume__Q24Game22FSMState<Q24Game4Piki>FPQ24Game4Piki"
-        .4byte "restart__Q24Game22FSMState<Q24Game4Piki>FPQ24Game4Piki"
-        .4byte
-   "transit__Q24Game22FSMState<Q24Game4Piki>FPQ24Game4PikiiPQ24Game8StateArg"
-        .4byte ignoreAtari__Q24Game9PikiStateFPQ24Game4PikiPQ24Game8Creature
-        .4byte bounceCallback__Q24Game9PikiStateFPQ24Game4PikiPQ23Sys8Triangle
-        .4byte
-   collisionCallback__Q24Game9PikiStateFPQ24Game4PikiRQ24Game9CollEvent .4byte
-   platCallback__Q24Game9PikiStateFPQ24Game4PikiRQ24Game9PlatEvent .4byte
-   onKeyEvent__Q24Game9PikiStateFPQ24Game4PikiRCQ28SysShape8KeyEvent .4byte
-   getInfo__Q24Game9PikiStateFPc .4byte
-   outWaterCallback__Q24Game9PikiStateFPQ24Game4Piki .4byte
-   "wallCallback__Q24Game9PikiStateFPQ24Game4PikiR10Vector3<f>" .4byte
-   invincible__Q24Game9PikiStateFPQ24Game4Piki .4byte
-   callable__Q24Game15PikiGoHangStateFv .4byte aiActive__Q24Game9PikiStateFv
-        .4byte dopable__Q24Game9PikiStateFv
-        .4byte releasable__Q24Game9PikiStateFv
-        .4byte throwable__Q24Game15PikiGoHangStateFv
-        .4byte dead__Q24Game9PikiStateFv
-        .4byte battleOK__Q24Game9PikiStateFv
-        .4byte pressable__Q24Game9PikiStateFv
-        .4byte transittable__Q24Game9PikiStateFi
-        .4byte soft_transittable__Q24Game9PikiStateFi
-        .4byte onFlute__Q24Game9PikiStateFPQ24Game4PikiPQ24Game4Navi
-        .4byte dump__Q24Game9PikiStateFv
-    .global __vt__Q24Game17PikiAutoNukiState
-    __vt__Q24Game17PikiAutoNukiState:
-        .4byte 0
-        .4byte 0
-        .4byte init__Q24Game17PikiAutoNukiStateFPQ24Game4PikiPQ24Game8StateArg
-        .4byte exec__Q24Game17PikiAutoNukiStateFPQ24Game4Piki
-        .4byte cleanup__Q24Game17PikiAutoNukiStateFPQ24Game4Piki
-        .4byte "resume__Q24Game22FSMState<Q24Game4Piki>FPQ24Game4Piki"
-        .4byte "restart__Q24Game22FSMState<Q24Game4Piki>FPQ24Game4Piki"
-        .4byte
-   "transit__Q24Game22FSMState<Q24Game4Piki>FPQ24Game4PikiiPQ24Game8StateArg"
-        .4byte ignoreAtari__Q24Game9PikiStateFPQ24Game4PikiPQ24Game8Creature
-        .4byte bounceCallback__Q24Game9PikiStateFPQ24Game4PikiPQ23Sys8Triangle
-        .4byte
-   collisionCallback__Q24Game9PikiStateFPQ24Game4PikiRQ24Game9CollEvent .4byte
-   platCallback__Q24Game9PikiStateFPQ24Game4PikiRQ24Game9PlatEvent .4byte
-   onKeyEvent__Q24Game17PikiAutoNukiStateFPQ24Game4PikiRCQ28SysShape8KeyEvent
-        .4byte getInfo__Q24Game9PikiStateFPc
-        .4byte outWaterCallback__Q24Game9PikiStateFPQ24Game4Piki
-        .4byte "wallCallback__Q24Game9PikiStateFPQ24Game4PikiR10Vector3<f>"
-        .4byte invincible__Q24Game9PikiStateFPQ24Game4Piki
-        .4byte callable__Q24Game17PikiAutoNukiStateFv
-        .4byte aiActive__Q24Game9PikiStateFv
-        .4byte dopable__Q24Game9PikiStateFv
-        .4byte releasable__Q24Game9PikiStateFv
-        .4byte throwable__Q24Game9PikiStateFv
-        .4byte dead__Q24Game9PikiStateFv
-        .4byte battleOK__Q24Game9PikiStateFv
-        .4byte pressable__Q24Game9PikiStateFv
-        .4byte transittable__Q24Game9PikiStateFi
-        .4byte soft_transittable__Q24Game9PikiStateFi
-        .4byte onFlute__Q24Game9PikiStateFPQ24Game4PikiPQ24Game4Navi
-        .4byte dump__Q24Game9PikiStateFv
-    .global __vt__Q24Game15PikiLookAtState
-    __vt__Q24Game15PikiLookAtState:
-        .4byte 0
-        .4byte 0
-        .4byte init__Q24Game15PikiLookAtStateFPQ24Game4PikiPQ24Game8StateArg
-        .4byte exec__Q24Game15PikiLookAtStateFPQ24Game4Piki
-        .4byte cleanup__Q24Game15PikiLookAtStateFPQ24Game4Piki
-        .4byte "resume__Q24Game22FSMState<Q24Game4Piki>FPQ24Game4Piki"
-        .4byte "restart__Q24Game22FSMState<Q24Game4Piki>FPQ24Game4Piki"
-        .4byte
-   "transit__Q24Game22FSMState<Q24Game4Piki>FPQ24Game4PikiiPQ24Game8StateArg"
-        .4byte ignoreAtari__Q24Game9PikiStateFPQ24Game4PikiPQ24Game8Creature
-        .4byte bounceCallback__Q24Game9PikiStateFPQ24Game4PikiPQ23Sys8Triangle
-        .4byte
-   collisionCallback__Q24Game9PikiStateFPQ24Game4PikiRQ24Game9CollEvent .4byte
-   platCallback__Q24Game9PikiStateFPQ24Game4PikiRQ24Game9PlatEvent .4byte
-   onKeyEvent__Q24Game9PikiStateFPQ24Game4PikiRCQ28SysShape8KeyEvent .4byte
-   getInfo__Q24Game9PikiStateFPc .4byte
-   outWaterCallback__Q24Game9PikiStateFPQ24Game4Piki .4byte
-   "wallCallback__Q24Game9PikiStateFPQ24Game4PikiR10Vector3<f>" .4byte
-   invincible__Q24Game9PikiStateFPQ24Game4Piki .4byte
-   callable__Q24Game15PikiLookAtStateFv .4byte aiActive__Q24Game9PikiStateFv
-        .4byte dopable__Q24Game9PikiStateFv
-        .4byte releasable__Q24Game9PikiStateFv
-        .4byte throwable__Q24Game9PikiStateFv
-        .4byte dead__Q24Game9PikiStateFv
-        .4byte battleOK__Q24Game9PikiStateFv
-        .4byte pressable__Q24Game9PikiStateFv
-        .4byte transittable__Q24Game9PikiStateFi
-        .4byte soft_transittable__Q24Game9PikiStateFi
-        .4byte onFlute__Q24Game15PikiLookAtStateFPQ24Game4PikiPQ24Game4Navi
-        .4byte dump__Q24Game9PikiStateFv
-        .4byte onKeyEvent__Q24Game15PikiLookAtStateFRCQ28SysShape8KeyEvent
-        .4byte 0
-        .4byte 0
-        .4byte
-   "@28@4@onKeyEvent__Q24Game15PikiLookAtStateFRCQ28SysShape8KeyEvent" .global
-   __vt__Q24Game16PikiPressedState
-    __vt__Q24Game16PikiPressedState:
-        .4byte 0
-        .4byte 0
-        .4byte init__Q24Game16PikiPressedStateFPQ24Game4PikiPQ24Game8StateArg
-        .4byte exec__Q24Game16PikiPressedStateFPQ24Game4Piki
-        .4byte cleanup__Q24Game16PikiPressedStateFPQ24Game4Piki
-        .4byte "resume__Q24Game22FSMState<Q24Game4Piki>FPQ24Game4Piki"
-        .4byte "restart__Q24Game22FSMState<Q24Game4Piki>FPQ24Game4Piki"
-        .4byte
-   "transit__Q24Game22FSMState<Q24Game4Piki>FPQ24Game4PikiiPQ24Game8StateArg"
-        .4byte ignoreAtari__Q24Game9PikiStateFPQ24Game4PikiPQ24Game8Creature
-        .4byte bounceCallback__Q24Game9PikiStateFPQ24Game4PikiPQ23Sys8Triangle
-        .4byte
-   collisionCallback__Q24Game9PikiStateFPQ24Game4PikiRQ24Game9CollEvent .4byte
-   platCallback__Q24Game9PikiStateFPQ24Game4PikiRQ24Game9PlatEvent .4byte
-   onKeyEvent__Q24Game9PikiStateFPQ24Game4PikiRCQ28SysShape8KeyEvent .4byte
-   getInfo__Q24Game9PikiStateFPc .4byte
-   outWaterCallback__Q24Game9PikiStateFPQ24Game4Piki .4byte
-   "wallCallback__Q24Game9PikiStateFPQ24Game4PikiR10Vector3<f>" .4byte
-   invincible__Q24Game9PikiStateFPQ24Game4Piki .4byte
-   callable__Q24Game9PikiStateFv .4byte aiActive__Q24Game9PikiStateFv .4byte
-   dopable__Q24Game9PikiStateFv .4byte releasable__Q24Game9PikiStateFv .4byte
-   throwable__Q24Game9PikiStateFv .4byte dead__Q24Game16PikiPressedStateFv
-        .4byte battleOK__Q24Game9PikiStateFv
-        .4byte pressable__Q24Game16PikiPressedStateFv
-        .4byte transittable__Q24Game16PikiPressedStateFi
-        .4byte soft_transittable__Q24Game16PikiPressedStateFi
-        .4byte onFlute__Q24Game9PikiStateFPQ24Game4PikiPQ24Game4Navi
-        .4byte dump__Q24Game9PikiStateFv
-    .global __vt__Q23efx9TPkKanden
-    __vt__Q23efx9TPkKanden:
-        .4byte 0
-        .4byte 0
-        .4byte create__Q23efx8TSimple3FPQ23efx3Arg
-        .4byte forceKill__Q23efx8TSimple3Fv
-        .4byte fade__Q23efx8TSimple3Fv
-    .global __vt__Q24Game19PikiDenkiDyingState
-    __vt__Q24Game19PikiDenkiDyingState:
-        .4byte 0
-        .4byte 0
-        .4byte init__Q24Game19PikiDenkiDyingStateFPQ24Game4PikiPQ24Game8StateArg
-        .4byte exec__Q24Game19PikiDenkiDyingStateFPQ24Game4Piki
-        .4byte cleanup__Q24Game19PikiDenkiDyingStateFPQ24Game4Piki
-        .4byte "resume__Q24Game22FSMState<Q24Game4Piki>FPQ24Game4Piki"
-        .4byte "restart__Q24Game22FSMState<Q24Game4Piki>FPQ24Game4Piki"
-        .4byte
-   "transit__Q24Game22FSMState<Q24Game4Piki>FPQ24Game4PikiiPQ24Game8StateArg"
-        .4byte ignoreAtari__Q24Game9PikiStateFPQ24Game4PikiPQ24Game8Creature
-        .4byte bounceCallback__Q24Game9PikiStateFPQ24Game4PikiPQ23Sys8Triangle
-        .4byte
-   collisionCallback__Q24Game9PikiStateFPQ24Game4PikiRQ24Game9CollEvent .4byte
-   platCallback__Q24Game9PikiStateFPQ24Game4PikiRQ24Game9PlatEvent .4byte
-   onKeyEvent__Q24Game9PikiStateFPQ24Game4PikiRCQ28SysShape8KeyEvent .4byte
-   getInfo__Q24Game9PikiStateFPc .4byte
-   outWaterCallback__Q24Game9PikiStateFPQ24Game4Piki .4byte
-   "wallCallback__Q24Game9PikiStateFPQ24Game4PikiR10Vector3<f>" .4byte
-   invincible__Q24Game9PikiStateFPQ24Game4Piki .4byte
-   callable__Q24Game9PikiStateFv .4byte aiActive__Q24Game9PikiStateFv .4byte
-   dopable__Q24Game9PikiStateFv .4byte releasable__Q24Game9PikiStateFv .4byte
-   throwable__Q24Game9PikiStateFv .4byte dead__Q24Game19PikiDenkiDyingStateFv
-        .4byte battleOK__Q24Game9PikiStateFv
-        .4byte pressable__Q24Game19PikiDenkiDyingStateFv
-        .4byte transittable__Q24Game19PikiDenkiDyingStateFi
-        .4byte soft_transittable__Q24Game19PikiDenkiDyingStateFi
-        .4byte onFlute__Q24Game9PikiStateFPQ24Game4PikiPQ24Game4Navi
-        .4byte dump__Q24Game9PikiStateFv
-    .global __vt__Q24Game14PikiDyingState
-    __vt__Q24Game14PikiDyingState:
-        .4byte 0
-        .4byte 0
-        .4byte init__Q24Game14PikiDyingStateFPQ24Game4PikiPQ24Game8StateArg
-        .4byte exec__Q24Game14PikiDyingStateFPQ24Game4Piki
-        .4byte cleanup__Q24Game14PikiDyingStateFPQ24Game4Piki
-        .4byte "resume__Q24Game22FSMState<Q24Game4Piki>FPQ24Game4Piki"
-        .4byte "restart__Q24Game22FSMState<Q24Game4Piki>FPQ24Game4Piki"
-        .4byte
-   "transit__Q24Game22FSMState<Q24Game4Piki>FPQ24Game4PikiiPQ24Game8StateArg"
-        .4byte ignoreAtari__Q24Game9PikiStateFPQ24Game4PikiPQ24Game8Creature
-        .4byte bounceCallback__Q24Game9PikiStateFPQ24Game4PikiPQ23Sys8Triangle
-        .4byte
-   collisionCallback__Q24Game9PikiStateFPQ24Game4PikiRQ24Game9CollEvent .4byte
-   platCallback__Q24Game9PikiStateFPQ24Game4PikiRQ24Game9PlatEvent .4byte
-   onKeyEvent__Q24Game14PikiDyingStateFPQ24Game4PikiRCQ28SysShape8KeyEvent
-        .4byte getInfo__Q24Game9PikiStateFPc
-        .4byte outWaterCallback__Q24Game9PikiStateFPQ24Game4Piki
-        .4byte "wallCallback__Q24Game9PikiStateFPQ24Game4PikiR10Vector3<f>"
-        .4byte invincible__Q24Game9PikiStateFPQ24Game4Piki
-        .4byte callable__Q24Game9PikiStateFv
-        .4byte aiActive__Q24Game9PikiStateFv
-        .4byte dopable__Q24Game9PikiStateFv
-        .4byte releasable__Q24Game9PikiStateFv
-        .4byte throwable__Q24Game9PikiStateFv
-        .4byte dead__Q24Game14PikiDyingStateFv
-        .4byte battleOK__Q24Game9PikiStateFv
-        .4byte pressable__Q24Game14PikiDyingStateFv
-        .4byte transittable__Q24Game14PikiDyingStateFi
-        .4byte soft_transittable__Q24Game9PikiStateFi
-        .4byte onFlute__Q24Game9PikiStateFPQ24Game4PikiPQ24Game4Navi
-        .4byte dump__Q24Game9PikiStateFv
-    .global __vt__Q24Game13PikiDeadState
-    __vt__Q24Game13PikiDeadState:
-        .4byte 0
-        .4byte 0
-        .4byte init__Q24Game13PikiDeadStateFPQ24Game4PikiPQ24Game8StateArg
-        .4byte exec__Q24Game13PikiDeadStateFPQ24Game4Piki
-        .4byte "cleanup__Q24Game22FSMState<Q24Game4Piki>FPQ24Game4Piki"
-        .4byte "resume__Q24Game22FSMState<Q24Game4Piki>FPQ24Game4Piki"
-        .4byte "restart__Q24Game22FSMState<Q24Game4Piki>FPQ24Game4Piki"
-        .4byte
-   "transit__Q24Game22FSMState<Q24Game4Piki>FPQ24Game4PikiiPQ24Game8StateArg"
-        .4byte ignoreAtari__Q24Game9PikiStateFPQ24Game4PikiPQ24Game8Creature
-        .4byte bounceCallback__Q24Game9PikiStateFPQ24Game4PikiPQ23Sys8Triangle
-        .4byte
-   collisionCallback__Q24Game9PikiStateFPQ24Game4PikiRQ24Game9CollEvent .4byte
-   platCallback__Q24Game9PikiStateFPQ24Game4PikiRQ24Game9PlatEvent .4byte
-   onKeyEvent__Q24Game9PikiStateFPQ24Game4PikiRCQ28SysShape8KeyEvent .4byte
-   getInfo__Q24Game9PikiStateFPc .4byte
-   outWaterCallback__Q24Game9PikiStateFPQ24Game4Piki .4byte
-   "wallCallback__Q24Game9PikiStateFPQ24Game4PikiR10Vector3<f>" .4byte
-   invincible__Q24Game9PikiStateFPQ24Game4Piki .4byte
-   callable__Q24Game9PikiStateFv .4byte aiActive__Q24Game9PikiStateFv .4byte
-   dopable__Q24Game9PikiStateFv .4byte releasable__Q24Game9PikiStateFv .4byte
-   throwable__Q24Game9PikiStateFv .4byte dead__Q24Game13PikiDeadStateFv .4byte
-   battleOK__Q24Game9PikiStateFv .4byte pressable__Q24Game13PikiDeadStateFv
-        .4byte transittable__Q24Game13PikiDeadStateFi
-        .4byte soft_transittable__Q24Game9PikiStateFi
-        .4byte onFlute__Q24Game9PikiStateFPQ24Game4PikiPQ24Game4Navi
-        .4byte dump__Q24Game9PikiStateFv
-    .global __vt__Q24Game14PikiPanicState
-    __vt__Q24Game14PikiPanicState:
-        .4byte 0
-        .4byte 0
-        .4byte init__Q24Game14PikiPanicStateFPQ24Game4PikiPQ24Game8StateArg
-        .4byte exec__Q24Game14PikiPanicStateFPQ24Game4Piki
-        .4byte cleanup__Q24Game14PikiPanicStateFPQ24Game4Piki
-        .4byte "resume__Q24Game22FSMState<Q24Game4Piki>FPQ24Game4Piki"
-        .4byte "restart__Q24Game22FSMState<Q24Game4Piki>FPQ24Game4Piki"
-        .4byte
-   "transit__Q24Game22FSMState<Q24Game4Piki>FPQ24Game4PikiiPQ24Game8StateArg"
-        .4byte ignoreAtari__Q24Game9PikiStateFPQ24Game4PikiPQ24Game8Creature
-        .4byte
-   bounceCallback__Q24Game14PikiPanicStateFPQ24Game4PikiPQ23Sys8Triangle .4byte
-   collisionCallback__Q24Game9PikiStateFPQ24Game4PikiRQ24Game9CollEvent .4byte
-   platCallback__Q24Game9PikiStateFPQ24Game4PikiRQ24Game9PlatEvent .4byte
-   onKeyEvent__Q24Game14PikiPanicStateFPQ24Game4PikiRCQ28SysShape8KeyEvent
-        .4byte getInfo__Q24Game9PikiStateFPc
-        .4byte outWaterCallback__Q24Game9PikiStateFPQ24Game4Piki
-        .4byte "wallCallback__Q24Game9PikiStateFPQ24Game4PikiR10Vector3<f>"
-        .4byte invincible__Q24Game9PikiStateFPQ24Game4Piki
-        .4byte callable__Q24Game9PikiStateFv
-        .4byte aiActive__Q24Game9PikiStateFv
-        .4byte dopable__Q24Game9PikiStateFv
-        .4byte releasable__Q24Game9PikiStateFv
-        .4byte throwable__Q24Game9PikiStateFv
-        .4byte dead__Q24Game9PikiStateFv
-        .4byte battleOK__Q24Game9PikiStateFv
-        .4byte pressable__Q24Game9PikiStateFv
-        .4byte transittable__Q24Game14PikiPanicStateFi
-        .4byte soft_transittable__Q24Game14PikiPanicStateFi
-        .4byte onFlute__Q24Game14PikiPanicStateFPQ24Game4PikiPQ24Game4Navi
-        .4byte dump__Q24Game9PikiStateFv
-    .global __vt__Q24Game13PikiDopeState
-    __vt__Q24Game13PikiDopeState:
-        .4byte 0
-        .4byte 0
-        .4byte init__Q24Game13PikiDopeStateFPQ24Game4PikiPQ24Game8StateArg
-        .4byte exec__Q24Game13PikiDopeStateFPQ24Game4Piki
-        .4byte cleanup__Q24Game13PikiDopeStateFPQ24Game4Piki
-        .4byte "resume__Q24Game22FSMState<Q24Game4Piki>FPQ24Game4Piki"
-        .4byte "restart__Q24Game22FSMState<Q24Game4Piki>FPQ24Game4Piki"
-        .4byte
-   "transit__Q24Game22FSMState<Q24Game4Piki>FPQ24Game4PikiiPQ24Game8StateArg"
-        .4byte ignoreAtari__Q24Game9PikiStateFPQ24Game4PikiPQ24Game8Creature
-        .4byte bounceCallback__Q24Game9PikiStateFPQ24Game4PikiPQ23Sys8Triangle
-        .4byte
-   collisionCallback__Q24Game9PikiStateFPQ24Game4PikiRQ24Game9CollEvent .4byte
-   platCallback__Q24Game9PikiStateFPQ24Game4PikiRQ24Game9PlatEvent .4byte
-   onKeyEvent__Q24Game13PikiDopeStateFPQ24Game4PikiRCQ28SysShape8KeyEvent .4byte
-   getInfo__Q24Game9PikiStateFPc .4byte
-   outWaterCallback__Q24Game9PikiStateFPQ24Game4Piki .4byte
-   "wallCallback__Q24Game9PikiStateFPQ24Game4PikiR10Vector3<f>" .4byte
-   invincible__Q24Game9PikiStateFPQ24Game4Piki .4byte
-   callable__Q24Game9PikiStateFv .4byte aiActive__Q24Game9PikiStateFv .4byte
-   dopable__Q24Game9PikiStateFv .4byte releasable__Q24Game9PikiStateFv .4byte
-   throwable__Q24Game9PikiStateFv .4byte dead__Q24Game9PikiStateFv .4byte
-   battleOK__Q24Game9PikiStateFv .4byte pressable__Q24Game9PikiStateFv .4byte
-   transittable__Q24Game9PikiStateFi .4byte
-   soft_transittable__Q24Game9PikiStateFi .4byte
-   onFlute__Q24Game13PikiDopeStateFPQ24Game4PikiPQ24Game4Navi .4byte
-   dump__Q24Game9PikiStateFv .global __vt__Q24Game15PikiNukareState
-    __vt__Q24Game15PikiNukareState:
-        .4byte 0
-        .4byte 0
-        .4byte init__Q24Game15PikiNukareStateFPQ24Game4PikiPQ24Game8StateArg
-        .4byte exec__Q24Game15PikiNukareStateFPQ24Game4Piki
-        .4byte cleanup__Q24Game15PikiNukareStateFPQ24Game4Piki
-        .4byte "resume__Q24Game22FSMState<Q24Game4Piki>FPQ24Game4Piki"
-        .4byte "restart__Q24Game22FSMState<Q24Game4Piki>FPQ24Game4Piki"
-        .4byte
-   "transit__Q24Game22FSMState<Q24Game4Piki>FPQ24Game4PikiiPQ24Game8StateArg"
-        .4byte ignoreAtari__Q24Game9PikiStateFPQ24Game4PikiPQ24Game8Creature
-        .4byte bounceCallback__Q24Game9PikiStateFPQ24Game4PikiPQ23Sys8Triangle
-        .4byte
-   collisionCallback__Q24Game9PikiStateFPQ24Game4PikiRQ24Game9CollEvent .4byte
-   platCallback__Q24Game9PikiStateFPQ24Game4PikiRQ24Game9PlatEvent .4byte
-   onKeyEvent__Q24Game15PikiNukareStateFPQ24Game4PikiRCQ28SysShape8KeyEvent
-        .4byte getInfo__Q24Game9PikiStateFPc
-        .4byte outWaterCallback__Q24Game9PikiStateFPQ24Game4Piki
-        .4byte "wallCallback__Q24Game9PikiStateFPQ24Game4PikiR10Vector3<f>"
-        .4byte invincible__Q24Game9PikiStateFPQ24Game4Piki
-        .4byte callable__Q24Game9PikiStateFv
-        .4byte aiActive__Q24Game9PikiStateFv
-        .4byte dopable__Q24Game9PikiStateFv
-        .4byte releasable__Q24Game9PikiStateFv
-        .4byte throwable__Q24Game9PikiStateFv
-        .4byte dead__Q24Game9PikiStateFv
-        .4byte battleOK__Q24Game9PikiStateFv
-        .4byte pressable__Q24Game9PikiStateFv
-        .4byte transittable__Q24Game9PikiStateFi
-        .4byte soft_transittable__Q24Game15PikiNukareStateFi
-        .4byte onFlute__Q24Game9PikiStateFPQ24Game4PikiPQ24Game4Navi
-        .4byte dump__Q24Game9PikiStateFv
-    .global __vt__Q24Game13PikiTaneState
-    __vt__Q24Game13PikiTaneState:
-        .4byte 0
-        .4byte 0
-        .4byte init__Q24Game13PikiTaneStateFPQ24Game4PikiPQ24Game8StateArg
-        .4byte exec__Q24Game13PikiTaneStateFPQ24Game4Piki
-        .4byte cleanup__Q24Game13PikiTaneStateFPQ24Game4Piki
-        .4byte "resume__Q24Game22FSMState<Q24Game4Piki>FPQ24Game4Piki"
-        .4byte "restart__Q24Game22FSMState<Q24Game4Piki>FPQ24Game4Piki"
-        .4byte
-   "transit__Q24Game22FSMState<Q24Game4Piki>FPQ24Game4PikiiPQ24Game8StateArg"
-        .4byte ignoreAtari__Q24Game9PikiStateFPQ24Game4PikiPQ24Game8Creature
-        .4byte
-   bounceCallback__Q24Game13PikiTaneStateFPQ24Game4PikiPQ23Sys8Triangle .4byte
-   collisionCallback__Q24Game9PikiStateFPQ24Game4PikiRQ24Game9CollEvent .4byte
-   platCallback__Q24Game9PikiStateFPQ24Game4PikiRQ24Game9PlatEvent .4byte
-   onKeyEvent__Q24Game9PikiStateFPQ24Game4PikiRCQ28SysShape8KeyEvent .4byte
-   getInfo__Q24Game9PikiStateFPc .4byte
-   outWaterCallback__Q24Game9PikiStateFPQ24Game4Piki .4byte
-   "wallCallback__Q24Game9PikiStateFPQ24Game4PikiR10Vector3<f>" .4byte
-   invincible__Q24Game9PikiStateFPQ24Game4Piki .4byte
-   callable__Q24Game13PikiTaneStateFv .4byte aiActive__Q24Game9PikiStateFv
-        .4byte dopable__Q24Game9PikiStateFv
-        .4byte releasable__Q24Game9PikiStateFv
-        .4byte throwable__Q24Game9PikiStateFv
-        .4byte dead__Q24Game9PikiStateFv
-        .4byte battleOK__Q24Game9PikiStateFv
-        .4byte pressable__Q24Game9PikiStateFv
-        .4byte transittable__Q24Game9PikiStateFi
-        .4byte soft_transittable__Q24Game9PikiStateFi
-        .4byte onFlute__Q24Game9PikiStateFPQ24Game4PikiPQ24Game4Navi
-        .4byte dump__Q24Game9PikiStateFv
-    .global __vt__Q24Game19PikiFountainonState
-    __vt__Q24Game19PikiFountainonState:
-        .4byte 0
-        .4byte 0
-        .4byte init__Q24Game19PikiFountainonStateFPQ24Game4PikiPQ24Game8StateArg
-        .4byte exec__Q24Game19PikiFountainonStateFPQ24Game4Piki
-        .4byte cleanup__Q24Game19PikiFountainonStateFPQ24Game4Piki
-        .4byte "resume__Q24Game22FSMState<Q24Game4Piki>FPQ24Game4Piki"
-        .4byte "restart__Q24Game22FSMState<Q24Game4Piki>FPQ24Game4Piki"
-        .4byte
-   "transit__Q24Game22FSMState<Q24Game4Piki>FPQ24Game4PikiiPQ24Game8StateArg"
-        .4byte ignoreAtari__Q24Game9PikiStateFPQ24Game4PikiPQ24Game8Creature
-        .4byte bounceCallback__Q24Game9PikiStateFPQ24Game4PikiPQ23Sys8Triangle
-        .4byte
-   collisionCallback__Q24Game9PikiStateFPQ24Game4PikiRQ24Game9CollEvent .4byte
-   platCallback__Q24Game9PikiStateFPQ24Game4PikiRQ24Game9PlatEvent .4byte
-   onKeyEvent__Q24Game9PikiStateFPQ24Game4PikiRCQ28SysShape8KeyEvent .4byte
-   getInfo__Q24Game9PikiStateFPc .4byte
-   outWaterCallback__Q24Game9PikiStateFPQ24Game4Piki .4byte
-   "wallCallback__Q24Game9PikiStateFPQ24Game4PikiR10Vector3<f>" .4byte
-   invincible__Q24Game19PikiFountainonStateFPQ24Game4Piki .4byte
-   callable__Q24Game19PikiFountainonStateFv .4byte aiActive__Q24Game9PikiStateFv
-        .4byte dopable__Q24Game9PikiStateFv
-        .4byte releasable__Q24Game9PikiStateFv
-        .4byte throwable__Q24Game9PikiStateFv
-        .4byte dead__Q24Game9PikiStateFv
-        .4byte battleOK__Q24Game9PikiStateFv
-        .4byte pressable__Q24Game9PikiStateFv
-        .4byte transittable__Q24Game9PikiStateFi
-        .4byte soft_transittable__Q24Game19PikiFountainonStateFi
-        .4byte onFlute__Q24Game9PikiStateFPQ24Game4PikiPQ24Game4Navi
-        .4byte dump__Q24Game9PikiStateFv
-    .global __vt__Q24Game15PikiHoleinState
-    __vt__Q24Game15PikiHoleinState:
-        .4byte 0
-        .4byte 0
-        .4byte init__Q24Game15PikiHoleinStateFPQ24Game4PikiPQ24Game8StateArg
-        .4byte exec__Q24Game15PikiHoleinStateFPQ24Game4Piki
-        .4byte cleanup__Q24Game15PikiHoleinStateFPQ24Game4Piki
-        .4byte "resume__Q24Game22FSMState<Q24Game4Piki>FPQ24Game4Piki"
-        .4byte "restart__Q24Game22FSMState<Q24Game4Piki>FPQ24Game4Piki"
-        .4byte
-   "transit__Q24Game22FSMState<Q24Game4Piki>FPQ24Game4PikiiPQ24Game8StateArg"
-        .4byte ignoreAtari__Q24Game9PikiStateFPQ24Game4PikiPQ24Game8Creature
-        .4byte bounceCallback__Q24Game9PikiStateFPQ24Game4PikiPQ23Sys8Triangle
-        .4byte
-   collisionCallback__Q24Game9PikiStateFPQ24Game4PikiRQ24Game9CollEvent .4byte
-   platCallback__Q24Game9PikiStateFPQ24Game4PikiRQ24Game9PlatEvent .4byte
-   onKeyEvent__Q24Game9PikiStateFPQ24Game4PikiRCQ28SysShape8KeyEvent .4byte
-   getInfo__Q24Game9PikiStateFPc .4byte
-   outWaterCallback__Q24Game9PikiStateFPQ24Game4Piki .4byte
-   "wallCallback__Q24Game9PikiStateFPQ24Game4PikiR10Vector3<f>" .4byte
-   invincible__Q24Game15PikiHoleinStateFPQ24Game4Piki .4byte
-   callable__Q24Game15PikiHoleinStateFv .4byte aiActive__Q24Game9PikiStateFv
-        .4byte dopable__Q24Game9PikiStateFv
-        .4byte releasable__Q24Game9PikiStateFv
-        .4byte throwable__Q24Game9PikiStateFv
-        .4byte dead__Q24Game9PikiStateFv
-        .4byte battleOK__Q24Game9PikiStateFv
-        .4byte pressable__Q24Game9PikiStateFv
-        .4byte transittable__Q24Game9PikiStateFi
-        .4byte soft_transittable__Q24Game15PikiHoleinStateFi
-        .4byte onFlute__Q24Game9PikiStateFPQ24Game4PikiPQ24Game4Navi
-        .4byte dump__Q24Game9PikiStateFv
-    .global __vt__Q24Game18PikiSwallowedState
-    __vt__Q24Game18PikiSwallowedState:
-        .4byte 0
-        .4byte 0
-        .4byte init__Q24Game18PikiSwallowedStateFPQ24Game4PikiPQ24Game8StateArg
-        .4byte exec__Q24Game18PikiSwallowedStateFPQ24Game4Piki
-        .4byte cleanup__Q24Game18PikiSwallowedStateFPQ24Game4Piki
-        .4byte "resume__Q24Game22FSMState<Q24Game4Piki>FPQ24Game4Piki"
-        .4byte "restart__Q24Game22FSMState<Q24Game4Piki>FPQ24Game4Piki"
-        .4byte
-   "transit__Q24Game22FSMState<Q24Game4Piki>FPQ24Game4PikiiPQ24Game8StateArg"
-        .4byte
-   ignoreAtari__Q24Game18PikiSwallowedStateFPQ24Game4PikiPQ24Game8Creature
-        .4byte bounceCallback__Q24Game9PikiStateFPQ24Game4PikiPQ23Sys8Triangle
-        .4byte
-   collisionCallback__Q24Game9PikiStateFPQ24Game4PikiRQ24Game9CollEvent .4byte
-   platCallback__Q24Game9PikiStateFPQ24Game4PikiRQ24Game9PlatEvent .4byte
-   onKeyEvent__Q24Game9PikiStateFPQ24Game4PikiRCQ28SysShape8KeyEvent .4byte
-   getInfo__Q24Game9PikiStateFPc .4byte
-   outWaterCallback__Q24Game9PikiStateFPQ24Game4Piki .4byte
-   "wallCallback__Q24Game9PikiStateFPQ24Game4PikiR10Vector3<f>" .4byte
-   invincible__Q24Game9PikiStateFPQ24Game4Piki .4byte
-   callable__Q24Game18PikiSwallowedStateFv .4byte aiActive__Q24Game9PikiStateFv
-        .4byte dopable__Q24Game9PikiStateFv
-        .4byte releasable__Q24Game9PikiStateFv
-        .4byte throwable__Q24Game9PikiStateFv
-        .4byte dead__Q24Game18PikiSwallowedStateFv
-        .4byte battleOK__Q24Game9PikiStateFv
-        .4byte pressable__Q24Game9PikiStateFv
-        .4byte transittable__Q24Game9PikiStateFi
-        .4byte soft_transittable__Q24Game9PikiStateFi
-        .4byte onFlute__Q24Game9PikiStateFPQ24Game4PikiPQ24Game4Navi
-        .4byte dump__Q24Game9PikiStateFv
-    .global __vt__Q23efx5TPkAp
-    __vt__Q23efx5TPkAp:
-        .4byte 0
-        .4byte 0
-        .4byte create__Q23efx8TSimple2FPQ23efx3Arg
-        .4byte forceKill__Q23efx8TSimple2Fv
-        .4byte fade__Q23efx8TSimple2Fv
-    .global __vt__Q23efx9TPikuBomb
-    __vt__Q23efx9TPikuBomb:
-        .4byte 0
-        .4byte 0
-        .4byte create__Q23efx8TSimple1FPQ23efx3Arg
-        .4byte forceKill__Q23efx8TSimple1Fv
-        .4byte fade__Q23efx8TSimple1Fv
-    .global __vt__Q23efx9TPikuDead
-    __vt__Q23efx9TPikuDead:
-        .4byte 0
-        .4byte 0
-        .4byte create__Q23efx8TSimple1FPQ23efx3Arg
-        .4byte forceKill__Q23efx8TSimple1Fv
-        .4byte fade__Q23efx8TSimple1Fv
-    .global __vt__Q24Game15PikiCarrotState
-    __vt__Q24Game15PikiCarrotState:
-        .4byte 0
-        .4byte 0
-        .4byte init__Q24Game15PikiCarrotStateFPQ24Game4PikiPQ24Game8StateArg
-        .4byte exec__Q24Game15PikiCarrotStateFPQ24Game4Piki
-        .4byte cleanup__Q24Game15PikiCarrotStateFPQ24Game4Piki
-        .4byte "resume__Q24Game22FSMState<Q24Game4Piki>FPQ24Game4Piki"
-        .4byte "restart__Q24Game22FSMState<Q24Game4Piki>FPQ24Game4Piki"
-        .4byte
-   "transit__Q24Game22FSMState<Q24Game4Piki>FPQ24Game4PikiiPQ24Game8StateArg"
-        .4byte ignoreAtari__Q24Game9PikiStateFPQ24Game4PikiPQ24Game8Creature
-        .4byte
-   bounceCallback__Q24Game15PikiCarrotStateFPQ24Game4PikiPQ23Sys8Triangle .4byte
-   collisionCallback__Q24Game15PikiCarrotStateFPQ24Game4PikiRQ24Game9CollEvent
-        .4byte platCallback__Q24Game9PikiStateFPQ24Game4PikiRQ24Game9PlatEvent
-        .4byte onKeyEvent__Q24Game9PikiStateFPQ24Game4PikiRCQ28SysShape8KeyEvent
-        .4byte getInfo__Q24Game9PikiStateFPc
-        .4byte outWaterCallback__Q24Game9PikiStateFPQ24Game4Piki
-        .4byte "wallCallback__Q24Game9PikiStateFPQ24Game4PikiR10Vector3<f>"
-        .4byte invincible__Q24Game9PikiStateFPQ24Game4Piki
-        .4byte callable__Q24Game9PikiStateFv
-        .4byte aiActive__Q24Game9PikiStateFv
-        .4byte dopable__Q24Game9PikiStateFv
-        .4byte releasable__Q24Game9PikiStateFv
-        .4byte throwable__Q24Game9PikiStateFv
-        .4byte dead__Q24Game9PikiStateFv
-        .4byte battleOK__Q24Game9PikiStateFv
-        .4byte pressable__Q24Game9PikiStateFv
-        .4byte transittable__Q24Game9PikiStateFi
-        .4byte soft_transittable__Q24Game9PikiStateFi
-        .4byte onFlute__Q24Game9PikiStateFPQ24Game4PikiPQ24Game4Navi
-        .4byte dump__Q24Game9PikiStateFv
-    .global __vt__Q24Game17PikiDemoWaitState
-    __vt__Q24Game17PikiDemoWaitState:
-        .4byte 0
-        .4byte 0
-        .4byte init__Q24Game17PikiDemoWaitStateFPQ24Game4PikiPQ24Game8StateArg
-        .4byte exec__Q24Game17PikiDemoWaitStateFPQ24Game4Piki
-        .4byte cleanup__Q24Game17PikiDemoWaitStateFPQ24Game4Piki
-        .4byte "resume__Q24Game22FSMState<Q24Game4Piki>FPQ24Game4Piki"
-        .4byte "restart__Q24Game22FSMState<Q24Game4Piki>FPQ24Game4Piki"
-        .4byte
-   "transit__Q24Game22FSMState<Q24Game4Piki>FPQ24Game4PikiiPQ24Game8StateArg"
-        .4byte ignoreAtari__Q24Game9PikiStateFPQ24Game4PikiPQ24Game8Creature
-        .4byte bounceCallback__Q24Game9PikiStateFPQ24Game4PikiPQ23Sys8Triangle
-        .4byte
-   collisionCallback__Q24Game9PikiStateFPQ24Game4PikiRQ24Game9CollEvent .4byte
-   platCallback__Q24Game9PikiStateFPQ24Game4PikiRQ24Game9PlatEvent .4byte
-   onKeyEvent__Q24Game9PikiStateFPQ24Game4PikiRCQ28SysShape8KeyEvent .4byte
-   getInfo__Q24Game9PikiStateFPc .4byte
-   outWaterCallback__Q24Game9PikiStateFPQ24Game4Piki .4byte
-   "wallCallback__Q24Game9PikiStateFPQ24Game4PikiR10Vector3<f>" .4byte
-   invincible__Q24Game17PikiDemoWaitStateFPQ24Game4Piki .4byte
-   callable__Q24Game9PikiStateFv .4byte aiActive__Q24Game9PikiStateFv .4byte
-   dopable__Q24Game9PikiStateFv .4byte releasable__Q24Game9PikiStateFv .4byte
-   throwable__Q24Game9PikiStateFv .4byte dead__Q24Game9PikiStateFv .4byte
-   battleOK__Q24Game9PikiStateFv .4byte pressable__Q24Game9PikiStateFv .4byte
-   transittable__Q24Game9PikiStateFi .4byte
-   soft_transittable__Q24Game9PikiStateFi .4byte
-   onFlute__Q24Game9PikiStateFPQ24Game4PikiPQ24Game4Navi .4byte
-   dump__Q24Game9PikiStateFv .global __vt__Q24Game13PikiWalkState
-    __vt__Q24Game13PikiWalkState:
-        .4byte 0
-        .4byte 0
-        .4byte init__Q24Game13PikiWalkStateFPQ24Game4PikiPQ24Game8StateArg
-        .4byte exec__Q24Game13PikiWalkStateFPQ24Game4Piki
-        .4byte cleanup__Q24Game13PikiWalkStateFPQ24Game4Piki
-        .4byte "resume__Q24Game22FSMState<Q24Game4Piki>FPQ24Game4Piki"
-        .4byte "restart__Q24Game22FSMState<Q24Game4Piki>FPQ24Game4Piki"
-        .4byte
-   "transit__Q24Game22FSMState<Q24Game4Piki>FPQ24Game4PikiiPQ24Game8StateArg"
-        .4byte ignoreAtari__Q24Game9PikiStateFPQ24Game4PikiPQ24Game8Creature
-        .4byte bounceCallback__Q24Game9PikiStateFPQ24Game4PikiPQ23Sys8Triangle
-        .4byte
-   collisionCallback__Q24Game9PikiStateFPQ24Game4PikiRQ24Game9CollEvent .4byte
-   platCallback__Q24Game9PikiStateFPQ24Game4PikiRQ24Game9PlatEvent .4byte
-   onKeyEvent__Q24Game9PikiStateFPQ24Game4PikiRCQ28SysShape8KeyEvent .4byte
-   getInfo__Q24Game9PikiStateFPc .4byte
-   outWaterCallback__Q24Game9PikiStateFPQ24Game4Piki .4byte
-   "wallCallback__Q24Game9PikiStateFPQ24Game4PikiR10Vector3<f>" .4byte
-   invincible__Q24Game9PikiStateFPQ24Game4Piki .4byte
-   callable__Q24Game13PikiWalkStateFv .4byte aiActive__Q24Game13PikiWalkStateFv
-        .4byte dopable__Q24Game13PikiWalkStateFv
-        .4byte releasable__Q24Game13PikiWalkStateFv
-        .4byte throwable__Q24Game13PikiWalkStateFv
-        .4byte dead__Q24Game9PikiStateFv
-        .4byte battleOK__Q24Game13PikiWalkStateFv
-        .4byte pressable__Q24Game9PikiStateFv
-        .4byte transittable__Q24Game9PikiStateFi
-        .4byte soft_transittable__Q24Game9PikiStateFi
-        .4byte onFlute__Q24Game9PikiStateFPQ24Game4PikiPQ24Game4Navi
-        .4byte dump__Q24Game9PikiStateFv
-    .global "__vt__Q24Game22FSMState<Q24Game4Piki>"
-    "__vt__Q24Game22FSMState<Q24Game4Piki>":
-        .4byte 0
-        .4byte 0
-        .4byte
-   "init__Q24Game22FSMState<Q24Game4Piki>FPQ24Game4PikiPQ24Game8StateArg" .4byte
-   "exec__Q24Game22FSMState<Q24Game4Piki>FPQ24Game4Piki" .4byte
-   "cleanup__Q24Game22FSMState<Q24Game4Piki>FPQ24Game4Piki" .4byte
-   "resume__Q24Game22FSMState<Q24Game4Piki>FPQ24Game4Piki" .4byte
-   "restart__Q24Game22FSMState<Q24Game4Piki>FPQ24Game4Piki" .4byte
-   "transit__Q24Game22FSMState<Q24Game4Piki>FPQ24Game4PikiiPQ24Game8StateArg"
-    .global __vt__Q24Game7PikiFSM
-    __vt__Q24Game7PikiFSM:
-        .4byte 0
-        .4byte 0
-        .4byte init__Q24Game7PikiFSMFPQ24Game4Piki
-        .4byte
-   "start__Q24Game26StateMachine<Q24Game4Piki>FPQ24Game4PikiiPQ24Game8StateArg"
-        .4byte "exec__Q24Game26StateMachine<Q24Game4Piki>FPQ24Game4Piki"
-        .4byte transit__Q24Game7PikiFSMFPQ24Game4PikiiPQ24Game8StateArg
-    .global __vt__Q24Game9PikiState
-    __vt__Q24Game9PikiState:
-        .4byte 0
-        .4byte 0
-        .4byte
-   "init__Q24Game22FSMState<Q24Game4Piki>FPQ24Game4PikiPQ24Game8StateArg" .4byte
-   "exec__Q24Game22FSMState<Q24Game4Piki>FPQ24Game4Piki" .4byte
-   "cleanup__Q24Game22FSMState<Q24Game4Piki>FPQ24Game4Piki" .4byte
-   "resume__Q24Game22FSMState<Q24Game4Piki>FPQ24Game4Piki" .4byte
-   "restart__Q24Game22FSMState<Q24Game4Piki>FPQ24Game4Piki" .4byte
-   "transit__Q24Game22FSMState<Q24Game4Piki>FPQ24Game4PikiiPQ24Game8StateArg"
-        .4byte ignoreAtari__Q24Game9PikiStateFPQ24Game4PikiPQ24Game8Creature
-        .4byte bounceCallback__Q24Game9PikiStateFPQ24Game4PikiPQ23Sys8Triangle
-        .4byte
-   collisionCallback__Q24Game9PikiStateFPQ24Game4PikiRQ24Game9CollEvent .4byte
-   platCallback__Q24Game9PikiStateFPQ24Game4PikiRQ24Game9PlatEvent .4byte
-   onKeyEvent__Q24Game9PikiStateFPQ24Game4PikiRCQ28SysShape8KeyEvent .4byte
-   getInfo__Q24Game9PikiStateFPc .4byte
-   outWaterCallback__Q24Game9PikiStateFPQ24Game4Piki .4byte
-   "wallCallback__Q24Game9PikiStateFPQ24Game4PikiR10Vector3<f>" .4byte
-   invincible__Q24Game9PikiStateFPQ24Game4Piki .4byte
-   callable__Q24Game9PikiStateFv .4byte aiActive__Q24Game9PikiStateFv .4byte
-   dopable__Q24Game9PikiStateFv .4byte releasable__Q24Game9PikiStateFv .4byte
-   throwable__Q24Game9PikiStateFv .4byte dead__Q24Game9PikiStateFv .4byte
-   battleOK__Q24Game9PikiStateFv .4byte pressable__Q24Game9PikiStateFv .4byte
-   transittable__Q24Game9PikiStateFi .4byte
-   soft_transittable__Q24Game9PikiStateFi .4byte
-   onFlute__Q24Game9PikiStateFPQ24Game4PikiPQ24Game4Navi .4byte
-   dump__Q24Game9PikiStateFv
-
-    .section .sbss # 0x80514D80 - 0x80516360
-    .global lbl_805159C0
-    lbl_805159C0:
-        .skip 0x4
-    .global lbl_805159C4
-    lbl_805159C4:
-        .skip 0x4
-
-    .section .sdata2, "a"     # 0x80516360 - 0x80520E40
-    .global lbl_80518D00
-    lbl_80518D00:
-        .4byte 0x25730000
-    .global lbl_80518D04
-    lbl_80518D04:
-        .4byte 0x57414C4B
-        .4byte 0x00000000
-    .global lbl_80518D0C
-    lbl_80518D0C:
-        .4byte 0x4C4F4F4B
-        .4byte 0x41540000
-    .global lbl_80518D14
-    lbl_80518D14:
-        .4byte 0x474F4841
-        .4byte 0x4E470000
-    .global lbl_80518D1C
-    lbl_80518D1C:
-        .4byte 0x48414E47
-        .4byte 0x45440000
-    .global lbl_80518D24
-    lbl_80518D24:
-        .4byte 0x464C5949
-        .4byte 0x4E470000
-    .global lbl_80518D2C
-    lbl_80518D2C:
-        .4byte 0x424C4F57
-        .4byte 0x00000000
-    .global lbl_80518D34
-    lbl_80518D34:
-        .4byte 0x464C4943
-        .4byte 0x4B000000
-    .global lbl_80518D3C
-    lbl_80518D3C:
-        .4byte 0x44524F57
-        .4byte 0x4E000000
-    .global lbl_80518D44
-    lbl_80518D44:
-        .4byte 0x4E554B41
-        .4byte 0x52450000
-    .global lbl_80518D4C
-    lbl_80518D4C:
-        .4byte 0x4142534F
-        .4byte 0x52420000
-    .global lbl_80518D54
-    lbl_80518D54:
-        .4byte 0x47524F57
-        .4byte 0x55500000
-    .global lbl_80518D5C
-    lbl_80518D5C:
-        .4byte 0x54414E45
-        .4byte 0x00000000
-    .global lbl_80518D64
-    lbl_80518D64:
-        .4byte 0x444F5045
-        .4byte 0x00000000
-    .global lbl_80518D6C
-    lbl_80518D6C:
-        .4byte 0x48495044
-        .4byte 0x524F5000
-    .global lbl_80518D74
-    lbl_80518D74:
-        .4byte 0x454D4F54
-        .4byte 0x494F4E00
-    .global lbl_80518D7C
-    lbl_80518D7C:
-        .4byte 0x50524553
-        .4byte 0x53454400
-    .global lbl_80518D84
-    lbl_80518D84:
-        .4byte 0x50414E49
-        .4byte 0x43000000
-    .global lbl_80518D8C
-    lbl_80518D8C:
-        .4byte 0x4459494E
-        .4byte 0x47000000
-    .global lbl_80518D94
-    lbl_80518D94:
-        .4byte 0x44454144
-        .4byte 0x00000000
-    .global lbl_80518D9C
-    lbl_80518D9C:
-        .4byte 0x5355494B
-        .4byte 0x4F4D4900
-    .global lbl_80518DA4
-    lbl_80518DA4:
-        .4byte 0x484F4C45
-        .4byte 0x494E0000
-    .global lbl_80518DAC
-    lbl_80518DAC:
-        .4byte 0x4B4F4B45
-        .4byte 0x00000000
-    .global lbl_80518DB4
-    lbl_80518DB4:
-        .4byte 0x45534341
-        .4byte 0x50450000
-    .global lbl_80518DBC
-    lbl_80518DBC:
-        .4byte 0x43415252
-        .4byte 0x4F540000
-    .global lbl_80518DC4
-    lbl_80518DC4:
-        .float 0.3
-    .global lbl_80518DC8
-    lbl_80518DC8:
-        .4byte 0x47000000
-    .global lbl_80518DCC
-    lbl_80518DCC:
-        .4byte 0x41200000
-    .global lbl_80518DD0
-    lbl_80518DD0:
-        .4byte 0x40400000
-        .4byte 0x00000000
-    .global lbl_80518DD8
-    lbl_80518DD8:
-        .4byte 0x43300000
-        .4byte 0x80000000
-    .global lbl_80518DE0
-    lbl_80518DE0:
-        .4byte 0x00000000
-    .global lbl_80518DE4
-    lbl_80518DE4:
-        .float 1.0
-    .global lbl_80518DE8
-    lbl_80518DE8:
-        .float -1.0
-    .global lbl_80518DEC
-    lbl_80518DEC:
-        .4byte 0xC1200000
-    .global lbl_80518DF0
-    lbl_80518DF0:
-        .4byte 0x41000000
-    .global lbl_80518DF4
-    lbl_80518DF4:
-        .float 0.5
-    .global lbl_80518DF8
-    lbl_80518DF8:
-        .4byte 0x42200000
-    .global lbl_80518DFC
-    lbl_80518DFC:
-        .4byte 0xC2200000
-    .global lbl_80518E00
-    lbl_80518E00:
-        .4byte 0x42A00000
-    .global lbl_80518E04
-    lbl_80518E04:
-        .4byte 0x3E4CCCCD
-    .global lbl_80518E08
-    lbl_80518E08:
-        .4byte 0x3FC00000
-    .global lbl_80518E0C
-    lbl_80518E0C:
-        .4byte 0x3FA66666
-    .global lbl_80518E10
-    lbl_80518E10:
-        .4byte 0x3F19999A
-    .global lbl_80518E14
-    lbl_80518E14:
-        .4byte 0x3ECCCCCC
-    .global lbl_80518E18
-    lbl_80518E18:
-        .4byte 0xC2480000
-    .global lbl_80518E1C
-    lbl_80518E1C:
-        .4byte 0x42480000
-    .global lbl_80518E20
-    lbl_80518E20:
-        .4byte 0x43C80000
-    .global lbl_80518E24
-    lbl_80518E24:
-        .float 0.25
-    .global lbl_80518E28
-    lbl_80518E28:
-        .4byte 0x3F99999A
-    .global lbl_80518E2C
-    lbl_80518E2C:
-        .float 0.1
-    .global lbl_80518E30
-    lbl_80518E30:
-        .4byte 0x40000000
-    .global lbl_80518E34
-    lbl_80518E34:
-        .4byte 0x43A2F983
-    .global lbl_80518E38
-    lbl_80518E38:
-        .4byte 0xC3A2F983
-    .global lbl_80518E3C
-    lbl_80518E3C:
-        .4byte 0x40490FDB
-    .global lbl_80518E40
-    lbl_80518E40:
-        .4byte 0x3BB60B61
-    .global lbl_80518E44
-    lbl_80518E44:
-        .4byte 0x41F00000
-    .global lbl_80518E48
-    lbl_80518E48:
-        .4byte 0x41700000
-    .global lbl_80518E4C
-    lbl_80518E4C:
-        .4byte 0x3F7D70A4
-    .global lbl_80518E50
-    lbl_80518E50:
-        .4byte 0x42F00000
-    .global lbl_80518E54
-    lbl_80518E54:
-        .4byte 0x41A00000
-    .global lbl_80518E58
-    lbl_80518E58:
-        .4byte 0x42C80000
-    .global lbl_80518E5C
-    lbl_80518E5C:
-        .4byte 0x3C23D70A
-    .global lbl_80518E60
-    lbl_80518E60:
-        .4byte 0xBFC90FDB
-    .global lbl_80518E64
-    lbl_80518E64:
-        .4byte 0x46480000
-    .global lbl_80518E68
-    lbl_80518E68:
-        .4byte 0x44160000
-    .global lbl_80518E6C
-    lbl_80518E6C:
-        .4byte 0x43AF0000
-    .global lbl_80518E70
-    lbl_80518E70:
-        .4byte 0xC4610000
-    .global lbl_80518E74
-    lbl_80518E74:
-        .4byte 0x3F4CCCCD
-    .global lbl_80518E78
-    lbl_80518E78:
-        .float 0.15
-    .global lbl_80518E7C
-    lbl_80518E7C:
-        .4byte 0x3D99999A
-    .global lbl_80518E80
-    lbl_80518E80:
-        .4byte 0x3ED70A3D
-    .global lbl_80518E84
-    lbl_80518E84:
-        .4byte 0x3F666666
-    .global lbl_80518E88
-    lbl_80518E88:
-        .4byte 0x40800000
-    .global lbl_80518E8C
-    lbl_80518E8C:
-        .4byte 0x3F747AE1
-    .global lbl_80518E90
-    lbl_80518E90:
-        .4byte 0x43200000
-    .global lbl_80518E94
-    lbl_80518E94:
-        .4byte 0x42700000
-    .global lbl_80518E98
-    lbl_80518E98:
-        .4byte 0x43FA0000
-    .global lbl_80518E9C
-    lbl_80518E9C:
-        .4byte 0x40A00000
-    .global lbl_80518EA0
-    lbl_80518EA0:
-        .4byte 0xC0A00000
-    .global lbl_80518EA4
-    lbl_80518EA4:
-        .4byte 0x447A0000
-    .global lbl_80518EA8
-    lbl_80518EA8:
-        .4byte 0x43480000
-        .4byte 0x00000000
-*/
+#include "Game/PikiState.h"
+#include "Game/Piki.h"
+#include "Game/MapMgr.h"
+#include "efx/TPiku.h"
+#include "efx/TPk.h"
+#include "JSystem/JUT/JUTException.h"
+#include "Dolphin/rand.h"
+#include "System.h"
+#include "PikiAI.h"
+#include "nans.h"
 
 namespace Game {
+
+static const int someArray[3] = { 0, 0, 0 };
+static const char fileName[]  = "pikiState";
 
 /*
  * --INFO--
  * Address:	80189378
  * Size:	000004
  */
-void PikiState::dump(void) { }
+void PikiState::dump() { }
 
 /*
  * --INFO--
  * Address:	8018937C
  * Size:	000030
  */
-void PikiState::getInfo(char*)
-{
-	/*
-	stwu     r1, -0x10(r1)
-	mflr     r0
-	stw      r0, 0x14(r1)
-	lwz      r5, 0xc(r3)
-	mr       r3, r4
-	addi     r4, r2, lbl_80518D00@sda21
-	crclr    6
-	bl       sprintf
-	lwz      r0, 0x14(r1)
-	mtlr     r0
-	addi     r1, r1, 0x10
-	blr
-	*/
-}
+void PikiState::getInfo(char* string) { sprintf(string, "%s", m_name); }
 
 /*
  * --INFO--
  * Address:	801893AC
  * Size:	000B6C
  */
-void PikiFSM::init(Game::Piki*)
+void PikiFSM::init(Piki* piki)
 {
-	/*
-	stwu     r1, -0x10(r1)
-	mflr     r0
-	lis      r4, lbl_8047EBE8@ha
-	stw      r0, 0x14(r1)
-	stw      r31, 0xc(r1)
-	mr       r31, r3
-	stw      r30, 8(r1)
-	addi     r30, r4, lbl_8047EBE8@l
-	li       r4, 0x21
-	bl       "create__Q24Game26StateMachine<Q24Game4Piki>Fi"
-	li       r3, 0x10
-	bl       __nw__FUl
-	or.      r4, r3, r3
-	beq      lbl_8018941C
-	lis      r3, "__vt__Q24Game22FSMState<Q24Game4Piki>"@ha
-	lis      r5, __vt__Q24Game9PikiState@ha
-	addi     r0, r3, "__vt__Q24Game22FSMState<Q24Game4Piki>"@l
-	lis      r3, __vt__Q24Game13PikiWalkState@ha
-	stw      r0, 0(r4)
-	li       r7, 0
-	addi     r6, r5, __vt__Q24Game9PikiState@l
-	addi     r5, r2, lbl_80518D04@sda21
-	stw      r7, 4(r4)
-	addi     r0, r3, __vt__Q24Game13PikiWalkState@l
-	stw      r7, 8(r4)
-	stw      r6, 0(r4)
-	stw      r5, 0xc(r4)
-	stw      r0, 0(r4)
-
-lbl_8018941C:
-	mr       r3, r31
-	bl
-"registerState__Q24Game26StateMachine<Q24Game4Piki>FPQ24Game22FSMState<Q24Game4Piki>"
-	li       r3, 0x10
-	bl       __nw__FUl
-	or.      r4, r3, r3
-	beq      lbl_80189470
-	lis      r3, "__vt__Q24Game22FSMState<Q24Game4Piki>"@ha
-	lis      r5, __vt__Q24Game9PikiState@ha
-	addi     r0, r3, "__vt__Q24Game22FSMState<Q24Game4Piki>"@l
-	lis      r3, __vt__Q24Game17PikiDemoWaitState@ha
-	stw      r0, 0(r4)
-	li       r0, 1
-	li       r7, 0
-	addi     r6, r5, __vt__Q24Game9PikiState@l
-	stw      r0, 4(r4)
-	addi     r5, r30, 0x18
-	addi     r0, r3, __vt__Q24Game17PikiDemoWaitState@l
-	stw      r7, 8(r4)
-	stw      r6, 0(r4)
-	stw      r5, 0xc(r4)
-	stw      r0, 0(r4)
-
-lbl_80189470:
-	mr       r3, r31
-	bl
-"registerState__Q24Game26StateMachine<Q24Game4Piki>FPQ24Game22FSMState<Q24Game4Piki>"
-	li       r3, 0x24
-	bl       __nw__FUl
-	or.      r4, r3, r3
-	beq      lbl_801894F0
-	addi     r8, r4, 0x1c
-	lis      r3, __vt__Q28SysShape14MotionListener@ha
-	stw      r8, 0x10(r4)
-	addi     r0, r3, __vt__Q28SysShape14MotionListener@l
-	lis      r3, "__vt__Q24Game22FSMState<Q24Game4Piki>"@ha
-	lis      r5, __vt__Q24Game9PikiState@ha
-	stw      r0, 0x1c(r4)
-	addi     r6, r3, "__vt__Q24Game22FSMState<Q24Game4Piki>"@l
-	lis      r3, __vt__Q24Game15PikiLookAtState@ha
-	li       r0, 2
-	stw      r6, 0(r4)
-	addi     r3, r3, __vt__Q24Game15PikiLookAtState@l
-	li       r7, 0
-	addi     r6, r5, __vt__Q24Game9PikiState@l
-	stw      r0, 4(r4)
-	addi     r5, r2, lbl_80518D0C@sda21
-	addi     r0, r3, 0x78
-	stw      r7, 8(r4)
-	stw      r6, 0(r4)
-	stw      r5, 0xc(r4)
-	stw      r3, 0(r4)
-	lwz      r3, 0x10(r4)
-	stw      r0, 0(r3)
-	lwz      r3, 0x10(r4)
-	subf     r0, r3, r8
-	stw      r0, 4(r3)
-
-lbl_801894F0:
-	mr       r3, r31
-	bl
-"registerState__Q24Game26StateMachine<Q24Game4Piki>FPQ24Game22FSMState<Q24Game4Piki>"
-	li       r3, 0x10
-	bl       __nw__FUl
-	or.      r4, r3, r3
-	beq      lbl_80189544
-	lis      r3, "__vt__Q24Game22FSMState<Q24Game4Piki>"@ha
-	lis      r5, __vt__Q24Game9PikiState@ha
-	addi     r0, r3, "__vt__Q24Game22FSMState<Q24Game4Piki>"@l
-	lis      r3, __vt__Q24Game15PikiGoHangState@ha
-	stw      r0, 0(r4)
-	li       r0, 3
-	li       r7, 0
-	addi     r6, r5, __vt__Q24Game9PikiState@l
-	stw      r0, 4(r4)
-	addi     r5, r2, lbl_80518D14@sda21
-	addi     r0, r3, __vt__Q24Game15PikiGoHangState@l
-	stw      r7, 8(r4)
-	stw      r6, 0(r4)
-	stw      r5, 0xc(r4)
-	stw      r0, 0(r4)
-
-lbl_80189544:
-	mr       r3, r31
-	bl
-"registerState__Q24Game26StateMachine<Q24Game4Piki>FPQ24Game22FSMState<Q24Game4Piki>"
-	li       r3, 0x1c
-	bl       __nw__FUl
-	or.      r4, r3, r3
-	beq      lbl_801895C4
-	addi     r8, r4, 0x14
-	lis      r3, __vt__Q28SysShape14MotionListener@ha
-	stw      r8, 0x10(r4)
-	addi     r0, r3, __vt__Q28SysShape14MotionListener@l
-	lis      r3, "__vt__Q24Game22FSMState<Q24Game4Piki>"@ha
-	lis      r5, __vt__Q24Game9PikiState@ha
-	stw      r0, 0x14(r4)
-	addi     r6, r3, "__vt__Q24Game22FSMState<Q24Game4Piki>"@l
-	lis      r3, __vt__Q24Game15PikiHangedState@ha
-	li       r0, 4
-	stw      r6, 0(r4)
-	addi     r3, r3, __vt__Q24Game15PikiHangedState@l
-	li       r7, 0
-	addi     r6, r5, __vt__Q24Game9PikiState@l
-	stw      r0, 4(r4)
-	addi     r5, r2, lbl_80518D1C@sda21
-	addi     r0, r3, 0x78
-	stw      r7, 8(r4)
-	stw      r6, 0(r4)
-	stw      r5, 0xc(r4)
-	stw      r3, 0(r4)
-	lwz      r3, 0x10(r4)
-	stw      r0, 0(r3)
-	lwz      r3, 0x10(r4)
-	subf     r0, r3, r8
-	stw      r0, 4(r3)
-
-lbl_801895C4:
-	mr       r3, r31
-	bl
-"registerState__Q24Game26StateMachine<Q24Game4Piki>FPQ24Game22FSMState<Q24Game4Piki>"
-	li       r3, 0x20
-	bl       __nw__FUl
-	or.      r4, r3, r3
-	beq      lbl_80189644
-	addi     r8, r4, 0x18
-	lis      r3, __vt__Q28SysShape14MotionListener@ha
-	stw      r8, 0x10(r4)
-	addi     r0, r3, __vt__Q28SysShape14MotionListener@l
-	lis      r3, "__vt__Q24Game22FSMState<Q24Game4Piki>"@ha
-	lis      r5, __vt__Q24Game9PikiState@ha
-	stw      r0, 0x18(r4)
-	addi     r6, r3, "__vt__Q24Game22FSMState<Q24Game4Piki>"@l
-	lis      r3, __vt__Q24Game20PikiWaterHangedState@ha
-	li       r0, 5
-	stw      r6, 0(r4)
-	addi     r3, r3, __vt__Q24Game20PikiWaterHangedState@l
-	li       r7, 0
-	addi     r6, r5, __vt__Q24Game9PikiState@l
-	stw      r0, 4(r4)
-	addi     r5, r30, 0x24
-	addi     r0, r3, 0x78
-	stw      r7, 8(r4)
-	stw      r6, 0(r4)
-	stw      r5, 0xc(r4)
-	stw      r3, 0(r4)
-	lwz      r3, 0x10(r4)
-	stw      r0, 0(r3)
-	lwz      r3, 0x10(r4)
-	subf     r0, r3, r8
-	stw      r0, 4(r3)
-
-lbl_80189644:
-	mr       r3, r31
-	bl
-"registerState__Q24Game26StateMachine<Q24Game4Piki>FPQ24Game22FSMState<Q24Game4Piki>"
-	li       r3, 0x34
-	bl       __nw__FUl
-	or.      r4, r3, r3
-	beq      lbl_80189698
-	lis      r3, "__vt__Q24Game22FSMState<Q24Game4Piki>"@ha
-	lis      r5, __vt__Q24Game9PikiState@ha
-	addi     r0, r3, "__vt__Q24Game22FSMState<Q24Game4Piki>"@l
-	lis      r3, __vt__Q24Game15PikiFlyingState@ha
-	stw      r0, 0(r4)
-	li       r0, 6
-	li       r7, 0
-	addi     r6, r5, __vt__Q24Game9PikiState@l
-	stw      r0, 4(r4)
-	addi     r5, r2, lbl_80518D24@sda21
-	addi     r0, r3, __vt__Q24Game15PikiFlyingState@l
-	stw      r7, 8(r4)
-	stw      r6, 0(r4)
-	stw      r5, 0xc(r4)
-	stw      r0, 0(r4)
-
-lbl_80189698:
-	mr       r3, r31
-	bl
-"registerState__Q24Game26StateMachine<Q24Game4Piki>FPQ24Game22FSMState<Q24Game4Piki>"
-	li       r3, 0x1c
-	bl       __nw__FUl
-	or.      r4, r3, r3
-	beq      lbl_801896EC
-	lis      r3, "__vt__Q24Game22FSMState<Q24Game4Piki>"@ha
-	lis      r5, __vt__Q24Game9PikiState@ha
-	addi     r0, r3, "__vt__Q24Game22FSMState<Q24Game4Piki>"@l
-	lis      r3, __vt__Q24Game19PikiKokeDamageState@ha
-	stw      r0, 0(r4)
-	li       r0, 7
-	li       r7, 0
-	addi     r6, r5, __vt__Q24Game9PikiState@l
-	stw      r0, 4(r4)
-	addi     r5, r30, 0x30
-	addi     r0, r3, __vt__Q24Game19PikiKokeDamageState@l
-	stw      r7, 8(r4)
-	stw      r6, 0(r4)
-	stw      r5, 0xc(r4)
-	stw      r0, 0(r4)
-
-lbl_801896EC:
-	mr       r3, r31
-	bl
-"registerState__Q24Game26StateMachine<Q24Game4Piki>FPQ24Game22FSMState<Q24Game4Piki>"
-	li       r3, 0x2c
-	bl       __nw__FUl
-	or.      r4, r3, r3
-	beq      lbl_80189740
-	lis      r3, "__vt__Q24Game22FSMState<Q24Game4Piki>"@ha
-	lis      r5, __vt__Q24Game9PikiState@ha
-	addi     r0, r3, "__vt__Q24Game22FSMState<Q24Game4Piki>"@l
-	lis      r3, __vt__Q24Game13PikiBlowState@ha
-	stw      r0, 0(r4)
-	li       r0, 8
-	li       r7, 0
-	addi     r6, r5, __vt__Q24Game9PikiState@l
-	stw      r0, 4(r4)
-	addi     r5, r2, lbl_80518D2C@sda21
-	addi     r0, r3, __vt__Q24Game13PikiBlowState@l
-	stw      r7, 8(r4)
-	stw      r6, 0(r4)
-	stw      r5, 0xc(r4)
-	stw      r0, 0(r4)
-
-lbl_80189740:
-	mr       r3, r31
-	bl
-"registerState__Q24Game26StateMachine<Q24Game4Piki>FPQ24Game22FSMState<Q24Game4Piki>"
-	li       r3, 0x38
-	bl       __nw__FUl
-	or.      r4, r3, r3
-	beq      lbl_801897C0
-	addi     r8, r4, 0x30
-	lis      r3, __vt__Q28SysShape14MotionListener@ha
-	stw      r8, 0x10(r4)
-	addi     r0, r3, __vt__Q28SysShape14MotionListener@l
-	lis      r3, "__vt__Q24Game22FSMState<Q24Game4Piki>"@ha
-	lis      r5, __vt__Q24Game9PikiState@ha
-	stw      r0, 0x30(r4)
-	addi     r6, r3, "__vt__Q24Game22FSMState<Q24Game4Piki>"@l
-	lis      r3, __vt__Q24Game14PikiFlickState@ha
-	li       r0, 9
-	stw      r6, 0(r4)
-	addi     r3, r3, __vt__Q24Game14PikiFlickState@l
-	li       r7, 0
-	addi     r6, r5, __vt__Q24Game9PikiState@l
-	stw      r0, 4(r4)
-	addi     r5, r2, lbl_80518D34@sda21
-	addi     r0, r3, 0x78
-	stw      r7, 8(r4)
-	stw      r6, 0(r4)
-	stw      r5, 0xc(r4)
-	stw      r3, 0(r4)
-	lwz      r3, 0x10(r4)
-	stw      r0, 0(r3)
-	lwz      r3, 0x10(r4)
-	subf     r0, r3, r8
-	stw      r0, 4(r3)
-
-lbl_801897C0:
-	mr       r3, r31
-	bl
-"registerState__Q24Game26StateMachine<Q24Game4Piki>FPQ24Game22FSMState<Q24Game4Piki>"
-	li       r3, 0x34
-	bl       __nw__FUl
-	or.      r4, r3, r3
-	beq      lbl_80189814
-	lis      r3, "__vt__Q24Game22FSMState<Q24Game4Piki>"@ha
-	lis      r5, __vt__Q24Game9PikiState@ha
-	addi     r0, r3, "__vt__Q24Game22FSMState<Q24Game4Piki>"@l
-	lis      r3, __vt__Q24Game14PikiDrownState@ha
-	stw      r0, 0(r4)
-	li       r0, 0xa
-	li       r7, 0
-	addi     r6, r5, __vt__Q24Game9PikiState@l
-	stw      r0, 4(r4)
-	addi     r5, r2, lbl_80518D3C@sda21
-	addi     r0, r3, __vt__Q24Game14PikiDrownState@l
-	stw      r7, 8(r4)
-	stw      r6, 0(r4)
-	stw      r5, 0xc(r4)
-	stw      r0, 0(r4)
-
-lbl_80189814:
-	mr       r3, r31
-	bl
-"registerState__Q24Game26StateMachine<Q24Game4Piki>FPQ24Game22FSMState<Q24Game4Piki>"
-	li       r3, 0x10
-	bl       __nw__FUl
-	or.      r4, r3, r3
-	beq      lbl_80189868
-	lis      r3, "__vt__Q24Game22FSMState<Q24Game4Piki>"@ha
-	lis      r5, __vt__Q24Game9PikiState@ha
-	addi     r0, r3, "__vt__Q24Game22FSMState<Q24Game4Piki>"@l
-	lis      r3, __vt__Q24Game18PikiSwallowedState@ha
-	stw      r0, 0(r4)
-	li       r0, 0xb
-	li       r7, 0
-	addi     r6, r5, __vt__Q24Game9PikiState@l
-	stw      r0, 4(r4)
-	addi     r5, r30, 0x3c
-	addi     r0, r3, __vt__Q24Game18PikiSwallowedState@l
-	stw      r7, 8(r4)
-	stw      r6, 0(r4)
-	stw      r5, 0xc(r4)
-	stw      r0, 0(r4)
-
-lbl_80189868:
-	mr       r3, r31
-	bl
-"registerState__Q24Game26StateMachine<Q24Game4Piki>FPQ24Game22FSMState<Q24Game4Piki>"
-	li       r3, 0x18
-	bl       __nw__FUl
-	or.      r4, r3, r3
-	beq      lbl_801898BC
-	lis      r3, "__vt__Q24Game22FSMState<Q24Game4Piki>"@ha
-	lis      r5, __vt__Q24Game9PikiState@ha
-	addi     r0, r3, "__vt__Q24Game22FSMState<Q24Game4Piki>"@l
-	lis      r3, __vt__Q24Game15PikiNukareState@ha
-	stw      r0, 0(r4)
-	li       r0, 0xc
-	li       r7, 0
-	addi     r6, r5, __vt__Q24Game9PikiState@l
-	stw      r0, 4(r4)
-	addi     r5, r2, lbl_80518D44@sda21
-	addi     r0, r3, __vt__Q24Game15PikiNukareState@l
-	stw      r7, 8(r4)
-	stw      r6, 0(r4)
-	stw      r5, 0xc(r4)
-	stw      r0, 0(r4)
-
-lbl_801898BC:
-	mr       r3, r31
-	bl
-"registerState__Q24Game26StateMachine<Q24Game4Piki>FPQ24Game22FSMState<Q24Game4Piki>"
-	li       r3, 0x1c
-	bl       __nw__FUl
-	or.      r4, r3, r3
-	beq      lbl_80189910
-	lis      r3, "__vt__Q24Game22FSMState<Q24Game4Piki>"@ha
-	lis      r5, __vt__Q24Game9PikiState@ha
-	addi     r0, r3, "__vt__Q24Game22FSMState<Q24Game4Piki>"@l
-	lis      r3, __vt__Q24Game15PikiAbsorbState@ha
-	stw      r0, 0(r4)
-	li       r0, 0xd
-	li       r7, 0
-	addi     r6, r5, __vt__Q24Game9PikiState@l
-	stw      r0, 4(r4)
-	addi     r5, r2, lbl_80518D4C@sda21
-	addi     r0, r3, __vt__Q24Game15PikiAbsorbState@l
-	stw      r7, 8(r4)
-	stw      r6, 0(r4)
-	stw      r5, 0xc(r4)
-	stw      r0, 0(r4)
-
-lbl_80189910:
-	mr       r3, r31
-	bl
-"registerState__Q24Game26StateMachine<Q24Game4Piki>FPQ24Game22FSMState<Q24Game4Piki>"
-	li       r3, 0x14
-	bl       __nw__FUl
-	or.      r4, r3, r3
-	beq      lbl_80189964
-	lis      r3, "__vt__Q24Game22FSMState<Q24Game4Piki>"@ha
-	lis      r5, __vt__Q24Game9PikiState@ha
-	addi     r0, r3, "__vt__Q24Game22FSMState<Q24Game4Piki>"@l
-	lis      r3, __vt__Q24Game15PikiGrowupState@ha
-	stw      r0, 0(r4)
-	li       r0, 0xe
-	li       r7, 0
-	addi     r6, r5, __vt__Q24Game9PikiState@l
-	stw      r0, 4(r4)
-	addi     r5, r2, lbl_80518D54@sda21
-	addi     r0, r3, __vt__Q24Game15PikiGrowupState@l
-	stw      r7, 8(r4)
-	stw      r6, 0(r4)
-	stw      r5, 0xc(r4)
-	stw      r0, 0(r4)
-
-lbl_80189964:
-	mr       r3, r31
-	bl
-"registerState__Q24Game26StateMachine<Q24Game4Piki>FPQ24Game22FSMState<Q24Game4Piki>"
-	li       r3, 0x18
-	bl       __nw__FUl
-	or.      r4, r3, r3
-	beq      lbl_801899B8
-	lis      r3, "__vt__Q24Game22FSMState<Q24Game4Piki>"@ha
-	lis      r5, __vt__Q24Game9PikiState@ha
-	addi     r0, r3, "__vt__Q24Game22FSMState<Q24Game4Piki>"@l
-	lis      r3, __vt__Q24Game13PikiTaneState@ha
-	stw      r0, 0(r4)
-	li       r0, 0xf
-	li       r7, 0
-	addi     r6, r5, __vt__Q24Game9PikiState@l
-	stw      r0, 4(r4)
-	addi     r5, r2, lbl_80518D5C@sda21
-	addi     r0, r3, __vt__Q24Game13PikiTaneState@l
-	stw      r7, 8(r4)
-	stw      r6, 0(r4)
-	stw      r5, 0xc(r4)
-	stw      r0, 0(r4)
-
-lbl_801899B8:
-	mr       r3, r31
-	bl
-"registerState__Q24Game26StateMachine<Q24Game4Piki>FPQ24Game22FSMState<Q24Game4Piki>"
-	li       r3, 0x20
-	bl       __nw__FUl
-	or.      r4, r3, r3
-	beq      lbl_80189A0C
-	lis      r3, "__vt__Q24Game22FSMState<Q24Game4Piki>"@ha
-	lis      r5, __vt__Q24Game9PikiState@ha
-	addi     r0, r3, "__vt__Q24Game22FSMState<Q24Game4Piki>"@l
-	lis      r3, __vt__Q24Game13PikiDopeState@ha
-	stw      r0, 0(r4)
-	li       r0, 0x10
-	li       r7, 0
-	addi     r6, r5, __vt__Q24Game9PikiState@l
-	stw      r0, 4(r4)
-	addi     r5, r2, lbl_80518D64@sda21
-	addi     r0, r3, __vt__Q24Game13PikiDopeState@l
-	stw      r7, 8(r4)
-	stw      r6, 0(r4)
-	stw      r5, 0xc(r4)
-	stw      r0, 0(r4)
-
-lbl_80189A0C:
-	mr       r3, r31
-	bl
-"registerState__Q24Game26StateMachine<Q24Game4Piki>FPQ24Game22FSMState<Q24Game4Piki>"
-	li       r3, 0x18
-	bl       __nw__FUl
-	or.      r4, r3, r3
-	beq      lbl_80189A60
-	lis      r3, "__vt__Q24Game22FSMState<Q24Game4Piki>"@ha
-	lis      r5, __vt__Q24Game9PikiState@ha
-	addi     r0, r3, "__vt__Q24Game22FSMState<Q24Game4Piki>"@l
-	lis      r3, __vt__Q24Game17PikiAutoNukiState@ha
-	stw      r0, 0(r4)
-	li       r0, 0x11
-	li       r7, 0
-	addi     r6, r5, __vt__Q24Game9PikiState@l
-	stw      r0, 4(r4)
-	addi     r5, r30, 0x48
-	addi     r0, r3, __vt__Q24Game17PikiAutoNukiState@l
-	stw      r7, 8(r4)
-	stw      r6, 0(r4)
-	stw      r5, 0xc(r4)
-	stw      r0, 0(r4)
-
-lbl_80189A60:
-	mr       r3, r31
-	bl
-"registerState__Q24Game26StateMachine<Q24Game4Piki>FPQ24Game22FSMState<Q24Game4Piki>"
-	li       r3, 0x18
-	bl       __nw__FUl
-	or.      r4, r3, r3
-	beq      lbl_80189AB4
-	lis      r3, "__vt__Q24Game22FSMState<Q24Game4Piki>"@ha
-	lis      r5, __vt__Q24Game9PikiState@ha
-	addi     r0, r3, "__vt__Q24Game22FSMState<Q24Game4Piki>"@l
-	lis      r3, __vt__Q24Game16PikiHipDropState@ha
-	stw      r0, 0(r4)
-	li       r0, 0x12
-	li       r7, 0
-	addi     r6, r5, __vt__Q24Game9PikiState@l
-	stw      r0, 4(r4)
-	addi     r5, r2, lbl_80518D6C@sda21
-	addi     r0, r3, __vt__Q24Game16PikiHipDropState@l
-	stw      r7, 8(r4)
-	stw      r6, 0(r4)
-	stw      r5, 0xc(r4)
-	stw      r0, 0(r4)
-
-lbl_80189AB4:
-	mr       r3, r31
-	bl
-"registerState__Q24Game26StateMachine<Q24Game4Piki>FPQ24Game22FSMState<Q24Game4Piki>"
-	li       r3, 0x28
-	bl       __nw__FUl
-	or.      r4, r3, r3
-	beq      lbl_80189B08
-	lis      r3, "__vt__Q24Game22FSMState<Q24Game4Piki>"@ha
-	lis      r5, __vt__Q24Game9PikiState@ha
-	addi     r0, r3, "__vt__Q24Game22FSMState<Q24Game4Piki>"@l
-	lis      r3, __vt__Q24Game16PikiEmotionState@ha
-	stw      r0, 0(r4)
-	li       r0, 0x13
-	li       r7, 0
-	addi     r6, r5, __vt__Q24Game9PikiState@l
-	stw      r0, 4(r4)
-	addi     r5, r2, lbl_80518D74@sda21
-	addi     r0, r3, __vt__Q24Game16PikiEmotionState@l
-	stw      r7, 8(r4)
-	stw      r6, 0(r4)
-	stw      r5, 0xc(r4)
-	stw      r0, 0(r4)
-
-lbl_80189B08:
-	mr       r3, r31
-	bl
-"registerState__Q24Game26StateMachine<Q24Game4Piki>FPQ24Game22FSMState<Q24Game4Piki>"
-	li       r3, 0x14
-	bl       __nw__FUl
-	or.      r4, r3, r3
-	beq      lbl_80189B5C
-	lis      r3, "__vt__Q24Game22FSMState<Q24Game4Piki>"@ha
-	lis      r5, __vt__Q24Game9PikiState@ha
-	addi     r0, r3, "__vt__Q24Game22FSMState<Q24Game4Piki>"@l
-	lis      r3, __vt__Q24Game16PikiPressedState@ha
-	stw      r0, 0(r4)
-	li       r0, 0x14
-	li       r7, 0
-	addi     r6, r5, __vt__Q24Game9PikiState@l
-	stw      r0, 4(r4)
-	addi     r5, r2, lbl_80518D7C@sda21
-	addi     r0, r3, __vt__Q24Game16PikiPressedState@l
-	stw      r7, 8(r4)
-	stw      r6, 0(r4)
-	stw      r5, 0xc(r4)
-	stw      r0, 0(r4)
-
-lbl_80189B5C:
-	mr       r3, r31
-	bl
-"registerState__Q24Game26StateMachine<Q24Game4Piki>FPQ24Game22FSMState<Q24Game4Piki>"
-	li       r3, 0x2c
-	bl       __nw__FUl
-	or.      r4, r3, r3
-	beq      lbl_80189BB0
-	lis      r3, "__vt__Q24Game22FSMState<Q24Game4Piki>"@ha
-	lis      r5, __vt__Q24Game9PikiState@ha
-	addi     r0, r3, "__vt__Q24Game22FSMState<Q24Game4Piki>"@l
-	lis      r3, __vt__Q24Game14PikiPanicState@ha
-	stw      r0, 0(r4)
-	li       r0, 0x15
-	li       r7, 0
-	addi     r6, r5, __vt__Q24Game9PikiState@l
-	stw      r0, 4(r4)
-	addi     r5, r2, lbl_80518D84@sda21
-	addi     r0, r3, __vt__Q24Game14PikiPanicState@l
-	stw      r7, 8(r4)
-	stw      r6, 0(r4)
-	stw      r5, 0xc(r4)
-	stw      r0, 0(r4)
-
-lbl_80189BB0:
-	mr       r3, r31
-	bl
-"registerState__Q24Game26StateMachine<Q24Game4Piki>FPQ24Game22FSMState<Q24Game4Piki>"
-	li       r3, 0x14
-	bl       __nw__FUl
-	or.      r4, r3, r3
-	beq      lbl_80189C04
-	lis      r3, "__vt__Q24Game22FSMState<Q24Game4Piki>"@ha
-	lis      r5, __vt__Q24Game9PikiState@ha
-	addi     r0, r3, "__vt__Q24Game22FSMState<Q24Game4Piki>"@l
-	lis      r3, __vt__Q24Game19PikiDenkiDyingState@ha
-	stw      r0, 0(r4)
-	li       r0, 0x16
-	li       r7, 0
-	addi     r6, r5, __vt__Q24Game9PikiState@l
-	stw      r0, 4(r4)
-	addi     r5, r30, 0x54
-	addi     r0, r3, __vt__Q24Game19PikiDenkiDyingState@l
-	stw      r7, 8(r4)
-	stw      r6, 0(r4)
-	stw      r5, 0xc(r4)
-	stw      r0, 0(r4)
-
-lbl_80189C04:
-	mr       r3, r31
-	bl
-"registerState__Q24Game26StateMachine<Q24Game4Piki>FPQ24Game22FSMState<Q24Game4Piki>"
-	li       r3, 0x14
-	bl       __nw__FUl
-	or.      r4, r3, r3
-	beq      lbl_80189C58
-	lis      r3, "__vt__Q24Game22FSMState<Q24Game4Piki>"@ha
-	lis      r5, __vt__Q24Game9PikiState@ha
-	addi     r0, r3, "__vt__Q24Game22FSMState<Q24Game4Piki>"@l
-	lis      r3, __vt__Q24Game17PikiFallMeckState@ha
-	stw      r0, 0(r4)
-	li       r0, 0x17
-	li       r7, 0
-	addi     r6, r5, __vt__Q24Game9PikiState@l
-	stw      r0, 4(r4)
-	addi     r5, r30, 0x60
-	addi     r0, r3, __vt__Q24Game17PikiFallMeckState@l
-	stw      r7, 8(r4)
-	stw      r6, 0(r4)
-	stw      r5, 0xc(r4)
-	stw      r0, 0(r4)
-
-lbl_80189C58:
-	mr       r3, r31
-	bl
-"registerState__Q24Game26StateMachine<Q24Game4Piki>FPQ24Game22FSMState<Q24Game4Piki>"
-	li       r3, 0x18
-	bl       __nw__FUl
-	or.      r4, r3, r3
-	beq      lbl_80189CAC
-	lis      r3, "__vt__Q24Game22FSMState<Q24Game4Piki>"@ha
-	lis      r5, __vt__Q24Game9PikiState@ha
-	addi     r0, r3, "__vt__Q24Game22FSMState<Q24Game4Piki>"@l
-	lis      r3, __vt__Q24Game14PikiDyingState@ha
-	stw      r0, 0(r4)
-	li       r0, 0x18
-	li       r7, 0
-	addi     r6, r5, __vt__Q24Game9PikiState@l
-	stw      r0, 4(r4)
-	addi     r5, r2, lbl_80518D8C@sda21
-	addi     r0, r3, __vt__Q24Game14PikiDyingState@l
-	stw      r7, 8(r4)
-	stw      r6, 0(r4)
-	stw      r5, 0xc(r4)
-	stw      r0, 0(r4)
-
-lbl_80189CAC:
-	mr       r3, r31
-	bl
-"registerState__Q24Game26StateMachine<Q24Game4Piki>FPQ24Game22FSMState<Q24Game4Piki>"
-	li       r3, 0x10
-	bl       __nw__FUl
-	or.      r4, r3, r3
-	beq      lbl_80189D00
-	lis      r3, "__vt__Q24Game22FSMState<Q24Game4Piki>"@ha
-	lis      r5, __vt__Q24Game9PikiState@ha
-	addi     r0, r3, "__vt__Q24Game22FSMState<Q24Game4Piki>"@l
-	lis      r3, __vt__Q24Game13PikiDeadState@ha
-	stw      r0, 0(r4)
-	li       r0, 0x19
-	li       r7, 0
-	addi     r6, r5, __vt__Q24Game9PikiState@l
-	stw      r0, 4(r4)
-	addi     r5, r2, lbl_80518D94@sda21
-	addi     r0, r3, __vt__Q24Game13PikiDeadState@l
-	stw      r7, 8(r4)
-	stw      r6, 0(r4)
-	stw      r5, 0xc(r4)
-	stw      r0, 0(r4)
-
-lbl_80189D00:
-	mr       r3, r31
-	bl
-"registerState__Q24Game26StateMachine<Q24Game4Piki>FPQ24Game22FSMState<Q24Game4Piki>"
-	li       r3, 0x24
-	bl       __nw__FUl
-	or.      r4, r3, r3
-	beq      lbl_80189D54
-	lis      r3, "__vt__Q24Game22FSMState<Q24Game4Piki>"@ha
-	lis      r5, __vt__Q24Game9PikiState@ha
-	addi     r0, r3, "__vt__Q24Game22FSMState<Q24Game4Piki>"@l
-	lis      r3, __vt__Q24Game16PikiSuikomiState@ha
-	stw      r0, 0(r4)
-	li       r0, 0x1a
-	li       r7, 0
-	addi     r6, r5, __vt__Q24Game9PikiState@l
-	stw      r0, 4(r4)
-	addi     r5, r2, lbl_80518D9C@sda21
-	addi     r0, r3, __vt__Q24Game16PikiSuikomiState@l
-	stw      r7, 8(r4)
-	stw      r6, 0(r4)
-	stw      r5, 0xc(r4)
-	stw      r0, 0(r4)
-
-lbl_80189D54:
-	mr       r3, r31
-	bl
-"registerState__Q24Game26StateMachine<Q24Game4Piki>FPQ24Game22FSMState<Q24Game4Piki>"
-	li       r3, 0x4c
-	bl       __nw__FUl
-	or.      r4, r3, r3
-	beq      lbl_80189DA8
-	lis      r3, "__vt__Q24Game22FSMState<Q24Game4Piki>"@ha
-	lis      r5, __vt__Q24Game9PikiState@ha
-	addi     r0, r3, "__vt__Q24Game22FSMState<Q24Game4Piki>"@l
-	lis      r3, __vt__Q24Game15PikiHoleinState@ha
-	stw      r0, 0(r4)
-	li       r0, 0x1b
-	li       r7, 0
-	addi     r6, r5, __vt__Q24Game9PikiState@l
-	stw      r0, 4(r4)
-	addi     r5, r2, lbl_80518DA4@sda21
-	addi     r0, r3, __vt__Q24Game15PikiHoleinState@l
-	stw      r7, 8(r4)
-	stw      r6, 0(r4)
-	stw      r5, 0xc(r4)
-	stw      r0, 0(r4)
-
-lbl_80189DA8:
-	mr       r3, r31
-	bl
-"registerState__Q24Game26StateMachine<Q24Game4Piki>FPQ24Game22FSMState<Q24Game4Piki>"
-	li       r3, 0x34
-	bl       __nw__FUl
-	or.      r4, r3, r3
-	beq      lbl_80189DFC
-	lis      r3, "__vt__Q24Game22FSMState<Q24Game4Piki>"@ha
-	lis      r5, __vt__Q24Game9PikiState@ha
-	addi     r0, r3, "__vt__Q24Game22FSMState<Q24Game4Piki>"@l
-	lis      r3, __vt__Q24Game19PikiFountainonState@ha
-	stw      r0, 0(r4)
-	li       r0, 0x1c
-	li       r7, 0
-	addi     r6, r5, __vt__Q24Game9PikiState@l
-	stw      r0, 4(r4)
-	addi     r5, r30, 0x6c
-	addi     r0, r3, __vt__Q24Game19PikiFountainonState@l
-	stw      r7, 8(r4)
-	stw      r6, 0(r4)
-	stw      r5, 0xc(r4)
-	stw      r0, 0(r4)
-
-lbl_80189DFC:
-	mr       r3, r31
-	bl
-"registerState__Q24Game26StateMachine<Q24Game4Piki>FPQ24Game22FSMState<Q24Game4Piki>"
-	li       r3, 0x14
-	bl       __nw__FUl
-	or.      r4, r3, r3
-	beq      lbl_80189E50
-	lis      r3, "__vt__Q24Game22FSMState<Q24Game4Piki>"@ha
-	lis      r5, __vt__Q24Game9PikiState@ha
-	addi     r0, r3, "__vt__Q24Game22FSMState<Q24Game4Piki>"@l
-	lis      r3, __vt__Q24Game13PikiKokeState@ha
-	stw      r0, 0(r4)
-	li       r0, 0x1e
-	li       r7, 0
-	addi     r6, r5, __vt__Q24Game9PikiState@l
-	stw      r0, 4(r4)
-	addi     r5, r2, lbl_80518DAC@sda21
-	addi     r0, r3, __vt__Q24Game13PikiKokeState@l
-	stw      r7, 8(r4)
-	stw      r6, 0(r4)
-	stw      r5, 0xc(r4)
-	stw      r0, 0(r4)
-
-lbl_80189E50:
-	mr       r3, r31
-	bl
-"registerState__Q24Game26StateMachine<Q24Game4Piki>FPQ24Game22FSMState<Q24Game4Piki>"
-	li       r3, 0x14
-	bl       __nw__FUl
-	or.      r4, r3, r3
-	beq      lbl_80189EA4
-	lis      r3, "__vt__Q24Game22FSMState<Q24Game4Piki>"@ha
-	lis      r5, __vt__Q24Game9PikiState@ha
-	addi     r0, r3, "__vt__Q24Game22FSMState<Q24Game4Piki>"@l
-	lis      r3, __vt__Q24Game15PikiEscapeState@ha
-	stw      r0, 0(r4)
-	li       r0, 0x1f
-	li       r7, 0
-	addi     r6, r5, __vt__Q24Game9PikiState@l
-	stw      r0, 4(r4)
-	addi     r5, r2, lbl_80518DB4@sda21
-	addi     r0, r3, __vt__Q24Game15PikiEscapeState@l
-	stw      r7, 8(r4)
-	stw      r6, 0(r4)
-	stw      r5, 0xc(r4)
-	stw      r0, 0(r4)
-
-lbl_80189EA4:
-	mr       r3, r31
-	bl
-"registerState__Q24Game26StateMachine<Q24Game4Piki>FPQ24Game22FSMState<Q24Game4Piki>"
-	li       r3, 0x24
-	bl       __nw__FUl
-	or.      r4, r3, r3
-	beq      lbl_80189EF8
-	lis      r3, "__vt__Q24Game22FSMState<Q24Game4Piki>"@ha
-	lis      r5, __vt__Q24Game9PikiState@ha
-	addi     r0, r3, "__vt__Q24Game22FSMState<Q24Game4Piki>"@l
-	lis      r3, __vt__Q24Game15PikiCarrotState@ha
-	stw      r0, 0(r4)
-	li       r0, 0x20
-	li       r7, 0
-	addi     r6, r5, __vt__Q24Game9PikiState@l
-	stw      r0, 4(r4)
-	addi     r5, r2, lbl_80518DBC@sda21
-	addi     r0, r3, __vt__Q24Game15PikiCarrotState@l
-	stw      r7, 8(r4)
-	stw      r6, 0(r4)
-	stw      r5, 0xc(r4)
-	stw      r0, 0(r4)
-
-lbl_80189EF8:
-	mr       r3, r31
-	bl
-"registerState__Q24Game26StateMachine<Q24Game4Piki>FPQ24Game22FSMState<Q24Game4Piki>"
-	lwz      r0, 0x14(r1)
-	lwz      r31, 0xc(r1)
-	lwz      r30, 8(r1)
-	mtlr     r0
-	addi     r1, r1, 0x10
-	blr
-	*/
+	create(PIKISTATE_Count);
+	registerState(new PikiWalkState);
+	registerState(new PikiDemoWaitState);
+	registerState(new PikiLookAtState);
+	registerState(new PikiGoHangState);
+	registerState(new PikiHangedState);
+	registerState(new PikiWaterHangedState);
+	registerState(new PikiFlyingState);
+	registerState(new PikiKokeDamageState);
+	registerState(new PikiBlowState);
+	registerState(new PikiFlickState);
+	registerState(new PikiDrownState);
+	registerState(new PikiSwallowedState);
+	registerState(new PikiNukareState);
+	registerState(new PikiAbsorbState);
+	registerState(new PikiGrowupState);
+	registerState(new PikiTaneState);
+	registerState(new PikiDopeState);
+	registerState(new PikiAutoNukiState);
+	registerState(new PikiHipDropState);
+	registerState(new PikiEmotionState);
+	registerState(new PikiPressedState);
+	registerState(new PikiPanicState);
+	registerState(new PikiDenkiDyingState);
+	registerState(new PikiFallMeckState);
+	registerState(new PikiDyingState);
+	registerState(new PikiDeadState);
+	registerState(new PikiSuikomiState);
+	registerState(new PikiHoleinState);
+	registerState(new PikiFountainonState);
+	registerState(new PikiKokeState);
+	registerState(new PikiEscapeState);
+	registerState(new PikiCarrotState);
 }
 
 /*
@@ -2505,87 +75,28 @@ lbl_80189EF8:
  * Address:	80189F18
  * Size:	000118
  */
-void PikiFSM::transit(Game::Piki*, int, Game::StateArg*)
+void PikiFSM::transit(Piki* piki, int stateID, StateArg* stateArg)
 {
-	/*
-	stwu     r1, -0x20(r1)
-	mflr     r0
-	lis      r7, lbl_8047EBE8@ha
-	stw      r0, 0x24(r1)
-	stmw     r26, 8(r1)
-	mr       r27, r4
-	mr       r26, r3
-	mr       r28, r5
-	mr       r29, r6
-	addi     r31, r7, lbl_8047EBE8@l
-	lwz      r30, 0x290(r4)
-	cmplwi   r30, 0
-	beq      lbl_80189F70
-	lwz      r0, 4(r30)
-	cmpwi    r0, 0x20
-	bne      lbl_80189F70
-	mr       r3, r30
-	lwz      r12, 0(r30)
-	lwz      r12, 0x10(r12)
-	mtctr    r12
-	bctrl
-	b        lbl_8018A01C
+	PikiState* currentState = piki->m_currentState;
+	if (currentState != nullptr && currentState->m_id == PIKISTATE_Carrot) {
+		currentState->cleanup(piki);
+		return;
+	}
 
-lbl_80189F70:
-	cmplwi   r30, 0
-	beq      lbl_8018A004
-	mr       r3, r30
-	mr       r4, r28
-	lwz      r12, 0(r30)
-	lwz      r12, 0x68(r12)
-	mtctr    r12
-	bctrl
-	clrlwi.  r0, r3, 0x18
-	beq      lbl_8018A01C
-	mr       r3, r30
-	mr       r4, r28
-	lwz      r12, 0(r30)
-	lwz      r12, 0x64(r12)
-	mtctr    r12
-	bctrl
-	clrlwi.  r0, r3, 0x18
-	bne      lbl_8018A004
-	lwz      r4, 0x14(r26)
-	slwi     r0, r28, 2
-	lwz      r9, 4(r26)
-	addi     r3, r31, 0x78
-	lwzx     r7, r4, r0
-	addi     r5, r31, 0x88
-	lwz      r6, 4(r30)
-	li       r4, 0x2bd
-	slwi     r0, r7, 2
-	lwz      r8, 0xc(r30)
-	lwzx     r9, r9, r0
-	lwz      r9, 0xc(r9)
-	crclr    6
-	bl       panic_f__12JUTExceptionFPCciPCce
-	addi     r3, r31, 0x78
-	addi     r5, r31, 0xa8
-	li       r4, 0x2be
-	crclr    6
-	bl       panic_f__12JUTExceptionFPCciPCce
+	if (currentState != nullptr) {
+		if (!currentState->soft_transittable(stateID)) {
+			return;
+		}
 
-lbl_8018A004:
-	stw      r28, 0x1c(r26)
-	mr       r3, r26
-	mr       r4, r27
-	mr       r5, r28
-	mr       r6, r29
-	bl
-"transit__Q24Game26StateMachine<Q24Game4Piki>FPQ24Game4PikiiPQ24Game8StateArg"
+		if (!currentState->transittable(stateID)) {
+			JUT_PANICLINE(701, "*Transit(%d)(%d)\n(%s)=>(%s)\n", currentState->m_id, m_idToIndexArray[stateID], currentState->m_name,
+			              static_cast<PikiState*>(m_states[m_idToIndexArray[stateID]])->m_name);
+			JUT_PANICLINE(702, "---------- ‚¾‚ß‚¾‚æ?\n");
+		}
+	}
 
-lbl_8018A01C:
-	lmw      r26, 8(r1)
-	lwz      r0, 0x24(r1)
-	mtlr     r0
-	addi     r1, r1, 0x20
-	blr
-	*/
+	m_stateID = stateID;
+	StateMachine::transit(piki, stateID, stateArg);
 }
 
 /*
@@ -2593,35 +104,14 @@ lbl_8018A01C:
  * Address:	8018A030
  * Size:	000050
  */
-void PikiFSM::transitForce(Game::Piki*, int, Game::StateArg*)
+void PikiFSM::transitForce(Piki* piki, int stateID, StateArg* stateArg)
 {
-	/*
-	stwu     r1, -0x10(r1)
-	mflr     r0
-	stw      r0, 0x14(r1)
-	lwz      r7, 0x290(r4)
-	cmplwi   r7, 0
-	beq      lbl_8018A06C
-	lwz      r0, 4(r7)
-	cmpwi    r0, 0x20
-	bne      lbl_8018A06C
-	mr       r3, r7
-	lwz      r12, 0(r7)
-	lwz      r12, 0x10(r12)
-	mtctr    r12
-	bctrl
-	b        lbl_8018A070
-
-lbl_8018A06C:
-	bl
-"transit__Q24Game26StateMachine<Q24Game4Piki>FPQ24Game4PikiiPQ24Game8StateArg"
-
-lbl_8018A070:
-	lwz      r0, 0x14(r1)
-	mtlr     r0
-	addi     r1, r1, 0x10
-	blr
-	*/
+	PikiState* currentState = piki->m_currentState;
+	if (currentState != nullptr && currentState->m_id == PIKISTATE_Carrot) {
+		currentState->cleanup(piki);
+	} else {
+		StateMachine::transit(piki, stateID, stateArg);
+	}
 }
 
 /*
@@ -2629,182 +119,58 @@ lbl_8018A070:
  * Address:	8018A080
  * Size:	000040
  */
-void PikiWalkState::init(Game::Piki*, Game::StateArg*)
-{
-	/*
-	stwu     r1, -0x10(r1)
-	mflr     r0
-	mr       r3, r4
-	li       r4, 0x1f
-	stw      r0, 0x14(r1)
-	li       r5, 0x1f
-	li       r6, 0
-	li       r7, 0
-	lwz      r12, 0(r3)
-	lwz      r12, 0x208(r12)
-	mtctr    r12
-	bctrl
-	lwz      r0, 0x14(r1)
-	mtlr     r0
-	addi     r1, r1, 0x10
-	blr
-	*/
-}
+void PikiWalkState::init(Piki* piki, StateArg* stateArg) { piki->startMotion(IPikiAnims::WAIT, IPikiAnims::WAIT, nullptr, nullptr); }
 
 /*
  * --INFO--
  * Address:	8018A0C0
  * Size:	000024
  */
-void PikiWalkState::exec(Game::Piki*)
-{
-	/*
-	stwu     r1, -0x10(r1)
-	mflr     r0
-	stw      r0, 0x14(r1)
-	lwz      r3, 0x294(r4)
-	bl       exec__Q26PikiAI5BrainFv
-	lwz      r0, 0x14(r1)
-	mtlr     r0
-	addi     r1, r1, 0x10
-	blr
-	*/
-}
+void PikiWalkState::exec(Piki* piki) { piki->m_brain->exec(); }
 
 /*
  * --INFO--
  * Address:	8018A0E4
  * Size:	000004
  */
-void PikiWalkState::cleanup(Game::Piki*) { }
+void PikiWalkState::cleanup(Piki* piki) { }
 
 /*
  * --INFO--
  * Address:	8018A0E8
  * Size:	000040
  */
-void PikiDemoWaitState::init(Game::Piki*, Game::StateArg*)
-{
-	/*
-	stwu     r1, -0x10(r1)
-	mflr     r0
-	mr       r3, r4
-	li       r4, 0x1f
-	stw      r0, 0x14(r1)
-	li       r5, 0x1f
-	li       r6, 0
-	li       r7, 0
-	lwz      r12, 0(r3)
-	lwz      r12, 0x208(r12)
-	mtctr    r12
-	bctrl
-	lwz      r0, 0x14(r1)
-	mtlr     r0
-	addi     r1, r1, 0x10
-	blr
-	*/
-}
+void PikiDemoWaitState::init(Piki* piki, StateArg* stateArg) { piki->startMotion(IPikiAnims::WAIT, IPikiAnims::WAIT, nullptr, nullptr); }
 
 /*
  * --INFO--
  * Address:	8018A128
  * Size:	000024
  */
-void PikiDemoWaitState::exec(Game::Piki*)
-{
-	/*
-	stwu     r1, -0x10(r1)
-	mflr     r0
-	stw      r0, 0x14(r1)
-	lwz      r3, 0x294(r4)
-	bl       exec__Q26PikiAI5BrainFv
-	lwz      r0, 0x14(r1)
-	mtlr     r0
-	addi     r1, r1, 0x10
-	blr
-	*/
-}
+void PikiDemoWaitState::exec(Piki* piki) { piki->m_brain->exec(); }
 
 /*
  * --INFO--
  * Address:	8018A14C
  * Size:	000004
  */
-void PikiDemoWaitState::cleanup(Game::Piki*) { }
+void PikiDemoWaitState::cleanup(Piki* piki) { }
 
 /*
  * --INFO--
  * Address:	8018A150
  * Size:	000100
  */
-void PikiCarrotState::init(Game::Piki*, Game::StateArg*)
+void PikiCarrotState::init(Piki* piki, StateArg* stateArg)
 {
-	/*
-	stwu     r1, -0x20(r1)
-	mflr     r0
-	li       r5, 0x1f
-	li       r6, 0
-	stw      r0, 0x24(r1)
-	li       r7, 0
-	stw      r31, 0x1c(r1)
-	mr       r31, r4
-	li       r4, 0x1f
-	stw      r30, 0x18(r1)
-	mr       r30, r3
-	mr       r3, r31
-	lwz      r12, 0(r31)
-	lwz      r12, 0x208(r12)
-	mtctr    r12
-	bctrl
-	lfs      f0, lbl_80518DC4@sda21(r2)
-	mr       r3, r31
-	li       r4, 0
-	stfs     f0, 0x180(r31)
-	lwz      r12, 0(r31)
-	lwz      r12, 0x1e8(r12)
-	mtctr    r12
-	bctrl
-	mr       r3, r31
-	li       r4, 0
-	lwz      r12, 0(r31)
-	lwz      r12, 0x1d8(r12)
-	mtctr    r12
-	bctrl
-	mr       r3, r31
-	li       r4, 1
-	lwz      r12, 0(r31)
-	lwz      r12, 0xb4(r12)
-	mtctr    r12
-	bctrl
-	mr       r3, r31
-	li       r4, 1
-	lwz      r12, 0(r31)
-	lwz      r12, 0x1e0(r12)
-	mtctr    r12
-	bctrl
-	bl       rand
-	xoris    r0, r3, 0x8000
-	lis      r3, 0x4330
-	stw      r0, 0xc(r1)
-	li       r0, 0
-	lfd      f3, lbl_80518DD8@sda21(r2)
-	stw      r3, 8(r1)
-	lfs      f2, lbl_80518DC8@sda21(r2)
-	lfd      f0, 8(r1)
-	lfs      f1, lbl_80518DD0@sda21(r2)
-	fsubs    f3, f0, f3
-	lfs      f0, lbl_80518DCC@sda21(r2)
-	fdivs    f2, f3, f2
-	fmadds   f0, f1, f2, f0
-	stfs     f0, 0x10(r30)
-	stb      r0, 0x14(r30)
-	lwz      r31, 0x1c(r1)
-	lwz      r30, 0x18(r1)
-	lwz      r0, 0x24(r1)
-	mtlr     r0
-	addi     r1, r1, 0x20
-	blr
-	*/
+	piki->startMotion(IPikiAnims::WAIT, IPikiAnims::WAIT, nullptr, nullptr);
+	piki->_180 = 0.3f;
+	piki->setMoveVelocity(false);
+	piki->setMoveRotation(false);
+	piki->setCollisionFlick(true);
+	piki->setUpdateTrMatrix(true);
+	m_timeRemaining = 3.0f * randFloat() + 10.0f;
+	m_isPlanted     = false;
 }
 
 /*
@@ -2812,8 +178,47 @@ void PikiCarrotState::init(Game::Piki*, Game::StateArg*)
  * Address:	8018A250
  * Size:	000334
  */
-void PikiCarrotState::exec(Game::Piki*)
+void PikiCarrotState::exec(Piki* piki)
 {
+	if (piki->isAlive()) {
+		piki->m_velocity = Vector3f(0.0f);
+		if (m_isPlanted) {
+			piki->setPosition(m_position, false);
+			piki->m_position2 = Vector3f(0.0f);
+		}
+
+		m_timeRemaining -= sys->m_secondsPerFrame;
+
+		if (m_timeRemaining <= 0.0f) {
+			Vector3f position = piki->getPosition();
+			efx::Arg fxArg(position);
+			efx::TPikuDead deadFX;
+
+			deadFX.create(&fxArg);
+
+			piki->startSound(PSSE_PK_CARROT_CRUSH, false);
+
+			piki->kill(nullptr);
+		}
+		piki->m_animSpeed = 0.0f;
+	}
+
+	Vector3f pos = piki->m_position2;
+	f32 length   = pos.normalise();
+	if (length > 0.0f) { // regswaps here
+		pos.negate();
+		Matrixf natMatrix;
+		natMatrix.makeNaturalPosture(pos);
+		Matrixf matST;
+		matST.makeST(piki->m_scale, Vector3f::zero);
+		Matrixf concatMtx;
+		Vector3f translation(0.0f, -10.0f, 0.0f);
+		natMatrix.setTranslation(translation);
+		piki->m_mainMatrix = concatMatrixf(natMatrix, matST);
+
+		Vector3f newPos = piki->getPosition();
+		piki->m_mainMatrix.setTranslation(newPos);
+	}
 	/*
 	stwu     r1, -0x120(r1)
 	mflr     r0
@@ -3044,64 +449,16 @@ lbl_8018A564:
  * Address:	8018A584
  * Size:	0000D8
  */
-void PikiCarrotState::cleanup(Game::Piki*)
+void PikiCarrotState::cleanup(Piki* piki)
 {
-	/*
-	stwu     r1, -0x40(r1)
-	mflr     r0
-	stw      r0, 0x44(r1)
-	stw      r31, 0x3c(r1)
-	mr       r31, r4
-	li       r4, 1
-	lwz      r12, 0(r31)
-	mr       r3, r31
-	lwz      r12, 0x1e0(r12)
-	mtctr    r12
-	bctrl
-	mr       r4, r31
-	addi     r3, r1, 8
-	lwz      r12, 0(r31)
-	lwz      r12, 8(r12)
-	mtctr    r12
-	bctrl
-	lis      r4, __vt__Q23efx5TBase@ha
-	lis      r3, __vt__Q23efx8TSimple1@ha
-	addi     r0, r4, __vt__Q23efx5TBase@l
-	lfs      f2, 8(r1)
-	stw      r0, 0x14(r1)
-	addi     r0, r3, __vt__Q23efx8TSimple1@l
-	lfs      f1, 0xc(r1)
-	lis      r4, __vt__Q23efx3Arg@ha
-	lfs      f0, 0x10(r1)
-	lis      r3, __vt__Q23efx9TPikuBomb@ha
-	addi     r4, r4, __vt__Q23efx3Arg@l
-	li       r6, 0x275
-	li       r5, 0
-	stw      r0, 0x14(r1)
-	addi     r0, r3, __vt__Q23efx9TPikuBomb@l
-	addi     r3, r1, 0x14
-	stw      r4, 0x20(r1)
-	addi     r4, r1, 0x20
-	stfs     f2, 0x24(r1)
-	stfs     f1, 0x28(r1)
-	stfs     f0, 0x2c(r1)
-	sth      r6, 0x18(r1)
-	stw      r5, 0x1c(r1)
-	stw      r0, 0x14(r1)
-	bl       create__Q23efx8TSimple1FPQ23efx3Arg
-	mr       r3, r31
-	li       r4, 0x3857
-	li       r5, 0
-	bl       startSound__Q24Game4PikiFUlb
-	mr       r3, r31
-	li       r4, 0
-	bl       kill__Q24Game8CreatureFPQ24Game15CreatureKillArg
-	lwz      r0, 0x44(r1)
-	lwz      r31, 0x3c(r1)
-	mtlr     r0
-	addi     r1, r1, 0x40
-	blr
-	*/
+	piki->setUpdateTrMatrix(true);
+	Vector3f position = piki->getPosition();
+	efx::Arg fxArg(position);
+	efx::TPikuBomb bombFx;
+	bombFx.create(&fxArg);
+
+	piki->startSound(PSSE_PK_CARROT_CRUSH, false);
+	piki->kill(nullptr);
 }
 
 /*
@@ -3109,85 +466,19 @@ void PikiCarrotState::cleanup(Game::Piki*)
  * Address:	8018A65C
  * Size:	000124
  */
-void PikiCarrotState::bounceCallback(Game::Piki*, Sys::Triangle*)
+void PikiCarrotState::bounceCallback(Piki* piki, Sys::Triangle* triangle)
 {
-	/*
-	stwu     r1, -0x40(r1)
-	mflr     r0
-	stw      r0, 0x44(r1)
-	stw      r31, 0x3c(r1)
-	mr       r31, r4
-	stw      r30, 0x38(r1)
-	mr       r30, r3
-	lbz      r0, 0x14(r3)
-	cmplwi   r0, 0
-	bne      lbl_8018A768
-	li       r0, 1
-	addi     r3, r1, 8
-	stb      r0, 0x14(r30)
-	lwz      r12, 0(r4)
-	lwz      r12, 8(r12)
-	mtctr    r12
-	bctrl
-	lfs      f0, 8(r1)
-	addi     r4, r30, 0x18
-	stfs     f0, 0x18(r30)
-	lfs      f0, 0xc(r1)
-	stfs     f0, 0x1c(r30)
-	lfs      f0, 0x10(r1)
-	stfs     f0, 0x20(r30)
-	lwz      r3, mapMgr__4Game@sda21(r13)
-	lwz      r12, 4(r3)
-	lwz      r12, 0x28(r12)
-	mtctr    r12
-	bctrl
-	lis      r3, __vt__Q23efx3Arg@ha
-	stfs     f1, 0x1c(r30)
-	addi     r0, r3, __vt__Q23efx3Arg@l
-	lfs      f0, lbl_80518DF0@sda21(r2)
-	stw      r0, 0x24(r1)
-	li       r4, 0x3856
-	li       r5, 0
-	li       r6, 0
-	lfs      f1, 0x18(r30)
-	stfs     f1, 0x28(r1)
-	lfs      f1, 0x1c(r30)
-	stfs     f1, 0x2c(r1)
-	lfs      f1, 0x20(r30)
-	stfs     f1, 0x30(r1)
-	lfs      f1, 0x1c(r30)
-	fsubs    f0, f1, f0
-	stfs     f0, 0x1c(r30)
-	lwz      r3, 0x250(r31)
-	bl       startFreePikiSound__Q23PSM4PikiFUlUlUl
-	lis      r3, __vt__Q23efx5TBase@ha
-	li       r5, 0
-	addi     r0, r3, __vt__Q23efx5TBase@l
-	lis      r3, __vt__Q23efx8TSimple2@ha
-	stw      r0, 0x14(r1)
-	addi     r0, r3, __vt__Q23efx8TSimple2@l
-	lis      r3, __vt__Q23efx5TPkAp@ha
-	li       r4, 0x146
-	stw      r0, 0x14(r1)
-	addi     r0, r3, __vt__Q23efx5TPkAp@l
-	li       r6, 0x147
-	addi     r3, r1, 0x14
-	sth      r4, 0x18(r1)
-	addi     r4, r1, 0x24
-	sth      r6, 0x1a(r1)
-	stw      r5, 0x1c(r1)
-	stw      r5, 0x20(r1)
-	stw      r0, 0x14(r1)
-	bl       create__Q23efx8TSimple2FPQ23efx3Arg
+	if (!m_isPlanted) {
+		m_isPlanted  = true;
+		m_position   = piki->getPosition();
+		m_position.y = mapMgr->getMinY(m_position);
+		efx::Arg fxArg(m_position);
+		m_position.y -= 8.0f;
+		piki->m_soundObj->startFreePikiSound(PSSE_PK_CARROT_GROUND, 0, 0);
 
-lbl_8018A768:
-	lwz      r0, 0x44(r1)
-	lwz      r31, 0x3c(r1)
-	lwz      r30, 0x38(r1)
-	mtlr     r0
-	addi     r1, r1, 0x40
-	blr
-	*/
+		efx::TPkAp appearFx;
+		appearFx.create(&fxArg);
+	}
 }
 
 /*
@@ -3195,79 +486,36 @@ lbl_8018A768:
  * Address:	8018A780
  * Size:	000004
  */
-void PikiCarrotState::collisionCallback(Game::Piki*, Game::CollEvent&) { }
+void PikiCarrotState::collisionCallback(Piki* piki, Game::CollEvent&) { }
 
 /*
  * --INFO--
  * Address:	8018A784
  * Size:	0000D8
  */
-void PikiSwallowedState::init(Game::Piki*, Game::StateArg*)
+void PikiSwallowedState::init(Piki* piki, StateArg* stateArg)
 {
-	/*
-	stwu     r1, -0x20(r1)
-	mflr     r0
-	cmplwi   r5, 0
-	stw      r0, 0x24(r1)
-	stw      r31, 0x1c(r1)
-	stw      r30, 0x18(r1)
-	stw      r29, 0x14(r1)
-	mr       r29, r4
-	beq      lbl_8018A7B0
-	lwz      r4, 0(r5)
-	b        lbl_8018A7B4
+	int animIdx;
+	if (stateArg != nullptr) {
+		animIdx = (int)stateArg->m_value.asPtr;
+	} else {
+		animIdx = IPikiAnims::ESA; // i.e., eat
+	}
 
-lbl_8018A7B0:
-	li       r4, 8
+	piki->startMotion(animIdx, animIdx, nullptr, nullptr);
 
-lbl_8018A7B4:
-	lwz      r12, 0(r29)
-	mr       r3, r29
-	mr       r5, r4
-	li       r6, 0
-	lwz      r12, 0x208(r12)
-	li       r7, 0
-	mtctr    r12
-	bctrl
-	lwz      r31, 0xf4(r29)
-	mr       r3, r29
-	lwz      r30, 0xf8(r29)
-	bl       getCurrAction__Q24Game4PikiFv
-	cmplwi   r3, 0
-	beq      lbl_8018A820
-	mr       r3, r29
-	bl       getCurrAction__Q24Game4PikiFv
-	lwz      r12, 0(r3)
-	lwz      r12, 0x10(r12)
-	mtctr    r12
-	bctrl
-	mr       r3, r29
-	bl       clearCurrAction__Q24Game4PikiFv
-	mr       r3, r29
-	lwz      r12, 0(r29)
-	lwz      r12, 0x1ac(r12)
-	mtctr    r12
-	bctrl
+	Creature* creature = piki->m_sticker;
+	CollPart* collpart = piki->_0F8;
 
-lbl_8018A820:
-	cmplwi   r31, 0
-	beq      lbl_8018A840
-	cmplwi   r30, 0
-	beq      lbl_8018A840
-	mr       r3, r29
-	mr       r4, r31
-	mr       r5, r30
-	bl       startStickMouth__Q24Game8CreatureFPQ24Game8CreatureP8CollPart
+	if (piki->getCurrAction() != nullptr) {
+		piki->getCurrAction()->cleanup();
+		piki->clearCurrAction();
+		piki->getCreatureID();
+	}
 
-lbl_8018A840:
-	lwz      r0, 0x24(r1)
-	lwz      r31, 0x1c(r1)
-	lwz      r30, 0x18(r1)
-	lwz      r29, 0x14(r1)
-	mtlr     r0
-	addi     r1, r1, 0x20
-	blr
-	*/
+	if (creature != nullptr && collpart != nullptr) {
+		piki->startStickMouth(creature, collpart);
+	}
 }
 
 /*
@@ -3275,65 +523,12 @@ lbl_8018A840:
  * Address:	8018A85C
  * Size:	000074
  */
-void PikiSwallowedState::exec(Game::Piki*)
+void PikiSwallowedState::exec(Piki* piki)
 {
-	/*
-	stwu     r1, -0x10(r1)
-	mflr     r0
-	stw      r0, 0x14(r1)
-	stw      r31, 0xc(r1)
-	mr       r31, r4
-	stw      r30, 8(r1)
-	mr       r30, r3
-	mr       r3, r31
-	bl       isStickToMouth__Q24Game8CreatureFv
-	clrlwi.  r0, r3, 0x18
-	bne      lbl_8018A8B8
-	mr       r3, r31
-	li       r4, 0x2822
-	li       r5, 0
-	bl       startSound__Q24Game4PikiFUlb
-	mr       r3, r30
-	mr       r4, r31
-	lwz      r12, 0(r30)
-	li       r5, 0
-	li       r6, 0
-	lwz      r12, 0x1c(r12)
-	mtctr    r12
-	bctrl
-
-lbl_8018A8B8:
-	lwz      r0, 0x14(r1)
-	lwz      r31, 0xc(r1)
-	lwz      r30, 8(r1)
-	mtlr     r0
-	addi     r1, r1, 0x10
-	blr
-	*/
-}
-
-/*
- * --INFO--
- * Address:	8018A8D0
- * Size:	000030
- */
-void transit__Q24Game22FSMState<Game::Piki> FPQ24Game4PikiiPQ24Game8StateArg(void)
-{
-	/*
-	.loc_0x0:
-	  stwu      r1, -0x10(r1)
-	  mflr      r0
-	  stw       r0, 0x14(r1)
-	  lwz       r3, 0x8(r3)
-	  lwz       r12, 0x0(r3)
-	  lwz       r12, 0x14(r12)
-	  mtctr     r12
-	  bctrl
-	  lwz       r0, 0x14(r1)
-	  mtlr      r0
-	  addi      r1, r1, 0x10
-	  blr
-	*/
+	if (!piki->isStickToMouth()) {
+		piki->startSound(PSSE_PK_VC_SAVED, false);
+		transit(piki, PIKISTATE_Walk, nullptr);
+	}
 }
 
 /*
@@ -3341,31 +536,11 @@ void transit__Q24Game22FSMState<Game::Piki> FPQ24Game4PikiiPQ24Game8StateArg(voi
  * Address:	8018A900
  * Size:	000054
  */
-void PikiSwallowedState::cleanup(Game::Piki*)
+void PikiSwallowedState::cleanup(Piki* piki)
 {
-	/*
-	stwu     r1, -0x10(r1)
-	mflr     r0
-	stw      r0, 0x14(r1)
-	stw      r31, 0xc(r1)
-	mr       r31, r4
-	mr       r3, r31
-	bl       endStick__Q24Game8CreatureFv
-	lwz      r3, 0x294(r31)
-	li       r4, 1
-	li       r5, 0
-	bl       start__Q26PikiAI5BrainFiPQ26PikiAI9ActionArg
-	mr       r3, r31
-	lwz      r12, 0(r31)
-	lwz      r12, 0x1ac(r12)
-	mtctr    r12
-	bctrl
-	lwz      r0, 0x14(r1)
-	lwz      r31, 0xc(r1)
-	mtlr     r0
-	addi     r1, r1, 0x10
-	blr
-	*/
+	piki->endStick();
+	piki->m_brain->start(1, nullptr);
+	piki->getCreatureID();
 }
 
 /*
@@ -3373,7 +548,7 @@ void PikiSwallowedState::cleanup(Game::Piki*)
  * Address:	8018A954
  * Size:	00020C
  */
-void PikiHoleinState::init(Game::Piki*, Game::StateArg*)
+void PikiHoleinState::init(Piki* piki, StateArg* stateArg)
 {
 	/*
 	stwu     r1, -0x30(r1)
@@ -3525,7 +700,7 @@ lbl_8018AA9C:
  * Address:	8018AB60
  * Size:	0001C0
  */
-void PikiHoleinState::exec(Game::Piki*)
+void PikiHoleinState::exec(Piki* piki)
 {
 	/*
 	stwu     r1, -0x20(r1)
@@ -3658,14 +833,14 @@ lbl_8018AD08:
  * Address:	8018AD20
  * Size:	000004
  */
-void PikiHoleinState::cleanup(Game::Piki*) { }
+void PikiHoleinState::cleanup(Piki* piki) { }
 
 /*
  * --INFO--
  * Address:	8018AD24
  * Size:	0001F4
  */
-void PikiFountainonState::init(Game::Piki*, Game::StateArg*)
+void PikiFountainonState::init(Piki* piki, StateArg* stateArg)
 {
 	/*
 	stwu     r1, -0x30(r1)
@@ -3811,7 +986,7 @@ lbl_8018AEAC:
  * Address:	8018AF18
  * Size:	0001A0
  */
-void PikiFountainonState::exec(Game::Piki*)
+void PikiFountainonState::exec(Piki* piki)
 {
 	/*
 	stwu     r1, -0x20(r1)
@@ -3934,14 +1109,14 @@ lbl_8018B0A4:
  * Address:	8018B0B8
  * Size:	000004
  */
-void PikiFountainonState::cleanup(Game::Piki*) { }
+void PikiFountainonState::cleanup(Piki* piki) { }
 
 /*
  * --INFO--
  * Address:	8018B0BC
  * Size:	0000C8
  */
-void PikiTaneState::init(Game::Piki*, Game::StateArg*)
+void PikiTaneState::init(Piki* piki, StateArg* stateArg)
 {
 	/*
 	stwu     r1, -0x20(r1)
@@ -4002,7 +1177,7 @@ void PikiTaneState::init(Game::Piki*, Game::StateArg*)
  * Address:	8018B184
  * Size:	000038
  */
-void PikiTaneState::exec(Game::Piki*)
+void PikiTaneState::exec(Piki* piki)
 {
 	/*
 	stwu     r1, -0x10(r1)
@@ -4027,7 +1202,7 @@ void PikiTaneState::exec(Game::Piki*)
  * Address:	8018B1BC
  * Size:	000034
  */
-void PikiTaneState::cleanup(Game::Piki*)
+void PikiTaneState::cleanup(Piki* piki)
 {
 	/*
 	stwu     r1, -0x10(r1)
@@ -4051,7 +1226,7 @@ void PikiTaneState::cleanup(Game::Piki*)
  * Address:	8018B1F0
  * Size:	000064
  */
-void PikiTaneState::bounceCallback(Game::Piki*, Sys::Triangle*)
+void PikiTaneState::bounceCallback(Piki* piki, Sys::Triangle*)
 {
 	/*
 	stwu     r1, -0x10(r1)
@@ -4087,7 +1262,7 @@ void PikiTaneState::bounceCallback(Game::Piki*, Sys::Triangle*)
  * Address:	8018B254
  * Size:	000114
  */
-void PikiNukareState::init(Game::Piki*, Game::StateArg*)
+void PikiNukareState::init(Piki* piki, StateArg* stateArg)
 {
 	/*
 	stwu     r1, -0x20(r1)
@@ -4177,13 +1352,14 @@ lbl_8018B34C:
  * Address:	8018B368
  * Size:	00000C
  */
-void PikiNukareState::soft_transittable(int)
+bool PikiNukareState::soft_transittable(int)
 {
-	/*
-	cntlzw   r0, r4
-	srwi     r3, r0, 5
-	blr
-	*/
+	return false; // fake
+	              /*
+	              cntlzw   r0, r4
+	              srwi     r3, r0, 5
+	              blr
+	              */
 }
 
 /*
@@ -4191,7 +1367,7 @@ void PikiNukareState::soft_transittable(int)
  * Address:	8018B374
  * Size:	000150
  */
-void PikiNukareState::exec(Game::Piki*)
+void PikiNukareState::exec(Piki* piki)
 {
 	/*
 	stwu     r1, -0x30(r1)
@@ -4290,7 +1466,7 @@ lbl_8018B4AC:
  * Address:	8018B4C4
  * Size:	00020C
  */
-void PikiNukareState::onKeyEvent(Game::Piki*, SysShape::KeyEvent const&)
+void PikiNukareState::onKeyEvent(Piki* piki, SysShape::KeyEvent const&)
 {
 	/*
 	stwu     r1, -0x70(r1)
@@ -4444,8 +1620,9 @@ lbl_8018B6B8:
  * Address:	8018B6D0
  * Size:	000010
  */
-void PikiNukareState::cleanup(Game::Piki*)
+void PikiNukareState::cleanup(Piki* piki)
 {
+	piki->_17C &= ~0x10;
 	/*
 	lwz      r0, 0x17c(r4)
 	rlwinm   r0, r0, 0, 0x1c, 0x1a
@@ -4459,7 +1636,7 @@ void PikiNukareState::cleanup(Game::Piki*)
  * Address:	8018B6E0
  * Size:	0000B8
  */
-void PikiDopeState::init(Game::Piki*, Game::StateArg*)
+void PikiDopeState::init(Piki* piki, StateArg* stateArg)
 {
 	/*
 	stwu     r1, -0x20(r1)
@@ -4518,20 +1695,14 @@ lbl_8018B724:
  * Address:	8018B798
  * Size:	000008
  */
-void PikiDopeState::onFlute(Game::Piki*, Game::Navi*)
-{
-	/*
-	stw      r5, 0x4330001C@l(r3)
-	blr
-	*/
-}
+void PikiDopeState::onFlute(Piki* piki, Navi* navi) { m_navi = navi; }
 
 /*
  * --INFO--
  * Address:	8018B7A0
  * Size:	00018C
  */
-void PikiDopeState::exec(Game::Piki*)
+void PikiDopeState::exec(Piki* piki)
 {
 	/*
 	stwu     r1, -0x30(r1)
@@ -4653,7 +1824,7 @@ lbl_8018B914:
  * Address:	8018B92C
  * Size:	0000D8
  */
-void PikiDopeState::onKeyEvent(Game::Piki*, SysShape::KeyEvent const&)
+void PikiDopeState::onKeyEvent(Piki* piki, SysShape::KeyEvent const&)
 {
 	/*
 	stwu     r1, -0x20(r1)
@@ -4726,26 +1897,16 @@ lbl_8018B9EC:
  * Address:	8018BA04
  * Size:	000004
  */
-void PikiDopeState::cleanup(Game::Piki*) { }
+void PikiDopeState::cleanup(Piki* piki) { }
 
 /*
  * --INFO--
  * Address:	8018BA08
  * Size:	000024
  */
-void PikiPanicState::soft_transittable(int)
+bool PikiPanicState::soft_transittable(int stateID)
 {
-	/*
-	cmpwi    r4, 8
-	li       r3, 0
-	beqlr
-	cmpwi    r4, 0x15
-	beqlr
-	cmpwi    r4, 0x17
-	beqlr
-	li       r3, 1
-	blr
-	*/
+	return !(stateID == PIKISTATE_Blow || stateID == PIKISTATE_Panic || stateID == PIKISTATE_FallMeck);
 }
 
 /*
@@ -4753,62 +1914,63 @@ void PikiPanicState::soft_transittable(int)
  * Address:	8018BA2C
  * Size:	000070
  */
-void PikiPanicState::transittable(int)
+bool PikiPanicState::transittable(int)
 {
-	/*
-	lhz      r0, 0x24(r3)
-	cmplwi   r0, 3
-	bne      lbl_8018BA48
-	cmpwi    r4, 0x15
-	beq      lbl_8018BA48
-	li       r3, 1
-	blr
-
-lbl_8018BA48:
-	cmpwi    r4, 0x18
-	beq      lbl_8018BA80
-	addi     r0, r4, -10
-	cmplwi   r0, 1
-	ble      lbl_8018BA80
-	addi     r0, r4, -20
-	cmplwi   r0, 2
-	ble      lbl_8018BA80
-	cmpwi    r4, 0x1a
-	beq      lbl_8018BA80
-	cmpwi    r4, 4
-	beq      lbl_8018BA80
-	cmpwi    r4, 6
-	bne      lbl_8018BA88
-
-lbl_8018BA80:
-	li       r3, 1
-	blr
-
-lbl_8018BA88:
-	lbz      r3, 0x20(r3)
-	neg      r0, r3
-	or       r0, r0, r3
-	srwi     r3, r0, 0x1f
-	blr
-	*/
+	return false; // fake
+	              /*
+	              lhz      r0, 0x24(r3)
+	              cmplwi   r0, 3
+	              bne      lbl_8018BA48
+	              cmpwi    r4, 0x15
+	              beq      lbl_8018BA48
+	              li       r3, 1
+	              blr
+	          
+	          lbl_8018BA48:
+	              cmpwi    r4, 0x18
+	              beq      lbl_8018BA80
+	              addi     r0, r4, -10
+	              cmplwi   r0, 1
+	              ble      lbl_8018BA80
+	              addi     r0, r4, -20
+	              cmplwi   r0, 2
+	              ble      lbl_8018BA80
+	              cmpwi    r4, 0x1a
+	              beq      lbl_8018BA80
+	              cmpwi    r4, 4
+	              beq      lbl_8018BA80
+	              cmpwi    r4, 6
+	              bne      lbl_8018BA88
+	          
+	          lbl_8018BA80:
+	              li       r3, 1
+	              blr
+	          
+	          lbl_8018BA88:
+	              lbz      r3, 0x20(r3)
+	              neg      r0, r3
+	              or       r0, r0, r3
+	              srwi     r3, r0, 0x1f
+	              blr
+	              */
 }
 
-/*
- * --INFO--
- * Address:	........
- * Size:	000064
- */
-void PikiPanicState::startSound(Game::Piki*)
-{
-	// UNUSED FUNCTION
-}
+// /*
+//  * --INFO--
+//  * Address:	........
+//  * Size:	000064
+//  */
+// void PikiPanicState::startSound(Piki* piki)
+// {
+// 	// UNUSED FUNCTION
+// }
 
 /*
  * --INFO--
  * Address:	8018BA9C
  * Size:	000280
  */
-void PikiPanicState::init(Game::Piki*, Game::StateArg*)
+void PikiPanicState::init(Piki* piki, StateArg* stateArg)
 {
 	/*
 	stwu     r1, -0x20(r1)
@@ -4994,22 +2156,22 @@ lbl_8018BCE4:
 	*/
 }
 
-/*
- * --INFO--
- * Address:	........
- * Size:	00017C
- */
-void PikiPanicState::checkDemo(Game::Piki*)
-{
-	// UNUSED FUNCTION
-}
+// /*
+//  * --INFO--
+//  * Address:	........
+//  * Size:	00017C
+//  */
+// void PikiPanicState::checkDemo(Piki* piki)
+// {
+// 	// UNUSED FUNCTION
+// }
 
 /*
  * --INFO--
  * Address:	8018BD1C
  * Size:	000260
  */
-void PikiPanicState::exec(Game::Piki*)
+void PikiPanicState::exec(Piki* piki)
 {
 	/*
 	stwu     r1, -0x60(r1)
@@ -5194,7 +2356,7 @@ lbl_8018BF60:
  * Address:	8018BF7C
  * Size:	000048
  */
-void PikiPanicState::onKeyEvent(Game::Piki*, SysShape::KeyEvent const&)
+void PikiPanicState::onKeyEvent(Piki* piki, SysShape::KeyEvent const&)
 {
 	/*
 	stwu     r1, -0x10(r1)
@@ -5223,7 +2385,7 @@ void PikiPanicState::onKeyEvent(Game::Piki*, SysShape::KeyEvent const&)
  * Address:	8018BFC4
  * Size:	0002BC
  */
-void PikiPanicState::panicRun(Game::Piki*)
+void PikiPanicState::panicRun(Piki* piki)
 {
 	/*
 	stwu     r1, -0x40(r1)
@@ -5439,7 +2601,7 @@ lbl_8018C268:
  * Address:	8018C280
  * Size:	0002D4
  */
-void PikiPanicState::panicLobster(Game::Piki*)
+void PikiPanicState::panicLobster(Piki* piki)
 {
 	/*
 	stwu     r1, -0x70(r1)
@@ -5655,7 +2817,7 @@ lbl_8018C52C:
  * Address:	8018C554
  * Size:	0000E4
  */
-void PikiPanicState::cleanup(Game::Piki*)
+void PikiPanicState::cleanup(Piki* piki)
 {
 	/*
 	stwu     r1, -0x10(r1)
@@ -5729,10 +2891,10 @@ lbl_8018C620:
  * Address:	8018C638
  * Size:	00000C
  */
-void PikiPanicState::bounceCallback(Game::Piki*, Sys::Triangle*)
+void PikiPanicState::bounceCallback(Piki* piki, Sys::Triangle*)
 {
 	// Generated from stb r0, 0x21(r3)
-	_21 = 1;
+	// _21 = 1;
 }
 
 /*
@@ -5740,7 +2902,7 @@ void PikiPanicState::bounceCallback(Game::Piki*, Sys::Triangle*)
  * Address:	8018C644
  * Size:	00011C
  */
-void PikiPanicState::onFlute(Game::Piki*, Game::Navi*)
+void PikiPanicState::onFlute(Piki* piki, Game::Navi*)
 {
 	/*
 	stwu     r1, -0x10(r1)
@@ -5832,28 +2994,29 @@ lbl_8018C748:
  * Address:	8018C760
  * Size:	000004
  */
-void PikiDeadState::init(Game::Piki*, Game::StateArg*) { }
+void PikiDeadState::init(Piki* piki, StateArg* stateArg) { }
 
 /*
  * --INFO--
  * Address:	8018C764
  * Size:	000004
  */
-void PikiDeadState::exec(Game::Piki*) { }
+void PikiDeadState::exec(Piki* piki) { }
 
 /*
  * --INFO--
  * Address:	8018C768
  * Size:	000010
  */
-void PikiDyingState::transittable(int)
+bool PikiDyingState::transittable(int)
 {
-	/*
-	subfic   r0, r4, 0x19
-	cntlzw   r0, r0
-	rlwinm   r3, r0, 0x1b, 0x18, 0x1f
-	blr
-	*/
+	return false; // fake
+	              /*
+	              subfic   r0, r4, 0x19
+	              cntlzw   r0, r0
+	              rlwinm   r3, r0, 0x1b, 0x18, 0x1f
+	              blr
+	              */
 }
 
 /*
@@ -5861,7 +3024,7 @@ void PikiDyingState::transittable(int)
  * Address:	8018C778
  * Size:	0000B4
  */
-void PikiDyingState::init(Game::Piki*, Game::StateArg*)
+void PikiDyingState::init(Piki* piki, StateArg* stateArg)
 {
 	/*
 	stwu     r1, -0x10(r1)
@@ -5921,7 +3084,7 @@ lbl_8018C7D4:
  * Address:	8018C82C
  * Size:	0000DC
  */
-void PikiDyingState::exec(Game::Piki*)
+void PikiDyingState::exec(Piki* piki)
 {
 	/*
 	stwu     r1, -0x20(r1)
@@ -5993,14 +3156,14 @@ lbl_8018C8F0:
  * Address:	8018C908
  * Size:	000004
  */
-void PikiDyingState::cleanup(Game::Piki*) { }
+void PikiDyingState::cleanup(Piki* piki) { }
 
 /*
  * --INFO--
  * Address:	8018C90C
  * Size:	000064
  */
-void PikiDyingState::onKeyEvent(Game::Piki*, SysShape::KeyEvent const&)
+void PikiDyingState::onKeyEvent(Piki* piki, SysShape::KeyEvent const&)
 {
 	/*
 	stwu     r1, -0x10(r1)
@@ -6040,14 +3203,15 @@ lbl_8018C960:
  * Address:	8018C970
  * Size:	000010
  */
-void PikiDenkiDyingState::soft_transittable(int)
+bool PikiDenkiDyingState::soft_transittable(int)
 {
-	/*
-	subfic   r0, r4, 0x19
-	cntlzw   r0, r0
-	rlwinm   r3, r0, 0x1b, 0x18, 0x1f
-	blr
-	*/
+	return false; // fake
+	              /*
+	              subfic   r0, r4, 0x19
+	              cntlzw   r0, r0
+	              rlwinm   r3, r0, 0x1b, 0x18, 0x1f
+	              blr
+	              */
 }
 
 /*
@@ -6055,14 +3219,15 @@ void PikiDenkiDyingState::soft_transittable(int)
  * Address:	8018C980
  * Size:	000010
  */
-void PikiDenkiDyingState::transittable(int)
+bool PikiDenkiDyingState::transittable(int)
 {
-	/*
-	subfic   r0, r4, 0x19
-	cntlzw   r0, r0
-	rlwinm   r3, r0, 0x1b, 0x18, 0x1f
-	blr
-	*/
+	return false; // fake
+	              /*
+	              subfic   r0, r4, 0x19
+	              cntlzw   r0, r0
+	              rlwinm   r3, r0, 0x1b, 0x18, 0x1f
+	              blr
+	              */
 }
 
 /*
@@ -6070,7 +3235,7 @@ void PikiDenkiDyingState::transittable(int)
  * Address:	8018C990
  * Size:	000084
  */
-void PikiDenkiDyingState::init(Game::Piki*, Game::StateArg*)
+void PikiDenkiDyingState::init(Piki* piki, StateArg* stateArg)
 {
 	/*
 	stwu     r1, -0x10(r1)
@@ -6116,7 +3281,7 @@ lbl_8018C9B8:
  * Address:	8018CA14
  * Size:	000138
  */
-void PikiDenkiDyingState::exec(Game::Piki*)
+void PikiDenkiDyingState::exec(Piki* piki)
 {
 	/*
 	stwu     r1, -0x50(r1)
@@ -6207,21 +3372,22 @@ lbl_8018CB38:
  * Address:	8018CB4C
  * Size:	000004
  */
-void PikiDenkiDyingState::cleanup(Game::Piki*) { }
+void PikiDenkiDyingState::cleanup(Piki* piki) { }
 
 /*
  * --INFO--
  * Address:	8018CB50
  * Size:	000010
  */
-void PikiPressedState::soft_transittable(int)
+bool PikiPressedState::soft_transittable(int)
 {
-	/*
-	subfic   r0, r4, 0x19
-	cntlzw   r0, r0
-	srwi     r3, r0, 5
-	blr
-	*/
+	return false; // fake
+	              /*
+	              subfic   r0, r4, 0x19
+	              cntlzw   r0, r0
+	              srwi     r3, r0, 5
+	              blr
+	              */
 }
 
 /*
@@ -6229,14 +3395,15 @@ void PikiPressedState::soft_transittable(int)
  * Address:	8018CB60
  * Size:	000010
  */
-void PikiPressedState::transittable(int)
+bool PikiPressedState::transittable(int)
 {
-	/*
-	subfic   r0, r4, 0x19
-	cntlzw   r0, r0
-	rlwinm   r3, r0, 0x1b, 0x18, 0x1f
-	blr
-	*/
+	return false; // fake
+	              /*
+	              subfic   r0, r4, 0x19
+	              cntlzw   r0, r0
+	              rlwinm   r3, r0, 0x1b, 0x18, 0x1f
+	              blr
+	              */
 }
 
 /*
@@ -6244,7 +3411,7 @@ void PikiPressedState::transittable(int)
  * Address:	8018CB70
  * Size:	0000C8
  */
-void PikiPressedState::init(Game::Piki*, Game::StateArg*)
+void PikiPressedState::init(Piki* piki, StateArg* stateArg)
 {
 	/*
 	stwu     r1, -0x40(r1)
@@ -6305,7 +3472,7 @@ void PikiPressedState::init(Game::Piki*, Game::StateArg*)
  * Address:	8018CC38
  * Size:	00010C
  */
-void PikiPressedState::exec(Game::Piki*)
+void PikiPressedState::exec(Piki* piki)
 {
 	/*
 	stwu     r1, -0x40(r1)
@@ -6387,7 +3554,7 @@ lbl_8018CD10:
  * Address:	8018CD44
  * Size:	000034
  */
-void PikiPressedState::cleanup(Game::Piki*)
+void PikiPressedState::cleanup(Piki* piki)
 {
 	/*
 	stwu     r1, -0x10(r1)
@@ -6411,7 +3578,7 @@ void PikiPressedState::cleanup(Game::Piki*)
  * Address:	8018CD78
  * Size:	000084
  */
-void PikiLookAtState::init(Game::Piki*, Game::StateArg*)
+void PikiLookAtState::init(Piki* piki, StateArg* stateArg)
 {
 	/*
 	stwu     r1, -0x20(r1)
@@ -6455,14 +3622,14 @@ void PikiLookAtState::init(Game::Piki*, Game::StateArg*)
  * Address:	8018CDFC
  * Size:	000004
  */
-void PikiLookAtState::onFlute(Game::Piki*, Game::Navi*) { }
+void PikiLookAtState::onFlute(Piki* piki, Game::Navi*) { }
 
 /*
  * --INFO--
  * Address:	8018CE00
  * Size:	000180
  */
-void PikiLookAtState::exec(Game::Piki*)
+void PikiLookAtState::exec(Piki* piki)
 {
 	/*
 	stwu     r1, -0x20(r1)
@@ -6606,14 +3773,14 @@ lbl_8018CF9C:
  * Address:	8018CFA8
  * Size:	000004
  */
-void PikiLookAtState::cleanup(Game::Piki*) { }
+void PikiLookAtState::cleanup(Piki* piki) { }
 
 /*
  * --INFO--
  * Address:	8018CFAC
  * Size:	0001FC
  */
-void PikiAutoNukiState::init(Game::Piki*, Game::StateArg*)
+void PikiAutoNukiState::init(Piki* piki, StateArg* stateArg)
 {
 	/*
 	stwu     r1, -0x70(r1)
@@ -6757,7 +3924,7 @@ lbl_8018D190:
  * Address:	8018D1A8
  * Size:	000300
  */
-void PikiAutoNukiState::exec(Game::Piki*)
+void PikiAutoNukiState::exec(Piki* piki)
 {
 	/*
 	stwu     r1, -0x80(r1)
@@ -6978,7 +4145,7 @@ lbl_8018D490:
  * Address:	8018D4A8
  * Size:	000028
  */
-void PikiAutoNukiState::onKeyEvent(Game::Piki*, SysShape::KeyEvent const&)
+void PikiAutoNukiState::onKeyEvent(Piki* piki, SysShape::KeyEvent const&)
 {
 	/*
 	lwz      r0, 0x1c(r5)
@@ -7001,14 +4168,14 @@ lbl_8018D4C4:
  * Address:	8018D4D0
  * Size:	000004
  */
-void PikiAutoNukiState::cleanup(Game::Piki*) { }
+void PikiAutoNukiState::cleanup(Piki* piki) { }
 
 /*
  * --INFO--
  * Address:	8018D4D4
  * Size:	000064
  */
-void PikiGoHangState::init(Game::Piki*, Game::StateArg*)
+void PikiGoHangState::init(Piki* piki, StateArg* stateArg)
 {
 	/*
 	stwu     r1, -0x10(r1)
@@ -7044,7 +4211,7 @@ void PikiGoHangState::init(Game::Piki*, Game::StateArg*)
  * Address:	8018D538
  * Size:	0001C8
  */
-void PikiGoHangState::exec(Game::Piki*)
+void PikiGoHangState::exec(Piki* piki)
 {
 	/*
 	stwu     r1, -0x30(r1)
@@ -7187,7 +4354,7 @@ lbl_8018D6E4:
  * Address:	8018D700
  * Size:	000034
  */
-void PikiGoHangState::cleanup(Game::Piki*)
+void PikiGoHangState::cleanup(Piki* piki)
 {
 	/*
 	stwu     r1, -0x10(r1)
@@ -7218,7 +4385,7 @@ void PikiHangedState::onKeyEvent(SysShape::KeyEvent const&) { }
  * Address:	8018D738
  * Size:	0000C4
  */
-void PikiHangedState::init(Game::Piki*, Game::StateArg*)
+void PikiHangedState::init(Piki* piki, StateArg* stateArg)
 {
 	/*
 	stwu     r1, -0x10(r1)
@@ -7282,7 +4449,7 @@ lbl_8018D7CC:
  * Address:	8018D7FC
  * Size:	00006C
  */
-void PikiHangedState::exec(Game::Piki*)
+void PikiHangedState::exec(Piki* piki)
 {
 	/*
 	stwu     r1, -0x10(r1)
@@ -7322,7 +4489,7 @@ lbl_8018D850:
  * Address:	8018D868
  * Size:	000034
  */
-void PikiHangedState::cleanup(Game::Piki*)
+void PikiHangedState::cleanup(Piki* piki)
 {
 	/*
 	stwu     r1, -0x10(r1)
@@ -7346,43 +4513,44 @@ void PikiHangedState::cleanup(Game::Piki*)
  * Address:	8018D89C
  * Size:	00006C
  */
-void PikiHangedState::ignoreAtari(Game::Piki*, Game::Creature*)
+bool PikiHangedState::ignoreAtari(Piki* piki, Game::Creature*)
 {
-	/*
-	stwu     r1, -0x10(r1)
-	mflr     r0
-	stw      r0, 0x14(r1)
-	stw      r31, 0xc(r1)
-	mr       r31, r5
-	mr       r3, r31
-	lwz      r12, 0(r31)
-	lwz      r12, 0x1c(r12)
-	mtctr    r12
-	bctrl
-	clrlwi.  r0, r3, 0x18
-	bne      lbl_8018D8E8
-	mr       r3, r31
-	lwz      r12, 0(r31)
-	lwz      r12, 0x18(r12)
-	mtctr    r12
-	bctrl
-	clrlwi.  r0, r3, 0x18
-	beq      lbl_8018D8F0
-
-lbl_8018D8E8:
-	li       r3, 1
-	b        lbl_8018D8F4
-
-lbl_8018D8F0:
-	li       r3, 0
-
-lbl_8018D8F4:
-	lwz      r0, 0x14(r1)
-	lwz      r31, 0xc(r1)
-	mtlr     r0
-	addi     r1, r1, 0x10
-	blr
-	*/
+	return false; // fake
+	              /*
+	              stwu     r1, -0x10(r1)
+	              mflr     r0
+	              stw      r0, 0x14(r1)
+	              stw      r31, 0xc(r1)
+	              mr       r31, r5
+	              mr       r3, r31
+	              lwz      r12, 0(r31)
+	              lwz      r12, 0x1c(r12)
+	              mtctr    r12
+	              bctrl
+	              clrlwi.  r0, r3, 0x18
+	              bne      lbl_8018D8E8
+	              mr       r3, r31
+	              lwz      r12, 0(r31)
+	              lwz      r12, 0x18(r12)
+	              mtctr    r12
+	              bctrl
+	              clrlwi.  r0, r3, 0x18
+	              beq      lbl_8018D8F0
+	          
+	          lbl_8018D8E8:
+	              li       r3, 1
+	              b        lbl_8018D8F4
+	          
+	          lbl_8018D8F0:
+	              li       r3, 0
+	          
+	          lbl_8018D8F4:
+	              lwz      r0, 0x14(r1)
+	              lwz      r31, 0xc(r1)
+	              mtlr     r0
+	              addi     r1, r1, 0x10
+	              blr
+	              */
 }
 
 /*
@@ -7397,7 +4565,7 @@ void PikiWaterHangedState::onKeyEvent(SysShape::KeyEvent const&) { }
  * Address:	8018D90C
  * Size:	0000C4
  */
-void PikiWaterHangedState::init(Game::Piki*, Game::StateArg*)
+void PikiWaterHangedState::init(Piki* piki, StateArg* stateArg)
 {
 	/*
 	stwu     r1, -0x10(r1)
@@ -7463,7 +4631,7 @@ lbl_8018D964:
  * Address:	8018D9D0
  * Size:	0000A8
  */
-void PikiWaterHangedState::exec(Game::Piki*)
+void PikiWaterHangedState::exec(Piki* piki)
 {
 	/*
 	stwu     r1, -0x20(r1)
@@ -7522,7 +4690,7 @@ lbl_8018DA5C:
  * Address:	8018DA78
  * Size:	000034
  */
-void PikiWaterHangedState::cleanup(Game::Piki*)
+void PikiWaterHangedState::cleanup(Piki* piki)
 {
 	/*
 	stwu     r1, -0x10(r1)
@@ -7546,43 +4714,44 @@ void PikiWaterHangedState::cleanup(Game::Piki*)
  * Address:	8018DAAC
  * Size:	00006C
  */
-void PikiWaterHangedState::ignoreAtari(Game::Piki*, Game::Creature*)
+bool PikiWaterHangedState::ignoreAtari(Piki* piki, Game::Creature*)
 {
-	/*
-	stwu     r1, -0x10(r1)
-	mflr     r0
-	stw      r0, 0x14(r1)
-	stw      r31, 0xc(r1)
-	mr       r31, r5
-	mr       r3, r31
-	lwz      r12, 0(r31)
-	lwz      r12, 0x1c(r12)
-	mtctr    r12
-	bctrl
-	clrlwi.  r0, r3, 0x18
-	bne      lbl_8018DAF8
-	mr       r3, r31
-	lwz      r12, 0(r31)
-	lwz      r12, 0x18(r12)
-	mtctr    r12
-	bctrl
-	clrlwi.  r0, r3, 0x18
-	beq      lbl_8018DB00
-
-lbl_8018DAF8:
-	li       r3, 1
-	b        lbl_8018DB04
-
-lbl_8018DB00:
-	li       r3, 0
-
-lbl_8018DB04:
-	lwz      r0, 0x14(r1)
-	lwz      r31, 0xc(r1)
-	mtlr     r0
-	addi     r1, r1, 0x10
-	blr
-	*/
+	return false; // fake
+	              /*
+	              stwu     r1, -0x10(r1)
+	              mflr     r0
+	              stw      r0, 0x14(r1)
+	              stw      r31, 0xc(r1)
+	              mr       r31, r5
+	              mr       r3, r31
+	              lwz      r12, 0(r31)
+	              lwz      r12, 0x1c(r12)
+	              mtctr    r12
+	              bctrl
+	              clrlwi.  r0, r3, 0x18
+	              bne      lbl_8018DAF8
+	              mr       r3, r31
+	              lwz      r12, 0(r31)
+	              lwz      r12, 0x18(r12)
+	              mtctr    r12
+	              bctrl
+	              clrlwi.  r0, r3, 0x18
+	              beq      lbl_8018DB00
+	          
+	          lbl_8018DAF8:
+	              li       r3, 1
+	              b        lbl_8018DB04
+	          
+	          lbl_8018DB00:
+	              li       r3, 0
+	          
+	          lbl_8018DB04:
+	              lwz      r0, 0x14(r1)
+	              lwz      r31, 0xc(r1)
+	              mtlr     r0
+	              addi     r1, r1, 0x10
+	              blr
+	              */
 }
 
 /*
@@ -7590,7 +4759,7 @@ lbl_8018DB04:
  * Address:	8018DB18
  * Size:	000070
  */
-void PikiHipDropState::init(Game::Piki*, Game::StateArg*)
+void PikiHipDropState::init(Piki* piki, StateArg* stateArg)
 {
 	/*
 	stwu     r1, -0x10(r1)
@@ -7629,7 +4798,7 @@ void PikiHipDropState::init(Game::Piki*, Game::StateArg*)
  * Address:	8018DB88
  * Size:	0003C8
  */
-void PikiHipDropState::exec(Game::Piki*)
+void PikiHipDropState::exec(Piki* piki)
 {
 	/*
 	stwu     r1, -0x120(r1)
@@ -7904,7 +5073,7 @@ lbl_8018DF00:
  * Address:	8018DF50
  * Size:	000038
  */
-void PikiHipDropState::cleanup(Game::Piki*)
+void PikiHipDropState::cleanup(Piki* piki)
 {
 	/*
 	stwu     r1, -0x10(r1)
@@ -7929,14 +5098,14 @@ void PikiHipDropState::cleanup(Game::Piki*)
  * Address:	8018DF88
  * Size:	000004
  */
-void PikiHipDropState::onKeyEvent(Game::Piki*, SysShape::KeyEvent const&) { }
+void PikiHipDropState::onKeyEvent(Piki* piki, SysShape::KeyEvent const&) { }
 
 /*
  * --INFO--
  * Address:	8018DF8C
  * Size:	00002C
  */
-void PikiHipDropState::bounceCallback(Game::Piki*, Sys::Triangle*)
+void PikiHipDropState::bounceCallback(Piki* piki, Sys::Triangle*)
 {
 	/*
 	stwu     r1, -0x10(r1)
@@ -7960,7 +5129,7 @@ lbl_8018DFA8:
  * Address:	8018DFB8
  * Size:	0002E0
  */
-void PikiHipDropState::collisionCallback(Game::Piki*, Game::CollEvent&)
+void PikiHipDropState::collisionCallback(Piki* piki, Game::CollEvent&)
 {
 	/*
 	stwu     r1, -0x70(r1)
@@ -8165,7 +5334,7 @@ lbl_8018E278:
  * Address:	8018E298
  * Size:	00002C
  */
-void PikiHipDropState::platCallback(Game::Piki*, Game::PlatEvent&)
+void PikiHipDropState::platCallback(Piki* piki, Game::PlatEvent&)
 {
 	/*
 	stwu     r1, -0x10(r1)
@@ -8189,7 +5358,7 @@ lbl_8018E2B4:
  * Address:	8018E2C4
  * Size:	0000BC
  */
-void PikiHipDropState::dosin(Game::Piki*)
+void PikiHipDropState::dosin(Piki* piki)
 {
 	/*
 	stwu     r1, -0x30(r1)
@@ -8247,7 +5416,7 @@ void PikiHipDropState::dosin(Game::Piki*)
  * Address:	8018E380
  * Size:	000108
  */
-void PikiHipDropState::earthquake(Game::Piki*)
+void PikiHipDropState::earthquake(Piki* piki)
 {
 	/*
 	stwu     r1, -0xc0(r1)
@@ -8328,7 +5497,7 @@ lbl_8018E454:
  * Address:	8018E488
  * Size:	000088
  */
-void PikiFallMeckState::init(Game::Piki*, Game::StateArg*)
+void PikiFallMeckState::init(Piki* piki, StateArg* stateArg)
 {
 	/*
 	stwu     r1, -0x20(r1)
@@ -8377,7 +5546,7 @@ lbl_8018E4F4:
  * Address:	8018E510
  * Size:	000038
  */
-void PikiFallMeckState::exec(Game::Piki*)
+void PikiFallMeckState::exec(Piki* piki)
 {
 	/*
 	stwu     r1, -0x10(r1)
@@ -8404,21 +5573,21 @@ lbl_8018E538:
  * Address:	8018E548
  * Size:	000004
  */
-void PikiFallMeckState::cleanup(Game::Piki*) { }
+void PikiFallMeckState::cleanup(Piki* piki) { }
 
 /*
  * --INFO--
  * Address:	8018E54C
  * Size:	000004
  */
-void PikiFallMeckState::collisionCallback(Game::Piki*, Game::CollEvent&) { }
+void PikiFallMeckState::collisionCallback(Piki* piki, Game::CollEvent&) { }
 
 /*
  * --INFO--
  * Address:	8018E550
  * Size:	000034
  */
-void PikiFallMeckState::platCallback(Game::Piki*, Game::PlatEvent&)
+void PikiFallMeckState::platCallback(Piki* piki, Game::PlatEvent&)
 {
 	/*
 	stwu     r1, -0x10(r1)
@@ -8437,22 +5606,22 @@ void PikiFallMeckState::platCallback(Game::Piki*, Game::PlatEvent&)
 	*/
 }
 
-/*
- * --INFO--
- * Address:	........
- * Size:	000284
- */
-void PikiFallMeckState::becomePikihead(Game::Piki*)
-{
-	// UNUSED FUNCTION
-}
+// /*
+//  * --INFO--
+//  * Address:	........
+//  * Size:	000284
+//  */
+// void PikiFallMeckState::becomePikihead(Piki* piki)
+// {
+// 	// UNUSED FUNCTION
+// }
 
 /*
  * --INFO--
  * Address:	8018E584
  * Size:	00054C
  */
-void PikiFallMeckState::bounceCallback(Game::Piki*, Sys::Triangle*)
+void PikiFallMeckState::bounceCallback(Piki* piki, Sys::Triangle*)
 {
 	/*
 	stwu     r1, -0x100(r1)
@@ -8832,7 +6001,7 @@ lbl_8018EAB4:
  * Address:	8018EAD0
  * Size:	0000A0
  */
-void PikiSuikomiState::init(Game::Piki*, Game::StateArg*)
+void PikiSuikomiState::init(Piki* piki, StateArg* stateArg)
 {
 	/*
 	stwu     r1, -0x20(r1)
@@ -8885,7 +6054,7 @@ lbl_8018EB14:
  * Address:	8018EB70
  * Size:	0000EC
  */
-void PikiSuikomiState::exec(Game::Piki*)
+void PikiSuikomiState::exec(Piki* piki)
 {
 	/*
 	stwu     r1, -0x10(r1)
@@ -8963,7 +6132,7 @@ lbl_8018EC44:
  * Address:	8018EC5C
  * Size:	0001FC
  */
-void PikiSuikomiState::execMouth(Game::Piki*)
+void PikiSuikomiState::execMouth(Piki* piki)
 {
 	/*
 	stwu     r1, -0x70(r1)
@@ -9121,7 +6290,7 @@ lbl_8018EE28:
  * Address:	8018EE58
  * Size:	000038
  */
-void PikiSuikomiState::onKeyEvent(Game::Piki*, SysShape::KeyEvent const&)
+void PikiSuikomiState::onKeyEvent(Piki* piki, SysShape::KeyEvent const&)
 {
 	/*
 	stwu     r1, -0x10(r1)
@@ -9148,7 +6317,7 @@ lbl_8018EE80:
  * Address:	8018EE90
  * Size:	000108
  */
-void PikiSuikomiState::execString(Game::Piki*)
+void PikiSuikomiState::execString(Piki* piki)
 {
 	/*
 	stwu     r1, -0x40(r1)
@@ -9227,15 +6396,16 @@ lbl_8018EF80:
  * Address:	8018EF98
  * Size:	000014
  */
-void PikiSuikomiState::ignoreAtari(Game::Piki*, Game::Creature*)
+bool PikiSuikomiState::ignoreAtari(Piki* piki, Game::Creature*)
 {
-	/*
-	lwz      r0, 0x14(r3)
-	subf     r0, r0, r5
-	cntlzw   r0, r0
-	rlwinm   r3, r0, 0x1b, 0x18, 0x1f
-	blr
-	*/
+	return false; // fake
+	              /*
+	              lwz      r0, 0x14(r3)
+	              subf     r0, r0, r5
+	              cntlzw   r0, r0
+	              rlwinm   r3, r0, 0x1b, 0x18, 0x1f
+	              blr
+	              */
 }
 
 /*
@@ -9243,7 +6413,7 @@ void PikiSuikomiState::ignoreAtari(Game::Piki*, Game::Creature*)
  * Address:	8018EFAC
  * Size:	0001C0
  */
-void PikiSuikomiState::execStomach(Game::Piki*)
+void PikiSuikomiState::execStomach(Piki* piki)
 {
 	/*
 	stwu     r1, -0x40(r1)
@@ -9378,7 +6548,7 @@ lbl_8018F14C:
  * Address:	8018F16C
  * Size:	000048
  */
-void PikiSuikomiState::cleanup(Game::Piki*)
+void PikiSuikomiState::cleanup(Piki* piki)
 {
 	/*
 	stwu     r1, -0x10(r1)
@@ -9421,7 +6591,7 @@ void PikiFlyingState::restartEffect(void) { }
  * Address:	8018F1BC
  * Size:	000124
  */
-void PikiFlyingState::init(Game::Piki*, Game::StateArg*)
+void PikiFlyingState::init(Piki* piki, StateArg* stateArg)
 {
 	/*
 	stwu     r1, -0x10(r1)
@@ -9511,7 +6681,7 @@ lbl_8018F2C8:
  * Address:	8018F2E0
  * Size:	000074
  */
-void PikiFlyingState::bounceCallback(Game::Piki*, Sys::Triangle*)
+void PikiFlyingState::bounceCallback(Piki* piki, Sys::Triangle*)
 {
 	/*
 	stwu     r1, -0x10(r1)
@@ -9553,7 +6723,7 @@ lbl_8018F32C:
  * Address:	8018F354
  * Size:	000328
  */
-void PikiFlyingState::collisionCallback(Game::Piki*, Game::CollEvent&)
+void PikiFlyingState::collisionCallback(Piki* piki, Game::CollEvent&)
 {
 	/*
 	stwu     r1, -0x70(r1)
@@ -9782,43 +6952,44 @@ lbl_8018F668:
  * Address:	8018F67C
  * Size:	00006C
  */
-void PikiFlyingState::ignoreAtari(Game::Piki*, Game::Creature*)
+bool PikiFlyingState::ignoreAtari(Piki* piki, Game::Creature*)
 {
-	/*
-	stwu     r1, -0x10(r1)
-	mflr     r0
-	stw      r0, 0x14(r1)
-	stw      r31, 0xc(r1)
-	mr       r31, r5
-	mr       r3, r31
-	lwz      r12, 0(r31)
-	lwz      r12, 0x1c(r12)
-	mtctr    r12
-	bctrl
-	clrlwi.  r0, r3, 0x18
-	bne      lbl_8018F6C8
-	mr       r3, r31
-	lwz      r12, 0(r31)
-	lwz      r12, 0x18(r12)
-	mtctr    r12
-	bctrl
-	clrlwi.  r0, r3, 0x18
-	beq      lbl_8018F6D0
-
-lbl_8018F6C8:
-	li       r3, 1
-	b        lbl_8018F6D4
-
-lbl_8018F6D0:
-	li       r3, 0
-
-lbl_8018F6D4:
-	lwz      r0, 0x14(r1)
-	lwz      r31, 0xc(r1)
-	mtlr     r0
-	addi     r1, r1, 0x10
-	blr
-	*/
+	return false; // fake
+	              /*
+	              stwu     r1, -0x10(r1)
+	              mflr     r0
+	              stw      r0, 0x14(r1)
+	              stw      r31, 0xc(r1)
+	              mr       r31, r5
+	              mr       r3, r31
+	              lwz      r12, 0(r31)
+	              lwz      r12, 0x1c(r12)
+	              mtctr    r12
+	              bctrl
+	              clrlwi.  r0, r3, 0x18
+	              bne      lbl_8018F6C8
+	              mr       r3, r31
+	              lwz      r12, 0(r31)
+	              lwz      r12, 0x18(r12)
+	              mtctr    r12
+	              bctrl
+	              clrlwi.  r0, r3, 0x18
+	              beq      lbl_8018F6D0
+	          
+	          lbl_8018F6C8:
+	              li       r3, 1
+	              b        lbl_8018F6D4
+	          
+	          lbl_8018F6D0:
+	              li       r3, 0
+	          
+	          lbl_8018F6D4:
+	              lwz      r0, 0x14(r1)
+	              lwz      r31, 0xc(r1)
+	              mtlr     r0
+	              addi     r1, r1, 0x10
+	              blr
+	              */
 }
 
 /*
@@ -9826,7 +6997,7 @@ lbl_8018F6D4:
  * Address:	8018F6E8
  * Size:	0003CC
  */
-void PikiFlyingState::exec(Game::Piki*)
+void PikiFlyingState::exec(Piki* piki)
 {
 	/*
 	stwu     r1, -0x60(r1)
@@ -10110,7 +7281,7 @@ lbl_8018FA7C:
  * Address:	8018FAB4
  * Size:	000068
  */
-void PikiFlyingState::cleanup(Game::Piki*)
+void PikiFlyingState::cleanup(Piki* piki)
 {
 	/*
 	stwu     r1, -0x10(r1)
@@ -10147,7 +7318,7 @@ void PikiFlyingState::cleanup(Game::Piki*)
  * Address:	8018FB1C
  * Size:	000170
  */
-void PikiFlickState::init(Game::Piki*, Game::StateArg*)
+void PikiFlickState::init(Piki* piki, StateArg* stateArg)
 {
 	/*
 	stwu     r1, -0x40(r1)
@@ -10252,7 +7423,7 @@ lbl_8018FC3C:
  * Address:	8018FC8C
  * Size:	000018
  */
-void PikiFlickState::onFlute(Game::Piki*, Game::Navi*)
+void PikiFlickState::onFlute(Piki* piki, Game::Navi*)
 {
 	/*
 	lfs      f0, lbl_80518DE0@sda21(r2)
@@ -10269,7 +7440,7 @@ void PikiFlickState::onFlute(Game::Piki*, Game::Navi*)
  * Address:	8018FCA4
  * Size:	000208
  */
-void PikiFlickState::exec(Game::Piki*)
+void PikiFlickState::exec(Piki* piki)
 {
 	/*
 	stwu     r1, -0x30(r1)
@@ -10520,7 +7691,7 @@ lbl_8018FFA8:
  * Address:	8018FFD0
  * Size:	0000AC
  */
-void PikiFlickState::cleanup(Game::Piki*)
+void PikiFlickState::cleanup(Piki* piki)
 {
 	/*
 	stwu     r1, -0x20(r1)
@@ -10576,7 +7747,7 @@ lbl_80190064:
  * Address:	8019007C
  * Size:	0001A4
  */
-void PikiBlowState::init(Game::Piki*, Game::StateArg*)
+void PikiBlowState::init(Piki* piki, StateArg* stateArg)
 {
 	/*
 	stwu     r1, -0x20(r1)
@@ -10704,7 +7875,7 @@ lbl_80190208:
  * Address:	80190220
  * Size:	000140
  */
-void PikiBlowState::exec(Game::Piki*)
+void PikiBlowState::exec(Piki* piki)
 {
 	/*
 	stwu     r1, -0x10(r1)
@@ -10807,14 +7978,14 @@ lbl_80190348:
  * Address:	80190360
  * Size:	000004
  */
-void PikiBlowState::cleanup(Game::Piki*) { }
+void PikiBlowState::cleanup(Piki* piki) { }
 
 /*
  * --INFO--
  * Address:	80190364
  * Size:	000064
  */
-void PikiBlowState::onKeyEvent(Game::Piki*, SysShape::KeyEvent const&)
+void PikiBlowState::onKeyEvent(Piki* piki, SysShape::KeyEvent const&)
 {
 	/*
 	stwu     r1, -0x10(r1)
@@ -10852,7 +8023,7 @@ lbl_801903B8:
  * Address:	801903C8
  * Size:	000010
  */
-void PikiBlowState::onFlute(Game::Piki*, Game::Navi*)
+void PikiBlowState::onFlute(Piki* piki, Game::Navi*)
 {
 	/*
 	li       r0, 1
@@ -10867,7 +8038,7 @@ void PikiBlowState::onFlute(Game::Piki*, Game::Navi*)
  * Address:	801903D8
  * Size:	000168
  */
-void PikiBlowState::bounceCallback(Game::Piki*, Sys::Triangle*)
+void PikiBlowState::bounceCallback(Piki* piki, Sys::Triangle*)
 {
 	/*
 	stwu     r1, -0x20(r1)
@@ -10978,7 +8149,7 @@ lbl_80190528:
  * Address:	80190540
  * Size:	00008C
  */
-void PikiKokeDamageState::init(Game::Piki*, Game::StateArg*)
+void PikiKokeDamageState::init(Piki* piki, StateArg* stateArg)
 {
 	/*
 	stwu     r1, -0x10(r1)
@@ -11030,7 +8201,7 @@ lbl_80190590:
  * Address:	801905CC
  * Size:	00015C
  */
-void PikiKokeDamageState::exec(Game::Piki*)
+void PikiKokeDamageState::exec(Piki* piki)
 {
 	/*
 	stwu     r1, -0x20(r1)
@@ -11138,7 +8309,7 @@ lbl_80190710:
  * Address:	80190728
  * Size:	00001C
  */
-void PikiKokeDamageState::onFlute(Game::Piki*, Game::Navi*)
+void PikiKokeDamageState::onFlute(Piki* piki, Game::Navi*)
 {
 	/*
 	lhz      r0, 0x14(r3)
@@ -11156,7 +8327,7 @@ void PikiKokeDamageState::onFlute(Game::Piki*, Game::Navi*)
  * Address:	80190744
  * Size:	0000E8
  */
-void PikiKokeDamageState::cleanup(Game::Piki*)
+void PikiKokeDamageState::cleanup(Piki* piki)
 {
 	/*
 	stwu     r1, -0x20(r1)
@@ -11231,7 +8402,7 @@ lbl_80190814:
  * Address:	8019082C
  * Size:	000060
  */
-void PikiKokeDamageState::onKeyEvent(Game::Piki*, SysShape::KeyEvent const&)
+void PikiKokeDamageState::onKeyEvent(Piki* piki, SysShape::KeyEvent const&)
 {
 	/*
 	stwu     r1, -0x10(r1)
@@ -11270,7 +8441,7 @@ lbl_8019087C:
  * Address:	8019088C
  * Size:	000120
  */
-void PikiKokeState::init(Game::Piki*, Game::StateArg*)
+void PikiKokeState::init(Piki* piki, StateArg* stateArg)
 {
 	/*
 	stwu     r1, -0x20(r1)
@@ -11361,10 +8532,10 @@ lbl_80190950:
  * Address:	801909AC
  * Size:	00000C
  */
-void PikiKokeState::onFlute(Game::Piki*, Game::Navi*)
+void PikiKokeState::onFlute(Piki* piki, Game::Navi*)
 {
 	// Generated from stb r0, 0x10(r3)
-	_10 = 0;
+	// _10 = 0;
 }
 
 /*
@@ -11372,7 +8543,7 @@ void PikiKokeState::onFlute(Game::Piki*, Game::Navi*)
  * Address:	801909B8
  * Size:	000094
  */
-void PikiKokeState::exec(Game::Piki*)
+void PikiKokeState::exec(Piki* piki)
 {
 	/*
 	stwu     r1, -0x10(r1)
@@ -11426,7 +8597,7 @@ lbl_80190A10:
  * Address:	80190A4C
  * Size:	0000F0
  */
-void PikiKokeState::onKeyEvent(Game::Piki*, SysShape::KeyEvent const&)
+void PikiKokeState::onKeyEvent(Piki* piki, SysShape::KeyEvent const&)
 {
 	/*
 	stwu     r1, -0x10(r1)
@@ -11511,14 +8682,14 @@ lbl_80190B2C:
  * Address:	80190B3C
  * Size:	000004
  */
-void PikiKokeState::cleanup(Game::Piki*) { }
+void PikiKokeState::cleanup(Piki* piki) { }
 
 /*
  * --INFO--
  * Address:	80190B40
  * Size:	000200
  */
-void PikiDrownState::init(Game::Piki*, Game::StateArg*)
+void PikiDrownState::init(Piki* piki, StateArg* stateArg)
 {
 	/*
 	stwu     r1, -0x20(r1)
@@ -11677,28 +8848,29 @@ lbl_80190D28:
  * Address:	80190D40
  * Size:	000040
  */
-void PikiDrownState::soft_transittable(int)
+bool PikiDrownState::soft_transittable(int)
 {
-	/*
-	addi     r5, r4, -19
-	li       r3, 1
-	subfic   r0, r5, 1
-	orc      r5, r3, r5
-	mr       r6, r3
-	srwi     r0, r0, 1
-	subf     r0, r0, r5
-	rlwinm.  r0, r0, 1, 0x1f, 0x1f
-	bne      lbl_80190D68
-	li       r6, 0
-
-lbl_80190D68:
-	clrlwi.  r0, r6, 0x18
-	bnelr
-	cmpwi    r4, 5
-	beqlr
-	li       r3, 0
-	blr
-	*/
+	return false; // fake
+	              /*
+	              addi     r5, r4, -19
+	              li       r3, 1
+	              subfic   r0, r5, 1
+	              orc      r5, r3, r5
+	              mr       r6, r3
+	              srwi     r0, r0, 1
+	              subf     r0, r0, r5
+	              rlwinm.  r0, r0, 1, 0x1f, 0x1f
+	              bne      lbl_80190D68
+	              li       r6, 0
+	          
+	          lbl_80190D68:
+	              clrlwi.  r0, r6, 0x18
+	              bnelr
+	              cmpwi    r4, 5
+	              beqlr
+	              li       r3, 0
+	              blr
+	              */
 }
 
 /*
@@ -11706,7 +8878,7 @@ lbl_80190D68:
  * Address:	80190D80
  * Size:	000010
  */
-void PikiDrownState::onFlute(Game::Piki*, Game::Navi*)
+void PikiDrownState::onFlute(Piki* piki, Game::Navi*)
 {
 	/*
 	stw      r5, 0x20(r3)
@@ -11721,10 +8893,10 @@ void PikiDrownState::onFlute(Game::Piki*, Game::Navi*)
  * Address:	80190D90
  * Size:	00000C
  */
-void PikiDrownState::outWaterCallback(Game::Piki*)
+void PikiDrownState::outWaterCallback(Piki* piki)
 {
 	// Generated from stb r0, 0x1C(r3)
-	_1C = 1;
+	// _1C = 1;
 }
 
 /*
@@ -11732,7 +8904,7 @@ void PikiDrownState::outWaterCallback(Game::Piki*)
  * Address:	80190D9C
  * Size:	00074C
  */
-void PikiDrownState::exec(Game::Piki*)
+void PikiDrownState::exec(Piki* piki)
 {
 	/*
 	stwu     r1, -0xe0(r1)
@@ -12282,14 +9454,14 @@ lbl_801914BC:
  * Address:	801914E8
  * Size:	000004
  */
-void PikiDrownState::cleanup(Game::Piki*) { }
+void PikiDrownState::cleanup(Piki* piki) { }
 
 /*
  * --INFO--
  * Address:	801914EC
  * Size:	000120
  */
-void PikiDrownState::onKeyEvent(Game::Piki*, SysShape::KeyEvent const&)
+void PikiDrownState::onKeyEvent(Piki* piki, SysShape::KeyEvent const&)
 {
 	/*
 	stwu     r1, -0x10(r1)
@@ -12388,7 +9560,7 @@ lbl_801915F8:
  * Address:	8019160C
  * Size:	000358
  */
-void PikiEmotionState::init(Game::Piki*, Game::StateArg*)
+void PikiEmotionState::init(Piki* piki, StateArg* stateArg)
 {
 	/*
 	stwu     r1, -0x70(r1)
@@ -12655,22 +9827,22 @@ lbl_80191944:
 	*/
 }
 
-/*
- * --INFO--
- * Address:	........
- * Size:	000004
- */
-void PikiEmotionState::doDump(void)
-{
-	// UNUSED FUNCTION
-}
+// /*
+//  * --INFO--
+//  * Address:	........
+//  * Size:	000004
+//  */
+// void PikiEmotionState::doDump(void)
+// {
+// 	// UNUSED FUNCTION
+// }
 
 /*
  * --INFO--
  * Address:	80191964
  * Size:	0000A8
  */
-void PikiEmotionState::exec(Game::Piki*)
+void PikiEmotionState::exec(Piki* piki)
 {
 	/*
 	stwu     r1, -0x10(r1)
@@ -12727,14 +9899,14 @@ lbl_801919F4:
  * Address:	80191A0C
  * Size:	000004
  */
-void PikiEmotionState::cleanup(Game::Piki*) { }
+void PikiEmotionState::cleanup(Piki* piki) { }
 
 /*
  * --INFO--
  * Address:	80191A10
  * Size:	0000C0
  */
-void PikiEmotionState::onKeyEvent(Game::Piki*, SysShape::KeyEvent const&)
+void PikiEmotionState::onKeyEvent(Piki* piki, SysShape::KeyEvent const&)
 {
 	/*
 	stwu     r1, -0x10(r1)
@@ -12803,7 +9975,7 @@ lbl_80191AC0:
  * Address:	80191AD0
  * Size:	000170
  */
-void PikiAbsorbState::init(Game::Piki*, Game::StateArg*)
+void PikiAbsorbState::init(Piki* piki, StateArg* stateArg)
 {
 	/*
 	stwu     r1, -0x30(r1)
@@ -12914,7 +10086,7 @@ lbl_80191BF4:
  * Address:	80191C40
  * Size:	000154
  */
-void PikiAbsorbState::exec(Game::Piki*)
+void PikiAbsorbState::exec(Piki* piki)
 {
 	/*
 	stwu     r1, -0x20(r1)
@@ -13018,7 +10190,7 @@ lbl_80191D7C:
  * Address:	80191D94
  * Size:	00012C
  */
-void PikiAbsorbState::onKeyEvent(Game::Piki*, SysShape::KeyEvent const&)
+void PikiAbsorbState::onKeyEvent(Piki* piki, SysShape::KeyEvent const&)
 {
 	/*
 	stwu     r1, -0x20(r1)
@@ -13120,14 +10292,14 @@ lbl_80191EA4:
  * Address:	80191EC0
  * Size:	000004
  */
-void PikiAbsorbState::cleanup(Game::Piki*) { }
+void PikiAbsorbState::cleanup(Piki* piki) { }
 
 /*
  * --INFO--
  * Address:	80191EC4
  * Size:	0000E0
  */
-void PikiGrowupState::init(Game::Piki*, Game::StateArg*)
+void PikiGrowupState::init(Piki* piki, StateArg* stateArg)
 {
 	/*
 	stwu     r1, -0x20(r1)
@@ -13202,7 +10374,7 @@ lbl_80191F8C:
  * Address:	80191FA4
  * Size:	000078
  */
-void PikiGrowupState::exec(Game::Piki*)
+void PikiGrowupState::exec(Piki* piki)
 {
 	/*
 	stwu     r1, -0x10(r1)
@@ -13245,7 +10417,7 @@ lbl_80192004:
  * Address:	8019201C
  * Size:	0001A0
  */
-void PikiGrowupState::onKeyEvent(Game::Piki*, SysShape::KeyEvent const&)
+void PikiGrowupState::onKeyEvent(Piki* piki, SysShape::KeyEvent const&)
 {
 	/*
 	stwu     r1, -0x50(r1)
@@ -13372,14 +10544,14 @@ lbl_801921A8:
  * Address:	801921BC
  * Size:	000004
  */
-void PikiGrowupState::cleanup(Game::Piki*) { }
+void PikiGrowupState::cleanup(Piki* piki) { }
 
 /*
  * --INFO--
  * Address:	801921C0
  * Size:	000020
  */
-void PikiEscapeState::init(Game::Piki*, Game::StateArg*)
+void PikiEscapeState::init(Piki* piki, StateArg* stateArg)
 {
 	/*
 	stwu     r1, -0x10(r1)
@@ -13398,7 +10570,7 @@ void PikiEscapeState::init(Game::Piki*, Game::StateArg*)
  * Address:	801921E0
  * Size:	000074
  */
-void PikiEscapeState::initRun(Game::Piki*)
+void PikiEscapeState::initRun(Piki* piki)
 {
 	/*
 	stwu     r1, -0x20(r1)
@@ -13437,32 +10609,32 @@ lbl_8019223C:
 	*/
 }
 
-/*
- * --INFO--
- * Address:	........
- * Size:	000120
- */
-void PikiEscapeState::initKoke(Game::Piki*)
-{
-	// UNUSED FUNCTION
-}
+// /*
+//  * --INFO--
+//  * Address:	........
+//  * Size:	000120
+//  */
+// void PikiEscapeState::initKoke(Piki* piki)
+// {
+// 	// UNUSED FUNCTION
+// }
 
-/*
- * --INFO--
- * Address:	........
- * Size:	000190
- */
-void PikiEscapeState::findTeki(Game::Piki*)
-{
-	// UNUSED FUNCTION
-}
+// /*
+//  * --INFO--
+//  * Address:	........
+//  * Size:	000190
+//  */
+// void PikiEscapeState::findTeki(Piki* piki)
+// {
+// 	// UNUSED FUNCTION
+// }
 
 /*
  * --INFO--
  * Address:	80192254
  * Size:	0005C8
  */
-void PikiEscapeState::exec(Game::Piki*)
+void PikiEscapeState::exec(Piki* piki)
 {
 	/*
 	stwu     r1, -0x120(r1)
@@ -13893,7 +11065,7 @@ lbl_801927E4:
  * Address:	8019281C
  * Size:	00017C
  */
-void PikiEscapeState::onKeyEvent(Game::Piki*, SysShape::KeyEvent const&)
+void PikiEscapeState::onKeyEvent(Piki* piki, SysShape::KeyEvent const&)
 {
 	/*
 	stwu     r1, -0x20(r1)
@@ -14025,91 +11197,56 @@ lbl_80192984:
  * Address:	80192998
  * Size:	000004
  */
-void PikiEscapeState::cleanup(Game::Piki*) { }
+void PikiEscapeState::cleanup(Piki* piki) { }
 
 /*
  * --INFO--
  * Address:	8019299C
  * Size:	000008
  */
-u32 PikiEscapeState::callable(void) { return 0x0; }
-
-/*
- * --INFO--
- * Address:	801929A4
- * Size:	000008
- */
-u32 PikiState::invincible(Game::Piki*) { return 0x0; }
-
-/*
- * --INFO--
- * Address:	801929AC
- * Size:	000008
- */
-u32 PikiState::dopable(void) { return 0x0; }
-
-/*
- * --INFO--
- * Address:	801929B4
- * Size:	000008
- */
-u32 PikiState::pressable(void) { return 0x1; }
-
-/*
- * --INFO--
- * Address:	801929BC
- * Size:	000004
- */
-void PikiState::onFlute(Game::Piki*, Game::Navi*) { }
-
-/*
- * --INFO--
- * Address:	801929C0
- * Size:	000008
- */
-u32 PikiState::callable(void) { return 0x0; }
+bool PikiEscapeState::callable(void) { return 0x0; }
 
 /*
  * --INFO--
  * Address:	801929C8
  * Size:	000008
  */
-u32 PikiEmotionState::callable(void) { return 0x1; }
+bool PikiEmotionState::callable(void) { return 0x1; }
 
 /*
  * --INFO--
  * Address:	801929D0
  * Size:	000008
  */
-u32 PikiKokeState::callable(void) { return 0x0; }
+bool PikiKokeState::callable(void) { return 0x0; }
 
 /*
  * --INFO--
  * Address:	801929D8
  * Size:	000008
  */
-u32 PikiKokeDamageState::callable(void) { return 0x0; }
+bool PikiKokeDamageState::callable(void) { return 0x0; }
 
 /*
  * --INFO--
  * Address:	801929E0
  * Size:	000008
  */
-u32 PikiBlowState::pressable(void) { return 0x0; }
+bool PikiBlowState::pressable(void) { return 0x0; }
 
 /*
  * --INFO--
  * Address:	801929E8
  * Size:	000008
  */
-u32 PikiBlowState::callable(void) { return 0x0; }
+bool PikiBlowState::callable(void) { return 0x0; }
 
 /*
  * --INFO--
  * Address:	801929F0
  * Size:	000008
  */
-u32 PikiFlickState::callable(void) { return 0x0; }
+bool PikiFlickState::callable(void) { return 0x0; }
 
 } // namespace Game
 
@@ -14118,7 +11255,7 @@ u32 PikiFlickState::callable(void) { return 0x0; }
  * Address:	801929F8
  * Size:	00000C
  */
-void PikiAI::ActCropArg::getName(void)
+char* PikiAI::ActCropArg::getName(void)
 {
 	/*
 	lis      r3, lbl_8047EE18@ha
@@ -14134,268 +11271,266 @@ namespace Game {
  * Address:	80192A04
  * Size:	000008
  */
-u32 PikiFlyingState::callable(void) { return 0x0; }
+bool PikiFlyingState::callable(void) { return 0x0; }
 
 /*
  * --INFO--
  * Address:	80192A0C
  * Size:	000008
  */
-u32 PikiSuikomiState::pressable(void) { return 0x0; }
+bool PikiSuikomiState::pressable(void) { return 0x0; }
 
 /*
  * --INFO--
  * Address:	80192A14
  * Size:	000008
  */
-u32 PikiFallMeckState::pressable(void) { return 0x0; }
+bool PikiFallMeckState::pressable(void) { return 0x0; }
 
 /*
  * --INFO--
  * Address:	80192A1C
  * Size:	000008
  */
-u32 PikiWaterHangedState::throwable(void) { return 0x1; }
+bool PikiWaterHangedState::throwable(void) { return 0x1; }
 
 /*
  * --INFO--
  * Address:	80192A24
  * Size:	000008
  */
-u32 PikiHangedState::throwable(void) { return 0x1; }
+bool PikiHangedState::throwable(void) { return 0x1; }
 
 /*
  * --INFO--
  * Address:	80192A2C
  * Size:	000008
  */
-u32 PikiGoHangState::callable(void) { return 0x1; }
+bool PikiGoHangState::callable(void) { return 0x1; }
 
 /*
  * --INFO--
  * Address:	80192A34
  * Size:	000008
  */
-u32 PikiGoHangState::throwable(void) { return 0x1; }
+bool PikiGoHangState::throwable(void) { return 0x1; }
 
 /*
  * --INFO--
  * Address:	80192A3C
  * Size:	000008
  */
-u32 PikiAutoNukiState::callable(void) { return 0x0; }
+bool PikiAutoNukiState::callable(void) { return 0x0; }
 
 /*
  * --INFO--
  * Address:	80192A44
  * Size:	000008
  */
-u32 PikiLookAtState::callable(void) { return 0x0; }
+bool PikiLookAtState::callable(void) { return 0x0; }
 
 /*
  * --INFO--
  * Address:	80192A4C
  * Size:	000008
  */
-u32 PikiPressedState::pressable(void) { return 0x0; }
+bool PikiPressedState::pressable(void) { return 0x0; }
 
 /*
  * --INFO--
  * Address:	80192A54
  * Size:	000008
  */
-u32 PikiPressedState::dead(void) { return 0x1; }
+bool PikiPressedState::dead(void) { return 0x1; }
 
 /*
  * --INFO--
  * Address:	80192A5C
  * Size:	000008
  */
-u32 PikiDenkiDyingState::pressable(void) { return 0x0; }
+bool PikiDenkiDyingState::pressable(void) { return 0x0; }
 
 /*
  * --INFO--
  * Address:	80192A64
  * Size:	000008
  */
-u32 PikiDenkiDyingState::dead(void) { return 0x1; }
+bool PikiDenkiDyingState::dead(void) { return 0x1; }
 
 /*
  * --INFO--
  * Address:	80192A6C
  * Size:	000008
  */
-u32 PikiDyingState::pressable(void) { return 0x0; }
+bool PikiDyingState::pressable(void) { return 0x0; }
 
 /*
  * --INFO--
  * Address:	80192A74
  * Size:	000008
  */
-u32 PikiDyingState::dead(void) { return 0x1; }
+bool PikiDyingState::dead(void) { return 0x1; }
 
 /*
  * --INFO--
  * Address:	80192A7C
  * Size:	000008
  */
-u32 PikiDeadState::pressable(void) { return 0x0; }
+bool PikiDeadState::pressable(void) { return 0x0; }
 
 /*
  * --INFO--
  * Address:	80192A84
  * Size:	000008
  */
-u32 PikiDeadState::transittable(int) { return 0x0; }
+bool PikiDeadState::transittable(int) { return 0x0; }
 
 /*
  * --INFO--
  * Address:	80192A8C
  * Size:	000008
  */
-u32 PikiDeadState::dead(void) { return 0x1; }
+bool PikiDeadState::dead(void) { return 0x1; }
 
 /*
  * --INFO--
  * Address:	80192A94
  * Size:	000008
  */
-u32 PikiTaneState::callable(void) { return 0x0; }
+bool PikiTaneState::callable(void) { return 0x0; }
 
 /*
  * --INFO--
  * Address:	80192A9C
  * Size:	000008
  */
-u32 PikiFountainonState::callable(void) { return 0x0; }
+bool PikiFountainonState::callable(void) { return 0x0; }
 
 /*
  * --INFO--
  * Address:	80192AA4
  * Size:	000008
  */
-u32 PikiFountainonState::soft_transittable(int) { return 0x0; }
+bool PikiFountainonState::soft_transittable(int) { return 0x0; }
 
 /*
  * --INFO--
  * Address:	80192AAC
  * Size:	000008
  */
-u32 PikiFountainonState::invincible(Game::Piki*) { return 0x1; }
+bool PikiFountainonState::invincible(Piki* piki) { return 0x1; }
 
 /*
  * --INFO--
  * Address:	80192AB4
  * Size:	000008
  */
-u32 PikiHoleinState::callable(void) { return 0x0; }
+bool PikiHoleinState::callable(void) { return 0x0; }
 
 /*
  * --INFO--
  * Address:	80192ABC
  * Size:	000008
  */
-u32 PikiHoleinState::soft_transittable(int) { return 0x0; }
+bool PikiHoleinState::soft_transittable(int) { return 0x0; }
 
 /*
  * --INFO--
  * Address:	80192AC4
  * Size:	000008
  */
-u32 PikiHoleinState::invincible(Game::Piki*) { return 0x1; }
+bool PikiHoleinState::invincible(Piki* piki) { return 0x1; }
 
 /*
  * --INFO--
  * Address:	80192ACC
  * Size:	000008
  */
-u32 PikiSwallowedState::dead(void) { return 0x1; }
+bool PikiSwallowedState::dead(void) { return 0x1; }
 
 /*
  * --INFO--
  * Address:	80192AD4
  * Size:	000008
  */
-u32 PikiSwallowedState::ignoreAtari(Game::Piki*, Game::Creature*) { return 0x1; }
+bool PikiSwallowedState::ignoreAtari(Piki* piki, Game::Creature*) { return 0x1; }
 
 /*
  * --INFO--
  * Address:	80192ADC
  * Size:	000008
  */
-u32 PikiSwallowedState::callable(void) { return 0x0; }
+bool PikiSwallowedState::callable(void) { return 0x0; }
 
 /*
  * --INFO--
  * Address:	80192AE4
  * Size:	000008
  */
-u32 PikiDemoWaitState::invincible(Game::Piki*) { return 0x1; }
+bool PikiDemoWaitState::invincible(Piki* piki) { return 0x1; }
 
 /*
  * --INFO--
  * Address:	80192AEC
  * Size:	000008
  */
-u32 PikiWalkState::dopable(void) { return 0x1; }
+bool PikiWalkState::dopable(void) { return 0x1; }
 
 /*
  * --INFO--
  * Address:	80192AF4
  * Size:	000008
  */
-u32 PikiWalkState::aiActive(void) { return 0x1; }
+bool PikiWalkState::aiActive(void) { return 0x1; }
 
 /*
  * --INFO--
  * Address:	80192AFC
  * Size:	000008
  */
-u32 PikiWalkState::callable(void) { return 0x1; }
+bool PikiWalkState::callable(void) { return 0x1; }
 
 /*
  * --INFO--
  * Address:	80192B04
  * Size:	000008
  */
-u32 PikiWalkState::releasable(void) { return 0x1; }
+bool PikiWalkState::releasable(void) { return 0x1; }
 
 /*
  * --INFO--
  * Address:	80192B0C
  * Size:	000008
  */
-u32 PikiWalkState::battleOK(void) { return 0x1; }
+bool PikiWalkState::battleOK(void) { return 0x1; }
 
 /*
  * --INFO--
  * Address:	80192B14
  * Size:	000008
  */
-u32 PikiWalkState::throwable(void) { return 0x1; }
-
-} // namespace Game
+bool PikiWalkState::throwable(void) { return 0x1; }
 
 /*
  * --INFO--
  * Address:	80192B1C
  * Size:	000004
  */
-void resume__Q24Game22FSMState<Game::Piki> FPQ24Game4Piki(void) { }
+void FSMState<Piki>::resume(Piki*) { }
 
 /*
  * --INFO--
  * Address:	80192B20
  * Size:	000004
  */
-void restart__Q24Game22FSMState<Game::Piki> FPQ24Game4Piki(void) { }
+void FSMState<Piki>::restart(Piki*) { }
 
 /*
  * --INFO--
  * Address:	80192B24
  * Size:	000064
  */
-void create__Q24Game26StateMachine<Game::Piki> Fi(void)
+void StateMachine<Piki>::create(int)
 {
 	/*
 	stwu     r1, -0x10(r1)
@@ -14431,7 +11566,7 @@ void create__Q24Game26StateMachine<Game::Piki> Fi(void)
  * Address:	80192B88
  * Size:	000084
  */
-void registerState__Q24Game26StateMachine<Game::Piki> FPQ24Game22FSMState<Game::Piki>(void)
+void StateMachine<Piki>::registerState(Game::FSMState<Piki>*)
 {
 	/*
 	.loc_0x0:
@@ -14477,87 +11612,4 @@ void registerState__Q24Game26StateMachine<Game::Piki> FPQ24Game22FSMState<Game::
 	*/
 }
 
-/*
- * --INFO--
- * Address:	80192C0C
- * Size:	000028
- */
-void __sinit_pikiState_cpp(void)
-{
-	/*
-	lis      r4, __float_nan@ha
-	li       r0, -1
-	lfs      f0, __float_nan@l(r4)
-	lis      r3, lbl_804B37D0@ha
-	stw      r0, lbl_805159C0@sda21(r13)
-	stfsu    f0, lbl_804B37D0@l(r3)
-	stfs     f0, lbl_805159C4@sda21(r13)
-	stfs     f0, 4(r3)
-	stfs     f0, 8(r3)
-	blr
-	*/
-}
-
-/*
- * --INFO--
- * Address:	80192C34
- * Size:	000014
- */
-void @28 @4 @Game::PikiLookAtState::onKeyEvent(SysShape::KeyEvent const&)
-{
-	/*
-	li       r11, 4
-	lwzx     r11, r3, r11
-	add      r3, r3, r11
-	addi     r3, r3, -28
-	b        onKeyEvent__Q24Game15PikiLookAtStateFRCQ28SysShape8KeyEvent
-	*/
-}
-
-/*
- * --INFO--
- * Address:	80192C48
- * Size:	000014
- */
-void @20 @4 @Game::PikiHangedState::onKeyEvent(SysShape::KeyEvent const&)
-{
-	/*
-	li       r11, 4
-	lwzx     r11, r3, r11
-	add      r3, r3, r11
-	addi     r3, r3, -20
-	b        onKeyEvent__Q24Game15PikiHangedStateFRCQ28SysShape8KeyEvent
-	*/
-}
-
-/*
- * --INFO--
- * Address:	80192C5C
- * Size:	000014
- */
-void @24 @4 @Game::PikiWaterHangedState::onKeyEvent(SysShape::KeyEvent const&)
-{
-	/*
-	li       r11, 4
-	lwzx     r11, r3, r11
-	add      r3, r3, r11
-	addi     r3, r3, -24
-	b        onKeyEvent__Q24Game20PikiWaterHangedStateFRCQ28SysShape8KeyEvent
-	*/
-}
-
-/*
- * --INFO--
- * Address:	80192C70
- * Size:	000014
- */
-void @48 @4 @Game::PikiFlickState::onKeyEvent(SysShape::KeyEvent const&)
-{
-	/*
-	li       r11, 4
-	lwzx     r11, r3, r11
-	add      r3, r3, r11
-	addi     r3, r3, -48
-	b        onKeyEvent__Q24Game14PikiFlickStateFRCQ28SysShape8KeyEvent
-	*/
-}
+} // namespace Game

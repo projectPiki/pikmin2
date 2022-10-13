@@ -136,4 +136,11 @@ struct Matrixf {
 	// f32 m_matrix[3][4];
 };
 // sizeof is 48
+
+inline Matrixf concatMatrixf(Matrixf& mat1, Matrixf& mat2)
+{
+	Matrixf concatMtx;
+	PSMTXConcat(mat1.m_matrix.mtxView, mat2.m_matrix.mtxView, concatMtx.m_matrix.mtxView);
+	return concatMtx;
+}
 #endif
