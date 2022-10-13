@@ -2,8 +2,11 @@
 #include "Game/Entities/Imomushi.h"
 #include "Game/EnemyAnimKeyEvent.h"
 #include "Game/EnemyFunc.h"
+#include "Game/MapMgr.h"
 namespace Game {
 namespace Imomushi {
+
+const char statename[] = "246-ImomushiState";
 
 /*
  * --INFO--
@@ -13,6 +16,7 @@ namespace Imomushi {
 void FSM::init(EnemyBase* enemy)
 {
 	create(IMOMUSHI_Count);
+
 	registerState(new StateDead);
 	registerState(new StateFallDive);
 	registerState(new StateFallMove);
@@ -24,6 +28,7 @@ void FSM::init(EnemyBase* enemy)
 	registerState(new StateClimb);
 	registerState(new StateAttack);
 	registerState(new StateWait);
+	// zukan states
 	registerState(new StateZukanStay);
 	registerState(new StateZukanAppear);
 	registerState(new StateZukanMove);
@@ -36,28 +41,10 @@ void FSM::init(EnemyBase* enemy)
  */
 void StateDead::init(EnemyBase* enemy, StateArg* stateArg)
 {
-	/*
-	stwu     r1, -0x10(r1)
-	mflr     r0
-	stw      r0, 0x14(r1)
-	stw      r31, 0xc(r1)
-	mr       r31, r4
-	mr       r3, r31
-	bl       deathProcedure__Q24Game9EnemyBaseFv
-	lfs      f0, lbl_8051C378@sda21(r2)
-	mr       r3, r31
-	li       r4, 0
-	li       r5, 0
-	stfs     f0, 0x1d4(r31)
-	stfs     f0, 0x1d8(r31)
-	stfs     f0, 0x1dc(r31)
-	bl       startMotion__Q24Game9EnemyBaseFiPQ28SysShape14MotionListener
-	lwz      r0, 0x14(r1)
-	lwz      r31, 0xc(r1)
-	mtlr     r0
-	addi     r1, r1, 0x10
-	blr
-	*/
+	Obj* imomushi = static_cast<Obj*>(enemy);
+	imomushi->deathProcedure();
+	imomushi->m_velocity2 = 0.0f;
+	imomushi->startMotion(0, nullptr);
 }
 
 /*
@@ -65,29 +52,14 @@ void StateDead::init(EnemyBase* enemy, StateArg* stateArg)
  * Address:	802BA5FC
  * Size:	000044
  */
-void StateDead::exec(EnemyBase*)
+void StateDead::exec(EnemyBase* enemy)
 {
-	/*
-	stwu     r1, -0x10(r1)
-	mflr     r0
-	stw      r0, 0x14(r1)
-	lwz      r3, 0x188(r4)
-	lbz      r0, 0x24(r3)
-	cmplwi   r0, 0
-	beq      lbl_802BA630
-	lwz      r0, 0x1c(r3)
-	cmplwi   r0, 0x3e8
-	bne      lbl_802BA630
-	mr       r3, r4
-	li       r4, 0
-	bl       kill__Q24Game8CreatureFPQ24Game15CreatureKillArg
-
-lbl_802BA630:
-	lwz      r0, 0x14(r1)
-	mtlr     r0
-	addi     r1, r1, 0x10
-	blr
-	*/
+	Obj* imomushi = static_cast<Obj*>(enemy);
+	if (imomushi->m_animKeyEvent->m_running) {
+		if ((u32)imomushi->m_animKeyEvent->m_type == 1000) {
+			imomushi->kill(nullptr);
+		}
+	}
 }
 
 /*
@@ -95,36 +67,20 @@ lbl_802BA630:
  * Address:	802BA640
  * Size:	000004
  */
-void StateDead::cleanup(EnemyBase*) { }
+void StateDead::cleanup(EnemyBase* enemy) { }
 
 /*
  * --INFO--
  * Address:	802BA644
  * Size:	00004C
  */
-void StateFallDive::init(EnemyBase*, StateArg*)
+void StateFallDive::init(EnemyBase* enemy, StateArg* stateArg)
 {
-	/*
-	stwu     r1, -0x10(r1)
-	mflr     r0
-	li       r5, -1
-	mr       r3, r4
-	stw      r0, 0x14(r1)
-	li       r0, 0
-	lfs      f0, lbl_8051C378@sda21(r2)
-	stw      r5, 0x2c4(r4)
-	li       r4, 6
-	li       r5, 0
-	stw      r0, 0x230(r3)
-	stfs     f0, 0x1d4(r3)
-	stfs     f0, 0x1d8(r3)
-	stfs     f0, 0x1dc(r3)
-	bl       startMotion__Q24Game9EnemyBaseFiPQ28SysShape14MotionListener
-	lwz      r0, 0x14(r1)
-	mtlr     r0
-	addi     r1, r1, 0x10
-	blr
-	*/
+	Obj* imomushi              = static_cast<Obj*>(enemy);
+	imomushi->m_nextState      = IMOMUSHI_NULL;
+	imomushi->m_targetCreature = nullptr;
+	imomushi->m_velocity2      = Vector3f(0.0f);
+	imomushi->startMotion(6, nullptr);
 }
 
 /*
@@ -132,8 +88,22 @@ void StateFallDive::init(EnemyBase*, StateArg*)
  * Address:	802BA690
  * Size:	000140
  */
-void StateFallDive::exec(EnemyBase*)
+void StateFallDive::exec(EnemyBase* enemy)
 {
+	Obj* imomushi = static_cast<Obj*>(enemy);
+	Vector3f vel  = imomushi->getVelocity();
+	Vector3f pos  = imomushi->getPosition();
+
+	if ((pos.y - mapMgr->getMinY(pos) > 25.0f) || (vel.y < 0.0f)) { // misordered instructions
+		imomushi->finishMotion();
+	}
+	if (imomushi->m_animKeyEvent->m_running && (u32)imomushi->m_animKeyEvent->m_type == 1000) {
+		if (imomushi->m_health <= 0.0f) {
+			transit(imomushi, IMOMUSHI_Dead, nullptr);
+		} else {
+			transit(imomushi, IMOMUSHI_GoHome, nullptr);
+		}
+	}
 	/*
 	stwu     r1, -0x50(r1)
 	mflr     r0
@@ -231,36 +201,20 @@ lbl_802BA7B0:
  * Address:	802BA7D0
  * Size:	000004
  */
-void StateFallDive::cleanup(EnemyBase*) { }
+void StateFallDive::cleanup(EnemyBase* enemy) { }
 
 /*
  * --INFO--
  * Address:	802BA7D4
  * Size:	00004C
  */
-void StateFallMove::init(EnemyBase*, StateArg*)
+void StateFallMove::init(EnemyBase* enemy, StateArg* stateArg)
 {
-	/*
-	stwu     r1, -0x10(r1)
-	mflr     r0
-	li       r5, -1
-	mr       r3, r4
-	stw      r0, 0x14(r1)
-	li       r0, 0
-	lfs      f0, lbl_8051C378@sda21(r2)
-	stw      r5, 0x2c4(r4)
-	li       r4, 5
-	li       r5, 0
-	stw      r0, 0x230(r3)
-	stfs     f0, 0x1d4(r3)
-	stfs     f0, 0x1d8(r3)
-	stfs     f0, 0x1dc(r3)
-	bl       startMotion__Q24Game9EnemyBaseFiPQ28SysShape14MotionListener
-	lwz      r0, 0x14(r1)
-	mtlr     r0
-	addi     r1, r1, 0x10
-	blr
-	*/
+	Obj* imomushi              = static_cast<Obj*>(enemy);
+	imomushi->m_nextState      = IMOMUSHI_NULL;
+	imomushi->m_targetCreature = nullptr;
+	imomushi->m_velocity2      = Vector3f(0.0f);
+	imomushi->startMotion(5, nullptr);
 }
 
 /*
@@ -268,7 +222,7 @@ void StateFallMove::init(EnemyBase*, StateArg*)
  * Address:	802BA820
  * Size:	000178
  */
-void StateFallMove::exec(EnemyBase*)
+void StateFallMove::exec(EnemyBase* enemy)
 {
 	/*
 	stwu     r1, -0x50(r1)
@@ -383,14 +337,14 @@ lbl_802BA978:
  * Address:	802BA998
  * Size:	000004
  */
-void StateFallMove::cleanup(EnemyBase*) { }
+void StateFallMove::cleanup(EnemyBase* enemy) { }
 
 /*
  * --INFO--
  * Address:	802BA99C
  * Size:	0000C8
  */
-void StateStay::init(EnemyBase*, StateArg*)
+void StateStay::init(EnemyBase* enemy, StateArg* stateArg)
 {
 	/*
 	stwu     r1, -0x10(r1)
@@ -451,7 +405,7 @@ void StateStay::init(EnemyBase*, StateArg*)
  * Address:	802BAA64
  * Size:	0000A8
  */
-void StateStay::exec(EnemyBase*)
+void StateStay::exec(EnemyBase* enemy)
 {
 	/*
 	stwu     r1, -0x10(r1)
@@ -507,46 +461,17 @@ lbl_802BAAF4:
  * Address:	802BAB0C
  * Size:	000090
  */
-void StateStay::cleanup(EnemyBase*)
+void StateStay::cleanup(EnemyBase* enemy)
 {
-	/*
-	stwu     r1, -0x10(r1)
-	mflr     r0
-	stw      r0, 0x14(r1)
-	mr       r0, r4
-	li       r4, 1
-	stw      r31, 0xc(r1)
-	mr       r31, r0
-	mr       r3, r31
-	lwz      r12, 0(r31)
-	lwz      r12, 0xa4(r12)
-	mtctr    r12
-	bctrl
-	lwz      r4, 0x1e0(r31)
-	li       r0, 0
-	mr       r3, r31
-	rlwinm   r4, r4, 0, 0, 0x1e
-	stw      r4, 0x1e0(r31)
-	stb      r0, 0x2c0(r31)
-	lwz      r0, 0x1e0(r31)
-	rlwinm   r0, r0, 0, 0xa, 8
-	stw      r0, 0x1e0(r31)
-	lwz      r0, 0x1e0(r31)
-	rlwinm   r0, r0, 0, 0x13, 0x11
-	stw      r0, 0x1e0(r31)
-	bl       hardConstraintOff__Q24Game9EnemyBaseFv
-	lwz      r0, 0x1e0(r31)
-	ori      r0, r0, 0x8000
-	stw      r0, 0x1e0(r31)
-	lwz      r0, 0x1e0(r31)
-	rlwinm   r0, r0, 0, 2, 0
-	stw      r0, 0x1e0(r31)
-	lwz      r31, 0xc(r1)
-	lwz      r0, 0x14(r1)
-	mtlr     r0
-	addi     r1, r1, 0x10
-	blr
-	*/
+	Obj* imomushi = static_cast<Obj*>(enemy);
+	imomushi->setAtari(true);
+	imomushi->resetEvent(0, EB_Vulnerable);
+	imomushi->_2C0[0] = 0;
+	imomushi->resetEvent(0, EB_BitterImmune);
+	imomushi->resetEvent(0, EB_SoundCullable);
+	imomushi->hardConstraintOff();
+	imomushi->setEvent(0, EB_16);
+	imomushi->resetEvent(0, EB_31);
 }
 
 /*
@@ -554,42 +479,17 @@ void StateStay::cleanup(EnemyBase*)
  * Address:	802BAB9C
  * Size:	000080
  */
-void StateAppear::init(EnemyBase*, StateArg*)
+void StateAppear::init(EnemyBase* enemy, StateArg* stateArg)
 {
-	/*
-	stwu     r1, -0x10(r1)
-	mflr     r0
-	stw      r0, 0x14(r1)
-	stw      r31, 0xc(r1)
-	mr       r31, r4
-	mr       r3, r31
-	bl       lifeIncrement__Q34Game8Imomushi3ObjFv
-	mr       r3, r31
-	bl       hardConstraintOn__Q24Game9EnemyBaseFv
-	lwz      r0, 0x1e0(r31)
-	mr       r3, r31
-	lfs      f0, lbl_8051C378@sda21(r2)
-	oris     r0, r0, 0x20
-	stw      r0, 0x1e0(r31)
-	lwz      r0, 0x1e0(r31)
-	ori      r0, r0, 0x800
-	stw      r0, 0x1e0(r31)
-	stfs     f0, 0x1d4(r31)
-	stfs     f0, 0x1d8(r31)
-	stfs     f0, 0x1dc(r31)
-	bl       setEmotionExcitement__Q24Game9EnemyBaseFv
-	mr       r3, r31
-	li       r4, 1
-	li       r5, 0
-	bl       startMotion__Q24Game9EnemyBaseFiPQ28SysShape14MotionListener
-	mr       r3, r31
-	bl       createAppearEffect__Q34Game8Imomushi3ObjFv
-	lwz      r0, 0x14(r1)
-	lwz      r31, 0xc(r1)
-	mtlr     r0
-	addi     r1, r1, 0x10
-	blr
-	*/
+	Obj* imomushi = static_cast<Obj*>(enemy);
+	imomushi->lifeIncrement();
+	imomushi->hardConstraintOn();
+	imomushi->setEvent(0, EB_22);
+	imomushi->setEvent(0, EB_LifegaugeVisible);
+	imomushi->m_velocity2 = Vector3f(0.0f);
+	imomushi->setEmotionExcitement();
+	imomushi->startMotion(1, nullptr);
+	imomushi->createAppearEffect();
 }
 
 /*
@@ -597,7 +497,7 @@ void StateAppear::init(EnemyBase*, StateArg*)
  * Address:	802BAC1C
  * Size:	0000D8
  */
-void StateAppear::exec(EnemyBase*)
+void StateAppear::exec(EnemyBase* enemy)
 {
 	/*
 	stwu     r1, -0x10(r1)
@@ -668,25 +568,11 @@ lbl_802BACDC:
  * Address:	802BACF4
  * Size:	00003C
  */
-void StateAppear::cleanup(EnemyBase*)
+void StateAppear::cleanup(EnemyBase* enemy)
 {
-	/*
-	stwu     r1, -0x10(r1)
-	mflr     r0
-	stw      r0, 0x14(r1)
-	stw      r31, 0xc(r1)
-	mr       r31, r4
-	mr       r3, r31
-	bl       hardConstraintOff__Q24Game9EnemyBaseFv
-	lwz      r0, 0x1e0(r31)
-	rlwinm   r0, r0, 0, 0xb, 9
-	stw      r0, 0x1e0(r31)
-	lwz      r31, 0xc(r1)
-	lwz      r0, 0x14(r1)
-	mtlr     r0
-	addi     r1, r1, 0x10
-	blr
-	*/
+	Obj* imomushi = static_cast<Obj*>(enemy);
+	imomushi->hardConstraintOff();
+	imomushi->resetEvent(0, EB_22);
 }
 
 /*
@@ -694,7 +580,7 @@ void StateAppear::cleanup(EnemyBase*)
  * Address:	802BAD30
  * Size:	000074
  */
-void StateDive::init(EnemyBase*, StateArg*)
+void StateDive::init(EnemyBase* enemy, StateArg* stateArg)
 {
 	/*
 	stwu     r1, -0x10(r1)
@@ -734,7 +620,7 @@ void StateDive::init(EnemyBase*, StateArg*)
  * Address:	802BADA4
  * Size:	000050
  */
-void StateDive::exec(EnemyBase*)
+void StateDive::exec(EnemyBase* enemy)
 {
 	/*
 	stwu     r1, -0x10(r1)
@@ -767,25 +653,11 @@ lbl_802BADE4:
  * Address:	802BADF4
  * Size:	00003C
  */
-void StateDive::cleanup(EnemyBase*)
+void StateDive::cleanup(EnemyBase* enemy)
 {
-	/*
-	stwu     r1, -0x10(r1)
-	mflr     r0
-	stw      r0, 0x14(r1)
-	stw      r31, 0xc(r1)
-	mr       r31, r4
-	mr       r3, r31
-	bl       hardConstraintOff__Q24Game9EnemyBaseFv
-	lwz      r0, 0x1e0(r31)
-	rlwinm   r0, r0, 0, 0xa, 8
-	stw      r0, 0x1e0(r31)
-	lwz      r31, 0xc(r1)
-	lwz      r0, 0x14(r1)
-	mtlr     r0
-	addi     r1, r1, 0x10
-	blr
-	*/
+	Obj* imomushi = static_cast<Obj*>(enemy);
+	imomushi->hardConstraintOff();
+	imomushi->resetEvent(0, EB_BitterImmune);
 }
 
 /*
@@ -793,7 +665,7 @@ void StateDive::cleanup(EnemyBase*)
  * Address:	802BAE30
  * Size:	000048
  */
-void StateMove::init(EnemyBase*, StateArg*)
+void StateMove::init(EnemyBase* enemy, StateArg* stateArg)
 {
 	/*
 	stwu     r1, -0x10(r1)
@@ -822,7 +694,7 @@ void StateMove::init(EnemyBase*, StateArg*)
  * Address:	802BAE78
  * Size:	000238
  */
-void StateMove::exec(EnemyBase*)
+void StateMove::exec(EnemyBase* enemy)
 {
 	/*
 	stwu     r1, -0x60(r1)
@@ -993,19 +865,10 @@ lbl_802BB084:
  * Address:	802BB0B0
  * Size:	000024
  */
-void StateMove::cleanup(EnemyBase*)
+void StateMove::cleanup(EnemyBase* enemy)
 {
-	/*
-	stwu     r1, -0x10(r1)
-	mflr     r0
-	mr       r3, r4
-	stw      r0, 0x14(r1)
-	bl       finishMoveTraceEffect__Q34Game8Imomushi3ObjFv
-	lwz      r0, 0x14(r1)
-	mtlr     r0
-	addi     r1, r1, 0x10
-	blr
-	*/
+	Obj* imomushi = static_cast<Obj*>(enemy);
+	imomushi->finishMoveTraceEffect();
 }
 
 /*
@@ -1013,7 +876,7 @@ void StateMove::cleanup(EnemyBase*)
  * Address:	802BB0D4
  * Size:	000048
  */
-void StateGoHome::init(EnemyBase*, StateArg*)
+void StateGoHome::init(EnemyBase* enemy, StateArg* stateArg)
 {
 	/*
 	stwu     r1, -0x10(r1)
@@ -1042,7 +905,7 @@ void StateGoHome::init(EnemyBase*, StateArg*)
  * Address:	802BB11C
  * Size:	00014C
  */
-void StateGoHome::exec(EnemyBase*)
+void StateGoHome::exec(EnemyBase* enemy)
 {
 	/*
 	stwu     r1, -0x30(r1)
@@ -1146,19 +1009,10 @@ lbl_802BB250:
  * Address:	802BB268
  * Size:	000024
  */
-void StateGoHome::cleanup(EnemyBase*)
+void StateGoHome::cleanup(EnemyBase* enemy)
 {
-	/*
-	stwu     r1, -0x10(r1)
-	mflr     r0
-	mr       r3, r4
-	stw      r0, 0x14(r1)
-	bl       finishMoveTraceEffect__Q34Game8Imomushi3ObjFv
-	lwz      r0, 0x14(r1)
-	mtlr     r0
-	addi     r1, r1, 0x10
-	blr
-	*/
+	Obj* imomushi = static_cast<Obj*>(enemy);
+	imomushi->finishMoveTraceEffect();
 }
 
 /*
@@ -1166,7 +1020,7 @@ void StateGoHome::cleanup(EnemyBase*)
  * Address:	802BB28C
  * Size:	00014C
  */
-void StateClimb::init(EnemyBase*, StateArg*)
+void StateClimb::init(EnemyBase* enemy, StateArg* stateArg)
 {
 	/*
 	stwu     r1, -0x40(r1)
@@ -1266,7 +1120,7 @@ lbl_802BB39C:
  * Address:	802BB3D8
  * Size:	000170
  */
-void StateClimb::exec(EnemyBase*)
+void StateClimb::exec(EnemyBase* enemy)
 {
 	/*
 	stwu     r1, -0x10(r1)
@@ -1381,19 +1235,10 @@ lbl_802BB530:
  * Address:	802BB548
  * Size:	000024
  */
-void StateClimb::cleanup(EnemyBase*)
+void StateClimb::cleanup(EnemyBase* enemy)
 {
-	/*
-	stwu     r1, -0x10(r1)
-	mflr     r0
-	mr       r3, r4
-	stw      r0, 0x14(r1)
-	bl       endStick__Q24Game8CreatureFv
-	lwz      r0, 0x14(r1)
-	mtlr     r0
-	addi     r1, r1, 0x10
-	blr
-	*/
+	Obj* imomushi = static_cast<Obj*>(enemy);
+	imomushi->endStick();
 }
 
 /*
@@ -1401,7 +1246,7 @@ void StateClimb::cleanup(EnemyBase*)
  * Address:	802BB56C
  * Size:	00009C
  */
-void StateAttack::init(EnemyBase*, StateArg*)
+void StateAttack::init(EnemyBase* enemy, StateArg* stateArg)
 {
 	/*
 	stwu     r1, -0x20(r1)
@@ -1451,7 +1296,7 @@ void StateAttack::init(EnemyBase*, StateArg*)
  * Address:	802BB608
  * Size:	00015C
  */
-void StateAttack::exec(EnemyBase*)
+void StateAttack::exec(EnemyBase* enemy)
 {
 	/*
 	stwu     r1, -0x10(r1)
@@ -1561,19 +1406,10 @@ lbl_802BB74C:
  * Address:	802BB764
  * Size:	000024
  */
-void StateAttack::cleanup(EnemyBase*)
+void StateAttack::cleanup(EnemyBase* enemy)
 {
-	/*
-	stwu     r1, -0x10(r1)
-	mflr     r0
-	mr       r3, r4
-	stw      r0, 0x14(r1)
-	bl       endStick__Q24Game8CreatureFv
-	lwz      r0, 0x14(r1)
-	mtlr     r0
-	addi     r1, r1, 0x10
-	blr
-	*/
+	Obj* imomushi = static_cast<Obj*>(enemy);
+	imomushi->endStick();
 }
 
 /*
@@ -1581,7 +1417,7 @@ void StateAttack::cleanup(EnemyBase*)
  * Address:	802BB788
  * Size:	000094
  */
-void StateWait::init(EnemyBase*, StateArg*)
+void StateWait::init(EnemyBase* enemy, StateArg* stateArg)
 {
 	/*
 	stwu     r1, -0x20(r1)
@@ -1629,7 +1465,7 @@ void StateWait::init(EnemyBase*, StateArg*)
  * Address:	802BB81C
  * Size:	000138
  */
-void StateWait::exec(EnemyBase*)
+void StateWait::exec(EnemyBase* enemy)
 {
 	/*
 	stwu     r1, -0x20(r1)
@@ -1728,19 +1564,10 @@ lbl_802BB938:
  * Address:	802BB954
  * Size:	000024
  */
-void StateWait::cleanup(EnemyBase*)
+void StateWait::cleanup(EnemyBase* enemy)
 {
-	/*
-	stwu     r1, -0x10(r1)
-	mflr     r0
-	mr       r3, r4
-	stw      r0, 0x14(r1)
-	bl       endStick__Q24Game8CreatureFv
-	lwz      r0, 0x14(r1)
-	mtlr     r0
-	addi     r1, r1, 0x10
-	blr
-	*/
+	Obj* imomushi = static_cast<Obj*>(enemy);
+	imomushi->endStick();
 }
 
 /*
@@ -1748,7 +1575,7 @@ void StateWait::cleanup(EnemyBase*)
  * Address:	802BB978
  * Size:	00006C
  */
-void StateZukanStay::init(EnemyBase*, StateArg*)
+void StateZukanStay::init(EnemyBase* enemy, StateArg* stateArg)
 {
 	/*
 	stwu     r1, -0x10(r1)
@@ -1786,7 +1613,7 @@ void StateZukanStay::init(EnemyBase*, StateArg*)
  * Address:	802BB9E4
  * Size:	000058
  */
-void StateZukanStay::exec(EnemyBase*)
+void StateZukanStay::exec(EnemyBase* enemy)
 {
 	/*
 	stwu     r1, -0x10(r1)
@@ -1821,22 +1648,11 @@ lbl_802BBA2C:
  * Address:	802BBA3C
  * Size:	000030
  */
-void StateZukanStay::cleanup(EnemyBase*)
+void StateZukanStay::cleanup(EnemyBase* enemy)
 {
-	/*
-	stwu     r1, -0x10(r1)
-	mflr     r0
-	mr       r3, r4
-	stw      r0, 0x14(r1)
-	lwz      r0, 0x1e0(r4)
-	rlwinm   r0, r0, 0, 0xa, 8
-	stw      r0, 0x1e0(r4)
-	bl       hardConstraintOff__Q24Game9EnemyBaseFv
-	lwz      r0, 0x14(r1)
-	mtlr     r0
-	addi     r1, r1, 0x10
-	blr
-	*/
+	Obj* imomushi = static_cast<Obj*>(enemy);
+	imomushi->resetEvent(0, EB_BitterImmune);
+	imomushi->hardConstraintOff();
 }
 
 /*
@@ -1844,33 +1660,13 @@ void StateZukanStay::cleanup(EnemyBase*)
  * Address:	802BBA6C
  * Size:	00005C
  */
-void StateZukanAppear::init(EnemyBase*, StateArg*)
+void StateZukanAppear::init(EnemyBase* enemy, StateArg* stateArg)
 {
-	/*
-	stwu     r1, -0x10(r1)
-	mflr     r0
-	lfs      f0, lbl_8051C378@sda21(r2)
-	li       r5, 0
-	stw      r0, 0x14(r1)
-	stw      r31, 0xc(r1)
-	mr       r31, r4
-	li       r4, 1
-	lwz      r0, 0x1e0(r31)
-	mr       r3, r31
-	oris     r0, r0, 0x20
-	stw      r0, 0x1e0(r31)
-	stfs     f0, 0x1d4(r31)
-	stfs     f0, 0x1d8(r31)
-	stfs     f0, 0x1dc(r31)
-	bl       startMotion__Q24Game9EnemyBaseFiPQ28SysShape14MotionListener
-	mr       r3, r31
-	bl       createAppearEffect__Q34Game8Imomushi3ObjFv
-	lwz      r0, 0x14(r1)
-	lwz      r31, 0xc(r1)
-	mtlr     r0
-	addi     r1, r1, 0x10
-	blr
-	*/
+	Obj* imomushi = static_cast<Obj*>(enemy);
+	imomushi->setEvent(0, EB_22);
+	imomushi->m_velocity2 = Vector3f(0.0f);
+	imomushi->startMotion(1, nullptr);
+	imomushi->createAppearEffect();
 }
 
 /*
@@ -1878,32 +1674,12 @@ void StateZukanAppear::init(EnemyBase*, StateArg*)
  * Address:	802BBAC8
  * Size:	000050
  */
-void StateZukanAppear::exec(EnemyBase*)
+void StateZukanAppear::exec(EnemyBase* enemy)
 {
-	/*
-	stwu     r1, -0x10(r1)
-	mflr     r0
-	stw      r0, 0x14(r1)
-	lwz      r5, 0x188(r4)
-	lbz      r0, 0x24(r5)
-	cmplwi   r0, 0
-	beq      lbl_802BBB08
-	lwz      r0, 0x1c(r5)
-	cmplwi   r0, 0x3e8
-	bne      lbl_802BBB08
-	lwz      r12, 0(r3)
-	li       r5, 0xd
-	li       r6, 0
-	lwz      r12, 0x1c(r12)
-	mtctr    r12
-	bctrl
-
-lbl_802BBB08:
-	lwz      r0, 0x14(r1)
-	mtlr     r0
-	addi     r1, r1, 0x10
-	blr
-	*/
+	Obj* imomushi = static_cast<Obj*>(enemy);
+	if ((imomushi->m_animKeyEvent->m_running) && ((u32)imomushi->m_animKeyEvent->m_type == 1000)) {
+		transit(imomushi, IMOMUSHI_ZukanMove, nullptr);
+	}
 }
 
 /*
@@ -1911,14 +1687,10 @@ lbl_802BBB08:
  * Address:	802BBB18
  * Size:	000010
  */
-void StateZukanAppear::cleanup(EnemyBase*)
+void StateZukanAppear::cleanup(EnemyBase* enemy)
 {
-	/*
-	lwz      r0, 0x1e0(r4)
-	rlwinm   r0, r0, 0, 0xb, 9
-	stw      r0, 0x1e0(r4)
-	blr
-	*/
+	Obj* imomushi = static_cast<Obj*>(enemy);
+	imomushi->resetEvent(0, EB_22);
 }
 
 /*
@@ -1926,32 +1698,13 @@ void StateZukanAppear::cleanup(EnemyBase*)
  * Address:	802BBB28
  * Size:	000058
  */
-void StateZukanMove::init(EnemyBase*, StateArg*)
+void StateZukanMove::init(EnemyBase* enemy, StateArg* stateArg)
 {
-	/*
-	stwu     r1, -0x10(r1)
-	mflr     r0
-	stw      r0, 0x14(r1)
-	stw      r31, 0xc(r1)
-	mr       r31, r4
-	mr       r3, r31
-	bl       setZukanTargetPosition__Q34Game8Imomushi3ObjFv
-	lfs      f0, lbl_8051C378@sda21(r2)
-	mr       r3, r31
-	li       r4, 3
-	li       r5, 0
-	stfs     f0, 0x1d4(r31)
-	stfs     f0, 0x1d8(r31)
-	stfs     f0, 0x1dc(r31)
-	bl       startMotion__Q24Game9EnemyBaseFiPQ28SysShape14MotionListener
-	mr       r3, r31
-	bl       startMoveTraceEffect__Q34Game8Imomushi3ObjFv
-	lwz      r0, 0x14(r1)
-	lwz      r31, 0xc(r1)
-	mtlr     r0
-	addi     r1, r1, 0x10
-	blr
-	*/
+	Obj* imomushi = static_cast<Obj*>(enemy);
+	imomushi->setZukanTargetPosition();
+	imomushi->m_velocity2 = 0.0f;
+	imomushi->startMotion(3, nullptr);
+	imomushi->startMoveTraceEffect();
 }
 
 /*
@@ -1959,58 +1712,19 @@ void StateZukanMove::init(EnemyBase*, StateArg*)
  * Address:	802BBB80
  * Size:	0000BC
  */
-void StateZukanMove::exec(EnemyBase*)
+void StateZukanMove::exec(EnemyBase* enemy)
 {
-	/*
-	stwu     r1, -0x20(r1)
-	mflr     r0
-	stw      r0, 0x24(r1)
-	stw      r31, 0x1c(r1)
-	mr       r31, r4
-	addi     r4, r1, 8
-	stw      r30, 0x18(r1)
-	mr       r30, r3
-	mr       r3, r31
-	lfs      f1, 0x2f4(r31)
-	lfs      f2, 0x2f8(r31)
-	lfs      f0, 0x2f0(r31)
-	stfs     f0, 8(r1)
-	stfs     f1, 0xc(r1)
-	stfs     f2, 0x10(r1)
-	lwz      r5, 0xc0(r31)
-	lfs      f1, 0x2e4(r5)
-	lfs      f2, 0x30c(r5)
-	lfs      f3, 0x334(r5)
-	bl "walkToTarget__Q24Game9EnemyFuncFPQ24Game9EnemyBaseR10Vector3<f>fff" mr
-r3, r31 bl       isInZukanTargetArea__Q34Game8Imomushi3ObjFv clrlwi.  r0, r3,
-0x18 beq      lbl_802BBBE8 mr       r3, r31 bl
-setZukanTargetPosition__Q34Game8Imomushi3ObjFv
-
-lbl_802BBBE8:
-	lwz      r3, 0x188(r31)
-	lbz      r0, 0x24(r3)
-	cmplwi   r0, 0
-	beq      lbl_802BBC24
-	lwz      r0, 0x1c(r3)
-	cmplwi   r0, 0x3e8
-	bne      lbl_802BBC24
-	mr       r3, r30
-	mr       r4, r31
-	lwz      r12, 0(r30)
-	li       r5, 0xd
-	li       r6, 0
-	lwz      r12, 0x1c(r12)
-	mtctr    r12
-	bctrl
-
-lbl_802BBC24:
-	lwz      r0, 0x24(r1)
-	lwz      r31, 0x1c(r1)
-	lwz      r30, 0x18(r1)
-	mtlr     r0
-	addi     r1, r1, 0x20
-	blr
-	*/
+	Obj* imomushi   = static_cast<Obj*>(enemy);
+	Vector3f target = imomushi->m_zukanTargetPosition; // mismatch here
+	Parms* parms    = static_cast<Parms*>(imomushi->m_parms);
+	EnemyFunc::walkToTarget(imomushi, target, parms->m_general.m_moveSpeed.m_value, parms->m_general.m_rotationalAccel.m_value,
+	                        parms->m_general.m_rotationalSpeed.m_value);
+	if (imomushi->isInZukanTargetArea()) {
+		imomushi->setZukanTargetPosition();
+	}
+	if ((imomushi->m_animKeyEvent->m_running) && ((u32)imomushi->m_animKeyEvent->m_type == 1000)) {
+		transit(imomushi, IMOMUSHI_ZukanMove, nullptr);
+	}
 }
 
 /*
@@ -2018,19 +1732,10 @@ lbl_802BBC24:
  * Address:	802BBC3C
  * Size:	000024
  */
-void StateZukanMove::cleanup(EnemyBase*)
+void StateZukanMove::cleanup(EnemyBase* enemy)
 {
-	/*
-	stwu     r1, -0x10(r1)
-	mflr     r0
-	mr       r3, r4
-	stw      r0, 0x14(r1)
-	bl       finishMoveTraceEffect__Q34Game8Imomushi3ObjFv
-	lwz      r0, 0x14(r1)
-	mtlr     r0
-	addi     r1, r1, 0x10
-	blr
-	*/
+	Obj* imomushi = static_cast<Obj*>(enemy);
+	imomushi->finishMoveTraceEffect();
 }
 } // namespace Imomushi
 } // namespace Game

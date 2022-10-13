@@ -19,16 +19,16 @@ struct FSM;
 enum StateID {
 	IMOMUSHI_NULL        = -1,
 	IMOMUSHI_Dead        = 0,
-	IMOMUSHI_FallDive    = 1,
-	IMOMUSHI_FallMove    = 2,
-	IMOMUSHI_Stay        = 3,
-	IMOMUSHI_Appear      = 4,
-	IMOMUSHI_Dive        = 5,
-	IMOMUSHI_Move        = 6,
-	IMOMUSHI_GoHome      = 7,
-	IMOMUSHI_Climb       = 8,
+	IMOMUSHI_Wait        = 1,
+	IMOMUSHI_FallDive    = 2,
+	IMOMUSHI_FallMove    = 3,
+	IMOMUSHI_Stay        = 4,
+	IMOMUSHI_Appear      = 5,
+	IMOMUSHI_Dive        = 6,
+	IMOMUSHI_Move        = 7,
+	IMOMUSHI_GoHome      = 8,
 	IMOMUSHI_Attack      = 9,
-	IMOMUSHI_Wait        = 10,
+	IMOMUSHI_Climb       = 10,
 	IMOMUSHI_ZukanStay   = 11,
 	IMOMUSHI_ZukanAppear = 12,
 	IMOMUSHI_ZukanMove   = 13,
@@ -74,10 +74,10 @@ struct Obj : public EnemyBase {
 	void moveStickTube();
 	void moveStickSphere();
 	void eatTsuyukusa();
-	void isAttackable();
-	void isStickToFall();
+	bool isAttackable();
+	bool isStickToFall();
 	void setZukanTargetPosition();
-	void isInZukanTargetArea();
+	bool isInZukanTargetArea();
 	void createEffect();
 	void setupEffect();
 	void createAppearEffect();
@@ -90,7 +90,8 @@ struct Obj : public EnemyBase {
 	// _00 		= VTBL
 	// _00-_2BC	= EnemyBase
 	FSM* m_FSM;                     // _2BC
-	u8 _2C0[0x8];                   // _2C0, unknown
+	u8 _2C0[0x4];                   // _2C0, unknown
+	StateID m_nextState;            // _2C4
 	f32 _2C8;                       // _2C8
 	u8 _2CC[0x24];                  // _2CC, unknown
 	Vector3f m_zukanTargetPosition; // _2F0
@@ -152,11 +153,21 @@ struct FSM : public EnemyStateMachine {
 };
 
 struct State : public EnemyFSMState {
+	inline State(u16 stateID, const char* name)
+	    : EnemyFSMState(stateID)
+	{
+		m_name = name;
+	}
+
 	// _00		= VTBL
 	// _00-_10 	= EnemyFSMState
 };
 
 struct StateAppear : public State {
+	inline StateAppear()
+	    : State(IMOMUSHI_Appear, "appear")
+	{
+	}
 	virtual void init(EnemyBase*, StateArg*); // _08
 	virtual void exec(EnemyBase*);            // _0C
 	virtual void cleanup(EnemyBase*);         // _10
@@ -166,6 +177,10 @@ struct StateAppear : public State {
 };
 
 struct StateAttack : public State {
+	inline StateAttack()
+	    : State(IMOMUSHI_Attack, "attack")
+	{
+	}
 	virtual void init(EnemyBase*, StateArg*); // _08
 	virtual void exec(EnemyBase*);            // _0C
 	virtual void cleanup(EnemyBase*);         // _10
@@ -175,6 +190,10 @@ struct StateAttack : public State {
 };
 
 struct StateClimb : public State {
+	inline StateClimb()
+	    : State(IMOMUSHI_Climb, "climb")
+	{
+	}
 	virtual void init(EnemyBase*, StateArg*); // _08
 	virtual void exec(EnemyBase*);            // _0C
 	virtual void cleanup(EnemyBase*);         // _10
@@ -184,6 +203,11 @@ struct StateClimb : public State {
 };
 
 struct StateDead : public State {
+	inline StateDead()
+	    : State(IMOMUSHI_Dead, "dead")
+	{
+	}
+
 	virtual void init(EnemyBase*, StateArg*); // _08
 	virtual void exec(EnemyBase*);            // _0C
 	virtual void cleanup(EnemyBase*);         // _10
@@ -193,6 +217,11 @@ struct StateDead : public State {
 };
 
 struct StateDive : public State {
+	inline StateDive()
+	    : State(IMOMUSHI_Dive, "dive")
+	{
+	}
+
 	virtual void init(EnemyBase*, StateArg*); // _08
 	virtual void exec(EnemyBase*);            // _0C
 	virtual void cleanup(EnemyBase*);         // _10
@@ -202,6 +231,11 @@ struct StateDive : public State {
 };
 
 struct StateFallDive : public State {
+	inline StateFallDive()
+	    : State(IMOMUSHI_FallDive, "falldive")
+	{
+	}
+
 	virtual void init(EnemyBase*, StateArg*); // _08
 	virtual void exec(EnemyBase*);            // _0C
 	virtual void cleanup(EnemyBase*);         // _10
@@ -211,6 +245,10 @@ struct StateFallDive : public State {
 };
 
 struct StateFallMove : public State {
+	inline StateFallMove()
+	    : State(IMOMUSHI_FallMove, "fallmove")
+	{
+	}
 	virtual void init(EnemyBase*, StateArg*); // _08
 	virtual void exec(EnemyBase*);            // _0C
 	virtual void cleanup(EnemyBase*);         // _10
@@ -220,6 +258,10 @@ struct StateFallMove : public State {
 };
 
 struct StateGoHome : public State {
+	inline StateGoHome()
+	    : State(IMOMUSHI_GoHome, "gohome")
+	{
+	}
 	virtual void init(EnemyBase*, StateArg*); // _08
 	virtual void exec(EnemyBase*);            // _0C
 	virtual void cleanup(EnemyBase*);         // _10
@@ -229,6 +271,10 @@ struct StateGoHome : public State {
 };
 
 struct StateMove : public State {
+	inline StateMove()
+	    : State(IMOMUSHI_Move, "move")
+	{
+	}
 	virtual void init(EnemyBase*, StateArg*); // _08
 	virtual void exec(EnemyBase*);            // _0C
 	virtual void cleanup(EnemyBase*);         // _10
@@ -238,6 +284,10 @@ struct StateMove : public State {
 };
 
 struct StateStay : public State {
+	inline StateStay()
+	    : State(IMOMUSHI_Stay, "stay")
+	{
+	}
 	virtual void init(EnemyBase*, StateArg*); // _08
 	virtual void exec(EnemyBase*);            // _0C
 	virtual void cleanup(EnemyBase*);         // _10
@@ -247,6 +297,10 @@ struct StateStay : public State {
 };
 
 struct StateWait : public State {
+	inline StateWait()
+	    : State(IMOMUSHI_Wait, "wait")
+	{
+	}
 	virtual void init(EnemyBase*, StateArg*); // _08
 	virtual void exec(EnemyBase*);            // _0C
 	virtual void cleanup(EnemyBase*);         // _10
@@ -256,6 +310,10 @@ struct StateWait : public State {
 };
 
 struct StateZukanAppear : public State {
+	inline StateZukanAppear()
+	    : State(IMOMUSHI_ZukanAppear, "zukanappear")
+	{
+	}
 	virtual void init(EnemyBase*, StateArg*); // _08
 	virtual void exec(EnemyBase*);            // _0C
 	virtual void cleanup(EnemyBase*);         // _10
@@ -265,6 +323,10 @@ struct StateZukanAppear : public State {
 };
 
 struct StateZukanMove : public State {
+	inline StateZukanMove()
+	    : State(IMOMUSHI_ZukanMove, "zukanmove")
+	{
+	}
 	virtual void init(EnemyBase*, StateArg*); // _08
 	virtual void exec(EnemyBase*);            // _0C
 	virtual void cleanup(EnemyBase*);         // _10
@@ -274,6 +336,10 @@ struct StateZukanMove : public State {
 };
 
 struct StateZukanStay : public State {
+	inline StateZukanStay()
+	    : State(IMOMUSHI_ZukanStay, "zukanstay")
+	{
+	}
 	virtual void init(EnemyBase*, StateArg*); // _08
 	virtual void exec(EnemyBase*);            // _0C
 	virtual void cleanup(EnemyBase*);         // _10

@@ -1,28 +1,23 @@
 .include "macros.inc"
 .section .rodata  # 0x804732E0 - 0x8049E220
 .balign 8
-.global lbl_8048A8B0
 lbl_8048A8B0:
-	.4byte 0x3234362D
-	.4byte 0x496D6F6D
-	.4byte 0x75736869
-	.4byte 0x53746174
-	.4byte 0x65000000
-	.4byte 0x66616C6C
-	.4byte 0x64697665
-	.4byte 0x00000000
-	.4byte 0x66616C6C
-	.4byte 0x6D6F7665
-	.4byte 0x00000000
-	.4byte 0x7A756B61
-	.4byte 0x6E737461
-	.4byte 0x79000000
-	.4byte 0x7A756B61
-	.4byte 0x6E617070
-	.4byte 0x65617200
-	.4byte 0x7A756B61
-	.4byte 0x6E6D6F76
-	.4byte 0x65000000
+	.asciz "246-ImomushiState"
+.balign 4
+lbl_8048A8C4:
+	.asciz "falldive"
+.balign 4
+lbl_8048A8D0:
+	.asciz "fallmove"
+.balign 4
+lbl_8048A8DC:
+	.asciz "zukanstay"
+.balign 4
+lbl_8048A8E8:
+	.asciz "zukanappear"
+.balign 4
+lbl_8048A8F4:
+	.asciz "zukanmove"
 
 .section .data, "wa"  # 0x8049E220 - 0x804EFC20
 .balign 8
@@ -205,70 +200,51 @@ __vt__Q34Game8Imomushi3FSM:
 
 .section .sdata2, "a"     # 0x80516360 - 0x80520E40
 .balign 8
-.global lbl_8051C330
 lbl_8051C330:
-	.4byte 0x64656164
-	.4byte 0x00000000
-.global lbl_8051C338
+	.asciz "dead"
+.balign 4
 lbl_8051C338:
-	.4byte 0x73746179
-	.4byte 0x00000000
-.global lbl_8051C340
+	.asciz "stay"
+.balign 4
 lbl_8051C340:
-	.4byte 0x61707065
-	.4byte 0x61720000
-.global lbl_8051C348
+	.asciz "appear"
+.balign 4
 lbl_8051C348:
-	.4byte 0x64697665
-	.4byte 0x00000000
-.global lbl_8051C350
+	.asciz "dive"
+.balign 4
 lbl_8051C350:
-	.4byte 0x6D6F7665
-	.4byte 0x00000000
-.global lbl_8051C358
+	.asciz "move"
+.balign 4
 lbl_8051C358:
-	.4byte 0x676F686F
-	.4byte 0x6D650000
-.global lbl_8051C360
+	.asciz "gohome"
+.balign 4
 lbl_8051C360:
-	.4byte 0x636C696D
-	.4byte 0x62000000
-.global lbl_8051C368
+	.asciz "climb"
+.balign 4
 lbl_8051C368:
-	.4byte 0x61747461
-	.4byte 0x636B0000
-.global lbl_8051C370
+	.asciz "attack"
+.balign 4
 lbl_8051C370:
-	.4byte 0x77616974
-	.4byte 0x00000000
-.global lbl_8051C378
+	.asciz "wait"
+.balign 4
 lbl_8051C378:
-	.4byte 0x00000000
-.global lbl_8051C37C
+	.float 0.0
 lbl_8051C37C:
-	.4byte 0x41C80000
-.global lbl_8051C380
+	.float 25.0
 lbl_8051C380:
-	.4byte 0x40C00000
-.global lbl_8051C384
+	.float 6.0
 lbl_8051C384:
-	.4byte 0x44610000
-.global lbl_8051C388
+	.float 900.0
 lbl_8051C388:
-	.4byte 0x43A2F983
-.global lbl_8051C38C
+	.float 325.9493
 lbl_8051C38C:
-	.4byte 0xC3A2F983
-.global lbl_8051C390
+	.float -325.9493
 lbl_8051C390:
-	.4byte 0x3C23D70A
-.global lbl_8051C394
+	.float 0.01
 lbl_8051C394:
 	.float 1.0
-.global lbl_8051C398
 lbl_8051C398:
-	.4byte 0x40A00000
-	.4byte 0x00000000
+	.float 5.0
 
 .section .text, "ax"  # 0x800056C0 - 0x80472F00
 .global init__Q34Game8Imomushi3FSMFPQ24Game9EnemyBase
