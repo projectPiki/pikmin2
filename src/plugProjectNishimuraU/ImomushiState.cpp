@@ -1,310 +1,16 @@
 #include "types.h"
-
-/*
-    Generated from dpostproc
-
-    .section .rodata  # 0x804732E0 - 0x8049E220
-    .global lbl_8048A8B0
-    lbl_8048A8B0:
-        .4byte 0x3234362D
-        .4byte 0x496D6F6D
-        .4byte 0x75736869
-        .4byte 0x53746174
-        .4byte 0x65000000
-        .4byte 0x66616C6C
-        .4byte 0x64697665
-        .4byte 0x00000000
-        .4byte 0x66616C6C
-        .4byte 0x6D6F7665
-        .4byte 0x00000000
-        .4byte 0x7A756B61
-        .4byte 0x6E737461
-        .4byte 0x79000000
-        .4byte 0x7A756B61
-        .4byte 0x6E617070
-        .4byte 0x65617200
-        .4byte 0x7A756B61
-        .4byte 0x6E6D6F76
-        .4byte 0x65000000
-
-    .section .data, "wa"  # 0x8049E220 - 0x804EFC20
-    .global __vt__Q34Game8Imomushi14StateZukanMove
-    __vt__Q34Game8Imomushi14StateZukanMove:
-        .4byte 0
-        .4byte 0
-        .4byte
-   init__Q34Game8Imomushi14StateZukanMoveFPQ24Game9EnemyBasePQ24Game8StateArg
-        .4byte exec__Q34Game8Imomushi14StateZukanMoveFPQ24Game9EnemyBase
-        .4byte cleanup__Q34Game8Imomushi14StateZukanMoveFPQ24Game9EnemyBase
-        .4byte resume__Q24Game13EnemyFSMStateFPQ24Game9EnemyBase
-        .4byte restart__Q24Game13EnemyFSMStateFPQ24Game9EnemyBase
-        .4byte
-   transit__Q24Game13EnemyFSMStateFPQ24Game9EnemyBaseiPQ24Game8StateArg .4byte
-   doDirectDraw__Q24Game13EnemyFSMStateFPQ24Game9EnemyBaseR8Graphics .global
-   __vt__Q34Game8Imomushi16StateZukanAppear
-    __vt__Q34Game8Imomushi16StateZukanAppear:
-        .4byte 0
-        .4byte 0
-        .4byte
-   init__Q34Game8Imomushi16StateZukanAppearFPQ24Game9EnemyBasePQ24Game8StateArg
-        .4byte exec__Q34Game8Imomushi16StateZukanAppearFPQ24Game9EnemyBase
-        .4byte cleanup__Q34Game8Imomushi16StateZukanAppearFPQ24Game9EnemyBase
-        .4byte resume__Q24Game13EnemyFSMStateFPQ24Game9EnemyBase
-        .4byte restart__Q24Game13EnemyFSMStateFPQ24Game9EnemyBase
-        .4byte
-   transit__Q24Game13EnemyFSMStateFPQ24Game9EnemyBaseiPQ24Game8StateArg .4byte
-   doDirectDraw__Q24Game13EnemyFSMStateFPQ24Game9EnemyBaseR8Graphics .global
-   __vt__Q34Game8Imomushi14StateZukanStay
-    __vt__Q34Game8Imomushi14StateZukanStay:
-        .4byte 0
-        .4byte 0
-        .4byte
-   init__Q34Game8Imomushi14StateZukanStayFPQ24Game9EnemyBasePQ24Game8StateArg
-        .4byte exec__Q34Game8Imomushi14StateZukanStayFPQ24Game9EnemyBase
-        .4byte cleanup__Q34Game8Imomushi14StateZukanStayFPQ24Game9EnemyBase
-        .4byte resume__Q24Game13EnemyFSMStateFPQ24Game9EnemyBase
-        .4byte restart__Q24Game13EnemyFSMStateFPQ24Game9EnemyBase
-        .4byte
-   transit__Q24Game13EnemyFSMStateFPQ24Game9EnemyBaseiPQ24Game8StateArg .4byte
-   doDirectDraw__Q24Game13EnemyFSMStateFPQ24Game9EnemyBaseR8Graphics .global
-   __vt__Q34Game8Imomushi9StateWait
-    __vt__Q34Game8Imomushi9StateWait:
-        .4byte 0
-        .4byte 0
-        .4byte
-   init__Q34Game8Imomushi9StateWaitFPQ24Game9EnemyBasePQ24Game8StateArg .4byte
-   exec__Q34Game8Imomushi9StateWaitFPQ24Game9EnemyBase .4byte
-   cleanup__Q34Game8Imomushi9StateWaitFPQ24Game9EnemyBase .4byte
-   resume__Q24Game13EnemyFSMStateFPQ24Game9EnemyBase .4byte
-   restart__Q24Game13EnemyFSMStateFPQ24Game9EnemyBase .4byte
-   transit__Q24Game13EnemyFSMStateFPQ24Game9EnemyBaseiPQ24Game8StateArg .4byte
-   doDirectDraw__Q24Game13EnemyFSMStateFPQ24Game9EnemyBaseR8Graphics .global
-   __vt__Q34Game8Imomushi11StateAttack
-    __vt__Q34Game8Imomushi11StateAttack:
-        .4byte 0
-        .4byte 0
-        .4byte
-   init__Q34Game8Imomushi11StateAttackFPQ24Game9EnemyBasePQ24Game8StateArg
-        .4byte exec__Q34Game8Imomushi11StateAttackFPQ24Game9EnemyBase
-        .4byte cleanup__Q34Game8Imomushi11StateAttackFPQ24Game9EnemyBase
-        .4byte resume__Q24Game13EnemyFSMStateFPQ24Game9EnemyBase
-        .4byte restart__Q24Game13EnemyFSMStateFPQ24Game9EnemyBase
-        .4byte
-   transit__Q24Game13EnemyFSMStateFPQ24Game9EnemyBaseiPQ24Game8StateArg .4byte
-   doDirectDraw__Q24Game13EnemyFSMStateFPQ24Game9EnemyBaseR8Graphics .global
-   __vt__Q34Game8Imomushi10StateClimb
-    __vt__Q34Game8Imomushi10StateClimb:
-        .4byte 0
-        .4byte 0
-        .4byte
-   init__Q34Game8Imomushi10StateClimbFPQ24Game9EnemyBasePQ24Game8StateArg .4byte
-   exec__Q34Game8Imomushi10StateClimbFPQ24Game9EnemyBase .4byte
-   cleanup__Q34Game8Imomushi10StateClimbFPQ24Game9EnemyBase .4byte
-   resume__Q24Game13EnemyFSMStateFPQ24Game9EnemyBase .4byte
-   restart__Q24Game13EnemyFSMStateFPQ24Game9EnemyBase .4byte
-   transit__Q24Game13EnemyFSMStateFPQ24Game9EnemyBaseiPQ24Game8StateArg .4byte
-   doDirectDraw__Q24Game13EnemyFSMStateFPQ24Game9EnemyBaseR8Graphics .global
-   __vt__Q34Game8Imomushi11StateGoHome
-    __vt__Q34Game8Imomushi11StateGoHome:
-        .4byte 0
-        .4byte 0
-        .4byte
-   init__Q34Game8Imomushi11StateGoHomeFPQ24Game9EnemyBasePQ24Game8StateArg
-        .4byte exec__Q34Game8Imomushi11StateGoHomeFPQ24Game9EnemyBase
-        .4byte cleanup__Q34Game8Imomushi11StateGoHomeFPQ24Game9EnemyBase
-        .4byte resume__Q24Game13EnemyFSMStateFPQ24Game9EnemyBase
-        .4byte restart__Q24Game13EnemyFSMStateFPQ24Game9EnemyBase
-        .4byte
-   transit__Q24Game13EnemyFSMStateFPQ24Game9EnemyBaseiPQ24Game8StateArg .4byte
-   doDirectDraw__Q24Game13EnemyFSMStateFPQ24Game9EnemyBaseR8Graphics .global
-   __vt__Q34Game8Imomushi9StateMove
-    __vt__Q34Game8Imomushi9StateMove:
-        .4byte 0
-        .4byte 0
-        .4byte
-   init__Q34Game8Imomushi9StateMoveFPQ24Game9EnemyBasePQ24Game8StateArg .4byte
-   exec__Q34Game8Imomushi9StateMoveFPQ24Game9EnemyBase .4byte
-   cleanup__Q34Game8Imomushi9StateMoveFPQ24Game9EnemyBase .4byte
-   resume__Q24Game13EnemyFSMStateFPQ24Game9EnemyBase .4byte
-   restart__Q24Game13EnemyFSMStateFPQ24Game9EnemyBase .4byte
-   transit__Q24Game13EnemyFSMStateFPQ24Game9EnemyBaseiPQ24Game8StateArg .4byte
-   doDirectDraw__Q24Game13EnemyFSMStateFPQ24Game9EnemyBaseR8Graphics .global
-   __vt__Q34Game8Imomushi9StateDive
-    __vt__Q34Game8Imomushi9StateDive:
-        .4byte 0
-        .4byte 0
-        .4byte
-   init__Q34Game8Imomushi9StateDiveFPQ24Game9EnemyBasePQ24Game8StateArg .4byte
-   exec__Q34Game8Imomushi9StateDiveFPQ24Game9EnemyBase .4byte
-   cleanup__Q34Game8Imomushi9StateDiveFPQ24Game9EnemyBase .4byte
-   resume__Q24Game13EnemyFSMStateFPQ24Game9EnemyBase .4byte
-   restart__Q24Game13EnemyFSMStateFPQ24Game9EnemyBase .4byte
-   transit__Q24Game13EnemyFSMStateFPQ24Game9EnemyBaseiPQ24Game8StateArg .4byte
-   doDirectDraw__Q24Game13EnemyFSMStateFPQ24Game9EnemyBaseR8Graphics .global
-   __vt__Q34Game8Imomushi11StateAppear
-    __vt__Q34Game8Imomushi11StateAppear:
-        .4byte 0
-        .4byte 0
-        .4byte
-   init__Q34Game8Imomushi11StateAppearFPQ24Game9EnemyBasePQ24Game8StateArg
-        .4byte exec__Q34Game8Imomushi11StateAppearFPQ24Game9EnemyBase
-        .4byte cleanup__Q34Game8Imomushi11StateAppearFPQ24Game9EnemyBase
-        .4byte resume__Q24Game13EnemyFSMStateFPQ24Game9EnemyBase
-        .4byte restart__Q24Game13EnemyFSMStateFPQ24Game9EnemyBase
-        .4byte
-   transit__Q24Game13EnemyFSMStateFPQ24Game9EnemyBaseiPQ24Game8StateArg .4byte
-   doDirectDraw__Q24Game13EnemyFSMStateFPQ24Game9EnemyBaseR8Graphics .global
-   __vt__Q34Game8Imomushi9StateStay
-    __vt__Q34Game8Imomushi9StateStay:
-        .4byte 0
-        .4byte 0
-        .4byte
-   init__Q34Game8Imomushi9StateStayFPQ24Game9EnemyBasePQ24Game8StateArg .4byte
-   exec__Q34Game8Imomushi9StateStayFPQ24Game9EnemyBase .4byte
-   cleanup__Q34Game8Imomushi9StateStayFPQ24Game9EnemyBase .4byte
-   resume__Q24Game13EnemyFSMStateFPQ24Game9EnemyBase .4byte
-   restart__Q24Game13EnemyFSMStateFPQ24Game9EnemyBase .4byte
-   transit__Q24Game13EnemyFSMStateFPQ24Game9EnemyBaseiPQ24Game8StateArg .4byte
-   doDirectDraw__Q24Game13EnemyFSMStateFPQ24Game9EnemyBaseR8Graphics .global
-   __vt__Q34Game8Imomushi13StateFallMove
-    __vt__Q34Game8Imomushi13StateFallMove:
-        .4byte 0
-        .4byte 0
-        .4byte
-   init__Q34Game8Imomushi13StateFallMoveFPQ24Game9EnemyBasePQ24Game8StateArg
-        .4byte exec__Q34Game8Imomushi13StateFallMoveFPQ24Game9EnemyBase
-        .4byte cleanup__Q34Game8Imomushi13StateFallMoveFPQ24Game9EnemyBase
-        .4byte resume__Q24Game13EnemyFSMStateFPQ24Game9EnemyBase
-        .4byte restart__Q24Game13EnemyFSMStateFPQ24Game9EnemyBase
-        .4byte
-   transit__Q24Game13EnemyFSMStateFPQ24Game9EnemyBaseiPQ24Game8StateArg .4byte
-   doDirectDraw__Q24Game13EnemyFSMStateFPQ24Game9EnemyBaseR8Graphics .global
-   __vt__Q34Game8Imomushi13StateFallDive
-    __vt__Q34Game8Imomushi13StateFallDive:
-        .4byte 0
-        .4byte 0
-        .4byte
-   init__Q34Game8Imomushi13StateFallDiveFPQ24Game9EnemyBasePQ24Game8StateArg
-        .4byte exec__Q34Game8Imomushi13StateFallDiveFPQ24Game9EnemyBase
-        .4byte cleanup__Q34Game8Imomushi13StateFallDiveFPQ24Game9EnemyBase
-        .4byte resume__Q24Game13EnemyFSMStateFPQ24Game9EnemyBase
-        .4byte restart__Q24Game13EnemyFSMStateFPQ24Game9EnemyBase
-        .4byte
-   transit__Q24Game13EnemyFSMStateFPQ24Game9EnemyBaseiPQ24Game8StateArg .4byte
-   doDirectDraw__Q24Game13EnemyFSMStateFPQ24Game9EnemyBaseR8Graphics .global
-   __vt__Q34Game8Imomushi9StateDead
-    __vt__Q34Game8Imomushi9StateDead:
-        .4byte 0
-        .4byte 0
-        .4byte
-   init__Q34Game8Imomushi9StateDeadFPQ24Game9EnemyBasePQ24Game8StateArg .4byte
-   exec__Q34Game8Imomushi9StateDeadFPQ24Game9EnemyBase .4byte
-   cleanup__Q34Game8Imomushi9StateDeadFPQ24Game9EnemyBase .4byte
-   resume__Q24Game13EnemyFSMStateFPQ24Game9EnemyBase .4byte
-   restart__Q24Game13EnemyFSMStateFPQ24Game9EnemyBase .4byte
-   transit__Q24Game13EnemyFSMStateFPQ24Game9EnemyBaseiPQ24Game8StateArg .4byte
-   doDirectDraw__Q24Game13EnemyFSMStateFPQ24Game9EnemyBaseR8Graphics .global
-   __vt__Q34Game8Imomushi5State
-    __vt__Q34Game8Imomushi5State:
-        .4byte 0
-        .4byte 0
-        .4byte init__Q24Game13EnemyFSMStateFPQ24Game9EnemyBasePQ24Game8StateArg
-        .4byte exec__Q24Game13EnemyFSMStateFPQ24Game9EnemyBase
-        .4byte cleanup__Q24Game13EnemyFSMStateFPQ24Game9EnemyBase
-        .4byte resume__Q24Game13EnemyFSMStateFPQ24Game9EnemyBase
-        .4byte restart__Q24Game13EnemyFSMStateFPQ24Game9EnemyBase
-        .4byte
-   transit__Q24Game13EnemyFSMStateFPQ24Game9EnemyBaseiPQ24Game8StateArg .4byte
-   doDirectDraw__Q24Game13EnemyFSMStateFPQ24Game9EnemyBaseR8Graphics .global
-   __vt__Q34Game8Imomushi3FSM
-    __vt__Q34Game8Imomushi3FSM:
-        .4byte 0
-        .4byte 0
-        .4byte init__Q34Game8Imomushi3FSMFPQ24Game9EnemyBase
-        .4byte
-   start__Q24Game17EnemyStateMachineFPQ24Game9EnemyBaseiPQ24Game8StateArg .4byte
-   exec__Q24Game17EnemyStateMachineFPQ24Game9EnemyBase .4byte
-   transit__Q24Game17EnemyStateMachineFPQ24Game9EnemyBaseiPQ24Game8StateArg
-        .4byte
-   doDirectDraw__Q24Game17EnemyStateMachineFPQ24Game9EnemyBaseR8Graphics .4byte
-   getCurrState__Q24Game17EnemyStateMachineFPQ24Game9EnemyBase .4byte
-   setCurrState__Q24Game17EnemyStateMachineFPQ24Game9EnemyBasePQ24Game13EnemyFSMState
-
-    .section .sdata2, "a"     # 0x80516360 - 0x80520E40
-    .global lbl_8051C330
-    lbl_8051C330:
-        .4byte 0x64656164
-        .4byte 0x00000000
-    .global lbl_8051C338
-    lbl_8051C338:
-        .4byte 0x73746179
-        .4byte 0x00000000
-    .global lbl_8051C340
-    lbl_8051C340:
-        .4byte 0x61707065
-        .4byte 0x61720000
-    .global lbl_8051C348
-    lbl_8051C348:
-        .4byte 0x64697665
-        .4byte 0x00000000
-    .global lbl_8051C350
-    lbl_8051C350:
-        .4byte 0x6D6F7665
-        .4byte 0x00000000
-    .global lbl_8051C358
-    lbl_8051C358:
-        .4byte 0x676F686F
-        .4byte 0x6D650000
-    .global lbl_8051C360
-    lbl_8051C360:
-        .4byte 0x636C696D
-        .4byte 0x62000000
-    .global lbl_8051C368
-    lbl_8051C368:
-        .4byte 0x61747461
-        .4byte 0x636B0000
-    .global lbl_8051C370
-    lbl_8051C370:
-        .4byte 0x77616974
-        .4byte 0x00000000
-    .global lbl_8051C378
-    lbl_8051C378:
-        .4byte 0x00000000
-    .global lbl_8051C37C
-    lbl_8051C37C:
-        .4byte 0x41C80000
-    .global lbl_8051C380
-    lbl_8051C380:
-        .4byte 0x40C00000
-    .global lbl_8051C384
-    lbl_8051C384:
-        .4byte 0x44610000
-    .global lbl_8051C388
-    lbl_8051C388:
-        .4byte 0x43A2F983
-    .global lbl_8051C38C
-    lbl_8051C38C:
-        .4byte 0xC3A2F983
-    .global lbl_8051C390
-    lbl_8051C390:
-        .4byte 0x3C23D70A
-    .global lbl_8051C394
-    lbl_8051C394:
-        .float 1.0
-    .global lbl_8051C398
-    lbl_8051C398:
-        .4byte 0x40A00000
-        .4byte 0x00000000
-*/
-
+#include "Game/Entities/Imomushi.h"
+#include "Game/EnemyAnimKeyEvent.h"
+#include "Game/EnemyFunc.h"
 namespace Game {
+namespace Imomushi {
 
 /*
  * --INFO--
  * Address:	802BA0D8
  * Size:	0004D4
  */
-void Imomushi::FSM::init(Game::EnemyBase*)
+void FSM::init(EnemyBase* enemy)
 {
 	/*
 	stwu     r1, -0x10(r1)
@@ -652,7 +358,7 @@ lbl_802BA58C:
  * Address:	802BA5AC
  * Size:	000050
  */
-void Imomushi::StateDead::init(Game::EnemyBase*, Game::StateArg*)
+void StateDead::init(EnemyBase*, StateArg*)
 {
 	/*
 	stwu     r1, -0x10(r1)
@@ -683,7 +389,7 @@ void Imomushi::StateDead::init(Game::EnemyBase*, Game::StateArg*)
  * Address:	802BA5FC
  * Size:	000044
  */
-void Imomushi::StateDead::exec(Game::EnemyBase*)
+void StateDead::exec(EnemyBase*)
 {
 	/*
 	stwu     r1, -0x10(r1)
@@ -713,14 +419,14 @@ lbl_802BA630:
  * Address:	802BA640
  * Size:	000004
  */
-void Imomushi::StateDead::cleanup(Game::EnemyBase*) { }
+void StateDead::cleanup(EnemyBase*) { }
 
 /*
  * --INFO--
  * Address:	802BA644
  * Size:	00004C
  */
-void Imomushi::StateFallDive::init(Game::EnemyBase*, Game::StateArg*)
+void StateFallDive::init(EnemyBase*, StateArg*)
 {
 	/*
 	stwu     r1, -0x10(r1)
@@ -750,7 +456,7 @@ void Imomushi::StateFallDive::init(Game::EnemyBase*, Game::StateArg*)
  * Address:	802BA690
  * Size:	000140
  */
-void Imomushi::StateFallDive::exec(Game::EnemyBase*)
+void StateFallDive::exec(EnemyBase*)
 {
 	/*
 	stwu     r1, -0x50(r1)
@@ -849,14 +555,14 @@ lbl_802BA7B0:
  * Address:	802BA7D0
  * Size:	000004
  */
-void Imomushi::StateFallDive::cleanup(Game::EnemyBase*) { }
+void StateFallDive::cleanup(EnemyBase*) { }
 
 /*
  * --INFO--
  * Address:	802BA7D4
  * Size:	00004C
  */
-void Imomushi::StateFallMove::init(Game::EnemyBase*, Game::StateArg*)
+void StateFallMove::init(EnemyBase*, StateArg*)
 {
 	/*
 	stwu     r1, -0x10(r1)
@@ -886,7 +592,7 @@ void Imomushi::StateFallMove::init(Game::EnemyBase*, Game::StateArg*)
  * Address:	802BA820
  * Size:	000178
  */
-void Imomushi::StateFallMove::exec(Game::EnemyBase*)
+void StateFallMove::exec(EnemyBase*)
 {
 	/*
 	stwu     r1, -0x50(r1)
@@ -1001,14 +707,14 @@ lbl_802BA978:
  * Address:	802BA998
  * Size:	000004
  */
-void Imomushi::StateFallMove::cleanup(Game::EnemyBase*) { }
+void StateFallMove::cleanup(EnemyBase*) { }
 
 /*
  * --INFO--
  * Address:	802BA99C
  * Size:	0000C8
  */
-void Imomushi::StateStay::init(Game::EnemyBase*, Game::StateArg*)
+void StateStay::init(EnemyBase*, StateArg*)
 {
 	/*
 	stwu     r1, -0x10(r1)
@@ -1069,7 +775,7 @@ void Imomushi::StateStay::init(Game::EnemyBase*, Game::StateArg*)
  * Address:	802BAA64
  * Size:	0000A8
  */
-void Imomushi::StateStay::exec(Game::EnemyBase*)
+void StateStay::exec(EnemyBase*)
 {
 	/*
 	stwu     r1, -0x10(r1)
@@ -1125,7 +831,7 @@ lbl_802BAAF4:
  * Address:	802BAB0C
  * Size:	000090
  */
-void Imomushi::StateStay::cleanup(Game::EnemyBase*)
+void StateStay::cleanup(EnemyBase*)
 {
 	/*
 	stwu     r1, -0x10(r1)
@@ -1172,7 +878,7 @@ void Imomushi::StateStay::cleanup(Game::EnemyBase*)
  * Address:	802BAB9C
  * Size:	000080
  */
-void Imomushi::StateAppear::init(Game::EnemyBase*, Game::StateArg*)
+void StateAppear::init(EnemyBase*, StateArg*)
 {
 	/*
 	stwu     r1, -0x10(r1)
@@ -1215,7 +921,7 @@ void Imomushi::StateAppear::init(Game::EnemyBase*, Game::StateArg*)
  * Address:	802BAC1C
  * Size:	0000D8
  */
-void Imomushi::StateAppear::exec(Game::EnemyBase*)
+void StateAppear::exec(EnemyBase*)
 {
 	/*
 	stwu     r1, -0x10(r1)
@@ -1286,7 +992,7 @@ lbl_802BACDC:
  * Address:	802BACF4
  * Size:	00003C
  */
-void Imomushi::StateAppear::cleanup(Game::EnemyBase*)
+void StateAppear::cleanup(EnemyBase*)
 {
 	/*
 	stwu     r1, -0x10(r1)
@@ -1312,7 +1018,7 @@ void Imomushi::StateAppear::cleanup(Game::EnemyBase*)
  * Address:	802BAD30
  * Size:	000074
  */
-void Imomushi::StateDive::init(Game::EnemyBase*, Game::StateArg*)
+void StateDive::init(EnemyBase*, StateArg*)
 {
 	/*
 	stwu     r1, -0x10(r1)
@@ -1352,7 +1058,7 @@ void Imomushi::StateDive::init(Game::EnemyBase*, Game::StateArg*)
  * Address:	802BADA4
  * Size:	000050
  */
-void Imomushi::StateDive::exec(Game::EnemyBase*)
+void StateDive::exec(EnemyBase*)
 {
 	/*
 	stwu     r1, -0x10(r1)
@@ -1385,7 +1091,7 @@ lbl_802BADE4:
  * Address:	802BADF4
  * Size:	00003C
  */
-void Imomushi::StateDive::cleanup(Game::EnemyBase*)
+void StateDive::cleanup(EnemyBase*)
 {
 	/*
 	stwu     r1, -0x10(r1)
@@ -1411,7 +1117,7 @@ void Imomushi::StateDive::cleanup(Game::EnemyBase*)
  * Address:	802BAE30
  * Size:	000048
  */
-void Imomushi::StateMove::init(Game::EnemyBase*, Game::StateArg*)
+void StateMove::init(EnemyBase*, StateArg*)
 {
 	/*
 	stwu     r1, -0x10(r1)
@@ -1440,7 +1146,7 @@ void Imomushi::StateMove::init(Game::EnemyBase*, Game::StateArg*)
  * Address:	802BAE78
  * Size:	000238
  */
-void Imomushi::StateMove::exec(Game::EnemyBase*)
+void StateMove::exec(EnemyBase*)
 {
 	/*
 	stwu     r1, -0x60(r1)
@@ -1611,7 +1317,7 @@ lbl_802BB084:
  * Address:	802BB0B0
  * Size:	000024
  */
-void Imomushi::StateMove::cleanup(Game::EnemyBase*)
+void StateMove::cleanup(EnemyBase*)
 {
 	/*
 	stwu     r1, -0x10(r1)
@@ -1631,7 +1337,7 @@ void Imomushi::StateMove::cleanup(Game::EnemyBase*)
  * Address:	802BB0D4
  * Size:	000048
  */
-void Imomushi::StateGoHome::init(Game::EnemyBase*, Game::StateArg*)
+void StateGoHome::init(EnemyBase*, StateArg*)
 {
 	/*
 	stwu     r1, -0x10(r1)
@@ -1660,7 +1366,7 @@ void Imomushi::StateGoHome::init(Game::EnemyBase*, Game::StateArg*)
  * Address:	802BB11C
  * Size:	00014C
  */
-void Imomushi::StateGoHome::exec(Game::EnemyBase*)
+void StateGoHome::exec(EnemyBase*)
 {
 	/*
 	stwu     r1, -0x30(r1)
@@ -1764,7 +1470,7 @@ lbl_802BB250:
  * Address:	802BB268
  * Size:	000024
  */
-void Imomushi::StateGoHome::cleanup(Game::EnemyBase*)
+void StateGoHome::cleanup(EnemyBase*)
 {
 	/*
 	stwu     r1, -0x10(r1)
@@ -1784,7 +1490,7 @@ void Imomushi::StateGoHome::cleanup(Game::EnemyBase*)
  * Address:	802BB28C
  * Size:	00014C
  */
-void Imomushi::StateClimb::init(Game::EnemyBase*, Game::StateArg*)
+void StateClimb::init(EnemyBase*, StateArg*)
 {
 	/*
 	stwu     r1, -0x40(r1)
@@ -1884,7 +1590,7 @@ lbl_802BB39C:
  * Address:	802BB3D8
  * Size:	000170
  */
-void Imomushi::StateClimb::exec(Game::EnemyBase*)
+void StateClimb::exec(EnemyBase*)
 {
 	/*
 	stwu     r1, -0x10(r1)
@@ -1999,7 +1705,7 @@ lbl_802BB530:
  * Address:	802BB548
  * Size:	000024
  */
-void Imomushi::StateClimb::cleanup(Game::EnemyBase*)
+void StateClimb::cleanup(EnemyBase*)
 {
 	/*
 	stwu     r1, -0x10(r1)
@@ -2019,7 +1725,7 @@ void Imomushi::StateClimb::cleanup(Game::EnemyBase*)
  * Address:	802BB56C
  * Size:	00009C
  */
-void Imomushi::StateAttack::init(Game::EnemyBase*, Game::StateArg*)
+void StateAttack::init(EnemyBase*, StateArg*)
 {
 	/*
 	stwu     r1, -0x20(r1)
@@ -2069,7 +1775,7 @@ void Imomushi::StateAttack::init(Game::EnemyBase*, Game::StateArg*)
  * Address:	802BB608
  * Size:	00015C
  */
-void Imomushi::StateAttack::exec(Game::EnemyBase*)
+void StateAttack::exec(EnemyBase*)
 {
 	/*
 	stwu     r1, -0x10(r1)
@@ -2179,7 +1885,7 @@ lbl_802BB74C:
  * Address:	802BB764
  * Size:	000024
  */
-void Imomushi::StateAttack::cleanup(Game::EnemyBase*)
+void StateAttack::cleanup(EnemyBase*)
 {
 	/*
 	stwu     r1, -0x10(r1)
@@ -2199,7 +1905,7 @@ void Imomushi::StateAttack::cleanup(Game::EnemyBase*)
  * Address:	802BB788
  * Size:	000094
  */
-void Imomushi::StateWait::init(Game::EnemyBase*, Game::StateArg*)
+void StateWait::init(EnemyBase*, StateArg*)
 {
 	/*
 	stwu     r1, -0x20(r1)
@@ -2247,7 +1953,7 @@ void Imomushi::StateWait::init(Game::EnemyBase*, Game::StateArg*)
  * Address:	802BB81C
  * Size:	000138
  */
-void Imomushi::StateWait::exec(Game::EnemyBase*)
+void StateWait::exec(EnemyBase*)
 {
 	/*
 	stwu     r1, -0x20(r1)
@@ -2346,7 +2052,7 @@ lbl_802BB938:
  * Address:	802BB954
  * Size:	000024
  */
-void Imomushi::StateWait::cleanup(Game::EnemyBase*)
+void StateWait::cleanup(EnemyBase*)
 {
 	/*
 	stwu     r1, -0x10(r1)
@@ -2366,7 +2072,7 @@ void Imomushi::StateWait::cleanup(Game::EnemyBase*)
  * Address:	802BB978
  * Size:	00006C
  */
-void Imomushi::StateZukanStay::init(Game::EnemyBase*, Game::StateArg*)
+void StateZukanStay::init(EnemyBase*, StateArg*)
 {
 	/*
 	stwu     r1, -0x10(r1)
@@ -2404,7 +2110,7 @@ void Imomushi::StateZukanStay::init(Game::EnemyBase*, Game::StateArg*)
  * Address:	802BB9E4
  * Size:	000058
  */
-void Imomushi::StateZukanStay::exec(Game::EnemyBase*)
+void StateZukanStay::exec(EnemyBase*)
 {
 	/*
 	stwu     r1, -0x10(r1)
@@ -2439,7 +2145,7 @@ lbl_802BBA2C:
  * Address:	802BBA3C
  * Size:	000030
  */
-void Imomushi::StateZukanStay::cleanup(Game::EnemyBase*)
+void StateZukanStay::cleanup(EnemyBase*)
 {
 	/*
 	stwu     r1, -0x10(r1)
@@ -2462,7 +2168,7 @@ void Imomushi::StateZukanStay::cleanup(Game::EnemyBase*)
  * Address:	802BBA6C
  * Size:	00005C
  */
-void Imomushi::StateZukanAppear::init(Game::EnemyBase*, Game::StateArg*)
+void StateZukanAppear::init(EnemyBase*, StateArg*)
 {
 	/*
 	stwu     r1, -0x10(r1)
@@ -2496,7 +2202,7 @@ void Imomushi::StateZukanAppear::init(Game::EnemyBase*, Game::StateArg*)
  * Address:	802BBAC8
  * Size:	000050
  */
-void Imomushi::StateZukanAppear::exec(Game::EnemyBase*)
+void StateZukanAppear::exec(EnemyBase*)
 {
 	/*
 	stwu     r1, -0x10(r1)
@@ -2529,7 +2235,7 @@ lbl_802BBB08:
  * Address:	802BBB18
  * Size:	000010
  */
-void Imomushi::StateZukanAppear::cleanup(Game::EnemyBase*)
+void StateZukanAppear::cleanup(EnemyBase*)
 {
 	/*
 	lwz      r0, 0x1e0(r4)
@@ -2544,7 +2250,7 @@ void Imomushi::StateZukanAppear::cleanup(Game::EnemyBase*)
  * Address:	802BBB28
  * Size:	000058
  */
-void Imomushi::StateZukanMove::init(Game::EnemyBase*, Game::StateArg*)
+void StateZukanMove::init(EnemyBase*, StateArg*)
 {
 	/*
 	stwu     r1, -0x10(r1)
@@ -2577,7 +2283,7 @@ void Imomushi::StateZukanMove::init(Game::EnemyBase*, Game::StateArg*)
  * Address:	802BBB80
  * Size:	0000BC
  */
-void Imomushi::StateZukanMove::exec(Game::EnemyBase*)
+void StateZukanMove::exec(EnemyBase*)
 {
 	/*
 	stwu     r1, -0x20(r1)
@@ -2636,7 +2342,7 @@ lbl_802BBC24:
  * Address:	802BBC3C
  * Size:	000024
  */
-void Imomushi::StateZukanMove::cleanup(Game::EnemyBase*)
+void StateZukanMove::cleanup(EnemyBase*)
 {
 	/*
 	stwu     r1, -0x10(r1)
@@ -2650,4 +2356,5 @@ void Imomushi::StateZukanMove::cleanup(Game::EnemyBase*)
 	blr
 	*/
 }
+} // namespace Imomushi
 } // namespace Game

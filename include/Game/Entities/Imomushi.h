@@ -16,6 +16,24 @@ namespace Game {
 namespace Imomushi {
 struct FSM;
 
+enum StateID {
+	IMOMUSHI_NULL        = -1,
+	IMOMUSHI_Dead        = 0,
+	IMOMUSHI_FallDive    = 1,
+	IMOMUSHI_FallMove    = 2,
+	IMOMUSHI_Stay        = 3,
+	IMOMUSHI_Appear      = 4,
+	IMOMUSHI_Dive        = 5,
+	IMOMUSHI_Move        = 6,
+	IMOMUSHI_GoHome      = 7,
+	IMOMUSHI_Climb       = 8,
+	IMOMUSHI_Attack      = 9,
+	IMOMUSHI_Wait        = 10,
+	IMOMUSHI_ZukanStay   = 11,
+	IMOMUSHI_ZukanAppear = 12,
+	IMOMUSHI_ZukanMove   = 13,
+};
+
 struct Obj : public EnemyBase {
 	Obj();
 
