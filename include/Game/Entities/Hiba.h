@@ -114,7 +114,7 @@ struct ProperAnimator : public EnemyAnimatorBase {
 
 /////////////////////////////////////////////////////////////////
 // STATE MACHINE DEFINITIONS
-enum StateID {
+enum StateID { // same as GasHiba::StateID
 	HIBA_Dead   = 0,
 	HIBA_Wait   = 1,
 	HIBA_Attack = 2,

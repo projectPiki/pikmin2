@@ -13,7 +13,7 @@ namespace GasHiba {
  */
 void FSM::init(EnemyBase* enemy)
 {
-	create(HIBA_Count);
+	create(GASHIBA_Count);
 	registerState(new StateDead);
 	registerState(new StateWait);
 	registerState(new StateAttack);
@@ -94,13 +94,13 @@ void StateWait::exec(EnemyBase* enemy)
 	hiba->updateLivingThing();
 
 	if (hiba->m_health <= 0.0f) {
-		transit(hiba, HIBA_Dead, nullptr);
+		transit(hiba, GASHIBA_Dead, nullptr);
 		return;
 	}
 
 	// If enough time has passed, attack
 	if (hiba->m_timer > static_cast<Parms*>(hiba->m_parms)->m_properParms.m_waitTime.m_value) {
-		transit(hiba, HIBA_Attack, nullptr);
+		transit(hiba, GASHIBA_Attack, nullptr);
 	}
 }
 
@@ -154,11 +154,11 @@ void StateAttack::exec(EnemyBase* enemy)
 	if (hiba->m_animKeyEvent->m_running
 	    && ((u32)hiba->m_animKeyEvent->m_type == 1000) /* Epoch: wtf is this, needs cleanup. Surely an enum (+1 from INTNS)? */) {
 		if (hiba->m_health <= 0.0f) {
-			transit(hiba, HIBA_Dead, nullptr);
+			transit(hiba, GASHIBA_Dead, nullptr);
 			return;
 		}
 
-		transit(hiba, HIBA_Wait, nullptr);
+		transit(hiba, GASHIBA_Wait, nullptr);
 	}
 }
 

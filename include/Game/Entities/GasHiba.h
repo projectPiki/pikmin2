@@ -122,11 +122,11 @@ struct ProperAnimator : public EnemyAnimatorBase {
 
 /////////////////////////////////////////////////////////////////
 // STATE MACHINE DEFINITIONS
-enum StateID {
-	HIBA_Dead   = 0,
-	HIBA_Wait   = 1,
-	HIBA_Attack = 2,
-	HIBA_Count,
+enum StateID { // same as Hiba::StateID
+	GASHIBA_Dead   = 0,
+	GASHIBA_Wait   = 1,
+	GASHIBA_Attack = 2,
+	GASHIBA_Count,
 };
 
 struct FSM : public EnemyStateMachine {
@@ -148,7 +148,7 @@ struct State : public EnemyFSMState {
 
 struct StateAttack : public State {
 	inline StateAttack()
-	    : State(HIBA_Attack, "attack")
+	    : State(GASHIBA_Attack, "attack")
 	{
 	}
 
@@ -162,7 +162,7 @@ struct StateAttack : public State {
 
 struct StateDead : public State {
 	inline StateDead()
-	    : State(HIBA_Dead, "dead")
+	    : State(GASHIBA_Dead, "dead")
 	{
 	}
 
@@ -176,7 +176,7 @@ struct StateDead : public State {
 
 struct StateWait : public State {
 	inline StateWait()
-	    : State(HIBA_Wait, "wait")
+	    : State(GASHIBA_Wait, "wait")
 	{
 	}
 
