@@ -161,7 +161,7 @@ enum StateID {
 	QURIONE_Move      = 3,
 	QURIONE_Drop      = 4,
 	QURIONE_Dead      = 5,
-	QURIONE_Count     = 6,
+	QURIONE_Count,
 };
 
 struct FSM : public EnemyStateMachine {

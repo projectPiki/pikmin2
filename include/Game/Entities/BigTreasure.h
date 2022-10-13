@@ -62,7 +62,7 @@ enum StateID {
 	BIGTREASURE_DropItem  = 9,
 	BIGTREASURE_Walk      = 10,
 	BIGTREASURE_ItemWalk  = 11,
-	BIGTREASURE_Count     = 12,
+	BIGTREASURE_Count,
 };
 
 struct Obj : public EnemyBase {

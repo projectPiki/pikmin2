@@ -30,7 +30,7 @@ enum StateID {
 	ONIKURAGE_TakeOff     = 9,
 	ONIKURAGE_FlyFlick    = 10,
 	ONIKURAGE_GroundFlick = 11,
-	ONIKURAGE_Count       = 12,
+	ONIKURAGE_Count,
 };
 
 struct Obj : public EnemyBase {

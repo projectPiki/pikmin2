@@ -102,8 +102,8 @@ struct ProperAnimator : public EnemyAnimatorBase {
 /////////////////////////////////////////////////////////////////
 // STATE MACHINE DEFINITIONS
 enum StateID {
-	EGG_Wait  = 0,
-	EGG_Count = 1,
+	EGG_Wait = 0,
+	EGG_Count,
 };
 
 struct FSM : public EnemyStateMachine {

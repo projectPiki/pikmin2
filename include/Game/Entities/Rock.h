@@ -152,7 +152,7 @@ enum StateID {
 	ROCK_Fall     = 3,
 	ROCK_Move     = 4,
 	ROCK_Dead     = 5,
-	ROCK_Count    = 6,
+	ROCK_Count,
 };
 
 struct FSM : public EnemyStateMachine {

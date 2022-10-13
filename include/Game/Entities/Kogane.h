@@ -134,7 +134,7 @@ enum StateID {
 	KOGANE_Move      = 2,
 	KOGANE_Wait      = 3,
 	KOGANE_Press     = 4,
-	KOGANE_Count     = 5,
+	KOGANE_Count,
 };
 
 struct FSM : public EnemyStateMachine {

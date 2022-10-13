@@ -47,7 +47,7 @@ enum StateID {
 	DAMAGUMO_Wait  = 3,
 	DAMAGUMO_Flick = 4,
 	DAMAGUMO_Walk  = 5,
-	DAMAGUMO_Count = 6,
+	DAMAGUMO_Count,
 };
 
 struct Obj : public EnemyBase {

@@ -147,7 +147,7 @@ enum StateID {
 	TAMAGOMUSHI_Hide   = 3,
 	TAMAGOMUSHI_Dead   = 4,
 	TAMAGOMUSHI_Wait   = 5,
-	TAMAGOMUSHI_Count  = 6,
+	TAMAGOMUSHI_Count,
 };
 
 struct FSM : public EnemyStateMachine {

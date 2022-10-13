@@ -27,7 +27,7 @@ enum StateID {
 	SOKKURI_MoveGround = 6,
 	SOKKURI_MoveWater  = 7,
 	SOKKURI_Flick      = 8,
-	SOKKURI_Count      = 9,
+	SOKKURI_Count,
 };
 
 struct Obj : public EnemyBase {

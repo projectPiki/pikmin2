@@ -56,7 +56,7 @@ enum StateID {
 	SNAKEWHOLE_Attack    = 8,
 	SNAKEWHOLE_Eat       = 9,
 	SNAKEWHOLE_Struggle  = 10,
-	SNAKEWHOLE_Count     = 11,
+	SNAKEWHOLE_Count,
 };
 
 struct Obj : public EnemyBase {

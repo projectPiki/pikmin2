@@ -36,7 +36,7 @@ enum StateID {
 	KURAGE_TakeOff     = 8,
 	KURAGE_FlyFlick    = 9,
 	KURAGE_GroundFlick = 10,
-	KURAGE_Count       = 11,
+	KURAGE_Count,
 };
 
 struct Obj : public EnemyBase {

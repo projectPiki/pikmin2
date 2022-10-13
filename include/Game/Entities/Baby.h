@@ -116,7 +116,7 @@ enum StateID {
 	BABY_Born   = 2,
 	BABY_Move   = 3,
 	BABY_Attack = 4,
-	BABY_Count  = 5,
+	BABY_Count,
 };
 
 struct FSM : public EnemyStateMachine {

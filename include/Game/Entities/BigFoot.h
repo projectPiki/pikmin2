@@ -50,7 +50,7 @@ enum StateID {
 	BIGFOOT_Wait  = 3,
 	BIGFOOT_Flick = 4,
 	BIGFOOT_Walk  = 5,
-	BIGFOOT_Count = 6,
+	BIGFOOT_Count,
 };
 
 struct Obj : public EnemyBase {

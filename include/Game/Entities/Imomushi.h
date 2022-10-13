@@ -32,6 +32,7 @@ enum StateID {
 	IMOMUSHI_ZukanStay   = 11,
 	IMOMUSHI_ZukanAppear = 12,
 	IMOMUSHI_ZukanMove   = 13,
+	IMOMUSHI_Count,
 };
 
 struct Obj : public EnemyBase {

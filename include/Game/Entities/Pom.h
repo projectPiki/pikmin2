@@ -120,7 +120,7 @@ enum StateID {
 	POM_Close = 3,
 	POM_Shot  = 4,
 	POM_Swing = 5,
-	POM_Count = 6,
+	POM_Count,
 };
 
 struct FSM : public EnemyStateMachine {

@@ -48,7 +48,7 @@ enum StateID {
 	HOUDAI_Flick = 4,
 	HOUDAI_Walk  = 5,
 	HOUDAI_Shot  = 6,
-	HOUDAI_Count = 7,
+	HOUDAI_Count,
 };
 
 struct Obj : public EnemyBase {

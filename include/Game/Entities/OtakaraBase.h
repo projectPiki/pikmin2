@@ -35,7 +35,7 @@ enum StateID {
 	OTA_BombWait  = 11,
 	OTA_BombMove  = 12,
 	OTA_BombTurn  = 13,
-	OTA_Count     = 14,
+	OTA_Count,
 };
 
 struct FSM;

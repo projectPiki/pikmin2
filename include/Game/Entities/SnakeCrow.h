@@ -206,7 +206,7 @@ enum StateID {
 	SNAKECROW_Attack    = 6,
 	SNAKECROW_Eat       = 7,
 	SNAKECROW_Struggle  = 8,
-	SNAKECROW_Count     = 9,
+	SNAKECROW_Count,
 };
 
 struct FSM : public EnemyStateMachine {

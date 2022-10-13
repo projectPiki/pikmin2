@@ -164,7 +164,7 @@ enum StateID {
 	ELECHIBA_Wait   = 1,
 	ELECHIBA_Sign   = 2,
 	ELECHIBA_Attack = 3,
-	ELECHIBA_Count  = 4,
+	ELECHIBA_Count,
 };
 
 struct FSM : public EnemyStateMachine {
