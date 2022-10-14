@@ -5,150 +5,114 @@ lbl_constructor:
 
 .section .rodata  # 0x804732E0 - 0x8049E220
 .balign 8
-.global lbl_8047EBE8
 lbl_8047EBE8:
 	.4byte 0x00000000
 	.4byte 0x00000000
 	.4byte 0x00000000
-	.4byte 0x70696B69
-	.4byte 0x53746174
-	.4byte 0x65000000
-	.4byte 0x44454D4F
-	.4byte 0x57414954
-	.4byte 0x00000000
-	.4byte 0x57415445
-	.4byte 0x5248414E
-	.4byte 0x47454400
-	.4byte 0x4B4F4B45
-	.4byte 0x44414D41
-	.4byte 0x47450000
-	.4byte 0x5357414C
-	.4byte 0x4C4F5745
-	.4byte 0x44000000
-	.4byte 0x4155544F
-	.4byte 0x4E554B49
-	.4byte 0x00000000
-	.4byte 0x44454E4B
-	.4byte 0x495F4459
-	.4byte 0x494E4700
-	.4byte 0x46414C4C
-	.4byte 0x4D45434B
-	.4byte 0x00000000
-	.4byte 0x464F554E
-	.4byte 0x5441494E
-	.4byte 0x4F4E0000
-.global lbl_8047EC60
+.balign 4
+lbl_8047EBF4:
+	.asciz "pikiState"
+.balign 4
+lbl_8047EC00:
+	.asciz "DEMOWAIT"
+.balign 4
+lbl_8047EC0C:
+	.asciz "WATERHANGED"
+.balign 4
+lbl_8047EC18:
+	.asciz "KOKEDAMAGE"
+.balign 4
+lbl_8047EC24:
+	.asciz "SWALLOWED"
+.balign 4
+lbl_8047EC30:
+	.asciz "AUTONUKI"
+.balign 4
+lbl_8047EC3C:
+	.asciz "DENKI_DYING"
+.balign 4
+lbl_8047EC48:
+	.asciz "FALLMECK"
+.balign 4
+lbl_8047EC54:
+	.asciz "FOUNTAINON"
+.balign 4
 lbl_8047EC60:
-	.4byte 0x70696B69
-	.4byte 0x53746174
-	.4byte 0x652E6370
-	.4byte 0x70000000
-	.4byte 0x2A547261
-	.4byte 0x6E736974
-	.4byte 0x28256429
-	.4byte 0x28256429
-	.4byte 0x0A282573
-	.4byte 0x293D3E28
-	.4byte 0x2573290A
-	.4byte 0x00000000
+	.asciz "pikiState.cpp"
+.balign 4
+lbl_8047EC70:
+	.asciz "*Transit(%d)(%d)\n(%s)=>(%s)\n"
+.balign 4
+lbl_8047EC90: # Shift-JIS
 	.4byte 0x2D2D2D2D
 	.4byte 0x2D2D2D2D
 	.4byte 0x2D2D2082
 	.4byte 0xBE82DF82
 	.4byte 0xBE82E681
 	.4byte 0x600A0000
-.global lbl_8047ECA8
+.balign 4
 lbl_8047ECA8:
-	.4byte 0x6E656564
-	.4byte 0x20486F6C
-	.4byte 0x65696E53
-	.4byte 0x74617465
-	.4byte 0x41726720
-	.4byte 0x210A0000
-.global lbl_8047ECC0
+	.asciz "need HoleinStateArg !\n"
+.balign 4
 lbl_8047ECC0:
-	.4byte 0x6E656564
-	.4byte 0x20466F75
-	.4byte 0x6E746169
-	.4byte 0x6E6F6E53
-	.4byte 0x74617465
-	.4byte 0x41726720
-	.4byte 0x210A0000
-.global lbl_8047ECDC
+	.asciz "need FountainonStateArg !\n"
+.balign 4
 lbl_8047ECDC:
 	.asciz "P2Assert"
-	.skip 3
-	.4byte 0x6765744E
-	.4byte 0x61766928
-	.4byte 0x293A7075
-	.4byte 0x6C6C5700
-	.4byte 0x6765744E
-	.4byte 0x61766928
-	.4byte 0x293A5075
-	.4byte 0x6C6C0000
-.global lbl_8047ED08
+.balign 4
+lbl_8047ECE8:
+	.asciz "getNavi():pullW"
+.balign 4
+lbl_8047ECF8:
+	.asciz "getNavi():Pull"
+.balign 4
 lbl_8047ED08:
-	.4byte 0x7831365F
-	.4byte 0x68696261
-	.4byte 0x00000000
-.global lbl_8047ED14
+	.asciz "x16_hiba"
+.balign 4
 lbl_8047ED14:
-	.4byte 0x7330395F
-	.4byte 0x686F6C65
-	.4byte 0x696E0000
-.global lbl_8047ED20
+	.asciz "s09_holein"
+.balign 4
 lbl_8047ED20:
-	.4byte 0x6E6F7420
-	.4byte 0x74656B69
-	.4byte 0x20282573
-	.4byte 0x29210000
-	.4byte 0x43726561
-	.4byte 0x74757265
-	.4byte 0x00000000
-.global lbl_8047ED3C
+	.asciz "not teki (%s)!"
+.balign 4
+lbl_8047ED30:
+	.asciz "Creature"
+.balign 4
 lbl_8047ED3C:
-	.4byte 0x666C6963
-	.4byte 0x6B3A696E
-	.4byte 0x69743A65
-	.4byte 0x72617365
-	.4byte 0x0A000000
-.global lbl_8047ED50
+	.asciz "flick:init:erase\n"
+.balign 4
 lbl_8047ED50:
-	.4byte 0x666C6963
-	.4byte 0x6B3A6578
-	.4byte 0x65633A65
-	.4byte 0x72617365
-	.4byte 0x0A000000
-.global lbl_8047ED64
+	.asciz "flick:exec:erase\n"
+.balign 4
 lbl_8047ED64:
-	.4byte 0x666C6963
-	.4byte 0x6B206E65
-	.4byte 0x65647320
-	.4byte 0x50696B69
-	.4byte 0x426C6F77
-	.4byte 0x496E6974
-	.4byte 0x41726720
-	.4byte 0x210A0000
-	.4byte 0x00000033
-	.4byte 0x3EA8F5C3
-	.4byte 0x00000032
-	.4byte 0x3EA8F5C3
-	.4byte 0x00000034
-	.4byte 0x3EA8F5C3
-	.4byte 0x00000033
-	.4byte 0x3EA8F5C3
-	.4byte 0x00000032
-	.4byte 0x3EA8F5C3
-	.4byte 0x00000034
-	.4byte 0x3EA8F5C3
-	.4byte 0x00000035
-	.float 0.5
-	.4byte 0x00000036
-	.float 0.5
-	.4byte 0x0000000C
-	.float 0.5
-	.4byte 0x00000036
-	.float 0.5
+	.asciz "flick needs PikiBlowInitArg !\n"
+.balign 4
+lbl_8047ED84:
+	.4byte 0x00000033 # value
+	.float 0.33       # chance
+	.4byte 0x00000032 # value
+	.float 0.33       # chance
+	.4byte 0x00000034 # value
+	.float 0.33       # chance
+lbl_8047ED9C:
+	.4byte 0x00000033 # value
+	.float 0.33       # chance
+	.4byte 0x00000032 # value
+	.float 0.33       # chance
+	.4byte 0x00000034 # value
+	.float 0.33       # chance
+lbl_8047EDB4:
+	.4byte 0x00000035 # value
+	.float 0.5        # chance
+	.4byte 0x00000036 # value
+	.float 0.5        # chance
+lbl_8047EDC4:
+	.4byte 0x0000000C # value
+	.float 0.5        # chance
+	.4byte 0x00000036 # value
+	.float 0.5        # chance
+.balign 4
+lbl_8047EDD4: # Shift-JIS
 	.4byte 0x72617043
 	.4byte 0x6E742082
 	.4byte 0xCC8E6782
@@ -161,54 +125,40 @@ lbl_8047ED64:
 	.4byte 0x52415054
 	.4byte 0x55524529
 	.4byte 0x0A000000
-.global lbl_8047EE04
+.balign 4
 lbl_8047EE04:
-	.4byte 0x6733345F
-	.4byte 0x79656C6C
-	.4byte 0x6F775F65
-	.4byte 0x78747261
-	.4byte 0x63740000
-.global lbl_8047EE18
+	.asciz "g34_yellow_extract"
+.balign 4
 lbl_8047EE18:
-	.4byte 0x41637443
-	.4byte 0x726F7041
-	.4byte 0x72670000
-	.4byte 0x4974656D
-	.4byte 0x50696B69
-	.4byte 0x48656164
-	.4byte 0x3A3A496E
-	.4byte 0x69744172
-	.4byte 0x67000000
-	.4byte 0x4974656D
-	.4byte 0x496E6974
-	.4byte 0x41726700
-	.4byte 0x50696B69
-	.4byte 0x4B696C6C
-	.4byte 0x41726700
-	.4byte 0x43726561
-	.4byte 0x74757265
-	.4byte 0x4B696C6C
-	.4byte 0x41726700
-	.4byte 0x41726753
-	.4byte 0x63616C65
-	.4byte 0x00000000
-	.4byte 0x43726561
-	.4byte 0x74757265
-	.4byte 0x41637469
-	.4byte 0x6F6E4172
-	.4byte 0x67000000
-	.4byte 0x41637469
-	.4byte 0x6F6E4172
-	.4byte 0x67000000
+	.asciz "ActCropArg"
+.balign 4
+lbl_8047EE24:
+	.asciz "ItemPikiHead::InitArg"
+.balign 4
+lbl_8047EE3C:
+	.asciz "ItemInitArg"
+.balign 4
+lbl_8047EE48:
+	.asciz "PikiKillArg"
+.balign 4
+lbl_8047EE54:
+	.asciz "CreatureKillArg"
+.balign 4
+lbl_8047EE64:
+	.asciz "ArgScale"
+.balign 4
+lbl_8047EE70:
+	.asciz "CreatureActionArg"
+.balign 4
+lbl_8047EE84:
+	.asciz "ActionArg"
 
 .section .data, "wa"  # 0x8049E220 - 0x804EFC20
 .balign 8
-.global lbl_804B37D0
-lbl_804B37D0:
-	.4byte 0x00000000
-	.4byte 0x00000000
-	.4byte 0x00000000
-.global lbl_804B37DC
+govNAN___Q24Game5P2JST:
+	.float 0.0
+	.float 0.0
+	.float 0.0
 lbl_804B37DC:
 	.4byte lbl_80191690
 	.4byte lbl_80191704
@@ -1314,285 +1264,202 @@ __vt__Q24Game9PikiState:
 
 .section .sbss # 0x80514D80 - 0x80516360
 .balign 8
-.global lbl_805159C0
-lbl_805159C0:
+gu32NAN___Q24Game5P2JST:
 	.skip 0x4
-.global lbl_805159C4
-lbl_805159C4:
+gfNAN___Q24Game5P2JST:
 	.skip 0x4
 
 .section .sdata2, "a"     # 0x80516360 - 0x80520E40
 .balign 8
-.global lbl_80518D00
 lbl_80518D00:
-	.4byte 0x25730000
-.global lbl_80518D04
+	.asciz "%s"
+.balign 4
 lbl_80518D04:
-	.4byte 0x57414C4B
-	.4byte 0x00000000
-.global lbl_80518D0C
+	.asciz "WALK"
+.balign 4
 lbl_80518D0C:
-	.4byte 0x4C4F4F4B
-	.4byte 0x41540000
-.global lbl_80518D14
+	.asciz "LOOKAT"
+.balign 4
 lbl_80518D14:
-	.4byte 0x474F4841
-	.4byte 0x4E470000
-.global lbl_80518D1C
+	.asciz "GOHANG"
+.balign 4
 lbl_80518D1C:
-	.4byte 0x48414E47
-	.4byte 0x45440000
-.global lbl_80518D24
+	.asciz "HANGED"
+.balign 4
 lbl_80518D24:
-	.4byte 0x464C5949
-	.4byte 0x4E470000
-.global lbl_80518D2C
+	.asciz "FLYING"
+.balign 4
 lbl_80518D2C:
-	.4byte 0x424C4F57
-	.4byte 0x00000000
-.global lbl_80518D34
+	.asciz "BLOW"
+.balign 4
 lbl_80518D34:
-	.4byte 0x464C4943
-	.4byte 0x4B000000
-.global lbl_80518D3C
+	.asciz "FLICK"
+.balign 4
 lbl_80518D3C:
-	.4byte 0x44524F57
-	.4byte 0x4E000000
-.global lbl_80518D44
+	.asciz "DROWN"
+.balign 4
 lbl_80518D44:
-	.4byte 0x4E554B41
-	.4byte 0x52450000
-.global lbl_80518D4C
+	.asciz "NUKARE"
+.balign 4
 lbl_80518D4C:
-	.4byte 0x4142534F
-	.4byte 0x52420000
-.global lbl_80518D54
+	.asciz "ABSORB"
+.balign 4
 lbl_80518D54:
-	.4byte 0x47524F57
-	.4byte 0x55500000
-.global lbl_80518D5C
+	.asciz "GROWUP"
+.balign 4
 lbl_80518D5C:
-	.4byte 0x54414E45
-	.4byte 0x00000000
-.global lbl_80518D64
+	.asciz "TANE"
+.balign 4
 lbl_80518D64:
-	.4byte 0x444F5045
-	.4byte 0x00000000
-.global lbl_80518D6C
+	.asciz "DOPE"
+.balign 4
 lbl_80518D6C:
-	.4byte 0x48495044
-	.4byte 0x524F5000
-.global lbl_80518D74
+	.asciz "HIPDROP"
+.balign 4
 lbl_80518D74:
-	.4byte 0x454D4F54
-	.4byte 0x494F4E00
-.global lbl_80518D7C
+	.asciz "EMOTION"
+.balign 4
 lbl_80518D7C:
-	.4byte 0x50524553
-	.4byte 0x53454400
-.global lbl_80518D84
+	.asciz "PRESSED"
+.balign 4
 lbl_80518D84:
-	.4byte 0x50414E49
-	.4byte 0x43000000
-.global lbl_80518D8C
+	.asciz "PANIC"
+.balign 4
 lbl_80518D8C:
-	.4byte 0x4459494E
-	.4byte 0x47000000
-.global lbl_80518D94
+	.asciz "DYING"
+.balign 4
 lbl_80518D94:
-	.4byte 0x44454144
-	.4byte 0x00000000
-.global lbl_80518D9C
+	.asciz "DEAD"
+.balign 4
 lbl_80518D9C:
-	.4byte 0x5355494B
-	.4byte 0x4F4D4900
-.global lbl_80518DA4
+	.asciz "SUIKOMI"
+.balign 4
 lbl_80518DA4:
-	.4byte 0x484F4C45
-	.4byte 0x494E0000
-.global lbl_80518DAC
+	.asciz "HOLEIN"
+.balign 4
 lbl_80518DAC:
-	.4byte 0x4B4F4B45
-	.4byte 0x00000000
-.global lbl_80518DB4
+	.asciz "KOKE"
+.balign 4
 lbl_80518DB4:
-	.4byte 0x45534341
-	.4byte 0x50450000
-.global lbl_80518DBC
+	.asciz "ESCAPE"
+.balign 4
 lbl_80518DBC:
-	.4byte 0x43415252
-	.4byte 0x4F540000
-.global lbl_80518DC4
+	.asciz "CARROT"
+.balign 4
 lbl_80518DC4:
 	.float 0.3
-.global lbl_80518DC8
 lbl_80518DC8:
-	.4byte 0x47000000
-.global lbl_80518DCC
+	.float 32768.0
 lbl_80518DCC:
-	.4byte 0x41200000
-.global lbl_80518DD0
+	.float 10.0
 lbl_80518DD0:
-	.4byte 0x40400000
-	.4byte 0x00000000
-.global lbl_80518DD8
+	.float 3.0
+.balign 8
 lbl_80518DD8:
 	.4byte 0x43300000
 	.4byte 0x80000000
-.global lbl_80518DE0
 lbl_80518DE0:
-	.4byte 0x00000000
-.global lbl_80518DE4
+	.float 0.0
 lbl_80518DE4:
 	.float 1.0
-.global lbl_80518DE8
 lbl_80518DE8:
 	.float -1.0
-.global lbl_80518DEC
 lbl_80518DEC:
-	.4byte 0xC1200000
-.global lbl_80518DF0
+	.float -10.0
 lbl_80518DF0:
-	.4byte 0x41000000
-.global lbl_80518DF4
+	.float 8.0
 lbl_80518DF4:
 	.float 0.5
-.global lbl_80518DF8
 lbl_80518DF8:
-	.4byte 0x42200000
-.global lbl_80518DFC
+	.float 40.0
 lbl_80518DFC:
-	.4byte 0xC2200000
-.global lbl_80518E00
+	.float -40.0
 lbl_80518E00:
-	.4byte 0x42A00000
-.global lbl_80518E04
+	.float 80.0
 lbl_80518E04:
-	.4byte 0x3E4CCCCD
-.global lbl_80518E08
+	.float 0.2
 lbl_80518E08:
-	.4byte 0x3FC00000
-.global lbl_80518E0C
+	.float 1.5
 lbl_80518E0C:
-	.4byte 0x3FA66666
-.global lbl_80518E10
+	.float 1.3
 lbl_80518E10:
-	.4byte 0x3F19999A
-.global lbl_80518E14
+	.float 0.6
 lbl_80518E14:
-	.4byte 0x3ECCCCCC
-.global lbl_80518E18
+	.float 0.39999998
 lbl_80518E18:
-	.4byte 0xC2480000
-.global lbl_80518E1C
+	.float -50.0
 lbl_80518E1C:
-	.4byte 0x42480000
-.global lbl_80518E20
+	.float 50.0
 lbl_80518E20:
-	.4byte 0x43C80000
-.global lbl_80518E24
+	.float 400.0
 lbl_80518E24:
 	.float 0.25
-.global lbl_80518E28
 lbl_80518E28:
-	.4byte 0x3F99999A
-.global lbl_80518E2C
+	.float 1.2
 lbl_80518E2C:
 	.float 0.1
-.global lbl_80518E30
 lbl_80518E30:
-	.4byte 0x40000000
-.global lbl_80518E34
+	.float 2.0
 lbl_80518E34:
-	.4byte 0x43A2F983
-.global lbl_80518E38
+	.float 325.9493
 lbl_80518E38:
-	.4byte 0xC3A2F983
-.global lbl_80518E3C
-lbl_80518E3C:
-	.4byte 0x40490FDB
-.global lbl_80518E40
+	.float -325.9493
+lbl_80518E3C: # pi
+	.float 3.1415927
 lbl_80518E40:
-	.4byte 0x3BB60B61
-.global lbl_80518E44
+	.float 0.0055555557
 lbl_80518E44:
-	.4byte 0x41F00000
-.global lbl_80518E48
+	.float 30.0
 lbl_80518E48:
-	.4byte 0x41700000
-.global lbl_80518E4C
+	.float 15.0
 lbl_80518E4C:
-	.4byte 0x3F7D70A4
-.global lbl_80518E50
+	.float 0.99
 lbl_80518E50:
-	.4byte 0x42F00000
-.global lbl_80518E54
+	.float 120.0
 lbl_80518E54:
-	.4byte 0x41A00000
-.global lbl_80518E58
+	.float 20.0
 lbl_80518E58:
-	.4byte 0x42C80000
-.global lbl_80518E5C
+	.float 100.0
 lbl_80518E5C:
-	.4byte 0x3C23D70A
-.global lbl_80518E60
-lbl_80518E60:
-	.4byte 0xBFC90FDB
-.global lbl_80518E64
+	.float 0.01
+lbl_80518E60: # -pi/2
+	.float -1.5707964
 lbl_80518E64:
-	.4byte 0x46480000
-.global lbl_80518E68
+	.float 12800.0
 lbl_80518E68:
-	.4byte 0x44160000
-.global lbl_80518E6C
+	.float 600.0
 lbl_80518E6C:
-	.4byte 0x43AF0000
-.global lbl_80518E70
+	.float 350.0
 lbl_80518E70:
-	.4byte 0xC4610000
-.global lbl_80518E74
+	.float -900.0
 lbl_80518E74:
-	.4byte 0x3F4CCCCD
-.global lbl_80518E78
+	.float 0.8
 lbl_80518E78:
 	.float 0.15
-.global lbl_80518E7C
 lbl_80518E7C:
-	.4byte 0x3D99999A
-.global lbl_80518E80
+	.float 0.075
 lbl_80518E80:
-	.4byte 0x3ED70A3D
-.global lbl_80518E84
+	.float 0.42
 lbl_80518E84:
-	.4byte 0x3F666666
-.global lbl_80518E88
+	.float 0.9
 lbl_80518E88:
-	.4byte 0x40800000
-.global lbl_80518E8C
+	.float 4.0
 lbl_80518E8C:
-	.4byte 0x3F747AE1
-.global lbl_80518E90
+	.float 0.955
 lbl_80518E90:
-	.4byte 0x43200000
-.global lbl_80518E94
+	.float 160.0
 lbl_80518E94:
-	.4byte 0x42700000
-.global lbl_80518E98
+	.float 60.0
 lbl_80518E98:
-	.4byte 0x43FA0000
-.global lbl_80518E9C
+	.float 500.0
 lbl_80518E9C:
-	.4byte 0x40A00000
-.global lbl_80518EA0
+	.float 5.0
 lbl_80518EA0:
-	.4byte 0xC0A00000
-.global lbl_80518EA4
+	.float -5.0
 lbl_80518EA4:
-	.4byte 0x447A0000
-.global lbl_80518EA8
+	.float 1000.0
 lbl_80518EA8:
-	.4byte 0x43480000
-	.4byte 0x00000000
+	.float 200.0
 
 .section .text, "ax"  # 0x800056C0 - 0x80472F00
 .global dump__Q24Game9PikiStateFv
@@ -4073,7 +3940,7 @@ lbl_8018B724:
 /* 8018B728 00188668  B0 1D 00 18 */	sth r0, 0x18(r29)
 /* 8018B72C 0018866C  4B F3 DE 75 */	bl rand
 /* 8018B730 00188670  6C 60 80 00 */	xoris r0, r3, 0x8000
-/* 8018B734 00188674  3C 60 43 30 */	lis r3, 0x4330001C@ha
+/* 8018B734 00188674  3C 60 43 30 */	lis r3, 0x4330
 /* 8018B738 00188678  90 01 00 0C */	stw r0, 0xc(r1)
 /* 8018B73C 0018867C  38 00 00 00 */	li r0, 0
 /* 8018B740 00188680  C8 62 AA 78 */	lfd f3, lbl_80518DD8@sda21(r2)
@@ -4101,7 +3968,7 @@ lbl_8018B724:
 
 .global onFlute__Q24Game13PikiDopeStateFPQ24Game4PikiPQ24Game4Navi
 onFlute__Q24Game13PikiDopeStateFPQ24Game4PikiPQ24Game4Navi:
-/* 8018B798 001886D8  90 A3 00 1C */	stw r5, 0x4330001C@l(r3)
+/* 8018B798 001886D8  90 A3 00 1C */	stw r5, 0x1c(r3)
 /* 8018B79C 001886DC  4E 80 00 20 */	blr 
 
 .global exec__Q24Game13PikiDopeStateFPQ24Game4Piki
@@ -10847,7 +10714,6 @@ lbl_80191654:
 /* 80191684 0018E5C4  7C 03 00 2E */	lwzx r0, r3, r0
 /* 80191688 0018E5C8  7C 09 03 A6 */	mtctr r0
 /* 8019168C 0018E5CC  4E 80 04 20 */	bctr 
-.global lbl_80191690
 lbl_80191690:
 /* 80191690 0018E5D0  81 3E 01 9C */	lwz r9, 0x19c(r30)
 /* 80191694 0018E5D4  38 61 00 40 */	addi r3, r1, 0x40
@@ -10879,7 +10745,6 @@ lbl_801916E4:
 /* 801916F8 0018E638  7D 89 03 A6 */	mtctr r12
 /* 801916FC 0018E63C  4E 80 04 21 */	bctrl 
 /* 80191700 0018E640  48 00 02 44 */	b lbl_80191944
-.global lbl_80191704
 lbl_80191704:
 /* 80191704 0018E644  81 3E 01 B4 */	lwz r9, 0x1b4(r30)
 /* 80191708 0018E648  38 61 00 28 */	addi r3, r1, 0x28
@@ -10911,7 +10776,6 @@ lbl_80191758:
 /* 8019176C 0018E6AC  7D 89 03 A6 */	mtctr r12
 /* 80191770 0018E6B0  4E 80 04 21 */	bctrl 
 /* 80191774 0018E6B4  48 00 01 D0 */	b lbl_80191944
-.global lbl_80191778
 lbl_80191778:
 /* 80191778 0018E6B8  80 FE 01 CC */	lwz r7, 0x1cc(r30)
 /* 8019177C 0018E6BC  38 61 00 18 */	addi r3, r1, 0x18
@@ -10939,7 +10803,6 @@ lbl_801917BC:
 /* 801917D0 0018E710  7D 89 03 A6 */	mtctr r12
 /* 801917D4 0018E714  4E 80 04 21 */	bctrl 
 /* 801917D8 0018E718  48 00 01 6C */	b lbl_80191944
-.global lbl_801917DC
 lbl_801917DC:
 /* 801917DC 0018E71C  80 FE 01 DC */	lwz r7, 0x1dc(r30)
 /* 801917E0 0018E720  38 61 00 08 */	addi r3, r1, 8
@@ -10967,7 +10830,6 @@ lbl_80191820:
 /* 80191834 0018E774  7D 89 03 A6 */	mtctr r12
 /* 80191838 0018E778  4E 80 04 21 */	bctrl 
 /* 8019183C 0018E77C  48 00 01 08 */	b lbl_80191944
-.global lbl_80191840
 lbl_80191840:
 /* 80191840 0018E780  38 00 00 0C */	li r0, 0xc
 /* 80191844 0018E784  28 1F 00 00 */	cmplwi r31, 0
@@ -10985,7 +10847,6 @@ lbl_80191858:
 /* 80191870 0018E7B0  7D 89 03 A6 */	mtctr r12
 /* 80191874 0018E7B4  4E 80 04 21 */	bctrl 
 /* 80191878 0018E7B8  48 00 00 CC */	b lbl_80191944
-.global lbl_8019187C
 lbl_8019187C:
 /* 8019187C 0018E7BC  38 00 00 31 */	li r0, 0x31
 /* 80191880 0018E7C0  28 1F 00 00 */	cmplwi r31, 0
@@ -11003,7 +10864,6 @@ lbl_80191894:
 /* 801918AC 0018E7EC  7D 89 03 A6 */	mtctr r12
 /* 801918B0 0018E7F0  4E 80 04 21 */	bctrl 
 /* 801918B4 0018E7F4  48 00 00 90 */	b lbl_80191944
-.global lbl_801918B8
 lbl_801918B8:
 /* 801918B8 0018E7F8  38 00 00 33 */	li r0, 0x33
 /* 801918BC 0018E7FC  28 1F 00 00 */	cmplwi r31, 0
@@ -11021,7 +10881,6 @@ lbl_801918D0:
 /* 801918E8 0018E828  7D 89 03 A6 */	mtctr r12
 /* 801918EC 0018E82C  4E 80 04 21 */	bctrl 
 /* 801918F0 0018E830  48 00 00 54 */	b lbl_80191944
-.global lbl_801918F4
 lbl_801918F4:
 /* 801918F4 0018E834  38 00 00 1F */	li r0, 0x1f
 /* 801918F8 0018E838  28 1F 00 00 */	cmplwi r31, 0
@@ -11039,7 +10898,6 @@ lbl_8019190C:
 /* 80191924 0018E864  7D 89 03 A6 */	mtctr r12
 /* 80191928 0018E868  4E 80 04 21 */	bctrl 
 /* 8019192C 0018E86C  48 00 00 18 */	b lbl_80191944
-.global lbl_80191930
 lbl_80191930:
 /* 80191930 0018E870  38 7E 00 78 */	addi r3, r30, 0x78
 /* 80191934 0018E874  38 BE 01 EC */	addi r5, r30, 0x1ec
@@ -12531,15 +12389,14 @@ lbl_80192BC8:
 /* 80192C04 0018FB44  90 03 00 08 */	stw r0, 8(r3)
 /* 80192C08 0018FB48  4E 80 00 20 */	blr 
 
-.global __sinit_pikiState_cpp
-__sinit_pikiState_cpp:
+__sinit_pikiState_cpp: # static initializer
 /* 80192C0C 0018FB4C  3C 80 80 51 */	lis r4, __float_nan@ha
 /* 80192C10 0018FB50  38 00 FF FF */	li r0, -1
 /* 80192C14 0018FB54  C0 04 48 B0 */	lfs f0, __float_nan@l(r4)
-/* 80192C18 0018FB58  3C 60 80 4B */	lis r3, lbl_804B37D0@ha
-/* 80192C1C 0018FB5C  90 0D 93 40 */	stw r0, lbl_805159C0@sda21(r13)
-/* 80192C20 0018FB60  D4 03 37 D0 */	stfsu f0, lbl_804B37D0@l(r3)
-/* 80192C24 0018FB64  D0 0D 93 44 */	stfs f0, lbl_805159C4@sda21(r13)
+/* 80192C18 0018FB58  3C 60 80 4B */	lis r3, govNAN___Q24Game5P2JST@ha
+/* 80192C1C 0018FB5C  90 0D 93 40 */	stw r0, gu32NAN___Q24Game5P2JST@sda21(r13)
+/* 80192C20 0018FB60  D4 03 37 D0 */	stfsu f0, govNAN___Q24Game5P2JST@l(r3)
+/* 80192C24 0018FB64  D0 0D 93 44 */	stfs f0, gfNAN___Q24Game5P2JST@sda21(r13)
 /* 80192C28 0018FB68  D0 03 00 04 */	stfs f0, 4(r3)
 /* 80192C2C 0018FB6C  D0 03 00 08 */	stfs f0, 8(r3)
 /* 80192C30 0018FB70  4E 80 00 20 */	blr 
