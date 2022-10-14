@@ -424,10 +424,8 @@ void StateMove::exec(EnemyBase* enemy)
 
 			if (!imomushi->isAttackable()) {
 				imomushi->m_targetCreature = imomushi->getRandFruitsPlant();
-
 			} else {
-				Vector2f delta(pos.x - creaturePos.x, pos.z - creaturePos.z);
-				if (SQUARE(delta.x) + SQUARE(delta.y) < 900.0f) {
+				if (sqrDistanceXZ(pos, creaturePos) < 900.0f) {
 					imomushi->m_nextState = IMOMUSHI_Climb;
 					imomushi->finishMotion();
 				}
@@ -1104,35 +1102,13 @@ void StateWait::cleanup(EnemyBase* enemy)
  */
 void StateZukanStay::init(EnemyBase* enemy, StateArg* stateArg)
 {
-	/*
-	stwu     r1, -0x10(r1)
-	mflr     r0
-	stw      r0, 0x14(r1)
-	stw      r31, 0xc(r1)
-	mr       r31, r4
-	mr       r3, r31
-	bl       resetZukanStateTimer__Q34Game8Imomushi3ObjFv
-	lwz      r0, 0x1e0(r31)
-	mr       r3, r31
-	oris     r0, r0, 0x40
-	stw      r0, 0x1e0(r31)
-	bl       hardConstraintOn__Q24Game9EnemyBaseFv
-	lfs      f0, lbl_8051C378@sda21(r2)
-	mr       r3, r31
-	li       r4, 1
-	li       r5, 0
-	stfs     f0, 0x1d4(r31)
-	stfs     f0, 0x1d8(r31)
-	stfs     f0, 0x1dc(r31)
-	bl       startMotion__Q24Game9EnemyBaseFiPQ28SysShape14MotionListener
-	mr       r3, r31
-	bl       stopMotion__Q24Game9EnemyBaseFv
-	lwz      r0, 0x14(r1)
-	lwz      r31, 0xc(r1)
-	mtlr     r0
-	addi     r1, r1, 0x10
-	blr
-	*/
+	Obj* imomushi = static_cast<Obj*>(enemy);
+	imomushi->resetZukanStateTimer();
+	imomushi->setEvent(0, EB_BitterImmune);
+	imomushi->hardConstraintOn();
+	imomushi->m_velocity2 = Vector3f(0.0f);
+	imomushi->startMotion(1, nullptr);
+	imomushi->stopMotion();
 }
 
 /*
@@ -1142,6 +1118,10 @@ void StateZukanStay::init(EnemyBase* enemy, StateArg* stateArg)
  */
 void StateZukanStay::exec(EnemyBase* enemy)
 {
+	Obj* imomushi = static_cast<Obj*>(enemy);
+	if (5.0f < +sys->m_secondsPerFrame) {
+		imomushi->startMotion(1, nullptr);
+	}
 	/*
 	stwu     r1, -0x10(r1)
 	mflr     r0
