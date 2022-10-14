@@ -405,14 +405,56 @@ void StateMove::init(EnemyBase* enemy, StateArg* stateArg)
  */
 void StateMove::exec(EnemyBase* enemy)
 {
+	Creature* creature;
 	Obj* imomushi = static_cast<Obj*>(enemy);
-	if (imomushi->m_animKeyEvent->m_running && (u32)imomushi->m_animKeyEvent->m_type == 1000) {
-		if (imomushi->m_health <= 0.0f) {
-			transit(imomushi, IMOMUSHI_Dead, nullptr);
-		} else if (imomushi->m_targetCreature = imomushi->getRandFruitsPlant()) {
-			transit(imomushi, IMOMUSHI_Climb, nullptr);
+
+	if (imomushi->m_health <= 0.0f) {
+		transit(imomushi, IMOMUSHI_Dead, nullptr);
+		return;
+	}
+
+	creature = imomushi->m_targetCreature;
+	if (creature != nullptr) {
+		if (imomushi->isFinishMotion()) {
+			imomushi->m_velocity2 = Vector3f(0.0f);
+
 		} else {
+			Vector3f pos         = imomushi->getPosition();
+			Vector3f creaturePos = creature->getPosition();
+
+			if (!imomushi->isAttackable()) {
+				imomushi->m_targetCreature = imomushi->getRandFruitsPlant();
+
+			} else {
+				Vector2f delta(pos.x - creaturePos.x, pos.z - creaturePos.z);
+				if (SQUARE(delta.x) + SQUARE(delta.y) < 900.0f) {
+					imomushi->m_nextState = IMOMUSHI_Climb;
+					imomushi->finishMotion();
+				}
+			}
+
+			Parms* parms = static_cast<Parms*>(imomushi->m_parms);
+			EnemyFunc::walkToTarget(imomushi, creaturePos, parms->m_general.m_moveSpeed.m_value, parms->m_general.m_rotationalAccel.m_value,
+			                        parms->m_general.m_rotationalSpeed.m_value);
+		}
+
+	} else {
+		imomushi->m_nextState = IMOMUSHI_GoHome;
+		imomushi->finishMotion();
+	}
+
+	if (imomushi->m_animKeyEvent->m_running && (u32)imomushi->m_animKeyEvent->m_type == 1000) {
+		if (imomushi->m_nextState == IMOMUSHI_Climb) {
+			if (imomushi->isAttackable()) {
+				transit(imomushi, IMOMUSHI_Climb, nullptr);
+				return;
+			}
+
+			imomushi->m_targetCreature = imomushi->getRandFruitsPlant();
 			transit(imomushi, IMOMUSHI_Move, nullptr);
+
+		} else {
+			transit(imomushi, imomushi->m_nextState, nullptr);
 		}
 	}
 }
