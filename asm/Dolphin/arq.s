@@ -1,10 +1,8 @@
 .include "macros.inc"
 .section .data, "wa"  # 0x8049E220 - 0x804EFC20
 .balign 8
-.global lbl_804A76C8
 lbl_804A76C8:
 	.asciz "<< Dolphin SDK - ARQ\trelease build: Nov 26 2003 05:19:43 (0x2301) >>"
-	.skip 3
 
 .section .sdata, "wa"  # 0x80514680 - 0x80514D80
 .balign 8
@@ -14,34 +12,24 @@ __ARQVersion:
 
 .section .sbss # 0x80514D80 - 0x80516360
 .balign 8
-.global __ARQRequestQueueHi
 __ARQRequestQueueHi:
 	.skip 0x4
-.global __ARQRequestTailHi
 __ARQRequestTailHi:
 	.skip 0x4
-.global __ARQRequestQueueLo
 __ARQRequestQueueLo:
 	.skip 0x4
-.global __ARQRequestTailLo
 __ARQRequestTailLo:
 	.skip 0x4
-.global __ARQRequestPendingHi
 __ARQRequestPendingHi:
 	.skip 0x4
-.global __ARQRequestPendingLo
 __ARQRequestPendingLo:
 	.skip 0x4
-.global __ARQCallbackHi
 __ARQCallbackHi:
 	.skip 0x4
-.global __ARQCallbackLo
 __ARQCallbackLo:
 	.skip 0x4
-.global __ARQChunkSize
 __ARQChunkSize:
 	.skip 0x4
-.global __ARQ_init_flag
 __ARQ_init_flag:
 	.skip 0x4
 

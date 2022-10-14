@@ -8,59 +8,59 @@ lbl_constructor:
 .global lbl_80494B18
 lbl_80494B18:
 	.asciz "vsSelect2D"
-	.skip 1
+.balign 4
 .global lbl_80494B24
 lbl_80494B24:
 	.asciz "vsSelect2D.cpp"
-	.skip 1
+.balign 4
 .global lbl_80494B34
 lbl_80494B34:
 	.asciz "P2Assert"
-	.skip 3
+.balign 4
 .global lbl_80494B40
 lbl_80494B40:
 	.asciz "vsSelect"
-	.skip 3
+.balign 4
 .global lbl_80494B4C
 lbl_80494B4C:
 	.asciz "timg/otegaru.bti"
-	.skip 3
+.balign 4
 .global lbl_80494B60
 lbl_80494B60:
 	.asciz "timg/ujyaujya.bti"
-	.skip 2
+.balign 4
 .global lbl_80494B74
 lbl_80494B74:
 	.asciz "timg/hirobiro.bti"
-	.skip 2
+.balign 4
 .global lbl_80494B88
 lbl_80494B88:
 	.asciz "timg/karakuchi.bti"
-	.skip 1
+.balign 4
 .global lbl_80494B9C
 lbl_80494B9C:
 	.asciz "timg/semai.bti"
-	.skip 1
+.balign 4
 .global lbl_80494BAC
 lbl_80494BAC:
 	.asciz "timg/hiyahiya.bti"
-	.skip 2
+.balign 4
 .global lbl_80494BC0
 lbl_80494BC0:
 	.asciz "timg/nobinobi.bti"
-	.skip 2
+.balign 4
 .global lbl_80494BD4
 lbl_80494BD4:
 	.asciz "timg/kakukaku.bti"
-	.skip 2
+.balign 4
 .global lbl_80494BE8
 lbl_80494BE8:
 	.asciz "timg/meiro.bti"
-	.skip 1
+.balign 4
 .global lbl_80494BF8
 lbl_80494BF8:
 	.asciz "timg/tile.bti"
-	.skip 2
+.balign 4
 	.4byte lbl_80494B4C
 	.4byte lbl_80494B60
 	.4byte lbl_80494B74
@@ -74,23 +74,23 @@ lbl_80494BF8:
 .global lbl_80494C30
 lbl_80494C30:
 	.asciz "timg/orima001.bti"
-	.skip 2
+.balign 4
 .global lbl_80494C44
 lbl_80494C44:
 	.asciz "timg/orima002.bti"
-	.skip 2
+.balign 4
 .global lbl_80494C58
 lbl_80494C58:
 	.asciz "timg/orima003.bti"
-	.skip 2
+.balign 4
 .global lbl_80494C6C
 lbl_80494C6C:
 	.asciz "timg/orima004.bti"
-	.skip 2
+.balign 4
 .global lbl_80494C80
 lbl_80494C80:
 	.asciz "timg/orima005.bti"
-	.skip 2
+.balign 4
 	.4byte lbl_80494C30
 	.4byte lbl_80494C44
 	.4byte lbl_80494C58
@@ -99,24 +99,31 @@ lbl_80494C80:
 .global lbl_80494CA8
 lbl_80494CA8:
 	.asciz "timg/lui001.bti"
+.balign 4
 .global lbl_80494CB8
 lbl_80494CB8:
 	.asciz "timg/lui002.bti"
+.balign 4
 .global lbl_80494CC8
 lbl_80494CC8:
 	.asciz "timg/lui003.bti"
+.balign 4
 .global lbl_80494CD8
 lbl_80494CD8:
 	.asciz "timg/lui004.bti"
+.balign 4
 .global lbl_80494CE8
 lbl_80494CE8:
 	.asciz "timg/lui005.bti"
+.balign 4
+lbl_80494CF8:
 	.4byte lbl_80494CA8
 	.4byte lbl_80494CB8
 	.4byte lbl_80494CC8
 	.4byte lbl_80494CD8
 	.4byte lbl_80494CE8
-	.skip 4
+.balign 8
+lbl_80494D10:
 	.4byte 0x50306963
 	.4byte 0x6F6E3030
 	.4byte 0x50306963
@@ -767,7 +774,7 @@ mLoopDrum__Q28Morimura9TVsSelect:
 	.skip 0x1
 .global mCanCancel__Q28Morimura9TVsSelect
 mCanCancel__Q28Morimura9TVsSelect:
-	.skip 0x6
+	.skip 0x1
 
 .section .sdata2, "a"     # 0x80516360 - 0x80520E40
 .balign 8
@@ -1010,7 +1017,6 @@ lbl_8051F2B4:
 .global lbl_8051F2B8
 lbl_8051F2B8:
 	.4byte 0x41000000
-	.4byte 0x00000000
 
 .section .text, "ax"  # 0x800056C0 - 0x80472F00
 .global draw__Q28Morimura16TVsSelectIndPaneFv

@@ -1,45 +1,37 @@
 .include "macros.inc"
 .section .rodata  # 0x804732E0 - 0x8049E220
 .balign 8
-.global lbl_8048A338
 lbl_8048A338:
-	.4byte 0x3234362D
-	.4byte 0x4F74616B
-	.4byte 0x61726142
-	.4byte 0x6173654D
-	.4byte 0x67720000
-.global lbl_8048A34C
-lbl_8048A34C:
+	.asciz "246-OtakaraBaseMgr"
+.balign 4
+lbl_8048A34C: # Shift-JIS
 	.4byte 0x8349835E
 	.4byte 0x834A8389
 	.4byte 0x83808356
 	.4byte 0x837D836C
 	.4byte 0x815B8357
 	.4byte 0x83830000
-.global lbl_8048A364
-lbl_8048A364:
+lbl_8048A364: # EnemyID array
 	.4byte 0x0000003B
 	.4byte 0x0000003C
 	.4byte 0x0000003D
 	.4byte 0x0000003E
 	.4byte 0x0000005D
-.global lbl_8048A378
-lbl_8048A378:
+lbl_8048A378: # EnemyID array
 	.4byte 0x0000003B
 	.4byte 0x0000003C
 	.4byte 0x0000003D
 	.4byte 0x0000003E
 	.4byte 0x0000005D
-	.4byte 0x4F74616B
-	.4byte 0x61726142
-	.4byte 0x6173654D
-	.4byte 0x67722E63
-	.4byte 0x70700000
+.balign 4
+lbl_8048A38C:
+	.asciz "OtakaraBaseMgr.cpp"
+.balign 4
+lbl_8048A3A0:
 	.asciz "P2Assert"
-	.skip 3
-	.4byte 0x6D61745F
-	.4byte 0x626F6479
-	.4byte 0x00000000
+.balign 4
+lbl_8048A3AC:
+	.asciz "mat_body"
 
 .section .data, "wa"  # 0x8049E220 - 0x804EFC20
 .balign 8
@@ -101,7 +93,6 @@ __vt__Q34Game11OtakaraBase3Mgr:
 	.4byte doLoadBmd__Q24Game12EnemyMgrBaseFPv
 	.4byte doLoadBdl__Q24Game12EnemyMgrBaseFPv
 	.4byte initGenerator__Q24Game12EnemyMgrBaseFv
-	.4byte 0
 	.4byte 0
 
 .section .text, "ax"  # 0x800056C0 - 0x80472F00
@@ -318,7 +309,7 @@ lbl_802B6100:
 /* 802B6188 002B30C8  4E 80 00 20 */	blr 
 
 .global __dt__Q34Game11OtakaraBase3MgrFv
-__dt__Q34Game11OtakaraBase3MgrFv:
+__dt__Q34Game11OtakaraBase3MgrFv: # weak function
 /* 802B618C 002B30CC  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 802B6190 002B30D0  7C 08 02 A6 */	mflr r0
 /* 802B6194 002B30D4  90 01 00 14 */	stw r0, 0x14(r1)
@@ -367,11 +358,11 @@ lbl_802B6220:
 /* 802B6238 002B3178  4E 80 00 20 */	blr 
 
 .global getEnemyTypeID__Q34Game11OtakaraBase3MgrFv
-getEnemyTypeID__Q34Game11OtakaraBase3MgrFv:
+getEnemyTypeID__Q34Game11OtakaraBase3MgrFv: # weak function
 /* 802B623C 002B317C  38 60 00 3B */	li r3, 0x3b
 /* 802B6240 002B3180  4E 80 00 20 */	blr 
 
 .global "@4@__dt__Q34Game11OtakaraBase3MgrFv"
-"@4@__dt__Q34Game11OtakaraBase3MgrFv":
+"@4@__dt__Q34Game11OtakaraBase3MgrFv": # weak function
 /* 802B6244 002B3184  38 63 FF FC */	addi r3, r3, -4
 /* 802B6248 002B3188  4B FF FF 44 */	b __dt__Q34Game11OtakaraBase3MgrFv

@@ -1,20 +1,16 @@
 .include "macros.inc"
 .section .rodata  # 0x804732E0 - 0x8049E220
 .balign 8
-.global lbl_80487428
 lbl_80487428:
 	.asciz "246-MarMgr"
-	.skip 1
-.global lbl_80487434
+.balign 4
 lbl_80487434:
 	.asciz "/enemy/data/Mar/fuusen_model.btk"
-	.skip 3
-.global lbl_80487458
+.balign 4
 lbl_80487458:
 	.asciz "/enemy/data/Mar/fuusen_model.brk"
-	.skip 3
-.global lbl_8048747C
-lbl_8048747C:
+.balign 4
+lbl_8048747C: # Shift-JIS
 	.4byte 0x83748345
 	.4byte 0x835A8393
 	.4byte 0x83688362
@@ -22,8 +18,11 @@ lbl_8048747C:
 	.4byte 0x837D836C
 	.4byte 0x815B8357
 	.4byte 0x83830000
+.balign 4
+lbl_80487498:
 	.asciz "EnemyParmsBase"
-	.skip 1
+.balign 4
+lbl_804874A8: # Shift-JIS
 	.4byte 0x8AEE8F80
 	.4byte 0x94F28D73
 	.4byte 0x8D8282B3
@@ -231,14 +230,12 @@ lbl_8048747C:
 	.4byte 0x95A582A2
 	.4byte 0x91C58C82
 	.4byte 0x82630000
-.global lbl_804877E4
+.balign 4
 lbl_804877E4:
 	.asciz "MarMgr.cpp"
-	.skip 1
-.global lbl_804877F0
+.balign 4
 lbl_804877F0:
 	.asciz "P2Assert"
-	.skip 3
 
 .section .data, "wa"  # 0x8049E220 - 0x804EFC20
 .balign 8
@@ -305,47 +302,35 @@ __vt__Q34Game3Mar5Parms:
 	.4byte 0
 	.4byte 0
 	.4byte read__Q34Game3Mar5ParmsFR6Stream
-	.4byte 0
 
 .section .sdata, "wa"  # 0x80514680 - 0x80514D80
 .balign 8
-.global "cMatAnimBtkTexName__Q34Game3Mar20@unnamed@MarMgr_cpp@"
 "cMatAnimBtkTexName__Q34Game3Mar20@unnamed@MarMgr_cpp@":
 	.4byte lbl_80487434
-.global "cMatAnimBrkTexName__Q34Game3Mar20@unnamed@MarMgr_cpp@"
 "cMatAnimBrkTexName__Q34Game3Mar20@unnamed@MarMgr_cpp@":
 	.4byte lbl_80487458
 
 .section .sdata2, "a"     # 0x80516360 - 0x80520E40
 .balign 8
-.global lbl_8051B618
 lbl_8051B618:
-	.4byte 0x42B40000
-.global lbl_8051B61C
+	.float 90.0
 lbl_8051B61C:
-	.4byte 0x00000000
-.global lbl_8051B620
+	.float 0.0
 lbl_8051B620:
-	.4byte 0x43160000
-.global lbl_8051B624
+	.float 150.0
 lbl_8051B624:
 	.float 1.0
-.global lbl_8051B628
 lbl_8051B628:
-	.4byte 0x41200000
-.global lbl_8051B62C
+	.float 10.0
 lbl_8051B62C:
-	.4byte 0x40400000
-.global lbl_8051B630
+	.float 3.0
 lbl_8051B630:
-	.4byte 0x40200000
-.global lbl_8051B634
+	.float 2.5
 lbl_8051B634:
-	.4byte 0x40A00000
-.global lbl_8051B638
+	.float 5.0
+.balign 4
 lbl_8051B638:
-	.4byte 0x6D617431
-	.4byte 0x00000000
+	.asciz "mat1"
 
 .section .text, "ax"  # 0x800056C0 - 0x80472F00
 .global __ct__Q34Game3Mar3MgrFiUc

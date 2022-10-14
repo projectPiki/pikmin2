@@ -5,117 +5,77 @@ lbl_constructor:
 
 .section .rodata  # 0x804732E0 - 0x8049E220
 .balign 8
-.global lbl_80482430
 lbl_80482430:
 	.4byte 0x00000000
 	.4byte 0x00000000
 	.4byte 0x00000000
-	.4byte 0x53696E67
-	.4byte 0x6C654753
-	.4byte 0x5F47616D
-	.4byte 0x65000000
-.global lbl_8048244C
+.balign 4
+lbl_8048243C:
+	.asciz "SingleGS_Game"
+.balign 4
 lbl_8048244C:
-	.4byte 0x7330425F
-	.4byte 0x63765F63
-	.4byte 0x6F757273
-	.4byte 0x65696E00
-	.4byte 0x50534761
-	.4byte 0x6D652E68
-	.4byte 0x00000000
+	.asciz "s0B_cv_coursein"
+.balign 4
+lbl_8048245C:
+	.asciz "PSGame.h"
+.balign 4
+lbl_80482468:
 	.asciz "P2Assert"
-	.skip 3
-	.4byte 0x50535363
-	.4byte 0x656E652E
-	.4byte 0x68000000
-	.4byte 0x67657420
-	.4byte 0x736F756E
-	.4byte 0x64207363
-	.4byte 0x656E6520
-	.4byte 0x61740A69
-	.4byte 0x6E76616C
-	.4byte 0x69642074
-	.4byte 0x696D6D69
-	.4byte 0x6E670A00
-	.4byte 0x50534D61
-	.4byte 0x696E5369
-	.4byte 0x64655F53
-	.4byte 0x63656E65
-	.4byte 0x2E680000
-.global lbl_804824B8
+.balign 4
+lbl_80482474:
+	.asciz "PSScene.h"
+.balign 4
+lbl_80482480:
+	.asciz "get sound scene at\ninvalid timming\n"
+.balign 4
+lbl_804824A4:
+	.asciz "PSMainSide_Scene.h"
+.balign 4
 lbl_804824B8:
-	.4byte 0x7330355F
-	.4byte 0x70696B6D
-	.4byte 0x696E7A65
-	.4byte 0x726F0000
-	.4byte 0x736D2D67
-	.4byte 0x69766575
-	.4byte 0x70000000
-	.4byte 0x7331325F
-	.4byte 0x63765F67
-	.4byte 0x69766575
-	.4byte 0x70000000
-	.4byte 0x73696E67
-	.4byte 0x6C654753
-	.4byte 0x5F436176
-	.4byte 0x6547616D
-	.4byte 0x652E6370
-	.4byte 0x70000000
-	.4byte 0x6E6F2070
-	.4byte 0x6F642064
-	.4byte 0x656D6F20
-	.4byte 0x31320000
-	.4byte 0x496C6C65
-	.4byte 0x67616C20
-	.4byte 0x72657475
-	.4byte 0x726E2076
-	.4byte 0x616C7565
-	.4byte 0x2025642E
-	.4byte 0x00000000
-.global lbl_80482528
+	.asciz "s05_pikminzero"
+.balign 4
+lbl_804824C8:
+	.asciz "sm-giveup"
+.balign 4
+lbl_804824D4:
+	.asciz "s12_cv_giveup"
+.balign 4
+lbl_804824E4:
+	.asciz "singleGS_CaveGame.cpp"
+.balign 4
+lbl_804824FC:
+	.asciz "no pod demo 12"
+.balign 4
+lbl_8048250C:
+	.asciz "Illegal return value %d."
+.balign 4
 lbl_80482528:
-	.4byte 0x63617665
-	.4byte 0x73746174
-	.4byte 0x653A636C
-	.4byte 0x65616E75
-	.4byte 0x70000000
-.global lbl_8048253C
+	.asciz "cavestate:cleanup"
+.balign 4
 lbl_8048253C:
-	.4byte 0x7330335F
-	.4byte 0x6F72696D
-	.4byte 0x61646F77
-	.4byte 0x6E000000
-.global lbl_8048254C
+	.asciz "s03_orimadown"
+.balign 4
 lbl_8048254C:
-	.4byte 0x7330435F
-	.4byte 0x63765F65
-	.4byte 0x73636170
-	.4byte 0x65000000
-.global lbl_8048255C
+	.asciz "s0C_cv_escape"
+.balign 4
 lbl_8048255C:
-	.4byte 0x7330395F
-	.4byte 0x686F6C65
-	.4byte 0x696E0000
-	.4byte 0x6730375F
-	.4byte 0x63765F67
-	.4byte 0x616D6573
-	.4byte 0x74617274
-	.4byte 0x00000000
-	.4byte 0x50696B69
-	.4byte 0x4B696C6C
-	.4byte 0x41726700
-	.4byte 0x43726561
-	.4byte 0x74757265
-	.4byte 0x4B696C6C
-	.4byte 0x41726700
+	.asciz "s09_holein"
+.balign 4
+lbl_80482568:
+	.asciz "g07_cv_gamestart"
+.balign 4
+lbl_8048257C:
+	.asciz "PikiKillArg"
+.balign 4
+lbl_80482588:
+	.asciz "CreatureKillArg"
 
 .section .data, "wa"  # 0x8049E220 - 0x804EFC20
 .balign 8
-.global lbl_804C05F0
-lbl_804C05F0:
-	.4byte 0x00000000
-	.4byte 0x00000000
-	.4byte 0x00000000
+govNAN___Q24Game5P2JST:
+	.float 0.0
+	.float 0.0
+	.float 0.0
 .global __vt__Q34Game10SingleGame9CaveState
 __vt__Q34Game10SingleGame9CaveState:
 	.4byte 0
@@ -136,51 +96,39 @@ __vt__Q34Game10SingleGame9CaveState:
 	.4byte onFountainReturn__Q34Game10SingleGame9CaveStateFPQ24Game17SingleGameSectionPQ34Game15ItemBigFountain4Item
 	.4byte on_section_fadeout__Q34Game10SingleGame9CaveStateFPQ24Game17SingleGameSection
 	.4byte on_demo_timer__Q34Game10SingleGame5StateFPQ24Game17SingleGameSectionUl
-	.4byte 0
 
 .section .sbss # 0x80514D80 - 0x80516360
 .balign 8
-.global lbl_80515BF0
-lbl_80515BF0:
+gu32NAN___Q24Game5P2JST:
 	.skip 0x4
-.global lbl_80515BF4
-lbl_80515BF4:
+gfNAN___Q24Game5P2JST:
 	.skip 0x4
 
 .section .sdata2, "a"     # 0x80516360 - 0x80520E40
 .balign 8
-.global lbl_8051A000
 lbl_8051A000:
 	.float 1.0
-.global lbl_8051A004
 lbl_8051A004:
-	.4byte 0x46480000
-.global lbl_8051A008
+	.float 12800.0
 lbl_8051A008:
-	.4byte 0x00000000
-.global lbl_8051A00C
+	.float 0.0
 lbl_8051A00C:
-	.4byte 0x47FA0000
-.global lbl_8051A010
+	.float 128000.0
+.balign 4
 lbl_8051A010:
-	.4byte 0x736D2D63
-	.4byte 0x616E6300
-.global lbl_8051A018
+	.asciz "sm-canc"
+.balign 4
 lbl_8051A018:
-	.4byte 0x6F70656E
-	.4byte 0x2D736D00
-.global lbl_8051A020
+	.asciz "open-sm"
+.balign 4
 lbl_8051A020:
-	.4byte 0x47000000
-	.4byte 0x00000000
-.global lbl_8051A028
+	.float 32768.0
+.balign 8
 lbl_8051A028:
 	.4byte 0x43300000
 	.4byte 0x80000000
-.global lbl_8051A030
 lbl_8051A030:
-	.4byte 0x44610000
-	.4byte 0x00000000
+	.float 900.0
 
 .section .text, "ax"  # 0x800056C0 - 0x80472F00
 .if version == 1
@@ -5617,15 +5565,14 @@ lbl_80219F04:
 /* 80219F1C 00216E5C  4E 80 00 20 */	blr 
 .endif
 
-.global __sinit_singleGS_CaveGame_cpp
-__sinit_singleGS_CaveGame_cpp:
+__sinit_singleGS_CaveGame_cpp: # static initializer
 /* 80219F20 00216E60  3C 80 80 51 */	lis r4, __float_nan@ha
 /* 80219F24 00216E64  38 00 FF FF */	li r0, -1
 /* 80219F28 00216E68  C0 04 48 B0 */	lfs f0, __float_nan@l(r4)
-/* 80219F2C 00216E6C  3C 60 80 4C */	lis r3, lbl_804C05F0@ha
-/* 80219F30 00216E70  90 0D 95 70 */	stw r0, lbl_80515BF0@sda21(r13)
-/* 80219F34 00216E74  D4 03 05 F0 */	stfsu f0, lbl_804C05F0@l(r3)
-/* 80219F38 00216E78  D0 0D 95 74 */	stfs f0, lbl_80515BF4@sda21(r13)
+/* 80219F2C 00216E6C  3C 60 80 4C */	lis r3, govNAN___Q24Game5P2JST@ha
+/* 80219F30 00216E70  90 0D 95 70 */	stw r0, gu32NAN___Q24Game5P2JST@sda21(r13)
+/* 80219F34 00216E74  D4 03 05 F0 */	stfsu f0, govNAN___Q24Game5P2JST@l(r3)
+/* 80219F38 00216E78  D0 0D 95 74 */	stfs f0, gfNAN___Q24Game5P2JST@sda21(r13)
 /* 80219F3C 00216E7C  D0 03 00 04 */	stfs f0, 4(r3)
 /* 80219F40 00216E80  D0 03 00 08 */	stfs f0, 8(r3)
 /* 80219F44 00216E84  4E 80 00 20 */	blr 
