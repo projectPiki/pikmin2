@@ -36,6 +36,7 @@ struct ShadowParam;
 struct Interaction;
 struct Piki;
 struct PikiState;
+struct PikiParms;
 
 typedef enum EPikiColor {
 	Blue                = 0,
@@ -191,12 +192,14 @@ struct Piki : public FakePiki {
 	void updateDope();
 	void updateColor();
 
+	inline PikiParms* getParms() { return static_cast<PikiParms*>(m_parms); }
+
 	// _000			 = VTBL
 	// _000-_24C = FakePiki
 	u32 _24C;                         // _24C
 	PSM::Piki* m_soundObj;            // _250
 	f32 m_targetLookAngle;            // _254
-	::efx::TPkEffect* m_effectsObj;   // _258
+	efx::TPkEffect* m_effectsObj;     // _258
 	Vector3f _25C;                    // _25C
 	SysShape::Joint* m_happaJoint3;   // _268
 	Vector3f _26C;                    // _26C

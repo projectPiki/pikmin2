@@ -11,21 +11,23 @@ struct TagParm;
 struct TagParameters : public CNode {
 	TagParameters(char*);
 
-	virtual ~TagParameters() { } // _00
+	virtual ~TagParameters() { } // _08 (weak)
 
 	void read(Stream&);
 
 	// Unused/inlined:
 	bool isEndToken(char* token)
 	{
-		// UNUSED FUNCTION
 		int strLen = strlen("end");
 		return (strncmp("end", token, strLen)) == 0;
 	}
+
 	void add(TagParm*);
 	void write(Stream&);
 	void dump();
 
+	// _00     = VTBL
+	// _00-_18 = CNode
 	TagParm* m_head; // _18
 };
 

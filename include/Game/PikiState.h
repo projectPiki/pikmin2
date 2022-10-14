@@ -10,46 +10,57 @@
 #include "Sys/Triangle.h"
 #include "Vector3.h"
 
+// panic types:
+#define PIKIPANIC_Fire  (0)
+#define PIKIPANIC_Water (1)
+#define PIKIPANIC_Gas   (2)
+#define PIKIPANIC_Panic (3)
+#define PIKIPANIC_Other (4)
+
 namespace Game {
 struct Piki;
 struct Navi;
 struct Creature;
 
 enum PikiStateID {
-	PIKISTATE_Walk        = 0,
-	PIKISTATE_DemoWait    = 1,
-	PIKISTATE_LookAt      = 2,
+	PIKISTATE_Walk        = 0, // 'default' walk/follow
+	PIKISTATE_DemoWait    = 1, // during cutscenes
+	PIKISTATE_LookAt      = 2, // look at target (whistled, cutscenes)
 	PIKISTATE_GoHang      = 3,
 	PIKISTATE_Hanged      = 4,
 	PIKISTATE_WaterHanged = 5,
-	PIKISTATE_Flying      = 6,
+	PIKISTATE_Flying      = 6, // thrown
 	PIKISTATE_KokeDamage  = 7,
 	PIKISTATE_Blow        = 8,
-	PIKISTATE_Flick       = 9,
-	PIKISTATE_Drown       = 10,
-	PIKISTATE_Swallowed   = 11,
-	PIKISTATE_Nukare      = 12,
+	PIKISTATE_Flick       = 9,  // knockback from enemy
+	PIKISTATE_Drown       = 10, // drowning
+	PIKISTATE_Swallowed   = 11, // being eaten
+	PIKISTATE_Nukare      = 12, // being plucked (by hand)
 	PIKISTATE_Absorb      = 13,
-	PIKISTATE_Growup      = 14,
-	PIKISTATE_Tane        = 15,
-	PIKISTATE_Dope        = 16,
-	PIKISTATE_AutoNuki    = 17,
-	PIKISTATE_HipDrop     = 18,
+	PIKISTATE_Growup      = 14, // nectared
+	PIKISTATE_Tane        = 15, // abducted by snitchbug
+	PIKISTATE_Dope        = 16, // spicy spray
+	PIKISTATE_AutoNuki    = 17, // being plucked (by pluckaphone)
+	PIKISTATE_HipDrop     = 18, // purple pound
 	PIKISTATE_Emotion     = 19,
-	PIKISTATE_Pressed     = 20,
-	PIKISTATE_Panic       = 21,
-	PIKISTATE_DenkiDying  = 22,
+	PIKISTATE_Pressed     = 20, // squashed
+	PIKISTATE_Panic       = 21, // panicking
+	PIKISTATE_DenkiDying  = 22, // electricity zap
 	PIKISTATE_FallMeck    = 23,
-	PIKISTATE_Dying       = 24,
-	PIKISTATE_Dead        = 25,
+	PIKISTATE_Dying       = 24, // dying
+	PIKISTATE_Dead        = 25, // dead
 	PIKISTATE_Suikomi     = 26,
-	PIKISTATE_Holein      = 27,
-	PIKISTATE_Fountainon  = 28,
+	PIKISTATE_Holein      = 27, // enter cave hole
+	PIKISTATE_Fountainon  = 28, // enter geyser
 	// no 29?
 	PIKISTATE_Koke   = 30,
 	PIKISTATE_Escape = 31,
-	PIKISTATE_Carrot = 32,
+	PIKISTATE_Carrot = 32, // pikipedia carrot
 	PIKISTATE_Count,
+};
+
+struct DopeStateArg : public StateArg {
+	int _00; // _00
 };
 
 struct FountainonStateArg : public StateArg {
@@ -63,6 +74,10 @@ struct HoleinStateArg : public StateArg {
 struct NukareStateArg : public StateArg {
 	bool _00;     // _00
 	Navi* m_navi; // _04
+};
+
+struct PanicStateArg : public StateArg {
+	u16 m_panicType; // _00
 };
 
 struct SwallowedStateArg : public StateArg {
@@ -248,11 +263,11 @@ struct PikiDopeState : public PikiState {
 
 	// _00     = VTBL
 	// _00-_10 = PikiState
-	u8 _10[0x4];  // _10, unknown
-	f32 _14;      // _14, dope timer?
-	s16 _18;      // _18
-	s16 _1A;      // _1A
-	Navi* m_navi; // _1C
+	bool _10;      // _10
+	f32 _14;       // _14, dope timer?
+	s16 _18;       // _18, spray type?
+	s16 m_animIdx; // _1A
+	Navi* m_navi;  // _1C
 };
 
 struct PikiDrownState : public PikiState {
@@ -599,9 +614,19 @@ struct PikiPanicState : public PikiState {
 	void panicRun(Piki*);
 	void panicLobster(Piki*);
 
+	void checkDemo(Piki*);
+
 	// _00     = VTBL
 	// _00-_10 = PikiState
-	u8 _10[0x1C]; // _10, unknown
+	f32 _10;         // _10
+	f32 _14;         // _14
+	f32 _18;         // _18
+	f32 _1C;         // _1C
+	bool _20;        // _20
+	u8 _21;          // _21
+	u8 _22;          // _22
+	u16 m_panicType; // _24
+	f32 _28;         // _28
 };
 
 struct PikiPressedState : public PikiState {

@@ -23,7 +23,7 @@ struct SetSe {
 
 struct SeMgr {
 	enum SetSeId {
-
+		UNK_7 = 7, // unknown, used in PikiPanicState::init
 	};
 
 	SeMgr();

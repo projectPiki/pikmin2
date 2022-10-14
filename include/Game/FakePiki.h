@@ -29,11 +29,11 @@ struct IPikiAnims {
 		GAKKARI,  // disappointed
 		GATTU,    // agree
 		GETUP,
-		GFURI1, // shake1
-		GFURI2, // shake2
-		GNUKE,  // evade?
-		GROWUP1,
-		GROWUP2,
+		GFURI1,  // shake1
+		GFURI2,  // shake2
+		GNUKE,   // evade?
+		GROWUP1, // nectar (high jump)
+		GROWUP2, // nectar (low jump)
 		HNOBORU, // climb
 		IRAIRA,  // frustrated
 		JHIT,

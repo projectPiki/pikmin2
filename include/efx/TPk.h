@@ -4,8 +4,11 @@
 #include "efx/TSimple.h"
 #include "efx/TChasePos.h"
 #include "efx/TChaseMtx.h"
+#include "efx/Toe.h"
 
 namespace efx {
+void createSimplePkAp(Vector3f&);
+
 struct TPkAp : public TSimple2 {
 	inline TPkAp()
 	    : TSimple2(PID_PkAp_1, PID_PkAp_2)
@@ -137,6 +140,69 @@ struct TPkOneEmitterSimple : public JPAEmitterCallBack {
 	// _04-_08	= JPAEmitterCallBack
 };
 
+struct TPkEffectTane {
+	int _00; // _00
+	u32 _04; // _04, unknown
+	u32 _08; // _08, unknown
+	u32 _0C; // _0C, unknown
+	u32 _10; // _10, unknown
+};
+
+struct TPkEffect {
+	TPkEffect();
+
+	void init();
+	void update();
+
+	void updateMoeSmoke_();
+	void updateHamon_();
+	void createKourin_(Vector3f*);
+	void killKourin_();
+	void createDoping_(Vector3f*);
+	void killDoping_();
+	void createNage_(Vector3f*, Mtx);
+	void killNage_();
+	void createMoe_(Vector3f*);
+	void killMoe_();
+	void createChudoku_(Vector3f*);
+	void killChudoku_();
+	void createMoeSmoke_(Vector3f*);
+	void killMoeSmoke_();
+	void createBlackDown_(Vector3f*);
+	void killBlackDown();
+	void createWater_(Vector3f*);
+	void killWater_();
+	void createHamonA_(Vector3f*);
+	void killHamonA_();
+	void createHamonB_(Vector3f*);
+	void killHamonB_();
+
+	u32 _00;                  // _00, bitfield?
+	u8 _04[4];                // _04, unknown
+	int _08;                  // _08, kourin color?
+	Vector3f* _0C;            // _0C, kourin position?
+	Vector3f* _10;            // _10
+	Vector3f* _14;            // _14
+	Matrixf* _18;             // _18
+	Matrixf* _1C;             // _1C
+	u32 _20;                  // _20, unknown
+	u32 _24;                  // _24, unknown
+	Vector3f _28;             // _28, dive vector?
+	TPkNageBlur m_nageBlur;   // _34
+	TPkMoeA m_moeA;           // _48
+	TPkBlackDown m_blackDown; // _5C
+	ToeKourin m_oeKourin;     // _70
+	u8 _8C[4];                // _8C, unknown
+	ToeDoping m_oeDoping;     // _90
+	ToeNagekira m_oeNagekira; // _AC
+	ToeMoeBC m_oeMoeBC[2];    // _C8
+	ToeChudoku m_oeChudoku;   // _100
+	ToeWater m_oeWater[2];    // _11C
+	ToeHamonA m_oeHamonA;     // _154
+	ToeHamonB m_oeHamonB;     // _170
+	ToeMoeSmoke m_oeMoeSmoke; // _18C
+};
+
 struct TPkEffectMgr {
 	TPkEffectMgr();
 
@@ -147,6 +213,7 @@ struct TPkEffectMgr {
 	void Instance();
 	void startMgr();
 	void exitMgr();
+
 	void resetContextS();
 	void createS_Dead(Vector3f&, long);
 	void createS_Chinka(Vector3f&);
