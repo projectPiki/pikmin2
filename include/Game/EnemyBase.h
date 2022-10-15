@@ -548,6 +548,12 @@ struct EnemyBase : public Creature, public SysShape::MotionListener, virtual pub
 
 	inline f32 getModifier(f32 scale) { return (_210 / scale); }
 
+	inline f32 getSqrHomeRadius()
+	{
+		f32 homeRad = static_cast<EnemyParmsBase*>(m_parms)->m_general.m_homeRadius.m_value;
+		return homeRad * homeRad;
+	}
+
 	// Creature: _000 - _178
 	// MotionListener: _178 - _17C
 	// ptr to PelletView: _17C

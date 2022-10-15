@@ -423,20 +423,19 @@ void StateGoHome::exec(EnemyBase* enemy)
 		imomushi->m_velocity2 = Vector3f(0.0f);
 
 	} else {
-		Parms* parms     = static_cast<Parms*>(imomushi->m_parms);
+
 		Vector3f pos     = imomushi->getPosition();
 		Vector3f homePos = imomushi->m_homePosition;
-		f32 homeRadius   = parms->m_general.m_homeRadius.m_value;
-
-		if (sqrDistanceXZ(pos, homePos) < (homeRadius * homeRadius)) {
+		f32 dist         = sqrDistanceXZ(pos, homePos);
+		if (dist < imomushi->getSqrHomeRadius()) {
 			imomushi->m_nextState = IMOMUSHI_Dive;
 			imomushi->finishMotion();
 		}
+		Parms* parms2 = static_cast<Parms*>(imomushi->m_parms);
+		EnemyFunc::walkToTarget(imomushi, homePos, parms2->m_general.m_moveSpeed.m_value, parms2->m_general.m_rotationalAccel.m_value,
+		                        parms2->m_general.m_rotationalSpeed.m_value);
 	}
-	Parms* parms    = static_cast<Parms*>(imomushi->m_parms);
-	Vector3f target = Vector3f(imomushi->m_homePosition);
-	EnemyFunc::walkToTarget(imomushi, target, parms->m_general.m_moveSpeed.m_value, parms->m_general.m_rotationalAccel.m_value,
-	                        parms->m_general.m_rotationalSpeed.m_value);
+
 	if ((imomushi->m_animKeyEvent->m_running) && ((u32)imomushi->m_animKeyEvent->m_type == 1000)) {
 		transit(imomushi, imomushi->m_nextState, nullptr);
 	}
@@ -473,7 +472,7 @@ void StateClimb::init(EnemyBase* enemy, StateArg* stateArg)
 	f32 sin     = pikmin2_sinf(faceDir);
 
 	imomushi->_2D8 = Vector3f(sin, 0.01f, cos);
-	imomushi->_2E4 = Vector3f(sin, 0.0f, -sin);
+	imomushi->_2E4 = Vector3f(-sin, 0.0f, -cos);
 
 	/*
 	stwu     r1, -0x40(r1)
