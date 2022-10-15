@@ -1,16 +1,13 @@
 .include "macros.inc"
 .section .rodata  # 0x804732E0 - 0x8049E220
 .balign 8
-.global lbl_8047C030
 lbl_8047C030:
 	.asciz "/enemy/data/YellowChappy/moyou_565.2.bti"
-	.skip 3
-.global lbl_8047C05C
+.balign 4
 lbl_8047C05C:
 	.asciz "/enemy/data/YellowChappy/swallow_565.2.bti"
-	.skip 1
-.global lbl_8047C088
-lbl_8047C088:
+.balign 4
+lbl_8047C088: # Shift-JIS
 	.4byte 0x89A98360
 	.4byte 0x83838362
 	.4byte 0x8373815B
@@ -83,11 +80,9 @@ __vt__Q34Game12YellowChappy3Mgr:
 
 .section .sdata, "wa"  # 0x80514680 - 0x80514D80
 .balign 8
-.global "cChappyChangeTexName0__Q34Game12YellowChappy29@unnamed@YellowChappyMgr_cpp@"
-"cChappyChangeTexName0__Q34Game12YellowChappy29@unnamed@YellowChappyMgr_cpp@":
+"cChappyChangeTexName0__Q34Game12YellowChappy29@unnamed@YellowChappyMgr_cpp@": # local
 	.4byte lbl_8047C030
-.global "cChappyChangeTexName1__Q34Game12YellowChappy29@unnamed@YellowChappyMgr_cpp@"
-"cChappyChangeTexName1__Q34Game12YellowChappy29@unnamed@YellowChappyMgr_cpp@":
+"cChappyChangeTexName1__Q34Game12YellowChappy29@unnamed@YellowChappyMgr_cpp@": # local
 	.4byte lbl_8047C05C
 
 .section .text, "ax"  # 0x800056C0 - 0x80472F00

@@ -1,20 +1,14 @@
 .include "macros.inc"
 .section .rodata  # 0x804732E0 - 0x8049E220
 .balign 8
-.global lbl_8047B420
 lbl_8047B420:
-	.4byte 0x4669656C
-	.4byte 0x64567478
-	.4byte 0x436F6C6F
-	.4byte 0x724D6772
-	.4byte 0x00000000
-.global lbl_8047B434
+	.asciz "FieldVtxColorMgr"
+.balign 4
 lbl_8047B434:
 	.4byte 0x00000000
 	.4byte 0x00000001
 	.4byte 0x00000001
 	.4byte 0x00000002
-	.4byte 0x00000000
 
 .section .data, "wa"  # 0x8049E220 - 0x804EFC20
 .balign 8
@@ -31,29 +25,21 @@ __vt__Q24Game16FieldVtxColorMgr:
 
 .section .sdata2, "a"     # 0x80516360 - 0x80520E40
 .balign 8
-.global lbl_80517CC0
 lbl_80517CC0:
-	.4byte 0x41200000
-.global lbl_80517CC4
+	.float 10.0
 lbl_80517CC4:
-	.4byte 0x00000000
-.global lbl_80517CC8
+	.float 0.0
 lbl_80517CC8:
 	.float 1.0
-.global lbl_80517CCC
 lbl_80517CCC:
-	.4byte 0x3C23D70A
-.global lbl_80517CD0
+	.float 0.01
 lbl_80517CD0:
-	.4byte 0x437F0000
-.global lbl_80517CD4
+	.float 255.0
 lbl_80517CD4:
 	.float 0.5
-.global lbl_80517CD8
 lbl_80517CD8:
-	.4byte 0x401C0000
-	.4byte 0x00000000
-.global lbl_80517CE0
+	.float 2.4375
+.balign 8
 lbl_80517CE0:
 	.4byte 0x43300000
 	.4byte 0x80000000

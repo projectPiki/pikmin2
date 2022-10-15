@@ -1,11 +1,10 @@
 .include "macros.inc"
 .section .rodata  # 0x804732E0 - 0x8049E220
 .balign 8
-.global lbl_8047C110
 lbl_8047C110:
 	.asciz "/enemy/data/YellowKochappy/kochappy_body_s3tc.2.bti"
-.global lbl_8047C144
-lbl_8047C144:
+.balign 4
+lbl_8047C144: # Shift-JIS
 	.4byte 0x89A98352
 	.4byte 0x83608383
 	.4byte 0x83628373
@@ -75,12 +74,10 @@ __vt__Q34Game14YellowKochappy3Mgr:
 	.4byte doLoadBdl__Q24Game12EnemyMgrBaseFPv
 	.4byte initGenerator__Q24Game12EnemyMgrBaseFv
 	.4byte getChangeTexture__Q34Game14YellowKochappy3MgrFv
-	.4byte 0
 
 .section .sdata, "wa"  # 0x80514680 - 0x80514D80
 .balign 8
-.global "cKochappyChangeTexName__Q34Game14YellowKochappy31@unnamed@YellowKochappyMgr_cpp@"
-"cKochappyChangeTexName__Q34Game14YellowKochappy31@unnamed@YellowKochappyMgr_cpp@":
+"cKochappyChangeTexName__Q34Game14YellowKochappy31@unnamed@YellowKochappyMgr_cpp@": # local object
 	.4byte lbl_8047C110
 
 .section .text, "ax"  # 0x800056C0 - 0x80472F00
@@ -151,7 +148,7 @@ loadTexData__Q34Game14YellowKochappy3MgrFv:
 /* 8012D6C0 0012A600  4E 80 00 20 */	blr 
 
 .global __dt__Q34Game14YellowKochappy3MgrFv
-__dt__Q34Game14YellowKochappy3MgrFv:
+__dt__Q34Game14YellowKochappy3MgrFv: # weak function
 /* 8012D6C4 0012A604  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 8012D6C8 0012A608  7C 08 02 A6 */	mflr r0
 /* 8012D6CC 0012A60C  90 01 00 14 */	stw r0, 0x14(r1)
@@ -206,12 +203,12 @@ lbl_8012D770:
 /* 8012D788 0012A6C8  4E 80 00 20 */	blr 
 
 .global getEnemyTypeID__Q34Game14YellowKochappy3MgrFv
-getEnemyTypeID__Q34Game14YellowKochappy3MgrFv:
+getEnemyTypeID__Q34Game14YellowKochappy3MgrFv: # weak function
 /* 8012D78C 0012A6CC  38 60 00 2D */	li r3, 0x2d
 /* 8012D790 0012A6D0  4E 80 00 20 */	blr 
 
 .global createObj__Q34Game14YellowKochappy3MgrFi
-createObj__Q34Game14YellowKochappy3MgrFi:
+createObj__Q34Game14YellowKochappy3MgrFi: # weak function
 /* 8012D794 0012A6D4  94 21 FF F0 */	stwu r1, -0x10(r1)
 /* 8012D798 0012A6D8  7C 08 02 A6 */	mflr r0
 /* 8012D79C 0012A6DC  90 01 00 14 */	stw r0, 0x14(r1)
@@ -238,13 +235,13 @@ createObj__Q34Game14YellowKochappy3MgrFi:
 /* 8012D7F0 0012A730  4E 80 00 20 */	blr 
 
 .global getEnemy__Q34Game14YellowKochappy3MgrFi
-getEnemy__Q34Game14YellowKochappy3MgrFi:
+getEnemy__Q34Game14YellowKochappy3MgrFi: # weak function
 /* 8012D7F4 0012A734  1C 04 02 E8 */	mulli r0, r4, 0x2e8
 /* 8012D7F8 0012A738  80 63 00 48 */	lwz r3, 0x48(r3)
 /* 8012D7FC 0012A73C  7C 63 02 14 */	add r3, r3, r0
 /* 8012D800 0012A740  4E 80 00 20 */	blr 
 
 .global "@4@__dt__Q34Game14YellowKochappy3MgrFv"
-"@4@__dt__Q34Game14YellowKochappy3MgrFv":
+"@4@__dt__Q34Game14YellowKochappy3MgrFv": # thunk
 /* 8012D804 0012A744  38 63 FF FC */	addi r3, r3, -4
 /* 8012D808 0012A748  4B FF FE BC */	b __dt__Q34Game14YellowKochappy3MgrFv
