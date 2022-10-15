@@ -189,11 +189,10 @@ void StateStay::init(EnemyBase* enemy, StateArg* stateArg)
  */
 void StateStay::exec(EnemyBase* enemy)
 {
-	// does not match
 	Obj* imomushi = static_cast<Obj*>(enemy);
 	imomushi->_2C8 += sys->m_secondsPerFrame;
-	Parms* parms = static_cast<Parms*>(imomushi->m_parms);
-	if ((imomushi->_2C8 > 6.0f) && !(EnemyFunc::isTherePikmin(imomushi, parms->m_general.m_privateRadius.m_value, nullptr))) {
+	if ((imomushi->_2C8 > 6.0f)
+	    && !(EnemyFunc::isTherePikmin(imomushi, static_cast<Parms*>(imomushi->m_parms)->m_general.m_privateRadius.m_value, nullptr))) {
 		if (imomushi->m_targetCreature = imomushi->getRandFruitsPlant()) {
 			transit(imomushi, IMOMUSHI_Appear, nullptr);
 		}
@@ -474,7 +473,7 @@ void StateClimb::init(EnemyBase* enemy, StateArg* stateArg)
 	f32 sin     = pikmin2_sinf(faceDir);
 
 	imomushi->_2D8 = Vector3f(sin, 0.01f, cos);
-	imomushi->_2E4 = Vector3f(-sin, 0.0f, -cos);
+	imomushi->_2E4 = Vector3f(sin, 0.0f, -sin);
 
 	/*
 	stwu     r1, -0x40(r1)
@@ -631,11 +630,11 @@ void StateClimb::cleanup(EnemyBase* enemy)
  */
 void StateAttack::init(EnemyBase* enemy, StateArg* stateArg)
 {
-	// does not match. has r30/r31 regswap.
+	Creature* target;
 	Obj* imomushi         = static_cast<Obj*>(enemy);
 	imomushi->m_nextState = IMOMUSHI_NULL;
 	imomushi->_2C8        = 0.0f;
-	Creature* target      = imomushi->m_targetCreature;
+	target                = imomushi->m_targetCreature;
 	CollPart* collpart    = target->m_collTree->getCollPart('tops');
 	imomushi->endStick();
 	imomushi->startStick(target, collpart);
@@ -701,10 +700,10 @@ void StateAttack::cleanup(EnemyBase* enemy)
  */
 void StateWait::init(EnemyBase* enemy, StateArg* stateArg)
 {
-	// does not match. has r30/r31 regswap.
+	Creature* target;
 	Obj* imomushi         = static_cast<Obj*>(enemy);
 	imomushi->m_nextState = IMOMUSHI_NULL;
-	Creature* target      = imomushi->m_targetCreature;
+	target                = imomushi->m_targetCreature;
 	CollPart* collpart    = target->m_collTree->getCollPart('tops');
 	imomushi->endStick();
 	imomushi->startStick(target, collpart);
@@ -719,7 +718,7 @@ void StateWait::init(EnemyBase* enemy, StateArg* stateArg)
  */
 void StateWait::exec(EnemyBase* enemy)
 {
-	// does not match.
+	Creature* sticker;
 	Obj* imomushi = static_cast<Obj*>(enemy);
 
 	if (imomushi->m_health <= 0.0f) {
@@ -729,12 +728,14 @@ void StateWait::exec(EnemyBase* enemy)
 
 	if (imomushi->isStickToFall()) {
 		transit(imomushi, IMOMUSHI_FallMove, nullptr);
+		return;
 	} else {
-		if (imomushi->isFinishMotion()) {
+		if (!imomushi->isFinishMotion()) {
 			imomushi->moveStickSphere();
+			sticker = imomushi->m_sticker;
 			if (Creature* target = imomushi->getRandFruitsPlant()) {
 				imomushi->m_targetCreature = target;
-				if (imomushi->m_sticker == target) {
+				if (sticker == target) {
 					imomushi->m_nextState = IMOMUSHI_Attack;
 					imomushi->finishMotion();
 				} else {

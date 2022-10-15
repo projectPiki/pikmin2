@@ -42,6 +42,7 @@ struct Obj : public EnemyBase {
 	virtual void setInitialSetting(EnemyInitialParamBase*); // _1C4
 	virtual void doUpdate();                                // _1C8
 	virtual void doDebugDraw(Graphics&);                    // _1EC
+	virtual void changeMaterial() = 0;                      // _200
 	virtual Vector3f getOffsetForMapCollision();            // _224
 	virtual void initMouthSlots();                          // _22C
 	virtual void initWalkSmokeEffect();                     // _230
