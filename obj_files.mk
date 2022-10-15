@@ -624,7 +624,7 @@ NISHIMURA:=\
 	$(BUILD_DIR)/asm/plugProjectNishimuraU/ShadowCylinder.o\
 	$(BUILD_DIR)/asm/plugProjectNishimuraU/playCamera.o\
 	$(BUILD_DIR)/asm/plugProjectNishimuraU/shadowMgr.o\
-	$(BUILD_DIR)/asm/plugProjectNishimuraU/MapUnit.o\
+	$(BUILD_DIR)/src/plugProjectNishimuraU/MapUnit.o\
 	$(BUILD_DIR)/asm/plugProjectNishimuraU/MapNode.o\
 	$(BUILD_DIR)/src/plugProjectNishimuraU/EnemyUnit.o\
 	$(BUILD_DIR)/asm/plugProjectNishimuraU/RandMapMgr.o\

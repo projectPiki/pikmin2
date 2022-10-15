@@ -2,24 +2,6 @@
 #include "Game/Cave/RandMapMgr.h"
 #include "Dolphin/gx.h"
 
-/*
-    Generated from dpostproc
-
-    .section .data, "wa"  # 0x8049E220 - 0x804EFC20
-    .global __vt__Q34Game4Cave10AdjustNode
-    __vt__Q34Game4Cave10AdjustNode:
-        .4byte 0
-        .4byte 0
-        .4byte __dt__Q34Game4Cave10AdjustNodeFv
-        .4byte getChildCount__5CNodeFv
-
-    .section .sdata2, "a"     # 0x80516360 - 0x80520E40
-    .global lbl_8051A6D8
-    lbl_8051A6D8:
-        .4byte 0x00000000
-        .4byte 0x00000000
-*/
-
 namespace Game {
 
 namespace Cave {
@@ -61,13 +43,6 @@ void MapUnits::setDoorNum(int doorNum)
 	// Construct new AdjustNode array for number of doors
 	m_doorCounts = new AdjustNode[doorNum];
 }
-
-/*
- * --INFO--
- * Address:	802428AC
- * Size:	000060
- */
-AdjustNode::~AdjustNode() { }
 
 /*
  * --INFO--
