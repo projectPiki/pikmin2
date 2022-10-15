@@ -92,6 +92,7 @@ struct Mgr : public EnemyMgrBase {
 
 	// _00 		= VTBL
 	// _00-_44	= EnemyMgrBase
+	Obj* m_obj; // _48, array of Objs
 };
 
 struct Parms : public EnemyParmsBase {

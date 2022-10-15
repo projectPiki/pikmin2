@@ -48,6 +48,7 @@ struct Mgr : public OtakaraBase::Mgr {
 
 	// _00 		= VTBL
 	// _00-_48	= OtakaraBase::Mgr
+	Obj* m_obj; // _48, array of Objs
 };
 } // namespace GasOtakara
 } // namespace Game

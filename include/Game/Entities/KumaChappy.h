@@ -42,7 +42,7 @@ struct Obj : public EnemyBase {
 	virtual void doGetLifeGaugeParam(LifeGaugeParam&);        // _260
 	virtual bool damageCallBack(Creature*, float, CollPart*); // _278
 	virtual void startCarcassMotion();                        // _2C4
-	virtual void doBecomeCarcass();                           // _2D0
+	virtual bool doBecomeCarcass();                           // _2D0
 	virtual f32 getDownSmokeScale();                          // _2EC (weak)
 	virtual void setFSM(FSM*);                                // _2F8
 	virtual void createChappyRelation();                      // _2FC

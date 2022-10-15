@@ -10,7 +10,7 @@ struct EnemyInfo {
 	char m_id;           // _04
 	char m_parentID;     // _05
 	char m_members;      // _06
-	u16 m_flags;         // _07
+	u16 m_flags;         // _08
 	char* m_modelName;   // _0C
 	char* m_animName;    // _10
 	char* m_animMgrName; // _14
@@ -143,6 +143,7 @@ enum EEnemyTypeID {//ID      Common Name
     EnemyID_UmiMushiBlind  = 101, // Toady Bloyster
 };
 EEnemyTypeID m_enemyID; // _00
+u8 m_count;    // _04
 };
 // clang-format on
 
@@ -157,5 +158,17 @@ char* getEnemyResName(int, int);
 char getEnemyMember(int, int);
 int getEnemyID(char*, int);
 } // namespace EnemyInfoFunc
+
+inline int getEnemyMgrID(int enemyID)
+{
+	int idx = -1;
+	for (int i = 0; i < gEnemyInfoNum; i++) {
+		char id = gEnemyInfo[i].m_id;
+		if (id == enemyID) {
+			idx = (gEnemyInfo[i].m_flags & 1) ? enemyID : gEnemyInfo[i].m_parentID;
+		}
+	}
+	return idx;
+}
 } // namespace Game
 #endif

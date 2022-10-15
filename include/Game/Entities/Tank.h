@@ -250,6 +250,8 @@ struct Mgr : public Tank::Mgr {
 
 	// _00 		= VTBL
 	// _00-_44	= EnemyMgrBase
+	ResTIMG* m_changeTexture; // _44, probably
+	Obj* m_obj;               // _48, array of Objs, probably
 };
 } // namespace Ftank
 
@@ -294,6 +296,8 @@ struct Mgr : public Tank::Mgr {
 
 	// _00 		= VTBL
 	// _00-_44	= EnemyMgrBase
+	ResTIMG* m_changeTexture; // _44, probably
+	Obj* m_obj;               // _48, array of Objs, probably
 };
 } // namespace Wtank
 } // namespace Game

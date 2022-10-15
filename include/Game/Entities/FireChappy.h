@@ -86,6 +86,8 @@ struct Mgr : public ChappyBase::Mgr {
 	// _00 		= VTBL
 	// _00-_44	= EnemyMgrBase
 	Obj* m_obj; // _44, an array of Objs
+	u32 _48;    // _48, unknown
+	u32 _4C;    // _4C, unknown
 };
 
 } // namespace FireChappy

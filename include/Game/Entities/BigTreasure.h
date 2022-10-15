@@ -248,8 +248,7 @@ struct Mgr : public EnemyMgrBase {
 
 	// _00 		= VTBL
 	// _00-_44	= EnemyMgrBase
-	Sys::MatTevRegAnimation* _44; // _44
-	Obj* m_obj;                   // _48
+	Obj* m_obj; // _48
 };
 
 struct Parms : public EnemyParmsBase {

@@ -5,6 +5,7 @@
 #include "Game/StateMachine.h"
 #include "JSystem/J3D/J3DModel.h"
 #include "Viewport.h"
+#include "BitFlag.h"
 #include "Matrixf.h"
 #include "types.h"
 
@@ -87,10 +88,10 @@ struct Mgr {
 	void addDrawInfo(DrawInfo*);
 	// ~Mgr();
 
-	J3DModelData* _00[2]; // _00 - could be an array of pointers
-	u8 _04[4];            // _04 - unknown
-	CNode m_drawInfo;     // _08 - might be DrawInfo?
-	CNode m_obj;          // _20 - might be Obj?
+	J3DModelData** _00; // _00 - could be an array of pointers
+	BitFlag<u32> _04;   // _04
+	CNode m_drawInfo;   // _08 - treat as DrawInfo
+	CNode m_obj;        // _20 - treat as Obj
 };
 
 } // namespace EnemyStone
