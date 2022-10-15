@@ -6,8 +6,17 @@
 #include "efx/TChaseMtx.h"
 #include "efx/Toe.h"
 
+#define PKEFF_1     (0x1)
+#define PKEFF_2     (0x2)
+#define PKEFF_Fire  (0x4)
+#define PKEFF_Gas   (0x8)
+#define PKEFF_Water (0x10)
+
 namespace efx {
 void createSimplePkAp(Vector3f&);
+void createSimpleChinka(Vector3f&);
+void createSimpleWaterOff(Vector3f&);
+void createSimpleGedoku(Vector3f&);
 
 struct TPkAp : public TSimple2 {
 	inline TPkAp()
@@ -177,7 +186,13 @@ struct TPkEffect {
 	void createHamonB_(Vector3f*);
 	void killHamonB_();
 
-	u32 _00;                  // _00, bitfield?
+	inline void setFlag(int flagID) { m_flags |= flagID; }
+
+	inline void resetFlag(int flagID) { m_flags &= ~flagID; }
+
+	inline bool isFlag(int flagID) { return m_flags & flagID; }
+
+	u32 m_flags;              // _00
 	u8 _04[4];                // _04, unknown
 	int _08;                  // _08, kourin color?
 	Vector3f* _0C;            // _0C, kourin position?

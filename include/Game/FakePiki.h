@@ -14,8 +14,9 @@ struct J3DJoint;
 namespace Game {
 struct IPikiAnims {
 	enum PikiAnims {
-		AKUBI,   // yawn
-		ASIBUMI, // stepped on
+		NULLANIM = -1,
+		AKUBI    = 0, // yawn
+		ASIBUMI,      // stepped on
 		ATTACK1,
 		CHATTING,
 		DAMAGE,

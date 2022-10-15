@@ -25,7 +25,7 @@ struct Creature;
 enum PikiStateID {
 	PIKISTATE_Walk        = 0, // 'default' walk/follow
 	PIKISTATE_DemoWait    = 1, // during cutscenes
-	PIKISTATE_LookAt      = 2, // look at target (whistled, cutscenes)
+	PIKISTATE_LookAt      = 2, // whistled
 	PIKISTATE_GoHang      = 3,
 	PIKISTATE_Hanged      = 4,
 	PIKISTATE_WaterHanged = 5,
@@ -61,6 +61,17 @@ enum PikiStateID {
 
 struct DopeStateArg : public StateArg {
 	int _00; // _00
+};
+
+struct DyingStateArg : public StateArg {
+	inline DyingStateArg()
+	    : m_animIdx(IPikiAnims::NULLANIM)
+	    , _04(false)
+	{
+	}
+
+	int m_animIdx; // _00
+	bool _04;      // _04
 };
 
 struct FountainonStateArg : public StateArg {
@@ -246,7 +257,7 @@ struct PikiDenkiDyingState : public PikiState {
 
 	// _00     = VTBL
 	// _00-_10 = PikiState
-	u8 _10[0x4]; // _10, unknown
+	f32 _10; // _10
 };
 
 struct PikiDopeState : public PikiState {
@@ -305,7 +316,8 @@ struct PikiDyingState : public PikiState {
 
 	// _00     = VTBL
 	// _00-_10 = PikiState
-	u8 _10[0x8]; // _10, unknown
+	int m_animIdx; // _10
+	bool _14;      // _14, unknown
 };
 
 struct PikiEmotionState : public PikiState {
@@ -574,7 +586,10 @@ struct PikiLookAtState : public PikiState, virtual SysShape::MotionListener {
 
 	// _00     = VTBL
 	// _00-_10 = PikiState
-	u8 _10[0x8]; // _10, unknown
+	// _10-_14 = MotionListener VTBL
+	f32 _14; // _14
+	u16 _18; // _18
+	         // _1C = MotionListener again?
 };
 
 struct PikiNukareState : public PikiState {
@@ -614,19 +629,20 @@ struct PikiPanicState : public PikiState {
 	void panicRun(Piki*);
 	void panicLobster(Piki*);
 
+	void startSound(Piki*);
 	void checkDemo(Piki*);
 
 	// _00     = VTBL
 	// _00-_10 = PikiState
-	f32 _10;         // _10
-	f32 _14;         // _14
-	f32 _18;         // _18
-	f32 _1C;         // _1C
-	bool _20;        // _20
-	u8 _21;          // _21
-	u8 _22;          // _22
-	u16 m_panicType; // _24
-	f32 _28;         // _28
+	f32 m_deathTimer; // _10, when this reaches 0, piki dies
+	f32 m_dramaTimer; // _14, when this reaches 0, piki does dramatic effect (hop/cough/sound)
+	f32 m_angle;      // _18
+	f32 m_speed;      // _1C
+	bool _20;         // _20
+	bool _21;         // _21
+	u8 _22;           // _22
+	u16 m_panicType;  // _24
+	f32 _28;          // _28
 };
 
 struct PikiPressedState : public PikiState {
@@ -645,7 +661,7 @@ struct PikiPressedState : public PikiState {
 
 	// _00     = VTBL
 	// _00-_10 = PikiState
-	u8 _10[0x4]; // _10, unknown
+	f32 _10; // _10
 };
 
 struct PikiSuikomiState : public PikiState {

@@ -680,10 +680,10 @@ struct CreatureActionArg : public ActionArg {
 };
 
 struct ActFormationInitArg : public CreatureActionArg {
-	inline ActFormationInitArg(Game::Creature* creature, u8 b1, u8 b2)
+	inline ActFormationInitArg(Game::Creature* creature, u8 b1)
 	    : CreatureActionArg(creature)
 	    , _08(b1)
-	    , _09(b2)
+	    , _09(0)
 	{
 	}
 

@@ -69,6 +69,11 @@ struct PikiInitArg : public CreatureInitArg {
 };
 
 struct PikiKillArg : public CreatureKillArg {
+	inline PikiKillArg(int p1)
+	    : CreatureKillArg(p1)
+	{
+	}
+
 	virtual const char* getName(); // _08 (weak)
 
 	// _00		 = VTBL
