@@ -90,7 +90,7 @@ struct Obj : public EnemyBase {
 	// _00 		= VTBL
 	// _00-_2BC	= EnemyBase
 	FSM* m_FSM;                     // _2BC
-	u8 _2C0[0x4];                   // _2C0, unknown
+	bool _2C0;                      // _2C0, unknown
 	StateID m_nextState;            // _2C4
 	f32 _2C8;                       // _2C8
 	u8 _2CC[0xC];                   // _2CC, unknown

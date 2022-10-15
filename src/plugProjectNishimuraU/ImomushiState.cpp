@@ -166,58 +166,20 @@ void StateFallMove::cleanup(EnemyBase* enemy) { }
  */
 void StateStay::init(EnemyBase* enemy, StateArg* stateArg)
 {
-	/*
-	stwu     r1, -0x10(r1)
-	mflr     r0
-	stw      r0, 0x14(r1)
-	mr       r0, r4
-	li       r4, 0
-	stw      r31, 0xc(r1)
-	mr       r31, r0
-	mr       r3, r31
-	lwz      r12, 0(r31)
-	lwz      r12, 0xa4(r12)
-	mtctr    r12
-	bctrl
-	lwz      r4, 0x1e0(r31)
-	li       r0, 1
-	mr       r3, r31
-	ori      r4, r4, 1
-	stw      r4, 0x1e0(r31)
-	stb      r0, 0x2c0(r31)
-	lwz      r0, 0x1e0(r31)
-	oris     r0, r0, 0x40
-	stw      r0, 0x1e0(r31)
-	lwz      r0, 0x1e0(r31)
-	ori      r0, r0, 0x2000
-	stw      r0, 0x1e0(r31)
-	lwz      r0, 0x1e0(r31)
-	rlwinm   r0, r0, 0, 0x15, 0x13
-	stw      r0, 0x1e0(r31)
-	bl       hardConstraintOn__Q24Game9EnemyBaseFv
-	lwz      r0, 0x1e0(r31)
-	mr       r3, r31
-	lfs      f0, lbl_8051C378@sda21(r2)
-	li       r4, 1
-	rlwinm   r0, r0, 0, 0x11, 0xf
-	li       r5, 0
-	stw      r0, 0x1e0(r31)
-	lwz      r0, 0x1e0(r31)
-	oris     r0, r0, 0x4000
-	stw      r0, 0x1e0(r31)
-	stfs     f0, 0x1d4(r31)
-	stfs     f0, 0x1d8(r31)
-	stfs     f0, 0x1dc(r31)
-	stfs     f0, 0x2c8(r31)
-	bl       startMotion__Q24Game9EnemyBaseFiPQ28SysShape14MotionListener
-	mr       r3, r31
-	bl       stopMotion__Q24Game9EnemyBaseFv
-	lwz      r0, 0x14(r1)
-	lwz      r31, 0xc(r1)
-	mtlr     r0
-	addi     r1, r1, 0x10
-	blr
-	*/
+	Obj* imomushi = static_cast<Obj*>(enemy);
+	imomushi->setAtari(false);
+	imomushi->setEvent(0, EB_Vulnerable);
+	imomushi->_2C0 = true;
+	imomushi->setEvent(0, EB_BitterImmune);
+	imomushi->setEvent(0, EB_SoundCullable);
+	imomushi->resetEvent(0, EB_LifegaugeVisible);
+	imomushi->hardConstraintOn();
+	imomushi->resetEvent(0, EB_16);
+	imomushi->setEvent(0, EB_31);
+	imomushi->m_velocity2 = Vector3f(0.0f);
+	imomushi->_2C8        = 0.0f;
+	imomushi->startMotion(1, nullptr);
+	imomushi->stopMotion();
 }
 
 /*
@@ -227,53 +189,15 @@ void StateStay::init(EnemyBase* enemy, StateArg* stateArg)
  */
 void StateStay::exec(EnemyBase* enemy)
 {
-	/*
-	stwu     r1, -0x10(r1)
-	mflr     r0
-	lfs      f0, lbl_8051C380@sda21(r2)
-	stw      r0, 0x14(r1)
-	stw      r31, 0xc(r1)
-	mr       r31, r4
-	stw      r30, 8(r1)
-	mr       r30, r3
-	lwz      r5, sys@sda21(r13)
-	lfs      f2, 0x2c8(r4)
-	lfs      f1, 0x54(r5)
-	fadds    f1, f2, f1
-	stfs     f1, 0x2c8(r4)
-	lfs      f1, 0x2c8(r4)
-	fcmpo    cr0, f1, f0
-	ble      lbl_802BAAF4
-	lwz      r5, 0xc0(r31)
-	mr       r3, r31
-	li       r4, 0
-	lfs      f1, 0x3ac(r5)
-	bl
-"isTherePikmin__Q24Game9EnemyFuncFPQ24Game8CreaturefP23Condition<Q24Game4Piki>"
-	clrlwi.  r0, r3, 0x18
-	bne      lbl_802BAAF4
-	mr       r3, r31
-	bl       getRandFruitsPlant__Q34Game8Imomushi3ObjFv
-	cmplwi   r3, 0
-	stw      r3, 0x230(r31)
-	beq      lbl_802BAAF4
-	mr       r3, r30
-	mr       r4, r31
-	lwz      r12, 0(r30)
-	li       r5, 5
-	li       r6, 0
-	lwz      r12, 0x1c(r12)
-	mtctr    r12
-	bctrl
-
-lbl_802BAAF4:
-	lwz      r0, 0x14(r1)
-	lwz      r31, 0xc(r1)
-	lwz      r30, 8(r1)
-	mtlr     r0
-	addi     r1, r1, 0x10
-	blr
-	*/
+	// does not match
+	Obj* imomushi = static_cast<Obj*>(enemy);
+	imomushi->_2C8 += sys->m_secondsPerFrame;
+	Parms* parms = static_cast<Parms*>(imomushi->m_parms);
+	if ((imomushi->_2C8 > 6.0f) && !(EnemyFunc::isTherePikmin(imomushi, parms->m_general.m_privateRadius.m_value, nullptr))) {
+		if (imomushi->m_targetCreature = imomushi->getRandFruitsPlant()) {
+			transit(imomushi, IMOMUSHI_Appear, nullptr);
+		}
+	}
 }
 
 /*
@@ -286,7 +210,7 @@ void StateStay::cleanup(EnemyBase* enemy)
 	Obj* imomushi = static_cast<Obj*>(enemy);
 	imomushi->setAtari(true);
 	imomushi->resetEvent(0, EB_Vulnerable);
-	imomushi->_2C0[0] = 0;
+	imomushi->_2C0 = false;
 	imomushi->resetEvent(0, EB_BitterImmune);
 	imomushi->resetEvent(0, EB_SoundCullable);
 	imomushi->hardConstraintOff();
@@ -487,102 +411,36 @@ void StateGoHome::init(EnemyBase* enemy, StateArg* stateArg)
  * Size:	00014C
  */
 void StateGoHome::exec(EnemyBase* enemy)
+// does NOT match
 {
-	/*
-	stwu     r1, -0x30(r1)
-	mflr     r0
-	lfs      f0, lbl_8051C378@sda21(r2)
-	stw      r0, 0x34(r1)
-	stw      r31, 0x2c(r1)
-	mr       r31, r4
-	stw      r30, 0x28(r1)
-	mr       r30, r3
-	lfs      f1, 0x200(r4)
-	fcmpo    cr0, f1, f0
-	cror     2, 0, 2
-	bne      lbl_802BB168
-	lwz      r12, 0(r3)
-	li       r5, 0
-	li       r6, 0
-	lwz      r12, 0x1c(r12)
-	mtctr    r12
-	bctrl
-	b        lbl_802BB250
+	Obj* imomushi = static_cast<Obj*>(enemy);
 
-lbl_802BB168:
-	mr       r3, r31
-	bl       isFinishMotion__Q24Game9EnemyBaseFv
-	clrlwi.  r0, r3, 0x18
-	beq      lbl_802BB18C
-	lfs      f0, lbl_8051C378@sda21(r2)
-	stfs     f0, 0x1d4(r31)
-	stfs     f0, 0x1d8(r31)
-	stfs     f0, 0x1dc(r31)
-	b        lbl_802BB214
+	if (imomushi->m_health <= 0.0f) {
+		transit(imomushi, IMOMUSHI_Dead, nullptr);
+		return;
+	}
 
-lbl_802BB18C:
-	mr       r4, r31
-	addi     r3, r1, 8
-	lwz      r12, 0(r31)
-	lwz      r12, 8(r12)
-	mtctr    r12
-	bctrl
-	lfs      f0, 0x10(r1)
-	lfs      f4, 0x1a0(r31)
-	lfs      f3, 0x19c(r31)
-	lfs      f1, 0x198(r31)
-	fsubs    f2, f0, f4
-	lfs      f0, 8(r1)
-	stfs     f1, 0x14(r1)
-	fsubs    f1, f0, f1
-	fmuls    f0, f2, f2
-	stfs     f3, 0x18(r1)
-	stfs     f4, 0x1c(r1)
-	fmadds   f1, f1, f1, f0
-	lwz      r3, 0xc0(r31)
-	lfs      f0, 0x384(r3)
-	fmuls    f0, f0, f0
-	fcmpo    cr0, f1, f0
-	bge      lbl_802BB1F8
-	li       r0, 6
-	mr       r3, r31
-	stw      r0, 0x2c4(r31)
-	bl       finishMotion__Q24Game9EnemyBaseFv
+	if (imomushi->isFinishMotion()) {
+		imomushi->m_velocity2 = Vector3f(0.0f);
 
-lbl_802BB1F8:
-	lwz      r5, 0xc0(r31)
-	mr       r3, r31
-	addi     r4, r1, 0x14
-	lfs      f1, 0x2e4(r5)
-	lfs      f2, 0x30c(r5)
-	lfs      f3, 0x334(r5)
-	bl "walkToTarget__Q24Game9EnemyFuncFPQ24Game9EnemyBaseR10Vector3<f>fff"
+	} else {
+		Parms* parms     = static_cast<Parms*>(imomushi->m_parms);
+		Vector3f pos     = imomushi->getPosition();
+		Vector3f homePos = imomushi->m_homePosition;
+		f32 homeRadius   = parms->m_general.m_homeRadius.m_value;
 
-lbl_802BB214:
-	lwz      r3, 0x188(r31)
-	lbz      r0, 0x24(r3)
-	cmplwi   r0, 0
-	beq      lbl_802BB250
-	lwz      r0, 0x1c(r3)
-	cmplwi   r0, 0x3e8
-	bne      lbl_802BB250
-	mr       r3, r30
-	mr       r4, r31
-	lwz      r12, 0(r30)
-	li       r6, 0
-	lwz      r5, 0x2c4(r31)
-	lwz      r12, 0x1c(r12)
-	mtctr    r12
-	bctrl
-
-lbl_802BB250:
-	lwz      r0, 0x34(r1)
-	lwz      r31, 0x2c(r1)
-	lwz      r30, 0x28(r1)
-	mtlr     r0
-	addi     r1, r1, 0x30
-	blr
-	*/
+		if (sqrDistanceXZ(pos, homePos) < (homeRadius * homeRadius)) {
+			imomushi->m_nextState = IMOMUSHI_Dive;
+			imomushi->finishMotion();
+		}
+	}
+	Parms* parms    = static_cast<Parms*>(imomushi->m_parms);
+	Vector3f target = Vector3f(imomushi->m_homePosition);
+	EnemyFunc::walkToTarget(imomushi, target, parms->m_general.m_moveSpeed.m_value, parms->m_general.m_rotationalAccel.m_value,
+	                        parms->m_general.m_rotationalSpeed.m_value);
+	if ((imomushi->m_animKeyEvent->m_running) && ((u32)imomushi->m_animKeyEvent->m_type == 1000)) {
+		transit(imomushi, imomushi->m_nextState, nullptr);
+	}
 }
 
 /*
@@ -773,47 +631,16 @@ void StateClimb::cleanup(EnemyBase* enemy)
  */
 void StateAttack::init(EnemyBase* enemy, StateArg* stateArg)
 {
-	/*
-	stwu     r1, -0x20(r1)
-	mflr     r0
-	lfs      f0, lbl_8051C378@sda21(r2)
-	lis      r3, 0x746F7073@ha
-	stw      r0, 0x24(r1)
-	li       r0, -1
-	stw      r31, 0x1c(r1)
-	stw      r30, 0x18(r1)
-	mr       r30, r4
-	stw      r29, 0x14(r1)
-	stw      r0, 0x2c4(r4)
-	addi     r4, r3, 0x746F7073@l
-	stfs     f0, 0x2c8(r30)
-	lwz      r31, 0x230(r30)
-	lwz      r3, 0x114(r31)
-	bl       getCollPart__8CollTreeFUl
-	mr       r0, r3
-	mr       r3, r30
-	mr       r29, r0
-	bl       endStick__Q24Game8CreatureFv
-	mr       r3, r30
-	mr       r4, r31
-	mr       r5, r29
-	bl       startStick__Q24Game8CreatureFPQ24Game8CreatureP8CollPart
-	lfs      f0, lbl_8051C378@sda21(r2)
-	mr       r3, r30
-	li       r4, 7
-	li       r5, 0
-	stfs     f0, 0x1d4(r30)
-	stfs     f0, 0x1d8(r30)
-	stfs     f0, 0x1dc(r30)
-	bl       startMotion__Q24Game9EnemyBaseFiPQ28SysShape14MotionListener
-	lwz      r0, 0x24(r1)
-	lwz      r31, 0x1c(r1)
-	lwz      r30, 0x18(r1)
-	lwz      r29, 0x14(r1)
-	mtlr     r0
-	addi     r1, r1, 0x20
-	blr
-	*/
+	// does not match. has r30/r31 regswap.
+	Obj* imomushi         = static_cast<Obj*>(enemy);
+	imomushi->m_nextState = IMOMUSHI_NULL;
+	imomushi->_2C8        = 0.0f;
+	Creature* target      = imomushi->m_targetCreature;
+	CollPart* collpart    = target->m_collTree->getCollPart('tops');
+	imomushi->endStick();
+	imomushi->startStick(target, collpart);
+	imomushi->m_velocity2 = Vector3f(0.0f);
+	imomushi->startMotion(7, nullptr);
 }
 
 /*
@@ -823,107 +650,37 @@ void StateAttack::init(EnemyBase* enemy, StateArg* stateArg)
  */
 void StateAttack::exec(EnemyBase* enemy)
 {
-	/*
-	stwu     r1, -0x10(r1)
-	mflr     r0
-	lfs      f0, lbl_8051C378@sda21(r2)
-	stw      r0, 0x14(r1)
-	stw      r31, 0xc(r1)
-	mr       r31, r4
-	stw      r30, 8(r1)
-	mr       r30, r3
-	lfs      f1, 0x200(r4)
-	fcmpo    cr0, f1, f0
-	cror     2, 0, 2
-	bne      lbl_802BB654
-	lwz      r12, 0(r3)
-	li       r5, 2
-	li       r6, 0
-	lwz      r12, 0x1c(r12)
-	mtctr    r12
-	bctrl
-	b        lbl_802BB74C
+	Obj* imomushi = static_cast<Obj*>(enemy);
 
-lbl_802BB654:
-	mr       r3, r31
-	bl       isStickToFall__Q34Game8Imomushi3ObjFv
-	clrlwi.  r0, r3, 0x18
-	beq      lbl_802BB688
-	mr       r3, r30
-	mr       r4, r31
-	lwz      r12, 0(r30)
-	li       r5, 3
-	li       r6, 0
-	lwz      r12, 0x1c(r12)
-	mtctr    r12
-	bctrl
-	b        lbl_802BB74C
+	if (imomushi->m_health <= 0.0f) {
+		transit(imomushi, IMOMUSHI_FallDive, nullptr);
+		return;
+	}
 
-lbl_802BB688:
-	mr       r3, r31
-	bl       isFinishMotion__Q24Game9EnemyBaseFv
-	clrlwi.  r0, r3, 0x18
-	bne      lbl_802BB6E8
-	mr       r3, r31
-	bl       moveStickSphere__Q34Game8Imomushi3ObjFv
-	mr       r3, r31
-	bl       isAttackable__Q34Game8Imomushi3ObjFv
-	clrlwi.  r0, r3, 0x18
-	bne      lbl_802BB6E8
-	mr       r3, r31
-	bl       getRandFruitsPlant__Q34Game8Imomushi3ObjFv
-	cmplwi   r3, 0
-	beq      lbl_802BB6D8
-	stw      r3, 0x230(r31)
-	li       r0, 3
-	mr       r3, r31
-	stw      r0, 0x2c4(r31)
-	bl       finishMotion__Q24Game9EnemyBaseFv
-	b        lbl_802BB6E8
-
-lbl_802BB6D8:
-	li       r0, 1
-	mr       r3, r31
-	stw      r0, 0x2c4(r31)
-	bl       finishMotion__Q24Game9EnemyBaseFv
-
-lbl_802BB6E8:
-	lwz      r3, sys@sda21(r13)
-	lfs      f1, 0x2c8(r31)
-	lfs      f0, 0x54(r3)
-	fadds    f0, f1, f0
-	stfs     f0, 0x2c8(r31)
-	lwz      r3, 0x188(r31)
-	lbz      r0, 0x24(r3)
-	cmplwi   r0, 0
-	beq      lbl_802BB74C
-	lwz      r0, 0x1c(r3)
-	cmplwi   r0, 2
-	bne      lbl_802BB724
-	mr       r3, r31
-	bl       eatTsuyukusa__Q34Game8Imomushi3ObjFv
-	b        lbl_802BB74C
-
-lbl_802BB724:
-	cmplwi   r0, 0x3e8
-	bne      lbl_802BB74C
-	mr       r3, r30
-	mr       r4, r31
-	lwz      r12, 0(r30)
-	li       r6, 0
-	lwz      r5, 0x2c4(r31)
-	lwz      r12, 0x1c(r12)
-	mtctr    r12
-	bctrl
-
-lbl_802BB74C:
-	lwz      r0, 0x14(r1)
-	lwz      r31, 0xc(r1)
-	lwz      r30, 8(r1)
-	mtlr     r0
-	addi     r1, r1, 0x10
-	blr
-	*/
+	if (imomushi->isStickToFall()) {
+		transit(imomushi, IMOMUSHI_FallMove, nullptr);
+		return;
+	} else if (!imomushi->isFinishMotion()) {
+		imomushi->moveStickSphere();
+		if (!imomushi->isAttackable()) {
+			if (Creature* target = imomushi->getRandFruitsPlant()) {
+				imomushi->m_targetCreature = target;
+				imomushi->m_nextState      = IMOMUSHI_FallMove;
+				imomushi->finishMotion();
+			} else {
+				imomushi->m_nextState = IMOMUSHI_Wait;
+				imomushi->finishMotion();
+			}
+		}
+	}
+	imomushi->_2C8 += sys->m_secondsPerFrame;
+	if (imomushi->m_animKeyEvent->m_running) {
+		if (((u32)imomushi->m_animKeyEvent->m_type == 2)) {
+			imomushi->eatTsuyukusa();
+		} else if (((u32)imomushi->m_animKeyEvent->m_type == 1000)) {
+			transit(imomushi, imomushi->m_nextState, nullptr);
+		}
+	}
 }
 
 /*
@@ -944,45 +701,15 @@ void StateAttack::cleanup(EnemyBase* enemy)
  */
 void StateWait::init(EnemyBase* enemy, StateArg* stateArg)
 {
-	/*
-	stwu     r1, -0x20(r1)
-	mflr     r0
-	lis      r3, 0x746F7073@ha
-	stw      r0, 0x24(r1)
-	li       r0, -1
-	stw      r31, 0x1c(r1)
-	stw      r30, 0x18(r1)
-	mr       r30, r4
-	stw      r29, 0x14(r1)
-	stw      r0, 0x2c4(r4)
-	addi     r4, r3, 0x746F7073@l
-	lwz      r31, 0x230(r30)
-	lwz      r3, 0x114(r31)
-	bl       getCollPart__8CollTreeFUl
-	mr       r0, r3
-	mr       r3, r30
-	mr       r29, r0
-	bl       endStick__Q24Game8CreatureFv
-	mr       r3, r30
-	mr       r4, r31
-	mr       r5, r29
-	bl       startStick__Q24Game8CreatureFPQ24Game8CreatureP8CollPart
-	lfs      f0, lbl_8051C378@sda21(r2)
-	mr       r3, r30
-	li       r4, 4
-	li       r5, 0
-	stfs     f0, 0x1d4(r30)
-	stfs     f0, 0x1d8(r30)
-	stfs     f0, 0x1dc(r30)
-	bl       startMotion__Q24Game9EnemyBaseFiPQ28SysShape14MotionListener
-	lwz      r0, 0x24(r1)
-	lwz      r31, 0x1c(r1)
-	lwz      r30, 0x18(r1)
-	lwz      r29, 0x14(r1)
-	mtlr     r0
-	addi     r1, r1, 0x20
-	blr
-	*/
+	// does not match. has r30/r31 regswap.
+	Obj* imomushi         = static_cast<Obj*>(enemy);
+	imomushi->m_nextState = IMOMUSHI_NULL;
+	Creature* target      = imomushi->m_targetCreature;
+	CollPart* collpart    = target->m_collTree->getCollPart('tops');
+	imomushi->endStick();
+	imomushi->startStick(target, collpart);
+	imomushi->m_velocity2 = Vector3f(0.0f);
+	imomushi->startMotion(4, nullptr);
 }
 
 /*
@@ -992,96 +719,34 @@ void StateWait::init(EnemyBase* enemy, StateArg* stateArg)
  */
 void StateWait::exec(EnemyBase* enemy)
 {
-	/*
-	stwu     r1, -0x20(r1)
-	mflr     r0
-	lfs      f0, lbl_8051C378@sda21(r2)
-	stw      r0, 0x24(r1)
-	stw      r31, 0x1c(r1)
-	stw      r30, 0x18(r1)
-	mr       r30, r4
-	stw      r29, 0x14(r1)
-	mr       r29, r3
-	lfs      f1, 0x200(r4)
-	fcmpo    cr0, f1, f0
-	cror     2, 0, 2
-	bne      lbl_802BB86C
-	lwz      r12, 0(r3)
-	li       r5, 2
-	li       r6, 0
-	lwz      r12, 0x1c(r12)
-	mtctr    r12
-	bctrl
-	b        lbl_802BB938
+	// does not match.
+	Obj* imomushi = static_cast<Obj*>(enemy);
 
-lbl_802BB86C:
-	mr       r3, r30
-	bl       isStickToFall__Q34Game8Imomushi3ObjFv
-	clrlwi.  r0, r3, 0x18
-	beq      lbl_802BB8A0
-	mr       r3, r29
-	mr       r4, r30
-	lwz      r12, 0(r29)
-	li       r5, 3
-	li       r6, 0
-	lwz      r12, 0x1c(r12)
-	mtctr    r12
-	bctrl
-	b        lbl_802BB938
+	if (imomushi->m_health <= 0.0f) {
+		transit(imomushi, IMOMUSHI_FallDive, nullptr);
+		return;
+	}
 
-lbl_802BB8A0:
-	mr       r3, r30
-	bl       isFinishMotion__Q24Game9EnemyBaseFv
-	clrlwi.  r0, r3, 0x18
-	bne      lbl_802BB8FC
-	mr       r3, r30
-	bl       moveStickSphere__Q34Game8Imomushi3ObjFv
-	lwz      r31, 0xf4(r30)
-	mr       r3, r30
-	bl       getRandFruitsPlant__Q34Game8Imomushi3ObjFv
-	cmplwi   r3, 0
-	beq      lbl_802BB8FC
-	cmplw    r31, r3
-	stw      r3, 0x230(r30)
-	bne      lbl_802BB8EC
-	li       r0, 9
-	mr       r3, r30
-	stw      r0, 0x2c4(r30)
-	bl       finishMotion__Q24Game9EnemyBaseFv
-	b        lbl_802BB8FC
-
-lbl_802BB8EC:
-	li       r0, 3
-	mr       r3, r30
-	stw      r0, 0x2c4(r30)
-	bl       finishMotion__Q24Game9EnemyBaseFv
-
-lbl_802BB8FC:
-	lwz      r3, 0x188(r30)
-	lbz      r0, 0x24(r3)
-	cmplwi   r0, 0
-	beq      lbl_802BB938
-	lwz      r0, 0x1c(r3)
-	cmplwi   r0, 0x3e8
-	bne      lbl_802BB938
-	mr       r3, r29
-	mr       r4, r30
-	lwz      r12, 0(r29)
-	li       r6, 0
-	lwz      r5, 0x2c4(r30)
-	lwz      r12, 0x1c(r12)
-	mtctr    r12
-	bctrl
-
-lbl_802BB938:
-	lwz      r0, 0x24(r1)
-	lwz      r31, 0x1c(r1)
-	lwz      r30, 0x18(r1)
-	lwz      r29, 0x14(r1)
-	mtlr     r0
-	addi     r1, r1, 0x20
-	blr
-	*/
+	if (imomushi->isStickToFall()) {
+		transit(imomushi, IMOMUSHI_FallMove, nullptr);
+	} else {
+		if (imomushi->isFinishMotion()) {
+			imomushi->moveStickSphere();
+			if (Creature* target = imomushi->getRandFruitsPlant()) {
+				imomushi->m_targetCreature = target;
+				if (imomushi->m_sticker == target) {
+					imomushi->m_nextState = IMOMUSHI_Attack;
+					imomushi->finishMotion();
+				} else {
+					imomushi->m_nextState = IMOMUSHI_FallMove;
+					imomushi->finishMotion();
+				}
+			}
+		}
+	}
+	if ((imomushi->m_animKeyEvent->m_running) && ((u32)imomushi->m_animKeyEvent->m_type == 1000)) {
+		transit(imomushi, imomushi->m_nextState, nullptr);
+	}
 }
 
 /*
@@ -1119,35 +784,10 @@ void StateZukanStay::init(EnemyBase* enemy, StateArg* stateArg)
 void StateZukanStay::exec(EnemyBase* enemy)
 {
 	Obj* imomushi = static_cast<Obj*>(enemy);
-	if (5.0f < +sys->m_secondsPerFrame) {
-		imomushi->startMotion(1, nullptr);
+	imomushi->_2C8 += sys->m_secondsPerFrame;
+	if (imomushi->_2C8 > 5.0f) {
+		transit(imomushi, IMOMUSHI_ZukanAppear, nullptr);
 	}
-	/*
-	stwu     r1, -0x10(r1)
-	mflr     r0
-	lfs      f0, lbl_8051C398@sda21(r2)
-	stw      r0, 0x14(r1)
-	lwz      r5, sys@sda21(r13)
-	lfs      f2, 0x2c8(r4)
-	lfs      f1, 0x54(r5)
-	fadds    f1, f2, f1
-	stfs     f1, 0x2c8(r4)
-	lfs      f1, 0x2c8(r4)
-	fcmpo    cr0, f1, f0
-	ble      lbl_802BBA2C
-	lwz      r12, 0(r3)
-	li       r5, 0xc
-	li       r6, 0
-	lwz      r12, 0x1c(r12)
-	mtctr    r12
-	bctrl
-
-lbl_802BBA2C:
-	lwz      r0, 0x14(r1)
-	mtlr     r0
-	addi     r1, r1, 0x10
-	blr
-	*/
 }
 
 /*
