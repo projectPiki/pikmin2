@@ -1560,14 +1560,14 @@ void GeneralEnemyMgr::createDayendEnemies(Sys::Sphere& sphere)
 	if (m_enemyMgrNode.getChildCount() != 0) {
 		int i = 0;
 		while (i < 10) {
-			int randIdx = randFloat() * m_enemyMgrNode.getChildCount();
-			EnemyMgrNode* startNode = static_cast<EnemyMgrNode*>(m_enemyMgrNode.getChildAt(randIdx));
+			int randIdx              = randFloat() * m_enemyMgrNode.getChildCount();
+			EnemyMgrNode* startNode  = static_cast<EnemyMgrNode*>(m_enemyMgrNode.getChildAt(randIdx));
 			EnemyMgrNode* randomNode = startNode;
 			do {
 				EnemyTypeID::EEnemyTypeID randomID = randomNode->m_enemyID;
-				EnemyInfo* randomInfo = EnemyInfoFunc::getEnemyInfo(randomNode->m_enemyID, 0xFFFF);
-				EnemyMgrNode* childNode = static_cast<EnemyMgrNode*>(m_enemyMgrNode.m_child);
-				EnemyMgrBase* mgr = nullptr;
+				EnemyInfo* randomInfo              = EnemyInfoFunc::getEnemyInfo(randomNode->m_enemyID, 0xFFFF);
+				EnemyMgrNode* childNode            = static_cast<EnemyMgrNode*>(m_enemyMgrNode.m_child);
+				EnemyMgrBase* mgr                  = nullptr;
 
 				for (childNode; childNode != nullptr; childNode = static_cast<EnemyMgrNode*>(childNode->m_next)) {
 					if (childNode->m_enemyID == randomID) {
@@ -1589,26 +1589,26 @@ void GeneralEnemyMgr::createDayendEnemies(Sys::Sphere& sphere)
 
 						birthArg.m_faceDir = TAU * randFloat();
 
-						int searchID = randomNode->m_enemyID;
+						int searchID     = randomNode->m_enemyID;
 						EnemyBase* enemy = nullptr;
-						int mgrID = getEnemyMgrID(searchID);
+						int mgrID        = getEnemyMgrID(searchID);
 
 						EnemyMgrNode* anotherNode = static_cast<EnemyMgrNode*>(m_enemyMgrNode.m_child);
-						EnemyMgrBase* anotherMgr = nullptr;
+						EnemyMgrBase* anotherMgr  = nullptr;
 						for (anotherNode; anotherNode != nullptr; anotherNode = static_cast<EnemyMgrNode*>(anotherNode->m_next)) {
 							if (anotherNode->m_enemyID == mgrID) {
 								anotherMgr = anotherNode->m_mgr;
 							}
 						}
-						
+
 						if (anotherMgr != nullptr) {
-							birthArg.m_typeID = (EnemyTypeID::EEnemyTypeID) searchID;
-							enemy = anotherMgr->birth(birthArg);
+							birthArg.m_typeID = (EnemyTypeID::EEnemyTypeID)searchID;
+							enemy             = anotherMgr->birth(birthArg);
 						}
 
 						if (enemy != nullptr) {
 							enemy->init(nullptr);
-							InteractAttack attack (enemy, 0.0f, nullptr);
+							InteractAttack attack(enemy, 0.0f, nullptr);
 							enemy->stimulate(attack);
 							enemy->movie_begin(false);
 						}
@@ -1616,26 +1616,26 @@ void GeneralEnemyMgr::createDayendEnemies(Sys::Sphere& sphere)
 						i += 10;
 						break;
 					} else if (infoFlags & 0x40) {
-						f32 randAngle = TAU * randFloat();
+						f32 randAngle      = TAU * randFloat();
 						birthArg.m_faceDir = _angXZ(sphere.m_position.x, sphere.m_position.z, birthArg.m_position.x, birthArg.m_position.z);
 
-						int searchID = randomNode->m_enemyID;
+						int searchID     = randomNode->m_enemyID;
 						EnemyBase* enemy = nullptr;
-						int mgrID = getEnemyMgrID(searchID);
+						int mgrID        = getEnemyMgrID(searchID);
 
 						EnemyMgrNode* anotherNode = static_cast<EnemyMgrNode*>(m_enemyMgrNode.m_child);
-						EnemyMgrBase* anotherMgr = nullptr;
+						EnemyMgrBase* anotherMgr  = nullptr;
 						for (anotherNode; anotherNode != nullptr; anotherNode = static_cast<EnemyMgrNode*>(anotherNode->m_next)) {
 							if (anotherNode->m_enemyID == mgrID) {
 								anotherMgr = anotherNode->m_mgr;
 							}
 						}
-						
+
 						if (anotherMgr != nullptr) {
-							birthArg.m_typeID = (EnemyTypeID::EEnemyTypeID) searchID;
-							enemy = anotherMgr->birth(birthArg);
+							birthArg.m_typeID = (EnemyTypeID::EEnemyTypeID)searchID;
+							enemy             = anotherMgr->birth(birthArg);
 						}
-				
+
 						if (enemy != nullptr) {
 							Sys::Sphere boundingSphere;
 							enemy->getBoundingSphere(boundingSphere);
@@ -1647,13 +1647,13 @@ void GeneralEnemyMgr::createDayendEnemies(Sys::Sphere& sphere)
 							f32 cosTheta = pikmin2_cosf(randAngle);
 							f32 sinTheta = pikmin2_sinf(randAngle);
 
-							Vector3f pos (radDiff * sinTheta + sphere.m_position.x, 0.0f, radDiff * cosTheta + sphere.m_position.z);
+							Vector3f pos(radDiff * sinTheta + sphere.m_position.x, 0.0f, radDiff * cosTheta + sphere.m_position.z);
 							pos.y = mapMgr->getMinY(pos);
 							enemy->setPosition(pos, false);
 							enemy->m_homePosition = pos;
 
 							enemy->init(nullptr);
-							InteractAttack attack (enemy, 0.0f, nullptr);
+							InteractAttack attack(enemy, 0.0f, nullptr);
 							enemy->stimulate(attack);
 							enemy->movie_begin(false);
 						}
@@ -1661,25 +1661,26 @@ void GeneralEnemyMgr::createDayendEnemies(Sys::Sphere& sphere)
 						i += 5;
 						break;
 					} else if (infoFlags & 0x80) {
-						int maxObj = mgr->getMaxObjects();
+						int maxObj    = mgr->getMaxObjects();
 						int randLimit = (int)(7.0f * randFloat()) + 7;
-						
+
 						if (maxObj > randLimit) {
 							maxObj = randLimit;
 						}
 
 						f32 randAngle = TAU * randFloat();
-						f32 increment = TAU / (f32) maxObj;
+						f32 increment = TAU / (f32)maxObj;
 						for (int j = 0; j < maxObj; j++) {
 
 							rand();
-							birthArg.m_faceDir = _angXZ(sphere.m_position.x, sphere.m_position.z, birthArg.m_position.x, birthArg.m_position.z);	
-							int searchID = randomNode->m_enemyID;
+							birthArg.m_faceDir
+							    = _angXZ(sphere.m_position.x, sphere.m_position.z, birthArg.m_position.x, birthArg.m_position.z);
+							int searchID     = randomNode->m_enemyID;
 							EnemyBase* enemy = nullptr;
-							int mgrID = getEnemyMgrID(searchID);
+							int mgrID        = getEnemyMgrID(searchID);
 
 							EnemyMgrNode* anotherNode = static_cast<EnemyMgrNode*>(m_enemyMgrNode.m_child);
-							EnemyMgrBase* anotherMgr = nullptr;
+							EnemyMgrBase* anotherMgr  = nullptr;
 							for (anotherNode; anotherNode != nullptr; anotherNode = static_cast<EnemyMgrNode*>(anotherNode->m_next)) {
 								if (anotherNode->m_enemyID == mgrID) {
 									anotherMgr = anotherNode->m_mgr;
@@ -1687,10 +1688,10 @@ void GeneralEnemyMgr::createDayendEnemies(Sys::Sphere& sphere)
 							}
 
 							if (anotherMgr != nullptr) {
-								birthArg.m_typeID = (EnemyTypeID::EEnemyTypeID) searchID;
-								enemy = anotherMgr->birth(birthArg);
+								birthArg.m_typeID = (EnemyTypeID::EEnemyTypeID)searchID;
+								enemy             = anotherMgr->birth(birthArg);
 							}
-					
+
 							if (enemy != nullptr) {
 								Sys::Sphere boundingSphere;
 								enemy->getBoundingSphere(boundingSphere);
@@ -1699,19 +1700,19 @@ void GeneralEnemyMgr::createDayendEnemies(Sys::Sphere& sphere)
 									radDiff = 0.0f;
 								}
 
-								f32 halfRad = radDiff / 2;
+								f32 halfRad   = radDiff / 2;
 								f32 randomRad = halfRad * randFloat() + halfRad;
 
 								f32 cosTheta = pikmin2_cosf(randAngle);
 								f32 sinTheta = pikmin2_sinf(randAngle);
 
-								Vector3f pos (randomRad * sinTheta + sphere.m_position.x, 0.0f, randomRad * cosTheta + sphere.m_position.z);
+								Vector3f pos(randomRad * sinTheta + sphere.m_position.x, 0.0f, randomRad * cosTheta + sphere.m_position.z);
 								pos.y = mapMgr->getMinY(pos);
 								enemy->setPosition(pos, false);
 								enemy->m_homePosition = pos;
 
 								enemy->init(nullptr);
-								InteractAttack attack (enemy, 0.0f, nullptr);
+								InteractAttack attack(enemy, 0.0f, nullptr);
 								enemy->stimulate(attack);
 								enemy->movie_begin(false);
 							}
@@ -1721,28 +1722,28 @@ void GeneralEnemyMgr::createDayendEnemies(Sys::Sphere& sphere)
 						i += 3;
 						break;
 					} else {
-						int maxObj = mgr->getMaxObjects();
+						int maxObj    = mgr->getMaxObjects();
 						int randLimit = (int)(7.0f * randFloat()) + 7;
-						
+
 						if (maxObj > randLimit) {
 							maxObj = randLimit;
 						}
 
 						f32 randAngle = TAU * randFloat();
-						f32 increment = TAU / (f32) maxObj;
+						f32 increment = TAU / (f32)maxObj;
 						for (int j = 0; j < maxObj; j++) {
 
 							rand();
 
-							birthArg.m_faceDir = _angXZ(sphere.m_position.x, sphere.m_position.z, birthArg.m_position.x, birthArg.m_position.z);	
+							birthArg.m_faceDir
+							    = _angXZ(sphere.m_position.x, sphere.m_position.z, birthArg.m_position.x, birthArg.m_position.z);
 
-
-							int searchID = randomNode->m_enemyID;
+							int searchID     = randomNode->m_enemyID;
 							EnemyBase* enemy = nullptr;
-							int mgrID = getEnemyMgrID(searchID);
+							int mgrID        = getEnemyMgrID(searchID);
 
 							EnemyMgrNode* anotherNode = static_cast<EnemyMgrNode*>(m_enemyMgrNode.m_child);
-							EnemyMgrBase* anotherMgr = nullptr;
+							EnemyMgrBase* anotherMgr  = nullptr;
 							for (anotherNode; anotherNode != nullptr; anotherNode = static_cast<EnemyMgrNode*>(anotherNode->m_next)) {
 								if (anotherNode->m_enemyID == mgrID) {
 									anotherMgr = anotherNode->m_mgr;
@@ -1750,10 +1751,10 @@ void GeneralEnemyMgr::createDayendEnemies(Sys::Sphere& sphere)
 							}
 
 							if (anotherMgr != nullptr) {
-								birthArg.m_typeID = (EnemyTypeID::EEnemyTypeID) searchID;
-								enemy = anotherMgr->birth(birthArg);
+								birthArg.m_typeID = (EnemyTypeID::EEnemyTypeID)searchID;
+								enemy             = anotherMgr->birth(birthArg);
 							}
-					
+
 							if (enemy != nullptr) {
 								Sys::Sphere boundingSphere;
 								enemy->getBoundingSphere(boundingSphere);
@@ -1762,19 +1763,19 @@ void GeneralEnemyMgr::createDayendEnemies(Sys::Sphere& sphere)
 									radDiff = 0.0f;
 								}
 
-								f32 halfRad = radDiff / 2;
+								f32 halfRad   = radDiff / 2;
 								f32 randomRad = halfRad * randFloat() + halfRad;
 
 								f32 cosTheta = pikmin2_cosf(randAngle);
 								f32 sinTheta = pikmin2_sinf(randAngle);
 
-								Vector3f pos (randomRad * sinTheta + sphere.m_position.x, 0.0f, randomRad * cosTheta + sphere.m_position.z);
+								Vector3f pos(randomRad * sinTheta + sphere.m_position.x, 0.0f, randomRad * cosTheta + sphere.m_position.z);
 								pos.y = mapMgr->getMinY(pos);
 								enemy->setPosition(pos, false);
 								enemy->m_homePosition = pos;
 
 								enemy->init(nullptr);
-								InteractAttack attack (enemy, 0.0f, nullptr);
+								InteractAttack attack(enemy, 0.0f, nullptr);
 								enemy->stimulate(attack);
 								enemy->movie_begin(false);
 							}
