@@ -142,6 +142,7 @@ endif
 $(BUILD_DIR)/src/Dolphin/dvdFatal.o: MWCC_VERSION := 1.2.5
 $(BUILD_DIR)/src/Dolphin/dvderror.o: MWCC_VERSION := 1.2.5
 $(BUILD_DIR)/src/Dolphin/dvdidutils.o: MWCC_VERSION := 1.2.5
+$(BUILD_DIR)/src/Dolphin/dvdqueue.o: MWCC_VERSION := 1.2.5
 $(BUILD_DIR)/src/Dolphin/__start.o: MWCC_VERSION := 1.2.5
 $(BUILD_DIR)/src/Dolphin/__ppc_eabi_init.o: MWCC_VERSION := 1.2.5
 $(BUILD_DIR)/src/Dolphin/OSLink.o: MWCC_VERSION := 1.2.5
@@ -159,6 +160,8 @@ $(BUILD_DIR)/src/Dolphin/OSAudioSystem.o: MWCC_VERSION := 1.2.5
 $(BUILD_DIR)/src/Dolphin/OSAlloc.o: MWCC_VERSION := 1.2.5
 $(BUILD_DIR)/src/Dolphin/OS.o: MWCC_VERSION := 1.2.5
 $(BUILD_DIR)/src/Dolphin/OSCache.o: MWCC_VERSION := 1.2.5
+$(BUILD_DIR)/src/Dolphin/OSSync.o: MWCC_VERSION := 1.2.5
+$(BUILD_DIR)/src/Dolphin/OSMessage.o: MWCC_VERSION := 1.2.5
 
 # Dirty hack to overwrite sdata
 # It seems TRK-related files need -sdata 0
@@ -253,18 +256,28 @@ endif
 
 $(BUILD_DIR)/%.o: %.s
 	@echo Assembling $<
+	$(QUIET) mkdir -p $(dir $@)
 	$(QUIET) $(AS) $(ASFLAGS) -o $@ $<
+
+# for files with capitalized .C extension
+$(BUILD_DIR)/%.o: %.C
+	@echo "Compiling " $<
+	$(QUIET) mkdir -p $(dir $@)
+	$(QUIET) $(CC) $(CFLAGS) -c -o $(dir $@) $<
 
 $(BUILD_DIR)/%.o: %.c
 	@echo "Compiling " $<
+	$(QUIET) mkdir -p $(dir $@)
 	$(QUIET) $(CC) $(CFLAGS) -c -o $(dir $@) $<
 
 $(BUILD_DIR)/%.o: %.cp
 	@echo "Compiling " $<
+	$(QUIET) mkdir -p $(dir $@)
 	$(QUIET) $(CC) $(CFLAGS) -c -o $(dir $@) $<
 
 $(BUILD_DIR)/%.o: %.cpp
 	@echo "Compiling " $<
+	$(QUIET) mkdir -p $(dir $@)
 	$(QUIET) $(CC) $(CFLAGS) -c -o $(dir $@) $<
 
 ifeq ($(EPILOGUE_PROCESS),1)

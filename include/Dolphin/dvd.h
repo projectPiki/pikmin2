@@ -4,6 +4,11 @@
 #include "types.h"
 #include "Dolphin/os.h"
 
+struct DVDQueue {
+	struct DVDQueue* m_head; // _00
+	struct DVDQueue* m_tail; // _04
+};
+
 #ifdef __cplusplus
 extern "C" {
 #endif // ifdef __cplusplus
@@ -62,8 +67,8 @@ BOOL DVDCompareDiskID(DVDDiskID*, DVDDiskID*);
 int DVDGetDriveStatus();
 int DVDGetCommandBlockStatus(struct DVDPlayer*);
 
-BOOL __DVDPushWaitingQueue(int, struct DVDPlayer*);
-struct DVDPlayer* __DVDPopWaitingQueue();
+BOOL __DVDPushWaitingQueue(int, struct DVDQueue*);
+struct DVDQueue* __DVDPopWaitingQueue();
 BOOL __DVDCheckWaitingQueue();
 void __DVDClearWaitingQueue();
 

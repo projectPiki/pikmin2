@@ -83,14 +83,6 @@ typedef struct OSContext {
 
 } OSContext;
 
-typedef struct OSMessageQueue {
-	char filler[32];
-} OSMessageQueue;
-typedef struct OSMessage {
-	void* message;
-	u32 args[3];
-} OSMessage;
-
 typedef struct DVDDiskID DVDDiskID;
 
 struct DVDDiskID {
@@ -309,10 +301,6 @@ struct OSDummyCommandBlock {
 void OSClearContext(OSContext*);
 void OSSetCurrentContext(OSContext*);
 
-void OSInitMessageQueue(OSMessageQueue* queue, void** msgSlots, int slotCount);
-BOOL OSSendMessage(OSMessageQueue* queue, void* message, int flags);
-BOOL OSReceiveMessage(OSMessageQueue* queue, void* msg, int flags);
-
 // OSAlarm
 typedef struct OSAlarm OSAlarm;
 struct OSAlarm {
@@ -416,6 +404,14 @@ void LCFlushQueue(void);
 
 u64 OSGetTime();
 
+#define OS_SYS_CALL_HANDLER  ((void*)0x80000C00)
+#define OS_HANDLER_SLOT_SIZE (0x100)
+
+void __OSSystemCallVectorStart();
+void __OSSystemCallVectorEnd();
+
+void __OSInitSystemCall();
+
 typedef struct OSThread OSThread;
 typedef struct OSThreadQueue OSThreadQueue;
 typedef struct OSThreadLink OSThreadLink;
@@ -425,6 +421,9 @@ typedef struct OSMutex OSMutex;
 typedef struct OSMutexQueue OSMutexQueue;
 typedef struct OSMutexLink OSMutexLink;
 typedef struct OSCond OSCond;
+
+typedef struct OSMessageQueue OSMessageQueue;
+typedef struct OSMessage OSMessage;
 
 typedef void (*OSIdleFunction)(void* param);
 typedef void* (*OSThreadStartFunction)(void*);
@@ -472,6 +471,24 @@ struct OSThread {
 	u8* stackBase; // the thread's designated stack (high address)
 	u32* stackEnd; // last word of stack (low address)
 };
+
+struct OSMessage {
+	void* message;
+	u32 args[3];
+};
+
+struct OSMessageQueue {
+	OSThreadQueue sendQueue; // _00
+	OSThreadQueue recvQueue; // _08
+	OSMessage** buffer;      // _10
+	int capacity;            // _14
+	int front;               // _18
+	int size;                // _1C
+};
+
+typedef enum {
+	OS_MSG_PERSISTENT = (1 << 0),
+} OSMessageFlags;
 
 // Thread states
 enum OS_THREAD_STATE { OS_THREAD_STATE_READY = 1, OS_THREAD_STATE_RUNNING = 2, OS_THREAD_STATE_WAITING = 4, OS_THREAD_STATE_MORIBUND = 8 };
@@ -529,6 +546,16 @@ void OSEnableInterrupts();
 
 uint OSGetSoundMode();
 void OSSetSoundMode(uint);
+
+// void OSInitMessageQueue(OSMessageQueue* queue, void** msgSlots, int slotCount);
+// BOOL OSSendMessage(OSMessageQueue* queue, void* message, int flags);
+// BOOL OSReceiveMessage(OSMessageQueue* queue, void** msg, int flags);
+
+// TODO: these match up for OSMessage.c, but break JSystem/JKRAramStream.cpp, need to fix
+void OSInitMessageQueue(OSMessageQueue* queue, void** buffer, int capacity);
+BOOL OSSendMessage(OSMessageQueue* queue, void* msg, int flags);
+BOOL OSReceiveMessage(OSMessageQueue* queue, void** buffer, int flags);
+BOOL OSJamMessage(OSMessageQueue* queue, void* msg, int flags);
 
 typedef struct OSFunctionInfo {
 	void* m_function;

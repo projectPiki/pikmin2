@@ -261,9 +261,9 @@ DOLPHIN:=\
 	$(BUILD_DIR)/src/Dolphin/target_options.o\
 	$(BUILD_DIR)/asm/Dolphin/mslsupp.o\
 	$(BUILD_DIR)/src/Dolphin/UDP_Stubs.o\
-	$(BUILD_DIR)/asm/Dolphin/ddh/main.o\
+	$(BUILD_DIR)/src/Dolphin/ddh/main.o\
 	$(BUILD_DIR)/asm/Dolphin/CircleBuffer.o\
-	$(BUILD_DIR)/asm/Dolphin/main.o\
+	$(BUILD_DIR)/src/Dolphin/main.o\
 	$(BUILD_DIR)/src/Dolphin/MWTrace.o\
 	$(BUILD_DIR)/src/Dolphin/MWCriticalSection_gc.o\
 	$(BUILD_DIR)/src/Dolphin/__va_arg.o\
@@ -285,8 +285,8 @@ DOLPHIN:=\
 	$(BUILD_DIR)/src/Dolphin/ctype.o\
 	$(BUILD_DIR)/asm/Dolphin/direct_io.o\
 	$(BUILD_DIR)/src/Dolphin/errno.o\
-	$(BUILD_DIR)/asm/Dolphin/file_io.o\
-	$(BUILD_DIR)/asm/Dolphin/FILE_POS.o\
+	$(BUILD_DIR)/src/Dolphin/file_io.o\
+	$(BUILD_DIR)/src/Dolphin/FILE_POS.o\
 	$(BUILD_DIR)/src/Dolphin/locale.o\
 	$(BUILD_DIR)/src/Dolphin/mbstring.o\
 	$(BUILD_DIR)/src/Dolphin/mem.o\
@@ -361,7 +361,7 @@ DOLPHIN:=\
 	$(BUILD_DIR)/asm/Dolphin/dvdlow.o\
 	$(BUILD_DIR)/asm/Dolphin/dvdfs.o\
 	$(BUILD_DIR)/asm/Dolphin/dvd.o\
-	$(BUILD_DIR)/asm/Dolphin/dvdqueue.o\
+	$(BUILD_DIR)/src/Dolphin/dvdqueue.o\
 	$(BUILD_DIR)/src/Dolphin/dvderror.o\
 	$(BUILD_DIR)/src/Dolphin/dvdidutils.o\
 	$(BUILD_DIR)/src/Dolphin/dvdFatal.o\
@@ -400,14 +400,14 @@ DOLPHIN:=\
 	$(BUILD_DIR)/asm/Dolphin/OSFont.o\
 	$(BUILD_DIR)/asm/Dolphin/OSInterrupt.o\
 	$(BUILD_DIR)/src/Dolphin/OSLink.o\
-	$(BUILD_DIR)/asm/Dolphin/OSMessage.o\
+	$(BUILD_DIR)/src/Dolphin/OSMessage.o\
 	$(BUILD_DIR)/asm/Dolphin/OSMemory.o\
 	$(BUILD_DIR)/asm/Dolphin/OSMutex.o\
 	$(BUILD_DIR)/asm/Dolphin/OSReboot.o\
 	$(BUILD_DIR)/asm/Dolphin/OSReset.o\
 	$(BUILD_DIR)/asm/Dolphin/OSResetSW.o\
 	$(BUILD_DIR)/asm/Dolphin/OSRtc.o\
-	$(BUILD_DIR)/asm/Dolphin/OSSync.o\
+	$(BUILD_DIR)/src/Dolphin/OSSync.o\
 	$(BUILD_DIR)/asm/Dolphin/OSThread.o\
 	$(BUILD_DIR)/asm/Dolphin/OSTime.o\
 	$(BUILD_DIR)/asm/Dolphin/__mem.o\

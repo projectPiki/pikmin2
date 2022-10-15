@@ -1,118 +1,117 @@
 #include "types.h"
 #include "Dolphin/ansi_files.h"
+#include "Dolphin/critical_regions.h"
 
-extern int fflush(FILE* __stream);
-extern void __begin_critical_region(int);
-extern void __end_critical_region(int);
-extern void fclose(FILE*);
 static char stdin_buff[0x100];
 static char stdout_buff[0x100];
 static char stderr_buff[0x100];
 
+extern void fclose(FILE*);
 extern int __read_console(u32, u32, u32*);
-extern BOOL __write_console(s32, s32, s32*, s32);
+extern BOOL __write_console(u32, char*, u32*, void*);
 extern int __close_console(u32);
 
-FILE __files[4] = { { 0,
-	                  0,
-	                  1,
-	                  1,
-	                  2,
-	                  0,
-	                  0,
-	                  0,
-	                  0,
-	                  0,
-	                  0,
-	                  0,
-	                  0,
-	                  0,
-	                  0,
-	                  0,
-	                  0,
-	                  &stdin_buff,
-	                  sizeof(stdin_buff),
-	                  &stdin_buff,
-	                  0,
-	                  0,
-	                  0,
-	                  0,
-	                  0,
-	                  &__read_console,
-	                  &__write_console,
-	                  &__close_console,
-	                  0,
-	                  &__files[1] },
-	                { 1,
-	                  0,
-	                  2,
-	                  1,
-	                  2,
-	                  0,
-	                  0,
-	                  0,
-	                  0,
-	                  0,
-	                  0,
-	                  0,
-	                  0,
-	                  0,
-	                  0,
-	                  0,
-	                  0,
-	                  &stdout_buff,
-	                  sizeof(stdout_buff),
-	                  &stdout_buff,
-	                  0,
-	                  0,
-	                  0,
-	                  0,
-	                  0,
-	                  &__read_console,
-	                  &__write_console,
-	                  &__close_console,
-	                  0,
-	                  &__files[2] },
-	                { 2,
-	                  0,
-	                  2,
-	                  0,
-	                  2,
-	                  0,
-	                  0,
-	                  0,
-	                  0,
-	                  0,
-	                  0,
-	                  0,
-	                  0,
-	                  0,
-	                  0,
-	                  0,
-	                  0,
-	                  &stderr_buff,
-	                  sizeof(stderr_buff),
-	                  &stderr_buff,
-	                  0,
-	                  0,
-	                  0,
-	                  0,
-	                  0,
-	                  &__read_console,
-	                  &__write_console,
-	                  &__close_console,
-	                  0,
-	                  &__files[3] } };
-
-/*
- * --INFO--
- * Address:	........
- * Size:	00008C
- */
-void __flush_line_buffered_output_files(void)
-{
-	// UNUSED FUNCTION
-}
+// clang-format off
+FILE __files[4] = 
+{ 
+	{ 0,                  // _00
+		0,                  // _04, open_mode
+		1,                  // _04, io_mode
+		1,                  // _04, buffer_mode
+		2,                  // _04, file_kind
+		0,                  // _04, binary_io
+		0,                  // _08, io_state
+		0,                  // _08, free_buffer
+		0,                  // _08, eof
+		0,                  // _08, error
+		0,                  // _0C
+		0,                  // _0D
+		0,                  // _0E
+		0,                  // _0F
+		0,                  // _10
+		0,                  // _12
+		0,                  // _14
+		0,								  // _18
+		stdin_buff,         // _1C
+		sizeof(stdin_buff), // _20
+		stdin_buff,         // _24
+		0,                  // _28
+		0,                  // _2C
+		0,                  // _30
+		0,                  // _34
+		nullptr,            // _38
+		&__read_console,    // _3C
+		&__write_console,   // _40
+		&__close_console,   // _44
+		0,                  // _48
+		&__files[1]         // _4C
+	},
+	{ 1,                   // _00
+		0,                   // _04, open_mode
+		2,                   // _04, io_mode
+		1,                   // _04, buffer_mode
+		2,                   // _04, file_kind
+		0,                   // _04, binary_io
+		0,                   // _08, io_state
+		0,                   // _08, free_buffer
+		0,                   // _08, eof
+		0,                   // _08, error
+		0,                   // _0C
+		0,                   // _0D
+		0,                   // _0E
+		0,                   // _0F
+		0,                   // _10
+		0,                   // _12
+		0,                   // _14
+		0,								   // _18
+		stdout_buff,         // _1C
+		sizeof(stdout_buff), // _20
+		stdout_buff,         // _24
+		0,                   // _28
+		0,                   // _2C
+		0,                   // _30
+		0,                   // _34
+		nullptr,             // _38
+		&__read_console,     // _3C
+		&__write_console,    // _40
+		&__close_console,    // _44
+		0,                   // _48
+		&__files[2]          // _4C
+	},
+	{ 2,                   // _00
+		0,                   // _04, open_mode
+		2,                   // _04, io_mode
+		0,                   // _04, buffer_mode
+		2,                   // _04, file_kind
+		0,                   // _04, binary_io
+		0,                   // _08, io_state
+		0,                   // _08, free_buffer
+		0,                   // _08, eof
+		0,                   // _08, error
+		0,                   // _0C
+		0,                   // _0D
+		0,                   // _0E
+		0,                   // _0F
+		0,                   // _10
+		0,                   // _12
+		0,                   // _14
+		0,								   // _18
+		stderr_buff,         // _1C
+		sizeof(stderr_buff), // _20
+		stderr_buff,         // _24
+		0,                   // _28
+		0,                   // _2C
+		0,                   // _30
+		0,                   // _34
+		nullptr,             // _38
+		&__read_console,     // _3C
+		&__write_console,    // _40
+		&__close_console,    // _44
+		0,                   // _48
+		&__files[3]          // _4C
+	},
+};
+// clang-format on
 
 /*
  * --INFO--
@@ -120,16 +119,16 @@ void __flush_line_buffered_output_files(void)
  * Size:	000070
  */
 
-u32 __flush_all(void)
+u32 __flush_all()
 {
 	u32 retval = 0;
 	FILE* __stream;
 	__stream = &__files[0];
 	while (__stream) {
-		if ((__stream->mode.file_kind) && (fflush(__stream))) {
+		if ((__stream->m_mode.file_kind) && (fflush(__stream))) {
 			retval = -1;
 		}
-		__stream = __stream->next_file_struct;
+		__stream = __stream->m_nextFile;
 	};
 	return retval;
 }
@@ -139,7 +138,7 @@ u32 __flush_all(void)
  * Address:	800C2A74
  * Size:	0000A8
  */
-void __close_all(void)
+void __close_all()
 {
 	FILE* p = &__files[0];
 	FILE* plast;
@@ -147,40 +146,20 @@ void __close_all(void)
 	__begin_critical_region(2);
 
 	while (p != nullptr) {
-		if (p->mode.file_kind != __closed_file) {
+		if (p->m_mode.file_kind != __closed_file) {
 			fclose(p);
 		}
 
 		plast = p;
-		p     = p->next_file_struct;
-		if (plast->is_dynamically_allocated)
+		p     = p->m_nextFile;
+		if (plast->m_isDynamicallyAllocated)
 			free(plast);
 		else {
-			plast->mode.file_kind = __unavailable_file;
-			if ((p != NULL) && p->is_dynamically_allocated)
-				plast->next_file_struct = nullptr;
+			plast->m_mode.file_kind = __unavailable_file;
+			if ((p != NULL) && p->m_isDynamicallyAllocated)
+				plast->m_nextFile = nullptr;
 		}
 	}
 
 	__end_critical_region(2);
-}
-
-/*
- * --INFO--
- * Address:	........
- * Size:	0000DC
- */
-void __init_file(void)
-{
-	// UNUSED FUNCTION
-}
-
-/*
- * --INFO--
- * Address:	........
- * Size:	000090
- */
-void __find_unopened_file(void)
-{
-	// UNUSED FUNCTION
 }

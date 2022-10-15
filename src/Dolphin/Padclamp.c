@@ -1,113 +1,99 @@
+#include "types.h"
+#include "Dolphin/pad.h"
+#include "Dolphin/math.h"
 
+typedef struct PADClampRegion {
+	u8 minTrigger;
+	u8 maxTrigger;
+	s8 minStick;
+	s8 maxStick;
+	s8 xyStick;
+	s8 minSubstick;
+	s8 maxSubstick;
+	s8 xySubstick;
+	s8 radStick;
+	s8 radSubstick;
+} PADClampRegion;
+
+static const PADClampRegion ClampRegion = {
+	// Triggers
+	30,
+	180,
+
+	// Left stick
+	15,
+	72,
+	40,
+
+	// Right stick
+	15,
+	59,
+	31,
+
+	// Stick radii
+	56,
+	44,
+};
 
 /*
  * --INFO--
  * Address:	800F3048
  * Size:	000130
  */
-void ClampStick(void)
+void ClampStick(s8* px, s8* py, s8 max, s8 xy, s8 min)
 {
-	/*
-	.loc_0x0:
-	  lbz       r0, 0x0(r3)
-	  lbz       r12, 0x0(r4)
-	  extsb.    r0, r0
-	  extsb     r12, r12
-	  mr        r11, r0
-	  blt-      .loc_0x20
-	  li        r0, 0x1
-	  b         .loc_0x28
+	int x = *px;
+	int y = *py;
+	int signX;
+	int signY;
+	int d;
 
-	.loc_0x20:
-	  li        r0, -0x1
-	  neg       r11, r11
+	if (0 <= x) {
+		signX = 1;
+	} else {
+		signX = -1;
+		x     = -x;
+	}
 
-	.loc_0x28:
-	  cmpwi     r12, 0
-	  blt-      .loc_0x38
-	  li        r8, 0x1
-	  b         .loc_0x40
+	if (0 <= y) {
+		signY = 1;
+	} else {
+		signY = -1;
+		y     = -y;
+	}
 
-	.loc_0x38:
-	  li        r8, -0x1
-	  neg       r12, r12
+	if (x <= min) {
+		x = 0;
+	} else {
+		x -= min;
+	}
+	if (y <= min) {
+		y = 0;
+	} else {
+		y -= min;
+	}
 
-	.loc_0x40:
-	  extsb     r7, r7
-	  cmpw      r11, r7
-	  bgt-      .loc_0x54
-	  li        r11, 0
-	  b         .loc_0x58
+	if (x == 0 && y == 0) {
+		*px = *py = 0;
+		return;
+	}
 
-	.loc_0x54:
-	  sub       r11, r11, r7
+	if (xy * y <= xy * x) {
+		d = xy * x + (max - xy) * y;
+		if (xy * max < d) {
+			x = (s8)(xy * max * x / d);
+			y = (s8)(xy * max * y / d);
+		}
+	} else {
+		d = xy * y + (max - xy) * x;
+		if (xy * max < d) {
+			x = (s8)(xy * max * x / d);
+			y = (s8)(xy * max * y / d);
+		}
+	}
 
-	.loc_0x58:
-	  cmpw      r12, r7
-	  bgt-      .loc_0x68
-	  li        r12, 0
-	  b         .loc_0x6C
-
-	.loc_0x68:
-	  sub       r12, r12, r7
-
-	.loc_0x6C:
-	  cmpwi     r11, 0
-	  bne-      .loc_0x8C
-	  cmpwi     r12, 0
-	  bne-      .loc_0x8C
-	  li        r0, 0
-	  stb       r0, 0x0(r4)
-	  stb       r0, 0x0(r3)
-	  blr
-
-	.loc_0x8C:
-	  extsb     r6, r6
-	  mullw     r9, r6, r12
-	  mullw     r7, r6, r11
-	  cmpw      r9, r7
-	  bgt-      .loc_0xE0
-	  extsb     r9, r5
-	  sub       r5, r9, r6
-	  mullw     r5, r12, r5
-	  mullw     r9, r6, r9
-	  add       r7, r7, r5
-	  cmpw      r9, r7
-	  bge-      .loc_0x11C
-	  mullw     r6, r11, r9
-	  mullw     r5, r12, r9
-	  divw      r6, r6, r7
-	  divw      r5, r5, r7
-	  extsb     r6, r6
-	  extsb     r5, r5
-	  addi      r11, r6, 0
-	  addi      r12, r5, 0
-	  b         .loc_0x11C
-
-	.loc_0xE0:
-	  extsb     r7, r5
-	  sub       r5, r7, r6
-	  mullw     r5, r11, r5
-	  mullw     r10, r6, r7
-	  add       r7, r9, r5
-	  cmpw      r10, r7
-	  bge-      .loc_0x11C
-	  mullw     r6, r11, r10
-	  mullw     r5, r12, r10
-	  divw      r6, r6, r7
-	  divw      r5, r5, r7
-	  extsb     r6, r6
-	  extsb     r5, r5
-	  addi      r11, r6, 0
-	  addi      r12, r5, 0
-
-	.loc_0x11C:
-	  mullw     r5, r0, r11
-	  mullw     r0, r8, r12
-	  stb       r5, 0x0(r3)
-	  stb       r0, 0x0(r4)
-	  blr
-	*/
+	*px = (s8)(signX * x);
+	*py = (s8)(signY * y);
 }
 
 /*
@@ -115,8 +101,38 @@ void ClampStick(void)
  * Address:	800F3178
  * Size:	0001A8
  */
-void ClampCircle(void)
+void ClampCircle(s8* px, s8* py, s8 radius, s8 min)
 {
+	int x = *px;
+	int y = *py;
+	int squared;
+	int length;
+
+	if (-min < x && x < min) {
+		x = 0;
+	} else if (0 < x) {
+		x -= min;
+	} else {
+		x += min;
+	}
+
+	if (-min < y && y < min) {
+		y = 0;
+	} else if (0 < y) {
+		y -= min;
+	} else {
+		y += min;
+	}
+
+	squared = x * x + y * y;
+	if (radius * radius < squared) {
+		length = dolsqrtf(squared); // regswaps
+		x      = (x * radius) / length;
+		y      = (y * radius) / length;
+	}
+
+	*px = x;
+	*py = y;
 	/*
 	.loc_0x0:
 	  stwu      r1, -0x40(r1)
@@ -251,195 +267,53 @@ void ClampCircle(void)
  * Address:	........
  * Size:	00003C
  */
-void ClampTrigger(void)
+inline void ClampTrigger(u8* trigger, u8 min, u8 max)
 {
-	// UNUSED FUNCTION
-}
+	if (*trigger <= min) {
+		*trigger = 0;
+	} else {
+		if (max < *trigger) {
+			*trigger = max;
+		}
+		*trigger -= min;
+	}
 
-/*
- * --INFO--
- * Address:	800F3320
- * Size:	000114
- */
-void PADClamp(void)
-{
 	/*
-	.loc_0x0:
-	  mflr      r0
-	  lis       r4, 0x8048
-	  stw       r0, 0x4(r1)
-	  stwu      r1, -0x20(r1)
-	  stw       r31, 0x1C(r1)
-	  stw       r30, 0x18(r1)
-	  li        r30, 0
-	  stw       r29, 0x14(r1)
-	  addi      r29, r3, 0
-	  stw       r28, 0x10(r1)
-	  subi      r28, r4, 0x5B80
-	  addi      r31, r28, 0x1
+	 * --INFO--
+	 * Address:	800F3320
+	 * Size:	000114
+	 */
+	void PADClamp(PADStatus * status)
+	{
+		int i;
+		for (i = 0; i < PAD_CHANMAX; i++, status++) {
+			if (status->err != PAD_ERR_NONE) {
+				continue;
+			}
 
-	.loc_0x30:
-	  lbz       r0, 0xA(r29)
-	  extsb.    r0, r0
-	  bne-      .loc_0xE4
-	  lbz       r5, 0x3(r28)
-	  addi      r3, r29, 0x2
-	  lbz       r6, 0x4(r28)
-	  addi      r4, r29, 0x3
-	  lbz       r7, 0x2(r28)
-	  bl        -0x328
-	  lbz       r5, 0x6(r28)
-	  addi      r3, r29, 0x4
-	  lbz       r6, 0x7(r28)
-	  addi      r4, r29, 0x5
-	  lbz       r7, 0x5(r28)
-	  bl        -0x340
-	  lbz       r4, 0x6(r29)
-	  lbz       r0, 0x0(r28)
-	  lbz       r3, 0x0(r31)
-	  cmplw     r4, r0
-	  bgt-      .loc_0x8C
-	  li        r0, 0
-	  stb       r0, 0x6(r29)
-	  b         .loc_0xA8
+			ClampStick(&status->stickX, &status->stickY, ClampRegion.maxStick, ClampRegion.xyStick, ClampRegion.minStick);
+			ClampStick(&status->substickX, &status->substickY, ClampRegion.maxSubstick, ClampRegion.xySubstick, ClampRegion.minSubstick);
+			ClampTrigger(&status->triggerLeft, ClampRegion.minTrigger, ClampRegion.maxTrigger);
+			ClampTrigger(&status->triggerRight, ClampRegion.minTrigger, ClampRegion.maxTrigger);
+		}
+	}
 
-	.loc_0x8C:
-	  cmplw     r3, r4
-	  bge-      .loc_0x98
-	  stb       r3, 0x6(r29)
-
-	.loc_0x98:
-	  lbz       r3, 0x0(r28)
-	  lbz       r0, 0x6(r29)
-	  sub       r0, r0, r3
-	  stb       r0, 0x6(r29)
-
-	.loc_0xA8:
-	  lbz       r4, 0x7(r29)
-	  lbz       r0, 0x0(r28)
-	  lbz       r3, 0x0(r31)
-	  cmplw     r4, r0
-	  bgt-      .loc_0xC8
-	  li        r0, 0
-	  stb       r0, 0x7(r29)
-	  b         .loc_0xE4
-
-	.loc_0xC8:
-	  cmplw     r3, r4
-	  bge-      .loc_0xD4
-	  stb       r3, 0x7(r29)
-
-	.loc_0xD4:
-	  lbz       r3, 0x0(r28)
-	  lbz       r0, 0x7(r29)
-	  sub       r0, r0, r3
-	  stb       r0, 0x7(r29)
-
-	.loc_0xE4:
-	  addi      r30, r30, 0x1
-	  cmpwi     r30, 0x4
-	  addi      r29, r29, 0xC
-	  blt+      .loc_0x30
-	  lwz       r0, 0x24(r1)
-	  lwz       r31, 0x1C(r1)
-	  lwz       r30, 0x18(r1)
-	  lwz       r29, 0x14(r1)
-	  lwz       r28, 0x10(r1)
-	  addi      r1, r1, 0x20
-	  mtlr      r0
-	  blr
-	*/
-}
-
-/*
- * --INFO--
- * Address:	800F3434
- * Size:	00010C
- */
-void PADClampCircle(void)
-{
 	/*
-	.loc_0x0:
-	  mflr      r0
-	  lis       r4, 0x8048
-	  stw       r0, 0x4(r1)
-	  stwu      r1, -0x20(r1)
-	  stw       r31, 0x1C(r1)
-	  stw       r30, 0x18(r1)
-	  li        r30, 0
-	  stw       r29, 0x14(r1)
-	  addi      r29, r3, 0
-	  stw       r28, 0x10(r1)
-	  subi      r28, r4, 0x5B80
-	  addi      r31, r28, 0x1
+	 * --INFO--
+	 * Address:	800F3434
+	 * Size:	00010C
+	 */
+	void PADClampCircle(PADStatus * status)
+	{
+		int i;
+		for (i = 0; i < 4; ++i, status++) {
+			if (status->err != PAD_ERR_NONE) {
+				continue;
+			}
 
-	.loc_0x30:
-	  lbz       r0, 0xA(r29)
-	  extsb.    r0, r0
-	  bne-      .loc_0xDC
-	  lbz       r5, 0x8(r28)
-	  addi      r3, r29, 0x2
-	  lbz       r6, 0x2(r28)
-	  addi      r4, r29, 0x3
-	  bl        -0x308
-	  lbz       r5, 0x9(r28)
-	  addi      r3, r29, 0x4
-	  lbz       r6, 0x5(r28)
-	  addi      r4, r29, 0x5
-	  bl        -0x31C
-	  lbz       r4, 0x6(r29)
-	  lbz       r0, 0x0(r28)
-	  lbz       r3, 0x0(r31)
-	  cmplw     r4, r0
-	  bgt-      .loc_0x84
-	  li        r0, 0
-	  stb       r0, 0x6(r29)
-	  b         .loc_0xA0
-
-	.loc_0x84:
-	  cmplw     r3, r4
-	  bge-      .loc_0x90
-	  stb       r3, 0x6(r29)
-
-	.loc_0x90:
-	  lbz       r3, 0x0(r28)
-	  lbz       r0, 0x6(r29)
-	  sub       r0, r0, r3
-	  stb       r0, 0x6(r29)
-
-	.loc_0xA0:
-	  lbz       r4, 0x7(r29)
-	  lbz       r0, 0x0(r28)
-	  lbz       r3, 0x0(r31)
-	  cmplw     r4, r0
-	  bgt-      .loc_0xC0
-	  li        r0, 0
-	  stb       r0, 0x7(r29)
-	  b         .loc_0xDC
-
-	.loc_0xC0:
-	  cmplw     r3, r4
-	  bge-      .loc_0xCC
-	  stb       r3, 0x7(r29)
-
-	.loc_0xCC:
-	  lbz       r3, 0x0(r28)
-	  lbz       r0, 0x7(r29)
-	  sub       r0, r0, r3
-	  stb       r0, 0x7(r29)
-
-	.loc_0xDC:
-	  addi      r30, r30, 0x1
-	  cmpwi     r30, 0x4
-	  addi      r29, r29, 0xC
-	  blt+      .loc_0x30
-	  lwz       r0, 0x24(r1)
-	  lwz       r31, 0x1C(r1)
-	  lwz       r30, 0x18(r1)
-	  lwz       r29, 0x14(r1)
-	  lwz       r28, 0x10(r1)
-	  addi      r1, r1, 0x20
-	  mtlr      r0
-	  blr
-	*/
-}
+			ClampCircle(&status->stickX, &status->stickY, ClampRegion.radStick, ClampRegion.minStick);
+			ClampCircle(&status->substickX, &status->substickY, ClampRegion.radSubstick, ClampRegion.minSubstick);
+			ClampTrigger(&status->triggerLeft, ClampRegion.minTrigger, ClampRegion.maxTrigger);
+			ClampTrigger(&status->triggerRight, ClampRegion.minTrigger, ClampRegion.maxTrigger);
+		}
+	}
