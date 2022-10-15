@@ -88,15 +88,15 @@ struct Obj : public EnemyBase {
 
 	// _00 		= VTBL
 	// _00-_2BC	= EnemyBase
-	FSM* m_FSM;                                // _2BC
-	MouthSlots m_mouthSlots;                   // _2C0
-	SysShape::Joint* m_shadowJoint;            // _2C8
-	f32 _2CC;                                  // _2CC
-	WalkSmokeEffect::Mgr m_walkSmokeEffectMgr; // _2D0
-	efx::THanachoN* m_efxHanacho;              // _2D8
-	f32 _2DC;                                  // _2DC
-	f32 _2E0;                                  // _2E0
-	                                           // _2E4 = PelletView
+	FSM* m_FSM;                          // _2BC
+	MouthSlots m_mouthSlots;             // _2C0
+	SysShape::Joint* m_shadowJoint;      // _2C8
+	f32 _2CC;                            // _2CC
+	WalkSmokeEffect::Mgr m_walkSmokeMgr; // _2D0
+	efx::THanachoN* m_efxHanacho;        // _2D8
+	f32 _2DC;                            // _2DC
+	f32 _2E0;                            // _2E0
+	                                     // _2E4 = PelletView
 };
 
 struct Mgr : public EnemyMgrBase {

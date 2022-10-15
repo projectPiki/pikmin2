@@ -71,12 +71,12 @@ struct Obj : public EnemyBase {
 
 	// _00 		= VTBL
 	// _00-_2BC	= EnemyBase
-	FSM* m_FSM;                                // _2BC
-	MouthSlots m_mouthSlots;                   // _2C0
-	SysShape::Joint* m_shadowJoint;            // _2C8
-	f32 _2CC;                                  // _2CC
-	WalkSmokeEffect::Mgr m_walkSmokeEffectMgr; // _2D0
-	                                           // _2D4 = PelletView
+	FSM* m_FSM;                          // _2BC
+	MouthSlots m_mouthSlots;             // _2C0
+	SysShape::Joint* m_shadowJoint;      // _2C8
+	f32 _2CC;                            // _2CC
+	WalkSmokeEffect::Mgr m_walkSmokeMgr; // _2D0
+	                                     // _2D4 = PelletView
 };
 
 struct Mgr : public EnemyMgrBase {
@@ -114,6 +114,18 @@ struct ProperAnimator : public EnemyAnimatorBase {
 
 /////////////////////////////////////////////////////////////////
 // STATE MACHINE DEFINITIONS
+enum StateID {
+	KOCHAPPY_Alive = 0,
+	KOCHAPPY_Unk1  = 1,
+	KOCHAPPY_Unk2  = 2,
+	KOCHAPPY_Unk3  = 3,
+	KOCHAPPY_Unk4  = 4,
+	KOCHAPPY_Unk5  = 5,
+	KOCHAPPY_Unk6  = 6,
+	KOCHAPPY_Unk7  = 7,
+	KOCHAPPY_Press = 8,
+};
+
 struct State : public EnemyFSMState {
 	inline State(int); // probably
 
