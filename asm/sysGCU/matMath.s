@@ -15,8 +15,8 @@ lbl_80520524:
 	.float 2.0
 
 .section .text, "ax"  # 0x800056C0 - 0x80472F00
-.global "makeNaturalPosture__7MatrixfFR10Vector3<f>"
-"makeNaturalPosture__7MatrixfFR10Vector3<f>":
+.global "makeNaturalPosture__7MatrixfFR10Vector3<f>f"
+"makeNaturalPosture__7MatrixfFR10Vector3<f>f":
 /* 80427F90 00424ED0  94 21 FF E0 */	stwu r1, -0x20(r1)
 /* 80427F94 00424ED4  C0 44 00 08 */	lfs f2, 8(r4)
 /* 80427F98 00424ED8  C0 04 00 00 */	lfs f0, 0(r4)

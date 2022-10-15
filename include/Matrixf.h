@@ -79,6 +79,13 @@ struct Matrixf {
 		(*this)(2, p1) = p2.z;
 	}
 
+	inline Vector3f mtxMult(Vector3f& vec)
+	{
+		Vector3f outVec;
+		PSMTXMultVec(this->m_matrix.mtxView, (Vec*)&vec, (Vec*)&outVec);
+		return outVec;
+	}
+
 	/**
 	 * @fabricated
 	 */

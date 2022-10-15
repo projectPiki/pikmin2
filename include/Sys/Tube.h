@@ -7,7 +7,13 @@ namespace Sys {
 struct Sphere;
 struct Tube {
 	inline Tube() {};
-	Tube(Vector3f&, Vector3f&, float, float); // weak
+	Tube(Vector3f& pos1, Vector3f& pos2, float rad1, float rad2)
+	    : m_startPos(pos1)
+	    , m_endPos(pos2)
+	    , m_startRadius(rad1)
+	    , m_endRadius(rad2)
+	{
+	}
 
 	void getAxisVector(Vector3f&);
 	bool collide(Sphere&, Vector3f&, float&);

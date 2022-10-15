@@ -11,18 +11,25 @@
 #include "SysShape/Model.h"
 #include "SysShape/MtxObject.h"
 #include "Vector3.h"
+#include "Condition.h"
 
 struct CollPartMgr;
-struct FindCollPartArg;
+
+#define COLLTYPE_SPHERE   (0)
+#define COLLTYPE_TUBE     (1)
+#define COLLTYPE_TUBETREE (2)
 
 struct CollPart : public CNode {
 	CollPart();
 	CollPart(SysShape::MtxObject*);
 
 	////////////// VTABLE
-	virtual ~CollPart() { }      // _08 (weak)
-	virtual int getChildCount(); // _0C (weak)
-	virtual bool isMouth()       // _10 (weak)
+	virtual ~CollPart() { }     // _08 (weak)
+	virtual int getChildCount() // _0C (weak)
+	{
+		return CNode::getChildCount();
+	}
+	virtual bool isMouth() // _10 (weak)
 	{
 		return false;
 	}
@@ -37,55 +44,37 @@ struct CollPart : public CNode {
 	////////////// END VTABLE
 
 	void init(SysShape::MtxObject*);
-	/**
-	 * @reifiedAddress{8013915C}
-	 * @reifiedFile{plugProjectKandoU/collinfo.cpp}
-	 */
+
 	void addChild(CollPart* child) { add(child); }
 	void attachModel(SysShape::MtxObject*);
+
 	void calcStickGlobal(Vector3f&, Vector3f&);
 	void calcStickLocal(Vector3f&, Vector3f&);
 	void calcPoseMatrix(Vector3f&, Matrixf&);
+
 	void checkCollision(Sys::Sphere&, IDelegate1<CollPart*>*);
 	void checkCollisionMulti(CollPart*, IDelegate3<CollPart*, CollPart*, Vector3f&>*);
+
 	CollPart* clone(SysShape::MtxObject*, CollPartMgr*);
 	bool collide(CollPart*, Vector3f&);
+
 	int getAllCollPartToArray(CollPart**, int, int&);
-	/**
-	 * @reifiedAddress{80134540}
-	 * @reifiedFile{plugProjectKandoU/collinfo.cpp}
-	 */
+
 	CollPart* getChild() { return (CollPart*)m_child; }
 	CollPart* getCollPart(u32);
-	/**
-	 * @reifiedAddress{80134548}
-	 * @reifiedFile{plugProjectKandoU/collinfo.cpp}
-	 */
 	CollPart* getNext() { return (CollPart*)m_next; }
+
 	void getSphere(Sys::Sphere&);
 	void getTube(Sys::Tube&);
-	/**
-	 * @reifiedAddress{80134B90}
-	 * @reifiedFile{plugProjectKandoU/collinfo.cpp}
-	 */
-	bool isLeaf() { return (m_child == nullptr); }
-	/**
-	 * @reifiedAddress{80135510}
-	 * @reifiedFile{plugProjectKandoU/collinfo.cpp}
-	 */
-	bool isSphere() { return (m_hasCollPart == 0); }
+
+	bool isLeaf() { return (getChild() == nullptr); }
+	bool isSphere() { return (m_hasCollPart == COLLTYPE_SPHERE); }
 	bool isStickable();
-	bool isTube() { return (m_hasCollPart == 2); }
-	bool isTubeTree() { return (m_hasCollPart == 1); }
-	/**
-	 * @fabricated
-	 */
-	bool isTubeLike() { return isTubeTree() || isTube(); }
-	/**
-	 * @reifiedAddress{80134BA0}
-	 * @reifiedFile{plugProjectKandoU/collinfo.cpp}
-	 */
-	bool isPrim() { return (isLeaf() || isTubeTree() || isTube()); }
+	bool isTube() { return (m_hasCollPart == COLLTYPE_TUBE); }
+	bool isTubeTree() { return (m_hasCollPart == COLLTYPE_TUBETREE); }
+	bool isTubeLike() { return isTube() || isTubeTree(); }
+	bool isPrim() { return (getChild() == nullptr || isTube() || isTubeTree()); }
+
 	void makeMatrixTo(Matrixf&);
 	void makeTubeTree();
 	void read(Stream&, bool);
@@ -99,7 +88,7 @@ struct CollPart : public CNode {
 	u32 m_jointIndex;             // _2C
 	ID32 _30;                     // _30
 	ID32 _3C;                     // _3C
-	short m_attribute;            // _48   /* name from PikDecomp */
+	u16 m_attribute;              // _48   /* name from PikDecomp */
 	Vector3f m_position;          // _4C   /* name from PikDecomp */
 	u8 m_hasCollPart;             // _58   /* name from PikDecomp */
 	SysShape::MtxObject* m_model; // _5C
@@ -113,6 +102,11 @@ struct CollPartMgr : public MonoObjectMgr<CollPart> {
 	CollPart* createOne(SysShape::MtxObject*);
 };
 
+struct FindCollPartArg {
+	Condition<CollPart>* m_condition; // _00
+	Vector3f m_position;              // _04
+};
+
 struct MouthCollPart : public CollPart {
 	MouthCollPart();
 
@@ -124,6 +118,9 @@ struct MouthCollPart : public CollPart {
 
 	void copyMatrixTo(Matrixf&);
 	void getPosition(Vector3f&);
+
+	// inlined
+	void setup(SysShape::Model* model, char* jointName, Vector3f& vector);
 
 	CollPart* _64;        // _64
 	SysShape::Joint* _68; // _68
@@ -144,7 +141,7 @@ struct MouthSlots {
 struct AgeCollPart : public CollPart {
 	AgeCollPart(SysShape::Model*);
 
-	virtual ~AgeCollPart();       // _08 (weak)
+	virtual ~AgeCollPart() { }    // _08 (weak)
 	virtual void draw(Graphics&); // _14
 
 	u8 _64; // _64
@@ -161,7 +158,7 @@ struct CollPartFactory : public CollPart {
 
 	static CollPartFactory* load(char*);
 	static CollPartFactory* load(JKRFileLoader*, char*);
-	void createInstance(SysShape::MtxObject*, CollPartMgr*);
+	CollPart* createInstance(SysShape::MtxObject*, CollPartMgr*);
 };
 
 struct CollTree {
@@ -173,7 +170,7 @@ struct CollTree {
 	void checkCollision(Sys::Sphere&, IDelegate1<CollPart*>*);
 	bool checkCollisionRec(CollPart*, CollPart*, CollPart**, CollPart**, Vector3f&);
 	void checkCollisionMulti(CollTree*, IDelegate3<CollPart*, CollPart*, Vector3f&>*);
-	void findCollPart(FindCollPartArg&);
+	CollPart* findCollPart(FindCollPartArg&);
 	void getBoundingSphere(Sys::Sphere&);
 	CollPart* getCollPart(u32);
 	CollPart* getRandomCollPart();

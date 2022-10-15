@@ -78,7 +78,7 @@ struct Model : MtxObject {
 	bool m_isVisible;     // _06
 	J3DModel* m_j3dModel; // _08
 	int m_jointCount;     // _0C
-	Joint** m_joints;     // _10
+	Joint* m_joints;      // _10
 };
 
 } // namespace SysShape

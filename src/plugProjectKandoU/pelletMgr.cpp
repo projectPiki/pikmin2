@@ -2422,7 +2422,7 @@ lbl_801683DC:
 lbl_80168414:
 	addi     r3, r1, 0x14
 	addi     r4, r1, 8
-	bl       "makeNaturalPosture__7MatrixfFR10Vector3<f>"
+	bl       "makeNaturalPosture__7MatrixfFR10Vector3<f>f"
 	lwz      r5, 0x14(r1)
 	addi     r3, r31, 0x1f8
 	lwz      r0, 0x18(r1)
