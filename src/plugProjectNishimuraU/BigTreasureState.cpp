@@ -66,7 +66,7 @@ void StateDead::exec(EnemyBase* enemy)
 	}
 
 	if (titan->m_animKeyEvent->m_running) {
-		if ((u32)titan->m_animKeyEvent->m_type == 2000) {
+		if ((u32)titan->m_animKeyEvent->m_type == KEYEVENT_END_BLEND) {
 			titan->endBlendAnimation();
 
 		} else if ((u32)titan->m_animKeyEvent->m_type == KEYEVENT_2) {
@@ -334,7 +334,7 @@ void StateWait::exec(EnemyBase* enemy)
 	}
 
 	if (titan->m_animKeyEvent->m_running) {
-		if ((u32)titan->m_animKeyEvent->m_type == 2000) {
+		if ((u32)titan->m_animKeyEvent->m_type == KEYEVENT_END_BLEND) {
 			titan->endBlendAnimation();
 		} else if ((u32)titan->m_animKeyEvent->m_type == 0) {
 			titan->getJAIObject()->startSound(PSSE_EN_BIGTAKARA_WAIT2, nullptr);
@@ -399,7 +399,7 @@ void StateItemWait::exec(EnemyBase* enemy)
 	titan->m_stateTimer += sys->m_secondsPerFrame;
 
 	if (titan->m_animKeyEvent->m_running) {
-		if ((u32)titan->m_animKeyEvent->m_type == 2000) {
+		if ((u32)titan->m_animKeyEvent->m_type == KEYEVENT_END_BLEND) {
 			titan->endBlendAnimation();
 		} else if ((u32)titan->m_animKeyEvent->m_type == KEYEVENT_END) {
 			transit(titan, titan->m_nextState, nullptr);
@@ -447,7 +447,7 @@ void StateFlick::exec(EnemyBase* enemy)
 	Obj* titan = static_cast<Obj*>(enemy);
 
 	if (titan->m_animKeyEvent->m_running) {
-		if ((u32)titan->m_animKeyEvent->m_type == 2000) {
+		if ((u32)titan->m_animKeyEvent->m_type == KEYEVENT_END_BLEND) {
 			titan->endBlendAnimation();
 
 		} else if ((u32)titan->m_animKeyEvent->m_type == KEYEVENT_2) {
@@ -528,7 +528,7 @@ void StatePreAttack::exec(EnemyBase* enemy)
 	titan->m_stateTimer += sys->m_secondsPerFrame;
 
 	if (titan->m_animKeyEvent->m_running) {
-		if ((u32)titan->m_animKeyEvent->m_type == 2000) {
+		if ((u32)titan->m_animKeyEvent->m_type == KEYEVENT_END_BLEND) {
 			titan->endBlendAnimation();
 
 		} else if ((u32)titan->m_animKeyEvent->m_type == KEYEVENT_2) {
@@ -607,7 +607,7 @@ void StateAttack::exec(EnemyBase* enemy)
 	titan->m_stateTimer += sys->m_secondsPerFrame;
 
 	if (titan->m_animKeyEvent->m_running) {
-		if ((u32)titan->m_animKeyEvent->m_type == 2000) {
+		if ((u32)titan->m_animKeyEvent->m_type == KEYEVENT_END_BLEND) {
 			titan->endBlendAnimation();
 		}
 
@@ -672,7 +672,7 @@ void StatePutItem::exec(EnemyBase* enemy)
 	}
 
 	if (titan->m_animKeyEvent->m_running) {
-		if ((u32)titan->m_animKeyEvent->m_type == 2000) {
+		if ((u32)titan->m_animKeyEvent->m_type == KEYEVENT_END_BLEND) {
 			titan->endBlendAnimation();
 		} else if ((u32)titan->m_animKeyEvent->m_type == KEYEVENT_END) {
 			if (EnemyFunc::isStartFlick(titan, false)) {
@@ -722,7 +722,7 @@ void StateDropItem::exec(EnemyBase* enemy)
 {
 	Obj* titan = static_cast<Obj*>(enemy);
 	if (titan->m_animKeyEvent->m_running) {
-		if ((u32)titan->m_animKeyEvent->m_type == 2000) {
+		if ((u32)titan->m_animKeyEvent->m_type == KEYEVENT_END_BLEND) {
 			titan->endBlendAnimation();
 
 		} else if ((u32)titan->m_animKeyEvent->m_type == KEYEVENT_END) {
@@ -795,7 +795,7 @@ void StateWalk::exec(EnemyBase* enemy)
 	titan->m_stateTimer += sys->m_secondsPerFrame;
 
 	if (titan->m_animKeyEvent->m_running) {
-		if ((u32)titan->m_animKeyEvent->m_type == 2000) {
+		if ((u32)titan->m_animKeyEvent->m_type == KEYEVENT_END_BLEND) {
 			titan->endBlendAnimation();
 
 		} else if ((u32)titan->m_animKeyEvent->m_type == KEYEVENT_END) {
@@ -881,7 +881,7 @@ void StateItemWalk::exec(EnemyBase* enemy)
 	}
 
 	if (titan->m_animKeyEvent->m_running) {
-		if ((u32)titan->m_animKeyEvent->m_type == 2000) {
+		if ((u32)titan->m_animKeyEvent->m_type == KEYEVENT_END_BLEND) {
 			titan->endBlendAnimation();
 
 		} else if ((u32)titan->m_animKeyEvent->m_type == KEYEVENT_END) {
