@@ -40,7 +40,7 @@ void StateDead::init(EnemyBase* enemy, StateArg* stateArg)
  */
 void StateDead::exec(EnemyBase* enemy)
 {
-	if (enemy->m_animKeyEvent->m_running && (u32)enemy->m_animKeyEvent->m_type == 1000) {
+	if (enemy->m_animKeyEvent->m_running && (u32)enemy->m_animKeyEvent->m_type == KEYEVENT_END) {
 		enemy->kill(nullptr);
 	}
 }
@@ -80,7 +80,7 @@ void StatePress::init(EnemyBase* enemy, StateArg* stateArg)
  */
 void StatePress::exec(EnemyBase* enemy)
 {
-	if (enemy->m_animKeyEvent->m_running && (u32)enemy->m_animKeyEvent->m_type == 1000) {
+	if (enemy->m_animKeyEvent->m_running && (u32)enemy->m_animKeyEvent->m_type == KEYEVENT_END) {
 		enemy->kill(nullptr);
 	}
 }
@@ -120,7 +120,7 @@ void StateBorn::exec(EnemyBase* enemy)
 		enemy->finishMotion();
 	}
 
-	if (enemy->m_animKeyEvent->m_running && (u32)enemy->m_animKeyEvent->m_type == 1000) {
+	if (enemy->m_animKeyEvent->m_running && (u32)enemy->m_animKeyEvent->m_type == KEYEVENT_END) {
 		if (enemy->m_health <= 0.0f) {
 			transit(enemy, BABY_Dead, nullptr);
 
@@ -210,7 +210,7 @@ void StateMove::exec(EnemyBase* enemy)
 		baby->moveNoTarget();
 	}
 
-	if (baby->m_animKeyEvent->m_running && (u32)baby->m_animKeyEvent->m_type == 1000) {
+	if (baby->m_animKeyEvent->m_running && (u32)baby->m_animKeyEvent->m_type == KEYEVENT_END) {
 		transit(baby, BABY_Move, nullptr);
 	}
 
@@ -547,7 +547,7 @@ void StateAttack::exec(EnemyBase* enemy)
 {
 	Obj* baby = static_cast<Obj*>(enemy);
 	if (baby->m_animKeyEvent->m_running) {
-		if ((u32)baby->m_animKeyEvent->m_type == 2) {
+		if ((u32)baby->m_animKeyEvent->m_type == KEYEVENT_2) {
 			Parms* parms = static_cast<Parms*>(baby->m_parms);
 			EnemyFunc::attackNavi(baby, parms->m_general.m_fp22.m_value, parms->m_general.m_fp23.m_value,
 			                      parms->m_general.m_attackDamage.m_value, nullptr, nullptr);
@@ -556,10 +556,10 @@ void StateAttack::exec(EnemyBase* enemy)
 			if (slotCount == 0) {
 				baby->startMotion(4, nullptr);
 			}
-		} else if ((u32)baby->m_animKeyEvent->m_type == 3) {
+		} else if ((u32)baby->m_animKeyEvent->m_type == KEYEVENT_3) {
 			Parms* parms = static_cast<Parms*>(baby->m_parms);
 			EnemyFunc::swallowPikmin(baby, parms->m_properParms.m_fp01.m_value, nullptr);
-		} else if ((u32)baby->m_animKeyEvent->m_type == 1000) {
+		} else if ((u32)baby->m_animKeyEvent->m_type == KEYEVENT_END) {
 			if (baby->m_health <= 0.0f) {
 				transit(baby, BABY_Dead, nullptr);
 			} else {

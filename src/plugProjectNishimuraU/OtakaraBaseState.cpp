@@ -54,7 +54,7 @@ void StateDead::init(EnemyBase* enemy, StateArg* stateArg)
  */
 void StateDead::exec(EnemyBase* enemy)
 {
-	if (enemy->m_animKeyEvent->m_running && (u32)enemy->m_animKeyEvent->m_type == 1000) {
+	if (enemy->m_animKeyEvent->m_running && (u32)enemy->m_animKeyEvent->m_type == KEYEVENT_END) {
 		enemy->kill(nullptr);
 	}
 }
@@ -197,7 +197,7 @@ void StateWait::exec(EnemyBase* enemy)
 		ota->finishMotion();
 	}
 
-	if (ota->m_animKeyEvent->m_running && (u32)ota->m_animKeyEvent->m_type == 1000) {
+	if (ota->m_animKeyEvent->m_running && (u32)ota->m_animKeyEvent->m_type == KEYEVENT_END) {
 		transit(ota, ota->m_nextState, nullptr);
 	}
 }
@@ -268,7 +268,7 @@ void StateMove::exec(EnemyBase* enemy)
 
 	ota->startEscapeSE();
 
-	if (ota->m_animKeyEvent->m_running && (u32)ota->m_animKeyEvent->m_type == 1000) {
+	if (ota->m_animKeyEvent->m_running && (u32)ota->m_animKeyEvent->m_type == KEYEVENT_END) {
 		transit(ota, ota->m_nextState, nullptr);
 	}
 }
@@ -335,7 +335,7 @@ void StateTurn::exec(EnemyBase* enemy)
 
 	ota->startEscapeSE();
 
-	if (ota->m_animKeyEvent->m_running && (u32)ota->m_animKeyEvent->m_type == 1000) {
+	if (ota->m_animKeyEvent->m_running && (u32)ota->m_animKeyEvent->m_type == KEYEVENT_END) {
 		transit(ota, ota->m_nextState, nullptr);
 	}
 }
@@ -450,7 +450,7 @@ void StateItemWait::exec(EnemyBase* enemy)
 		}
 	}
 
-	if (ota->m_animKeyEvent->m_running && (u32)ota->m_animKeyEvent->m_type == 1000) {
+	if (ota->m_animKeyEvent->m_running && (u32)ota->m_animKeyEvent->m_type == KEYEVENT_END) {
 		transit(ota, ota->m_nextState, nullptr);
 	}
 }
@@ -525,7 +525,7 @@ void StateItemMove::exec(EnemyBase* enemy)
 
 	ota->startEscapeSE();
 
-	if (ota->m_animKeyEvent->m_running && (u32)ota->m_animKeyEvent->m_type == 1000) {
+	if (ota->m_animKeyEvent->m_running && (u32)ota->m_animKeyEvent->m_type == KEYEVENT_END) {
 		transit(enemy, ota->m_nextState, nullptr); // dumb that this fixes regswaps, really should be ota
 	}
 }
@@ -594,7 +594,7 @@ void StateItemTurn::exec(EnemyBase* enemy)
 
 	ota->startEscapeSE();
 
-	if (ota->m_animKeyEvent->m_running && (u32)ota->m_animKeyEvent->m_type == 1000) {
+	if (ota->m_animKeyEvent->m_running && (u32)ota->m_animKeyEvent->m_type == KEYEVENT_END) {
 		transit(enemy, ota->m_nextState, nullptr); // dumb that this fixes regswaps, really should be ota
 	}
 }
@@ -856,7 +856,7 @@ void StateBombMove::exec(EnemyBase* enemy)
 
 	ota->startEscapeSE();
 
-	if (ota->m_animKeyEvent->m_running && ((u32)ota->m_animKeyEvent->m_type == 1000)) {
+	if (ota->m_animKeyEvent->m_running && ((u32)ota->m_animKeyEvent->m_type == KEYEVENT_END)) {
 		transit(ota, ota->m_nextState, nullptr);
 	}
 }
@@ -918,7 +918,7 @@ void StateBombTurn::exec(EnemyBase* enemy)
 
 	ota->startEscapeSE();
 
-	if (ota->m_animKeyEvent->m_running && ((u32)ota->m_animKeyEvent->m_type == 1000)) {
+	if (ota->m_animKeyEvent->m_running && ((u32)ota->m_animKeyEvent->m_type == KEYEVENT_END)) {
 		transit(ota, ota->m_nextState, nullptr);
 	}
 }

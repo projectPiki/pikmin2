@@ -47,11 +47,11 @@ void StateDead::exec(EnemyBase* enemy)
 {
 	Obj* queen = static_cast<Obj*>(enemy);
 	if (queen->m_animKeyEvent->m_running != 0) {
-		if ((u32)queen->m_animKeyEvent->m_type == 2) {
+		if ((u32)queen->m_animKeyEvent->m_type == KEYEVENT_2) {
 			Vector3f position = queen->getPosition();
 			cameraMgr->startVibration(6, position, 2);
 			rumbleMgr->startRumble(14, position, 2);
-		} else if ((u32)queen->m_animKeyEvent->m_type == 1000) {
+		} else if ((u32)queen->m_animKeyEvent->m_type == KEYEVENT_END) {
 			queen->releaseJointShadow();
 			queen->kill(nullptr);
 		}
@@ -109,11 +109,11 @@ void StateSleep::exec(EnemyBase* enemy)
 	if (queen->m_animKeyEvent->m_running != 0) {
 		if ((u32)queen->m_animKeyEvent->m_type == 0) {
 			queen->startSleepEffect();
-		} else if ((u32)queen->m_animKeyEvent->m_type == 2) {
+		} else if ((u32)queen->m_animKeyEvent->m_type == KEYEVENT_2) {
 			queen->finishSleepEffect();
 			queen->createWakeUpEffect();
 			queen->setMidBossAppearBGM();
-		} else if ((u32)queen->m_animKeyEvent->m_type == 1000) {
+		} else if ((u32)queen->m_animKeyEvent->m_type == KEYEVENT_END) {
 			transit(queen, queen->m_nextState, nullptr);
 		}
 	}
@@ -184,7 +184,7 @@ void StateWait::exec(EnemyBase* enemy)
 
 	queen->m_waitTimer += sys->m_secondsPerFrame;
 
-	if ((queen->m_animKeyEvent->m_running != 0) && ((u32)queen->m_animKeyEvent->m_type == 1000)) {
+	if ((queen->m_animKeyEvent->m_running != 0) && ((u32)queen->m_animKeyEvent->m_type == KEYEVENT_END)) {
 		transit(queen, queen->m_nextState, nullptr);
 	}
 }
@@ -243,7 +243,7 @@ void StateDamage::exec(EnemyBase* enemy)
 		queen->finishMotion();
 	}
 
-	if ((queen->m_animKeyEvent->m_running != 0) && ((u32)queen->m_animKeyEvent->m_type == 1000)) {
+	if ((queen->m_animKeyEvent->m_running != 0) && ((u32)queen->m_animKeyEvent->m_type == KEYEVENT_END)) {
 		transit(queen, queen->m_nextState, nullptr);
 	}
 }
@@ -289,9 +289,9 @@ void StateFlick::exec(EnemyBase* enemy)
 {
 	Obj* queen = static_cast<Obj*>(enemy);
 	if (queen->m_animKeyEvent->m_running != 0) {
-		if ((u32)queen->m_animKeyEvent->m_type == 2) {
+		if ((u32)queen->m_animKeyEvent->m_type == KEYEVENT_2) {
 			queen->flickPikmin(queen->getFaceDir());
-		} else if ((u32)queen->m_animKeyEvent->m_type == 1000) {
+		} else if ((u32)queen->m_animKeyEvent->m_type == KEYEVENT_END) {
 			if (queen->m_health <= 0.0f) {
 				transit(queen, QUEEN_Dead, nullptr);
 			} else if (queen->isRollingAttackLeft()) {
@@ -397,7 +397,7 @@ void StateRolling::exec(EnemyBase* enemy)
 	}
 
 	if (queen->m_animKeyEvent->m_running != 0) {
-		if ((u32)queen->m_animKeyEvent->m_type == 2) {
+		if ((u32)queen->m_animKeyEvent->m_type == KEYEVENT_2) {
 
 			f32 initAngle;
 			if (queen->getCurrAnimIndex() == 5) {
@@ -454,7 +454,7 @@ void StateRolling::exec(EnemyBase* enemy)
 				queen->startRollingEffect();
 				queen->startBossAttackLoopBGM();
 			}
-		} else if ((u32)queen->m_animKeyEvent->m_type == 1000) {
+		} else if ((u32)queen->m_animKeyEvent->m_type == KEYEVENT_END) {
 			if (queen->getCurrAnimIndex() == 6) {
 				transit(queen, queen->m_nextState, (StateArg*)"left");
 			} else {
@@ -926,10 +926,10 @@ void StateBorn::exec(EnemyBase* enemy)
 {
 	Obj* queen = static_cast<Obj*>(enemy);
 	if (queen->m_animKeyEvent->m_running != 0) {
-		if ((u32)queen->m_animKeyEvent->m_type == 2) {
+		if ((u32)queen->m_animKeyEvent->m_type == KEYEVENT_2) {
 			queen->createBabyChappy();
 			queen->createBornEffect();
-		} else if ((u32)queen->m_animKeyEvent->m_type == 1000) {
+		} else if ((u32)queen->m_animKeyEvent->m_type == KEYEVENT_END) {
 			if (queen->m_health <= 0.0f) {
 				transit(queen, QUEEN_Dead, nullptr);
 			} else {

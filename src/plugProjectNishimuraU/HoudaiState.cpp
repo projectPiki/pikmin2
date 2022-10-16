@@ -54,7 +54,7 @@ void StateDead::init(EnemyBase* enemy, StateArg* stateArg)
 void StateDead::exec(EnemyBase* enemy)
 {
 	Obj* houdai = static_cast<Obj*>(enemy);
-	if (houdai->m_animKeyEvent->m_running && (u32)houdai->m_animKeyEvent->m_type == 1000) {
+	if (houdai->m_animKeyEvent->m_running && (u32)houdai->m_animKeyEvent->m_type == KEYEVENT_END) {
 		houdai->throwupItem();
 		houdai->finishChimneyEffect();
 		houdai->createDeadBombEffect();
@@ -179,29 +179,29 @@ void StateLand::exec(EnemyBase* enemy)
 	}
 
 	if (houdai->m_animKeyEvent->m_running) {
-		if ((u32)houdai->m_animKeyEvent->m_type == 2) {
+		if ((u32)houdai->m_animKeyEvent->m_type == KEYEVENT_2) {
 			EnemyFunc::flickStickPikmin(houdai, 1.0f, 100.0f, 0.0f, -1000.0f, nullptr);
 			houdai->startChimneyEffect();
 
-		} else if ((u32)houdai->m_animKeyEvent->m_type == 3) {
+		} else if ((u32)houdai->m_animKeyEvent->m_type == KEYEVENT_3) {
 			houdai->finishChimneyEffect();
 
-		} else if ((u32)houdai->m_animKeyEvent->m_type == 4) {
+		} else if ((u32)houdai->m_animKeyEvent->m_type == KEYEVENT_4) {
 			EnemyFunc::flickStickPikmin(houdai, 1.0f, 100.0f, 0.0f, -1000.0f, nullptr);
 			houdai->createAppearFootEffect(0);
 
-		} else if ((u32)houdai->m_animKeyEvent->m_type == 5) {
+		} else if ((u32)houdai->m_animKeyEvent->m_type == KEYEVENT_5) {
 			EnemyFunc::flickStickPikmin(houdai, 1.0f, 100.0f, 0.0f, -1000.0f, nullptr);
 			houdai->createOnGroundEffect(0, houdai->m_waterBox);
 			houdai->createAppearFootEffect(2);
 			houdai->createAppearFootEffect(1);
 
-		} else if ((u32)houdai->m_animKeyEvent->m_type == 6) {
+		} else if ((u32)houdai->m_animKeyEvent->m_type == KEYEVENT_6) {
 			EnemyFunc::flickStickPikmin(houdai, 1.0f, 100.0f, 0.0f, -1000.0f, nullptr);
 			houdai->createAppearHahenEffect();
 			houdai->createAppearFootEffect(3);
 
-		} else if ((u32)houdai->m_animKeyEvent->m_type == 1000) {
+		} else if ((u32)houdai->m_animKeyEvent->m_type == KEYEVENT_END) {
 			EnemyFunc::flickStickPikmin(houdai, 1.0f, 100.0f, 0.0f, -1000.0f, nullptr);
 			if (houdai->m_health <= 0.0f) {
 				transit(houdai, HOUDAI_Dead, nullptr);
@@ -270,7 +270,7 @@ void StateWait::exec(EnemyBase* enemy)
 		houdai->finishMotion();
 	}
 
-	if (houdai->m_animKeyEvent->m_running && (u32)houdai->m_animKeyEvent->m_type == 1000) {
+	if (houdai->m_animKeyEvent->m_running && (u32)houdai->m_animKeyEvent->m_type == KEYEVENT_END) {
 		transit(houdai, houdai->m_nextState, nullptr);
 	}
 }
@@ -307,20 +307,20 @@ void StateFlick::exec(EnemyBase* enemy)
 {
 	Obj* houdai = static_cast<Obj*>(enemy);
 	if (houdai->m_animKeyEvent->m_running) {
-		if ((u32)houdai->m_animKeyEvent->m_type == 2) {
+		if ((u32)houdai->m_animKeyEvent->m_type == KEYEVENT_2) {
 			houdai->startChimneyEffect();
 
-		} else if ((u32)houdai->m_animKeyEvent->m_type == 3) {
+		} else if ((u32)houdai->m_animKeyEvent->m_type == KEYEVENT_3) {
 			Parms* parms = static_cast<Parms*>(houdai->m_parms);
 			EnemyFunc::flickStickPikmin(houdai, parms->m_general.m_shakeRateMaybe.m_value, parms->m_general.m_shakeKnockback.m_value,
 			                            parms->m_general.m_shakeDamage.m_value, -1000.0, nullptr);
 			houdai->m_toFlick = 0.0f;
 			houdai->startBossFlickBGM();
 
-		} else if ((u32)houdai->m_animKeyEvent->m_type == 4) {
+		} else if ((u32)houdai->m_animKeyEvent->m_type == KEYEVENT_4) {
 			houdai->finishChimneyEffect();
 
-		} else if ((u32)houdai->m_animKeyEvent->m_type == 1000) {
+		} else if ((u32)houdai->m_animKeyEvent->m_type == KEYEVENT_END) {
 			if (houdai->m_health <= 0.0f) {
 				transit(houdai, HOUDAI_Dead, nullptr);
 
@@ -475,12 +475,12 @@ void StateShot::exec(EnemyBase* enemy)
 	}
 
 	if (houdai->m_animKeyEvent->m_running) {
-		if ((u32)houdai->m_animKeyEvent->m_type == 2) {
+		if ((u32)houdai->m_animKeyEvent->m_type == KEYEVENT_2) {
 			houdai->m_stateTimer = 0.0f;
 			houdai->stopMotion();
 			houdai->startShotGunRotation();
 
-		} else if ((u32)houdai->m_animKeyEvent->m_type == 3) {
+		} else if ((u32)houdai->m_animKeyEvent->m_type == KEYEVENT_3) {
 			if (!houdai->isFinishMotion()) {
 				Parms* parms = static_cast<Parms*>(houdai->m_parms);
 				EnemyFunc::flickStickPikmin(houdai, parms->m_general.m_shakeRateMaybe.m_value, parms->m_general.m_shakeKnockback.m_value,
@@ -489,7 +489,7 @@ void StateShot::exec(EnemyBase* enemy)
 				houdai->emitShotGun();
 			}
 
-		} else if ((u32)houdai->m_animKeyEvent->m_type == 4) {
+		} else if ((u32)houdai->m_animKeyEvent->m_type == KEYEVENT_4) {
 			if (!houdai->isFinishMotion()) {
 				Parms* parms2 = static_cast<Parms*>(houdai->m_parms);
 				if (parms2->m_general.m_fp15.m_value - houdai->m_stateTimer > parms2->m_properParms.m_fp12.m_value
@@ -498,14 +498,14 @@ void StateShot::exec(EnemyBase* enemy)
 					houdai->stopMotion();
 				}
 			}
-		} else if ((u32)houdai->m_animKeyEvent->m_type == 5) {
+		} else if ((u32)houdai->m_animKeyEvent->m_type == KEYEVENT_5) {
 			houdai->_2ED         = 0;
 			houdai->m_stateTimer = 0.0f;
 			houdai->stopMotion();
 			houdai->finishShotGunRotation();
 			houdai->finishBossAttackLoopBGM();
 
-		} else if ((u32)houdai->m_animKeyEvent->m_type == 1000) {
+		} else if ((u32)houdai->m_animKeyEvent->m_type == KEYEVENT_END) {
 			if (houdai->m_health <= 0.0f) {
 				transit(houdai, HOUDAI_Dead, nullptr);
 

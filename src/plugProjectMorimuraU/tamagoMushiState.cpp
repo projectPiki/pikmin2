@@ -78,7 +78,7 @@ void StateWalk::exec(EnemyBase* enemy)
 		mitite->finishMotion();
 	}
 
-	if (mitite->m_animKeyEvent->m_running && (u32)mitite->m_animKeyEvent->m_type == 1000) {
+	if (mitite->m_animKeyEvent->m_running && (u32)mitite->m_animKeyEvent->m_type == KEYEVENT_END) {
 		mitite->setGoalRandom();
 		transit(mitite, TAMAGOMUSHI_Turn, nullptr);
 	}
@@ -119,7 +119,7 @@ void StateTurn::exec(EnemyBase* enemy)
 		mitite->finishMotion();
 	}
 
-	if (mitite->m_animKeyEvent->m_running && (u32)mitite->m_animKeyEvent->m_type == 1000) {
+	if (mitite->m_animKeyEvent->m_running && (u32)mitite->m_animKeyEvent->m_type == KEYEVENT_END) {
 		transit(mitite, TAMAGOMUSHI_Walk, nullptr);
 	}
 }
@@ -194,13 +194,13 @@ void StateAppear::exec(EnemyBase* enemy)
 	}
 
 	if (mitite->m_animKeyEvent->m_running) {
-		if ((u32)mitite->m_animKeyEvent->m_type == 2) {
+		if ((u32)mitite->m_animKeyEvent->m_type == KEYEVENT_2) {
 			mitite->appearPanic();
 			mitite->setAtari(true);
 			mitite->setAlive(true);
 			mitite->resetEvent(0, EB_BitterImmune);
 		}
-		if ((u32)mitite->m_animKeyEvent->m_type == 1000) {
+		if ((u32)mitite->m_animKeyEvent->m_type == KEYEVENT_END) {
 			transit(mitite, TAMAGOMUSHI_Walk, nullptr);
 			mitite->hardConstraintOff();
 		}
@@ -248,7 +248,7 @@ void StateHide::init(EnemyBase* enemy, StateArg* stateArg)
  */
 void StateHide::exec(EnemyBase* enemy)
 {
-	if (enemy->m_animKeyEvent->m_running && (u32)enemy->m_animKeyEvent->m_type == 1000) {
+	if (enemy->m_animKeyEvent->m_running && (u32)enemy->m_animKeyEvent->m_type == KEYEVENT_END) {
 		enemy->kill(nullptr);
 	}
 }
@@ -294,7 +294,7 @@ void StateDead::init(EnemyBase* enemy, StateArg* stateArg)
 void StateDead::exec(EnemyBase* enemy)
 {
 	Obj* mitite = static_cast<Obj*>(enemy);
-	if (mitite->m_animKeyEvent->m_running && (u32)mitite->m_animKeyEvent->m_type == 1000) {
+	if (mitite->m_animKeyEvent->m_running && (u32)mitite->m_animKeyEvent->m_type == KEYEVENT_END) {
 		mitite->genItem();
 		mitite->kill(nullptr);
 		PSStartEnemyGhostSE(mitite, 0.0f);

@@ -295,7 +295,7 @@ void StateDead::exec(EnemyBase* enemy)
 		rock->hardConstraintOn();
 	}
 
-	if (rock->m_animKeyEvent->m_running && (u32)rock->m_animKeyEvent->m_type == 1000) {
+	if (rock->m_animKeyEvent->m_running && (u32)rock->m_animKeyEvent->m_type == KEYEVENT_END) {
 		rock->kill(nullptr);
 	}
 }
