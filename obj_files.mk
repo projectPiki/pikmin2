@@ -1008,7 +1008,7 @@ MORIMURA:=\
 	$(BUILD_DIR)/asm/plugProjectMorimuraU/mrUtil.o\
 	$(BUILD_DIR)/asm/plugProjectMorimuraU/scrollList.o\
 	$(BUILD_DIR)/asm/plugProjectMorimuraU/mrWindow.o\
-	$(BUILD_DIR)/asm/plugProjectMorimuraU/blackManState.o\
+	$(BUILD_DIR)/src/plugProjectMorimuraU/blackManState.o\
 	$(BUILD_DIR)/src/plugProjectMorimuraU/blackManAnimator.o\
 	$(BUILD_DIR)/asm/plugProjectMorimuraU/blackManMgr.o\
 	$(BUILD_DIR)/asm/plugProjectMorimuraU/blackMan.o\

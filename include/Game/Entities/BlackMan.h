@@ -7,20 +7,12 @@
 #include "Game/EnemyMgrBase.h"
 #include "Game/JointFuncs.h"
 #include "Game/EnemyBase.h"
+#include "efx/TKage.h"
 
 /**
  * --Header for Waterwraith (BlackMan)--
  * Note: Rollers are a separate enemy/struct (Tyre).
  */
-
-namespace efx {
-// TODO: make header for these
-struct TKageMove;
-struct TKageRun;
-struct TKageTyreup;
-struct TKageDead1;
-struct TKageFlick;
-} // namespace efx
 
 namespace Sys {
 struct MatLoopAnimator;
@@ -35,6 +27,7 @@ struct Obj;
 } // namespace Tyre
 
 namespace BlackMan {
+struct Parms;
 struct FSM;
 
 struct Obj : public EnemyBase {
@@ -74,17 +67,17 @@ struct Obj : public EnemyBase {
 	//////////////// VTABLE END
 
 	void walkFunc();
-	void isReachToGoal(f32);
+	bool isReachToGoal(f32);
 	void findNextRoutePoint();
 	void findNextTraceRoutePoint();
-	void isEndPathFinder();
+	bool isEndPathFinder();
 	void setPathFinder(bool);
 	void releasePathFinder();
 	void jointMtxCalc(int);
 	void bodyMtxCalc();
-	void isTyreFreeze();
-	void isTyreDead();
-	void isFallEnd();
+	bool isTyreFreeze();
+	bool isTyreDead();
+	bool isFallEnd();
 	void moveRestart();
 	void escape();
 	void setTimer(f32);
@@ -104,13 +97,15 @@ struct Obj : public EnemyBase {
 	void fadeTraceEffect();
 	void createFlickEffect();
 	void fadeFlickEffect();
-	void isFinalFloor();
+	bool isFinalFloor();
 	void appearFanfare();
+
+	inline Parms* getParms() { return static_cast<Parms*>(m_parms); }
 
 	// _00 		= VTBL
 	// _00-_2BC	= EnemyBase
 	u8 _2BC[0x10];                           // _2BC, unknown
-	u32 _2CC;                                // _2CC, unknown
+	int _2CC;                                // _2CC, timer?
 	Vector3f _2D0;                           // _2D0
 	int _2DC;                                // _2DC
 	int _2E0;                                // _2E0
@@ -184,7 +179,34 @@ struct Parms : public EnemyParmsBase {
 	struct ProperParms : public Parameters {
 		ProperParms(); // (weak)
 
-		u8 _804[0x254]; // _804, probably 15 Parm<T>s?
+		// feels like it should be this/with different types, but these don't line up:
+		// Parm<f32> _804; // _804
+		// Parm<f32> _82C; // _82C
+		// Parm<f32> _854; // _854
+		// Parm<f32> _87C; // _87C
+		// Parm<f32> _8A4; // _8A4
+		// Parm<f32> _8CC; // _8CC
+		// Parm<f32> _8F4; // _8F4
+		// Parm<f32> _91C; // _91C
+		// Parm<f32> _944; // _944
+		// Parm<f32> _96C; // _96C
+		// Parm<f32> _994; // _994
+		// Parm<f32> _9BC; // _9BC
+		// Parm<f32> _9E4; // _9E4
+		// Parm<f32> _A0C; // _A0C
+		// Parm<f32> _A34; // _A34
+
+		u8 _804[0x180]; // _804, unknown
+		int _984;       // _984
+		u8 _988[0x24];  // _988, unknown
+		int _9AC;       // _9AC
+		u8 _9B0[0x4C];  // _9B0, unknown
+		int _9FC;       // _9FC
+		u8 _A00[0x1C];  // _A00, unknown
+		f32 _A1C;       // _A1C
+		u8 _A20[0x28];  // _A20, unknown
+		f32 _A48;       // _A48
+		u8 _A4C[0x10];  // _A4C, unknown
 	};
 
 	Parms();
@@ -206,6 +228,19 @@ struct ProperAnimator : public EnemyAnimatorBase {
 
 /////////////////////////////////////////////////////////////////
 // STATE MACHINE DEFINITIONS
+enum StateID {
+	WRAITH_Walk    = 0,
+	WRAITH_Dead    = 1,
+	WRAITH_Freeze  = 2,
+	WRAITH_Bend    = 3,
+	WRAITH_Escape  = 4,
+	WRAITH_Fall    = 5,
+	WRAITH_Flick   = 6,
+	WRAITH_Recover = 7,
+	WRAITH_Tired   = 8,
+	WRAITH_Count   = 9,
+};
+
 struct FSM : public EnemyStateMachine {
 	virtual void init(EnemyBase*); // _08
 
@@ -214,7 +249,10 @@ struct FSM : public EnemyStateMachine {
 };
 
 struct State : public EnemyFSMState {
-	inline State(int); // likely
+	inline State(int stateID)
+	    : EnemyFSMState(stateID)
+	{
+	}
 
 	// _00		= VTBL
 	// _00-_10 	= EnemyFSMState
@@ -239,6 +277,7 @@ struct StateDead : public State {
 
 	// _00		= VTBL
 	// _00-_10 	= EnemyFSMState
+	u8 _10[0x4]; // _10, unknown
 };
 
 struct StateEscape : public State {
@@ -301,6 +340,7 @@ struct StateTired : public State {
 
 	// _00		= VTBL
 	// _00-_10 	= EnemyFSMState
+	int _10; // _10
 };
 
 struct StateWalk : public State {
