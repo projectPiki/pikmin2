@@ -515,8 +515,8 @@ struct EnemyBase : public Creature, public SysShape::MotionListener, virtual pub
 			approxSpeed = (approxSpeed > 0.0f) ? limit : -limit;
 		}
 
-		m_faceDir           = roundAng(approxSpeed + getFaceDir());
-		_1A4.m_matrix[0][1] = m_faceDir;
+		m_faceDir = roundAng(approxSpeed + getFaceDir());
+		_1A4.y    = m_faceDir;
 		return angleDist;
 	}
 
@@ -541,8 +541,8 @@ struct EnemyBase : public Creature, public SysShape::MotionListener, virtual pub
 			approxSpeed = (approxSpeed > 0.0f) ? limit : -limit;
 		}
 
-		m_faceDir           = roundAng(approxSpeed + getFaceDir());
-		_1A4.m_matrix[0][1] = m_faceDir;
+		m_faceDir = roundAng(approxSpeed + getFaceDir());
+		_1A4.y    = m_faceDir;
 		return angleDist;
 	}
 
@@ -562,7 +562,9 @@ struct EnemyBase : public Creature, public SysShape::MotionListener, virtual pub
 	EnemyAnimKeyEvent* m_animKeyEvent;  // _188
 	Vector3f m_position;                // _18C
 	Vector3f m_homePosition;            // _198
-	Matrix3f _1A4;                      // _1A4
+	Vector3f _1A4;                      // _1A4
+	Vector3f _1B0;                      // _1B0
+	Vector3f _1BC;                      // _1BC
 	Vector3f m_velocity;                // _1C8
 	Vector3f m_velocity2;               // _1D4
 	BitFlagArray<u32, 2> m_events;      // _1E0

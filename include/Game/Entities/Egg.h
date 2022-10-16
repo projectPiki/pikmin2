@@ -7,6 +7,7 @@
 #include "Game/EnemyMgrBase.h"
 #include "Game/EnemyBase.h"
 #include "efx/TSimple.h"
+#include "Game/ItemHoney.h"
 
 /**
  * --Header for Egg (Egg)--
@@ -14,33 +15,47 @@
 
 namespace Game {
 namespace Egg {
-struct FSM;
+struct FSM : public EnemyStateMachine {
+	virtual void init(EnemyBase*); // _08
+
+	// _00		= VTBL
+	// _00-_1C	= EnemyStateMachine
+};
 
 struct Obj : public EnemyBase {
 	Obj();
 
-	//////////////// VTABLE
-	virtual void onInit(CreatureInitArg*);                  // _30
-	virtual void doSimulation(f32);                         // _4C
-	virtual void doDirectDraw(Graphics&);                   // _50
-	virtual void onStartCapture();                          // _94
-	virtual void onEndCapture();                            // _9C
-	virtual bool isLivingThing();                           // _D4 (weak)
-	virtual void bounceCallback(Sys::Triangle*);            // _E8
-	virtual void collisionCallback(CollEvent&);             // _EC
-	virtual void getShadowParam(ShadowParam&);              // _134
-	virtual bool needShadow();                              // _138
-	virtual ~Obj();                                         // _1BC (weak)
-	virtual void birth(Vector3f&, f32);                     // _1C0
-	virtual void setInitialSetting(EnemyInitialParamBase*); // _1C4 (weak)
-	virtual void doUpdate();                                // _1CC
-	virtual void doAnimationCullingOff();                   // _1DC
-	virtual void doDebugDraw(Graphics&);                    // _1EC
-	virtual void setParameters();                           // _228
-	virtual EnemyTypeID::EEnemyTypeID getEnemyTypeID();     // _258 (weak)
-	virtual bool pressCallBack(Creature*, f32, CollPart*);  // _27C
-	virtual f32 getDownSmokeScale();                        // _2EC (weak)
-	virtual void setFSM(FSM*);                              // _2F8 (weak)
+	//////////////// VTABLE - Note: order necessary for weak function ordering
+	virtual void onInit(CreatureInitArg*); // _30
+	virtual void doSimulation(f32);        // _4C
+	virtual void doDirectDraw(Graphics&);  // _50
+	virtual void onStartCapture();         // _94
+	virtual void onEndCapture();           // _9C
+
+	virtual void bounceCallback(Sys::Triangle*);                          // _E8
+	virtual void collisionCallback(CollEvent&);                           // _EC
+	virtual void getShadowParam(ShadowParam&);                            // _134
+	virtual bool needShadow();                                            // _138
+	virtual ~Obj();                                                       // _1BC (weak)
+	virtual void birth(Vector3f&, f32);                                   // _1C0
+	virtual void setInitialSetting(EnemyInitialParamBase*) { }            // _1C4 (weak)
+	virtual void doUpdate();                                              // _1CC
+	virtual void doAnimationCullingOff();                                 // _1DC
+	virtual void doDebugDraw(Graphics&);                                  // _1EC
+	virtual void setParameters();                                         // _228
+	virtual bool isLivingThing() { return (m_captureMatrix == nullptr); } // _D4 (weak)
+	virtual EnemyTypeID::EEnemyTypeID getEnemyTypeID()                    // _258 (weak)
+	{
+		return EnemyTypeID::EnemyID_Egg;
+	}
+	virtual bool pressCallBack(Creature*, f32, CollPart*); // _27C
+	virtual f32 getDownSmokeScale() { return 0.4f; }       // _2EC (weak)
+	virtual void setFSM(FSM* fsm)                          // _2F8 (weak)
+	{
+		m_FSM = fsm;
+		m_FSM->init(this);
+		m_currentLifecycleState = nullptr;
+	}
 	//////////////// VTABLE END
 
 	void genItem();
@@ -104,13 +119,6 @@ struct ProperAnimator : public EnemyAnimatorBase {
 enum StateID {
 	EGG_Wait = 0,
 	EGG_Count,
-};
-
-struct FSM : public EnemyStateMachine {
-	virtual void init(EnemyBase*); // _08
-
-	// _00		= VTBL
-	// _00-_1C	= EnemyStateMachine
 };
 
 struct State : public EnemyFSMState {

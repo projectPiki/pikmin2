@@ -94,10 +94,10 @@ struct Mgr : public EnemyMgrBase {
 	//////////////// VTABLE END
 
 	void fetch(J3DModel*, f32);
-	void createGroup(EnemyBirthArg&, int, Vector3f&);
-	void createGroupByBigFoot(EnemyBirthArg&, int, Vector3f&, f32);
-	void createGroup(Obj*, int, bool);
-	void createGroupByBigFoot(Obj*, int, bool, f32);
+	Obj* createGroup(EnemyBirthArg&, int, Vector3f&);
+	Obj* createGroupByBigFoot(EnemyBirthArg&, int, Vector3f&, f32);
+	Obj* createGroup(Obj*, int, bool);
+	Obj* createGroupByBigFoot(Obj*, int, bool, f32);
 
 	// _00 		= VTBL
 	// _00-_44	= EnemyMgrBase

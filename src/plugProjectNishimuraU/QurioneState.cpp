@@ -156,8 +156,8 @@ void StateDisappear::cleanup(EnemyBase* enemy)
 	if (faceDir >= TAU) {
 		faceDir -= TAU;
 	}
-	wisp->m_faceDir           = faceDir;
-	wisp->_1A4.m_matrix[0][1] = wisp->m_faceDir;
+	wisp->m_faceDir = faceDir;
+	wisp->_1A4.y    = wisp->m_faceDir;
 
 	wisp->m_spawnIndex ^= 1;
 	wisp->setAtari(true);

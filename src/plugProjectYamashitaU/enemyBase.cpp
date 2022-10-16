@@ -510,9 +510,9 @@ void FitState::updateAlways(Game::EnemyBase* enemy)
 		}
 		float theta = (TAU * enemy->m_scaleTimer) / 0.25f;
 
-		enemy->_1A4.m_matrix[2][0] = sinStun * (0.017453294f * pikmin2_sinf(theta));
-		enemy->_1A4.m_matrix[2][1] = 0.0f;
-		enemy->_1A4.m_matrix[2][2] = sinStun * (0.017453294f * pikmin2_cosf(theta));
+		enemy->_1BC.x = sinStun * (0.017453294f * pikmin2_sinf(theta));
+		enemy->_1BC.y = 0.0f;
+		enemy->_1BC.z = sinStun * (0.017453294f * pikmin2_cosf(theta));
 	}
 	m_enemyPiyo.m_position = enemy->getFitEffectPos();
 }
@@ -2042,24 +2042,18 @@ void EnemyBase::birth(Vector3f& pos, float faceDir)
 	setEvent(0, EB_Alive);
 	m_inPiklopedia = true;
 	setPosition(pos, false);
-	m_homePosition.x    = pos.x;
-	m_homePosition.y    = pos.y;
-	m_homePosition.z    = pos.z;
-	_1A4.m_matrix[0][0] = 0.0f;
-	_1A4.m_matrix[0][1] = 0.0f;
-	_1A4.m_matrix[0][2] = 0.0f;
-	m_velocity.x        = 0.0f;
-	m_velocity.y        = 0.0f;
-	m_velocity.z        = 0.0f;
-	m_velocity2.x       = 0.0f;
-	m_velocity2.y       = 0.0f;
-	m_velocity2.z       = 0.0f;
-	m_targetCreature    = nullptr;
-	m_faceDir           = faceDir;
-	_1A4.m_matrix[0][1] = m_faceDir;
-	_0C8                = nullptr;
-	m_stickPikminCount  = 0;
-	m_heldPellet        = nullptr;
+	m_homePosition.x   = pos.x;
+	m_homePosition.y   = pos.y;
+	m_homePosition.z   = pos.z;
+	_1A4               = Vector3f(0.0f);
+	m_velocity         = Vector3f(0.0f);
+	m_velocity2        = Vector3f(0.0f);
+	m_targetCreature   = nullptr;
+	m_faceDir          = faceDir;
+	_1A4.y             = m_faceDir;
+	_0C8               = nullptr;
+	m_stickPikminCount = 0;
+	m_heldPellet       = nullptr;
 	m_model->m_j3dModel->calc();
 	m_collTree->update();
 	updateSpheres();
@@ -2084,7 +2078,7 @@ void EnemyBase::birth(Vector3f& pos, float faceDir)
  */
 void EnemyBase::updateTrMatrix()
 {
-	Vector3f rot = _1A4.getRow(0) + _1A4.getRow(1) + _1A4.getRow(2);
+	Vector3f rot = _1A4 + _1B0 + _1BC;
 	m_mainMatrix.makeTR(m_position, rot);
 }
 
@@ -2250,7 +2244,7 @@ void EnemyBase::doAnimationCullingOff()
 		if (isStickTo()) {
 			doAnimationStick();
 		} else {
-			Vector3f rot = _1A4.getRow(0) + _1A4.getRow(1) + _1A4.getRow(2);
+			Vector3f rot = _1A4 + _1B0 + _1BC;
 			m_mainMatrix.makeSRT(m_scale, rot, m_position);
 		}
 	}
@@ -2273,7 +2267,7 @@ void EnemyBase::doAnimationCullingOff()
  */
 void EnemyBase::doAnimationStick()
 {
-	Vector3f rot = _1A4.getRow(0) + _1A4.getRow(1) + _1A4.getRow(2);
+	Vector3f rot = _1A4 + _1B0 + _1BC;
 	m_mainMatrix.makeSRT(m_scale, rot, m_position);
 }
 
@@ -3513,14 +3507,14 @@ void Game::EnemyBase::scaleDamageAnim()
 				float sin1        = pikmin2_sinf(TAU * horizontalModifier);
 				float otherFactor = 0.03490659f * factor; // reordered?
 				sin1 *= otherFactor;
-				_1A4.m_matrix[1][0] = horizontalModifier * sin1;
+				_1B0.x = horizontalModifier * sin1;
 
-				_1A4.m_matrix[1][1] = 0.0f;
+				_1B0.y = 0.0f;
 
 				sin1        = pikmin2_sinf(TAU * (2.0f * horizontalModifier)); // regswap
 				otherFactor = 0.043633234f * factor;
 				otherFactor *= sin1;
-				_1A4.m_matrix[1][2] = horizontalModifier * otherFactor;
+				_1B0.z = horizontalModifier * otherFactor;
 
 				float scaleVal = m_scaleModifier;
 				m_scale.z      = scaleVal;

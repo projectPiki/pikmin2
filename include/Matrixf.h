@@ -69,6 +69,8 @@ struct Matrixf {
 		p2.z = (*this)(p1, 2);
 	}
 
+	inline Vector3f getBasis(int p1) { return Vector3f((*this)(0, p1), (*this)(1, p1), (*this)(2, p1)); }
+
 	/**
 	 * @fabricated
 	 */
