@@ -3512,7 +3512,7 @@ void Game::EnemyBase::scaleDamageAnim()
 				if (m_damageAnimTimer > scaleDuration) {
 					finishScaleDamageAnim();
 				} else {
-					horizontalModifier = 1.0f - getModifier(scaleDuration);
+					horizontalModifier = 1.0f - getDamageAnimFrac(scaleDuration);
 				}
 
 				float sin1        = pikmin2_sinf(TAU * horizontalModifier);
@@ -3537,7 +3537,7 @@ void Game::EnemyBase::scaleDamageAnim()
 			if (m_damageAnimTimer > scaleDuration) {
 				finishScaleDamageAnim();
 			} else {
-				horizontalModifier = pikmin2_sinf(TAU * getModifier(scaleDuration)) * (1.0f - getModifier(scaleDuration));
+				horizontalModifier = pikmin2_sinf(TAU * getDamageAnimFrac(scaleDuration)) * (1.0f - getDamageAnimFrac(scaleDuration));
 			}
 
 			if (isEvent(0, EB_15)) {

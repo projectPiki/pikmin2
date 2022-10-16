@@ -546,7 +546,7 @@ struct EnemyBase : public Creature, public SysShape::MotionListener, virtual pub
 		return angleDist;
 	}
 
-	inline f32 getModifier(f32 scale) { return (m_damageAnimTimer / scale); }
+	inline f32 getDamageAnimFrac(f32 scale) { return (m_damageAnimTimer / scale); }
 
 	inline f32 getSqrHomeRadius()
 	{
