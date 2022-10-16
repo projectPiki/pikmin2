@@ -1185,7 +1185,7 @@ void Pellet::onInit(Game::CreatureInitArg* initArg)
 
 	m_claim        = 0;
 	_3E0           = 0.0f;
-	_0C8           = nullptr;
+	m_curTriangle  = nullptr;
 	_311           = 0;
 	m_faceDir      = 0.0f;
 	_438           = 0.0f;
@@ -2119,9 +2119,9 @@ void Pellet::onSetPosition()
 	updateParticlePositions();
 	m_rigid._00 = 1.0f;
 
-	_118 = 0.0f;
+	m_mass = 0.0f;
 	if (_32C == 1) {
-		_118 = 0.01f;
+		m_mass = 0.01f;
 	}
 
 	float inertiaScaling = m_config->m_params.m_inertiaScaling.m_data;

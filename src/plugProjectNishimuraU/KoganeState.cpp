@@ -35,7 +35,7 @@ void StateAppear::init(EnemyBase* enemy, StateArg* stateArg)
 	kogane->resetEvent(0, EB_16);
 	kogane->setEvent(0, EB_31);
 
-	kogane->m_velocity2 = Vector3f(0.0f);
+	kogane->m_simVelocity = Vector3f(0.0f);
 	kogane->startMotion(0, nullptr);
 	kogane->stopMotion();
 }
@@ -193,7 +193,7 @@ void StateWait::init(EnemyBase* enemy, StateArg* stateArg)
 	Parms* parms = static_cast<Parms*>(kogane->m_parms);
 	kogane->resetMoveTimer(parms->m_properParms.m_fp20.m_value, parms->m_properParms.m_fp21.m_value);
 
-	kogane->m_velocity2 = Vector3f(0.0f);
+	kogane->m_simVelocity = Vector3f(0.0f);
 	kogane->startMotion(1, nullptr);
 }
 

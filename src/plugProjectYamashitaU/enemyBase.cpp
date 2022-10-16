@@ -300,8 +300,8 @@ void AppearState::init(Game::EnemyBase* enemy, Game::StateArg* arg)
 	efx::ArgEnemyType effectArg(enemy->getPosition(), id, mod);
 	effect.create(&effectArg);
 
-	enemy->m_scale      = 0.0f;
-	enemy->m_scaleTimer = 0.0f;
+	enemy->m_scale         = 0.0f;
+	enemy->m_stunAnimTimer = 0.0f;
 }
 
 /*
@@ -311,18 +311,18 @@ void AppearState::init(Game::EnemyBase* enemy, Game::StateArg* arg)
  */
 void AppearState::update(Game::EnemyBase* enemy)
 {
-	enemy->m_scaleTimer += 2.0f * sys->m_secondsPerFrame;
-	if (enemy->m_scaleTimer > 1.0f) {
+	enemy->m_stunAnimTimer += 2.0f * sys->m_secondsPerFrame;
+	if (enemy->m_stunAnimTimer > 1.0f) {
 		transit(enemy, EBS_Living, 0);
 		return;
 	}
 
-	enemy->m_scale.x = 2.0f * enemy->m_scaleTimer;
+	enemy->m_scale.x = 2.0f * enemy->m_stunAnimTimer;
 	if (enemy->m_scale.x > 1.0f) {
 		enemy->m_scale.x = 1.0f;
 	}
 
-	enemy->m_scale.x += 0.2f * pikmin2_sinf(TAU * enemy->m_scaleTimer);
+	enemy->m_scale.x += 0.2f * pikmin2_sinf(TAU * enemy->m_stunAnimTimer);
 	float newScale   = enemy->m_scale.x;
 	enemy->m_scale.z = newScale;
 	enemy->m_scale.y = newScale;
@@ -338,8 +338,8 @@ void AppearState::update(Game::EnemyBase* enemy)
  */
 void AppearState::cleanup(Game::EnemyBase* enemy)
 {
-	enemy->m_scale      = 1.0f;
-	enemy->m_scaleTimer = 0.0f;
+	enemy->m_scale         = 1.0f;
+	enemy->m_stunAnimTimer = 0.0f;
 }
 
 /*
@@ -410,9 +410,12 @@ void LivingState::updateAlways(Game::EnemyBase* enemy)
 void LivingState::update(Game::EnemyBase* enemy)
 {
 	sys->m_timers->_start("e-upd-do", 1);
+
 	enemy->resetEvent(0, EB_17);
 	enemy->resetEvent(0, EB_18);
+
 	enemy->m_soundObj->exec();
+
 	if (enemy->m_pellet) {
 		enemy->doUpdateCarcass();
 	} else {
@@ -420,13 +423,17 @@ void LivingState::update(Game::EnemyBase* enemy)
 			updateCullingOff(enemy);
 			enemy->doUpdateCommon();
 		}
+
 		updateAlways(enemy);
+
 		if (!(enemy->m_health <= 0.0f) && (enemy->isAlive())) {
 			enemy->lifeRecover();
 			enemy->injure();
 		}
+
 		if (enemy->_2AC > 0.0f) {
 			enemy->_2A8 += sys->m_secondsPerFrame;
+
 			if (enemy->_2A8 > enemy->_2AC) {
 				enemy->addDamage(enemy->m_maxHealth, 1.0f);
 				enemy->resetEvent(0, EB_Cullable);
@@ -434,6 +441,7 @@ void LivingState::update(Game::EnemyBase* enemy)
 			}
 		}
 	}
+
 	sys->m_timers->_stop("e-upd-do");
 }
 
@@ -463,8 +471,8 @@ void EnemyBaseFSM::FitState::init(Game::EnemyBase* enemy, Game::StateArg* arg)
 	enemy->stopMotion();
 	enemy->setEvent(0, EB_Constraint);
 
-	enemy->m_velocity2 = 0.0f;
-	enemy->m_velocity  = 0.0f;
+	enemy->m_simVelocity = 0.0f;
+	enemy->m_impVelocity = 0.0f;
 	enemy->doStartEarthquakeFitState();
 
 	m_enemyPiyo.m_position       = enemy->getFitEffectPos();
@@ -497,22 +505,23 @@ void FitState::cleanup(Game::EnemyBase* enemy)
  */
 void FitState::updateAlways(Game::EnemyBase* enemy)
 {
-	enemy->m_scaleTimer += sys->m_secondsPerFrame;
-	if ((enemy->m_scaleTimer > ((EnemyParmsBase*)enemy->m_parms)->m_general.m_purplePikminStunTime.m_value) || (enemy->isEvent(0, EB_21))
+	enemy->m_stunAnimTimer += sys->m_secondsPerFrame;
+	if ((enemy->m_stunAnimTimer > ((EnemyParmsBase*)enemy->m_parms)->m_general.m_purplePikminStunTime.m_value) || (enemy->isEvent(0, EB_21))
 	    || (((enemy->m_health <= 0.0f)))) {
-		enemy->m_scaleTimer = 0.0f;
+		enemy->m_stunAnimTimer = 0.0f;
 		transit(enemy, EBS_Living, 0);
 	} else {
 		float sinStun
-		    = 4.0f * pikmin2_sinf((PI * enemy->m_scaleTimer) / ((EnemyParmsBase*)enemy->m_parms)->m_general.m_purplePikminStunTime.m_value);
+		    = 4.0f
+		      * pikmin2_sinf((PI * enemy->m_stunAnimTimer) / ((EnemyParmsBase*)enemy->m_parms)->m_general.m_purplePikminStunTime.m_value);
 		if (sinStun > 1.0f) {
 			sinStun = 1.0f;
 		}
-		float theta = (TAU * enemy->m_scaleTimer) / 0.25f;
+		float theta = (TAU * enemy->m_stunAnimTimer) / 0.25f;
 
-		enemy->_1BC.x = sinStun * (0.017453294f * pikmin2_sinf(theta));
-		enemy->_1BC.y = 0.0f;
-		enemy->_1BC.z = sinStun * (0.017453294f * pikmin2_cosf(theta));
+		enemy->m_stunAnimRotation.x = sinStun * (0.017453294f * pikmin2_sinf(theta));
+		enemy->m_stunAnimRotation.y = 0.0f;
+		enemy->m_stunAnimRotation.z = sinStun * (0.017453294f * pikmin2_cosf(theta));
 	}
 	m_enemyPiyo.m_position = enemy->getFitEffectPos();
 }
@@ -551,14 +560,14 @@ void EarthquakeState::cleanup(Game::EnemyBase* enemy)
  */
 void EarthquakeState::updateCullingOff(Game::EnemyBase* enemy)
 {
-	if ((enemy->m_health <= 0.0f) && (enemy->_0C8)) {
+	if ((enemy->m_health <= 0.0f) && (enemy->m_curTriangle)) {
 		transit(enemy, EBS_Living, 0);
 		return;
 	}
 
-	if ((++_10 > 3) && (enemy->_0C8)) {
+	if ((++_10 > 3) && (enemy->m_curTriangle)) {
 		float randChance = randFloat();
-		if ((enemy->m_scaleTimer > 0.0f)
+		if ((enemy->m_stunAnimTimer > 0.0f)
 		    || ((randChance < ((EnemyParmsBase*)enemy->m_parms)->m_general.m_purplePikminStunChance.m_value) && !(enemy->isEvent(0, EB_21))
 		        && !(enemy->isEvent(0, EB_22)))) {
 			transit(enemy, EBS_Fit, 0);
@@ -603,9 +612,9 @@ void StoneState::init(Game::EnemyBase* enemy, Game::StateArg* arg)
 	enemy->hide();
 	enemy->m_stoneTimer = 0.0f;
 	enemy->stopMotion();
-	enemy->m_velocity = 0.0f;
+	enemy->m_impVelocity = 0.0f;
 
-	if (enemy->_0C8) {
+	if (enemy->m_curTriangle) {
 		enemy->setEvent(0, EB_Constraint);
 	} else {
 		enemy->setEvent(0, EB_Constraint);
@@ -652,7 +661,7 @@ void StoneState::updateAlways(Game::EnemyBase* enemy)
 	enemy->m_stoneTimer += sys->m_secondsPerFrame;
 
 	if (enemy->m_enemyStoneObj->_50 & 4) {
-		if (enemy->_0C8 == nullptr) {
+		if (enemy->m_curTriangle == nullptr) {
 			enemy->constraintOff();
 			enemy->resetEvent(0, EB_3);
 		}
@@ -736,14 +745,14 @@ Game::EnemyBase::EnemyBase()
     , SysShape::MotionListener()
     , PelletView()
     , m_position(0.0f, 0.0f, 0.0f)
-    , _1A4()
+    , m_faceRotation()
     , m_events()
     , m_eventBuffer()
     , m_emotion(EMOTE_Caution)
     , m_enemyIndexForType(0xFF)
     , _1F2(0xFF)
     , m_stickPikminCount(0)
-    , m_scaleTimer(0.0f)
+    , m_stunAnimTimer(0.0f)
     , m_friction(0.0f)
     , m_stoneTimer(0.0f)
     , m_collEvent()
@@ -770,12 +779,12 @@ Game::EnemyBase::EnemyBase()
 	m_objectTypeID  = OBJTYPE_Teki;
 	m_scaleModifier = 1.0f;
 	m_collisionBuffer.alloc(this, 8);
-	m_animator       = nullptr;
-	m_animKeyEvent   = new EnemyAnimKeyEvent;
-	_210             = 0.0f;
-	m_targetCreature = nullptr;
-	_0C8             = 0;
-	m_lifecycleFSM   = new EnemyBaseFSM::StateMachine();
+	m_animator        = nullptr;
+	m_animKeyEvent    = new EnemyAnimKeyEvent;
+	m_damageAnimTimer = 0.0f;
+	m_targetCreature  = nullptr;
+	m_curTriangle     = nullptr;
+	m_lifecycleFSM    = new EnemyBaseFSM::StateMachine();
 	m_lifecycleFSM->init(this);
 	clearStick();
 	m_animKeyEvent->m_running = 0;
@@ -2045,13 +2054,13 @@ void EnemyBase::birth(Vector3f& pos, float faceDir)
 	m_homePosition.x   = pos.x;
 	m_homePosition.y   = pos.y;
 	m_homePosition.z   = pos.z;
-	_1A4               = Vector3f(0.0f);
-	m_velocity         = Vector3f(0.0f);
-	m_velocity2        = Vector3f(0.0f);
+	m_faceRotation     = Vector3f(0.0f);
+	m_impVelocity      = Vector3f(0.0f);
+	m_simVelocity      = Vector3f(0.0f);
 	m_targetCreature   = nullptr;
 	m_faceDir          = faceDir;
-	_1A4.y             = m_faceDir;
-	_0C8               = nullptr;
+	m_faceRotation.y   = m_faceDir;
+	m_curTriangle      = nullptr;
 	m_stickPikminCount = 0;
 	m_heldPellet       = nullptr;
 	m_model->m_j3dModel->calc();
@@ -2065,10 +2074,10 @@ void EnemyBase::birth(Vector3f& pos, float faceDir)
 		lifeGaugeMgr->activeLifeGauge(this, 1.0f);
 	}
 	m_model->hide();
-	m_emotion    = EMOTE_Caution;
-	_2AC         = 0.0f;
-	_2A8         = 0.0f;
-	m_scaleTimer = 0.0f;
+	m_emotion       = EMOTE_Caution;
+	_2AC            = 0.0f;
+	_2A8            = 0.0f;
+	m_stunAnimTimer = 0.0f;
 }
 
 /*
@@ -2078,7 +2087,7 @@ void EnemyBase::birth(Vector3f& pos, float faceDir)
  */
 void EnemyBase::updateTrMatrix()
 {
-	Vector3f rot = _1A4 + _1B0 + _1BC;
+	Vector3f rot = m_faceRotation + m_damageAnimRotation + m_stunAnimRotation;
 	m_mainMatrix.makeTR(m_position, rot);
 }
 
@@ -2091,8 +2100,8 @@ void EnemyBase::setParameters()
 {
 	m_health    = static_cast<EnemyParmsBase*>(m_parms)->m_general.m_health.m_value;
 	m_maxHealth = static_cast<EnemyParmsBase*>(m_parms)->m_general.m_health.m_value;
-	_118        = static_cast<EnemyParmsBase*>(m_parms)->m_general.m_fp05.m_value;
-	m_friction  = _118;
+	m_mass      = static_cast<EnemyParmsBase*>(m_parms)->m_general.m_fp05.m_value;
+	m_friction  = m_mass;
 	Sys::Sphere sphere;
 	m_collTree->m_part->getSphere(sphere);
 	m_boundingSphere.m_radius = sphere.m_radius;
@@ -2165,9 +2174,9 @@ void EnemyBase::startStoneState()
  */
 void EnemyBase::doStartStoneState()
 {
-	m_velocity2.x = 0.0f;
-	m_velocity2.y = 0.0f;
-	m_velocity2.z = 0.0f;
+	m_simVelocity.x = 0.0f;
+	m_simVelocity.y = 0.0f;
+	m_simVelocity.z = 0.0f;
 }
 
 /*
@@ -2244,7 +2253,7 @@ void EnemyBase::doAnimationCullingOff()
 		if (isStickTo()) {
 			doAnimationStick();
 		} else {
-			Vector3f rot = _1A4 + _1B0 + _1BC;
+			Vector3f rot = m_faceRotation + m_damageAnimRotation + m_stunAnimRotation;
 			m_mainMatrix.makeSRT(m_scale, rot, m_position);
 		}
 	}
@@ -2267,7 +2276,7 @@ void EnemyBase::doAnimationCullingOff()
  */
 void EnemyBase::doAnimationStick()
 {
-	Vector3f rot = _1A4 + _1B0 + _1BC;
+	Vector3f rot = m_faceRotation + m_damageAnimRotation + m_stunAnimRotation;
 	m_mainMatrix.makeSRT(m_scale, rot, m_position);
 }
 
@@ -2398,22 +2407,24 @@ void EnemyBase::doViewCalc()
  * Address:	80103774
  * Size:	0000AC
  */
-void EnemyBase::doSimulationGround(float constraint)
+void EnemyBase::doSimulationGround(float accelRate)
 {
 	Vector3f groundDiff;
-	groundDiff.x  = m_velocity2.x;
-	groundDiff.y  = m_velocity.y;
-	groundDiff.z  = m_velocity2.z;
-	Vector3f diff = groundDiff - m_velocity;
+	groundDiff.x = m_simVelocity.x;
+	groundDiff.y = m_impVelocity.y;
+	groundDiff.z = m_simVelocity.z;
 
-	diff       = diff * getSimulationScale(constraint);
-	m_velocity = m_velocity + diff;
+	Vector3f diff = groundDiff - m_impVelocity;
+
+	diff          = diff * getAccelerationScale(accelRate);
+	m_impVelocity = m_impVelocity + diff;
 
 	if (checkSecondary()) {
-		m_velocity.y = -((3.0f * (constraint * _aiConstants->m_gravity.m_data)) - m_velocity.y);
+		m_impVelocity.y = -((3.0f * (accelRate * _aiConstants->m_gravity.m_data)) - m_impVelocity.y);
 		return;
 	}
-	m_velocity.y = -((constraint * _aiConstants->m_gravity.m_data) - m_velocity.y);
+
+	m_impVelocity.y = -((accelRate * _aiConstants->m_gravity.m_data) - m_impVelocity.y);
 }
 
 /*
@@ -2421,11 +2432,11 @@ void EnemyBase::doSimulationGround(float constraint)
  * Address:	80103820
  * Size:	000058
  */
-void EnemyBase::doSimulationFlying(float constraint)
+void EnemyBase::doSimulationFlying(float accelRate)
 {
-	Vector3f diff = m_velocity2 - m_velocity;
-	diff          = diff * getSimulationScale(constraint);
-	m_velocity    = m_velocity + diff;
+	Vector3f diff = m_simVelocity - m_impVelocity;
+	diff          = diff * getAccelerationScale(accelRate);
+	m_impVelocity = m_impVelocity + diff;
 }
 
 /*
@@ -2433,11 +2444,11 @@ void EnemyBase::doSimulationFlying(float constraint)
  * Address:	80103878
  * Size:	000058
  */
-void EnemyBase::doSimulationStick(float constraint)
+void EnemyBase::doSimulationStick(float accelRate)
 {
-	Vector3f diff = m_velocity2 - m_velocity;
-	diff          = diff * getSimulationScale(constraint);
-	m_velocity    = m_velocity + diff;
+	Vector3f diff = m_simVelocity - m_impVelocity;
+	diff          = diff * getAccelerationScale(accelRate);
+	m_impVelocity = m_impVelocity + diff;
 }
 
 /*
@@ -2554,7 +2565,7 @@ void EnemyBase::finishDropping(bool heightCheck)
 		createBounceEffect(pos, getDownSmokeScale());
 
 		resetEvent(1, EB2_5);
-		m_velocity = 0.0f;
+		m_impVelocity = 0.0f;
 	}
 }
 
@@ -2611,30 +2622,30 @@ void EnemyBase::collisionMapAndPlat(float constraint)
 
 		_11C.y = 0.0f;
 
-		Vector3f vec = m_velocity + _11C;
+		Vector3f vec = m_impVelocity + _11C;
 		MoveInfo moveInfo(&sphere, &vec, z);
 		moveInfo._14 = (BaseItem*)this;
 
 		mapMgr->traceMove(moveInfo, constraint);
 
-		m_velocity = vec;
+		m_impVelocity = vec;
 
-		float velocityNorm = m_velocity.normalise();
+		float velocityNorm = m_impVelocity.normalise();
 		float _11CNorm     = _11C.length();
 
 		if ((velocityNorm > _11CNorm)) {
 			velocityNorm -= _11CNorm;
-			m_velocity *= velocityNorm;
+			m_impVelocity *= velocityNorm;
 			_11C = 0.0f;
 		} else {
-			m_velocity *= velocityNorm;
+			m_impVelocity *= velocityNorm;
 			_11C = 0.0f;
 		}
 
-		if (_0C8 == nullptr && moveInfo._44 != nullptr) {
+		if (m_curTriangle == nullptr && moveInfo._44 != nullptr) {
 			bounceProcedure(moveInfo._44);
 		}
-		_0C8 = moveInfo._44;
+		m_curTriangle = moveInfo._44;
 
 		m_collisionPosition = moveInfo._50;
 
@@ -2644,14 +2655,14 @@ void EnemyBase::collisionMapAndPlat(float constraint)
 		_288 = moveInfo._48;
 
 		if (platMgr != nullptr && isEvent(0, EB_13)) {
-			moveInfo._04 = &m_velocity;
+			moveInfo._04 = &m_impVelocity;
 			platMgr->traceMove(moveInfo, constraint);
 
-			if (_0C8 == nullptr) {
+			if (m_curTriangle == nullptr) {
 				if (moveInfo._44 != nullptr) {
 					bounceProcedure(moveInfo._44);
 				}
-				_0C8 = moveInfo._44;
+				m_curTriangle = moveInfo._44;
 
 				m_collisionPosition = moveInfo._50;
 			}
@@ -2676,7 +2687,7 @@ void EnemyBase::collisionMapAndPlat(float constraint)
 
 		doSimulationStick(constraint);
 
-		m_position += m_velocity;
+		m_position += m_impVelocity;
 
 		Vector3f stick(pikmin2_sinf(m_faceDir), 0.0f, pikmin2_cosf(m_faceDir));
 		updateStick(stick);
@@ -3201,7 +3212,7 @@ void EnemyBase::doSimulationConstraint(float arg)
 	if (!(isEvent(0, EB_HardConstraint))) {
 		if (_11C.x != 0.0f || _11C.z != 0.0f) {
 			setEvent(0, EB_30);
-		} else if (_0C8 != nullptr) {
+		} else if (m_curTriangle != nullptr) {
 			resetEvent(0, EB_30);
 		}
 		if (isEvent(0, EB_30)) {
@@ -3473,10 +3484,10 @@ void EnemyBase::lifeRecover()
  */
 void Game::EnemyBase::scaleDamageAnim()
 {
-	if ((isEvent(0, EB_Flying)) || (0.0f != _210)) {
-		if (0.0f == _210) {
+	if ((isEvent(0, EB_Flying)) || (0.0f != m_damageAnimTimer)) {
+		if (0.0f == m_damageAnimTimer) {
 			if (isEvent(0, EB_Damage)) {
-				_210 = _210 + sys->m_secondsPerFrame;
+				m_damageAnimTimer = m_damageAnimTimer + sys->m_secondsPerFrame;
 			}
 
 		} else {
@@ -3491,14 +3502,14 @@ void Game::EnemyBase::scaleDamageAnim()
 			}
 
 			if (isEvent(0, EB_15)) {
-				_210 += 0.5f * sys->m_secondsPerFrame;
+				m_damageAnimTimer += 0.5f * sys->m_secondsPerFrame;
 			} else {
-				_210 += sys->m_secondsPerFrame;
+				m_damageAnimTimer += sys->m_secondsPerFrame;
 			}
 
 			if (isEvent(0, EB_Bittered)) {
 
-				if (_210 > scaleDuration) {
+				if (m_damageAnimTimer > scaleDuration) {
 					finishScaleDamageAnim();
 				} else {
 					horizontalModifier = 1.0f - getModifier(scaleDuration);
@@ -3507,14 +3518,14 @@ void Game::EnemyBase::scaleDamageAnim()
 				float sin1        = pikmin2_sinf(TAU * horizontalModifier);
 				float otherFactor = 0.03490659f * factor; // reordered?
 				sin1 *= otherFactor;
-				_1B0.x = horizontalModifier * sin1;
+				m_damageAnimRotation.x = horizontalModifier * sin1;
 
-				_1B0.y = 0.0f;
+				m_damageAnimRotation.y = 0.0f;
 
 				sin1        = pikmin2_sinf(TAU * (2.0f * horizontalModifier)); // regswap
 				otherFactor = 0.043633234f * factor;
 				otherFactor *= sin1;
-				_1B0.z = horizontalModifier * otherFactor;
+				m_damageAnimRotation.z = horizontalModifier * otherFactor;
 
 				float scaleVal = m_scaleModifier;
 				m_scale.z      = scaleVal;
@@ -3523,7 +3534,7 @@ void Game::EnemyBase::scaleDamageAnim()
 				return;
 			}
 
-			if (_210 > scaleDuration) {
+			if (m_damageAnimTimer > scaleDuration) {
 				finishScaleDamageAnim();
 			} else {
 				horizontalModifier = pikmin2_sinf(TAU * getModifier(scaleDuration)) * (1.0f - getModifier(scaleDuration));
@@ -3810,7 +3821,7 @@ void Game::EnemyBase::scaleDamageAnim()
  */
 void EnemyBase::finishScaleDamageAnim()
 {
-	_210 = 0.0f;
+	m_damageAnimTimer = 0.0f;
 	resetEvent(0, EB_15);
 	resetEvent(0, EB_20);
 }
@@ -4066,14 +4077,14 @@ bool EnemyBase::injure()
  * Address:	8010602C
  * Size:	000040
  */
-void EnemyBase::addDamage(float p1, float p2)
+void EnemyBase::addDamage(float damageAmt, float flickSpeed)
 {
 	if (isEvent(0, EB_Vulnerable)) {
 		return;
 	}
-	m_instantDamage += p1;
+	m_instantDamage += damageAmt;
 	if (isEvent(0, EB_DropMassSet)) {
-		m_toFlick += p2;
+		m_toFlick += flickSpeed;
 	}
 	setEvent(0, EB_Damage);
 }
@@ -4127,7 +4138,7 @@ bool EnemyBase::hipdropCallBack(Game::Creature* sourceCreature, float damage, Co
 	}
 
 	setEvent(0, EB_20);
-	if (_0C8 != 0) {
+	if (m_curTriangle != 0) {
 		createBounceEffect(m_position, getDownSmokeScale());
 	}
 	return false;
@@ -4169,7 +4180,7 @@ bool EnemyBase::checkBirthTypeDropEarthquake()
  */
 bool EnemyBase::earthquakeCallBack(Game::Creature* creature, float bounceFactor)
 {
-	if (_0C8 && !(m_health <= 0.0f) && !isFlying() && isAlive()) {
+	if (m_curTriangle && !(m_health <= 0.0f) && !isFlying() && isAlive()) {
 		if (!(isEvent(0, EB_HardConstraint)) && !(isEvent(0, EB_Bittered))) {
 			if (((isEvent(0, EB_22)) || (isEvent(0, EB_BitterImmune))) == false) {
 				EarthquakeStateArg eqArg;
@@ -4595,7 +4606,7 @@ bool EnemyBase::eatWhitePikminCallBack(Creature* creature, f32 damage)
 	if (!(isEvent(0, EB_15))) {
 		setEvent(0, EB_15);
 
-		_210 = sys->m_secondsPerFrame;
+		m_damageAnimTimer = sys->m_secondsPerFrame;
 
 		for (int i = 0; i < m_enemyStoneObj->m_info->m_infoCnt; i++) {
 			EnemyStone::DrawInfo drawInfo(false);
@@ -4809,7 +4820,7 @@ void EnemyBase::constraintOff() { resetEvent(0, EB_Constraint); }
 void EnemyBase::hardConstraintOn()
 {
 	setEvent(0, EB_HardConstraint);
-	_118 = 0.0f;
+	m_mass = 0.0f;
 }
 
 /*
@@ -4820,7 +4831,7 @@ void EnemyBase::hardConstraintOn()
 void EnemyBase::hardConstraintOff()
 {
 	resetEvent(0, EB_HardConstraint);
-	_118   = m_friction;
+	m_mass = m_friction;
 	_11C.x = 0.0f;
 	_11C.y = 0.0f;
 	_11C.z = 0.0f;
@@ -4867,15 +4878,15 @@ void EnemyBase::endMovie()
  */
 void EnemyBase::doStartEarthquakeState(float param_1)
 {
-	m_velocity2.x = 0.0f;
-	m_velocity2.y = 0.0f;
-	m_velocity2.z = 0.0f;
+	m_simVelocity.x = 0.0f;
+	m_simVelocity.y = 0.0f;
+	m_simVelocity.z = 0.0f;
 
-	m_velocity.x = 0.0f;
-	m_velocity.y = 0.0f;
-	m_velocity.z = 0.0f;
+	m_impVelocity.x = 0.0f;
+	m_impVelocity.y = 0.0f;
+	m_impVelocity.z = 0.0f;
 
-	m_velocity.y = (param_1 * 200.0f + randFloat() * 100.0f);
+	m_impVelocity.y = (param_1 * 200.0f + randFloat() * 100.0f);
 };
 
 /*
@@ -4961,7 +4972,7 @@ Vector3f* EnemyBase::getFitEffectPos() { return &m_boundingSphere.m_position; }
 void EnemyBase::setDroppingMassZero()
 {
 	setEvent(1, EB2_DroppingMassZero);
-	_118 = 0.0f;
+	m_mass = 0.0f;
 }
 
 /*
@@ -4972,7 +4983,7 @@ void EnemyBase::setDroppingMassZero()
 void EnemyBase::resetDroppingMassZero()
 {
 	resetEvent(1, EB2_DroppingMassZero);
-	_118 = m_friction;
+	m_mass = m_friction;
 }
 } // namespace Game
 

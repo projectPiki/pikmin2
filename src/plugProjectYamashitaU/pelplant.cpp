@@ -249,8 +249,8 @@ void Obj::getShadowParam(ShadowParam& param)
 	param.m_position = m_position;
 	param.m_position.y += 2.0f;
 
-	if (_0C8 != nullptr) {
-		Plane* plane                        = &_0C8->m_trianglePlane;
+	if (m_curTriangle != nullptr) {
+		Plane* plane                        = &m_curTriangle->m_trianglePlane;
 		param.m_boundingSphere.m_position.x = plane->a;
 		param.m_boundingSphere.m_position.y = plane->b;
 		param.m_boundingSphere.m_position.z = plane->c;

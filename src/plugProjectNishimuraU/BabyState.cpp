@@ -29,7 +29,7 @@ void StateDead::init(EnemyBase* enemy, StateArg* stateArg)
 	Obj* baby = static_cast<Obj*>(enemy);
 	baby->createHoney();
 	baby->deathProcedure();
-	baby->m_velocity2 = Vector3f(0.0f);
+	baby->m_simVelocity = Vector3f(0.0f);
 	baby->startMotion(0, nullptr);
 }
 
@@ -63,7 +63,7 @@ void StatePress::init(EnemyBase* enemy, StateArg* stateArg)
 	baby->createHoney();
 	baby->m_health = 0.0f;
 	baby->deathProcedure();
-	baby->m_velocity2 = Vector3f(0.0f);
+	baby->m_simVelocity = Vector3f(0.0f);
 	baby->startMotion(1, nullptr);
 	Vector3f position = baby->getPosition();
 
@@ -111,11 +111,11 @@ void StateBorn::init(EnemyBase* enemy, StateArg* stateArg)
  */
 void StateBorn::exec(EnemyBase* enemy)
 {
-	if (enemy->_0C8 != nullptr) {
+	if (enemy->m_curTriangle != nullptr) {
 
-		Vector3f vec = enemy->m_velocity2;
+		Vector3f vec = enemy->m_simVelocity;
 		weightVecXZ(vec, 0.95f);
-		enemy->m_velocity2 = vec;
+		enemy->m_simVelocity = vec;
 
 		enemy->finishMotion();
 	}
@@ -179,18 +179,18 @@ void StateMove::exec(EnemyBase* enemy)
 		if ((f32)(abs) <= (DEG2RAD * static_cast<Parms*>(baby->m_parms)->m_general.m_fp21.m_value) * PI) {
 			f32 speed    = static_cast<Parms*>(baby->m_parms)->m_general.m_moveSpeed.m_value;
 			f32 sintheta = (f32)sin(baby->getFaceDir());
-			Vector3f vel = baby->m_velocity2;
+			Vector3f vel = baby->m_simVelocity;
 			f32 costheta = (f32)cos(baby->getFaceDir());
 
-			enemy->m_velocity2 = Vector3f(speed * sintheta, vel.y, speed * costheta);
+			enemy->m_simVelocity = Vector3f(speed * sintheta, vel.y, speed * costheta);
 
 		} else {
 			f32 speed    = static_cast<Parms*>(baby->m_parms)->m_general.m_moveSpeed.m_value / 4;
 			f32 sintheta = (f32)sin(baby->getFaceDir());
-			Vector3f vel = baby->m_velocity2;
+			Vector3f vel = baby->m_simVelocity;
 			f32 costheta = (f32)cos(baby->getFaceDir());
 
-			enemy->m_velocity2 = Vector3f(speed * sintheta, vel.y, speed * costheta);
+			enemy->m_simVelocity = Vector3f(speed * sintheta, vel.y, speed * costheta);
 		}
 
 		f32 attackAngle = static_cast<Parms*>(baby->m_parms)->m_general.m_fp21.m_value;
@@ -533,7 +533,7 @@ void StateMove::cleanup(EnemyBase* enemy) { }
  */
 void StateAttack::init(EnemyBase* enemy, StateArg* stateArg)
 {
-	enemy->m_velocity2 = Vector3f(0.0f);
+	enemy->m_simVelocity = Vector3f(0.0f);
 	enemy->setEmotionExcitement();
 	enemy->startMotion(3, nullptr);
 }

@@ -50,7 +50,7 @@ void Obj::onInit(CreatureInitArg* initArg)
 		m_animKeyEvent->m_running = 0;
 		doAnimationUpdateAnimator();
 
-		m_mainMatrix.makeSRT(m_scale, _1A4, m_position);
+		m_mainMatrix.makeSRT(m_scale, m_faceRotation, m_position);
 
 		PSMTXCopy(m_mainMatrix.m_matrix.mtxView, m_model->m_j3dModel->_24);
 		m_model->m_j3dModel->calc();
@@ -76,10 +76,10 @@ Obj::Obj()
  */
 void Obj::doUpdate()
 {
-	if (_0C8 != nullptr) {
-		m_velocity2 = Vector3f(0.0f);
+	if (m_curTriangle != nullptr) {
+		m_simVelocity = Vector3f(0.0f);
 	} else {
-		m_velocity2 = m_velocity;
+		m_simVelocity = m_impVelocity;
 	}
 
 	m_FSM->exec(this);
@@ -136,7 +136,7 @@ void Obj::doAnimationCullingOff()
 		check = false;
 		if (m_position.x != vec.x || m_position.y != vec.y || m_position.z != vec.z) {
 			check = true;
-			m_mainMatrix.makeSRT(m_scale, _1A4, m_position);
+			m_mainMatrix.makeSRT(m_scale, m_faceRotation, m_position);
 		}
 	}
 
@@ -217,8 +217,8 @@ void Obj::onStartCapture()
 	if (m_captureMatrix != nullptr) {
 		Vector3f position = m_captureMatrix->getBasis(3);
 		onSetPosition(position);
-		m_velocity  = Vector3f(0.0f);
-		m_velocity2 = Vector3f(0.0f);
+		m_impVelocity = Vector3f(0.0f);
+		m_simVelocity = Vector3f(0.0f);
 		setEvent(0, EB_Constraint);
 		setEvent(0, EB_Vulnerable);
 		resetEvent(0, EB_Cullable);

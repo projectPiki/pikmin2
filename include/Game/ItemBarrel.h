@@ -97,7 +97,7 @@ struct BarrelParms : public CreatureParms {
 	struct Parms : public Parameters {
 		inline Parms()
 		    : Parameters(nullptr, "Barrel::Parms")
-		    , p000(this, 'p000', "ライフ", 100.0f, 1.0f, 6000.0f)
+		    , p000(this, 'p000', "ライ�?", 100.0f, 1.0f, 6000.0f)
 		{
 		}
 
@@ -133,7 +133,7 @@ struct Item : public WorkItem<Item, FSM, State> {
 	inline Item()
 	    : WorkItem(0x410)
 	{
-		_118 = 0.0f;
+		m_mass = 0.0f;
 	}
 
 	// vtable 1

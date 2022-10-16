@@ -38,7 +38,7 @@ void StateStay::init(EnemyBase* enemy, StateArg* stateArg)
 	wisp->resetEvent(0, EB_16);
 	wisp->setEvent(0, EB_31);
 
-	wisp->m_velocity2 = Vector3f(0.0f);
+	wisp->m_simVelocity = Vector3f(0.0f);
 	wisp->startMotion(3, nullptr);
 	wisp->stopMotion();
 }
@@ -80,7 +80,7 @@ void StateAppear::init(EnemyBase* enemy, StateArg* stateArg)
 {
 	Obj* wisp = static_cast<Obj*>(enemy);
 	wisp->setAtari(false);
-	wisp->m_velocity2 = Vector3f(0.0f);
+	wisp->m_simVelocity = Vector3f(0.0f);
 	wisp->startMotion(3, nullptr);
 
 	wisp->createAppearEffect();
@@ -124,7 +124,7 @@ void StateDisappear::init(EnemyBase* enemy, StateArg* stateArg)
 {
 	Obj* wisp = static_cast<Obj*>(enemy);
 	wisp->setAtari(false);
-	wisp->m_velocity2 = Vector3f(0.0f);
+	wisp->m_simVelocity = Vector3f(0.0f);
 	wisp->startMotion(4, nullptr);
 	wisp->createDisppearEffect();
 }
@@ -156,8 +156,8 @@ void StateDisappear::cleanup(EnemyBase* enemy)
 	if (faceDir >= TAU) {
 		faceDir -= TAU;
 	}
-	wisp->m_faceDir = faceDir;
-	wisp->_1A4.y    = wisp->m_faceDir;
+	wisp->m_faceDir        = faceDir;
+	wisp->m_faceRotation.y = wisp->m_faceDir;
 
 	wisp->m_spawnIndex ^= 1;
 	wisp->setAtari(true);
@@ -171,8 +171,8 @@ void StateDisappear::cleanup(EnemyBase* enemy)
  */
 void StateMove::init(EnemyBase* enemy, StateArg* stateArg)
 {
-	Obj* wisp         = static_cast<Obj*>(enemy);
-	wisp->m_velocity2 = Vector3f(0.0f);
+	Obj* wisp           = static_cast<Obj*>(enemy);
+	wisp->m_simVelocity = Vector3f(0.0f);
 	wisp->startMotion(0, nullptr);
 }
 
@@ -215,7 +215,7 @@ void StateDrop::init(EnemyBase* enemy, StateArg* stateArg)
 	Obj* wisp = static_cast<Obj*>(enemy);
 	wisp->resetEvent(0, EB_Cullable);
 	wisp->createHitEffect();
-	wisp->m_velocity2 = Vector3f(0.0f);
+	wisp->m_simVelocity = Vector3f(0.0f);
 	wisp->startMotion(1, nullptr);
 }
 
@@ -256,7 +256,7 @@ void StateDead::init(EnemyBase* enemy, StateArg* stateArg)
 
 	Vector3f velocity(0.0f, static_cast<Parms*>(wisp->m_parms)->m_properParms.m_fp04.m_value, 0.0f);
 	wisp->setVelocity(velocity);
-	wisp->m_velocity2 = velocity;
+	wisp->m_simVelocity = velocity;
 
 	wisp->resetUtilityTimer();
 	wisp->startMotion(2, nullptr);

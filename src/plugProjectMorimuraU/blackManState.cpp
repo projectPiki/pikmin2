@@ -143,8 +143,8 @@ StateDead::StateDead(int stateID)
  */
 void StateDead::init(EnemyBase* enemy, StateArg* stateArg)
 {
-	enemy->m_velocity  = Vector3f(0.0f);
-	enemy->m_velocity2 = Vector3f(0.0f);
+	enemy->m_impVelocity = Vector3f(0.0f);
+	enemy->m_simVelocity = Vector3f(0.0f);
 	enemy->startMotion(2, nullptr);
 
 	Obj* wraith = static_cast<Obj*>(enemy);
@@ -211,8 +211,8 @@ void StateFreeze::init(EnemyBase* enemy, StateArg* stateArg)
 		enemy->setMotionFrame(3.0f);
 	}
 
-	enemy->m_velocity  = Vector3f(0.0f);
-	enemy->m_velocity2 = Vector3f(0.0f);
+	enemy->m_impVelocity = Vector3f(0.0f);
+	enemy->m_simVelocity = Vector3f(0.0f);
 }
 
 /*
@@ -662,8 +662,8 @@ StateTired::StateTired(int stateID)
 void StateTired::init(EnemyBase* enemy, StateArg* stateArg)
 {
 	enemy->startMotion(10, nullptr);
-	enemy->m_velocity2 = Vector3f(0.0f);
-	_10                = 0;
+	enemy->m_simVelocity = Vector3f(0.0f);
+	_10                  = 0;
 }
 
 /*
@@ -673,8 +673,8 @@ void StateTired::init(EnemyBase* enemy, StateArg* stateArg)
  */
 void StateTired::exec(EnemyBase* enemy)
 {
-	enemy->m_velocity2 = Vector3f(0.0f);
-	enemy->m_velocity  = Vector3f(0.0f);
+	enemy->m_simVelocity = Vector3f(0.0f);
+	enemy->m_impVelocity = Vector3f(0.0f);
 
 	if (enemy->m_animKeyEvent->m_running) {
 		if ((u32)enemy->m_animKeyEvent->m_type == 1000) {

@@ -46,7 +46,7 @@ void StateDead::init(EnemyBase* enemy, StateArg* stateArg)
 	titan->forceFinishIKMotion();
 	titan->checkJointScaleOn();
 	titan->deathProcedure();
-	titan->m_velocity2 = Vector3f(0.0f);
+	titan->m_simVelocity = Vector3f(0.0f);
 	titan->setEmotionCaution();
 	titan->startBlendAnimation(27, true);
 	titan->createDeadBombFootEffect();
@@ -138,7 +138,7 @@ void StateStay::init(EnemyBase* enemy, StateArg* stateArg)
 	titan->m_stateTimer = 0.0f;
 	titan->setAttackMaterialColor(false);
 	titan->setEvent(0, EB_BitterImmune);
-	titan->m_velocity2      = Vector3f(0.0f);
+	titan->m_simVelocity    = Vector3f(0.0f);
 	titan->m_targetCreature = nullptr;
 	titan->startBlendAnimation(0, false);
 	titan->stopMotion();
@@ -195,7 +195,7 @@ void StateLand::init(EnemyBase* enemy, StateArg* stateArg)
 	Obj* titan         = static_cast<Obj*>(enemy);
 	titan->m_nextState = BIGTREASURE_NULL;
 	titan->setAttackMaterialColor(false);
-	titan->m_velocity2      = Vector3f(0.0f);
+	titan->m_simVelocity    = Vector3f(0.0f);
 	titan->m_targetCreature = nullptr;
 	titan->setEmotionExcitement();
 	shadowMgr->addJointShadow(titan);
@@ -306,7 +306,7 @@ void StateWait::init(EnemyBase* enemy, StateArg* stateArg)
 	titan->setAttackMaterialColor(false);
 
 	titan->m_targetCreature = nullptr;
-	titan->m_velocity2      = Vector3f(0.0f);
+	titan->m_simVelocity    = Vector3f(0.0f);
 
 	titan->startBlendAnimation(25, true);
 	titan->startBlendMotion();
@@ -368,7 +368,7 @@ void StateItemWait::init(EnemyBase* enemy, StateArg* stateArg)
 	titan->setAttackMaterialColor(false);
 
 	titan->m_targetCreature = nullptr;
-	titan->m_velocity2      = Vector3f(0.0f);
+	titan->m_simVelocity    = Vector3f(0.0f);
 
 	titan->startBlendAnimation(2, true);
 	titan->startBlendMotion();
@@ -431,7 +431,7 @@ void StateFlick::init(EnemyBase* enemy, StateArg* stateArg)
 	titan->setAttackMaterialColor(false);
 
 	titan->m_targetCreature = nullptr;
-	titan->m_velocity2      = Vector3f(0.0f);
+	titan->m_simVelocity    = Vector3f(0.0f);
 
 	titan->startBlendAnimation(26, true);
 	titan->startBlendMotion();
@@ -493,7 +493,7 @@ void StatePreAttack::init(EnemyBase* enemy, StateArg* stateArg)
 	titan->setAttackMaterialColor(false);
 
 	titan->m_targetCreature = nullptr;
-	titan->m_velocity2      = Vector3f(0.0f);
+	titan->m_simVelocity    = Vector3f(0.0f);
 
 	titan->setTreasureAttack();
 	int animIdx = titan->getPreAttackAnimIndex();
@@ -573,7 +573,7 @@ void StateAttack::init(EnemyBase* enemy, StateArg* stateArg)
 	titan->m_stateTimer = 0.0f;
 
 	titan->m_targetCreature = nullptr;
-	titan->m_velocity2      = Vector3f(0.0f);
+	titan->m_simVelocity    = Vector3f(0.0f);
 
 	int animIdx = titan->getAttackAnimIndex();
 	titan->startBlendAnimation(animIdx, true);
@@ -646,7 +646,7 @@ void StatePutItem::init(EnemyBase* enemy, StateArg* stateArg)
 	titan->setAttackMaterialColor(false);
 
 	titan->m_targetCreature = nullptr;
-	titan->m_velocity2      = Vector3f(0.0f);
+	titan->m_simVelocity    = Vector3f(0.0f);
 
 	int animIdx = titan->getPutItemAnimIndex();
 	titan->startBlendAnimation(animIdx, true);
@@ -708,7 +708,7 @@ void StateDropItem::init(EnemyBase* enemy, StateArg* stateArg)
 	titan->setAttackMaterialColor(false);
 
 	titan->m_targetCreature = nullptr;
-	titan->m_velocity2      = Vector3f(0.0f);
+	titan->m_simVelocity    = Vector3f(0.0f);
 	titan->startBlendAnimation(24, true);
 	titan->startBlendMotion();
 }
@@ -761,7 +761,7 @@ void StateWalk::init(EnemyBase* enemy, StateArg* stateArg)
 	titan->setAttackMaterialColor(false);
 
 	titan->m_targetCreature = nullptr;
-	titan->m_velocity2      = Vector3f(0.0f);
+	titan->m_simVelocity    = Vector3f(0.0f);
 
 	titan->startBlendAnimation(29, true);
 	titan->startIKMotion();
@@ -828,7 +828,7 @@ void StateItemWalk::init(EnemyBase* enemy, StateArg* stateArg)
 	titan->setAttackMaterialColor(false);
 
 	titan->m_targetCreature = nullptr;
-	titan->m_velocity2      = Vector3f(0.0f);
+	titan->m_simVelocity    = Vector3f(0.0f);
 
 	titan->startBlendAnimation(28, true);
 	titan->startIKMotion();

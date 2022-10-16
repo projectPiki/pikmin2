@@ -312,7 +312,7 @@ struct Creature : public CellObject {
 	BitFlag<u32> m_flags;          // _0BC
 	void* m_parms;                 // _0C0
 	Generator* m_generator;        // _0C4
-	Sys::Triangle* _0C8;           // _0C8
+	Sys::Triangle* m_curTriangle;  // _0C8
 	Vector3f m_collisionPosition;  // _0CC
 	AILOD m_lod;                   // _0D8
 	int m_cellLayerIndex;          // _0DC
@@ -325,7 +325,7 @@ struct Creature : public CellObject {
 	Vector3f _104;                 // _104
 	short m_hasStick;              // _110
 	CollTree* m_collTree;          // _114
-	float _118;                    // _118
+	float m_mass;                  // _118
 	Vector3f _11C;                 // _11C
 	u16 m_objectTypeID;            // _128
 	UpdateContext m_updateContext; // _12C

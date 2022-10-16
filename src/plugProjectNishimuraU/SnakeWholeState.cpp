@@ -44,7 +44,7 @@ void StateDead::init(EnemyBase* enemy, StateArg* stateArg)
 	Obj* snagret = static_cast<Obj*>(enemy);
 	snagret->deathProcedure();
 	snagret->resetEvent(0, EB_Cullable);
-	snagret->m_velocity2 = Vector3f(0.0f);
+	snagret->m_simVelocity = Vector3f(0.0f);
 	snagret->setEmotionCaution();
 	snagret->startMotion(0, nullptr);
 	snagret->createDeadStartEffect();
@@ -120,7 +120,7 @@ void StateStay::init(EnemyBase* enemy, StateArg* stateArg)
 	snagret->setEvent(0, EB_31);
 	snagret->resetEvent(0, EB_LifegaugeVisible);
 
-	snagret->m_velocity2 = Vector3f(0.0f);
+	snagret->m_simVelocity = Vector3f(0.0f);
 	snagret->startMotion(1, nullptr);
 	snagret->stopMotion();
 
@@ -684,7 +684,7 @@ void StateAppear1::init(EnemyBase* enemy, StateArg* stateArg)
 	snagret->setEvent(0, EB_22);
 	snagret->resetEvent(0, EB_Cullable);
 	snagret->hardConstraintOn();
-	snagret->m_velocity2 = Vector3f(0.0f);
+	snagret->m_simVelocity = Vector3f(0.0f);
 	snagret->setEmotionExcitement();
 	snagret->startMotion(1, nullptr);
 	snagret->createAppearEffect(0);
@@ -779,7 +779,7 @@ void StateAppear2::init(EnemyBase* enemy, StateArg* stateArg)
 	snagret->setEvent(0, EB_22);
 	snagret->resetEvent(0, EB_Cullable);
 	snagret->hardConstraintOn();
-	snagret->m_velocity2 = Vector3f(0.0f);
+	snagret->m_simVelocity = Vector3f(0.0f);
 	snagret->setEmotionExcitement();
 	snagret->startMotion(2, nullptr);
 	snagret->createAppearEffect(1);
@@ -877,7 +877,7 @@ void StateDisappear::init(EnemyBase* enemy, StateArg* stateArg)
 {
 	enemy->hardConstraintOn();
 	enemy->resetEvent(0, EB_Cullable);
-	enemy->m_velocity2 = Vector3f(0.0f);
+	enemy->m_simVelocity = Vector3f(0.0f);
 	enemy->setEmotionCaution();
 	enemy->startMotion(3, nullptr);
 }
@@ -958,7 +958,7 @@ void StateWait::init(EnemyBase* enemy, StateArg* stateArg)
 	snagret->m_nextState  = SNAKEWHOLE_NULL;
 	snagret->setAttackPosition();
 	snagret->m_targetCreature = nullptr;
-	snagret->m_velocity2      = Vector3f(0.0f);
+	snagret->m_simVelocity    = Vector3f(0.0f);
 	snagret->startMotion(9, nullptr);
 }
 
@@ -1015,10 +1015,10 @@ void StateWait::cleanup(EnemyBase* enemy) { }
  */
 void StateWalk::init(EnemyBase* enemy, StateArg* stateArg)
 {
-	Obj* snagret         = static_cast<Obj*>(enemy);
-	snagret->_2C1        = false;
-	snagret->_2C8        = 0.0f;
-	snagret->m_velocity2 = Vector3f(0.0f);
+	Obj* snagret           = static_cast<Obj*>(enemy);
+	snagret->_2C1          = false;
+	snagret->_2C8          = 0.0f;
+	snagret->m_simVelocity = Vector3f(0.0f);
 	snagret->startMotion(12, nullptr);
 }
 
@@ -1048,7 +1048,7 @@ void StateWalk::exec(EnemyBase* enemy)
 	if (snagret->_2C1) {
 		snagret->updateFace();
 	} else {
-		snagret->m_velocity2 = Vector3f(0.0f);
+		snagret->m_simVelocity = Vector3f(0.0f);
 	}
 
 	if (snagret->m_animKeyEvent->m_running) {
@@ -1101,10 +1101,10 @@ void StateWalk::cleanup(EnemyBase* enemy) { enemy->resetEvent(0, EB_22); }
  */
 void StateHome::init(EnemyBase* enemy, StateArg* stateArg)
 {
-	Obj* snagret         = static_cast<Obj*>(enemy);
-	snagret->_2C1        = false;
-	snagret->_2C8        = 0.0f;
-	snagret->m_velocity2 = Vector3f(0.0f);
+	Obj* snagret           = static_cast<Obj*>(enemy);
+	snagret->_2C1          = false;
+	snagret->_2C8          = 0.0f;
+	snagret->m_simVelocity = Vector3f(0.0f);
 	snagret->startMotion(12, nullptr);
 }
 
@@ -1124,15 +1124,15 @@ void StateHome::exec(EnemyBase* enemy)
 		snagret->m_nextState = SNAKEWHOLE_Disappear;
 		snagret->finishMotion();
 	} else if (snagret->isInHomeRange()) {
-		snagret->m_velocity2 = Vector3f(0.0f);
-		snagret->m_nextState = SNAKEWHOLE_Wait;
+		snagret->m_simVelocity = Vector3f(0.0f);
+		snagret->m_nextState   = SNAKEWHOLE_Wait;
 		snagret->finishMotion();
 	}
 
 	if (snagret->_2C1) {
 		snagret->updateFace();
 	} else {
-		snagret->m_velocity2 = Vector3f(0.0f);
+		snagret->m_simVelocity = Vector3f(0.0f);
 	}
 
 	if (snagret->m_animKeyEvent->m_running) {
@@ -1172,7 +1172,7 @@ void StateAttack::init(EnemyBase* enemy, StateArg* stateArg)
 {
 	Obj* snagret = static_cast<Obj*>(enemy);
 	snagret->resetEvent(0, EB_Cullable);
-	snagret->m_velocity2 = Vector3f(0.0f);
+	snagret->m_simVelocity = Vector3f(0.0f);
 	snagret->startMotion(snagret->_2E4 + 4, nullptr);
 }
 
@@ -1292,7 +1292,7 @@ void StateAttack::cleanup(EnemyBase* enemy) { enemy->setEvent(0, EB_Cullable); }
  */
 void StateEat::init(EnemyBase* enemy, StateArg* stateArg)
 {
-	enemy->m_velocity2 = Vector3f(0.0f);
+	enemy->m_simVelocity = Vector3f(0.0f);
 	enemy->startMotion(10, nullptr);
 }
 
@@ -1362,9 +1362,9 @@ void StateEat::cleanup(EnemyBase* enemy) { }
  */
 void StateStruggle::init(EnemyBase* enemy, StateArg* stateArg)
 {
-	Obj* snagret          = static_cast<Obj*>(enemy);
-	snagret->m_stateTimer = 0.0f;
-	snagret->m_velocity2  = Vector3f(0.0f);
+	Obj* snagret           = static_cast<Obj*>(enemy);
+	snagret->m_stateTimer  = 0.0f;
+	snagret->m_simVelocity = Vector3f(0.0f);
 	snagret->startMotion(11, nullptr);
 }
 

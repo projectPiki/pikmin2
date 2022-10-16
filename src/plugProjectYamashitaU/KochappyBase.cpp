@@ -60,8 +60,8 @@ void Obj::doUpdate()
 	m_FSM->exec(this);
 
 	if (!playData->isDemoFlag(0x23)) {
-		m_velocity2 = Vector3f::zero;
-		m_velocity  = m_velocity2;
+		m_simVelocity = Vector3f::zero;
+		m_impVelocity = m_simVelocity;
 	}
 }
 

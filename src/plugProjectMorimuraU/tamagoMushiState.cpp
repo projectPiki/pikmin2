@@ -66,15 +66,15 @@ void StateWalk::exec(EnemyBase* enemy)
 {
 	Obj* mitite = static_cast<Obj*>(enemy);
 	_10++;
-	if (mitite->_0C8 != nullptr) {
+	if (mitite->m_curTriangle != nullptr) {
 		mitite->walkFunc();
 	} else {
 		mitite->ballMove();
 	}
 
 	if (mitite->isReachToGoal(10.0f) || _10 > _14) {
-		mitite->m_velocity2 = Vector3f(0.0f);
-		mitite->m_velocity  = Vector3f(0.0f);
+		mitite->m_simVelocity = Vector3f(0.0f);
+		mitite->m_impVelocity = Vector3f(0.0f);
 		mitite->finishMotion();
 	}
 
@@ -103,8 +103,8 @@ StateTurn::StateTurn(int stateID)
 void StateTurn::init(EnemyBase* enemy, StateArg* stateArg)
 {
 	enemy->startMotion(4, nullptr);
-	enemy->m_velocity2 = Vector3f(0.0f);
-	enemy->m_velocity  = Vector3f(0.0f);
+	enemy->m_simVelocity = Vector3f(0.0f);
+	enemy->m_impVelocity = Vector3f(0.0f);
 }
 
 /*
@@ -232,8 +232,8 @@ void StateHide::init(EnemyBase* enemy, StateArg* stateArg)
 {
 
 	enemy->startMotion(1, nullptr);
-	enemy->m_velocity2 = Vector3f(0.0f);
-	enemy->m_velocity  = Vector3f(0.0f);
+	enemy->m_simVelocity = Vector3f(0.0f);
+	enemy->m_impVelocity = Vector3f(0.0f);
 	enemy->hardConstraintOn();
 	enemy->setEmotionCaution();
 
@@ -272,8 +272,8 @@ StateDead::StateDead(int stateID)
 void StateDead::init(EnemyBase* enemy, StateArg* stateArg)
 {
 	enemy->startMotion(0, nullptr);
-	enemy->m_velocity2 = Vector3f(0.0f);
-	enemy->m_velocity  = Vector3f(0.0f);
+	enemy->m_simVelocity = Vector3f(0.0f);
+	enemy->m_impVelocity = Vector3f(0.0f);
 	enemy->setEvent(0, EB_LeaveCarcass);
 	enemy->deathProcedure();
 	PSStartEnemyFatalHitSE(enemy, 0.0f);

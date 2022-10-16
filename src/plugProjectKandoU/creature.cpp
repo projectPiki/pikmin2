@@ -386,7 +386,7 @@ Creature::Creature()
 {
 	m_collTree  = 0;
 	m_model     = 0;
-	_118        = 100.0f;
+	m_mass      = 100.0f;
 	m_generator = 0;
 	m_scale     = 0;
 	PSMTXIdentity(m_mainMatrix.m_matrix.mtxView);
@@ -435,7 +435,7 @@ void Creature::init(Game::CreatureInitArg* arg)
 	_11C.y = 0.0f;
 	_11C.z = 0.0f;
 	clearCapture();
-	_0C8                  = 0;
+	m_curTriangle         = 0;
 	m_collisionPosition.x = 0.0f;
 	m_collisionPosition.y = 1.0f;
 	m_collisionPosition.z = 0.0f;
@@ -1097,9 +1097,9 @@ void Creature::applyImpulse(Vector3f& unused, Vector3f& impulse)
 	// TODO: Check if vector3 had helper functions for multiplying and addition.
 	// Those might've been used here, which would explain seperate operations in
 	// sets of 3. i.e. 3 stfs, 3 lfs, 3 fmuls, 3 fadds, 3 stfs
-	newVelocity.x = oldVelocity.x + impulse.x * _118;
-	newVelocity.y = oldVelocity.y + impulse.y * _118;
-	newVelocity.z = oldVelocity.z + impulse.z * _118;
+	newVelocity.x = oldVelocity.x + impulse.x * m_mass;
+	newVelocity.y = oldVelocity.y + impulse.y * m_mass;
+	newVelocity.z = oldVelocity.z + impulse.z * m_mass;
 	setVelocity(newVelocity);
 	/*
 	stwu     r1, -0x30(r1)
