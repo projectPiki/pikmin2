@@ -130,6 +130,23 @@ struct PikiAutoNukiState : public PikiState {
 	u16 _14; // _14
 };
 
+struct BlowStateArg : public StateArg {
+	inline BlowStateArg(Vector3f& vec, f32 p1, u8 p2, u16 p3, Creature* creature)
+	{
+		_00 = vec;
+		_0C = p1;
+		_10 = p2;
+		_12 = p3;
+		_14 = creature;
+	}
+
+	Vector3f _00;  // _00
+	f32 _0C;       // _0C
+	u8 _10;        // _10
+	u16 _12;       // _12
+	Creature* _14; // _14
+};
+
 struct PikiBlowState : public PikiState {
 	inline PikiBlowState()
 	    : PikiState(PIKISTATE_Blow, "BLOW")
@@ -375,7 +392,13 @@ struct PikiFlickState : public PikiState, virtual SysShape::MotionListener {
 
 	// _00     = VTBL
 	// _00-_10 = PikiState
-	u8 _10[0x1C]; // _10, unknown
+	u16 _14;   // _14
+	f32 _18;   // _18
+	f32 _1C;   // _1C
+	f32 _20;   // _20
+	f32 _24;   // _24
+	Piki* _28; // _28
+	bool _2C;  // _2C
 };
 
 struct PikiFlyingState : public PikiState {
@@ -667,9 +690,9 @@ struct PikiPressedState : public PikiState {
 };
 
 struct SuikomiStateArg : public StateArg {
-	Creature* _00; // _00
-	u32 _04;       // _04
-	u32 _08;       // _08
+	Creature* m_creature; // _00
+	CollPart* m_collpart; // _04
+	CollPart* _08;        // _08
 };
 
 struct PikiSuikomiState : public PikiState {
@@ -691,11 +714,11 @@ struct PikiSuikomiState : public PikiState {
 
 	// _00     = VTBL
 	// _00-_10 = PikiState
-	u8 _10;        // _10
-	Creature* _14; // _14
-	u32 _18;       // _18
-	u32 _1C;       // _1C
-	u8 _20[0x4];   // _20, unknown
+	u8 _10;               // _10
+	Creature* m_creature; // _14
+	CollPart* m_collpart; // _18
+	CollPart* _1C;        // _1C
+	f32 _20;              // _20
 };
 
 struct SwallowedStateArg : public StateArg {

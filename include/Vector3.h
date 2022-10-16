@@ -174,6 +174,14 @@ inline f32 Vector3f::normalise()
 	return 0.0f;
 }
 
+inline f32 _lenVec(Vector3f& vec)
+{
+	Vector2f sqr(vec.z * vec.z, vec.x * vec.x + vec.y * vec.y);
+	f32 length = sqr.x + sqr.y;
+	_sqrtf(length, &length);
+	return length;
+}
+
 inline void _normalise(Vector3f& vec)
 {
 	Vector2f sqr(vec.z * vec.z, vec.x * vec.x + vec.y * vec.y);
@@ -201,10 +209,53 @@ inline void _normaliseXZ(Vector3f& vec)
 	}
 }
 
+inline f32 _normaliseVec(Vector3f& vec)
+{
+	Vector2f sqr(vec.z * vec.z, vec.x * vec.x + vec.y * vec.y);
+	f32 length = sqr.x + sqr.y;
+	_sqrtf(length, &length);
+
+	if (length > 0.0f) {
+		f32 norm = 1.0f / length;
+		vec      = vec * norm;
+		return length;
+	}
+	return 0.0f;
+}
+
 inline f32 sqrDistanceXZ(Vector3f& vec1, Vector3f& vec2)
 {
 	f32 x = vec1.x - vec2.x;
 	f32 z = vec1.z - vec2.z;
 	return x * x + z * z;
+}
+
+inline f32 _distanceXZ(Vector3f& vec1, Vector3f& vec2)
+{
+	f32 x    = vec1.x - vec2.x;
+	f32 z    = vec1.z - vec2.z;
+	f32 dist = x * x + z * z;
+	_sqrtf(dist, &dist);
+	return dist;
+}
+
+inline void sumXY(Vector3f vec, float* sum) { *sum = (vec.x *= vec.x) + (vec.y *= vec.y); }
+
+inline void sumZ(Vector3f vec, float* sum)
+{
+	f32 z = vec.z * vec.z;
+	*sum  = z + *sum;
+}
+
+inline f32 Vector3f::distance(Vector3f& them)
+{
+	Vector3f diff = *this - them;
+
+	f32 sum;
+	sumXY(diff, &sum);
+	sumZ(diff, &sum);
+
+	_sqrtf(sum, &sum);
+	return sum;
 }
 #endif

@@ -171,9 +171,9 @@ struct Piki : public FakePiki {
 	void graspSituation_Fast(Creature**);
 	void graspSituation(Creature**);
 	void initColor();
-	void invokeAI();
-	void invokeAI(CollEvent*, bool);
-	void invokeAI(PlatEvent*);
+	bool invokeAI();
+	bool invokeAI(CollEvent*, bool);
+	bool invokeAI(PlatEvent*);
 	bool invokeAIFree(InvokeAIFreeArg&);
 	bool isMyPikmin(Creature*);
 	bool isTekiFollowAI();

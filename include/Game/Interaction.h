@@ -184,6 +184,11 @@ struct InteractGotKey : public Interaction {
 };
 
 struct InteractHipdrop : public InteractAttack {
+	inline InteractHipdrop(Creature* parent, f32 damage, CollPart* collpart)
+	    : InteractAttack(parent, damage, collpart)
+	{
+	}
+
 	virtual bool actEnemy(EnemyBase*); // _14
 
 	// _00 VTBL
@@ -210,7 +215,13 @@ struct InteractMattuan : public Interaction {
 };
 
 struct InteractPress : public Interaction {
-	// vtable requires this order to spawn in correct TU
+	inline InteractPress(Creature* parent, f32 damage, CollPart* collpart)
+	    : Interaction(parent)
+	{
+		_08        = damage;
+		m_collPart = collpart;
+	}
+
 	virtual bool actEnemy(EnemyBase*); // _14
 	virtual bool actPiki(Piki*);       // _0C
 	virtual bool actNavi(Navi*);       // _10
