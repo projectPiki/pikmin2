@@ -17,6 +17,7 @@ void createSimplePkAp(Vector3f&);
 void createSimpleChinka(Vector3f&);
 void createSimpleWaterOff(Vector3f&);
 void createSimpleGedoku(Vector3f&);
+void createSimpleBlackDrop(Vector3f&);
 
 struct TPkAp : public TSimple2 {
 	inline TPkAp()
@@ -178,7 +179,7 @@ struct TPkEffect {
 	void createMoeSmoke_(Vector3f*);
 	void killMoeSmoke_();
 	void createBlackDown_(Vector3f*);
-	void killBlackDown();
+	void killBlackDown_();
 	void createWater_(Vector3f*);
 	void killWater_();
 	void createHamonA_(Vector3f*);

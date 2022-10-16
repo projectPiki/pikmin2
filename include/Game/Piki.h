@@ -201,33 +201,33 @@ struct Piki : public FakePiki {
 
 	// _000			 = VTBL
 	// _000-_24C = FakePiki
-	u32 _24C;                         // _24C
-	PSM::Piki* m_soundObj;            // _250
-	f32 m_targetLookAngle;            // _254
-	efx::TPkEffect* m_effectsObj;     // _258
-	Vector3f _25C;                    // _25C
-	SysShape::Joint* m_happaJoint3;   // _268
-	Vector3f _26C;                    // _26C
-	SysShape::Joint* m_happaJoint1;   // _278
-	::efx::Context* m_effectsContext; // _27C
-	u8 _280[4];                       // _280
-	short m_isDoped;                  // _284
-	f32 m_dopeTime;                   // _288
-	PikiFSM* m_fsm;                   // _28C
-	PikiState* m_currentState;        // _290
-	PikiAI::Brain* m_brain;           // _294
-	UpdateContext m_updateContext;    // _298
-	short m_tekiKillID;               // _2A4
-	u8 m_gasInvincible;               // _2A6
-	JUtility::TColor _2A7;            // _2A7
-	JUtility::TColor _2AB;            // _2AB
-	JUtility::TColor m_pikiColor;     // _2AF
-	f32 m_colorFloat;                 // _2B4
-	u8 m_pikminType;                  // _2B8
-	u8 m_pikminGrowth;                // _2B9
-	u32 m_leafModel;                  // _2BC
-	int m_mgrIndex;                   // _2C0
-	Navi* m_navi;                     // _2C4
+	u32 _24C;                          // _24C
+	PSM::Piki* m_soundObj;             // _250
+	f32 m_targetLookAngle;             // _254
+	efx::TPkEffect* m_effectsObj;      // _258
+	Vector3f _25C;                     // _25C
+	SysShape::Joint* m_happaJoint3;    // _268
+	Vector3f _26C;                     // _26C
+	SysShape::Joint* m_happaJoint1;    // _278
+	::efx::Context* m_effectsContext;  // _27C
+	u8 _280[4];                        // _280
+	short m_isDoped;                   // _284
+	f32 m_dopeTime;                    // _288
+	PikiFSM* m_fsm;                    // _28C
+	PikiState* m_currentState;         // _290
+	PikiAI::Brain* m_brain;            // _294
+	UpdateContext m_pikiUpdateContext; // _298
+	short m_tekiKillID;                // _2A4
+	u8 m_gasInvincible;                // _2A6
+	JUtility::TColor _2A7;             // _2A7
+	JUtility::TColor _2AB;             // _2AB
+	JUtility::TColor m_pikiColor;      // _2AF
+	f32 m_colorFloat;                  // _2B4
+	u8 m_pikminType;                   // _2B8
+	u8 m_pikminGrowth;                 // _2B9
+	u32 m_leafModel;                   // _2BC
+	int m_mgrIndex;                    // _2C0
+	Navi* m_navi;                      // _2C4
 };
 } // namespace Game
 

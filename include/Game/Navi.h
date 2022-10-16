@@ -297,7 +297,7 @@ struct NaviMgr : public MonoObjectMgr<Navi>, public JKRDisposer {
 	J3DModelData* _B8;              // _B8
 	u8 _BC[8];                      // _BC
 	J3DModelData* _C4;              // _C4
-	NaviParms* _C8;                 // _C8
+	NaviParms* m_naviParms;         // _C8
 	CollPartFactory* _CC;           // _CC
 };
 

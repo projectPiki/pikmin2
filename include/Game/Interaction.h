@@ -86,6 +86,12 @@ struct InteractDrop : public Interaction {
 };
 
 struct InteractEarthquake : public Interaction {
+	inline InteractEarthquake(Creature* parent, f32 damage)
+	    : Interaction(parent)
+	    , _08(damage)
+	{
+	}
+
 	virtual bool actEnemy(EnemyBase*); // _14
 
 	f32 _08; // _08

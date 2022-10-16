@@ -1,11 +1,15 @@
 #include "Game/PikiState.h"
 #include "Game/Piki.h"
 #include "Game/PikiParms.h"
+#include "Game/PikiMgr.h"
 #include "Game/Navi.h"
+#include "Game/NaviParms.h"
 #include "Game/MapMgr.h"
 #include "Game/rumble.h"
 #include "Game/MoviePlayer.h"
 #include "Game/DeathMgr.h"
+#include "Game/CameraMgr.h"
+#include "Game/Interaction.h"
 #include "efx/TPiku.h"
 #include "efx/TPk.h"
 #include "efx/TEnemyDive.h"
@@ -2134,141 +2138,27 @@ void PikiLookAtState::cleanup(Piki* piki) { }
  */
 void PikiAutoNukiState::init(Piki* piki, StateArg* stateArg)
 {
-	/*
-	stwu     r1, -0x70(r1)
-	mflr     r0
-	stw      r0, 0x74(r1)
-	stw      r31, 0x6c(r1)
-	mr       r31, r4
-	stw      r30, 0x68(r1)
-	mr       r30, r3
-	bl       rand
-	xoris    r0, r3, 0x8000
-	lis      r3, 0x4330
-	stw      r0, 0x64(r1)
-	cmplwi   r31, 0
-	lfd      f3, lbl_80518DD8@sda21(r2)
-	li       r0, 0
-	stw      r3, 0x60(r1)
-	mr       r6, r31
-	lfs      f1, lbl_80518DC8@sda21(r2)
-	lfd      f2, 0x60(r1)
-	lfs      f0, lbl_80518E04@sda21(r2)
-	fsubs    f2, f2, f3
-	fdivs    f1, f2, f1
-	fmuls    f0, f0, f1
-	stfs     f0, 0x10(r30)
-	sth      r0, 0x14(r30)
-	beq      lbl_8018D014
-	addi     r6, r31, 0x178
+	_10 = 0.2f * randFloat();
+	_14 = 0;
+	piki->startMotion(IPikiAnims::KAIFUKU2, IPikiAnims::KAIFUKU2, piki, nullptr);
+	_14               = 1;
+	Vector3f position = piki->getPosition();
+	// piki->_17C |= 0x10;
+	Sys::Sphere sphere(position, 10.0f);
+	WaterBox* wbox = piki->checkWater(nullptr, sphere);
 
-lbl_8018D014:
-	lwz      r12, 0(r31)
-	mr       r3, r31
-	li       r4, 0x30
-	li       r5, 0x30
-	lwz      r12, 0x208(r12)
-	li       r7, 0
-	mtctr    r12
-	bctrl
-	li       r0, 1
-	mr       r4, r31
-	sth      r0, 0x14(r30)
-	addi     r3, r1, 0x14
-	lwz      r12, 0(r31)
-	lwz      r12, 8(r12)
-	mtctr    r12
-	bctrl
-	lfs      f3, 0x14(r1)
-	mr       r3, r31
-	lfs      f2, 0x18(r1)
-	addi     r5, r1, 0x30
-	lfs      f1, 0x1c(r1)
-	li       r4, 0
-	lfs      f0, lbl_80518DCC@sda21(r2)
-	stfs     f3, 0x40(r1)
-	stfs     f2, 0x44(r1)
-	stfs     f1, 0x48(r1)
-	stfs     f3, 0x30(r1)
-	stfs     f2, 0x34(r1)
-	stfs     f1, 0x38(r1)
-	stfs     f0, 0x3c(r1)
-	bl       checkWater__Q24Game8CreatureFPQ24Game8WaterBoxRQ23Sys6Sphere
-	cmplwi   r3, 0
-	beq      lbl_8018D168
-	lwz      r3, 0x40(r1)
-	lis      r5, __vt__Q23efx5TBase@ha
-	lwz      r4, 0x44(r1)
-	addi     r10, r5, __vt__Q23efx5TBase@l
-	lwz      r0, 0x48(r1)
-	lis      r6, __vt__Q23efx8TSimple2@ha
-	stw      r3, 8(r1)
-	lis      r3, __vt__Q23efx3Arg@ha
-	addi     r5, r3, __vt__Q23efx3Arg@l
-	lfs      f0, lbl_80518E28@sda21(r2)
-	li       r7, 0
-	stw      r4, 0xc(r1)
-	lfs      f3, 8(r1)
-	lis      r4, __vt__Q23efx10TEnemyDive@ha
-	stw      r0, 0x10(r1)
-	lis      r3, __vt__Q23efx8ArgScale@ha
-	lfs      f2, 0xc(r1)
-	li       r9, 0x159
-	lfs      f1, 0x10(r1)
-	li       r8, 0x15a
-	stw      r10, 0x20(r1)
-	addi     r10, r6, __vt__Q23efx8TSimple2@l
-	addi     r6, r4, __vt__Q23efx10TEnemyDive@l
-	addi     r0, r3, __vt__Q23efx8ArgScale@l
-	stw      r10, 0x20(r1)
-	addi     r3, r1, 0x20
-	addi     r4, r1, 0x4c
-	stw      r5, 0x4c(r1)
-	sth      r9, 0x24(r1)
-	sth      r8, 0x26(r1)
-	stw      r7, 0x28(r1)
-	stw      r7, 0x2c(r1)
-	stw      r6, 0x20(r1)
-	stfs     f3, 0x50(r1)
-	stfs     f2, 0x54(r1)
-	stfs     f1, 0x58(r1)
-	stw      r0, 0x4c(r1)
-	stfs     f0, 0x5c(r1)
-	bl       create__Q23efx10TEnemyDiveFPQ23efx3Arg
-	lwz      r4, 0x2c4(r31)
-	cmplwi   r4, 0
-	beq      lbl_8018D190
-	mr       r3, r31
-	li       r5, 0x380b
-	li       r6, 1
-	bl       startSound__Q24Game4PikiFPQ24Game8CreatureUlb
-	lwz      r4, 0x2c4(r31)
-	mr       r3, r31
-	li       r5, 0x2821
-	li       r6, 0
-	bl       startSound__Q24Game4PikiFPQ24Game8CreatureUlb
-	b        lbl_8018D190
-
-lbl_8018D168:
-	lwz      r0, 0x2c4(r31)
-	cmplwi   r0, 0
-	beq      lbl_8018D190
-	addi     r3, r1, 0x40
-	bl       "createSimplePkAp__3efxFR10Vector3<f>"
-	lwz      r4, 0x2c4(r31)
-	mr       r3, r31
-	li       r5, 0x2821
-	li       r6, 0
-	bl       startSound__Q24Game4PikiFPQ24Game8CreatureUlb
-
-lbl_8018D190:
-	lwz      r0, 0x74(r1)
-	lwz      r31, 0x6c(r1)
-	lwz      r30, 0x68(r1)
-	mtlr     r0
-	addi     r1, r1, 0x70
-	blr
-	*/
+	if (wbox != nullptr) {
+		efx::TEnemyDive diveFx;
+		efx::ArgScale fxArg(position, 1.2f);
+		diveFx.create(&fxArg);
+		if (piki->m_navi != nullptr) {
+			piki->startSound(piki->m_navi, PSSE_EV_ITEM_LAND_WATER1_S, true);
+			piki->startSound(piki->m_navi, PSSE_PL_PULLOUT_PIKI, false);
+		}
+	} else if (piki->m_navi != nullptr) {
+		efx::createSimplePkAp(position);
+		piki->startSound(piki->m_navi, PSSE_PL_PULLOUT_PIKI, false);
+	}
 }
 
 /*
@@ -2278,218 +2168,60 @@ lbl_8018D190:
  */
 void PikiAutoNukiState::exec(Piki* piki)
 {
-	/*
-	stwu     r1, -0x80(r1)
-	mflr     r0
-	stw      r0, 0x84(r1)
-	stw      r31, 0x7c(r1)
-	mr       r31, r4
-	stw      r30, 0x78(r1)
-	mr       r30, r3
-	lhz      r0, 0x14(r3)
-	cmpwi    r0, 1
-	beq      lbl_8018D3A4
-	bge      lbl_8018D1E0
-	cmpwi    r0, 0
-	bge      lbl_8018D1EC
-	b        lbl_8018D490
+	switch (_14) {
+	case 0:
+		_10 -= sys->m_secondsPerFrame;
+		if (_10 < 0.0f) {
+			_10 = 0.0f;
+			piki->startMotion(IPikiAnims::KAIFUKU2, IPikiAnims::KAIFUKU2, piki, nullptr);
+			_14 = 1;
 
-lbl_8018D1E0:
-	cmpwi    r0, 3
-	bge      lbl_8018D490
-	b        lbl_8018D3C4
+			Vector3f position = piki->getPosition();
+			Sys::Sphere sphere(position, 10.0f);
+			WaterBox* wbox = piki->checkWater(nullptr, sphere);
 
-lbl_8018D1EC:
-	lwz      r3, sys@sda21(r13)
-	lfs      f2, 0x10(r30)
-	lfs      f1, 0x54(r3)
-	lfs      f0, lbl_80518DE0@sda21(r2)
-	fsubs    f1, f2, f1
-	stfs     f1, 0x10(r30)
-	lfs      f1, 0x10(r30)
-	fcmpo    cr0, f1, f0
-	bge      lbl_8018D490
-	cmplwi   r31, 0
-	stfs     f0, 0x10(r30)
-	mr       r6, r31
-	beq      lbl_8018D224
-	addi     r6, r6, 0x178
+			if (wbox != nullptr) {
+				efx::TEnemyDive diveFx;
+				efx::ArgScale fxArg(position, 1.2f);
+				diveFx.create(&fxArg);
 
-lbl_8018D224:
-	lwz      r12, 0(r31)
-	mr       r3, r31
-	li       r4, 0x30
-	li       r5, 0x30
-	lwz      r12, 0x208(r12)
-	li       r7, 0
-	mtctr    r12
-	bctrl
-	li       r0, 1
-	mr       r4, r31
-	sth      r0, 0x14(r30)
-	addi     r3, r1, 0x14
-	lwz      r12, 0(r31)
-	lwz      r12, 8(r12)
-	mtctr    r12
-	bctrl
-	lfs      f3, 0x14(r1)
-	mr       r3, r31
-	lfs      f2, 0x18(r1)
-	addi     r5, r1, 0x3c
-	lfs      f1, 0x1c(r1)
-	li       r4, 0
-	lfs      f0, lbl_80518DCC@sda21(r2)
-	stfs     f3, 0x4c(r1)
-	stfs     f2, 0x50(r1)
-	stfs     f1, 0x54(r1)
-	stfs     f3, 0x3c(r1)
-	stfs     f2, 0x40(r1)
-	stfs     f1, 0x44(r1)
-	stfs     f0, 0x48(r1)
-	bl       checkWater__Q24Game8CreatureFPQ24Game8WaterBoxRQ23Sys6Sphere
-	cmplwi   r3, 0
-	beq      lbl_8018D378
-	lwz      r3, 0x4c(r1)
-	lis      r5, __vt__Q23efx5TBase@ha
-	lwz      r4, 0x50(r1)
-	addi     r10, r5, __vt__Q23efx5TBase@l
-	lwz      r0, 0x54(r1)
-	lis      r6, __vt__Q23efx8TSimple2@ha
-	stw      r3, 8(r1)
-	lis      r3, __vt__Q23efx3Arg@ha
-	addi     r5, r3, __vt__Q23efx3Arg@l
-	lfs      f0, lbl_80518E28@sda21(r2)
-	li       r7, 0
-	stw      r4, 0xc(r1)
-	lfs      f3, 8(r1)
-	lis      r4, __vt__Q23efx10TEnemyDive@ha
-	stw      r0, 0x10(r1)
-	lis      r3, __vt__Q23efx8ArgScale@ha
-	lfs      f2, 0xc(r1)
-	li       r9, 0x159
-	lfs      f1, 0x10(r1)
-	li       r8, 0x15a
-	stw      r10, 0x2c(r1)
-	addi     r10, r6, __vt__Q23efx8TSimple2@l
-	addi     r6, r4, __vt__Q23efx10TEnemyDive@l
-	addi     r0, r3, __vt__Q23efx8ArgScale@l
-	stw      r10, 0x2c(r1)
-	addi     r3, r1, 0x2c
-	addi     r4, r1, 0x58
-	stw      r5, 0x58(r1)
-	sth      r9, 0x30(r1)
-	sth      r8, 0x32(r1)
-	stw      r7, 0x34(r1)
-	stw      r7, 0x38(r1)
-	stw      r6, 0x2c(r1)
-	stfs     f3, 0x5c(r1)
-	stfs     f2, 0x60(r1)
-	stfs     f1, 0x64(r1)
-	stw      r0, 0x58(r1)
-	stfs     f0, 0x68(r1)
-	bl       create__Q23efx10TEnemyDiveFPQ23efx3Arg
-	lwz      r4, 0x2c4(r31)
-	cmplwi   r4, 0
-	beq      lbl_8018D490
-	mr       r3, r31
-	li       r5, 0x380b
-	li       r6, 1
-	bl       startSound__Q24Game4PikiFPQ24Game8CreatureUlb
-	lwz      r4, 0x2c4(r31)
-	mr       r3, r31
-	li       r5, 0x2821
-	li       r6, 0
-	bl       startSound__Q24Game4PikiFPQ24Game8CreatureUlb
-	b        lbl_8018D490
+				if (piki->m_navi != nullptr) {
+					piki->startSound(piki->m_navi, PSSE_EV_ITEM_LAND_WATER1_S, true);
+					piki->startSound(piki->m_navi, PSSE_PL_PULLOUT_PIKI, false);
+				}
 
-lbl_8018D378:
-	lwz      r0, 0x2c4(r31)
-	cmplwi   r0, 0
-	beq      lbl_8018D490
-	addi     r3, r1, 0x4c
-	bl       "createSimplePkAp__3efxFR10Vector3<f>"
-	lwz      r4, 0x2c4(r31)
-	mr       r3, r31
-	li       r5, 0x2821
-	li       r6, 0
-	bl       startSound__Q24Game4PikiFPQ24Game8CreatureUlb
-	b        lbl_8018D490
+			} else if (piki->m_navi != nullptr) {
+				efx::createSimplePkAp(position);
+				piki->startSound(piki->m_navi, PSSE_PL_PULLOUT_PIKI, false);
+			}
+		}
+		break;
 
-lbl_8018D3A4:
-	mr       r3, r31
-	li       r4, 0x30
-	bl       assertMotion__Q24Game8FakePikiFi
-	clrlwi.  r0, r3, 0x18
-	bne      lbl_8018D490
-	li       r0, 2
-	sth      r0, 0x14(r30)
-	b        lbl_8018D490
+	case 1:
+		if (!piki->assertMotion(IPikiAnims::KAIFUKU2)) {
+			_14 = 2;
+		}
+		break;
 
-lbl_8018D3C4:
-	lwz      r8, 0x2c4(r31)
-	cmplwi   r8, 0
-	beq      lbl_8018D420
-	lis      r4, __vt__Q26PikiAI9ActionArg@ha
-	li       r3, 0
-	addi     r0, r4, __vt__Q26PikiAI9ActionArg@l
-	lis      r4, __vt__Q26PikiAI17CreatureActionArg@ha
-	stw      r0, 0x20(r1)
-	addi     r7, r4, __vt__Q26PikiAI17CreatureActionArg@l
-	lis      r4, __vt__Q26PikiAI19ActFormationInitArg@ha
-	li       r0, 1
-	stb      r3, 0x29(r1)
-	addi     r6, r4, __vt__Q26PikiAI19ActFormationInitArg@l
-	addi     r5, r1, 0x20
-	li       r4, 0
-	stw      r7, 0x20(r1)
-	stw      r8, 0x24(r1)
-	stw      r6, 0x20(r1)
-	stb      r3, 0x28(r1)
-	stb      r0, 0x29(r1)
-	lwz      r3, 0x294(r31)
-	bl       start__Q26PikiAI5BrainFiPQ26PikiAI9ActionArg
-	b        lbl_8018D430
+	case 2:
+		if (piki->m_navi != nullptr) {
+			PikiAI::ActFormationInitArg initArg(piki->m_navi, 0);
+			initArg._09 = 1;
+			piki->m_brain->start(0, &initArg);
 
-lbl_8018D420:
-	lwz      r3, 0x294(r31)
-	li       r4, 1
-	li       r5, 0
-	bl       start__Q26PikiAI5BrainFiPQ26PikiAI9ActionArg
+		} else {
+			piki->m_brain->start(1, nullptr);
+		}
 
-lbl_8018D430:
-	mr       r3, r30
-	mr       r4, r31
-	lwz      r12, 0(r30)
-	li       r5, 0
-	li       r6, 0
-	lwz      r12, 0x1c(r12)
-	mtctr    r12
-	bctrl
-	lbz      r4, 0x2b8(r31)
-	cmpwi    r4, 0
-	blt      lbl_8018D490
-	cmpwi    r4, 4
-	bgt      lbl_8018D490
-	lwz      r3, playData__4Game@sda21(r13)
-	bl       hasMetPikmin__Q24Game8PlayDataFi
-	clrlwi.  r0, r3, 0x18
-	bne      lbl_8018D490
-	lwz      r3, gameSystem__4Game@sda21(r13)
-	mr       r4, r31
-	lwz      r3, 0x58(r3)
-	lwz      r12, 0(r3)
-	lwz      r12, 0xa0(r12)
-	mtctr    r12
-	bctrl
+		transit(piki, PIKISTATE_Walk, nullptr);
 
-lbl_8018D490:
-	lwz      r0, 0x84(r1)
-	lwz      r31, 0x7c(r1)
-	lwz      r30, 0x78(r1)
-	mtlr     r0
-	addi     r1, r1, 0x80
-	blr
-	*/
+		int type = piki->m_pikminType;
+		if (type >= 0 && type <= 4 && !playData->hasMetPikmin(type)) {
+			gameSystem->m_section->playMovie_helloPikmin(piki);
+		}
+
+		break;
+	}
 }
 
 /*
@@ -2497,22 +2229,15 @@ lbl_8018D490:
  * Address:	8018D4A8
  * Size:	000028
  */
-void PikiAutoNukiState::onKeyEvent(Piki* piki, SysShape::KeyEvent const&)
+void PikiAutoNukiState::onKeyEvent(Piki* piki, SysShape::KeyEvent const& keyEvent)
 {
-	/*
-	lwz      r0, 0x1c(r5)
-	cmpwi    r0, 0x3e8
-	beq      lbl_8018D4C4
-	bgelr
-	cmpwi    r0, 2
-	beqlr
-	blr
-
-lbl_8018D4C4:
-	li       r0, 2
-	sth      r0, 0x14(r3)
-	blr
-	*/
+	switch (keyEvent.m_type) {
+	case 1000:
+		_14 = 2;
+		break;
+	case 2:
+		break;
+	}
 }
 
 /*
@@ -2529,33 +2254,8 @@ void PikiAutoNukiState::cleanup(Piki* piki) { }
  */
 void PikiGoHangState::init(Piki* piki, StateArg* stateArg)
 {
-	/*
-	stwu     r1, -0x10(r1)
-	mflr     r0
-	li       r5, 0x1d
-	li       r6, 0
-	stw      r0, 0x14(r1)
-	li       r7, 0
-	stw      r31, 0xc(r1)
-	mr       r31, r4
-	li       r4, 0x1d
-	lwz      r12, 0(r31)
-	mr       r3, r31
-	lwz      r12, 0x208(r12)
-	mtctr    r12
-	bctrl
-	mr       r3, r31
-	li       r4, 0
-	lwz      r12, 0(r31)
-	lwz      r12, 0xb4(r12)
-	mtctr    r12
-	bctrl
-	lwz      r0, 0x14(r1)
-	lwz      r31, 0xc(r1)
-	mtlr     r0
-	addi     r1, r1, 0x10
-	blr
-	*/
+	piki->startMotion(IPikiAnims::RUN2, IPikiAnims::RUN2, nullptr, nullptr);
+	piki->setCollisionFlick(false);
 }
 
 /*
@@ -2565,6 +2265,28 @@ void PikiGoHangState::init(Piki* piki, StateArg* stateArg)
  */
 void PikiGoHangState::exec(Piki* piki)
 {
+	if (piki->m_navi == nullptr) {
+		transit(piki, PIKISTATE_Walk, nullptr);
+		return;
+	}
+
+	CollPart* collpart = piki->m_navi->m_collTree->getCollPart('rhnd');
+	Vector3f position  = piki->getPosition();
+	Vector3f diff      = collpart->m_position - position;
+	f32 length         = diff.normalise(); // can't use this bc no second round of fmadds - has to use a different normalise.
+	f32 scale          = 1.0f;
+	if (length > 2.0f * naviMgr->m_naviParms->m_naviParms.m_p037.m_value) {
+		scale = 2.0f;
+	}
+	Vector3f naviPos = piki->m_navi->m_position2;
+	f32 factor       = static_cast<NaviParms*>(piki->m_navi->m_parms)->m_naviParms.m_p060.m_value * scale;
+	f32 dist         = naviPos.x * naviPos.x + naviPos.y * naviPos.y + naviPos.z * naviPos.z;
+	_sqrtf(dist, &dist);
+	piki->m_velocity = diff * (factor + dist);
+
+	if (piki->m_navi->getStateID() != 6) {
+		transit(piki, PIKISTATE_Walk, nullptr);
+	}
 	/*
 	stwu     r1, -0x30(r1)
 	mflr     r0
@@ -2706,31 +2428,14 @@ lbl_8018D6E4:
  * Address:	8018D700
  * Size:	000034
  */
-void PikiGoHangState::cleanup(Piki* piki)
-{
-	/*
-	stwu     r1, -0x10(r1)
-	mflr     r0
-	mr       r3, r4
-	li       r4, 1
-	stw      r0, 0x14(r1)
-	lwz      r12, 0(r3)
-	lwz      r12, 0xb4(r12)
-	mtctr    r12
-	bctrl
-	lwz      r0, 0x14(r1)
-	mtlr     r0
-	addi     r1, r1, 0x10
-	blr
-	*/
-}
+void PikiGoHangState::cleanup(Piki* piki) { piki->setCollisionFlick(true); }
 
 /*
  * --INFO--
  * Address:	8018D734
  * Size:	000004
  */
-void PikiHangedState::onKeyEvent(SysShape::KeyEvent const&) { }
+void PikiHangedState::onKeyEvent(SysShape::KeyEvent const& keyEvent) { }
 
 /*
  * --INFO--
@@ -2739,61 +2444,15 @@ void PikiHangedState::onKeyEvent(SysShape::KeyEvent const&) { }
  */
 void PikiHangedState::init(Piki* piki, StateArg* stateArg)
 {
-	/*
-	stwu     r1, -0x10(r1)
-	mflr     r0
-	li       r5, 0
-	stw      r0, 0x14(r1)
-	stw      r31, 0xc(r1)
-	mr       r31, r4
-	li       r4, 0x2838
-	stw      r30, 8(r1)
-	mr       r30, r3
-	mr       r3, r31
-	bl       startSound__Q24Game4PikiFUlb
-	cmplwi   r30, 0
-	mr       r6, r30
-	beq      lbl_8018D774
-	lwz      r6, 0x10(r30)
+	piki->startSound(PSSE_PK_VC_HANG, false);
+	piki->startMotion(IPikiAnims::HANG, IPikiAnims::HANG, this, nullptr);
+	piki->m_position2 = Vector3f(0.0f);
+	piki->m_velocity  = Vector3f(0.0f);
+	if (piki->m_navi != nullptr) {
+		piki->startSound(piki->m_navi, PSSE_PK_VC_THROW_WAIT, false);
+	}
 
-lbl_8018D774:
-	lwz      r12, 0(r31)
-	mr       r3, r31
-	li       r4, 0x24
-	li       r5, 0x24
-	lwz      r12, 0x208(r12)
-	li       r7, 0
-	mtctr    r12
-	bctrl
-	lfs      f0, lbl_80518DE0@sda21(r2)
-	stfs     f0, 0x200(r31)
-	stfs     f0, 0x204(r31)
-	stfs     f0, 0x208(r31)
-	stfs     f0, 0x1e4(r31)
-	stfs     f0, 0x1e8(r31)
-	stfs     f0, 0x1ec(r31)
-	lwz      r4, 0x2c4(r31)
-	cmplwi   r4, 0
-	beq      lbl_8018D7CC
-	mr       r3, r31
-	li       r5, 0x2802
-	li       r6, 0
-	bl       startSound__Q24Game4PikiFPQ24Game8CreatureUlb
-
-lbl_8018D7CC:
-	mr       r3, r31
-	li       r4, 0
-	lwz      r12, 0(r31)
-	lwz      r12, 0xa4(r12)
-	mtctr    r12
-	bctrl
-	lwz      r0, 0x14(r1)
-	lwz      r31, 0xc(r1)
-	lwz      r30, 8(r1)
-	mtlr     r0
-	addi     r1, r1, 0x10
-	blr
-	*/
+	piki->setAtari(false);
 }
 
 /*
@@ -2803,37 +2462,9 @@ lbl_8018D7CC:
  */
 void PikiHangedState::exec(Piki* piki)
 {
-	/*
-	stwu     r1, -0x10(r1)
-	mflr     r0
-	stw      r0, 0x14(r1)
-	stw      r31, 0xc(r1)
-	mr       r31, r4
-	stw      r30, 8(r1)
-	mr       r30, r3
-	lwz      r3, 0x2c4(r4)
-	cmplwi   r3, 0
-	beq      lbl_8018D850
-	bl       getStateID__Q24Game4NaviFv
-	cmpwi    r3, 6
-	beq      lbl_8018D850
-	mr       r3, r30
-	mr       r4, r31
-	lwz      r12, 0(r30)
-	li       r5, 0
-	li       r6, 0
-	lwz      r12, 0x1c(r12)
-	mtctr    r12
-	bctrl
-
-lbl_8018D850:
-	lwz      r0, 0x14(r1)
-	lwz      r31, 0xc(r1)
-	lwz      r30, 8(r1)
-	mtlr     r0
-	addi     r1, r1, 0x10
-	blr
-	*/
+	if (piki->m_navi != nullptr && piki->m_navi->getStateID() != 6) {
+		transit(piki, PIKISTATE_Walk, nullptr);
+	}
 }
 
 /*
@@ -2841,68 +2472,19 @@ lbl_8018D850:
  * Address:	8018D868
  * Size:	000034
  */
-void PikiHangedState::cleanup(Piki* piki)
-{
-	/*
-	stwu     r1, -0x10(r1)
-	mflr     r0
-	mr       r3, r4
-	li       r4, 1
-	stw      r0, 0x14(r1)
-	lwz      r12, 0(r3)
-	lwz      r12, 0xa4(r12)
-	mtctr    r12
-	bctrl
-	lwz      r0, 0x14(r1)
-	mtlr     r0
-	addi     r1, r1, 0x10
-	blr
-	*/
-}
+void PikiHangedState::cleanup(Piki* piki) { piki->setAtari(true); }
 
 /*
  * --INFO--
  * Address:	8018D89C
  * Size:	00006C
  */
-bool PikiHangedState::ignoreAtari(Piki* piki, Game::Creature*)
+bool PikiHangedState::ignoreAtari(Piki* piki, Creature* creature)
 {
-	return false; // fake
-	              /*
-	              stwu     r1, -0x10(r1)
-	              mflr     r0
-	              stw      r0, 0x14(r1)
-	              stw      r31, 0xc(r1)
-	              mr       r31, r5
-	              mr       r3, r31
-	              lwz      r12, 0(r31)
-	              lwz      r12, 0x1c(r12)
-	              mtctr    r12
-	              bctrl
-	              clrlwi.  r0, r3, 0x18
-	              bne      lbl_8018D8E8
-	              mr       r3, r31
-	              lwz      r12, 0(r31)
-	              lwz      r12, 0x18(r12)
-	              mtctr    r12
-	              bctrl
-	              clrlwi.  r0, r3, 0x18
-	              beq      lbl_8018D8F0
-	          
-	          lbl_8018D8E8:
-	              li       r3, 1
-	              b        lbl_8018D8F4
-	          
-	          lbl_8018D8F0:
-	              li       r3, 0
-	          
-	          lbl_8018D8F4:
-	              lwz      r0, 0x14(r1)
-	              lwz      r31, 0xc(r1)
-	              mtlr     r0
-	              addi     r1, r1, 0x10
-	              blr
-	              */
+	if (creature->isNavi() || creature->isPiki()) {
+		return true;
+	}
+	return false;
 }
 
 /*
@@ -2919,63 +2501,18 @@ void PikiWaterHangedState::onKeyEvent(SysShape::KeyEvent const&) { }
  */
 void PikiWaterHangedState::init(Piki* piki, StateArg* stateArg)
 {
-	/*
-	stwu     r1, -0x10(r1)
-	mflr     r0
-	cmplwi   r5, 0
-	stw      r0, 0x14(r1)
-	stw      r31, 0xc(r1)
-	mr       r31, r4
-	stw      r30, 8(r1)
-	mr       r30, r3
-	beq      lbl_8018D93C
-	lwz      r0, 0(r5)
-	stw      r0, 0x14(r30)
-	b        lbl_8018D944
+	WaterHangedStateArg* waterHangedArg = static_cast<WaterHangedStateArg*>(stateArg);
+	if (waterHangedArg != nullptr) {
+		m_piki = waterHangedArg->m_piki;
+	} else {
+		m_piki = nullptr;
+	}
 
-lbl_8018D93C:
-	li       r0, 0
-	stw      r0, 0x14(r30)
-
-lbl_8018D944:
-	mr       r3, r31
-	li       r4, 0x2838
-	li       r5, 0
-	bl       startSound__Q24Game4PikiFUlb
-	cmplwi   r30, 0
-	mr       r6, r30
-	beq      lbl_8018D964
-	lwz      r6, 0x10(r30)
-
-lbl_8018D964:
-	lwz      r12, 0(r31)
-	mr       r3, r31
-	li       r4, 0x24
-	li       r5, 0x24
-	lwz      r12, 0x208(r12)
-	li       r7, 0
-	mtctr    r12
-	bctrl
-	lfs      f0, lbl_80518DE0@sda21(r2)
-	mr       r3, r31
-	li       r4, 0
-	stfs     f0, 0x200(r31)
-	stfs     f0, 0x204(r31)
-	stfs     f0, 0x208(r31)
-	stfs     f0, 0x1e4(r31)
-	stfs     f0, 0x1e8(r31)
-	stfs     f0, 0x1ec(r31)
-	lwz      r12, 0(r31)
-	lwz      r12, 0xa4(r12)
-	mtctr    r12
-	bctrl
-	lwz      r0, 0x14(r1)
-	lwz      r31, 0xc(r1)
-	lwz      r30, 8(r1)
-	mtlr     r0
-	addi     r1, r1, 0x10
-	blr
-	*/
+	piki->startSound(PSSE_PK_VC_HANG, false);
+	piki->startMotion(IPikiAnims::HANG, IPikiAnims::HANG, this, nullptr);
+	piki->m_position2 = Vector3f(0.0f);
+	piki->m_velocity  = Vector3f(0.0f);
+	piki->setAtari(false);
 }
 
 /*
@@ -2985,56 +2522,16 @@ lbl_8018D964:
  */
 void PikiWaterHangedState::exec(Piki* piki)
 {
-	/*
-	stwu     r1, -0x20(r1)
-	mflr     r0
-	stw      r0, 0x24(r1)
-	stw      r31, 0x1c(r1)
-	stw      r30, 0x18(r1)
-	mr       r30, r4
-	stw      r29, 0x14(r1)
-	mr       r29, r3
-	lwz      r0, 0x14(r3)
-	cmplwi   r0, 0
-	beq      lbl_8018DA44
-	mr       r3, r0
-	bl       getCurrActionID__Q24Game4PikiFv
-	mr       r31, r3
-	lwz      r3, 0x14(r29)
-	bl       getStateID__Q24Game4PikiFv
-	cmpwi    r31, 0xc
-	bne      lbl_8018DA20
-	cmpwi    r3, 0
-	beq      lbl_8018DA5C
+	if (m_piki != 0) {
+		int currActID   = m_piki->getCurrActionID();
+		int currStateID = m_piki->getStateID();
 
-lbl_8018DA20:
-	mr       r3, r29
-	mr       r4, r30
-	lwz      r12, 0(r29)
-	li       r5, 0
-	li       r6, 0
-	lwz      r12, 0x1c(r12)
-	mtctr    r12
-	bctrl
-	b        lbl_8018DA5C
-
-lbl_8018DA44:
-	lwz      r12, 0(r3)
-	li       r5, 0
-	li       r6, 0
-	lwz      r12, 0x1c(r12)
-	mtctr    r12
-	bctrl
-
-lbl_8018DA5C:
-	lwz      r0, 0x24(r1)
-	lwz      r31, 0x1c(r1)
-	lwz      r30, 0x18(r1)
-	lwz      r29, 0x14(r1)
-	mtlr     r0
-	addi     r1, r1, 0x20
-	blr
-	*/
+		if (currActID != 12 || currStateID != PIKISTATE_Walk) {
+			transit(piki, PIKISTATE_Walk, nullptr);
+		}
+	} else {
+		transit(piki, PIKISTATE_Walk, nullptr);
+	}
 }
 
 /*
@@ -3042,68 +2539,19 @@ lbl_8018DA5C:
  * Address:	8018DA78
  * Size:	000034
  */
-void PikiWaterHangedState::cleanup(Piki* piki)
-{
-	/*
-	stwu     r1, -0x10(r1)
-	mflr     r0
-	mr       r3, r4
-	li       r4, 1
-	stw      r0, 0x14(r1)
-	lwz      r12, 0(r3)
-	lwz      r12, 0xa4(r12)
-	mtctr    r12
-	bctrl
-	lwz      r0, 0x14(r1)
-	mtlr     r0
-	addi     r1, r1, 0x10
-	blr
-	*/
-}
+void PikiWaterHangedState::cleanup(Piki* piki) { piki->setAtari(true); }
 
 /*
  * --INFO--
  * Address:	8018DAAC
  * Size:	00006C
  */
-bool PikiWaterHangedState::ignoreAtari(Piki* piki, Game::Creature*)
+bool PikiWaterHangedState::ignoreAtari(Piki* piki, Creature* creature)
 {
-	return false; // fake
-	              /*
-	              stwu     r1, -0x10(r1)
-	              mflr     r0
-	              stw      r0, 0x14(r1)
-	              stw      r31, 0xc(r1)
-	              mr       r31, r5
-	              mr       r3, r31
-	              lwz      r12, 0(r31)
-	              lwz      r12, 0x1c(r12)
-	              mtctr    r12
-	              bctrl
-	              clrlwi.  r0, r3, 0x18
-	              bne      lbl_8018DAF8
-	              mr       r3, r31
-	              lwz      r12, 0(r31)
-	              lwz      r12, 0x18(r12)
-	              mtctr    r12
-	              bctrl
-	              clrlwi.  r0, r3, 0x18
-	              beq      lbl_8018DB00
-	          
-	          lbl_8018DAF8:
-	              li       r3, 1
-	              b        lbl_8018DB04
-	          
-	          lbl_8018DB00:
-	              li       r3, 0
-	          
-	          lbl_8018DB04:
-	              lwz      r0, 0x14(r1)
-	              lwz      r31, 0xc(r1)
-	              mtlr     r0
-	              addi     r1, r1, 0x10
-	              blr
-	              */
+	if (creature->isNavi() || creature->isPiki()) {
+		return true;
+	}
+	return false;
 }
 
 /*
@@ -3113,36 +2561,16 @@ bool PikiWaterHangedState::ignoreAtari(Piki* piki, Game::Creature*)
  */
 void PikiHipDropState::init(Piki* piki, StateArg* stateArg)
 {
-	/*
-	stwu     r1, -0x10(r1)
-	mflr     r0
-	lfs      f1, lbl_80518DE0@sda21(r2)
-	stw      r0, 0x14(r1)
-	li       r0, 0
-	lfs      f0, lbl_80518E24@sda21(r2)
-	stw      r31, 0xc(r1)
-	stw      r30, 8(r1)
-	mr       r30, r4
-	stfs     f1, 0x208(r4)
-	stfs     f1, 0x200(r4)
-	sth      r0, 0x14(r3)
-	stfs     f0, 0x10(r3)
-	stfs     f1, 0x204(r4)
-	lwz      r31, 0x258(r4)
-	mr       r3, r31
-	bl       killNage___Q23efx9TPkEffectFv
-	lwz      r4, 0x10(r31)
-	mr       r3, r31
-	bl       "createBlackDown___Q23efx9TPkEffectFP10Vector3<f>"
-	li       r0, 1
-	stb      r0, 0x135(r30)
-	lwz      r0, 0x14(r1)
-	lwz      r31, 0xc(r1)
-	lwz      r30, 8(r1)
-	mtlr     r0
-	addi     r1, r1, 0x10
-	blr
-	*/
+	piki->m_position2.z = 0.0f;
+	piki->m_position2.x = 0.0f;
+	_14                 = 0;
+	_10                 = 0.25f;
+	piki->m_position2.y = 0.0f;
+
+	efx::TPkEffect* effectsObj = piki->m_effectsObj;
+	effectsObj->killNage_();
+	effectsObj->createBlackDown_(effectsObj->_10);
+	piki->m_updateContext._09 = true;
 }
 
 /*
@@ -3427,22 +2855,8 @@ lbl_8018DF00:
  */
 void PikiHipDropState::cleanup(Piki* piki)
 {
-	/*
-	stwu     r1, -0x10(r1)
-	mflr     r0
-	stw      r0, 0x14(r1)
-	stw      r31, 0xc(r1)
-	mr       r31, r4
-	lwz      r3, 0x258(r4)
-	bl       killBlackDown___Q23efx9TPkEffectFv
-	li       r0, 0
-	stb      r0, 0x135(r31)
-	lwz      r0, 0x14(r1)
-	lwz      r31, 0xc(r1)
-	mtlr     r0
-	addi     r1, r1, 0x10
-	blr
-	*/
+	piki->m_effectsObj->killBlackDown_();
+	piki->m_updateContext._09 = false;
 }
 
 /*
@@ -3457,23 +2871,11 @@ void PikiHipDropState::onKeyEvent(Piki* piki, SysShape::KeyEvent const&) { }
  * Address:	8018DF8C
  * Size:	00002C
  */
-void PikiHipDropState::bounceCallback(Piki* piki, Sys::Triangle*)
+void PikiHipDropState::bounceCallback(Piki* piki, Sys::Triangle* triangle)
 {
-	/*
-	stwu     r1, -0x10(r1)
-	mflr     r0
-	stw      r0, 0x14(r1)
-	lhz      r0, 0x14(r3)
-	cmplwi   r0, 2
-	beq      lbl_8018DFA8
-	bl       dosin__Q24Game16PikiHipDropStateFPQ24Game4Piki
-
-lbl_8018DFA8:
-	lwz      r0, 0x14(r1)
-	mtlr     r0
-	addi     r1, r1, 0x10
-	blr
-	*/
+	if (_14 != 2) {
+		dosin(piki);
+	}
 }
 
 /*
@@ -3688,21 +3090,9 @@ lbl_8018E278:
  */
 void PikiHipDropState::platCallback(Piki* piki, Game::PlatEvent&)
 {
-	/*
-	stwu     r1, -0x10(r1)
-	mflr     r0
-	stw      r0, 0x14(r1)
-	lhz      r0, 0x14(r3)
-	cmplwi   r0, 2
-	beq      lbl_8018E2B4
-	bl       dosin__Q24Game16PikiHipDropStateFPQ24Game4Piki
-
-lbl_8018E2B4:
-	lwz      r0, 0x14(r1)
-	mtlr     r0
-	addi     r1, r1, 0x10
-	blr
-	*/
+	if (_14 != 2) {
+		dosin(piki);
+	}
 }
 
 /*
@@ -3712,55 +3102,14 @@ lbl_8018E2B4:
  */
 void PikiHipDropState::dosin(Piki* piki)
 {
-	/*
-	stwu     r1, -0x30(r1)
-	mflr     r0
-	stw      r0, 0x34(r1)
-	stw      r31, 0x2c(r1)
-	mr       r31, r4
-	stw      r30, 0x28(r1)
-	mr       r30, r3
-	addi     r3, r1, 8
-	lwz      r12, 0(r4)
-	lwz      r12, 8(r12)
-	mtctr    r12
-	bctrl
-	lfs      f2, 8(r1)
-	addi     r3, r1, 0x14
-	lfs      f1, 0xc(r1)
-	lfs      f0, 0x10(r1)
-	stfs     f2, 0x14(r1)
-	stfs     f1, 0x18(r1)
-	stfs     f0, 0x1c(r1)
-	bl       "createSimpleBlackDrop__3efxFR10Vector3<f>"
-	lwz      r3, rumbleMgr__4Game@sda21(r13)
-	addi     r5, r1, 0x14
-	li       r4, 0xb
-	li       r6, 2
-	bl       "startRumble__Q24Game9RumbleMgrFiR10Vector3<f>i"
-	lwz      r3, cameraMgr__4Game@sda21(r13)
-	addi     r5, r1, 0x14
-	li       r4, 6
-	li       r6, 2
-	bl       "startVibration__Q24Game9CameraMgrFiR10Vector3<f>i"
-	mr       r3, r31
-	li       r4, 0x284e
-	li       r5, 0
-	bl       startSound__Q24Game4PikiFUlb
-	li       r0, 2
-	lfs      f0, lbl_80518DC4@sda21(r2)
-	sth      r0, 0x14(r30)
-	mr       r3, r30
-	mr       r4, r31
-	stfs     f0, 0x10(r30)
-	bl       earthquake__Q24Game16PikiHipDropStateFPQ24Game4Piki
-	lwz      r0, 0x34(r1)
-	lwz      r31, 0x2c(r1)
-	lwz      r30, 0x28(r1)
-	mtlr     r0
-	addi     r1, r1, 0x30
-	blr
-	*/
+	Vector3f position = piki->getPosition();
+	efx::createSimpleBlackDrop(position);
+	rumbleMgr->startRumble(11, position, 2);
+	cameraMgr->startVibration(6, position, 2);
+	piki->startSound(PSSE_PK_SE_DOSUN, false);
+	_14 = 2;
+	_10 = 0.3f;
+	earthquake(piki);
 }
 
 /*
@@ -3770,78 +3119,21 @@ void PikiHipDropState::dosin(Piki* piki)
  */
 void PikiHipDropState::earthquake(Piki* piki)
 {
-	/*
-	stwu     r1, -0xc0(r1)
-	mflr     r0
-	stw      r0, 0xc4(r1)
-	stfd     f31, 0xb0(r1)
-	psq_st   f31, 184(r1), 0, qr0
-	stw      r31, 0xac(r1)
-	stw      r30, 0xa8(r1)
-	stw      r29, 0xa4(r1)
-	lwz      r12, 0(r4)
-	mr       r29, r4
-	addi     r3, r1, 8
-	lwz      r12, 8(r12)
-	mtctr    r12
-	bctrl
-	lwz      r5, pikiMgr__4Game@sda21(r13)
-	addi     r3, r1, 0x30
-	lfs      f2, 8(r1)
-	addi     r4, r1, 0x20
-	lwz      r5, 0x6c(r5)
-	lfs      f1, 0xc(r1)
-	lfs      f3, 0x11f0(r5)
-	lfs      f0, 0x10(r1)
-	stfs     f2, 0x20(r1)
-	stfs     f1, 0x24(r1)
-	stfs     f0, 0x28(r1)
-	stfs     f3, 0x2c(r1)
-	bl       __ct__Q24Game15CellIteratorArgFRQ23Sys6Sphere
-	li       r0, 1
-	addi     r3, r1, 0x50
-	stw      r0, 0x44(r1)
-	addi     r4, r1, 0x30
-	bl       __ct__Q24Game12CellIteratorFRQ24Game15CellIteratorArg
-	addi     r3, r1, 0x50
-	bl       first__Q24Game12CellIteratorFv
-	lis      r4, __vt__Q24Game11Interaction@ha
-	lis      r3, __vt__Q24Game18InteractEarthquake@ha
-	lfs      f31, lbl_80518DE4@sda21(r2)
-	addi     r30, r4, __vt__Q24Game11Interaction@l
-	addi     r31, r3, __vt__Q24Game18InteractEarthquake@l
-	b        lbl_8018E454
+	Vector3f position = piki->getPosition();
+	f32 rad           = pikiMgr->m_parms->m_pikiParms._11D8.m_value;
+	Sys::Sphere sphere(position, rad);
+	CellIteratorArg iterArg(sphere);
+	iterArg._14 = 1;
 
-lbl_8018E420:
-	addi     r3, r1, 0x50
-	bl       __ml__Q24Game12CellIteratorFv
-	stw      r30, 0x14(r1)
-	addi     r4, r1, 0x14
-	stw      r29, 0x18(r1)
-	stw      r31, 0x14(r1)
-	stfs     f31, 0x1c(r1)
-	lwz      r12, 0(r3)
-	lwz      r12, 0x1a4(r12)
-	mtctr    r12
-	bctrl
-	addi     r3, r1, 0x50
-	bl       next__Q24Game12CellIteratorFv
+	CellIterator iterator(iterArg);
+	iterator.first();
 
-lbl_8018E454:
-	addi     r3, r1, 0x50
-	bl       isDone__Q24Game12CellIteratorFv
-	clrlwi.  r0, r3, 0x18
-	beq      lbl_8018E420
-	psq_l    f31, 184(r1), 0, qr0
-	lwz      r0, 0xc4(r1)
-	lfd      f31, 0xb0(r1)
-	lwz      r31, 0xac(r1)
-	lwz      r30, 0xa8(r1)
-	lwz      r29, 0xa4(r1)
-	mtlr     r0
-	addi     r1, r1, 0xc0
-	blr
-	*/
+	while (!iterator.isDone()) {
+		Creature* creature = static_cast<Creature*>(*iterator);
+		InteractEarthquake earthquake(piki, 1.0f);
+		creature->stimulate(earthquake);
+		iterator.next();
+	}
 }
 
 /*
@@ -3851,46 +3143,14 @@ lbl_8018E454:
  */
 void PikiFallMeckState::init(Piki* piki, StateArg* stateArg)
 {
-	/*
-	stwu     r1, -0x20(r1)
-	mflr     r0
-	li       r6, 0
-	li       r7, 0
-	stw      r0, 0x24(r1)
-	stw      r31, 0x1c(r1)
-	mr       r31, r5
-	li       r5, 9
-	stw      r30, 0x18(r1)
-	mr       r30, r4
-	li       r4, 9
-	stw      r29, 0x14(r1)
-	mr       r29, r3
-	mr       r3, r30
-	lwz      r12, 0(r30)
-	lwz      r12, 0x208(r12)
-	mtctr    r12
-	bctrl
-	mr       r3, r30
-	bl       endStick__Q24Game8CreatureFv
-	cmplwi   r31, 0
-	beq      lbl_8018E4EC
-	lbz      r0, 0(r31)
-	stb      r0, 0x10(r29)
-	b        lbl_8018E4F4
-
-lbl_8018E4EC:
-	li       r0, 0
-	stb      r0, 0x10(r29)
-
-lbl_8018E4F4:
-	lwz      r0, 0x24(r1)
-	lwz      r31, 0x1c(r1)
-	lwz      r30, 0x18(r1)
-	lwz      r29, 0x14(r1)
-	mtlr     r0
-	addi     r1, r1, 0x20
-	blr
-	*/
+	FallMeckStateArg* fallArg = static_cast<FallMeckStateArg*>(stateArg);
+	piki->startMotion(IPikiAnims::FALL, IPikiAnims::FALL, nullptr, nullptr);
+	piki->endStick();
+	if (fallArg != nullptr) {
+		_10 = fallArg->_00;
+	} else {
+		_10 = false;
+	}
 }
 
 /*
@@ -3900,24 +3160,9 @@ lbl_8018E4F4:
  */
 void PikiFallMeckState::exec(Piki* piki)
 {
-	/*
-	stwu     r1, -0x10(r1)
-	mflr     r0
-	stw      r0, 0x14(r1)
-	lwz      r5, 0x248(r4)
-	cmplwi   r5, 0
-	beq      lbl_8018E538
-	lwz      r12, 0(r3)
-	lwz      r12, 0x24(r12)
-	mtctr    r12
-	bctrl
-
-lbl_8018E538:
-	lwz      r0, 0x14(r1)
-	mtlr     r0
-	addi     r1, r1, 0x10
-	blr
-	*/
+	if (piki->_248 != nullptr) {
+		bounceCallback(piki, piki->_248);
+	}
 }
 
 /*
@@ -3939,24 +3184,7 @@ void PikiFallMeckState::collisionCallback(Piki* piki, Game::CollEvent&) { }
  * Address:	8018E550
  * Size:	000034
  */
-void PikiFallMeckState::platCallback(Piki* piki, Game::PlatEvent&)
-{
-	/*
-	stwu     r1, -0x10(r1)
-	mflr     r0
-	li       r5, 0
-	li       r6, 0
-	stw      r0, 0x14(r1)
-	lwz      r12, 0(r3)
-	lwz      r12, 0x1c(r12)
-	mtctr    r12
-	bctrl
-	lwz      r0, 0x14(r1)
-	mtlr     r0
-	addi     r1, r1, 0x10
-	blr
-	*/
-}
+void PikiFallMeckState::platCallback(Piki* piki, PlatEvent& platEvent) { transit(piki, PIKISTATE_Walk, nullptr); }
 
 // /*
 //  * --INFO--
@@ -4355,50 +3583,14 @@ lbl_8018EAB4:
  */
 void PikiSuikomiState::init(Piki* piki, StateArg* stateArg)
 {
-	/*
-	stwu     r1, -0x20(r1)
-	mflr     r0
-	stw      r0, 0x24(r1)
-	stw      r31, 0x1c(r1)
-	or.      r31, r5, r5
-	stw      r30, 0x18(r1)
-	mr       r30, r4
-	stw      r29, 0x14(r1)
-	mr       r29, r3
-	bne      lbl_8018EB14
-	lis      r3, lbl_8047EC60@ha
-	lis      r5, lbl_8047ECDC@ha
-	addi     r3, r3, lbl_8047EC60@l
-	li       r4, 0xa0c
-	addi     r5, r5, lbl_8047ECDC@l
-	crclr    6
-	bl       panic_f__12JUTExceptionFPCciPCce
-
-lbl_8018EB14:
-	lwz      r5, 0(r31)
-	li       r0, 0
-	mr       r3, r30
-	li       r4, 0
-	stw      r5, 0x14(r29)
-	lwz      r5, 4(r31)
-	stw      r5, 0x18(r29)
-	lwz      r5, 8(r31)
-	stw      r5, 0x1c(r29)
-	stb      r0, 0x10(r29)
-	lwz      r12, 0(r30)
-	lwz      r12, 0x1e8(r12)
-	mtctr    r12
-	bctrl
-	mr       r3, r30
-	bl       endStick__Q24Game8CreatureFv
-	lwz      r0, 0x24(r1)
-	lwz      r31, 0x1c(r1)
-	lwz      r30, 0x18(r1)
-	lwz      r29, 0x14(r1)
-	mtlr     r0
-	addi     r1, r1, 0x20
-	blr
-	*/
+	SuikomiStateArg* suikomiArg = static_cast<SuikomiStateArg*>(stateArg);
+	P2ASSERTLINE(2572, suikomiArg != nullptr);
+	_14 = suikomiArg->_00;
+	_18 = suikomiArg->_04;
+	_1C = suikomiArg->_08;
+	_10 = 0;
+	piki->setMoveVelocity(false);
+	piki->endStick();
 }
 
 /*
@@ -4642,26 +3834,11 @@ lbl_8018EE28:
  * Address:	8018EE58
  * Size:	000038
  */
-void PikiSuikomiState::onKeyEvent(Piki* piki, SysShape::KeyEvent const&)
+void PikiSuikomiState::onKeyEvent(Piki* piki, SysShape::KeyEvent const& keyEvent)
 {
-	/*
-	stwu     r1, -0x10(r1)
-	mflr     r0
-	stw      r0, 0x14(r1)
-	lwz      r0, 0x1c(r5)
-	cmplwi   r0, 0
-	bne      lbl_8018EE80
-	mr       r3, r4
-	li       r4, 0x2849
-	li       r5, 4
-	bl       startSound__Q24Game4PikiFUlQ36PSGame5SeMgr7SetSeId
-
-lbl_8018EE80:
-	lwz      r0, 0x14(r1)
-	mtlr     r0
-	addi     r1, r1, 0x10
-	blr
-	*/
+	if ((u32)keyEvent.m_type == 0) {
+		piki->startSound(PSSE_PK_VC_SWALLOWED, PSGame::SeMgr::UNK_4);
+	}
 }
 
 /*
@@ -4748,17 +3925,7 @@ lbl_8018EF80:
  * Address:	8018EF98
  * Size:	000014
  */
-bool PikiSuikomiState::ignoreAtari(Piki* piki, Game::Creature*)
-{
-	return false; // fake
-	              /*
-	              lwz      r0, 0x14(r3)
-	              subf     r0, r0, r5
-	              cntlzw   r0, r0
-	              rlwinm   r3, r0, 0x1b, 0x18, 0x1f
-	              blr
-	              */
-}
+bool PikiSuikomiState::ignoreAtari(Piki* piki, Creature* creature) { return (u8)(_14 == creature); }
 
 /*
  * --INFO--
@@ -4902,26 +4069,8 @@ lbl_8018F14C:
  */
 void PikiSuikomiState::cleanup(Piki* piki)
 {
-	/*
-	stwu     r1, -0x10(r1)
-	mflr     r0
-	stw      r0, 0x14(r1)
-	stw      r31, 0xc(r1)
-	mr       r31, r4
-	mr       r3, r31
-	bl       endCaptureStomach__Q24Game8FakePikiFv
-	mr       r3, r31
-	li       r4, 1
-	lwz      r12, 0(r31)
-	lwz      r12, 0x1e8(r12)
-	mtctr    r12
-	bctrl
-	lwz      r0, 0x14(r1)
-	lwz      r31, 0xc(r1)
-	mtlr     r0
-	addi     r1, r1, 0x10
-	blr
-	*/
+	piki->endCaptureStomach();
+	piki->setMoveVelocity(true);
 }
 
 /*
@@ -9553,364 +8702,18 @@ void PikiEscapeState::cleanup(Piki* piki) { }
 
 /*
  * --INFO--
- * Address:	8019299C
- * Size:	000008
- */
-bool PikiEscapeState::callable(void) { return 0x0; }
-
-/*
- * --INFO--
- * Address:	801929C8
- * Size:	000008
- */
-bool PikiEmotionState::callable(void) { return 0x1; }
-
-/*
- * --INFO--
- * Address:	801929D0
- * Size:	000008
- */
-bool PikiKokeState::callable(void) { return 0x0; }
-
-/*
- * --INFO--
- * Address:	801929D8
- * Size:	000008
- */
-bool PikiKokeDamageState::callable(void) { return 0x0; }
-
-/*
- * --INFO--
- * Address:	801929E0
- * Size:	000008
- */
-bool PikiBlowState::pressable(void) { return 0x0; }
-
-/*
- * --INFO--
- * Address:	801929E8
- * Size:	000008
- */
-bool PikiBlowState::callable(void) { return 0x0; }
-
-/*
- * --INFO--
- * Address:	801929F0
- * Size:	000008
- */
-bool PikiFlickState::callable(void) { return 0x0; }
-
-} // namespace Game
-
-/*
- * --INFO--
- * Address:	801929F8
- * Size:	00000C
- */
-char* PikiAI::ActCropArg::getName(void)
-{
-	/*
-	lis      r3, lbl_8047EE18@ha
-	addi     r3, r3, lbl_8047EE18@l
-	blr
-	*/
-}
-
-namespace Game {
-
-/*
- * --INFO--
- * Address:	80192A04
- * Size:	000008
- */
-bool PikiFlyingState::callable(void) { return 0x0; }
-
-/*
- * --INFO--
- * Address:	80192A0C
- * Size:	000008
- */
-bool PikiSuikomiState::pressable(void) { return 0x0; }
-
-/*
- * --INFO--
- * Address:	80192A14
- * Size:	000008
- */
-bool PikiFallMeckState::pressable(void) { return 0x0; }
-
-/*
- * --INFO--
- * Address:	80192A1C
- * Size:	000008
- */
-bool PikiWaterHangedState::throwable(void) { return 0x1; }
-
-/*
- * --INFO--
- * Address:	80192A24
- * Size:	000008
- */
-bool PikiHangedState::throwable(void) { return 0x1; }
-
-/*
- * --INFO--
- * Address:	80192A2C
- * Size:	000008
- */
-bool PikiGoHangState::callable(void) { return 0x1; }
-
-/*
- * --INFO--
- * Address:	80192A34
- * Size:	000008
- */
-bool PikiGoHangState::throwable(void) { return 0x1; }
-
-/*
- * --INFO--
- * Address:	80192A3C
- * Size:	000008
- */
-bool PikiAutoNukiState::callable(void) { return 0x0; }
-
-/*
- * --INFO--
- * Address:	80192A44
- * Size:	000008
- */
-bool PikiLookAtState::callable(void) { return 0x0; }
-
-/*
- * --INFO--
- * Address:	80192A4C
- * Size:	000008
- */
-bool PikiPressedState::pressable(void) { return 0x0; }
-
-/*
- * --INFO--
- * Address:	80192A54
- * Size:	000008
- */
-bool PikiPressedState::dead(void) { return 0x1; }
-
-/*
- * --INFO--
- * Address:	80192A5C
- * Size:	000008
- */
-bool PikiDenkiDyingState::pressable(void) { return 0x0; }
-
-/*
- * --INFO--
- * Address:	80192A64
- * Size:	000008
- */
-bool PikiDenkiDyingState::dead(void) { return 0x1; }
-
-/*
- * --INFO--
- * Address:	80192A6C
- * Size:	000008
- */
-bool PikiDyingState::pressable(void) { return 0x0; }
-
-/*
- * --INFO--
- * Address:	80192A74
- * Size:	000008
- */
-bool PikiDyingState::dead(void) { return 0x1; }
-
-/*
- * --INFO--
- * Address:	80192A7C
- * Size:	000008
- */
-bool PikiDeadState::pressable(void) { return 0x0; }
-
-/*
- * --INFO--
- * Address:	80192A84
- * Size:	000008
- */
-bool PikiDeadState::transittable(int) { return 0x0; }
-
-/*
- * --INFO--
- * Address:	80192A8C
- * Size:	000008
- */
-bool PikiDeadState::dead(void) { return 0x1; }
-
-/*
- * --INFO--
- * Address:	80192A94
- * Size:	000008
- */
-bool PikiTaneState::callable(void) { return 0x0; }
-
-/*
- * --INFO--
- * Address:	80192A9C
- * Size:	000008
- */
-bool PikiFountainonState::callable(void) { return 0x0; }
-
-/*
- * --INFO--
- * Address:	80192AA4
- * Size:	000008
- */
-bool PikiFountainonState::soft_transittable(int) { return 0x0; }
-
-/*
- * --INFO--
- * Address:	80192AAC
- * Size:	000008
- */
-bool PikiFountainonState::invincible(Piki* piki) { return 0x1; }
-
-/*
- * --INFO--
- * Address:	80192AB4
- * Size:	000008
- */
-bool PikiHoleinState::callable(void) { return 0x0; }
-
-/*
- * --INFO--
- * Address:	80192ABC
- * Size:	000008
- */
-bool PikiHoleinState::soft_transittable(int) { return 0x0; }
-
-/*
- * --INFO--
- * Address:	80192AC4
- * Size:	000008
- */
-bool PikiHoleinState::invincible(Piki* piki) { return 0x1; }
-
-/*
- * --INFO--
- * Address:	80192ACC
- * Size:	000008
- */
-bool PikiSwallowedState::dead(void) { return 0x1; }
-
-/*
- * --INFO--
- * Address:	80192AD4
- * Size:	000008
- */
-bool PikiSwallowedState::ignoreAtari(Piki* piki, Game::Creature*) { return 0x1; }
-
-/*
- * --INFO--
- * Address:	80192ADC
- * Size:	000008
- */
-bool PikiSwallowedState::callable(void) { return 0x0; }
-
-/*
- * --INFO--
- * Address:	80192AE4
- * Size:	000008
- */
-bool PikiDemoWaitState::invincible(Piki* piki) { return 0x1; }
-
-/*
- * --INFO--
- * Address:	80192AEC
- * Size:	000008
- */
-bool PikiWalkState::dopable(void) { return 0x1; }
-
-/*
- * --INFO--
- * Address:	80192AF4
- * Size:	000008
- */
-bool PikiWalkState::aiActive(void) { return 0x1; }
-
-/*
- * --INFO--
- * Address:	80192AFC
- * Size:	000008
- */
-bool PikiWalkState::callable(void) { return 0x1; }
-
-/*
- * --INFO--
- * Address:	80192B04
- * Size:	000008
- */
-bool PikiWalkState::releasable(void) { return 0x1; }
-
-/*
- * --INFO--
- * Address:	80192B0C
- * Size:	000008
- */
-bool PikiWalkState::battleOK(void) { return 0x1; }
-
-/*
- * --INFO--
- * Address:	80192B14
- * Size:	000008
- */
-bool PikiWalkState::throwable(void) { return 0x1; }
-
-/*
- * --INFO--
- * Address:	80192B1C
- * Size:	000004
- */
-void FSMState<Piki>::resume(Piki*) { }
-
-/*
- * --INFO--
- * Address:	80192B20
- * Size:	000004
- */
-void FSMState<Piki>::restart(Piki*) { }
-
-/*
- * --INFO--
  * Address:	80192B24
  * Size:	000064
  */
-void StateMachine<Piki>::create(int)
+// should be weak, but putting it in the header
+// messes up FSM::init.
+void StateMachine<Piki>::create(int limit)
 {
-	/*
-	stwu     r1, -0x10(r1)
-	mflr     r0
-	stw      r0, 0x14(r1)
-	li       r0, 0
-	stw      r31, 0xc(r1)
-	mr       r31, r3
-	stw      r4, 0xc(r3)
-	stw      r0, 8(r3)
-	lwz      r0, 0xc(r3)
-	slwi     r3, r0, 2
-	bl       __nwa__FUl
-	stw      r3, 4(r31)
-	lwz      r0, 0xc(r31)
-	slwi     r3, r0, 2
-	bl       __nwa__FUl
-	stw      r3, 0x10(r31)
-	lwz      r0, 0xc(r31)
-	slwi     r3, r0, 2
-	bl       __nwa__FUl
-	stw      r3, 0x14(r31)
-	lwz      r0, 0x14(r1)
-	lwz      r31, 0xc(r1)
-	mtlr     r0
-	addi     r1, r1, 0x10
-	blr
-	*/
+	m_limit          = limit;
+	m_count          = 0;
+	m_states         = new FSMState<Piki>*[m_limit];
+	m_indexToIDArray = new int[m_limit];
+	m_idToIndexArray = new int[m_limit];
 }
 
 /*
@@ -9918,50 +8721,30 @@ void StateMachine<Piki>::create(int)
  * Address:	80192B88
  * Size:	000084
  */
-void StateMachine<Piki>::registerState(Game::FSMState<Piki>*)
+// should be weak, but putting it in the header
+// messes up FSM::init.
+void StateMachine<Piki>::registerState(FSMState<Piki>* state)
 {
-	/*
-	.loc_0x0:
-	  lwz       r6, 0x8(r3)
-	  lwz       r0, 0xC(r3)
-	  cmpw      r6, r0
-	  bgelr-
-	  lwz       r5, 0x4(r3)
-	  rlwinm    r0,r6,2,0,29
-	  stwx      r4, r5, r0
-	  lwz       r5, 0x4(r4)
-	  cmpwi     r5, 0
-	  blt-      .loc_0x34
-	  lwz       r0, 0xC(r3)
-	  cmpw      r5, r0
-	  blt-      .loc_0x3C
+	if (m_count >= m_limit) {
+		return;
+	}
+	m_states[m_count] = state;
 
-	.loc_0x34:
-	  li        r0, 0
-	  b         .loc_0x40
+	bool check;
+	if (0 > state->m_id || !(state->m_id < m_limit)) {
+		check = false;
+	} else {
+		check = true;
+	}
 
-	.loc_0x3C:
-	  li        r0, 0x1
+	if (!check) {
+		return;
+	}
 
-	.loc_0x40:
-	  rlwinm.   r0,r0,0,24,31
-	  beqlr-
-	  stw       r3, 0x8(r4)
-	  lwz       r0, 0x8(r3)
-	  lwz       r6, 0x4(r4)
-	  lwz       r5, 0x10(r3)
-	  rlwinm    r0,r0,2,0,29
-	  stwx      r6, r5, r0
-	  lwz       r0, 0x4(r4)
-	  lwz       r5, 0x8(r3)
-	  lwz       r4, 0x14(r3)
-	  rlwinm    r0,r0,2,0,29
-	  stwx      r5, r4, r0
-	  lwz       r4, 0x8(r3)
-	  addi      r0, r4, 0x1
-	  stw       r0, 0x8(r3)
-	  blr
-	*/
+	state->m_stateMachine         = this;
+	m_indexToIDArray[m_count]     = state->m_id;
+	m_idToIndexArray[state->m_id] = m_count;
+	m_count++;
 }
 
 } // namespace Game

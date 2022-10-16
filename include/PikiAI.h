@@ -281,7 +281,7 @@ struct ActClimb : public Action {
 };
 
 struct ActCropArg : public ActionArg {
-	virtual char* getName(); // _08 (weak)
+	virtual char* getName() { return "ActCropArg"; } // _08 (weak)
 };
 
 struct ActCrop : public Action, virtual SysShape::MotionListener {

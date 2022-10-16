@@ -59,44 +59,8 @@ enum PikiStateID {
 	PIKISTATE_Count,
 };
 
-struct DopeStateArg : public StateArg {
-	int _00; // _00
-};
-
-struct DyingStateArg : public StateArg {
-	inline DyingStateArg()
-	    : m_animIdx(IPikiAnims::NULLANIM)
-	    , _04(false)
-	{
-	}
-
-	int m_animIdx; // _00
-	bool _04;      // _04
-};
-
-struct FountainonStateArg : public StateArg {
-	Vector3f m_position; // _00
-};
-
-struct HoleinStateArg : public StateArg {
-	Vector3f m_position; // _00
-};
-
-struct NukareStateArg : public StateArg {
-	bool _00;     // _00
-	Navi* m_navi; // _04
-};
-
-struct PanicStateArg : public StateArg {
-	u16 m_panicType; // _00
-};
-
-struct SwallowedStateArg : public StateArg {
-	int m_animIdx; // _00
-};
-
 struct PikiState : public FSMState<Piki> {
-	inline PikiState(int stateID, char* name) // likely, may need adjusting
+	inline PikiState(int stateID, char* name)
 	    : FSMState(stateID)
 	{
 		m_name = name;
@@ -158,11 +122,12 @@ struct PikiAutoNukiState : public PikiState {
 	virtual void exec(Piki*);                                  // _0C
 	virtual void cleanup(Piki*);                               // _10
 	virtual void onKeyEvent(Piki*, const SysShape::KeyEvent&); // _30
-	virtual bool callable();                                   // _44 (weak)
+	virtual bool callable() { return false; }                  // _44 (weak)
 
 	// _00     = VTBL
 	// _00-_10 = PikiState
-	u8 _10[0x8]; // _10, unknown
+	f32 _10; // _10
+	u16 _14; // _14
 };
 
 struct PikiBlowState : public PikiState {
@@ -176,8 +141,8 @@ struct PikiBlowState : public PikiState {
 	virtual void cleanup(Piki*);                               // _10
 	virtual void bounceCallback(Piki*, Sys::Triangle*);        // _24
 	virtual void onKeyEvent(Piki*, const SysShape::KeyEvent&); // _30
-	virtual bool callable();                                   // _44 (weak)
-	virtual bool pressable();                                  // _60 (weak)
+	virtual bool callable() { return false; }                  // _44 (weak)
+	virtual bool pressable() { return false; }                 // _60 (weak)
 	virtual void onFlute(Piki*, Navi*);                        // _6C
 
 	// _00     = VTBL
@@ -216,11 +181,11 @@ struct PikiDeadState : public PikiState {
 	{
 	}
 
-	virtual void init(Piki*, StateArg*); // _08
-	virtual void exec(Piki*);            // _0C
-	virtual bool dead();                 // _58 (weak)
-	virtual bool pressable();            // _60 (weak)
-	virtual bool transittable(int);      // _64 (weak)
+	virtual void init(Piki*, StateArg*);                     // _08
+	virtual void exec(Piki*);                                // _0C
+	virtual bool dead() { return true; }                     // _58 (weak)
+	virtual bool pressable() { return false; }               // _60 (weak)
+	virtual bool transittable(int stateID) { return false; } // _64 (weak)
 
 	// _00     = VTBL
 	// _00-_10 = PikiState
@@ -232,10 +197,10 @@ struct PikiDemoWaitState : public PikiState {
 	{
 	}
 
-	virtual void init(Piki*, StateArg*); // _08
-	virtual void exec(Piki*);            // _0C
-	virtual void cleanup(Piki*);         // _10
-	virtual bool invincible(Piki*);      // _40 (weak)
+	virtual void init(Piki*, StateArg*);            // _08
+	virtual void exec(Piki*);                       // _0C
+	virtual void cleanup(Piki*);                    // _10
+	virtual bool invincible(Piki*) { return true; } // _40 (weak)
 
 	// _00     = VTBL
 	// _00-_10 = PikiState
@@ -247,17 +212,21 @@ struct PikiDenkiDyingState : public PikiState {
 	{
 	}
 
-	virtual void init(Piki*, StateArg*); // _08
-	virtual void exec(Piki*);            // _0C
-	virtual void cleanup(Piki*);         // _10
-	virtual bool dead();                 // _58 (weak)
-	virtual bool pressable();            // _60 (weak)
-	virtual bool transittable(int);      // _64
-	virtual bool soft_transittable(int); // _68
+	virtual void init(Piki*, StateArg*);       // _08
+	virtual void exec(Piki*);                  // _0C
+	virtual void cleanup(Piki*);               // _10
+	virtual bool dead() { return true; }       // _58 (weak)
+	virtual bool pressable() { return false; } // _60 (weak)
+	virtual bool transittable(int);            // _64
+	virtual bool soft_transittable(int);       // _68
 
 	// _00     = VTBL
 	// _00-_10 = PikiState
 	f32 _10; // _10
+};
+
+struct DopeStateArg : public StateArg {
+	int _00; // _00
 };
 
 struct PikiDopeState : public PikiState {
@@ -300,6 +269,17 @@ struct PikiDrownState : public PikiState {
 	u8 _10[0x24]; // _10, unknown
 };
 
+struct DyingStateArg : public StateArg {
+	inline DyingStateArg()
+	    : m_animIdx(IPikiAnims::NULLANIM)
+	    , _04(false)
+	{
+	}
+
+	int m_animIdx; // _00
+	bool _04;      // _04
+};
+
 struct PikiDyingState : public PikiState {
 	inline PikiDyingState()
 	    : PikiState(PIKISTATE_Dying, "DYING")
@@ -310,8 +290,8 @@ struct PikiDyingState : public PikiState {
 	virtual void exec(Piki*);                                  // _0C
 	virtual void cleanup(Piki*);                               // _10
 	virtual void onKeyEvent(Piki*, const SysShape::KeyEvent&); // _30
-	virtual bool dead();                                       // _58 (weak)
-	virtual bool pressable();                                  // _60 (weak)
+	virtual bool dead() { return true; }                       // _58 (weak)
+	virtual bool pressable() { return false; }                 // _60 (weak)
 	virtual bool transittable(int);                            // _64
 
 	// _00     = VTBL
@@ -330,7 +310,7 @@ struct PikiEmotionState : public PikiState {
 	virtual void exec(Piki*);                                  // _0C
 	virtual void cleanup(Piki*);                               // _10
 	virtual void onKeyEvent(Piki*, const SysShape::KeyEvent&); // _30
-	virtual bool callable();                                   // _44 (weak)
+	virtual bool callable() { return true; }                   // _44 (weak)
 
 	// _00     = VTBL
 	// _00-_10 = PikiState
@@ -347,13 +327,17 @@ struct PikiEscapeState : public PikiState {
 	virtual void exec(Piki*);                                  // _0C
 	virtual void cleanup(Piki*);                               // _10
 	virtual void onKeyEvent(Piki*, const SysShape::KeyEvent&); // _30
-	virtual bool callable();                                   // _44 (weak)
+	virtual bool callable() { return false; }                  // _44 (weak)
 
 	void initRun(Piki*);
 
 	// _00     = VTBL
 	// _00-_10 = PikiState
 	u8 _10[0x4]; // _10, unknown
+};
+
+struct FallMeckStateArg : public StateArg {
+	bool _00; // _00
 };
 
 struct PikiFallMeckState : public PikiState {
@@ -368,11 +352,11 @@ struct PikiFallMeckState : public PikiState {
 	virtual void bounceCallback(Piki*, Sys::Triangle*); // _24
 	virtual void collisionCallback(Piki*, CollEvent&);  // _28
 	virtual void platCallback(Piki*, PlatEvent&);       // _2C
-	virtual bool pressable();                           // _60 (weak)
+	virtual bool pressable() { return false; }          // _60 (weak)
 
 	// _00     = VTBL
 	// _00-_10 = PikiState
-	u8 _10[0x4]; // _10, unknown
+	bool _10; // _10
 };
 
 struct PikiFlickState : public PikiState, virtual SysShape::MotionListener {
@@ -385,7 +369,7 @@ struct PikiFlickState : public PikiState, virtual SysShape::MotionListener {
 	virtual void exec(Piki*);                                  // _0C
 	virtual void cleanup(Piki*);                               // _10
 	virtual void onKeyEvent(Piki*, const SysShape::KeyEvent&); // _30
-	virtual bool callable();                                   // _44 (weak)
+	virtual bool callable() { return false; }                  // _44 (weak)
 	virtual void onFlute(Piki*, Navi*);                        // _6C
 	virtual void onKeyEvent(const SysShape::KeyEvent&);        // _74 (weak)
 
@@ -406,7 +390,7 @@ struct PikiFlyingState : public PikiState {
 	virtual bool ignoreAtari(Piki*, Creature*);         // _20
 	virtual void bounceCallback(Piki*, Sys::Triangle*); // _24
 	virtual void collisionCallback(Piki*, CollEvent&);  // _28
-	virtual bool callable();                            // _44 (weak)
+	virtual bool callable() { return false; }           // _44 (weak)
 	virtual void stopEffect();                          // _74
 	virtual void restartEffect();                       // _78
 
@@ -415,18 +399,22 @@ struct PikiFlyingState : public PikiState {
 	u8 _10[0x24]; // _10, unknown
 };
 
+struct FountainonStateArg : public StateArg {
+	Vector3f m_position; // _00
+};
+
 struct PikiFountainonState : public PikiState {
 	inline PikiFountainonState()
 	    : PikiState(PIKISTATE_Fountainon, "FOUNTAINON")
 	{
 	}
 
-	virtual void init(Piki*, StateArg*); // _08
-	virtual void exec(Piki*);            // _0C
-	virtual void cleanup(Piki*);         // _10
-	virtual bool invincible(Piki*);      // _40 (weak)
-	virtual bool callable();             // _44 (weak)
-	virtual bool soft_transittable(int); // _44 (weak)
+	virtual void init(Piki*, StateArg*);                          // _08
+	virtual void exec(Piki*);                                     // _0C
+	virtual void cleanup(Piki*);                                  // _10
+	virtual bool invincible(Piki*) { return true; }               // _40 (weak)
+	virtual bool callable() { return false; }                     // _44 (weak)
+	virtual bool soft_transittable(int stateID) { return false; } // _44 (weak)
 
 	// _00     = VTBL
 	// _00-_10 = PikiState
@@ -444,11 +432,11 @@ struct PikiGoHangState : public PikiState {
 	{
 	}
 
-	virtual void init(Piki*, StateArg*); // _08
-	virtual void exec(Piki*);            // _0C
-	virtual void cleanup(Piki*);         // _10
-	virtual bool callable();             // _44 (weak)
-	virtual bool throwable();            // _54 (weak)
+	virtual void init(Piki*, StateArg*);      // _08
+	virtual void exec(Piki*);                 // _0C
+	virtual void cleanup(Piki*);              // _10
+	virtual bool callable() { return true; }  // _44 (weak)
+	virtual bool throwable() { return true; } // _54 (weak)
 
 	// _00     = VTBL
 	// _00-_10 = PikiState
@@ -480,7 +468,7 @@ struct PikiHangedState : public PikiState, virtual SysShape::MotionListener {
 	virtual void exec(Piki*);                           // _0C
 	virtual void cleanup(Piki*);                        // _10
 	virtual bool ignoreAtari(Piki*, Creature*);         // _20
-	virtual bool throwable();                           // _54 (weak)
+	virtual bool throwable() { return true; }           // _54 (weak)
 	virtual void onKeyEvent(const SysShape::KeyEvent&); // _74 (weak)
 
 	// _00     = VTBL
@@ -506,7 +494,12 @@ struct PikiHipDropState : public PikiState {
 
 	// _00     = VTBL
 	// _00-_10 = PikiState
-	u8 _10[0x8]; // _10, unknown
+	f32 _10; // _10
+	u16 _14; // _14
+};
+
+struct HoleinStateArg : public StateArg {
+	Vector3f m_position; // _00
 };
 
 struct PikiHoleinState : public PikiState {
@@ -515,12 +508,12 @@ struct PikiHoleinState : public PikiState {
 	{
 	}
 
-	virtual void init(Piki*, StateArg*); // _08
-	virtual void exec(Piki*);            // _0C
-	virtual void cleanup(Piki*);         // _10
-	virtual bool invincible(Piki*);      // _40 (weak)
-	virtual bool callable();             // _44 (weak)
-	virtual bool soft_transittable(int); // _68 (weak)
+	virtual void init(Piki*, StateArg*);                  // _08
+	virtual void exec(Piki*);                             // _0C
+	virtual void cleanup(Piki*);                          // _10
+	virtual bool invincible(Piki*) { return true; }       // _40 (weak)
+	virtual bool callable() { return false; }             // _44 (weak)
+	virtual bool soft_transittable(int) { return false; } // _68 (weak)
 
 	// _00     = VTBL
 	// _00-_10 = PikiState
@@ -545,7 +538,7 @@ struct PikiKokeDamageState : public PikiState {
 	virtual void exec(Piki*);                                  // _0C
 	virtual void cleanup(Piki*);                               // _10
 	virtual void onKeyEvent(Piki*, const SysShape::KeyEvent&); // _30
-	virtual bool callable();                                   // _44 (weak)
+	virtual bool callable() { return false; }                  // _44 (weak)
 	virtual void onFlute(Piki*, Navi*);                        // _6C
 
 	// _00     = VTBL
@@ -563,7 +556,7 @@ struct PikiKokeState : public PikiState {
 	virtual void exec(Piki*);                                  // _0C
 	virtual void cleanup(Piki*);                               // _10
 	virtual void onKeyEvent(Piki*, const SysShape::KeyEvent&); // _30
-	virtual bool callable();                                   // _44 (weak)
+	virtual bool callable() { return false; }                  // _44 (weak)
 	virtual void onFlute(Piki*, Navi*);                        // _6C
 
 	// _00     = VTBL
@@ -580,7 +573,7 @@ struct PikiLookAtState : public PikiState, virtual SysShape::MotionListener {
 	virtual void init(Piki*, StateArg*);                // _08
 	virtual void exec(Piki*);                           // _0C
 	virtual void cleanup(Piki*);                        // _10
-	virtual bool callable();                            // _44 (weak)
+	virtual bool callable() { return false; }           // _44 (weak)
 	virtual void onFlute(Piki*, Navi*);                 // _6C
 	virtual void onKeyEvent(const SysShape::KeyEvent&); // _74 (weak)
 
@@ -590,6 +583,11 @@ struct PikiLookAtState : public PikiState, virtual SysShape::MotionListener {
 	f32 _14; // _14
 	u16 _18; // _18
 	         // _1C = MotionListener again?
+};
+
+struct NukareStateArg : public StateArg {
+	bool _00;     // _00
+	Navi* m_navi; // _04
 };
 
 struct PikiNukareState : public PikiState {
@@ -609,6 +607,10 @@ struct PikiNukareState : public PikiState {
 	Navi* m_navi;  // _10
 	bool _14;      // _14
 	s16 m_animIdx; // _16
+};
+
+struct PanicStateArg : public StateArg {
+	u16 m_panicType; // _00
 };
 
 struct PikiPanicState : public PikiState {
@@ -651,17 +653,23 @@ struct PikiPressedState : public PikiState {
 	{
 	}
 
-	virtual void init(Piki*, StateArg*); // _08
-	virtual void exec(Piki*);            // _0C
-	virtual void cleanup(Piki*);         // _10
-	virtual bool dead();                 // _58 (weak)
-	virtual bool pressable();            // _60 (weak)
-	virtual bool transittable(int);      // _64
-	virtual bool soft_transittable(int); // _68
+	virtual void init(Piki*, StateArg*);       // _08
+	virtual void exec(Piki*);                  // _0C
+	virtual void cleanup(Piki*);               // _10
+	virtual bool dead() { return true; }       // _58 (weak)
+	virtual bool pressable() { return false; } // _60 (weak)
+	virtual bool transittable(int);            // _64
+	virtual bool soft_transittable(int);       // _68
 
 	// _00     = VTBL
 	// _00-_10 = PikiState
 	f32 _10; // _10
+};
+
+struct SuikomiStateArg : public StateArg {
+	Creature* _00; // _00
+	u32 _04;       // _04
+	u32 _08;       // _08
 };
 
 struct PikiSuikomiState : public PikiState {
@@ -675,7 +683,7 @@ struct PikiSuikomiState : public PikiState {
 	virtual void cleanup(Piki*);                               // _10
 	virtual bool ignoreAtari(Piki*, Creature*);                // _20
 	virtual void onKeyEvent(Piki*, const SysShape::KeyEvent&); // _30
-	virtual bool pressable();                                  // _60 (weak)
+	virtual bool pressable() { return false; }                 // _60 (weak)
 
 	void execMouth(Piki*);
 	void execString(Piki*);
@@ -683,7 +691,15 @@ struct PikiSuikomiState : public PikiState {
 
 	// _00     = VTBL
 	// _00-_10 = PikiState
-	u8 _10[0x14]; // _10, unknown
+	u8 _10;        // _10
+	Creature* _14; // _14
+	u32 _18;       // _18
+	u32 _1C;       // _1C
+	u8 _20[0x4];   // _20, unknown
+};
+
+struct SwallowedStateArg : public StateArg {
+	int m_animIdx; // _00
 };
 
 struct PikiSwallowedState : public PikiState {
@@ -692,12 +708,12 @@ struct PikiSwallowedState : public PikiState {
 	{
 	}
 
-	virtual void init(Piki*, StateArg*);        // _08
-	virtual void exec(Piki*);                   // _0C
-	virtual void cleanup(Piki*);                // _10
-	virtual bool ignoreAtari(Piki*, Creature*); // _20 (weak)
-	virtual bool callable();                    // _44 (weak)
-	virtual bool dead();                        // _58 (weak)
+	virtual void init(Piki*, StateArg*);                        // _08
+	virtual void exec(Piki*);                                   // _0C
+	virtual void cleanup(Piki*);                                // _10
+	virtual bool ignoreAtari(Piki*, Creature*) { return true; } // _20 (weak)
+	virtual bool callable() { return false; }                   // _44 (weak)
+	virtual bool dead() { return true; }                        // _58 (weak)
 
 	// _00     = VTBL
 	// _00-_10 = PikiState
@@ -713,7 +729,7 @@ struct PikiTaneState : public PikiState {
 	virtual void exec(Piki*);                           // _0C
 	virtual void cleanup(Piki*);                        // _10
 	virtual void bounceCallback(Piki*, Sys::Triangle*); // _24
-	virtual bool callable();                            // _44 (weak)
+	virtual bool callable() { return false; }           // _44 (weak)
 
 	// _00     = VTBL
 	// _00-_10 = PikiState
@@ -727,18 +743,22 @@ struct PikiWalkState : public PikiState {
 	{
 	}
 
-	virtual void init(Piki*, StateArg*); // _08
-	virtual void exec(Piki*);            // _0C
-	virtual void cleanup(Piki*);         // _10
-	virtual bool callable();             // _44 (weak)
-	virtual bool aiActive();             // _48 (weak)
-	virtual bool dopable();              // _4C (weak)
-	virtual bool releasable();           // _50 (weak)
-	virtual bool throwable();            // _54 (weak)
-	virtual bool battleOK();             // _5C (weak)
+	virtual void init(Piki*, StateArg*);       // _08
+	virtual void exec(Piki*);                  // _0C
+	virtual void cleanup(Piki*);               // _10
+	virtual bool callable() { return true; }   // _44 (weak)
+	virtual bool aiActive() { return true; }   // _48 (weak)
+	virtual bool dopable() { return true; }    // _4C (weak)
+	virtual bool releasable() { return true; } // _50 (weak)
+	virtual bool throwable() { return true; }  // _54 (weak)
+	virtual bool battleOK() { return true; }   // _5C (weak)
 
 	// _00     = VTBL
 	// _00-_10 = PikiState
+};
+
+struct WaterHangedStateArg : public StateArg {
+	Piki* m_piki; // _00
 };
 
 struct PikiWaterHangedState : public PikiState, virtual SysShape::MotionListener {
@@ -751,12 +771,12 @@ struct PikiWaterHangedState : public PikiState, virtual SysShape::MotionListener
 	virtual void exec(Piki*);                           // _0C
 	virtual void cleanup(Piki*);                        // _10
 	virtual bool ignoreAtari(Piki*, Creature*);         // _20
-	virtual bool throwable();                           // _54 (weak)
+	virtual bool throwable() { return true; }           // _54 (weak)
 	virtual void onKeyEvent(const SysShape::KeyEvent&); // _74 (weak)
 
 	// _00     = VTBL
 	// _00-_10 = PikiState
-	u8 _10[0x4]; // _10, unknown
+	Piki* m_piki; // _14
 };
 } // namespace Game
 
