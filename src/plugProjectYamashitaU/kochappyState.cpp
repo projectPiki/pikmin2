@@ -2744,7 +2744,7 @@ StateDemo::StateDemo(int stateID)
 void StateDemo::init(EnemyBase* enemy, StateArg* stateArg)
 {
 	enemy->kill(nullptr);
-	if (gameSystem->m_section->getTimerType() != 3 && !playData->isDemoFlag(DEMO_Kill_First_Kochappy)) {
+	if (gameSystem->m_section->getTimerType() != 3 && !playData->isDemoFlag(DEMO_Unlock_Captain_Switch)) {
 		gameSystem->m_section->enableTimer(5.0f, 3);
 	}
 }

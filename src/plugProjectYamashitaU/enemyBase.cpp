@@ -127,7 +127,7 @@ bool BirthTypeDropState::isFinishableWaitingBirthTypeDrop(EnemyBase* enemy)
 		Creature* cell = (Creature*)*cellIterator;
 		if (cell->isAlive()) {
 			if (cell->isNavi() || (cell->isPiki() && static_cast<Piki*>(cell)->isPikmin())) {
-				float privateRadius = static_cast<EnemyParmsBase*>(enemy->m_parms)->m_general.m_privateRadius.m_value;
+				f32 privateRadius = static_cast<EnemyParmsBase*>(enemy->m_parms)->m_general.m_privateRadius.m_value;
 				Vector2f delta;
 				enemy->getSeparation(cell, delta);
 
@@ -154,7 +154,7 @@ void BirthTypeDropState::init(Game::EnemyBase* enemy, Game::StateArg* arg)
 		if (typeID != EnemyTypeID::EnemyID_BluePom && typeID != EnemyTypeID::EnemyID_RedPom && typeID != EnemyTypeID::EnemyID_YellowPom
 		    && typeID != EnemyTypeID::EnemyID_BlackPom && typeID != EnemyTypeID::EnemyID_WhitePom
 		    && typeID != EnemyTypeID::EnemyID_RandPom) {
-			float theta = randFloat() * TAU;
+			f32 theta = randFloat() * TAU;
 			enemy->m_position.x += pikmin2_sinf(theta) * 50.0f;
 			enemy->m_position.z += pikmin2_cosf(theta) * 50.0f;
 		}
@@ -199,7 +199,7 @@ bool BirthTypeDropPikminState::isFinishableWaitingBirthTypeDrop(EnemyBase* enemy
 	while (cellIterator.isDone() == false) {
 		Creature* cell = (Creature*)(*cellIterator);
 		if (cell->isAlive() && cell->isPiki() && static_cast<Piki*>(cell)->isPikmin()) {
-			float privateRadius = static_cast<EnemyParmsBase*>(enemy->m_parms)->m_general.m_privateRadius.m_value;
+			f32 privateRadius = static_cast<EnemyParmsBase*>(enemy->m_parms)->m_general.m_privateRadius.m_value;
 			Vector2f delta;
 			enemy->getSeparation(cell, delta);
 
@@ -229,7 +229,7 @@ bool BirthTypeDropOlimarState::isFinishableWaitingBirthTypeDrop(EnemyBase* enemy
 	while (cellIterator.isDone() == 0) {
 		Creature* cell = (Creature*)(*cellIterator);
 		if (cell->isAlive() && cell->isNavi()) {
-			float privateRadius = static_cast<EnemyParmsBase*>(enemy->m_parms)->m_general.m_privateRadius.m_value;
+			f32 privateRadius = static_cast<EnemyParmsBase*>(enemy->m_parms)->m_general.m_privateRadius.m_value;
 			Vector2f delta;
 			enemy->getSeparation(cell, delta);
 
@@ -256,8 +256,8 @@ bool BirthTypeDropTreasureState::isFinishableWaitingBirthTypeDrop(Game::EnemyBas
 	while (!pelletIterator.isDone()) {
 		Pellet* cell = (Pellet*)(*pelletIterator);
 		if (cell->isAlive() && cell->isCarried()) {
-			Vector3f pos        = cell->getPosition(); // why this
-			float privateRadius = static_cast<EnemyParmsBase*>(enemy->m_parms)->m_general.m_privateRadius.m_value;
+			Vector3f pos      = cell->getPosition(); // why this
+			f32 privateRadius = static_cast<EnemyParmsBase*>(enemy->m_parms)->m_general.m_privateRadius.m_value;
 			Vector2f delta;
 
 			enemy->getSeparation(cell, delta);
@@ -294,7 +294,7 @@ void AppearState::init(Game::EnemyBase* enemy, Game::StateArg* arg)
 {
 	efx::TEnemyApsmoke effect; // this is "Appear Smoke"
 	// for context, the term "effects" refer to particle effects
-	float mod                    = enemy->m_scaleModifier;
+	f32 mod                      = enemy->m_scaleModifier;
 	EnemyTypeID::EEnemyTypeID id = enemy->getEnemyTypeID();
 
 	efx::ArgEnemyType effectArg(enemy->getPosition(), id, mod);
@@ -323,7 +323,7 @@ void AppearState::update(Game::EnemyBase* enemy)
 	}
 
 	enemy->m_scale.x += 0.2f * pikmin2_sinf(TAU * enemy->m_stunAnimTimer);
-	float newScale   = enemy->m_scale.x;
+	f32 newScale     = enemy->m_scale.x;
 	enemy->m_scale.z = newScale;
 	enemy->m_scale.y = newScale;
 
@@ -347,7 +347,7 @@ void AppearState::cleanup(Game::EnemyBase* enemy)
  * Address:	800FFF38
  * Size:	00010C
  */
-void EnemyBaseFSM::LivingState::simulation(Game::EnemyBase* enemy, float constraint)
+void EnemyBaseFSM::LivingState::simulation(Game::EnemyBase* enemy, f32 constraint)
 {
 	if ((enemy->isEvent(0, EB_HardConstraint)) || isLiving(enemy) && !(enemy->isEvent(1, EB2_1)) && !(enemy->isEvent(1, EB2_5))) {
 
@@ -476,7 +476,7 @@ void EnemyBaseFSM::FitState::init(Game::EnemyBase* enemy, Game::StateArg* arg)
 	enemy->doStartEarthquakeFitState();
 
 	m_enemyPiyo.m_position       = enemy->getFitEffectPos();
-	float scale                  = enemy->m_scaleModifier;
+	f32 scale                    = enemy->m_scaleModifier;
 	EnemyTypeID::EEnemyTypeID id = enemy->getEnemyTypeID();
 
 	efx::ArgEnemyType effectArg(enemy->m_position, id, scale);
@@ -511,13 +511,13 @@ void FitState::updateAlways(Game::EnemyBase* enemy)
 		enemy->m_stunAnimTimer = 0.0f;
 		transit(enemy, EBS_Living, 0);
 	} else {
-		float sinStun
+		f32 sinStun
 		    = 4.0f
 		      * pikmin2_sinf((PI * enemy->m_stunAnimTimer) / ((EnemyParmsBase*)enemy->m_parms)->m_general.m_purplePikminStunTime.m_value);
 		if (sinStun > 1.0f) {
 			sinStun = 1.0f;
 		}
-		float theta = (TAU * enemy->m_stunAnimTimer) / 0.25f;
+		f32 theta = (TAU * enemy->m_stunAnimTimer) / 0.25f;
 
 		enemy->m_stunAnimRotation.x = sinStun * (0.017453294f * pikmin2_sinf(theta));
 		enemy->m_stunAnimRotation.y = 0.0f;
@@ -566,7 +566,7 @@ void EarthquakeState::updateCullingOff(Game::EnemyBase* enemy)
 	}
 
 	if ((++_10 > 3) && (enemy->m_curTriangle)) {
-		float randChance = randFloat();
+		f32 randChance = randFloat();
 		if ((enemy->m_stunAnimTimer > 0.0f)
 		    || ((randChance < ((EnemyParmsBase*)enemy->m_parms)->m_general.m_purplePikminStunChance.m_value) && !(enemy->isEvent(0, EB_21))
 		        && !(enemy->isEvent(0, EB_22)))) {
@@ -666,7 +666,7 @@ void StoneState::updateAlways(Game::EnemyBase* enemy)
 			enemy->resetEvent(0, EB_3);
 		}
 		// why.
-		float comp = (enemy->m_stoneTimer > ((EnemyParmsBase*)enemy->m_parms)->m_general.m_stoneDuration.m_value);
+		f32 comp = (enemy->m_stoneTimer > ((EnemyParmsBase*)enemy->m_parms)->m_general.m_stoneDuration.m_value);
 		if (comp) {
 			if (enemy->m_enemyStoneObj->_50 & 8) {
 				if ((enemy->m_enemyStoneObj->_50 & 0x10) && enemy->isAlive()) {
@@ -732,7 +732,7 @@ void StateMachine::entry(EnemyBase* enemy) { m_state->entry(enemy); }
  * Address:	8010136C
  * Size:	000030
  */
-void StateMachine::simulation(EnemyBase* enemy, float constraint) { m_state->simulation(enemy, constraint); }
+void StateMachine::simulation(EnemyBase* enemy, f32 constraint) { m_state->simulation(enemy, constraint); }
 } // namespace EnemyBaseFSM
 
 /*
@@ -740,12 +740,14 @@ void StateMachine::simulation(EnemyBase* enemy, float constraint) { m_state->sim
  * Address:	801013A0
  * Size:	000370
  */
-Game::EnemyBase::EnemyBase()
+EnemyBase::EnemyBase()
     : Creature()
     , SysShape::MotionListener()
     , PelletView()
-    , m_position(0.0f, 0.0f, 0.0f)
-    , m_rotation()
+    , m_position(Vector3f(0.0f))
+    , m_rotation(Vector3f(0.0f))
+    , m_damageAnimRotation(Vector3f(0.0f))
+    , m_stunAnimRotation(Vector3f(0.0f))
     , m_events()
     , m_eventBuffer()
     , m_emotion(EMOTE_Caution)
@@ -1147,7 +1149,7 @@ void EnemyBase::onKill(CreatureKillArg* inputArg)
 	if (((killArg == nullptr) || !(killArg->_04 & 0x10000000)) && (isEvent(0, EB_9))) {
 		Vector3f effectPos;
 		getCommonEffectPos(effectPos); // sp80, 4C
-		float scaleMod                    = m_scaleModifier;
+		f32 scaleMod                      = m_scaleModifier;
 		EnemyTypeID::EEnemyTypeID enemyID = getEnemyTypeID();
 
 		efx::ArgEnemyType efxArg(effectPos, enemyID, scaleMod);
@@ -1165,8 +1167,8 @@ void EnemyBase::onKill(CreatureKillArg* inputArg)
 			constraintOff();
 			if (ItemHoney::mgr != nullptr) {
 				s8 bitterDrop = (s8)EnemyInfoFunc::getEnemyInfo(getEnemyTypeID(), 0xFFFF)->m_bitterDrops;
-				float scaledChance;
-				float dropChance;
+				f32 scaledChance;
+				f32 dropChance;
 				int dropRolls;
 
 				switch (bitterDrop) {
@@ -1201,7 +1203,7 @@ void EnemyBase::onKill(CreatureKillArg* inputArg)
 				scaledChance = (0.5f * (1.0f - dropChance)) + dropChance;
 
 				for (int i = 0; i < dropRolls; i++) {
-					float randRoll = randFloat();
+					f32 randRoll = randFloat();
 					u8 honeyByte;
 					if (randRoll < dropChance) {
 						honeyByte = 0;
@@ -1219,10 +1221,10 @@ void EnemyBase::onKill(CreatureKillArg* inputArg)
 					if (drop != nullptr) {
 						drop->init((CreatureInitArg*)&honeyArg);
 						drop->setPosition(ball.m_position, false);
-						float theta    = TAU * randFloat(); // temp_f6
-						float scale    = 1.0f + ((f32)dropRolls / 10.0f);
-						float cosTheta = scale * (50.0f * pikmin2_cosf(theta));
-						float sinTheta = scale * (50.0f * pikmin2_sinf(theta));
+						f32 theta    = TAU * randFloat(); // temp_f6
+						f32 scale    = 1.0f + ((f32)dropRolls / 10.0f);
+						f32 cosTheta = scale * (50.0f * pikmin2_cosf(theta));
+						f32 sinTheta = scale * (50.0f * pikmin2_sinf(theta));
 
 						Vector3f dropVelocity; // sp58
 						dropVelocity.x = sinTheta;
@@ -2046,7 +2048,7 @@ void EnemyBase::setZukanVisible(bool arg)
  * Address:	80102A00
  * Size:	000160
  */
-void EnemyBase::birth(Vector3f& pos, float faceDir)
+void EnemyBase::birth(Vector3f& pos, f32 faceDir)
 {
 	setEvent(0, EB_Alive);
 	m_inPiklopedia = true;
@@ -2132,7 +2134,7 @@ bool EnemyBase::isFinishableWaitingBirthTypeDrop()
 		Creature* cell = (Creature*)*cellIterator;
 		if (cell->isAlive()) {
 			if (cell->isNavi() || (cell->isPiki() && static_cast<Piki*>(cell)->isPikmin())) {
-				float privateRadius = static_cast<EnemyParmsBase*>(m_parms)->m_general.m_privateRadius.m_value;
+				f32 privateRadius = static_cast<EnemyParmsBase*>(m_parms)->m_general.m_privateRadius.m_value;
 
 				Vector2f delta;
 				getSeparation(cell, delta);
@@ -2407,7 +2409,7 @@ void EnemyBase::doViewCalc()
  * Address:	80103774
  * Size:	0000AC
  */
-void EnemyBase::doSimulationGround(float accelRate)
+void EnemyBase::doSimulationGround(f32 accelRate)
 {
 	Vector3f groundDiff;
 	groundDiff.x = m_simVelocity.x;
@@ -2432,7 +2434,7 @@ void EnemyBase::doSimulationGround(float accelRate)
  * Address:	80103820
  * Size:	000058
  */
-void EnemyBase::doSimulationFlying(float accelRate)
+void EnemyBase::doSimulationFlying(f32 accelRate)
 {
 	Vector3f diff = m_simVelocity - m_impVelocity;
 	diff          = diff * getAccelerationScale(accelRate);
@@ -2444,7 +2446,7 @@ void EnemyBase::doSimulationFlying(float accelRate)
  * Address:	80103878
  * Size:	000058
  */
-void EnemyBase::doSimulationStick(float accelRate)
+void EnemyBase::doSimulationStick(f32 accelRate)
 {
 	Vector3f diff = m_simVelocity - m_impVelocity;
 	diff          = diff * getAccelerationScale(accelRate);
@@ -2470,11 +2472,10 @@ inline void EnemyBase::updateSpheres()
  * Address:	80103940
  * Size:	0000B8
  */
-void EnemyBase::createDropEffect(const Vector3f& position, float scale)
+void EnemyBase::createDropEffect(const Vector3f& position, f32 scale)
 {
 	efx::Arg enemyArg(position);
-	efx::TEnemyDownSmoke downSmoke(1.0f);
-
+	efx::TEnemyDownSmoke downSmoke;
 	downSmoke._0C = scale;
 	downSmoke.create(&enemyArg);
 
@@ -2486,7 +2487,7 @@ void EnemyBase::createDropEffect(const Vector3f& position, float scale)
  * Address:	801039F8
  * Size:	000158
  */
-void EnemyBase::createSplashDownEffect(const Vector3f& position, float scale)
+void EnemyBase::createSplashDownEffect(const Vector3f& position, f32 scale)
 {
 	Vector3f effectPosition;
 	if (m_waterBox != nullptr) {
@@ -2507,7 +2508,7 @@ void EnemyBase::createSplashDownEffect(const Vector3f& position, float scale)
  * Address:	80103B50
  * Size:	0001DC
  */
-void EnemyBase::createBounceEffect(const Vector3f& position, float scale)
+void EnemyBase::createBounceEffect(const Vector3f& position, f32 scale)
 {
 	if (m_waterBox != nullptr) {
 		createSplashDownEffect(position, scale);
@@ -2523,7 +2524,7 @@ void EnemyBase::createBounceEffect(const Vector3f& position, float scale)
  */
 void EnemyBase::outWaterCallback()
 {
-	float downSmokeScale = getDownSmokeScale();
+	f32 downSmokeScale = getDownSmokeScale();
 	if (downSmokeScale > 0.0f) {
 		createSplashDownEffect(m_position, downSmokeScale);
 	}
@@ -2536,7 +2537,7 @@ void EnemyBase::outWaterCallback()
  */
 void EnemyBase::inWaterCallback(Game::WaterBox* water)
 {
-	float downSmokeScale = getDownSmokeScale();
+	f32 downSmokeScale = getDownSmokeScale();
 	if (downSmokeScale > 0.0f) {
 		createSplashDownEffect(m_position, downSmokeScale);
 	}
@@ -2592,7 +2593,7 @@ void EnemyBase::bounceProcedure(Sys::Triangle* triangle)
  */
 // WIP: https://decomp.me/scratch/YsXWy
 // LITERALLY MATCHES IF VECTOR3F::LENGTH AND NORMALISE MATCH SMH
-void EnemyBase::collisionMapAndPlat(float constraint)
+void EnemyBase::collisionMapAndPlat(f32 constraint)
 {
 	if (!isStickTo()) {
 		if (!(isEvent(0, EB_3))) {
@@ -2602,7 +2603,7 @@ void EnemyBase::collisionMapAndPlat(float constraint)
 			resetEvent(0, EB_30);
 		}
 
-		float radius = static_cast<EnemyParmsBase*>(m_parms)->m_general.m_fp01.m_value;
+		f32 radius = static_cast<EnemyParmsBase*>(m_parms)->m_general.m_fp01.m_value;
 
 		Vector3f pos         = getPosition();
 		m_commonEffectOffset = getOffsetForMapCollision();
@@ -2613,7 +2614,7 @@ void EnemyBase::collisionMapAndPlat(float constraint)
 		sphere.m_position = pos;
 		sphere.m_radius   = radius;
 
-		float z;
+		f32 z;
 		if (checkSecondary()) {
 			z = 0.0f;
 		} else {
@@ -2630,8 +2631,8 @@ void EnemyBase::collisionMapAndPlat(float constraint)
 
 		m_impVelocity = vec;
 
-		float velocityNorm = m_impVelocity.normalise();
-		float _11CNorm     = _11C.length();
+		f32 velocityNorm = m_impVelocity.normalise();
+		f32 _11CNorm     = _11C.length();
 
 		if ((velocityNorm > _11CNorm)) {
 			velocityNorm -= _11CNorm;
@@ -3193,21 +3194,21 @@ void EnemyBase::collisionMapAndPlat(float constraint)
  * Address:	80104A38
  * Size:	000020
  */
-void EnemyBase::doSimulationCarcass(float _) { updateWaterBox(); }
+void EnemyBase::doSimulationCarcass(f32 _) { updateWaterBox(); }
 
 /*
  * --INFO--
  * Address:	80104A58
  * Size:	000034
  */
-void EnemyBase::doSimulation(float arg) { static_cast<EnemyBaseFSM::StateMachine*>(m_lifecycleFSM)->simulation(this, arg); }
+void EnemyBase::doSimulation(f32 arg) { static_cast<EnemyBaseFSM::StateMachine*>(m_lifecycleFSM)->simulation(this, arg); }
 
 /*
  * --INFO--
  * Address:	80104A8C
  * Size:	0000D8
  */
-void EnemyBase::doSimulationConstraint(float arg)
+void EnemyBase::doSimulationConstraint(f32 arg)
 {
 	if (!(isEvent(0, EB_HardConstraint))) {
 		if (_11C.x != 0.0f || _11C.z != 0.0f) {
@@ -3263,8 +3264,8 @@ void EnemyBase::setPSEnemyBaseAnime()
 			SysShape::KeyEvent* event2 = info->getAnimKeyByType(1);
 
 			if (event1 != nullptr && event2 != nullptr) {
-				float val1 = (float)event1->m_frame;
-				float val2 = (float)event2->m_frame;
+				f32 val1 = (f32)event1->m_frame;
+				f32 val2 = (f32)event2->m_frame;
 				m_soundObj->setAnime((JAIAnimeSoundData*)file, 1, val1, val2);
 				return;
 			}
@@ -3295,7 +3296,7 @@ void EnemyBase::setPSEnemyBaseAnime()
  * Address:	80104DB8
  * Size:	0001F0
  */
-void EnemyBase::startBlend(int p1, int p2, SysShape::BlendFunction* blendFunc, float p3, SysShape::MotionListener* inputListener)
+void EnemyBase::startBlend(int p1, int p2, SysShape::BlendFunction* blendFunc, f32 p3, SysShape::MotionListener* inputListener)
 {
 	SysShape::MotionListener* listener = inputListener;
 	if (listener == nullptr) {
@@ -3318,8 +3319,8 @@ void EnemyBase::startBlend(int p1, int p2, SysShape::BlendFunction* blendFunc, f
 			SysShape::KeyEvent* event2 = info->getAnimKeyByType(1);
 
 			if (event1 != nullptr && event2 != nullptr) {
-				float val1 = (float)event1->m_frame;
-				float val2 = (float)event2->m_frame;
+				f32 val1 = (f32)event1->m_frame;
+				f32 val2 = (f32)event2->m_frame;
 				m_soundObj->setAnime((JAIAnimeSoundData*)file, 1, val1, val2);
 				return;
 			}
@@ -3389,8 +3390,8 @@ void EnemyBase::startMotion(int p1, SysShape::MotionListener* inputListener)
 			SysShape::KeyEvent* event2 = info->getAnimKeyByType(1);
 
 			if (event1 != nullptr && event2 != nullptr) {
-				float val1 = (float)event1->m_frame;
-				float val2 = (float)event2->m_frame;
+				f32 val1 = (f32)event1->m_frame;
+				f32 val2 = (f32)event2->m_frame;
 				m_soundObj->setAnime((JAIAnimeSoundData*)file, 1, val1, val2);
 				return;
 			}
@@ -3421,14 +3422,14 @@ void EnemyBase::startMotion(int p1, SysShape::MotionListener* inputListener)
  * Address:	80105228
  * Size:	000044
  */
-void EnemyBase::setMotionFrame(float frame) { m_animator->getAnimator().setCurrFrame(frame); }
+void EnemyBase::setMotionFrame(f32 frame) { m_animator->getAnimator().setCurrFrame(frame); }
 
 /*
  * --INFO--
  * Address:	8010526C
  * Size:	000034
  */
-float EnemyBase::getMotionFrame() { return m_animator->getAnimator().m_timer; }
+f32 EnemyBase::getMotionFrame() { return m_animator->getAnimator().m_timer; }
 
 /*
  * --INFO--
@@ -3491,9 +3492,9 @@ void Game::EnemyBase::scaleDamageAnim()
 			}
 
 		} else {
-			float horizontalModifier = 0.0f;
-			float scaleDuration      = static_cast<EnemyParmsBase*>(m_parms)->m_general.m_damageScaleDuration.m_value;
-			float factor;
+			f32 horizontalModifier = 0.0f;
+			f32 scaleDuration      = static_cast<EnemyParmsBase*>(m_parms)->m_general.m_damageScaleDuration.m_value;
+			f32 factor;
 
 			if (isEvent(0, EB_20)) {
 				factor = 2.5f;
@@ -3515,8 +3516,8 @@ void Game::EnemyBase::scaleDamageAnim()
 					horizontalModifier = 1.0f - getDamageAnimFrac(scaleDuration);
 				}
 
-				float sin1        = pikmin2_sinf(TAU * horizontalModifier);
-				float otherFactor = 0.03490659f * factor; // reordered?
+				f32 sin1        = pikmin2_sinf(TAU * horizontalModifier);
+				f32 otherFactor = 0.03490659f * factor; // reordered?
 				sin1 *= otherFactor;
 				m_damageAnimRotation.x = horizontalModifier * sin1;
 
@@ -3527,10 +3528,10 @@ void Game::EnemyBase::scaleDamageAnim()
 				otherFactor *= sin1;
 				m_damageAnimRotation.z = horizontalModifier * otherFactor;
 
-				float scaleVal = m_scaleModifier;
-				m_scale.z      = scaleVal;
-				m_scale.y      = scaleVal;
-				m_scale.x      = scaleVal;
+				f32 scaleVal = m_scaleModifier;
+				m_scale.z    = scaleVal;
+				m_scale.y    = scaleVal;
+				m_scale.x    = scaleVal;
 				return;
 			}
 
@@ -3544,8 +3545,7 @@ void Game::EnemyBase::scaleDamageAnim()
 				horizontalModifier *= 2.0f;
 			}
 
-			float xzScale
-			    = horizontalModifier * (factor * static_cast<EnemyParmsBase*>(m_parms)->m_general.m_horizontalDamageScale.m_value);
+			f32 xzScale = horizontalModifier * (factor * static_cast<EnemyParmsBase*>(m_parms)->m_general.m_horizontalDamageScale.m_value);
 			if (isEvent(0, EB_20)) {
 				m_scale.x = m_scaleModifier + xzScale;
 				m_scale.y = -((horizontalModifier * static_cast<EnemyParmsBase*>(m_parms)->m_general.m_verticalDamageScale.m_value)
@@ -3863,7 +3863,7 @@ void EnemyBase::createDeadBombEffect()
 {
 	Vector3f effectPos;
 	getCommonEffectPos(effectPos);
-	float scale                  = m_scaleModifier;
+	f32 scale                    = m_scaleModifier;
 	EnemyTypeID::EEnemyTypeID id = getEnemyTypeID();
 	efx::ArgEnemyType effectArg(effectPos, id, scale);
 	efx::TEnemyBomb bombEffect;
@@ -3943,8 +3943,8 @@ void EnemyBase::throwupItem()
 	}
 
 	if (randFloat() < m_pelletInfo.m_spawnThreshold) {
-		float range = (m_pelletInfo.m_maxPellets - m_pelletInfo.m_minPellets) * randFloat();
-		float roundRange;
+		f32 range = (m_pelletInfo.m_maxPellets - m_pelletInfo.m_minPellets) * randFloat();
+		f32 roundRange;
 		if (range >= 0.0f) {
 			roundRange = range + 0.5f;
 		} else {
@@ -3952,7 +3952,7 @@ void EnemyBase::throwupItem()
 		}
 		int additionalPellets = m_pelletInfo.m_minPellets + (int)roundRange;
 
-		float velocity = 0.0f;
+		f32 velocity = 0.0f;
 		switch (m_pelletInfo.m_size) {
 		case 1:
 			velocity = 150.0f;
@@ -4019,9 +4019,9 @@ void EnemyBase::getLifeGaugeParam(Game::LifeGaugeParam& param)
  */
 void EnemyBase::doGetLifeGaugeParam(Game::LifeGaugeParam& param)
 {
-	float y                  = m_position.y + static_cast<EnemyParmsBase*>(m_parms)->m_general.m_lifeMeterHeight.m_value;
-	float z                  = m_position.z;
-	float x                  = m_position.x;
+	f32 y                    = m_position.y + static_cast<EnemyParmsBase*>(m_parms)->m_general.m_lifeMeterHeight.m_value;
+	f32 z                    = m_position.z;
+	f32 x                    = m_position.x;
 	param.m_position         = Vector3f(x, y, z);
 	param.m_healthPercentage = m_health / m_maxHealth;
 	param._10                = 10.0f;
@@ -4077,7 +4077,7 @@ bool EnemyBase::injure()
  * Address:	8010602C
  * Size:	000040
  */
-void EnemyBase::addDamage(float damageAmt, float flickSpeed)
+void EnemyBase::addDamage(f32 damageAmt, f32 flickSpeed)
 {
 	if (isEvent(0, EB_Vulnerable)) {
 		return;
@@ -4094,7 +4094,7 @@ void EnemyBase::addDamage(float damageAmt, float flickSpeed)
  * Address:	8010606C
  * Size:	000048
  */
-bool EnemyBase::damageCallBack(Game::Creature* sourceCreature, float damage, CollPart* p3)
+bool EnemyBase::damageCallBack(Game::Creature* sourceCreature, f32 damage, CollPart* p3)
 {
 	if (!(isEvent(0, EB_Vulnerable))) {
 		m_instantDamage += damage;
@@ -4111,23 +4111,23 @@ bool EnemyBase::damageCallBack(Game::Creature* sourceCreature, float damage, Col
  * Address:	801060B4
  * Size:	000008
  */
-bool EnemyBase::pressCallBack(Game::Creature*, float, CollPart*) { return false; }
+bool EnemyBase::pressCallBack(Game::Creature*, f32, CollPart*) { return false; }
 
 /*
  * --INFO--
  * Address:	801060BC
  * Size:	000008
  */
-bool EnemyBase::flyCollisionCallBack(Game::Creature*, float, CollPart*) { return false; }
+bool EnemyBase::flyCollisionCallBack(Game::Creature*, f32, CollPart*) { return false; }
 
 /*
  * --INFO--
  * Address:	801060C4
  * Size:	000248
  */
-bool EnemyBase::hipdropCallBack(Game::Creature* sourceCreature, float damage, CollPart* p3)
+bool EnemyBase::hipdropCallBack(Game::Creature* sourceCreature, f32 damage, CollPart* p3)
 {
-	float purpleDamage = static_cast<EnemyParmsBase*>(m_parms)->m_general.m_purplePikminHipDropDamage();
+	f32 purpleDamage = static_cast<EnemyParmsBase*>(m_parms)->m_general.m_purplePikminHipDropDamage();
 
 	if (!(isEvent(0, EB_Vulnerable))) {
 		m_instantDamage += purpleDamage;
@@ -4178,7 +4178,7 @@ bool EnemyBase::checkBirthTypeDropEarthquake()
  * Address:	801063C4
  * Size:	0000EC
  */
-bool EnemyBase::earthquakeCallBack(Game::Creature* creature, float bounceFactor)
+bool EnemyBase::earthquakeCallBack(Game::Creature* creature, f32 bounceFactor)
 {
 	if (m_curTriangle && !(m_health <= 0.0f) && !isFlying() && isAlive()) {
 		if (!(isEvent(0, EB_HardConstraint)) && !(isEvent(0, EB_Bittered))) {
@@ -4221,14 +4221,14 @@ bool EnemyBase::dopeCallBack(Game::Creature* creature, int p1)
  * Address:	801065C0
  * Size:	000008
  */
-bool EnemyBase::farmCallBack(Game::Creature*, float) { return false; }
+bool EnemyBase::farmCallBack(Game::Creature*, f32) { return false; }
 
 /*
  * --INFO--
  * Address:	801065C8
  * Size:	000048
  */
-bool EnemyBase::bombCallBack(Game::Creature* creature, Vector3f& vec, float damage)
+bool EnemyBase::bombCallBack(Game::Creature* creature, Vector3f& vec, f32 damage)
 {
 	if (!(isEvent(0, EB_Vulnerable))) {
 		m_instantDamage += damage;
@@ -4474,14 +4474,14 @@ void EnemyBase::startMotion()
  * Address:	80107220
  * Size:	000058
  */
-float EnemyBase::getMotionFrameMax() { return m_animator->getAnimator().m_animInfo->m_anm->m_time; }
+f32 EnemyBase::getMotionFrameMax() { return m_animator->getAnimator().m_animInfo->m_anm->m_time; }
 
 /*
  * --INFO--
  * Address:	80107278
  * Size:	000068
  */
-float EnemyBase::getFirstKeyFrame()
+f32 EnemyBase::getFirstKeyFrame()
 {
 	SysShape::Animator animator = m_animator->getAnimator();
 	CNode* node                 = animator.m_animInfo->m_keyEvent.m_child;
@@ -4536,7 +4536,7 @@ int EnemyBase::getCurrAnimIndex()
  * Address:	80107390
  * Size:	00000C
  */
-void EnemyBase::setAnimSpeed(float speed) { m_animator->m_animSpeed = speed; }
+void EnemyBase::setAnimSpeed(f32 speed) { m_animator->m_animSpeed = speed; }
 
 /*
  * --INFO--
@@ -4616,7 +4616,7 @@ bool EnemyBase::eatWhitePikminCallBack(Creature* creature, f32 damage)
 			drawInfo._44                 = joint->getWorldMatrix();
 			drawInfo._40                 = objInfo;
 			Vector3f effectPosition;
-			float scale;
+			f32 scale;
 			if (drawInfo.getPosAndScale(&effectPosition, &scale)) {
 				scale *= m_scaleModifier;
 				efx::ArgScale arg(effectPosition, scale);
@@ -4803,7 +4803,7 @@ bool EnemyBase::eatWhitePikminCallBack(Creature* creature, f32 damage)
  * Address:	80107764
  * Size:	000008
  */
-float EnemyBase::getDownSmokeScale() { return 0.0f; }
+f32 EnemyBase::getDownSmokeScale() { return 0.0f; }
 
 /*
  * --INFO--
@@ -4876,7 +4876,7 @@ void EnemyBase::endMovie()
  * Address:	801078CC
  * Size:	000094
  */
-void EnemyBase::doStartEarthquakeState(float param_1)
+void EnemyBase::doStartEarthquakeState(f32 param_1)
 {
 	m_simVelocity.x = 0.0f;
 	m_simVelocity.y = 0.0f;

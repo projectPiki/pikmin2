@@ -36,7 +36,6 @@ struct EnemyEffectNodeHamon : public EnemyEffectNodeBase {
 	// _00      = VTABLE
 	// _04-_18  = EnemyEffectNodeBase
 	efx::TEnemyHamon m_enemyHamon; // _18
-	u8 _60[0x4];                   // _60 - unknown, but size = 64
 };
 
 } // namespace Game
