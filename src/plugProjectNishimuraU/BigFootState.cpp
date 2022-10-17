@@ -37,7 +37,7 @@ void StateDead::init(EnemyBase* enemy, StateArg* stateArg)
 	bigfoot->deathProcedure();
 	bigfoot->resetEvent(0, EB_Cullable);
 
-	bigfoot->m_velocity2 = 0.0f;
+	bigfoot->m_simVelocity = 0.0f;
 	bigfoot->setEmotionCaution();
 	bigfoot->startMotion(0, nullptr);
 
@@ -57,12 +57,12 @@ void StateDead::exec(EnemyBase* enemy)
 	bigfoot->updateDeadFurEffect();
 
 	if (bigfoot->m_animKeyEvent->m_running) {
-		if ((u32)bigfoot->m_animKeyEvent->m_type == 2) {
+		if ((u32)bigfoot->m_animKeyEvent->m_type == KEYEVENT_2) {
 			bigfoot->throwupItem();
 			bigfoot->createItemAndEnemy();
-		} else if ((u32)bigfoot->m_animKeyEvent->m_type == 3) {
+		} else if ((u32)bigfoot->m_animKeyEvent->m_type == KEYEVENT_3) {
 			bigfoot->_2DC = 1;
-		} else if ((u32)bigfoot->m_animKeyEvent->m_type == 1000) {
+		} else if ((u32)bigfoot->m_animKeyEvent->m_type == KEYEVENT_END) {
 			bigfoot->kill(nullptr);
 		}
 	}
@@ -89,7 +89,7 @@ void StateStay::init(EnemyBase* enemy, StateArg* stateArg)
 	bigfoot->setEvent(0, EB_31);
 	bigfoot->m_targetCreature = nullptr;
 
-	bigfoot->m_velocity2 = Vector3f(0.0f);
+	bigfoot->m_simVelocity = Vector3f(0.0f);
 	bigfoot->startMotion(1, nullptr);
 	bigfoot->stopMotion();
 }
@@ -143,7 +143,7 @@ void StateLand::init(EnemyBase* enemy, StateArg* stateArg)
 	bigfoot->setEmotionExcitement();
 	bigfoot->m_targetCreature = nullptr;
 
-	bigfoot->m_velocity2 = Vector3f(0.0f);
+	bigfoot->m_simVelocity = Vector3f(0.0f);
 	bigfoot->startMotion(1, nullptr);
 
 	shadowMgr->addJointShadow(bigfoot);
@@ -161,7 +161,7 @@ void StateLand::exec(EnemyBase* enemy)
 	bigfoot->addShadowScale();
 
 	if (bigfoot->m_animKeyEvent->m_running) {
-		if ((u32)bigfoot->m_animKeyEvent->m_type == 2) {
+		if ((u32)bigfoot->m_animKeyEvent->m_type == KEYEVENT_2) {
 			bigfoot->resetEvent(0, EB_BitterImmune);
 
 			for (int i = 0; i < 4; i++) {
@@ -172,7 +172,7 @@ void StateLand::exec(EnemyBase* enemy)
 			cameraMgr->startVibration(15, position, 2);
 			rumbleMgr->startRumble(15, position, 2);
 
-		} else if ((u32)bigfoot->m_animKeyEvent->m_type == 1000) {
+		} else if ((u32)bigfoot->m_animKeyEvent->m_type == KEYEVENT_END) {
 			if (bigfoot->m_health <= 0.0f) {
 				transit(bigfoot, BIGFOOT_Dead, nullptr);
 			} else if (EnemyFunc::isStartFlick(bigfoot, false)) {
@@ -212,7 +212,7 @@ void StateWait::init(EnemyBase* enemy, StateArg* stateArg)
 	bigfoot->resetFlickWalkTimeMax();
 	bigfoot->setIKParameter();
 	bigfoot->m_targetCreature = nullptr;
-	bigfoot->m_velocity2      = Vector3f(0.0f);
+	bigfoot->m_simVelocity    = Vector3f(0.0f);
 	bigfoot->startMotion(2, nullptr);
 }
 
@@ -237,7 +237,7 @@ void StateWait::exec(EnemyBase* enemy)
 		bigfoot->finishMotion();
 	}
 
-	if (bigfoot->m_animKeyEvent->m_running && (u32)bigfoot->m_animKeyEvent->m_type == 1000) {
+	if (bigfoot->m_animKeyEvent->m_running && (u32)bigfoot->m_animKeyEvent->m_type == KEYEVENT_END) {
 		transit(bigfoot, bigfoot->m_nextState, nullptr);
 	}
 }
@@ -260,7 +260,7 @@ void StateFlick::init(EnemyBase* enemy, StateArg* stateArg)
 	bigfoot->m_nextState      = BIGFOOT_NULL;
 	bigfoot->m_stateTimer     = 0.0f;
 	bigfoot->m_targetCreature = nullptr;
-	bigfoot->m_velocity2      = Vector3f(0.0f);
+	bigfoot->m_simVelocity    = Vector3f(0.0f);
 
 	bigfoot->startMotion(3, nullptr);
 	bigfoot->startBlendMotion();
@@ -276,12 +276,12 @@ void StateFlick::exec(EnemyBase* enemy)
 {
 	Obj* bigfoot = static_cast<Obj*>(enemy);
 	if (bigfoot->m_animKeyEvent->m_running) {
-		if ((u32)bigfoot->m_animKeyEvent->m_type == 2) {
+		if ((u32)bigfoot->m_animKeyEvent->m_type == KEYEVENT_2) {
 			Parms* parms = static_cast<Parms*>(bigfoot->m_parms);
 			EnemyFunc::flickStickPikmin(bigfoot, parms->m_general.m_shakeRateMaybe.m_value, parms->m_general.m_shakeKnockback.m_value,
 			                            parms->m_general.m_shakeDamage.m_value, -1000.0, nullptr);
 			bigfoot->m_toFlick = 0.0f;
-		} else if ((u32)bigfoot->m_animKeyEvent->m_type == 1000) {
+		} else if ((u32)bigfoot->m_animKeyEvent->m_type == KEYEVENT_END) {
 			if (bigfoot->m_health <= 0.0f) {
 				transit(bigfoot, BIGFOOT_Dead, nullptr);
 			} else {
@@ -316,7 +316,7 @@ void StateWalk::init(EnemyBase* enemy, StateArg* stateArg)
 	bigfoot->m_nextState      = BIGFOOT_NULL;
 	bigfoot->m_stateTimer     = 0.0f;
 	bigfoot->m_targetCreature = nullptr;
-	bigfoot->m_velocity2      = Vector3f(0.0f);
+	bigfoot->m_simVelocity    = Vector3f(0.0f);
 	bigfoot->startIKMotion();
 	bigfoot->getTargetPosition();
 

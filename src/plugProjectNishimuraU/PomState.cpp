@@ -69,7 +69,7 @@ void StateDead::init(EnemyBase* enemy, StateArg* stateArg)
  */
 void StateDead::exec(EnemyBase* enemy)
 {
-	if (enemy->m_animKeyEvent->m_running && (u32)enemy->m_animKeyEvent->m_type == 1000) {
+	if (enemy->m_animKeyEvent->m_running && (u32)enemy->m_animKeyEvent->m_type == KEYEVENT_END) {
 		enemy->kill(nullptr);
 	}
 }
@@ -108,7 +108,7 @@ void StateOpen::exec(EnemyBase* enemy)
 		if (pom->isEvent(0, EB_Collision)) {
 			transit(pom, POM_Swing, nullptr);
 		}
-	} else if (pom->m_animKeyEvent->m_running && (u32)pom->m_animKeyEvent->m_type == 2) {
+	} else if (pom->m_animKeyEvent->m_running && (u32)pom->m_animKeyEvent->m_type == KEYEVENT_2) {
 		pom->_2C0 = true;
 		pom->_2C1 = 1;
 	}
@@ -142,7 +142,7 @@ void StateClose::init(EnemyBase* enemy, StateArg* stateArg)
  */
 void StateClose::exec(EnemyBase* enemy)
 {
-	if (enemy->m_animKeyEvent->m_running && (u32)enemy->m_animKeyEvent->m_type == 1000) {
+	if (enemy->m_animKeyEvent->m_running && (u32)enemy->m_animKeyEvent->m_type == KEYEVENT_END) {
 		if (enemy->m_stickPikminCount != 0) {
 			transit(enemy, POM_Shot, nullptr);
 		} else {
@@ -182,9 +182,9 @@ void StateShot::exec(EnemyBase* enemy)
 {
 	Obj* pom = static_cast<Obj*>(enemy);
 	if (enemy->m_animKeyEvent->m_running) {
-		if ((u32)enemy->m_animKeyEvent->m_type == 2) {
+		if ((u32)enemy->m_animKeyEvent->m_type == KEYEVENT_2) {
 			pom->shotPikmin();
-		} else if ((u32)enemy->m_animKeyEvent->m_type == 1000) {
+		} else if ((u32)enemy->m_animKeyEvent->m_type == KEYEVENT_END) {
 			if (pom->_2C4 < pom->_2C8) {
 				transit(pom, POM_Wait, nullptr);
 			} else {
@@ -233,7 +233,7 @@ void StateSwing::exec(EnemyBase* enemy)
 			transit(pom, POM_Swing, nullptr);
 		}
 
-	} else if (pom->m_animKeyEvent->m_running && (u32)pom->m_animKeyEvent->m_type == 1000) {
+	} else if (pom->m_animKeyEvent->m_running && (u32)pom->m_animKeyEvent->m_type == KEYEVENT_END) {
 		pom->_2C0 = true;
 	}
 }

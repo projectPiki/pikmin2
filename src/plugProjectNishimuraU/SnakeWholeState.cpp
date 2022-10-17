@@ -44,7 +44,7 @@ void StateDead::init(EnemyBase* enemy, StateArg* stateArg)
 	Obj* snagret = static_cast<Obj*>(enemy);
 	snagret->deathProcedure();
 	snagret->resetEvent(0, EB_Cullable);
-	snagret->m_velocity2 = Vector3f(0.0f);
+	snagret->m_simVelocity = Vector3f(0.0f);
 	snagret->setEmotionCaution();
 	snagret->startMotion(0, nullptr);
 	snagret->createDeadStartEffect();
@@ -63,29 +63,29 @@ void StateDead::exec(EnemyBase* enemy)
 {
 	Obj* snagret = static_cast<Obj*>(enemy);
 	if (snagret->m_animKeyEvent->m_running) {
-		if ((u32)snagret->m_animKeyEvent->m_type == 2) {
+		if ((u32)snagret->m_animKeyEvent->m_type == KEYEVENT_2) {
 			snagret->deleteJointShadow();
 			snagret->createDeadFinishEffect();
 			snagret->throwupItem();
 
-		} else if ((u32)snagret->m_animKeyEvent->m_type == 3) {
+		} else if ((u32)snagret->m_animKeyEvent->m_type == KEYEVENT_3) {
 			snagret->createWalkSmokeEffect(0.9f);
 			Vector3f position = snagret->getPosition();
 			cameraMgr->startVibration(3, position, 2);
 			rumbleMgr->startRumble(11, position, 2);
 
-		} else if ((u32)snagret->m_animKeyEvent->m_type == 4) {
+		} else if ((u32)snagret->m_animKeyEvent->m_type == KEYEVENT_4) {
 			snagret->createWalkSmokeEffect(0.75f);
 			Vector3f position = snagret->getPosition();
 			cameraMgr->startVibration(3, position, 2);
 			rumbleMgr->startRumble(11, position, 2);
 
-		} else if ((u32)snagret->m_animKeyEvent->m_type == 5) {
+		} else if ((u32)snagret->m_animKeyEvent->m_type == KEYEVENT_5) {
 			Vector3f position = snagret->getPosition();
 			cameraMgr->startVibration(8, position, 2);
 			rumbleMgr->startRumble(13, position, 2);
 
-		} else if ((u32)snagret->m_animKeyEvent->m_type == 1000) {
+		} else if ((u32)snagret->m_animKeyEvent->m_type == KEYEVENT_END) {
 			snagret->kill(nullptr);
 		}
 	}
@@ -120,7 +120,7 @@ void StateStay::init(EnemyBase* enemy, StateArg* stateArg)
 	snagret->setEvent(0, EB_31);
 	snagret->resetEvent(0, EB_LifegaugeVisible);
 
-	snagret->m_velocity2 = Vector3f(0.0f);
+	snagret->m_simVelocity = Vector3f(0.0f);
 	snagret->startMotion(1, nullptr);
 	snagret->stopMotion();
 
@@ -684,7 +684,7 @@ void StateAppear1::init(EnemyBase* enemy, StateArg* stateArg)
 	snagret->setEvent(0, EB_22);
 	snagret->resetEvent(0, EB_Cullable);
 	snagret->hardConstraintOn();
-	snagret->m_velocity2 = Vector3f(0.0f);
+	snagret->m_simVelocity = Vector3f(0.0f);
 	snagret->setEmotionExcitement();
 	snagret->startMotion(1, nullptr);
 	snagret->createAppearEffect(0);
@@ -703,11 +703,11 @@ void StateAppear1::exec(EnemyBase* enemy)
 {
 	Obj* snagret = static_cast<Obj*>(enemy);
 	if (snagret->m_animKeyEvent->m_running) {
-		if ((u32)snagret->m_animKeyEvent->m_type == 2) {
+		if ((u32)snagret->m_animKeyEvent->m_type == KEYEVENT_2) {
 			snagret->resetEvent(0, EB_22);
 			snagret->startJointShadow();
 
-		} else if ((u32)snagret->m_animKeyEvent->m_type == 3) {
+		} else if ((u32)snagret->m_animKeyEvent->m_type == KEYEVENT_3) {
 			snagret->setEvent(0, EB_22);
 			snagret->startBossAttackBGM();
 
@@ -715,14 +715,14 @@ void StateAppear1::exec(EnemyBase* enemy)
 			cameraMgr->startVibration(6, position, 2);
 			rumbleMgr->startRumble(14, position, 2);
 
-		} else if ((u32)snagret->m_animKeyEvent->m_type == 4) {
+		} else if ((u32)snagret->m_animKeyEvent->m_type == KEYEVENT_4) {
 			snagret->resetEvent(0, EB_22);
 
 			Vector3f position = snagret->getPosition();
 			cameraMgr->startVibration(6, position, 2);
 			rumbleMgr->startRumble(14, position, 2);
 
-		} else if ((u32)snagret->m_animKeyEvent->m_type == 1000) {
+		} else if ((u32)snagret->m_animKeyEvent->m_type == KEYEVENT_END) {
 			snagret->setAttackPosition();
 			if (snagret->m_health <= 0.0f) {
 				transit(snagret, SNAKEWHOLE_Dead, nullptr);
@@ -779,7 +779,7 @@ void StateAppear2::init(EnemyBase* enemy, StateArg* stateArg)
 	snagret->setEvent(0, EB_22);
 	snagret->resetEvent(0, EB_Cullable);
 	snagret->hardConstraintOn();
-	snagret->m_velocity2 = Vector3f(0.0f);
+	snagret->m_simVelocity = Vector3f(0.0f);
 	snagret->setEmotionExcitement();
 	snagret->startMotion(2, nullptr);
 	snagret->createAppearEffect(1);
@@ -798,35 +798,35 @@ void StateAppear2::exec(EnemyBase* enemy)
 {
 	Obj* snagret = static_cast<Obj*>(enemy);
 	if (snagret->m_animKeyEvent->m_running) {
-		if ((u32)snagret->m_animKeyEvent->m_type == 2) {
+		if ((u32)snagret->m_animKeyEvent->m_type == KEYEVENT_2) {
 			snagret->resetEvent(0, EB_22);
 			snagret->startJointShadow();
 
-		} else if ((u32)snagret->m_animKeyEvent->m_type == 3) {
+		} else if ((u32)snagret->m_animKeyEvent->m_type == KEYEVENT_3) {
 			snagret->startBossAttackBGM();
 
-		} else if ((u32)snagret->m_animKeyEvent->m_type == 4) {
+		} else if ((u32)snagret->m_animKeyEvent->m_type == KEYEVENT_4) {
 			snagret->createAppearEffect(2);
 
 			Vector3f position = snagret->getPosition();
 			cameraMgr->startVibration(3, position, 2);
 			rumbleMgr->startRumble(11, position, 2);
 
-		} else if ((u32)snagret->m_animKeyEvent->m_type == 5) {
+		} else if ((u32)snagret->m_animKeyEvent->m_type == KEYEVENT_5) {
 			snagret->setEvent(0, EB_22);
 
 			Vector3f position = snagret->getPosition();
 			cameraMgr->startVibration(3, position, 2);
 			rumbleMgr->startRumble(11, position, 2);
 
-		} else if ((u32)snagret->m_animKeyEvent->m_type == 6) {
+		} else if ((u32)snagret->m_animKeyEvent->m_type == KEYEVENT_6) {
 			snagret->resetEvent(0, EB_22);
 
 			Vector3f position = snagret->getPosition();
 			cameraMgr->startVibration(6, position, 2);
 			rumbleMgr->startRumble(14, position, 2);
 
-		} else if ((u32)snagret->m_animKeyEvent->m_type == 1000) {
+		} else if ((u32)snagret->m_animKeyEvent->m_type == KEYEVENT_END) {
 			snagret->setAttackPosition();
 			if (snagret->m_health <= 0.0f) {
 				transit(snagret, SNAKEWHOLE_Dead, nullptr);
@@ -877,7 +877,7 @@ void StateDisappear::init(EnemyBase* enemy, StateArg* stateArg)
 {
 	enemy->hardConstraintOn();
 	enemy->resetEvent(0, EB_Cullable);
-	enemy->m_velocity2 = Vector3f(0.0f);
+	enemy->m_simVelocity = Vector3f(0.0f);
 	enemy->setEmotionCaution();
 	enemy->startMotion(3, nullptr);
 }
@@ -892,7 +892,7 @@ void StateDisappear::exec(EnemyBase* enemy)
 	Obj* snagret = static_cast<Obj*>(enemy);
 
 	if (snagret->m_animKeyEvent->m_running) {
-		if ((u32)snagret->m_animKeyEvent->m_type == 2) {
+		if ((u32)snagret->m_animKeyEvent->m_type == KEYEVENT_2) {
 			Parms* parms1 = static_cast<Parms*>(snagret->m_parms);
 			EnemyFunc::flickNearbyNavi(snagret, parms1->m_general.m_shakeRange.m_value, parms1->m_general.m_shakeKnockback.m_value,
 			                           parms1->m_general.m_shakeDamage.m_value, -1000.0f, nullptr);
@@ -906,10 +906,10 @@ void StateDisappear::exec(EnemyBase* enemy)
 			snagret->setEvent(0, EB_22);
 			snagret->startBossFlickBGM();
 
-		} else if ((u32)snagret->m_animKeyEvent->m_type == 3) {
+		} else if ((u32)snagret->m_animKeyEvent->m_type == KEYEVENT_3) {
 			snagret->resetEvent(0, EB_22);
 
-		} else if ((u32)snagret->m_animKeyEvent->m_type == 4) {
+		} else if ((u32)snagret->m_animKeyEvent->m_type == KEYEVENT_4) {
 			Vector3f position = snagret->getPosition();
 			efx::Arg fxArg(position);
 			efx::THebiAphd_dive diveFx;
@@ -918,13 +918,13 @@ void StateDisappear::exec(EnemyBase* enemy)
 			cameraMgr->startVibration(6, position, 2);
 			rumbleMgr->startRumble(15, position, 2);
 
-		} else if ((u32)snagret->m_animKeyEvent->m_type == 5) {
+		} else if ((u32)snagret->m_animKeyEvent->m_type == KEYEVENT_5) {
 			snagret->m_isUnderground = true;
 			snagret->setEvent(0, EB_BitterImmune);
 			snagret->m_toFlick = 0.0f;
 			snagret->finishJointShadow();
 
-		} else if ((u32)snagret->m_animKeyEvent->m_type == 1000) {
+		} else if ((u32)snagret->m_animKeyEvent->m_type == KEYEVENT_END) {
 			transit(snagret, SNAKEWHOLE_Stay, nullptr);
 		}
 	}
@@ -958,7 +958,7 @@ void StateWait::init(EnemyBase* enemy, StateArg* stateArg)
 	snagret->m_nextState  = SNAKEWHOLE_NULL;
 	snagret->setAttackPosition();
 	snagret->m_targetCreature = nullptr;
-	snagret->m_velocity2      = Vector3f(0.0f);
+	snagret->m_simVelocity    = Vector3f(0.0f);
 	snagret->startMotion(9, nullptr);
 }
 
@@ -992,7 +992,7 @@ void StateWait::exec(EnemyBase* enemy)
 
 	snagret->m_stateTimer += sys->m_secondsPerFrame;
 
-	if (snagret->m_animKeyEvent->m_running && (u32)snagret->m_animKeyEvent->m_type == 1000) {
+	if (snagret->m_animKeyEvent->m_running && (u32)snagret->m_animKeyEvent->m_type == KEYEVENT_END) {
 		if (snagret->m_nextState == SNAKEWHOLE_Attack && snagret->getStickHeadPikmin() != 0) {
 			snagret->m_nextState = SNAKEWHOLE_Struggle;
 		}
@@ -1015,10 +1015,10 @@ void StateWait::cleanup(EnemyBase* enemy) { }
  */
 void StateWalk::init(EnemyBase* enemy, StateArg* stateArg)
 {
-	Obj* snagret         = static_cast<Obj*>(enemy);
-	snagret->_2C1        = false;
-	snagret->_2C8        = 0.0f;
-	snagret->m_velocity2 = Vector3f(0.0f);
+	Obj* snagret           = static_cast<Obj*>(enemy);
+	snagret->_2C1          = false;
+	snagret->_2C8          = 0.0f;
+	snagret->m_simVelocity = Vector3f(0.0f);
 	snagret->startMotion(12, nullptr);
 }
 
@@ -1048,11 +1048,11 @@ void StateWalk::exec(EnemyBase* enemy)
 	if (snagret->_2C1) {
 		snagret->updateFace();
 	} else {
-		snagret->m_velocity2 = Vector3f(0.0f);
+		snagret->m_simVelocity = Vector3f(0.0f);
 	}
 
 	if (snagret->m_animKeyEvent->m_running) {
-		if ((u32)snagret->m_animKeyEvent->m_type == 2) {
+		if ((u32)snagret->m_animKeyEvent->m_type == KEYEVENT_2) {
 			snagret->setEvent(0, EB_22);
 			snagret->_2C1 = true;
 			snagret->_2C8 = 0.0f;
@@ -1068,7 +1068,7 @@ void StateWalk::exec(EnemyBase* enemy)
 
 			snagret->createWalkSmokeEffect(0.75f);
 
-		} else if ((u32)snagret->m_animKeyEvent->m_type == 3) {
+		} else if ((u32)snagret->m_animKeyEvent->m_type == KEYEVENT_3) {
 			snagret->resetEvent(0, EB_22);
 			snagret->_2C1 = false;
 			snagret->createWalkSmokeEffect(0.75f);
@@ -1077,7 +1077,7 @@ void StateWalk::exec(EnemyBase* enemy)
 			cameraMgr->startVibration(6, position, 2);
 			rumbleMgr->startRumble(14, position, 2);
 
-		} else if ((u32)snagret->m_animKeyEvent->m_type == 1000) {
+		} else if ((u32)snagret->m_animKeyEvent->m_type == KEYEVENT_END) {
 			if (snagret->m_nextState == SNAKEWHOLE_Attack && snagret->getStickHeadPikmin() != 0) {
 				snagret->m_nextState = SNAKEWHOLE_Struggle;
 			}
@@ -1101,10 +1101,10 @@ void StateWalk::cleanup(EnemyBase* enemy) { enemy->resetEvent(0, EB_22); }
  */
 void StateHome::init(EnemyBase* enemy, StateArg* stateArg)
 {
-	Obj* snagret         = static_cast<Obj*>(enemy);
-	snagret->_2C1        = false;
-	snagret->_2C8        = 0.0f;
-	snagret->m_velocity2 = Vector3f(0.0f);
+	Obj* snagret           = static_cast<Obj*>(enemy);
+	snagret->_2C1          = false;
+	snagret->_2C8          = 0.0f;
+	snagret->m_simVelocity = Vector3f(0.0f);
 	snagret->startMotion(12, nullptr);
 }
 
@@ -1124,19 +1124,19 @@ void StateHome::exec(EnemyBase* enemy)
 		snagret->m_nextState = SNAKEWHOLE_Disappear;
 		snagret->finishMotion();
 	} else if (snagret->isInHomeRange()) {
-		snagret->m_velocity2 = Vector3f(0.0f);
-		snagret->m_nextState = SNAKEWHOLE_Wait;
+		snagret->m_simVelocity = Vector3f(0.0f);
+		snagret->m_nextState   = SNAKEWHOLE_Wait;
 		snagret->finishMotion();
 	}
 
 	if (snagret->_2C1) {
 		snagret->updateFace();
 	} else {
-		snagret->m_velocity2 = Vector3f(0.0f);
+		snagret->m_simVelocity = Vector3f(0.0f);
 	}
 
 	if (snagret->m_animKeyEvent->m_running) {
-		if ((u32)snagret->m_animKeyEvent->m_type == 2) {
+		if ((u32)snagret->m_animKeyEvent->m_type == KEYEVENT_2) {
 			snagret->setEvent(0, EB_22);
 			snagret->_2C1 = true;
 			snagret->_2C8 = 0.0f;
@@ -1145,12 +1145,12 @@ void StateHome::exec(EnemyBase* enemy)
 			snagret->setJumpMove(targetPos);
 			snagret->createWalkSmokeEffect(0.75f);
 
-		} else if ((u32)snagret->m_animKeyEvent->m_type == 3) {
+		} else if ((u32)snagret->m_animKeyEvent->m_type == KEYEVENT_3) {
 			snagret->resetEvent(0, EB_22);
 			snagret->_2C1 = false;
 			snagret->createWalkSmokeEffect(0.75f);
 
-		} else if ((u32)snagret->m_animKeyEvent->m_type == 1000) {
+		} else if ((u32)snagret->m_animKeyEvent->m_type == KEYEVENT_END) {
 			transit(snagret, snagret->m_nextState, nullptr);
 		}
 	}
@@ -1172,7 +1172,7 @@ void StateAttack::init(EnemyBase* enemy, StateArg* stateArg)
 {
 	Obj* snagret = static_cast<Obj*>(enemy);
 	snagret->resetEvent(0, EB_Cullable);
-	snagret->m_velocity2 = Vector3f(0.0f);
+	snagret->m_simVelocity = Vector3f(0.0f);
 	snagret->startMotion(snagret->_2E4 + 4, nullptr);
 }
 
@@ -1193,10 +1193,10 @@ void StateAttack::exec(EnemyBase* enemy)
 	}
 
 	if (snagret->m_animKeyEvent->m_running) {
-		if ((u32)snagret->m_animKeyEvent->m_type == 2) {
+		if ((u32)snagret->m_animKeyEvent->m_type == KEYEVENT_2) {
 			snagret->startJointCallBack();
 
-		} else if ((u32)snagret->m_animKeyEvent->m_type == 3) {
+		} else if ((u32)snagret->m_animKeyEvent->m_type == KEYEVENT_3) {
 			int idx    = snagret->_2E4;
 			Piki* piki = snagret->getAttackPiki(idx);
 
@@ -1219,7 +1219,7 @@ void StateAttack::exec(EnemyBase* enemy)
 
 			snagret->returnJointCallBack();
 
-		} else if ((u32)snagret->m_animKeyEvent->m_type == 4) {
+		} else if ((u32)snagret->m_animKeyEvent->m_type == KEYEVENT_4) {
 
 			if (!snagret->isFinishMotion() && snagret->getSwallowSlot() != nullptr) {
 
@@ -1236,7 +1236,7 @@ void StateAttack::exec(EnemyBase* enemy)
 				snagret->finishJointCallBack();
 			}
 
-		} else if ((u32)snagret->m_animKeyEvent->m_type == 1000) {
+		} else if ((u32)snagret->m_animKeyEvent->m_type == KEYEVENT_END) {
 			if (snagret->m_health <= 0.0f) {
 				transit(snagret, SNAKEWHOLE_Dead, nullptr);
 				return;
@@ -1292,7 +1292,7 @@ void StateAttack::cleanup(EnemyBase* enemy) { enemy->setEvent(0, EB_Cullable); }
  */
 void StateEat::init(EnemyBase* enemy, StateArg* stateArg)
 {
-	enemy->m_velocity2 = Vector3f(0.0f);
+	enemy->m_simVelocity = Vector3f(0.0f);
 	enemy->startMotion(10, nullptr);
 }
 
@@ -1305,11 +1305,11 @@ void StateEat::exec(EnemyBase* enemy)
 {
 	Obj* snagret = static_cast<Obj*>(enemy);
 	if (snagret->m_animKeyEvent->m_running) {
-		if ((u32)snagret->m_animKeyEvent->m_type == 2) {
+		if ((u32)snagret->m_animKeyEvent->m_type == KEYEVENT_2) {
 			Parms* parms = static_cast<Parms*>(snagret->m_parms);
 			EnemyFunc::swallowPikmin(snagret, parms->m_properParms.m_fp21.m_value, nullptr);
 
-		} else if ((u32)snagret->m_animKeyEvent->m_type == 1000) {
+		} else if ((u32)snagret->m_animKeyEvent->m_type == KEYEVENT_END) {
 			snagret->setAttackPosition();
 
 			if (snagret->m_health <= 0.0f) {
@@ -1362,9 +1362,9 @@ void StateEat::cleanup(EnemyBase* enemy) { }
  */
 void StateStruggle::init(EnemyBase* enemy, StateArg* stateArg)
 {
-	Obj* snagret          = static_cast<Obj*>(enemy);
-	snagret->m_stateTimer = 0.0f;
-	snagret->m_velocity2  = Vector3f(0.0f);
+	Obj* snagret           = static_cast<Obj*>(enemy);
+	snagret->m_stateTimer  = 0.0f;
+	snagret->m_simVelocity = Vector3f(0.0f);
 	snagret->startMotion(11, nullptr);
 }
 
@@ -1381,7 +1381,7 @@ void StateStruggle::exec(EnemyBase* enemy)
 	}
 
 	snagret->m_stateTimer += sys->m_secondsPerFrame;
-	if (snagret->m_animKeyEvent->m_running && (u32)snagret->m_animKeyEvent->m_type == 1000) {
+	if (snagret->m_animKeyEvent->m_running && (u32)snagret->m_animKeyEvent->m_type == KEYEVENT_END) {
 		snagret->setAttackPosition();
 
 		if (snagret->m_health <= 0.0f) {

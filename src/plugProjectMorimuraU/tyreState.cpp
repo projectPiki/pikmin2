@@ -109,7 +109,7 @@ void Tyre::StateLand::init(EnemyBase* enemy, StateArg* stateArg)
 void Tyre::StateLand::exec(EnemyBase* enemy)
 {
 	Obj* tyre = static_cast<Obj*>(enemy);
-	if (tyre->_0C8 != nullptr) {
+	if (tyre->m_curTriangle != nullptr) {
 		tyre->flick();
 		Vector3f position = tyre->getPosition();
 		tyre->landEffect(position);
@@ -138,9 +138,9 @@ void Tyre::StateFreeze::init(EnemyBase* enemy, StateArg* stateArg)
 {
 	Obj* tyre = static_cast<Obj*>(enemy);
 	tyre->stopMotion();
-	_10               = 0;
-	tyre->m_velocity  = Vector3f(0.0f);
-	tyre->m_velocity2 = Vector3f(0.0f);
+	_10                 = 0;
+	tyre->m_impVelocity = Vector3f(0.0f);
+	tyre->m_simVelocity = Vector3f(0.0f);
 	tyre->setEvent(0, EB_Constraint);
 	tyre->collisionStOn();
 }
@@ -152,9 +152,9 @@ void Tyre::StateFreeze::init(EnemyBase* enemy, StateArg* stateArg)
  */
 void Tyre::StateFreeze::exec(EnemyBase* enemy)
 {
-	Obj* tyre         = static_cast<Obj*>(enemy);
-	tyre->m_velocity  = Vector3f(0.0f);
-	tyre->m_velocity2 = Vector3f(0.0f);
+	Obj* tyre           = static_cast<Obj*>(enemy);
+	tyre->m_impVelocity = Vector3f(0.0f);
+	tyre->m_simVelocity = Vector3f(0.0f);
 	_10++;
 	if ((tyre->m_health <= 0.0f) && tyre->isEvent(0, EB_Vulnerable)) {
 		transit(tyre, TYRE_Dead, nullptr);
@@ -201,7 +201,7 @@ void Tyre::StateDead::init(EnemyBase* enemy, StateArg* stateArg)
  */
 void Tyre::StateDead::exec(EnemyBase* enemy)
 {
-	if ((enemy->m_animKeyEvent->m_running != 0) && ((u32)enemy->m_animKeyEvent->m_type == 1000)) {
+	if ((enemy->m_animKeyEvent->m_running != 0) && ((u32)enemy->m_animKeyEvent->m_type == KEYEVENT_END)) {
 		enemy->kill(nullptr);
 	}
 }

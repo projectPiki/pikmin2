@@ -41,7 +41,7 @@ void StateDead::init(EnemyBase* enemy, StateArg* stateArg)
 	Obj* kurage = static_cast<Obj*>(enemy);
 	kurage->resetEvent(0, EB_Cullable);
 	kurage->resetEvent(0, EB_Flying);
-	kurage->m_velocity2 = Vector3f(0.0f);
+	kurage->m_simVelocity = Vector3f(0.0f);
 
 	if (kurage->isFlying()) {
 		kurage->startMotion(0, nullptr);
@@ -71,10 +71,10 @@ void StateDead::exec(EnemyBase* enemy)
 	}
 
 	if (kurage->m_animKeyEvent->m_running) {
-		if ((u32)kurage->m_animKeyEvent->m_type == 2) {
+		if ((u32)kurage->m_animKeyEvent->m_type == KEYEVENT_2) {
 			EnemyFunc::flickStickPikmin(kurage, 1.0f, 100.0f, 0.0f, -1000.0f, nullptr);
 
-		} else if ((u32)kurage->m_animKeyEvent->m_type == 3) {
+		} else if ((u32)kurage->m_animKeyEvent->m_type == KEYEVENT_3) {
 			kurage->deathProcedure();
 			kurage->finishHireEffect();
 			kurage->createBodyBombEffect();
@@ -83,7 +83,7 @@ void StateDead::exec(EnemyBase* enemy)
 			Vector3f position = kurage->getPosition();
 			rumbleMgr->startRumble(9, position, 2);
 
-		} else if ((u32)kurage->m_animKeyEvent->m_type == 1000) {
+		} else if ((u32)kurage->m_animKeyEvent->m_type == KEYEVENT_END) {
 			kurage->kill(nullptr);
 		}
 	}
@@ -107,8 +107,8 @@ void StateWait::init(EnemyBase* enemy, StateArg* stateArg)
 	kurage->m_nextState  = KURAGE_NULL;
 	kurage->m_stateTimer = 0.0f;
 	kurage->setEvent(0, EB_3);
-	kurage->m_velocity2 = Vector3f(0.0f);
-	kurage->_2C8        = 3.5f;
+	kurage->m_simVelocity = Vector3f(0.0f);
+	kurage->_2C8          = 3.5f;
 	kurage->startMotion(5, nullptr);
 }
 
@@ -147,7 +147,7 @@ void StateWait::exec(EnemyBase* enemy)
 
 	kurage->m_stateTimer += sys->m_secondsPerFrame;
 
-	if (kurage->m_animKeyEvent->m_running && (u32)kurage->m_animKeyEvent->m_type == 1000) {
+	if (kurage->m_animKeyEvent->m_running && (u32)kurage->m_animKeyEvent->m_type == KEYEVENT_END) {
 		transit(kurage, kurage->m_nextState, nullptr);
 	}
 }
@@ -171,8 +171,8 @@ void StateMove::init(EnemyBase* enemy, StateArg* stateArg)
 	kurage->m_stateTimer = 0.0f;
 	kurage->setRandTarget();
 	kurage->setEvent(0, EB_3);
-	kurage->m_velocity2 = Vector3f(0.0f);
-	kurage->_2C8        = 3.5f;
+	kurage->m_simVelocity = Vector3f(0.0f);
+	kurage->_2C8          = 3.5f;
 	kurage->startMotion(5, nullptr);
 }
 
@@ -219,12 +219,12 @@ void StateMove::exec(EnemyBase* enemy)
 	}
 
 	if (kurage->isFinishMotion()) {
-		kurage->m_velocity2 = Vector3f(0.0f);
+		kurage->m_simVelocity = Vector3f(0.0f);
 	}
 
 	kurage->m_stateTimer += sys->m_secondsPerFrame;
 
-	if (kurage->m_animKeyEvent->m_running && (u32)kurage->m_animKeyEvent->m_type == 1000) {
+	if (kurage->m_animKeyEvent->m_running && (u32)kurage->m_animKeyEvent->m_type == KEYEVENT_END) {
 		transit(kurage, kurage->m_nextState, nullptr);
 	}
 }
@@ -247,8 +247,8 @@ void StateChase::init(EnemyBase* enemy, StateArg* stateArg)
 	kurage->setEvent(0, EB_3);
 	kurage->m_nextState = KURAGE_NULL;
 	kurage->setEmotionExcitement();
-	kurage->m_velocity2 = Vector3f(0.0f);
-	kurage->_2C8        = 3.5f;
+	kurage->m_simVelocity = Vector3f(0.0f);
+	kurage->_2C8          = 3.5f;
 	kurage->startMotion(5, nullptr);
 }
 
@@ -286,10 +286,10 @@ void StateChase::exec(EnemyBase* enemy)
 	}
 
 	if (kurage->isFinishMotion()) {
-		kurage->m_velocity2 = Vector3f(0.0f);
+		kurage->m_simVelocity = Vector3f(0.0f);
 	}
 
-	if (kurage->m_animKeyEvent->m_running && (u32)kurage->m_animKeyEvent->m_type == 1000) {
+	if (kurage->m_animKeyEvent->m_running && (u32)kurage->m_animKeyEvent->m_type == KEYEVENT_END) {
 		transit(kurage, kurage->m_nextState, nullptr);
 	}
 }
@@ -315,7 +315,7 @@ void StateAttack::init(EnemyBase* enemy, StateArg* stateArg)
 	kurage->_2E0         = 0;
 	kurage->m_isSucking  = false;
 	kurage->resetEvent(0, EB_Cullable);
-	kurage->m_velocity2 = Vector3f(0.0f);
+	kurage->m_simVelocity = Vector3f(0.0f);
 	kurage->setEmotionExcitement();
 	kurage->startMotion(9, nullptr);
 }
@@ -349,7 +349,7 @@ void StateAttack::exec(EnemyBase* enemy)
 	kurage->m_stateTimer += sys->m_secondsPerFrame;
 
 	if (kurage->m_animKeyEvent->m_running) {
-		if ((u32)kurage->m_animKeyEvent->m_type == 2) {
+		if ((u32)kurage->m_animKeyEvent->m_type == KEYEVENT_2) {
 			Vector3f suckPos = kurage->getPosition();
 			suckPos.y -= val;
 			kurage->startSuckEffect(suckPos);
@@ -361,7 +361,7 @@ void StateAttack::exec(EnemyBase* enemy)
 				kurage->m_isSucking = false;
 			}
 
-		} else if ((u32)kurage->m_animKeyEvent->m_type == 1000) {
+		} else if ((u32)kurage->m_animKeyEvent->m_type == KEYEVENT_END) {
 			StateID nextFlyingState = kurage->getFlyingNextState();
 			if (nextFlyingState >= 0) {
 				transit(kurage, nextFlyingState, nullptr);
@@ -400,7 +400,7 @@ void StateFall::init(EnemyBase* enemy, StateArg* stateArg)
 	kurage->m_nextState  = KURAGE_NULL;
 	kurage->m_stateTimer = 0.0f;
 	kurage->setEvent(0, EB_3);
-	kurage->m_velocity2 = Vector3f(0.0f);
+	kurage->m_simVelocity = Vector3f(0.0f);
 	kurage->setEmotionExcitement();
 	kurage->startMotion(8, nullptr);
 }
@@ -430,7 +430,7 @@ void StateFall::exec(EnemyBase* enemy)
 
 	kurage->m_stateTimer += sys->m_secondsPerFrame;
 
-	if (kurage->m_animKeyEvent->m_running && (u32)kurage->m_animKeyEvent->m_type == 1000) {
+	if (kurage->m_animKeyEvent->m_running && (u32)kurage->m_animKeyEvent->m_type == KEYEVENT_END) {
 		if (kurage->m_health <= 0.0f) {
 			transit(kurage, KURAGE_Dead, nullptr);
 		} else {
@@ -456,7 +456,7 @@ void StateLand::init(EnemyBase* enemy, StateArg* stateArg)
 	Obj* kurage          = static_cast<Obj*>(enemy);
 	kurage->m_stateTimer = 0.0f;
 	kurage->resetEvent(0, EB_3);
-	kurage->m_velocity2 = Vector3f(0.0f);
+	kurage->m_simVelocity = Vector3f(0.0f);
 	kurage->setEmotionExcitement();
 	kurage->startMotion(6, nullptr);
 	kurage->createDownEffect();
@@ -474,7 +474,7 @@ void StateLand::init(EnemyBase* enemy, StateArg* stateArg)
 void StateLand::exec(EnemyBase* enemy)
 {
 	Obj* kurage = static_cast<Obj*>(enemy);
-	if (kurage->m_animKeyEvent->m_running && (u32)kurage->m_animKeyEvent->m_type == 1000) {
+	if (kurage->m_animKeyEvent->m_running && (u32)kurage->m_animKeyEvent->m_type == KEYEVENT_END) {
 		if (kurage->m_health <= 0.0f) {
 			transit(kurage, KURAGE_Dead, nullptr);
 		} else {
@@ -501,7 +501,7 @@ void StateTakeOff::init(EnemyBase* enemy, StateArg* stateArg)
 	kurage->m_nextState  = KURAGE_NULL;
 	kurage->m_stateTimer = 0.0f;
 	kurage->resetEvent(0, EB_3);
-	kurage->m_velocity2 = Vector3f(0.0f);
+	kurage->m_simVelocity = Vector3f(0.0f);
 	kurage->setEmotionExcitement();
 	kurage->startMotion(7, nullptr);
 }
@@ -519,10 +519,10 @@ void StateTakeOff::exec(EnemyBase* enemy)
 	}
 
 	if (kurage->m_animKeyEvent->m_running) {
-		if ((u32)kurage->m_animKeyEvent->m_type == 2) {
+		if ((u32)kurage->m_animKeyEvent->m_type == KEYEVENT_2) {
 			kurage->setEvent(0, EB_3);
 
-		} else if ((u32)kurage->m_animKeyEvent->m_type == 1000) {
+		} else if ((u32)kurage->m_animKeyEvent->m_type == KEYEVENT_END) {
 			if (kurage->m_health <= 0.0f) {
 				transit(kurage, KURAGE_Dead, nullptr);
 			} else {
@@ -549,7 +549,7 @@ void StateGround::init(EnemyBase* enemy, StateArg* stateArg)
 	Obj* kurage          = static_cast<Obj*>(enemy);
 	kurage->m_stateTimer = 0.0f;
 	kurage->resetEvent(0, EB_3);
-	kurage->m_velocity2 = Vector3f(0.0f);
+	kurage->m_simVelocity = Vector3f(0.0f);
 	kurage->setEmotionExcitement();
 	kurage->startMotion(4, nullptr);
 }
@@ -568,7 +568,7 @@ void StateGround::exec(EnemyBase* enemy)
 
 	kurage->m_stateTimer += sys->m_secondsPerFrame;
 
-	if (kurage->m_animKeyEvent->m_running && (u32)kurage->m_animKeyEvent->m_type == 1000) {
+	if (kurage->m_animKeyEvent->m_running && (u32)kurage->m_animKeyEvent->m_type == KEYEVENT_END) {
 		if (kurage->m_health <= 0.0f) {
 			transit(kurage, KURAGE_Dead, nullptr);
 		} else if (kurage->m_stickPikminCount != 0) {
@@ -595,8 +595,8 @@ void StateFlyFlick::init(EnemyBase* enemy, StateArg* stateArg)
 {
 	Obj* kurage = static_cast<Obj*>(enemy);
 	kurage->setEvent(0, EB_3);
-	kurage->m_nextState = KURAGE_NULL;
-	kurage->m_velocity2 = Vector3f(0.0f);
+	kurage->m_nextState   = KURAGE_NULL;
+	kurage->m_simVelocity = Vector3f(0.0f);
 	kurage->setEmotionExcitement();
 	kurage->startMotion(2, nullptr);
 
@@ -616,7 +616,7 @@ void StateFlyFlick::exec(EnemyBase* enemy)
 	Obj* kurage = static_cast<Obj*>(enemy);
 	f32 val     = kurage->setHeightVelocity(kurage->getFlickPitchOffset(), 5.0f);
 	if (kurage->m_animKeyEvent->m_running) {
-		if ((u32)kurage->m_animKeyEvent->m_type == 2) {
+		if ((u32)kurage->m_animKeyEvent->m_type == KEYEVENT_2) {
 			Parms* parms = static_cast<Parms*>(kurage->m_parms);
 			EnemyFunc::flickStickPikmin(kurage, parms->m_general.m_shakeRateMaybe.m_value, parms->m_general.m_shakeKnockback.m_value,
 			                            parms->m_general.m_shakeDamage.m_value, -1000.0, nullptr);
@@ -624,7 +624,7 @@ void StateFlyFlick::exec(EnemyBase* enemy)
 			Vector3f position = kurage->getPosition();
 			rumbleMgr->startRumble(9, position, 2);
 
-		} else if ((u32)kurage->m_animKeyEvent->m_type == 1000) {
+		} else if ((u32)kurage->m_animKeyEvent->m_type == KEYEVENT_END) {
 			int nextFlyingState = kurage->getFlyingNextState();
 			if (nextFlyingState >= 0) {
 				transit(kurage, nextFlyingState, nullptr);
@@ -656,7 +656,7 @@ void StateGroundFlick::init(EnemyBase* enemy, StateArg* stateArg)
 	Obj* kurage          = static_cast<Obj*>(enemy);
 	kurage->m_stateTimer = 0.0f;
 	kurage->resetEvent(0, EB_3);
-	kurage->m_velocity2 = Vector3f(0.0f);
+	kurage->m_simVelocity = Vector3f(0.0f);
 	kurage->setEmotionExcitement();
 	kurage->startMotion(3, nullptr);
 
@@ -675,11 +675,11 @@ void StateGroundFlick::exec(EnemyBase* enemy)
 {
 	Obj* kurage = static_cast<Obj*>(enemy);
 	if (kurage->m_animKeyEvent->m_running) {
-		if ((u32)kurage->m_animKeyEvent->m_type == 2) {
+		if ((u32)kurage->m_animKeyEvent->m_type == KEYEVENT_2) {
 			Vector3f position = kurage->getPosition();
 			rumbleMgr->startRumble(9, position, 2);
 
-		} else if ((u32)kurage->m_animKeyEvent->m_type == 3) {
+		} else if ((u32)kurage->m_animKeyEvent->m_type == KEYEVENT_3) {
 			Parms* parms1 = static_cast<Parms*>(kurage->m_parms);
 			EnemyFunc::flickNearbyNavi(kurage, parms1->m_general.m_shakeRange.m_value, parms1->m_general.m_shakeKnockback.m_value,
 			                           parms1->m_general.m_shakeDamage.m_value, -1000.0f, nullptr);
@@ -692,7 +692,7 @@ void StateGroundFlick::exec(EnemyBase* enemy)
 			                            parms3->m_general.m_shakeDamage.m_value, -1000.0f, nullptr);
 			kurage->m_toFlick = 0.0f;
 
-		} else if ((u32)kurage->m_animKeyEvent->m_type == 1000) {
+		} else if ((u32)kurage->m_animKeyEvent->m_type == KEYEVENT_END) {
 			if (kurage->m_health <= 0.0f) {
 				transit(kurage, KURAGE_Dead, nullptr);
 

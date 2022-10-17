@@ -152,11 +152,11 @@ struct EnemyBase : public Creature, public SysShape::MotionListener, virtual pub
 	}
 	virtual void setVelocity(Vector3f& velocity) // _68 (weak)
 	{
-		m_velocity = velocity;
+		m_impVelocity = velocity;
 	}
 	virtual Vector3f getVelocity() // _6C (weak)
 	{
-		return m_velocity;
+		return m_impVelocity;
 	}
 	virtual void onSetPosition(Vector3f& position) // _70 (weak)
 	{
@@ -216,8 +216,8 @@ struct EnemyBase : public Creature, public SysShape::MotionListener, virtual pub
 	virtual void onStickEnd(Creature*);                    // _15C
 	virtual void getVelocityAt(Vector3f& p1, Vector3f& p2) // _184 (weak)
 	{
-		p1 = m_velocity;
-		p2 = m_velocity;
+		p1 = m_impVelocity;
+		p2 = m_impVelocity;
 	}
 	virtual bool stimulate(Interaction&); // _1A4
 	virtual char* getCreatureName()       // _1A8 (weak)
@@ -480,7 +480,7 @@ struct EnemyBase : public Creature, public SysShape::MotionListener, virtual pub
 		return (isEvent(1, EB2_1) || isEvent(1, EB2_5));
 	}
 
-	inline f32 getSimulationScale(f32 constraint)
+	inline f32 getAccelerationScale(f32 constraint)
 	{
 		return constraint / static_cast<EnemyParmsBase*>(m_parms)->m_creatureProps.m_props.m_accel.m_value;
 	}
@@ -515,8 +515,8 @@ struct EnemyBase : public Creature, public SysShape::MotionListener, virtual pub
 			approxSpeed = (approxSpeed > 0.0f) ? limit : -limit;
 		}
 
-		m_faceDir = roundAng(approxSpeed + getFaceDir());
-		_1A4.y    = m_faceDir;
+		m_faceDir    = roundAng(approxSpeed + getFaceDir());
+		m_rotation.y = m_faceDir;
 		return angleDist;
 	}
 
@@ -541,12 +541,12 @@ struct EnemyBase : public Creature, public SysShape::MotionListener, virtual pub
 			approxSpeed = (approxSpeed > 0.0f) ? limit : -limit;
 		}
 
-		m_faceDir = roundAng(approxSpeed + getFaceDir());
-		_1A4.y    = m_faceDir;
+		m_faceDir    = roundAng(approxSpeed + getFaceDir());
+		m_rotation.y = m_faceDir;
 		return angleDist;
 	}
 
-	inline f32 getModifier(f32 scale) { return (_210 / scale); }
+	inline f32 getDamageAnimFrac(f32 scale) { return (m_damageAnimTimer / scale); }
 
 	inline f32 getSqrHomeRadius()
 	{
@@ -557,33 +557,31 @@ struct EnemyBase : public Creature, public SysShape::MotionListener, virtual pub
 	// Creature: _000 - _178
 	// MotionListener: _178 - _17C
 	// ptr to PelletView: _17C
-	EnemyMgrBase* m_mgr;                // _180
-	EnemyAnimatorBase* m_animator;      // _184
-	EnemyAnimKeyEvent* m_animKeyEvent;  // _188
-	Vector3f m_position;                // _18C
-	Vector3f m_homePosition;            // _198
-	Vector3f _1A4;                      // _1A4
-	Vector3f _1B0;                      // _1B0
-	Vector3f _1BC;                      // _1BC
-	Vector3f m_velocity;                // _1C8
-	Vector3f m_velocity2;               // _1D4
-	BitFlagArray<u32, 2> m_events;      // _1E0
-	BitFlagArray<u32, 2> m_eventBuffer; // _1E8
-	u8 m_emotion;                       // _1F0
-	u8 m_enemyIndexForType;             // _1F1
-	u8 _1F2;                            // _1F2
-	bool m_inPiklopedia;                // _1F3
-	int m_stickPikminCount;             // _1F4
-	f32 m_scaleModifier;                // _1F8
-	f32 m_faceDir;                      // _1FC
-	f32 m_health;                       // _200
-	f32 m_maxHealth;                    // _204
-	f32 m_instantDamage;                // _208
-	f32 m_toFlick;                      // _20C
-	f32 _210;                           // _210
-	// TODO: Name is from PikDecomp. Sodium called this "purpleStunTimer". Which
-	// name is more accurate?
-	f32 m_scaleTimer;                            // _214
+	EnemyMgrBase* m_mgr;                         // _180
+	EnemyAnimatorBase* m_animator;               // _184
+	EnemyAnimKeyEvent* m_animKeyEvent;           // _188
+	Vector3f m_position;                         // _18C, aka translation
+	Vector3f m_homePosition;                     // _198
+	Vector3f m_rotation;                         // _1A4, mainly used for face dir on Y axis
+	Vector3f m_damageAnimRotation;               // _1B0
+	Vector3f m_stunAnimRotation;                 // _1BC
+	Vector3f m_impVelocity;                      // _1C8, impulse velocity
+	Vector3f m_simVelocity;                      // _1D4, simulation velocity (only used on simulation)
+	BitFlagArray<u32, 2> m_events;               // _1E0
+	BitFlagArray<u32, 2> m_eventBuffer;          // _1E8
+	u8 m_emotion;                                // _1F0
+	u8 m_enemyIndexForType;                      // _1F1
+	u8 _1F2;                                     // _1F2
+	bool m_inPiklopedia;                         // _1F3
+	int m_stickPikminCount;                      // _1F4
+	f32 m_scaleModifier;                         // _1F8
+	f32 m_faceDir;                               // _1FC
+	f32 m_health;                                // _200
+	f32 m_maxHealth;                             // _204
+	f32 m_instantDamage;                         // _208
+	f32 m_toFlick;                               // _20C
+	f32 m_damageAnimTimer;                       // _210
+	f32 m_stunAnimTimer;                         // _214
 	f32 m_friction;                              // _218
 	f32 m_stoneTimer;                            // _21C
 	Sys::Sphere m_boundingSphere;                // _220

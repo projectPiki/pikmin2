@@ -29,7 +29,7 @@ void StateDead::init(EnemyBase* enemy, StateArg* stateArg)
 	Obj* baby = static_cast<Obj*>(enemy);
 	baby->createHoney();
 	baby->deathProcedure();
-	baby->m_velocity2 = Vector3f(0.0f);
+	baby->m_simVelocity = Vector3f(0.0f);
 	baby->startMotion(0, nullptr);
 }
 
@@ -40,7 +40,7 @@ void StateDead::init(EnemyBase* enemy, StateArg* stateArg)
  */
 void StateDead::exec(EnemyBase* enemy)
 {
-	if (enemy->m_animKeyEvent->m_running && (u32)enemy->m_animKeyEvent->m_type == 1000) {
+	if (enemy->m_animKeyEvent->m_running && (u32)enemy->m_animKeyEvent->m_type == KEYEVENT_END) {
 		enemy->kill(nullptr);
 	}
 }
@@ -63,7 +63,7 @@ void StatePress::init(EnemyBase* enemy, StateArg* stateArg)
 	baby->createHoney();
 	baby->m_health = 0.0f;
 	baby->deathProcedure();
-	baby->m_velocity2 = Vector3f(0.0f);
+	baby->m_simVelocity = Vector3f(0.0f);
 	baby->startMotion(1, nullptr);
 	Vector3f position = baby->getPosition();
 
@@ -80,7 +80,7 @@ void StatePress::init(EnemyBase* enemy, StateArg* stateArg)
  */
 void StatePress::exec(EnemyBase* enemy)
 {
-	if (enemy->m_animKeyEvent->m_running && (u32)enemy->m_animKeyEvent->m_type == 1000) {
+	if (enemy->m_animKeyEvent->m_running && (u32)enemy->m_animKeyEvent->m_type == KEYEVENT_END) {
 		enemy->kill(nullptr);
 	}
 }
@@ -111,16 +111,16 @@ void StateBorn::init(EnemyBase* enemy, StateArg* stateArg)
  */
 void StateBorn::exec(EnemyBase* enemy)
 {
-	if (enemy->_0C8 != nullptr) {
+	if (enemy->m_curTriangle != nullptr) {
 
-		Vector3f vec = enemy->m_velocity2;
+		Vector3f vec = enemy->m_simVelocity;
 		weightVecXZ(vec, 0.95f);
-		enemy->m_velocity2 = vec;
+		enemy->m_simVelocity = vec;
 
 		enemy->finishMotion();
 	}
 
-	if (enemy->m_animKeyEvent->m_running && (u32)enemy->m_animKeyEvent->m_type == 1000) {
+	if (enemy->m_animKeyEvent->m_running && (u32)enemy->m_animKeyEvent->m_type == KEYEVENT_END) {
 		if (enemy->m_health <= 0.0f) {
 			transit(enemy, BABY_Dead, nullptr);
 
@@ -179,18 +179,18 @@ void StateMove::exec(EnemyBase* enemy)
 		if ((f32)(abs) <= (DEG2RAD * static_cast<Parms*>(baby->m_parms)->m_general.m_fp21.m_value) * PI) {
 			f32 speed    = static_cast<Parms*>(baby->m_parms)->m_general.m_moveSpeed.m_value;
 			f32 sintheta = (f32)sin(baby->getFaceDir());
-			Vector3f vel = baby->m_velocity2;
+			Vector3f vel = baby->m_simVelocity;
 			f32 costheta = (f32)cos(baby->getFaceDir());
 
-			enemy->m_velocity2 = Vector3f(speed * sintheta, vel.y, speed * costheta);
+			enemy->m_simVelocity = Vector3f(speed * sintheta, vel.y, speed * costheta);
 
 		} else {
 			f32 speed    = static_cast<Parms*>(baby->m_parms)->m_general.m_moveSpeed.m_value / 4;
 			f32 sintheta = (f32)sin(baby->getFaceDir());
-			Vector3f vel = baby->m_velocity2;
+			Vector3f vel = baby->m_simVelocity;
 			f32 costheta = (f32)cos(baby->getFaceDir());
 
-			enemy->m_velocity2 = Vector3f(speed * sintheta, vel.y, speed * costheta);
+			enemy->m_simVelocity = Vector3f(speed * sintheta, vel.y, speed * costheta);
 		}
 
 		f32 attackAngle = static_cast<Parms*>(baby->m_parms)->m_general.m_fp21.m_value;
@@ -210,7 +210,7 @@ void StateMove::exec(EnemyBase* enemy)
 		baby->moveNoTarget();
 	}
 
-	if (baby->m_animKeyEvent->m_running && (u32)baby->m_animKeyEvent->m_type == 1000) {
+	if (baby->m_animKeyEvent->m_running && (u32)baby->m_animKeyEvent->m_type == KEYEVENT_END) {
 		transit(baby, BABY_Move, nullptr);
 	}
 
@@ -533,7 +533,7 @@ void StateMove::cleanup(EnemyBase* enemy) { }
  */
 void StateAttack::init(EnemyBase* enemy, StateArg* stateArg)
 {
-	enemy->m_velocity2 = Vector3f(0.0f);
+	enemy->m_simVelocity = Vector3f(0.0f);
 	enemy->setEmotionExcitement();
 	enemy->startMotion(3, nullptr);
 }
@@ -547,7 +547,7 @@ void StateAttack::exec(EnemyBase* enemy)
 {
 	Obj* baby = static_cast<Obj*>(enemy);
 	if (baby->m_animKeyEvent->m_running) {
-		if ((u32)baby->m_animKeyEvent->m_type == 2) {
+		if ((u32)baby->m_animKeyEvent->m_type == KEYEVENT_2) {
 			Parms* parms = static_cast<Parms*>(baby->m_parms);
 			EnemyFunc::attackNavi(baby, parms->m_general.m_fp22.m_value, parms->m_general.m_fp23.m_value,
 			                      parms->m_general.m_attackDamage.m_value, nullptr, nullptr);
@@ -556,10 +556,10 @@ void StateAttack::exec(EnemyBase* enemy)
 			if (slotCount == 0) {
 				baby->startMotion(4, nullptr);
 			}
-		} else if ((u32)baby->m_animKeyEvent->m_type == 3) {
+		} else if ((u32)baby->m_animKeyEvent->m_type == KEYEVENT_3) {
 			Parms* parms = static_cast<Parms*>(baby->m_parms);
 			EnemyFunc::swallowPikmin(baby, parms->m_properParms.m_fp01.m_value, nullptr);
-		} else if ((u32)baby->m_animKeyEvent->m_type == 1000) {
+		} else if ((u32)baby->m_animKeyEvent->m_type == KEYEVENT_END) {
 			if (baby->m_health <= 0.0f) {
 				transit(baby, BABY_Dead, nullptr);
 			} else {

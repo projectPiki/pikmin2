@@ -35,7 +35,7 @@ void StateAppear::init(EnemyBase* enemy, StateArg* stateArg)
 	kogane->resetEvent(0, EB_16);
 	kogane->setEvent(0, EB_31);
 
-	kogane->m_velocity2 = Vector3f(0.0f);
+	kogane->m_simVelocity = Vector3f(0.0f);
 	kogane->startMotion(0, nullptr);
 	kogane->stopMotion();
 }
@@ -165,7 +165,7 @@ void StateMove::exec(EnemyBase* enemy)
 	kogane->m_appearTimer += sys->m_secondsPerFrame;
 	kogane->m_moveTimer += sys->m_secondsPerFrame;
 
-	if (kogane->m_animKeyEvent->m_running && (u32)kogane->m_animKeyEvent->m_type == 1000) {
+	if (kogane->m_animKeyEvent->m_running && (u32)kogane->m_animKeyEvent->m_type == KEYEVENT_END) {
 		if (kogane->m_appearTimer > static_cast<Parms*>(kogane->m_parms)->m_properParms.m_fp02.m_value) {
 			transit(kogane, KOGANE_Disappear, nullptr);
 		} else {
@@ -193,7 +193,7 @@ void StateWait::init(EnemyBase* enemy, StateArg* stateArg)
 	Parms* parms = static_cast<Parms*>(kogane->m_parms);
 	kogane->resetMoveTimer(parms->m_properParms.m_fp20.m_value, parms->m_properParms.m_fp21.m_value);
 
-	kogane->m_velocity2 = Vector3f(0.0f);
+	kogane->m_simVelocity = Vector3f(0.0f);
 	kogane->startMotion(1, nullptr);
 }
 
@@ -214,7 +214,7 @@ void StateWait::exec(EnemyBase* enemy)
 	kogane->m_appearTimer += sys->m_secondsPerFrame;
 	kogane->m_moveTimer += sys->m_secondsPerFrame;
 
-	if (kogane->m_animKeyEvent->m_running && (u32)kogane->m_animKeyEvent->m_type == 1000) {
+	if (kogane->m_animKeyEvent->m_running && (u32)kogane->m_animKeyEvent->m_type == KEYEVENT_END) {
 		transit(kogane, KOGANE_Move, nullptr);
 	}
 }
@@ -258,15 +258,15 @@ void StatePress::exec(EnemyBase* enemy)
 	kogane->m_appearTimer += sys->m_secondsPerFrame;
 
 	if (kogane->m_animKeyEvent->m_running) {
-		if ((u32)kogane->m_animKeyEvent->m_type == 2) {
+		if ((u32)kogane->m_animKeyEvent->m_type == KEYEVENT_2) {
 			kogane->setEvent(0, EB_22);
 			kogane->createPressSESpecial();
-		} else if ((u32)kogane->m_animKeyEvent->m_type == 3) {
+		} else if ((u32)kogane->m_animKeyEvent->m_type == KEYEVENT_3) {
 			kogane->createItem();
 			kogane->setZukanVisible(false);
-		} else if ((u32)kogane->m_animKeyEvent->m_type == 4) {
+		} else if ((u32)kogane->m_animKeyEvent->m_type == KEYEVENT_4) {
 			kogane->resetEvent(0, EB_22);
-		} else if ((u32)kogane->m_animKeyEvent->m_type == 1000) {
+		} else if ((u32)kogane->m_animKeyEvent->m_type == KEYEVENT_END) {
 			if (kogane->m_appearTimer > 12800.0f) {
 				transit(kogane, KOGANE_Disappear, nullptr);
 			} else {

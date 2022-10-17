@@ -1346,7 +1346,7 @@ void PikiNukareState::exec(Piki* piki)
 void PikiNukareState::onKeyEvent(Piki* piki, SysShape::KeyEvent const& keyEvent)
 {
 	switch (keyEvent.m_type) {
-	case 2:
+	case KEYEVENT_2:
 		rumbleMgr->startRumble(0, (int)m_navi->m_naviIndex.typeView);
 
 		Vector3f position = piki->getPosition();
@@ -1375,7 +1375,7 @@ void PikiNukareState::onKeyEvent(Piki* piki, SysShape::KeyEvent const& keyEvent)
 		}
 
 		break;
-	case 1000:
+	case KEYEVENT_END:
 		_14 = true;
 		break;
 	}
@@ -3729,7 +3729,7 @@ void PikiSuikomiState::execMouth(Piki* piki)
 	Vector3f position;
 	if (m_collpart == nullptr) {
 		position = _1C->m_position;
-		position.y -= _1C->_1C;
+		position.y -= _1C->m_radius;
 
 	} else {
 		Sys::Tube tube;
@@ -5290,7 +5290,7 @@ void PikiBlowState::cleanup(Piki* piki) { }
  */
 void PikiBlowState::onKeyEvent(Piki* piki, SysShape::KeyEvent const& keyEvent)
 {
-	if ((u32)keyEvent.m_type == 1000 && _10 == 0) {
+	if ((u32)keyEvent.m_type == KEYEVENT_END && _10 == 0) {
 		_10 = 1;
 		piki->startMotion(IPikiAnims::JKOKE, IPikiAnims::JKOKE, nullptr, nullptr);
 	}

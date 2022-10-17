@@ -81,16 +81,15 @@ struct CollPart : public CNode {
 	void setScale(float);
 	void update();
 
-	float _18;                    // _18   /* PikDecomp calls this `radius1`. */
-	float _1C;                    // _1C   /* PikDecomp calls this `radius`. */
-	Vector3f _20;                 // _20   /* PikDecomp calls this `Offset`. SodiumDecomp calls
-	                              // this `size_0x20`. :shrug: */
+	float m_baseRadius;           // _18, base radius used to calculate real radius (in setScale, it's scaled)
+	float m_radius;               // _1C
+	Vector3f m_offset;            // _20
 	u32 m_jointIndex;             // _2C
-	ID32 _30;                     // _30
-	ID32 _3C;                     // _3C
-	u16 m_attribute;              // _48   /* name from PikDecomp */
-	Vector3f m_position;          // _4C   /* name from PikDecomp */
-	u8 m_hasCollPart;             // _58   /* name from PikDecomp */
+	ID32 m_currentID;             // _30, identifier of current part, initialised to root
+	ID32 m_specialID;             // _3C, used to detect whether the collpart is stickable, denoted by prefixed -s: e.g. 'sp01'
+	u16 m_attribute;              // _48
+	Vector3f m_position;          // _4C
+	u8 m_hasCollPart;             // _58
 	SysShape::MtxObject* m_model; // _5C
 	u32 _60;                      // _60
 };
@@ -122,9 +121,9 @@ struct MouthCollPart : public CollPart {
 	// inlined
 	void setup(SysShape::Model* model, char* jointName, Vector3f& vector);
 
-	CollPart* _64;        // _64
-	SysShape::Joint* _68; // _68
-	u8 _6C;               // _6C
+	CollPart* _64;                 // _64
+	SysShape::Joint* m_mouthJoint; // _68
+	u8 _6C;                        // _6C
 };
 
 struct MouthSlots {
@@ -138,13 +137,16 @@ struct MouthSlots {
 	MouthCollPart* m_slots; // _04
 };
 
+#define ACP_DRAWFLAG_DISABLED (0x0)
+#define ACP_DRAWFLAG_ENABLED  (0x1)
+
 struct AgeCollPart : public CollPart {
 	AgeCollPart(SysShape::Model*);
 
 	virtual ~AgeCollPart() { }    // _08 (weak)
 	virtual void draw(Graphics&); // _14
 
-	u8 _64; // _64
+	u8 m_drawFlags; // _64
 };
 
 struct CollPartFactory : public CollPart {

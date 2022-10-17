@@ -38,7 +38,7 @@ void StateWait::init(EnemyBase* enemy, StateArg* stateArg)
 	rock->resetEvent(0, EB_16);
 	rock->setEvent(0, EB_31);
 
-	rock->m_velocity2 = Vector3f(0.0f);
+	rock->m_simVelocity = Vector3f(0.0f);
 	rock->startMotion(1, nullptr);
 	rock->stopMotion();
 }
@@ -102,7 +102,7 @@ void StateAppear::init(EnemyBase* enemy, StateArg* stateArg)
 	rock->resetEvent(0, EB_Cullable);
 	rock->resetEvent(0, EB_SoundCullable);
 
-	rock->m_velocity2 = Vector3f(0.0f);
+	rock->m_simVelocity = Vector3f(0.0f);
 	rock->startMotion(1, nullptr);
 
 	shadowMgr->addShadow(rock);
@@ -190,7 +190,7 @@ void StateFall::init(EnemyBase* enemy, StateArg* stateArg)
  */
 void StateFall::exec(EnemyBase* enemy)
 {
-	if (enemy->_0C8 != nullptr) {
+	if (enemy->m_curTriangle != nullptr) {
 		transit(enemy, ROCK_Dead, nullptr);
 	} else if (enemy->isEvent(0, EB_Collision)) {
 		transit(enemy, ROCK_Dead, nullptr);
@@ -274,8 +274,8 @@ void StateMove::cleanup(EnemyBase* enemy)
  */
 void StateDead::init(EnemyBase* enemy, StateArg* stateArg)
 {
-	Obj* rock         = static_cast<Obj*>(enemy);
-	rock->m_velocity2 = Vector3f(0.0f);
+	Obj* rock           = static_cast<Obj*>(enemy);
+	rock->m_simVelocity = Vector3f(0.0f);
 	rock->startMotion(0, nullptr);
 	shadowMgr->delShadow(rock);
 	rock->createRockDeadEffect();
@@ -295,7 +295,7 @@ void StateDead::exec(EnemyBase* enemy)
 		rock->hardConstraintOn();
 	}
 
-	if (rock->m_animKeyEvent->m_running && (u32)rock->m_animKeyEvent->m_type == 1000) {
+	if (rock->m_animKeyEvent->m_running && (u32)rock->m_animKeyEvent->m_type == KEYEVENT_END) {
 		rock->kill(nullptr);
 	}
 }
