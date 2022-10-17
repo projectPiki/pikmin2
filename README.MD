@@ -74,12 +74,15 @@ iterator.first();
 while (!iterator.isDone()) {
 	Code
 	iterator.next();
-}```
+}
+```
 Which we have further condensed into:
 ```
 CI_LOOP(iterator) {
 	Code
-}```
+}
+```
+
 
 ### Enemies
 - ```CG_PARMS(x)``` is shorthand for ```static_cast<Parms*>(x->m_parms)```.
