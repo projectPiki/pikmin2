@@ -190,7 +190,7 @@ void StateFall::init(EnemyBase* enemy, StateArg* stateArg)
  */
 void StateFall::exec(EnemyBase* enemy)
 {
-	if (enemy->m_curTriangle != nullptr) {
+	if (enemy->m_curTriangle) {
 		transit(enemy, ROCK_Dead, nullptr);
 	} else if (enemy->isEvent(0, EB_Collision)) {
 		transit(enemy, ROCK_Dead, nullptr);
@@ -226,7 +226,7 @@ void StateMove::init(EnemyBase* enemy, StateArg* stateArg)
 	rock->startMotion(1, nullptr);
 	rock->m_timer = 0.0f;
 
-	if (rock->m_waterBox != nullptr) {
+	if (rock->m_waterBox) {
 		rock->startRollingWaterEffect();
 	} else {
 		rock->startRollingGroundEffect();

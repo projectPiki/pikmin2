@@ -855,7 +855,7 @@ void Section::beginRender()
  */
 void Section::endRender()
 {
-	// if (_18 != nullptr) {
+	// if (_18 ) {
 	// 	_18->_04();
 	// }
 	// sys->endRender();

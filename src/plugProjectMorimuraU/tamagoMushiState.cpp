@@ -66,7 +66,7 @@ void StateWalk::exec(EnemyBase* enemy)
 {
 	Obj* mitite = static_cast<Obj*>(enemy);
 	_10++;
-	if (mitite->m_curTriangle != nullptr) {
+	if (mitite->m_curTriangle) {
 		mitite->walkFunc();
 	} else {
 		mitite->ballMove();

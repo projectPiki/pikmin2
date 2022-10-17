@@ -287,7 +287,7 @@ void LoadResource::Mgr::dump()
 LoadResource::Node* LoadResource::Mgr::mountArchive(LoadResource::Arg& arg)
 {
 	Node* node = load(arg);
-	if (node != nullptr) {
+	if (node) {
 		JKRArchive::EMountDirection mountDirection = JKRArchive::EMD_Unk2;
 		void* v1                                   = node->_30;
 		JKRHeap* heap                              = arg.m_heap;

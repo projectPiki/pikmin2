@@ -963,7 +963,7 @@ void J3DModelLoader::setupBBoardInfo()
 {
 	for (u16 i = 0; i < m_modelData->m_jointTree.m_jointCnt; i++) {
 		J3DMaterial* material = m_modelData->m_jointTree.m_joints[i]->m_material;
-		if (material != nullptr) {
+		if (material) {
 			u16 id                     = material->m_shape->m_id;
 			u16* initDataIndexToIDMap  = JSUConvertOffsetToPtr<u16>(m_shapeBlock, m_shapeBlock->_10);
 			J3DShapeInitData* initData = JSUConvertOffsetToPtr<J3DShapeInitData>(m_shapeBlock, m_shapeBlock->_0C);

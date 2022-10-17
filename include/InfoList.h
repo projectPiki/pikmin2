@@ -18,10 +18,10 @@ struct InfoMgrBase {
 template <typename Owner, typename List> struct InfoListBase : public JKRDisposer {
 	virtual ~InfoListBase() // _08
 	{
-		if (_18 != nullptr) {
+		if (_18) {
 			_18->_1C = _1C;
 		}
-		if (_1C != nullptr) {
+		if (_1C) {
 			_1C->_18 = _18;
 		}
 		_1C = nullptr;
@@ -55,7 +55,7 @@ template <typename Owner, typename List> struct InfoMgr : public InfoMgrBase {
 		// ) {
 		InfoListBase<Owner, List>* next = ((InfoListBase<Owner, List>)m_activeList)._1C;
 		InfoListBase<Owner, List>* current;
-		while (current = next, current != nullptr) {
+		while (current = next, current) {
 			next = current->_1C;
 			current->update();
 			if (current->isFinish()) {
@@ -66,7 +66,7 @@ template <typename Owner, typename List> struct InfoMgr : public InfoMgrBase {
 	virtual void draw(Graphics& gfx) // _14
 	{
 		InfoListBase<Owner, List>* list = ((InfoListBase<Owner, List>)m_activeList)._1C;
-		if (list != nullptr) {
+		if (list) {
 			for (; list != nullptr; list = list->_1C) {
 				list->draw(gfx);
 			}
@@ -83,7 +83,7 @@ template <typename Owner, typename List> struct InfoMgr : public InfoMgrBase {
 		if (list == nullptr) {
 			list = ((InfoListBase<Owner, List>)m_activeList)._1C;
 		}
-		if (list != nullptr) {
+		if (list) {
 			list->m_owner = owner;
 			addActiveList(list);
 		}

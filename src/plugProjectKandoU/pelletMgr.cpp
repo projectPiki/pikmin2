@@ -53,7 +53,7 @@ namespace Game {
  */
 char* Pellet::getCreatureName()
 {
-	if (m_config != nullptr) {
+	if (m_config) {
 		return m_config->m_params.m_name.m_data;
 	}
 	return "no config pellet";
@@ -66,7 +66,7 @@ char* Pellet::getCreatureName()
  */
 s32 Pellet::getCreatureID()
 {
-	if (m_config != nullptr) {
+	if (m_config) {
 		return getConfigIndex();
 	}
 	return -1;
@@ -156,7 +156,7 @@ Pellet* PelletView::becomePellet(PelletViewArg* viewArg)
 	initArg._18              = this;
 
 	Pellet* newPellet = pelletMgr->birth(&initArg);
-	if (newPellet != nullptr) {
+	if (newPellet) {
 		Vector3f position = viewArg->m_position;
 		position.y += 0.5f * newPellet->getCylinderHeight();
 
@@ -875,7 +875,7 @@ bool InteractEat::actPellet(Pellet* pellet)
 bool InteractSuck::actPellet(Game::Pellet* pellet)
 {
 	PelletGoalStateArg pelletGoalArg(m_creature);
-	if (m_creature != nullptr) {
+	if (m_creature) {
 		m_creature->getTypeName();
 	}
 	pellet->m_pelletSM->transit(pellet, 7, &pelletGoalArg);
@@ -953,7 +953,7 @@ void Pellet::constructor() { m_soundMgr = new PSM::EventBase(this, 2); }
  */
 void Pellet::shadowOn()
 {
-	if (shadowMgr != nullptr) {
+	if (shadowMgr) {
 		shadowMgr->addShadow(this);
 	}
 }
@@ -965,7 +965,7 @@ void Pellet::shadowOn()
  */
 void Pellet::shadowOff()
 {
-	if (shadowMgr != nullptr) {
+	if (shadowMgr) {
 		shadowMgr->delShadow(this);
 	}
 }
@@ -1083,7 +1083,7 @@ PelletNumberInitArg::PelletNumberInitArg(int p1, int p2)
  */
 bool Pellet::isPickable()
 {
-	if (m_pelletState != nullptr) {
+	if (m_pelletState) {
 		return m_pelletState->isPickable();
 	}
 	return false;
@@ -1110,7 +1110,7 @@ void Pellet::onKill(CreatureKillArg* killArg)
 
 	setAlive(false);
 
-	if (shadowMgr != nullptr) {
+	if (shadowMgr) {
 		shadowMgr->delShadow(this);
 	}
 
@@ -1124,7 +1124,7 @@ void Pellet::onKill(CreatureKillArg* killArg)
 	Vector3f translation(0.0f);
 	m_mainMatrix.makeSRT(scale, rotation, translation);
 
-	if (m_model != nullptr) {
+	if (m_model) {
 		m_lodSphere.m_position = Vector3f(0.0f);
 		m_lodSphere.m_radius   = 128000.0f;
 		m_scale                = Vector3f(1.0f);
@@ -1145,7 +1145,7 @@ void Pellet::onKill(CreatureKillArg* killArg)
 
 	finishDisplayCarryInfo();
 
-	if (m_pelletView != nullptr) {
+	if (m_pelletView) {
 		m_pelletView->viewOnPelletKilled();
 		m_pelletView->m_pellet = nullptr;
 		m_pelletView           = nullptr;
@@ -1272,14 +1272,14 @@ void Pellet::onInit(Game::CreatureInitArg* initArg)
 		onCreateShape();
 	}
 
-	if (m_model != nullptr) {
+	if (m_model) {
 		_41C.m_animMgr = m_mgr->m_animMgr[_43C];
 		m_radius       = 2.0f * m_model->getRoughBoundingRadius();
 	} else {
 		m_radius = m_config->m_params.m_radius.m_data;
 	}
 
-	if (_41C.m_animMgr != nullptr) {
+	if (_41C.m_animMgr) {
 		SysShape::MotionListener* listener = this;
 		_41C.startAnim(0, listener);
 		stop_carrymotion();
@@ -1993,7 +1993,7 @@ bool Pellet::isCarried()
  */
 void Pellet::finishDisplayCarryInfo()
 {
-	if (m_carryInfoMgr != nullptr) {
+	if (m_carryInfoMgr) {
 		m_carryInfoMgr->m_activeList.m_param.m_carryInfo.disappear();
 		m_carryInfoMgr = nullptr;
 	}
@@ -2079,8 +2079,8 @@ void Pellet::allocateTexCaster()
 		Sys::Sphere sphere(m_pelletPosition, 2.0f * radius);
 		m_caster = TexCaster::Mgr::sInstance->create(sphere, TAU * randFloat());
 
-		if (m_caster != nullptr) {
-			if (m_captureMatrix != nullptr) {
+		if (m_caster) {
+			if (m_captureMatrix) {
 				m_caster->hide();
 			} else {
 				m_caster->fadein(0.5f);
@@ -2102,7 +2102,7 @@ void Pellet::onSetPosition()
 		// this probably needs a better name
 		if (isTreasurePosition()) {
 			ItemTreasure::Item* item = (ItemTreasure::Item*)ItemTreasure::mgr->birth();
-			if (item != nullptr) {
+			if (item) {
 				m_pelletPosition.y = mapMgr->getMinY(m_pelletPosition);
 				item->init(nullptr);
 				item->setPosition(m_pelletPosition, false);
@@ -3914,7 +3914,7 @@ void Pellet::doSimulation(float constraint)
 		searchArg._14         = 10.0f;
 
 		WayPoint* wayPoint = mapMgr->m_routeMgr->getNearestWayPoint(searchArg);
-		if (wayPoint != nullptr) {
+		if (wayPoint) {
 			wpPosition   = wayPoint->getPosition();
 			wpPosition.y = 100.0f + mapMgr->getMinY(wpPosition);
 
@@ -3958,7 +3958,7 @@ void Pellet::doAnimation()
 		if (gameSystem != nullptr && gameSystem->_3C & 0x20) {
 			update();
 		} else {
-			if (m_collTree != nullptr) {
+			if (m_collTree) {
 				m_collTree->getBoundingSphere(m_lodSphere);
 			}
 			AILODParm parm;
@@ -3975,7 +3975,7 @@ void Pellet::doAnimation()
 			joint->m_mtxCalc = calc;
 			update_pmotions();
 		} else if (m_captureMatrix == nullptr) {
-			if (m_pelletView == nullptr && m_model != nullptr && _41C.m_animMgr != nullptr) {
+			if (m_pelletView == nullptr && m_model != nullptr && _41C.m_animMgr) {
 				_41C.animate(_438);
 
 				SysShape::Model* model  = m_model;
@@ -4062,7 +4062,7 @@ void Pellet::doViewCalc() { Creature::doViewCalc(); }
  */
 void Pellet::theEntry()
 {
-	if (m_model != nullptr) {
+	if (m_model) {
 		if (m_lod.m_flags & AILOD::FLAG_NEED_SHADOW) {
 			m_model->show();
 		} else if (BaseHIOParms::sEntryOpt && !gameSystem->isMultiplayerMode()) {
@@ -4084,7 +4084,7 @@ void Pellet::theEntry()
 void Pellet::entryShape()
 {
 	if (m_pelletView == nullptr) {
-		if (m_model != nullptr) {
+		if (m_model) {
 			PSMTXCopy(m_mainMatrix.m_matrix.mtxView, m_model->m_j3dModel->_24);
 			m_scale.setTVec(m_model->m_j3dModel->m_modelScale);
 			m_model->m_j3dModel->calc();
@@ -4192,12 +4192,12 @@ void Pellet::stop_carrymotion() { _438 = 0.0f; }
  */
 void Pellet::finish_carrymotion()
 {
-	if (_41C.m_animMgr != nullptr) {
+	if (_41C.m_animMgr) {
 		_41C.m_flags |= 2;
 		return;
 	}
 
-	if (m_pelletView != nullptr) {
+	if (m_pelletView) {
 		m_pelletView->view_finish_carrymotion();
 	}
 }
@@ -4617,7 +4617,7 @@ void Pellet::onSlotStickEnd(Creature* creature, short slot)
 	}
 
 	if (getTotalPikmins() == 0) {
-		if (m_carryInfoMgr != nullptr) {
+		if (m_carryInfoMgr) {
 			m_carryInfoMgr->m_activeList.m_param.m_carryInfo.disappear();
 			m_carryInfoMgr = nullptr;
 		}
@@ -4830,12 +4830,12 @@ void Pellet::startPick()
 			shadowOn();
 		}
 
-		if (_41C.m_animMgr != nullptr) {
+		if (_41C.m_animMgr) {
 			if (!(_41C.m_flags & 2)) {
 				_41C.startAnim(0, this);
 				_438 = 30.0f * sys->m_secondsPerFrame;
 			}
-		} else if (m_pelletView != nullptr) {
+		} else if (m_pelletView) {
 			m_pelletView->view_start_carrymotion();
 		}
 
@@ -4857,7 +4857,7 @@ void Pellet::startPick()
 		}
 
 		DynParticle* particle = m_dynParticle;
-		while (particle != nullptr) {
+		while (particle) {
 			if (getFace() == 0) {
 				particle->_00.y -= 4.0f;
 			} else {
@@ -4897,9 +4897,9 @@ void Pellet::endPick(bool b)
 		sound_otakaraEventStop();
 
 		if (!b) {
-			if (_41C.m_animMgr != nullptr) {
+			if (_41C.m_animMgr) {
 				_41C.m_flags |= 2;
-			} else if (m_pelletView != nullptr) {
+			} else if (m_pelletView) {
 				m_pelletView->view_finish_carrymotion();
 			}
 			if (m_config->m_params.m_code.m_data & 1) {
@@ -4915,7 +4915,7 @@ void Pellet::endPick(bool b)
 		}
 
 		DynParticle* particle = m_dynParticle;
-		while (particle != nullptr) {
+		while (particle) {
 			if (getFace() == 0) {
 				particle->_00.y += 4.0f;
 			} else {
@@ -5133,14 +5133,14 @@ void Pellet::onStartCapture()
 	m_lodSphere.m_position          = captureVec;
 	m_pelletPosition                = captureVec;
 
-	if (m_model != nullptr) {
+	if (m_model) {
 		m_mainMatrix.makeT(m_pelletPosition);
 		PSMTXCopy(m_mainMatrix.m_matrix.mtxView, m_model->m_j3dModel->_24);
 
 		m_scale.setTVec(m_model->m_j3dModel->m_modelScale);
 		m_model->m_j3dModel->calc();
 
-		if (m_collTree != nullptr) {
+		if (m_collTree) {
 			m_collTree->update();
 		}
 	}
@@ -5164,12 +5164,12 @@ void Pellet::onStartCapture()
  */
 void Pellet::onUpdateCapture(Matrixf& matrix)
 {
-	if (_41C.m_animMgr != nullptr) {
+	if (_41C.m_animMgr) {
 		_41C.animate(0.0f);
 	}
 
 	SysShape::Model* model = m_model;
-	if (model != nullptr) {
+	if (model) {
 		J3DMtxCalcAnmBase* calc = static_cast<J3DMtxCalcAnmBase*>(_41C.getCalc());
 		J3DJoint* joint         = model->m_j3dModel->m_modelData->m_jointTree.m_joints[0];
 
@@ -5177,7 +5177,7 @@ void Pellet::onUpdateCapture(Matrixf& matrix)
 	}
 
 	if (m_pelletView == nullptr) {
-		if (m_model != nullptr) {
+		if (m_model) {
 			PSMTXCopy(m_mainMatrix.m_matrix.mtxView, m_model->m_j3dModel->_24);
 			J3DModel* j3dModel = m_model->m_j3dModel;
 			m_scale.setTVec(m_model->m_j3dModel->m_modelScale);
@@ -5387,12 +5387,12 @@ void BasePelletMgr::load()
 			m_modelData[i] = data;
 		}
 
-		if (config->m_params.m_animMgr.m_data != nullptr) {
+		if (config->m_params.m_animMgr.m_data) {
 			sprintf(buffer2, "%s%s", file, config->m_params.m_animMgr.m_data);
 			m_animMgr[i] = SysShape::AnimMgr::load(buffer2, data, archive);
 		}
 
-		if (config->m_params.m_colltree.m_data != nullptr) {
+		if (config->m_params.m_colltree.m_data) {
 			sprintf(buffer2, "%s%s", file, config->m_params.m_colltree.m_data);
 			m_collParts[i] = CollPartFactory::load(buffer2);
 		}
@@ -5783,7 +5783,7 @@ SysShape::Model* BasePelletMgr::createShape(int modelDataIndex, int arg2)
 	}
 
 	SysShape::Model* model;
-	if (m_modelMgr != nullptr) {
+	if (m_modelMgr) {
 		model = m_modelMgr->createModel(modelDataIndex, arg2);
 	} else {
 		if (m_modelData[modelDataIndex] == nullptr) {
@@ -5810,12 +5810,12 @@ void BasePelletMgr::setCollTree(Game::Pellet* pellet, int partIndex)
 		pellet->m_collTree->createSingleSphere(pelletViewModel, pellet->m_pelletView->viewGetCollTreeJointIndex(), sphere, &m_collPartMgr);
 
 		CollPart* part = pellet->m_collTree->m_part;
-		if (part != nullptr) {
+		if (part) {
 			part->m_offset = pellet->m_pelletView->viewGetCollTreeOffset();
 		}
 	} else {
 		CollPart* part = m_collParts[partIndex];
-		if (part != nullptr) {
+		if (part) {
 			pellet->m_collTree->createFromFactory(pelletModel, (CollPartFactory*)part, &m_collPartMgr);
 			return;
 		}
@@ -5870,7 +5870,7 @@ PelletIterator::PelletIterator()
 void PelletIterator::first()
 {
 	m_node = static_cast<TObjectNode<GenericObjectMgr>*>(pelletMgr->m_node.m_child);
-	if (m_node != nullptr) {
+	if (m_node) {
 		m_mgr = (FixedSizePelletMgr<Pellet>*)m_node->m_contents;
 	} else {
 		m_mgr = nullptr;
@@ -5904,7 +5904,7 @@ void PelletIterator::next()
 
 	if (m_index == (u32)m_mgr->getEnd()) {
 		m_node = m_node->getNext();
-		if (m_node != nullptr) {
+		if (m_node) {
 			m_mgr = (FixedSizePelletMgr<Pellet>*)m_node->m_contents;
 			setFirst();
 			return;
@@ -5927,7 +5927,7 @@ bool PelletIterator::isDone() { return m_mgr == nullptr; }
  */
 void PelletIterator::setFirst()
 {
-	if (m_mgr != nullptr) {
+	if (m_mgr) {
 		if (_00 == 0) {
 			m_index = (int)m_mgr->getStart();
 		} else {
@@ -5936,7 +5936,7 @@ void PelletIterator::setFirst()
 
 		if (m_index == (u32)m_mgr->getEnd()) {
 			m_node = m_node->getNext();
-			if (m_node != nullptr) {
+			if (m_node) {
 				m_mgr = (FixedSizePelletMgr<Pellet>*)m_node->m_contents;
 				setFirst();
 				return;
@@ -6185,7 +6185,7 @@ Pellet* PelletMgr::birth(PelletInitArg* arg)
 	if (arg->_1F != 0) {
 		config = mgr->m_configList->getPelletConfig(arg->m_textIdentifier);
 		pellet = mgr->birthFromTeki(config);
-		if (pellet != nullptr) {
+		if (pellet) {
 			mgr->setComeAlive(pellet->m_slotIndex);
 			arg->_1C = 1;
 			pellet->init(arg);
@@ -6194,7 +6194,7 @@ Pellet* PelletMgr::birth(PelletInitArg* arg)
 		return nullptr;
 	} else {
 		pellet = mgr->birth();
-		if (pellet != nullptr) {
+		if (pellet) {
 			pellet->m_pelletView = arg->_18;
 			pellet->m_mgr        = mgr;
 			pellet->init(arg);
@@ -6410,7 +6410,7 @@ void PelletMgr::makeOtakaraItemCode(char* configName, PelletMgr::OtakaraItemCode
 {
 	PelletList::cKind kind;
 	PelletConfig* config = PelletList::Mgr::getConfigAndKind(configName, kind);
-	if (config != nullptr) {
+	if (config) {
 		code.m_value = (kind << 8 & 0xFF00) + (u8)config->m_params.m_index;
 	} else {
 		code.m_value = 0;

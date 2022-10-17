@@ -354,7 +354,7 @@ blr
  */
 void AnimScreen::start()
 {
-	if (m_screen != nullptr) {
+	if (m_screen) {
 		_08 = false;
 		_0C = 0.0f;
 		_10 = 1;
@@ -501,7 +501,7 @@ blr
  */
 void AnimPane::start()
 {
-	if (m_pane != nullptr) {
+	if (m_pane) {
 		_08 = false;
 		_0C = 0.0f;
 		_10 = 1;
@@ -570,7 +570,7 @@ bool AnimGroup::update()
 {
 	bool anyUpdated = false;
 	for (int i = 0; i < m_paneLimit; i++) {
-		if (m_animPanes[i] != nullptr) {
+		if (m_animPanes[i]) {
 			bool updateResult = true;
 			switch (m_animPanes[i]->_04) {
 			case 1:
@@ -744,7 +744,7 @@ blr
 void AnimGroup::setSpeed(float speed)
 {
 	for (int i = 0; i < m_paneLimit; i++) {
-		if (m_animPanes[i] != nullptr) {
+		if (m_animPanes[i]) {
 			switch (m_animPanes[i]->_04) {
 			case 1:
 				m_animPanes[i]->_20 = speed;
@@ -767,7 +767,7 @@ void AnimGroup::setSpeed(float speed)
 void AnimGroup::setRepeat(bool repeat)
 {
 	for (int i = 0; i < m_paneLimit; i++) {
-		if (m_animPanes[i] != nullptr) {
+		if (m_animPanes[i]) {
 			switch (m_animPanes[i]->_04) {
 			case 1:
 				m_animPanes[i]->_38 = repeat;
@@ -790,7 +790,7 @@ void AnimGroup::setRepeat(bool repeat)
 void AnimGroup::setFrame(float frame)
 {
 	for (int i = 0; i < m_paneLimit; i++) {
-		if (m_animPanes[i] != nullptr) {
+		if (m_animPanes[i]) {
 			switch (m_animPanes[i]->_04) {
 			case 1:
 				m_animPanes[i]->m_frame = frame;
@@ -815,7 +815,7 @@ void AnimGroup::setAlpha(u8 alpha)
 	// UNUSED FUNCTION
 	// TODO: Confirm size.
 	for (int i = 0; i < m_paneLimit; i++) {
-		if (m_animPanes[i] != nullptr) {
+		if (m_animPanes[i]) {
 			m_animPanes[i]->_11 = alpha;
 		}
 	}
@@ -832,7 +832,7 @@ void AnimGroup::setAllArea()
 {
 	for (int i = 0; i < m_paneLimit; i++) {
 		AnimBaseBase* pane = m_animPanes[i];
-		if (pane != nullptr) {
+		if (pane) {
 			pane->_2C = 0.0f;
 			pane->_30 = pane->m_lastFrame;
 			pane->_34 = pane->_30 - pane->_2C;
@@ -875,7 +875,7 @@ float AnimGroup::getFrame()
 void AnimGroup::setArea(float frame, float p2)
 {
 	for (int i = 0; i < m_paneLimit; i++) {
-		if (m_animPanes[i] != nullptr) {
+		if (m_animPanes[i]) {
 			switch (m_animPanes[i]->_04) {
 			case 1:
 				m_animPanes[i]->setArea(frame, p2);
@@ -900,7 +900,7 @@ void AnimGroup::setArea(float frame, float p2)
 void AnimGroup::start(void)
 {
 	for (int i = 0; i < m_paneLimit; i++) {
-		if (m_animPanes[i] != nullptr) {
+		if (m_animPanes[i]) {
 			switch (m_animPanes[i]->_04) {
 			case 1:
 				m_animPanes[i]->start();

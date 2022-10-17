@@ -350,12 +350,12 @@ void cbForStateError(u32 p1)
 		cmdBlock       = executing;
 		executing      = &DummyCommandBlock;
 		FatalErrorFlag = TRUE;
-		if (cmdBlock->_28 != nullptr) {
+		if (cmdBlock->_28) {
 			(cmdBlock->_28)(-1, cmdBlock);
 		}
 		if (Canceling != FALSE) {
 			Canceling = FALSE;
-			if (CancelCallback != nullptr) {
+			if (CancelCallback) {
 				(*CancelCallback)(0, cmdBlock);
 			}
 		}
@@ -1272,10 +1272,10 @@ void cbForStateCheckID1(u32 p1)
 			Canceling      = FALSE;
 			executing      = &DummyCommandBlock;
 			cmdBlock->_0C  = 10;
-			if (cmdBlock->_28 != nullptr) {
+			if (cmdBlock->_28) {
 				(cmdBlock->_28)(-3, cmdBlock);
 			}
-			if (CancelCallback != nullptr) {
+			if (CancelCallback) {
 				(*CancelCallback)(0, cmdBlock);
 			}
 			stateReady();
@@ -1475,10 +1475,10 @@ void stuffs(int p1, int p2, int p3, int p4)
 		cmdBlock       = executing;
 		cmdBlock->_0C  = p1;
 		executing      = &DummyCommandBlock;
-		if (cmdBlock->_28 != nullptr) {
+		if (cmdBlock->_28) {
 			(cmdBlock->_28)(p2, cmdBlock);
 		}
-		if (CancelCallback != nullptr) {
+		if (CancelCallback) {
 			(*CancelCallback)(p3, cmdBlock);
 		}
 		stateReady();
@@ -1519,10 +1519,10 @@ void cbForStateCheckID3(u32 p1)
 		// 	cmdBlock = executing;
 		// 	cmdBlock->_0C = 10;
 		// 	executing = &DummyCommandBlock;
-		// 	if (cmdBlock->_28 != nullptr) {
+		// 	if (cmdBlock->_28 ) {
 		// 		(cmdBlock->_28)(-3, cmdBlock);
 		// 	}
-		// 	if (CancelCallback != nullptr) {
+		// 	if (CancelCallback ) {
 		// 		(*CancelCallback)(0, cmdBlock);
 		// 	}
 		// 	stateReady();
@@ -1537,10 +1537,10 @@ void cbForStateCheckID3(u32 p1)
 		// 	cmdBlock = executing;
 		// 	cmdBlock->_0C = 10;
 		// 	executing = &DummyCommandBlock;
-		// 	if (cmdBlock->_28 != nullptr) {
+		// 	if (cmdBlock->_28 ) {
 		// 		(cmdBlock->_28)(-3, cmdBlock);
 		// 	}
-		// 	if (CancelCallback != nullptr) {
+		// 	if (CancelCallback ) {
 		// 		(*CancelCallback)(0, cmdBlock);
 		// 	}
 		// 	stateReady();

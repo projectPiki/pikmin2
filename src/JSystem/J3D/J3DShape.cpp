@@ -895,7 +895,7 @@ void J3DShape::simpleDrawCache() const
 	HW_REG(GXFIFO_ADDR, u8)  = 0xA2;
 	HW_REG(GXFIFO_ADDR, u32) = j3dSys._114 & 0x7FFFFFFF;
 	for (u16 i = 0; i < _0A; ++i) {
-		if (_3C[i] != nullptr) {
+		if (_3C[i]) {
 			_3C[i]->draw();
 		}
 	}

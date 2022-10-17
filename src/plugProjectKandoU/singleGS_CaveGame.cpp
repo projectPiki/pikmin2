@@ -1272,7 +1272,7 @@ void SingleGame::CaveState::onFountainReturn(Game::SingleGameSection* section, G
 void SingleGame::CaveState::onNextFloor(Game::SingleGameSection* section, Game::ItemHole::Item* hole)
 {
 	BlackMan::Obj* waterwraith = ((RoomMapMgr*)mapMgr)->m_blackmanObjPtr;
-	if (waterwraith != nullptr) {
+	if (waterwraith) {
 		if (waterwraith->isAlive()) {
 			playData->m_caveSaveData.m_waterwraithTimer = waterwraith->getTimer();
 		} else {

@@ -62,7 +62,7 @@ void GXBreakPointHandler(OSContext* context)
 	__cpReg->controlRegister = __GXData->controlRegister.value;
 	// __GXData->controlRegister &= ~BP_ENABLE;
 	// __cpReg->controlRegister = __GXData->controlRegister;
-	if (BreakPointCB != nullptr) {
+	if (BreakPointCB) {
 		OSClearContext(&bpContext);
 		OSSetCurrentContext(&bpContext);
 		BreakPointCB();

@@ -477,7 +477,7 @@ void* JKRMemArchive::fetchResource(JKRArchive::SDIFileEntry* entry, unsigned lon
 	if (entry->_10 == nullptr) {
 		entry->_10 = _68 + entry->_08;
 	}
-	if (outSize != nullptr) {
+	if (outSize) {
 		*outSize = entry->m_size;
 	}
 	return entry->_10;
@@ -576,7 +576,7 @@ void JKRMemArchive::removeResourceAll()
 	}
 	SDIFileEntry* entry = m_fileEntries;
 	for (u32 i = 0; i < _44->_08; i++) {
-		if (entry->_10 != nullptr) {
+		if (entry->_10) {
 			entry->_10 = nullptr;
 		}
 	}

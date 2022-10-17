@@ -160,7 +160,7 @@ void* JKRDecomp::run()
 			}
 			command->m_callback(command);
 		}
-		if (command->_1C != nullptr) {
+		if (command->_1C) {
 			// outMessage = 1;
 			OSSendMessage(command->_1C, (void*)1, FALSE);
 		} else {

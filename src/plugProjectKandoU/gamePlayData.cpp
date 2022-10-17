@@ -4754,7 +4754,7 @@ void PlayData::CaveOtakara::read(Stream& input)
 {
 	u8 existingCaveCount = m_caveCount;
 	m_caveCount          = input.readByte();
-	JUT_ASSERTLINE(1797, existingCaveCount == m_caveCount, "セーブしたときと洞窟の数があいません\n");
+	JUT_ASSERTLINE(1797, existingCaveCount == m_caveCount, "セーブしたときと洞窟�?�数があ�?ません\n");
 	for (int i = 0; i < m_caveCount; i++) {
 		m_otakaraCountsOld[i] = input.readByte();
 		_08[i]                = input.readByte();
@@ -5879,7 +5879,7 @@ int PlayData::getMoney_Old() { return m_pokoCountOld; }
 bool PlayData::isCaveFirstTime_Old(int courseIndex, ID32& caveID)
 {
 	CourseInfo* info = Game::stageList->getCourseInfo(courseIndex);
-	if (info != nullptr) {
+	if (info) {
 		CaveOtakara* otakara = _F8;
 		int caveIndex        = info->getCaveIndex_FromID(caveID);
 		if (caveIndex != -1) {

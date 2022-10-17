@@ -188,7 +188,7 @@ void* JKRDvdRipper::loadToMainRAM(JKRDvdFile* file, unsigned char* p2, JKRExpand
 	// 	compressionMode = JKRDecomp::checkCompressed((u8*)&buffer);
 	// 	v2 = buffer.getValue1();
 	// }
-	// if (p8 != nullptr) {
+	// if (p8 ) {
 	// 	*p8 =  compressionMode;
 	// }
 	// if (expSwitch == Switch_1 && compressionMode != JKRDecomp::NOT_COMPRESSED) {
@@ -649,7 +649,7 @@ int JKRDecompressFromDVD(JKRDvdFile* file, void* p2, unsigned long p3, unsigned 
 	u8* data   = firstSrcData();
 	int result = (data != nullptr) ? decompSZS_subroutine(data, (u8*)p2) : -1;
 	JKRHeap::free(szpBuf, nullptr);
-	if (refBuf != nullptr) {
+	if (refBuf) {
 		JKRHeap::free(refBuf, nullptr);
 	}
 	DCStoreRangeNoSync(p2, *tsPtr);

@@ -57,7 +57,7 @@ void UpdateContext::init(UpdateMgr* mgr)
 void UpdateContext::exit()
 {
 	if (_09 == false) {
-		if (m_mgr != nullptr) {
+		if (m_mgr) {
 			m_mgr->removeClient(this);
 			m_mgr = nullptr;
 		}

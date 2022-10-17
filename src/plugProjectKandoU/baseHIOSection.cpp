@@ -296,7 +296,7 @@ lbl_80164D58:
 void BaseHIOSection::setDisplay(JFWDisplay* display, int secondsPer60Frames)
 {
 	// bool check = false;
-	// if (m_display == nullptr && display != nullptr) {
+	// if (m_display == nullptr && display ) {
 	// 	check = true;
 	// }
 	// P2ASSERTLINE(333, check);
@@ -417,7 +417,7 @@ void BaseHIOSection::initHIO(Game::HIORootNode* node)
 	// 	m_hioRootNode = node;
 	// }
 	// sys->addGenNode(m_hioRootNode);
-	// if (JUTProcBar::sManager != nullptr) {
+	// if (JUTProcBar::sManager ) {
 	// 	JUTProcBar::sManager->_10C = 0;
 	// 	JUTProcBar::sManager->_130 = 0;
 	// }

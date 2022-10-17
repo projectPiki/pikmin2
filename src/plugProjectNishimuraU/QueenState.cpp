@@ -327,7 +327,7 @@ void StateRolling::init(EnemyBase* enemy, StateArg* stateArg)
 	queen->m_simVelocity = Vector3f(0.0f);
 	queen->setEmotionExcitement();
 	RollingStateArg* arg = static_cast<RollingStateArg*>(stateArg);
-	if (arg != nullptr) {
+	if (arg) {
 		queen->startMotion(5, nullptr);
 	} else {
 		queen->startMotion(6, nullptr);

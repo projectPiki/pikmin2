@@ -741,7 +741,7 @@ void BaseItem::startSound(unsigned long soundID)
  */
 void BaseItem::doAnimation()
 {
-	if (m_animator.m_animMgr != nullptr) {
+	if (m_animator.m_animMgr) {
 		m_animator.animate(m_animSpeed * sys->m_secondsPerFrame);
 		SysShape::Model* model                                             = m_model;
 		model->m_j3dModel->m_modelData->m_jointTree.m_joints[0]->m_mtxCalc = (J3DMtxCalcAnmBase*)m_animator.getCalc();
@@ -750,7 +750,7 @@ void BaseItem::doAnimation()
 	if (m_captureMatrix == nullptr) {
 		makeTrMatrix();
 	}
-	if (m_model != nullptr) {
+	if (m_model) {
 		PSMTXCopy(m_mainMatrix.m_matrix.mtxView, m_model->m_j3dModel->_24);
 		m_model->m_j3dModel->calc();
 	}
@@ -1136,7 +1136,7 @@ lbl_801CC7C0:
  */
 void BaseItem::movieStartAnimation(unsigned long p1)
 {
-	if (m_animator.m_animMgr != nullptr) {
+	if (m_animator.m_animMgr) {
 		getCreatureName();
 		m_animator.startAnim(p1, nullptr);
 		m_animSpeed = 30.0f;
@@ -1236,7 +1236,7 @@ FSMState<CFSMItem>* CFSMItem::getCurrState() { return m_currState; }
  */
 int CFSMItem::getStateID()
 {
-	if (m_currState != nullptr) {
+	if (m_currState) {
 		return m_currState->m_id;
 	}
 	return -1;
@@ -1249,7 +1249,7 @@ int CFSMItem::getStateID()
  */
 void CFSMItem::bounceCallback(Sys::Triangle* tri)
 {
-	if (m_currState != nullptr) {
+	if (m_currState) {
 		static_cast<CItemState*>(m_currState)->onBounce(this, tri);
 	}
 }
@@ -1269,7 +1269,7 @@ void CFSMItem::bounceCallback(Sys::Triangle* tri)
  */
 void CFSMItem::collisionCallback(Game::CollEvent& event)
 {
-	if (m_currState != nullptr) {
+	if (m_currState) {
 		static_cast<CItemState*>(m_currState)->onCollision(this, event);
 	}
 }
@@ -1289,7 +1289,7 @@ void CFSMItem::collisionCallback(Game::CollEvent& event)
  */
 void CFSMItem::platCallback(Game::PlatEvent& event)
 {
-	if (m_currState != nullptr) {
+	if (m_currState) {
 		static_cast<CItemState*>(m_currState)->onPlatCollision(this, event);
 	}
 }
@@ -1309,7 +1309,7 @@ void CFSMItem::platCallback(Game::PlatEvent& event)
  */
 void CFSMItem::onKeyEvent(const SysShape::KeyEvent& event)
 {
-	if (m_currState != nullptr) {
+	if (m_currState) {
 		static_cast<CItemState*>(m_currState)->onKeyEvent(this, event);
 	}
 }
@@ -1438,7 +1438,7 @@ void BaseItemMgr::loadArchive(char* fileName)
 	LoadResource::Arg loadArg(pathBuffer);
 	loadArg.m_heap               = JKRHeap::sCurrentHeap;
 	LoadResource::Node* loadNode = gLoadResourceMgr->mountArchive(loadArg);
-	if (loadNode != nullptr) {
+	if (loadNode) {
 		m_archive = (JKRMemArchive*)loadNode->m_archive;
 	} else {
 		m_archive = nullptr;
@@ -1527,7 +1527,7 @@ JKRArchive* BaseItemMgr::openTextArc(char* fileName)
 	// m_node = loadNode;
 	m_resourceNode = gLoadResourceMgr->mountArchive(loadArg);
 	// JKRArchive* archive;
-	// if (m_node != nullptr) {
+	// if (m_node ) {
 	// 	archive = m_node->m_archive;
 	// } else {
 	// 	archive = nullptr;
@@ -2108,7 +2108,7 @@ void TNodeItemMgr::killAll()
 		BaseItem* creature = node->m_contents;
 		CreatureKillArg arg(1);
 		creature->kill(&arg);
-		if (creature->m_soundObj != nullptr && PSSystem::SingletonBase<PSM::ObjMgr>::sInstance != nullptr) {
+		if (creature->m_soundObj != nullptr && PSSystem::SingletonBase<PSM::ObjMgr>::sInstance) {
 			PSSystem::SingletonBase<PSM::ObjMgr>::sInstance->remove(creature->m_soundObj);
 		}
 	}

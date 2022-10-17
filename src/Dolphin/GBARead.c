@@ -24,7 +24,7 @@ int GBAReadAsync(int portIndex, u8* p2, u8* p3)
 {
 	// UNUSED FUNCTION
 	GBA* gba = &__GBA[portIndex];
-	if (gba->m_syncCallback != nullptr) {
+	if (gba->m_syncCallback) {
 		return 2;
 	}
 	gba->_00[0]         = 0x14;

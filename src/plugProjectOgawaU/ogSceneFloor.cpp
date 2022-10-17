@@ -159,7 +159,7 @@ void Floor::doUserCallBackFunc(Resource::MgrCommand*)
 		// registObj(obj, archive);
 		// setColorBG(0, 0, 0, 0);
 		JKRArchive* archive = nullptr;
-		if (resNode != nullptr) {
+		if (resNode) {
 			// archive = resNode->m_archive;
 			if (resNode->m_archive == nullptr) {
 				JUTException::panic_f(fakeMatchFileName, 91, "arc is NULL!!\n");

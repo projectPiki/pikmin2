@@ -258,7 +258,7 @@ void JUTXfb::destroyManager()
 	JUTXfb* mgr = sManager;
 	if (mgr == nullptr) {
 		for (int i = 0; i < 3; i++) {
-			if (mgr->m_enabled[i] && mgr->m_buffers[i] != nullptr) {
+			if (mgr->m_enabled[i] && mgr->m_buffers[i]) {
 				delete mgr->m_buffers[i];
 			}
 		}

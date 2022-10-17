@@ -109,7 +109,7 @@ void Tyre::StateLand::init(EnemyBase* enemy, StateArg* stateArg)
 void Tyre::StateLand::exec(EnemyBase* enemy)
 {
 	Obj* tyre = static_cast<Obj*>(enemy);
-	if (tyre->m_curTriangle != nullptr) {
+	if (tyre->m_curTriangle) {
 		tyre->flick();
 		Vector3f position = tyre->getPosition();
 		tyre->landEffect(position);
@@ -161,7 +161,7 @@ void Tyre::StateFreeze::exec(EnemyBase* enemy)
 	}
 
 	EnemyBase* wraith = tyre->_2BC;
-	if (wraith != nullptr) {
+	if (wraith) {
 		if (wraith->isEvent(1, EB2_1)) {
 			tyre->constraintOff();
 		} else {

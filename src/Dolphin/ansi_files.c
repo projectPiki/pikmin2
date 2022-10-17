@@ -145,7 +145,7 @@ void __close_all()
 
 	__begin_critical_region(2);
 
-	while (p != nullptr) {
+	while (p) {
 		if (p->m_mode.file_kind != __closed_file) {
 			fclose(p);
 		}

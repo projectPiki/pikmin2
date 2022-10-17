@@ -435,7 +435,7 @@ void StateDead::init(EnemyBase* enemy, StateArg* stateArg)
 	enemy->deathProcedure();
 
 	if (_10 != 1) {
-		if (static_cast<Obj*>(enemy)->m_pellet != nullptr) {
+		if (static_cast<Obj*>(enemy)->m_pellet) {
 			static_cast<Obj*>(enemy)->m_pellet->kill(nullptr);
 			static_cast<Obj*>(enemy)->m_pellet = nullptr;
 		}
@@ -450,7 +450,7 @@ void StateDead::init(EnemyBase* enemy, StateArg* stateArg)
 void StateDead::exec(EnemyBase* enemy)
 {
 	if ((enemy->m_animKeyEvent->m_running != 0) && ((u32)enemy->m_animKeyEvent->m_type == 0x3E8)) {
-		if (static_cast<Obj*>(enemy)->m_pellet != nullptr) {
+		if (static_cast<Obj*>(enemy)->m_pellet) {
 			static_cast<Obj*>(enemy)->m_pellet->endCapture();
 			static_cast<Obj*>(enemy)->m_pellet = nullptr;
 		}

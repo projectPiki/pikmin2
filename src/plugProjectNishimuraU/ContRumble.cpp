@@ -72,7 +72,7 @@ void ContRumble::init()
 	_08.z             = 0.0f;
 	RumbleNode* node1 = (RumbleNode*)_14->m_child;
 	// This assumes that _14's head has at least child node
-	while (node1 != nullptr) {
+	while (node1) {
 		RumbleNode* node2 = (RumbleNode*)node1->m_next;
 		node1->del();
 		_18->add(node1);

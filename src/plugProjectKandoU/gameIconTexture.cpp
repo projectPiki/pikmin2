@@ -85,7 +85,7 @@ void IconTexture::Loader::loadResource(char* path)
 {
 	LoadResource::Arg arg(path);
 	m_node = gLoadResourceMgr->mountArchive(arg);
-	if (m_node != nullptr) {
+	if (m_node) {
 		m_archive = m_node->m_archive;
 		return;
 	}

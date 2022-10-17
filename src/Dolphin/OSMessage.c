@@ -72,7 +72,7 @@ BOOL OSReceiveMessage(OSMessageQueue* queue, void** buffer, int flags)
 		OSSleepThread(&queue->recvQueue);
 	}
 
-	if (buffer != nullptr) {
+	if (buffer) {
 		buffer[0] = queue->buffer[queue->front];
 	}
 

@@ -15,7 +15,7 @@ int __flush_buffer(FILE* file, size_t* length)
 	if (bufferLen != 0) {
 		file->m_bufferLength = bufferLen;
 		writeCode            = file->writeFunc(file->m_handle, file->m_buffer, &file->m_bufferLength, file->_48);
-		if (length != nullptr) {
+		if (length) {
 			*length = file->m_bufferLength;
 		}
 		if (writeCode != 0) {

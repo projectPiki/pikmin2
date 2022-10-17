@@ -48,7 +48,7 @@ C_FILES := $(wildcard src/*.c)
 CPP_FILES := $(wildcard src/*.cpp)
 CPP_FILES += $(wildcard src/*.cp)
 LDSCRIPT := $(BUILD_DIR)/ldscript.lcf
-READMEGEN := tools/UpdateReadme.exe
+AOI := aoi.exe
 
 # Outputs
 DOL     := $(BUILD_DIR)/main.dol
@@ -222,7 +222,7 @@ ifneq ($(findstring -map,$(LDFLAGS)),)
 	$(QUIET) $(PYTHON) tools/calcprogress.py $(DOL) $(MAP)
 endif
 ifeq ($(UPDATE_README),1)
-	$(WINE) $(READMEGEN)
+	$(WINE) $(AOI)
 endif
 
 clean:

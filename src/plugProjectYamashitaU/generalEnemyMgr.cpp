@@ -403,7 +403,7 @@ GeneralEnemyMgr::GeneralEnemyMgr()
 
 	setEnemyIDs();
 
-	if (m_enemyNumList != nullptr) {
+	if (m_enemyNumList) {
 		setEnemyNums(0);
 	}
 
@@ -562,7 +562,7 @@ J3DModelData* GeneralEnemyMgr::getJ3DModelData(int idx)
 {
 	J3DModelData* modelData = nullptr;
 	IEnemyMgrBase* base     = getIEnemyMgrBase(idx);
-	if (base != nullptr) {
+	if (base) {
 		modelData = base->getJ3DModelData();
 	}
 
@@ -580,7 +580,7 @@ EnemyBase* GeneralEnemyMgr::birth(int enemyID, EnemyBirthArg& birthArg)
 	int idx          = getEnemyMgrID(enemyID);
 
 	IEnemyMgrBase* base = getIEnemyMgrBase(idx);
-	if (base != nullptr) {
+	if (base) {
 		birthArg.m_typeID = (EnemyTypeID::EEnemyTypeID)enemyID;
 		enemy             = base->birth(birthArg);
 	}
@@ -630,7 +630,7 @@ void GeneralEnemyMgr::allocateEnemys(u8 type, int heapSize)
 {
 	if (heapSize < 0) {
 		m_heapSize = 0x00200800;
-		if (gameSystem != nullptr) {
+		if (gameSystem) {
 			if (gameSystem->isChallengeMode()) {
 				m_heapSize = 0x00177000;
 			} else if (gameSystem->m_mode == GSM_VERSUS_MODE) {
@@ -701,7 +701,7 @@ void GeneralEnemyMgr::addEnemyNum(int enemyID, u8 max, GenObjectEnemy* genObj)
 	if (enemyID != -1) {
 
 		u8 mem = max * EnemyInfoFunc::getEnemyMember(enemyID, 0xFFFF);
-		if (m_enemyNumList != nullptr) {
+		if (m_enemyNumList) {
 			for (int i = 0; i < gEnemyInfoNum; i++) {
 				if (enemyID == m_enemyNumList[i].m_enemyID) {
 					m_enemyNumList[i].m_count += mem;
@@ -716,7 +716,7 @@ void GeneralEnemyMgr::addEnemyNum(int enemyID, u8 max, GenObjectEnemy* genObj)
 			case EnemyTypeID::EnemyID_Ooinu_l:
 			case EnemyTypeID::EnemyID_Tanpopo:
 			case EnemyTypeID::EnemyID_Magaret:
-				if (genObj != nullptr) {
+				if (genObj) {
 					EnemyPelletInfo pelletInfo;
 					pelletInfo = genObj->m_pelletInfo; // need an override on equals operator maybe?
 
@@ -1081,7 +1081,7 @@ JKRHeap* GeneralEnemyMgr::useHeap()
 EnemyMgrBase* GeneralEnemyMgr::getEnemyMgr(int enemyID)
 {
 	EnemyMgrBase* base = static_cast<EnemyMgrBase*>(getIEnemyMgrBase(enemyID));
-	if (base != nullptr) {
+	if (base) {
 		return base;
 	}
 	return nullptr;
@@ -1136,7 +1136,7 @@ void GeneralEnemyMgr::prepareDayendEnemies()
 
 	iterator.first();
 
-	while (iterator.m_container != nullptr) {
+	while (iterator.m_container) {
 		EnemyBase* enemy      = iterator.getObject();
 		enemy->m_inPiklopedia = false;
 		iterator.next();
@@ -1180,7 +1180,7 @@ void GeneralMgrIterator<Game::EnemyBase>::next()
  */
 void GeneralMgrIterator<Game::EnemyBase>::setFirst()
 {
-	if (m_container != nullptr) {
+	if (m_container) {
 		if (m_condition == nullptr) {
 			m_index = m_container->getStart();
 			if (m_index != m_container->getEnd()) {
@@ -1601,12 +1601,12 @@ void GeneralEnemyMgr::createDayendEnemies(Sys::Sphere& sphere)
 							}
 						}
 
-						if (anotherMgr != nullptr) {
+						if (anotherMgr) {
 							birthArg.m_typeID = (EnemyTypeID::EEnemyTypeID)searchID;
 							enemy             = anotherMgr->birth(birthArg);
 						}
 
-						if (enemy != nullptr) {
+						if (enemy) {
 							enemy->init(nullptr);
 							InteractAttack attack(enemy, 0.0f, nullptr);
 							enemy->stimulate(attack);
@@ -1631,12 +1631,12 @@ void GeneralEnemyMgr::createDayendEnemies(Sys::Sphere& sphere)
 							}
 						}
 
-						if (anotherMgr != nullptr) {
+						if (anotherMgr) {
 							birthArg.m_typeID = (EnemyTypeID::EEnemyTypeID)searchID;
 							enemy             = anotherMgr->birth(birthArg);
 						}
 
-						if (enemy != nullptr) {
+						if (enemy) {
 							Sys::Sphere boundingSphere;
 							enemy->getBoundingSphere(boundingSphere);
 							f32 radDiff = sphere.m_radius - boundingSphere.m_radius;
@@ -1687,12 +1687,12 @@ void GeneralEnemyMgr::createDayendEnemies(Sys::Sphere& sphere)
 								}
 							}
 
-							if (anotherMgr != nullptr) {
+							if (anotherMgr) {
 								birthArg.m_typeID = (EnemyTypeID::EEnemyTypeID)searchID;
 								enemy             = anotherMgr->birth(birthArg);
 							}
 
-							if (enemy != nullptr) {
+							if (enemy) {
 								Sys::Sphere boundingSphere;
 								enemy->getBoundingSphere(boundingSphere);
 								f32 radDiff = sphere.m_radius - boundingSphere.m_radius;
@@ -1750,12 +1750,12 @@ void GeneralEnemyMgr::createDayendEnemies(Sys::Sphere& sphere)
 								}
 							}
 
-							if (anotherMgr != nullptr) {
+							if (anotherMgr) {
 								birthArg.m_typeID = (EnemyTypeID::EEnemyTypeID)searchID;
 								enemy             = anotherMgr->birth(birthArg);
 							}
 
-							if (enemy != nullptr) {
+							if (enemy) {
 								Sys::Sphere boundingSphere;
 								enemy->getBoundingSphere(boundingSphere);
 								f32 radDiff = sphere.m_radius - boundingSphere.m_radius;

@@ -1825,7 +1825,7 @@ void StateFlick::init(EnemyBase* enemy, StateArg* stateArg)
 	enemy->setEmotionExcitement();
 
 	FlickArg* flickArg = static_cast<FlickArg*>(stateArg);
-	if (flickArg != nullptr) {
+	if (flickArg) {
 		_10 = flickArg->_00;
 	} else {
 		_10 = -1;

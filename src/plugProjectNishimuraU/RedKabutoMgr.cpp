@@ -53,7 +53,7 @@ void Mgr::loadTexData()
 	LoadResource::Arg loadArg(cKabutoChangeTexName);
 	LoadResource::Node* resource = gLoadResourceMgr->load(loadArg);
 
-	if (resource != nullptr) {
+	if (resource) {
 		m_changeTexture = static_cast<ResTIMG*>(resource->_30);
 	}
 

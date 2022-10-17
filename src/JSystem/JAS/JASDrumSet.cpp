@@ -70,7 +70,7 @@ bool JASDrumSet::getParam(int percIndex, int p2, JASInstParam* instParam) const
 	instParam->_0C                   = 1;
 	for (u32 i = 0; i < perc->m_effectCount; i++) {
 		JASInstEffect* effect = perc->m_effects[i];
-		if (effect != nullptr) {
+		if (effect) {
 			f32 y = effect->getY(percIndex, p2);
 			switch (effect->m_target) {
 			case 0:

@@ -445,7 +445,7 @@ void JASTrack::init()
 	for (int i = 0; i < 16; i++) {
 		_300[i] = 0;
 	}
-	if (m_extBuffer != nullptr) {
+	if (m_extBuffer) {
 		m_extBuffer->initExtBuffer();
 	}
 	_340 = 0.0f;
@@ -4932,7 +4932,7 @@ lbl_800A2418:
 int JASTrack::getTranspose() const
 {
 	JASTrack* v1 = _2F8;
-	if (v1 != nullptr) {
+	if (v1) {
 		return _356 + v1->getTranspose();
 	}
 	return _356;

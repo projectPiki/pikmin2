@@ -109,9 +109,9 @@ JKRHeap::JKRHeap(void* startPtr, u32 size, JKRHeap* parentHeap, bool shouldSetEr
 	m_startAddress = startPtr;
 	m_endAddress   = (u8*)startPtr + size;
 
-	if (parentHeap != nullptr) {
+	if (parentHeap) {
 		JSUPtrLink* pJVar1 = _40.m_head;
-		if (pJVar1 != nullptr) {
+		if (pJVar1) {
 			pJVar1 = &_4C;
 		}
 		parentHeap->_40.append(pJVar1);
@@ -519,7 +519,7 @@ void JKRHeap::free(void* memory)
 void JKRHeap::callAllDisposer()
 {
 	JSUPtrLink* link;
-	while (link = m_disposerList.m_head, link != nullptr) {
+	while (link = m_disposerList.m_head, link) {
 		// delete (JKRHeap*)link->m_value);
 		INVOKE_VIRT_DTOR((JKRHeap*)link->m_value, -1);
 	}
@@ -1050,7 +1050,7 @@ u32 JKRHeap::dispose(void* memory, u32 p2)
 	JSUPtrLink* link1 = m_disposerList.m_head;
 	JSUPtrLink* link2;
 	JSUPtrLink* link3;
-	while (link2 = link1, link2 != nullptr) {
+	while (link2 = link1, link2) {
 		void* value = link2->m_value;
 		if ((value < memory) || ((u8*)memory + p2) <= value) {
 			link1 = link2->m_next;
@@ -1186,7 +1186,7 @@ void JKRHeap::dispose()
 {
 	JSUPtrLink* link;
 	// Not endless loop. The dtor will remove link from list.
-	while (link = m_disposerList.m_head, link != nullptr) {
+	while (link = m_disposerList.m_head, link) {
 		INVOKE_VIRT_DTOR(link->m_value, -1);
 	}
 	/*

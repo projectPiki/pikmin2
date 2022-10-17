@@ -72,7 +72,7 @@ void StateWait::init(EnemyBase* enemy, StateArg* stateArg)
 {
 	Obj* hiba         = static_cast<Obj*>(enemy);
 	WaitStateArg* arg = static_cast<WaitStateArg*>(stateArg);
-	if (stateArg != nullptr) {
+	if (stateArg) {
 		hiba->m_timer = arg->m_waitTimer;
 	} else {
 		hiba->m_timer = 0.0f;

@@ -31,9 +31,9 @@ void Mgr::loadModelData()
 
 	for (int i = 0; i < 3; i++) {
 		EnemyMgrBase* mgr = generalEnemyMgr->getEnemyMgr(ids[i]);
-		if (mgr != nullptr) {
+		if (mgr) {
 			J3DModelData* storedModelData = mgr->getJ3DModelData();
-			if (storedModelData != nullptr) {
+			if (storedModelData) {
 				m_modelData = storedModelData;
 				return;
 			}
@@ -59,9 +59,9 @@ void Mgr::loadAnimData()
 
 	for (int i = 0; i < 3; i++) {
 		EnemyMgrBase* mgr = generalEnemyMgr->getEnemyMgr(ids[i]);
-		if (mgr != nullptr) {
+		if (mgr) {
 			SysShape::AnimMgr* storedAnimMgr = mgr->m_animMgr;
-			if (storedAnimMgr != nullptr) {
+			if (storedAnimMgr) {
 				m_animMgr = storedAnimMgr;
 				return;
 			}

@@ -2348,7 +2348,7 @@ void SingleGameSection::onStartHeap(void)
  */
 void SingleGameSection::gmOrimaDown(int naviID)
 {
-	if (m_currentState != nullptr) {
+	if (m_currentState) {
 		m_currentState->onOrimaDown(this, naviID);
 	}
 	/*
@@ -2469,7 +2469,7 @@ lbl_801534F4:
  */
 void SingleGameSection::onMovieStart(Game::MovieConfig* config, unsigned long p2, unsigned long p3)
 {
-	if (m_currentState != nullptr) {
+	if (m_currentState) {
 		m_currentState->onMovieStart(this, config, p2, p3);
 	}
 	/*
@@ -2515,7 +2515,7 @@ void SingleGame::State::onMovieStart(Game::SingleGameSection*, Game::MovieConfig
 void SingleGameSection::onMovieDone(Game::MovieConfig* config, unsigned long p2, unsigned long p3)
 {
 	gameSystem->_3C &= 0xF7;
-	if (m_currentState != nullptr) {
+	if (m_currentState) {
 		m_currentState->onMovieDone(this, config, p2, p3);
 	}
 	/*
@@ -2565,7 +2565,7 @@ void SingleGame::State::onMovieDone(Game::SingleGameSection*, Game::MovieConfig*
 void SingleGameSection::onMovieCommand(int p1)
 {
 	BaseGameSection::onMovieCommand(p1);
-	if (m_currentState != nullptr) {
+	if (m_currentState) {
 		m_currentState->onMovieCommand(this, p1);
 	}
 	/*

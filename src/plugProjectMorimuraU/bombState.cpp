@@ -136,7 +136,7 @@ void StateBomb::exec(EnemyBase* enemy)
 			static_cast<Obj*>(enemy)->m_efxLight->forceKill();
 			enemy->m_soundObj->startSound(PSSE_PK_SE_BOMB, 0);
 
-			if (enemy->m_waterBox != nullptr) {
+			if (enemy->m_waterBox) {
 				static_cast<Obj*>(enemy)->bombEffInWater();
 			}
 

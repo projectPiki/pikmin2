@@ -438,7 +438,7 @@ Matrixf* Model::getMatrix(int jointIndex)
 	return (m_joints[jointIndex] != nullptr) ? m_joints[jointIndex]->getWorldMatrix() : nullptr;
 	// if (jointIndex == -1) {
 	// 	return nullptr;
-	// } else if (m_joints[jointIndex] != nullptr) {
+	// } else if (m_joints[jointIndex] ) {
 	// 	return m_joints[jointIndex]->getWorldMatrix();
 	// } else {
 	// 	return nullptr;

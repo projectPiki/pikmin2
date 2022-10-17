@@ -85,7 +85,7 @@ void Obj::birth(Vector3f& position, float faceDir)
 {
 	EnemyBase::birth(position, faceDir);
 	m_farmPow = 0;
-	if (Farm::farmMgr != nullptr) {
+	if (Farm::farmMgr) {
 		Farm::farmMgr->addPlant(this);
 	}
 	if (gameSystem->m_mode == GSM_VERSUS_MODE) {
@@ -249,7 +249,7 @@ void Obj::getShadowParam(ShadowParam& param)
 	param.m_position = m_position;
 	param.m_position.y += 2.0f;
 
-	if (m_curTriangle != nullptr) {
+	if (m_curTriangle) {
 		Plane* plane                        = &m_curTriangle->m_trianglePlane;
 		param.m_boundingSphere.m_position.x = plane->a;
 		param.m_boundingSphere.m_position.y = plane->b;
@@ -347,7 +347,7 @@ void Obj::doAnimation()
 	EnemyBase::doAnimation();
 	Obj::sCurrentObj = nullptr;
 
-	if (m_pellet != nullptr) {
+	if (m_pellet) {
 		Vector3f translation;
 		float neckScale;
 		switch (m_pelletSize) {
@@ -396,7 +396,7 @@ void Obj::doSimulation(float) { }
  */
 void Obj::setPelletColor(u16 color, bool check)
 {
-	if (m_pellet != nullptr) {
+	if (m_pellet) {
 		switch (color) {
 		case PELCOLOR_BLUE:
 		case PELCOLOR_RED:
@@ -429,7 +429,7 @@ void Obj::changePelletColor()
 
 		if (_2D0 > static_cast<Parms*>(m_parms)->m_pelplantParms.m_fp03.m_value) {
 			u16 initialColor;
-			if (m_pellet != nullptr) {
+			if (m_pellet) {
 				initialColor = m_pellet->m_pelletColor;
 			} else {
 				initialColor = PELCOLOR_BLUE;
@@ -479,7 +479,7 @@ void Obj::attachPellet()
 		PelletNumberInitArg numberArg(m_pelletSize, 0);
 		Pellet* newPellet = pelletMgr->birth(&numberArg);
 
-		if (newPellet != nullptr) {
+		if (newPellet) {
 			Matrixf* mat = m_model->getJoint("headjnt")->getWorldMatrix();
 			P2ASSERTLINE(777, mat != nullptr);
 			newPellet->startCapture(mat);
@@ -569,7 +569,7 @@ unknown Obj::neckJointCallBack(J3DJoint* joint, int p2)
 
 		float neckScale1;
 		float neckScale2;
-		if (sCurrentObj->m_pellet != nullptr) {
+		if (sCurrentObj->m_pellet) {
 			switch (sCurrentObj->m_pelletSize) {
 			case 1:
 				neckScale2 = 1.0f;

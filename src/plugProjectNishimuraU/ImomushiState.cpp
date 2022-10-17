@@ -337,7 +337,7 @@ void StateMove::exec(EnemyBase* enemy)
 	}
 
 	creature = imomushi->m_targetCreature;
-	if (creature != nullptr) {
+	if (creature) {
 		if (imomushi->isFinishMotion()) {
 			imomushi->m_simVelocity = Vector3f(0.0f);
 

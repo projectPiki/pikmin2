@@ -41,7 +41,7 @@ void Obj::onInit(CreatureInitArg* initArg)
 
 	if (!isBirthTypeDropGroup()) {
 		setEvent(0, EB_Constraint);
-		if (mapMgr != nullptr) {
+		if (mapMgr) {
 			Vector3f position = m_position;
 			position.y += 20.0f;
 			m_position.y = mapMgr->getMinY(position);
@@ -76,7 +76,7 @@ Obj::Obj()
  */
 void Obj::doUpdate()
 {
-	if (m_curTriangle != nullptr) {
+	if (m_curTriangle) {
 		m_simVelocity = Vector3f(0.0f);
 	} else {
 		m_simVelocity = m_impVelocity;
@@ -106,7 +106,7 @@ void Obj::doDebugDraw(Graphics& gfx) { EnemyBase::doDebugDraw(gfx); }
  */
 void Obj::doSimulation(f32 constraint)
 {
-	if (m_captureMatrix != nullptr) {
+	if (m_captureMatrix) {
 		m_position = m_captureMatrix->getBasis(3);
 		updateSpheres();
 	} else {
@@ -125,7 +125,7 @@ void Obj::doAnimationCullingOff()
 	doAnimationUpdateAnimator();
 	bool check;
 	Vector3f vec = m_mainMatrix.getBasis(3);
-	if (m_captureMatrix != nullptr) {
+	if (m_captureMatrix) {
 		check             = false;
 		Vector3f checkVec = m_captureMatrix->getBasis(3);
 		if (vec.x != checkVec.x || vec.y != checkVec.y || vec.z != checkVec.z) {
@@ -214,7 +214,7 @@ bool Obj::needShadow()
  */
 void Obj::onStartCapture()
 {
-	if (m_captureMatrix != nullptr) {
+	if (m_captureMatrix) {
 		Vector3f position = m_captureMatrix->getBasis(3);
 		onSetPosition(position);
 		m_impVelocity = Vector3f(0.0f);
@@ -307,7 +307,7 @@ void Obj::genItem()
 
 	case 2:
 		ItemHoney::Item* nectar = ItemHoney::mgr->birth();
-		if (nectar != nullptr) {
+		if (nectar) {
 			nectar->init(nullptr);
 			nectar->_1E0 = 0;
 			nectar->setPosition(position, false);
@@ -322,7 +322,7 @@ void Obj::genItem()
 			ItemHoney::Item* nectar = ItemHoney::mgr->birth();
 			Vector3f sprayVelocity  = velocity;
 
-			if (nectar != nullptr) {
+			if (nectar) {
 				f32 theta       = PI * i + angle;
 				sprayVelocity.x = 50.0f * pikmin2_sinf(theta);
 				sprayVelocity.z = 50.0f * pikmin2_cosf(theta);
@@ -337,7 +337,7 @@ void Obj::genItem()
 
 	case 4:
 		TamagoMushi::Mgr* mititeMgr = static_cast<TamagoMushi::Mgr*>(generalEnemyMgr->getEnemyMgr(EnemyTypeID::EnemyID_TamagoMushi));
-		if (mititeMgr != nullptr) {
+		if (mititeMgr) {
 			EnemyBirthArg birthArg;
 			birthArg.m_position = m_position;
 
@@ -348,7 +348,7 @@ void Obj::genItem()
 
 		if (mititeGroup == nullptr) {
 			ItemHoney::Item* nectar = ItemHoney::mgr->birth();
-			if (nectar != nullptr) {
+			if (nectar) {
 				nectar->init(nullptr);
 				nectar->_1E0 = 0;
 				nectar->setPosition(position, false);
@@ -362,7 +362,7 @@ void Obj::genItem()
 	case 6:
 		ItemHoney::Item* defNectar = ItemHoney::mgr->birth();
 
-		if (defNectar != nullptr) {
+		if (defNectar) {
 			defNectar->init(nullptr);
 
 			defNectar->_1E0 = 1;

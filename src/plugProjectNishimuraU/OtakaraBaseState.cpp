@@ -378,7 +378,7 @@ void StateTake::exec(EnemyBase* enemy)
 		if ((u32)event->m_type == 2) {
 			ota->takeTreasure();
 		} else if ((u32)event->m_type == 1000) {
-			if (ota->m_treasure != nullptr) {
+			if (ota->m_treasure) {
 				if (ota->isDropTreasure()) {
 					transit(ota, OTA_ItemDrop, nullptr);
 				} else if (EnemyFunc::isStartFlick(ota, false)) {
@@ -783,7 +783,7 @@ void StateBombWait::exec(EnemyBase* enemy)
 	EnemyAnimKeyEvent* event = ota->m_animKeyEvent;
 	if (event->m_running && ((u32)event->m_type == 1000)) {
 		Creature* creature = ota->getChaseTargetCreature();
-		if (creature != nullptr) {
+		if (creature) {
 			Vector3f creaturePos = creature->getPosition();
 			Vector3f pos         = ota->getPosition();
 			f32 angle            = angXZ(creaturePos.x, creaturePos.z, pos);
@@ -835,7 +835,7 @@ void StateBombMove::exec(EnemyBase* enemy)
 	ota->stimulateBomb();
 
 	Creature* creature = ota->getChaseTargetCreature();
-	if (creature != nullptr) {
+	if (creature) {
 		Vector3f creaturePos = creature->getPosition();
 		Vector3f pos         = ota->getPosition();
 		f32 angle            = angXZ(creaturePos.x, creaturePos.z, pos);
@@ -899,7 +899,7 @@ void StateBombTurn::exec(EnemyBase* enemy)
 	ota->stimulateBomb();
 
 	Creature* creature = ota->getChaseTargetCreature();
-	if (creature != nullptr) {
+	if (creature) {
 		Vector3f creaturePos = creature->getPosition();
 		Vector2f XZ;
 		XZ.x          = creaturePos.x;

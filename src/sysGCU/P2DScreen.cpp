@@ -187,7 +187,7 @@ J2DPane* P2DScreen::Mgr::addCallBack(u64 tag, P2DScreen::Node* node)
 {
 	P2ASSERTLINE(73, (node != nullptr));
 	J2DPane* pane = search(tag);
-	if (pane != nullptr) {
+	if (pane) {
 		node->_18 = pane;
 		node->doInit();
 		_118.add(node);
