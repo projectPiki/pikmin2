@@ -260,7 +260,8 @@ bool Obj::isWakeup()
 
 		CellIteratorArg iterArg(detectionSphere);
 		CellIterator i(iterArg);
-		CI_LOOP(i) {
+		CI_LOOP(i)
+		{
 			Creature* c = static_cast<Creature*>(*i);
 
 			// If the creature is an alive navigator or Piki
@@ -271,7 +272,7 @@ bool Obj::isWakeup()
 					shouldWakeup = true;
 					break;
 				}
-		}
+			}
 		}
 		break;
 	default:
