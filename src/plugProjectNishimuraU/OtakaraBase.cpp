@@ -686,13 +686,13 @@ void Obj::resetTreasure()
 	_2EC             = 0.0f;
 	m_cellRadius     = static_cast<Parms*>(m_parms)->m_general.m_cellRadius.m_value;
 
-	CollPart* collpart = m_collTree->getCollPart(0x626F6479);
-	collpart->_1C      = 10.0f;
-	collpart->_20.y    = 0.0f;
+	CollPart* collpart     = m_collTree->getCollPart(0x626F6479);
+	collpart->m_radius     = 10.0f;
+	collpart->m_position.y = 0.0f;
 
-	CollPart* basepart = m_collTree->m_part;
-	basepart->_1C      = 20.0f;
-	basepart->_20.y    = 0.0f;
+	CollPart* basepart     = m_collTree->m_part;
+	basepart->m_radius     = 20.0f;
+	basepart->m_position.y = 0.0f;
 
 	EnemyFunc::flickStickPikmin(this, 1.0f, 0.0f, 0.0f, -1000.0f, nullptr);
 }
@@ -1266,12 +1266,12 @@ void Obj::initBombOtakara()
 				_2EC                                                 = 10.0f;
 				m_cellRadius                                         = 25.0f;
 
-				CollPart* collpart = m_collTree->getCollPart(0x626F6479);
-				collpart->_1C      = 15.0f;
-				collpart->_20.y    = _2EC;
-				CollPart* basepart = m_collTree->m_part;
-				basepart->_1C      = 25.0f;
-				basepart->_20.y    = _2EC;
+				CollPart* collpart     = m_collTree->getCollPart(0x626F6479);
+				collpart->m_radius     = 15.0f;
+				collpart->m_position.y = _2EC;
+				CollPart* basepart     = m_collTree->m_part;
+				basepart->m_radius     = 25.0f;
+				basepart->m_position.y = _2EC;
 			}
 		}
 	}

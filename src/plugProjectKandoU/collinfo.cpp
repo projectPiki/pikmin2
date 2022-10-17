@@ -216,12 +216,12 @@ void CollTree::createSingleSphere(SysShape::MtxObject* mtxObject, int jointIndex
 	} else {
 		m_part = new CollPart(mtxObject);
 	}
-	m_part->_1C          = sphere.m_radius;
-	m_part->_18          = sphere.m_radius;
-	m_part->_20          = 0.0f;
+	m_part->m_radius     = sphere.m_radius;
+	m_part->m_baseRadius = sphere.m_radius;
+	m_part->m_position   = 0.0f;
 	m_part->m_jointIndex = jointIndex;
 	m_part->m_attribute  = 0;
-	m_part->_30.setID('root');
+	m_part->m_currentID.setID('root');
 }
 
 /*
@@ -328,12 +328,12 @@ void CollPart::checkCollision(Sys::Sphere& sphere, IDelegate1<CollPart*>* delega
 {
 	if (isPrim()) {
 		if (isSphere()) {
-			Sys::Sphere partSphere(m_position, _1C);
+			Sys::Sphere partSphere(m_position, m_radius);
 			if (partSphere.intersect(sphere)) {
 				delegate->invoke(this);
 			}
 		} else if (isTube() || isTubeTree()) {
-			Sys::Tube collTube(m_position, getChild()->m_position, _1C, getChild()->_1C);
+			Sys::Tube collTube(m_position, getChild()->m_position, m_radius, getChild()->m_radius);
 			Vector3f colVec;
 			float colSep;
 			if (collTube.collide(sphere, colVec, colSep)) {
@@ -441,17 +441,17 @@ void CollPart::checkCollisionMulti(CollPart* other, IDelegate3<CollPart*, CollPa
 bool CollPart::collide(CollPart* other, Vector3f& outVector)
 {
 	if (isSphere() && other->isSphere()) {
-		Sys::Sphere thisSphere(m_position, _1C);
-		Sys::Sphere otherSphere(other->m_position, other->_1C);
+		Sys::Sphere thisSphere(m_position, m_radius);
+		Sys::Sphere otherSphere(other->m_position, other->m_radius);
 		return thisSphere.intersect(otherSphere, outVector);
 	} else if (isSphere() && (other->isTube() || other->isTubeTree())) {
-		Sys::Sphere thisSphere(m_position, _1C);
-		Sys::Tube otherTube(other->m_position, other->getChild()->m_position, other->_1C, other->getChild()->_1C);
+		Sys::Sphere thisSphere(m_position, m_radius);
+		Sys::Tube otherTube(other->m_position, other->getChild()->m_position, other->m_radius, other->getChild()->m_radius);
 		float collVal;
 		return otherTube.collide(thisSphere, outVector, collVal);
 	} else if ((isTube() || isTubeTree()) && other->isSphere()) {
-		Sys::Tube thisTube(m_position, getChild()->m_position, _1C, getChild()->_1C);
-		Sys::Sphere otherSphere(other->m_position, other->_1C);
+		Sys::Tube thisTube(m_position, getChild()->m_position, m_radius, getChild()->m_radius);
+		Sys::Sphere otherSphere(other->m_position, other->m_radius);
 		float collVal;
 		return thisTube.collide(otherSphere, outVector, collVal);
 	}
@@ -517,7 +517,7 @@ CollPart* CollTree::getCollPart(u32 partID) { return (m_part != nullptr) ? m_par
  */
 CollPart* CollPart::getCollPart(u32 partID)
 {
-	if (_30 == partID) {
+	if (m_currentID == partID) {
 		return this;
 	}
 	if (getNext() != nullptr) {
@@ -598,7 +598,7 @@ CollPart* CollTree::findCollPart(FindCollPartArg& findArg)
 		for (int i = 0; i < numParts; i++) {
 			CollPart* currPart = partArray[i];
 			if (((findArg.m_condition == nullptr) || findArg.m_condition->satisfy(currPart)) && currPart->isSphere()) {
-				float sqRad = SQUARE(currPart->_1C);
+				float sqRad = SQUARE(currPart->m_radius);
 				Vector3f sep(findArg.m_position - currPart->m_position);
 				float dist = (SQUARE(sep.x) + SQUARE(sep.y) + SQUARE(sep.z)) - sqRad;
 				if (dist < minDist) {
@@ -732,7 +732,7 @@ void CollTree::getBoundingSphere(Sys::Sphere& sphere)
 		return;
 	}
 	sphere.m_position = m_part->m_position;
-	sphere.m_radius   = m_part->_1C;
+	sphere.m_radius   = m_part->m_radius;
 }
 
 /*
@@ -759,16 +759,16 @@ CollPart::CollPart() { init(nullptr); }
 void CollPart::init(SysShape::MtxObject* mtxObject)
 {
 	clearRelations();
-	_1C           = 0.0f;
-	_18           = 0.0f;
-	_20           = 0.0f;
+	m_radius      = 0.0f;
+	m_baseRadius  = 0.0f;
+	m_position    = 0.0f;
 	m_position    = Vector3f(0.0f);
 	m_model       = mtxObject;
 	m_jointIndex  = -1;
 	_60           = 0;
 	m_attribute   = 0;
 	m_hasCollPart = COLLTYPE_SPHERE;
-	_3C.setID('____');
+	m_isStickableID.setID('____');
 }
 
 /*
@@ -776,7 +776,7 @@ void CollPart::init(SysShape::MtxObject* mtxObject)
  * Address:	80136DB0
  * Size:	000030
  */
-bool CollPart::isStickable() { return _3C.match('s***', '*'); }
+bool CollPart::isStickable() { return m_isStickableID.match('s***', '*'); }
 
 /*
  * update__8CollPartFv
@@ -807,7 +807,7 @@ void CollPart::makeMatrixTo(Matrixf& p1)
 	if ((int)m_jointIndex != -1) {
 		Matrixf mtx;
 		PSMTXIdentity(mtx.m_matrix.mtxView);
-		mtx.setTranslation(_20);
+		mtx.setTranslation(m_position);
 		PSMTXConcat(m_model->getMatrix(m_jointIndex)->m_matrix.mtxView, mtx.m_matrix.mtxView, p1.m_matrix.mtxView);
 	}
 }
@@ -1615,7 +1615,7 @@ lbl_80137DF0:
  */
 void CollPart::setScale(float scale)
 {
-	_1C = _18 * scale;
+	m_radius = m_baseRadius * scale;
 	if (getChild()) {
 		getChild()->setScale(scale);
 	}
@@ -1632,7 +1632,7 @@ void CollPart::setScale(float scale)
 void CollPart::getSphere(Sys::Sphere& sphere)
 {
 	P2ASSERTLINE(1289, isSphere());
-	float radius      = _1C;
+	float radius      = m_radius;
 	sphere.m_position = m_position;
 	sphere.m_radius   = radius;
 }
@@ -1647,8 +1647,8 @@ void CollPart::getTube(Sys::Tube& tube)
 	P2ASSERTLINE(1295, (isTubeLike()));
 	CollPart* child = getChild();
 
-	float v1           = _1C;
-	float v2           = child->_1C;
+	float v1           = m_radius;
+	float v2           = child->m_radius;
 	tube.m_startPos    = m_position;
 	tube.m_endPos      = child->m_position;
 	tube.m_startRadius = v1;
@@ -1671,16 +1671,16 @@ void CollPart::draw(Graphics&) { }
 MouthCollPart::MouthCollPart()
 {
 	clearRelations();
-	_1C           = 0.0f;
-	_18           = 0.0f;
-	_20           = 0.0f;
+	m_radius      = 0.0f;
+	m_baseRadius  = 0.0f;
+	m_position    = 0.0f;
 	m_position    = Vector3f(0.0f);
 	m_model       = nullptr;
 	m_jointIndex  = -1;
 	_60           = 0;
 	m_attribute   = 0;
 	m_hasCollPart = COLLTYPE_SPHERE;
-	_3C.setID('____');
+	m_isStickableID.setID('____');
 	_64 = nullptr;
 	_6C = 0;
 }
@@ -1696,10 +1696,10 @@ MouthCollPart::MouthCollPart()
 inline void MouthCollPart::setup(SysShape::Model* model, char* jointName, Vector3f& vector)
 {
 	m_model      = model;
-	_68          = static_cast<SysShape::Model*>(m_model)->getJoint(jointName);
-	_20          = vector;
-	m_jointIndex = _68->m_j3d->m_jointIdx;
-	_1C          = 0.0f;
+	m_mouthJoint = static_cast<SysShape::Model*>(m_model)->getJoint(jointName);
+	m_position   = vector;
+	m_jointIndex = m_mouthJoint->m_j3d->m_jointIdx;
+	m_radius     = 0.0f;
 	_64          = nullptr;
 }
 
@@ -1709,14 +1709,14 @@ inline void MouthCollPart::setup(SysShape::Model* model, char* jointName, Vector
  * Address:	801384C8
  * Size:	000048
  */
-void MouthCollPart::getPosition(Vector3f& outPosition) { _68->getWorldMatrix()->getTranslation(outPosition); }
+void MouthCollPart::getPosition(Vector3f& outPosition) { m_mouthJoint->getWorldMatrix()->getTranslation(outPosition); }
 
 /*
  * --INFO--
  * Address:	80138510
  * Size:	000038
  */
-void MouthCollPart::copyMatrixTo(Matrixf& outMtx) { PSMTXCopy(_68->getWorldMatrix()->m_matrix.mtxView, outMtx.m_matrix.mtxView); }
+void MouthCollPart::copyMatrixTo(Matrixf& outMtx) { PSMTXCopy(m_mouthJoint->getWorldMatrix()->m_matrix.mtxView, outMtx.m_matrix.mtxView); }
 
 /*
  * __ct__10MouthSlotsFv
@@ -1867,17 +1867,17 @@ CollPart* CollPart::clone(SysShape::MtxObject* mtxObject, CollPartMgr* mgr)
 		copy = new CollPart(mtxObject);
 	}
 
-	copy->_1C           = _1C;
-	copy->_18           = copy->_1C;
-	copy->_30           = _30;
-	copy->_3C           = _3C;
-	copy->_20           = _20;
-	copy->m_hasCollPart = m_hasCollPart;
-	copy->m_jointIndex  = m_jointIndex;
-	copy->m_model       = m_model;
-	copy->_60           = _60;
-	copy->m_attribute   = m_attribute;
-	copy->m_model       = mtxObject;
+	copy->m_radius        = m_radius;
+	copy->m_baseRadius    = copy->m_radius;
+	copy->m_currentID     = m_currentID;
+	copy->m_isStickableID = m_isStickableID;
+	copy->m_position      = m_position;
+	copy->m_hasCollPart   = m_hasCollPart;
+	copy->m_jointIndex    = m_jointIndex;
+	copy->m_model         = m_model;
+	copy->_60             = _60;
+	copy->m_attribute     = m_attribute;
+	copy->m_model         = mtxObject;
 
 	int childCount  = getChildCount();
 	CollPart* child = getChild();
@@ -1898,11 +1898,11 @@ CollPart* CollPart::clone(SysShape::MtxObject* mtxObject, CollPartMgr* mgr)
 void CollPart::read(Stream& input, bool isAgeCollPart)
 {
 	int childCount = input.readInt();
-	_1C            = input.readFloat();
-	_18            = _1C;
-	_30.read(input);
-	_3C.read(input);
-	_20.read(input);
+	m_radius       = input.readFloat();
+	m_baseRadius   = m_radius;
+	m_currentID.read(input);
+	m_isStickableID.read(input);
+	m_position.read(input);
 	m_jointIndex = input.readInt();
 	m_attribute  = input.readU16();
 	for (int i = 0; i < childCount; i++) {
@@ -1932,7 +1932,7 @@ void AgeCollPart::draw(Graphics& graphics)
 			Matrixf mtx;
 			makeMatrixTo(mtx);
 
-			if (_64 & 1) {
+			if (m_drawFlags & ACP_DRAWFLAG_ENABLED) {
 				float zVal     = joint->m_j3d->m_zRotation.z;
 				float rotation = zVal;
 				if (zVal < 0.1f) {
@@ -1952,6 +1952,6 @@ void AgeCollPart::draw(Graphics& graphics)
  */
 AgeCollPart::AgeCollPart(SysShape::Model* model)
     : CollPart(model)
-    , _64(0)
+    , m_drawFlags(ACP_DRAWFLAG_DISABLED)
 {
 }
