@@ -44,7 +44,7 @@ void PartsView::doDirectDraw(Graphics&) { }
  */
 void PartsView::doAnimation()
 {
-	if (m_model != nullptr) {
+	if (m_model) {
 		PSMTXCopy(_20, m_model->m_j3dModel->_24);
 		m_model->m_j3dModel->calc();
 		m_model->m_j3dModel->entry();
@@ -65,7 +65,7 @@ void PartsView::doEntry() { }
  */
 void PartsView::doSetView(int index)
 {
-	if (m_model != nullptr) {
+	if (m_model) {
 		m_model->setCurrentViewNo(index);
 	}
 }
@@ -77,7 +77,7 @@ void PartsView::doSetView(int index)
  */
 void PartsView::doViewCalc()
 {
-	if (m_model != nullptr) {
+	if (m_model) {
 		m_model->viewCalc();
 	}
 }

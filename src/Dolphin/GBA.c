@@ -69,7 +69,7 @@ int GBAGetStatusAsync(int portIndex, u8* p2)
 {
 	// UNUSED FUNCTION
 	GBA* gba = &__GBA[portIndex];
-	if (gba->m_syncCallback != nullptr) {
+	if (gba->m_syncCallback) {
 		return 2;
 	}
 	gba->_00[0]         = 0;
@@ -98,7 +98,7 @@ int GBAResetAsync(int portIndex, u8* p2)
 {
 	// UNUSED FUNCTION
 	GBA* gba = &__GBA[portIndex];
-	if (gba->m_syncCallback != nullptr) {
+	if (gba->m_syncCallback) {
 		return 2;
 	}
 	gba->_00[0]         = 0xFF;

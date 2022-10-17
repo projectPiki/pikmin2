@@ -148,7 +148,7 @@ bool BirthTypeDropState::isFinishableWaitingBirthTypeDrop(EnemyBase* enemy)
  */
 void BirthTypeDropState::init(Game::EnemyBase* enemy, Game::StateArg* arg)
 {
-	if (Game::mapMgr != nullptr) {
+	if (Game::mapMgr) {
 		enemy->m_position.y              = mapMgr->getMinY(enemy->m_position) + 300.0f;
 		EnemyTypeID::EEnemyTypeID typeID = enemy->getEnemyTypeID();
 		if (typeID != EnemyTypeID::EnemyID_BluePom && typeID != EnemyTypeID::EnemyID_RedPom && typeID != EnemyTypeID::EnemyID_YellowPom
@@ -806,11 +806,11 @@ EnemyBase::EnemyBase()
 		}
 	}
 
-	if (Game::shadowMgr != nullptr) {
+	if (Game::shadowMgr) {
 		Game::shadowMgr->createShadow(this);
 	}
 
-	if (lifeGaugeMgr != nullptr) {
+	if (lifeGaugeMgr) {
 		lifeGaugeMgr->createLifeGauge(this);
 	}
 
@@ -918,7 +918,7 @@ void EnemyBase::fadeEfxHamon()
 void EnemyBase::setEmotionCaution()
 {
 	m_emotion = EMOTE_Caution;
-	if (PSGetDirectedMainBgm() != nullptr) {
+	if (PSGetDirectedMainBgm()) {
 		m_soundObj->battleOff();
 	}
 }
@@ -942,7 +942,7 @@ void EnemyBase::setEmotionExcitement()
 void EnemyBase::setEmotionNone()
 {
 	m_emotion = EMOTE_None;
-	if (PSGetDirectedMainBgm() != nullptr) {
+	if (PSGetDirectedMainBgm()) {
 		m_soundObj->battleOff();
 	}
 }
@@ -1031,10 +1031,10 @@ void EnemyBase::onInitPost(Game::CreatureInitArg* arg)
 		getWaterSphere(&waterSphere);
 
 		WaterBox* waterBox = nullptr;
-		if (mapMgr != nullptr) {
+		if (mapMgr) {
 			waterBox = mapMgr->findWater(waterSphere);
 		}
-		if (waterBox != nullptr) {
+		if (waterBox) {
 			m_waterBox = waterBox;
 		} else {
 			m_waterBox = nullptr;
@@ -1081,7 +1081,7 @@ void EnemyBase::setCarcassArg(PelletViewArg& carcassArg)
 
 void EnemyBase::becomeCarcass(bool check)
 {
-	if (m_heldPellet != nullptr) {
+	if (m_heldPellet) {
 		InteractMattuan interactMatt(this, 2.5f);
 
 		m_heldPellet->stimulate(interactMatt);
@@ -1090,11 +1090,11 @@ void EnemyBase::becomeCarcass(bool check)
 
 	m_soundObj->setKilled();
 	if (check) {
-		if (lifeGaugeMgr != nullptr) {
+		if (lifeGaugeMgr) {
 			lifeGaugeMgr->inactiveLifeGauge(this);
 		}
 
-		if (shadowMgr != nullptr) {
+		if (shadowMgr) {
 			shadowMgr->delShadow(this);
 		}
 
@@ -1165,7 +1165,7 @@ void EnemyBase::onKill(CreatureKillArg* inputArg)
 			deathProcedure();
 			resetEvent(0, EB_Bittered); // 0xFFFFFDFF
 			constraintOff();
-			if (ItemHoney::mgr != nullptr) {
+			if (ItemHoney::mgr) {
 				s8 bitterDrop = (s8)EnemyInfoFunc::getEnemyInfo(getEnemyTypeID(), 0xFFFF)->m_bitterDrops;
 				f32 scaledChance;
 				f32 dropChance;
@@ -1218,7 +1218,7 @@ void EnemyBase::onKill(CreatureKillArg* inputArg)
 					ItemHoney::InitArg honeyArg(honeyByte, 0);
 					ItemHoney::Item* drop = ItemHoney::mgr->birth();
 
-					if (drop != nullptr) {
+					if (drop) {
 						drop->init((CreatureInitArg*)&honeyArg);
 						drop->setPosition(ball.m_position, false);
 						f32 theta    = TAU * randFloat(); // temp_f6
@@ -2072,7 +2072,7 @@ void EnemyBase::birth(Vector3f& pos, f32 faceDir)
 	_1F2 = 0xFF;
 	setParameters();
 	shadowMgr->addShadow(this);
-	if (lifeGaugeMgr != nullptr) {
+	if (lifeGaugeMgr) {
 		lifeGaugeMgr->activeLifeGauge(this, 1.0f);
 	}
 	m_model->hide();
@@ -2200,7 +2200,7 @@ void EnemyBase::doUpdateCommon()
 
 	if ((m_lod.m_flags & AILOD::FLAG_NEED_SHADOW) && isAlive()) {
 		WalkSmokeEffect::Mgr* smokeMgr = getWalkSmokeEffectMgr();
-		if (smokeMgr != nullptr) {
+		if (smokeMgr) {
 			smokeMgr->update(this);
 		}
 	}
@@ -2239,7 +2239,7 @@ void EnemyBase::doAnimationCullingOff()
 	m_animKeyEvent->m_running = false;
 	doAnimationUpdateAnimator();
 
-	if (m_pellet != nullptr) {
+	if (m_pellet) {
 		viewMakeMatrix(m_mainMatrix);
 		Matrixf mtx;
 		PSMTXScale(mtx.m_matrix.mtxView, m_scale.x, m_scale.y, m_scale.z);
@@ -2385,7 +2385,7 @@ void EnemyBase::doSetView(int viewNo) { m_model->setCurrentViewNo((u16)viewNo); 
  */
 bool EnemyBase::isCullingOff()
 {
-	if (m_pellet != nullptr) {
+	if (m_pellet) {
 		return true;
 	}
 	return ((!(isEvent(0, EB_Cullable))) || (m_lod.m_flags & AILOD::FLAG_NEED_SHADOW) || (m_lod.m_flags & AILOD::FLAG_UNKNOWN4)
@@ -2490,7 +2490,7 @@ void EnemyBase::createDropEffect(const Vector3f& position, f32 scale)
 void EnemyBase::createSplashDownEffect(const Vector3f& position, f32 scale)
 {
 	Vector3f effectPosition;
-	if (m_waterBox != nullptr) {
+	if (m_waterBox) {
 		effectPosition = Vector3f(position.x, *m_waterBox->getSeaHeightPtr(), position.z);
 	} else {
 		effectPosition = position;
@@ -2510,7 +2510,7 @@ void EnemyBase::createSplashDownEffect(const Vector3f& position, f32 scale)
  */
 void EnemyBase::createBounceEffect(const Vector3f& position, f32 scale)
 {
-	if (m_waterBox != nullptr) {
+	if (m_waterBox) {
 		createSplashDownEffect(position, scale);
 	} else {
 		createDropEffect(position, scale);
@@ -2558,7 +2558,7 @@ void EnemyBase::finishDropping(bool heightCheck)
 		Vector3f pos = ball.m_position; // sp40
 
 		if (heightCheck) {
-			if (mapMgr != nullptr) {
+			if (mapMgr) {
 				pos.y = mapMgr->getMinY(pos);
 			}
 		}
@@ -2643,14 +2643,14 @@ void EnemyBase::collisionMapAndPlat(f32 constraint)
 			_11C = 0.0f;
 		}
 
-		if (m_curTriangle == nullptr && moveInfo._44 != nullptr) {
+		if (m_curTriangle == nullptr && moveInfo._44) {
 			bounceProcedure(moveInfo._44);
 		}
 		m_curTriangle = moveInfo._44;
 
 		m_collisionPosition = moveInfo._50;
 
-		if (_288 == nullptr && moveInfo._48 != nullptr) {
+		if (_288 == nullptr && moveInfo._48) {
 			wallCallback(moveInfo);
 		}
 		_288 = moveInfo._48;
@@ -2660,7 +2660,7 @@ void EnemyBase::collisionMapAndPlat(f32 constraint)
 			platMgr->traceMove(moveInfo, constraint);
 
 			if (m_curTriangle == nullptr) {
-				if (moveInfo._44 != nullptr) {
+				if (moveInfo._44) {
 					bounceProcedure(moveInfo._44);
 				}
 				m_curTriangle = moveInfo._44;
@@ -2668,7 +2668,7 @@ void EnemyBase::collisionMapAndPlat(f32 constraint)
 				m_collisionPosition = moveInfo._50;
 			}
 
-			if (_288 == nullptr && moveInfo._48 != nullptr) {
+			if (_288 == nullptr && moveInfo._48) {
 				wallCallback(moveInfo);
 			}
 			_288 = moveInfo._48;
@@ -3213,7 +3213,7 @@ void EnemyBase::doSimulationConstraint(f32 arg)
 	if (!(isEvent(0, EB_HardConstraint))) {
 		if (_11C.x != 0.0f || _11C.z != 0.0f) {
 			setEvent(0, EB_30);
-		} else if (m_curTriangle != nullptr) {
+		} else if (m_curTriangle) {
 			resetEvent(0, EB_30);
 		}
 		if (isEvent(0, EB_30)) {
@@ -3259,11 +3259,11 @@ void EnemyBase::setPSEnemyBaseAnime()
 		SysShape::AnimInfo* info     = static_cast<SysShape::AnimInfo*>(anim.m_animMgr->m_animInfo.m_child)->getInfoByID(idx);
 		JAIAnimeFrameSoundData* file = info->m_basFile;
 
-		if (file != nullptr) {
+		if (file) {
 			SysShape::KeyEvent* event1 = info->getAnimKeyByType(0);
 			SysShape::KeyEvent* event2 = info->getAnimKeyByType(1);
 
-			if (event1 != nullptr && event2 != nullptr) {
+			if (event1 != nullptr && event2) {
 				f32 val1 = (f32)event1->m_frame;
 				f32 val2 = (f32)event2->m_frame;
 				m_soundObj->setAnime((JAIAnimeSoundData*)file, 1, val1, val2);
@@ -3314,11 +3314,11 @@ void EnemyBase::startBlend(int p1, int p2, SysShape::BlendFunction* blendFunc, f
 		SysShape::AnimInfo* info     = static_cast<SysShape::AnimInfo*>(anim.m_animMgr->m_animInfo.m_child)->getInfoByID(idx);
 		JAIAnimeFrameSoundData* file = info->m_basFile;
 
-		if (file != nullptr) {
+		if (file) {
 			SysShape::KeyEvent* event1 = info->getAnimKeyByType(0);
 			SysShape::KeyEvent* event2 = info->getAnimKeyByType(1);
 
-			if (event1 != nullptr && event2 != nullptr) {
+			if (event1 != nullptr && event2) {
 				f32 val1 = (f32)event1->m_frame;
 				f32 val2 = (f32)event2->m_frame;
 				m_soundObj->setAnime((JAIAnimeSoundData*)file, 1, val1, val2);
@@ -3385,11 +3385,11 @@ void EnemyBase::startMotion(int p1, SysShape::MotionListener* inputListener)
 		SysShape::AnimInfo* info     = static_cast<SysShape::AnimInfo*>(anim.m_animMgr->m_animInfo.m_child)->getInfoByID(idx);
 		JAIAnimeFrameSoundData* file = info->m_basFile;
 
-		if (file != nullptr) {
+		if (file) {
 			SysShape::KeyEvent* event1 = info->getAnimKeyByType(0);
 			SysShape::KeyEvent* event2 = info->getAnimKeyByType(1);
 
-			if (event1 != nullptr && event2 != nullptr) {
+			if (event1 != nullptr && event2) {
 				f32 val1 = (f32)event1->m_frame;
 				f32 val2 = (f32)event2->m_frame;
 				m_soundObj->setAnime((JAIAnimeSoundData*)file, 1, val1, val2);
@@ -3926,7 +3926,7 @@ void EnemyBase::throwupItem()
 
 		m_heldPellet = pelletMgr->birth(&pelletInitArg);
 
-		if (m_heldPellet != nullptr) {
+		if (m_heldPellet) {
 			InteractMattuan mattuan = InteractMattuan(this, 8.0f);
 			m_heldPellet->stimulate(mattuan);
 
@@ -3978,7 +3978,7 @@ void EnemyBase::throwupItem()
 			numberInitArg._14 = 2;
 			Pellet* pellet    = pelletMgr->birth(&numberInitArg);
 
-			if (pellet != nullptr) {
+			if (pellet) {
 				Vector3f throwupVelocity = Vector3f(velocity * (randFloat() - 0.5f), velocity, velocity * (randFloat() - 0.5f));
 				pellet->setPosition(throwupPosition, false);
 				pellet->setVelocity(throwupVelocity);
@@ -4313,7 +4313,7 @@ void EnemyBase::viewStartPreCarryMotion()
  */
 void EnemyBase::viewOnPelletKilled()
 {
-	if (m_heldPellet != nullptr) {
+	if (m_heldPellet) {
 		InteractMattuan mattuan = InteractMattuan(this, 2.5f);
 		m_heldPellet->stimulate(mattuan);
 		m_heldPellet = nullptr;
@@ -4321,10 +4321,10 @@ void EnemyBase::viewOnPelletKilled()
 
 	m_soundObj->setKilled();
 
-	if (lifeGaugeMgr != nullptr) {
+	if (lifeGaugeMgr) {
 		lifeGaugeMgr->inactiveLifeGauge(this);
 	}
-	if (shadowMgr != nullptr) {
+	if (shadowMgr) {
 		shadowMgr->delShadow(this);
 	}
 
@@ -4390,9 +4390,9 @@ void EnemyBase::updateWaterBox()
 	Sys::Sphere waterSphere;
 	getWaterSphere(&waterSphere);
 
-	if (m_waterBox != nullptr) {
+	if (m_waterBox) {
 		if (!m_waterBox->inWater(waterSphere)) {
-			if (mapMgr != nullptr) {
+			if (mapMgr) {
 				m_waterBox = mapMgr->findWater(waterSphere);
 			}
 			if (m_waterBox == nullptr) {
@@ -4404,10 +4404,10 @@ void EnemyBase::updateWaterBox()
 		updateEfxHamon();
 	} else {
 		WaterBox* waterBox = nullptr;
-		if (mapMgr != nullptr) {
+		if (mapMgr) {
 			waterBox = mapMgr->findWater(waterSphere);
 		}
-		if (waterBox != nullptr) {
+		if (waterBox) {
 			m_waterBox = waterBox;
 			inWaterCallback(waterBox);
 			createEfxHamon();
@@ -4485,7 +4485,7 @@ f32 EnemyBase::getFirstKeyFrame()
 {
 	SysShape::Animator animator = m_animator->getAnimator();
 	CNode* node                 = animator.m_animInfo->m_keyEvent.m_child;
-	if (node != nullptr) {
+	if (node) {
 		return (s32) static_cast<SysShape::KeyEvent*>(node)->m_frame;
 	}
 	return 0.0f;
@@ -4525,7 +4525,7 @@ bool EnemyBase::isStopMotion() { return m_animator->m_flags.typeView & 1; }
 int EnemyBase::getCurrAnimIndex()
 {
 	SysShape::Animator animator = m_animator->getAnimator();
-	if (animator.m_animInfo != nullptr) {
+	if (animator.m_animInfo) {
 		return animator.m_animInfo->m_id;
 	}
 	return -1;
@@ -4566,7 +4566,7 @@ PSM::Creature* EnemyBase::getPSCreature() { return static_cast<PSM::Creature*>(m
  */
 int EnemyBase::getStateID()
 {
-	if (m_currentLifecycleState != nullptr) {
+	if (m_currentLifecycleState) {
 		return m_currentLifecycleState->m_stateID;
 	}
 	return -1;

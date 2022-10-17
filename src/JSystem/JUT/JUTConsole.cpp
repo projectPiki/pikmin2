@@ -242,7 +242,7 @@ void JUTConsole::doDraw(JUTConsole::EConsoleType inputType) const
 
 			do {
 				linePtr = (char*)getLinePtr(currLine); // getLinePtr was fixed, it was adding to the array index not to the address
-				if ((u8)linePtr[-1] != nullptr) {
+				if ((u8)linePtr[-1]) {
 
 					if (inputType != 2) {
 						f32 f1, f2, f3, f4;

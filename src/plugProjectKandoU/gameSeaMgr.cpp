@@ -416,7 +416,7 @@ void AABBWaterBox::attachModel(J3DModelData* modelData, Sys::MatTexAnimation* an
  */
 void AABBWaterBox::calcMatrix(void)
 {
-	if (m_model != nullptr) {
+	if (m_model) {
 		_44.y = _30 + _0C;
 		Vector3f v1(_3C, 1.0f, _40);
 		Matrixf mtx;
@@ -444,7 +444,7 @@ void AABBWaterBox::doAnimation(void)
  */
 void AABBWaterBox::doSetView(int viewNo)
 {
-	if (m_model != nullptr) {
+	if (m_model) {
 		m_model->setCurrentViewNo((u16)viewNo);
 	}
 }
@@ -456,7 +456,7 @@ void AABBWaterBox::doSetView(int viewNo)
  */
 void AABBWaterBox::doViewCalc(void)
 {
-	if (m_model != nullptr) {
+	if (m_model) {
 		m_model->viewCalc();
 	}
 }

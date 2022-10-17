@@ -57,7 +57,7 @@ void __CARDExtHandler(int slotIndex)
 		EXISetExiCallback(slotIndex, nullptr);
 		OSCancelAlarm(&block->_0E0);
 		doneWriteCallback = block->doneWriteCallback;
-		if (doneWriteCallback != nullptr) {
+		if (doneWriteCallback) {
 			block->doneWriteCallback = nullptr;
 			doneWriteCallback(slotIndex, -3);
 		}
@@ -184,7 +184,7 @@ void __CARDExiHandler(int slotIndex)
 	}
 doCallback:
 	cb = block->doneWriteCallback;
-	if (cb != nullptr) {
+	if (cb) {
 		block->doneWriteCallback = nullptr;
 		cb(slotIndex, v1);
 	}

@@ -51,7 +51,7 @@ void StateDead::init(EnemyBase* enemy, StateArg* stateArg)
 
 	Obj* childHiba = elecHiba->getChildObjPtr();
 
-	if (childHiba != nullptr) {
+	if (childHiba) {
 		childHiba->setEvent(0, EB_3);
 		childHiba->resetEvent(0, EB_LifegaugeVisible);
 		childHiba->setEvent(0, EB_Vulnerable);
@@ -97,7 +97,7 @@ void StateWait::init(EnemyBase* enemy, StateArg* stateArg)
 {
 	Obj* elecHiba     = static_cast<Obj*>(enemy);
 	WaitStateArg* arg = static_cast<WaitStateArg*>(stateArg);
-	if (arg != nullptr) {
+	if (arg) {
 		elecHiba->m_waitTimer = arg->m_waitTimer;
 	} else {
 		elecHiba->m_waitTimer = 0.0f;
@@ -107,7 +107,7 @@ void StateWait::init(EnemyBase* enemy, StateArg* stateArg)
 
 	Obj* childHiba = elecHiba->getChildObjPtr();
 
-	if (childHiba != nullptr) {
+	if (childHiba) {
 		childHiba->startMotion(0, nullptr);
 	}
 }
@@ -154,7 +154,7 @@ void StateSign::init(EnemyBase* enemy, StateArg* stateArg)
 
 	Obj* childHiba = elecHiba->getChildObjPtr();
 
-	if (childHiba != nullptr) {
+	if (childHiba) {
 		childHiba->resetEvent(0, EB_Cullable);
 		childHiba->startMotion(0, nullptr);
 		elecHiba->startChargeEffect(childHiba);
@@ -174,7 +174,7 @@ void StateSign::exec(EnemyBase* enemy)
 
 	if (elecHiba->m_health <= 0.0f) {
 		Obj* childHiba = elecHiba->getChildObjPtr();
-		if (childHiba != nullptr) {
+		if (childHiba) {
 			elecHiba->finishChargeEffect();
 		}
 
@@ -196,7 +196,7 @@ void StateSign::cleanup(EnemyBase* enemy)
 
 	Obj* childHiba = elecHiba->getChildObjPtr();
 
-	if (childHiba != nullptr) {
+	if (childHiba) {
 		childHiba->setEvent(0, EB_Cullable);
 	}
 }
@@ -216,7 +216,7 @@ void StateAttack::init(EnemyBase* enemy, StateArg* stateArg)
 
 	Obj* childHiba = elecHiba->getChildObjPtr();
 
-	if (childHiba != nullptr) {
+	if (childHiba) {
 		childHiba->resetEvent(0, EB_Cullable);
 		childHiba->startMotion(0, nullptr);
 		elecHiba->startDisChargeEffect();
@@ -245,7 +245,7 @@ void StateAttack::exec(EnemyBase* enemy)
 
 	Obj* childHiba = elecHiba->getChildObjPtr();
 
-	if (childHiba != nullptr) {
+	if (childHiba) {
 		Vector3f childPos = childHiba->getPosition();
 		elecHiba->interactDenkiAttack(childPos);
 		elecHiba->updateEfxLod();
@@ -266,7 +266,7 @@ void StateAttack::cleanup(EnemyBase* enemy)
 
 	Obj* childHiba = elecHiba->getChildObjPtr();
 
-	if (childHiba != nullptr) {
+	if (childHiba) {
 		childHiba->setEvent(0, EB_Cullable);
 		elecHiba->finishDisChargeEffect();
 	}

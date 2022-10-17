@@ -76,7 +76,7 @@ bool TForever::create(Arg* arg)
 
 	Vector2f vec = *arg;
 
-	if (m_emitter != nullptr) {
+	if (m_emitter) {
 		return false;
 	}
 
@@ -133,7 +133,7 @@ void TForever::setGlobalEnvColor(JUtility::TColor& color)
 {
 	JPABaseEmitter* emitter = m_emitter;
 
-	if (emitter != nullptr) {
+	if (emitter) {
 		m_emitter->m_color.setRGB(color);
 	}
 }
@@ -145,7 +145,7 @@ void TForever::setGlobalEnvColor(JUtility::TColor& color)
  */
 void TForever::setGlobalAlpha(u8 alpha)
 {
-	if (m_emitter != nullptr) {
+	if (m_emitter) {
 		m_emitter->_BB = alpha;
 	}
 }
@@ -233,7 +233,7 @@ void TForeverN::setGlobalAlpha(u8 alpha)
 {
 	for (u8 i = 0; i < m_length; i++) {
 		JPABaseEmitter* emitter = m_forevers[i].m_emitter;
-		if (emitter != nullptr) {
+		if (emitter) {
 			emitter->_BB = alpha;
 		}
 	}
@@ -246,13 +246,13 @@ void TForeverN::setGlobalAlpha(u8 alpha)
  */
 bool TChasePos::create(Arg* arg)
 {
-	if (m_emitter != nullptr) {
+	if (m_emitter) {
 		return false;
 	}
 
 	m_emitter = particle2dMgr->create(_0C, *_14, _05, _04);
 
-	if (m_emitter != nullptr) {
+	if (m_emitter) {
 		m_emitter->m_emitterCallback = this;
 	} else {
 		return false;
@@ -285,13 +285,13 @@ void TChasePos::execute(JPABaseEmitter* emitter)
  */
 bool TChasePosDir::create(Arg* arg)
 {
-	if (m_emitter != nullptr) {
+	if (m_emitter) {
 		return false;
 	}
 
 	m_emitter = particle2dMgr->create(_0C, *_14, _05, _04);
 
-	if (m_emitter != nullptr) {
+	if (m_emitter) {
 		m_emitter->m_emitterCallback = this;
 	} else {
 		return false;

@@ -1381,7 +1381,7 @@ PlatInstance* PlatMgr::addInstance(PlatAddInstanceArg& arg)
 	node->m_contents                = instance;
 	m_node.add(node);
 	node->m_contents->constructor();
-	if (Game::platCellMgr != nullptr) {
+	if (Game::platCellMgr) {
 		Sys::Sphere sphere;
 		sphere.m_position.x = instance->_B8->m_matrix.structView.tx;
 		sphere.m_position.y = instance->_B8->m_matrix.structView.ty;
@@ -1398,7 +1398,7 @@ PlatInstance* PlatMgr::addInstance(PlatAddInstanceArg& arg)
 		Recti v2;
 		Game::platCellMgr->calcExtent(sphere, v1, v2);
 		Game::platCellMgr->entry(instance, sphere);
-		if (instance->_F4 != nullptr) {
+		if (instance->_F4) {
 			instance->_F4->getCreatureName();
 		}
 	}

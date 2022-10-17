@@ -168,7 +168,7 @@ void EnemyMgrBase::doSimulation(float arg)
 {
 	for (int i = 0; i < m_objLimit; i++) {
 		EnemyBase* enemy = getEnemy(i);
-		if (enemy->m_pellet != nullptr) {
+		if (enemy->m_pellet) {
 			enemy->doSimulationCarcass(arg);
 		} else {
 			if (enemy->isEvent(0, EB_Alive) && (!(generalEnemyMgr->_1C & 1) || enemy->isMovieActor())) {
@@ -221,7 +221,7 @@ EnemyBase* EnemyMgrBase::birth(Game::EnemyBirthArg& arg)
 
 	EnemyBase* enemy = getEnemyByID(arg.m_typeID);
 
-	if (enemy != nullptr) {
+	if (enemy) {
 		int objs = m_objCount;
 		m_objCount++;
 		enemy->birth(arg.m_position, arg.m_faceDir);
@@ -243,7 +243,7 @@ EnemyBase* EnemyMgrBase::birth(Game::EnemyBirthArg& arg)
 		enemy->m_dropGroup            = arg.m_tekiBirthType;
 		EnemyGeneratorBase* generator = arg.m_generator;
 
-		if (generator != nullptr) {
+		if (generator) {
 			if (EnemyInitialParamBase* param = static_cast<EnemyInitialParamBase*>(generator->getInitialParam())) {
 				enemy->setInitialSetting(param);
 			}
@@ -274,7 +274,7 @@ void EnemyMgrBase::kill(EnemyBase* enemy)
 	}
 
 	EnemyFSMState* state = enemy->m_currentLifecycleState;
-	if (state != nullptr) {
+	if (state) {
 		JUT_PANICLINE(447, "kill dead enemy. %s %d\n state:%s", enemy->getCreatureName(), enemy->getCreatureID(), state->m_name);
 	} else {
 		JUT_PANICLINE(453, "kill dead enemy. %s %d\n state:%d", enemy->getCreatureName(), enemy->getCreatureID(), enemy->getStateID());
@@ -410,7 +410,7 @@ void EnemyMgrBase::initParms()
 void EnemyMgrBase::loadStoneSetting(const char* filename)
 {
 	void* resource = gParmArc->getResource(filename);
-	if (resource != nullptr) {
+	if (resource) {
 		RamStream stream(resource, -1);
 		stream.resetPosition(STREAM_MODE_TEXT, STREAM_MODE_TEXT);
 		m_stoneInfo.setup(stream);
@@ -515,16 +515,16 @@ J3DModelData* EnemyMgrBase::loadModelData(JKRArchive* archive)
 	J3DModelData* modelData = nullptr;
 
 	void* bmd = JKRFileLoader::getGlbResource("enemy.bmd", archive);
-	if (bmd != nullptr) {
+	if (bmd) {
 		modelData = doLoadBmd(bmd);
 	} else {
 		void* bdl = JKRFileLoader::getGlbResource("enemy.bdl", archive);
-		if (bdl != nullptr) {
+		if (bdl) {
 			modelData = doLoadBdl(bdl);
 		}
 	}
 
-	if (modelData != nullptr) {
+	if (modelData) {
 		m_modelData = modelData;
 		m_modelData->newSharedDisplayList(0x40000);
 		m_modelData->makeSharedDL();
@@ -576,10 +576,10 @@ void EnemyMgrBase::loadAnimData()
 	LoadResource::Arg arg(file);
 	LoadResource::Node* node = gLoadResourceMgr->mountArchive(arg);
 
-	if (node != nullptr) {
+	if (node) {
 		archive = node->m_archive;
 	}
-	if (archive != nullptr) {
+	if (archive) {
 		info              = EnemyInfoFunc::getEnemyInfo(getEnemyTypeID(), 0xFFFF);
 		char* animMgrName = info->m_animMgrName;
 		if (*animMgrName == 0) {

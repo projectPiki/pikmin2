@@ -93,7 +93,7 @@ struct TSimple4 : public TBase {
 		for (int i = 0; i < 4; i++) {
 			m_emitters[i] = particleMgr->create(m_effectIDs[i], arg.m_position, 0);
 			// m_emitters[i] = particleMgr->create(m_effectIDs[i], position, 0);
-			if (m_emitters[i] != nullptr) {
+			if (m_emitters[i]) {
 				m_emitters[i]->m_emitterCallback = &mCallBack_StaticClipping;
 			} else {
 				return false;

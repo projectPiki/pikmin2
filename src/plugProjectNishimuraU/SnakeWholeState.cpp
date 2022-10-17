@@ -124,7 +124,7 @@ void StateStay::init(EnemyBase* enemy, StateArg* stateArg)
 	snagret->startMotion(1, nullptr);
 	snagret->stopMotion();
 
-	if (snagret->m_waterBox != nullptr) {
+	if (snagret->m_waterBox) {
 		snagret->fadeEfxHamon();
 	}
 }
@@ -162,7 +162,7 @@ void StateStay::exec(EnemyBase* enemy)
 				}
 			}
 
-			if (target != nullptr) {
+			if (target) {
 				break;
 			}
 			pikiIterator.next();
@@ -186,7 +186,7 @@ void StateStay::exec(EnemyBase* enemy)
 					}
 				}
 
-				if (target != nullptr) {
+				if (target) {
 					break;
 				}
 				naviIterator.next();
@@ -199,7 +199,7 @@ void StateStay::exec(EnemyBase* enemy)
 	}
 
 	snagret->m_stateTimer += sys->m_secondsPerFrame;
-	if (target != nullptr) {
+	if (target) {
 		snagret->m_targetCreature = target;
 		snagret->appearNearByTarget(target);
 		snagret->setBossAppearBGM();
@@ -730,14 +730,14 @@ void StateAppear1::exec(EnemyBase* enemy)
 			} else if (EnemyFunc::isStartFlick(snagret, false)) {
 				transit(snagret, SNAKEWHOLE_Disappear, nullptr);
 
-			} else if (snagret->getAttackPiki(5) != nullptr || snagret->getAttackNavi(5) != nullptr) {
+			} else if (snagret->getAttackPiki(5) != nullptr || snagret->getAttackNavi(5)) {
 				if (snagret->getStickHeadPikmin() != 0) {
 					transit(snagret, SNAKEWHOLE_Struggle, nullptr);
 				} else {
 					transit(snagret, SNAKEWHOLE_Attack, nullptr);
 				}
 
-			} else if (snagret->getSearchedTarget() != nullptr) {
+			} else if (snagret->getSearchedTarget()) {
 				transit(snagret, SNAKEWHOLE_Walk, nullptr);
 
 			} else {
@@ -763,7 +763,7 @@ void StateAppear1::cleanup(EnemyBase* enemy)
 	snagret->setEvent(0, EB_Cullable);
 	snagret->hardConstraintOff();
 
-	if (snagret->m_waterBox != nullptr) {
+	if (snagret->m_waterBox) {
 		snagret->createEfxHamon();
 	}
 }
@@ -834,14 +834,14 @@ void StateAppear2::exec(EnemyBase* enemy)
 			} else if (EnemyFunc::isStartFlick(snagret, false)) {
 				transit(snagret, SNAKEWHOLE_Disappear, nullptr);
 
-			} else if (snagret->getAttackPiki(5) != nullptr || snagret->getAttackNavi(5) != nullptr) {
+			} else if (snagret->getAttackPiki(5) != nullptr || snagret->getAttackNavi(5)) {
 				if (snagret->getStickHeadPikmin() != 0) {
 					transit(snagret, SNAKEWHOLE_Struggle, nullptr);
 				} else {
 					transit(snagret, SNAKEWHOLE_Attack, nullptr);
 				}
 
-			} else if (snagret->getSearchedTarget() != nullptr) {
+			} else if (snagret->getSearchedTarget()) {
 				transit(snagret, SNAKEWHOLE_Walk, nullptr);
 
 			} else {
@@ -863,7 +863,7 @@ void StateAppear2::cleanup(EnemyBase* enemy)
 	snagret->setEvent(0, EB_Cullable);
 	snagret->hardConstraintOff();
 
-	if (snagret->m_waterBox != nullptr) {
+	if (snagret->m_waterBox) {
 		snagret->createEfxHamon();
 	}
 }
@@ -980,10 +980,10 @@ void StateWait::exec(EnemyBase* enemy)
 	} else if (snagret->isOutTerritory()) {
 		snagret->m_nextState = SNAKEWHOLE_Home;
 		snagret->finishMotion();
-	} else if (snagret->getAttackPiki(5) != nullptr || snagret->getAttackNavi(5) != nullptr) {
+	} else if (snagret->getAttackPiki(5) != nullptr || snagret->getAttackNavi(5)) {
 		snagret->m_nextState = SNAKEWHOLE_Attack;
 		snagret->finishMotion();
-	} else if (snagret->getSearchedTarget() != nullptr) {
+	} else if (snagret->getSearchedTarget()) {
 		snagret->m_nextState = SNAKEWHOLE_Walk;
 		snagret->finishMotion();
 	} else {
@@ -1040,7 +1040,7 @@ void StateWalk::exec(EnemyBase* enemy)
 	} else if (snagret->isOutTerritory()) {
 		snagret->m_nextState = SNAKEWHOLE_Home;
 		snagret->finishMotion();
-	} else if (snagret->getAttackPiki(5) != nullptr || snagret->getAttackNavi(5) != nullptr) {
+	} else if (snagret->getAttackPiki(5) != nullptr || snagret->getAttackNavi(5)) {
 		snagret->m_nextState = SNAKEWHOLE_Attack;
 		snagret->finishMotion();
 	}
@@ -1058,7 +1058,7 @@ void StateWalk::exec(EnemyBase* enemy)
 			snagret->_2C8 = 0.0f;
 
 			Creature* target = snagret->getSearchedTarget();
-			if (target != nullptr) {
+			if (target) {
 				Vector3f targetPos = target->getPosition();
 				snagret->setJumpMove(targetPos);
 			} else {
@@ -1200,7 +1200,7 @@ void StateAttack::exec(EnemyBase* enemy)
 			int idx    = snagret->_2E4;
 			Piki* piki = snagret->getAttackPiki(idx);
 
-			if (piki != nullptr) {
+			if (piki) {
 				CollPart* slot = snagret->getSwallowSlot();
 				InteractSwallow swallow(snagret, 1.0f, slot, 0);
 				piki->stimulate(swallow);
@@ -1208,7 +1208,7 @@ void StateAttack::exec(EnemyBase* enemy)
 			} else {
 				Navi* navi = snagret->getAttackNavi(idx);
 
-				if (navi != nullptr) {
+				if (navi) {
 					Parms* parms = static_cast<Parms*>(snagret->m_parms);
 					InteractAttack attack(snagret, parms->m_general.m_attackDamage.m_value, nullptr);
 					navi->stimulate(attack);
@@ -1221,9 +1221,9 @@ void StateAttack::exec(EnemyBase* enemy)
 
 		} else if ((u32)snagret->m_animKeyEvent->m_type == KEYEVENT_4) {
 
-			if (!snagret->isFinishMotion() && snagret->getSwallowSlot() != nullptr) {
+			if (!snagret->isFinishMotion() && snagret->getSwallowSlot()) {
 
-				if (snagret->getAttackPiki(5) != nullptr || snagret->getAttackNavi(5) != nullptr) {
+				if (snagret->getAttackPiki(5) != nullptr || snagret->getAttackNavi(5)) {
 					snagret->startMotion(snagret->_2E4 + 4, nullptr);
 					snagret->setMotionFrame(snagret->getFirstKeyFrame());
 					snagret->startJointCallBack();
@@ -1252,7 +1252,7 @@ void StateAttack::exec(EnemyBase* enemy)
 				return;
 			}
 
-			if (snagret->getAttackPiki(5) != nullptr || snagret->getAttackNavi(5) != nullptr) {
+			if (snagret->getAttackPiki(5) != nullptr || snagret->getAttackNavi(5)) {
 				if (snagret->getStickHeadPikmin() != 0) {
 					transit(snagret, SNAKEWHOLE_Struggle, nullptr);
 					return;
@@ -1268,7 +1268,7 @@ void StateAttack::exec(EnemyBase* enemy)
 				return;
 			}
 
-			if (snagret->getSearchedTarget() != nullptr) {
+			if (snagret->getSearchedTarget()) {
 				transit(snagret, SNAKEWHOLE_Walk, nullptr);
 				return;
 			}
@@ -1322,7 +1322,7 @@ void StateEat::exec(EnemyBase* enemy)
 				return;
 			}
 
-			if (snagret->getAttackPiki(5) != nullptr || snagret->getAttackNavi(5) != nullptr) {
+			if (snagret->getAttackPiki(5) != nullptr || snagret->getAttackNavi(5)) {
 				if (snagret->getStickHeadPikmin() != 0) {
 					transit(snagret, SNAKEWHOLE_Struggle, nullptr);
 					return;
@@ -1338,7 +1338,7 @@ void StateEat::exec(EnemyBase* enemy)
 				return;
 			}
 
-			if (snagret->getSearchedTarget() != nullptr) {
+			if (snagret->getSearchedTarget()) {
 				transit(snagret, SNAKEWHOLE_Walk, nullptr);
 				return;
 			}
@@ -1394,7 +1394,7 @@ void StateStruggle::exec(EnemyBase* enemy)
 			return;
 		}
 
-		if (snagret->getAttackPiki(5) != nullptr || snagret->getAttackNavi(5) != nullptr) {
+		if (snagret->getAttackPiki(5) != nullptr || snagret->getAttackNavi(5)) {
 			transit(snagret, SNAKEWHOLE_Attack, nullptr);
 			return;
 		}
@@ -1404,7 +1404,7 @@ void StateStruggle::exec(EnemyBase* enemy)
 			return;
 		}
 
-		if (snagret->getSearchedTarget() != nullptr) {
+		if (snagret->getSearchedTarget()) {
 			transit(snagret, SNAKEWHOLE_Walk, nullptr);
 			return;
 		}

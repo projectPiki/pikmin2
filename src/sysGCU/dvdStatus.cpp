@@ -119,7 +119,7 @@ void DvdStatus::draw(void)
 
 		if (gP2JMEMgr && gP2JMEMgr->_28) {
 			JStack128.setFont((JUTFont*)gP2JMEMgr->m_font);
-		} else if (sys->m_romFont != nullptr) {
+		} else if (sys->m_romFont) {
 			JStack128.setFont((JUTFont*)sys->m_romFont);
 		} else {
 			JUT_ASSERTLINE(279, false, "no ROM font\n");

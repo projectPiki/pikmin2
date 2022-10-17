@@ -49,14 +49,14 @@ void CallBack_CounterDay::init(J2DScreen* p2, unsigned long long p3, unsigned lo
                                bool p7)
 {
 	_A8 = (J2DPicture*)TagSearch(p2, p5);
-	if (_A8 != nullptr) {
+	if (_A8) {
 		_A8->hide();
 		_A8->setBasePosition(POS_CENTER);
 	}
 	CallBack_CounterRV::init(p2, p3, p4, 0, p6, true);
 	setCenteringMode(ECM_Unknown1);
 	setValue();
-	if (_74 != nullptr) {
+	if (_74) {
 		_74->hide();
 	}
 	_6C->hide();

@@ -512,7 +512,7 @@ void* JKRDvdArchive::fetchResource(void* resourceBuffer, unsigned long bufferSiz
 		}
 		JKRHeap::copyMemory(resourceBuffer, entry->_10, size);
 	}
-	if (resSize != nullptr) {
+	if (resSize) {
 		*resSize = size;
 	}
 	return resourceBuffer;

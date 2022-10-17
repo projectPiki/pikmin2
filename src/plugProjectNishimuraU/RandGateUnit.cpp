@@ -14,7 +14,7 @@ RandGateUnit::RandGateUnit(MapUnitGenerator* generator)
 	m_gatePlacedCount = 0;
 
 	FloorInfo* floorInfo = m_generator->m_floorInfo;
-	if (floorInfo != nullptr) {
+	if (floorInfo) {
 		m_gateMax       = floorInfo->getGateMax();
 		m_gateWeightSum = floorInfo->getGateWeightSum();
 	} else {
@@ -48,7 +48,7 @@ void RandGateUnit::setGateDoor()
 			int roomNum;
 			room = getRoomNodePtr(roomNum);
 
-			if (gate != nullptr && room != nullptr) {
+			if (gate != nullptr && room) {
 				int doorDirect = room->getDoorDirect(roomNum);
 				room->m_gateNode->add(new GateNode(gate, roomNum, doorDirect));
 				m_gatePlacedCount++;
@@ -82,7 +82,7 @@ GateUnit* RandGateUnit::getGateUnit()
 	for (GateNode* child = static_cast<GateNode*>(node->m_child); child != nullptr; child = static_cast<GateNode*>(child->m_next)) {
 		gate = child->m_unit;
 		info = gate->m_info;
-		if (info != nullptr) {
+		if (info) {
 			gateSum += info->m_weight;
 		} else {
 			gateSum++;
@@ -102,18 +102,18 @@ GateUnit* RandGateUnit::getGateUnit()
 MapNode* RandGateUnit::getRoomNodePtr(int& idx)
 {
 	MapNode* node = getItemSetCapDoor(idx);
-	if (node != nullptr) {
+	if (node) {
 		return node;
 	}
 
 	node = getRoomMinScoreDoor(idx);
-	if (node != nullptr) {
+	if (node) {
 		return node;
 	}
 
 	if ((randWeightFloat(1.0f)) < 0.8f) {
 		node = getRoomLowScoreDoor(idx);
-		if (node != nullptr) {
+		if (node) {
 			return node;
 		}
 	}

@@ -45,7 +45,7 @@ void TTitleFogMgr::setGX(Camera& camera)
 void TTitleFogMgr::loadSettingFile(JKRArchive* archive, char* file)
 {
 	void* resource = archive->getResource(file);
-	if (resource != nullptr) {
+	if (resource) {
 		RamStream stream(resource, -1);
 		stream.m_mode = 1;
 		if (stream.m_mode == 1) {

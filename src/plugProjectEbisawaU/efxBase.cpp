@@ -402,7 +402,7 @@ void TOneEmitter::executeAfter(JPABaseEmitter* emitter)
 			int createCount = emitter->getCurrentCreateNumber();
 			for (int i = 0; i < createCount; i++) {
 				JPABaseParticle* particle = emitter->createParticle();
-				if (particle != nullptr) {
+				if (particle) {
 					// JGeometry::TVec3f v2;
 					// v2.x = v1.x;
 					// v2.z = v1.z;
@@ -492,11 +492,11 @@ lbl_803AE9D8:
  */
 bool TOneEmitter::create(efx::Arg*)
 {
-	if (m_emitter != nullptr) {
+	if (m_emitter) {
 		return false;
 	}
 	m_emitter = particleMgr->create(m_effectID, Vector3f::zero, 0);
-	if (m_emitter != nullptr) {
+	if (m_emitter) {
 		m_emitter->_F4 |= 0x40;
 		m_emitter->_F4 |= 0x01;
 		m_emitter->m_emitterCallback = this;
@@ -513,7 +513,7 @@ bool TOneEmitter::create(efx::Arg*)
 void TOneEmitter::fade()
 {
 	m_context.clearRelations();
-	if (m_emitter != nullptr) {
+	if (m_emitter) {
 		particleMgr->fade(m_emitter);
 		m_emitter = nullptr;
 	}
@@ -528,7 +528,7 @@ void TOneEmitter::fade()
 void TOneEmitter::forceKill()
 {
 	m_context.clearRelations();
-	if (m_emitter != nullptr) {
+	if (m_emitter) {
 		particleMgr->forceKill(m_emitter);
 		m_emitter = nullptr;
 	}
@@ -562,11 +562,11 @@ void TOneEmitterChasePos::del(efx::ContextChasePos* context) { context->del(); }
  */
 bool TOneEmitterChasePos::create(efx::Arg* arg)
 {
-	if (m_emitter != nullptr) {
+	if (m_emitter) {
 		return false;
 	}
 	m_emitter = particleMgr->create(m_effectID, Vector3f::zero, 0);
-	if (m_emitter != nullptr) {
+	if (m_emitter) {
 		m_emitter->_F4 |= 0x40;
 		m_emitter->_F4 |= 0x01;
 		m_emitter->m_emitterCallback = this;
@@ -650,7 +650,7 @@ lbl_803AECF0:
 void TOneEmitterChasePos::fade()
 {
 	m_context.clearRelations();
-	if (m_emitter != nullptr) {
+	if (m_emitter) {
 		particleMgr->fade(m_emitter);
 		m_emitter = nullptr;
 	}
@@ -665,7 +665,7 @@ void TOneEmitterChasePos::fade()
 void TOneEmitterChasePos::forceKill()
 {
 	m_context.clearRelations();
-	if (m_emitter != nullptr) {
+	if (m_emitter) {
 		particleMgr->forceKill(m_emitter);
 		m_emitter = nullptr;
 	}
@@ -680,11 +680,11 @@ void TOneEmitterChasePos::forceKill()
 bool TOneEmitterSimple::create(efx::Arg* arg)
 {
 	_14 = 0;
-	if (m_emitter != nullptr) {
+	if (m_emitter) {
 		return false;
 	}
 	m_emitter = particleMgr->create(m_effectID, Vector3f::zero, 0);
-	if (m_emitter != nullptr) {
+	if (m_emitter) {
 		m_emitter->_F4 |= 0x40;
 		m_emitter->_F4 |= 0x01;
 		m_emitter->_24               = 0;
@@ -797,7 +797,7 @@ bool TSimple1::create(efx::Arg* arg)
 	P2ASSERTLINE(558, arg != nullptr);
 	for (int i = 0; i < 1; i++) {
 		m_emitters[i] = particleMgr->create(m_effectIDs[i], arg->m_position, 0);
-		if (m_emitters[i] != nullptr) {
+		if (m_emitters[i]) {
 			m_emitters[i]->m_emitterCallback = &mCallBack_StaticClipping;
 		} else {
 			return false;
@@ -817,7 +817,7 @@ bool TSimple2::create(efx::Arg* arg)
 	P2ASSERTLINE(574, arg != nullptr);
 	for (int i = 0; i < 2; i++) {
 		m_emitters[i] = particleMgr->create(m_effectIDs[i], arg->m_position, 0);
-		if (m_emitters[i] != nullptr) {
+		if (m_emitters[i]) {
 			m_emitters[i]->m_emitterCallback = &mCallBack_StaticClipping;
 		} else {
 			return false;
@@ -845,7 +845,7 @@ bool TSimple3::create(efx::Arg* arg)
 	// return createEmitters(arg, m_emitters, m_effectIDs, 3);
 	for (int i = 0; i < 3; i++) {
 		m_emitters[i] = particleMgr->create(m_effectIDs[i], arg->m_position, 0);
-		if (m_emitters[i] != nullptr) {
+		if (m_emitters[i]) {
 			m_emitters[i]->m_emitterCallback = &mCallBack_StaticClipping;
 		} else {
 			return false;
@@ -866,7 +866,7 @@ bool TSimple4::create(efx::Arg* arg)
 	// return _create(*arg);
 	for (int i = 0; i < 4; i++) {
 		m_emitters[i] = particleMgr->create(m_effectIDs[i], arg->m_position, 0);
-		if (m_emitters[i] != nullptr) {
+		if (m_emitters[i]) {
 			m_emitters[i]->m_emitterCallback = &mCallBack_StaticClipping;
 		} else {
 			return false;
@@ -886,7 +886,7 @@ bool TSimple5::create(efx::Arg* arg)
 	P2ASSERTLINE(625, arg != nullptr);
 	for (int i = 0; i < 5; i++) {
 		m_emitters[i] = particleMgr->create(m_effectIDs[i], arg->m_position, 0);
-		if (m_emitters[i] != nullptr) {
+		if (m_emitters[i]) {
 			m_emitters[i]->m_emitterCallback = &mCallBack_StaticClipping;
 		} else {
 			return false;
@@ -1212,17 +1212,17 @@ bool TSimpleMtx4::create(efx::Arg* arg)
  */
 bool TSync::create(efx::Arg* arg)
 {
-	if (m_emitter != nullptr) {
+	if (m_emitter) {
 		return false;
 	}
 	Vector3f position;
-	if (arg != nullptr) {
+	if (arg) {
 		position = arg->m_position;
 	} else {
 		position = Vector3f::zero;
 	}
 	m_emitter = particleMgr->create(m_effectID, position, 0);
-	if (m_emitter != nullptr) {
+	if (m_emitter) {
 		m_emitter->m_emitterCallback = this;
 		m_emitter->_F4 |= 0x40;
 	} else {
@@ -1291,7 +1291,7 @@ void TSync::forceKill(void)
  */
 void TSync::fade(void)
 {
-	if (m_emitter != nullptr) {
+	if (m_emitter) {
 		if (m_flags & 1) {
 			forceKill();
 		} else {

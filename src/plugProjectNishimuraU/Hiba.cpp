@@ -231,7 +231,7 @@ void Obj::finishFireEffect() { m_efxFire->fade(); }
  */
 void Obj::generatorKill()
 {
-	if (m_generator != nullptr) {
+	if (m_generator) {
 		m_generator->informDeath(this);
 		m_generator = nullptr;
 	}

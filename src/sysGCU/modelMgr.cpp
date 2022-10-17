@@ -112,7 +112,7 @@ int ModelMgr::calcModelSize(J3DModelData* data)
 	}
 	uint initialFreeSize   = JKRHeap::sCurrentHeap->getTotalFreeSize();
 	SysShape::Model* model = new SysShape::Model(data, _10, _14);
-	if (m_delegate != nullptr) {
+	if (m_delegate) {
 		m_delegate->invoke(model);
 	}
 	return initialFreeSize - JKRHeap::sCurrentHeap->getTotalFreeSize();
@@ -132,14 +132,14 @@ Model* ModelMgr::createModel(int modelIndex, int heapIndex)
 	P2ASSERTBOUNDSLINE(153, 0, heapIndex, m_heapLimit);
 	JKRSolidHeap* solidHeap = m_heaps[heapIndex];
 	sys->startChangeCurrentHeap(solidHeap);
-	if (solidHeap != nullptr) {
+	if (solidHeap) {
 		solidHeap->freeAll();
 	} else {
 		for (int i = 0; i < m_heapLimit; i++) { }
 		JUT_PANICLINE(173, "solidHeap null!\n");
 	}
 	SysShape::Model* model = new SysShape::Model(m_modelData[modelIndex], _10, _14);
-	if (m_delegate != nullptr) {
+	if (m_delegate) {
 		m_delegate->invoke(model);
 	}
 	JUT_ASSERTLINE(184, model != nullptr, "failed to new model ! id %d idx %d\n", modelIndex, heapIndex);

@@ -22,11 +22,11 @@ inline void SweepPrune::Node::insertBefore(SweepPrune::Node* prev)
 	Node* next = prev->m_next;
 	m_prev     = prev;
 	m_next     = next;
-	if (next != nullptr) {
+	if (next) {
 		next->m_prev = this;
 	}
 	// This function kind of assumes prev is nonnull earlier...
-	if (prev != nullptr) {
+	if (prev) {
 		prev->m_next = this;
 	}
 }
@@ -43,7 +43,7 @@ inline void SweepPrune::Node::insertAfter(SweepPrune::Node* next)
 	next->m_prev = this;
 	m_prev       = prev;
 	m_next       = next;
-	if (prev != nullptr) {
+	if (prev) {
 		prev->m_next = this;
 	}
 }
@@ -58,14 +58,14 @@ inline void SweepPrune::Node::insertAfter(SweepPrune::Node* next)
  */
 void SweepPrune::Node::insertSort(SweepPrune::Node& chain)
 {
-	if (m_next != nullptr) {
+	if (m_next) {
 		if (m_next->m_radius > m_radius) {
 			for (Node* iNode = m_next; iNode != nullptr; iNode = iNode->m_next) {
 				if (iNode->m_radius <= m_radius) {
-					if (m_next != nullptr) {
+					if (m_next) {
 						m_next->m_prev = m_prev;
 					}
-					if (m_prev != nullptr) {
+					if (m_prev) {
 						m_prev->m_next = m_next;
 					}
 					m_next = nullptr;
@@ -84,10 +84,10 @@ void SweepPrune::Node::insertSort(SweepPrune::Node& chain)
 			// 	if (iNode->m_radius <= m_radius) break;
 			// 	iNode = iNode->m_next;
 			// }
-			// if (m_next != nullptr) {
+			// if (m_next ) {
 			// 	m_next->m_prev = m_prev;
 			// }
-			// if (m_prev != nullptr) {
+			// if (m_prev ) {
 			// 	m_prev->m_next = m_next;
 			// }
 			// m_next = nullptr;
@@ -101,10 +101,10 @@ void SweepPrune::Node::insertSort(SweepPrune::Node& chain)
 		if (m_prev->m_radius < m_radius) {
 			for (Node* iNode = m_prev; iNode != nullptr; iNode = iNode->m_prev) {
 				if (iNode->m_radius >= m_radius) {
-					if (m_next != nullptr) {
+					if (m_next) {
 						m_next->m_prev = m_prev;
 					}
-					if (m_prev != nullptr) {
+					if (m_prev) {
 						m_prev->m_next = m_next;
 					}
 					m_next = nullptr;
@@ -212,7 +212,7 @@ void SweepPrune::World::resolve(SweepPrune::World::ResolveArg& arg)
 	Node* n1 = _00.m_prev;
 	Node* prev;
 
-	while (n1 != nullptr) {
+	while (n1) {
 		prev = nullptr;
 		o1   = n1->m_object;
 		for (Node* n2 = n1->m_prev; n2 != nullptr; n2 = n2->m_prev) {
@@ -238,7 +238,7 @@ void SweepPrune::World::resolve(SweepPrune::World::ResolveArg& arg)
 		if (prev == nullptr) {
 			n1 = n1->m_prev;
 		}
-		if (prev != nullptr) {
+		if (prev) {
 			n1 = prev;
 		}
 	}

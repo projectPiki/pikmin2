@@ -1022,7 +1022,7 @@ void Game::RouteMgr::refreshWater(void)
 	while (!iterator.isDone()) {
 		WayPoint* wp = (*iterator);
 		wp->m_flags &= ~WPF_Water;
-		if (Game::mapMgr != nullptr) {
+		if (Game::mapMgr) {
 			Sys::Sphere searchSphere;
 			searchSphere.m_position.y = wp->m_position.y;
 			searchSphere.m_position.z = wp->m_position.z;

@@ -491,7 +491,7 @@ bool SceneBase::setBackupScene()
 {
 	bool result         = false;
 	SceneInfoList* list = (SceneInfoList*)m_screenMgr->_60.m_child;
-	if (list != nullptr) {
+	if (list) {
 		SetSceneArg arg(list->m_sceneType, (og::Screen::DispMemberBase*)list->m_dispMemberBuffer);
 		// SetSceneArg arg;
 		// arg.m_sceneType = list->m_sceneType;

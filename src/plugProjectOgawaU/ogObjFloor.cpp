@@ -851,9 +851,9 @@ void ObjFloor::doCreate(JKRArchive* archive)
 		_50        = nullptr;
 		m_rulePane = nullptr;
 	}
-	if (_48 != nullptr) {
+	if (_48) {
 		J2DPane* fc_c = _48->search('fc_c');
-		if (fc_c->getParentPane() != nullptr) {
+		if (fc_c->getParentPane()) {
 			fc_c->getParentPane()->removeChild(fc_c);
 		}
 		_54 = og::Screen::setCallBack_CounterRV(_48, 'fc_r', 'fc_l', 'fc_l', (u32*)&((Screen::DispMemberFloor*)m_dispMember)->_08, 3, 2,
@@ -862,13 +862,13 @@ void ObjFloor::doCreate(JKRArchive* archive)
 	// TODO: Remove magic number
 	_54->setCenteringMode(Screen::CallBack_CounterRV::ECM_UNKNOWN_2);
 	Screen::setAlphaScreen(_48);
-	if (_50 != nullptr) {
+	if (_50) {
 		Screen::setAlphaScreen(_50);
 	}
-	if (_50 != nullptr) {
+	if (_50) {
 		Screen::setCallBackMessage(_50);
 	}
-	if (_50 != nullptr) {
+	if (_50) {
 		_88 = new Screen::AnimGroup(2);
 		registAnimGroupScreen(_88, archive, _50, "vs_title_rule_window.btk", 1.0f);
 		registAnimGroupScreen(_88, archive, _50, "vs_title_rule_window_02.btk", 1.0f);
@@ -2025,7 +2025,7 @@ void ObjFloor::doDraw(Graphics& graphics)
 {
 	j3dSys.reinitGX();
 	drawBG(graphics);
-	if (_50 != nullptr) {
+	if (_50) {
 		_50->setAlpha(_5C * 255.0f);
 		_50->draw(graphics, graphics.m_perspGraph);
 	}

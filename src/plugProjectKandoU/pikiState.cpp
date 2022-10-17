@@ -96,7 +96,7 @@ void PikiFSM::transit(Piki* piki, int stateID, StateArg* stateArg)
 		return;
 	}
 
-	if (currentState != nullptr) {
+	if (currentState) {
 		if (!currentState->soft_transittable(stateID)) {
 			return;
 		}
@@ -510,7 +510,7 @@ void PikiSwallowedState::init(Piki* piki, StateArg* stateArg)
 {
 	int animIdx;
 	SwallowedStateArg* swallowedArg = static_cast<SwallowedStateArg*>(stateArg);
-	if (swallowedArg != nullptr) {
+	if (swallowedArg) {
 		animIdx = swallowedArg->m_animIdx;
 	} else {
 		animIdx = IPikiAnims::ESA; // i.e., eat
@@ -521,13 +521,13 @@ void PikiSwallowedState::init(Piki* piki, StateArg* stateArg)
 	Creature* creature = piki->m_sticker;
 	CollPart* collpart = piki->_0F8;
 
-	if (piki->getCurrAction() != nullptr) {
+	if (piki->getCurrAction()) {
 		piki->getCurrAction()->cleanup();
 		piki->clearCurrAction();
 		piki->getCreatureID();
 	}
 
-	if (creature != nullptr && collpart != nullptr) {
+	if (creature != nullptr && collpart) {
 		piki->startStickMouth(creature, collpart);
 	}
 }
@@ -1354,7 +1354,7 @@ void PikiNukareState::onKeyEvent(Piki* piki, SysShape::KeyEvent const& keyEvent)
 		Sys::Sphere sphere(position, 10.0f);
 		WaterBox* wbox = piki->checkWater(nullptr, sphere);
 
-		if (wbox != nullptr) {
+		if (wbox) {
 			efx::TEnemyDive diveFx;
 			efx::ArgScale fxArg(position, 1.2f);
 			diveFx.create(&fxArg);
@@ -1435,7 +1435,7 @@ void PikiDopeState::exec(Piki* piki)
 	} else if (!piki->assertMotion(m_animIdx)) {
 		piki->getCreatureID();
 
-		if (m_navi != nullptr) {
+		if (m_navi) {
 			piki->m_navi = m_navi;
 			PikiAI::ActFormationInitArg initArg(piki->m_navi, 0);
 			piki->m_brain->start(0, &initArg);
@@ -1457,7 +1457,7 @@ void PikiDopeState::onKeyEvent(Piki* piki, SysShape::KeyEvent const& keyEvent)
 		piki->startDope(_18);
 		break;
 	case 1000:
-		if (m_navi != nullptr) {
+		if (m_navi) {
 			piki->m_navi = m_navi;
 			PikiAI::ActFormationInitArg initArg(piki->m_navi, 0);
 			piki->m_brain->start(0, &initArg);
@@ -1874,7 +1874,7 @@ void PikiDyingState::init(Piki* piki, StateArg* stateArg)
 	DyingStateArg* dyingArg = static_cast<DyingStateArg*>(stateArg);
 	m_animIdx               = IPikiAnims::DEAD;
 	_14                     = false;
-	if (dyingArg != nullptr) {
+	if (dyingArg) {
 		m_animIdx = dyingArg->m_animIdx;
 		_14       = dyingArg->_04;
 		if (m_animIdx == IPikiAnims::NULLANIM) {
@@ -2094,7 +2094,7 @@ void PikiLookAtState::exec(Piki* piki)
 		break;
 
 	case 2:
-		if (piki->m_navi != nullptr) {
+		if (piki->m_navi) {
 			PikiAI::ActFormationInitArg initArg(piki->m_navi, 0);
 			initArg._09 = 1;
 			piki->m_brain->start(0, &initArg);
@@ -2149,15 +2149,15 @@ void PikiAutoNukiState::init(Piki* piki, StateArg* stateArg)
 	Sys::Sphere sphere(position, 10.0f);
 	WaterBox* wbox = piki->checkWater(nullptr, sphere);
 
-	if (wbox != nullptr) {
+	if (wbox) {
 		efx::TEnemyDive diveFx;
 		efx::ArgScale fxArg(position, 1.2f);
 		diveFx.create(&fxArg);
-		if (piki->m_navi != nullptr) {
+		if (piki->m_navi) {
 			piki->startSound(piki->m_navi, PSSE_EV_ITEM_LAND_WATER1_S, true);
 			piki->startSound(piki->m_navi, PSSE_PL_PULLOUT_PIKI, false);
 		}
-	} else if (piki->m_navi != nullptr) {
+	} else if (piki->m_navi) {
 		efx::createSimplePkAp(position);
 		piki->startSound(piki->m_navi, PSSE_PL_PULLOUT_PIKI, false);
 	}
@@ -2182,17 +2182,17 @@ void PikiAutoNukiState::exec(Piki* piki)
 			Sys::Sphere sphere(position, 10.0f);
 			WaterBox* wbox = piki->checkWater(nullptr, sphere);
 
-			if (wbox != nullptr) {
+			if (wbox) {
 				efx::TEnemyDive diveFx;
 				efx::ArgScale fxArg(position, 1.2f);
 				diveFx.create(&fxArg);
 
-				if (piki->m_navi != nullptr) {
+				if (piki->m_navi) {
 					piki->startSound(piki->m_navi, PSSE_EV_ITEM_LAND_WATER1_S, true);
 					piki->startSound(piki->m_navi, PSSE_PL_PULLOUT_PIKI, false);
 				}
 
-			} else if (piki->m_navi != nullptr) {
+			} else if (piki->m_navi) {
 				efx::createSimplePkAp(position);
 				piki->startSound(piki->m_navi, PSSE_PL_PULLOUT_PIKI, false);
 			}
@@ -2206,7 +2206,7 @@ void PikiAutoNukiState::exec(Piki* piki)
 		break;
 
 	case 2:
-		if (piki->m_navi != nullptr) {
+		if (piki->m_navi) {
 			PikiAI::ActFormationInitArg initArg(piki->m_navi, 0);
 			initArg._09 = 1;
 			piki->m_brain->start(0, &initArg);
@@ -2450,7 +2450,7 @@ void PikiHangedState::init(Piki* piki, StateArg* stateArg)
 	piki->startMotion(IPikiAnims::HANG, IPikiAnims::HANG, this, nullptr);
 	piki->m_position2 = Vector3f(0.0f);
 	piki->m_velocity  = Vector3f(0.0f);
-	if (piki->m_navi != nullptr) {
+	if (piki->m_navi) {
 		piki->startSound(piki->m_navi, PSSE_PK_VC_THROW_WAIT, false);
 	}
 
@@ -2504,7 +2504,7 @@ void PikiWaterHangedState::onKeyEvent(SysShape::KeyEvent const&) { }
 void PikiWaterHangedState::init(Piki* piki, StateArg* stateArg)
 {
 	WaterHangedStateArg* waterHangedArg = static_cast<WaterHangedStateArg*>(stateArg);
-	if (waterHangedArg != nullptr) {
+	if (waterHangedArg) {
 		m_piki = waterHangedArg->m_piki;
 	} else {
 		m_piki = nullptr;
@@ -2613,7 +2613,7 @@ void PikiHipDropState::exec(Piki* piki)
 				iterator.next();
 			}
 
-			if (closestEnemy != nullptr) {
+			if (closestEnemy) {
 				Vector3f enemyPos = closestEnemy->getPosition();
 				f32 dist          = _distanceXZ(enemyPos, position);
 
@@ -3249,7 +3249,7 @@ void PikiFallMeckState::init(Piki* piki, StateArg* stateArg)
 	FallMeckStateArg* fallArg = static_cast<FallMeckStateArg*>(stateArg);
 	piki->startMotion(IPikiAnims::FALL, IPikiAnims::FALL, nullptr, nullptr);
 	piki->endStick();
-	if (fallArg != nullptr) {
+	if (fallArg) {
 		_10 = fallArg->_00;
 	} else {
 		_10 = false;
@@ -3263,7 +3263,7 @@ void PikiFallMeckState::init(Piki* piki, StateArg* stateArg)
  */
 void PikiFallMeckState::exec(Piki* piki)
 {
-	if (piki->_248 != nullptr) {
+	if (piki->_248) {
 		bounceCallback(piki, piki->_248);
 	}
 }
@@ -3961,7 +3961,7 @@ bool PikiSuikomiState::ignoreAtari(Piki* piki, Creature* creature) { return (u8)
  */
 void PikiSuikomiState::execStomach(Piki* piki)
 {
-	if (m_creature != nullptr) {
+	if (m_creature) {
 		if (m_creature->m_objectTypeID != 2) {
 			JUT_PANICLINE(2680, "not teki (%s)!", m_creature->getCreatureName());
 		}

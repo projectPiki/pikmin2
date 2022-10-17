@@ -91,7 +91,7 @@ void Obj::doUpdateCommon()
 	}
 
 	if (getEnemyTypeID() == EnemyTypeID::EnemyID_BombOtakara) {
-		if (m_targetCreature != nullptr) {
+		if (m_targetCreature) {
 			if (!m_targetCreature->isAlive()) {
 				m_targetCreature = nullptr;
 				m_health         = 0.0f;
@@ -114,7 +114,7 @@ void Obj::doUpdateCommon()
 void Obj::doAnimationCullingOff()
 {
 	EnemyBase::doAnimationCullingOff();
-	if (m_treasure != nullptr) {
+	if (m_treasure) {
 		if (!m_treasure->isAlive()) {
 			fallTreasure(false);
 		} else {
@@ -165,7 +165,7 @@ void Obj::getShadowParam(ShadowParam& shadowParam)
 
 	shadowParam.m_boundingSphere.m_position = Vector3f(0.0f, 1.0f, 0.0f);
 
-	if (m_treasure != nullptr) {
+	if (m_treasure) {
 		shadowParam.m_boundingSphere.m_radius = 30.0f;
 	} else {
 		shadowParam.m_boundingSphere.m_radius = 50.0f;
@@ -189,7 +189,7 @@ void Obj::getShadowParam(ShadowParam& shadowParam)
  */
 bool Obj::damageCallBack(Creature* creature, f32 damage, CollPart* collpart)
 {
-	if (collpart != nullptr) {
+	if (collpart) {
 		damageTreasure(damage);
 		return true;
 	}
@@ -203,8 +203,8 @@ bool Obj::damageCallBack(Creature* creature, f32 damage, CollPart* collpart)
  */
 bool Obj::hipdropCallBack(Creature* creature, f32 damage, CollPart* collpart)
 {
-	if (collpart != nullptr) {
-		if (m_treasure != nullptr) {
+	if (collpart) {
+		if (m_treasure) {
 			damageTreasure(static_cast<Parms*>(m_parms)->m_properParms.m_fp01.m_value);
 		} else {
 			damageTreasure(damage);
@@ -221,7 +221,7 @@ bool Obj::hipdropCallBack(Creature* creature, f32 damage, CollPart* collpart)
  */
 bool Obj::earthquakeCallBack(Creature* creature, f32 damage)
 {
-	if (m_treasure != nullptr) {
+	if (m_treasure) {
 		damageTreasure(static_cast<Parms*>(m_parms)->m_properParms.m_fp01.m_value);
 	}
 	return EnemyBase::earthquakeCallBack(creature, damage);
@@ -373,7 +373,7 @@ bool OtakaraBase::Obj::isMovePositionSet(bool ignoringTreasures)
 		_2E8 += sys->m_secondsPerFrame;
 	}
 
-	if (target != nullptr) {
+	if (target) {
 		m_movePosition   = target->getPosition();
 		m_targetCreature = target;
 	} else {
@@ -381,13 +381,13 @@ bool OtakaraBase::Obj::isMovePositionSet(bool ignoringTreasures)
 		Parms* parms = static_cast<Parms*>(m_parms);
 		target = EnemyFunc::getNearestPikminOrNavi(this, parms->m_general.m_fov.m_value, parms->m_general.m_sightRadius.m_value, nullptr,
 		                                           nullptr, &condition);
-		if (target != nullptr) {
+		if (target) {
 			m_movePosition = getTargetPosition(target);
 		}
 		m_targetCreature = nullptr;
 	}
 
-	if (target != nullptr) {
+	if (target) {
 		return true;
 	} else {
 		return false;
@@ -704,7 +704,7 @@ void Obj::resetTreasure()
  */
 bool Obj::isTakeTreasure()
 {
-	if (m_targetCreature != nullptr) {
+	if (m_targetCreature) {
 		Vector3f targetPos = m_targetCreature->getPosition();
 	}
 	return false;
@@ -972,7 +972,7 @@ lbl_802B7428:
  */
 bool Obj::fallTreasure(bool check)
 {
-	if (m_targetCreature != nullptr) {
+	if (m_targetCreature) {
 		m_targetCreature->endCapture();
 		if (check) { }
 	}
@@ -1071,7 +1071,7 @@ bool Obj::isDropTreasure()
  */
 void Obj::damageTreasure(f32 damage)
 {
-	if (m_treasure != nullptr) {
+	if (m_treasure) {
 		m_treasureHealth -= damage;
 		if (m_treasureHealth < 0.0f) {
 			m_treasureHealth = 0.0f;
@@ -1255,11 +1255,11 @@ void Obj::initBombOtakara()
 {
 	if (m_targetCreature == nullptr) {
 		Bomb::Mgr* mgr = static_cast<Bomb::Mgr*>(generalEnemyMgr->getEnemyMgr(EnemyTypeID::EnemyID_Bomb));
-		if (mgr != nullptr) {
+		if (mgr) {
 			EnemyBirthArg birthArg;
 			birthArg.m_faceDir = m_faceDir;
 			m_targetCreature   = mgr->birth(birthArg);
-			if (m_targetCreature != nullptr) {
+			if (m_targetCreature) {
 				m_targetCreature->init(nullptr);
 				m_targetCreature->startCapture(m_model->getJoint("otakara")->getWorldMatrix());
 				static_cast<Bomb::Obj*>(m_targetCreature)->m_otakara = this;

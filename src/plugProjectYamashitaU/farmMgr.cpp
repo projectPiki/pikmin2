@@ -89,9 +89,9 @@ namespace Farm {
  */
 FarmMgr::FarmMgr(unsigned long p1)
     : GenericObjectMgr()
-    , CNode("農耕マネージャ")
+    , CNode("農耕�?�ネージャ")
     , _1C(p1)
-    , m_farmsRootNode("農耕ポイント")
+    , m_farmsRootNode("農耕�?�イン�?")
     , m_directorUpdator(nullptr)
     , _3C(0)
     , _3D(0)
@@ -231,7 +231,7 @@ lbl_8012420C:
 void FarmMgr::doEntry()
 {
 	gameSystem->setDrawBuffer(9);
-	if (m_farmsRootNode.m_child != nullptr) {
+	if (m_farmsRootNode.m_child) {
 		for (Farm* farm = (Farm*)m_farmsRootNode.m_child; farm != nullptr; farm = (Farm*)farm->m_next) {
 			farm->doEntry();
 		}
@@ -246,7 +246,7 @@ void FarmMgr::doEntry()
  */
 void FarmMgr::doSetView(int p1)
 {
-	if (m_farmsRootNode.m_child != nullptr) {
+	if (m_farmsRootNode.m_child) {
 		for (Farm* farm = (Farm*)m_farmsRootNode.m_child; farm != nullptr; farm = (Farm*)farm->m_next) {
 			farm->doSetView(p1);
 		}
@@ -260,7 +260,7 @@ void FarmMgr::doSetView(int p1)
  */
 void FarmMgr::doViewCalc()
 {
-	if (m_farmsRootNode.m_child != nullptr) {
+	if (m_farmsRootNode.m_child) {
 		for (Farm* farm = (Farm*)m_farmsRootNode.m_child; farm != nullptr; farm = (Farm*)farm->m_next) {
 			farm->doViewCalc();
 		}
@@ -327,7 +327,7 @@ Farm* FarmMgr::createNewFarm(void* bmd)
 inline Farm* FarmMgr::getNearestFarm(Vector3f& position)
 {
 	Farm* nearestFarm = nullptr;
-	if (m_farmsRootNode.m_child != nullptr) {
+	if (m_farmsRootNode.m_child) {
 		float nearestDistance = *__float_max;
 		for (Farm* farm = (Farm*)m_farmsRootNode.m_child; farm != nullptr; farm = (Farm*)farm->m_next) {
 			float distance = farm->m_position.distance(position);
@@ -350,7 +350,7 @@ Obstacle* FarmMgr::addObstacle(Game::Creature* creature, float p2, float p3)
 {
 	Vector3f position = creature->getPosition();
 	Farm* farm        = getNearestFarm(position);
-	if (farm != nullptr) {
+	if (farm) {
 		return farm->addObstacle(creature, p2, p3);
 	}
 	return nullptr;
@@ -456,7 +456,7 @@ Plant* FarmMgr::addPlant(Game::Creature* creature)
 {
 	Vector3f position = creature->getPosition();
 	Farm* farm        = getNearestFarm(position);
-	if (farm != nullptr) {
+	if (farm) {
 		return farm->addPlant(creature);
 	}
 	return nullptr;
@@ -547,7 +547,7 @@ lbl_8012466C:
  */
 void FarmMgr::initAllFarmObjectNodes()
 {
-	if (m_farmsRootNode.m_child != nullptr) {
+	if (m_farmsRootNode.m_child) {
 		for (Farm* farm = (Farm*)m_farmsRootNode.m_child; farm != nullptr; farm = (Farm*)farm->m_next) {
 			farm->initAllObjectNodes();
 		}

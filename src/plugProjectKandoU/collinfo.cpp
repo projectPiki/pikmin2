@@ -197,7 +197,7 @@ CollTree::CollTree()
 void CollTree::createFromFactory(SysShape::MtxObject* mtxObject, CollPartFactory* factory, CollPartMgr* mgr)
 {
 	m_mgr = mgr;
-	if (factory != nullptr) {
+	if (factory) {
 		m_part = factory->createInstance(mtxObject, mgr);
 	}
 }
@@ -210,7 +210,7 @@ void CollTree::createFromFactory(SysShape::MtxObject* mtxObject, CollPartFactory
 void CollTree::createSingleSphere(SysShape::MtxObject* mtxObject, int jointIndex, Sys::Sphere& sphere, CollPartMgr* mgr)
 {
 	m_mgr = mgr;
-	if (mgr != nullptr) {
+	if (mgr) {
 		m_part = mgr->createOne(mtxObject);
 		JUT_ASSERTLINE(446, m_part != nullptr, "collpart birth failed : single sphere\n");
 	} else {
@@ -231,7 +231,7 @@ void CollTree::createSingleSphere(SysShape::MtxObject* mtxObject, int jointIndex
  */
 void CollTree::release()
 {
-	if (m_mgr != nullptr) {
+	if (m_mgr) {
 		releaseRec(m_part);
 		m_mgr = nullptr;
 	}
@@ -248,13 +248,13 @@ void CollTree::releaseRec(CollPart* part)
 	CollPart* next  = part->getNext();
 	CollPart* child = part->getChild();
 
-	if (child != nullptr) {
+	if (child) {
 		releaseRec(child);
 	}
 
 	m_mgr->kill(part);
 
-	if (next != nullptr) {
+	if (next) {
 		releaseRec(next);
 	}
 }
@@ -293,10 +293,10 @@ bool CollTree::checkCollisionRec(CollPart* p1, CollPart* p2, CollPart** p3, Coll
 			return checkCollisionRec(p1, p2->getChild(), p3, p4, p5);
 		}
 	} else {
-		if (p1->getNext() != nullptr) {
+		if (p1->getNext()) {
 			return checkCollisionRec(p1->getNext(), p2, p3, p4, p5);
 		}
-		if (p2->getNext() != nullptr) {
+		if (p2->getNext()) {
 			return checkCollisionRec(p1, p2->getNext(), p3, p4, p5);
 		}
 		*p3 = nullptr;
@@ -313,7 +313,7 @@ bool CollTree::checkCollisionRec(CollPart* p1, CollPart* p2, CollPart** p3, Coll
  */
 void CollTree::checkCollision(Sys::Sphere& sphere, IDelegate1<CollPart*>* delegate)
 {
-	if (m_part != nullptr) {
+	if (m_part) {
 		m_part->checkCollision(sphere, delegate);
 	}
 }
@@ -341,10 +341,10 @@ void CollPart::checkCollision(Sys::Sphere& sphere, IDelegate1<CollPart*>* delega
 			}
 		}
 	}
-	if (getChild() != nullptr) {
+	if (getChild()) {
 		getChild()->checkCollision(sphere, delegate);
 	}
-	if (getNext() != nullptr) {
+	if (getNext()) {
 		getNext()->checkCollision(sphere, delegate);
 	}
 }
@@ -466,7 +466,7 @@ bool CollPart::collide(CollPart* other, Vector3f& outVector)
  */
 void CollTree::update()
 {
-	if (m_part != nullptr) {
+	if (m_part) {
 		m_part->update();
 	}
 }
@@ -479,7 +479,7 @@ void CollTree::update()
  */
 void CollTree::attachModel(SysShape::MtxObject* mtxObject)
 {
-	if (m_part != nullptr) {
+	if (m_part) {
 		m_part->attachModel(mtxObject);
 	}
 }
@@ -520,15 +520,15 @@ CollPart* CollPart::getCollPart(u32 partID)
 	if (m_currentID == partID) {
 		return this;
 	}
-	if (getNext() != nullptr) {
+	if (getNext()) {
 		CollPart* result = getNext()->getCollPart(partID);
-		if (result != nullptr) {
+		if (result) {
 			return result;
 		}
 	}
-	if (getChild() != nullptr) {
+	if (getChild()) {
 		CollPart* result = getChild()->getCollPart(partID);
-		if (result != nullptr) {
+		if (result) {
 			return result;
 		}
 	}
@@ -548,30 +548,30 @@ int CollPart::getAllCollPartToArray(CollPart** partArray, int limit, int& count)
 	} else {
 		count++;
 		partArray[index] = this;
-		if (m_next != nullptr) {
+		if (m_next) {
 			CollPart* nextPart = getNext();
 			int nextIndex      = count;
 			if (nextIndex < limit) {
 				count++;
 				partArray[nextIndex] = nextPart;
-				if (nextPart->getNext() != nullptr) {
+				if (nextPart->getNext()) {
 					nextPart->getNext()->getAllCollPartToArray(partArray, limit, count);
 				}
-				if (nextPart->getChild() != nullptr) {
+				if (nextPart->getChild()) {
 					nextPart->getChild()->getAllCollPartToArray(partArray, limit, count);
 				}
 			}
 		}
-		if (m_child != nullptr) {
+		if (m_child) {
 			CollPart* childPart = getChild();
 			int childIndex      = count;
 			if (childIndex < limit) {
 				count++;
 				partArray[childIndex] = childPart;
-				if (childPart->getNext() != nullptr) {
+				if (childPart->getNext()) {
 					childPart->getNext()->getAllCollPartToArray(partArray, limit, count);
 				}
-				if (childPart->getChild() != nullptr) {
+				if (childPart->getChild()) {
 					childPart->getChild()->getAllCollPartToArray(partArray, limit, count);
 				}
 			}
@@ -588,7 +588,7 @@ int CollPart::getAllCollPartToArray(CollPart** partArray, int limit, int& count)
 // WIP: https://decomp.me/scratch/BSzdU - just regswaps in the dist calculation
 CollPart* CollTree::findCollPart(FindCollPartArg& findArg)
 {
-	if (m_part != nullptr) {
+	if (m_part) {
 		CollPart* partArray[256];
 		int count    = 0;
 		int numParts = m_part->getAllCollPartToArray(partArray, 256, count);
@@ -704,7 +704,7 @@ lbl_80136B00:
  */
 CollPart* CollTree::getRandomCollPart()
 {
-	if (m_part != nullptr) {
+	if (m_part) {
 		CollPart* partArray[16];
 		int count    = 0;
 		int numParts = m_part->getAllCollPartToArray(partArray, 16, count);
@@ -820,7 +820,7 @@ void CollPart::makeMatrixTo(Matrixf& p1)
 // WIP: https://decomp.me/scratch/b2SSt
 void CollPart::makeTubeTree()
 {
-	if (getChild() != nullptr) {
+	if (getChild()) {
 		m_hasCollPart = 2;
 	} else {
 		m_hasCollPart = 0;
@@ -1841,7 +1841,7 @@ CollPart* CollPartFactory::createInstance(SysShape::MtxObject* mtxObject, CollPa
 CollPart* CollPartMgr::createOne(SysShape::MtxObject* mtxObject)
 {
 	CollPart* part = birth();
-	if (part != nullptr) {
+	if (part) {
 		part->init(mtxObject);
 	}
 	return part;
@@ -1856,7 +1856,7 @@ CollPart* CollPartMgr::createOne(SysShape::MtxObject* mtxObject)
 CollPart* CollPart::clone(SysShape::MtxObject* mtxObject, CollPartMgr* mgr)
 {
 	CollPart* copy;
-	if (mgr != nullptr) {
+	if (mgr) {
 		CollPart* birthObj = mgr->birth();
 		if (copy = birthObj) {
 			copy->init(mtxObject);

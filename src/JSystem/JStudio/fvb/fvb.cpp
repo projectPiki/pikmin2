@@ -164,7 +164,7 @@ void TObject::prepare(const JStudio::fvb::data::TParse_TBlock& block, JStudio::f
 					m            = data.next;
 					int j        = content[1];
 					TObject* obj = control->getObject(content + 2, j);
-					if (obj != nullptr) {
+					if (obj) {
 						// JGadget::TVector_pointer_void::insert();
 					}
 					content = (int*)((j + 3 & 0xfffffffc) + (int)(content + 1));
@@ -180,34 +180,34 @@ void TObject::prepare(const JStudio::fvb::data::TParse_TBlock& block, JStudio::f
 					j++;
 					m            = data.next;
 					TObject* obj = control->getObject_index(*j);
-					if (obj != nullptr) {
+					if (obj) {
 						TFunctionValue* value = obj->pfv;
 						// JGadget::TVector_pointer_void::insert();
 					}
 				}
 			}
 		case 0x12:
-			if (attr != nullptr) {
+			if (attr) {
 				float* fdata = (float*)data.content;
 
 				attr->range_set(*fdata, fdata[1]);
 				m = data.next;
 			}
 		case 0x13:
-			if (attr != nullptr) {
+			if (attr) {
 				attr->mProgress = *(s8*)data.content;
 			}
 		case 0x14:
-			if (attr != nullptr) {
+			if (attr) {
 				attr->mAdjust = *(s8*)data.content;
 			}
 		case 0x15:
-			if (attr != nullptr) {
+			if (attr) {
 				attr->mBegin = *(TFunctionValue::TEOutside*)data.content;
 				attr->mEnd   = *(TFunctionValue::TEOutside*)(data.content + 1);
 			}
 		case 0x16:
-			if (attr != nullptr) {
+			if (attr) {
 				// idk = *data.content;
 			}
 		}

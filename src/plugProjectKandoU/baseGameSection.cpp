@@ -1226,7 +1226,7 @@ namespace Game {
  */
 void BaseGameSection::useSpecificFBTexture(JUTTexture* texture)
 {
-	JUT_ASSERTLINE(1523, m_fbTexture == nullptr, "２回は無理ｗ\n");
+	JUT_ASSERTLINE(1523, m_fbTexture == nullptr, "?��回は無�??��\n");
 	m_fbTexture                    = m_xfbImage;
 	m_xfbImage                     = texture;
 	Game::gameSystem->m_xfbTexture = m_xfbImage;
@@ -1272,7 +1272,7 @@ lbl_8014B140:
  */
 void BaseGameSection::restoreFBTexture()
 {
-	JUT_ASSERTLINE(1533, m_fbTexture == nullptr, "useSpecificFBTexture してないｗ\n");
+	JUT_ASSERTLINE(1533, m_fbTexture == nullptr, "useSpecificFBTexture してな�??��\n");
 	m_xfbImage                     = m_fbTexture;
 	m_fbTexture                    = nullptr;
 	Game::gameSystem->m_xfbTexture = m_xfbImage;
@@ -2146,10 +2146,10 @@ void BaseGameSection::doDraw(Graphics& gfx)
 {
 	captureRadarmap(gfx);
 	if (Game::gameSystem->paused() == false) {
-		if (Game::cameraMgr != nullptr) {
+		if (Game::cameraMgr) {
 			Game::cameraMgr->update();
 		}
-	} else if (Game::cameraMgr != nullptr) {
+	} else if (Game::cameraMgr) {
 		Game::cameraMgr->controllerLock(2);
 		Game::cameraMgr->update();
 		Game::cameraMgr->controllerUnLock(2);
@@ -2163,7 +2163,7 @@ void BaseGameSection::doDraw(Graphics& gfx)
 	pre2dDraw(gfx);
 	gfx.setToken("2d");
 	draw2D(gfx);
-	if (m_draw2DCreature != nullptr) {
+	if (m_draw2DCreature) {
 		drawOtakaraWindow(gfx);
 	}
 	Screen::gGame2DMgr->drawKanteiMsg(gfx);
@@ -2959,7 +2959,7 @@ void BaseGameSection::initGenerators(void)
 	void* mgrData[64];
 	char pathBuffer[256];
 	int currentIndex;
-	if (courseInfo != nullptr) {
+	if (courseInfo) {
 		Game::PelletBirthBuffer::clear();
 		Game::generatorCache->loadGenerators(courseInfo->m_courseIndex);
 		Game::generatorCache->updateUseList();
@@ -2967,7 +2967,7 @@ void BaseGameSection::initGenerators(void)
 		sprintf(pathBuffer, "%s/defaultgen.txt", courseInfo->m_abeFolder);
 		void* data
 		    = JKRDvdRipper::loadToMainRAM(pathBuffer, nullptr, Switch_0, 0, nullptr, JKRDvdRipper::ALLOC_DIR_BOTTOM, 0, nullptr, nullptr);
-		if (data != nullptr) {
+		if (data) {
 			RamStream input(data, -1);
 			input.m_mode = STREAM_MODE_TEXT;
 			if (input.m_mode == STREAM_MODE_TEXT) {
@@ -2984,7 +2984,7 @@ void BaseGameSection::initGenerators(void)
 		if (DVDConvertPathToEntrynum(pathBuffer) != -1) {
 			void* data = JKRDvdRipper::loadToMainRAM(pathBuffer, nullptr, Switch_0, 0, nullptr, JKRDvdRipper::ALLOC_DIR_BOTTOM, 0, nullptr,
 			                                         nullptr);
-			if (data != nullptr) {
+			if (data) {
 				RamStream input(data, -1);
 				input.m_mode = STREAM_MODE_TEXT;
 				if (input.m_mode) {
@@ -3002,7 +3002,7 @@ void BaseGameSection::initGenerators(void)
 			sprintf(pathBuffer, "%s/initgen.txt", courseInfo->m_abeFolder);
 			void* data = JKRDvdRipper::loadToMainRAM(pathBuffer, nullptr, Switch_0, 0, nullptr, JKRDvdRipper::ALLOC_DIR_BOTTOM, 0, nullptr,
 			                                         nullptr);
-			if (data != nullptr) {
+			if (data) {
 				RamStream input(data, -1);
 				input.m_mode = STREAM_MODE_TEXT;
 				if (input.m_mode) {
@@ -3022,7 +3022,7 @@ void BaseGameSection::initGenerators(void)
 					sprintf(pathBuffer, "%s/nonloop/%s", courseInfo->m_abeFolder, gen->m_name);
 					void* data = JKRDvdRipper::loadToMainRAM(pathBuffer, nullptr, Switch_0, 0, nullptr, JKRDvdRipper::ALLOC_DIR_BOTTOM, 0,
 					                                         nullptr, nullptr);
-					if (data != nullptr) {
+					if (data) {
 						RamStream input(data, -1);
 						input.m_mode = STREAM_MODE_TEXT;
 						if (input.m_mode) {

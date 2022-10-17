@@ -130,7 +130,7 @@ void StateStay::init(EnemyBase* enemy, StateArg* stateArg)
 	sokkuri->startMotion(1, nullptr);
 	sokkuri->stopMotion();
 
-	if (sokkuri->m_waterBox != nullptr) {
+	if (sokkuri->m_waterBox) {
 		sokkuri->fadeEfxHamon();
 	}
 }
@@ -162,7 +162,7 @@ void StateStay::cleanup(EnemyBase* enemy)
 	sokkuri->hardConstraintOff();
 	sokkuri->setEvent(0, EB_16);
 
-	if (sokkuri->m_waterBox != nullptr) {
+	if (sokkuri->m_waterBox) {
 		sokkuri->createEfxHamon();
 	}
 }
@@ -292,7 +292,7 @@ void StateWait::exec(EnemyBase* enemy)
 				sokkuri->m_nextState = SOKKURI_Disappear;
 				sokkuri->finishMotion();
 
-			} else if (sokkuri->m_waterBox != nullptr) {
+			} else if (sokkuri->m_waterBox) {
 				sokkuri->m_nextState = SOKKURI_MoveWater;
 				sokkuri->finishMotion();
 
@@ -364,7 +364,7 @@ void StateMoveGround::exec(EnemyBase* enemy)
 				sokkuri->m_nextState = SOKKURI_Wait;
 				sokkuri->finishMotion();
 
-			} else if (sokkuri->m_waterBox != nullptr) {
+			} else if (sokkuri->m_waterBox) {
 				sokkuri->m_simVelocity = Vector3f(0.0f);
 				sokkuri->m_nextState   = SOKKURI_MoveWater;
 				sokkuri->finishMotion();
@@ -374,7 +374,7 @@ void StateMoveGround::exec(EnemyBase* enemy)
 				sokkuri->finishMotion();
 			}
 		}
-	} else if (sokkuri->m_waterBox != nullptr) {
+	} else if (sokkuri->m_waterBox) {
 		sokkuri->m_simVelocity = Vector3f(0.0f);
 		sokkuri->m_nextState   = SOKKURI_MoveWater;
 		sokkuri->finishMotion();
@@ -439,7 +439,7 @@ void StateMoveWater::exec(EnemyBase* enemy)
 	} else {
 		Parms* parms = static_cast<Parms*>(sokkuri->m_parms);
 		if (sokkuri->m_timer > parms->m_properParms.m_fp01.m_value) {
-			if (sokkuri->m_waterBox != nullptr) {
+			if (sokkuri->m_waterBox) {
 				sokkuri->m_timer = 0.0f;
 				sokkuri->setNextMoveInfo();
 
@@ -505,7 +505,7 @@ void StateFlick::exec(EnemyBase* enemy)
 		return;
 	}
 
-	if (sokkuri->m_waterBox != nullptr) {
+	if (sokkuri->m_waterBox) {
 		sokkuri->m_nextState = SOKKURI_MoveWater;
 		sokkuri->finishMotion();
 

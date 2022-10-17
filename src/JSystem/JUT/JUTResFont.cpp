@@ -436,9 +436,9 @@ int JUTResFont::getCellWidth(void) const
 	GlyphBlock** glyphs;
 
 	glyphs = m_glyphBlocks;
-	if (glyphs != nullptr) {
+	if (glyphs) {
 		glyph = *glyphs;
-		if (glyph != nullptr) {
+		if (glyph) {
 			return glyph->m_cellWidth;
 		}
 	}
@@ -463,9 +463,9 @@ int JUTResFont::getCellHeight(void) const
 	GlyphBlock** glyphs;
 
 	glyphs = m_glyphBlocks;
-	if (glyphs != nullptr) {
+	if (glyphs) {
 		glyph = *glyphs;
-		if (glyph != nullptr) {
+		if (glyph) {
 			return glyph->m_cellHeight;
 		}
 	}

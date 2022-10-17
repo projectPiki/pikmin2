@@ -135,7 +135,7 @@ void TaskEntryMgr::update()
 	P2ASSERTLINE(197, _24 != nullptr);
 	bool result;
 	OSLockMutex(&m_mutex);
-	if (getFirst() != nullptr) {
+	if (getFirst()) {
 		TaskEntry* entry = getFirst()->getObject();
 		JASTrack* track  = _24;
 		OSLockMutex(&entry->m_mutex);
@@ -145,7 +145,7 @@ void TaskEntryMgr::update()
 			result     = false;
 			entry->_24 = nullptr;
 		} else {
-			while (taskLink != nullptr) {
+			while (taskLink) {
 				TaskBase* task = taskLink->getObject();
 				u32 i          = 0xFFFFFFF0;
 				if (task->_18 != nullptr && task->_18->getList() == nullptr) {
@@ -286,7 +286,7 @@ void TaskEntryMgr::appendEntry(PSSystem::TaskEntry* entry, PSSystem::DirectorBas
 	// TODO: append_Lock should not be inlined.
 	P2ASSERTLINE(220, entry != nullptr);
 	entry->_24 = nullptr;
-	if (director != nullptr) {
+	if (director) {
 		entry->setDirector(director);
 	}
 	append_Lock(&entry->_28);
@@ -349,11 +349,11 @@ lbl_8033E468:
 void TaskEntryMgr::removeEntry(PSSystem::TaskEntry* entry)
 {
 	// TODO: remove_Lock should not be inlined.
-	if (entry != nullptr) {
+	if (entry) {
 		remove_Lock(&entry->_28);
 		OSLockMutex(&entry->m_mutex);
 		JSULink<TaskBase>* taskLink = entry->getFirst();
-		while (taskLink != nullptr) {
+		while (taskLink) {
 			JSULink<TaskBase>* nextLink = taskLink->getNext();
 			entry->remove(taskLink);
 			taskLink = nextLink;

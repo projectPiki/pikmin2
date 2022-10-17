@@ -243,7 +243,7 @@ void SingleGame::CaveResultState::init(Game::SingleGameSection* section, Game::S
 	playData->_EC = 0;
 	gameSystem->detachObjectMgr(generalEnemyMgr);
 	RoomMapMgr* map = (RoomMapMgr*)mapMgr;
-	// if (map != nullptr) {
+	// if (map ) {
 	// map = mapMgr->__vt; //???
 	// }
 	gameSystem->detachObjectMgr(map);

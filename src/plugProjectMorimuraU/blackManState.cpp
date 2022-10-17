@@ -553,7 +553,7 @@ void StateRecover::exec(EnemyBase* enemy)
 			if (wraith->isFinalFloor()) {
 				PSM::EnemyMidBoss* soundObj = static_cast<PSM::EnemyMidBoss*>(enemy->m_soundObj);
 				PSM::checkMidBoss(soundObj);
-				if (soundObj != nullptr) {
+				if (soundObj) {
 					soundObj->setAppearFlag(true);
 				}
 			}

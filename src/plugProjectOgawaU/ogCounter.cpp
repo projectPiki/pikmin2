@@ -172,7 +172,7 @@ ResTIMG** makeSujiFontTable(char** characterTexturePaths, JKRArchive* archive)
 void CounterKeta::setSuji(ResTIMG** textures, unsigned long textureIndex)
 {
 	m_textureIndex = textureIndex;
-	if (m_picture != nullptr) {
+	if (m_picture) {
 		m_picture->changeTexture(textures[m_textureIndex], 0);
 	}
 }

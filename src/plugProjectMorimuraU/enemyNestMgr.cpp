@@ -403,7 +403,7 @@ Obj* Mgr::birth(Game::EnemyBirthArg& arg) { return static_cast<Obj*>(EnemyMgrBas
 void Mgr::loadModelData(JKRArchive* archive)
 {
 	void* enemyBMD = JKRFileLoader::getGlbResource("enemy.bmd", archive);
-	if (enemyBMD != nullptr) {
+	if (enemyBMD) {
 		m_modelData = J3DModelLoaderDataBase::load(enemyBMD, 0x20240010);
 		m_modelData->newSharedDisplayList(0x40000);
 		m_modelData->simpleCalcMaterial(0, &j3dDefaultMtx);
@@ -414,7 +414,7 @@ void Mgr::loadModelData(JKRArchive* archive)
 	P2ASSERTLINE(73, loadNode != nullptr);
 	P2ASSERTLINE(75, loadNode->m_archive != nullptr);
 	enemyBMD = JKRFileLoader::getGlbResource("enemy.bmd", loadNode->m_archive);
-	if (enemyBMD != nullptr) {
+	if (enemyBMD) {
 		m_modelData2 = J3DModelLoaderDataBase::load(enemyBMD, 0x20240010);
 		m_modelData2->newSharedDisplayList(0x40000);
 		m_modelData2->simpleCalcMaterial(0, &j3dDefaultMtx);

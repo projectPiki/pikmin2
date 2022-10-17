@@ -42,7 +42,7 @@ bool MenuSection::runChildSection()
 
 	m_currentSection = (Section*)setChildSection(expHeap);
 
-	if (m_currentSection != nullptr) {
+	if (m_currentSection) {
 		sys->heapStatusStart("ChildSection::init", nullptr);
 		m_currentSection->init();
 

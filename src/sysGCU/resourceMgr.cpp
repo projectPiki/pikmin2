@@ -207,7 +207,7 @@ void Resource::Node::becomeCurrentHeap(void)
 void Resource::Node::destroy(Resource::Node* node)
 {
 	// UNUSED FUNCTION
-	if (node != nullptr) {
+	if (node) {
 		((JKRExpHeap*)node->_30)->freeGroup(node->m_groupIDMaybe);
 	}
 }
@@ -406,7 +406,7 @@ void Resource::MgrCommand::setModeInvalid(void)
 void Resource::MgrCommand::memoryCallBackFunc()
 {
 	_38->_30->changeGroupID(_38->m_groupIDMaybe);
-	JUT_PANICLINE(343, "有りえない状態でございます \n");
+	JUT_PANICLINE(343, "有りえな�?状態でござ�?ま�? \n");
 }
 
 /*
@@ -418,7 +418,7 @@ void Resource::MgrCommand::aramLoadCallBackFunc(void)
 {
 	_38->_30->changeGroupID(_38->m_groupIDMaybe);
 	void* resource = gAramMgr->aramToMainRam(_A8->m_name, nullptr, 0, 0, Switch_1, 0, _38->_30, JKRDvdRipper::ALLOC_DIR_TOP, -1, nullptr);
-	if (resource != nullptr) {
+	if (resource) {
 		_38->m_resource = resource;
 		userCallBackInvoke();
 	}
@@ -496,7 +496,7 @@ lbl_80433640:
  */
 void Resource::MgrCommand::userCallBackInvoke(void)
 {
-	if (_B0 != nullptr) {
+	if (_B0) {
 		JKRHeap* existingCurrentHeap = JKRHeap::sCurrentHeap;
 		_38->_30->becomeCurrentHeap();
 		_B0->invoke(this);
@@ -515,7 +515,7 @@ bool Resource::MgrCommand::destroy()
 	// UNUSED FUNCTION
 	bool result = false;
 	if (_30 != -1) {
-		if (_38 != nullptr) {
+		if (_38) {
 			Node::destroy(_38);
 			_30    = -1;
 			result = true;
@@ -941,7 +941,7 @@ void Resource::Mgr::destroyAll(void)
 {
 	Node* parent;
 	Node* child = (Node*)_10.m_child;
-	while (parent = child, parent != nullptr) {
+	while (parent = child, parent) {
 		child = (Node*)parent->m_next;
 		Node::destroy(parent);
 	}

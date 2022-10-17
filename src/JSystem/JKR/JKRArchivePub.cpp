@@ -412,7 +412,7 @@ bool JKRArchive::getDirEntry(JKRArchive::SDirEntry* dirEntry, unsigned long p2) 
 void* JKRArchive::getGlbResource(unsigned long type, const char* name, JKRArchive* archive)
 {
 	void* resource;
-	if (archive != nullptr) {
+	if (archive) {
 		resource = archive->getResource(type, name);
 	} else {
 		for (JSULink<JKRFileLoader>* link = sVolumeList.getFirst(); link != nullptr; link = link->getNext()) {
@@ -544,7 +544,7 @@ u32 JKRArchive::readResource(void* p1, unsigned long p2, unsigned long type, con
 		fileEntry = findTypeResource(type, name);
 	}
 	u32 result;
-	if (fileEntry != nullptr) {
+	if (fileEntry) {
 		fetchResource(p1, p2, fileEntry, &result);
 	} else {
 		result = 0;
@@ -621,7 +621,7 @@ u32 JKRArchive::readResource(void* p1, unsigned long p2, const char* path)
 		fileEntry = findFsResource(path, sCurrentDirID);
 	}
 	u32 result;
-	if (fileEntry != nullptr) {
+	if (fileEntry) {
 		fetchResource(p1, p2, fileEntry, &result);
 	} else {
 		result = 0;
@@ -690,7 +690,7 @@ u32 JKRArchive::readResource(void* p1, unsigned long p2, unsigned short index)
 {
 	SDIFileEntry* fileEntry = findIdxResource(index);
 	u32 result;
-	if (fileEntry != nullptr) {
+	if (fileEntry) {
 		fetchResource(p1, p2, fileEntry, &result);
 	} else {
 		result = 0;
@@ -745,7 +745,7 @@ void JKRArchive::removeResourceAll()
 	if (_44 != nullptr && m_mountMode != EMM_Mem) {
 		SDIFileEntry* entry = m_fileEntries;
 		for (int i = 0; i < _44->_08; i++) {
-			if (entry->_10 != nullptr) {
+			if (entry->_10) {
 				JKRHeap::free(entry->_10, _38);
 				entry->_10 = nullptr;
 			}
@@ -763,7 +763,7 @@ void JKRArchive::removeResourceAll()
 bool JKRArchive::removeResource(void* resource)
 {
 	SDIFileEntry* entry = findPtrResource(resource);
-	if (entry != nullptr) {
+	if (entry) {
 		entry->_10 = nullptr;
 		JKRHeap::free(resource, _38);
 	}

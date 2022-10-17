@@ -19,7 +19,7 @@ BaseParm::BaseParm(Parameters* parameters, u32 rawID, char* name)
 	for (parm1 = parameters->m_parmsHead; parm1 != NULL; parm1 = parm2->m_next) {
 		parm2 = parm1;
 	}
-	if (parm2 != nullptr) {
+	if (parm2) {
 		parm2->m_next = this;
 	} else {
 		parameters->m_parmsHead = this;

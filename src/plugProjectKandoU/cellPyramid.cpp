@@ -172,7 +172,7 @@ void CellPyramid::mapSearch(Sys::Sphere& sphere, IDelegate1<CellObject*>* delega
 		// for (; rect.p1.x <= rect.p2.x; rect.p1.x++) {
 		for (int y = rect.p1.y; y <= rect.p2.y; ++y) {
 			Cell* cell = m_layers[layerIndex](x, y);
-			if (cell != nullptr) {
+			if (cell) {
 				cell->mapSearch(delegate, m_passID);
 			}
 		}
@@ -188,7 +188,7 @@ void CellPyramid::mapSearch(Sys::Sphere& sphere, IDelegate1<CellObject*>* delega
 	    cell->mapSearchUp(delegate, p2);
 	}
 	for (int cellIndex = 0; cellIndex < 4; cellIndex++) {
-	    if (_00[cellIndex] != nullptr) {
+	    if (_00[cellIndex] ) {
 	        _00[cellIndex]->mapSearchDown(delegate, p2);
 	    }
 	}
@@ -277,7 +277,7 @@ void CellObject::exitCell()
 	// }
 	for (int cellLegIndex = 0; cellLegIndex < 4; cellLegIndex++) {
 		Cell* cell = m_cellLegs[cellLegIndex].m_cell;
-		if (cell != nullptr) {
+		if (cell) {
 			cell->exit(&m_cellLegs[cellLegIndex], bVar3);
 			m_cellLegs[cellLegIndex].m_cell = nullptr;
 		}
@@ -334,7 +334,7 @@ void Cell::mapSearch(IDelegate1<CellObject*>* delegate, u32 passID)
 		cell->mapSearchUp(delegate, passID);
 	}
 	for (int cellIndex = 0; cellIndex < 4; cellIndex++) {
-		if (_00[cellIndex] != nullptr) {
+		if (_00[cellIndex]) {
 			_00[cellIndex]->mapSearchDown(delegate, passID);
 		}
 	}
@@ -377,7 +377,7 @@ void Cell::mapSearchDown(IDelegate1<CellObject*>* delegate, u32 passID)
 		}
 	}
 	for (int cellIndex = 0; cellIndex < 4; cellIndex++) {
-		if (_00[cellIndex] != nullptr) {
+		if (_00[cellIndex]) {
 			_00[cellIndex]->mapSearchDown(delegate, passID);
 		}
 	}
@@ -680,7 +680,7 @@ void CollisionBuffer::clear()
 void CollisionBuffer::insert(CellObject* newObject, float distance)
 {
 	CellObject* object = m_cellObject;
-	if (object != nullptr) {
+	if (object) {
 		if (object->deferPikiCollision()) {
 			(newObject->isPiki()) ? pikiInsertPiki(newObject, distance) : pikiInsertOther(newObject, distance);
 		} else {
@@ -809,7 +809,7 @@ int CollisionBuffer::findIndex(CellObject* object)
 inline void CellLayer::resolveCollision()
 {
 	for (int i = 0; i < m_sizeX * m_sizeY; ++i) {
-		if (m_cells[i]._1C != nullptr) {
+		if (m_cells[i]._1C) {
 			m_cells[i].resolveCollision();
 		}
 	}
@@ -1142,13 +1142,13 @@ inline void Cell::rec_resolveColl()
 void Cell::clearAllCollBuffer()
 {
 	// UNUSED FUNCTION
-	// if (_1C != nullptr) {
+	// if (_1C ) {
 	for (CellLeg* leg = _1C; leg != nullptr; leg = leg->m_next) {
-		if (leg->m_object != nullptr) {
+		if (leg->m_object) {
 			leg->m_object->m_collisionBuffer.clear();
 		}
 		// CellObject* object = leg->m_object;
-		// if (object != nullptr) {
+		// if (object ) {
 		// 	object->m_collisionBuffer.clear();
 		// }
 	}
@@ -1165,7 +1165,7 @@ void CellLayer::clearAllCollBuffer()
 {
 	// UNUSED FUNCTION
 	for (int i = 0; i < m_sizeX * m_sizeY; i++) {
-		if (m_cells[i]._1C != nullptr) {
+		if (m_cells[i]._1C) {
 			m_cells[i].clearAllCollBuffer();
 		}
 	}
@@ -1216,7 +1216,7 @@ inline void Cell::exit(CellLeg* aLeg, bool p2)
 {
 	if (_1C == aLeg) {
 		_1C = aLeg->m_next;
-		if (_1C != nullptr) {
+		if (_1C) {
 			_1C->m_prev = nullptr;
 		}
 	}
@@ -1231,20 +1231,20 @@ inline void Cell::exit(CellLeg* aLeg, bool p2)
 		iCell->_18--;
 	}
 	CellLeg* leg = aLeg->m_prev;
-	if (leg != nullptr) {
+	if (leg) {
 		leg->m_next = aLeg->m_next;
 	}
 	leg = aLeg->m_next;
-	if (leg != nullptr) {
+	if (leg) {
 		leg->m_prev = aLeg->m_prev;
 	}
 	aLeg->m_prev = nullptr;
 	aLeg->m_next = nullptr;
 	if ((_1C == nullptr) && (Cell::sCurrCellMgr != nullptr)) {
 		P2ASSERTLINE(786, Cell::sCurrCellMgr != nullptr);
-		if (_24 != nullptr) {
+		if (_24) {
 			_24->_20 = _20;
-			if (_20 != nullptr) {
+			if (_20) {
 				_20->_24 = _24;
 			}
 		}
@@ -1262,7 +1262,7 @@ inline void Cell::exit(CellLeg* aLeg, bool p2)
 void Cell::entry(CellLeg* leg, bool p2)
 {
 	P2ASSERTLINE(836, leg != nullptr);
-	if (leg->m_cell != nullptr) {
+	if (leg->m_cell) {
 		leg->m_cell->exit(leg, p2);
 	}
 	/*
@@ -2247,7 +2247,7 @@ void CellPyramid::entry(CellObject* param_1, Sys::Sphere& param_2, int& param_3,
 // #ifdef MATCHING
 #line 1206
 			// #endif
-			JUTException::panic_f(__FILE__, __LINE__, "illegal layerLevel %d : out of bounds 0ã€œ%d\n", iVar9, m_layerCount);
+			JUTException::panic_f(__FILE__, __LINE__, "illegal layerLevel %d : out of bounds 0ã€?%d\n", iVar9, m_layerCount);
 		}
 	int iVar12       = 0;
 	bool bVar5       = false;
@@ -2262,13 +2262,13 @@ void CellPyramid::entry(CellObject* param_1, Sys::Sphere& param_2, int& param_3,
 	iVar9 = 0;
 	for (iVar9 = 0; iVar9 < 4; iVar9++) {
 		Cell* cell = param_1->m_cellLegs.arrayView[iVar9].m_cell;
-		if (cell != nullptr) {
+		if (cell) {
 			cell->exit(&param_1->m_cellLegs.arrayView[iVar9], bVar5);
 			// 			if (cell->_1C == &param_1.m_cellLegs.arrayView[iVar9]) {
 			// 				cell->_1C =
 			// param_1.m_cellLegs.arrayView[iVar9].m_next; 				if
 			// (cell->_1C
-			// != nullptr) { 					cell->_1C->m_prev = nullptr;
+			// ) { 					cell->_1C->m_prev = nullptr;
 			// 				}
 			// 			}
 			// 			if ((bVar5) && (cell->_14 != 0)) {
@@ -2287,7 +2287,7 @@ void CellPyramid::entry(CellObject* param_1, Sys::Sphere& param_2, int& param_3,
 			// param_1.m_cellLegs.arrayView[iVar9].m_next;
 			// 			}
 			// 			leg = param_1.m_cellLegs.arrayView[iVar9].m_next;
-			// 			if (leg != nullptr) {
+			// 			if (leg ) {
 			// 				leg->m_prev =
 			// param_1.m_cellLegs.arrayView[iVar9].m_prev;
 			// 			}
@@ -2302,9 +2302,9 @@ void CellPyramid::entry(CellObject* param_1, Sys::Sphere& param_2, int& param_3,
 			// // #endif
 			// 					P2ASSERT(Cell::sCurrCellMgr != nullptr);
 			// 				}
-			// 				if (cell->_24 != nullptr) {
+			// 				if (cell->_24 ) {
 			// 					cell->_24->_20 = cell->_20;
-			// 					if (cell->_20 != nullptr) {
+			// 					if (cell->_20 ) {
 			// 						cell->_20->_24 = cell->_24;
 			// 					}
 			// 				}
@@ -2329,7 +2329,7 @@ void CellPyramid::entry(CellObject* param_1, Sys::Sphere& param_2, int& param_3,
 			} else {
 				cell = &layer->m_cells[cellX + (cellY * layer->m_sizeX)];
 			}
-			if (cell != nullptr) {
+			if (cell) {
 				if (3 < iVar9)
 					goto LAB_801589e8;
 				cell->entry(param_1.m_cellLegs.arrayView, SUB41((uint)-iVar12 >> 0x1f, 0));
@@ -3027,14 +3027,14 @@ int CellPyramid::getPikiCount(int layerLevel, Recti& extent)
 	if (disableAICulling) {
 		return 1;
 	}
-	JUT_ASSERTLINE(1565, (layerLevel >= 0) && (layerLevel < m_layerCount), "illegal layerLevel %d : out of bounds 0ã€œ%d\n", layerLevel,
+	JUT_ASSERTLINE(1565, (layerLevel >= 0) && (layerLevel < m_layerCount), "illegal layerLevel %d : out of bounds 0ã€?%d\n", layerLevel,
 	               m_layerCount);
 	CellLayer* layer = &m_layers[layerLevel];
 	int sum          = 0;
 	for (int x = extent.p1.x; x <= extent.p2.x; x++) {
 		for (int y = extent.p1.y; y <= extent.p2.y; y++) {
 			Cell* cell = (*layer)(x, y);
-			if (cell != nullptr) {
+			if (cell) {
 				sum += cell->_14 + cell->_16;
 			}
 		}

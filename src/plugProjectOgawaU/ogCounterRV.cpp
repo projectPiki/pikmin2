@@ -146,7 +146,7 @@ void CallBack_CounterRV::hide()
 {
 	m_isHidden = true;
 	for (int i = 0; i < m_counterLimit; i++) {
-		if (m_counters[i] != nullptr) {
+		if (m_counters[i]) {
 			m_counters[i]->m_picture->hide();
 		}
 	}

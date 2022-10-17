@@ -373,7 +373,7 @@ struct Pellet : public DynCreature, public SysShape::MotionListener, public Carr
 
 			SysShape::Joint* joint = m_model->getJoint(jointName);
 
-			if (joint != nullptr) {
+			if (joint) {
 				u16 index               = joint->m_jointIndex;
 				SysShape::Model* model  = m_model;
 				J3DMtxCalcAnmBase* calc = static_cast<J3DMtxCalcAnmBase*>(animator->getCalc());

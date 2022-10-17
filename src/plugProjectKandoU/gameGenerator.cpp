@@ -624,7 +624,7 @@ bool Generator::need_saveCreature(void)
  */
 void Generator::saveCreature(Stream& output)
 {
-	if (m_creature != nullptr) {
+	if (m_creature) {
 		u16 flags = _5C;
 		// u8 saveFlag = (flags & 8);
 		bool conversion = false;
@@ -725,13 +725,13 @@ void Generator::generate(void)
 			return;
 		}
 		m_creature = nullptr;
-		if (_18 != nullptr) {
+		if (_18) {
 			if (ramMode != 0 && (_5C & 4) != 0 && gameSystem->m_timeMgr->m_dayCount >= _78 + _70) {
 				_78 = gameSystem->m_timeMgr->m_dayCount;
 				_74 = 0;
 			}
 			m_creature = _18->generate(this);
-			if (m_creature != nullptr) {
+			if (m_creature) {
 				m_creature->m_generator = this;
 			}
 		}
@@ -958,7 +958,7 @@ void Generator::read(Stream& input)
 		}
 	}
 	_18 = makeResult;
-	if (_18 != nullptr) {
+	if (_18) {
 		if (Generator::ramMode == 0) {
 			ID32 temp2;
 			temp2.read(input);
@@ -1320,7 +1320,7 @@ void Generator::write(Stream& output)
 		output.writeFloat(m_offset.z);
 		output.textWriteText("\t# offset\r\n");
 	}
-	if (_18 != nullptr) {
+	if (_18) {
 		_18->write(output);
 	} else {
 		output.writeInt(0);
@@ -1705,12 +1705,12 @@ void GeneratorMgr::addMgr(Game::GeneratorMgr* newMgr)
 	}
 	GeneratorMgr* speculativeChild = m_childMgr;
 	// GeneratorMgr* certainChild;
-	// while (speculativeChild != nullptr) {
+	// while (speculativeChild ) {
 	// 	certainChild = speculativeChild;
 	// 	speculativeChild = certainChild->m_nextMgr;
 	// }
 	// certainChild->m_nextMgr = newMgr;
-	while (speculativeChild->m_nextMgr != nullptr) {
+	while (speculativeChild->m_nextMgr) {
 		speculativeChild = speculativeChild->m_nextMgr;
 	}
 	speculativeChild->m_nextMgr = newMgr;
@@ -1961,10 +1961,10 @@ GeneratorMgr* GeneratorMgr::getChild() { return m_childMgr; }
 void GeneratorMgr::updateCursorPos(Vector3f& position)
 {
 	m_cursorPosition = position;
-	if (getChild() != nullptr) {
+	if (getChild()) {
 		getChild()->updateCursorPos(position);
 	}
-	if (getNext() != nullptr) {
+	if (getNext()) {
 		getNext()->updateCursorPos(position);
 	}
 }
@@ -1997,7 +1997,7 @@ void GeneratorMgr::updateCursorPos(Vector3f& position)
  */
 void GeneratorMgr::read(Stream& input, bool)
 {
-	if (m_generator != nullptr) {
+	if (m_generator) {
 		delete m_generator;
 		_4C = 0;
 	}

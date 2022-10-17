@@ -487,7 +487,7 @@ JKRArchive::SDIFileEntry* JKRArchive::findTypeResource(u32 p1, const char* p2) c
 		CArcName arcName;
 		arcName.store(p2);
 		SDirEntry* dirEntry = findResType(p1);
-		if (dirEntry != nullptr) {
+		if (dirEntry) {
 			SDIFileEntry* fileEntry = m_fileEntries + dirEntry->_0C;
 			if (isSameName(arcName, fileEntry->_04 & 0xFFFFFF, fileEntry->m_hash)) {
 				return fileEntry;
@@ -607,7 +607,7 @@ lbl_8001AA60:
  */
 JKRArchive::SDIFileEntry* JKRArchive::findFsResource(const char* path, u32 index) const
 {
-	if (path != nullptr) {
+	if (path) {
 		CArcName arcName(&path, '/');
 		SDIFileEntry* entry = m_fileEntries + _48[index]._0C;
 		for (int i = 0; i < _48[index]._0A; i++, entry++) {

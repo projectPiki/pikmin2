@@ -88,7 +88,7 @@ void Obj::doDebugDraw(Graphics& gfx) { EnemyBase::doDebugDraw(gfx); }
 void Obj::getShadowParam(ShadowParam& shadowParam)
 {
 	Matrixf* worldMat = m_shadowJoint->getWorldMatrix();
-	if (worldMat != nullptr) {
+	if (worldMat) {
 		shadowParam.m_position = worldMat->getBasis(3);
 		shadowParam.m_position.y -= 17.5f;
 		f32 minY = 5.0f + m_position.y;
@@ -112,7 +112,7 @@ void Obj::getShadowParam(ShadowParam& shadowParam)
 bool Obj::damageCallBack(Creature* creature, f32 damage, CollPart* collpart)
 {
 	f32 scale;
-	if (collpart != nullptr) {
+	if (collpart) {
 		scale = 1.0f;
 	} else {
 		scale = 0.2f;
@@ -132,7 +132,7 @@ void Obj::collisionCallback(CollEvent& collEvent)
 {
 	bool isColliding   = false;
 	Creature* creature = collEvent.m_collidingCreature;
-	if (creature != nullptr) {
+	if (creature) {
 		if (creature->isTeki()) {
 			EnemyTypeID::EEnemyTypeID enemyID = static_cast<EnemyBase*>(creature)->getEnemyTypeID();
 			if ((static_cast<EnemyBase*>(creature)->m_emotion == EMOTE_Excitement) || (enemyID == EnemyTypeID::EnemyID_PanModoki)
@@ -332,7 +332,7 @@ void Obj::flickAttackBomb()
 	Vector3f effectPos = m_position;
 	effectPos += m_commonEffectOffset;
 
-	if (m_waterBox != nullptr) {
+	if (m_waterBox) {
 		effectPos.y = *m_waterBox->getSeaHeightPtr();
 		efx::ArgScale argWater(effectPos, 1.0f);
 		efx::TEnemyDownWat downWatEffect;
@@ -381,9 +381,9 @@ void Obj::createEffect() { m_efxHanacho = new efx::THanachoN; }
 void Obj::setupEffect()
 {
 	SysShape::Joint* headJoint = m_model->getJoint("head");
-	if (headJoint != nullptr) {
+	if (headJoint) {
 		Matrixf* worldMat = headJoint->getWorldMatrix();
-		if (worldMat != nullptr) {
+		if (worldMat) {
 			m_efxHanacho->m_mtx = worldMat;
 		}
 	}

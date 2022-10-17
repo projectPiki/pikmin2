@@ -113,7 +113,7 @@ void EnemyStateMachine::registerState(EnemyFSMState* newState)
  */
 int EnemyStateMachine::getCurrID(EnemyBase* obj)
 {
-	if (getCurrState(obj) != nullptr) {
+	if (getCurrState(obj)) {
 		return getCurrState(obj)->m_stateID;
 	}
 	return -1;
@@ -126,7 +126,7 @@ int EnemyStateMachine::getCurrID(EnemyBase* obj)
  */
 const char* EnemyStateMachine::getCurrName(EnemyBase* obj)
 {
-	if (getCurrState(obj) != nullptr) {
+	if (getCurrState(obj)) {
 		return getCurrState(obj)->m_name;
 	}
 	return "no name";
@@ -140,7 +140,7 @@ const char* EnemyStateMachine::getCurrName(EnemyBase* obj)
 void EnemyStateMachine::transit(EnemyBase* obj, int id, StateArg* arg)
 {
 	int index = m_idToIndexArray[id];
-	if (getCurrState(obj) != nullptr) {
+	if (getCurrState(obj)) {
 		getCurrState(obj)->cleanup(obj);
 		m_previousID = getCurrState(obj)->m_stateID;
 	}

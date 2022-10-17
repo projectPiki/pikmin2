@@ -157,7 +157,7 @@ struct GeneralEnemyMgr : public GenericObjectMgr, public CNode {
 
 	inline u8 getTotalEnemyCount(u8 num, int enemyID)
 	{
-		if (m_enemyNumList != nullptr) {
+		if (m_enemyNumList) {
 			int mgrID = getEnemyMgrID(enemyID);
 
 			for (int i = 0; i < gEnemyInfoNum; i++) {

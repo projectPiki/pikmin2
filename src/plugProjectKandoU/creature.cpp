@@ -501,10 +501,10 @@ void Creature::setPosition(Vector3f& position, bool skipProcessing)
 	onSetPosition(position);
 	if (!skipProcessing) {
 		updateTrMatrix();
-		if (m_model != nullptr) {
+		if (m_model) {
 			PSMTXCopy(m_mainMatrix.m_matrix.mtxView, m_model->m_j3dModel->_24);
 			m_model->m_j3dModel->calc();
-			if (m_collTree != nullptr) {
+			if (m_collTree) {
 				m_collTree->update();
 			}
 		}
@@ -529,10 +529,10 @@ void Creature::initPosition(Vector3f& position)
 {
 	onSetPosition(position);
 	updateTrMatrix();
-	if (m_model != nullptr) {
+	if (m_model) {
 		PSMTXCopy(m_mainMatrix.m_matrix.mtxView, m_model->m_j3dModel->_24);
 		m_model->m_j3dModel->calc();
-		if (m_collTree != nullptr) {
+		if (m_collTree) {
 			m_collTree->update();
 		}
 	}
@@ -814,7 +814,7 @@ void Creature::applyAirDrag(float a, float b, float c)
  */
 void Creature::doAnimation()
 {
-	if (m_model != nullptr) {
+	if (m_model) {
 		m_model->m_j3dModel->calc();
 	}
 }
@@ -862,7 +862,7 @@ void Creature::doSetView(int viewportNo)
  */
 void Creature::doViewCalc()
 {
-	if (m_model != nullptr) {
+	if (m_model) {
 		m_model->viewCalc();
 	}
 }
@@ -1074,7 +1074,7 @@ void Game::Creature::updateCell()
  */
 int Creature::getCellPikiCount()
 {
-	if (cellMgr != nullptr) {
+	if (cellMgr) {
 		return cellMgr->getPikiCount(m_cellLayerIndex, m_cellRect);
 	}
 	return 0;

@@ -111,7 +111,7 @@ void StateBorn::init(EnemyBase* enemy, StateArg* stateArg)
  */
 void StateBorn::exec(EnemyBase* enemy)
 {
-	if (enemy->m_curTriangle != nullptr) {
+	if (enemy->m_curTriangle) {
 
 		Vector3f vec = enemy->m_simVelocity;
 		weightVecXZ(vec, 0.95f);
@@ -168,7 +168,7 @@ void StateMove::exec(EnemyBase* enemy)
 	    = EnemyFunc::getNearestPikminOrNavi(baby, static_cast<Parms*>(baby->m_parms)->m_general.m_fov.m_value,
 	                                        static_cast<Parms*>(baby->m_parms)->m_general.m_sightRadius.m_value, nullptr, nullptr, nullptr);
 
-	if (creature != nullptr) {
+	if (creature) {
 		Vector3f creaturePos = creature->getPosition();
 		Vector2f XZ;
 		XZ.x          = creaturePos.x;

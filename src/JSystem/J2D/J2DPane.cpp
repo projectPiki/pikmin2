@@ -319,7 +319,7 @@ void J2DPane::initialize(J2DPane* parent, bool isVisible, u64 tag, const JGeomet
 	m_tag          = tag;
 	m_messageID    = 0;
 	_020           = box;
-	if (parent != nullptr) {
+	if (parent) {
 		JSUPtrLink* link = m_tree.m_list.m_head;
 		if (link) {
 			link = &m_tree.m_link; // Could this be getting m_value?
@@ -713,9 +713,9 @@ void J2DPane::makePaneStream(J2DPane* parent, JSURandomInputStream* input)
 		valuesRemaining--;
 	}
 	input->align(4);
-	if (parent != nullptr) {
+	if (parent) {
 		JSUPtrLink* link = m_tree.m_list.m_head;
-		if (link != nullptr) {
+		if (link) {
 			link = &m_tree.m_link;
 		}
 		parent->m_tree.m_list.append(link);
@@ -1182,7 +1182,7 @@ u32 J2DPane::appendChild(J2DPane* child)
 	}
 	J2DPane* oldParent = child->getParentPane();
 	JSUPtrLink* link   = child->m_tree.m_list.m_head;
-	if (link != nullptr) {
+	if (link) {
 		link = &child->m_tree.m_link;
 	}
 	bool appendResult = m_tree.m_list.append(link);

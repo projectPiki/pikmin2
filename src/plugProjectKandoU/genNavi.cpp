@@ -70,7 +70,7 @@ Creature* GenObjectNavi::birth(GenArg* arg)
 	getLatestVersion();
 
 	Navi* newNavi = naviMgr->birth();
-	if (newNavi != nullptr) {
+	if (newNavi) {
 		newNavi->init(nullptr);
 
 		newNavi->m_animator.m_animator1.getCalc();
