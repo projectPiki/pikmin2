@@ -162,10 +162,10 @@ void Obj::interactFireAttack()
 	arg._1C = true;
 
 	CellIterator iterator(arg);
-	iterator.first();
-
-	while (!iterator.isDone()) {
+	CI_LOOP(iterator)
+	{
 		Creature* creature = static_cast<Creature*>(*iterator);
+
 		if (creature->isAlive() && (creature->isNavi() || creature->isPiki())) {
 			Vector3f position = creature->getPosition();
 			if ((max > position.y) && (min < position.y)) {
@@ -177,7 +177,6 @@ void Obj::interactFireAttack()
 				}
 			}
 		}
-		iterator.next();
 	}
 }
 
