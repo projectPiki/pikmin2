@@ -2054,12 +2054,12 @@ void EnemyBase::birth(Vector3f& pos, float faceDir)
 	m_homePosition.x   = pos.x;
 	m_homePosition.y   = pos.y;
 	m_homePosition.z   = pos.z;
-	m_rotation     = Vector3f(0.0f);
+	m_rotation         = Vector3f(0.0f);
 	m_impVelocity      = Vector3f(0.0f);
 	m_simVelocity      = Vector3f(0.0f);
 	m_targetCreature   = nullptr;
 	m_faceDir          = faceDir;
-	m_rotation.y   = m_faceDir;
+	m_rotation.y       = m_faceDir;
 	m_curTriangle      = nullptr;
 	m_stickPikminCount = 0;
 	m_heldPellet       = nullptr;

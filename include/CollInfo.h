@@ -86,7 +86,7 @@ struct CollPart : public CNode {
 	Vector3f m_offset;            // _20
 	u32 m_jointIndex;             // _2C
 	ID32 m_currentID;             // _30, identifier of current part, initialised to root
-	ID32 m_specialID;         		// _3C, used to detect whether the collpart is stickable, denoted by prefixed -s: e.g. 'sp01'
+	ID32 m_specialID;             // _3C, used to detect whether the collpart is stickable, denoted by prefixed -s: e.g. 'sp01'
 	u16 m_attribute;              // _48
 	Vector3f m_position;          // _4C
 	u8 m_hasCollPart;             // _58

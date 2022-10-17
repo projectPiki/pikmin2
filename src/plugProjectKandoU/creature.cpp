@@ -433,7 +433,7 @@ void Creature::init(Game::CreatureInitArg* arg)
 	m_updateContext.init(Game::collisionUpdateMgr);
 	_11C = Vector3f(0.0f);
 	clearCapture();
-	m_curTriangle         = nullptr;
+	m_curTriangle       = nullptr;
 	m_collisionPosition = Vector3f(0.0f, 1.0f, 0.0f);
 	clearCapture();
 	if (getMabiki()) {

@@ -156,7 +156,7 @@ void StateDisappear::cleanup(EnemyBase* enemy)
 	if (faceDir >= TAU) {
 		faceDir -= TAU;
 	}
-	wisp->m_faceDir        = faceDir;
+	wisp->m_faceDir    = faceDir;
 	wisp->m_rotation.y = wisp->m_faceDir;
 
 	wisp->m_spawnIndex ^= 1;

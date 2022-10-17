@@ -97,7 +97,7 @@ struct BarrelParms : public CreatureParms {
 	struct Parms : public Parameters {
 		inline Parms()
 		    : Parameters(nullptr, "Barrel::Parms")
-		    , p000(this, 'p000', "ãƒ©ã‚¤ãƒ?", 100.0f, 1.0f, 6000.0f)
+		    , p000(this, 'p000', "ƒ‰ƒCƒt", 100.0f, 1.0f, 60000.0f)
 		{
 		}
 

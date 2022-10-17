@@ -1867,17 +1867,17 @@ CollPart* CollPart::clone(SysShape::MtxObject* mtxObject, CollPartMgr* mgr)
 		copy = new CollPart(mtxObject);
 	}
 
-	copy->m_radius        = m_radius;
-	copy->m_baseRadius    = copy->m_radius;
-	copy->m_currentID     = m_currentID;
-	copy->m_specialID = m_specialID;
-	copy->m_offset        = m_offset;
-	copy->m_hasCollPart   = m_hasCollPart;
-	copy->m_jointIndex    = m_jointIndex;
-	copy->m_model         = m_model;
-	copy->_60             = _60;
-	copy->m_attribute     = m_attribute;
-	copy->m_model         = mtxObject;
+	copy->m_radius      = m_radius;
+	copy->m_baseRadius  = copy->m_radius;
+	copy->m_currentID   = m_currentID;
+	copy->m_specialID   = m_specialID;
+	copy->m_offset      = m_offset;
+	copy->m_hasCollPart = m_hasCollPart;
+	copy->m_jointIndex  = m_jointIndex;
+	copy->m_model       = m_model;
+	copy->_60           = _60;
+	copy->m_attribute   = m_attribute;
+	copy->m_model       = mtxObject;
 
 	int childCount  = getChildCount();
 	CollPart* child = getChild();
