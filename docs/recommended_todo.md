@@ -4,12 +4,16 @@
 | ---- | ---- |
 | <a href="https://github.com/projectPiki/pikmin2/tree/main/src/Dolphin/GXDisplayList.c">GXDisplayList.c</a> | 647 |
 | <a href="https://github.com/projectPiki/pikmin2/tree/main/src/Dolphin/__init_cpp_exceptions.cpp">__init_cpp_exceptions.cpp</a> | 659 |
+| <a href="https://github.com/projectPiki/pikmin2/tree/main/src/plugProjectNishimuraU/CatfishMgr.cpp">CatfishMgr.cpp</a> | 754 |
 | <a href="https://github.com/projectPiki/pikmin2/tree/main/src/Dolphin/global_destructor_chain.c">global_destructor_chain.c</a> | 965 |
+| <a href="https://github.com/projectPiki/pikmin2/tree/main/src/JSystem/J3D/J3DJointFactory.cpp">J3DJointFactory.cpp</a> | 1379 |
 | <a href="https://github.com/projectPiki/pikmin2/tree/main/src/JSystem/dsp/osdsp.c">osdsp.c</a> | 1566 |
 | <a href="https://github.com/projectPiki/pikmin2/tree/main/src/JSystem/object/object-id.cpp">object-id.cpp</a> | 1767 |
+| <a href="https://github.com/projectPiki/pikmin2/tree/main/src/plugProjectHikinoU/PSAutoBgm_MeloArranger.cpp">PSAutoBgm_MeloArranger.cpp</a> | 1824 |
 | <a href="https://github.com/projectPiki/pikmin2/tree/main/src/JSystem/JAS/JASRegisterParam.cpp">JASRegisterParam.cpp</a> | 1861 |
 | <a href="https://github.com/projectPiki/pikmin2/tree/main/src/JSystem/JAS/JASBasicBank.cpp">JASBasicBank.cpp</a> | 1877 |
 | <a href="https://github.com/projectPiki/pikmin2/tree/main/src/JSystem/JAS/JASTrackInterrupt.cpp">JASTrackInterrupt.cpp</a> | 2023 |
+| <a href="https://github.com/projectPiki/pikmin2/tree/main/src/plugProjectNishimuraU/RandMapDraw.cpp">RandMapDraw.cpp</a> | 2108 |
 | <a href="https://github.com/projectPiki/pikmin2/tree/main/src/JSystem/JAS/JASInstRand.cpp">JASInstRand.cpp</a> | 2290 |
 | <a href="https://github.com/projectPiki/pikmin2/tree/main/src/JSystem/JPA/JPAExTexShape.cpp">JPAExTexShape.cpp</a> | 2368 |
 | <a href="https://github.com/projectPiki/pikmin2/tree/main/src/JSystem/JAS/JASReport.cpp">JASReport.cpp</a> | 2387 |
@@ -32,6 +36,7 @@
 | <a href="https://github.com/projectPiki/pikmin2/tree/main/src/plugProjectEbisawaU/ebiUtility.cpp">ebiUtility.cpp</a> | 3803 |
 | <a href="https://github.com/projectPiki/pikmin2/tree/main/src/JSystem/JUT/JUTGraphFifo.cpp">JUTGraphFifo.cpp</a> | 3821 |
 | <a href="https://github.com/projectPiki/pikmin2/tree/main/src/JSystem/JAS/JASResArcLoader.cpp">JASResArcLoader.cpp</a> | 3870 |
+| <a href="https://github.com/projectPiki/pikmin2/tree/main/src/plugProjectKandoU/baseGameSectionDraw.cpp">baseGameSectionDraw.cpp</a> | 3986 |
 | <a href="https://github.com/projectPiki/pikmin2/tree/main/src/plugProjectOgawaU/ogCallBackScreen.cpp">ogCallBackScreen.cpp</a> | 4006 |
 | <a href="https://github.com/projectPiki/pikmin2/tree/main/src/JSystem/J3D/J3DUMtxCache.cpp">J3DUMtxCache.cpp</a> | 4120 |
 | <a href="https://github.com/projectPiki/pikmin2/tree/main/src/JSystem/JKR/JKRAramBlock.cpp">JKRAramBlock.cpp</a> | 4399 |
@@ -49,6 +54,7 @@
 | <a href="https://github.com/projectPiki/pikmin2/tree/main/src/Dolphin/CARDRdwr.c">CARDRdwr.c</a> | 4881 |
 | <a href="https://github.com/projectPiki/pikmin2/tree/main/src/JSystem/object/control.cpp">control.cpp</a> | 4890 |
 | <a href="https://github.com/projectPiki/pikmin2/tree/main/src/JSystem/J3D/J3DVertex.cpp">J3DVertex.cpp</a> | 4934 |
+| <a href="https://github.com/projectPiki/pikmin2/tree/main/src/plugProjectOgawaU/ogCounter.cpp">ogCounter.cpp</a> | 4976 |
 | <a href="https://github.com/projectPiki/pikmin2/tree/main/src/plugProjectOgawaU/ogDrawAfter.cpp">ogDrawAfter.cpp</a> | 5004 |
 | <a href="https://github.com/projectPiki/pikmin2/tree/main/src/Dolphin/dsp.c">dsp.c</a> | 5020 |
 | <a href="https://github.com/projectPiki/pikmin2/tree/main/src/plugProjectOgawaU/ogSceneUfo.cpp">ogSceneUfo.cpp</a> | 5053 |
@@ -87,6 +93,7 @@
 | <a href="https://github.com/projectPiki/pikmin2/tree/main/src/JSystem/JUT/JUTDirectFile.cpp">JUTDirectFile.cpp</a> | 6711 |
 | <a href="https://github.com/projectPiki/pikmin2/tree/main/src/plugProjectKandoU/gameFootmark.cpp">gameFootmark.cpp</a> | 6723 |
 | <a href="https://github.com/projectPiki/pikmin2/tree/main/src/plugProjectKandoU/cellMgrParms.cpp">cellMgrParms.cpp</a> | 6740 |
+| <a href="https://github.com/projectPiki/pikmin2/tree/main/src/plugProjectNishimuraU/RandPlantUnit.cpp">RandPlantUnit.cpp</a> | 6787 |
 | <a href="https://github.com/projectPiki/pikmin2/tree/main/src/Dolphin/OSResetSW.c">OSResetSW.c</a> | 6856 |
 | <a href="https://github.com/projectPiki/pikmin2/tree/main/src/JSystem/JAI/JAIFx.cpp">JAIFx.cpp</a> | 6873 |
 | <a href="https://github.com/projectPiki/pikmin2/tree/main/src/plugProjectOgawaU/ogSceneWorldMapInfoWindow1.cpp">ogSceneWorldMapInfoWindow1.cpp</a> | 6932 |
@@ -134,6 +141,7 @@
 | <a href="https://github.com/projectPiki/pikmin2/tree/main/src/plugProjectYamashitaU/KochappyBaseMgr.cpp">KochappyBaseMgr.cpp</a> | 9030 |
 | <a href="https://github.com/projectPiki/pikmin2/tree/main/src/JSystem/JAS/JASBasicInst.cpp">JASBasicInst.cpp</a> | 9041 |
 | <a href="https://github.com/projectPiki/pikmin2/tree/main/src/JSystem/JKR/JKRAramPiece.cpp">JKRAramPiece.cpp</a> | 9053 |
+| <a href="https://github.com/projectPiki/pikmin2/tree/main/src/JSystem/JAL/JALCalc.cpp">JALCalc.cpp</a> | 9063 |
 | <a href="https://github.com/projectPiki/pikmin2/tree/main/src/JSystem/JAU/JAUData.cpp">JAUData.cpp</a> | 9076 |
 | <a href="https://github.com/projectPiki/pikmin2/tree/main/src/plugProjectYamashitaU/ChappyBaseMgr.cpp">ChappyBaseMgr.cpp</a> | 9163 |
 | <a href="https://github.com/projectPiki/pikmin2/tree/main/src/plugProjectYamashitaU/YellowKochappyMgr.cpp">YellowKochappyMgr.cpp</a> | 9264 |
@@ -226,6 +234,7 @@
 | <a href="https://github.com/projectPiki/pikmin2/tree/main/src/plugProjectNishimuraU/BabyState.cpp">BabyState.cpp</a> | 13440 |
 | <a href="https://github.com/projectPiki/pikmin2/tree/main/src/JSystem/JMath/JMATrigonometric.cpp">JMATrigonometric.cpp</a> | 13465 |
 | <a href="https://github.com/projectPiki/pikmin2/tree/main/src/JSystem/JKR/JKRDecomp.cpp">JKRDecomp.cpp</a> | 13716 |
+| <a href="https://github.com/projectPiki/pikmin2/tree/main/src/plugProjectKandoU/gameStages.cpp">gameStages.cpp</a> | 13846 |
 | <a href="https://github.com/projectPiki/pikmin2/tree/main/src/plugProjectOgawaU/ogSunMeter.cpp">ogSunMeter.cpp</a> | 13856 |
 | <a href="https://github.com/projectPiki/pikmin2/tree/main/src/Dolphin/CARDFormat.c">CARDFormat.c</a> | 13901 |
 | <a href="https://github.com/projectPiki/pikmin2/tree/main/src/Dolphin/OSAlarm.c">OSAlarm.c</a> | 13932 |
@@ -338,6 +347,7 @@
 | <a href="https://github.com/projectPiki/pikmin2/tree/main/src/Dolphin/mtx.c">mtx.c</a> | 20982 |
 | <a href="https://github.com/projectPiki/pikmin2/tree/main/src/plugProjectNishimuraU/FuefukiMgr.cpp">FuefukiMgr.cpp</a> | 21052 |
 | <a href="https://github.com/projectPiki/pikmin2/tree/main/src/plugProjectKandoU/aiRescue.cpp">aiRescue.cpp</a> | 21066 |
+| <a href="https://github.com/projectPiki/pikmin2/tree/main/src/Dolphin/DebuggerDriver.c">DebuggerDriver.c</a> | 21239 |
 | <a href="https://github.com/projectPiki/pikmin2/tree/main/src/utilityU/PSMainSide_TrackMap.cpp">PSMainSide_TrackMap.cpp</a> | 21251 |
 | <a href="https://github.com/projectPiki/pikmin2/tree/main/src/plugProjectNishimuraU/MapUnitGenerator.cpp">MapUnitGenerator.cpp</a> | 21275 |
 | <a href="https://github.com/projectPiki/pikmin2/tree/main/src/plugProjectKandoU/gameResultTexMgr.cpp">gameResultTexMgr.cpp</a> | 21289 |
@@ -581,6 +591,7 @@
 | <a href="https://github.com/projectPiki/pikmin2/tree/main/src/plugProjectNishimuraU/Ujia.cpp">Ujia.cpp</a> | 51437 |
 | <a href="https://github.com/projectPiki/pikmin2/tree/main/src/plugProjectMorimuraU/panModokiMgr.cpp">panModokiMgr.cpp</a> | 51576 |
 | <a href="https://github.com/projectPiki/pikmin2/tree/main/src/plugProjectOgawaU/ogObjKantei.cpp">ogObjKantei.cpp</a> | 52435 |
+| <a href="https://github.com/projectPiki/pikmin2/tree/main/src/sysCommonU/sysMath.cpp">sysMath.cpp</a> | 52589 |
 | <a href="https://github.com/projectPiki/pikmin2/tree/main/src/Dolphin/targimpl.c">targimpl.c</a> | 52648 |
 | <a href="https://github.com/projectPiki/pikmin2/tree/main/src/plugProjectEbisawaU/ebiOmakeMgr.cpp">ebiOmakeMgr.cpp</a> | 52916 |
 | <a href="https://github.com/projectPiki/pikmin2/tree/main/src/plugProjectKandoU/navi_demoCheck.cpp">navi_demoCheck.cpp</a> | 53188 |
@@ -594,6 +605,7 @@
 | <a href="https://github.com/projectPiki/pikmin2/tree/main/src/plugProjectEbisawaU/ebiFileSelectMgr.cpp">ebiFileSelectMgr.cpp</a> | 54628 |
 | <a href="https://github.com/projectPiki/pikmin2/tree/main/src/plugProjectNishimuraU/Ujib.cpp">Ujib.cpp</a> | 54908 |
 | <a href="https://github.com/projectPiki/pikmin2/tree/main/src/plugProjectNishimuraU/TankState.cpp">TankState.cpp</a> | 55439 |
+| <a href="https://github.com/projectPiki/pikmin2/tree/main/src/plugProjectOgawaU/ogObjAnaDemo.cpp">ogObjAnaDemo.cpp</a> | 55787 |
 | <a href="https://github.com/projectPiki/pikmin2/tree/main/src/plugProjectKandoU/gameGenerator.cpp">gameGenerator.cpp</a> | 55839 |
 | <a href="https://github.com/projectPiki/pikmin2/tree/main/src/JSystem/J2D/J2DAnmLoader.cpp">J2DAnmLoader.cpp</a> | 55856 |
 | <a href="https://github.com/projectPiki/pikmin2/tree/main/src/plugProjectNishimuraU/ElecBugState.cpp">ElecBugState.cpp</a> | 56454 |
@@ -604,6 +616,7 @@
 | <a href="https://github.com/projectPiki/pikmin2/tree/main/src/utilityU/PSMainSide_DirectorMgr.cpp">PSMainSide_DirectorMgr.cpp</a> | 58286 |
 | <a href="https://github.com/projectPiki/pikmin2/tree/main/src/Dolphin/printf.c">printf.c</a> | 58331 |
 | <a href="https://github.com/projectPiki/pikmin2/tree/main/src/plugProjectNishimuraU/playCamera.cpp">playCamera.cpp</a> | 58580 |
+| <a href="https://github.com/projectPiki/pikmin2/tree/main/src/plugProjectYamashitaU/carryInfoMgr.cpp">carryInfoMgr.cpp</a> | 58644 |
 | <a href="https://github.com/projectPiki/pikmin2/tree/main/src/plugProjectYamashitaU/kochappyState.cpp">kochappyState.cpp</a> | 58688 |
 | <a href="https://github.com/projectPiki/pikmin2/tree/main/src/JSystem/JUT/JUTProcBar.cpp">JUTProcBar.cpp</a> | 58764 |
 | <a href="https://github.com/projectPiki/pikmin2/tree/main/src/plugProjectNishimuraU/MiniHoudaiShotGun.cpp">MiniHoudaiShotGun.cpp</a> | 58980 |
@@ -653,6 +666,7 @@
 | <a href="https://github.com/projectPiki/pikmin2/tree/main/src/plugProjectMorimuraU/tamagoMushi.cpp">tamagoMushi.cpp</a> | 72762 |
 | <a href="https://github.com/projectPiki/pikmin2/tree/main/src/plugProjectNishimuraU/MiniHoudai.cpp">MiniHoudai.cpp</a> | 74280 |
 | <a href="https://github.com/projectPiki/pikmin2/tree/main/src/plugProjectYamashitaU/genEnemy.cpp">genEnemy.cpp</a> | 74634 |
+| <a href="https://github.com/projectPiki/pikmin2/tree/main/src/plugProjectKandoU/routeMgr.cpp">routeMgr.cpp</a> | 74990 |
 | <a href="https://github.com/projectPiki/pikmin2/tree/main/src/plugProjectMorimuraU/dayEndCount.cpp">dayEndCount.cpp</a> | 75001 |
 | <a href="https://github.com/projectPiki/pikmin2/tree/main/src/plugProjectKandoU/cellPyramid.cpp">cellPyramid.cpp</a> | 76417 |
 | <a href="https://github.com/projectPiki/pikmin2/tree/main/src/plugProjectKandoU/singleGS_CaveGame.cpp">singleGS_CaveGame.cpp</a> | 76699 |
@@ -682,6 +696,7 @@
 | <a href="https://github.com/projectPiki/pikmin2/tree/main/src/plugProjectNishimuraU/CameraMgr.cpp">CameraMgr.cpp</a> | 86050 |
 | <a href="https://github.com/projectPiki/pikmin2/tree/main/src/plugProjectNishimuraU/Hanachirashi.cpp">Hanachirashi.cpp</a> | 86613 |
 | <a href="https://github.com/projectPiki/pikmin2/tree/main/src/JSystem/JUT/JUTException.cpp">JUTException.cpp</a> | 87128 |
+| <a href="https://github.com/projectPiki/pikmin2/tree/main/src/plugProjectKandoU/gamePlatMgr.cpp">gamePlatMgr.cpp</a> | 87760 |
 | <a href="https://github.com/projectPiki/pikmin2/tree/main/src/plugProjectKandoU/pelletItem.cpp">pelletItem.cpp</a> | 87821 |
 | <a href="https://github.com/projectPiki/pikmin2/tree/main/src/plugProjectKandoU/dynCreature.cpp">dynCreature.cpp</a> | 88005 |
 | <a href="https://github.com/projectPiki/pikmin2/tree/main/src/plugProjectNishimuraU/Mar.cpp">Mar.cpp</a> | 88044 |
