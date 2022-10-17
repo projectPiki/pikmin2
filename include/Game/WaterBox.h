@@ -86,9 +86,8 @@ struct AABBWaterBox : public WaterBox {
 	f32 _30;                            // _30
 	f32 _34;                            // _34
 	f32 _38;                            // _38
-	f32 _3C;                            // _3C
-	f32 _40;                            // _40
-	Vector3f _44;                       // _44
+	Vector2f m_xzPieceSize;             // _3C, length from one side to another, divided by some number (so as to split into pieces)
+	Vector3f m_centrePoint;             // _44
 	SysShape::Model* m_model;           // _50
 	Sys::MatLoopAnimator m_matAnimator; // _54
 	J3DTexture* _60;                    // _60

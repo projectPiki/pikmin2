@@ -251,39 +251,37 @@ WalkSmokeEffect::Mgr* Obj::getWalkSmokeEffectMgr() { return &m_walkSmokeMgr; }
  */
 bool Obj::isWakeup()
 {
-	bool check = false;
+	bool shouldWakeup = false;
+
 	switch (getEnemyTypeID()) {
-	case EnemyTypeID::EnemyID_BlueChappy:
-		Sys::Sphere ball;
-		f32 radius      = static_cast<Parms*>(m_parms)->m_properParms.m_fp03.m_value;
-		ball.m_position = m_position;
-		ball.m_radius   = radius;
+	case EnemyTypeID::EnemyID_BlueChappy: // Orange bulborb
+		f32 radius = C_PROPERPARMS.m_bulborbWakeRadius.m_value;
+		Sys::Sphere detectionSphere(m_position, radius);
 
-		CellIteratorArg iterArg(ball);
-		CellIterator iterator(iterArg);
-		iterator.first();
-		while (!iterator.isDone()) {
-			Creature* creature = static_cast<Creature*>(*iterator);
-			if (creature->isAlive() && (creature->isNavi() || creature->isPiki())) {
-				float privateRadius = static_cast<Parms*>(m_parms)->m_properParms.m_fp03.m_value;
-				Vector2f delta;
-				getSeparation(creature, delta);
+		CellIteratorArg iterArg(detectionSphere);
+		CellIterator i(iterArg);
+		for (i.first(); !i.isDone(); i.next()) {
+			Creature* c = static_cast<Creature*>(*i);
 
-				if ((SQUARE(delta.x) + SQUARE(delta.y)) < SQUARE(privateRadius)) {
-					check = true;
+			// If the creature is alive and a navigator or Piki
+			if (c->isAlive() && (c->isNavi() || c->isPiki())) {
+				radius = C_PROPERPARMS.m_bulborbWakeRadius.m_value;
+				if (isCreatureWithinRange(c, radius)) {
+					// And within the private radius, then wakeup
+					shouldWakeup = true;
 					break;
 				}
 			}
-			iterator.next();
 		}
 		break;
 	default:
 		if (isEvent(0, EB_Damage) || isEvent(0, EB_Collision)) {
-			check = true;
+			shouldWakeup = true;
 		}
 		break;
 	}
-	return check;
+
+	return shouldWakeup;
 }
 
 /*
@@ -310,15 +308,15 @@ void Obj::setCollEvent(CollEvent& collEvent)
  */
 void Obj::flickStatePikmin()
 {
-	Parms* stickParms = static_cast<Parms*>(m_parms);
+	Parms* stickParms = C_PARMS;
 	EnemyFunc::flickStickPikmin(this, stickParms->m_general.m_shakeRateMaybe.m_value, stickParms->m_general.m_shakeKnockback.m_value,
 	                            stickParms->m_general.m_shakeDamage.m_value, getFaceDir(), nullptr);
 
-	Parms* nearPikiParms = static_cast<Parms*>(m_parms);
+	Parms* nearPikiParms = C_PARMS;
 	EnemyFunc::flickNearbyPikmin(this, nearPikiParms->m_general.m_shakeRange.m_value, nearPikiParms->m_general.m_shakeKnockback.m_value,
 	                             nearPikiParms->m_general.m_shakeDamage.m_value, getFaceDir(), nullptr);
 
-	Parms* nearNaviParms = static_cast<Parms*>(m_parms);
+	Parms* nearNaviParms = C_PARMS;
 	EnemyFunc::flickNearbyNavi(this, nearNaviParms->m_general.m_shakeRange.m_value, nearNaviParms->m_general.m_shakeKnockback.m_value,
 	                           nearNaviParms->m_general.m_shakeDamage.m_value, getFaceDir(), nullptr);
 }
@@ -355,7 +353,7 @@ void Obj::flickAttackBomb()
  */
 void Obj::flickAttackFail()
 {
-	Parms* parms = static_cast<Parms*>(m_parms);
+	Parms* parms = C_PARMS;
 	EnemyFunc::flickStickPikmin(this, parms->m_general.m_shakeRateMaybe.m_value, parms->m_general.m_shakeKnockback.m_value,
 	                            parms->m_general.m_shakeDamage.m_value, getFaceDir(), nullptr);
 }

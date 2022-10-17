@@ -73,7 +73,7 @@ struct Model : MtxObject {
 	}
 
 	// VTBL _00
-	u8 _04;               // _04
+	bool m_isAnimating;   // _04, assumed name
 	u8 _05;               // _05
 	bool m_isVisible;     // _06
 	J3DModel* m_j3dModel; // _08

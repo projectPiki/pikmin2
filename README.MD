@@ -62,6 +62,19 @@ pikmin2.usa.dol: `sha1: 90d328bf8f190c90472e8c19e7e53c6ad0fe0d1a`
 - The exception is only when adding extra folders becomes useless, for example having to add multiple folders that are empty, you can instead opt for creating a header file with the namespace's definitions inside.
 - The project is actively formatted using .clang-format, for a consistent code style.
 
+## Writing Clean Code
+The size of the project requires a lot of repeated code, here are some commonly used examples to help you practice clean and concise code.
+
+### General
+- ```randFloat()``` generates a random float from 0 to 1.
+- ```randWeightFloat(f32 range)``` is shorthand for ```(range * (f32)rand()) / 32768.0f;```, which generates a random number from 0 to `range`.
+
+### Enemies
+- ```CG_PARMS(x)``` is shorthand for ```static_cast<Parms*>(x->m_parms)```.
+- ```C_PARMS``` is shorthand for ```static_cast<Parms*>(this->m_parms)```.
+- ```CG_PROPERPARMS(x)``` is shorthand for ```static_cast<Parms*>(x->m_parms)->m_properParms```.
+- ```C_PROPERPARMS(x)``` is shorthand for ```static_cast<Parms*>(this->m_parms)->m_properParms```.
+
 ## Progress
 ### DONE
 - sysGCU

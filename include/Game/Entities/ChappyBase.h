@@ -116,9 +116,9 @@ struct Parms : public EnemyParmsBase {
 	struct ProperParms : public Parameters {
 		inline ProperParms(); // likely
 
-		Parm<f32> _808;   // _804, type unsure
-		Parm<f32> _830;   // _82C, type unsure
-		Parm<f32> m_fp03; // _854
+		Parm<f32> _808;                // _804, type unsure
+		Parm<f32> _830;                // _82C, type unsure
+		Parm<f32> m_bulborbWakeRadius; // _854
 	};
 
 	Parms();

@@ -461,10 +461,22 @@ struct EnemyBase : public Creature, public SysShape::MotionListener, virtual pub
 
 	void becomeCarcass(bool);
 
-	inline void getSeparation(Creature* creature, Vector2f& sep)
+	inline void getDistanceTo(Creature* creature, Vector2f& distanceResult)
 	{
-		sep.x = getPosition().x - creature->getPosition().x;
-		sep.y = getPosition().z - creature->getPosition().z;
+		distanceResult.x = getPosition().x - creature->getPosition().x;
+		distanceResult.y = getPosition().z - creature->getPosition().z;
+	}
+
+	inline bool isCreatureWithinRange(Creature* c, f32 range)
+	{
+		Vector2f delta;
+		getDistanceTo(c, delta);
+
+		if (IS_WITHIN_CIRCLE(delta.x, delta.y, range)) {
+			return true;
+		}
+
+		return false;
 	}
 
 	inline void setEnemyIndexForType(u8 idx) { m_enemyIndexForType = idx; }
