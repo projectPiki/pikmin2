@@ -59,7 +59,7 @@ static double atanlo[] = {
 #ifdef __STDC__
 static const double aT[] = {
 #else
-static double aT[]     = {
+static double aT[] = {
 #endif
 	3.33333333333329318027e-01,  /* 0x3FD55555, 0x5555550D */
 	-1.99999999998764832476e-01, /* 0xBFC99999, 0x9998EBC4 */

@@ -146,9 +146,9 @@ void Obj::setInitialSetting(EnemyInitialParamBase* param)
 	CollPart* part = m_collTree->getCollPart('head');
 	float scale    = getHeadScale();
 	part->setScale(scale);
-	part->_20.x *= scale;
-	part->_20.y *= scale;
-	part->_20.z *= scale;
+	part->m_offset.x *= scale;
+	part->m_offset.y *= scale;
+	part->m_offset.z *= scale;
 }
 
 /**
@@ -501,7 +501,7 @@ bool Obj::damageCallBack(Creature* source, float damage, CollPart* part)
 {
 	if (isLivingThing()) {
 		addDamage(damage, 1.0f);
-		if (part && part->_3C.getStrID()[3] == '0') {
+		if (part && part->m_isStickableID.getStrID()[3] == '0') {
 			addDamage(m_maxHealth, 1.0f);
 		}
 	}
@@ -533,7 +533,7 @@ bool Obj::farmCallBack(Creature* p1, float p2)
 void Obj::onStickStart(Creature* other)
 {
 	EnemyBase::onStickStart(other);
-	if (other->_0F8 && other->_0F8->_3C.getStrID()[3] == '0') {
+	if (other->_0F8 && other->_0F8->m_isStickableID.getStrID()[3] == '0') {
 		addDamage(m_maxHealth, 1.0f);
 	}
 }
