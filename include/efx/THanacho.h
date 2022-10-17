@@ -5,7 +5,12 @@
 
 namespace efx {
 struct THanachoN : public TChaseMtx {
-	virtual ~THanachoN(); // _48 (weak)
+	inline THanachoN()
+	    : TChaseMtx(PID_HanachoN, nullptr)
+	{
+	}
+
+	virtual ~THanachoN(); // _48
 
 	// _00      = VTBL
 	// _00-_14  = TChaseMtx

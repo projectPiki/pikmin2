@@ -4,6 +4,8 @@
 #include "efx/TBase.h"
 #include "JSystem/JPA/JPAEmitter.h"
 
+#define TSYNCFLAG_DemoDrawOff (0x1)
+
 namespace efx {
 struct TSync : public TBase, public JPAEmitterCallBack {
 	inline TSync()
@@ -19,13 +21,13 @@ struct TSync : public TBase, public JPAEmitterCallBack {
 	virtual void forceKill();  // _0C
 	virtual void fade();       // _10
 	// vtable 2 (JPAEmitterCallBack + self)
-	virtual void execute(JPABaseEmitter*);                       // _30 (weak; thunk at _20)
-	virtual void executeAfter(JPABaseEmitter*);                  // _34 (weak; thunk at _24)
-	virtual void doExecuteEmitterOperation(JPABaseEmitter*) = 0; // _38
-	virtual void doExecuteAfter(JPABaseEmitter*);                // _3C (weak)
-	virtual void startDemoDrawOff();                             // _40 (weak)
-	virtual void endDemoDrawOn();                                // _44 (weak)
-	virtual ~TSync() { }                                         // _48 (weak; thunk at _1C)
+	virtual void execute(JPABaseEmitter*);                                // _30 (weak; thunk at _20)
+	virtual void executeAfter(JPABaseEmitter*);                           // _34 (weak; thunk at _24)
+	virtual void doExecuteEmitterOperation(JPABaseEmitter*) = 0;          // _38
+	virtual void doExecuteAfter(JPABaseEmitter*) { }                      // _3C (weak)
+	virtual void startDemoDrawOff() { m_flags |= TSYNCFLAG_DemoDrawOff; } // _40 (weak)
+	virtual void endDemoDrawOn() { m_flags &= ~TSYNCFLAG_DemoDrawOff; }   // _44 (weak)
+	virtual ~TSync() { }                                                  // _48 (weak; thunk at _1C)
 
 	// _00		= VTBL
 	// _04		= JPAEmitterCallBack

@@ -113,12 +113,21 @@ struct Mgr : public EnemyMgrBase {
 };
 
 struct Parms : public EnemyParmsBase {
+	struct ProperParms : public Parameters {
+		inline ProperParms(); // likely
+
+		Parm<f32> _808;   // _804, type unsure
+		Parm<f32> _830;   // _82C, type unsure
+		Parm<f32> m_fp03; // _854
+	};
+
 	Parms();
 
 	virtual void read(Stream& stream); // _08 (weak)
 
 	// _00-_7F8	= EnemyParmsBase
-	u8 _7F8[0x8C]; // _7F8
+	u8 _7F8[0x4];              // _7F8, might be inside ProperParms
+	ProperParms m_properParms; // _7FC, might be at _7F8
 };
 
 struct ProperAnimator : public EnemyAnimatorBase {
@@ -134,6 +143,18 @@ struct ProperAnimator : public EnemyAnimatorBase {
 
 /////////////////////////////////////////////////////////////////
 // STATE MACHINE DEFINITIONS
+enum StateID {
+	CHAPPY_Turn       = 0,
+	CHAPPY_Dead       = 1,
+	CHAPPY_Flick      = 2,
+	CHAPPY_Walk       = 3,
+	CHAPPY_Attack     = 4,
+	CHAPPY_TurnToHome = 5,
+	CHAPPY_GoHome     = 6,
+	CHAPPY_Sleep      = 7,
+	CHAPPY_Count,
+};
+
 struct State : public EnemyFSMState {
 	inline State(int); // probably
 
@@ -194,6 +215,10 @@ struct StateGoHome : public State {
 	// _00		= VTBL
 	// _00-_10 	= EnemyFSMState
 	u8 _10[0x4]; // _10, unknown
+};
+
+struct SleepArg : public StateArg {
+	bool _00; // _00
 };
 
 struct StateSleep : public State {
