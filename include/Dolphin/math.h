@@ -18,7 +18,8 @@ extern "C" {
 #define fabs(x) __fabs(x)
 // #define __frsqrtes opword
 
-#define SQUARE(v) ((v) * (v))
+#define SQUARE(v)                      ((v) * (v))
+#define IS_WITHIN_CIRCLE(x, z, radius) ((SQUARE(x) + SQUARE(z)) < SQUARE(radius))
 
 #define VECTOR_SQUARE_MAG(v) (SQUARE(v.x) + SQUARE(v.y) + SQUARE(v.z))
 

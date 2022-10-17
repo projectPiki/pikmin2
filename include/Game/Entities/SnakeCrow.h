@@ -123,7 +123,7 @@ struct Obj : public EnemyBase {
 	void effectDrawOn();
 	void effectDrawOff();
 
-	inline Parms* getParms() { return static_cast<Parms*>(m_parms); }
+	inline Parms* getParms() { return C_PARMS; }
 
 	// _00 		= VTBL
 	// _00-_2BC	= EnemyBase

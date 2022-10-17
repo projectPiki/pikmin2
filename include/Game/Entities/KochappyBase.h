@@ -72,7 +72,7 @@ struct Obj : public EnemyBase {
 	virtual f32 getDownSmokeScale() { return 0.4f; } // _2EC (weak)
 	//////////////// VTABLE END
 
-	inline Parms* getParms() { return static_cast<Parms*>(m_parms); }
+	inline Parms* getParms() { return C_PARMS; }
 
 	// _00 		= VTBL
 	// _00-_2BC	= EnemyBase
