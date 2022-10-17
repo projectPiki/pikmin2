@@ -82,7 +82,13 @@ CI_LOOP(iterator) {
 	Code
 }
 ```
-
+- You may run into code that looks akin to:
+```
+if (x*x + z*z < r) {
+	
+}```
+Which, for enemies, you may want to look at the ```isCreatureWithinRange``` function, otherwise you can use the ```IS_WITHIN_CIRCLE``` define, which squares and compares for you.
+- You can find more in types.h, trig.h, BuildSettings.h and Dolphin/Math.h
 
 ### Enemies
 - ```CG_PARMS(x)``` is shorthand for ```static_cast<Parms*>(x->m_parms)```.
