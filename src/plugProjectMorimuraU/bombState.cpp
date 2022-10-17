@@ -156,10 +156,8 @@ void StateBomb::exec(EnemyBase* enemy)
 			iteratorArg._14 = 1;
 
 			CellIterator iterator(iteratorArg);
-
-			iterator.first();
-
-			while (!iterator.isDone()) {
+			CI_LOOP(iterator)
+			{
 				Creature* creature = static_cast<Creature*>(*iterator);
 				if (creature->isAlive() && (creature != enemy)) {
 					Vector3f creaturePos = creature->getPosition();
@@ -199,7 +197,6 @@ void StateBomb::exec(EnemyBase* enemy)
 						}
 					}
 				}
-				iterator.next();
 			}
 
 			enemy->kill(nullptr);

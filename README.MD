@@ -68,6 +68,18 @@ The size of the project requires a lot of repeated code, here are some commonly 
 ### General
 - ```randFloat()``` generates a random float from 0 to 1.
 - ```randWeightFloat(f32 range)``` is shorthand for ```(range * (f32)rand()) / 32768.0f;```, which generates a random number from 0 to `range`.
+- You may run into code that looks akin to:
+```
+iterator.first();
+while (!iterator.isDone()) {
+	Code
+	iterator.next();
+}```
+Which we have further condensed into:
+```
+CI_LOOP(iterator) {
+	Code
+}```
 
 ### Enemies
 - ```CG_PARMS(x)``` is shorthand for ```static_cast<Parms*>(x->m_parms)```.

@@ -89,11 +89,11 @@ struct CreatureKillArg {
 
 // Shorthand parms casting
 #define CG_PARMS(x) (static_cast<Parms*>(x->m_parms))
-#define C_PARMS (CG_PARMS(this))
+#define C_PARMS     (CG_PARMS(this))
 
 // Shorthand parms casting + proper parms
 #define CG_PROPERPARMS(x) (CG_PARMS(x)->m_properParms)
-#define C_PROPERPARMS (CG_PROPERPARMS(this))
+#define C_PROPERPARMS     (CG_PROPERPARMS(this))
 
 struct Creature : public CellObject {
 	struct CheckHellArg {

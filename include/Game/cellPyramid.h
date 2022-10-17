@@ -206,6 +206,8 @@ struct CellIteratorArg {
 	u8 _1D;                 // _1D
 };
 
+#define CI_LOOP(it) for (it.first(); !it.isDone(); it.next())
+
 struct CellIterator {
 	CellIterator(CellIteratorArg&);
 
