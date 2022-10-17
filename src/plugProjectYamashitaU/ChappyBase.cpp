@@ -260,10 +260,10 @@ bool Obj::isWakeup()
 
 		CellIteratorArg iterArg(detectionSphere);
 		CellIterator i(iterArg);
-		for (i.first(); !i.isDone(); i.next()) {
+		CI_LOOP(i) {
 			Creature* c = static_cast<Creature*>(*i);
 
-			// If the creature is alive and a navigator or Piki
+			// If the creature is an alive navigator or Piki
 			if (c->isAlive() && (c->isNavi() || c->isPiki())) {
 				radius = C_PROPERPARMS.m_bulborbWakeRadius.m_value;
 				if (isCreatureWithinRange(c, radius)) {
@@ -271,7 +271,7 @@ bool Obj::isWakeup()
 					shouldWakeup = true;
 					break;
 				}
-			}
+		}
 		}
 		break;
 	default:
