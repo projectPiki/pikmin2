@@ -13,6 +13,66 @@ struct CourseInfo;
 struct Pellet;
 struct BasePelletMgr;
 
+enum DemoFlags {
+	DEMO_Pluck_First_Pikmin      = 0,
+	DEMO_Discover_Treasure       = 1,
+	DEMO_UNK_2                   = 2,
+	DEMO_Find_Cave_Deeper_Hole   = 3,
+	DEMO_Find_Cave_Geyser        = 4,
+	DEMO_First_Cave_Enter        = 5,
+	DEMO_First_Cave_Return       = 6,
+	DEMO_Max_Pikmin_On_Field     = 7,
+	DEMO_First_Gate_Down         = 8,
+	DEMO_Find_Spiderwort_Mold    = 9,
+	DEMO_First_Spicy_Use         = 10,
+	DEMO_First_Bitter_Use        = 11,
+	DEMO_Eat_White_Pikmin        = 12,
+	DEMO_Purples_In_Ship         = 13,
+	DEMO_Whites_In_Ship          = 14,
+	DEMO_Reds_In_Onion           = 15,
+	DEMO_Find_Spicy_Drop         = 16,
+	DEMO_Find_Bitter_Drop        = 17,
+	DEMO_First_Globe_Day_End     = 18,
+	DEMO_UNUSED_Camera_Demo      = 19,
+	DEMO_First_Nectar_Use        = 20,
+	DEMO_UNK_21                  = 21, // first sunset?
+	DEMO_President_Start         = 22,
+	DEMO_Find_Titan_Dweevil      = 23,
+	DEMO_Find_Loozy_Treasure     = 24,
+	DEMO_White_Candypop          = 25,
+	DEMO_Purple_Candypop         = 26,
+	DEMO_First_Spicy_Berry       = 27,
+	DEMO_First_Bitter_Berry      = 28,
+	DEMO_First_Spicy_Spray_Made  = 29,
+	DEMO_First_Bitter_Spray_Made = 30,
+	DEMO_Day_One_Start           = 31,
+	DEMO_UNK_32                  = 32,
+	DEMO_UNK_33                  = 33,
+	DEMO_UNK_34                  = 34,
+	DEMO_Meet_Red_Pikmin         = 35,
+	DEMO_Find_Red_Onion          = 36,
+	DEMO_Kill_First_Kochappy     = 37,
+	DEMO_First_Use_Louie         = 38,
+	DEMO_Reunite_Captains        = 39,
+	DEMO_First_Corpse_In_Cave    = 40,
+	DEMO_UNK_41                  = 41,
+	DEMO_Find_Yellow_Onion       = 42,
+	DEMO_Find_Blue_Onion         = 43,
+	DEMO_Discover_Bulbmin        = 44,
+	DEMO_Whites_Digging          = 45,
+	DEMO_UNK_46                  = 46, // maybe CanSwitchCaptains?
+	DEMO_Pikmin_In_Danger_Fire   = 47,
+	DEMO_UNK_48                  = 48, // DownFloor?
+	DEMO_First_VoR_Treasure      = 49,
+	DEMO_UNK_50                  = 50, // waterwraith?
+	DEMO_Pikmin_In_Danger_Water  = 51,
+	DEMO_Pikmin_In_Danger_Poison = 52,
+	DEMO_UNK_53                  = 53,
+	DEMO_UNK_54                  = 54, // cave screen?
+	DEMO_UNK_55                  = 55, // cave screen?
+	DEMO_UNK_56                  = 56, // cave screen?
+};
+
 struct CaveSaveData {
 	CaveSaveData();
 
@@ -276,7 +336,7 @@ struct PlayData : public CNode {
 	u8 m_hasBootContainerFlags;              // _2D
 	u8 m_meetPikminFlags;                    // _2E
 	u8 _2F;                                  // _2F
-	BitFlags m_demoFlags;                    // _30
+	BitFlags m_demoFlags;                    // _30, see DemoFlags enum
 	BitFlags m_findItemFlags;                // _38
 	TekiStat::Mgr m_tekiStatMgr;             // _40
 	OlimarData m_olimarData[2];              // _48 // TODO: This really packs into 4 bytes?

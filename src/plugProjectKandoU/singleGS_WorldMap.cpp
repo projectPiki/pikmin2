@@ -331,8 +331,8 @@ void SingleGame::SelectState::initNext(Game::SingleGameSection* section)
 		playData->openCourse(3);
 	}
 	if (playData->courseOpen(1)) {
-		playData->setDemoFlag(0x12);
-		playData->setDemoFlag(0x06);
+		playData->setDemoFlag(DEMO_First_Globe_Day_End);
+		playData->setDemoFlag(DEMO_First_Cave_Return);
 	}
 	bool anyFirstTimes = false;
 	for (int i = 0; i < 4; i++) {

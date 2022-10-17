@@ -28,13 +28,13 @@ struct VsGameSection : public BaseGameSection {
 	virtual void doDraw(Graphics&);                                    // _40
 	virtual void sendMessage(GameMessage&);                            // _50
 	virtual void pre2dDraw(Graphics&);                                 // _54
-	virtual void getCurrFloor();                                       // _58
+	virtual int getCurrFloor();                                        // _58
 	virtual void addChallengeScore(int);                               // _60
 	virtual void startMainBgm();                                       // _64
 	virtual void section_fadeout();                                    // _68
 	virtual void goNextFloor(ItemHole::Item*);                         // _6C
 	virtual void challengeDisablePelplant();                           // _80 (weak)
-	virtual void getCaveFilename();                                    // _84 (weak)
+	virtual char* getCaveFilename();                                   // _84 (weak)
 	virtual void getEditorFilename();                                  // _88 (weak)
 	virtual void getVsEditNumber();                                    // _8C (weak)
 	virtual void onMovieStart(MovieConfig*, u32, u32);                 // _B0

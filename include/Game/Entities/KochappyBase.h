@@ -22,6 +22,8 @@
 
 namespace Game {
 namespace KochappyBase {
+struct Parms;
+
 struct FSM : public EnemyStateMachine {
 	virtual void init(EnemyBase*); // _08
 
@@ -70,6 +72,8 @@ struct Obj : public EnemyBase {
 	virtual f32 getDownSmokeScale() { return 0.4f; } // _2EC (weak)
 	//////////////// VTABLE END
 
+	inline Parms* getParms() { return static_cast<Parms*>(m_parms); }
+
 	// _00 		= VTBL
 	// _00-_2BC	= EnemyBase
 	FSM* m_FSM;                          // _2BC
@@ -116,19 +120,24 @@ struct ProperAnimator : public EnemyAnimatorBase {
 /////////////////////////////////////////////////////////////////
 // STATE MACHINE DEFINITIONS
 enum StateID {
-	KOCHAPPY_Alive = 0,
-	KOCHAPPY_Unk1  = 1,
-	KOCHAPPY_Unk2  = 2,
-	KOCHAPPY_Unk3  = 3,
-	KOCHAPPY_Unk4  = 4,
-	KOCHAPPY_Unk5  = 5,
-	KOCHAPPY_Unk6  = 6,
-	KOCHAPPY_Unk7  = 7,
-	KOCHAPPY_Press = 8,
+	KOCHAPPY_Wait       = 0,
+	KOCHAPPY_Dead       = 1,
+	KOCHAPPY_Turn       = 2,
+	KOCHAPPY_Walk       = 3,
+	KOCHAPPY_Attack     = 4,
+	KOCHAPPY_Flick      = 5,
+	KOCHAPPY_TurnToHome = 6,
+	KOCHAPPY_GoHome     = 7,
+	KOCHAPPY_Press      = 8,
+	KOCHAPPY_Demo       = 9,
+	KOCHAPPY_Count,
 };
 
 struct State : public EnemyFSMState {
-	inline State(int); // probably
+	inline State(int stateID)
+	    : EnemyFSMState(stateID)
+	{
+	}
 
 	// _00		= VTBL
 	// _00-_10 	= EnemyFSMState
@@ -165,6 +174,10 @@ struct StateDemo : public State {
 	// _00-_10 	= EnemyFSMState
 };
 
+struct FlickArg : public StateArg {
+	int _00; // _00, sets _10 in StateFlick
+};
+
 struct StateFlick : public State {
 	StateFlick(int);
 
@@ -174,6 +187,7 @@ struct StateFlick : public State {
 
 	// _00		= VTBL
 	// _00-_10 	= EnemyFSMState
+	int _10; // _10
 };
 
 struct StateGoHome : public State {
@@ -185,6 +199,7 @@ struct StateGoHome : public State {
 
 	// _00		= VTBL
 	// _00-_10 	= EnemyFSMState
+	int _10; // _10
 };
 
 struct StatePress : public State {
@@ -206,6 +221,7 @@ struct StateTurn : public State {
 
 	// _00		= VTBL
 	// _00-_10 	= EnemyFSMState
+	int _10; // _10
 };
 
 struct StateTurnToHome : public State {
@@ -217,6 +233,10 @@ struct StateTurnToHome : public State {
 
 	// _00		= VTBL
 	// _00-_10 	= EnemyFSMState
+};
+
+struct WaitArg : public StateArg {
+	u32 _00; // _00
 };
 
 struct StateWait : public State {
@@ -239,6 +259,7 @@ struct StateWalk : public State {
 
 	// _00		= VTBL
 	// _00-_10 	= EnemyFSMState
+	int _10; // _10
 };
 /////////////////////////////////////////////////////////////////
 

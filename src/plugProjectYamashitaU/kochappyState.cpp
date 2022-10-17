@@ -1,398 +1,29 @@
-#include "types.h"
-
-/*
-    Generated from dpostproc
-
-    .section .ctors, "wa"  # 0x80472F00 - 0x804732C0
-    .4byte __sinit_kochappyState_cpp
-
-    .section .rodata  # 0x804732E0 - 0x8049E220
-    .global lbl_8047AB28
-    lbl_8047AB28:
-        .asciz "TurnToHome"
-        .skip 1
-
-    .section .data, "wa"  # 0x8049E220 - 0x804EFC20
-    .global lbl_804AB998
-    lbl_804AB998:
-        .4byte 0x00000000
-        .4byte 0x00000000
-        .4byte 0x00000000
-    .global __vt__Q34Game12KochappyBase9StateDemo
-    __vt__Q34Game12KochappyBase9StateDemo:
-        .4byte 0
-        .4byte 0
-        .4byte
-   init__Q34Game12KochappyBase9StateDemoFPQ24Game9EnemyBasePQ24Game8StateArg
-        .4byte exec__Q24Game13EnemyFSMStateFPQ24Game9EnemyBase
-        .4byte cleanup__Q24Game13EnemyFSMStateFPQ24Game9EnemyBase
-        .4byte resume__Q24Game13EnemyFSMStateFPQ24Game9EnemyBase
-        .4byte restart__Q24Game13EnemyFSMStateFPQ24Game9EnemyBase
-        .4byte
-   transit__Q24Game13EnemyFSMStateFPQ24Game9EnemyBaseiPQ24Game8StateArg .4byte
-   doDirectDraw__Q24Game13EnemyFSMStateFPQ24Game9EnemyBaseR8Graphics .global
-   __vt__Q34Game12KochappyBase11StateGoHome
-    __vt__Q34Game12KochappyBase11StateGoHome:
-        .4byte 0
-        .4byte 0
-        .4byte
-   init__Q34Game12KochappyBase11StateGoHomeFPQ24Game9EnemyBasePQ24Game8StateArg
-        .4byte exec__Q34Game12KochappyBase11StateGoHomeFPQ24Game9EnemyBase
-        .4byte cleanup__Q34Game12KochappyBase11StateGoHomeFPQ24Game9EnemyBase
-        .4byte resume__Q24Game13EnemyFSMStateFPQ24Game9EnemyBase
-        .4byte restart__Q24Game13EnemyFSMStateFPQ24Game9EnemyBase
-        .4byte
-   transit__Q24Game13EnemyFSMStateFPQ24Game9EnemyBaseiPQ24Game8StateArg .4byte
-   doDirectDraw__Q24Game13EnemyFSMStateFPQ24Game9EnemyBaseR8Graphics .global
-   __vt__Q34Game12KochappyBase15StateTurnToHome
-    __vt__Q34Game12KochappyBase15StateTurnToHome:
-        .4byte 0
-        .4byte 0
-        .4byte
-   init__Q34Game12KochappyBase15StateTurnToHomeFPQ24Game9EnemyBasePQ24Game8StateArg
-        .4byte exec__Q34Game12KochappyBase15StateTurnToHomeFPQ24Game9EnemyBase
-        .4byte
-   cleanup__Q34Game12KochappyBase15StateTurnToHomeFPQ24Game9EnemyBase .4byte
-   resume__Q24Game13EnemyFSMStateFPQ24Game9EnemyBase .4byte
-   restart__Q24Game13EnemyFSMStateFPQ24Game9EnemyBase .4byte
-   transit__Q24Game13EnemyFSMStateFPQ24Game9EnemyBaseiPQ24Game8StateArg .4byte
-   doDirectDraw__Q24Game13EnemyFSMStateFPQ24Game9EnemyBaseR8Graphics .global
-   __vt__Q34Game12KochappyBase10StateFlick
-    __vt__Q34Game12KochappyBase10StateFlick:
-        .4byte 0
-        .4byte 0
-        .4byte
-   init__Q34Game12KochappyBase10StateFlickFPQ24Game9EnemyBasePQ24Game8StateArg
-        .4byte exec__Q34Game12KochappyBase10StateFlickFPQ24Game9EnemyBase
-        .4byte cleanup__Q34Game12KochappyBase10StateFlickFPQ24Game9EnemyBase
-        .4byte resume__Q24Game13EnemyFSMStateFPQ24Game9EnemyBase
-        .4byte restart__Q24Game13EnemyFSMStateFPQ24Game9EnemyBase
-        .4byte
-   transit__Q24Game13EnemyFSMStateFPQ24Game9EnemyBaseiPQ24Game8StateArg .4byte
-   doDirectDraw__Q24Game13EnemyFSMStateFPQ24Game9EnemyBaseR8Graphics .global
-   __vt__Q34Game12KochappyBase11StateAttack
-    __vt__Q34Game12KochappyBase11StateAttack:
-        .4byte 0
-        .4byte 0
-        .4byte
-   init__Q34Game12KochappyBase11StateAttackFPQ24Game9EnemyBasePQ24Game8StateArg
-        .4byte exec__Q34Game12KochappyBase11StateAttackFPQ24Game9EnemyBase
-        .4byte cleanup__Q34Game12KochappyBase11StateAttackFPQ24Game9EnemyBase
-        .4byte resume__Q24Game13EnemyFSMStateFPQ24Game9EnemyBase
-        .4byte restart__Q24Game13EnemyFSMStateFPQ24Game9EnemyBase
-        .4byte
-   transit__Q24Game13EnemyFSMStateFPQ24Game9EnemyBaseiPQ24Game8StateArg .4byte
-   doDirectDraw__Q24Game13EnemyFSMStateFPQ24Game9EnemyBaseR8Graphics .global
-   __vt__Q34Game12KochappyBase9StateWalk
-    __vt__Q34Game12KochappyBase9StateWalk:
-        .4byte 0
-        .4byte 0
-        .4byte
-   init__Q34Game12KochappyBase9StateWalkFPQ24Game9EnemyBasePQ24Game8StateArg
-        .4byte exec__Q34Game12KochappyBase9StateWalkFPQ24Game9EnemyBase
-        .4byte cleanup__Q34Game12KochappyBase9StateWalkFPQ24Game9EnemyBase
-        .4byte resume__Q24Game13EnemyFSMStateFPQ24Game9EnemyBase
-        .4byte restart__Q24Game13EnemyFSMStateFPQ24Game9EnemyBase
-        .4byte
-   transit__Q24Game13EnemyFSMStateFPQ24Game9EnemyBaseiPQ24Game8StateArg .4byte
-   doDirectDraw__Q24Game13EnemyFSMStateFPQ24Game9EnemyBaseR8Graphics .global
-   __vt__Q34Game12KochappyBase9StateTurn
-    __vt__Q34Game12KochappyBase9StateTurn:
-        .4byte 0
-        .4byte 0
-        .4byte
-   init__Q34Game12KochappyBase9StateTurnFPQ24Game9EnemyBasePQ24Game8StateArg
-        .4byte exec__Q34Game12KochappyBase9StateTurnFPQ24Game9EnemyBase
-        .4byte cleanup__Q34Game12KochappyBase9StateTurnFPQ24Game9EnemyBase
-        .4byte resume__Q24Game13EnemyFSMStateFPQ24Game9EnemyBase
-        .4byte restart__Q24Game13EnemyFSMStateFPQ24Game9EnemyBase
-        .4byte
-   transit__Q24Game13EnemyFSMStateFPQ24Game9EnemyBaseiPQ24Game8StateArg .4byte
-   doDirectDraw__Q24Game13EnemyFSMStateFPQ24Game9EnemyBaseR8Graphics .global
-   __vt__Q34Game12KochappyBase9StateDead
-    __vt__Q34Game12KochappyBase9StateDead:
-        .4byte 0
-        .4byte 0
-        .4byte
-   init__Q34Game12KochappyBase9StateDeadFPQ24Game9EnemyBasePQ24Game8StateArg
-        .4byte exec__Q34Game12KochappyBase9StateDeadFPQ24Game9EnemyBase
-        .4byte cleanup__Q34Game12KochappyBase9StateDeadFPQ24Game9EnemyBase
-        .4byte resume__Q24Game13EnemyFSMStateFPQ24Game9EnemyBase
-        .4byte restart__Q24Game13EnemyFSMStateFPQ24Game9EnemyBase
-        .4byte
-   transit__Q24Game13EnemyFSMStateFPQ24Game9EnemyBaseiPQ24Game8StateArg .4byte
-   doDirectDraw__Q24Game13EnemyFSMStateFPQ24Game9EnemyBaseR8Graphics .global
-   __vt__Q34Game12KochappyBase9StateWait
-    __vt__Q34Game12KochappyBase9StateWait:
-        .4byte 0
-        .4byte 0
-        .4byte
-   init__Q34Game12KochappyBase9StateWaitFPQ24Game9EnemyBasePQ24Game8StateArg
-        .4byte exec__Q34Game12KochappyBase9StateWaitFPQ24Game9EnemyBase
-        .4byte cleanup__Q34Game12KochappyBase9StateWaitFPQ24Game9EnemyBase
-        .4byte resume__Q24Game13EnemyFSMStateFPQ24Game9EnemyBase
-        .4byte restart__Q24Game13EnemyFSMStateFPQ24Game9EnemyBase
-        .4byte
-   transit__Q24Game13EnemyFSMStateFPQ24Game9EnemyBaseiPQ24Game8StateArg .4byte
-   doDirectDraw__Q24Game13EnemyFSMStateFPQ24Game9EnemyBaseR8Graphics .global
-   __vt__Q34Game12KochappyBase10StatePress
-    __vt__Q34Game12KochappyBase10StatePress:
-        .4byte 0
-        .4byte 0
-        .4byte
-   init__Q34Game12KochappyBase10StatePressFPQ24Game9EnemyBasePQ24Game8StateArg
-        .4byte exec__Q34Game12KochappyBase10StatePressFPQ24Game9EnemyBase
-        .4byte cleanup__Q24Game13EnemyFSMStateFPQ24Game9EnemyBase
-        .4byte resume__Q24Game13EnemyFSMStateFPQ24Game9EnemyBase
-        .4byte restart__Q24Game13EnemyFSMStateFPQ24Game9EnemyBase
-        .4byte
-   transit__Q24Game13EnemyFSMStateFPQ24Game9EnemyBaseiPQ24Game8StateArg .4byte
-   doDirectDraw__Q24Game13EnemyFSMStateFPQ24Game9EnemyBaseR8Graphics .global
-   __vt__Q34Game12KochappyBase5State
-    __vt__Q34Game12KochappyBase5State:
-        .4byte 0
-        .4byte 0
-        .4byte init__Q24Game13EnemyFSMStateFPQ24Game9EnemyBasePQ24Game8StateArg
-        .4byte exec__Q24Game13EnemyFSMStateFPQ24Game9EnemyBase
-        .4byte cleanup__Q24Game13EnemyFSMStateFPQ24Game9EnemyBase
-        .4byte resume__Q24Game13EnemyFSMStateFPQ24Game9EnemyBase
-        .4byte restart__Q24Game13EnemyFSMStateFPQ24Game9EnemyBase
-        .4byte
-   transit__Q24Game13EnemyFSMStateFPQ24Game9EnemyBaseiPQ24Game8StateArg .4byte
-   doDirectDraw__Q24Game13EnemyFSMStateFPQ24Game9EnemyBaseR8Graphics .global
-   __vt__Q34Game12KochappyBase3FSM
-    __vt__Q34Game12KochappyBase3FSM:
-        .4byte 0
-        .4byte 0
-        .4byte init__Q34Game12KochappyBase3FSMFPQ24Game9EnemyBase
-        .4byte
-   start__Q24Game17EnemyStateMachineFPQ24Game9EnemyBaseiPQ24Game8StateArg .4byte
-   exec__Q24Game17EnemyStateMachineFPQ24Game9EnemyBase .4byte
-   transit__Q24Game17EnemyStateMachineFPQ24Game9EnemyBaseiPQ24Game8StateArg
-        .4byte
-   doDirectDraw__Q24Game17EnemyStateMachineFPQ24Game9EnemyBaseR8Graphics .4byte
-   getCurrState__Q24Game17EnemyStateMachineFPQ24Game9EnemyBase .4byte
-   setCurrState__Q24Game17EnemyStateMachineFPQ24Game9EnemyBasePQ24Game13EnemyFSMState
-        .4byte 0
-
-    .section .sbss # 0x80514D80 - 0x80516360
-    .global lbl_80515870
-    lbl_80515870:
-        .skip 0x4
-    .global lbl_80515874
-    lbl_80515874:
-        .skip 0x4
-
-    .section .sdata2, "a"     # 0x80516360 - 0x80520E40
-    .global lbl_805179D8
-    lbl_805179D8:
-        .4byte 0x70726573
-        .4byte 0x73000000
-    .global lbl_805179E0
-    lbl_805179E0:
-        .4byte 0x00000000
-    .global lbl_805179E4
-    lbl_805179E4:
-        .4byte 0x77616974
-        .4byte 0x00000000
-    .global lbl_805179EC
-    lbl_805179EC:
-        .4byte 0x47000000
-    .global lbl_805179F0
-    lbl_805179F0:
-        .4byte 0x41F00000
-        .4byte 0x00000000
-    .global lbl_805179F8
-    lbl_805179F8:
-        .4byte 0x43300000
-        .4byte 0x80000000
-    .global lbl_80517A00
-    lbl_80517A00:
-        .4byte 0x43340000
-    .global lbl_80517A04
-    lbl_80517A04:
-        .4byte 0x40490FDB
-    .global lbl_80517A08
-    lbl_80517A08:
-        .4byte 0x3BB60B61
-    .global lbl_80517A0C
-    lbl_80517A0C:
-        .4byte 0x64656164
-        .4byte 0x00000000
-    .global lbl_80517A14
-    lbl_80517A14:
-        .4byte 0x7475726E
-        .4byte 0x00000000
-    .global lbl_80517A1C
-    lbl_80517A1C:
-        .4byte 0x42700000
-    .global lbl_80517A20
-    lbl_80517A20:
-        .4byte 0x57616C6B
-        .4byte 0x00000000
-    .global lbl_80517A28
-    lbl_80517A28:
-        .4byte 0x42200000
-    .global lbl_80517A2C
-    lbl_80517A2C:
-        .4byte 0x42480000
-    .global lbl_80517A30
-    lbl_80517A30:
-        .4byte 0x41747461
-        .4byte 0x636B0000
-    .global lbl_80517A38
-    lbl_80517A38:
-        .4byte 0x466C6963
-        .4byte 0x6B000000
-    .global lbl_80517A40
-    lbl_80517A40:
-        .4byte 0xC47A0000
-    .global lbl_80517A44
-    lbl_80517A44:
-        .4byte 0x476F486F
-        .4byte 0x6D650000
-    .global lbl_80517A4C
-    lbl_80517A4C:
-        .4byte 0x64656D6F
-        .4byte 0x00000000
-    .global lbl_80517A54
-    lbl_80517A54:
-        .4byte 0x40A00000
-*/
+#include "Game/Entities/KochappyBase.h"
+#include "Game/EnemyAnimKeyEvent.h"
+#include "Game/gamePlayData.h"
+#include "nans.h"
 
 namespace Game {
+namespace KochappyBase {
 
 /*
  * --INFO--
  * Address:	8010F874
  * Size:	000198
  */
-void KochappyBase::FSM::init(Game::EnemyBase*)
+void FSM::init(EnemyBase* enemy)
 {
-	/*
-	stwu     r1, -0x10(r1)
-	mflr     r0
-	li       r4, 0xa
-	stw      r0, 0x14(r1)
-	stw      r31, 0xc(r1)
-	mr       r31, r3
-	bl       create__Q24Game17EnemyStateMachineFi
-	li       r3, 0x10
-	bl       __nw__FUl
-	or.      r4, r3, r3
-	beq      lbl_8010F8AC
-	li       r4, 0
-	bl       __ct__Q34Game12KochappyBase9StateWaitFi
-	mr       r4, r3
-
-lbl_8010F8AC:
-	mr       r3, r31
-	bl       registerState__Q24Game17EnemyStateMachineFPQ24Game13EnemyFSMState
-	li       r3, 0x10
-	bl       __nw__FUl
-	or.      r4, r3, r3
-	beq      lbl_8010F8D0
-	li       r4, 1
-	bl       __ct__Q34Game12KochappyBase9StateDeadFi
-	mr       r4, r3
-
-lbl_8010F8D0:
-	mr       r3, r31
-	bl       registerState__Q24Game17EnemyStateMachineFPQ24Game13EnemyFSMState
-	li       r3, 0x14
-	bl       __nw__FUl
-	or.      r4, r3, r3
-	beq      lbl_8010F8F4
-	li       r4, 2
-	bl       __ct__Q34Game12KochappyBase9StateTurnFi
-	mr       r4, r3
-
-lbl_8010F8F4:
-	mr       r3, r31
-	bl       registerState__Q24Game17EnemyStateMachineFPQ24Game13EnemyFSMState
-	li       r3, 0x14
-	bl       __nw__FUl
-	or.      r4, r3, r3
-	beq      lbl_8010F918
-	li       r4, 3
-	bl       __ct__Q34Game12KochappyBase9StateWalkFi
-	mr       r4, r3
-
-lbl_8010F918:
-	mr       r3, r31
-	bl       registerState__Q24Game17EnemyStateMachineFPQ24Game13EnemyFSMState
-	li       r3, 0x10
-	bl       __nw__FUl
-	or.      r4, r3, r3
-	beq      lbl_8010F93C
-	li       r4, 4
-	bl       __ct__Q34Game12KochappyBase11StateAttackFi
-	mr       r4, r3
-
-lbl_8010F93C:
-	mr       r3, r31
-	bl       registerState__Q24Game17EnemyStateMachineFPQ24Game13EnemyFSMState
-	li       r3, 0x14
-	bl       __nw__FUl
-	or.      r4, r3, r3
-	beq      lbl_8010F960
-	li       r4, 5
-	bl       __ct__Q34Game12KochappyBase10StateFlickFi
-	mr       r4, r3
-
-lbl_8010F960:
-	mr       r3, r31
-	bl       registerState__Q24Game17EnemyStateMachineFPQ24Game13EnemyFSMState
-	li       r3, 0x10
-	bl       __nw__FUl
-	or.      r4, r3, r3
-	beq      lbl_8010F984
-	li       r4, 6
-	bl       __ct__Q34Game12KochappyBase15StateTurnToHomeFi
-	mr       r4, r3
-
-lbl_8010F984:
-	mr       r3, r31
-	bl       registerState__Q24Game17EnemyStateMachineFPQ24Game13EnemyFSMState
-	li       r3, 0x14
-	bl       __nw__FUl
-	or.      r4, r3, r3
-	beq      lbl_8010F9A8
-	li       r4, 7
-	bl       __ct__Q34Game12KochappyBase11StateGoHomeFi
-	mr       r4, r3
-
-lbl_8010F9A8:
-	mr       r3, r31
-	bl       registerState__Q24Game17EnemyStateMachineFPQ24Game13EnemyFSMState
-	li       r3, 0x10
-	bl       __nw__FUl
-	or.      r4, r3, r3
-	beq      lbl_8010F9CC
-	li       r4, 8
-	bl       __ct__Q34Game12KochappyBase10StatePressFi
-	mr       r4, r3
-
-lbl_8010F9CC:
-	mr       r3, r31
-	bl       registerState__Q24Game17EnemyStateMachineFPQ24Game13EnemyFSMState
-	li       r3, 0x10
-	bl       __nw__FUl
-	or.      r4, r3, r3
-	beq      lbl_8010F9F0
-	li       r4, 9
-	bl       __ct__Q34Game12KochappyBase9StateDemoFi
-	mr       r4, r3
-
-lbl_8010F9F0:
-	mr       r3, r31
-	bl       registerState__Q24Game17EnemyStateMachineFPQ24Game13EnemyFSMState
-	lwz      r0, 0x14(r1)
-	lwz      r31, 0xc(r1)
-	mtlr     r0
-	addi     r1, r1, 0x10
-	blr
-	*/
+	create(KOCHAPPY_Count);
+	registerState(new StateWait(KOCHAPPY_Wait));
+	registerState(new StateDead(KOCHAPPY_Dead));
+	registerState(new StateTurn(KOCHAPPY_Turn));
+	registerState(new StateWalk(KOCHAPPY_Walk));
+	registerState(new StateAttack(KOCHAPPY_Attack));
+	registerState(new StateFlick(KOCHAPPY_Flick));
+	registerState(new StateTurnToHome(KOCHAPPY_TurnToHome));
+	registerState(new StateGoHome(KOCHAPPY_GoHome));
+	registerState(new StatePress(KOCHAPPY_Press));
+	registerState(new StateDemo(KOCHAPPY_Demo));
 }
 
 /*
@@ -400,25 +31,10 @@ lbl_8010F9F0:
  * Address:	8010FA0C
  * Size:	00003C
  */
-KochappyBase::StatePress::StatePress(int)
+StatePress::StatePress(int stateID)
+    : State(stateID)
 {
-	/*
-	lis      r5, __vt__Q24Game13EnemyFSMState@ha
-	lis      r6, __vt__Q34Game12KochappyBase5State@ha
-	addi     r0, r5, __vt__Q24Game13EnemyFSMState@l
-	lis      r5, __vt__Q34Game12KochappyBase10StatePress@ha
-	stw      r0, 0(r3)
-	li       r7, 0
-	addi     r6, r6, __vt__Q34Game12KochappyBase5State@l
-	addi     r5, r5, __vt__Q34Game12KochappyBase10StatePress@l
-	stw      r4, 4(r3)
-	addi     r0, r2, lbl_805179D8@sda21
-	stw      r7, 8(r3)
-	stw      r6, 0(r3)
-	stw      r5, 0(r3)
-	stw      r0, 0xc(r3)
-	blr
-	*/
+	m_name = "press";
 }
 
 /*
@@ -426,31 +42,12 @@ KochappyBase::StatePress::StatePress(int)
  * Address:	8010FA48
  * Size:	000054
  */
-void KochappyBase::StatePress::init(Game::EnemyBase*, Game::StateArg*)
+void StatePress::init(EnemyBase* enemy, StateArg* stateArg)
 {
-	/*
-	stwu     r1, -0x10(r1)
-	mflr     r0
-	lfs      f0, lbl_805179E0@sda21(r2)
-	li       r5, 0
-	stw      r0, 0x14(r1)
-	stw      r31, 0xc(r1)
-	mr       r31, r4
-	mr       r3, r31
-	li       r4, 4
-	stfs     f0, 0x200(r31)
-	bl       startMotion__Q24Game9EnemyBaseFiPQ28SysShape14MotionListener
-	mr       r3, r31
-	bl       deathProcedure__Q24Game9EnemyBaseFv
-	lwz      r3, 0x188(r31)
-	li       r0, 0
-	stb      r0, 0x24(r3)
-	lwz      r31, 0xc(r1)
-	lwz      r0, 0x14(r1)
-	mtlr     r0
-	addi     r1, r1, 0x10
-	blr
-	*/
+	enemy->m_health = 0.0f;
+	enemy->startMotion(4, nullptr);
+	enemy->deathProcedure();
+	enemy->m_animKeyEvent->m_running = 0;
 }
 
 /*
@@ -458,32 +55,11 @@ void KochappyBase::StatePress::init(Game::EnemyBase*, Game::StateArg*)
  * Address:	8010FA9C
  * Size:	000050
  */
-void KochappyBase::StatePress::exec(Game::EnemyBase*)
+void StatePress::exec(EnemyBase* enemy)
 {
-	/*
-	stwu     r1, -0x10(r1)
-	mflr     r0
-	stw      r0, 0x14(r1)
-	lwz      r5, 0x188(r4)
-	lbz      r0, 0x24(r5)
-	cmplwi   r0, 0
-	beq      lbl_8010FADC
-	lwz      r0, 0x1c(r5)
-	cmplwi   r0, 0x3e8
-	bne      lbl_8010FADC
-	lwz      r12, 0(r3)
-	li       r5, 9
-	li       r6, 0
-	lwz      r12, 0x1c(r12)
-	mtctr    r12
-	bctrl
-
-lbl_8010FADC:
-	lwz      r0, 0x14(r1)
-	mtlr     r0
-	addi     r1, r1, 0x10
-	blr
-	*/
+	if (enemy->m_animKeyEvent->m_running && (u32)enemy->m_animKeyEvent->m_type == KEYEVENT_END) {
+		transit(enemy, KOCHAPPY_Demo, nullptr);
+	}
 }
 
 /*
@@ -491,25 +67,10 @@ lbl_8010FADC:
  * Address:	8010FAEC
  * Size:	00003C
  */
-KochappyBase::StateWait::StateWait(int)
+StateWait::StateWait(int stateID)
+    : State(stateID)
 {
-	/*
-	lis      r5, __vt__Q24Game13EnemyFSMState@ha
-	lis      r6, __vt__Q34Game12KochappyBase5State@ha
-	addi     r0, r5, __vt__Q24Game13EnemyFSMState@l
-	lis      r5, __vt__Q34Game12KochappyBase9StateWait@ha
-	stw      r0, 0(r3)
-	li       r7, 0
-	addi     r6, r6, __vt__Q34Game12KochappyBase5State@l
-	addi     r5, r5, __vt__Q34Game12KochappyBase9StateWait@l
-	stw      r4, 4(r3)
-	addi     r0, r2, lbl_805179E4@sda21
-	stw      r7, 8(r3)
-	stw      r6, 0(r3)
-	stw      r5, 0(r3)
-	stw      r0, 0xc(r3)
-	blr
-	*/
+	m_name = "wait";
 }
 
 /*
@@ -517,7 +78,7 @@ KochappyBase::StateWait::StateWait(int)
  * Address:	8010FB28
  * Size:	0000C8
  */
-void KochappyBase::StateWait::init(Game::EnemyBase*, Game::StateArg*)
+void StateWait::init(EnemyBase* enemy, StateArg* stateArg)
 {
 	/*
 	stwu     r1, -0x30(r1)
@@ -580,7 +141,7 @@ lbl_8010FBAC:
  * Address:	8010FBF0
  * Size:	000308
  */
-void KochappyBase::StateWait::exec(Game::EnemyBase*)
+void StateWait::exec(EnemyBase* enemy)
 {
 	/*
 	stwu     r1, -0x90(r1)
@@ -804,45 +365,17 @@ lbl_8010FEC0:
  * Address:	8010FEF8
  * Size:	000024
  */
-void KochappyBase::StateWait::cleanup(Game::EnemyBase*)
-{
-	/*
-	stwu     r1, -0x10(r1)
-	mflr     r0
-	mr       r3, r4
-	stw      r0, 0x14(r1)
-	bl       constraintOff__Q24Game9EnemyBaseFv
-	lwz      r0, 0x14(r1)
-	mtlr     r0
-	addi     r1, r1, 0x10
-	blr
-	*/
-}
+void StateWait::cleanup(EnemyBase* enemy) { enemy->constraintOff(); }
 
 /*
  * --INFO--
  * Address:	8010FF1C
  * Size:	00003C
  */
-KochappyBase::StateDead::StateDead(int)
+StateDead::StateDead(int stateID)
+    : State(stateID)
 {
-	/*
-	lis      r5, __vt__Q24Game13EnemyFSMState@ha
-	lis      r6, __vt__Q34Game12KochappyBase5State@ha
-	addi     r0, r5, __vt__Q24Game13EnemyFSMState@l
-	lis      r5, __vt__Q34Game12KochappyBase9StateDead@ha
-	stw      r0, 0(r3)
-	li       r7, 0
-	addi     r6, r6, __vt__Q34Game12KochappyBase5State@l
-	addi     r5, r5, __vt__Q34Game12KochappyBase9StateDead@l
-	stw      r4, 4(r3)
-	addi     r0, r2, lbl_80517A0C@sda21
-	stw      r7, 8(r3)
-	stw      r6, 0(r3)
-	stw      r5, 0(r3)
-	stw      r0, 0xc(r3)
-	blr
-	*/
+	m_name = "dead";
 }
 
 /*
@@ -850,26 +383,10 @@ KochappyBase::StateDead::StateDead(int)
  * Address:	8010FF58
  * Size:	000040
  */
-void KochappyBase::StateDead::init(Game::EnemyBase*, Game::StateArg*)
+void StateDead::init(EnemyBase* enemy, StateArg* stateArg)
 {
-	/*
-	stwu     r1, -0x10(r1)
-	mflr     r0
-	li       r5, 0
-	stw      r0, 0x14(r1)
-	stw      r31, 0xc(r1)
-	mr       r31, r4
-	li       r4, 1
-	mr       r3, r31
-	bl       startMotion__Q24Game9EnemyBaseFiPQ28SysShape14MotionListener
-	mr       r3, r31
-	bl       deathProcedure__Q24Game9EnemyBaseFv
-	lwz      r0, 0x14(r1)
-	lwz      r31, 0xc(r1)
-	mtlr     r0
-	addi     r1, r1, 0x10
-	blr
-	*/
+	enemy->startMotion(1, nullptr);
+	enemy->deathProcedure();
 }
 
 /*
@@ -877,32 +394,11 @@ void KochappyBase::StateDead::init(Game::EnemyBase*, Game::StateArg*)
  * Address:	8010FF98
  * Size:	000050
  */
-void KochappyBase::StateDead::exec(Game::EnemyBase*)
+void StateDead::exec(EnemyBase* enemy)
 {
-	/*
-	stwu     r1, -0x10(r1)
-	mflr     r0
-	stw      r0, 0x14(r1)
-	lwz      r5, 0x188(r4)
-	lbz      r0, 0x24(r5)
-	cmplwi   r0, 0
-	beq      lbl_8010FFD8
-	lwz      r0, 0x1c(r5)
-	cmplwi   r0, 0x3e8
-	bne      lbl_8010FFD8
-	lwz      r12, 0(r3)
-	li       r5, 9
-	li       r6, 0
-	lwz      r12, 0x1c(r12)
-	mtctr    r12
-	bctrl
-
-lbl_8010FFD8:
-	lwz      r0, 0x14(r1)
-	mtlr     r0
-	addi     r1, r1, 0x10
-	blr
-	*/
+	if (enemy->m_animKeyEvent->m_running && (u32)enemy->m_animKeyEvent->m_type == KEYEVENT_END) {
+		transit(enemy, KOCHAPPY_Demo, nullptr);
+	}
 }
 
 /*
@@ -910,32 +406,17 @@ lbl_8010FFD8:
  * Address:	8010FFE8
  * Size:	000004
  */
-void KochappyBase::StateDead::cleanup(Game::EnemyBase*) { }
+void StateDead::cleanup(EnemyBase* enemy) { }
 
 /*
  * --INFO--
  * Address:	8010FFEC
  * Size:	00003C
  */
-KochappyBase::StateTurn::StateTurn(int)
+StateTurn::StateTurn(int stateID)
+    : State(stateID)
 {
-	/*
-	lis      r5, __vt__Q24Game13EnemyFSMState@ha
-	lis      r6, __vt__Q34Game12KochappyBase5State@ha
-	addi     r0, r5, __vt__Q24Game13EnemyFSMState@l
-	lis      r5, __vt__Q34Game12KochappyBase9StateTurn@ha
-	stw      r0, 0(r3)
-	li       r7, 0
-	addi     r6, r6, __vt__Q34Game12KochappyBase5State@l
-	addi     r5, r5, __vt__Q34Game12KochappyBase9StateTurn@l
-	stw      r4, 4(r3)
-	addi     r0, r2, lbl_80517A14@sda21
-	stw      r7, 8(r3)
-	stw      r6, 0(r3)
-	stw      r5, 0(r3)
-	stw      r0, 0xc(r3)
-	blr
-	*/
+	m_name = "turn";
 }
 
 /*
@@ -943,31 +424,11 @@ KochappyBase::StateTurn::StateTurn(int)
  * Address:	80110028
  * Size:	000054
  */
-void KochappyBase::StateTurn::init(Game::EnemyBase*, Game::StateArg*)
+void StateTurn::init(EnemyBase* enemy, StateArg* stateArg)
 {
-	/*
-	stwu     r1, -0x10(r1)
-	mflr     r0
-	stw      r0, 0x14(r1)
-	stw      r31, 0xc(r1)
-	mr       r31, r4
-	stw      r30, 8(r1)
-	mr       r30, r3
-	mr       r3, r31
-	bl       setEmotionExcitement__Q24Game9EnemyBaseFv
-	mr       r3, r31
-	li       r4, 7
-	li       r5, 0
-	bl       startMotion__Q24Game9EnemyBaseFiPQ28SysShape14MotionListener
-	li       r0, -1
-	stw      r0, 0x10(r30)
-	lwz      r0, 0x14(r1)
-	lwz      r31, 0xc(r1)
-	lwz      r30, 8(r1)
-	mtlr     r0
-	addi     r1, r1, 0x10
-	blr
-	*/
+	enemy->setEmotionExcitement();
+	enemy->startMotion(7, nullptr);
+	_10 = -1;
 }
 
 /*
@@ -975,7 +436,7 @@ void KochappyBase::StateTurn::init(Game::EnemyBase*, Game::StateArg*)
  * Address:	8011007C
  * Size:	000710
  */
-void KochappyBase::StateTurn::exec(Game::EnemyBase*)
+void StateTurn::exec(EnemyBase* enemy)
 {
 	/*
 	stwu     r1, -0x190(r1)
@@ -1481,47 +942,18 @@ lbl_8011072C:
  * Address:	8011078C
  * Size:	000024
  */
-void KochappyBase::StateTurn::cleanup(Game::EnemyBase*)
-{
-	/*
-	stwu     r1, -0x10(r1)
-	mflr     r0
-	mr       r3, r4
-	stw      r0, 0x14(r1)
-	bl       setEmotionCaution__Q24Game9EnemyBaseFv
-	lwz      r0, 0x14(r1)
-	mtlr     r0
-	addi     r1, r1, 0x10
-	blr
-	*/
-}
+void StateTurn::cleanup(EnemyBase* enemy) { enemy->setEmotionCaution(); }
 
 /*
  * --INFO--
  * Address:	801107B0
  * Size:	000044
  */
-KochappyBase::StateWalk::StateWalk(int)
+StateWalk::StateWalk(int stateID)
+    : State(stateID)
 {
-	/*
-	lis      r5, __vt__Q24Game13EnemyFSMState@ha
-	lis      r6, __vt__Q34Game12KochappyBase5State@ha
-	addi     r0, r5, __vt__Q24Game13EnemyFSMState@l
-	lis      r5, __vt__Q34Game12KochappyBase9StateWalk@ha
-	stw      r0, 0(r3)
-	li       r7, 0
-	addi     r6, r6, __vt__Q34Game12KochappyBase5State@l
-	addi     r5, r5, __vt__Q34Game12KochappyBase9StateWalk@l
-	stw      r4, 4(r3)
-	li       r4, -1
-	addi     r0, r2, lbl_80517A20@sda21
-	stw      r7, 8(r3)
-	stw      r6, 0(r3)
-	stw      r5, 0(r3)
-	stw      r4, 0x10(r3)
-	stw      r0, 0xc(r3)
-	blr
-	*/
+	_10    = -1;
+	m_name = "Walk";
 }
 
 /*
@@ -1529,42 +961,14 @@ KochappyBase::StateWalk::StateWalk(int)
  * Address:	801107F4
  * Size:	000080
  */
-void KochappyBase::StateWalk::init(Game::EnemyBase*, Game::StateArg*)
+void StateWalk::init(EnemyBase* enemy, StateArg* stateArg)
 {
-	/*
-	stwu     r1, -0x10(r1)
-	mflr     r0
-	stw      r0, 0x14(r1)
-	stw      r31, 0xc(r1)
-	mr       r31, r4
-	stw      r30, 8(r1)
-	mr       r30, r3
-	mr       r3, r31
-	bl       setEmotionExcitement__Q24Game9EnemyBaseFv
-	lwz      r4, 0xc0(r31)
-	mr       r3, r31
-	lwz      r12, 0(r31)
-	lfs      f1, 0x2e4(r4)
-	lfs      f0, lbl_80517A2C@sda21(r2)
-	lfs      f2, lbl_80517A28@sda21(r2)
-	fdivs    f0, f1, f0
-	lwz      r12, 0x2fc(r12)
-	fmuls    f1, f2, f0
-	mtctr    r12
-	bctrl
-	mr       r3, r31
-	li       r4, 3
-	li       r5, 0
-	bl       startMotion__Q24Game9EnemyBaseFiPQ28SysShape14MotionListener
-	li       r0, -1
-	stw      r0, 0x10(r30)
-	lwz      r0, 0x14(r1)
-	lwz      r31, 0xc(r1)
-	lwz      r30, 8(r1)
-	mtlr     r0
-	addi     r1, r1, 0x10
-	blr
-	*/
+	Obj* kochappy = static_cast<Obj*>(enemy);
+	kochappy->setEmotionExcitement();
+	Parms* parms = kochappy->getParms();
+	kochappy->setAnimationSpeed(40.0f * (parms->m_general.m_moveSpeed.m_value / 50.0f));
+	kochappy->startMotion(3, nullptr);
+	_10 = -1;
 }
 
 /*
@@ -1572,7 +976,7 @@ void KochappyBase::StateWalk::init(Game::EnemyBase*, Game::StateArg*)
  * Address:	80110874
  * Size:	0006E4
  */
-void KochappyBase::StateWalk::exec(Game::EnemyBase*)
+void StateWalk::exec(EnemyBase* enemy)
 {
 	/*
 	stwu     r1, -0x170(r1)
@@ -2075,28 +1479,11 @@ lbl_80110EF8:
  * Address:	80110F58
  * Size:	000048
  */
-void KochappyBase::StateWalk::cleanup(Game::EnemyBase*)
+void StateWalk::cleanup(EnemyBase* enemy)
 {
-	/*
-	stwu     r1, -0x10(r1)
-	mflr     r0
-	stw      r0, 0x14(r1)
-	stw      r31, 0xc(r1)
-	mr       r31, r4
-	mr       r3, r31
-	bl       setEmotionCaution__Q24Game9EnemyBaseFv
-	mr       r3, r31
-	bl       resetAnimSpeed__Q24Game9EnemyBaseFv
-	lfs      f0, lbl_805179E0@sda21(r2)
-	stfs     f0, 0x1d4(r31)
-	stfs     f0, 0x1d8(r31)
-	stfs     f0, 0x1dc(r31)
-	lwz      r31, 0xc(r1)
-	lwz      r0, 0x14(r1)
-	mtlr     r0
-	addi     r1, r1, 0x10
-	blr
-	*/
+	enemy->setEmotionCaution();
+	enemy->resetAnimSpeed();
+	enemy->m_simVelocity = Vector3f(0.0f);
 }
 
 /*
@@ -2104,25 +1491,10 @@ void KochappyBase::StateWalk::cleanup(Game::EnemyBase*)
  * Address:	80110FA0
  * Size:	00003C
  */
-KochappyBase::StateAttack::StateAttack(int)
+StateAttack::StateAttack(int stateID)
+    : State(stateID)
 {
-	/*
-	lis      r5, __vt__Q24Game13EnemyFSMState@ha
-	lis      r6, __vt__Q34Game12KochappyBase5State@ha
-	addi     r0, r5, __vt__Q24Game13EnemyFSMState@l
-	lis      r5, __vt__Q34Game12KochappyBase11StateAttack@ha
-	stw      r0, 0(r3)
-	li       r7, 0
-	addi     r6, r6, __vt__Q34Game12KochappyBase5State@l
-	addi     r5, r5, __vt__Q34Game12KochappyBase11StateAttack@l
-	stw      r4, 4(r3)
-	addi     r0, r2, lbl_80517A30@sda21
-	stw      r7, 8(r3)
-	stw      r6, 0(r3)
-	stw      r5, 0(r3)
-	stw      r0, 0xc(r3)
-	blr
-	*/
+	m_name = "Attack";
 }
 
 /*
@@ -2130,28 +1502,11 @@ KochappyBase::StateAttack::StateAttack(int)
  * Address:	80110FDC
  * Size:	000048
  */
-void KochappyBase::StateAttack::init(Game::EnemyBase*, Game::StateArg*)
+void StateAttack::init(EnemyBase* enemy, StateArg* stateArg)
 {
-	/*
-	stwu     r1, -0x10(r1)
-	mflr     r0
-	stw      r0, 0x14(r1)
-	stw      r31, 0xc(r1)
-	mr       r31, r4
-	mr       r3, r31
-	bl       setEmotionExcitement__Q24Game9EnemyBaseFv
-	mr       r3, r31
-	li       r4, 0
-	li       r5, 0
-	bl       startMotion__Q24Game9EnemyBaseFiPQ28SysShape14MotionListener
-	mr       r3, r31
-	bl       resetAnimSpeed__Q24Game9EnemyBaseFv
-	lwz      r0, 0x14(r1)
-	lwz      r31, 0xc(r1)
-	mtlr     r0
-	addi     r1, r1, 0x10
-	blr
-	*/
+	enemy->setEmotionExcitement();
+	enemy->startMotion(0, nullptr);
+	enemy->resetAnimSpeed();
 }
 
 /*
@@ -2159,7 +1514,7 @@ void KochappyBase::StateAttack::init(Game::EnemyBase*, Game::StateArg*)
  * Address:	80111024
  * Size:	0003F0
  */
-void KochappyBase::StateAttack::exec(Game::EnemyBase*)
+void StateAttack::exec(EnemyBase* enemy)
 {
 	/*
 	stwu     r1, -0xf0(r1)
@@ -2447,47 +1802,17 @@ lbl_801113C4:
  * Address:	80111414
  * Size:	000024
  */
-void KochappyBase::StateAttack::cleanup(Game::EnemyBase*)
-{
-	/*
-	stwu     r1, -0x10(r1)
-	mflr     r0
-	mr       r3, r4
-	stw      r0, 0x14(r1)
-	bl       setEmotionCaution__Q24Game9EnemyBaseFv
-	lwz      r0, 0x14(r1)
-	mtlr     r0
-	addi     r1, r1, 0x10
-	blr
-	*/
-}
+void StateAttack::cleanup(EnemyBase* enemy) { enemy->setEmotionCaution(); }
 
 /*
  * --INFO--
  * Address:	80111438
  * Size:	000044
  */
-KochappyBase::StateFlick::StateFlick(int)
+StateFlick::StateFlick(int stateID)
+    : State(stateID)
 {
-	/*
-	lis      r5, __vt__Q24Game13EnemyFSMState@ha
-	lis      r6, __vt__Q34Game12KochappyBase5State@ha
-	addi     r0, r5, __vt__Q24Game13EnemyFSMState@l
-	lis      r5, __vt__Q34Game12KochappyBase10StateFlick@ha
-	stw      r0, 0(r3)
-	li       r7, 0
-	addi     r6, r6, __vt__Q34Game12KochappyBase5State@l
-	addi     r5, r5, __vt__Q34Game12KochappyBase10StateFlick@l
-	stw      r4, 4(r3)
-	addi     r4, r2, lbl_80517A38@sda21
-	li       r0, -1
-	stw      r7, 8(r3)
-	stw      r6, 0(r3)
-	stw      r5, 0(r3)
-	stw      r4, 0xc(r3)
-	stw      r0, 0x10(r3)
-	blr
-	*/
+	m_name = "Flick";
 }
 
 /*
@@ -2495,51 +1820,20 @@ KochappyBase::StateFlick::StateFlick(int)
  * Address:	8011147C
  * Size:	000094
  */
-void KochappyBase::StateFlick::init(Game::EnemyBase*, Game::StateArg*)
+void StateFlick::init(EnemyBase* enemy, StateArg* stateArg)
 {
-	/*
-	stwu     r1, -0x20(r1)
-	mflr     r0
-	stw      r0, 0x24(r1)
-	stw      r31, 0x1c(r1)
-	mr       r31, r5
-	stw      r30, 0x18(r1)
-	mr       r30, r4
-	stw      r29, 0x14(r1)
-	mr       r29, r3
-	mr       r3, r30
-	bl       setEmotionExcitement__Q24Game9EnemyBaseFv
-	cmplwi   r31, 0
-	beq      lbl_801114BC
-	lwz      r0, 0(r31)
-	stw      r0, 0x10(r29)
-	b        lbl_801114C4
+	enemy->setEmotionExcitement();
 
-lbl_801114BC:
-	li       r0, -1
-	stw      r0, 0x10(r29)
+	FlickArg* flickArg = static_cast<FlickArg*>(stateArg);
+	if (flickArg != nullptr) {
+		_10 = flickArg->_00;
+	} else {
+		_10 = -1;
+	}
 
-lbl_801114C4:
-	mr       r3, r30
-	li       r4, 2
-	li       r5, 0
-	bl       startMotion__Q24Game9EnemyBaseFiPQ28SysShape14MotionListener
-	lwz      r0, 0x1e0(r30)
-	mr       r3, r30
-	rlwinm   r0, r0, 0, 0x1b, 0x19
-	stw      r0, 0x1e0(r30)
-	lwz      r12, 0(r30)
-	lwz      r12, 0x300(r12)
-	mtctr    r12
-	bctrl
-	lwz      r0, 0x24(r1)
-	lwz      r31, 0x1c(r1)
-	lwz      r30, 0x18(r1)
-	lwz      r29, 0x14(r1)
-	mtlr     r0
-	addi     r1, r1, 0x20
-	blr
-	*/
+	enemy->startMotion(2, nullptr);
+	enemy->resetEvent(0, EB_DropMassSet);
+	static_cast<Obj*>(enemy)->resetEnemyNonStone();
 }
 
 /*
@@ -2547,7 +1841,7 @@ lbl_801114C4:
  * Address:	80111510
  * Size:	000178
  */
-void KochappyBase::StateFlick::exec(Game::EnemyBase*)
+void StateFlick::exec(EnemyBase* enemy)
 {
 	/*
 	stwu     r1, -0x10(r1)
@@ -2669,30 +1963,12 @@ lbl_80111670:
  * Address:	80111688
  * Size:	000050
  */
-void KochappyBase::StateFlick::cleanup(Game::EnemyBase*)
+void StateFlick::cleanup(EnemyBase* enemy)
 {
-	/*
-	stwu     r1, -0x10(r1)
-	mflr     r0
-	stw      r0, 0x14(r1)
-	stw      r31, 0xc(r1)
-	mr       r31, r4
-	mr       r3, r31
-	bl       setEmotionCaution__Q24Game9EnemyBaseFv
-	lwz      r0, 0x1e0(r31)
-	mr       r3, r31
-	ori      r0, r0, 0x20
-	stw      r0, 0x1e0(r31)
-	lwz      r12, 0(r31)
-	lwz      r12, 0x300(r12)
-	mtctr    r12
-	bctrl
-	lwz      r0, 0x14(r1)
-	lwz      r31, 0xc(r1)
-	mtlr     r0
-	addi     r1, r1, 0x10
-	blr
-	*/
+	Obj* kochappy = static_cast<Obj*>(enemy);
+	kochappy->setEmotionCaution();
+	kochappy->setEvent(0, EB_DropMassSet);
+	kochappy->resetEnemyNonStone();
 }
 
 /*
@@ -2700,26 +1976,10 @@ void KochappyBase::StateFlick::cleanup(Game::EnemyBase*)
  * Address:	801116D8
  * Size:	000040
  */
-KochappyBase::StateTurnToHome::StateTurnToHome(int)
+StateTurnToHome::StateTurnToHome(int stateID)
+    : State(stateID)
 {
-	/*
-	lis      r5, __vt__Q24Game13EnemyFSMState@ha
-	lis      r7, __vt__Q34Game12KochappyBase5State@ha
-	addi     r0, r5, __vt__Q24Game13EnemyFSMState@l
-	lis      r6, __vt__Q34Game12KochappyBase15StateTurnToHome@ha
-	stw      r0, 0(r3)
-	lis      r5, lbl_8047AB28@ha
-	li       r8, 0
-	addi     r7, r7, __vt__Q34Game12KochappyBase5State@l
-	stw      r4, 4(r3)
-	addi     r4, r6, __vt__Q34Game12KochappyBase15StateTurnToHome@l
-	addi     r0, r5, lbl_8047AB28@l
-	stw      r8, 8(r3)
-	stw      r7, 0(r3)
-	stw      r4, 0(r3)
-	stw      r0, 0xc(r3)
-	blr
-	*/
+	m_name = "TurnToHome";
 }
 
 /*
@@ -2727,7 +1987,7 @@ KochappyBase::StateTurnToHome::StateTurnToHome(int)
  * Address:	80111718
  * Size:	000120
  */
-void KochappyBase::StateTurnToHome::init(Game::EnemyBase*, Game::StateArg*)
+void StateTurnToHome::init(EnemyBase* enemy, StateArg* stateArg)
 {
 	/*
 	stwu     r1, -0x50(r1)
@@ -2818,7 +2078,7 @@ lbl_80111808:
  * Address:	80111838
  * Size:	00046C
  */
-void KochappyBase::StateTurnToHome::exec(Game::EnemyBase*)
+void StateTurnToHome::exec(EnemyBase* enemy)
 {
 	/*
 	stwu     r1, -0x110(r1)
@@ -3131,32 +2391,17 @@ lbl_80111C54:
  * Address:	80111CA4
  * Size:	000004
  */
-void KochappyBase::StateTurnToHome::cleanup(Game::EnemyBase*) { }
+void StateTurnToHome::cleanup(EnemyBase* enemy) { }
 
 /*
  * --INFO--
  * Address:	80111CA8
  * Size:	00003C
  */
-KochappyBase::StateGoHome::StateGoHome(int)
+StateGoHome::StateGoHome(int stateID)
+    : State(stateID)
 {
-	/*
-	lis      r5, __vt__Q24Game13EnemyFSMState@ha
-	lis      r6, __vt__Q34Game12KochappyBase5State@ha
-	addi     r0, r5, __vt__Q24Game13EnemyFSMState@l
-	lis      r5, __vt__Q34Game12KochappyBase11StateGoHome@ha
-	stw      r0, 0(r3)
-	li       r7, 0
-	addi     r6, r6, __vt__Q34Game12KochappyBase5State@l
-	addi     r5, r5, __vt__Q34Game12KochappyBase11StateGoHome@l
-	stw      r4, 4(r3)
-	addi     r0, r2, lbl_80517A44@sda21
-	stw      r7, 8(r3)
-	stw      r6, 0(r3)
-	stw      r5, 0(r3)
-	stw      r0, 0xc(r3)
-	blr
-	*/
+	m_name = "GoHome";
 }
 
 /*
@@ -3164,35 +2409,12 @@ KochappyBase::StateGoHome::StateGoHome(int)
  * Address:	80111CE4
  * Size:	000064
  */
-void KochappyBase::StateGoHome::init(Game::EnemyBase*, Game::StateArg*)
+void StateGoHome::init(EnemyBase* enemy, StateArg* stateArg)
 {
-	/*
-	stwu     r1, -0x10(r1)
-	mflr     r0
-	lfs      f1, lbl_80517A28@sda21(r2)
-	stw      r0, 0x14(r1)
-	stw      r31, 0xc(r1)
-	mr       r31, r4
-	stw      r30, 8(r1)
-	mr       r30, r3
-	mr       r3, r31
-	lwz      r12, 0(r31)
-	lwz      r12, 0x2fc(r12)
-	mtctr    r12
-	bctrl
-	mr       r3, r31
-	li       r4, 3
-	li       r5, 0
-	bl       startMotion__Q24Game9EnemyBaseFiPQ28SysShape14MotionListener
-	li       r0, -1
-	stw      r0, 0x10(r30)
-	lwz      r0, 0x14(r1)
-	lwz      r31, 0xc(r1)
-	lwz      r30, 8(r1)
-	mtlr     r0
-	addi     r1, r1, 0x10
-	blr
-	*/
+	Obj* kochappy = static_cast<Obj*>(enemy);
+	kochappy->setAnimationSpeed(40.0f);
+	kochappy->startMotion(3, nullptr);
+	_10 = -1;
 }
 
 /*
@@ -3200,7 +2422,7 @@ void KochappyBase::StateGoHome::init(Game::EnemyBase*, Game::StateArg*)
  * Address:	80111D48
  * Size:	000440
  */
-void KochappyBase::StateGoHome::exec(Game::EnemyBase*)
+void StateGoHome::exec(EnemyBase* enemy)
 {
 	/*
 	stwu     r1, -0x110(r1)
@@ -3497,26 +2719,10 @@ lbl_80112138:
  * Address:	80112188
  * Size:	000040
  */
-void KochappyBase::StateGoHome::cleanup(Game::EnemyBase*)
+void StateGoHome::cleanup(EnemyBase* enemy)
 {
-	/*
-	stwu     r1, -0x10(r1)
-	mflr     r0
-	stw      r0, 0x14(r1)
-	stw      r31, 0xc(r1)
-	mr       r31, r4
-	mr       r3, r31
-	bl       resetAnimSpeed__Q24Game9EnemyBaseFv
-	lfs      f0, lbl_805179E0@sda21(r2)
-	stfs     f0, 0x1d4(r31)
-	stfs     f0, 0x1d8(r31)
-	stfs     f0, 0x1dc(r31)
-	lwz      r31, 0xc(r1)
-	lwz      r0, 0x14(r1)
-	mtlr     r0
-	addi     r1, r1, 0x10
-	blr
-	*/
+	enemy->resetAnimSpeed();
+	enemy->m_simVelocity = Vector3f(0.0f);
 }
 
 /*
@@ -3524,25 +2730,10 @@ void KochappyBase::StateGoHome::cleanup(Game::EnemyBase*)
  * Address:	801121C8
  * Size:	00003C
  */
-KochappyBase::StateDemo::StateDemo(int)
+StateDemo::StateDemo(int stateID)
+    : State(stateID)
 {
-	/*
-	lis      r5, __vt__Q24Game13EnemyFSMState@ha
-	lis      r6, __vt__Q34Game12KochappyBase5State@ha
-	addi     r0, r5, __vt__Q24Game13EnemyFSMState@l
-	lis      r5, __vt__Q34Game12KochappyBase9StateDemo@ha
-	stw      r0, 0(r3)
-	li       r7, 0
-	addi     r6, r6, __vt__Q34Game12KochappyBase5State@l
-	addi     r5, r5, __vt__Q34Game12KochappyBase9StateDemo@l
-	stw      r4, 4(r3)
-	addi     r0, r2, lbl_80517A4C@sda21
-	stw      r7, 8(r3)
-	stw      r6, 0(r3)
-	stw      r5, 0(r3)
-	stw      r0, 0xc(r3)
-	blr
-	*/
+	m_name = "demo";
 }
 
 /*
@@ -3550,78 +2741,13 @@ KochappyBase::StateDemo::StateDemo(int)
  * Address:	80112204
  * Size:	00007C
  */
-void KochappyBase::StateDemo::init(Game::EnemyBase*, Game::StateArg*)
+void StateDemo::init(EnemyBase* enemy, StateArg* stateArg)
 {
-	/*
-	stwu     r1, -0x10(r1)
-	mflr     r0
-	mr       r3, r4
-	li       r4, 0
-	stw      r0, 0x14(r1)
-	bl       kill__Q24Game8CreatureFPQ24Game15CreatureKillArg
-	lwz      r3, gameSystem__4Game@sda21(r13)
-	lwz      r3, 0x58(r3)
-	lwz      r12, 0(r3)
-	lwz      r12, 0xac(r12)
-	mtctr    r12
-	bctrl
-	cmplwi   r3, 3
-	beq      lbl_80112270
-	lwz      r3, playData__4Game@sda21(r13)
-	li       r4, 0x25
-	bl       isDemoFlag__Q24Game8PlayDataFi
-	clrlwi.  r0, r3, 0x18
-	bne      lbl_80112270
-	lwz      r3, gameSystem__4Game@sda21(r13)
-	li       r4, 3
-	lfs      f1, lbl_80517A54@sda21(r2)
-	lwz      r3, 0x58(r3)
-	lwz      r12, 0(r3)
-	lwz      r12, 0xa4(r12)
-	mtctr    r12
-	bctrl
-
-lbl_80112270:
-	lwz      r0, 0x14(r1)
-	mtlr     r0
-	addi     r1, r1, 0x10
-	blr
-	*/
+	enemy->kill(nullptr);
+	if (gameSystem->m_section->getTimerType() != 3 && !playData->isDemoFlag(DEMO_Kill_First_Kochappy)) {
+		gameSystem->m_section->enableTimer(5.0f, 3);
+	}
 }
 
-/*
- * --INFO--
- * Address:	80112280
- * Size:	000004
- */
-void BaseGameSection::enableTimer(float, unsigned long) { }
-
-/*
- * --INFO--
- * Address:	80112284
- * Size:	000008
- */
-u32 BaseGameSection::getTimerType() { return 0x0; }
-
+} // namespace KochappyBase
 } // namespace Game
-
-/*
- * --INFO--
- * Address:	8011228C
- * Size:	000028
- */
-void __sinit_kochappyState_cpp(void)
-{
-	/*
-	lis      r4, __float_nan@ha
-	li       r0, -1
-	lfs      f0, __float_nan@l(r4)
-	lis      r3, lbl_804AB998@ha
-	stw      r0, lbl_80515870@sda21(r13)
-	stfsu    f0, lbl_804AB998@l(r3)
-	stfs     f0, lbl_80515874@sda21(r13)
-	stfs     f0, 4(r3)
-	stfs     f0, 8(r3)
-	blr
-	*/
-}

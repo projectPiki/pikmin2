@@ -87,7 +87,7 @@ void Koganemushi::Obj::createItem()
 	case 2:
 		createPelletItem = false;
 
-		if (playData && playData->isDemoFlag(29)) {
+		if (playData && playData->isDemoFlag(DEMO_First_Spicy_Spray_Made)) {
 			initArg = 1;
 			amount  = 1;
 		} else {

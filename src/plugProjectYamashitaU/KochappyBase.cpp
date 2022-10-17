@@ -25,7 +25,7 @@ Obj::Obj()
 void Obj::birth(Vector3f& position, f32 p1)
 {
 	EnemyBase::birth(position, p1);
-	m_FSM->start(this, KOCHAPPY_Alive, (StateArg*)'rand');
+	m_FSM->start(this, KOCHAPPY_Wait, (WaitArg*)'rand');
 	m_shadowJoint = m_model->getJoint("ago");
 	_2CC          = 0.0f;
 }
@@ -47,7 +47,7 @@ void Obj::onInit(CreatureInitArg* initArg)
 	EnemyBase::onInit(initArg);
 	m_shadowJoint = m_model->getJoint("ago");
 	_2CC          = 0.0f;
-	m_FSM->start(this, KOCHAPPY_Alive, (StateArg*)'rand');
+	m_FSM->start(this, KOCHAPPY_Wait, (WaitArg*)'rand');
 }
 
 /*
@@ -59,7 +59,7 @@ void Obj::doUpdate()
 {
 	m_FSM->exec(this);
 
-	if (!playData->isDemoFlag(0x23)) {
+	if (!playData->isDemoFlag(DEMO_Meet_Red_Pikmin)) {
 		m_simVelocity = Vector3f::zero;
 		m_impVelocity = m_simVelocity;
 	}

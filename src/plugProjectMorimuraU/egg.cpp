@@ -281,10 +281,10 @@ void Obj::genItem()
 
 	if (static_cast<Parms*>(m_parms)->_8D1 != 0) {
 		if (dropType == 5) {
-			if (!playData->isDemoFlag(29)) {
+			if (!playData->isDemoFlag(DEMO_First_Spicy_Spray_Made)) {
 				dropType = 2;
 			}
-		} else if (dropType == 6 && !playData->isDemoFlag(30)) {
+		} else if (dropType == 6 && !playData->isDemoFlag(DEMO_First_Bitter_Spray_Made)) {
 			dropType = 2;
 		}
 	}

@@ -1592,11 +1592,11 @@ inline void PikiPanicState::checkDemo(Piki* piki)
 {
 	int flag = 0;
 	if (m_panicType == PIKIPANIC_Fire) {
-		flag = 47;
+		flag = DEMO_Pikmin_In_Danger_Fire;
 	} else if (m_panicType == PIKIPANIC_Water) {
-		flag = 51;
+		flag = DEMO_Pikmin_In_Danger_Water;
 	} else if (m_panicType == PIKIPANIC_Gas) {
-		flag = 52;
+		flag = DEMO_Pikmin_In_Danger_Poison;
 	}
 
 	if (flag != 0 && !playData->isDemoFlag(flag) && gameSystem->m_mode == GSM_STORY_MODE && gameSystem->_3C & 0x20) {
