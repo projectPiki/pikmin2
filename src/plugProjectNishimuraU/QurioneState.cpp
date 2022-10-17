@@ -157,7 +157,7 @@ void StateDisappear::cleanup(EnemyBase* enemy)
 		faceDir -= TAU;
 	}
 	wisp->m_faceDir        = faceDir;
-	wisp->m_faceRotation.y = wisp->m_faceDir;
+	wisp->m_rotation.y = wisp->m_faceDir;
 
 	wisp->m_spawnIndex ^= 1;
 	wisp->setAtari(true);

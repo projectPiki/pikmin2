@@ -431,14 +431,10 @@ void Creature::init(Game::CreatureInitArg* arg)
 	m_flags.typeView |= 7;
 	clearStick();
 	m_updateContext.init(Game::collisionUpdateMgr);
-	_11C.x = 0.0f;
-	_11C.y = 0.0f;
-	_11C.z = 0.0f;
+	_11C = Vector3f(0.0f);
 	clearCapture();
-	m_curTriangle         = 0;
-	m_collisionPosition.x = 0.0f;
-	m_collisionPosition.y = 1.0f;
-	m_collisionPosition.z = 0.0f;
+	m_curTriangle         = nullptr;
+	m_collisionPosition = Vector3f(0.0f, 1.0f, 0.0f);
 	clearCapture();
 	if (getMabiki()) {
 		u32* mabiki = getMabiki();

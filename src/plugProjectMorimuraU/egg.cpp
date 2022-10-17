@@ -50,7 +50,7 @@ void Obj::onInit(CreatureInitArg* initArg)
 		m_animKeyEvent->m_running = 0;
 		doAnimationUpdateAnimator();
 
-		m_mainMatrix.makeSRT(m_scale, m_faceRotation, m_position);
+		m_mainMatrix.makeSRT(m_scale, m_rotation, m_position);
 
 		PSMTXCopy(m_mainMatrix.m_matrix.mtxView, m_model->m_j3dModel->_24);
 		m_model->m_j3dModel->calc();
@@ -136,7 +136,7 @@ void Obj::doAnimationCullingOff()
 		check = false;
 		if (m_position.x != vec.x || m_position.y != vec.y || m_position.z != vec.z) {
 			check = true;
-			m_mainMatrix.makeSRT(m_scale, m_faceRotation, m_position);
+			m_mainMatrix.makeSRT(m_scale, m_rotation, m_position);
 		}
 	}
 

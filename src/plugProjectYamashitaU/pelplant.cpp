@@ -501,7 +501,7 @@ bool Obj::damageCallBack(Creature* source, float damage, CollPart* part)
 {
 	if (isLivingThing()) {
 		addDamage(damage, 1.0f);
-		if (part && part->m_isStickableID.getStrID()[3] == '0') {
+		if (part && part->m_specialID.getStrID()[3] == '0') {
 			addDamage(m_maxHealth, 1.0f);
 		}
 	}
@@ -533,7 +533,7 @@ bool Obj::farmCallBack(Creature* p1, float p2)
 void Obj::onStickStart(Creature* other)
 {
 	EnemyBase::onStickStart(other);
-	if (other->_0F8 && other->_0F8->m_isStickableID.getStrID()[3] == '0') {
+	if (other->_0F8 && other->_0F8->m_specialID.getStrID()[3] == '0') {
 		addDamage(m_maxHealth, 1.0f);
 	}
 }

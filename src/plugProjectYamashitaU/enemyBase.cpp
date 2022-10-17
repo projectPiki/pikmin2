@@ -745,7 +745,7 @@ Game::EnemyBase::EnemyBase()
     , SysShape::MotionListener()
     , PelletView()
     , m_position(0.0f, 0.0f, 0.0f)
-    , m_faceRotation()
+    , m_rotation()
     , m_events()
     , m_eventBuffer()
     , m_emotion(EMOTE_Caution)
@@ -2054,12 +2054,12 @@ void EnemyBase::birth(Vector3f& pos, float faceDir)
 	m_homePosition.x   = pos.x;
 	m_homePosition.y   = pos.y;
 	m_homePosition.z   = pos.z;
-	m_faceRotation     = Vector3f(0.0f);
+	m_rotation     = Vector3f(0.0f);
 	m_impVelocity      = Vector3f(0.0f);
 	m_simVelocity      = Vector3f(0.0f);
 	m_targetCreature   = nullptr;
 	m_faceDir          = faceDir;
-	m_faceRotation.y   = m_faceDir;
+	m_rotation.y   = m_faceDir;
 	m_curTriangle      = nullptr;
 	m_stickPikminCount = 0;
 	m_heldPellet       = nullptr;
@@ -2087,7 +2087,7 @@ void EnemyBase::birth(Vector3f& pos, float faceDir)
  */
 void EnemyBase::updateTrMatrix()
 {
-	Vector3f rot = m_faceRotation + m_damageAnimRotation + m_stunAnimRotation;
+	Vector3f rot = m_rotation + m_damageAnimRotation + m_stunAnimRotation;
 	m_mainMatrix.makeTR(m_position, rot);
 }
 
@@ -2253,7 +2253,7 @@ void EnemyBase::doAnimationCullingOff()
 		if (isStickTo()) {
 			doAnimationStick();
 		} else {
-			Vector3f rot = m_faceRotation + m_damageAnimRotation + m_stunAnimRotation;
+			Vector3f rot = m_rotation + m_damageAnimRotation + m_stunAnimRotation;
 			m_mainMatrix.makeSRT(m_scale, rot, m_position);
 		}
 	}
@@ -2276,7 +2276,7 @@ void EnemyBase::doAnimationCullingOff()
  */
 void EnemyBase::doAnimationStick()
 {
-	Vector3f rot = m_faceRotation + m_damageAnimRotation + m_stunAnimRotation;
+	Vector3f rot = m_rotation + m_damageAnimRotation + m_stunAnimRotation;
 	m_mainMatrix.makeSRT(m_scale, rot, m_position);
 }
 

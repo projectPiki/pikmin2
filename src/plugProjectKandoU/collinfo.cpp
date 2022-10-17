@@ -768,7 +768,7 @@ void CollPart::init(SysShape::MtxObject* mtxObject)
 	_60           = 0;
 	m_attribute   = 0;
 	m_hasCollPart = COLLTYPE_SPHERE;
-	m_isStickableID.setID('____');
+	m_specialID.setID('____');
 }
 
 /*
@@ -776,7 +776,7 @@ void CollPart::init(SysShape::MtxObject* mtxObject)
  * Address:	80136DB0
  * Size:	000030
  */
-bool CollPart::isStickable() { return m_isStickableID.match('s***', '*'); }
+bool CollPart::isStickable() { return m_specialID.match('s***', '*'); }
 
 /*
  * update__8CollPartFv
@@ -1680,7 +1680,7 @@ MouthCollPart::MouthCollPart()
 	_60           = 0;
 	m_attribute   = 0;
 	m_hasCollPart = COLLTYPE_SPHERE;
-	m_isStickableID.setID('____');
+	m_specialID.setID('____');
 	_64 = nullptr;
 	_6C = 0;
 }
@@ -1870,7 +1870,7 @@ CollPart* CollPart::clone(SysShape::MtxObject* mtxObject, CollPartMgr* mgr)
 	copy->m_radius        = m_radius;
 	copy->m_baseRadius    = copy->m_radius;
 	copy->m_currentID     = m_currentID;
-	copy->m_isStickableID = m_isStickableID;
+	copy->m_specialID = m_specialID;
 	copy->m_offset        = m_offset;
 	copy->m_hasCollPart   = m_hasCollPart;
 	copy->m_jointIndex    = m_jointIndex;
@@ -1901,7 +1901,7 @@ void CollPart::read(Stream& input, bool isAgeCollPart)
 	m_radius       = input.readFloat();
 	m_baseRadius   = m_radius;
 	m_currentID.read(input);
-	m_isStickableID.read(input);
+	m_specialID.read(input);
 	m_offset.read(input);
 	m_jointIndex = input.readInt();
 	m_attribute  = input.readU16();

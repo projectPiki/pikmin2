@@ -516,7 +516,7 @@ struct EnemyBase : public Creature, public SysShape::MotionListener, virtual pub
 		}
 
 		m_faceDir        = roundAng(approxSpeed + getFaceDir());
-		m_faceRotation.y = m_faceDir;
+		m_rotation.y = m_faceDir;
 		return angleDist;
 	}
 
@@ -542,7 +542,7 @@ struct EnemyBase : public Creature, public SysShape::MotionListener, virtual pub
 		}
 
 		m_faceDir        = roundAng(approxSpeed + getFaceDir());
-		m_faceRotation.y = m_faceDir;
+		m_rotation.y = m_faceDir;
 		return angleDist;
 	}
 
@@ -560,9 +560,9 @@ struct EnemyBase : public Creature, public SysShape::MotionListener, virtual pub
 	EnemyMgrBase* m_mgr;                         // _180
 	EnemyAnimatorBase* m_animator;               // _184
 	EnemyAnimKeyEvent* m_animKeyEvent;           // _188
-	Vector3f m_position;                         // _18C
+	Vector3f m_position;                         // _18C, aka translation
 	Vector3f m_homePosition;                     // _198
-	Vector3f m_faceRotation;                     // _1A4
+	Vector3f m_rotation;                     // _1A4, mainly used for face dir on Y axis
 	Vector3f m_damageAnimRotation;               // _1B0
 	Vector3f m_stunAnimRotation;                 // _1BC
 	Vector3f m_impVelocity;                      // _1C8, impulse velocity
