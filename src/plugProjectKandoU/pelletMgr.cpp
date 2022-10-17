@@ -5811,7 +5811,7 @@ void BasePelletMgr::setCollTree(Game::Pellet* pellet, int partIndex)
 
 		CollPart* part = pellet->m_collTree->m_part;
 		if (part != nullptr) {
-			part->m_position = pellet->m_pelletView->viewGetCollTreeOffset();
+			part->_20 = pellet->m_pelletView->viewGetCollTreeOffset();
 		}
 	} else {
 		CollPart* part = m_collParts[partIndex];

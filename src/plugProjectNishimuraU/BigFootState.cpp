@@ -337,16 +337,18 @@ void StateWalk::exec(EnemyBase* enemy)
 	bigfoot->m_stateTimer += sys->m_secondsPerFrame;
 	if (bigfoot->m_health <= 0.0f) {
 		transit(bigfoot, BIGFOOT_Dead, nullptr);
-	} else if (EnemyFunc::isStartFlick(bigfoot, false)) {
-		bigfoot->m_nextState = BIGFOOT_Flick;
-		bigfoot->finishIKMotion();
-	} else if (bigfoot->m_stateTimer > bigfoot->m_flickWalkTimeMax) {
-		bigfoot->m_nextState = BIGFOOT_Wait;
-		bigfoot->finishIKMotion();
-	}
+	} else {
+		if (EnemyFunc::isStartFlick(bigfoot, false)) {
+			bigfoot->m_nextState = BIGFOOT_Flick;
+			bigfoot->finishIKMotion();
+		} else if (bigfoot->m_stateTimer > bigfoot->m_flickWalkTimeMax) {
+			bigfoot->m_nextState = BIGFOOT_Wait;
+			bigfoot->finishIKMotion();
+		}
 
-	if (bigfoot->isFinishIKMotion()) {
-		transit(bigfoot, bigfoot->m_nextState, nullptr);
+		if (bigfoot->isFinishIKMotion()) {
+			transit(bigfoot, bigfoot->m_nextState, nullptr);
+		}
 	}
 }
 

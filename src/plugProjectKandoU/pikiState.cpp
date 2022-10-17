@@ -3729,7 +3729,7 @@ void PikiSuikomiState::execMouth(Piki* piki)
 	Vector3f position;
 	if (m_collpart == nullptr) {
 		position = _1C->m_position;
-		position.y -= _1C->m_radius;
+		position.y -= _1C->_1C;
 
 	} else {
 		Sys::Tube tube;

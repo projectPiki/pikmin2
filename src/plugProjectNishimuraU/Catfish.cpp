@@ -92,7 +92,7 @@ void Obj::initMouthSlots()
 	m_mouthSlots.setup(1, Creature::m_model, "kamu2");
 
 	for (int i = 0; i < m_mouthSlots.m_max; i++) {
-		m_mouthSlots.getSlot(i)->m_radius = 20.0f;
+		m_mouthSlots.getSlot(i)->_1C = 20.0f;
 	}
 }
 

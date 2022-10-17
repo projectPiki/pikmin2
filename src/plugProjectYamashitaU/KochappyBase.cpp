@@ -178,7 +178,7 @@ void Obj::initMouthSlots()
 	m_mouthSlots.setup(0, m_model, "kamu");
 
 	for (int i = 0; i < m_mouthSlots.m_max; i++) {
-		m_mouthSlots.getSlot(i)->m_radius = 15.0f;
+		m_mouthSlots.getSlot(i)->_1C = 15.0f;
 	}
 }
 
