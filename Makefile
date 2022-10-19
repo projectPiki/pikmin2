@@ -221,9 +221,7 @@ $(DOL): $(ELF) | tools
 ifneq ($(findstring -map,$(LDFLAGS)),)
 	$(QUIET) $(PYTHON) tools/calcprogress.py $(DOL) $(MAP)
 endif
-ifeq ($(UPDATE_README),1)
-	$(WINE) $(AOI)
-endif
+	$(WINE) ./aoi.exe
 
 clean:
 	rm -f -d -r build
