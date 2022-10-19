@@ -87,11 +87,11 @@ struct Obj : public EnemyBase {
 struct Mgr : public EnemyMgrBase {
 	Mgr(int objLimit, u8 modelType);
 
-	virtual ~Mgr();                                     // _58 (weak)
-	virtual EnemyTypeID::EEnemyTypeID getEnemyTypeID(); // _AC (weak)
-	virtual SysShape::Model* createModel();             // _B0
-	virtual void loadModelData();                       // _C8
-	virtual void loadAnimData();                        // _CC
+	virtual ~Mgr() { }                                                                           // _58 (weak)
+	virtual EnemyTypeID::EEnemyTypeID getEnemyTypeID() { return EnemyTypeID::EnemyID_Kochappy; } // _AC (weak)
+	virtual SysShape::Model* createModel();                                                      // _B0
+	virtual void loadModelData();                                                                // _C8
+	virtual void loadAnimData();                                                                 // _CC
 
 	// _00 		= VTBL
 	// _00-_44	= EnemyMgrBase
